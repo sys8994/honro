@@ -1,3 +1,7 @@
+## 2026-10-22 — 11장 고정 미술의 분리 비용 계측/최신master 통합 인계
+
+후보4 미술을 고정한 채 새 prepare+타일/prepare재사용 tile miss/screen hit/최대1.65 직접 draw를 분리했다. 정상 screen hit 재질 호출0과 직접 draw의 실제 fill 증가를 구분한다.11장 모듈의 쓰지 않는 legacy plate 구성과 목재 contacts 프레임 배열만 정리했고 전후 재질 PNG6쌍 동일을 확인했다.1c397248 및 최신28b26db6 비교는 분리 보존하고 최신 전역 소스/고정 campaign을 byte 비교했다. 최초 준비 증가 한계와 전후 수치는 [기록](stage11-vector-art-20261022/README.md). master/Pages는 부모 담당이며 직접 변경하지 않았다.
+
 ## 2026-10-22 — 11장 중간 크기 파단면 선택 분할 네 번째 후보 (부모 미술 판단 대기)
 
 세 번째 후보의 공유 경계를 유지하고 중앙/동쪽의 선택한 면 내부만 중간 크기로 나눴다. 다른7암체는 짙은 아랫면 색만 완화하며 피난처/후벽/목재/뿌리/게임플레이와 전역 renderer/main/UI는 보존한다. [같은 카메라 사진과 실제 범위](stage11-vector-art-20261022/README.md). master/Pages 미변경.

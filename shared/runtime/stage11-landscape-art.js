@@ -92,6 +92,8 @@ function prepare(t,b){
   if(t.id==='rv-saddle-broken-arm'){const x=end-31,y=at(x),d=bottom(x)-y;q.cut=path(`M${x-19} ${y+12}q-26 ${d*.17} -5 ${d*.43}q25 ${d*.17} 37 ${-d*.14}q15 ${-d*.28} -18 ${-d*.37}`);}
  }else{
   const floor=t.honroSurfaceRole==='floor',start=floor?Math.max(0,t.x):t.x,end=floor?Math.min(b.width,t.x+t.w):t.x+t.w,w=end-start;
+  // Authored faces replace these legacy numeric plates completely.
+  if(!authored){
   const pillar=!t.oneWay&&w<550&&t.h>w*1.07;
   const count=pillar?1:t.oneWay||t.h<220?Math.max(1,Math.ceil(w/360)):Math.max(2,Math.min(14,Math.ceil(w/(floor?1400:960))));
   const weights=Array.from({length:count},(_,i)=>[1.43,.71,1.18,.86,1.51,.59,1.06][(i+seed)%7]),total=weights.reduce((a,z)=>a+z,0);let cursor=start;
@@ -103,12 +105,14 @@ function prepare(t,b){
    q.plates.push({x,y,ww,depth,variant:(i+seed)%3,rift:(i+seed)%3===0||w<220});
   }
   const exposures=EXPOSURES[t.id];if(exposures){q.connected=true;q.plates=exposures.map(([u,v,variant,d],i)=>{const x=start+w*u,ww=w*v,anchor=Math.min(end-1,x+ww*.4),y=at(anchor)-Math.min(80,t.h*.035),depth=Math.max(150,Math.min(1250,ww*.9,(bottom(anchor)-y)*d));return{x,y,ww,depth,fullDepth:bottom(anchor)-y,deep:i===1||exposures.length===1,variant,rift:i===1||exposures.length===1,connected:true};});}
+  }else q.connected=!!EXPOSURES[t.id];
   // Coherent moss grows in a few damp seams, rather than flat green stickers.
   const e=edges.filter(([a,z])=>Math.abs(z.x-a.x)>100);for(const [i,[a,z]]of e.entries()){
    if((i+seed)%3===0)continue;const lo=.1+((i+seed)%3)*.13,hi=Math.min(.95,lo+.24+((i+seed)%2)*.18),x=a.x+(z.x-a.x)*lo,xx=a.x+(z.x-a.x)*hi,y=at(x),yy=at(xx),deep=t.oneWay?12:35+((i+seed)%3)*11;
    q.moss.push(path(`M${x} ${y+5}Q${(x+xx)/2} ${(y+yy)/2+18} ${xx} ${yy+6}L${xx-13} ${yy+deep*.7}Q${(x+xx)/2+24} ${(y+yy)/2+deep+10} ${x+12} ${y+deep*.6}Z`));
   }
  }
+ if(wood)q.contacts=[...(q.seats||[]),...(q.breaks||[])];
  cache.set(t,q);return q;
 }
 function terrain(c,t,b){
@@ -121,7 +125,7 @@ function terrain(c,t,b){
   for(const p of q.plates){c.fillStyle=p.light?'#b0a07028':'#29261f40';c.fill(p.face);}
   c.lineCap='round';c.lineJoin='round';c.strokeStyle='#34271979';c.lineWidth=6;for(const p of q.grooves)c.stroke(p);
   if(q.fibres){c.lineWidth=3.5;c.strokeStyle='#c0a67880';for(const p of q.fibres)c.stroke(p);}
-  for(const p of [...q.seats||[],...q.breaks||[]]){c.fillStyle=p.fill;c.fill(p.path);}
+  for(const p of q.contacts){c.fillStyle=p.fill;c.fill(p.path);}
   if(q.cut){c.strokeStyle='#b79963';c.lineWidth=7;c.stroke(q.cut);}
   c.strokeStyle='#b6a077';c.lineWidth=4;c.stroke(q.rim);
  }else{

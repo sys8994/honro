@@ -20,6 +20,7 @@
   return{s,e,state:protectedState(b)};
  };
  G.stage11MaterialProbe={
+  materialPixels(v,z){const c=document.createElement("canvas");c.width=1440;c.height=900;const ctx=c.getContext("2d");ctx.translate(720,450);ctx.scale(z,z);ctx.translate(-v.x,-v.y);for(const t of HonroTerrainDomain.render(app.engine.b))if(!t.broken&&t.x+t.w>=v.x-720/z&&t.x<=v.x+720/z)HonroStage11LandscapeArt.terrain(ctx,t,app.engine.b);return c.toDataURL("image/png");},
   fixture:protectedState(seed),
   run(v){
    const samples={freshPrepareFirstTiles:[],prepareReusedTileMiss:[],screenHit:[],max165Direct:[]};let current;

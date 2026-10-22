@@ -1,0 +1,431 @@
+{
+  "label": "integration-ready",
+  "sha": "a8402d7765df416505f421b5b858f1dd4f8a55f2",
+  "workingTree": " M HONRO.html\n M HONRO_WORKSHOP.html\n M index.html\n M shared/runtime/stage11-landscape-art.js\n M tools/testing/stage11-material-probe.js\n M tools/testing/stage11-material-probe.py\n D web/data/campaign-library.c42a969cd6b82385.json\n D web/data/campaign.a858b9f650e6db38.json\n D web/data/chapter-11-assets.a5c67f71fd833974.json\n D web/data/chapter-11.cd7e7bfce360efa0.json\n D web/entries/game.705289cf96d1daf0.html\n D web/entries/game.c3cc1352cc42756f.js\n D web/entries/workshop.b2c800ee434d734d.js\n M web/manifest.json\n D web/runtime/campaign.d7b32b6ddd583264.js\n D web/runtime/ordered-common-13.9f93ade7e0dc6d7b.js\n?? game/docs/stage11-vector-art-20261022/evidence/final28-separated.json\n?? game/docs/stage11-vector-art-20261022/evidence/integration-ready-central.jpg\n?? game/docs/stage11-vector-art-20261022/evidence/integration-ready-max-refuge.jpg\n?? game/docs/stage11-vector-art-20261022/evidence/integration-ready-min-mobile.jpg\n?? game/docs/stage11-vector-art-20261022/evidence/integration-ready-mobile-trace.jpg\n?? game/docs/stage11-vector-art-20261022/evidence/integration-ready-overview.jpg\n?? game/docs/stage11-vector-art-20261022/evidence/integration-ready-refuge.jpg\n?? game/docs/stage11-vector-art-20261022/evidence/integration-ready-west.jpg\n?? game/docs/stage11-vector-art-20261022/evidence/separated-summary.json\n?? web/entries/game.82a601ebbb04f403.js\n?? web/entries/game.f825cb292b0004ea.html\n?? web/entries/workshop.3c43560aa39efd2a.js\n?? web/runtime/ordered-common-13.3afe136867b84f16.js\n",
+  "materialSha256": "824cac5edfd7283fd987c0c6c16283d2cc81c4e7d7fd7c4970be30ac81b5c6b8",
+  "scope": "Production Chromium Scene and HUD; frozen normal entry-level battle/camera/progression fixtures, not full combat completion or real mobile hardware. 40 synchronous warm render samples/view; no concurrent load.",
+  "rows": [
+    {
+      "file": "integration-ready-overview.jpg",
+      "group": "focus1",
+      "camera": [
+        8000,
+        7250,
+        0.115
+      ],
+      "viewport": [
+        1440,
+        900
+      ],
+      "limits": {
+        "min": 0.21176470588235294,
+        "max": 1.65,
+        "tactical": 0.21176470588235294,
+        "readability": 0.056818181818181816
+      },
+      "coldMs": 136.1999999997206,
+      "medianMs": 3.1000000000931323,
+      "p95Ms": 4.600000000093132,
+      "cacheBefore": {
+        "worldBuilds": 2,
+        "worldBuildMs": 60.40000000037253,
+        "bgBuilds": 0,
+        "bgBuildMs": 0,
+        "worldHits": 25,
+        "bgHits": 7,
+        "domainCanvasAllocations": 18,
+        "domainTileBuilds": 18,
+        "screenBuilds": 4,
+        "screenHits": 14,
+        "screenWorldBytes": 4429440,
+        "screenBackgroundBytes": 4429440,
+        "worldBytes": 12780288,
+        "worldScale": 0.125,
+        "backgroundBytes": 0
+      },
+      "cacheAfter": {
+        "worldBuilds": 2,
+        "worldBuildMs": 60.40000000037253,
+        "bgBuilds": 0,
+        "bgBuildMs": 0,
+        "worldHits": 65,
+        "bgHits": 47,
+        "domainCanvasAllocations": 18,
+        "domainTileBuilds": 18,
+        "screenBuilds": 4,
+        "screenHits": 94,
+        "screenWorldBytes": 4429440,
+        "screenBackgroundBytes": 4429440,
+        "worldBytes": 12780288,
+        "worldScale": 0.125,
+        "backgroundBytes": 0
+      },
+      "tileCount": 12,
+      "phase": "aim",
+      "current": "knot-west"
+    },
+    {
+      "file": "integration-ready-west.jpg",
+      "group": "focus1",
+      "camera": [
+        3200,
+        6650,
+        0.18
+      ],
+      "viewport": [
+        1440,
+        900
+      ],
+      "limits": {
+        "min": 0.21176470588235294,
+        "max": 1.65,
+        "tactical": 0.21176470588235294,
+        "readability": 0.056818181818181816
+      },
+      "coldMs": 70.70000000018626,
+      "medianMs": 2.8999999999068677,
+      "p95Ms": 4.7000000001862645,
+      "cacheBefore": {
+        "worldBuilds": 3,
+        "worldBuildMs": 73,
+        "bgBuilds": 0,
+        "bgBuildMs": 0,
+        "worldHits": 85,
+        "bgHits": 55,
+        "domainCanvasAllocations": 30,
+        "domainTileBuilds": 30,
+        "screenBuilds": 6,
+        "screenHits": 110,
+        "screenWorldBytes": 4429440,
+        "screenBackgroundBytes": 4429440,
+        "worldBytes": 12780288,
+        "worldScale": 0.21022410381342863,
+        "backgroundBytes": 0
+      },
+      "cacheAfter": {
+        "worldBuilds": 3,
+        "worldBuildMs": 73,
+        "bgBuilds": 0,
+        "bgBuildMs": 0,
+        "worldHits": 125,
+        "bgHits": 95,
+        "domainCanvasAllocations": 30,
+        "domainTileBuilds": 30,
+        "screenBuilds": 6,
+        "screenHits": 190,
+        "screenWorldBytes": 4429440,
+        "screenBackgroundBytes": 4429440,
+        "worldBytes": 12780288,
+        "worldScale": 0.21022410381342863,
+        "backgroundBytes": 0
+      },
+      "tileCount": 12,
+      "phase": "aim",
+      "current": "knot-west"
+    },
+    {
+      "file": "integration-ready-central.jpg",
+      "group": "focus2",
+      "camera": [
+        7290,
+        7080,
+        0.43
+      ],
+      "viewport": [
+        1440,
+        900
+      ],
+      "limits": {
+        "min": 0.21176470588235294,
+        "max": 1.65,
+        "tactical": 0.21176470588235294,
+        "readability": 0.056818181818181816
+      },
+      "coldMs": 43.89999999990687,
+      "medianMs": 0.8000000002793968,
+      "p95Ms": 1.3000000002793968,
+      "cacheBefore": {
+        "worldBuilds": 4,
+        "worldBuildMs": 81.20000000018626,
+        "bgBuilds": 0,
+        "bgBuildMs": 0,
+        "worldHits": 141,
+        "bgHits": 103,
+        "domainCanvasAllocations": 38,
+        "domainTileBuilds": 38,
+        "screenBuilds": 8,
+        "screenHits": 206,
+        "screenWorldBytes": 4429440,
+        "screenBackgroundBytes": 4429440,
+        "worldBytes": 8520192,
+        "worldScale": 0.5,
+        "backgroundBytes": 0
+      },
+      "cacheAfter": {
+        "worldBuilds": 4,
+        "worldBuildMs": 81.20000000018626,
+        "bgBuilds": 0,
+        "bgBuildMs": 0,
+        "worldHits": 181,
+        "bgHits": 143,
+        "domainCanvasAllocations": 38,
+        "domainTileBuilds": 38,
+        "screenBuilds": 8,
+        "screenHits": 286,
+        "screenWorldBytes": 4429440,
+        "screenBackgroundBytes": 4429440,
+        "worldBytes": 8520192,
+        "worldScale": 0.5,
+        "backgroundBytes": 0
+      },
+      "tileCount": 8,
+      "phase": "aim",
+      "current": "knot-west"
+    },
+    {
+      "file": "integration-ready-refuge.jpg",
+      "group": "focus2",
+      "camera": [
+        10350,
+        8470,
+        0.5
+      ],
+      "viewport": [
+        1440,
+        900
+      ],
+      "limits": {
+        "min": 0.21176470588235294,
+        "max": 1.65,
+        "tactical": 0.21176470588235294,
+        "readability": 0.056818181818181816
+      },
+      "coldMs": 57.799999999813735,
+      "medianMs": 0.7000000001862645,
+      "p95Ms": 1,
+      "cacheBefore": {
+        "worldBuilds": 5,
+        "worldBuildMs": 94.10000000102445,
+        "bgBuilds": 0,
+        "bgBuildMs": 0,
+        "worldHits": 201,
+        "bgHits": 151,
+        "domainCanvasAllocations": 50,
+        "domainTileBuilds": 50,
+        "screenBuilds": 10,
+        "screenHits": 302,
+        "screenWorldBytes": 4429440,
+        "screenBackgroundBytes": 4429440,
+        "worldBytes": 12780288,
+        "worldScale": 0.5946035575013605,
+        "backgroundBytes": 0
+      },
+      "cacheAfter": {
+        "worldBuilds": 5,
+        "worldBuildMs": 94.10000000102445,
+        "bgBuilds": 0,
+        "bgBuildMs": 0,
+        "worldHits": 241,
+        "bgHits": 191,
+        "domainCanvasAllocations": 50,
+        "domainTileBuilds": 50,
+        "screenBuilds": 10,
+        "screenHits": 382,
+        "screenWorldBytes": 4429440,
+        "screenBackgroundBytes": 4429440,
+        "worldBytes": 12780288,
+        "worldScale": 0.5946035575013605,
+        "backgroundBytes": 0
+      },
+      "tileCount": 12,
+      "phase": "aim",
+      "current": "knot-west"
+    },
+    {
+      "file": "integration-ready-mobile-trace.jpg",
+      "group": "focus3",
+      "camera": [
+        11900,
+        7850,
+        0.36
+      ],
+      "viewport": [
+        390,
+        844
+      ],
+      "limits": {
+        "min": 0.057352941176470586,
+        "max": 1.65,
+        "tactical": 0.057352941176470586,
+        "readability": 0.056818181818181816
+      },
+      "coldMs": 41.700000000186265,
+      "medianMs": 0.20000000018626451,
+      "p95Ms": 0.5,
+      "cacheBefore": {
+        "worldBuilds": 7,
+        "worldBuildMs": 110.90000000130385,
+        "bgBuilds": 0,
+        "bgBuildMs": 0,
+        "worldHits": 254,
+        "bgHits": 198,
+        "domainCanvasAllocations": 62,
+        "domainTileBuilds": 62,
+        "screenBuilds": 12,
+        "screenHits": 396,
+        "screenWorldBytes": 1010880,
+        "screenBackgroundBytes": 1010880,
+        "worldBytes": 6390144,
+        "worldScale": 0.42044820762685725,
+        "backgroundBytes": 0
+      },
+      "cacheAfter": {
+        "worldBuilds": 7,
+        "worldBuildMs": 110.90000000130385,
+        "bgBuilds": 0,
+        "bgBuildMs": 0,
+        "worldHits": 294,
+        "bgHits": 238,
+        "domainCanvasAllocations": 62,
+        "domainTileBuilds": 62,
+        "screenBuilds": 12,
+        "screenHits": 476,
+        "screenWorldBytes": 1010880,
+        "screenBackgroundBytes": 1010880,
+        "worldBytes": 6390144,
+        "worldScale": 0.42044820762685725,
+        "backgroundBytes": 0
+      },
+      "tileCount": 6,
+      "phase": "aim",
+      "current": "trace"
+    },
+    {
+      "file": "integration-ready-max-refuge.jpg",
+      "group": "focus3",
+      "camera": [
+        10050,
+        8680,
+        1.65
+      ],
+      "viewport": [
+        1440,
+        900
+      ],
+      "limits": {
+        "min": 0.21176470588235294,
+        "max": 1.65,
+        "tactical": 0.21176470588235294,
+        "readability": 0.056818181818181816
+      },
+      "coldMs": 5.099999999627471,
+      "medianMs": 1.1000000000931323,
+      "p95Ms": 1.400000000372529,
+      "cacheBefore": {
+        "worldBuilds": 7,
+        "worldBuildMs": 110.90000000130385,
+        "bgBuilds": 0,
+        "bgBuildMs": 0,
+        "worldHits": 294,
+        "bgHits": 245,
+        "domainCanvasAllocations": 62,
+        "domainTileBuilds": 62,
+        "screenBuilds": 13,
+        "screenHits": 483,
+        "screenWorldBytes": 1010880,
+        "screenBackgroundBytes": 4429440,
+        "worldBytes": 6390144,
+        "worldScale": 0.42044820762685725,
+        "backgroundBytes": 0
+      },
+      "cacheAfter": {
+        "worldBuilds": 7,
+        "worldBuildMs": 110.90000000130385,
+        "bgBuilds": 0,
+        "bgBuildMs": 0,
+        "worldHits": 294,
+        "bgHits": 285,
+        "domainCanvasAllocations": 62,
+        "domainTileBuilds": 62,
+        "screenBuilds": 13,
+        "screenHits": 523,
+        "screenWorldBytes": 1010880,
+        "screenBackgroundBytes": 4429440,
+        "worldBytes": 6390144,
+        "worldScale": 0.42044820762685725,
+        "backgroundBytes": 0
+      },
+      "tileCount": 6,
+      "phase": "aim",
+      "current": "trace"
+    },
+    {
+      "file": "integration-ready-min-mobile.jpg",
+      "group": "focus3",
+      "camera": [
+        9000,
+        7800,
+        0.12411764705882353
+      ],
+      "viewport": [
+        844,
+        390
+      ],
+      "limits": {
+        "min": 0.12411764705882353,
+        "max": 1.65,
+        "tactical": 0.12411764705882353,
+        "readability": 0.056818181818181816
+      },
+      "coldMs": 72,
+      "medianMs": 1,
+      "p95Ms": 1.7000000001862645,
+      "cacheBefore": {
+        "worldBuilds": 9,
+        "worldBuildMs": 126.40000000037253,
+        "bgBuilds": 0,
+        "bgBuildMs": 0,
+        "worldHits": 307,
+        "bgHits": 292,
+        "domainCanvasAllocations": 70,
+        "domainTileBuilds": 70,
+        "screenBuilds": 15,
+        "screenHits": 537,
+        "screenWorldBytes": 786608,
+        "screenBackgroundBytes": 786608,
+        "worldBytes": 6390144,
+        "worldScale": 0.14865088937534013,
+        "backgroundBytes": 0
+      },
+      "cacheAfter": {
+        "worldBuilds": 9,
+        "worldBuildMs": 126.40000000037253,
+        "bgBuilds": 0,
+        "bgBuildMs": 0,
+        "worldHits": 347,
+        "bgHits": 332,
+        "domainCanvasAllocations": 70,
+        "domainTileBuilds": 70,
+        "screenBuilds": 15,
+        "screenHits": 617,
+        "screenWorldBytes": 786608,
+        "screenBackgroundBytes": 786608,
+        "worldBytes": 6390144,
+        "worldScale": 0.14865088937534013,
+        "backgroundBytes": 0
+      },
+      "tileCount": 6,
+      "phase": "aim",
+      "current": "trace"
+    }
+  ],
+  "errors": [],
+  "httpFailures": [],
+  "sourceHashes": {
+    "shared/data/campaign.json": "abb1d132de3cfac3a972d4efac55ca83445c1aa28b09592382f2bc4d7cb03f4e",
+    "tools/environment/stage11-fracture-fields.mjs": "3ebe2b70f11a47c92207781a3f57a971195bb871dc9d39d3a1590538b42a4325",
+    "tools/environment/stage11-vector-finish.mjs": "fc279e63b329d3c513438639ff8fe0663504474db86373aadfabecd8b8ed84ae",
+    "shared/runtime/stage11-landscape-art.js": "824cac5edfd7283fd987c0c6c16283d2cc81c4e7d7fd7c4970be30ac81b5c6b8",
+    "web/manifest.json": "41b128f8511225527d38a78d6624de7a21a1ec35d636274300e86837e40b8e2f"
+  }
+}

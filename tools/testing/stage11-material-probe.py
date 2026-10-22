@@ -43,11 +43,13 @@ def main():
           page.goto(target['url']+'/HONRO.html');page.wait_for_function('window.HonroApp',timeout=90000);page.evaluate(INIT);page.wait_for_function('HonroAuthoredFarArt.ready(11)',timeout=90000)
           page.evaluate((ROOT/'tools/testing/stage11-material-probe.js').read_text());page.evaluate(target['instrumented'])
           for view in VIEWS:
-            row=page.evaluate('v=>stage11MaterialProbe.run(v)',view);row.update(target=name,visit=visit);rows.append(row);print(name,visit,view['name'],flush=True)
+            row=page.evaluate('v=>stage11MaterialProbe.run(v)',view)
+            row['materialPixelHashes']={str(z):hashlib.sha256(page.evaluate('a=>stage11MaterialProbe.materialPixels(a.v,a.z)',{'v':view,'z':z}).encode()).hexdigest() for z in [view['z'],1.65]}
+            row.update(target=name,visit=visit);rows.append(row);print(name,visit,view['name'],flush=True)
           page.close()
         browser.close()
       out=ROOT/'game/docs/stage11-vector-art-20261022/evidence';out.mkdir(parents=True,exist_ok=True)
-      report={'label':ns.label,'scope':'Instrumented fixed production Scene render; dt/effectDt=0, time=10, fixed battle/poses/viewport, far image ready. No engine step, gameplay FPS or GPU completion claim. Instrumentation overhead is included in timings; counts distinguish draw paths. Fresh samples reset only the stage11 prepare cache and create a new battle/Scene.','order':order,'targets':{n:{'root':str(t['root']),'rendererSha256':hashlib.sha256(t['source'].encode()).hexdigest(),'campaignSha256':hashlib.sha256((t['root']/'shared/data/campaign.json').read_bytes()).hexdigest()}for n,t in targets.items()},'errors':errors,'rows':rows}
+      report={'label':ns.label,'scope':'Instrumented fixed production Scene render; dt/effectDt=0, time=10, fixed battle/poses/viewport, far image ready. No engine step, gameplay FPS or GPU completion claim. Instrumentation overhead is included in timings; counts distinguish draw paths. Fresh samples reset only the stage11 prepare cache and create a new battle/Scene.','order':order,'targets':{n:{'root':str(t['root']),'rendererSha256':hashlib.sha256(t['source'].encode()).hexdigest(),'campaignSha256':hashlib.sha256((t['root']/'shared/data/campaign.json').read_bytes()).hexdigest(),'sourceHashes':{f:hashlib.sha256((t['root']/f).read_bytes()).hexdigest()for f in ['shared/runtime/main.js','shared/runtime/renderer.js','shared/runtime/party-rig.js','shared/runtime/stage11-landscape-art.js','shared/data/campaign.json','web/manifest.json']}}for n,t in targets.items()},'errors':errors,'rows':rows}
       (out/(ns.label+'.json')).write_text(json.dumps(report,ensure_ascii=False,indent=2)+'\n');assert not errors
     finally:
       for server in servers:server.shutdown();server.server_close()

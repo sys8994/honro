@@ -1,0 +1,31 @@
+{
+  "pass": true,
+  "commandsRun": [
+    "npm run build",
+    "node tests/stage11-landscape-art.mjs",
+    "node tests/stage11-vector-finish.mjs",
+    "node tests/web-split.mjs"
+  ],
+  "scope": "Previously executed after the final stage11-only optimization; recorded here without rerunning unrelated or already completed checks.",
+  "campaignSha256": "abb1d132de3cfac3a972d4efac55ca83445c1aa28b09592382f2bc4d7cb03f4e",
+  "materialRendererSha256": "824cac5edfd7283fd987c0c6c16283d2cc81c4e7d7fd7c4970be30ac81b5c6b8",
+  "latestMasterProtectedSourceHashes": {
+    "shared/runtime/main.js": "65ce4bdac2981ae26e959a8136de607c9046d11e00576902ffe3aac4e94d14c5",
+    "shared/runtime/renderer.js": "0fc0aa62a304d1274b40d56515ddb4363da21b53c33552d8adb876f06e24569d",
+    "shared/runtime/party-rig.js": "1ccaf5044a1580218f69cae6754e969b173fc18056f1786de229916f5ba6212a",
+    "shared/runtime/combat-feedback.js": "4af4ee3977779a662913fe65c3535c673080bc597f840fc4401f715095c1c34f",
+    "shared/runtime/combat-status.js": "ed19860de6be38d091d250cbb010e980cc6d48fed363dcc902b7c2d276b5ea8c",
+    "shared/runtime/objectives.js": "52dd5a146bb5858631f9c817955530b4a2a8e21718eee451a68d21d38222c3e3",
+    "shared/assets/actors/actors.runtime.js": "08406e9c2f8fbd1e977296c2a38d4f06e9cb506b288b2f4fadc8383973f67c83",
+    "shared/assets/party/party.runtime.js": "1e57baa9403f845304ef25fe074969524db751c1c0a7c0678c05259ff4c470e0"
+  },
+  "jpgBytes": {
+    "integration-ready-overview.jpg": 133593,
+    "integration-ready-min-mobile.jpg": 40507,
+    "integration-ready-max-refuge.jpg": 89260,
+    "integration-ready-west.jpg": 112631,
+    "integration-ready-central.jpg": 89735,
+    "integration-ready-mobile-trace.jpg": 32219,
+    "integration-ready-refuge.jpg": 93400
+  }
+}

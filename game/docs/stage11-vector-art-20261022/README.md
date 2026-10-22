@@ -270,3 +270,73 @@
 `integration/stage11-art-release-20261022`를 master `1c397248`에서 만들고 고정 후보 `f853e866`을 병합했다. 전역 renderer/main/UI와 master의 objectives/combat-feedback/combat-status는1c397248과 byte 단위로 같다. 후보4 campaign도 byte 단위로 같다. 생성 HTML/web 충돌은 통합 소스의 공통 build로 재생성했고 BUG_LOG 양쪽 기록은 모두 보존했다. build·stage11-vector-finish·stage11-landscape-art·web-split 통과. 통합 `integration-final-*` 전체/중앙/피난처/세로 모바일4장을 생산 Chromium에서 촬영하고 전부 직접 열었다. 고정 후보4 미술과 목표/주민/원경 구도를 확인했으며 새 형상 변경은 없다.
 
 이 시점 부모가 master를 `28b26db6`로 갱신했다. 지금까지의1c397248 분리 계측과 섞지 않고 최종 통합에는 해당 부모 실루엣 개선을 추가 보존한다. 이 개선의 성능은 본 미술의 성과로 주장하지 않는다. master 쓰기/배포는 계속 부모 담당이다.
+
+
+## 배포 전 분리 계측 결론 · 후보4 미술 고정 / 최신master 보존
+
+부모 독립 감사의 지적을 반영해 이전 순차 카메라 표본과 구분한다. 후보3/4의 stage11 renderer SHA는 같고 prepare는 terrain/vertices/sceneVersion WeakMap 캐시다. 매 프레임 JSON 직렬화는 없다. **최대 준비 경로85 동일은 전체 작업량 동일이라는 뜻이 아니다. 실제 authored face 합은438→465(중앙54→71, 동쪽33→43)**이다. 이전 `coldMs`는 같은 Scene으로 다른 카메라를 순차 방문한 첫 draw이며 순수 새 재질 최초 준비 시간으로 사용하지 않는다.
+
+### 계측 조건과 경로
+
+시험 전용 `tools/testing/stage11-material-probe.py`/`.js`를 사용했다. 생산 HTML을 별도 로컬 HTTP root에서 읽고 Chromium 한 세션에서 전/후와 역순을 교차 실행한다. 런타임 파일은 계측 때문에 저장/변경하지 않는다. 브라우저 안에서 해당 stage11 모듈에 카운터/타이머만 삽입하고 Canvas Path2D constructor·clip/fill/stroke·linear/radial gradient 생성 호출을 센다. 원래 liveWater hook을 다시 감싸지 않도록 계측용 재등록에서 그 부분은 제외한다. prepare miss/hit은 로컬 함수 내부에서 실제 cache 조건을 계수한다.
+
+1440×900/DPR1, 서쪽(3200,6650,.18)·중앙(7290,7080,.43)·피난처(10350,8470,.5), 동일 고정 battle/진행·좌표·HP·포즈, Scene.time10/dt0/effectDt0, 원경 이미지 ready를 사용했다. 모든 비교의 보호된 fixture SHA가 같고 각 render 전후에도 보존된다. engine.step은 호출하지 않는다. 전체 render는 배경/배우 등을 포함하고 재질/prepare 타이머는 그 안의 중첩 비용이다. 계측 hook 비용과 동기 Canvas 명령 제출 시간이 포함되므로 GPU 완료시간·정상 동적 게임 FPS가 아니다.
+
+- **새 battle/Scene의 prepare+첫 타일:** 고정 canonical battle을 복제해 새 Engine/Scene을 만들고 stage11 prepare cache를 비운 뒤 첫 render. target/view당6회. 모듈 import/정적 ROCK_BLOCKS 상수 생성 시간은 제외된다. 원경 이미지 다운로드는 이미 완료돼 있으나 새 Scene의 배경 준비·배우 draw 등 전체 render 비용도 포함하므로 재질 준비는 별도 prepareMs로 읽는다.
+- **prepare 재사용+타일 miss:** 같은 battle·terrain·sceneVersion에서 world tile/screenWorld만 비우고 다시 draw. target/view당6회. 실제 prepare miss0, 새 Path2D0, 타일 build 서쪽12/중앙8/피난처12다.
+- **정상 screen hit:** 같은 화면을 안정화한 뒤 target/view당48회. 매 회 worldHits+1/screenHits+2, 재질 호출/prepare/Path2D/clip/fill/gradient0, world/tile build0이다. 앞선17.8ms tail을 새 face loop 회귀로 단정하지 않는다.
+- **최대1.65 직접 draw:** 같은 중심에서 배율1.65로 바꾸고 prepare를 안정화한 뒤 target/view당32회. worldHits+0, background hit+1, screenHits+1, 재질 호출은 서쪽7/중앙13/피난처11회, prepare miss/새 Path2D/타일 build0이다. **warm 재빌드0이어도 재질 draw 비용은0이 아니다.**
+
+[집계·카운터 범위·보존 SHA](evidence/separated-summary.json), [후보3↔4 원자료](evidence/candidate34-separated.json), [master1c397248↔고정 미술 원자료](evidence/master1c-art-separated.json), [최신master28/고정 미술/국소 최적화 최종 원자료](evidence/final28-separated.json).
+
+### 후보3→4의 실제 추가 작업
+
+후보3와4를3→4→4→3 순서로 실행했다. 재질 호출 수와 clip/gradient 호출 수는 같지만, 실제 Path2D/fill은 증가한다. 다음은 재질 범위 실제 호출 수이며 여러 타일에 같은 암체를 다시 그리는 작업을 포함한다.
+
+| 장소 | 첫 준비 Path2D 후보3→4 | 첫 타일 fill 후보3→4 | prepare 재사용 타일 fill 후보3→4 | 최대 직접 draw fill 후보3→4 |
+|---|---:|---:|---:|---:|
+| 서쪽 |842→859|2242→2276|2242→2276|326→326|
+| 중앙 |381→398|1502→1638|1502→1638|550→567|
+| 피난처 |369→396|2510→2638|2510→2638|514→541|
+
+| 후보3→4 중앙값 ms | 새 battle 전체 / 재질 / prepare | prepare재사용 타일 전체 / 재질 | screen hit 전체 | 최대 직접 전체 / 재질 |
+|---|---|---|---|---|
+| west | 89.90→85.15 / 12.75→11.15 / 9.05→7.40 | 73.05→73.55 / 2.70→2.75 | 7.20→7.10 | 0.80→0.90 / 0.20→0.30 |
+| central | 58.35→48.80 / 5.90→4.65 / 3.75→2.70 | 50.55→47.85 / 1.80→1.75 | 1.35→1.20 | 1.40→1.20 / 0.45→0.40 |
+| refuge | 59.05→58.05 / 4.50→4.65 / 1.85→2.00 | 60.95→56.70 / 2.45→2.25 | 0.80→0.75 | 1.00→1.00 / 0.30→0.35 |
+
+이 교차 표본에서 추가 분할의 큰 지속시간 회귀는 보이지 않았지만 호출 수 증가 자체는 분명하다. 수치가 줄어든 표본을 분할 때문에 빨라졌다고 주장하지 않는다. 전체/재질의 대기·JIT·Canvas 등 짧은 표본 변동이 있으므로 경로 카운터와 함께 해석한다.
+
+### 확인된 낭비만11장 모듈 안에서 제거
+
+`stage11-landscape-art.js`에서 authored face가 있으면 실제 draw에 쓰지 않을 legacy numeric plate/EXPOSURES 배열을 계산하지 않게 했다. 기존 connected 기반암 색 선택과 moss/rim은 그대로이며 authored가 없는 옛 전투는 원래 fallback을 유지한다. 목재의 seats/breaks 합친 배열도 prepare에서 한 번 만들고 draw에서 재사용한다. 두 항목은 후보3/4에 공통이던 코드이므로 후보4 회귀 원인이라고 부르지 않는다. 품질·해상도·애니메이션을 줄이거나 전역 renderer/main/UI를 재작성하지 않았다. 작은 시간 차이를 최적화 효과의 보장으로 사용하지 않고, 사용하지 않는 계산/프레임 배열 생성이 제거됐다는 코드상의 근거만 확정한다.
+
+최적화 전후에는 같은28b26db6 공통 소스를 사용했다. 서쪽/중앙/피난처 각각 일반/최대1.65의 **생산 Canvas 재질 레이어 PNG 해시6쌍이 정확히 같다.** campaign은 고정 후보4 `f853e866`와 byte 단위로 같다. terrain/배우/목표/스토리·전체Library/뿌리 데이터는 그대로다. 최종 build·stage11-vector-finish·stage11-landscape-art·web-split은 통과했다.
+
+### 최신 master28b26db6 대비 최종 영향
+
+통합 merge `7cccd914`는1c397248 렌더 개선과 고정 미술을 결합했고, `a8402d77`는 부모가 검수해 master에 올린28b26db6의 빈 실루엣 합성 생략을 추가 보존했다. 모든 전역 main/renderer/party-rig/objectives/combat 및 actor/party runtime 소스는28b26db6와 byte 단위로 같다. BGM 및 다른 별도 브랜치는 가져오지 않았다. 이후 변경은 위11장 국소 최적화뿐이다. 생성 HTML/web 충돌은 매번 통합 소스의 공통 build로 재생성했다.
+
+1c397248 비교 자료는 보존하되28b26db6 결과에 섞지 않는다. 특히 서쪽 screen-hit 시간이1c397248 시기보다 낮아진 것을 미술 성과로 표현하지 않는다. 다음은 **동일28b26db6 기반** master 원본→최종 미술/국소 최적화의 중앙값이다.
+
+| 장소 | 새 battle 전체 ms | 그 안의 재질 / prepare ms | prepare 재사용 타일 전체 / 재질 ms | screen hit 전체 ms | 최대 직접 전체 / 재질 ms |
+|---|---|---|---|---|---|
+| west | 84.00→88.15 | 12.05→12.85 / 7.35→8.70 | 67.55→69.70 / 3.65→3.05 | 4.10→3.65 | 1.10→0.95 / 0.40→0.30 |
+| central | 46.65→49.40 | 4.25→5.10 / 2.50→3.45 | 46.75→46.20 / 1.95→1.65 | 1.00→0.90 | 1.35→1.30 / 0.45→0.50 |
+| refuge | 51.40→59.45 | 4.50→4.80 / 1.60→1.75 | 52.45→59.45 / 2.55→2.35 | 0.90→0.80 | 1.00→1.00 / 0.40→0.40 |
+
+| 장소 | screen hit 전체 p95 ms master→최종 | 최대 직접 전체 p95 ms master→최종 |
+|---|---|---|
+| west | 6.30→5.70 | 1.60→1.20 |
+| central | 1.60→1.20 | 2.30→2.10 |
+| refuge | 1.60→1.50 | 1.20→1.20 |
+
+최신 동일 기반의 정상 screen-hit/최대 직접 draw에서 중대한 지속 비용 회귀 근거는 관찰되지 않았다. 중앙 직접 draw의 재질 중앙값은0.45→0.50ms로 소폭 증가했고 fill은 master344→최종567이다. 원본master와 최종 미술의 전체작업량이 같다고 하지 않는다. 첫 준비 전체 중앙값은 서쪽+4.15ms, 중앙+2.75ms, 피난처+8.05ms가 남으며 재질/prepare와 전체 시간을 구분해 고지한다. 고정·짧은 계측으로 실기기/장기전투 hitch 무발생을 보장하지 않는다. 원래 시작55.3→85.0ms는 다른 조건의 역사 기록이며 새 조건으로 그것을 해결했다고 주장하지 않는다.
+
+**인계 결론:** 요청한 네 경로의 분리 근거가 확보됐다. 후보4 미술과 최신master를 보존하고, 국소적인 낭비만 제거한 통합본을 부모의 최종 비용 채택/발행 판단에 인계한다. 추가 실험이나 미술 변경은 늘리지 않는다. master/Pages 쓰기·배포는 부모 담당이며 이 작업에서는 미실행이다.
+
+### 최신 통합 소스의 최종 사진/불변 경계
+
+최종 `integration-ready-*` 전체·서쪽·중앙·피난처·세로 모바일·최대·가로 최소7장을 새 생산 Chromium 세션에서 촬영하고 전부 직접 열었다. 후보4의 큰/중간 면과 접합·피난처/목재·후벽·주민/목표 가독성을 확인했고 새로운 타일 이음·가림·발판 외곽을 관찰하지 못했다. 미술 데이터는 고정했고 위 재질 픽셀 해시도 같으므로 이전 승인된 후보4를 다시 디자인하지 않는다. 파일별 camera/viewport/상태/소스 SHA256은 [integration-ready-refinement.json](evidence/integration-ready-refinement.json), 보호 소스·픽셀 해시와 actual face 합은 [separated-summary.json](evidence/separated-summary.json)에 있다.
+
+[전체](evidence/integration-ready-overview.jpg) · [서쪽](evidence/integration-ready-west.jpg) · [중앙](evidence/integration-ready-central.jpg) · [피난처](evidence/integration-ready-refuge.jpg) · [동쪽 모바일](evidence/integration-ready-mobile-trace.jpg) · [최대](evidence/integration-ready-max-refuge.jpg) · [최소](evidence/integration-ready-min-mobile.jpg). 전달 JPG는 각1MB 미만이다. 이전의 무관한45≠43 전술 검사나 다른 장 완주/정상 장기 전투는 다시 실행하지 않았다. 접근 거부/결과 불명 작업은 없다.
