@@ -1,0 +1,48 @@
+[
+  {
+    "branch": "origin/master",
+    "sha": "275144983f93d0de66bbe6f44ede88a82ca36b56",
+    "exit": 0,
+    "conflicts": [],
+    "sourceAutoMerges": []
+  },
+  {
+    "branch": "origin/feat/stage-clear-report",
+    "sha": "85ab56a93cb4502f9086ee8988cb63288c906338",
+    "exit": 1,
+    "conflicts": [
+      "CONFLICT (content): Merge conflict in HONRO.html",
+      "CONFLICT (content): Merge conflict in HONRO_WORKSHOP.html",
+      "CONFLICT (content): Merge conflict in game/docs/BUG_LOG.md",
+      "CONFLICT (content): Merge conflict in index.html",
+      "CONFLICT (rename/delete): web/entries/game.3e90ccbf66bca73c.js renamed to web/entries/game.0fb03bfff4d42691.js in HEAD, but deleted in origin/feat/stage-clear-report.",
+      "CONFLICT (modify/delete): web/entries/game.0fb03bfff4d42691.js deleted in origin/feat/stage-clear-report and modified in HEAD.  Version HEAD of web/entries/game.0fb03bfff4d42691.js left in tree.",
+      "CONFLICT (rename/rename): web/entries/game.237c4778b77ca47f.html renamed to web/entries/game.247a78baaca3a7b1.html in HEAD and to web/entries/game.a8b97ea26ca49332.html in origin/feat/stage-clear-report.",
+      "CONFLICT (rename/delete): web/entries/game.ccb666e56e397a6d.js renamed to web/entries/game.467ae7aa7711a4f5.js in HEAD, but deleted in origin/feat/stage-clear-report.",
+      "CONFLICT (modify/delete): web/entries/game.467ae7aa7711a4f5.js deleted in origin/feat/stage-clear-report and modified in HEAD.  Version HEAD of web/entries/game.467ae7aa7711a4f5.js left in tree.",
+      "CONFLICT (rename/rename): web/entries/game.5b83e3c671c505f3.html renamed to web/entries/game.8becc0d28bc797cb.html in HEAD and to web/entries/game.d854d87597f2b929.html in origin/feat/stage-clear-report.",
+      "CONFLICT (rename/delete): web/entries/game.3f8e502e04e732e2.js renamed to web/entries/game.c38163be691aa93a.js in HEAD, but deleted in origin/feat/stage-clear-report.",
+      "CONFLICT (modify/delete): web/entries/game.c38163be691aa93a.js deleted in origin/feat/stage-clear-report and modified in HEAD.  Version HEAD of web/entries/game.c38163be691aa93a.js left in tree.",
+      "CONFLICT (rename/rename): web/entries/game.d51b5d5f79bfbc1b.html renamed to web/entries/game.5a284406285eb221.html in HEAD and to web/entries/game.bc77ae9e7308712e.html in origin/feat/stage-clear-report.",
+      "CONFLICT (rename/delete): web/entries/workshop.a2d3c80b236845b0.js renamed to web/entries/workshop.b49a3e40a5b07d32.js in HEAD, but deleted in origin/feat/stage-clear-report.",
+      "CONFLICT (modify/delete): web/entries/workshop.b49a3e40a5b07d32.js deleted in origin/feat/stage-clear-report and modified in HEAD.  Version HEAD of web/entries/workshop.b49a3e40a5b07d32.js left in tree.",
+      "CONFLICT (rename/delete): web/entries/workshop.382ea992396fb25e.js renamed to web/entries/workshop.cbd026584df72c03.js in HEAD, but deleted in origin/feat/stage-clear-report.",
+      "CONFLICT (modify/delete): web/entries/workshop.cbd026584df72c03.js deleted in origin/feat/stage-clear-report and modified in HEAD.  Version HEAD of web/entries/workshop.cbd026584df72c03.js left in tree.",
+      "CONFLICT (rename/delete): web/entries/workshop.a45ccd512b03b64c.js renamed to web/entries/workshop.fd432ebf9d8dde92.js in HEAD, but deleted in origin/feat/stage-clear-report.",
+      "CONFLICT (modify/delete): web/entries/workshop.fd432ebf9d8dde92.js deleted in origin/feat/stage-clear-report and modified in HEAD.  Version HEAD of web/entries/workshop.fd432ebf9d8dde92.js left in tree.",
+      "CONFLICT (content): Merge conflict in web/manifest.json",
+      "CONFLICT (rename/delete): web/runtime/ordered-game-16.31b8b3eb58a9dcce.js renamed to web/runtime/ordered-game-17.c3e258fcbd61f618.js in origin/feat/stage-clear-report, but deleted in HEAD.",
+      "CONFLICT (modify/delete): web/runtime/ordered-game-17.c3e258fcbd61f618.js deleted in HEAD and modified in origin/feat/stage-clear-report.  Version origin/feat/stage-clear-report of web/runtime/ordered-game-17.c3e258fcbd61f618.js left in tree."
+    ],
+    "sourceAutoMerges": [
+      "Auto-merging shared/runtime/main.js"
+    ]
+  },
+  {
+    "branch": "origin/fix/journey-book-desktop-expansion",
+    "sha": "30dcbab59ebf7ff6e2cda9480a331cf90776c7db",
+    "exit": 0,
+    "conflicts": [],
+    "sourceAutoMerges": []
+  }
+]

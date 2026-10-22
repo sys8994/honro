@@ -1,10 +1,10 @@
 # 모바일 조이스틱 의도
 
-2026-10-21 사용자 확정: 위/아래 중심 각각 ±20°에서 처음 시작하면 제자리 조준, 나머지는 이동+조준. 포인터를 뗄 때까지 의도를 유지한다.
+2026-10-21 사용자 확정: 위/아래 중심 각각 ±20°에서 처음 시작하면 제자리 조준, 나머지는 이동+조준. 포인터를 뗄 때까지 최초 의도를 유지한다. 2026-10-22 수정: 수직 시작의 이동 억제는 현재 벡터가 ±20° 안에 있을 때만 적용하며 이탈/재진입에 즉시 대응한다. 수평 시작은 이후 수직 범위에 들어와도 새 잠금을 걸지 않는다.
 
 - `shared/engine/src/math.ts`의 `joystickGesture`를 TypeScript App과 실제 Game/Playtest의 `shared/runtime/main.js`가 함께 사용한다. 기존 두 App의 매 move 재평가/수평 억제만으로는 세로로 시작한 제스처의 의도를 보존할 수 없었다.
 - 원점은 패드 중앙이 아니라 pointerdown의 CSS 좌표다. 최초 반경 입력 `max(range × .18, 8 CSS px)` 미만은 undecided이며 이동·조준 출력이 모두 0이다. 첫 유효 입력에서 한 번만 판정한다. 브라우저 float32 좌표를 위한 경계 수치 허용오차는 0.001°다.
-- aimOnly는 중앙 통과·좌우 재드래그에도 이동축 0이며 `Engine.move`를 호출하지 않는다. 물리 tick·낙하·충격 속도와 명시적 점프의 기존 비용은 유지한다.
+- aimOnly는 최초 수직 의도를 나타낸다. 현재 벡터가 수직 ±20° 안이면 이동축 0이며 `Engine.move`를 호출하지 않고, 바깥이면 기존 수평 deadzone을 적용한 이동축을 출력한다. 다시 안으로 들어오면 이동 억제가 돌아온다. 섹터 진입/이탈에 히스테리시스는 없다. 중앙 통과로 최초 의도를 재분류하지 않는다. 물리 tick·낙하·충격 속도와 명시적 점프의 기존 비용은 유지한다.
 - 방향 전환은 정규화한 수평 raw 축 절댓값 .60에서 해당 방향으로, .35 미만에서 다시 무장하는 별도 히스테리시스다. 큰 반대 입력은 중앙을 거치지 않아도 반전할 수 있다. `Engine.face`는 이동·속도·이동 예산을 건드리지 않고 기존 보행과 같은 `180 - angle` 반사로 높낮이를 보존한다. 이후 ↑/↓의 기존 시각적 높낮이 규칙을 유지한다.
 - moveAim의 수평 데드존은 .12 진입/.10 해제다. 세로축 크기에 따라 .26/.50 이상으로 억제하던 분기를 제거하여 21° 바깥과 대각선 이동 중의 미세 수평 입력을 살린다. 세로축은 기존 .12 곡선을 사용한다.
 - 노브는 제한 반경 내 raw visual axes, 게임은 intent를 적용한 axes를 사용한다. 기존 크기의 작은 라벨로 `조준`/`MOVE-AIM`을 표시한다. 키보드 이동·조준·충전·점프 규칙은 유지한다.
@@ -25,6 +25,8 @@ python -X utf8 tests/joystick-intent-browser.py
 
 브라우저 검사는 로컬 HTTP로 실제 생성 Game 문서를 열고 Chromium CDP touch 합성으로 브라우저 PointerEvent·캡처를 통과한다. 실제 production frame/120Hz 물리 루프를 직접 일정 간격 진행하며 좌표·이동도·이동 호출 수를 확인한다. 네 viewport의 허공터 바닥과 실제 활성 유닛을 사용하며, 동행 교체 사례만 두 번째 일반 동행 fixture를 추가해 실제 HUD 선택을 누른다. 화면 렌더링은 증거 촬영 시 실제 렌더러를 사용한다.
 
-부모 화면 검수용 최소 원본은 [공유 증거 묶음](stage-review/joystick-intent/evidence/README.md)에 보존한다. 전체 증거는 `_local/reports/joystick-intent/`의 `input-trace.json`, `mobile-{320,360,390,844}-aim-only.png`, `review.md`에 둔다. 최종 Chromium 브라우저 검사는 255개 판정(429 상태/614 PointerEvent)을 통과했다. 의도 판정/방향 전환/생명주기 세 집중 검수와 종합 결과는 review에 별도 기록했다. 물리 장치의 손가락 감각·OS별 취소/화면 회전·Safari는 이 Chromium 합성 검증과 별도로 확인해야 한다.
+부모 화면 검수용 최소 원본은 [공유 증거 묶음](stage-review/joystick-intent/evidence/README.md)에 보존한다. 전체 증거는 `_local/reports/joystick-intent/`의 `input-trace.json`, `mobile-{320,360,390,844}-aim-only.png`, `review.md`에 둔다. 2026-10-21 당시 Chromium 브라우저 검사는 255개 판정(429 상태/614 PointerEvent)을 통과했다. 의도 판정/방향 전환/생명주기 세 집중 검수와 종합 결과는 review에 별도 기록했다. 물리 장치의 손가락 감각·OS별 취소/화면 회전·Safari는 이 Chromium 합성 검증과 별도로 확인해야 한다.
 
 초기 입력 브랜치는 소스·검사·문서만 보존했다. 부모의 구현/화면 승인 후 승인된 입력 커밋만 최신 master에 병합하고 `npm run build`로 HTML/web을 재생성했다. [master 통합 검수](stage-review/joystick-intent/master-integration/README.md)에 관련 검사·대표 PNG·기존 역사 계약 실패를 기록한다. 원격/Pages/공개 화면 검증은 로컬 결과와 구분한다.
+
+2026-10-22 섹터 이탈 수정의 최종 실행 SHA·현재 검증·JPG는 [후속 검수](joystick-aim-sector-release/README.md)에 기록한다. 위 과거 검수의 수평 재드래그 잠금 기대값은 이번 규칙으로 갱신했다.

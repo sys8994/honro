@@ -136,19 +136,22 @@ export const JOYSTICK_AIM_CONE=20, JOYSTICK_START_RATIO=.18, JOYSTICK_START_PX=8
 export const JOYSTICK_FACE_ENGAGE=.60, JOYSTICK_FACE_RELEASE=.35;
 /** Deltas are CSS pixels from pointerdown, never from the pad centre. Intent is
  * latched for this pointer, including centre crossings. Facing has its own Schmitt
- * trigger and never produces a movement command. */
+ * trigger. A vertical-start gesture suppresses movement only while its current
+ * vector is inside the aim cone; a move-start gesture never acquires that gate. */
 export function joystickGesture(dx:number,dy:number,range:number,previous?:JoystickState):JoystickState {
  const r=Math.max(1,range),length=Math.hypot(dx,dy),scale=length>r?r/length:1;
  const visualX=dx*scale/r,visualY=dy*scale/r;
  let intent=previous?.intent||'undecided';
  // Browser PointerEvent coordinates may round to float32: keep the inclusive
  // 20 degree boundary stable with a 0.001 degree numerical tolerance.
+ const inAimCone=Math.atan2(Math.abs(dx),Math.abs(dy))*180/Math.PI<=JOYSTICK_AIM_CONE+.001;
  if(intent==='undecided'&&length>=Math.max(JOYSTICK_START_RATIO*r,JOYSTICK_START_PX))
-  intent=Math.atan2(Math.abs(dx),Math.abs(dy))*180/Math.PI<=JOYSTICK_AIM_CONE+.001?'aimOnly':'moveAim';
+  intent=inAimCone?'aimOnly':'moveAim';
+ const allowMove=intent==='moveAim'||intent==='aimOnly'&&!inAimCone;
  const axes=joystickAxes(dx,dy,r,previous?.moving);
  let facingIntent=previous?.facingIntent||0;
  if(Math.abs(visualX)<JOYSTICK_FACE_RELEASE)facingIntent=0;
  else if(Math.abs(visualX)>=JOYSTICK_FACE_ENGAGE)facingIntent=Math.sign(visualX);
- return {intent,x:intent==='moveAim'?axes.x:0,y:intent==='undecided'?0:axes.y,
-  visualX,visualY,moving:intent==='moveAim'&&axes.moving,facingIntent:intent==='aimOnly'?facingIntent:0};
+ return {intent,x:allowMove?axes.x:0,y:intent==='undecided'?0:axes.y,
+  visualX,visualY,moving:allowMove&&axes.moving,facingIntent:intent==='aimOnly'?facingIntent:0};
 }
