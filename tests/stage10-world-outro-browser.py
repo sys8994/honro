@@ -41,7 +41,7 @@ with sync_playwright() as p:
         page.wait_for_timeout(1000)
         assert page.locator('#sodan-safe-backdrop').count()==0
         assert page.locator('#battlecanvas').is_visible()
-        assert page.evaluate('HonroApp.engine.b.phase==="won"&&HonroApp.engine.b.honroState.sodanWithdrawal.worldOutro===1')
+        assert page.evaluate('HonroApp.engine.b.phase==="won"&&HonroApp.engine.b.honroState.sodanWithdrawal.worldOutro===2')
         assert '이제 손을 놔도 돼요?' in page.locator('#story-line').inner_text()
         assert page.evaluate('HonroApp.dialogue.lines.length')==16
         before=page.evaluate(COMBAT);page.wait_for_timeout(900);assert before==page.evaluate(COMBAT),'combat/time/enemies freeze during dialogue'

@@ -33,10 +33,18 @@ function outro(b,lines){if(!active(b)||b.honroNarrativeRevision!==1||b.phase!=='
 // enemies, HP, resources and the six-turn mission remain the terminal battle.
 // The stamp makes old saved outros and repeated outcome calls idempotent.
 function prepareWorldOutro(app){const b=app.engine?.b;if(!active(b)||!complete(b)&&b.phase!=='won')return;
- const s=b.honroState.sodanWithdrawal??={phase:'safe'};if(s.worldOutro===1)return;
+ const s=b.honroState.sodanWithdrawal??={phase:'safe'};if(s.worldOutro===2)return;
  const goal=exit(b),support=b.honroMapAnchors?.exit?.support,units=b.units.filter(u=>alive(u)&&(u.side===0&&!u.summoned||u.id==='boss'));
- units.forEach((u,i)=>{const x=goal.x-390+i*110;Object.assign(u,{x,y:G.HonroWorld.top(b,x,goal.y,support),vx:0,vy:0,airborne:false,jumping:false,facing:i<2?1:-1});});
- s.worldOutro=1;
+ const ground=x=>G.HonroMapEngine.surfaceY(b.honroWorldTerrain?.length?b.honroWorldTerrain:b.terrain,x,goal.y,support)?.y;
+ const layout=start=>units.map((u,i)=>{const x=start+i*110;return{x,y:ground(x)};});
+ let points=layout(goal.x-390).map(p=>({...p,y:p.y??G.HonroWorld.top(b,p.x,goal.y,support)}));const foes=b.units.filter(u=>alive(u)&&u.side===1);
+ if(points.some(p=>foes.some(u=>Math.hypot(u.x-p.x,u.y-p.y)<650))){
+  // The v6 map already continues beyond Play Bounds. When pursued to the gate,
+  // use that real east surface, outside enemy movement bounds, not a new set.
+  const east=layout(Math.max(b.width,goal.x)+900);if(east.every(p=>Number.isFinite(p.y)))points=east;
+ }
+ units.forEach((u,i)=>Object.assign(u,points[i],{vx:0,vy:0,airborne:false,jumping:false,facing:i<2?1:-1}));
+ s.worldOutro=2;
 }
 function frame(app,dt){const b=app.engine?.b,s=b&&active(b)&&memory(b);if(!s||s.phase!=='withdrawing')return false;
  let node=document.getElementById('sodan-withdrawal');if(!node){node=document.createElement('section');node.id='sodan-withdrawal';node.className='sodan-withdrawal';node.setAttribute('role','status');node.textContent='퇴로 확보 · 일행 철수';app.root.appendChild(node);}
@@ -44,7 +52,7 @@ function frame(app,dt){const b=app.engine?.b,s=b&&active(b)&&memory(b);if(!s||s.
  if(document.hidden)return true;s.elapsed=Math.min(1.1,(s.elapsed||0)+dt);if(s.elapsed<1.1)return true;
  // Only presentation time advances after extraction. The live battle, survivors,
  // remaining enemies and their HP are preserved in the terminal snapshot.
- s.phase='safe';node.remove();prepareWorldOutro(app);save(app);app.checkMission(app.engine);app.outcome();return true;
+ s.phase='safe';node.remove();app.checkMission(app.engine);prepareWorldOutro(app);save(app);app.outcome();return true;
 }
 G.HonroSodanWithdrawal={active,ready,exit,tick,frame,complete,outro,prepareWorldOutro};
 })(globalThis);

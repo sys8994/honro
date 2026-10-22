@@ -4293,3 +4293,5 @@ HUD의 32~36px 내부 타일과 공통 스탬프의 둥근 이중 프레임을 �
 - 원인: 최초 승리/미열람 조건이 10·20·30장 재클리어 엔딩을 막고, 일반 여정첩에는 독립 재생 진입점이 없었다.
 - 변경: 정상 재클리어도 기존 outcome done 가드 이후 표시용 pending을 준비한다. 미열람 여부는 pending 재개를 막지 않는다. 완료한 막의 여정첩 선택부에만 작은 보조 버튼과 API를 제공한다. 독립 gallery는 메모리만 쓰고 retained journal DOM/지도뷰로 복귀한다.
 - 확인: 두 화면비 × 3개 막 × 첫/반복 12흐름 정산 각1회·pending/reload·터치/키보드, 해금 경계7개, gallery 프로필/저장 문자열 동일성·완주/Escape/닫기/Back/reload 통과. 별도 실제 맵/카메라 집중 검수와 JPG 직접 확인. 상세 및 통합 hook: `game/docs/stage10-world-outro-ending-replay/README.md`.
+
+- 10장 후속 안전 거리: 출구 근처에 적이 있는 종료 fixture도 현재 v6 동쪽 연속 지형 위로 일행을 배치한다. 적 좌표/HP/영웅 기록/아이템은 보존한다. terminal won 저장/실제 reload와 두 화면비 JPG로 확인했다. 단색 무대를 기대하던 기존 엔딩 브라우저 assertion도 갱신했다.

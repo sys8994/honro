@@ -6,7 +6,7 @@
 
 전체 화면 `sodan-safe-backdrop`과 별도 네 인물 캔버스를 제거했다. 6턴 보호 → 실제 출구에 한 생존자가 도착 → 철수 경계 → 안전한 동쪽 출구 지형에 생존 동행과 소단을 모음 → 기존 일반 대화 16줄 → 기존 outcome 순서다. 적, HP, 자원, 보상, 지형은 유지한다. 철수는 기존 1.1초 경계이며 화면을 가리지 않는 상태 문구만 표시한다. 철수 및 대화 중 엔진 시간과 적 파도는 정지한다.
 
-`HonroSodanWithdrawal.prepareWorldOutro(app)`는 철수 완료/기존 won 저장에서 한 번만 실제 출구 지지면에 일행을 배치한다. `sodanWithdrawal.worldOutro=1`로 반복 호출/대화 재개 시 이동을 반복하지 않는다. `StoryFraming.bind`는 이 안전 대화에만 실제 네 인물의 공통 카메라를 적용한다. 기존 대사 본문과 스킵/이전/다음 처리는 보존한다.
+`HonroSodanWithdrawal.prepareWorldOutro(app)`는 철수 완료/기존 won 저장에서 한 번만 실제 출구 지지면에 일행을 배치한다. `sodanWithdrawal.worldOutro=2`로 반복 호출/대화 재개 시 이동을 반복하지 않는다. `StoryFraming.bind`는 이 안전 대화에만 실제 네 인물의 공통 카메라를 적용한다. 기존 대사 본문과 스킵/이전/다음 처리는 보존한다.
 
 ### 집중 검수 1
 
@@ -53,3 +53,12 @@
 - 관련 회귀: `rest-journey.mjs`, `dialogue-controls-audio.mjs`, `web-split.mjs` 통과. 앞서 실패한 `dialogue-speaker-presentation.mjs`는 별도 기준 SHA worktree에서도 동일 `story-document` assertion 실패를 재현했다. 잘못 입력한 존재하지 않는 `dialogue-controls.mjs` 명령은 검사 실패로 집계하지 않고 실제 `dialogue-controls-audio.mjs`로 교정해 통과했다.
 
 두 집중 검사 summary의 executionSHA는 1차 커밋 위 2차 작업 트리이며 sourceHashes가 실제 실행 소스를 식별한다. 최신 master를 병합한 확정 SHA에서 별도 종합 픽셀/동작 검수를 이어서 기록한다.
+
+
+### 출구에 적을 끌고 온 경우의 안전 거리 보완
+
+종합 코드 검토에서 기본 출구 지점 가까이에 적이 온 경우를 추가했다. 기본 네 인물 배치에서 적이 650 world 단위 안에 있으면 현재 v6 맵의 **이미 존재하는 동쪽 연속 지형**(Play Bounds 밖)으로 철수한 일행만 옮긴다. 새 지형/무대/배경이나 새 애니메이션은 만들지 않는다. 승패 확정 뒤 배치하고 won 상태로 저장하므로 다시 시뮬레이션하지 않는다. 적의 위치·HP·수는 바꾸지 않는다. `worldOutro=2`는 이전 브랜치의 1번 표시도 이 안전 배치로 한 번 보정한다.
+
+`tests/stage10-safe-exit-crowd-browser.py`는 정상 전투 증거와 구분한 명시적 종료 fixture다. 출구에 생존 적 한 명을 둔 뒤 두 화면비에서 실제 지형·650 초과 거리·적 전체/영웅 기록/아이템 무변경·App/Engine reload 후 유닛 전체 문자열 동일성을 확인했다. `evidence/crowded-exit`에 JPG와 summary를 남겼다. 첫 실행의 두 번째 viewport는 fixture 저장 주입과 이전 화면 자동 저장이 겹쳐 시간 초과했다. 주입과 reload를 같은 브라우저 작업으로 묶어 교정한 뒤 두 화면비 모두 통과했다.
+
+기존 `tests/act-endings-browser.py`도 거부된 단색 무대를 요구하던 assertion을 실제 맵 대사 계약으로 바꾸고, 현재 공통 Chromium/로컬 서버 helper 및 저장소의 정상 체크포인트를 사용하도록 갱신했다.

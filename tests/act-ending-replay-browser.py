@@ -60,7 +60,7 @@ with sync_playwright() as p:
                     assert before==page.evaluate(IMMUTABLE)
                     page.reload();ready(page);page.evaluate('HonroApp.continue()');page.wait_for_selector('#act-ending');assert cut(page)=='2'
                     assert before==page.evaluate(IMMUTABLE),'resume cannot re-settle outcome'
-                    step(page,'Enter','3');step(page,'Space','4');step(page,'tap','title')
+                    step(page,'Enter','3');page.wait_for_timeout(380);shot(page,f'act{stage//10}-copy3-'+('repeat' if repeat else 'first')+f'-{width}x{height}');step(page,'Space','4');step(page,'tap','title');page.wait_for_timeout(380);shot(page,f'act{stage//10}-title-'+('repeat' if repeat else 'first')+f'-{width}x{height}')
                     assert before==page.evaluate(IMMUTABLE)
                     page.wait_for_timeout(380);page.keyboard.press('Enter');page.wait_for_function('HonroApp.screen==="rest"')
                     page.evaluate('for(let i=0;HonroApp.dialogue&&i<60;i++)HonroStory.finish(HonroApp)')
@@ -72,7 +72,7 @@ with sync_playwright() as p:
                     assert settled==page.evaluate(IMMUTABLE)
                     rows.append({'mode':'completion','stage':stage,'repeat':repeat,'viewport':[width,height],'counts':counts,'cut2Reload':True,'presentationImmutable':hashlib.sha256(before.encode()).hexdigest(),'tapSingleCut':True,'restSettledReload':True})
         # Presentation eligibility excludes all non-campaign contexts.
-        exclusions=page.evaluate('''()=>{const a=HonroApp,result={};const profile=JSON.stringify(a.profile),b={phase:'won',honroStage:10};for(const key of ['debugMode','training','customMap']){const old=a[key];a[key]=true;result[key]=HonroActEndings.prepare(a,b,false)===false;a[key]=old;}result.customBattle=!HonroActEndings.prepare(a,{...b,honroCustom:true},false);result.noProfileWrite=profile===JSON.stringify(a.profile);return result;}''')
+        exclusions=page.evaluate('''()=>{const a=HonroApp,result={};const profile=JSON.stringify(a.profile),b={phase:'won',honroStage:10};for(const key of ['debugMode','training','customMap']){const old=a[key];a[key]=true;result[key]=HonroActEndings.prepare(a,b,false)===false&&!HonroActEndings.canReplay(a,10)&&!HonroActEndings.replayButton(a,10);a[key]=old;}result.customBattle=!HonroActEndings.prepare(a,{...b,honroCustom:true},false);const embedded=globalThis.HONRO_EMBEDDED;globalThis.HONRO_EMBEDDED=true;result.embedded=!HonroActEndings.prepare(a,b,false)&&!HonroActEndings.canReplay(a,10);globalThis.HONRO_EMBEDDED=embedded;result.noProfileWrite=profile===JSON.stringify(a.profile);return result;}''')
         assert all(exclusions.values()),exclusions
         rows.append({'exclusions':exclusions})
     if args.mode in ['gallery','all']:
@@ -92,24 +92,29 @@ with sync_playwright() as p:
         for width,height in [(390,844),(844,390)]:
             page.set_viewport_size({'width':width,'height':height})
             for stage in [10,20,30]:
-                page.evaluate('''({stage,battle})=>{const a=HonroApp;a.stopBattle();a.close();a.profile=HONRO_TOOLS.fresh();a.normalProfile=a.profile;for(let id=1;id<=30;id++)a.profile.cleared[id]={visits:1,rounds:6};a.profile.honroBattle=stage===10?battle:null;a.persist();HonroRestJourney.showBook(a,stage,null,stage/10);globalThis.__journalNode=a.root.firstElementChild;}''',{'stage':stage,'battle':checkpoint})
+                page.evaluate('''({stage,battle})=>{const a=HonroApp;a.stopBattle();a.close();a.profile=HONRO_TOOLS.fresh();a.normalProfile=a.profile;for(let id=1;id<=30;id++)a.profile.cleared[id]={visits:1,rounds:6};a.profile.honroBattle=stage===10?battle:null;a.persist();HonroRestJourney.showBook(a,stage,null,stage/10);if(stage===30)HonroRestJourney.selectBook(a,stage);globalThis.__journalNode=a.root.firstElementChild;}''',{'stage':stage,'battle':checkpoint})
                 page.wait_for_function('document.querySelector(".journey-map-image")?.complete')
                 page.locator('[data-action="journey-zoom"][data-id="in"]').click()
                 page.evaluate('''()=>{const n=document.querySelector('.journey-map-scroll');n.scrollLeft=Math.max(0,n.scrollLeft-37);n.scrollTop=Math.max(0,n.scrollTop-23);}''')
                 view=page.evaluate(VIEW);before=page.evaluate(PROFILE);stored=page.evaluate(STORED)
+                if stage==30:assert view['selection']=='end'
                 engine=page.evaluate('HonroApp.engine');assert engine is None
                 button=page.locator('[data-action="act-ending-replay"]');box=button.bounding_box();assert box['y']>=0 and box['y']+box['height']<=height+1,box
                 shot(page,f'journal-act{stage//10}-{width}x{height}')
                 page.wait_for_timeout(400);button.click();page.wait_for_selector('#act-ending');image_ready(page)
                 assert page.locator('#act-ending').get_attribute('data-mode')=='gallery';assert cut(page)=='1'
                 assert before==page.evaluate(PROFILE) and stored==page.evaluate(STORED)
+                if stage==10:
+                    page.set_viewport_size({'width':height,'height':width});image_ready(page);page.wait_for_timeout(450)
+                    assert cut(page)=='1' and before==page.evaluate(PROFILE) and stored==page.evaluate(STORED)
+                    page.set_viewport_size({'width':width,'height':height});image_ready(page);page.wait_for_timeout(450)
                 page.wait_for_timeout(400);shot(page,f'gallery-act{stage//10}-{width}x{height}')
                 step(page,'tap','2');step(page,'Enter','3');step(page,'Space','4');step(page,'tap','title')
                 page.wait_for_timeout(380);page.keyboard.press('Space');page.wait_for_function('HonroApp.screen==="journey"')
                 page.wait_for_timeout(150)
                 assert before==page.evaluate(PROFILE) and stored==page.evaluate(STORED),'entire profile and raw saved battle remain byte-exact'
                 assert view==page.evaluate(VIEW),'act/selection/layer/zoom/scroll exact return'
-                assert page.evaluate('HonroApp.root.firstElementChild===__journalNode')
+                assert page.evaluate('HonroApp.root.firstElementChild===__journalNode&&HonroApp.engine===null')
                 shot(page,f'journal-return-act{stage//10}-{width}x{height}')
                 # Escape, explicit close and browser Back all return to the retained map.
                 for exit_kind in ['escape','close','back']:
