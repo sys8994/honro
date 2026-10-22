@@ -23,7 +23,7 @@ with sync_playwright() as p:
   if os.environ.get('STEADY')=='1':
    page.evaluate("HonroApp.showCamp('archer')");page.wait_for_function('()=>{const s=HonroSkillImages.status(),n=Object.values(HONRO_SKILL_ICON_MANIFEST.icons).filter(v=>v.status==="ready"&&v.url).length;return s.cached>=n&&!s.active&&!s.queued;}',timeout=20000)
   page.evaluate('HonroApp.launch(11)');page.wait_for_function('HonroApp.engine?.b.honroStage===11');page.wait_for_function('HonroAuthoredFarArt.ready(11)')
-  page.evaluate('()=>{const a=HonroApp;while(a.dialogue)HonroStory.finish(a);a.turnNotice=null;}');page.wait_for_timeout(900)
+  page.evaluate('()=>{const a=HonroApp;while(a.dialogue)HonroStory.finish(a);}');page.wait_for_function('()=>{const a=HonroApp,n=document.getElementById("turn-banner");return a.canInput()&&!a.turnNotice&&(!n||n.hidden); }');page.wait_for_timeout(900)
   if state in ['pause','pause-fixed']:
    if state=='pause-fixed':page.evaluate('()=>{const a=HonroApp,u=a.engine.active;Object.assign(a.scene,{manual:true,x:u.x,y:u.y-140,scale:.68,storyTween:null,goalFocus:null,focusUntil:0,speakerUntil:0});}')
    page.evaluate('HonroApp.pause()')
