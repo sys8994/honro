@@ -1,0 +1,8593 @@
+{
+  "검수": "final",
+  "소스_SHA": "7027b626c4022f4e95b6350d858ade57b9ed8012",
+  "아이콘_CSS_SHA256": "24504991d906e58cc68cd140cca5a8e870df491137e29406b044414b79c32238",
+  "브라우저": "Chromium 154.0.8037.57",
+  "범위": "실제 로컬 프로덕션 빌드. 준비한 프로필과 허공터 사용. 캠페인 완주/실기기 검수가 아님.",
+  "결과": [
+    {
+      "검사": "출전 슬롯 내부 채움 archer",
+      "통과": true,
+      "측정": [
+        {
+          "id": "A01",
+          "radius": "0px",
+          "border": "rgb(197, 164, 92)",
+          "padding": "0px",
+          "margin": "0px",
+          "frame": [
+            40,
+            40
+          ],
+          "art": [
+            38,
+            38
+          ],
+          "gap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageState": "ready",
+          "imageGap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageRadius": "0px"
+        },
+        {
+          "id": "A14",
+          "radius": "0px",
+          "border": "rgb(197, 164, 92)",
+          "padding": "0px",
+          "margin": "0px",
+          "frame": [
+            40,
+            40
+          ],
+          "art": [
+            38,
+            38
+          ],
+          "gap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageState": "ready",
+          "imageGap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageRadius": "0px"
+        },
+        {
+          "id": "A02",
+          "radius": "0px",
+          "border": "rgb(197, 164, 92)",
+          "padding": "0px",
+          "margin": "0px",
+          "frame": [
+            40,
+            40
+          ],
+          "art": [
+            38,
+            38
+          ],
+          "gap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageState": "ready",
+          "imageGap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageRadius": "0px"
+        },
+        {
+          "id": "A08",
+          "radius": "0px",
+          "border": "rgb(197, 164, 92)",
+          "padding": "0px",
+          "margin": "0px",
+          "frame": [
+            40,
+            40
+          ],
+          "art": [
+            38,
+            38
+          ],
+          "gap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageState": "ready",
+          "imageGap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageRadius": "0px"
+        }
+      ]
+    },
+    {
+      "검사": "상시 기예 단일 사각 프레임 archer",
+      "통과": true,
+      "측정": [
+        {
+          "radius": "0px",
+          "ready": "ready",
+          "padding": "0px"
+        },
+        {
+          "radius": "0px",
+          "ready": "ready",
+          "padding": "0px"
+        },
+        {
+          "radius": "0px",
+          "ready": "ready",
+          "padding": "0px"
+        },
+        {
+          "radius": "0px",
+          "ready": "ready",
+          "padding": "0px"
+        },
+        {
+          "radius": "0px",
+          "ready": "ready",
+          "padding": "0px"
+        }
+      ]
+    },
+    {
+      "검사": "기예 트리 내부 채움 archer 0",
+      "통과": true,
+      "측정": [
+        {
+          "id": "A14",
+          "radius": "0px",
+          "border": "rgb(240, 198, 109)",
+          "padding": "0px",
+          "margin": "0px",
+          "frame": [
+            40,
+            40
+          ],
+          "art": [
+            38,
+            38
+          ],
+          "gap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageState": "ready",
+          "imageGap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageRadius": "0px"
+        },
+        {
+          "id": "A02",
+          "radius": "0px",
+          "border": "rgb(240, 198, 109)",
+          "padding": "0px",
+          "margin": "0px",
+          "frame": [
+            40,
+            40
+          ],
+          "art": [
+            38,
+            38
+          ],
+          "gap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageState": "ready",
+          "imageGap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageRadius": "0px"
+        },
+        {
+          "id": "A06",
+          "radius": "0px",
+          "border": "rgb(197, 164, 92)",
+          "padding": "0px",
+          "margin": "0px",
+          "frame": [
+            40,
+            40
+          ],
+          "art": [
+            38,
+            38
+          ],
+          "gap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageState": "ready",
+          "imageGap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageRadius": "0px"
+        },
+        {
+          "id": "A10",
+          "radius": "0px",
+          "border": "rgb(197, 164, 92)",
+          "padding": "0px",
+          "margin": "0px",
+          "frame": [
+            40,
+            40
+          ],
+          "art": [
+            38,
+            38
+          ],
+          "gap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageState": "ready",
+          "imageGap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageRadius": "0px"
+        },
+        {
+          "id": "A99",
+          "radius": "0px",
+          "border": "rgb(197, 164, 92)",
+          "padding": "0px",
+          "margin": "0px",
+          "frame": [
+            40,
+            40
+          ],
+          "art": [
+            38,
+            38
+          ],
+          "gap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageState": "ready",
+          "imageGap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageRadius": "0px"
+        }
+      ]
+    },
+    {
+      "검사": "기예 트리 내부 채움 archer 1",
+      "통과": true,
+      "측정": [
+        {
+          "id": "A11",
+          "radius": "0px",
+          "border": "rgb(197, 164, 92)",
+          "padding": "0px",
+          "margin": "0px",
+          "frame": [
+            40,
+            40
+          ],
+          "art": [
+            38,
+            38
+          ],
+          "gap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageState": "ready",
+          "imageGap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageRadius": "0px"
+        },
+        {
+          "id": "A09",
+          "radius": "0px",
+          "border": "rgb(197, 164, 92)",
+          "padding": "0px",
+          "margin": "0px",
+          "frame": [
+            40,
+            40
+          ],
+          "art": [
+            38,
+            38
+          ],
+          "gap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageState": "ready",
+          "imageGap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageRadius": "0px"
+        },
+        {
+          "id": "A13",
+          "radius": "0px",
+          "border": "rgb(197, 164, 92)",
+          "padding": "0px",
+          "margin": "0px",
+          "frame": [
+            40,
+            40
+          ],
+          "art": [
+            38,
+            38
+          ],
+          "gap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageState": "ready",
+          "imageGap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageRadius": "0px"
+        },
+        {
+          "id": "A12",
+          "radius": "0px",
+          "border": "rgb(197, 164, 92)",
+          "padding": "0px",
+          "margin": "0px",
+          "frame": [
+            40,
+            40
+          ],
+          "art": [
+            38,
+            38
+          ],
+          "gap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageState": "ready",
+          "imageGap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageRadius": "0px"
+        },
+        {
+          "id": "A15",
+          "radius": "0px",
+          "border": "rgb(197, 164, 92)",
+          "padding": "0px",
+          "margin": "0px",
+          "frame": [
+            40,
+            40
+          ],
+          "art": [
+            38,
+            38
+          ],
+          "gap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageState": "ready",
+          "imageGap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageRadius": "0px"
+        }
+      ]
+    },
+    {
+      "검사": "기예 트리 내부 채움 archer 2",
+      "통과": true,
+      "측정": [
+        {
+          "id": "A05",
+          "radius": "0px",
+          "border": "rgb(197, 164, 92)",
+          "padding": "0px",
+          "margin": "0px",
+          "frame": [
+            40,
+            40
+          ],
+          "art": [
+            38,
+            38
+          ],
+          "gap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageState": "ready",
+          "imageGap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageRadius": "0px"
+        },
+        {
+          "id": "A04",
+          "radius": "0px",
+          "border": "rgb(197, 164, 92)",
+          "padding": "0px",
+          "margin": "0px",
+          "frame": [
+            40,
+            40
+          ],
+          "art": [
+            38,
+            38
+          ],
+          "gap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageState": "ready",
+          "imageGap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageRadius": "0px"
+        },
+        {
+          "id": "A07",
+          "radius": "0px",
+          "border": "rgb(197, 164, 92)",
+          "padding": "0px",
+          "margin": "0px",
+          "frame": [
+            40,
+            40
+          ],
+          "art": [
+            38,
+            38
+          ],
+          "gap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageState": "ready",
+          "imageGap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageRadius": "0px"
+        },
+        {
+          "id": "A03",
+          "radius": "0px",
+          "border": "rgb(197, 164, 92)",
+          "padding": "0px",
+          "margin": "0px",
+          "frame": [
+            40,
+            40
+          ],
+          "art": [
+            38,
+            38
+          ],
+          "gap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageState": "ready",
+          "imageGap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageRadius": "0px"
+        },
+        {
+          "id": "A08",
+          "radius": "0px",
+          "border": "rgb(240, 198, 109)",
+          "padding": "0px",
+          "margin": "0px",
+          "frame": [
+            40,
+            40
+          ],
+          "art": [
+            38,
+            38
+          ],
+          "gap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageState": "ready",
+          "imageGap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageRadius": "0px"
+        }
+      ]
+    },
+    {
+      "검사": "기예 트리 내부 채움 archer 3",
+      "통과": true,
+      "측정": [
+        {
+          "id": "AP04",
+          "radius": "0px",
+          "border": "rgb(197, 164, 92)",
+          "padding": "0px",
+          "margin": "0px",
+          "frame": [
+            40,
+            40
+          ],
+          "art": [
+            38,
+            38
+          ],
+          "gap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageState": "ready",
+          "imageGap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageRadius": "0px"
+        },
+        {
+          "id": "AP02",
+          "radius": "0px",
+          "border": "rgb(197, 164, 92)",
+          "padding": "0px",
+          "margin": "0px",
+          "frame": [
+            40,
+            40
+          ],
+          "art": [
+            38,
+            38
+          ],
+          "gap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageState": "ready",
+          "imageGap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageRadius": "0px"
+        },
+        {
+          "id": "AP01",
+          "radius": "0px",
+          "border": "rgb(197, 164, 92)",
+          "padding": "0px",
+          "margin": "0px",
+          "frame": [
+            40,
+            40
+          ],
+          "art": [
+            38,
+            38
+          ],
+          "gap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageState": "ready",
+          "imageGap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageRadius": "0px"
+        },
+        {
+          "id": "AP03",
+          "radius": "0px",
+          "border": "rgb(197, 164, 92)",
+          "padding": "0px",
+          "margin": "0px",
+          "frame": [
+            40,
+            40
+          ],
+          "art": [
+            38,
+            38
+          ],
+          "gap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageState": "ready",
+          "imageGap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageRadius": "0px"
+        },
+        {
+          "id": "AP05",
+          "radius": "0px",
+          "border": "rgb(197, 164, 92)",
+          "padding": "0px",
+          "margin": "0px",
+          "frame": [
+            40,
+            40
+          ],
+          "art": [
+            38,
+            38
+          ],
+          "gap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageState": "ready",
+          "imageGap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageRadius": "0px"
+        }
+      ]
+    },
+    {
+      "검사": "출전 슬롯 내부 채움 knight",
+      "통과": true,
+      "측정": [
+        {
+          "id": "S00",
+          "radius": "0px",
+          "border": "rgb(197, 164, 92)",
+          "padding": "0px",
+          "margin": "0px",
+          "frame": [
+            40,
+            40
+          ],
+          "art": [
+            38,
+            38
+          ],
+          "gap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageState": "ready",
+          "imageGap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageRadius": "0px"
+        }
+      ]
+    },
+    {
+      "검사": "상시 기예 단일 사각 프레임 knight",
+      "통과": true,
+      "측정": [
+        {
+          "radius": "0px",
+          "ready": "ready",
+          "padding": "0px"
+        },
+        {
+          "radius": "0px",
+          "ready": "ready",
+          "padding": "0px"
+        },
+        {
+          "radius": "0px",
+          "ready": "ready",
+          "padding": "0px"
+        },
+        {
+          "radius": "0px",
+          "ready": "ready",
+          "padding": "0px"
+        },
+        {
+          "radius": "0px",
+          "ready": "ready",
+          "padding": "0px"
+        }
+      ]
+    },
+    {
+      "검사": "기예 트리 내부 채움 knight 0",
+      "통과": true,
+      "측정": [
+        {
+          "id": "S03",
+          "radius": "0px",
+          "border": "rgb(197, 164, 92)",
+          "padding": "0px",
+          "margin": "0px",
+          "frame": [
+            40,
+            40
+          ],
+          "art": [
+            38,
+            38
+          ],
+          "gap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageState": "ready",
+          "imageGap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageRadius": "0px"
+        },
+        {
+          "id": "S05",
+          "radius": "0px",
+          "border": "rgb(197, 164, 92)",
+          "padding": "0px",
+          "margin": "0px",
+          "frame": [
+            40,
+            40
+          ],
+          "art": [
+            38,
+            38
+          ],
+          "gap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageState": "ready",
+          "imageGap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageRadius": "0px"
+        },
+        {
+          "id": "S07",
+          "radius": "0px",
+          "border": "rgb(197, 164, 92)",
+          "padding": "0px",
+          "margin": "0px",
+          "frame": [
+            40,
+            40
+          ],
+          "art": [
+            38,
+            38
+          ],
+          "gap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageState": "ready",
+          "imageGap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageRadius": "0px"
+        },
+        {
+          "id": "S08",
+          "radius": "0px",
+          "border": "rgb(197, 164, 92)",
+          "padding": "0px",
+          "margin": "0px",
+          "frame": [
+            40,
+            40
+          ],
+          "art": [
+            38,
+            38
+          ],
+          "gap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageState": "ready",
+          "imageGap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageRadius": "0px"
+        },
+        {
+          "id": "S02",
+          "radius": "0px",
+          "border": "rgb(197, 164, 92)",
+          "padding": "0px",
+          "margin": "0px",
+          "frame": [
+            40,
+            40
+          ],
+          "art": [
+            38,
+            38
+          ],
+          "gap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageState": "ready",
+          "imageGap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageRadius": "0px"
+        }
+      ]
+    },
+    {
+      "검사": "기예 트리 내부 채움 knight 1",
+      "통과": true,
+      "측정": [
+        {
+          "id": "S01",
+          "radius": "0px",
+          "border": "rgb(197, 164, 92)",
+          "padding": "0px",
+          "margin": "0px",
+          "frame": [
+            40,
+            40
+          ],
+          "art": [
+            38,
+            38
+          ],
+          "gap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageState": "ready",
+          "imageGap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageRadius": "0px"
+        },
+        {
+          "id": "S06",
+          "radius": "0px",
+          "border": "rgb(197, 164, 92)",
+          "padding": "0px",
+          "margin": "0px",
+          "frame": [
+            40,
+            40
+          ],
+          "art": [
+            38,
+            38
+          ],
+          "gap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageState": "ready",
+          "imageGap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageRadius": "0px"
+        },
+        {
+          "id": "S04",
+          "radius": "0px",
+          "border": "rgb(197, 164, 92)",
+          "padding": "0px",
+          "margin": "0px",
+          "frame": [
+            40,
+            40
+          ],
+          "art": [
+            38,
+            38
+          ],
+          "gap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageState": "ready",
+          "imageGap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageRadius": "0px"
+        },
+        {
+          "id": "S15",
+          "radius": "0px",
+          "border": "rgb(197, 164, 92)",
+          "padding": "0px",
+          "margin": "0px",
+          "frame": [
+            40,
+            40
+          ],
+          "art": [
+            38,
+            38
+          ],
+          "gap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageState": "ready",
+          "imageGap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageRadius": "0px"
+        },
+        {
+          "id": "S13",
+          "radius": "0px",
+          "border": "rgb(197, 164, 92)",
+          "padding": "0px",
+          "margin": "0px",
+          "frame": [
+            40,
+            40
+          ],
+          "art": [
+            38,
+            38
+          ],
+          "gap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageState": "ready",
+          "imageGap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageRadius": "0px"
+        }
+      ]
+    },
+    {
+      "검사": "기예 트리 내부 채움 knight 2",
+      "통과": true,
+      "측정": [
+        {
+          "id": "S09",
+          "radius": "0px",
+          "border": "rgb(197, 164, 92)",
+          "padding": "0px",
+          "margin": "0px",
+          "frame": [
+            40,
+            40
+          ],
+          "art": [
+            38,
+            38
+          ],
+          "gap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageState": "ready",
+          "imageGap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageRadius": "0px"
+        },
+        {
+          "id": "S10",
+          "radius": "0px",
+          "border": "rgb(197, 164, 92)",
+          "padding": "0px",
+          "margin": "0px",
+          "frame": [
+            40,
+            40
+          ],
+          "art": [
+            38,
+            38
+          ],
+          "gap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageState": "ready",
+          "imageGap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageRadius": "0px"
+        },
+        {
+          "id": "S11",
+          "radius": "0px",
+          "border": "rgb(197, 164, 92)",
+          "padding": "0px",
+          "margin": "0px",
+          "frame": [
+            40,
+            40
+          ],
+          "art": [
+            38,
+            38
+          ],
+          "gap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageState": "ready",
+          "imageGap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageRadius": "0px"
+        },
+        {
+          "id": "S14",
+          "radius": "0px",
+          "border": "rgb(197, 164, 92)",
+          "padding": "0px",
+          "margin": "0px",
+          "frame": [
+            40,
+            40
+          ],
+          "art": [
+            38,
+            38
+          ],
+          "gap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageState": "ready",
+          "imageGap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageRadius": "0px"
+        },
+        {
+          "id": "S12",
+          "radius": "0px",
+          "border": "rgb(197, 164, 92)",
+          "padding": "0px",
+          "margin": "0px",
+          "frame": [
+            40,
+            40
+          ],
+          "art": [
+            38,
+            38
+          ],
+          "gap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageState": "ready",
+          "imageGap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageRadius": "0px"
+        }
+      ]
+    },
+    {
+      "검사": "기예 트리 내부 채움 knight 3",
+      "통과": true,
+      "측정": [
+        {
+          "id": "SP01",
+          "radius": "0px",
+          "border": "rgb(197, 164, 92)",
+          "padding": "0px",
+          "margin": "0px",
+          "frame": [
+            40,
+            40
+          ],
+          "art": [
+            38,
+            38
+          ],
+          "gap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageState": "ready",
+          "imageGap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageRadius": "0px"
+        },
+        {
+          "id": "SP02",
+          "radius": "0px",
+          "border": "rgb(197, 164, 92)",
+          "padding": "0px",
+          "margin": "0px",
+          "frame": [
+            40,
+            40
+          ],
+          "art": [
+            38,
+            38
+          ],
+          "gap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageState": "ready",
+          "imageGap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageRadius": "0px"
+        },
+        {
+          "id": "SP03",
+          "radius": "0px",
+          "border": "rgb(197, 164, 92)",
+          "padding": "0px",
+          "margin": "0px",
+          "frame": [
+            40,
+            40
+          ],
+          "art": [
+            38,
+            38
+          ],
+          "gap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageState": "ready",
+          "imageGap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageRadius": "0px"
+        },
+        {
+          "id": "SP04",
+          "radius": "0px",
+          "border": "rgb(197, 164, 92)",
+          "padding": "0px",
+          "margin": "0px",
+          "frame": [
+            40,
+            40
+          ],
+          "art": [
+            38,
+            38
+          ],
+          "gap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageState": "ready",
+          "imageGap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageRadius": "0px"
+        },
+        {
+          "id": "SP05",
+          "radius": "0px",
+          "border": "rgb(197, 164, 92)",
+          "padding": "0px",
+          "margin": "0px",
+          "frame": [
+            40,
+            40
+          ],
+          "art": [
+            38,
+            38
+          ],
+          "gap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageState": "ready",
+          "imageGap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageRadius": "0px"
+        }
+      ]
+    },
+    {
+      "검사": "출전 슬롯 내부 채움 mage",
+      "통과": true,
+      "측정": [
+        {
+          "id": "M01",
+          "radius": "0px",
+          "border": "rgb(197, 164, 92)",
+          "padding": "0px",
+          "margin": "0px",
+          "frame": [
+            40,
+            40
+          ],
+          "art": [
+            38,
+            38
+          ],
+          "gap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageState": "ready",
+          "imageGap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageRadius": "0px"
+        }
+      ]
+    },
+    {
+      "검사": "상시 기예 단일 사각 프레임 mage",
+      "통과": true,
+      "측정": [
+        {
+          "radius": "0px",
+          "ready": "ready",
+          "padding": "0px"
+        },
+        {
+          "radius": "0px",
+          "ready": "ready",
+          "padding": "0px"
+        },
+        {
+          "radius": "0px",
+          "ready": "ready",
+          "padding": "0px"
+        },
+        {
+          "radius": "0px",
+          "ready": "ready",
+          "padding": "0px"
+        },
+        {
+          "radius": "0px",
+          "ready": "ready",
+          "padding": "0px"
+        }
+      ]
+    },
+    {
+      "검사": "기예 트리 내부 채움 mage 0",
+      "통과": true,
+      "측정": [
+        {
+          "id": "M06",
+          "radius": "0px",
+          "border": "rgb(197, 164, 92)",
+          "padding": "0px",
+          "margin": "0px",
+          "frame": [
+            40,
+            40
+          ],
+          "art": [
+            38,
+            38
+          ],
+          "gap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageState": "ready",
+          "imageGap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageRadius": "0px"
+        },
+        {
+          "id": "M02",
+          "radius": "0px",
+          "border": "rgb(197, 164, 92)",
+          "padding": "0px",
+          "margin": "0px",
+          "frame": [
+            40,
+            40
+          ],
+          "art": [
+            38,
+            38
+          ],
+          "gap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageState": "ready",
+          "imageGap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageRadius": "0px"
+        },
+        {
+          "id": "M04",
+          "radius": "0px",
+          "border": "rgb(197, 164, 92)",
+          "padding": "0px",
+          "margin": "0px",
+          "frame": [
+            40,
+            40
+          ],
+          "art": [
+            38,
+            38
+          ],
+          "gap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageState": "ready",
+          "imageGap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageRadius": "0px"
+        },
+        {
+          "id": "M13",
+          "radius": "0px",
+          "border": "rgb(197, 164, 92)",
+          "padding": "0px",
+          "margin": "0px",
+          "frame": [
+            40,
+            40
+          ],
+          "art": [
+            38,
+            38
+          ],
+          "gap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageState": "ready",
+          "imageGap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageRadius": "0px"
+        },
+        {
+          "id": "M05",
+          "radius": "0px",
+          "border": "rgb(197, 164, 92)",
+          "padding": "0px",
+          "margin": "0px",
+          "frame": [
+            40,
+            40
+          ],
+          "art": [
+            38,
+            38
+          ],
+          "gap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageState": "ready",
+          "imageGap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageRadius": "0px"
+        }
+      ]
+    },
+    {
+      "검사": "기예 트리 내부 채움 mage 1",
+      "통과": true,
+      "측정": [
+        {
+          "id": "M03",
+          "radius": "0px",
+          "border": "rgb(197, 164, 92)",
+          "padding": "0px",
+          "margin": "0px",
+          "frame": [
+            40,
+            40
+          ],
+          "art": [
+            38,
+            38
+          ],
+          "gap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageState": "ready",
+          "imageGap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageRadius": "0px"
+        },
+        {
+          "id": "M11",
+          "radius": "0px",
+          "border": "rgb(197, 164, 92)",
+          "padding": "0px",
+          "margin": "0px",
+          "frame": [
+            40,
+            40
+          ],
+          "art": [
+            38,
+            38
+          ],
+          "gap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageState": "ready",
+          "imageGap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageRadius": "0px"
+        },
+        {
+          "id": "M12",
+          "radius": "0px",
+          "border": "rgb(197, 164, 92)",
+          "padding": "0px",
+          "margin": "0px",
+          "frame": [
+            40,
+            40
+          ],
+          "art": [
+            38,
+            38
+          ],
+          "gap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageState": "ready",
+          "imageGap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageRadius": "0px"
+        },
+        {
+          "id": "M14",
+          "radius": "0px",
+          "border": "rgb(197, 164, 92)",
+          "padding": "0px",
+          "margin": "0px",
+          "frame": [
+            40,
+            40
+          ],
+          "art": [
+            38,
+            38
+          ],
+          "gap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageState": "ready",
+          "imageGap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageRadius": "0px"
+        },
+        {
+          "id": "M15",
+          "radius": "0px",
+          "border": "rgb(197, 164, 92)",
+          "padding": "0px",
+          "margin": "0px",
+          "frame": [
+            40,
+            40
+          ],
+          "art": [
+            38,
+            38
+          ],
+          "gap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageState": "ready",
+          "imageGap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageRadius": "0px"
+        }
+      ]
+    },
+    {
+      "검사": "기예 트리 내부 채움 mage 2",
+      "통과": true,
+      "측정": [
+        {
+          "id": "M07",
+          "radius": "0px",
+          "border": "rgb(197, 164, 92)",
+          "padding": "0px",
+          "margin": "0px",
+          "frame": [
+            40,
+            40
+          ],
+          "art": [
+            38,
+            38
+          ],
+          "gap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageState": "ready",
+          "imageGap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageRadius": "0px"
+        },
+        {
+          "id": "M10",
+          "radius": "0px",
+          "border": "rgb(197, 164, 92)",
+          "padding": "0px",
+          "margin": "0px",
+          "frame": [
+            40,
+            40
+          ],
+          "art": [
+            38,
+            38
+          ],
+          "gap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageState": "ready",
+          "imageGap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageRadius": "0px"
+        },
+        {
+          "id": "M08",
+          "radius": "0px",
+          "border": "rgb(197, 164, 92)",
+          "padding": "0px",
+          "margin": "0px",
+          "frame": [
+            40,
+            40
+          ],
+          "art": [
+            38,
+            38
+          ],
+          "gap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageState": "ready",
+          "imageGap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageRadius": "0px"
+        },
+        {
+          "id": "M09",
+          "radius": "0px",
+          "border": "rgb(197, 164, 92)",
+          "padding": "0px",
+          "margin": "0px",
+          "frame": [
+            40,
+            40
+          ],
+          "art": [
+            38,
+            38
+          ],
+          "gap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageState": "ready",
+          "imageGap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageRadius": "0px"
+        },
+        {
+          "id": "M99",
+          "radius": "0px",
+          "border": "rgb(197, 164, 92)",
+          "padding": "0px",
+          "margin": "0px",
+          "frame": [
+            40,
+            40
+          ],
+          "art": [
+            38,
+            38
+          ],
+          "gap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageState": "ready",
+          "imageGap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageRadius": "0px"
+        }
+      ]
+    },
+    {
+      "검사": "기예 트리 내부 채움 mage 3",
+      "통과": true,
+      "측정": [
+        {
+          "id": "MP01",
+          "radius": "0px",
+          "border": "rgb(197, 164, 92)",
+          "padding": "0px",
+          "margin": "0px",
+          "frame": [
+            40,
+            40
+          ],
+          "art": [
+            38,
+            38
+          ],
+          "gap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageState": "ready",
+          "imageGap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageRadius": "0px"
+        },
+        {
+          "id": "MP02",
+          "radius": "0px",
+          "border": "rgb(197, 164, 92)",
+          "padding": "0px",
+          "margin": "0px",
+          "frame": [
+            40,
+            40
+          ],
+          "art": [
+            38,
+            38
+          ],
+          "gap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageState": "ready",
+          "imageGap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageRadius": "0px"
+        },
+        {
+          "id": "MP04",
+          "radius": "0px",
+          "border": "rgb(197, 164, 92)",
+          "padding": "0px",
+          "margin": "0px",
+          "frame": [
+            40,
+            40
+          ],
+          "art": [
+            38,
+            38
+          ],
+          "gap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageState": "ready",
+          "imageGap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageRadius": "0px"
+        },
+        {
+          "id": "MP03",
+          "radius": "0px",
+          "border": "rgb(197, 164, 92)",
+          "padding": "0px",
+          "margin": "0px",
+          "frame": [
+            40,
+            40
+          ],
+          "art": [
+            38,
+            38
+          ],
+          "gap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageState": "ready",
+          "imageGap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageRadius": "0px"
+        },
+        {
+          "id": "MP05",
+          "radius": "0px",
+          "border": "rgb(197, 164, 92)",
+          "padding": "0px",
+          "margin": "0px",
+          "frame": [
+            40,
+            40
+          ],
+          "art": [
+            38,
+            38
+          ],
+          "gap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageState": "ready",
+          "imageGap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageRadius": "0px"
+        }
+      ]
+    },
+    {
+      "검사": "출전 슬롯 내부 채움 occultist",
+      "통과": true,
+      "측정": [
+        {
+          "id": "O01",
+          "radius": "0px",
+          "border": "rgb(197, 164, 92)",
+          "padding": "0px",
+          "margin": "0px",
+          "frame": [
+            40,
+            40
+          ],
+          "art": [
+            38,
+            38
+          ],
+          "gap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageState": "ready",
+          "imageGap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageRadius": "0px"
+        },
+        {
+          "id": "O06",
+          "radius": "0px",
+          "border": "rgb(197, 164, 92)",
+          "padding": "0px",
+          "margin": "0px",
+          "frame": [
+            40,
+            40
+          ],
+          "art": [
+            38,
+            38
+          ],
+          "gap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageState": "ready",
+          "imageGap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageRadius": "0px"
+        }
+      ]
+    },
+    {
+      "검사": "상시 기예 단일 사각 프레임 occultist",
+      "통과": true,
+      "측정": [
+        {
+          "radius": "0px",
+          "ready": "ready",
+          "padding": "0px"
+        },
+        {
+          "radius": "0px",
+          "ready": "ready",
+          "padding": "0px"
+        },
+        {
+          "radius": "0px",
+          "ready": "ready",
+          "padding": "0px"
+        },
+        {
+          "radius": "0px",
+          "ready": "ready",
+          "padding": "0px"
+        },
+        {
+          "radius": "0px",
+          "ready": "ready",
+          "padding": "0px"
+        }
+      ]
+    },
+    {
+      "검사": "기예 트리 내부 채움 occultist 0",
+      "통과": true,
+      "측정": [
+        {
+          "id": "O02",
+          "radius": "0px",
+          "border": "rgb(197, 164, 92)",
+          "padding": "0px",
+          "margin": "0px",
+          "frame": [
+            40,
+            40
+          ],
+          "art": [
+            38,
+            38
+          ],
+          "gap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageState": "ready",
+          "imageGap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageRadius": "0px"
+        },
+        {
+          "id": "O03",
+          "radius": "0px",
+          "border": "rgb(197, 164, 92)",
+          "padding": "0px",
+          "margin": "0px",
+          "frame": [
+            40,
+            40
+          ],
+          "art": [
+            38,
+            38
+          ],
+          "gap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageState": "ready",
+          "imageGap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageRadius": "0px"
+        },
+        {
+          "id": "O04",
+          "radius": "0px",
+          "border": "rgb(197, 164, 92)",
+          "padding": "0px",
+          "margin": "0px",
+          "frame": [
+            40,
+            40
+          ],
+          "art": [
+            38,
+            38
+          ],
+          "gap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageState": "ready",
+          "imageGap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageRadius": "0px"
+        },
+        {
+          "id": "O05",
+          "radius": "0px",
+          "border": "rgb(197, 164, 92)",
+          "padding": "0px",
+          "margin": "0px",
+          "frame": [
+            40,
+            40
+          ],
+          "art": [
+            38,
+            38
+          ],
+          "gap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageState": "ready",
+          "imageGap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageRadius": "0px"
+        },
+        {
+          "id": "O16",
+          "radius": "0px",
+          "border": "rgb(197, 164, 92)",
+          "padding": "0px",
+          "margin": "0px",
+          "frame": [
+            40,
+            40
+          ],
+          "art": [
+            38,
+            38
+          ],
+          "gap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageState": "ready",
+          "imageGap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageRadius": "0px"
+        }
+      ]
+    },
+    {
+      "검사": "기예 트리 내부 채움 occultist 1",
+      "통과": true,
+      "측정": [
+        {
+          "id": "O06",
+          "radius": "0px",
+          "border": "rgb(240, 198, 109)",
+          "padding": "0px",
+          "margin": "0px",
+          "frame": [
+            40,
+            40
+          ],
+          "art": [
+            38,
+            38
+          ],
+          "gap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageState": "ready",
+          "imageGap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageRadius": "0px"
+        },
+        {
+          "id": "O07",
+          "radius": "0px",
+          "border": "rgb(197, 164, 92)",
+          "padding": "0px",
+          "margin": "0px",
+          "frame": [
+            40,
+            40
+          ],
+          "art": [
+            38,
+            38
+          ],
+          "gap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageState": "ready",
+          "imageGap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageRadius": "0px"
+        },
+        {
+          "id": "O08",
+          "radius": "0px",
+          "border": "rgb(197, 164, 92)",
+          "padding": "0px",
+          "margin": "0px",
+          "frame": [
+            40,
+            40
+          ],
+          "art": [
+            38,
+            38
+          ],
+          "gap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageState": "ready",
+          "imageGap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageRadius": "0px"
+        },
+        {
+          "id": "O09",
+          "radius": "0px",
+          "border": "rgb(197, 164, 92)",
+          "padding": "0px",
+          "margin": "0px",
+          "frame": [
+            40,
+            40
+          ],
+          "art": [
+            38,
+            38
+          ],
+          "gap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageState": "ready",
+          "imageGap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageRadius": "0px"
+        },
+        {
+          "id": "O10",
+          "radius": "0px",
+          "border": "rgb(197, 164, 92)",
+          "padding": "0px",
+          "margin": "0px",
+          "frame": [
+            40,
+            40
+          ],
+          "art": [
+            38,
+            38
+          ],
+          "gap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageState": "ready",
+          "imageGap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageRadius": "0px"
+        }
+      ]
+    },
+    {
+      "검사": "기예 트리 내부 채움 occultist 2",
+      "통과": true,
+      "측정": [
+        {
+          "id": "O11",
+          "radius": "0px",
+          "border": "rgb(197, 164, 92)",
+          "padding": "0px",
+          "margin": "0px",
+          "frame": [
+            40,
+            40
+          ],
+          "art": [
+            38,
+            38
+          ],
+          "gap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageState": "ready",
+          "imageGap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageRadius": "0px"
+        },
+        {
+          "id": "O12",
+          "radius": "0px",
+          "border": "rgb(197, 164, 92)",
+          "padding": "0px",
+          "margin": "0px",
+          "frame": [
+            40,
+            40
+          ],
+          "art": [
+            38,
+            38
+          ],
+          "gap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageState": "ready",
+          "imageGap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageRadius": "0px"
+        },
+        {
+          "id": "O13",
+          "radius": "0px",
+          "border": "rgb(197, 164, 92)",
+          "padding": "0px",
+          "margin": "0px",
+          "frame": [
+            40,
+            40
+          ],
+          "art": [
+            38,
+            38
+          ],
+          "gap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageState": "ready",
+          "imageGap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageRadius": "0px"
+        },
+        {
+          "id": "O14",
+          "radius": "0px",
+          "border": "rgb(197, 164, 92)",
+          "padding": "0px",
+          "margin": "0px",
+          "frame": [
+            40,
+            40
+          ],
+          "art": [
+            38,
+            38
+          ],
+          "gap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageState": "ready",
+          "imageGap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageRadius": "0px"
+        },
+        {
+          "id": "O15",
+          "radius": "0px",
+          "border": "rgb(197, 164, 92)",
+          "padding": "0px",
+          "margin": "0px",
+          "frame": [
+            40,
+            40
+          ],
+          "art": [
+            38,
+            38
+          ],
+          "gap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageState": "ready",
+          "imageGap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageRadius": "0px"
+        }
+      ]
+    },
+    {
+      "검사": "기예 트리 내부 채움 occultist 3",
+      "통과": true,
+      "측정": [
+        {
+          "id": "OP01",
+          "radius": "0px",
+          "border": "rgb(197, 164, 92)",
+          "padding": "0px",
+          "margin": "0px",
+          "frame": [
+            40,
+            40
+          ],
+          "art": [
+            38,
+            38
+          ],
+          "gap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageState": "ready",
+          "imageGap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageRadius": "0px"
+        },
+        {
+          "id": "OP02",
+          "radius": "0px",
+          "border": "rgb(197, 164, 92)",
+          "padding": "0px",
+          "margin": "0px",
+          "frame": [
+            40,
+            40
+          ],
+          "art": [
+            38,
+            38
+          ],
+          "gap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageState": "ready",
+          "imageGap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageRadius": "0px"
+        },
+        {
+          "id": "OP03",
+          "radius": "0px",
+          "border": "rgb(197, 164, 92)",
+          "padding": "0px",
+          "margin": "0px",
+          "frame": [
+            40,
+            40
+          ],
+          "art": [
+            38,
+            38
+          ],
+          "gap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageState": "ready",
+          "imageGap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageRadius": "0px"
+        },
+        {
+          "id": "OP04",
+          "radius": "0px",
+          "border": "rgb(197, 164, 92)",
+          "padding": "0px",
+          "margin": "0px",
+          "frame": [
+            40,
+            40
+          ],
+          "art": [
+            38,
+            38
+          ],
+          "gap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageState": "ready",
+          "imageGap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageRadius": "0px"
+        },
+        {
+          "id": "OP05",
+          "radius": "0px",
+          "border": "rgb(197, 164, 92)",
+          "padding": "0px",
+          "margin": "0px",
+          "frame": [
+            40,
+            40
+          ],
+          "art": [
+            38,
+            38
+          ],
+          "gap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageState": "ready",
+          "imageGap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageRadius": "0px"
+        }
+      ]
+    },
+    {
+      "검사": "상세 A01",
+      "통과": true,
+      "측정": [
+        {
+          "id": "A01",
+          "radius": "0px",
+          "border": "rgb(197, 164, 92)",
+          "padding": "0px",
+          "margin": "0px",
+          "frame": [
+            42,
+            42
+          ],
+          "art": [
+            40,
+            40
+          ],
+          "gap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageState": "ready",
+          "imageGap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageRadius": "0px"
+        }
+      ]
+    },
+    {
+      "검사": "상세 A14",
+      "통과": true,
+      "측정": [
+        {
+          "id": "A14",
+          "radius": "0px",
+          "border": "rgb(197, 164, 92)",
+          "padding": "0px",
+          "margin": "0px",
+          "frame": [
+            42,
+            42
+          ],
+          "art": [
+            40,
+            40
+          ],
+          "gap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageState": "ready",
+          "imageGap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageRadius": "0px"
+        }
+      ]
+    },
+    {
+      "검사": "상세 A02",
+      "통과": true,
+      "측정": [
+        {
+          "id": "A02",
+          "radius": "0px",
+          "border": "rgb(197, 164, 92)",
+          "padding": "0px",
+          "margin": "0px",
+          "frame": [
+            42,
+            42
+          ],
+          "art": [
+            40,
+            40
+          ],
+          "gap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageState": "ready",
+          "imageGap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageRadius": "0px"
+        }
+      ]
+    },
+    {
+      "검사": "상세 A06",
+      "통과": true,
+      "측정": [
+        {
+          "id": "A06",
+          "radius": "0px",
+          "border": "rgb(197, 164, 92)",
+          "padding": "0px",
+          "margin": "0px",
+          "frame": [
+            42,
+            42
+          ],
+          "art": [
+            40,
+            40
+          ],
+          "gap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageState": "ready",
+          "imageGap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageRadius": "0px"
+        }
+      ]
+    },
+    {
+      "검사": "상세 A10",
+      "통과": true,
+      "측정": [
+        {
+          "id": "A10",
+          "radius": "0px",
+          "border": "rgb(197, 164, 92)",
+          "padding": "0px",
+          "margin": "0px",
+          "frame": [
+            42,
+            42
+          ],
+          "art": [
+            40,
+            40
+          ],
+          "gap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageState": "ready",
+          "imageGap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageRadius": "0px"
+        }
+      ]
+    },
+    {
+      "검사": "상세 A99",
+      "통과": true,
+      "측정": [
+        {
+          "id": "A99",
+          "radius": "0px",
+          "border": "rgb(197, 164, 92)",
+          "padding": "0px",
+          "margin": "0px",
+          "frame": [
+            42,
+            42
+          ],
+          "art": [
+            40,
+            40
+          ],
+          "gap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageState": "ready",
+          "imageGap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageRadius": "0px"
+        }
+      ]
+    },
+    {
+      "검사": "상세 A11",
+      "통과": true,
+      "측정": [
+        {
+          "id": "A11",
+          "radius": "0px",
+          "border": "rgb(197, 164, 92)",
+          "padding": "0px",
+          "margin": "0px",
+          "frame": [
+            42,
+            42
+          ],
+          "art": [
+            40,
+            40
+          ],
+          "gap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageState": "ready",
+          "imageGap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageRadius": "0px"
+        }
+      ]
+    },
+    {
+      "검사": "상세 A09",
+      "통과": true,
+      "측정": [
+        {
+          "id": "A09",
+          "radius": "0px",
+          "border": "rgb(197, 164, 92)",
+          "padding": "0px",
+          "margin": "0px",
+          "frame": [
+            42,
+            42
+          ],
+          "art": [
+            40,
+            40
+          ],
+          "gap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageState": "ready",
+          "imageGap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageRadius": "0px"
+        }
+      ]
+    },
+    {
+      "검사": "상세 A13",
+      "통과": true,
+      "측정": [
+        {
+          "id": "A13",
+          "radius": "0px",
+          "border": "rgb(197, 164, 92)",
+          "padding": "0px",
+          "margin": "0px",
+          "frame": [
+            42,
+            42
+          ],
+          "art": [
+            40,
+            40
+          ],
+          "gap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageState": "ready",
+          "imageGap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageRadius": "0px"
+        }
+      ]
+    },
+    {
+      "검사": "상세 A12",
+      "통과": true,
+      "측정": [
+        {
+          "id": "A12",
+          "radius": "0px",
+          "border": "rgb(197, 164, 92)",
+          "padding": "0px",
+          "margin": "0px",
+          "frame": [
+            42,
+            42
+          ],
+          "art": [
+            40,
+            40
+          ],
+          "gap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageState": "ready",
+          "imageGap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageRadius": "0px"
+        }
+      ]
+    },
+    {
+      "검사": "상세 A15",
+      "통과": true,
+      "측정": [
+        {
+          "id": "A15",
+          "radius": "0px",
+          "border": "rgb(197, 164, 92)",
+          "padding": "0px",
+          "margin": "0px",
+          "frame": [
+            42,
+            42
+          ],
+          "art": [
+            40,
+            40
+          ],
+          "gap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageState": "ready",
+          "imageGap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageRadius": "0px"
+        }
+      ]
+    },
+    {
+      "검사": "상세 A05",
+      "통과": true,
+      "측정": [
+        {
+          "id": "A05",
+          "radius": "0px",
+          "border": "rgb(197, 164, 92)",
+          "padding": "0px",
+          "margin": "0px",
+          "frame": [
+            42,
+            42
+          ],
+          "art": [
+            40,
+            40
+          ],
+          "gap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageState": "ready",
+          "imageGap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageRadius": "0px"
+        }
+      ]
+    },
+    {
+      "검사": "상세 A04",
+      "통과": true,
+      "측정": [
+        {
+          "id": "A04",
+          "radius": "0px",
+          "border": "rgb(197, 164, 92)",
+          "padding": "0px",
+          "margin": "0px",
+          "frame": [
+            42,
+            42
+          ],
+          "art": [
+            40,
+            40
+          ],
+          "gap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageState": "ready",
+          "imageGap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageRadius": "0px"
+        }
+      ]
+    },
+    {
+      "검사": "상세 A07",
+      "통과": true,
+      "측정": [
+        {
+          "id": "A07",
+          "radius": "0px",
+          "border": "rgb(197, 164, 92)",
+          "padding": "0px",
+          "margin": "0px",
+          "frame": [
+            42,
+            42
+          ],
+          "art": [
+            40,
+            40
+          ],
+          "gap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageState": "ready",
+          "imageGap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageRadius": "0px"
+        }
+      ]
+    },
+    {
+      "검사": "상세 A03",
+      "통과": true,
+      "측정": [
+        {
+          "id": "A03",
+          "radius": "0px",
+          "border": "rgb(197, 164, 92)",
+          "padding": "0px",
+          "margin": "0px",
+          "frame": [
+            42,
+            42
+          ],
+          "art": [
+            40,
+            40
+          ],
+          "gap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageState": "ready",
+          "imageGap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageRadius": "0px"
+        }
+      ]
+    },
+    {
+      "검사": "상세 A08",
+      "통과": true,
+      "측정": [
+        {
+          "id": "A08",
+          "radius": "0px",
+          "border": "rgb(197, 164, 92)",
+          "padding": "0px",
+          "margin": "0px",
+          "frame": [
+            42,
+            42
+          ],
+          "art": [
+            40,
+            40
+          ],
+          "gap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageState": "ready",
+          "imageGap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageRadius": "0px"
+        }
+      ]
+    },
+    {
+      "검사": "상세 AP04",
+      "통과": true,
+      "측정": [
+        {
+          "id": "AP04",
+          "radius": "0px",
+          "border": "rgb(197, 164, 92)",
+          "padding": "0px",
+          "margin": "0px",
+          "frame": [
+            42,
+            42
+          ],
+          "art": [
+            40,
+            40
+          ],
+          "gap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageState": "ready",
+          "imageGap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageRadius": "0px"
+        }
+      ]
+    },
+    {
+      "검사": "상세 AP02",
+      "통과": true,
+      "측정": [
+        {
+          "id": "AP02",
+          "radius": "0px",
+          "border": "rgb(197, 164, 92)",
+          "padding": "0px",
+          "margin": "0px",
+          "frame": [
+            42,
+            42
+          ],
+          "art": [
+            40,
+            40
+          ],
+          "gap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageState": "ready",
+          "imageGap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageRadius": "0px"
+        }
+      ]
+    },
+    {
+      "검사": "상세 AP01",
+      "통과": true,
+      "측정": [
+        {
+          "id": "AP01",
+          "radius": "0px",
+          "border": "rgb(197, 164, 92)",
+          "padding": "0px",
+          "margin": "0px",
+          "frame": [
+            42,
+            42
+          ],
+          "art": [
+            40,
+            40
+          ],
+          "gap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageState": "ready",
+          "imageGap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageRadius": "0px"
+        }
+      ]
+    },
+    {
+      "검사": "상세 AP03",
+      "통과": true,
+      "측정": [
+        {
+          "id": "AP03",
+          "radius": "0px",
+          "border": "rgb(197, 164, 92)",
+          "padding": "0px",
+          "margin": "0px",
+          "frame": [
+            42,
+            42
+          ],
+          "art": [
+            40,
+            40
+          ],
+          "gap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageState": "ready",
+          "imageGap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageRadius": "0px"
+        }
+      ]
+    },
+    {
+      "검사": "상세 AP05",
+      "통과": true,
+      "측정": [
+        {
+          "id": "AP05",
+          "radius": "0px",
+          "border": "rgb(197, 164, 92)",
+          "padding": "0px",
+          "margin": "0px",
+          "frame": [
+            42,
+            42
+          ],
+          "art": [
+            40,
+            40
+          ],
+          "gap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageState": "ready",
+          "imageGap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageRadius": "0px"
+        }
+      ]
+    },
+    {
+      "검사": "상세 M01",
+      "통과": true,
+      "측정": [
+        {
+          "id": "M01",
+          "radius": "0px",
+          "border": "rgb(197, 164, 92)",
+          "padding": "0px",
+          "margin": "0px",
+          "frame": [
+            42,
+            42
+          ],
+          "art": [
+            40,
+            40
+          ],
+          "gap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageState": "ready",
+          "imageGap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageRadius": "0px"
+        }
+      ]
+    },
+    {
+      "검사": "상세 M06",
+      "통과": true,
+      "측정": [
+        {
+          "id": "M06",
+          "radius": "0px",
+          "border": "rgb(197, 164, 92)",
+          "padding": "0px",
+          "margin": "0px",
+          "frame": [
+            42,
+            42
+          ],
+          "art": [
+            40,
+            40
+          ],
+          "gap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageState": "ready",
+          "imageGap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageRadius": "0px"
+        }
+      ]
+    },
+    {
+      "검사": "상세 M02",
+      "통과": true,
+      "측정": [
+        {
+          "id": "M02",
+          "radius": "0px",
+          "border": "rgb(197, 164, 92)",
+          "padding": "0px",
+          "margin": "0px",
+          "frame": [
+            42,
+            42
+          ],
+          "art": [
+            40,
+            40
+          ],
+          "gap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageState": "ready",
+          "imageGap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageRadius": "0px"
+        }
+      ]
+    },
+    {
+      "검사": "상세 M04",
+      "통과": true,
+      "측정": [
+        {
+          "id": "M04",
+          "radius": "0px",
+          "border": "rgb(197, 164, 92)",
+          "padding": "0px",
+          "margin": "0px",
+          "frame": [
+            42,
+            42
+          ],
+          "art": [
+            40,
+            40
+          ],
+          "gap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageState": "ready",
+          "imageGap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageRadius": "0px"
+        }
+      ]
+    },
+    {
+      "검사": "상세 M13",
+      "통과": true,
+      "측정": [
+        {
+          "id": "M13",
+          "radius": "0px",
+          "border": "rgb(197, 164, 92)",
+          "padding": "0px",
+          "margin": "0px",
+          "frame": [
+            42,
+            42
+          ],
+          "art": [
+            40,
+            40
+          ],
+          "gap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageState": "ready",
+          "imageGap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageRadius": "0px"
+        }
+      ]
+    },
+    {
+      "검사": "상세 M05",
+      "통과": true,
+      "측정": [
+        {
+          "id": "M05",
+          "radius": "0px",
+          "border": "rgb(197, 164, 92)",
+          "padding": "0px",
+          "margin": "0px",
+          "frame": [
+            42,
+            42
+          ],
+          "art": [
+            40,
+            40
+          ],
+          "gap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageState": "ready",
+          "imageGap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageRadius": "0px"
+        }
+      ]
+    },
+    {
+      "검사": "상세 M03",
+      "통과": true,
+      "측정": [
+        {
+          "id": "M03",
+          "radius": "0px",
+          "border": "rgb(197, 164, 92)",
+          "padding": "0px",
+          "margin": "0px",
+          "frame": [
+            42,
+            42
+          ],
+          "art": [
+            40,
+            40
+          ],
+          "gap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageState": "ready",
+          "imageGap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageRadius": "0px"
+        }
+      ]
+    },
+    {
+      "검사": "상세 M11",
+      "통과": true,
+      "측정": [
+        {
+          "id": "M11",
+          "radius": "0px",
+          "border": "rgb(197, 164, 92)",
+          "padding": "0px",
+          "margin": "0px",
+          "frame": [
+            42,
+            42
+          ],
+          "art": [
+            40,
+            40
+          ],
+          "gap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageState": "ready",
+          "imageGap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageRadius": "0px"
+        }
+      ]
+    },
+    {
+      "검사": "상세 M12",
+      "통과": true,
+      "측정": [
+        {
+          "id": "M12",
+          "radius": "0px",
+          "border": "rgb(197, 164, 92)",
+          "padding": "0px",
+          "margin": "0px",
+          "frame": [
+            42,
+            42
+          ],
+          "art": [
+            40,
+            40
+          ],
+          "gap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageState": "ready",
+          "imageGap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageRadius": "0px"
+        }
+      ]
+    },
+    {
+      "검사": "상세 M14",
+      "통과": true,
+      "측정": [
+        {
+          "id": "M14",
+          "radius": "0px",
+          "border": "rgb(197, 164, 92)",
+          "padding": "0px",
+          "margin": "0px",
+          "frame": [
+            42,
+            42
+          ],
+          "art": [
+            40,
+            40
+          ],
+          "gap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageState": "ready",
+          "imageGap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageRadius": "0px"
+        }
+      ]
+    },
+    {
+      "검사": "상세 M15",
+      "통과": true,
+      "측정": [
+        {
+          "id": "M15",
+          "radius": "0px",
+          "border": "rgb(197, 164, 92)",
+          "padding": "0px",
+          "margin": "0px",
+          "frame": [
+            42,
+            42
+          ],
+          "art": [
+            40,
+            40
+          ],
+          "gap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageState": "ready",
+          "imageGap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageRadius": "0px"
+        }
+      ]
+    },
+    {
+      "검사": "상세 M07",
+      "통과": true,
+      "측정": [
+        {
+          "id": "M07",
+          "radius": "0px",
+          "border": "rgb(197, 164, 92)",
+          "padding": "0px",
+          "margin": "0px",
+          "frame": [
+            42,
+            42
+          ],
+          "art": [
+            40,
+            40
+          ],
+          "gap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageState": "ready",
+          "imageGap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageRadius": "0px"
+        }
+      ]
+    },
+    {
+      "검사": "상세 M10",
+      "통과": true,
+      "측정": [
+        {
+          "id": "M10",
+          "radius": "0px",
+          "border": "rgb(197, 164, 92)",
+          "padding": "0px",
+          "margin": "0px",
+          "frame": [
+            42,
+            42
+          ],
+          "art": [
+            40,
+            40
+          ],
+          "gap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageState": "ready",
+          "imageGap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageRadius": "0px"
+        }
+      ]
+    },
+    {
+      "검사": "상세 M08",
+      "통과": true,
+      "측정": [
+        {
+          "id": "M08",
+          "radius": "0px",
+          "border": "rgb(197, 164, 92)",
+          "padding": "0px",
+          "margin": "0px",
+          "frame": [
+            42,
+            42
+          ],
+          "art": [
+            40,
+            40
+          ],
+          "gap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageState": "ready",
+          "imageGap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageRadius": "0px"
+        }
+      ]
+    },
+    {
+      "검사": "상세 M09",
+      "통과": true,
+      "측정": [
+        {
+          "id": "M09",
+          "radius": "0px",
+          "border": "rgb(197, 164, 92)",
+          "padding": "0px",
+          "margin": "0px",
+          "frame": [
+            42,
+            42
+          ],
+          "art": [
+            40,
+            40
+          ],
+          "gap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageState": "ready",
+          "imageGap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageRadius": "0px"
+        }
+      ]
+    },
+    {
+      "검사": "상세 M99",
+      "통과": true,
+      "측정": [
+        {
+          "id": "M99",
+          "radius": "0px",
+          "border": "rgb(197, 164, 92)",
+          "padding": "0px",
+          "margin": "0px",
+          "frame": [
+            42,
+            42
+          ],
+          "art": [
+            40,
+            40
+          ],
+          "gap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageState": "ready",
+          "imageGap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageRadius": "0px"
+        }
+      ]
+    },
+    {
+      "검사": "상세 MP01",
+      "통과": true,
+      "측정": [
+        {
+          "id": "MP01",
+          "radius": "0px",
+          "border": "rgb(197, 164, 92)",
+          "padding": "0px",
+          "margin": "0px",
+          "frame": [
+            42,
+            42
+          ],
+          "art": [
+            40,
+            40
+          ],
+          "gap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageState": "ready",
+          "imageGap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageRadius": "0px"
+        }
+      ]
+    },
+    {
+      "검사": "상세 MP02",
+      "통과": true,
+      "측정": [
+        {
+          "id": "MP02",
+          "radius": "0px",
+          "border": "rgb(197, 164, 92)",
+          "padding": "0px",
+          "margin": "0px",
+          "frame": [
+            42,
+            42
+          ],
+          "art": [
+            40,
+            40
+          ],
+          "gap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageState": "ready",
+          "imageGap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageRadius": "0px"
+        }
+      ]
+    },
+    {
+      "검사": "상세 MP04",
+      "통과": true,
+      "측정": [
+        {
+          "id": "MP04",
+          "radius": "0px",
+          "border": "rgb(197, 164, 92)",
+          "padding": "0px",
+          "margin": "0px",
+          "frame": [
+            42,
+            42
+          ],
+          "art": [
+            40,
+            40
+          ],
+          "gap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageState": "ready",
+          "imageGap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageRadius": "0px"
+        }
+      ]
+    },
+    {
+      "검사": "상세 MP03",
+      "통과": true,
+      "측정": [
+        {
+          "id": "MP03",
+          "radius": "0px",
+          "border": "rgb(197, 164, 92)",
+          "padding": "0px",
+          "margin": "0px",
+          "frame": [
+            42,
+            42
+          ],
+          "art": [
+            40,
+            40
+          ],
+          "gap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageState": "ready",
+          "imageGap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageRadius": "0px"
+        }
+      ]
+    },
+    {
+      "검사": "상세 MP05",
+      "통과": true,
+      "측정": [
+        {
+          "id": "MP05",
+          "radius": "0px",
+          "border": "rgb(197, 164, 92)",
+          "padding": "0px",
+          "margin": "0px",
+          "frame": [
+            42,
+            42
+          ],
+          "art": [
+            40,
+            40
+          ],
+          "gap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageState": "ready",
+          "imageGap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageRadius": "0px"
+        }
+      ]
+    },
+    {
+      "검사": "상세 S00",
+      "통과": true,
+      "측정": [
+        {
+          "id": "S00",
+          "radius": "0px",
+          "border": "rgb(197, 164, 92)",
+          "padding": "0px",
+          "margin": "0px",
+          "frame": [
+            42,
+            42
+          ],
+          "art": [
+            40,
+            40
+          ],
+          "gap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageState": "ready",
+          "imageGap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageRadius": "0px"
+        }
+      ]
+    },
+    {
+      "검사": "상세 S03",
+      "통과": true,
+      "측정": [
+        {
+          "id": "S03",
+          "radius": "0px",
+          "border": "rgb(197, 164, 92)",
+          "padding": "0px",
+          "margin": "0px",
+          "frame": [
+            42,
+            42
+          ],
+          "art": [
+            40,
+            40
+          ],
+          "gap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageState": "ready",
+          "imageGap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageRadius": "0px"
+        }
+      ]
+    },
+    {
+      "검사": "상세 S05",
+      "통과": true,
+      "측정": [
+        {
+          "id": "S05",
+          "radius": "0px",
+          "border": "rgb(197, 164, 92)",
+          "padding": "0px",
+          "margin": "0px",
+          "frame": [
+            42,
+            42
+          ],
+          "art": [
+            40,
+            40
+          ],
+          "gap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageState": "ready",
+          "imageGap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageRadius": "0px"
+        }
+      ]
+    },
+    {
+      "검사": "상세 S07",
+      "통과": true,
+      "측정": [
+        {
+          "id": "S07",
+          "radius": "0px",
+          "border": "rgb(197, 164, 92)",
+          "padding": "0px",
+          "margin": "0px",
+          "frame": [
+            42,
+            42
+          ],
+          "art": [
+            40,
+            40
+          ],
+          "gap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageState": "ready",
+          "imageGap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageRadius": "0px"
+        }
+      ]
+    },
+    {
+      "검사": "상세 S08",
+      "통과": true,
+      "측정": [
+        {
+          "id": "S08",
+          "radius": "0px",
+          "border": "rgb(197, 164, 92)",
+          "padding": "0px",
+          "margin": "0px",
+          "frame": [
+            42,
+            42
+          ],
+          "art": [
+            40,
+            40
+          ],
+          "gap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageState": "ready",
+          "imageGap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageRadius": "0px"
+        }
+      ]
+    },
+    {
+      "검사": "상세 S02",
+      "통과": true,
+      "측정": [
+        {
+          "id": "S02",
+          "radius": "0px",
+          "border": "rgb(197, 164, 92)",
+          "padding": "0px",
+          "margin": "0px",
+          "frame": [
+            42,
+            42
+          ],
+          "art": [
+            40,
+            40
+          ],
+          "gap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageState": "ready",
+          "imageGap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageRadius": "0px"
+        }
+      ]
+    },
+    {
+      "검사": "상세 S01",
+      "통과": true,
+      "측정": [
+        {
+          "id": "S01",
+          "radius": "0px",
+          "border": "rgb(197, 164, 92)",
+          "padding": "0px",
+          "margin": "0px",
+          "frame": [
+            42,
+            42
+          ],
+          "art": [
+            40,
+            40
+          ],
+          "gap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageState": "ready",
+          "imageGap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageRadius": "0px"
+        }
+      ]
+    },
+    {
+      "검사": "상세 S06",
+      "통과": true,
+      "측정": [
+        {
+          "id": "S06",
+          "radius": "0px",
+          "border": "rgb(197, 164, 92)",
+          "padding": "0px",
+          "margin": "0px",
+          "frame": [
+            42,
+            42
+          ],
+          "art": [
+            40,
+            40
+          ],
+          "gap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageState": "ready",
+          "imageGap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageRadius": "0px"
+        }
+      ]
+    },
+    {
+      "검사": "상세 S04",
+      "통과": true,
+      "측정": [
+        {
+          "id": "S04",
+          "radius": "0px",
+          "border": "rgb(197, 164, 92)",
+          "padding": "0px",
+          "margin": "0px",
+          "frame": [
+            42,
+            42
+          ],
+          "art": [
+            40,
+            40
+          ],
+          "gap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageState": "ready",
+          "imageGap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageRadius": "0px"
+        }
+      ]
+    },
+    {
+      "검사": "상세 S15",
+      "통과": true,
+      "측정": [
+        {
+          "id": "S15",
+          "radius": "0px",
+          "border": "rgb(197, 164, 92)",
+          "padding": "0px",
+          "margin": "0px",
+          "frame": [
+            42,
+            42
+          ],
+          "art": [
+            40,
+            40
+          ],
+          "gap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageState": "ready",
+          "imageGap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageRadius": "0px"
+        }
+      ]
+    },
+    {
+      "검사": "상세 S13",
+      "통과": true,
+      "측정": [
+        {
+          "id": "S13",
+          "radius": "0px",
+          "border": "rgb(197, 164, 92)",
+          "padding": "0px",
+          "margin": "0px",
+          "frame": [
+            42,
+            42
+          ],
+          "art": [
+            40,
+            40
+          ],
+          "gap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageState": "ready",
+          "imageGap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageRadius": "0px"
+        }
+      ]
+    },
+    {
+      "검사": "상세 S09",
+      "통과": true,
+      "측정": [
+        {
+          "id": "S09",
+          "radius": "0px",
+          "border": "rgb(197, 164, 92)",
+          "padding": "0px",
+          "margin": "0px",
+          "frame": [
+            42,
+            42
+          ],
+          "art": [
+            40,
+            40
+          ],
+          "gap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageState": "ready",
+          "imageGap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageRadius": "0px"
+        }
+      ]
+    },
+    {
+      "검사": "상세 S10",
+      "통과": true,
+      "측정": [
+        {
+          "id": "S10",
+          "radius": "0px",
+          "border": "rgb(197, 164, 92)",
+          "padding": "0px",
+          "margin": "0px",
+          "frame": [
+            42,
+            42
+          ],
+          "art": [
+            40,
+            40
+          ],
+          "gap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageState": "ready",
+          "imageGap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageRadius": "0px"
+        }
+      ]
+    },
+    {
+      "검사": "상세 S11",
+      "통과": true,
+      "측정": [
+        {
+          "id": "S11",
+          "radius": "0px",
+          "border": "rgb(197, 164, 92)",
+          "padding": "0px",
+          "margin": "0px",
+          "frame": [
+            42,
+            42
+          ],
+          "art": [
+            40,
+            40
+          ],
+          "gap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageState": "ready",
+          "imageGap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageRadius": "0px"
+        }
+      ]
+    },
+    {
+      "검사": "상세 S14",
+      "통과": true,
+      "측정": [
+        {
+          "id": "S14",
+          "radius": "0px",
+          "border": "rgb(197, 164, 92)",
+          "padding": "0px",
+          "margin": "0px",
+          "frame": [
+            42,
+            42
+          ],
+          "art": [
+            40,
+            40
+          ],
+          "gap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageState": "ready",
+          "imageGap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageRadius": "0px"
+        }
+      ]
+    },
+    {
+      "검사": "상세 S12",
+      "통과": true,
+      "측정": [
+        {
+          "id": "S12",
+          "radius": "0px",
+          "border": "rgb(197, 164, 92)",
+          "padding": "0px",
+          "margin": "0px",
+          "frame": [
+            42,
+            42
+          ],
+          "art": [
+            40,
+            40
+          ],
+          "gap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageState": "ready",
+          "imageGap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageRadius": "0px"
+        }
+      ]
+    },
+    {
+      "검사": "상세 SP01",
+      "통과": true,
+      "측정": [
+        {
+          "id": "SP01",
+          "radius": "0px",
+          "border": "rgb(197, 164, 92)",
+          "padding": "0px",
+          "margin": "0px",
+          "frame": [
+            42,
+            42
+          ],
+          "art": [
+            40,
+            40
+          ],
+          "gap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageState": "ready",
+          "imageGap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageRadius": "0px"
+        }
+      ]
+    },
+    {
+      "검사": "상세 SP02",
+      "통과": true,
+      "측정": [
+        {
+          "id": "SP02",
+          "radius": "0px",
+          "border": "rgb(197, 164, 92)",
+          "padding": "0px",
+          "margin": "0px",
+          "frame": [
+            42,
+            42
+          ],
+          "art": [
+            40,
+            40
+          ],
+          "gap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageState": "ready",
+          "imageGap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageRadius": "0px"
+        }
+      ]
+    },
+    {
+      "검사": "상세 SP03",
+      "통과": true,
+      "측정": [
+        {
+          "id": "SP03",
+          "radius": "0px",
+          "border": "rgb(197, 164, 92)",
+          "padding": "0px",
+          "margin": "0px",
+          "frame": [
+            42,
+            42
+          ],
+          "art": [
+            40,
+            40
+          ],
+          "gap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageState": "ready",
+          "imageGap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageRadius": "0px"
+        }
+      ]
+    },
+    {
+      "검사": "상세 SP04",
+      "통과": true,
+      "측정": [
+        {
+          "id": "SP04",
+          "radius": "0px",
+          "border": "rgb(197, 164, 92)",
+          "padding": "0px",
+          "margin": "0px",
+          "frame": [
+            42,
+            42
+          ],
+          "art": [
+            40,
+            40
+          ],
+          "gap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageState": "ready",
+          "imageGap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageRadius": "0px"
+        }
+      ]
+    },
+    {
+      "검사": "상세 SP05",
+      "통과": true,
+      "측정": [
+        {
+          "id": "SP05",
+          "radius": "0px",
+          "border": "rgb(197, 164, 92)",
+          "padding": "0px",
+          "margin": "0px",
+          "frame": [
+            42,
+            42
+          ],
+          "art": [
+            40,
+            40
+          ],
+          "gap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageState": "ready",
+          "imageGap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageRadius": "0px"
+        }
+      ]
+    },
+    {
+      "검사": "상세 O01",
+      "통과": true,
+      "측정": [
+        {
+          "id": "O01",
+          "radius": "0px",
+          "border": "rgb(197, 164, 92)",
+          "padding": "0px",
+          "margin": "0px",
+          "frame": [
+            42,
+            42
+          ],
+          "art": [
+            40,
+            40
+          ],
+          "gap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageState": "ready",
+          "imageGap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageRadius": "0px"
+        }
+      ]
+    },
+    {
+      "검사": "상세 O02",
+      "통과": true,
+      "측정": [
+        {
+          "id": "O02",
+          "radius": "0px",
+          "border": "rgb(197, 164, 92)",
+          "padding": "0px",
+          "margin": "0px",
+          "frame": [
+            42,
+            42
+          ],
+          "art": [
+            40,
+            40
+          ],
+          "gap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageState": "ready",
+          "imageGap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageRadius": "0px"
+        }
+      ]
+    },
+    {
+      "검사": "상세 O03",
+      "통과": true,
+      "측정": [
+        {
+          "id": "O03",
+          "radius": "0px",
+          "border": "rgb(197, 164, 92)",
+          "padding": "0px",
+          "margin": "0px",
+          "frame": [
+            42,
+            42
+          ],
+          "art": [
+            40,
+            40
+          ],
+          "gap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageState": "ready",
+          "imageGap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageRadius": "0px"
+        }
+      ]
+    },
+    {
+      "검사": "상세 O04",
+      "통과": true,
+      "측정": [
+        {
+          "id": "O04",
+          "radius": "0px",
+          "border": "rgb(197, 164, 92)",
+          "padding": "0px",
+          "margin": "0px",
+          "frame": [
+            42,
+            42
+          ],
+          "art": [
+            40,
+            40
+          ],
+          "gap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageState": "ready",
+          "imageGap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageRadius": "0px"
+        }
+      ]
+    },
+    {
+      "검사": "상세 O05",
+      "통과": true,
+      "측정": [
+        {
+          "id": "O05",
+          "radius": "0px",
+          "border": "rgb(197, 164, 92)",
+          "padding": "0px",
+          "margin": "0px",
+          "frame": [
+            42,
+            42
+          ],
+          "art": [
+            40,
+            40
+          ],
+          "gap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageState": "ready",
+          "imageGap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageRadius": "0px"
+        }
+      ]
+    },
+    {
+      "검사": "상세 O16",
+      "통과": true,
+      "측정": [
+        {
+          "id": "O16",
+          "radius": "0px",
+          "border": "rgb(197, 164, 92)",
+          "padding": "0px",
+          "margin": "0px",
+          "frame": [
+            42,
+            42
+          ],
+          "art": [
+            40,
+            40
+          ],
+          "gap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageState": "ready",
+          "imageGap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageRadius": "0px"
+        }
+      ]
+    },
+    {
+      "검사": "상세 O06",
+      "통과": true,
+      "측정": [
+        {
+          "id": "O06",
+          "radius": "0px",
+          "border": "rgb(197, 164, 92)",
+          "padding": "0px",
+          "margin": "0px",
+          "frame": [
+            42,
+            42
+          ],
+          "art": [
+            40,
+            40
+          ],
+          "gap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageState": "ready",
+          "imageGap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageRadius": "0px"
+        }
+      ]
+    },
+    {
+      "검사": "상세 O07",
+      "통과": true,
+      "측정": [
+        {
+          "id": "O07",
+          "radius": "0px",
+          "border": "rgb(197, 164, 92)",
+          "padding": "0px",
+          "margin": "0px",
+          "frame": [
+            42,
+            42
+          ],
+          "art": [
+            40,
+            40
+          ],
+          "gap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageState": "ready",
+          "imageGap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageRadius": "0px"
+        }
+      ]
+    },
+    {
+      "검사": "상세 O08",
+      "통과": true,
+      "측정": [
+        {
+          "id": "O08",
+          "radius": "0px",
+          "border": "rgb(197, 164, 92)",
+          "padding": "0px",
+          "margin": "0px",
+          "frame": [
+            42,
+            42
+          ],
+          "art": [
+            40,
+            40
+          ],
+          "gap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageState": "ready",
+          "imageGap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageRadius": "0px"
+        }
+      ]
+    },
+    {
+      "검사": "상세 O09",
+      "통과": true,
+      "측정": [
+        {
+          "id": "O09",
+          "radius": "0px",
+          "border": "rgb(197, 164, 92)",
+          "padding": "0px",
+          "margin": "0px",
+          "frame": [
+            42,
+            42
+          ],
+          "art": [
+            40,
+            40
+          ],
+          "gap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageState": "ready",
+          "imageGap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageRadius": "0px"
+        }
+      ]
+    },
+    {
+      "검사": "상세 O10",
+      "통과": true,
+      "측정": [
+        {
+          "id": "O10",
+          "radius": "0px",
+          "border": "rgb(197, 164, 92)",
+          "padding": "0px",
+          "margin": "0px",
+          "frame": [
+            42,
+            42
+          ],
+          "art": [
+            40,
+            40
+          ],
+          "gap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageState": "ready",
+          "imageGap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageRadius": "0px"
+        }
+      ]
+    },
+    {
+      "검사": "상세 O11",
+      "통과": true,
+      "측정": [
+        {
+          "id": "O11",
+          "radius": "0px",
+          "border": "rgb(197, 164, 92)",
+          "padding": "0px",
+          "margin": "0px",
+          "frame": [
+            42,
+            42
+          ],
+          "art": [
+            40,
+            40
+          ],
+          "gap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageState": "ready",
+          "imageGap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageRadius": "0px"
+        }
+      ]
+    },
+    {
+      "검사": "상세 O12",
+      "통과": true,
+      "측정": [
+        {
+          "id": "O12",
+          "radius": "0px",
+          "border": "rgb(197, 164, 92)",
+          "padding": "0px",
+          "margin": "0px",
+          "frame": [
+            42,
+            42
+          ],
+          "art": [
+            40,
+            40
+          ],
+          "gap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageState": "ready",
+          "imageGap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageRadius": "0px"
+        }
+      ]
+    },
+    {
+      "검사": "상세 O13",
+      "통과": true,
+      "측정": [
+        {
+          "id": "O13",
+          "radius": "0px",
+          "border": "rgb(197, 164, 92)",
+          "padding": "0px",
+          "margin": "0px",
+          "frame": [
+            42,
+            42
+          ],
+          "art": [
+            40,
+            40
+          ],
+          "gap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageState": "ready",
+          "imageGap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageRadius": "0px"
+        }
+      ]
+    },
+    {
+      "검사": "상세 O14",
+      "통과": true,
+      "측정": [
+        {
+          "id": "O14",
+          "radius": "0px",
+          "border": "rgb(197, 164, 92)",
+          "padding": "0px",
+          "margin": "0px",
+          "frame": [
+            42,
+            42
+          ],
+          "art": [
+            40,
+            40
+          ],
+          "gap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageState": "ready",
+          "imageGap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageRadius": "0px"
+        }
+      ]
+    },
+    {
+      "검사": "상세 O15",
+      "통과": true,
+      "측정": [
+        {
+          "id": "O15",
+          "radius": "0px",
+          "border": "rgb(197, 164, 92)",
+          "padding": "0px",
+          "margin": "0px",
+          "frame": [
+            42,
+            42
+          ],
+          "art": [
+            40,
+            40
+          ],
+          "gap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageState": "ready",
+          "imageGap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageRadius": "0px"
+        }
+      ]
+    },
+    {
+      "검사": "상세 OP01",
+      "통과": true,
+      "측정": [
+        {
+          "id": "OP01",
+          "radius": "0px",
+          "border": "rgb(197, 164, 92)",
+          "padding": "0px",
+          "margin": "0px",
+          "frame": [
+            42,
+            42
+          ],
+          "art": [
+            40,
+            40
+          ],
+          "gap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageState": "ready",
+          "imageGap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageRadius": "0px"
+        }
+      ]
+    },
+    {
+      "검사": "상세 OP02",
+      "통과": true,
+      "측정": [
+        {
+          "id": "OP02",
+          "radius": "0px",
+          "border": "rgb(197, 164, 92)",
+          "padding": "0px",
+          "margin": "0px",
+          "frame": [
+            42,
+            42
+          ],
+          "art": [
+            40,
+            40
+          ],
+          "gap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageState": "ready",
+          "imageGap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageRadius": "0px"
+        }
+      ]
+    },
+    {
+      "검사": "상세 OP03",
+      "통과": true,
+      "측정": [
+        {
+          "id": "OP03",
+          "radius": "0px",
+          "border": "rgb(197, 164, 92)",
+          "padding": "0px",
+          "margin": "0px",
+          "frame": [
+            42,
+            42
+          ],
+          "art": [
+            40,
+            40
+          ],
+          "gap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageState": "ready",
+          "imageGap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageRadius": "0px"
+        }
+      ]
+    },
+    {
+      "검사": "상세 OP04",
+      "통과": true,
+      "측정": [
+        {
+          "id": "OP04",
+          "radius": "0px",
+          "border": "rgb(197, 164, 92)",
+          "padding": "0px",
+          "margin": "0px",
+          "frame": [
+            42,
+            42
+          ],
+          "art": [
+            40,
+            40
+          ],
+          "gap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageState": "ready",
+          "imageGap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageRadius": "0px"
+        }
+      ]
+    },
+    {
+      "검사": "상세 OP05",
+      "통과": true,
+      "측정": [
+        {
+          "id": "OP05",
+          "radius": "0px",
+          "border": "rgb(197, 164, 92)",
+          "padding": "0px",
+          "margin": "0px",
+          "frame": [
+            42,
+            42
+          ],
+          "art": [
+            40,
+            40
+          ],
+          "gap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageState": "ready",
+          "imageGap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageRadius": "0px"
+        }
+      ]
+    },
+    {
+      "검사": "장착 비교 및 목록",
+      "통과": true,
+      "측정": [
+        {
+          "id": "A14",
+          "radius": "0px",
+          "border": "rgb(197, 164, 92)",
+          "padding": "0px",
+          "margin": "0px",
+          "frame": [
+            44,
+            44
+          ],
+          "art": [
+            42,
+            42
+          ],
+          "gap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageState": "ready",
+          "imageGap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageRadius": "0px"
+        },
+        {
+          "id": "A02",
+          "radius": "0px",
+          "border": "rgb(197, 164, 92)",
+          "padding": "0px",
+          "margin": "0px",
+          "frame": [
+            40,
+            40
+          ],
+          "art": [
+            38,
+            38
+          ],
+          "gap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageState": "ready",
+          "imageGap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageRadius": "0px"
+        },
+        {
+          "id": "A06",
+          "radius": "0px",
+          "border": "rgb(197, 164, 92)",
+          "padding": "0px",
+          "margin": "0px",
+          "frame": [
+            40,
+            40
+          ],
+          "art": [
+            38,
+            38
+          ],
+          "gap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageState": "ready",
+          "imageGap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageRadius": "0px"
+        },
+        {
+          "id": "A10",
+          "radius": "0px",
+          "border": "rgb(197, 164, 92)",
+          "padding": "0px",
+          "margin": "0px",
+          "frame": [
+            40,
+            40
+          ],
+          "art": [
+            38,
+            38
+          ],
+          "gap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageState": "ready",
+          "imageGap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageRadius": "0px"
+        },
+        {
+          "id": "A14",
+          "radius": "0px",
+          "border": "rgb(240, 198, 109)",
+          "padding": "0px",
+          "margin": "0px",
+          "frame": [
+            40,
+            40
+          ],
+          "art": [
+            38,
+            38
+          ],
+          "gap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageState": "observed",
+          "imageGap": [],
+          "imageRadius": "0px"
+        },
+        {
+          "id": "A99",
+          "radius": "0px",
+          "border": "rgb(197, 164, 92)",
+          "padding": "0px",
+          "margin": "0px",
+          "frame": [
+            40,
+            40
+          ],
+          "art": [
+            38,
+            38
+          ],
+          "gap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageState": "observed",
+          "imageGap": [],
+          "imageRadius": "0px"
+        },
+        {
+          "id": "A09",
+          "radius": "0px",
+          "border": "rgb(197, 164, 92)",
+          "padding": "0px",
+          "margin": "0px",
+          "frame": [
+            40,
+            40
+          ],
+          "art": [
+            38,
+            38
+          ],
+          "gap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageState": "observed",
+          "imageGap": [],
+          "imageRadius": "0px"
+        },
+        {
+          "id": "A11",
+          "radius": "0px",
+          "border": "rgb(197, 164, 92)",
+          "padding": "0px",
+          "margin": "0px",
+          "frame": [
+            40,
+            40
+          ],
+          "art": [
+            38,
+            38
+          ],
+          "gap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageState": "observed",
+          "imageGap": [],
+          "imageRadius": "0px"
+        },
+        {
+          "id": "A12",
+          "radius": "0px",
+          "border": "rgb(197, 164, 92)",
+          "padding": "0px",
+          "margin": "0px",
+          "frame": [
+            40,
+            40
+          ],
+          "art": [
+            38,
+            38
+          ],
+          "gap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageState": "observed",
+          "imageGap": [],
+          "imageRadius": "0px"
+        },
+        {
+          "id": "A13",
+          "radius": "0px",
+          "border": "rgb(197, 164, 92)",
+          "padding": "0px",
+          "margin": "0px",
+          "frame": [
+            40,
+            40
+          ],
+          "art": [
+            38,
+            38
+          ],
+          "gap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageState": "observed",
+          "imageGap": [],
+          "imageRadius": "0px"
+        },
+        {
+          "id": "A15",
+          "radius": "0px",
+          "border": "rgb(197, 164, 92)",
+          "padding": "0px",
+          "margin": "0px",
+          "frame": [
+            40,
+            40
+          ],
+          "art": [
+            38,
+            38
+          ],
+          "gap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageState": "observed",
+          "imageGap": [],
+          "imageRadius": "0px"
+        },
+        {
+          "id": "A03",
+          "radius": "0px",
+          "border": "rgb(197, 164, 92)",
+          "padding": "0px",
+          "margin": "0px",
+          "frame": [
+            40,
+            40
+          ],
+          "art": [
+            38,
+            38
+          ],
+          "gap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageState": "observed",
+          "imageGap": [],
+          "imageRadius": "0px"
+        },
+        {
+          "id": "A04",
+          "radius": "0px",
+          "border": "rgb(197, 164, 92)",
+          "padding": "0px",
+          "margin": "0px",
+          "frame": [
+            40,
+            40
+          ],
+          "art": [
+            38,
+            38
+          ],
+          "gap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageState": "observed",
+          "imageGap": [],
+          "imageRadius": "0px"
+        },
+        {
+          "id": "A05",
+          "radius": "0px",
+          "border": "rgb(197, 164, 92)",
+          "padding": "0px",
+          "margin": "0px",
+          "frame": [
+            40,
+            40
+          ],
+          "art": [
+            38,
+            38
+          ],
+          "gap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageState": "observed",
+          "imageGap": [],
+          "imageRadius": "0px"
+        },
+        {
+          "id": "A07",
+          "radius": "0px",
+          "border": "rgb(197, 164, 92)",
+          "padding": "0px",
+          "margin": "0px",
+          "frame": [
+            40,
+            40
+          ],
+          "art": [
+            38,
+            38
+          ],
+          "gap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageState": "observed",
+          "imageGap": [],
+          "imageRadius": "0px"
+        },
+        {
+          "id": "A08",
+          "radius": "0px",
+          "border": "rgb(197, 164, 92)",
+          "padding": "0px",
+          "margin": "0px",
+          "frame": [
+            40,
+            40
+          ],
+          "art": [
+            38,
+            38
+          ],
+          "gap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageState": "observed",
+          "imageGap": [],
+          "imageRadius": "0px"
+        }
+      ]
+    },
+    {
+      "검사": "허공터 선택창 단일 프레임",
+      "통과": true,
+      "측정": [
+        {
+          "id": "A14",
+          "radius": "0px",
+          "border": "rgb(240, 198, 109)",
+          "padding": "0px",
+          "margin": "0px",
+          "frame": [
+            34,
+            34
+          ],
+          "art": [
+            32,
+            32
+          ],
+          "gap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageState": "ready",
+          "imageGap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageRadius": "0px"
+        },
+        {
+          "id": "A02",
+          "radius": "0px",
+          "border": "rgb(197, 164, 92)",
+          "padding": "0px",
+          "margin": "0px",
+          "frame": [
+            34,
+            34
+          ],
+          "art": [
+            32,
+            32
+          ],
+          "gap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageState": "ready",
+          "imageGap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageRadius": "0px"
+        },
+        {
+          "id": "A06",
+          "radius": "0px",
+          "border": "rgb(197, 164, 92)",
+          "padding": "0px",
+          "margin": "0px",
+          "frame": [
+            34,
+            34
+          ],
+          "art": [
+            32,
+            32
+          ],
+          "gap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageState": "ready",
+          "imageGap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageRadius": "0px"
+        },
+        {
+          "id": "A10",
+          "radius": "0px",
+          "border": "rgb(197, 164, 92)",
+          "padding": "0px",
+          "margin": "0px",
+          "frame": [
+            34,
+            34
+          ],
+          "art": [
+            32,
+            32
+          ],
+          "gap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageState": "ready",
+          "imageGap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageRadius": "0px"
+        },
+        {
+          "id": "A99",
+          "radius": "0px",
+          "border": "rgb(197, 164, 92)",
+          "padding": "0px",
+          "margin": "0px",
+          "frame": [
+            34,
+            34
+          ],
+          "art": [
+            32,
+            32
+          ],
+          "gap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageState": "ready",
+          "imageGap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageRadius": "0px"
+        },
+        {
+          "id": "A14",
+          "radius": "0px",
+          "border": "rgb(197, 164, 92)",
+          "padding": "0px",
+          "margin": "0px",
+          "frame": [
+            58,
+            58
+          ],
+          "art": [
+            56,
+            56
+          ],
+          "gap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageState": "observed",
+          "imageGap": [],
+          "imageRadius": "0px"
+        }
+      ]
+    },
+    {
+      "검사": "허공터 상시 선택 프레임",
+      "통과": true,
+      "측정": [
+        {
+          "id": "AP04",
+          "radius": "0px",
+          "border": "rgb(240, 198, 109)",
+          "padding": "0px",
+          "margin": "0px",
+          "frame": [
+            34,
+            34
+          ],
+          "art": [
+            32,
+            32
+          ],
+          "gap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageState": "ready",
+          "imageGap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageRadius": "0px"
+        },
+        {
+          "id": "AP02",
+          "radius": "0px",
+          "border": "rgb(197, 164, 92)",
+          "padding": "0px",
+          "margin": "0px",
+          "frame": [
+            34,
+            34
+          ],
+          "art": [
+            32,
+            32
+          ],
+          "gap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageState": "ready",
+          "imageGap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageRadius": "0px"
+        },
+        {
+          "id": "AP01",
+          "radius": "0px",
+          "border": "rgb(197, 164, 92)",
+          "padding": "0px",
+          "margin": "0px",
+          "frame": [
+            34,
+            34
+          ],
+          "art": [
+            32,
+            32
+          ],
+          "gap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageState": "ready",
+          "imageGap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageRadius": "0px"
+        },
+        {
+          "id": "AP03",
+          "radius": "0px",
+          "border": "rgb(197, 164, 92)",
+          "padding": "0px",
+          "margin": "0px",
+          "frame": [
+            34,
+            34
+          ],
+          "art": [
+            32,
+            32
+          ],
+          "gap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageState": "ready",
+          "imageGap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageRadius": "0px"
+        },
+        {
+          "id": "AP05",
+          "radius": "0px",
+          "border": "rgb(197, 164, 92)",
+          "padding": "0px",
+          "margin": "0px",
+          "frame": [
+            34,
+            34
+          ],
+          "art": [
+            32,
+            32
+          ],
+          "gap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageState": "ready",
+          "imageGap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageRadius": "0px"
+        },
+        {
+          "id": "AP04",
+          "radius": "0px",
+          "border": "rgb(197, 164, 92)",
+          "padding": "0px",
+          "margin": "0px",
+          "frame": [
+            58,
+            58
+          ],
+          "art": [
+            56,
+            56
+          ],
+          "gap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageState": "observed",
+          "imageGap": [],
+          "imageRadius": "0px"
+        }
+      ]
+    },
+    {
+      "검사": "허공터 선택 표시와 카드 모서리 보존",
+      "통과": true,
+      "측정": null
+    },
+    {
+      "검사": "전투 이미지가 버튼 내부 전체 채움",
+      "통과": true,
+      "측정": [
+        {
+          "id": "A01",
+          "radius": "0px",
+          "border": "rgb(197, 164, 92)",
+          "padding": "0px",
+          "margin": "0px",
+          "frame": [
+            52,
+            45
+          ],
+          "art": [
+            50,
+            43
+          ],
+          "gap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageState": "ready",
+          "imageGap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageRadius": "0px"
+        },
+        {
+          "id": "A14",
+          "radius": "0px",
+          "border": "rgb(240, 198, 109)",
+          "padding": "0px",
+          "margin": "0px",
+          "frame": [
+            52,
+            45
+          ],
+          "art": [
+            50,
+            43
+          ],
+          "gap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageState": "ready",
+          "imageGap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageRadius": "0px"
+        },
+        {
+          "id": "A02",
+          "radius": "0px",
+          "border": "rgb(197, 164, 92)",
+          "padding": "0px",
+          "margin": "0px",
+          "frame": [
+            52,
+            45
+          ],
+          "art": [
+            50,
+            43
+          ],
+          "gap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageState": "ready",
+          "imageGap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageRadius": "0px"
+        },
+        {
+          "id": "A08",
+          "radius": "0px",
+          "border": "rgb(197, 164, 92)",
+          "padding": "0px",
+          "margin": "0px",
+          "frame": [
+            52,
+            45
+          ],
+          "art": [
+            50,
+            43
+          ],
+          "gap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageState": "ready",
+          "imageGap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageRadius": "0px"
+        }
+      ]
+    },
+    {
+      "검사": "미해금 기예 설명 접근 가능",
+      "통과": true,
+      "측정": null
+    },
+    {
+      "검사": "잠금 시 수련 비활성",
+      "통과": true,
+      "측정": null
+    },
+    {
+      "검사": "패시브 키보드 포커스",
+      "통과": true,
+      "측정": null
+    },
+    {
+      "검사": "Enter로 상시 상세 열기",
+      "통과": true,
+      "측정": null
+    },
+    {
+      "검사": "선택 상태 및 단축키/이름/MP 유지",
+      "통과": true,
+      "측정": {
+        "pressed": "true",
+        "key": "2",
+        "name": "급소시",
+        "mp": "30",
+        "selected": "A14"
+      }
+    },
+    {
+      "검사": "전투 포커스 테두리",
+      "통과": true,
+      "측정": null
+    },
+    {
+      "검사": "숫자 단축키 선택",
+      "통과": true,
+      "측정": null
+    },
+    {
+      "검사": "터치 선택",
+      "통과": true,
+      "측정": null
+    },
+    {
+      "검사": "기력 부족 점선 프레임",
+      "통과": true,
+      "측정": null
+    },
+    {
+      "검사": "재사용 회수 가독성",
+      "통과": true,
+      "측정": null
+    },
+    {
+      "검사": "비활성 네이티브 버튼",
+      "통과": true,
+      "측정": null
+    },
+    {
+      "검사": "빈 슬롯 비활성 보존",
+      "통과": true,
+      "측정": null
+    },
+    {
+      "검사": "네트워크 실패 SVG 폴백",
+      "통과": true,
+      "측정": null
+    },
+    {
+      "검사": "전투 폴백/이름 보존",
+      "통과": true,
+      "측정": null
+    },
+    {
+      "검사": "390 기존 조작/전장 위치와 크기 동일",
+      "통과": true,
+      "측정": {
+        "변경후": {
+          "#joystick": [
+            20,
+            732.796875,
+            72,
+            72
+          ],
+          "#fire": [
+            308,
+            751.5,
+            62,
+            62
+          ],
+          "#jump": [
+            295.5,
+            719.609375,
+            34,
+            34
+          ],
+          "#drop": [
+            276.09375,
+            792,
+            34,
+            34
+          ],
+          "[data-action=defend]": [
+            270.8125,
+            751.78125,
+            34,
+            34
+          ],
+          "#battle-bottom": [
+            0,
+            647.609375,
+            390,
+            196.390625
+          ],
+          "#battlecanvas": [
+            0,
+            0,
+            390,
+            647.609375
+          ],
+          "#combat-skills .skill-button:nth-child(1)": [
+            126.40625,
+            724.796875,
+            52,
+            45
+          ],
+          "#combat-skills .skill-button:nth-child(2)": [
+            184.40625,
+            724.796875,
+            52,
+            45
+          ],
+          "#combat-skills .skill-button:nth-child(3)": [
+            126.40625,
+            775.796875,
+            52,
+            45
+          ],
+          "#combat-skills .skill-button:nth-child(4)": [
+            184.40625,
+            775.796875,
+            52,
+            45
+          ]
+        },
+        "기준": {
+          "#joystick": [
+            20,
+            732.796875,
+            72,
+            72
+          ],
+          "#fire": [
+            308,
+            751.5,
+            62,
+            62
+          ],
+          "#jump": [
+            295.5,
+            719.609375,
+            34,
+            34
+          ],
+          "#drop": [
+            276.09375,
+            792,
+            34,
+            34
+          ],
+          "[data-action=defend]": [
+            270.8125,
+            751.78125,
+            34,
+            34
+          ],
+          "#battle-bottom": [
+            0,
+            647.609375,
+            390,
+            196.390625
+          ],
+          "#battlecanvas": [
+            0,
+            0,
+            390,
+            647.609375
+          ],
+          "#combat-skills .skill-button:nth-child(1)": [
+            126.40625,
+            724.796875,
+            52,
+            45
+          ],
+          "#combat-skills .skill-button:nth-child(2)": [
+            184.40625,
+            724.796875,
+            52,
+            45
+          ],
+          "#combat-skills .skill-button:nth-child(3)": [
+            126.40625,
+            775.796875,
+            52,
+            45
+          ],
+          "#combat-skills .skill-button:nth-child(4)": [
+            184.40625,
+            775.796875,
+            52,
+            45
+          ]
+        }
+      }
+    },
+    {
+      "검사": "390 이미지 가장자리",
+      "통과": true,
+      "측정": [
+        {
+          "id": "A01",
+          "radius": "0px",
+          "border": "rgb(197, 164, 92)",
+          "padding": "0px",
+          "margin": "0px",
+          "frame": [
+            52,
+            45
+          ],
+          "art": [
+            50,
+            43
+          ],
+          "gap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageState": "ready",
+          "imageGap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageRadius": "0px"
+        },
+        {
+          "id": "A14",
+          "radius": "0px",
+          "border": "rgb(240, 198, 109)",
+          "padding": "0px",
+          "margin": "0px",
+          "frame": [
+            52,
+            45
+          ],
+          "art": [
+            50,
+            43
+          ],
+          "gap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageState": "ready",
+          "imageGap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageRadius": "0px"
+        },
+        {
+          "id": "A02",
+          "radius": "0px",
+          "border": "rgb(197, 164, 92)",
+          "padding": "0px",
+          "margin": "0px",
+          "frame": [
+            52,
+            45
+          ],
+          "art": [
+            50,
+            43
+          ],
+          "gap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageState": "ready",
+          "imageGap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageRadius": "0px"
+        },
+        {
+          "id": "A08",
+          "radius": "0px",
+          "border": "rgb(197, 164, 92)",
+          "padding": "0px",
+          "margin": "0px",
+          "frame": [
+            52,
+            45
+          ],
+          "art": [
+            50,
+            43
+          ],
+          "gap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageState": "ready",
+          "imageGap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageRadius": "0px"
+        }
+      ]
+    },
+    {
+      "검사": "390 버튼 터치 영역",
+      "통과": true,
+      "측정": null
+    },
+    {
+      "검사": "390 스킬 터치",
+      "통과": true,
+      "측정": null
+    },
+    {
+      "검사": "390 조이스틱/발사와 스킬 비중첩",
+      "통과": true,
+      "측정": {
+        "#joystick": [
+          20,
+          732.796875,
+          72,
+          72
+        ],
+        "#fire": [
+          308,
+          751.5,
+          62,
+          62
+        ],
+        "#jump": [
+          295.5,
+          719.609375,
+          34,
+          34
+        ],
+        "#drop": [
+          276.09375,
+          792,
+          34,
+          34
+        ],
+        "[data-action=defend]": [
+          270.8125,
+          751.78125,
+          34,
+          34
+        ],
+        "#battle-bottom": [
+          0,
+          647.609375,
+          390,
+          196.390625
+        ],
+        "#battlecanvas": [
+          0,
+          0,
+          390,
+          647.609375
+        ],
+        "#combat-skills .skill-button:nth-child(1)": [
+          126.40625,
+          724.796875,
+          52,
+          45
+        ],
+        "#combat-skills .skill-button:nth-child(2)": [
+          184.40625,
+          724.796875,
+          52,
+          45
+        ],
+        "#combat-skills .skill-button:nth-child(3)": [
+          126.40625,
+          775.796875,
+          52,
+          45
+        ],
+        "#combat-skills .skill-button:nth-child(4)": [
+          184.40625,
+          775.796875,
+          52,
+          45
+        ]
+      }
+    },
+    {
+      "검사": "390 실제 터치 조이스틱 잡기",
+      "통과": true,
+      "측정": null
+    },
+    {
+      "검사": "390 조이스틱 해제",
+      "통과": true,
+      "측정": null
+    },
+    {
+      "검사": "390 발사 버튼 충전 입력",
+      "통과": true,
+      "측정": null
+    },
+    {
+      "검사": "390 발사 버튼 해제",
+      "통과": true,
+      "측정": null
+    },
+    {
+      "검사": "390 상세 프레임",
+      "통과": true,
+      "측정": [
+        {
+          "id": "A14",
+          "radius": "0px",
+          "border": "rgb(197, 164, 92)",
+          "padding": "0px",
+          "margin": "0px",
+          "frame": [
+            42,
+            42
+          ],
+          "art": [
+            40,
+            40
+          ],
+          "gap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageState": "ready",
+          "imageGap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageRadius": "0px"
+        }
+      ]
+    },
+    {
+      "검사": "390 상세 닫기 조작 및 화면 내부",
+      "통과": true,
+      "측정": null
+    },
+    {
+      "검사": "390 허공터 아이콘 프레임",
+      "통과": true,
+      "측정": [
+        {
+          "id": "A01",
+          "radius": "0px",
+          "border": "rgb(240, 198, 109)",
+          "padding": "0px",
+          "margin": "0px",
+          "frame": [
+            34,
+            34
+          ],
+          "art": [
+            32,
+            32
+          ],
+          "gap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageState": "ready",
+          "imageGap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageRadius": "0px"
+        },
+        {
+          "id": "A01",
+          "radius": "0px",
+          "border": "rgb(197, 164, 92)",
+          "padding": "0px",
+          "margin": "0px",
+          "frame": [
+            58,
+            58
+          ],
+          "art": [
+            56,
+            56
+          ],
+          "gap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageState": "ready",
+          "imageGap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageRadius": "0px"
+        }
+      ]
+    },
+    {
+      "검사": "844 기존 조작/전장 위치와 크기 동일",
+      "통과": true,
+      "측정": {
+        "변경후": {
+          "#joystick": [
+            20,
+            295.25,
+            72,
+            72
+          ],
+          "#fire": [
+            768,
+            312,
+            56,
+            56
+          ],
+          "#jump": [
+            756.25,
+            282.5,
+            31,
+            31
+          ],
+          "#drop": [
+            738.5,
+            348.75,
+            31,
+            31
+          ],
+          "[data-action=defend]": [
+            733.65625,
+            311.9375,
+            31,
+            31
+          ],
+          "#battle-bottom": [
+            0,
+            232.5,
+            844,
+            157.5
+          ],
+          "#battlecanvas": [
+            0,
+            0,
+            844,
+            232.5
+          ],
+          "#combat-skills .skill-button:nth-child(1)": [
+            306.828125,
+            306.25,
+            50,
+            50
+          ],
+          "#combat-skills .skill-button:nth-child(2)": [
+            360.828125,
+            306.25,
+            50,
+            50
+          ],
+          "#combat-skills .skill-button:nth-child(3)": [
+            414.828125,
+            306.25,
+            50,
+            50
+          ],
+          "#combat-skills .skill-button:nth-child(4)": [
+            468.828125,
+            306.25,
+            50,
+            50
+          ]
+        },
+        "기준": {
+          "#joystick": [
+            20,
+            295.25,
+            72,
+            72
+          ],
+          "#fire": [
+            768,
+            312,
+            56,
+            56
+          ],
+          "#jump": [
+            756.25,
+            282.5,
+            31,
+            31
+          ],
+          "#drop": [
+            738.5,
+            348.75,
+            31,
+            31
+          ],
+          "[data-action=defend]": [
+            733.65625,
+            311.9375,
+            31,
+            31
+          ],
+          "#battle-bottom": [
+            0,
+            232.5,
+            844,
+            157.5
+          ],
+          "#battlecanvas": [
+            0,
+            0,
+            844,
+            232.5
+          ],
+          "#combat-skills .skill-button:nth-child(1)": [
+            306.828125,
+            306.25,
+            50,
+            50
+          ],
+          "#combat-skills .skill-button:nth-child(2)": [
+            360.828125,
+            306.25,
+            50,
+            50
+          ],
+          "#combat-skills .skill-button:nth-child(3)": [
+            414.828125,
+            306.25,
+            50,
+            50
+          ],
+          "#combat-skills .skill-button:nth-child(4)": [
+            468.828125,
+            306.25,
+            50,
+            50
+          ]
+        }
+      }
+    },
+    {
+      "검사": "844 이미지 가장자리",
+      "통과": true,
+      "측정": [
+        {
+          "id": "A01",
+          "radius": "0px",
+          "border": "rgb(197, 164, 92)",
+          "padding": "0px",
+          "margin": "0px",
+          "frame": [
+            50,
+            50
+          ],
+          "art": [
+            48,
+            48
+          ],
+          "gap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageState": "ready",
+          "imageGap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageRadius": "0px"
+        },
+        {
+          "id": "A14",
+          "radius": "0px",
+          "border": "rgb(240, 198, 109)",
+          "padding": "0px",
+          "margin": "0px",
+          "frame": [
+            50,
+            50
+          ],
+          "art": [
+            48,
+            48
+          ],
+          "gap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageState": "ready",
+          "imageGap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageRadius": "0px"
+        },
+        {
+          "id": "A02",
+          "radius": "0px",
+          "border": "rgb(197, 164, 92)",
+          "padding": "0px",
+          "margin": "0px",
+          "frame": [
+            50,
+            50
+          ],
+          "art": [
+            48,
+            48
+          ],
+          "gap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageState": "ready",
+          "imageGap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageRadius": "0px"
+        },
+        {
+          "id": "A08",
+          "radius": "0px",
+          "border": "rgb(197, 164, 92)",
+          "padding": "0px",
+          "margin": "0px",
+          "frame": [
+            50,
+            50
+          ],
+          "art": [
+            48,
+            48
+          ],
+          "gap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageState": "ready",
+          "imageGap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageRadius": "0px"
+        }
+      ]
+    },
+    {
+      "검사": "844 버튼 터치 영역",
+      "통과": true,
+      "측정": null
+    },
+    {
+      "검사": "844 스킬 터치",
+      "통과": true,
+      "측정": null
+    },
+    {
+      "검사": "844 조이스틱/발사와 스킬 비중첩",
+      "통과": true,
+      "측정": {
+        "#joystick": [
+          20,
+          295.25,
+          72,
+          72
+        ],
+        "#fire": [
+          768,
+          312,
+          56,
+          56
+        ],
+        "#jump": [
+          756.25,
+          282.5,
+          31,
+          31
+        ],
+        "#drop": [
+          738.5,
+          348.75,
+          31,
+          31
+        ],
+        "[data-action=defend]": [
+          733.65625,
+          311.9375,
+          31,
+          31
+        ],
+        "#battle-bottom": [
+          0,
+          232.5,
+          844,
+          157.5
+        ],
+        "#battlecanvas": [
+          0,
+          0,
+          844,
+          232.5
+        ],
+        "#combat-skills .skill-button:nth-child(1)": [
+          306.828125,
+          306.25,
+          50,
+          50
+        ],
+        "#combat-skills .skill-button:nth-child(2)": [
+          360.828125,
+          306.25,
+          50,
+          50
+        ],
+        "#combat-skills .skill-button:nth-child(3)": [
+          414.828125,
+          306.25,
+          50,
+          50
+        ],
+        "#combat-skills .skill-button:nth-child(4)": [
+          468.828125,
+          306.25,
+          50,
+          50
+        ]
+      }
+    },
+    {
+      "검사": "844 실제 터치 조이스틱 잡기",
+      "통과": true,
+      "측정": null
+    },
+    {
+      "검사": "844 조이스틱 해제",
+      "통과": true,
+      "측정": null
+    },
+    {
+      "검사": "844 발사 버튼 충전 입력",
+      "통과": true,
+      "측정": null
+    },
+    {
+      "검사": "844 발사 버튼 해제",
+      "통과": true,
+      "측정": null
+    },
+    {
+      "검사": "844 상세 프레임",
+      "통과": true,
+      "측정": [
+        {
+          "id": "A14",
+          "radius": "0px",
+          "border": "rgb(197, 164, 92)",
+          "padding": "0px",
+          "margin": "0px",
+          "frame": [
+            42,
+            42
+          ],
+          "art": [
+            40,
+            40
+          ],
+          "gap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageState": "ready",
+          "imageGap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageRadius": "0px"
+        }
+      ]
+    },
+    {
+      "검사": "844 상세 닫기 조작 및 화면 내부",
+      "통과": true,
+      "측정": null
+    },
+    {
+      "검사": "844 허공터 아이콘 프레임",
+      "통과": true,
+      "측정": [
+        {
+          "id": "A01",
+          "radius": "0px",
+          "border": "rgb(240, 198, 109)",
+          "padding": "0px",
+          "margin": "0px",
+          "frame": [
+            44,
+            44
+          ],
+          "art": [
+            42,
+            42
+          ],
+          "gap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageState": "ready",
+          "imageGap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageRadius": "0px"
+        },
+        {
+          "id": "A01",
+          "radius": "0px",
+          "border": "rgb(197, 164, 92)",
+          "padding": "0px",
+          "margin": "0px",
+          "frame": [
+            58,
+            58
+          ],
+          "art": [
+            56,
+            56
+          ],
+          "gap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageState": "ready",
+          "imageGap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageRadius": "0px"
+        }
+      ]
+    },
+    {
+      "검사": "360 기존 조작/전장 위치와 크기 동일",
+      "통과": true,
+      "측정": {
+        "변경후": {
+          "#joystick": [
+            16,
+            690.796875,
+            68,
+            68
+          ],
+          "#fire": [
+            282,
+            707.5,
+            62,
+            62
+          ],
+          "#jump": [
+            269.5,
+            675.609375,
+            34,
+            34
+          ],
+          "#drop": [
+            250.09375,
+            748,
+            34,
+            34
+          ],
+          "[data-action=defend]": [
+            244.8125,
+            707.78125,
+            34,
+            34
+          ],
+          "#battle-bottom": [
+            0,
+            603.609375,
+            360,
+            196.390625
+          ],
+          "#battlecanvas": [
+            0,
+            0,
+            360,
+            603.609375
+          ],
+          "#combat-skills .skill-button:nth-child(1)": [
+            118.40625,
+            681.796875,
+            44,
+            45
+          ],
+          "#combat-skills .skill-button:nth-child(2)": [
+            166.40625,
+            681.796875,
+            44,
+            45
+          ],
+          "#combat-skills .skill-button:nth-child(3)": [
+            118.40625,
+            730.796875,
+            44,
+            45
+          ],
+          "#combat-skills .skill-button:nth-child(4)": [
+            166.40625,
+            730.796875,
+            44,
+            45
+          ]
+        },
+        "기준": {
+          "#joystick": [
+            16,
+            690.796875,
+            68,
+            68
+          ],
+          "#fire": [
+            282,
+            707.5,
+            62,
+            62
+          ],
+          "#jump": [
+            269.5,
+            675.609375,
+            34,
+            34
+          ],
+          "#drop": [
+            250.09375,
+            748,
+            34,
+            34
+          ],
+          "[data-action=defend]": [
+            244.8125,
+            707.78125,
+            34,
+            34
+          ],
+          "#battle-bottom": [
+            0,
+            603.609375,
+            360,
+            196.390625
+          ],
+          "#battlecanvas": [
+            0,
+            0,
+            360,
+            603.609375
+          ],
+          "#combat-skills .skill-button:nth-child(1)": [
+            118.40625,
+            681.796875,
+            44,
+            45
+          ],
+          "#combat-skills .skill-button:nth-child(2)": [
+            166.40625,
+            681.796875,
+            44,
+            45
+          ],
+          "#combat-skills .skill-button:nth-child(3)": [
+            118.40625,
+            730.796875,
+            44,
+            45
+          ],
+          "#combat-skills .skill-button:nth-child(4)": [
+            166.40625,
+            730.796875,
+            44,
+            45
+          ]
+        }
+      }
+    },
+    {
+      "검사": "360 이미지 가장자리",
+      "통과": true,
+      "측정": [
+        {
+          "id": "A01",
+          "radius": "0px",
+          "border": "rgb(197, 164, 92)",
+          "padding": "0px",
+          "margin": "0px",
+          "frame": [
+            44,
+            45
+          ],
+          "art": [
+            42,
+            43
+          ],
+          "gap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageState": "ready",
+          "imageGap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageRadius": "0px"
+        },
+        {
+          "id": "A14",
+          "radius": "0px",
+          "border": "rgb(240, 198, 109)",
+          "padding": "0px",
+          "margin": "0px",
+          "frame": [
+            44,
+            45
+          ],
+          "art": [
+            42,
+            43
+          ],
+          "gap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageState": "ready",
+          "imageGap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageRadius": "0px"
+        },
+        {
+          "id": "A02",
+          "radius": "0px",
+          "border": "rgb(197, 164, 92)",
+          "padding": "0px",
+          "margin": "0px",
+          "frame": [
+            44,
+            45
+          ],
+          "art": [
+            42,
+            43
+          ],
+          "gap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageState": "ready",
+          "imageGap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageRadius": "0px"
+        },
+        {
+          "id": "A08",
+          "radius": "0px",
+          "border": "rgb(197, 164, 92)",
+          "padding": "0px",
+          "margin": "0px",
+          "frame": [
+            44,
+            45
+          ],
+          "art": [
+            42,
+            43
+          ],
+          "gap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageState": "ready",
+          "imageGap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageRadius": "0px"
+        }
+      ]
+    },
+    {
+      "검사": "360 버튼 터치 영역",
+      "통과": true,
+      "측정": null
+    },
+    {
+      "검사": "360 스킬 터치",
+      "통과": true,
+      "측정": null
+    },
+    {
+      "검사": "360 조이스틱/발사와 스킬 비중첩",
+      "통과": true,
+      "측정": {
+        "#joystick": [
+          16,
+          690.796875,
+          68,
+          68
+        ],
+        "#fire": [
+          282,
+          707.5,
+          62,
+          62
+        ],
+        "#jump": [
+          269.5,
+          675.609375,
+          34,
+          34
+        ],
+        "#drop": [
+          250.09375,
+          748,
+          34,
+          34
+        ],
+        "[data-action=defend]": [
+          244.8125,
+          707.78125,
+          34,
+          34
+        ],
+        "#battle-bottom": [
+          0,
+          603.609375,
+          360,
+          196.390625
+        ],
+        "#battlecanvas": [
+          0,
+          0,
+          360,
+          603.609375
+        ],
+        "#combat-skills .skill-button:nth-child(1)": [
+          118.40625,
+          681.796875,
+          44,
+          45
+        ],
+        "#combat-skills .skill-button:nth-child(2)": [
+          166.40625,
+          681.796875,
+          44,
+          45
+        ],
+        "#combat-skills .skill-button:nth-child(3)": [
+          118.40625,
+          730.796875,
+          44,
+          45
+        ],
+        "#combat-skills .skill-button:nth-child(4)": [
+          166.40625,
+          730.796875,
+          44,
+          45
+        ]
+      }
+    },
+    {
+      "검사": "360 실제 터치 조이스틱 잡기",
+      "통과": true,
+      "측정": null
+    },
+    {
+      "검사": "360 조이스틱 해제",
+      "통과": true,
+      "측정": null
+    },
+    {
+      "검사": "360 발사 버튼 충전 입력",
+      "통과": true,
+      "측정": null
+    },
+    {
+      "검사": "360 발사 버튼 해제",
+      "통과": true,
+      "측정": null
+    },
+    {
+      "검사": "360 상세 프레임",
+      "통과": true,
+      "측정": [
+        {
+          "id": "A14",
+          "radius": "0px",
+          "border": "rgb(197, 164, 92)",
+          "padding": "0px",
+          "margin": "0px",
+          "frame": [
+            42,
+            42
+          ],
+          "art": [
+            40,
+            40
+          ],
+          "gap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageState": "ready",
+          "imageGap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageRadius": "0px"
+        }
+      ]
+    },
+    {
+      "검사": "360 상세 닫기 조작 및 화면 내부",
+      "통과": true,
+      "측정": null
+    },
+    {
+      "검사": "360 허공터 아이콘 프레임",
+      "통과": true,
+      "측정": [
+        {
+          "id": "A01",
+          "radius": "0px",
+          "border": "rgb(240, 198, 109)",
+          "padding": "0px",
+          "margin": "0px",
+          "frame": [
+            34,
+            34
+          ],
+          "art": [
+            32,
+            32
+          ],
+          "gap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageState": "ready",
+          "imageGap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageRadius": "0px"
+        },
+        {
+          "id": "A01",
+          "radius": "0px",
+          "border": "rgb(197, 164, 92)",
+          "padding": "0px",
+          "margin": "0px",
+          "frame": [
+            58,
+            58
+          ],
+          "art": [
+            56,
+            56
+          ],
+          "gap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageState": "ready",
+          "imageGap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageRadius": "0px"
+        }
+      ]
+    },
+    {
+      "검사": "1280 기존 조작/전장 위치와 크기 동일",
+      "통과": true,
+      "측정": {
+        "변경후": {
+          "#joystick": [
+            20,
+            796.59375,
+            72,
+            72
+          ],
+          "#fire": [
+            1194,
+            809.75,
+            66,
+            66
+          ],
+          "#jump": [
+            1181.75,
+            777.1875,
+            35,
+            35
+          ],
+          "#drop": [
+            1161.4375,
+            853,
+            35,
+            35
+          ],
+          "[data-action=defend]": [
+            1155.90625,
+            810.875,
+            35,
+            35
+          ],
+          "#battle-bottom": [
+            0,
+            769.1875,
+            1280,
+            130.8125
+          ],
+          "#battlecanvas": [
+            0,
+            0,
+            1280,
+            769.1875
+          ],
+          "#combat-skills .skill-button:nth-child(1)": [
+            726.953125,
+            805.59375,
+            62,
+            54
+          ],
+          "#combat-skills .skill-button:nth-child(2)": [
+            795.953125,
+            805.59375,
+            62,
+            54
+          ],
+          "#combat-skills .skill-button:nth-child(3)": [
+            864.953125,
+            805.59375,
+            62,
+            54
+          ],
+          "#combat-skills .skill-button:nth-child(4)": [
+            933.953125,
+            805.59375,
+            62,
+            54
+          ]
+        },
+        "기준": {
+          "#joystick": [
+            20,
+            796.59375,
+            72,
+            72
+          ],
+          "#fire": [
+            1194,
+            809.75,
+            66,
+            66
+          ],
+          "#jump": [
+            1181.75,
+            777.1875,
+            35,
+            35
+          ],
+          "#drop": [
+            1161.4375,
+            853,
+            35,
+            35
+          ],
+          "[data-action=defend]": [
+            1155.90625,
+            810.875,
+            35,
+            35
+          ],
+          "#battle-bottom": [
+            0,
+            769.1875,
+            1280,
+            130.8125
+          ],
+          "#battlecanvas": [
+            0,
+            0,
+            1280,
+            769.1875
+          ],
+          "#combat-skills .skill-button:nth-child(1)": [
+            726.953125,
+            805.59375,
+            62,
+            54
+          ],
+          "#combat-skills .skill-button:nth-child(2)": [
+            795.953125,
+            805.59375,
+            62,
+            54
+          ],
+          "#combat-skills .skill-button:nth-child(3)": [
+            864.953125,
+            805.59375,
+            62,
+            54
+          ],
+          "#combat-skills .skill-button:nth-child(4)": [
+            933.953125,
+            805.59375,
+            62,
+            54
+          ]
+        }
+      }
+    },
+    {
+      "검사": "1280 이미지 가장자리",
+      "통과": true,
+      "측정": [
+        {
+          "id": "A01",
+          "radius": "0px",
+          "border": "rgb(197, 164, 92)",
+          "padding": "0px",
+          "margin": "0px",
+          "frame": [
+            62,
+            54
+          ],
+          "art": [
+            60,
+            52
+          ],
+          "gap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageState": "ready",
+          "imageGap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageRadius": "0px"
+        },
+        {
+          "id": "A14",
+          "radius": "0px",
+          "border": "rgb(240, 198, 109)",
+          "padding": "0px",
+          "margin": "0px",
+          "frame": [
+            62,
+            54
+          ],
+          "art": [
+            60,
+            52
+          ],
+          "gap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageState": "ready",
+          "imageGap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageRadius": "0px"
+        },
+        {
+          "id": "A02",
+          "radius": "0px",
+          "border": "rgb(197, 164, 92)",
+          "padding": "0px",
+          "margin": "0px",
+          "frame": [
+            62,
+            54
+          ],
+          "art": [
+            60,
+            52
+          ],
+          "gap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageState": "ready",
+          "imageGap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageRadius": "0px"
+        },
+        {
+          "id": "A08",
+          "radius": "0px",
+          "border": "rgb(197, 164, 92)",
+          "padding": "0px",
+          "margin": "0px",
+          "frame": [
+            62,
+            54
+          ],
+          "art": [
+            60,
+            52
+          ],
+          "gap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageState": "ready",
+          "imageGap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageRadius": "0px"
+        }
+      ]
+    },
+    {
+      "검사": "1280 버튼 터치 영역",
+      "통과": true,
+      "측정": null
+    },
+    {
+      "검사": "1280 스킬 터치",
+      "통과": true,
+      "측정": null
+    },
+    {
+      "검사": "1280 조이스틱/발사와 스킬 비중첩",
+      "통과": true,
+      "측정": {
+        "#joystick": [
+          20,
+          796.59375,
+          72,
+          72
+        ],
+        "#fire": [
+          1194,
+          809.75,
+          66,
+          66
+        ],
+        "#jump": [
+          1181.75,
+          777.1875,
+          35,
+          35
+        ],
+        "#drop": [
+          1161.4375,
+          853,
+          35,
+          35
+        ],
+        "[data-action=defend]": [
+          1155.90625,
+          810.875,
+          35,
+          35
+        ],
+        "#battle-bottom": [
+          0,
+          769.1875,
+          1280,
+          130.8125
+        ],
+        "#battlecanvas": [
+          0,
+          0,
+          1280,
+          769.1875
+        ],
+        "#combat-skills .skill-button:nth-child(1)": [
+          726.953125,
+          805.59375,
+          62,
+          54
+        ],
+        "#combat-skills .skill-button:nth-child(2)": [
+          795.953125,
+          805.59375,
+          62,
+          54
+        ],
+        "#combat-skills .skill-button:nth-child(3)": [
+          864.953125,
+          805.59375,
+          62,
+          54
+        ],
+        "#combat-skills .skill-button:nth-child(4)": [
+          933.953125,
+          805.59375,
+          62,
+          54
+        ]
+      }
+    },
+    {
+      "검사": "1280 실제 터치 조이스틱 잡기",
+      "통과": true,
+      "측정": null
+    },
+    {
+      "검사": "1280 조이스틱 해제",
+      "통과": true,
+      "측정": null
+    },
+    {
+      "검사": "1280 발사 버튼 충전 입력",
+      "통과": true,
+      "측정": null
+    },
+    {
+      "검사": "1280 발사 버튼 해제",
+      "통과": true,
+      "측정": null
+    },
+    {
+      "검사": "1280 상세 프레임",
+      "통과": true,
+      "측정": [
+        {
+          "id": "A14",
+          "radius": "0px",
+          "border": "rgb(197, 164, 92)",
+          "padding": "0px",
+          "margin": "0px",
+          "frame": [
+            42,
+            42
+          ],
+          "art": [
+            40,
+            40
+          ],
+          "gap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageState": "ready",
+          "imageGap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageRadius": "0px"
+        }
+      ]
+    },
+    {
+      "검사": "1280 상세 닫기 조작 및 화면 내부",
+      "통과": true,
+      "측정": null
+    },
+    {
+      "검사": "1280 허공터 아이콘 프레임",
+      "통과": true,
+      "측정": [
+        {
+          "id": "A01",
+          "radius": "0px",
+          "border": "rgb(240, 198, 109)",
+          "padding": "0px",
+          "margin": "0px",
+          "frame": [
+            44,
+            44
+          ],
+          "art": [
+            42,
+            42
+          ],
+          "gap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageState": "ready",
+          "imageGap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageRadius": "0px"
+        },
+        {
+          "id": "A01",
+          "radius": "0px",
+          "border": "rgb(197, 164, 92)",
+          "padding": "0px",
+          "margin": "0px",
+          "frame": [
+            58,
+            58
+          ],
+          "art": [
+            56,
+            56
+          ],
+          "gap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageState": "ready",
+          "imageGap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageRadius": "0px"
+        }
+      ]
+    },
+    {
+      "검사": "실행 중 자바스크립트 오류 없음",
+      "통과": true,
+      "측정": []
+    }
+  ]
+}
