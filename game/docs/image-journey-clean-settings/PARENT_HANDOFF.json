@@ -1,0 +1,30 @@
+{
+  "ready": false,
+  "candidateSha": null,
+  "waitingFor": "Final implementation report and screenshots from feat/image-journey-clean-settings",
+  "reviewedIntermediate": "4f68732bd651e23b4f007e5bd0f319e763180af7",
+  "knownFindings": [
+    {
+      "id": "pause-rest-cancel-context",
+      "requirement": "Battle pause -> rest confirmation -> cancel/X/Escape must return to pause, preserving battle and pause. Journal/rest-origin confirmations must return to their own origin.",
+      "sources": [
+        "shared/runtime/rest-journey.js:192-198",
+        "shared/runtime/main.js:340,993-994"
+      ]
+    },
+    {
+      "id": "toggle-touch-area",
+      "requirement": "24px checkbox plus margin is not44px actual hit area. Ensure connected label/control is a real>=44px touch target for sound/BGM/minimap/debug/outline.",
+      "sources": [
+        "game/src/controls.css:346",
+        "shared/runtime/menu-ui.js:7"
+      ]
+    }
+  ],
+  "clearReportPlan": {
+    "branch": "docs/clear-report-feedback-review",
+    "sha": "4e496c59dd6874ed775dd783410508d194ed266a",
+    "path": "game/docs/planning-20261022/CLEAR_REPORT_PLAN.md",
+    "notes": "Latest approved XP addition. Actual XP recipients may include nonparticipants at split settlement; separate growth results from participating-character combat stats. Include max-level and recruit-floor exclusions."
+  }
+}
