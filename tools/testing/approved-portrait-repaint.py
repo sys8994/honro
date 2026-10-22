@@ -10,7 +10,7 @@ OUT=ROOT/'_local/reports/approved-portraits';OUT.mkdir(parents=True,exist_ok=Tru
 expect='--expect-repaint' in sys.argv;rows=[]
 with serve_game() as base,sync_playwright() as pw:
  b=launch(pw)
- for mode in ['ready','abort','timeout']:
+ for mode in (['abort'] if '--abort-only' in sys.argv else ['ready','abort','timeout']):
   c=b.new_context(viewport={'width':1280,'height':800});p=c.new_page();held=[]
   if mode=='abort':p.route('**/portrait-hwigyeom-base.*.webp',lambda r:r.abort())
   if mode=='timeout':p.route('**/portrait-hwigyeom-base.*.webp',lambda r:held.append(r))
@@ -22,6 +22,11 @@ with serve_game() as base,sync_playwright() as pw:
   assert result['identical120']=={'drawImage':n,'clearRect':n},result
   assert result['resizeOnce']=={'drawImage':1,'clearRect':1},result
   assert result['afterResize120']=={'drawImage':n,'clearRect':n},result
+  if not expect and mode=='abort':
+   appearance=p.evaluate('''()=>{const c=document.getElementById('story-portrait-canvas'),ctx=c.getContext('2d'),draw=ctx.drawImage;let count=0;ctx.drawImage=function(...args){count++;return draw.apply(this,args);};const actor={id:'qa-hwig',name:'휘겸',cls:'knight',side:2,honroAlly:true,boss:true},go=()=>HonroPortraits.draw(c,actor,'knight',{identity:'휘겸'});go();const changed=count;for(let i=0;i<120;i++)go();const stable=count-changed;actor.x=123;actor.hp=11;go();const irrelevant=count-changed-stable;actor.boss=false;const at=count;go();return {sourceChangeOnce:changed,sameSource120:stable,combatFields:irrelevant,sourceReturnOnce:count-at};}''')
+   assert appearance=={'sourceChangeOnce':1,'sameSource120':0,'combatFields':0,'sourceReturnOnce':1},appearance;result['appearanceInvalidation']=appearance
+   p.evaluate("HonroStory.start(HonroApp,[['설오','clean source alpha 검수']],{title:'검수'})");p.wait_for_function('document.getElementById("story-portrait-canvas").dataset.portraitState==="ready"')
+   corners=p.evaluate('''()=>{const c=document.getElementById('story-portrait-canvas'),ctx=c.getContext('2d'),a=HONRO_STORY_PORTRAITS['설오'].approvedPortrait.expressions.base;return {topLeftAlpha:ctx.getImageData(0,0,1,1).data[3],topRightAlpha:ctx.getImageData(c.width-1,0,1,1).data[3],source:a.source,sourceSha256:a.sourceSha256,identityMasterSha256:a.identityMasterSha256};}''');assert corners['topLeftAlpha']==0 and corners['topRightAlpha']==0,corners;result['cleanSeoroCanvas']=corners
   for route in held:route.abort()
   c.close();print(mode,result['identical120'],flush=True)
  b.close()
