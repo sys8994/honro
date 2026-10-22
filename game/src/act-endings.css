@@ -25,3 +25,7 @@
 /* Optional journal action; keep it beside the selected place, independent of its layout. */
 .honro #app .journey-ending-replay{display:inline-block;min-height:32px;margin-top:5px;padding:4px 8px;font-size:11px;line-height:1.4;background:transparent;border:1px solid #9aab9859;color:#d6cfac;border-radius:3px;touch-action:manipulation}
 .honro #app .act-ending-return{position:absolute;top:max(12px,env(safe-area-inset-top));right:max(12px,env(safe-area-inset-right));min-height:44px;padding:8px 12px;font-size:12px;background:#10191ddc;border:1px solid #c1b58c80;color:#f5efdf;z-index:2}
+.honro .debug-ending-preview{margin:16px 0;padding:14px;border:1px solid #c1b58c80;border-radius:6px;background:#182326}
+.honro .debug-ending-preview h3{margin:0 0 8px;color:#f5dfad}
+.honro .debug-ending-acts{display:flex;gap:8px;margin-top:12px}
+.honro .debug-ending-acts button{flex:1;min-width:44px;min-height:44px;touch-action:manipulation}

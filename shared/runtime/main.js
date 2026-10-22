@@ -895,7 +895,7 @@
         updateAudio(){
             // The battlefield owns its theme until we actually leave it, including
             // outro/result screens and ESC. Combat phase is not a navigation state.
-            const b=this.engine?.b,inBattle=this.screen==='battle'&&!!b;
+            const b=this.engine?.b,inBattle=(this.endingGallery?.debug?.screen||this.screen)==='battle'&&!!b;
             const session=inBattle?(this.training?(this.trainingMusicSession||b.session):b.session):undefined;
             this.audio?.update(inBattle?'battle':'main',document.hidden||!!G.HonroAct3Void?.blocked(this),session,inBattle&&(b.honroStage===9||b.honroStage===10)?4:undefined);
             this.updateMusicLabel();
@@ -969,7 +969,7 @@
             } });
             document.addEventListener('keyup', e => { this.keys.delete(e.code); if (e.code === 'Space' && this.firePointer == null)
                 this.releaseCharge(); });
-            document.addEventListener('visibilitychange', () => { this.cancelInput(); if (document.hidden && this.engine && !this.done && !this.dialogue) {
+            document.addEventListener('visibilitychange', () => { this.cancelInput(); if (document.hidden && this.engine && !this.done && !this.dialogue && !this.endingGallery?.debug) {
                 this.pause();
                 this.dirty = true;
             } });
@@ -986,6 +986,9 @@
                 case 'act-ending-replay':
                     this.root.querySelector('.journey-records')?.removeAttribute('open');
                     G.HonroActEndings?.replay(this,Number(id));
+                    break;
+                case 'debug-act-ending-preview':
+                    G.HonroActEndings?.previewDebug(this,Number(id));
                     break;
                 case 'journey-book':
                     G.HonroRestJourney.showBook(this);
@@ -1301,6 +1304,7 @@
             G.HonroProgression.persist(this);
         } const blob = new Blob([JSON.stringify(this.debugMode?this.normalProfile:this.profile)], { type: 'application/json' }), url = URL.createObjectURL(blob), a = document.createElement('a'); a.href = url; a.download = '혼로_기록_' + new Date().toISOString().slice(0, 10) + '.json'; a.click(); setTimeout(() => URL.revokeObjectURL(url), 1000); }
         frame(now) {
+            if(this.endingGallery?.debug){this.prev=now;requestAnimationFrame(t=>this.frame(t));return;}
             this.updateAudio();
             try {
                 const dt = Math.min(.06, Math.max(0, (now - this.prev) / 1000));
