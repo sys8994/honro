@@ -18,7 +18,7 @@ const sceneLines=[
 ];
 const returnLines=[['담허','발을 헛디뎠나? 다친 데는 없나?'],['설오','누군가 말했습니다. 저보다 먼저, 답을 구하러 온 이가 있었다고.'],['담허','……나는 아무 소리도 못 들었네. 우선 이곳부터 벗어나세.']];
 // Only duplicate gestures are guarded. Every line is complete on first paint.
-const INPUT_GUARD=.12;
+const INPUT_GUARD=120,now=()=>G.performance?.now?.()??Date.now();
 function initializeFresh(b){if(b?.honroStage===27&&!b.honroCustom&&b.honroSplit?.version===2&&(b.honroMap?.act3?.waterworksRevision||0)>=3)b.honroAct3Void??={revision:REVISION,state:'READY'};}
 function restorePose(b){const s=state(b),u=hero(b);if(s?.return?.unit&&u){for(const k of Object.keys(u))delete u[k];Object.assign(u,clone(s.return.unit));}if(s?.return?.active)b.active=s.return.active;}
 function recover(b){if(!blocked(b))return false;restorePose(b);const s=state(b);if(s.return?.camera)s.recoveredCamera=clone(s.return.camera);delete s.return;delete s.fallProgress;s.state='READY';s.recovered=true;return true;}
@@ -31,7 +31,7 @@ function eligible(app){if(!safe(app)||state(app.engine.b).recovered)return false
  return inZone(hero(b),z);
 }
 function begin(app,reason='approach'){if(!safe(app))return false;const b=app.engine.b,s=state(b),u=hero(b);s.return={unit:clone(u),active:b.active,camera:cameraSnapshot(app.scene)};s.state='FALLING';s.fallProgress=0;s.reason=reason;delete s.recovered;
- app.cancelInput?.();app.acc=0;app.honroVoidSession={elapsed:0,line:0,inputAge:INPUT_GUARD,returning:0,focus:G.document?.activeElement,rootInert:app.root?.inert,rootAria:app.root?.getAttribute?.('aria-hidden'),hudOpacity:G.document?.body?.style?.getPropertyValue?.('--void-hud-opacity')||''};
+ app.cancelInput?.();app.acc=0;app.honroVoidSession={elapsed:0,line:0,lastInputAt:-Infinity,returning:0,focus:G.document?.activeElement,rootInert:app.root?.inert,rootAria:app.root?.getAttribute?.('aria-hidden'),hudOpacity:G.document?.body?.style?.getPropertyValue?.('--void-hud-opacity')||''};
  save(app);mountOverlay(app);app.updateAudio?.();return true;
 }
 function mountOverlay(app){if(!G.document?.createElement)return;const session=app.honroVoidSession,host=G.document.createElement('section');host.className='honro-void-scene';host.setAttribute('role','dialog');host.setAttribute('aria-modal','true');host.setAttribute('aria-label','설오가 떨어진 검은 공간');host.setAttribute('aria-describedby','honro-void-instructions');host.tabIndex=-1;
@@ -62,8 +62,8 @@ function finish(app){if(!blocked(app))return false;const b=app.engine.b,s=state(
  if(G.HonroStory?.start)G.HonroStory.start(app,lines,{title:'검은 집하장'});else app.sayLines?.(lines);return true;
 }
 function abort(app){if(!blocked(app)){cleanup(app);return false;}restore(app);const s=state(app.engine.b);delete s.return;delete s.fallProgress;s.state='READY';s.recovered=true;cleanup(app);app.updateAudio?.();save(app);return true;}
-function advance(app){const session=app.honroVoidSession,s=state(app.engine?.b);if(!blocked(app)||!session||app.modal?.classList.contains('open')||s.state!=='VOID'||session.inputAge<INPUT_GUARD)return false;
- session.inputAge=0;if(session.line<sceneLines.length-1)session.line++;else{s.state='RETURNING';session.returning=0;}paint(app);return true;
+function advance(app){const session=app.honroVoidSession,s=state(app.engine?.b);if(!blocked(app)||!session||app.modal?.classList.contains('open')||s.state!=='VOID'||now()-session.lastInputAt<INPUT_GUARD)return false;
+ session.lastInputAt=now();if(session.line<sceneLines.length-1)session.line++;else{s.state='RETURNING';session.returning=0;}paint(app);return true;
 }
 function skip(app){if(!blocked(app)||!app.honroVoidSession||state(app.engine.b).state==='RETURNING')return false;app.close?.();state(app.engine.b).state='RETURNING';app.honroVoidSession.returning=0;paint(app);return true;}
 function pause(app){if(!blocked(app))return false;const body='<div class="pause-menu"><button class="primary" data-action="close">돌아가기</button><button data-action="void-skip">장면 넘기기</button><button data-action="settings">설정</button><button data-action="void-leave">입구 화면으로 · 이 장면은 다시 걷기</button></div>';if(G.HonroMenuUI)G.HonroMenuUI.shell(app,'잠시 머무르기',body,{kind:'pause-dialog'});else app.open?.(body,'pause-dialog');return true;}
@@ -104,10 +104,10 @@ function drawFall(app){const scene=app.scene;if(!scene?.render)return;
  finally{for(const [key,item]of Object.entries(prior)){if(item.owned)scene[key]=item.value;else delete scene[key];}}
 }
 function frame(app,dt){if(!blocked(app))return;const session=app.honroVoidSession;if(!session){recover(app.engine.b);restoreRecoveredCamera(app);app.updateAudio?.();return;}if(G.document?.hidden||app.modal?.classList.contains('open'))return;
- const s=state(app.engine.b);dt=Math.min(.06,Math.max(0,dt));session.elapsed+=dt;session.inputAge+=dt;
+ const s=state(app.engine.b);dt=Math.min(.06,Math.max(0,dt));session.elapsed+=dt;
  if(['FALLING','DARKENING'].includes(s.state)){s.fallProgress=clamp(session.elapsed/(TIMING.fall+TIMING.fade));const u=hero(app.engine.b),original=s.return.unit,t=s.fallProgress;u.x=original.x+75*t*t;u.y=original.y+900*t*t;u.vx=0;u.vy=0;u.airborne=true;u.jumping=true;
   if(app.scene){app.scene.x=u.x;app.scene.y=u.y-48;app.scene.scale=s.return.camera.scale+(.95-s.return.camera.scale)*clamp(session.elapsed/TIMING.fall);app.scene.manual=true;drawFall(app);}
-  if(session.elapsed>=TIMING.total){s.state='VOID';session.inputAge=INPUT_GUARD;}else if(session.elapsed>=TIMING.fall)s.state='DARKENING';
+  if(session.elapsed>=TIMING.total){s.state='VOID';}else if(session.elapsed>=TIMING.fall)s.state='DARKENING';
  }else if(s.state==='RETURNING'){session.returning+=dt;if(session.returning>=.35){finish(app);return;}}
  paint(app);
 }

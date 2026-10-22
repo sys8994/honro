@@ -7,6 +7,7 @@ import {appHarness,plain,report,KEY} from './app-regression-helpers.mjs';
 const h=await appHarness(),{g}=h;
 if(!g.HonroAct3Void)vm.runInContext(await readFile('shared/runtime/act3-void.js','utf8'),g);
 const V=g.HonroAct3Void,A=g.HonroAct3,P=g.HonroStakeCrossing,checks=[];
+let wallTime=0;g.performance={now:()=>wallTime};
 const check=(name,fn)=>{fn();checks.push(name);console.log('PASS',name);};
 function fixture({old=false,lead='archer'}={}){
  const app=h.load(h.profileThrough(26));app.launch(27);h.finish(app);app.turnNotice=null;app.done=false;app.modal.classList.remove('open');
@@ -17,7 +18,7 @@ function fixture({old=false,lead='archer'}={}){
  place(a,x-40);place(m,x+40);b.active=lead==='mage'?m.id:a.id;b.side=0;b.phase='aim';b.projectiles=[];b.volley=undefined;app.scene.x=1234;app.scene.y=3456;app.scene.scale=.7;app.scene.manual=true;
  return {app,e,b,a,m,landing,place};
 }
-function step(app,seconds){for(let n=0;n<Math.ceil(seconds/.05);n++)V.frame(app,.05);}
+function step(app,seconds){for(let n=0;n<Math.ceil(seconds/.05);n++){wallTime+=50;V.frame(app,.05);}}
 function resolve(f){const camera=f.b.honroAct3Void.return.camera,expected=Object.fromEntries(['x','y','scale','manual'].map(k=>[k,camera[k]]));assert(V.skip(f.app));step(f.app,.4);assert.equal(f.b.honroAct3Void.state,'RESOLVED');assert.deepEqual(plain(f.app.storyCamera),plain(expected));assert.equal(f.app.dialogue?.lines[0][0],'담허');assert.equal(f.app.dialogue?.lines[0][2].storyId,V.KEY+'-return');h.finish(f.app);}
 check('New deep gallery approach triggers with either companion leading and before physics can apply a fall',()=>{
  for(const lead of ['archer','mage']){const f=fixture({lead});assert(V.eligible(f.app));const origin={x:f.a.x,y:f.a.y},mage=plain(f.m);f.e.tick(1/120);assert.equal(f.b.honroAct3Void.state,'FALLING');step(f.app,.3);assert(f.a.y>origin.y);assert(f.a.x>origin.x);assert.deepEqual(plain(f.m),mage);assert.equal(f.b.active,lead==='mage'?f.m.id:f.a.id);assert.equal(f.a.hp,f.b.honroAct3Void.return.unit.hp);resolve(f);assert.equal(f.a.x,origin.x);assert.equal(f.a.y,origin.y);}
@@ -64,8 +65,12 @@ check('Immediate full lines accept deliberate input with only a 120ms duplicate 
  assert(V.advance(f.app));for(let n=0;n<100;n++)assert(!V.advance(f.app));assert.equal(f.app.honroVoidSession.line,1);
  const event={code:'Space',repeat:true,preventDefault(){}};step(f.app,.15);V.key(f.app,event);assert.equal(f.app.honroVoidSession.line,1);
  V.key(f.app,{...event,repeat:false});assert.equal(f.app.honroVoidSession.line,2);
- const age=f.app.honroVoidSession.inputAge;V.pause(f.app);step(f.app,2);assert.equal(f.app.honroVoidSession.inputAge,age);f.app.close();
+ const age=f.app.honroVoidSession.elapsed;V.pause(f.app);step(f.app,2);assert.equal(f.app.honroVoidSession.elapsed,age);f.app.close();
  resolve(f);assert(!V.finish(f.app));assert(!V.abort(f.app));assert(!V.begin(f.app));assert(!V.skip(f.app));assert(!V.eligible(f.app));
+});
+check('Duplicate guard uses real event time even when render frames stall',()=>{
+ const f=fixture();V.begin(f.app);step(f.app,1.45);assert(V.advance(f.app));assert(!V.advance(f.app));
+ wallTime+=121;assert(V.advance(f.app));assert.equal(f.app.honroVoidSession.line,2);resolve(f);
 });
 check('Exact approved five-cut script, no blanks or forced waits, and exact three-line aftermath',()=>{
  assert.deepEqual(plain(V.sceneLines),[

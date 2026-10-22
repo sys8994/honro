@@ -14,7 +14,7 @@ OUT = ROOT / 'game/docs/act3-void-dialogue-pacing/evidence' / REVIEW
 OUT.mkdir(parents=True, exist_ok=True)
 BASE = story_base_url()
 SETUP = r'''async () => {
- await HonroCampaignLoader?.ensureStage(27);
+ await globalThis.HonroCampaignLoader?.ensureStage(27);
  const app=HonroApp;app.close();app.stopBattle();app.debugMode=false;
  const p=HONRO_TOOLS.fresh();for(let i=1;i<=26;i++)p.cleared[i]={visits:1,rounds:5};
  p.recruited=['archer','mage','knight','occultist'];p.party=[...p.recruited];p.settings.sound=false;p.settings.music=true;p.settings.musicVolume=.2;
@@ -70,13 +70,17 @@ def void(page):
 
 def settled(page):
  page.wait_for_function('HonroApp.engine.b.honroAct3Void.state==="RESOLVED" && !!HonroApp.dialogue')
+ if page.evaluate('HonroApp.profile.settings.music!==false'):
+  page.wait_for_function('!HonroApp.audio.music.paused && !voidMusic.paused')
  result=page.evaluate(r"""()=>{const a=HonroApp,b=a.engine.b;return {
  units:JSON.stringify(b.units)===JSON.stringify(voidBefore.units),active:b.active===voidBefore.active,round:b.round===voidBefore.round,ends:JSON.stringify(b.teamEnds)===JSON.stringify(voidBefore.teamEnds),items:JSON.stringify(b.items)===JSON.stringify(voidBefore.items),camera:JSON.stringify(a.storyCamera)===JSON.stringify(voidBefore.camera),
- stream:a.audio.music.current===voidMusic,overlay:!!document.querySelector('.honro-void-scene'),inert:a.root.inert,witness:a.profile.honroStoryEvents['act3-void-v1'],saved:a.profile.honroBattle.honroAct3Void.state,savedDialogue:a.profile.honroBattle.honroStory.lines[0][2].storyId,lines:a.dialogue.lines.map(r=>r.slice(0,2))};}""")
+ stream:a.audio.music.current===voidMusic,musicPaused:a.audio.music.current?.paused,voidPaused:a.audio.music.paused,musicTime:a.audio.music.current?.currentTime,musicBeforeTime:voidMusicTime,musicEnabled:a.profile.settings.music!==false,overlay:!!document.querySelector('.honro-void-scene'),inert:a.root.inert,witness:a.profile.honroStoryEvents['act3-void-v1'],saved:a.profile.honroBattle.honroAct3Void.state,savedDialogue:a.profile.honroBattle.honroStory.lines[0][2].storyId,lines:a.dialogue.lines.map(r=>r.slice(0,2))};}""")
  assert all(result[k] for k in ['units','active','round','ends','items','camera','stream','witness']),result
  assert not result['overlay'] and not result['inert'],result
  assert result['saved']=='RESOLVED' and result['savedDialogue']=='act3-void-v1-return',result
  assert len(result['lines'])==3,result
+ assert result['musicTime']>=result['musicBeforeTime'],result
+ assert result['musicPaused'] is (not result['musicEnabled']) and not result['voidPaused'],result
  return result
 
 with sync_playwright() as p:
@@ -210,7 +214,7 @@ with sync_playwright() as p:
   context.close()
  if REVIEW=='final':
   context=browser.new_context(viewport={'width':1440,'height':900});owner=context.new_page();owner.on('pageerror',lambda e:errors.append(str(e)))
-  owner.goto(BASE+'/HONRO_WORKSHOP.html');owner.click('[data-tab="play"]');owner.wait_for_function('HonroWorkshopAPI.getPlayApp()?.engine')
+  owner.goto(BASE+'/HONRO_WORKSHOP.html');owner.wait_for_function('window.HonroWorkshopAPI?.getRuntime()?.scene');owner.click('[data-tab="play"]');owner.wait_for_function('HonroWorkshopAPI.getPlayApp()?.engine')
   frame=owner.frames[1];fresh(frame);void(frame)
   assert frame.locator('.honro-void-text:not(.honro-void-measure)').inner_text()=='여긴…… 누구십니까?'
   owner.screenshot(path=str(OUT/'workshop-void.jpg'),type='jpeg',quality=78)
