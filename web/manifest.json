@@ -2,16 +2,16 @@
   "version": 1,
   "game": "HONRO.html",
   "workshop": "HONRO_WORKSHOP.html",
-  "playtest": "web/entries/game.18fb2351d576d632.html?embedded=1",
+  "playtest": "web/entries/game.93e067ddf8fdaa5d.html?embedded=1",
   "project": "web/data/campaign.ba46396db8cce7c9.json",
-  "gameEntry": "web/entries/game.7995c5115fc3d3f6.js",
-  "workshopEntry": "web/entries/workshop.1b6b1d52d4145e18.js",
+  "gameEntry": "web/entries/game.e9ec20a07834c06a.js",
+  "workshopEntry": "web/entries/workshop.3fb91b743070f5ee.js",
   "common": [
     "web/runtime/ordered-common-1.e4e4afbdd8ad843d.js",
     "web/runtime/shared-runtime-title-markup.1ce572555f2e782e.js",
     "web/runtime/HONRO_BGM_TRACKS.9cff410e5df9e22b.js",
-    "web/runtime/HONRO_SKILL_ICON_MANIFEST.0ded9315f0e99ff8.js",
-    "web/runtime/ordered-common-2.99cd0fd79a5538a8.js",
+    "web/runtime/HONRO_SKILL_ICON_MANIFEST.a23b0dbb083d20ae.js",
+    "web/runtime/ordered-common-2.aaefeb760f1ec736.js",
     "web/runtime/ordered-common-3.b8b84250e4ae01f2.js",
     "web/runtime/HONRO_BALANCE.cef5a995ae0ea562.js",
     "web/runtime/HONRO_NARRATIVE_V0.cc2c37f9b512d42d.js",
@@ -34,8 +34,8 @@
     "web/runtime/HONRO_PAINTED_PILOTS.3c11f30730a51178.js",
     "web/runtime/HONRO_AUTHORED_FAR.604eb4733b715ce3.js",
     "web/runtime/shared-assets-monsters-monsters-runtime.925589721b2b001e.js",
-    "web/runtime/shared-assets-actors-actors-runtime.fe99a3af2ffb1d74.js",
-    "web/runtime/ordered-common-11.3128d7a50bf635e0.js",
+    "web/runtime/shared-assets-actors-actors-runtime.76e6f21694730530.js",
+    "web/runtime/ordered-common-11.de2371498c40f0c6.js",
     "web/runtime/ordered-common-12.f1b51463c8290abc.js",
     "web/runtime/ordered-common-13.0f6687f722ad1a67.js"
   ],
@@ -408,9 +408,9 @@
       "sha256": "55de354dd4cecfc33bc2e6e04e5443e92bb61c3d3bb316a07000a93ebbf32966"
     },
     {
-      "path": "web/data/HONRO_ACTORS.d87b7e94a1bf37f6.json",
+      "path": "web/data/HONRO_ACTORS.5b87c83260d592ae.json",
       "bytes": 169079,
-      "sha256": "d87b7e94a1bf37f69edbb9c3989bc91b61d95469b0df93878297c01657463691"
+      "sha256": "5b87c83260d592aec08684521fc03050389a2a40ebb6cc76ab24a761eca9c7e7"
     },
     {
       "path": "web/data/HONRO_AUTHORED_FAR.f922b0b5e5066247.json",
@@ -463,9 +463,9 @@
       "sha256": "59a3076127863c240e788f024159cff3086c7aa045a819b679eb0c9e26cbc330"
     },
     {
-      "path": "web/data/HONRO_SKILL_ICON_MANIFEST.f71779835a5fab45.json",
-      "bytes": 8425,
-      "sha256": "f71779835a5fab4574bd445b1a95b2844324447328a757ad25be9604683cecd2"
+      "path": "web/data/HONRO_SKILL_ICON_MANIFEST.3b2226dd068b8ae5.json",
+      "bytes": 18777,
+      "sha256": "3b2226dd068b8ae5a7c4d7f4b479b9f2180028b34bfddd542b6812b13f5bf413"
     },
     {
       "path": "web/data/HONRO_SPLIT_V1.8a0557450bffb24e.json",
@@ -498,19 +498,19 @@
       "sha256": "7d653f087d5ae12f19ef78cd7356daff1c92be83786ace356b5f118eb8011f6c"
     },
     {
-      "path": "web/entries/game.18fb2351d576d632.html",
+      "path": "web/entries/game.93e067ddf8fdaa5d.html",
       "bytes": 11354,
-      "sha256": "18fb2351d576d6325ad219733007de4b139b1e5065352c1b60effc673febc16d"
+      "sha256": "93e067ddf8fdaa5d9444bd1763bd79e16476195f83f7e04c4cf7e294036a2aaf"
     },
     {
-      "path": "web/entries/game.7995c5115fc3d3f6.js",
+      "path": "web/entries/game.e9ec20a07834c06a.js",
       "bytes": 9694,
-      "sha256": "7995c5115fc3d3f69bbbfd28261c0c7b8e59fc930c549bfea07120dc3752833b"
+      "sha256": "e9ec20a07834c06af1e60c291c03f9386ec228373a8e05f96a1ca43e4203b90e"
     },
     {
-      "path": "web/entries/workshop.1b6b1d52d4145e18.js",
+      "path": "web/entries/workshop.3fb91b743070f5ee.js",
       "bytes": 6504,
-      "sha256": "1b6b1d52d4145e18503e0ea8f0f8c033d2a94351a79f5f9308deec66d582fa9d"
+      "sha256": "3fb91b743070f5ee25199495e8111bc5499b67240c9023274105cbf671f211ba"
     },
     {
       "path": "web/graphics/ending-10-image.6a631739bb1b7338.webp",
@@ -993,6 +993,426 @@
       "sha256": "05f105fabf54897ce1c364ce8a2adfb844e2c11ed4eaf0f71efd722d936876f5"
     },
     {
+      "path": "web/graphics/skill-icon-A01.1fa04261cfcfceb8.webp",
+      "bytes": 3936,
+      "sha256": "1fa04261cfcfceb8492f97253a37e4c4f90b2848bc15ffc9b64d9ac037449ad0"
+    },
+    {
+      "path": "web/graphics/skill-icon-A02.a8f55e024ef3fb38.webp",
+      "bytes": 4456,
+      "sha256": "a8f55e024ef3fb38ee862cbc924b5f661c5c5e4d002d89f9b05ce0ace43cee9e"
+    },
+    {
+      "path": "web/graphics/skill-icon-A03.82568bdbd3a1b087.webp",
+      "bytes": 3934,
+      "sha256": "82568bdbd3a1b087ca0929b478d03ab5a36a932c8ab4324da69bf27db2cb07b1"
+    },
+    {
+      "path": "web/graphics/skill-icon-A04.347585d9aabb566f.webp",
+      "bytes": 7028,
+      "sha256": "347585d9aabb566ffd5aec5663d657937a9ddb1a699f4079ecba7a36c12e9930"
+    },
+    {
+      "path": "web/graphics/skill-icon-A05.0bec2839bdda6e7b.webp",
+      "bytes": 6010,
+      "sha256": "0bec2839bdda6e7b3da6f4aa32adab50fd213b422119d2b959572e1b0072921e"
+    },
+    {
+      "path": "web/graphics/skill-icon-A06.2da3b0603d6aef5c.webp",
+      "bytes": 5088,
+      "sha256": "2da3b0603d6aef5c981dbd7c189307faca458384979666df9d29f262524680df"
+    },
+    {
+      "path": "web/graphics/skill-icon-A07.8df150ab698bea6f.webp",
+      "bytes": 6906,
+      "sha256": "8df150ab698bea6fc0c4797704226b1e8174be026b523dfc43d171d713ff9e20"
+    },
+    {
+      "path": "web/graphics/skill-icon-A08.eb5d1df18d52552e.webp",
+      "bytes": 6150,
+      "sha256": "eb5d1df18d52552e05260a365560987d4b8763bfbd739d565ebde46ba54ebede"
+    },
+    {
+      "path": "web/graphics/skill-icon-A09.a0c7cc6478a4d6cb.webp",
+      "bytes": 4054,
+      "sha256": "a0c7cc6478a4d6cb2146236da8e74dcf79970001e5ac90b46b3f96e5d53fb732"
+    },
+    {
+      "path": "web/graphics/skill-icon-A10.10c4941f5876eaec.webp",
+      "bytes": 3138,
+      "sha256": "10c4941f5876eaecfc9aec3e41790fd81f172bfd678a23a9de636fedb4feb68e"
+    },
+    {
+      "path": "web/graphics/skill-icon-A11.7720dd2557994f3e.webp",
+      "bytes": 4040,
+      "sha256": "7720dd2557994f3ec2202a0aa3ab20faa429f98c80eb60b7b7b5b7b0d5466435"
+    },
+    {
+      "path": "web/graphics/skill-icon-A12.53e326bee86515ea.webp",
+      "bytes": 3654,
+      "sha256": "53e326bee86515ea2f0ccea1f6ce0dcae338197baf7fdb6b3b68cbe256529766"
+    },
+    {
+      "path": "web/graphics/skill-icon-A13.effc6b23f24edbac.webp",
+      "bytes": 5990,
+      "sha256": "effc6b23f24edbac13538bece00e7ad12d045b5be114656784045c60010326ad"
+    },
+    {
+      "path": "web/graphics/skill-icon-A14.a54160bbaadedde4.webp",
+      "bytes": 5614,
+      "sha256": "a54160bbaadedde466ca85a472cb64fd69de19478a67d67dbec835b15c64b208"
+    },
+    {
+      "path": "web/graphics/skill-icon-A15.c0b4215cf67b8d31.webp",
+      "bytes": 6272,
+      "sha256": "c0b4215cf67b8d319f6404269fa152c359f871f0b369ca17ad0de55c752be87f"
+    },
+    {
+      "path": "web/graphics/skill-icon-A99.fcb91f4d89edc65a.webp",
+      "bytes": 5004,
+      "sha256": "fcb91f4d89edc65a562aa91e08127b7b42d5ea0a0dbc48d6431d78e9a2085a3d"
+    },
+    {
+      "path": "web/graphics/skill-icon-AP01.0afb39e6a85b8347.webp",
+      "bytes": 3418,
+      "sha256": "0afb39e6a85b834793ae08fc56b49c89eea250e49c8a1450df7b34752cc2770b"
+    },
+    {
+      "path": "web/graphics/skill-icon-AP02.a4d103eb85668c33.webp",
+      "bytes": 5770,
+      "sha256": "a4d103eb85668c33840d117c21655605985165cccd4611405f7d483da9e9024e"
+    },
+    {
+      "path": "web/graphics/skill-icon-AP03.01d187d2d44de6b6.webp",
+      "bytes": 4658,
+      "sha256": "01d187d2d44de6b6a0330ba58b0b12346a59b6a22cb889e75c74d113d4ef018d"
+    },
+    {
+      "path": "web/graphics/skill-icon-AP04.2698d229bb2df9fa.webp",
+      "bytes": 5852,
+      "sha256": "2698d229bb2df9fac61b59dc0900ee3b6dbe7e33161c1f611d0f671b110b4c46"
+    },
+    {
+      "path": "web/graphics/skill-icon-AP05.219425c37d635833.webp",
+      "bytes": 6170,
+      "sha256": "219425c37d635833dfe1cf39f8126d25dd5344667d4f5c9dcce9d21ca183b1b8"
+    },
+    {
+      "path": "web/graphics/skill-icon-M01.a4a99a15222b1590.webp",
+      "bytes": 3172,
+      "sha256": "a4a99a15222b1590556ab038d2598ef84fe5de32bfa22270f822c20f203820b4"
+    },
+    {
+      "path": "web/graphics/skill-icon-M02.da5ed8483e1ebc54.webp",
+      "bytes": 5694,
+      "sha256": "da5ed8483e1ebc546e24159d05157809f346f2f34d7e16f167ece1e7fc20ca13"
+    },
+    {
+      "path": "web/graphics/skill-icon-M03.1dee22422e96bc02.webp",
+      "bytes": 5650,
+      "sha256": "1dee22422e96bc0244b94b9f2ca4fd362fbf19cd3a967ce9c497fb6de525525e"
+    },
+    {
+      "path": "web/graphics/skill-icon-M04.d9460adcebc0778e.webp",
+      "bytes": 5468,
+      "sha256": "d9460adcebc0778ea02a195c035c15bd892a2c368b4b20fc8d4db4e605ab50f9"
+    },
+    {
+      "path": "web/graphics/skill-icon-M05.5b17a55a6b0ea27b.webp",
+      "bytes": 7408,
+      "sha256": "5b17a55a6b0ea27b37ab5e40708bc75235c102ef927d4e6af51b4a07b279b9a4"
+    },
+    {
+      "path": "web/graphics/skill-icon-M06.478944405c7e23d5.webp",
+      "bytes": 6434,
+      "sha256": "478944405c7e23d5fc3fb6e6c111f5768c32f079cd13ac0e58f25a99b11f1d25"
+    },
+    {
+      "path": "web/graphics/skill-icon-M07.aa4a4e1605fe25b5.webp",
+      "bytes": 5298,
+      "sha256": "aa4a4e1605fe25b53748057b838f59d9a8c506a62c50ff9a7f94cd7298075a63"
+    },
+    {
+      "path": "web/graphics/skill-icon-M08.1375c2072af2d2bd.webp",
+      "bytes": 4246,
+      "sha256": "1375c2072af2d2bd74b38375d85003eb7ab7c61b1e677bc25f27406c885ab923"
+    },
+    {
+      "path": "web/graphics/skill-icon-M09.2fc07f5d05f6fe1a.webp",
+      "bytes": 6484,
+      "sha256": "2fc07f5d05f6fe1aba5638fe6bf3cce4838c33f6839f546afc1f85a4d56e6125"
+    },
+    {
+      "path": "web/graphics/skill-icon-M10.bee56d5640ac012c.webp",
+      "bytes": 5768,
+      "sha256": "bee56d5640ac012ceb4cee7f75bb878cab115c978905e0220740703a1a32d8d6"
+    },
+    {
+      "path": "web/graphics/skill-icon-M11.fc2f33992c01af4c.webp",
+      "bytes": 5402,
+      "sha256": "fc2f33992c01af4ca21b0dc8d859473fe6bf8815f332393ebf91d3d24fb94cb9"
+    },
+    {
+      "path": "web/graphics/skill-icon-M12.dc8f84d3d6a56e05.webp",
+      "bytes": 8084,
+      "sha256": "dc8f84d3d6a56e05f8885d663f8ff61e4c31d0176b49a9e20b1dd6df3c002529"
+    },
+    {
+      "path": "web/graphics/skill-icon-M13.4d70e2a6c995d8da.webp",
+      "bytes": 10326,
+      "sha256": "4d70e2a6c995d8da336a28f0e246217eb4962cc6f54106267d57f57b1bd25128"
+    },
+    {
+      "path": "web/graphics/skill-icon-M14.6b96f3fc63bf12d6.webp",
+      "bytes": 7884,
+      "sha256": "6b96f3fc63bf12d6082bd8ee39da83acc39260a9f2c3e4a792a9f77d4deeadc3"
+    },
+    {
+      "path": "web/graphics/skill-icon-M15.8b8b03bfdfbe1801.webp",
+      "bytes": 9506,
+      "sha256": "8b8b03bfdfbe1801ae52a41e025f74412217b2a846c61236a49130d21a409f54"
+    },
+    {
+      "path": "web/graphics/skill-icon-M99.7058c504aa5d7c26.webp",
+      "bytes": 6272,
+      "sha256": "7058c504aa5d7c268bf129e55d44af1a27522aa5ac0c287bdf95a3324a7c141f"
+    },
+    {
+      "path": "web/graphics/skill-icon-MP01.4ebcf0126d6f427e.webp",
+      "bytes": 6794,
+      "sha256": "4ebcf0126d6f427edad837e899a17d1c7d9ffea293970666cd54db72b774d127"
+    },
+    {
+      "path": "web/graphics/skill-icon-MP02.68457e9f34ef3e0b.webp",
+      "bytes": 5254,
+      "sha256": "68457e9f34ef3e0bf0c0f143ed54da66c7be57e39d6a8b5878e1872ef8224d22"
+    },
+    {
+      "path": "web/graphics/skill-icon-MP03.24fe5370e9ea546e.webp",
+      "bytes": 6070,
+      "sha256": "24fe5370e9ea546ea9d1c97c8e1124b743f3dde90476a6cf28fa584c1bebff27"
+    },
+    {
+      "path": "web/graphics/skill-icon-MP04.4f312dfc1c55d061.webp",
+      "bytes": 7356,
+      "sha256": "4f312dfc1c55d06172af5651812fad48b39d969118a7a68041c7065bb51db245"
+    },
+    {
+      "path": "web/graphics/skill-icon-MP05.e495d9e901f6c6a6.webp",
+      "bytes": 8470,
+      "sha256": "e495d9e901f6c6a66438e9eef20380fb3322debdde968002549f58e1aed74833"
+    },
+    {
+      "path": "web/graphics/skill-icon-O01.dcde10cfd6448be0.webp",
+      "bytes": 4250,
+      "sha256": "dcde10cfd6448be0a78d7365a73d1c5f8c2debd72fa6d5af942657d0c87dd0b9"
+    },
+    {
+      "path": "web/graphics/skill-icon-O02.44249e66901f29dc.webp",
+      "bytes": 6416,
+      "sha256": "44249e66901f29dc44548dcb7815ef0a0015f28be20fb48d172472b18063080d"
+    },
+    {
+      "path": "web/graphics/skill-icon-O03.fead0476269e47bd.webp",
+      "bytes": 9290,
+      "sha256": "fead0476269e47bdce1a02b44f6dd5d454f3151eddb864390f68841629030237"
+    },
+    {
+      "path": "web/graphics/skill-icon-O04.074c9256cd60d11d.webp",
+      "bytes": 4072,
+      "sha256": "074c9256cd60d11d16e77b1104a0d45cdfa7c7766b6ec47f156a71636820ff80"
+    },
+    {
+      "path": "web/graphics/skill-icon-O05.8fcd0f8db79dd977.webp",
+      "bytes": 7624,
+      "sha256": "8fcd0f8db79dd977c66591b3f0368d72e24566725f4d13ae67837936c4ba4ce9"
+    },
+    {
+      "path": "web/graphics/skill-icon-O06.c9c5d8aa90dbb2dc.webp",
+      "bytes": 4194,
+      "sha256": "c9c5d8aa90dbb2dc6f20239957c98f996999a68eee26ce25dd5c2f8d1ded4c8f"
+    },
+    {
+      "path": "web/graphics/skill-icon-O07.8db521a071d77531.webp",
+      "bytes": 5386,
+      "sha256": "8db521a071d77531863db8f04caaeaf323c4620445b9ca7ebe4a69451451ada7"
+    },
+    {
+      "path": "web/graphics/skill-icon-O08.d9f9b52d98bc2b26.webp",
+      "bytes": 9326,
+      "sha256": "d9f9b52d98bc2b26c25f4d5a9561e9c67f5f0de52d642b9e15fb36f91e47cd0a"
+    },
+    {
+      "path": "web/graphics/skill-icon-O09.d872e1a2eb17d2f9.webp",
+      "bytes": 6110,
+      "sha256": "d872e1a2eb17d2f974e16d66789910af79d1c9ac6a0abf48323174c522c5fb4b"
+    },
+    {
+      "path": "web/graphics/skill-icon-O10.b267e6cdfd1d2b80.webp",
+      "bytes": 6852,
+      "sha256": "b267e6cdfd1d2b802420f95da3226475d234e0bce7a123cf9cfbf00a8578cf21"
+    },
+    {
+      "path": "web/graphics/skill-icon-O11.82e59dac493415ee.webp",
+      "bytes": 8118,
+      "sha256": "82e59dac493415ee485a84853d6112f7511b84b4086e63540478ecfd60322046"
+    },
+    {
+      "path": "web/graphics/skill-icon-O12.8c8dad88d20d64a3.webp",
+      "bytes": 5382,
+      "sha256": "8c8dad88d20d64a30a34b436661731027eefc5f7f1a647f618de15bf8bc32b99"
+    },
+    {
+      "path": "web/graphics/skill-icon-O13.50902b317d99e1e6.webp",
+      "bytes": 8182,
+      "sha256": "50902b317d99e1e664250df50d219c7a8ea67a8e6c29da81d759285c8294646a"
+    },
+    {
+      "path": "web/graphics/skill-icon-O14.4aa30c83dc64b0c9.webp",
+      "bytes": 4186,
+      "sha256": "4aa30c83dc64b0c94c6fcf2e89be3467a009f8e90f2aeae2d21206d6c2fbe9dc"
+    },
+    {
+      "path": "web/graphics/skill-icon-O15.32fcb94159a213cd.webp",
+      "bytes": 10266,
+      "sha256": "32fcb94159a213cd8a4bc05d912a1d410dc595ace24fd0c2d844706b0b82b0f9"
+    },
+    {
+      "path": "web/graphics/skill-icon-O16.3eb2ee4db75c48cb.webp",
+      "bytes": 7422,
+      "sha256": "3eb2ee4db75c48cb9bf5fafb15bf2f4ee1bd7e91fc321841b94a7cce400dde07"
+    },
+    {
+      "path": "web/graphics/skill-icon-OP01.7ac33357017d3c76.webp",
+      "bytes": 5862,
+      "sha256": "7ac33357017d3c768151f0038d658c5915b7832ed52b18bb08dbd0290b22b458"
+    },
+    {
+      "path": "web/graphics/skill-icon-OP02.543dde15ed059fab.webp",
+      "bytes": 5876,
+      "sha256": "543dde15ed059fab34de268cff625be6d4ffb5ff3aafd48786087d0e6eb48599"
+    },
+    {
+      "path": "web/graphics/skill-icon-OP03.9cdcf250737b60c1.webp",
+      "bytes": 5640,
+      "sha256": "9cdcf250737b60c1d4f1700f3c72f737d3d9e797443419d15c77734ad7ee3142"
+    },
+    {
+      "path": "web/graphics/skill-icon-OP04.0e84e067440635e9.webp",
+      "bytes": 7232,
+      "sha256": "0e84e067440635e99a3939e022cff4c735302ef7fead49fd154c1a210b90b978"
+    },
+    {
+      "path": "web/graphics/skill-icon-OP05.60a84b84dcbdcf71.webp",
+      "bytes": 7620,
+      "sha256": "60a84b84dcbdcf711f00d8d2b72c09971031e64fe9fa95fae54d08b90606c81b"
+    },
+    {
+      "path": "web/graphics/skill-icon-S00.8cdaf054f26320a1.webp",
+      "bytes": 4450,
+      "sha256": "8cdaf054f26320a17731b3934442fae8b62aafc26350d094ca0931a94539aa82"
+    },
+    {
+      "path": "web/graphics/skill-icon-S01.157a18dbbbe6fc1f.webp",
+      "bytes": 4784,
+      "sha256": "157a18dbbbe6fc1f3a77ce9cc096d230fe23a587f3fbf84bd596d87840361cbd"
+    },
+    {
+      "path": "web/graphics/skill-icon-S02.4e3369ff53f79030.webp",
+      "bytes": 7978,
+      "sha256": "4e3369ff53f790307cd8cfe15ea599ecadcf3d6825a5251faea02729be5cb15e"
+    },
+    {
+      "path": "web/graphics/skill-icon-S03.df23f01247f3096e.webp",
+      "bytes": 7552,
+      "sha256": "df23f01247f3096e2f2a8eb45f2cf200dec70e4d4053611109042fe3b4f8b807"
+    },
+    {
+      "path": "web/graphics/skill-icon-S04.33cacbd4d530e499.webp",
+      "bytes": 5462,
+      "sha256": "33cacbd4d530e49961c2c01165721c4d6bb65d6e51d5fd481e91dae0855cf520"
+    },
+    {
+      "path": "web/graphics/skill-icon-S05.c9fba3a7dbe023a3.webp",
+      "bytes": 4764,
+      "sha256": "c9fba3a7dbe023a34c741bbe668736cf92b24bafe90a94070be4328207d018a9"
+    },
+    {
+      "path": "web/graphics/skill-icon-S06.6e5d8ac1e4ecd89b.webp",
+      "bytes": 4594,
+      "sha256": "6e5d8ac1e4ecd89b74db9336adfb0d2a969841c29a0d3c44ba350708b7315395"
+    },
+    {
+      "path": "web/graphics/skill-icon-S07.de18f376f7180067.webp",
+      "bytes": 7112,
+      "sha256": "de18f376f7180067f5099424c6b6ca0e5d46ae4c2b0f6816de3e3f3b9a710131"
+    },
+    {
+      "path": "web/graphics/skill-icon-S08.1f80cb4769182450.webp",
+      "bytes": 8064,
+      "sha256": "1f80cb476918245008b8d5e8f37cc11426faa24c4c55655ea6789b887e8e1f3f"
+    },
+    {
+      "path": "web/graphics/skill-icon-S09.b6eaa844563d5219.webp",
+      "bytes": 4932,
+      "sha256": "b6eaa844563d52190a0ee85109ab088d2a690b42be98334da754fca623c5af4f"
+    },
+    {
+      "path": "web/graphics/skill-icon-S10.e47de9bc60c4dd4d.webp",
+      "bytes": 5982,
+      "sha256": "e47de9bc60c4dd4d6a537a05bf80193023e9478c2309b4f045e938758b16ff7f"
+    },
+    {
+      "path": "web/graphics/skill-icon-S11.52ae8b84497e3b40.webp",
+      "bytes": 2486,
+      "sha256": "52ae8b84497e3b40513db452e27e650bce29e903130a630109ceee4106d67e23"
+    },
+    {
+      "path": "web/graphics/skill-icon-S12.13ce7c2fe92b538e.webp",
+      "bytes": 10002,
+      "sha256": "13ce7c2fe92b538eddcb55ea76c650d54562e34d664f67f14698aed188380dce"
+    },
+    {
+      "path": "web/graphics/skill-icon-S13.47d8229ab7ee79d1.webp",
+      "bytes": 5270,
+      "sha256": "47d8229ab7ee79d1ebc35a90353790eb1fd27dbdecfce44c3dcc7a9d32bb864c"
+    },
+    {
+      "path": "web/graphics/skill-icon-S14.8b923b775e7bed8b.webp",
+      "bytes": 2602,
+      "sha256": "8b923b775e7bed8b03d25fcac335b6f2b679ed9066b46f78fa1440eb8a7e15fa"
+    },
+    {
+      "path": "web/graphics/skill-icon-S15.c728b336cbc73be4.webp",
+      "bytes": 4096,
+      "sha256": "c728b336cbc73be4ab5f09a4ca664a5382b0d1f78f08e7341dd7cedf060840b2"
+    },
+    {
+      "path": "web/graphics/skill-icon-SP01.67e18258b454d9bd.webp",
+      "bytes": 5524,
+      "sha256": "67e18258b454d9bd033279f2772a17512cccb2803be42891abcc767171df1b28"
+    },
+    {
+      "path": "web/graphics/skill-icon-SP02.5c6a0c00eb3bd216.webp",
+      "bytes": 6586,
+      "sha256": "5c6a0c00eb3bd2169a643e5f138da44b6638be2bec6592c4f90fa881f93816a2"
+    },
+    {
+      "path": "web/graphics/skill-icon-SP03.685dcfaf8b000418.webp",
+      "bytes": 5030,
+      "sha256": "685dcfaf8b000418f60bdacd6059283efed3894b25134e05dddf98788b0b4933"
+    },
+    {
+      "path": "web/graphics/skill-icon-SP04.72e7e34dc93fe82a.webp",
+      "bytes": 7776,
+      "sha256": "72e7e34dc93fe82ac82c7b40375ead992e767d1a177861af33ccb494c1243272"
+    },
+    {
+      "path": "web/graphics/skill-icon-SP05.bd3a59c60a6c65b3.webp",
+      "bytes": 6360,
+      "sha256": "bd3a59c60a6c65b3f3f87199fa8b864051aee11cd0012c700dbe9159490d3559"
+    },
+    {
       "path": "web/graphics/stage-01.39910acee45eaa13.jpg",
       "bytes": 44331,
       "sha256": "39910acee45eaa131ca01bb9b058a48fb9b42405b94a37df1f0220c79e8ac237"
@@ -1128,9 +1548,9 @@
       "sha256": "8aeb44baca654ffd4b240beabe3b1dad9dc39d3d31c6a2e0fded8f7fac05b50b"
     },
     {
-      "path": "web/runtime/HONRO_SKILL_ICON_MANIFEST.0ded9315f0e99ff8.js",
-      "bytes": 201,
-      "sha256": "0ded9315f0e99ff89149cf80da2632fdae9162322eb3cee7cc30d90ce1cca54d"
+      "path": "web/runtime/HONRO_SKILL_ICON_MANIFEST.a23b0dbb083d20ae.js",
+      "bytes": 2068,
+      "sha256": "a23b0dbb083d20ae5ca4d429ce1c75ec86c1bb571063f77c6868d381f0df9b7c"
     },
     {
       "path": "web/runtime/HONRO_SPLIT_V1.b889c7ce5f2f6c0a.js",
@@ -1163,9 +1583,9 @@
       "sha256": "fc6304b0a3f1e39a330c0f33d22c4415af3fe54ea2fca1cdae240075ee058806"
     },
     {
-      "path": "web/runtime/ordered-common-11.3128d7a50bf635e0.js",
-      "bytes": 159466,
-      "sha256": "3128d7a50bf635e0ea23cab66275577ab6f4c71bd563b849d8b1f935908ac0ee"
+      "path": "web/runtime/ordered-common-11.de2371498c40f0c6.js",
+      "bytes": 160109,
+      "sha256": "de2371498c40f0c64efc0ac45e221906b9c0f7375890622144e4f93b7b5f372a"
     },
     {
       "path": "web/runtime/ordered-common-12.f1b51463c8290abc.js",
@@ -1178,9 +1598,9 @@
       "sha256": "0f6687f722ad1a67780a7eb6810b3823ff0cf12fdd6628bcafacb14be776d516"
     },
     {
-      "path": "web/runtime/ordered-common-2.99cd0fd79a5538a8.js",
-      "bytes": 704660,
-      "sha256": "99cd0fd79a5538a8735f551a2b4f3d54a47a661284cdd09f576cac42c74a7482"
+      "path": "web/runtime/ordered-common-2.aaefeb760f1ec736.js",
+      "bytes": 705385,
+      "sha256": "aaefeb760f1ec736596fc80ca7f2a4a99d69a4215c6a6aab2feaeaa16cff577d"
     },
     {
       "path": "web/runtime/ordered-common-3.b8b84250e4ae01f2.js",
@@ -1243,9 +1663,9 @@
       "sha256": "bb1ee691d4da84bc6857e10e0071af3996bbc1529b8cc446f2c9f99a792cd0e2"
     },
     {
-      "path": "web/runtime/shared-assets-actors-actors-runtime.fe99a3af2ffb1d74.js",
+      "path": "web/runtime/shared-assets-actors-actors-runtime.76e6f21694730530.js",
       "bytes": 175,
-      "sha256": "fe99a3af2ffb1d74901e7205ad608a5588de569a6d6d152e168b46f78547bceb"
+      "sha256": "76e6f21694730530b1b7afe10825f34965b3f911c8917ba0a9e5574d4d41076d"
     },
     {
       "path": "web/runtime/shared-assets-monsters-monsters-runtime.925589721b2b001e.js",
@@ -1370,6 +1790,51 @@
   ],
   "previousFiles": [
     {
+      "path": "web/data/HONRO_ACTORS.d87b7e94a1bf37f6.json",
+      "bytes": 169079,
+      "sha256": "d87b7e94a1bf37f69edbb9c3989bc91b61d95469b0df93878297c01657463691"
+    },
+    {
+      "path": "web/data/HONRO_SKILL_ICON_MANIFEST.f71779835a5fab45.json",
+      "bytes": 8425,
+      "sha256": "f71779835a5fab4574bd445b1a95b2844324447328a757ad25be9604683cecd2"
+    },
+    {
+      "path": "web/entries/game.18fb2351d576d632.html",
+      "bytes": 11354,
+      "sha256": "18fb2351d576d6325ad219733007de4b139b1e5065352c1b60effc673febc16d"
+    },
+    {
+      "path": "web/entries/game.7995c5115fc3d3f6.js",
+      "bytes": 9694,
+      "sha256": "7995c5115fc3d3f69bbbfd28261c0c7b8e59fc930c549bfea07120dc3752833b"
+    },
+    {
+      "path": "web/entries/workshop.1b6b1d52d4145e18.js",
+      "bytes": 6504,
+      "sha256": "1b6b1d52d4145e18503e0ea8f0f8c033d2a94351a79f5f9308deec66d582fa9d"
+    },
+    {
+      "path": "web/runtime/HONRO_SKILL_ICON_MANIFEST.0ded9315f0e99ff8.js",
+      "bytes": 201,
+      "sha256": "0ded9315f0e99ff89149cf80da2632fdae9162322eb3cee7cc30d90ce1cca54d"
+    },
+    {
+      "path": "web/runtime/ordered-common-11.3128d7a50bf635e0.js",
+      "bytes": 159466,
+      "sha256": "3128d7a50bf635e0ea23cab66275577ab6f4c71bd563b849d8b1f935908ac0ee"
+    },
+    {
+      "path": "web/runtime/ordered-common-2.99cd0fd79a5538a8.js",
+      "bytes": 704660,
+      "sha256": "99cd0fd79a5538a8735f551a2b4f3d54a47a661284cdd09f576cac42c74a7482"
+    },
+    {
+      "path": "web/runtime/shared-assets-actors-actors-runtime.fe99a3af2ffb1d74.js",
+      "bytes": 175,
+      "sha256": "fe99a3af2ffb1d74901e7205ad608a5588de569a6d6d152e168b46f78547bceb"
+    },
+    {
       "path": "web/entries/game.346d13f837be42dd.html",
       "bytes": 11354,
       "sha256": "346d13f837be42dd5f2a74b475c7d6f9420369b9dcf4c614daa6f46720425b66"
@@ -1398,34 +1863,56 @@
       "path": "web/runtime/ordered-game-17.3606fd58363a73b5.js",
       "bytes": 83982,
       "sha256": "3606fd58363a73b5d97b6612c930383e45ac6b9b6841eaf8092be70f34a32723"
-    },
-    {
-      "path": "web/entries/game.d3afec3029dc9ea1.html",
-      "bytes": 11158,
-      "sha256": "d3afec3029dc9ea13e00bf7f5a814cb287e87a49787991fcb2ac2ba3f71cf897"
-    },
-    {
-      "path": "web/entries/game.f856686bb3f3dd00.js",
-      "bytes": 9398,
-      "sha256": "f856686bb3f3dd00fb7de6bd57c599971634e704b287acfcf88571b8ddd84dc1"
-    },
-    {
-      "path": "web/entries/workshop.d3e7bb48ca3285ce.js",
-      "bytes": 6263,
-      "sha256": "d3e7bb48ca3285ceb1073c579c5a88c73cc3b740646ca180571345d510f66f9d"
-    },
-    {
-      "path": "web/styles/game-src-act-endings.d15833eb3d3c53e8.css",
-      "bytes": 3939,
-      "sha256": "d15833eb3d3c53e888886ae30f540692aafef1901ba1ff07ad910049b5d90080"
-    },
-    {
-      "path": "web/styles/game-src-title.38c08d8b0c63fcfa.css",
-      "bytes": 10288,
-      "sha256": "38c08d8b0c63fcfaa95dd2a663ed132f23c0ccc85317f488f0ab29ae1c8fef11"
     }
   ],
   "previousGenerations": [
+    [
+      {
+        "path": "web/data/HONRO_ACTORS.d87b7e94a1bf37f6.json",
+        "bytes": 169079,
+        "sha256": "d87b7e94a1bf37f69edbb9c3989bc91b61d95469b0df93878297c01657463691"
+      },
+      {
+        "path": "web/data/HONRO_SKILL_ICON_MANIFEST.f71779835a5fab45.json",
+        "bytes": 8425,
+        "sha256": "f71779835a5fab4574bd445b1a95b2844324447328a757ad25be9604683cecd2"
+      },
+      {
+        "path": "web/entries/game.18fb2351d576d632.html",
+        "bytes": 11354,
+        "sha256": "18fb2351d576d6325ad219733007de4b139b1e5065352c1b60effc673febc16d"
+      },
+      {
+        "path": "web/entries/game.7995c5115fc3d3f6.js",
+        "bytes": 9694,
+        "sha256": "7995c5115fc3d3f69bbbfd28261c0c7b8e59fc930c549bfea07120dc3752833b"
+      },
+      {
+        "path": "web/entries/workshop.1b6b1d52d4145e18.js",
+        "bytes": 6504,
+        "sha256": "1b6b1d52d4145e18503e0ea8f0f8c033d2a94351a79f5f9308deec66d582fa9d"
+      },
+      {
+        "path": "web/runtime/HONRO_SKILL_ICON_MANIFEST.0ded9315f0e99ff8.js",
+        "bytes": 201,
+        "sha256": "0ded9315f0e99ff89149cf80da2632fdae9162322eb3cee7cc30d90ce1cca54d"
+      },
+      {
+        "path": "web/runtime/ordered-common-11.3128d7a50bf635e0.js",
+        "bytes": 159466,
+        "sha256": "3128d7a50bf635e0ea23cab66275577ab6f4c71bd563b849d8b1f935908ac0ee"
+      },
+      {
+        "path": "web/runtime/ordered-common-2.99cd0fd79a5538a8.js",
+        "bytes": 704660,
+        "sha256": "99cd0fd79a5538a8735f551a2b4f3d54a47a661284cdd09f576cac42c74a7482"
+      },
+      {
+        "path": "web/runtime/shared-assets-actors-actors-runtime.fe99a3af2ffb1d74.js",
+        "bytes": 175,
+        "sha256": "fe99a3af2ffb1d74901e7205ad608a5588de569a6d6d152e168b46f78547bceb"
+      }
+    ],
     [
       {
         "path": "web/entries/game.346d13f837be42dd.html",
@@ -1456,33 +1943,6 @@
         "path": "web/runtime/ordered-game-17.3606fd58363a73b5.js",
         "bytes": 83982,
         "sha256": "3606fd58363a73b5d97b6612c930383e45ac6b9b6841eaf8092be70f34a32723"
-      }
-    ],
-    [
-      {
-        "path": "web/entries/game.d3afec3029dc9ea1.html",
-        "bytes": 11158,
-        "sha256": "d3afec3029dc9ea13e00bf7f5a814cb287e87a49787991fcb2ac2ba3f71cf897"
-      },
-      {
-        "path": "web/entries/game.f856686bb3f3dd00.js",
-        "bytes": 9398,
-        "sha256": "f856686bb3f3dd00fb7de6bd57c599971634e704b287acfcf88571b8ddd84dc1"
-      },
-      {
-        "path": "web/entries/workshop.d3e7bb48ca3285ce.js",
-        "bytes": 6263,
-        "sha256": "d3e7bb48ca3285ceb1073c579c5a88c73cc3b740646ca180571345d510f66f9d"
-      },
-      {
-        "path": "web/styles/game-src-act-endings.d15833eb3d3c53e8.css",
-        "bytes": 3939,
-        "sha256": "d15833eb3d3c53e888886ae30f540692aafef1901ba1ff07ad910049b5d90080"
-      },
-      {
-        "path": "web/styles/game-src-title.38c08d8b0c63fcfa.css",
-        "bytes": 10288,
-        "sha256": "38c08d8b0c63fcfaa95dd2a663ed132f23c0ccc85317f488f0ab29ae1c8fef11"
       }
     ]
   ]

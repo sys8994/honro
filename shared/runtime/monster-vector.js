@@ -56,5 +56,14 @@ function species(u){const variant=u.honroVariant;
 function kind(u){if(u.side!==1&&!u.enthrall||u.boss||u.honroFinalBoss||u.id==='boss'||u.summoned)return null;return species(u);}
 const previous=G.HonroScene.prototype.unitBody;
 G.HonroScene.prototype.unitBody=function(c,u,charge=0){const id=kind(u);if(!id)return previous.call(this,c,u,charge);const a=assets[id],scale=u.h/a.baseHeight;c.save();c.translate(u.x,u.y);c.scale(scale*(u.facing||1),scale);const m=c.getTransform(),ratio=c.canvas.clientWidth?c.canvas.width/c.canvas.clientWidth:1,pixels=a.baseHeight*Math.hypot(m.c,m.d)/ratio;draw(c,id,{time:this.time||0,state:state(u),pixels});c.restore();};
-G.HonroMonsterVisual={...api,kind,species,legacyBody:previous};
+// A world-space head joint shared by target effects. Resolve from the same
+// species, facing, scale and articulated state as unitBody, before damage moves it.
+function headPoint(u,time=0){const id=kind(u);if(!id)return null;const a=assets[id],head=a.parts.find(p=>p.id==='head');if(!head)return null;
+ const poses=api.pose(a,time,state(u)),byId=new Map(a.parts.map(p=>[p.id,p]));let point={x:head.pivot[0],y:head.pivot[1]},joint=head;
+ while(joint){const v=poses[joint.id],[x,y]=joint.pivot,dx=(point.x-x)*v.scaleX,dy=(point.y-y)*v.scaleY,angle=v.rotate*Math.PI/180;
+  point={x:x+v.x+Math.cos(angle)*dx-Math.sin(angle)*dy,y:y+v.y+Math.sin(angle)*dx+Math.cos(angle)*dy};joint=byId.get(joint.parent);
+ }
+ const scale=u.h/a.baseHeight;return{x:u.x+point.x*scale*(u.facing||1),y:u.y+point.y*scale};
+}
+G.HonroMonsterVisual={...api,kind,species,headPoint,legacyBody:previous};
 })(globalThis);
