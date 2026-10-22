@@ -1,0 +1,8 @@
+PASS v3 permits ordinary M09 away from the prescribed start and keeps failed shots or expired gates as player decisions
+PASS v3 normal E works with a safe off-route gate pair, without a landing veto
+PASS Both grounded companions may skip traversal places; separate story documents remain mandatory
+PASS Separated arrivals advance only their shared reached place and never capture an isolated checkpoint
+PASS Airborne passage never advances traversal or captures a checkpoint
+PASS Walking backward does not erase reached places or repeatedly refill a checkpoint
+PASS Death while separated rolls back both place progress and battlefield to its matching safe checkpoint
+PASS Serialized new checkpoints retry without losing earned XP or retaining stale terrain objects

@@ -1,0 +1,197 @@
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: Unsnapshotted old current revision keeps original content 29
++ actual - expected
+... Skipped lines
+
+  {
+    act: 3,
+    actStage: 9,
+    active: 3,
+    beats: {
+...
+        [
++         '담허',
++         '현묵의 서명과 문하 표식이 있네. 내가 배운 법맥과 이어지지만, 지금 어디 있는지는 알 수 없어.'
++       ],
++       [
+          '휘겸',
+          '위 수문길과 아래 점검다리가 이어져 있소. 기록을 가지고 빠져나갑시다.'
+        ]
+      ]
+    },
+
+    at file:///tmp/honro-void-baseline/tests/story-canon-v1.mjs:33:9 {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: {
+    name: '현묵의 글',
+    place: '밤의 수문과 봉인 창고',
+    theme: 'river',
+    narration: [ '수문 뒤 봉인 창고에 오래된 글 한 묶음이 남았다. 담허가 같은 뿌리의 획을 짚는다.' ],
+    goal: '현묵의 글을 확보하고 높은 수문길 또는 점검다리로 이탈',
+    story: [
+      [
+        '담허',
+        '창고 봉인이 북쪽 산길의 돌림진과 같은 법을 썼네. 획을 순서대로 풀겠어.',
+        { storyId: 'act3-entry-29', storyTitle: '3-9 · 현묵의 글' }
+      ],
+      [
+        '휘겸',
+        '문을 막던 악귀들이 따라왔소. 안쪽 길을 여는 동안 지키겠소.',
+        { storyId: 'act3-entry-29', storyTitle: '3-9 · 현묵의 글' }
+      ]
+    ],
+    steps: [
+      {
+        id: 'old-seal',
+        label: '담허의 옛 봉인 해체 지키기',
+        kind: 'hold',
+        rounds: 2,
+        wave: { kind: 'ghost', count: 2 },
+        radius: 460,
+        contestRadius: 230,
+        requiredClass: 'mage',
+        opens: 'old-door'
+      },
+      { id: 'hyeonmuk-letter', label: '현묵이 남긴 글 확보', kind: 'interact' },
+      {
+        id: 'route-exit',
+        kind: 'route',
+        label: '높은 수문길 또는 아래 점검다리로 이탈'
+      }
+    ],
+    beats: {
+      'hyeonmuk-letter': [
+        [ '서술', '글의 끝에 현묵이라는 서명과 문하 표식이 남아 있었다.' ],
+        [
+          '기록',
+          '스승께 들린 혼은 없었다\n저편의 울림을 답이라 여겼다\n종을 울린 뒤 무명사의 이치가 어그러졌다',
+          {
+            kind: 'document',
+            documentTitle: '현묵의 글',
+            documentId: 'hyeonmuk-letter'
+          }
+        ],
+        [ '담허', '현묵은 대도사의 제자였군. 여기서 스승이라 부르는 이가 대도사네.' ],
+        [ '소단', '이 글대로라면, 대도사가 혼에 들려 저문골 사람들을 죽인 건 아니었군요.' ],
+        [
+          '담허',
+          '현묵의 서명과 문하 표식이 있네. 내가 배운 법맥과 이어지지만, 지금 어디 있는지는 알 수 없어.'
+        ],
+        [ '휘겸', '위 수문길과 아래 점검다리가 이어져 있소. 기록을 가지고 빠져나갑시다.' ]
+      ]
+    },
+    outro: [
+      [
+        '담허',
+        '이 글은 그 뒤 현묵이 어떻게 됐는지 말하지 않네. 남은 운송로와 맞춰 보세.',
+        { storyId: 'act3-outro-29', storyTitle: '현묵의 글' }
+      ]
+    ],
+    summary: '현묵의 글은 스승께 들린 혼이 없었고, 종을 울린 뒤 무명사의 이치가 어그러졌다고 전한다. 증언자의 현재 상태와 저편의 뜻은 미상이다.',
+    guide: '담허의 봉인 해체를 두 적 턴 지키고 현묵의 글을 확보하세요. 높은 수문길 또는 기둥 아래 점검다리 출구에 동행 한 명이 도착하면 됩니다.',
+    id: 29,
+    act: 3,
+    actStage: 9,
+    level: 20,
+    template: 1,
+    objective: 'act3',
+    requires: [ 28 ],
+    active: 3,
+    enemies: 22,
+    w: 9000,
+    h: 4200,
+    playableRoster: [ 'archer', 'mage', 'knight', 'occultist' ],
+    map: [ 9080, 820 ],
+    narrationArt: 'road',
+    storySummary: '현묵의 글은 스승께 들린 혼이 없었고, 종을 울린 뒤 무명사의 이치가 어그러졌다고 전한다. 증언자의 현재 상태와 저편의 뜻은 미상이다.',
+    failure: [ [ '휘겸', '길을 다시 잡읍시다. 가져온 단서까지 잃어서는 안 되오.' ] ]
+  },
+  expected: {
+    name: '현묵의 글',
+    place: '밤의 수문과 봉인 창고',
+    theme: 'river',
+    narration: [ '수문 뒤 봉인 창고에 오래된 글 한 묶음이 남았다. 담허가 같은 뿌리의 획을 짚는다.' ],
+    goal: '현묵의 글을 확보하고 높은 수문길 또는 점검다리로 이탈',
+    story: [
+      [
+        '담허',
+        '창고 봉인이 북쪽 산길의 돌림진과 같은 법을 썼네. 획을 순서대로 풀겠어.',
+        { storyId: 'act3-entry-29', storyTitle: '3-9 · 현묵의 글' }
+      ],
+      [
+        '휘겸',
+        '문을 막던 악귀들이 따라왔소. 안쪽 길을 여는 동안 지키겠소.',
+        { storyId: 'act3-entry-29', storyTitle: '3-9 · 현묵의 글' }
+      ]
+    ],
+    steps: [
+      {
+        id: 'old-seal',
+        label: '담허의 옛 봉인 해체 지키기',
+        kind: 'hold',
+        rounds: 2,
+        wave: { kind: 'ghost', count: 2 },
+        radius: 460,
+        contestRadius: 230,
+        requiredClass: 'mage',
+        opens: 'old-door'
+      },
+      { id: 'hyeonmuk-letter', label: '현묵이 남긴 글 확보', kind: 'interact' },
+      {
+        id: 'route-exit',
+        kind: 'route',
+        label: '높은 수문길 또는 아래 점검다리로 이탈'
+      }
+    ],
+    beats: {
+      'hyeonmuk-letter': [
+        [ '서술', '글의 끝에 현묵이라는 서명과 문하 표식이 남아 있었다.' ],
+        [
+          '기록',
+          '스승께 들린 혼은 없었다\n저편의 울림을 답이라 여겼다\n종을 울린 뒤 무명사의 이치가 어그러졌다',
+          {
+            kind: 'document',
+            documentTitle: '현묵의 글',
+            documentId: 'hyeonmuk-letter'
+          }
+        ],
+        [ '담허', '현묵은 대도사의 제자였군. 여기서 스승이라 부르는 이가 대도사네.' ],
+        [ '소단', '이 글대로라면, 대도사가 혼에 들려 저문골 사람들을 죽인 건 아니었군요.' ],
+        [ '휘겸', '위 수문길과 아래 점검다리가 이어져 있소. 기록을 가지고 빠져나갑시다.' ]
+      ]
+    },
+    outro: [
+      [
+        '담허',
+        '이 글은 그 뒤 현묵이 어떻게 됐는지 말하지 않네. 남은 운송로와 맞춰 보세.',
+        { storyId: 'act3-outro-29', storyTitle: '현묵의 글' }
+      ]
+    ],
+    summary: '현묵의 글은 스승께 들린 혼이 없었고, 종을 울린 뒤 무명사의 이치가 어그러졌다고 전한다. 증언자의 현재 상태와 저편의 뜻은 미상이다.',
+    guide: '담허의 봉인 해체를 두 적 턴 지키고 현묵의 글을 확보하세요. 높은 수문길 또는 기둥 아래 점검다리 출구에 동행 한 명이 도착하면 됩니다.',
+    id: 29,
+    act: 3,
+    actStage: 9,
+    level: 20,
+    template: 1,
+    objective: 'act3',
+    requires: [ 28 ],
+    active: 3,
+    enemies: 22,
+    w: 9000,
+    h: 4200,
+    playableRoster: [ 'archer', 'mage', 'knight', 'occultist' ],
+    map: [ 9080, 820 ],
+    narrationArt: 'road',
+    storySummary: '현묵의 글은 스승께 들린 혼이 없었고, 종을 울린 뒤 무명사의 이치가 어그러졌다고 전한다. 증언자의 현재 상태와 저편의 뜻은 미상이다.',
+    failure: [ [ '휘겸', '길을 다시 잡읍시다. 가져온 단서까지 잃어서는 안 되오.' ] ]
+  },
+  operator: 'deepStrictEqual',
+  diff: 'simple'
+}
+
+Node.js v24.19.0

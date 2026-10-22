@@ -1,0 +1,12 @@
+PASS all five cuts: real alpha-pixel actor versus text bounds at four viewports, plus long-cut rotation
+PASS desktop real taps/compatibility click, double input, key repeats, Enter/Space, pause/settings/focus cycle and safe skip
+PASS mobile real taps/compatibility click, double input, key repeats, Enter/Space, pause/settings/focus cycle and safe skip
+PASS actual reload during FALLING restores READY and safe pose
+PASS actual reload during DARKENING restores READY and safe pose
+PASS actual reload during VOID restores READY and safe pose
+PASS actual reload during RETURNING restores READY and safe pose
+PASS visible skip during FALLING, 100 repeated skips, completion and aftermath reload
+PASS visible skip during DARKENING, 100 repeated skips, completion and aftermath reload
+PASS visible skip during VOID, 100 repeated skips, completion and aftermath reload
+PASS hidden-document production frame freeze (controlled document.hidden, no OS lifecycle claim)
+PASS Workshop Playtest actual iframe shares five-cut scene and safe return

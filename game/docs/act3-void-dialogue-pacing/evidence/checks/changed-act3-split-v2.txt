@@ -1,0 +1,27 @@
+PASS Fresh 24–28 entries use the approved v2 rosters without changing permanent recruits
+PASS 24 → 25 → 26 → 27 → 28 carries each independent damaged team and shared items without a rest
+PASS 28 reunion waits for every living actor; the old 27 fire timer does not run in the waterworks
+PASS v2 Continue preserves mid-crossing state, temporary access and permanent loadouts
+PASS Saving during an actual M09 flight keeps projectile, checkpoint and pristine equipment on Continue
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
++ actual - expected
+
++ '지운 이름과 남은 명령'
+- '왕실의 선택'
+
+    at file:///workspace/honro/tests/act3-split-v2.mjs:18:471
+    at check (file:///workspace/honro/tests/act3-split-v2.mjs:11:25)
+    at file:///workspace/honro/tests/act3-split-v2.mjs:18:1 {
+  generatedMessage: true,
+  code: 'ERR_ASSERTION',
+  actual: '지운 이름과 남은 명령',
+  expected: '왕실의 선택',
+  operator: 'strictEqual',
+  diff: 'simple'
+}
+
+Node.js v24.19.0

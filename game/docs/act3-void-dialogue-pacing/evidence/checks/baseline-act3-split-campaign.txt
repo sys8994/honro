@@ -1,0 +1,24 @@
+PASS Legacy v1 pending chapters retain their exact historical rosters
+PASS One continuous 24 result → 25 result → 26 result → 27 chain carries damaged HP/MP and shared consumables
+PASS 27 failure/retry restores only composed entry inventory and vitals; earned XP remains capped
+PASS Mid-split export/import/Continue preserves roster, vitals, death, items, timers and scene cursor byte-for-byte
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+
+83635 !== 83652
+
+    at file:///tmp/honro-void-baseline/tests/act3-split-campaign.mjs:52:51
+    at check (file:///tmp/honro-void-baseline/tests/act3-split-campaign.mjs:8:37)
+    at file:///tmp/honro-void-baseline/tests/act3-split-campaign.mjs:50:7 {
+  generatedMessage: true,
+  code: 'ERR_ASSERTION',
+  actual: 83635,
+  expected: 83652,
+  operator: 'strictEqual',
+  diff: 'simple'
+}
+
+Node.js v24.19.0

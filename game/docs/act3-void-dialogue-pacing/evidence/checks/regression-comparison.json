@@ -1,0 +1,142 @@
+[
+  {
+    "test": "act3-split-campaign",
+    "tree": "changed",
+    "exitCode": 1
+  },
+  {
+    "test": "act3-split-campaign",
+    "tree": "baseline",
+    "exitCode": 1
+  },
+  {
+    "test": "act3-split-v2",
+    "tree": "changed",
+    "exitCode": 1
+  },
+  {
+    "test": "act3-split-v2",
+    "tree": "baseline",
+    "exitCode": 1
+  },
+  {
+    "test": "stake-crossing-runtime",
+    "tree": "changed",
+    "exitCode": 0
+  },
+  {
+    "test": "stake-crossing-runtime",
+    "tree": "baseline",
+    "exitCode": 0
+  },
+  {
+    "test": "stake-preparation",
+    "tree": "changed",
+    "exitCode": 1
+  },
+  {
+    "test": "stake-preparation",
+    "tree": "baseline",
+    "exitCode": 1
+  },
+  {
+    "test": "stake-crossing-flexible",
+    "tree": "changed",
+    "exitCode": 0
+  },
+  {
+    "test": "stake-crossing-flexible",
+    "tree": "baseline",
+    "exitCode": 0
+  },
+  {
+    "test": "stake-crossing-physics",
+    "tree": "changed",
+    "exitCode": 0
+  },
+  {
+    "test": "stake-crossing-physics",
+    "tree": "baseline",
+    "exitCode": 0
+  },
+  {
+    "test": "stake-crossing-canonical",
+    "tree": "changed",
+    "exitCode": 1
+  },
+  {
+    "test": "stake-crossing-canonical",
+    "tree": "baseline",
+    "exitCode": 1
+  },
+  {
+    "test": "split-custom-return-boundary",
+    "tree": "changed",
+    "exitCode": 1
+  },
+  {
+    "test": "split-custom-return-boundary",
+    "tree": "baseline",
+    "exitCode": 1
+  },
+  {
+    "test": "stake-crossing-xp",
+    "tree": "changed",
+    "exitCode": 1
+  },
+  {
+    "test": "stake-crossing-xp",
+    "tree": "baseline",
+    "exitCode": 1
+  },
+  {
+    "test": "stake-crossing-cache",
+    "tree": "changed",
+    "exitCode": 0
+  },
+  {
+    "test": "stake-crossing-cache",
+    "tree": "baseline",
+    "exitCode": 0
+  },
+  {
+    "test": "split-v1-population-cap",
+    "tree": "changed",
+    "exitCode": 1
+  },
+  {
+    "test": "split-v1-population-cap",
+    "tree": "baseline",
+    "exitCode": 1
+  },
+  {
+    "test": "act3-continuity",
+    "tree": "changed",
+    "exitCode": 1
+  },
+  {
+    "test": "act3-continuity",
+    "tree": "baseline",
+    "exitCode": 1
+  },
+  {
+    "test": "act3-save-boundaries",
+    "tree": "changed",
+    "exitCode": 1
+  },
+  {
+    "test": "act3-save-boundaries",
+    "tree": "baseline",
+    "exitCode": 1
+  },
+  {
+    "test": "story-canon-v1",
+    "tree": "changed",
+    "exitCode": 1
+  },
+  {
+    "test": "story-canon-v1",
+    "tree": "baseline",
+    "exitCode": 1
+  }
+]
