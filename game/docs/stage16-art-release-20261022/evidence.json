@@ -1,0 +1,1038 @@
+{
+  "branch": "integration/stage16-art-release-20261022",
+  "approvedArtHead": "71c70e32dbeb65fed0ba395797147203ce8d37d1",
+  "approvedSourceAndGenerated": "3d902a9c83c128267de6a6bad83bffb146bc5dc0",
+  "importedAudit": "4f344bb7ed30aa6f27ea2c04e5a3de3e4124cd7a",
+  "mergeCommit": "0ae34a2212d5506164220f858f678bceb5a00036",
+  "handoffCheckCommit": "3785d2dce8835bae569df64626c75bee2c0ea143",
+  "entry": "web/entries/game.d6bc5a0aa4362948.js",
+  "manifestSha256": "f62f1c1116bda930dc721f7b75b7c864acef5c47e4507cdd3d831da5343e4e93",
+  "art": {
+    "pass": true,
+    "base": "19d9fc28623d2451e37cf665145cfdc3e2fdd51f",
+    "checkedCommit": "0ae34a2212d5506164220f858f678bceb5a00036",
+    "protectedProjectHash": "bad64c5c6bc67efad7514126ea0f1a01144e89a886c84b2d4b2df4ebf68e8072",
+    "wholeNonArtAndOther29AndExistingLibraryExact": true,
+    "twentySixTerrainsAndSevenRoutesActorsGoalsNarrativeCameraUnchanged": true,
+    "originalTempleAndRoutePlanesExact": true,
+    "reproducible": true,
+    "idempotent": true,
+    "renderPure": true,
+    "builtArtEqualsCanonical": true,
+    "staticPathReuse": true,
+    "cachedDrawNewPaths": 0,
+    "sceneVersionInvalidation": true,
+    "prepared": [
+      {
+        "id": "act2-floor",
+        "planes": 102
+      },
+      {
+        "id": "cave-roof",
+        "planes": 51
+      }
+    ],
+    "publishedGraphs": 9,
+    "protectedPublishedFiles": 465,
+    "old934Chapter13": [
+      "web/data/chapter-13-assets.1387b6a1f088fc74.json",
+      "web/data/chapter-13.516170b245a8b075.json"
+    ],
+    "newRecessedAssetCollisionEmpty": true,
+    "supportCachedDrawNewPaths": 0,
+    "scope": "Visual/data/static reuse checks only. No art approval, normal combat completion or dynamic FPS claim."
+  },
+  "retentionAndBuildDecision": {
+    "checkedCommit": "3785d2dce8835bae569df64626c75bee2c0ea143",
+    "approvedBuildSource": "3d902a9c83c128267de6a6bad83bffb146bc5dc0",
+    "entry": "web/entries/game.d6bc5a0aa4362948.js",
+    "rebuildNeeded": false,
+    "reason": "All runtime/data/style/build inputs and all generated documents/web files byte exact to approved build. Only test/report files differ.",
+    "changedFromApproved": [
+      "game/docs/BUG_LOG.md",
+      "game/docs/stage-review/stage16-vector-finish-20261022/README.md",
+      "game/docs/stage-review/stage16-vector-finish-20261022/review/stage16-final-center.jpg",
+      "game/docs/stage-review/stage16-vector-finish-20261022/review/stage16-final-hall.jpg",
+      "game/docs/stage-review/stage16-vector-finish-20261022/review/stage16-final-mobile-entry.jpg",
+      "game/docs/stage-review/stage16-vector-finish-20261022/review/stage16-final-mobile-left.jpg",
+      "game/docs/stage-review/stage16-vector-finish-20261022/review/stage16-final-mobile-lower.jpg",
+      "game/docs/stage-review/stage16-vector-finish-20261022/review/stage16-final-mobile-right.jpg",
+      "game/docs/stage-review/stage16-vector-finish-20261022/review/stage16-final-mobile.jpg",
+      "game/docs/stage-review/stage16-vector-finish-20261022/review/stage16-final-overview.jpg",
+      "game/docs/stage-review/stage16-vector-finish-20261022/review/stage16-final-prayer-cave.jpg",
+      "game/docs/stage16-current-pacing-20261022/README.md",
+      "game/docs/stage16-current-pacing-20261022/evidence.json",
+      "game/docs/stage16-current-pacing-20261022/review/actual-r19.jpg",
+      "tests/fixtures/stage16-current-r19-20261022.json.gz",
+      "tests/fixtures/stage16-current-r9-20261022.json.gz",
+      "tests/stage16-art-release-handoff.mjs",
+      "tests/stage16-current-contracts.mjs",
+      "tests/stage16-current-entry-helper.mjs",
+      "tests/stage16-current-outcome-flow.mjs",
+      "tests/stage16-current-pacing.mjs",
+      "tools/testing/stage16-current-save-browser.py"
+    ],
+    "publishedGraphs": 9,
+    "publishedFiles": 465,
+    "totalHashAndLengthChecked": 487,
+    "old934Chapter13": [
+      "web/data/chapter-13-assets.1387b6a1f088fc74.json",
+      "web/data/chapter-13.516170b245a8b075.json"
+    ],
+    "history19dSuccessRecords": 1,
+    "manifestSha256": "f62f1c1116bda930dc721f7b75b7c864acef5c47e4507cdd3d831da5343e4e93"
+  },
+  "actualR19Outcome": {
+    "checkedCommit": "3785d2dce8835bae569df64626c75bee2c0ea143",
+    "source": "19d9fc28623d2451e37cf665145cfdc3e2fdd51f",
+    "round": 19,
+    "phaseAtInput": "won",
+    "goalCompleteAtInput": true,
+    "queuedAtInput": [
+      [
+        "휘겸",
+        "기록함 앞을 살펴보겠소.",
+        {
+          "rowId": "16.beats.hall:646c07f072",
+          "evidenceGoal": "hall",
+          "storyId": "act2-v1:act2-16-hall",
+          "storyTitle": "잠운사",
+          "delivery": "dialogue",
+          "waitForClear": false,
+          "afterAction": 140,
+          "waitActor": "p-knight",
+          "waitRound": 19
+        }
+      ],
+      [
+        "기록",
+        "칠십 년 전, 대종 외부 이송\n타종 금지 · 인양로와 바깥길 봉쇄\n출처: [잘려 나감]",
+        {
+          "kind": "document",
+          "documentTitle": "잠운사 이송 기록",
+          "documentId": "temple-transfer",
+          "rowId": "16.beats.record:b15346fb64",
+          "evidenceGoal": "record",
+          "storyId": "act2-v1:act2-16-record",
+          "storyTitle": "잠운사",
+          "delivery": "dialogue",
+          "waitForClear": false,
+          "afterAction": 140,
+          "waitActor": "p-knight",
+          "waitRound": 19
+        }
+      ]
+    ],
+    "dialogue": [
+      [
+        "휘겸",
+        "기록함 앞을 살펴보겠소.",
+        {
+          "rowId": "16.beats.hall:646c07f072",
+          "evidenceGoal": "hall",
+          "storyId": "act2-v1:act2-16-hall",
+          "storyTitle": "잠운사",
+          "delivery": "dialogue",
+          "waitForClear": false,
+          "afterAction": 140,
+          "waitActor": "p-knight",
+          "waitRound": 19,
+          "camera": {
+            "intent": "portrait",
+            "targets": [
+              {
+                "speaker": "휘겸"
+              }
+            ],
+            "padding": 40,
+            "maxScale": 1.05,
+            "participants": [
+              {
+                "actor": "p-knight"
+              }
+            ],
+            "id": "16.beats.hall:646c07f072",
+            "speakerPolicy": "world"
+          }
+        }
+      ],
+      [
+        "기록",
+        "칠십 년 전, 대종 외부 이송\n타종 금지 · 인양로와 바깥길 봉쇄\n출처: [잘려 나감]",
+        {
+          "kind": "document",
+          "documentTitle": "잠운사 이송 기록",
+          "documentId": "temple-transfer",
+          "rowId": "16.beats.record:b15346fb64",
+          "evidenceGoal": "record",
+          "storyId": "act2-v1:act2-16-record",
+          "storyTitle": "잠운사",
+          "delivery": "dialogue",
+          "waitForClear": false,
+          "afterAction": 140,
+          "waitActor": "p-knight",
+          "waitRound": 19,
+          "camera": {
+            "intent": "situation",
+            "targets": [
+              {
+                "actor": "p-knight"
+              }
+            ],
+            "padding": 65,
+            "maxScale": 0.8,
+            "id": "16.beats.record:b15346fb64",
+            "speakerPolicy": "none"
+          }
+        }
+      ],
+      [
+        "휘겸",
+        "뒤편 작업굴로 갑시다. 승려가 말한 축을 찾아보겠소.",
+        {
+          "storyId": "act1-v6:outcome-16",
+          "storyTitle": "잠운사",
+          "rowId": "16.outro:c7561a06ab",
+          "camera": {
+            "intent": "portrait",
+            "targets": [
+              {
+                "speaker": "휘겸"
+              }
+            ],
+            "padding": 40,
+            "maxScale": 1.05,
+            "participants": [
+              {
+                "actor": "p-knight"
+              }
+            ],
+            "id": "16.outro:c7561a06ab",
+            "speakerPolicy": "world"
+          }
+        }
+      ]
+    ],
+    "hallIndex": 0,
+    "recordIndex": 1,
+    "recordBeforeOutro": true,
+    "naturalFinishSettledOnce": true,
+    "unchangedDoneFacts": {
+      "monk": true,
+      "clear-rescue-threat": true,
+      "witness": true,
+      "hall": true,
+      "record": true
+    },
+    "before": {
+      "done": false,
+      "act2": {
+        "version": 2,
+        "done": {
+          "monk": true,
+          "clear-rescue-threat": true,
+          "witness": true,
+          "hall": true,
+          "record": true
+        },
+        "events": {},
+        "rescued": [
+          "resident-1"
+        ],
+        "checkpoints": [
+          {
+            "id": "monk",
+            "round": 14
+          },
+          {
+            "id": "clear-rescue-threat",
+            "round": 14
+          },
+          {
+            "id": "witness",
+            "round": 14
+          },
+          {
+            "id": "hall",
+            "round": 19
+          },
+          {
+            "id": "record",
+            "round": 19
+          }
+        ],
+        "holds": {},
+        "viewerId": "p-knight",
+        "pendingWaves": []
+      },
+      "heroes": {
+        "mage": {
+          "xp": 36655,
+          "ranks": {
+            "M01": 1,
+            "M07": 1,
+            "M10": 6,
+            "M03": 1,
+            "M11": 6,
+            "M06": 1,
+            "M02": 1,
+            "M04": 5
+          },
+          "statTraining": 6,
+          "kills": 2,
+          "damage": 1606,
+          "skillRevision": 1,
+          "martialRevision": 1
+        },
+        "archer": {
+          "xp": 36837,
+          "ranks": {
+            "A01": 1,
+            "A14": 1,
+            "A02": 7,
+            "A06": 7,
+            "A05": 6
+          },
+          "statTraining": 6,
+          "kills": 3,
+          "damage": 3667,
+          "skillRevision": 1,
+          "martialRevision": 1
+        },
+        "knight": {
+          "xp": 37201,
+          "ranks": {
+            "S00": 1,
+            "S01": 7,
+            "S03": 7,
+            "S05": 7
+          },
+          "statTraining": 6,
+          "kills": 8,
+          "damage": 8943,
+          "skillRevision": 1,
+          "martialRevision": 1
+        },
+        "occultist": {
+          "xp": 36908,
+          "ranks": {
+            "O01": 1,
+            "O02": 6,
+            "O03": 1,
+            "O04": 6,
+            "O06": 1,
+            "O07": 1,
+            "O08": 6
+          },
+          "statTraining": 6,
+          "kills": 3,
+          "damage": 3275,
+          "skillRevision": 1,
+          "martialRevision": 1,
+          "occultRevision": 1
+        }
+      }
+    },
+    "scope": "Real terminal export; production Continue/outcome/dialogue-finish inspected. No combat replay, no invented record-marker walk, no manual reward/done injection."
+  },
+  "actual17Handoff": {
+    "checkedCommit": "3785d2dce8835bae569df64626c75bee2c0ea143",
+    "arrivedStage": 17,
+    "earnedGrowthExact": true,
+    "wholeBattleContinueExact": true,
+    "single16Reward": true,
+    "entryHeroes": [
+      {
+        "id": "p-archer",
+        "name": "설오",
+        "role": "archer",
+        "cls": "archer",
+        "side": 0,
+        "x": 320,
+        "y": 4300,
+        "vx": 0,
+        "vy": 0,
+        "hp": 790,
+        "maxHp": 790,
+        "r": 22,
+        "h": 92,
+        "focus": 186,
+        "maxFocus": 186,
+        "regen": 21,
+        "level": 13,
+        "attack": 4.4965,
+        "armor": 0.19999999999999998,
+        "shield": 0,
+        "bound": 0,
+        "mark": 0,
+        "breaks": 0,
+        "acted": false,
+        "moveLeft": 1647,
+        "maxMove": 1647,
+        "walkSpeed": 365,
+        "angle": 44,
+        "lastPower": 0.55,
+        "loadout": [
+          "A01",
+          "A02",
+          "A06",
+          "A05"
+        ],
+        "tune": 0.5,
+        "facing": 1,
+        "hurt": 0,
+        "anim": 0,
+        "airborne": false,
+        "fixed": false,
+        "spawnX": 320,
+        "spawnY": 4300,
+        "intent": "",
+        "dead": false,
+        "ranks": {
+          "A01": 1,
+          "A14": 1,
+          "A02": 7,
+          "A06": 7,
+          "A05": 6
+        },
+        "group": 0,
+        "awake": true,
+        "lastAct": 0,
+        "aggroUntil": 0,
+        "xpBudget": 0,
+        "xpGranted": 0,
+        "killRewarded": false,
+        "damageBy": {},
+        "honroAlly": false,
+        "honroCivilian": false,
+        "critChance": 0.128,
+        "critMultiplier": 2.08,
+        "cooldowns": {}
+      },
+      {
+        "id": "p-mage",
+        "name": "담허",
+        "role": "mage",
+        "cls": "mage",
+        "side": 0,
+        "x": 430,
+        "y": 4300,
+        "vx": 0,
+        "vy": 0,
+        "hp": 855,
+        "maxHp": 855,
+        "r": 22,
+        "h": 92,
+        "focus": 255,
+        "maxFocus": 255,
+        "regen": 21,
+        "level": 13,
+        "attack": 4.379200000000001,
+        "armor": 0.186,
+        "shield": 0,
+        "bound": 0,
+        "mark": 0,
+        "breaks": 0,
+        "acted": false,
+        "moveLeft": 1668,
+        "maxMove": 1668,
+        "walkSpeed": 342,
+        "angle": 44,
+        "lastPower": 0.55,
+        "loadout": [
+          "M01",
+          "M10",
+          "M11",
+          "M04"
+        ],
+        "tune": 0.5,
+        "facing": 1,
+        "hurt": 0,
+        "anim": 0,
+        "airborne": false,
+        "fixed": false,
+        "spawnX": 430,
+        "spawnY": 4300,
+        "intent": "",
+        "dead": false,
+        "ranks": {
+          "M01": 1,
+          "M07": 1,
+          "M10": 6,
+          "M03": 1,
+          "M11": 6,
+          "M06": 1,
+          "M02": 1,
+          "M04": 5
+        },
+        "group": 0,
+        "awake": true,
+        "lastAct": 0,
+        "aggroUntil": 0,
+        "xpBudget": 0,
+        "xpGranted": 0,
+        "killRewarded": false,
+        "damageBy": {},
+        "honroAlly": false,
+        "honroCivilian": false,
+        "critChance": 0.067,
+        "critMultiplier": 1.725,
+        "cooldowns": {},
+        "moving": 0
+      },
+      {
+        "id": "p-knight",
+        "name": "휘겸",
+        "role": "knight",
+        "cls": "knight",
+        "side": 0,
+        "x": 540,
+        "y": 4300,
+        "vx": 0,
+        "vy": 0,
+        "hp": 1382,
+        "maxHp": 1382,
+        "r": 22,
+        "h": 92,
+        "focus": 208,
+        "maxFocus": 208,
+        "regen": 21,
+        "level": 13,
+        "attack": 4.261900000000001,
+        "armor": 0.361,
+        "shield": 0,
+        "bound": 0,
+        "mark": 0,
+        "breaks": 0,
+        "acted": false,
+        "moveLeft": 1864,
+        "maxMove": 1864,
+        "walkSpeed": 360,
+        "angle": 44,
+        "lastPower": 0.55,
+        "loadout": [
+          "S00",
+          "S01",
+          "S03",
+          "S05"
+        ],
+        "tune": 0.5,
+        "facing": 1,
+        "hurt": 0,
+        "anim": 0,
+        "airborne": false,
+        "fixed": false,
+        "spawnX": 540,
+        "spawnY": 4300,
+        "intent": "",
+        "dead": false,
+        "ranks": {
+          "S00": 1,
+          "S01": 7,
+          "S03": 7,
+          "S05": 7
+        },
+        "group": 0,
+        "awake": true,
+        "lastAct": 0,
+        "aggroUntil": 0,
+        "xpBudget": 0,
+        "xpGranted": 0,
+        "killRewarded": false,
+        "damageBy": {},
+        "honroAlly": false,
+        "honroCivilian": false,
+        "critChance": 0.0764,
+        "critMultiplier": 1.8340000000000003,
+        "cooldowns": {}
+      },
+      {
+        "id": "p-occultist",
+        "name": "소단",
+        "role": "occultist",
+        "cls": "occultist",
+        "side": 0,
+        "x": 650,
+        "y": 4300,
+        "vx": 0,
+        "vy": 0,
+        "hp": 999,
+        "maxHp": 999,
+        "r": 22,
+        "h": 92,
+        "focus": 301,
+        "maxFocus": 301,
+        "regen": 25,
+        "level": 13,
+        "attack": 4.636800000000001,
+        "armor": 0.23600000000000002,
+        "shield": 0,
+        "bound": 0,
+        "mark": 0,
+        "breaks": 0,
+        "acted": false,
+        "moveLeft": 1724,
+        "maxMove": 1724,
+        "walkSpeed": 356,
+        "angle": 44,
+        "lastPower": 0.55,
+        "loadout": [
+          "O01",
+          "O02",
+          "O04",
+          "O08"
+        ],
+        "tune": 0.5,
+        "facing": 1,
+        "hurt": 0,
+        "anim": 0,
+        "airborne": false,
+        "fixed": false,
+        "spawnX": 650,
+        "spawnY": 4300,
+        "intent": "",
+        "dead": false,
+        "spiritSight": true,
+        "ranks": {
+          "O01": 1,
+          "O02": 6,
+          "O03": 1,
+          "O04": 6,
+          "O06": 1,
+          "O07": 1,
+          "O08": 6
+        },
+        "group": 0,
+        "awake": true,
+        "lastAct": 0,
+        "aggroUntil": 0,
+        "xpBudget": 0,
+        "xpGranted": 0,
+        "killRewarded": false,
+        "damageBy": {},
+        "honroAlly": false,
+        "honroCivilian": false,
+        "critChance": 0.096,
+        "critMultiplier": 1.799,
+        "cooldowns": {}
+      }
+    ],
+    "scope": "Final art source; production outcome of actual old R19 export -> result/rest/17 launch and export/Continue. Previous16 normal combat reused by byte-exact nonvisual contract; no new16 fullplay."
+  },
+  "actualR19Browser": {
+    "checkedCommit": "0ae34a2212d5506164220f858f678bceb5a00036",
+    "input": "_local/reports/stage16-current-pacing-20261022/resume/checkpoint.json",
+    "inputSha256": "6c4133117f9357d38c02c21d87f2b37580b85c828474e0f10781405c836eb0b9",
+    "wholeBattleContinueExact": true,
+    "renderPure": true,
+    "scope": "View an actual native normal-input checkpoint in final published-source UI.\nNo combat replay or art change. Freeze frame scheduling, production Continue,\nthen render at a declared inspection camera without editing gameplay state.\n",
+    "view": {
+      "round": 19,
+      "phase": "won",
+      "goal": null,
+      "done": {
+        "monk": true,
+        "clear-rescue-threat": true,
+        "witness": true,
+        "hall": true,
+        "record": true
+      },
+      "camera": [
+        5650,
+        4150,
+        0.4
+      ],
+      "heroes": [
+        {
+          "id": "p-archer",
+          "x": 2143.0016409044865,
+          "y": 5360.819573364834,
+          "hp": 0,
+          "focus": 186,
+          "moveLeft": 1647,
+          "dead": true
+        },
+        {
+          "id": "p-mage",
+          "x": 2115.2118253981566,
+          "y": 5368.044925396479,
+          "hp": 0,
+          "focus": 255,
+          "moveLeft": 1668,
+          "dead": true
+        },
+        {
+          "id": "p-knight",
+          "x": 5557.806405027118,
+          "y": 4250,
+          "hp": 1250,
+          "focus": 208,
+          "moveLeft": 1864,
+          "dead": false
+        },
+        {
+          "id": "p-occultist",
+          "x": 4437.649047117668,
+          "y": 4327.928457383519,
+          "hp": 922,
+          "focus": 209,
+          "moveLeft": 1724,
+          "dead": false
+        }
+      ],
+      "enemies": 36
+    },
+    "errors": [],
+    "httpFailures": []
+  },
+  "freshUICapture": {
+    "sha": "0ae34a2212d5506164220f858f678bceb5a00036",
+    "workingTree": "",
+    "scope": "Fresh isolated debug UI; actual wheel/drag and explicitly separate fixed cameras. No combat completion/FPS claim.",
+    "rows": [
+      {
+        "file": "entry-default.jpg",
+        "mode": "Actual fresh UI entry/default follow",
+        "camera": [
+          730.0745252066605,
+          5296.817392041804,
+          0.94
+        ],
+        "viewport": {
+          "left": 102.41495073857539,
+          "right": 1357.7340996747457,
+          "top": 4963.738934594995,
+          "bottom": 5629.895849488613
+        },
+        "goal": "monk",
+        "objectiveText": "들린 승려 구조 · 구조",
+        "phase": "aim",
+        "round": 1,
+        "cache": {
+          "worldBuilds": 2,
+          "worldBuildMs": 45.19999997317791,
+          "bgBuilds": 0,
+          "bgBuildMs": 0,
+          "worldHits": 380,
+          "bgHits": 0,
+          "domainCanvasAllocations": 22,
+          "domainTileBuilds": 22,
+          "screenWorldBytes": 0,
+          "screenBackgroundBytes": 0,
+          "worldBytes": 14910336,
+          "worldScale": 0.68,
+          "backgroundBytes": 0
+        },
+        "heroes": [
+          {
+            "id": "p-archer",
+            "x": 570,
+            "y": 5480,
+            "hp": 365
+          },
+          {
+            "id": "p-mage",
+            "x": 460,
+            "y": 5480,
+            "hp": 390
+          },
+          {
+            "id": "p-knight",
+            "x": 680,
+            "y": 5480,
+            "hp": 641
+          },
+          {
+            "id": "p-occultist",
+            "x": 350,
+            "y": 5480,
+            "hp": 460
+          }
+        ]
+      },
+      {
+        "file": "minimum-entry.jpg",
+        "mode": "Actual UI wheel two pages",
+        "camera": [
+          734.8346739670077,
+          5310.962546217205,
+          0.17352941176470588
+        ],
+        "viewport": {
+          "left": -2665.165326032992,
+          "right": 4134.834673967008,
+          "top": 3506.693478420595,
+          "bottom": 7115.2316140138155
+        },
+        "goal": "monk",
+        "objectiveText": "들린 승려 구조 · 구조",
+        "phase": "aim",
+        "round": 1,
+        "cache": {
+          "worldBuilds": 4,
+          "worldBuildMs": 75.69999994337559,
+          "bgBuilds": 0,
+          "bgBuildMs": 0,
+          "worldHits": 459,
+          "bgHits": 26,
+          "domainCanvasAllocations": 39,
+          "domainTileBuilds": 39,
+          "screenBuilds": 4,
+          "screenHits": 52,
+          "screenWorldBytes": 2954720,
+          "screenBackgroundBytes": 2954720,
+          "worldBytes": 8520192,
+          "worldScale": 0.21022410381342863,
+          "backgroundBytes": 0
+        },
+        "heroes": [
+          {
+            "id": "p-archer",
+            "x": 570,
+            "y": 5480,
+            "hp": 365
+          },
+          {
+            "id": "p-mage",
+            "x": 460,
+            "y": 5480,
+            "hp": 390
+          },
+          {
+            "id": "p-knight",
+            "x": 680,
+            "y": 5480,
+            "hp": 641
+          },
+          {
+            "id": "p-occultist",
+            "x": 350,
+            "y": 5480,
+            "hp": 460
+          }
+        ]
+      },
+      {
+        "file": "center-pan.jpg",
+        "mode": "Actual horizontal camera drag after wheel",
+        "camera": [
+          5800.000058550562,
+          5310.962546217205,
+          0.17352941176470588
+        ],
+        "viewport": {
+          "left": 2400.0000585505622,
+          "right": 9200.000058550562,
+          "top": 3506.693478420595,
+          "bottom": 7115.2316140138155
+        },
+        "goal": "monk",
+        "objectiveText": "들린 승려 구조 · 구조",
+        "phase": "aim",
+        "round": 1,
+        "cache": {
+          "worldBuilds": 4,
+          "worldBuildMs": 87.8999999538064,
+          "bgBuilds": 0,
+          "bgBuildMs": 0,
+          "worldHits": 902,
+          "bgHits": 75,
+          "domainCanvasAllocations": 43,
+          "domainTileBuilds": 43,
+          "screenBuilds": 36,
+          "screenHits": 150,
+          "screenWorldBytes": 2954720,
+          "screenBackgroundBytes": 2954720,
+          "worldBytes": 12780288,
+          "worldScale": 0.21022410381342863,
+          "backgroundBytes": 0
+        },
+        "heroes": [
+          {
+            "id": "p-archer",
+            "x": 570,
+            "y": 5480,
+            "hp": 365
+          },
+          {
+            "id": "p-mage",
+            "x": 460,
+            "y": 5480,
+            "hp": 390
+          },
+          {
+            "id": "p-knight",
+            "x": 680,
+            "y": 5480,
+            "hp": 641
+          },
+          {
+            "id": "p-occultist",
+            "x": 350,
+            "y": 5480,
+            "hp": 460
+          }
+        ]
+      },
+      {
+        "file": "overview.jpg",
+        "mode": "Fixed production camera; no gameplay actions",
+        "camera": [
+          5500,
+          3650,
+          0.105
+        ],
+        "viewport": {
+          "left": -1357.1428571428578,
+          "right": 12357.142857142859,
+          "top": -12.797619047619264,
+          "bottom": 7312.797619047619
+        },
+        "goal": "monk",
+        "objectiveText": "들린 승려 구조 · 구조",
+        "phase": "aim",
+        "round": 1,
+        "cache": {
+          "worldBuilds": 6,
+          "worldBuildMs": 124.29999995231628,
+          "bgBuilds": 0,
+          "bgBuildMs": 0,
+          "worldHits": 943,
+          "bgHits": 89,
+          "domainCanvasAllocations": 70,
+          "domainTileBuilds": 70,
+          "screenBuilds": 40,
+          "screenHits": 178,
+          "screenWorldBytes": 4429440,
+          "screenBackgroundBytes": 4429440,
+          "worldBytes": 15975360,
+          "worldScale": 0.125,
+          "backgroundBytes": 0
+        },
+        "heroes": [
+          {
+            "id": "p-archer",
+            "x": 570,
+            "y": 5480,
+            "hp": 365
+          },
+          {
+            "id": "p-mage",
+            "x": 460,
+            "y": 5480,
+            "hp": 390
+          },
+          {
+            "id": "p-knight",
+            "x": 680,
+            "y": 5480,
+            "hp": 641
+          },
+          {
+            "id": "p-occultist",
+            "x": 350,
+            "y": 5480,
+            "hp": 460
+          }
+        ]
+      },
+      {
+        "file": "hall.jpg",
+        "mode": "Fixed production camera; no gameplay actions",
+        "camera": [
+          6000,
+          4650,
+          0.35
+        ],
+        "viewport": {
+          "left": 3942.8571428571427,
+          "right": 8057.142857142857,
+          "top": 3551.160714285714,
+          "bottom": 5748.839285714286
+        },
+        "goal": "monk",
+        "objectiveText": "들린 승려 구조 · 구조",
+        "phase": "aim",
+        "round": 1,
+        "cache": {
+          "worldBuilds": 7,
+          "worldBuildMs": 142.49999995529652,
+          "bgBuilds": 0,
+          "bgBuildMs": 0,
+          "worldHits": 974,
+          "bgHits": 108,
+          "domainCanvasAllocations": 82,
+          "domainTileBuilds": 82,
+          "screenBuilds": 42,
+          "screenHits": 216,
+          "screenWorldBytes": 4429440,
+          "screenBackgroundBytes": 4429440,
+          "worldBytes": 12780288,
+          "worldScale": 0.42044820762685725,
+          "backgroundBytes": 0
+        },
+        "heroes": [
+          {
+            "id": "p-archer",
+            "x": 570,
+            "y": 5480,
+            "hp": 365
+          },
+          {
+            "id": "p-mage",
+            "x": 460,
+            "y": 5480,
+            "hp": 390
+          },
+          {
+            "id": "p-knight",
+            "x": 680,
+            "y": 5480,
+            "hp": 641
+          },
+          {
+            "id": "p-occultist",
+            "x": 350,
+            "y": 5480,
+            "hp": 460
+          }
+        ]
+      }
+    ],
+    "sourceHashes": {
+      "shared/data/campaign.json": "0c0bd410f63ed13b02c33cf26455762cc868ce5d2a9f0df0fef530a43f9da643",
+      "tools/environment/stage16-vector-finish.mjs": "d03487c07d0766787b09e64cc726c10c1dfad26f6a1b2173136a5e9fd703bb71",
+      "shared/runtime/act2-spatial-art.js": "1b357a1ca29de05a1d442b72e8d168bfa694b054539f574ac56a0b168dcec319",
+      "shared/runtime/renderer.js": "0fc0aa62a304d1274b40d56515ddb4363da21b53c33552d8adb876f06e24569d",
+      "shared/map/bounds.js": "823bdb282be142b95b731c71053b500038219abe2415d031062fa994f1f50170",
+      "web/manifest.json": "f62f1c1116bda930dc721f7b75b7c864acef5c47e4507cdd3d831da5343e4e93"
+    },
+    "errors": [],
+    "httpFailures": []
+  },
+  "typecheck": {
+    "passed": true,
+    "checkedCommit": "0ae34a2212d5506164220f858f678bceb5a00036",
+    "command": "npm --prefix game run typecheck",
+    "log": "\n> honro-game@1.0.0-rc.21 typecheck\n> tsc --project engine/tsconfig.json\n\nnpm notice\nnpm notice New major version of npm available! 11.9.0 -> 12.2.1\nnpm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.1\nnpm notice To update run: npm install -g npm@12.2.1\nnpm notice\n"
+  },
+  "photos": [
+    {
+      "path": "review/fresh-center.jpg",
+      "bytes": 97508,
+      "sha256": "8561c0eba5a78590b01b5b32f6159a8de01f6edf0066d866e65962e76cb56f96"
+    },
+    {
+      "path": "review/actual-r19.jpg",
+      "bytes": 97281,
+      "sha256": "b59e01ce39a1a6193868c6b5ac5f2529440e5c3be8e19e0b57c3c55714ae77e8"
+    }
+  ],
+  "limits": [
+    "No new16 combat fullplay on final art; previous R19 reused because nonvisual game source/data byte exact.",
+    "Previous run is historical-v3 ledger XP36313/level13/legal27SP, two party defeats; not current-v4 average growth or difficulty judgment.",
+    "R19 whole-battle exact also keeps the old visual payload in its snapshot. Fresh central UI is the new-art evidence; old R19 capture is save/outcome continuity evidence.",
+    "Fresh central UI is debug initial-level art inspection, not normal campaign entry evidence.",
+    "No new public deployment, rebuild, full30/verify, gameplay/physics/narrative/balance edits."
+  ]
+}
