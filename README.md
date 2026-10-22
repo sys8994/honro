@@ -118,12 +118,14 @@ npm.cmd run build
 
 지형·적 편성·증원은 [변경 구간의 교전 확인](game/docs/ENCOUNTER_ACCEPTANCE.md)에 따라 해당 구간의 실제 역할·이동·퀘스트를 짧게 확인합니다. `encounter:review`는 선택형 기록 도구이며 manifest·별도 검수자는 필수가 아닙니다. 알려진 관련 결함과 미확인 범위를 보고하고, 도구의 형식 통과를 미관·재미의 자동 승인으로 표시하지 않습니다.
 
-## BGM 첨부 정리 (2026-10-22, 통합 대기)
+## BGM 첨부 정리 (2026-10-22)
 
-현재 규칙은 [BGM 목록](assets/bgm/README.md)에 있습니다. 파일은 `main.mp3`, `battle-1.mp3`–`battle-6.mp3`이며 표시 제목과 첨부 ID·Git blob은 `shared/data/bgm.json`에서 관리합니다. 메인은 **혼로**, 1·3막은 **장막 너머의 음 → 하늘의 그림자 → 산 자와 남은 자**, 2막은 **불길의 춤 → 암막 → 불완전한 의식**을 순환합니다. 9·10장은 battle 3으로 시작합니다. 우하단 `배경음 - 곡명` 형식을 유지합니다.
+[현행 7곡 목록·제목·막별 매핑과 최종 검사 근거](assets/bgm/README.md). `main.mp3`는 **혼로**, 1·3막의 `battle-1`–`battle-3`은 **장막 너머의 음 → 하늘의 그림자 → 산 자와 남은 자**, 2막의 `battle-4`–`battle-6`은 **불길의 춤 → 암막 → 불완전한 의식**을 순환합니다. 9·10장은 battle 3으로 시작합니다. 우하단 `배경음 - 곡명` 형식과 9px 글씨를 유지하며 버튼 겹침을 피하도록 줄 높이·하단 여백만 조정했습니다.
 
-이 브랜치는 **미완료·master 통합 금지** 상태입니다. 새 첨부 battle 5/6의 준비 요청은 성공했으나 로컬 바이트 전송과 내부 목적지 1회 재시도가 실패했습니다. 현재 5개 기존 blob만 첨부 해시 일치·전체 MP3 decode·길이 확인을 완료했습니다. 원본 바이트와 Git 이력은 보존했습니다. 7곡 메타데이터/제목, App의 1/9/10/11/20/21/30장 연결과 순환·재시도·off/on·420ms crossfade는 소스/오디오 대역 검사로 확인합니다. 청취 페이지에서는 기존 5곡의 짧은 실제 Chromium 재생·제목·입력 전 MP3 요청 0개를 확인했습니다. 변경된 Game/Workshop 검수와 전체 7곡 청취를 수행한 것은 아닙니다.
+첨부 원본 2곡의 전송 오류는 `9de282ea`에서 해결됐고 7곡 모두 해시·전체 MP3 decode·길이를 확인했습니다. 현행 메타데이터는 `shared/data/bgm.json`의 파일명/역할/제목/막/hash이며 개인 Library ID는 제거했습니다. 원본 파일 바이트와 Git 이력은 보존합니다.
 
-재개 시 `node tests/bgm-assets.mjs`, `node tests/audio.mjs`, `node tests/music-titles.mjs`, `npm --prefix game run typecheck`, `npm run build`, `python tests/bgm-transitions.py`, `node tests/web-split.mjs`를 사용합니다. `bgm-assets`와 build는 누락된 battle 5/6을 현재 실패로 보고합니다. 변경된 게임의 브라우저 화면·오디오, 초기 네트워크와 Workshop 재생은 빌드 후 확인해야 합니다. master/Pages는 변경하지 않았습니다.
+공통 Game/Workshop 및 캐릭터 도감의 내장 런타임을 최신 소스에서 재생성했습니다. 오디오 대역 30개·제목·타입 검사, 1/9/10/11/20/21/30장 실제 Chromium 곡 선택·순환·재시도·off/on·휴식터/타이틀·Workshop 재생/Stop·초기 main만 요청·실패곡 회복, 9/10장 우선곡의 저장/Continue, 4개 화면 크기 제목 배치와 web-split를 확인했습니다. 전체 7곡 청취나 정상 전투 완주 검증은 아닙니다.
 
-생성물의 이전 파일 참조도 아직 남아 있습니다. 누락 첨부 확보 후 `npm run build`로 Game/Workshop·web를, `node tools/character-catalog/build.mjs`로 오디오를 생성하지 않는 캐릭터 도감의 내장 런타임 참조를 갱신해야 합니다. 미술 원본은 수정하지 않습니다.
+브랜치는 부모 최종 검토 대기이며 master/Pages는 직접 변경하지 않습니다. 부모가 통합한 최신 실루엣 master `28b26db6`은 이 단독 BGM 검사 기준에 섞지 않았습니다. 최종 통합은 최신 master를 보존하고 통합 소스에서 생성물을 재빌드해야 합니다.
+
+최종 검사 소스/생성물: `e539f9dbbdd3a28d1b7bb53c48e6f128fb9f3701`. 최종 `web/manifest.json` SHA256은 `7c9bc60d19a9cc6d666f79f28713beba3625fcbb56b5c13598e90742136278bb`이며 브라우저 기록도 같은 값을 확인합니다. 상세 실행 명령·로컬 증거 경로·한계는 위 BGM README에 있습니다.

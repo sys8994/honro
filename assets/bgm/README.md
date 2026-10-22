@@ -22,17 +22,29 @@
 - HTMLAudioElement 스트리밍, 기존 사용자 제스처 unlock/autoplay 거절 대기, music/musicVolume과 SFX 독립, 탭 숨김 정지, 첫 25ms 램프와 교체 420ms crossfade/최대 두 스트림을 보존한다. 초기에는 main만 준비하며 7곡 전체 다운로드·AudioBuffer decode·base64를 추가하지 않는다.
 - 훈련/Workshop도 연결된 장의 막을 사용한다. 장 정보가 없으면 1·3막 목록을 기본으로 한다. Stop은 스트림을 dispose한다. 저장 스키마는 변경하지 않는다.
 
-## 현재 상태와 검증 범위
+## 최종 상태와 검증 범위
 
-**미완료·master 통합 금지:** battle 5/6은 확정 Library ID로 준비했지만 실제 바이트 전송 실패, 실행기 내부 목적지로 허용된 한 번 재시도도 실패했다. 현재 디렉터리에 읽을 수 있는 원본은 main/battle 1–4의 5개다. 다른 파일 대체나 추가 전송 재시도는 하지 않았다. 이 다섯 파일은 첨부 blob과 일치해 rename으로 재사용했다. 첨부 ID와 예상 해시 7개는 `shared/data/bgm.json`에 보존했다.
+초기 battle 5/6 전송 오류는 부모가 첨부 원본을 Git으로 전달한 `9de282ea7aee9e41e97c9390dfc56548e8c76707`에서 해결됐다. 현재 `assets/bgm`에는 위 7개 MP3만 있다. 재전송·대체·재인코딩 없이 원본 바이트를 보존했다. 개인 Library ID는 현행 `shared/data/bgm.json`에서 제거했고, [원본 첨부 파일명·hash 기록](../../game/docs/BGM_TITLE_REVIEW.md)으로 출처를 관리한다.
 
-- 실제 완료: 기존 5개 전체 FFmpeg decode, ffprobe 길이(204.840/179.616/150.048/150.000/173.616초)·48kHz stereo MP3·Git blob 일치. 원본 바이트 보존.
-- 실제 완료: `node tests/audio.mjs` 30개(대역 HTMLAudioElement와 실제 App updateAudio 함수), `node tests/music-titles.mjs` 7개 제목/URL, `npm --prefix game run typecheck`. 1/9/10/11/20/21/30장, 목록 순환/경계/우선곡/재시도/실패/off-on/크로스페이드는 소스 기반 검사다.
-- `node tests/bgm-assets.mjs`는 5개 검증 후 battle 5/6 누락으로 실패하고, `npm run build`는 같은 누락을 검출해 중단한다. 기존 생성 HTML/web는 아직 재생성하지 않았다.
-- 청취 페이지에서 기존 5개를 Chromium으로 각각 짧게 실제 재생(currentTime > 0.1초, readyState=4, media error 없음)하고 표시 제목·동시 1곡을 확인했다. 입력 전 MP3 요청은 0개였다. 화면도 직접 확인했다. 이는 변경된 Game/Workshop 검수가 아니다. 로컬 기록: `_local/reports/bgm-listening-page.json` / `.png`.
-- 변경된 Game/Workshop의 실제 브라우저 표시·재생·초기 네트워크 검증은 **대기**다. 준비한 `python tests/bgm-transitions.py`는 1280/390 화면의 실제 MP3 currentTime·제목·초기 main만 요청·막별 순환·재시도·설정/음량·타이틀/쉼터·실패곡 회복·Workshop Stop을 검사한다. ended 이벤트는 단축한다.
-- 7곡 전체 청취, 정상 조작 전체 전투 완주, 실기기 Safari·스피커 출력은 확인한 것으로 간주하지 않는다. 상세 로컬 기록은 `_local/reports/bgm-assets.json`, `audio-unit.json`에 있다.
+최종 소스·공통 Game/Workshop 생성물·캐릭터 도감 내장 런타임은 **`e539f9dbbdd3a28d1b7bb53c48e6f128fb9f3701`**에 있다. 검사는 당시 HEAD `68118dac`의 작업 트리에서 수행했고 검증된 코드/생성물을 변경 없이 이 커밋에 저장했다. 이 뒤 변경은 문서뿐이다. 실루엣 개선을 포함한 부모의 최신 master `28b26db6`은 이 단독 검사 기준에 섞지 않았다. master/Pages는 직접 변경하지 않으며 최종 통합은 최신 master 보존·통합 소스 재빌드가 필요하다.
 
-누락 2곡을 같은 첨부 ID/해시로 확보한 후 자산 검사 → 관련 검사/타입 → build → 브라우저 → `node tests/web-split.mjs`를 실행해야 한다. 이 브랜치는 master/Pages를 변경하지 않는다.
+### 실제 완료한 검사
 
-생성물의 이전 파일 참조도 아직 남아 있습니다. 누락 첨부 확보 후 `npm run build`로 Game/Workshop·web를, `node tools/character-catalog/build.mjs`로 오디오를 생성하지 않는 캐릭터 도감의 내장 런타임 참조를 갱신해야 합니다. 미술 원본은 수정하지 않습니다.
+- `node tests/bgm-assets.mjs`: 7개 Git blob 일치, 전체 MP3를 FFmpeg null 출력으로 끝까지 decode, ffprobe codec/길이/48kHz stereo 확인. 길이(main, battle 1–6): **204.840 / 179.616 / 150.048 / 150.000 / 173.616 / 199.248 / 184.056초**. 누락·추가 MP3 0개.
+- `node tests/audio.mjs`: **30개**. 대역 HTMLAudioElement 및 실제 App updateAudio 함수로 1/9/10/11/20/21/30장, 막 경계·순환·우선곡·재시도·pause/mute/잠금·실패 목록 고갈·420ms crossfade를 확인했다.
+- `node tests/music-titles.mjs`, `npm --prefix game run typecheck`: 7개 첨부 제목/URL·오타 정리와 타입 검사 통과.
+- `npm run build`: 공통 Game/Workshop·직접 Playtest 문서 및 351개 현재 웹 자산 생성. `node tools/character-catalog/build.mjs`: 최신 소스로 도감 내장 런타임 재생성. 미술 원본은 수정하지 않았다. 현재 web/도감에서 옛 5개 MP3 파일명 참조가 남지 않았음을 확인했다.
+- `python tests/bgm-transitions.py`: **1280×800 / 390×844**의 실제 Chromium에서 1/9/10/11/20/21/30장 곡명·실제 currentSrc/currentTime/readyState·재생 스트림 1개, 1·3막 1→2→3→1 및 2막 4→5→6→4 순환, 현재 메뉴의 재시도·음소거·음량 0/복귀, 휴식터/타이틀 복귀와 스트림 유지, battle 6 fetch 실패→battle 4 복구, Workshop 재생·제목·Stop 해제 통과. 초기 MP3 요청은 양쪽 모두 **main.mp3만** 있었다. 일반 경로의 브라우저/미디어 오류는 0개다. 의도적으로 실패시킨 fetch는 별도 사례다.
+- `python tests/dialogue-music-opening-browser.py`: **19개 전환**. 9·10장 battle 3 진입·재시도·저장/Continue, 이후 같은 목록 순환, 반복 갱신·탭 숨김/복귀 시 스트림/시각 보존. 새 세션·저장 상태는 검사 fixture다.
+- `python tools/testing/music-label-layout-browser.py`: **320×568 / 390×844(safe top44/bottom34) / 844×390 / 1280×800**, 7개 제목의 배치 fixture 총 28개에서 버튼 겹침 0. 현재 main/전투 라벨과 줄바꿈, 실제 화면도 확인했다. 새 접두어 포함 라벨의 3px 안팎 겹침은 **9px 글씨·우하단 위치를 유지하고 line-height 1, 최소 하단 여백 1px**로 조정했다.
+- `node tests/web-split.mjs`: 현재 351개 파일의 해시/바이트, 30장·851개 라이브러리 항목의 native/웹 재조립 일치, Game/embedded 타이틀 진입·저장 보호, Workshop 직접 iframe 문서 연결 통과.
+
+### 빌드와 증거 식별
+
+- 최종 `web/manifest.json` SHA256: `7c9bc60d19a9cc6d666f79f28713beba3625fcbb56b5c13598e90742136278bb`.
+- 최종 `HONRO.html` SHA256: `8b7ae1a7ddc4cde3412e826905c0ba8edebbbff064da91b82feddace6acb1b4c`.
+- 최종 `HONRO_WORKSHOP.html` SHA256: `1fc6c7123f6b6be53f68365244b4f27d90305bbb5a4d860cf445a8738c2959f0`.
+- 브라우저 기록 `_local/reports/bgm-acts/browser.json`은 같은 manifest SHA를 기록한다. `_local/reports/bgm-acts/`의 build.log, catalog-build.log, browser.log, opening-browser.log, layout-browser.log, web-split.log와 장 9/11·타이틀 1280/390 스크린샷이 해당 실행 증거다.
+- 상세 자산/단위 결과: `_local/reports/bgm-assets.json`, `_local/reports/audio-unit.json`. 우선곡 브라우저: `_local/reports/dialogue-music-opening/checks.json`. 제목 배치: `_local/reports/bgm-label-layout/label-layout.json` 및 화면별 PNG. 자동 결과는 저장소 지침에 따라 `_local`에만 두며, 이 README의 요약과 위 커밋/해시가 원격 검토 기준이다.
+
+전체 파일 decode는 실제 청취와 다르다. 브라우저에서는 7곡을 각각 짧게 스트리밍했고 ended 이벤트로 순환을 단축했다. **7곡 전체 청취·정상 조작 캠페인 완주·실기기 Safari·물리 스피커 청감**을 확인한 것으로 과장하지 않는다. 전체 verify는 이번 BGM 변경 범위에 포함하지 않았다.

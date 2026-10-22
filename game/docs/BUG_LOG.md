@@ -4375,3 +4375,10 @@ HUD의 32~36px 내부 타일과 공통 스탬프의 둥근 이중 프레임을 �
 - 확인: 기존 5개 첨부 hash 일치/전체 FFmpeg decode·ffprobe, 오디오 대역 30개·7곡 제목·타입 검사 통과. 실제 App 함수의 1/9/10/11/20/21/30 연결 포함.
 - 별도 Chromium 확인: 청취 페이지의 기존 5곡 짧은 실제 재생/currentTime·제목·동시 1곡·입력 전 MP3 요청 0개. 새 Game/Workshop 검수는 아니다.
 - 차단: 새 battle 5/6 바이트 전송 실패와 내부 목적지 1회 재시도 실패. 자산 검사/build는 누락으로 실패했으며 생성물 재빌드와 변경된 Game/Workshop 브라우저 검수는 대기다. 상세 현행 상태는 assets/bgm/README.md. master/Pages는 미변경.
+
+### BGM 첨부 전송 복구·최종 검수 — 2026-10-22
+
+- 초기 차단은 부모의 원본 바이트 커밋 `9de282ea`로 해결됐다. 7개 hash·전체 MP3 decode/메타데이터 검증을 완료하고 `68118dac`에서 개인 Library ID를 제거했다. 원본 파일 바이트는 변경하지 않았다.
+- 최종 소스/생성물 `e539f9db`: 공통 build와 캐릭터 도감 내장 런타임 재생성, 오디오 대역 30·제목/타입·실제 Game/Workshop의 두 화면 크기 MP3 재생/막 목록/재시도/off-on/초기 main만 요청/Stop, 9·10장 우선곡 저장·Continue 19전환 및 web-split 통과.
+- 새 접두어를 포함한 곡명 라벨이 safe-area 모바일/가로 HUD의 내려가기 버튼과 약 3px 겹치는 것을 실제 브라우저에서 확인했다. 라벨의 9px 크기·우하단 형식을 보존하며 line-height와 최소 하단 여백만 조정했다. 최종 4개 화면 크기×7제목 배치 fixture와 직접 화면에서 겹침 0을 확인했다.
+- 최종 manifest SHA256 `7c9bc60d19a9cc6d666f79f28713beba3625fcbb56b5c13598e90742136278bb`; 원격 검토용 현재 계약·검사 범위는 `assets/bgm/README.md`. `_local/reports/bgm-acts/`에 실행 증거가 있다. 전곡 전체 청취·캠페인 정상 완주·실기기 검수는 아니다. master/Pages와 실루엣 변경은 부모가 담당한다.
