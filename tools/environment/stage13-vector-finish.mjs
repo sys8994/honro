@@ -53,6 +53,29 @@ export function applyStage13VectorFinish(project){
  onFloor('entry-edge-light','#a2aaa36a',[[1250,40],[1265,43],[1580,218],[1577,230],[1430,142]]);
  onFloor('mason-edge-light','#9ca99b5b',[[2110,430],[2240,400],[2470,580],[2454,582],[2240,415]]);
  onFloor('threshold-edge-light','#a6aaa35b',[[3740,32],[3970,140],[3960,151],[3741,47]]);
+ // The gate forecourt is a stepped exposure, not four pale full-screen facets.
+ // Unequal shared junctions describe bedding interrupted by substantial breaks.
+ const gateNodes={a:[3310,45],b:[3780,35],c:[4210,35],d:[4780,35],e:[5110,45],f:[5680,45],g:[6050,50],h:[6500,65],
+  i:[3400,240],j:[3880,210],k:[4330,180],l:[4850,310],m:[5260,220],n:[5790,270],o:[6170,220],p:[6580,300],
+  q:[3270,520],r:[3650,470],s:[4200,560],t:[4670,430],u:[5300,550],v:[5690,460],w:[6260,520],x:[6500,500],
+  A:[3400,910],B:[3900,850],C:[4390,940],D:[4870,860],E:[5350,930],F:[5820,870],G:[6330,920],H:[6720,850]};
+ const gateFace=(id,fill,keys)=>onFloor('gate-stratum-'+id,fill,keys.map(k=>gateNodes[k]));
+ for(const [id,fill,keys]of [
+  ['west-upper','#607276',['a','b','j','i']],['seat-upper','#5d7278',['b','c','k','j']],['door-upper','#566d74',['c','d','l','k']],
+  ['east-upper','#60767b',['d','e','m','l']],['gallery-upper','#586f77',['e','f','n','m']],['gallery-turn','#62777b',['f','g','o','n']],['far-upper','#516b75',['g','h','p','o']],
+  ['west-fold','#4b636d',['i','j','r','q']],['west-return','#566e75',['j','k','s','r']],['seat-return','#4b626d',['k','l','t','s']],
+  ['door-return','#516a73',['l','m','u','t']],['gallery-pocket','#4b646f',['m','n','v','u']],['gallery-face','#536c75',['n','o','w','v']],['far-return','#49636f',['o','p','x','w']],
+  ['west-deep','#405965',['q','r','B','A']],['seat-deep','#4b646e',['r','s','C','B']],['door-deep','#425b67',['s','t','D','C']],
+  ['east-deep','#4c6570',['t','u','E','D']],['gallery-deep','#405c6a',['u','v','F','E']],['turn-deep','#4b6570',['v','w','G','F']],['far-deep','#3c5867',['w','x','H','G']]
+ ])gateFace(id,fill,keys);
+ // Three finite overhang cavities share the strata junctions. Broad broken
+ // shadow lips have unequal depth; they are neither hairline scratches nor caps
+ // attached to every polygon. The thin walking rim remains the real top edge.
+ onFloor('gate-west-pocket','#2d4653',[[3750,214],[3970,194],[4200,206],[4330,180],[4270,238],[4190,316],[4030,285],[3860,264]]);
+ onFloor('gate-west-ledge','#788682',[[3750,214],[3970,194],[4200,206],[4330,180],[4282,202],[4170,222],[3970,211],[3808,235]]);
+ onFloor('gate-seat-pocket','#2f4957',[[4330,180],[4362,194],[4520,290],[4625,313],[4670,430],[4613,390],[4585,338],[4480,316],[4350,237]]);
+ onFloor('gate-gallery-pocket','#2a4655',[[5300,550],[5400,526],[5545,537],[5690,460],[5705,495],[5565,587],[5420,574],[5340,599]]);
+ onFloor('gate-gallery-ledge','#778782',[[5300,550],[5400,526],[5545,537],[5690,460],[5705,473],[5550,555],[5400,542],[5320,567]]);
  // The old doorway ceiling stays the only silhouette. Broad reverse-dipping
  // planes link its nose to the darker inner vault; joints are finite fragments.
  add(roof.id,'vault-west','#405864',[[3820,-800],[4900,-1000],[5560,900],[5300,2200],[4760,3100],[4200,2600]]);
@@ -68,6 +91,21 @@ export function applyStage13VectorFinish(project){
  onRoof('nose-joint','#243f4f',[[4430,470],[4445,470],[4470,330],[4458,165],[4445,170],[4451,330]]);
  onRoof('vault-joint','#304d5c',[[5100,180],[5114,180],[5180,310],[5209,486],[5194,490],[5164,315]]);
  onRoof('vault-edge-light','#9da99f5b',[[4540,50],[4549,64],[4830,270],[4830,260],[4700,151]]);
+ // Offset vault courses continue into the mother rock above the lintel.
+ // Shared irregular edges replace the enormous triangular front planes locally.
+ const vaultNodes={a:[4120,35],b:[4540,40],c:[4950,35],d:[5500,40],e:[5860,50],f:[6380,45],g:[6780,75],
+  h:[4220,350],i:[4650,300],j:[5070,520],k:[5660,330],l:[6030,420],m:[6590,290],n:[6870,400],
+  o:[4150,830],p:[4630,990],q:[5260,810],r:[5660,1040],s:[6250,940],t:[6680,850],
+  u:[4280,1460],v:[4860,1570],w:[5400,1440],x:[5940,1540],y:[6510,1500],z:[7040,1450]};
+ const vaultFace=(id,fill,keys)=>onRoof('vault-course-'+id,fill,keys.map(k=>vaultNodes[k]));
+ for(const [id,fill,keys]of [
+  ['nose','#5e737b',['a','b','i','h']],['lintel','#61767c',['b','c','j','i']],['east-seat','#526b76',['c','d','k','j']],['throat','#5b727c',['d','e','l','k']],['recess','#486371',['e','f','m','l']],['turn','#526b77',['f','g','n','m']],
+  ['west-upper','#405a68',['h','i','p','o']],['lintel-upper','#4a6470',['i','j','q','p']],['seam-upper','#425e6c',['j','k','r','q']],['throat-upper','#4c6672',['k','l','s','r']],['east-upper','#405d6c',['l','m','t','s']],
+  ['west-high','#4c626d',['o','p','v','u']],['central-high','#405b69',['p','q','w','v']],['throat-high','#4a626e',['q','r','x','w']],['east-high','#3d5969',['r','s','y','x']],['turn-high','#465f6d',['s','t','z','y']]
+ ])vaultFace(id,fill,keys);
+ onRoof('vault-lintel-cavity','#233d4b',[[4540,40],[4650,300],[4800,340],[5100,430],[5060,355],[4840,284],[4680,245]]);
+ onRoof('vault-east-cavity','#284554',[[5440,40],[5570,330],[5770,386],[6030,420],[5970,350],[5750,321],[5610,285]]);
+ onRoof('vault-seated-edge','#82918d',[[4540,40],[4565,60],[4675,277],[4840,313],[4800,340],[4650,300]]);
  // Small existing solid ledges retain their live thickness and paths.
  for(const id of ['tactical-entry-shoulder','tactical-inner-gallery']){
   const t=stage.terrains.find(t=>t.id===id),top=t.points.slice(0,t.properties.honroWalkEdges.length+1),last=top.at(-1),first=top[0],mid=top[2];
@@ -103,14 +141,38 @@ export function applyStage13VectorFinish(project){
   path('M142 5L179 5 191 74 155 64Z','#463d31')+path('M150 4L160 5 170 65 155 64Z','#8c7552')+
   path('M143 62L185 70 199 82 168 92 139 76Z','#5d6f70'),{bounds:{x:-210,y:-465,w:430,h:565}});
  const threshold=variant('act2:scene-stone-threshold','stage13:stone-threshold-joint',
+  // Broad asymmetric worked jambs and three offset header stones. Their rear
+  // shoulders disappear into the ceiling rather than outlining a pasted frame.
+  path('M-578-859L-431-944-313-872-310-603-379-528-561-551Z','#5a6d71')+
+  path('M-561-551L-379-528-310-603-304-290-369-218-547-246Z','#4e646b')+
+  path('M-547-246L-369-218-304-290-300 12-410 39-570 8Z','#5a6e72')+
+  path('M310-855L431-920 564-865 590-527 413-482 309-560Z','#526b73')+
+  path('M309-560L413-482 590-527 568-194 423-230 310-192Z','#60757b')+
+  path('M310-192L423-230 568-194 614 23 459 52 310 12Z','#4c656e')+
+  path('M-602-862L-548-971-248-1003-191-900-230-809-535-806Z','#60767c')+
+  path('M-248-1003L94-1044 168-950 122-811-230-809-191-900Z','#6d8084')+
+  path('M94-1044L442-981 607-872 538-803 122-811 168-950Z','#586f79')+
+  path('M-535-806L-230-809 122-811 538-803 518-773 300-780-309-773-542-782Z','#223b47')+
+  path('M-379-528L-310-603-310-565-356-510-542-525-561-551Z M413-482L590-527 584-500 430-457 310-531 309-560Z','#293f49')+
+  path('M-548-971L-248-1003-191-900-211-874-263-981-558-945Z M94-1044L442-981 486-950 423-959 112-1019Z','#84928e')+
   path('M-439-449L-372-460-305-450-307-433-382-442-442-430Z M270-342L338-330 435-321 433-308 341-317 270-326Z','#7b898c')+
   path('M-437-688L-337-700-322-641-361-548-425-559Z M293-672L393-701 418-633 397-537 335-552Z','#516b72')+
   path('M-331-701L-319-698-320-642-359-546-370-552-335-645Z M337-553L349-553 366-478 355-461 344-473Z','#243e4a')+
   path('M-507 4L-371 6-308 28-244 30-249 86-391 64-525 26Z M238 29L367 15 487 32 519 74 371 80 250 91Z','#344e59'),
-  {bounds:{x:-530,y:-1250,w:1060,h:1360},under:path('M-136-805L-101-1130 5-1242 131-1149 211-921 321-805 103-825Z','#344e5c')+path('M-101-1130L-48-1111 22-916 103-825-136-805Z','#4c6570')});
+  {bounds:{x:-680,y:-1250,w:1360,h:1360},under:path('M-655-4L-650-685-560-1070-318-1180-170-1050-220-807-330-778-331 25Z M300 25L300-800 470-1080 655-974 666-560 640 43Z','#304955')+path('M-136-805L-101-1130 5-1242 131-1149 211-921 321-805 103-825Z','#344e5c')+path('M-101-1130L-48-1111 22-916 103-825-136-805Z','#4c6570')});
  const replacements={'a2-scene-13-mason-workbench':shelter,'a2-13-0':house,'a2-13-1':hoist,'a2-scene-13-stone-boundary':threshold};
  for(const e of stage.elements)if(replacements[e.id])e.assetId=replacements[e.id];
  for(const e of space.scenery)if(replacements[e.elementId||e.id])e.assetId=replacements[e.elementId||e.id];
+ // Two small reused work-residue groups, behind actors and supported by the
+ // unchanged floor. Existing Library collision remains empty.
+ stage.elements=stage.elements.filter(e=>!e.stage13Finish);
+ space.scenery=space.scenery.filter(e=>!e.stage13Finish);
+ for(const [suffix,x,scale,roomId]of [['mason',2640,.22,'mason-ledge'],['threshold',3840,.24,'stone-threshold']]){
+  const assetId='stage12:quarry-carrier-rubble',id='stage13-finish-rubble-'+suffix,y=grade(floor,x)-4;
+  const asset=project.library.find(a=>a.id===assetId);if(!asset?.vector||asset.collision.length)throw Error('Expected existing visual work residue');
+  stage.elements.push({id,assetId,x,y,scale,rotation:0,snap:false,layer:'back',depthLayer:'L1',stage13Finish:true});
+  space.scenery.push({id,elementId:id,assetId,roomId,surfaceId:'floor-main',x,y,scale,footOffset:-4,visualOnly:true,stage13Finish:true});
+ }
  stage.design.stoneFinish={revision:1,source:'common-space-terrainPlanes-and-opt-in-library-variants',planeCount:planes.length,variants,scope:'visual material and decoration only; geometry/actors/goals unchanged'};
  return project;
 }

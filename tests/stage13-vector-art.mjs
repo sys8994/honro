@@ -9,7 +9,7 @@ import {applyStage13VectorFinish} from '../tools/environment/stage13-vector-fini
 const base='934fcabd74767d662aee3830585ba807234934cc',before=JSON.parse(execFileSync('git',['show',base+':shared/data/campaign.json'],{maxBuffer:40*1024*1024})),after=JSON.parse(await readFile('shared/data/campaign.json','utf8'));
 const hash=v=>createHash('sha256').update(JSON.stringify(v)).digest('hex');
 const variants=after.stages[12].design.stoneFinish.variants,reverse=new Map(variants.map(v=>[v.id,v.baseId]));
-const protectedStage=s=>{s=structuredClone(s);delete s.design.stoneFinish;delete s.design.space.terrainPlanes;for(const e of [...s.elements,...s.design.space.scenery])if(reverse.has(e.assetId))e.assetId=reverse.get(e.assetId);return s;};
+const protectedStage=s=>{s=structuredClone(s);delete s.design.stoneFinish;delete s.design.space.terrainPlanes;s.elements=s.elements.filter(e=>!e.stage13Finish);s.design.space.scenery=s.design.space.scenery.filter(e=>!e.stage13Finish);for(const e of [...s.elements,...s.design.space.scenery])if(reverse.has(e.assetId))e.assetId=reverse.get(e.assetId);return s;};
 for(let i=0;i<before.stages.length;i++)assert.deepEqual(i===12?protectedStage(after.stages[i]):after.stages[i],i===12?protectedStage(before.stages[i]):before.stages[i],'Protected chapter '+(i+1));
 assert.deepEqual(after.library.slice(0,before.library.length),before.library,'Existing common asset originals');
 assert.equal(after.library.length,before.library.length+4);assert.equal(variants.length,4);
