@@ -320,7 +320,7 @@
             }
         }
 
-        showCamp(cls=this.cls){if(!G.HonroRestJourney.state(this.profile).restStageId&&G.HonroSplitCampaign?.redirectRest(this))return;const y=$('armory')?.scrollTop||0,details=this.root.querySelector('[data-camp-details="training"]')?.open;this.stopBattle();this.close();this.screen='camp';this.prepareDebugCamp();if(!this.profile.recruited.includes(cls))cls=this.profile.recruited[0];this.cls=cls;this.root.innerHTML=G.HonroUI.camp(this.profile,cls,this.top('모닥불','rest'),this.branch).replace('id="camp-scroll"','id="armory"');if(this.debugMode)this.root.innerHTML=this.root.innerHTML.replace('</nav>','</nav>'+this.debugLevelMarkup(cls));$('armory').scrollTop=y;const training=this.root.querySelector('[data-camp-details="training"]');if(training)training.open=!!details;}
+        showCamp(cls=this.cls){if(!G.HonroRestJourney.state(this.profile).restStageId&&G.HonroSplitCampaign?.redirectRest(this))return;const y=$('armory')?.scrollTop||0,details=this.root.querySelector('[data-camp-details="training"]')?.open;this.stopBattle();this.close();this.screen='camp';this.prepareDebugCamp();if(!this.profile.recruited.includes(cls))cls=this.profile.recruited[0];this.cls=cls;let html=G.HonroUI.camp(this.profile,cls,this.top('모닥불','rest'),this.branch).replace('id="camp-scroll"','id="armory"');if(this.debugMode)html=html.replace('</nav>','</nav>'+this.debugLevelMarkup(cls));if(G.HonroSkillImages)G.HonroSkillImages.patch(this.root,html);else this.root.innerHTML=html;$('armory').scrollTop=y;const training=this.root.querySelector('[data-camp-details="training"]');if(training)training.open=!!details;}
 
 
         debugLevelMarkup(cls){const level=C.levelOf(this.profile.heroes[cls]);return `<div class="camp-resume-note debug-level-control"><label for="debug-hero-level">디버그 · ${esc(H.hero[cls].name)} 경지</label> <select id="debug-hero-level" data-debug-level="${cls}">${Array.from({length:C.levelOf(Number.MAX_SAFE_INTEGER)},(_,i)=>`<option value="${i+1}" ${level===i+1?'selected':''}>경지 ${i+1}</option>`).join('')}</select><p>기예는 자유롭게 선택합니다. 경지를 낮추면 능력치 수련을 해당 경지의 수련점 한도로 맞춥니다. 준비는 새 진입·다시 걷기에 적용됩니다.</p></div>`;}
@@ -807,6 +807,24 @@
             const label=button.querySelector('.fire-label');if(label)label.textContent=this.engine.iceGourdReady()?'폭발':this.charging?Math.round(power*100)+'%':'발사';
             if(!button.disabled)button.title=previous?'이전 발사 '+Math.round(previous*100)+'%':'누른 채 충전, 손을 떼어 발사';
         }
+        updateSkillButtons(u,ids){
+            const root=$('combat-skills'),e=this.engine,unused=new Set(root.children);
+            ids=Array.from({length:4},(_,i)=>ids[i]);
+            const states=ids.map(id=>{const s=S[id];return s?[id,s.name,s.color,e.cooldownLeft(u,id),e.manaCost(s,u),e.skillAllowed(s,u),u.focus<e.manaCost(s,u),id===this.selected]:[id];});
+            const signature=JSON.stringify(states);if(root._skillSignature===signature&&root.children.length===4)return;root._skillSignature=signature;
+            ids.forEach((id,i)=>{const s=S[id],key=s?.id||'empty-'+i;let button=[...root.children].find(n=>n.dataset.skillKey===key);
+                if(!button){button=document.createElement('button');button.dataset.skillKey=key;button.className='skill-button';if(s)button.innerHTML='<span class="key"></span><span class="mana-cost"></span>'+this.sig(id)+'<span class="skill-name"></span>';else button.textContent='—';}
+                unused.delete(button);if(root.children[i]!==button)root.insertBefore(button,root.children[i]||null);
+                if(!s){button.className='skill-button empty';button.disabled=true;return;}
+                const r=e.cooldownLeft(u,id),selected=id===this.selected,allowed=e.skillAllowed(s,u);
+                button.classList.toggle('selected',selected);button.classList.toggle('unaffordable',!!(u.focus<e.manaCost(s,u)||r));
+                const attr=(name,value)=>{if(button.getAttribute(name)!==value)button.setAttribute(name,value);};
+                attr('data-action','combat-skill');attr('data-skill',id);attr('aria-label',s.name);attr('aria-pressed',String(selected));
+                if(button.disabled===allowed)button.disabled=!allowed;if(!allowed)attr('title','파진연격 · 검술만 가능');else if(button.hasAttribute('title'))button.removeAttribute('title');
+                if(button.style.getPropertyValue('--skill')!==s.color)button.style.setProperty('--skill',s.color);
+                for(const [selector,value] of [['.key',String(i+1)],['.mana-cost',String(r?r+'회':e.manaCost(s,u)||'')],['.skill-name',s.name]]){const node=button.querySelector(selector);if(node.textContent!==value)node.textContent=value;}
+            });for(const button of unused)button.remove();
+        }
         updateHUD(force = false) {
             const active=this.engine?.active;
             if(active){const remembered=this.selectedByUnit[active.id];if(remembered&&G.HonroStakeCrossing.skills(this.engine.b,active).includes(remembered))this.selected=remembered;if(!this.selectedByUnit[active.id])this.selectedByUnit[active.id]=this.selected||active.loadout.find(id=>!S[id]?.passive);}
@@ -820,10 +838,10 @@
             const players=b.units.filter(v=>v.side===0&&!v.summoned),sig=players.map(v=>[v.id,Math.round(v.hp),Math.round(v.focus),v.acted,v.dead].join(':')).join('|')+'|'+u.id+'|'+this.selected+'|'+b.round+'|'+u.meleeFollow+'|'+u.jucheonReady+'|'+u.harmony;
             if(force||sig!==this.hudSig){
                 this.hudSig=sig;
-                $('hero-switches').innerHTML=players.map(v=>`<button class="ally-chip player-chip ${v.id===b.active?'active':''} ${v.acted||v.dead?'acted':''}" data-action="select-hero" data-id="${v.id}" aria-label="${H.hero[v.cls].name}${v.dead?' · 전투불능':''} · 선택">${this.portrait(v.cls)}<span><strong>${H.hero[v.cls].name}</strong><small>${Math.round(Math.max(0,v.hp)/v.maxHp*100)}%</small></span></button>`).join('');
-                $('combat-skills').innerHTML=[0,1,2,3].map(i=>{const s=S[combatSkills[i]],r=s?e.cooldownLeft(u,s.id):0;return s?`<button class="skill-button ${s.id===this.selected?'selected':''} ${u.focus<e.manaCost(s,u)||r?'unaffordable':''}" style="--skill:${s.color}" data-action="combat-skill" data-skill="${s.id}" aria-label="${s.name}" aria-pressed="${s.id===this.selected}" ${e.skillAllowed(s,u)?'':'disabled title="파진연격 · 검술만 가능"'}><span class="key">${i+1}</span><span class="mana-cost">${r?r+'회':e.manaCost(s,u)||''}</span>${this.sig(s.id)}<span class="skill-name">${s.name}</span></button>`:`<button class="skill-button empty" disabled>—</button>`;}).join('');
-                this.drawPortraits();
+                const heroSig=players.map(v=>[v.id,v.cls,Math.round(v.hp/v.maxHp*100),v.acted,v.dead,v.id===b.active].join(':')).join('|');if(this.heroSig!==heroSig||!$('hero-switches').children.length){this.heroSig=heroSig;$('hero-switches').innerHTML=players.map(v=>`<button class="ally-chip player-chip ${v.id===b.active?'active':''} ${v.acted||v.dead?'acted':''}" data-action="select-hero" data-id="${v.id}" aria-label="${H.hero[v.cls].name}${v.dead?' · 전투불능':''} · 선택">${this.portrait(v.cls)}<span><strong>${H.hero[v.cls].name}</strong><small>${Math.round(Math.max(0,v.hp)/v.maxHp*100)}%</small></span></button>`).join('');
+                this.drawPortraits();}
             }
+            this.updateSkillButtons(u,combatSkills);
             $('hp-fill').style.width=(Math.max(0,u.hp)/u.maxHp*100)+'%';$('hp-label').textContent=Math.round(Math.max(0,u.hp))+' / '+u.maxHp;
             $('mp-fill').style.width=(u.focus/u.maxFocus*100)+'%';$('mp-label').textContent=Math.round(u.focus)+' / '+u.maxFocus;
             $('move-fill').style.width=(u.maxMove>0?clamp(u.moveLeft/u.maxMove*100,0,100):0)+'%';$('move-label').textContent=Math.round(Math.max(0,u.moveLeft))+' / '+Math.round(u.maxMove);
