@@ -1,5 +1,5 @@
 """Real browser MP3/label checks. Debug launches and synthetic ended are not full plays/listening."""
-import json
+import json, hashlib, subprocess
 from urllib.parse import urlsplit, unquote
 from playwright.sync_api import sync_playwright
 from browser_support import ROOT, launch, serve_game
@@ -30,13 +30,14 @@ def run():
                     && !l.hidden && l.textContent==='배경음 - '+arg.title;}''', arg={'index':index,'title':item['title']})
                 assert page.evaluate('HonroApp.audio.music.status().playing') == 1
                 assert unquote(urlsplit(page.evaluate('HonroApp.audio.music.current.currentSrc')).path).endswith('/'+item['file'])
-            playing(0); page.locator('#modal button.close').click()
+            playing(0); page.locator('#modal .menu-close').click()
             page.evaluate('HonroApp.debugMode=true')
             mappings = []
             for stage, index in [(1,1),(9,3),(10,3),(11,4),(20,5),(21,1),(30,2)]:
                 page.evaluate('(s)=>HonroApp.launch(s)', stage); playing(index)
                 assert page.evaluate('HonroApp.audio.music.current.currentTime') < 2
-                mappings.append({'stage':stage,'file':CATALOG[index]['file']})
+                mappings.append({'stage':stage,'file':CATALOG[index]['file'],**page.evaluate('''()=>({status:HonroApp.audio.music.status(),label:document.getElementById('bgm-now-playing').textContent,readyState:HonroApp.audio.music.current.readyState,duration:HonroApp.audio.music.current.duration})''')})
+                if stage in [9,11]: page.screenshot(path=str(OUT/f'stage-{stage}-{width}.png'))
             for stage, sequence in [(1,[1,2,3,1]),(11,[4,5,6,4])]:
                 page.evaluate('HonroApp.showTitle()'); playing(0)
                 page.evaluate('(s)=>HonroApp.launch(s)', stage); playing(sequence[0])
@@ -47,14 +48,17 @@ def run():
             page.evaluate('if(HonroApp.dialogue)HonroStory.finish(HonroApp);HonroApp.turnNotice=null;HonroApp.pause();window.kept=HonroApp.audio.music.current')
             before = page.evaluate('kept.currentTime'); page.wait_for_timeout(200)
             assert page.evaluate('kept.currentTime') > before
-            page.locator('[data-action="retry"]').click(); playing(5)
+            page.locator('[data-action="retry-menu"]').click()
+            page.locator('[data-action="retry-confirm"][data-id="battle"]').click()
+            page.locator('[data-action="menu-confirm"]').click(); playing(5)
             page.evaluate('if(HonroApp.dialogue)HonroStory.finish(HonroApp);HonroApp.turnNotice=null;HonroApp.settings();window.kept=HonroApp.audio.music.current')
+            page.locator('[data-action="settings-page"][data-id="sound"]').click()
             page.locator('#setting-music').uncheck(); page.wait_for_function('HonroApp.audio.music.current.paused&&document.getElementById("bgm-now-playing").hidden')
             page.locator('#setting-music').check(); playing(5); assert page.evaluate('HonroApp.audio.music.current===kept')
             page.evaluate('HonroApp.profile.settings.musicVolume=0;HonroApp.audio.configure(HonroApp.profile.settings)')
             page.wait_for_function('HonroApp.audio.music.current.paused&&document.getElementById("bgm-now-playing").hidden')
             page.evaluate('HonroApp.profile.settings.musicVolume=.4;HonroApp.audio.configure(HonroApp.profile.settings)'); playing(5)
-            page.locator('#modal button.close').click()
+            page.locator('#modal .menu-close').click()
             page.evaluate('HonroApp.showRest()'); playing(0)
             page.evaluate('window.kept=HonroApp.audio.music.current;HonroApp.showTitle()'); playing(0)
             assert page.evaluate('HonroApp.audio.music.current===kept')
@@ -81,7 +85,7 @@ def run():
         editor.evaluate('window.oldAudio=HonroWorkshopAPI.getPlayApp().audio');editor.click('#stopPlay')
         assert editor.evaluate('oldAudio.music.current===null&&oldAudio.music.outgoing===null')
         rows.append({'workshopPlaybackLabelAndDispose':True});browser.close()
-    (OUT/'browser.json').write_text(json.dumps({'note':'Debug stage entry, real short MP3 playback; ended accelerated; no full listening/combat clear.','checks':rows},ensure_ascii=False,indent=2))
+    (OUT/'browser.json').write_text(json.dumps({'sourceCommit':subprocess.check_output(['git','rev-parse','HEAD'],cwd=ROOT,text=True).strip(),'manifestSha256':hashlib.sha256((ROOT/'web/manifest.json').read_bytes()).hexdigest(),'note':'Debug stage entry, real short MP3 playback; ended accelerated; no full listening/combat clear.','checks':rows},ensure_ascii=False,indent=2))
     print(json.dumps(rows,ensure_ascii=False))
 
 if __name__=='__main__':
