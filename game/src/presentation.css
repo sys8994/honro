@@ -62,10 +62,13 @@
 /* Keep the three reading controls together even beside a narrow portrait. */
 .story-actions>button,.narration-actions>button{white-space:nowrap;flex-shrink:0}
 .story-actions>button:disabled,.narration-actions>button:disabled{opacity:.38;cursor:default;box-shadow:none}
-@media(max-width:650px){.dialogue-scene .story-copy{display:contents}.dialogue-scene .story-location,.dialogue-scene h2,.dialogue-scene #story-line{grid-column:2}.dialogue-scene .story-portrait{grid-column:1;grid-row:1 / 4}.dialogue-scene .story-actions{grid-column:1 / -1;flex-wrap:nowrap;gap:7px}.story-actions>button,.narration-actions>button{min-width:0}.narration-actions{flex-wrap:nowrap}}
+@media(max-width:650px){.dialogue-scene:not(.text-only-scene) .story-copy{display:contents}.dialogue-scene:not(.text-only-scene) .story-location,.dialogue-scene:not(.text-only-scene) h2,.dialogue-scene:not(.text-only-scene) #story-line{grid-column:2}.dialogue-scene .story-portrait{grid-column:1;grid-row:1 / 4}.dialogue-scene .story-actions{grid-column:1 / -1;flex-wrap:nowrap;gap:7px}.story-actions>button,.narration-actions>button{min-width:0}.narration-actions{flex-wrap:nowrap}}
 
 /* No empty portrait column for narration or an unillustrated named speaker. */
 .story-overlay .story-scene.text-only-scene{grid-template-columns:minmax(0,1fr);gap:0}.narration-inline .story-copy h2{font-size:clamp(17px,2vw,22px);color:#c9b889}.narration-inline .story-copy p{min-height:0}.narration-inline .story-scene{width:min(920px,100%)}
+
+/* Long lines scroll behind a retained, reachable reading-control row. */
+.story-scene .story-actions,.story-guide .story-actions{position:sticky;bottom:0;z-index:1;background:#0d2024;flex-shrink:0}
 
 /* The optional reader also lives inside the pause journal dialog. Keep paper ink
    independent of the dark journal's generic paragraph colour. */
