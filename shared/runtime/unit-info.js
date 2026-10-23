@@ -1,4 +1,6 @@
 (function(G){'use strict';
+const portraitViews=new WeakMap();
+const portraitOpen=a=>portraitViews.get(a)?.open&&a.modal.classList.contains('open')&&a.modalKind==='unit-portrait';
 const player=u=>u?.side===0&&!u.summoned;
 const eligible=u=>u&&!u.eaterCapturedBy&&(player(u)||!u.dead&&(u.side===1||u.side===2||u.summoned));
 const available=a=>a.screen==='battle'&&a.engine&&a.scene&&!a.dialogue&&!a.done&&!a.modal.classList.contains('open');
@@ -31,12 +33,43 @@ function pick(a,p,touch=false){
   return {u,d:Math.pow((w.x-u.x)/half,2)+Math.pow((w.y-cy)/hh,2)};
  }).filter(x=>x.d<=1).sort((a,b)=>a.d-b.d)[0]?.u||null;
 }
-function close(a){if(!a.scene)return;a.scene.inspectUnitId=null;const el=document.getElementById('unit-info');if(el)el.hidden=true;}
+function close(a){if(portraitOpen(a)){a.close();return;}if(!a.scene)return;a.scene.inspectUnitId=null;const el=document.getElementById('unit-info');if(el){el.hidden=true;G.HonroPortraits?.release(el);}const v=portraitViews.get(a);if(v)v.visible=false;}
+function portraitAsset(a,u){
+ if(u.summoned||u.honroVisualOnly||u.eaterCapturedBy)return null;
+ const options={portraitExpression:u.portraitExpression||'base'};
+ return G.HonroPortraits?.approved(u,u.cls,options)||G.HonroNPCPortraits?.resolve(a,u.name,options,u)||null;
+}
+function portraitClosed(a){const v=portraitViews.get(a);if(!v?.open)return;v.open=false;a.modal.classList.remove('unit-portrait-open');a.modal.removeEventListener('click',v.backdrop);G.HonroPortraits.release(v.viewer);v.viewer.remove();}
+function expandPortrait(a){
+ const v=portraitViews.get(a);if(!v?.asset||!available(a)||document.getElementById('unit-info')?.hidden)return;
+ if(!v.viewer){
+  const node=document.createElement('section');node.className='dialog unit-portrait-dialog';node.setAttribute('role','dialog');node.setAttribute('aria-modal','true');node.setAttribute('aria-labelledby','unit-portrait-title');
+  node.innerHTML='<header><h2 id="unit-portrait-title"></h2><button type="button" aria-label="초상화 확대 닫기">닫기</button></header><div class="unit-portrait-image"><canvas></canvas></div>';v.viewer=node;
+  node.querySelector('button').onclick=e=>{e.stopPropagation();a.close();};
+  node.addEventListener('keydown',e=>{e.stopPropagation();if(e.code==='Escape'){e.preventDefault();a.close();}else if(e.code==='Tab'){e.preventDefault();node.querySelector('button').focus();}});
+  node.addEventListener('keyup',e=>e.stopPropagation());
+ }
+ v.backdrop??=e=>{if(e.target===a.modal){e.stopPropagation();a.close();}};a.modal.addEventListener('click',v.backdrop);
+ v.open=true;a.cancelInput();a.modalKind='unit-portrait';a.modalReturnFocus=v.button;a.modal.replaceChildren(v.viewer);a.modal.classList.add('open','unit-portrait-open');
+ v.viewer.querySelector('h2').textContent=v.unit.name;
+ const canvas=v.viewer.querySelector('canvas'),scale=Math.min(1,1000/v.asset.height),width=Math.round(v.asset.width*scale),height=Math.round(v.asset.height*scale);
+ if(canvas.width!==width)canvas.width=width;if(canvas.height!==height)canvas.height=height;
+ G.HonroPortraits.draw(canvas,v.unit,v.unit.cls,{npcAsset:v.asset,framing:'full',reopen:true});a.updateAudio();v.viewer.querySelector('button').focus({preventScroll:true});
+}
+function portrait(a,u,el){
+ if(!G.HonroPortraits)return;const button=el.querySelector('.unit-info-portrait'),asset=portraitAsset(a,u);let v=portraitViews.get(a);
+ if(!v){v={button,open:false};portraitViews.set(a,v);button.onclick=e=>{e.stopPropagation();expandPortrait(a);};}
+ const key=asset?[u.id,asset.src,asset.revision,asset.expression].join('|'):'';button.hidden=!asset;el.classList.toggle('has-unit-portrait',!!asset);
+ if(v.key===key&&v.visible)return;G.HonroPortraits.release(button);v.key=key;v.asset=asset;v.unit=u;v.visible=true;
+ if(asset){button.setAttribute('aria-label',`${u.name} 초상화 크게 보기`);G.HonroPortraits.draw(button.querySelector('canvas'),u,u.cls,{npcAsset:asset,framing:'bust',reopen:true});}
+}
+
 function hover(a,p){if(!a.scene)return;a.scene.inspectPointer=p;const u=p&&pick(a,p);a.scene.hoverUnitId=u?.id||null;a.scene.canvas.style.cursor=u?'pointer':'';}
 function bind(a){
+ const previous=portraitViews.get(a);if(previous){if(previous.open)a.close();G.HonroPortraits?.release(previous.button);portraitViews.delete(a);}
  const el=document.createElement('aside');el.id='unit-info';el.className='unit-info';el.hidden=true;el.setAttribute('aria-label','대상 정보');
-  el.innerHTML='<button class="unit-info-close" type="button" aria-label="대상 정보 닫기">'+G.HonroFA.icon('xmark','',14)+'</button><div class="unit-info-side"></div><h3></h3><div class="unit-info-health" role="meter" aria-label="체력"><i></i><span></span></div><div class="unit-info-progress" hidden><div class="unit-info-xp-label"></div><div class="unit-info-xp" role="progressbar" aria-label="경험치" aria-valuemin="0" aria-valuemax="100"><i></i></div><div class="unit-info-xp-detail"></div><div class="unit-info-xp-policy"></div></div><div class="unit-info-existence"></div><p class="unit-info-desc"></p><div class="unit-info-skills"></div><div class="unit-info-status"></div><p class="unit-info-reason status-reason" hidden></p>';
- a.scene.canvas.parentElement.append(el);el.querySelector('button').onclick=()=>close(a);
+  el.innerHTML='<button class="unit-info-close" type="button" aria-label="대상 정보 닫기">'+G.HonroFA.icon('xmark','',14)+'</button><div class="unit-info-heading"><button class="unit-info-portrait" type="button" aria-haspopup="dialog" hidden><canvas width="120" height="144"></canvas></button><div><div class="unit-info-side"></div><h3></h3></div></div><div class="unit-info-health" role="meter" aria-label="체력"><i></i><span></span></div><div class="unit-info-progress" hidden><div class="unit-info-xp-label"></div><div class="unit-info-xp" role="progressbar" aria-label="경험치" aria-valuemin="0" aria-valuemax="100"><i></i></div><div class="unit-info-xp-detail"></div><div class="unit-info-xp-policy"></div></div><div class="unit-info-existence"></div><p class="unit-info-desc"></p><div class="unit-info-skills"></div><div class="unit-info-status"></div><p class="unit-info-reason status-reason" hidden></p>';
+ a.scene.canvas.parentElement.append(el);el.querySelector('.unit-info-close').onclick=()=>close(a);
  // Activating the card's close button must not also start a Space-key shot.
  for(const type of ['keydown','keyup'])el.addEventListener(type,e=>{if(['Space','Enter'].includes(e.code))e.stopPropagation();});
  const cv=a.scene.canvas;
@@ -45,6 +78,7 @@ function bind(a){
  cv.addEventListener('pointercancel',()=>{hover(a,null);close(a);});
 }
 function show(a,u){
+ if(portraitOpen(a))a.close();
  if(!available(a)||!eligible(u)||G.HonroAct2&&!G.HonroAct2.visible(a.engine.b,u))return false;
  a.scene.inspectUnitId=u.id;tick(a);return true;
 }
@@ -55,9 +89,11 @@ function tap(a,p,touch){
 }
 function tick(a){
  const scene=a.scene,el=document.getElementById('unit-info');if(!scene||!el)return;
+ if(portraitOpen(a)){if(a.screen!=='battle'||a.dialogue||a.done){a.close();close(a);}return;}
  if(!available(a)){close(a);hover(a,null);return;}
  if(scene.inspectPointer)hover(a,scene.inspectPointer);
  const u=a.engine.unit(scene.inspectUnitId);if(!eligible(u)||G.HonroAct2&&!G.HonroAct2.visible(a.engine.b,u)){close(a);return;}
+ portrait(a,u,el);
  const boundBody=G.HonroNarrativeRevision?.bodyBound(a.engine.b,u);el.hidden=false;el.dataset.unitId=u.id;el.dataset.side=boundBody?'ally':u.side===1?'enemy':'ally';
  const side=boundBody?'주박을 붙들고 있는 사람':player(u)?'동행'+(u.dead?' · 전투불능':u.acted?' · 행동 완료':''):u.side===1?(u.honroObjectiveTarget?'적군 · 파괴 목표':'적군'):u.summoned?'동맹군 · 소환귀':'동맹군';
  const C=G.HONRO_CORE,hero=player(u)&&a.engine.b.heroes?.[u.cls],level=hero?C.levelOf(hero):u.level||1;
@@ -94,6 +130,6 @@ function tick(a){
  el.style.left=(innerWidth<=600?(innerWidth-rect.width)/2:clamp(left,12,innerWidth-rect.width-12))+'px';
  el.style.top=(innerWidth<=600?Math.max(top,bottom-rect.height):clamp(y,top,bottom-rect.height))+'px';
 }
-document.addEventListener('pointerdown',e=>{const a=G.HonroApp;if(!a?.scene)return;if(!e.target.closest('#unit-info,#battlecanvas'))close(a);});
-G.HonroUnitInfo={bind,pick,show,tap,hover,close,tick,description};
+document.addEventListener('pointerdown',e=>{const a=G.HonroApp;if(!a?.scene)return;if(portraitOpen(a)&&a.modal.contains(e.target))return;if(!e.target.closest('#unit-info,#battlecanvas'))close(a);});
+G.HonroUnitInfo={bind,pick,show,tap,hover,close,tick,description,portraitAsset,portraitClosed};
 })(globalThis);

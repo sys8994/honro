@@ -23,3 +23,15 @@
 .honro .unit-info-xp-detail{margin-top:4px;color:#bec9bc;font-size:10px;line-height:1.5;font-variant-numeric:tabular-nums}
 
 .honro .unit-info-xp-policy{margin-top:3px;color:#a8b6ac;font-size:10px;line-height:1.4}
+
+/* Keep identity beside the existing heading; health and defense retain full width. */
+.honro .unit-info-heading{display:flex;gap:10px;align-items:center;min-height:56px;margin-bottom:10px}
+.honro .unit-info-heading>div{min-width:0;flex:1}.honro .unit-info-heading h3{margin-bottom:0}
+.honro .unit-info-portrait{flex:0 0 60px;width:60px;height:72px;min-height:72px;padding:0;border:1px solid #c3ad7a80;border-radius:5px;background:#102126;overflow:hidden;cursor:zoom-in}
+.honro .unit-info-portrait[hidden]{display:none!important}.honro .unit-info-portrait canvas{display:block;width:100%;height:100%;object-fit:contain}
+.honro .unit-info:not(.has-unit-portrait) .unit-info-heading{display:block;min-height:0}
+.honro .unit-portrait-dialog{display:flex;flex-direction:column;gap:8px;width:min(760px,calc(100vw - max(24px,env(safe-area-inset-left)) - env(safe-area-inset-right)));max-height:calc(100dvh - max(24px,env(safe-area-inset-top)) - env(safe-area-inset-bottom));padding:12px;overflow:hidden;background:#102126}
+.honro .unit-portrait-dialog header{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-shrink:0}.honro .unit-portrait-dialog h2{font-size:18px;line-height:1.4;margin:0}.honro .unit-portrait-dialog button{min-width:52px;min-height:44px;margin:0}
+.honro .unit-portrait-image{min-height:0;display:flex;justify-content:center}.honro .unit-portrait-image canvas{display:block;max-width:100%;max-height:calc(100dvh - 108px - env(safe-area-inset-top) - env(safe-area-inset-bottom));width:auto;height:auto;object-fit:contain}
+
+.honro #modal.unit-portrait-open{z-index:130}

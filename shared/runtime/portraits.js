@@ -4,7 +4,7 @@
 const cache=new Map(),images=new Map(),views=new WeakMap(),surfaces=new WeakMap();
 const counts={requests:0,decodes:0,paints:0,fallbackPaints:0,vectorBuilds:0};
 // Purpose, not screen ID, owns approved-image framing across every consumer.
-const framing=Object.freeze({bust:.88,icon:1,dialogue:1});
+const framing=Object.freeze({bust:.88,icon:1,dialogue:1,full:1});
 function markup(cls,purpose='bust',slot=cls){
  if(!['archer','mage','knight','occultist'].includes(cls))return '';
  return `<span data-portrait-host="${cls}" data-portrait-framing="${purpose}" data-portrait-slot="${slot}" style="display:contents"></span>`;
@@ -92,6 +92,7 @@ function approved(actor,cls,options={}){
 }
 function state(canvas,value){if(canvas.dataset.portraitState!==value)canvas.dataset.portraitState=value;const busy=value==='loading'?'true':'false';if(canvas.getAttribute('aria-busy')!==busy)canvas.setAttribute('aria-busy',busy);}
 function imageCrop(asset,canvas,purpose){
+ if(purpose==='full')return {x:0,y:0,width:asset.width,height:asset.height};
  if(purpose==='dialogue'){
   // A large silhouette has a different job from a small face-identification card.
   // Keep the entire source width and head above a padded top; only the lower
