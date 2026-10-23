@@ -99,7 +99,8 @@ function tick(a){
  const C=G.HONRO_CORE,hero=player(u)&&a.engine.b.heroes?.[u.cls],level=hero?C.levelOf(hero):u.level||1;
  const skills=(u.loadout||[]).map(id=>G.HONRO_CORE.SKILLS[id]).filter(s=>s&&!s.passive).slice(0,2);
  const text=(selector,value)=>{const n=el.querySelector(selector);if(n.textContent!==value)n.textContent=value;};
- text('.unit-info-side',`${side}${boundBody?'':u.honroFinalBoss?' · 최종 우두머리':u.honroMidboss?' · 중간 우두머리':u.boss?' · 우두머리':u.elite?' · 정예':''}`);
+ const bossKind=u.honroAct2Boss?'2막 우두머리':u.honroFinalBoss?'최종 우두머리':u.honroMidboss?'중간 우두머리':u.boss?'우두머리':'';el.dataset.rank=!boundBody&&bossKind?'boss':!boundBody&&u.elite?'elite':'normal';
+ text('.unit-info-side',`${side}${boundBody?'':bossKind?' · '+bossKind:u.elite?' · 정예':''}`);
  text('h3',boundBody?u.name:`${u.name} · ${player(u)?'경지 ':'Lv. '}${level}`);
  text('.unit-info-health span',`${Math.ceil(u.hp)} / ${Math.ceil(u.maxHp)}`);
  const health=el.querySelector('.unit-info-health');health.hidden=!!boundBody;health.setAttribute('aria-valuemin','0');health.setAttribute('aria-valuemax',u.maxHp);health.setAttribute('aria-valuenow',Math.ceil(u.hp));

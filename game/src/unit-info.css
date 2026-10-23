@@ -35,3 +35,5 @@
 .honro .unit-portrait-image{min-height:0;display:flex;justify-content:center}.honro .unit-portrait-image canvas{display:block;max-width:100%;max-height:calc(100dvh - 108px - env(safe-area-inset-top) - env(safe-area-inset-bottom));width:auto;height:auto;object-fit:contain}
 
 .honro #modal.unit-portrait-open{z-index:130}
+
+.honro .unit-info[data-rank=boss]{border-color:#bfa16c;border-left-color:#edc780}.honro .unit-info[data-rank=boss] .unit-info-side{color:#f0d294;font-weight:700}

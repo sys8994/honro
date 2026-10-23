@@ -1114,7 +1114,7 @@ export class Engine {
         this.fx('spark',target.x,target.y-target.h*.55,'#d9d0b1',32);
     }
     private captureEnemy(target:Unit,owner:Unit,rank:number,empowered=false,reportSkill?:string,origin?:DamageOrigin){
-        if(target.honroObjectiveTarget||target.dead||target.eaterCapturedBy||target.summoned||target.side!==1||target.boss||target.honroMidboss||target.elite||target.enthrall)return false;
+        if(target.honroObjectiveTarget||target.dead||target.eaterCapturedBy||target.summoned||target.side!==1||target.boss||target.honroMidboss||(target as any).honroAct2Boss||target.elite||target.enthrall)return false;
         const power=ENTHRALL_POWER[clamp(rank,1,8)-1],ratio=target.hp/target.maxHp;
         target.enthrall={attackSide:this.allegiance(owner),damageRoll:origin?.damageRoll,owner:owner.id,actions:ENTHRALL_ACTIONS[clamp(rank,1,8)-1]+(empowered?1:0),captureRatio:ratio,originalMaxHp:target.maxHp,originalAttack:target.attack,originalArmor:target.armor,power};
         target.side=0;(target as any).honroReportSkill=reportSkill;ownerRegistered(this.b,target);target.maxHp=Math.max(1,Math.round(target.maxHp*power));target.hp=Math.max(1,Math.round(target.maxHp*ratio));target.attack*=power;target.armor=clamp(target.armor*power,0,.75);target.acted=true;
