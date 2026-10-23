@@ -48,7 +48,7 @@ function speakerPolicy(who,meta,camera){const kind=G.HonroStory.speakerPresentat
 function bind(app,lines,options){if(!app.engine||app.screen!=='battle')return lines;
  // A dialogue opened during the insert must later release to the player's
  // control view, rather than saving a halfway reinforcement pan as its origin.
- if(!app.dialogue&&!app.storyCamera){const camera=G.HonroReinforcementCamera?.controlView(app.scene)||G.HonroAttackCamera?.snapshot(app.scene);if(camera)app.storyCamera=camera;}
+ if(!app.dialogue&&!app.storyCamera){const camera=G.HonroStage19Farewell?.returnCamera(app)||G.HonroReinforcementCamera?.controlView(app.scene)||G.HonroAttackCamera?.snapshot(app.scene);if(camera)app.storyCamera=camera;}
  const b=app.engine.b,key=sceneKey(app,lines,options),stage=b.honroStage,names=[...new Set(lines.filter(l=>G.HonroStory.speakerPresentation(l[0],l[2]).kind==='character').map(l=>l[0]))];
  const subjects=names.map(n=>speakerId(app,n)?{actor:speakerId(app,n)}:{speaker:n});
  return lines.map(([who,text,meta={}],index)=>{
@@ -102,6 +102,7 @@ function safeRect(scene){const {w,h}=scene.size(),canvas=scene.canvas.getBoundin
 }
 function targetFrame(scene,e){const f=scene.storyFrame;if(!f)return;const {app,camera}=f,{w,h}=scene.size();
  const signature=[w,h,camera.id,G.document.querySelector('#story-line')?.textContent].join(':');if(f.layout!==signature){f.rect=safeRect(scene);f.layout=signature;}
+ const farewell=G.HonroStage19Farewell?.landscapeFrame(scene,e,f);if(farewell)return farewell;
  const boxes=camera.targets.map(t=>bounds(app,t)),missing=camera.targets.filter((_,i)=>!boxes[i]);let valid=boxes.filter(Boolean),fallback=null;
  if(!valid.length&&camera.reinforcement)return;
  if(!valid.length){const goal=G.HonroObjectives.state(e.b,app.stage).targets[0],u=e.active;fallback=goal?'current-objective':'active-actor';valid=[goal?bounds(app,{objective:'current'}):u?bounds(app,{actor:u.id}):null].filter(Boolean);}
