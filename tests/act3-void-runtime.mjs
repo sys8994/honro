@@ -6,7 +6,7 @@ import {readFile} from 'node:fs/promises';
 import {appHarness,plain,report,KEY} from './app-regression-helpers.mjs';
 const h=await appHarness(),{g}=h;
 if(!g.HonroAct3Void)vm.runInContext(await readFile('shared/runtime/act3-void.js','utf8'),g);
-const awaitCopy=await readFile('game/docs/story/voice-v2-editorial/drafts/act3-scenes.json','utf8');
+const {after:approvedCatalogue}=await import('./user-script-20261023-spec.mjs');
 const V=g.HonroAct3Void,A=g.HonroAct3,P=g.HonroStakeCrossing,checks=[];
 let wallTime=0;g.performance={now:()=>wallTime};
 const check=(name,fn)=>{fn();checks.push(name);console.log('PASS',name);};
@@ -74,7 +74,7 @@ check('Duplicate guard uses real event time even when render frames stall',()=>{
  wallTime+=121;assert(V.advance(f.app));assert.equal(f.app.honroVoidSession.line,2);resolve(f);
 });
 check('Exact approved five-cut script, no blanks or forced waits, and exact three-line aftermath',()=>{
- const approved=JSON.parse(awaitCopy);
+ const approved={scenes:approvedCatalogue.scenes};
  assert.deepEqual(plain(V.sceneLines),approved.scenes['27.void.sceneLines'].map(([who,text])=>({text,align:who==='설오'?'near':'far'})));
  assert.deepEqual(plain(V.returnLines),approved.scenes['27.void.returnLines'].map(r=>r.slice(0,2)));
  const f=fixture();V.begin(f.app);step(f.app,V.TIMING.total+.05);for(let i=0;i<V.sceneLines.length;i++){assert.equal(f.app.honroVoidSession.line,i);assert(V.advance(f.app));step(f.app,.15);}

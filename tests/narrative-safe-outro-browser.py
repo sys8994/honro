@@ -26,7 +26,11 @@ COMBAT=r'''()=>JSON.stringify(Object.fromEntries(['units','round','side','time',
 with sync_playwright() as p:
  browser=launch(p);page=browser.new_page(viewport={'width':390,'height':844},has_touch=True);page.on('pageerror',lambda e:errors.append(str(e)));page.goto(story_base_url()+'/HONRO.html');page.wait_for_function('window.HonroApp');page.locator('.title-actions button').first.click();before=page.evaluate(SETUP)
  page.wait_for_function('HonroApp.engine.b.phase==="won" && HonroApp.engine.b.honroState.sodanWithdrawal.worldOutro===2 && !!HonroApp.dialogue');page.wait_for_timeout(800);state=page.evaluate(STATE)
- approved=json.loads((ROOT/'game/docs/story/voice-v2-editorial/drafts/act1-scenes.json').read_text())['scenes']['10.outro'];expected=[r[:2] for r in approved]
+ patch=json.loads((ROOT/'game/docs/story/user-script-20261023/approved-patch.json').read_text());baseline=json.loads(subprocess.check_output(['git','show',patch['sourceCommit']+':'+patch['sourceFile']],cwd=ROOT));approved=baseline['stages']['10']['outro']
+ for op in patch['operations']:
+  if op['path'].startswith('/stages/10/outro/'):
+   index=int(op['path'].split('/')[4]);assert approved[index][1]==op['before'];approved[index][1]=op['after']
+ expected=[r[:2] for r in approved]
  assert [r['index'] for r in state['unavailableFiltered']]==[0,2,5,7,13]
  assert state['effective']==expected and len(state['effective'])==16 and not state['filtered'],state
  assert state['phase']=='won' and state['withdrawal']['phase']=='safe' and state['withdrawal']['worldOutro']==2 and state['quiet'] and not state['blackBackdrop'],state
