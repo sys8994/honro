@@ -3,9 +3,14 @@
   "r1": "Removed gradients and mapped opaque colours. Render inspection found relief outlines/discs too black and isolated rust overly prominent.",
   "r2": "Reduced internal outlines and rust contrast; kept ornament geometry. Render inspected.",
   "r3": "Added two broad opaque side planes; inspected full and270px render. Thin inscription marks weakened at small scale.",
-  "r4": "Full/dark/270px renders inspected. Independent reviewer found weak large-glyph hierarchy and flattened relief. Reverted blanket stroke increase; only 8 major glyphs raised to1.8 with brighter flat colour, flower petal/contact colours separated; all168 fine glyphs retained at original width. r4b render pending.",
-  "r5": "Actual game placement and zoom inspection pending.",
-  "holistic": "pending",
+  "r4": "Full/dark/270px renders inspected. Independent reviewer found weak large-glyph hierarchy and flattened relief. Reverted blanket stroke increase; only 8 major glyphs raised to1.8 with brighter flat colour, flower petal/contact colours separated; all168 fine glyphs retained at original width. r4b full dark render inspected.",
+  "r5": "Side-by-side v05/v07 and400px whole silhouette inspected. Found excessive overall brightness/flat small fasteners. Lowered broad bronze-plane values and added two opaque faces to existing fasteners, without deleting detail. Final800px dark and270px render inspected.",
+  "holistic": "Completed parent visual review of final whole form and scaled rendering: all v05 ornaments and glyph paths retained; side lip has no visible underside opening; no gradient/filter/opacity; no game-placement verification claimed.",
   "geometryPreserved": 185,
-  "pathCount": 187
+  "pathCount": 187,
+  "actualGameVerification": "Not performed; user explicitly stopped Codex verification. No actual game pass claimed.",
+  "fastenerPlanesAdded": 15,
+  "finalBytes": 39779,
+  "finalPathCount": 202,
+  "finalGzipBytes": 8957
 }
