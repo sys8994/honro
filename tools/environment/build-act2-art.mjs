@@ -4,34 +4,51 @@ import path from 'node:path';
 const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'../..');
 // Deliberately small, auditable SVG vocabulary. External resources, executable
 // nodes, CSS, filters, use/image, and unbounded effects cannot enter a map file.
-const allowed=new Set(['svg','defs','g','path','linearGradient','radialGradient','stop','title','desc']);
+const allowed=new Set(['svg','defs','g','path','linearGradient','radialGradient','stop','title','desc','ellipse','clipPath']);
 const numbers=s=>String(s).trim().split(/[ ,]+/).map(Number);
 function attributes(text){const out={},re=/([\w:-]+)\s*=\s*"([^"]*)"/g;let m;while((m=re.exec(text)))out[m[1]]=m[2];const rest=text.replace(re,'').trim();if(rest)throw Error('Unsupported SVG attributes: '+rest);return out;}
 const paint=s=>s==='none'||/^#[\da-f]{6}([\da-f]{2})?$/i.test(s)||/^url\(#[\w-]+\)$/.test(s);
-function matrix(text){if(!text)return[1,0,0,1,0,0];const m=/^(translate|scale|matrix)\(([^)]+)\)$/.exec(text);if(!m)throw Error('Unsupported transform '+text);const a=numbers(m[2]);if(a.some(n=>!Number.isFinite(n)))throw Error('Nonfinite transform');if(m[1]==='translate'&&a.length<3)return[1,0,0,1,a[0],a[1]||0];if(m[1]==='scale'&&a.length<3)return[a[0],0,0,a[1]??a[0],0,0];if(m[1]==='matrix'&&a.length===6)return a;throw Error('Invalid transform');}
+function matrix(text){
+ if(!text)return[1,0,0,1,0,0];let out=[1,0,0,1,0,0],end=0;
+ for(const m of text.matchAll(/(translate|scale|matrix|rotate)\(([^)]+)\)/g)){
+  if(text.slice(end,m.index).trim())throw Error('Unsupported transform '+text);end=m.index+m[0].length;
+  const a=numbers(m[2]);if(a.some(n=>!Number.isFinite(n)))throw Error('Nonfinite transform');let q;
+  if(m[1]==='translate'&&a.length>=1&&a.length<=2)q=[1,0,0,1,a[0],a[1]||0];
+  else if(m[1]==='scale'&&a.length>=1&&a.length<=2)q=[a[0],0,0,a[1]??a[0],0,0];
+  else if(m[1]==='matrix'&&a.length===6)q=a;
+  else if(m[1]==='rotate'&&a.length===1){const t=a[0]*Math.PI/180;q=[Math.cos(t),Math.sin(t),-Math.sin(t),Math.cos(t),0,0];}
+  else throw Error('Invalid transform');
+  const [A,B,C,D,E,F]=out,[u,v,w,x,y,z]=q;out=[A*u+C*v,B*u+D*v,A*w+C*x,B*w+D*x,A*y+C*z+E,B*y+D*z+F];
+ }
+ if(!end||text.slice(end).trim())throw Error('Unsupported transform '+text);return out;
+}
 export function compileSVG(source){
  if(source.length>300000||/<\?|<!|\bon\w+\s*=|href\s*=|style\s*=|<\s*(?:script|image|foreignObject|use)\b/i.test(source))throw Error('Unsafe or unsupported SVG source');
- const tree={tag:'g',children:[]},stack=[tree],gradients=Object.create(null),xml=[];let viewBox=null,inText=0,gradient=null,rootSeen=false;
+ const tree={tag:'g',children:[]},stack=[tree],gradients=Object.create(null),clips=Object.create(null),xml=[];let viewBox=null,inText=0,gradient=null,clip=null,rootSeen=false;
  const tokens=source.match(/<[^>]+>|[^<]+/g)||[];
  for(const token of tokens){if(!token.startsWith('<')){if(token.trim()&&!inText)throw Error('Text outside title/desc');continue;}
   const m=/^<(\/)?([\w:]+)([^>]*?)(\/?)>$/.exec(token);if(!m||!allowed.has(m[2]))throw Error('Unsupported SVG node '+token.slice(0,70));const [,closing,tag,raw,self]=m;
-  if(closing){if(xml.pop()!==tag)throw Error('Mismatched SVG closing tag '+tag);if(tag==='title'||tag==='desc'){inText--;continue;}if(tag==='linearGradient'||tag==='radialGradient'){gradient=null;continue;}if(tag==='g')stack.pop();continue;}
+  if(closing){if(xml.pop()!==tag)throw Error('Mismatched SVG closing tag '+tag);if(tag==='title'||tag==='desc'){inText--;continue;}if(tag==='linearGradient'||tag==='radialGradient'){gradient=null;continue;}if(tag==='clipPath'){clip=null;continue;}if(tag==='g')stack.pop();continue;}
   if(!xml.length&&tag!=='svg')throw Error('SVG must be the document root');if(tag==='svg'){if(rootSeen||xml.length)throw Error('Multiple or nested SVG roots');rootSeen=true;}if(!self)xml.push(tag);
   const a=attributes(raw);if(tag==='title'||tag==='desc'){inText++;continue;}
-  const permitted={svg:['xmlns','viewBox'],defs:[],g:['id','fill','stroke','stroke-width','opacity','transform','stroke-linejoin','stroke-linecap'],path:['id','d','fill','stroke','stroke-width','opacity','transform','fill-rule','stroke-linejoin','stroke-linecap'],linearGradient:['id','x1','y1','x2','y2','gradientUnits'],radialGradient:['id','cx','cy','r','fx','fy','gradientUnits'],stop:['offset','stop-color','stop-opacity']}[tag];
+  const permitted={svg:['xmlns','viewBox','width','height'],defs:[],g:['id','fill','stroke','stroke-width','opacity','transform','stroke-linejoin','stroke-linecap','clip-path'],path:['id','d','fill','stroke','stroke-width','opacity','transform','fill-rule','stroke-linejoin','stroke-linecap'],linearGradient:['id','x1','y1','x2','y2','gradientUnits'],radialGradient:['id','cx','cy','r','fx','fy','gradientUnits'],clipPath:['id'],ellipse:['cx','cy','rx','ry','fill','stroke','stroke-width'],stop:['offset','stop-color','stop-opacity']}[tag];
   for(const key of Object.keys(a))if(!permitted.includes(key))throw Error('Unsupported SVG attribute '+tag+'.'+key);
   if(tag==='svg'){viewBox=numbers(a.viewBox);if(viewBox.length!==4||viewBox.some(n=>!Number.isFinite(n))||viewBox[2]<=0||viewBox[3]<=0)throw Error('Invalid SVG viewBox');continue;}
   if(tag==='defs')continue;
+  if(tag==='clipPath'){if(!a.id||clip)throw Error('Invalid clip');clip=a.id;clips[clip]=[];continue;}
   if(tag==='linearGradient'||tag==='radialGradient'){if(a.gradientUnits!=='userSpaceOnUse'||!a.id)throw Error('Gradient must declare user space');gradient={type:tag==='linearGradient'?'linear':'radial',stops:[]};for(const key of tag==='linearGradient'?['x1','y1','x2','y2']:['cx','cy','r','fx','fy'])if(a[key]!==undefined)gradient[key]=Number(a[key]);gradients[a.id]=gradient;continue;}
   if(tag==='stop'){if(!gradient||!/^#[\da-f]{6}$/i.test(a['stop-color']))throw Error('Invalid gradient stop');gradient.stops.push({offset:Number(a.offset),color:a['stop-color'],opacity:Number(a['stop-opacity']??1)});continue;}
   if(tag==='g'&&a.opacity!==undefined&&Number(a.opacity)!==1)throw Error('Group opacity requires isolated compositing and is not supported');
-  const node={tag};for(const key of ['fill','stroke'])if(a[key]){if(!paint(a[key]))throw Error('Unsupported paint '+a[key]);node[key]=a[key];}if(a.opacity!==undefined)node.opacity=Number(a.opacity);if(a['stroke-width'])node.lineWidth=Number(a['stroke-width']);if(a.transform)node.transform=matrix(a.transform);if(a['fill-rule'])node.fillRule=a['fill-rule'];if(a['stroke-linejoin'])node.lineJoin=a['stroke-linejoin'];if(a['stroke-linecap'])node.lineCap=a['stroke-linecap'];if(a.id)node.id=a.id;
+  const node={tag:tag==='ellipse'?'path':tag};if(a['clip-path']){const m=/^url\(#([\w-]+)\)$/.exec(a['clip-path']);if(!m)throw Error('Invalid clip reference');node.clipPath=m[1];}
+  if(tag==='ellipse'){const [cx,cy,rx,ry]=['cx','cy','rx','ry'].map(k=>Number(a[k]));if(![cx,cy,rx,ry].every(Number.isFinite)||rx<=0||ry<=0)throw Error('Invalid ellipse');a.d=`M${cx-rx} ${cy}a${rx} ${ry} 0 1 0 ${2*rx} 0a${rx} ${ry} 0 1 0 ${-2*rx} 0Z`;}for(const key of ['fill','stroke'])if(a[key]){if(!paint(a[key]))throw Error('Unsupported paint '+a[key]);node[key]=a[key];}if(a.opacity!==undefined)node.opacity=Number(a.opacity);if(a['stroke-width'])node.lineWidth=Number(a['stroke-width']);if(a.transform)node.transform=matrix(a.transform);if(a['fill-rule'])node.fillRule=a['fill-rule'];if(a['stroke-linejoin'])node.lineJoin=a['stroke-linejoin'];if(a['stroke-linecap'])node.lineCap=a['stroke-linecap'];if(a.id)node.id=a.id;
   if(tag==='g')node.children=[];else{if(!a.d||a.d.length>60000||/[^mMzZlLhHvVcCsSqQtTaA0-9.eE+\-,\s]/.test(a.d))throw Error('Invalid path');node.d=a.d;}
-  stack.at(-1).children.push(node);if(tag==='g'&&!self)stack.push(node);
+  if(clip){if(node.tag!=='path'||node.transform)throw Error('Only local paths allowed in clip');clips[clip].push(node.d);}else stack.at(-1).children.push(node);if(tag==='g'&&!self)stack.push(node);
  }
  if(!viewBox||stack.length!==1||inText||xml.length)throw Error('Unbalanced SVG');
  for(const gradient of Object.values(gradients)){const coords=gradient.type==='linear'?['x1','y1','x2','y2']:['cx','cy','r'];if(coords.some(k=>!Number.isFinite(gradient[k]))||gradient.stops.length<2)throw Error('Invalid SVG gradient');for(const stop of gradient.stops)if(!Number.isFinite(stop.offset)||stop.offset<0||stop.offset>1||!Number.isFinite(stop.opacity)||stop.opacity<0||stop.opacity>1)throw Error('Invalid SVG stop');}
- return{version:1,viewBox,gradients,root:tree,source};
+ for(const d of Object.values(clips))if(!d.length)throw Error('Empty clip');
+ const check=n=>{if(n.clipPath&&!clips[n.clipPath])throw Error('Missing clip');n.children?.forEach(check);};check(tree);
+ return{version:1,viewBox,gradients,root:tree,source,...(Object.keys(clips).length?{clips}:{} )};
 }
 export const ACT2_VECTOR_FILES={
  'act2:pine':'act2-pine.svg','act2:cave-house':'act2-cave-home.svg','act2:cave-house-lean':'act2-cave-home-lean.svg','act2:cave-house-ruin':'act2-cave-home-lean.svg',
