@@ -1,0 +1,75 @@
+{
+  "head": "36ddbdd840fa54b71b483df101b917b8f575eb09",
+  "afterSourceSha256": "adde5cc0db8b8fadde94fdc91e29ddbc7203d6880f8f84ff315ec3263a864533",
+  "beforeSource": "66758d13",
+  "rows": [
+    {
+      "phase": "before",
+      "staleNonzeroAlpha": true,
+      "repeat120": {
+        "before": {
+          "requests": 7,
+          "decodes": 4,
+          "paints": 4,
+          "fallbackPaints": 0,
+          "vectorBuilds": 0,
+          "imageEntries": 5,
+          "pending": 0,
+          "errors": 1,
+          "vectorEntries": 0,
+          "waiters": 1
+        },
+        "after": {
+          "requests": 7,
+          "decodes": 4,
+          "paints": 4,
+          "fallbackPaints": 0,
+          "vectorBuilds": 0,
+          "imageEntries": 5,
+          "pending": 0,
+          "errors": 1,
+          "vectorEntries": 0,
+          "waiters": 1
+        },
+        "paints": 0,
+        "clears": 0
+      },
+      "reopenRecovered": true,
+      "physicalRequests": 4
+    },
+    {
+      "phase": "after",
+      "staleNonzeroAlpha": false,
+      "repeat120": {
+        "before": {
+          "requests": 7,
+          "decodes": 4,
+          "paints": 4,
+          "fallbackPaints": 0,
+          "vectorBuilds": 0,
+          "imageEntries": 5,
+          "pending": 0,
+          "errors": 1,
+          "vectorEntries": 0,
+          "waiters": 1
+        },
+        "after": {
+          "requests": 7,
+          "decodes": 4,
+          "paints": 4,
+          "fallbackPaints": 0,
+          "vectorBuilds": 0,
+          "imageEntries": 5,
+          "pending": 0,
+          "errors": 1,
+          "vectorEntries": 0,
+          "waiters": 1
+        },
+        "paints": 0,
+        "clears": 0
+      },
+      "reopenRecovered": true,
+      "physicalRequests": 4
+    }
+  ]
+}

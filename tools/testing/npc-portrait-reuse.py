@@ -1,6 +1,6 @@
 """A cached NPC error must erase the previous speaker on the retained canvas."""
 from pathlib import Path
-import json,sys,subprocess
+import json,sys,subprocess,hashlib
 from playwright.sync_api import sync_playwright
 ROOT=Path(__file__).resolve().parents[2];sys.path.insert(0,str(ROOT/'tests'))
 from browser_support import launch,serve_game
@@ -37,4 +37,4 @@ with serve_game()as base,sync_playwright()as pw:
   fail=False;p.evaluate('HonroStory.finish(HonroApp)');show(p,row('worker_mature'));p.wait_for_function('document.getElementById("story-portrait-canvas")?.dataset.portraitState==="ready"',timeout=15000);assert alpha(p);assert len(hits)<=6,hits
   rows.append({'phase':phase,'staleNonzeroAlpha':stale,'repeat120':repeat,'reopenRecovered':True,'physicalRequests':len(hits)});c.close()
  b.close()
-(OUT/'reuse.json').write_text(json.dumps({'head':subprocess.check_output(['git','rev-parse','HEAD'],text=True).strip(),'afterSource':'HEAD plus one cached-error clearRect before initial paint','beforeSource':'66758d13','rows':rows},ensure_ascii=False,indent=2));print('PASS cached-error -> other ready speaker -> cached-error: stale alpha before, neutral after; 120 additional paints/clears/requests/decodes=0; reopen recovered')
+(OUT/'reuse.json').write_text(json.dumps({'head':subprocess.check_output(['git','rev-parse','HEAD'],text=True).strip(),'afterSourceSha256':hashlib.sha256((ROOT/'shared/runtime/portraits.js').read_bytes()).hexdigest(),'beforeSource':'66758d13','rows':rows},ensure_ascii=False,indent=2));print('PASS cached-error -> other ready speaker -> cached-error: stale alpha before, neutral after; 120 additional paints/clears/requests/decodes=0; reopen recovered')
