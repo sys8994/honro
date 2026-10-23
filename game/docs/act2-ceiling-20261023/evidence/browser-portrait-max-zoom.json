@@ -1,0 +1,163 @@
+{
+  "source": "925827fc76eb0aac7284a5824a8fa396213cf385",
+  "scope": "Actual built UI: prepared normal entry and camera-only inspection.\nNo actor/state corrections for a photograph. Not a combat completion run.",
+  "rows": [
+    {
+      "name": "portrait-max-zoom",
+      "viewport": [
+        390,
+        844
+      ],
+      "camera": {
+        "x": 3800,
+        "y": 5000,
+        "scale": 0.057352941176470586
+      },
+      "goal": "family-upper",
+      "roof": [
+        {
+          "x": 0,
+          "y": 0
+        },
+        {
+          "x": 7600,
+          "y": 0
+        },
+        {
+          "x": 7600,
+          "y": 4270
+        },
+        {
+          "x": 7240,
+          "y": 4200
+        },
+        {
+          "x": 6760,
+          "y": 3980
+        },
+        {
+          "x": 6200,
+          "y": 3340
+        },
+        {
+          "x": 5650,
+          "y": 2980
+        },
+        {
+          "x": 5330,
+          "y": 2700
+        },
+        {
+          "x": 5100,
+          "y": 2740
+        },
+        {
+          "x": 4660,
+          "y": 2850
+        },
+        {
+          "x": 4100,
+          "y": 2800
+        },
+        {
+          "x": 3550,
+          "y": 2070
+        },
+        {
+          "x": 3040,
+          "y": 1600
+        },
+        {
+          "x": 2650,
+          "y": 1510
+        },
+        {
+          "x": 2200,
+          "y": 1480
+        },
+        {
+          "x": 1620,
+          "y": 740
+        },
+        {
+          "x": 1300,
+          "y": 660
+        },
+        {
+          "x": 620,
+          "y": 600
+        },
+        {
+          "x": 0,
+          "y": 480
+        }
+      ],
+      "entry": [
+        {
+          "id": "p-archer",
+          "x": 790,
+          "y": 1450,
+          "hp": 725
+        },
+        {
+          "id": "p-mage",
+          "x": 900,
+          "y": 1450,
+          "hp": 774
+        },
+        {
+          "id": "p-knight",
+          "x": 1028,
+          "y": 1450,
+          "hp": 1186
+        },
+        {
+          "id": "p-occultist",
+          "x": 1120,
+          "y": 1450,
+          "hp": 892
+        }
+      ],
+      "renderPurityAndCache": {
+        "pure": true,
+        "before": {
+          "worldBuilds": 1,
+          "worldBuildMs": 20.599999997764826,
+          "bgBuilds": 0,
+          "bgBuildMs": 0,
+          "worldHits": 3,
+          "bgHits": 0,
+          "domainCanvasAllocations": 3,
+          "domainTileBuilds": 3,
+          "screenBuilds": 2,
+          "screenWorldBytes": 1010880,
+          "screenBackgroundBytes": 1010880,
+          "worldBytes": 3195072,
+          "worldScale": 0.0625,
+          "backgroundBytes": 0
+        },
+        "after": {
+          "worldBuilds": 1,
+          "worldBuildMs": 20.599999997764826,
+          "bgBuilds": 0,
+          "bgBuildMs": 0,
+          "worldHits": 6,
+          "bgHits": 3,
+          "domainCanvasAllocations": 3,
+          "domainTileBuilds": 3,
+          "screenBuilds": 2,
+          "screenHits": 6,
+          "screenWorldBytes": 1010880,
+          "screenBackgroundBytes": 1010880,
+          "worldBytes": 3195072,
+          "worldScale": 0.0625,
+          "backgroundBytes": 0
+        }
+      },
+      "file": "_local/reports/act2-ceiling-20261023/final/portrait-max-zoom.jpg",
+      "bytes": 47828,
+      "sha256": "cf03e48eca089ccf8e74fe32534b5260b31290958498bedbb6d5c4e86ca6d6b8"
+    }
+  ],
+  "errors": []
+}
