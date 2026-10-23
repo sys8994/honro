@@ -63,7 +63,7 @@
             }
             c.restore();
         }
-        focusUnit(id,ms=900,speaker=false){this.focusId=id;this.focusUntil=performance.now()+ms;if(speaker){this.speakerId=id;this.speakerUntil=performance.now()+ms;}this.manual=false;}
+        focusUnit(id,ms=900,speaker=false){if(G.HonroReinforcementCamera?.blocksFocus(this))return;this.focusId=id;this.focusUntil=performance.now()+ms;if(speaker){this.speakerId=id;this.speakerUntil=performance.now()+ms;}this.manual=false;}
         storyScale(){const {w,h}=this.size(),short=Math.min(w,h),base=Math.max(.55,Math.min(.82,.55+(short-390)*.00045));return h>w*1.1?base*.9:base;}
         storyFocus(id,duration=500,targetScale=null,close=false){this.storyTween={kind:'unit',id,start:performance.now(),duration,from:{x:this.x,y:this.y,scale:this.scale},targetScale:close?Math.max(.3,Math.min(1.15,targetScale||1.05)):Math.min(targetScale??Infinity,this.storyScale())};this.manual=false;this.speakerId=null;this.speakerUntil=0;}
         storyFocusPoint(x,y,duration=500,targetScale=null){const {h}=this.size(),scale=targetScale==null?this.storyScale():Math.max(.3,Math.min(1.15,targetScale));this.storyTween={kind:'static',start:performance.now(),duration,from:{x:this.x,y:this.y,scale:this.scale},to:{x,y:y-h*.10/scale,scale},manual:false};this.manual=false;this.speakerId=null;this.speakerUntil=0;}
@@ -74,7 +74,7 @@
             this.canvas.height = Math.round(h * d);
         } return { w, h, d }; }
         world(sx, sy) { const r = this.canvas.getBoundingClientRect(); return G.HonroCamera.world(this,r.width,r.height,sx,sy); }
-        zoom(f, sx, sy) { const a = this.world(sx, sy), r = this.canvas.getBoundingClientRect(),limits=G.HonroBounds.zoomLimits(r.width); this.scale = Math.max(limits.min, Math.min(limits.max, this.scale * f)); this.x = a.x - (sx - r.width / 2) / this.scale; this.y = a.y - (sy - r.height / 2) / this.scale; if(this.battle)G.HonroBounds.constrain(this,this.battle);this.manual = true; }
+        zoom(f, sx, sy) { G.HonroReinforcementCamera?.cancel(this);const a = this.world(sx, sy), r = this.canvas.getBoundingClientRect(),limits=G.HonroBounds.zoomLimits(r.width); this.scale = Math.max(limits.min, Math.min(limits.max, this.scale * f)); this.x = a.x - (sx - r.width / 2) / this.scale; this.y = a.y - (sy - r.height / 2) / this.scale; if(this.battle)G.HonroBounds.constrain(this,this.battle);this.manual = true; }
         _makeLayerCanvas(w,h){const cv=document.createElement('canvas');cv.width=Math.max(1,Math.ceil(w));cv.height=Math.max(1,Math.ceil(h));return cv;}
         _worldRasterScale(b,w){if(G.HonroPaintedPresentation?.forBattle(b)?.cachedWorld)return this.scale>.78?1.5:this.scale>.34?.625:.3125;if(G.HonroTerrainDomain?.active(b))return Math.min(.68,Math.max(.05,2**(Math.floor(Math.log2(this.scale*1.25)*4)/4)));const mobile=w<900,maxPixels=mobile?3000000:6000000,desired=this.scale>.72?.68:this.scale>.38?.56:.42,cap=Math.sqrt(maxPixels/Math.max(1,b.width*b.height));return Math.max(.28,Math.min(desired,cap));}
         _landmarkLayer(c,landmarks,layer){c.save();for(const l of landmarks){if((l.layer||'back')!==layer)continue;c.globalAlpha=l.opacity??1;if(l.honroTerrainMaterialClip){c.save();c.clip(l.honroTerrainMaterialClip);this.landmark?.(c,l);c.restore();}else this.landmark?.(c,l);}c.restore();}
@@ -211,6 +211,7 @@
             c.setTransform(d, 0, 0, d, 0, 0);
             c.clearRect(0, 0, w, h);
             const u = e.active,reviewing=b.phase==='review'||b.phase==='ally'&&b.honroState?.allyQueue?.phase==='after'||b.phase==='summon'&&b.summonTurn?.stage==='wait'&&!b.projectiles.length;
+            if(!G.HonroReinforcementCamera?.update(this,e,w,h)){
             if (!this.storyFrame && !this.manual && u) {
                 const now=performance.now(),focus=this.focusId&&now<this.focusUntil?[...b.units,...(b.honroConvoyActors||[])].find(v=>v.id===this.focusId):null;
                 const speaking=this.speakerId&&now<this.speakerUntil?[...b.units,...(b.honroConvoyActors||[])].find(v=>v.id===this.speakerId):null;
@@ -240,6 +241,8 @@
             if(!this.storyFrame){if(this.goalFocus&&!this.storyTween){this.x=this.goalFocus.x;this.y=this.goalFocus.y-h*.10/this.scale;}
             else if(!this.storyTween&&!this.skillPreview){G.HonroBounds.constrain(this,b);}}
             G.HonroStoryFraming?.apply(this,e);
+            }
+            G.HonroReinforcementCamera?.checkpoint(this);
             if(this.background)this.background(c,w,h,b);
             this.backgroundReadability?.(c,w,h,b);
             this.weatherParticles(c,b,w,h,effectDt);

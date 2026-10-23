@@ -96,12 +96,15 @@ function flush(app){
       const cap=G.HonroEncounters.populationCap(b);
       if(spawned||hs.lastCombatEventBoundary===boundary||enemies+spawnCount(ev.action)>cap)continue;
     }
+    const beforeIds=combat(ev.action)?new Set(b.units.map(u=>u.id)):null;
     if(G.HonroAllies.execute(app,ev.action?{...ev.action,source:ev.action.source||ev.id}:ev.action)===false)continue;
+    const reinforcementIds=beforeIds?b.units.filter(u=>!beforeIds.has(u.id)&&u.side===1&&!u.honroObjectiveTarget).map(u=>u.id):null;
+    if(reinforcementIds){hs.reinforcementEvents??={};hs.reinforcementEvents[id]=reinforcementIds;}
     if(ev.entry){e.fx('ring',ev.entry.x,ev.entry.y-12,'#c8b286',95);e.fx('text',ev.entry.x,ev.entry.y-125,'#d4b790',16,'증원');}
     hs.flags[key]=true;if(combat(ev.action)){spawned=true;hs.lastCombatEventBoundary=boundary;}
     hs.eventLog??=[];hs.eventLog.push({id,phase:b.phase,round:b.round,side:b.side,teamEnds:[...b.teamEnds]});hs.eventLog=hs.eventLog.slice(-80);
     hs.pendingEvents=hs.pendingEvents.filter(v=>v!==id);
-    const lines=G.HonroStoryContent.eventLines(app,ev);if(lines?.length)app.sayLines(lines);else app.event(ev.text,{kind:'narration',source:'encounter:'+ev.id});b.events.push('honro:'+ev.id);app.dirty=true;
+    const lines=G.HonroStoryContent.eventLines(app,ev);if(lines?.length)app.sayLines(reinforcementIds?lines.map(([who,text,meta={}],index)=>[who,text,index===0?{...meta,reinforcementIds}:meta]):lines);else app.event(ev.text,{kind:'narration',source:'encounter:'+ev.id});b.events.push('honro:'+ev.id);app.dirty=true;
     if(app.dialogue)break;
   }
 }
