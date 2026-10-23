@@ -9,3 +9,6 @@
 현재기록은text-only대사경로이며옛paper reader는생산JS에서생성하지않는다.paper CSS호환은별도390/568 DOMfixture2개로투명행·본문만스크롤·버튼/viewport접근을검사했다.이것을활성paper기능실행으로세지않는다.기존stage/maps/원고를바꾸거나reader를재도입하지않았다.
 
 raw실행은스킬단위ea936eff+이단위미커밋소스/빌드다.[build](evidence/build.txt).스킬P0와분리커밋하며최종소스의두수정통합검사/보존영수증은스킬보고서후속기록에연결한다.원래probe의누락된hero.desc fixture참조를수정했고,최초버튼전용검사뒤실제사진에서본문0을발견해본문높이guard를추가했다.최종64검사는보완후모두통과했다.실기기/Safari/FPS·전체캠페인은미실행.master/Pages는부모담당이다.
+
+
+최종 실행/빌드는 **`977eac64c38dc9e8c88a8bf1f0c64de2ec9142a1`**다. 이후 문서/검사 smoke 옵션만 바뀌며 생산 소스/생성물은 같다. 최종 소스에서390/568 안내의 짧음·긴본문 scroll0/50/100% **8위치와 paper CSS fixture2개**도 통과했다. [최종 smoke](evidence/final-smoke.json).390 짧은 안내의 panel/본문/버튼 rect와 panel background는5987과 exact이며 별도 행 색만 제거됐다. 최종 통합 entry·manifest·스킬 소스 exact 및 과거21 graph/7435파일 보존은 [스킬 통합 영수증](../skill-image-only-20261023/evidence/preservation-final.json)을 따른다.

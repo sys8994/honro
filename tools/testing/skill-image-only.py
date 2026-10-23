@@ -14,7 +14,7 @@ def surface(p,name,checks):
  ready(p);r=p.evaluate(SNAP);assert r and all(x['svg']==0 for x in r),r;assert all(x['complete'] for x in r if x['visible']),r;checks.append({'surface':name,'icons':r})
 with serve_game() as base,sync_playwright() as pw:
  b=launch(pw)
- for mode in (['slow']if before else ['normal','slow','503','404','timeout']):
+ for mode in (['slow']if before else ['normal']if '--smoke'in sys.argv else ['normal','slow','503','404','timeout']):
   c=b.new_context(viewport={'width':390,'height':844},has_touch=True);p=c.new_page();held=[];hits={};fault=True;errors=[];p.on('pageerror',lambda e:errors.append(str(e)))
   def transport(route):
    nonlocal_dummy=None
@@ -67,4 +67,4 @@ with serve_game() as base,sync_playwright() as pw:
   surface(p,'HUD-clicks',checks);assert not errors,errors
   rows.append({'mode':mode,'cold':cold,'fault':fault_state,'checks':checks,'campRepeat20':repeat,'hudClicks12':hud,'hits':hits,'errors':errors,'status':p.evaluate('HonroSkillImages.status()')});print('PASS',mode,len(checks),'surfaces',flush=True);c.close()
  b.close()
-(OUT/('before.json'if before else'after.json')).write_text(json.dumps({'head':subprocess.check_output(['git','rev-parse','HEAD'],text=True).strip(),'manifestSha256':hashlib.sha256((ROOT/'web/manifest.json').read_bytes()).hexdigest(),'rows':rows},ensure_ascii=False,indent=2));print('DONE',len(rows))
+(OUT/('before.json'if before else'final-smoke.json'if '--smoke'in sys.argv else'after.json')).write_text(json.dumps({'head':subprocess.check_output(['git','rev-parse','HEAD'],text=True).strip(),'manifestSha256':hashlib.sha256((ROOT/'web/manifest.json').read_bytes()).hexdigest(),'rows':rows},ensure_ascii=False,indent=2));print('DONE',len(rows))
