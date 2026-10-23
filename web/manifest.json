@@ -1853,21 +1853,6 @@
   ],
   "previousFiles": [
     {
-      "path": "web/entries/game.caabd0896d516861.js",
-      "bytes": 10175,
-      "sha256": "caabd0896d51686133c2f989c77fccb1b44f7f197dea1fa55d3b0f1391cafe03"
-    },
-    {
-      "path": "web/entries/game.e5431b429a8425db.html",
-      "bytes": 11354,
-      "sha256": "e5431b429a8425dbc6e78f9d5d0af71f3f3569679af3a16331f378fe8f476770"
-    },
-    {
-      "path": "web/entries/workshop.a2b6a5c3ab497a86.js",
-      "bytes": 6929,
-      "sha256": "a2b6a5c3ab497a860eef3d135bf9d16197bba4e92e18657224bd120f2da6752a"
-    },
-    {
       "path": "web/entries/game.2e5cc30ee8765968.html",
       "bytes": 11354,
       "sha256": "2e5cc30ee8765968aff648f2717b9cb87151ef2184a27f35aba82f5aadbd88b7"
@@ -1886,6 +1871,26 @@
       "path": "web/runtime/ordered-common-2.52cfcc4eae5337bd.js",
       "bytes": 712588,
       "sha256": "52cfcc4eae5337bdc3d40c13b0d4a0932be85a3044e93e237742edf4123c5b6a"
+    },
+    {
+      "path": "web/entries/game.caabd0896d516861.js",
+      "bytes": 10175,
+      "sha256": "caabd0896d51686133c2f989c77fccb1b44f7f197dea1fa55d3b0f1391cafe03"
+    },
+    {
+      "path": "web/entries/game.e5431b429a8425db.html",
+      "bytes": 11354,
+      "sha256": "e5431b429a8425dbc6e78f9d5d0af71f3f3569679af3a16331f378fe8f476770"
+    },
+    {
+      "path": "web/entries/workshop.a2b6a5c3ab497a86.js",
+      "bytes": 6929,
+      "sha256": "a2b6a5c3ab497a860eef3d135bf9d16197bba4e92e18657224bd120f2da6752a"
+    },
+    {
+      "path": "web/runtime/ordered-common-2.481930d379fa2d48.js",
+      "bytes": 713267,
+      "sha256": "481930d379fa2d48025ede6158c7f14f3b76e7235cc31a6580f1835ef8cc5c16"
     },
     {
       "path": "web/data/narrative-data.48dae9cb577559fc.json",
@@ -1911,11 +1916,6 @@
       "path": "web/runtime/narrative-data.c65f234f4655aba8.js",
       "bytes": 176,
       "sha256": "c65f234f4655aba8a5f4f21ba7b5b01c6874c04554f531f4d3f72dff875746ae"
-    },
-    {
-      "path": "web/runtime/ordered-common-2.481930d379fa2d48.js",
-      "bytes": 713267,
-      "sha256": "481930d379fa2d48025ede6158c7f14f3b76e7235cc31a6580f1835ef8cc5c16"
     },
     {
       "path": "web/runtime/ordered-game-15.04382a33fad6c008.js",
@@ -3106,23 +3106,6 @@
   "previousGenerations": [
     [
       {
-        "path": "web/entries/game.caabd0896d516861.js",
-        "bytes": 10175,
-        "sha256": "caabd0896d51686133c2f989c77fccb1b44f7f197dea1fa55d3b0f1391cafe03"
-      },
-      {
-        "path": "web/entries/game.e5431b429a8425db.html",
-        "bytes": 11354,
-        "sha256": "e5431b429a8425dbc6e78f9d5d0af71f3f3569679af3a16331f378fe8f476770"
-      },
-      {
-        "path": "web/entries/workshop.a2b6a5c3ab497a86.js",
-        "bytes": 6929,
-        "sha256": "a2b6a5c3ab497a860eef3d135bf9d16197bba4e92e18657224bd120f2da6752a"
-      }
-    ],
-    [
-      {
         "path": "web/entries/game.2e5cc30ee8765968.html",
         "bytes": 11354,
         "sha256": "2e5cc30ee8765968aff648f2717b9cb87151ef2184a27f35aba82f5aadbd88b7"
@@ -3150,6 +3133,1786 @@
     "minGraphs": 2
   },
   "publishedGenerations": [
+    {
+      "sourceSha": "aa4b7ab784a3f9f4a490c0004f0b74fc51b3f361",
+      "publishedAt": "2026-10-23T04:03:25Z",
+      "publishedAtPrecision": "instant",
+      "publicationOrder": 0,
+      "evidence": "https://github.com/sys8994/honro/actions/runs/39898027299",
+      "graphSha256": "01a69e838cde1ef50b4ba103976301f0856d26aeb0cb2171b9b43a031f0c7158",
+      "files": [
+        {
+          "path": "web/data/campaign-base.0c57dcfe7c08d421.json",
+          "bytes": 257,
+          "sha256": "0c57dcfe7c08d421901ffa8eeb437940b6b6d4779816207b51dca7be44c73e5e"
+        },
+        {
+          "path": "web/data/campaign-library.9efd8ff4989b812f.json",
+          "bytes": 6432656,
+          "sha256": "9efd8ff4989b812fb27ab48ade6160cf1d9a3ec68075e0043a57b3f3ac0431f2"
+        },
+        {
+          "path": "web/data/campaign-shared.b27f15d8a7c4d170.json",
+          "bytes": 163976,
+          "sha256": "b27f15d8a7c4d170f90283812279356229ee6fc85cf87a8be2b5193744beba82"
+        },
+        {
+          "path": "web/data/campaign.a8cf3f673438b8bd.json",
+          "bytes": 10854,
+          "sha256": "a8cf3f673438b8bd8e8f3810902eed295f9a749283463af1f9c0ab8d69d8acba"
+        },
+        {
+          "path": "web/data/chapter-01-assets.7c8009204ecaf50e.json",
+          "bytes": 2030,
+          "sha256": "7c8009204ecaf50eb72d5b57f07286e9b7ea39dc086062fde17ce891e46e0664"
+        },
+        {
+          "path": "web/data/chapter-01.7ca5004fb6a48c84.json",
+          "bytes": 47990,
+          "sha256": "7ca5004fb6a48c841ca72f2e00a07c4f5ea950523421cdb0ef3d7e05a7893196"
+        },
+        {
+          "path": "web/data/chapter-02-assets.73dda13993198d3e.json",
+          "bytes": 1860,
+          "sha256": "73dda13993198d3e1cf17e494fde7634a2a47d7f57c6d2ae1eac455576076d87"
+        },
+        {
+          "path": "web/data/chapter-02.3f1722e60673a3f6.json",
+          "bytes": 54682,
+          "sha256": "3f1722e60673a3f646a774cf5f70843d1d3aa052f6dd1f000f71c227e0c9dcae"
+        },
+        {
+          "path": "web/data/chapter-03-assets.59a42777305d5148.json",
+          "bytes": 5719,
+          "sha256": "59a42777305d5148c0cc646a5c1c3298ab6303d36479faee3615311559a0593e"
+        },
+        {
+          "path": "web/data/chapter-03.73b3994c15646e8f.json",
+          "bytes": 71065,
+          "sha256": "73b3994c15646e8fb1d127c1f751c1ae13ce87923ed997c49e10d06d8bb7fecb"
+        },
+        {
+          "path": "web/data/chapter-04-assets.22e3c4ce270b9a9d.json",
+          "bytes": 11586,
+          "sha256": "22e3c4ce270b9a9d68f49563adcdca308d8acff1e042865d16ad31ed788436b5"
+        },
+        {
+          "path": "web/data/chapter-04.002dbef0ae61910a.json",
+          "bytes": 62369,
+          "sha256": "002dbef0ae61910a68053d0084df9ca065335b7882e5fdb886ed713b04f30663"
+        },
+        {
+          "path": "web/data/chapter-05-assets.746ef7e93e4317a1.json",
+          "bytes": 388,
+          "sha256": "746ef7e93e4317a169d3f1ec3b53179d7bd498d8f87025abcb53059c51698709"
+        },
+        {
+          "path": "web/data/chapter-05.16b7e2634794f9d9.json",
+          "bytes": 40966,
+          "sha256": "16b7e2634794f9d91b3acbc9c3614f3e34b80f9ce5c857ae14f79e8f1dbddcf8"
+        },
+        {
+          "path": "web/data/chapter-06-assets.b72a604b61a9973e.json",
+          "bytes": 2024,
+          "sha256": "b72a604b61a9973e70758d8b40aeae6d409b952fbe3a1ea5eddffb6c0793a7ea"
+        },
+        {
+          "path": "web/data/chapter-06.13e07d0f1f08c016.json",
+          "bytes": 47695,
+          "sha256": "13e07d0f1f08c016cd161ff91c1f8b828f22a080c5f9b76c6764dc268fed0b38"
+        },
+        {
+          "path": "web/data/chapter-07-assets.96edb76fc7288d7b.json",
+          "bytes": 33249,
+          "sha256": "96edb76fc7288d7b5e0f476fb90b259ca5bfdf74de95711040d3a876389f6158"
+        },
+        {
+          "path": "web/data/chapter-07.db4a9860c90640ec.json",
+          "bytes": 41205,
+          "sha256": "db4a9860c90640ec05bd9c5a5ad3364d0d0e6c7acfa5e2f98d2f2e4726863262"
+        },
+        {
+          "path": "web/data/chapter-08-assets.07151fe27f211959.json",
+          "bytes": 44399,
+          "sha256": "07151fe27f2119596faa1d287ad966ffb89abbfaff56f17e752a17c10f9ea1cf"
+        },
+        {
+          "path": "web/data/chapter-08.814a72039afe41bb.json",
+          "bytes": 97103,
+          "sha256": "814a72039afe41bb938bbeca7ebc2856d1de70d083f005ef1723e877b4eec5dc"
+        },
+        {
+          "path": "web/data/chapter-09-assets.b153347bad0daf7d.json",
+          "bytes": 4414,
+          "sha256": "b153347bad0daf7d48c597c8e15f17a70bea6dcf5832db7965100c27aa125a69"
+        },
+        {
+          "path": "web/data/chapter-09.0a297691446f45ac.json",
+          "bytes": 37815,
+          "sha256": "0a297691446f45acd6bed97e052335d8c0748d778bca07b83926102ec4a95feb"
+        },
+        {
+          "path": "web/data/chapter-10-assets.d3bf679baad2965b.json",
+          "bytes": 10841,
+          "sha256": "d3bf679baad2965ba301d066f2e5874839f1c3144c9e71978385336800bbd460"
+        },
+        {
+          "path": "web/data/chapter-10.928d91e828c10dc2.json",
+          "bytes": 34019,
+          "sha256": "928d91e828c10dc2eb5e51bfaa843d42fb7ac0f5c66e8a6c7b498444bccb3df5"
+        },
+        {
+          "path": "web/data/chapter-11-assets.42cba6ef8d12d168.json",
+          "bytes": 73282,
+          "sha256": "42cba6ef8d12d168d93be00bd66753362eb15efe8ff44a7e0bbc5142070d85ec"
+        },
+        {
+          "path": "web/data/chapter-11.7854b8a78c389926.json",
+          "bytes": 208707,
+          "sha256": "7854b8a78c389926b68fa92fc1aab96ba10d088cb6a06805aa3a226a574f0e51"
+        },
+        {
+          "path": "web/data/chapter-12-assets.8484f5c9fb34e219.json",
+          "bytes": 6168,
+          "sha256": "8484f5c9fb34e21919bf1423845cfb2f025f2ff215c58da4600c0fe374ebead2"
+        },
+        {
+          "path": "web/data/chapter-12.133998e69d7d8d2d.json",
+          "bytes": 90360,
+          "sha256": "133998e69d7d8d2df0a31e87504670dcb4e1022ae5d3231f9b058a18dac6a550"
+        },
+        {
+          "path": "web/data/chapter-13-assets.66bb59f229022227.json",
+          "bytes": 50136,
+          "sha256": "66bb59f22902222763bf1ae881669b09987a348b06290be295194977cbaa18f3"
+        },
+        {
+          "path": "web/data/chapter-13.3e8248a3c31c7d99.json",
+          "bytes": 95760,
+          "sha256": "3e8248a3c31c7d99d2c59345a55729709d699e76b66d9660d2e37a37a45bacbf"
+        },
+        {
+          "path": "web/data/chapter-14-assets.037286760c32019e.json",
+          "bytes": 119660,
+          "sha256": "037286760c32019e69aa04491c05dca55e7c7e631fbff6e25a7768e2741a4e99"
+        },
+        {
+          "path": "web/data/chapter-14.65c36281c3eac851.json",
+          "bytes": 270983,
+          "sha256": "65c36281c3eac851246eee1b5a82f58b518d5dec6e46b37eb305ca7d519c7997"
+        },
+        {
+          "path": "web/data/chapter-15-assets.8ef49fa76beb0350.json",
+          "bytes": 2797,
+          "sha256": "8ef49fa76beb0350c9d9b06edc10d7ed48f43cc531651f6abdd84e4e7fb5a1c4"
+        },
+        {
+          "path": "web/data/chapter-15.006c52a5adb3e7c4.json",
+          "bytes": 110221,
+          "sha256": "006c52a5adb3e7c42c2888679b69aede4d32fd1c9fc7a777c79bcf2416c8e26c"
+        },
+        {
+          "path": "web/data/chapter-16-assets.995706768a120b72.json",
+          "bytes": 207928,
+          "sha256": "995706768a120b72546139be9e1b8911a29a8d7198751cf88b6c897121835b7e"
+        },
+        {
+          "path": "web/data/chapter-16.1b5b3fd7c48f365f.json",
+          "bytes": 138509,
+          "sha256": "1b5b3fd7c48f365f8eec726536ec1b00e677e3626df3e74f411ae0a2bf3fcdaf"
+        },
+        {
+          "path": "web/data/chapter-17-assets.4c146d3a947e5a42.json",
+          "bytes": 306101,
+          "sha256": "4c146d3a947e5a42ba680b3a2814a77a7d164a388eb52052bfe3ad2fe4e132a8"
+        },
+        {
+          "path": "web/data/chapter-17.8fcafe7194de2d9d.json",
+          "bytes": 186601,
+          "sha256": "8fcafe7194de2d9dffbee7998881bae4133cfcd61ed8256b5a4c60d7d24e67dd"
+        },
+        {
+          "path": "web/data/chapter-18-assets.37517e5f3dc66819.json",
+          "bytes": 3,
+          "sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570"
+        },
+        {
+          "path": "web/data/chapter-18.78edf6319dbc90a1.json",
+          "bytes": 197103,
+          "sha256": "78edf6319dbc90a139ec294132bb4b52058778327b3734416acae9e5e29921e2"
+        },
+        {
+          "path": "web/data/chapter-19-assets.373d13864217479e.json",
+          "bytes": 1453,
+          "sha256": "373d13864217479ecc3104cb730dfd4e31ce3376191deebca5baefedeaefe1c0"
+        },
+        {
+          "path": "web/data/chapter-19.e441ced6ddaabe7c.json",
+          "bytes": 135660,
+          "sha256": "e441ced6ddaabe7c21b51ca7e5002ec99b62a7c7fc4a2316fa5ee0694a6d0bf9"
+        },
+        {
+          "path": "web/data/chapter-20-assets.a553ba8978a6a0b5.json",
+          "bytes": 9195,
+          "sha256": "a553ba8978a6a0b55601e2392f810ee2bbb467a42948b4ed18e3bfcd984fc62d"
+        },
+        {
+          "path": "web/data/chapter-20.586fe351ba21e774.json",
+          "bytes": 39983,
+          "sha256": "586fe351ba21e774cf657c937b853dc89ab2b6eef5b2e9f2193db5dff6edc8e1"
+        },
+        {
+          "path": "web/data/chapter-21-assets.03df21966ceec2af.json",
+          "bytes": 1328987,
+          "sha256": "03df21966ceec2afab73dd8834fe790815052ccf244893f7c72a6b9772d3807c"
+        },
+        {
+          "path": "web/data/chapter-21.d0556714ff77a311.json",
+          "bytes": 67451,
+          "sha256": "d0556714ff77a311c73afdcc69be04ecd7a5565c758957bc9d65252a9e39ca23"
+        },
+        {
+          "path": "web/data/chapter-22-assets.55c187d5eb8b5540.json",
+          "bytes": 219939,
+          "sha256": "55c187d5eb8b554024e451d39e76dc85f9cfc36c9bf75856c2b7baf4c5884170"
+        },
+        {
+          "path": "web/data/chapter-22.3bd6cbf004bf21eb.json",
+          "bytes": 353967,
+          "sha256": "3bd6cbf004bf21eb8ffec26daa0d77d24116d5e14daed17929101a1f21c7f179"
+        },
+        {
+          "path": "web/data/chapter-23-assets.72ac430942aa7934.json",
+          "bytes": 182692,
+          "sha256": "72ac430942aa79343a43d50d36ceb0f03ebbaac7766cfa86ad17d6b48366d7de"
+        },
+        {
+          "path": "web/data/chapter-23.b166d1cd7766b513.json",
+          "bytes": 97525,
+          "sha256": "b166d1cd7766b513d7e7258ea34b30d23e6dd75727ec4f6645e1c67d8d84f288"
+        },
+        {
+          "path": "web/data/chapter-24-assets.4262797bc8b62e55.json",
+          "bytes": 165333,
+          "sha256": "4262797bc8b62e55e2d3fa346ead4cfd6328a845b9597bc6adc925b72616c0f2"
+        },
+        {
+          "path": "web/data/chapter-24.9a492cd57b2eed50.json",
+          "bytes": 35650,
+          "sha256": "9a492cd57b2eed5006a2873bb7a169a30ca014c704e7a8d1c5fc3a34365e93ee"
+        },
+        {
+          "path": "web/data/chapter-25-assets.1a95b917046ba05a.json",
+          "bytes": 176343,
+          "sha256": "1a95b917046ba05a228971cfd4c34e2cef665fae85868a0e6b8e94d368efa5fe"
+        },
+        {
+          "path": "web/data/chapter-25.829e658cb00e1dd3.json",
+          "bytes": 26243,
+          "sha256": "829e658cb00e1dd3667a34cf16cebd013392355e0d9babb7cf4d402f0eab161f"
+        },
+        {
+          "path": "web/data/chapter-26-assets.48c4d5143ad47de3.json",
+          "bytes": 77989,
+          "sha256": "48c4d5143ad47de3e3cd8f1222ece157b37e52271383c40e73453dc743634d4b"
+        },
+        {
+          "path": "web/data/chapter-26.547abeda5c5d747e.json",
+          "bytes": 25097,
+          "sha256": "547abeda5c5d747e0a208f01e72c815324808c56b674b19eebae5ee05e566459"
+        },
+        {
+          "path": "web/data/chapter-27-assets.6814a9c40423907f.json",
+          "bytes": 211003,
+          "sha256": "6814a9c40423907f351b987ff418767b479c58f87fd4d9baeca76e5f3bfd6455"
+        },
+        {
+          "path": "web/data/chapter-27.a6e15d22d4f59d0b.json",
+          "bytes": 27256,
+          "sha256": "a6e15d22d4f59d0b8121d55fb2f1a3e3d70559d5ac8e66c876f5e4e46efc2da3"
+        },
+        {
+          "path": "web/data/chapter-28-assets.33fb3b2314ee0620.json",
+          "bytes": 137475,
+          "sha256": "33fb3b2314ee0620daf59c20814f56d50fbd747319e86c4c302225c1314340a9"
+        },
+        {
+          "path": "web/data/chapter-28.1665e44ff00fb822.json",
+          "bytes": 30831,
+          "sha256": "1665e44ff00fb8221273e7c614ad878853fc43bed98735663b2f3fe3e2e63917"
+        },
+        {
+          "path": "web/data/chapter-29-assets.02146f0a757208d7.json",
+          "bytes": 80703,
+          "sha256": "02146f0a757208d788d4e8f0b6693dada6c247a770a516dce5d0e45183d0a33c"
+        },
+        {
+          "path": "web/data/chapter-29.724d77bb6cb527da.json",
+          "bytes": 31810,
+          "sha256": "724d77bb6cb527da6c9db19327c5b3bdab63a952cca4d2dec13e8af3155bfa10"
+        },
+        {
+          "path": "web/data/chapter-30-assets.f88d4cc275379e71.json",
+          "bytes": 138197,
+          "sha256": "f88d4cc275379e715bcca5349eeb040bb109c157be69ac328ef4b2582dc997a1"
+        },
+        {
+          "path": "web/data/chapter-30.05aa9e3f55e54d6d.json",
+          "bytes": 109665,
+          "sha256": "05aa9e3f55e54d6df1b455234fdb344da4ab6393bfd10eb7dcb5e71507d5bb88"
+        },
+        {
+          "path": "web/data/HONRO_ACT1_FAR_DATA.a7bedbfe9c843e9f.json",
+          "bytes": 350,
+          "sha256": "a7bedbfe9c843e9f4739bcf1b0839be7dda97afb3defea29664b598668a0e75c"
+        },
+        {
+          "path": "web/data/HONRO_ACT2_FAR_DATA.55de354dd4cecfc3.json",
+          "bytes": 402,
+          "sha256": "55de354dd4cecfc33bc2e6e04e5443e92bb61c3d3bb316a07000a93ebbf32966"
+        },
+        {
+          "path": "web/data/HONRO_ACTORS.dc66bad4ab069336.json",
+          "bytes": 169079,
+          "sha256": "dc66bad4ab069336dcf6fcbae54ecf231dc1bcb1c1c312baeddb764eb7209238"
+        },
+        {
+          "path": "web/data/HONRO_AUTHORED_FAR.f922b0b5e5066247.json",
+          "bytes": 2977,
+          "sha256": "f922b0b5e5066247ecd3a4de2e12e369d2a9a6f2d6f31dab6f136f1f73d36beb"
+        },
+        {
+          "path": "web/data/HONRO_BALANCE.e066899ab958f2b8.json",
+          "bytes": 7435,
+          "sha256": "e066899ab958f2b8cc67726250301c1d85d7ab4179ae68049b0b24c9ae9b0bed"
+        },
+        {
+          "path": "web/data/HONRO_BGM_METADATA.8c4f7cb85a10e724.json",
+          "bytes": 455,
+          "sha256": "8c4f7cb85a10e724e4d1d7dfa6a78de5ee7229da0c2f37fdf406b78bcef0ea12"
+        },
+        {
+          "path": "web/data/HONRO_BGM_TRACKS.c152d3b0ef2ea83b.json",
+          "bytes": 180,
+          "sha256": "c152d3b0ef2ea83bce77ff449c315feaa0a207f367104babb87cea135c9ae06d"
+        },
+        {
+          "path": "web/data/HONRO_JOURNEY_MAPS.7d250f98eb159729.json",
+          "bytes": 5899,
+          "sha256": "7d250f98eb1597293067a5b792aba83c8686e4df81675d3c3c5b42fbe33cf121"
+        },
+        {
+          "path": "web/data/HONRO_MONSTERS.fbfeb788663e09e1.json",
+          "bytes": 125281,
+          "sha256": "fbfeb788663e09e169f7e9ff34e06bf96f5218bbd23aec1be1376ef150430110"
+        },
+        {
+          "path": "web/data/HONRO_NARRATIVE_V0.1b1a16777125d7dc.json",
+          "bytes": 142604,
+          "sha256": "1b1a16777125d7dc04b262967d9d5de54534e0e940575205d6998fd6da74bac5"
+        },
+        {
+          "path": "web/data/HONRO_OPEN_STRUCTURES.bd10fa99a7eaab14.json",
+          "bytes": 14618,
+          "sha256": "bd10fa99a7eaab14f6e08a5a8e25360125036b76f4f8a52437001731832ff7ae"
+        },
+        {
+          "path": "web/data/HONRO_PAINTED_PILOTS.6d84c3845b695bb3.json",
+          "bytes": 6730,
+          "sha256": "6d84c3845b695bb3c91a04cb72c72e35406d1143437bb681e9d8ee5818d1defd"
+        },
+        {
+          "path": "web/data/HONRO_PARTY_ART.3e80aca85f6101e0.json",
+          "bytes": 97,
+          "sha256": "3e80aca85f6101e0820af6f4f18cca64880a8611f6cfe07d727cf05e63b1e546"
+        },
+        {
+          "path": "web/data/HONRO_PARTY.16d29c28ac7225c7.json",
+          "bytes": 177567,
+          "sha256": "16d29c28ac7225c733420cf6de0dd3c428cb160de08bd1b8dd83062cacfdebfc"
+        },
+        {
+          "path": "web/data/HONRO_REST_BACKDROPS.59a3076127863c24.json",
+          "bytes": 1174,
+          "sha256": "59a3076127863c240e788f024159cff3086c7aa045a819b679eb0c9e26cbc330"
+        },
+        {
+          "path": "web/data/HONRO_SKILL_ICON_MANIFEST.ce96d5880bfbc07c.json",
+          "bytes": 19045,
+          "sha256": "ce96d5880bfbc07cdf3e7819eac3a1a85a9c7e613c6c121c3515b3f7042ff10e"
+        },
+        {
+          "path": "web/data/HONRO_SPLIT_V1.8a0557450bffb24e.json",
+          "bytes": 653520,
+          "sha256": "8a0557450bffb24ebd30cad47322c95ac4b8bed3857a8a0b330f641730ebcd63"
+        },
+        {
+          "path": "web/data/HONRO_STAGE_INTRO_ART.2fd23f2b329a0e27.json",
+          "bytes": 653,
+          "sha256": "2fd23f2b329a0e2779d1e9833e66b52b1589d0577106bbef0881b122c2c691cc"
+        },
+        {
+          "path": "web/data/HONRO_STAGE21_PAINTED.4df0062da3191cc0.json",
+          "bytes": 28841,
+          "sha256": "4df0062da3191cc032b349afb22179df223ef2b11854b9aa9bdfcca1e9c43feb"
+        },
+        {
+          "path": "web/data/HONRO_STORY_PORTRAITS.8a33d8f970effba1.json",
+          "bytes": 7534,
+          "sha256": "8a33d8f970effba1d2a2d5de85296a60c743aa3a00d97a6453461f63e113a810"
+        },
+        {
+          "path": "web/data/HONRO_TITLE_ART.5005ea77f273dae9.json",
+          "bytes": 496,
+          "sha256": "5005ea77f273dae952a3777e080de9b0be203e9f1d2f47c52265b355a2119822"
+        },
+        {
+          "path": "web/data/narrative-data.40290a6448315f92.json",
+          "bytes": 426841,
+          "sha256": "40290a6448315f92b8806adbf3b9f46e5da8d39ee84e6b5cead2e24bc4c3dae6"
+        },
+        {
+          "path": "web/entries/game.caabd0896d516861.js",
+          "bytes": 10175,
+          "sha256": "caabd0896d51686133c2f989c77fccb1b44f7f197dea1fa55d3b0f1391cafe03"
+        },
+        {
+          "path": "web/entries/game.e5431b429a8425db.html",
+          "bytes": 11354,
+          "sha256": "e5431b429a8425dbc6e78f9d5d0af71f3f3569679af3a16331f378fe8f476770"
+        },
+        {
+          "path": "web/entries/workshop.a2b6a5c3ab497a86.js",
+          "bytes": 6929,
+          "sha256": "a2b6a5c3ab497a860eef3d135bf9d16197bba4e92e18657224bd120f2da6752a"
+        },
+        {
+          "path": "web/graphics/ending-10-image.6a631739bb1b7338.webp",
+          "bytes": 442588,
+          "sha256": "6a631739bb1b733849652c0895d5e2bbb621859e85e08d02d243b3e38a6efd4d"
+        },
+        {
+          "path": "web/graphics/ending-10-portraitImage.5520e02971f9a436.webp",
+          "bytes": 479486,
+          "sha256": "5520e02971f9a436fb3ae262ec6290524aa14b4e4befdfaccd51af0573387c2a"
+        },
+        {
+          "path": "web/graphics/ending-20-image.63c3c8526af3bdfe.webp",
+          "bytes": 422342,
+          "sha256": "63c3c8526af3bdfe0edda6a26e6d2c8de95772965ee75479dec7d8d9719d9127"
+        },
+        {
+          "path": "web/graphics/ending-20-portraitImage.ba7ff960c89ed370.webp",
+          "bytes": 440842,
+          "sha256": "ba7ff960c89ed37028c867ee4c0fc654651e9cae5d9d104fcd3870581b0ae48d"
+        },
+        {
+          "path": "web/graphics/ending-30-image.81e1aac5338adfcf.webp",
+          "bytes": 400452,
+          "sha256": "81e1aac5338adfcfc742488320b6c6a0a80e81eafb9a4ff02cefa332c9d5c98c"
+        },
+        {
+          "path": "web/graphics/ending-30-portraitImage.51fd29f411387d85.webp",
+          "bytes": 482120,
+          "sha256": "51fd29f411387d85faf0137b3033d2ba72b59596aa46c3aaeef17501313f546b"
+        },
+        {
+          "path": "web/graphics/honro_act1_far_data-act3.9814017ddf006228.svg",
+          "bytes": 3196,
+          "sha256": "9814017ddf0062287b1c0146f7978657b83b9fa3d031d4fd5852eb4b7fb45315"
+        },
+        {
+          "path": "web/graphics/honro_act1_far_data-dawn.3ca9b11c3eb47bf6.svg",
+          "bytes": 19540,
+          "sha256": "3ca9b11c3eb47bf64c52975041a6ee8de97c945e6800156b4090ab01d69386fe"
+        },
+        {
+          "path": "web/graphics/honro_act1_far_data-gorge.38d2033f7a1bd874.svg",
+          "bytes": 22474,
+          "sha256": "38d2033f7a1bd874eb6e9a2324fc0c66cbed5150835b974792b42a8a2a49d787"
+        },
+        {
+          "path": "web/graphics/honro_act1_far_data-mountains.785547297cc4d3c0.svg",
+          "bytes": 19263,
+          "sha256": "785547297cc4d3c041e14151739b20c2c92f61a508015ee69d868628ad6c1308"
+        },
+        {
+          "path": "web/graphics/honro_act2_far_data-clouded.86ae2f37d1af7644.svg",
+          "bytes": 2501,
+          "sha256": "86ae2f37d1af7644c36eea4235c9d765f86e7fca5526a74c9e086e405a3dc8c1"
+        },
+        {
+          "path": "web/graphics/honro_act2_far_data-dawn.3ca9b11c3eb47bf6.svg",
+          "bytes": 19540,
+          "sha256": "3ca9b11c3eb47bf64c52975041a6ee8de97c945e6800156b4090ab01d69386fe"
+        },
+        {
+          "path": "web/graphics/honro_act2_far_data-stage11-ravine-readable.6086c44708d98554.svg",
+          "bytes": 3334,
+          "sha256": "6086c44708d98554eb15fe5051bc67d8788aac8dd2ea98009297d49676af5f19"
+        },
+        {
+          "path": "web/graphics/honro_act2_far_data-stage11-ravine.d98826e1df41f3fe.svg",
+          "bytes": 3333,
+          "sha256": "d98826e1df41f3feadabb9113cf13b7638c07047d3aab666154a96b7469aefb6"
+        },
+        {
+          "path": "web/graphics/honro_authored_far-images-archive-interior.92b79d8600600b4a.webp",
+          "bytes": 114542,
+          "sha256": "92b79d8600600b4ad6b149f2b0b1f80daa6bd6f0e4711d7db237ac07314533c6"
+        },
+        {
+          "path": "web/graphics/honro_authored_far-images-bellRear.6f3f751e2658edeb.webp",
+          "bytes": 130658,
+          "sha256": "6f3f751e2658edebdf9c427676ee153351a41fba422664efe558897d7e6f49c6"
+        },
+        {
+          "path": "web/graphics/honro_authored_far-images-cave-entrance.4109fa210e0fbd60.webp",
+          "bytes": 29172,
+          "sha256": "4109fa210e0fbd60c8400ec51365513155b3f1a6d5c77760084e26dc0c446d69"
+        },
+        {
+          "path": "web/graphics/honro_authored_far-images-cave-settlement.acd85fa87fd099bb.webp",
+          "bytes": 22662,
+          "sha256": "acd85fa87fd099bbcce3918e901a73ca718f7840baea0e4e9db52a9de0d572c2"
+        },
+        {
+          "path": "web/graphics/honro_authored_far-images-cave-waterwork.1a10a138c7cdc0be.webp",
+          "bytes": 29526,
+          "sha256": "1a10a138c7cdc0bef96f919f1215f08ec8b8340390ace934189535ca7a33a447"
+        },
+        {
+          "path": "web/graphics/honro_authored_far-images-dawn.84b77e4b3d612d13.webp",
+          "bytes": 952722,
+          "sha256": "84b77e4b3d612d13b94fd33edae427e3b4c4a903199bb03edc9ae1b501c62e12"
+        },
+        {
+          "path": "web/graphics/honro_authored_far-images-depotRear.732dcad828ddaa95.webp",
+          "bytes": 208436,
+          "sha256": "732dcad828ddaa95dc1b25a5deb63683f20d7d3ecfd2c6ea5ec34dac8ba30c77"
+        },
+        {
+          "path": "web/graphics/honro_authored_far-images-forestFar.6743ae7e7735ce55.webp",
+          "bytes": 34098,
+          "sha256": "6743ae7e7735ce55ee3a116ed1adccee15b422c9fd17ddf8686178109439073e"
+        },
+        {
+          "path": "web/graphics/honro_authored_far-images-root-interior.7b6377c64ea476da.webp",
+          "bytes": 90092,
+          "sha256": "7b6377c64ea476da11bbcbaee6fc8c98e67692723bf8ee7f18ab60c22709def7"
+        },
+        {
+          "path": "web/graphics/honro_authored_far-images-stillNight.5094cddb7d563f7b.webp",
+          "bytes": 18634,
+          "sha256": "5094cddb7d563f7bb84ed4b423fcc18dc48cef548adbe92df2d0abe3f15d3f4f"
+        },
+        {
+          "path": "web/graphics/honro_authored_far-images-town-river.a530ef88a89d514f.webp",
+          "bytes": 20784,
+          "sha256": "a530ef88a89d514f3674bf9ca734269b742d8bcc60825d0123a9b0ef0ee45b3f"
+        },
+        {
+          "path": "web/graphics/honro_authored_far-images-town-wall.a82caa98e27ebc20.webp",
+          "bytes": 28798,
+          "sha256": "a82caa98e27ebc2099869bb6c0ab9b2f74251ed0b44d92ce4d024a84274b8159"
+        },
+        {
+          "path": "web/graphics/honro_authored_far-images-townSky.229e09a1c984bb1c.webp",
+          "bytes": 88974,
+          "sha256": "229e09a1c984bb1c9719060aaedd952dcf4be4d3d74d24c06d89488ed0ba5118"
+        },
+        {
+          "path": "web/graphics/honro_authored_far-images-valleyFar.4fd65fd6a65b0dd4.webp",
+          "bytes": 30438,
+          "sha256": "4fd65fd6a65b0dd405f7557bd939d60d1738c713e385f2245685b5719687604f"
+        },
+        {
+          "path": "web/graphics/honro_authored_far-images-workshop-yard.638a9f85a4c26693.webp",
+          "bytes": 349346,
+          "sha256": "638a9f85a4c266935baafd8ccdc1dd4f08269d521e8390c7fb988c91d30a9da6"
+        },
+        {
+          "path": "web/graphics/honro_painted_pilots-images-bark.6eae3ab126f50d8b.webp",
+          "bytes": 6996,
+          "sha256": "6eae3ab126f50d8baa907c5676345be513794b4c5e73844b609522ca4c34dc60"
+        },
+        {
+          "path": "web/graphics/honro_painted_pilots-images-beam.d568dd1973d64b0b.webp",
+          "bytes": 18920,
+          "sha256": "d568dd1973d64b0bf6bc9f25ba686aeaeee0ad81ac2a6e58557bbee6c08585a3"
+        },
+        {
+          "path": "web/graphics/honro_painted_pilots-images-bellRear.6f3f751e2658edeb.webp",
+          "bytes": 130658,
+          "sha256": "6f3f751e2658edebdf9c427676ee153351a41fba422664efe558897d7e6f49c6"
+        },
+        {
+          "path": "web/graphics/honro_painted_pilots-images-bierShelter8.08931b5c4512bd08.webp",
+          "bytes": 210694,
+          "sha256": "08931b5c4512bd0869437820db54535205404d8ca91b6b415702418288b55de1"
+        },
+        {
+          "path": "web/graphics/honro_painted_pilots-images-bierStore8.8fc42c8d0f25ff3e.webp",
+          "bytes": 308858,
+          "sha256": "8fc42c8d0f25ff3e61a4daa979e50510f1ac77aae839aa698affe5caad7a6ea2"
+        },
+        {
+          "path": "web/graphics/honro_painted_pilots-images-bridge6.042ae19f5d957e60.webp",
+          "bytes": 253276,
+          "sha256": "042ae19f5d957e605dd65b17821ec2f849a16b9964ef37b1302687b3a345bce6"
+        },
+        {
+          "path": "web/graphics/honro_painted_pilots-images-burned4.26e705cf283ec2cb.webp",
+          "bytes": 102486,
+          "sha256": "26e705cf283ec2cb4f3b9c62c5347689dfa68723baaa6775a1fdd03ef56e13c7"
+        },
+        {
+          "path": "web/graphics/honro_painted_pilots-images-cliff5.91c4983107e1b18d.webp",
+          "bytes": 616806,
+          "sha256": "91c4983107e1b18d7d4f9be7371cb7461e2f3f96fcef2a608d165ad6b24486c3"
+        },
+        {
+          "path": "web/graphics/honro_painted_pilots-images-dead.c65339893479bd85.webp",
+          "bytes": 343678,
+          "sha256": "c65339893479bd85e2057ed393937b56d9d1a65ceb50d6f22f4e5cb97be4228a"
+        },
+        {
+          "path": "web/graphics/honro_painted_pilots-images-depotRear.732dcad828ddaa95.webp",
+          "bytes": 208436,
+          "sha256": "732dcad828ddaa95dc1b25a5deb63683f20d7d3ecfd2c6ea5ec34dac8ba30c77"
+        },
+        {
+          "path": "web/graphics/honro_painted_pilots-images-ferryHall.e15c7526d1af37bb.webp",
+          "bytes": 246758,
+          "sha256": "e15c7526d1af37bbddca39ea11255055deb1e7e1310bf6c65c205c577839dd63"
+        },
+        {
+          "path": "web/graphics/honro_painted_pilots-images-ferryShrine.cc9917ad0d6bd3eb.webp",
+          "bytes": 57850,
+          "sha256": "cc9917ad0d6bd3eb5330e08b5ab07872ddc6ae9c7a532d57b69d82b733a1caad"
+        },
+        {
+          "path": "web/graphics/honro_painted_pilots-images-ferryWorkbay.bb2cbe339412ed77.webp",
+          "bytes": 146858,
+          "sha256": "bb2cbe339412ed7791c87810a5b7979d038a7f5f61884b90009f482d041e341b"
+        },
+        {
+          "path": "web/graphics/honro_painted_pilots-images-forestFar.6743ae7e7735ce55.webp",
+          "bytes": 34098,
+          "sha256": "6743ae7e7735ce55ee3a116ed1adccee15b422c9fd17ddf8686178109439073e"
+        },
+        {
+          "path": "web/graphics/honro_painted_pilots-images-forestRock.28afd175216e09ae.webp",
+          "bytes": 533476,
+          "sha256": "28afd175216e09ae153a081ed03645d929f6eb13c1d8862a34ded3a774552b03"
+        },
+        {
+          "path": "web/graphics/honro_painted_pilots-images-forestSoil.fec4f73ccac2004f.webp",
+          "bytes": 321414,
+          "sha256": "fec4f73ccac2004f22d8b1e3d3d13eb51e3d1b2b837f1f9d87571c972d5273f2"
+        },
+        {
+          "path": "web/graphics/honro_painted_pilots-images-gate4.0e931ce976c9e2fe.webp",
+          "bytes": 170954,
+          "sha256": "0e931ce976c9e2fe7fd26ab23a7c088ac3cdbfee65f2fa27e1bf7629a40262a9"
+        },
+        {
+          "path": "web/graphics/honro_painted_pilots-images-gateFar.5094cddb7d563f7b.webp",
+          "bytes": 18634,
+          "sha256": "5094cddb7d563f7bb84ed4b423fcc18dc48cef548adbe92df2d0abe3f15d3f4f"
+        },
+        {
+          "path": "web/graphics/honro_painted_pilots-images-granite.fa0c8cc14d4909d3.webp",
+          "bytes": 54790,
+          "sha256": "fa0c8cc14d4909d38168f31e1361bc654b393e50e6cb28d9d61a3b753436150c"
+        },
+        {
+          "path": "web/graphics/honro_painted_pilots-images-guardianHall10.633d1e5f0b566739.webp",
+          "bytes": 174108,
+          "sha256": "633d1e5f0b56673924fdef77401edbb73eaa39ea1ab4948bb9906e3a9fb75950"
+        },
+        {
+          "path": "web/graphics/honro_painted_pilots-images-guardianTree10.15da99701523bae3.webp",
+          "bytes": 774018,
+          "sha256": "15da99701523bae34dc6061bfdbd1138184eb35ba1d76a1e400ea62486223379"
+        },
+        {
+          "path": "web/graphics/honro_painted_pilots-images-log.a6b8472572e06394.webp",
+          "bytes": 54246,
+          "sha256": "a6b8472572e06394609998dcfdf10cbd033826938c2cb59fa6c7f807ea7a979e"
+        },
+        {
+          "path": "web/graphics/honro_painted_pilots-images-passGate.1eb0a2d2337822ba.webp",
+          "bytes": 92532,
+          "sha256": "1eb0a2d2337822ba9ae46f927b6294f420483159ec6f893c92ecfc57cb32689d"
+        },
+        {
+          "path": "web/graphics/honro_painted_pilots-images-pineA.c2f9443b6ad28bd2.webp",
+          "bytes": 420062,
+          "sha256": "c2f9443b6ad28bd233641aec2fae270f4fe944cc6c324ad434efd6302547681f"
+        },
+        {
+          "path": "web/graphics/honro_painted_pilots-images-pineB.edc38a27e2738866.webp",
+          "bytes": 536222,
+          "sha256": "edc38a27e2738866bc95517101ac77cf5a91798dd4aeeb91847b27c4b156ec2c"
+        },
+        {
+          "path": "web/graphics/honro_painted_pilots-images-quietFar.84b77e4b3d612d13.webp",
+          "bytes": 952722,
+          "sha256": "84b77e4b3d612d13b94fd33edae427e3b4c4a903199bb03edc9ae1b501c62e12"
+        },
+        {
+          "path": "web/graphics/honro_painted_pilots-images-rest10RootSteps.ae7a809006f010a4.webp",
+          "bytes": 245372,
+          "sha256": "ae7a809006f010a43159367354212ec98b40afd8b717282108a546f9923a5c29"
+        },
+        {
+          "path": "web/graphics/honro_painted_pilots-images-rest1Inn.1a485856980f0e1a.webp",
+          "bytes": 181122,
+          "sha256": "1a485856980f0e1abe0809ffb05b1f7c063067adc2f45ac6309ad98345652fbe"
+        },
+        {
+          "path": "web/graphics/honro_painted_pilots-images-rest3Worktable.19608a647dc135ae.webp",
+          "bytes": 90154,
+          "sha256": "19608a647dc135ae3f38f7a3e10b672e0006b8240eb4a402a2204fe9efcbdba5"
+        },
+        {
+          "path": "web/graphics/honro_painted_pilots-images-rest9Well.0246d57d00a369a1.webp",
+          "bytes": 60794,
+          "sha256": "0246d57d00a369a160a0f177ba20d88b0c17ffafe6093a75c40ffc930079b47c"
+        },
+        {
+          "path": "web/graphics/honro_painted_pilots-images-ritualCorridor9.92d4f13225641b8a.webp",
+          "bytes": 154162,
+          "sha256": "92d4f13225641b8a8143860bec04eecfb1338eab4f1832c13e06ff5de333fd5e"
+        },
+        {
+          "path": "web/graphics/honro_painted_pilots-images-ritualGate9.6c4931d3f8cdc292.webp",
+          "bytes": 236736,
+          "sha256": "6c4931d3f8cdc292f5efe6796334c666819568ddc86f931d118f83fee2fa1be4"
+        },
+        {
+          "path": "web/graphics/honro_painted_pilots-images-ritualRoots9.0c9ca0382c1df5be.webp",
+          "bytes": 129456,
+          "sha256": "0c9ca0382c1df5be34f55bd1eb3418558257def45f505a0b39e259b26938c19f"
+        },
+        {
+          "path": "web/graphics/honro_painted_pilots-images-roots.164de68534537576.webp",
+          "bytes": 43298,
+          "sha256": "164de68534537576b708e4c2e2f9386df818d6bf0798f33807361dfbd20101ae"
+        },
+        {
+          "path": "web/graphics/honro_painted_pilots-images-stage1BalancedNear.38f408fd9a032c02.webp",
+          "bytes": 1329274,
+          "sha256": "38f408fd9a032c02accae6cc93952ddc6f950a9be3131bef06f01f015240e4ce"
+        },
+        {
+          "path": "web/graphics/honro_painted_pilots-images-stage1ForestExitNear.e0b52e41a6815d0f.webp",
+          "bytes": 1451608,
+          "sha256": "e0b52e41a6815d0f2c8e28a4c52f53fa54f92a3b8380b030e65c5a2f5a64c789"
+        },
+        {
+          "path": "web/graphics/honro_painted_pilots-images-stage1ForestStartNear.6e52c8af473d6728.webp",
+          "bytes": 1322994,
+          "sha256": "6e52c8af473d672873ff96b9779c0a8cca61fbd444b7459d0440984f7b2e54a4"
+        },
+        {
+          "path": "web/graphics/honro_painted_pilots-images-stage1Place.d32db508184d0e3f.webp",
+          "bytes": 537130,
+          "sha256": "d32db508184d0e3fae2c78727cac2c0bf313c860e8949634a116f38ac5747ce8"
+        },
+        {
+          "path": "web/graphics/honro_painted_pilots-images-stage1PlaceBothBroken.1b90b924c23ee111.webp",
+          "bytes": 445960,
+          "sha256": "1b90b924c23ee111c3efb53c502e825952c811f5222c887d8ad94d2b696f8d30"
+        },
+        {
+          "path": "web/graphics/honro_painted_pilots-images-stage1PlaceEastBroken.f55592089375cd21.webp",
+          "bytes": 467050,
+          "sha256": "f55592089375cd21c63f23582559e613c4fa3294f55d042ffd1b25d09a4981d8"
+        },
+        {
+          "path": "web/graphics/honro_painted_pilots-images-stage1PlaceWestBroken.365ca0fbe5a2d284.webp",
+          "bytes": 459502,
+          "sha256": "365ca0fbe5a2d284778e30e7a72b043ebf52d595a2d7386fa238e8d93c5d0f47"
+        },
+        {
+          "path": "web/graphics/honro_painted_pilots-images-stage1QuietNear.1ec6d00a4b7df483.webp",
+          "bytes": 1318238,
+          "sha256": "1ec6d00a4b7df48352aa52ac78702e9771d879a31446fab6aa01ac0e906256b8"
+        },
+        {
+          "path": "web/graphics/honro_painted_pilots-images-stage2Place.e2d6242d676f29ff.webp",
+          "bytes": 517844,
+          "sha256": "e2d6242d676f29ffa435d8ece5fe6e2bbba2cd2cc3d84c3b447170263b1b267c"
+        },
+        {
+          "path": "web/graphics/honro_painted_pilots-images-stage2QuietNear.e07cce6480a96b20.webp",
+          "bytes": 1756982,
+          "sha256": "e07cce6480a96b206bce566c4cc56a815258e7d525d5c761f74ce73a737d9700"
+        },
+        {
+          "path": "web/graphics/honro_painted_pilots-images-stage3QuietNear.fa245c9fcb1b735c.webp",
+          "bytes": 1176540,
+          "sha256": "fa245c9fcb1b735cf2abc4ec2ca7116444f9a7dcf266b0280ea954082822c3db"
+        },
+        {
+          "path": "web/graphics/honro_painted_pilots-images-stage4QuietNear.fa5c2a85d11d3648.webp",
+          "bytes": 1199714,
+          "sha256": "fa5c2a85d11d36486078d97714a84a95926e4b735bb8f0242fafae8586814a29"
+        },
+        {
+          "path": "web/graphics/honro_painted_pilots-images-stone.064ee9999d6e44b5.webp",
+          "bytes": 64332,
+          "sha256": "064ee9999d6e44b5e2dc963f3f2a18243d9aca6a63a3ea0fbffea1d236c24923"
+        },
+        {
+          "path": "web/graphics/honro_painted_pilots-images-underground.24a7377d4a0e5b33.webp",
+          "bytes": 380498,
+          "sha256": "24a7377d4a0e5b33c6b0b9508325c43b057659186607596804715c9774fc8ffe"
+        },
+        {
+          "path": "web/graphics/honro_painted_pilots-images-valleyFar.4fd65fd6a65b0dd4.webp",
+          "bytes": 30438,
+          "sha256": "4fd65fd6a65b0dd405f7557bd939d60d1738c713e385f2245685b5719687604f"
+        },
+        {
+          "path": "web/graphics/honro_painted_pilots-images-villageHome7.fc56b723159b754c.webp",
+          "bytes": 299164,
+          "sha256": "fc56b723159b754c1f0d41209ad790db05cda320d7703ac44c3933536d89cb5a"
+        },
+        {
+          "path": "web/graphics/honro_painted_pilots-images-villageTree7.55663aa18eb79410.webp",
+          "bytes": 812178,
+          "sha256": "55663aa18eb7941000233136a9928baad95d020ea109aac16dfb7ffb3bc5059b"
+        },
+        {
+          "path": "web/graphics/honro_painted_pilots-images-watch4.9bc92d08893b42ec.webp",
+          "bytes": 202440,
+          "sha256": "9bc92d08893b42ec8bad4859245f44dbe95a31d3d5cb435a46b202e4286ab165"
+        },
+        {
+          "path": "web/graphics/honro_painted_pilots-images-water5.4306977a7dc5085c.webp",
+          "bytes": 292272,
+          "sha256": "4306977a7dc5085cbd5f482966574374fb864ac144ab46fa29569225dd310088"
+        },
+        {
+          "path": "web/graphics/honro_rest_backdrops-images-cave-bell-chamber.7dcc45b563ea5680.webp",
+          "bytes": 17136,
+          "sha256": "7dcc45b563ea5680ac585fcbefdd4cf33e6455805c7a8b51a627c51fd14a155d"
+        },
+        {
+          "path": "web/graphics/honro_rest_backdrops-images-cave-entrance.07a6a794b9b5c3b0.webp",
+          "bytes": 24486,
+          "sha256": "07a6a794b9b5c3b022902ca30da46e5569c210047ead4884e70d665f4762e40a"
+        },
+        {
+          "path": "web/graphics/honro_rest_backdrops-images-cave-settlement.3165617103ee11b9.webp",
+          "bytes": 19340,
+          "sha256": "3165617103ee11b9fc85e5b19987ad52315ce3b1eb83f4d69235044fede91dd3"
+        },
+        {
+          "path": "web/graphics/honro_rest_backdrops-images-cave-waterwork.524d6eee8e90cbec.webp",
+          "bytes": 25490,
+          "sha256": "524d6eee8e90cbecd500e3960856ab0cdb9cf171d0278d69cf1ef95e970bcb74"
+        },
+        {
+          "path": "web/graphics/honro_rest_backdrops-images-mountain-dusk.2799e4efa4c98bd8.webp",
+          "bytes": 24796,
+          "sha256": "2799e4efa4c98bd853977a7736621423141bd2968ff520a8041502ee91b1fe82"
+        },
+        {
+          "path": "web/graphics/honro_rest_backdrops-images-mountain-still-night.83d3240fffde5ab0.webp",
+          "bytes": 13162,
+          "sha256": "83d3240fffde5ab0e72b8d3179bb0bcbb1a79a6771098657172a5078c5f21d06"
+        },
+        {
+          "path": "web/graphics/honro_rest_backdrops-images-mountain-wet-valley.fa1c0402a0dcc973.webp",
+          "bytes": 26882,
+          "sha256": "fa1c0402a0dcc973bf721300d48f6a36fa3df855414fd7a3d0d4e20c666f537c"
+        },
+        {
+          "path": "web/graphics/honro_rest_backdrops-images-town-river.10702011d381e368.webp",
+          "bytes": 17392,
+          "sha256": "10702011d381e36886a74263c574cc30b0ae0d2adabdf12388193aae3fe9ac68"
+        },
+        {
+          "path": "web/graphics/honro_rest_backdrops-images-town-wall.d018c0ef9c3ec931.webp",
+          "bytes": 23514,
+          "sha256": "d018c0ef9c3ec931e9ea2e0f2add649bb0995c63ffcf85c582a56ce90cacb025"
+        },
+        {
+          "path": "web/graphics/honro_rest_backdrops-images-underground-channel.9cc52f2e8069de34.webp",
+          "bytes": 15080,
+          "sha256": "9cc52f2e8069de34e36439ecf9c76f67a3eda5b8a86b8d727f022d6193874800"
+        },
+        {
+          "path": "web/graphics/honro_stage21_painted-images-architecture.9908ac5f9af09170.webp",
+          "bytes": 413390,
+          "sha256": "9908ac5f9af09170bbb39ef3756eda4805333cf1e022816da6ed0e0eeb9a5ee2"
+        },
+        {
+          "path": "web/graphics/honro_stage21_painted-images-bedrock.fc7e80c55c6a7325.webp",
+          "bytes": 296548,
+          "sha256": "fc7e80c55c6a7325b3e611f650017878bfb2ecc9502f0489bc638798eeaf6fd6"
+        },
+        {
+          "path": "web/graphics/honro_stage21_painted-images-sky.229e09a1c984bb1c.webp",
+          "bytes": 88974,
+          "sha256": "229e09a1c984bb1c9719060aaedd952dcf4be4d3d74d24c06d89488ed0ba5118"
+        },
+        {
+          "path": "web/graphics/honro_stage21_painted-images-timber.05f105fabf54897c.webp",
+          "bytes": 866,
+          "sha256": "05f105fabf54897ce1c364ce8a2adfb844e2c11ed4eaf0f71efd722d936876f5"
+        },
+        {
+          "path": "web/graphics/journey-map-act1.31fefd98a807ce78.webp",
+          "bytes": 371256,
+          "sha256": "31fefd98a807ce78ad7e9529bc7c944876cf3d1892ef6f9fd9049bc4321428c0"
+        },
+        {
+          "path": "web/graphics/journey-map-act2.d8017c9b386ec0dc.webp",
+          "bytes": 184932,
+          "sha256": "d8017c9b386ec0dc82c8e0b2fcb64106f840f99499f7a88f6d7a62ab156c60f4"
+        },
+        {
+          "path": "web/graphics/journey-map-act3.6beb660e6f37bacc.webp",
+          "bytes": 419334,
+          "sha256": "6beb660e6f37bacc5ba0dd5e20ac6b779e62c55af1d821d538f2224c134f2950"
+        },
+        {
+          "path": "web/graphics/portrait-damheo-base.354084a697188d56.webp",
+          "bytes": 962954,
+          "sha256": "354084a697188d563032a15317fd124eaac52b2a1a1886599808962ffd87844b"
+        },
+        {
+          "path": "web/graphics/portrait-hwigyeom-base.90a546dd2fda53da.webp",
+          "bytes": 910526,
+          "sha256": "90a546dd2fda53daeeccdd5fdf15594316c96b95cb13a21d130cc547467a0304"
+        },
+        {
+          "path": "web/graphics/portrait-seoro-base.5461c4d01847334a.webp",
+          "bytes": 1050060,
+          "sha256": "5461c4d01847334a76ad30c154bc5e09617db1a750a9da7e243a863007a2a288"
+        },
+        {
+          "path": "web/graphics/portrait-sodan-base.08ae11c4ce6c63cf.webp",
+          "bytes": 942530,
+          "sha256": "08ae11c4ce6c63cf6157b2bdddbd9a0509fa004ee77ef9403ce91859dd84fd06"
+        },
+        {
+          "path": "web/graphics/skill-icon-A01.1fa04261cfcfceb8.webp",
+          "bytes": 3936,
+          "sha256": "1fa04261cfcfceb8492f97253a37e4c4f90b2848bc15ffc9b64d9ac037449ad0"
+        },
+        {
+          "path": "web/graphics/skill-icon-A02.a8f55e024ef3fb38.webp",
+          "bytes": 4456,
+          "sha256": "a8f55e024ef3fb38ee862cbc924b5f661c5c5e4d002d89f9b05ce0ace43cee9e"
+        },
+        {
+          "path": "web/graphics/skill-icon-A03.82568bdbd3a1b087.webp",
+          "bytes": 3934,
+          "sha256": "82568bdbd3a1b087ca0929b478d03ab5a36a932c8ab4324da69bf27db2cb07b1"
+        },
+        {
+          "path": "web/graphics/skill-icon-A04.347585d9aabb566f.webp",
+          "bytes": 7028,
+          "sha256": "347585d9aabb566ffd5aec5663d657937a9ddb1a699f4079ecba7a36c12e9930"
+        },
+        {
+          "path": "web/graphics/skill-icon-A05.0bec2839bdda6e7b.webp",
+          "bytes": 6010,
+          "sha256": "0bec2839bdda6e7b3da6f4aa32adab50fd213b422119d2b959572e1b0072921e"
+        },
+        {
+          "path": "web/graphics/skill-icon-A06.2da3b0603d6aef5c.webp",
+          "bytes": 5088,
+          "sha256": "2da3b0603d6aef5c981dbd7c189307faca458384979666df9d29f262524680df"
+        },
+        {
+          "path": "web/graphics/skill-icon-A07.8df150ab698bea6f.webp",
+          "bytes": 6906,
+          "sha256": "8df150ab698bea6fc0c4797704226b1e8174be026b523dfc43d171d713ff9e20"
+        },
+        {
+          "path": "web/graphics/skill-icon-A08.eb5d1df18d52552e.webp",
+          "bytes": 6150,
+          "sha256": "eb5d1df18d52552e05260a365560987d4b8763bfbd739d565ebde46ba54ebede"
+        },
+        {
+          "path": "web/graphics/skill-icon-A09.a0c7cc6478a4d6cb.webp",
+          "bytes": 4054,
+          "sha256": "a0c7cc6478a4d6cb2146236da8e74dcf79970001e5ac90b46b3f96e5d53fb732"
+        },
+        {
+          "path": "web/graphics/skill-icon-A10.10c4941f5876eaec.webp",
+          "bytes": 3138,
+          "sha256": "10c4941f5876eaecfc9aec3e41790fd81f172bfd678a23a9de636fedb4feb68e"
+        },
+        {
+          "path": "web/graphics/skill-icon-A11.7720dd2557994f3e.webp",
+          "bytes": 4040,
+          "sha256": "7720dd2557994f3ec2202a0aa3ab20faa429f98c80eb60b7b7b5b7b0d5466435"
+        },
+        {
+          "path": "web/graphics/skill-icon-A12.53e326bee86515ea.webp",
+          "bytes": 3654,
+          "sha256": "53e326bee86515ea2f0ccea1f6ce0dcae338197baf7fdb6b3b68cbe256529766"
+        },
+        {
+          "path": "web/graphics/skill-icon-A13.effc6b23f24edbac.webp",
+          "bytes": 5990,
+          "sha256": "effc6b23f24edbac13538bece00e7ad12d045b5be114656784045c60010326ad"
+        },
+        {
+          "path": "web/graphics/skill-icon-A14.a54160bbaadedde4.webp",
+          "bytes": 5614,
+          "sha256": "a54160bbaadedde466ca85a472cb64fd69de19478a67d67dbec835b15c64b208"
+        },
+        {
+          "path": "web/graphics/skill-icon-A15.c0b4215cf67b8d31.webp",
+          "bytes": 6272,
+          "sha256": "c0b4215cf67b8d319f6404269fa152c359f871f0b369ca17ad0de55c752be87f"
+        },
+        {
+          "path": "web/graphics/skill-icon-A99.fcb91f4d89edc65a.webp",
+          "bytes": 5004,
+          "sha256": "fcb91f4d89edc65a562aa91e08127b7b42d5ea0a0dbc48d6431d78e9a2085a3d"
+        },
+        {
+          "path": "web/graphics/skill-icon-AP01.0afb39e6a85b8347.webp",
+          "bytes": 3418,
+          "sha256": "0afb39e6a85b834793ae08fc56b49c89eea250e49c8a1450df7b34752cc2770b"
+        },
+        {
+          "path": "web/graphics/skill-icon-AP02.a4d103eb85668c33.webp",
+          "bytes": 5770,
+          "sha256": "a4d103eb85668c33840d117c21655605985165cccd4611405f7d483da9e9024e"
+        },
+        {
+          "path": "web/graphics/skill-icon-AP03.01d187d2d44de6b6.webp",
+          "bytes": 4658,
+          "sha256": "01d187d2d44de6b6a0330ba58b0b12346a59b6a22cb889e75c74d113d4ef018d"
+        },
+        {
+          "path": "web/graphics/skill-icon-AP04.2698d229bb2df9fa.webp",
+          "bytes": 5852,
+          "sha256": "2698d229bb2df9fac61b59dc0900ee3b6dbe7e33161c1f611d0f671b110b4c46"
+        },
+        {
+          "path": "web/graphics/skill-icon-AP05.219425c37d635833.webp",
+          "bytes": 6170,
+          "sha256": "219425c37d635833dfe1cf39f8126d25dd5344667d4f5c9dcce9d21ca183b1b8"
+        },
+        {
+          "path": "web/graphics/skill-icon-M01.a4a99a15222b1590.webp",
+          "bytes": 3172,
+          "sha256": "a4a99a15222b1590556ab038d2598ef84fe5de32bfa22270f822c20f203820b4"
+        },
+        {
+          "path": "web/graphics/skill-icon-M02.da5ed8483e1ebc54.webp",
+          "bytes": 5694,
+          "sha256": "da5ed8483e1ebc546e24159d05157809f346f2f34d7e16f167ece1e7fc20ca13"
+        },
+        {
+          "path": "web/graphics/skill-icon-M03.1dee22422e96bc02.webp",
+          "bytes": 5650,
+          "sha256": "1dee22422e96bc0244b94b9f2ca4fd362fbf19cd3a967ce9c497fb6de525525e"
+        },
+        {
+          "path": "web/graphics/skill-icon-M04.d9460adcebc0778e.webp",
+          "bytes": 5468,
+          "sha256": "d9460adcebc0778ea02a195c035c15bd892a2c368b4b20fc8d4db4e605ab50f9"
+        },
+        {
+          "path": "web/graphics/skill-icon-M05.5b17a55a6b0ea27b.webp",
+          "bytes": 7408,
+          "sha256": "5b17a55a6b0ea27b37ab5e40708bc75235c102ef927d4e6af51b4a07b279b9a4"
+        },
+        {
+          "path": "web/graphics/skill-icon-M06.478944405c7e23d5.webp",
+          "bytes": 6434,
+          "sha256": "478944405c7e23d5fc3fb6e6c111f5768c32f079cd13ac0e58f25a99b11f1d25"
+        },
+        {
+          "path": "web/graphics/skill-icon-M07.aa4a4e1605fe25b5.webp",
+          "bytes": 5298,
+          "sha256": "aa4a4e1605fe25b53748057b838f59d9a8c506a62c50ff9a7f94cd7298075a63"
+        },
+        {
+          "path": "web/graphics/skill-icon-M08.1375c2072af2d2bd.webp",
+          "bytes": 4246,
+          "sha256": "1375c2072af2d2bd74b38375d85003eb7ab7c61b1e677bc25f27406c885ab923"
+        },
+        {
+          "path": "web/graphics/skill-icon-M09.2fc07f5d05f6fe1a.webp",
+          "bytes": 6484,
+          "sha256": "2fc07f5d05f6fe1aba5638fe6bf3cce4838c33f6839f546afc1f85a4d56e6125"
+        },
+        {
+          "path": "web/graphics/skill-icon-M10.bee56d5640ac012c.webp",
+          "bytes": 5768,
+          "sha256": "bee56d5640ac012ceb4cee7f75bb878cab115c978905e0220740703a1a32d8d6"
+        },
+        {
+          "path": "web/graphics/skill-icon-M11.fc2f33992c01af4c.webp",
+          "bytes": 5402,
+          "sha256": "fc2f33992c01af4ca21b0dc8d859473fe6bf8815f332393ebf91d3d24fb94cb9"
+        },
+        {
+          "path": "web/graphics/skill-icon-M12.dc8f84d3d6a56e05.webp",
+          "bytes": 8084,
+          "sha256": "dc8f84d3d6a56e05f8885d663f8ff61e4c31d0176b49a9e20b1dd6df3c002529"
+        },
+        {
+          "path": "web/graphics/skill-icon-M13.4d70e2a6c995d8da.webp",
+          "bytes": 10326,
+          "sha256": "4d70e2a6c995d8da336a28f0e246217eb4962cc6f54106267d57f57b1bd25128"
+        },
+        {
+          "path": "web/graphics/skill-icon-M14.6b96f3fc63bf12d6.webp",
+          "bytes": 7884,
+          "sha256": "6b96f3fc63bf12d6082bd8ee39da83acc39260a9f2c3e4a792a9f77d4deeadc3"
+        },
+        {
+          "path": "web/graphics/skill-icon-M15.8b8b03bfdfbe1801.webp",
+          "bytes": 9506,
+          "sha256": "8b8b03bfdfbe1801ae52a41e025f74412217b2a846c61236a49130d21a409f54"
+        },
+        {
+          "path": "web/graphics/skill-icon-M99.7058c504aa5d7c26.webp",
+          "bytes": 6272,
+          "sha256": "7058c504aa5d7c268bf129e55d44af1a27522aa5ac0c287bdf95a3324a7c141f"
+        },
+        {
+          "path": "web/graphics/skill-icon-MP01.4ebcf0126d6f427e.webp",
+          "bytes": 6794,
+          "sha256": "4ebcf0126d6f427edad837e899a17d1c7d9ffea293970666cd54db72b774d127"
+        },
+        {
+          "path": "web/graphics/skill-icon-MP02.68457e9f34ef3e0b.webp",
+          "bytes": 5254,
+          "sha256": "68457e9f34ef3e0bf0c0f143ed54da66c7be57e39d6a8b5878e1872ef8224d22"
+        },
+        {
+          "path": "web/graphics/skill-icon-MP03.24fe5370e9ea546e.webp",
+          "bytes": 6070,
+          "sha256": "24fe5370e9ea546ea9d1c97c8e1124b743f3dde90476a6cf28fa584c1bebff27"
+        },
+        {
+          "path": "web/graphics/skill-icon-MP04.4f312dfc1c55d061.webp",
+          "bytes": 7356,
+          "sha256": "4f312dfc1c55d06172af5651812fad48b39d969118a7a68041c7065bb51db245"
+        },
+        {
+          "path": "web/graphics/skill-icon-MP05.e495d9e901f6c6a6.webp",
+          "bytes": 8470,
+          "sha256": "e495d9e901f6c6a66438e9eef20380fb3322debdde968002549f58e1aed74833"
+        },
+        {
+          "path": "web/graphics/skill-icon-O01.dcde10cfd6448be0.webp",
+          "bytes": 4250,
+          "sha256": "dcde10cfd6448be0a78d7365a73d1c5f8c2debd72fa6d5af942657d0c87dd0b9"
+        },
+        {
+          "path": "web/graphics/skill-icon-O02.44249e66901f29dc.webp",
+          "bytes": 6416,
+          "sha256": "44249e66901f29dc44548dcb7815ef0a0015f28be20fb48d172472b18063080d"
+        },
+        {
+          "path": "web/graphics/skill-icon-O03.fead0476269e47bd.webp",
+          "bytes": 9290,
+          "sha256": "fead0476269e47bdce1a02b44f6dd5d454f3151eddb864390f68841629030237"
+        },
+        {
+          "path": "web/graphics/skill-icon-O04.074c9256cd60d11d.webp",
+          "bytes": 4072,
+          "sha256": "074c9256cd60d11d16e77b1104a0d45cdfa7c7766b6ec47f156a71636820ff80"
+        },
+        {
+          "path": "web/graphics/skill-icon-O05.8fcd0f8db79dd977.webp",
+          "bytes": 7624,
+          "sha256": "8fcd0f8db79dd977c66591b3f0368d72e24566725f4d13ae67837936c4ba4ce9"
+        },
+        {
+          "path": "web/graphics/skill-icon-O06.c9c5d8aa90dbb2dc.webp",
+          "bytes": 4194,
+          "sha256": "c9c5d8aa90dbb2dc6f20239957c98f996999a68eee26ce25dd5c2f8d1ded4c8f"
+        },
+        {
+          "path": "web/graphics/skill-icon-O07.8db521a071d77531.webp",
+          "bytes": 5386,
+          "sha256": "8db521a071d77531863db8f04caaeaf323c4620445b9ca7ebe4a69451451ada7"
+        },
+        {
+          "path": "web/graphics/skill-icon-O08.d9f9b52d98bc2b26.webp",
+          "bytes": 9326,
+          "sha256": "d9f9b52d98bc2b26c25f4d5a9561e9c67f5f0de52d642b9e15fb36f91e47cd0a"
+        },
+        {
+          "path": "web/graphics/skill-icon-O09.d872e1a2eb17d2f9.webp",
+          "bytes": 6110,
+          "sha256": "d872e1a2eb17d2f974e16d66789910af79d1c9ac6a0abf48323174c522c5fb4b"
+        },
+        {
+          "path": "web/graphics/skill-icon-O10.b267e6cdfd1d2b80.webp",
+          "bytes": 6852,
+          "sha256": "b267e6cdfd1d2b802420f95da3226475d234e0bce7a123cf9cfbf00a8578cf21"
+        },
+        {
+          "path": "web/graphics/skill-icon-O11.82e59dac493415ee.webp",
+          "bytes": 8118,
+          "sha256": "82e59dac493415ee485a84853d6112f7511b84b4086e63540478ecfd60322046"
+        },
+        {
+          "path": "web/graphics/skill-icon-O12.8c8dad88d20d64a3.webp",
+          "bytes": 5382,
+          "sha256": "8c8dad88d20d64a30a34b436661731027eefc5f7f1a647f618de15bf8bc32b99"
+        },
+        {
+          "path": "web/graphics/skill-icon-O13.50902b317d99e1e6.webp",
+          "bytes": 8182,
+          "sha256": "50902b317d99e1e664250df50d219c7a8ea67a8e6c29da81d759285c8294646a"
+        },
+        {
+          "path": "web/graphics/skill-icon-O14.4aa30c83dc64b0c9.webp",
+          "bytes": 4186,
+          "sha256": "4aa30c83dc64b0c94c6fcf2e89be3467a009f8e90f2aeae2d21206d6c2fbe9dc"
+        },
+        {
+          "path": "web/graphics/skill-icon-O15.32fcb94159a213cd.webp",
+          "bytes": 10266,
+          "sha256": "32fcb94159a213cd8a4bc05d912a1d410dc595ace24fd0c2d844706b0b82b0f9"
+        },
+        {
+          "path": "web/graphics/skill-icon-O16.3eb2ee4db75c48cb.webp",
+          "bytes": 7422,
+          "sha256": "3eb2ee4db75c48cb9bf5fafb15bf2f4ee1bd7e91fc321841b94a7cce400dde07"
+        },
+        {
+          "path": "web/graphics/skill-icon-OP01.7ac33357017d3c76.webp",
+          "bytes": 5862,
+          "sha256": "7ac33357017d3c768151f0038d658c5915b7832ed52b18bb08dbd0290b22b458"
+        },
+        {
+          "path": "web/graphics/skill-icon-OP02.543dde15ed059fab.webp",
+          "bytes": 5876,
+          "sha256": "543dde15ed059fab34de268cff625be6d4ffb5ff3aafd48786087d0e6eb48599"
+        },
+        {
+          "path": "web/graphics/skill-icon-OP03.9cdcf250737b60c1.webp",
+          "bytes": 5640,
+          "sha256": "9cdcf250737b60c1d4f1700f3c72f737d3d9e797443419d15c77734ad7ee3142"
+        },
+        {
+          "path": "web/graphics/skill-icon-OP04.0e84e067440635e9.webp",
+          "bytes": 7232,
+          "sha256": "0e84e067440635e99a3939e022cff4c735302ef7fead49fd154c1a210b90b978"
+        },
+        {
+          "path": "web/graphics/skill-icon-OP05.60a84b84dcbdcf71.webp",
+          "bytes": 7620,
+          "sha256": "60a84b84dcbdcf711f00d8d2b72c09971031e64fe9fa95fae54d08b90606c81b"
+        },
+        {
+          "path": "web/graphics/skill-icon-S00.8cdaf054f26320a1.webp",
+          "bytes": 4450,
+          "sha256": "8cdaf054f26320a17731b3934442fae8b62aafc26350d094ca0931a94539aa82"
+        },
+        {
+          "path": "web/graphics/skill-icon-S01.157a18dbbbe6fc1f.webp",
+          "bytes": 4784,
+          "sha256": "157a18dbbbe6fc1f3a77ce9cc096d230fe23a587f3fbf84bd596d87840361cbd"
+        },
+        {
+          "path": "web/graphics/skill-icon-S02.4e3369ff53f79030.webp",
+          "bytes": 7978,
+          "sha256": "4e3369ff53f790307cd8cfe15ea599ecadcf3d6825a5251faea02729be5cb15e"
+        },
+        {
+          "path": "web/graphics/skill-icon-S03.df23f01247f3096e.webp",
+          "bytes": 7552,
+          "sha256": "df23f01247f3096e2f2a8eb45f2cf200dec70e4d4053611109042fe3b4f8b807"
+        },
+        {
+          "path": "web/graphics/skill-icon-S04.33cacbd4d530e499.webp",
+          "bytes": 5462,
+          "sha256": "33cacbd4d530e49961c2c01165721c4d6bb65d6e51d5fd481e91dae0855cf520"
+        },
+        {
+          "path": "web/graphics/skill-icon-S05.c9fba3a7dbe023a3.webp",
+          "bytes": 4764,
+          "sha256": "c9fba3a7dbe023a34c741bbe668736cf92b24bafe90a94070be4328207d018a9"
+        },
+        {
+          "path": "web/graphics/skill-icon-S06.6e5d8ac1e4ecd89b.webp",
+          "bytes": 4594,
+          "sha256": "6e5d8ac1e4ecd89b74db9336adfb0d2a969841c29a0d3c44ba350708b7315395"
+        },
+        {
+          "path": "web/graphics/skill-icon-S07.de18f376f7180067.webp",
+          "bytes": 7112,
+          "sha256": "de18f376f7180067f5099424c6b6ca0e5d46ae4c2b0f6816de3e3f3b9a710131"
+        },
+        {
+          "path": "web/graphics/skill-icon-S08.1f80cb4769182450.webp",
+          "bytes": 8064,
+          "sha256": "1f80cb476918245008b8d5e8f37cc11426faa24c4c55655ea6789b887e8e1f3f"
+        },
+        {
+          "path": "web/graphics/skill-icon-S09.b6eaa844563d5219.webp",
+          "bytes": 4932,
+          "sha256": "b6eaa844563d52190a0ee85109ab088d2a690b42be98334da754fca623c5af4f"
+        },
+        {
+          "path": "web/graphics/skill-icon-S10.e47de9bc60c4dd4d.webp",
+          "bytes": 5982,
+          "sha256": "e47de9bc60c4dd4d6a537a05bf80193023e9478c2309b4f045e938758b16ff7f"
+        },
+        {
+          "path": "web/graphics/skill-icon-S11.52ae8b84497e3b40.webp",
+          "bytes": 2486,
+          "sha256": "52ae8b84497e3b40513db452e27e650bce29e903130a630109ceee4106d67e23"
+        },
+        {
+          "path": "web/graphics/skill-icon-S12.13ce7c2fe92b538e.webp",
+          "bytes": 10002,
+          "sha256": "13ce7c2fe92b538eddcb55ea76c650d54562e34d664f67f14698aed188380dce"
+        },
+        {
+          "path": "web/graphics/skill-icon-S13.47d8229ab7ee79d1.webp",
+          "bytes": 5270,
+          "sha256": "47d8229ab7ee79d1ebc35a90353790eb1fd27dbdecfce44c3dcc7a9d32bb864c"
+        },
+        {
+          "path": "web/graphics/skill-icon-S14.8b923b775e7bed8b.webp",
+          "bytes": 2602,
+          "sha256": "8b923b775e7bed8b03d25fcac335b6f2b679ed9066b46f78fa1440eb8a7e15fa"
+        },
+        {
+          "path": "web/graphics/skill-icon-S15.c728b336cbc73be4.webp",
+          "bytes": 4096,
+          "sha256": "c728b336cbc73be4ab5f09a4ca664a5382b0d1f78f08e7341dd7cedf060840b2"
+        },
+        {
+          "path": "web/graphics/skill-icon-SP01.67e18258b454d9bd.webp",
+          "bytes": 5524,
+          "sha256": "67e18258b454d9bd033279f2772a17512cccb2803be42891abcc767171df1b28"
+        },
+        {
+          "path": "web/graphics/skill-icon-SP02.5c6a0c00eb3bd216.webp",
+          "bytes": 6586,
+          "sha256": "5c6a0c00eb3bd2169a643e5f138da44b6638be2bec6592c4f90fa881f93816a2"
+        },
+        {
+          "path": "web/graphics/skill-icon-SP03.685dcfaf8b000418.webp",
+          "bytes": 5030,
+          "sha256": "685dcfaf8b000418f60bdacd6059283efed3894b25134e05dddf98788b0b4933"
+        },
+        {
+          "path": "web/graphics/skill-icon-SP04.72e7e34dc93fe82a.webp",
+          "bytes": 7776,
+          "sha256": "72e7e34dc93fe82ac82c7b40375ead992e767d1a177861af33ccb494c1243272"
+        },
+        {
+          "path": "web/graphics/skill-icon-SP05.bd3a59c60a6c65b3.webp",
+          "bytes": 6360,
+          "sha256": "bd3a59c60a6c65b3f3f87199fa8b864051aee11cd0012c700dbe9159490d3559"
+        },
+        {
+          "path": "web/graphics/stage-01.39910acee45eaa13.jpg",
+          "bytes": 44331,
+          "sha256": "39910acee45eaa131ca01bb9b058a48fb9b42405b94a37df1f0220c79e8ac237"
+        },
+        {
+          "path": "web/graphics/stage-02.f52457ba86dabced.jpg",
+          "bytes": 41487,
+          "sha256": "f52457ba86dabcedabc6622fbba25032a98540f41f42c2062cc3029e05f2722d"
+        },
+        {
+          "path": "web/graphics/stage-03.2073855c0334cb48.jpg",
+          "bytes": 36258,
+          "sha256": "2073855c0334cb48f7056c28bfbb30718329b216b478ac8bfe2327bb658ceb3c"
+        },
+        {
+          "path": "web/graphics/stage-04.89e6fa2171c6e820.jpg",
+          "bytes": 47494,
+          "sha256": "89e6fa2171c6e820256fc6d9e28d4e369a9044bd3830f834f20e69d7e6fcdd4d"
+        },
+        {
+          "path": "web/graphics/stage-05.ed28d6dae0f589b0.jpg",
+          "bytes": 39369,
+          "sha256": "ed28d6dae0f589b031ae8ea31ece1db6aa787854359431358ad0ca9ff8e4125f"
+        },
+        {
+          "path": "web/graphics/stage-06.ce0f7f3d6e28fd39.jpg",
+          "bytes": 41854,
+          "sha256": "ce0f7f3d6e28fd392d1aeca5d73a4bd94922e263264ab2ff4c719679cd546c07"
+        },
+        {
+          "path": "web/graphics/stage-07.52dd1e551a303f5c.jpg",
+          "bytes": 39800,
+          "sha256": "52dd1e551a303f5c8e30291171dc6ddc010a541a70e78cc5f2f792201250077d"
+        },
+        {
+          "path": "web/graphics/stage-08.775cb6b7ce3c3da5.jpg",
+          "bytes": 34130,
+          "sha256": "775cb6b7ce3c3da5913f34cddf212334e3cde6c5170bb45576c4a7b4db0133f7"
+        },
+        {
+          "path": "web/graphics/stage-09.1682a1e6455d1da3.jpg",
+          "bytes": 38605,
+          "sha256": "1682a1e6455d1da355ba7ca90f1b9301dc95f0734f8573c77ad7f90a97aaa432"
+        },
+        {
+          "path": "web/graphics/stage-10.e5df078c437241b7.jpg",
+          "bytes": 47276,
+          "sha256": "e5df078c437241b72f05dbdf4f3ef525cdc2d89e41b63fbf36a727e043fd0d3d"
+        },
+        {
+          "path": "web/graphics/title-hanja.717b4ef84f8f2d11.webp",
+          "bytes": 246930,
+          "sha256": "717b4ef84f8f2d111a4edfe26c6486b46c46ce946448bf5f2143c7901605a7d5"
+        },
+        {
+          "path": "web/graphics/title-landscape.e7a766053bfbf276.webp",
+          "bytes": 154366,
+          "sha256": "e7a766053bfbf2762399717c8d0f9668967b4f629c9e59901a539fbac465357a"
+        },
+        {
+          "path": "web/graphics/title-landscapeFallback.c96458261eb87261.jpg",
+          "bytes": 312361,
+          "sha256": "c96458261eb87261ced74de1cc32aaa897801a280a48d4cffd552c212d8eb6c6"
+        },
+        {
+          "path": "web/graphics/title-logo.120243a02a441a6c.webp",
+          "bytes": 101602,
+          "sha256": "120243a02a441a6cafaf114e81d2ab4513032eb9e82a9be7f36ae78eafde5888"
+        },
+        {
+          "path": "web/graphics/title-portrait.f8314e8d1733e8a5.webp",
+          "bytes": 221562,
+          "sha256": "f8314e8d1733e8a577baff632a5f39d5c47caba50d3bbde948a3f65efa96b9c6"
+        },
+        {
+          "path": "web/graphics/title-portraitFallback.a6c66058555fc805.jpg",
+          "bytes": 404007,
+          "sha256": "a6c66058555fc805a9ad13f1eb0696cb089bd943998607b96acf5e176fc659dc"
+        },
+        {
+          "path": "web/runtime/campaign.5220c8fe9f55d0cf.js",
+          "bytes": 435,
+          "sha256": "5220c8fe9f55d0cf1698ca02276b52b991d1dd64bd28b7715dc7fddc326f9cb2"
+        },
+        {
+          "path": "web/runtime/game-art.ce13bd8333aff581.js",
+          "bytes": 808,
+          "sha256": "ce13bd8333aff581d04b08b25f68c8c7be215cfe98fbc4e4f2872c0d8d691b3c"
+        },
+        {
+          "path": "web/runtime/HONRO_ACT1_FAR_DATA.e03568918966714e.js",
+          "bytes": 229,
+          "sha256": "e03568918966714e70bc935af9817916cf0ef28dd46804fe60af34d6078d5847"
+        },
+        {
+          "path": "web/runtime/HONRO_ACT2_FAR_DATA.1711be97d2ad1667.js",
+          "bytes": 256,
+          "sha256": "1711be97d2ad16671b2c71e398ad2d6b1bdca6e859f87edf3a326a618e071243"
+        },
+        {
+          "path": "web/runtime/HONRO_AUTHORED_FAR.abab99a7b2ec6dd8.js",
+          "bytes": 555,
+          "sha256": "abab99a7b2ec6dd80422e9d93a4b5c321bf2c82cc68f0c18e8dceb539da6fd79"
+        },
+        {
+          "path": "web/runtime/HONRO_BALANCE.60baa408c1fb8f08.js",
+          "bytes": 177,
+          "sha256": "60baa408c1fb8f0818128cafb2fc9862352dcc1db389d2c6e660ee168b6839a6"
+        },
+        {
+          "path": "web/runtime/HONRO_BGM_METADATA.8e319569f03362c7.js",
+          "bytes": 187,
+          "sha256": "8e319569f03362c74769aa17f0fceee6d1054715b0209c190a17db4956492818"
+        },
+        {
+          "path": "web/runtime/HONRO_BGM_TRACKS.defe37026668618a.js",
+          "bytes": 183,
+          "sha256": "defe37026668618a62dabb1599378f3db07490f8507b4765ca3be5004809ea89"
+        },
+        {
+          "path": "web/runtime/HONRO_JOURNEY_MAPS.fdeb3a36d28fa93e.js",
+          "bytes": 237,
+          "sha256": "fdeb3a36d28fa93ec6b90cfa9b0238e9628f57f7d7b8e39281e27f1d496e1b1e"
+        },
+        {
+          "path": "web/runtime/HONRO_NARRATIVE_V0.975afdb836552ead.js",
+          "bytes": 187,
+          "sha256": "975afdb836552eadcbe753e44708e5c59284d5511873e2a40c0d185ca8517512"
+        },
+        {
+          "path": "web/runtime/HONRO_OPEN_STRUCTURES.825ef43e9ded9f65.js",
+          "bytes": 193,
+          "sha256": "825ef43e9ded9f653ebaca8c0f43daeaacf3db888a7b9b2de70f497597e31fa0"
+        },
+        {
+          "path": "web/runtime/HONRO_PAINTED_PILOTS.8a19d93484aa0352.js",
+          "bytes": 1494,
+          "sha256": "8a19d93484aa0352b12b95c52a7ff96398cb0c30fecce378df9883f8fb530fa9"
+        },
+        {
+          "path": "web/runtime/HONRO_REST_BACKDROPS.cc94899c625cc9a3.js",
+          "bytes": 479,
+          "sha256": "cc94899c625cc9a3a28689c831bb51c8f19386bd598c9119eb0a010874a6c622"
+        },
+        {
+          "path": "web/runtime/HONRO_SKILL_ICON_MANIFEST.d3c9f01011ec0e42.js",
+          "bytes": 2068,
+          "sha256": "d3c9f01011ec0e429d5e5ec462f734149e1b738b32523e2866db0f6568b5fcc7"
+        },
+        {
+          "path": "web/runtime/HONRO_SPLIT_V1.bba2ce1e5667f9fb.js",
+          "bytes": 179,
+          "sha256": "bba2ce1e5667f9fb6b2729eee4aa25e0d64ed6620ce8326bf372eba4cf1c2630"
+        },
+        {
+          "path": "web/runtime/HONRO_STAGE21_PAINTED.dd416257de627bac.js",
+          "bytes": 276,
+          "sha256": "dd416257de627bac6337cb94d6c7c21dcf40fc0607fc62cde0ab8509e8b87693"
+        },
+        {
+          "path": "web/runtime/load-data.f028ed4ceb5334de.js",
+          "bytes": 8862,
+          "sha256": "f028ed4ceb5334dee90edc8a0b990ce4aa7991d40695cfb58801317809ebfc08"
+        },
+        {
+          "path": "web/runtime/narrative-data.2c9b27b03945571b.js",
+          "bytes": 176,
+          "sha256": "2c9b27b03945571bfd4c88ae672d163b2a8d1a6d72274d1f81ce5ef3b621c139"
+        },
+        {
+          "path": "web/runtime/ordered-common-1.2af26c4ed383944e.js",
+          "bytes": 1743,
+          "sha256": "2af26c4ed383944e9ad356cbd339f44fe464a12cd5dd83fc89cfb6325e11aff4"
+        },
+        {
+          "path": "web/runtime/ordered-common-10.6a03dd2d30b68990.js",
+          "bytes": 22296,
+          "sha256": "6a03dd2d30b68990b98b0cb3f74406e014937a5928cd5752d3a0d4a02c423fbe"
+        },
+        {
+          "path": "web/runtime/ordered-common-11.bd999efbf0747c77.js",
+          "bytes": 161429,
+          "sha256": "bd999efbf0747c77b8fb4ac5570967f2a1b09735d4b3ef7ea28cae92f983f680"
+        },
+        {
+          "path": "web/runtime/ordered-common-12.3076f5b1f22e0191.js",
+          "bytes": 174935,
+          "sha256": "3076f5b1f22e0191d5cca4fea3e3b70f1902d61f772100e42f627e3fc18ae552"
+        },
+        {
+          "path": "web/runtime/ordered-common-13.990a6fac98381cd8.js",
+          "bytes": 48076,
+          "sha256": "990a6fac98381cd87f185830577b4c6df14d0e3a5bf407ed6cc6695e130c655c"
+        },
+        {
+          "path": "web/runtime/ordered-common-2.481930d379fa2d48.js",
+          "bytes": 713267,
+          "sha256": "481930d379fa2d48025ede6158c7f14f3b76e7235cc31a6580f1835ef8cc5c16"
+        },
+        {
+          "path": "web/runtime/ordered-common-3.abd9e6de989cde1f.js",
+          "bytes": 115050,
+          "sha256": "abd9e6de989cde1fe5dc087644e29644cd7e0f0753053d194cbb00564e79b818"
+        },
+        {
+          "path": "web/runtime/ordered-common-4.bd3f2e9df4b99ea2.js",
+          "bytes": 175255,
+          "sha256": "bd3f2e9df4b99ea2a9673eea9f2cc27eac047be16aac5d0c5299a31129e4cc18"
+        },
+        {
+          "path": "web/runtime/ordered-common-5.f422001a3d4c399a.js",
+          "bytes": 180744,
+          "sha256": "f422001a3d4c399a66b0048acd6f3c31c7009d083aa616f79e7cbb56e2dafb71"
+        },
+        {
+          "path": "web/runtime/ordered-common-6.7fe6843203f570b5.js",
+          "bytes": 176427,
+          "sha256": "7fe6843203f570b53c4fc49b1f57b38d12bf0c69cd2c9bff690644b323b6750c"
+        },
+        {
+          "path": "web/runtime/ordered-common-7.33a73470de7ce9aa.js",
+          "bytes": 179505,
+          "sha256": "33a73470de7ce9aac317529bcc953655ddfa4e9b1ae2632d973155f563edf855"
+        },
+        {
+          "path": "web/runtime/ordered-common-8.f454cce471f70171.js",
+          "bytes": 47116,
+          "sha256": "f454cce471f701713cd259993844d99b86f2e64d5fda5f68d27163c8cbeeb555"
+        },
+        {
+          "path": "web/runtime/ordered-common-9.31de4135592f3333.js",
+          "bytes": 21211,
+          "sha256": "31de4135592f3333fe02fd0f78198c6cc62971ef69aa297cf3344ec2717eecde"
+        },
+        {
+          "path": "web/runtime/ordered-game-14.02e240548cfd7bd2.js",
+          "bytes": 52712,
+          "sha256": "02e240548cfd7bd2e776a579a52af8f162cfdf711517b42698f0574f1d02adfb"
+        },
+        {
+          "path": "web/runtime/ordered-game-15.a5bfb5cf0bed680a.js",
+          "bytes": 48337,
+          "sha256": "a5bfb5cf0bed680adeffe1ddc4978664ca54e53f860e9548d7afac3a4939c148"
+        },
+        {
+          "path": "web/runtime/ordered-game-16.1afa809ffefd078a.js",
+          "bytes": 165773,
+          "sha256": "1afa809ffefd078a3801fe6fa88d0011d6b112edea35abfaf0273bfe7bdb71c6"
+        },
+        {
+          "path": "web/runtime/ordered-game-17.b3ad5248c5905203.js",
+          "bytes": 90446,
+          "sha256": "b3ad5248c59052038d6a85535bb299e4709fd790ad031cc862f3a0c7f82dbe33"
+        },
+        {
+          "path": "web/runtime/party-alias.d4ec08ebea5c30df.js",
+          "bytes": 119,
+          "sha256": "d4ec08ebea5c30df744bf8f7562e8ccd3e0f0bc385f3838547eb1bd8d13a6f19"
+        },
+        {
+          "path": "web/runtime/shared-assets-actors-actors-runtime.6f8357b3e3df70c7.js",
+          "bytes": 175,
+          "sha256": "6f8357b3e3df70c76ff596b1f075915a5b46252e3d4ee6b347bc70f7f708a1d3"
+        },
+        {
+          "path": "web/runtime/shared-assets-monsters-monsters-runtime.5aa518dcbd054a67.js",
+          "bytes": 179,
+          "sha256": "5aa518dcbd054a679a940dff5f0b3a30104870266403e2fd3b6387a6dc87a8ad"
+        },
+        {
+          "path": "web/runtime/shared-assets-party-party-runtime.4fc0736345a4e866.js",
+          "bytes": 287,
+          "sha256": "4fc0736345a4e866e983f8867351fc645d0d3cf157c5ae450b7e83aef0a2edf0"
+        },
+        {
+          "path": "web/runtime/shared-runtime-skill-preview.04787118463cb2bc.js",
+          "bytes": 32907,
+          "sha256": "04787118463cb2bcc091622b0c158cccc4523abb87126d5df8b0226380487197"
+        },
+        {
+          "path": "web/runtime/shared-runtime-stage-rules.f9cf6a68b6172477.js",
+          "bytes": 2869,
+          "sha256": "f9cf6a68b6172477bce0952ce392695bd9a25b9178db806fe9fbbc1cdf8c5ef4"
+        },
+        {
+          "path": "web/runtime/shared-runtime-title-markup.1ce572555f2e782e.js",
+          "bytes": 4210,
+          "sha256": "1ce572555f2e782eaf296d941f38ac944bfbb07787125ef276655e31a9e37b43"
+        },
+        {
+          "path": "web/runtime/shared-runtime-training.ae89c1f0d5c451b6.js",
+          "bytes": 8743,
+          "sha256": "ae89c1f0d5c451b698cc40d4a29b7ef79cddaa21c370a69c3d0385bef44436fb"
+        },
+        {
+          "path": "web/runtime/title-scene.7a0bc4343a815dca.js",
+          "bytes": 240,
+          "sha256": "7a0bc4343a815dcabdf431b7f0c131749db3d455ace07b3f80d89ea9200dc80a"
+        },
+        {
+          "path": "web/runtime/workshop-app.15cb2b80dfb9ef57.js",
+          "bytes": 83089,
+          "sha256": "15cb2b80dfb9ef57a817d2657fe777d88f696be51be675bcf2f6b2e5ec3f22d0"
+        },
+        {
+          "path": "web/styles/game-src-act-endings.9f0fb63251dea0e6.css",
+          "bytes": 4204,
+          "sha256": "9f0fb63251dea0e645ed7a9edcdf9c97938f93431b3398c279569402dc12b580"
+        },
+        {
+          "path": "web/styles/game-src-act3-void.fbc51394ac59259d.css",
+          "bytes": 2437,
+          "sha256": "fbc51394ac59259db7679894b812af303b7c0895871ac356796f184e1d240a74"
+        },
+        {
+          "path": "web/styles/game-src-clear-report.1201612d6a27c5dc.css",
+          "bytes": 5645,
+          "sha256": "1201612d6a27c5dc8e9349c3379ab2e5624ca7722f46f6bee33aad94199a1e18"
+        },
+        {
+          "path": "web/styles/game-src-controls.e78848b3ff481488.css",
+          "bytes": 35713,
+          "sha256": "e78848b3ff481488412308fe17e37e3c67490073357da9a04484903ecf51e07c"
+        },
+        {
+          "path": "web/styles/game-src-fonts.9251c095ef93d0b1.css",
+          "bytes": 493,
+          "sha256": "9251c095ef93d0b1caf9ac11ec13fb2671779922709378bb75b7822cd3cacca9"
+        },
+        {
+          "path": "web/styles/game-src-guide.869baa784cb9ba70.css",
+          "bytes": 3138,
+          "sha256": "869baa784cb9ba70357a384dc3bffcd5618e948e3178fff5c978291e4046ada6"
+        },
+        {
+          "path": "web/styles/game-src-hud.d0f45c17375d9481.css",
+          "bytes": 23953,
+          "sha256": "d0f45c17375d9481b18768bca2771df2e5597e5f871212d1e4575ae322ff392b"
+        },
+        {
+          "path": "web/styles/game-src-journey.8ccd760c39b6bf58.css",
+          "bytes": 30745,
+          "sha256": "8ccd760c39b6bf58051384de8e9263e70d09363bb3c2cb462bd5af09055e1e2e"
+        },
+        {
+          "path": "web/styles/game-src-presentation.aa36c97938d73dc8.css",
+          "bytes": 20691,
+          "sha256": "aa36c97938d73dc8068d79025b7631ac08d18791005ce8c1fdbda1f0de4b809a"
+        },
+        {
+          "path": "web/styles/game-src-skill-icons.c041660a380bc346.css",
+          "bytes": 5289,
+          "sha256": "c041660a380bc346388d4ad03c821bfc84cef798e06ada85fb2fe20c3767980d"
+        },
+        {
+          "path": "web/styles/game-src-skill-presentation.d533fe7e6ea35765.css",
+          "bytes": 18354,
+          "sha256": "d533fe7e6ea357658d959b0bac3ea9e69bb028db30c2f62ac5c5aa8f95deab8b"
+        },
+        {
+          "path": "web/styles/game-src-title.6b29dc13abe8471b.css",
+          "bytes": 10484,
+          "sha256": "6b29dc13abe8471b333cb89b30da3a18935e74173a56e3a5a7c9027c14c3c17d"
+        },
+        {
+          "path": "web/styles/game-src-training.2c1e01e835c1bc35.css",
+          "bytes": 9655,
+          "sha256": "2c1e01e835c1bc3567d0fcb4da5541edb35732211178f7ba1fc40ae54b663b22"
+        },
+        {
+          "path": "web/styles/game-src-unit-info.a60fa5389408ecc4.css",
+          "bytes": 2579,
+          "sha256": "a60fa5389408ecc4895beb8361152d355b33237b1afb3fc004906267765f95e1"
+        },
+        {
+          "path": "web/styles/game-vendor-style.3661f7f5254538f8.css",
+          "bytes": 46885,
+          "sha256": "3661f7f5254538f84f3a2bcb180c93c0a8d8d7734efb7a7f5873cd6d72326781"
+        },
+        {
+          "path": "web/styles/game-vendor-ui-arcfall-layout.1f32e36e2a18d5f7.css",
+          "bytes": 74381,
+          "sha256": "1f32e36e2a18d5f7137ac4508d76a8f63f84962e27b6811c4870d0d8fc6f7664"
+        },
+        {
+          "path": "web/styles/workshop.a92cfc65d977aa23.css",
+          "bytes": 12270,
+          "sha256": "a92cfc65d977aa23659d1d3cdf67a2fbb915a3ea75a83360482747aa894af732"
+        }
+      ]
+    },
     {
       "sourceSha": "e1c8764ac11235a093f20b1cf561da0411d6d62d",
       "publishedAt": "2026-10-23T03:22:41Z",
