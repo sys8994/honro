@@ -1,0 +1,62 @@
+[
+  {
+    "stage": 7,
+    "revision": 1,
+    "markers": [
+      {
+        "id": "resident-marker-1",
+        "target": "resident-1",
+        "label": "덕수",
+        "actor": "덕수"
+      },
+      {
+        "id": "resident-marker-2",
+        "target": "resident-2",
+        "label": "월이",
+        "actor": "월이"
+      },
+      {
+        "id": "resident-marker-3",
+        "target": "resident-3",
+        "label": "칠복",
+        "actor": "칠복"
+      }
+    ],
+    "steps": []
+  },
+  {
+    "stage": 14,
+    "revision": 1,
+    "markers": [
+      {
+        "id": "family-upper",
+        "target": "resident-1",
+        "label": "상층 주민 구조",
+        "actor": "동굴 주민"
+      },
+      {
+        "id": "family-mid",
+        "target": "resident-3",
+        "label": "중층 주민 구조",
+        "actor": "동굴 주민"
+      },
+      {
+        "id": "family-lower",
+        "target": "resident-4",
+        "label": "하층 주민 구조",
+        "actor": "동굴 주민"
+      }
+    ],
+    "steps": [
+      {
+        "id": "family-upper"
+      },
+      {
+        "id": "family-mid"
+      },
+      {
+        "id": "family-lower"
+      }
+    ]
+  }
+]

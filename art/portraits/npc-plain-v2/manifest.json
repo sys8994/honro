@@ -1,0 +1,66 @@
+{
+  "baseCommit": "aa4b7ab784a3f9f4a490c0004f0b74fc51b3f361",
+  "assets": [
+    {
+      "id": "yeonsil",
+      "file": "yeonsil.png",
+      "sha256": "55ddd9f99998cb74acd65e8d229ac977af3ffac7f4f27d1dfd0bfa35450f52aa",
+      "width": 1024,
+      "height": 1536
+    },
+    {
+      "id": "guard_spirit",
+      "file": "guard_spirit.png",
+      "sha256": "165be73dbf79f0cebd74e4cf58cd58842a89fe92d3a3e86e6675fdd870f92f2a",
+      "width": 1024,
+      "height": 1536
+    },
+    {
+      "id": "worker_young",
+      "file": "worker_young.png",
+      "sha256": "79d2732ee6a4ff2ed2066fe565f8fed004b11263a9a9a0fc86aee9dcf88c07f3",
+      "width": 1024,
+      "height": 1536
+    },
+    {
+      "id": "monk_elder",
+      "file": "monk_elder.png",
+      "sha256": "d452a89d6dd478174da4fba2c341c33a1b5174f23e4b847d65f2e4003b276b20",
+      "width": 1024,
+      "height": 1536
+    },
+    {
+      "id": "man_elder",
+      "file": "man_elder.png",
+      "sha256": "be26cec4780ff6900ed4319546560edff1f9f2f9eecf25aa12aec35789885bdf",
+      "width": 1024,
+      "height": 1536
+    },
+    {
+      "id": "worker_mature",
+      "file": "worker_mature.png",
+      "sha256": "5066fdb10aa4cf3a4f19576dbbc71494b9e77d0fe53e9776b9bc0ef84097d5c9",
+      "width": 1024,
+      "height": 1536
+    },
+    {
+      "id": "monk_young",
+      "file": "monk_young.png",
+      "sha256": "1b7dab75d8a166dd5066c7b8e4fb621ca08f2f321d0be05e16ba685dd29dc21b",
+      "width": 1024,
+      "height": 1536
+    },
+    {
+      "id": "woman_mature",
+      "file": "woman_mature.png",
+      "sha256": "4a0f1562bd3c6574be83f62c95b90ae6f0d0ba498a35d926d96bee2c43e14ff3",
+      "width": 1024,
+      "height": 1536
+    }
+  ],
+  "notes": [
+    "parent-generated ordinary NPC portraits; keeper excluded",
+    "use scene/rowId bindings; preserve four protagonist masters",
+    "alpha present and composition visually reviewed; final runtime QA pending"
+  ]
+}

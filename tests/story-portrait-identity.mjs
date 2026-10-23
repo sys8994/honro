@@ -37,7 +37,7 @@ const unknown=g.HonroPortraits.storyActor('새 주민',null,{class:'knight'});
 assert.equal(unknown,null,'unregistered class alone cannot invent an NPC identity');
 assert.equal(g.HonroPortraits.storyActor('기록',null),null);
 const story=await readFile('shared/runtime/story.js','utf8');
-assert(story.includes('HonroPortraits.storyActor(who,actor)'));assert(story.includes("drawBust(node.querySelector('.story-portrait'),actor,cls,who,meta)"));
+assert(story.includes('HonroPortraits.storyActor(who,actor)'));assert(story.includes("drawBust(node.querySelector('.story-portrait'),actor,cls,who,meta,npc)"));
 await writeFile(`${out}/npc-contact-sheet.png`,sheet.toBuffer('image/png'));
 await writeFile(`${out}/summary.json`,JSON.stringify({status:'passed',mode:'Production Native Canvas, no browser claim',partyUnchanged:[...party.keys()],rows},null,2)+'\n');
 console.log('PASS: 8 absent NPC identities, 8 live actor identities, 4 unchanged companions, unknown NPC safe fallback, story wiring');

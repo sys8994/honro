@@ -1,0 +1,3 @@
+Web asset retention: two prior distinct releases, legacy migration, identical builds, asset reuse, and safe cleanup passed.
+Published retention: seven-day window, latest-two floor, day precision, fake-clock expiry, graph deduplication, metadata fail-closed and independent two-build slots passed.
+Registration: Git original restoration, idempotence, active-byte isolation, unavailable history/hash rejection and no partial writes passed.
