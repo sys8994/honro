@@ -11,7 +11,7 @@ function warm(app){const a=app.audio,c=a?.context;if(!relevant(app)||!a?.enabled
 function play(app,rate){const a=app.audio,c=a?.context;if(!a?.enabled||a.volume<=0||!c||c.state!=='running'||!a.master||G.document?.hidden)return false;const s=record(a);if(!s.buffer){void warm(app);return false;}
  // Existing mute/visibility/dispose cleanup owns every voice, including this one.
  if(a.voices.size>=20){const old=a.voices.values().next().value;try{old?.stop();}catch{}if(old)a.voices.delete(old);}
- const voice=c.createBufferSource();voice.buffer=s.buffer;voice.playbackRate.value=rate;voice.connect(a.master);a.voices.add(voice);voice.onended=()=>{a.voices.delete(voice);voice.disconnect();};voice.start();s.plays++;s.lastRate=rate;return true;
+ const voice=c.createBufferSource();voice.buffer=s.buffer;voice.playbackRate.value=rate;voice.connect(a.master);a.voices.add(voice);voice.onended=()=>{a.voices.delete(voice);voice.disconnect();};voice.start();a.music?.duck?.(s.buffer.duration/rate);s.plays++;s.lastRate=rate;return true;
 }
 function memory(b){b.honroState??={};return b.honroState.mukjongAudio??={version:1,sign:false,keeperSerial:0};}
 function pitchValid(p){return p?.version===1&&[1,2].includes(p.interval)&&['firstRound','lastRound','activeRounds'].every(k=>Number.isSafeInteger(p[k])&&p[k]>=0)&&typeof p.paused==='boolean'&&typeof p.stopped==='boolean';}

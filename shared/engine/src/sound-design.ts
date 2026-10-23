@@ -64,6 +64,7 @@ export class AudioEngine {
         this.enabled=!!s.sound;this.volume=Math.max(0,Math.min(1,Number(s.volume)||0));
         const gain=this.enabled?this.volume:0;
         if(this.master&&this.context&&gain!==this.gainTarget){this.master.gain.setTargetAtTime(gain,this.context.currentTime,.015);this.gainTarget=gain;}
+        if(!this.enabled||this.volume<=0)this.music.clearDucking();
         if((!this.enabled||this.volume<=0)&&(this.pending.length||this.voices.size))this.pause();
     }
     wake(userGesture=false):Promise<boolean>{
@@ -132,7 +133,7 @@ export class AudioEngine {
         source.onended=()=>{this.voices.delete(source);if(this.dialogueVoice===source)this.dialogueVoice=null;source.disconnect();};source.start();
         this.lastPlayed[name]=now;this.startedAt[name]=performance.now();this.playCount++;
     }
-    pause(){for(const voice of this.voices){try{voice.stop();}catch{}}this.voices.clear();this.dialogueVoice=null;this.pending=[];}
+    pause(){this.music.clearDucking();for(const voice of this.voices){try{voice.stop();}catch{}}this.voices.clear();this.dialogueVoice=null;this.pending=[];}
     setTheme(_n:number){}
     update(state?:MusicState,paused=false,battleSession?:string,firstBattleTrack?:number,battleAct?:number){this.paused=paused;if(paused)this.pause();this.music.setPaused(paused);if(state)this.music.select(state,battleSession,firstBattleTrack,battleAct);this.music.tick();}
     dispose(){this.disposed=true;this.pause();this.music.dispose();void this.context?.close();}

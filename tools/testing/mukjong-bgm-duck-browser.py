@@ -1,0 +1,24 @@
+"""Actual approved sample starts and streaming BGM volume, no subjective listening claim."""
+import json,sys
+from pathlib import Path
+from playwright.sync_api import sync_playwright
+ROOT=Path(__file__).resolve().parents[2];sys.path.insert(0,str(ROOT/'tests'))
+from browser_support import launch,serve_game
+OUT=ROOT/'_local/reports/mukjong-bgm-duck-20261023';sign=json.loads((ROOT/'_local/reports/mukjong-audio-20261023/sign-ready.json').read_text());keeper=json.loads((ROOT/'_local/reports/mukjong-audio-20261023/keeper-ready.json').read_text());rows=[]
+with serve_game()as base,sync_playwright()as pw:
+ b=launch(pw);p=b.new_page(viewport={'width':390,'height':844});errors=[];p.on('pageerror',lambda e:errors.append(str(e)));p.add_init_script('if(!localStorage.getItem("honro-first-act-profile-1"))localStorage.setItem("honro-first-act-profile-1",'+json.dumps(json.dumps(sign))+');');p.goto(base+'/HONRO.html');p.wait_for_function('window.HonroApp');p.evaluate('HonroApp.frame=()=>{}');p.locator('[data-action=continue]').click();p.wait_for_function('HonroMukjongAudio.stats(HonroApp.audio)?.ready',timeout=30000);p.evaluate('HonroApp.turnNotice=null;window.__settings=JSON.stringify(HonroApp.profile.settings);window.__duckCalls=[];const m=HonroApp.audio.music,duck=m.duck.bind(m);m.duck=d=>{__duckCalls.push(d);return duck(d)}');p.wait_for_timeout(500)
+ def state():return p.evaluate('''(()=>{const a=HonroApp,m=a.audio.music;m.tick();return{factor:m.duckingFactor(),base:m.volume,current:m.current?.volume,paused:m.paused,enabled:m.enabled,settings:JSON.stringify(a.profile.settings),master:a.audio.master?.gain.value,stats:HonroMukjongAudio.stats(a.audio),calls:[...__duckCalls]}})()''')
+ before=state();assert before['factor']==1
+ p.keyboard.press('e');p.wait_for_function('!!HonroApp.dialogue')
+ for i in range(25):
+  if p.evaluate('HonroApp.dialogue.lines[HonroApp.dialogue.index][2]?.rowId')=='12.beats.sign:a6e603d56a':break
+  p.locator('[data-action=dialogue-next]').click()
+ else:raise AssertionError('Actual12 bell row unreachable')
+ p.wait_for_timeout(180);first=state();assert first['factor']==.63 and first['stats']['plays']==1 and len(first['calls'])==1;assert abs(first['current']/first['base']-.63)<.01;assert first['settings']==before['settings'];assert first['master']==before['master'];rows.append({'case':'12-actual-row','before':before,'duck':first});p.evaluate('HonroApp.scene.render(HonroApp.engine,0,HonroApp.selected,HonroApp.power,false,0)');p.screenshot(path=str(OUT/'390-chapter12.jpg'),type='jpeg',quality=88)
+ p.locator('[data-action=dialogue-prev]').click();p.locator('[data-action=dialogue-next]').click();assert len(state()['calls'])==1
+ p.wait_for_timeout(5650);released=state();assert released['factor']==1 and abs(released['current']-released['base'])<.001;rows.append({'case':'natural-release','value':released})
+ p.evaluate('''async v=>{const a=HonroApp;while(a.dialogue)HonroStory.finish(a);await HonroCampaignLoader.ensureStage(18);a.profile=v;a.normalProfile=v;a.continue();a.close();a.turnNotice=null;a.audio.configure(a.profile.settings);a.engine.enemyAction();}''',keeper);p.wait_for_timeout(500);late=state();assert late['factor']==.63 and late['stats']['plays']==2 and len(late['calls'])==2;rows.append({'case':'18-actual-ritual','value':late});p.set_viewport_size({'width':844,'height':390});p.evaluate('HonroApp.scene.render(HonroApp.engine,0,HonroApp.selected,HonroApp.power,false,0)');p.screenshot(path=str(OUT/'844-chapter18.jpg'),type='jpeg',quality=88)
+ p.evaluate('HonroApp.pause()');assert state()['factor']==1;p.evaluate('HonroApp.close();HonroApp.engine.b.round+=2;HonroMukjongAudio.observe(HonroApp);HonroMukjongAudio.update(HonroApp)');p.wait_for_timeout(180);rise=state();assert rise['factor']==.63 and rise['stats']['lastRate']>1;rows.append({'case':'18-round-rise','value':rise})
+ p.evaluate('HonroApp.profile.settings.sound=false;HonroApp.audio.configure(HonroApp.profile.settings)');assert state()['factor']==1;p.evaluate('HonroApp.profile.settings.sound=true;HonroApp.audio.configure(HonroApp.profile.settings)');count=state()['stats']['plays'];p.evaluate('for(let i=0;i<20;i++)HonroMukjongAudio.update(HonroApp)');assert state()['stats']['plays']==count and state()['factor']==1
+ p.evaluate('HonroApp.audio.music.duck(5.8);HonroApp.audio.update("battle",true)');assert state()['factor']==1;p.evaluate('HonroApp.audio.update("main",false)');assert state()['factor']==1;assert not errors,errors
+ (OUT/'browser.json').write_text(json.dumps({'rows':rows,'pauseMuteVisibilityPathAndSceneReset':True,'errors':errors,'scope':'Prepared real12 interaction/Story row and18 Engine.enemyAction, actual decoded source.start and HTMLAudio volume. Controlled App frame/ticks, no physical device or subjective listening claim.'},ensure_ascii=False,indent=2));b.close();print('PASS Chromium actual12/18/rise BGM-only duck, release, repeat/mute/pause/scene/visibility reset')

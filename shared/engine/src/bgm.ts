@@ -18,13 +18,14 @@ export class BgmPlayer {
     private playSerial=0;
     private fadeMs=25;
     private preloadFailed=false;
+    private duckAt=-Infinity; private duckRelease=0; private duckEnd=0; private duckFrom=1;
     private battleSession:string|undefined; private battleSelected=false;
     private battleAct:1|2=1;
     private get battleTracks(){return BATTLE_PLAYLISTS[this.battleAct];}
     constructor(public tracks:string[]=(globalThis as any).HONRO_BGM_TRACKS||[],
       private makeAudio:()=>HTMLAudioElement=()=>new Audio()){}
     configure(enabled:boolean,volume:number){
-        this.enabled=enabled;this.volume=Math.max(0,Math.min(1,volume));this.settingsConfigured=true;
+        this.enabled=enabled;this.volume=Math.max(0,Math.min(1,volume));this.settingsConfigured=true;if(!enabled||this.volume<=0)this.clearDucking();
         // Prepare only the current title song after applying the saved music settings.
         // Try audible title playback once. The browser may still require unlock()
         // from the existing trusted-input handlers before allowing this stream.
@@ -50,6 +51,7 @@ export class BgmPlayer {
         if(playlistChanged){this.restartRequested=true;if(state==='battle')this.battleIndex=0;}
         // Direct encounter changes within one playlist keep the existing order.
         const freshEncounter=state==='battle'&&battleSession!==undefined&&battleSession!==this.battleSession;
+        if(playlistChanged||freshEncounter)this.clearDucking();
         if(freshEncounter){
             if(!playlistChanged&&this.battleSelected)this.battleIndex=(this.battleIndex+1)%playlist.length;
             this.battleSession=battleSession;this.battleSelected=false;
@@ -69,6 +71,7 @@ export class BgmPlayer {
         if(!this.tracks[track]||this.failed.has(track)){this.silence();return;}
         if(!this.unlocked&&!prepareTitle)return;
         if(track===this.track&&this.current){if(this.restartRequested)this.current.currentTime=0;this.restartRequested=false;this.tryStartup();this.applyPause();return;}
+        this.clearDucking();
         if(this.outgoing){this.outgoing.pause();this.outgoing.removeAttribute('src');this.outgoing.load();this.outgoing=null;}
         if(this.current)this.outgoing=this.current;
         this.restartRequested=false;this.track=track;const audio=this.current=this.makeAudio();audio.preload=prepareTitle?'auto':'metadata';audio.src=this.tracks[track];
@@ -79,7 +82,7 @@ export class BgmPlayer {
             if(this.state==='battle'){this.battleIndex=(this.battleIndex+1)%this.battleTracks.length;this.select('battle');}});
         this.tryStartup();this.applyPause();
     }
-    setPaused(paused:boolean){if(this.paused===paused)return;this.paused=paused;this.applyPause();}
+    setPaused(paused:boolean){if(paused)this.clearDucking();if(this.paused===paused)return;this.paused=paused;this.applyPause();}
     private applyPause(){
         const stop=this.paused||!this.enabled||this.volume<=0||!this.unlocked;
         if(stop){this.current?.pause();this.outgoing?.pause();this.requested=false;return;}
@@ -97,17 +100,28 @@ export class BgmPlayer {
             try{const promise=audio.play();this.starts++;promise?.catch(rejected);}catch(error){rejected(error);}
         }
     }
+    duck(durationSeconds:number){
+        if(!this.current||!this.enabled||!this.unlocked||this.paused||this.volume<=0||typeof document!=='undefined'&&document.hidden)return false;
+        const now=performance.now();this.duckFrom=this.duckingFactor(now);this.duckAt=now;this.duckRelease=now+Math.max(140,durationSeconds*1000-900);this.duckEnd=this.duckRelease+900;this.tick(now);return true;
+    }
+    duckingFactor(now=performance.now()){
+        if(now>=this.duckEnd)return 1;
+        if(now<this.duckAt+140)return this.duckFrom+(.63-this.duckFrom)*Math.max(0,(now-this.duckAt)/140);
+        if(now<this.duckRelease)return .63;
+        const t=Math.max(0,Math.min(1,(now-this.duckRelease)/900));return .63+.37*t*t*(3-2*t);
+    }
+    clearDucking(){this.duckAt=-Infinity;this.duckRelease=this.duckEnd=0;this.duckFrom=1;this.tick();}
     tick(now=performance.now()){
         let mix=Math.max(0,Math.min(1,(now-this.transitionStart)/this.fadeMs));
         // The startup request must already be audible when play() checks policy.
         // Keep the short ramp, but never qualify as muted/zero-volume autoplay.
         if(this.startupFade){if(mix>=1)this.startupFade=false;else mix=Math.max(1/25,mix);}
-        const volume=this.enabled&&this.unlocked?this.volume:0;
+        const volume=this.enabled&&this.unlocked?this.volume*this.duckingFactor(now):0;
         if(this.current)this.current.volume=volume*mix;
         if(this.outgoing){this.outgoing.volume=volume*(1-mix);if(mix>=1){this.outgoing.pause();this.outgoing.removeAttribute('src');this.outgoing.load();this.outgoing=null;}}
     }
-    silence(){for(const a of [this.current,this.outgoing])if(a){a.pause();a.removeAttribute('src');a.load();}this.current=null;this.outgoing=null;this.track=-1;this.requested=false;}
+    silence(){this.clearDucking();for(const a of [this.current,this.outgoing])if(a){a.pause();a.removeAttribute('src');a.load();}this.current=null;this.outgoing=null;this.track=-1;this.requested=false;}
     dispose(){this.silence();this.unlocked=false;}
     status(){return{state:this.state,track:this.track<0?null:this.track+1,battleIndex:this.battleIndex,battleAct:this.battleAct,unlocked:this.unlocked,paused:this.paused,starts:this.starts,
-        playing:[this.current,this.outgoing].filter(a=>a&&!a.paused).length,currentTime:this.current?.currentTime||0,errors:[...this.errors]};}
+        duckGain:this.duckingFactor(),ducking:performance.now()<this.duckEnd,playing:[this.current,this.outgoing].filter(a=>a&&!a.paused).length,currentTime:this.current?.currentTime||0,errors:[...this.errors]};}
 }
