@@ -47,6 +47,8 @@ export interface Terrain {
     surfaceKind?: string;
     indestructible?: boolean;
     oneWay?: boolean;
+    /** Body jump-through slab whose projectiles still hit every solid face. */
+    projectileSolid?: boolean;
     id: string;
     x: number;
     y: number;

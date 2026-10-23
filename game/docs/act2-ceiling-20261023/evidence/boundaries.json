@@ -1,0 +1,76 @@
+{
+  "pass": true,
+  "rows": [
+    {
+      "case": "actual finite shots, normal level13 SP/entry pose, isolated actors",
+      "low": {
+        "id": "A01",
+        "angle": 15,
+        "power": 0.3,
+        "prediction": {
+          "x": 1162.705413042153,
+          "y": 1447
+        },
+        "contacts": [
+          {
+            "terrain": "v14-upper-hamlet",
+            "x": 1162.705413042153,
+            "y": 1447,
+            "generation": 0
+          }
+        ]
+      },
+      "high": {
+        "id": "A01",
+        "angle": 75,
+        "power": 0.9,
+        "prediction": {
+          "x": 1019.7327703529086,
+          "y": 638.2821941192348
+        },
+        "contacts": [
+          {
+            "terrain": "v14-cavern-vault",
+            "x": 1019.7327703529086,
+            "y": 638.2821941192348,
+            "generation": 0
+          }
+        ]
+      },
+      "reflection": {
+        "id": "M11",
+        "angle": 90,
+        "power": 1,
+        "prediction": {
+          "x": 820.676042102657,
+          "y": 1444
+        },
+        "contacts": [
+          {
+            "terrain": "v14-cavern-vault",
+            "x": 900,
+            "y": 630.7291934703092,
+            "generation": 0
+          },
+          {
+            "terrain": "v14-upper-hamlet",
+            "x": 820.676042102657,
+            "y": 1444,
+            "generation": 1
+          }
+        ]
+      }
+    },
+    {
+      "case": "same revision whole-battle Continue exact"
+    },
+    {
+      "case": "actual old R21 save restarts14 under existing map-revision policy; growth/equipment/clears/order retained",
+      "oldRound": 21
+    },
+    {
+      "case": "prepared obsolete R9 revision fixture restarts14, not actual user save"
+    }
+  ],
+  "limits": "Prepared/isolated shots and production App DOM/storage doubles; no fresh campaign combat completion, no actual user R9 save. Old14 battle is restarted by mandated map revision, not silently patched."
+}

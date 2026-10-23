@@ -1,6 +1,6 @@
 import {groundFlightClear} from './enemyAI';
 import type {Terrain,Unit,Vec} from './types';
-import {clamp,poly,topAt,terrainSurfaces,terrainSlopeAt,terrainRectIntersects,terrainContains,segmentTerrain,segmentProjectileTerrain,segRect,AIM_MIN,AIM_MAX} from './math';
+import {clamp,poly,topAt,terrainSurfaces,terrainSlopeAt,terrainRectIntersects,terrainContains,segmentTerrain,segmentPlatformSurface,segRect,AIM_MIN,AIM_MAX} from './math';
 
 /** Continuous translation of the locomotion body, expressed in FOOT coordinates.
  * Feet own upward contacts; narrow head/torso probes own walls and ceilings.
@@ -15,7 +15,7 @@ export function sweepBodyTerrain(terrain:Terrain[],u:Unit,a:Vec,b:Vec,skipFace?:
   const footA={x:a.x,y:a.y-.05},footB={x:b.x,y:b.y-.05};
   const skipped=skipFace?.(t);
   if(t.oneWay){
-   const h=segmentProjectileTerrain(footA,footB,t,0);
+   const h=segmentPlatformSurface(footA,footB,t,0);
    if(h&&!skipped?.length)take(t,h);
    else if(h&&skipped?.length){const q=segmentTerrain(footA,footB,t,0,skipped);if(q&&q.n.y<-.01)take(t,q);}
    continue;

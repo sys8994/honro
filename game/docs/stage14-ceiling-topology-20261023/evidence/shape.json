@@ -1,0 +1,59 @@
+{
+  "pass": true,
+  "previousRejectedCandidate": "c6ad086210ad689897f020f583c71ec555016f5c",
+  "source": "c6ad086210ad689897f020f583c71ec555016f5c",
+  "campaignSha256": "a452a4cbf5b5e7208cecc7bde1568bb7fba04b70e0f3d3876fada385093f200e",
+  "onlyVaultChanged": true,
+  "noNewIntrusionOverPlayBounds": true,
+  "projectionMatchesCanonical": true,
+  "renderMatchesCanonical": true,
+  "unchanged17RoutesActorsGoalsPlatformAndOtherStages": true,
+  "samples": [
+    {
+      "id": "entry",
+      "x": 790,
+      "y": 1450,
+      "oldRoofY": 615,
+      "newRoofY": 122.8235294117647,
+      "oldHeadroom": 835,
+      "newHeadroom": 1327.1764705882354
+    },
+    {
+      "id": "upper-home",
+      "x": 2980,
+      "y": 2300,
+      "oldRoofY": 1586.1538461538462,
+      "newRoofY": 355.7142857142857,
+      "oldHeadroom": 713.8461538461538,
+      "newHeadroom": 1944.2857142857142
+    },
+    {
+      "id": "first-neck",
+      "x": 3500,
+      "y": 2956.818181818182,
+      "oldRoofY": 2023.921568627451,
+      "newRoofY": 1920,
+      "oldHeadroom": 932.8966131907309,
+      "newHeadroom": 1036.818181818182
+    },
+    {
+      "id": "market-vault",
+      "x": 4920,
+      "y": 3850,
+      "oldRoofY": 2785,
+      "newRoofY": 704,
+      "oldHeadroom": 1065,
+      "newHeadroom": 3146
+    },
+    {
+      "id": "east-neck",
+      "x": 6570,
+      "y": 4596.851851851852,
+      "oldRoofY": 3762.8571428571427,
+      "newRoofY": 2340,
+      "oldHeadroom": 833.9947089947095,
+      "newHeadroom": 2256.851851851852
+    }
+  ],
+  "limits": "Shape/collision boundary, not art acceptance, live combat completion or approval to restart old14 saves."
+}

@@ -1,0 +1,22 @@
+{
+  "pass": true,
+  "latestIntegratedSource": "9f7a62739c6c7682850d5991792290de64329fb7",
+  "unchangedModules": [
+    "shared/engine/src/icons.ts",
+    "shared/runtime/skill-images.js",
+    "game/src/skill-icons.css",
+    "shared/runtime/story.js",
+    "game/src/presentation.css",
+    "shared/runtime/player-turn-order.js",
+    "shared/runtime/reinforcement-camera.js",
+    "shared/engine/src/returningWraith.ts",
+    "shared/runtime/stage18-short-quest.js"
+  ],
+  "publishedGraphs": 22,
+  "protectedFiles": 559,
+  "chapter": "web/data/chapter-14.e8764e31ee5270a1.json",
+  "entry": "web/entries/game.776bd78fb65188a0.js",
+  "stage18ActualR10ActorsTerrainFactsRewardsExact": true,
+  "old934Chapter13Protected": true,
+  "limits": "No new Stage18 battle, Pages deployment, or full campaign verification."
+}

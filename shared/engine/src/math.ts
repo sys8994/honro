@@ -88,7 +88,11 @@ export function segmentTerrain(a: Vec, b: Vec, t: Terrain, pad = 0, skipEdges?: 
  * up through a thick slab cannot be caught on its next (still embedded) step.
  * Signed normal motion, rather than vy, also handles sloped/horizontal shots. */
 export function segmentProjectileTerrain(a: Vec, b: Vec, t: Terrain, pad = 0): { t: number; n: Vec; } | null {
-    if (!t.oneWay) return segmentTerrain(a, b, t, pad);
+    if (!t.oneWay || t.projectileSolid === true) return segmentTerrain(a, b, t, pad);
+    return segmentPlatformSurface(a,b,t,pad);
+}
+/** Upward-facing platform entry for bodies, independent of weapon policy. */
+export function segmentPlatformSurface(a: Vec, b: Vec, t: Terrain, pad = 0): { t: number; n: Vec; } | null {
     const pts=poly(t),dx=b.x-a.x,dy=b.y-a.y,epsilon=1e-7;
     let best:{t:number;n:Vec}|null=null;
     for(let i=0;i<pts.length;i++){

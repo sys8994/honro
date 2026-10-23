@@ -1,0 +1,457 @@
+{
+  "source": "bae6d55066c66fb9df05cbd95cbe290f7c92b52c",
+  "allOtherDataExactAfterTwoAllowedChanges": true,
+  "actors": 51,
+  "idleExact": true,
+  "scope": "Isolated one-time route entry pose, one actor, finite Engine move/jump/wait. Open-bridge precondition for route fixture; no resource refill/recover/position rewrite after setup. Not normal combat.",
+  "rows": [
+    {
+      "route": "BC",
+      "cls": "archer",
+      "passed": true,
+      "failed": null,
+      "damage": 0,
+      "netHpChange": 0,
+      "recoveries": 0,
+      "contacts": [],
+      "ticks": 1122,
+      "waits": 1,
+      "jumps": 1,
+      "walkCost": 2727.7385342005223,
+      "jumpCost": 75,
+      "movementCost": 2802.7385342005223,
+      "turnEquivalent": 1.8294637951700536,
+      "maxMove": 1532,
+      "rows": [
+        {
+          "goal": {
+            "x": 2675,
+            "y": 2300,
+            "surfaceId": "v14-upper-hamlet"
+          },
+          "x": 2675,
+          "y": 2300,
+          "support": "v14-upper-hamlet",
+          "round": 1,
+          "moveLeft": 1532
+        },
+        {
+          "goal": {
+            "x": 3000,
+            "y": 2300,
+            "surfaceId": "v14-upper-hamlet"
+          },
+          "x": 3000,
+          "y": 2300,
+          "support": "v14-upper-hamlet",
+          "round": 1,
+          "moveLeft": 1207
+        },
+        {
+          "goal": {
+            "x": 4080,
+            "y": 3718.727272727273,
+            "surfaceId": "v14-upper-hamlet"
+          },
+          "x": 4079.5560832625115,
+          "y": 3718.144127558481,
+          "support": "v14-upper-hamlet",
+          "round": 2,
+          "moveLeft": 947.06035968486
+        },
+        {
+          "goal": {
+            "x": 4080,
+            "y": 3718.727272727273,
+            "surfaceId": "v14-upper-hamlet",
+            "jumpTo": {
+              "x": 4300,
+              "y": 3850,
+              "support": "v14-market",
+              "speed": 1
+            }
+          },
+          "x": 4300,
+          "y": 3850,
+          "support": "v14-market",
+          "round": 2,
+          "moveLeft": 651.6164429473715
+        },
+        {
+          "goal": {
+            "x": 4300,
+            "y": 3850,
+            "surfaceId": "v14-market"
+          },
+          "x": 4300,
+          "y": 3850,
+          "support": "v14-market",
+          "round": 2,
+          "moveLeft": 651.6164429473715
+        },
+        {
+          "goal": {
+            "x": 4700,
+            "y": 3850,
+            "surfaceId": "v14-market"
+          },
+          "x": 4700,
+          "y": 3850,
+          "support": "v14-market",
+          "round": 2,
+          "moveLeft": 251.61644294737152
+        }
+      ],
+      "commands": [
+        {
+          "op": "wait",
+          "x": 3725.251502607683,
+          "y": 3252.7167466073656,
+          "round": 1
+        },
+        {
+          "op": "jump",
+          "x": 4079.5560832625115,
+          "y": 3718.144127558481,
+          "round": 2
+        }
+      ]
+    },
+    {
+      "route": "BC",
+      "cls": "mage",
+      "passed": true,
+      "failed": null,
+      "damage": 0,
+      "netHpChange": 0,
+      "recoveries": 0,
+      "contacts": [],
+      "ticks": 1176,
+      "waits": 1,
+      "jumps": 1,
+      "walkCost": 2726.5708459852635,
+      "jumpCost": 75,
+      "movementCost": 2801.5708459852635,
+      "turnEquivalent": 1.8051358543719482,
+      "maxMove": 1552,
+      "rows": [
+        {
+          "goal": {
+            "x": 2675,
+            "y": 2300,
+            "surfaceId": "v14-upper-hamlet"
+          },
+          "x": 2675,
+          "y": 2300,
+          "support": "v14-upper-hamlet",
+          "round": 1,
+          "moveLeft": 1552
+        },
+        {
+          "goal": {
+            "x": 3000,
+            "y": 2300,
+            "surfaceId": "v14-upper-hamlet"
+          },
+          "x": 2999.8999999999896,
+          "y": 2300,
+          "support": "v14-upper-hamlet",
+          "round": 1,
+          "moveLeft": 1227.1000000000104
+        },
+        {
+          "goal": {
+            "x": 4080,
+            "y": 3718.727272727273,
+            "surfaceId": "v14-upper-hamlet"
+          },
+          "x": 4079.298478443428,
+          "y": 3717.805728500685,
+          "support": "v14-upper-hamlet",
+          "round": 2,
+          "moveLeft": 985.9207918970101
+        },
+        {
+          "goal": {
+            "x": 4080,
+            "y": 3718.727272727273,
+            "surfaceId": "v14-upper-hamlet",
+            "jumpTo": {
+              "x": 4300,
+              "y": 3850,
+              "support": "v14-market",
+              "speed": 1
+            }
+          },
+          "x": 4300,
+          "y": 3850,
+          "support": "v14-market",
+          "round": 2,
+          "moveLeft": 690.219270340438
+        },
+        {
+          "goal": {
+            "x": 4300,
+            "y": 3850,
+            "surfaceId": "v14-market"
+          },
+          "x": 4300,
+          "y": 3850,
+          "support": "v14-market",
+          "round": 2,
+          "moveLeft": 690.219270340438
+        },
+        {
+          "goal": {
+            "x": 4700,
+            "y": 3850,
+            "surfaceId": "v14-market"
+          },
+          "x": 4699.000000000051,
+          "y": 3850,
+          "support": "v14-market",
+          "round": 2,
+          "moveLeft": 291.2192703403871
+        }
+      ],
+      "commands": [
+        {
+          "op": "wait",
+          "x": 3736.417875692198,
+          "y": 3267.3853003411145,
+          "round": 1
+        },
+        {
+          "op": "jump",
+          "x": 4079.298478443428,
+          "y": 3717.805728500685,
+          "round": 2
+        }
+      ]
+    },
+    {
+      "route": "BC",
+      "cls": "knight",
+      "passed": true,
+      "failed": null,
+      "damage": 0,
+      "netHpChange": 0,
+      "recoveries": 0,
+      "contacts": [],
+      "ticks": 1134,
+      "waits": 1,
+      "jumps": 1,
+      "walkCost": 2727.704970262919,
+      "jumpCost": 75,
+      "movementCost": 2802.704970262919,
+      "turnEquivalent": 1.7068848783574413,
+      "maxMove": 1642,
+      "rows": [
+        {
+          "goal": {
+            "x": 2675,
+            "y": 2300,
+            "surfaceId": "v14-upper-hamlet"
+          },
+          "x": 2675,
+          "y": 2300,
+          "support": "v14-upper-hamlet",
+          "round": 1,
+          "moveLeft": 1642
+        },
+        {
+          "goal": {
+            "x": 3000,
+            "y": 2300,
+            "surfaceId": "v14-upper-hamlet"
+          },
+          "x": 3000,
+          "y": 2300,
+          "support": "v14-upper-hamlet",
+          "round": 1,
+          "moveLeft": 1317
+        },
+        {
+          "goal": {
+            "x": 4080,
+            "y": 3718.727272727273,
+            "surfaceId": "v14-upper-hamlet"
+          },
+          "x": 4079.504521904737,
+          "y": 3718.0763946839497,
+          "support": "v14-upper-hamlet",
+          "round": 2,
+          "moveLeft": 1166.7433620055785
+        },
+        {
+          "goal": {
+            "x": 4080,
+            "y": 3718.727272727273,
+            "surfaceId": "v14-upper-hamlet",
+            "jumpTo": {
+              "x": 4300,
+              "y": 3850,
+              "support": "v14-market",
+              "speed": 1
+            }
+          },
+          "x": 4300,
+          "y": 3850,
+          "support": "v14-market",
+          "round": 2,
+          "moveLeft": 871.2478839103155
+        },
+        {
+          "goal": {
+            "x": 4300,
+            "y": 3850,
+            "surfaceId": "v14-market"
+          },
+          "x": 4300,
+          "y": 3850,
+          "support": "v14-market",
+          "round": 2,
+          "moveLeft": 871.2478839103155
+        },
+        {
+          "goal": {
+            "x": 4700,
+            "y": 3850,
+            "surfaceId": "v14-market"
+          },
+          "x": 4700,
+          "y": 3850,
+          "support": "v14-market",
+          "round": 2,
+          "moveLeft": 471.2478839103155
+        }
+      ],
+      "commands": [
+        {
+          "op": "wait",
+          "x": 3791.6361809297255,
+          "y": 3339.922074039503,
+          "round": 1
+        },
+        {
+          "op": "jump",
+          "x": 4079.504521904737,
+          "y": 3718.0763946839497,
+          "round": 2
+        }
+      ]
+    },
+    {
+      "route": "BC",
+      "cls": "occultist",
+      "passed": true,
+      "failed": null,
+      "damage": 0,
+      "netHpChange": 0,
+      "recoveries": 0,
+      "contacts": [],
+      "ticks": 1142,
+      "waits": 1,
+      "jumps": 1,
+      "walkCost": 2727.3958519989033,
+      "jumpCost": 75,
+      "movementCost": 2802.3958519989033,
+      "turnEquivalent": 1.7714259494304065,
+      "maxMove": 1582,
+      "rows": [
+        {
+          "goal": {
+            "x": 2675,
+            "y": 2300,
+            "surfaceId": "v14-upper-hamlet"
+          },
+          "x": 2675,
+          "y": 2300,
+          "support": "v14-upper-hamlet",
+          "round": 1,
+          "moveLeft": 1582
+        },
+        {
+          "goal": {
+            "x": 3000,
+            "y": 2300,
+            "surfaceId": "v14-upper-hamlet"
+          },
+          "x": 3000,
+          "y": 2300,
+          "support": "v14-upper-hamlet",
+          "round": 1,
+          "moveLeft": 1257
+        },
+        {
+          "goal": {
+            "x": 4080,
+            "y": 3718.727272727273,
+            "surfaceId": "v14-upper-hamlet"
+          },
+          "x": 4079.029650403927,
+          "y": 3717.4525862124315,
+          "support": "v14-upper-hamlet",
+          "round": 2,
+          "moveLeft": 1048.5056533908066
+        },
+        {
+          "goal": {
+            "x": 4080,
+            "y": 3718.727272727273,
+            "surfaceId": "v14-upper-hamlet",
+            "jumpTo": {
+              "x": 4300,
+              "y": 3850,
+              "support": "v14-market",
+              "speed": 1
+            }
+          },
+          "x": 4300,
+          "y": 3850,
+          "support": "v14-market",
+          "round": 2,
+          "moveLeft": 752.5353037947336
+        },
+        {
+          "goal": {
+            "x": 4300,
+            "y": 3850,
+            "surfaceId": "v14-market"
+          },
+          "x": 4300,
+          "y": 3850,
+          "support": "v14-market",
+          "round": 2,
+          "moveLeft": 752.5353037947336
+        },
+        {
+          "goal": {
+            "x": 4700,
+            "y": 3850,
+            "surfaceId": "v14-market"
+          },
+          "x": 4700,
+          "y": 3850,
+          "support": "v14-market",
+          "round": 2,
+          "moveLeft": 352.53530379473364
+        }
+      ],
+      "commands": [
+        {
+          "op": "wait",
+          "x": 3755.886068178496,
+          "y": 3292.9594259253877,
+          "round": 1
+        },
+        {
+          "op": "jump",
+          "x": 4079.029650403927,
+          "y": 3717.4525862124315,
+          "round": 2
+        }
+      ]
+    }
+  ]
+}
