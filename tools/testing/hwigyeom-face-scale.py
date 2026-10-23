@@ -39,8 +39,9 @@ report={'head':subprocess.check_output(['git','rev-parse','HEAD'],cwd=ROOT,text=
 if phase=='after':
  old=json.loads((OUT/'before.json').read_text());changed=[]
  for x,y in zip(old['rows'],rows):
-  assert (x['kind'],x['view'],x['cls'])==(y['kind'],y['view'],y['cls']);assert all(abs(a-b)<.01 for a,b in zip(x['size'],y['size'])),(x,y)
+  assert (x['kind'],x['view'],x['cls'])==(y['kind'],y['view'],y['cls']);
+  if '--layout-revision'not in sys.argv:assert all(abs(a-b)<.01 for a,b in zip(x['size'],y['size'])),(x,y)
   if y['cls']=='knight' and y['kind']!='hud':assert x['pixels']!=y['pixels'];changed.append([y['kind'],y['view']])
   else:assert x['pixels']==y['pixels'],(x,y)
- report['comparison']={'onlyHwigyeomBustPixelsChanged':changed,'allOther3AndHUDExact':True,'allSizesPreserved':True}
+ report['comparison']={'onlyHwigyeomBustPixelsChanged':changed,'allOther3AndHUDExact':True,'allSizesPreserved':'--layout-revision'not in sys.argv}
 (OUT/(phase+'.json')).write_text(json.dumps(report,ensure_ascii=False,indent=2));print('PASS',phase,len(rows),'surfaces, shared4 requests/decode')
