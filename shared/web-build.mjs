@@ -65,8 +65,8 @@ export async function buildWeb({vector=true,destination=path.join(root,'HONRO.ht
   function assetPaths(value){const paths=[],at=[];const visit=node=>{if(!node||typeof node!=='object')return;if(node.$honroAsset){paths.push([...at]);return;}for(const key in node)if(node[key]&&typeof node[key]==='object'){at.push(Array.isArray(node)?Number(key):key);visit(node[key]);at.pop();}};visit(value);return paths;}
   async function externalize(value,name){
     if(typeof value==='string'){
-      const data=/^data:(image\/[\w+.-]+);base64,([\s\S]+)$/.exec(value);
-      if(data){const ext={'image/svg+xml':'svg','image/jpeg':'jpg','image/png':'png','image/webp':'webp'}[data[1]];assert(ext,'Supported image data URI');return {$honroAsset:await emit('graphics',name,ext,Buffer.from(data[2],'base64'))};}
+      const data=/^data:(image\/[\w+.-]+|audio\/mpeg);base64,([\s\S]+)$/.exec(value);
+      if(data){const ext={'image/svg+xml':'svg','image/jpeg':'jpg','image/png':'png','image/webp':'webp','audio/mpeg':'mp3'}[data[1]];assert(ext,'Supported image data URI');return {$honroAsset:await emit('graphics',name,ext,Buffer.from(data[2],'base64'))};}
       return value;
     }
     if(Array.isArray(value))return Promise.all(value.map((v,i)=>externalize(v,`${name}-${i}`)));

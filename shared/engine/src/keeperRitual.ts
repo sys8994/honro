@@ -39,7 +39,7 @@ export function beginKeeperRitual(e:Engine,u:Unit,target:Unit){
  const roll=rollDamage(b,SKILLS.H2KEEPER),damage=e.effective(SKILLS.H2KEEPER,u).damage*.55;
  r.zone={serial:r.serial,kind,phase:'warning',x,y,w:kind==='binding'?250:16,h:kind==='binding'?28:180,direction,connection:{x:u.x+direction*76,y:u.y-76},warnAction:r.playerActions,expires:b.teamEnds[0]+1,damage,roll,shot:b.shot,opportunities:[],target:target.id,targetOpportunity:false};
  r.cast={elapsed:0};b.phase='flight';b.turnAge=b.resolveAge=0;u.anim=.9;u.intent={seal:'봉음 결계 · 예고',echo:'되울림 · 방향 예고',binding:'바닥 결박 · 예고'}[kind];
- e.onAttackStart?.(u.id);e.message(u.intent);e.emit('sound',{name:'qiRebound'});e.emit('change');e.emit('save');return true;
+ e.onAttackStart?.(u.id);e.message(u.intent);e.emit('sound',{name:'mukjongKeeper'});e.emit('change');e.emit('save');return true;
 }
 export function tickKeeperRitual(e:Engine,dt:number){const r=state(e.b);if(!r)return;const owner=e.unit(r.owner);
  if(!keeperEligible(e.b,owner)||['won','lost'].includes(e.b.phase)){clearKeeperRitual(e.b);return;}

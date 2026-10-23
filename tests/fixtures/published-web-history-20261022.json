@@ -224,5 +224,12 @@
     "publishedAt": "2026-10-23T09:20:11Z",
     "publishedAtPrecision": "instant",
     "evidence": "Parent confirmed Pages39930831842 success09:20:11Z and public game.6958bfcc5cc94966.js; actual card reorder/save reentry."
+  },
+  {
+    "sourceSha": "13a91c949482c3d01e8c7c452e73cd7958b8256f",
+    "publishedAt": "2026-10-23",
+    "publishedAtPrecision": "day",
+    "publicationOrder": 33,
+    "evidence": "Parent attests current public master13a91c94 on2026-10-23 after4487. Exact Pages run/UTC not supplied; source commit09:49:55Z same day. Day precision only."
   }
 ]
