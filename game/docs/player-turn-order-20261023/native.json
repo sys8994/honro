@@ -1,0 +1,45 @@
+{
+  "checkedCommit": "0ad37f3116f9c2bf603744e2a645e948df25726b",
+  "rows": [
+    {
+      "check": "fresh/action/manual/real-enemy-transition/new-round",
+      "pass": true,
+      "round": 2,
+      "active": "occultist",
+      "rosterUnreordered": true
+    },
+    {
+      "check": "death/stun skip",
+      "pass": true
+    },
+    {
+      "check": "map fresh/Continue/export/repeat exact",
+      "pass": true
+    },
+    {
+      "check": "old profile/battle exact",
+      "pass": true
+    },
+    {
+      "check": "camp known-only/cancel/save/reload/import/debug-normal isolation",
+      "pass": true
+    },
+    {
+      "check": "absent characters not synthesized",
+      "pass": true
+    },
+    {
+      "check": "production summon/NPC queue identity",
+      "pass": true,
+      "summons": [
+        "summon-1",
+        "summon-2"
+      ],
+      "npcs": [
+        "npc-z",
+        "npc-a"
+      ]
+    }
+  ],
+  "scope": "Prepared Engine turns and production App/save/UI handlers with DOM/time/storage doubles; not a campaign completion or touch-device proof."
+}

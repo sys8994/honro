@@ -1,0 +1,513 @@
+{
+  "checkedCommit": "07855754507cf6c525ab464bdb8b32d3e21a625f",
+  "entry": "web/entries/game.7d28f8236e93eef3.js",
+  "mobileTouch": true,
+  "battleInspectionRenderPure": true,
+  "unjoinedNamesHidden": true,
+  "cardsBefore": [
+    "archer",
+    "mage",
+    "knight",
+    "occultist"
+  ],
+  "cardsUnchanged": true,
+  "savedAndReloaded": [
+    "occultist",
+    "knight",
+    "mage",
+    "archer"
+  ],
+  "fresh": {
+    "active": "p-occultist",
+    "cls": "occultist",
+    "round": 1,
+    "preference": [
+      "occultist",
+      "knight",
+      "mage",
+      "archer"
+    ],
+    "units": [
+      {
+        "id": "p-archer",
+        "cls": "archer",
+        "x": 2720,
+        "y": 5467.368421052632,
+        "hp": 815,
+        "focus": 186,
+        "acted": false,
+        "dead": false
+      },
+      {
+        "id": "p-mage",
+        "cls": "mage",
+        "x": 2830,
+        "y": 5464.473684210527,
+        "hp": 870,
+        "focus": 240,
+        "acted": false,
+        "dead": false
+      },
+      {
+        "id": "p-knight",
+        "cls": "knight",
+        "x": 2962,
+        "y": 5461,
+        "hp": 1330,
+        "focus": 209,
+        "acted": false,
+        "dead": false
+      },
+      {
+        "id": "p-occultist",
+        "cls": "occultist",
+        "x": 2610,
+        "y": 5470.263157894737,
+        "hp": 1000,
+        "focus": 287,
+        "acted": false,
+        "dead": false
+      },
+      {
+        "id": "sb-b-left",
+        "cls": "occultist",
+        "x": 3150,
+        "y": 5468.823529411765,
+        "hp": 180,
+        "focus": 158,
+        "acted": false,
+        "dead": false
+      },
+      {
+        "id": "sb-b-screen",
+        "cls": "archer",
+        "x": 3530,
+        "y": 5491.176470588235,
+        "hp": 220,
+        "focus": 158,
+        "acted": false,
+        "dead": false
+      },
+      {
+        "id": "sb-b-spirit-high",
+        "cls": "occultist",
+        "x": 3910,
+        "y": 4985,
+        "hp": 893,
+        "focus": 158,
+        "acted": false,
+        "dead": false
+      },
+      {
+        "id": "sb-c-bat-front",
+        "cls": "mage",
+        "x": 4194,
+        "y": 3727.3684210526317,
+        "hp": 485,
+        "focus": 158,
+        "acted": false,
+        "dead": false
+      },
+      {
+        "id": "sb-d-lamp",
+        "cls": "occultist",
+        "x": 9040,
+        "y": 3470,
+        "hp": 1384,
+        "focus": 158,
+        "acted": false,
+        "dead": false
+      },
+      {
+        "id": "sb-e-front",
+        "cls": "archer",
+        "x": 5800,
+        "y": 7495.555555555556,
+        "hp": 180,
+        "focus": 158,
+        "acted": false,
+        "dead": false
+      },
+      {
+        "id": "sb-f-tool-west",
+        "cls": "archer",
+        "x": 6500,
+        "y": 7245.454545454545,
+        "hp": 180,
+        "focus": 158,
+        "acted": false,
+        "dead": false
+      },
+      {
+        "id": "sb-g-front",
+        "cls": "occultist",
+        "x": 8000,
+        "y": 7421.395348837209,
+        "hp": 220,
+        "focus": 158,
+        "acted": false,
+        "dead": false
+      },
+      {
+        "id": "sb-g-bat-high",
+        "cls": "mage",
+        "x": 11060,
+        "y": 5850,
+        "hp": 485,
+        "focus": 158,
+        "acted": false,
+        "dead": false
+      },
+      {
+        "id": "act2-keeper",
+        "cls": "occultist",
+        "x": 7740,
+        "y": 7524.186046511628,
+        "hp": 880,
+        "focus": 158,
+        "acted": false,
+        "dead": false
+      },
+      {
+        "id": "upper-chain",
+        "cls": "archer",
+        "x": 3655,
+        "y": 5260,
+        "hp": 120,
+        "focus": 100,
+        "acted": false,
+        "dead": false
+      }
+    ]
+  },
+  "wholeBattleContinueExact": true,
+  "manualAndSpentPreserved": {
+    "active": "p-archer",
+    "cls": "archer",
+    "round": 1,
+    "preference": [
+      "mage",
+      "occultist",
+      "knight",
+      "archer"
+    ],
+    "units": [
+      {
+        "id": "p-archer",
+        "cls": "archer",
+        "x": 2720,
+        "y": 5467.368421052632,
+        "hp": 815,
+        "focus": 186,
+        "acted": false,
+        "dead": false
+      },
+      {
+        "id": "p-mage",
+        "cls": "mage",
+        "x": 2830,
+        "y": 5464.473684210527,
+        "hp": 870,
+        "focus": 240,
+        "acted": false,
+        "dead": false
+      },
+      {
+        "id": "p-knight",
+        "cls": "knight",
+        "x": 2962,
+        "y": 5461,
+        "hp": 1330,
+        "focus": 209,
+        "acted": false,
+        "dead": false
+      },
+      {
+        "id": "p-occultist",
+        "cls": "occultist",
+        "x": 2610,
+        "y": 5470.263157894737,
+        "hp": 1000,
+        "focus": 287,
+        "acted": true,
+        "dead": false
+      },
+      {
+        "id": "sb-b-left",
+        "cls": "occultist",
+        "x": 3150,
+        "y": 5468.823529411765,
+        "hp": 180,
+        "focus": 158,
+        "acted": false,
+        "dead": false
+      },
+      {
+        "id": "sb-b-screen",
+        "cls": "archer",
+        "x": 3530,
+        "y": 5491.176470588235,
+        "hp": 220,
+        "focus": 158,
+        "acted": false,
+        "dead": false
+      },
+      {
+        "id": "sb-b-spirit-high",
+        "cls": "occultist",
+        "x": 3910,
+        "y": 4985,
+        "hp": 893,
+        "focus": 158,
+        "acted": false,
+        "dead": false
+      },
+      {
+        "id": "sb-c-bat-front",
+        "cls": "mage",
+        "x": 4194,
+        "y": 3727.3684210526317,
+        "hp": 485,
+        "focus": 158,
+        "acted": false,
+        "dead": false
+      },
+      {
+        "id": "sb-d-lamp",
+        "cls": "occultist",
+        "x": 9040,
+        "y": 3470,
+        "hp": 1384,
+        "focus": 158,
+        "acted": false,
+        "dead": false
+      },
+      {
+        "id": "sb-e-front",
+        "cls": "archer",
+        "x": 5800,
+        "y": 7495.555555555556,
+        "hp": 180,
+        "focus": 158,
+        "acted": false,
+        "dead": false
+      },
+      {
+        "id": "sb-f-tool-west",
+        "cls": "archer",
+        "x": 6500,
+        "y": 7245.454545454545,
+        "hp": 180,
+        "focus": 158,
+        "acted": false,
+        "dead": false
+      },
+      {
+        "id": "sb-g-front",
+        "cls": "occultist",
+        "x": 8000,
+        "y": 7421.395348837209,
+        "hp": 220,
+        "focus": 158,
+        "acted": false,
+        "dead": false
+      },
+      {
+        "id": "sb-g-bat-high",
+        "cls": "mage",
+        "x": 11060,
+        "y": 5850,
+        "hp": 485,
+        "focus": 158,
+        "acted": false,
+        "dead": false
+      },
+      {
+        "id": "act2-keeper",
+        "cls": "occultist",
+        "x": 7740,
+        "y": 7524.186046511628,
+        "hp": 880,
+        "focus": 158,
+        "acted": false,
+        "dead": false
+      },
+      {
+        "id": "upper-chain",
+        "cls": "archer",
+        "x": 3655,
+        "y": 5260,
+        "hp": 120,
+        "focus": 100,
+        "acted": false,
+        "dead": false
+      }
+    ]
+  },
+  "afterOrderEditAndDefend": {
+    "active": "p-mage",
+    "cls": "mage",
+    "round": 1,
+    "preference": [
+      "mage",
+      "occultist",
+      "knight",
+      "archer"
+    ],
+    "units": [
+      {
+        "id": "p-archer",
+        "cls": "archer",
+        "x": 2720,
+        "y": 5467.368421052632,
+        "hp": 815,
+        "focus": 186,
+        "acted": true,
+        "dead": false
+      },
+      {
+        "id": "p-mage",
+        "cls": "mage",
+        "x": 2830,
+        "y": 5464.473684210527,
+        "hp": 870,
+        "focus": 240,
+        "acted": false,
+        "dead": false
+      },
+      {
+        "id": "p-knight",
+        "cls": "knight",
+        "x": 2962,
+        "y": 5461,
+        "hp": 1330,
+        "focus": 209,
+        "acted": false,
+        "dead": false
+      },
+      {
+        "id": "p-occultist",
+        "cls": "occultist",
+        "x": 2610,
+        "y": 5470.263157894737,
+        "hp": 1000,
+        "focus": 287,
+        "acted": true,
+        "dead": false
+      },
+      {
+        "id": "sb-b-left",
+        "cls": "occultist",
+        "x": 3150,
+        "y": 5468.823529411765,
+        "hp": 180,
+        "focus": 158,
+        "acted": false,
+        "dead": false
+      },
+      {
+        "id": "sb-b-screen",
+        "cls": "archer",
+        "x": 3530,
+        "y": 5491.176470588235,
+        "hp": 220,
+        "focus": 158,
+        "acted": false,
+        "dead": false
+      },
+      {
+        "id": "sb-b-spirit-high",
+        "cls": "occultist",
+        "x": 3910,
+        "y": 4985,
+        "hp": 893,
+        "focus": 158,
+        "acted": false,
+        "dead": false
+      },
+      {
+        "id": "sb-c-bat-front",
+        "cls": "mage",
+        "x": 4194,
+        "y": 3727.3684210526317,
+        "hp": 485,
+        "focus": 158,
+        "acted": false,
+        "dead": false
+      },
+      {
+        "id": "sb-d-lamp",
+        "cls": "occultist",
+        "x": 9040,
+        "y": 3470,
+        "hp": 1384,
+        "focus": 158,
+        "acted": false,
+        "dead": false
+      },
+      {
+        "id": "sb-e-front",
+        "cls": "archer",
+        "x": 5800,
+        "y": 7495.555555555556,
+        "hp": 180,
+        "focus": 158,
+        "acted": false,
+        "dead": false
+      },
+      {
+        "id": "sb-f-tool-west",
+        "cls": "archer",
+        "x": 6500,
+        "y": 7245.454545454545,
+        "hp": 180,
+        "focus": 158,
+        "acted": false,
+        "dead": false
+      },
+      {
+        "id": "sb-g-front",
+        "cls": "occultist",
+        "x": 8000,
+        "y": 7421.395348837209,
+        "hp": 220,
+        "focus": 158,
+        "acted": false,
+        "dead": false
+      },
+      {
+        "id": "sb-g-bat-high",
+        "cls": "mage",
+        "x": 11060,
+        "y": 5850,
+        "hp": 485,
+        "focus": 158,
+        "acted": false,
+        "dead": false
+      },
+      {
+        "id": "act2-keeper",
+        "cls": "occultist",
+        "x": 7740,
+        "y": 7524.186046511628,
+        "hp": 880,
+        "focus": 158,
+        "acted": false,
+        "dead": false
+      },
+      {
+        "id": "upper-chain",
+        "cls": "archer",
+        "x": 3655,
+        "y": 5260,
+        "hp": 120,
+        "focus": 100,
+        "acted": false,
+        "dead": false
+      }
+    ]
+  },
+  "errors": [],
+  "httpFailures": [],
+  "scope": "Prior-clear entry fixtures; actual touch buttons, fresh18 entry and a few ordinary defend/select actions, export/reload/Continue. No18 full completion or physical mobile-device claim."
+}
