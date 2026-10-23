@@ -1,34 +1,38 @@
-# 승인 무기 v3 연결 후보 — 추가 입력 대기
+# 승인 무기·천뢰 음향 및 세로 낙뢰 최종 후보
 
-입력 `6b784c802a6fcc8e0571a2910546f66727f0340a`의 부모 가공 MP3 5개를 그대로 사용한다(로컬 입력 커밋20646500). 작업 브랜치는 `fix/approved-weapons-v3-20261024`다. 9ed5e01d에서 시작했고 DOM 긴급 수정 master `1a0dbc8b79f8992c9cdcb63fd0c958af149c679b`를742ecf9a로 통합했다. 제품 story/main/CSS는 이 DOM master와 동일하다. 음원을 생성·재합성·재인코딩하지 않았다.
+브랜치 `fix/approved-weapons-v3-20261024`. 기준9ed5e01d에서 시작해 DOM master `1a0dbc8b79f8992c9cdcb63fd0c958af149c679b`를 통합했다. story/main/CSS/스테이지 원문은 이 master와 동일하다. 런타임 검수 소스는 `cdfc3587cd145dff7f9ec1486b1e60cf39e2b43d`다. master/Pages 배포는 부모가 수행한다.
 
-**현재 공개 배포 대상이 아니다.** 활 명중/지형 후보와 천뢰호 새 음원·목표gain은 부모 입력 대기다. 이 문서는 부분 후보의 구현/검증을 보존하며 청취 품질 승인이나 master/Pages 완료를 뜻하지 않는다.
+입력은 부모 제작/가공 파일을 그대로 사용했다. 무기5개 `6b784c80`→20646500, 천뢰 `da5a3ef6`→2befdc5f, 화살2개 `e3ff4c39`→e557d6e3, 승인 VFX 문서 `ad44b2dd`→616d3537이다. **8 MP3를 생성·재합성·재인코딩하지 않았고 입력 blob/served 바이트 일치를 확인했다.**
 
-## 적용 경계
+## 음향 변경
 
-- bow_release/sword_swing/sword_hit/sword_parry/blade_launch만 새 파일로 연결한다. 원천·처리 metadata도 새 manifest 값으로 바꿔 옛 합성원음 설명을 남기지 않는다. bow_hit/arrow_block/bow_charge 등 미승인 교체 영역은 기존v2다.
-- 실제 정상 플레이어 A/S 피해에서 구 procedural down의 중첩을 제외한다. 적/환경/M/O 사망은 유지하고 전역 사망음을 없애지 않는다. 정상 A/S 피해 외 별도 passive/environment 피해 경로까지 무음화하지 않는다.
-- 모든 S기예는 전용 준비음 확정 전까지 공통 qi_charge/loop를 쓰지 않는다. 입력 충전·강도·발사 판정은 그대로이며 억지 대체음을 넣지 않는다. 담허/소단의 qi 충전은 유지한다.
-- 근접 swing은 실제 meleeAction windup의 시작 경계를 지날 때1회, hit는 원래 접촉 판정에서 발생한다. contact용 stroke 그림에서 추가 swing을 내지 않는다. 연참/회신의 각 시작은 stroke 인덱스로 구별한다. dt0 반복과 중간 저장 복원은 과거 시작음을 재생하지 않는다. 응수는 실제 parry/hit만 내고 준비 자세나 접촉 그림이 swing을 추가하지 않는다. 도약/검기/소환의 기존 실제 발사 경계는 유지한다.
-- 파형·물리·피해·RNG·전투 규칙·대사·DOM을 변경하지 않는다. 기존 음성 상한/20ms 정리/결정적 rate 변주(무기±2%)는 유지한다. 파일에 추가 피치 가공을 한 것은 아니다.
+- bow_release/sword_swing/sword_hit/sword_parry/blade_launch를 승인 실제 원파형 파생본으로 연결했다. S기예는 전용 준비음 확정 전까지 qi_charge/loop 없이 원래 충전 입력·강도·발사 판정을 유지한다. 담허/소단 qi충전은 보존한다.
+- bow_hit는 piercing-1a, arrow_block은 piercing-arm-2a 파생본이다. 기존 지형mat의 wood/support만 충돌gain.25, 그 외 기존 기본값.45로 처리하며 새 재질/판정은 없다. 갑옷/금속 계열 충돌 원음을 모든 땅이 금속이라는 설정으로 설명하지 않는다.
+- **Additional Sound FX by Will Leamon**, 작품 **Fleshy Fight Sounds**, 출처·OGA-BY3.0 링크·가공 표시는 루트README, 원본SOURCES/arrow-hits.json, 배포되는 자산 metadata에 보존했다. 새 크레딧UI는 만들지 않았다.
+- M05는 전용 cheonroe_thunder(.90gain), M04는 기존 thunder_hit(.75gain)로 분리했다. 새 천뢰 파일은 부모 metadata상2.3초/decodedPeak.820/RMS-21.44dBFS(이전 약-24.56), gain배율은기존대비1.2다. 이 수치들은 스피커 체감·최종 출력 증가를 보장하지 않는다. 실제 source.start에서 M04.75/M05.90 및 다중대상 본체1회를 확인했다. 파일 피치/길이에 추가 가공은 없고 기존 runtime 결정적 변주/voice cap/global compressor는 유지했다. 별도BGM duck은 넣지 않았다.
+- 정상 플레이어 A/S 피해의 구 procedural down 중첩만 제외한다. 적/환경/M/O 및 별도 passive/environment 사망은 유지한다. 근접 swing은 실제 windup 시작을 지날 때1회, hit는 원래 접촉에서 내며 contact 그림의 추가 swing을 제거했다. 연참/회신은 stroke 인덱스로 구별하고, dt0/중간Continue는 지난 시작음을 재생하지 않는다. 응수 준비/접촉 그림도 swing을 추가하지 않는다.
+- 새 파일이 늦거나 실패하면 구 합성음으로 돌아가지 않는다. 구7파일은 과거 공개클라이언트 보존용이며 현재 요청/재생 폴백이 아니다. 캐시/입력/20ms 정리·음소거·29자산 유한은행·계통/전체 음성상한은 유지했다.
 
-## 검증
+## 승인 VFX 구현
 
-- `HONRO_AUDIO_BASE=9ed5e01d node tests/skill-sfx-runtime.mjs`:64기예 실제 발사180스텝의 전체 전투/저장 상태/RNG가9ed 엔진과exact동일. 지형/진목/축지/소환 등 기존 집중 확인 통과.
-- `node tests/approved-weapons-v3.mjs`:14개 통과. 입력5blob exact, S충전음 제외, S00시작→접촉 분리/중복0,7연참·회신 시작 인덱스, 중간Continue/정지dt0, 응수, A/S치사down 제외, 적/환경/M/O 사망 유지, 자동소환 경로를 확인했다.
-- `python tests/approved-weapons-v3-browser.py`:최종 DOM 통합 빌드에서32개 통과. 생산 App/Engine과 실제 Chromium AudioBufferSource로5승인파일 재생, served바이트 exact, 구5hash 미요청, S00충전 무음과 windup/접촉 분리,7연참 시작, 치사down 중첩 제외, 새 파일503시 구/합성폴백 없음. 여러 기본/검 기예 전환 표본에서9자산 요청9/decode9, decoded997,584B, 종료 활성음성0이었다. S07초기 표본의 적 후속 공격음은 몬스터 경로였으므로 제품에서 없애지 않고 실제7연참 구간으로 분리했다.
-- TypeScript·변경JS syntax·공통build·web-split 통과. `tests/stage19-farewell.mjs`는 DOM통합 후에도19장 공격/예측/충전 차단, 조작권/이동,중간Continue/구저장,20장복귀를 통과했다. DOM 원문을 재작성하지 않았다.
+부모 concept.svg/draw.py/INTEGRATION.txt를 읽고 SVG를 렌더해 확인한 뒤 M05 seeded 분기만 바꿨다. 긴 줄기 기준 횡진폭약48→11, main/white core 선폭1.3배다. 불규칙 높이의1차짧은가지18–22개와2차잔가지10–14개가 옆·아래로 향하며 접점은 실제 줄기 보간 위치/1차가지 중간점에 맞춘다. 크기는 월드 길이로 계산하고 cap을 두며 시안 픽셀을 화면 좌표로 옮기지 않았다.
 
-원음 노드gain/PCM/파일 차이는 서로 다른 파형의 체감 음량·임팩트·사용자 취향을 입증하지 않는다. 기술적 연결 확인을 청취 합격으로 설명하지 않는다. Chromium의 준비 전투/관측이며 실기기 Android/Safari나 공개 오디오 녹음은 아니다.
+같은 seed/phase 형상은96항목 상한으로 캐시하고 가는 가지를 style별로 묶어 그린다. 새canvas/필터/거대입자/per-frame random이 없다. M04/default geometry와 drawing command는9ed와exact이고, M05도 원래 halo/contact flare·머리별 독립 낙뢰·끝점·수명.9초·피해/범위/시간/전투RNG/제품카메라는 유지했다. 전체프레임 성능이나 체감개선을 주장하지 않는다.
 
-## 천뢰호 확인 — 변경 없음
+## 최종 검사
 
-M04/M05는v2 thunder_hit `8fc5fd1d0f444a24`를 공유한다. 실제 두 발동에서 자산gain.75, master.55 표본의 압축 전 배율.4125를 관측했다. 첫 발동rate1, 이어 같은 자산을 쓴 두 번째발동.97은 공통 결정적±3% sequence이며 M05전용 저음/감쇠가 아니다. 각각12대상 피해에도 본체소스1회이고 새 재생누락0이었다. 계통gourd 음성3, 전체스킬16/전체출력20 상한이 있으며 다른 호류 중첩 때 오래된 계통음이 정리될 수 있다. 이 단독 발동 표본에서 천뢰가 그 상한 때문에 누락된 것은 아니다.
+- `HONRO_AUDIO_BASE=9ed5e01d node tests/skill-sfx-runtime.mjs`:64활성 기예 실제 발사180스텝의 전체 전투/저장 상태와RNG exact동일. 기존 진목/축지/소환/피해 집중 검사 포함.
+- `node tests/approved-weapons-v3.mjs`:15개 통과.8입력blob, S충전 제외, 실제windup/접촉·7연참/회신·응수·중간Continue/dt0, 선택적down제거/적·환경·다른계통 보존, M04/M05 gain분리와 기존mat 전달 확인.
+- `node tests/skill-sfx-player.mjs`:7묶음 통과. 버퍼/요청 재사용, 충전 연결/20ms 취소, 음성 상한, 천뢰 중복 제한, mute/지연/실패 후 과거음 미재생.
+- `python tests/approved-weapons-v3-browser.py`:57개 통과. 생산 App/Engine→실제 Chromium AudioBufferSource에서8새파일, served exact, 구7hash 미요청, M04기존/M05전용gain,10대상1회, soft gain, 크레딧 metadata, mute/unmute/503의 지연·구폴백 없음. 전환표본15자산 요청15/decode15, decoded2,207,280B, 종료활성0. dropped1은 의도적으로 음소거한 이벤트다.
+- `node tests/cheonroe-vertical.mjs`:M04명령 exact·M05주줄기1.3배·줄기/가지 접점과개수/개별seed·seeded반복과cache퇴거·per-frame random0·기존contact/halo/시간 보존 확인.
+- `python tests/cheonroe-vertical-browser.py`:실제App.frame을 중단/교체하지 않고390×844/844×390 각각1·3·10대상6화면을 캡처했다. 실제머리접점/개별seed/FX aging/자동소멸과App시계 진행 확인. portrait실측zoom.65/camera(1000,650), landscape.75/(1000,930). 준비된 허공터이며 일반캠페인 플레이로 표현하지 않는다.
+- TypeScript·변경JS syntax·공통build·web-split·19장 비전투/조작권/이동/중간Continue/구저장·20장 정상공격 복귀 검사 통과. 전체 캠페인/물리Android/Safari/주관적 청취를 했다고 주장하지 않는다.
 
-천뢰 전용BGM duck은 없다. SFX는 공통 compressor(-12dB threshold,ratio5,knee12)를 지나고 BGM은별도 출력/설정이다. 실제천뢰표본은BGM을 껐으므로 음악에 묻히는 청취 현상을 확인한 것으로 말하지 않는다. 천뢰 파일/gain/duck은 이번 후보에서 바꾸지 않았고 부모 입력을 기다린다. VFX 시안도 적용하지 않는다.
+파일/PCM/gain/메타데이터 및 기술검사 통과는 사용자 취향·임팩트·실제 음량·미술 품질 보장이 아니다. 사진은 부모의 최종 시각 확인용이고 새 시안이나 음원을 임의 창작하지 않았다.
 
-## 생성물·인계
+## 생성물과 증거
 
-최종 런타임 소스742ecf9a의 진입은 `web/entries/game.b63336e535aa0f12.js`, 활성413파일 graphSHA256은 `5398a5ebfd17969c9d2f7365c5917935b5190aeb08f321c7261a8a90f294d9cf`다. DOM master의 `game.872345135ff221d0.js` 후보 그래프, 기존 성공발행35그래프, 이전 무기후보를 포함해760 immutable파일의 길이/SHA256을 확인했다. 발행 시각/성공근거를 임의 추가하지 않았다. 구5음원은 과거클라이언트의 보존그래프에 남을 수 있지만 새 재생/오류폴백에는 없다.
+최종 진입 `web/entries/game.43758b5ea28cc2fd.js`, 활성414파일 graphSHA256 `53cdd5d9e43b8425b8753193bc394463df892ae621e2b7e292afe2efc0d3b25e`. 부모 DOM의 `game.872345135ff221d0.js` 그래프와 기존 성공발행35그래프를 포함해766 immutable파일의 길이/SHA256을 확인했다. 발행 시각·성공을 새로 꾸미지 않았다.
 
-자동결과는 `_local/reports/approved-weapons-v3-20261024/`의 native.json/browser.json/retention-dom.json/thunder.json과 각로그에 둔다. Git제외를 유지한다. master와Pages는 부모가 추가입력/최종후보를 검토한 뒤 처리한다.
+자동 로그/JSON/사진은 `_local/reports/approved-weapons-v3-20261024/`에 Git제외로 보존한다. 최종6 JPG는 live-390x844-{1,3,10}.jpg와live-844x390-{1,3,10}.jpg이며 선택한 실제사진만 허용된 별도review브랜치로 전달한다. 코드 후보에 자동 스크린샷을 넣지 않는다. 이전 입력 전의 천뢰 공유.75 진단(thunder.json)은 역사적 관측이고 최종 전용.90 동작은 browser.json을 따른다.
