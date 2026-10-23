@@ -19,7 +19,7 @@ function camp(app){
  if(!cards.length)return;
  const controller=new AbortController(),signal=controller.signal,contacts=new Set();
  let gesture=null,suppressUntil=0,observer,modalObserver,disposed=false;
- const animations=new Map(),holdMs=1000;
+ const animations=new Map(),holdMs=500;
  function stopAnimations(){for(const a of animations.values())a.cancel();animations.clear();}
  nav.setAttribute('aria-label','동행 선택 및 행동 순서');
  // Placeholder identities remain hidden/disabled. Recruited cards lead in the

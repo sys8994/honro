@@ -105,5 +105,5 @@
 
 /* Card drag/keyboard behavior; approved dialogue and card layout above stay exact. */
 .honro .camp-v5 .hero-tabs{grid-template-columns:repeat(4,minmax(0,1fr));touch-action:pan-y;user-select:none;-webkit-user-select:none;-webkit-touch-callout:none}
-.honro .camp-v5 .hero-tab{position:relative;touch-action:pan-y}.honro .camp-v5 .hero-tab:not(:disabled){cursor:grab}.honro .camp-v5 .hero-tab.order-dragging{z-index:4;opacity:.85;cursor:grabbing;box-shadow:0 4px 18px #0008}.honro .camp-v5 .hero-tabs.order-active{cursor:grabbing}.honro .camp-v5 .hero-tab.order-dragging{will-change:transform}
+.honro .camp-v5 .hero-tab{position:relative;touch-action:pan-y}.honro .camp-v5 .hero-tab:not(:disabled){cursor:grab}.honro .camp-v5 .hero-tab.order-dragging{z-index:4;opacity:1;cursor:grabbing;border-color:#ffc56b;outline:2px solid #e8a541;outline-offset:-2px;background:#393124;translate:0 -5px;box-shadow:0 8px 18px #000a,0 0 12px #efa84466}.honro .camp-v5 .hero-tabs.order-active{cursor:grabbing}.honro .camp-v5 .hero-tab.order-dragging{will-change:transform}
 .camp-turn-index{position:absolute;top:3px;left:5px;font-size:10px;font-style:normal;color:#e1c58b;pointer-events:none}.camp-card-order-hint{font-size:11px;color:#a9b7b1;margin:0 0 16px;line-height:1.6}.camp-card-order-status{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)}
