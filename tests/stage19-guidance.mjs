@@ -11,5 +11,5 @@ assert.deepEqual(draw(),[],'Visible current family also suppresses remote parall
 scene.missionTargets[0].x=800;assert.equal(draw().length,1);assert(draw()[0].startsWith('화면 밖 · '),'Off-screen guidance returns after dialogue');
 g.HonroApp.dialogue={lines:[]};assert.deepEqual(draw(),[],'Next target never covers dialogue speaker');
 g.HonroApp.dialogue=null;assert.equal(draw().length,1,'Reader exit restores genuine off-screen guidance');
-scene.missionTargets[0].x=0;scene.missionTargets[0].y=-200;b.honroStage=18;assert.equal(draw().length,1,'Other chapters keep existing tags');
+scene.missionTargets[0].x=0;scene.missionTargets[0].y=-200;b.honroStage=18;assert.equal(draw().length,2,'Other chapters keep both visible and off-screen parallel tags');
 console.log('PASS19 visible target/HUD boundary, dialogue suppression, genuine off-screen return, other chapters unchanged');
