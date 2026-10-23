@@ -4624,3 +4624,7 @@ aa4b7ab7의 실제 허공터 UI에서 S13 파진연격→수비→R2를 재현�
 수정 후 같은 실제 UI 입력에서 R2 오른쪽 x398.276→608.276, 점프·조준·공격·재수비/R3 정상, pageerror0. s13-defend-lock 핵심 wait/일반종료/정상검술×2·점프/이동·새/구/오염/회복된 정상 예약 저장, 실제 App Continue/export/import5종과 방어 회복 중복 없음, 기존 combo-landing-turn14·피해64/24576표본·아군30%72조합·type/build/web-split 통과. 실제 UI trace/PNG는 `_local/reports/s13-defend-lock/{locked,unlocked}/`에 둔다. 실행 코드는 engine/warriorMechanics/types만 수정했으며 카메라 e1·661대사·14장 지형·NPC 초상·피해 규칙은 보존했다. master/Pages는 부모 담당이다.
 
 - 2026-10-23 종지기 주술형 후보: 18장 전용 소유 상태의 봉음/한 번 방향 반환/바닥 결박 및 선택적 연결·근접 중단. 몸체 반사 제외, 실제 이동 기회 뒤 발동, 타 원인 구속 소유권 인계, 예측·저장·종료 정리. 승인25문구와 통일 NPC 종지기 초상만 연결. 현재 캠페인·HP880·2턴 방어 exact. 세부/정상R10/실제 Continue·outro·19장 결과와 게임톤 초상 교체 대기는 game/docs/keeper-ritual-20261023/README.md.
+
+## 2026-10-23 — 휴식터 카드 길게 누르기와 순서 미리보기
+
+기존 비선택 카드도 대상이었지만420ms와 대상 외곽선만으로 순서 변화가 불명확했다. 1초 후 선택을 유지하며 기존 노드를 실시간 재배치하고 다른 카드를180ms 이동시킨다. 임시 순서는 놓기 전 저장하지 않고 취소/모달/화면 이탈은 복원한다. 안내는 한 줄로 줄이고 가로에서 기존 수련점 배지 넘침의 누락 position:absolute를 보완했다. 실제 Chromium 터치·스크롤·취소·저장/Continue·전투 기본 순서, 최종320/360/390/844 및 모션 감소, native/build/web-split 통과. 엔진·초상·스킬/효과음·대사·지형은 불변. 실제 기기·완주는 미실행. [범위·증거·공개 자산 보존](camp-card-order-ux-20261023/README.md).

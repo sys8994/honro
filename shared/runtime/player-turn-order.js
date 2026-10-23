@@ -18,12 +18,14 @@ function camp(app){
  const nav=app.root.querySelector('.hero-tabs'),cards=nav?[...nav.querySelectorAll('.hero-tab')]:[];
  if(!cards.length)return;
  const controller=new AbortController(),signal=controller.signal,contacts=new Set();
- let gesture=null,suppressUntil=0,observer,disposed=false;
+ let gesture=null,suppressUntil=0,observer,modalObserver,disposed=false;
+ const animations=new Map(),holdMs=1000;
+ function stopAnimations(){for(const a of animations.values())a.cancel();animations.clear();}
  nav.setAttribute('aria-label','동행 선택 및 행동 순서');
  // Placeholder identities remain hidden/disabled. Recruited cards lead in the
  // same filtered priority used by the Engine; no unit/party arrays are sorted.
- function display(){
-  const visible=known(app.profile),ids=[...visible,...C.DEFAULT_PLAYER_TURN_ORDER.filter(c=>!visible.includes(c))];
+ function display(visible=known(app.profile)){
+  const ids=[...visible,...C.DEFAULT_PLAYER_TURN_ORDER.filter(c=>!visible.includes(c))];
   for(const cls of ids){const card=cards.find(c=>c.dataset.class===cls);if(card)nav.appendChild(card);}
   for(const card of cards){const index=visible.indexOf(card.dataset.class);let badge=card.querySelector('.camp-turn-index');
    if(index<0){badge?.remove();continue;}
@@ -33,17 +35,24 @@ function camp(app){
   }
  }
  display();
- nav.insertAdjacentHTML('afterend','<p class="camp-card-order-hint" data-card-order-hint>카드 순서 = 행동 순서 · 짧게 눌러 선택<span>길게 누르고 좌우로 이동 · 놓으면 저장 · Alt + ← / →</span></p><span class="camp-card-order-status" role="status" aria-live="polite" data-card-order-status></span>');
+ nav.insertAdjacentHTML('afterend','<p class="camp-card-order-hint" data-card-order-hint>길게 눌러 순서 변경</p><span class="camp-card-order-status" role="status" aria-live="polite" data-card-order-status></span>');
  const status=app.root.querySelector('[data-card-order-status]');
- function clearVisual(){for(const card of cards){card.classList.remove('order-dragging','order-drop-target');card.style.removeProperty('transform');}}
+ function clearVisual(){stopAnimations();nav.classList.remove('order-active');for(const card of cards){card.classList.remove('order-dragging');card.style.removeProperty('transform');}}
+ function preview(s,index){
+  const next=s.visible.filter(c=>c!==s.cls);next.splice(index,0,s.cls);if(next.join()===s.preview.join())return;
+  const before=new Map(cards.map(c=>[c,c.getBoundingClientRect()]));stopAnimations();s.preview=next;display(next);
+  if(!G.matchMedia?.('(prefers-reduced-motion: reduce)').matches)for(const card of cards){if(card===s.card||card.disabled)continue;const r=card.getBoundingClientRect(),old=before.get(card),dx=old.left-r.left,dy=old.top-r.top;if(Math.abs(dx)+Math.abs(dy)<1||!card.animate)continue;const a=card.animate([{transform:`translate(${dx}px,${dy}px)`},{transform:'translate(0,0)'}],{duration:180,easing:'cubic-bezier(.2,.8,.2,1)'});animations.set(card,a);a.onfinish=()=>{if(animations.get(card)===a)animations.delete(card);};}
+  if(status)status.textContent=`${name(s.cls)} ${index+1}번째 자리 · 놓으면 저장`;
+ }
  function end(cancel=false){
   const s=gesture;if(!s)return;gesture=null;clearTimeout(s.timer);
   if(s.armed||cancel)suppressUntil=performance.now()+700;
   const r=nav.getBoundingClientRect(),inside=s.x>=r.left&&s.x<=r.right&&s.y>=r.top&&s.y<=r.bottom;
-  const valid=!cancel&&s.armed&&inside&&app.screen==='camp'&&nav.isConnected&&app.profile===s.profile&&JSON.stringify(known(app.profile))===JSON.stringify(s.visible);
-  const tapped=!cancel&&!s.armed&&inside&&s.pointerType==='touch'&&performance.now()-s.started<420&&Math.hypot(s.x-s.x0,s.y-s.y0)<10&&app.screen==='camp'&&nav.isConnected;
-  clearVisual();if(cancel&&s.armed&&status)status.textContent='이동 취소 · 원래 순서 유지';if(nav.hasPointerCapture?.(s.id))nav.releasePointerCapture(s.id);
-  if(valid&&commit(app,reordered(app.profile,s.cls,s.target))){display();if(status)status.textContent=`${name(s.cls)} ${known(app.profile).indexOf(s.cls)+1}번째 · 저장됨`;}
+  const valid=!cancel&&s.armed&&inside&&app.screen==='camp'&&nav.isConnected&&app.profile===s.profile&&JSON.stringify(known(app.profile))===JSON.stringify(s.visible)&&!app.modal?.classList.contains('open');
+  const tapped=!cancel&&!s.armed&&inside&&s.pointerType==='touch'&&performance.now()-s.started<holdMs&&Math.hypot(s.x-s.x0,s.y-s.y0)<10&&app.screen==='camp'&&nav.isConnected;
+  const saved=valid&&commit(app,[...s.preview,...order(app.profile).filter(c=>!s.preview.includes(c))]);
+  clearVisual();if(s.armed)display();if(nav.hasPointerCapture?.(s.id))nav.releasePointerCapture(s.id);
+  if(s.armed&&status)status.textContent=saved?`${name(s.cls)} ${known(app.profile).indexOf(s.cls)+1}번째 · 저장됨`:valid?'순서 유지':'이동 취소 · 원래 순서 유지';
   // Touch browsers can omit the next compatibility click after a long drag.
   // Select once at pointer-up; the document hook consumes only its duplicate.
   if(tapped){app.playerTurnOrderTap={cls:s.cls,until:performance.now()+700};app.showCamp(s.cls);}
@@ -51,16 +60,17 @@ function camp(app){
  function arm(s){
   if(gesture!==s||contacts.size!==1||!nav.isConnected||app.screen!=='camp')return;
   clearTimeout(s.timer);s.armed=true;suppressUntil=performance.now()+700;
-  nav.setPointerCapture(s.id);s.card.classList.add('order-dragging');
+  s.preview=[...s.visible];s.slots=s.visible.map(cls=>cards.find(c=>c.dataset.class===cls).getBoundingClientRect());s.left=s.card.getBoundingClientRect().left;
+  nav.setPointerCapture(s.id);nav.classList.add('order-active');s.card.classList.add('order-dragging');
   if(status)status.textContent=`${name(s.cls)} 이동 중 · 놓으면 저장, 밖으로 옮기거나 Escape로 취소`;
  }
  function down(e){
-  if(e.button!==0||e.pointerType==='touch'&&!e.isPrimary||contacts.size!==1||app.screen!=='camp')return;
+  if(e.button!==0||e.pointerType==='touch'&&!e.isPrimary||contacts.size!==1||app.screen!=='camp'||app.modal?.classList.contains('open'))return;
   const card=e.target.closest('.hero-tab');if(!card||card.disabled||!known(app.profile).includes(card.dataset.class))return;
   // A fresh pointer gesture must remain a normal tap even just after a drag.
   suppressUntil=0;
-  const s={id:e.pointerId,card,cls:card.dataset.class,target:card.dataset.class,profile:app.profile,visible:known(app.profile),x0:e.clientX,y0:e.clientY,x:e.clientX,y:e.clientY,armed:false,started:performance.now(),center:card.getBoundingClientRect().left+card.offsetWidth/2,pointerType:e.pointerType};
-  gesture=s;s.timer=setTimeout(()=>arm(s),420);
+  const s={id:e.pointerId,card,cls:card.dataset.class,profile:app.profile,visible:known(app.profile),x0:e.clientX,y0:e.clientY,x:e.clientX,y:e.clientY,armed:false,started:performance.now(),pointerType:e.pointerType};
+  gesture=s;s.timer=setTimeout(()=>arm(s),holdMs);
  }
  function move(e){
   const s=gesture;if(!s||s.id!==e.pointerId)return;
@@ -71,15 +81,10 @@ function camp(app){
    else if(Math.abs(dx)>10||Math.abs(dy)>8){suppressUntil=performance.now()+700;end(true);return;}
   }
   if(!s.armed)return;
-  e.preventDefault();s.card.style.transform=`translateX(${dx}px)`;
-  // Layout stays stable during the gesture, so cancelled drags restore exactly.
-  let closest=null,distance=Infinity;
-  for(const card of cards.filter(c=>s.visible.includes(c.dataset.class))){
-   const rect=card===s.card?{left:s.center-(s.card.offsetWidth/2),width:s.card.offsetWidth}:card.getBoundingClientRect();
-   const d=Math.abs(s.x-(rect.left+rect.width/2));if(d<distance){closest=card;distance=d;}
-  }
-  s.target=closest?.dataset.class||s.cls;
-  for(const card of cards)card.classList.toggle('order-drop-target',card===closest&&card!==s.card);
+  e.preventDefault();
+  let index=0,distance=Infinity;for(let i=0;i<s.slots.length;i++){const r=s.slots[i],d=Math.abs(s.x-(r.left+r.width/2));if(d<distance){index=i;distance=d;}}
+  preview(s,index);s.card.style.transform=`translateX(${dx+s.left-s.slots[index].left}px)`;
+
  }
  function pointerDown(e){contacts.add(e.pointerId);if(gesture&&gesture.id!==e.pointerId){suppressUntil=performance.now()+700;end(true);}}
  function pointerUp(e){if(gesture?.id===e.pointerId){gesture.x=e.clientX;gesture.y=e.clientY;end(e.type==='pointercancel');}contacts.delete(e.pointerId);}
@@ -89,6 +94,8 @@ function camp(app){
  listen(document,'pointerup',pointerUp,{capture:true});listen(document,'pointercancel',pointerUp,{capture:true});
  listen(nav,'lostpointercapture',()=>end(true));
  listen(nav,'click',e=>{if(performance.now()<suppressUntil&&(e.detail>0||e.pointerType)){e.preventDefault();e.stopImmediatePropagation();}},{capture:true});
+ listen(nav,'touchmove',e=>{if(gesture?.armed)e.preventDefault();},{passive:false});
+ listen(app.root,'scroll',()=>end(true),{capture:true,passive:true});
  listen(nav,'contextmenu',e=>{if(gesture)e.preventDefault();});
  listen(document,'keydown',e=>{if(e.key==='Escape'&&gesture){e.preventDefault();end(true);}});
  listen(nav,'keydown',e=>{
@@ -99,8 +106,8 @@ function camp(app){
  });
  listen(G,'blur',()=>{end(true);contacts.clear();});listen(G,'resize',()=>end(true));
  listen(document,'visibilitychange',()=>{if(document.hidden){end(true);contacts.clear();}});
- const cleanup=()=>{if(disposed)return;disposed=true;observer?.disconnect();end(true);controller.abort();app.root.querySelectorAll('[data-card-order-hint],[data-card-order-status]').forEach(n=>n.remove());};
- app.playerTurnOrderCleanup=cleanup;observer=new MutationObserver(()=>{if(!nav.isConnected)cleanup();});observer.observe(app.root,{childList:true,subtree:true});
+ const cleanup=()=>{if(disposed)return;disposed=true;observer?.disconnect();modalObserver?.disconnect();end(true);contacts.clear();controller.abort();app.root.querySelectorAll('[data-card-order-hint],[data-card-order-status]').forEach(n=>n.remove());};
+ app.playerTurnOrderCleanup=cleanup;observer=new MutationObserver(()=>{if(!nav.isConnected)cleanup();});observer.observe(app.root,{childList:true,subtree:true});if(app.modal){modalObserver=new MutationObserver(()=>{end(true);contacts.clear();});modalObserver.observe(app.modal,{attributes:true,attributeFilter:['class']});}
 }
 // Consume stale former editor actions from old DOM; there is no second editor.
 function handle(app,el,e){if(el.dataset.action?.startsWith('player-order-'))return true;const tap=app.playerTurnOrderTap;return el.dataset.action==='hero'&&!!e&&e.detail>0&&tap?.cls===el.dataset.class&&performance.now()<tap.until;}
