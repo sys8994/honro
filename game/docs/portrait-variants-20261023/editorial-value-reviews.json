@@ -1,0 +1,23 @@
+{
+  "firstSpirit.reply.manifest": {
+    "speaker": "소단",
+    "variant": "base",
+    "reason": "현재 능력과 대응법의 평상시 설명. 독립 rowId가 없어 연결 지점 확인 필요."
+  },
+  "firstSpirit.reply.lamp": {
+    "speaker": "소단",
+    "variant": "base",
+    "reason": "등불의 효과 설명이지 현재 등불을 드는 동작이 아님. 독립 rowId 연결 확인 필요."
+  },
+  "firstSpirit.reply.neither": {
+    "speaker": "소단",
+    "variant": "emotion.resolve",
+    "reason": "다른 영웅 대신 자신이 혼 공격을 맡겠다는 결정. 독립 rowId 연결 확인 필요."
+  },
+  "bellAnomaly.settledLastLine": {
+    "speaker": "담허",
+    "variant": "emotion.resolve",
+    "rowId": "bell-anomaly.turn-5",
+    "reason": "같은 담허 대사의 종이 내려온 뒤 분기. 원인 단정 없이 당장 가능한 조사로 초점 전환."
+  }
+}

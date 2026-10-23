@@ -1,0 +1,498 @@
+{
+  "schemaVersion": 1,
+  "scope": "Editorial proposal only. No dialogue changes, no code changes, no runtime keyword or speaker inference.",
+  "source": "narrative-master.json, master379 snapshot; keeper-implementation/narrative-patch.json 25 operations applied for interpretation only",
+  "coverage": {
+    "fixedRowsRead": 723,
+    "fixedCharacterRowsTagged": 641,
+    "dynamicRescueRowsTagged": 6,
+    "excludedRows": 82
+  },
+  "commonEmotionDefinitions": {
+    "base": "평상시 전달과 경청. 무표정이 아니라 각 인물의 기본 성격이 보이는 안정된 얼굴.",
+    "emotion.concern": "위험과 타인의 상태에 대한 염려. 매번 공포에 질리는 얼굴이 아님.",
+    "emotion.anger": "부당함에 대한 항의와 억제된 분노. 전투 소리침과 구별.",
+    "emotion.sorrow": "죽음·상실·책임을 받아들이는 절제된 슬픔.",
+    "emotion.relief": "안전이나 실마리가 실제로 확인된 후의 긴장 완화. 과장된 환호 없음.",
+    "emotion.resolve": "보호·조사를 끝까지 맡는 결단. 일상적인 지시에는 기본 얼굴을 유지."
+  },
+  "heroes": {
+    "설오": {
+      "actor": "archer",
+      "count": 8,
+      "variants": [
+        "base",
+        "emotion.concern",
+        "emotion.anger",
+        "emotion.sorrow",
+        "emotion.relief",
+        "emotion.resolve",
+        "action.lower_bow",
+        "action.aim"
+      ],
+      "reasons": {
+        "action.lower_bow": "홍만의 죽음을 알거나 상대를 안심시키며 실제로 활을 내리는 고유한 행동. 2.outro:b0a67f7109, 4.story:fb997c7b72, rest.10.archer:3444267f31.",
+        "action.aim": "물길이 열린 순간 주박목을 겨누는 현재 사격 준비. interaction.ritual.currentWaterfall:b9716cc603. 활을 언급한 모든 줄에 배정하지 않음."
+      },
+      "usageNote": "동일 배우의 얼굴·머리·복식·장비를 고정하고 이 목록의 한 초상만 선택한다. 기본 얼굴은 반복 사용하며 변화가 필요 없는 줄마다 교체하지 않는다.",
+      "noSpoilerConstraints": [
+        "부재중·숨겨진 다른 인물의 얼굴을 이미지에 추가하지 않음.",
+        "현재 시점 이전의 사망·포박·관계·정체를 미리 보여주지 않음."
+      ],
+      "categoryByVariant": {
+        "base": "base",
+        "emotion.concern": "emotion",
+        "emotion.anger": "emotion",
+        "emotion.sorrow": "emotion",
+        "emotion.relief": "emotion",
+        "emotion.resolve": "emotion",
+        "action.lower_bow": "action",
+        "action.aim": "action"
+      }
+    },
+    "담허": {
+      "actor": "mage",
+      "count": 8,
+      "variants": [
+        "base",
+        "emotion.concern",
+        "emotion.anger",
+        "emotion.sorrow",
+        "emotion.relief",
+        "emotion.resolve",
+        "action.channel",
+        "scene.steadying"
+      ],
+      "reasons": {
+        "action.channel": "물길진과 종 억제진을 현재 유지하는 집중·버팀. 18.beats.silence:6b1c5f60fc, 18.beats.silence:5ba3239444, 18.beats.hold-silence:0e34c563ea, interaction.ritual.currentWaterfall:4d761a7a84.",
+        "scene.steadying": "허공에 빠질 뻔한 설오를 팔로 구한 직후 몸을 지지하는 이야기 특수 자세. 27.void.returnLines:043c812701. 상대 얼굴을 초상에 추가하지 않으며 안전을 확인하는 팔의 구도만 사용."
+      },
+      "usageNote": "동일 배우의 얼굴·머리·복식·장비를 고정하고 이 목록의 한 초상만 선택한다. 기본 얼굴은 반복 사용하며 변화가 필요 없는 줄마다 교체하지 않는다.",
+      "noSpoilerConstraints": [
+        "부재중·숨겨진 다른 인물의 얼굴을 이미지에 추가하지 않음.",
+        "현재 시점 이전의 사망·포박·관계·정체를 미리 보여주지 않음."
+      ],
+      "categoryByVariant": {
+        "base": "base",
+        "emotion.concern": "emotion",
+        "emotion.anger": "emotion",
+        "emotion.sorrow": "emotion",
+        "emotion.relief": "emotion",
+        "emotion.resolve": "emotion",
+        "action.channel": "action",
+        "scene.steadying": "scene"
+      }
+    },
+    "휘겸": {
+      "actor": "knight",
+      "count": 8,
+      "variants": [
+        "base",
+        "emotion.concern",
+        "emotion.anger",
+        "emotion.sorrow",
+        "emotion.relief",
+        "emotion.resolve",
+        "action.guard",
+        "action.inspect_record"
+      ],
+      "reasons": {
+        "action.guard": "주민·동료 곁에서 길목을 막는 현재 방어 자세. 3.story:fe6c012dc8, 4.story:28dfea9cf0 등. 공격 중인 모습으로 과장하지 않음.",
+        "action.inspect_record": "가문과 학살의 증거를 직접 대조·보존하는 후반 역할. 28.beats.party-reunion:55d6afb63a, 28.beats.suppression-order:c51043ac9c, 30.story:427818d90d, rest.30.knight:6ffae8edc3. 종이를 새로 발견했다는 말만으로 배정하지 않음."
+      },
+      "usageNote": "동일 배우의 얼굴·머리·복식·장비를 고정하고 이 목록의 한 초상만 선택한다. 기본 얼굴은 반복 사용하며 변화가 필요 없는 줄마다 교체하지 않는다.",
+      "noSpoilerConstraints": [
+        "부재중·숨겨진 다른 인물의 얼굴을 이미지에 추가하지 않음.",
+        "현재 시점 이전의 사망·포박·관계·정체를 미리 보여주지 않음."
+      ],
+      "categoryByVariant": {
+        "base": "base",
+        "emotion.concern": "emotion",
+        "emotion.anger": "emotion",
+        "emotion.sorrow": "emotion",
+        "emotion.relief": "emotion",
+        "emotion.resolve": "emotion",
+        "action.guard": "action",
+        "action.inspect_record": "action"
+      }
+    },
+    "소단": {
+      "actor": "occultist",
+      "count": 9,
+      "variants": [
+        "base",
+        "emotion.concern",
+        "emotion.anger",
+        "emotion.sorrow",
+        "emotion.relief",
+        "emotion.resolve",
+        "action.listen",
+        "scene.holding_threads",
+        "action.rest_hands"
+      ],
+      "reasons": {
+        "action.listen": "현재 여러 혼의 기척을 구별하는 귀 기울임. 19.beats.old-soul:bda9659861, first-spirit.recognize 등. 단순 경청·회상과 구별.",
+        "scene.holding_threads": "현재 붉은 매듭을 놓지 못하거나 직접 풀어내는 1막 및 11장 잔매듭의 특수 자세. 줄을 놓은 10장 결말·20장 쉼터·회상에는 배정하지 않음. 손의 긴장과 방어적인 경계를 함께 담음.",
+        "action.rest_hands": "10.outro:350871b4ff 및 rest.end20.occultist:v2-be6c8861db. 줄을 놓은 직후의 굳은 손과 모든 소품을 내려놓고 쉬는 손을 같은 무소품 구도로 표현. 두 손을 낮게 두고 손가락은 편안하게 살짝 구부린 상태로 만들며, 크게 벌리거나 꽉 쥔 주먹은 피함. 기본 초상이 방울을 들고 있으므로 아홉 번째 무소품 자산이 필요. 같은 10장 결말 대화의 이어지는 소단 발화에도 사용해 즉시 줄·방울을 다시 쥐는 모순을 막는다."
+      },
+      "usageNote": "동일 배우의 얼굴·머리·복식·장비를 고정하고 이 목록의 한 초상만 선택한다. 기본 얼굴은 반복 사용하며 변화가 필요 없는 줄마다 교체하지 않는다. 9~10장 줄 유지 구간의 모든 소단 발화는 scene.holding_threads. 10.outro:cb061ba7fa는 아직 허락을 구하므로 그대로 유지. 10.outro:350871b4ff부터 같은 결말의 나머지 소단 발화는 action.rest_hands로 전환한다.",
+      "noSpoilerConstraints": [
+        "부재중·숨겨진 다른 인물의 얼굴을 이미지에 추가하지 않음.",
+        "현재 시점 이전의 사망·포박·관계·정체를 미리 보여주지 않음.",
+        "9장 최초 대면은 불신·피로·두려움. 호전적인 분노 얼굴로 일괄 대체하지 않음.",
+        "scene.holding_threads은 10장 줄을 놓은 뒤의 결말·쉼터·회상에 재사용하지 않음.",
+        "action.rest_hands는 줄·방울·유품을 전혀 쥐지 않음. 10장의 굳은 손과 20장의 휴식에 함께 쓸 수 있게 손가락을 자연스럽게 살짝 굽히고, 꽉 쥔 주먹·완전히 펼친 손은 피함."
+      ],
+      "categoryByVariant": {
+        "base": "base",
+        "emotion.concern": "emotion",
+        "emotion.anger": "emotion",
+        "emotion.sorrow": "emotion",
+        "emotion.relief": "emotion",
+        "emotion.resolve": "emotion",
+        "action.listen": "action",
+        "scene.holding_threads": "scene",
+        "action.rest_hands": "action"
+      }
+    }
+  },
+  "keeper": {
+    "actor": "keeper",
+    "count": 3,
+    "variants": [
+      "base",
+      "action.bind_cord",
+      "scene.failing_grip"
+    ],
+    "reasons": {
+      "base": "위협의 냉정한 얼굴. 승려가 아닌 외지 법사라는 정체 유지.",
+      "action.bind_cord": "손가락에 건 검은 줄을 당겨 청동 봉음판과 사슬을 조이는 현재 행동. 세 발화에 반복해 의식의 지속성을 보임.",
+      "scene.failing_grip": "힘이 약해져도 아직 붙드는 결전 마지막 줄. 휘겸의 명령 전이므로 포박·줄 놓음·죽음 이미지는 금지."
+    },
+    "categoryByVariant": {
+      "base": "base",
+      "action.bind_cord": "action",
+      "scene.failing_grip": "scene"
+    },
+    "usageNote": "세 초상 모두 동일 외지 법사 배우. 얼굴·복식과 검은 줄/청동 봉음판의 재질을 고정.",
+    "noSpoilerConstraints": [
+      "18.beats.keeper:386318ec09는 아직 검은 줄을 쥔 상태. 포박된 손·무릎 꿇음·죽은 몸은 금지.",
+      "현재 발화 데이터에는 포박 뒤 종지기 대사가 없어 별도 subdued 초상은 필요 없음.",
+      "승려 정체·종 직접 타격·빙의된 눈/몸·종의 우주적 이상을 종지기가 만들었다는 시각적 단정 금지."
+    ]
+  },
+  "namedAndRecurringNPCs": {
+    "덕수": {
+      "variants": [
+        "base",
+        "emotion.concern",
+        "emotion.relief"
+      ],
+      "reason": "본인 손이 가족을 해칠까 두려워함 → 실제 손을 되찾음 → 소단의 구호를 증언. 세 상태가 각각 분명함.",
+      "categoryByVariant": {
+        "base": "base",
+        "emotion.concern": "emotion",
+        "emotion.relief": "emotion"
+      },
+      "usageNote": "기존 actor/template 매핑을 먼저 보존하고 감정 규격만 공유한다. 같은 표시 이름이라는 이유로 얼굴이나 성별·연령·복식을 합치지 않는다. worker_mature를 나무꾼과 공유하더라도 팔 결박·잘린 팔 같은 구조 전용 상태를 전역 템플릿에 그리지 않는다.",
+      "noSpoilerConstraints": [
+        "발화 시점에 실제로 보이는 인물만 표시. 기록이나 미지의 목소리에 NPC 얼굴을 붙이지 않음.",
+        "공통 템플릿에 사연 전용 결박·상처·유품을 넣지 않음."
+      ]
+    },
+    "석공": {
+      "variants": [
+        "base",
+        "emotion.concern",
+        "emotion.anger"
+      ],
+      "reason": "아들 걱정, 구조·출구의 사실 전달, 출구를 잠근 종지기에 대한 항의가 구별됨.",
+      "categoryByVariant": {
+        "base": "base",
+        "emotion.concern": "emotion",
+        "emotion.anger": "emotion"
+      },
+      "usageNote": "기존 actor/template 매핑을 먼저 보존하고 감정 규격만 공유한다. 같은 표시 이름이라는 이유로 얼굴이나 성별·연령·복식을 합치지 않는다.",
+      "noSpoilerConstraints": [
+        "발화 시점에 실제로 보이는 인물만 표시. 기록이나 미지의 목소리에 NPC 얼굴을 붙이지 않음.",
+        "공통 템플릿에 사연 전용 결박·상처·유품을 넣지 않음."
+      ]
+    },
+    "길찬": {
+      "variants": [
+        "base",
+        "emotion.concern",
+        "emotion.relief"
+      ],
+      "reason": "아버지를 기다리는 불안 → 생존 확인 → 연장을 대신 드는 평상시 돌봄.",
+      "categoryByVariant": {
+        "base": "base",
+        "emotion.concern": "emotion",
+        "emotion.relief": "emotion"
+      },
+      "usageNote": "기존 actor/template 매핑을 먼저 보존하고 감정 규격만 공유한다. 같은 표시 이름이라는 이유로 얼굴이나 성별·연령·복식을 합치지 않는다.",
+      "noSpoilerConstraints": [
+        "발화 시점에 실제로 보이는 인물만 표시. 기록이나 미지의 목소리에 NPC 얼굴을 붙이지 않음.",
+        "공통 템플릿에 사연 전용 결박·상처·유품을 넣지 않음."
+      ]
+    },
+    "연실": {
+      "variants": [
+        "base",
+        "emotion.sorrow"
+      ],
+      "reason": "다섯 줄 모두 장례 맥락. 이름·장부를 알려주는 기본 얼굴과 아버지를 보내는 슬픔 두 개로 충분. 억지로 세 번째 표정을 추가하지 않음.",
+      "categoryByVariant": {
+        "base": "base",
+        "emotion.sorrow": "emotion"
+      },
+      "usageNote": "기존 actor/template 매핑을 먼저 보존하고 감정 규격만 공유한다. 같은 표시 이름이라는 이유로 얼굴이나 성별·연령·복식을 합치지 않는다.",
+      "noSpoilerConstraints": [
+        "발화 시점에 실제로 보이는 인물만 표시. 기록이나 미지의 목소리에 NPC 얼굴을 붙이지 않음.",
+        "공통 템플릿에 사연 전용 결박·상처·유품을 넣지 않음."
+      ]
+    },
+    "춘례": {
+      "variants": [
+        "base",
+        "emotion.concern"
+      ],
+      "reason": "세 발화는 이웃과 마을의 위험을 증언. 현재는 concern만 사용하고 기본 얼굴은 인물 자산의 기준으로 보존.",
+      "categoryByVariant": {
+        "base": "base",
+        "emotion.concern": "emotion"
+      },
+      "usageNote": "기존 actor/template 매핑을 먼저 보존하고 감정 규격만 공유한다. 같은 표시 이름이라는 이유로 얼굴이나 성별·연령·복식을 합치지 않는다.",
+      "noSpoilerConstraints": [
+        "발화 시점에 실제로 보이는 인물만 표시. 기록이나 미지의 목소리에 NPC 얼굴을 붙이지 않음.",
+        "공통 템플릿에 사연 전용 결박·상처·유품을 넣지 않음."
+      ]
+    },
+    "나무꾼": {
+      "variants": [
+        "base",
+        "emotion.concern"
+      ],
+      "reason": "위험 목격담과 차분한 설명 두 상태. 과거 공격을 회상한다고 현재 공격·손짓 자세를 추가하지 않음.",
+      "categoryByVariant": {
+        "base": "base",
+        "emotion.concern": "emotion"
+      },
+      "usageNote": "기존 actor/template 매핑을 먼저 보존하고 감정 규격만 공유한다. 같은 표시 이름이라는 이유로 얼굴이나 성별·연령·복식을 합치지 않는다.",
+      "noSpoilerConstraints": [
+        "발화 시점에 실제로 보이는 인물만 표시. 기록이나 미지의 목소리에 NPC 얼굴을 붙이지 않음.",
+        "공통 템플릿에 사연 전용 결박·상처·유품을 넣지 않음."
+      ]
+    },
+    "주막주인": {
+      "variants": [
+        "base",
+        "emotion.concern"
+      ],
+      "reason": "홍만과 길의 설명, 산길 경고 두 상태.",
+      "categoryByVariant": {
+        "base": "base",
+        "emotion.concern": "emotion"
+      },
+      "usageNote": "기존 actor/template 매핑을 먼저 보존하고 감정 규격만 공유한다. 같은 표시 이름이라는 이유로 얼굴이나 성별·연령·복식을 합치지 않는다.",
+      "noSpoilerConstraints": [
+        "발화 시점에 실제로 보이는 인물만 표시. 기록이나 미지의 목소리에 NPC 얼굴을 붙이지 않음.",
+        "공통 템플릿에 사연 전용 결박·상처·유품을 넣지 않음."
+      ]
+    },
+    "노승": {
+      "variants": [
+        "base",
+        "emotion.concern"
+      ],
+      "reason": "제자 상태에 대한 걱정과 열쇠·길 안내. 안도 장면은 서술만 있어 별도 초상을 강제하지 않음.",
+      "categoryByVariant": {
+        "base": "base",
+        "emotion.concern": "emotion"
+      },
+      "usageNote": "기존 actor/template 매핑을 먼저 보존하고 감정 규격만 공유한다. 같은 표시 이름이라는 이유로 얼굴이나 성별·연령·복식을 합치지 않는다.",
+      "noSpoilerConstraints": [
+        "발화 시점에 실제로 보이는 인물만 표시. 기록이나 미지의 목소리에 NPC 얼굴을 붙이지 않음.",
+        "공통 템플릿에 사연 전용 결박·상처·유품을 넣지 않음."
+      ]
+    },
+    "승려": {
+      "variants": [
+        "base",
+        "emotion.concern"
+      ],
+      "reason": "회복 직후 고통과 목격 증언. 증언의 괴로움을 concern에 모아 두며 배우의 동일성 유지.",
+      "categoryByVariant": {
+        "base": "base",
+        "emotion.concern": "emotion"
+      },
+      "usageNote": "기존 actor/template 매핑을 먼저 보존하고 감정 규격만 공유한다. 같은 표시 이름이라는 이유로 얼굴이나 성별·연령·복식을 합치지 않는다.",
+      "noSpoilerConstraints": [
+        "발화 시점에 실제로 보이는 인물만 표시. 기록이나 미지의 목소리에 NPC 얼굴을 붙이지 않음.",
+        "공통 템플릿에 사연 전용 결박·상처·유품을 넣지 않음."
+      ]
+    },
+    "중층 주민": {
+      "variants": [
+        "base",
+        "emotion.concern"
+      ],
+      "reason": "가족과 남편에 대한 염려, 통로 안내. 종지기 최신 증언 반영.",
+      "categoryByVariant": {
+        "base": "base",
+        "emotion.concern": "emotion"
+      },
+      "usageNote": "기존 actor/template 매핑을 먼저 보존하고 감정 규격만 공유한다. 같은 표시 이름이라는 이유로 얼굴이나 성별·연령·복식을 합치지 않는다.",
+      "noSpoilerConstraints": [
+        "발화 시점에 실제로 보이는 인물만 표시. 기록이나 미지의 목소리에 NPC 얼굴을 붙이지 않음.",
+        "공통 템플릿에 사연 전용 결박·상처·유품을 넣지 않음."
+      ]
+    },
+    "짐꾼": {
+      "variants": [
+        "base",
+        "emotion.concern"
+      ],
+      "reason": "도망 못 가는 위기와 안전한 우회로 설명.",
+      "categoryByVariant": {
+        "base": "base",
+        "emotion.concern": "emotion"
+      },
+      "usageNote": "기존 actor/template 매핑을 먼저 보존하고 감정 규격만 공유한다. 같은 표시 이름이라는 이유로 얼굴이나 성별·연령·복식을 합치지 않는다.",
+      "noSpoilerConstraints": [
+        "발화 시점에 실제로 보이는 인물만 표시. 기록이나 미지의 목소리에 NPC 얼굴을 붙이지 않음.",
+        "공통 템플릿에 사연 전용 결박·상처·유품을 넣지 않음."
+      ]
+    },
+    "월이": {
+      "variants": [
+        "base",
+        "emotion.concern"
+      ],
+      "reason": "동적 구조 중의 염려와 구조 후 증언 기본 얼굴. 덕수·칠복과 얼굴을 공유하지 않는 기존 정체 보존.",
+      "categoryByVariant": {
+        "base": "base",
+        "emotion.concern": "emotion"
+      },
+      "usageNote": "기존 actor/template 매핑을 먼저 보존하고 감정 규격만 공유한다. 같은 표시 이름이라는 이유로 얼굴이나 성별·연령·복식을 합치지 않는다.",
+      "noSpoilerConstraints": [
+        "발화 시점에 실제로 보이는 인물만 표시. 기록이나 미지의 목소리에 NPC 얼굴을 붙이지 않음.",
+        "공통 템플릿에 사연 전용 결박·상처·유품을 넣지 않음."
+      ]
+    },
+    "칠복": {
+      "variants": [
+        "base",
+        "emotion.concern"
+      ],
+      "reason": "동적 구조 중의 염려와 구조 후 증언 기본 얼굴. 덕수·월이와 얼굴을 공유하지 않는 기존 정체 보존.",
+      "categoryByVariant": {
+        "base": "base",
+        "emotion.concern": "emotion"
+      },
+      "usageNote": "기존 actor/template 매핑을 먼저 보존하고 감정 규격만 공유한다. 같은 표시 이름이라는 이유로 얼굴이나 성별·연령·복식을 합치지 않는다.",
+      "noSpoilerConstraints": [
+        "발화 시점에 실제로 보이는 인물만 표시. 기록이나 미지의 목소리에 NPC 얼굴을 붙이지 않음.",
+        "공통 템플릿에 사연 전용 결박·상처·유품을 넣지 않음."
+      ]
+    }
+  },
+  "commonNPCTemplates": {
+    "bereaved-family": {
+      "variants": [
+        "base",
+        "emotion.sorrow"
+      ],
+      "reason": "동생을 잃은 형과 언니를 잃은 동생은 각각 자신의 기존 배우를 유지. 공통 감정 규격만 공유하고 한 얼굴로 합치지 않음.",
+      "categoryByVariant": {
+        "base": "base",
+        "emotion.sorrow": "emotion"
+      },
+      "usageNote": "기존 actor/template 매핑을 먼저 보존하고 감정 규격만 공유한다. 같은 표시 이름이라는 이유로 얼굴이나 성별·연령·복식을 합치지 않는다.",
+      "noSpoilerConstraints": [
+        "발화 시점에 실제로 보이는 인물만 표시. 기록이나 미지의 목소리에 NPC 얼굴을 붙이지 않음.",
+        "공통 템플릿에 사연 전용 결박·상처·유품을 넣지 않음."
+      ]
+    },
+    "resident-distress": {
+      "variants": [
+        "base",
+        "emotion.concern"
+      ],
+      "reason": "11장 주민, 14장 주민, 21장 주민, 26장 주민은 표시 이름이 같아도 서로 다른 발화자일 수 있음. 장면의 actor 매핑으로 인물을 먼저 고정.",
+      "categoryByVariant": {
+        "base": "base",
+        "emotion.concern": "emotion"
+      },
+      "usageNote": "기존 actor/template 매핑을 먼저 보존하고 감정 규격만 공유한다. 같은 표시 이름이라는 이유로 얼굴이나 성별·연령·복식을 합치지 않는다.",
+      "noSpoilerConstraints": [
+        "발화 시점에 실제로 보이는 인물만 표시. 기록이나 미지의 목소리에 NPC 얼굴을 붙이지 않음.",
+        "공통 템플릿에 사연 전용 결박·상처·유품을 넣지 않음."
+      ]
+    },
+    "resident-safe": {
+      "variants": [
+        "base",
+        "emotion.relief"
+      ],
+      "reason": "20장의 대피 주민에게만 안전 확인 뒤의 완화. 다른 주민에게 과거 구조의 안도를 옮기지 않음.",
+      "categoryByVariant": {
+        "base": "base",
+        "emotion.relief": "emotion"
+      },
+      "usageNote": "기존 actor/template 매핑을 먼저 보존하고 감정 규격만 공유한다. 같은 표시 이름이라는 이유로 얼굴이나 성별·연령·복식을 합치지 않는다.",
+      "noSpoilerConstraints": [
+        "발화 시점에 실제로 보이는 인물만 표시. 기록이나 미지의 목소리에 NPC 얼굴을 붙이지 않음.",
+        "공통 템플릿에 사연 전용 결박·상처·유품을 넣지 않음."
+      ]
+    },
+    "dead-guard": {
+      "variants": [
+        "base"
+      ],
+      "reason": "23.story:7b6148660b는 이미 죽은 수비병 몸의 악귀. 살아 있는 병사나 생전 얼굴로 교체 금지. 다른 표정의 근거가 없어 한 개면 충분.",
+      "categoryByVariant": {
+        "base": "base"
+      },
+      "usageNote": "기존 actor/template 매핑을 먼저 보존하고 감정 규격만 공유한다. 같은 표시 이름이라는 이유로 얼굴이나 성별·연령·복식을 합치지 않는다.",
+      "noSpoilerConstraints": [
+        "발화 시점에 실제로 보이는 인물만 표시. 기록이나 미지의 목소리에 NPC 얼굴을 붙이지 않음.",
+        "공통 템플릿에 사연 전용 결박·상처·유품을 넣지 않음."
+      ]
+    },
+    "rescued-resident": {
+      "variants": [
+        "base",
+        "emotion.concern"
+      ],
+      "reason": "구조한 주민이라는 표시 이름의 기존 구조 대상 정체를 유지. interaction.rescue.덕수 접두사가 있다고 발화 표시를 임의 변경하지 않음.",
+      "categoryByVariant": {
+        "base": "base",
+        "emotion.concern": "emotion"
+      },
+      "usageNote": "기존 actor/template 매핑을 먼저 보존하고 감정 규격만 공유한다. 같은 표시 이름이라는 이유로 얼굴이나 성별·연령·복식을 합치지 않는다.",
+      "noSpoilerConstraints": [
+        "발화 시점에 실제로 보이는 인물만 표시. 기록이나 미지의 목소리에 NPC 얼굴을 붙이지 않음.",
+        "공통 템플릿에 사연 전용 결박·상처·유품을 넣지 않음."
+      ]
+    }
+  },
+  "implementationReviewNotes": [
+    "editorial-tags.json은 stable rowId에 대한 명시적 제안. 기본 얼굴도 모두 직접 태그하며 런타임 추측을 도입하지 않는다.",
+    "세 rescue activeActor rowId는 각각 네 영웅 중 실제 선택된 발화자가 말한다. speaker $activeActor 및 allowedSpeakers는 편집 검토용 설명이지 게임 데이터에 넣을 문자열이 아니다. 동일 emotion.concern 태그로 충분하며 초상 actor는 현재 발화자를 따른다.",
+    "values.firstSpirit.reply 세 분기는 현재 파일에 독립 rowId가 없다. editorial-value-reviews.json에 명시적으로 검토했으나 가짜 rowId를 만들지 않았다. 실제 생성 지점에서 안정된 분기 식별자 연결 필요.",
+    "values.bellAnomaly.settledLastLine은 기존 bell-anomaly.turn-5의 텍스트 교체이므로 같은 담허 emotion.resolve를 사용한다.",
+    "서술 64, 문서 14, 안내 1, 숨긴 무명 목소리 3은 별도 제외 장부에 남겼다. 문서 속 현묵·대도사와 무명 목소리의 얼굴을 새로 드러내지 않는다.",
+    "설오·담허·휘겸 각 8개, 소단 9개, 종지기 3개. NPC는 필요한 1~3개만 사용하며 모든 NPC에 기계적으로 세 번째 파일을 만들지 않는다.",
+    "NPC 표시 이름은 actor ID가 아니다. 신규 actor ID를 추측하거나 동명이인/보통명사를 합치지 않고 기존 장면의 정체 매핑과 대조해야 한다.",
+    "감정과 실제 손 자세를 합성한 임의 조합을 만들지 않는다. 한 줄에는 제한된 목록 중 한 자산만 배정한다."
+  ],
+  "namespacePolicy": {
+    "base": "base",
+    "emotion": "emotion.concern / emotion.anger / emotion.sorrow / emotion.relief / emotion.resolve",
+    "action": "action.<snake_case_present_gesture>",
+    "scene": "scene.<snake_case_supported_story_state>",
+    "runtimeField": "portraitExpression",
+    "noInference": "명시적 rowId별 태그만 적용. 키워드·말투·speaker name 기반 런타임 추측 없음."
+  }
+}

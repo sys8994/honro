@@ -1,0 +1,92 @@
+{
+  "schemaVersion": 1,
+  "selector": "portraitExpression",
+  "default": "base",
+  "variants": {
+    "base": {
+      "label": "기본",
+      "category": "default",
+      "intent": "각 인물의 기본 성격이 드러나는 안정된 전달과 경청."
+    },
+    "emotion.concern": {
+      "label": "염려·경계",
+      "category": "emotion",
+      "intent": "위험과 상대의 상태를 주의 깊게 살피는 절제된 염려. 공포로 과장하지 않는다."
+    },
+    "emotion.anger": {
+      "label": "억제된 분노",
+      "category": "emotion",
+      "intent": "부당함에 항의하는 분노. 무차별적인 전투 고함과 구별한다."
+    },
+    "emotion.sorrow": {
+      "label": "침통·슬픔",
+      "category": "emotion",
+      "intent": "상실과 책임을 받아들이는 절제된 슬픔."
+    },
+    "emotion.relief": {
+      "label": "안도",
+      "category": "emotion",
+      "intent": "안전과 실마리를 확인한 뒤 긴장을 푼다. 환호하지 않는다."
+    },
+    "emotion.resolve": {
+      "label": "결의",
+      "category": "emotion",
+      "intent": "보호와 조사를 맡는 결단. 과도한 공격 자세 없음."
+    },
+    "action.lower_bow": {
+      "label": "활 내리기",
+      "category": "action",
+      "intent": "활과 시위를 낮춰 상대를 위협하지 않는다."
+    },
+    "action.aim": {
+      "label": "활 겨누기",
+      "category": "action",
+      "intent": "현재 사격 대상을 조준한다. 구조 대상과 평상시 대화에는 금지."
+    },
+    "action.channel": {
+      "label": "진 유지",
+      "category": "action",
+      "intent": "손을 뻗어 현재 진을 유지한다. 얼굴에는 집중과 버팀."
+    },
+    "scene.steadying": {
+      "label": "구조 직후 부축",
+      "category": "scene",
+      "intent": "27장 허공 사건 직후 동료를 받치는 몸짓. 상대 얼굴은 합성하지 않는다."
+    },
+    "action.guard": {
+      "label": "엄호·제지",
+      "category": "action",
+      "intent": "동료와 주민을 보호하며 길목을 막는다. 무조건 칼을 휘두르지 않는다."
+    },
+    "action.inspect_record": {
+      "label": "기록 대조",
+      "category": "action",
+      "intent": "실제로 가져온 기록을 읽거나 정리하는 자세. 아직 없는 문서를 들지 않는다."
+    },
+    "action.listen": {
+      "label": "혼의 소리 듣기",
+      "category": "action",
+      "intent": "현재 혼의 방향과 목소리를 가려 듣는다."
+    },
+    "scene.holding_threads": {
+      "label": "매듭 붙들기",
+      "category": "scene",
+      "intent": "현재 붉은 매듭을 붙들며 버틴다. 놓기 전 대화 내내 물리적 연속성을 보존."
+    },
+    "action.rest_hands": {
+      "label": "빈손으로 쉬기",
+      "category": "action",
+      "intent": "줄과 방울을 모두 내려놓은 빈손. 부상이나 특정 사건 표식은 추가하지 않아 휴식에도 재사용."
+    },
+    "action.bind_cord": {
+      "label": "봉음판 결박 시전",
+      "category": "action",
+      "intent": "종지기의 검은 줄과 세 봉음판을 조이는 자세. 소단 붉은 실과 구별."
+    },
+    "scene.failing_grip": {
+      "label": "힘이 풀리는 손",
+      "category": "scene",
+      "intent": "종지기의 마지막 발화. 아직 줄을 약하게 쥔 상태, 포박·죽음·완전 해제 선공개 금지."
+    }
+  }
+}
