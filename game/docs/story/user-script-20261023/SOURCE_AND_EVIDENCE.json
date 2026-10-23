@@ -1,0 +1,65 @@
+{
+  "codeAndGeneratedCommit": "9862e90d0b428562bf30f0647572bc4c0149592e",
+  "baseMaster": "e1c8764ac11235a093f20b1cf561da0411d6d62d",
+  "inputCommit": "c03aec71491baf9aea27aaf053bf1917a8828efa",
+  "inputBytes": 199130,
+  "changes": 661,
+  "exactBeforeAndAfter": true,
+  "runtimeChangedStageStrings": 419,
+  "runtimeChapters": 30,
+  "routeVariants": 6,
+  "rawSavedBattleDialoguePreserved": true,
+  "restDialogueExistingLimit": "Rest stores IDs/cursor, not verbatim lines; restoration uses current catalogue. Runtime/save format untouched.",
+  "existingFailure": {
+    "test": "act3-void-runtime.mjs",
+    "baselineAlsoFails": "e1c8764ac11235a093f20b1cf561da0411d6d62d",
+    "location": "resolve: storyCamera deep equality",
+    "extraActualFields": [
+      "cameraToken",
+      "cameraIntent"
+    ],
+    "expectedGeometryKeys": [
+      "x",
+      "y",
+      "scale",
+      "manual"
+    ]
+  },
+  "protectedPublicationGraphs": 26,
+  "verifiedUniqueProtectedFiles": 590,
+  "missingOrChangedProtectedFiles": 0,
+  "sourceSha256": {
+    "shared/data/narrative-current.json": "44749d7b0c7cc35ccf3f54346d8c954dca9c6daba5b4e97d2cbb6a98db32f6d6",
+    "web/manifest.json": "c0dd9628f7fbb91ef22684e4f178690a1379bd43bbd681d9890ad7661724f73c",
+    "HONRO.html": "732f4c1385307e031f11b9fecb0e75920ccb7151e1203aadd3ba62efd0644a07",
+    "HONRO_WORKSHOP.html": "27e2cf89428d8f95aa42b7334e2cca68866e7df5eca3cf54ee9e9c458fc5c6e7",
+    "index.html": "732f4c1385307e031f11b9fecb0e75920ccb7151e1203aadd3ba62efd0644a07",
+    "game/docs/story/user-script-20261023/approved-patch.json": "7b408cfb80601d324cac9f2defb8a0dbbc39fd8713dc5b1ca5b5f14b8eceb59d"
+  },
+  "images": {
+    "review/user-script-20261023/long-pc-1280x900.jpg": {
+      "bytes": 91672,
+      "sha256": "b89a880d96f6e9e57f67d68056beaa86518c432e6fc943deede7789ffe069c0b"
+    },
+    "review/user-script-20261023/long-mobile-390x844.jpg": {
+      "bytes": 46850,
+      "sha256": "61569638ddf98a0c5a96df9ed7b4a46358cfcc474af8789f67404f721b0c6bb9"
+    },
+    "review/user-script-20261023/scroll-tail-320x480.jpg": {
+      "bytes": 30599,
+      "sha256": "c666bb9a8f2e1c435cf4e25263ac7b47246411e598e60b85c4b24b4d34770067"
+    },
+    "review/user-script-20261023/mage-absent-390x844.jpg": {
+      "bytes": 43087,
+      "sha256": "fe835b0fbcb2d6ffb74a2d71057f6d6dc13b1278529aef69a0cf0306434f369d"
+    },
+    "review/user-script-20261023/void-near-390x844.jpg": {
+      "bytes": 14044,
+      "sha256": "c3cc2516b03d764293dcdf988694daa25266eac1ea2a8bd7a1ba8b5cc6815788"
+    },
+    "review/user-script-20261023/safe-outro-390x844.jpg": {
+      "bytes": 28907,
+      "sha256": "fb259a704ec62cc36f91af78f78440e0907229c313b7ae44f88ceb0cd7e0863c"
+    }
+  }
+}
