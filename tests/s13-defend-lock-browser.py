@@ -2,7 +2,7 @@
 import json,os,time
 from playwright.sync_api import sync_playwright
 from browser_support import ROOT,launch,serve_game
-MODE=os.environ.get('HONRO_S13_EXPECT','locked');OUT=ROOT/f'_local/reports/s13-defend-lock/{MODE}';OUT.mkdir(parents=True,exist_ok=True)
+MODE=os.environ.get('HONRO_S13_EXPECT','unlocked');OUT=ROOT/f'_local/reports/s13-defend-lock/{MODE}';OUT.mkdir(parents=True,exist_ok=True)
 rows=[]
 def state(p,name):
  s=p.evaluate('''()=>{const a=HonroApp,e=a.engine,b=e.b,u=e.active;return{phase:b.phase,side:b.side,round:b.round,active:b.active,skill:a.selected,name:HONRO_CORE.SKILLS.S13.name,follow:u.meleeFollow||null,origin:u.meleeFollowOrigin||null,action:u.meleeAction||null,x:u.x,y:u.y,vx:u.vx,vy:u.vy,angle:u.angle,moveLeft:u.moveLeft,maxMove:u.maxMove,focus:u.focus,hp:u.hp,shield:u.shield,acted:u.acted,grounded:e.grounded(u),canInput:a.canInput(),jumpDisabled:document.querySelector('#jump').disabled}}''');rows.append({'name':name,**s});return s
