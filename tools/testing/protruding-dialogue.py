@@ -8,7 +8,7 @@ phase='before'if '--before'in sys.argv else 'after';OUT=ROOT/'_local/reports/dia
 profile=json.loads((ROOT/'tests/fixtures/render-update-profile-20261022.json').read_text());profile['cleared'].update({str(i):True for i in range(1,14)});profile['lastStage']=14
 with serve_game() as base,sync_playwright() as pw:
  b=launch(pw);p=b.new_page(viewport={'width':390,'height':844},has_touch=True);errors=[];p.on('pageerror',lambda e:errors.append(str(e)));p.add_init_script('localStorage.setItem("honro-first-act-profile-1",'+json.dumps(json.dumps(profile))+');');entry='/'+json.loads(subprocess.check_output(['git','show','970b9647:web/manifest.json'],text=True))['playtest'].split('?')[0]if phase=='before'else'/HONRO.html';p.goto(base+entry);p.wait_for_function('!!window.HonroRestJourney&&window.HonroApp?.screen==="title"');p.evaluate('HonroCampaignLoader.ensureStage(14)');p.evaluate('HonroRestJourney.state(HonroApp.profile).restStageId=14;HonroApp.showRest()');p.wait_for_function('HonroApp.screen==="rest"');p.evaluate('()=>{for(let i=0;HonroApp.dialogue&&i<24;i++)HonroStory.finish(HonroApp);if(HonroApp.dialogue)throw Error("rest queue did not settle");}')
- for w,h in [(320,780),(360,780),(390,844),(844,390)]:
+ for w,h in [(320,780),(360,780),(390,844),(720,1560),(844,390),(568,320)]:
   p.set_viewport_size({'width':w,'height':h})
   for cls in ['archer','mage','knight','occultist']:
    p.evaluate('cls=>{if(HonroApp.dialogue)HonroStory.finish(HonroApp);HonroRestJourney.talk(HonroApp,cls)}',cls);p.wait_for_function('!!HonroApp.dialogue');p.locator('.story-scene').evaluate('e=>Promise.all((e.closest(".dialogue-presentation")||e).getAnimations().map(a=>a.finished.catch(()=>{})))');p.wait_for_function('document.getElementById("story-portrait-canvas")?.dataset.portraitState==="ready"')
@@ -28,7 +28,7 @@ with serve_game() as base,sync_playwright() as pw:
    else:
     p.locator('[data-action="dialogue-next"]').tap();p.wait_for_function('!HonroApp.dialogue');p.evaluate('cls=>HonroRestJourney.talk(HonroApp,cls)',cls);p.wait_for_function('!!HonroApp.dialogue')
    p.locator('[data-action="dialogue-skip"]').tap();p.wait_for_function('!HonroApp.dialogue')
- for view in ([320,780],[360,780],[390,844],[844,390]):
+ for view in ([320,780],[360,780],[390,844],[720,1560],[844,390],[568,320]):
   faces=[r['faceHeight']for r in rows if r['view']==view];assert max(faces)/min(faces)<1.02,faces
  assert not errors,errors;b.close()
 (OUT/(phase+'.json')).write_text(json.dumps({'head':subprocess.check_output(['git','rev-parse','HEAD'],text=True).strip(),'entry':entry,'rows':rows,'errors':errors,'manifestSha256':hashlib.sha256((ROOT/'web/manifest.json').read_bytes()).hexdigest()},ensure_ascii=False,indent=2));print('PASS',phase,len(rows),'actual rest14 talks, bounds and touch')
