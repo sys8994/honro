@@ -106,7 +106,7 @@ for(const autonomous of [false,true]){
 }
 // An enemy-owned automatic attack still harms the opposing player coalition.
 {
- const a=arena('M01'),enemy=a.add(1,800),p=a.fire();Object.assign(p,{owner:enemy.id,side:1,autonomous:true});const hp=a.u.hp;a.e.blast(a.u.x,a.u.y-a.u.h*.5,100,50,enemy.id,false,p);assert(a.u.hp<hp);
+ const a=arena('M01'),enemy=a.add(1,800),p=a.fire();Object.assign(p,{owner:enemy.id,side:1,attackSide:1,autonomous:true});const hp=a.u.hp;a.e.blast(a.u.x,a.u.y-a.u.h*.5,100,50,enemy.id,false,p);assert(a.u.hp<hp);
 }
 console.log('PASS delayed Continue, automatic DOT allegiance changes, counter ordering and opposing enemy attacks');
 // Legacy paired aimed crescents used child for damage caps, not automatic targeting.
@@ -121,33 +121,33 @@ for(const targetFlags of [{side:2},{side:2,honroAlly:true},{side:1},{side:0},{si
  const results=[];
  for(const autonomous of [false,true]){
   const a=arena('M01'),owner=a.add(1,1800),target=a.add(targetFlags.side,800,targetFlags),p=a.fire();
-  Object.assign(p,{owner:owner.id,side:1,autonomous});a.e.blast(800,1460,100,60,owner.id,false,p);
+  Object.assign(p,{owner:owner.id,side:1,attackSide:1,autonomous});a.e.blast(800,1460,100,60,owner.id,false,p);
   const terrain={id:'enemy-destroyable',x:780,y:1490,w:40,h:20,mat:'wood',hp:30,maxHp:30};a.b.terrain.push(terrain);a.e.damageTerrain(terrain,40,0,owner.id,p);
   results.push([target.hp,target.vx,target.vy,terrain.hp,terrain.broken]);
  }
  assert.deepEqual(results[0],results[1],JSON.stringify(targetFlags)+' enemy automatic baseline');
 }
 for(const side of [0,1,2,undefined]){
- const a=arena('M01'),npc=a.add(2,800),p=a.fire();Object.assign(p,{owner:'missing-legacy-owner',side,autonomous:true});
+ const a=arena('M01'),npc=a.add(2,800),p=a.fire();Object.assign(p,{owner:'missing-legacy-owner',side,attackSide:undefined,autonomous:true});
  const terrain={id:'orphan-ground',x:780,y:1490,w:40,h:20,mat:'wood',hp:30,maxHp:30};a.b.terrain.push(terrain);
  a.e.blast(800,1460,100,60,p.owner,false,p);a.e.damageTerrain(terrain,40,0,p.owner,p);
  assert.equal(npc.hp===npc.maxHp,side===0);assert.equal(!terrain.broken,side===0);
 }
 // A hostile actor's stale saved side cannot override its explicit current alliance or owner.
 {
- const a=arena('M01'),npc=a.add(2,800),owner=a.add(1,1800,{honroAlly:true}),p=a.fire();Object.assign(p,{owner:owner.id,side:1,autonomous:true});a.e.blast(800,1460,100,60,owner.id,false,p);assert.equal(npc.hp,npc.maxHp);
+ const a=arena('M01'),npc=a.add(2,800),owner=a.add(1,1800,{honroAlly:true}),p=a.fire();Object.assign(p,{owner:owner.id,side:1,attackSide:undefined,autonomous:true});a.e.blast(800,1460,100,60,owner.id,false,p);assert.equal(npc.hp,npc.maxHp);
  owner.honroAlly=false;owner.summonOwner=a.u.id;owner.summoned=true;a.e.blast(800,1460,100,60,owner.id,false,p);assert.equal(npc.hp,npc.maxHp);
 }
 console.log('PASS player-only safety, exact hostile NPC/objective/terrain parity and orphan side fallback');
 {
- const a=arena('M01'),master=a.add(1,1800),ghost=a.add(0,1400,{summoned:true,summonOwner:master.id}),npc=a.add(2,800),p=a.fire();Object.assign(p,{owner:ghost.id,side:0,child:true});
+ const a=arena('M01'),master=a.add(1,1800),ghost=a.add(0,1400,{summoned:true,summonOwner:master.id}),npc=a.add(2,800),p=a.fire();Object.assign(p,{owner:ghost.id,side:0,attackSide:undefined,child:true});
  const terrain={id:'hostile-summon-support',x:780,y:1490,w:40,h:20,mat:'wood',hp:30,maxHp:30};a.b.terrain.push(terrain);a.e.blast(800,1460,100,60,ghost.id,false,p);assert(npc.hp<npc.maxHp);assert(terrain.broken,'hostile summon retains terrain damage despite saved side 0');
 }
 console.log('PASS enemy-owned summon current allegiance overrides stale side without extra immunity');
 // A03's manually aimed first leg is unchanged; a retargeted chain is autonomous.
 for(const resume of ['none','current','legacy'])for(const coalition of [true,false]){
  const a=arena('A03'),first=a.add(coalition?1:0,600),ally=a.add(coalition?0:2,700),second=a.add(coalition?1:0,800),p=a.fire();
- if(!coalition){a.u.side=1;p.side=1;}
+ if(!coalition){a.u.side=1;p.side=1;p.attackSide=1;}
  Object.assign(p,{x:580,y:1460,vx:900,vy:0,gravityScale:0,wind:0});
  for(let n=0;n<30&&!p.chain;n++)a.e.stepProjectile(p,C.STEP);
  assert.equal(p.chain,1);assert.equal(p.autonomous,true,'first retarget records provenance');
@@ -166,7 +166,7 @@ for(const legacy of [false,true]){
 // Chain provenance also protects secondary effects and destructible supports.
 for(const coalition of [true,false])for(const explicit of [true,false]){
  const a=arena('A03'),ally=a.add(coalition?0:2,800,{fixed:false}),foe=a.add(coalition?1:0,800),p=a.fire();
- if(!coalition){a.u.side=1;p.side=1;}
+ if(!coalition){a.u.side=1;p.side=1;p.attackSide=1;}
  Object.assign(p,{chain:1,x:800,y:1460,blast:100,damage:50});if(explicit)p.autonomous=true;else delete p.autonomous;
  const before=state(ally);a.e.blast(800,1460,100,50,a.u.id,false,p);a.e.createZone(p,'frost');a.e.applyZones(ally);
  assert.equal(state(ally)===before,coalition);assert(foe.hp<foe.maxHp);

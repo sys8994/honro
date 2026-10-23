@@ -4578,3 +4578,7 @@ O05의 지형 미접촉3.4초/255점/상단 경계와 총10초 종료가 고지�
 ## 2026-10-23 — 행동 단위 전투 피해 편차
 
 확정 피해에 작은 편차를 추가했다. 64개 활성 기예를 ID별 5/10/15%와 비공격으로 명시 분류하고, 독립 seed의 1024개 선생성/결정적 다음 청크를 사용한다. 같은 행동의 연타·광역·반사·분열·진목·지속·소환/후속 검술에 계수를 전하며 crit/proc RNG를 소비하지 않는다. 구 저장의 진행 중 효과는 계수1을 유지하고 다음 새 행동부터 도입한다. 회복/비율자원/환경/강제 HP/자기희생 비용과 기존 보상은 보존한다. 상세는 [정책·전체 분류표](combat-damage/README.md). `combat-damage-variance`의64발사/24576표본·분포/청크/재현성, `combat-damage-continue`의 실제 App6종 Continue/반복 import/동일180tick, 타입 검사와 반사 회귀를 확인했다. 최종 빌드·브라우저와 원격 상태는 인계 결과에 구분한다. 기존 splitting-reflection-app-resume 검사는 새 보고서 초기화가 없는 fixture 때문에 Continue가 추가하는 honroReportSource의 차이에서 실패하며 이 작업에서 무관한 검사는 수정하지 않는다.
+
+## 2026-10-23 — 아군 오사격 최종 피해 30%
+
+직접 조준 공격의 아군/동맹 피해가 적 피해와 같았고 지연 경로는 발사자의 현재 side에 의존했다. side/owner/섭혼과 honroAlly/honroCivilian/objective의 동맹 계약으로 기존 최종 정수 피해×0.3을 보호막·HP 전에 한 번 적용한다. 최소1→0.3과 실제 HP에서 유래한 밀침 피해의 이중 감산/최소1 복귀를 방지했다. 공격 당시 진영은 지연·진목·저주·반사·소환·통 폭발에 전하며2/3막 지형 wrapper도 provenance를 보존한다. 기존 자동 공격 면제·먹귀·분혼·적/환경/스크립트·회복·자기비용을 유지한다. 보고서는 실제 HP/보호막 집계와 소수1자리 표시를 사용한다. [정책·범위](combat-damage/README.md). coalition-damage-reduction72조합·치명/방어·발사자 제거/섭혼·지연·통·밀침, 실제 App/엔진 Continue 및 기존 projectile/autonomous/save·보고서 검사를 실행했다. 원격/최종 build·browser는 인계 결과와 구분한다. icons/skill-images/skill-icons CSS/story/presentation 부모 범위와14장 지형은 수정하지 않았다.

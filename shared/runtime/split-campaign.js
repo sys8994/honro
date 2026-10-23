@@ -93,7 +93,7 @@ function attach(app,e){if(!active(e.b)||e.honroSplitAttached)return;e.honroSplit
  const next=e.newRound.bind(e);e.newRound=function(){
   for(const u of e.b.units.filter(hero))if(!u.dead){
    if(u.honroCarriedCurse&&!u.curseOwner&&(u.curseTurns||0)>0&&u.curseDamage>0)e.hurt(u,u.curseDamage,'',false,undefined,undefined,'normal',undefined,{...u.curseDamageOrigin,skill:u.honroDotSkill,honroReportSource:u.honroDotReport||{kind:'unresolved',skill:'unknown',id:null}});
-   if(u.honroCarriedEarth&&u.earthbind&&!u.earthbind.owner&&u.earthbind.until>=e.b.round+1){u.slowed={factor:.24,expires:e.b.round+1};e.hurt(u,u.earthbind.damage,'',false,undefined,undefined,'normal','O10',{damageRoll:u.earthbind.damageRoll,skill:u.honroEarthSkill,honroReportSource:u.honroEarthReport||{kind:'unresolved',skill:'unknown',id:null}});}
+   if(u.honroCarriedEarth&&u.earthbind&&!u.earthbind.owner&&u.earthbind.until>=e.b.round+1){u.slowed={factor:.24,expires:e.b.round+1};e.hurt(u,u.earthbind.damage,'',false,undefined,undefined,'normal','O10',{attackSide:u.earthbind.attackSide,damageRoll:u.earthbind.damageRoll,skill:u.honroEarthSkill,honroReportSource:u.honroEarthReport||{kind:'unresolved',skill:'unknown',id:null}});}
   }
   return next();
  };

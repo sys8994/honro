@@ -1,7 +1,7 @@
 (function(G){'use strict';
 const R=G.HonroClearReport,C=G.HONRO_CORE,H=G.HONRO_CONTENT;
 const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-const n=v=>Math.round(v||0).toLocaleString('ko-KR'),duration=v=>`${Math.floor(v/60)}:${String(Math.floor(v%60)).padStart(2,'0')}`;
+const n=v=>(+(v||0).toFixed(1)).toLocaleString('ko-KR',{maximumFractionDigits:1}),duration=v=>`${Math.floor(v/60)}:${String(Math.floor(v%60)).padStart(2,'0')}`;
 const name=cls=>H.hero[cls]?.name||cls;
 const actions={'action:defend':'방어 · 숨 고르기','action:item':'물품 사용','unknown':'기예 미상','action:npc-heal':'동맹 회복'};
 const skillName=id=>C.SKILLS[id]?.name||actions[id]||id;

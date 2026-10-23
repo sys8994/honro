@@ -1,4 +1,4 @@
-import type {Battle,Skill} from './types';
+import type {Battle,Skill,Side} from './types';
 
 /** Explicit cast policy, including non-damaging skills. No character-wide tuning. */
 export const DAMAGE_SPREAD:Readonly<Record<string,number>>={
@@ -13,7 +13,7 @@ export const DAMAGE_SPREAD:Readonly<Record<string,number>>={
 };
 export const DAMAGE_BUFFER_SIZE=1024;
 export interface DamageSequence {version:1;seed:number;index:number;}
-export interface DamageOrigin {damageRoll?:number;}
+export interface DamageOrigin {damageRoll?:number;attackSide?:Side;friendlyFireApplied?:boolean;}
 const buffers=new WeakMap<DamageSequence,{chunk:number;values:Float64Array}>();
 function hash(n:number){n=Math.imul(n^(n>>>16),0x21f0aaad);n=Math.imul(n^(n>>>15),0x735a2d97);return(n^(n>>>15))>>>0;}
 /** Reconstruct only the current chunk. Saves contain 3 scalars, never the buffer.
@@ -34,7 +34,7 @@ export function initializeDamageSequence(b:Battle){
  b.damageSequence??={version:1,seed:hash(b.seed^0xd4a6e001),index:0};buffer(b.damageSequence);
  return b.damageSequence;
 }
-export function damageSpread(s:Pick<Skill,'id'|'enemyOnly'|'passive'>){return s.passive?0:s.enemyOnly?.10:DAMAGE_SPREAD[s.id]??0;}
+export function damageSpread(s:Pick<Skill,'id'|'enemyOnly'|'passive'>){return s.passive?0:s.enemyOnly ? .10 : DAMAGE_SPREAD[s.id]??0;}
 export function rollDamage(b:Battle,s:Pick<Skill,'id'|'enemyOnly'|'passive'>){
  const spread=damageSpread(s);if(!spread)return 1;
  const state=initializeDamageSequence(b),value=buffer(state)[state.index%DAMAGE_BUFFER_SIZE];state.index++;

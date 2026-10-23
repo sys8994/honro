@@ -187,11 +187,11 @@ function attach(app,e){if(!active(e.b))return;
   subdue(e,u,source);
   return out;
  };
- const terrain=e.damageTerrain.bind(e);e.damageTerrain=function(t,amount,depth=0,owner=e.b.active){
+ const terrain=e.damageTerrain.bind(e);e.damageTerrain=function(t,amount,depth=0,owner=e.b.active,attack){
   const s=steps(e.b).find(s=>s.id===t.id),u=e.unit(owner);
   if(s?.requiredClass&&u?.cls!==s.requiredClass){e.message(H.hero[s.requiredClass].name+'의 정밀사격이 필요하다.');return;}
   if(t.id==='upper-chain'&&!memory(e.b).silenced){e.message('공명을 먼저 억제해야 고정점이 드러난다.');return;}
-  const before=t.broken,out=terrain(t,amount,depth,owner);
+  const before=t.broken,out=terrain(t,amount,depth,owner,attack);
   if(!before&&t.broken){
    if(t.id==='rock-pin'){const floor=G.HonroQuestTargets.records(e.b).find(t=>t.id==='act2-floor');if(floor?.honroRestoredVertices){floor.vertices=floor.honroRestoredVertices.map(p=>({...p}));delete floor.honroRestoredVertices;e.b.sceneVersion++;}}
    if(t.id==='exit-pin'){const gate=G.HonroQuestTargets.records(e.b).find(t=>t.id==='gate-exit');if(gate){gate.broken=true;e.b.sceneVersion++;}}

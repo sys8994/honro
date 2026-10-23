@@ -64,7 +64,7 @@ function stroke(e:Engine,u:Unit,range:number,facing=u.facing,color='#dbe2dd',var
 }
 function strike(e:Engine,u:Unit,t:Unit,damage:number,s:Skill,shot:number,autonomous=false,origin?:DamageOrigin){
  // A short-lived damage descriptor is not a projectile in the battlefield.
- const p={damageRoll:origin?.damageRoll,autonomous,skill:s.id,owner:u.id,side:u.side,shot,damage,skillRank:u.ranks[s.id]||1,launchX:u.x,launchY:u.y,vx:u.facing,vy:0} as Projectile;
+ const p={attackSide:origin?.attackSide,damageRoll:origin?.damageRoll,autonomous,skill:s.id,owner:u.id,side:u.side,shot,damage,skillRank:u.ranks[s.id]||1,launchX:u.x,launchY:u.y,vx:u.facing,vy:0} as Projectile;
  e.hurt(t,damage,u.id,true,p,at(u));
 }
 export function startWarriorCast(e:Engine,s:Skill,u:Unit){
@@ -78,12 +78,12 @@ export function startWarriorCast(e:Engine,s:Skill,u:Unit){
    const rank=u.ranks[s.id]||1,before=u.hp;
    u.hp=Math.min(u.maxHp,u.hp+Math.round(u.maxHp*(.02+.005*(rank-1))));
    healed(e.b,u,u.id,before,s.id);if(u.hp>before)e.fx('ring',u.x,u.y-u.h*.5,'#b8d2bc',28);
-   u.martialGuard={damageRoll:p.damageRoll,round:e.b.round,reduction:.25+.10*(rank-1)/7,counter:true,rank,angle:-rad(u.angle),span:meleeSpan(u,s,power)};stroke(e,u,45);return;
+   u.martialGuard={attackSide:p.attackSide,damageRoll:p.damageRoll,round:e.b.round,reduction:.25+.10*(rank-1)/7,counter:true,rank,angle:-rad(u.angle),span:meleeSpan(u,s,power)};stroke(e,u,45);return;
   }
   if(s.mode==='bladeScreen'){u.bladeScreen={round:e.b.round,rank:u.ranks[s.id]||1,hits:0,facing:u.facing};stroke(e,u,110);return;}
   const lifeCost=s.mode==='lifeSlash'?Math.floor(u.hp/3):0;
   if(lifeCost)u.hp-=lifeCost;
-  u.meleeAction={damageRoll:p.damageRoll,skill:s.id,elapsed:0,index:0,damage:damage+(lifeCost*(1.08+.405*((u.ranks[s.id]||1)-1)/7)),range:meleeRange(u,s,s.mode==='lifeSlash'?0:power),power,shot:e.b.shot,lifeCost,angle:-rad(u.angle),span:meleeSpan(u,s,power)};
+  u.meleeAction={attackSide:p.attackSide,damageRoll:p.damageRoll,skill:s.id,elapsed:0,index:0,damage:damage+(lifeCost*(1.08+.405*((u.ranks[s.id]||1)-1)/7)),range:meleeRange(u,s,s.mode==='lifeSlash'?0:power),power,shot:e.b.shot,lifeCost,angle:-rad(u.angle),span:meleeSpan(u,s,power)};
   if(power<.30&&s.mode!=='lifeSlash')u.martialGuard={round:e.b.round,reduction:.12*(1-power/.30)};
   return;
  }
@@ -171,7 +171,7 @@ function land(e:Engine,p:Projectile,h?:Collision){
   const t=h?.unit&&foe(u,h.unit)?h.unit:e.b.units.filter(t=>foe(u,t)&&Math.hypot(t.x-p.x,t.y-t.h*.5-p.y)<p.blast+t.r).sort((a,b)=>Math.abs(a.x-p.x)-Math.abs(b.x-p.x))[0];
   if(t)e.hurt(t,p.damage,p.owner,true,p,p);stroke(e,u,95);
  }
- if(s.id==='S13'){u.meleeFollow='landing';u.meleeFollowOrigin={damageRoll:p.damageRoll};}
+ if(s.id==='S13'){u.meleeFollow='landing';u.meleeFollowOrigin={attackSide:p.attackSide,damageRoll:p.damageRoll};}
  e.remove(p);
 }
 /** First contact releases one short, transverse, cover-aware pressure cut. */
