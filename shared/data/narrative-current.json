@@ -3649,7 +3649,7 @@
         ],
         [
           "종지기",
-          "내가 손을 놓으면 저 종이 다시 운다. 그때도 내게 풀라 하겠느냐?",
+          "내가 손을 놓으면 저 안의 것들이 쏟아진다. 너희가 다 받아낼 수 있느냐?",
           {
             "storyId": "act2-v1:act2-r2-entry-18",
             "storyTitle": "묵종",
@@ -3699,6 +3699,16 @@
             "storyTitle": "묵종",
             "rowId": "18.outro:b196accb21",
             "kind": "narration"
+          }
+        ],
+        [
+          "소단",
+          "이름이 들려요. 이번엔 끝까지…….",
+          {
+            "rowId": "18.outro:pitch-release-sodan",
+            "portraitExpression": "emotion.concern",
+            "storyId": "act2-v1:act2-r2-outro-18",
+            "storyTitle": "묵종"
           }
         ],
         [
@@ -3814,7 +3824,7 @@
         "hold-silence": [
           [
             "서술",
-            "종의 울림이 낮아졌다.",
+            "종의 울림이 잦아들었다.",
             {
               "rowId": "18.beats.hold-silence:3198218fad",
               "kind": "narration"
@@ -3862,6 +3872,42 @@
             {
               "rowId": "18.beats.bell-descent:aca79c56e8",
               "portraitExpression": "emotion.resolve"
+            }
+          ]
+        ],
+        "pitch-first": [
+          [
+            "소단",
+            "종소리가 아까보다 높아졌어요. 부르던 이름도 자꾸 끊겨요!",
+            {
+              "rowId": "18.beats.pitch-first:sodan",
+              "portraitExpression": "emotion.concern"
+            }
+          ],
+          [
+            "담허",
+            "줄을 죌수록 종이 저렇게 우는 게야. 소단, 안의 목소리를 계속 들어 주게.",
+            {
+              "rowId": "18.beats.pitch-first:damheo",
+              "portraitExpression": "emotion.concern"
+            }
+          ]
+        ],
+        "pitch-tighten": [
+          [
+            "종지기",
+            "아직도 제 이름을 부르느냐. 그 입까지 묶어 주마.",
+            {
+              "rowId": "18.beats.pitch-tighten:keeper",
+              "portraitExpression": "action.bind_cord"
+            }
+          ],
+          [
+            "소단",
+            "그만해요! 이름도 못 부르게 할 셈이에요?",
+            {
+              "rowId": "18.beats.pitch-tighten:sodan",
+              "portraitExpression": "emotion.concern"
             }
           ]
         ]

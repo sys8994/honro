@@ -17,7 +17,7 @@ function memory(b){b.honroState??={};return b.honroState.mukjongAudio??={version
 function pitchValid(p){return p?.version===1&&[1,2].includes(p.interval)&&['firstRound','lastRound','activeRounds'].every(k=>Number.isSafeInteger(p[k])&&p[k]>=0)&&typeof p.paused==='boolean'&&typeof p.stopped==='boolean';}
 function suppressed(b){const a=b.honroState?.act2,hold=b.honroAct2Steps?.find(s=>s.id==='hold-silence');return !!b.keeperRitual?.suppressed||b.honroState?.bellDescent?.status==='lowering'||!!(a?.done?.silence&&!a.done['hold-silence']&&hold&&!G.HonroAct2.satisfied(b,hold));}
 function stopped(b){const u=b.units?.find(u=>u.id==='act2-keeper');return !u||u.side!==1||u.dead||u.hp<=1||u.honroSubdued||b.honroState?.act2?.done?.keeper||['won','lost'].includes(b.phase);}
-function observe(app){if(!relevant(app)||app.engine.b.honroStage!==18)return;const b=app.engine.b,m=memory(b),p=m.pitch;if(!pitchValid(p))return;
+function observe(app){if(!relevant(app)||app.engine.b.honroStage!==18)return;G.HonroMukjongPitchDialogue?.prune(app);const b=app.engine.b,m=memory(b),p=m.pitch;if(!pitchValid(p))return;
  const paused=suppressed(b),halted=!!stopped(b),round=Math.max(0,Math.floor(b.round||0)),delta=Math.max(0,round-p.lastRound);if(round===p.lastRound&&paused===p.paused&&(p.stopped||halted)===p.stopped)return;
  // Only whole battle-round boundaries advance. Both ends of a suppressed
  // interval must be live, so clearing suppression never charges a saved gap.
@@ -27,7 +27,7 @@ function observe(app){if(!relevant(app)||app.engine.b.honroStage!==18)return;con
 function attach(app,b,{fresh=false}={}){if(!relevant(app))return;const m=memory(b),d=b.honroStory;
  // Restoring an already visible/read row is reading, not a new bell strike.
  if(b.honroStage===12&&d?.lines?.slice(0,(d.index||0)+1).some(l=>l[2]?.rowId===ROW))m.sign=true;
- if(b.honroStage===18){if(fresh){delete m.pitch;delete m.lastToneRound;m.echoStep=-1;}else if(m.echoStep===undefined)m.echoStep=pitchValid(m.pitch)?Math.floor(m.pitch.activeRounds/m.pitch.interval):0;m.keeperSerial=Math.max(m.keeperSerial||0,b.keeperRitual?.serial||0);
+ if(b.honroStage===18){if(fresh){delete b.honroState.mukjongPitchDialogue;delete m.heardRound;delete m.heardStep;delete m.pitch;delete m.lastToneRound;m.echoStep=-1;}else if(m.echoStep===undefined)m.echoStep=pitchValid(m.pitch)?Math.floor(m.pitch.activeRounds/m.pitch.interval):0;m.keeperSerial=Math.max(m.keeperSerial||0,b.keeperRitual?.serial||0);
   if(pitchValid(m.pitch)){m.pitch.lastRound=Math.max(0,Math.floor(b.round||0));observe(app);}else delete m.pitch;
  }
  void warm(app);
@@ -36,10 +36,13 @@ function line(app,skip=false){if(!relevant(app)||app.engine.b.honroStage!==12||a
 function keeper(app){if(!relevant(app)||app.engine.b.honroStage!==18)return;const b=app.engine.b,r=b.keeperRitual,u=app.engine.unit(r?.owner),serial=r?.serial;if(u?.id!=='act2-keeper'||u.side!==1||!r.cast||!serial)return;const m=memory(b);if(serial<=(m.keeperSerial||0))return;m.keeperSerial=serial;
  if(stopped(b)){observe(app);return;}
  if(!pitchValid(m.pitch))m.pitch={version:1,interval:INTERVAL,firstRound:b.round,lastRound:b.round,activeRounds:0,paused:suppressed(b),stopped:false};
- observe(app);const p=m.pitch;if(!p.paused&&!p.stopped)tone(app,p);
+ observe(app);const p=m.pitch;if(!p.paused&&!p.stopped)tone(app,p,{ritual:true,serial});
 }
 
-function tone(app,p){const b=app.engine.b,m=memory(b),step=Math.min(MAX_SEMITONES,Math.floor(p.activeRounds/p.interval));m.echoStep=Math.floor(p.activeRounds/p.interval);if(m.lastToneRound===b.round)return;m.lastToneRound=b.round;play(app,2**(step/12));}
+function tone(app,p,event={}){const b=app.engine.b,m=memory(b),step=Math.min(MAX_SEMITONES,Math.floor(p.activeRounds/p.interval));m.echoStep=Math.floor(p.activeRounds/p.interval);let played=false;
+ if(m.lastToneRound!==b.round){m.lastToneRound=b.round;played=play(app,2**(step/12));if(played){m.heardRound=b.round;m.heardStep=step;G.HonroMukjongPitchDialogue?.heard(app,{round:b.round,step,serial:b.keeperRitual?.serial||0});}}
+ if(event.ritual)G.HonroMukjongPitchDialogue?.ritual(app,{round:b.round,step,serial:event.serial,audible:!!(app.audio?.enabled&&app.audio.volume>0&&app.audio.context?.state==='running'&&!G.document?.hidden&&(played||m.heardRound===b.round&&m.heardStep===step))});
+}
 function update(app){if(!relevant(app)||app.engine.b.honroStage!==18)return;const b=app.engine.b;if(b.honroBellRevision!==1||b.mode!=='campaign')return;const m=memory(b),ready=app.screen==='battle'&&!app.dialogue&&!app.modal?.classList.contains('open')&&!G.document?.hidden&&!G.HonroStory?.turnPaused(app)&&!G.HonroBellAnomaly?.blocked(b);
  if(!pitchValid(m.pitch)){if(!ready||stopped(b)||suppressed(b))return;m.pitch={version:1,interval:INTERVAL,firstRound:b.round,lastRound:b.round,activeRounds:0,paused:false,stopped:false};}
  observe(app);const p=m.pitch;if(!ready||p.paused||p.stopped)return;const step=Math.min(MAX_SEMITONES,Math.floor(p.activeRounds/p.interval));
@@ -50,5 +53,5 @@ function update(app){if(!relevant(app)||app.engine.b.honroStage!==18)return;cons
 
 const lineStart=G.HonroStoryStaging?.lineStart;if(lineStart)G.HonroStoryStaging.lineStart=function(app,skip=false,...rest){const out=lineStart.call(this,app,skip,...rest);line(app,skip);return out;};
 function stats(audio){const s=audio&&cache.get(audio);return s?{attempts:s.attempts,requests:s.requests,decodes:s.decodes,plays:s.plays,lastRate:s.lastRate,ready:!!s.buffer,duration:s.buffer?.duration||0,bufferBytes:s.buffer?s.buffer.length*s.buffer.numberOfChannels*4:0}:null;}
-G.HonroMukjongAudio={warm,attach,line,keeper,observe,update,suppressed,pitchValid,stats,INTERVAL,MAX_SEMITONES};
+G.HonroMukjongAudio={warm,attach,line,keeper,observe,update,suppressed,stopped,pitchValid,stats,INTERVAL,MAX_SEMITONES};
 })(globalThis);

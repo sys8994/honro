@@ -1339,6 +1339,7 @@
                 if(G.HonroSodanWithdrawal.frame(this,dt)){requestAnimationFrame(t=>this.frame(t));return;}
                 G.HonroStory.tick(this,now);
                 G.HonroMukjongAudio?.update(this);
+                G.HonroMukjongPitchDialogue?.tick(this);
                 G.HonroRestJourney?.frame(this,dt);
                 if(this.preview?.canvas.isConnected&&this.modal.classList.contains('open'))G.HonroSkillPreview.tick(this,this.preview,dt);
                 if (this.engine && this.scene && this.screen === 'battle') {
