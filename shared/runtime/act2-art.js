@@ -134,12 +134,12 @@ S.terrain=function(c,t){if(t.honroFireBarrier){
 // screen cues only: no collision, geometry, progress or saved fields are added.
 function holdGuide(b,s){
  if(!s||s.kind!=='hold'||!G.HonroAct2.revision2(b))return null;
- const m=b.honroMarkers.find(m=>m.id===s.id);if(!m||!(s.radius>0)||!(s.contestRadius>0))return null;
- const heroes=b.units.filter(u=>u.side===0&&!u.dead&&u.hp>0&&!u.summoned&&!u.enthrall);
+ const m=b.honroMarkers.find(m=>m.id===s.id);if(!m||!(s.radius>0))return null;
+ const heroes=b.units.filter(u=>u.side===0&&!u.dead&&u.hp>0&&!u.summoned&&!u.enthrall&&!u.eaterCapturedBy);
  const guarded=heroes.some(u=>(!s.requiredClass||u.cls===s.requiredClass)&&Math.hypot(u.x-m.x,u.y-m.y)<s.radius);
- const contested=b.units.some(u=>u.side===1&&u.summonKind!=='eater'&&!u.eaterCapturedBy&&!u.dead&&Math.hypot(u.x-m.x,u.y-m.y)<s.contestRadius);
+ const contested=b.units.some(u=>u.side===1&&!u.honroObjectiveTarget&&u.summonKind!=='eater'&&!u.eaterCapturedBy&&!u.dead&&Math.hypot(u.x-m.x,u.y-m.y)<s.contestRadius);
  const progress=b.honroState?.act2?.holds?.[s.id]?.progress||0;
- return{x:m.x,y:m.y,radius:s.radius,contestRadius:s.contestRadius,guarded,contested,progress,rounds:s.rounds,
+ return{id:s.id,x:m.x,y:m.y,radius:s.radius,contestRadius:s.contestRadius,guarded,contested,progress,rounds:s.rounds,
   who:s.requiredClass?G.HONRO_CONTENT.hero[s.requiredClass].name:'동행 1명',status:contested?'적 진입 · 진행 멈춤':guarded?'방어 중':'범위 안으로 이동'};
 }
 function guideBadge(c,scene,x,y,lines,color){
@@ -157,9 +157,10 @@ function objectiveGuide(c,scene,b){
  c.save();
  if(hold){
   const color=hold.contested?'#edab88':hold.guarded?'#b9d1b7':'#dfca98';
-  c.beginPath();c.arc(hold.x,hold.y,hold.radius,0,Math.PI*2);c.fillStyle=color+'09';c.fill();c.strokeStyle=color+'ba';c.lineWidth=1.6/z;c.stroke();
-  c.beginPath();c.arc(hold.x,hold.y,hold.contestRadius,0,Math.PI*2);c.setLineDash([5/z,7/z]);c.strokeStyle=hold.contested?'#edab88':'#cfb98b99';c.lineWidth=1.3/z;c.stroke();c.setLineDash([]);
-  guideBadge(c,scene,hold.x,hold.y+43/z,[`${hold.who} 유지 · ${hold.progress}/${hold.rounds}${b.honroStage===12&&!b.honroCustom&&b.honroQuarryRevision===1?'라운드':'턴'} · ${hold.status}`,b.honroStage===12&&!b.honroCustom&&b.honroQuarryRevision===1?'실선: 방어 범위 / 점선 안에 적이 오면 중단':'실선: 방어 범위 / 점선: 적 진입 금지'],color);
+  c.beginPath();c.arc(hold.x,hold.y,hold.radius,0,Math.PI*2);c.fillStyle=color+'16';c.fill();c.strokeStyle='#102126d9';c.lineWidth=5/z;c.stroke();c.strokeStyle=color;c.lineWidth=2/z;c.stroke();
+  if(hold.contestRadius>0){c.beginPath();c.arc(hold.x,hold.y,hold.contestRadius,0,Math.PI*2);c.setLineDash([5/z,7/z]);c.strokeStyle=hold.contested?'#edab88':'#cfb98b99';c.lineWidth=1.3/z;c.stroke();c.setLineDash([]);}
+  c.strokeStyle=color;c.lineWidth=2/z;c.beginPath();c.arc(hold.x,hold.y,7/z,0,Math.PI*2);c.moveTo(hold.x-16/z,hold.y);c.lineTo(hold.x+16/z,hold.y);c.moveTo(hold.x,hold.y-16/z);c.lineTo(hold.x,hold.y+16/z);c.stroke();
+  guideBadge(c,scene,hold.x,hold.y+43/z,[`${hold.who} 유지 · ${hold.progress}/${hold.rounds}${b.honroStage===12&&!b.honroCustom&&b.honroQuarryRevision===1?'라운드':'턴'} · ${hold.status}`,hold.contestRadius>0?'실선: 방어 범위 / 점선 안에 적이 오면 중단':'실선: 방어 범위'],color);
  }else if(s.kind==='destroy'){
   const t=b.terrain.find(t=>t.id===s.id&&!t.broken);if(t){
    // Trace the real collision polygon, then bracket its bounds at a readable
@@ -186,5 +187,8 @@ S.environmentTone=function(c,w,h,b){tone?.call(this,c,w,h,b);if(b.honroStage<11|
  if(this._act2PulseStart!==undefined&&this.time-this._act2PulseStart<1.6){c.globalAlpha=Math.max(0,.12*(1-(this.time-this._act2PulseStart)/1.6));c.fillStyle='#b0c9d5';c.fillRect(this.x-w/this.scale/2,this.y-h/this.scale/2,w/this.scale,h/this.scale);}
  c.restore();
 };
-G.HonroAct2Art={paths,holdGuide,objectiveGuide};
+function focusHold(app){const b=app.engine?.b,scene=app.scene,s=b&&G.HonroAct2.active(b)&&G.HonroAct2.current(b),hold=b&&holdGuide(b,s);if(!hold||!scene)return false;
+ const {w,h}=scene.size(),hud=document.querySelector('.honro-compact-hud')?.getBoundingClientRect(),cv=scene.canvas.getBoundingClientRect(),top=110,bottom=Math.max(top+60,Math.min(h-24,(hud?.top??h)-cv.top-26)),fit=Math.min((w-40)/(2*hold.radius),(bottom-top-24)/(2*hold.radius)),limits=G.HonroBounds.zoomLimits(w);
+ G.HonroReinforcementCamera?.cancel(scene,true);scene.storyTween=null;scene.focusUntil=scene.speakerUntil=0;scene.scale=Math.max(limits.min,Math.min(limits.max,fit));scene.x=hold.x;scene.y=hold.y+(h/2-(top+bottom)/2)/scene.scale;scene.manual=true;scene.goalFocus={id:hold.id,x:hold.x,y:hold.y,label:hold.who+' · 수비 범위'};G.HonroBounds.constrain(scene,b);return true;}
+G.HonroAct2Art={paths,holdGuide,objectiveGuide,focusHold};
 })(globalThis);

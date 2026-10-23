@@ -93,7 +93,7 @@ function draw(scene,e){
   // panel, so the arrow tip sits nine screen pixels above its real top edge.
   const lift=markerLift(e.b,t);
   let px=Math.max(70,Math.min(w-70,x)),py=Math.max(top,Math.min(bottom,y-lift));
-  const label=(visible?'':'화면 밖 · ')+t.label.split(' · ')[0],width=Math.min(w-24,c.measureText(label).width+16);
+  const hold=G.HonroAct2.active(e.b)&&G.HonroAct2Art?.holdGuide(e.b,G.HonroAct2.current(e.b)),label=(visible?'':'화면 밖 · ')+(hold?.id===t.id?hold.who+' · 수비 범위':t.label.split(' · ')[0]),width=Math.min(w-24,c.measureText(label).width+16);
   if(mini&&px+width/2>mini.left-cv.left&&py-33<mini.bottom-cv.top&&py+5>mini.top-cv.top){
    if(mini.bottom-cv.top+40<bottom)py=mini.bottom-cv.top+40;
    else px=Math.max(width/2+8,mini.left-cv.left-width/2-10);

@@ -76,7 +76,7 @@ function progressive(b,st,result,list,current){
    instruction=name+chosen.label;
    if(chosen.kind==='rescue')instruction+=' · 구조';
    else if(chosen.kind==='destroy')instruction+=' · 공격';
-   else if(chosen.kind==='hold'){const a=st.act===3?b.honroState?.act3:b.honroState?.act2,h=a?.holds?.[chosen.id];instruction=h?.contested?'표시된 원 안의 적을 처치하세요':h?.guarded?'그 자리에서 '+Math.max(0,chosen.rounds-(h.progress||0))+'턴 더 버티세요':'표시된 원 안에서 '+chosen.rounds+'턴 버티세요';}
+   else if(chosen.kind==='hold'){const a=st.act===3?b.honroState?.act3:b.honroState?.act2,h=a?.holds?.[chosen.id];const area=st.act===3?'범위':'원';instruction=h?.contested?'표시된 '+area+' 안의 적을 처치하세요':h?.guarded?'그 자리에서 '+Math.max(0,chosen.rounds-(h.progress||0))+'턴 더 버티세요':'표시된 '+area+' 안에서 '+chosen.rounds+'턴 버티세요';}
    else if(chosen.kind==='escort')instruction='운반자 앞에서 출구까지 길을 열어 주세요';
    else if(chosen.kind==='route')instruction=chosen.label;
    else if(chosen.kind==='reach')instruction=chosen.allHeroes?chosen.id==='party-reunion'?'중앙에 네 사람을 모은 뒤 행동을 끝내세요':'살아 있는 동행을 도착 지점에 모으세요':'표시된 도착 지점으로 이동하세요';
