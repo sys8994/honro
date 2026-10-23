@@ -81,13 +81,17 @@ function refresh(app){if(!app.engine||app.training)return;const s=state(app.engi
 function markerLift(b,t){return b?.honroNarrativeRevision===1&&!b.honroCustom&&b.honroStage===5&&t.id==='cliff-cleat'&&t.box&&!t.box.broken?12:t.box&&!t.box.broken?88:26;}
 function draw(scene,e){
  const targets=scene.goalFocus?[scene.goalFocus]:scene.missionTargets;
+ scene.missionDrawn=[];
  if(!targets?.length)return;
+ const farewell=G.HonroStage19Farewell?.active(e.b),app=scene.storyFrame?.app||G.HonroApp;
+ // The reader owns chapter19's speaker framing. Next-objective tags must not cover it.
+ if(farewell&&app?.engine?.b===e.b&&app.dialogue)return;
  const c=scene.ctx,{w,h,d}=scene.size(),z=scene.scale,cv=scene.canvas.getBoundingClientRect(),hud=document.querySelector('.honro-compact-hud')?.getBoundingClientRect();
  const top=110,bottom=Math.max(top+30,Math.min(h-24,(hud?.top??h)-cv.top-26)),mini=document.getElementById('minimap')?.getBoundingClientRect();
  c.save();c.setTransform(d,0,0,d,0,0);c.font='600 12px sans-serif';c.textAlign='center';c.textBaseline='middle';
- let outside=0;scene.missionDrawn=[];
+ let outside=0;
  for(const t of targets){
-  const x=w/2+(t.x-scene.x)*z,y=h/2+(t.y-scene.y)*z,visible=x>30&&x<w-30&&y>top&&y<bottom;
+  const x=w/2+(t.x-scene.x)*z,y=h/2+(t.y-scene.y)*z,visible=farewell?x>=0&&x<=w&&y>=0&&y<=h:x>30&&x<w-30&&y>top&&y<bottom;
   if(!visible&&outside++>0)continue;
   // Keep existing panel clearance elsewhere. The fresh iron ring has no HP
   // panel, so the arrow tip sits nine screen pixels above its real top edge.
@@ -102,6 +106,9 @@ function draw(scene,e){
    const pulse=22+3*Math.sin(performance.now()*.008);
    c.strokeStyle='#f2d58e';c.globalAlpha=.85;c.lineWidth=2;c.beginPath();c.arc(x,y,pulse,0,Math.PI*2);c.stroke();c.globalAlpha=1;
   }
+  // In chapter19 an on-screen interaction already has its person/physical marker.
+  // HUD clearance is a label-placement limit, not evidence that the person is off screen.
+  if(farewell&&visible)continue;
   // Painted Stage8 bindings already carry their live name/HP in the unit
   // layer. Keep focus rings and offscreen guidance; omit the duplicate tag.
   if(visible&&e.b.honroStage===8&&!e.b.honroCustom&&e.b.honroMap?.stage8LocationPaint?.revision===1&&['bier-knot-0','bier-knot-1'].includes(t.id)&&e.unit(t.id)?.honroObjectiveTarget)continue;
