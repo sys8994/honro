@@ -102,7 +102,27 @@
             "height": 1170
           },
           "identityMaster": "art/portraits/approved-v1/hwigyeom.png",
-          "identityMasterSha256": "ecffdbfd43b4e8e6f5e5d59b0290ac470cd28e2618c13fcb5174a17256364f06"
+          "identityMasterSha256": "ecffdbfd43b4e8e6f5e5d59b0290ac470cd28e2618c13fcb5174a17256364f06",
+          "framing": {
+            "bust": {
+              "head": {
+                "left": 370,
+                "top": 270,
+                "right": 800,
+                "bottom": 620,
+                "width": 430,
+                "height": 350
+              },
+              "bust": {
+                "left": 0,
+                "top": 220,
+                "right": 1024,
+                "bottom": 1170,
+                "width": 1024,
+                "height": 950
+              }
+            }
+          }
         }
       }
     }

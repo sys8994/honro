@@ -20,7 +20,7 @@ with serve_game() as base,sync_playwright() as pw:
  for w,h,view in [(390,844,'mobile'),(844,390,'landscape')]:
   p.set_viewport_size({'width':w,'height':h})
   for who,long in [('담허',False),('설오',False),('휘겸',False),('소단',False),('담허',True),('문탁',True),('새 주민',True),('서술',True)]:
-   p.evaluate('([who,long])=>HonroStory.start(HonroApp,[[who,(reviewLines[who]?.[1]||reviewLines["담허"][1]).repeat(long?35:1)],reviewLines["담허"]],{title:HonroApp.stage.name})',[who,long]);p.wait_for_timeout(240)
+   p.evaluate('([who,long])=>HonroStory.start(HonroApp,[[who,(reviewLines[who]?.[1]||reviewLines["담허"][1]).repeat(long?35:1)],reviewLines["담허"]],{title:HonroApp.stage.name})',[who,long]);p.wait_for_timeout(240);p.locator('.story-scene').evaluate('e=>Promise.all(e.getAnimations().map(a=>a.finished.catch(()=>{})))')
    for at in ([0,.5,1] if long else [0]):
     p.evaluate('at=>{const s=document.querySelector("#dialogue-root section"),p=s.querySelector("#story-line"),scroller=/(auto|scroll)/.test(getComputedStyle(p).overflowY)&&p.scrollHeight>p.clientHeight?p:s;scroller.scrollTop=(scroller.scrollHeight-scroller.clientHeight)*at;}',at);p.wait_for_timeout(40)
     row={'view':view,'who':who,'long':long,'at':at,**inspect(p)};rows.append(row);assert all(x['visible']for x in row['buttons']),row
