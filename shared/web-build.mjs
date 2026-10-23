@@ -190,7 +190,9 @@ export async function buildWeb({vector=true,destination=path.join(root,'HONRO.ht
     // URLs are metadata only: portrait pixels are requested by visible UI, never title preload.
     for(const [expression,asset]of Object.entries(entry.approvedPortrait?.expressions||{}))if(asset.file)asset.src={$honroAsset:await emit('graphics',`portrait-${entry.approvedPortrait.id}-${expression}`,'webp',await readFile(path.resolve(root,asset.file)))};
   }
-  const titleData=await dataModule('game-art',{HONRO_TITLE_ART:art,HONRO_STAGE_INTRO_ART:stageArt,HONRO_STORY_PORTRAITS:portraits});
+  const npcPortraits=JSON.parse(await read('game/config/npc-portraits.json'));
+  for(const asset of Object.values(npcPortraits.assets))asset.src={$honroAsset:await emit('graphics','npc-portrait-'+asset.id,'webp',await readFile(path.resolve(root,asset.file)))};
+  const titleData=await dataModule('game-art',{HONRO_TITLE_ART:art,HONRO_STAGE_INTRO_ART:stageArt,HONRO_STORY_PORTRAITS:portraits,HONRO_NPC_PORTRAITS:npcPortraits});
   const titleMarkup=common.find(file=>file.includes('shared-runtime-title-markup.'));
   assert(titleMarkup,'Shared first-paint title template required');
   const titleScene=await emit('runtime','title-scene','js',`import ${quote('./'+path.posix.basename(titleMarkup))};\nconst art=globalThis.HONRO_TITLE_ART;

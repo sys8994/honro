@@ -243,7 +243,8 @@
       "honroCivilian": true,
       "honroType": "civilian"
     },
-    "kind": "character"
+    "kind": "character",
+    "portraitPolicy": "explicit-npc-mapping"
   },
   "나무꾼": {
     "class": "knight",
@@ -253,7 +254,8 @@
       "honroAlly": true,
       "allyRole": "scout"
     },
-    "kind": "character"
+    "kind": "character",
+    "portraitPolicy": "explicit-npc-mapping"
   },
   "연실": {
     "class": "mage",
@@ -262,7 +264,8 @@
       "honroAlly": true,
       "allyRole": "healer"
     },
-    "kind": "character"
+    "kind": "character",
+    "portraitPolicy": "explicit-npc-mapping"
   },
   "춘례": {
     "class": "mage",
@@ -271,7 +274,8 @@
       "honroAlly": true,
       "allyRole": "healer"
     },
-    "kind": "character"
+    "kind": "character",
+    "portraitPolicy": "explicit-npc-mapping"
   },
   "복만": {
     "class": "knight",
@@ -286,50 +290,44 @@
     "kind": "character",
     "class": null,
     "image": null,
-    "portraitPolicy": "scene-actor-or-text",
-    "missingPortrait": "전용 초상 미제작. 해당 장면의 명시 배우가 없으면 이름과 본문만 표시."
+    "portraitPolicy": "explicit-npc-mapping"
   },
   "주민": {
     "kind": "character",
     "class": null,
     "image": null,
-    "portraitPolicy": "scene-actor-or-text",
-    "missingPortrait": "전용 초상 미제작. 해당 장면의 명시 배우가 없으면 이름과 본문만 표시."
+    "portraitPolicy": "row-scene-or-actor",
+    "missingPortrait": "고정 주민 얼굴 없음. 명시 행/장면/배우 매핑이 없으면 현행 배우 또는 본문으로 표시."
   },
   "석공": {
     "kind": "character",
     "class": null,
     "image": null,
-    "portraitPolicy": "scene-actor-or-text",
-    "missingPortrait": "전용 초상 미제작. 해당 장면의 명시 배우가 없으면 이름과 본문만 표시."
+    "portraitPolicy": "explicit-npc-mapping"
   },
   "길찬": {
     "kind": "character",
     "class": null,
     "image": null,
-    "portraitPolicy": "scene-actor-or-text",
-    "missingPortrait": "전용 초상 미제작. 해당 장면의 명시 배우가 없으면 이름과 본문만 표시."
+    "portraitPolicy": "explicit-npc-mapping"
   },
   "중층 주민": {
     "kind": "character",
     "class": null,
     "image": null,
-    "portraitPolicy": "scene-actor-or-text",
-    "missingPortrait": "전용 초상 미제작. 해당 장면의 명시 배우가 없으면 이름과 본문만 표시."
+    "portraitPolicy": "explicit-npc-mapping"
   },
   "노승": {
     "kind": "character",
     "class": null,
     "image": null,
-    "portraitPolicy": "scene-actor-or-text",
-    "missingPortrait": "전용 초상 미제작. 해당 장면의 명시 배우가 없으면 이름과 본문만 표시."
+    "portraitPolicy": "explicit-npc-mapping"
   },
   "승려": {
     "kind": "character",
     "class": null,
     "image": null,
-    "portraitPolicy": "scene-actor-or-text",
-    "missingPortrait": "전용 초상 미제작. 해당 장면의 명시 배우가 없으면 이름과 본문만 표시."
+    "portraitPolicy": "explicit-npc-mapping"
   },
   "종지기": {
     "kind": "character",
@@ -342,44 +340,36 @@
     "kind": "character",
     "class": null,
     "image": null,
-    "portraitPolicy": "scene-actor-or-text",
-    "missingPortrait": "전용 초상 미제작. 해당 장면의 명시 배우가 없으면 이름과 본문만 표시."
+    "portraitPolicy": "explicit-npc-mapping"
   },
   "언니를 잃은 동생": {
     "kind": "character",
     "class": null,
     "image": null,
-    "portraitPolicy": "scene-actor-or-text",
-    "missingPortrait": "전용 초상 미제작. 해당 장면의 명시 배우가 없으면 이름과 본문만 표시."
+    "portraitPolicy": "explicit-npc-mapping"
   },
   "수비병 악귀": {
     "kind": "character",
     "class": null,
     "image": null,
-    "portraitPolicy": "scene-actor-or-text",
-    "missingPortrait": "전용 초상 미제작. 해당 장면의 명시 배우가 없으면 이름과 본문만 표시."
+    "portraitPolicy": "explicit-npc-mapping"
   },
   "짐꾼": {
     "kind": "character",
     "class": null,
     "image": null,
-    "portraitPolicy": "scene-actor-or-text",
-    "missingPortrait": "전용 초상 미제작. 해당 장면의 명시 배우가 없으면 이름과 본문만 표시."
+    "portraitPolicy": "explicit-npc-mapping"
   },
   "월이": {
     "kind": "character",
     "class": null,
     "image": null,
-    "portraitPolicy": "scene-actor-or-text",
-    "legacyOnly": true,
-    "missingPortrait": "구형 대본 화자. 전용 초상 없음; 구 저장은 이름과 본문만 보존."
+    "portraitPolicy": "explicit-npc-mapping"
   },
   "칠복": {
     "kind": "character",
     "class": null,
     "image": null,
-    "portraitPolicy": "scene-actor-or-text",
-    "legacyOnly": true,
-    "missingPortrait": "구형 대본 화자. 전용 초상 없음; 구 저장은 이름과 본문만 보존."
+    "portraitPolicy": "explicit-npc-mapping"
   }
 }

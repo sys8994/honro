@@ -13,3 +13,9 @@
 - 모든 옷과 얼굴은 일상적이고 평범하게. 화려한 비녀, 후광, 영웅 장식, 장군 갑주, 멋낸 흉터를 배제. 나이/성별이 원문에 없는 곳은 미술 배역 제안이라고 명시.
 
 실제 게임 코드·설정·에셋 수정 없음. 모든 고정 65행과 동적 증언 3이름을 JSON에 매핑.
+
+## 실행 검증
+
+부모 승인 v2의 실제 파일 ID는 worker_mature/woman_mature/man_elder/guard_spirit이며 제안 JSON의 worker_adult/resident_woman/resident_elder/guard_fiend와 명시적으로 대응한다. 제안 JSON은 입력 이력으로 보존하고 runtime config는 game/config/npc-portraits.json에 둔다.
+
+생산 App launch에서7장의 덕수·월이·칠복 마커/배우/동적 증언을 확인했다.14장 현재 revision1의 family-upper target은 resident-1, family-mid target은 resident-3이다. 해당 배우 fallback도 현재 marker target이 일치할 때만 허용한다. 고정65행 rowId는 현재 원문과 전수 대조했으며 표시 이름·본문·관계를 바꾸지 않았다.
