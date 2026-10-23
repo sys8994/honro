@@ -37,7 +37,7 @@ function close(a){if(portraitOpen(a)){a.close();return;}if(!a.scene)return;a.sce
 function portraitAsset(a,u){
  if(u.summoned||u.honroVisualOnly||u.eaterCapturedBy)return null;
  const options={portraitExpression:u.portraitExpression||'base'};
- return G.HonroPortraits?.approved(u,u.cls,options)||G.HonroNPCPortraits?.resolve(a,u.name,options,u)||null;
+ return G.HonroPortraits?.approved(u,u.cls,options)||G.HonroNPCPortraits?.forUnit(a,u,options)||null;
 }
 function portraitClosed(a){const v=portraitViews.get(a);if(!v?.open)return;v.open=false;a.modal.classList.remove('unit-portrait-open');a.modal.removeEventListener('click',v.backdrop);G.HonroPortraits.release(v.viewer);v.viewer.remove();}
 function expandPortrait(a){

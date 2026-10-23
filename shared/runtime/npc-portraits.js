@@ -12,6 +12,8 @@ function resolve(app,who,meta={},actor){
  if(!id)id=c.named[who]; // Deliberately no generic 주민 / class fallback.
  return id&&c.assets[id]?.src?G.HonroPortraits.select(c.assets[id],c.assets[id].expressions,meta.portraitExpression,{id,npc:true,neutral:true}):null;
 }
+// World inspection uses the authored actor binding even when its display name differs.
+function forUnit(app,actor,meta={}){if(!actor||actor.summoned||actor.honroVisualOnly||actor.eaterCapturedBy)return null;const stage=app.stage?.id||app.engine?.b.honroStage,binding=G.HONRO_NPC_PORTRAITS?.actors[stage+'|'+actor.id];return resolve(app,binding?.speaker||actor.name,meta,actor);}
 const hidden=(who,meta={})=>!who||G.HONRO_NPC_PORTRAITS?.hiddenRows.includes(meta.rowId)||false;
-G.HonroNPCPortraits=Object.freeze({resolve,hidden});
+G.HonroNPCPortraits=Object.freeze({resolve,hidden,forUnit});
 })(globalThis);
