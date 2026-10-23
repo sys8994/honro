@@ -1,0 +1,11 @@
+{
+  "base": "v05",
+  "r1": "Removed gradients and mapped opaque colours. Render inspection found relief outlines/discs too black and isolated rust overly prominent.",
+  "r2": "Reduced internal outlines and rust contrast; kept ornament geometry. Render inspected.",
+  "r3": "Added two broad opaque side planes; inspected full and270px render. Thin inscription marks weakened at small scale.",
+  "r4": "Raised fine strokes to2.1 source units without changing glyph shapes; dark and small render inspection pending.",
+  "r5": "Actual game placement and zoom inspection pending.",
+  "holistic": "pending",
+  "geometryPreserved": 185,
+  "pathCount": 187
+}
