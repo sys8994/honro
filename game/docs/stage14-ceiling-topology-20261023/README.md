@@ -36,7 +36,7 @@
 - 공통 Game/Workshop/직접 Playtest 빌드와 타입 검사 통과. 최신a3c UI/스킬 이미지/O05/카드 드래그/카메라/18장 및 피해/저장 변경 모듈 byte exact, 실제18장 R10 승리 저장의 배우/지형/목표/성장·보상 사실 보존.18/19 천장 높이 불변.
 - 성공23발행 그래프/566고유 파일 및934의13장 두JSON hash/길이 보존. 이번 후보를 성공 발행으로 등록하지 않았다.
 
-최신a3c 통합 후에는 형상/이동 엔진·맵 데이터의 불변을 확인하고 영향 있는 BC/CF 각4직업(8경로)을 재실행했다. 앞68경로는 같은 토폴로지의 통합 전 검사이며, 최종 통합에서68개를 다시 돌렸다고 주장하지 않는다. 실제 저각/자유 수직 고각/국소 차단·반사, 돌발판·M09, 브라우저 Continue·점프도 통합 엔진에서 재실행했다. 아군 피해30% 검사와6스킬 App Continue/import·각180tick 저장 재생 및 타입 검사가 통과했다. [BC](evidence/routes-BC-integrated.json), [CF](evidence/routes-CF-integrated.json), [피해30%](evidence/damage-coalition-integrated.log), [피해 저장](evidence/damage-continue-integrated.log). 원고는 변경하지 않았다.
+최신a3c 통합 후에는 형상/이동 엔진·맵 데이터의 불변을 확인하고 영향 있는 BC/CF 각4직업(8경로)을 재실행했다. 앞68경로는 같은 토폴로지의 통합 전 검사이며, 최종 통합에서68개를 다시 돌렸다고 주장하지 않는다. 실제 저각/자유 수직 고각/국소 차단·반사, 돌발판·M09, 브라우저 Continue·점프도 통합 엔진에서 재실행했다. 아군 피해30% 검사와6스킬 App Continue/import·각180tick 저장 재생 및 타입 검사가 통과했다. [BC](evidence/routes-BC-integrated.json), [CF](evidence/routes-CF-integrated.json), [피해30%](evidence/damage-coalition-integrated.txt), [피해 저장](evidence/damage-continue-integrated.txt). 원고는 변경하지 않았다.
 
 짧은 결과: [summary.json](evidence/summary.json). [실제 발사·저장 경계](evidence/boundaries.json), [발판/M09](evidence/platform.json), [최신 코드·발행 자산](evidence/release.json), [68경로 원자료gzip](evidence/routes-68.json.gz).
 
