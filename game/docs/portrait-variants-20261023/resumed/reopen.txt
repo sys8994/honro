@@ -1,0 +1,41 @@
+ce951a8 primary {"dialogue": ["설오", "이 고개만 넘으면 연목 나루다. 해가 더 기울기 전에 내려가야 해.", {"rowId": "1.story:ef0399ec3f", "direction": [{"type": "look", "actor": "archer", "at": {"actor": "archer"}, "pose": "inspect", "camera": false, "duration": 650}, {"type": "look", "at": {"actor": "archer"}, "duration": 650, "scale": 0.8}], "portraitExpression": "emotion.anger", "camera": {"intent": "portrait", "targets": [{"speaker": "설오"}], "padding": 40, "maxScale": 1.05, "participants": [{"actor": "p-archer"}], "id": "1.story:ef0399ec3f", "speakerPolicy": "world"}}], "sameCanvas": true, "stats": {"requests": 2, "decodes": 1, "paints": 1, "fallbackPaints": 0, "vectorBuilds": 0, "imageEntries": 2, "pending": 1, "errors": 0, "vectorEntries": 0, "waiters": 0, "decodedRgbaBytes": 6291456, "pendingRgbaBytes": 3538944, "budgetBytes": 16777216, "protectedRgbaBytes": 0}}
+ce951a8 fallback {"dialogue": ["설오", "이 고개만 넘으면 연목 나루다. 해가 더 기울기 전에 내려가야 해.", {"rowId": "1.story:ef0399ec3f", "direction": [{"type": "look", "actor": "archer", "at": {"actor": "archer"}, "pose": "inspect", "camera": false, "duration": 650}, {"type": "look", "at": {"actor": "archer"}, "duration": 650, "scale": 0.8}], "portraitExpression": "emotion.anger", "camera": {"intent": "portrait", "targets": [{"speaker": "설오"}], "padding": 40, "maxScale": 1.05, "participants": [{"actor": "p-archer"}], "id": "1.story:ef0399ec3f", "speakerPolicy": "world"}}], "sameCanvas": true, "stats": {"requests": 2, "decodes": 0, "paints": 0, "fallbackPaints": 0, "vectorBuilds": 0, "imageEntries": 2, "pending": 1, "errors": 1, "vectorEntries": 0, "waiters": 2, "decodedRgbaBytes": 0, "pendingRgbaBytes": 6291456, "budgetBytes": 16777216, "protectedRgbaBytes": 0}}
+current primary {"dialogue": ["설오", "이 고개만 넘으면 연목 나루다. 해가 더 기울기 전에 내려가야 해.", {"rowId": "1.story:ef0399ec3f", "direction": [{"type": "look", "actor": "archer", "at": {"actor": "archer"}, "pose": "inspect", "camera": false, "duration": 650}, {"type": "look", "at": {"actor": "archer"}, "duration": 650, "scale": 0.8}], "portraitExpression": "emotion.anger", "camera": {"intent": "portrait", "targets": [{"speaker": "설오"}], "padding": 40, "maxScale": 1.05, "participants": [{"actor": "p-archer"}], "id": "1.story:ef0399ec3f", "speakerPolicy": "world"}}], "sameCanvas": true, "stats": {"requests": 2, "decodes": 1, "paints": 1, "fallbackPaints": 0, "vectorBuilds": 0, "imageEntries": 2, "pending": 1, "errors": 0, "vectorEntries": 0, "waiters": 1, "decodedRgbaBytes": 6291456, "pendingRgbaBytes": 3538944, "budgetBytes": 16777216, "protectedRgbaBytes": 0}}
+current fallback {"dialogue": ["설오", "이 고개만 넘으면 연목 나루다. 해가 더 기울기 전에 내려가야 해.", {"rowId": "1.story:ef0399ec3f", "direction": [{"type": "look", "actor": "archer", "at": {"actor": "archer"}, "pose": "inspect", "camera": false, "duration": 650}, {"type": "look", "at": {"actor": "archer"}, "duration": 650, "scale": 0.8}], "portraitExpression": "emotion.anger", "camera": {"intent": "portrait", "targets": [{"speaker": "설오"}], "padding": 40, "maxScale": 1.05, "participants": [{"actor": "p-archer"}], "id": "1.story:ef0399ec3f", "speakerPolicy": "world"}}], "sameCanvas": true, "stats": {"requests": 2, "decodes": 0, "paints": 0, "fallbackPaints": 0, "vectorBuilds": 0, "imageEntries": 2, "pending": 1, "errors": 1, "vectorEntries": 0, "waiters": 3, "decodedRgbaBytes": 0, "pendingRgbaBytes": 6291456, "budgetBytes": 16777216, "protectedRgbaBytes": 0}}
+Exception in callback Connection.dispatch.<locals>._done_callback(<Task cancell..._page.py:294>>) at /opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/site-packages/playwright/_impl/_connection.py:539
+handle: <Handle Connection.dispatch.<locals>._done_callback(<Task cancell..._page.py:294>>) at /opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/site-packages/playwright/_impl/_connection.py:539>
+Traceback (most recent call last):
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/asyncio/events.py", line 88, in _run
+    self._context.run(self._callback, *self._args)
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/site-packages/playwright/_impl/_connection.py", line 540, in _done_callback
+    exc = future.exception()
+          ^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/site-packages/playwright/_impl/_page.py", line 308, in _on_route
+    handled = await route_handler.handle(route)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/site-packages/playwright/_impl/_helper.py", line 442, in handle
+    return await self._handle_internal(route)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/site-packages/playwright/_impl/_helper.py", line 484, in _handle_internal
+    return await handled_future
+           ^^^^^^^^^^^^^^^^^^^^
+asyncio.exceptions.CancelledError
+Exception in callback Connection.dispatch.<locals>._done_callback(<Task cancell..._page.py:294>>) at /opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/site-packages/playwright/_impl/_connection.py:539
+handle: <Handle Connection.dispatch.<locals>._done_callback(<Task cancell..._page.py:294>>) at /opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/site-packages/playwright/_impl/_connection.py:539>
+Traceback (most recent call last):
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/asyncio/events.py", line 88, in _run
+    self._context.run(self._callback, *self._args)
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/site-packages/playwright/_impl/_connection.py", line 540, in _done_callback
+    exc = future.exception()
+          ^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/site-packages/playwright/_impl/_page.py", line 308, in _on_route
+    handled = await route_handler.handle(route)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/site-packages/playwright/_impl/_helper.py", line 442, in handle
+    return await self._handle_internal(route)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/site-packages/playwright/_impl/_helper.py", line 484, in _handle_internal
+    return await handled_future
+           ^^^^^^^^^^^^^^^^^^^^
+asyncio.exceptions.CancelledError
+PASS primary and base fallback close/reopen/onload: ce951 stuck loading, current async ready without draw polling
