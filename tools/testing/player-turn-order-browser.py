@@ -41,6 +41,7 @@ with serve_game() as base,sync_playwright() as pw:
  page.screenshot(path=str(OUT/'mobile-known-only.jpg'),type='jpeg',quality=85)
  # Four cards: commit once, selected character stays fixed, each abort rolls back.
  load(json.loads((PREP/'four-profile.json').read_text()),18);camp();count_saves();page.locator('.hero-tab[data-class=mage]').tap();assert page.evaluate('HonroApp.cls')=='mage';drag('occultist','archer',shot=True);assert cards()==['occultist','archer','mage','knight'];assert counter()==1;assert page.evaluate('HonroApp.cls')=='mage'
+ page.locator('.hero-tab[data-class=archer]').tap();assert page.evaluate('HonroApp.cls')=='archer';assert counter()==1;rows.append(dict(check='immediate tap after drop',selected='archer',noExtraSave=True))
  committed=cards();selected=page.evaluate('HonroApp.cls');
  for kind in ['cancel','escape','outside','multi']:
   before=counter();drag('knight','archer',cancel=kind);assert cards()==committed,(kind,cards());assert counter()==before;assert page.evaluate('HonroApp.cls')==selected;rows.append(dict(check=kind,orderUnchanged=True,noSave=True,noSelection=True))

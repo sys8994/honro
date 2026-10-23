@@ -53,6 +53,8 @@ function camp(app){
  function down(e){
   if(e.button!==0||e.pointerType==='touch'&&!e.isPrimary||contacts.size!==1||app.screen!=='camp')return;
   const card=e.target.closest('.hero-tab');if(!card||card.disabled||!known(app.profile).includes(card.dataset.class))return;
+  // A fresh pointer gesture must remain a normal tap even just after a drag.
+  suppressUntil=0;
   const s={id:e.pointerId,card,cls:card.dataset.class,target:card.dataset.class,profile:app.profile,visible:known(app.profile),x0:e.clientX,y0:e.clientY,x:e.clientX,y:e.clientY,armed:false,center:card.getBoundingClientRect().left+card.offsetWidth/2,pointerType:e.pointerType};
   gesture=s;s.timer=setTimeout(()=>arm(s),420);
  }
