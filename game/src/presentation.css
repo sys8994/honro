@@ -39,7 +39,7 @@
 .story-document p{white-space:pre-wrap;word-break:keep-all;overflow-wrap:anywhere;font:400 clamp(17px,2vw,20px)/2 Batang,'Noto Serif KR',serif;margin:0 0 22px}
 .story-document.document-enlarged p{font-size:26px;line-height:2}.story-document.document-enlarged h2{font-size:32px}
 .story-document .ghost{color:#29362f;border-color:#6d7767;background:#f6e9c52b}.story-document button:focus-visible,.document-scroll:focus-visible{outline:2px solid #68452e;outline-offset:-3px}
-.story-document .story-actions{flex-shrink:0;flex-wrap:wrap;gap:10px;margin:0;padding:12px 22px;border-top:1px solid #796c4d55;background:#c4b48f}.story-document .story-actions button{min-height:44px}
+.story-document .story-actions{flex-shrink:0;flex-wrap:wrap;gap:10px;margin:0;padding:12px 22px;border-top:1px solid #796c4d55;background:none}.story-document .story-actions button{min-height:44px}
 .document-ledger .document-scroll{background:linear-gradient(90deg,transparent 28px,#955e4940 29px,#955e4940 30px,transparent 31px)}
 .document-note{width:min(660px,100%)}.document-note h2{padding-bottom:20px;border-bottom:1px solid #88795755}
 .document-routes{border-left:1px solid #7b8067;padding-left:24px;margin:12px 0 28px}.document-routes p{position:relative;padding:12px 0;border-bottom:1px solid #837e6140}.document-routes p:before{content:'';position:absolute;left:-29px;top:29px;width:9px;height:9px;transform:rotate(45deg);background:#65715d;border:1px solid #bdb391}
@@ -69,10 +69,11 @@
 
 /* Only the copy scrolls; the transparent control row stays clear. */
 .story-scene .story-actions,.story-guide .story-actions{position:sticky;bottom:0;z-index:1;flex-shrink:0}
-.story-scene .story-actions{background:none}
-.story-guide .story-actions{top:0;background:#0d2024}
-.story-scene{overflow:hidden}
-.story-scene #story-line{max-height:var(--story-copy-limit,none);overflow:auto;overscroll-behavior:contain}
+.story-scene .story-actions,.story-guide .story-actions,.story-document .story-actions,.narration-actions{background:none}
+.story-guide .story-actions{top:0}
+.story-scene,.story-guide{overflow:hidden}
+.story-overlay .story-guide{max-height:min(max(34dvh,160px),calc(100dvh - var(--guide-top,82px) - 12px))}
+.story-scene #story-line,.story-guide #story-line{min-height:0;max-height:var(--story-copy-limit,none);overflow:auto;overscroll-behavior:contain}
 
 /* The optional reader also lives inside the pause journal dialog. Keep paper ink
    independent of the dark journal's generic paragraph colour. */

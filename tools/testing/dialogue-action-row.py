@@ -32,8 +32,8 @@ with serve_game() as base,sync_playwright() as pw:
   p.set_viewport_size({'width':390,'height':844});p.evaluate('HonroStory.start(HonroApp,[["담허",reviewLines["담허"][1].repeat(35)],reviewLines["담허"]],{title:HonroApp.stage.name});window.sameReadingPanel=document.querySelector(".story-scene")');p.wait_for_timeout(150)
   for w,h in [(844,390),(390,844),(844,390)]:
    p.set_viewport_size({'width':w,'height':h});p.wait_for_timeout(150);r=inspect(p);assert not r['visibleTextRowOverlap'] and all(x['visible']for x in r['buttons']) and p.evaluate('sameReadingPanel===document.querySelector(".story-scene")'),r;resizes.append(r)
- # Guide appearance is intentionally not part of the transparent reading surface.
- p.evaluate('HonroStory.start(HonroApp,[["안내",reviewLines["담허"][1]],["담허",reviewLines["담허"][1]]],{title:"검수"})');p.wait_for_timeout(240);guide=p.evaluate('getComputedStyle(document.querySelector(".story-guide .story-actions")).backgroundColor');assert guide=='rgb(13, 32, 36)',guide
+ # Guide actions share the transparent reading surface; the guide panel keeps its own colour.
+ p.evaluate('HonroStory.start(HonroApp,[["안내",reviewLines["담허"][1]],["담허",reviewLines["담허"][1]]],{title:"검수"})');p.wait_for_timeout(240);guide=p.evaluate('getComputedStyle(document.querySelector(".story-guide .story-actions")).backgroundColor');assert guide=='rgba(0, 0, 0, 0)',guide
  end=p.evaluate('HonroPortraits.stats()');assert end['requests']==start['requests'] and end['decodes']==start['decodes'] and end['waiters']==0,(start,end);assert not errors,errors;browser.close()
 report={'phase':phase,'head':subprocess.check_output(['git','rev-parse','HEAD'],cwd=ROOT,text=True).strip(),'manifestSha256':hashlib.sha256((ROOT/'web/manifest.json').read_bytes()).hexdigest(),'rows':rows,'guideBackground':guide,'liveResizeRetainsPanel':resizes,'imageCounters':{'before':start,'after':end},'errors':errors}
 if phase=='after':

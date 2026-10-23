@@ -1,5 +1,7 @@
 # 투명 대사 버튼 행 · 승인 초상화 소비 경로
 
+후속 정정: 이 기록에서 guide 버튼 행의 별도색을 유지한 것은 누락이었다. 목표안내도 투명행/body-only scroll로 보완했으며 [2026-10-23 기록](../reading-action-rows-20261023/README.md)을 따른다. 아래는 당시 실행의 역사 기록이다.
+
 최종 통합·빌드 **`40ff1f22a200139974607a58a43d821e94ceae5b`**, 최신 master **`3b698d80e54aa2b2a840ba2107f1710ea95f4084`**의 O05 경계를 보존했다. UI32위치/소비12항목/120회 전체 검수는2d8d269a이며, UI 관련7파일은 최종 소스와 byte-identical하다. 최종40ff1f22에서 별도 UI smoke12항목·Game/embedded/Workshop 연결을 확인했다. 최종 manifest SHA `cc0c4933cceb488ee8129bd04c64ecdb64d2cf7f77766aaa3b76d3f4aa14f598`. [정확한 실행/보존](evidence/preservation.json) · [최종 smoke](evidence/final-smoke.json) · [최종 build](evidence/final-build.txt).
 
 5890c096의 a0 발행 metadata만 갱신했을 때 활성 graph가 같았던 기록은 [O05 통합 전 증거](evidence/preservation-before-o05.json)에 남겼다. 이후 O05 병합/build가 engine/preview 자원을 갱신한 사실과 구분한다.3b 후보는 성공 발행으로 등록하지 않았다.

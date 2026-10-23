@@ -1,0 +1,74 @@
+{
+  "head": "ea936eff49710e8d220b627f193b982335719876",
+  "entry": "/web/entries/game.6d6545f147ad9a31.html",
+  "manifestSha256": "c3b77bf30065c716aa40bb3e79b54b2eb6afae5863b2b44fdc00d17f5867f937",
+  "rows": [
+    {
+      "guide": true,
+      "title": "여정 목표",
+      "line": "상층 주민 구조 · 구조",
+      "round": 1,
+      "rowBackground": "rgb(13, 32, 36)",
+      "panelBackground": "rgba(18, 44, 50, 0.96)",
+      "scene": {
+        "x": 10,
+        "y": 126,
+        "right": 380,
+        "bottom": 261,
+        "w": 370,
+        "h": 135
+      },
+      "lineRect": {
+        "x": 26,
+        "y": 183,
+        "right": 359,
+        "bottom": 204,
+        "w": 333,
+        "h": 21
+      },
+      "action": {
+        "x": 26,
+        "y": 212,
+        "right": 367,
+        "bottom": 250,
+        "w": 341,
+        "h": 38
+      },
+      "overlap": [],
+      "scroll": {
+        "body": [
+          21,
+          21,
+          0
+        ],
+        "panel": [
+          133,
+          133,
+          0
+        ]
+      },
+      "buttons": [
+        {
+          "action": "dialogue-prev",
+          "disabled": true,
+          "inside": true,
+          "hit": true
+        },
+        {
+          "action": "dialogue-next",
+          "disabled": false,
+          "inside": true,
+          "hit": true
+        }
+      ],
+      "kind": "guide",
+      "long": false,
+      "at": 0,
+      "view": [
+        390,
+        844
+      ]
+    }
+  ],
+  "errors": []
+}
