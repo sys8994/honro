@@ -1,0 +1,19 @@
+"""Focused actual Chromium check of production combat-spirit insertion.
+Direct factory insertion with frozen simulation and a spirit-sight viewer;
+this proves camera/visibility integration, not terrain placement or normal play.
+"""
+import json
+from playwright.sync_api import sync_playwright
+from browser_support import ROOT,launch,serve_game
+OUT=ROOT/'_local/reports/reinforcement-camera/spirits';OUT.mkdir(parents=True,exist_ok=True)
+with serve_game() as url,sync_playwright() as p:
+ browser=launch(p);page=browser.new_page(viewport={'width':1280,'height':800});errors=[];page.on('pageerror',lambda e:errors.append(str(e)))
+ page.goto(url+'/HONRO.html');page.wait_for_function('window.HonroApp',timeout=120000)
+ page.evaluate('''()=>{const a=HonroApp;a.profile=HONRO_TOOLS.fresh();for(let i=1;i<=30;i++)a.profile.cleared[i]={rounds:5};a.launch(16);}''');page.wait_for_function('HonroApp.engine?.b.honroStage===16&&HonroApp.dialogue',timeout=120000)
+ fixture=page.evaluate('''()=>{const a=HonroApp,b=a.engine.b,s=a.scene;a.dialogue=null;a.storyCamera=null;a.done=true;document.getElementById('dialogue-root').innerHTML='';document.body.classList.remove('story-lock');b.honroState.storyQueue=[];b.honroState.deferredStory=[];HonroStoryFraming.clear(s);s.storyFrozen=false;s.goalFocus=null;s.focusUntil=s.speakerUntil=0;const viewer=a.engine.heroesAlive().find(u=>u.spiritSight);if(!viewer)throw Error('No real spirit-sight viewer');b.active=viewer.id;Object.assign(s,{x:viewer.x,y:viewer.y-170,scale:.58,manual:true});const original={x:s.x,y:s.y,scale:s.scale,manual:s.manual};HonroReinforcementCamera.prime(s,b);window.spiritCameraFixture={original,ids:[]};for(const [i,kind]of ['resonance','echo','bellCluster'].entries()){const u=HonroWorld.createEnemy(b,a.stage,viewer.x+1000+i*330,kind,700+i,viewer.y-110-(i%2)*100,true);u.id='camera-spirit-'+kind;b.units.push(u);spiritCameraFixture.ids.push(u.id);if(!u.honroSpirit||!u.spiritHidden||!HonroAct2.visible(b,u))throw Error('Invalid combat spirit fixture');}return{...spiritCameraFixture,viewer:viewer.id};}''')
+ page.wait_for_timeout(620)
+ result=page.evaluate('''()=>{const a=HonroApp,s=a.scene,{w,h}=s.size(),units=a.engine.b.units.filter(u=>spiritCameraFixture.ids.includes(u.id)),expected=HonroReinforcementCamera.frame(s,units,w,h,spiritCameraFixture.original);return{active:HonroReinforcementCamera.active(s),camera:{x:s.x,y:s.y,scale:s.scale},expected,units:units.map(u=>({id:u.id,honroSpirit:u.honroSpirit,spiritHidden:u.spiritHidden,hp:u.hp,defense:u.existenceDefense,x:(u.x-s.x)*s.scale+w/2,y:(u.y-s.y)*s.scale+h/2,top:(u.y-u.h-s.y)*s.scale+h/2})),w,h};}''')
+ assert result['active'];assert all(abs(result['camera'][k]-result['expected'][k])<1e-6 for k in ['x','y','scale']);assert all(0<u['x']<result['w'] and 0<u['top']<u['y']<result['h']*.76 for u in result['units']);page.screenshot(path=str(OUT/'combat-spirits.png'))
+ page.evaluate('HonroApp.engine.b.units.filter(u=>spiritCameraFixture.ids.includes(u.id)).forEach(u=>{u.dead=true;u.hp=0;})');page.wait_for_timeout(650)
+ restored=page.evaluate('({x:HonroApp.scene.x,y:HonroApp.scene.y,scale:HonroApp.scene.scale,manual:HonroApp.scene.manual,active:HonroReinforcementCamera.active(HonroApp.scene)})');assert not restored['active'];assert all(abs(restored[k]-fixture['original'][k])<1e-6 for k in ['x','y','scale']);assert restored['manual'];assert not errors
+ (OUT/'browser.json').write_text(json.dumps({'fixture':'Production Act2 spirit factory, stage16 frozen insertion, real spiritSight viewer. Not normal play or placement proof.','fixtureState':fixture,'group':result,'restored':restored,'pageErrors':errors},ensure_ascii=False,indent=2));browser.close();print('PASS Chromium combat spirits: actual hidden resonance/echo/bellCluster remain visible to spiritSight, exact group camera, no zoom-in, death return; pageErrors 0')

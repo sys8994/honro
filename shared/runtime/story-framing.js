@@ -46,10 +46,16 @@ function conversation(app,who,subjects){
 }
 function speakerPolicy(who,meta,camera){const kind=G.HonroStory.speakerPresentation(who,meta).kind;return{...camera,speakerPolicy:kind!=='character'?'none':camera.allowOffscreenSpeaker||!['portrait','conversation'].includes(camera.intent)?'context-portrait':'world'};}
 function bind(app,lines,options){if(!app.engine||app.screen!=='battle')return lines;
+ // A dialogue opened during the insert must later release to the player's
+ // control view, rather than saving a halfway reinforcement pan as its origin.
+ if(!app.dialogue&&!app.storyCamera){const camera=G.HonroReinforcementCamera?.controlView(app.scene);if(camera)app.storyCamera=camera;}
  const b=app.engine.b,key=sceneKey(app,lines,options),stage=b.honroStage,names=[...new Set(lines.filter(l=>G.HonroStory.speakerPresentation(l[0],l[2]).kind==='character').map(l=>l[0]))];
  const subjects=names.map(n=>speakerId(app,n)?{actor:speakerId(app,n)}:{speaker:n});
  return lines.map(([who,text,meta={}],index)=>{
   if(stage===10&&options.after==='outcome'&&G.HonroSodanWithdrawal?.complete(b))return[who,text,{...meta,camera:speakerPolicy(who,meta,{id:'10:safe-exit',intent:'conversation',targets:[{nearbyAllies:'boss'}],padding:40,maxScale:.78})}];
+  const eventId=meta.eventSource?.startsWith('encounter:')?meta.eventSource.slice(10):null;
+  const reinforcementIds=meta.reinforcementIds||(eventId?(b.honroState?.reinforcementEvents?.[eventId]??((b.honroEvents||[]).some(ev=>ev.id===eventId&&G.HonroEncounters.combat(ev.action))?[]:null)):null);
+  if(reinforcementIds)return[who,text,{...meta,camera:speakerPolicy(who,meta,{id:`reinforcement:${stage}:${key}:${index}`,intent:'situation',targets:reinforcementIds.map(actor=>({actor})),padding:100,maxScale:Math.min(app.scene?.scale||.72,.72),reinforcement:true})}];
   if(meta.camera)return[who,text,{...meta,camera:speakerPolicy(who,meta,meta.camera)}];
   const kind=G.HonroStory.speakerPresentation(who,meta).kind,scenePolicy=Object.entries(policies).find(([id])=>id.startsWith(stage+':')&&(key===id.slice(id.indexOf(':')+1)||key.endsWith(':'+id.slice(id.indexOf(':')+1))||key.includes(id.slice(id.indexOf(':')+1))))?.[1];
   let camera=scenePolicy?{...scenePolicy}:kind==='character'?conversation(app,who,subjects):{intent:'situation',targets:subjects.length?subjects:[openings[stage]||{objective:'current'}],padding:65,maxScale:.8};
@@ -96,10 +102,11 @@ function safeRect(scene){const {w,h}=scene.size(),canvas=scene.canvas.getBoundin
 function targetFrame(scene,e){const f=scene.storyFrame;if(!f)return;const {app,camera}=f,{w,h}=scene.size();
  const signature=[w,h,camera.id,G.document.querySelector('#story-line')?.textContent].join(':');if(f.layout!==signature){f.rect=safeRect(scene);f.layout=signature;}
  const boxes=camera.targets.map(t=>bounds(app,t)),missing=camera.targets.filter((_,i)=>!boxes[i]);let valid=boxes.filter(Boolean),fallback=null;
+ if(!valid.length&&camera.reinforcement)return;
  if(!valid.length){const goal=G.HonroObjectives.state(e.b,app.stage).targets[0],u=e.active;fallback=goal?'current-objective':'active-actor';valid=[goal?bounds(app,{objective:'current'}):u?bounds(app,{actor:u.id}):null].filter(Boolean);}
  if(!valid.length)return;
  const pad=camera.padding??45,x=Math.min(...valid.map(p=>p.x))-pad,y=Math.min(...valid.map(p=>p.y))-pad,right=Math.max(...valid.map(p=>p.x+p.w))+pad,bottom=Math.max(...valid.map(p=>p.y+p.h))+pad,rect=f.rect;
- const scale=Math.max(.025,Math.min(camera.maxScale||1,scaleLimits[camera.intent]||.8,rect.w/Math.max(1,right-x),rect.h/Math.max(1,bottom-y)));
+ const scale=Math.max(.025,Math.min(camera.maxScale||1,scaleLimits[camera.intent]||.8,rect.w/Math.max(camera.reinforcement?1200:1,right-x),rect.h/Math.max(1,bottom-y)));
  let cx=(x+right)/2-(rect.x+rect.w/2-w/2)/scale,cy=(y+bottom)/2-(rect.y+rect.h/2-h/2)/scale;
  const focus=G.HonroBounds.focus(e.b),rangeX=[Math.max(focus.left,right-(rect.x+rect.w-w/2)/scale),Math.min(focus.right,x-(rect.x-w/2)/scale)],rangeY=[Math.max(focus.top,bottom-(rect.y+rect.h-h/2)/scale),Math.min(focus.bottom,y-(rect.y-h/2)/scale)];
  const boundary={overscanX:rangeX[0]>rangeX[1],overscanY:rangeY[0]>rangeY[1]};

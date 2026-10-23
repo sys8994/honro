@@ -1,0 +1,88 @@
+{
+  "fixture": "Production Act2 spirit factory, stage16 frozen insertion, real spiritSight viewer. Not normal play or placement proof.",
+  "fixtureState": {
+    "original": {
+      "x": 350,
+      "y": 5310,
+      "scale": 0.58,
+      "manual": true
+    },
+    "ids": [
+      "camera-spirit-resonance",
+      "camera-spirit-echo",
+      "camera-spirit-bellCluster"
+    ],
+    "viewer": "p-occultist"
+  },
+  "group": {
+    "active": true,
+    "camera": {
+      "x": 1685.5,
+      "y": 5300.9698275862065,
+      "scale": 0.58
+    },
+    "expected": {
+      "x": 1685.5,
+      "y": 5300.9698275862065,
+      "scale": 0.58
+    },
+    "units": [
+      {
+        "id": "camera-spirit-resonance",
+        "honroSpirit": true,
+        "spiritHidden": true,
+        "hp": 1200,
+        "defense": {
+          "form": 0.06,
+          "qi": 0.4,
+          "soul": 1.32
+        },
+        "x": 445.41,
+        "y": 374.6312500000002,
+        "top": 313.7312500000002
+      },
+      {
+        "id": "camera-spirit-echo",
+        "honroSpirit": true,
+        "spiritHidden": true,
+        "hp": 1200,
+        "defense": {
+          "form": 0.06,
+          "qi": 0.4,
+          "soul": 1.32
+        },
+        "x": 636.81,
+        "y": 316.6312500000002,
+        "top": 266.75125000000025
+      },
+      {
+        "id": "camera-spirit-bellCluster",
+        "honroSpirit": true,
+        "spiritHidden": true,
+        "hp": 1200,
+        "defense": {
+          "form": 0.06,
+          "qi": 0.4,
+          "soul": 1.32
+        },
+        "x": 828.21,
+        "y": 374.6312500000002,
+        "top": 300.39125000000024
+      }
+    ],
+    "w": 1280,
+    "h": 669.1875
+  },
+  "restored": {
+    "x": 350,
+    "y": 5310,
+    "scale": 0.58,
+    "manual": true,
+    "active": false
+  },
+  "pageErrors": [],
+  "integratedMaster": "e1e4b9aaa7e1d6013c4eb1e9c9245dbca2edb435",
+  "testedGameEntry": "web/entries/game.eb31c532bc947889.js",
+  "image": "combat-spirits.png",
+  "imageSha256": "fb135517dea5810571607f26c64c319984f838376b2ce822abe8014343283ba4"
+}
