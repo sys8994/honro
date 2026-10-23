@@ -80,11 +80,11 @@ with sync_playwright() as pw,serve_game() as base:
    hud.append({'class':cls,'size':[w,h],'controlsUnchanged':True,'imageOpacity':p.locator('#combat-skills .unaffordable').first.evaluate('e=>getComputedStyle(e).opacity')})
  p.evaluate("()=>{const a=HonroApp,u=a.engine.active;u.cls='archer';u.loadout=['A01','A08','A14','A09'];u.focus=10000;HONRO_CORE.SKILLS.A14.cooldown=2;u.cooldowns={A14:a.engine.b.round+2};a.updateHUD(true)}");settle(p);shot(p,'diagnostic-cooldown-2-turns');assert p.locator('[data-skill=A14] .mana-cost').inner_text()=='2회';p.evaluate('delete HONRO_CORE.SKILLS.A14.cooldown')
  cached=net(p,'reentered surfaces cached');assert len(set(network))==84,(len(network),len(set(network)))
- # Cold real network failure: actual hashed asset responds 404 and SVG fallback stays visible.
+ # Cold real network failure: actual hashed asset responds 404 and the neutral frame contains no SVG.
  q=b.new_page(viewport={'width':390,'height':844});q.route('**/skill-icon-A08.*.webp',lambda r:r.fulfill(status=404,body='deliberate network failure'))
  q.goto(base+'/HONRO.html');q.wait_for_function('window.HonroApp');q.evaluate("HonroApp.showCamp('archer');HonroApp.talent('A08')")
  q.wait_for_function("document.querySelector('.skill-modal-title [data-skill-icon=A08]').dataset.imageState==='error'")
- assert q.locator('.skill-modal-title [data-skill-icon=A08] svg').is_visible();shot(q,'network-failure-A08');q.evaluate("HonroApp.talent('A08')");q.wait_for_timeout(100);assert q.evaluate('HonroSkillImages.status().failed')==1;q.close()
+ assert q.locator('.skill-modal-title [data-skill-icon=A08] svg').count()==0;shot(q,'network-failure-A08');q.evaluate("HonroApp.talent('A08')");q.wait_for_timeout(100);assert q.evaluate('HonroSkillImages.status().failed')==1;q.close()
  # Real production scene: 1/4/10, spaced/clustered, zoom and roof. Original physics untouched.
  p.evaluate("HonroOptionalRuntime.load('training')")
  p.add_script_tag(content=(ROOT/'tests/cheonroe-fixture.mjs').read_text().replace('export function','function'))

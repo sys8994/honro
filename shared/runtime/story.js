@@ -3,14 +3,16 @@ const $=id=>document.getElementById(id),esc=s=>String(s??'').replace(/[&<>"']/g,
 const clone=x=>JSON.parse(JSON.stringify(x));
 let readingObserver;
 function layoutReading(node){
- const panel=node.querySelector('.story-scene'),line=panel?.querySelector('#story-line'),actions=panel?.querySelector('.story-actions');
+ const panel=node.querySelector('.story-scene,.story-guide'),line=panel?.querySelector('#story-line'),actions=panel?.querySelector('.story-actions');
  if(!line||!actions||!G.getComputedStyle)return;
  const fit=()=>{
   if(!panel.isConnected){readingObserver?.disconnect();readingObserver=null;return;}
   const box=panel.getBoundingClientRect(),text=line.getBoundingClientRect(),style=G.getComputedStyle(panel),copy=G.getComputedStyle(line.parentElement);
-  const gap=copy.display==='contents'?(parseFloat(style.rowGap)||0):0;
-  const bottom=copy.display==='contents'?0:parseFloat(copy.paddingBottom)||0;
-  const limit=Math.max(0,box.bottom-text.top-(parseFloat(style.borderBottomWidth)||0)-(parseFloat(style.paddingBottom)||0)-actions.offsetHeight-gap-bottom);
+  const direct=line.parentElement===panel,gap=copy.display==='contents'||direct&&style.display==='grid'?(parseFloat(style.rowGap)||0):0;
+  const bottom=direct||copy.display==='contents'?0:parseFloat(copy.paddingBottom)||0;
+  const ar=actions.getBoundingClientRect(),aside=ar.left>=text.right-.5||ar.right<=text.left+.5,as=G.getComputedStyle(actions);
+  const reserved=aside?0:actions.offsetHeight+(parseFloat(as.marginTop)||0)+(parseFloat(as.marginBottom)||0)+gap;
+  const limit=Math.max(0,box.bottom-text.top-(parseFloat(style.borderBottomWidth)||0)-(parseFloat(style.paddingBottom)||0)-reserved-bottom);
   const value=limit.toFixed(2)+'px';if(line.style.getPropertyValue('--story-copy-limit')!==value)line.style.setProperty('--story-copy-limit',value);
  };
  fit();if(G.ResizeObserver){readingObserver=new G.ResizeObserver(fit);readingObserver.observe(panel);}
