@@ -11,7 +11,7 @@ function reordered(profile,cls,target){
 }
 function commit(app,next){
  if(app.screen!=='camp'||!next||JSON.stringify(next)===JSON.stringify(order(app.profile)))return false;
- app.profile.playerTurnOrder=C.normalizePlayerTurnOrder(next);app.persist();return true;
+ app.profile.playerTurnOrder=C.normalizePlayerTurnOrder(next);app.persist();app.notify('카드 순서를 저장했습니다.');return true;
 }
 function camp(app){
  app.playerTurnOrderCleanup?.();
@@ -33,7 +33,7 @@ function camp(app){
   }
  }
  display();
- nav.insertAdjacentHTML('afterend','<p class="camp-card-order-hint" data-card-order-hint>카드 순서대로 행동합니다 · 짧게 눌러 선택 · 길게 눌러 좌우로 이동<span>키보드: Alt + ← / →</span></p><span class="camp-card-order-status" role="status" aria-live="polite" data-card-order-status></span>');
+ nav.insertAdjacentHTML('afterend','<p class="camp-card-order-hint" data-card-order-hint>카드 순서 = 행동 순서 · 짧게 눌러 선택<span>길게 누르고 좌우로 이동 · 놓으면 저장 · Alt + ← / →</span></p><span class="camp-card-order-status" role="status" aria-live="polite" data-card-order-status></span>');
  const status=app.root.querySelector('[data-card-order-status]');
  function clearVisual(){for(const card of cards){card.classList.remove('order-dragging','order-drop-target');card.style.removeProperty('transform');}}
  function end(cancel=false){

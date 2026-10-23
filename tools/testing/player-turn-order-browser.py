@@ -1,59 +1,75 @@
-"""Camp touch editor + ordinary App start/save/Continue input windows.
-Prepared prior-clear profiles; no campaign completion or physical device claim.
+"""Real touch/mouse card order gestures and existing App save/turn integration.
+Prior-clear profiles are fixtures; no normal campaign completion claim.
 """
 import json,sys,subprocess
 from pathlib import Path
 from playwright.sync_api import sync_playwright
 ROOT=Path(__file__).resolve().parents[2];sys.path.insert(0,str(ROOT/'tests'))
 from browser_support import launch,serve_game
-BASE=ROOT/'_local/reports/player-turn-order-20261023';OUT=BASE/'browser';OUT.mkdir(parents=True,exist_ok=True)
-KEY='honro-first-act-profile-1'
+PREP=ROOT/'_local/reports/player-turn-order-20261023';OUT=ROOT/'_local/reports/camp-card-turn-order-20261023/browser';OUT.mkdir(parents=True,exist_ok=True)
+KEY='honro-first-act-profile-1';rows=[]
 with serve_game() as base,sync_playwright() as pw:
  browser=launch(pw);ctx=browser.new_context(viewport={'width':390,'height':844},is_mobile=True,has_touch=True);page=ctx.new_page();errors=[];http=[]
- page.on('pageerror',lambda e:errors.append(str(e)));page.on('response',lambda r:http.append(r.url)if r.status>=400 else None)
+ def watch(p):
+  p.on('pageerror',lambda e:errors.append(str(e)));p.on('response',lambda r:http.append(r.url)if r.status>=400 else None)
+ watch(page)
  def load(profile,stage):
-  page.goto(base+'/HONRO.html',wait_until='domcontentloaded');page.wait_for_function('window.HonroApp',timeout=90000)
-  page.evaluate('(v)=>localStorage.setItem(v.key,JSON.stringify(v.profile))',dict(key=KEY,profile=profile));page.reload();page.wait_for_function('window.HonroApp',timeout=90000)
-  page.evaluate('async id=>{await HonroCampaignLoader.ensureStage(id);HonroApp.frame=()=>{}}',stage)
- def camp():
-  page.evaluate("HonroApp.showCamp('archer')");page.wait_for_selector('[data-action=player-order-open]')
- def tap(action,extra=''):page.locator(f'[data-action="{action}"]'+extra).tap()
+  page.goto(base+'/HONRO.html',wait_until='domcontentloaded');page.wait_for_function('window.HonroApp',timeout=90000);page.evaluate('(v)=>localStorage.setItem(v.key,JSON.stringify(v.profile))',dict(key=KEY,profile=profile));page.reload();page.wait_for_function('window.HonroApp',timeout=90000);page.evaluate('async id=>{await HonroCampaignLoader.ensureStage(id);HonroApp.frame=()=>{}}',stage)
+ def camp():page.evaluate("HonroApp.showCamp('archer')");page.wait_for_selector('.hero-tabs .hero-tab');assert page.locator('[data-action=player-order-open]').count()==0
+ def tap(action,extra=''):page.locator(f'[data-action="{action}"]'+extra).click()
+ def cards():return page.locator('.hero-tabs>.hero-tab').evaluate_all('(els)=>els.map(e=>e.dataset.class)')
+ def point(cls):
+  b=page.locator(f'.hero-tab[data-class={cls}]').bounding_box();return dict(x=b['x']+b['width']/2,y=b['y']+b['height']/2,id=0)
+ def touch(kind,points):cdp.send('Input.dispatchTouchEvent',dict(type=kind,touchPoints=points))
+ def drag(cls,target,cancel=None,shot=False):
+  a,z=point(cls),point(target);touch('touchStart',[a]);page.wait_for_timeout(460)
+  if cancel=='multi':
+   second={**point('mage'),'id':1};touch('touchStart',[a,second]);touch('touchMove',[z,second]);touch('touchEnd',[])
+  elif cancel=='escape':page.keyboard.press('Escape');touch('touchMove',[z]);touch('touchEnd',[])
+  elif cancel=='cancel':touch('touchMove',[z]);touch('touchCancel',[])
+  elif cancel=='outside':touch('touchMove',[{**z,'x':-30}]);touch('touchEnd',[])
+  else:
+   for n in range(1,7):touch('touchMove',[dict(x=a['x']+(z['x']-a['x'])*n/6,y=a['y'],id=0)]);page.wait_for_timeout(20)
+   if shot:page.screenshot(path=str(OUT/'mobile-dragging.jpg'),type='jpeg',quality=85)
+   touch('touchEnd',[])
+  page.wait_for_timeout(90)
+ def counter():return page.evaluate('window.cardOrderSaves')
+ def count_saves():page.evaluate('''()=>{window.cardOrderSaves=0;const a=HonroApp,persist=a.persist.bind(a);a.persist=()=>{window.cardOrderSaves++;return persist();};}''')
+ # Recruited-only drag and ordinary short-tap selection, no modal.
+ load(json.loads((PREP/'two-profile.json').read_text()),3);cdp=ctx.new_cdp_session(page);camp();count_saves();page.locator('.hero-tab[data-class=mage]').tap();assert page.evaluate('HonroApp.cls')=='mage';assert counter()==0;assert cards()[:2]==['archer','mage'];assert page.locator('.hero-tab[data-class=occultist]').inner_text().strip()=='미합류'
+ drag('mage','archer');assert cards()[:2]==['mage','archer'];assert counter()==1;assert page.evaluate('HonroApp.cls')=='mage';assert page.locator('.player-turn-order').count()==0
+ page.screenshot(path=str(OUT/'mobile-known-only.jpg'),type='jpeg',quality=85)
+ # Four cards: commit once, selected character stays fixed, each abort rolls back.
+ load(json.loads((PREP/'four-profile.json').read_text()),18);camp();count_saves();page.locator('.hero-tab[data-class=mage]').tap();assert page.evaluate('HonroApp.cls')=='mage';drag('occultist','archer',shot=True);assert cards()==['occultist','archer','mage','knight'];assert counter()==1;assert page.evaluate('HonroApp.cls')=='mage'
+ committed=cards();selected=page.evaluate('HonroApp.cls');
+ for kind in ['cancel','escape','outside','multi']:
+  before=counter();drag('knight','archer',cancel=kind);assert cards()==committed,(kind,cards());assert counter()==before;assert page.evaluate('HonroApp.cls')==selected;rows.append(dict(check=kind,orderUnchanged=True,noSave=True,noSelection=True))
+ # A swipe before long-press disarms without turning into a character tap.
+ a=point('knight');touch('touchStart',[a]);touch('touchMove',[{**a,'x':a['x']-45}]);touch('touchEnd',[]);page.wait_for_timeout(80);assert cards()==committed and counter()==1 and page.evaluate('HonroApp.cls')==selected
+ # Vertical native scrolling wins over pending reorder.
+ before_scroll=page.locator('.camp-scroll').evaluate('(e)=>e.scrollTop');a=point('mage');touch('touchStart',[a]);
+ for n in range(1,7):touch('touchMove',[{**a,'y':a['y']-n*18}]);page.wait_for_timeout(25)
+ touch('touchEnd',[]);page.wait_for_timeout(250);after_scroll=page.locator('.camp-scroll').evaluate('(e)=>e.scrollTop');assert after_scroll>before_scroll,(before_scroll,after_scroll);assert cards()==committed and counter()==1;page.locator('.camp-scroll').evaluate('(e)=>e.scrollTo({top:0,behavior:"instant"})');page.wait_for_timeout(150);rows.append(dict(check='native vertical scroll',before=before_scroll,after=after_scroll,noSave=True))
+ # New independent drag after multi-touch/scroll must work and save once.
+ drag('knight','archer');assert cards()==['occultist','knight','archer','mage'];assert counter()==2;assert page.evaluate('HonroApp.cls')==selected;page.screenshot(path=str(OUT/'mobile-saved-cards.jpg'),type='jpeg',quality=85);saved_profile=page.evaluate('HonroApp.profile');page.reload();page.wait_for_function('window.HonroApp');page.evaluate('HonroApp.frame=()=>{}');camp();assert cards()==['occultist','knight','archer','mage'];assert page.evaluate('HonroApp.profile.playerTurnOrder')==cards();assert page.locator('.hero-tabs').evaluate('(n)=>n.scrollWidth<=n.clientWidth+1')
+ # Desktop pointer movement and inline keyboard alternative, still no editor.
+ ctx2=browser.new_context(viewport={'width':1180,'height':757});page=ctx2.new_page();watch(page);load(saved_profile,18);camp();count_saves();a,z=point('mage'),point('archer');page.mouse.move(a['x'],a['y']);page.mouse.down();page.mouse.move(z['x'],z['y'],steps=8);page.mouse.up();page.wait_for_timeout(80);assert cards()==['occultist','knight','mage','archer'];assert counter()==1
+ page.locator('.hero-tab[data-class=occultist]').focus();page.keyboard.press('Alt+ArrowRight');assert cards()==['knight','occultist','mage','archer'];assert counter()==2;assert page.evaluate('document.activeElement.dataset.class')=='occultist';a,z=point('occultist'),point('knight');page.mouse.move(a['x'],a['y']);page.mouse.down();page.mouse.move(z['x'],z['y'],steps=8);page.mouse.up();page.wait_for_timeout(80);assert cards()==['occultist','knight','mage','archer'];assert counter()==3
+ page.screenshot(path=str(OUT/'desktop-cards.jpg'),type='jpeg',quality=85);rows.append(dict(check='mouse and Alt arrows',order=cards(),saves=counter(),noModal=True))
  def finish_story():
   for _ in range(80):
    if not page.evaluate('!!HonroApp.dialogue'):break
    tap('dialogue-next');page.wait_for_timeout(15)
   assert not page.evaluate('!!HonroApp.dialogue')
  def ready():
-  page.wait_for_timeout(300)
-  page.evaluate('''()=>{const a=HonroApp,C=HONRO_CORE;for(let n=0;n<2000&&!a.engine.canAct();n++){a.engine.tick(C.STEP);if(!a.dialogue)a.missionTick(C.STEP);}HonroStory.tick(a,performance.now()+2000);a.updateHUD(true);}''');finish_story()
- def battle_shot(name):
-  expected=page.evaluate('JSON.stringify(HonroApp.engine.b)')
-  page.evaluate("()=>{const a=HonroApp,u=a.engine.active;Object.assign(a.scene,{manual:true,x:u.x,y:u.y-140,scale:.6,goalFocus:null,cinematic:null,storyTween:null});a.updateHUD(true);a.scene.render(a.engine,0,a.selected,a.power,false,0)}")
-  page.wait_for_function('HonroAuthoredFarArt.ready(18)',timeout=90000)
-  page.evaluate('HonroApp.scene.render(HonroApp.engine,0,HonroApp.selected,HonroApp.power,false,0)')
-  assert page.evaluate('JSON.stringify(HonroApp.engine.b)')==expected
-  page.screenshot(path=str(OUT/name),type='jpeg',quality=85)
- def get():return page.evaluate('''()=>{const a=HonroApp,b=a.engine.b;return{active:b.active,cls:a.engine.active.cls,round:b.round,preference:b.playerTurnOrder,units:b.units.map(u=>({id:u.id,cls:u.cls,x:u.x,y:u.y,hp:u.hp,focus:u.focus,acted:u.acted,dead:u.dead}))}}''')
- # Unjoined characters must not be exposed by the new editor.
- load(json.loads((BASE/'two-profile.json').read_text()),3);camp();tap('player-order-open');text=page.locator('.player-turn-order').inner_text();assert '소단' not in text and '휘겸' not in text;assert '설오' in text and '담허' in text
- page.screenshot(path=str(OUT/'mobile-known-only.jpg'),type='jpeg',quality=85);tap('player-order-cancel')
- load(json.loads((BASE/'four-profile.json').read_text()),18);camp();cards_before=page.locator('.hero-tab').evaluate_all('(els)=>els.map(e=>e.dataset.class)');tap('player-order-open')
- for cls,count in [('occultist',3),('knight',2),('mage',1)]:
-  for _ in range(count):tap('player-order-move',f'[data-class={cls}][data-direction="-1"]')
- draft=page.evaluate('HonroApp.playerTurnOrderDraft');assert draft==['occultist','knight','mage','archer'];assert page.locator('.player-turn-order').evaluate('(n)=>n.scrollWidth<=n.clientWidth+1')
- page.screenshot(path=str(OUT/'mobile-editor.jpg'),type='jpeg',quality=85);tap('player-order-save');assert page.evaluate('HonroApp.profile.playerTurnOrder')==draft;assert page.locator('.hero-tab').evaluate_all('(els)=>els.map(e=>e.dataset.class)')==cards_before
- page.reload();page.wait_for_function('window.HonroApp');assert page.evaluate('HonroApp.profile.playerTurnOrder')==draft;page.evaluate('async()=>{await HonroCampaignLoader.ensureStage(18);HonroApp.frame=()=>{};HonroApp.launch(18)}');page.wait_for_function('HonroApp.engine?.b.honroStage===18',timeout=90000);finish_story();ready();fresh=get();assert fresh['cls']=='occultist'
- battle_shot('fresh-selected-sodan.jpg')
- tap('defend');ready();assert get()['cls']=='knight';tap('select-hero','[data-id=p-archer]');assert get()['cls']=='archer';assert next(u for u in get()['units']if u['id']=='p-occultist')['acted']
+  page.wait_for_timeout(300);page.evaluate('''()=>{const a=HonroApp,C=HONRO_CORE;for(let n=0;n<2000&&!a.engine.canAct();n++){a.engine.tick(C.STEP);if(!a.dialogue)a.missionTick(C.STEP);}HonroStory.tick(a,performance.now()+2000);a.updateHUD(true);}''');finish_story()
+ def state():return page.evaluate('''()=>{const a=HonroApp,b=a.engine.b;return {active:b.active,cls:a.engine.active.cls,round:b.round,preference:b.playerTurnOrder,units:b.units.map(u=>({id:u.id,x:u.x,y:u.y,hp:u.hp,focus:u.focus,acted:u.acted,dead:u.dead}))}}''')
+ page.evaluate('HonroApp.launch(18)');page.wait_for_function('HonroApp.engine?.b.honroStage===18',timeout=90000);finish_story();ready();fresh=state();assert fresh['cls']=='occultist';tap('defend');ready();assert state()['cls']=='knight';tap('select-hero','[data-id=p-archer]');assert state()['cls']=='archer';with_export=None
  with page.expect_download() as download:page.evaluate('HonroApp.export()')
- exported=json.loads(Path(download.value.path()).read_text());saved=exported['honroBattle'];page.evaluate('HonroApp.persist()');page.reload();page.wait_for_function('window.HonroApp');page.evaluate('async()=>{await HonroCampaignLoader.ensureStage(18);HonroApp.frame=()=>{};HonroApp.continue()}');page.wait_for_function('HonroApp.engine?.b.honroStage===18',timeout=90000);actual=json.loads(page.evaluate('JSON.stringify(HonroApp.engine.b)'))
- if actual!=saved:(OUT/'continue-difference.json').write_text(json.dumps(dict(expected=saved,actual=actual)))
- assert actual==saved
- continued=get();assert continued['cls']=='archer';camp();tap('player-order-open');tap('player-order-move','[data-class=mage][data-direction="-1"]');tap('player-order-move','[data-class=mage][data-direction="-1"]');tap('player-order-save');assert page.evaluate('HonroApp.profile.playerTurnOrder[0]')=='mage'
- page.evaluate('HonroApp.continue()');page.wait_for_function('HonroApp.engine?.b.honroStage===18');resumed=get();assert resumed['active']==continued['active'];assert resumed['units']==continued['units'];ready();tap('defend');ready();after=get();assert after['cls']=='mage';assert next(u for u in after['units']if u['id']=='p-occultist')['acted'];assert next(u for u in after['units']if u['id']=='p-archer')['acted']
- battle_shot('continued-next-mage.jpg')
- current=page.evaluate('''()=>{const a=HonroApp;return {profile:{...a.profile,honroBattle:JSON.parse(JSON.stringify(a.engine.b))}}}''');(OUT/'actual-window.json').write_text(json.dumps(current))
+ exported=json.loads(Path(download.value.path()).read_text());snapshot=exported['honroBattle'];page.evaluate('HonroApp.persist()');page.reload();page.wait_for_function('window.HonroApp');page.evaluate('async()=>{await HonroCampaignLoader.ensureStage(18);HonroApp.frame=()=>{};HonroApp.continue()}');page.wait_for_function('HonroApp.engine?.b.honroStage===18');assert json.loads(page.evaluate('JSON.stringify(HonroApp.engine.b)'))==snapshot;continued=state();camp();count_saves();a,z=point('mage'),point('occultist');page.mouse.move(a['x'],a['y']);page.mouse.down();page.mouse.move(z['x'],z['y'],steps=10);page.mouse.up();page.wait_for_timeout(80);assert cards()==['mage','occultist','knight','archer'];assert counter()==1;page.evaluate('HonroApp.continue()');page.wait_for_function('HonroApp.engine?.b.honroStage===18');assert state()['active']==continued['active'];assert state()['units']==continued['units'];ready();tap('defend');ready();after=state();assert after['cls']=='mage';assert next(u for u in after['units']if u['id']=='p-occultist')['acted'];assert next(u for u in after['units']if u['id']=='p-archer')['acted']
+ page.evaluate('''()=>{const a=HonroApp,u=a.engine.active;Object.assign(a.scene,{manual:true,x:u.x,y:u.y-140,scale:.5,goalFocus:null,cinematic:null,storyTween:null});a.updateHUD(true);a.scene.render(a.engine,0,a.selected,a.power,false,0)}''');page.wait_for_function('HonroAuthoredFarArt.ready(18)',timeout=90000);page.evaluate('HonroApp.scene.render(HonroApp.engine,0,HonroApp.selected,HonroApp.power,false,0)');page.screenshot(path=str(OUT/'continued-next-mage.jpg'),type='jpeg',quality=85)
+ (OUT/'actual-window.json').write_text(json.dumps(page.evaluate('''()=>{const a=HonroApp;return {profile:{...a.profile,honroBattle:JSON.parse(JSON.stringify(a.engine.b))}}}''')))
  assert not errors and not http,(errors,http)
- result=dict(checkedCommit=subprocess.check_output(['git','rev-parse','HEAD'],cwd=ROOT,text=True).strip(),entry=json.loads((ROOT/'web/manifest.json').read_text())['gameEntry'],mobileTouch=True,battleInspectionRenderPure=True,unjoinedNamesHidden=True,cardsBefore=cards_before,cardsUnchanged=True,savedAndReloaded=draft,fresh=fresh,wholeBattleContinueExact=True,manualAndSpentPreserved=resumed,afterOrderEditAndDefend=after,errors=errors,httpFailures=http,scope='Prior-clear entry fixtures; actual touch buttons, fresh18 entry and a few ordinary defend/select actions, export/reload/Continue. No18 full completion or physical mobile-device claim.')
+ result=dict(checkedCommit=subprocess.check_output(['git','rev-parse','HEAD'],cwd=ROOT,text=True).strip(),entry=json.loads((ROOT/'web/manifest.json').read_text())['gameEntry'],rows=rows,fresh=fresh,wholeBattleContinueExact=True,manualAndSpentPreserved=continued,afterChangedCardsAndDefend=after,errors=errors,httpFailures=http,scope='Touch/mouse/keyboard browser fixtures; prepared prior-clear entry and small ordinary select/defend window. No stage completion or physical device claim; frozen frame save loop invokes actual App.persist once.')
  (OUT/'result.json').write_text(json.dumps(result,ensure_ascii=False,indent=2)+'\n');browser.close()
-print('PASS real mobile order editor/known-only/reload/fresh/manual/spent/Continue/new preference, cards unchanged')
+print('PASS direct card touch/mouse reorder, tap/scroll/cancel/multi, save/reload, fresh and current-action Continue')
