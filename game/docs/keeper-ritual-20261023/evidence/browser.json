@@ -1,0 +1,64 @@
+{
+  "wholeBattleContinueExact": true,
+  "wonCommandCursorContinueExact": true,
+  "poses": [
+    {
+      "dialogue": true,
+      "row": "18.beats.keeper:386318ec09",
+      "pose": "weak",
+      "done": false,
+      "index": 0
+    },
+    {
+      "dialogue": true,
+      "row": "18.beats.keeper:86a4c8312d",
+      "pose": "weak",
+      "done": false,
+      "index": 1
+    },
+    {
+      "dialogue": true,
+      "row": "18.beats.keeper:49ba953239",
+      "pose": "weak",
+      "done": false,
+      "index": 2
+    },
+    {
+      "dialogue": true,
+      "row": "18.outro:b196accb21",
+      "pose": "bound",
+      "done": false,
+      "index": 3
+    },
+    {
+      "dialogue": true,
+      "row": "18.outro:e8c4944c23",
+      "pose": "bound",
+      "done": false,
+      "index": 4
+    },
+    {
+      "dialogue": true,
+      "row": "18.outro:228b3a13e9",
+      "pose": "bound",
+      "done": false,
+      "index": 5
+    },
+    {
+      "dialogue": false,
+      "row": null,
+      "pose": "bound",
+      "done": true,
+      "index": null
+    }
+  ],
+  "captured": [
+    "outro",
+    "command"
+  ],
+  "rewardOnce": true,
+  "stage19": true,
+  "growthExact": true,
+  "errors": [],
+  "scope": "Actual R10 saved normal-input result; normal story next/result-continue. No19 combat."
+}

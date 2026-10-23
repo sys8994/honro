@@ -15,20 +15,28 @@ with sync_playwright() as pw,serve_game() as url:
  # Actual unified portrait resolver + normal story DOM. Text is exact approved source.
  page.evaluate('''()=>{const a=HonroApp,k=a.engine.unit('act2-keeper');HonroStory.start(a,HonroNarrativeCatalogue.data.stages[18].story.filter(l=>l[0]==='종지기'),{title:'묵종',index:0});a.scene.storyTween=null;a.scene.x=k.x-190;a.scene.y=k.y-150;a.scene.scale=1.1;a.scene.manual=true;a.scene.render(a.engine,0,a.selected,a.power,false,0,true);}''')
  page.wait_for_timeout(800);page.screenshot(path=str(OUT/'first-portrait.jpg'),type='jpeg',quality=88)
+ # Fresh prepared pattern boundaries, real production cast -> one normal defend.
+ for pattern,name in [(0,'seal'),(2,'binding')]:
+  info=page.evaluate('''pattern=>{const a=HonroApp;while(a.dialogue)HonroStory.finish(a);const e=a.engine,b=e.b,k=e.unit('act2-keeper');delete b.keeperRitual.zone;delete b.keeperRitual.cast;b.keeperRitual.next=pattern;Object.assign(b,{active:k.id,queue:[k.id],side:1,phase:'enemy'});k.lastAct=b.round;e.enemyAction();for(let i=0;i<1500&&!(b.side===0&&b.phase==='aim');i++)e.tick(HONRO_CORE.STEP);a.scene.storyTween=a.scene.cinematic=a.scene.goalFocus=null;a.scene.x=k.x-180;a.scene.y=k.y-150;a.scene.scale=1.15;a.scene.manual=true;a.updateHUD(true);a.scene.render(e,0,a.selected,a.power,false,0,true);return {kind:b.keeperRitual.zone?.kind,phase:b.keeperRitual.zone?.phase};}''',pattern)
+  assert info=={'kind':name,'phase':'warning'},info
+  page.screenshot(path=str(OUT/(name+'-warning.jpg')),type='jpeg',quality=88)
+  active=page.evaluate('''()=>{const a=HonroApp,e=a.engine,b=e.b;e.select('p-knight');e.tick(HONRO_CORE.STEP);e.wait();for(let i=0;i<600&&b.keeperRitual.zone?.phase!=='active';i++)e.tick(HONRO_CORE.STEP);a.updateHUD(true);a.scene.render(e,0,a.selected,a.power,false,0,true);return b.keeperRitual.zone?.phase;}''');assert active=='active',active
+  page.screenshot(path=str(OUT/(name+'-active.jpg')),type='jpeg',quality=88)
  (OUT/'first-summary.json').write_text(json.dumps({'setup':result,'cast':cast,'errors':errors},ensure_ascii=False,indent=2));assert not errors,errors;browser.close()
 print(OUT)
 # Actual R10 normal-input save; no won/HP/quest/reward injection.
 terminal=json.loads((ROOT/(os.environ.get('HONRO_KEEPER_FULLPLAY','_local/reports/keeper-ritual/fullplay')+'/terminal-checkpoint.json')).read_text())['profile']
 with sync_playwright() as pw,serve_game() as url:
  browser=launch(pw);p=browser.new_page(viewport={'width':1440,'height':900});errs=[];p.on('pageerror',lambda e:errs.append(str(e)))
- p.goto(url+'/HONRO.html');p.wait_for_function('window.HonroApp');p.evaluate('profile=>{const a=HonroApp;a.frame=()=>{};a.profile=a.normalProfile=profile;a.continue();}',terminal);p.wait_for_function('HonroApp.engine?.b.honroStage===18',timeout=45000)
+ p.goto(url+'/HONRO.html');p.wait_for_function('window.HonroApp');p.evaluate('profile=>{const a=HonroApp;a.qaOriginalFrame=a.frame.bind(a);a.frame=()=>{};a.profile=a.normalProfile=profile;a.continue();}',terminal);p.wait_for_function('HonroApp.engine?.b.honroStage===18',timeout=45000)
  before=p.evaluate('()=>JSON.parse(JSON.stringify(HonroApp.engine.b))');assert before==terminal['honroBattle'],'Actual R10 browser Continue whole battle exact'
  p.evaluate('()=>{const a=HonroApp;a.outcome();a.scene.render(a.engine,0,a.selected,a.power,false,0,true);}')
- poses=[];captured=set()
+ poses=[];captured=set();cursor_exact=False
  for _ in range(50):
   row=p.evaluate('''()=>{const a=HonroApp,d=a.dialogue;return {dialogue:!!d,row:d?.lines[d.index]?.[2]?.rowId,pose:a.engine.b.honroState.keeperStaging?.pose,done:a.done,index:d?.index};}''');poses.append(row)
   if not row['dialogue']:break
-  if row.get('row')=='18.beats.keeper:49ba953239':assert row['pose']=='weak';p.wait_for_timeout(500);p.screenshot(path=str(OUT/'actual-last-command.jpg'),type='jpeg',quality=88);captured.add('command')
+  if row.get('row')=='18.beats.keeper:49ba953239':
+   resumed=p.evaluate('()=>{const a=HonroApp,before=JSON.parse(JSON.stringify(a.engine.b));a.continue();return {before,after:JSON.parse(JSON.stringify(a.engine.b))};}');assert resumed['before']==resumed['after'],'Actual won/report-final cursor Continue exact';cursor_exact=True;assert row['pose']=='weak';p.wait_for_timeout(500);p.screenshot(path=str(OUT/'actual-last-command.jpg'),type='jpeg',quality=88);captured.add('command')
   if row.get('row','').startswith('18.outro:') and 'outro' not in captured:
    assert row['pose']=='bound';p.evaluate('()=>{const a=HonroApp;a.scene.render(a.engine,0,a.selected,a.power,false,0,true);}');p.wait_for_timeout(500);p.screenshot(path=str(OUT/'actual-bound-outro.jpg'),type='jpeg',quality=88);captured.add('outro')
   p.locator('[data-action="dialogue-next"]').click();p.evaluate('()=>{const a=HonroApp;a.scene.render(a.engine,0,a.selected,a.power,false,0,true);}')
@@ -46,4 +54,18 @@ with sync_playwright() as pw,serve_game() as url:
  assert p.evaluate('HonroApp.engine.b.round')==1
  p.screenshot(path=str(OUT/'actual-stage19.jpg'),type='jpeg',quality=88)
  assert not errs,errs
- (OUT/'actual-result-summary.json').write_text(json.dumps({'wholeBattleContinueExact':True,'poses':poses,'captured':list(captured),'rewardOnce':True,'stage19':True,'growthExact':True,'errors':errs,'scope':'Actual R10 saved normal-input result; normal story next/result-continue. No19 combat.'},ensure_ascii=False,indent=2));browser.close()
+ (OUT/'actual-result-summary.json').write_text(json.dumps({'wholeBattleContinueExact':True,'wonCommandCursorContinueExact':cursor_exact,'poses':poses,'captured':list(captured),'rewardOnce':True,'stage19':True,'growthExact':True,'errors':errs,'scope':'Actual R10 saved normal-input result; normal story next/result-continue. No19 combat.'},ensure_ascii=False,indent=2));browser.close()
+# Mobile camera/portrait/state pass: the same actual R10 saved battle. No fight.
+with sync_playwright() as pw,serve_game() as url:
+ browser=launch(pw);ctx=browser.new_context(viewport={'width':390,'height':844},is_mobile=True,has_touch=True);p=ctx.new_page()
+ p.goto(url+'/HONRO.html');p.wait_for_function('window.HonroApp');p.evaluate('profile=>{const a=HonroApp;a.qaOriginalFrame=a.frame.bind(a);a.frame=()=>{};a.profile=a.normalProfile=profile;a.continue();}',terminal);p.wait_for_function('HonroApp.engine?.b.honroStage===18',timeout=45000)
+ p.evaluate('()=>{const a=HonroApp;a.outcome();a.scene.render(a.engine,0,a.selected,a.power,false,0,true);}')
+ for _ in range(20):
+  row=p.evaluate('HonroApp.dialogue?.lines[HonroApp.dialogue.index]?.[0]')
+  if row=='종지기':break
+  p.locator('[data-action="dialogue-next"]').tap()
+ p.evaluate('()=>{const a=HonroApp;a.frame=a.qaOriginalFrame;requestAnimationFrame(t=>a.frame(t));}');p.wait_for_timeout(900);p.screenshot(path=str(OUT/'actual-mobile-portrait.jpg'),type='jpeg',quality=88)
+ p.set_viewport_size({'width':844,'height':390});p.wait_for_timeout(200);p.evaluate('()=>{const a=HonroApp;a.scene.render(a.engine,0,a.selected,a.power,false,0,true);}')
+ p.wait_for_timeout(700);p.screenshot(path=str(OUT/'actual-mobile-landscape.jpg'),type='jpeg',quality=88)
+ pure=p.evaluate('''()=>{const a=HonroApp,e=a.engine,b=e.b,c=document.createElement('canvas').getContext('2d'),unit=e.unit('act2-keeper'),before=JSON.stringify(b),Old=Path2D;let allocations=0;window.Path2D=new Proxy(Old,{construct(t,args){allocations++;return new t(...args);}});for(let i=0;i<60;i++)HonroKeeperRitualArt.draw(c,unit,b,i/60);window.Path2D=Old;return {battleExact:JSON.stringify(b)===before,pathAllocations:allocations};}''');assert pure=={'battleExact':True,'pathAllocations':0},pure
+ (OUT/'render-purity.json').write_text(json.dumps(pure));browser.close()

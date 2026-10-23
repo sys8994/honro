@@ -1,0 +1,321 @@
+{
+  "checkoutCommit": "41a435f1f44ee292df3efe4e45167fd23447f170",
+  "sourceHash": "cc916c7dd8793c44580cbd6261622c102b37d3b3e250bef0980801a246aa6be7",
+  "runtimeSha256": "045c88ed1972d1b8bdfc7e9f5f64ffcb9ae0fabe75693c66b09161f45013e405",
+  "gameplayRuntimeSha256": "7a669b4e9e0e74a1b0ad467f14a7874999ec29c0ea68daa312e1c77dbe985948",
+  "stageSha256": "58b53e3ffb901ad5cce71c0ef367e2d60a5aa5de93942c92387a3b4bdb39a466",
+  "controllerSha256": "b382ec3abeed5edca26c58a15c30896a126445b9bea43deb173ce82e490bea70",
+  "completedAt": "2026-10-23T05:52:14.258Z",
+  "phase": "won",
+  "round": 10,
+  "stopReason": null,
+  "validationFailure": null,
+  "initialSeed": 19388,
+  "initialEnemies": 11,
+  "enemyDefeats": 8,
+  "allocation": {
+    "archer": {
+      "xp": 66524,
+      "level": 16,
+      "earned": 33,
+      "spent": 30,
+      "left": 3,
+      "statTraining": 6,
+      "loadout": [
+        "A01",
+        "A14",
+        "A11",
+        "A05"
+      ],
+      "ranks": {
+        "A01": 1,
+        "A14": 8,
+        "A11": 8,
+        "A05": 8
+      }
+    },
+    "mage": {
+      "xp": 24677,
+      "level": 11,
+      "earned": 23,
+      "spent": 23,
+      "left": 0,
+      "statTraining": 6,
+      "loadout": [
+        "M01",
+        "M04",
+        "M11",
+        "M03"
+      ],
+      "ranks": {
+        "M01": 1,
+        "M06": 1,
+        "M02": 1,
+        "M04": 5,
+        "M03": 5,
+        "M11": 5
+      }
+    },
+    "knight": {
+      "xp": 44135,
+      "level": 13,
+      "earned": 27,
+      "spent": 27,
+      "left": 0,
+      "statTraining": 6,
+      "loadout": [
+        "S00",
+        "S03",
+        "S01",
+        "S09"
+      ],
+      "ranks": {
+        "S00": 1,
+        "S03": 7,
+        "S01": 7,
+        "S09": 7
+      }
+    },
+    "occultist": {
+      "xp": 48026,
+      "level": 14,
+      "earned": 29,
+      "spent": 29,
+      "left": 0,
+      "statTraining": 6,
+      "loadout": [
+        "O01",
+        "O04",
+        "O08",
+        "O06"
+      ],
+      "ranks": {
+        "O01": 1,
+        "O02": 1,
+        "O03": 1,
+        "O04": 7,
+        "O06": 6,
+        "O07": 1,
+        "O08": 7
+      }
+    }
+  },
+  "actionCounts": {
+    "E": 2,
+    "move": 29,
+    "defend": 20,
+    "fire": 14,
+    "forward-before-shot": 3,
+    "jump": 1,
+    "nav-replan": 1,
+    "fire-anchor": 1,
+    "continue": 2,
+    "E-lamp": 1,
+    "detour-prefix": 3,
+    "drop": 4,
+    "land": 4
+  },
+  "heroes": [
+    {
+      "id": "p-archer",
+      "cls": "archer",
+      "hp": 888,
+      "maxHp": 888,
+      "focus": 206,
+      "maxFocus": 206,
+      "moveLeft": 1374.4304859824758,
+      "maxMove": 1763,
+      "x": 7726.518273686212,
+      "y": 7529.516031333358,
+      "dead": false,
+      "acted": true
+    },
+    {
+      "id": "p-mage",
+      "cls": "mage",
+      "hp": 785,
+      "maxHp": 785,
+      "focus": 236,
+      "maxFocus": 236,
+      "moveLeft": 1187.4816666666543,
+      "maxMove": 1591,
+      "x": 7596.235907934791,
+      "y": 7509.2550838325305,
+      "dead": false,
+      "acted": false
+    },
+    {
+      "id": "p-knight",
+      "cls": "knight",
+      "hp": 1438,
+      "maxHp": 1438,
+      "focus": 215,
+      "maxFocus": 215,
+      "moveLeft": 1905,
+      "maxMove": 1905,
+      "x": 7479.966657439019,
+      "y": 7474.804935537487,
+      "dead": false,
+      "acted": false
+    },
+    {
+      "id": "p-occultist",
+      "cls": "occultist",
+      "hp": 1039,
+      "maxHp": 1039,
+      "focus": 312,
+      "maxFocus": 312,
+      "moveLeft": 1764,
+      "maxMove": 1764,
+      "x": 7371.155932229697,
+      "y": 7407.243249585245,
+      "dead": false,
+      "acted": false
+    }
+  ],
+  "births": [
+    {
+      "round": 1,
+      "frame": 290,
+      "turn": 2,
+      "id": "event-1",
+      "source": "hold-silence-0",
+      "x": 3915,
+      "y": 5534.814814814815
+    },
+    {
+      "round": 1,
+      "frame": 290,
+      "turn": 2,
+      "id": "event-2",
+      "source": "hold-silence-0",
+      "x": 4025,
+      "y": 5551.111111111111
+    }
+  ],
+  "stage19Entry": {
+    "arrived": true,
+    "arrivalScreen": "battle",
+    "rewardOnce": true,
+    "actualGrowthExact": true,
+    "stage": 19,
+    "round": 1,
+    "scope": "Ordinary completed18 result/entry only. No19 movement, combat, ritual or tick.",
+    "wholeBattleContinueExact": true
+  },
+  "limits": [
+    "Prior-clear ledger is a first-clear/recruit reward fixture, not a Stages1–17 playthrough.",
+    "Native production App/Engine; DOM/render/storage and pause clock are test doubles.",
+    "A route graph and projectile simulations choose inputs; this is not browser UI, touch, human time, fun or balance approval.",
+    "Actual C.train paid equipped ranks after stat6, lowest legal rank/slot order; one supported progress-first variant, no policy search.",
+    "No consumables; no test-side actor pose/HP/focus/movement budget/objective writes after entry. Simulation and planning wall time are reported separately."
+  ],
+  "roundGoals": [
+    {
+      "round": 1,
+      "goal": "silence"
+    },
+    {
+      "round": 2,
+      "goal": "hold-silence"
+    },
+    {
+      "round": 3,
+      "goal": "bell-descent"
+    },
+    {
+      "round": 4,
+      "goal": "leak"
+    },
+    {
+      "round": 5,
+      "goal": "leak"
+    },
+    {
+      "round": 6,
+      "goal": "leak"
+    },
+    {
+      "round": 7,
+      "goal": "leak"
+    },
+    {
+      "round": 8,
+      "goal": "leak"
+    },
+    {
+      "round": 9,
+      "goal": "keeper"
+    },
+    {
+      "round": 10,
+      "goal": "keeper"
+    }
+  ],
+  "keeperCasts": 1,
+  "normalCoverage": "One actual seal cast; close-range interruption. Echo/binding are separate prepared fixtures, not claimed as normal encounter coverage.",
+  "portrait": "Approved ritual v1 original currently connected; parent game-tone replacement PNG/SHA pending.",
+  "knownHistoricalTestFailure": "Original stage18-short-contracts.mjs fails obsolete dd878 full-campaign equality at approved stage14 ceiling. Original left unchanged; keeper-ritual-preservation adapts that baseline to379 and retains fresh18/five old-save checks.",
+  "files": {
+    "terminal-checkpoint.json.gz": {
+      "bytes": 624357,
+      "sha256": "aab53e4547af531f4c656ba3521cad0d5e7fb8338de6c37c5cf22ebaac04bc1f"
+    },
+    "stage19-entry.json.gz": {
+      "bytes": 158479,
+      "sha256": "73126d5ec336efb9e45e34bce0324f35de0145456f98b5227a3cb915313f7f71"
+    },
+    "readiness-ledger.json.gz": {
+      "bytes": 944,
+      "sha256": "f9edc38d355d087d4586fb1f2cfd56bc997be0344a70ffb151e8b6e53708186d"
+    },
+    "initial.json.gz": {
+      "bytes": 184134,
+      "sha256": "93f1e8151edc6e4c959b221231adf0fc713d67653bdf8541fb3d8e135d91d78f"
+    },
+    "result.json.gz": {
+      "bytes": 385022,
+      "sha256": "bbce75a6c18ffbf0a648d0cc7e080144fd6f4f3f8ef2f810324c2c9c95f7381d"
+    },
+    "actual-mobile-portrait.jpg": {
+      "bytes": 48140,
+      "sha256": "96225889144e1e082520d3606914079f1579a59975f53b2b22f14200174e84af"
+    },
+    "trace.json.gz": {
+      "bytes": 21442,
+      "sha256": "c62a034d08ed1bc3cb2738308135fa1ba4fad873f885935e56206268ac06f9cf"
+    },
+    "first-cast.jpg": {
+      "bytes": 106095,
+      "sha256": "7a8390855c7c575fdc611472421d5e87abbeb3ae1ad131301163ccd5c0589962"
+    },
+    "actual-mobile-landscape.jpg": {
+      "bytes": 55308,
+      "sha256": "d90f7d1fb56300833eef8d82d50dd3550450525a71144f44b931725eaf56956b"
+    },
+    "actual-last-command.jpg": {
+      "bytes": 60439,
+      "sha256": "69a2f21b8bed0c858531a377696df78473c4581181dd4f114ca1251fe2c26d64"
+    },
+    "actual-bound-outro.jpg": {
+      "bytes": 93779,
+      "sha256": "0c865aebe93d7354e03a2068f126f0e4078caf8baf6fd6b383ac77ca93a1daff"
+    },
+    "seal-active.jpg": {
+      "bytes": 102564,
+      "sha256": "7ad188f23c10c71fc5656991d2988a92971b2db8db81509fba64046941a4f0fd"
+    },
+    "first-portrait.jpg": {
+      "bytes": 130157,
+      "sha256": "be9d4172965ee6752dccc91008fd2deb30e9591c4d7a5a3eb93654987b77981d"
+    },
+    "actual-result.jpg": {
+      "bytes": 74258,
+      "sha256": "5aa9469cd8fa26854aa67a43125cb628a2b43873e9846d5010a1e182a35c5e0a"
+    },
+    "binding-active.jpg": {
+      "bytes": 103221,
+      "sha256": "fd3c956d505c77bd11c5ab95e34304bda26b979639d08f3167d745e262cc25c9"
+    }
+  }
+}

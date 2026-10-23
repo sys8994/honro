@@ -1,0 +1,43 @@
+{
+  "pass": true,
+  "scope": "Prepared cast/warning/active/dialogue fixtures; production App export/profile load/Continue, DOM/time doubles. Not combat completion.",
+  "rows": [
+    {
+      "label": "live-cast",
+      "round": 1,
+      "phase": "flight",
+      "wholeBattleExact": true
+    },
+    {
+      "label": "warning",
+      "round": 2,
+      "phase": "aim",
+      "wholeBattleExact": true
+    },
+    {
+      "label": "active",
+      "round": 2,
+      "phase": "aim",
+      "wholeBattleExact": true
+    },
+    {
+      "label": "first-keeper-line",
+      "round": 2,
+      "phase": "aim",
+      "wholeBattleExact": true
+    },
+    {
+      "label": "before-last-command",
+      "round": 2,
+      "phase": "aim",
+      "wholeBattleExact": true
+    },
+    {
+      "staging": "weak through final command; release at command end; bound in outro",
+      "alive": true
+    },
+    {
+      "existingNpcManifestExact": true
+    }
+  ]
+}

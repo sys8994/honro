@@ -1,0 +1,47 @@
+{
+  "pass": true,
+  "scope": "Prepared production18 positions/isolated roster and pattern selection; actual enemy cast/player wait/fire/tick, readonly rays, one direct impact predicate fixture. Not normal combat completion.",
+  "rows": [
+    {
+      "pattern": "seal",
+      "warningAndPlayerOpportunity": true,
+      "saveExact": true,
+      "nextTurnClear": true
+    },
+    {
+      "pattern": "echo",
+      "warningAndPlayerOpportunity": true,
+      "saveExact": true,
+      "nextTurnClear": true
+    },
+    {
+      "pattern": "binding",
+      "warningAndPlayerOpportunity": true,
+      "saveExact": true,
+      "nextTurnClear": true
+    },
+    {
+      "actualEcho": true,
+      "owner": "act2-keeper",
+      "damage": 151,
+      "oneReturn": true,
+      "liveShotSaveExact": true
+    },
+    {
+      "connectionCounter": true,
+      "bossHpExact": true,
+      "noMandatoryPropActor": true
+    },
+    {
+      "otherBindSameStrengthPreserved": true
+    },
+    {
+      "s13FollowNotCountedAsDodge": true,
+      "actualMoveBeforeActivation": true
+    },
+    {
+      "endCleanup": true,
+      "legacyResourcesExact": true
+    }
+  ]
+}
