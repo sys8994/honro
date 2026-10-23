@@ -292,7 +292,7 @@
     function makeWorld(st,p,training=false,cls='archer',skill){return G.HonroWorld.build(st,p,training,cls,skill,makeLegacyWorld);}
     class App {
         constructor() { this.root = $('app'); this.modal = $('modal'); this.normalProfile = load(); this.debugMode = !!this.normalProfile.settings.debugMode && !G.HONRO_EMBEDDED; this.profile = this.debugMode ? debugProfile(this.normalProfile) : this.normalProfile; this.engine = null; this.scene = null; this.screen = 'title'; this.stageId = this.profile.lastStage || 1; this.cls = this.profile.recruited[0]; this.branch = 0; this.selectedByUnit = {}; this.selected = 'A01'; this.charging = false; this.power = .58; this.keys = new Set(); this.stick = { x: 0, y: 0 }; this.contacts = new Map(); this.audio = C.AudioEngine ? new G.HonroAudio() : null; this.audio?.configure(this.profile.settings); this.prev = performance.now(); this.acc = 0; this.uiAge = 0; this.dirty = false; this.dialogue = null; this.preview = null; this.trainingClass = 'archer'; this.trainingSkill = 'A01'; this.trainingPassives = {}; this.trainingRanks = {}; this.eventText = ''; this.eventUntil = 0; this.banterQueue=[]; this.banterCurrent=null; this.banterUntil=0; this.bind(); }
-        persist() { if(G.HONRO_EMBEDDED||this.customMap)return; G.HonroProgression.persist(this); G.HonroSplitCampaign?.persist(this); this.profile.party = [...this.profile.recruited]; if(this.debugMode)return; this.normalProfile=this.profile; if (!save(this.profile) && !this.storageWarned) {
+        persist() { if(G.HONRO_EMBEDDED||this.customMap)return; G.HonroMukjongAudio?.observe(this); G.HonroProgression.persist(this); G.HonroSplitCampaign?.persist(this); this.profile.party = [...this.profile.recruited]; if(this.debugMode)return; this.normalProfile=this.profile; if (!save(this.profile) && !this.storageWarned) {
             this.storageWarned = true;
             this.notify('이 환경에서는 자동 기록이 제한돼. 설정에서 기록 파일을 보관해줘.');
         } }
@@ -539,9 +539,9 @@
     if(G.HonroRestJourney)G.HonroRestJourney.startEntry(this,st.name);else G.HonroStory.start(this,G.HonroObjectives.entry(this),{title:st.name,after:'entry'});
             }
         }
-        mount(b,{freshReport=false,reportScope}={}) { C.initializePlayerTurnOrder(b,this.profile,false); G.HonroAct3Void?.recover(b); this.stage=G.HonroObjectiveRevision?.contentFor(b,this.stage)||this.stage; G.HonroStageRules.sanitizeStageBattle(b); G.HonroEncounters.configure(b);G.HonroProgression.initialize(b,this.profile);C.applySpBalanceMigration(b);G.HonroClearReport.begin(b,{fresh:freshReport,scope:reportScope||G.HonroClearReport.scopeOf(this)});b.honroActiveLimit??=H.stages[(b.honroStage||1)-1].active;b.enemyLimit=b.honroActiveLimit;this.screen = 'battle'; this.contacts.clear(); this.acc = 0; this.engine = new C.Engine(b, ev => { if(this.scene?._pausedBattleFrame)this.scene._pausedBattleFrame=null;this.scene?.event(ev); if (ev.type === 'sound')
+        mount(b,{freshReport=false,reportScope}={}) { C.initializePlayerTurnOrder(b,this.profile,false); G.HonroAct3Void?.recover(b); this.stage=G.HonroObjectiveRevision?.contentFor(b,this.stage)||this.stage; G.HonroStageRules.sanitizeStageBattle(b); G.HonroEncounters.configure(b);G.HonroProgression.initialize(b,this.profile);C.applySpBalanceMigration(b);G.HonroClearReport.begin(b,{fresh:freshReport,scope:reportScope||G.HonroClearReport.scopeOf(this)});b.honroActiveLimit??=H.stages[(b.honroStage||1)-1].active;b.enemyLimit=b.honroActiveLimit;this.screen = 'battle'; this.contacts.clear(); this.acc = 0; this.engine = new C.Engine(b, ev => { if(this.engine?.b===b&&(ev.type==='change'||ev.type==='save'))G.HonroMukjongAudio?.observe(this);if(this.scene?._pausedBattleFrame)this.scene._pausedBattleFrame=null;this.scene?.event(ev); if (ev.type === 'sound')
             {if(ev.name==='mukjongKeeper')G.HonroMukjongAudio?.keeper(this);else this.audio?.play(ev.name);} if (ev.type === 'save')
-            this.dirty = true; }, false); const e = this.engine; G.HonroMukjongAudio?.attach(this,b); G.HonroAllies.attach(this,e); G.HonroEncounters.attach(this,e); G.HonroAct2.attach(this,e); G.HonroAct3.attach(this,e); G.HonroSplitCampaign.attach(this,e); G.HonroStakeCrossing.attach(this,e); if (!this.training) {
+            this.dirty = true; }, false); const e = this.engine; G.HonroMukjongAudio?.attach(this,b,{fresh:freshReport}); G.HonroAllies.attach(this,e); G.HonroEncounters.attach(this,e); G.HonroAct2.attach(this,e); G.HonroAct3.attach(this,e); G.HonroSplitCampaign.attach(this,e); G.HonroStakeCrossing.attach(this,e); if (!this.training) {
             e.checkEnd = () => this.checkMission(e);
             const orig = e.hurt.bind(e);
             e.hurt = (u, amount, ...args) => {
@@ -1338,6 +1338,7 @@
                 if(G.HonroAct3Void?.blocked(this)){this.acc=0;G.HonroAct3Void.frame(this,dt);requestAnimationFrame(t=>this.frame(t));return;}
                 if(G.HonroSodanWithdrawal.frame(this,dt)){requestAnimationFrame(t=>this.frame(t));return;}
                 G.HonroStory.tick(this,now);
+                G.HonroMukjongAudio?.update(this);
                 G.HonroRestJourney?.frame(this,dt);
                 if(this.preview?.canvas.isConnected&&this.modal.classList.contains('open'))G.HonroSkillPreview.tick(this,this.preview,dt);
                 if (this.engine && this.scene && this.screen === 'battle') {

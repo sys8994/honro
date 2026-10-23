@@ -1,5 +1,7 @@
 # 승인 묵종 B 음향 연결
 
+후속 현재 정책: [18장 라운드 고조](../mukjong-round-pitch-20261023/README.md). 아래 고정+1반음 표는cf9c1628 최초 연결 시점의 역사적 실행이며 현재18장은 잔울림과 의식이0~5반음을 공유한다.12장은rate1을 유지한다.
+
 기준 공개13a91c94. HP 조건 제거는 독립 `fd789583`, 승인 MP3 입력은3a459bc0을 cherry-pick한 `b2b43634`다. master/Pages 반영은 부모 담당이다.
 
 승인 B 원본 `shared/assets/sfx/mukjong-b.mp3`는93740바이트, Git blob `aacb8ea3ce4a3b15ac2dcd651abc9f6b4e087b3e`, MP3 컨테이너5.832초이며 FFmpeg 디코딩 통과. 실제 Chromium AudioBuffer는5.79998초/1023116바이트다. 재인코딩·추가 기본 피치 하향은 하지 않았다. 출처와 CC0 문서는 같은 폴더 LICENSE를 보존한다. Library 확인 ID의 직접 materialization은 download failed였으나, 부모가 동일 승인 원본을 저장소로 전달해 정상 수급했다. 거부 우회가 아니다.
