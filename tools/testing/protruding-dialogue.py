@@ -1,4 +1,4 @@
-"""Approved protruding dialogue preview: actual Stage14 rest talk and viewport gates."""
+"""Revised dialogue silhouette preview: actual Stage14 rest talk and viewport gates."""
 from pathlib import Path
 import sys,json,subprocess,hashlib
 from playwright.sync_api import sync_playwright
@@ -28,7 +28,8 @@ with serve_game() as base,sync_playwright() as pw:
    else:
     p.locator('[data-action="dialogue-next"]').tap();p.wait_for_function('!HonroApp.dialogue');p.evaluate('cls=>HonroRestJourney.talk(HonroApp,cls)',cls);p.wait_for_function('!!HonroApp.dialogue')
    p.locator('[data-action="dialogue-skip"]').tap();p.wait_for_function('!HonroApp.dialogue')
- for view in ([320,780],[360,780],[390,844],[720,1560],[844,390],[568,320]):
-  faces=[r['faceHeight']for r in rows if r['view']==view];assert max(faces)/min(faces)<1.02,faces
+ if phase=='after':
+  for view in ([320,780],[360,780],[390,844],[720,1560],[844,390],[568,320]):
+   faces=[r['faceHeight']for r in rows if r['view']==view];assert max(faces)/min(faces)<1.02,faces
  assert not errors,errors;b.close()
 (OUT/(phase+'.json')).write_text(json.dumps({'head':subprocess.check_output(['git','rev-parse','HEAD'],text=True).strip(),'entry':entry,'rows':rows,'errors':errors,'manifestSha256':hashlib.sha256((ROOT/'web/manifest.json').read_bytes()).hexdigest()},ensure_ascii=False,indent=2));print('PASS',phase,len(rows),'actual rest14 talks, bounds and touch')
