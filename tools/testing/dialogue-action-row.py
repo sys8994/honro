@@ -45,6 +45,8 @@ if phase=='after':
    comparisons.append([new['view'],new['who']])
  report['shortRectsPreserved']=comparisons
  if '--layout-revision'in sys.argv:
-  for old,new in zip(before['rows'],rows):assert new['line']['w']>=old['line']['w']-1.1,(old,new)
-  report['bodyWidthNotReduced']=True
+  for old,new in zip(before['rows'],rows):
+   if '--silhouette-dialogue'not in sys.argv or new['view']=='mobile':assert new['line']['w']>=old['line']['w']-1.1,(old,new)
+   else:assert new['line']['w']>=240,(old,new)
+  report['bodyWidthNotReduced']='mobile only'if '--silhouette-dialogue'in sys.argv else True
 (OUT/(phase+'.json')).write_text(json.dumps(report,ensure_ascii=False,indent=2));print('PASS',phase,len(rows),'positions; overlaps',sum(bool(r['visibleTextRowOverlap'])for r in rows))

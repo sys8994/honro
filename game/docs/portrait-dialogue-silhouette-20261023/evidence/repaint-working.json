@@ -1,0 +1,140 @@
+{
+  "head": "40900188a94d3019510929c59fe175ed14d31ff7",
+  "manifestSha256": "4f69b0ed9c14d6c7ff8ca51bbc658f1dae3c5a3a26d3dbd23cfb2d38f0b62fbc",
+  "expectedOldRepaint": false,
+  "rows": [
+    {
+      "before": {
+        "requests": 1,
+        "decodes": 1,
+        "paints": 1,
+        "fallbackPaints": 0,
+        "vectorBuilds": 0,
+        "imageEntries": 1,
+        "pending": 0,
+        "errors": 0,
+        "vectorEntries": 0,
+        "waiters": 0
+      },
+      "after": {
+        "requests": 1,
+        "decodes": 1,
+        "paints": 1,
+        "fallbackPaints": 0,
+        "vectorBuilds": 0,
+        "imageEntries": 1,
+        "pending": 0,
+        "errors": 0,
+        "vectorEntries": 0,
+        "waiters": 0
+      },
+      "samePixels": true,
+      "identical120": {
+        "drawImage": 0,
+        "clearRect": 0
+      },
+      "resizeOnce": {
+        "drawImage": 1,
+        "clearRect": 1
+      },
+      "afterResize120": {
+        "drawImage": 0,
+        "clearRect": 0
+      },
+      "mode": "ready"
+    },
+    {
+      "before": {
+        "requests": 1,
+        "decodes": 0,
+        "paints": 0,
+        "fallbackPaints": 1,
+        "vectorBuilds": 1,
+        "imageEntries": 1,
+        "pending": 0,
+        "errors": 1,
+        "vectorEntries": 1,
+        "waiters": 0
+      },
+      "after": {
+        "requests": 1,
+        "decodes": 0,
+        "paints": 0,
+        "fallbackPaints": 1,
+        "vectorBuilds": 1,
+        "imageEntries": 1,
+        "pending": 0,
+        "errors": 1,
+        "vectorEntries": 1,
+        "waiters": 0
+      },
+      "samePixels": true,
+      "identical120": {
+        "drawImage": 0,
+        "clearRect": 0
+      },
+      "resizeOnce": {
+        "drawImage": 1,
+        "clearRect": 1
+      },
+      "afterResize120": {
+        "drawImage": 0,
+        "clearRect": 0
+      },
+      "mode": "abort",
+      "appearanceInvalidation": {
+        "sourceChangeOnce": 1,
+        "sameSource120": 0,
+        "combatFields": 0,
+        "sourceReturnOnce": 1
+      },
+      "cleanSeoroCanvas": {
+        "topLeftAlpha": 0,
+        "topRightAlpha": 0,
+        "source": "art/portraits/runtime-derivatives-v1/seoro-base-clean.png",
+        "sourceSha256": "f2c1dea750c048babd7ac8b28d6013a39038b140954fac9876718d1241e86206",
+        "identityMasterSha256": "d05ce83f8487515f127abb441dbae4a4616c66181ffbea15498060a237a090a9"
+      }
+    },
+    {
+      "before": {
+        "requests": 1,
+        "decodes": 0,
+        "paints": 0,
+        "fallbackPaints": 1,
+        "vectorBuilds": 1,
+        "imageEntries": 1,
+        "pending": 0,
+        "errors": 1,
+        "vectorEntries": 1,
+        "waiters": 0
+      },
+      "after": {
+        "requests": 1,
+        "decodes": 0,
+        "paints": 0,
+        "fallbackPaints": 1,
+        "vectorBuilds": 1,
+        "imageEntries": 1,
+        "pending": 0,
+        "errors": 1,
+        "vectorEntries": 1,
+        "waiters": 0
+      },
+      "samePixels": true,
+      "identical120": {
+        "drawImage": 0,
+        "clearRect": 0
+      },
+      "resizeOnce": {
+        "drawImage": 1,
+        "clearRect": 1
+      },
+      "afterResize120": {
+        "drawImage": 0,
+        "clearRect": 0
+      },
+      "mode": "timeout"
+    }
+  ]
+}

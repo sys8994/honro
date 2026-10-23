@@ -41,7 +41,10 @@ if phase=='after':
  for x,y in zip(old['rows'],rows):
   assert (x['kind'],x['view'],x['cls'])==(y['kind'],y['view'],y['cls']);
   if '--layout-revision'not in sys.argv:assert all(abs(a-b)<.01 for a,b in zip(x['size'],y['size'])),(x,y)
+  if '--silhouette-dialogue'in sys.argv and y['kind']=='dialogue':
+   c=y['crop'];assert y['framing']=='dialogue' and c['x']<=0 and c['x']+c['width']>=1024 and c['y']<=0 and c['y']+c['height']>=y['head']['bottom'],y
+   continue
   if y['cls']=='knight' and y['kind']!='hud':assert x['pixels']!=y['pixels'];changed.append([y['kind'],y['view']])
   else:assert x['pixels']==y['pixels'],(x,y)
- report['comparison']={'onlyHwigyeomBustPixelsChanged':changed,'allOther3AndHUDExact':True,'allSizesPreserved':'--layout-revision'not in sys.argv}
+ report['comparison']={'onlyHwigyeomBustPixelsChanged':changed,'allOther3AndHUDExact':'except intentional dialogue silhouette'if '--silhouette-dialogue'in sys.argv else True,'allSizesPreserved':'--layout-revision'not in sys.argv}
 (OUT/(phase+'.json')).write_text(json.dumps(report,ensure_ascii=False,indent=2));print('PASS',phase,len(rows),'surfaces, shared4 requests/decode')

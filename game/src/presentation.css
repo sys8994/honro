@@ -84,21 +84,20 @@
 /* Only chapter 10's completed world outro; dialogue controls stay visible. */
 .honro .battle.world-outro-dialogue :is(.battle-head,.minimap-dock,.allied-roster,.battle-bottom,.banter){visibility:hidden;pointer-events:none}
 
-/* Shared protruding bust: original cut edge is occluded by the reading surface. */
-.dialogue-presentation{position:relative;width:min(1120px,100%);margin:0 auto;--portrait-width:clamp(200px,22vw,280px);--portrait-height:calc(var(--portrait-width)*1.1);--portrait-overlap:min(30px,calc(var(--portrait-height)*.14));--portrait-rise:calc(var(--portrait-height) - var(--portrait-overlap));--dialogue-edge:clamp(12px,3vw,44px)}
-.story-overlay .dialogue-presentation>.story-portrait{position:absolute;z-index:0;left:24px;bottom:calc(100% - var(--portrait-overlap));width:var(--portrait-width);height:var(--portrait-height);margin:0;pointer-events:none;background:none;border-radius:0;isolation:auto;clip-path:inset(0 0 var(--portrait-overlap) 0)}
+/* Large dialogue silhouettes keep source edges; card/HUD framing stays separate. */
+.dialogue-presentation{position:relative;width:min(1120px,100%);margin:0 auto;--portrait-height:min(clamp(280px,32vw,440px),calc(100dvh - 28px));--portrait-width:calc(var(--portrait-height)/1.1);--portrait-overlap:28px;--portrait-rise:calc(var(--portrait-height) - var(--portrait-overlap));--dialogue-edge:clamp(12px,3vw,44px)}
+.story-overlay .dialogue-presentation>.story-portrait{position:absolute;z-index:2;left:16px;bottom:calc(-1 * var(--dialogue-edge));width:var(--portrait-width);height:var(--portrait-height);margin:0;pointer-events:none;background:none;border-radius:0;isolation:auto;clip-path:none}
 .story-overlay .dialogue-presentation>.dialogue-scene{position:relative;z-index:1;width:100%;margin:0;grid-template-columns:minmax(0,1fr)}
-.dialogue-presentation.has-portrait>.dialogue-scene{max-height:calc(100dvh - var(--dialogue-edge)*2 - var(--portrait-rise))}
 .story-overlay .dialogue-presentation>.dialogue-scene .story-copy{display:flex;box-sizing:border-box;padding-left:0}
-.story-overlay .dialogue-presentation.has-portrait>.dialogue-scene .story-copy{padding-left:calc(var(--portrait-width) - 20px)}
+.story-overlay .dialogue-presentation.has-portrait>.dialogue-scene .story-copy{padding-left:calc(var(--portrait-width) + 8px)}
 .story-overlay .dialogue-presentation>.dialogue-scene .story-copy h2{margin:0 0 12px}
 .story-speaker-name{min-width:0}.story-copy h2 .story-progress{margin-left:auto;flex:none;white-space:nowrap;font-size:11px;font-weight:400;color:#9daba3;letter-spacing:0}
 .dialogue-presentation #story-line{min-height:0}
 .cinematic-story>.dialogue-presentation{width:min(980px,100%)}
-@media(max-width:650px){.dialogue-presentation{--portrait-width:clamp(168px,52vw,220px);--dialogue-edge:12px}.story-overlay .dialogue-presentation>.story-portrait{left:16px}.story-overlay .dialogue-presentation.has-portrait>.dialogue-scene .story-copy{padding-left:0}}
-@media(orientation:landscape) and (max-height:550px){.dialogue-presentation{--portrait-width:clamp(136px,21.4vw,180px);--dialogue-edge:10px}.story-overlay .dialogue-presentation>.story-portrait{left:18px}.story-overlay .dialogue-presentation.has-portrait>.dialogue-scene .story-copy{padding-left:calc(var(--portrait-width) - 20px)}.story-overlay .dialogue-presentation>.dialogue-scene .story-copy h2{margin-bottom:8px}}
+@media(max-width:650px) and (orientation:portrait){.dialogue-presentation{--portrait-height:clamp(264px,78vw,340px);--dialogue-edge:12px}.story-overlay .dialogue-presentation>.story-portrait{left:16px;bottom:calc(100% - var(--portrait-overlap));z-index:0;clip-path:inset(0 0 var(--portrait-overlap) 0)}.dialogue-presentation.has-portrait>.dialogue-scene{max-height:calc(100dvh - var(--dialogue-edge)*2 - var(--portrait-rise))}.story-overlay .dialogue-presentation.has-portrait>.dialogue-scene .story-copy{padding-left:0}}
+@media(orientation:landscape) and (max-height:550px){.dialogue-presentation{--portrait-height:min(320px,calc(100dvh - 28px));--dialogue-edge:10px}.story-overlay .dialogue-presentation>.dialogue-scene .story-copy h2{margin-bottom:8px}}
 
-/* Mobile camp keeps all four identities in one row; order remains data-owned. */
+/* Mobile camp keeps four readable cards; runtime owns the displayed player order. */
 @media(max-width:900px){.honro .camp-v5 .hero-tabs{grid-template-columns:repeat(4,minmax(0,1fr));gap:6px}.honro .camp-v5 .hero-tab{flex-direction:column;align-items:center;justify-content:flex-start;text-align:center;gap:4px;padding:6px 4px 20px;min-width:0;min-height:0}.honro .camp-v5 .hero-tab :is(img,canvas){width:min(100%,clamp(46px,14vw,68px));height:clamp(56px,16.8vw,82px)}.honro .camp-v5 .hero-tab>span:not([data-portrait-host]):not(.point-dot){display:block;min-width:0;max-width:100%}.honro .camp-v5 .hero-tab strong{font-size:13px;letter-spacing:0;line-height:1.25}.honro .camp-v5 .hero-tab small{display:block;white-space:normal;overflow-wrap:anywhere;font-size:9px;line-height:1.3;margin-top:2px}.honro .camp-v5 .hero-tab .point-dot{top:auto;right:50%;bottom:3px;transform:translateX(50%);max-width:calc(100% - 8px);white-space:nowrap}.honro .camp-v5 .hero-tab:disabled{justify-content:center}}
 .dialogue-presentation{animation:story-in .2s ease-out}.story-overlay .dialogue-presentation>.dialogue-scene{animation:none}.cinematic-story>.dialogue-presentation{animation:none}
 @media(prefers-reduced-motion:reduce){.dialogue-presentation{animation:none}}

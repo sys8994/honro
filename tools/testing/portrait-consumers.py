@@ -34,7 +34,7 @@ with serve_game() as base,sync_playwright() as pw:
   p.evaluate('HonroApp.launch(11)');p.wait_for_function('HonroApp.engine?.b.honroStage===11');p.evaluate('()=>{while(HonroApp.dialogue)HonroStory.finish(HonroApp);HonroStory.start(HonroApp,[["담허",HONRO_CONTENT.hero.mage.desc||"담허"]],{title:HonroApp.stage.name});}')
   # Same requested portrait framing policy across canvas aspect ratios, HUD
   # explicitly remains icon purpose. Only test fixtures use the description.
-  check('dialogue bust and small HUD icon purposes are explicit',p.evaluate('document.getElementById("story-portrait-canvas").dataset.portraitFraming==="bust"&&[...document.querySelectorAll("#hero-switches canvas")].every(c=>c.dataset.portraitFraming==="icon")'))
+  check('dialogue silhouette and small HUD icon purposes are explicit',p.evaluate('document.getElementById("story-portrait-canvas").dataset.portraitFraming==="dialogue"&&[...document.querySelectorAll("#hero-switches canvas")].every(c=>c.dataset.portraitFraming==="icon")'))
   end=p.evaluate('HonroPortraits.stats()');check('all surfaces reuse the same 4 image request/decode entries',end['requests']==end['decodes']==4 and end['imageEntries']==4 and end['waiters']==0,end)
  check('no browser exceptions',not errors,errors)
  if not before:

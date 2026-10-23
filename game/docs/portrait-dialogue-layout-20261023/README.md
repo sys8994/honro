@@ -1,5 +1,7 @@
 # 초상화 얼굴 정렬 · 돌출형 대사창 · 모바일 모닥불
 
+**과거 후보 기록:** 부모가40900188 실제 화면에서 큰 대사의 잘린 갓/과대 얼굴과 가로 빈 공간을 확인해 돌출형을 거절했다. 아래 검수 결과는 당시 실행 사실이며 시각 승인/현행 최종본이 아니다. [보완 기록](../portrait-dialogue-silhouette-20261023/README.md)을 따른다. 카드 순서 정책도 최신 사용자 요구(표시순서=행동순서·직접드래그)로 바뀌었으며 별도 담당 작업이다.
+
 부모가 전달한 사용자 승인(Hades 좌측 돌출 반신 + Pyre의 넓은 본문)을 적용했다. 원본/배포 초상화 이미지는 변경하지 않았다. 휘겸 얼굴 crop은 별도 소스 `893b2f003db8ce7d5f758ffaaaaba3faa78c9c00`, 새 대사창과 모바일 카드 배치는 `e41735fb` 단위다. 최종 실행/공통 빌드 **`3719d8117fb197d7eaa3570967f17898f92b1c74`**는 최신 master **`e1e4b9aaa7e1d6013c4eb1e9c9245dbca2edb435`**의 행동순서 기능까지 보존한다. 이후 문서·검사 selector만 정리했으며 생산 소스/생성물은 같다. manifest SHA256 **`3e6cbb59891cebe5092d613fe799db3f31b3a238d409d6c101508ce346e3acae`**, entry **`game.de2411508cacb176.js`**, 직접 Playtest **`game.71e4f69d3265b5ad.html`**. [정확한 보존](evidence/preservation.json) · [build](evidence/build.txt).
 
 ## 실제 화면

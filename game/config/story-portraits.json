@@ -30,7 +30,19 @@
             "height": 1112
           },
           "identityMaster": "art/portraits/approved-v1/seoro.png",
-          "identityMasterSha256": "d05ce83f8487515f127abb441dbae4a4616c66181ffbea15498060a237a090a9"
+          "identityMasterSha256": "d05ce83f8487515f127abb441dbae4a4616c66181ffbea15498060a237a090a9",
+          "framing": {
+            "dialogue": {
+              "face": {
+                "left": 340,
+                "top": 240,
+                "right": 650,
+                "bottom": 535,
+                "width": 310,
+                "height": 295
+              }
+            }
+          }
         }
       }
     }
@@ -66,7 +78,19 @@
             "height": 1176
           },
           "identityMaster": "art/portraits/approved-v1/damheo.png",
-          "identityMasterSha256": "8b923c1aaa18e6e1bfd329987f1621c918fa943c2490ff8adbb48aab802e8d1a"
+          "identityMasterSha256": "8b923c1aaa18e6e1bfd329987f1621c918fa943c2490ff8adbb48aab802e8d1a",
+          "framing": {
+            "dialogue": {
+              "face": {
+                "left": 360,
+                "top": 225,
+                "right": 640,
+                "bottom": 535,
+                "width": 280,
+                "height": 310
+              }
+            }
+          }
         }
       }
     }
@@ -121,6 +145,16 @@
                 "width": 1024,
                 "height": 950
               }
+            },
+            "dialogue": {
+              "face": {
+                "left": 430,
+                "top": 310,
+                "right": 745,
+                "bottom": 555,
+                "width": 315,
+                "height": 245
+              }
             }
           }
         }
@@ -158,7 +192,19 @@
             "height": 1136
           },
           "identityMaster": "art/portraits/approved-v1/sodan.png",
-          "identityMasterSha256": "0268f8f89b5ac19608baf38e048b02cc50309a2e191ca14556cc6a8fdc49abb4"
+          "identityMasterSha256": "0268f8f89b5ac19608baf38e048b02cc50309a2e191ca14556cc6a8fdc49abb4",
+          "framing": {
+            "dialogue": {
+              "face": {
+                "left": 430,
+                "top": 225,
+                "right": 715,
+                "bottom": 510,
+                "width": 285,
+                "height": 285
+              }
+            }
+          }
         }
       }
     }
