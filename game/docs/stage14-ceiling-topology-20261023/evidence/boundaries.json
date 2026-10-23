@@ -1,0 +1,125 @@
+{
+  "pass": true,
+  "rows": [
+    {
+      "case": "Finite actual shots: upper chamber free high arc versus short neck interception/reflection. Legal level13 SP, one supported initial pose, isolated actors; no live correction.",
+      "low": {
+        "id": "A01",
+        "angle": 15,
+        "power": 0.3,
+        "actualFlight": {
+          "minY": 2218.1756769911412,
+          "substeps": 119
+        },
+        "preparedPose": {
+          "x": 2500,
+          "y": 2300
+        },
+        "prediction": {
+          "x": 2872.705413042155,
+          "y": 2297
+        },
+        "contacts": [
+          {
+            "terrain": "v14-upper-hamlet",
+            "x": 2872.705413042155,
+            "y": 2297,
+            "generation": 0
+          }
+        ]
+      },
+      "freeHigh": {
+        "id": "A01",
+        "angle": 90,
+        "power": 1,
+        "actualFlight": {
+          "minY": 196.35321008042897,
+          "substeps": 861
+        },
+        "preparedPose": {
+          "x": 2500,
+          "y": 2300
+        },
+        "prediction": {
+          "x": 2500,
+          "y": 2297
+        },
+        "contacts": [
+          {
+            "terrain": "v14-upper-hamlet",
+            "x": 2500,
+            "y": 2297,
+            "generation": 0
+          }
+        ]
+      },
+      "high": {
+        "id": "A01",
+        "angle": 60,
+        "power": 0.9,
+        "actualFlight": {
+          "minY": 1577.0136514447552,
+          "substeps": 98
+        },
+        "preparedPose": {
+          "x": 2980,
+          "y": 2300
+        },
+        "prediction": {
+          "x": 3425.719776855496,
+          "y": 1574.596977118989
+        },
+        "contacts": [
+          {
+            "terrain": "v14-cavern-vault",
+            "x": 3425.719776855496,
+            "y": 1574.596977118989,
+            "generation": 0
+          }
+        ]
+      },
+      "reflection": {
+        "id": "M11",
+        "angle": 60,
+        "power": 1,
+        "actualFlight": {
+          "minY": 1624.2890837755292,
+          "substeps": 429
+        },
+        "preparedPose": {
+          "x": 2980,
+          "y": 2300
+        },
+        "prediction": {
+          "x": 2567.427661990185,
+          "y": 2294
+        },
+        "contacts": [
+          {
+            "terrain": "v14-cavern-vault",
+            "x": 3436.5641678765305,
+            "y": 1642.048332940838,
+            "generation": 0
+          },
+          {
+            "terrain": "v14-upper-hamlet",
+            "x": 2567.427661990185,
+            "y": 2294,
+            "generation": 1
+          }
+        ]
+      }
+    },
+    {
+      "case": "same revision whole-battle Continue exact"
+    },
+    {
+      "case": "actual old R21 save restarts14 under existing map-revision policy; growth/equipment/clears/order retained",
+      "oldRound": 21
+    },
+    {
+      "case": "prepared obsolete R9 revision fixture restarts14, not actual user save"
+    }
+  ],
+  "limits": "Prepared/isolated shots and production App DOM/storage doubles; no fresh campaign combat completion, no actual user R9 save. Old14 battle is restarted by mandated map revision, not silently patched."
+}

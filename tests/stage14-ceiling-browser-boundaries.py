@@ -1,10 +1,10 @@
 """Built production Continue and one prepared jump scenario. Not user R9 or combat completion."""
-import json,hashlib,subprocess
+import json,hashlib,subprocess,os
 from pathlib import Path
 from playwright.sync_api import sync_playwright
 from browser_support import launch
 from story_browser_server import story_base_url
-out=Path('_local/reports/act2-ceiling-20261023/final');out.mkdir(parents=True,exist_ok=True);base=story_base_url();rows=[];errors=[]
+out=Path(os.environ.get('HONRO_CEILING_BROWSER_OUT','_local/reports/act2-ceiling-20261023/final'));out.mkdir(parents=True,exist_ok=True);base=story_base_url();rows=[];errors=[]
 with sync_playwright() as pw:
  browser=launch(pw);ctx=browser.new_context(viewport={'width':1200,'height':800});p=ctx.new_page();p.on('pageerror',lambda e:errors.append(str(e)))
  p.goto(base+'/HONRO.html');p.wait_for_function('!!globalThis.HonroApp',timeout=120000)

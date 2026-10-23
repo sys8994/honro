@@ -1,0 +1,167 @@
+{
+  "source": "1e0b7d11fb588f844cc1bddec12d34da39888f98",
+  "scope": "Actual built UI: prepared normal entry and camera-only inspection.\nNo actor/state corrections for a photograph. Not a combat completion run.",
+  "rows": [
+    {
+      "name": "neck-battle",
+      "viewport": [
+        1440,
+        900
+      ],
+      "camera": {
+        "x": 3700,
+        "y": 2660,
+        "scale": 0.5
+      },
+      "goal": "family-upper",
+      "roof": [
+        {
+          "x": 0,
+          "y": 0
+        },
+        {
+          "x": 7600,
+          "y": 0
+        },
+        {
+          "x": 7600,
+          "y": 1600
+        },
+        {
+          "x": 7300,
+          "y": 1750
+        },
+        {
+          "x": 6920,
+          "y": 2270
+        },
+        {
+          "x": 6570,
+          "y": 2340
+        },
+        {
+          "x": 6300,
+          "y": 1900
+        },
+        {
+          "x": 6050,
+          "y": 1050
+        },
+        {
+          "x": 5200,
+          "y": 760
+        },
+        {
+          "x": 4700,
+          "y": 660
+        },
+        {
+          "x": 4300,
+          "y": 1190
+        },
+        {
+          "x": 3990,
+          "y": 2050
+        },
+        {
+          "x": 3690,
+          "y": 2160
+        },
+        {
+          "x": 3500,
+          "y": 1920
+        },
+        {
+          "x": 3300,
+          "y": 950
+        },
+        {
+          "x": 2950,
+          "y": 300
+        },
+        {
+          "x": 2450,
+          "y": 140
+        },
+        {
+          "x": 1700,
+          "y": 360
+        },
+        {
+          "x": 850,
+          "y": 120
+        },
+        {
+          "x": 0,
+          "y": 160
+        }
+      ],
+      "entry": [
+        {
+          "id": "p-archer",
+          "x": 790,
+          "y": 1450,
+          "hp": 725
+        },
+        {
+          "id": "p-mage",
+          "x": 900,
+          "y": 1450,
+          "hp": 774
+        },
+        {
+          "id": "p-knight",
+          "x": 1028,
+          "y": 1450,
+          "hp": 1186
+        },
+        {
+          "id": "p-occultist",
+          "x": 1120,
+          "y": 1450,
+          "hp": 892
+        }
+      ],
+      "renderPurityAndCache": {
+        "pure": true,
+        "before": {
+          "worldBuilds": 1,
+          "worldBuildMs": 20.899999998509884,
+          "bgBuilds": 0,
+          "bgBuildMs": 0,
+          "worldHits": 8,
+          "bgHits": 0,
+          "domainCanvasAllocations": 8,
+          "domainTileBuilds": 8,
+          "screenBuilds": 2,
+          "screenWorldBytes": 4429440,
+          "screenBackgroundBytes": 4429440,
+          "worldBytes": 8520192,
+          "worldScale": 0.5946035575013605,
+          "backgroundBytes": 0
+        },
+        "after": {
+          "worldBuilds": 1,
+          "worldBuildMs": 20.899999998509884,
+          "bgBuilds": 0,
+          "bgBuildMs": 0,
+          "worldHits": 11,
+          "bgHits": 3,
+          "domainCanvasAllocations": 8,
+          "domainTileBuilds": 8,
+          "screenBuilds": 2,
+          "screenHits": 6,
+          "screenWorldBytes": 4429440,
+          "screenBackgroundBytes": 4429440,
+          "worldBytes": 8520192,
+          "worldScale": 0.5946035575013605,
+          "backgroundBytes": 0
+        }
+      },
+      "file": "_local/reports/act2-ceiling-20261023/topology2/neck-battle.jpg",
+      "bytes": 65828,
+      "sha256": "5d89750249c3d62c40891ef8a83f5bef29eadad34613d43f9669338729b8ed6d"
+    }
+  ],
+  "errors": []
+}

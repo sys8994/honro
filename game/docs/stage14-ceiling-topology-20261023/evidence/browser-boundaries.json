@@ -1,0 +1,46 @@
+{
+  "source": "1e0b7d11fb588f844cc1bddec12d34da39888f98",
+  "scope": "Built production Continue and one prepared jump scenario. Not user R9 or combat completion.",
+  "rows": [
+    {
+      "case": "actual reload and Continue",
+      "wholeBattleExact": true,
+      "round": 1,
+      "capture": {
+        "path": "_local/reports/act2-ceiling-20261023/topology2/continue.jpg",
+        "bytes": 58825,
+        "sha256": "dd47ee6287a0b1d35aab82a5700a70677176f00ecbb2fd0a10031063ed5bd0c6"
+      }
+    },
+    {
+      "case": "prepared full-roster family-yard jump with real Engine ticks",
+      "initial": {
+        "x": 4160,
+        "y": 6750,
+        "hp": 1186,
+        "move": 1642,
+        "valid": true
+      },
+      "result": {
+        "x": 4160,
+        "y": 6535,
+        "hp": 1186,
+        "move": 1567,
+        "minY": 6535,
+        "ticks": 78,
+        "support": "v14-family-roof-step"
+      },
+      "before": {
+        "path": "_local/reports/act2-ceiling-20261023/topology2/platform-before-jump.jpg",
+        "bytes": 80058,
+        "sha256": "39cd2c9f4ec4e48c518c5aa7ea055807d98326e65a9b632a129dc0fddb6b8a80"
+      },
+      "after": {
+        "path": "_local/reports/act2-ceiling-20261023/topology2/platform-after-jump.jpg",
+        "bytes": 80945,
+        "sha256": "2f1793c7bf6e46dd7a3bfe9d7554637ad82f1ce4a82826dac955df7f4ab4c577"
+      }
+    }
+  ],
+  "errors": []
+}
