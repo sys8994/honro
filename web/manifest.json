@@ -2,17 +2,17 @@
   "version": 1,
   "game": "HONRO.html",
   "workshop": "HONRO_WORKSHOP.html",
-  "playtest": "web/entries/game.ab9c2ecd19506239.html?embedded=1",
+  "playtest": "web/entries/game.390ae9502e22e25b.html?embedded=1",
   "project": "web/data/campaign.f355cadf4e1b4e54.json",
-  "gameEntry": "web/entries/game.b63336e535aa0f12.js",
-  "workshopEntry": "web/entries/workshop.a9378d2583e24e98.js",
+  "gameEntry": "web/entries/game.43758b5ea28cc2fd.js",
+  "workshopEntry": "web/entries/workshop.a63dd87ecb73c6e3.js",
   "common": [
     "web/runtime/ordered-common-1.2af26c4ed383944e.js",
     "web/runtime/shared-runtime-title-markup.1ce572555f2e782e.js",
     "web/runtime/HONRO_BGM_TRACKS.defe37026668618a.js",
     "web/runtime/HONRO_BGM_METADATA.8e319569f03362c7.js",
     "web/runtime/HONRO_SKILL_ICON_MANIFEST.d3c9f01011ec0e42.js",
-    "web/runtime/ordered-common-2.e3c5b463f737dc31.js",
+    "web/runtime/ordered-common-2.788f1f3d3412976f.js",
     "web/runtime/ordered-common-3.abd9e6de989cde1f.js",
     "web/runtime/HONRO_BALANCE.60baa408c1fb8f08.js",
     "web/runtime/HONRO_NARRATIVE_V0.975afdb836552ead.js",
@@ -41,7 +41,7 @@
     "web/runtime/ordered-common-11.c9b970dab1f2ac70.js",
     "web/runtime/ordered-common-12.8a740028f3e79c4c.js",
     "web/runtime/ordered-common-13.1061af674cd5f90b.js",
-    "web/runtime/HONRO_SKILL_AUDIO.4cf15b45195ccc1d.js",
+    "web/runtime/HONRO_SKILL_AUDIO.f6ad63eb1f53e151.js",
     "web/runtime/HONRO_MUKJONG_AUDIO.d93c579a7c4120ab.js",
     "web/runtime/HONRO_JOURNEY_MAPS.fdeb3a36d28fa93e.js"
   ],
@@ -500,9 +500,9 @@
       "sha256": "59a3076127863c240e788f024159cff3086c7aa045a819b679eb0c9e26cbc330"
     },
     {
-      "path": "web/data/HONRO_SKILL_AUDIO.4b609a61b0c6cbec.json",
-      "bytes": 8770,
-      "sha256": "4b609a61b0c6cbec7b1792dd9684378c498ca7c2235d3ff981ba61935d41ddec"
+      "path": "web/data/HONRO_SKILL_AUDIO.f2d21e88f9813705.json",
+      "bytes": 11038,
+      "sha256": "f2d21e88f9813705b8aaaffa639f0fbbda35f9849ea422b089bbb7a00e26c101"
     },
     {
       "path": "web/data/HONRO_SKILL_ICON_MANIFEST.ce96d5880bfbc07c.json",
@@ -540,19 +540,19 @@
       "sha256": "3e39c11e1552111717a7532c8a7bc45ac6f5ddf63c872a5bbcd87e2326941eea"
     },
     {
-      "path": "web/entries/game.ab9c2ecd19506239.html",
+      "path": "web/entries/game.390ae9502e22e25b.html",
       "bytes": 11354,
-      "sha256": "ab9c2ecd19506239c467ed13399542c191631e9c242219b11dab38c7ff2d038a"
+      "sha256": "390ae9502e22e25bfbbcf7010ffb3185b0d329c3118e69d5b1ec29a6275aef0c"
     },
     {
-      "path": "web/entries/game.b63336e535aa0f12.js",
+      "path": "web/entries/game.43758b5ea28cc2fd.js",
       "bytes": 11135,
-      "sha256": "b63336e535aa0f1281da5885c85e9ab2672a85a60794671e8b419de513e4a7cc"
+      "sha256": "43758b5ea28cc2fdadcdeba7d13c8cb5eae7294ef7626d8ec26212669c4e1467"
     },
     {
-      "path": "web/entries/workshop.a9378d2583e24e98.js",
+      "path": "web/entries/workshop.a63dd87ecb73c6e3.js",
       "bytes": 7836,
-      "sha256": "a9378d2583e24e98c1238026fb25b486aaa52582c0cddf401c67637c72b2d9c3"
+      "sha256": "a63dd87ecb73c6e3dd7985393f2810c870e047092eac60eb38528d8e2c44b378"
     },
     {
       "path": "web/graphics/ending-10-image.6a631739bb1b7338.webp",
@@ -1020,9 +1020,9 @@
       "sha256": "9cc52f2e8069de34e36439ecf9c76f67a3eda5b8a86b8d727f022d6193874800"
     },
     {
-      "path": "web/graphics/honro_skill_audio-assets-arrow_block-src.2ad14e3d4dc6953b.mp3",
-      "bytes": 5059,
-      "sha256": "2ad14e3d4dc6953b7222c4afeb43688f8a94b4a14238068f65bd48a4756d9c11"
+      "path": "web/graphics/honro_skill_audio-assets-arrow_block-src.6a52e58900de913a.mp3",
+      "bytes": 7148,
+      "sha256": "6a52e58900de913ae398e07a98a1897ec7c4dac714af578f59fd0bd857f5f795"
     },
     {
       "path": "web/graphics/honro_skill_audio-assets-blade_launch-src.c58cf645993fb805.mp3",
@@ -1040,14 +1040,19 @@
       "sha256": "34511a87421791186eff689e22ae3084a9fb8563d1a43e2600d882c55b264b5c"
     },
     {
-      "path": "web/graphics/honro_skill_audio-assets-bow_hit-src.37ea535d57c69e11.mp3",
-      "bytes": 5059,
-      "sha256": "37ea535d57c69e11f2655c50fa5f593b0455a284a190f65e87705acf50ea85bf"
+      "path": "web/graphics/honro_skill_audio-assets-bow_hit-src.96918ec4cfac0d26.mp3",
+      "bytes": 7148,
+      "sha256": "96918ec4cfac0d26fc211f84415f49fba5150941c89f6e372f00eca276416777"
     },
     {
       "path": "web/graphics/honro_skill_audio-assets-bow_release-src.2ed1b2fc8853979f.mp3",
       "bytes": 8820,
       "sha256": "2ed1b2fc8853979f75e6d754a4ffac12f498f62f14c351ff563ba0b3d82ac66e"
+    },
+    {
+      "path": "web/graphics/honro_skill_audio-assets-cheonroe_thunder-src.4da8334065ac67ce.mp3",
+      "bytes": 38077,
+      "sha256": "4da8334065ac67ce7fe8276235790d3af3ead440c2c39f326ac1e143f2c7cf96"
     },
     {
       "path": "web/graphics/honro_skill_audio-assets-curse_attach-src.1b808afbec464608.mp3",
@@ -1900,9 +1905,9 @@
       "sha256": "cc94899c625cc9a3a28689c831bb51c8f19386bd598c9119eb0a010874a6c622"
     },
     {
-      "path": "web/runtime/HONRO_SKILL_AUDIO.4cf15b45195ccc1d.js",
-      "bytes": 1038,
-      "sha256": "4cf15b45195ccc1d134f8982ac4a7f4ad4e581f088a9293daca03b1205bb4684"
+      "path": "web/runtime/HONRO_SKILL_AUDIO.f6ad63eb1f53e151.js",
+      "bytes": 1074,
+      "sha256": "f6ad63eb1f53e151be091b66f558face8850f984dd856c477de2da2915ef44f7"
     },
     {
       "path": "web/runtime/HONRO_SKILL_ICON_MANIFEST.d3c9f01011ec0e42.js",
@@ -1955,9 +1960,9 @@
       "sha256": "1061af674cd5f90b310778398f385127519f67d5a943ab649f84c7b7adda876a"
     },
     {
-      "path": "web/runtime/ordered-common-2.e3c5b463f737dc31.js",
-      "bytes": 743015,
-      "sha256": "e3c5b463f737dc31506d419f72fe109b054f72be7a902bf74e54eb39dc7a756b"
+      "path": "web/runtime/ordered-common-2.788f1f3d3412976f.js",
+      "bytes": 744802,
+      "sha256": "788f1f3d3412976f9bf0ac48e4dd238f01bf676f6ea9e9da284818b2792401ee"
     },
     {
       "path": "web/runtime/ordered-common-3.abd9e6de989cde1f.js",
@@ -2167,19 +2172,34 @@
       "sha256": "4f6d3e4d202a5b6f44efb248a0472a94a4d93fca0519a5c1457749271130f6d1"
     },
     {
-      "path": "web/entries/game.0c7d4175634b4b9b.html",
+      "path": "web/data/HONRO_SKILL_AUDIO.4b609a61b0c6cbec.json",
+      "bytes": 8770,
+      "sha256": "4b609a61b0c6cbec7b1792dd9684378c498ca7c2235d3ff981ba61935d41ddec"
+    },
+    {
+      "path": "web/entries/game.ab9c2ecd19506239.html",
       "bytes": 11354,
-      "sha256": "0c7d4175634b4b9be31bf9643d9e3391f37d2e8c159c529813b9c2b05c8775ec"
+      "sha256": "ab9c2ecd19506239c467ed13399542c191631e9c242219b11dab38c7ff2d038a"
     },
     {
-      "path": "web/entries/game.1ad787a47ba86272.js",
+      "path": "web/entries/game.b63336e535aa0f12.js",
       "bytes": 11135,
-      "sha256": "1ad787a47ba862720ffffc1a7ac2a9600e95205d7b3b3915077827f6a7b8162a"
+      "sha256": "b63336e535aa0f1281da5885c85e9ab2672a85a60794671e8b419de513e4a7cc"
     },
     {
-      "path": "web/entries/workshop.8aff490e3cc2dca6.js",
+      "path": "web/entries/workshop.a9378d2583e24e98.js",
       "bytes": 7836,
-      "sha256": "8aff490e3cc2dca6350ff6382c902fd4333dbe0475b00aa172feea5bd32f0b1c"
+      "sha256": "a9378d2583e24e98c1238026fb25b486aaa52582c0cddf401c67637c72b2d9c3"
+    },
+    {
+      "path": "web/runtime/HONRO_SKILL_AUDIO.4cf15b45195ccc1d.js",
+      "bytes": 1038,
+      "sha256": "4cf15b45195ccc1d134f8982ac4a7f4ad4e581f088a9293daca03b1205bb4684"
+    },
+    {
+      "path": "web/runtime/ordered-common-2.e3c5b463f737dc31.js",
+      "bytes": 743015,
+      "sha256": "e3c5b463f737dc31506d419f72fe109b054f72be7a902bf74e54eb39dc7a756b"
     },
     {
       "path": "web/data/narrative-data.308213bdb09f69ed.json",
@@ -2987,9 +3007,19 @@
       "sha256": "245e89a48a8a7af70f5712a2d20c6479fceb0e10fcd5653645facbabe52b0a0f"
     },
     {
+      "path": "web/graphics/honro_skill_audio-assets-arrow_block-src.2ad14e3d4dc6953b.mp3",
+      "bytes": 5059,
+      "sha256": "2ad14e3d4dc6953b7222c4afeb43688f8a94b4a14238068f65bd48a4756d9c11"
+    },
+    {
       "path": "web/graphics/honro_skill_audio-assets-blade_launch-src.a3394e509c34c7d3.mp3",
       "bytes": 9448,
       "sha256": "a3394e509c34c7d305d2c5260038ed65f45f1dcc38df032a492640d94fe972bf"
+    },
+    {
+      "path": "web/graphics/honro_skill_audio-assets-bow_hit-src.37ea535d57c69e11.mp3",
+      "bytes": 5059,
+      "sha256": "37ea535d57c69e11f2655c50fa5f593b0455a284a190f65e87705acf50ea85bf"
     },
     {
       "path": "web/graphics/honro_skill_audio-assets-bow_release-src.b3e6c5d8466d7b21.mp3",
@@ -3907,19 +3937,34 @@
     ],
     [
       {
-        "path": "web/entries/game.0c7d4175634b4b9b.html",
+        "path": "web/data/HONRO_SKILL_AUDIO.4b609a61b0c6cbec.json",
+        "bytes": 8770,
+        "sha256": "4b609a61b0c6cbec7b1792dd9684378c498ca7c2235d3ff981ba61935d41ddec"
+      },
+      {
+        "path": "web/entries/game.ab9c2ecd19506239.html",
         "bytes": 11354,
-        "sha256": "0c7d4175634b4b9be31bf9643d9e3391f37d2e8c159c529813b9c2b05c8775ec"
+        "sha256": "ab9c2ecd19506239c467ed13399542c191631e9c242219b11dab38c7ff2d038a"
       },
       {
-        "path": "web/entries/game.1ad787a47ba86272.js",
+        "path": "web/entries/game.b63336e535aa0f12.js",
         "bytes": 11135,
-        "sha256": "1ad787a47ba862720ffffc1a7ac2a9600e95205d7b3b3915077827f6a7b8162a"
+        "sha256": "b63336e535aa0f1281da5885c85e9ab2672a85a60794671e8b419de513e4a7cc"
       },
       {
-        "path": "web/entries/workshop.8aff490e3cc2dca6.js",
+        "path": "web/entries/workshop.a9378d2583e24e98.js",
         "bytes": 7836,
-        "sha256": "8aff490e3cc2dca6350ff6382c902fd4333dbe0475b00aa172feea5bd32f0b1c"
+        "sha256": "a9378d2583e24e98c1238026fb25b486aaa52582c0cddf401c67637c72b2d9c3"
+      },
+      {
+        "path": "web/runtime/HONRO_SKILL_AUDIO.4cf15b45195ccc1d.js",
+        "bytes": 1038,
+        "sha256": "4cf15b45195ccc1d134f8982ac4a7f4ad4e581f088a9293daca03b1205bb4684"
+      },
+      {
+        "path": "web/runtime/ordered-common-2.e3c5b463f737dc31.js",
+        "bytes": 743015,
+        "sha256": "e3c5b463f737dc31506d419f72fe109b054f72be7a902bf74e54eb39dc7a756b"
       }
     ]
   ],
