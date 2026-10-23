@@ -3,345 +3,390 @@
   "assets": {
     "yeonsil": {
       "id": "yeonsil",
-      "file": "shared/assets/portraits/npc-plain-v2/yeonsil.webp",
-      "source": "art/portraits/npc-plain-v2/yeonsil.png",
-      "sourceSha256": "55ddd9f99998cb74acd65e8d229ac977af3ffac7f4f27d1dfd0bfa35450f52aa",
-      "width": 1024,
-      "height": 1536,
+      "file": "shared/assets/portraits/npc-game-tone-v3/yeonsil.webp",
+      "source": "art/portraits/npc-game-tone-v3/yeonsil.png",
+      "sourceSha256": "2574aefc3e1011277d3215290013c293075071c60db65fa95444eba0e00aca06",
+      "width": 768,
+      "height": 1152,
       "head": {
-        "left": 200,
+        "left": 150,
         "top": 0,
-        "right": 850,
-        "bottom": 670,
-        "width": 650,
-        "height": 670
+        "right": 637.5,
+        "bottom": 502.5,
+        "width": 487.5,
+        "height": 502.5
       },
       "bust": {
         "left": 0,
         "top": 0,
-        "right": 1024,
-        "bottom": 1536,
-        "width": 1024,
-        "height": 1536
+        "right": 768,
+        "bottom": 1152,
+        "width": 768,
+        "height": 1152
       },
       "framing": {
         "dialogue": {
           "face": {
-            "left": 370,
-            "top": 220,
-            "right": 700,
-            "bottom": 520,
-            "width": 330,
-            "height": 300
+            "left": 277.5,
+            "top": 165,
+            "right": 525,
+            "bottom": 390,
+            "width": 247.5,
+            "height": 225
           },
-          "maxHeight": 1536
+          "maxHeight": 1152
         }
       },
-      "npc": true
+      "npc": true,
+      "identityMaster": {
+        "file": "art/portraits/npc-plain-v2/yeonsil.png",
+        "sha256": "55ddd9f99998cb74acd65e8d229ac977af3ffac7f4f27d1dfd0bfa35450f52aa"
+      },
+      "sourceCommit": "c21cfd1192606ff6181bdf7f6a69ac60a79a62ce"
     },
     "guard_spirit": {
       "id": "guard_spirit",
-      "file": "shared/assets/portraits/npc-plain-v2/guard_spirit.webp",
-      "source": "art/portraits/npc-plain-v2/guard_spirit.png",
-      "sourceSha256": "165be73dbf79f0cebd74e4cf58cd58842a89fe92d3a3e86e6675fdd870f92f2a",
-      "width": 1024,
-      "height": 1536,
+      "file": "shared/assets/portraits/npc-game-tone-v3/guard_spirit.webp",
+      "source": "art/portraits/npc-game-tone-v3/guard_spirit.png",
+      "sourceSha256": "ebfc4838e62d2ad0d669042dcdc0a3249646966a4cb1d650b7be674ab4afb13a",
+      "width": 768,
+      "height": 1152,
       "head": {
-        "left": 200,
+        "left": 150,
         "top": 0,
-        "right": 850,
-        "bottom": 670,
-        "width": 650,
-        "height": 670
+        "right": 637.5,
+        "bottom": 502.5,
+        "width": 487.5,
+        "height": 502.5
       },
       "bust": {
         "left": 0,
         "top": 0,
-        "right": 1024,
-        "bottom": 1536,
-        "width": 1024,
-        "height": 1536
+        "right": 768,
+        "bottom": 1152,
+        "width": 768,
+        "height": 1152
       },
       "framing": {
         "dialogue": {
           "face": {
-            "left": 450,
-            "top": 260,
-            "right": 750,
-            "bottom": 540,
-            "width": 300,
-            "height": 280
+            "left": 337.5,
+            "top": 195,
+            "right": 562.5,
+            "bottom": 405,
+            "width": 225,
+            "height": 210
           },
-          "maxHeight": 1536
+          "maxHeight": 1152
         }
       },
-      "npc": true
+      "npc": true,
+      "identityMaster": {
+        "file": "art/portraits/npc-plain-v2/guard_spirit.png",
+        "sha256": "165be73dbf79f0cebd74e4cf58cd58842a89fe92d3a3e86e6675fdd870f92f2a"
+      },
+      "sourceCommit": "c21cfd1192606ff6181bdf7f6a69ac60a79a62ce"
     },
     "worker_young": {
       "id": "worker_young",
-      "file": "shared/assets/portraits/npc-plain-v2/worker_young.webp",
-      "source": "art/portraits/npc-plain-v2/worker_young.png",
-      "sourceSha256": "79d2732ee6a4ff2ed2066fe565f8fed004b11263a9a9a0fc86aee9dcf88c07f3",
-      "width": 1024,
-      "height": 1536,
+      "file": "shared/assets/portraits/npc-game-tone-v3/worker_young.webp",
+      "source": "art/portraits/npc-game-tone-v3/worker_young.png",
+      "sourceSha256": "d7125f5ad391dd0b89608df5e41c7da50c34d569f09be474e42ad697456d27a6",
+      "width": 768,
+      "height": 1152,
       "head": {
-        "left": 200,
+        "left": 150,
         "top": 0,
-        "right": 850,
-        "bottom": 670,
-        "width": 650,
-        "height": 670
+        "right": 637.5,
+        "bottom": 502.5,
+        "width": 487.5,
+        "height": 502.5
       },
       "bust": {
         "left": 0,
         "top": 0,
-        "right": 1024,
-        "bottom": 1536,
-        "width": 1024,
-        "height": 1536
+        "right": 768,
+        "bottom": 1152,
+        "width": 768,
+        "height": 1152
       },
       "framing": {
         "dialogue": {
           "face": {
-            "left": 390,
-            "top": 220,
-            "right": 740,
-            "bottom": 550,
-            "width": 350,
-            "height": 330
+            "left": 292.5,
+            "top": 165,
+            "right": 555,
+            "bottom": 412.5,
+            "width": 262.5,
+            "height": 247.5
           },
-          "maxHeight": 1536
+          "maxHeight": 1152
         }
       },
-      "npc": true
+      "npc": true,
+      "identityMaster": {
+        "file": "art/portraits/npc-plain-v2/worker_young.png",
+        "sha256": "79d2732ee6a4ff2ed2066fe565f8fed004b11263a9a9a0fc86aee9dcf88c07f3"
+      },
+      "sourceCommit": "c21cfd1192606ff6181bdf7f6a69ac60a79a62ce"
     },
     "monk_elder": {
       "id": "monk_elder",
-      "file": "shared/assets/portraits/npc-plain-v2/monk_elder.webp",
-      "source": "art/portraits/npc-plain-v2/monk_elder.png",
-      "sourceSha256": "d452a89d6dd478174da4fba2c341c33a1b5174f23e4b847d65f2e4003b276b20",
-      "width": 1024,
-      "height": 1536,
+      "file": "shared/assets/portraits/npc-game-tone-v3/monk_elder.webp",
+      "source": "art/portraits/npc-game-tone-v3/monk_elder.png",
+      "sourceSha256": "84923a08cca41e3c87830990d753b737b5e5a4032e4cc4afff69cdf1d0a80a3a",
+      "width": 768,
+      "height": 1152,
       "head": {
-        "left": 200,
+        "left": 150,
         "top": 0,
-        "right": 850,
-        "bottom": 670,
-        "width": 650,
-        "height": 670
+        "right": 637.5,
+        "bottom": 502.5,
+        "width": 487.5,
+        "height": 502.5
       },
       "bust": {
         "left": 0,
         "top": 0,
-        "right": 1024,
-        "bottom": 1536,
-        "width": 1024,
-        "height": 1536
+        "right": 768,
+        "bottom": 1152,
+        "width": 768,
+        "height": 1152
       },
       "framing": {
         "dialogue": {
           "face": {
-            "left": 390,
-            "top": 190,
-            "right": 730,
-            "bottom": 520,
-            "width": 340,
-            "height": 330
+            "left": 292.5,
+            "top": 142.5,
+            "right": 547.5,
+            "bottom": 390,
+            "width": 255,
+            "height": 247.5
           },
-          "maxHeight": 1536
+          "maxHeight": 1152
         }
       },
-      "npc": true
+      "npc": true,
+      "identityMaster": {
+        "file": "art/portraits/npc-plain-v2/monk_elder.png",
+        "sha256": "d452a89d6dd478174da4fba2c341c33a1b5174f23e4b847d65f2e4003b276b20"
+      },
+      "sourceCommit": "c21cfd1192606ff6181bdf7f6a69ac60a79a62ce"
     },
     "man_elder": {
       "id": "man_elder",
-      "file": "shared/assets/portraits/npc-plain-v2/man_elder.webp",
-      "source": "art/portraits/npc-plain-v2/man_elder.png",
-      "sourceSha256": "be26cec4780ff6900ed4319546560edff1f9f2f9eecf25aa12aec35789885bdf",
-      "width": 1024,
-      "height": 1536,
+      "file": "shared/assets/portraits/npc-game-tone-v3/man_elder.webp",
+      "source": "art/portraits/npc-game-tone-v3/man_elder.png",
+      "sourceSha256": "4b8a60881f241c4c384e03eeae005f9fef2d2cc816208db76cdd497980349802",
+      "width": 768,
+      "height": 1152,
       "head": {
-        "left": 200,
+        "left": 150,
         "top": 0,
-        "right": 850,
-        "bottom": 670,
-        "width": 650,
-        "height": 670
+        "right": 637.5,
+        "bottom": 502.5,
+        "width": 487.5,
+        "height": 502.5
       },
       "bust": {
         "left": 0,
         "top": 0,
-        "right": 1024,
-        "bottom": 1536,
-        "width": 1024,
-        "height": 1536
+        "right": 768,
+        "bottom": 1152,
+        "width": 768,
+        "height": 1152
       },
       "framing": {
         "dialogue": {
           "face": {
-            "left": 380,
-            "top": 210,
-            "right": 720,
-            "bottom": 550,
-            "width": 340,
-            "height": 340
+            "left": 285,
+            "top": 157.5,
+            "right": 540,
+            "bottom": 412.5,
+            "width": 255,
+            "height": 255
           },
-          "maxHeight": 1536
+          "maxHeight": 1152
         }
       },
-      "npc": true
+      "npc": true,
+      "identityMaster": {
+        "file": "art/portraits/npc-plain-v2/man_elder.png",
+        "sha256": "be26cec4780ff6900ed4319546560edff1f9f2f9eecf25aa12aec35789885bdf"
+      },
+      "sourceCommit": "c21cfd1192606ff6181bdf7f6a69ac60a79a62ce"
     },
     "worker_mature": {
       "id": "worker_mature",
-      "file": "shared/assets/portraits/npc-plain-v2/worker_mature.webp",
-      "source": "art/portraits/npc-plain-v2/worker_mature.png",
-      "sourceSha256": "5066fdb10aa4cf3a4f19576dbbc71494b9e77d0fe53e9776b9bc0ef84097d5c9",
-      "width": 1024,
-      "height": 1536,
+      "file": "shared/assets/portraits/npc-game-tone-v3/worker_mature.webp",
+      "source": "art/portraits/npc-game-tone-v3/worker_mature.png",
+      "sourceSha256": "6db32403f0318da8077a7461afb2cc1f6a1e17de9e35cf3b40df3e7baa2cfe7a",
+      "width": 768,
+      "height": 1152,
       "head": {
-        "left": 200,
+        "left": 150,
         "top": 0,
-        "right": 850,
-        "bottom": 670,
-        "width": 650,
-        "height": 670
+        "right": 637.5,
+        "bottom": 502.5,
+        "width": 487.5,
+        "height": 502.5
       },
       "bust": {
         "left": 0,
         "top": 0,
-        "right": 1024,
-        "bottom": 1536,
-        "width": 1024,
-        "height": 1536
+        "right": 768,
+        "bottom": 1152,
+        "width": 768,
+        "height": 1152
       },
       "framing": {
         "dialogue": {
           "face": {
-            "left": 410,
-            "top": 220,
-            "right": 730,
-            "bottom": 540,
-            "width": 320,
-            "height": 320
+            "left": 307.5,
+            "top": 165,
+            "right": 547.5,
+            "bottom": 405,
+            "width": 240,
+            "height": 240
           },
-          "maxHeight": 1536
+          "maxHeight": 1152
         }
       },
-      "npc": true
+      "npc": true,
+      "identityMaster": {
+        "file": "art/portraits/npc-plain-v2/worker_mature.png",
+        "sha256": "5066fdb10aa4cf3a4f19576dbbc71494b9e77d0fe53e9776b9bc0ef84097d5c9"
+      },
+      "sourceCommit": "c21cfd1192606ff6181bdf7f6a69ac60a79a62ce"
     },
     "monk_young": {
       "id": "monk_young",
-      "file": "shared/assets/portraits/npc-plain-v2/monk_young.webp",
-      "source": "art/portraits/npc-plain-v2/monk_young.png",
-      "sourceSha256": "1b7dab75d8a166dd5066c7b8e4fb621ca08f2f321d0be05e16ba685dd29dc21b",
-      "width": 1024,
-      "height": 1536,
+      "file": "shared/assets/portraits/npc-game-tone-v3/monk_young.webp",
+      "source": "art/portraits/npc-game-tone-v3/monk_young.png",
+      "sourceSha256": "ac2cfccef8867b94155f0cd49242b8236d4c04d0e8d935f39048c031ddd22e3d",
+      "width": 768,
+      "height": 1152,
       "head": {
-        "left": 200,
+        "left": 150,
         "top": 0,
-        "right": 850,
-        "bottom": 670,
-        "width": 650,
-        "height": 670
+        "right": 637.5,
+        "bottom": 502.5,
+        "width": 487.5,
+        "height": 502.5
       },
       "bust": {
         "left": 0,
         "top": 0,
-        "right": 1024,
-        "bottom": 1536,
-        "width": 1024,
-        "height": 1536
+        "right": 768,
+        "bottom": 1152,
+        "width": 768,
+        "height": 1152
       },
       "framing": {
         "dialogue": {
           "face": {
-            "left": 380,
-            "top": 220,
-            "right": 710,
-            "bottom": 530,
-            "width": 330,
-            "height": 310
+            "left": 285,
+            "top": 165,
+            "right": 532.5,
+            "bottom": 397.5,
+            "width": 247.5,
+            "height": 232.5
           },
-          "maxHeight": 1536
+          "maxHeight": 1152
         }
       },
-      "npc": true
+      "npc": true,
+      "identityMaster": {
+        "file": "art/portraits/npc-plain-v2/monk_young.png",
+        "sha256": "1b7dab75d8a166dd5066c7b8e4fb621ca08f2f321d0be05e16ba685dd29dc21b"
+      },
+      "sourceCommit": "c21cfd1192606ff6181bdf7f6a69ac60a79a62ce"
     },
     "woman_mature": {
       "id": "woman_mature",
-      "file": "shared/assets/portraits/npc-plain-v2/woman_mature.webp",
-      "source": "art/portraits/npc-plain-v2/woman_mature.png",
-      "sourceSha256": "4a0f1562bd3c6574be83f62c95b90ae6f0d0ba498a35d926d96bee2c43e14ff3",
-      "width": 1024,
-      "height": 1536,
+      "file": "shared/assets/portraits/npc-game-tone-v3/woman_mature.webp",
+      "source": "art/portraits/npc-game-tone-v3/woman_mature.png",
+      "sourceSha256": "4194ab7d306d941cbee5e50bbc41471c20173dde5aa3bade119760548d0d311e",
+      "width": 768,
+      "height": 1152,
       "head": {
-        "left": 200,
+        "left": 150,
         "top": 0,
-        "right": 850,
-        "bottom": 670,
-        "width": 650,
-        "height": 670
+        "right": 637.5,
+        "bottom": 502.5,
+        "width": 487.5,
+        "height": 502.5
       },
       "bust": {
         "left": 0,
         "top": 0,
-        "right": 1024,
-        "bottom": 1536,
-        "width": 1024,
-        "height": 1536
+        "right": 768,
+        "bottom": 1152,
+        "width": 768,
+        "height": 1152
       },
       "framing": {
         "dialogue": {
           "face": {
-            "left": 390,
-            "top": 200,
-            "right": 740,
-            "bottom": 520,
-            "width": 350,
-            "height": 320
+            "left": 292.5,
+            "top": 150,
+            "right": 555,
+            "bottom": 390,
+            "width": 262.5,
+            "height": 240
           },
-          "maxHeight": 1536
+          "maxHeight": 1152
         }
       },
-      "npc": true
+      "npc": true,
+      "identityMaster": {
+        "file": "art/portraits/npc-plain-v2/woman_mature.png",
+        "sha256": "4a0f1562bd3c6574be83f62c95b90ae6f0d0ba498a35d926d96bee2c43e14ff3"
+      },
+      "sourceCommit": "c21cfd1192606ff6181bdf7f6a69ac60a79a62ce"
     },
     "keeper_ritual": {
       "id": "keeper_ritual",
-      "file": "shared/assets/portraits/keeper-ritual-v1/keeper.webp",
-      "source": "art/portraits/keeper-ritual-v1/keeper.png",
-      "sourceSha256": "8802669c8705d8606be12bc83046a2d162ff0c55ca1fbc43b9c757b0978389a7",
-      "width": 1024,
-      "height": 1536,
+      "file": "shared/assets/portraits/npc-game-tone-v3/keeper.webp",
+      "source": "art/portraits/npc-game-tone-v3/keeper.png",
+      "sourceSha256": "a163576661fcf8e529e2a63893113fb0a410b9aa339629bdb59ba6f36549c798",
+      "width": 768,
+      "height": 1152,
       "head": {
-        "width": 430,
-        "height": 468,
-        "left": 360,
-        "top": 12,
-        "right": 790,
-        "bottom": 480
+        "width": 322.5,
+        "height": 351,
+        "left": 270,
+        "top": 9,
+        "right": 592.5,
+        "bottom": 360
       },
       "bust": {
-        "width": 760,
-        "height": 1138,
-        "left": 220,
-        "top": 12,
-        "right": 980,
-        "bottom": 1150
+        "width": 570,
+        "height": 853.5,
+        "left": 165,
+        "top": 9,
+        "right": 735,
+        "bottom": 862.5
       },
       "framing": {
         "dialogue": {
           "face": {
-            "width": 250,
-            "height": 270,
-            "left": 475,
-            "top": 155,
-            "right": 725,
-            "bottom": 425
+            "width": 187.5,
+            "height": 202.5,
+            "left": 356.25,
+            "top": 116.25,
+            "right": 543.75,
+            "bottom": 318.75
           },
-          "maxHeight": 1200
+          "maxHeight": 900
         }
       },
-      "npc": true
+      "npc": true,
+      "identityMaster": {
+        "file": "art/portraits/keeper-ritual-v1/keeper.png",
+        "sha256": "8802669c8705d8606be12bc83046a2d162ff0c55ca1fbc43b9c757b0978389a7"
+      },
+      "sourceCommit": "c21cfd1192606ff6181bdf7f6a69ac60a79a62ce"
     }
   },
   "rows": {

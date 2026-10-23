@@ -92,9 +92,9 @@ function imageCrop(asset,canvas,purpose){
   // A large silhouette has a different job from a small face-identification card.
   // Keep the entire source width and head above a padded top; only the lower
   // body may extend behind the reading surface / viewport. Never fill-crop a hat.
-  const face=asset.framing?.dialogue?.face||asset.head,aspect=canvas.width/canvas.height;
-  const height=Math.max(Math.min(face.height*5,asset.framing?.dialogue?.maxHeight||Infinity),(asset.width+64)/aspect),width=height*aspect;
-  return {x:(asset.width-width)/2,y:-32,width,height};
+  const face=asset.framing?.dialogue?.face||asset.head,aspect=canvas.width/canvas.height,pixelScale=asset.width/1024;
+  const height=Math.max(Math.min(face.height*5,asset.framing?.dialogue?.maxHeight||Infinity),(asset.width+64*pixelScale)/aspect),width=height*aspect;
+  return {x:(asset.width-width)/2,y:-32*pixelScale,width,height};
  }
  const region=asset.framing?.[purpose]||asset;
  const crop=cropFor(region.bust,region.head,canvas.width,canvas.height);
