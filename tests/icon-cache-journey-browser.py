@@ -17,7 +17,7 @@ def server(root):
  finally:s.shutdown();s.server_close();t.join(2)
 INIT="""(()=>{window.iconStats={decode:0,load:0};const decode=HTMLImageElement.prototype.decode;HTMLImageElement.prototype.decode=function(){if(/skill-icon|skill-icons/.test(this.src))iconStats.decode++;return decode.call(this)};const src=Object.getOwnPropertyDescriptor(HTMLImageElement.prototype,'src');Object.defineProperty(HTMLImageElement.prototype,'src',{...src,set(value){if(/skill-icon|skill-icons/.test(value))iconStats.load++;return src.set.call(this,value)}})})()"""
 SETUP="""()=>{const a=HonroApp;a.profile.settings.music=false;a.profile.settings.sound=false;a.close();a.engine.active.loadout=['A01','A02','A03','A04'];for(const id of a.engine.active.loadout)a.engine.active.ranks[id]=1;a.selected='A01';a.selectedByUnit[a.engine.active.id]='A01';a.updateHUD(true)}"""
-WATCH="""()=>{window.identity=[...document.querySelectorAll('#combat-skills>button')];window.artIdentity=identity.map(e=>e.querySelector('.skill-art'));window.mutations={created:0,removed:0,flash:0};window.mo=new MutationObserver(rs=>{for(const r of rs){mutations.created+=r.addedNodes.length;mutations.removed+=r.removedNodes.length;if(r.type==='attributes'&&r.target.matches('.skill-art')&&r.target.dataset.imageState!=='ready')mutations.flash++}for(const e of document.querySelectorAll('#combat-skills .skill-art'))if(e.dataset.imageState!=='ready'||getComputedStyle(e.querySelector('svg')).visibility!=='hidden')mutations.flash++});mo.observe(document.querySelector('#combat-skills'),{childList:true,subtree:true,attributes:true});window.before={...iconStats,resources:performance.getEntriesByType('resource').filter(e=>/skill-icon/.test(e.name)).length}}"""
+WATCH="""()=>{window.identity=[...document.querySelectorAll('#combat-skills>button')];window.artIdentity=identity.map(e=>e.querySelector('.skill-art'));window.mutations={created:0,removed:0,flash:0};window.mo=new MutationObserver(rs=>{for(const r of rs){mutations.created+=r.addedNodes.length;mutations.removed+=r.removedNodes.length;if(r.type==='attributes'&&r.target.matches('.skill-art')&&r.target.dataset.imageState!=='ready')mutations.flash++}for(const e of document.querySelectorAll('#combat-skills .skill-art'))if(e.dataset.imageState!=='ready'||!!e.querySelector('svg'))mutations.flash++});mo.observe(document.querySelector('#combat-skills'),{childList:true,subtree:true,attributes:true});window.before={...iconStats,resources:performance.getEntriesByType('resource').filter(e=>/skill-icon/.test(e.name)).length}}"""
 rows=[]
 with sync_playwright() as pw:
  b=launch(pw)
@@ -48,11 +48,11 @@ with sync_playwright() as pw:
     p.evaluate("window.campArt=[...document.querySelectorAll('.skill-art')];window.campButtons=[...document.querySelectorAll('.tree-node,.slot-card')]")
     p.evaluate("()=>{const a=HonroApp;a.profile.heroes.archer.ranks.A02=1;a.showCamp('archer');a.profile.heroes.archer.statTraining=1;a.showCamp('archer')}")
     result['camp']=p.evaluate("({icons:campArt.every(n=>n.isConnected),buttons:campButtons.every(n=>n.isConnected)})");assert all(result['camp'].values())
-    # Existing fallback remains visible after network error, explicit retry recovers.
+    # Neutral placeholder remains after network error, explicit retry recovers.
     p.close();p=b.new_page(viewport={'width':390,'height':844});p.add_init_script(INIT)
     p.route('**/*skill-icon-A01*.webp',lambda route:route.abort());p.goto(base+'/HONRO.html');p.wait_for_function('window.HonroApp');p.evaluate('HonroApp.startTraining()');p.wait_for_selector('.training-dialog');p.evaluate(SETUP)
     p.wait_for_function("document.querySelector('#combat-skills [data-skill-icon=A01]').dataset.imageState==='error'")
-    assert p.locator('#combat-skills [data-skill-icon=A01] svg').evaluate("e=>getComputedStyle(e).visibility")=='visible'
+    assert p.locator('#combat-skills [data-skill-icon=A01] svg').count()==0
     p.unroute('**/*skill-icon-A01*.webp');p.evaluate('HonroSkillImages.retry()');p.wait_for_function("document.querySelector('#combat-skills [data-skill-icon=A01]').dataset.imageState==='ready'");result['failureRecovery']=True
    rows.append(result);p.close()
  b.close()

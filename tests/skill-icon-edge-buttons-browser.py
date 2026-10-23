@@ -119,9 +119,9 @@ with sync_playwright() as pw, serve_game() as base:
         q.route('**/skill-icon-A14.*.webp',lambda r:r.fulfill(status=404,body='deliberate test failure'))
         q.goto(base+'/HONRO.html');q.wait_for_function('window.HonroApp');q.evaluate("HonroApp.showCamp('archer');HonroApp.talent('A14')")
         q.wait_for_function("document.querySelector('.skill-modal-title [data-skill-icon=A14]').dataset.imageState==='error'")
-        check('네트워크 실패 SVG 폴백',q.locator('.skill-modal-title [data-skill-icon=A14] svg').is_visible());shot(q,'fallback-detail-390')
+        check('네트워크 실패 중립 프레임',q.locator('.skill-modal-title [data-skill-icon=A14] svg').count()==0);shot(q,'fallback-detail-390')
         training(q);q.wait_for_function("document.querySelector('#combat-skills [data-skill-icon=A14]').dataset.imageState==='error'")
-        check('전투 폴백/이름 보존',q.locator('#combat-skills [data-skill-icon=A14] svg').is_visible() and q.locator('#combat-skills [data-skill=A14] .skill-name').is_visible());shot(q,'fallback-hud-390');q.close()
+        check('전투 폴백/이름 보존',q.locator('#combat-skills [data-skill-icon=A14] svg').count()==0 and q.locator('#combat-skills [data-skill=A14] .skill-name').is_visible());shot(q,'fallback-hud-390');q.close()
     if MODE in ['responsive','final']:
         p.evaluate(PROFILE);training(p)
         original_css=subprocess.check_output(['git','show','0a9acf40396452e2f424cd9731f8f91f3478da03:game/src/skill-icons.css'],cwd=ROOT,text=True)

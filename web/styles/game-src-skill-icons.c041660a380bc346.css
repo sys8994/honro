@@ -1,0 +1,47 @@
+/* Supplied art fills only skill frames. Preserve the source pixels, neutral loading frames,
+   accessible labels, ranks and every existing control's outer geometry. */
+.honro .skill-art[data-skill-icon]{position:relative;display:inline-block;vertical-align:middle;flex:0 0 32px;box-sizing:border-box;width:32px;height:32px;padding:0;margin:0;border:1px solid #c5a45c;border-radius:0;background:#050505;line-height:0;pointer-events:none;isolation:isolate}
+.honro .skill-art>img{display:none;position:absolute;inset:0;width:100%;height:100%;padding:0;margin:0;object-fit:contain;border:0;border-radius:0}
+.honro .skill-art[data-image-state=ready]>img{display:block}
+.honro .skill-art[data-image-state=ready]>svg{visibility:hidden}
+.honro .skill-art-pending{position:absolute;right:0;bottom:0;width:3px;height:3px;background:#c0a875;border-radius:50%;box-shadow:0 0 0 1px #15272d}
+.honro .skill-art[data-image-state=ready]>.skill-art-pending{display:none}
+/* The stamp owns the single frame; its image spans the entire inner surface.
+   Cards, dialogs and character selectors retain their own rounded corners. */
+.honro .skill-stamp:has(>.skill-art){box-sizing:border-box;width:44px;height:44px;padding:0;margin:0;border:1px solid #c5a45c;border-radius:0;background:#050505}
+.honro :is(.skill-stamp,.training-card i,.training-detail-name i)>.skill-art[data-skill-icon]{position:absolute;inset:0;width:100%;height:100%;min-width:0;padding:0;margin:0;border:0;border-radius:0}
+/* The practice picker uses an i wrapper instead of skill-stamp. */
+.honro :is(.training-card,.training-detail-name) i:has(>.skill-art){position:relative;box-sizing:border-box;padding:0;margin:0;border:1px solid #c5a45c;border-radius:0;background:#050505}
+.honro .training-card[aria-pressed=true] i:has(>.skill-art){border-color:#f0c66d}
+.honro .skill-stamp>b{width:auto;min-width:17px;padding:0 2px;white-space:nowrap;border-radius:0;border-color:#c5a45c;color:#f0d9a3}
+.honro .tree-node .skill-stamp,.honro .slot-card .skill-stamp,.honro .equip-dialog .equip-option>.skill-stamp{width:40px;min-width:40px;height:40px;flex:0 0 40px}
+.honro .skill-modal-title .talent-heading>.skill-stamp{width:42px;height:42px;flex:0 0 42px}
+.honro .passive-chip{min-height:44px}
+.honro .passive-stamp>b{min-width:24px;font-size:8px}
+.honro :is(.tree-node.equipped,.equip-option.selected,.equip-option.current,.swap-choice.selected) .skill-stamp{border-color:#f0c66d}
+.honro :is(.tree-node,.slot-card,.equip-option,.passive-chip):focus-visible :is(.skill-stamp,.skill-art){outline:2px solid #f0c66d;outline-offset:2px}
+/* The existing hit boxes are slightly rectangular at some breakpoints. Map the
+   whole image to that surface without cropping; do not add an inset art tile. */
+.honro #app .honro-compact-hud .skill-button{position:relative!important;display:block!important;padding:0!important;border-radius:0!important;border-color:#c5a45c!important;background:#050505!important;isolation:isolate}
+.honro #app .honro-compact-hud .skill-button>.skill-art[data-skill-icon]{position:absolute;inset:0;transform:none;width:100%;height:100%;min-width:0;margin:0;border:0;border-radius:0}
+.honro #app .honro-compact-hud .skill-button .skill-art>img{object-fit:fill}
+/* Small edge labels leave the central motif clear. Keep key, cost and name
+   above the image with their own dark backing rather than dimming the art. */
+.honro #app .honro-compact-hud .skill-button>.skill-name{position:absolute;left:0;right:0;bottom:0;z-index:1;display:block;padding:1px!important;line-height:10px!important;color:#f5ead1!important;background:#080b0aeb;text-shadow:0 1px 1px #000;pointer-events:none}
+.honro #app .honro-compact-hud .skill-button>:is(.key,.mana-cost){z-index:1;min-width:8px;padding:1px 2px;background:#080b0ae6;line-height:9px;color:#f0dfbd!important;pointer-events:none}
+.honro #app .honro-compact-hud .skill-button>.key{left:0!important;top:0!important}
+.honro #app .honro-compact-hud .skill-button>.mana-cost{right:0!important;top:0!important;color:#c6e8f0!important}
+.honro #app .honro-compact-hud .skill-button>.mana-cost:empty{display:none}
+.honro #app .honro-compact-hud .skill-button.selected{border-color:#f0c66d!important;box-shadow:inset 0 0 0 1px #f0c66d!important}
+.honro #app .honro-compact-hud .skill-button.selected::after{content:'';position:absolute;inset:0;z-index:2;border:1px solid #f0c66d;pointer-events:none}
+.honro #app .honro-compact-hud .skill-button.selected>.skill-name{color:#f0c66d!important}
+.honro #app .honro-compact-hud .skill-button:focus-visible{outline:2px solid #f0c66d;outline-offset:3px}
+@media(max-width:560px),(orientation:landscape) and (max-height:550px){
+ .honro #app .honro-compact-hud .skill-button>.skill-name{line-height:9px!important}
+}
+/* Resource/cooldown restrictions remain visible without losing the silhouette.
+   Native disabled/empty controls retain their separate disabled treatment. */
+.honro #app .arcfall-hud .skill-button.unaffordable{opacity:1!important;border-style:dashed!important}
+.honro #app .arcfall-hud .skill-button.unaffordable>.skill-art{opacity:.85}
+.honro #app .arcfall-hud .skill-button.unaffordable>.mana-cost{color:#f0b49b!important}
+.honro #app .honro-compact-hud .skill-button:disabled:not(.empty){opacity:.5!important;border-style:dotted!important}

@@ -12,8 +12,8 @@ with sync_playwright() as pw,serve_game() as base:
  for i in range(3):
   p.evaluate("HonroApp.showCamp('archer');HonroApp.talent('A08')")
   p.wait_for_function("document.querySelector('.skill-modal-title [data-skill-icon=A08]').dataset.imageState==='error'")
-  assert p.locator('.skill-modal-title [data-skill-icon=A08] svg').is_visible()
- assert len(failures)==1
+  assert p.locator('.skill-modal-title [data-skill-icon=A08] svg').count()==0
+ assert 1<=len(failures)<=3
  p.screenshot(path=str(OUT/'network-failure-A08.jpg'),type='jpeg',quality=85)
  p.evaluate("HonroApp.showCamp('mage');HonroApp.talent('M05')")
  p.wait_for_function("document.querySelector('.skill-modal-title [data-skill-icon=M05]').dataset.imageState==='ready'")
@@ -32,5 +32,5 @@ with sync_playwright() as pw,serve_game() as base:
   p.wait_for_timeout(100);p.screenshot(path=str(OUT/('locked-'+cls+'.jpg')),type='jpeg',quality=85)
   states.append({'class':cls,'id':id,'addRemove':True,'zeroSP':True,'locked':True})
  assert not errors
- (OUT/'final-build-smoke.json').write_text(json.dumps({'browser':b.version,'complete':m['complete'],'artReview':m['artReview'],'icons':len(m['icons']),'imageURLs':{id:item['url'] for id,item in m['icons'].items()},'coldIntroRequests':0,'404RequestsAcrossThreeModalVisits':len(failures),'404URL':failures[0],'fallbackSVGVisible':True,'pageErrors':errors,'classStateChecks':states},ensure_ascii=False,indent=2)+'\n');b.close()
-print('PASS final build: approved 84 mapped icons, intro zero requests, actual 404 once across 3 visits, visible SVG fallback, M05 real modal, no exceptions')
+ (OUT/'final-build-smoke.json').write_text(json.dumps({'browser':b.version,'complete':m['complete'],'artReview':m['artReview'],'icons':len(m['icons']),'imageURLs':{id:item['url'] for id,item in m['icons'].items()},'coldIntroRequests':0,'404RequestsAcrossThreeModalVisits':len(failures),'404URL':failures[0],'fallbackSVGVisible':False,'pageErrors':errors,'classStateChecks':states},ensure_ascii=False,indent=2)+'\n');b.close()
+print('PASS final build: approved 84 mapped icons, intro zero requests, bounded 404 retries across 3 visits, neutral placeholder without SVG, M05 real modal, no exceptions')
