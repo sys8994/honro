@@ -26,7 +26,7 @@ export function recordSalheun(e:Engine,p:Projectile|undefined,u:Unit,t:Unit,actu
  t.salheun??={};const h=t.salheun[u.id]??={entries:[],action:-1,recorded:0,cap:0,projectiles:[]};
  h.entries=h.entries.filter(v=>turn-v.turn<=SALHEUN_TURNS[r-1]);
  const first=h.action!==p.shot;
- if(first){h.action=p.shot;h.recorded=0;h.cap=Math.max(actual,p.rootDamage||p.damage)*1.5;h.projectiles=[];}
+ if(first){h.action=p.shot;h.recorded=0;h.cap=Math.max(actual,(p.rootDamage||p.damage)*(p.damageRoll??1))*1.5;h.projectiles=[];}
  // Snapshot past turns before recording this action. Echo has a separate source
  // and never re-enters projectile on-hit, critical, healing or history paths.
  const echo=first?h.entries.reduce((sum,v)=>{const age=turn-v.turn;return sum+(age>=1? v.damage*SALHEUN_RATIO[r-1]*Math.pow(.55,age-1):0);},0):0;

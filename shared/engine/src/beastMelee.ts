@@ -21,10 +21,10 @@ export function beastContact(e:Engine,u:Unit,t:Unit){
  // The whole line starts at the torso, so a muzzle protruding through a wall cannot hit.
  return beastLaneClear(e,u,t);
 }
-export function startBeastCast(e:Engine,u:Unit,s:Skill,damage:number,t?:Unit){
+export function startBeastCast(e:Engine,u:Unit,s:Skill,damage:number,t?:Unit,damageRoll?:number){
  const k=beastKind(u);if(!k||s.id!==IDS[k])return false;
  if(!t)return false;
- u.beastAction={skill:s.id,target:t.id,elapsed:0,damage,shot:e.b.shot,facing:u.facing,travel:0,struck:false};
+ u.beastAction={damageRoll,skill:s.id,target:t.id,elapsed:0,damage,shot:e.b.shot,facing:u.facing,travel:0,struck:false};
  u.intent=s.name+' · 준비';e.message(`${u.name} · ${s.name}`);e.emit('change');e.emit('save');return true;
 }
 export function tickBeasts(e:Engine,dt:number){
@@ -43,7 +43,7 @@ export function tickBeasts(e:Engine,dt:number){
     u.walkSpeed=speed;a.travel+=Math.abs(u.x-before);
     if(beastContact(e,u,t)&&e.attackAllows(t,u.id)){
      a.struck=true;
-     const p={skill:a.skill,owner:u.id,side:u.side,shot:a.shot,skillRank:u.ranks[a.skill]||1,vx:a.facing,vy:0,launchX:u.x,launchY:u.y,damage:a.damage} as Projectile;
+     const p={damageRoll:a.damageRoll,skill:a.skill,owner:u.id,side:u.side,shot:a.shot,skillRank:u.ranks[a.skill]||1,vx:a.facing,vy:0,launchX:u.x,launchY:u.y,damage:a.damage} as Projectile;
      e.hurt(t,a.damage,u.id,true,p,{x:u.x,y:u.y-u.h*.55});
      e.fx('spark',u.x+a.facing*u.r,u.y-u.h*.55,'#c3b995',18);e.emit('sound',{name:'impact'});
     }

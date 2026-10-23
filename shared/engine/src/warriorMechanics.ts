@@ -1,3 +1,4 @@
+import type {DamageOrigin} from './damageVariance';
 import {passiveTuning} from './passiveBalance';
 import {healed,intercepted} from './contribution';
 import type {Engine,Collision,Prediction} from './engine';
@@ -61,9 +62,9 @@ function stroke(e:Engine,u:Unit,range:number,facing=u.facing,color='#dbe2dd',var
  const c=at(u);e.emit('fx',{name:'swordCut',x:c.x,y:c.y,x2:facing,y2:variant,color,size:range,text:angle===undefined?undefined:JSON.stringify({angle,span})});u.anim=.55;
  e.emit('sound',{name:'sword'});e.fx('spark',u.x+facing*25,u.y,'#958e76',12);
 }
-function strike(e:Engine,u:Unit,t:Unit,damage:number,s:Skill,shot:number,autonomous=false){
+function strike(e:Engine,u:Unit,t:Unit,damage:number,s:Skill,shot:number,autonomous=false,origin?:DamageOrigin){
  // A short-lived damage descriptor is not a projectile in the battlefield.
- const p={autonomous,skill:s.id,owner:u.id,side:u.side,shot,damage,skillRank:u.ranks[s.id]||1,launchX:u.x,launchY:u.y,vx:u.facing,vy:0} as Projectile;
+ const p={damageRoll:origin?.damageRoll,autonomous,skill:s.id,owner:u.id,side:u.side,shot,damage,skillRank:u.ranks[s.id]||1,launchX:u.x,launchY:u.y,vx:u.facing,vy:0} as Projectile;
  e.hurt(t,damage,u.id,true,p,at(u));
 }
 export function startWarriorCast(e:Engine,s:Skill,u:Unit){
@@ -77,12 +78,12 @@ export function startWarriorCast(e:Engine,s:Skill,u:Unit){
    const rank=u.ranks[s.id]||1,before=u.hp;
    u.hp=Math.min(u.maxHp,u.hp+Math.round(u.maxHp*(.02+.005*(rank-1))));
    healed(e.b,u,u.id,before,s.id);if(u.hp>before)e.fx('ring',u.x,u.y-u.h*.5,'#b8d2bc',28);
-   u.martialGuard={round:e.b.round,reduction:.25+.10*(rank-1)/7,counter:true,rank,angle:-rad(u.angle),span:meleeSpan(u,s,power)};stroke(e,u,45);return;
+   u.martialGuard={damageRoll:p.damageRoll,round:e.b.round,reduction:.25+.10*(rank-1)/7,counter:true,rank,angle:-rad(u.angle),span:meleeSpan(u,s,power)};stroke(e,u,45);return;
   }
   if(s.mode==='bladeScreen'){u.bladeScreen={round:e.b.round,rank:u.ranks[s.id]||1,hits:0,facing:u.facing};stroke(e,u,110);return;}
   const lifeCost=s.mode==='lifeSlash'?Math.floor(u.hp/3):0;
   if(lifeCost)u.hp-=lifeCost;
-  u.meleeAction={skill:s.id,elapsed:0,index:0,damage:damage+(lifeCost*(1.08+.405*((u.ranks[s.id]||1)-1)/7)),range:meleeRange(u,s,s.mode==='lifeSlash'?0:power),power,shot:e.b.shot,lifeCost,angle:-rad(u.angle),span:meleeSpan(u,s,power)};
+  u.meleeAction={damageRoll:p.damageRoll,skill:s.id,elapsed:0,index:0,damage:damage+(lifeCost*(1.08+.405*((u.ranks[s.id]||1)-1)/7)),range:meleeRange(u,s,s.mode==='lifeSlash'?0:power),power,shot:e.b.shot,lifeCost,angle:-rad(u.angle),span:meleeSpan(u,s,power)};
   if(power<.30&&s.mode!=='lifeSlash')u.martialGuard={round:e.b.round,reduction:.12*(1-power/.30)};
   return;
  }
@@ -113,8 +114,8 @@ export function tickWarrior(e:Engine,dt:number){
     const targets=e.b.units.filter(t=>foe(u,t)&&e.attackAllows(t,u.id,{autonomous:s.mode==='meleeCombo'||a.index>0})&&meleeContains(e,u,t,a.range,angle,span));
     if(s.mode==='meleeCombo'){
      const current=targets.find(t=>t.id===a.target)||targets.sort((x,y)=>Math.hypot(x.x-u.x,x.y-u.y)-Math.hypot(y.x-u.x,y.y-u.y))[0];
-     if(current){a.target=current.id;strike(e,u,current,a.damage,s,a.shot,s.mode==='meleeCombo'||a.index>0);}
-    }else for(const t of targets)strike(e,u,t,a.damage,s,a.shot,s.mode==='meleeCombo'||a.index>0);
+     if(current){a.target=current.id;strike(e,u,current,a.damage,s,a.shot,s.mode==='meleeCombo'||a.index>0,a);}
+    }else for(const t of targets)strike(e,u,t,a.damage,s,a.shot,s.mode==='meleeCombo'||a.index>0,a);
     for(const t of e.b.terrain){const contact=meleeTerrainContact(e,u,t,a.range,angle,span);if(contact){e.damageTerrain(t,a.damage*(s.terrain||1),0,u.id,{autonomous:s.mode==='meleeCombo'||a.index>0} as Projectile);e.fx('spark',contact.x,contact.y,'#cfb783',22);}}
     stroke(e,u,a.range,facing,s.mode==='lifeSlash'?'#d8c4bd':'#dbe2dd',s.mode==='lifeSlash'?2:a.index%2,angle,span);a.index++;
    }
@@ -124,7 +125,7 @@ export function tickWarrior(e:Engine,dt:number){
   if(guard?.counter&&e.b.side!==u.side){
    const range=SKILLS.S08.radius+(guard.attacker?72:0),span=(guard.span??meleeSpan(u,SKILLS.S08))+(guard.attacker?rad(20):0),angle=guard.angle??-rad(u.angle);
    const targets=e.b.units.filter(t=>foe(u,t)&&e.attackAllows(t,u.id,{autonomous:true})&&meleeContains(e,u,t,range,angle,span));
-   if(targets.length){guard.counter=false;for(const t of targets)strike(e,u,t,52*u.attack*(1.10+.20*((guard.rank||1)-1)/7),SKILLS.S08,e.b.shot,true);stroke(e,u,range,Math.cos(angle)<0?-1:1,'#dbe2dd',0,angle,span);}
+   if(targets.length){guard.counter=false;for(const t of targets)strike(e,u,t,52*u.attack*(1.10+.20*((guard.rank||1)-1)/7),SKILLS.S08,e.b.shot,true,guard);stroke(e,u,range,Math.cos(angle)<0?-1:1,'#dbe2dd',0,angle,span);}
   }
  }
 }
@@ -153,7 +154,7 @@ function bladeHit(e:Engine,p:Projectile,t:Unit){
  if(p.mode==='bladePull'){
   e.hurt(t,p.damage,p.owner,true,p,p);
   pullToFront(e,u,t);
-  if(foe(u,t)&&e.attackAllows(t,u.id,{autonomous:true})&&meleeContains(e,u,t,SKILLS.S00.radius)){strike(e,u,t,52*u.attack*.85,SKILLS.S00,p.shot,true);stroke(e,u,SKILLS.S00.radius);}
+  if(foe(u,t)&&e.attackAllows(t,u.id,{autonomous:true})&&meleeContains(e,u,t,SKILLS.S00.radius)){strike(e,u,t,52*u.attack*.85,SKILLS.S00,p.shot,true,p);stroke(e,u,SKILLS.S00.radius);}
  }else e.hurt(t,p.damage,p.owner,true,p,p);
 }
 function land(e:Engine,p:Projectile,h?:Collision){
@@ -170,7 +171,7 @@ function land(e:Engine,p:Projectile,h?:Collision){
   const t=h?.unit&&foe(u,h.unit)?h.unit:e.b.units.filter(t=>foe(u,t)&&Math.hypot(t.x-p.x,t.y-t.h*.5-p.y)<p.blast+t.r).sort((a,b)=>Math.abs(a.x-p.x)-Math.abs(b.x-p.x))[0];
   if(t)e.hurt(t,p.damage,p.owner,true,p,p);stroke(e,u,95);
  }
- if(s.id==='S13')u.meleeFollow='landing';
+ if(s.id==='S13'){u.meleeFollow='landing';u.meleeFollowOrigin={damageRoll:p.damageRoll};}
  e.remove(p);
 }
 /** First contact releases one short, transverse, cover-aware pressure cut. */
@@ -218,7 +219,7 @@ export function stepWarrior(e:Engine,p:Projectile,dt:number){
 export function finishWarrior(e:Engine){
  const u=e.active;if(!u)return false;
  if(u.meleeFollow==='landing'&&!u.dead){u.meleeFollow='ready';u.acted=false;u.moveLeft=0;e.b.phase='aim';e.b.cast=undefined;e.message('파진연격 · 평참 또는 검술 한 번');e.emit('change');e.emit('save');return true;}
- if(u.meleeFollow==='spent')delete u.meleeFollow;
+ if(u.meleeFollow==='spent'){delete u.meleeFollow;delete u.meleeFollowOrigin;}
  return false;
 }
 export function bladeScreenPass(e:Engine,p:Projectile,a:Vec,b:Vec){

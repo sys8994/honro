@@ -1,3 +1,4 @@
+import {damageSpread} from './damageVariance';
 import {GATE_SEARCH_RADIUS} from './gateTravel';
 import {waveArcDimensions,shatterStakeDimensions,MAGE_AREA_SCALE} from './mageGeometry';
 import {waveReflectionPlan,WAVE_REFLECTION_DECAY} from './waveReflection';
@@ -53,6 +54,10 @@ export function skillGrowthRows(id:string,rank:number):EffectRow[]{
 }
 /** These values are shared by the detail panel and the actual formulas below/in Engine. */
 export function skillEffectRows(id:string,rank:number):EffectRow[]{
+ const rows=skillBaseEffectRows(id,rank),s=SKILLS[id],spread=s?damageSpread(s):0;
+ return spread?[...rows,{label:'피해 기준',value:`표시 수치는 평균 · 행동당 ±${Math.round(spread*100)}%`}]:rows;
+}
+function skillBaseEffectRows(id:string,rank:number):EffectRow[]{
  const s=SKILLS[id];if(!s)return [];const r=clamp(rank,0,8),p=rankPower(r),pct=(v:number)=>`${+(v*100).toFixed(1)}%`,num=(v:number)=>`${+v.toFixed(1)}`;
  const row=(label:string,value:string):EffectRow=>({label,value});
  if(!s.passive){
