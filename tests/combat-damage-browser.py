@@ -19,8 +19,7 @@ with sync_playwright() as pw,serve_game() as url:
  result=p.evaluate('''()=>{const a=HonroApp,e=a.engine,b=e.b,C=HONRO_CORE,shot=b.projectiles[0],ally=e.unit('damage-browser-ally'),control=new C.Engine(structuredClone(b)),ct=control.unit(ally.id);control.random=e.random=()=>.99;control.friendlyFireMultiplier=()=>1;const sh=ct.shield,hp=ct.hp;control.hurt(ct,shot.damage,shot.owner,true,shot,{x:ally.x,y:ally.y-ally.h*.5});const baseline=hp-ct.hp+sh-ct.shield,oldhp=ally.hp,oldsh=ally.shield; e.hurt(ally,shot.damage,shot.owner,true,shot,{x:ally.x,y:ally.y-ally.h*.5});const loss=oldhp-ally.hp+oldsh-ally.shield; a.modal.classList.remove('open');a.screen='battle';a.updateHUD(true);return{baseline,loss,ratio:loss/baseline,index:b.damageSequence.index,roll:shot.damageRoll,report:b.honroReport.other.friendly,hp:ally.hp,shield:ally.shield}}''')
  check('built actual ally HP+shield and report agree with single final 30%',abs(result['ratio']-.3)<1e-8 and result['index']==1 and abs(result['report']['damage']+result['report']['shield']-result['loss'])<1e-8,result)
  p.screenshot(path=str(OUT/'continued-attack.png'))
- # The report must retain 0.3, and the skill detail explicitly identifies the mean.
- check('built skill detail labels average and range',p.evaluate("HONRO_CORE.skillEffectRows('A01',1).some(r=>r.value.includes('평균')&&r.value.includes('±5%'))"))
+ # Visible skill detail is covered by native clicks in visible-skill-damage-variance-browser.py.
  check('production skill icon markup still has no SVG fallback',p.evaluate("!HONRO_CORE.icon('skill:A01').includes('<svg')"))
  p.goto(url+'/HONRO_WORKSHOP.html');p.wait_for_function('window.HonroWorkshopAPI')
  check('built Workshop basic entry',p.evaluate('!!window.HonroWorkshopAPI'))

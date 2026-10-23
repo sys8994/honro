@@ -4584,3 +4584,7 @@ O05의 지형 미접촉3.4초/255점/상단 경계와 총10초 종료가 고지�
 직접 조준 공격의 아군/동맹 피해가 적 피해와 같았고 지연 경로는 발사자의 현재 side에 의존했다. side/owner/섭혼과 honroAlly/honroCivilian/objective의 동맹 계약으로 기존 최종 정수 피해×0.3을 보호막·HP 전에 한 번 적용한다. 최소1→0.3과 실제 HP에서 유래한 밀침 피해의 이중 감산/최소1 복귀를 방지했다. 공격 당시 진영은 지연·진목·저주·반사·소환·통 폭발에 전하며2/3막 지형 wrapper도 provenance를 보존한다. 기존 자동 공격 면제·먹귀·분혼·적/환경/스크립트·회복·자기비용을 유지한다. 보고서는 실제 HP/보호막 집계와 소수1자리 표시를 사용한다. [정책·범위](combat-damage/README.md). coalition-damage-reduction72조합·치명/방어·발사자 제거/섭혼·지연·통·밀침, 실제 App/엔진 Continue 및 기존 projectile/autonomous/save·보고서 검사를 실행했다. 원격/최종 build·browser는 인계 결과와 구분한다. icons/skill-images/skill-icons CSS/story/presentation 부모 범위와14장 지형은 수정하지 않았다.
 
 최종 검수: 구 완료/실패 전투 난수 필드 무추가와 역사적 host/nightParade 상속을 보완했다. 최종 타입/build·Chromium 실제 저장/재개·30%/보고서·18장5구저장 전체·O05/행동순서/기존 증원 회귀 통과. 기존 reflection App fixture mismatch는 변경 전9f7 core에서도 같은 report provenance 차이로 재현했다. 정확한 범위·후속 카메라 접점은 [검증·인계](combat-damage/VALIDATION.md)에 남긴다. 공개9f7/Pages39886957929 성공 그래프354파일은 재검증·보존했고 새 후보 발행은 부모 담당이다.
+
+## 2026-10-23 — 기본기·사용 기예 상세의 평균/편차 안내 누락
+
+피해 기준 행을 skillEffectRows에만 더해 실제 UI의 skillGrowthRows 고정행 필터에서 빠졌고 기본기는 효과표도 없었다. 두 실제 상세 renderer에 기존 편차 데이터의 한 줄을 직접 연결했다. title/모닥불/허공터/전장 재진입을 실제 클릭해1280/390 전후 각30판정·24PNG/DOM을 확인했다. 기본기4종과5/10/15%·회복 제외·중복/넘침0·pageerror0, 타입/build/web-split 통과. 일반 캠페인 HUD는 상세 진입 없이 선택만 하는 기존 동작이며 UI 신설은 하지 않았다. 이전 함수 직접 호출을 실제 UI 검수로 기술한 오류를 정정했다. 계산/저장·카메라/천장·대사는 불변이다. [원인·실제 경로·검수](combat-damage/DISPLAY_FIX.md). master/새 Pages는 부모 담당이다.
