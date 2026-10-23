@@ -22,15 +22,16 @@ export function lureStakeFor(e:Engine,u:Unit){
  if(u.dead||u.hp<=0||u.eaterCapturedBy||u.carriedBy!==undefined||u.summoned||u.boss||u.stunnedRound===e.b.round||(u.stun||0)>0||u.side!==1||e.b.side!==u.side||u.fixed&&!['bat','crow','lantern'].includes((u as any).honroType))return undefined;
  return (e.b.stakes||[]).filter(z=>z.skill==='M08'&&hostile(z,u)&&e.unit(z.owner)&&(z.expires===undefined||z.expires>e.b.round)&&Math.hypot(u.x-z.x,u.y-u.h*.5-z.y)<lureRadius(e,z)).sort((a,b)=>Math.hypot(u.x-a.x,u.y-a.y)-Math.hypot(u.x-b.x,u.y-b.y)||a.id-b.id)[0];
 }
-export function triggerOffensiveStake(e:Engine,z:Stake,nearby:Unit[],p:Projectile,boost:number){
+export function triggerOffensiveStake(e:Engine,z:Stake,nearby:Unit[],p:Projectile,boost:number){return e.audioScope(z.owner,z.skill,z.shot,()=>triggerStake(e,z,nearby,p,boost));}
+function triggerStake(e:Engine,z:Stake,nearby:Unit[],p:Projectile,boost:number){
  const b=e.b;if(b.side===z.side||b.side===2||!['enemy','aim','flight','review'].includes(b.phase))return;
  z.usedRounds??={};
  // Each stake is an independent cast; each enemy can take its damage once per round.
  const fresh=nearby.filter(u=>z.usedRounds![u.id]!==b.round);if(!fresh.length)return;
- z.lastTriggerRound=b.round;
+ z.lastTriggerRound=b.round;const audio=e.skillSound('trigger',z.owner,z.skill,z.shot,`${z.id}:${b.round}`);
  if(z.skill==='M07'){
   const x=z.x,y=z.y-20,radius=stakeRanges(e,z).effect;
-  e.fx('burst',x,y,p.color,radius);e.fx('ring',x,y,p.color,radius);e.emit('sound',{name:'hit',value:radius});
+  e.fx('burst',x,y,p.color,radius);e.fx('ring',x,y,p.color,radius);if(!audio)e.emit('sound',{name:'hit',value:radius});
   for(const u of b.units){
    if(u.dead||z.usedRounds[u.id]===b.round)continue;
    const d=Math.hypot(u.x-x,u.y-u.h*.45-y);if(d>=radius+u.r)continue;

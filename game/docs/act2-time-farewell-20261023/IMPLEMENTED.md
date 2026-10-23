@@ -1,5 +1,13 @@
 # 2막 시간 원고와 19장 비전투 후보
 
+## 최신 스킬 음원 master 통합
+
+최신 master `71cb1fa92205b3790d87f85fa31f14e7eb12afac`를 통합했다. SkillAudioPlayer·이벤트 context·소스 음원은 그대로 유지하고, Engine.fire의 context 진입 전과 private fireAction에도19장 차단을 적용했다. App은 startCharge 전에 거절하며 release/cancel의 기존 stopCharge는 유지한다. 일반64기예의180스텝 전체 전투/저장/RNG 동일성 및 나머지 SFX 실제 동작 검사72개와 player7묶음이 통과했다.19장 별도 실제 Chromium에서는 승인 은행7자산이 준비된 상태에서도 키보드/강제 fire 포인터/직접 beginCharge의 charge 호출·chargeStarts·skill source starts가 모두0이고,20장에서는 충전/실제 발사음이 정상 시작함을 확인했다.
+
+통합 game entry는 `game.e144943bcec1fca2.js`, 활성413파일, manifest SHA256은 `5655b8129952ab24f51489d99b7642c1d2c4ae1d9ee743025c5972bd56503648`다. 공개 edf/기존33개의 발행 사실34개를 보존하고, 최신 master의 `game.bf9e42f5d682c70c.js`411파일 그래프와 기준cf2도 원본 그대로 보존했다. 중복제외754파일을 길이/hash로 검사했다. 새 master의 Pages 성공 시각/근거를 받기 전에는 이를 새 성공 발행으로 꾸미지 않고 별도 기준 그래프로 보존한다.
+
+부모가 바로 열 수 있는 [선별4장과 준비 조건](https://github.com/sys8994/honro/tree/333a62b53efcb2cb1620265145bf47bd11e2d3f7/game/docs/act2-time-farewell-20261023/screenshots)을 별도 review 브랜치에 전달했다. 이 사진은 음원 통합 전55d0476d의 같은19장 시각 소스다. Library 공식 prepared upload는 도구 목록 조회의 network 실패로 시작되지 않았고 반환 파일 ID는 없다. 사용자 명시 요청에 따른 선별 전달본만 Git에 두며 자동 결과/추가 캡처는 계속 `_local`에 둔다. 최종 통합 소스에서도 모바일/가로/저장/읽기/20장 복구 화면을 재검사했다. 미술 판정과 공개 검증은 부모에게 남긴다.
+
 기준은 공개 master `edf36a5fe8ff3b928918b4f5e8567a7dedac1d69`이며 부모 입력의 최종 원본은 `72da2a5179aa0eb075453ea1d2fd6a3780fbacb5`다. 두 입력 커밋을 별도 worktree로 가져왔고 patch v3의19행 교체·5곳 삽입·8장면·valueReplacements7개를 정확히 적용했다. 재사용 rowId와 기존 메타데이터를 보존하고, 새 행에는 같은 장면의 storyId/storyTitle이 있는 경우 함께 복사한다. 새 원고나 음원은 작성하지 않았다.
 
 19장 시작부터 같은 ID의 설오/휘겸을 현장 NPC로 두고, 기존 route 상호작용을 담허가 완료하면 담허도 NPC로 두며 소단만 조작한다. 기존 프로필의4명 파티·성장·갖춘 기예·턴 순서와 HP/기력은 삭제하거나 초기화하지 않는다. 기존19장 Continue도 같은 지역 역할을 적용하되 저장 원고·커서·목표·좌표·자원을 보존한다. 이미 지불한 공격 자원은 되돌리지 않으며 진행 중이던 공격/검토는 비전투 이동으로 정리한다. 스테이지20은 기존 새 전투 생성으로4명과 공격을 복구한다.

@@ -1,0 +1,305 @@
+{
+  "version": 1,
+  "assets": {
+    "bow_charge": {
+      "file": "bow_charge.mp3",
+      "duration": 1.06,
+      "role": "charge",
+      "source": "Original parent synthesis: dry friction and wooden tension",
+      "channels": 1,
+      "sampleRate": 44100,
+      "bytes": 13523,
+      "pitchSemitones": 0
+    },
+    "bow_release": {
+      "file": "bow_release.mp3",
+      "duration": 0.6,
+      "role": "launch",
+      "source": "Original parent synthesis; no restricted source samples",
+      "channels": 1,
+      "sampleRate": 44100,
+      "bytes": 7880,
+      "pitchSemitones": 0
+    },
+    "bow_hit": {
+      "file": "bow_hit.mp3",
+      "duration": 0.3642,
+      "role": "hit",
+      "source": "Original parent synthesis; no restricted source samples",
+      "channels": 1,
+      "sampleRate": 44100,
+      "bytes": 5059,
+      "pitchSemitones": 0
+    },
+    "arrow_block": {
+      "file": "arrow_block.mp3",
+      "duration": 0.3645,
+      "role": "blocked",
+      "source": "Original parent synthesis; no restricted source samples",
+      "channels": 1,
+      "sampleRate": 44100,
+      "bytes": 5059,
+      "pitchSemitones": 0
+    },
+    "sword_swing": {
+      "file": "sword_swing.mp3",
+      "duration": 0.4544,
+      "role": "launch",
+      "source": "Original parent synthesis; no restricted source samples",
+      "channels": 1,
+      "sampleRate": 44100,
+      "bytes": 6313,
+      "pitchSemitones": 0
+    },
+    "sword_hit": {
+      "file": "sword_hit.mp3",
+      "duration": 0.3611,
+      "role": "hit",
+      "source": "Original parent synthesis; no restricted source samples",
+      "channels": 1,
+      "sampleRate": 44100,
+      "bytes": 5059,
+      "pitchSemitones": 0
+    },
+    "sword_parry": {
+      "file": "sword_parry.mp3",
+      "duration": 0.3777,
+      "role": "blocked",
+      "source": "Original parent synthesis; no restricted source samples",
+      "channels": 1,
+      "sampleRate": 44100,
+      "bytes": 5373,
+      "pitchSemitones": 0
+    },
+    "blade_launch": {
+      "file": "blade_launch.mp3",
+      "duration": 0.72,
+      "role": "launch",
+      "source": "Original parent synthesis; no restricted source samples",
+      "channels": 1,
+      "sampleRate": 44100,
+      "bytes": 9448,
+      "pitchSemitones": 0
+    },
+    "rock_impact": {
+      "file": "rock_impact.mp3",
+      "duration": 0.7494,
+      "role": "heavy-hit",
+      "source": "Original parent synthesis; no restricted source samples",
+      "channels": 1,
+      "sampleRate": 44100,
+      "bytes": 9761,
+      "pitchSemitones": 0
+    },
+    "qi_charge": {
+      "file": "qi_charge.mp3",
+      "duration": 0.8,
+      "role": "charge",
+      "source": "parent v2 pressure charge",
+      "channels": 1,
+      "sampleRate": 44100,
+      "bytes": 10388,
+      "pitchSemitones": 0
+    },
+    "qi_launch": {
+      "file": "qi_launch.mp3",
+      "duration": 0.3685,
+      "role": "launch",
+      "source": "parent v2 pressure launch",
+      "channels": 1,
+      "sampleRate": 44100,
+      "bytes": 5373,
+      "pitchSemitones": 0
+    },
+    "qi_hit": {
+      "file": "qi_hit.mp3",
+      "duration": 0.5884,
+      "role": "hit",
+      "source": "parent v2 pressure impact",
+      "channels": 1,
+      "sampleRate": 44100,
+      "bytes": 7880,
+      "pitchSemitones": 0
+    },
+    "gourd_throw": {
+      "file": "gourd_throw.mp3",
+      "duration": 0.3791,
+      "role": "launch",
+      "source": "parent S3 air/wood texture",
+      "channels": 1,
+      "sampleRate": 44100,
+      "bytes": 5373,
+      "pitchSemitones": 0
+    },
+    "fire_hit": {
+      "file": "fire_hit.mp3",
+      "duration": 1.6,
+      "role": "heavy-hit",
+      "source": "lentikula Fire Spell Impact3 CC0",
+      "channels": 1,
+      "sampleRate": 44100,
+      "bytes": 20106,
+      "pitchSemitones": 0
+    },
+    "ice_hit": {
+      "file": "ice_hit.mp3",
+      "duration": 1.55,
+      "role": "hit",
+      "source": "lentikula Ice Spell Impact3 CC0",
+      "channels": 1,
+      "sampleRate": 44100,
+      "bytes": 19479,
+      "pitchSemitones": 0
+    },
+    "thunder_hit": {
+      "file": "thunder_hit.mp3",
+      "duration": 2.3,
+      "role": "heavy-hit",
+      "source": "rayjensen 200990 CC0 HQ MP3 preview (not lossless source)",
+      "channels": 1,
+      "sampleRate": 44100,
+      "bytes": 28569,
+      "pitchSemitones": 0
+    },
+    "stake_plant": {
+      "file": "stake_plant.mp3",
+      "duration": 0.5553,
+      "role": "install",
+      "source": "parent v2 + Breviceps 449955 CC0 wood",
+      "channels": 1,
+      "sampleRate": 44100,
+      "bytes": 7567,
+      "pitchSemitones": 0
+    },
+    "stake_trigger": {
+      "file": "stake_trigger.mp3",
+      "duration": 0.7645,
+      "role": "hit",
+      "source": "parent v2 wood, no metallic resonance",
+      "channels": 1,
+      "sampleRate": 44100,
+      "bytes": 10075,
+      "pitchSemitones": 0
+    },
+    "sodan_release": {
+      "file": "sodan_release.mp3",
+      "duration": 1.85,
+      "role": "launch",
+      "source": "Hano767307 CC0 bell + parent v2 spirit air",
+      "channels": 1,
+      "sampleRate": 44100,
+      "bytes": 22927,
+      "pitchSemitones": 0
+    },
+    "spirit_hit": {
+      "file": "spirit_hit.mp3",
+      "duration": 0.6674,
+      "role": "hit",
+      "source": "parent v2 spirit impact",
+      "channels": 1,
+      "sampleRate": 44100,
+      "bytes": 8821,
+      "pitchSemitones": 0
+    },
+    "curse_attach": {
+      "file": "curse_attach.mp3",
+      "duration": 0.4476,
+      "role": "status",
+      "source": "parent v2 attachment, subtle Hano bell layer",
+      "channels": 1,
+      "sampleRate": 44100,
+      "bytes": 6313,
+      "pitchSemitones": 0
+    },
+    "summon_appear": {
+      "file": "summon_appear.mp3",
+      "duration": 1.2343,
+      "role": "summon",
+      "source": "Original parent synthesis, no restricted samples",
+      "channels": 1,
+      "sampleRate": 44100,
+      "bytes": 15717,
+      "pitchSemitones": 0
+    },
+    "spirit_depart": {
+      "file": "spirit_depart.mp3",
+      "duration": 0.4967,
+      "role": "status",
+      "source": "parent v2 breath reversed, no new bell",
+      "channels": 1,
+      "sampleRate": 44100,
+      "bytes": 6940,
+      "pitchSemitones": 0
+    },
+    "heal": {
+      "file": "heal.mp3",
+      "duration": 0.7722,
+      "role": "utility",
+      "source": "parent S5 recovery air/wood",
+      "channels": 1,
+      "sampleRate": 44100,
+      "bytes": 10075,
+      "pitchSemitones": 0
+    },
+    "gate_depart": {
+      "file": "gate_depart.mp3",
+      "duration": 0.7,
+      "role": "utility",
+      "source": "parent S5 travel outward",
+      "channels": 1,
+      "sampleRate": 44100,
+      "bytes": 9134,
+      "pitchSemitones": 0
+    },
+    "gate_arrive": {
+      "file": "gate_arrive.mp3",
+      "duration": 0.7,
+      "role": "utility",
+      "source": "parent S5 travel arrival",
+      "channels": 1,
+      "sampleRate": 44100,
+      "bytes": 9134,
+      "pitchSemitones": 0
+    },
+    "bow_charge_loop": {
+      "file": "bow_charge_loop.wav",
+      "duration": 0.6190022675736961,
+      "role": "charge-loop",
+      "source": "parent approved charge texture; overlap-crossfaded steady section",
+      "channels": 1,
+      "sampleRate": 44100,
+      "bytes": 54640,
+      "loop": true,
+      "loopStart": 0,
+      "loopEnd": 0.6190022675736961,
+      "pitchSemitones": 0
+    },
+    "qi_charge_loop": {
+      "file": "qi_charge_loop.wav",
+      "duration": 0.45,
+      "role": "charge-loop",
+      "source": "parent approved charge texture; overlap-crossfaded steady section",
+      "channels": 1,
+      "sampleRate": 44100,
+      "bytes": 39734,
+      "loop": true,
+      "loopStart": 0,
+      "loopEnd": 0.45,
+      "pitchSemitones": 0
+    }
+  },
+  "policy": {
+    "previewOnly": true,
+    "runtimeIntegrationDone": false,
+    "voicePolicies": {
+      "maxGlobal": 16,
+      "maxPerFamily": 3,
+      "sodanBell": "once per player cast; no bell on summoned echo/copied projectile; max two bell voices, 100ms same-cast dedup",
+      "aoeThunder": "one body per cast; optional 2-3 quiet crack accents, never one full thunder per target"
+    },
+    "charge": "start attack once, crossfade 40ms into matching loop when held; ramp gain modestly with charge, not constant pitch rise. Stop both voices with20ms fade on release/cancel/pause/death. Release sound only on actual fire.",
+    "variation": "physical one-shots +/-2%, qi/spirit +/-3%; deterministic prechosen sequence; pitch never remakes identity",
+    "loading": "lazy per active party/skill family; decode/cache once; runtime MP3 one-shots plus two short WAV loops. Masters excluded from game build.",
+    "sourceRisk": "All final waveforms are original synthesis or verified CC0. TomMusic/Hove and their mixed derivatives excluded."
+  }
+}

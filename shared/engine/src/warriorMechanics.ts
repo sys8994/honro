@@ -60,7 +60,7 @@ export function meleeTerrainContact(e:Engine,u:Unit,t:Terrain,range:number,angle
 }
 function stroke(e:Engine,u:Unit,range:number,facing=u.facing,color='#dbe2dd',variant=0,angle?:number,span?:number){
  const c=at(u);e.emit('fx',{name:'swordCut',x:c.x,y:c.y,x2:facing,y2:variant,color,size:range,text:angle===undefined?undefined:JSON.stringify({angle,span})});u.anim=.55;
- e.emit('sound',{name:'sword'});e.fx('spark',u.x+facing*25,u.y,'#958e76',12);
+ if(!e.skillSound('swing',u.id,u.meleeAction?.skill||(u.martialGuard?.rank?'S08':'S00'),e.b.shot))e.emit('sound',{name:'sword'});e.fx('spark',u.x+facing*25,u.y,'#958e76',12);
 }
 function strike(e:Engine,u:Unit,t:Unit,damage:number,s:Skill,shot:number,autonomous=false,origin?:DamageOrigin){
  // A short-lived damage descriptor is not a projectile in the battlefield.
@@ -125,13 +125,13 @@ export function tickWarrior(e:Engine,dt:number){
   if(guard?.counter&&e.b.side!==u.side){
    const range=SKILLS.S08.radius+(guard.attacker?72:0),span=(guard.span??meleeSpan(u,SKILLS.S08))+(guard.attacker?rad(20):0),angle=guard.angle??-rad(u.angle);
    const targets=e.b.units.filter(t=>foe(u,t)&&e.attackAllows(t,u.id,{autonomous:true})&&meleeContains(e,u,t,range,angle,span));
-   if(targets.length){guard.counter=false;for(const t of targets)strike(e,u,t,52*u.attack*(1.10+.20*((guard.rank||1)-1)/7),SKILLS.S08,e.b.shot,true,guard);stroke(e,u,range,Math.cos(angle)<0?-1:1,'#dbe2dd',0,angle,span);}
+   if(targets.length){e.skillSound('block',u.id,'S08',e.b.shot,targets[0].id);guard.counter=false;for(const t of targets)strike(e,u,t,52*u.attack*(1.10+.20*((guard.rank||1)-1)/7),SKILLS.S08,e.b.shot,true,guard);stroke(e,u,range,Math.cos(angle)<0?-1:1,'#dbe2dd',0,angle,span);}
   }
  }
 }
 export function manualDive(e:Engine){
  const p=e.b.projectiles.find(p=>p.owner===e.b.active&&p.mode==='warriorDive'&&!p.dived);if(e.b.phase!=='flight'||!p)return false;
- p.dived=true;p.vx*=.18;p.vy=Math.max(650,p.vy);p.gravityScale=3.5;e.emit('sound',{name:'sword'});return true;
+ p.dived=true;p.vx*=.18;p.vy=Math.max(650,p.vy);p.gravityScale=3.5;if(!e.skillSound('swing',p.owner,p.skill,p.shot))e.emit('sound',{name:'sword'});return true;
 }
 export function orbitPoint(p:Projectile,blade:NonNullable<Projectile['orbit']>['blades'][number],time=p.age):Vec{
  const angle=blade.phase+blade.omega*time,r=blade.radius*(1+blade.mod*Math.sin(time*2.7+blade.phase));return{x:p.x+Math.cos(angle)*r,y:p.y+Math.sin(angle)*r*.72};
@@ -166,7 +166,7 @@ function land(e:Engine,p:Projectile,h?:Collision){
  if(p.mode==='warriorDive'){
   const factor=p.dived?1.35+Math.min(.30,Math.max(0,p.y-(p.apexY||p.y))/1800):.75,radius=p.dived?p.blast:80;
   for(const t of e.b.units.filter(t=>foe(u,t))){const d=Math.hypot(t.x-p.x,t.y-t.h*.45-p.y);if(d<radius+t.r)e.hurt(t,p.damage*factor*(1-.65*clamp(d/radius,0,1)),p.owner,true,p,p);}
-  stroke(e,u,radius,u.facing,'#d2d7cb',3);e.emit('sound',{name:'hit'});
+  stroke(e,u,radius,u.facing,'#d2d7cb',3);if(!e.skillSound('landing',p.owner,p.skill,p.shot))e.emit('sound',{name:'hit'});
  }else if(p.mode==='warriorLeap'){
   const t=h?.unit&&foe(u,h.unit)?h.unit:e.b.units.filter(t=>foe(u,t)&&Math.hypot(t.x-p.x,t.y-t.h*.5-p.y)<p.blast+t.r).sort((a,b)=>Math.abs(a.x-p.x)-Math.abs(b.x-p.x))[0];
   if(t)e.hurt(t,p.damage,p.owner,true,p,p);stroke(e,u,95);
@@ -246,7 +246,7 @@ export function bladeScreenPass(e:Engine,p:Projectile,a:Vec,b:Vec){
   if(!ts.some(t=>t>=0&&t<=1&&(a.x+dx*t-c.x)*s.facing>=0))continue;
   const beforeScreen={...p};p.fieldHits.push(key);s.hits++;const saved=p.damage*(.50+.20*(s.rank-1)/7);p.damage-=saved;const sources=((p as any).honroScreenProtection??={}),remaining=p.damage/Math.max(.0001,p.damage+saved);for(const id of Object.keys(sources))sources[id]/=remaining;sources[u.id]=(sources[u.id]||0)+saved/Math.max(.0001,p.damage);
   u.bladeStored=Math.min(.35+.10*(s.rank-1)/7,(u.bladeStored||0)+saved/Math.max(1,u.attack*180));
-  e.emit('fx',{name:'swordCut',x:c.x,y:c.y,x2:s.facing,y2:1,color:'#becdc9',size:175});e.emit('sound',{name:'sword'});
+  e.emit('fx',{name:'swordCut',x:c.x,y:c.y,x2:s.facing,y2:1,color:'#becdc9',size:175});if(!e.skillSound('block',u.id,'S08',e.b.shot,p.owner))e.emit('sound',{name:'sword'});
   if(p.damage<5){intercepted(e,beforeScreen,u.id);e.remove(p);}
  }
 }

@@ -548,6 +548,7 @@ export interface Event {
     targetId?: string;
     attackId?: string;
     critical?: boolean;
+    skillAudio?: import('./skillAudioMap').SkillAudioSignal;
     type: 'fx' | 'sound' | 'change' | 'save' | 'result' | 'message' | 'xp' | 'level';
     name?: string;
     text?: string;

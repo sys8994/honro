@@ -301,7 +301,7 @@
         portrait(cls, size = 1) { return G.HonroPortraits.markup(cls,'icon'); }
         drawPortraits() { for(const host of document.querySelectorAll('[data-portrait-host]')){const cls=host.dataset.portraitHost;G.HonroPortraits.mount(host,null,cls,{identity:H.hero[cls]?.name,surface:'hud',framing:host.dataset.portraitFraming||'icon',slot:host.dataset.portraitSlot});}for(const cv of document.querySelectorAll('canvas[data-portrait]'))G.HonroPortraits.draw(cv,null,cv.dataset.portrait,{identity:H.hero[cv.dataset.portrait]?.name,surface:'hud',framing:'icon'}); }
         showTitle() { this.stopBattle(); this.close(); this.screen = 'title'; G.HonroTitleMarkup.mount(this.root,{scene:G.HONRO_TITLE_SCENE,logo:G.HONRO_TITLE_LOGO,hanja:G.HONRO_TITLE_HANJA,profile:this.profile,debugMode:this.debugMode,splitLocked:G.HonroSplitCampaign.locked(this.profile),settingsIcon:fa('gear',19)}); }
-        stopBattle() { this.cancelOptionalWork();G.HonroCampaignEntry?.cancel(this); G.HonroAct3Void?.abort(this); G.HonroRestJourney?.stopMotion(this); if (this.engine && !this.training && !this.done) {
+        stopBattle() { this.audio?.skills?.stopAll();this.cancelOptionalWork();G.HonroCampaignEntry?.cancel(this); G.HonroAct3Void?.abort(this); G.HonroRestJourney?.stopMotion(this); if (this.engine && !this.training && !this.done) {
             G.HonroProgression.syncRoster(this.profile,this.engine.b);
             this.profile.honroBattle = clone(this.engine.b);
             this.persist();
@@ -540,7 +540,7 @@
             }
         }
         mount(b,{freshReport=false,reportScope}={}) { C.initializePlayerTurnOrder(b,this.profile,false); G.HonroAct3Void?.recover(b); this.stage=G.HonroObjectiveRevision?.contentFor(b,this.stage)||this.stage; G.HonroStageRules.sanitizeStageBattle(b); G.HonroEncounters.configure(b);G.HonroProgression.initialize(b,this.profile);C.applySpBalanceMigration(b);G.HonroClearReport.begin(b,{fresh:freshReport,scope:reportScope||G.HonroClearReport.scopeOf(this)});b.honroActiveLimit??=H.stages[(b.honroStage||1)-1].active;b.enemyLimit=b.honroActiveLimit;G.HonroStage19Farewell?.prepare(b);this.screen = 'battle'; this.contacts.clear(); this.acc = 0; this.engine = new C.Engine(b, ev => { if(this.engine?.b===b&&(ev.type==='change'||ev.type==='save'))G.HonroMukjongAudio?.observe(this);if(this.scene?._pausedBattleFrame)this.scene._pausedBattleFrame=null;this.scene?.event(ev); if (ev.type === 'sound')
-            {if(ev.name==='mukjongKeeper')G.HonroMukjongAudio?.keeper(this);else this.audio?.play(ev.name);} if (ev.type === 'save')
+            {if(ev.skillAudio)this.audio?.skills?.event(ev.skillAudio);else if(ev.name==='mukjongKeeper')G.HonroMukjongAudio?.keeper(this);else this.audio?.play(ev.name);} if (ev.type === 'save')
             this.dirty = true; }, false); const e = this.engine; G.HonroMukjongAudio?.attach(this,b,{fresh:freshReport}); G.HonroAllies.attach(this,e); G.HonroEncounters.attach(this,e); G.HonroAct2.attach(this,e); G.HonroAct3.attach(this,e); G.HonroSplitCampaign.attach(this,e); G.HonroStakeCrossing.attach(this,e); if (!this.training) {
             e.checkEnd = () => this.checkMission(e);
             const orig = e.hurt.bind(e);
@@ -551,7 +551,7 @@
                 const before=u.hp,out=orig(u,amount,...args);if(e.b.honroStage===10&&u.id==='boss'&&!e.b.honroState?.sodanCoop&&u.hp<=0){u.hp=1;u.dead=false;}
                 if(u.hp<before&&!u.eaterCapturedBy)this.scene?.focusUnit?.(u.id,720,false); return out;
             };
-        } G.HonroNarrativeRevision?.attach(this,e); G.HonroAct3Void?.attach(this,e); this.selected = e.active&&G.HonroStakeCrossing.skills(b,e.active).includes(this.selectedByUnit[e.active.id]) ? this.selectedByUnit[e.active.id] : e.active?.loadout?.find(id => !S[id]?.passive) || 'A01'; if(e.active)this.selectedByUnit[e.active.id]=this.selected; this.power = e.active?.lastPower || .58; this.done = false; this.minimapVisible=this.profile.settings.minimapVisible!==false; this.root.innerHTML = `<main class="battle battle-screen" data-vertical="${b.height>b.width*1.08}"><div class="battle-view"><canvas id="battlecanvas"></canvas></div><header class="battle-head"><button class="icon" data-action="pause" aria-label="잠시 멈춤">${fa('pause',18)}</button><div class="battle-info"><div class="battle-title-row">${this.battleTitleMarkup()}${this.debugMode?'<span class="debug-badge">디버그 · 기록 분리</span>':''}</div><div class="battle-objective-row"><span id="turn-text"></span><button type="button" id="objective-text" class="mission-help" data-action="battle-help" aria-haspopup="dialog" title="눌러서 목표·조작 안내">${this.training ? '적은 반격합니다 · 아군은 쓰러지지 않습니다' : this.stage.goal}</button></div><span id="objective-end-text" class="mission-end"></span></div></header><div class="minimap-dock" id="minimap-dock" ${this.minimapVisible?'':'hidden'}><canvas class="mini" id="minimap" aria-label="전장 미니맵"></canvas></div><div class="allied-roster" id="allied-roster" aria-label="동맹"></div><div class="banter" id="banter" hidden></div>${this.training ? G.HonroTraining.toolbar(this) : ''}${G.HonroUI.bottom()}<div id="dialogue-root"></div></main>`; this.scene = new G.HonroScene($('battlecanvas')); const u = e.active; this.scene.x = u?.x || 400; this.scene.y = (u?.y || 1000) - 170; this.scene.scale = innerWidth < 600 ? .82 : .94; if(b.height>b.width*1.08)this.scene.scale=Math.min(this.scene.scale,innerWidth<760?.68:.82); G.HonroAct3Void?.restoreRecoveredCamera(this); G.HonroReinforcementCamera?.prime(this.scene,b); G.HonroAttackCamera?.attach(this,e); this.inputs(); G.HonroInteractions?.mount(this); this.updateAudio(); this.updateHUD(true); if(b.honroStory){G.HonroSodanWithdrawal.prepareWorldOutro(this);if(b.honroStory.after==='outcome')b.honroStory.lines=G.HonroSodanWithdrawal.outro(b,b.honroStory.lines);G.HonroStory.start(this,b.honroStory.lines,b.honroStory);} }
+        } G.HonroNarrativeRevision?.attach(this,e); G.HonroAct3Void?.attach(this,e); this.selected = e.active&&G.HonroStakeCrossing.skills(b,e.active).includes(this.selectedByUnit[e.active.id]) ? this.selectedByUnit[e.active.id] : e.active?.loadout?.find(id => !S[id]?.passive) || 'A01'; if(e.active)this.selectedByUnit[e.active.id]=this.selected; this.power = e.active?.lastPower || .58; this.done = false; this.minimapVisible=this.profile.settings.minimapVisible!==false; this.root.innerHTML = `<main class="battle battle-screen" data-vertical="${b.height>b.width*1.08}"><div class="battle-view"><canvas id="battlecanvas"></canvas></div><header class="battle-head"><button class="icon" data-action="pause" aria-label="잠시 멈춤">${fa('pause',18)}</button><div class="battle-info"><div class="battle-title-row">${this.battleTitleMarkup()}${this.debugMode?'<span class="debug-badge">디버그 · 기록 분리</span>':''}</div><div class="battle-objective-row"><span id="turn-text"></span><button type="button" id="objective-text" class="mission-help" data-action="battle-help" aria-haspopup="dialog" title="눌러서 목표·조작 안내">${this.training ? '적은 반격합니다 · 아군은 쓰러지지 않습니다' : this.stage.goal}</button></div><span id="objective-end-text" class="mission-end"></span></div></header><div class="minimap-dock" id="minimap-dock" ${this.minimapVisible?'':'hidden'}><canvas class="mini" id="minimap" aria-label="전장 미니맵"></canvas></div><div class="allied-roster" id="allied-roster" aria-label="동맹"></div><div class="banter" id="banter" hidden></div>${this.training ? G.HonroTraining.toolbar(this) : ''}${G.HonroUI.bottom()}<div id="dialogue-root"></div></main>`; this.scene = new G.HonroScene($('battlecanvas')); const u = e.active; this.scene.x = u?.x || 400; this.scene.y = (u?.y || 1000) - 170; this.scene.scale = innerWidth < 600 ? .82 : .94; if(b.height>b.width*1.08)this.scene.scale=Math.min(this.scene.scale,innerWidth<760?.68:.82); G.HonroAct3Void?.restoreRecoveredCamera(this); G.HonroReinforcementCamera?.prime(this.scene,b); G.HonroAttackCamera?.attach(this,e); this.inputs();this.audio?.skills?.prepareParty(b.units); G.HonroInteractions?.mount(this); this.updateAudio(); this.updateHUD(true); if(b.honroStory){G.HonroSodanWithdrawal.prepareWorldOutro(this);if(b.honroStory.after==='outcome')b.honroStory.lines=G.HonroSodanWithdrawal.outro(b,b.honroStory.lines);G.HonroStory.start(this,b.honroStory.lines,b.honroStory);} }
         routeContinue() {
             const target=G.HonroRouteBranches?.handoff(this.engine?.b)?.toStage;
             if(!this.done||!target)return;
@@ -686,10 +686,10 @@
         canInput() { return !G.HonroAct3Void?.blocked(this) && !G.HonroBellAnomaly?.blocked(this) && this.engine && this.engine.canAct() && !this.modal.classList.contains('open') && !this.dialogue && !G.HonroStory.turnPaused(this) && !this.done; }
         beginCharge() { if(this.engine?.noncombatWalk())return false; if(this.charging||this.engine?.active?.retreat)return false; if(!this.modal.classList.contains('open')&&!this.dialogue&&(this.engine?.detonateIceGourd()||this.engine?.manualDive()||this.engine?.turnArrow(this.scene?.turnTarget))){this.updateHUD(true);return false;} if (!this.canInput() || !this.engine.grounded(this.engine.active))
             return false; let u = this.engine.active, sk = S[this.selected]; if (!sk || sk.passive || !this.engine.skillAllowed(sk,u) || u.focus < this.engine.manaCost(sk, u,0) || this.engine.cooldownLeft(u, sk.id) > 0)
-            return false; this.charging = true; this.chargeAt = performance.now(); this.power = 0; return true; }
+            return false; this.charging = true; this.chargeAt = performance.now(); this.power = 0;this.audio?.skills?.startCharge(u,this.selected); return true; }
         chargePower(now=performance.now()) { return this.engine.chargePower(this.engine.active,S[this.selected],Math.max(0,now-this.chargeAt)/1000); }
         playbackSpeed() { return clamp(Number(this.engine.b.side===1?this.profile.settings.speed:this.profile.settings.playerSpeed)||1,1,4); }
-        releaseCharge() { if(this.engine?.noncombatWalk()){this.charging=false;return;} if (!this.charging)
+        releaseCharge() { this.audio?.skills?.stopCharge();if(this.engine?.noncombatWalk()){this.charging=false;return;} if (!this.charging)
             return; this.charging = false; if (this.canInput()) {
             let u = this.engine.active;
             this.power = this.chargePower();
@@ -700,7 +700,7 @@
             if(this.engine.jump())G.HonroAttackCamera?.resume(this.scene);
         } }
         drop() { if(this.canInput()&&this.engine.canDrop()){this.cancelInput();if(this.engine.drop()){G.HonroAttackCamera?.resume(this.scene);this.updateHUD(true);}} }
-        cancelInput() { this.restMotion?.scene?._restCamera?.cancel(); this.keys.clear(); this.charging = false; this.releaseStick(); this.contacts.clear(); this.firePointer = null; const k = $('stick-knob'); if (k)
+        cancelInput() { this.audio?.skills?.stopCharge();this.restMotion?.scene?._restCamera?.cancel(); this.keys.clear(); this.charging = false; this.releaseStick(); this.contacts.clear(); this.firePointer = null; const k = $('stick-knob'); if (k)
             k.style.transform = 'translate(0,0)'; }
         inputs() {
             const stick = $('joystick'), fire = $('fire'), jump = $('jump'), cv = $('battlecanvas');
@@ -988,7 +988,7 @@
                     this.selectHero(arr[(i + 1) % arr.length].id);
             } if (!this.engine.noncombatWalk()&&/^Digit[1-4]$/.test(e.code)) {
                 let u = this.engine.active, id = u?.loadout[+e.code.slice(-1) - 1];
-                if (id) { this.cancelInput(); this.selected = id; this.selectedByUnit[u.id] = id; }
+                if (id) { this.cancelInput(); this.selected = id;this.audio?.skills?.prepareSkill(id); this.selectedByUnit[u.id] = id; }
             } });
             document.addEventListener('keyup', e => { this.keys.delete(e.code); if (e.code === 'Space' && this.firePointer == null)
                 this.releaseCharge(); });
@@ -1244,7 +1244,7 @@
                     if(this.engine?.noncombatWalk())break;
                     // Battle HUD taps only select a skill. Detail modals belong to the camp/training UI.
                     this.cancelInput();
-                    this.selected = sk;
+                    this.selected = sk;this.audio?.skills?.prepareSkill(sk);
                     if (this.engine?.active) {
                         this.selectedByUnit ??= {};
                         this.selectedByUnit[this.engine.active.id] = sk;
@@ -1355,7 +1355,7 @@
                             if (a)
                                 this.adjustAngle(e.active, a * dt * 62);
                             if (this.charging)
-                                this.power = this.chargePower(now);
+                                {this.power = this.chargePower(now);this.audio?.skills?.updateCharge(this.engine.active,this.selected,(now-this.chargeAt)/1000,this.canInput());}
                         }
                         this.acc += dt * this.playbackSpeed();
                         // .06s frame cap × 4 speed × 120Hz needs up to 29 substeps.
