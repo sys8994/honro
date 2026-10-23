@@ -136,9 +136,12 @@ export async function runtimeEntries({vector=true,render=true,app=false}={}) {
   if(render)await file('shared/runtime/authored-far-art.js');
   if(app){
     const skillAudio=JSON.parse(await read('shared/assets/sfx/skills-v2/manifest.json'));
-    const weapons=new Map(JSON.parse(await read('shared/assets/sfx/weapons-v3/manifest.json')).assets.map(asset=>[asset.id,asset]));
-    for(const [id,original] of Object.entries(skillAudio.assets)){
-      const weapon=weapons.get(id),asset=skillAudio.assets[id]=weapon?{...weapon}:original;
+    const weaponSpec=JSON.parse(await read('shared/assets/sfx/weapons-v3/manifest.json'));
+    const arrowHits=JSON.parse(await read('shared/assets/sfx/weapons-v3/arrow-hits.json'));
+    const thunder={...JSON.parse(await read('shared/assets/sfx/weapons-v3/cheonroe_thunder.json')),file:'cheonroe_thunder.mp3'};
+    const weapons=new Map([...weaponSpec.assets.map(asset=>({...asset,processing:weaponSpec.processing})),...arrowHits.assets.map(asset=>({...asset,workTitle:'Fleshy Fight Sounds',processing:arrowHits.processing})),thunder].map(asset=>[asset.id,asset]));
+    for(const id of new Set([...Object.keys(skillAudio.assets),...weapons.keys()])){
+      const weapon=weapons.get(id),asset=skillAudio.assets[id]=weapon?{...weapon}:skillAudio.assets[id];
       asset.src='data:audio/'+(asset.file.endsWith('.wav')?'wav':'mpeg')+';base64,'+(await readFile(path.join(root,'shared/assets/sfx',weapon?'weapons-v3':'skills-v2',asset.file))).toString('base64');
     }
     data('HONRO_SKILL_AUDIO',{version:3,assets:skillAudio.assets});

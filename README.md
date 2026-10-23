@@ -133,3 +133,7 @@ npm.cmd run build
 브랜치는 부모 최종 검토 대기이며 master/Pages는 직접 변경하지 않습니다. 부모가 통합한 최신 실루엣 master `28b26db6`은 이 단독 BGM 검사 기준에 섞지 않았습니다. 최종 통합은 최신 master를 보존하고 통합 소스에서 생성물을 재빌드해야 합니다.
 
 최종 검사 소스/생성물: `e539f9dbbdd3a28d1b7bb53c48e6f128fb9f3701`. 최종 `web/manifest.json` SHA256은 `7c9bc60d19a9cc6d666f79f28713beba3625fcbb56b5c13598e90742136278bb`이며 브라우저 기록도 같은 값을 확인합니다. 상세 실행 명령·로컬 증거 경로·한계는 위 BGM README에 있습니다.
+
+## 효과음 출처
+
+화살 명중·충돌음: **Additional Sound FX by Will Leamon**, 작품 **Fleshy Fight Sounds**. [원작/출처](https://opengameart.org/content/fleshy-fight-sounds), [OGA-BY 3.0 라이선스](https://static.opengameart.org/OGA-BY-3.0.txt). piercing-1a/piercing-arm-2a를 decode·mono·소폭 pitch·edge 정리·약한 dynamics·MP3 변환한 파생본이며 원저작자/라이선스를 보존합니다. 원작자의 게임 보증을 뜻하지 않습니다. 단단한 충돌 원음은 갑옷/금속 계열이며 모든 지형을 금속으로 설정한 것이 아닙니다. 상세 [음원 출처·가공 표시](shared/assets/sfx/weapons-v3/SOURCES.txt), [화살 메타데이터](shared/assets/sfx/weapons-v3/arrow-hits.json). 다른 승인 무기·천뢰의 출처도 같은 SOURCES에서 관리합니다.

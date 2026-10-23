@@ -95,7 +95,7 @@ export class Engine {
     private audioContext:SkillAudioSignal|null=null;
     private audioOrigin(owner:string,skill:string,shot=this.b.shot,autonomous=false){const u=this.unit(owner),hero=u?.summoned?this.unit(u.summonOwner||''):u;if(!u||!hero||hero.side!==0||hero.enthrall||!PLAYER_SKILL_AUDIO[skill])return null;return{phase:'launch' as const,actor:owner,skill,cast:`${this.b.session}:${owner}:${skill}:${shot}`,autonomous:autonomous||!!u.summoned};}
     audioScope<T>(owner:string,skill:string,shot:number,fn:()=>T,autonomous=false):T{const prior=this.audioContext;this.audioContext=this.audioOrigin(owner,skill,shot,autonomous);try{return fn();}finally{this.audioContext=prior;}}
-    skillSound(phase:SkillAudioPhase,owner?:string,skill?:string,shot?:number,target?:string,autonomous=false){const o=owner&&skill?this.audioOrigin(owner,skill,shot,autonomous):this.audioContext;if(o)this.emit('sound',{name:'playerSkill',skillAudio:{...o,phase,target}});return !!o;}
+    skillSound(phase:SkillAudioPhase,owner?:string,skill?:string,shot?:number,target?:string,autonomous=false,material?:SkillAudioSignal['material']){const o=owner&&skill?this.audioOrigin(owner,skill,shot,autonomous):this.audioContext;if(o)this.emit('sound',{name:'playerSkill',skillAudio:{...o,phase,target,material}});return !!o;}
     emit(type: Event['type'], e: Partial<Event> = {}) { if(type==='sound'&&this.audioContext&&!e.skillAudio&&!['down','jump','turn','win','lose','dialogue','mukjongKeeper'].includes(e.name||''))return;this.onEvent({ type, ...e }); }
     fx(name: string, x: number, y: number, color: string, size = 50, text?: string) { this.emit('fx', { name, x, y, color, size, text }); }
     message(text: string) { this.b.events.push(text); this.b.events = this.b.events.slice(-30); this.emit('message', { text }); }
@@ -1324,7 +1324,7 @@ export class Engine {
         if(kind[p.mode]){if(p.mode==='summonHost'){this.spawnSummon(owner,'stalker',p.x-35,p.y,1.12,1,false,h,p.skill,p);this.spawnSummon(owner,'charger',p.x+35,p.y,1.12,1,false,h,p.skill,p);this.remove(p);}else this.summonAtProjectile(p,kind[p.mode],h);return true;}
         return false;
     }
-    impact(p:Projectile,h:Collision){return this.audioScope(p.owner,p.skill,p.shot,()=>{const bounced=p.bounces,vx=p.vx,vy=p.vy;this.resolveImpact(p,h);if(h.terrain){const reflected=p.bounces!==bounced||p.vx*vx+p.vy*vy<0;this.skillSound(reflected?'reflect':'block',p.owner,p.skill,p.shot, h.terrain.id,!!p.autonomous);}},!!p.autonomous);}
+    impact(p:Projectile,h:Collision){return this.audioScope(p.owner,p.skill,p.shot,()=>{const bounced=p.bounces,vx=p.vx,vy=p.vy;this.resolveImpact(p,h);if(h.terrain){const reflected=p.bounces!==bounced||p.vx*vx+p.vy*vy<0;this.skillSound(reflected?'reflect':'block',p.owner,p.skill,p.shot, h.terrain.id,!!p.autonomous,h.terrain.mat);}},!!p.autonomous);}
     private resolveImpact(p: Projectile, h: Collision) {
         if(keeperImpact(this,p,h))return;
         if(h.unit&&!this.attackAllows(h.unit,p.owner,p))return;
