@@ -23,3 +23,9 @@ JPG를 재편집/재인코딩하지 않았으며 총 220130bytes다. 전체 UI�
 | honro19-landscape-spirits-auto-camera.jpg | 44610 | b5c5593d1c56be63a54f829ca9b1f98a7436ebcb6b5fc3dd9a12034d5e95f3b9 |
 
 최종 소스의 관련 native/실제 Chromium 검사에서8개 중간·완료 Continue, 구 저장, 반복/이전/skip,19장 SkillAudioPlayer 충전·발사 시작0,20장4명·실제 충전/발사음·BGM 복구가 통과했다. 11–20 지형/목표 데이터·부모 SVG·오디오/음원 원본·공개34개와71cb/cf2 그래프754파일을 보존했다. 자동 로그와 나머지 캡처는 `_local/reports/act2-time-farewell-20261023/`에 있다. master/Pages 반영과 미술 판정은 부모 담당이다.
+
+## 자동 가로 구도 선행 전달
+
+부모 요청에 따라 자동 가로 사진만 먼저 갱신했다. `2f20e3ca` 기반 old-soul 가로 카메라 작업 트리의 build `game.03f110585f34a069.js`에서 준비한 old-soul-mid Continue와 실제 이전/다음 버튼으로 wrong-door 행에 도달해 캡처했다. 수동 카메라는 사용하지 않았다. 소단·혼 셋·받침·열린 길 일부가 대사창 위에 함께 보인다. 세로3장과 수동 가로1장은 이전 후보의 승인 대기 사진 그대로다. 종료/skip 복귀 검사는 별도 진행 중이며 이 사진 갱신을 최종 기술 후보 완료로 표시하지 않는다.
+
+갱신 JPG: 39872 bytes / SHA256 `cdbd569720577e43d32c3b4995136fd6aab3d8aa50ab93ce8946cc9e1f327bf5`. 위 최초 전달 표의 자동 가로 파일 hash는 이 값으로 대체한다.
