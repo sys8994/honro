@@ -157,7 +157,7 @@ function draw(canvas,actor,cls=actor?.cls,options={}){
  if(entry.state==='loading'){
   canvas.getContext('2d').clearRect(0,0,canvas.width,canvas.height);state(canvas,'loading');
   for(const [node]of entry.waiters)if(!node.isConnected)entry.waiters.delete(node);entry.waiters.set(canvas,view);
- }else {paint(canvas,view);if(asset.npc&&entry.state==='error'){entry.waiters.set(canvas,view);npcRetry(entry,asset,options.reopen);}}return view.info;
+ }else {if(asset.npc&&entry.state==='error')canvas.getContext('2d').clearRect(0,0,canvas.width,canvas.height);paint(canvas,view);if(asset.npc&&entry.state==='error'){entry.waiters.set(canvas,view);npcRetry(entry,asset,options.reopen);}}return view.info;
 }
 function mount(host,actor,cls,options={}){
  const owner=host.closest('#dialogue-root,#hero-switches,#modal,#app')||host.parentElement||host;let pool=surfaces.get(owner);if(!pool)surfaces.set(owner,pool=new Map());
