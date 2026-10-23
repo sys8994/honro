@@ -1,0 +1,49 @@
+{
+  "checkedCommit": "0cf04a858f88299de127c9cadbc10192066f6e74",
+  "base": "c8b342b5",
+  "byteExact": [
+    "game/config/story-portraits.json",
+    "shared/runtime/portraits.js",
+    "shared/runtime/story.js",
+    "shared/runtime/renderer.js",
+    "shared/runtime/story-framing.js",
+    "shared/runtime/encounters.js",
+    "shared/runtime/reinforcement-camera.js",
+    "shared/build.mjs",
+    "shared/engine/src/engine.ts",
+    "shared/engine/src/turnOrder.ts",
+    "shared/engine/src/store.ts",
+    "shared/engine/src/world.ts",
+    "shared/runtime/act2.js",
+    "shared/runtime/stage18-short-quest.js",
+    "shared/engine/src/returningWraith.ts",
+    "shared/data/campaign.json",
+    "shared/data/narrative-current.json"
+  ],
+  "approvedCssPrefixExact": true,
+  "cardLayoutCssNotDuplicated": true,
+  "mainOnlyPassesClickEventToExistingHook": true,
+  "publishedGraphs": 20,
+  "protectedFiles": 545,
+  "old934Chapter13": [
+    "web/data/chapter-13-assets.1387b6a1f088fc74.json",
+    "web/data/chapter-13.516170b245a8b075.json"
+  ],
+  "entry": "web/entries/game.87356c05c5af54e4.js",
+  "actualBrowserEntryUnchanged": true,
+  "discardedUntrackedOwnIntermediates": [
+    "web/entries/game.0016be0316272fd4.html",
+    "web/entries/game.4f43b68015d9fa5b.js",
+    "web/entries/game.56497c8000c9c184.js",
+    "web/entries/game.75911ad291696bfd.html",
+    "web/entries/workshop.1dde225a10ba3905.js",
+    "web/entries/workshop.3529ac4585d5db1a.js",
+    "web/runtime/ordered-common-7.2a6979ca4619d383.js",
+    "web/runtime/ordered-common-7.e608c94eabeabd74.js",
+    "web/styles/game-src-presentation.a868af1bf47edf30.css"
+  ],
+  "publicD196EntryCheck": "Initial farSVG503/retry; parent retry entered rest at2026-10-23T01:01:19Z. Pages success and publication timestamp unchanged.",
+  "passAll": true,
+  "publishedC8b": "Pages39882052190 success2026-10-23T01:08:33Z; parent actual14 dialogue next/Sodan display checked",
+  "publishedC8bActiveGraphFilesPreserved": true
+}

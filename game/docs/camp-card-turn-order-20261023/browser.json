@@ -1,0 +1,506 @@
+{
+  "checkedCommit": "0cf04a858f88299de127c9cadbc10192066f6e74",
+  "entry": "web/entries/game.87356c05c5af54e4.js",
+  "rows": [
+    {
+      "check": "immediate tap after drop",
+      "selected": "archer",
+      "noExtraSave": true
+    },
+    {
+      "check": "cancel",
+      "orderUnchanged": true,
+      "noSave": true,
+      "noSelection": true
+    },
+    {
+      "check": "escape",
+      "orderUnchanged": true,
+      "noSave": true,
+      "noSelection": true
+    },
+    {
+      "check": "early-escape",
+      "orderUnchanged": true,
+      "noSave": true,
+      "noSelection": true
+    },
+    {
+      "check": "outside",
+      "orderUnchanged": true,
+      "noSave": true,
+      "noSelection": true
+    },
+    {
+      "check": "multi",
+      "orderUnchanged": true,
+      "noSave": true,
+      "noSelection": true
+    },
+    {
+      "check": "native vertical scroll",
+      "before": 0,
+      "after": 144,
+      "noSave": true
+    },
+    {
+      "check": "mouse and Alt arrows",
+      "order": [
+        "occultist",
+        "knight",
+        "mage",
+        "archer"
+      ],
+      "saves": 3,
+      "noModal": true
+    }
+  ],
+  "fresh": {
+    "active": "p-occultist",
+    "cls": "occultist",
+    "round": 1,
+    "preference": [
+      "occultist",
+      "knight",
+      "mage",
+      "archer"
+    ],
+    "units": [
+      {
+        "id": "p-archer",
+        "x": 2720,
+        "y": 5467.368421052632,
+        "hp": 815,
+        "focus": 186,
+        "acted": false,
+        "dead": false
+      },
+      {
+        "id": "p-mage",
+        "x": 2830,
+        "y": 5464.473684210527,
+        "hp": 870,
+        "focus": 240,
+        "acted": false,
+        "dead": false
+      },
+      {
+        "id": "p-knight",
+        "x": 2962,
+        "y": 5461,
+        "hp": 1330,
+        "focus": 209,
+        "acted": false,
+        "dead": false
+      },
+      {
+        "id": "p-occultist",
+        "x": 2610,
+        "y": 5470.263157894737,
+        "hp": 1000,
+        "focus": 287,
+        "acted": false,
+        "dead": false
+      },
+      {
+        "id": "sb-b-left",
+        "x": 3150,
+        "y": 5468.823529411765,
+        "hp": 180,
+        "focus": 158,
+        "acted": false,
+        "dead": false
+      },
+      {
+        "id": "sb-b-screen",
+        "x": 3530,
+        "y": 5491.176470588235,
+        "hp": 220,
+        "focus": 158,
+        "acted": false,
+        "dead": false
+      },
+      {
+        "id": "sb-b-spirit-high",
+        "x": 3910,
+        "y": 4985,
+        "hp": 893,
+        "focus": 158,
+        "acted": false,
+        "dead": false
+      },
+      {
+        "id": "sb-c-bat-front",
+        "x": 4194,
+        "y": 3727.3684210526317,
+        "hp": 485,
+        "focus": 158,
+        "acted": false,
+        "dead": false
+      },
+      {
+        "id": "sb-d-lamp",
+        "x": 9040,
+        "y": 3470,
+        "hp": 1384,
+        "focus": 158,
+        "acted": false,
+        "dead": false
+      },
+      {
+        "id": "sb-e-front",
+        "x": 5800,
+        "y": 7495.555555555556,
+        "hp": 180,
+        "focus": 158,
+        "acted": false,
+        "dead": false
+      },
+      {
+        "id": "sb-f-tool-west",
+        "x": 6500,
+        "y": 7245.454545454545,
+        "hp": 180,
+        "focus": 158,
+        "acted": false,
+        "dead": false
+      },
+      {
+        "id": "sb-g-front",
+        "x": 8000,
+        "y": 7421.395348837209,
+        "hp": 220,
+        "focus": 158,
+        "acted": false,
+        "dead": false
+      },
+      {
+        "id": "sb-g-bat-high",
+        "x": 11060,
+        "y": 5850,
+        "hp": 485,
+        "focus": 158,
+        "acted": false,
+        "dead": false
+      },
+      {
+        "id": "act2-keeper",
+        "x": 7740,
+        "y": 7524.186046511628,
+        "hp": 880,
+        "focus": 158,
+        "acted": false,
+        "dead": false
+      },
+      {
+        "id": "upper-chain",
+        "x": 3655,
+        "y": 5260,
+        "hp": 120,
+        "focus": 100,
+        "acted": false,
+        "dead": false
+      }
+    ]
+  },
+  "wholeBattleContinueExact": true,
+  "manualAndSpentPreserved": {
+    "active": "p-archer",
+    "cls": "archer",
+    "round": 1,
+    "preference": [
+      "occultist",
+      "knight",
+      "mage",
+      "archer"
+    ],
+    "units": [
+      {
+        "id": "p-archer",
+        "x": 2720,
+        "y": 5467.368421052632,
+        "hp": 815,
+        "focus": 186,
+        "acted": false,
+        "dead": false
+      },
+      {
+        "id": "p-mage",
+        "x": 2830,
+        "y": 5464.473684210527,
+        "hp": 870,
+        "focus": 240,
+        "acted": false,
+        "dead": false
+      },
+      {
+        "id": "p-knight",
+        "x": 2962,
+        "y": 5461,
+        "hp": 1330,
+        "focus": 209,
+        "acted": false,
+        "dead": false
+      },
+      {
+        "id": "p-occultist",
+        "x": 2610,
+        "y": 5470.263157894737,
+        "hp": 1000,
+        "focus": 287,
+        "acted": true,
+        "dead": false
+      },
+      {
+        "id": "sb-b-left",
+        "x": 3150,
+        "y": 5468.823529411765,
+        "hp": 180,
+        "focus": 158,
+        "acted": false,
+        "dead": false
+      },
+      {
+        "id": "sb-b-screen",
+        "x": 3530,
+        "y": 5491.176470588235,
+        "hp": 220,
+        "focus": 158,
+        "acted": false,
+        "dead": false
+      },
+      {
+        "id": "sb-b-spirit-high",
+        "x": 3910,
+        "y": 4985,
+        "hp": 893,
+        "focus": 158,
+        "acted": false,
+        "dead": false
+      },
+      {
+        "id": "sb-c-bat-front",
+        "x": 4194,
+        "y": 3727.3684210526317,
+        "hp": 485,
+        "focus": 158,
+        "acted": false,
+        "dead": false
+      },
+      {
+        "id": "sb-d-lamp",
+        "x": 9040,
+        "y": 3470,
+        "hp": 1384,
+        "focus": 158,
+        "acted": false,
+        "dead": false
+      },
+      {
+        "id": "sb-e-front",
+        "x": 5800,
+        "y": 7495.555555555556,
+        "hp": 180,
+        "focus": 158,
+        "acted": false,
+        "dead": false
+      },
+      {
+        "id": "sb-f-tool-west",
+        "x": 6500,
+        "y": 7245.454545454545,
+        "hp": 180,
+        "focus": 158,
+        "acted": false,
+        "dead": false
+      },
+      {
+        "id": "sb-g-front",
+        "x": 8000,
+        "y": 7421.395348837209,
+        "hp": 220,
+        "focus": 158,
+        "acted": false,
+        "dead": false
+      },
+      {
+        "id": "sb-g-bat-high",
+        "x": 11060,
+        "y": 5850,
+        "hp": 485,
+        "focus": 158,
+        "acted": false,
+        "dead": false
+      },
+      {
+        "id": "act2-keeper",
+        "x": 7740,
+        "y": 7524.186046511628,
+        "hp": 880,
+        "focus": 158,
+        "acted": false,
+        "dead": false
+      },
+      {
+        "id": "upper-chain",
+        "x": 3655,
+        "y": 5260,
+        "hp": 120,
+        "focus": 100,
+        "acted": false,
+        "dead": false
+      }
+    ]
+  },
+  "afterChangedCardsAndDefend": {
+    "active": "p-mage",
+    "cls": "mage",
+    "round": 1,
+    "preference": [
+      "mage",
+      "occultist",
+      "knight",
+      "archer"
+    ],
+    "units": [
+      {
+        "id": "p-archer",
+        "x": 2720,
+        "y": 5467.368421052632,
+        "hp": 815,
+        "focus": 186,
+        "acted": true,
+        "dead": false
+      },
+      {
+        "id": "p-mage",
+        "x": 2830,
+        "y": 5464.473684210527,
+        "hp": 870,
+        "focus": 240,
+        "acted": false,
+        "dead": false
+      },
+      {
+        "id": "p-knight",
+        "x": 2962,
+        "y": 5461,
+        "hp": 1330,
+        "focus": 209,
+        "acted": false,
+        "dead": false
+      },
+      {
+        "id": "p-occultist",
+        "x": 2610,
+        "y": 5470.263157894737,
+        "hp": 1000,
+        "focus": 287,
+        "acted": true,
+        "dead": false
+      },
+      {
+        "id": "sb-b-left",
+        "x": 3150,
+        "y": 5468.823529411765,
+        "hp": 180,
+        "focus": 158,
+        "acted": false,
+        "dead": false
+      },
+      {
+        "id": "sb-b-screen",
+        "x": 3530,
+        "y": 5491.176470588235,
+        "hp": 220,
+        "focus": 158,
+        "acted": false,
+        "dead": false
+      },
+      {
+        "id": "sb-b-spirit-high",
+        "x": 3910,
+        "y": 4985,
+        "hp": 893,
+        "focus": 158,
+        "acted": false,
+        "dead": false
+      },
+      {
+        "id": "sb-c-bat-front",
+        "x": 4194,
+        "y": 3727.3684210526317,
+        "hp": 485,
+        "focus": 158,
+        "acted": false,
+        "dead": false
+      },
+      {
+        "id": "sb-d-lamp",
+        "x": 9040,
+        "y": 3470,
+        "hp": 1384,
+        "focus": 158,
+        "acted": false,
+        "dead": false
+      },
+      {
+        "id": "sb-e-front",
+        "x": 5800,
+        "y": 7495.555555555556,
+        "hp": 180,
+        "focus": 158,
+        "acted": false,
+        "dead": false
+      },
+      {
+        "id": "sb-f-tool-west",
+        "x": 6500,
+        "y": 7245.454545454545,
+        "hp": 180,
+        "focus": 158,
+        "acted": false,
+        "dead": false
+      },
+      {
+        "id": "sb-g-front",
+        "x": 8000,
+        "y": 7421.395348837209,
+        "hp": 220,
+        "focus": 158,
+        "acted": false,
+        "dead": false
+      },
+      {
+        "id": "sb-g-bat-high",
+        "x": 11060,
+        "y": 5850,
+        "hp": 485,
+        "focus": 158,
+        "acted": false,
+        "dead": false
+      },
+      {
+        "id": "act2-keeper",
+        "x": 7740,
+        "y": 7524.186046511628,
+        "hp": 880,
+        "focus": 158,
+        "acted": false,
+        "dead": false
+      },
+      {
+        "id": "upper-chain",
+        "x": 3655,
+        "y": 5260,
+        "hp": 120,
+        "focus": 100,
+        "acted": false,
+        "dead": false
+      }
+    ]
+  },
+  "errors": [],
+  "httpFailures": [],
+  "scope": "Touch/mouse/keyboard browser fixtures; prepared prior-clear entry and small ordinary select/defend window. No stage completion or physical device claim; frozen frame save loop invokes actual App.persist once."
+}
