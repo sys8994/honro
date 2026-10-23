@@ -33,7 +33,7 @@ function interactReason(b,st,s,m){const u=b.units.find(u=>u.id===b.active),point
  if(s.requiredClass&&u.cls!==s.requiredClass)return heroName(s.requiredClass)+'로 전환';
  if(Math.abs(u.y-point.y)>150)return'같은 층으로 이동';
  if(Math.hypot(u.x-point.x,(u.y-point.y)*.75)>260)return'표시 지점 가까이 이동';
- if(st.act===2&&s.kind==='rescue'){const spirit=b.units.find(v=>v.id===m?.spiritId);if(alive(spirit)&&spirit.hp>spirit.maxHp*.4)return'붙은 혼을 체력 40% 이하로 약화';if(alive(spirit)&&u.cls!=='occultist')return'소단으로 전환하거나 붙은 혼을 제압';}
+ if(st.act===2&&s.kind==='rescue'){const spirit=b.units.find(v=>v.id===m?.spiritId);if(alive(spirit)&&u.cls!=='occultist')return'소단으로 전환하거나 붙은 혼을 제압';}
  return s.label;
 }
 function enhance(b,st,result){if(b.honroCustom)return result;

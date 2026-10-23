@@ -115,10 +115,6 @@ function eligibility(app,m){const b=app.engine.b,s=readySteps(b).find(q=>q.id===
  if(['evidence','clear','hold','defeat','destroy','reach','escort','route','pacing-event','pacing-secure'].includes(s.kind))return{ok:false,reason:s.label};
  if(s.requiredClass&&u.cls!==s.requiredClass)return{ok:false,reason:H.hero[s.requiredClass].name+' 필요'};
  if(s.kind==='rescue'){const resident=b.units.find(v=>v.id===m.target);if(!resident||resident.dead||resident.hp<=0)return{ok:false,reason:'구조할 주민이 없음'};}
- if(revision2(b)){
-  const spirit=b.units.find(v=>v.id===m.spiritId);
-  if(s.kind==='rescue'&&spirit&&!spirit.dead&&spirit.hp>spirit.maxHp*.4)return{ok:false,reason:'붙은 혼을 먼저 약화시키세요 · 체력 40% 이하'};
- }
  if(m.id==='repair'&&a.collapse&&!a.rebuilt)return{ok:false,reason:'먼저 떨어진 돌을 치우세요'};
  if(s.kind==='rescue'&&u.cls!=='occultist'){
   const spirit=b.units.find(v=>v.id===m.spiritId);
