@@ -13,3 +13,7 @@
 증거: `_local/reports/mukjong-v08-integration-20261023/`의 `stage18-full.jpg`, `stage18-near.jpg`, `stage19-full.jpg`, `capture.json`, `contracts.json`, `vector-assets.txt`, `build-final.txt`, `web-split.txt`. AGENTS에 따라 JPG는 Git에 추가하지 않는다. Library 전달 결과와 최종 커밋은 인계에 기록한다.
 
 공개4487의 Pages39930831842 success09:20:11Z 및 실제 entry6958bfcc/카드 조작을 부모 확인 근거로 보호 이력에 등록했다. 기존261/0570/379를 포함한 공개 그래프를 보존한다. master/Pages 반영은 부모 담당이다.
+
+실행 소스·생성물 커밋: `94882010` (`game.657ed893f86a30da.js`). 실제 캡처는 이 커밋 직전의 동일 소스/생성물이며 capture.json의 runtimeHashes로 식별한다. 최종 활성378파일·공개32그래프의11774파일 레코드 SHA/바이트 검증 통과.
+
+Library 전달은 현재 환경에서 지원되는 prepared-upload helper로 위 JPG3개를 요청했으나 `library upload failed: hosted apps tools/list request failed: network`로 시작 단계에서 실패했다. Library ID는 없으며 재시도/별도 우회 업로드/이미지 Git 추가를 하지 않았다. 캡처는 로컬에 보존됐지만 부모 환경에는 해당 경로가 없으므로 전달 완료로 간주하지 않는다. 부모가 원격 후보를 통합·공개한 뒤 직접 캡처하거나 Library 연결이 복구되어야 사용자에게 실제 이미지를 전달할 수 있다.
