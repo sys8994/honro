@@ -1,0 +1,20 @@
+{
+  "baseCommit": "a1585e85d0fc621661a73f2004953a69d492c95a",
+  "scope": "18장 묵종 피치 고조의 주술적 인과와 짧은 반응 대사. 부모 직접 작성 및 5회 텍스트 검수 완료.",
+  "replacements": [
+    {"rowId":"18.story:a7e89092ab","speaker":"종지기","text":"내가 손을 놓으면 저 안의 것들이 쏟아진다. 너희가 다 받아낼 수 있느냐?"},
+    {"rowId":"18.beats.hold-silence:3198218fad","speaker":"서술","text":"종의 울림이 잦아들었다."}
+  ],
+  "events": [
+    {"id":"mukjong-pitch-first-rise","condition":"첫 실제 상승음 재생(1반음 이상) 이후 안전한 대화 경계. 전투당 1회. 종지기 제압/전투 종료 후 금지. 소리 준비 실패/음소거로 실제 재생되지 않았으면 아직 발동하지 않는다.","lines":[
+      {"rowId":"18.beats.pitch-first:sodan","speaker":"소단","text":"종소리가 아까보다 높아졌어요. 부르던 이름도 자꾸 끊겨요!","portraitExpression":"emotion.concern"},
+      {"rowId":"18.beats.pitch-first:damheo","speaker":"담허","text":"줄을 죌수록 종이 저렇게 우는 게야. 소단, 안의 목소리를 계속 들어 주게.","portraitExpression":"emotion.concern"}
+    ]},
+    {"id":"mukjong-pitch-tighten","condition":"첫 상승 대화 완료 후, 3반음 이상에서 종지기의 실제 의식 성공. 전투당 1회. 첫 상승 대화와 같은 발동에서는 생략하고 다음 적합한 의식에만 발동. 제압/종료 후 금지. 못 도달하면 생략.","lines":[
+      {"rowId":"18.beats.pitch-tighten:keeper","speaker":"종지기","text":"아직도 제 이름을 부르느냐. 그 입까지 묶어 주마.","portraitExpression":"action.bind-cord"},
+      {"rowId":"18.beats.pitch-tighten:sodan","speaker":"소단","text":"그만해요! 이름도 못 부르게 할 셈이에요?","portraitExpression":"emotion.concern"}
+    ]}
+  ],
+  "insertion": {"afterRowId":"18.outro:b196accb21","beforeRowId":"18.outro:e8c4944c23","line":{"rowId":"18.outro:pitch-release-sodan","speaker":"소단","text":"이름이 들려요. 이번엔 끝까지…….","portraitExpression":"emotion.concern"}},
+  "integrationRules":["문구·화자 변경 금지. 초상화 ID는 현재 레지스트리의 동등한 실제 키로 확인해 매핑한다. 새 이미지 생성 없음.","기존 일반 대사 UI의 다음 버튼으로 읽는다. 자동 넘김·새 토스트·새 모달 금지.","투사체/의식 애니메이션 진행 중 강제 중단하지 않고 기존 안전한 대사 경계에서 연다. 대기 중 제압/종료되면 조건부 대화는 폐기한다.","기존 목표 대화를 덮어쓰거나 동시에 열지 않는다. 이전/Continue/재렌더/같은 의식 serial로 반복하지 않는다. 저장 상태에 발생·읽기 완료를 구분한다.","퀘스트, 피해량, 실패조건, 라운드 수, 음원 원본과 고조 정책 변경 없음."]
+}
