@@ -237,10 +237,18 @@ export function lightningPaths(x:number,y:number,x2:number,y2:number,phase=0){
  return {trunk,forks};
 }
 export function drawLightningBolt(c:C,x:number,y:number,x2:number,y2:number,size:number,t:number,lightningSeed?:number){
- if(t>=1)return;const life=envelope(t),phase=Math.min(2,Math.floor(t*7)),{trunk,forks}=lightningSeed===undefined?lightningPaths(x,y,x2,y2,phase):cheonroeLightningPaths(x,y,x2,y2,phase,lightningSeed);
+ if(t>=1)return;const life=envelope(t),phase=Math.min(2,Math.floor(t*7)),seeded=lightningSeed===undefined?null:cheonroeLightningPaths(x,y,x2,y2,phase,lightningSeed),{trunk,forks}=seeded||lightningPaths(x,y,x2,y2,phase);
  c.save();c.setLineDash([]);c.lineCap='round';c.lineJoin='round';c.globalCompositeOperation='lighter';
  const stroke=(ps:{x:number;y:number}[],width:number,alpha:number,color:string)=>{c.strokeStyle=color;c.lineWidth=width;c.globalAlpha=life*alpha;c.beginPath();ps.forEach((p,i)=>i?c.lineTo(p.x,p.y):c.moveTo(p.x,p.y));c.stroke();};
+ if(seeded){
+  for(const [width,alpha,col] of [[size*7,.10,'#548fe9'],[size*3,.30,'#91c3ff'],[size,.95,'#e2f3ff'],[Math.max(.8,size*.35),1,'#ffffff']] as [number,number,string][])stroke(trunk,width*1.3,alpha,col);
+  // Batch thin/subdued branches by style; dense targets need no per-fork canvas or filter.
+  const branches=(paths:{x:number;y:number}[][],width:number,alpha:number,color:string)=>{c.strokeStyle=color;c.lineWidth=width;c.globalAlpha=life*alpha;c.beginPath();for(const ps of paths)ps.forEach((p,i)=>i?c.lineTo(p.x,p.y):c.moveTo(p.x,p.y));c.stroke();};
+  branches(forks,size*.9,.10,'#72adff');branches(forks,Math.max(.5,size*.36),.48,'#d2ebff');
+  branches(seeded.twigs,size*.6,.06,'#72adff');branches(seeded.twigs,Math.max(.4,size*.22),.32,'#d2ebff');
+ }else{
  for(const [width,alpha,col] of [[size*7,.10,'#548fe9'],[size*3,.30,'#91c3ff'],[size,.95,'#e2f3ff'],[Math.max(.8,size*.35),1,'#ffffff']] as [number,number,string][]){stroke(trunk,width,alpha,col);for(const [i,ps] of forks.entries())stroke(ps,width*.42,alpha*(.45+i*.055),col);}
+ }
  const r=34+size*8+t*55,glow=c.createRadialGradient(x2,y2,0,x2,y2,r);glow.addColorStop(0,'#e7f8ff');glow.addColorStop(.12,'#86bdffa0');glow.addColorStop(1,'#659cef00');c.globalAlpha=life*.65;c.fillStyle=glow;c.beginPath();c.arc(x2,y2,r,0,Math.PI*2);c.fill();
  // Branching discharge fans out from the contact like splintered white roots.
  for(let i=0;i<9;i++){const a=-Math.PI+i*Math.PI/8,d=(22+noise(i+x2)*35)*(1+t*.6);stroke([{x:x2,y:y2},{x:x2+Math.cos(a+.18)*d*.5,y:y2+Math.sin(a+.18)*d*.5},{x:x2+Math.cos(a)*d,y:y2+Math.sin(a)*d}],1.1, .55,'#cce8ff');}
