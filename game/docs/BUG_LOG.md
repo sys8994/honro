@@ -1,3 +1,7 @@
+## 2026-10-23 — 14장 실제 동굴 천장/인공 돌발판
+
+수직 지형 author가 천장을 제거한14장에 동일 월드 polygon의 충돌·표시 암반을 복원했다. 중앙 대공동/기존17경로·배치·목표는 보존한다. 가족 마당35px 돌발판만 캐릭터 one-way로 바꾸고 투사체 전면 차단은 유지했다. 구14 전투는 기존 map revision 정책으로 장 입구 재시작, 성장·장착·완료 보존; 새 revision Continue exact. 68경로/최종CF4직업, 실제 저각·고각·반사/M09·E/브라우저 점프·재개와 집중3+종합 화면을 확인했다. 정상 전투 완주와 사용자R9 원본은 미실행. 두 옛 검사 가정 실패는 game/docs/act2-ceiling-20261023/README.md에 별도 기록했다.
+
 # 증원 카메라의 실제 전투 혼 포함 보완 — 2026-10-23
 
 최초0a4b27d9의 honroSpirit 일괄 제외는 실제 전투 혼까지 누락했다. 해당 제외만 제거하고 시각 전용·사망·배열 밖 hidden 배우 무초점은 유지했다. 실제 Act2 네 archetype/존재 방어, 소단 spiritSight로 보는 Chromium 세 종류 무리/죽음 복귀를 확인했다. 최신e1e4b9aa의 행동순서 소스를 보존하고 관련검사·최종빌드·성공자산528개 해시를 확인했다. 부모 요청 PNG5장 재사용과 새 전투 혼 PNG1장, 검증 한계는 [전달 가능한 검토 자료](reinforcement-camera/review/README.md)와 [검사 기록](reinforcement-camera/README.md)에 구분한다. master/Pages는 부모 담당이다.

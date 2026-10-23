@@ -73,3 +73,5 @@
 ### 미실행·기존 검사 제한
 
 새14장 전체 정상 전투 완주/기존 사용자 R9 원본/전체30장/전역 verify/실제 Pages 배포는 실행하지 않았다. 기존 `one-way-platforms.mjs`는 오래된 전체 소스 목록 고정 조건에서 물리 검사 전에 실패했다. `stage14-rescue-retained-boundaries.mjs`는 이미 배포된 주변 적 interaction gate 제거와 반대로 다리의 근처 적 존재 시 거절을 기대해 실패했다. 이번 지형 변경의 새 게임 실패로 해석하거나 그 옛 조건을 되살리지 않았다. 관련 직접 물리·현재 저장 검사는 별도로 통과했다.
+
+최종 짧은 결과는 [summary.json](evidence/summary.json), 공개 자산/최신 승인 코드 보존은 [release.json](evidence/release.json), 최종 CF 영향 검사는 [routes-CF.json](evidence/routes-CF.json)에 둔다. 68경로 원자료는 [gzip](evidence/roof-routes-68.json.gz)으로 보존했다. 최신9f7a 성공 그래프 포함 **22개 발행 그래프/559개 고유 파일** 및934의13장 두JSON을 hash/길이 일치로 확인했다. 타입 검사도 최종 통합 소스에서 통과했다. 이번 후보 자체는 성공 발행 이력에 넣지 않았다.

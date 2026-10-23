@@ -1,0 +1,176 @@
+{
+  "sourceSha": "925827fc76eb0aac7284a5824a8fa396213cf385",
+  "generatedAndScreenCommit": "5ce3dc44",
+  "entry": "web/entries/game.776bd78fb65188a0.js",
+  "chapter": "web/data/chapter-14.e8764e31ee5270a1.json",
+  "pass": true,
+  "roofRouteRows": 68,
+  "roofRoutesPass": true,
+  "finalOneWayCFRows": 4,
+  "finalOneWayCFPass": true,
+  "factoryActors": 51,
+  "idleExact": true,
+  "nodeShotAndSave": {
+    "pass": true,
+    "rows": [
+      {
+        "case": "actual finite shots, normal level13 SP/entry pose, isolated actors",
+        "low": {
+          "id": "A01",
+          "angle": 15,
+          "power": 0.3,
+          "prediction": {
+            "x": 1162.705413042153,
+            "y": 1447
+          },
+          "contacts": [
+            {
+              "terrain": "v14-upper-hamlet",
+              "x": 1162.705413042153,
+              "y": 1447,
+              "generation": 0
+            }
+          ]
+        },
+        "high": {
+          "id": "A01",
+          "angle": 75,
+          "power": 0.9,
+          "prediction": {
+            "x": 1019.7327703529086,
+            "y": 638.2821941192348
+          },
+          "contacts": [
+            {
+              "terrain": "v14-cavern-vault",
+              "x": 1019.7327703529086,
+              "y": 638.2821941192348,
+              "generation": 0
+            }
+          ]
+        },
+        "reflection": {
+          "id": "M11",
+          "angle": 90,
+          "power": 1,
+          "prediction": {
+            "x": 820.676042102657,
+            "y": 1444
+          },
+          "contacts": [
+            {
+              "terrain": "v14-cavern-vault",
+              "x": 900,
+              "y": 630.7291934703092,
+              "generation": 0
+            },
+            {
+              "terrain": "v14-upper-hamlet",
+              "x": 820.676042102657,
+              "y": 1444,
+              "generation": 1
+            }
+          ]
+        }
+      },
+      {
+        "case": "same revision whole-battle Continue exact"
+      },
+      {
+        "case": "actual old R21 save restarts14 under existing map-revision policy; growth/equipment/clears/order retained",
+        "oldRound": 21
+      },
+      {
+        "case": "prepared obsolete R9 revision fixture restarts14, not actual user save"
+      }
+    ],
+    "limits": "Prepared/isolated shots and production App DOM/storage doubles; no fresh campaign combat completion, no actual user R9 save. Old14 battle is restarted by mandated map revision, not silently patched."
+  },
+  "platform": {
+    "pass": true,
+    "scope": "One supported initial pose under actual family lintel; four finite normal Engine jumps, no resource/position edits after setup. Projectile three-face probes, unchanged ordinary bridge policy. Not user R9 save or normal combat.",
+    "rows": [
+      {
+        "cls": "mage",
+        "minY": 6535,
+        "landedY": 6535,
+        "hpExact": true,
+        "jumpCost": 75
+      },
+      {
+        "cls": "archer",
+        "minY": 6535,
+        "landedY": 6535,
+        "hpExact": true,
+        "jumpCost": 75
+      },
+      {
+        "cls": "knight",
+        "minY": 6535,
+        "landedY": 6535,
+        "hpExact": true,
+        "jumpCost": 75
+      },
+      {
+        "cls": "occultist",
+        "minY": 6535,
+        "landedY": 6535,
+        "hpExact": true,
+        "jumpCost": 75
+      },
+      {
+        "case": "actual legal rank1 M09 cast and E gate use",
+        "angle": 80,
+        "power": 0.5,
+        "upperStake": {
+          "id": 3,
+          "skill": "M09",
+          "owner": "p-mage",
+          "side": 0,
+          "x": 4176.066138281382,
+          "y": 6535,
+          "rank": 1,
+          "damage": 0,
+          "shot": 1,
+          "effectBoost": 0,
+          "expires": 7
+        },
+        "landing": {
+          "x": 4176.066138281382,
+          "y": 6535
+        },
+        "scope": "Two prepared supported starting actors, no enemies; no live correction/refill or fake stake"
+      }
+    ]
+  },
+  "release": {
+    "pass": true,
+    "latestIntegratedSource": "9f7a62739c6c7682850d5991792290de64329fb7",
+    "unchangedModules": [
+      "shared/engine/src/icons.ts",
+      "shared/runtime/skill-images.js",
+      "game/src/skill-icons.css",
+      "shared/runtime/story.js",
+      "game/src/presentation.css",
+      "shared/runtime/player-turn-order.js",
+      "shared/runtime/reinforcement-camera.js",
+      "shared/engine/src/returningWraith.ts",
+      "shared/runtime/stage18-short-quest.js"
+    ],
+    "publishedGraphs": 22,
+    "protectedFiles": 559,
+    "chapter": "web/data/chapter-14.e8764e31ee5270a1.json",
+    "entry": "web/entries/game.776bd78fb65188a0.js",
+    "stage18ActualR10ActorsTerrainFactsRewardsExact": true,
+    "old934Chapter13Protected": true,
+    "limits": "No new Stage18 battle, Pages deployment, or full campaign verification."
+  },
+  "browserWholeBattleReloadExact": true,
+  "limits": [
+    "Prepared physics/route/save fixtures, no fresh normal14 combat completion",
+    "Old14 map revision restarts battle at entrance, preserves growth/equipment/campaign",
+    "Actual user R9 not provided",
+    "Two obsolete broad tests fail before/against superseded assumptions; see README",
+    "Parent owns master and Pages"
+  ]
+}
