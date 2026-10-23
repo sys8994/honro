@@ -1,10 +1,16 @@
 # 2막 시간 원고와 19장 비전투 후보
 
+## old-soul 자동 가로 카메라 후속
+
+부모가 확인한 세로 사진과 프레이밍은 유지했다. 19.beats.old-soul 행의 가로 화면만 소단, 회전/흐름의 전체 범위를 포함한 세 혼, 종 받침, 열린 길 일부의 여섯 bounds를 대사창 위 공간에 맞춘다. 다른 장/19장 다른 행은 기존 공통 계산을 사용하고 최대 줌은 .78이다. 미니맵은 수평으로 피하며 HUD/대사창 높이는 해당 행/화면비가 바뀔 때만 읽는다. Continue에 남은 이전 Scene의 카메라 소유 정보는 구도 값을 바꾸지 않고 현재 실행으로 연결한다. 원래 카메라로 돌아가는 도중 장 마무리 대화가 열릴 때에는 임시 구도를 다시 저장하지 않고 복귀 목적지를 이어받는다. 이후 새 플레이어 카메라 의도를 덮어쓰지 않는다.
+
+`tests/stage19-landscape-camera.mjs`와 `tools/testing/stage19-landscape-camera-browser.py`에서 실제 자동 가로 대사/서술 프레이밍의 여섯 bounds 가시성,390×844 세로 계획의 기존 계산과 정확 일치, 다른 장/행 및 저장 불변, 실제 다음/이전/skip과 후속 마무리 대화까지 종료한 뒤 원래 카메라 목적지/배율/수동 상태 복귀를 확인했다. old-soul-mid Continue 입력을 도구로 준비했으며 수동 카메라를 쓰지 않았다. 이 국소 변경에서는 전체 SFX·스테이지 검사를 반복하지 않았고 기존2f20 후보의 결과를 유지한다. 최종 build/web-split와 공개/기준 그래프754파일 보존 검사는 다시 통과했다. 사진의 미술 판정과 배포는 부모가 맡는다.
+
 ## 최신 스킬 음원 master 통합
 
 최신 master `71cb1fa92205b3790d87f85fa31f14e7eb12afac`를 통합했다. SkillAudioPlayer·이벤트 context·소스 음원은 그대로 유지하고, Engine.fire의 context 진입 전과 private fireAction에도19장 차단을 적용했다. App은 startCharge 전에 거절하며 release/cancel의 기존 stopCharge는 유지한다. 일반64기예의180스텝 전체 전투/저장/RNG 동일성 및 나머지 SFX 실제 동작 검사72개와 player7묶음이 통과했다.19장 별도 실제 Chromium에서는 승인 은행7자산이 준비된 상태에서도 키보드/강제 fire 포인터/직접 beginCharge의 charge 호출·chargeStarts·skill source starts가 모두0이고,20장에서는 충전/실제 발사음이 정상 시작함을 확인했다.
 
-통합 game entry는 `game.983703593aa8a91d.js`, 활성413파일, manifest SHA256은 `61181f41014fb076100327fa12309aa1281c1c3149e41282a04a9d310c253cfb`다. 공개 edf/기존33개의 발행 사실34개를 보존하고, 최신 master의 `game.bf9e42f5d682c70c.js`411파일 그래프와 기준cf2도 원본 그대로 보존했다. 중복제외754파일을 길이/hash로 검사했다. 새 master의 Pages 성공 시각/근거를 받기 전에는 이를 새 성공 발행으로 꾸미지 않고 별도 기준 그래프로 보존한다.
+통합 game entry는 `game.37e461ef6104b3e5.js`, 활성413파일, manifest SHA256은 `b06007415137db2bb338298266aa71927d85d9dcc0179c1e3e78e607e8146d3e`다. 공개 edf/기존33개의 발행 사실34개를 보존하고, 최신 master의 `game.bf9e42f5d682c70c.js`411파일 그래프와 기준cf2도 원본 그대로 보존했다. 중복제외754파일을 길이/hash로 검사했다. 새 master의 Pages 성공 시각/근거를 받기 전에는 이를 새 성공 발행으로 꾸미지 않고 별도 기준 그래프로 보존한다.
 
 부모 피드백을 반영한 [선별5장과 준비 조건](https://github.com/sys8994/honro/tree/review/act2-farewell-screenshots-20261023/game/docs/act2-time-farewell-20261023/screenshots)을 별도 review 브랜치에 전달한다. 모바일 가족 대화/소단 단독/무명사 혼과 가로 자동 대사 카메라/수동 상세 카메라를 구분한다. 선두의 손/역방향 흐름을 유지하고 보조 두 혼만 -25°/+28°와 다른 높이·간격·명도로 분리했다. 일반 가족 혼과 부모 SVG 경로/색은 그대로다. 19장 대화 중 다음 목표 태그를 숨기고 현재 가족이 보이면 병렬 다음 가족의 화면 밖 안내도 숨긴다. 현재 목표가 실제 화면 밖일 때만 종료 후 안내를 복구하며 목표 조건/마커는 유지한다.
 
