@@ -419,14 +419,14 @@ export function tickRedesign(e:Engine,dt:number){
   if(!z.active&&available.length&&(z.skill==='M10'||z.lastTriggerRound!==b.round)){
    z.lastTriggerRound=b.round;const t=available[0];
    if(z.skill==='M10'){e.skillSound('heal',z.owner,z.skill,z.shot,`${z.id}:${b.round}`);z.usedRounds??={};for(const ally of available){z.usedRounds[ally.id]=b.round;const hpBefore=ally.hp;ally.hp=Math.min(ally.maxHp,ally.hp+ally.maxHp*(.06+.01*z.rank)*boost);healed(b,ally,z.owner,hpBefore,z.skill);ally.focus=Math.min(ally.maxFocus,ally.focus+ally.maxFocus*(.07+.01*z.rank)*boost);ally.moveLeft=Math.min(ally.maxMove,ally.moveLeft+ally.maxMove*(.12+.03*z.rank)*boost);e.fx('ring',ally.x,ally.y,'#bfcbb6',35);}}
-   if(z.skill==='M99'){z.active=true;z.inside=[];z.crossed={};z.budgetTurns={};for(const v of b.units.filter(v=>enemy(z,v)&&Math.hypot(v.x-z.x,v.y-z.y)<220)){e.hurt(v,z.damage,z.owner,false,p,z);z.inside.push(v.id);}}
+   if(z.skill==='M99'){e.skillSound('trigger',z.owner,z.skill,z.shot,`${z.id}:${b.round}`);z.active=true;z.inside=[];z.crossed={};z.budgetTurns={};for(const v of b.units.filter(v=>enemy(z,v)&&Math.hypot(v.x-z.x,v.y-z.y)<220)){e.hurt(v,z.damage,z.owner,false,p,z);z.inside.push(v.id);}}
   }
   if(z.active){
    for(const u of b.units.filter(u=>enemy(z,u))){const d=Math.hypot(u.x-z.x,u.y-z.y),token=`${b.round}:${b.teamEnds[u.side]}`,was=z.inside!.includes(u.id);
     if(d<=220){u.slowed={factor:Math.min(.55,.45*boost),expires:b.round};if(!was)z.inside!.push(u.id);z.budgetTurns??={};if(z.budgetTurns[u.id]!==token){z.budgetTurns[u.id]=token;u.moveLeft*=1-Math.min(.45,.35*boost);}}
     else if(was){
      // Leaving is an event: repeated upward impulses would keep this unit airborne forever.
-     z.inside!.splice(z.inside!.indexOf(u.id),1);if(z.crossed![u.id]!==token){z.crossed![u.id]=token;e.hurt(u,z.damage*22/35,z.owner,false,p,z);}
+     z.inside!.splice(z.inside!.indexOf(u.id),1);if(z.crossed![u.id]!==token){z.crossed![u.id]=token;e.skillSound('trigger',z.owner,z.skill,z.shot,`${z.id}:${token}`);e.hurt(u,z.damage*22/35,z.owner,false,p,z);}
      if(!u.boss&&!u.fixed){e.impulse(u,(z.x-u.x)*2,-60);u.moveLeft=0;}else u.breaks=Math.max(1,u.breaks);
     }
    }

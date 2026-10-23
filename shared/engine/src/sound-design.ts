@@ -1,3 +1,4 @@
+import {SkillAudioPlayer} from './skillAudioPlayer';
 import {BgmPlayer, type MusicState} from './bgm';
 import type { Profile } from './types';
 
@@ -54,7 +55,8 @@ export class AudioEngine {
     private resuming:Promise<boolean>|null=null;
     private resumeSerial=0;
     private dialogueVoice:AudioBufferSourceNode|null=null;
-    constructor(){this.warm();}
+    skills:SkillAudioPlayer;
+    constructor(){this.skills=new SkillAudioPlayer(this);this.warm();}
     pending:{name:string;at:number}[]=[];
     lastPlayed:Record<string,number>={};requestedAt:Record<string,number>={};startedAt:Record<string,number>={};playCount=0;
     static samples=soundSamples;
@@ -62,7 +64,7 @@ export class AudioEngine {
         const settings=s as Profile['settings']&{music?:boolean;musicVolume?:number};
         this.music.configure(settings.music!==false,(Number(s.volume)||0)*(settings.musicVolume??.65));
         this.enabled=!!s.sound;this.volume=Math.max(0,Math.min(1,Number(s.volume)||0));
-        const gain=this.enabled?this.volume:0;
+        this.skills.configure();const gain=this.enabled?this.volume:0;
         if(this.master&&this.context&&gain!==this.gainTarget){this.master.gain.setTargetAtTime(gain,this.context.currentTime,.015);this.gainTarget=gain;}
         if(!this.enabled||this.volume<=0)this.music.clearDucking();
         if((!this.enabled||this.volume<=0)&&(this.pending.length||this.voices.size))this.pause();
@@ -88,7 +90,7 @@ export class AudioEngine {
             }
             if(this.context!.state!=='running')await this.context!.resume();
             if(serial!==this.resumeSerial)return this.context!.state==='running';
-            const now=performance.now(),queue=this.pending.splice(0);
+            void this.skills.prepareWanted();const now=performance.now(),queue=this.pending.splice(0);
             // An old visual event must not become sound on a later unrelated gesture.
             if(this.context!.state!=='running'||this.paused||this.disposed)return false;
             for(const item of queue)if(now-item.at<80)this.play(item.name);
@@ -133,8 +135,8 @@ export class AudioEngine {
         source.onended=()=>{this.voices.delete(source);if(this.dialogueVoice===source)this.dialogueVoice=null;source.disconnect();};source.start();
         this.lastPlayed[name]=now;this.startedAt[name]=performance.now();this.playCount++;
     }
-    pause(){this.music.clearDucking();for(const voice of this.voices){try{voice.stop();}catch{}}this.voices.clear();this.dialogueVoice=null;this.pending=[];}
+    pause(){this.skills.stopAll();this.music.clearDucking();for(const voice of this.voices){try{voice.stop();}catch{}}this.voices.clear();this.dialogueVoice=null;this.pending=[];}
     setTheme(_n:number){}
-    update(state?:MusicState,paused=false,battleSession?:string,firstBattleTrack?:number,battleAct?:number){this.paused=paused;if(paused)this.pause();this.music.setPaused(paused);if(state)this.music.select(state,battleSession,firstBattleTrack,battleAct);this.music.tick();}
-    dispose(){this.disposed=true;this.pause();this.music.dispose();void this.context?.close();}
+    update(state?:MusicState,paused=false,battleSession?:string,firstBattleTrack?:number,battleAct?:number){this.paused=paused;this.skills.setPaused(paused);if(paused)this.pause();this.music.setPaused(paused);if(state)this.music.select(state,battleSession,firstBattleTrack,battleAct);this.music.tick();}
+    dispose(){this.skills.dispose();this.disposed=true;this.pause();this.music.dispose();void this.context?.close();}
 }

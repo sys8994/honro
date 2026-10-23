@@ -131,7 +131,7 @@ export function tickWarrior(e:Engine,dt:number){
 }
 export function manualDive(e:Engine){
  const p=e.b.projectiles.find(p=>p.owner===e.b.active&&p.mode==='warriorDive'&&!p.dived);if(e.b.phase!=='flight'||!p)return false;
- p.dived=true;p.vx*=.18;p.vy=Math.max(650,p.vy);p.gravityScale=3.5;e.emit('sound',{name:'sword'});return true;
+ p.dived=true;p.vx*=.18;p.vy=Math.max(650,p.vy);p.gravityScale=3.5;if(!e.skillSound('swing',p.owner,p.skill,p.shot))e.emit('sound',{name:'sword'});return true;
 }
 export function orbitPoint(p:Projectile,blade:NonNullable<Projectile['orbit']>['blades'][number],time=p.age):Vec{
  const angle=blade.phase+blade.omega*time,r=blade.radius*(1+blade.mod*Math.sin(time*2.7+blade.phase));return{x:p.x+Math.cos(angle)*r,y:p.y+Math.sin(angle)*r*.72};
@@ -166,7 +166,7 @@ function land(e:Engine,p:Projectile,h?:Collision){
  if(p.mode==='warriorDive'){
   const factor=p.dived?1.35+Math.min(.30,Math.max(0,p.y-(p.apexY||p.y))/1800):.75,radius=p.dived?p.blast:80;
   for(const t of e.b.units.filter(t=>foe(u,t))){const d=Math.hypot(t.x-p.x,t.y-t.h*.45-p.y);if(d<radius+t.r)e.hurt(t,p.damage*factor*(1-.65*clamp(d/radius,0,1)),p.owner,true,p,p);}
-  stroke(e,u,radius,u.facing,'#d2d7cb',3);e.emit('sound',{name:'hit'});
+  stroke(e,u,radius,u.facing,'#d2d7cb',3);if(!e.skillSound('landing',p.owner,p.skill,p.shot))e.emit('sound',{name:'hit'});
  }else if(p.mode==='warriorLeap'){
   const t=h?.unit&&foe(u,h.unit)?h.unit:e.b.units.filter(t=>foe(u,t)&&Math.hypot(t.x-p.x,t.y-t.h*.5-p.y)<p.blast+t.r).sort((a,b)=>Math.abs(a.x-p.x)-Math.abs(b.x-p.x))[0];
   if(t)e.hurt(t,p.damage,p.owner,true,p,p);stroke(e,u,95);

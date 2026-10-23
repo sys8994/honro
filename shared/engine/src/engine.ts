@@ -94,7 +94,7 @@ export class Engine {
     onAttackStart?: (actorId: string) => void;
     private audioContext:SkillAudioSignal|null=null;
     private audioOrigin(owner:string,skill:string,shot=this.b.shot,autonomous=false){const u=this.unit(owner),hero=u?.summoned?this.unit(u.summonOwner||''):u;if(!u||!hero||hero.side!==0||hero.enthrall||!PLAYER_SKILL_AUDIO[skill])return null;return{phase:'launch' as const,actor:owner,skill,cast:`${this.b.session}:${owner}:${skill}:${shot}`,autonomous:autonomous||!!u.summoned};}
-    private audioScope<T>(owner:string,skill:string,shot:number,fn:()=>T,autonomous=false):T{const prior=this.audioContext;this.audioContext=this.audioOrigin(owner,skill,shot,autonomous);try{return fn();}finally{this.audioContext=prior;}}
+    audioScope<T>(owner:string,skill:string,shot:number,fn:()=>T,autonomous=false):T{const prior=this.audioContext;this.audioContext=this.audioOrigin(owner,skill,shot,autonomous);try{return fn();}finally{this.audioContext=prior;}}
     skillSound(phase:SkillAudioPhase,owner?:string,skill?:string,shot?:number,target?:string,autonomous=false){const o=owner&&skill?this.audioOrigin(owner,skill,shot,autonomous):this.audioContext;if(o)this.emit('sound',{name:'playerSkill',skillAudio:{...o,phase,target}});return !!o;}
     emit(type: Event['type'], e: Partial<Event> = {}) { if(type==='sound'&&this.audioContext&&!e.skillAudio&&!['down','jump','turn','win','lose','dialogue','mukjongKeeper'].includes(e.name||''))return;this.onEvent({ type, ...e }); }
     fx(name: string, x: number, y: number, color: string, size = 50, text?: string) { this.emit('fx', { name, x, y, color, size, text }); }
@@ -654,7 +654,7 @@ export class Engine {
       while(v.remaining>0&&v.elapsed+1e-8>=v.interval){v.elapsed-=v.interval;v.remaining--;v.index++;
         const sk=SKILLS[v.template.skill],a=clamp(v.angle+(this.random()*2-1)*VOLLEY_SPREAD,AIM_MIN,AIM_MAX),angles=volleyAngles(sk,v.template.skillRank||u.ranks[sk.id]||1,a);
         for(const angle of angles){const o=this.projectileOrigin(u,sk,angle),vel=this.velocity(u,sk,angle,v.power);const p:Projectile={...JSON.parse(JSON.stringify(v.template)),id:b.nextId++,x:o.x,y:o.y,...vel,prevVy:vel.vy,age:0,apex:false,hit:[],trail:[o],phase:0,bounces:0,pierces:0,emissions:0,rolled:0,fieldHits:[],amplification:1,damage:v.template.damage*volleyDamage(passiveRank(u,'AP01'),v.index),followup:true,autonomous:true,repeatIndex:v.index,launchX:o.x,launchY:o.y,carry:[]};b.projectiles.push(p);}
-        u.anim=.6;this.fx('ring',u.x,u.y-u.h*.6,sk.color,20);this.emit('sound',{name:'arrow'});
+        u.anim=.6;this.fx('ring',u.x,u.y-u.h*.6,sk.color,20);if(!this.skillSound('launch',u.id,sk.id,b.shot,`volley:${v.index}`,true))this.emit('sound',{name:'arrow'});
       }
       if(v.remaining<=0)b.volley=undefined;
     }
@@ -776,7 +776,7 @@ export class Engine {
     iceGourdReady(){return iceGourdReady(this);}
     detonateIceGourd(){return detonateIceGourd(this);}
     projectileDamage(p?:Projectile){return !!p&&Number.isFinite(p.id)&&!p.body&&p.mode!=='stake';}
-    hurt(u:Unit,amount:number,owner:string,direct=false,p?:Projectile,source?:Vec,damageSource:'normal'|'salheun'|'environment'|'eaterTransfer'='normal',damageSkill?:string,provenance?:Partial<Projectile>){const origin=p||provenance,skill=origin?.skill||damageSkill||this.audioContext?.skill||'';return this.audioScope(owner,skill,origin?.shot??this.b.shot,()=>{const before=u.hp+u.shield;this.applyHit(u,amount,owner,direct,p,source,damageSource,damageSkill,provenance);if(damageSource==='normal'&&u.hp+u.shield<before)this.skillSound('hit',owner,skill,origin?.shot,u.id,!!origin?.autonomous);},!!origin?.autonomous);}
+    hurt(u:Unit,amount:number,owner:string,direct=false,p?:Projectile,source?:Vec,damageSource:'normal'|'salheun'|'environment'|'eaterTransfer'='normal',damageSkill?:string,provenance?:Partial<Projectile>){const origin=p||provenance,skill=origin?.skill||damageSkill||this.audioContext?.skill||(this.unit(owner)?.summoned?(this.unit(owner) as any).honroReportSkill:'')||'';return this.audioScope(owner,skill,origin?.shot??this.b.shot,()=>{const before=u.hp+u.shield;this.applyHit(u,amount,owner,direct,p,source,damageSource,damageSkill,provenance);if(damageSource==='normal'&&u.hp+u.shield<before)this.skillSound('hit',owner,skill,origin?.shot,u.id,!!origin?.autonomous);},!!origin?.autonomous);}
     private applyHit(u: Unit, amount: number, owner: string, direct = false, p?: Projectile, source?: Vec,damageSource:'normal'|'salheun'|'environment'|'eaterTransfer'='normal',damageSkill?:string, provenance?:Partial<Projectile>) {
         if (u.dead || amount <= 0 || (damageSource!=='eaterTransfer'&&!this.attackAllows(u,owner,p||provenance)))
             return;
@@ -1321,7 +1321,7 @@ export class Engine {
         if(kind[p.mode]){if(p.mode==='summonHost'){this.spawnSummon(owner,'stalker',p.x-35,p.y,1.12,1,false,h,p.skill,p);this.spawnSummon(owner,'charger',p.x+35,p.y,1.12,1,false,h,p.skill,p);this.remove(p);}else this.summonAtProjectile(p,kind[p.mode],h);return true;}
         return false;
     }
-    impact(p:Projectile,h:Collision){return this.audioScope(p.owner,p.skill,p.shot,()=>{const bounced=p.bounces,vx=p.vx,vy=p.vy;this.resolveImpact(p,h);if(h.terrain){const reflected=p.bounces!==bounced||p.vx*vx+p.vy*vy<0;this.skillSound(reflected?'reflect':p.body&&p.skill==='S04'?'landing':'block',p.owner,p.skill,p.shot, h.terrain.id,!!p.autonomous);}},!!p.autonomous);}
+    impact(p:Projectile,h:Collision){return this.audioScope(p.owner,p.skill,p.shot,()=>{const bounced=p.bounces,vx=p.vx,vy=p.vy;this.resolveImpact(p,h);if(h.terrain){const reflected=p.bounces!==bounced||p.vx*vx+p.vy*vy<0;this.skillSound(reflected?'reflect':'block',p.owner,p.skill,p.shot, h.terrain.id,!!p.autonomous);}},!!p.autonomous);}
     private resolveImpact(p: Projectile, h: Collision) {
         if(keeperImpact(this,p,h))return;
         if(h.unit&&!this.attackAllows(h.unit,p.owner,p))return;
@@ -1608,8 +1608,8 @@ export class Engine {
             this.hurt(u,p.damage*factor,p.owner,true,p,at);p.hit.push(u.id);this.fx('burst',at.x,at.y,p.color,28);this.fx('text',u.x,u.y-u.h-10,'#d7b9ef',12,'투과');
         }
     }
-    stepProjectile(p:Projectile,dt:number,paced=false){return this.audioScope(p.owner,p.skill,p.shot,()=>this.advanceProjectile(p,dt,paced),!!p.autonomous);}
-    private advanceProjectile(p: Projectile, dt: number, paced=false) {
+    stepProjectile(p:Projectile,dt:number,paced=false){return this.audioScope(p.owner,p.skill,p.shot,()=>this.stepSkillProjectile(p,dt,paced),!!p.autonomous);}
+    private stepSkillProjectile(p: Projectile, dt: number, paced=false) {
         // Old saves may still carry the former timed hatching on a flying stalker seed.
         if((p.skill==='O11'||p.skill==='O13'||p.skill==='O14')&&p.fuseAt!==undefined)p.fuseAt=undefined;
         // Enemy-exclusive attacks play two unchanged physics substeps per world step.
@@ -1618,7 +1618,7 @@ export class Engine {
             for(let i=0;i<2&&this.b.projectiles.includes(p);i++)this.stepProjectile(p,dt,true);
             return;
         }
-        if((p.echoDelay||0)>0){p.echoDelay=Math.max(0,p.echoDelay!-dt);if(!p.echoDelay){this.fx('spark',p.x,p.y,'#c5c9b8',20);this.emit('sound',{name:'spiritCast'});}return;}
+        if((p.echoDelay||0)>0){p.echoDelay=Math.max(0,p.echoDelay!-dt);if(!p.echoDelay){this.fx('spark',p.x,p.y,'#c5c9b8',20);if(!this.skillSound('launch',p.owner,p.skill,p.shot,undefined,true))this.emit('sound',{name:'spiritCast'});}return;}
         p.age += dt;
         if(p.mode==='convergeSpirit'){stepConvergingSpirit(this,p,dt);return;}
         
