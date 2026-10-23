@@ -1,0 +1,1336 @@
+{
+  "beforeSource": "9f7a62739c6c7682850d5991792290de64329fb7",
+  "beforeEvidenceCommit": "997c4fc89d6649811f27f75ec456869e0b61d464",
+  "afterMaster": "a3c99e33ec8c7a2c050bf71866a077bbc2cbd9ee",
+  "afterEntry": "web/entries/game.d416054b3c66317f.js",
+  "rows": [
+    {
+      "device": "desktop",
+      "case": "player-no-manual",
+      "before": {
+        "phase": "flight",
+        "active": "diag-archer",
+        "shot": 1,
+        "camera": {
+          "x": 1130.1448744084435,
+          "y": 609.5866055923337,
+          "scale": 0.6,
+          "manual": false
+        },
+        "owner": "projectile",
+        "blocked": false,
+        "insert": false,
+        "attackCamera": null
+      },
+      "after": {
+        "phase": "flight",
+        "active": "diag-archer",
+        "shot": 1,
+        "camera": {
+          "x": 1130.1448744084435,
+          "y": 609.5866055923337,
+          "scale": 0.6,
+          "manual": false
+        },
+        "owner": "projectile",
+        "blocked": false,
+        "insert": false,
+        "attackCamera": {
+          "intent": 1,
+          "attacks": 1,
+          "manual": false,
+          "gesture": false,
+          "actorId": "diag-archer"
+        }
+      }
+    },
+    {
+      "device": "desktop",
+      "case": "player-pan-before-fire",
+      "before": {
+        "phase": "flight",
+        "active": "diag-archer",
+        "shot": 1,
+        "camera": {
+          "x": 183.97079478856244,
+          "y": 779.6477957839284,
+          "scale": 0.5216149412392835,
+          "manual": false
+        },
+        "owner": "manual-grace",
+        "blocked": true,
+        "insert": false,
+        "attackCamera": null
+      },
+      "after": {
+        "phase": "flight",
+        "active": "diag-archer",
+        "shot": 1,
+        "camera": {
+          "x": 1230.89178779847,
+          "y": 543.0538334724916,
+          "scale": 0.5216149412392835,
+          "manual": false
+        },
+        "owner": "projectile",
+        "blocked": false,
+        "insert": false,
+        "attackCamera": {
+          "intent": 2,
+          "attacks": 1,
+          "manual": false,
+          "gesture": false,
+          "actorId": "diag-archer"
+        }
+      }
+    },
+    {
+      "device": "desktop",
+      "case": "player-pan-during-flight-expired",
+      "before": {
+        "phase": "flight",
+        "active": "diag-archer",
+        "shot": 1,
+        "camera": {
+          "x": 836.0162615921996,
+          "y": 733.8734917999732,
+          "scale": 0.5216149412392835,
+          "manual": true
+        },
+        "owner": "manual",
+        "blocked": false,
+        "insert": false,
+        "attackCamera": null
+      },
+      "after": {
+        "phase": "flight",
+        "active": "diag-archer",
+        "shot": 1,
+        "camera": {
+          "x": 836.0162615921996,
+          "y": 733.8734917999732,
+          "scale": 0.5216149412392835,
+          "manual": true
+        },
+        "owner": "manual-attack",
+        "blocked": true,
+        "insert": false,
+        "attackCamera": {
+          "intent": 2,
+          "attacks": 1,
+          "manual": true,
+          "gesture": false,
+          "actorId": "diag-archer"
+        }
+      }
+    },
+    {
+      "device": "desktop",
+      "case": "next-player-attack-after-grace",
+      "before": {
+        "phase": "flight",
+        "active": "diag-archer",
+        "shot": 2,
+        "camera": {
+          "x": 1104.3887273706018,
+          "y": 701.2013842478927,
+          "scale": 0.5216149412392835,
+          "manual": false
+        },
+        "owner": "projectile",
+        "blocked": false,
+        "insert": false,
+        "attackCamera": null
+      },
+      "after": {
+        "phase": "flight",
+        "active": "diag-archer",
+        "shot": 2,
+        "camera": {
+          "x": 1104.3887273706018,
+          "y": 701.2013842478927,
+          "scale": 0.5216149412392835,
+          "manual": false
+        },
+        "owner": "projectile",
+        "blocked": false,
+        "insert": false,
+        "attackCamera": {
+          "intent": 3,
+          "attacks": 2,
+          "manual": false,
+          "gesture": false,
+          "actorId": "diag-archer"
+        }
+      }
+    },
+    {
+      "device": "desktop",
+      "case": "next-player-attack-inside-grace",
+      "before": {
+        "phase": "flight",
+        "active": "diag-archer",
+        "shot": 2,
+        "camera": {
+          "x": 595.8899089100598,
+          "y": 776.3323874207156,
+          "scale": 0.5216149412392835,
+          "manual": false
+        },
+        "owner": "manual-grace",
+        "blocked": true,
+        "insert": false,
+        "attackCamera": null
+      },
+      "after": {
+        "phase": "flight",
+        "active": "diag-archer",
+        "shot": 2,
+        "camera": {
+          "x": 1078.6443157721158,
+          "y": 705.7534847261127,
+          "scale": 0.5216149412392835,
+          "manual": false
+        },
+        "owner": "projectile",
+        "blocked": false,
+        "insert": false,
+        "attackCamera": {
+          "intent": 3,
+          "attacks": 2,
+          "manual": false,
+          "gesture": false,
+          "actorId": "diag-archer"
+        }
+      }
+    },
+    {
+      "device": "desktop",
+      "case": "ai-no-manual",
+      "before": {
+        "phase": "flight",
+        "active": "diag-enemy",
+        "shot": 1,
+        "camera": {
+          "x": 2013.2410459866421,
+          "y": 790.9321507944876,
+          "scale": 0.6,
+          "manual": false
+        },
+        "owner": "projectile",
+        "blocked": false,
+        "insert": false,
+        "attackCamera": null
+      },
+      "after": {
+        "phase": "flight",
+        "active": "diag-enemy",
+        "shot": 1,
+        "camera": {
+          "x": 2013.2410459866421,
+          "y": 790.9321507944876,
+          "scale": 0.6,
+          "manual": false
+        },
+        "owner": "projectile",
+        "blocked": false,
+        "insert": false,
+        "attackCamera": {
+          "intent": 1,
+          "attacks": 1,
+          "manual": false,
+          "gesture": false,
+          "actorId": "diag-enemy"
+        }
+      }
+    },
+    {
+      "device": "desktop",
+      "case": "ai-next-actor-after-manual",
+      "before": {
+        "phase": "flight",
+        "active": "diag-enemy",
+        "shot": 1,
+        "camera": {
+          "x": 183.97079478856244,
+          "y": 779.6477957839284,
+          "scale": 0.5216149412392835,
+          "manual": true
+        },
+        "owner": "manual",
+        "blocked": false,
+        "insert": false,
+        "attackCamera": null
+      },
+      "after": {
+        "phase": "flight",
+        "active": "diag-enemy",
+        "shot": 1,
+        "camera": {
+          "x": 2012.42464626092,
+          "y": 790.9142123239517,
+          "scale": 0.5216149412392835,
+          "manual": false
+        },
+        "owner": "projectile",
+        "blocked": false,
+        "insert": false,
+        "attackCamera": {
+          "intent": 2,
+          "attacks": 1,
+          "manual": false,
+          "gesture": false,
+          "actorId": "diag-enemy"
+        }
+      }
+    },
+    {
+      "device": "desktop",
+      "case": "turn-notice-grace-and-no-retry",
+      "before": {
+        "phase": "enemy",
+        "active": "diag-enemy",
+        "shot": 0,
+        "camera": {
+          "x": 183.97079478856244,
+          "y": 779.6477957839284,
+          "scale": 0.5216149412392835,
+          "manual": false
+        },
+        "owner": "focus",
+        "blocked": false,
+        "insert": false,
+        "attackCamera": null
+      },
+      "after": {
+        "phase": "enemy",
+        "active": "diag-enemy",
+        "shot": 0,
+        "camera": {
+          "x": 183.97079478856244,
+          "y": 779.6477957839284,
+          "scale": 0.5216149412392835,
+          "manual": true
+        },
+        "owner": "manual-attack",
+        "blocked": true,
+        "insert": false,
+        "attackCamera": {
+          "intent": 1,
+          "attacks": 0,
+          "manual": true,
+          "gesture": false,
+          "actorId": null
+        }
+      }
+    },
+    {
+      "device": "desktop",
+      "case": "melee-no-manual-real-hit",
+      "before": {
+        "phase": "flight",
+        "active": "diag-knight",
+        "shot": 1,
+        "camera": {
+          "x": 962.0606198680646,
+          "y": 830.1003868359045,
+          "scale": 0.6,
+          "manual": false
+        },
+        "owner": "focus",
+        "blocked": false,
+        "insert": false,
+        "attackCamera": null
+      },
+      "after": {
+        "phase": "flight",
+        "active": "diag-knight",
+        "shot": 1,
+        "camera": {
+          "x": 962.0606198680646,
+          "y": 830.1003868359045,
+          "scale": 0.6,
+          "manual": false
+        },
+        "owner": "focus",
+        "blocked": false,
+        "insert": false,
+        "attackCamera": {
+          "intent": 1,
+          "attacks": 1,
+          "manual": false,
+          "gesture": false,
+          "actorId": "diag-knight"
+        }
+      }
+    },
+    {
+      "device": "desktop",
+      "case": "melee-after-pan-real-hit",
+      "before": {
+        "phase": "flight",
+        "active": "diag-knight",
+        "shot": 1,
+        "camera": {
+          "x": 183.97079478856244,
+          "y": 779.6477957839284,
+          "scale": 0.5216149412392835,
+          "manual": false
+        },
+        "owner": "manual-grace",
+        "blocked": true,
+        "insert": false,
+        "attackCamera": null
+      },
+      "after": {
+        "phase": "flight",
+        "active": "diag-knight",
+        "shot": 1,
+        "camera": {
+          "x": 958.5330459607508,
+          "y": 830.0228766670427,
+          "scale": 0.5216149412392835,
+          "manual": false
+        },
+        "owner": "focus",
+        "blocked": false,
+        "insert": false,
+        "attackCamera": {
+          "intent": 2,
+          "attacks": 1,
+          "manual": false,
+          "gesture": false,
+          "actorId": "diag-knight"
+        }
+      }
+    },
+    {
+      "device": "desktop",
+      "case": "summon-no-manual",
+      "before": {
+        "phase": "summon",
+        "active": "summon-1",
+        "shot": 0,
+        "camera": {
+          "x": 1030.3678724594338,
+          "y": 788.8349437891119,
+          "scale": 0.6,
+          "manual": false
+        },
+        "owner": "projectile",
+        "blocked": false,
+        "insert": false,
+        "attackCamera": null
+      },
+      "after": {
+        "phase": "summon",
+        "active": "summon-1",
+        "shot": 0,
+        "camera": {
+          "x": 1030.3678724594338,
+          "y": 788.8349437891119,
+          "scale": 0.6,
+          "manual": false
+        },
+        "owner": "projectile",
+        "blocked": false,
+        "insert": false,
+        "attackCamera": {
+          "intent": 1,
+          "attacks": 1,
+          "manual": false,
+          "gesture": false,
+          "actorId": "summon-1"
+        }
+      }
+    },
+    {
+      "device": "desktop",
+      "case": "summon-next-attack-after-manual",
+      "before": {
+        "phase": "summon",
+        "active": "summon-1",
+        "shot": 0,
+        "camera": {
+          "x": 183.97079478856244,
+          "y": 779.6477957839284,
+          "scale": 0.5216149412392835,
+          "manual": true
+        },
+        "owner": "manual",
+        "blocked": false,
+        "insert": false,
+        "attackCamera": null
+      },
+      "after": {
+        "phase": "summon",
+        "active": "summon-1",
+        "shot": 0,
+        "camera": {
+          "x": 1021.5171888138734,
+          "y": 788.6404707597904,
+          "scale": 0.5216149412392835,
+          "manual": false
+        },
+        "owner": "projectile",
+        "blocked": false,
+        "insert": false,
+        "attackCamera": {
+          "intent": 2,
+          "attacks": 1,
+          "manual": false,
+          "gesture": false,
+          "actorId": "summon-1"
+        }
+      }
+    },
+    {
+      "device": "desktop",
+      "case": "reinforcement-restores-old-manual-over-new-attack",
+      "before": {
+        "phase": "flight",
+        "active": "diag-archer",
+        "shot": 1,
+        "camera": {
+          "x": 183.97079478856244,
+          "y": 779.6477957839284,
+          "scale": 0.5216149412392835,
+          "manual": true
+        },
+        "owner": "manual",
+        "blocked": false,
+        "insert": false,
+        "attackCamera": null
+      },
+      "after": {
+        "phase": "flight",
+        "active": "diag-archer",
+        "shot": 2,
+        "camera": {
+          "x": 1308.6369115417433,
+          "y": 99.08995004613641,
+          "scale": 0.5216149412392835,
+          "manual": false
+        },
+        "owner": "projectile",
+        "blocked": false,
+        "insert": false,
+        "attackCamera": {
+          "intent": 3,
+          "attacks": 2,
+          "manual": false,
+          "gesture": false,
+          "actorId": "diag-archer"
+        }
+      }
+    },
+    {
+      "device": "desktop",
+      "case": "story-release-restores-old-manual-over-new-attack",
+      "before": {
+        "phase": "flight",
+        "active": "diag-archer",
+        "shot": 1,
+        "camera": {
+          "x": 183.97079478856244,
+          "y": 779.6477957839284,
+          "scale": 0.5216149412392835,
+          "manual": true
+        },
+        "owner": "manual",
+        "blocked": false,
+        "insert": false,
+        "attackCamera": null
+      },
+      "after": {
+        "phase": "flight",
+        "active": "diag-archer",
+        "shot": 1,
+        "camera": {
+          "x": 1323.3979968526373,
+          "y": 477.7974856464794,
+          "scale": 0.5216149412392835,
+          "manual": false
+        },
+        "owner": "projectile",
+        "blocked": false,
+        "insert": false,
+        "attackCamera": {
+          "intent": 2,
+          "attacks": 1,
+          "manual": false,
+          "gesture": false,
+          "actorId": "diag-archer"
+        }
+      }
+    },
+    {
+      "device": "desktop",
+      "case": "selection-preview-rejected-do-not-resume",
+      "before": "new regression",
+      "after": {
+        "phase": "aim",
+        "active": "diag-archer",
+        "shot": 0,
+        "camera": {
+          "x": 183.97079478856244,
+          "y": 779.6477957839284,
+          "scale": 0.5216149412392835,
+          "manual": true
+        },
+        "owner": "manual-attack",
+        "blocked": true,
+        "insert": false,
+        "attackCamera": {
+          "intent": 1,
+          "attacks": 0,
+          "manual": true,
+          "gesture": false,
+          "actorId": null
+        }
+      }
+    },
+    {
+      "device": "desktop",
+      "case": "actual-keyboard-or-fire-touch-next-attack",
+      "before": "new regression",
+      "after": {
+        "phase": "flight",
+        "active": "diag-archer",
+        "shot": 2,
+        "camera": {
+          "x": 1095.4229527972034,
+          "y": 703.358459624328,
+          "scale": 0.5216149412392835,
+          "manual": false
+        },
+        "owner": "projectile",
+        "blocked": false,
+        "insert": false,
+        "attackCamera": {
+          "intent": 3,
+          "attacks": 2,
+          "manual": false,
+          "gesture": false,
+          "actorId": "diag-archer"
+        }
+      }
+    },
+    {
+      "device": "desktop",
+      "case": "held-camera-gesture-crosses-new-attack",
+      "before": "new regression",
+      "after": {
+        "phase": "flight",
+        "active": "diag-archer",
+        "shot": 3,
+        "camera": {
+          "x": 575.853427979181,
+          "y": 729.1339301954174,
+          "scale": 0.6,
+          "manual": false
+        },
+        "owner": "projectile",
+        "blocked": false,
+        "insert": false,
+        "attackCamera": {
+          "intent": 8,
+          "attacks": 3,
+          "manual": false,
+          "gesture": false,
+          "actorId": "diag-archer"
+        }
+      }
+    },
+    {
+      "device": "desktop",
+      "case": "save-reload-continue-inflight",
+      "before": "new regression",
+      "after": {
+        "phase": "flight",
+        "active": "diag-archer",
+        "shot": 3,
+        "camera": {
+          "x": 900,
+          "y": 730,
+          "scale": 0.94,
+          "manual": false
+        },
+        "owner": "projectile",
+        "blocked": null,
+        "insert": null,
+        "attackCamera": {
+          "intent": 0,
+          "attacks": 0,
+          "manual": false,
+          "gesture": false,
+          "actorId": null
+        }
+      }
+    },
+    {
+      "device": "mobile",
+      "case": "player-no-manual",
+      "before": {
+        "phase": "flight",
+        "active": "diag-archer",
+        "shot": 1,
+        "camera": {
+          "x": 1130.1448744084435,
+          "y": 609.5866055923337,
+          "scale": 0.6,
+          "manual": false
+        },
+        "owner": "projectile",
+        "blocked": false,
+        "insert": false,
+        "attackCamera": null
+      },
+      "after": {
+        "phase": "flight",
+        "active": "diag-archer",
+        "shot": 1,
+        "camera": {
+          "x": 1130.1448744084435,
+          "y": 609.5866055923337,
+          "scale": 0.6,
+          "manual": false
+        },
+        "owner": "projectile",
+        "blocked": false,
+        "insert": false,
+        "attackCamera": {
+          "intent": 1,
+          "attacks": 1,
+          "manual": false,
+          "gesture": false,
+          "actorId": "diag-archer"
+        }
+      }
+    },
+    {
+      "device": "mobile",
+      "case": "player-pan-before-fire",
+      "before": {
+        "phase": "flight",
+        "active": "diag-archer",
+        "shot": 1,
+        "camera": {
+          "x": 108.33333333333329,
+          "y": 738.3333333333331,
+          "scale": 0.6,
+          "manual": false
+        },
+        "owner": "manual-grace",
+        "blocked": true,
+        "insert": false,
+        "attackCamera": null
+      },
+      "after": {
+        "phase": "flight",
+        "active": "diag-archer",
+        "shot": 1,
+        "camera": {
+          "x": 1229.0616848481977,
+          "y": 542.0542002462431,
+          "scale": 0.6,
+          "manual": false
+        },
+        "owner": "projectile",
+        "blocked": false,
+        "insert": false,
+        "attackCamera": {
+          "intent": 6,
+          "attacks": 1,
+          "manual": false,
+          "gesture": false,
+          "actorId": "diag-archer"
+        }
+      }
+    },
+    {
+      "device": "mobile",
+      "case": "player-pan-during-flight-expired",
+      "before": {
+        "phase": "flight",
+        "active": "diag-archer",
+        "shot": 1,
+        "camera": {
+          "x": 760.3788001369703,
+          "y": 692.559029349378,
+          "scale": 0.6,
+          "manual": true
+        },
+        "owner": "manual",
+        "blocked": false,
+        "insert": false,
+        "attackCamera": null
+      },
+      "after": {
+        "phase": "flight",
+        "active": "diag-archer",
+        "shot": 1,
+        "camera": {
+          "x": 760.3788001369703,
+          "y": 692.559029349378,
+          "scale": 0.6,
+          "manual": true
+        },
+        "owner": "manual-attack",
+        "blocked": true,
+        "insert": false,
+        "attackCamera": {
+          "intent": 6,
+          "attacks": 1,
+          "manual": true,
+          "gesture": false,
+          "actorId": "diag-archer"
+        }
+      }
+    },
+    {
+      "device": "mobile",
+      "case": "next-player-attack-after-grace",
+      "before": {
+        "phase": "flight",
+        "active": "diag-archer",
+        "shot": 2,
+        "camera": {
+          "x": 1096.2794885543788,
+          "y": 696.7719806675775,
+          "scale": 0.6,
+          "manual": false
+        },
+        "owner": "projectile",
+        "blocked": false,
+        "insert": false,
+        "attackCamera": null
+      },
+      "after": {
+        "phase": "flight",
+        "active": "diag-archer",
+        "shot": 2,
+        "camera": {
+          "x": 1096.2794885543788,
+          "y": 696.7719806675775,
+          "scale": 0.6,
+          "manual": false
+        },
+        "owner": "projectile",
+        "blocked": false,
+        "insert": false,
+        "attackCamera": {
+          "intent": 7,
+          "attacks": 2,
+          "manual": false,
+          "gesture": false,
+          "actorId": "diag-archer"
+        }
+      }
+    },
+    {
+      "device": "mobile",
+      "case": "next-player-attack-inside-grace",
+      "before": {
+        "phase": "flight",
+        "active": "diag-archer",
+        "shot": 2,
+        "camera": {
+          "x": 520.2524474548305,
+          "y": 735.0179249701204,
+          "scale": 0.6,
+          "manual": false
+        },
+        "owner": "manual-grace",
+        "blocked": true,
+        "insert": false,
+        "attackCamera": null
+      },
+      "after": {
+        "phase": "flight",
+        "active": "diag-archer",
+        "shot": 2,
+        "camera": {
+          "x": 1070.535076955893,
+          "y": 701.3240811457974,
+          "scale": 0.6,
+          "manual": false
+        },
+        "owner": "projectile",
+        "blocked": false,
+        "insert": false,
+        "attackCamera": {
+          "intent": 7,
+          "attacks": 2,
+          "manual": false,
+          "gesture": false,
+          "actorId": "diag-archer"
+        }
+      }
+    },
+    {
+      "device": "mobile",
+      "case": "ai-no-manual",
+      "before": {
+        "phase": "flight",
+        "active": "diag-enemy",
+        "shot": 1,
+        "camera": {
+          "x": 2013.2410459866421,
+          "y": 790.9321507944876,
+          "scale": 0.6,
+          "manual": false
+        },
+        "owner": "projectile",
+        "blocked": false,
+        "insert": false,
+        "attackCamera": null
+      },
+      "after": {
+        "phase": "flight",
+        "active": "diag-enemy",
+        "shot": 1,
+        "camera": {
+          "x": 2013.2410459866421,
+          "y": 790.9321507944876,
+          "scale": 0.6,
+          "manual": false
+        },
+        "owner": "projectile",
+        "blocked": false,
+        "insert": false,
+        "attackCamera": {
+          "intent": 1,
+          "attacks": 1,
+          "manual": false,
+          "gesture": false,
+          "actorId": "diag-enemy"
+        }
+      }
+    },
+    {
+      "device": "mobile",
+      "case": "ai-next-actor-after-manual",
+      "before": {
+        "phase": "flight",
+        "active": "diag-enemy",
+        "shot": 1,
+        "camera": {
+          "x": 108.33333333333329,
+          "y": 738.3333333333331,
+          "scale": 0.6,
+          "manual": true
+        },
+        "owner": "manual",
+        "blocked": false,
+        "insert": false,
+        "attackCamera": null
+      },
+      "after": {
+        "phase": "flight",
+        "active": "diag-enemy",
+        "shot": 1,
+        "camera": {
+          "x": 2008.5722779137823,
+          "y": 788.8099834886423,
+          "scale": 0.6,
+          "manual": false
+        },
+        "owner": "projectile",
+        "blocked": false,
+        "insert": false,
+        "attackCamera": {
+          "intent": 6,
+          "attacks": 1,
+          "manual": false,
+          "gesture": false,
+          "actorId": "diag-enemy"
+        }
+      }
+    },
+    {
+      "device": "mobile",
+      "case": "turn-notice-grace-and-no-retry",
+      "before": {
+        "phase": "enemy",
+        "active": "diag-enemy",
+        "shot": 0,
+        "camera": {
+          "x": 108.33333333333329,
+          "y": 738.3333333333331,
+          "scale": 0.6,
+          "manual": false
+        },
+        "owner": "focus",
+        "blocked": false,
+        "insert": false,
+        "attackCamera": null
+      },
+      "after": {
+        "phase": "enemy",
+        "active": "diag-enemy",
+        "shot": 0,
+        "camera": {
+          "x": 108.33333333333329,
+          "y": 738.3333333333331,
+          "scale": 0.6,
+          "manual": true
+        },
+        "owner": "manual-attack",
+        "blocked": true,
+        "insert": false,
+        "attackCamera": {
+          "intent": 5,
+          "attacks": 0,
+          "manual": true,
+          "gesture": false,
+          "actorId": null
+        }
+      }
+    },
+    {
+      "device": "mobile",
+      "case": "melee-no-manual-real-hit",
+      "before": {
+        "phase": "flight",
+        "active": "diag-knight",
+        "shot": 1,
+        "camera": {
+          "x": 962.0606198680646,
+          "y": 830.1003868359045,
+          "scale": 0.6,
+          "manual": false
+        },
+        "owner": "focus",
+        "blocked": false,
+        "insert": false,
+        "attackCamera": null
+      },
+      "after": {
+        "phase": "flight",
+        "active": "diag-knight",
+        "shot": 1,
+        "camera": {
+          "x": 962.0606198680646,
+          "y": 830.1003868359045,
+          "scale": 0.6,
+          "manual": false
+        },
+        "owner": "focus",
+        "blocked": false,
+        "insert": false,
+        "attackCamera": {
+          "intent": 1,
+          "attacks": 1,
+          "manual": false,
+          "gesture": false,
+          "actorId": "diag-knight"
+        }
+      }
+    },
+    {
+      "device": "mobile",
+      "case": "melee-after-pan-real-hit",
+      "before": {
+        "phase": "flight",
+        "active": "diag-knight",
+        "shot": 1,
+        "camera": {
+          "x": 108.33333333333329,
+          "y": 738.3333333333331,
+          "scale": 0.6,
+          "manual": false
+        },
+        "owner": "manual-grace",
+        "blocked": true,
+        "insert": false,
+        "attackCamera": null
+      },
+      "after": {
+        "phase": "flight",
+        "active": "diag-knight",
+        "shot": 1,
+        "camera": {
+          "x": 941.8873837507158,
+          "y": 820.9307340552913,
+          "scale": 0.6,
+          "manual": false
+        },
+        "owner": "focus",
+        "blocked": false,
+        "insert": false,
+        "attackCamera": {
+          "intent": 6,
+          "attacks": 1,
+          "manual": false,
+          "gesture": false,
+          "actorId": "diag-knight"
+        }
+      }
+    },
+    {
+      "device": "mobile",
+      "case": "summon-no-manual",
+      "before": {
+        "phase": "summon",
+        "active": "summon-1",
+        "shot": 0,
+        "camera": {
+          "x": 1030.3678724594338,
+          "y": 788.8349437891119,
+          "scale": 0.6,
+          "manual": false
+        },
+        "owner": "projectile",
+        "blocked": false,
+        "insert": false,
+        "attackCamera": null
+      },
+      "after": {
+        "phase": "summon",
+        "active": "summon-1",
+        "shot": 0,
+        "camera": {
+          "x": 1030.3678724594338,
+          "y": 788.8349437891119,
+          "scale": 0.6,
+          "manual": false
+        },
+        "owner": "projectile",
+        "blocked": false,
+        "insert": false,
+        "attackCamera": {
+          "intent": 1,
+          "attacks": 1,
+          "manual": false,
+          "gesture": false,
+          "actorId": "summon-1"
+        }
+      }
+    },
+    {
+      "device": "mobile",
+      "case": "summon-next-attack-after-manual",
+      "before": {
+        "phase": "summon",
+        "active": "summon-1",
+        "shot": 0,
+        "camera": {
+          "x": 108.33333333333329,
+          "y": 738.3333333333331,
+          "scale": 0.6,
+          "manual": true
+        },
+        "owner": "manual",
+        "blocked": false,
+        "insert": false,
+        "attackCamera": null
+      },
+      "after": {
+        "phase": "summon",
+        "active": "summon-1",
+        "shot": 0,
+        "camera": {
+          "x": 979.7532189686433,
+          "y": 765.8282831114798,
+          "scale": 0.6,
+          "manual": false
+        },
+        "owner": "projectile",
+        "blocked": false,
+        "insert": false,
+        "attackCamera": {
+          "intent": 6,
+          "attacks": 1,
+          "manual": false,
+          "gesture": false,
+          "actorId": "summon-1"
+        }
+      }
+    },
+    {
+      "device": "mobile",
+      "case": "reinforcement-restores-old-manual-over-new-attack",
+      "before": {
+        "phase": "flight",
+        "active": "diag-archer",
+        "shot": 1,
+        "camera": {
+          "x": 108.33333333333329,
+          "y": 738.3333333333331,
+          "scale": 0.6,
+          "manual": true
+        },
+        "owner": "manual",
+        "blocked": false,
+        "insert": false,
+        "attackCamera": null
+      },
+      "after": {
+        "phase": "flight",
+        "active": "diag-archer",
+        "shot": 2,
+        "camera": {
+          "x": 1308.6369115417433,
+          "y": 99.17803105571917,
+          "scale": 0.3016666666666667,
+          "manual": false
+        },
+        "owner": "projectile",
+        "blocked": false,
+        "insert": false,
+        "attackCamera": {
+          "intent": 7,
+          "attacks": 2,
+          "manual": false,
+          "gesture": false,
+          "actorId": "diag-archer"
+        }
+      }
+    },
+    {
+      "device": "mobile",
+      "case": "story-release-restores-old-manual-over-new-attack",
+      "before": {
+        "phase": "flight",
+        "active": "diag-archer",
+        "shot": 1,
+        "camera": {
+          "x": 108.33333333333329,
+          "y": 738.3333333333331,
+          "scale": 0.6,
+          "manual": true
+        },
+        "owner": "manual",
+        "blocked": false,
+        "insert": false,
+        "attackCamera": null
+      },
+      "after": {
+        "phase": "flight",
+        "active": "diag-archer",
+        "shot": 1,
+        "camera": {
+          "x": 1322.5285896447097,
+          "y": 477.3226007051402,
+          "scale": 0.6,
+          "manual": false
+        },
+        "owner": "projectile",
+        "blocked": false,
+        "insert": false,
+        "attackCamera": {
+          "intent": 6,
+          "attacks": 1,
+          "manual": false,
+          "gesture": false,
+          "actorId": "diag-archer"
+        }
+      }
+    },
+    {
+      "device": "mobile",
+      "case": "selection-preview-rejected-do-not-resume",
+      "before": "new regression",
+      "after": {
+        "phase": "aim",
+        "active": "diag-archer",
+        "shot": 0,
+        "camera": {
+          "x": 108.33333333333329,
+          "y": 738.3333333333331,
+          "scale": 0.6,
+          "manual": true
+        },
+        "owner": "manual-attack",
+        "blocked": true,
+        "insert": false,
+        "attackCamera": {
+          "intent": 5,
+          "attacks": 0,
+          "manual": true,
+          "gesture": false,
+          "actorId": null
+        }
+      }
+    },
+    {
+      "device": "mobile",
+      "case": "actual-keyboard-or-fire-touch-next-attack",
+      "before": "new regression",
+      "after": {
+        "phase": "flight",
+        "active": "diag-archer",
+        "shot": 2,
+        "camera": {
+          "x": 1087.3137139809803,
+          "y": 698.9290560440126,
+          "scale": 0.6,
+          "manual": false
+        },
+        "owner": "projectile",
+        "blocked": false,
+        "insert": false,
+        "attackCamera": {
+          "intent": 7,
+          "attacks": 2,
+          "manual": false,
+          "gesture": false,
+          "actorId": "diag-archer"
+        }
+      }
+    },
+    {
+      "device": "mobile",
+      "case": "held-camera-gesture-crosses-new-attack",
+      "before": "new regression",
+      "after": {
+        "phase": "flight",
+        "active": "diag-archer",
+        "shot": 3,
+        "camera": {
+          "x": 575.8534279791812,
+          "y": 729.1339301954176,
+          "scale": 0.6,
+          "manual": false
+        },
+        "owner": "projectile",
+        "blocked": false,
+        "insert": false,
+        "attackCamera": {
+          "intent": 4,
+          "attacks": 3,
+          "manual": false,
+          "gesture": false,
+          "actorId": "diag-archer"
+        }
+      }
+    },
+    {
+      "device": "mobile",
+      "case": "save-reload-continue-inflight",
+      "before": "new regression",
+      "after": {
+        "phase": "flight",
+        "active": "diag-archer",
+        "shot": 3,
+        "camera": {
+          "x": 900,
+          "y": 730,
+          "scale": 0.82,
+          "manual": false
+        },
+        "owner": "projectile",
+        "blocked": null,
+        "insert": null,
+        "attackCamera": {
+          "intent": 0,
+          "attacks": 0,
+          "manual": false,
+          "gesture": false,
+          "actorId": null
+        }
+      }
+    }
+  ]
+}

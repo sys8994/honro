@@ -26,7 +26,7 @@ function entries(b,u){
  else if(u.stun>0)add('stun','기절',`기절 · 다음 행동 ${u.stun}회 불가`,u.stun);
  if(u.bound>0)add('bind','결박',`결박 ${u.bound}회 · 이동력 감소·이동 소모 증가`,u.bound);
  if(u.slowed)add('slow','감속','감속 '+Math.round(u.slowed.factor*100)+'%');
- if(u.curseTurns>0){const parts=[`저주 ${u.curseTurns}턴`];if(u.curseDamage>0)parts.push(`매 턴 피해 ${Math.round(u.curseDamage)}`);if(u.curseAttack>0)parts.push(`공격력 ${Math.round(u.curseAttack*100)}% 감소`);if(u.curseArmor>0)parts.push(`방어력 ${Math.round(u.curseArmor*100)}%p 감소`);add('curse','저주',parts.join(' · '),u.curseTurns);}
+ if(u.curseTurns>0){const parts=[`저주 ${u.curseTurns}턴`];if(u.curseDamage>0)parts.push(`매 턴 기본 피해 ${+(u.curseDamage*(u.curseDamageOrigin?.damageRoll??1)).toFixed(1)}`);if(u.curseAttack>0)parts.push(`공격력 ${Math.round(u.curseAttack*100)}% 감소`);if(u.curseArmor>0)parts.push(`방어력 ${Math.round(u.curseArmor*100)}%p 감소`);add('curse','저주',parts.join(' · '),u.curseTurns);}
  if(u.betrayalUntil>0&&u.betrayalUntil>=b.round)add('betrayal','이간','이간 · 같은 편의 공격 대상이 됨',u.betrayalUntil-b.round+1);
  if(u.manifested)add('manifest','현형',`현형 · 동료에게도 보임 · ${Math.max(1,(u.manifestedUntil||b.round)-b.round+1)}턴`);
  if(u.enthrall)add('enthrall','섭혼',`섭혼 · 소단 편으로 ${u.enthrall.actions}회 더 행동`,u.enthrall.actions);

@@ -3,7 +3,8 @@ import vm from 'node:vm';
 import {readFile} from 'node:fs/promises';
 const g=vm.createContext({console,performance});
 vm.runInContext(await readFile('shared/runtime/attack-camera.js','utf8'),g);
-const A=g.HonroAttackCamera,scene={x:200,y:700,scale:.6,manual:false},e={b:{},active:{id:'archer'},fire:()=>true},app={engine:e,scene};
+const A=g.HonroAttackCamera;assert.equal(A.snapshot(undefined),null);
+const scene={x:200,y:700,scale:.6,manual:false},e={b:{},active:{id:'archer'},fire:()=>true},app={engine:e,scene};
 A.prime(scene,e.b);A.attach(app,e);A.attach(app,e);
 const initial=A.snapshot(scene);A.manual(scene);assert(A.blocksFocus(scene));const manual=A.snapshot(scene);
 // Failed casts do not take ownership; selection/preview/child-flight/damage

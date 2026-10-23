@@ -1,0 +1,289 @@
+{
+  "scope": "Fresh ordinary stage1. No HP/pose/terrain/turn/clock/Engine/frame substitutions. Real keyboard/mobile fire and pan, then natural next accepted attack; stops before stage completion. Enemy speed4, player speed1.",
+  "rows": [
+    {
+      "device": "desktop",
+      "before": {
+        "at": 1332.1000000014901,
+        "phase": "aim",
+        "round": 1,
+        "active": "p-archer",
+        "dialogue": false,
+        "manual": true,
+        "camera": {
+          "x": 250,
+          "y": 1415.8454859940884,
+          "scale": 0.8950166190908443
+        },
+        "attack": {
+          "intent": 0,
+          "attacks": 0,
+          "manual": false,
+          "gesture": false,
+          "actorId": null
+        },
+        "projectiles": [],
+        "hp": [
+          {
+            "id": "p-archer",
+            "hp": 365
+          }
+        ]
+      },
+      "cast": {
+        "at": 2877.800000000745,
+        "phase": "flight",
+        "round": 1,
+        "active": "p-archer",
+        "dialogue": false,
+        "manual": false,
+        "camera": {
+          "x": 409.75170868537526,
+          "y": 1354.8656597145184,
+          "scale": 0.94
+        },
+        "attack": {
+          "intent": 1,
+          "attacks": 1,
+          "manual": false,
+          "gesture": false,
+          "actorId": "p-archer"
+        },
+        "projectiles": [
+          {
+            "id": 1,
+            "owner": "p-archer",
+            "shot": 1,
+            "x": 315.526077769993,
+            "y": 1416.684686575053,
+            "damageRoll": 1.02249404580798,
+            "attackSide": 0
+          }
+        ],
+        "hp": [
+          {
+            "id": "p-archer",
+            "hp": 365
+          }
+        ]
+      },
+      "manual": {
+        "at": 3110.10000000149,
+        "phase": "flight",
+        "round": 1,
+        "active": "p-archer",
+        "dialogue": false,
+        "manual": true,
+        "camera": {
+          "x": 369.1118843284122,
+          "y": 1362.934921474713,
+          "scale": 0.7513562263072031
+        },
+        "attack": {
+          "intent": 2,
+          "attacks": 1,
+          "manual": true,
+          "gesture": false,
+          "actorId": "p-archer"
+        },
+        "projectiles": [
+          {
+            "id": 1,
+            "owner": "p-archer",
+            "shot": 1,
+            "x": 441.12936140899814,
+            "y": 1307.9936939901138,
+            "damageRoll": 1.02249404580798,
+            "attackSide": 0
+          }
+        ],
+        "hp": [
+          {
+            "id": "p-archer",
+            "hp": 365
+          }
+        ]
+      },
+      "next": {
+        "at": 9399.5,
+        "phase": "flight",
+        "round": 2,
+        "active": "p-archer",
+        "dialogue": false,
+        "manual": false,
+        "camera": {
+          "x": 369.1118843284122,
+          "y": 1362.934921474713,
+          "scale": 0.7513562263072031
+        },
+        "attack": {
+          "intent": 3,
+          "attacks": 2,
+          "manual": false,
+          "gesture": false,
+          "actorId": "p-archer"
+        },
+        "projectiles": [
+          {
+            "id": 2,
+            "owner": "p-archer",
+            "shot": 2,
+            "x": 298.21227161422337,
+            "y": 1433.2159876438184,
+            "damageRoll": 0.9844882519450039,
+            "attackSide": 0
+          }
+        ],
+        "hp": [
+          {
+            "id": "p-archer",
+            "hp": 365
+          }
+        ]
+      }
+    },
+    {
+      "device": "mobile",
+      "before": {
+        "at": 1144.5,
+        "phase": "aim",
+        "round": 1,
+        "active": "p-archer",
+        "dialogue": false,
+        "manual": true,
+        "camera": {
+          "x": 250,
+          "y": 1387.8548695979437,
+          "scale": 0.82
+        },
+        "attack": {
+          "intent": 0,
+          "attacks": 0,
+          "manual": false,
+          "gesture": false,
+          "actorId": null
+        },
+        "projectiles": [],
+        "hp": [
+          {
+            "id": "p-archer",
+            "hp": 365
+          }
+        ]
+      },
+      "cast": {
+        "at": 2732.4000000003725,
+        "phase": "flight",
+        "round": 1,
+        "active": "p-archer",
+        "dialogue": false,
+        "manual": false,
+        "camera": {
+          "x": 358.1218148173921,
+          "y": 1336.38393326293,
+          "scale": 0.82
+        },
+        "attack": {
+          "intent": 1,
+          "attacks": 1,
+          "manual": false,
+          "gesture": false,
+          "actorId": "p-archer"
+        },
+        "projectiles": [
+          {
+            "id": 1,
+            "owner": "p-archer",
+            "shot": 1,
+            "x": 298.21227161422337,
+            "y": 1433.2159876438184,
+            "damageRoll": 1.02249404580798,
+            "attackSide": 0
+          }
+        ],
+        "hp": [
+          {
+            "id": "p-archer",
+            "hp": 365
+          }
+        ]
+      },
+      "manual": {
+        "at": 2978.699999999255,
+        "phase": "flight",
+        "round": 1,
+        "active": "p-archer",
+        "dialogue": false,
+        "manual": true,
+        "camera": {
+          "x": 287.65962532904575,
+          "y": 1338.4169871212757,
+          "scale": 0.82
+        },
+        "attack": {
+          "intent": 2,
+          "attacks": 1,
+          "manual": true,
+          "gesture": false,
+          "actorId": "p-archer"
+        },
+        "projectiles": [
+          {
+            "id": 1,
+            "owner": "p-archer",
+            "shot": 1,
+            "x": 430.8715264399215,
+            "y": 1315.6826120443234,
+            "damageRoll": 1.02249404580798,
+            "attackSide": 0
+          }
+        ],
+        "hp": [
+          {
+            "id": "p-archer",
+            "hp": 365
+          }
+        ]
+      },
+      "next": {
+        "at": 9529.199999999255,
+        "phase": "flight",
+        "round": 2,
+        "active": "p-archer",
+        "dialogue": false,
+        "manual": false,
+        "camera": {
+          "x": 287.65962532904575,
+          "y": 1338.4169871212757,
+          "scale": 0.82
+        },
+        "attack": {
+          "intent": 3,
+          "attacks": 2,
+          "manual": false,
+          "gesture": false,
+          "actorId": "p-archer"
+        },
+        "projectiles": [
+          {
+            "id": 2,
+            "owner": "p-archer",
+            "shot": 2,
+            "x": 298.21227161422337,
+            "y": 1433.2159876438184,
+            "damageRoll": 0.9844882519450039,
+            "attackSide": 0
+          }
+        ],
+        "hp": [
+          {
+            "id": "p-archer",
+            "hp": 365
+          }
+        ]
+      }
+    }
+  ],
+  "pageErrors": [],
+  "testedGameEntry": "web/entries/game.d416054b3c66317f.js"
+}

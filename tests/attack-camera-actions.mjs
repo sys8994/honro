@@ -27,4 +27,9 @@ function same(f){assert.equal(JSON.stringify(f.b),JSON.stringify(f.cb),'camera o
  for(let wave=0;wave<3;wave++)for(const b of [f.b,f.cb]){const p=b.projectiles.find(p=>!p.child);p.age=wave*.5+.3;(b===f.b?f.e:f.control).emitSubProjectiles(p);}
  assert(f.b.projectiles.some(p=>p.child));same(f);
 }
-console.log('PASS actual action boundaries: scheduled volley, reflection/split descendants, sustained emission waves, prediction/rejected casts; attached/unattached battle bytes identical');
+{
+ const f=fixture('knight','S13');assert(f.e.fire('S13',0,.5));assert(f.control.fire('S13',0,.5));A.manual(f.scene);
+ for(let n=0;n<1800&&f.u.meleeFollow!=='ready';n++){f.e.tick(C.STEP);f.control.tick(C.STEP);}assert.equal(f.u.meleeFollow,'ready');
+ assert(f.e.fire('S00',0,.5));assert(f.control.fire('S00',0,.5));assert.equal(f.b.damageSequence.index,1,'S13 granted sword follow-up stays one damage action');same(f);
+}
+console.log('PASS actual action boundaries: scheduled volley, reflection/split descendants, sustained emission waves, S13 continuation, prediction/rejected casts; attached/unattached battle bytes identical');

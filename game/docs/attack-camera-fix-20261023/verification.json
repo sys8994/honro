@@ -1,0 +1,94 @@
+{
+  "integratedMaster": "a3c99e33ec8c7a2c050bf71866a077bbc2cbd9ee",
+  "originalCameraBase": "9f7a62739c6c7682850d5991792290de64329fb7",
+  "gameEntry": "web/entries/game.d416054b3c66317f.js",
+  "playtest": "web/entries/game.9e280e7c071c3ee1.html?embedded=1",
+  "manifestSha256": "bbbfd563e5e59f787667eca0365c8064418b2cdbb4facb36716180bb53e01cb4",
+  "sourceHashes": {
+    "shared/runtime/attack-camera.js": "fb8c9347811a7230875a6a28b51d4564e750ce4535dd6d0068655f1051dceed5",
+    "shared/runtime/reinforcement-camera.js": "16cf11745b5c445bb37872647cc439a90019e0b2716630f12a618f0d4984a387",
+    "shared/runtime/renderer.js": "9363fe239e81587d5ad2ad2cad35829d21b9252955b1ef1f01bd018aedce60e3",
+    "shared/runtime/main.js": "d8ed38e7b0c7ab7da2f328d7a812930383054f2b8bb3b126b807fc02a9f6867a",
+    "shared/runtime/story-framing.js": "cb08a16d5710f263b137b56d0f2d21b509e54ac2f9a218a3d927c6781cb98fc4",
+    "shared/runtime/allies.js": "e9ac5d12e6af531371b05d715ca5b99cc6f9d6ff115bc7210d600e339bd44b33",
+    "shared/engine/src/engine.ts": "53c338a0078cc24021691d906ce6637896ae6b6475a749d5b77ee935afd433be"
+  },
+  "parentPreservation": {
+    "shared/engine/src/engine.ts": {
+      "parentSha256": "fef5b372beaef297a4025b60b9e18dc925df11608f09e4bb82373d8890a2b2a8",
+      "candidateWithoutObserverSha256": "fef5b372beaef297a4025b60b9e18dc925df11608f09e4bb82373d8890a2b2a8"
+    },
+    "shared/runtime/allies.js": {
+      "parentSha256": "bb138200dfb7127c82e0280feab60aa981326986f71e1122e76aef3c3ec7e29e",
+      "candidateWithoutObserverSha256": "bb138200dfb7127c82e0280feab60aa981326986f71e1122e76aef3c3ec7e29e"
+    }
+  },
+  "fixtureCases": 36,
+  "ordinaryStage1Devices": 2,
+  "pageErrors": 0,
+  "publishedGraphs": 23,
+  "immutablePublishedFilesVerified": 566,
+  "a3RegisteredAsPublished": true,
+  "confirmedLatestPublication": {
+    "sourceSha": "a3c99e33ec8c7a2c050bf71866a077bbc2cbd9ee",
+    "run": "Pages39889380063",
+    "at": "2026-10-23T02:26:33Z",
+    "parentPublicEntry": "game.eb159c693a154367.js",
+    "parentChecked": "title -> rest -> camp"
+  },
+  "checks": [
+    "npm run build",
+    "npm --prefix game run typecheck",
+    "tests/attack-camera.mjs",
+    "tests/attack-camera-actions.mjs",
+    "tests/reinforcement-camera.mjs",
+    "tests/reinforcement-camera-paths.mjs",
+    "tests/reinforcement-camera-spirits.mjs",
+    "tests/camera-resize.mjs",
+    "tests/player-turn-order.mjs",
+    "tests/combat-damage-variance.mjs",
+    "tests/coalition-damage-reduction.mjs",
+    "tests/projectile-friendly-fire.mjs",
+    "tests/combat-damage-continue.mjs",
+    "tests/combat-damage-browser.py",
+    "tests/web-split.mjs",
+    "tools/testing/diagnose-attack-camera-state.py --after",
+    "tools/testing/attack-camera-live.py"
+  ],
+  "limits": [
+    "36 prepared frame fixtures are not normal campaign play",
+    "ordinary stage1 stops after two player casts, no HP/terrain/turn/time/Engine changes; not stage completion",
+    "no all-map/all-skill/physical-device fullplay",
+    "master merge and Pages delivery are parent actions"
+  ],
+  "evidenceSha256": {
+    "evidence/desktop-insert-return-over-attack.png": "6f971c46bd67af5c2a58e47e4e5b4fc74fd6ac907d4a247796cadc9f5ae62208",
+    "evidence/desktop-flow-01-manual.png": "e60290bd2897d2743a682101b9fd6e828f4337c16da4b74fc6c30ab3335aace8",
+    "evidence/desktop-flow-00-attack.png": "c6ed3063474f2f372874e7df086cab22a6ab355b4db64cbb80e067e4e8b41d23",
+    "evidence/live-mobile-01-manual.png": "613c1407ac0aebd29f1ec4eca33506100a6ab3f2b46b0bb5e82d62627c88c85e",
+    "evidence/live-mobile-02-natural-next-attack.png": "c55eb351aa0b2663394c5f9a91a6d48152d8053b262f65cbc866a91ea7e0cc1b",
+    "evidence/mobile-flow-01-manual.png": "5ccd9460fa8dbc85712691d45829f6a693adaaa98205f26c17be87c0fd2c5f7a",
+    "evidence/desktop-flow-02-next-attack.png": "01163a68766ba23247c2a82af724f91bc5c95f2f7ace2b95fe91d1e99b1ff570",
+    "evidence/live-desktop-01-manual.png": "ad1ced9589cab2eac4bdc0f709bed4737f8b45d4328ded956a251b59c3cedb12",
+    "evidence/mobile-flow-02-next-attack.png": "40ed37b341ed78106254b494b2f80bc0b36d680a3eb936638d928c028d1628d4",
+    "evidence/live-mobile-00-player-attack.png": "02398d9a17dfa16bcbcef4cc83daa360f5c02e2df4d941d76b13cc1f0e8b749c",
+    "evidence/mobile-flow-00-attack.png": "aed2b699af9343c6441878eabb4d934174cfe03ae319b556513cdf2e5f6acd81",
+    "evidence/live-desktop-02-natural-next-attack.png": "d3fef7ed338ca649b22fa64fcc9fca5150b4136ff11aafde26385acaf76cc444",
+    "evidence/mobile-insert-return-over-attack.png": "171adf615de9648b50cdc264c495a11189522f5223e25a2d8bdd3bb88c7466b4",
+    "evidence/live-desktop-00-player-attack.png": "cbe90a6e440cc885f3cef7613031d0faccd069cb09747a11ab3921b140b4b089"
+  },
+  "baselineFailures": [
+    {
+      "test": "tests/story-staging.mjs",
+      "assertion": "line21 assert(npc(a)) after motion",
+      "candidate": "undefined; first check passed",
+      "baseline": "a3c99e33 exact same assertion/value in separate worktree",
+      "scope": "unchanged legacy staging; not repaired"
+    }
+  ],
+  "priorConfirmedPublication": {
+    "sourceSha": "9f7a62739c6c7682850d5991792290de64329fb7",
+    "run": "Pages39886957929",
+    "at": "2026-10-23T02:00:19Z"
+  }
+}
