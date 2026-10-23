@@ -27,10 +27,10 @@ export function triggerOffensiveStake(e:Engine,z:Stake,nearby:Unit[],p:Projectil
  z.usedRounds??={};
  // Each stake is an independent cast; each enemy can take its damage once per round.
  const fresh=nearby.filter(u=>z.usedRounds![u.id]!==b.round);if(!fresh.length)return;
- z.lastTriggerRound=b.round;
+ z.lastTriggerRound=b.round;const audio=e.skillSound('trigger',z.owner,z.skill,z.shot,`${z.id}:${b.round}`);
  if(z.skill==='M07'){
   const x=z.x,y=z.y-20,radius=stakeRanges(e,z).effect;
-  e.fx('burst',x,y,p.color,radius);e.fx('ring',x,y,p.color,radius);e.emit('sound',{name:'hit',value:radius});
+  e.fx('burst',x,y,p.color,radius);e.fx('ring',x,y,p.color,radius);if(!audio)e.emit('sound',{name:'hit',value:radius});
   for(const u of b.units){
    if(u.dead||z.usedRounds[u.id]===b.round)continue;
    const d=Math.hypot(u.x-x,u.y-u.h*.45-y);if(d>=radius+u.r)continue;

@@ -243,7 +243,7 @@ function placeStake(e:Engine,p:Projectile,h:Collision){
  const all=b.stakes;if(p.skill==='M09'){const gates=all.filter(s=>s.skill==='M09'&&s.side===p.side);if(!gates.length){const u=e.unit(p.owner)!;const home=e.surface(u.x,u.y-8,u.y+80);if(home)b.stakes.push({attackSide:p.attackSide,damageRoll:p.damageRoll,id:b.nextId++,skill:p.skill,owner:p.owner,side:p.side,x:u.x,y:home.y,rank:rank(p),damage:0,shot:p.shot,effectBoost:p.effectBoost,expires:b.round+stakeDuration(p.skill,rank(p))});}else if(gates.length>=2)b.stakes=all.filter(s=>s.id!==gates[0].id);}
  b.stakes.push({attackSide:p.attackSide,damageRoll:p.damageRoll,id:b.nextId++,skill:p.skill,owner:p.owner,side:p.side,x,y:floor,rank:rank(p),damage:p.damage,shot:p.shot,effectBoost:p.effectBoost,expires:b.round+stakeDuration(p.skill,rank(p))});
  e.fx('spark',x,floor,'#a89b7f',15);e.remove(p);
- e.emit('sound',{name:'ceramic'});
+ if(!e.skillSound('plant',p.owner,p.skill,p.shot))e.emit('sound',{name:'ceramic'});
 }
 
 /** One shared enemy-only hop for body and first ground contacts. */
@@ -381,6 +381,7 @@ export function gateCandidate(e:Engine,u=e.active){
 export function useGate(e:Engine,u=e.active){
  const plan=e.gateResolution(u);if(!plan.ok||!plan.spot||!plan.to||!u){e.message(plan.reason);return false;}
  const {to,spot}=plan,token=`${e.b.round}:${e.b.teamEnds[0]}`;
+ e.skillSound('gate-depart',u.id,'M09',e.b.round);
  const {x,y}=spot,fromPoint={x:u.x,y:u.y};u.x=x;u.y=y;u.vx=u.vy=0;u.airborne=false;u.jumping=false;delete u.moveTarget;u.gateTurn=token;
  const r=to.rank,caster=e.unit(to.owner),boost=caster?(1+passiveTuning(passiveRank(caster,'MP01')).geometry)*(1+(to.effectBoost||0)):1;
  if(r>=2)u.focus=Math.min(u.maxFocus,u.focus+u.maxFocus*(r===2?.08:.10)*boost);
@@ -388,7 +389,7 @@ export function useGate(e:Engine,u=e.active){
  healed(e.b,u,to.owner,hpBefore,'M09');(globalThis as any).HonroObjectiveContributions?.movement(e.b,u,to.owner,fromPoint,{x,y});
  if(r>=6)u.moveLeft=Math.min(u.maxMove,u.moveLeft+u.maxMove*(r===6?.16:.24)*boost);
  if(r===8){u.arrivalGuard=e.b.teamEnds[1]+1;(u as any).honroArrivalGuardOwner=to.owner;}
- e.fx('ring',x,y,'#bbc4b5',28);e.emit('change');e.emit('save');return true;
+ e.skillSound('gate-arrive',u.id,'M09',e.b.round);e.fx('ring',x,y,'#bbc4b5',28);e.emit('change');e.emit('save');return true;
 }
 export function tickRedesign(e:Engine,dt:number){
  const b=e.b;
@@ -417,7 +418,7 @@ export function tickRedesign(e:Engine,dt:number){
   const available=z.skill==='M10'?nearby.filter(u=>z.usedRounds?.[u.id]!==b.round):nearby;
   if(!z.active&&available.length&&(z.skill==='M10'||z.lastTriggerRound!==b.round)){
    z.lastTriggerRound=b.round;const t=available[0];
-   if(z.skill==='M10'){z.usedRounds??={};for(const ally of available){z.usedRounds[ally.id]=b.round;const hpBefore=ally.hp;ally.hp=Math.min(ally.maxHp,ally.hp+ally.maxHp*(.06+.01*z.rank)*boost);healed(b,ally,z.owner,hpBefore,z.skill);ally.focus=Math.min(ally.maxFocus,ally.focus+ally.maxFocus*(.07+.01*z.rank)*boost);ally.moveLeft=Math.min(ally.maxMove,ally.moveLeft+ally.maxMove*(.12+.03*z.rank)*boost);e.fx('ring',ally.x,ally.y,'#bfcbb6',35);}}
+   if(z.skill==='M10'){e.skillSound('heal',z.owner,z.skill,z.shot,`${z.id}:${b.round}`);z.usedRounds??={};for(const ally of available){z.usedRounds[ally.id]=b.round;const hpBefore=ally.hp;ally.hp=Math.min(ally.maxHp,ally.hp+ally.maxHp*(.06+.01*z.rank)*boost);healed(b,ally,z.owner,hpBefore,z.skill);ally.focus=Math.min(ally.maxFocus,ally.focus+ally.maxFocus*(.07+.01*z.rank)*boost);ally.moveLeft=Math.min(ally.maxMove,ally.moveLeft+ally.maxMove*(.12+.03*z.rank)*boost);e.fx('ring',ally.x,ally.y,'#bfcbb6',35);}}
    if(z.skill==='M99'){z.active=true;z.inside=[];z.crossed={};z.budgetTurns={};for(const v of b.units.filter(v=>enemy(z,v)&&Math.hypot(v.x-z.x,v.y-z.y)<220)){e.hurt(v,z.damage,z.owner,false,p,z);z.inside.push(v.id);}}
   }
   if(z.active){
