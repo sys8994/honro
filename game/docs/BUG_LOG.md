@@ -1,3 +1,7 @@
+# 단일 초상 변형 선택·수명 경계 및 최초12종 — 2026-10-23
+
+부모 확정 portraitExpression647개와17종 카탈로그를 사용하며 미제작은 같은 인물 base로 표시한다. 기존 로더를 확장해 변형 실패는 base/중립·유한 재시도, 다음1행 준비, decoded RGBA 캐시16/32MiB를 사용한다. release 후 loading primary/fallback 재등록 누락과 resize 예산 축소를 고쳤다. 종지기2종의 위쪽 머리 crop도 framing만 보정했다.723행/동적4분기·구 저장·실제12종24화면·503/404/base실패/timeout·빠른 전환·재열기·반복120회·실제이전/다음10왕복을 확인했다. 원본/태그/텍스트/엔진/지형/효과음은 변경하지 않았다. [최종 사진·ready/pending·실행 범위](portrait-variants-20261023/README.md). master/Pages는 부모 담당이다.
+
 # NPC 게임톤 v3 배포 인코딩 연결 — 2026-10-23
 
 승인 PNG9종을 변경하지 않고768×1152/Q94 WebP로 연결했다.512/Q94·768무손실과 확대/실제 UI를 비교했고9종 합1,386,926bytes다.9인20화면과 ready 반복120회 추가paint/request/decode0을 확인했다. 기존 매핑·종지기 전투25대사·주인공4명·P0·공개379 그래프는 보존한다. [후보·사진·실행 한계](npc-game-tone-v3-20261023/README.md).
