@@ -171,7 +171,7 @@ function land(e:Engine,p:Projectile,h?:Collision){
   const t=h?.unit&&foe(u,h.unit)?h.unit:e.b.units.filter(t=>foe(u,t)&&Math.hypot(t.x-p.x,t.y-t.h*.5-p.y)<p.blast+t.r).sort((a,b)=>Math.abs(a.x-p.x)-Math.abs(b.x-p.x))[0];
   if(t)e.hurt(t,p.damage,p.owner,true,p,p);stroke(e,u,95);
  }
- if(s.id==='S13'){u.meleeFollow='landing';u.meleeFollowOrigin={attackSide:p.attackSide,damageRoll:p.damageRoll};}
+ if(s.id==='S13'){u.meleeFollow='landing';u.meleeFollowOrigin={attackSide:p.attackSide,damageRoll:p.damageRoll,round:e.b.round};}
  e.remove(p);
 }
 /** First contact releases one short, transverse, cover-aware pressure cut. */
@@ -216,10 +216,24 @@ export function stepWarrior(e:Engine,p:Projectile,dt:number){
  if(p.age>10||p.y>e.b.height+80||p.x< -150||p.x>e.b.width+150||p.y< -1700){if(rush){u.airborne=false;e.recover(u);}e.remove(p);}
  return true;
 }
+export function clearWarriorFollow(u:Unit){delete u.meleeFollow;delete u.meleeFollowOrigin;}
+/** Repair only an expired follow-up on load; a live same-action reservation stays locked. */
+export function restoreWarriorFollow(b:Battle){
+ if(b.phase==='won'||b.phase==='lost')return;
+ for(const u of b.units){
+  if(u.meleeFollow!=='ready')continue;
+  const round=u.meleeFollowOrigin?.round,current=b.phase==='aim'&&b.side===0&&b.active===u.id&&!u.acted&&!u.dead;
+  // Pre-fix saves have no round stamp. Landing explicitly set movement to zero;
+  // a restored positive allowance identifies the old next-turn orphan.
+  if(!current||(round===undefined?u.moveLeft>0:round!==b.round))clearWarriorFollow(u);
+ }
+}
 export function finishWarrior(e:Engine){
  const u=e.active;if(!u)return false;
  if(u.meleeFollow==='landing'&&!u.dead){u.meleeFollow='ready';u.acted=false;u.moveLeft=0;e.b.phase='aim';e.b.cast=undefined;e.message('파진연격 · 평참 또는 검술 한 번');e.emit('change');e.emit('save');return true;}
- if(u.meleeFollow==='spent'){delete u.meleeFollow;delete u.meleeFollowOrigin;}
+ // Reaching action completion while ready means the optional sword was declined
+ // (defend/item/wait). Landing above is the only path that grants the reservation.
+ if(u.meleeFollow==='ready'||u.meleeFollow==='spent')clearWarriorFollow(u);
  return false;
 }
 export function bladeScreenPass(e:Engine,p:Projectile,a:Vec,b:Vec){

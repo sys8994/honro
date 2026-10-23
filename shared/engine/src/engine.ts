@@ -9,7 +9,7 @@ import {waterfallSheet,insideWater,advanceWaterfall,ensureWaterfallBody} from '.
 import {HERO_ARMOR_CAP,passiveTuning} from './passiveBalance';
 import {environmentalLoss,ownerRegistered,healed,shielded,settled,controlled,projectileCredit,beginHit,endHit,intercepted} from './contribution';
 import {jucheonBoost,passiveCost,beginPlayerCast,arrowTurn,recordSalheun,cleanupPassiveHistory} from './combatPassives';
-import {meleeSkill,warriorAllowed,startWarriorCast,tickWarrior,manualDive,stepWarrior,finishWarrior,bladeScreenPass,warriorPrediction} from './warriorMechanics';
+import {meleeSkill,warriorAllowed,startWarriorCast,tickWarrior,manualDive,stepWarrior,finishWarrior,clearWarriorFollow,restoreWarriorFollow,bladeScreenPass,warriorPrediction} from './warriorMechanics';
 import {newSkill,redesignImpact,redesignStep,redesignPrediction,splitSeven,initRedesignCast,redrawDamage,redesignConditionBonuses,recordRedesignDamage,finishRedesign,tickRedesign,migrateEnemySkills,turnArrow,useGate,gateCandidate,specialty,critProfile,iceGourdReady,detonateIceGourd} from './skillMechanics';
 import {terrainSurface,exposedSurface,walkTerrain,sweepBodyTerrain,SEAM_GAP} from './locomotion';
 import {SUMMON_TUNING} from './summons';
@@ -82,7 +82,7 @@ export class Engine {
             if(next.done)return next;
         }
     }
-    constructor(b: Battle, onEvent: (e: Event) => void = () => { }, fresh = false) { b.fields ??= []; b.physics ??= makePhysics(STAGES[b.stageId-1]?.physics); b.reviewDamage ??= {}; b.reviewLeft ??= 0; b.occultRevision ??= 1; this.b = b; if(b.phase!=='won'&&b.phase!=='lost')initializeDamageSequence(b); (globalThis as any).HonroQuestTargets?.migrate(b); ensureWaterfallBody(b); for(const u of b.units){migrateEnemySkills(u);migrateAirborneBalance(u);} this.onEvent = onEvent; migrateEaters(this); this.applyPhysicsCues(); if (fresh) {
+    constructor(b: Battle, onEvent: (e: Event) => void = () => { }, fresh = false) { b.fields ??= []; b.physics ??= makePhysics(STAGES[b.stageId-1]?.physics); b.reviewDamage ??= {}; b.reviewLeft ??= 0; b.occultRevision ??= 1; this.b = b; if(b.phase!=='won'&&b.phase!=='lost')initializeDamageSequence(b); (globalThis as any).HonroQuestTargets?.migrate(b); ensureWaterfallBody(b); for(const u of b.units){migrateEnemySkills(u);migrateAirborneBalance(u);} this.onEvent = onEvent; restoreWarriorFollow(b); migrateEaters(this); this.applyPhysicsCues(); if (fresh) {
         this.refreshActivation();
         this.refreshIntents();
     } }
@@ -2012,7 +2012,7 @@ export class Engine {
                     p.acted = false;
                     p.moveLeft = p.maxMove;
                     p.cooldowns = {};
-                    delete p.retreat;
+                    delete p.retreat;clearWarriorFollow(p);
                 }
                 else if (p.role === 'dummy') {
                     p.hp = p.maxHp;
@@ -2135,6 +2135,7 @@ export class Engine {
         b.side = 0;
         b.wind = b.mode === 'practice' ? b.practiceWind || 0 : b.mode === 'skirmish' && b.practiceWind !== undefined ? b.practiceWind : this.stage.wind[(b.round - 1) % this.stage.wind.length];
         for (const u of b.units) {
+            clearWarriorFollow(u);
             if (u.dead || u.eaterCapturedBy)
                 continue;
             arrowTurn(this,u);
