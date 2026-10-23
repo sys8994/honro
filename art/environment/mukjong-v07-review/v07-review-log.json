@@ -3,7 +3,7 @@
   "r1": "Removed gradients and mapped opaque colours. Render inspection found relief outlines/discs too black and isolated rust overly prominent.",
   "r2": "Reduced internal outlines and rust contrast; kept ornament geometry. Render inspected.",
   "r3": "Added two broad opaque side planes; inspected full and270px render. Thin inscription marks weakened at small scale.",
-  "r4": "Raised fine strokes to2.1 source units without changing glyph shapes; dark and small render inspection pending.",
+  "r4": "Full/dark/270px renders inspected. Independent reviewer found weak large-glyph hierarchy and flattened relief. Reverted blanket stroke increase; only 8 major glyphs raised to1.8 with brighter flat colour, flower petal/contact colours separated; all168 fine glyphs retained at original width. r4b render pending.",
   "r5": "Actual game placement and zoom inspection pending.",
   "holistic": "pending",
   "geometryPreserved": 185,
