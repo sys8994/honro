@@ -36,7 +36,7 @@ export function beginKeeperRitual(e:Engine,u:Unit,target:Unit){
  const b=e.b,kind=kinds[r.next];r.next=(r.next+1)%3;r.serial++;b.shot++;u.lastAct=b.round;u.facing=target.x>=u.x?1:-1;
  const direction=u.facing,front=u.x+direction*160,ground=e.contactSurface(front,u.y-130,u.y+240)?.y??u.y;
  const x=kind==='binding'?clamp(target.x-125,10,b.width-260):clamp(front-8,10,b.width-26),y=kind==='binding'?target.y-14:ground-180;
- const roll=rollDamage(b,SKILLS.H2KEEPER),damage=e.effective(SKILLS.H2KEEPER,u).damage*roll*.55;
+ const roll=rollDamage(b,SKILLS.H2KEEPER),damage=e.effective(SKILLS.H2KEEPER,u).damage*.55;
  r.zone={serial:r.serial,kind,phase:'warning',x,y,w:kind==='binding'?250:16,h:kind==='binding'?28:180,direction,connection:{x:u.x+direction*76,y:u.y-76},warnAction:r.playerActions,expires:b.teamEnds[0]+1,damage,roll,shot:b.shot,opportunities:[],target:target.id,targetOpportunity:false};
  r.cast={elapsed:0};b.phase='flight';b.turnAge=b.resolveAge=0;u.anim=.9;u.intent={seal:'봉음 결계 · 예고',echo:'되울림 · 방향 예고',binding:'바닥 결박 · 예고'}[kind];
  e.onAttackStart?.(u.id);e.message(u.intent);e.emit('sound',{name:'qiRebound'});e.emit('change');e.emit('save');return true;

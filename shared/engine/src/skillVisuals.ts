@@ -11,7 +11,7 @@ import {geometryPaths,redesignPrediction,turnPrediction,type SkillGeometry} from
 type C=CanvasRenderingContext2D;
 const guideCache=new WeakMap<Engine,Map<boolean,{key:string;prediction:ReturnType<Engine['predict']>}>>();
 export function guidePrediction(e:Engine,u:Unit,s:Skill,power:number,ignoreUnits=false){
- const b=e.b,key=[b.shot,b.rng,b.sceneVersion,b.physics?.revision,b.wind,s.id,u.x,u.y,u.h,u.angle,power,u.tune,JSON.stringify(u.ranks),...b.units.map(v=>`${v.id}:${v.x}:${v.y}:${v.hp}:${v.dead}`)].join('|');
+ const b=e.b,key=[b.shot,b.rng,b.sceneVersion,b.physics?.revision,JSON.stringify((b as any).keeperRitual?.zone||null),b.wind,s.id,u.x,u.y,u.h,u.angle,power,u.tune,JSON.stringify(u.ranks),...b.units.map(v=>`${v.id}:${v.x}:${v.y}:${v.hp}:${v.dead}`)].join('|');
  let cache=guideCache.get(e);if(!cache){cache=new Map();guideCache.set(e,cache);}const cached=cache.get(ignoreUnits);if(cached?.key===key)return cached.prediction;
  const prediction=['A04','A15'].includes(s.id)?redesignPrediction(e,u,s,u.angle,power,true,ignoreUnits)!:e.predict(u,s,u.angle,power,undefined,true,ignoreUnits);cache.set(ignoreUnits,{key,prediction});return prediction;
 }

@@ -1,5 +1,5 @@
 """Prepared production18 art/ritual fixtures. Native Canvas/DOM, not a normal fullplay."""
-import json
+import json,os
 from playwright.sync_api import sync_playwright
 from browser_support import ROOT,launch,serve_game
 OUT=ROOT/'_local/reports/keeper-ritual/browser';OUT.mkdir(parents=True,exist_ok=True)
@@ -17,3 +17,33 @@ with sync_playwright() as pw,serve_game() as url:
  page.wait_for_timeout(800);page.screenshot(path=str(OUT/'first-portrait.jpg'),type='jpeg',quality=88)
  (OUT/'first-summary.json').write_text(json.dumps({'setup':result,'cast':cast,'errors':errors},ensure_ascii=False,indent=2));assert not errors,errors;browser.close()
 print(OUT)
+# Actual R10 normal-input save; no won/HP/quest/reward injection.
+terminal=json.loads((ROOT/(os.environ.get('HONRO_KEEPER_FULLPLAY','_local/reports/keeper-ritual/fullplay')+'/terminal-checkpoint.json')).read_text())['profile']
+with sync_playwright() as pw,serve_game() as url:
+ browser=launch(pw);p=browser.new_page(viewport={'width':1440,'height':900});errs=[];p.on('pageerror',lambda e:errs.append(str(e)))
+ p.goto(url+'/HONRO.html');p.wait_for_function('window.HonroApp');p.evaluate('profile=>{const a=HonroApp;a.frame=()=>{};a.profile=a.normalProfile=profile;a.continue();}',terminal);p.wait_for_function('HonroApp.engine?.b.honroStage===18',timeout=45000)
+ before=p.evaluate('()=>JSON.parse(JSON.stringify(HonroApp.engine.b))');assert before==terminal['honroBattle'],'Actual R10 browser Continue whole battle exact'
+ p.evaluate('()=>{const a=HonroApp;a.outcome();a.scene.render(a.engine,0,a.selected,a.power,false,0,true);}')
+ poses=[];captured=set()
+ for _ in range(50):
+  row=p.evaluate('''()=>{const a=HonroApp,d=a.dialogue;return {dialogue:!!d,row:d?.lines[d.index]?.[2]?.rowId,pose:a.engine.b.honroState.keeperStaging?.pose,done:a.done,index:d?.index};}''');poses.append(row)
+  if not row['dialogue']:break
+  if row.get('row')=='18.beats.keeper:49ba953239':assert row['pose']=='weak';p.wait_for_timeout(500);p.screenshot(path=str(OUT/'actual-last-command.jpg'),type='jpeg',quality=88);captured.add('command')
+  if row.get('row','').startswith('18.outro:') and 'outro' not in captured:
+   assert row['pose']=='bound';p.evaluate('()=>{const a=HonroApp;a.scene.render(a.engine,0,a.selected,a.power,false,0,true);}');p.wait_for_timeout(500);p.screenshot(path=str(OUT/'actual-bound-outro.jpg'),type='jpeg',quality=88);captured.add('outro')
+  p.locator('[data-action="dialogue-next"]').click();p.evaluate('()=>{const a=HonroApp;a.scene.render(a.engine,0,a.selected,a.power,false,0,true);}')
+ assert p.evaluate('HonroApp.done && HonroApp.profile.cleared[18].visits===1')
+ p.screenshot(path=str(OUT/'actual-result.jpg'),type='jpeg',quality=88)
+ growth=p.evaluate('JSON.stringify(HonroApp.profile.heroes)');p.evaluate('HonroApp.outcome()');assert p.evaluate('HonroApp.profile.cleared[18].visits')==1
+ p.locator('[data-action="result-continue"]').click()
+ p.wait_for_timeout(250)
+ if p.evaluate('HonroApp.screen')=='rest':p.locator('[data-action="journey-enter"][data-id="19"]').click()
+ p.wait_for_function('HonroApp.engine?.b.honroStage===19',timeout=45000)
+ for _ in range(40):
+  if not p.locator('[data-action="dialogue-next"]:visible').count():break
+  p.locator('[data-action="dialogue-next"]').click()
+ assert p.evaluate('JSON.stringify(HonroApp.profile.heroes)')==growth
+ assert p.evaluate('HonroApp.engine.b.round')==1
+ p.screenshot(path=str(OUT/'actual-stage19.jpg'),type='jpeg',quality=88)
+ assert not errs,errs
+ (OUT/'actual-result-summary.json').write_text(json.dumps({'wholeBattleContinueExact':True,'poses':poses,'captured':list(captured),'rewardOnce':True,'stage19':True,'growthExact':True,'errors':errs,'scope':'Actual R10 saved normal-input result; normal story next/result-continue. No19 combat.'},ensure_ascii=False,indent=2));browser.close()

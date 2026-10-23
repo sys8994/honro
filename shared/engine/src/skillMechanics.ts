@@ -1,3 +1,4 @@
+import {keeperEchoVelocity} from './keeperRitual';
 import {cheonroeVisualSeed} from './lightningGeometry';
 import {gateSource} from './gateTravel';
 import {migrateBeastSkills} from './beastMelee';
@@ -442,7 +443,7 @@ function arrowPrediction(e:Engine,u:Unit,s:Skill,angle:number,power:number,repre
  if(wave)sim.impact=(p,h)=>{if(p.bounces>=1){p.x=h.x;p.y=h.y;sim.remove(p);}else{if(h.terrain)waveContacts.push({x:h.x,y:h.y});impact(p,h);}};
  const collision=sim.collision.bind(sim);let contact:Collision|null=null,stepContact:Collision|null=null,terminalContact:Collision|null=null,capture=true;
  sim.collision=(a,z,r,owner,ignored,units=true,...rest)=>{const h=collision(a,z,r,owner,ignored,ignoreUnits?false:units,...rest);if(capture&&h){stepContact=h;if(h.unit&&!contact)contact=h;}return h;};
- b.active=actor.id;b.side=0;b.phase='aim';b.mode='practice';b.projectiles=[];b.volley=undefined;
+ b.active=actor.id;b.side=0;b.phase='aim';if(!(b as any).keeperRitual?.zone)b.mode='practice';b.projectiles=[];b.volley=undefined;
  actor.loadout=[s.id];actor.focus=actor.maxFocus=10000;actor.cooldowns={};actor.acted=false;actor.dead=false;actor.retreat=false;
  // The guide represents this volley; later repeated volleys have the same launch path.
  actor.ranks.AP01=0;
@@ -475,14 +476,15 @@ export function redesignPrediction(e:Engine,u:Unit,s:Skill,angle:number,power:nu
  if(s.cls==='archer')return arrowPrediction(e,u,s,angle,power,representative,ignoreUnits);
  if(s.cls!=='mage')return null;
  const r=u.ranks[s.id]||1,origin=e.projectileOrigin(u,s,angle),v=e.velocity(u,s,angle,power),points:Vec[]=[origin],contacts:Vec[]=[];
- const p={...origin,...v,wind:s.wind,gravityScale:s.gravity??1,drag:dragFor(s),skill:s.id,mode:s.mode,radius:6,bounces:0} as Projectile;
+ const p={...origin,...v,wind:s.wind,gravityScale:s.gravity??1,drag:dragFor(s),skill:s.id,mode:s.mode,owner:u.id,side:u.side,radius:6,bounces:0} as Projectile;
  let age=0,time=0,closest=99999,apex:Vec|undefined,contact:Collision|null=null,terrainAtEnd=false;const arc=s.mode==='waveArc',ring=s.mode==='waveRing',bagua=s.mode==='waveBagua',ice=s.mode==='gourdIce';
  if(ring){const center=at(u);return {...center,points:[],time:0,closest,contacts,geometry:skillGeometry(s,r,center.x,center.y,-rad(angle),power,undefined,undefined,geometryBoost(u,s))};}
  for(let i=0;i<Math.ceil((ice?iceGourdFuse(power):8)/STEP);i++){
   age+=STEP;time=age;if(ice&&age>=iceGourdFuse(power))break;
   const m=e.advanceProjectile(p,STEP);if(p.vy<0&&m.vy>=0)apex={x:p.x,y:p.y};p.vx=m.vx;p.vy=m.vy;time=age;
-  const h=e.projectileCollision(p,m,6,u.id,[],!ignoreUnits&&!s.mode.startsWith('stake')&&!['waveTriangle','waveBagua'].includes(s.mode));if(h)contact=h;
+  const h=e.projectileCollision(p,m,6,p.owner,[],!ignoreUnits&&!s.mode.startsWith('stake')&&!['waveTriangle','waveBagua'].includes(s.mode),[],true,p);if(h)contact=h;
   if(h){p.x=h.x;p.y=h.y;
+   if(h.keeperRitual==='echo'&&!(p as any).keeperReturned){const q=(e.b as any).keeperRitual,velocity=keeperEchoVelocity({x:p.vx,y:p.vy},q.zone.direction);p.vx=velocity.x;p.vy=velocity.y;p.x=h.x+q.zone.direction*(p.radius+12);p.owner=q.owner;p.side=e.unit(q.owner)!.side;(p as any).keeperReturned=true;points.push({x:p.x,y:p.y});continue;}
    if(ice||s.mode==='waveBounce'||s.mode==='waveTriangle'){
     if(!ice&&!h.terrain)break;contacts.push({x:h.x,y:h.y});reflect(p,h,ice?(h.unit?.72:.64):.84);
     if(s.mode==='waveTriangle'&&contacts.length>=2){terrainAtEnd=!!h.terrain;break;}

@@ -12,6 +12,5 @@ function start(app){if(!active(app))return;const line=app.dialogue?.lines[app.di
 const lineStart=G.HonroStoryStaging.lineStart;G.HonroStoryStaging.lineStart=function(app,...args){const out=lineStart?.(app,...args);start(app);return out;};
 const lineEnd=G.HonroStoryStaging.lineEnd;G.HonroStoryStaging.lineEnd=function(app,...args){if(active(app)){const id=app.dialogue?.lines[app.dialogue.index]?.[2]?.rowId;if(id===release)pose(app,'released');delete memory(app).cue;}return lineEnd?.(app,...args);};
 const finish=G.HonroStoryStaging.finish;G.HonroStoryStaging.finish=function(app,...args){const out=finish?.(app,...args);if(!out&&active(app)&&app.dialogue?.lines.some(l=>l[2]?.rowId===release)){pose(app,'released');delete memory(app).cue;if(app.dialogue.lines.some(l=>l[2]?.rowId?.startsWith('18.outro:')))pose(app,'bound');}return out;};
-const attach=A.attach;A.attach=function(app,e){const out=attach(app,e);if(active(app)&&e.unit('act2-keeper')?.honroSubdued&&e.b.phase==='won'&&e.b.honroReport?.final)pose(app,'bound');return out;};
 G.HonroKeeperRitualStaging={start,pose,memory};
 })(globalThis);
