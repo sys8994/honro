@@ -18,7 +18,7 @@ with serve_game() as base,sync_playwright() as pw:
     assert row['photo']['y']>=-.1 and row['photo']['x']>=0 and row['photo']['right']<=w+.1,row
     assert row['guardBottom']<=row['panel']['y']+1 and row['pointer']=='none',row
     old=p.evaluate('HonroApp.dialogue.index');p.touchscreen.tap(row['photo']['x']+row['photo']['w']/2,(row['photo']['y']+row['guardBottom'])/2);assert p.evaluate('HonroApp.dialogue.index')==old
-   if cls=='knight' or w==390:p.screenshot(path=str(shots/(str(w)+'-'+cls+'.jpg')),type='jpeg',quality=93)
+   if cls=='knight' or w in (390,844):p.screenshot(path=str(shots/(str(w)+'-'+cls+'.jpg')),type='jpeg',quality=93)
    
    if row['lines']>1:
     p.locator('[data-action="dialogue-next"]').tap();p.wait_for_function('HonroApp.dialogue?.index===1');p.locator('[data-action="dialogue-prev"]').tap();p.wait_for_function('HonroApp.dialogue?.index===0')

@@ -1,0 +1,511 @@
+{
+  "sourceHead": "3719d8117fb197d7eaa3570967f17898f92b1c74",
+  "manifestSha256": "3e6cbb59891cebe5092d613fe799db3f31b3a238d409d6c101508ce346e3acae",
+  "checks": [
+    {
+      "name": "production Stage11 rescue queues the exact reported two-line speech",
+      "passed": true,
+      "detail": {
+        "eligible": {
+          "ok": true,
+          "reason": "주민에게 붙은 혼 분리"
+        },
+        "used": true,
+        "round": 18,
+        "lines": [
+          [
+            "주민",
+            "아내가 부르는 줄 알았소. 삼 년 전에 죽었는데… 그걸 알면서도 발이 멎질 않았어요.",
+            {
+              "rowId": "11.beats.resident:96e70604c6",
+              "evidenceGoal": "resident",
+              "storyId": "act2-v1:act2-11-resident",
+              "storyTitle": "매듭을 거둔 아침",
+              "delivery": "dialogue",
+              "waitForClear": false,
+              "afterAction": 0,
+              "camera": {
+                "intent": "conversation",
+                "targets": [
+                  {
+                    "speaker": "주민"
+                  },
+                  {
+                    "actor": "p-occultist"
+                  }
+                ],
+                "padding": 40,
+                "maxScale": 1.05,
+                "participants": [
+                  {
+                    "actor": "resident-4"
+                  },
+                  {
+                    "actor": "p-occultist"
+                  }
+                ],
+                "id": "11.beats.resident:96e70604c6",
+                "speakerPolicy": "world"
+              }
+            }
+          ],
+          [
+            "소단",
+            "몸에 붙은 혼은 떼어냈어요. 다시 그 목소리가 들려도 따라가지 마세요.",
+            {
+              "rowId": "11.beats.resident:7b8a7a300e",
+              "evidenceGoal": "resident",
+              "storyId": "act2-v1:act2-11-resident",
+              "storyTitle": "매듭을 거둔 아침",
+              "delivery": "dialogue",
+              "waitForClear": false,
+              "afterAction": 0,
+              "camera": {
+                "intent": "conversation",
+                "targets": [
+                  {
+                    "speaker": "소단"
+                  },
+                  {
+                    "actor": "resident-4"
+                  }
+                ],
+                "padding": 40,
+                "maxScale": 1.05,
+                "participants": [
+                  {
+                    "actor": "resident-4"
+                  },
+                  {
+                    "actor": "p-occultist"
+                  }
+                ],
+                "id": "11.beats.resident:7b8a7a300e",
+                "speakerPolicy": "world"
+              }
+            }
+          ]
+        ],
+        "index": 0,
+        "target": "resident-4",
+        "actor": {
+          "id": "resident-4",
+          "name": "동굴 주민",
+          "cls": "knight"
+        },
+        "resolved": true,
+        "next": null,
+        "kind": "civilian",
+        "approved": null
+      }
+    },
+    {
+      "name": "generic caption binds exact marker civilian and never a protagonist",
+      "passed": true,
+      "detail": {
+        "id": "resident-4",
+        "name": "동굴 주민",
+        "cls": "knight"
+      }
+    },
+    {
+      "name": "resident dialogue uses identical production actor vector pixels",
+      "passed": true,
+      "detail": {
+        "source": "vector",
+        "same": true
+      }
+    },
+    {
+      "name": "390x844 actual rescue controls inside and touchable",
+      "passed": true,
+      "detail": {
+        "panel": {
+          "x": 12,
+          "y": 648.5,
+          "width": 366,
+          "height": 183.5,
+          "top": 648.5,
+          "right": 378,
+          "bottom": 832,
+          "left": 12
+        },
+        "grid": "337px",
+        "scroll": [
+          361,
+          361,
+          182,
+          182,
+          0
+        ],
+        "actionsWidth": 337,
+        "portrait": true,
+        "buttons": [
+          {
+            "action": "dialogue-prev",
+            "disabled": true,
+            "rect": {
+              "x": 197.921875,
+              "y": 773,
+              "width": 39.265625,
+              "height": 44,
+              "top": 773,
+              "right": 237.1875,
+              "bottom": 817,
+              "left": 197.921875
+            },
+            "inside": true,
+            "hit": true
+          },
+          {
+            "action": "dialogue-skip",
+            "disabled": false,
+            "rect": {
+              "x": 244.1875,
+              "y": 773,
+              "width": 74.546875,
+              "height": 44,
+              "top": 773,
+              "right": 318.734375,
+              "bottom": 817,
+              "left": 244.1875
+            },
+            "inside": true,
+            "hit": true
+          },
+          {
+            "action": "dialogue-next",
+            "disabled": false,
+            "rect": {
+              "x": 325.734375,
+              "y": 773,
+              "width": 39.265625,
+              "height": 44,
+              "top": 773,
+              "right": 365,
+              "bottom": 817,
+              "left": 325.734375
+            },
+            "inside": true,
+            "hit": true
+          }
+        ]
+      }
+    },
+    {
+      "name": "720x1560 actual rescue controls inside and touchable",
+      "passed": true,
+      "detail": {
+        "panel": {
+          "x": 21.59375,
+          "y": 1317.90625,
+          "width": 676.8125,
+          "height": 220.5,
+          "top": 1317.90625,
+          "right": 698.40625,
+          "bottom": 1538.40625,
+          "left": 21.59375
+        },
+        "grid": "623.812px",
+        "scroll": [
+          672,
+          672,
+          219,
+          219,
+          0
+        ],
+        "actionsWidth": 443.8125,
+        "portrait": true,
+        "buttons": [
+          {
+            "action": "dialogue-prev",
+            "disabled": true,
+            "rect": {
+              "x": 229.59375,
+              "y": 1467.40625,
+              "width": 63.125,
+              "height": 44,
+              "top": 1467.40625,
+              "right": 292.71875,
+              "bottom": 1511.40625,
+              "left": 229.59375
+            },
+            "inside": true,
+            "hit": true
+          },
+          {
+            "action": "dialogue-skip",
+            "disabled": false,
+            "rect": {
+              "x": 493.453125,
+              "y": 1467.40625,
+              "width": 104.828125,
+              "height": 44,
+              "top": 1467.40625,
+              "right": 598.28125,
+              "bottom": 1511.40625,
+              "left": 493.453125
+            },
+            "inside": true,
+            "hit": true
+          },
+          {
+            "action": "dialogue-next",
+            "disabled": false,
+            "rect": {
+              "x": 610.28125,
+              "y": 1467.40625,
+              "width": 63.125,
+              "height": 44,
+              "top": 1467.40625,
+              "right": 673.40625,
+              "bottom": 1511.40625,
+              "left": 610.28125
+            },
+            "inside": true,
+            "hit": true
+          }
+        ]
+      }
+    },
+    {
+      "name": "360x780 actual rescue controls inside and touchable",
+      "passed": true,
+      "detail": {
+        "panel": {
+          "x": 12,
+          "y": 584.5,
+          "width": 336,
+          "height": 183.5,
+          "top": 584.5,
+          "right": 348,
+          "bottom": 768,
+          "left": 12
+        },
+        "grid": "307px",
+        "scroll": [
+          331,
+          331,
+          182,
+          182,
+          0
+        ],
+        "actionsWidth": 307,
+        "portrait": true,
+        "buttons": [
+          {
+            "action": "dialogue-prev",
+            "disabled": true,
+            "rect": {
+              "x": 167.921875,
+              "y": 709,
+              "width": 39.265625,
+              "height": 44,
+              "top": 709,
+              "right": 207.1875,
+              "bottom": 753,
+              "left": 167.921875
+            },
+            "inside": true,
+            "hit": true
+          },
+          {
+            "action": "dialogue-skip",
+            "disabled": false,
+            "rect": {
+              "x": 214.1875,
+              "y": 709,
+              "width": 74.546875,
+              "height": 44,
+              "top": 709,
+              "right": 288.734375,
+              "bottom": 753,
+              "left": 214.1875
+            },
+            "inside": true,
+            "hit": true
+          },
+          {
+            "action": "dialogue-next",
+            "disabled": false,
+            "rect": {
+              "x": 295.734375,
+              "y": 709,
+              "width": 39.265625,
+              "height": 44,
+              "top": 709,
+              "right": 335,
+              "bottom": 753,
+              "left": 295.734375
+            },
+            "inside": true,
+            "hit": true
+          }
+        ]
+      }
+    },
+    {
+      "name": "landscape actual rescue controls inside and touchable",
+      "passed": true,
+      "detail": {
+        "panel": {
+          "x": 25,
+          "y": 235.625,
+          "width": 794,
+          "height": 144.375,
+          "top": 235.625,
+          "right": 819,
+          "bottom": 380,
+          "left": 25
+        },
+        "grid": "753px",
+        "scroll": [
+          789,
+          789,
+          142,
+          142,
+          0
+        ],
+        "actionsWidth": 593,
+        "portrait": true,
+        "buttons": [
+          {
+            "action": "dialogue-prev",
+            "disabled": true,
+            "rect": {
+              "x": 207,
+              "y": 319,
+              "width": 63.125,
+              "height": 44,
+              "top": 319,
+              "right": 270.125,
+              "bottom": 363,
+              "left": 207
+            },
+            "inside": true,
+            "hit": true
+          },
+          {
+            "action": "dialogue-skip",
+            "disabled": false,
+            "rect": {
+              "x": 620.046875,
+              "y": 319,
+              "width": 104.828125,
+              "height": 44,
+              "top": 319,
+              "right": 724.875,
+              "bottom": 363,
+              "left": 620.046875
+            },
+            "inside": true,
+            "hit": true
+          },
+          {
+            "action": "dialogue-next",
+            "disabled": false,
+            "rect": {
+              "x": 736.875,
+              "y": 319,
+              "width": 63.125,
+              "height": 44,
+              "top": 319,
+              "right": 800,
+              "bottom": 363,
+              "left": 736.875
+            },
+            "inside": true,
+            "hit": true
+          }
+        ]
+      }
+    },
+    {
+      "name": "stored open rescue speech restores same lines and actor",
+      "passed": true,
+      "detail": {
+        "lines": [
+          [
+            "주민",
+            "아내가 부르는 줄 알았소. 삼 년 전에 죽었는데… 그걸 알면서도 발이 멎질 않았어요.",
+            {
+              "rowId": "11.beats.resident:96e70604c6",
+              "evidenceGoal": "resident",
+              "storyId": "act2-v1:act2-11-resident",
+              "storyTitle": "매듭을 거둔 아침",
+              "delivery": "dialogue",
+              "waitForClear": false,
+              "afterAction": 0,
+              "camera": {
+                "intent": "conversation",
+                "targets": [
+                  {
+                    "speaker": "주민"
+                  },
+                  {
+                    "actor": "p-occultist"
+                  }
+                ],
+                "padding": 40,
+                "maxScale": 1.05,
+                "participants": [
+                  {
+                    "actor": "resident-4"
+                  },
+                  {
+                    "actor": "p-occultist"
+                  }
+                ],
+                "id": "11.beats.resident:96e70604c6",
+                "speakerPolicy": "world"
+              }
+            }
+          ],
+          [
+            "소단",
+            "몸에 붙은 혼은 떼어냈어요. 다시 그 목소리가 들려도 따라가지 마세요.",
+            {
+              "rowId": "11.beats.resident:7b8a7a300e",
+              "evidenceGoal": "resident",
+              "storyId": "act2-v1:act2-11-resident",
+              "storyTitle": "매듭을 거둔 아침",
+              "delivery": "dialogue",
+              "waitForClear": false,
+              "afterAction": 0,
+              "camera": {
+                "intent": "conversation",
+                "targets": [
+                  {
+                    "speaker": "소단"
+                  },
+                  {
+                    "actor": "resident-4"
+                  }
+                ],
+                "padding": 40,
+                "maxScale": 1.05,
+                "participants": [
+                  {
+                    "actor": "resident-4"
+                  },
+                  {
+                    "actor": "p-occultist"
+                  }
+                ],
+                "id": "11.beats.resident:7b8a7a300e",
+                "speakerPolicy": "world"
+              }
+            }
+          ]
+        ],
+        "index": 0
+      }
+    },
+    {
+      "name": "no browser exceptions",
+      "passed": true,
+      "detail": []
+    }
+  ],
+  "errors": []
+}
