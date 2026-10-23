@@ -551,7 +551,7 @@
                 const before=u.hp,out=orig(u,amount,...args);if(e.b.honroStage===10&&u.id==='boss'&&!e.b.honroState?.sodanCoop&&u.hp<=0){u.hp=1;u.dead=false;}
                 if(u.hp<before&&!u.eaterCapturedBy)this.scene?.focusUnit?.(u.id,720,false); return out;
             };
-        } G.HonroNarrativeRevision?.attach(this,e); G.HonroAct3Void?.attach(this,e); this.selected = e.active&&G.HonroStakeCrossing.skills(b,e.active).includes(this.selectedByUnit[e.active.id]) ? this.selectedByUnit[e.active.id] : e.active?.loadout?.find(id => !S[id]?.passive) || 'A01'; if(e.active)this.selectedByUnit[e.active.id]=this.selected; this.power = e.active?.lastPower || .58; this.done = false; this.minimapVisible=this.profile.settings.minimapVisible!==false; this.root.innerHTML = `<main class="battle battle-screen" data-vertical="${b.height>b.width*1.08}"><div class="battle-view"><canvas id="battlecanvas"></canvas></div><header class="battle-head"><button class="icon" data-action="pause" aria-label="잠시 멈춤">${fa('pause',18)}</button><div class="battle-info"><div class="battle-title-row">${this.battleTitleMarkup()}${this.debugMode?'<span class="debug-badge">디버그 · 기록 분리</span>':''}</div><div class="battle-objective-row"><span id="turn-text"></span><button type="button" id="objective-text" class="mission-help" data-action="battle-help" aria-haspopup="dialog" title="눌러서 목표·조작 안내">${this.training ? '적은 반격합니다 · 아군은 쓰러지지 않습니다' : this.stage.goal}</button></div><span id="objective-end-text" class="mission-end"></span></div></header><div class="minimap-dock" id="minimap-dock" ${this.minimapVisible?'':'hidden'}><canvas class="mini" id="minimap" aria-label="전장 미니맵"></canvas></div><div class="allied-roster" id="allied-roster" aria-label="동맹"></div><div class="banter" id="banter" hidden></div>${this.training ? G.HonroTraining.toolbar(this) : ''}${G.HonroUI.bottom()}<div id="dialogue-root"></div></main>`; this.scene = new G.HonroScene($('battlecanvas')); const u = e.active; this.scene.x = u?.x || 400; this.scene.y = (u?.y || 1000) - 170; this.scene.scale = innerWidth < 600 ? .82 : .94; if(b.height>b.width*1.08)this.scene.scale=Math.min(this.scene.scale,innerWidth<760?.68:.82); G.HonroAct3Void?.restoreRecoveredCamera(this); G.HonroReinforcementCamera?.prime(this.scene,b); this.inputs(); G.HonroInteractions?.mount(this); this.updateAudio(); this.updateHUD(true); if(b.honroStory){G.HonroSodanWithdrawal.prepareWorldOutro(this);if(b.honroStory.after==='outcome')b.honroStory.lines=G.HonroSodanWithdrawal.outro(b,b.honroStory.lines);G.HonroStory.start(this,b.honroStory.lines,b.honroStory);} }
+        } G.HonroNarrativeRevision?.attach(this,e); G.HonroAct3Void?.attach(this,e); this.selected = e.active&&G.HonroStakeCrossing.skills(b,e.active).includes(this.selectedByUnit[e.active.id]) ? this.selectedByUnit[e.active.id] : e.active?.loadout?.find(id => !S[id]?.passive) || 'A01'; if(e.active)this.selectedByUnit[e.active.id]=this.selected; this.power = e.active?.lastPower || .58; this.done = false; this.minimapVisible=this.profile.settings.minimapVisible!==false; this.root.innerHTML = `<main class="battle battle-screen" data-vertical="${b.height>b.width*1.08}"><div class="battle-view"><canvas id="battlecanvas"></canvas></div><header class="battle-head"><button class="icon" data-action="pause" aria-label="잠시 멈춤">${fa('pause',18)}</button><div class="battle-info"><div class="battle-title-row">${this.battleTitleMarkup()}${this.debugMode?'<span class="debug-badge">디버그 · 기록 분리</span>':''}</div><div class="battle-objective-row"><span id="turn-text"></span><button type="button" id="objective-text" class="mission-help" data-action="battle-help" aria-haspopup="dialog" title="눌러서 목표·조작 안내">${this.training ? '적은 반격합니다 · 아군은 쓰러지지 않습니다' : this.stage.goal}</button></div><span id="objective-end-text" class="mission-end"></span></div></header><div class="minimap-dock" id="minimap-dock" ${this.minimapVisible?'':'hidden'}><canvas class="mini" id="minimap" aria-label="전장 미니맵"></canvas></div><div class="allied-roster" id="allied-roster" aria-label="동맹"></div><div class="banter" id="banter" hidden></div>${this.training ? G.HonroTraining.toolbar(this) : ''}${G.HonroUI.bottom()}<div id="dialogue-root"></div></main>`; this.scene = new G.HonroScene($('battlecanvas')); const u = e.active; this.scene.x = u?.x || 400; this.scene.y = (u?.y || 1000) - 170; this.scene.scale = innerWidth < 600 ? .82 : .94; if(b.height>b.width*1.08)this.scene.scale=Math.min(this.scene.scale,innerWidth<760?.68:.82); G.HonroAct3Void?.restoreRecoveredCamera(this); G.HonroReinforcementCamera?.prime(this.scene,b); G.HonroAttackCamera?.attach(this,e); this.inputs(); G.HonroInteractions?.mount(this); this.updateAudio(); this.updateHUD(true); if(b.honroStory){G.HonroSodanWithdrawal.prepareWorldOutro(this);if(b.honroStory.after==='outcome')b.honroStory.lines=G.HonroSodanWithdrawal.outro(b,b.honroStory.lines);G.HonroStory.start(this,b.honroStory.lines,b.honroStory);} }
         routeContinue() {
             const target=G.HonroRouteBranches?.handoff(this.engine?.b)?.toStage;
             if(!this.done||!target)return;
@@ -695,14 +695,13 @@
             this.power = this.chargePower();
             u.lastPower = this.power;
             this.scene.turnTarget=undefined;this.engine.fire(this.selected, u.angle, this.power);
-            this.scene.manual = false;
         } }
         jump() { if (this.canInput()) {
             this.engine.jump();
             this.scene.manual = false;
         } }
         drop() { if(this.canInput()&&this.engine.canDrop()){this.cancelInput();if(this.engine.drop()){this.scene.manual=false;this.updateHUD(true);}} }
-        cancelInput() { this.restMotion?.scene?._restCamera?.cancel(); this.keys.clear(); this.charging = false; this.releaseStick(); this.contacts.clear(); this.firePointer = null; const k = $('stick-knob'); if (k)
+        cancelInput() { this.restMotion?.scene?._restCamera?.cancel(); this.keys.clear(); this.charging = false; this.releaseStick(); this.contacts.clear(); G.HonroAttackCamera?.endGesture(this.scene); this.firePointer = null; const k = $('stick-knob'); if (k)
             k.style.transform = 'translate(0,0)'; }
         inputs() {
             const stick = $('joystick'), fire = $('fire'), jump = $('jump'), cv = $('battlecanvas');
@@ -749,7 +748,7 @@
                 return; let p = pos(e), old = this.contacts.get(e.pointerId); this.contacts.set(e.pointerId, p); if (this.contacts.size > 1) {
                 let q = pair();
                 if (q && lastPair) {
-                    this.scene.zoom(q.d / Math.max(1, lastPair.d), q.x, q.y);
+                    this.scene.zoom(q.d / Math.max(1, lastPair.d), q.x, q.y, true);
                     this.scene.x -= (q.x - lastPair.x) / this.scene.scale;
                     this.scene.y -= (q.y - lastPair.y) / this.scene.scale;
                 }
@@ -761,7 +760,7 @@
                     moved = true;
                 if (moved) {
                     G.HonroUnitInfo.close(this);
-                    G.HonroReinforcementCamera?.cancel(this.scene);
+                    G.HonroReinforcementCamera?.cancel(this.scene,true);
                     this.scene.manual = true;
                     this.scene.x -= (p.x - old.x) / this.scene.scale;
                     this.scene.y -= (p.y - old.y) / this.scene.scale;
@@ -771,14 +770,14 @@
                 if(G.HonroUnitInfo.tap(this,pos(e),e.pointerType==='touch')){this.contacts.delete(e.pointerId);lastPair=null;return;}
                 let p = pos(e), v = this.scene.world(p.x, p.y), u = this.engine.b.units.find(u => u.side === 0 && !u.summoned && !u.dead && Math.hypot(u.x - v.x, u.y - u.h * .5 - v.y) < u.h);
                 if (u) { this.selectHero(u.id); G.HonroUnitInfo.show(this,u); }
-            } this.contacts.delete(e.pointerId); lastPair = null; };
-            cv.onpointercancel = e => { this.contacts.delete(e.pointerId); lastPair = null; moved = true; };
+            } this.contacts.delete(e.pointerId); if(!this.contacts.size)G.HonroAttackCamera?.endGesture(this.scene); lastPair = null; };
+            cv.onpointercancel = e => { this.contacts.delete(e.pointerId); if(!this.contacts.size)G.HonroAttackCamera?.endGesture(this.scene); lastPair = null; moved = true; };
             cv.addEventListener('wheel', e => { e.preventDefault(); let p = pos(e); this.scene.zoom(Math.exp(-e.deltaY * .0014), p.x, p.y); }, { passive: false });
             const minimap=$('minimap');let mapPointer=null;
-            const panMap=e=>{if(this.dialogue||this.modal.classList.contains('open'))return;G.HonroReinforcementCamera?.cancel(this.scene);const r=minimap.getBoundingClientRect();this.scene.x=clamp((e.clientX-r.left)/r.width,0,1)*this.engine.b.width;this.scene.y=clamp((e.clientY-r.top)/r.height,0,1)*this.engine.b.height;this.scene.manual=true;};
+            const panMap=e=>{if(this.dialogue||this.modal.classList.contains('open'))return;G.HonroReinforcementCamera?.cancel(this.scene,true);const r=minimap.getBoundingClientRect();this.scene.x=clamp((e.clientX-r.left)/r.width,0,1)*this.engine.b.width;this.scene.y=clamp((e.clientY-r.top)/r.height,0,1)*this.engine.b.height;this.scene.manual=true;};
             minimap.onpointerdown=e=>{if(e.button!==0||mapPointer!==null||this.dialogue)return;e.preventDefault();mapPointer=e.pointerId;minimap.setPointerCapture(mapPointer);panMap(e);};
             minimap.onpointermove=e=>{if(e.pointerId===mapPointer){e.preventDefault();panMap(e);}};
-            const endMap=e=>{if(e.pointerId!==mapPointer)return;mapPointer=null;if(minimap.hasPointerCapture(e.pointerId))minimap.releasePointerCapture(e.pointerId);};
+            const endMap=e=>{if(e.pointerId!==mapPointer)return;mapPointer=null;G.HonroAttackCamera?.endGesture(this.scene);if(minimap.hasPointerCapture(e.pointerId))minimap.releasePointerCapture(e.pointerId);};
             minimap.onpointerup=minimap.onpointercancel=minimap.onlostpointercapture=endMap;
         }
         releaseStick() {

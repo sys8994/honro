@@ -86,6 +86,7 @@ export class Engine {
     } }
     get active() { return this.b.units.find(u => u.id === this.b.active); }
     get stage() { return STAGES[this.b.stageId - 1]; }
+    onAttackStart?: (actorId: string) => void;
     emit(type: Event['type'], e: Partial<Event> = {}) { this.onEvent({ type, ...e }); }
     fx(name: string, x: number, y: number, color: string, size = 50, text?: string) { this.emit('fx', { name, x, y, color, size, text }); }
     message(text: string) { this.b.events.push(text); this.b.events = this.b.events.slice(-30); this.emit('message', { text }); }
@@ -1231,11 +1232,13 @@ export class Engine {
             if(kind==='warden'){let n=0;for(const ally of this.actors(0)){if(Math.hypot(ally.x-center.x,ally.y-ally.h*.5-center.y)>cfg.reach)continue;const shieldBefore=ally.shield;if(!ally.summoned&&!ally.enthrall&&ally.wardenRecoveryRound!==b.round){ally.wardenRecoveryRound=b.round;const before=ally.hp,r=Math.max(1,Math.min(8,u.summonRank||1));ally.hp=Math.min(ally.maxHp,ally.hp+Math.round(ally.maxHp*(.025+.005*(r-1))));ally.focus=Math.min(ally.maxFocus,ally.focus+Math.round(ally.maxFocus*(.035+.005*(r-1))));healed(b,ally,u.id,before,(u as any).honroReportSkill);if(ally.hp>before)this.fx('text',ally.x,ally.y-ally.h-10,'#b8d7bc',12,'+'+(ally.hp-before));}ally.shield=Math.max(ally.shield,Math.round(22+u.attack*10));shielded(b,ally,u.summonOwner||u.id,shieldBefore);(ally as any).honroSoulAffinityOwner=u.summonOwner||u.id;(ally as any).honroSoulDefenseOwner=u.summonOwner||u.id;ally.shieldUntil=b.teamEnds[1]+1;ally.soulAffinityBonus=Math.max(ally.soulAffinityBonus||0,.06+.01*(u.summonRank||1));ally.soulDefenseBonus=Math.max(ally.soulDefenseBonus||0,.06+.01*(u.summonRank||1));ally.soulBonusUntil=b.round+1;n++;}this.fx('ring',center.x,center.y,'#9ccfd7',220);this.emit('sound',{name:'spiritSummon'});this.message(`${u.name} · ${n}명 방호`);}
             else if(kind==='lantern'){
                 const targets=this.actors(1).filter(e=>this.attackAllows(e,u.id)&&Math.hypot(e.x-center.x,e.y-e.h*.5-center.y)<=cfg.reach+e.r).sort((a,c)=>(c.curseOwner===u.summonOwner?1:0)-(a.curseOwner===u.summonOwner?1:0)).slice(0,(u.summonRank||1)<4?1:2);
+                if(targets.length)this.onAttackStart?.(u.id);
                 for(const target of targets)this.launchSummonBolt(u,target);
                 this.fx('rune',center.x,center.y,'#c4e6ef',90);this.message(`${u.name} · ${targets.length}명 동시 추적탄`);if(targets.length)this.emit('sound',{name:'spiritCast'});
             }else{
                 const target=this.actors(1).filter(v=>this.attackAllows(v,u.id)).sort((a,c)=>Math.hypot(a.x-center.x,a.y-a.h*.5-center.y)-Math.hypot(c.x-center.x,c.y-c.h*.5-center.y))[0];
                 if(target&&Math.hypot(target.x-center.x,target.y-target.h*.5-center.y)<=cfg.reach+target.r){
+                    this.onAttackStart?.(u.id);
                     this.hurt(target,u.attack*cfg.damage,u.id,true,undefined,center);
                     if(kind==='charger')this.impulse(target,Math.sign(target.x-u.x||u.facing)*350,-160);
                     this.emit('fx',{name:'line',x:center.x,y:center.y,x2:target.x,y2:target.y-target.h*.5,color:'#caa8e6',size:8});this.fx('slash',target.x,target.y-target.h*.5,'#caa8e6',82);this.emit('sound',{name:'sword'});this.message(`${u.name} · ${target.name} 공격`);

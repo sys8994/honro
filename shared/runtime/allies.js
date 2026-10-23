@@ -79,8 +79,8 @@ function tick(app,e,dt,transition){const b=e.b,hs=b.honroState,q=hs.allyQueue;if
    const ready=e.continuePlanning(work.steps);if(!ready){q.started=false;return;}aiming.delete(e);
    if(ready.value){aim=ready.value.aim;target=e.unit(ready.value.targetId);q.targetId=target.id;}
    if(aim&&e.fire(skill,aim.angle,aim.power,true)){b.phase='ally';log(e,u,u.allyRole==='daoist'?'daoist-shot':'curse-shot',target.id);q.phase='flight';q.elapsed=0;}else{u.shield=Math.max(u.shield,28);log(e,u,'hold-fire',target.id);q.phase='after';q.elapsed=0;}}
-  else if(target&&!target.dead){const d=Math.hypot(target.x-u.x,(target.y-u.y)*.8);if((u.allyRole==='guard'||u.allyRole==='scout')&&d<320){e.hurt(target,54+u.attack*38,u.id,true);e.impulse(target,Math.sign(target.x-u.x)*120,-45);e.fx('slash',target.x,target.y-target.h*.5,'#c1b18c',62);e.emit('sound',{name:'sword'});log(e,u,'sword',target.id);q.phase='after';q.elapsed=0;}
-   else if((u.allyRole==='guard'||u.allyRole==='scout')&&d<720){e.hurt(target,31+u.attack*25,u.id,true);e.fx('line',u.x,u.y-u.h*.48,'#c9b98f',3,target.x,target.y-target.h*.5);e.fx('slash',target.x,target.y-target.h*.5,'#b5a781',48);log(e,u,'sword-wave',target.id);q.phase='after';q.elapsed=0;}
+  else if(target&&!target.dead){const d=Math.hypot(target.x-u.x,(target.y-u.y)*.8);if((u.allyRole==='guard'||u.allyRole==='scout')&&d<320){e.onAttackStart?.(u.id);e.hurt(target,54+u.attack*38,u.id,true);e.impulse(target,Math.sign(target.x-u.x)*120,-45);e.fx('slash',target.x,target.y-target.h*.5,'#c1b18c',62);e.emit('sound',{name:'sword'});log(e,u,'sword',target.id);q.phase='after';q.elapsed=0;}
+   else if((u.allyRole==='guard'||u.allyRole==='scout')&&d<720){e.onAttackStart?.(u.id);e.hurt(target,31+u.attack*25,u.id,true);e.fx('line',u.x,u.y-u.h*.48,'#c9b98f',3,target.x,target.y-target.h*.5);e.fx('slash',target.x,target.y-target.h*.5,'#b5a781',48);log(e,u,'sword-wave',target.id);q.phase='after';q.elapsed=0;}
    else {u.shield=Math.max(u.shield,34);log(e,u,'guard',u.id);q.phase='after';q.elapsed=0;}}
   else {log(e,u,'advance',u.id);q.phase='after';q.elapsed=0;}
  }

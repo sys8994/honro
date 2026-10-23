@@ -3,6 +3,7 @@ import vm from 'node:vm';
 import {readFile} from 'node:fs/promises';
 let clock=0;
 const g=vm.createContext({performance:{now:()=>clock},matchMedia:()=>({matches:false})});
+vm.runInContext(await readFile('shared/runtime/attack-camera.js','utf8'),g);
 vm.runInContext(await readFile('shared/runtime/reinforcement-camera.js','utf8'),g);
 const C=g.HonroReinforcementCamera,unit=(id,x=3000,y=1000,extra={})=>({id,x,y,side:1,h:90,r:25,hp:100,...extra});
 function fixture(manual=false){clock=0;const scene={x:200,y:800,scale:.65,manual},e={b:{units:[unit('hero',200,1000,{side:0}),unit('old',5000)],phase:'aim'}};C.prime(scene,e.b);return{scene,e};}
@@ -24,11 +25,11 @@ for(const [w,h]of [[1280,800],[390,844],[844,390]])for(const positions of [[210]
  C.update(f.scene,f.e,w,h,1500);C.update(f.scene,f.e,w,h,1920);assert.deepEqual(camera(f.scene),original);assert(!C.active(f.scene));
 }
 // Dead/removed targets return to the exact view; no old enemy fallback.
-f=fixture();const original=camera(f.scene);add(f,unit('new'));step(f,0);step(f,200);assert.deepEqual(JSON.parse(JSON.stringify(C.controlView(f.scene))),original);f.e.b.units.at(-1).dead=true;step(f,201);step(f,621);assert.deepEqual(camera(f.scene),original);
+f=fixture();const original=camera(f.scene);add(f,unit('new'));step(f,0);step(f,200);assert.deepEqual(camera(C.controlView(f.scene)),original);f.e.b.units.at(-1).dead=true;step(f,201);step(f,621);assert.deepEqual(camera(f.scene),original);
 // Consecutive batches retarget continuously and preserve the first return view.
 f=fixture(true);const first=camera(f.scene);add(f,unit('a'));step(f,0);step(f,200);const before=camera(f.scene);add(f,unit('b',4000));step(f,200);assert.deepEqual(camera(f.scene),before);step(f,620);step(f,1700);step(f,2120);assert.deepEqual(camera(f.scene),first);
 // Player pan/zoom cancels the insert and prevents its later restoration.
-f=fixture();add(f,unit('a'));step(f,0);step(f,400);C.cancel(f.scene);Object.assign(f.scene,{x:900,y:200,scale:.5,manual:true});const manual=camera(f.scene);assert.equal(step(f,1800),true);assert.deepEqual(camera(f.scene),manual);add(f,unit('during-manual'));assert.equal(step(f,1801),true);assert(C.blocksFocus(f.scene));add(f,unit('after-manual'));assert.equal(step(f,2400),true);
+f=fixture();add(f,unit('a'));step(f,0);step(f,400);C.cancel(f.scene);Object.assign(f.scene,{x:900,y:200,scale:.5,manual:true});const manual=camera(f.scene);assert.equal(step(f,1800),true);assert.deepEqual(camera(f.scene),manual);add(f,unit('during-manual'));assert.equal(step(f,1801),true);assert(C.blocksFocus(f.scene));assert.equal(step(f,2400),true);assert.deepEqual(camera(f.scene),manual);g.HonroAttackCamera.begin(f.scene,'hero');add(f,unit('after-manual'));assert.equal(step(f,2401),true);
 // Concurrent speaker/objective/frame state cannot override the insert, and its
 // spring/tween resumes at the actual rendered frame rather than a stale time.
 f=fixture();add(f,unit('a'));step(f,0);f.scene.storyFrame={motion:{}};g.HonroStoryFraming={targetFrame:()=>({camera:{x:900,y:700,scale:.5}})};step(f,420);assert(f.scene.x>2000);step(f,1500);step(f,1920);assert.equal(f.scene.x,900);assert.equal(f.scene.storyFrame.motion.x,900);assert.equal(f.scene.storyFrame.motion.time,1920);

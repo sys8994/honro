@@ -48,7 +48,7 @@ function speakerPolicy(who,meta,camera){const kind=G.HonroStory.speakerPresentat
 function bind(app,lines,options){if(!app.engine||app.screen!=='battle')return lines;
  // A dialogue opened during the insert must later release to the player's
  // control view, rather than saving a halfway reinforcement pan as its origin.
- if(!app.dialogue&&!app.storyCamera){const camera=G.HonroReinforcementCamera?.controlView(app.scene);if(camera)app.storyCamera=camera;}
+ if(!app.dialogue&&!app.storyCamera){const camera=G.HonroReinforcementCamera?.controlView(app.scene)||G.HonroAttackCamera?.snapshot(app.scene);if(camera)app.storyCamera=camera;}
  const b=app.engine.b,key=sceneKey(app,lines,options),stage=b.honroStage,names=[...new Set(lines.filter(l=>G.HonroStory.speakerPresentation(l[0],l[2]).kind==='character').map(l=>l[0]))];
  const subjects=names.map(n=>speakerId(app,n)?{actor:speakerId(app,n)}:{speaker:n});
  return lines.map(([who,text,meta={}],index)=>{
