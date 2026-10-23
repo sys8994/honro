@@ -70,10 +70,8 @@ function tick(app,dt){
    if(heroes.some(u=>Math.hypot(u.x-m.x,(u.y-m.y)*(m.type==='sector'?.6:1))<distance))m.honroPending=true;
    if(!m.honroPending)continue;
    if(m.type==='sector'&&!hs.flags['sector-'+m.sector]){hs.flags['sector-'+m.sector]=true;app.event(m.label);}
-   // Fresh Stage8's lower return shares x with guards over 2,000px above it.
-   // Only this authored layered encounter narrows the existing threat volume;
-   // legacy saves and every other chapter retain their original rest contract.
-   if(m.type==='rest'&&!m.collected&&!e.alive(1).some(v=>Math.abs(v.x-m.x)<470&&!v.fixed&&(b.honroStage!==8||!G.HonroEncounterDensity?.active(b)||Math.abs(v.y-m.y)<650))){
+   // Approaching the finite supply point is sufficient, even during combat.
+   if(m.type==='rest'&&!m.collected){
      m.collected=true;for(const u of G.HonroAllies.coalition(e)){const hpBefore=u.hp,focusBefore=u.focus;u.hp=Math.min(u.maxHp,u.hp+Math.round(u.maxHp*.30));G.HonroClearReport?.heal(b,u,'',u.hp-hpBefore,'environment:supply');G.HonroProgression.recordHeal(b,u,'',u.hp-hpBefore);if(!u.honroCivilian)u.focus=Math.min(u.maxFocus,u.focus+Math.round(u.maxFocus*.40));if(u.hp>hpBefore||u.focus>focusBefore)e.fx('ring',u.x,u.y-u.h*.5,'#a9b892',40);}e.emit('sound',{name:'heal'});
    }
    if(m.type==='relic'&&!m.collected){m.collected=true;app.event('길에 남은 기록을 주웠다.',{kind:'narration',source:'relic-found'});}

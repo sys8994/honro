@@ -51,7 +51,14 @@ function lowerPool(z,amount){
  const surface=[[bottom[0][0],level],[bottom.at(-1)[0],level]];
  return{...z,surface,bottom,points:[...surface,...bottom.slice().reverse()]};
 }
-const steps=b=>b.honroAct2Steps||(revision2(b)?(G.HonroObjectiveRevision?.storedSteps(b,2)||H.stages[b.honroStage-1].steps):G.HonroAct2Content.legacySteps[b.honroStage-11]);
+const storedSteps=b=>b.honroAct2Steps||(revision2(b)?(G.HonroObjectiveRevision?.storedSteps(b,2)||H.stages[b.honroStage-1].steps):G.HonroAct2Content.legacySteps[b.honroStage-11]);
+// Retire generic clearance interlocks without rewriting a live snapshot or
+// claiming kills. Independent combat, defense, escort and arrival goals stay.
+const safetyClear=(b,s)=>{if(!active(b)||s?.optional||s?.target||!['clear','pacing-secure'].includes(s?.kind))return false;const list=storedSteps(b),at=list.findIndex(q=>q.id===s.id);if(at<0)return false;const next=list.slice(at+1).find(q=>!q.optional&&!['clear','pacing-secure'].includes(q.kind));return !!next&&['interact','rescue','evidence'].includes(next.kind);};
+const steps=b=>storedSteps(b).filter(s=>!safetyClear(b,s));
+const retiredSafety=(b,id)=>storedSteps(b).some(s=>s.id===id&&safetyClear(b,s));
+function prerequisite(b,id){if(memory(b).done[id])return true;const list=storedSteps(b),at=list.findIndex(s=>s.id===id);if(at<0||!safetyClear(b,list[at]))return false;const prior=list.slice(0,at).findLast(s=>!s.optional&&!safetyClear(b,s));return !prior||satisfied(b,prior);}
+
 const memory=b=>(b.honroState.act2??={version:1,done:{},events:{},rescued:[],checkpoints:[]});
 const marker=(b,id)=>b.honroMarkers.find(m=>m.id===id);
 const timedHoist=(b,s)=>b.honroStage===17&&!b.honroCustom&&b.honroEvidenceRevision===1&&s.id==='hold-hoist';
@@ -64,7 +71,7 @@ function satisfied(b,s){const a=memory(b);if(a.done[s.id])return true;const paci
  return false;
 }
 function current(b){return steps(b).find(s=>!s.optional&&!satisfied(b,s));}
-function readySteps(b){const s=current(b);return steps(b).filter(q=>!satisfied(b,q)&&(q.optional||q.id===s?.id||s?.parallelGroup&&q.parallelGroup===s.parallelGroup)&&(q.requiresDone||[]).every(id=>!!memory(b).done[id]));}
+function readySteps(b){const s=current(b);return steps(b).filter(q=>!satisfied(b,q)&&(q.optional||q.id===s?.id||s?.parallelGroup&&q.parallelGroup===s.parallelGroup)&&(q.requiresDone||[]).every(id=>prerequisite(b,id)));}
 function enemiesFor(b,s){return b.units.filter(u=>u.side===1&&!u.honroObjectiveTarget&&u.summonKind!=='eater'&&!u.dead&&u.hp>0&&!u.honroSubdued&&(s.defeatIds?s.defeatIds.includes(u.id):s.cohorts==='all'||s.cohorts===u.honroCohort));}
 function visible(b,u){if(!u?.honroSpirit||!u.spiritHidden||u.manifested||u.revealSpiritToParty)return true;const viewer=b.units.find(v=>v.id===b.active);return viewer?.side===0?!!viewer.spiritSight:!!b.units.find(v=>v.id===memory(b).viewerId)?.spiritSight;}
 function scaleEncounter(u,hp,attack){const ratio=u.maxHp>0?u.hp/u.maxHp:1;
@@ -99,7 +106,7 @@ function state(b){const list=steps(b),index=list.findIndex(s=>!s.optional&&!sati
  const pendingTempleEvidence=b.honroStage===16&&G.HonroEvidenceQuests?.active(b)&&list.some(q=>q.kind==='evidence'&&!memory(b).done[q.id]);
  const issue=G.HonroRouteBranches?.sourceIssue(b),complete=!issue&&!s&&!pendingTempleEvidence;return{complete,objectiveReady:complete,minimumRound:1,settleRounds:0,summary:issue||`${done}/${list.filter(q=>!q.optional).length} · ${s?s.label+detail:'모든 목표 완료'}`,targets:G.HonroRouteBranches?.targets(b,s)||parallel||(target?[target]:[]),allTargets:list.map(q=>{const p=marker(b,q.id)||G.HonroQuestTargets.records(b).find(t=>t.id===q.id)||b.units.find(u=>u.id===q.target)||{};return{id:q.id,kind:q.kind==='destroy'?'seal':q.kind==='defeat'?'boss':q.kind==='reach'||q.kind==='escort'?'exit':'interact',x:q.kind==='destroy'?(p.x||0)+(p.w||0)/2:p.x||0,y:p.y||0,label:q.label,done:satisfied(b,q)};})};
 }
-// Shared by the actual interaction gate and read-only prerequisite guidance.
+// Read-only threat context for contribution credit; never an interaction prerequisite.
 function interactionThreats(b,m){return b.units.filter(v=>v.side===1&&!v.honroObjectiveTarget&&v.summonKind!=='eater'&&!v.eaterCapturedBy&&!v.dead&&!v.honroSubdued&&v.id!==m.spiritId&&!v.honroAct2Boss&&Math.hypot(v.x-m.x,v.y-m.y)<360);}
 function eligibility(app,m){const b=app.engine.b,s=readySteps(b).find(q=>q.id===m.id),a=memory(b),u=app.engine.active;
  if(m.id==='rebuild-brace')return {ok:!!a.collapse&&!a.rebuilt,reason:'낙석 치우기'};
@@ -107,9 +114,8 @@ function eligibility(app,m){const b=app.engine.b,s=readySteps(b).find(q=>q.id===
  if(!s)return{ok:false,reason:current(b)?'먼저 '+current(b).label:'목표 완료'};
  if(['evidence','clear','hold','defeat','destroy','reach','escort','route','pacing-event','pacing-secure'].includes(s.kind))return{ok:false,reason:s.label};
  if(s.requiredClass&&u.cls!==s.requiredClass)return{ok:false,reason:H.hero[s.requiredClass].name+' 필요'};
+ if(s.kind==='rescue'){const resident=b.units.find(v=>v.id===m.target);if(!resident||resident.dead||resident.hp<=0)return{ok:false,reason:'구조할 주민이 없음'};}
  if(revision2(b)){
-  const threats=interactionThreats(b,m);
-  if(threats.length&&!G.HonroStage18Short?.freeInteraction(b,m))return{ok:false,reason:'주변 들림을 먼저 제압하세요'};
   const spirit=b.units.find(v=>v.id===m.spiritId);
   if(s.kind==='rescue'&&spirit&&!spirit.dead&&spirit.hp>spirit.maxHp*.4)return{ok:false,reason:'붙은 혼을 먼저 약화시키세요 · 체력 40% 이하'};
  }
@@ -141,7 +147,7 @@ function use(app,m){const e=app.engine,b=e.b,a=memory(b),s=readySteps(b).find(q=
  else{
   if(!s||s.id!==m.id)return false;
   if(s.kind==='rescue'){
-   const spirit=e.unit(m.spiritId),resident=e.unit(m.target);if(!resident||resident.dead)return false;
+   const spirit=e.unit(m.spiritId),resident=e.unit(m.target);if(!resident||resident.dead||resident.hp<=0)return false;
    G.HonroObjectiveContributions?.approach(b,s.id,e.heroesAlive(),resident,220,!interactionThreats(b,m).length);
    // Extraction attacks the possessing spirit, never the person's HP.
    if(spirit&&!spirit.dead){G.HonroProgression.defeat(e,spirit,e.active);spirit.hp=0;spirit.dead=true;spirit.honroReleased=true;}
@@ -269,5 +275,5 @@ function tick(app,dt){const e=app.engine,b=e.b;if(!active(b)||app.dialogue||app.
  app.checkMission(e);
 }
 function entry(app,options={}){return [...(options.interlude===false?[]:app.stage.narration).map(text=>['서술',text,{kind:'narration',art:'road'}]),...G.HonroRouteBranches?.entryLines(app.engine?.b)||[],...app.stage.story,G.HonroAct2Content.guide(app.stage.guide)];}
-G.HonroAct2={active,configureEnemy,recruit,memory,current,readySteps,satisfied,subdue,state,eligibility,interactionThreats,use,attach,tick,failure,entry,expose,steps,enemiesFor,visible,revision2,tuneEncounter,wave};
+G.HonroAct2={active,configureEnemy,recruit,memory,current,readySteps,retiredSafety,prerequisite,satisfied,subdue,state,eligibility,interactionThreats,use,attach,tick,failure,entry,expose,steps,enemiesFor,visible,revision2,tuneEncounter,wave};
 })(globalThis);
