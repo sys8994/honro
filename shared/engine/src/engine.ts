@@ -1,3 +1,5 @@
+import {prioritizePlayerActors} from './turnOrder';
+export {normalizePlayerTurnOrder,initializePlayerTurnOrder,DEFAULT_PLAYER_TURN_ORDER} from './turnOrder';
 import {beastKind,beastLaneClear,beastReach,startBeastCast,tickBeasts} from './beastMelee';
 import {initializeReturningWraith,stepReturningWraith,returningWraithOutboundEnded,WRAITH_OUTBOUND_SECONDS} from './returningWraith';
 import {captureEater,releaseEater,migrateEaters,eaterTuning} from './eaterMechanics';
@@ -2044,7 +2046,8 @@ export class Engine {
     private advanceAfterAction(){
         settled(this);const b=this.b;
         if(this.checkEnd())return;
-        const pending = this.actors(b.side).filter(a => (b.side!==0||!a.summoned) && !a.acted && (b.side !== 1 || b.queue.includes(a.id)));
+        let pending = this.actors(b.side).filter(a => (b.side!==0||!a.summoned) && !a.acted && (b.side !== 1 || b.queue.includes(a.id)));
+        if(b.side===0)pending=prioritizePlayerActors(b,pending);
         if (pending.length) {
             b.active = pending[0].id; b.reviewDamage={}; b.reviewFocus=undefined;
                 b.phase = b.side === 0 ? 'aim' : 'enemy';
@@ -2164,7 +2167,7 @@ export class Engine {
         this.campCheck();
         if (this.checkEnd())
             return;
-        const allies = this.heroesAlive();
+        const allies = prioritizePlayerActors(b,this.heroesAlive());
         if(!allies.length){this.checkEnd();return;}
         b.active = (allies.find(u => !u.acted) || allies[0]).id;
         b.phase = 'aim';

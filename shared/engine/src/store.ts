@@ -1,3 +1,4 @@
+import {normalizePlayerTurnOrder} from './turnOrder';
 import {poly} from './math';
 import {SP_BALANCE_REVISION} from './passiveBalance';
 import {migrateSkills,SKILL_REVISION} from './skillMechanics';
@@ -54,6 +55,7 @@ function validBattle(raw: unknown,legacyXp=false,oldXp=false): Battle {
     if (!object(raw) || raw.version !== 2)
         return fail();
     const b = copy(raw) as Battle;
+    if(b.playerTurnOrder!==undefined)b.playerTurnOrder=normalizePlayerTurnOrder(b.playerTurnOrder);
     b.fields ??= [];
     b.controlMode ??= 'move';
     if (b.revision !== undefined && ![4,5,6,7,8,9,10,11].includes(b.revision))
@@ -248,6 +250,7 @@ export function validate(input: unknown): Profile {
     if(raw.revision !== undefined && (!finite(raw.revision)||raw.revision>13))throw new Error('더 새로운 게임에서 저장한 기록입니다. 해당 버전으로 열어주세요.');
     if(object(raw.heroes)&&object(raw.loadouts)&&['archer','mage'].every(c=>object(raw.heroes[c])&&Array.isArray(raw.loadouts[c])))migrateSkills(raw as Profile);
     const p = defaults(), legacy = raw.version === 1;
+    if(raw.playerTurnOrder!==undefined)p.playerTurnOrder=normalizePlayerTurnOrder(raw.playerTurnOrder);
     if (raw.cleared !== undefined) {
         if (!object(raw.cleared))
             return fail();

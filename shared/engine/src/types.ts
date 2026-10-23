@@ -413,6 +413,7 @@ export interface Stage {
     par: number;
 }
 export interface Battle {
+    playerTurnOrder?: ClassId[];
     spBalanceRevision?: number;
     martialRevision?: number;
     occultRevision?: number;
@@ -514,6 +515,7 @@ export interface Settings {
     orientation: 'auto' | 'landscape' | 'portrait';
 }
 export interface Profile {
+    playerTurnOrder?: ClassId[];
     version: 2;
     revision?: number;
     cleared: Record<string, {

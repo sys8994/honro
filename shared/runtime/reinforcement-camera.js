@@ -3,7 +3,9 @@
 // committed units, not spawn requests: blocked/retried/atomic spawns produce no
 // camera target until their actual new IDs exist. Prime on mount/Continue.
 const states=new WeakMap(),view=s=>({x:s.x,y:s.y,scale:s.scale,manual:s.manual});
-const enemy=u=>u.side===1&&u.summonKind!=='eater'&&!u.honroTrainingStation&&!u.honroObjectiveTarget&&!u.honroVisualOnly&&!u.honroSpirit&&!u.enthrall&&!u.eaterCapturedBy&&!u.dead&&u.hp>0&&Number.isFinite(u.x)&&Number.isFinite(u.y);
+// honroSpirit/spiritHidden describe damage/visibility of real combat enemies.
+// Visual-only actors are explicit proxies; staging-hidden actors are not in units.
+const enemy=u=>u.side===1&&u.summonKind!=='eater'&&!u.honroTrainingStation&&!u.honroObjectiveTarget&&!u.honroVisualOnly&&!u.enthrall&&!u.eaterCapturedBy&&!u.dead&&u.hp>0&&Number.isFinite(u.x)&&Number.isFinite(u.y);
 function prime(scene,b){states.set(scene,{battle:b,seen:new Set(b.units.map(u=>u.id)),shot:null,manualUntil:0,lastView:view(scene)});}
 function active(scene){return !!states.get(scene)?.shot;}
 function resume(scene,now){

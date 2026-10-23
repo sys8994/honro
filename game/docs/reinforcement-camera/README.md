@@ -1,6 +1,19 @@
 # 증원 카메라 · 2026-10-23
 
-기준은 `befca64e4026aa83d8f15326c5fc19f1e18e1677`이다. master 병합과 Pages 최종 발행은 부모 작업이 담당한다. 전 장 정상 플레이 전수 완료를 뜻하지 않는다.
+최초 후보 기준은 `befca64e4026aa83d8f15326c5fc19f1e18e1677`이며, 전투 혼 보완은 최신 master `e1e4b9aaa7e1d6013c4eb1e9c9245dbca2edb435`를 통합했다. master 병합과 Pages 최종 발행은 부모 작업이 담당한다. 전 장 정상 플레이 전수 완료를 뜻하지 않는다.
+
+## 전투 혼 필터 보완과 전달 가능한 PNG
+
+최초 후보의 `!u.honroSpirit` 일괄 제외는 잘못된 범위였다. `act2.configureEnemy`는 resonance/echo/bellCluster/monkVessel에 실제 전투 방어 속성과 `honroSpirit/spiritHidden`을 함께 설정한다. 이 제외만 제거했다. 시각 전용 proxy(`honroVisualOnly`), 사망/먹귀/목표 proxy는 여전히 제외하고, staging에서 숨겨져 전투 배열에 없는 배우는 포착하지 않는다. `spiritHidden` 자체를 비전투 상태로 추정하지 않는다.
+
+- `node tests/reinforcement-camera.mjs`: 살아 있는 혼/숨김 혼/현형/노출 상태 포함, 시각 전용·사망·배열 밖 hidden 배우 무초점 집중검사 추가. 기존 무리/복귀/수동 조작 회귀도 통과.
+- `node tests/reinforcement-camera-spirits.mjs`: 실제 Act2 생성기의 네 전투 혼 종류, 실제 존재 방어, 숨김/노출, 무리 framing/복귀, 저장 상태 무변경 확인.
+- `python tests/reinforcement-camera-spirits-browser.py`: 최신 통합 빌드 실제 Chromium 16장, 소단의 실제 spiritSight, 세 종류 전투 혼 직접 추가, 정확한 무리 중심/배율과 표적 사망 복귀, pageerror 0. 정지 inspection fixture이며 생성 안전 배치·정상 플레이 검수는 아니다.
+- `node tests/player-turn-order.mjs`: 최신 행동순서의 fresh/action/다음 round/죽음/stun/수동/옛 Continue/save/import/debug 회귀 통과. 행동순서 엔진·store·compiler·전용 UI 소스는 e1e4b9aa와 바이트 동일하다.
+- 최종 `npm run build` 성공. Pages39878187459(2026-10-23T00:29:18Z)의 e1e4b9aa를 성공 발행으로 등록하고 18개 발행 그래프의 고유 immutable 자산 528개 존재·크기·SHA256을 확인했다. 후보를 발행 성공으로 등록하지 않았다.
+- master 병합 충돌은 생성물 HONRO.html/HONRO_WORKSHOP.html/index.html/web/manifest.json 네 개였다. 최신 발행본 기준으로 해결하고 공통 빌드로 재생성했다. 소스 충돌은 없었고 동시 UI 후속/카드 드래그 변경은 가져오지 않았다.
+
+부모 요청에 따라 [review의 실제 PNG와 작은 JSON](review/README.md)을 Git에 보존한다. 기존 다섯 장은 0a4b27d9 당시 PNG를 변경 없이 복사했고 전투 혼 보완 뒤의 새 이미지로 표시하지 않는다. 새 16장 전투 혼 PNG 한 장과 측정 JSON은 출처를 별도로 기록했다. 최초 30장 source 감사/대표10장 직접 spawn/3장 inspection 결과를 전수 정상 플레이로 확대하지 않는다. 이번에는 필터 관련 집중검사만 추가했으며 기존 전 장 목록 검사와 기존 3장 전체 시퀀스는 불필요하게 반복하지 않았다.
 
 ## 원인과 현재 계약
 

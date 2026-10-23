@@ -1,3 +1,4 @@
+import {initializePlayerTurnOrder} from './turnOrder';
 import {SP_BALANCE_REVISION} from './passiveBalance';
 import {makePhysics,reinforceFields} from './physics';
 import { stageStrength, setDifficulty, enlargedGroup, makeElite, DIFFICULTIES, campaignEnemyCount, campaignEliteShare, ENEMY_GLOBAL_STAT } from './balance';
@@ -256,6 +257,7 @@ export function createBattle(stageId: number, profile: Profile, mode: Battle['mo
     const battle: Battle = { version: 2, spBalanceRevision:SP_BALANCE_REVISION, skillRevision:1, martialRevision:1, revision: 11, physics:makePhysics(stage.physics), controlMode: 'move', fields, reviewDamage:{}, reviewLeft:0, stageId, mode, difficulty: profile.settings.difficulty, round: 1, side: 0, phase: 'aim', active: units[0].id, units, ...world, projectiles: [], zones: [], wind: opts.wind ?? stage.wind[0], teamEnds: [0, 0, 0], queue: [], turnAge: 0, resolveAge: 0, nextId: 1, shot: 0, shotDamage: {}, shots: 0, hits: 0, kills: 0, items: { heal: 3, focus: 3, cleanse: 2, ward: 2 }, events: [], seed: stageId * 19381 + 7, rng: stageId * 19381 + 7, reinforced: 0, sceneVersion: 1, winnerReason: '', practiceWind: opts.wind, practiceDistance: opts.distance, startSide: opts.startSide, lastShots: {}, heroes, startXP: { mage: heroes.mage.xp, archer: heroes.archer.xp, knight: heroes.knight.xp, occultist: heroes.occultist.xp }, rewardGranted: false, awardIds: [], enemyLimit: 10, encounter: 0, session: `${Date.now().toString(36)}-${stageId}` };
     for(const u of battle.units)if(u.side===1&&u.role!=='dummy'){u.combatBaseHp=u.maxHp;u.combatBaseAttack=u.attack;}
     setDifficulty(battle,profile.settings.difficulty);
+    initializePlayerTurnOrder(battle,profile);
     return battle;
 }
 // Late import is safe: definitions are read only when a battle is created.

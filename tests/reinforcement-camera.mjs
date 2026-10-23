@@ -14,6 +14,9 @@ const camera=s=>({x:s.x,y:s.y,scale:s.scale,manual:s.manual});
 let f=fixture();assert.equal(step(f,0),false);
 add(f,unit('ally',0,0,{side:2}),unit('target',0,0,{honroObjectiveTarget:true}),unit('dead',0,0,{dead:true}),unit('eater',0,0,{summonKind:'eater'}));
 assert.equal(step(f,1),false);assert.equal(C.active(f.scene),false);
+// Spirit flags describe live combat actors, including unmanifested spirits.
+for(const spirit of [{honroSpirit:true},{honroSpirit:true,spiritHidden:true},{honroSpirit:true,manifested:true},{honroSpirit:true,revealSpiritToParty:true}]){f=fixture();add(f,unit('combat-spirit',3100,1000,spirit));assert.equal(step(f,0),true);step(f,420);assert(f.scene.x>2500,'combat spirit is the actual target');}
+f=fixture();add(f,unit('visual-spirit',3100,1000,{honroSpirit:true,honroVisualOnly:true}),unit('dead-spirit',3200,1000,{honroSpirit:true,dead:true,hp:0}));f.e.b.honroStaging={hidden:{absent:unit('absent',3300,1000,{honroSpirit:true})}};assert.equal(step(f,0),false,'visual/dead/absent noncombat actors never select a fallback');
 // One enemy / multiple groups, on/off screen, no zoom-in, all bodies fit.
 for(const [w,h]of [[1280,800],[390,844],[844,390]])for(const positions of [[210],[3300],[2200,2600,3100],[500,5200]]){
  f=fixture(true);const original=camera(f.scene),batch=positions.map((x,i)=>unit('new'+i,x));add(f,...batch);C.update(f.scene,f.e,w,h,0);assert.deepEqual(camera(f.scene),original);

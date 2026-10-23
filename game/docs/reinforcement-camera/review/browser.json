@@ -1,0 +1,161 @@
+{
+  "sourceCommit": "0a4b27d9b10116cb7a6bc5773f30ef84c92831f8",
+  "provenance": "Original Chromium PNGs and measurements from 2026-10-23T00:22Z. Reused unchanged; not new spirit-filter screenshots.",
+  "fixture": "Production stage3 event actions, simulation frozen for presentation inspection. No campaign fullplay claim.",
+  "pageErrors": [],
+  "rows": [
+    {
+      "device": "desktop",
+      "spawn": {
+        "event": "dock-beasts",
+        "result": true,
+        "ids": [
+          "event-1",
+          "event-2"
+        ],
+        "at": 1974.3999999999069
+      },
+      "original": {
+        "x": 600,
+        "y": 1550,
+        "scale": 0.58,
+        "manual": true
+      },
+      "reloadContinue": true,
+      "consecutive": true,
+      "savedPopulationRemount": true,
+      "sequence": [
+        {
+          "image": "desktop-02-group.png",
+          "elapsed": 879.1000000000931,
+          "x": 2930,
+          "y": 2129.036372679045,
+          "scale": 0.58,
+          "manual": true,
+          "active": true,
+          "targets": [
+            {
+              "id": "event-1",
+              "x": 560.25,
+              "y": 334.9128461538462,
+              "top": 272.2728461538462
+            },
+            {
+              "id": "event-2",
+              "x": 719.75,
+              "y": 336.1096538461539,
+              "top": 273.46965384615385
+            }
+          ],
+          "w": 1280,
+          "h": 669.1875
+        },
+        {
+          "image": "desktop-05-restored.png",
+          "elapsed": 2965.20000000007,
+          "x": 600,
+          "y": 1550,
+          "scale": 0.58,
+          "manual": true,
+          "active": false,
+          "targets": [
+            {
+              "id": "event-1",
+              "x": 1911.6499999999999,
+              "y": 670.7539423076923,
+              "top": 608.1139423076924
+            },
+            {
+              "id": "event-2",
+              "x": 2071.1499999999996,
+              "y": 671.95075,
+              "top": 609.3107500000001
+            }
+          ],
+          "w": 1280,
+          "h": 669.1875
+        }
+      ]
+    },
+    {
+      "device": "mobile",
+      "spawn": {
+        "event": "dock-beasts",
+        "result": true,
+        "ids": [
+          "event-1",
+          "event-2"
+        ],
+        "at": 963.3000000000466
+      },
+      "original": {
+        "x": 600,
+        "y": 1550,
+        "scale": 0.58,
+        "manual": true
+      },
+      "reloadContinue": true,
+      "consecutive": true,
+      "savedPopulationRemount": true,
+      "sequence": [
+        {
+          "image": "mobile-02-group.png",
+          "elapsed": 677.5,
+          "x": 2930,
+          "y": 2203.2639874628135,
+          "scale": 0.3016666666666667,
+          "manual": true,
+          "active": true,
+          "targets": [
+            {
+              "id": "event-1",
+              "x": 153.52083333333331,
+              "y": 301.57865705128205,
+              "top": 268.99865705128207
+            },
+            {
+              "id": "event-2",
+              "x": 236.47916666666669,
+              "y": 302.2011346153846,
+              "top": 269.6211346153846
+            }
+          ],
+          "w": 390,
+          "h": 647.609375
+        }
+      ],
+      "concurrent": {
+        "image": "mobile-concurrent-dialogue.png",
+        "elapsed": 653.9000000000233,
+        "x": 2722,
+        "y": 2354.712840959317,
+        "scale": 0.3016666666666667,
+        "manual": true,
+        "active": true,
+        "targets": [
+          {
+            "id": "event-3",
+            "x": 148.69416666666666,
+            "y": 246.62076835606064,
+            "top": 214.04076835606062
+          },
+          {
+            "id": "event-4",
+            "x": 241.30583333333334,
+            "y": 357.1590233106061,
+            "top": 324.5790233106061
+          }
+        ],
+        "w": 390,
+        "h": 647.609375
+      }
+    }
+  ],
+  "files": {
+    "desktop-00-before.png": "b315c1e4d507411846538b51c4755d4ede987fc01cf6f6af92f4ea3e6484a1be",
+    "desktop-02-group.png": "18ca4ac98253e7d2848921bd1b44727b4daac84d7a6aa8c4222bc6e1b545c0a2",
+    "desktop-05-restored.png": "4e1ccae25f6d9a257b916cb05f19c06e404362dfb336d8862fb5841d99fd1af4",
+    "mobile-02-group.png": "a5fa3d1a8339c41aa381f3f9a291e6861eab8b2781779dd04ae7dcebea57b3d8",
+    "mobile-concurrent-dialogue.png": "efd952142690f65b1ebd472b8b495cab933e4c3af1292e265afb4800b54ed096"
+  }
+}
