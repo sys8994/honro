@@ -68,12 +68,17 @@
 .story-overlay .story-scene.text-only-scene{grid-template-columns:minmax(0,1fr);gap:0}.narration-inline .story-copy h2{font-size:clamp(17px,2vw,22px);color:#c9b889}.narration-inline .story-copy p{min-height:0}.narration-inline .story-scene{width:min(920px,100%)}
 
 /* Only the copy scrolls; the transparent control row stays clear. */
-.story-scene .story-actions,.story-guide .story-actions{position:sticky;bottom:0;z-index:1;flex-shrink:0}
+.story-scene .story-actions,.story-guide .story-actions{position:relative;z-index:1;flex-shrink:0}
 .story-scene .story-actions,.story-guide .story-actions,.story-document .story-actions,.narration-actions{background:none}
-.story-guide .story-actions{top:0}
 .story-scene,.story-guide{overflow:hidden}
+/* The panel owns available height; copy owns scrolling, never a measured self-cap. */
+.story-scene{grid-template-rows:minmax(0,1fr)}
+.story-copy{min-height:0;align-self:stretch}
+.story-copy h2{flex-shrink:0}
+.story-guide{grid-template-rows:auto auto minmax(0,1fr)}
+@media(max-width:600px){.story-guide{grid-template-rows:auto auto minmax(0,1fr) auto}}
 .story-overlay .story-guide{max-height:min(max(34dvh,160px),calc(100dvh - var(--guide-top,82px) - 12px))}
-.story-scene #story-line,.story-guide #story-line{min-height:0;max-height:var(--story-copy-limit,none);overflow:auto;overscroll-behavior:contain}
+.story-scene #story-line,.story-guide #story-line{min-height:0;overflow:auto;overscroll-behavior:contain}
 
 /* The optional reader also lives inside the pause journal dialog. Keep paper ink
    independent of the dark journal's generic paragraph colour. */

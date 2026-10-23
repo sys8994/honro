@@ -1,0 +1,24 @@
+"""Additional actual modal/keyboard/safe-area checks; reader profile prerequisite is shared with DOM audit."""
+import json,sys
+from pathlib import Path
+from playwright.sync_api import sync_playwright
+ROOT=Path(__file__).resolve().parents[2];sys.path.insert(0,str(ROOT/'tests'))
+from browser_support import launch,serve_game
+OUT=ROOT/'_local/reports/narration-body-20261023';saved=json.loads((ROOT/'_local/reports/act2-time-farewell-20261023/route-before.json').read_text());rows=json.loads((ROOT/'shared/data/narrative-current.json').read_text())['stages']['19']['beats']['route'];results=[]
+with serve_game() as base,sync_playwright() as pw:
+ b=launch(pw);c=b.new_context(viewport={'width':390,'height':844},is_mobile=True,has_touch=True);p=c.new_page();p.add_init_script('localStorage.setItem("honro-first-act-profile-1",'+json.dumps(json.dumps(saved))+');');p.goto(base+'/HONRO.html');p.wait_for_function('document.documentElement.dataset.honroReady',timeout=90000);p.locator('[data-action=continue]').tap();p.wait_for_function('HonroApp.canInput()&&!HonroApp.turnNotice',timeout=90000);p.locator('[data-action=pause]').tap();p.wait_for_function('HonroApp.modal.classList.contains("open")');p.locator('[data-action=close]').first.tap();assert p.evaluate('!HonroApp.modal.classList.contains("open")&&HonroApp.modal.innerHTML===""');p.evaluate('rows=>HonroStory.start(HonroApp,rows)',rows);p.wait_for_timeout(300);p.keyboard.press('Escape');assert p.evaluate('!!HonroApp.dialogue&&!HonroApp.modal.classList.contains("open")');p.keyboard.press('Tab');assert p.evaluate('document.getElementById("dialogue-root").contains(document.activeElement)');p.keyboard.press('Shift+Tab');assert p.evaluate('document.getElementById("dialogue-root").contains(document.activeElement)');p.mouse.click(25,25);assert p.evaluate('!HonroApp.modal.classList.contains("open")');results.append({'pauseCloseThenNarration':True,'escapeDoesNotOpenNestedModal':True,'tabAndShiftTabStayInReader':True,'overlayBlocksBackgroundPause':True})
+ cdp=c.new_cdp_session(p)
+ for view,insets in [({'width':390,'height':844},{'top':24,'left':0,'right':0,'bottom':34}),({'width':844,'height':390},{'top':0,'left':44,'right':44,'bottom':21})]:
+  p.set_viewport_size(view)
+  try:cdp.send('Emulation.setSafeAreaInsetsOverride',{'insets':insets});supported=True
+  except Exception as e:results.append({'safeAreaEmulation':False,'reason':str(e).splitlines()[0]});break
+  p.evaluate('HonroStory.draw(HonroApp)');p.wait_for_timeout(300)
+  data=p.evaluate('''(()=>{const n=document.createElement('div');n.style='position:fixed;padding:env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left)';document.body.append(n);const s=getComputedStyle(n),insets={top:parseFloat(s.paddingTop),right:parseFloat(s.paddingRight),bottom:parseFloat(s.paddingBottom),left:parseFloat(s.paddingLeft)};n.remove();return{insets,text:document.getElementById('story-line').getBoundingClientRect().toJSON(),buttons:[...document.querySelectorAll('#dialogue-root button')].map(n=>n.getBoundingClientRect().toJSON())}})()''')
+  assert data['text']['height']>10;assert all(r['x']>=data['insets']['left'] and r['right']<=view['width']-data['insets']['right'] and r['bottom']<=view['height']-data['insets']['bottom']for r in data['buttons']),data;results.append({'view':view,'safeAreaEmulation':supported,'data':data})
+ while p.evaluate('!!HonroApp.dialogue'):p.locator('[data-action=dialogue-skip]'if p.locator('[data-action=dialogue-skip]').count() else '[data-action=dialogue-next]').tap()
+ cdp.send('Emulation.setSafeAreaInsetsOverride',{'insets':{}});p.set_viewport_size({'width':360,'height':780});p.evaluate('HonroApp.launch(19)');p.wait_for_function('HonroApp.engine?.b.honroStage===19',timeout=90000)
+ for _ in range(16):
+  if not p.evaluate('!!HonroApp.dialogue'):break
+  p.locator('[data-action=dialogue-skip]'if p.locator('[data-action=dialogue-skip]').count() else '[data-action=dialogue-next]').tap();p.wait_for_timeout(50)
+ p.wait_for_function('HonroApp.canInput()&&!HonroApp.turnNotice',timeout=90000);p.evaluate('''()=>{const a=HonroApp,m=a.engine.b.honroMarkers.find(m=>m.id==='route');Object.assign(a.engine.active,{x:m.x-48,y:m.y,vx:0,vy:0});a.updateHUD(true)}''');p.locator('[data-context-interact=route]').tap();p.wait_for_timeout(350);fresh=p.evaluate('({text:document.getElementById("story-line").textContent,rect:document.getElementById("story-line").getBoundingClientRect().toJSON(),index:HonroApp.dialogue.index,total:HonroApp.dialogue.lines.length})');assert fresh['text']==rows[0][1]and fresh['rect']['height']>10 and fresh['index']==0 and fresh['total']==3;results.append({'freshFactoryLaunchAndRoute':fresh})
+ (OUT/'reader-state-browser.json').write_text(json.dumps(results,ensure_ascii=False,indent=2));b.close();print('PASS pause/modal/keyboard/overlay ownership; safe-area capability and measurements recorded')
