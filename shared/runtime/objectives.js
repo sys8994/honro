@@ -88,6 +88,8 @@ function draw(scene,e){
  if(farewell&&app?.engine?.b===e.b&&app.dialogue)return;
  const c=scene.ctx,{w,h,d}=scene.size(),z=scene.scale,cv=scene.canvas.getBoundingClientRect(),hud=document.querySelector('.honro-compact-hud')?.getBoundingClientRect();
  const top=110,bottom=Math.max(top+30,Math.min(h-24,(hud?.top??h)-cv.top-26)),mini=document.getElementById('minimap')?.getBoundingClientRect();
+ // Parallel family steps need no remote hint while the current interaction is in view.
+ if(farewell&&!scene.goalFocus){const t=targets[0],x=w/2+(t.x-scene.x)*z,y=h/2+(t.y-scene.y)*z;if(x>=0&&x<=w&&y>=0&&y<=h)return;}
  c.save();c.setTransform(d,0,0,d,0,0);c.font='600 12px sans-serif';c.textAlign='center';c.textBaseline='middle';
  let outside=0;
  for(const t of targets){

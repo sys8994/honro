@@ -6,7 +6,8 @@ const ctx=new Proxy({measureText:s=>({width:s.length*12}),fillText:s=>labels.pus
 const b={honroStage:19,mode:'campaign',units:[]},e={b},scene={ctx,x:0,y:0,scale:1,size:()=>({w:390,h:844,d:1}),canvas:{getBoundingClientRect:()=>({top:0,left:0})},missionTargets:[{id:'family',x:0,y:330,label:'가족 · 만나기'}]};
 g.HonroApp={engine:e,dialogue:null};
 const draw=()=>{labels.length=0;g.HonroObjectives.draw(scene,e);return [...labels];};
-assert.deepEqual(draw(),[],'Visible below HUD clearance remains on-screen');
+scene.missionTargets.push({id:'later-family',x:1500,y:330,label:'다음 가족 · 만나기'});
+assert.deepEqual(draw(),[],'Visible current family also suppresses remote parallel steps below HUD clearance');
 scene.missionTargets[0].x=800;assert.equal(draw().length,1);assert(draw()[0].startsWith('화면 밖 · '),'Off-screen guidance returns after dialogue');
 g.HonroApp.dialogue={lines:[]};assert.deepEqual(draw(),[],'Next target never covers dialogue speaker');
 g.HonroApp.dialogue=null;assert.equal(draw().length,1,'Reader exit restores genuine off-screen guidance');
