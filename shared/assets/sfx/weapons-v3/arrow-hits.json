@@ -1,0 +1,31 @@
+{
+  "assets": [
+    {
+      "id": "bow_hit",
+      "file": "bow_hit.mp3",
+      "sourceFile": "piercing-1a.wav",
+      "pitchSemitones": -0.5,
+      "duration": 0.3877551020408163,
+      "decodedPeak": 0.7777312994003296,
+      "rmsDBFS": -22.468955993652344,
+      "license": "OGA-BY 3.0",
+      "credit": "Additional Sound FX by Will Leamon",
+      "sourceURL": "https://opengameart.org/content/fleshy-fight-sounds",
+      "licenseURL": "https://static.opengameart.org/OGA-BY-3.0.txt"
+    },
+    {
+      "id": "arrow_block",
+      "file": "arrow_block.mp3",
+      "sourceFile": "piercing-arm-2a.wav",
+      "pitchSemitones": -0.2,
+      "duration": 0.38108843537414966,
+      "decodedPeak": 0.757577657699585,
+      "rmsDBFS": -21.22435760498047,
+      "license": "OGA-BY 3.0",
+      "credit": "Additional Sound FX by Will Leamon",
+      "sourceURL": "https://opengameart.org/content/fleshy-fight-sounds",
+      "licenseURL": "https://static.opengameart.org/OGA-BY-3.0.txt"
+    }
+  ],
+  "processing": "Original samples decoded, mono downmix, slight pitch reduction, 70Hz high-pass, onset/edge cleanup, mild dynamic compression, peak headroom, MP3. No added synthetic layers."
+}
