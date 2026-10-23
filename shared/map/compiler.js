@@ -80,6 +80,7 @@ function createBattle(st,project,profile=profileFor(st),options={}){
  G.HonroAct1Roster?.applyBattleDefense(b);
  G.HonroQuestTargets?.migrate(b);
  G.HonroCampaignMapRevision?.stamp(b);
+ C.initializePlayerTurnOrder(b,profile);
  return b;
 }
 // Imported legacy Workshop projects are normalized once; exported data is always v3.
