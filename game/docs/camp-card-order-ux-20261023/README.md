@@ -1,6 +1,6 @@
 # 휴식터 카드 순서 UX
 
-기준: `261e44ed5c93b4b65f7748a622ecc77f20309ff2`. 작업 브랜치: `fix/camp-card-order-ux-20261023`. master 반영과 공개 검수는 부모 담당이다.
+기준: `261e44ed5c93b4b65f7748a622ecc77f20309ff2`. 실행 소스·최종 생성물 커밋: `03a21b15`(전체 브라우저 검사 당시 작업 트리와 최종 smoke 소스 hash는 각 JSON 참조). 작업 브랜치: `fix/camp-card-order-ux-20261023`. master 반영과 공개 검수는 부모 담당이다.
 
 기존 코드도 비선택 합류 카드를 허용했지만 길게 누르기가 420ms였고, 이동 대상의 외곽선만 바뀌었다. 1초 길게 누르면 선택을 유지한 채 이동하며, 원래 슬롯 경계를 넘을 때 기존 카드 노드를 재배치하고 다른 카드가 180ms 동안 부드럽게 이동한다. 이동 중 순서는 임시 DOM에만 있으며, 유효한 놓기에서 기존 playerTurnOrder 저장을 한 번 호출한다. 같은 자리 놓기는 저장하지 않는다. 모션 감소 설정에서는 즉시 재배치한다.
 
@@ -25,4 +25,4 @@ AGENTS.md에 따라 자동 결과와 JPG는 Git 제외 `_local/reports/camp-card
 - [최종320 미리보기](../../../_local/reports/camp-card-order-ux-20261023/320-preview.jpg), [최종844 저장 후](../../../_local/reports/camp-card-order-ux-20261023/844-saved.jpg)
 - `browser/result.json`, `browser/actual-window.json`, `smoke.json`, `landscape-baseline.json`, `native.txt`, `build-final.txt`, `web-split.txt`, `retention.json`.
 
-기존 등록된 공개30그래프와 현재261의 활성378파일을 바이트/SHA256 대조했다(총11396레코드). 빌드가 중간세대로 취급해 지운261의 고유4파일은 해당 Git blob에서 정확히 복원해 함께 보존했다. 기존0570/379 보호 이력은 그대로다. 261의 Pages39918787757 성공은 부모가 확인했지만 정확한 UTC 완료 시각은 아직 받지 못해 신규 성공 이력 등록은 보류했다. `gh api repos/sys8994/honro/actions/runs/39918787757` 읽기는 `Forbidden`으로 거절되어 우회/재시도하지 않았다. 게임 자산 보존/검사는 완료했으며 부모가 완료 시각을 전달하면 정식 이력 등록이 가능하다. 이번 후보는 공개하지 않았다.
+기존 공개30그래프와 현재261의 활성378파일을 바이트/SHA256 대조했다(총11396레코드). 빌드가 중간세대로 취급해 지운261의 고유4파일은 해당 Git blob에서 정확히 복원했다. 이후 부모가 Pages39918787757 completed/success의 updated_at `2026-10-23T07:38:10Z`, 08:20:47UTC 재확인, 공개 `game.8b4bc34c455c6bc6.js` 실제 브라우저 로드07:50:11UTC를 전달했다. 이 근거로261을 정식 보호 이력과 fixture에 등록하여 공개31그래프를 보존한다. 기존0570/379 보호 이력도 그대로다. 앞선 `gh api repos/sys8994/honro/actions/runs/39918787757` 읽기의 `Forbidden` 후 같은 API를 우회/재시도하지 않았고 부모의 직접 확인을 사용했다. 현재 미해결 차단은 없으며 이번 후보는 공개하지 않았다.
