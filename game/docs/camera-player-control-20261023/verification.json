@@ -1,0 +1,75 @@
+{
+  "buildProvenance": {
+    "base": "0b96adc77629198675241d04b5e29954a525a6bb",
+    "gameEntry": "web/entries/game.a7a0a70ac170e44d.js",
+    "playtest": "web/entries/game.cb062379fecb4e8c.html?embedded=1",
+    "manifestSha256": "71d58b69aafe0c65d325e710ac341c0ecc7f52d6b9c0ecab682df266740721bd",
+    "sourceHashes": {
+      "shared/runtime/attack-camera.js": "c226961efd24ee24d0001010b9a9b982323f04225c2bdb490b9270190ed9e3cf",
+      "shared/runtime/main.js": "5e367314096dea3b6b74690097249da1cbf9d17ca9d806cd13cd7d1e6633d296",
+      "shared/runtime/reinforcement-camera.js": "00e4b8419a887b0f1d6dae46650046534e800476e4f87ed33b49d9910a8b6dea"
+    }
+  },
+  "normalStage1UICases": 34,
+  "preparedRosterActualUISelectionCases": 6,
+  "beforeReproductions": 2,
+  "attackFrameFixtureCases": 36,
+  "pageErrors": 0,
+  "checks": [
+    "npm run build",
+    "npm --prefix game run typecheck",
+    "node tests/attack-camera.mjs",
+    "node tests/attack-camera-actions.mjs",
+    "node tests/reinforcement-camera.mjs",
+    "node tests/camera-resize.mjs",
+    "node tests/player-turn-order.mjs",
+    "node tests/combat-damage-continue.mjs",
+    "node tests/stage14-ceiling-boundaries.mjs",
+    "node tests/web-split.mjs",
+    "python tests/camera-player-control-browser.py --before (0b96 bundle)",
+    "python tests/camera-player-control-browser.py (20 desktop cases, captured before stopping obsolete mobile tap harness)",
+    "python tests/camera-player-control-browser.py --device=mobile (20 touch/UI cases; real click for defend)",
+    "python tools/testing/diagnose-attack-camera-state.py --after (36 frame fixtures)"
+  ],
+  "preservedByteExactTo0b96": {
+    "shared/engine/src/engine.ts": "53c338a0078cc24021691d906ce6637896ae6b6475a749d5b77ee935afd433be",
+    "shared/runtime/allies.js": "e9ac5d12e6af531371b05d715ca5b99cc6f9d6ff115bc7210d600e339bd44b33",
+    "shared/engine/src/campUI.ts": "84f7c7fd0af02cdecc1facbdc9ec1e77f7040b9884533ed45c27c21361343e34",
+    "shared/runtime/training.js": "f8f780ff2dced393d27ad75955c39b36fd383ee6c41608e8360210923fc43dcd",
+    "shared/data/campaign.json": "85aa85e5c85af9507e6cda4359c7c4fd0175b8b4d0c6acb28071f98496cd755b",
+    "shared/runtime/campaign-map-revision.js": "b26b68100eb5a6b97c7f3fb1347ec047314ec6292cb85852397f2d1784950d7a",
+    "shared/runtime/story.js": "3f6a0350960ed5775a65b15cf8b9412a23d91a1020c16f0922241f4bad192268"
+  },
+  "publishedGraphs": 24,
+  "immutablePublishedFilesVerified": 574,
+  "public0b96ActiveFilesVerified": 354,
+  "publicationMetadataRead": {
+    "action": "gh run list --branch master --limit 3",
+    "target": "sys8994/honro Actions API",
+    "outcome": "GitHub Forbidden; not retried",
+    "impact": "No exact Pages run/timestamp inferred. Public 0b96 assets verified locally and retained. No candidate/push blocker."
+  },
+  "candidatePublished": false,
+  "masterAndPagesOwner": "parent",
+  "limits": [
+    "Chromium desktop and touch emulation, not physical devices",
+    "No stage completion/all-campaign claim",
+    "Six HUD selections use explicit added mage roster fixture",
+    "Attack AI/melee/summon/reinforcement/dialogue cases are frame fixtures, not ordinary campaign play",
+    "Unchanged legacy story-staging failure documented in prior report; no unrelated fix"
+  ],
+  "evidenceSha256": {
+    "evidence/after-desktop-fire.png": "bdb9eb470d814ef7ddcee161d302d3bc625b35781eaad6c4d81e6372b07a3f59",
+    "evidence/after-desktop-jump.png": "3a4e9373e2a7edc138720b2220e7de6d13e490250e676ab0e29b045574d95314",
+    "evidence/after-desktop-move.png": "68ce1a7e3ccfe61922e9816bddfe45ad7d8a97e0a0cd5c8fad3f85d1637b542b",
+    "evidence/after-desktop-next-turn.png": "d9c57e12e1d865c3a76974834f7179ca6ec1aa5bc507bf5009edadf41718a16f",
+    "evidence/after-desktop-selection.png": "02bebcbdf4381e9362656f2cfd14781a94361b52359ffd45f293c1c52fc8b06b",
+    "evidence/after-mobile-fire.png": "f556022e641e750891fb55f8ca8d356f53bdc8b790a3cbd2889d1444b14a08d5",
+    "evidence/after-mobile-jump.png": "751fc4509931c3914837b5f4c1203385cbc35cde2c83f7f37d2a7a5d444f228e",
+    "evidence/after-mobile-move.png": "6abe00db8b274ad6d85eb91e9df8ea9f0bf36e4a862afa4176e6d874786e93e9",
+    "evidence/after-mobile-next-turn.png": "2fe02e9ab020c0c1a97a31d724acab23832619953f16fa75057e3facf276fc2f",
+    "evidence/after-mobile-selection.png": "ee85ba676d553cb3d11d2bf8d769b5779c88a2726aa3b3e71d675696bf81e601",
+    "evidence/before-desktop-move.png": "358673433dc26e3304ef9bfbd6fbee244a8d4b6944d782eeedc89fe2c062caab",
+    "evidence/before-mobile-move.png": "3d5b47a8dc1fe870408df0959d05a16bc38aba2719d0b21d25ce4c52da59f878"
+  }
+}

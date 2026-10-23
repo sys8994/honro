@@ -30,6 +30,7 @@ function frame(scene,units,w,h,original){
 function blend(scene,from,to,t){if(t<=0){Object.assign(scene,{x:from.x,y:from.y,scale:from.scale});return;}if(t>=1){Object.assign(scene,{x:to.x,y:to.y,scale:to.scale});return;}const k=t*t*(3-2*t);scene.x=from.x+(to.x-from.x)*k;scene.y=from.y+(to.y-from.y)*k;scene.scale=Math.exp(Math.log(from.scale)+(Math.log(to.scale)-Math.log(from.scale))*k);}
 function update(scene,e,w,h,now=performance.now()){
  const b=e.b;let s=states.get(scene);if(!s||s.battle!==b){prime(scene,b);return false;}
+ G.HonroAttackCamera?.update(scene,e);
  const added=[],present=new Set();for(const u of b.units){if(!s.seen.has(u.id)&&enemy(u))added.push(u.id);present.add(u.id);}s.seen=present;
  if(scene.editorView||scene.skillPreview||b.mode==='practice'){s.shot=null;return false;}
  if(G.HonroAttackCamera?.blocksFocus(scene)){s.shot=null;scene.manual=true;return true;}

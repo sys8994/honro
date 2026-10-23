@@ -697,11 +697,10 @@
             this.scene.turnTarget=undefined;this.engine.fire(this.selected, u.angle, this.power);
         } }
         jump() { if (this.canInput()) {
-            this.engine.jump();
-            this.scene.manual = false;
+            if(this.engine.jump())G.HonroAttackCamera?.resume(this.scene);
         } }
-        drop() { if(this.canInput()&&this.engine.canDrop()){this.cancelInput();if(this.engine.drop()){this.scene.manual=false;this.updateHUD(true);}} }
-        cancelInput() { this.restMotion?.scene?._restCamera?.cancel(); this.keys.clear(); this.charging = false; this.releaseStick(); this.contacts.clear(); G.HonroAttackCamera?.endGesture(this.scene); this.firePointer = null; const k = $('stick-knob'); if (k)
+        drop() { if(this.canInput()&&this.engine.canDrop()){this.cancelInput();if(this.engine.drop()){G.HonroAttackCamera?.resume(this.scene);this.updateHUD(true);}} }
+        cancelInput() { this.restMotion?.scene?._restCamera?.cancel(); this.keys.clear(); this.charging = false; this.releaseStick(); this.contacts.clear(); this.firePointer = null; const k = $('stick-knob'); if (k)
             k.style.transform = 'translate(0,0)'; }
         inputs() {
             const stick = $('joystick'), fire = $('fire'), jump = $('jump'), cv = $('battlecanvas');
@@ -1319,7 +1318,7 @@
             const u = this.engine.active;
             this.selected = G.HonroStakeCrossing.skills(this.engine.b,u).includes(this.selectedByUnit[u.id]) ? this.selectedByUnit[u.id] : u.loadout.find(id => !S[id].passive); this.selectedByUnit[u.id]=this.selected;
             this.power = u.lastPower || .58;
-            this.scene.manual = false;
+            G.HonroAttackCamera?.resume(this.scene);
             this.updateHUD(true);
         } }
         equipConfirm(i) {const id=this.equipIncoming;if(!Number.isInteger(i)||i<1||i>3||!this.canEquip(id))return;const l=this.profile.loadouts[this.cls],j=l.indexOf(id),old=l[i];if(j===i)return;l[i]=id;if(j>0)l[j]=old||'';C.sanitizeLoadout(this.profile,this.cls);this.saveCampAllocation();const context=this.equipReturn;this.equipReturn=null;this.showCamp();if(context)this.restoreTalent(context);}
@@ -1361,7 +1360,7 @@
                                 let x = clamp(((this.keys.has('ArrowRight')||this.keys.has('KeyD')) ? 1 : 0) - ((this.keys.has('ArrowLeft')||this.keys.has('KeyA')) ? 1 : 0) + this.stick.x, -1, 1);
                                 if (Math.abs(x) > .01) {
                                     e.move(x, 1 / 120);
-                                    this.scene.manual = false;
+                                    if(e.active?.meleeFollow!=='ready')G.HonroAttackCamera?.resume(this.scene);
                                 }
                             }
                             e.tick(1 / 120);
