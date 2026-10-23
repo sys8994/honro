@@ -47,5 +47,40 @@
     "variant": "emotion.concern",
     "path": "art/portraits/variants-v1/sodan-concern.png",
     "review": "parent visually inspected identity/style/pose; runtime crop and alpha QA required; previously generated candidate reused, not newly generated"
+  },
+  {
+    "id": "sodan-holding-threads",
+    "actor": "sodan",
+    "variant": "scene.holding_threads",
+    "path": "art/portraits/variants-v1/sodan-holding-threads.png",
+    "review": "fresh standalone from approved identity master, parent inspected identity/style/story prop continuity; runtime UI/framing pending"
+  },
+  {
+    "id": "sodan-rest-hands",
+    "actor": "sodan",
+    "variant": "action.rest_hands",
+    "path": "art/portraits/variants-v1/sodan-rest-hands.png",
+    "review": "fresh standalone from approved identity master, parent inspected identity/style/story prop continuity; runtime UI/framing pending"
+  },
+  {
+    "id": "worker-mature-relief",
+    "actor": "worker_mature",
+    "variant": "emotion.relief",
+    "path": "art/portraits/variants-v1/worker-mature-relief.png",
+    "review": "fresh standalone from approved identity master, parent inspected identity/style/story prop continuity; runtime UI/framing pending"
+  },
+  {
+    "id": "keeper-failing-grip",
+    "actor": "keeper_ritual",
+    "variant": "scene.failing_grip",
+    "path": "art/portraits/variants-v1/keeper-failing-grip.png",
+    "review": "fresh standalone from approved identity master, parent inspected identity/style/story prop continuity; runtime UI/framing pending"
+  },
+  {
+    "id": "keeper-bind-cord",
+    "actor": "keeper_ritual",
+    "variant": "action.bind_cord",
+    "path": "art/portraits/variants-v1/keeper-bind-cord.png",
+    "review": "fresh standalone from approved identity master, parent inspected identity/style/story prop continuity; runtime UI/framing pending"
   }
 ]
