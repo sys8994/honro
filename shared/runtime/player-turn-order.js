@@ -41,8 +41,12 @@ function camp(app){
   if(s.armed)suppressUntil=performance.now()+700;
   const r=nav.getBoundingClientRect(),inside=s.x>=r.left&&s.x<=r.right&&s.y>=r.top&&s.y<=r.bottom;
   const valid=!cancel&&s.armed&&inside&&app.screen==='camp'&&nav.isConnected&&app.profile===s.profile&&JSON.stringify(known(app.profile))===JSON.stringify(s.visible);
+  const tapped=!cancel&&!s.armed&&inside&&s.pointerType==='touch'&&performance.now()-s.started<420&&Math.hypot(s.x-s.x0,s.y-s.y0)<10&&app.screen==='camp'&&nav.isConnected;
   clearVisual();if(cancel&&s.armed&&status)status.textContent='이동 취소 · 원래 순서 유지';if(nav.hasPointerCapture?.(s.id))nav.releasePointerCapture(s.id);
   if(valid&&commit(app,reordered(app.profile,s.cls,s.target))){display();if(status)status.textContent=`${name(s.cls)} ${known(app.profile).indexOf(s.cls)+1}번째 · 저장됨`;}
+  // Touch browsers can omit the next compatibility click after a long drag.
+  // Select once at pointer-up; the document hook consumes only its duplicate.
+  if(tapped){app.playerTurnOrderTap={cls:s.cls,until:performance.now()+700};app.showCamp(s.cls);}
  }
  function arm(s){
   if(gesture!==s||contacts.size!==1||!nav.isConnected||app.screen!=='camp')return;
@@ -55,7 +59,7 @@ function camp(app){
   const card=e.target.closest('.hero-tab');if(!card||card.disabled||!known(app.profile).includes(card.dataset.class))return;
   // A fresh pointer gesture must remain a normal tap even just after a drag.
   suppressUntil=0;
-  const s={id:e.pointerId,card,cls:card.dataset.class,target:card.dataset.class,profile:app.profile,visible:known(app.profile),x0:e.clientX,y0:e.clientY,x:e.clientX,y:e.clientY,armed:false,center:card.getBoundingClientRect().left+card.offsetWidth/2,pointerType:e.pointerType};
+  const s={id:e.pointerId,card,cls:card.dataset.class,target:card.dataset.class,profile:app.profile,visible:known(app.profile),x0:e.clientX,y0:e.clientY,x:e.clientX,y:e.clientY,armed:false,started:performance.now(),center:card.getBoundingClientRect().left+card.offsetWidth/2,pointerType:e.pointerType};
   gesture=s;s.timer=setTimeout(()=>arm(s),420);
  }
  function move(e){
@@ -99,6 +103,6 @@ function camp(app){
  app.playerTurnOrderCleanup=cleanup;observer=new MutationObserver(()=>{if(!nav.isConnected)cleanup();});observer.observe(app.root,{childList:true,subtree:true});
 }
 // Consume stale former editor actions from old DOM; there is no second editor.
-function handle(app,el){return !!el.dataset.action?.startsWith('player-order-');}
+function handle(app,el,e){if(el.dataset.action?.startsWith('player-order-'))return true;const tap=app.playerTurnOrderTap;return el.dataset.action==='hero'&&!!e&&e.detail>0&&tap?.cls===el.dataset.class&&performance.now()<tap.until;}
 G.HonroPlayerTurnOrder={camp,handle,known,order,reordered,commit};
 })(globalThis);

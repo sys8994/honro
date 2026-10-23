@@ -999,7 +999,7 @@
             } });
             window.addEventListener('blur', () => { this.cancelInput(); });
             document.addEventListener('click', e => { if(e.target===this.modal)return; let el = e.target.closest('[data-action]'); if (!el || el.disabled)
-                return; if(this.dialogue&&!['dialogue-prev','dialogue-next','dialogue-skip'].includes(el.dataset.action))return; const a = el.dataset.action, id = el.dataset.id, sk = el.dataset.skill; if(e.isTrusted&&((e.detail>0&&performance.now()<(this.journeyInputAfter||0))||(e.detail>1&&['journey-book','journey-travel','journey-enter','journey-replay','rest','confirm-journey-launch'].includes(a))))return; if(G.HonroPlayerTurnOrder?.handle(this,el))return; switch (a) {
+                return; if(this.dialogue&&!['dialogue-prev','dialogue-next','dialogue-skip'].includes(el.dataset.action))return; const a = el.dataset.action, id = el.dataset.id, sk = el.dataset.skill; if(e.isTrusted&&((e.detail>0&&performance.now()<(this.journeyInputAfter||0))||(e.detail>1&&['journey-book','journey-travel','journey-enter','journey-replay','rest','confirm-journey-launch'].includes(a))))return; if(G.HonroPlayerTurnOrder?.handle(this,el,e))return; switch (a) {
                 case 'title':
                     this.showTitle();
                     break;
