@@ -104,7 +104,8 @@ export class Engine {
     select(id: string) { const u = this.unit(id); if (this.b.phase !== 'aim' || (this.active?.retreat || this.active?.meleeFollow==='ready' || this.active?.platformDrop && this.active.platformDrop.phase!=='land') || !u || u.side !== 0 || u.summoned || u.enthrall || u.dead || u.acted)
         return false; this.b.active = id; this.emit('change'); return true; }
     manaCost(s: Skill, u: Unit, power=u.lastPower) { const rank=s.ultimate||s.basic?1:(u.ranks[s.id] || 1),scale=u.side===0?MANA_COST_MULTIPLIER:1,charge=meleeSkill(s)&&!['counterStance','lifeSlash'].includes(s.mode)?.75+.25*clamp(power,0,1):1; return passiveCost(u,s,s.cost*skillManaFactor(rank)*scale*charge)*(SUMMON_SKILLS.has(s.id)?1-(u.nextSummonDiscount||0):1); }
-    skillAllowed(s:Skill,u=this.active){return !!u&&warriorAllowed(u,s);}
+    noncombatWalk(){const b=this.b as Battle&{honroStage?:number;honroCustom?:boolean};return b.honroStage===19&&!b.honroCustom&&b.mode==='campaign';}
+    skillAllowed(s:Skill,u=this.active){return !this.noncombatWalk()&&!!u&&warriorAllowed(u,s);}
     manualDive(){return manualDive(this);}
     cooldownLeft(u:Unit,skillId:string){const cap=SKILLS[skillId]?.cooldown;if(!cap)return 0;const raw=Math.max(0,(u.cooldowns?.[skillId]||0)-this.b.round);return Math.min(cap,raw);}
     effective(s: Skill, u: Unit) {
@@ -313,6 +314,7 @@ export class Engine {
         return this.collision(a,c,r,owner,hit,units,skip,terrain,true,attack || ('owner' in a ? a as Projectile : undefined));
     }
     predict(u: Unit, skill: Skill, angle: number, power: number, target?: Unit, collect = true, ignoreUnits = false): Prediction {
+        if(this.noncombatWalk())return {points:[],x:u.x,y:u.y,closest:99999};
         const martial=warriorPrediction(this,u,skill,angle,power);if(martial)return martial;
         const custom=redesignPrediction(this,u,skill,angle,power,false,ignoreUnits);if(custom)return custom;
         const body = BODY.has(skill.mode), origin = this.projectileOrigin(u, skill, angle), v = this.velocity(u, skill, angle, power);
@@ -491,6 +493,7 @@ export class Engine {
         return best;
     }
     fire(skillId: string, angle: number, power: number, ai = false): boolean {
+        if(this.noncombatWalk())return false;
         const b = this.b, u = this.active, s = SKILLS[skillId];
         if (!u || u.dead || u.retreat || !s || !warriorAllowed(u,s) || s.enemyOnly&&u.side===0&&!ai || s.passive || (!ai && (!this.canAct() || !this.grounded(u))) || (!u.loadout.includes(skillId)&&!(skillId==='S00'&&u.meleeFollow==='ready')) || (s.ultimate && u.side===0 && this.b.mode!=='practice' && !ultimateUnlocked(this.b.heroes[u.cls],u.cls)) || this.cooldownLeft(u,skillId)>0 || u.focus < this.manaCost(s, u,power))
             return false;
@@ -573,9 +576,9 @@ export class Engine {
         return terrainSurface(this.collisionTerrain({x,y:0},{x,y:0},3),x,min,max,Infinity,(t,edge)=>!!this.dropEdges(u,t)?.includes(edge));
     }
     jumpCost(u:Unit){return Math.max(25,75-passiveRank(u,'SP03')*5);}
-    jump(u = this.active) { if (!u || u.dead || u.eaterCapturedBy || u.summonKind==='eater' || u.meleeFollow==='ready' || u.fixed || u.airborne || u.moveLeft < this.jumpCost(u) || !this.grounded(u))
+    jump(u = this.active) { if(this.noncombatWalk()&&u?.side===0)u.moveLeft=u.maxMove; if (!u || u.dead || u.eaterCapturedBy || u.summonKind==='eater' || u.meleeFollow==='ready' || u.fixed || u.airborne || u.moveLeft < this.jumpCost(u) || !this.grounded(u))
         return false; delete u.platformDrop;delete u.moveTarget; u.jumping = true; u.vy = -660*(1+passiveRank(u,'SP03')*.02); u.moveLeft = Math.max(0, u.moveLeft - this.jumpCost(u)); u.landing = 0; this.fx('spark', u.x, u.y, '#d7d0b8', 20); this.emit('sound', { name: 'jump' }); return true; }
-    walk(u:Unit,direction:number,dt:number,requireSupport=false){if(u.eaterCapturedBy||u.summonKind==='eater')return false;if(u.meleeFollow==='ready'||u.platformDrop&&u.platformDrop.phase!=='land')return;return walkTerrain(this,u,direction,dt*(1-(u.slowed?.factor||0)),requireSupport);}
+    walk(u:Unit,direction:number,dt:number,requireSupport=false){if(u.eaterCapturedBy||u.summonKind==='eater')return false;if(u.meleeFollow==='ready'||u.platformDrop&&u.platformDrop.phase!=='land')return;if(this.noncombatWalk()&&u.side===0)u.moveLeft=u.maxMove;const result=walkTerrain(this,u,direction,dt*(1-(u.slowed?.factor||0)),requireSupport);if(this.noncombatWalk()&&u.side===0)u.moveLeft=u.maxMove;return result;}
     turnArrow(point?:Vec){return turnArrow(this,point);}
     useGate(){return useGate(this);}
     gateCandidate(){return gateCandidate(this);}
@@ -764,7 +767,7 @@ export class Engine {
         this.finishAction();
         return true;
     }
-    wait() { if (!this.canAct() || this.active?.platformDrop && this.active.platformDrop.phase!=='land')
+    wait() { if (this.noncombatWalk() || !this.canAct() || this.active?.platformDrop && this.active.platformDrop.phase!=='land')
         return; const u = this.active!; if(u.retreat){this.finishAction(true);return;}const healBefore=u.hp,shieldBefore=u.shield; u.shield = Math.max(u.shield, Math.round(u.maxHp * .12)); u.shieldUntil = this.b.teamEnds[1] + 1; u.focus = Math.min(u.maxFocus, u.focus + u.regen); if (!this.combatEnemies().length)
         u.hp = Math.min(u.maxHp, u.hp + Math.round(u.maxHp * .12)); healed(this.b,u,u.id,healBefore,'action:defend');shielded(this.b,u,u.id,shieldBefore);this.message(`${u.name} · 방어하며 대기`); this.finishAction(); }
     iceGourdReady(){return iceGourdReady(this);}
@@ -2050,6 +2053,7 @@ export class Engine {
     }
     actionReviewSeconds(){return this.active?.side!==0&&!Object.keys(this.b.reviewDamage||{}).length?.18:ACTION_REVIEW_SECONDS;}
     finishAction(reviewed=false) {
+        if(this.noncombatWalk())return;
         const b = this.b, u = this.active;
         if(u?.platformDrop&&u.platformDrop.phase!=='land')return;
         if(finishWarrior(this))return;
@@ -2324,6 +2328,7 @@ export class Engine {
     }
     tick(dt = STEP) {
         const b = this.b;
+        if(this.noncombatWalk()){if(!['won','lost'].includes(b.phase)){this.counter++;b.turnAge+=dt;this.stepUnits(dt);if(this.active?.side===0)this.active.moveLeft=this.active.maxMove;}return;}
         tickKeeperRitual(this,dt);
         if (b.phase === 'won' || b.phase === 'lost'){cleanupPassiveHistory(this);return;}
         if(b.phase==='review'){b.reviewLeft=Math.max(0,(b.reviewLeft||0)-dt);if(b.reviewLeft<=1e-8)this.finishAction(true);return;}

@@ -16,7 +16,7 @@ function speaker(app,who){
   const id=b.honroMarkers?.find(m=>m.id==='resident')?.target,u=b.units.find(u=>u.id===id&&u.honroCivilian);
   return u&&!u.dead&&u.hp>0?u:null;
  }
- if(b.honroStaging?.cinematic!==2)return null;
+ const farewell=G.HonroStage19Farewell?.spirit(b,who);if(farewell)return farewell;if(b.honroStaging?.cinematic!==2)return null;
  const fresh14=b.honroStage===14&&b.honroNarrativeRevision===1,id=fresh14&&who==='중층 주민'?(b.honroMarkers?.find(m=>m.id==='family-mid')?.target||'resident-3'):fresh14&&who==='주민'?'objective':speakers[b.honroStage]?.[who],u=b.units.find(u=>u.id===id)||b.honroConvoyActors?.find(u=>u.id===id);return u&&!u.dead&&u.hp>0?u:null;
 }
 const face=(actor,at,pose='point',camera=false)=>({type:'look',actor,at,pose,camera,scale:camera? .8:undefined,duration:650});
@@ -41,6 +41,10 @@ function build(app,lines,options={}){
  for(const [i,[who,text,meta={}]]of lines.entries()){
   const id=meta.storyId||'',when=id||(entry?'entry':outcome?'outcome':'');
   if(meta.rowId)cues[i].push(...(meta.direction||[]));
+  if(G.HonroStage19Farewell?.active(b)){
+   if(meta.rowId==='19.beats.separate-1:wrapped-handle')cues[i].push({type:'look',actor:'mourner-brother',at:{marker:'separate-1'},pose:'inspect',duration:300,camera:false});
+   if(meta.rowId==='19.beats.separate-3:cannot-remember')cues[i].push({type:'move',actor:'knight',to:{marker:'separate-3',dx:-52},duration:1200,maxDistance:1100,focus:false});
+  }
   else for(const r of (!b.honroNarrativeRevision&&G.HONRO_NARRATIVE_V0?.directionRules||rules))if(r.stage===b.honroStage&&when.includes(r.when)&&who===r.who&&text.includes(r.text))cues[i].push(...r.actions);
   const evidenceGoal=meta.evidenceGoal||(id==='act3-party-reunion-v2'?'party-reunion':null);if(evidenceGoal&&!lines.slice(0,i).some(r=>(r[2]?.evidenceGoal||(r[2]?.storyId==='act3-party-reunion-v2'?'party-reunion':null))===evidenceGoal))cues[i].push(...(G.HonroEvidenceQuests?.fieldDirections(b,evidenceGoal)||[]));
   if(meta.spiritPart)cues[i].push(...spirit[{observe:0,hwigyeom:1,recognize:2,ask:3,reply:4,guide:5}[meta.spiritPart]]);

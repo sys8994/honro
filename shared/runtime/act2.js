@@ -122,9 +122,9 @@ function eligibility(app,m){const b=app.engine.b,s=readySteps(b).find(q=>q.id===
  }
  return{ok:true,reason:m.label};
 }
-function say(app,id,lines){if(!lines?.length)return;app.sayLines(G.HonroAct2Content.scene('act2-'+app.stage.id+'-'+id,app.stage.name,lines));}
+function say(app,id,lines){if(!lines?.length)return;const rows=G.HonroAct2Content.scene('act2-'+app.stage.id+'-'+id,app.stage.name,lines);if(G.HonroStage19Farewell?.active(app.engine.b))G.HonroStory.start(app,rows,{title:app.stage.name});else app.sayLines(rows);}
 function completeStep(app,s,actor){const e=app.engine,b=e.b,a=memory(b);if(a.done[s.id])return;
- a.done[s.id]=true;a.checkpoints.push({id:s.id,round:b.round});
+ a.done[s.id]=true;a.checkpoints.push({id:s.id,round:b.round});G.HonroStage19Farewell?.prepare(b);
  const m=marker(b,s.id);if(m)m.collected=true;G.HonroEvidenceQuests?.onComplete(app,s,actor);
  const lines=(G.HonroObjectiveRevision?.contentFor(b,app.stage)||app.stage).beats?.[s.id];say(app,s.id,lines?.map(([who,text,meta={}])=>[who,text,{...meta,evidenceGoal:s.id}]));if(!lines?.length)app.event(s.label+' · 완료',{kind:'narration',source:'objective:'+s.id});app.dirty=true;
 }
@@ -161,7 +161,7 @@ function use(app,m){const e=app.engine,b=e.b,a=memory(b),s=readySteps(b).find(q=
   if(s.id==='leak'){expose(b,b.round+3);for(const u of b.units.filter(u=>u.honroSpirit&&!u.dead)){u.shield=0;u.bound=Math.max(u.bound,1);}}
   if(s.id==='route'){a.routeOpen=true;for(const u of b.units.filter(u=>u.honroProtected))u.shield=Math.max(u.shield,80);}
   if(s.id.startsWith('separate-')){if(!revision2(b)){a.pendingWaves??=[];a.pendingWaves.push({key:s.id,kind:s.id==='separate-3'?'bellCluster':'echo',n:2});}expose(b,b.round+2,m,900);}
-  if(s.id.startsWith('send-')){for(const u of e.heroesAlive()){u.focus=Math.min(u.maxFocus,u.focus+25);}app.event('혼이 임시 그릇을 떠나 바깥 길로 흘러간다.',{kind:'narration',source:'soul-released'});}
+  if(s.id.startsWith('send-')){for(const u of e.heroesAlive()){u.focus=Math.min(u.maxFocus,u.focus+25);}if(!G.HonroStage19Farewell?.active(b))app.event('혼이 임시 그릇을 떠나 바깥 길로 흘러간다.',{kind:'narration',source:'soul-released'});}
   if(s.id==='escort')a.escort=true;
   G.HonroObjectiveContributions?.interact(b,s.id,e.active,{rescue:s.kind==='rescue',progress:steps(b).some(q=>['hold','destroy','escort','reach'].includes(q.kind)&&a.done[q.id])});
   completeStep(app,s,e.active);

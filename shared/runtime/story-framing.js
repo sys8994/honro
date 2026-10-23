@@ -20,7 +20,7 @@ const alive=u=>u&&!u.dead&&u.hp>0;
 // World framing stays at a readable middle distance, including old saved rows
 // and blocking cues that used to request a 1.05 close-up.
 const scaleLimits=Object.freeze({portrait:.82,conversation:.78,'object-introduction':.8,situation:.72,objective:.72});
-function actor(b,id){return b.units.find(u=>u.id===id)||b.honroConvoyActors?.find(u=>u.id===id)||Object.values(b.honroStaging?.hidden||{}).find(u=>u.id===id)||b.units.find(u=>u.cls===id&&u.side===0&&!u.summoned);}
+function actor(b,id){return b.units.find(u=>u.id===id)||b.honroConvoyActors?.find(u=>u.id===id)||Object.values(b.honroStaging?.hidden||{}).find(u=>u.id===id)||b.units.find(u=>u.cls===id&&u.side===0&&!u.summoned)||G.HonroStage19Farewell?.actor(b,id);}
 function speakerId(app,name){const aliases={11:{'주민':'resident-4'},23:{'짐꾼':'act3-carrier'}},bound=aliases[app.engine.b.honroStage]?.[name];if(bound&&alive(actor(app.engine.b,bound)))return bound;const u=G.HonroStoryDirection?.speaker(app,name)||app.speakerUnits?.(name)?.find(alive)||app.engine.b.units.find(u=>u.name===name&&alive(u))||Object.values(app.engine.b.honroStaging?.hidden||{}).find(u=>u.name===name&&alive(u));return u?.id;}
 // These are authored story-row identities, before interludes/deferred pages
 // are composed. They remain stable whether the arrival has already been read.
@@ -56,6 +56,7 @@ function bind(app,lines,options){if(!app.engine||app.screen!=='battle')return li
   const eventId=meta.eventSource?.startsWith('encounter:')?meta.eventSource.slice(10):null;
   const reinforcementIds=meta.reinforcementIds||(eventId?(b.honroState?.reinforcementEvents?.[eventId]??((b.honroEvents||[]).some(ev=>ev.id===eventId&&G.HonroEncounters.combat(ev.action))?[]:null)):null);
   if(reinforcementIds)return[who,text,{...meta,camera:speakerPolicy(who,meta,{id:`reinforcement:${stage}:${key}:${index}`,intent:'situation',targets:reinforcementIds.map(actor=>({actor})),padding:100,maxScale:Math.min(app.scene?.scale||.72,.72),reinforcement:true})}];
+  const farewellCamera=G.HonroStage19Farewell?.camera(b,meta);if(farewellCamera)return[who,text,{...meta,camera:{...farewellCamera,id:meta.rowId}}];
   if(meta.camera)return[who,text,{...meta,camera:speakerPolicy(who,meta,meta.camera)}];
   const kind=G.HonroStory.speakerPresentation(who,meta).kind,scenePolicy=Object.entries(policies).find(([id])=>id.startsWith(stage+':')&&(key===id.slice(id.indexOf(':')+1)||key.endsWith(':'+id.slice(id.indexOf(':')+1))||key.includes(id.slice(id.indexOf(':')+1))))?.[1];
   let camera=scenePolicy?{...scenePolicy}:kind==='character'?conversation(app,who,subjects):{intent:'situation',targets:subjects.length?subjects:[openings[stage]||{objective:'current'}],padding:65,maxScale:.8};

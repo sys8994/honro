@@ -27,7 +27,7 @@ function evidence(b){if(b.honroCustom||b.honroNarrativeRevision!==1)return[];con
  rows=rows.filter(r=>r&&(r.kind==='household-cargo'||!Object.values(custody).some(q=>q.source===r.key)));
  for(const [key,q]of Object.entries(custody)){if(q.phase==='dropped'){rows.push({key,kind:'carried-case',x:q.x,y:q.y,phase:q.phase});continue;}if(id===25&&q.id==='25:household-tally'&&(f.events['stake-arrival-5']?.progress||0)<1)continue;const u=b.units.find(u=>u.id===q.actor);if(!u||u.dead&&q.phase!=='dropped')continue;const p=['placing','packing'].includes(q.phase)?q.progress:q.phase==='laid'||q.phase==='dropped'?1:0;rows.push({key,kind:'carried-case',x:p?(u.x+(u.facing||1)*24)*(1-p)+q.x*p:u.x+(u.facing||1)*24,y:p?(u.y-u.h*.44)*(1-p)+q.y*p:u.y-u.h*.44,phase:q.phase});}
 
- return rows;
+ return G.HonroStage19Farewell?.active(b)?rows.filter(r=>!['released-soul','old-inscription'].includes(r.kind)):rows;
 }
 // Closed, human-scale bundles identify an investigation without publishing its text.
 // The authored marker, target radius and acquisition policy remain untouched.

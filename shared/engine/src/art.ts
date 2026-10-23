@@ -289,6 +289,7 @@ export class Renderer {
     }
     /** Production guide: dotted collision path and faint solid continuation beyond units. */
     predictionGuide(c:C, engine:Engine, active:Unit, skillId:string, power:number, charging:boolean, throughUnits=false) {
+        if(engine.noncombatWalk())return;
         const sk=SKILLS[skillId]||SKILLS[active.loadout[0]]; if(!sk||sk.passive)return;
         const guidePower=charging?power:(active.lastPower??power??.5);
         const zoom=Math.max(.12,this.scale||1);

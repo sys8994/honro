@@ -115,3 +115,7 @@
 .narration-inline .narration-scene #story-line{color:#f0dfba}
 .narration-inline .narration-scene .story-actions{border-top:1px solid #bda87940;padding-top:14px;background:none}
 @media(max-width:600px){.narration-inline .story-scene.narration-scene{padding:20px}}
+/* Chapter19 keeps movement and conversation, with no combat affordances. */
+.honro #app .battle.noncombat-walk .honro-compact-hud #combat-skills,.honro #app .battle.noncombat-walk .honro-compact-hud #fire,.honro #app .battle.noncombat-walk .honro-compact-hud .honro-defend,.honro #app .battle.noncombat-walk .honro-compact-hud #read-aim,.honro #app .battle.noncombat-walk .honro-compact-hud .wind-gauge,.honro #app .battle.noncombat-walk .honro-compact-hud [data-vital="move"]{display:none!important}
+.honro #app .battle.noncombat-walk .honro-compact-hud .hud-vitals{grid-template-columns:repeat(2,minmax(0,1fr))!important}
+.bell-inscription-scene .bell-base-inscription{white-space:pre-line;text-align:center;color:#d4cfb6;background:#59615a;border:5px solid #3c4843;outline:1px solid #919780;padding:18px 24px!important;font-family:serif;letter-spacing:.12em;text-shadow:0 1px #28342e;clip-path:polygon(4% 0,95% 2%,100% 92%,96% 100%,0 97%,1% 9%)}

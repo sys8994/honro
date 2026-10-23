@@ -188,6 +188,7 @@
         }
         render(e, dt = 0, selected = '', power = .6, charging = false, effectDt = dt, paused = false) {
             const { w, h, d } = this.size(), c = this.ctx, b = e.b;
+            const quietWalk=e.noncombatWalk();
             const quietOutro=G.HonroSodanWithdrawal?.worldOutroDialogue(this.storyFrame?.app)||false;
             this.battle=b;
             this.settleHitFeedback?.(e,paused||this.storyFrozen);
@@ -318,6 +319,7 @@
             G.HonroAct1StoryArt?.draw(this,e);
             G.HonroAct23StoryArt?.draw(this,e);
             G.HonroNarrativeArt?.draw(this,e);
+            G.HonroStage19FarewellArt?.draw(this,e);
             if(!quietOutro&&b.honroStage===10&&b.honroState?.sodanCoop)this.finaleRitual(c,b);
             // Persisted residual charms are real battle objects, not impact FX.
             for (const trap of quietOutro?[]:b.occultTraps || []) {
@@ -335,7 +337,7 @@
                     continue;
                 this.field(c, z.x, z.y, z.radius || z.r || 80, z.kind || 'flame');
             }
-            if (!quietOutro && !this.storyFrozen && u && b.phase === 'aim' && !u.summoned && selected && e.canAct?.()) {
+            if (!quietWalk && !quietOutro && !this.storyFrozen && u && b.phase === 'aim' && !u.summoned && selected && e.canAct?.()) {
                 try {
                     const repeat=u.cls==='archer'&&((u.ranks?.AP01||0)>0);
                     if(this.arcFx){this.arcFx.time=this.time;this.arcFx.scale=this.scale;this.arcFx.predictionGuide(c,e,u,selected,power,charging,repeat);}
@@ -349,15 +351,15 @@
                 visibleUnits.push(v);
                 // Keep the same world bodies, without combat bars/arrows, hit
                 // flashes or the bound character's quest label over their faces.
-                if(quietOutro)this.unitBody(c,G.HonroNarrativeRevision?.bodyBound(b,v)?{...v,side:2}:v,0);
+                if(quietOutro||quietWalk)this.unitBody(c,G.HonroNarrativeRevision?.bodyBound(b,v)?{...v,side:2}:v,0);
                 else this.unit(c, v, !this.skillPreview && v.id === b.active, charging && v.id === b.active ? power : 0);
-                if(!quietOutro&&(!G.HonroAct2||G.HonroAct2.visible(b,v)))G.HonroCombatStatus.draw(c,b,v,this.time,this.scale,!this.skillPreview&&v.id===b.active);
+                if(!quietWalk&&!quietOutro&&(!G.HonroAct2||G.HonroAct2.visible(b,v)))G.HonroCombatStatus.draw(c,b,v,this.time,this.scale,!this.skillPreview&&v.id===b.active);
             }
             G.HonroAct1StoryArt?.cartFront(this,e);
-            if(!quietOutro&&!this.skillPreview){this.occludedUnitSilhouettes(c,b,visibleUnits,charging?power:0);this.tacticalUnitMarkers(c,b,visibleUnits);}
+            if(!quietWalk&&!quietOutro&&!this.skillPreview){this.occludedUnitSilhouettes(c,b,visibleUnits,charging?power:0);this.tacticalUnitMarkers(c,b,visibleUnits);}
             if(!quietOutro){G.HonroStoryFraming?.highlight(this,e);
             this.terrainHealth(c,b,w,h);
-            G.HONRO_CORE.drawCombatPassives(c,e,this.time);}
+            if(!quietWalk)G.HONRO_CORE.drawCombatPassives(c,e,this.time);}
             this.reviewSummary=reviewing?Object.entries(b.reviewDamage||{}).filter(([id,damage])=>damage>0&&e.unit(id)&&(!G.HonroAct2||G.HonroAct2.visible(b,e.unit(id)))).map(([id,damage])=>({attacker:u?.name||'',target:e.unit(id),damage:Math.round(damage)})):[];
             if(this.arcFx)this.arcFx.time=this.time;
             if(!quietOutro){
@@ -372,7 +374,7 @@
             }
             }
             c.restore();
-            if(!quietOutro){this.chargeFx(e,power,charging);
+            if(!quietOutro){if(!quietWalk)this.chargeFx(e,power,charging);
             G.HonroObjectives?.draw(this,e);}
         }
         weatherParticles(c,b,w,h,dt){

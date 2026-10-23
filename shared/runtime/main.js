@@ -539,7 +539,7 @@
     if(G.HonroRestJourney)G.HonroRestJourney.startEntry(this,st.name);else G.HonroStory.start(this,G.HonroObjectives.entry(this),{title:st.name,after:'entry'});
             }
         }
-        mount(b,{freshReport=false,reportScope}={}) { C.initializePlayerTurnOrder(b,this.profile,false); G.HonroAct3Void?.recover(b); this.stage=G.HonroObjectiveRevision?.contentFor(b,this.stage)||this.stage; G.HonroStageRules.sanitizeStageBattle(b); G.HonroEncounters.configure(b);G.HonroProgression.initialize(b,this.profile);C.applySpBalanceMigration(b);G.HonroClearReport.begin(b,{fresh:freshReport,scope:reportScope||G.HonroClearReport.scopeOf(this)});b.honroActiveLimit??=H.stages[(b.honroStage||1)-1].active;b.enemyLimit=b.honroActiveLimit;this.screen = 'battle'; this.contacts.clear(); this.acc = 0; this.engine = new C.Engine(b, ev => { if(this.engine?.b===b&&(ev.type==='change'||ev.type==='save'))G.HonroMukjongAudio?.observe(this);if(this.scene?._pausedBattleFrame)this.scene._pausedBattleFrame=null;this.scene?.event(ev); if (ev.type === 'sound')
+        mount(b,{freshReport=false,reportScope}={}) { C.initializePlayerTurnOrder(b,this.profile,false); G.HonroAct3Void?.recover(b); this.stage=G.HonroObjectiveRevision?.contentFor(b,this.stage)||this.stage; G.HonroStageRules.sanitizeStageBattle(b); G.HonroEncounters.configure(b);G.HonroProgression.initialize(b,this.profile);C.applySpBalanceMigration(b);G.HonroClearReport.begin(b,{fresh:freshReport,scope:reportScope||G.HonroClearReport.scopeOf(this)});b.honroActiveLimit??=H.stages[(b.honroStage||1)-1].active;b.enemyLimit=b.honroActiveLimit;G.HonroStage19Farewell?.prepare(b);this.screen = 'battle'; this.contacts.clear(); this.acc = 0; this.engine = new C.Engine(b, ev => { if(this.engine?.b===b&&(ev.type==='change'||ev.type==='save'))G.HonroMukjongAudio?.observe(this);if(this.scene?._pausedBattleFrame)this.scene._pausedBattleFrame=null;this.scene?.event(ev); if (ev.type === 'sound')
             {if(ev.name==='mukjongKeeper')G.HonroMukjongAudio?.keeper(this);else this.audio?.play(ev.name);} if (ev.type === 'save')
             this.dirty = true; }, false); const e = this.engine; G.HonroMukjongAudio?.attach(this,b,{fresh:freshReport}); G.HonroAllies.attach(this,e); G.HonroEncounters.attach(this,e); G.HonroAct2.attach(this,e); G.HonroAct3.attach(this,e); G.HonroSplitCampaign.attach(this,e); G.HonroStakeCrossing.attach(this,e); if (!this.training) {
             e.checkEnd = () => this.checkMission(e);
@@ -677,19 +677,19 @@
             if(fromSettings)G.HonroMenuUI.shell(this,'목표·조작 안내',html.replace('<h2>목표·조작 안내</h2>','').replace(/<div class="actions">[\s\S]*$/, ''),{back:'settings-back',kind:'settings-help'});else this.open(html,'battle-help-dialog');
         }
         pause() { if(G.HonroAct3Void?.pause(this))return; this.audio?.music?.clearDucking?.();this.cancelInput(); G.HonroMenuUI.pause(this); }
-        defend() { if(!this.canInput()||this.engine.active.platformDrop&&this.engine.active.platformDrop.phase!=='land') return; this.cancelInput(); if(this.engine.active.retreat){this.engine.finishAction(true);this.updateHUD(true);return;} const u=this.engine.active,hpBefore=u.hp,shieldBefore=u.shield; u.shield=Math.max(u.shield,Math.round(u.maxHp*.12));u.shieldUntil=this.engine.b.teamEnds[1]+1;u.hp=Math.min(u.maxHp,u.hp+Math.round(u.maxHp*.04));G.HonroClearReport.heal(this.engine.b,u,u.id,u.hp-hpBefore,'action:defend');G.HonroProgression.recordHeal(this.engine.b,u,u.id,u.hp-hpBefore);G.HonroProgression.shieldAdded(this.engine.b,u,u.id,shieldBefore);u.focus=Math.min(u.maxFocus,u.focus+Math.max(u.regen,Math.round(u.maxFocus*.12)));this.engine.fx('ring',u.x,u.y-u.h*.5,'#b8c999',60);this.engine.fx('text',u.x,u.y-u.h-16,'#d8d0a8',14,'방어');this.engine.message(`${u.name} · 숨을 고르며 방어`);this.engine.finishAction();this.updateHUD(true); }
+        defend() { if(this.engine?.noncombatWalk())return; if(!this.canInput()||this.engine.active.platformDrop&&this.engine.active.platformDrop.phase!=='land') return; this.cancelInput(); if(this.engine.active.retreat){this.engine.finishAction(true);this.updateHUD(true);return;} const u=this.engine.active,hpBefore=u.hp,shieldBefore=u.shield; u.shield=Math.max(u.shield,Math.round(u.maxHp*.12));u.shieldUntil=this.engine.b.teamEnds[1]+1;u.hp=Math.min(u.maxHp,u.hp+Math.round(u.maxHp*.04));G.HonroClearReport.heal(this.engine.b,u,u.id,u.hp-hpBefore,'action:defend');G.HonroProgression.recordHeal(this.engine.b,u,u.id,u.hp-hpBefore);G.HonroProgression.shieldAdded(this.engine.b,u,u.id,shieldBefore);u.focus=Math.min(u.maxFocus,u.focus+Math.max(u.regen,Math.round(u.maxFocus*.12)));this.engine.fx('ring',u.x,u.y-u.h*.5,'#b8c999',60);this.engine.fx('text',u.x,u.y-u.h-16,'#d8d0a8',14,'방어');this.engine.message(`${u.name} · 숨을 고르며 방어`);this.engine.finishAction();this.updateHUD(true); }
         displayAngle(u) { return u.facing >= 0 ? u.angle : 180 - u.angle; }
-        adjustAngle(u, v) { if (u.facing >= 0)
+        adjustAngle(u, v) { if(this.engine?.noncombatWalk())return; if (u.facing >= 0)
             u.angle = clamp(u.angle + v, C.AIM_MIN || -85, 90);
         else
             u.angle = 180 - clamp(this.displayAngle(u) + v, C.AIM_MIN || -85, 90); }
         canInput() { return !G.HonroAct3Void?.blocked(this) && !G.HonroBellAnomaly?.blocked(this) && this.engine && this.engine.canAct() && !this.modal.classList.contains('open') && !this.dialogue && !G.HonroStory.turnPaused(this) && !this.done; }
-        beginCharge() { if(this.charging||this.engine?.active?.retreat)return false; if(!this.modal.classList.contains('open')&&!this.dialogue&&(this.engine?.detonateIceGourd()||this.engine?.manualDive()||this.engine?.turnArrow(this.scene?.turnTarget))){this.updateHUD(true);return false;} if (!this.canInput() || !this.engine.grounded(this.engine.active))
+        beginCharge() { if(this.engine?.noncombatWalk())return false; if(this.charging||this.engine?.active?.retreat)return false; if(!this.modal.classList.contains('open')&&!this.dialogue&&(this.engine?.detonateIceGourd()||this.engine?.manualDive()||this.engine?.turnArrow(this.scene?.turnTarget))){this.updateHUD(true);return false;} if (!this.canInput() || !this.engine.grounded(this.engine.active))
             return false; let u = this.engine.active, sk = S[this.selected]; if (!sk || sk.passive || !this.engine.skillAllowed(sk,u) || u.focus < this.engine.manaCost(sk, u,0) || this.engine.cooldownLeft(u, sk.id) > 0)
             return false; this.charging = true; this.chargeAt = performance.now(); this.power = 0; return true; }
         chargePower(now=performance.now()) { return this.engine.chargePower(this.engine.active,S[this.selected],Math.max(0,now-this.chargeAt)/1000); }
         playbackSpeed() { return clamp(Number(this.engine.b.side===1?this.profile.settings.speed:this.profile.settings.playerSpeed)||1,1,4); }
-        releaseCharge() { if (!this.charging)
+        releaseCharge() { if(this.engine?.noncombatWalk()){this.charging=false;return;} if (!this.charging)
             return; this.charging = false; if (this.canInput()) {
             let u = this.engine.active;
             this.power = this.chargePower();
@@ -852,7 +852,7 @@
             const active=this.engine?.active;
             if(active){const remembered=this.selectedByUnit[active.id];if(remembered&&G.HonroStakeCrossing.skills(this.engine.b,active).includes(remembered))this.selected=remembered;if(!this.selectedByUnit[active.id])this.selectedByUnit[active.id]=this.selected||active.loadout.find(id=>!S[id]?.passive);}
             if (!this.engine || this.screen !== 'battle') return;
-            const e=this.engine,b=e.b,u=(e.active?.side===0&&!e.active.summoned?e.active:null)||b.units.find(v=>v.side===0&&!v.summoned&&!v.dead)||b.units[0];
+            const e=this.engine,b=e.b;this.root.querySelector('.battle')?.classList.toggle('noncombat-walk',e.noncombatWalk());const u=(e.active?.side===0&&!e.active.summoned?e.active:null)||b.units.find(v=>v.side===0&&!v.summoned&&!v.dead)||b.units[0];
             if(!u)return;
             const id=G.HonroStakeCrossing.skills(b,u).includes(this.selected)?this.selected:u.loadout.find(id=>!S[id]?.passive);if(!this.charging)this.selected=id||this.selected;
             if(u.meleeFollow==='ready'&&!e.skillAllowed(S[this.selected],u))this.selected='S00';
@@ -871,13 +871,14 @@
             const allies=b.units.filter(v=>v.honroAlly&&!v.dead),alSig=allies.map(v=>v.id+':'+Math.round(v.hp)+':'+Math.round(v.maxHp)).join('|');
             if(this.allySig!==alSig){this.allySig=alSig;$('allied-roster').innerHTML=allies.map(v=>`<span class="allied-chip" title="${v.name} · 동맹"><i></i><span>${v.name}</span><b style="--ally-hp:${Math.max(0,v.hp)/v.maxHp*100}%"></b><small>${Math.round(Math.max(0,v.hp))}</small></span>`).join('');}
             setText($('read-aim'),`${Math.round(this.displayAngle(u))}° · ${Math.round(this.power*100)}%`);
-            const turnLabel=G.HonroStory.turnLabel(b);setText($('turn-text'),b.round+'턴'+(turnLabel?' · '+turnLabel:''));
+            const turnLabel=e.noncombatWalk()?'이동 · 대화':G.HonroStory.turnLabel(b);setText($('turn-text'),e.noncombatWalk()?turnLabel:b.round+'턴'+(turnLabel?' · '+turnLabel:''));
             const wind=Math.max(-30,Math.min(30,b.wind)),fraction=Math.abs(wind)/30*50;
             setStyle($('wind-left'),'width',(wind<0?fraction:0)+'%');setStyle($('wind-right'),'width',(wind>0?fraction:0)+'%');setText($('wind-value'),`바람 ${Math.abs(Math.round(b.wind))}`);$('joystick').querySelector('.wind-gauge').setAttribute('aria-valuenow',String(b.wind));
             const steering=e.iceGourdReady()||b.phase==='flight'&&b.projectiles.some(p=>p.skill==='A09'&&!p.turned&&!p.followup||p.owner===u.id&&p.mode==='warriorDive'&&!p.dived);
             $('fire').disabled=!steering&&(u.retreat||!e.skillAllowed(sk,u)||!this.canInput()||!e.grounded(e.active)||u.focus<e.manaCost(sk,u,0)||cd>0);setStyle($('fire'),'--power',Math.round(this.power*100)+'%');$('fire').classList.toggle('charging',this.charging);
             this.updateChargeDisplay();
             $('jump').disabled=u.meleeFollow==='ready'||!this.canInput()||!e.grounded(e.active)||e.active.moveLeft<e.jumpCost(e.active);$('joystick').style.opacity=this.canInput()?1:.4;const defend=document.querySelector('[data-action=defend]');if(defend)defend.disabled=!this.canInput()||!!u.platformDrop&&u.platformDrop.phase!=='land';const drop=$('drop');if(drop)drop.disabled=!this.canInput()||!e.canDrop(u);
+            if(e.noncombatWalk()){setText($('move-left'),'이동');const mode=$('joystick').querySelector('.stick-mode');if(mode)setText(mode,'MOVE');$('joystick').setAttribute('aria-label','이동');}
             G.HonroObjectives.refresh(this);
             G.HonroInteractions?.refresh(this);
             G.HonroCombatStatus.refresh(this,u);G.HonroCombatStatus.passives(this,u);
@@ -919,7 +920,7 @@
             const b=this.engine?.b,inBattle=(this.endingGallery?.debug?.screen||this.screen)==='battle'&&!!b;
             const session=inBattle?(this.training?(this.trainingMusicSession||b.session):b.session):undefined;
             const stage=Number(b?.honroStage||this.stageId),act=stage>=11&&stage<=20?2:1;
-            this.audio?.update(inBattle?'battle':'main',document.hidden||!!G.HonroAct3Void?.blocked(this),session,inBattle&&(stage===9||stage===10)?3:undefined,act);
+            this.audio?.update(inBattle&&!this.engine.noncombatWalk()?'battle':'main',document.hidden||!!G.HonroAct3Void?.blocked(this),session,inBattle&&(stage===9||stage===10)?3:undefined,act);
             this.updateMusicLabel();
         }
         updateMusicLabel(){
@@ -985,7 +986,7 @@
                 let arr = this.engine.b.units.filter(u => u.side === 0 && !u.summoned && !u.dead && !u.acted), i = arr.findIndex(u => u.id === this.engine.b.active);
                 if (arr.length)
                     this.selectHero(arr[(i + 1) % arr.length].id);
-            } if (/^Digit[1-4]$/.test(e.code)) {
+            } if (!this.engine.noncombatWalk()&&/^Digit[1-4]$/.test(e.code)) {
                 let u = this.engine.active, id = u?.loadout[+e.code.slice(-1) - 1];
                 if (id) { this.cancelInput(); this.selected = id; this.selectedByUnit[u.id] = id; }
             } });
@@ -1240,6 +1241,7 @@
                     G.HonroUnitInfo.show(this,this.engine?.unit(id));
                     break;
                 case 'combat-skill':
+                    if(this.engine?.noncombatWalk())break;
                     // Battle HUD taps only select a skill. Detail modals belong to the camp/training UI.
                     this.cancelInput();
                     this.selected = sk;
