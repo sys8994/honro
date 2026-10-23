@@ -1,0 +1,612 @@
+{
+  "scope": "Native App and controlled runtime branches; no normal fullplay claim",
+  "dynamic": [
+    {
+      "kind": "rescue",
+      "name": "덕수",
+      "activeHero": "설오",
+      "first": true,
+      "rows": [
+        {
+          "who": "설오",
+          "rowId": "interaction.rescue.덕수:02665d49d4",
+          "portraitExpression": "emotion.concern"
+        },
+        {
+          "who": "덕수",
+          "rowId": "interaction.rescue.덕수:f39008dd0b",
+          "portraitExpression": "base"
+        },
+        {
+          "who": "덕수",
+          "rowId": "interaction.rescue.덕수:92186c43e3",
+          "portraitExpression": "base"
+        },
+        {
+          "who": "설오",
+          "rowId": "interaction.rescue.덕수:07459b6a40",
+          "portraitExpression": "base"
+        }
+      ]
+    },
+    {
+      "kind": "rescue",
+      "name": "덕수",
+      "activeHero": "설오",
+      "first": false,
+      "rows": [
+        {
+          "who": "설오",
+          "rowId": "interaction.rescue.덕수:02665d49d4",
+          "portraitExpression": "emotion.concern"
+        },
+        {
+          "who": "덕수",
+          "rowId": "interaction.rescue.덕수:f39008dd0b",
+          "portraitExpression": "base"
+        }
+      ]
+    },
+    {
+      "kind": "rescue",
+      "name": "덕수",
+      "activeHero": "담허",
+      "first": true,
+      "rows": [
+        {
+          "who": "담허",
+          "rowId": "interaction.rescue.덕수:02665d49d4",
+          "portraitExpression": "emotion.concern"
+        },
+        {
+          "who": "덕수",
+          "rowId": "interaction.rescue.덕수:f39008dd0b",
+          "portraitExpression": "base"
+        },
+        {
+          "who": "덕수",
+          "rowId": "interaction.rescue.덕수:92186c43e3",
+          "portraitExpression": "base"
+        },
+        {
+          "who": "설오",
+          "rowId": "interaction.rescue.덕수:07459b6a40",
+          "portraitExpression": "base"
+        }
+      ]
+    },
+    {
+      "kind": "rescue",
+      "name": "덕수",
+      "activeHero": "담허",
+      "first": false,
+      "rows": [
+        {
+          "who": "담허",
+          "rowId": "interaction.rescue.덕수:02665d49d4",
+          "portraitExpression": "emotion.concern"
+        },
+        {
+          "who": "덕수",
+          "rowId": "interaction.rescue.덕수:f39008dd0b",
+          "portraitExpression": "base"
+        }
+      ]
+    },
+    {
+      "kind": "rescue",
+      "name": "덕수",
+      "activeHero": "휘겸",
+      "first": true,
+      "rows": [
+        {
+          "who": "휘겸",
+          "rowId": "interaction.rescue.덕수:02665d49d4",
+          "portraitExpression": "emotion.concern"
+        },
+        {
+          "who": "덕수",
+          "rowId": "interaction.rescue.덕수:f39008dd0b",
+          "portraitExpression": "base"
+        },
+        {
+          "who": "덕수",
+          "rowId": "interaction.rescue.덕수:92186c43e3",
+          "portraitExpression": "base"
+        },
+        {
+          "who": "설오",
+          "rowId": "interaction.rescue.덕수:07459b6a40",
+          "portraitExpression": "base"
+        }
+      ]
+    },
+    {
+      "kind": "rescue",
+      "name": "덕수",
+      "activeHero": "휘겸",
+      "first": false,
+      "rows": [
+        {
+          "who": "휘겸",
+          "rowId": "interaction.rescue.덕수:02665d49d4",
+          "portraitExpression": "emotion.concern"
+        },
+        {
+          "who": "덕수",
+          "rowId": "interaction.rescue.덕수:f39008dd0b",
+          "portraitExpression": "base"
+        }
+      ]
+    },
+    {
+      "kind": "rescue",
+      "name": "월이",
+      "activeHero": "설오",
+      "first": true,
+      "rows": [
+        {
+          "who": "설오",
+          "rowId": "interaction.rescue.월이:02665d49d4",
+          "portraitExpression": "emotion.concern"
+        },
+        {
+          "who": "월이",
+          "rowId": "interaction.rescue.월이:5e95d45665",
+          "portraitExpression": "base"
+        },
+        {
+          "who": "월이",
+          "rowId": "interaction.rescue.덕수:92186c43e3",
+          "portraitExpression": "base"
+        },
+        {
+          "who": "설오",
+          "rowId": "interaction.rescue.덕수:07459b6a40",
+          "portraitExpression": "base"
+        }
+      ]
+    },
+    {
+      "kind": "rescue",
+      "name": "월이",
+      "activeHero": "설오",
+      "first": false,
+      "rows": [
+        {
+          "who": "설오",
+          "rowId": "interaction.rescue.월이:02665d49d4",
+          "portraitExpression": "emotion.concern"
+        },
+        {
+          "who": "월이",
+          "rowId": "interaction.rescue.월이:5e95d45665",
+          "portraitExpression": "base"
+        }
+      ]
+    },
+    {
+      "kind": "rescue",
+      "name": "월이",
+      "activeHero": "담허",
+      "first": true,
+      "rows": [
+        {
+          "who": "담허",
+          "rowId": "interaction.rescue.월이:02665d49d4",
+          "portraitExpression": "emotion.concern"
+        },
+        {
+          "who": "월이",
+          "rowId": "interaction.rescue.월이:5e95d45665",
+          "portraitExpression": "base"
+        },
+        {
+          "who": "월이",
+          "rowId": "interaction.rescue.덕수:92186c43e3",
+          "portraitExpression": "base"
+        },
+        {
+          "who": "설오",
+          "rowId": "interaction.rescue.덕수:07459b6a40",
+          "portraitExpression": "base"
+        }
+      ]
+    },
+    {
+      "kind": "rescue",
+      "name": "월이",
+      "activeHero": "담허",
+      "first": false,
+      "rows": [
+        {
+          "who": "담허",
+          "rowId": "interaction.rescue.월이:02665d49d4",
+          "portraitExpression": "emotion.concern"
+        },
+        {
+          "who": "월이",
+          "rowId": "interaction.rescue.월이:5e95d45665",
+          "portraitExpression": "base"
+        }
+      ]
+    },
+    {
+      "kind": "rescue",
+      "name": "월이",
+      "activeHero": "휘겸",
+      "first": true,
+      "rows": [
+        {
+          "who": "휘겸",
+          "rowId": "interaction.rescue.월이:02665d49d4",
+          "portraitExpression": "emotion.concern"
+        },
+        {
+          "who": "월이",
+          "rowId": "interaction.rescue.월이:5e95d45665",
+          "portraitExpression": "base"
+        },
+        {
+          "who": "월이",
+          "rowId": "interaction.rescue.덕수:92186c43e3",
+          "portraitExpression": "base"
+        },
+        {
+          "who": "설오",
+          "rowId": "interaction.rescue.덕수:07459b6a40",
+          "portraitExpression": "base"
+        }
+      ]
+    },
+    {
+      "kind": "rescue",
+      "name": "월이",
+      "activeHero": "휘겸",
+      "first": false,
+      "rows": [
+        {
+          "who": "휘겸",
+          "rowId": "interaction.rescue.월이:02665d49d4",
+          "portraitExpression": "emotion.concern"
+        },
+        {
+          "who": "월이",
+          "rowId": "interaction.rescue.월이:5e95d45665",
+          "portraitExpression": "base"
+        }
+      ]
+    },
+    {
+      "kind": "rescue",
+      "name": "칠복",
+      "activeHero": "설오",
+      "first": true,
+      "rows": [
+        {
+          "who": "설오",
+          "rowId": "interaction.rescue.칠복:02665d49d4",
+          "portraitExpression": "emotion.concern"
+        },
+        {
+          "who": "칠복",
+          "rowId": "interaction.rescue.칠복:6e0b9daa23",
+          "portraitExpression": "base"
+        },
+        {
+          "who": "칠복",
+          "rowId": "interaction.rescue.덕수:92186c43e3",
+          "portraitExpression": "base"
+        },
+        {
+          "who": "설오",
+          "rowId": "interaction.rescue.덕수:07459b6a40",
+          "portraitExpression": "base"
+        }
+      ]
+    },
+    {
+      "kind": "rescue",
+      "name": "칠복",
+      "activeHero": "설오",
+      "first": false,
+      "rows": [
+        {
+          "who": "설오",
+          "rowId": "interaction.rescue.칠복:02665d49d4",
+          "portraitExpression": "emotion.concern"
+        },
+        {
+          "who": "칠복",
+          "rowId": "interaction.rescue.칠복:6e0b9daa23",
+          "portraitExpression": "base"
+        }
+      ]
+    },
+    {
+      "kind": "rescue",
+      "name": "칠복",
+      "activeHero": "담허",
+      "first": true,
+      "rows": [
+        {
+          "who": "담허",
+          "rowId": "interaction.rescue.칠복:02665d49d4",
+          "portraitExpression": "emotion.concern"
+        },
+        {
+          "who": "칠복",
+          "rowId": "interaction.rescue.칠복:6e0b9daa23",
+          "portraitExpression": "base"
+        },
+        {
+          "who": "칠복",
+          "rowId": "interaction.rescue.덕수:92186c43e3",
+          "portraitExpression": "base"
+        },
+        {
+          "who": "설오",
+          "rowId": "interaction.rescue.덕수:07459b6a40",
+          "portraitExpression": "base"
+        }
+      ]
+    },
+    {
+      "kind": "rescue",
+      "name": "칠복",
+      "activeHero": "담허",
+      "first": false,
+      "rows": [
+        {
+          "who": "담허",
+          "rowId": "interaction.rescue.칠복:02665d49d4",
+          "portraitExpression": "emotion.concern"
+        },
+        {
+          "who": "칠복",
+          "rowId": "interaction.rescue.칠복:6e0b9daa23",
+          "portraitExpression": "base"
+        }
+      ]
+    },
+    {
+      "kind": "rescue",
+      "name": "칠복",
+      "activeHero": "휘겸",
+      "first": true,
+      "rows": [
+        {
+          "who": "휘겸",
+          "rowId": "interaction.rescue.칠복:02665d49d4",
+          "portraitExpression": "emotion.concern"
+        },
+        {
+          "who": "칠복",
+          "rowId": "interaction.rescue.칠복:6e0b9daa23",
+          "portraitExpression": "base"
+        },
+        {
+          "who": "칠복",
+          "rowId": "interaction.rescue.덕수:92186c43e3",
+          "portraitExpression": "base"
+        },
+        {
+          "who": "설오",
+          "rowId": "interaction.rescue.덕수:07459b6a40",
+          "portraitExpression": "base"
+        }
+      ]
+    },
+    {
+      "kind": "rescue",
+      "name": "칠복",
+      "activeHero": "휘겸",
+      "first": false,
+      "rows": [
+        {
+          "who": "휘겸",
+          "rowId": "interaction.rescue.칠복:02665d49d4",
+          "portraitExpression": "emotion.concern"
+        },
+        {
+          "who": "칠복",
+          "rowId": "interaction.rescue.칠복:6e0b9daa23",
+          "portraitExpression": "base"
+        }
+      ]
+    },
+    {
+      "kind": "value",
+      "mode": "manifest",
+      "row": [
+        "소단",
+        "제 혼 공격은 닿아요. 현형부로 붙들면 활과 검도 맞힐 수 있어요.",
+        {
+          "storyId": "act2:first-spirit-encounter",
+          "storyTitle": "첫 혼령의 기척",
+          "sceneTarget": "resident-spirit-4",
+          "exposureMethod": "manifest",
+          "rowId": "first-spirit.reply",
+          "spiritPart": "reply",
+          "portraitExpression": "base",
+          "delivery": "dialogue",
+          "waitForClear": false,
+          "afterAction": 0,
+          "stagingScene": "direction-v2:act2:first-spirit-encounter",
+          "camera": {
+            "intent": "conversation",
+            "targets": [
+              {
+                "speaker": "소단"
+              },
+              {
+                "actor": "p-knight"
+              }
+            ],
+            "padding": 40,
+            "maxScale": 1.05,
+            "participants": [
+              {
+                "actor": "p-archer"
+              },
+              {
+                "actor": "p-knight"
+              },
+              {
+                "actor": "p-occultist"
+              }
+            ],
+            "id": "first-spirit.reply",
+            "speakerPolicy": "world"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "value",
+      "mode": "lamp",
+      "row": [
+        "소단",
+        "제 혼 공격은 닿아요. 저 원혼등불을 켜면 활과 검도 맞힐 수 있어요.",
+        {
+          "storyId": "act2:first-spirit-encounter",
+          "storyTitle": "첫 혼령의 기척",
+          "sceneTarget": "resident-spirit-4",
+          "sceneLamp": "spirit-lamp-expression-fixture",
+          "exposureMethod": "lamp",
+          "rowId": "first-spirit.reply",
+          "spiritPart": "reply",
+          "portraitExpression": "base",
+          "delivery": "dialogue",
+          "waitForClear": false,
+          "afterAction": 0,
+          "stagingScene": "direction-v2:act2:first-spirit-encounter",
+          "camera": {
+            "intent": "conversation",
+            "targets": [
+              {
+                "speaker": "소단"
+              },
+              {
+                "actor": "p-knight"
+              }
+            ],
+            "padding": 40,
+            "maxScale": 1.05,
+            "participants": [
+              {
+                "actor": "p-archer"
+              },
+              {
+                "actor": "p-knight"
+              },
+              {
+                "actor": "p-occultist"
+              }
+            ],
+            "id": "first-spirit.reply",
+            "speakerPolicy": "world"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "value",
+      "mode": "neither",
+      "row": [
+        "소단",
+        "활과 검은 잘 안 들어요. 제가 혼 공격으로 막을게요.",
+        {
+          "storyId": "act2:first-spirit-encounter",
+          "storyTitle": "첫 혼령의 기척",
+          "sceneTarget": "resident-spirit-4",
+          "exposureMethod": "soul",
+          "rowId": "first-spirit.reply",
+          "spiritPart": "reply",
+          "portraitExpression": "emotion.resolve",
+          "delivery": "dialogue",
+          "waitForClear": false,
+          "afterAction": 0,
+          "stagingScene": "direction-v2:act2:first-spirit-encounter",
+          "camera": {
+            "intent": "conversation",
+            "targets": [
+              {
+                "speaker": "소단"
+              },
+              {
+                "actor": "p-knight"
+              }
+            ],
+            "padding": 40,
+            "maxScale": 1.05,
+            "participants": [
+              {
+                "actor": "p-archer"
+              },
+              {
+                "actor": "p-knight"
+              },
+              {
+                "actor": "p-occultist"
+              }
+            ],
+            "id": "first-spirit.reply",
+            "speakerPolicy": "world"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "value",
+      "mode": "bell-settled",
+      "row": [
+        "담허",
+        "지금은 모르겠네. 우선 종 안의 혼부터 살피세.",
+        {
+          "rowId": "bell-anomaly.turn-5",
+          "portraitExpression": "emotion.resolve",
+          "storyId": "bell-anomaly-18",
+          "source": "bell-anomaly",
+          "storyTitle": "묵종 곁의 빈자리",
+          "camera": {
+            "intent": "conversation",
+            "targets": [
+              {
+                "speaker": "담허"
+              },
+              {
+                "actor": "p-knight"
+              },
+              {
+                "actor": "p-occultist"
+              }
+            ],
+            "padding": 40,
+            "maxScale": 1.05,
+            "participants": [
+              {
+                "actor": "p-archer"
+              },
+              {
+                "actor": "p-knight"
+              },
+              {
+                "actor": "p-mage"
+              },
+              {
+                "actor": "p-occultist"
+              }
+            ],
+            "id": "bell-anomaly.turn-5",
+            "speakerPolicy": "world"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "old-save",
+      "linesCursorAndMetadataExact": true
+    }
+  ]
+}

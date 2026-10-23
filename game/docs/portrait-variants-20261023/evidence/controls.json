@@ -1,0 +1,42 @@
+{
+  "realNextBackPairs": 10,
+  "samePortraitCanvas": true,
+  "before": {
+    "requests": 5,
+    "decodes": 5,
+    "paints": 5,
+    "fallbackPaints": 0,
+    "vectorBuilds": 0,
+    "imageEntries": 3,
+    "pending": 0,
+    "errors": 0,
+    "vectorEntries": 0,
+    "waiters": 0,
+    "decodedRgbaBytes": 16121856,
+    "pendingRgbaBytes": 0,
+    "budgetBytes": 16777216,
+    "protectedRgbaBytes": 3538944
+  },
+  "after": {
+    "requests": 5,
+    "decodes": 5,
+    "paints": 5,
+    "fallbackPaints": 0,
+    "vectorBuilds": 0,
+    "imageEntries": 3,
+    "pending": 0,
+    "errors": 0,
+    "vectorEntries": 0,
+    "waiters": 0,
+    "decodedRgbaBytes": 16121856,
+    "pendingRgbaBytes": 0,
+    "budgetBytes": 16777216,
+    "protectedRgbaBytes": 3538944
+  },
+  "trainingCss": [
+    {
+      "url": "http://127.0.0.1:36625/web/styles/game-src-training.2c1e01e835c1bc35.css",
+      "status": 200
+    }
+  ]
+}

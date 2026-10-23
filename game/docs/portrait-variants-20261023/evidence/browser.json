@@ -1,0 +1,1726 @@
+{
+  "head": "c4e7a8045c86894653460f7a938d9719f00c0103",
+  "runtimeSha256": "c4ea2559eec7846c22a28227fecce5d56fe2f54b5ee920154b8ef48534de947f",
+  "rows": [
+    {
+      "id": "seoro-concern",
+      "view": [
+        390,
+        844
+      ],
+      "fixtureExpression": false,
+      "selection": {
+        "source": "approved",
+        "state": "ready",
+        "identity": "seoro",
+        "expression": "emotion.concern",
+        "requestedExpression": "emotion.concern",
+        "fallbackReason": "exact",
+        "framing": "dialogue",
+        "crop": {
+          "x": -110.31818181818181,
+          "y": -50.54237288135596,
+          "width": 988.6363636363636,
+          "height": 1087.5
+        },
+        "head": {
+          "left": 0,
+          "top": 0,
+          "right": 768,
+          "bottom": 525,
+          "width": 768,
+          "height": 525
+        },
+        "bounds": {
+          "left": 0,
+          "top": 0,
+          "right": 768,
+          "bottom": 1152,
+          "width": 768,
+          "height": 1152
+        }
+      },
+      "buttons": true,
+      "canvases": 1,
+      "stats": {
+        "requests": 2,
+        "decodes": 2,
+        "paints": 2,
+        "fallbackPaints": 0,
+        "vectorBuilds": 0,
+        "imageEntries": 2,
+        "pending": 0,
+        "errors": 0,
+        "vectorEntries": 0,
+        "waiters": 0,
+        "decodedRgbaBytes": 9830400,
+        "pendingRgbaBytes": 0,
+        "budgetBytes": 16777216,
+        "protectedRgbaBytes": 3538944
+      }
+    },
+    {
+      "id": "seoro-concern",
+      "view": [
+        844,
+        390
+      ],
+      "fixtureExpression": false,
+      "selection": {
+        "source": "approved",
+        "state": "ready",
+        "identity": "seoro",
+        "expression": "emotion.concern",
+        "requestedExpression": "emotion.concern",
+        "fallbackReason": "exact",
+        "framing": "dialogue",
+        "crop": {
+          "x": -110.31818181818181,
+          "y": -50.54237288135596,
+          "width": 988.6363636363636,
+          "height": 1087.5
+        },
+        "head": {
+          "left": 0,
+          "top": 0,
+          "right": 768,
+          "bottom": 525,
+          "width": 768,
+          "height": 525
+        },
+        "bounds": {
+          "left": 0,
+          "top": 0,
+          "right": 768,
+          "bottom": 1152,
+          "width": 768,
+          "height": 1152
+        }
+      },
+      "buttons": true,
+      "canvases": 1,
+      "stats": {
+        "requests": 2,
+        "decodes": 2,
+        "paints": 2,
+        "fallbackPaints": 0,
+        "vectorBuilds": 0,
+        "imageEntries": 2,
+        "pending": 0,
+        "errors": 0,
+        "vectorEntries": 0,
+        "waiters": 0,
+        "decodedRgbaBytes": 9830400,
+        "pendingRgbaBytes": 0,
+        "budgetBytes": 33554432,
+        "protectedRgbaBytes": 3538944
+      }
+    },
+    {
+      "id": "seoro-anger",
+      "view": [
+        390,
+        844
+      ],
+      "fixtureExpression": false,
+      "selection": {
+        "source": "approved",
+        "state": "ready",
+        "identity": "seoro",
+        "expression": "emotion.anger",
+        "requestedExpression": "emotion.anger",
+        "fallbackReason": "exact",
+        "framing": "dialogue",
+        "crop": {
+          "x": -110.31818181818181,
+          "y": -43.04237288135596,
+          "width": 988.6363636363636,
+          "height": 1087.5
+        },
+        "head": {
+          "left": 0,
+          "top": 0,
+          "right": 768,
+          "bottom": 525,
+          "width": 768,
+          "height": 525
+        },
+        "bounds": {
+          "left": 0,
+          "top": 0,
+          "right": 768,
+          "bottom": 1152,
+          "width": 768,
+          "height": 1152
+        }
+      },
+      "buttons": true,
+      "canvases": 1,
+      "stats": {
+        "requests": 6,
+        "decodes": 6,
+        "paints": 7,
+        "fallbackPaints": 0,
+        "vectorBuilds": 0,
+        "imageEntries": 3,
+        "pending": 0,
+        "errors": 0,
+        "vectorEntries": 0,
+        "waiters": 0,
+        "decodedRgbaBytes": 16121856,
+        "pendingRgbaBytes": 0,
+        "budgetBytes": 16777216,
+        "protectedRgbaBytes": 3538944
+      }
+    },
+    {
+      "id": "seoro-anger",
+      "view": [
+        844,
+        390
+      ],
+      "fixtureExpression": false,
+      "selection": {
+        "source": "approved",
+        "state": "ready",
+        "identity": "seoro",
+        "expression": "emotion.anger",
+        "requestedExpression": "emotion.anger",
+        "fallbackReason": "exact",
+        "framing": "dialogue",
+        "crop": {
+          "x": -110.31818181818181,
+          "y": -43.04237288135596,
+          "width": 988.6363636363636,
+          "height": 1087.5
+        },
+        "head": {
+          "left": 0,
+          "top": 0,
+          "right": 768,
+          "bottom": 525,
+          "width": 768,
+          "height": 525
+        },
+        "bounds": {
+          "left": 0,
+          "top": 0,
+          "right": 768,
+          "bottom": 1152,
+          "width": 768,
+          "height": 1152
+        }
+      },
+      "buttons": true,
+      "canvases": 1,
+      "stats": {
+        "requests": 6,
+        "decodes": 6,
+        "paints": 7,
+        "fallbackPaints": 0,
+        "vectorBuilds": 0,
+        "imageEntries": 3,
+        "pending": 0,
+        "errors": 0,
+        "vectorEntries": 0,
+        "waiters": 0,
+        "decodedRgbaBytes": 16121856,
+        "pendingRgbaBytes": 0,
+        "budgetBytes": 33554432,
+        "protectedRgbaBytes": 3538944
+      }
+    },
+    {
+      "id": "damheo-concern",
+      "view": [
+        390,
+        844
+      ],
+      "fixtureExpression": false,
+      "selection": {
+        "source": "approved",
+        "state": "ready",
+        "identity": "damheo",
+        "expression": "emotion.concern",
+        "requestedExpression": "emotion.concern",
+        "fallbackReason": "exact",
+        "framing": "dialogue",
+        "crop": {
+          "x": -135.88636363636363,
+          "y": -62.14112903225805,
+          "width": 1039.7727272727273,
+          "height": 1143.75
+        },
+        "head": {
+          "left": 0,
+          "top": 0,
+          "right": 768,
+          "bottom": 525,
+          "width": 768,
+          "height": 525
+        },
+        "bounds": {
+          "left": 0,
+          "top": 0,
+          "right": 768,
+          "bottom": 1152,
+          "width": 768,
+          "height": 1152
+        }
+      },
+      "buttons": true,
+      "canvases": 1,
+      "stats": {
+        "requests": 9,
+        "decodes": 9,
+        "paints": 9,
+        "fallbackPaints": 0,
+        "vectorBuilds": 0,
+        "imageEntries": 3,
+        "pending": 0,
+        "errors": 0,
+        "vectorEntries": 0,
+        "waiters": 0,
+        "decodedRgbaBytes": 16121856,
+        "pendingRgbaBytes": 0,
+        "budgetBytes": 16777216,
+        "protectedRgbaBytes": 3538944
+      }
+    },
+    {
+      "id": "damheo-concern",
+      "view": [
+        844,
+        390
+      ],
+      "fixtureExpression": false,
+      "selection": {
+        "source": "approved",
+        "state": "ready",
+        "identity": "damheo",
+        "expression": "emotion.concern",
+        "requestedExpression": "emotion.concern",
+        "fallbackReason": "exact",
+        "framing": "dialogue",
+        "crop": {
+          "x": -135.88636363636363,
+          "y": -62.14112903225805,
+          "width": 1039.7727272727273,
+          "height": 1143.75
+        },
+        "head": {
+          "left": 0,
+          "top": 0,
+          "right": 768,
+          "bottom": 525,
+          "width": 768,
+          "height": 525
+        },
+        "bounds": {
+          "left": 0,
+          "top": 0,
+          "right": 768,
+          "bottom": 1152,
+          "width": 768,
+          "height": 1152
+        }
+      },
+      "buttons": true,
+      "canvases": 1,
+      "stats": {
+        "requests": 9,
+        "decodes": 9,
+        "paints": 9,
+        "fallbackPaints": 0,
+        "vectorBuilds": 0,
+        "imageEntries": 3,
+        "pending": 0,
+        "errors": 0,
+        "vectorEntries": 0,
+        "waiters": 0,
+        "decodedRgbaBytes": 16121856,
+        "pendingRgbaBytes": 0,
+        "budgetBytes": 33554432,
+        "protectedRgbaBytes": 3538944
+      }
+    },
+    {
+      "id": "damheo-channel",
+      "view": [
+        390,
+        844
+      ],
+      "fixtureExpression": false,
+      "selection": {
+        "source": "approved",
+        "state": "ready",
+        "identity": "damheo",
+        "expression": "action.channel",
+        "requestedExpression": "action.channel",
+        "fallbackReason": "exact",
+        "framing": "dialogue",
+        "crop": {
+          "x": -135.88636363636363,
+          "y": -39.64112903225805,
+          "width": 1039.7727272727273,
+          "height": 1143.75
+        },
+        "head": {
+          "left": 0,
+          "top": 0,
+          "right": 768,
+          "bottom": 525,
+          "width": 768,
+          "height": 525
+        },
+        "bounds": {
+          "left": 0,
+          "top": 0,
+          "right": 768,
+          "bottom": 1152,
+          "width": 768,
+          "height": 1152
+        }
+      },
+      "buttons": true,
+      "canvases": 1,
+      "stats": {
+        "requests": 13,
+        "decodes": 13,
+        "paints": 15,
+        "fallbackPaints": 0,
+        "vectorBuilds": 0,
+        "imageEntries": 3,
+        "pending": 0,
+        "errors": 0,
+        "vectorEntries": 0,
+        "waiters": 0,
+        "decodedRgbaBytes": 13369344,
+        "pendingRgbaBytes": 0,
+        "budgetBytes": 16777216,
+        "protectedRgbaBytes": 3538944
+      }
+    },
+    {
+      "id": "damheo-channel",
+      "view": [
+        844,
+        390
+      ],
+      "fixtureExpression": false,
+      "selection": {
+        "source": "approved",
+        "state": "ready",
+        "identity": "damheo",
+        "expression": "action.channel",
+        "requestedExpression": "action.channel",
+        "fallbackReason": "exact",
+        "framing": "dialogue",
+        "crop": {
+          "x": -135.88636363636363,
+          "y": -39.64112903225805,
+          "width": 1039.7727272727273,
+          "height": 1143.75
+        },
+        "head": {
+          "left": 0,
+          "top": 0,
+          "right": 768,
+          "bottom": 525,
+          "width": 768,
+          "height": 525
+        },
+        "bounds": {
+          "left": 0,
+          "top": 0,
+          "right": 768,
+          "bottom": 1152,
+          "width": 768,
+          "height": 1152
+        }
+      },
+      "buttons": true,
+      "canvases": 1,
+      "stats": {
+        "requests": 13,
+        "decodes": 13,
+        "paints": 15,
+        "fallbackPaints": 0,
+        "vectorBuilds": 0,
+        "imageEntries": 3,
+        "pending": 0,
+        "errors": 0,
+        "vectorEntries": 0,
+        "waiters": 0,
+        "decodedRgbaBytes": 13369344,
+        "pendingRgbaBytes": 0,
+        "budgetBytes": 33554432,
+        "protectedRgbaBytes": 3538944
+      }
+    },
+    {
+      "id": "hwigyeom-anger",
+      "view": [
+        390,
+        844
+      ],
+      "fixtureExpression": false,
+      "selection": {
+        "source": "approved",
+        "state": "ready",
+        "identity": "hwigyeom",
+        "expression": "emotion.anger",
+        "requestedExpression": "emotion.anger",
+        "fallbackReason": "exact",
+        "framing": "dialogue",
+        "crop": {
+          "x": -42.136363636363626,
+          "y": -21.734693877551024,
+          "width": 852.2727272727273,
+          "height": 937.5
+        },
+        "head": {
+          "left": 0,
+          "top": 0,
+          "right": 768,
+          "bottom": 525,
+          "width": 768,
+          "height": 525
+        },
+        "bounds": {
+          "left": 0,
+          "top": 0,
+          "right": 768,
+          "bottom": 1152,
+          "width": 768,
+          "height": 1152
+        }
+      },
+      "buttons": true,
+      "canvases": 1,
+      "stats": {
+        "requests": 17,
+        "decodes": 17,
+        "paints": 20,
+        "fallbackPaints": 0,
+        "vectorBuilds": 0,
+        "imageEntries": 3,
+        "pending": 0,
+        "errors": 0,
+        "vectorEntries": 0,
+        "waiters": 0,
+        "decodedRgbaBytes": 16121856,
+        "pendingRgbaBytes": 0,
+        "budgetBytes": 16777216,
+        "protectedRgbaBytes": 3538944
+      }
+    },
+    {
+      "id": "hwigyeom-anger",
+      "view": [
+        844,
+        390
+      ],
+      "fixtureExpression": false,
+      "selection": {
+        "source": "approved",
+        "state": "ready",
+        "identity": "hwigyeom",
+        "expression": "emotion.anger",
+        "requestedExpression": "emotion.anger",
+        "fallbackReason": "exact",
+        "framing": "dialogue",
+        "crop": {
+          "x": -42.136363636363626,
+          "y": -21.734693877551024,
+          "width": 852.2727272727273,
+          "height": 937.5
+        },
+        "head": {
+          "left": 0,
+          "top": 0,
+          "right": 768,
+          "bottom": 525,
+          "width": 768,
+          "height": 525
+        },
+        "bounds": {
+          "left": 0,
+          "top": 0,
+          "right": 768,
+          "bottom": 1152,
+          "width": 768,
+          "height": 1152
+        }
+      },
+      "buttons": true,
+      "canvases": 1,
+      "stats": {
+        "requests": 17,
+        "decodes": 17,
+        "paints": 20,
+        "fallbackPaints": 0,
+        "vectorBuilds": 0,
+        "imageEntries": 3,
+        "pending": 0,
+        "errors": 0,
+        "vectorEntries": 0,
+        "waiters": 0,
+        "decodedRgbaBytes": 16121856,
+        "pendingRgbaBytes": 0,
+        "budgetBytes": 33554432,
+        "protectedRgbaBytes": 3538944
+      }
+    },
+    {
+      "id": "hwigyeom-guard",
+      "view": [
+        390,
+        844
+      ],
+      "fixtureExpression": false,
+      "selection": {
+        "source": "approved",
+        "state": "ready",
+        "identity": "hwigyeom",
+        "expression": "action.guard",
+        "requestedExpression": "action.guard",
+        "fallbackReason": "exact",
+        "framing": "dialogue",
+        "crop": {
+          "x": -42.136363636363626,
+          "y": -21.734693877551024,
+          "width": 852.2727272727273,
+          "height": 937.5
+        },
+        "head": {
+          "left": 0,
+          "top": 0,
+          "right": 768,
+          "bottom": 525,
+          "width": 768,
+          "height": 525
+        },
+        "bounds": {
+          "left": 0,
+          "top": 0,
+          "right": 768,
+          "bottom": 1152,
+          "width": 768,
+          "height": 1152
+        }
+      },
+      "buttons": true,
+      "canvases": 1,
+      "stats": {
+        "requests": 20,
+        "decodes": 20,
+        "paints": 23,
+        "fallbackPaints": 0,
+        "vectorBuilds": 0,
+        "imageEntries": 3,
+        "pending": 0,
+        "errors": 0,
+        "vectorEntries": 0,
+        "waiters": 0,
+        "decodedRgbaBytes": 16121856,
+        "pendingRgbaBytes": 0,
+        "budgetBytes": 16777216,
+        "protectedRgbaBytes": 3538944
+      }
+    },
+    {
+      "id": "hwigyeom-guard",
+      "view": [
+        844,
+        390
+      ],
+      "fixtureExpression": false,
+      "selection": {
+        "source": "approved",
+        "state": "ready",
+        "identity": "hwigyeom",
+        "expression": "action.guard",
+        "requestedExpression": "action.guard",
+        "fallbackReason": "exact",
+        "framing": "dialogue",
+        "crop": {
+          "x": -42.136363636363626,
+          "y": -21.734693877551024,
+          "width": 852.2727272727273,
+          "height": 937.5
+        },
+        "head": {
+          "left": 0,
+          "top": 0,
+          "right": 768,
+          "bottom": 525,
+          "width": 768,
+          "height": 525
+        },
+        "bounds": {
+          "left": 0,
+          "top": 0,
+          "right": 768,
+          "bottom": 1152,
+          "width": 768,
+          "height": 1152
+        }
+      },
+      "buttons": true,
+      "canvases": 1,
+      "stats": {
+        "requests": 20,
+        "decodes": 20,
+        "paints": 23,
+        "fallbackPaints": 0,
+        "vectorBuilds": 0,
+        "imageEntries": 3,
+        "pending": 0,
+        "errors": 0,
+        "vectorEntries": 0,
+        "waiters": 0,
+        "decodedRgbaBytes": 16121856,
+        "pendingRgbaBytes": 0,
+        "budgetBytes": 33554432,
+        "protectedRgbaBytes": 3538944
+      }
+    },
+    {
+      "id": "sodan-concern",
+      "view": [
+        390,
+        844
+      ],
+      "fixtureExpression": false,
+      "selection": {
+        "source": "approved",
+        "state": "ready",
+        "identity": "sodan",
+        "expression": "emotion.concern",
+        "requestedExpression": "emotion.concern",
+        "fallbackReason": "exact",
+        "framing": "dialogue",
+        "crop": {
+          "x": -101.7954545454545,
+          "y": -12.75,
+          "width": 971.590909090909,
+          "height": 1068.75
+        },
+        "head": {
+          "left": 0,
+          "top": 0,
+          "right": 768,
+          "bottom": 525,
+          "width": 768,
+          "height": 525
+        },
+        "bounds": {
+          "left": 0,
+          "top": 0,
+          "right": 768,
+          "bottom": 1152,
+          "width": 768,
+          "height": 1152
+        }
+      },
+      "buttons": true,
+      "canvases": 1,
+      "stats": {
+        "requests": 23,
+        "decodes": 23,
+        "paints": 28,
+        "fallbackPaints": 0,
+        "vectorBuilds": 0,
+        "imageEntries": 3,
+        "pending": 0,
+        "errors": 0,
+        "vectorEntries": 0,
+        "waiters": 0,
+        "decodedRgbaBytes": 16121856,
+        "pendingRgbaBytes": 0,
+        "budgetBytes": 16777216,
+        "protectedRgbaBytes": 3538944
+      }
+    },
+    {
+      "id": "sodan-concern",
+      "view": [
+        844,
+        390
+      ],
+      "fixtureExpression": false,
+      "selection": {
+        "source": "approved",
+        "state": "ready",
+        "identity": "sodan",
+        "expression": "emotion.concern",
+        "requestedExpression": "emotion.concern",
+        "fallbackReason": "exact",
+        "framing": "dialogue",
+        "crop": {
+          "x": -101.7954545454545,
+          "y": -12.75,
+          "width": 971.590909090909,
+          "height": 1068.75
+        },
+        "head": {
+          "left": 0,
+          "top": 0,
+          "right": 768,
+          "bottom": 525,
+          "width": 768,
+          "height": 525
+        },
+        "bounds": {
+          "left": 0,
+          "top": 0,
+          "right": 768,
+          "bottom": 1152,
+          "width": 768,
+          "height": 1152
+        }
+      },
+      "buttons": true,
+      "canvases": 1,
+      "stats": {
+        "requests": 23,
+        "decodes": 23,
+        "paints": 28,
+        "fallbackPaints": 0,
+        "vectorBuilds": 0,
+        "imageEntries": 3,
+        "pending": 0,
+        "errors": 0,
+        "vectorEntries": 0,
+        "waiters": 0,
+        "decodedRgbaBytes": 16121856,
+        "pendingRgbaBytes": 0,
+        "budgetBytes": 33554432,
+        "protectedRgbaBytes": 3538944
+      }
+    },
+    {
+      "id": "sodan-holding-threads",
+      "view": [
+        390,
+        844
+      ],
+      "fixtureExpression": false,
+      "selection": {
+        "source": "approved",
+        "state": "ready",
+        "identity": "sodan",
+        "expression": "scene.holding_threads",
+        "requestedExpression": "scene.holding_threads",
+        "fallbackReason": "exact",
+        "framing": "dialogue",
+        "crop": {
+          "x": -118.84090909090907,
+          "y": -30.76315789473682,
+          "width": 1005.6818181818181,
+          "height": 1106.25
+        },
+        "head": {
+          "left": 0,
+          "top": 0,
+          "right": 768,
+          "bottom": 525,
+          "width": 768,
+          "height": 525
+        },
+        "bounds": {
+          "left": 0,
+          "top": 0,
+          "right": 768,
+          "bottom": 1152,
+          "width": 768,
+          "height": 1152
+        }
+      },
+      "buttons": true,
+      "canvases": 1,
+      "stats": {
+        "requests": 26,
+        "decodes": 26,
+        "paints": 32,
+        "fallbackPaints": 0,
+        "vectorBuilds": 0,
+        "imageEntries": 3,
+        "pending": 0,
+        "errors": 0,
+        "vectorEntries": 0,
+        "waiters": 0,
+        "decodedRgbaBytes": 16121856,
+        "pendingRgbaBytes": 0,
+        "budgetBytes": 16777216,
+        "protectedRgbaBytes": 3538944
+      }
+    },
+    {
+      "id": "sodan-holding-threads",
+      "view": [
+        844,
+        390
+      ],
+      "fixtureExpression": false,
+      "selection": {
+        "source": "approved",
+        "state": "ready",
+        "identity": "sodan",
+        "expression": "scene.holding_threads",
+        "requestedExpression": "scene.holding_threads",
+        "fallbackReason": "exact",
+        "framing": "dialogue",
+        "crop": {
+          "x": -118.84090909090907,
+          "y": -30.76315789473682,
+          "width": 1005.6818181818181,
+          "height": 1106.25
+        },
+        "head": {
+          "left": 0,
+          "top": 0,
+          "right": 768,
+          "bottom": 525,
+          "width": 768,
+          "height": 525
+        },
+        "bounds": {
+          "left": 0,
+          "top": 0,
+          "right": 768,
+          "bottom": 1152,
+          "width": 768,
+          "height": 1152
+        }
+      },
+      "buttons": true,
+      "canvases": 1,
+      "stats": {
+        "requests": 26,
+        "decodes": 26,
+        "paints": 32,
+        "fallbackPaints": 0,
+        "vectorBuilds": 0,
+        "imageEntries": 3,
+        "pending": 0,
+        "errors": 0,
+        "vectorEntries": 0,
+        "waiters": 0,
+        "decodedRgbaBytes": 16121856,
+        "pendingRgbaBytes": 0,
+        "budgetBytes": 33554432,
+        "protectedRgbaBytes": 3538944
+      }
+    },
+    {
+      "id": "sodan-rest-hands",
+      "view": [
+        390,
+        844
+      ],
+      "fixtureExpression": false,
+      "selection": {
+        "source": "approved",
+        "state": "ready",
+        "identity": "sodan",
+        "expression": "action.rest_hands",
+        "requestedExpression": "action.rest_hands",
+        "fallbackReason": "exact",
+        "framing": "dialogue",
+        "crop": {
+          "x": -118.84090909090907,
+          "y": -30.76315789473682,
+          "width": 1005.6818181818181,
+          "height": 1106.25
+        },
+        "head": {
+          "left": 0,
+          "top": 0,
+          "right": 768,
+          "bottom": 525,
+          "width": 768,
+          "height": 525
+        },
+        "bounds": {
+          "left": 0,
+          "top": 0,
+          "right": 768,
+          "bottom": 1152,
+          "width": 768,
+          "height": 1152
+        }
+      },
+      "buttons": true,
+      "canvases": 1,
+      "stats": {
+        "requests": 27,
+        "decodes": 27,
+        "paints": 33,
+        "fallbackPaints": 0,
+        "vectorBuilds": 0,
+        "imageEntries": 3,
+        "pending": 0,
+        "errors": 0,
+        "vectorEntries": 0,
+        "waiters": 0,
+        "decodedRgbaBytes": 13369344,
+        "pendingRgbaBytes": 0,
+        "budgetBytes": 16777216,
+        "protectedRgbaBytes": 3538944
+      }
+    },
+    {
+      "id": "sodan-rest-hands",
+      "view": [
+        844,
+        390
+      ],
+      "fixtureExpression": false,
+      "selection": {
+        "source": "approved",
+        "state": "ready",
+        "identity": "sodan",
+        "expression": "action.rest_hands",
+        "requestedExpression": "action.rest_hands",
+        "fallbackReason": "exact",
+        "framing": "dialogue",
+        "crop": {
+          "x": -118.84090909090907,
+          "y": -30.76315789473682,
+          "width": 1005.6818181818181,
+          "height": 1106.25
+        },
+        "head": {
+          "left": 0,
+          "top": 0,
+          "right": 768,
+          "bottom": 525,
+          "width": 768,
+          "height": 525
+        },
+        "bounds": {
+          "left": 0,
+          "top": 0,
+          "right": 768,
+          "bottom": 1152,
+          "width": 768,
+          "height": 1152
+        }
+      },
+      "buttons": true,
+      "canvases": 1,
+      "stats": {
+        "requests": 27,
+        "decodes": 27,
+        "paints": 33,
+        "fallbackPaints": 0,
+        "vectorBuilds": 0,
+        "imageEntries": 3,
+        "pending": 0,
+        "errors": 0,
+        "vectorEntries": 0,
+        "waiters": 0,
+        "decodedRgbaBytes": 13369344,
+        "pendingRgbaBytes": 0,
+        "budgetBytes": 33554432,
+        "protectedRgbaBytes": 3538944
+      }
+    },
+    {
+      "id": "worker-mature-relief",
+      "view": [
+        390,
+        844
+      ],
+      "fixtureExpression": false,
+      "selection": {
+        "source": "approved",
+        "state": "ready",
+        "identity": "worker_mature",
+        "expression": "emotion.relief",
+        "requestedExpression": "emotion.relief",
+        "fallbackReason": "exact",
+        "framing": "dialogue",
+        "crop": {
+          "x": -156,
+          "y": -29.90625,
+          "width": 1080,
+          "height": 1188
+        },
+        "head": {
+          "left": 0,
+          "top": 0,
+          "right": 768,
+          "bottom": 525,
+          "width": 768,
+          "height": 525
+        },
+        "bounds": {
+          "left": 0,
+          "top": 0,
+          "right": 768,
+          "bottom": 1152,
+          "width": 768,
+          "height": 1152
+        }
+      },
+      "buttons": true,
+      "canvases": 1,
+      "stats": {
+        "requests": 30,
+        "decodes": 30,
+        "paints": 37,
+        "fallbackPaints": 0,
+        "vectorBuilds": 0,
+        "imageEntries": 3,
+        "pending": 0,
+        "errors": 0,
+        "vectorEntries": 0,
+        "waiters": 0,
+        "decodedRgbaBytes": 16121856,
+        "pendingRgbaBytes": 0,
+        "budgetBytes": 16777216,
+        "protectedRgbaBytes": 3538944
+      }
+    },
+    {
+      "id": "worker-mature-relief",
+      "view": [
+        844,
+        390
+      ],
+      "fixtureExpression": false,
+      "selection": {
+        "source": "approved",
+        "state": "ready",
+        "identity": "worker_mature",
+        "expression": "emotion.relief",
+        "requestedExpression": "emotion.relief",
+        "fallbackReason": "exact",
+        "framing": "dialogue",
+        "crop": {
+          "x": -156,
+          "y": -29.90625,
+          "width": 1080,
+          "height": 1188
+        },
+        "head": {
+          "left": 0,
+          "top": 0,
+          "right": 768,
+          "bottom": 525,
+          "width": 768,
+          "height": 525
+        },
+        "bounds": {
+          "left": 0,
+          "top": 0,
+          "right": 768,
+          "bottom": 1152,
+          "width": 768,
+          "height": 1152
+        }
+      },
+      "buttons": true,
+      "canvases": 1,
+      "stats": {
+        "requests": 30,
+        "decodes": 30,
+        "paints": 37,
+        "fallbackPaints": 0,
+        "vectorBuilds": 0,
+        "imageEntries": 3,
+        "pending": 0,
+        "errors": 0,
+        "vectorEntries": 0,
+        "waiters": 0,
+        "decodedRgbaBytes": 16121856,
+        "pendingRgbaBytes": 0,
+        "budgetBytes": 33554432,
+        "protectedRgbaBytes": 3538944
+      }
+    },
+    {
+      "id": "keeper-failing-grip",
+      "view": [
+        390,
+        844
+      ],
+      "fixtureExpression": false,
+      "selection": {
+        "source": "approved",
+        "state": "ready",
+        "identity": "keeper_ritual",
+        "expression": "scene.failing_grip",
+        "requestedExpression": "scene.failing_grip",
+        "fallbackReason": "exact",
+        "framing": "dialogue",
+        "crop": {
+          "x": -47.81818181818181,
+          "y": 28.208333333333343,
+          "width": 863.6363636363636,
+          "height": 950
+        },
+        "head": {
+          "left": 0,
+          "top": 0,
+          "right": 768,
+          "bottom": 525,
+          "width": 768,
+          "height": 525
+        },
+        "bounds": {
+          "left": 0,
+          "top": 0,
+          "right": 768,
+          "bottom": 1152,
+          "width": 768,
+          "height": 1152
+        }
+      },
+      "buttons": true,
+      "canvases": 1,
+      "stats": {
+        "requests": 34,
+        "decodes": 34,
+        "paints": 42,
+        "fallbackPaints": 0,
+        "vectorBuilds": 0,
+        "imageEntries": 3,
+        "pending": 0,
+        "errors": 0,
+        "vectorEntries": 0,
+        "waiters": 0,
+        "decodedRgbaBytes": 13369344,
+        "pendingRgbaBytes": 0,
+        "budgetBytes": 16777216,
+        "protectedRgbaBytes": 3538944
+      }
+    },
+    {
+      "id": "keeper-failing-grip",
+      "view": [
+        844,
+        390
+      ],
+      "fixtureExpression": false,
+      "selection": {
+        "source": "approved",
+        "state": "ready",
+        "identity": "keeper_ritual",
+        "expression": "scene.failing_grip",
+        "requestedExpression": "scene.failing_grip",
+        "fallbackReason": "exact",
+        "framing": "dialogue",
+        "crop": {
+          "x": -47.81818181818181,
+          "y": 28.208333333333343,
+          "width": 863.6363636363636,
+          "height": 950
+        },
+        "head": {
+          "left": 0,
+          "top": 0,
+          "right": 768,
+          "bottom": 525,
+          "width": 768,
+          "height": 525
+        },
+        "bounds": {
+          "left": 0,
+          "top": 0,
+          "right": 768,
+          "bottom": 1152,
+          "width": 768,
+          "height": 1152
+        }
+      },
+      "buttons": true,
+      "canvases": 1,
+      "stats": {
+        "requests": 34,
+        "decodes": 34,
+        "paints": 42,
+        "fallbackPaints": 0,
+        "vectorBuilds": 0,
+        "imageEntries": 3,
+        "pending": 0,
+        "errors": 0,
+        "vectorEntries": 0,
+        "waiters": 0,
+        "decodedRgbaBytes": 13369344,
+        "pendingRgbaBytes": 0,
+        "budgetBytes": 33554432,
+        "protectedRgbaBytes": 3538944
+      }
+    },
+    {
+      "id": "keeper-bind-cord",
+      "view": [
+        390,
+        844
+      ],
+      "fixtureExpression": false,
+      "selection": {
+        "source": "approved",
+        "state": "ready",
+        "identity": "keeper_ritual",
+        "expression": "action.bind_cord",
+        "requestedExpression": "action.bind_cord",
+        "fallbackReason": "exact",
+        "framing": "dialogue",
+        "crop": {
+          "x": -55.393939393939434,
+          "y": 14.361111111111086,
+          "width": 878.7878787878789,
+          "height": 966.6666666666667
+        },
+        "head": {
+          "left": 0,
+          "top": 0,
+          "right": 768,
+          "bottom": 525,
+          "width": 768,
+          "height": 525
+        },
+        "bounds": {
+          "left": 0,
+          "top": 0,
+          "right": 768,
+          "bottom": 1152,
+          "width": 768,
+          "height": 1152
+        }
+      },
+      "buttons": true,
+      "canvases": 1,
+      "stats": {
+        "requests": 34,
+        "decodes": 34,
+        "paints": 43,
+        "fallbackPaints": 0,
+        "vectorBuilds": 0,
+        "imageEntries": 3,
+        "pending": 0,
+        "errors": 0,
+        "vectorEntries": 0,
+        "waiters": 0,
+        "decodedRgbaBytes": 13369344,
+        "pendingRgbaBytes": 0,
+        "budgetBytes": 16777216,
+        "protectedRgbaBytes": 3538944
+      }
+    },
+    {
+      "id": "keeper-bind-cord",
+      "view": [
+        844,
+        390
+      ],
+      "fixtureExpression": false,
+      "selection": {
+        "source": "approved",
+        "state": "ready",
+        "identity": "keeper_ritual",
+        "expression": "action.bind_cord",
+        "requestedExpression": "action.bind_cord",
+        "fallbackReason": "exact",
+        "framing": "dialogue",
+        "crop": {
+          "x": -55.393939393939434,
+          "y": 14.361111111111086,
+          "width": 878.7878787878789,
+          "height": 966.6666666666667
+        },
+        "head": {
+          "left": 0,
+          "top": 0,
+          "right": 768,
+          "bottom": 525,
+          "width": 768,
+          "height": 525
+        },
+        "bounds": {
+          "left": 0,
+          "top": 0,
+          "right": 768,
+          "bottom": 1152,
+          "width": 768,
+          "height": 1152
+        }
+      },
+      "buttons": true,
+      "canvases": 1,
+      "stats": {
+        "requests": 34,
+        "decodes": 34,
+        "paints": 43,
+        "fallbackPaints": 0,
+        "vectorBuilds": 0,
+        "imageEntries": 3,
+        "pending": 0,
+        "errors": 0,
+        "vectorEntries": 0,
+        "waiters": 0,
+        "decodedRgbaBytes": 13369344,
+        "pendingRgbaBytes": 0,
+        "budgetBytes": 33554432,
+        "protectedRgbaBytes": 3538944
+      }
+    }
+  ],
+  "repeat120": {
+    "before": {
+      "requests": 34,
+      "decodes": 34,
+      "paints": 43,
+      "fallbackPaints": 0,
+      "vectorBuilds": 0,
+      "imageEntries": 3,
+      "pending": 0,
+      "errors": 0,
+      "vectorEntries": 0,
+      "waiters": 0,
+      "decodedRgbaBytes": 13369344,
+      "pendingRgbaBytes": 0,
+      "budgetBytes": 33554432,
+      "protectedRgbaBytes": 3538944
+    },
+    "after": {
+      "requests": 34,
+      "decodes": 34,
+      "paints": 43,
+      "fallbackPaints": 0,
+      "vectorBuilds": 0,
+      "imageEntries": 3,
+      "pending": 0,
+      "errors": 0,
+      "vectorEntries": 0,
+      "waiters": 0,
+      "decodedRgbaBytes": 13369344,
+      "pendingRgbaBytes": 0,
+      "budgetBytes": 33554432,
+      "protectedRgbaBytes": 3538944
+    },
+    "paints": 0,
+    "clears": 0
+  },
+  "oldSaveRestored": true,
+  "faults": [
+    {
+      "mode": "slow/rapid-switch",
+      "samePersonRetained": true,
+      "differentPersonCleared": true,
+      "lateImageDidNotOverwrite": true
+    },
+    {
+      "mode": "503",
+      "initial": {
+        "source": "approved",
+        "state": "ready",
+        "identity": "seoro",
+        "expression": "base",
+        "requestedExpression": "emotion.anger",
+        "fallbackReason": "network-variant",
+        "framing": "dialogue",
+        "crop": {
+          "x": -158.45454545454538,
+          "y": -32,
+          "width": 1340.9090909090908,
+          "height": 1475
+        },
+        "head": {
+          "left": 265,
+          "top": 8,
+          "right": 725,
+          "bottom": 615,
+          "width": 460,
+          "height": 607
+        },
+        "bounds": {
+          "left": 55,
+          "top": 8,
+          "right": 1010,
+          "bottom": 1120,
+          "width": 955,
+          "height": 1112
+        }
+      },
+      "recovered": {
+        "source": "approved",
+        "state": "ready",
+        "identity": "seoro",
+        "expression": "emotion.anger",
+        "requestedExpression": "emotion.anger",
+        "fallbackReason": "network-variant",
+        "framing": "dialogue",
+        "crop": {
+          "x": -110.31818181818181,
+          "y": -43.04237288135596,
+          "width": 988.6363636363636,
+          "height": 1087.5
+        },
+        "head": {
+          "left": 0,
+          "top": 0,
+          "right": 768,
+          "bottom": 525,
+          "width": 768,
+          "height": 525
+        },
+        "bounds": {
+          "left": 0,
+          "top": 0,
+          "right": 768,
+          "bottom": 1152,
+          "width": 768,
+          "height": 1152
+        }
+      },
+      "physicalVariantRequests": 2,
+      "stats": {
+        "requests": 6,
+        "decodes": 5,
+        "paints": 6,
+        "fallbackPaints": 0,
+        "vectorBuilds": 0,
+        "imageEntries": 3,
+        "pending": 0,
+        "errors": 0,
+        "vectorEntries": 0,
+        "waiters": 0,
+        "decodedRgbaBytes": 16121856,
+        "pendingRgbaBytes": 0,
+        "budgetBytes": 16777216,
+        "protectedRgbaBytes": 3538944
+      }
+    },
+    {
+      "mode": "404",
+      "initial": {
+        "source": "approved",
+        "state": "ready",
+        "identity": "seoro",
+        "expression": "base",
+        "requestedExpression": "emotion.anger",
+        "fallbackReason": "network-variant",
+        "framing": "dialogue",
+        "crop": {
+          "x": -158.45454545454538,
+          "y": -32,
+          "width": 1340.9090909090908,
+          "height": 1475
+        },
+        "head": {
+          "left": 265,
+          "top": 8,
+          "right": 725,
+          "bottom": 615,
+          "width": 460,
+          "height": 607
+        },
+        "bounds": {
+          "left": 55,
+          "top": 8,
+          "right": 1010,
+          "bottom": 1120,
+          "width": 955,
+          "height": 1112
+        }
+      },
+      "recovered": {
+        "source": "approved",
+        "state": "ready",
+        "identity": "seoro",
+        "expression": "emotion.anger",
+        "requestedExpression": "emotion.anger",
+        "fallbackReason": "network-variant",
+        "framing": "dialogue",
+        "crop": {
+          "x": -110.31818181818181,
+          "y": -43.04237288135596,
+          "width": 988.6363636363636,
+          "height": 1087.5
+        },
+        "head": {
+          "left": 0,
+          "top": 0,
+          "right": 768,
+          "bottom": 525,
+          "width": 768,
+          "height": 525
+        },
+        "bounds": {
+          "left": 0,
+          "top": 0,
+          "right": 768,
+          "bottom": 1152,
+          "width": 768,
+          "height": 1152
+        }
+      },
+      "physicalVariantRequests": 4,
+      "stats": {
+        "requests": 8,
+        "decodes": 5,
+        "paints": 6,
+        "fallbackPaints": 0,
+        "vectorBuilds": 0,
+        "imageEntries": 3,
+        "pending": 0,
+        "errors": 0,
+        "vectorEntries": 0,
+        "waiters": 0,
+        "decodedRgbaBytes": 16121856,
+        "pendingRgbaBytes": 0,
+        "budgetBytes": 16777216,
+        "protectedRgbaBytes": 3538944
+      }
+    },
+    {
+      "mode": "base404",
+      "initial": {
+        "source": "neutral",
+        "state": "error",
+        "identity": "seoro",
+        "expression": "emotion.anger",
+        "requestedExpression": "emotion.anger",
+        "fallbackReason": "network-variant"
+      },
+      "recovered": {
+        "source": "approved",
+        "state": "ready",
+        "identity": "seoro",
+        "expression": "emotion.anger",
+        "requestedExpression": "emotion.anger",
+        "fallbackReason": "network-variant",
+        "framing": "dialogue",
+        "crop": {
+          "x": -110.31818181818181,
+          "y": -43.04237288135596,
+          "width": 988.6363636363636,
+          "height": 1087.5
+        },
+        "head": {
+          "left": 0,
+          "top": 0,
+          "right": 768,
+          "bottom": 525,
+          "width": 768,
+          "height": 525
+        },
+        "bounds": {
+          "left": 0,
+          "top": 0,
+          "right": 768,
+          "bottom": 1152,
+          "width": 768,
+          "height": 1152
+        }
+      },
+      "physicalVariantRequests": 4,
+      "stats": {
+        "requests": 11,
+        "decodes": 5,
+        "paints": 5,
+        "fallbackPaints": 1,
+        "vectorBuilds": 1,
+        "imageEntries": 3,
+        "pending": 0,
+        "errors": 0,
+        "vectorEntries": 1,
+        "waiters": 0,
+        "decodedRgbaBytes": 16121856,
+        "pendingRgbaBytes": 0,
+        "budgetBytes": 16777216,
+        "protectedRgbaBytes": 3538944
+      }
+    },
+    {
+      "mode": "timeout",
+      "initial": {
+        "source": "approved",
+        "state": "ready",
+        "identity": "seoro",
+        "expression": "base",
+        "requestedExpression": "emotion.anger",
+        "fallbackReason": "network-variant",
+        "framing": "dialogue",
+        "crop": {
+          "x": -158.45454545454538,
+          "y": -32,
+          "width": 1340.9090909090908,
+          "height": 1475
+        },
+        "head": {
+          "left": 265,
+          "top": 8,
+          "right": 725,
+          "bottom": 615,
+          "width": 460,
+          "height": 607
+        },
+        "bounds": {
+          "left": 55,
+          "top": 8,
+          "right": 1010,
+          "bottom": 1120,
+          "width": 955,
+          "height": 1112
+        }
+      },
+      "recovered": {
+        "source": "approved",
+        "state": "ready",
+        "identity": "seoro",
+        "expression": "emotion.anger",
+        "requestedExpression": "emotion.anger",
+        "fallbackReason": "network-variant",
+        "framing": "dialogue",
+        "crop": {
+          "x": -110.31818181818181,
+          "y": -43.04237288135596,
+          "width": 988.6363636363636,
+          "height": 1087.5
+        },
+        "head": {
+          "left": 0,
+          "top": 0,
+          "right": 768,
+          "bottom": 525,
+          "width": 768,
+          "height": 525
+        },
+        "bounds": {
+          "left": 0,
+          "top": 0,
+          "right": 768,
+          "bottom": 1152,
+          "width": 768,
+          "height": 1152
+        }
+      },
+      "physicalVariantRequests": 2,
+      "stats": {
+        "requests": 7,
+        "decodes": 6,
+        "paints": 6,
+        "fallbackPaints": 0,
+        "vectorBuilds": 0,
+        "imageEntries": 3,
+        "pending": 0,
+        "errors": 0,
+        "vectorEntries": 0,
+        "waiters": 0,
+        "decodedRgbaBytes": 16121856,
+        "pendingRgbaBytes": 0,
+        "budgetBytes": 16777216,
+        "protectedRgbaBytes": 3538944
+      }
+    }
+  ],
+  "errors": [],
+  "limits": "Production App display/resume-row and network fixtures; no normal campaign completion/physical device claim."
+}

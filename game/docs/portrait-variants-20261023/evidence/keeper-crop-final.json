@@ -1,0 +1,157 @@
+{
+  "source": "c4e7a804 plus two head-safe NPC framing corrections, image bytes unchanged",
+  "rows": [
+    {
+      "name": "keeper-bind-cord",
+      "view": [
+        390,
+        844
+      ],
+      "selection": {
+        "source": "approved",
+        "state": "ready",
+        "identity": "keeper_ritual",
+        "expression": "action.bind_cord",
+        "requestedExpression": "action.bind_cord",
+        "fallbackReason": "exact",
+        "framing": "dialogue",
+        "crop": {
+          "x": -65.55808080808083,
+          "y": -8,
+          "width": 899.1161616161617,
+          "height": 989.0277777777778
+        },
+        "head": {
+          "left": 0,
+          "top": 0,
+          "right": 768,
+          "bottom": 525,
+          "width": 768,
+          "height": 525
+        },
+        "bounds": {
+          "left": 0,
+          "top": 0,
+          "right": 768,
+          "bottom": 1152,
+          "width": 768,
+          "height": 1152
+        }
+      }
+    },
+    {
+      "name": "keeper-bind-cord",
+      "view": [
+        844,
+        390
+      ],
+      "selection": {
+        "source": "approved",
+        "state": "ready",
+        "identity": "keeper_ritual",
+        "expression": "action.bind_cord",
+        "requestedExpression": "action.bind_cord",
+        "fallbackReason": "exact",
+        "framing": "dialogue",
+        "crop": {
+          "x": -65.55808080808083,
+          "y": -8,
+          "width": 899.1161616161617,
+          "height": 989.0277777777778
+        },
+        "head": {
+          "left": 0,
+          "top": 0,
+          "right": 768,
+          "bottom": 525,
+          "width": 768,
+          "height": 525
+        },
+        "bounds": {
+          "left": 0,
+          "top": 0,
+          "right": 768,
+          "bottom": 1152,
+          "width": 768,
+          "height": 1152
+        }
+      }
+    },
+    {
+      "name": "keeper-failing-grip",
+      "view": [
+        390,
+        844
+      ],
+      "selection": {
+        "source": "approved",
+        "state": "ready",
+        "identity": "keeper_ritual",
+        "expression": "scene.failing_grip",
+        "requestedExpression": "scene.failing_grip",
+        "fallbackReason": "exact",
+        "framing": "dialogue",
+        "crop": {
+          "x": -64.27651515151513,
+          "y": -8,
+          "width": 896.5530303030303,
+          "height": 986.2083333333334
+        },
+        "head": {
+          "left": 0,
+          "top": 0,
+          "right": 768,
+          "bottom": 525,
+          "width": 768,
+          "height": 525
+        },
+        "bounds": {
+          "left": 0,
+          "top": 0,
+          "right": 768,
+          "bottom": 1152,
+          "width": 768,
+          "height": 1152
+        }
+      }
+    },
+    {
+      "name": "keeper-failing-grip",
+      "view": [
+        844,
+        390
+      ],
+      "selection": {
+        "source": "approved",
+        "state": "ready",
+        "identity": "keeper_ritual",
+        "expression": "scene.failing_grip",
+        "requestedExpression": "scene.failing_grip",
+        "fallbackReason": "exact",
+        "framing": "dialogue",
+        "crop": {
+          "x": -64.27651515151513,
+          "y": -8,
+          "width": 896.5530303030303,
+          "height": 986.2083333333334
+        },
+        "head": {
+          "left": 0,
+          "top": 0,
+          "right": 768,
+          "bottom": 525,
+          "width": 768,
+          "height": 525
+        },
+        "bounds": {
+          "left": 0,
+          "top": 0,
+          "right": 768,
+          "bottom": 1152,
+          "width": 768,
+          "height": 1152
+        }
+      }
+    }
+  ]
+}

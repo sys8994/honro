@@ -34,6 +34,15 @@ def repeat(p):
  return p.evaluate('''()=>{const c=document.getElementById('story-portrait-canvas'),ctx=c.getContext('2d'),draw=ctx.drawImage,clear=ctx.clearRect;let paints=0,clears=0;ctx.drawImage=function(...a){paints++;return draw.apply(this,a)};ctx.clearRect=function(...a){clears++;return clear.apply(this,a)};const [who,,meta]=HonroApp.dialogue.lines[HonroApp.dialogue.index],asset=HonroNPCPortraits.resolve(HonroApp,who,meta),cls=HONRO_STORY_PORTRAITS[who]?.class,before=HonroPortraits.stats();for(let i=0;i<120;i++)HonroPortraits.draw(c,null,cls,{npcAsset:asset,identity:who,portraitExpression:meta.portraitExpression,framing:'dialogue'});return{before,after:HonroPortraits.stats(),paints,clears};}''')
 def check_repeat(r):assert r['paints']==r['clears']==0 and r['before']==r['after'],r
 seoro=json.loads(json.dumps(cases['seoro-anger']));basecase=json.loads(json.dumps(seoro));basecase['line'][2]['portraitExpression']='base';damheo=json.loads(json.dumps(cases['damheo-concern']));damheo['line'][2]['portraitExpression']='base'
+if '--mount-audit'in sys.argv:
+ audit=[]
+ with serve_game()as base,sync_playwright()as pw:
+  b=launch(pw);c,p=openpage(b,base)
+  p.evaluate("""()=>{const api=HonroPortraits;globalThis.HonroPortraits=Object.freeze({...api,mount(...args){const v=api.mount(...args);if(args[3]?.surface==='dialogue')window.actualMount={identity:v?.identity,requested:args[3].portraitExpression,actor:args[1]?.name,cls:args[2]};return v;}});} """)
+  for r in M:
+   show(p,cases[r['id']]);p.wait_for_function('document.getElementById("story-portrait-canvas")?.dataset.portraitState==="ready"');mounted=p.evaluate('actualMount');assert mounted['identity']==r['actor']and mounted['requested']==r['variant'],(r,mounted);before=p.evaluate('HonroPortraits.stats()');selected=info(p);after=p.evaluate('HonroPortraits.stats()');assert before==after and selected['expression']==r['variant'],(r,before,after,selected);audit.append({'id':r['id'],'mounted':mounted,'selected':selected,'inspectionChangedCounters':False})
+  c.close();b.close()
+ (OUT/'mount-audit.json').write_text(json.dumps({'head':subprocess.check_output(['git','rev-parse','HEAD'],text=True).strip(),'rows':audit,'noDrawPolling':True},ensure_ascii=False,indent=2));print('PASS12 actual story mount identities, passive onload readiness, inspection adds0 paint/request/decode');sys.exit(0)
 rows=[];faults=[]
 with serve_game()as base,sync_playwright()as pw:
  b=launch(pw);c,p=openpage(b,base);errors=[];p.on('pageerror',lambda e:errors.append(str(e)));cold=p.evaluate('HonroPortraits.stats()');assert cold['requests']==0,cold
@@ -71,6 +80,7 @@ with serve_game()as base,sync_playwright()as pw:
   if mode=='timeout':p.wait_for_timeout(8150)
   elif mode in ['404','base404']:p.wait_for_timeout(2800)
   else:p.wait_for_timeout(180)
+  if mode!='base404':p.wait_for_function('document.getElementById("story-portrait-canvas")?.dataset.portraitState==="ready"',timeout=18000)
   initial=info(p)
   if mode=='base404':assert initial['source']=='neutral'and initial['state']=='error',initial
   elif mode!='503'or len(hits)==1:assert initial['expression']=='base'and initial['fallbackReason']=='network-variant',initial

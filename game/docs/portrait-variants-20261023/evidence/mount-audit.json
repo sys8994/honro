@@ -1,0 +1,498 @@
+{
+  "head": "e0416942d866e9bb1573b4f8fbd43c8debd74a72",
+  "rows": [
+    {
+      "id": "seoro-concern",
+      "mounted": {
+        "identity": "seoro",
+        "requested": "emotion.concern",
+        "actor": "설오",
+        "cls": "archer"
+      },
+      "selected": {
+        "source": "approved",
+        "state": "ready",
+        "identity": "seoro",
+        "expression": "emotion.concern",
+        "requestedExpression": "emotion.concern",
+        "fallbackReason": "exact",
+        "framing": "dialogue",
+        "crop": {
+          "x": -110.31818181818181,
+          "y": -50.54237288135596,
+          "width": 988.6363636363636,
+          "height": 1087.5
+        },
+        "head": {
+          "left": 0,
+          "top": 0,
+          "right": 768,
+          "bottom": 525,
+          "width": 768,
+          "height": 525
+        },
+        "bounds": {
+          "left": 0,
+          "top": 0,
+          "right": 768,
+          "bottom": 1152,
+          "width": 768,
+          "height": 1152
+        }
+      },
+      "inspectionChangedCounters": false
+    },
+    {
+      "id": "seoro-anger",
+      "mounted": {
+        "identity": "seoro",
+        "requested": "emotion.anger",
+        "actor": "설오",
+        "cls": "archer"
+      },
+      "selected": {
+        "source": "approved",
+        "state": "ready",
+        "identity": "seoro",
+        "expression": "emotion.anger",
+        "requestedExpression": "emotion.anger",
+        "fallbackReason": "exact",
+        "framing": "dialogue",
+        "crop": {
+          "x": -110.31818181818181,
+          "y": -43.04237288135596,
+          "width": 988.6363636363636,
+          "height": 1087.5
+        },
+        "head": {
+          "left": 0,
+          "top": 0,
+          "right": 768,
+          "bottom": 525,
+          "width": 768,
+          "height": 525
+        },
+        "bounds": {
+          "left": 0,
+          "top": 0,
+          "right": 768,
+          "bottom": 1152,
+          "width": 768,
+          "height": 1152
+        }
+      },
+      "inspectionChangedCounters": false
+    },
+    {
+      "id": "damheo-concern",
+      "mounted": {
+        "identity": "damheo",
+        "requested": "emotion.concern",
+        "actor": "담허",
+        "cls": "mage"
+      },
+      "selected": {
+        "source": "approved",
+        "state": "ready",
+        "identity": "damheo",
+        "expression": "emotion.concern",
+        "requestedExpression": "emotion.concern",
+        "fallbackReason": "exact",
+        "framing": "dialogue",
+        "crop": {
+          "x": -135.88636363636363,
+          "y": -62.14112903225805,
+          "width": 1039.7727272727273,
+          "height": 1143.75
+        },
+        "head": {
+          "left": 0,
+          "top": 0,
+          "right": 768,
+          "bottom": 525,
+          "width": 768,
+          "height": 525
+        },
+        "bounds": {
+          "left": 0,
+          "top": 0,
+          "right": 768,
+          "bottom": 1152,
+          "width": 768,
+          "height": 1152
+        }
+      },
+      "inspectionChangedCounters": false
+    },
+    {
+      "id": "damheo-channel",
+      "mounted": {
+        "identity": "damheo",
+        "requested": "action.channel",
+        "actor": "담허",
+        "cls": "mage"
+      },
+      "selected": {
+        "source": "approved",
+        "state": "ready",
+        "identity": "damheo",
+        "expression": "action.channel",
+        "requestedExpression": "action.channel",
+        "fallbackReason": "exact",
+        "framing": "dialogue",
+        "crop": {
+          "x": -135.88636363636363,
+          "y": -39.64112903225805,
+          "width": 1039.7727272727273,
+          "height": 1143.75
+        },
+        "head": {
+          "left": 0,
+          "top": 0,
+          "right": 768,
+          "bottom": 525,
+          "width": 768,
+          "height": 525
+        },
+        "bounds": {
+          "left": 0,
+          "top": 0,
+          "right": 768,
+          "bottom": 1152,
+          "width": 768,
+          "height": 1152
+        }
+      },
+      "inspectionChangedCounters": false
+    },
+    {
+      "id": "hwigyeom-anger",
+      "mounted": {
+        "identity": "hwigyeom",
+        "requested": "emotion.anger",
+        "actor": "휘겸",
+        "cls": "knight"
+      },
+      "selected": {
+        "source": "approved",
+        "state": "ready",
+        "identity": "hwigyeom",
+        "expression": "emotion.anger",
+        "requestedExpression": "emotion.anger",
+        "fallbackReason": "exact",
+        "framing": "dialogue",
+        "crop": {
+          "x": -42.136363636363626,
+          "y": -21.734693877551024,
+          "width": 852.2727272727273,
+          "height": 937.5
+        },
+        "head": {
+          "left": 0,
+          "top": 0,
+          "right": 768,
+          "bottom": 525,
+          "width": 768,
+          "height": 525
+        },
+        "bounds": {
+          "left": 0,
+          "top": 0,
+          "right": 768,
+          "bottom": 1152,
+          "width": 768,
+          "height": 1152
+        }
+      },
+      "inspectionChangedCounters": false
+    },
+    {
+      "id": "hwigyeom-guard",
+      "mounted": {
+        "identity": "hwigyeom",
+        "requested": "action.guard",
+        "actor": "휘겸",
+        "cls": "knight"
+      },
+      "selected": {
+        "source": "approved",
+        "state": "ready",
+        "identity": "hwigyeom",
+        "expression": "action.guard",
+        "requestedExpression": "action.guard",
+        "fallbackReason": "exact",
+        "framing": "dialogue",
+        "crop": {
+          "x": -42.136363636363626,
+          "y": -21.734693877551024,
+          "width": 852.2727272727273,
+          "height": 937.5
+        },
+        "head": {
+          "left": 0,
+          "top": 0,
+          "right": 768,
+          "bottom": 525,
+          "width": 768,
+          "height": 525
+        },
+        "bounds": {
+          "left": 0,
+          "top": 0,
+          "right": 768,
+          "bottom": 1152,
+          "width": 768,
+          "height": 1152
+        }
+      },
+      "inspectionChangedCounters": false
+    },
+    {
+      "id": "sodan-concern",
+      "mounted": {
+        "identity": "sodan",
+        "requested": "emotion.concern",
+        "actor": "소단",
+        "cls": "occultist"
+      },
+      "selected": {
+        "source": "approved",
+        "state": "ready",
+        "identity": "sodan",
+        "expression": "emotion.concern",
+        "requestedExpression": "emotion.concern",
+        "fallbackReason": "exact",
+        "framing": "dialogue",
+        "crop": {
+          "x": -101.7954545454545,
+          "y": -12.75,
+          "width": 971.590909090909,
+          "height": 1068.75
+        },
+        "head": {
+          "left": 0,
+          "top": 0,
+          "right": 768,
+          "bottom": 525,
+          "width": 768,
+          "height": 525
+        },
+        "bounds": {
+          "left": 0,
+          "top": 0,
+          "right": 768,
+          "bottom": 1152,
+          "width": 768,
+          "height": 1152
+        }
+      },
+      "inspectionChangedCounters": false
+    },
+    {
+      "id": "sodan-holding-threads",
+      "mounted": {
+        "identity": "sodan",
+        "requested": "scene.holding_threads",
+        "actor": "소단",
+        "cls": "occultist"
+      },
+      "selected": {
+        "source": "approved",
+        "state": "ready",
+        "identity": "sodan",
+        "expression": "scene.holding_threads",
+        "requestedExpression": "scene.holding_threads",
+        "fallbackReason": "exact",
+        "framing": "dialogue",
+        "crop": {
+          "x": -118.84090909090907,
+          "y": -30.76315789473682,
+          "width": 1005.6818181818181,
+          "height": 1106.25
+        },
+        "head": {
+          "left": 0,
+          "top": 0,
+          "right": 768,
+          "bottom": 525,
+          "width": 768,
+          "height": 525
+        },
+        "bounds": {
+          "left": 0,
+          "top": 0,
+          "right": 768,
+          "bottom": 1152,
+          "width": 768,
+          "height": 1152
+        }
+      },
+      "inspectionChangedCounters": false
+    },
+    {
+      "id": "sodan-rest-hands",
+      "mounted": {
+        "identity": "sodan",
+        "requested": "action.rest_hands",
+        "actor": "소단",
+        "cls": "occultist"
+      },
+      "selected": {
+        "source": "approved",
+        "state": "ready",
+        "identity": "sodan",
+        "expression": "action.rest_hands",
+        "requestedExpression": "action.rest_hands",
+        "fallbackReason": "exact",
+        "framing": "dialogue",
+        "crop": {
+          "x": -118.84090909090907,
+          "y": -30.76315789473682,
+          "width": 1005.6818181818181,
+          "height": 1106.25
+        },
+        "head": {
+          "left": 0,
+          "top": 0,
+          "right": 768,
+          "bottom": 525,
+          "width": 768,
+          "height": 525
+        },
+        "bounds": {
+          "left": 0,
+          "top": 0,
+          "right": 768,
+          "bottom": 1152,
+          "width": 768,
+          "height": 1152
+        }
+      },
+      "inspectionChangedCounters": false
+    },
+    {
+      "id": "worker-mature-relief",
+      "mounted": {
+        "identity": "worker_mature",
+        "requested": "emotion.relief",
+        "actor": "덕수",
+        "cls": "mage"
+      },
+      "selected": {
+        "source": "approved",
+        "state": "ready",
+        "identity": "worker_mature",
+        "expression": "emotion.relief",
+        "requestedExpression": "emotion.relief",
+        "fallbackReason": "exact",
+        "framing": "dialogue",
+        "crop": {
+          "x": -156,
+          "y": -29.90625,
+          "width": 1080,
+          "height": 1188
+        },
+        "head": {
+          "left": 0,
+          "top": 0,
+          "right": 768,
+          "bottom": 525,
+          "width": 768,
+          "height": 525
+        },
+        "bounds": {
+          "left": 0,
+          "top": 0,
+          "right": 768,
+          "bottom": 1152,
+          "width": 768,
+          "height": 1152
+        }
+      },
+      "inspectionChangedCounters": false
+    },
+    {
+      "id": "keeper-failing-grip",
+      "mounted": {
+        "identity": "keeper_ritual",
+        "requested": "scene.failing_grip",
+        "actor": "종지기",
+        "cls": "occultist"
+      },
+      "selected": {
+        "source": "approved",
+        "state": "ready",
+        "identity": "keeper_ritual",
+        "expression": "scene.failing_grip",
+        "requestedExpression": "scene.failing_grip",
+        "fallbackReason": "exact",
+        "framing": "dialogue",
+        "crop": {
+          "x": -64.27651515151513,
+          "y": -8,
+          "width": 896.5530303030303,
+          "height": 986.2083333333334
+        },
+        "head": {
+          "left": 0,
+          "top": 0,
+          "right": 768,
+          "bottom": 525,
+          "width": 768,
+          "height": 525
+        },
+        "bounds": {
+          "left": 0,
+          "top": 0,
+          "right": 768,
+          "bottom": 1152,
+          "width": 768,
+          "height": 1152
+        }
+      },
+      "inspectionChangedCounters": false
+    },
+    {
+      "id": "keeper-bind-cord",
+      "mounted": {
+        "identity": "keeper_ritual",
+        "requested": "action.bind_cord",
+        "actor": "종지기",
+        "cls": "occultist"
+      },
+      "selected": {
+        "source": "approved",
+        "state": "ready",
+        "identity": "keeper_ritual",
+        "expression": "action.bind_cord",
+        "requestedExpression": "action.bind_cord",
+        "fallbackReason": "exact",
+        "framing": "dialogue",
+        "crop": {
+          "x": -65.55808080808083,
+          "y": -8,
+          "width": 899.1161616161617,
+          "height": 989.0277777777778
+        },
+        "head": {
+          "left": 0,
+          "top": 0,
+          "right": 768,
+          "bottom": 525,
+          "width": 768,
+          "height": 525
+        },
+        "bounds": {
+          "left": 0,
+          "top": 0,
+          "right": 768,
+          "bottom": 1152,
+          "width": 768,
+          "height": 1152
+        }
+      },
+      "inspectionChangedCounters": false
+    }
+  ],
+  "noDrawPolling": true
+}
