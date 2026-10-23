@@ -17,7 +17,7 @@ function harness(code=source){
   resume(){resumes++;return new Promise((resolve,reject)=>{resolveResume=()=>{this.state='running';resolve();};rejectResume=reject;attempts.push({resolve:resolveResume,reject});});}
   close(){this.state='closed';}
  }
- const context=vm.createContext({module:{exports:{}},exports:{},require:()=>({BgmPlayer:class{configure(){}unlock(){}setPaused(){}select(){}tick(){}dispose(){}}}),performance:{now:()=>now},AudioContext:Context,requestIdleCallback:fn=>idle.push(fn),Float32Array,Map,Set,Promise,Math,console});context.exports=context.module.exports;
+ const context=vm.createContext({module:{exports:{}},exports:{},require:()=>({BgmPlayer:class{configure(){}unlock(){}setPaused(){}select(){}tick(){}dispose(){}clearDucking(){}},SkillAudioPlayer:class{configure(){}prepareWanted(){}stopAll(){}setPaused(){}dispose(){}}}),performance:{now:()=>now},AudioContext:Context,requestIdleCallback:fn=>idle.push(fn),Float32Array,Map,Set,Promise,Math,console});context.exports=context.module.exports;
  vm.runInContext(ts.transpileModule(code,{compilerOptions:{target:ts.ScriptTarget.ES2020,module:ts.ModuleKind.CommonJS}}).outputText,context);
  const a=new context.module.exports.AudioEngine();
  return {a,created,idle,synthesis,attempts,get contexts(){return contexts;},get resumes(){return resumes;},time:n=>now=n,resolve:()=>resolveResume(),reject:()=>rejectResume(new Error('NotAllowedError')),samples:context.module.exports.soundSamples};

@@ -14,7 +14,7 @@ function harness(rate){
   createBufferSource(){const v={connect(){},disconnect(){},start(){},stop(){this.stopped=true;this.onended?.();}};voices.push(v);return v;}
   resume(){return new Promise(resolve=>{resume=()=>{this.state='running';resolve();};});}close(){this.state='closed';}
  }
- const g=vm.createContext({exports:{},require:()=>({BgmPlayer:class{configure(){}unlock(){}setPaused(){}select(){}tick(){}dispose(){}}}),AudioContext:Context,performance:{now:()=>now},requestIdleCallback:fn=>idle.push(fn),Float32Array,Map,Set,Promise});
+ const g=vm.createContext({exports:{},require:()=>({BgmPlayer:class{configure(){}unlock(){}setPaused(){}select(){}tick(){}dispose(){}clearDucking(){}},SkillAudioPlayer:class{configure(){}prepareWanted(){}stopAll(){}setPaused(){}dispose(){}}}),AudioContext:Context,performance:{now:()=>now},requestIdleCallback:fn=>idle.push(fn),Float32Array,Map,Set,Promise});
  vm.runInContext(ts.transpileModule(source,{compilerOptions:{target:ts.ScriptTarget.ES2020,module:ts.ModuleKind.CommonJS}}).outputText,g);
  return {a:new g.exports.AudioEngine(),buffers,voices,idle,resolve:()=>resume(),time:n=>now=n,samples:g.exports.soundSamples};
 }
