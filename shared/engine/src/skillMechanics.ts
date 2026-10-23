@@ -59,7 +59,7 @@ export function redrawDamage(e:Engine,p:Projectile,u:Unit,target:Unit,amount:num
  const key=`redesign:${p.shot}:${p.skill}:${target.id}`;
  if(p.skill==='A15'&&p.child){const n=e.b.shotDamage[key]||0;e.b.shotDamage[key]=n+1;amount*=([1,.70,.50,.35][n]||0);}
  if(p.secondary){
-  const limit=p.skill==='A08'?(p.rootDamage||p.damage)*.65:p.skill==='M13'?3:2;
+  const limit=p.skill==='A08'?(p.rootDamage||p.damage)*.65*(p.damageRoll??1):p.skill==='M13'?3:2;
   const used=e.b.shotDamage[key]||0;
   if(p.skill==='A08'){amount=Math.max(0,Math.min(amount,limit-used));e.b.shotDamage[key]=used+amount;}
   else {if(used>=limit)return 0;e.b.shotDamage[key]=used+1;}
@@ -239,8 +239,8 @@ export function detonateIceGourd(e:Engine){
 function placeStake(e:Engine,p:Projectile,h:Collision){
  const b=e.b;b.stakes??=[];const support=h.terrain?.oneWay&&h.n.y<0?h.terrain:undefined,x=support?clamp(p.x,support.x,support.x+support.w):p.x;
  const floor=support?topAt(support,x,h.y):h.n.y<-.3?h.y:e.surface(p.x,p.y-3,b.height)?.y;if(floor===undefined){e.remove(p);return;}
- const all=b.stakes;if(p.skill==='M09'){const gates=all.filter(s=>s.skill==='M09'&&s.side===p.side);if(!gates.length){const u=e.unit(p.owner)!;const home=e.surface(u.x,u.y-8,u.y+80);if(home)b.stakes.push({id:b.nextId++,skill:p.skill,owner:p.owner,side:p.side,x:u.x,y:home.y,rank:rank(p),damage:0,shot:p.shot,effectBoost:p.effectBoost,expires:b.round+stakeDuration(p.skill,rank(p))});}else if(gates.length>=2)b.stakes=all.filter(s=>s.id!==gates[0].id);}
- b.stakes.push({id:b.nextId++,skill:p.skill,owner:p.owner,side:p.side,x,y:floor,rank:rank(p),damage:p.damage,shot:p.shot,effectBoost:p.effectBoost,expires:b.round+stakeDuration(p.skill,rank(p))});
+ const all=b.stakes;if(p.skill==='M09'){const gates=all.filter(s=>s.skill==='M09'&&s.side===p.side);if(!gates.length){const u=e.unit(p.owner)!;const home=e.surface(u.x,u.y-8,u.y+80);if(home)b.stakes.push({attackSide:p.attackSide,damageRoll:p.damageRoll,id:b.nextId++,skill:p.skill,owner:p.owner,side:p.side,x:u.x,y:home.y,rank:rank(p),damage:0,shot:p.shot,effectBoost:p.effectBoost,expires:b.round+stakeDuration(p.skill,rank(p))});}else if(gates.length>=2)b.stakes=all.filter(s=>s.id!==gates[0].id);}
+ b.stakes.push({attackSide:p.attackSide,damageRoll:p.damageRoll,id:b.nextId++,skill:p.skill,owner:p.owner,side:p.side,x,y:floor,rank:rank(p),damage:p.damage,shot:p.shot,effectBoost:p.effectBoost,expires:b.round+stakeDuration(p.skill,rank(p))});
  e.fx('spark',x,floor,'#a89b7f',15);e.remove(p);
  e.emit('sound',{name:'ceramic'});
 }
@@ -297,7 +297,7 @@ export function redesignImpact(e:Engine,p:Projectile,h:Collision){
  if(h.unit){
   const target=h.unit,prior=p.outboundHits?.includes(target.id),factor=p.returning?.7*(prior?1.2:1):1;
   const before=target.hp;e.hurt(target,p.damage*factor,p.owner,true,p,h);p.hit.push(target.id);
-  if(p.mode==='push'){e.impulse(target,Math.sign(p.vx)*280,-130);target.shove={autonomous:e.autonomousAttack(p.owner,p),owner:p.owner,damage:(before-target.hp)*.18,remaining:Math.round(lerpRank(2,5,r)),hit:[target.id],life:1.5};}
+  if(p.mode==='push'){e.impulse(target,Math.sign(p.vx)*280,-130);target.shove={attackSide:e.attackSide(p.owner,p),friendlyFireApplied:e.friendlyFireMultiplier(target,p.owner,p)<1,autonomous:e.autonomousAttack(p.owner,p),owner:p.owner,damage:(before-target.hp)*.18,remaining:Math.round(lerpRank(2,5,r)),hit:[target.id],life:1.5};}
   if(p.mode==='pierce'&&p.pierces<[1,1,2,2,3,3,4,5][r-1]){p.pierces++;p.damage*=.88;return true;}
   if(p.mode==='return'&&p.hit.length<=1)return true;
   if(p.mode==='chainArrow'&&chainArrowHop(e,p,r))return true;
@@ -400,7 +400,7 @@ export function tickRedesign(e:Engine,dt:number){
   if(shove.life<=0||u.dead||Math.abs(u.vx)<20){delete u.shove;continue;}
   for(const v of b.units.filter(v=>!v.dead&&e.attackAllows(v,shove.owner,shove)&&v.side===u.side&&v.id!==u.id&&!shove.hit.includes(v.id))){
    if(Math.abs(v.x-u.x)>v.r+u.r||Math.abs(v.y-u.y)>(u.h+v.h)*.5)continue;
-   shove.hit.push(v.id);e.hurt(v,shove.damage,shove.owner,false,undefined,undefined,'normal','A05');e.impulse(v,u.vx*.70,-80);
+   shove.hit.push(v.id);e.hurt(v,shove.damage,shove.owner,false,undefined,undefined,'normal','A05',shove);e.impulse(v,u.vx*.70,-80);
    if(shove.remaining>1)v.shove={...shove,remaining:shove.remaining-1,damage:shove.damage*.70,hit:[...shove.hit],life:1};delete u.shove;break;
   }
  }
@@ -411,7 +411,7 @@ export function tickRedesign(e:Engine,dt:number){
   if(z.skill==='M09')continue;
   const caster=e.unit(z.owner);if(!caster)continue;const boost=(1+passiveTuning(passiveRank(caster,'MP01')).geometry)*(1+(z.effectBoost||0)),trigger=stakeRanges(e,z).trigger;
   const nearby=b.units.filter(u=>!u.dead&&!u.eaterCapturedBy&&(z.skill==='M10'?u.side===z.side||((u as any).honroAlly&&z.side===0):enemy(z,u))&&Math.min(Math.hypot(u.x-z.x,u.y-z.y),Math.hypot(u.x-z.x,u.y-u.h*.5-z.y))<trigger+u.r);
-  const p={owner:z.owner,side:z.side,skill:z.skill,skillRank:z.rank,shot:z.shot,x:z.x,y:z.y,damage:z.damage,hit:[],id:z.id,vx:0,vy:0,prevVy:0,age:0,radius:3,blast:95,wind:0,mode:'stake',color:'#b9c4b1',bounces:0,pierces:0,apex:true,phase:0,body:false,returnX:z.x,returnY:z.y,trail:[],child:false,rolled:0} as Projectile;
+  const p={attackSide:z.attackSide,damageRoll:z.damageRoll,owner:z.owner,side:z.side,skill:z.skill,skillRank:z.rank,shot:z.shot,x:z.x,y:z.y,damage:z.damage,hit:[],id:z.id,vx:0,vy:0,prevVy:0,age:0,radius:3,blast:95,wind:0,mode:'stake',color:'#b9c4b1',bounces:0,pierces:0,apex:true,phase:0,body:false,returnX:z.x,returnY:z.y,trail:[],child:false,rolled:0} as Projectile;
   if(z.skill==='M07'||z.skill==='M08'){triggerOffensiveStake(e,z,nearby,p,boost);continue;}
   const available=z.skill==='M10'?nearby.filter(u=>z.usedRounds?.[u.id]!==b.round):nearby;
   if(!z.active&&available.length&&(z.skill==='M10'||z.lastTriggerRound!==b.round)){

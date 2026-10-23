@@ -1,3 +1,4 @@
+import type {DamageOrigin,DamageSequence} from './damageVariance';
 import type {PhysicsEnvironment,PhysicsPatch,PhysicsCue} from './physics';
 export type ClassId = 'mage' | 'archer' | 'knight' | 'occultist';
 export type Side = 0 | 1 | 2;
@@ -134,6 +135,8 @@ export interface AIMovePlan {
     intent:string;
 }
 export interface Unit {
+    summonDamageOrigin?: DamageOrigin;
+    curseDamageOrigin?: DamageOrigin;
     /** Optional overrides and temporary shifts; absent fields use the species/role baseline. */
     existenceDefense?: ExistenceVector;
     existenceShift?: Partial<ExistenceVector>;
@@ -149,19 +152,20 @@ export interface Unit {
     jucheonReady?: boolean;
     swordChain?: string[];
     harmony?: boolean;
-    martialGuard?: {round:number;reduction:number;counter?:boolean;rank?:number;angle?:number;span?:number;attacker?:string};
+    martialGuard?: DamageOrigin & {round:number;reduction:number;counter?:boolean;rank?:number;angle?:number;span?:number;attacker?:string};
     bladeScreen?: {round:number;rank:number;hits:number;facing:number};
     bladeStored?: number;
+    meleeFollowOrigin?: DamageOrigin;
     meleeFollow?: 'landing'|'ready'|'spent';
-    beastAction?: {skill:string;target:string;elapsed:number;damage:number;shot:number;facing:number;travel:number;struck:boolean};
-    meleeAction?: {skill:string;elapsed:number;index:number;damage:number;range:number;power:number;shot:number;target?:string;lifeCost?:number;angle?:number;span?:number};
+    beastAction?: DamageOrigin & {skill:string;target:string;elapsed:number;damage:number;shot:number;facing:number;travel:number;struck:boolean};
+    meleeAction?: DamageOrigin & {skill:string;elapsed:number;index:number;damage:number;range:number;power:number;shot:number;target?:string;lifeCost?:number;angle?:number;span?:number};
     mageWardShot?: number;
     retreat?: boolean;
     prepared?: {rank:number;expires:number};
     gateTurn?: string;
     arrivalGuard?: number;
     slowed?: {factor:number;expires:number};
-    shove?: {autonomous?:boolean;owner:string;damage:number;remaining:number;hit:string[];life:number};
+    shove?: DamageOrigin & {autonomous?:boolean;owner:string;damage:number;remaining:number;hit:string[];life:number};
     elite?: boolean;
     summoned?: boolean;
     summonOwner?: string;
@@ -194,8 +198,8 @@ export interface Unit {
     soulAffinityBonus?: number;
     soulDefenseBonus?: number;
     soulBonusUntil?: number;
-    enthrall?: {owner:string;actions:number;captureRatio:number;originalMaxHp:number;originalAttack:number;originalArmor:number;power:number};
-    earthbind?: {autonomous?:boolean;owner:string;until:number;damage:number};
+    enthrall?: DamageOrigin & {owner:string;actions:number;captureRatio:number;originalMaxHp:number;originalAttack:number;originalArmor:number;power:number};
+    earthbind?: DamageOrigin & {autonomous?:boolean;owner:string;until:number;damage:number};
     nextSummonDiscount?: number;
     soulRemnants?: number;
     impactCooldown?: number;
@@ -285,7 +289,7 @@ export interface Unit {
 }
 /** Persisted cast provenance is independent of later capture/release allegiance. */
 export interface CombatReportSource {cls?:string|null;side?:Side;kind:string;skill:string;id?:string|null;parent?:string|null;}
-export interface Projectile {
+export interface Projectile extends DamageOrigin {
     honroReportSource?: CombatReportSource;
     /** Automatic continuation; inherited by child effects and serialized in flight. */
     autonomous?: boolean;
@@ -369,7 +373,7 @@ export interface Projectile {
     targetId?: string;
     ultimateBurst?: boolean;
 }
-export interface Zone {
+export interface Zone extends DamageOrigin {
     honroReportSource?: CombatReportSource;
     /** Original cast identity for reporting; absent in legacy zones. */
     skill?: string;
@@ -415,6 +419,7 @@ export interface Stage {
     par: number;
 }
 export interface Battle {
+    damageSequence?: DamageSequence;
     playerTurnOrder?: ClassId[];
     spBalanceRevision?: number;
     martialRevision?: number;
@@ -422,10 +427,10 @@ export interface Battle {
     practiceCombat?: boolean;
     skillRevision?: number;
     cast?: {owner:string;skill:string;shot:number;cost:number;enemyDamage:number;refunded?:boolean};
-    stakes?: {effectBoost?:number;id:number;skill:string;owner:string;side:Side;x:number;y:number;rank:number;damage:number;shot:number;active?:boolean;expires?:number;lastTriggerRound?:number;usedRounds?:Record<string,number>;inside?:string[];crossed?:Record<string,string>;budgetTurns?:Record<string,string>}[];
+    stakes?: (DamageOrigin & {effectBoost?:number;id:number;skill:string;owner:string;side:Side;x:number;y:number;rank:number;damage:number;shot:number;active?:boolean;expires?:number;lastTriggerRound?:number;usedRounds?:Record<string,number>;inside?:string[];crossed?:Record<string,string>;budgetTurns?:Record<string,string>})[];
     physics?:PhysicsEnvironment;
     summonTurn?:{queue:string[];index:number;stage:'approach'|'attack'|'wait';elapsed:number;hold:number;start?:Vec;destination?:Vec;targetId?:string;returnActive:string;practice:boolean;afterActor?:boolean};
-    occultTraps?: {autonomous?:boolean;id:number;x:number;y:number;owner:string;skill:string;rank:number;damage:number;expires:number}[];
+    occultTraps?: (DamageOrigin & {autonomous?:boolean;id:number;x:number;y:number;owner:string;skill:string;rank:number;damage:number;expires:number})[];
     vertical?: boolean;
     routePoints?: Vec[];
     volley?: {template: Projectile; remaining: number; elapsed: number; interval: number; index: number; angle: number; power: number};

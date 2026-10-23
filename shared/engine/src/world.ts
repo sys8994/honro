@@ -1,3 +1,4 @@
+import {initializeDamageSequence} from './damageVariance';
 import {initializePlayerTurnOrder} from './turnOrder';
 import {SP_BALANCE_REVISION} from './passiveBalance';
 import {makePhysics,reinforceFields} from './physics';
@@ -258,6 +259,7 @@ export function createBattle(stageId: number, profile: Profile, mode: Battle['mo
     for(const u of battle.units)if(u.side===1&&u.role!=='dummy'){u.combatBaseHp=u.maxHp;u.combatBaseAttack=u.attack;}
     setDifficulty(battle,profile.settings.difficulty);
     initializePlayerTurnOrder(battle,profile);
+    initializeDamageSequence(battle);
     return battle;
 }
 // Late import is safe: definitions are read only when a battle is created.

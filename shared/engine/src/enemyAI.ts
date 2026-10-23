@@ -193,7 +193,7 @@ export function shotImpactValue(e:Engine,u:Unit,skill:Skill,hit:{x:number;y:numb
   const d=Math.hypot(hit.x-v.x,hit.y-(v.y-v.h*.45)),direct=hit.unit===v.id;
   if(!direct&&d>=radius+v.r)continue;
   const factor=direct?1:.42+.58*(1-clamp(d/radius,0,1));
-  const raw=eff.damage*factor*(1-clamp(v.armor,0,.7)),loss=Math.min(v.hp+v.shield,Math.max(0,raw));
+  const raw=eff.damage*factor*(1-clamp(v.armor,0,.7))*e.friendlyFireMultiplier(v,u.id,{attackSide:e.allegiance(u)}),loss=Math.min(v.hp+v.shield,Math.max(0,raw));
   if(opponent)enemyDamage+=loss;
   else friendlyDamage+=loss*(raw>=v.hp+v.shield?1.8:1);
  }
