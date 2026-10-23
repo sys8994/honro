@@ -1,3 +1,7 @@
+# 평범한 NPC v2 승인 초상화 연결 — 2026-10-23
+
+기존 NPC는 벡터/본문만 표시하는 경로가 남아 있었다. 승인된8종 PNG를 변경 없이 무손실 WebP로 연결하고 현행 rowId·장면·명시 배우/구조 마커로 인물을 구분한다. generic 주민 고정 얼굴/클래스 추정은 없으며 익명·서술·기록과 종지기 보류를 유지한다. 새 NPC의 지연·실패는 중립 영역과 유한 재시도이며 구벡터로 전환하지 않는다.65행/실제7·14장 마커·32개 화면·저장/쉼터·slow/404/timeout/재오픈과 기존4주인공 RGBA/120회 추가 repaint0을 확인했다. 원고·전투·초상화 UI 구조는 보존하며 별도 S13 P0 master67022abd를 통합했다. [실행 SHA·사진·한계](npc-portraits-20261023/runtime/README.md). master/Pages는 부모 담당이다.
+
 # P0 수동 카메라 뒤 자기 캐릭터 이동 추적 복구 — 2026-10-23
 
 0b96의 별도 s.manual 잠금이 이동/점프/선택의 scene.manual=false를 다음 render마다 덮어썼다. 실제 일반1장 미니맵 뒤 이동에서 PC/모바일 모두 카메라 delta0·캐릭터 화면 이탈로 재현했다. 공통 resume으로 정상 조작/다음 자기 턴의 두 잠금을 함께 해제하고, held pointer·같은 공격 후속타/피해 수동은 유지한다. Engine/피해/안내/승인14장/대사는 원문 보존. [수정 전후 원본 화면·검수 범위](camera-player-control-20261023/README.md). master/Pages는 부모 담당이다.
@@ -4604,3 +4608,9 @@ O05의 지형 미접촉3.4초/255점/상단 경계와 총10초 종료가 고지�
 ## 2026-10-23 — 기본기·사용 기예 상세의 평균/편차 안내 누락
 
 피해 기준 행을 skillEffectRows에만 더해 실제 UI의 skillGrowthRows 고정행 필터에서 빠졌고 기본기는 효과표도 없었다. 두 실제 상세 renderer에 기존 편차 데이터의 한 줄을 직접 연결했다. title/모닥불/허공터/전장 재진입을 실제 클릭해1280/390 전후 각30판정·24PNG/DOM을 확인했다. 기본기4종과5/10/15%·회복 제외·중복/넘침0·pageerror0, 타입/build/web-split 통과. 일반 캠페인 HUD는 상세 진입 없이 선택만 하는 기존 동작이며 UI 신설은 하지 않았다. 이전 함수 직접 호출을 실제 UI 검수로 기술한 오류를 정정했다. 계산/저장·카메라/천장·대사는 불변이다. [원인·실제 경로·검수](combat-damage/DISPLAY_FIX.md). master/새 Pages는 부모 담당이다.
+
+## 2026-10-23 — 긴급: 파진연격 후 수비하면 다음 턴에도 이동 잠금
+
+aa4b7ab7의 실제 허공터 UI에서 S13 파진연격→수비→R2를 재현했다. moveLeft2074인데 meleeFollow=ready가 남아 오른쪽 입력 전후 x398.093 동일·점프 비활성이었다. 착지의 landing→ready는 정상이나 완료 정리는 spent만 처리해 방어 포기를 놓쳤고 새 턴도 예약을 보존했다. finishWarrior에서 ready의 명시적 행동 완료를 포기로 정리하고 새 라운드/훈련 재시작에서도 예약·피해 origin을 지운다. origin에 생성 라운드를 붙여 같은 행동의 정상 잠금은 보존하며, Continue에서는 비활성/소모/턴 만료 예약만 제거한다. 라운드가 없는 구 저장은 ready+복구된 이동도의 기존 오염 서명만 격리해 정리하며 정상 ready+이동도0은 유지한다. HP/기력/좌표/행동/보상은 보정하지 않는다.
+
+수정 후 같은 실제 UI 입력에서 R2 오른쪽 x398.276→608.276, 점프·조준·공격·재수비/R3 정상, pageerror0. s13-defend-lock 핵심 wait/일반종료/정상검술×2·점프/이동·새/구/오염/회복된 정상 예약 저장, 실제 App Continue/export/import5종과 방어 회복 중복 없음, 기존 combo-landing-turn14·피해64/24576표본·아군30%72조합·type/build/web-split 통과. 실제 UI trace/PNG는 `_local/reports/s13-defend-lock/{locked,unlocked}/`에 둔다. 실행 코드는 engine/warriorMechanics/types만 수정했으며 카메라 e1·661대사·14장 지형·NPC 초상·피해 규칙은 보존했다. master/Pages는 부모 담당이다.
