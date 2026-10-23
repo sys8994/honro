@@ -60,7 +60,8 @@ export function meleeTerrainContact(e:Engine,u:Unit,t:Terrain,range:number,angle
 }
 function stroke(e:Engine,u:Unit,range:number,facing=u.facing,color='#dbe2dd',variant=0,angle?:number,span?:number){
  const c=at(u);e.emit('fx',{name:'swordCut',x:c.x,y:c.y,x2:facing,y2:variant,color,size:range,text:angle===undefined?undefined:JSON.stringify({angle,span})});u.anim=.55;
- if(!e.skillSound('swing',u.id,u.meleeAction?.skill||(u.martialGuard?.rank?'S08':'S00'),e.b.shot))e.emit('sound',{name:'sword'});e.fx('spark',u.x+facing*25,u.y,'#958e76',12);
+ // Player weapon sound belongs to action windup/launch, not this contact-only visual.
+ if(u.side!==0||u.summoned||u.enthrall)e.emit('sound',{name:'sword'});e.fx('spark',u.x+facing*25,u.y,'#958e76',12);
 }
 function strike(e:Engine,u:Unit,t:Unit,damage:number,s:Skill,shot:number,autonomous=false,origin?:DamageOrigin){
  // A short-lived damage descriptor is not a projectile in the battlefield.
@@ -108,7 +109,9 @@ export function tickWarrior(e:Engine,dt:number){
   if(u.bladeScreen&&u.bladeScreen.round<e.b.round)delete u.bladeScreen;
   const a=u.meleeAction;
   if(a){
-   a.elapsed+=dt;const s=SKILLS[a.skill],count=s.mode==='meleeCombo'?COMBO_HITS[(u.ranks[s.id]||1)-1]:s.mode==='meleeTurn'?2:1,delay=s.mode==='lifeSlash'?.20:.075,interval=s.mode==='meleeCombo'?.10:.19;
+   const previous=a.elapsed;a.elapsed+=dt;const s=SKILLS[a.skill],count=s.mode==='meleeCombo'?COMBO_HITS[(u.ranks[s.id]||1)-1]:s.mode==='meleeTurn'?2:1,delay=s.mode==='lifeSlash'?.20:.075,interval=s.mode==='meleeCombo'?.10:.19;
+   // Cross a real swing's windup once; loading midway does not replay a past start.
+   for(let index=a.index;index<count&&index*interval<=a.elapsed;index++)if(previous===0||previous<index*interval)e.skillSound('swing',u.id,s.id,a.shot,`stroke:${index}`);
    while(a.index<count&&a.elapsed>=delay+a.index*interval){
     const turn=s.mode==='meleeTurn'&&a.index===1,angle=(a.angle??-rad(u.angle))+(turn?Math.PI:0),span=a.span??meleeSpan(u,s,a.power),facing=Math.cos(angle)<0?-1:1;
     const targets=e.b.units.filter(t=>foe(u,t)&&e.attackAllows(t,u.id,{autonomous:s.mode==='meleeCombo'||a.index>0})&&meleeContains(e,u,t,a.range,angle,span));

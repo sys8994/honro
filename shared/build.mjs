@@ -136,8 +136,12 @@ export async function runtimeEntries({vector=true,render=true,app=false}={}) {
   if(render)await file('shared/runtime/authored-far-art.js');
   if(app){
     const skillAudio=JSON.parse(await read('shared/assets/sfx/skills-v2/manifest.json'));
-    for(const asset of Object.values(skillAudio.assets))asset.src='data:audio/'+(asset.file.endsWith('.wav')?'wav':'mpeg')+';base64,'+(await readFile(path.join(root,'shared/assets/sfx/skills-v2',asset.file))).toString('base64');
-    data('HONRO_SKILL_AUDIO',{version:1,assets:skillAudio.assets});
+    const weapons=new Map(JSON.parse(await read('shared/assets/sfx/weapons-v3/manifest.json')).assets.map(asset=>[asset.id,asset]));
+    for(const [id,asset] of Object.entries(skillAudio.assets)){
+      const weapon=weapons.get(id);if(weapon)Object.assign(asset,weapon);
+      asset.src='data:audio/'+(asset.file.endsWith('.wav')?'wav':'mpeg')+';base64,'+(await readFile(path.join(root,'shared/assets/sfx',weapon?'weapons-v3':'skills-v2',asset.file))).toString('base64');
+    }
+    data('HONRO_SKILL_AUDIO',{version:3,assets:skillAudio.assets});
     data('HONRO_MUKJONG_AUDIO',{src:'data:audio/mpeg;base64,'+(await readFile(path.join(root,'shared/assets/sfx/mukjong-b.mp3'))).toString('base64')});
     data('HONRO_JOURNEY_MAPS',JSON.parse(await read('shared/assets/journey-maps/v1/manifest.json')));
     await file('game/vendor/ui/fa.js');

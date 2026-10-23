@@ -915,7 +915,7 @@ export class Engine {
             (globalThis as any).HonroClearReport?.death(this.b,u,owner,provenance?.skill||damageSkill||p?.skill,damageSource,p?.honroReportSource||provenance?.honroReportSource);
             u.airborne = false;
             u.vx = u.vy = 0;
-            if(damageSource!=='eaterTransfer'){this.fx('burst', u.x, u.y - u.h * .4, u.side === 1 ? '#aaa8b9' : '#a8c5cc', 60);this.emit('sound', { name: 'down' });}
+            if(damageSource!=='eaterTransfer'){this.fx('burst', u.x, u.y - u.h * .4, u.side === 1 ? '#aaa8b9' : '#a8c5cc', 60);if(!(damageSource==='normal'&&this.audioContext&&/^[AS]\d/.test(this.audioContext.skill)))this.emit('sound', { name: 'down' });}
             if (u.side === 1 && !u.summoned && !u.honroObjectiveTarget) {
                 this.b.kills++;
                 this.rewardKill(u, src);
