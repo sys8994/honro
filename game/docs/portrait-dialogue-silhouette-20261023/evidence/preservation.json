@@ -1,0 +1,121 @@
+{
+  "runtimeExecutedHead": "190baeca9f932a11ff720c68092471595cfd4863",
+  "receiptBuildHead": "8b23bc0429349a3c52e66bcdce4c7e947878d9fc",
+  "masterPreserved": "d1963a0b5edc1c080b733f32a5e90184ac0bbe78",
+  "executedManifestSha256": "239237178d37fb2ec1ead5d15c592d037a110d3bb6c7f95d93c5bb18ca3d4ee4",
+  "finalManifestSha256": "088266ebcf122b8217765c5ead424d2db5e84aa9328aebb5144f1871e5b0c4c4",
+  "gameEntry": "web/entries/game.39198ed0dd5f9271.js",
+  "playtest": "web/entries/game.878a280c99f9f184.html?embedded=1",
+  "publishedReceiptBuildActiveGraphAndHTMLExact": true,
+  "portraitSourceSha256": {
+    "shared/runtime/portraits.js": "f03a8bd1351aed85975bdbbacfaa413d3aa1f8bbeae61975ec129124f390e5e6",
+    "shared/runtime/story.js": "e83e2d3a628a7ccce5b0222b014c895d2db113c508e454a47f3a25f593854b2d",
+    "game/src/presentation.css": "66f747360d188ccd6b265dea9b50c925e89ae2d26accc12270b181be1d4b9c17",
+    "game/config/story-portraits.json": "a3ee645798b447f27a08836aa5f2eef796e0de73f51d59223ff5d561598f6b31"
+  },
+  "productionDiffFromMaster": [
+    "game/config/story-portraits.json",
+    "game/src/presentation.css",
+    "shared/runtime/portraits.js",
+    "shared/runtime/story.js"
+  ],
+  "masterCameraEngineMapMainBuildAndOriginalPortraitAssetsUnchanged": true,
+  "publishedGenerations": [
+    {
+      "sourceSha": "d1963a0b5edc1c080b733f32a5e90184ac0bbe78",
+      "files": 354,
+      "evidence": "Pages39881056212 success2026-10-23T00:58:47Z; parent confirmed public game.eb31c532bc947889.js; immediate start hit far SVG honro_act1_far_data-dawn.3ca9b11c3eb47bf6.svg HTTP503 and retry UI, normal-start verification pending"
+    },
+    {
+      "sourceSha": "e1e4b9aaa7e1d6013c4eb1e9c9245dbca2edb435",
+      "files": 354,
+      "evidence": "Pages39878187459 success2026-10-23T00:29:18Z; parent confirmed public game.7d28f8236e93eef3.js"
+    },
+    {
+      "sourceSha": "befca64e4026aa83d8f15326c5fc19f1e18e1677",
+      "files": 354,
+      "evidence": "Parent confirmed Pages39875661732 success2026-10-23T00:04:55Z and public game.534dcef24f6c4bcf.js"
+    },
+    {
+      "sourceSha": "970b9647a0ee01ed216bc32181ff5b1ee12c54e0",
+      "files": 354,
+      "evidence": "Pages39873923478 success2026-10-22T23:48:32Z; parent verified public game.6e720777023c0a09.js and approved UI"
+    },
+    {
+      "sourceSha": "3b698d80e54aa2b2a840ba2107f1710ea95f4084",
+      "files": 354,
+      "evidence": "Pages39872240187 success2026-10-22T23:33:03Z; parent verified public game.18a3d25c3ae89390.js"
+    },
+    {
+      "sourceSha": "a0b6b514d91c361f2c394cf56b7f67d30900cd1e",
+      "files": 354,
+      "evidence": "https://github.com/sys8994/honro/actions/runs/39870152371 success at 2026-10-22T23:15:02Z; parent opened public game.21a0aab6aada752c.js at23:23 and actual Stage18 first objective 담허 · 억제진 가동 with closer start; old public bell art"
+    },
+    {
+      "sourceSha": "424c0e6b0a616f33ca4413bc21eb4f74d22896da",
+      "files": 354,
+      "evidence": "Parent confirmed Pages39867259534 success updated_at2026-10-22T22:48:07Z, public game.74763a1df7b30b4e.js, actual UI and old934 chapter13 JSON2"
+    },
+    {
+      "sourceSha": "dd878c9e58213b2737f72b4ad4476b18464db83f",
+      "files": 354,
+      "evidence": "Parent confirmed Pages39864363155 success updated_at2026-10-22T22:24:21Z, public game.2e5ecd617e4248ee.js, actual UI and old934 chapter13 JSON2"
+    },
+    {
+      "sourceSha": "793a9a953d6f82038d44dc44b51ea5a01ce996c4",
+      "files": 354,
+      "evidence": "Pages39858691582 success updated_at2026-10-22T21:38:56Z; parent verified public game.4fd156b0f594da4a.js, Stage17 art/route anchor and934 chapter13 JSON2"
+    },
+    {
+      "sourceSha": "6544b7da6783703b7c6d65ecc88f38023bb44322",
+      "files": 354,
+      "evidence": "GitHub Pages run39849168900 success updated_at2026-10-22T20:30:30Z; parent confirmed public game.d6bc5a0aa4362948.js, actual Stage16 art and original934 chapter13 JSON resources"
+    },
+    {
+      "sourceSha": "19d9fc28623d2451e37cf665145cfdc3e2fdd51f",
+      "files": 354,
+      "evidence": "GitHub Pages run 39842840879 success updated_at 2026-10-22T19:47:40Z; parent confirmed public game.a3ef88844bfd41a4.js and old934 chapter13 resources"
+    },
+    {
+      "sourceSha": "d55b6c6876a79ce041bf7473ba43b50a10389543",
+      "files": 354,
+      "evidence": "GitHub Pages run 39828457605 success at 2026-10-22T18:08:34Z; parent confirmed public game.80058be2c7d5a3e3.js and Stage14 shape2/rescue objective"
+    },
+    {
+      "sourceSha": "6cbda400009206180d28c61e5fc14a0b6246809a",
+      "files": 354,
+      "evidence": "GitHub Pages run 39824368686 success at 2026-10-22T17:40:00Z; parent confirmed public game.874093a9e07dc27c.js and fresh Stage14 rescue objective"
+    },
+    {
+      "sourceSha": "1f1b267c2d23bc5975af5841c560e4413291330b",
+      "files": 354,
+      "evidence": "GitHub Pages run 39815535010 success at 2026-10-22T16:46:17Z; parent confirmed public game.713c177de1810236.js"
+    },
+    {
+      "sourceSha": "63cc28113b36d2da92b9e1557de52620edb7db03",
+      "files": 357,
+      "evidence": "GitHub Pages 39812829113 success; workflow start 2026-10-22T16:17:57Z; parent confirmed 16:21 UTC. Exact publish instant unavailable; conservative day precision."
+    },
+    {
+      "sourceSha": "fe6911c9e6c1358d9384c355d3e6fe5c6e96e9bb",
+      "files": 357,
+      "evidence": "GitHub Pages 39810740418 success; workflow start2026-10-22T16:04:15Z; parent confirmed16:07UTC. Exact publish instant unavailable; conservative day precision."
+    },
+    {
+      "sourceSha": "a23dffb5afab998646817ffd3ee9732d99ce3172",
+      "files": 355,
+      "evidence": "GitHub Pages 39805764372 success; parent confirmed"
+    },
+    {
+      "sourceSha": "9890006179e45c7b323941a1252a3003c298751f",
+      "files": 351,
+      "evidence": "GitHub Pages 39803241128 success; parent confirmed"
+    },
+    {
+      "sourceSha": "934fcabd74767d662aee3830585ba807234934cc",
+      "files": 351,
+      "evidence": "Parent-confirmed initial public release; emergency recovery starting point"
+    }
+  ],
+  "publishedFilesVerified": 6727
+}

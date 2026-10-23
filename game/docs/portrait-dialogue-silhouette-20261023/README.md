@@ -1,0 +1,26 @@
+# 큰 대사 반신 실루엣 보완
+
+부모의 실제 이미지 검토에서40900188 돌출형을 거절했다. 작은 카드용 휘겸 얼굴 crop이 큰 대사에도 적용돼 갓 윗부분/양끝이 잘렸고, 가로는 인물이 창 위에만 떠 왼쪽 본문 여백이 비었다. 이전 통과 수치는 이 시각 결함을 합격시키는 근거가 아니다.
+
+공통 portrait 목적을 `dialogue`와 기존 `bust`/`icon`으로 구분했다. 큰 대사는 네 이미지의 눈·턱을 포함한 명시적 얼굴 영역 높이를 기준으로 축척을 맞추되 원본 좌우 전체폭+64px와 상단32px 여백을 보존한다. 사각 칸을 채우려고 모자/머리/어깨를 확대 crop하지 않는다. 원본/배포 이미지는 불변이다. 기존 카드의 얼굴 정렬과 작은HUD는 유지한다.
+
+세로는 하단을 창 뒤에 가리고 본문 전체폭을 쓴다. 가로는 인물이 창 왼쪽 영역을 실제로 채우며 하단은 viewport 아래로 이어져 직선 crop이 화면 위에 뜨지 않는다. 본문/버튼은 인물 오른쪽의 분리된 영역에 두고 pointer-events:none을 유지한다. 프레임 루프·loader/timeout·surface/cache를 새로 만들지 않는다.
+
+[390 휘겸 거절본/보완본](evidence/390-hwigyeom-rejected-revised.jpg) · [844 가로](evidence/844-hwigyeom-rejected-revised.jpg) · [네 인물 세로](evidence/390-four-dialogue.jpg) · [가로](evidence/844-four-dialogue.jpg). 실제14장 휴식 대사이며 원고는 변경하지 않았다. 새 디자인은 부모의 최종 시각 검토 대상이다.
+
+작업중 검수:320/360/390/844 실제14장16대화에서 모자/머리 안전영역·인물 터치 무진행·이전/다음/넘기기 통과.390의 네 얼굴 기준 영역은 모두60.84px,844는64px다. 세로 본문337px, 가로454.09px이며 가로 인물 영역과 본문/버튼은 분리된다. 긴대사/NPC/text-only/서술32위치·scroll0/50/100% 및3회 회전의 겹침0, cold4request/4decode·12개폐 추가paint0, 준비/실패/timeout120회 target repaint0을 확인했다. [대사](evidence/rest-working.json), [본문](evidence/reading-working.json), [공유 cache](evidence/consumers-working.json), [반복draw](evidence/repaint-working.json). rawHEAD40900188+미커밋 source/build 실행이며 최종 통합 실행과 구분한다.
+
+모닥불4열CSS는 보존하되 표시순서=행동순서 및 길게눌러 드래그는 별도 담당 작업이다. 이 작업은 카드 로직/고정순서를 수정하지 않는다. 구 보고서의 ‘카드순서와 행동순서는 별개’는 당시 구현 설명이며 최신 사용자 요구로 대체됐다. e1e4b9aa Pages39878187459 success2026-10-23T00:29:18Z/공개game.7d28f8236e93eef3.js를 부모 확인 사실로 보존했다. 카메라 master d1963a0b도 보존했다. 이후 부모 확인 Pages39881056212 success2026-10-23T00:58:47Z/공개game.eb31c532bc947889.js를 성공발행으로 등록했으나, 직후 시작은 원경SVG `honro_act1_far_data-dawn.3ca9b11c3eb47bf6.svg` HTTP503으로 다시시도 상태였으므로 **공개 정상시작 검수는 미확인**이다. 초기 metadata의 정상진입 문구를 부모 정정에 맞춰 바로 고쳤다. 이 현상을 카메라 회귀나 누락 자산으로 단정하거나 로더 수정으로 확장하지 않았다.
+
+Chromium headless viewport/touch 모사이며 실기기/Safari/FPS 검사가 아니다. 새 이미지 생성·배경 제거·원고/스테이지/전투·묵종/부착혼40%조건 변경은 없다. master/Pages는 부모 담당이다.
+
+
+## 최종 통합과 검사
+
+실제 실행/생산 빌드 **`190baeca9f932a11ff720c68092471595cfd4863`**, 발행이력 포함 build **`8b23bc0429349a3c52e66bcdce4c7e947878d9fc`**. 최신 master **`d1963a0b5edc1c080b733f32a5e90184ac0bbe78`**의 증원카메라·main/renderer/story-framing/encounters/build hook을 그대로 보존한다. [정확한 보존/해시](evidence/preservation.json), [생산 build](evidence/runtime-build.txt), [발행이력 build](evidence/receipt-build.txt). 최종 entry는 `web/entries/game.39198ed0dd5f9271.js`, 직접Playtest `web/entries/game.878a280c99f9f184.html`이다. 발행 metadata 갱신/공개 시작 정정 뒤에도 실행 files/entry/HTML은190baeca와 exact다. 실행 manifest SHA256 `239237178d37fb2ec1ead5d15c592d037a110d3bb6c7f95d93c5bb18ca3d4ee4`, 최종 manifest SHA256 `088266ebcf122b8217765c5ead424d2db5e84aa9328aebb5144f1871e5b0c4c4`를 구분한다.
+
+- **구조·실루엣/픽셀**:실제14장4인×6뷰(320/360/390/720 세로,844/568 가로)24대화에서 top/left/right canvas alpha가 모두0이며 원본 좌우전체폭과 갓/머리 안전영역이 들어온다. 네 얼굴 기준높이는 각뷰에서2% 이내(390:60.84px,844:64px). 인물 tap은 대사를 진행시키지 않고 이전/다음/넘기기가 동작한다. [최종24대화](evidence/rest-final.json), [넓은 세로](evidence/720-portrait-final.jpg), [짧은 가로](evidence/568-landscape-final.jpg). 거절본 사진의 실제 실행은3719d811이며40900188와 생산소스/생성물이 동일하다. 보완본 사진은190baeca다. JPG는 실제 screenshot을 리사이즈 없이 나란히 배치했다.
+- **본문/버튼·저장**:세로390 본문337px를 유지하고720은623.81px 전체폭을 쓴다. 가로844는454.09px,568은252.14px로 인물 오른쪽을 사용한다. 기본/긴대사·등록NPC·text-only·서술32위치, 스크롤0/50/100% 및 열린창3회 회전에서 글자/투명버튼행 겹침0·활성버튼hit-test·touch 통과. [본문 검사](evidence/reading-final.json), [가로 긴대사](evidence/landscape-long-final.jpg), [text-only](evidence/text-only-long-final.jpg). 실제11장 주민의 생산rescue 대사는 원래civilian actor/vector pixels exact·4뷰 접근·저장/reload/Continue 동일 원문/index/배우9항목 통과. [NPC](evidence/resident-landscape-final.jpg), [저장](evidence/npc-save-final.json). 해당probe는 선행조건완료·18턴·근접·부착혼HP30% 등 검사입력으로 대사만 분리 재현했으며 정상18턴 플레이나40%조건 변경을 주장하지 않는다.
+- **소비/수명 및 최종 종합**:최종 로컬에서cold 승인4명 loading에vector flash0, 모든소비경로4request/4decode/4entries,12개폐 같은canvas/추가paint·request·decode0, 실패도12개폐 추가fallback/vectorBuild0. 준비/실패/8초timeout 정착후120회 target drawImage/clearRect0, resize때만1회. [12항목](evidence/consumers-final.json), [120회3상태](evidence/repaint-final.json).48표면 native 비교는 초기실루엣 동일portrait source의 작업중 실행이다. 작은카드/toolbar/summary/탭은휘겸만 변화하고 다른3명/HUD는exact이며, 큰dialogue8곳은새목적으로의도변경한다. [표면비교](evidence/surfaces-working.json). 별도syntax·nativeNPC identity·Game/embedded title 및 저장격리·Workshop 직접iframe·해시검사/retention 통과. [identity](evidence/identity.txt), [공통build연결](evidence/web.txt), [retention](evidence/retention.txt).
+
+최신master와의 생산 순변경은 story-portraits.json·presentation.css·portraits.js·story.js4곳이다. art/배포WebP·엔진/맵/스킬/원고·main/ui-bridge·카메라와 공통builder는byte-identical이다. 병합 충돌은 생성HTML/manifest뿐이며 공통rebuild했다. e1/d196을 포함한19개 distinct 성공graph의6727파일hash를 보존했다. 새UI후보를 성공발행으로 등록하지 않았다. 모닥불 드래그/표시순서 로직은 별도 담당에게 남기고4열CSS만 유지한다. 부모의 최종 시각 검토/배포는 별도이며 이 보고서가 새배포 성공을 뜻하지 않는다. 실기기Android/Safari·전체캠페인·FPS 검사는 미실행이다.

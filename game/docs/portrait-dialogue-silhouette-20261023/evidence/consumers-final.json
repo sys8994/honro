@@ -1,0 +1,330 @@
+{
+  "head": "8b23bc0429349a3c52e66bcdce4c7e947878d9fc",
+  "manifestSha256": "088266ebcf122b8217765c5ead424d2db5e84aa9328aebb5144f1871e5b0c4c4",
+  "geometry": [
+    {
+      "view": "mobile",
+      "cards": [
+        {
+          "cls": "archer",
+          "box": [
+            64,
+            76
+          ],
+          "kind": "CANVAS",
+          "state": "ready",
+          "framing": "bust"
+        },
+        {
+          "cls": "mage",
+          "box": [
+            64,
+            76
+          ],
+          "kind": "CANVAS",
+          "state": "ready",
+          "framing": "bust"
+        },
+        {
+          "cls": "knight",
+          "box": [
+            64,
+            76
+          ],
+          "kind": "CANVAS",
+          "state": "ready",
+          "framing": "bust"
+        },
+        {
+          "cls": "occultist",
+          "box": [
+            64,
+            76
+          ],
+          "kind": "CANVAS",
+          "state": "ready",
+          "framing": "bust"
+        }
+      ]
+    },
+    {
+      "view": "landscape",
+      "cards": [
+        {
+          "cls": "archer",
+          "box": [
+            88,
+            64
+          ],
+          "kind": "CANVAS",
+          "state": "ready",
+          "framing": "bust"
+        },
+        {
+          "cls": "mage",
+          "box": [
+            88,
+            64
+          ],
+          "kind": "CANVAS",
+          "state": "ready",
+          "framing": "bust"
+        },
+        {
+          "cls": "knight",
+          "box": [
+            88,
+            64
+          ],
+          "kind": "CANVAS",
+          "state": "ready",
+          "framing": "bust"
+        },
+        {
+          "cls": "occultist",
+          "box": [
+            88,
+            64
+          ],
+          "kind": "CANVAS",
+          "state": "ready",
+          "framing": "bust"
+        }
+      ]
+    }
+  ],
+  "checks": [
+    {
+      "name": "cold training cards use approved loading policy without vector flash",
+      "passed": true,
+      "detail": {
+        "stats": {
+          "requests": 4,
+          "decodes": 0,
+          "paints": 0,
+          "fallbackPaints": 0,
+          "vectorBuilds": 0,
+          "imageEntries": 4,
+          "pending": 4,
+          "errors": 0,
+          "vectorEntries": 0,
+          "waiters": 6
+        },
+        "cards": [
+          "loading",
+          "loading",
+          "loading",
+          "loading"
+        ],
+        "legacy": 0,
+        "current": true
+      }
+    },
+    {
+      "name": "mobile 4 training cards share bust framing",
+      "passed": true,
+      "detail": [
+        {
+          "cls": "archer",
+          "box": [
+            64,
+            76
+          ],
+          "kind": "CANVAS",
+          "state": "ready",
+          "framing": "bust"
+        },
+        {
+          "cls": "mage",
+          "box": [
+            64,
+            76
+          ],
+          "kind": "CANVAS",
+          "state": "ready",
+          "framing": "bust"
+        },
+        {
+          "cls": "knight",
+          "box": [
+            64,
+            76
+          ],
+          "kind": "CANVAS",
+          "state": "ready",
+          "framing": "bust"
+        },
+        {
+          "cls": "occultist",
+          "box": [
+            64,
+            76
+          ],
+          "kind": "CANVAS",
+          "state": "ready",
+          "framing": "bust"
+        }
+      ]
+    },
+    {
+      "name": "mobile current hero uses approved bust",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "landscape 4 training cards share bust framing",
+      "passed": true,
+      "detail": [
+        {
+          "cls": "archer",
+          "box": [
+            88,
+            64
+          ],
+          "kind": "CANVAS",
+          "state": "ready",
+          "framing": "bust"
+        },
+        {
+          "cls": "mage",
+          "box": [
+            88,
+            64
+          ],
+          "kind": "CANVAS",
+          "state": "ready",
+          "framing": "bust"
+        },
+        {
+          "cls": "knight",
+          "box": [
+            88,
+            64
+          ],
+          "kind": "CANVAS",
+          "state": "ready",
+          "framing": "bust"
+        },
+        {
+          "cls": "occultist",
+          "box": [
+            88,
+            64
+          ],
+          "kind": "CANVAS",
+          "state": "ready",
+          "framing": "bust"
+        }
+      ]
+    },
+    {
+      "name": "landscape current hero uses approved bust",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "12 training open/close cycles retain nodes and raster/decode cache",
+      "passed": true,
+      "detail": {
+        "same": true,
+        "before": {
+          "requests": 4,
+          "decodes": 4,
+          "paints": 8,
+          "fallbackPaints": 0,
+          "vectorBuilds": 0,
+          "imageEntries": 4,
+          "pending": 0,
+          "errors": 0,
+          "vectorEntries": 0,
+          "waiters": 0
+        },
+        "after": {
+          "requests": 4,
+          "decodes": 4,
+          "paints": 8,
+          "fallbackPaints": 0,
+          "vectorBuilds": 0,
+          "imageEntries": 4,
+          "pending": 0,
+          "errors": 0,
+          "vectorEntries": 0,
+          "waiters": 0
+        }
+      }
+    },
+    {
+      "name": "mobile camp tabs/stat summary use approved busts",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "landscape camp tabs/stat summary use approved busts",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "dialogue silhouette and small HUD icon purposes are explicit",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "all surfaces reuse the same 4 image request/decode entries",
+      "passed": true,
+      "detail": {
+        "requests": 4,
+        "decodes": 4,
+        "paints": 18,
+        "fallbackPaints": 0,
+        "vectorBuilds": 0,
+        "imageEntries": 4,
+        "pending": 0,
+        "errors": 0,
+        "vectorEntries": 0,
+        "waiters": 0
+      }
+    },
+    {
+      "name": "no browser exceptions",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "name": "failed training asset keeps bounded fallback across12 openings",
+      "passed": true,
+      "detail": {
+        "before": {
+          "requests": 4,
+          "decodes": 3,
+          "paints": 5,
+          "fallbackPaints": 1,
+          "vectorBuilds": 1,
+          "imageEntries": 4,
+          "pending": 0,
+          "errors": 1,
+          "vectorEntries": 1,
+          "waiters": 0
+        },
+        "after": {
+          "requests": 4,
+          "decodes": 3,
+          "paints": 5,
+          "fallbackPaints": 1,
+          "vectorBuilds": 1,
+          "imageEntries": 4,
+          "pending": 0,
+          "errors": 1,
+          "vectorEntries": 1,
+          "waiters": 0
+        },
+        "states": [
+          "ready",
+          "ready",
+          "error",
+          "ready"
+        ]
+      }
+    }
+  ],
+  "errors": []
+}

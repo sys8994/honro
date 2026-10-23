@@ -4,7 +4,7 @@
 const cache=new Map(),images=new Map(),views=new WeakMap(),surfaces=new WeakMap();
 const counts={requests:0,decodes:0,paints:0,fallbackPaints:0,vectorBuilds:0};
 // Purpose, not screen ID, owns approved-image framing across every consumer.
-const framing=Object.freeze({bust:.88,icon:1});
+const framing=Object.freeze({bust:.88,icon:1,dialogue:1});
 function markup(cls,purpose='bust',slot=cls){
  if(!['archer','mage','knight','occultist'].includes(cls))return '';
  return `<span data-portrait-host="${cls}" data-portrait-framing="${purpose}" data-portrait-slot="${slot}" style="display:contents"></span>`;
@@ -88,7 +88,16 @@ function approved(actor,cls,options={}){
 }
 function state(canvas,value){if(canvas.dataset.portraitState!==value)canvas.dataset.portraitState=value;const busy=value==='loading'?'true':'false';if(canvas.getAttribute('aria-busy')!==busy)canvas.setAttribute('aria-busy',busy);}
 function imageCrop(asset,canvas,purpose){
- const crop=cropFor(asset.bust,asset.head,canvas.width,canvas.height);
+ if(purpose==='dialogue'){
+  // A large silhouette has a different job from a small face-identification card.
+  // Keep the entire source width and head above a padded top; only the lower
+  // body may extend behind the reading surface / viewport. Never fill-crop a hat.
+  const face=asset.framing?.dialogue?.face||asset.head,aspect=canvas.width/canvas.height;
+  const height=Math.max(face.height*5,(asset.width+64)/aspect),width=height*aspect;
+  return {x:(asset.width-width)/2,y:-32,width,height};
+ }
+ const region=asset.framing?.[purpose]||asset;
+ const crop=cropFor(region.bust,region.head,canvas.width,canvas.height);
  const scale=framing[purpose];
  const center=crop.x+crop.width/2;crop.width/=scale;crop.height/=scale;crop.x=center-crop.width/2;
  if(crop.width<=asset.width)crop.x=Math.max(0,Math.min(asset.width-crop.width,crop.x));
@@ -100,7 +109,8 @@ function paint(canvas,view){
  if(views.get(canvas)!==view)return;
  if(view.entry.state==='ready'){
   const c=canvas.getContext('2d'),crop=imageCrop(view.asset,canvas,view.purpose);c.save();c.setTransform(1,0,0,1,0,0);c.globalAlpha=1;c.globalCompositeOperation='source-over';c.clearRect(0,0,canvas.width,canvas.height);c.drawImage(view.entry.image,crop.x,crop.y,crop.width,crop.height,0,0,canvas.width,canvas.height);c.restore();
-  view.info={source:'approved',state:'ready',identity:view.asset.id,expression:view.asset.expression,framing:view.purpose,crop,head:view.asset.head,bounds:view.asset.bust};state(canvas,'ready');counts.paints++;
+  const region=view.asset.framing?.[view.purpose]||view.asset;
+  view.info={source:'approved',state:'ready',identity:view.asset.id,expression:view.asset.expression,framing:view.purpose,crop,head:region.head||view.asset.head,bounds:region.bust||view.asset.bust};state(canvas,'ready');counts.paints++;
  }else if(view.entry.state==='error'){view.fallbackKey=fallbackKey(canvas,view.actor,view.cls);view.info={...drawVector(canvas,view.actor,view.cls),source:'vector',state:'error'};state(canvas,'error');counts.fallbackPaints++;}
  view.actor=null;
 }
@@ -120,7 +130,7 @@ function draw(canvas,actor,cls=actor?.cls,options={}){
  if(!asset||typeof Image==='undefined'){old?.entry.waiters.delete(canvas);views.delete(canvas);return drawVector(canvas,actor,cls);}
  const purpose=Object.prototype.hasOwnProperty.call(framing,options.framing)?options.framing:'bust';
  const key=[asset.src,canvas.width,canvas.height,purpose].join('|');if(old?.key===key){if(old.entry.state==='error'){if(old.fallbackKey!==fallbackKey(canvas,actor,cls)){old.actor=actor;paint(canvas,old);}}else{if(old.info.state==='loading')old.actor=actor;if(old.info.state==='loading'&&old.entry.state==='ready')paint(canvas,old);}return old.info;}
- old?.entry.waiters.delete(canvas);const entry=request(asset),view={key,entry,asset,actor,cls,purpose,info:{source:'approved',state:entry.state,identity:asset.id,expression:asset.expression,framing:purpose,crop:imageCrop(asset,canvas,purpose),head:asset.head,bounds:asset.bust}};views.set(canvas,view);
+ old?.entry.waiters.delete(canvas);const entry=request(asset),region=asset.framing?.[purpose]||asset,view={key,entry,asset,actor,cls,purpose,info:{source:'approved',state:entry.state,identity:asset.id,expression:asset.expression,framing:purpose,crop:imageCrop(asset,canvas,purpose),head:region.head||asset.head,bounds:region.bust||asset.bust}};views.set(canvas,view);
  if(entry.state==='loading'){
   canvas.getContext('2d').clearRect(0,0,canvas.width,canvas.height);state(canvas,'loading');
   for(const [node]of entry.waiters)if(!node.isConnected)entry.waiters.delete(node);entry.waiters.set(canvas,view);
