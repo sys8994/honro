@@ -1,0 +1,805 @@
+{
+  "schema": "honro-npc-portrait-mapping-proposal-v1",
+  "status": "planning_only_no_game_changes",
+  "templateCount": 8,
+  "templates": [
+    {
+      "id": "yeonsil",
+      "label": "연실 전용",
+      "direction": "꾸밈없는 평범한 성인 여성. 애도는 표정으로만. 영웅 장식·화려한 비녀·메이크업 금지."
+    },
+    {
+      "id": "worker_adult",
+      "label": "장년 노동자",
+      "direction": "덕수 기준의 평범한 장년 노동자. 자연스러운 얼굴, 단순한 작업복. 과장 근육·전사 상처·멋낸 수염 금지."
+    },
+    {
+      "id": "worker_young",
+      "label": "청년 노동자",
+      "direction": "길찬 기준의 평범한 젊은 성인. 어린아이로 만들지 않음. 석공보다 확실히 젊고 다른 얼굴."
+    },
+    {
+      "id": "resident_woman",
+      "label": "장년 여성 주민",
+      "direction": "생활감 있는 평범한 주민. 화려한 비녀/화장/궁중 의상 금지. 단정한 일상 머리와 수수한 옷."
+    },
+    {
+      "id": "resident_elder",
+      "label": "노년 남성 주민",
+      "direction": "석공 기준의 평범한 노인. 영험한 도사·전설 장인 분위기 금지. 노승과 머리/옷차림 명확히 구별."
+    },
+    {
+      "id": "monk_elder",
+      "label": "노승",
+      "direction": "평범한 노승. 오래 입은 수수한 승복. 성스러운 후광·장식 무기 없음."
+    },
+    {
+      "id": "monk_young",
+      "label": "젊은 승려",
+      "direction": "노승보다 젊은 성인 제자. 소박한 승복. 스승과 얼굴 구조 구별. 정확한 나이는 시안 배역 제안."
+    },
+    {
+      "id": "guard_fiend",
+      "label": "수비병 악귀",
+      "direction": "병사 시신의 수수한 악귀. 화려한 장군/최종 보스로 과장하지 않음. 주민과 명확히 구별."
+    }
+  ],
+  "priority": [
+    "exact rowId",
+    "exact scene key + source speaker",
+    "stage-scoped verified actor",
+    "named speaker fallback; never global generic 주민 fallback"
+  ],
+  "rowMappings": [
+    {
+      "jsonPointer": "/stages/2/outro/5",
+      "rowId": "2.outro:85b28f9e0f",
+      "sourceSpeaker": "연실",
+      "portraitTemplate": "yeonsil",
+      "mode": "mapped",
+      "preserveOriginalDisplaySpeaker": true
+    },
+    {
+      "jsonPointer": "/stages/2/outro/7",
+      "rowId": "chapter.2.outro.hongman-name",
+      "sourceSpeaker": "연실",
+      "portraitTemplate": "yeonsil",
+      "mode": "mapped",
+      "preserveOriginalDisplaySpeaker": true
+    },
+    {
+      "jsonPointer": "/stages/2/outro/10",
+      "rowId": "2.outro:02d1bd9113",
+      "sourceSpeaker": "연실",
+      "portraitTemplate": "yeonsil",
+      "mode": "mapped",
+      "preserveOriginalDisplaySpeaker": true
+    },
+    {
+      "jsonPointer": "/stages/2/outro/12",
+      "rowId": "2.outro:4928ebdcb9",
+      "sourceSpeaker": "연실",
+      "portraitTemplate": "yeonsil",
+      "mode": "mapped",
+      "preserveOriginalDisplaySpeaker": true
+    },
+    {
+      "jsonPointer": "/stages/2/outro/14",
+      "rowId": "2.outro:bbb1462b87",
+      "sourceSpeaker": "연실",
+      "portraitTemplate": "yeonsil",
+      "mode": "mapped",
+      "preserveOriginalDisplaySpeaker": true
+    },
+    {
+      "jsonPointer": "/stages/4/story/3",
+      "rowId": "4.story:85293f79ec",
+      "sourceSpeaker": "춘례",
+      "portraitTemplate": "resident_woman",
+      "mode": "mapped",
+      "preserveOriginalDisplaySpeaker": true
+    },
+    {
+      "jsonPointer": "/stages/4/outro/1",
+      "rowId": "4.outro:55220839b3",
+      "sourceSpeaker": "춘례",
+      "portraitTemplate": "resident_woman",
+      "mode": "mapped",
+      "preserveOriginalDisplaySpeaker": true
+    },
+    {
+      "jsonPointer": "/stages/4/outro/4",
+      "rowId": "4.outro:31cd448338",
+      "sourceSpeaker": "춘례",
+      "portraitTemplate": "resident_woman",
+      "mode": "mapped",
+      "preserveOriginalDisplaySpeaker": true
+    },
+    {
+      "jsonPointer": "/stages/7/story/0",
+      "rowId": "7.story:73e8a2dac3",
+      "sourceSpeaker": "덕수",
+      "portraitTemplate": "worker_adult",
+      "mode": "mapped",
+      "preserveOriginalDisplaySpeaker": true
+    },
+    {
+      "jsonPointer": "/stages/7/story/4",
+      "rowId": "7.story:3615173ac2",
+      "sourceSpeaker": "덕수",
+      "portraitTemplate": "worker_adult",
+      "mode": "mapped",
+      "preserveOriginalDisplaySpeaker": true
+    },
+    {
+      "jsonPointer": "/stages/7/outro/0",
+      "rowId": "7.outro:6137ececb0",
+      "sourceSpeaker": "덕수",
+      "portraitTemplate": "worker_adult",
+      "mode": "mapped",
+      "preserveOriginalDisplaySpeaker": true
+    },
+    {
+      "jsonPointer": "/stages/7/outro/3",
+      "rowId": "7.outro:844f32b071",
+      "sourceSpeaker": "덕수",
+      "portraitTemplate": "worker_adult",
+      "mode": "mapped",
+      "preserveOriginalDisplaySpeaker": true
+    },
+    {
+      "jsonPointer": "/stages/11/beats/resident/0",
+      "rowId": "11.beats.resident:96e70604c6",
+      "sourceSpeaker": "주민",
+      "portraitTemplate": "worker_adult",
+      "mode": "mapped",
+      "preserveOriginalDisplaySpeaker": true
+    },
+    {
+      "jsonPointer": "/stages/14/beats/hold-refuge/1",
+      "rowId": "14.beats.hold-refuge:c4a0f4ac81",
+      "sourceSpeaker": "주민",
+      "portraitTemplate": "worker_adult",
+      "mode": "mapped",
+      "preserveOriginalDisplaySpeaker": true
+    },
+    {
+      "jsonPointer": "/stages/20/story/1",
+      "rowId": "20.story:417ff6d867",
+      "sourceSpeaker": "주민",
+      "portraitTemplate": "resident_woman",
+      "mode": "mapped",
+      "preserveOriginalDisplaySpeaker": true
+    },
+    {
+      "jsonPointer": "/stages/20/beats/hold-convoy/0",
+      "rowId": "20.beats.hold-convoy:c00e4cb4de",
+      "sourceSpeaker": "주민",
+      "portraitTemplate": "worker_adult",
+      "mode": "mapped",
+      "preserveOriginalDisplaySpeaker": true
+    },
+    {
+      "jsonPointer": "/stages/21/beats/gate-resident/3",
+      "rowId": "21.beats.gate-resident:9ca4c51b6b",
+      "sourceSpeaker": "주민",
+      "portraitTemplate": "worker_adult",
+      "mode": "mapped",
+      "preserveOriginalDisplaySpeaker": true
+    },
+    {
+      "jsonPointer": "/stages/26/beats/artisan-resident/0",
+      "rowId": "26.beats.artisan-resident:4d11d53a85",
+      "sourceSpeaker": "주민",
+      "portraitTemplate": "resident_elder",
+      "mode": "mapped",
+      "preserveOriginalDisplaySpeaker": true
+    },
+    {
+      "jsonPointer": "/stages/13/story/2",
+      "rowId": "13.story:302717228b",
+      "sourceSpeaker": "석공",
+      "portraitTemplate": "resident_elder",
+      "mode": "mapped",
+      "preserveOriginalDisplaySpeaker": true
+    },
+    {
+      "jsonPointer": "/stages/13/outro/0",
+      "rowId": "13.outro:53940f6385",
+      "sourceSpeaker": "석공",
+      "portraitTemplate": "resident_elder",
+      "mode": "mapped",
+      "preserveOriginalDisplaySpeaker": true
+    },
+    {
+      "jsonPointer": "/stages/13/beats/resident/1",
+      "rowId": "13.beats.resident:f5792ad7e8",
+      "sourceSpeaker": "석공",
+      "portraitTemplate": "resident_elder",
+      "mode": "mapped",
+      "preserveOriginalDisplaySpeaker": true
+    },
+    {
+      "jsonPointer": "/stages/13/beats/resident/4",
+      "rowId": "13.beats.resident:v2-a162c79fb9",
+      "sourceSpeaker": "석공",
+      "portraitTemplate": "resident_elder",
+      "mode": "mapped",
+      "preserveOriginalDisplaySpeaker": true
+    },
+    {
+      "jsonPointer": "/stages/13/beats/gate/0",
+      "rowId": "13.beats.gate:7a04200e65",
+      "sourceSpeaker": "석공",
+      "portraitTemplate": "resident_elder",
+      "mode": "mapped",
+      "preserveOriginalDisplaySpeaker": true
+    },
+    {
+      "jsonPointer": "/stages/13/beats/gate/4",
+      "rowId": "13.beats.gate:d96c72534f",
+      "sourceSpeaker": "석공",
+      "portraitTemplate": "resident_elder",
+      "mode": "mapped",
+      "preserveOriginalDisplaySpeaker": true
+    },
+    {
+      "jsonPointer": "/stages/20/beats/escort/1",
+      "rowId": "20.beats.escort:a5fcf50bda",
+      "sourceSpeaker": "석공",
+      "portraitTemplate": "resident_elder",
+      "mode": "mapped",
+      "preserveOriginalDisplaySpeaker": true
+    },
+    {
+      "jsonPointer": "/stages/14/beats/family-upper/0",
+      "rowId": "14.beats.family-upper:2417d2cd80",
+      "sourceSpeaker": "길찬",
+      "portraitTemplate": "worker_young",
+      "mode": "mapped",
+      "preserveOriginalDisplaySpeaker": true
+    },
+    {
+      "jsonPointer": "/stages/14/beats/family-upper/2",
+      "rowId": "14.beats.family-upper:92770110c6",
+      "sourceSpeaker": "길찬",
+      "portraitTemplate": "worker_young",
+      "mode": "mapped",
+      "preserveOriginalDisplaySpeaker": true
+    },
+    {
+      "jsonPointer": "/stages/20/beats/escort/0",
+      "rowId": "20.beats.escort:94d4fdaa59",
+      "sourceSpeaker": "길찬",
+      "portraitTemplate": "worker_young",
+      "mode": "mapped",
+      "preserveOriginalDisplaySpeaker": true
+    },
+    {
+      "jsonPointer": "/stages/14/beats/family-mid/0",
+      "rowId": "14.beats.family-mid:8fabf465ec",
+      "sourceSpeaker": "중층 주민",
+      "portraitTemplate": "resident_woman",
+      "mode": "mapped",
+      "preserveOriginalDisplaySpeaker": true
+    },
+    {
+      "jsonPointer": "/stages/14/beats/family-mid/2",
+      "rowId": "14.beats.family-mid:fb6dd05ce4",
+      "sourceSpeaker": "중층 주민",
+      "portraitTemplate": "resident_woman",
+      "mode": "mapped",
+      "preserveOriginalDisplaySpeaker": true
+    },
+    {
+      "jsonPointer": "/stages/14/beats/family-mid/4",
+      "rowId": "14.beats.family-mid:34f3f22d0c",
+      "sourceSpeaker": "중층 주민",
+      "portraitTemplate": "resident_woman",
+      "mode": "mapped",
+      "preserveOriginalDisplaySpeaker": true
+    },
+    {
+      "jsonPointer": "/stages/14/beats/family-mid/5",
+      "rowId": "14.beats.family-mid:ed4c0e60aa",
+      "sourceSpeaker": "중층 주민",
+      "portraitTemplate": "resident_woman",
+      "mode": "mapped",
+      "preserveOriginalDisplaySpeaker": true
+    },
+    {
+      "jsonPointer": "/stages/14/beats/family-mid/6",
+      "rowId": "14.beats.family-mid:b5d4aa7372",
+      "sourceSpeaker": "중층 주민",
+      "portraitTemplate": "resident_woman",
+      "mode": "mapped",
+      "preserveOriginalDisplaySpeaker": true
+    },
+    {
+      "jsonPointer": "/stages/16/story/1",
+      "rowId": "16.story:c031e526dd",
+      "sourceSpeaker": "노승",
+      "portraitTemplate": "monk_elder",
+      "mode": "mapped",
+      "preserveOriginalDisplaySpeaker": true
+    },
+    {
+      "jsonPointer": "/stages/16/beats/monk/1",
+      "rowId": "16.beats.monk:9dbe497186",
+      "sourceSpeaker": "노승",
+      "portraitTemplate": "monk_elder",
+      "mode": "mapped",
+      "preserveOriginalDisplaySpeaker": true
+    },
+    {
+      "jsonPointer": "/stages/16/beats/witness/4",
+      "rowId": "16.beats.witness:23207f698b",
+      "sourceSpeaker": "노승",
+      "portraitTemplate": "monk_elder",
+      "mode": "mapped",
+      "preserveOriginalDisplaySpeaker": true
+    },
+    {
+      "jsonPointer": "/stages/16/beats/monk/0",
+      "rowId": "16.beats.monk:0f4bb7f6e6",
+      "sourceSpeaker": "승려",
+      "portraitTemplate": "monk_young",
+      "mode": "mapped",
+      "preserveOriginalDisplaySpeaker": true
+    },
+    {
+      "jsonPointer": "/stages/16/beats/witness/0",
+      "rowId": "16.beats.witness:83a831d914",
+      "sourceSpeaker": "승려",
+      "portraitTemplate": "monk_young",
+      "mode": "mapped",
+      "preserveOriginalDisplaySpeaker": true
+    },
+    {
+      "jsonPointer": "/stages/16/beats/witness/2",
+      "rowId": "16.beats.witness:e8017626a6",
+      "sourceSpeaker": "승려",
+      "portraitTemplate": "monk_young",
+      "mode": "mapped",
+      "preserveOriginalDisplaySpeaker": true
+    },
+    {
+      "jsonPointer": "/stages/18/story/1",
+      "rowId": "18.story:f34141f034",
+      "sourceSpeaker": "종지기",
+      "portraitTemplate": null,
+      "mode": "deferred_keeper",
+      "preserveOriginalDisplaySpeaker": true
+    },
+    {
+      "jsonPointer": "/stages/18/story/3",
+      "rowId": "18.story:c83c6917ff",
+      "sourceSpeaker": "종지기",
+      "portraitTemplate": null,
+      "mode": "deferred_keeper",
+      "preserveOriginalDisplaySpeaker": true
+    },
+    {
+      "jsonPointer": "/stages/18/story/5",
+      "rowId": "18.story:a7e89092ab",
+      "sourceSpeaker": "종지기",
+      "portraitTemplate": null,
+      "mode": "deferred_keeper",
+      "preserveOriginalDisplaySpeaker": true
+    },
+    {
+      "jsonPointer": "/stages/18/beats/silence/1",
+      "rowId": "18.beats.silence:d23bbf815b",
+      "sourceSpeaker": "종지기",
+      "portraitTemplate": null,
+      "mode": "deferred_keeper",
+      "preserveOriginalDisplaySpeaker": true
+    },
+    {
+      "jsonPointer": "/stages/18/beats/keeper/0",
+      "rowId": "18.beats.keeper:386318ec09",
+      "sourceSpeaker": "종지기",
+      "portraitTemplate": null,
+      "mode": "deferred_keeper",
+      "preserveOriginalDisplaySpeaker": true
+    },
+    {
+      "jsonPointer": "/stages/19/story/1",
+      "rowId": "19.story:9a21114da5",
+      "sourceSpeaker": "동생을 잃은 형",
+      "portraitTemplate": "worker_adult",
+      "mode": "mapped",
+      "preserveOriginalDisplaySpeaker": true
+    },
+    {
+      "jsonPointer": "/stages/19/beats/send-1/1",
+      "rowId": "19.beats.send-1:3a9cb34afd",
+      "sourceSpeaker": "동생을 잃은 형",
+      "portraitTemplate": "worker_adult",
+      "mode": "mapped",
+      "preserveOriginalDisplaySpeaker": true
+    },
+    {
+      "jsonPointer": "/stages/19/beats/separate-1/0",
+      "rowId": "19.beats.separate-1:f7e57a40c7",
+      "sourceSpeaker": "동생을 잃은 형",
+      "portraitTemplate": "worker_adult",
+      "mode": "mapped",
+      "preserveOriginalDisplaySpeaker": true
+    },
+    {
+      "jsonPointer": "/stages/19/beats/separate-2/0",
+      "rowId": "19.beats.separate-2:037191cc14",
+      "sourceSpeaker": "언니를 잃은 동생",
+      "portraitTemplate": "resident_woman",
+      "mode": "mapped",
+      "preserveOriginalDisplaySpeaker": true
+    },
+    {
+      "jsonPointer": "/stages/23/story/0",
+      "rowId": "23.story:7b6148660b",
+      "sourceSpeaker": "수비병 악귀",
+      "portraitTemplate": "guard_fiend",
+      "mode": "mapped",
+      "preserveOriginalDisplaySpeaker": true
+    },
+    {
+      "jsonPointer": "/stages/23/outro/1",
+      "rowId": "23.outro:1d3aac8409",
+      "sourceSpeaker": "짐꾼",
+      "portraitTemplate": "worker_young",
+      "mode": "mapped",
+      "preserveOriginalDisplaySpeaker": true
+    },
+    {
+      "jsonPointer": "/stages/23/beats/carrier-start/0",
+      "rowId": "23.beats.carrier-start:5b05bc52be",
+      "sourceSpeaker": "짐꾼",
+      "portraitTemplate": "worker_young",
+      "mode": "mapped",
+      "preserveOriginalDisplaySpeaker": true
+    },
+    {
+      "jsonPointer": "/scenes/1.events.witness/0",
+      "rowId": "1.events.witness:0b66a30fa0",
+      "sourceSpeaker": "나무꾼",
+      "portraitTemplate": "worker_adult",
+      "mode": "mapped",
+      "preserveOriginalDisplaySpeaker": true
+    },
+    {
+      "jsonPointer": "/scenes/1.events.witness/2",
+      "rowId": "1.events.witness:04a166f70b",
+      "sourceSpeaker": "나무꾼",
+      "portraitTemplate": "worker_adult",
+      "mode": "mapped",
+      "preserveOriginalDisplaySpeaker": true
+    },
+    {
+      "jsonPointer": "/scenes/1.events.witness/4",
+      "rowId": "1.events.witness:586a07c376",
+      "sourceSpeaker": "나무꾼",
+      "portraitTemplate": "worker_adult",
+      "mode": "mapped",
+      "preserveOriginalDisplaySpeaker": true
+    },
+    {
+      "jsonPointer": "/scenes/1.events.witness/6",
+      "rowId": "1.events.witness:bfc1a5570e",
+      "sourceSpeaker": "나무꾼",
+      "portraitTemplate": "worker_adult",
+      "mode": "mapped",
+      "preserveOriginalDisplaySpeaker": true
+    },
+    {
+      "jsonPointer": "/scenes/1.events.witness/8",
+      "rowId": "1.events.witness:6ff1c0f62b",
+      "sourceSpeaker": "나무꾼",
+      "portraitTemplate": "worker_adult",
+      "mode": "mapped",
+      "preserveOriginalDisplaySpeaker": true
+    },
+    {
+      "jsonPointer": "/scenes/27.void.sceneLines/1",
+      "rowId": "27.void.sceneLines:bf44ea480c",
+      "sourceSpeaker": "",
+      "portraitTemplate": null,
+      "mode": "no_portrait",
+      "preserveOriginalDisplaySpeaker": true
+    },
+    {
+      "jsonPointer": "/scenes/27.void.sceneLines/3",
+      "rowId": "27.void.sceneLines:ee3eee17dd",
+      "sourceSpeaker": "",
+      "portraitTemplate": null,
+      "mode": "no_portrait",
+      "preserveOriginalDisplaySpeaker": true
+    },
+    {
+      "jsonPointer": "/scenes/27.void.sceneLines/4",
+      "rowId": "27.void.sceneLines:1374c75496",
+      "sourceSpeaker": "",
+      "portraitTemplate": null,
+      "mode": "no_portrait",
+      "preserveOriginalDisplaySpeaker": true
+    },
+    {
+      "jsonPointer": "/scenes/interaction.rescue.firstDisclosure/0",
+      "rowId": "interaction.rescue.덕수:92186c43e3",
+      "sourceSpeaker": "구조한 주민",
+      "portraitTemplate": null,
+      "mode": "resolve_current_rescue_actor",
+      "preserveOriginalDisplaySpeaker": true
+    },
+    {
+      "jsonPointer": "/mapScenes/0/2",
+      "rowId": "mapScenes.0:c617cd173e",
+      "sourceSpeaker": "주막주인",
+      "portraitTemplate": "resident_elder",
+      "mode": "mapped",
+      "preserveOriginalDisplaySpeaker": true
+    },
+    {
+      "jsonPointer": "/mapScenes/0/4",
+      "rowId": "mapScenes.0:ed01b9dea1",
+      "sourceSpeaker": "주막주인",
+      "portraitTemplate": "resident_elder",
+      "mode": "mapped",
+      "preserveOriginalDisplaySpeaker": true
+    },
+    {
+      "jsonPointer": "/mapScenes/0/6",
+      "rowId": "mapScenes.0:69c347c2ed",
+      "sourceSpeaker": "주막주인",
+      "portraitTemplate": "resident_elder",
+      "mode": "mapped",
+      "preserveOriginalDisplaySpeaker": true
+    },
+    {
+      "jsonPointer": "/mapScenes/0/8",
+      "rowId": "mapScenes.0:951ba1e06e",
+      "sourceSpeaker": "주막주인",
+      "portraitTemplate": "resident_elder",
+      "mode": "mapped",
+      "preserveOriginalDisplaySpeaker": true
+    },
+    {
+      "jsonPointer": "/mapScenes/0/10",
+      "rowId": "mapScenes.0:896ee35fc8",
+      "sourceSpeaker": "주막주인",
+      "portraitTemplate": "resident_elder",
+      "mode": "mapped",
+      "preserveOriginalDisplaySpeaker": true
+    }
+  ],
+  "dynamicMappings": [
+    {
+      "stage": 7,
+      "action": "rescue",
+      "label": "덕수",
+      "actorId": "resident-1",
+      "testimonyPointer": "/values/interaction.rescue.testimony/덕수",
+      "portraitTemplate": "worker_adult",
+      "firstDisclosureUsesSameTemplate": true,
+      "preserveRuntimeDisplaySpeaker": true
+    },
+    {
+      "stage": 7,
+      "action": "rescue",
+      "label": "월이",
+      "actorId": "resident-2",
+      "testimonyPointer": "/values/interaction.rescue.testimony/월이",
+      "portraitTemplate": "resident_woman",
+      "firstDisclosureUsesSameTemplate": true,
+      "preserveRuntimeDisplaySpeaker": true
+    },
+    {
+      "stage": 7,
+      "action": "rescue",
+      "label": "칠복",
+      "actorId": "resident-3",
+      "testimonyPointer": "/values/interaction.rescue.testimony/칠복",
+      "portraitTemplate": "resident_elder",
+      "firstDisclosureUsesSameTemplate": true,
+      "preserveRuntimeDisplaySpeaker": true
+    }
+  ],
+  "stageScopedActorMappings": [
+    {
+      "stage": 1,
+      "actorId": "npc-woodcutter",
+      "portraitTemplate": "worker_adult",
+      "speaker": "나무꾼",
+      "evidence": "name exact",
+      "bindingStatus": "supported"
+    },
+    {
+      "stage": 2,
+      "actorId": "npc-yeonsil",
+      "portraitTemplate": "yeonsil",
+      "speaker": "연실",
+      "evidence": "name exact",
+      "bindingStatus": "supported"
+    },
+    {
+      "stage": 4,
+      "actorId": "npc-chunrye",
+      "portraitTemplate": "resident_woman",
+      "speaker": "춘례",
+      "evidence": "name exact",
+      "bindingStatus": "supported"
+    },
+    {
+      "stage": 7,
+      "actorId": "resident-1",
+      "portraitTemplate": "worker_adult",
+      "speaker": "덕수",
+      "evidence": "name exact",
+      "bindingStatus": "supported"
+    },
+    {
+      "stage": 7,
+      "actorId": "resident-2",
+      "portraitTemplate": "resident_woman",
+      "speaker": "월이",
+      "evidence": "name exact",
+      "bindingStatus": "supported"
+    },
+    {
+      "stage": 7,
+      "actorId": "resident-3",
+      "portraitTemplate": "resident_elder",
+      "speaker": "칠복",
+      "evidence": "name exact",
+      "bindingStatus": "supported"
+    },
+    {
+      "stage": 11,
+      "actorId": "resident-4",
+      "portraitTemplate": "worker_adult",
+      "speaker": "주민",
+      "evidence": "single rescue civilian",
+      "bindingStatus": "supported"
+    },
+    {
+      "stage": 13,
+      "actorId": "resident-1",
+      "portraitTemplate": "resident_elder",
+      "speaker": "석공",
+      "evidence": "13.story direction",
+      "bindingStatus": "supported"
+    },
+    {
+      "stage": 14,
+      "actorId": "resident-1",
+      "portraitTemplate": "worker_young",
+      "speaker": "길찬",
+      "evidence": "proposed from upper-tools cell; verify runtime step target before actor binding",
+      "bindingStatus": "verify_before_binding"
+    },
+    {
+      "stage": 14,
+      "actorId": "resident-3",
+      "portraitTemplate": "resident_woman",
+      "speaker": "중층 주민",
+      "evidence": "proposed from market-front cell; verify runtime step target before actor binding",
+      "bindingStatus": "verify_before_binding"
+    },
+    {
+      "stage": 16,
+      "actorId": "objective",
+      "portraitTemplate": "monk_elder",
+      "speaker": "노승",
+      "evidence": "16.story/1 direction",
+      "bindingStatus": "supported"
+    },
+    {
+      "stage": 16,
+      "actorId": "resident-1",
+      "portraitTemplate": "monk_young",
+      "speaker": "승려",
+      "evidence": "16.story/1 direction",
+      "bindingStatus": "supported"
+    },
+    {
+      "stage": 19,
+      "actorId": "mourner-brother",
+      "portraitTemplate": "worker_adult",
+      "speaker": "동생을 잃은 형",
+      "evidence": "19.story direction",
+      "bindingStatus": "supported"
+    },
+    {
+      "stage": 19,
+      "actorId": "mourner-sister",
+      "portraitTemplate": "resident_woman",
+      "speaker": "언니를 잃은 동생",
+      "evidence": "named actor and canonical family role",
+      "bindingStatus": "supported"
+    },
+    {
+      "stage": 20,
+      "actorId": "convoy-mason",
+      "portraitTemplate": "resident_elder",
+      "speaker": "석공",
+      "evidence": "20.beats.escort direction",
+      "bindingStatus": "supported"
+    },
+    {
+      "stage": 20,
+      "actorId": "convoy-gilchan",
+      "portraitTemplate": "worker_young",
+      "speaker": "길찬",
+      "evidence": "20.beats.escort direction",
+      "bindingStatus": "supported"
+    },
+    {
+      "stage": 21,
+      "actorId": "act3-resident",
+      "portraitTemplate": "worker_adult",
+      "speaker": "주민",
+      "evidence": "single stage civilian",
+      "bindingStatus": "supported"
+    },
+    {
+      "stage": 23,
+      "actorId": "act3-carrier",
+      "portraitTemplate": "worker_young",
+      "speaker": "짐꾼",
+      "evidence": "23.story direction",
+      "bindingStatus": "supported"
+    },
+    {
+      "stage": 26,
+      "actorId": "act3-resident",
+      "portraitTemplate": "resident_elder",
+      "speaker": "주민",
+      "evidence": "single stage civilian",
+      "bindingStatus": "supported"
+    }
+  ],
+  "speakerFallbacks": {
+    "연실": "yeonsil",
+    "덕수": "worker_adult",
+    "길찬": "worker_young",
+    "석공": "resident_elder",
+    "춘례": "resident_woman",
+    "중층 주민": "resident_woman",
+    "노승": "monk_elder",
+    "승려": "monk_young",
+    "동생을 잃은 형": "worker_adult",
+    "언니를 잃은 동생": "resident_woman",
+    "수비병 악귀": "guard_fiend",
+    "짐꾼": "worker_young",
+    "나무꾼": "worker_adult",
+    "주막주인": "resident_elder",
+    "월이": "resident_woman",
+    "칠복": "resident_elder"
+  },
+  "rules": [
+    "Do not change speaker text to reveal a name earlier. Portrait resolution never renames the speaker.",
+    "Actor IDs such as resident-1 and act3-resident are stage-scoped, not global identities.",
+    "Shared template does not imply shared character identity. Keep named stable identities consistent within their appearances.",
+    "덕수 worker_adult, 석공 resident_elder, 길찬 worker_young are three different faces.",
+    "Stage 7 three rescued people must use three different templates.",
+    "Stage 14 named upper resident, mid resident, and hold-refuge speaker use young/adult-woman/adult-worker; do not collapse their identities. The hold-refuge speaker gender is unspecified; the adult-worker visual casting is not canon.",
+    "Stage 20 father/son and two unspecified resident speech turns use elder/young/woman/adult; no repeated face within chapter cast. The two 주민 turns are not claimed to be the same character.",
+    "Keep keeper deferred. Anonymous speaker has no face or revealed identity.",
+    "All NPC art should look ordinary, not glamorous or heroic. Expression/dirty clothing may vary without adding expensive new base faces.",
+    "Yeonsil is separate from resident_woman. Unrelated ordinary residents can share templates across scenes.",
+    "Any unsourced age/gender is explicitly a visual casting proposal, not a new canonical fact.",
+    "No production file path implied until asset approval and installation."
+  ],
+  "coverage": {
+    "fixedNPCPersonRows": 65,
+    "mappedRows": 56,
+    "deferredKeeperRows": 5,
+    "anonymousNoPortraitRows": 3,
+    "dynamicAliasRows": 1,
+    "dynamicTestimonyNames": [
+      "덕수",
+      "월이",
+      "칠복"
+    ]
+  }
+}
