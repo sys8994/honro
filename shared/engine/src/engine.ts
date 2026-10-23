@@ -1,4 +1,4 @@
-import {initializeKeeperRitual,keeperCollision,keeperImpact,keeperEchoVelocity,beginKeeperRitual,tickKeeperRitual,keeperCastBusy,keeperActionCompleted,keeperPressure,clearKeeperRitual} from './keeperRitual';
+import {initializeKeeperRitual,keeperCollision,keeperImpact,keeperEchoVelocity,beginKeeperRitual,tickKeeperRitual,keeperCastBusy,keeperActionCompleted,keeperBindingReplaced,keeperPressure,clearKeeperRitual} from './keeperRitual';
 import {initializeDamageSequence,rollDamage} from './damageVariance';
 import type {DamageOrigin} from './damageVariance';
 import {prioritizePlayerActors} from './turnOrder';
@@ -1104,7 +1104,7 @@ export class Engine {
         if(kind==='weak'){target.curseTurns=Math.max(target.curseTurns||0,duration);target.curseAttack=Math.max(target.curseAttack||0,.12*strength);target.curseArmor=Math.max(target.curseArmor||0,.13*strength);}
         if(kind==='betray'){target.curseTurns=Math.max(target.curseTurns||0,duration);target.betrayalUntil=Math.max(target.betrayalUntil||0,this.b.round+duration-1);}
         if(kind==='dot'||kind==='chain'){if(damage>=(target.curseDamage||0))target.curseAutonomous=this.autonomousAttack(owner.id,attack);target.curseTurns=Math.max(target.curseTurns||0,duration);target.curseDamage=Math.max(target.curseDamage||0,Math.round(damage));}
-        if(kind==='bind'){target.curseTurns=Math.max(target.curseTurns||0,duration);target.bound=Math.max(target.bound,2);target.curseAttack=Math.max(target.curseAttack||0,.18);}
+        if(kind==='bind'){keeperBindingReplaced(target);target.curseTurns=Math.max(target.curseTurns||0,duration);target.bound=Math.max(target.bound,2);target.curseAttack=Math.max(target.curseAttack||0,.18);}
         this.fx('spark',target.x,target.y-target.h*.55,kind==='betray'?'#bd9c8f':'#c1b399',30);
     }
     private manifest(target:Unit,owner:Unit,rank:number,bonus=0){
@@ -1358,8 +1358,8 @@ export class Engine {
             const start = p.trail[0] || { x: p.x, y: p.y - 80 };
             this.emit('fx', { name: 'line', x: start.x, y: start.y, x2: h.x, y2: h.y, color: p.color, size: 3 });
         }
-        if (p.mode === 'iceShard' && h.unit)
-            h.unit.bound = Math.max(h.unit.bound, 1);
+        if (p.mode === 'iceShard' && h.unit){
+            keeperBindingReplaced(h.unit);h.unit.bound = Math.max(h.unit.bound, 1);}
         if (p.mode === 'grapple') {
             if (h.terrain) {
                 const targetX = clamp(h.x + h.n.x * (u.r + 5), 25, this.b.width - 25), targetY = h.n.y < -.3 ? topAt(h.terrain, h.x) - u.h * .5 : h.y;
@@ -1450,7 +1450,7 @@ export class Engine {
                 }
             for (const t of this.b.units)
                 if (!t.dead && this.attackAllows(t,p.owner,p) && dist({ x: t.x, y: t.y - t.h * .5 }, p) < p.blast)
-                    t.bound = Math.max(t.bound, 1);
+                    {keeperBindingReplaced(t);t.bound = Math.max(t.bound, 1);}
             this.remove(p);
             return;
         }
@@ -1517,7 +1517,7 @@ export class Engine {
                 if (p.mode === 'pull')
                     this.impulse(target, Math.sign(u.x - target.x) * 250, -95);
                 if (p.mode === 'bind')
-                    target.bound = Math.max(target.bound, 1);
+                    {keeperBindingReplaced(target);target.bound = Math.max(target.bound, 1);}
                 if (p.mode === 'break') {
                     target.breaks = 2;
                     target.shield = 0;
@@ -1998,7 +1998,7 @@ export class Engine {
         if (Math.hypot(u.x - z.x, u.y - z.y) < z.radius + 15) {
             this.hurt(u,z.damage,z.owner,false,undefined,undefined,'normal',undefined,z);
             if (z.kind === 'frost')
-                u.bound = Math.max(u.bound, 1);
+                {keeperBindingReplaced(u);u.bound = Math.max(u.bound, 1);}
         }
     } }
     private pruneExpiredSummons(){

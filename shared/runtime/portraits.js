@@ -130,7 +130,7 @@ function startNPC(entry,asset){
  timer=setTimeout(()=>finish(false),8000);image.src=asset.src;
 }
 function requestNPC(asset,reopen){let entry=images.get(asset.src);
- if(!entry){if(images.size>=12){const key=[...images].find(([,v])=>v.state!=='loading')?.[0];if(key)images.delete(key);}
+ if(!entry){if(images.size>=13){const key=[...images].find(([,v])=>v.state!=='loading')?.[0];if(key)images.delete(key);}
   entry={state:'loading',image:null,waiters:new Map(),attempts:0,retryAt:0,retryTimer:null};images.set(asset.src,entry);startNPC(entry,asset);
  }else if(entry.state==='error'&&reopen)npcRetry(entry,asset,true);
  return entry;
@@ -140,7 +140,7 @@ function request(asset,reopen=false){
  let entry=images.get(asset.src);if(entry)return entry;
  // The deployed manifest has four base assets; future explicit expressions
  // share a bounded cache. Visible canvases retain their own already-painted pixels.
- if(images.size>=12){const key=[...images].find(([,v])=>v.state!=='loading')?.[0];if(key)images.delete(key);else return {state:'error',image:null,waiters:new Map()};}
+ if(images.size>=13){const key=[...images].find(([,v])=>v.state!=='loading')?.[0];if(key)images.delete(key);else return {state:'error',image:null,waiters:new Map()};}
  entry={state:'loading',image:new Image(),waiters:new Map()};images.set(asset.src,entry);counts.requests++;
  const image=entry.image;image.decoding='async';let timer;
  const finish=ok=>{if(entry.state!=='loading')return;clearTimeout(timer);image.onload=image.onerror=null;entry.state=ok?'ready':'error';if(!ok)entry.image=null;for(const [canvas,view]of entry.waiters)if(canvas.isConnected)paint(canvas,view);entry.waiters.clear();};

@@ -304,6 +304,44 @@
         }
       },
       "npc": true
+    },
+    "keeper_ritual": {
+      "id": "keeper_ritual",
+      "file": "shared/assets/portraits/keeper-ritual-v1/keeper.webp",
+      "source": "art/portraits/keeper-ritual-v1/keeper.png",
+      "sourceSha256": "8802669c8705d8606be12bc83046a2d162ff0c55ca1fbc43b9c757b0978389a7",
+      "width": 1024,
+      "height": 1536,
+      "head": {
+        "width": 430,
+        "height": 468,
+        "left": 360,
+        "top": 12,
+        "right": 790,
+        "bottom": 480
+      },
+      "bust": {
+        "width": 760,
+        "height": 1138,
+        "left": 220,
+        "top": 12,
+        "right": 980,
+        "bottom": 1150
+      },
+      "framing": {
+        "dialogue": {
+          "face": {
+            "width": 250,
+            "height": 270,
+            "left": 475,
+            "top": 155,
+            "right": 725,
+            "bottom": 425
+          },
+          "maxHeight": 1200
+        }
+      },
+      "npc": true
     }
   },
   "rows": {
@@ -620,6 +658,10 @@
     "26|act3-resident": {
       "speaker": "주민",
       "asset": "man_elder"
+    },
+    "18|act2-keeper": {
+      "speaker": "종지기",
+      "asset": "keeper_ritual"
     }
   },
   "named": {
@@ -638,14 +680,10 @@
     "나무꾼": "worker_mature",
     "주막주인": "man_elder",
     "월이": "woman_mature",
-    "칠복": "man_elder"
+    "칠복": "man_elder",
+    "종지기": "keeper_ritual"
   },
   "withoutPortraitRows": [
-    "18.story:f34141f034",
-    "18.story:c83c6917ff",
-    "18.story:a7e89092ab",
-    "18.beats.silence:d23bbf815b",
-    "18.beats.keeper:386318ec09",
     "27.void.sceneLines:bf44ea480c",
     "27.void.sceneLines:ee3eee17dd",
     "27.void.sceneLines:1374c75496"

@@ -6,11 +6,12 @@ import {SKILLS} from './data';
 import {rollDamage} from './damageVariance';
 import {projectileCredit} from './contribution';
 export type RitualKind='seal'|'echo'|'binding';
-export interface KeeperZone {serial:number;kind:RitualKind;phase:'warning'|'active';x:number;y:number;w:number;h:number;direction:number;connection:Vec;warnAction:number;expires:number;returned?:boolean;damage:number;roll:number;shot:number;}
+export interface KeeperZone {serial:number;kind:RitualKind;phase:'warning'|'active';x:number;y:number;w:number;h:number;direction:number;connection:Vec;warnAction:number;expires:number;returned?:boolean;damage:number;roll:number;shot:number;opportunities?:string[];target?:string;targetOpportunity?:boolean;}
 export interface KeeperRitual {version:1;owner:string;next:number;serial:number;playerActions:number;suppressed:number;zone?:KeeperZone;cast?:{elapsed:number};}
 const OWNER='act2-keeper',kinds:RitualKind[]=['seal','echo','binding'];
 const state=(b:Battle)=>(b as any).keeperRitual as KeeperRitual|undefined;
 export function keeperEligible(b:Battle,u?:Unit){return !!u&&(b as any).honroStage===18&&!(b as any).honroCustom&&b.mode==='campaign'&&u.id===OWNER&&u.side===1&&!u.dead&&!(u as any).honroSubdued&&u.hp>1;}
+export function keeperBindingReplaced(u:Unit){delete (u as any).keeperBinding;}
 function clearBindings(b:Battle){for(const u of b.units){const own=(u as any).keeperBinding;if(!own)continue;if(u.bound===1)u.bound=0;delete (u as any).keeperBinding;}}
 export function clearKeeperRitual(b:Battle){const r=state(b);if(r){delete r.zone;delete r.cast;r.suppressed=0;}clearBindings(b);}
 export function initializeKeeperRitual(b:Battle){
@@ -21,7 +22,7 @@ export function initializeKeeperRitual(b:Battle){
 }
 export function validateKeeperRitual(b:Battle){const r=state(b);if(!r)return true;const num=(v:any,min=0,max=1e9)=>Number.isFinite(v)&&v>=min&&v<=max;
  if(r.version!==1||r.owner!==OWNER||![r.next,r.serial,r.playerActions,r.suppressed].every(v=>Number.isSafeInteger(v)&&num(v))||r.next>2||r.suppressed>1)return false;
- const z=r.zone;if(z&&(!kinds.includes(z.kind)||!['warning','active'].includes(z.phase)||!num(z.serial)||!num(z.x,-200,b.width+200)||!num(z.y,-200,b.height+200)||!num(z.w,1,320)||!num(z.h,1,320)||!z.connection||!num(z.connection.x,-200,b.width+200)||!num(z.connection.y,-200,b.height+200)||![-1,1].includes(z.direction)||![z.warnAction,z.expires,z.damage,z.roll,z.shot].every(v=>num(v))||z.damage>50000||z.roll>2||z.returned!==undefined&&typeof z.returned!=='boolean'))return false;
+ const z=r.zone;if(z&&((z.opportunities!==undefined&&(!Array.isArray(z.opportunities)||z.opportunities.length>20||z.opportunities.some(id=>!b.units.some(u=>u.id===id))))||z.target!==undefined&&!b.units.some(u=>u.id===z.target)||z.targetOpportunity!==undefined&&typeof z.targetOpportunity!=='boolean'||!kinds.includes(z.kind)||!['warning','active'].includes(z.phase)||!num(z.serial)||!num(z.x,-200,b.width+200)||!num(z.y,-200,b.height+200)||!num(z.w,1,320)||!num(z.h,1,320)||!z.connection||!num(z.connection.x,-200,b.width+200)||!num(z.connection.y,-200,b.height+200)||![-1,1].includes(z.direction)||![z.warnAction,z.expires,z.damage,z.roll,z.shot].every(v=>num(v))||z.damage>50000||z.roll>2||z.returned!==undefined&&typeof z.returned!=='boolean'))return false;
  return !r.cast||b.side===1&&b.phase==='flight'&&b.active===OWNER&&num(r.cast.elapsed,0,.81);
 }
 export function keeperCastBusy(b:Battle){return !!state(b)?.cast;}
@@ -36,18 +37,19 @@ export function beginKeeperRitual(e:Engine,u:Unit,target:Unit){
  const direction=u.facing,front=u.x+direction*160,ground=e.contactSurface(front,u.y-130,u.y+240)?.y??u.y;
  const x=kind==='binding'?clamp(target.x-125,10,b.width-260):clamp(front-8,10,b.width-26),y=kind==='binding'?target.y-14:ground-180;
  const roll=rollDamage(b,SKILLS.H2KEEPER),damage=e.effective(SKILLS.H2KEEPER,u).damage*roll*.55;
- r.zone={serial:r.serial,kind,phase:'warning',x,y,w:kind==='binding'?250:16,h:kind==='binding'?28:180,direction,connection:{x:u.x+direction*76,y:u.y-76},warnAction:r.playerActions,expires:b.teamEnds[0]+1,damage,roll,shot:b.shot};
+ r.zone={serial:r.serial,kind,phase:'warning',x,y,w:kind==='binding'?250:16,h:kind==='binding'?28:180,direction,connection:{x:u.x+direction*76,y:u.y-76},warnAction:r.playerActions,expires:b.teamEnds[0]+1,damage,roll,shot:b.shot,opportunities:[],target:target.id,targetOpportunity:false};
  r.cast={elapsed:0};b.phase='flight';b.turnAge=b.resolveAge=0;u.anim=.9;u.intent={seal:'봉음 결계 · 예고',echo:'되울림 · 방향 예고',binding:'바닥 결박 · 예고'}[kind];
  e.onAttackStart?.(u.id);e.message(u.intent);e.emit('sound',{name:'qiRebound'});e.emit('change');e.emit('save');return true;
 }
 export function tickKeeperRitual(e:Engine,dt:number){const r=state(e.b);if(!r)return;const owner=e.unit(r.owner);
  if(!keeperEligible(e.b,owner)||['won','lost'].includes(e.b.phase)){clearKeeperRitual(e.b);return;}
+ if(r.zone?.phase==='warning'&&e.b.side===0&&e.b.phase==='aim'){const z=r.zone,ready=(v?:Unit)=>!!v&&!v.dead&&!v.acted&&!v.enthrall&&!v.airborne&&!v.fixed&&!v.platformDrop&&v.meleeFollow!=='ready'&&v.moveLeft>0;if(e.active&&ready(e.active)&&e.canAct()){z.opportunities??=[];if(!z.opportunities.includes(e.active.id))z.opportunities.push(e.active.id);}if(ready(e.unit(z.target||'')))z.targetOpportunity=true;}
  if(r.cast){r.cast.elapsed+=dt;if(r.cast.elapsed>=.8)delete r.cast;}
  if(r.zone&&e.b.teamEnds[0]>=r.zone.expires){delete r.zone;clearBindings(e.b);}
  for(const u of e.b.units)if((u as any).keeperBinding&&u.bound===0)delete (u as any).keeperBinding;
 }
 export function keeperActionCompleted(e:Engine,u?:Unit){const r=state(e.b);if(!r||!u||u.side!==0||u.summoned)return;r.playerActions++;
- const z=r.zone,owner=e.unit(r.owner);if(!z||z.phase!=='warning'||r.playerActions<=z.warnAction||!keeperEligible(e.b,owner))return;
+ const z=r.zone,owner=e.unit(r.owner);if(!z||z.phase!=='warning'||r.playerActions<=z.warnAction||!z.opportunities?.includes(u.id)||z.kind==='binding'&&!z.targetOpportunity||!keeperEligible(e.b,owner))return;
  z.phase='active';e.message({seal:'봉음 결계 · 낮은 사선 차단',echo:'되울림 · 한 발 반환',binding:'바닥 결박'}[z.kind]);
  if(z.kind==='binding'){
   const p={id:e.b.nextId++,skill:'H2KEEPER',mode:'keeperBinding',owner:owner!.id,side:owner!.side,attackSide:e.allegiance(owner!),shot:z.shot,damageRoll:z.roll,damage:z.damage,skillRank:1,x:z.x,y:z.y,vx:0,vy:0,body:false} as Projectile;projectileCredit(e.b,p,owner!);

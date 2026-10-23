@@ -1,7 +1,7 @@
 (function(G){'use strict';
 // Display identity only. Do not rename speakers, alter actors or infer a class.
 function resolve(app,who,meta={},actor){
- const c=G.HONRO_NPC_PORTRAITS;if(!c||!who||['서술','기록','길 위의 기록','안내','종지기'].includes(who)||['narration','document','guide'].includes(meta.kind)||c.withoutPortraitRows.includes(meta.rowId))return null;
+ const c=G.HONRO_NPC_PORTRAITS;if(!c||!who||['서술','기록','길 위의 기록','안내'].includes(who)||['narration','document','guide'].includes(meta.kind)||c.withoutPortraitRows.includes(meta.rowId))return null;
  const stage=app.stage?.id||app.engine?.b.honroStage,row=c.rows[meta.rowId];let id;
  if(row&&row.speaker===who)id=row.asset;
  if(!id)id=c.scenes[(meta.storyId||'')+'|'+who];
