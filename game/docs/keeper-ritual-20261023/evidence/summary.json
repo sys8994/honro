@@ -317,5 +317,14 @@
       "bytes": 103221,
       "sha256": "fd3c956d505c77bd11c5ab95e34304bda26b979639d08f3167d745e262cc25c9"
     }
+  },
+  "defeatBreakdown": {
+    "combatEnemyDeaths": 7,
+    "objectiveTargetBroken": 1,
+    "keeper": {
+      "hp": 1,
+      "dead": false,
+      "subdued": true
+    }
   }
 }
