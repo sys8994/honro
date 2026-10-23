@@ -1,0 +1,45 @@
+
+> build
+> node workshop/build.mjs
+
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
++ actual - expected
+
+  [
+    'HONRO_WATERWORKS_V2',
+    'HONRO_NARRATIVE_CATALOGUE',
++   'HONRO_PORTRAIT_VARIANTS',
+    'HONRO_NARRATIVE_COMPAT',
+-   'HONRO_STAGE_CONTRACTS'
+  ]
+
+    at buildWeb (file:///workspace/honro-portraits/shared/web-build.mjs:99:14)
+    at async file:///workspace/honro-portraits/workshop/build.mjs:2:1 {
+  generatedMessage: true,
+  code: 'ERR_ASSERTION',
+  actual: [
+    'HONRO_WATERWORKS_V2',
+    'HONRO_NARRATIVE_CATALOGUE',
+    'HONRO_PORTRAIT_VARIANTS',
+    'HONRO_NARRATIVE_COMPAT'
+  ],
+  expected: [
+    'HONRO_WATERWORKS_V2',
+    'HONRO_NARRATIVE_CATALOGUE',
+    'HONRO_NARRATIVE_COMPAT',
+    'HONRO_STAGE_CONTRACTS'
+  ],
+  operator: 'deepStrictEqual',
+  diff: 'simple'
+}
+
+Node.js v24.19.0
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.1
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.1
+npm notice To update run: npm install -g npm@12.2.1
+npm notice

@@ -257,7 +257,49 @@
         "file": "art/portraits/npc-plain-v2/worker_mature.png",
         "sha256": "5066fdb10aa4cf3a4f19576dbbc71494b9e77d0fe53e9776b9bc0ef84097d5c9"
       },
-      "sourceCommit": "c21cfd1192606ff6181bdf7f6a69ac60a79a62ce"
+      "sourceCommit": "c21cfd1192606ff6181bdf7f6a69ac60a79a62ce",
+      "expressions": {
+        "emotion.relief": {
+          "file": "shared/assets/portraits/variants-v1/worker-mature-relief.webp",
+          "source": "art/portraits/variants-v1/worker-mature-relief.png",
+          "sourceSha256": "b80863468dc4e9ab5867bca02fe131762d260ab52557604e992e8fc28d086b45",
+          "identityMaster": "art/portraits/npc-plain-v2/worker_mature.png",
+          "identityMasterSha256": "5066fdb10aa4cf3a4f19576dbbc71494b9e77d0fe53e9776b9bc0ef84097d5c9",
+          "status": "ready",
+          "width": 768,
+          "height": 1152,
+          "head": {
+            "left": 0,
+            "top": 0,
+            "right": 768,
+            "bottom": 525,
+            "width": 768,
+            "height": 525
+          },
+          "bust": {
+            "left": 0,
+            "top": 0,
+            "right": 768,
+            "bottom": 1152,
+            "width": 768,
+            "height": 1152
+          },
+          "framing": {
+            "dialogue": {
+              "face": {
+                "left": 307.5,
+                "top": 165,
+                "right": 555,
+                "bottom": 412.5,
+                "width": 247.5,
+                "height": 247.5
+              },
+              "top": -29.90625,
+              "maxHeight": 1188
+            }
+          }
+        }
+      }
     },
     "monk_young": {
       "id": "monk_young",
@@ -386,7 +428,89 @@
         "file": "art/portraits/keeper-ritual-v1/keeper.png",
         "sha256": "8802669c8705d8606be12bc83046a2d162ff0c55ca1fbc43b9c757b0978389a7"
       },
-      "sourceCommit": "c21cfd1192606ff6181bdf7f6a69ac60a79a62ce"
+      "sourceCommit": "c21cfd1192606ff6181bdf7f6a69ac60a79a62ce",
+      "expressions": {
+        "scene.failing_grip": {
+          "file": "shared/assets/portraits/variants-v1/keeper-failing-grip.webp",
+          "source": "art/portraits/variants-v1/keeper-failing-grip.png",
+          "sourceSha256": "4a61bd846e8b78c55bd3922d2998762b082581c0da2acb6f5dae7b78983060e0",
+          "identityMaster": "art/portraits/keeper-ritual-v1/keeper.png",
+          "identityMasterSha256": "8802669c8705d8606be12bc83046a2d162ff0c55ca1fbc43b9c757b0978389a7",
+          "status": "ready",
+          "width": 768,
+          "height": 1152,
+          "head": {
+            "left": 0,
+            "top": 0,
+            "right": 768,
+            "bottom": 525,
+            "width": 768,
+            "height": 525
+          },
+          "bust": {
+            "left": 0,
+            "top": 0,
+            "right": 768,
+            "bottom": 1152,
+            "width": 768,
+            "height": 1152
+          },
+          "framing": {
+            "dialogue": {
+              "face": {
+                "left": 360,
+                "top": 176.25,
+                "right": 555,
+                "bottom": 390,
+                "width": 195,
+                "height": 213.75
+              },
+              "top": 28.208333333333343,
+              "maxHeight": 950
+            }
+          }
+        },
+        "action.bind_cord": {
+          "file": "shared/assets/portraits/variants-v1/keeper-bind-cord.webp",
+          "source": "art/portraits/variants-v1/keeper-bind-cord.png",
+          "sourceSha256": "c31cc8d955d6ac58dfc33fa42a8bf702eedbdc9e3750511890e2662bbaa82267",
+          "identityMaster": "art/portraits/keeper-ritual-v1/keeper.png",
+          "identityMasterSha256": "8802669c8705d8606be12bc83046a2d162ff0c55ca1fbc43b9c757b0978389a7",
+          "status": "ready",
+          "width": 768,
+          "height": 1152,
+          "head": {
+            "left": 0,
+            "top": 0,
+            "right": 768,
+            "bottom": 525,
+            "width": 768,
+            "height": 525
+          },
+          "bust": {
+            "left": 0,
+            "top": 0,
+            "right": 768,
+            "bottom": 1152,
+            "width": 768,
+            "height": 1152
+          },
+          "framing": {
+            "dialogue": {
+              "face": {
+                "left": 367.5,
+                "top": 165,
+                "right": 562.5,
+                "bottom": 382.5,
+                "width": 195,
+                "height": 217.5
+              },
+              "top": 14.361111111111086,
+              "maxHeight": 966.6666666666667
+            }
+          }
+        }
+      }
     }
   },
   "rows": {

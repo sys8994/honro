@@ -43,6 +43,86 @@
               }
             }
           }
+        },
+        "emotion.concern": {
+          "file": "shared/assets/portraits/variants-v1/seoro-concern.webp",
+          "source": "art/portraits/variants-v1/seoro-concern.png",
+          "sourceSha256": "ad70f4161537e3d90a171d69afe119c3c3c33d3839f7fbdc1baa0dfc06e2d85e",
+          "identityMaster": "art/portraits/approved-v1/seoro.png",
+          "identityMasterSha256": "d05ce83f8487515f127abb441dbae4a4616c66181ffbea15498060a237a090a9",
+          "status": "ready",
+          "width": 768,
+          "height": 1152,
+          "head": {
+            "left": 0,
+            "top": 0,
+            "right": 768,
+            "bottom": 525,
+            "width": 768,
+            "height": 525
+          },
+          "bust": {
+            "left": 0,
+            "top": 0,
+            "right": 768,
+            "bottom": 1152,
+            "width": 768,
+            "height": 1152
+          },
+          "framing": {
+            "dialogue": {
+              "face": {
+                "left": 273.75,
+                "top": 150,
+                "right": 495,
+                "bottom": 367.5,
+                "width": 221.25,
+                "height": 217.5
+              },
+              "top": -50.54237288135596,
+              "maxHeight": 1087.5
+            }
+          }
+        },
+        "emotion.anger": {
+          "file": "shared/assets/portraits/variants-v1/seoro-anger.webp",
+          "source": "art/portraits/variants-v1/seoro-anger.png",
+          "sourceSha256": "94dc3b6e93a24672d64798ffcf5ff066dc7dc1ad8c8da05a8ce865ef41fbb7d4",
+          "identityMaster": "art/portraits/approved-v1/seoro.png",
+          "identityMasterSha256": "d05ce83f8487515f127abb441dbae4a4616c66181ffbea15498060a237a090a9",
+          "status": "ready",
+          "width": 768,
+          "height": 1152,
+          "head": {
+            "left": 0,
+            "top": 0,
+            "right": 768,
+            "bottom": 525,
+            "width": 768,
+            "height": 525
+          },
+          "bust": {
+            "left": 0,
+            "top": 0,
+            "right": 768,
+            "bottom": 1152,
+            "width": 768,
+            "height": 1152
+          },
+          "framing": {
+            "dialogue": {
+              "face": {
+                "left": 277.5,
+                "top": 157.5,
+                "right": 498.75,
+                "bottom": 375,
+                "width": 221.25,
+                "height": 217.5
+              },
+              "top": -43.04237288135596,
+              "maxHeight": 1087.5
+            }
+          }
         }
       }
     }
@@ -89,6 +169,86 @@
                 "width": 280,
                 "height": 310
               }
+            }
+          }
+        },
+        "emotion.concern": {
+          "file": "shared/assets/portraits/variants-v1/damheo-concern.webp",
+          "source": "art/portraits/variants-v1/damheo-concern.png",
+          "sourceSha256": "6b373b9ec7fd686733cf8e48bbc3a557116f8ca60ee500432c561cdac590284e",
+          "identityMaster": "art/portraits/approved-v1/damheo.png",
+          "identityMasterSha256": "8b923c1aaa18e6e1bfd329987f1621c918fa943c2490ff8adbb48aab802e8d1a",
+          "status": "ready",
+          "width": 768,
+          "height": 1152,
+          "head": {
+            "left": 0,
+            "top": 0,
+            "right": 768,
+            "bottom": 525,
+            "width": 768,
+            "height": 525
+          },
+          "bust": {
+            "left": 0,
+            "top": 0,
+            "right": 768,
+            "bottom": 1152,
+            "width": 768,
+            "height": 1152
+          },
+          "framing": {
+            "dialogue": {
+              "face": {
+                "left": 277.5,
+                "top": 127.5,
+                "right": 491.25,
+                "bottom": 356.25,
+                "width": 213.75,
+                "height": 228.75
+              },
+              "top": -62.14112903225805,
+              "maxHeight": 1143.75
+            }
+          }
+        },
+        "action.channel": {
+          "file": "shared/assets/portraits/variants-v1/damheo-channel.webp",
+          "source": "art/portraits/variants-v1/damheo-channel.png",
+          "sourceSha256": "71bd0db9fc1fada291ea9160f0aaa26b5c6bb0e13eb595bce86c08c01698dfb6",
+          "identityMaster": "art/portraits/approved-v1/damheo.png",
+          "identityMasterSha256": "8b923c1aaa18e6e1bfd329987f1621c918fa943c2490ff8adbb48aab802e8d1a",
+          "status": "ready",
+          "width": 768,
+          "height": 1152,
+          "head": {
+            "left": 0,
+            "top": 0,
+            "right": 768,
+            "bottom": 525,
+            "width": 768,
+            "height": 525
+          },
+          "bust": {
+            "left": 0,
+            "top": 0,
+            "right": 768,
+            "bottom": 1152,
+            "width": 768,
+            "height": 1152
+          },
+          "framing": {
+            "dialogue": {
+              "face": {
+                "left": 446.25,
+                "top": 150,
+                "right": 652.5,
+                "bottom": 378.75,
+                "width": 206.25,
+                "height": 228.75
+              },
+              "top": -39.64112903225805,
+              "maxHeight": 1143.75
             }
           }
         }
@@ -157,6 +317,86 @@
               }
             }
           }
+        },
+        "emotion.anger": {
+          "file": "shared/assets/portraits/variants-v1/hwigyeom-anger.webp",
+          "source": "art/portraits/variants-v1/hwigyeom-anger.png",
+          "sourceSha256": "66637885d5f74dd868a3940a2495aa1d7b012f2cfb35e75388ac0901ae5ee24f",
+          "identityMaster": "art/portraits/approved-v1/hwigyeom.png",
+          "identityMasterSha256": "ecffdbfd43b4e8e6f5e5d59b0290ac470cd28e2618c13fcb5174a17256364f06",
+          "status": "ready",
+          "width": 768,
+          "height": 1152,
+          "head": {
+            "left": 0,
+            "top": 0,
+            "right": 768,
+            "bottom": 525,
+            "width": 768,
+            "height": 525
+          },
+          "bust": {
+            "left": 0,
+            "top": 0,
+            "right": 768,
+            "bottom": 1152,
+            "width": 768,
+            "height": 1152
+          },
+          "framing": {
+            "dialogue": {
+              "face": {
+                "left": 318.75,
+                "top": 240,
+                "right": 543.75,
+                "bottom": 427.5,
+                "width": 225,
+                "height": 187.5
+              },
+              "top": -21.734693877551024,
+              "maxHeight": 937.5
+            }
+          }
+        },
+        "action.guard": {
+          "file": "shared/assets/portraits/variants-v1/hwigyeom-guard.webp",
+          "source": "art/portraits/variants-v1/hwigyeom-guard.png",
+          "sourceSha256": "0116eb522299fcde73aa22cb9460720806b4e1ded209eb86e77061f742963de7",
+          "identityMaster": "art/portraits/approved-v1/hwigyeom.png",
+          "identityMasterSha256": "ecffdbfd43b4e8e6f5e5d59b0290ac470cd28e2618c13fcb5174a17256364f06",
+          "status": "ready",
+          "width": 768,
+          "height": 1152,
+          "head": {
+            "left": 0,
+            "top": 0,
+            "right": 768,
+            "bottom": 525,
+            "width": 768,
+            "height": 525
+          },
+          "bust": {
+            "left": 0,
+            "top": 0,
+            "right": 768,
+            "bottom": 1152,
+            "width": 768,
+            "height": 1152
+          },
+          "framing": {
+            "dialogue": {
+              "face": {
+                "left": 315,
+                "top": 240,
+                "right": 543.75,
+                "bottom": 427.5,
+                "width": 228.75,
+                "height": 187.5
+              },
+              "top": -21.734693877551024,
+              "maxHeight": 937.5
+            }
+          }
         }
       }
     }
@@ -203,6 +443,126 @@
                 "width": 285,
                 "height": 285
               }
+            }
+          }
+        },
+        "emotion.concern": {
+          "file": "shared/assets/portraits/variants-v1/sodan-concern.webp",
+          "source": "art/portraits/variants-v1/sodan-concern.png",
+          "sourceSha256": "e3dab8665e556eec631f4363bffd7855febdbc02c3f949c0d166722072132693",
+          "identityMaster": "art/portraits/approved-v1/sodan.png",
+          "identityMasterSha256": "0268f8f89b5ac19608baf38e048b02cc50309a2e191ca14556cc6a8fdc49abb4",
+          "status": "ready",
+          "width": 768,
+          "height": 1152,
+          "head": {
+            "left": 0,
+            "top": 0,
+            "right": 768,
+            "bottom": 525,
+            "width": 768,
+            "height": 525
+          },
+          "bust": {
+            "left": 0,
+            "top": 0,
+            "right": 768,
+            "bottom": 1152,
+            "width": 768,
+            "height": 1152
+          },
+          "framing": {
+            "dialogue": {
+              "face": {
+                "left": 318.75,
+                "top": 180,
+                "right": 521.25,
+                "bottom": 393.75,
+                "width": 202.5,
+                "height": 213.75
+              },
+              "top": -12.75,
+              "maxHeight": 1068.75
+            }
+          }
+        },
+        "scene.holding_threads": {
+          "file": "shared/assets/portraits/variants-v1/sodan-holding-threads.webp",
+          "source": "art/portraits/variants-v1/sodan-holding-threads.png",
+          "sourceSha256": "37b9efc38325297a1ec5057d312edc48f5f6a0b841167859344b1fcf118c6d87",
+          "identityMaster": "art/portraits/approved-v1/sodan.png",
+          "identityMasterSha256": "0268f8f89b5ac19608baf38e048b02cc50309a2e191ca14556cc6a8fdc49abb4",
+          "status": "ready",
+          "width": 768,
+          "height": 1152,
+          "head": {
+            "left": 0,
+            "top": 0,
+            "right": 768,
+            "bottom": 525,
+            "width": 768,
+            "height": 525
+          },
+          "bust": {
+            "left": 0,
+            "top": 0,
+            "right": 768,
+            "bottom": 1152,
+            "width": 768,
+            "height": 1152
+          },
+          "framing": {
+            "dialogue": {
+              "face": {
+                "left": 318.75,
+                "top": 168.75,
+                "right": 525,
+                "bottom": 390,
+                "width": 206.25,
+                "height": 221.25
+              },
+              "top": -30.76315789473682,
+              "maxHeight": 1106.25
+            }
+          }
+        },
+        "action.rest_hands": {
+          "file": "shared/assets/portraits/variants-v1/sodan-rest-hands.webp",
+          "source": "art/portraits/variants-v1/sodan-rest-hands.png",
+          "sourceSha256": "fcab3260ede0b360babc762a95475fb05143614259d7e1af647d2a2f218a53a8",
+          "identityMaster": "art/portraits/approved-v1/sodan.png",
+          "identityMasterSha256": "0268f8f89b5ac19608baf38e048b02cc50309a2e191ca14556cc6a8fdc49abb4",
+          "status": "ready",
+          "width": 768,
+          "height": 1152,
+          "head": {
+            "left": 0,
+            "top": 0,
+            "right": 768,
+            "bottom": 525,
+            "width": 768,
+            "height": 525
+          },
+          "bust": {
+            "left": 0,
+            "top": 0,
+            "right": 768,
+            "bottom": 1152,
+            "width": 768,
+            "height": 1152
+          },
+          "framing": {
+            "dialogue": {
+              "face": {
+                "left": 318.75,
+                "top": 168.75,
+                "right": 525,
+                "bottom": 390,
+                "width": 206.25,
+                "height": 221.25
+              },
+              "top": -30.76315789473682,
+              "maxHeight": 1106.25
             }
           }
         }

@@ -77,14 +77,18 @@ function drawVector(canvas,actor,cls=actor?.cls){
  return {crop,head:item.head,bounds:item.bounds};
 }
 const people=Object.freeze({'설오':['seoro','archer'],'담허':['damheo','mage'],'휘겸':['hwigyeom','knight'],'소단':['sodan','occultist']});
+function select(base,variants={},portraitExpression,options={}){
+ const requested=typeof portraitExpression==='string'&&portraitExpression?portraitExpression:'base',known=requested==='base'||Object.hasOwn(G.HONRO_PORTRAIT_VARIANTS?.variants||{},requested),candidate=variants[requested],exact=requested!=='base'&&known&&candidate?.src&&candidate.status!=='pending',identity=options.id||base.id;
+ const fallback={...base,id:identity,expression:'base',neutral:!!options.neutral,npc:!!options.npc};
+ return {...(exact?candidate:base),id:identity,expression:exact?requested:'base',requestedExpression:requested,fallbackReason:requested==='base'?'base':!known?'unknown-expression':exact?'exact':'unmade',neutral:!!options.neutral,npc:!!options.npc,baseAsset:exact?fallback:null};
+}
 function approved(actor,cls,options={}){
  // A concrete actor always wins over a speaker/class fallback. A similarly
  // classed NPC, summon or enemy must never inherit an approved protagonist.
  const who=actor?actor.name:options.identity,person=people[who];if(!person||cls!==person[1])return null;
  if(actor&&(actor.summoned||actor.honroVisualOnly||actor.eaterCapturedBy||![0,2].includes(actor.side)&&!(who==='소단'&&actor.side===1&&(actor.id==='boss'||actor.honroFinalBoss))))return null;
  const manifest=G.HONRO_STORY_PORTRAITS?.[who]?.approvedPortrait;if(manifest?.id!==person[0])return null;
- const expression=Object.prototype.hasOwnProperty.call(manifest.expressions,options.expression||'base')?options.expression||'base':manifest.defaultExpression||'base',asset=manifest.expressions[expression];
- return asset?.src?{...asset,id:manifest.id,expression}:null;
+ const base=manifest.expressions.base;return base?.src?select(base,manifest.expressions,options.portraitExpression,{id:manifest.id,neutral:Object.hasOwn(options,'portraitExpression')}):null;
 }
 function state(canvas,value){if(canvas.dataset.portraitState!==value)canvas.dataset.portraitState=value;const busy=value==='loading'?'true':'false';if(canvas.getAttribute('aria-busy')!==busy)canvas.setAttribute('aria-busy',busy);}
 function imageCrop(asset,canvas,purpose){
@@ -94,7 +98,7 @@ function imageCrop(asset,canvas,purpose){
   // body may extend behind the reading surface / viewport. Never fill-crop a hat.
   const face=asset.framing?.dialogue?.face||asset.head,aspect=canvas.width/canvas.height,pixelScale=asset.width/1024;
   const height=Math.max(Math.min(face.height*5,asset.framing?.dialogue?.maxHeight||Infinity),(asset.width+64*pixelScale)/aspect),width=height*aspect;
-  return {x:(asset.width-width)/2,y:-32*pixelScale,width,height};
+  return {x:(asset.width-width)/2,y:asset.framing?.dialogue?.top??-32*pixelScale,width,height};
  }
  const region=asset.framing?.[purpose]||asset;
  const crop=cropFor(region.bust,region.head,canvas.width,canvas.height);
@@ -105,59 +109,65 @@ function imageCrop(asset,canvas,purpose){
  if(crop.height<=asset.height)crop.y=Math.max(0,Math.min(asset.height-crop.height,crop.y));
  return crop;
 }
+// Ready decoded pixels are bounded separately from in-flight browser decoding.
+// Painted icon canvases retain their pixels after LRU eviction; only the current
+// dialogue bitmap and one explicit next line protect decoded source images.
+let sequence=0,dialogueEntry=null,nextEntry=null;
+const budget=()=>((G.innerWidth||1024)<760?16:32)*1024*1024;
+const imageKey=a=>a.src+'|'+(a.revision||a.sourceSha256||'');
+const readyBytes=()=>[...images.values()].reduce((n,e)=>n+(e.state==='ready'?e.bytes:0),0);
+function trimImages(){
+ let bytes=readyBytes();for(const [key,e]of [...images].sort((a,b)=>a[1].used-b[1].used)){
+  if(bytes<=budget()&&images.size<=13)break;if(e===dialogueEntry||e===nextEntry||e.state==='loading')continue;
+  if(e.state==='ready')bytes-=e.bytes;clearTimeout(e.retryTimer);e.image=null;e.state='evicted';e.waiters.clear();images.delete(key);
+ }
+}
+function liveWaiters(entry){for(const [canvas,v]of entry.waiters)if(!canvas.isConnected||views.get(canvas)!==v||v.entry!==entry&&v.fallbackEntry!==entry)entry.waiters.delete(canvas);return entry.waiters.size;}
+function retry(entry,reopen=false){
+ if(entry.retryTimer||!liveWaiters(entry)||entry.attempts>=3&&!reopen)return;
+ entry.retryTimer=setTimeout(()=>{entry.retryTimer=null;if(entry.state!=='error'||!liveWaiters(entry))return;if(reopen)entry.attempts=0;startImage(entry);},Math.max(0,entry.retryAt-Date.now()));
+}
+function startImage(entry){
+ entry.state='loading';entry.attempts++;entry.image=new Image();counts.requests++;const image=entry.image;image.decoding='async';let timer;
+ for(const [canvas,v]of entry.waiters)paint(canvas,v);
+ const finish=ok=>{if(entry.image!==image||entry.state!=='loading')return;clearTimeout(timer);image.onload=image.onerror=null;entry.state=ok?'ready':'error';entry.retryAt=Date.now()+750*entry.attempts;if(!ok)entry.image=null;
+  liveWaiters(entry);for(const [canvas,v]of entry.waiters)paint(canvas,v);if(ok)entry.waiters.clear();else retry(entry);trimImages();
+ };
+ image.onerror=()=>finish(false);image.onload=async()=>{try{if(image.decode){counts.decodes++;await image.decode();}finish(true);}catch{finish(false);}};timer=setTimeout(()=>finish(false),8000);image.src=entry.asset.src;
+}
+function request(asset){const key=imageKey(asset);let entry=images.get(key);if(entry){entry.used=++sequence;return entry;}
+ entry={asset,state:'loading',image:null,waiters:new Map(),attempts:0,retryAt:0,retryTimer:null,bytes:asset.width*asset.height*4,used:++sequence};images.set(key,entry);startImage(entry);trimImages();return entry;
+}
+function blank(canvas,view){if(!view.blank){canvas.getContext('2d').clearRect(0,0,canvas.width,canvas.height);view.blank=true;view.paintedKey=null;}}
 function paint(canvas,view){
  if(views.get(canvas)!==view)return;
- if(view.entry.state==='ready'){
-  const c=canvas.getContext('2d'),crop=imageCrop(view.asset,canvas,view.purpose);c.save();c.setTransform(1,0,0,1,0,0);c.globalAlpha=1;c.globalCompositeOperation='source-over';c.clearRect(0,0,canvas.width,canvas.height);c.drawImage(view.entry.image,crop.x,crop.y,crop.width,crop.height,0,0,canvas.width,canvas.height);c.restore();
-  const region=view.asset.framing?.[view.purpose]||view.asset;
-  view.info={source:'approved',state:'ready',identity:view.asset.id,expression:view.asset.expression,framing:view.purpose,crop,head:region.head||view.asset.head,bounds:region.bust||view.asset.bust};state(canvas,'ready');counts.paints++;
- }else if(view.entry.state==='error'&&view.asset.npc){view.info={...view.info,source:'neutral',state:'error'};state(canvas,'error');}
- else if(view.entry.state==='error'){view.fallbackKey=fallbackKey(canvas,view.actor,view.cls);view.info={...drawVector(canvas,view.actor,view.cls),source:'vector',state:'error'};state(canvas,'error');counts.fallbackPaints++;}
- view.actor=null;
-}
-function npcWaiters(entry){for(const [canvas,view]of entry.waiters)if(!canvas.isConnected||views.get(canvas)!==view)entry.waiters.delete(canvas);return entry.waiters.size;}
-function npcRetry(entry,asset,reopen=false){
- if(entry.retryTimer||!npcWaiters(entry)||entry.attempts>=3&&!reopen)return;
- entry.retryTimer=setTimeout(()=>{entry.retryTimer=null;if(entry.state!=='error'||!npcWaiters(entry))return;if(reopen)entry.attempts=0;startNPC(entry,asset);},Math.max(0,entry.retryAt-Date.now()));
-}
-function startNPC(entry,asset){
- entry.state='loading';entry.attempts++;entry.image=new Image();counts.requests++;const image=entry.image;image.decoding='async';let timer;
- for(const [canvas,view]of entry.waiters){view.info={...view.info,state:'loading'};state(canvas,'loading');}
- const finish=ok=>{if(entry.image!==image||entry.state!=='loading')return;clearTimeout(timer);image.onload=image.onerror=null;entry.state=ok?'ready':'error';entry.retryAt=Date.now()+750*entry.attempts;if(!ok)entry.image=null;
-  npcWaiters(entry);for(const [canvas,view]of entry.waiters)paint(canvas,view);if(ok)entry.waiters.clear();else npcRetry(entry,asset);
- };
- image.onerror=()=>finish(false);image.onload=async()=>{try{if(image.decode){counts.decodes++;await image.decode();}finish(true);}catch{finish(false);}};
- timer=setTimeout(()=>finish(false),8000);image.src=asset.src;
-}
-function requestNPC(asset,reopen){let entry=images.get(asset.src);
- if(!entry){if(images.size>=13){const key=[...images].find(([,v])=>v.state!=='loading')?.[0];if(key)images.delete(key);}
-  entry={state:'loading',image:null,waiters:new Map(),attempts:0,retryAt:0,retryTimer:null};images.set(asset.src,entry);startNPC(entry,asset);
- }else if(entry.state==='error'&&reopen)npcRetry(entry,asset,true);
- return entry;
-}
-function request(asset,reopen=false){
- if(asset.npc)return requestNPC(asset,reopen);
- let entry=images.get(asset.src);if(entry)return entry;
- // The deployed manifest has four base assets; future explicit expressions
- // share a bounded cache. Visible canvases retain their own already-painted pixels.
- if(images.size>=13){const key=[...images].find(([,v])=>v.state!=='loading')?.[0];if(key)images.delete(key);else return {state:'error',image:null,waiters:new Map()};}
- entry={state:'loading',image:new Image(),waiters:new Map()};images.set(asset.src,entry);counts.requests++;
- const image=entry.image;image.decoding='async';let timer;
- const finish=ok=>{if(entry.state!=='loading')return;clearTimeout(timer);image.onload=image.onerror=null;entry.state=ok?'ready':'error';if(!ok)entry.image=null;for(const [canvas,view]of entry.waiters)if(canvas.isConnected)paint(canvas,view);entry.waiters.clear();};
- image.onerror=()=>finish(false);image.onload=async()=>{try{if(image.decode){counts.decodes++;await image.decode();}finish(true);}catch{finish(false);}};
- timer=setTimeout(()=>finish(false),8000);image.src=asset.src;return entry;
+ if(view.entry.state==='error'&&view.asset.baseAsset&&!view.fallbackEntry){view.fallbackEntry=request(view.asset.baseAsset);view.fallbackEntry.waiters.set(canvas,view);if(view.fallbackEntry.state==='error')retry(view.fallbackEntry);}
+ const exact=view.entry.state==='ready'&&view.entry.image,fallback=view.fallbackEntry?.state==='ready'&&view.fallbackEntry.image,entry=exact?view.entry:fallback?view.fallbackEntry:null,asset=exact?view.asset:fallback?view.asset.baseAsset:null;
+ if(entry){
+  const crop=imageCrop(asset,canvas,view.purpose),key=[imageKey(asset),canvas.width,canvas.height,view.purpose,crop.x,crop.y,crop.width,crop.height].join('|');
+  if(view.paintedKey!==key){const c=canvas.getContext('2d');c.save();c.setTransform(1,0,0,1,0,0);c.globalAlpha=1;c.globalCompositeOperation='source-over';c.clearRect(0,0,canvas.width,canvas.height);c.drawImage(entry.image,crop.x,crop.y,crop.width,crop.height,0,0,canvas.width,canvas.height);c.restore();counts.paints++;view.paintedKey=key;view.blank=false;}
+  const region=asset.framing?.[view.purpose]||asset;view.info={source:'approved',state:'ready',identity:asset.id,expression:asset.expression,requestedExpression:view.asset.requestedExpression,fallbackReason:exact?view.asset.fallbackReason:'network-variant',framing:view.purpose,crop,head:region.head||asset.head,bounds:region.bust||asset.bust};state(canvas,'ready');if(view.purpose==='dialogue')dialogueEntry=entry;if(exact)view.fallbackEntry?.waiters.delete(canvas);
+ }else if(view.entry.state==='error'&&view.fallbackEntry?.state!=='loading'){
+  if(view.asset.npc||view.asset.neutral){blank(canvas,view);view.info={...view.info,source:'neutral',state:'error'};}
+  else if(view.fallbackKey!==fallbackKey(canvas,view.actor,view.cls)){view.fallbackKey=fallbackKey(canvas,view.actor,view.cls);view.info={...drawVector(canvas,view.actor,view.cls),source:'vector',state:'error'};counts.fallbackPaints++;view.entry.waiters.delete(canvas);}
+  state(canvas,'error');
+ }else {view.info={...view.info,state:'loading'};state(canvas,'loading');}
 }
 function draw(canvas,actor,cls=actor?.cls,options={}){
  if(!canvas||!cls&&!options.npcAsset)return null;const asset=options.npcAsset||approved(actor,cls,options),old=views.get(canvas);
  if(asset?.npc&&typeof Image==='undefined')return null;
- if(!asset||typeof Image==='undefined'){old?.entry.waiters.delete(canvas);views.delete(canvas);return drawVector(canvas,actor,cls);}
- const purpose=Object.prototype.hasOwnProperty.call(framing,options.framing)?options.framing:'bust';
- const key=[asset.src,canvas.width,canvas.height,purpose].join('|');if(old?.key===key){if(asset.npc&&old.entry.state!=='ready')old.entry.waiters.set(canvas,old);if(asset.npc&&options.reopen)request(asset,true);if(old.entry.state==='error'){if(!asset.npc&&old.fallbackKey!==fallbackKey(canvas,actor,cls)){old.actor=actor;paint(canvas,old);}}else{if(old.info.state==='loading')old.actor=actor;if(old.info.state==='loading'&&old.entry.state==='ready')paint(canvas,old);}return old.info;}
- old?.entry.waiters.delete(canvas);const entry=request(asset,options.reopen),region=asset.framing?.[purpose]||asset,view={key,entry,asset,actor,cls,purpose,info:{source:'approved',state:entry.state,identity:asset.id,expression:asset.expression,framing:purpose,crop:imageCrop(asset,canvas,purpose),head:region.head||asset.head,bounds:region.bust||asset.bust}};views.set(canvas,view);
- if(entry.state==='loading'){
-  canvas.getContext('2d').clearRect(0,0,canvas.width,canvas.height);state(canvas,'loading');
-  for(const [node]of entry.waiters)if(!node.isConnected)entry.waiters.delete(node);entry.waiters.set(canvas,view);
- }else {if(asset.npc&&entry.state==='error')canvas.getContext('2d').clearRect(0,0,canvas.width,canvas.height);paint(canvas,view);if(asset.npc&&entry.state==='error'){entry.waiters.set(canvas,view);npcRetry(entry,asset,options.reopen);}}return view.info;
+ if(!asset||typeof Image==='undefined'){old?.entry.waiters.delete(canvas);old?.fallbackEntry?.waiters.delete(canvas);views.delete(canvas);return drawVector(canvas,actor,cls);}
+ const purpose=Object.hasOwn(framing,options.framing)?options.framing:'bust',crop=imageCrop(asset,canvas,purpose),key=[imageKey(asset),canvas.width,canvas.height,purpose,crop.x,crop.y,crop.width,crop.height].join('|');
+ if(old?.key===key){old.asset=asset;old.info={...old.info,requestedExpression:asset.requestedExpression,fallbackReason:old.fallbackEntry?'network-variant':asset.fallbackReason};if(old.entry.state==='error'&&(asset.npc||asset.neutral)){old.entry.waiters.set(canvas,old);if(options.reopen)retry(old.entry,true);}if(old.info.state==='ready')return old.info;if(old.entry.state==='ready'||old.entry.state==='error'&&!asset.npc&&!asset.neutral){old.actor=actor;paint(canvas,old);}return old.info;}
+ old?.entry.waiters.delete(canvas);old?.fallbackEntry?.waiters.delete(canvas);const entry=request(asset),keep=old?.info.identity===asset.id&&old.info.source==='approved'&&old.paintedKey,view={key,entry,asset,actor,cls,purpose,blank:!keep,paintedKey:keep?old.paintedKey:null,info:{source:keep?'approved':'neutral',state:entry.state,identity:asset.id,expression:keep?old.info.expression:asset.expression,requestedExpression:asset.requestedExpression}};views.set(canvas,view);
+ if(!keep)canvas.getContext('2d').clearRect(0,0,canvas.width,canvas.height);if(purpose==='dialogue')dialogueEntry=entry;
+ if(entry.state!=='ready')entry.waiters.set(canvas,view);paint(canvas,view);if(entry.state==='error'&&(asset.npc||asset.neutral))retry(entry,options.reopen);trimImages();return view.info;
+}
+function prepareNext(app,lines,index){
+ nextEntry=null;for(const [who,,meta={}]of lines.slice(index+1,index+4)){
+  if(!who||['narration','document','guide'].includes(meta.kind)||G.HonroNPCPortraits?.hidden(who,meta))continue;
+  const cls=G.HONRO_STORY_PORTRAITS?.[who]?.class,asset=G.HonroNPCPortraits?.resolve(app,who,meta,null)||approved(null,cls,{identity:who,portraitExpression:meta.portraitExpression});if(asset){nextEntry=request(asset);break;}
+ }trimImages();
 }
 function mount(host,actor,cls,options={}){
  const owner=host.closest('#dialogue-root,#hero-switches,#modal,#app')||host.parentElement||host;let pool=surfaces.get(owner);if(!pool)surfaces.set(owner,pool=new Map());
@@ -166,6 +176,6 @@ function mount(host,actor,cls,options={}){
  const purpose=options.framing||'bust';if(canvas.dataset.portraitFraming!==purpose)canvas.dataset.portraitFraming=purpose;
  const reopen=canvas.parentNode!==host;if(reopen)host.appendChild(canvas);return draw(canvas,actor,cls,{...options,reopen});
 }
-function release(root){for(const canvas of root.querySelectorAll('canvas')){const view=views.get(canvas);if(!view?.asset.npc)continue;view.entry.waiters.delete(canvas);if(!npcWaiters(view.entry)){clearTimeout(view.entry.retryTimer);view.entry.retryTimer=null;}}}
-G.HonroPortraits=Object.freeze({draw,mount,release,markup,framing,cropFor,storyActor,approved,stats:()=>({...counts,imageEntries:images.size,pending:[...images.values()].filter(v=>v.state==='loading').length,errors:[...images.values()].filter(v=>v.state==='error').length,vectorEntries:cache.size,waiters:[...images.values()].reduce((n,v)=>n+v.waiters.size,0)})});
+function release(root){for(const canvas of root.querySelectorAll('canvas')){const view=views.get(canvas);if(!view)continue;for(const entry of [view.entry,view.fallbackEntry])if(entry){entry.waiters.delete(canvas);if(!liveWaiters(entry)){clearTimeout(entry.retryTimer);entry.retryTimer=null;}}}dialogueEntry=nextEntry=null;trimImages();}
+G.HonroPortraits=Object.freeze({draw,mount,release,prepareNext,select,markup,framing,cropFor,storyActor,approved,stats:()=>({...counts,imageEntries:images.size,pending:[...images.values()].filter(v=>v.state==='loading').length,errors:[...images.values()].filter(v=>v.state==='error').length,vectorEntries:cache.size,waiters:[...images.values()].reduce((n,v)=>n+v.waiters.size,0),decodedRgbaBytes:readyBytes(),pendingRgbaBytes:[...images.values()].filter(v=>v.state==='loading').reduce((n,v)=>n+v.bytes,0),budgetBytes:budget(),protectedRgbaBytes:[...new Set([dialogueEntry,nextEntry])].filter(v=>v?.state==='ready').reduce((n,v)=>n+v.bytes,0)})});
 })(globalThis);

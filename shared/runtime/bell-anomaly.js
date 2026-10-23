@@ -35,7 +35,7 @@ function complete(app,seen=true){const e=app.engine,b=e.b,m=memory(b),snapshot=m
  if(seen){m.at=at;m.round=b.round;m.actor=b.active;app.cancelInput?.();
   if(app.profile&&!app.training){(app.profile.honroStoryEvents??={})['act2-bell-anomaly-v1']=true;b.honroBellWitness=true;app.persist?.();}
   const current=G.HonroNarrativeCatalogue.active(b),lines=current?G.HonroNarrativeCatalogue.rows('bellAnomaly.lines'):clone(G.HONRO_NARRATIVE_COMPAT.extras['bellAnomaly.lines']);
-  const settled=b.honroState?.bellDescent?.status==='settled';if(settled)lines.at(-1)[1]=(current?G.HonroNarrativeCatalogue.data.values:G.HONRO_NARRATIVE_COMPAT.values)['bellAnomaly.settledLastLine'];
+  const settled=b.honroState?.bellDescent?.status==='settled';if(settled){lines.at(-1)[1]=(current?G.HonroNarrativeCatalogue.data.values:G.HONRO_NARRATIVE_COMPAT.values)['bellAnomaly.settledLastLine'];if(current)lines.at(-1)[2].portraitExpression=G.HONRO_PORTRAIT_VARIANTS.valueExpressions['bellAnomaly.settledLastLine'];}
   const script=lines.map(([who,text,meta={}])=>[who,text,{...meta,storyId:'bell-anomaly-18',source:'bell-anomaly',storyTitle:'묵종 곁의 빈자리'}]);
   if(G.HonroStory?.start&&app.root)G.HonroStory.start(app,script,{title:'묵종 곁의 빈자리',bellAnomaly:true});else app.sayLines?.(script);
  }

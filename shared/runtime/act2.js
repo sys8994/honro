@@ -221,7 +221,7 @@ function firstSpiritEncounter(app,heroes){const e=app.engine,b=e?.b,key='act2:fi
  const meta={storyId:key,storyTitle:'첫 혼령의 기척',sceneTarget:spirit.id,...(!manifest&&lamp?{sceneLamp:lamp.id}:{}),exposureMethod:manifest?'manifest':lamp?'lamp':'soul'};
  const observation=current?G.HonroNarrativeCatalogue.rows('firstSpirit.observation.current'):structuredClone(G.HONRO_NARRATIVE_COMPAT.extras[b.honroNarrativeRevision===1?'firstSpirit.observation.current':'firstSpirit.observation.v0']);
  G.HonroStory.queue(app,[...observation.map(([who,text,cue={}])=>[who,text,{...meta,...cue}]),
- ['소단',reply,{...meta,...(current?{rowId:'first-spirit.reply',spiritPart:'reply'}:{})}],
+ ['소단',reply,{...meta,...(current?{rowId:'first-spirit.reply',spiritPart:'reply',portraitExpression:G.HONRO_PORTRAIT_VARIANTS.valueExpressions['firstSpirit.reply.'+(manifest?'manifest':lamp?'lamp':'neither')]}:{})}],
  ['안내',guidance,{...meta,kind:'guide',guideTitle:manifest||lamp?'혼령과 현형':'혼령과 혼 공격',...(current?{rowId:'first-spirit.guide',spiritPart:'guide'}:{})}]]);
  G.HonroStory.save(app);
 }

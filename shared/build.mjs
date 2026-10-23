@@ -66,6 +66,7 @@ export async function runtimeEntries({vector=true,render=true,app=false}={}) {
   data('HONRO_NARRATIVE_CATALOGUE',JSON.parse(await read('shared/data/narrative-current.json')));
   data('HONRO_NARRATIVE_COMPAT',JSON.parse(await read('shared/data/narrative-compat-v1.json')));
   data('HONRO_STAGE_CONTRACTS',JSON.parse(await read('shared/data/stage-contracts.json')));
+  data('HONRO_PORTRAIT_VARIANTS',JSON.parse(await read('game/config/portrait-variants.json')));
   for(const name of modelFiles)await file(`shared/runtime/${name}.js`);
   await file('shared/runtime/camera.js');
   await file('shared/runtime/attack-camera.js');
