@@ -1,3 +1,4 @@
+import {initializeKeeperRitual,keeperCollision,keeperImpact,keeperEchoVelocity,beginKeeperRitual,tickKeeperRitual,keeperCastBusy,keeperActionCompleted,keeperPressure,clearKeeperRitual} from './keeperRitual';
 import {initializeDamageSequence,rollDamage} from './damageVariance';
 import type {DamageOrigin} from './damageVariance';
 import {prioritizePlayerActors} from './turnOrder';
@@ -44,6 +45,7 @@ function waterFloor(w:Battle['waters'][number],x:number){
     return w.y+w.depth;
 }
 export interface Collision {
+    keeperRitual?: 'seal'|'echo'|'connection';
     x: number;
     y: number;
     t: number;
@@ -82,7 +84,7 @@ export class Engine {
             if(next.done)return next;
         }
     }
-    constructor(b: Battle, onEvent: (e: Event) => void = () => { }, fresh = false) { b.fields ??= []; b.physics ??= makePhysics(STAGES[b.stageId-1]?.physics); b.reviewDamage ??= {}; b.reviewLeft ??= 0; b.occultRevision ??= 1; this.b = b; if(b.phase!=='won'&&b.phase!=='lost')initializeDamageSequence(b); (globalThis as any).HonroQuestTargets?.migrate(b); ensureWaterfallBody(b); for(const u of b.units){migrateEnemySkills(u);migrateAirborneBalance(u);} this.onEvent = onEvent; restoreWarriorFollow(b); migrateEaters(this); this.applyPhysicsCues(); if (fresh) {
+    constructor(b: Battle, onEvent: (e: Event) => void = () => { }, fresh = false) { b.fields ??= []; b.physics ??= makePhysics(STAGES[b.stageId-1]?.physics); b.reviewDamage ??= {}; b.reviewLeft ??= 0; b.occultRevision ??= 1; this.b = b; initializeKeeperRitual(b); if(b.phase!=='won'&&b.phase!=='lost')initializeDamageSequence(b); (globalThis as any).HonroQuestTargets?.migrate(b); ensureWaterfallBody(b); for(const u of b.units){migrateEnemySkills(u);migrateAirborneBalance(u);} this.onEvent = onEvent; restoreWarriorFollow(b); migrateEaters(this); this.applyPhysicsCues(); if (fresh) {
         this.refreshActivation();
         this.refreshIntents();
     } }
@@ -291,6 +293,7 @@ export class Engine {
             if (h && (!best || h.t < best.t))
                 best = { x: a.x + (c.x - a.x) * h.t, y: a.y + (c.y - a.y) * h.t, t: h.t, n: h.n, terrain: t };
         }
+        if(projectile&&terrain){const ritual=keeperCollision(this,a,c,r,owner,attack);if(ritual&&(!best||ritual.t<best.t))best=ritual;}
         if (units)
             for (const u of this.b.units) {
                 // Most units are nowhere near this short substep; avoid allocating
@@ -317,13 +320,13 @@ export class Engine {
         const points: Vec[] = [], ignored: string[] = SOUL_SKILLS.has(skill.id)?this.actors(u.side).map(v=>v.id):[], skips: string[] = [];
         let ap: Vec | undefined;
         const dt = collect||skill.id==='O05' ? STEP : 1 / 80, r = body ? u.r : ARROWS.has(skill.mode) ? 3 : 6;
-        let age=0;
+        let age=0,keeperEchoUsed=false,predictionOwner=u.id;
         for (let i = 0; i < Math.ceil((skill.id==='O05'?WRAITH_OUTBOUND_SECONDS:skill.mode.startsWith('honro')?6:12.2) / dt); i++) {
             age+=dt;
             // Match live pre-motion triggers, including reverseGhost's timed airburst.
             const fuse=(skill.fuse??0)*(skill.mode==='phaseWraith'?(.55+power*1.05):1);
             if((fuse>0&&age>=fuse)||(skill.mode==='reverseGhost'&&(y<-420||age>2.55))){if(collect)points.push({x,y});return {points,x,y,closest,apex:ap};}
-            if(skill.mode==='homing'&&i*dt>.12&&!this.inWaterfall({x,y})){const v=this.steer(x,y,vx,vy,u,dt,ignored);vx=v.vx;vy=v.vy;}
+            if(skill.mode==='homing'&&i*dt>.12&&!this.inWaterfall({x,y})){const v=this.steer(x,y,vx,vy,this.unit(predictionOwner)||u,dt,ignored);vx=v.vx;vy=v.vy;}
             const gravity=skill.gravity??1;
             const motion = this.advanceProjectile({ x, y, vx,vy,wind: meteor ? 0 : skill.wind, gravityScale:gravity,drag:dragFor(skill,meteor?'meteor':skill.mode),skill:skill.id,mode:skill.mode },dt);
             const prev=vy;vx=motion.vx;vy=motion.vy;
@@ -347,9 +350,10 @@ export class Engine {
             if (target)
                 closest = Math.min(closest, Math.hypot(nx - target.x, ny - (target.y - target.h * .5)));
             const phase=skill.phase;
-            let h = phase==='all' ? null : this.collision({ x, y }, { x: nx, y: ny }, meteor ? 22 : r, u.id, ignored, !ignoreUnits&&skill.id!=='O05'&&!SUMMONS.has(skill.mode)&&skill.mode!=='charge'&&skill.mode!=='spin', skips, !body&&phase!=='terrain', !body);
+            let h = phase==='all' ? null : this.collision({ x, y }, { x: nx, y: ny }, meteor ? 22 : r, predictionOwner, ignored, !ignoreUnits&&skill.id!=='O05'&&!SUMMONS.has(skill.mode)&&skill.mode!=='charge'&&skill.mode!=='spin', skips, !body&&phase!=='terrain', !body,keeperEchoUsed?({body:false,mode:skill.mode,skill:skill.id,keeperReturned:true} as unknown as Projectile):undefined);
             if(body&&phase!=='all'&&phase!=='terrain'){const bodyHit=this.bodyFlightCollision(u,{x,y},{x:nx,y:ny});if(bodyHit&&(!h||bodyHit.t<h.t))h=bodyHit;}
             if (h) {
+                if(h.keeperRitual==='echo'&&!keeperEchoUsed){const direction=(this.b as any).keeperRitual.zone.direction,v=keeperEchoVelocity({x:vx,y:vy},direction);vx=v.x;vy=v.y;x=h.x+direction*(r+12);y=h.y;predictionOwner=(this.b as any).keeperRitual.owner;ignored.length=0;keeperEchoUsed=true;if(collect)points.push({x,y});continue;}
                 if ((skill.mode === 'bounce' || skill.mode === 'ricochet' || skill.mode === 'shieldthrow') && h.terrain && bounce === 0) {
                     const dot = vx * h.n.x + vy * h.n.y;
                     vx = (vx - 2 * dot * h.n.x) * .84;
@@ -865,7 +869,7 @@ export class Engine {
                 if(!dmg){endHit(this.b,u,contribution);return;}
             }else u.hp = Math.max((this.b.mode==='practice'&&this.b.practiceCombat&&u.side!==1)||(u as any).honroNonlethal?1:0, u.hp - dmg);
             if(u.hp===0&&!u.lastStandUsed&&equippedRank(u,'SP05')){u.lastStandUsed=true;u.hp=Math.max(1,Math.round(u.maxHp*passiveTuning(passiveRank(u,'SP05')).lastStandHp));u.martialGuard={round:this.b.round,reduction:passiveTuning(passiveRank(u,'SP05')).lastStandGuard};this.fx('spark',u.x,u.y-u.h*.5,'#ccd3c4',24);this.fx('text',u.x,u.y-u.h-25,'#f4d6a3',18,'불굴');}
-            const actual=Math.max(0,hpBefore-u.hp);
+            const actual=Math.max(0,hpBefore-u.hp);keeperPressure(this,u,owner,actual);
             // Commit this HP interval before on-hit effects can recursively hurt again.
             endHit(this.b,u,contribution);
             if(src && (src.side!==2||(src as any).honroAlly)){this.b.reviewDamage??={};this.b.reviewDamage[u.id]=(this.b.reviewDamage[u.id]||0)+actual;this.b.reviewFocus={x:u.x,y:u.y-u.h*.7};}
@@ -1311,6 +1315,7 @@ export class Engine {
         return false;
     }
     impact(p: Projectile, h: Collision) {
+        if(keeperImpact(this,p,h))return;
         if(h.unit&&!this.attackAllows(h.unit,p.owner,p))return;
         p.x = h.x;
         p.y = h.y;
@@ -2051,6 +2056,7 @@ export class Engine {
         if(u)arrowTurn(this,u);
         if(finishRedesign(this,reviewed))return;
         if(b.mode!=='practice'&&!reviewed){b.phase='review';b.reviewLeft=this.actionReviewSeconds();b.reviewFocus??=u?{x:u.x,y:u.y-u.h}:undefined;this.emit('change');this.emit('save');return;}
+        keeperActionCompleted(this,u);
         if (u) {
             delete u.moveTarget;
             delete u.aiMove;
@@ -2235,6 +2241,7 @@ export class Engine {
         }
         // All decisions below use the position reached by walking/jumping, not a planned position.
         target=targetFor(this,u)||target;
+        if(beginKeeperRitual(this,u,target))return;
         if(beastKind(u)){
             const sk=SKILLS[u.loadout[0]];
             const distance=Math.abs(target.x-u.x)-u.r-target.r;
@@ -2293,7 +2300,7 @@ export class Engine {
         const result=evaluateStageEnd(this.stage,b,this.heroesAlive(),this.alive(1),obj,boss);
         const {win,lose,reason}=result;
         if (win || lose) {
-            b.phase = win ? 'won' : 'lost';delete b.summonTurn;
+            b.phase = win ? 'won' : 'lost';clearKeeperRitual(b);delete b.summonTurn;
             b.winnerReason = reason;
             for(const p of b.projectiles)this.releaseCarried(p);b.projectiles = [];b.volley=undefined;
             this.cancelMovement();
@@ -2317,6 +2324,7 @@ export class Engine {
     }
     tick(dt = STEP) {
         const b = this.b;
+        tickKeeperRitual(this,dt);
         if (b.phase === 'won' || b.phase === 'lost'){cleanupPassiveHistory(this);return;}
         if(b.phase==='review'){b.reviewLeft=Math.max(0,(b.reviewLeft||0)-dt);if(b.reviewLeft<=1e-8)this.finishAction(true);return;}
         this.counter++;
@@ -2341,7 +2349,7 @@ export class Engine {
             for (const p of [...b.projectiles])
                 if (b.projectiles.includes(p))
                     this.stepProjectile(p, dt);
-            if (!b.projectiles.length && !b.volley && !b.units.some(u=>u.meleeAction||u.beastAction) && !this.settleBusy())
+            if (!b.projectiles.length && !b.volley && !b.units.some(u=>u.meleeAction||u.beastAction) && !keeperCastBusy(b) && !this.settleBusy())
                 b.resolveAge += dt;
             else
                 b.resolveAge = 0;

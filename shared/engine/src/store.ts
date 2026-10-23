@@ -1,3 +1,4 @@
+import {validateKeeperRitual} from './keeperRitual';
 import {normalizePlayerTurnOrder} from './turnOrder';
 import {poly} from './math';
 import {SP_BALANCE_REVISION} from './passiveBalance';
@@ -125,6 +126,7 @@ function validBattle(raw: unknown,legacyXp=false,oldXp=false): Battle {
         if(u.earthbind&&(!ids.has(u.earthbind.owner)||!nums(u.earthbind,['until','damage'])))return fail();
         if(u.impactCooldown!==undefined&&(!finite(u.impactCooldown)||u.impactCooldown<0||u.impactCooldown>1))return fail();
     }
+    if(!validateKeeperRitual(b))return fail();
     const tids = new Set<string>();
     for (const t of b.terrain) {
         if (!safe(t.id) || tids.has(t.id) || !nums(t, ['x', 'y', 'w', 'h', 'hp', 'maxHp']) || t.w <= 0 || t.h <= 0 || t.w > 15000 || t.h > 6000 || !['rock', 'stone', 'wood', 'metal', 'ice', 'barrel', 'device', 'support', 'crystal'].includes(t.mat) || t.slope !== undefined && !finite(t.slope))
@@ -199,8 +201,11 @@ function validBattle(raw: unknown,legacyXp=false,oldXp=false): Battle {
             for(const m of [z.crossed,z.budgetTurns])if(m&&(!object(m)||Object.entries(m).some(([id,turn])=>!ids.has(id)||!safe(turn))))return fail();
         }
     }
+    for(const u of b.units)if((u as any).keeperBinding!==undefined&&(u as any).keeperBinding!=='act2-keeper')return fail();
     const modes = new Set([...Object.values(SKILLS).map(s => s.mode), 'meteor', 'grappletravel', 'iceShard', 'stormBolt', 'seekChild', 'arcBolt', 'hunterBolt', 'nightBolt', 'spiritRain','summonBolt','convergeSpirit','ironChip','fireChip','frostChip','ironEmitter','microEmitter','microWait','skyWait']);
     for (const q of [...b.projectiles, ...(b.volley ? [b.volley.template] : [])]) {
+        if((q as any).keeperReturned!==undefined&&typeof (q as any).keeperReturned!=='boolean')return fail();
+        const echo=(q as any).keeperEchoOrigin;if(echo&&(!ids.has(echo.owner)||![0,1,2].includes(echo.side)||!Number.isSafeInteger(echo.shot)))return fail();
         if (!nums(q, ['id', 'x', 'y', 'vx', 'vy', 'prevVy', 'age', 'radius', 'damage', 'blast', 'wind', 'bounces', 'pierces', 'phase', 'returnX', 'returnY', 'rolled', 'shot']) || !ids.has(q.owner) || !SKILLS[q.skill] || !modes.has(q.mode) || !Array.isArray(q.hit) || q.hit.length > 100 || !Array.isArray(q.trail) || q.trail.length > 400 || q.trail.some(v => !nums(v, ['x', 'y'])) || typeof q.body !== 'boolean' || typeof q.child !== 'boolean')
             return fail();
         if (q.fieldHits !== undefined && (!Array.isArray(q.fieldHits) || q.fieldHits.length > 30 || q.fieldHits.some(id => !safe(id))))
