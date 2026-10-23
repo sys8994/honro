@@ -1,0 +1,15 @@
+(function(G){'use strict';
+const C=G.HONRO_CORE,H=G.HONRO_CONTENT,order=p=>C.normalizePlayerTurnOrder(p.playerTurnOrder),known=(p,list=order(p))=>list.filter(c=>p.recruited.includes(c)),name=c=>H.hero[c].name;
+function camp(app){const visible=known(app.profile);app.root.querySelector('.armory-shell')?.insertAdjacentHTML('afterbegin',`<section data-player-order-control><button type="button" class="btn ghost" data-action="player-order-open" style="min-height:44px">행동 순서</button> <small>자동 선택 · ${visible.map(name).join(' → ')}</small></section>`);}
+function editor(app){const visible=known(app.profile,app.playerTurnOrderDraft);app.open(`<h2>행동 순서</h2><p>전투에서 자동으로 선택할 순서입니다. 기본은 동행 카드 순서이며, 카드 배치는 바뀌지 않습니다.</p><ol>${visible.map((c,i)=>`<li style="margin:12px 0"><strong>${name(c)}</strong> <button type="button" class="btn ghost" style="min-height:44px" data-action="player-order-move" data-class="${c}" data-direction="-1" aria-label="${name(c)} 앞으로" ${i?'':'disabled'}>앞으로</button> <button type="button" class="btn ghost" style="min-height:44px" data-action="player-order-move" data-class="${c}" data-direction="1" aria-label="${name(c)} 뒤로" ${i===visible.length-1?'disabled':''}>뒤로</button></li>`).join('')}</ol><p role="status">새 전투와 이후 자동 선택에 적용됩니다. 이어하기의 현재 선택과 사용한 행동은 유지됩니다.</p><div class="actions"><button type="button" data-action="player-order-default">카드 기본순서</button><button type="button" data-action="player-order-cancel">취소</button><button type="button" class="primary" data-action="player-order-save">저장</button></div>`,'player-turn-order');}
+function handle(app,el){const action=el.dataset.action;if(!action?.startsWith('player-order-'))return false;
+ if(app.screen!=='camp')return true;
+ if(action==='player-order-open'){app.playerTurnOrderDraft=order(app.profile);editor(app);return true;}
+ if(app.modalKind!=='player-turn-order'||!app.playerTurnOrderDraft)return true;
+ if(action==='player-order-move'){const visible=known(app.profile,app.playerTurnOrderDraft),index=visible.indexOf(el.dataset.class),delta=Number(el.dataset.direction),other=visible[index+delta];if(index<0||![-1,1].includes(delta)||!other)return true;const a=app.playerTurnOrderDraft.indexOf(visible[index]),b=app.playerTurnOrderDraft.indexOf(other);[app.playerTurnOrderDraft[a],app.playerTurnOrderDraft[b]]=[app.playerTurnOrderDraft[b],app.playerTurnOrderDraft[a]];editor(app);app.modal.querySelector(`[data-action="player-order-move"][data-class="${el.dataset.class}"][data-direction="${delta}"]:not(:disabled)`)?.focus();}
+ else if(action==='player-order-default'){app.playerTurnOrderDraft=[...C.DEFAULT_PLAYER_TURN_ORDER];editor(app);}
+ else if(action==='player-order-save'){app.profile.playerTurnOrder=C.normalizePlayerTurnOrder(app.playerTurnOrderDraft);app.playerTurnOrderDraft=null;app.close();app.persist();app.showCamp(app.cls);app.notify('행동 순서를 저장했습니다.');}
+ else if(action==='player-order-cancel'){app.playerTurnOrderDraft=null;app.close();}
+ return true;}
+G.HonroPlayerTurnOrder={camp,handle,known,order};
+})(globalThis);
