@@ -111,7 +111,7 @@ export function tickWarrior(e:Engine,dt:number){
   if(a){
    const previous=a.elapsed;a.elapsed+=dt;const s=SKILLS[a.skill],count=s.mode==='meleeCombo'?COMBO_HITS[(u.ranks[s.id]||1)-1]:s.mode==='meleeTurn'?2:1,delay=s.mode==='lifeSlash'?.20:.075,interval=s.mode==='meleeCombo'?.10:.19;
    // Cross a real swing's windup once; loading midway does not replay a past start.
-   for(let index=a.index;index<count&&index*interval<=a.elapsed;index++)if(previous===0||previous<index*interval)e.skillSound('swing',u.id,s.id,a.shot,`stroke:${index}`);
+   for(let index=a.index;a.elapsed>previous&&index<count&&index*interval<=a.elapsed;index++)if(previous===0||previous<index*interval)e.skillSound('swing',u.id,s.id,a.shot,`stroke:${index}`);
    while(a.index<count&&a.elapsed>=delay+a.index*interval){
     const turn=s.mode==='meleeTurn'&&a.index===1,angle=(a.angle??-rad(u.angle))+(turn?Math.PI:0),span=a.span??meleeSpan(u,s,a.power),facing=Math.cos(angle)<0?-1:1;
     const targets=e.b.units.filter(t=>foe(u,t)&&e.attackAllows(t,u.id,{autonomous:s.mode==='meleeCombo'||a.index>0})&&meleeContains(e,u,t,a.range,angle,span));

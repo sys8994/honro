@@ -137,8 +137,8 @@ export async function runtimeEntries({vector=true,render=true,app=false}={}) {
   if(app){
     const skillAudio=JSON.parse(await read('shared/assets/sfx/skills-v2/manifest.json'));
     const weapons=new Map(JSON.parse(await read('shared/assets/sfx/weapons-v3/manifest.json')).assets.map(asset=>[asset.id,asset]));
-    for(const [id,asset] of Object.entries(skillAudio.assets)){
-      const weapon=weapons.get(id);if(weapon)Object.assign(asset,weapon);
+    for(const [id,original] of Object.entries(skillAudio.assets)){
+      const weapon=weapons.get(id),asset=skillAudio.assets[id]=weapon?{...weapon}:original;
       asset.src='data:audio/'+(asset.file.endsWith('.wav')?'wav':'mpeg')+';base64,'+(await readFile(path.join(root,'shared/assets/sfx',weapon?'weapons-v3':'skills-v2',asset.file))).toString('base64');
     }
     data('HONRO_SKILL_AUDIO',{version:3,assets:skillAudio.assets});
