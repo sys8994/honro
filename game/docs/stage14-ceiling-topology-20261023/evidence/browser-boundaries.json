@@ -1,5 +1,5 @@
 {
-  "source": "1e0b7d11fb588f844cc1bddec12d34da39888f98",
+  "source": "bae6d55066c66fb9df05cbd95cbe290f7c92b52c",
   "scope": "Built production Continue and one prepared jump scenario. Not user R9 or combat completion.",
   "rows": [
     {
@@ -7,7 +7,7 @@
       "wholeBattleExact": true,
       "round": 1,
       "capture": {
-        "path": "_local/reports/act2-ceiling-20261023/topology2/continue.jpg",
+        "path": "_local/reports/act2-ceiling-20261023/topology2-integrated/continue.jpg",
         "bytes": 58825,
         "sha256": "dd47ee6287a0b1d35aab82a5700a70677176f00ecbb2fd0a10031063ed5bd0c6"
       }
@@ -31,12 +31,12 @@
         "support": "v14-family-roof-step"
       },
       "before": {
-        "path": "_local/reports/act2-ceiling-20261023/topology2/platform-before-jump.jpg",
+        "path": "_local/reports/act2-ceiling-20261023/topology2-integrated/platform-before-jump.jpg",
         "bytes": 80058,
         "sha256": "39cd2c9f4ec4e48c518c5aa7ea055807d98326e65a9b632a129dc0fddb6b8a80"
       },
       "after": {
-        "path": "_local/reports/act2-ceiling-20261023/topology2/platform-after-jump.jpg",
+        "path": "_local/reports/act2-ceiling-20261023/topology2-integrated/platform-after-jump.jpg",
         "bytes": 80945,
         "sha256": "2f1793c7bf6e46dd7a3bfe9d7554637ad82f1ce4a82826dac955df7f4ab4c577"
       }

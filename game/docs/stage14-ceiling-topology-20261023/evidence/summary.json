@@ -1,10 +1,10 @@
 {
   "candidate": true,
   "deployed": false,
-  "gameSource": "b0a0ff6a381a280cf859c0e9dc81cb8f3a7405eb",
-  "generatedAndFirstScreens": "1e0b7d11fb588f844cc1bddec12d34da39888f98",
+  "gameSource": "bae6d55066c66fb9df05cbd95cbe290f7c92b52c",
+  "generatedAndFirstScreens": "Final integrated build, committed with this evidence",
   "campaignSha256": "a452a4cbf5b5e7208cecc7bde1568bb7fba04b70e0f3d3876fada385093f200e",
-  "entry": "web/entries/game.b851091251bbaccd.js",
+  "entry": "web/entries/game.5a7b5c380b3c2f7f.js",
   "chapter": "web/data/chapter-14.65c36281c3eac851.json",
   "routes": {
     "rows": 68,
@@ -189,7 +189,7 @@
       "wholeBattleExact": true,
       "round": 1,
       "capture": {
-        "path": "_local/reports/act2-ceiling-20261023/topology2/continue.jpg",
+        "path": "_local/reports/act2-ceiling-20261023/topology2-integrated/continue.jpg",
         "bytes": 58825,
         "sha256": "dd47ee6287a0b1d35aab82a5700a70677176f00ecbb2fd0a10031063ed5bd0c6"
       }
@@ -213,19 +213,19 @@
         "support": "v14-family-roof-step"
       },
       "before": {
-        "path": "_local/reports/act2-ceiling-20261023/topology2/platform-before-jump.jpg",
+        "path": "_local/reports/act2-ceiling-20261023/topology2-integrated/platform-before-jump.jpg",
         "bytes": 80058,
         "sha256": "39cd2c9f4ec4e48c518c5aa7ea055807d98326e65a9b632a129dc0fddb6b8a80"
       },
       "after": {
-        "path": "_local/reports/act2-ceiling-20261023/topology2/platform-after-jump.jpg",
+        "path": "_local/reports/act2-ceiling-20261023/topology2-integrated/platform-after-jump.jpg",
         "bytes": 80945,
         "sha256": "2f1793c7bf6e46dd7a3bfe9d7554637ad82f1ce4a82826dac955df7f4ab4c577"
       }
     }
   ],
-  "protectedGraphs": 22,
-  "protectedFiles": 559,
+  "protectedGraphs": 23,
+  "protectedFiles": 566,
   "pending": [
     "Parent/user visual candidate review",
     "Approval/decision on existing14 battle restart side effect before application"
@@ -235,5 +235,23 @@
     "Actual user R9 save",
     "Master or Pages update",
     "Global verify or 30-stage sweep"
-  ]
+  ],
+  "topologySource": "b0a0ff6a381a280cf859c0e9dc81cb8f3a7405eb",
+  "integratedMaster": "a3c99e33ec8c7a2c050bf71866a077bbc2cbd9ee",
+  "integratedRoutes": {
+    "BC": {
+      "rows": 4,
+      "pass": true
+    },
+    "CF": {
+      "rows": 4,
+      "pass": true
+    }
+  },
+  "damageIntegration": {
+    "latestChangedSourcesByteExact": true,
+    "coalition30PercentPassed": true,
+    "sixContinueImportScenariosPassed": true,
+    "typecheckPassed": true
+  }
 }

@@ -1,8 +1,8 @@
 # 14장 높은 공동·독립 천장 토폴로지 보완 후보
 
-**후보 단계. 부모 검토 전 master/Pages 배포 금지.** 이전 c6ad086 천장 후보는 사용자 거절로 미배포이며, 구14 저장의 입구 재시작 부작용도 사용자 승인으로 취급하지 않는다. 현재 공개 master는9f7a6273이다.
+**후보 단계. 부모 검토 전 master/Pages 배포 금지.** 이전 c6ad086 천장 후보는 사용자 거절로 미배포이며, 구14 저장의 입구 재시작 부작용도 사용자 승인으로 취급하지 않는다. 최신 master는a3c99e33이며 Pages39889380063 성공(2026-10-23T02:26:33Z)은 부모 확인, 공개 UI 직접 검수는 이 인계 시점에 부모 진행 예정이다.
 
-소스: `b0a0ff6a381a280cf859c0e9dc81cb8f3a7405eb`. 생성 entry: `web/entries/game.b851091251bbaccd.js`, chapter: `web/data/chapter-14.65c36281c3eac851.json`. 원래 후보의 돌발판 one-way/진목/17경로·배우·목표는 그대로 유지했다. 이번 변경은 천장 한 polygon·그 material plane·자체 metadata뿐이다.
+토폴로지 소스: `b0a0ff6a381a280cf859c0e9dc81cb8f3a7405eb`. 최신 피해/저장 변경을 병합한 최종 게임 코드·실행 SHA: `bae6d55066c66fb9df05cbd95cbe290f7c92b52c`. 생성 entry: `web/entries/game.5a7b5c380b3c2f7f.js`, chapter: `web/data/chapter-14.65c36281c3eac851.json`. 원래 후보의 돌발판 one-way/진목/17경로·배우·목표는 그대로 유지했다. 이번 변경은 천장 한 polygon·그 material plane·자체 metadata뿐이다.
 
 ## 먼저 볼 실제 화면
 
@@ -10,7 +10,7 @@
 - [상층 전투 공간](screens/upper-wide-battle.jpg) — 새로 확보한 높이까지 보이는 정상 전술 줌0.32. 카메라만 이동했으며 배우 좌표는 수정하지 않았다.
 - [세로 실제 최소 줌](screens/portrait-max-zoom.jpg) — [거절된 이전 후보의 같은 카메라](../act2-ceiling-20261023/screens/portrait-max-zoom.jpg)
 
-모든 JPG는1MB 미만이다. 실제 공통 빌드의 production UI이며 레벨13 입장 준비 fixture/카메라 검사다. 정상 전투 완주를 뜻하지 않는다. 사진은 커밋 직전 같은 소스 working tree에서 촬영했고, 생성물과 canonical 소스 일치는 후속 경계 검사로 확인한다.
+모든 JPG는1MB 미만이다. 실제 공통 빌드의 production UI이며 레벨13 입장 준비 fixture/카메라 검사다. 정상 전투 완주를 뜻하지 않는다. 전체/상층 전투/세로 최소줌/점프/Continue 사진은 최신a3c 통합 빌드에서 재확인했다. 나머지 근접·모바일 상세는 같은 토폴로지/미술의 통합 전1e0b7d11 검수다. 형상과 UI 미술이 그대로임을 소스로 대조하고, 생성물과 canonical 소스 일치를 검사했다.
 
 ## 큰 형태를 바꾼 내용
 
@@ -33,8 +33,10 @@
 - 국소 암반 목: x2980/y2300에서 A01 **60°/90%**는 x3425.72/y1574.60의 실제 천장에 닿는다. 합법 C.train 레벨13 담허 M11 **60°/100%**는 x3436.56/y1642.05에서 실제 반사하고 바닥에 다음 접촉 후 종료한다. 예측/실제 종점 일치. 처음 한 번 합법 지지점에 준비한 단독 배우 물리 fixture이고, 적HP/공격력/자원 보정이나 실제 적 강제 처치는 없다.
 - 인공 돌발판: 네 직업 실제 점프→y6535 착지/HP exact/이동도75 사용/추가1초 안정 유지. 실제 합법 M09 설치→설오 정상 이동→E 축지 착지도 유지된다. 해당35px 발판의 아래/위/옆 투사체 차단과 일반 one-way 다리의 기존 정책을 함께 확인했다.
 - 브라우저: [전체 배우 유지한 점프 전](screens/platform-before-jump.jpg)→[실제 착지](screens/platform-after-jump.jpg), [새로고침→Continue](screens/continue.jpg)를 직접 확인했다. 점프는 준비 시나리오에서 시작하며 이후 Engine.jump/tick만 사용한다. 실제 export→페이지 reload→Continue 전투 전체 exact. 사용자R9 원본이나 정상 전투로 그곳까지 도달한 증거와 구분한다.
-- 공통 Game/Workshop/직접 Playtest 빌드와 타입 검사 통과. 승인9f7a UI/스킬 이미지/O05/카드 드래그/카메라/18장 모듈 byte exact, 실제18장 R10 승리 저장의 배우/지형/목표/성장·보상 사실 보존.18/19 천장 높이 불변.
-- 성공22발행 그래프/559고유 파일 및934의13장 두JSON hash/길이 보존. 이번 후보를 성공 발행으로 등록하지 않았다.
+- 공통 Game/Workshop/직접 Playtest 빌드와 타입 검사 통과. 최신a3c UI/스킬 이미지/O05/카드 드래그/카메라/18장 및 피해/저장 변경 모듈 byte exact, 실제18장 R10 승리 저장의 배우/지형/목표/성장·보상 사실 보존.18/19 천장 높이 불변.
+- 성공23발행 그래프/566고유 파일 및934의13장 두JSON hash/길이 보존. 이번 후보를 성공 발행으로 등록하지 않았다.
+
+최신a3c 통합 후에는 형상/이동 엔진·맵 데이터의 불변을 확인하고 영향 있는 BC/CF 각4직업(8경로)을 재실행했다. 앞68경로는 같은 토폴로지의 통합 전 검사이며, 최종 통합에서68개를 다시 돌렸다고 주장하지 않는다. 실제 저각/자유 수직 고각/국소 차단·반사, 돌발판·M09, 브라우저 Continue·점프도 통합 엔진에서 재실행했다. 아군 피해30% 검사와6스킬 App Continue/import·각180tick 저장 재생 및 타입 검사가 통과했다. [BC](evidence/routes-BC-integrated.json), [CF](evidence/routes-CF-integrated.json), [피해30%](evidence/damage-coalition-integrated.log), [피해 저장](evidence/damage-continue-integrated.log). 원고는 변경하지 않았다.
 
 짧은 결과: [summary.json](evidence/summary.json). [실제 발사·저장 경계](evidence/boundaries.json), [발판/M09](evidence/platform.json), [최신 코드·발행 자산](evidence/release.json), [68경로 원자료gzip](evidence/routes-68.json.gz).
 

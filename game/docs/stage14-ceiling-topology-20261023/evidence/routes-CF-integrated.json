@@ -1,0 +1,881 @@
+{
+  "source": "bae6d55066c66fb9df05cbd95cbe290f7c92b52c",
+  "allOtherDataExactAfterTwoAllowedChanges": true,
+  "actors": 51,
+  "idleExact": true,
+  "scope": "Isolated one-time route entry pose, one actor, finite Engine move/jump/wait. Open-bridge precondition for route fixture; no resource refill/recover/position rewrite after setup. Not normal combat.",
+  "rows": [
+    {
+      "route": "CF",
+      "cls": "archer",
+      "passed": true,
+      "failed": null,
+      "damage": 0,
+      "netHpChange": 0,
+      "recoveries": 0,
+      "contacts": [],
+      "ticks": 2542,
+      "waits": 2,
+      "jumps": 0,
+      "walkCost": 3230,
+      "jumpCost": 0,
+      "movementCost": 3230,
+      "turnEquivalent": 2.108355091383812,
+      "maxMove": 1532,
+      "rows": [
+        {
+          "goal": {
+            "x": 4700,
+            "y": 3850,
+            "surfaceId": "v14-market"
+          },
+          "x": 4700,
+          "y": 3850,
+          "support": "v14-market",
+          "round": 1,
+          "moveLeft": 1532
+        },
+        {
+          "goal": {
+            "x": 5070,
+            "y": 3850,
+            "surfaceId": "v14-market"
+          },
+          "x": 5070,
+          "y": 3850,
+          "support": "v14-market",
+          "round": 1,
+          "moveLeft": 1162
+        },
+        {
+          "goal": {
+            "x": 5070,
+            "y": 3850,
+            "surfaceId": "v14-market",
+            "dropTo": {
+              "x": 5180,
+              "y": 4220,
+              "support": "v14-east-steps"
+            }
+          },
+          "x": 5180,
+          "y": 4220,
+          "support": "v14-east-steps",
+          "round": 1,
+          "moveLeft": 1052
+        },
+        {
+          "goal": {
+            "x": 5500,
+            "y": 4220,
+            "surfaceId": "v14-east-steps",
+            "dropTo": {
+              "x": 5600,
+              "y": 4620,
+              "support": "v14-east-steps"
+            }
+          },
+          "x": 5599.750000000042,
+          "y": 4620,
+          "support": "v14-east-steps",
+          "round": 1,
+          "moveLeft": 632.2499999999582
+        },
+        {
+          "goal": {
+            "x": 5840,
+            "y": 4620,
+            "surfaceId": "v14-east-steps",
+            "dropTo": {
+              "x": 5940,
+              "y": 4990,
+              "support": "v14-east-shoulder"
+            }
+          },
+          "x": 5940,
+          "y": 4990,
+          "support": "v14-east-shoulder",
+          "round": 1,
+          "moveLeft": 292
+        },
+        {
+          "goal": {
+            "x": 5680,
+            "y": 4990,
+            "surfaceId": "v14-east-shoulder",
+            "dropTo": {
+              "x": 5580,
+              "y": 5400,
+              "support": "v14-family-shoulders"
+            }
+          },
+          "x": 5580,
+          "y": 5400,
+          "support": "v14-family-shoulders",
+          "round": 2,
+          "moveLeft": 1432
+        },
+        {
+          "goal": {
+            "x": 5260,
+            "y": 5400,
+            "surfaceId": "v14-family-shoulders",
+            "dropTo": {
+              "x": 5150,
+              "y": 5800,
+              "support": "v14-family-shoulders"
+            }
+          },
+          "x": 5150,
+          "y": 5800,
+          "support": "v14-family-shoulders",
+          "round": 2,
+          "moveLeft": 1002
+        },
+        {
+          "goal": {
+            "x": 4910,
+            "y": 5800,
+            "surfaceId": "v14-family-shoulders",
+            "dropTo": {
+              "x": 4790,
+              "y": 6210,
+              "support": "v14-family-shoulders"
+            }
+          },
+          "x": 4790,
+          "y": 6210,
+          "support": "v14-family-shoulders",
+          "round": 2,
+          "moveLeft": 642
+        },
+        {
+          "goal": {
+            "x": 4530,
+            "y": 6210,
+            "surfaceId": "v14-family-shoulders",
+            "dropTo": {
+              "x": 4430,
+              "y": 6535,
+              "support": "v14-family-roof-step"
+            }
+          },
+          "x": 4430,
+          "y": 6535,
+          "support": "v14-family-roof-step",
+          "round": 2,
+          "moveLeft": 282
+        },
+        {
+          "goal": {
+            "x": 4170,
+            "y": 6535,
+            "surfaceId": "v14-family-roof-step",
+            "dropTo": {
+              "x": 4070,
+              "y": 6750,
+              "support": "v14-family-yard"
+            }
+          },
+          "x": 4070,
+          "y": 6750,
+          "support": "v14-family-yard",
+          "round": 3,
+          "moveLeft": 1432
+        },
+        {
+          "goal": {
+            "x": 4070,
+            "y": 6750,
+            "surfaceId": "v14-family-yard"
+          },
+          "x": 4070,
+          "y": 6750,
+          "support": "v14-family-yard",
+          "round": 3,
+          "moveLeft": 1432
+        },
+        {
+          "goal": {
+            "x": 3950,
+            "y": 6750,
+            "surfaceId": "v14-family-yard"
+          },
+          "x": 3950,
+          "y": 6750,
+          "support": "v14-family-yard",
+          "round": 3,
+          "moveLeft": 1312
+        }
+      ],
+      "commands": [
+        {
+          "op": "wait",
+          "x": 5680,
+          "y": 4990,
+          "round": 1
+        },
+        {
+          "op": "wait",
+          "x": 4170,
+          "y": 6535,
+          "round": 2
+        }
+      ]
+    },
+    {
+      "route": "CF",
+      "cls": "mage",
+      "passed": true,
+      "failed": null,
+      "damage": 0,
+      "netHpChange": 0,
+      "recoveries": 0,
+      "contacts": [],
+      "ticks": 2597,
+      "waits": 2,
+      "jumps": 0,
+      "walkCost": 3229.699999999996,
+      "jumpCost": 0,
+      "movementCost": 3229.699999999996,
+      "turnEquivalent": 2.0809922680412347,
+      "maxMove": 1552,
+      "rows": [
+        {
+          "goal": {
+            "x": 4700,
+            "y": 3850,
+            "surfaceId": "v14-market"
+          },
+          "x": 4700,
+          "y": 3850,
+          "support": "v14-market",
+          "round": 1,
+          "moveLeft": 1552
+        },
+        {
+          "goal": {
+            "x": 5070,
+            "y": 3850,
+            "surfaceId": "v14-market"
+          },
+          "x": 5070,
+          "y": 3850,
+          "support": "v14-market",
+          "round": 1,
+          "moveLeft": 1182
+        },
+        {
+          "goal": {
+            "x": 5070,
+            "y": 3850,
+            "surfaceId": "v14-market",
+            "dropTo": {
+              "x": 5180,
+              "y": 4220,
+              "support": "v14-east-steps"
+            }
+          },
+          "x": 5180,
+          "y": 4220,
+          "support": "v14-east-steps",
+          "round": 1,
+          "moveLeft": 1072
+        },
+        {
+          "goal": {
+            "x": 5500,
+            "y": 4220,
+            "surfaceId": "v14-east-steps",
+            "dropTo": {
+              "x": 5600,
+              "y": 4620,
+              "support": "v14-east-steps"
+            }
+          },
+          "x": 5600,
+          "y": 4620,
+          "support": "v14-east-steps",
+          "round": 1,
+          "moveLeft": 652
+        },
+        {
+          "goal": {
+            "x": 5840,
+            "y": 4620,
+            "surfaceId": "v14-east-steps",
+            "dropTo": {
+              "x": 5940,
+              "y": 4990,
+              "support": "v14-east-shoulder"
+            }
+          },
+          "x": 5940,
+          "y": 4990,
+          "support": "v14-east-shoulder",
+          "round": 1,
+          "moveLeft": 312
+        },
+        {
+          "goal": {
+            "x": 5680,
+            "y": 4990,
+            "surfaceId": "v14-east-shoulder",
+            "dropTo": {
+              "x": 5580,
+              "y": 5400,
+              "support": "v14-family-shoulders"
+            }
+          },
+          "x": 5580,
+          "y": 5400,
+          "support": "v14-family-shoulders",
+          "round": 2,
+          "moveLeft": 1451.350000000033
+        },
+        {
+          "goal": {
+            "x": 5260,
+            "y": 5400,
+            "surfaceId": "v14-family-shoulders",
+            "dropTo": {
+              "x": 5150,
+              "y": 5800,
+              "support": "v14-family-shoulders"
+            }
+          },
+          "x": 5150,
+          "y": 5800,
+          "support": "v14-family-shoulders",
+          "round": 2,
+          "moveLeft": 1021.3500000000331
+        },
+        {
+          "goal": {
+            "x": 4910,
+            "y": 5800,
+            "surfaceId": "v14-family-shoulders",
+            "dropTo": {
+              "x": 4790,
+              "y": 6210,
+              "support": "v14-family-shoulders"
+            }
+          },
+          "x": 4790,
+          "y": 6210,
+          "support": "v14-family-shoulders",
+          "round": 2,
+          "moveLeft": 661.3500000000331
+        },
+        {
+          "goal": {
+            "x": 4530,
+            "y": 6210,
+            "surfaceId": "v14-family-shoulders",
+            "dropTo": {
+              "x": 4430,
+              "y": 6535,
+              "support": "v14-family-roof-step"
+            }
+          },
+          "x": 4430,
+          "y": 6535,
+          "support": "v14-family-roof-step",
+          "round": 2,
+          "moveLeft": 301.3500000000331
+        },
+        {
+          "goal": {
+            "x": 4170,
+            "y": 6535,
+            "surfaceId": "v14-family-roof-step",
+            "dropTo": {
+              "x": 4070,
+              "y": 6750,
+              "support": "v14-family-yard"
+            }
+          },
+          "x": 4070,
+          "y": 6750,
+          "support": "v14-family-yard",
+          "round": 3,
+          "moveLeft": 1451.350000000033
+        },
+        {
+          "goal": {
+            "x": 4070,
+            "y": 6750,
+            "surfaceId": "v14-family-yard"
+          },
+          "x": 4070,
+          "y": 6750,
+          "support": "v14-family-yard",
+          "round": 3,
+          "moveLeft": 1451.350000000033
+        },
+        {
+          "goal": {
+            "x": 3950,
+            "y": 6750,
+            "surfaceId": "v14-family-yard"
+          },
+          "x": 3950.300000000004,
+          "y": 6750,
+          "support": "v14-family-yard",
+          "round": 3,
+          "moveLeft": 1331.650000000037
+        }
+      ],
+      "commands": [
+        {
+          "op": "wait",
+          "x": 5680.649999999967,
+          "y": 4990,
+          "round": 1
+        },
+        {
+          "op": "wait",
+          "x": 4170.649999999967,
+          "y": 6535,
+          "round": 2
+        }
+      ]
+    },
+    {
+      "route": "CF",
+      "cls": "knight",
+      "passed": true,
+      "failed": null,
+      "damage": 0,
+      "netHpChange": 0,
+      "recoveries": 0,
+      "contacts": [],
+      "ticks": 2559,
+      "waits": 2,
+      "jumps": 0,
+      "walkCost": 3230,
+      "jumpCost": 0,
+      "movementCost": 3230,
+      "turnEquivalent": 1.967113276492083,
+      "maxMove": 1642,
+      "rows": [
+        {
+          "goal": {
+            "x": 4700,
+            "y": 3850,
+            "surfaceId": "v14-market"
+          },
+          "x": 4700,
+          "y": 3850,
+          "support": "v14-market",
+          "round": 1,
+          "moveLeft": 1642
+        },
+        {
+          "goal": {
+            "x": 5070,
+            "y": 3850,
+            "surfaceId": "v14-market"
+          },
+          "x": 5070,
+          "y": 3850,
+          "support": "v14-market",
+          "round": 1,
+          "moveLeft": 1272
+        },
+        {
+          "goal": {
+            "x": 5070,
+            "y": 3850,
+            "surfaceId": "v14-market",
+            "dropTo": {
+              "x": 5180,
+              "y": 4220,
+              "support": "v14-east-steps"
+            }
+          },
+          "x": 5180,
+          "y": 4220,
+          "support": "v14-east-steps",
+          "round": 1,
+          "moveLeft": 1162
+        },
+        {
+          "goal": {
+            "x": 5500,
+            "y": 4220,
+            "surfaceId": "v14-east-steps",
+            "dropTo": {
+              "x": 5600,
+              "y": 4620,
+              "support": "v14-east-steps"
+            }
+          },
+          "x": 5600,
+          "y": 4620,
+          "support": "v14-east-steps",
+          "round": 1,
+          "moveLeft": 742
+        },
+        {
+          "goal": {
+            "x": 5840,
+            "y": 4620,
+            "surfaceId": "v14-east-steps",
+            "dropTo": {
+              "x": 5940,
+              "y": 4990,
+              "support": "v14-east-shoulder"
+            }
+          },
+          "x": 5940,
+          "y": 4990,
+          "support": "v14-east-shoulder",
+          "round": 1,
+          "moveLeft": 402
+        },
+        {
+          "goal": {
+            "x": 5680,
+            "y": 4990,
+            "surfaceId": "v14-east-shoulder",
+            "dropTo": {
+              "x": 5580,
+              "y": 5400,
+              "support": "v14-family-shoulders"
+            }
+          },
+          "x": 5580,
+          "y": 5400,
+          "support": "v14-family-shoulders",
+          "round": 2,
+          "moveLeft": 1542
+        },
+        {
+          "goal": {
+            "x": 5260,
+            "y": 5400,
+            "surfaceId": "v14-family-shoulders",
+            "dropTo": {
+              "x": 5150,
+              "y": 5800,
+              "support": "v14-family-shoulders"
+            }
+          },
+          "x": 5150,
+          "y": 5800,
+          "support": "v14-family-shoulders",
+          "round": 2,
+          "moveLeft": 1112
+        },
+        {
+          "goal": {
+            "x": 4910,
+            "y": 5800,
+            "surfaceId": "v14-family-shoulders",
+            "dropTo": {
+              "x": 4790,
+              "y": 6210,
+              "support": "v14-family-shoulders"
+            }
+          },
+          "x": 4790,
+          "y": 6210,
+          "support": "v14-family-shoulders",
+          "round": 2,
+          "moveLeft": 752
+        },
+        {
+          "goal": {
+            "x": 4530,
+            "y": 6210,
+            "surfaceId": "v14-family-shoulders",
+            "dropTo": {
+              "x": 4430,
+              "y": 6535,
+              "support": "v14-family-roof-step"
+            }
+          },
+          "x": 4430,
+          "y": 6535,
+          "support": "v14-family-roof-step",
+          "round": 2,
+          "moveLeft": 392
+        },
+        {
+          "goal": {
+            "x": 4170,
+            "y": 6535,
+            "surfaceId": "v14-family-roof-step",
+            "dropTo": {
+              "x": 4070,
+              "y": 6750,
+              "support": "v14-family-yard"
+            }
+          },
+          "x": 4070,
+          "y": 6750,
+          "support": "v14-family-yard",
+          "round": 3,
+          "moveLeft": 1542
+        },
+        {
+          "goal": {
+            "x": 4070,
+            "y": 6750,
+            "surfaceId": "v14-family-yard"
+          },
+          "x": 4070,
+          "y": 6750,
+          "support": "v14-family-yard",
+          "round": 3,
+          "moveLeft": 1542
+        },
+        {
+          "goal": {
+            "x": 3950,
+            "y": 6750,
+            "surfaceId": "v14-family-yard"
+          },
+          "x": 3950,
+          "y": 6750,
+          "support": "v14-family-yard",
+          "round": 3,
+          "moveLeft": 1422
+        }
+      ],
+      "commands": [
+        {
+          "op": "wait",
+          "x": 5680,
+          "y": 4990,
+          "round": 1
+        },
+        {
+          "op": "wait",
+          "x": 4170,
+          "y": 6535,
+          "round": 2
+        }
+      ]
+    },
+    {
+      "route": "CF",
+      "cls": "occultist",
+      "passed": true,
+      "failed": null,
+      "damage": 0,
+      "netHpChange": 0,
+      "recoveries": 0,
+      "contacts": [],
+      "ticks": 2568,
+      "waits": 2,
+      "jumps": 0,
+      "walkCost": 3230,
+      "jumpCost": 0,
+      "movementCost": 3230,
+      "turnEquivalent": 2.0417193426042983,
+      "maxMove": 1582,
+      "rows": [
+        {
+          "goal": {
+            "x": 4700,
+            "y": 3850,
+            "surfaceId": "v14-market"
+          },
+          "x": 4700,
+          "y": 3850,
+          "support": "v14-market",
+          "round": 1,
+          "moveLeft": 1582
+        },
+        {
+          "goal": {
+            "x": 5070,
+            "y": 3850,
+            "surfaceId": "v14-market"
+          },
+          "x": 5070,
+          "y": 3850,
+          "support": "v14-market",
+          "round": 1,
+          "moveLeft": 1212
+        },
+        {
+          "goal": {
+            "x": 5070,
+            "y": 3850,
+            "surfaceId": "v14-market",
+            "dropTo": {
+              "x": 5180,
+              "y": 4220,
+              "support": "v14-east-steps"
+            }
+          },
+          "x": 5179.766666666651,
+          "y": 4220,
+          "support": "v14-east-steps",
+          "round": 1,
+          "moveLeft": 1102.233333333349
+        },
+        {
+          "goal": {
+            "x": 5500,
+            "y": 4220,
+            "surfaceId": "v14-east-steps",
+            "dropTo": {
+              "x": 5600,
+              "y": 4620,
+              "support": "v14-east-steps"
+            }
+          },
+          "x": 5600,
+          "y": 4620,
+          "support": "v14-east-steps",
+          "round": 1,
+          "moveLeft": 682
+        },
+        {
+          "goal": {
+            "x": 5840,
+            "y": 4620,
+            "surfaceId": "v14-east-steps",
+            "dropTo": {
+              "x": 5940,
+              "y": 4990,
+              "support": "v14-east-shoulder"
+            }
+          },
+          "x": 5940,
+          "y": 4990,
+          "support": "v14-east-shoulder",
+          "round": 1,
+          "moveLeft": 342
+        },
+        {
+          "goal": {
+            "x": 5680,
+            "y": 4990,
+            "surfaceId": "v14-east-shoulder",
+            "dropTo": {
+              "x": 5580,
+              "y": 5400,
+              "support": "v14-family-shoulders"
+            }
+          },
+          "x": 5580,
+          "y": 5400,
+          "support": "v14-family-shoulders",
+          "round": 2,
+          "moveLeft": 1482
+        },
+        {
+          "goal": {
+            "x": 5260,
+            "y": 5400,
+            "surfaceId": "v14-family-shoulders",
+            "dropTo": {
+              "x": 5150,
+              "y": 5800,
+              "support": "v14-family-shoulders"
+            }
+          },
+          "x": 5150.233333333349,
+          "y": 5800,
+          "support": "v14-family-shoulders",
+          "round": 2,
+          "moveLeft": 1052.233333333349
+        },
+        {
+          "goal": {
+            "x": 4910,
+            "y": 5800,
+            "surfaceId": "v14-family-shoulders",
+            "dropTo": {
+              "x": 4790,
+              "y": 6210,
+              "support": "v14-family-shoulders"
+            }
+          },
+          "x": 4790,
+          "y": 6210,
+          "support": "v14-family-shoulders",
+          "round": 2,
+          "moveLeft": 692
+        },
+        {
+          "goal": {
+            "x": 4530,
+            "y": 6210,
+            "surfaceId": "v14-family-shoulders",
+            "dropTo": {
+              "x": 4430,
+              "y": 6535,
+              "support": "v14-family-roof-step"
+            }
+          },
+          "x": 4430,
+          "y": 6535,
+          "support": "v14-family-roof-step",
+          "round": 2,
+          "moveLeft": 332
+        },
+        {
+          "goal": {
+            "x": 4170,
+            "y": 6535,
+            "surfaceId": "v14-family-roof-step",
+            "dropTo": {
+              "x": 4070,
+              "y": 6750,
+              "support": "v14-family-yard"
+            }
+          },
+          "x": 4070,
+          "y": 6750,
+          "support": "v14-family-yard",
+          "round": 3,
+          "moveLeft": 1482
+        },
+        {
+          "goal": {
+            "x": 4070,
+            "y": 6750,
+            "surfaceId": "v14-family-yard"
+          },
+          "x": 4070,
+          "y": 6750,
+          "support": "v14-family-yard",
+          "round": 3,
+          "moveLeft": 1482
+        },
+        {
+          "goal": {
+            "x": 3950,
+            "y": 6750,
+            "surfaceId": "v14-family-yard"
+          },
+          "x": 3950,
+          "y": 6750,
+          "support": "v14-family-yard",
+          "round": 3,
+          "moveLeft": 1362
+        }
+      ],
+      "commands": [
+        {
+          "op": "wait",
+          "x": 5680,
+          "y": 4990,
+          "round": 1
+        },
+        {
+          "op": "wait",
+          "x": 4170,
+          "y": 6535,
+          "round": 2
+        }
+      ]
+    }
+  ]
+}
