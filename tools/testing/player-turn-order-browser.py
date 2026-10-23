@@ -22,10 +22,10 @@ with serve_game() as base,sync_playwright() as pw:
   b=page.locator(f'.hero-tab[data-class={cls}]').bounding_box();return dict(x=b['x']+b['width']/2,y=b['y']+b['height']/2,id=0)
  def touch(kind,points):cdp.send('Input.dispatchTouchEvent',dict(type=kind,touchPoints=points))
  def drag(cls,target,cancel=None,shot=False):
-  a,z=point(cls),point(target);touch('touchStart',[a]);page.wait_for_timeout(460)
+  a,z=point(cls),point(target);touch('touchStart',[a]);page.wait_for_timeout(50 if cancel=='early-escape' else 460)
   if cancel=='multi':
    second={**point('mage'),'id':1};touch('touchStart',[a,second]);touch('touchMove',[z,second]);touch('touchEnd',[])
-  elif cancel=='escape':page.keyboard.press('Escape');touch('touchMove',[z]);touch('touchEnd',[])
+  elif cancel in ['escape','early-escape']:page.keyboard.press('Escape');touch('touchMove',[a if cancel=='early-escape' else z]);touch('touchEnd',[])
   elif cancel=='cancel':touch('touchMove',[z]);touch('touchCancel',[])
   elif cancel=='outside':touch('touchMove',[{**z,'x':-30}]);touch('touchEnd',[])
   else:
@@ -43,7 +43,7 @@ with serve_game() as base,sync_playwright() as pw:
  load(json.loads((PREP/'four-profile.json').read_text()),18);camp();count_saves();page.evaluate('''()=>{window.cardEvents=[];for(const type of ['pointerdown','pointerup','pointercancel','lostpointercapture','click'])document.addEventListener(type,e=>cardEvents.push({type,id:e.pointerId,primary:e.isPrimary,button:e.button,cls:e.target.closest?.('.hero-tab')?.dataset.class,target:e.target.tagName,x:e.clientX,y:e.clientY,detail:e.detail,selected:HonroApp.cls}),true);}''');page.locator('.hero-tab[data-class=mage]').tap();assert page.evaluate('HonroApp.cls')=='mage';drag('occultist','archer',shot=True);assert cards()==['occultist','archer','mage','knight'];assert counter()==1;assert page.evaluate('HonroApp.cls')=='mage'
  page.locator('.hero-tab[data-class=archer]').tap();(OUT/'tap-events.json').write_text(json.dumps(page.evaluate('cardEvents'),indent=2));assert page.evaluate('HonroApp.cls')=='archer',page.evaluate('({cls:HonroApp.cls,after:HonroApp.journeyInputAfter,now:performance.now(),events:cardEvents})');assert counter()==1;rows.append(dict(check='immediate tap after drop',selected='archer',noExtraSave=True))
  committed=cards();selected=page.evaluate('HonroApp.cls');
- for kind in ['cancel','escape','outside','multi']:
+ for kind in ['cancel','escape','early-escape','outside','multi']:
   before=counter();drag('knight','archer',cancel=kind);assert cards()==committed,(kind,cards());assert counter()==before;assert page.evaluate('HonroApp.cls')==selected;rows.append(dict(check=kind,orderUnchanged=True,noSave=True,noSelection=True))
  # A swipe before long-press disarms without turning into a character tap.
  a=point('knight');touch('touchStart',[a]);touch('touchMove',[{**a,'x':a['x']-45}]);touch('touchEnd',[]);page.wait_for_timeout(80);assert cards()==committed and counter()==1 and page.evaluate('HonroApp.cls')==selected

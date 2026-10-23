@@ -38,7 +38,7 @@ function camp(app){
  function clearVisual(){for(const card of cards){card.classList.remove('order-dragging','order-drop-target');card.style.removeProperty('transform');}}
  function end(cancel=false){
   const s=gesture;if(!s)return;gesture=null;clearTimeout(s.timer);
-  if(s.armed)suppressUntil=performance.now()+700;
+  if(s.armed||cancel)suppressUntil=performance.now()+700;
   const r=nav.getBoundingClientRect(),inside=s.x>=r.left&&s.x<=r.right&&s.y>=r.top&&s.y<=r.bottom;
   const valid=!cancel&&s.armed&&inside&&app.screen==='camp'&&nav.isConnected&&app.profile===s.profile&&JSON.stringify(known(app.profile))===JSON.stringify(s.visible);
   const tapped=!cancel&&!s.armed&&inside&&s.pointerType==='touch'&&performance.now()-s.started<420&&Math.hypot(s.x-s.x0,s.y-s.y0)<10&&app.screen==='camp'&&nav.isConnected;
