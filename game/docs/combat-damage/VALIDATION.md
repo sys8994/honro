@@ -26,7 +26,7 @@
 |`node tests/stage18-short-contracts.mjs`|18장 신규 계약·구 실제5스냅샷과 반복 Continue; 완료 저장 전체 동일|
 |`node tests/reinforcement-camera.mjs`|기존 증원 ID·복귀/사망/연속/수동취소·대사·Continue 계약|
 |`node tests/web-split.mjs`|활성 파일 해시/바이트·canonical30장/856에셋 일치, Game/embedded title·저장 보호·Workshop 직접 iframe|
-|`python tests/combat-damage-browser.py`|최종 생성물 실제 Chromium: mounted Engine발사→localStorage 저장→reload/Continue의 미완료 계수/index/행동/기력/성장·장착·완료 보존, 아군 보호막+HP/보고서30%, 평균/±표시·스킬SVG폴백 없음, Workshop 기본 진입, pageerror0|
+|`python tests/combat-damage-browser.py`|최종 생성물 실제 Chromium: mounted Engine발사→localStorage 저장→reload/Continue의 미완료 계수/index/행동/기력/성장·장착·완료 보존, 아군 보호막+HP/보고서30%, 평균/± API 반환 확인(당시 DOM 미검증)·스킬SVG폴백 없음, Workshop 기본 진입, pageerror0|
 
 각 편차8192표본 결과:
 
@@ -61,3 +61,5 @@
 runtime 변경은 `allies.js` 직접 NPC 공격, `split-campaign.js` 상태 전달, `act2.js`/`act3-objectives.js` 지형 wrapper의 attack 인자 전달, `clear-report-ui.js` 소수표시, `combat-status.js` 지속 피해 기본값 설명이다. `main.js`, `camera.js`, `reinforcement-camera.js`, `icons.ts`, `skill-images.js`, `skill-icons.css`, `story.js`, `presentation.css`, 캠페인/14장 지형은 변경하지 않았다. 카메라 후속과 병합 시 `Engine.fire()` 인접 줄만 확인하면 된다.
 
 부모가 전달한 성공 발행 9f7a6273/Pages39886957929/2026-10-23T02:00:19Z를 성공 그래프 보존 정책에 등록했다. 해당354파일의 바이트·SHA256 전부 재검증했고 `web/entries/game.795c4f3ba61a14b1.js`를 보존한다. 기존5987/c8/d196 성공 그래프도 유지한다. 새 빌드가 삭제한 것은 보존 대상이 아닌 중간 빌드 파일이며 성공 그래프 파일은 아니다.
+
+실제 표시 후속 교정: 최초 API 검사만으로 DOM 표시를 확인했다고 보고한 오류를 [상세 UI 표시 보완](DISPLAY_FIX.md)에 정정했다. 현재 후보는 실제 클릭 전후 DOM/PNG로 검수하며 성장 비교 필터와 분리된 한 줄을 표시한다.

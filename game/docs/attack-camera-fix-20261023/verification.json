@@ -1,9 +1,9 @@
 {
-  "integratedMaster": "a3c99e33ec8c7a2c050bf71866a077bbc2cbd9ee",
+  "integratedMaster": "c2386b737ee28ff1badbfe915a850b4c0e8d1660",
   "originalCameraBase": "9f7a62739c6c7682850d5991792290de64329fb7",
-  "gameEntry": "web/entries/game.d416054b3c66317f.js",
-  "playtest": "web/entries/game.9e280e7c071c3ee1.html?embedded=1",
-  "manifestSha256": "bbbfd563e5e59f787667eca0365c8064418b2cdbb4facb36716180bb53e01cb4",
+  "gameEntry": "web/entries/game.45735d9d5b7b034f.js",
+  "playtest": "web/entries/game.90d6efe576eb2ab9.html?embedded=1",
+  "manifestSha256": "573888e3d087ede037f5d15837ebf1b8838c5757b60a598042ed842507d3619b",
   "sourceHashes": {
     "shared/runtime/attack-camera.js": "fb8c9347811a7230875a6a28b51d4564e750ce4535dd6d0068655f1051dceed5",
     "shared/runtime/reinforcement-camera.js": "16cf11745b5c445bb37872647cc439a90019e0b2716630f12a618f0d4984a387",
@@ -11,30 +11,61 @@
     "shared/runtime/main.js": "d8ed38e7b0c7ab7da2f328d7a812930383054f2b8bb3b126b807fc02a9f6867a",
     "shared/runtime/story-framing.js": "cb08a16d5710f263b137b56d0f2d21b509e54ac2f9a218a3d927c6781cb98fc4",
     "shared/runtime/allies.js": "e9ac5d12e6af531371b05d715ca5b99cc6f9d6ff115bc7210d600e339bd44b33",
-    "shared/engine/src/engine.ts": "53c338a0078cc24021691d906ce6637896ae6b6475a749d5b77ee935afd433be"
+    "shared/engine/src/engine.ts": "53c338a0078cc24021691d906ce6637896ae6b6475a749d5b77ee935afd433be",
+    "shared/engine/src/campUI.ts": "84f7c7fd0af02cdecc1facbdc9ec1e77f7040b9884533ed45c27c21361343e34",
+    "shared/runtime/training.js": "f8f780ff2dced393d27ad75955c39b36fd383ee6c41608e8360210923fc43dcd",
+    "shared/data/campaign.json": "85aa85e5c85af9507e6cda4359c7c4fd0175b8b4d0c6acb28071f98496cd755b",
+    "tools/map-forge/stage14-ceiling.mjs": "86062a975c0f0865216280417e4cf36d9cc4f4aa4ae6586aed2d16ac57c9c031",
+    "shared/runtime/campaign-map-revision.js": "b26b68100eb5a6b97c7f3fb1347ec047314ec6292cb85852397f2d1784950d7a"
   },
   "parentPreservation": {
     "shared/engine/src/engine.ts": {
+      "parent": "c2386b737ee28ff1badbfe915a850b4c0e8d1660",
       "parentSha256": "fef5b372beaef297a4025b60b9e18dc925df11608f09e4bb82373d8890a2b2a8",
       "candidateWithoutObserverSha256": "fef5b372beaef297a4025b60b9e18dc925df11608f09e4bb82373d8890a2b2a8"
     },
     "shared/runtime/allies.js": {
+      "parent": "c2386b737ee28ff1badbfe915a850b4c0e8d1660",
       "parentSha256": "bb138200dfb7127c82e0280feab60aa981326986f71e1122e76aef3c3ec7e29e",
       "candidateWithoutObserverSha256": "bb138200dfb7127c82e0280feab60aa981326986f71e1122e76aef3c3ec7e29e"
+    },
+    "shared/engine/src/campUI.ts": {
+      "parent": "84974b67c3c0b4292f3f1cf952572694bf4401f6",
+      "byteExact": true,
+      "sha256": "84f7c7fd0af02cdecc1facbdc9ec1e77f7040b9884533ed45c27c21361343e34"
+    },
+    "shared/runtime/training.js": {
+      "parent": "84974b67c3c0b4292f3f1cf952572694bf4401f6",
+      "byteExact": true,
+      "sha256": "f8f780ff2dced393d27ad75955c39b36fd383ee6c41608e8360210923fc43dcd"
+    },
+    "shared/data/campaign.json": {
+      "parent": "c2386b737ee28ff1badbfe915a850b4c0e8d1660",
+      "byteExact": true,
+      "sha256": "85aa85e5c85af9507e6cda4359c7c4fd0175b8b4d0c6acb28071f98496cd755b"
+    },
+    "tools/map-forge/stage14-ceiling.mjs": {
+      "parent": "c2386b737ee28ff1badbfe915a850b4c0e8d1660",
+      "byteExact": true,
+      "sha256": "86062a975c0f0865216280417e4cf36d9cc4f4aa4ae6586aed2d16ac57c9c031"
+    },
+    "shared/runtime/campaign-map-revision.js": {
+      "parent": "c2386b737ee28ff1badbfe915a850b4c0e8d1660",
+      "byteExact": true,
+      "sha256": "b26b68100eb5a6b97c7f3fb1347ec047314ec6292cb85852397f2d1784950d7a"
     }
   },
   "fixtureCases": 36,
   "ordinaryStage1Devices": 2,
   "pageErrors": 0,
-  "publishedGraphs": 23,
-  "immutablePublishedFilesVerified": 566,
+  "publishedGraphs": 24,
+  "immutablePublishedFilesVerified": 574,
   "a3RegisteredAsPublished": true,
   "confirmedLatestPublication": {
-    "sourceSha": "a3c99e33ec8c7a2c050bf71866a077bbc2cbd9ee",
-    "run": "Pages39889380063",
-    "at": "2026-10-23T02:26:33Z",
-    "parentPublicEntry": "game.eb159c693a154367.js",
-    "parentChecked": "title -> rest -> camp"
+    "sourceSha": "c2386b737ee28ff1badbfe915a850b4c0e8d1660",
+    "run": "Pages39891264485",
+    "at": "2026-10-23T02:47:17Z",
+    "publicVerification": "Parent fresh-tab UI checks were in progress; no stronger public claim here."
   },
   "checks": [
     "npm run build",
@@ -53,7 +84,11 @@
     "tests/combat-damage-browser.py",
     "tests/web-split.mjs",
     "tools/testing/diagnose-attack-camera-state.py --after",
-    "tools/testing/attack-camera-live.py"
+    "tools/testing/attack-camera-live.py",
+    "tests/visible-skill-damage-variance-browser.py",
+    "tests/stage14-ceiling-topology.mjs",
+    "tests/stage14-ceiling-boundaries.mjs",
+    "tests/stage14-ceiling-browser-boundaries.py"
   ],
   "limits": [
     "36 prepared frame fixtures are not normal campaign play",
@@ -62,20 +97,24 @@
     "master merge and Pages delivery are parent actions"
   ],
   "evidenceSha256": {
-    "evidence/desktop-insert-return-over-attack.png": "6f971c46bd67af5c2a58e47e4e5b4fc74fd6ac907d4a247796cadc9f5ae62208",
-    "evidence/desktop-flow-01-manual.png": "e60290bd2897d2743a682101b9fd6e828f4337c16da4b74fc6c30ab3335aace8",
     "evidence/desktop-flow-00-attack.png": "c6ed3063474f2f372874e7df086cab22a6ab355b4db64cbb80e067e4e8b41d23",
-    "evidence/live-mobile-01-manual.png": "613c1407ac0aebd29f1ec4eca33506100a6ab3f2b46b0bb5e82d62627c88c85e",
-    "evidence/live-mobile-02-natural-next-attack.png": "c55eb351aa0b2663394c5f9a91a6d48152d8053b262f65cbc866a91ea7e0cc1b",
-    "evidence/mobile-flow-01-manual.png": "5ccd9460fa8dbc85712691d45829f6a693adaaa98205f26c17be87c0fd2c5f7a",
+    "evidence/desktop-flow-01-manual.png": "e60290bd2897d2743a682101b9fd6e828f4337c16da4b74fc6c30ab3335aace8",
     "evidence/desktop-flow-02-next-attack.png": "01163a68766ba23247c2a82af724f91bc5c95f2f7ace2b95fe91d1e99b1ff570",
-    "evidence/live-desktop-01-manual.png": "ad1ced9589cab2eac4bdc0f709bed4737f8b45d4328ded956a251b59c3cedb12",
-    "evidence/mobile-flow-02-next-attack.png": "40ed37b341ed78106254b494b2f80bc0b36d680a3eb936638d928c028d1628d4",
-    "evidence/live-mobile-00-player-attack.png": "02398d9a17dfa16bcbcef4cc83daa360f5c02e2df4d941d76b13cc1f0e8b749c",
+    "evidence/desktop-insert-return-over-attack.png": "6f971c46bd67af5c2a58e47e4e5b4fc74fd6ac907d4a247796cadc9f5ae62208",
+    "evidence/live-desktop-00-player-attack.png": "dec0c286e03e84621927eb24add0e35d03548c0435ebd8ddfe7dbc367b67a597",
+    "evidence/live-desktop-01-manual.png": "d10e39c4c135443a45b4b1764cdce1ea3b0b9ed21a14877462545c1bb130a2cd",
+    "evidence/live-desktop-02-natural-next-attack.png": "0f4d7a3a6aad1add9811007f58f073b4684fb51b29b7118b0795910f82139c93",
+    "evidence/live-mobile-00-player-attack.png": "34bb82df72545b0962f5347c56efd91cd2f1c62250822611d77a50f53a33dbb7",
+    "evidence/live-mobile-01-manual.png": "ae001d78746f7a5c3ba87caf747c5b154c4ba8cf15815bf559c45e0053306a80",
+    "evidence/live-mobile-02-natural-next-attack.png": "a094a1d71f8d439ef30a41ff2312b9fc72240bc36233536f08810b7b95a5a710",
     "evidence/mobile-flow-00-attack.png": "aed2b699af9343c6441878eabb4d934174cfe03ae319b556513cdf2e5f6acd81",
-    "evidence/live-desktop-02-natural-next-attack.png": "d3fef7ed338ca649b22fa64fcc9fca5150b4136ff11aafde26385acaf76cc444",
+    "evidence/mobile-flow-01-manual.png": "5ccd9460fa8dbc85712691d45829f6a693adaaa98205f26c17be87c0fd2c5f7a",
+    "evidence/mobile-flow-02-next-attack.png": "40ed37b341ed78106254b494b2f80bc0b36d680a3eb936638d928c028d1628d4",
     "evidence/mobile-insert-return-over-attack.png": "171adf615de9648b50cdc264c495a11189522f5223e25a2d8bdd3bb88c7466b4",
-    "evidence/live-desktop-00-player-attack.png": "cbe90a6e440cc885f3cef7613031d0faccd069cb09747a11ab3921b140b4b089"
+    "evidence/ui-1280-camp-A01.dom.json": "59fa740f57a544dd21fcda6c0524696c3dff9cbfe8ba336fef0f3052aaaaf5cf",
+    "evidence/ui-1280-camp-A01.png": "d4fc22a2a44908b80a1366fcc260df1eb434f02151ad956c75b00dc3cda4a1ec",
+    "evidence/ui-390-camp-A14.dom.json": "cd5d2f2cf5d889a951e8da1ba2c872e2b2d387fd3c517e6bb37c11855c6a87b3",
+    "evidence/ui-390-camp-A14.png": "c3e8d91697cd2535ee33adf51233aba67366c6621467859f13d3836c484695f2"
   },
   "baselineFailures": [
     {
@@ -87,8 +126,44 @@
     }
   ],
   "priorConfirmedPublication": {
-    "sourceSha": "9f7a62739c6c7682850d5991792290de64329fb7",
-    "run": "Pages39886957929",
-    "at": "2026-10-23T02:00:19Z"
-  }
+    "sourceSha": "a3c99e33ec8c7a2c050bf71866a077bbc2cbd9ee",
+    "run": "Pages39889380063",
+    "at": "2026-10-23T02:26:33Z",
+    "parentPublicEntry": "game.eb159c693a154367.js",
+    "parentChecked": "title -> rest -> camp"
+  },
+  "uiCandidate": "84974b67c3c0b4292f3f1cf952572694bf4401f6",
+  "visibleUIChecks": 30,
+  "stage14BrowserBoundaryCases": 2,
+  "candidatePublished": false,
+  "uiCandidatePublished": false,
+  "buildProvenance": {
+    "sourceHeadAtRun": "e81831e5c3142a776e99f1d513a2d89bace9d045",
+    "integratedMaster": "c2386b737ee28ff1badbfe915a850b4c0e8d1660",
+    "uiCandidate": "84974b67c3c0b4292f3f1cf952572694bf4401f6",
+    "gameEntry": "web/entries/game.45735d9d5b7b034f.js",
+    "playtest": "web/entries/game.90d6efe576eb2ab9.html?embedded=1",
+    "manifestSha256": "573888e3d087ede037f5d15837ebf1b8838c5757b60a598042ed842507d3619b",
+    "workingTreeAtRun": "Merged UI84974 source, approved c238 terrain, attack-camera source, normal full build; pending final merge commit. Not a published candidate."
+  },
+  "confirmedPublications": [
+    {
+      "sourceSha": "9f7a62739c6c7682850d5991792290de64329fb7",
+      "run": "Pages39886957929",
+      "at": "2026-10-23T02:00:19Z"
+    },
+    {
+      "sourceSha": "a3c99e33ec8c7a2c050bf71866a077bbc2cbd9ee",
+      "run": "Pages39889380063",
+      "at": "2026-10-23T02:26:33Z",
+      "parentPublicEntry": "game.eb159c693a154367.js",
+      "parentChecked": "title -> rest -> camp"
+    },
+    {
+      "sourceSha": "c2386b737ee28ff1badbfe915a850b4c0e8d1660",
+      "run": "Pages39891264485",
+      "at": "2026-10-23T02:47:17Z",
+      "publicVerification": "Parent fresh-tab UI checks were in progress; no stronger public claim here."
+    }
+  ]
 }

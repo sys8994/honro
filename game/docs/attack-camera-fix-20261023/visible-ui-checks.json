@@ -1,0 +1,645 @@
+{
+  "phase": "after",
+  "document": "HONRO.html",
+  "checks": [
+    {
+      "name": "1280-camp-A01",
+      "data": {
+        "content": "기본\n평사\n기본 공격 · 수련점 투자 없음\n\n곧게 날아가는 기본 사격입니다. 기력을 쓰지 않습니다.\n\n피해 수치는 평균 · 행동당 ±5%\n\n공격 속성\n형 · 기 · 혼\n형\n96%\n기\n4%\n혼\n0%",
+        "notes": [
+          {
+            "id": "A01",
+            "text": "피해 수치는 평균 · 행동당 ±5%",
+            "height": 20.390625,
+            "top": 166.390625,
+            "bottom": 186.78125,
+            "width": 715,
+            "visible": true,
+            "overflow": false
+          }
+        ],
+        "viewport": {
+          "width": 1280,
+          "height": 900
+        },
+        "root": {
+          "top": 20,
+          "bottom": 880
+        }
+      }
+    },
+    {
+      "name": "1280-camp-A14",
+      "data": {
+        "content": "1\n급소시\n사용 기예\n경지 0 / 8\n3 수련점\n−1 수련점 회수\n+1 수련점 습득\n\n치명타 확률과 피해가 높은 정밀 사격입니다. 멀리서 맞힐수록 피해가 증가합니다.\n\n피해 수치는 평균 · 행동당 ±5%\n\n공격 속성\n형 · 기 · 혼\n형\n98%\n기\n2%\n혼\n0%\n\n선택 기예의 조건을 갖춘 자동 시연입니다. 상시 기예는 미적용 결과와 비교합니다.\n\n먼 표적 정밀 사격 · 명중 0명 · 피해 0\n\n효과\n미습득\n경지 1\n기본 피해\n—\n46\n기력\n—\n30\n추가 치명 확률\n—\n18%p\n추가 치명 배율\n—\n+0.2\n강화 가능 · 동행 경지 1\n습득 1 수련점",
+        "notes": [
+          {
+            "id": "A14",
+            "text": "피해 수치는 평균 · 행동당 ±5%",
+            "height": 20.390625,
+            "top": 229.6875,
+            "bottom": 250.078125,
+            "width": 715,
+            "visible": true,
+            "overflow": false
+          }
+        ],
+        "viewport": {
+          "width": 1280,
+          "height": 900
+        },
+        "root": {
+          "top": 20,
+          "bottom": 880
+        }
+      }
+    },
+    {
+      "name": "1280-camp-read-only",
+      "data": null
+    },
+    {
+      "name": "1280-training-initial-A01",
+      "data": {
+        "content": "기본 기예\n평사\n\n숨을 가라앉히고 살을 놓는다. 흔들림 없는 한 발이 모든 궁술의 시작이다.\n\n곧게 날아가는 기본 사격입니다. 기력을 쓰지 않습니다.\n\n피해 수치는 평균 · 행동당 ±5%\n\n공격 속성\n형 · 기 · 혼\n형\n96%\n기\n4%\n혼\n0%\n기예의 경지\n1\n\n이 기예는 하나의 경지로 펼칩니다.",
+        "notes": [
+          {
+            "id": "A01",
+            "text": "피해 수치는 평균 · 행동당 ±5%",
+            "height": 20.390625,
+            "top": 561.546875,
+            "bottom": 581.9375,
+            "width": 344.90625,
+            "visible": true,
+            "overflow": false
+          }
+        ],
+        "viewport": {
+          "width": 1280,
+          "height": 900
+        },
+        "root": {
+          "top": 364.0625,
+          "bottom": 760.734375
+        }
+      }
+    },
+    {
+      "name": "1280-training-A14",
+      "data": {
+        "content": "절명\n급소시\n\n멀리 선 적의 작은 빈틈을 읽는다. 긴 침묵 끝에 날아든 살이 급소를 꿰뚫는다.\n\n치명타 확률과 피해가 높은 정밀 사격입니다. 멀리서 맞힐수록 피해가 증가합니다.\n\n피해 수치는 평균 · 행동당 ±5%\n\n공격 속성\n형 · 기 · 혼\n형\n98%\n기\n2%\n혼\n0%\n기예의 경지\n1 / 8\n1\n2\n3\n4\n5\n6\n7\n8\n경지 1의 효과\n기본 피해\n46\n기력\n30\n추가 치명 확률\n18%p\n추가 치명 배율\n+0.2",
+        "notes": [
+          {
+            "id": "A14",
+            "text": "피해 수치는 평균 · 행동당 ±5%",
+            "height": 20.390625,
+            "top": 566.671875,
+            "bottom": 587.0625,
+            "width": 344.90625,
+            "visible": true,
+            "overflow": false
+          }
+        ],
+        "viewport": {
+          "width": 1280,
+          "height": 900
+        },
+        "root": {
+          "top": 348.796875,
+          "bottom": 951.0625
+        }
+      }
+    },
+    {
+      "name": "1280-training-A04",
+      "data": {
+        "content": "강궁\n산개사\n\n손끝에서 여러 살을 함께 놓는다. 부채처럼 벌어진 화살이 도망갈 틈을 좁힌다.\n\n여러 화살을 부채꼴로 동시에 쏩니다. 연속 시위의 추가 사격에도 적용됩니다. 빠르게 충돌할수록 피해가 증가합니다.\n\n피해 수치는 평균 · 행동당 ±10%\n\n공격 속성\n형 · 기 · 혼\n형\n98%\n기\n2%\n혼\n0%\n기예의 경지\n1 / 8\n1\n2\n3\n4\n5\n6\n7\n8\n경지 1의 효과\n화살당 피해\n22\n화살 수\n3\n전체 확산각\n7.0°\n기력\n38",
+        "notes": [
+          {
+            "id": "A04",
+            "text": "피해 수치는 평균 · 행동당 ±10%",
+            "height": 20.390625,
+            "top": 566.671875,
+            "bottom": 587.0625,
+            "width": 344.90625,
+            "visible": true,
+            "overflow": false
+          }
+        ],
+        "viewport": {
+          "width": 1280,
+          "height": 900
+        },
+        "root": {
+          "top": 348.796875,
+          "bottom": 951.0625
+        }
+      }
+    },
+    {
+      "name": "1280-training-M06",
+      "data": {
+        "content": "호리병술\n화호\n\n호리병에 가둔 불씨의 봉인을 푼다. 깨진 도자기 틈에서 붉은 잔불이 사방으로 흩어진다.\n\n폭발 후 불꽃 파편을 흩뿌립니다. 같은 적은 파편에 최대 두 번 맞습니다.\n\n피해 수치는 평균 · 행동당 ±15%\n\n공격 속성\n형 · 기 · 혼\n형\n28%\n기\n72%\n혼\n0%\n기예의 경지\n1 / 8\n1\n2\n3\n4\n5\n6\n7\n8\n경지 1의 효과\n기본 피해\n59.5\n효과 반경\n99\n기력\n32\n불꽃 파편\n6개\n파편 피해\n10.7",
+        "notes": [
+          {
+            "id": "M06",
+            "text": "피해 수치는 평균 · 행동당 ±15%",
+            "height": 20.390625,
+            "top": 566.671875,
+            "bottom": 587.0625,
+            "width": 344.90625,
+            "visible": true,
+            "overflow": false
+          }
+        ],
+        "viewport": {
+          "width": 1280,
+          "height": 900
+        },
+        "root": {
+          "top": 348.796875,
+          "bottom": 984.0625
+        }
+      }
+    },
+    {
+      "name": "1280-training-healing-M10",
+      "data": {
+        "content": "진법\n회생진목\n\n마른 나무에 소생의 기운을 불어넣는다. 그 곁을 밟은 동료가 숨을 돌리고 다시 걸음을 뗀다.\n\n진목을 밟은 아군의 체력·기력·이동력을 회복합니다. 아군마다 한 턴에 한 번 이용합니다.\n\n기예의 경지\n1 / 8\n1\n2\n3\n4\n5\n6\n7\n8\n경지 1의 효과\n기력\n34\n체력 회복\n7%\n기력 회복\n8%\n이동력 회복\n15%\n진목 지속\n4턴",
+        "notes": [],
+        "viewport": {
+          "width": 1280,
+          "height": 900
+        },
+        "root": {
+          "top": 348.796875,
+          "bottom": 869.671875
+        }
+      }
+    },
+    {
+      "name": "1280-training-basic-M01",
+      "data": {
+        "content": "기본 기예\n기파\n\n지팡이 끝에서 고른 숨결이 밀려간다. 맑게 뻗은 기운이 적의 몸을 두드린다.\n\n기력을 쓰지 않는 기본 기파입니다. 닿은 곳에 작은 충격을 냅니다.\n\n피해 수치는 평균 · 행동당 ±10%\n\n공격 속성\n형 · 기 · 혼\n형\n8%\n기\n92%\n혼\n0%\n기예의 경지\n1\n\n이 기예는 하나의 경지로 펼칩니다.",
+        "notes": [
+          {
+            "id": "M01",
+            "text": "피해 수치는 평균 · 행동당 ±10%",
+            "height": 20.390625,
+            "top": 561.546875,
+            "bottom": 581.9375,
+            "width": 344.90625,
+            "visible": true,
+            "overflow": false
+          }
+        ],
+        "viewport": {
+          "width": 1280,
+          "height": 900
+        },
+        "root": {
+          "top": 364.0625,
+          "bottom": 760.734375
+        }
+      }
+    },
+    {
+      "name": "1280-training-basic-S00",
+      "data": {
+        "content": "기본 기예\n평참\n\n전방을 검으로 벤다. 빠르게 베면 수세를 취하고, 오래 힘을 모으면 사거리와 위력이 증가한다.\n\n선택한 방향을 좁게 벱니다. 빠르게 놓으면 기력을 아끼고 수세를 취하며, 오래 모으면 더 멀고 강하게 벱니다.\n\n피해 수치는 평균 · 행동당 ±5%\n\n공격 속성\n형 · 기 · 혼\n형\n96%\n기\n4%\n혼\n0%\n기예의 경지\n1\n\n이 기예는 하나의 경지로 펼칩니다.",
+        "notes": [
+          {
+            "id": "S00",
+            "text": "피해 수치는 평균 · 행동당 ±5%",
+            "height": 20.390625,
+            "top": 571.734375,
+            "bottom": 592.125,
+            "width": 344.90625,
+            "visible": true,
+            "overflow": false
+          }
+        ],
+        "viewport": {
+          "width": 1280,
+          "height": 900
+        },
+        "root": {
+          "top": 353.859375,
+          "bottom": 770.921875
+        }
+      }
+    },
+    {
+      "name": "1280-training-basic-O01",
+      "data": {
+        "content": "기본 기예\n혼령탄\n\n경계 너머의 작은 혼을 불러 보낸다. 창백한 기척이 바람을 비껴 적을 향한다.\n\n중력과 바람의 영향을 적게 받는 혼령탄을 날립니다.\n\n피해 수치는 평균 · 행동당 ±10%\n\n공격 속성\n형 · 기 · 혼\n형\n0%\n기\n16%\n혼\n84%\n기예의 경지\n1\n\n이 기예는 하나의 경지로 펼칩니다.",
+        "notes": [
+          {
+            "id": "O01",
+            "text": "피해 수치는 평균 · 행동당 ±10%",
+            "height": 20.390625,
+            "top": 561.546875,
+            "bottom": 581.9375,
+            "width": 344.90625,
+            "visible": true,
+            "overflow": false
+          }
+        ],
+        "viewport": {
+          "width": 1280,
+          "height": 900
+        },
+        "root": {
+          "top": 364.0625,
+          "bottom": 760.734375
+        }
+      }
+    },
+    {
+      "name": "1280-battle-training-reopen-A14",
+      "data": {
+        "content": "절명\n급소시\n\n멀리 선 적의 작은 빈틈을 읽는다. 긴 침묵 끝에 날아든 살이 급소를 꿰뚫는다.\n\n치명타 확률과 피해가 높은 정밀 사격입니다. 멀리서 맞힐수록 피해가 증가합니다.\n\n피해 수치는 평균 · 행동당 ±5%\n\n공격 속성\n형 · 기 · 혼\n형\n98%\n기\n2%\n혼\n0%\n기예의 경지\n1 / 8\n1\n2\n3\n4\n5\n6\n7\n8\n경지 1의 효과\n기본 피해\n46\n기력\n30\n추가 치명 확률\n18%p\n추가 치명 배율\n+0.2",
+        "notes": [
+          {
+            "id": "A14",
+            "text": "피해 수치는 평균 · 행동당 ±5%",
+            "height": 20.390625,
+            "top": 566.671875,
+            "bottom": 587.0625,
+            "width": 344.90625,
+            "visible": true,
+            "overflow": false
+          }
+        ],
+        "viewport": {
+          "width": 1280,
+          "height": 900
+        },
+        "root": {
+          "top": 348.796875,
+          "bottom": 951.0625
+        }
+      }
+    },
+    {
+      "name": "1280-battle-training-reopen-A01",
+      "data": {
+        "content": "기본 기예\n평사\n\n숨을 가라앉히고 살을 놓는다. 흔들림 없는 한 발이 모든 궁술의 시작이다.\n\n곧게 날아가는 기본 사격입니다. 기력을 쓰지 않습니다.\n\n피해 수치는 평균 · 행동당 ±5%\n\n공격 속성\n형 · 기 · 혼\n형\n96%\n기\n4%\n혼\n0%\n기예의 경지\n1\n\n이 기예는 하나의 경지로 펼칩니다.",
+        "notes": [
+          {
+            "id": "A01",
+            "text": "피해 수치는 평균 · 행동당 ±5%",
+            "height": 20.390625,
+            "top": 561.546875,
+            "bottom": 581.9375,
+            "width": 344.90625,
+            "visible": true,
+            "overflow": false
+          }
+        ],
+        "viewport": {
+          "width": 1280,
+          "height": 900
+        },
+        "root": {
+          "top": 364.0625,
+          "bottom": 760.734375
+        }
+      }
+    },
+    {
+      "name": "1280-campaign-hud-is-selection-only",
+      "data": null
+    },
+    {
+      "name": "1280-no-pageerror",
+      "data": []
+    },
+    {
+      "name": "390-camp-A01",
+      "data": {
+        "content": "기본\n평사\n기본 공격 · 수련점 투자 없음\n\n곧게 날아가는 기본 사격입니다. 기력을 쓰지 않습니다.\n\n피해 수치는 평균 · 행동당 ±5%\n\n공격 속성\n형 · 기 · 혼\n형\n96%\n기\n4%\n혼\n0%",
+        "notes": [
+          {
+            "id": "A01",
+            "text": "피해 수치는 평균 · 행동당 ±5%",
+            "height": 20.390625,
+            "top": 152.390625,
+            "bottom": 172.78125,
+            "width": 337,
+            "visible": true,
+            "overflow": false
+          }
+        ],
+        "viewport": {
+          "width": 390,
+          "height": 844
+        },
+        "root": {
+          "top": 12,
+          "bottom": 832
+        }
+      }
+    },
+    {
+      "name": "390-camp-A14",
+      "data": {
+        "content": "1\n급소시\n사용 기예\n경지 0 / 8\n3 수련점\n−1 수련점 회수\n+1 수련점 습득\n\n치명타 확률과 피해가 높은 정밀 사격입니다. 멀리서 맞힐수록 피해가 증가합니다.\n\n피해 수치는 평균 · 행동당 ±5%\n\n공격 속성\n형 · 기 · 혼\n형\n98%\n기\n2%\n혼\n0%\n\n선택 기예의 조건을 갖춘 자동 시연입니다. 상시 기예는 미적용 결과와 비교합니다.\n\n먼 표적 정밀 사격 · 명중 0명 · 피해 0\n\n효과\n미습득\n경지 1\n기본 피해\n—\n46\n기력\n—\n30\n추가 치명 확률\n—\n18%p\n추가 치명 배율\n—\n+0.2\n강화 가능 · 동행 경지 1\n습득 1 수련점",
+        "notes": [
+          {
+            "id": "A14",
+            "text": "피해 수치는 평균 · 행동당 ±5%",
+            "height": 20.390625,
+            "top": 233.78125,
+            "bottom": 254.171875,
+            "width": 337,
+            "visible": true,
+            "overflow": false
+          }
+        ],
+        "viewport": {
+          "width": 390,
+          "height": 844
+        },
+        "root": {
+          "top": 12,
+          "bottom": 832
+        }
+      }
+    },
+    {
+      "name": "390-camp-read-only",
+      "data": null
+    },
+    {
+      "name": "390-training-initial-A01",
+      "data": {
+        "content": "기본 기예\n평사\n\n숨을 가라앉히고 살을 놓는다. 흔들림 없는 한 발이 모든 궁술의 시작이다.\n\n곧게 날아가는 기본 사격입니다. 기력을 쓰지 않습니다.\n\n피해 수치는 평균 · 행동당 ±5%\n\n공격 속성\n형 · 기 · 혼\n형\n96%\n기\n4%\n혼\n0%\n기예의 경지\n1\n\n이 기예는 하나의 경지로 펼칩니다.",
+        "notes": [
+          {
+            "id": "A01",
+            "text": "피해 수치는 평균 · 행동당 ±5%",
+            "height": 20.390625,
+            "top": 725.625,
+            "bottom": 746.015625,
+            "width": 292,
+            "visible": true,
+            "overflow": false
+          }
+        ],
+        "viewport": {
+          "width": 390,
+          "height": 844
+        },
+        "root": {
+          "top": 531.140625,
+          "bottom": 921.8125
+        }
+      }
+    },
+    {
+      "name": "390-training-A14",
+      "data": {
+        "content": "절명\n급소시\n\n멀리 선 적의 작은 빈틈을 읽는다. 긴 침묵 끝에 날아든 살이 급소를 꿰뚫는다.\n\n치명타 확률과 피해가 높은 정밀 사격입니다. 멀리서 맞힐수록 피해가 증가합니다.\n\n피해 수치는 평균 · 행동당 ±5%\n\n공격 속성\n형 · 기 · 혼\n형\n98%\n기\n2%\n혼\n0%\n기예의 경지\n1 / 8\n1\n2\n3\n4\n5\n6\n7\n8\n경지 1의 효과\n기본 피해\n46\n기력\n30\n추가 치명 확률\n18%p\n추가 치명 배율\n+0.2",
+        "notes": [
+          {
+            "id": "A14",
+            "text": "피해 수치는 평균 · 행동당 ±5%",
+            "height": 20.390625,
+            "top": 430.578125,
+            "bottom": 450.96875,
+            "width": 292,
+            "visible": true,
+            "overflow": false
+          }
+        ],
+        "viewport": {
+          "width": 390,
+          "height": 844
+        },
+        "root": {
+          "top": 215.703125,
+          "bottom": 863.96875
+        }
+      }
+    },
+    {
+      "name": "390-training-A04",
+      "data": {
+        "content": "강궁\n산개사\n\n손끝에서 여러 살을 함께 놓는다. 부채처럼 벌어진 화살이 도망갈 틈을 좁힌다.\n\n여러 화살을 부채꼴로 동시에 쏩니다. 연속 시위의 추가 사격에도 적용됩니다. 빠르게 충돌할수록 피해가 증가합니다.\n\n피해 수치는 평균 · 행동당 ±10%\n\n공격 속성\n형 · 기 · 혼\n형\n98%\n기\n2%\n혼\n0%\n기예의 경지\n1 / 8\n1\n2\n3\n4\n5\n6\n7\n8\n경지 1의 효과\n화살당 피해\n22\n화살 수\n3\n전체 확산각\n7.0°\n기력\n38",
+        "notes": [
+          {
+            "id": "A04",
+            "text": "피해 수치는 평균 · 행동당 ±10%",
+            "height": 20.390625,
+            "top": 430.53125,
+            "bottom": 450.921875,
+            "width": 292,
+            "visible": true,
+            "overflow": false
+          }
+        ],
+        "viewport": {
+          "width": 390,
+          "height": 844
+        },
+        "root": {
+          "top": 195.265625,
+          "bottom": 863.921875
+        }
+      }
+    },
+    {
+      "name": "390-training-M06",
+      "data": {
+        "content": "호리병술\n화호\n\n호리병에 가둔 불씨의 봉인을 푼다. 깨진 도자기 틈에서 붉은 잔불이 사방으로 흩어진다.\n\n폭발 후 불꽃 파편을 흩뿌립니다. 같은 적은 파편에 최대 두 번 맞습니다.\n\n피해 수치는 평균 · 행동당 ±15%\n\n공격 속성\n형 · 기 · 혼\n형\n28%\n기\n72%\n혼\n0%\n기예의 경지\n1 / 8\n1\n2\n3\n4\n5\n6\n7\n8\n경지 1의 효과\n기본 피해\n59.5\n효과 반경\n99\n기력\n32\n불꽃 파편\n6개\n파편 피해\n10.7",
+        "notes": [
+          {
+            "id": "M06",
+            "text": "피해 수치는 평균 · 행동당 ±15%",
+            "height": 20.390625,
+            "top": 430.84375,
+            "bottom": 451.234375,
+            "width": 292,
+            "visible": true,
+            "overflow": false
+          }
+        ],
+        "viewport": {
+          "width": 390,
+          "height": 844
+        },
+        "root": {
+          "top": 215.96875,
+          "bottom": 897.234375
+        }
+      }
+    },
+    {
+      "name": "390-training-healing-M10",
+      "data": {
+        "content": "진법\n회생진목\n\n마른 나무에 소생의 기운을 불어넣는다. 그 곁을 밟은 동료가 숨을 돌리고 다시 걸음을 뗀다.\n\n진목을 밟은 아군의 체력·기력·이동력을 회복합니다. 아군마다 한 턴에 한 번 이용합니다.\n\n기예의 경지\n1 / 8\n1\n2\n3\n4\n5\n6\n7\n8\n경지 1의 효과\n기력\n34\n체력 회복\n7%\n기력 회복\n8%\n이동력 회복\n15%\n진목 지속\n4턴",
+        "notes": [],
+        "viewport": {
+          "width": 390,
+          "height": 844
+        },
+        "root": {
+          "top": 909.96875,
+          "bottom": 1476.84375
+        }
+      }
+    },
+    {
+      "name": "390-training-basic-M01",
+      "data": {
+        "content": "기본 기예\n기파\n\n지팡이 끝에서 고른 숨결이 밀려간다. 맑게 뻗은 기운이 적의 몸을 두드린다.\n\n기력을 쓰지 않는 기본 기파입니다. 닿은 곳에 작은 충격을 냅니다.\n\n피해 수치는 평균 · 행동당 ±10%\n\n공격 속성\n형 · 기 · 혼\n형\n8%\n기\n92%\n혼\n0%\n기예의 경지\n1\n\n이 기예는 하나의 경지로 펼칩니다.",
+        "notes": [
+          {
+            "id": "M01",
+            "text": "피해 수치는 평균 · 행동당 ±10%",
+            "height": 20.390625,
+            "top": 745.015625,
+            "bottom": 765.40625,
+            "width": 292,
+            "visible": true,
+            "overflow": false
+          }
+        ],
+        "viewport": {
+          "width": 390,
+          "height": 844
+        },
+        "root": {
+          "top": 530.140625,
+          "bottom": 941.203125
+        }
+      }
+    },
+    {
+      "name": "390-training-basic-S00",
+      "data": {
+        "content": "기본 기예\n평참\n\n전방을 검으로 벤다. 빠르게 베면 수세를 취하고, 오래 힘을 모으면 사거리와 위력이 증가한다.\n\n선택한 방향을 좁게 벱니다. 빠르게 놓으면 기력을 아끼고 수세를 취하며, 오래 모으면 더 멀고 강하게 벱니다.\n\n피해 수치는 평균 · 행동당 ±5%\n\n공격 속성\n형 · 기 · 혼\n형\n96%\n기\n4%\n혼\n0%\n기예의 경지\n1\n\n이 기예는 하나의 경지로 펼칩니다.",
+        "notes": [
+          {
+            "id": "S00",
+            "text": "피해 수치는 평균 · 행동당 ±5%",
+            "height": 20.390625,
+            "top": 550.96875,
+            "bottom": 571.359375,
+            "width": 292,
+            "visible": true,
+            "overflow": false
+          }
+        ],
+        "viewport": {
+          "width": 390,
+          "height": 844
+        },
+        "root": {
+          "top": 315.703125,
+          "bottom": 747.15625
+        }
+      }
+    },
+    {
+      "name": "390-training-basic-O01",
+      "data": {
+        "content": "기본 기예\n혼령탄\n\n경계 너머의 작은 혼을 불러 보낸다. 창백한 기척이 바람을 비껴 적을 향한다.\n\n중력과 바람의 영향을 적게 받는 혼령탄을 날립니다.\n\n피해 수치는 평균 · 행동당 ±10%\n\n공격 속성\n형 · 기 · 혼\n형\n0%\n기\n16%\n혼\n84%\n기예의 경지\n1\n\n이 기예는 하나의 경지로 펼칩니다.",
+        "notes": [
+          {
+            "id": "O01",
+            "text": "피해 수치는 평균 · 행동당 ±10%",
+            "height": 20.390625,
+            "top": 725.625,
+            "bottom": 746.015625,
+            "width": 292,
+            "visible": true,
+            "overflow": false
+          }
+        ],
+        "viewport": {
+          "width": 390,
+          "height": 844
+        },
+        "root": {
+          "top": 531.140625,
+          "bottom": 921.8125
+        }
+      }
+    },
+    {
+      "name": "390-battle-training-reopen-A14",
+      "data": {
+        "content": "절명\n급소시\n\n멀리 선 적의 작은 빈틈을 읽는다. 긴 침묵 끝에 날아든 살이 급소를 꿰뚫는다.\n\n치명타 확률과 피해가 높은 정밀 사격입니다. 멀리서 맞힐수록 피해가 증가합니다.\n\n피해 수치는 평균 · 행동당 ±5%\n\n공격 속성\n형 · 기 · 혼\n형\n98%\n기\n2%\n혼\n0%\n기예의 경지\n1 / 8\n1\n2\n3\n4\n5\n6\n7\n8\n경지 1의 효과\n기본 피해\n46\n기력\n30\n추가 치명 확률\n18%p\n추가 치명 배율\n+0.2",
+        "notes": [
+          {
+            "id": "A14",
+            "text": "피해 수치는 평균 · 행동당 ±5%",
+            "height": 20.390625,
+            "top": 430.578125,
+            "bottom": 450.96875,
+            "width": 292,
+            "visible": true,
+            "overflow": false
+          }
+        ],
+        "viewport": {
+          "width": 390,
+          "height": 844
+        },
+        "root": {
+          "top": 215.703125,
+          "bottom": 863.96875
+        }
+      }
+    },
+    {
+      "name": "390-battle-training-reopen-A01",
+      "data": {
+        "content": "기본 기예\n평사\n\n숨을 가라앉히고 살을 놓는다. 흔들림 없는 한 발이 모든 궁술의 시작이다.\n\n곧게 날아가는 기본 사격입니다. 기력을 쓰지 않습니다.\n\n피해 수치는 평균 · 행동당 ±5%\n\n공격 속성\n형 · 기 · 혼\n형\n96%\n기\n4%\n혼\n0%\n기예의 경지\n1\n\n이 기예는 하나의 경지로 펼칩니다.",
+        "notes": [
+          {
+            "id": "A01",
+            "text": "피해 수치는 평균 · 행동당 ±5%",
+            "height": 20.390625,
+            "top": 725.625,
+            "bottom": 746.015625,
+            "width": 292,
+            "visible": true,
+            "overflow": false
+          }
+        ],
+        "viewport": {
+          "width": 390,
+          "height": 844
+        },
+        "root": {
+          "top": 531.140625,
+          "bottom": 921.8125
+        }
+      }
+    },
+    {
+      "name": "390-campaign-hud-is-selection-only",
+      "data": null
+    },
+    {
+      "name": "390-no-pageerror",
+      "data": []
+    }
+  ],
+  "limits": [
+    "Only shipped click controls open details. Normal campaign HUD intentionally selects a skill and has no detail opener; no UI path was invented.",
+    "Desktop Chromium viewports; not physical devices."
+  ],
+  "buildProvenance": {
+    "sourceHeadAtRun": "e81831e5c3142a776e99f1d513a2d89bace9d045",
+    "integratedMaster": "c2386b737ee28ff1badbfe915a850b4c0e8d1660",
+    "uiCandidate": "84974b67c3c0b4292f3f1cf952572694bf4401f6",
+    "gameEntry": "web/entries/game.45735d9d5b7b034f.js",
+    "playtest": "web/entries/game.90d6efe576eb2ab9.html?embedded=1",
+    "manifestSha256": "573888e3d087ede037f5d15837ebf1b8838c5757b60a598042ed842507d3619b",
+    "workingTreeAtRun": "Merged UI84974 source, approved c238 terrain, attack-camera source, normal full build; pending final merge commit. Not a published candidate."
+  }
+}

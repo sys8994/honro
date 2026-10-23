@@ -1,13 +1,13 @@
 # 실제 공격 경계의 전투 카메라 복귀 — 2026-10-23
 
-[997c4fc8 조사](../attack-camera-state-20261023/README.md)의 원인을 수정했다. 최초 공개 기준9f7a6273 위의 카메라 구현을, 부모가 master에 반영한 **a3c99e33ec8c7a2c050bf71866a077bbc2cbd9ee 피해 편차/오사격**과 통합했다. master/Pages 최종 배포는 부모 담당이다.
+[997c4fc8 조사](../attack-camera-state-20261023/README.md)의 원인을 수정했다. 최초 공개 기준9f7a6273 위의 카메라 구현을, 부모가 master에 반영한 **a3c99e33ec8c7a2c050bf71866a077bbc2cbd9ee 피해 편차/오사격**과 통합하고, 부모가 승인·master 반영한 **c2386b737ee28ff1badbfe915a850b4c0e8d1660의14장 천장/revision14:1** 및 검토된 **84974b67c3c0b4292f3f1cf952572694bf4401f6의 실제 편차 안내 UI**도 합쳤다. master/Pages 최종 배포는 부모 담당이다.
 
 ## 바뀐 동작
 
 **실제 새 공격이 수락되면 자동 추적으로 전환한다. 직접 카메라를 움직이면 그 행동의 나머지는 수동이며, 다음 실제 새 공격에서 다시 자동으로 돌아간다.** 시간이1,900ms 지났는지는 더 이상 기준이 아니다.
 
 - 독립 `shared/runtime/attack-camera.js`가 Scene의 의도 번호·공격 수·수동 잠금·현재 카메라 포인터 제스처를 관리한다. Engine/Battle/프로필의 피해·자원·턴·RNG를 변경하지 않는다. 카메라 토큰은 crypto/시각을 사용하며 gameplay Math.random을 소비하지 않는다.
-- mounted Engine의 최종 fire wrapper가 **성공 반환**만 보고 전환한다. fire 본문·검증·피해 경로는 a3 원문이다. player 투사체/warrior melee/beast/AI/NPC spell을 같은 경로로 처리한다. 실패·기예 선택·충전 준비·predict/preview는 전환하지 않는다.
+- mounted Engine의 최종 fire wrapper가 **성공 반환**만 보고 전환한다. fire 본문·검증·피해 경로는 a3를 포함한 c238 원문이다. player 투사체/warrior melee/beast/AI/NPC spell을 같은 경로로 처리한다. 실패·기예 선택·충전 준비·predict/preview는 전환하지 않는다.
 - 별도 소환귀의 실제 bolt 묶음 시작과 직접 근접 타격 직전에 optional `onAttackStart(actorId)`를 한 번 알린다. 소환 이동/방호만으로는 전환하지 않고, 같은 묶음의 child bolt마다 알리지 않는다. NPC guard/scout의 직접 검 타격/검기에도 같은 알림만 더했다.
 - 연사·반사/분열·지속 orb 방출·피해 tick은 새 시작으로 처리하지 않는다. S13의 `meleeFollow=ready`로 주어진 검술은 기존 한 행동의 연속이므로 카메라 세대도 유지한다. 새 일반 공격만 새 세대다.
 - pan/zoom/pinch/minimap의 직접 입력은 현재 수동 잠금을 만든다. 피해/턴 focusUnit은 그 잠금을 해제하지 못한다. 포인터를 계속 움직이는 동안 새 AI 공격이 시작돼도 직접 조작이 우선하고, 손을 뗀 뒤 다음 실제 새 공격에서 자동 복귀한다.
@@ -18,7 +18,7 @@
 
 ## 수정 전/후 기대값과 실제 확인
 
-기존14사례×PC/모바일=28개를 같은 이름으로 비교하고, 선택/예측/실패·실제 발사 조작·held gesture·save/Continue를 각각 더해 **18사례×2=36개**로 확인했다. 원본 before는 조사 당시9f bundle, after는 a3 통합 최종 bundle이다. [상태와 호출 측정](browser-after.json), [간단 전후 비교](comparison.json).
+기존14사례×PC/모바일=28개를 같은 이름으로 비교하고, 선택/예측/실패·실제 발사 조작·held gesture·save/Continue를 각각 더해 **18사례×2=36개**로 확인했다. 원본 before는 조사 당시9f bundle, after는 카메라+a3 피해+c238 승인 지형+84974 UI를 통합해 정식 재빌드한 `game.45735d9d5b7b034f.js`다. [상태와 호출 측정](browser-after.json), [간단 전후 비교](comparison.json).
 
 | 사례 | 수정 전 | 수정 후 |
 |---|---|---|
@@ -62,7 +62,7 @@ after의 연속 증원 사례는 바뀐 수동 계약을 정확히 구분한다.
 - stepSummonTurn: 실제 직접 근접 hit 직전1회
 - allies.tick: guard/scout 직접 검/검기 직전 각1회
 
-독립 module, main mount/input gesture/releaseCharge, renderer.zoom/storyRelease, story-framing snapshot, reinforcement ownership가 카메라 변경 파일이다. `story.js`, portraits, CSS, 카드 드래그/행동순서, 스킬 이미지 전용/guide 투명행, 장 데이터와14장 천장 후보는 수정/수입하지 않았다. 동시 engine 작업은 위3 observer 줄만 맞추면 된다.
+독립 module, main mount/input gesture/releaseCharge, renderer.zoom/storyRelease, story-framing snapshot, reinforcement ownership가 카메라 변경 파일이다. `story.js`, portraits, CSS, 카드 드래그/행동순서, 스킬 이미지 전용/guide 투명행은 보존했다. 장 데이터는 승인된 c238의14장만 그대로 통합했고 거절된 c6 단독으로 되돌리지 않았다. 14:1 revision과 oneWay/projectileSolid 원문은 c238와 동일하다. 동시 engine 작업은 위3 observer 줄만 맞추면 된다.
 
 검사:
 
@@ -84,12 +84,23 @@ after의 연속 증원 사례는 바뀐 수동 계약을 정확히 구분한다.
 | `python tests/combat-damage-browser.py` | 실제 built Chromium 저장/reload/Continue 계수·진영·index·행동·기력·성장/장착/완료 보존,30%/보고서, SVG fallback 없음, Workshop, pageerror0 |
 | `node tests/web-split.mjs` | 활성354개 해시·바이트, canonical30장/856 library, Game/embedded/Workshop·저장 보호 |
 
+## 승인 지형·실제 피해 안내의 최종 통합
+
+c238의 `campaign.json`, stage14 author recipe, map revision module은 바이트 동일하다. 승인된 높은 공동/천장과 `oneWay`·`projectileSolid`·revision14:1을 그대로 보존했고, 거절된 c6 단독 버전은 가져오지 않았다. UI84974의 `campUI.ts`/`training.js`도 바이트 동일하며 계산·저장 로직을 추가 변경하지 않았다. 이 통합에서 source 충돌은 없었고 HTML/manifest만 공통 소스로 다시 빌드했다.
+
+- `python tests/visible-skill-damage-variance-browser.py`: 최종 번들에서 PC1280×900·모바일390×844 실제 캠프/수련/전투 수련 클릭 DOM **30건** 통과. 기본기·사용기·비기 5/10/15% 표시, 치유 무표시, overflow/읽기 상태·선택 보존, pageerror0. [측정](visible-ui-checks.json), [PC 실제 DOM](evidence/ui-1280-camp-A01.dom.json)·[PNG](evidence/ui-1280-camp-A01.png), [모바일 실제 DOM](evidence/ui-390-camp-A14.dom.json)·[PNG](evidence/ui-390-camp-A14.png).
+- `node tests/stage14-ceiling-topology.mjs`와 `node tests/stage14-ceiling-boundaries.mjs`: 승인 형상/17경로·배우·목표·충돌 투영, 저각·고각·반사 및 geometry 저장 경계 통과.
+- `python tests/stage14-ceiling-browser-boundaries.py`: 최종 번들의 실제 reload/Continue wholeBattle exact와 준비된 full-roster 점프 착지 통과. [측정과 실행 시점 소스/번들 구분](stage14-browser-boundaries.json). 사용자 R9 재현이나 14장 전투 완주 증거는 아니다.
+- UI 통합 후 `python tests/combat-damage-browser.py`도 다시 실행해 localStorage/Continue의 roll/index/진영·자원·보상, 30% 오사격, SVG fallback 없음, Workshop/pageerror0을 확인했다.
+
 추가 `node tests/story-staging.mjs`는 첫9장 숨김/구 저장 보존 항목은 통과하나, 다음 motion 완료 뒤 `assert(npc(a))`(21행)에서 실패했다. 별도 worktree의 **수정 전 a3 원본에서도 같은 위치·같은 undefined 값으로 재현**했다. 관련 없는9장 staging 원본/기대값 수리는 포함하지 않았다. 대사 종료 뒤 새 공격의 stale release 회귀는 별도36사례에서 실제 Story.start/finish로 통과했다.
 
 기존 camera-bounds/story-framing 검사의 옛 맵/대사 기대값 실패는 [기존 기록](../reinforcement-camera/README.md)대로이며 무관한 수리를 포함하지 않았다. 전체 verify·전 장 정상 플레이·실기기 성능·모든 스킬 조합/채널링 형태 전수는 하지 않았다. 지속 orb 방출과 실제 충전 입력은 검사했지만 이를 모든 장기 효과 검수로 확대하지 않는다.
 
 ## 발행 자산과 인계
 
-부모가 확인한 **9f7a6273 / Pages39886957929 / 2026-10-23T02:00:19Z**를 성공 발행으로 정확히 등록했다. 9f까지22개 발행 그래프/고유 immutable559개를 확인했고, a3 추가 뒤의 최종 보존 수·해시는 verification.json에 구분한다. **부모가 후속 확인한 a3c99e33 / Pages39889380063 / 2026-10-23T02:26:33Z도 정확한 성공 발행으로 추가 등록했다.** 부모는 공개 entry `game.eb159c693a154367.js`와 title→휴식터→모닥불을 확인했다. 기예 편차 안내의 DOM 누락은 별도 UI 작업 중이며 그 미완료 변경은 가져오지 않았다. 생성물은 부모 manifest를 기준으로 재빌드했다. 이 후보 역시 발행 성공으로 등록하지 않았다.
+부모가 확인한 성공 발행 사실 **9f7a6273 / Pages39886957929 / 2026-10-23T02:00:19Z**, **a3c99e33 / Pages39889380063 / 2026-10-23T02:26:33Z**, **c2386b73 / Pages39891264485 / 2026-10-23T02:47:17Z**를 보존했다. 최종 manifest의 **24개 성공 발행 그래프·고유 immutable574개**를 모두 존재·바이트·SHA256으로 확인했다. 부모는 a3 공개 entry `game.eb159c693a154367.js`의 title→휴식터→모닥불을 확인했고 c238의 새 탭 공개 UI 확인은 진행 중이라고 전달했다. 이를 이번 후보의 공개 검증으로 확대하지 않는다. 최종 통합 후보와 UI84974 단독 후보는 발행 성공으로 등록하지 않았다.
+
+최종 entry는 `web/entries/game.45735d9d5b7b034f.js`, direct Playtest는 `web/entries/game.90d6efe576eb2ab9.html?embedded=1`이다. 이 폴더의 after/live PNG·JSON은 모두 이 최종 빌드에서 다시 수집했으며 before 조사 증거997c와 구분한다. 캡처 당시 HEAD는 통합 중의 e818이고 UI 소스는 merge working tree에 있었으므로 JSON의 `sourceHeadAtRun`만으로 최종 번들을 대신 식별하지 않는다. `buildProvenance`와 manifest 해시를 함께 사용한다.
 
 정확한 entry/소스 해시·검사 결과·보존 비교는 [verification.json](verification.json)에 기록한다. master/Pages에 쓰지 않았으며 최종 병합·발행·공개 실행 확인은 부모가 담당한다.

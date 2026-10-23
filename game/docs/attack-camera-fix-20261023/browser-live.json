@@ -4,7 +4,7 @@
     {
       "device": "desktop",
       "before": {
-        "at": 1332.1000000014901,
+        "at": 1463.7000000011176,
         "phase": "aim",
         "round": 1,
         "active": "p-archer",
@@ -12,8 +12,8 @@
         "manual": true,
         "camera": {
           "x": 250,
-          "y": 1415.8454859940884,
-          "scale": 0.8950166190908443
+          "y": 1411.9832493367917,
+          "scale": 0.8976831857991339
         },
         "attack": {
           "intent": 0,
@@ -31,15 +31,15 @@
         ]
       },
       "cast": {
-        "at": 2877.800000000745,
+        "at": 3037.2000000011176,
         "phase": "flight",
         "round": 1,
         "active": "p-archer",
         "dialogue": false,
         "manual": false,
         "camera": {
-          "x": 409.75170868537526,
-          "y": 1354.8656597145184,
+          "x": 399.82094606032564,
+          "y": 1361.0985727113587,
           "scale": 0.94
         },
         "attack": {
@@ -54,8 +54,8 @@
             "id": 1,
             "owner": "p-archer",
             "shot": 1,
-            "x": 315.526077769993,
-            "y": 1416.684686575053,
+            "x": 324.43580631476055,
+            "y": 1408.3161406505164,
             "damageRoll": 1.02249404580798,
             "attackSide": 0
           }
@@ -68,15 +68,15 @@
         ]
       },
       "manual": {
-        "at": 3110.10000000149,
+        "at": 3286.5,
         "phase": "flight",
         "round": 1,
         "active": "p-archer",
         "dialogue": false,
         "manual": true,
         "camera": {
-          "x": 369.1118843284122,
-          "y": 1362.934921474713,
+          "x": 378.0158829944519,
+          "y": 1354.1440464606787,
           "scale": 0.7513562263072031
         },
         "attack": {
@@ -91,8 +91,8 @@
             "id": 1,
             "owner": "p-archer",
             "shot": 1,
-            "x": 441.12936140899814,
-            "y": 1307.9936939901138,
+            "x": 455.6352745522189,
+            "y": 1296.4125639859305,
             "damageRoll": 1.02249404580798,
             "attackSide": 0
           }
@@ -105,15 +105,15 @@
         ]
       },
       "next": {
-        "at": 9399.5,
+        "at": 9625.60000000149,
         "phase": "flight",
         "round": 2,
         "active": "p-archer",
         "dialogue": false,
         "manual": false,
         "camera": {
-          "x": 369.1118843284122,
-          "y": 1362.934921474713,
+          "x": 363.8127451069474,
+          "y": 1368.3358109976336,
           "scale": 0.7513562263072031
         },
         "attack": {
@@ -128,8 +128,8 @@
             "id": 2,
             "owner": "p-archer",
             "shot": 2,
-            "x": 298.21227161422337,
-            "y": 1433.2159876438184,
+            "x": 315.5420712561225,
+            "y": 1416.6769108084125,
             "damageRoll": 0.9844882519450039,
             "attackSide": 0
           }
@@ -145,7 +145,7 @@
     {
       "device": "mobile",
       "before": {
-        "at": 1144.5,
+        "at": 1244.6000000014901,
         "phase": "aim",
         "round": 1,
         "active": "p-archer",
@@ -153,7 +153,7 @@
         "manual": true,
         "camera": {
           "x": 250,
-          "y": 1387.8548695979437,
+          "y": 1388.4379416782183,
           "scale": 0.82
         },
         "attack": {
@@ -172,15 +172,15 @@
         ]
       },
       "cast": {
-        "at": 2732.4000000003725,
+        "at": 2868,
         "phase": "flight",
         "round": 1,
         "active": "p-archer",
         "dialogue": false,
         "manual": false,
         "camera": {
-          "x": 358.1218148173921,
-          "y": 1336.38393326293,
+          "x": 347.0112336533404,
+          "y": 1355.6590321166943,
           "scale": 0.82
         },
         "attack": {
@@ -195,8 +195,8 @@
             "id": 1,
             "owner": "p-archer",
             "shot": 1,
-            "x": 298.21227161422337,
-            "y": 1433.2159876438184,
+            "x": 311.5304370559044,
+            "y": 1420.4607963274275,
             "damageRoll": 1.02249404580798,
             "attackSide": 0
           }
@@ -209,15 +209,15 @@
         ]
       },
       "manual": {
-        "at": 2978.699999999255,
+        "at": 3096.60000000149,
         "phase": "flight",
         "round": 1,
         "active": "p-archer",
         "dialogue": false,
         "manual": true,
         "camera": {
-          "x": 287.65962532904575,
-          "y": 1338.4169871212757,
+          "x": 291.4410320072799,
+          "y": 1336.4729853526255,
           "scale": 0.82
         },
         "attack": {
@@ -232,8 +232,8 @@
             "id": 1,
             "owner": "p-archer",
             "shot": 1,
-            "x": 430.8715264399215,
-            "y": 1315.6826120443234,
+            "x": 435.89063844077515,
+            "y": 1311.5513414142706,
             "damageRoll": 1.02249404580798,
             "attackSide": 0
           }
@@ -246,15 +246,15 @@
         ]
       },
       "next": {
-        "at": 9529.199999999255,
+        "at": 9645.800000000745,
         "phase": "flight",
         "round": 2,
         "active": "p-archer",
         "dialogue": false,
         "manual": false,
         "camera": {
-          "x": 287.65962532904575,
-          "y": 1338.4169871212757,
+          "x": 291.4410320072799,
+          "y": 1336.4729853526255,
           "scale": 0.82
         },
         "attack": {
@@ -285,5 +285,13 @@
     }
   ],
   "pageErrors": [],
-  "testedGameEntry": "web/entries/game.d416054b3c66317f.js"
+  "buildProvenance": {
+    "sourceHeadAtRun": "e81831e5c3142a776e99f1d513a2d89bace9d045",
+    "integratedMaster": "c2386b737ee28ff1badbfe915a850b4c0e8d1660",
+    "uiCandidate": "84974b67c3c0b4292f3f1cf952572694bf4401f6",
+    "gameEntry": "web/entries/game.45735d9d5b7b034f.js",
+    "playtest": "web/entries/game.90d6efe576eb2ab9.html?embedded=1",
+    "manifestSha256": "573888e3d087ede037f5d15837ebf1b8838c5757b60a598042ed842507d3619b",
+    "workingTreeAtRun": "Merged UI84974 source, approved c238 terrain, attack-camera source, normal full build; pending final merge commit. Not a published candidate."
+  }
 }

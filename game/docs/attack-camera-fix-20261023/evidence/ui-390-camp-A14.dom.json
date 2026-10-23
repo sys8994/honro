@@ -1,0 +1,24 @@
+{
+  "content": "1\n급소시\n사용 기예\n경지 0 / 8\n3 수련점\n−1 수련점 회수\n+1 수련점 습득\n\n치명타 확률과 피해가 높은 정밀 사격입니다. 멀리서 맞힐수록 피해가 증가합니다.\n\n피해 수치는 평균 · 행동당 ±5%\n\n공격 속성\n형 · 기 · 혼\n형\n98%\n기\n2%\n혼\n0%\n\n선택 기예의 조건을 갖춘 자동 시연입니다. 상시 기예는 미적용 결과와 비교합니다.\n\n먼 표적 정밀 사격 · 명중 0명 · 피해 0\n\n효과\n미습득\n경지 1\n기본 피해\n—\n46\n기력\n—\n30\n추가 치명 확률\n—\n18%p\n추가 치명 배율\n—\n+0.2\n강화 가능 · 동행 경지 1\n습득 1 수련점",
+  "notes": [
+    {
+      "id": "A14",
+      "text": "피해 수치는 평균 · 행동당 ±5%",
+      "height": 20.390625,
+      "top": 233.78125,
+      "bottom": 254.171875,
+      "width": 337,
+      "visible": true,
+      "overflow": false
+    }
+  ],
+  "html": "<section class=\"dialog detail talent-dialog\" role=\"dialog\" aria-modal=\"true\"><div class=\"talent-detail skill-modal-frame talent-v5 \" style=\"--branch:#bfc8ae\"><header class=\"skill-detail-controls\"><div class=\"skill-modal-title\"><button class=\"close\" data-action=\"close\" aria-label=\"닫기\"><svg class=\"fa-icon \" viewBox=\"0 0 384 512\" width=\"18\" height=\"18\" aria-hidden=\"true\" focusable=\"false\"><path fill=\"currentColor\" d=\"M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z\"></path></svg></button><div class=\"talent-heading\"><span class=\"skill-stamp \" style=\"--branch:#bfc8ae\"><span class=\"skill-art\" data-skill-icon=\"A14\" data-image-state=\"ready\" style=\"--art-size:35px\" aria-hidden=\"true\"><img src=\"http://127.0.0.1:44229/web/graphics/skill-icon-A14.a54160bbaadedde4.webp\" alt=\"\" width=\"35\" height=\"35\" decoding=\"async\"><span class=\"skill-art-pending\"></span></span><b>1</b></span><div><h2>급소시</h2><span class=\"ability-type\">사용 기예</span></div></div></div><div class=\"rank-banner\"><strong>경지 0<small> / 8</small></strong><span class=\"rank-track\" aria-hidden=\"true\"><i class=\"\"></i><i class=\"\"></i><i class=\"\"></i><i class=\"\"></i><i class=\"\"></i><i class=\"\"></i><i class=\"\"></i><i class=\"\"></i></span><span>3 수련점</span></div><div class=\"dialog-actions skill-detail-actions\" aria-label=\"기예 수련과 장착\"><button class=\"btn\" data-action=\"rank-minus-detail\" data-talent=\"A14\" disabled=\"\" title=\"미습득 기예\" data-skill=\"A14\">−1 수련점 회수</button><button class=\"btn primary\" data-action=\"train\" data-talent=\"A14\" title=\"1 수련점 투자\" data-skill=\"A14\">+1 수련점 습득</button></div></header><div class=\"skill-modal-body\" tabindex=\"0\"><div class=\"skill-modal-grid\"><section class=\"skill-modal-summary\"><p class=\"skill-mechanics\">치명타 확률과 피해가 높은 정밀 사격입니다. 멀리서 맞힐수록 피해가 증가합니다.</p><p class=\"skill-mechanics\" data-skill-damage-variance=\"A14\">피해 수치는 평균 · 행동당 ±5%</p><div class=\"existence-info\" role=\"group\" aria-label=\"공격 속성\"><div class=\"existence-caption\">공격 속성<small>형 · 기 · 혼</small></div><div class=\"existence-parts\"><span class=\"existence-part\" style=\"--existence-width:98%\" title=\"형 98%\"><b>형</b><i aria-hidden=\"true\"><em></em></i><strong>98%</strong></span><span class=\"existence-part\" style=\"--existence-width:2%\" title=\"기 2%\"><b>기</b><i aria-hidden=\"true\"><em></em></i><strong>2%</strong></span><span class=\"existence-part\" style=\"--existence-width:0%\" title=\"혼 0%\"><b>혼</b><i aria-hidden=\"true\"><em></em></i><strong>0%</strong></span></div></div></section><section class=\"skill-modal-preview\"><section class=\"skill-preview-shell\"><canvas aria-label=\"급소시 시연\" id=\"previewcanvas\" data-skill=\"A14\" width=\"335\" height=\"230\"></canvas><p class=\"preview-context\">선택 기예의 조건을 갖춘 자동 시연입니다. 상시 기예는 미적용 결과와 비교합니다.</p><p class=\"preview-observation\" role=\"status\" aria-live=\"off\">먼 표적 정밀 사격 · 명중 0명 · 피해 0</p></section></section><section class=\"skill-modal-stats\"><div class=\"effect-compare \"><div class=\"effect-heading\"><span>효과</span><span>미습득</span><span>경지 1</span></div><div class=\"effect-row\"><span>기본 피해</span><span>—</span><strong>46</strong></div><div class=\"effect-row\"><span>기력</span><span>—</span><strong>30</strong></div><div class=\"effect-row\"><span>추가 치명 확률</span><span>—</span><strong>18%p</strong></div><div class=\"effect-row\"><span>추가 치명 배율</span><span>—</span><strong>+0.2</strong></div></div><div class=\"upgrade-requirement\">강화 가능 · 동행 경지 1<span>습득 1 수련점</span></div></section></div></div></div></section>",
+  "viewport": {
+    "width": 390,
+    "height": 844
+  },
+  "root": {
+    "top": 12,
+    "bottom": 832
+  }
+}

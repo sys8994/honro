@@ -1,0 +1,55 @@
+{
+  "source": "e81831e5c3142a776e99f1d513a2d89bace9d045",
+  "scope": "Built production Continue and one prepared jump scenario. Not user R9 or combat completion.",
+  "rows": [
+    {
+      "case": "actual reload and Continue",
+      "wholeBattleExact": true,
+      "round": 1,
+      "capture": {
+        "path": "_local/reports/attack-camera-final-stage14/continue.jpg",
+        "bytes": 58825,
+        "sha256": "dd47ee6287a0b1d35aab82a5700a70677176f00ecbb2fd0a10031063ed5bd0c6"
+      }
+    },
+    {
+      "case": "prepared full-roster family-yard jump with real Engine ticks",
+      "initial": {
+        "x": 4160,
+        "y": 6750,
+        "hp": 1186,
+        "move": 1642,
+        "valid": true
+      },
+      "result": {
+        "x": 4160,
+        "y": 6535,
+        "hp": 1186,
+        "move": 1567,
+        "minY": 6535,
+        "ticks": 78,
+        "support": "v14-family-roof-step"
+      },
+      "before": {
+        "path": "_local/reports/attack-camera-final-stage14/platform-before-jump.jpg",
+        "bytes": 80058,
+        "sha256": "39cd2c9f4ec4e48c518c5aa7ea055807d98326e65a9b632a129dc0fddb6b8a80"
+      },
+      "after": {
+        "path": "_local/reports/attack-camera-final-stage14/platform-after-jump.jpg",
+        "bytes": 80945,
+        "sha256": "2f1793c7bf6e46dd7a3bfe9d7554637ad82f1ce4a82826dac955df7f4ab4c577"
+      }
+    }
+  ],
+  "errors": [],
+  "buildProvenance": {
+    "sourceHeadAtRun": "e81831e5c3142a776e99f1d513a2d89bace9d045",
+    "integratedMaster": "c2386b737ee28ff1badbfe915a850b4c0e8d1660",
+    "uiCandidate": "84974b67c3c0b4292f3f1cf952572694bf4401f6",
+    "gameEntry": "web/entries/game.45735d9d5b7b034f.js",
+    "playtest": "web/entries/game.90d6efe576eb2ab9.html?embedded=1",
+    "manifestSha256": "573888e3d087ede037f5d15837ebf1b8838c5757b60a598042ed842507d3619b",
+    "workingTreeAtRun": "Merged UI84974 source, approved c238 terrain, attack-camera source, normal full build; pending final merge commit. Not a published candidate."
+  }
+}

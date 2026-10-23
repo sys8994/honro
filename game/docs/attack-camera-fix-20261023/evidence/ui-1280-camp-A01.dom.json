@@ -1,0 +1,24 @@
+{
+  "content": "기본\n평사\n기본 공격 · 수련점 투자 없음\n\n곧게 날아가는 기본 사격입니다. 기력을 쓰지 않습니다.\n\n피해 수치는 평균 · 행동당 ±5%\n\n공격 속성\n형 · 기 · 혼\n형\n96%\n기\n4%\n혼\n0%",
+  "notes": [
+    {
+      "id": "A01",
+      "text": "피해 수치는 평균 · 행동당 ±5%",
+      "height": 20.390625,
+      "top": 166.390625,
+      "bottom": 186.78125,
+      "width": 715,
+      "visible": true,
+      "overflow": false
+    }
+  ],
+  "html": "<section class=\"dialog detail talent-dialog\" role=\"dialog\" aria-modal=\"true\"><div class=\"talent-detail talent-v5 skill-modal-frame\"><header class=\"skill-detail-controls\"><div class=\"skill-modal-title\"><button class=\"close\" data-action=\"close\" aria-label=\"닫기\"><svg class=\"fa-icon \" viewBox=\"0 0 384 512\" width=\"18\" height=\"18\" aria-hidden=\"true\" focusable=\"false\"><path fill=\"currentColor\" d=\"M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z\"></path></svg></button><div class=\"talent-heading\"><span class=\"skill-stamp \" style=\"--branch:#80949e\"><span class=\"skill-art\" data-skill-icon=\"A01\" data-image-state=\"ready\" style=\"--art-size:30px\" aria-hidden=\"true\"><img src=\"http://127.0.0.1:44229/web/graphics/skill-icon-A01.1fa04261cfcfceb8.webp\" alt=\"\" width=\"30\" height=\"30\" decoding=\"async\"><span class=\"skill-art-pending\"></span></span><b>기본</b></span><h2>평사</h2></div></div><span class=\"skill-basic-note\">기본 공격 · 수련점 투자 없음</span></header><div class=\"skill-modal-body\" tabindex=\"0\"><p class=\"skill-mechanics\">곧게 날아가는 기본 사격입니다. 기력을 쓰지 않습니다.</p><p class=\"skill-mechanics\" data-skill-damage-variance=\"A01\">피해 수치는 평균 · 행동당 ±5%</p><div class=\"existence-info\" role=\"group\" aria-label=\"공격 속성\"><div class=\"existence-caption\">공격 속성<small>형 · 기 · 혼</small></div><div class=\"existence-parts\"><span class=\"existence-part\" style=\"--existence-width:96%\" title=\"형 96%\"><b>형</b><i aria-hidden=\"true\"><em></em></i><strong>96%</strong></span><span class=\"existence-part\" style=\"--existence-width:4%\" title=\"기 4%\"><b>기</b><i aria-hidden=\"true\"><em></em></i><strong>4%</strong></span><span class=\"existence-part\" style=\"--existence-width:0%\" title=\"혼 0%\"><b>혼</b><i aria-hidden=\"true\"><em></em></i><strong>0%</strong></span></div></div><canvas aria-label=\"평사 시연\" id=\"previewcanvas\" width=\"715\" height=\"320\"></canvas></div></div></section>",
+  "viewport": {
+    "width": 1280,
+    "height": 900
+  },
+  "root": {
+    "top": 20,
+    "bottom": 880
+  }
+}
