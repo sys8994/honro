@@ -1,0 +1,15 @@
+import assert from 'node:assert/strict';
+import {appHarness} from './app-regression-helpers.mjs';
+const {g}=await appHarness(),labels=[];
+g.document.querySelector=()=>({getBoundingClientRect:()=>({top:600})});g.document.getElementById=()=>null;
+const ctx=new Proxy({measureText:s=>({width:s.length*12}),fillText:s=>labels.push(s)},{get:(o,k)=>o[k]||(()=>{})});
+const b={honroStage:19,mode:'campaign',units:[]},e={b},scene={ctx,x:0,y:0,scale:1,size:()=>({w:390,h:844,d:1}),canvas:{getBoundingClientRect:()=>({top:0,left:0})},missionTargets:[{id:'family',x:0,y:330,label:'가족 · 만나기'}]};
+g.HonroApp={engine:e,dialogue:null};
+const draw=()=>{labels.length=0;g.HonroObjectives.draw(scene,e);return [...labels];};
+scene.missionTargets.push({id:'later-family',x:1500,y:330,label:'다음 가족 · 만나기'});
+assert.deepEqual(draw(),[],'Visible current family also suppresses remote parallel steps below HUD clearance');
+scene.missionTargets[0].x=800;assert.equal(draw().length,1);assert(draw()[0].startsWith('화면 밖 · '),'Off-screen guidance returns after dialogue');
+g.HonroApp.dialogue={lines:[]};assert.deepEqual(draw(),[],'Next target never covers dialogue speaker');
+g.HonroApp.dialogue=null;assert.equal(draw().length,1,'Reader exit restores genuine off-screen guidance');
+scene.missionTargets[0].x=0;scene.missionTargets[0].y=-200;b.honroStage=18;assert.equal(draw().length,2,'Other chapters keep both visible and off-screen parallel tags');
+console.log('PASS19 visible target/HUD boundary, dialogue suppression, genuine off-screen return, other chapters unchanged');
