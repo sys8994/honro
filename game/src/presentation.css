@@ -107,3 +107,11 @@
 .honro .camp-v5 .hero-tabs{grid-template-columns:repeat(4,minmax(0,1fr));touch-action:pan-y;user-select:none;-webkit-user-select:none;-webkit-touch-callout:none}
 .honro .camp-v5 .hero-tab{position:relative;touch-action:pan-y}.honro .camp-v5 .hero-tab:not(:disabled){cursor:grab}.honro .camp-v5 .hero-tab.order-dragging{z-index:4;opacity:1;cursor:grabbing;border-color:#ffc56b;outline:2px solid #e8a541;outline-offset:-2px;background:#393124;translate:0 -5px;box-shadow:0 8px 18px #000a,0 0 12px #efa84466}.honro .camp-v5 .hero-tabs.order-active{cursor:grabbing}.honro .camp-v5 .hero-tab.order-dragging{will-change:transform}
 .camp-turn-index{position:absolute;top:3px;left:5px;font-size:10px;font-style:normal;color:#e1c58b;pointer-events:none}.camp-card-order-hint{font-size:11px;color:#a9b7b1;margin:0 0 16px;line-height:1.6}.camp-card-order-status{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)}
+
+/* Ordinary narration has no actor color rail; documents keep their own reader. */
+.narration-inline .story-scene.narration-scene{border:1px solid #bda87980;border-radius:8px;background:linear-gradient(115deg,#292c26fa,#182326fa);padding:24px 28px;color:#f5e7c9}
+.narration-inline .narration-scene .story-copy::before{content:"";display:block;flex:none;width:56px;height:2px;margin-bottom:14px;background:linear-gradient(90deg,#d8bf8c,transparent)}
+.narration-inline .narration-scene .story-copy h2{color:#f5e7c9;letter-spacing:.04em;font-weight:600}
+.narration-inline .narration-scene #story-line{color:#f0dfba}
+.narration-inline .narration-scene .story-actions{border-top:1px solid #bda87940;padding-top:14px;background:none}
+@media(max-width:600px){.narration-inline .story-scene.narration-scene{padding:20px}}
