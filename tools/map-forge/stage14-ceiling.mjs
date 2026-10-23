@@ -3,7 +3,9 @@
 import {readFileSync,writeFileSync} from 'node:fs';
 import {pathToFileURL} from 'node:url';
 export const ROOF_ID='v14-cavern-vault';
-export const UNDERSIDE=[[-6000,420],[-2800,340],[-900,460],[0,480],[620,600],[1300,660],[1620,740],[2200,1480],[2650,1510],[3040,1600],[3550,2070],[4100,2800],[4660,2850],[5100,2740],[5330,2700],[5650,2980],[6200,3340],[6760,3980],[7240,4200],[7600,4270],[9200,4100],[11200,4380],[13600,4200]];
+// Two unequal chambers and two short necks, independently authored from the
+// village floors. The narrowest neck remains above the old collision mass.
+export const UNDERSIDE=[[-6000,420],[-2800,160],[-800,340],[0,160],[850,120],[1700,360],[2450,140],[2950,300],[3300,950],[3500,1920],[3690,2160],[3990,2050],[4300,1190],[4700,660],[5200,760],[6050,1050],[6300,1900],[6570,2340],[6920,2270],[7300,1750],[7600,1600],[9200,1900],[11200,1550],[13600,1800]];
 export function applyStage14Ceiling(project){
  const s=project.stages.find(s=>s.metadata?.stageId===14),space=s.design.space;
  if(s.width!==7600||s.height!==10400||s.initialState.honroVerticalStage14Revision!==1)throw Error('Current Stage14 vertical map required');
@@ -26,7 +28,7 @@ export function applyStage14Ceiling(project){
   add('bed-'+band+'-'+i,[...span(lines[band],loA,loB),...span(lines[band+1],hiA,hiB).reverse()],tones[band][(i+band)%4]);
  }
  space.terrainPlanes=[...(space.terrainPlanes||[]).filter(p=>!p.stage14Ceiling),...planes];
- s.design.ceiling14={revision:1,source:'tools/map-forge/stage14-ceiling.mjs',terrainId:ROOF_ID,scope:'Restore real enclosing upper vault; all existing paths, actors, rescue conditions and approved art retained.',underside:UNDERSIDE};
+ s.design.ceiling14={revision:2,source:'tools/map-forge/stage14-ceiling.mjs',terrainId:ROOF_ID,scope:'Asymmetric high upper chamber and east recess with two short rock necks, independent from floor slopes; existing paths, actors, goals retained.',underside:UNDERSIDE};
  return project;
 }
 if(process.argv[1]&&import.meta.url===pathToFileURL(process.argv[1]).href){const file='shared/data/campaign.json',p=JSON.parse(readFileSync(file,'utf8'));applyStage14Ceiling(p);writeFileSync(file,JSON.stringify(p)+'\n');}

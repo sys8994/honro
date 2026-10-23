@@ -2,6 +2,7 @@
 No actor/state corrections for a photograph. Not a combat completion run."""
 import json,sys,hashlib,subprocess
 from pathlib import Path
+import os
 from playwright.sync_api import sync_playwright
 from browser_support import launch
 from story_browser_server import story_base_url
@@ -9,6 +10,8 @@ label=sys.argv[1] if len(sys.argv)>1 else 'candidate'
 out=Path('_local/reports/act2-ceiling-20261023')/label;out.mkdir(parents=True,exist_ok=True)
 rows=[];errors=[];base=story_base_url()
 views=[('overview',1000,1200,3800,4500,.14706),('upper-battle',1440,900,2675,1910,.62),('portrait',390,844,2675,2150,.18),('landscape',844,390,2675,1950,.32),('middle-battle',1440,900,4730,3520,.6),('portrait-max-zoom',390,844,3800,5000,390/6800)]
+if os.environ.get('HONRO_CEILING_TOPOLOGY2'):
+ views=[('overview',1000,1200,3800,4500,.14706),('upper-wide-battle',1440,900,2675,1300,.32),('portrait-max-zoom',390,844,3800,5000,390/6800),('neck-battle',1440,900,3700,2660,.5),('east-vault',1440,900,5300,2350,.28),('portrait-upper',390,844,2675,1300,.13)]
 with sync_playwright() as pw:
  browser=launch(pw)
  for name,w,h,x,y,z in views:

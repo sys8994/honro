@@ -1,10 +1,11 @@
+import {applyStage14Ceiling} from '../tools/map-forge/stage14-ceiling.mjs';
 import assert from 'node:assert/strict';
 import {readFile,writeFile,mkdir} from 'node:fs/promises';
 import {execFileSync} from 'node:child_process';
 import {runtime,battlefield} from '../game/tests/helpers.mjs';
 import {applyStage14FamilyPlatform} from '../tools/map-forge/stage14-family-platform.mjs';
 const plain=x=>JSON.parse(JSON.stringify(x)),before=JSON.parse(execFileSync('git',['show','6c950aea:shared/data/campaign.json'],{maxBuffer:40e6})),after=JSON.parse(await readFile('shared/data/campaign.json','utf8'));
-assert.deepEqual(plain(applyStage14FamilyPlatform(structuredClone(before))),after,'Exactly two local flags; all shapes/actors/art/goals retained');assert.deepEqual(plain(applyStage14FamilyPlatform(structuredClone(after))),after);
+assert.deepEqual(plain(applyStage14FamilyPlatform(applyStage14Ceiling(structuredClone(before)))),after,'Exactly two local flags after the separately asserted current vault author; other shapes/actors/art/goals retained');assert.deepEqual(plain(applyStage14FamilyPlatform(structuredClone(after))),after);
 const g=await runtime({legacyMaps:false}),C=g.HONRO_CORE,id='v14-family-roof-step',rows=[];
 for(const cls of C.CLASS_IDS){const q=battlefield(g,14),u=q.e.heroesAlive().find(u=>u.cls===cls);q.b.units=[u];q.b.active=u.id;q.b.side=0;q.b.phase='aim';q.e.checkEnd=()=>false;
  Object.assign(u,{x:4300,y:6750,vx:0,vy:0,jumping:false,airborne:false});assert(C.validTerrainContactPose(q.b.terrain,u));const hp=u.hp,move=u.moveLeft;assert(q.e.jump(u));let minY=u.y,crossed=false,landed=false;
