@@ -1,6 +1,6 @@
 # P1.0 현행 수호목 장식의 독립 — 2026-10-24
 
-현행 sharedRest10이 도달하지 않는 paintedRest10 전체를 만든 뒤 두 그룹만 regex로 추출해 전체 pilots manifest/53이미지 빌드를 의존했다. thread→roots 두 그룹 helper와 raw root 원본1개의 휴식터 데이터 소유로 분리하고 paintedRest1–10/옛 dispatch/pilots 주입을 제거했다. 원래 제거되던 filter는 넣지 않았다. source 이미지 폴더와 실행 목록 밖 painted-pilots-art provider는 보존한다. 기존30장 rest-shared-vector 검사는 통과했고 exact/브라우저/최종 빌드 검증은 진행 중이다. 다른 P1은 착수하지 않았다.
+현행 sharedRest10이 도달하지 않는 paintedRest10 전체를 만든 뒤 두 그룹만 regex로 추출해 전체 pilots manifest/53이미지 빌드를 의존했다. thread→roots 두 그룹 helper와 raw root 원본1개의 휴식터 데이터 소유로 분리하고 paintedRest1–10/옛 dispatch/pilots 주입을 제거했다. 원래 제거되던 filter는 넣지 않았다. source 이미지 폴더와 실행 목록 밖 painted-pilots-art provider는 보존한다. 기존30장 mapping·전체 native SVG exact/web 이미지SHA 정규화 exact,10장 두 그룹 순서/속성/filter 없음·raw245,372B SHA 동일, desktop/mobile pan/zoom/camp·P0.3b 관련5묶음·build/web-split·공개42그래프836파일 보존을 확인했다. 활성 graph21,812,619B 감소와 cold HTTP62,963B 감소를 구분한다. [범위·검사·한계](retained-guardian-rest-p10-20261024/README.md). 다른 P1은 착수하지 않았다.
 
 # P0.3b 선택 SVG 원문 대기/실패 경계 — 2026-10-24
 

@@ -2,10 +2,10 @@
   "version": 1,
   "game": "HONRO.html",
   "workshop": "HONRO_WORKSHOP.html",
-  "playtest": "web/entries/game.266f993db0806b9b.html?embedded=1",
+  "playtest": "web/entries/game.5fe66969b07ecf39.html?embedded=1",
   "project": "web/data/campaign.f355cadf4e1b4e54.json",
-  "gameEntry": "web/entries/game.d8d63d9c496bc88a.js",
-  "workshopEntry": "web/entries/workshop.edf9af43a8aa6fa0.js",
+  "gameEntry": "web/entries/game.9675f9baa1a8dba7.js",
+  "workshopEntry": "web/entries/workshop.ec12c3608fd7ec79.js",
   "common": [
     "web/runtime/ordered-common-1.143cc75f3fac4e47.js",
     "web/runtime/shared-runtime-title-markup.e0f242270b02362a.js",
@@ -32,8 +32,7 @@
     "web/runtime/HONRO_FAREWELL_SPIRITS.9fa907c1867deb39.js",
     "web/runtime/HONRO_ACT1_FAR_DATA.da2ce3328bd07ae5.js",
     "web/runtime/HONRO_ACT2_FAR_DATA.939128d98dba1d66.js",
-    "web/runtime/HONRO_REST_BACKDROPS.093c0e6180243b84.js",
-    "web/runtime/HONRO_PAINTED_PILOTS.16baa4c6a1f7e539.js",
+    "web/runtime/HONRO_REST_BACKDROPS.9918c9ba3d76444d.js",
     "web/runtime/HONRO_AUTHORED_FAR.d40a121dd1a5650c.js",
     "web/runtime/shared-assets-monsters-monsters-runtime.ea2b06acc2429506.js",
     "web/runtime/shared-assets-actors-actors-runtime.9bf544eb6181da2f.js",
@@ -50,7 +49,7 @@
     "web/runtime/ordered-game-15.081d67a314e293fe.js",
     "web/runtime/shared-runtime-training.ae89c1f0d5c451b6.js",
     "web/runtime/shared-runtime-skill-preview.04787118463cb2bc.js",
-    "web/runtime/ordered-game-16.d857c952cccb8d2b.js",
+    "web/runtime/ordered-game-16.647de9b3f56ff112.js",
     "web/runtime/ordered-game-17.a0818b52f3ce9e12.js"
   ],
   "optionalModules": {
@@ -474,11 +473,6 @@
       "sha256": "bd10fa99a7eaab14f6e08a5a8e25360125036b76f4f8a52437001731832ff7ae"
     },
     {
-      "path": "web/data/HONRO_PAINTED_PILOTS.6d84c3845b695bb3.json",
-      "bytes": 6730,
-      "sha256": "6d84c3845b695bb3c91a04cb72c72e35406d1143437bb681e9d8ee5818d1defd"
-    },
-    {
       "path": "web/data/HONRO_PARTY_ART.3e80aca85f6101e0.json",
       "bytes": 97,
       "sha256": "3e80aca85f6101e0820af6f4f18cca64880a8611f6cfe07d727cf05e63b1e546"
@@ -494,9 +488,9 @@
       "sha256": "fbd9966fd5d3922ade325591928b4def46d789a380c180daf5621c3506cd7872"
     },
     {
-      "path": "web/data/HONRO_REST_BACKDROPS.59a3076127863c24.json",
-      "bytes": 1174,
-      "sha256": "59a3076127863c240e788f024159cff3086c7aa045a819b679eb0c9e26cbc330"
+      "path": "web/data/HONRO_REST_BACKDROPS.5d529fd524509f49.json",
+      "bytes": 1310,
+      "sha256": "5d529fd524509f492282657d571b433c7a4a3a84fe3d7258cfe7d83f356d5ee0"
     },
     {
       "path": "web/data/HONRO_SKILL_AUDIO.d00a59dfd7fe6081.json",
@@ -534,19 +528,19 @@
       "sha256": "3e39c11e1552111717a7532c8a7bc45ac6f5ddf63c872a5bbcd87e2326941eea"
     },
     {
-      "path": "web/entries/game.266f993db0806b9b.html",
+      "path": "web/entries/game.5fe66969b07ecf39.html",
       "bytes": 11354,
-      "sha256": "266f993db0806b9b445e3908d6312a7dbf64d5ba3deb0a11656877dfe8328a39"
+      "sha256": "5fe66969b07ecf39d93ea620da008488ccd87db9cdfabce2231010029622cf20"
     },
     {
-      "path": "web/entries/game.d8d63d9c496bc88a.js",
-      "bytes": 10906,
-      "sha256": "d8d63d9c496bc88ad4583d2ba109aa7e177bc9d1568fed9dd89c71441c625bc3"
+      "path": "web/entries/game.9675f9baa1a8dba7.js",
+      "bytes": 10680,
+      "sha256": "9675f9baa1a8dba733e8f8e518c8f8f7f25685f7f7b6fd86353dd36c42b8631f"
     },
     {
-      "path": "web/entries/workshop.edf9af43a8aa6fa0.js",
-      "bytes": 7607,
-      "sha256": "edf9af43a8aa6fa0c98a15b3d75fdfc81df583226225b836feb0df685b281897"
+      "path": "web/entries/workshop.ec12c3608fd7ec79.js",
+      "bytes": 7381,
+      "sha256": "ec12c3608fd7ec79bb6051524799c9f6d79181ec62c666123a454e8861964851"
     },
     {
       "path": "web/graphics/ending-10-image.6a631739bb1b7338.webp",
@@ -699,271 +693,6 @@
       "sha256": "8ea23ad226a95d3863752839ef3a1e5b1b6a5f78ff15e49733d8b1b6da347598"
     },
     {
-      "path": "web/graphics/honro_painted_pilots-images-bark.6eae3ab126f50d8b.webp",
-      "bytes": 6996,
-      "sha256": "6eae3ab126f50d8baa907c5676345be513794b4c5e73844b609522ca4c34dc60"
-    },
-    {
-      "path": "web/graphics/honro_painted_pilots-images-beam.d568dd1973d64b0b.webp",
-      "bytes": 18920,
-      "sha256": "d568dd1973d64b0bf6bc9f25ba686aeaeee0ad81ac2a6e58557bbee6c08585a3"
-    },
-    {
-      "path": "web/graphics/honro_painted_pilots-images-bellRear.6f3f751e2658edeb.webp",
-      "bytes": 130658,
-      "sha256": "6f3f751e2658edebdf9c427676ee153351a41fba422664efe558897d7e6f49c6"
-    },
-    {
-      "path": "web/graphics/honro_painted_pilots-images-bierShelter8.08931b5c4512bd08.webp",
-      "bytes": 210694,
-      "sha256": "08931b5c4512bd0869437820db54535205404d8ca91b6b415702418288b55de1"
-    },
-    {
-      "path": "web/graphics/honro_painted_pilots-images-bierStore8.8fc42c8d0f25ff3e.webp",
-      "bytes": 308858,
-      "sha256": "8fc42c8d0f25ff3e61a4daa979e50510f1ac77aae839aa698affe5caad7a6ea2"
-    },
-    {
-      "path": "web/graphics/honro_painted_pilots-images-bridge6.042ae19f5d957e60.webp",
-      "bytes": 253276,
-      "sha256": "042ae19f5d957e605dd65b17821ec2f849a16b9964ef37b1302687b3a345bce6"
-    },
-    {
-      "path": "web/graphics/honro_painted_pilots-images-burned4.26e705cf283ec2cb.webp",
-      "bytes": 102486,
-      "sha256": "26e705cf283ec2cb4f3b9c62c5347689dfa68723baaa6775a1fdd03ef56e13c7"
-    },
-    {
-      "path": "web/graphics/honro_painted_pilots-images-cliff5.91c4983107e1b18d.webp",
-      "bytes": 616806,
-      "sha256": "91c4983107e1b18d7d4f9be7371cb7461e2f3f96fcef2a608d165ad6b24486c3"
-    },
-    {
-      "path": "web/graphics/honro_painted_pilots-images-dead.c65339893479bd85.webp",
-      "bytes": 343678,
-      "sha256": "c65339893479bd85e2057ed393937b56d9d1a65ceb50d6f22f4e5cb97be4228a"
-    },
-    {
-      "path": "web/graphics/honro_painted_pilots-images-depotRear.732dcad828ddaa95.webp",
-      "bytes": 208436,
-      "sha256": "732dcad828ddaa95dc1b25a5deb63683f20d7d3ecfd2c6ea5ec34dac8ba30c77"
-    },
-    {
-      "path": "web/graphics/honro_painted_pilots-images-ferryHall.e15c7526d1af37bb.webp",
-      "bytes": 246758,
-      "sha256": "e15c7526d1af37bbddca39ea11255055deb1e7e1310bf6c65c205c577839dd63"
-    },
-    {
-      "path": "web/graphics/honro_painted_pilots-images-ferryShrine.cc9917ad0d6bd3eb.webp",
-      "bytes": 57850,
-      "sha256": "cc9917ad0d6bd3eb5330e08b5ab07872ddc6ae9c7a532d57b69d82b733a1caad"
-    },
-    {
-      "path": "web/graphics/honro_painted_pilots-images-ferryWorkbay.bb2cbe339412ed77.webp",
-      "bytes": 146858,
-      "sha256": "bb2cbe339412ed7791c87810a5b7979d038a7f5f61884b90009f482d041e341b"
-    },
-    {
-      "path": "web/graphics/honro_painted_pilots-images-forestFar.6743ae7e7735ce55.webp",
-      "bytes": 34098,
-      "sha256": "6743ae7e7735ce55ee3a116ed1adccee15b422c9fd17ddf8686178109439073e"
-    },
-    {
-      "path": "web/graphics/honro_painted_pilots-images-forestRock.28afd175216e09ae.webp",
-      "bytes": 533476,
-      "sha256": "28afd175216e09ae153a081ed03645d929f6eb13c1d8862a34ded3a774552b03"
-    },
-    {
-      "path": "web/graphics/honro_painted_pilots-images-forestSoil.fec4f73ccac2004f.webp",
-      "bytes": 321414,
-      "sha256": "fec4f73ccac2004f22d8b1e3d3d13eb51e3d1b2b837f1f9d87571c972d5273f2"
-    },
-    {
-      "path": "web/graphics/honro_painted_pilots-images-gate4.0e931ce976c9e2fe.webp",
-      "bytes": 170954,
-      "sha256": "0e931ce976c9e2fe7fd26ab23a7c088ac3cdbfee65f2fa27e1bf7629a40262a9"
-    },
-    {
-      "path": "web/graphics/honro_painted_pilots-images-gateFar.5094cddb7d563f7b.webp",
-      "bytes": 18634,
-      "sha256": "5094cddb7d563f7bb84ed4b423fcc18dc48cef548adbe92df2d0abe3f15d3f4f"
-    },
-    {
-      "path": "web/graphics/honro_painted_pilots-images-granite.fa0c8cc14d4909d3.webp",
-      "bytes": 54790,
-      "sha256": "fa0c8cc14d4909d38168f31e1361bc654b393e50e6cb28d9d61a3b753436150c"
-    },
-    {
-      "path": "web/graphics/honro_painted_pilots-images-guardianHall10.633d1e5f0b566739.webp",
-      "bytes": 174108,
-      "sha256": "633d1e5f0b56673924fdef77401edbb73eaa39ea1ab4948bb9906e3a9fb75950"
-    },
-    {
-      "path": "web/graphics/honro_painted_pilots-images-guardianTree10.15da99701523bae3.webp",
-      "bytes": 774018,
-      "sha256": "15da99701523bae34dc6061bfdbd1138184eb35ba1d76a1e400ea62486223379"
-    },
-    {
-      "path": "web/graphics/honro_painted_pilots-images-log.a6b8472572e06394.webp",
-      "bytes": 54246,
-      "sha256": "a6b8472572e06394609998dcfdf10cbd033826938c2cb59fa6c7f807ea7a979e"
-    },
-    {
-      "path": "web/graphics/honro_painted_pilots-images-passGate.1eb0a2d2337822ba.webp",
-      "bytes": 92532,
-      "sha256": "1eb0a2d2337822ba9ae46f927b6294f420483159ec6f893c92ecfc57cb32689d"
-    },
-    {
-      "path": "web/graphics/honro_painted_pilots-images-pineA.c2f9443b6ad28bd2.webp",
-      "bytes": 420062,
-      "sha256": "c2f9443b6ad28bd233641aec2fae270f4fe944cc6c324ad434efd6302547681f"
-    },
-    {
-      "path": "web/graphics/honro_painted_pilots-images-pineB.edc38a27e2738866.webp",
-      "bytes": 536222,
-      "sha256": "edc38a27e2738866bc95517101ac77cf5a91798dd4aeeb91847b27c4b156ec2c"
-    },
-    {
-      "path": "web/graphics/honro_painted_pilots-images-quietFar.84b77e4b3d612d13.webp",
-      "bytes": 952722,
-      "sha256": "84b77e4b3d612d13b94fd33edae427e3b4c4a903199bb03edc9ae1b501c62e12"
-    },
-    {
-      "path": "web/graphics/honro_painted_pilots-images-rest10RootSteps.ae7a809006f010a4.webp",
-      "bytes": 245372,
-      "sha256": "ae7a809006f010a43159367354212ec98b40afd8b717282108a546f9923a5c29"
-    },
-    {
-      "path": "web/graphics/honro_painted_pilots-images-rest1Inn.1a485856980f0e1a.webp",
-      "bytes": 181122,
-      "sha256": "1a485856980f0e1abe0809ffb05b1f7c063067adc2f45ac6309ad98345652fbe"
-    },
-    {
-      "path": "web/graphics/honro_painted_pilots-images-rest3Worktable.19608a647dc135ae.webp",
-      "bytes": 90154,
-      "sha256": "19608a647dc135ae3f38f7a3e10b672e0006b8240eb4a402a2204fe9efcbdba5"
-    },
-    {
-      "path": "web/graphics/honro_painted_pilots-images-rest9Well.0246d57d00a369a1.webp",
-      "bytes": 60794,
-      "sha256": "0246d57d00a369a160a0f177ba20d88b0c17ffafe6093a75c40ffc930079b47c"
-    },
-    {
-      "path": "web/graphics/honro_painted_pilots-images-ritualCorridor9.92d4f13225641b8a.webp",
-      "bytes": 154162,
-      "sha256": "92d4f13225641b8a8143860bec04eecfb1338eab4f1832c13e06ff5de333fd5e"
-    },
-    {
-      "path": "web/graphics/honro_painted_pilots-images-ritualGate9.6c4931d3f8cdc292.webp",
-      "bytes": 236736,
-      "sha256": "6c4931d3f8cdc292f5efe6796334c666819568ddc86f931d118f83fee2fa1be4"
-    },
-    {
-      "path": "web/graphics/honro_painted_pilots-images-ritualRoots9.0c9ca0382c1df5be.webp",
-      "bytes": 129456,
-      "sha256": "0c9ca0382c1df5be34f55bd1eb3418558257def45f505a0b39e259b26938c19f"
-    },
-    {
-      "path": "web/graphics/honro_painted_pilots-images-roots.164de68534537576.webp",
-      "bytes": 43298,
-      "sha256": "164de68534537576b708e4c2e2f9386df818d6bf0798f33807361dfbd20101ae"
-    },
-    {
-      "path": "web/graphics/honro_painted_pilots-images-stage1BalancedNear.38f408fd9a032c02.webp",
-      "bytes": 1329274,
-      "sha256": "38f408fd9a032c02accae6cc93952ddc6f950a9be3131bef06f01f015240e4ce"
-    },
-    {
-      "path": "web/graphics/honro_painted_pilots-images-stage1ForestExitNear.e0b52e41a6815d0f.webp",
-      "bytes": 1451608,
-      "sha256": "e0b52e41a6815d0f2c8e28a4c52f53fa54f92a3b8380b030e65c5a2f5a64c789"
-    },
-    {
-      "path": "web/graphics/honro_painted_pilots-images-stage1ForestStartNear.6e52c8af473d6728.webp",
-      "bytes": 1322994,
-      "sha256": "6e52c8af473d672873ff96b9779c0a8cca61fbd444b7459d0440984f7b2e54a4"
-    },
-    {
-      "path": "web/graphics/honro_painted_pilots-images-stage1Place.d32db508184d0e3f.webp",
-      "bytes": 537130,
-      "sha256": "d32db508184d0e3fae2c78727cac2c0bf313c860e8949634a116f38ac5747ce8"
-    },
-    {
-      "path": "web/graphics/honro_painted_pilots-images-stage1PlaceBothBroken.1b90b924c23ee111.webp",
-      "bytes": 445960,
-      "sha256": "1b90b924c23ee111c3efb53c502e825952c811f5222c887d8ad94d2b696f8d30"
-    },
-    {
-      "path": "web/graphics/honro_painted_pilots-images-stage1PlaceEastBroken.f55592089375cd21.webp",
-      "bytes": 467050,
-      "sha256": "f55592089375cd21c63f23582559e613c4fa3294f55d042ffd1b25d09a4981d8"
-    },
-    {
-      "path": "web/graphics/honro_painted_pilots-images-stage1PlaceWestBroken.365ca0fbe5a2d284.webp",
-      "bytes": 459502,
-      "sha256": "365ca0fbe5a2d284778e30e7a72b043ebf52d595a2d7386fa238e8d93c5d0f47"
-    },
-    {
-      "path": "web/graphics/honro_painted_pilots-images-stage1QuietNear.1ec6d00a4b7df483.webp",
-      "bytes": 1318238,
-      "sha256": "1ec6d00a4b7df48352aa52ac78702e9771d879a31446fab6aa01ac0e906256b8"
-    },
-    {
-      "path": "web/graphics/honro_painted_pilots-images-stage2Place.e2d6242d676f29ff.webp",
-      "bytes": 517844,
-      "sha256": "e2d6242d676f29ffa435d8ece5fe6e2bbba2cd2cc3d84c3b447170263b1b267c"
-    },
-    {
-      "path": "web/graphics/honro_painted_pilots-images-stage2QuietNear.e07cce6480a96b20.webp",
-      "bytes": 1756982,
-      "sha256": "e07cce6480a96b206bce566c4cc56a815258e7d525d5c761f74ce73a737d9700"
-    },
-    {
-      "path": "web/graphics/honro_painted_pilots-images-stage3QuietNear.fa245c9fcb1b735c.webp",
-      "bytes": 1176540,
-      "sha256": "fa245c9fcb1b735cf2abc4ec2ca7116444f9a7dcf266b0280ea954082822c3db"
-    },
-    {
-      "path": "web/graphics/honro_painted_pilots-images-stage4QuietNear.fa5c2a85d11d3648.webp",
-      "bytes": 1199714,
-      "sha256": "fa5c2a85d11d36486078d97714a84a95926e4b735bb8f0242fafae8586814a29"
-    },
-    {
-      "path": "web/graphics/honro_painted_pilots-images-stone.064ee9999d6e44b5.webp",
-      "bytes": 64332,
-      "sha256": "064ee9999d6e44b5e2dc963f3f2a18243d9aca6a63a3ea0fbffea1d236c24923"
-    },
-    {
-      "path": "web/graphics/honro_painted_pilots-images-underground.24a7377d4a0e5b33.webp",
-      "bytes": 380498,
-      "sha256": "24a7377d4a0e5b33c6b0b9508325c43b057659186607596804715c9774fc8ffe"
-    },
-    {
-      "path": "web/graphics/honro_painted_pilots-images-valleyFar.4fd65fd6a65b0dd4.webp",
-      "bytes": 30438,
-      "sha256": "4fd65fd6a65b0dd405f7557bd939d60d1738c713e385f2245685b5719687604f"
-    },
-    {
-      "path": "web/graphics/honro_painted_pilots-images-villageHome7.fc56b723159b754c.webp",
-      "bytes": 299164,
-      "sha256": "fc56b723159b754c1f0d41209ad790db05cda320d7703ac44c3933536d89cb5a"
-    },
-    {
-      "path": "web/graphics/honro_painted_pilots-images-villageTree7.55663aa18eb79410.webp",
-      "bytes": 812178,
-      "sha256": "55663aa18eb7941000233136a9928baad95d020ea109aac16dfb7ffb3bc5059b"
-    },
-    {
-      "path": "web/graphics/honro_painted_pilots-images-watch4.9bc92d08893b42ec.webp",
-      "bytes": 202440,
-      "sha256": "9bc92d08893b42ec8bad4859245f44dbe95a31d3d5cb435a46b202e4286ab165"
-    },
-    {
-      "path": "web/graphics/honro_painted_pilots-images-water5.4306977a7dc5085c.webp",
-      "bytes": 292272,
-      "sha256": "4306977a7dc5085cbd5f482966574374fb864ac144ab46fa29569225dd310088"
-    },
-    {
       "path": "web/graphics/honro_rest_backdrops-images-cave-bell-chamber.7dcc45b563ea5680.webp",
       "bytes": 17136,
       "sha256": "7dcc45b563ea5680ac585fcbefdd4cf33e6455805c7a8b51a627c51fd14a155d"
@@ -1012,6 +741,11 @@
       "path": "web/graphics/honro_rest_backdrops-images-underground-channel.9cc52f2e8069de34.webp",
       "bytes": 15080,
       "sha256": "9cc52f2e8069de34e36439ecf9c76f67a3eda5b8a86b8d727f022d6193874800"
+    },
+    {
+      "path": "web/graphics/honro_rest_backdrops-landmarks-guardianRootSteps.ae7a809006f010a4.webp",
+      "bytes": 245372,
+      "sha256": "ae7a809006f010a43159367354212ec98b40afd8b717282108a546f9923a5c29"
     },
     {
       "path": "web/graphics/honro_skill_audio-assets-arrow_block-src.6a52e58900de913a.mp3",
@@ -1864,19 +1598,14 @@
       "sha256": "8a6ecb05b2898148d0744fbcc1ab55073ab483ea8b4c63e70f49b7db641d2d37"
     },
     {
-      "path": "web/runtime/HONRO_PAINTED_PILOTS.16baa4c6a1f7e539.js",
-      "bytes": 1494,
-      "sha256": "16baa4c6a1f7e539ca9e6f241449ab7cf8b0e1bb3bd176421c7ae1f32b22b398"
-    },
-    {
       "path": "web/runtime/HONRO_PORTRAIT_VARIANTS.132f4e17568cad33.js",
       "bytes": 197,
       "sha256": "132f4e17568cad332d781528a78f5db1b30faefedc4e32c966ebe604df9d0e6c"
     },
     {
-      "path": "web/runtime/HONRO_REST_BACKDROPS.093c0e6180243b84.js",
-      "bytes": 479,
-      "sha256": "093c0e6180243b8422dcd4b616f1e45b9428ce9ec9558d2f2e6955a1987a2ccf"
+      "path": "web/runtime/HONRO_REST_BACKDROPS.9918c9ba3d76444d.js",
+      "bytes": 513,
+      "sha256": "9918c9ba3d76444d6697413874706a018b7e029b547e708658c3ce014b3dc7c8"
     },
     {
       "path": "web/runtime/HONRO_SKILL_AUDIO.f7fa71c4771fe2ab.js",
@@ -1979,9 +1708,9 @@
       "sha256": "081d67a314e293fef5244368949e4d1080e699652c0edfd6e895bdfe47dddce7"
     },
     {
-      "path": "web/runtime/ordered-game-16.d857c952cccb8d2b.js",
-      "bytes": 168170,
-      "sha256": "d857c952cccb8d2b5d5931d7d3cffa2375a655840ad2b46ce5f0b84025b5976a"
+      "path": "web/runtime/ordered-game-16.647de9b3f56ff112.js",
+      "bytes": 113487,
+      "sha256": "647de9b3f56ff1125b0df6ecb65959d9ffd5becc0c4aba5f2298b3a07f8a6efc"
     },
     {
       "path": "web/runtime/ordered-game-17.a0818b52f3ce9e12.js",
@@ -2169,6 +1898,311 @@
       "path": "web/runtime/ordered-common-2.e3c5b463f737dc31.js",
       "bytes": 743015,
       "sha256": "e3c5b463f737dc31506d419f72fe109b054f72be7a902bf74e54eb39dc7a756b"
+    },
+    {
+      "path": "web/data/HONRO_PAINTED_PILOTS.6d84c3845b695bb3.json",
+      "bytes": 6730,
+      "sha256": "6d84c3845b695bb3c91a04cb72c72e35406d1143437bb681e9d8ee5818d1defd"
+    },
+    {
+      "path": "web/data/HONRO_REST_BACKDROPS.59a3076127863c24.json",
+      "bytes": 1174,
+      "sha256": "59a3076127863c240e788f024159cff3086c7aa045a819b679eb0c9e26cbc330"
+    },
+    {
+      "path": "web/entries/game.266f993db0806b9b.html",
+      "bytes": 11354,
+      "sha256": "266f993db0806b9b445e3908d6312a7dbf64d5ba3deb0a11656877dfe8328a39"
+    },
+    {
+      "path": "web/entries/game.d8d63d9c496bc88a.js",
+      "bytes": 10906,
+      "sha256": "d8d63d9c496bc88ad4583d2ba109aa7e177bc9d1568fed9dd89c71441c625bc3"
+    },
+    {
+      "path": "web/entries/workshop.edf9af43a8aa6fa0.js",
+      "bytes": 7607,
+      "sha256": "edf9af43a8aa6fa0c98a15b3d75fdfc81df583226225b836feb0df685b281897"
+    },
+    {
+      "path": "web/graphics/honro_painted_pilots-images-bark.6eae3ab126f50d8b.webp",
+      "bytes": 6996,
+      "sha256": "6eae3ab126f50d8baa907c5676345be513794b4c5e73844b609522ca4c34dc60"
+    },
+    {
+      "path": "web/graphics/honro_painted_pilots-images-beam.d568dd1973d64b0b.webp",
+      "bytes": 18920,
+      "sha256": "d568dd1973d64b0bf6bc9f25ba686aeaeee0ad81ac2a6e58557bbee6c08585a3"
+    },
+    {
+      "path": "web/graphics/honro_painted_pilots-images-bellRear.6f3f751e2658edeb.webp",
+      "bytes": 130658,
+      "sha256": "6f3f751e2658edebdf9c427676ee153351a41fba422664efe558897d7e6f49c6"
+    },
+    {
+      "path": "web/graphics/honro_painted_pilots-images-bierShelter8.08931b5c4512bd08.webp",
+      "bytes": 210694,
+      "sha256": "08931b5c4512bd0869437820db54535205404d8ca91b6b415702418288b55de1"
+    },
+    {
+      "path": "web/graphics/honro_painted_pilots-images-bierStore8.8fc42c8d0f25ff3e.webp",
+      "bytes": 308858,
+      "sha256": "8fc42c8d0f25ff3e61a4daa979e50510f1ac77aae839aa698affe5caad7a6ea2"
+    },
+    {
+      "path": "web/graphics/honro_painted_pilots-images-bridge6.042ae19f5d957e60.webp",
+      "bytes": 253276,
+      "sha256": "042ae19f5d957e605dd65b17821ec2f849a16b9964ef37b1302687b3a345bce6"
+    },
+    {
+      "path": "web/graphics/honro_painted_pilots-images-burned4.26e705cf283ec2cb.webp",
+      "bytes": 102486,
+      "sha256": "26e705cf283ec2cb4f3b9c62c5347689dfa68723baaa6775a1fdd03ef56e13c7"
+    },
+    {
+      "path": "web/graphics/honro_painted_pilots-images-cliff5.91c4983107e1b18d.webp",
+      "bytes": 616806,
+      "sha256": "91c4983107e1b18d7d4f9be7371cb7461e2f3f96fcef2a608d165ad6b24486c3"
+    },
+    {
+      "path": "web/graphics/honro_painted_pilots-images-dead.c65339893479bd85.webp",
+      "bytes": 343678,
+      "sha256": "c65339893479bd85e2057ed393937b56d9d1a65ceb50d6f22f4e5cb97be4228a"
+    },
+    {
+      "path": "web/graphics/honro_painted_pilots-images-depotRear.732dcad828ddaa95.webp",
+      "bytes": 208436,
+      "sha256": "732dcad828ddaa95dc1b25a5deb63683f20d7d3ecfd2c6ea5ec34dac8ba30c77"
+    },
+    {
+      "path": "web/graphics/honro_painted_pilots-images-ferryHall.e15c7526d1af37bb.webp",
+      "bytes": 246758,
+      "sha256": "e15c7526d1af37bbddca39ea11255055deb1e7e1310bf6c65c205c577839dd63"
+    },
+    {
+      "path": "web/graphics/honro_painted_pilots-images-ferryShrine.cc9917ad0d6bd3eb.webp",
+      "bytes": 57850,
+      "sha256": "cc9917ad0d6bd3eb5330e08b5ab07872ddc6ae9c7a532d57b69d82b733a1caad"
+    },
+    {
+      "path": "web/graphics/honro_painted_pilots-images-ferryWorkbay.bb2cbe339412ed77.webp",
+      "bytes": 146858,
+      "sha256": "bb2cbe339412ed7791c87810a5b7979d038a7f5f61884b90009f482d041e341b"
+    },
+    {
+      "path": "web/graphics/honro_painted_pilots-images-forestFar.6743ae7e7735ce55.webp",
+      "bytes": 34098,
+      "sha256": "6743ae7e7735ce55ee3a116ed1adccee15b422c9fd17ddf8686178109439073e"
+    },
+    {
+      "path": "web/graphics/honro_painted_pilots-images-forestRock.28afd175216e09ae.webp",
+      "bytes": 533476,
+      "sha256": "28afd175216e09ae153a081ed03645d929f6eb13c1d8862a34ded3a774552b03"
+    },
+    {
+      "path": "web/graphics/honro_painted_pilots-images-forestSoil.fec4f73ccac2004f.webp",
+      "bytes": 321414,
+      "sha256": "fec4f73ccac2004f22d8b1e3d3d13eb51e3d1b2b837f1f9d87571c972d5273f2"
+    },
+    {
+      "path": "web/graphics/honro_painted_pilots-images-gate4.0e931ce976c9e2fe.webp",
+      "bytes": 170954,
+      "sha256": "0e931ce976c9e2fe7fd26ab23a7c088ac3cdbfee65f2fa27e1bf7629a40262a9"
+    },
+    {
+      "path": "web/graphics/honro_painted_pilots-images-gateFar.5094cddb7d563f7b.webp",
+      "bytes": 18634,
+      "sha256": "5094cddb7d563f7bb84ed4b423fcc18dc48cef548adbe92df2d0abe3f15d3f4f"
+    },
+    {
+      "path": "web/graphics/honro_painted_pilots-images-granite.fa0c8cc14d4909d3.webp",
+      "bytes": 54790,
+      "sha256": "fa0c8cc14d4909d38168f31e1361bc654b393e50e6cb28d9d61a3b753436150c"
+    },
+    {
+      "path": "web/graphics/honro_painted_pilots-images-guardianHall10.633d1e5f0b566739.webp",
+      "bytes": 174108,
+      "sha256": "633d1e5f0b56673924fdef77401edbb73eaa39ea1ab4948bb9906e3a9fb75950"
+    },
+    {
+      "path": "web/graphics/honro_painted_pilots-images-guardianTree10.15da99701523bae3.webp",
+      "bytes": 774018,
+      "sha256": "15da99701523bae34dc6061bfdbd1138184eb35ba1d76a1e400ea62486223379"
+    },
+    {
+      "path": "web/graphics/honro_painted_pilots-images-log.a6b8472572e06394.webp",
+      "bytes": 54246,
+      "sha256": "a6b8472572e06394609998dcfdf10cbd033826938c2cb59fa6c7f807ea7a979e"
+    },
+    {
+      "path": "web/graphics/honro_painted_pilots-images-passGate.1eb0a2d2337822ba.webp",
+      "bytes": 92532,
+      "sha256": "1eb0a2d2337822ba9ae46f927b6294f420483159ec6f893c92ecfc57cb32689d"
+    },
+    {
+      "path": "web/graphics/honro_painted_pilots-images-pineA.c2f9443b6ad28bd2.webp",
+      "bytes": 420062,
+      "sha256": "c2f9443b6ad28bd233641aec2fae270f4fe944cc6c324ad434efd6302547681f"
+    },
+    {
+      "path": "web/graphics/honro_painted_pilots-images-pineB.edc38a27e2738866.webp",
+      "bytes": 536222,
+      "sha256": "edc38a27e2738866bc95517101ac77cf5a91798dd4aeeb91847b27c4b156ec2c"
+    },
+    {
+      "path": "web/graphics/honro_painted_pilots-images-quietFar.84b77e4b3d612d13.webp",
+      "bytes": 952722,
+      "sha256": "84b77e4b3d612d13b94fd33edae427e3b4c4a903199bb03edc9ae1b501c62e12"
+    },
+    {
+      "path": "web/graphics/honro_painted_pilots-images-rest10RootSteps.ae7a809006f010a4.webp",
+      "bytes": 245372,
+      "sha256": "ae7a809006f010a43159367354212ec98b40afd8b717282108a546f9923a5c29"
+    },
+    {
+      "path": "web/graphics/honro_painted_pilots-images-rest1Inn.1a485856980f0e1a.webp",
+      "bytes": 181122,
+      "sha256": "1a485856980f0e1abe0809ffb05b1f7c063067adc2f45ac6309ad98345652fbe"
+    },
+    {
+      "path": "web/graphics/honro_painted_pilots-images-rest3Worktable.19608a647dc135ae.webp",
+      "bytes": 90154,
+      "sha256": "19608a647dc135ae3f38f7a3e10b672e0006b8240eb4a402a2204fe9efcbdba5"
+    },
+    {
+      "path": "web/graphics/honro_painted_pilots-images-rest9Well.0246d57d00a369a1.webp",
+      "bytes": 60794,
+      "sha256": "0246d57d00a369a160a0f177ba20d88b0c17ffafe6093a75c40ffc930079b47c"
+    },
+    {
+      "path": "web/graphics/honro_painted_pilots-images-ritualCorridor9.92d4f13225641b8a.webp",
+      "bytes": 154162,
+      "sha256": "92d4f13225641b8a8143860bec04eecfb1338eab4f1832c13e06ff5de333fd5e"
+    },
+    {
+      "path": "web/graphics/honro_painted_pilots-images-ritualGate9.6c4931d3f8cdc292.webp",
+      "bytes": 236736,
+      "sha256": "6c4931d3f8cdc292f5efe6796334c666819568ddc86f931d118f83fee2fa1be4"
+    },
+    {
+      "path": "web/graphics/honro_painted_pilots-images-ritualRoots9.0c9ca0382c1df5be.webp",
+      "bytes": 129456,
+      "sha256": "0c9ca0382c1df5be34f55bd1eb3418558257def45f505a0b39e259b26938c19f"
+    },
+    {
+      "path": "web/graphics/honro_painted_pilots-images-roots.164de68534537576.webp",
+      "bytes": 43298,
+      "sha256": "164de68534537576b708e4c2e2f9386df818d6bf0798f33807361dfbd20101ae"
+    },
+    {
+      "path": "web/graphics/honro_painted_pilots-images-stage1BalancedNear.38f408fd9a032c02.webp",
+      "bytes": 1329274,
+      "sha256": "38f408fd9a032c02accae6cc93952ddc6f950a9be3131bef06f01f015240e4ce"
+    },
+    {
+      "path": "web/graphics/honro_painted_pilots-images-stage1ForestExitNear.e0b52e41a6815d0f.webp",
+      "bytes": 1451608,
+      "sha256": "e0b52e41a6815d0f2c8e28a4c52f53fa54f92a3b8380b030e65c5a2f5a64c789"
+    },
+    {
+      "path": "web/graphics/honro_painted_pilots-images-stage1ForestStartNear.6e52c8af473d6728.webp",
+      "bytes": 1322994,
+      "sha256": "6e52c8af473d672873ff96b9779c0a8cca61fbd444b7459d0440984f7b2e54a4"
+    },
+    {
+      "path": "web/graphics/honro_painted_pilots-images-stage1Place.d32db508184d0e3f.webp",
+      "bytes": 537130,
+      "sha256": "d32db508184d0e3fae2c78727cac2c0bf313c860e8949634a116f38ac5747ce8"
+    },
+    {
+      "path": "web/graphics/honro_painted_pilots-images-stage1PlaceBothBroken.1b90b924c23ee111.webp",
+      "bytes": 445960,
+      "sha256": "1b90b924c23ee111c3efb53c502e825952c811f5222c887d8ad94d2b696f8d30"
+    },
+    {
+      "path": "web/graphics/honro_painted_pilots-images-stage1PlaceEastBroken.f55592089375cd21.webp",
+      "bytes": 467050,
+      "sha256": "f55592089375cd21c63f23582559e613c4fa3294f55d042ffd1b25d09a4981d8"
+    },
+    {
+      "path": "web/graphics/honro_painted_pilots-images-stage1PlaceWestBroken.365ca0fbe5a2d284.webp",
+      "bytes": 459502,
+      "sha256": "365ca0fbe5a2d284778e30e7a72b043ebf52d595a2d7386fa238e8d93c5d0f47"
+    },
+    {
+      "path": "web/graphics/honro_painted_pilots-images-stage1QuietNear.1ec6d00a4b7df483.webp",
+      "bytes": 1318238,
+      "sha256": "1ec6d00a4b7df48352aa52ac78702e9771d879a31446fab6aa01ac0e906256b8"
+    },
+    {
+      "path": "web/graphics/honro_painted_pilots-images-stage2Place.e2d6242d676f29ff.webp",
+      "bytes": 517844,
+      "sha256": "e2d6242d676f29ffa435d8ece5fe6e2bbba2cd2cc3d84c3b447170263b1b267c"
+    },
+    {
+      "path": "web/graphics/honro_painted_pilots-images-stage2QuietNear.e07cce6480a96b20.webp",
+      "bytes": 1756982,
+      "sha256": "e07cce6480a96b206bce566c4cc56a815258e7d525d5c761f74ce73a737d9700"
+    },
+    {
+      "path": "web/graphics/honro_painted_pilots-images-stage3QuietNear.fa245c9fcb1b735c.webp",
+      "bytes": 1176540,
+      "sha256": "fa245c9fcb1b735cf2abc4ec2ca7116444f9a7dcf266b0280ea954082822c3db"
+    },
+    {
+      "path": "web/graphics/honro_painted_pilots-images-stage4QuietNear.fa5c2a85d11d3648.webp",
+      "bytes": 1199714,
+      "sha256": "fa5c2a85d11d36486078d97714a84a95926e4b735bb8f0242fafae8586814a29"
+    },
+    {
+      "path": "web/graphics/honro_painted_pilots-images-stone.064ee9999d6e44b5.webp",
+      "bytes": 64332,
+      "sha256": "064ee9999d6e44b5e2dc963f3f2a18243d9aca6a63a3ea0fbffea1d236c24923"
+    },
+    {
+      "path": "web/graphics/honro_painted_pilots-images-underground.24a7377d4a0e5b33.webp",
+      "bytes": 380498,
+      "sha256": "24a7377d4a0e5b33c6b0b9508325c43b057659186607596804715c9774fc8ffe"
+    },
+    {
+      "path": "web/graphics/honro_painted_pilots-images-valleyFar.4fd65fd6a65b0dd4.webp",
+      "bytes": 30438,
+      "sha256": "4fd65fd6a65b0dd405f7557bd939d60d1738c713e385f2245685b5719687604f"
+    },
+    {
+      "path": "web/graphics/honro_painted_pilots-images-villageHome7.fc56b723159b754c.webp",
+      "bytes": 299164,
+      "sha256": "fc56b723159b754c1f0d41209ad790db05cda320d7703ac44c3933536d89cb5a"
+    },
+    {
+      "path": "web/graphics/honro_painted_pilots-images-villageTree7.55663aa18eb79410.webp",
+      "bytes": 812178,
+      "sha256": "55663aa18eb7941000233136a9928baad95d020ea109aac16dfb7ffb3bc5059b"
+    },
+    {
+      "path": "web/graphics/honro_painted_pilots-images-watch4.9bc92d08893b42ec.webp",
+      "bytes": 202440,
+      "sha256": "9bc92d08893b42ec8bad4859245f44dbe95a31d3d5cb435a46b202e4286ab165"
+    },
+    {
+      "path": "web/graphics/honro_painted_pilots-images-water5.4306977a7dc5085c.webp",
+      "bytes": 292272,
+      "sha256": "4306977a7dc5085cbd5f482966574374fb864ac144ab46fa29569225dd310088"
+    },
+    {
+      "path": "web/runtime/HONRO_PAINTED_PILOTS.16baa4c6a1f7e539.js",
+      "bytes": 1494,
+      "sha256": "16baa4c6a1f7e539ca9e6f241449ab7cf8b0e1bb3bd176421c7ae1f32b22b398"
+    },
+    {
+      "path": "web/runtime/HONRO_REST_BACKDROPS.093c0e6180243b84.js",
+      "bytes": 479,
+      "sha256": "093c0e6180243b8422dcd4b616f1e45b9428ce9ec9558d2f2e6955a1987a2ccf"
+    },
+    {
+      "path": "web/runtime/ordered-game-16.d857c952cccb8d2b.js",
+      "bytes": 168170,
+      "sha256": "d857c952cccb8d2b5d5931d7d3cffa2375a655840ad2b46ce5f0b84025b5976a"
     },
     {
       "path": "web/entries/game.61ab48a9a539e9f0.html",
