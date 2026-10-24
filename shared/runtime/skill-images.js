@@ -35,21 +35,11 @@ function load(el){const item=G.HONRO_SKILL_ICON_MANIFEST?.icons?.[el.dataset.ski
 }
 const intersection=typeof IntersectionObserver==='function'?new IntersectionObserver(entries=>{for(const e of entries)if(e.isIntersecting){intersection.unobserve(e.target);load(e.target);}},{rootMargin:'80px'}):null;
 function scan(root){if(root.nodeType!==1)return;for(const el of [...(root.matches('[data-skill-icon]')?[root]:[]),...root.querySelectorAll('[data-skill-icon]')])if(!['ready','loading','observed'].includes(el.dataset.imageState)){el.dataset.imageState='observed';intersection?intersection.observe(el):load(el);}}
-// Scoped armory reconciliation. Keys include action and slot so duplicate stamps
-// never steal each other's nodes; ready icon subtrees retain image/decode state.
-function key(node){if(node.nodeType!==1)return '';return node.id||[node.tagName,node.dataset.action||'',node.dataset.slot||'',node.dataset.skill||'',node.dataset.id||'',node.dataset.class||'',node.dataset.skillIcon||''].join('|');}
-function sync(old,next){if(old.nodeType!==next.nodeType||old.nodeName!==next.nodeName){old.replaceWith(next);return;}if(old.nodeType===3){if(old.data!==next.data)old.data=next.data;return;}if(old.nodeType!==1)return;
- if(old.matches('[data-skill-icon]')&&old.dataset.skillIcon===next.dataset.skillIcon)return;
- for(const a of [...old.attributes])if(!next.hasAttribute(a.name))old.removeAttribute(a.name);
- for(const a of next.attributes)if(old.getAttribute(a.name)!==a.value)old.setAttribute(a.name,a.value);
- const pool=[...old.childNodes];let cursor=old.firstChild;
- for(const fresh of [...next.childNodes]){const k=key(fresh);let existing=pool.find(n=>n===cursor&&n.nodeName===fresh.nodeName&&key(n)===k)||pool.find(n=>n.nodeName===fresh.nodeName&&key(n)===k);if(existing){pool.splice(pool.indexOf(existing),1);if(existing!==cursor)old.insertBefore(existing,cursor);sync(existing,fresh);cursor=existing.nextSibling;}else{old.insertBefore(fresh,cursor);}}
- for(const stale of pool)stale.remove();
-}
-function patch(root,html){const template=document.createElement('template');template.innerHTML=html;const shell=root.cloneNode(false);shell.append(template.content);sync(root,shell);scan(root);}
+// Camp reconciliation may retain this host without touching image/decode state.
+function canRetainHost(old,next){return old.matches('[data-skill-icon]')&&old.dataset.skillIcon===next.dataset.skillIcon;}
 function retry(){for(const e of cache.values())if(['error','timeout'].includes(e.state)&&connected(e)){cancel(e);e.attempts=0;enqueue(e,true);}scan(document.body);}
 function detach(root){if(root.nodeType!==1||root.isConnected)return;for(const el of [...(root.matches('[data-skill-icon]')?[root]:[]),...root.querySelectorAll('[data-skill-icon]')]){intersection?.unobserve(el);const e=tracked.get(el);e?.targets.delete(el);tracked.delete(el);if(e&&!connected(e)){clearTimeout(e.retryTimer);e.retryTimer=null;}}}
 function start(){new MutationObserver(records=>{for(const r of records){for(const n of r.addedNodes)scan(n);for(const n of r.removedNodes)detach(n);}}).observe(document.body,{childList:true,subtree:true});scan(document.body);G.addEventListener('online',retry);}
 if(document.body)start();else document.addEventListener('DOMContentLoaded',start,{once:true});
-G.HonroSkillImages={readyURL,patch,retry,status:()=>({complete:!!G.HONRO_SKILL_ICON_MANIFEST?.complete,cached:cache.size,failed:[...cache.values()].filter(e=>e.state==='error').length,active,queued:queue.length,timedOut:[...cache.values()].filter(e=>e.state==='timeout').length,targets:[...cache.values()].reduce((n,e)=>n+e.targets.size,0),...counts})};
+G.HonroSkillImages={readyURL,canRetainHost,scan,retry,status:()=>({complete:!!G.HONRO_SKILL_ICON_MANIFEST?.complete,cached:cache.size,failed:[...cache.values()].filter(e=>e.state==='error').length,active,queued:queue.length,timedOut:[...cache.values()].filter(e=>e.state==='timeout').length,targets:[...cache.values()].reduce((n,e)=>n+e.targets.size,0),...counts})};
 })(globalThis);
