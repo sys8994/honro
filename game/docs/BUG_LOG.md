@@ -1,3 +1,7 @@
+# P2.3 퇴역 이미지 지형 데이터·도구 정리 — 2026-10-24
+
+부모 확정112파일/101,954,246B를 blob 일치 후 삭제했다. 역사 rest 검사의 pilots binary/manifest/old web JSON을 고정 Git 소유로 옮겨 삭제·보호파일 만료와 독립시켰고 기존 assertion을 유지했다. 혼합 도구3개는 지정된 원경6처리만 남겼으며 임시 생성6개가 승인 파일과 byte-exact였다. 나머지 승인 자산/입력·root/fixtures/migration/보호 그래프 보존,30장 native/web SVG exact·generic/root hash·build/web-split·실제 Game/Workshop 기본 진입 통과. 현재 graph354파일/34,594,315B/HTML/entry exact이며 발행metadata만 추가됐다. runtime fallback/재인코딩은 없다. [삭제 inventory·검사·한계](retired-art-assets-p23-20261024/README.md).
+
 # P2.2 퇴역 이미지 지형 provider와 잔여 분기 — 2026-10-24
 
 이미 bundle에서 빠진 provider17개/153,642B를 삭제하고 vector 역사자료31,526B는 byte-exact migration 이동했다. inventory에 원본 hash/고정 링크를 기록했다. 현재 없는 provider를 묻는6파일 분기/registry만 정리해3,165B 감소했다. v8/legacy soundWindow와 12/24 tile/culling/정렬 유지. Native9개 렌더 픽셀·scale/tile/battle 불변·legacy clip/overlay exact, 실제 Chromium 정지 경계17항목/Game·Workshop 공통 기동·build/web-split/공개46그래프855파일 보존 통과. 기존 정지 검사의 retired registry 케이스만 부재 계약으로 교체했다. 활성 graph354파일/2,642B 감소는 source 퇴역량·실제 요청/FPS와 다르다. 원본 이미지/역사 테스트/입력은 보존했다. [범위·검사·한계](retired-art-providers-p22-20261024/README.md).
