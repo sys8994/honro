@@ -1,6 +1,5 @@
-/** Stage21 editable fallback and structural joinery. The approved hybrid
- * surfaces are authored in shared/assets/environment/stage21/painted.json and
- * applied by the common stage21-painted-art runtime without changing geometry. */
+/** Stage21 editable vector architecture and structural joinery.
+ * The retired painted trial is historical; current geometry uses these vectors. */
 import {P,R,line} from './act3-map-kit.mjs';
 const path=(d,fill,stroke='',w=2)=>`<path d="${d}" fill="${fill}"${stroke?` stroke="${stroke}" stroke-width="${w}"`:''}/>`;
 export function tiledRoof(x,y,w,rise=80){const l=x-w/2,r=x+w/2,peak=y-rise;let a=path(`M${l-35} ${y-17} Q${l+30} ${y-10} ${x-w*.22} ${peak+9} Q${x} ${peak-4} ${x+w*.22} ${peak+9} Q${r-18} ${y-8} ${r+35} ${y-17} L${r+25} ${y+12} Q${x} ${y+29} ${l-25} ${y+12}Z`,'#354c4c','#233c3c',3);
