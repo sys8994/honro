@@ -846,7 +846,7 @@
             setStyle($('mp-fill'),'width',(u.focus/u.maxFocus*100)+'%');setText($('mp-label'),Math.round(u.focus)+' / '+u.maxFocus);
             setStyle($('move-fill'),'width',(u.maxMove>0?clamp(u.moveLeft/u.maxMove*100,0,100):0)+'%');setText($('move-label'),Math.round(Math.max(0,u.moveLeft))+' / '+Math.round(u.maxMove));
             const allies=b.units.filter(v=>v.honroAlly&&!v.dead),alSig=allies.map(v=>v.id+':'+Math.round(v.hp)+':'+Math.round(v.maxHp)).join('|');
-            if(this.allySig!==alSig){this.allySig=alSig;$('allied-roster').innerHTML=allies.map(v=>`<span class="allied-chip" title="${v.name} · 동맹"><i></i><span>${v.name}</span><b style="--ally-hp:${Math.max(0,v.hp)/v.maxHp*100}%"></b><small>${Math.round(Math.max(0,v.hp))}</small></span>`).join('');}
+            const allyRoot=$('allied-roster');if(allyRoot._allySignature!==alSig){allyRoot._allySignature=alSig;allyRoot.innerHTML=allies.map(v=>`<span class="allied-chip" title="${v.name} · 동맹"><i></i><span>${v.name}</span><b style="--ally-hp:${Math.max(0,v.hp)/v.maxHp*100}%"></b><small>${Math.round(Math.max(0,v.hp))}</small></span>`).join('');}
             setText($('read-aim'),`${Math.round(this.displayAngle(u))}° · ${Math.round(this.power*100)}%`);
             const turnLabel=e.noncombatWalk()?'이동 · 대화':G.HonroStory.turnLabel(b);setText($('turn-text'),e.noncombatWalk()?turnLabel:b.round+'턴'+(turnLabel?' · '+turnLabel:''));
             const wind=Math.max(-30,Math.min(30,b.wind)),fraction=Math.abs(wind)/30*50;
