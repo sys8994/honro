@@ -56,4 +56,4 @@
 
 통합 소스 `395075159b48ae83fc1c4a835b637a957481a169`에서 재빌드 후 모달31항목, A13 경지1/8×2폭 4장면, 전로시·지박부·만혼귀결×2폭 6장면, SP증감/환불·장착·닫기·저장재진입11항목을 확인했다. 전체84개나 무관한 장 검사는 반복하지 않았다. 새 저장 검사 최초 실행은 ui-bridge의 equip-prompt→equip 변환을 따르지 않은 선택자 때문에 멈췄으며 선택자를 수정한 뒤 통과했다. 제품 결함이나 저장 실패로 분류하지 않는다.
 
-최종 실제 PNG: [360px 모달 끝](integration/modal-360-end.png), [데스크톱 모달 끝](integration/modal-1280-end.png), [A13 모바일 모달](integration/A13-360-modal.png), [A13 낙하](integration/A13-360-descent.png), [A13 명중](integration/A13-360-hit.png), [전로시](integration/A09-360-core.png), [지박부](integration/O10-360-core.png), [만혼귀결](integration/O16-360-core.png). 모두 직접 열어 확인했으며 실제 기기 대신 Chromium이다.
+최종 실제 PNG: [360px 모달 끝](integration/modal-360-end.png), [데스크톱 모달 끝](integration/modal-1280-end.png), [A13 모바일 모달](a13-homing/A13-r8-360-modal.png), [A13 낙하](a13-homing/A13-r8-360-descent.png), [A13 명중](a13-homing/A13-r8-360-hit.png), [전로시](integration/A09-360-core.png), [지박부](integration/O10-360-core.png), [만혼귀결](integration/O16-360-core.png). 모두 직접 열어 확인했으며 실제 기기 대신 Chromium이다.

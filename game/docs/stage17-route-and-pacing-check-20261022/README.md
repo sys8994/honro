@@ -2,7 +2,7 @@
 
 브랜치 `fix/stage17-route-and-pacing-check-20261022`, 기준 공개6544와 진단bea99621. **충돌 지형을 바꾸지 않고 선택 복귀 경로의 잘못된 선언 한 점을 교정했다.** 별도의 이동 우선 입력 사례는 같은 게임에서 R17 완료였다. 퀘스트/수치/배치/대사/미술을 줄여 R29를 R17로 만든 변경은 아니다.
 
-[전체 증거](evidence.json) · [정책 실행 원자료 gzip](progress-first-result.json.gz) · [실제 R17 저장 사진](review/actual-r17.jpg)
+[전체 증거](evidence.json) · [정책 실행 원자료 gzip](progress-first-result.json.gz) · [실제 R17 저장 사진](../stage17-art-route-release-20261022/review/actual-r17-continue.jpg)
 
 | 구분 | SHA/entry |
 | --- | --- |

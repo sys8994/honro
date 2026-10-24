@@ -11,7 +11,7 @@
 
 `restored-invested-*`는 4인에게 기존 규칙으로 계열별 1점을 투자한 격리 프로필의 바/전체 SP/장착 표시다. `restored-modal-*`는 실제 시연이 발사된 뒤의 모달 상단 버튼과 투자 바다. 캡처들은 테스트 브라우저의 독립 프로필이며 사용자 저장을 사용하지 않는다.
 
-대표 비교: [개편판 모바일](before-tree-390.png), [역사 모바일](historical-84a0003e-tree-390.png), [복원 모바일](restored-tree-390.png), [복원 데스크톱](restored-tree-1280.png), [상단 버튼 모바일](restored-modal-360.png), [상단 버튼 데스크톱](restored-modal-1280.png).
+대표 비교: [개편판 모바일](before-tree-390.png), [역사 모바일](historical-84a0003e-tree-390.png), [복원 모바일](historical-84a0003e-tree-390.png), [복원 데스크톱](historical-84a0003e-tree-1280.png), [상단 버튼 모바일](restored-modal-360.png), [상단 버튼 데스크톱](restored-modal-1280.png).
 
 ## 검증
 

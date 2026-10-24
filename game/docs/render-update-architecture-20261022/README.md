@@ -123,7 +123,7 @@ journey zoom6회의 함수 p50/p95=1.6/2.2ms였다. labels의 sizing/scroll 소�
 |landscape-mage|True|0|0/255|
 |mobile-preview|True|0|0/255|
 
-최초 exact-only assertion은 소수 HUD AA edge 차이로 실패했고 차이 이미지/실제 화면을 따로 확인했다. 잔차를 정확 일치로 표기하지 않는다. 도구는 최대32pixel·3/255 경계를 명시적으로 검사한다. 지형/초상화/효과/해상도 변경은 없다. [픽셀·저장·개폐 결과](evidence/pixels/checks.json). 실제 최종 자연 상태 JPG는 [idle](evidence/final-states/accepted-count-idle.jpg), [pause](evidence/final-states/accepted-count-pause.jpg), [preview](evidence/final-states/accepted-count-preview.jpg), [rest](evidence/final-states/accepted-count-rest.jpg), [journey](evidence/final-states/accepted-count-journey.jpg). 모바일/landscape 고정 비교 JPG는 `evidence/pixels/`에 있다.
+최초 exact-only assertion은 소수 HUD AA edge 차이로 실패했고 차이 이미지/실제 화면을 따로 확인했다. 잔차를 정확 일치로 표기하지 않는다. 도구는 최대32pixel·3/255 경계를 명시적으로 검사한다. 지형/초상화/효과/해상도 변경은 없다. [픽셀·저장·개폐 결과](evidence/pixels/checks.json). 실제 최종 자연 상태 JPG는 [idle](evidence/final-states/accepted-count-idle.jpg), [pause](evidence/final-states/accepted-count-pause.jpg), [preview](evidence/final-states/accepted-count-preview.jpg), [rest](evidence/final-states/accepted-count-rest.jpg), [journey](evidence/final-states/accepted-count-journey-zoom.jpg). 모바일/landscape 고정 비교 JPG는 `evidence/pixels/`에 있다.
 
 ## 제외한 계측·한계·인계
 

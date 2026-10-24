@@ -24,7 +24,7 @@
 - 집중3회 `review3`: 세로 일반/최대축소·가로·도로에서 두 층과 상여 왼쪽 출발은 보존됐고 벽면/암턱 미술은 실패임을 다시 확인했다.
 - 별도 최종 `common-v3/final`: 최종 소스의8개 화면을 모두 직접 열었다. 도입 대사 및 실제 R3 저장 재개도 새 소스로 확인했다. 횟수로 미술 통과를 만들지 않았다.
 
-같은 카메라의 [이전 전체](common-v3/before/stage02-overview.png)/[현재 전체](common-v3/final/stage02-overview.png), [이전 도로](common-v3/before/stage02-road-start.png)/[현재 도로](common-v3/final/stage02-road-start.png)를 보존했다.
+같은 카메라의 [이전 전체](correction-v2/final/stage02-overview.png)/[현재 전체](common-v3/final/stage02-overview.png), [이전 도로](correction-v2/final/stage02-road-start.png)/[현재 도로](common-v3/final/stage02-road-start.png)를 보존했다.
 
 1장 기준은 `common-v3/reference/stage01-normal.png`를 직접 열어 비교했다. 캡처 표기 SHA543bbb12와 승인51e0b2b 사이 해당 실행/자산 소스 차이는 없다. 소나무 SVG는51e0b2b와 현재 바이트 동일하다. 또 공통 재질 추출 전후1장 실제 native Canvas PNG hash가 완전히 동일함을 검사했다.
 
