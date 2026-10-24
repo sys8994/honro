@@ -137,3 +137,5 @@ npm.cmd run build
 ## 효과음 출처
 
 화살 명중·충돌음: **Additional Sound FX by Will Leamon**, 작품 **Fleshy Fight Sounds**. [원작/출처](https://opengameart.org/content/fleshy-fight-sounds), [OGA-BY 3.0 라이선스](https://static.opengameart.org/OGA-BY-3.0.txt). piercing-1a/piercing-arm-2a를 decode·mono·소폭 pitch·edge 정리·약한 dynamics·MP3 변환한 파생본이며 원저작자/라이선스를 보존합니다. 원작자의 게임 보증을 뜻하지 않습니다. 단단한 충돌 원음은 갑옷/금속 계열이며 모든 지형을 금속으로 설정한 것이 아닙니다. 상세 [음원 출처·가공 표시](shared/assets/sfx/weapons-v3/SOURCES.txt), [화살 메타데이터](shared/assets/sfx/weapons-v3/arrow-hits.json). 다른 승인 무기·천뢰의 출처도 같은 SOURCES에서 관리합니다.
+
+설오 발사음: Longbow Release 1 by saturdaysoundguy, [Freesound394178](https://freesound.org/people/saturdaysoundguy/sounds/394178/), CC0 1.0. 원본WAV가 아닌 공개HQ MP3 preview를 부모가 처리한 파생본이며 피치/추가레이어 변경은 없습니다. [출처·가공내역](shared/assets/sfx/bowstring-v4/manifest.json).
