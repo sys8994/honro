@@ -45,7 +45,10 @@ function saveCargo(app,q){app.profile.honroFieldCargo??={};app.profile.honroFiel
 function collect(app,id,source,actor){const b=app.engine.b,f=field(b);if(f.cargo[id])return f.cargo[id];if(!pickupNear(actor,source))return null;
  const q={id,sourceStage:b.honroStage,source:source.id||id,origin:{x:source.x,y:source.y},actor:actor.id,ownerClass:actor.cls,phase:'carry',progress:0,proof:{round:b.round,x:actor.x,y:actor.y}};f.cargo[id]=q;saveCargo(app,q);return q;
 }
-function pairReady(b){if(!fieldActive(b)||b.honroStage!==22)return true;const f=field(b),m=site(b,'compare-ledgers'),qs=['22:ledger-case','22:upper-register'].map(id=>f.cargo[id]);return qs.every(q=>q&&q.phase==='carry'&&near(b.units.find(u=>u.id===q.actor),m,420))&&near(b.units.find(u=>u.id===qs[0].actor),b.units.find(u=>u.id===qs[1].actor),180);}
+// Read-only explanation of the existing physical-record prerequisite. Keep its
+// original strict420/180 distance and100 height contract, including old saves.
+function comparisonState(b){if(!fieldActive(b)||b.honroStage!==22)return{ready:true,required:false,carriers:[]};const f=field(b),m=site(b,'compare-ledgers'),qs=['22:ledger-case','22:upper-register'].map(id=>f.cargo[id]),owners=qs.map(q=>b.units.find(u=>u.id===q?.actor)),carried=qs.every((q,i)=>q&&q.phase==='carry'&&owners[i]),atSite=carried&&owners.every(u=>near(u,m,420)),together=carried&&near(owners[0],owners[1],180);return{required:true,ready:!!(atSite&&together),reason:!carried?'records':!atSite?'site':!together?'pair':'',carriers:[...new Set(owners.filter(Boolean))]};}
+function pairReady(b){return comparisonState(b).ready;}
 // A completed goal is proof of prior acquisition, not proof of an arbitrary carrier.
 // Restore an existing saved receipt, otherwise leave its missing case at the source
 // for physical recovery. Never clear/replay goals, rewards, story or checkpoints.
@@ -105,5 +108,5 @@ const summaries={
 function cleanText(text){return String(text).replace(/\n?원문은 여정의 기록에서 선택해 읽을 수 있다\./g,'').replace(/핵심 단서를 확인한 뒤 원문은 여정의 기록에서 다시 읽을 수 있습니다\./g,'홍만이 남긴 행선지를 동행과 확인합니다.').replace(/일지 원문은 여정의 기록에서 선택해 읽습니다\./g,'작업대의 일지에서 종지기가 한 일을 확인합니다.');}
 // Acquired evidence is delivered in the event. Legacy archive fields remain inert.
 function present(app,lines){return lines.map(row=>{const [who,text,meta={}]=row,{evidenceOriginal,...safe}=meta;if(meta.rowId){const display=meta.recordPresentation;return display?[display.who,display.text,{...safe,kind:display.kind}]:[who,text,safe];}const id=meta.documentId;const oldDocument=meta.kind==='document'||who==='기록';if(meta.evidenceOriginal?.id==='original-19-old-soul')return ['서술','소단은 종 밑에 남은 혼의 옷차림이 방금 떠난 희생자들과 다르다고 짚었다. '+summaries['bell-transfer-marks'],{...safe,kind:'narration'}];if(!oldDocument)return [who,cleanText(text),safe];return ['서술',summaries[id]||cleanText(text).replace(/\n/g,' · '),{...safe,kind:'narration'}];});}
-G.HonroEvidenceQuests={version:1,baseAuthor:author,author:authorEvidence,active,ids,changes,reviseContent,requiredContent,satisfied,observe,targets,present,cleanText,fieldActive,field,onComplete,prepareComplete,repairMissing,pickupNear,pairReady,fieldDirections,animateField};
+G.HonroEvidenceQuests={version:1,baseAuthor:author,author:authorEvidence,active,ids,changes,reviseContent,requiredContent,satisfied,observe,targets,present,cleanText,fieldActive,field,onComplete,prepareComplete,repairMissing,pickupNear,pairReady,comparisonState,fieldDirections,animateField};
 })(globalThis);

@@ -66,6 +66,12 @@ function legacySteps(b,st,r){const h=b.honroState||{},out=[],add=(id,text,done=f
  default:add('current',r.summary,r.complete);
  }return out;
 }
+function holdInstruction(b,st,s,h){const area=st.act===3?'범위':'원',comparison=s.id==='compare-ledgers'&&G.HonroEvidenceQuests?.comparisonState(b);
+ if(!h?.contested&&comparison?.required&&!comparison.ready){const names=comparison.carriers.map(u=>u.name||heroName(u.cls)).join('·');return comparison.reason==='records'?'먼저 떨어진 기록함을 회수하세요':comparison.reason==='pair'?'기록 든 '+names+'를 나란히 모으세요':'기록 든 '+names+'를 상층 대조 지점 중앙으로 모으세요';}
+ if(h?.contested)return'표시된 '+area+' 안의 적을 처치하세요';
+ if(st.act===3&&h?.progress>=s.rounds&&(h.spawned||0)<(s.wave?.count||0))return'범위를 지키며 행동을 마쳐 증원 경고를 확인하세요';
+ const left=Math.max(0,s.rounds-(h?.progress||0)),count=st.act===3?'적 턴 '+left+'회':left+'턴';return h?.guarded?'그 자리에서 '+count+' 더 버티세요':'표시된 '+area+' 안에서 '+(st.act===3?'적 턴 '+s.rounds+'회':s.rounds+'턴')+' 버티세요';
+}
 function progressive(b,st,result,list,current){
  let chosen=current,rows,instruction;
  if(list.length){
@@ -76,7 +82,7 @@ function progressive(b,st,result,list,current){
    instruction=name+chosen.label;
    if(chosen.kind==='rescue')instruction+=' · 구조';
    else if(chosen.kind==='destroy')instruction+=' · 공격';
-   else if(chosen.kind==='hold'){const a=st.act===3?b.honroState?.act3:b.honroState?.act2,h=a?.holds?.[chosen.id];const area=st.act===3?'범위':'원';instruction=h?.contested?'표시된 '+area+' 안의 적을 처치하세요':h?.guarded?'그 자리에서 '+Math.max(0,chosen.rounds-(h.progress||0))+'턴 더 버티세요':'표시된 '+area+' 안에서 '+chosen.rounds+'턴 버티세요';}
+   else if(chosen.kind==='hold'){const a=st.act===3?b.honroState?.act3:b.honroState?.act2,h=a?.holds?.[chosen.id];instruction=holdInstruction(b,st,chosen,h);}
    else if(chosen.kind==='escort')instruction='운반자 앞에서 출구까지 길을 열어 주세요';
    else if(chosen.kind==='route')instruction=chosen.label;
    else if(chosen.kind==='reach')instruction=chosen.allHeroes?chosen.id==='party-reunion'?'중앙에 네 사람을 모은 뒤 행동을 끝내세요':'살아 있는 동행을 도착 지점에 모으세요':'표시된 도착 지점으로 이동하세요';
