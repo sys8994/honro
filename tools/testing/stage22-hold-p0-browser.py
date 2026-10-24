@@ -23,9 +23,9 @@ with serve_game() as base,sync_playwright() as pw:
   return False
  watch();p.wait_for_timeout(500);initial=state();assert not initial['hold']['contested'];assert initial['pairReady']if pending else not initial['pairReady'];rows.append({'initial':initial});capture('before-blocked'if baseline else 'fixed-blocked')
  if pending:
-  assert initial['hold']['progress']==2 and initial['hold']['spawned']==0 and '유지 횟수 완료'in initial['hud'];capture('two-counts-warning')
+  assert initial['hold']['progress']==2 and initial['hold']['spawned']==0 and '행동 마쳐 증원 확인'in initial['hud'];capture('two-counts-warning')
  if not baseline and not pending:
-  assert '소단'in initial['hud']and'설오'in initial['hud']and'나란히'in initial['hud'];p.keyboard.down('ArrowLeft');p.wait_for_function('HonroEvidenceQuests.pairReady(HonroApp.engine.b)',timeout=8000);p.keyboard.up('ArrowLeft');p.wait_for_timeout(200);assert state()['pairReady'];capture('fixed-records-together')
+  assert '소단'in initial['hud']and'설오'in initial['hud']and'모으세요'in initial['hud'];p.keyboard.down('ArrowLeft');p.wait_for_function('HonroEvidenceQuests.pairReady(HonroApp.engine.b)',timeout=8000);p.keyboard.up('ArrowLeft');p.wait_for_timeout(200);assert state()['pairReady'];capture('fixed-records-together')
  target=initial['teamEnds'][1]+2;reloaded=pending;actions=0;progress1=False
  for step in range(1600):
   s=state()
