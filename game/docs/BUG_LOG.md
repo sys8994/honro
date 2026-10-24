@@ -1,3 +1,7 @@
+# P0.3a 미사용21장 painted 빌드 데이터 생성 제거 — 2026-10-24
+
+현재 공통 실행 목록에 유일한 소비자 stage21-painted-art.js가 없는데 build가 HONRO_STAGE21_PAINTED JSON/이미지를 생성·로딩하고 있었다. shared/build.mjs의 해당6행만 제거했다. provider 소스/이미지 폴더·현행 원경·휴식터·HONRO_PAINTED_PILOTS는 그대로다. 활성 graph414→408파일/-829,353B와 달리 실제 초기 Game/Workshop 요청은 각각2건/-29,346B였다(로컬 비압축 body, 이미지4출력은 시작 시 요청되지 않음). 현재21장 원경 draw 픽셀 동일·공통 기동·build/web-split/활성 참조0과40개 실제 공개 그래프784파일 보존 확인. 부모 P0.2 발행 사실도 기존 도구로 등록했다. 추가21장 Playtest 대기는 변경 전 기준에서 미성립해 성공을 주장하지 않으며 범위 밖 수리는 하지 않았다. [측정·검사·한계](stage21-unused-build-p03a-20261024/README.md).
+
 # P0.2 동맹 HUD 캐시의 DOM 수명 — 2026-10-24
 
 mount는 새 빈 allied-roster를 만들지만 App.allySig가 남아 같은 ID/반올림HP/maxHP 저장을 다시 열면 동맹 목록을 채우지 않았다. 기준4cd의 실제 정상 frame 재진입에서 동맹4명→빈 목록을 재현했다. 서명을 해당 roster 노드에 귀속하고 전역 App.allySig 경로를 제거했다. HTML/순서/이름/HP/죽은 필터·스킬·전투·저장 코드는 보존한다. 수정 후 재진입4명, 새 목록 쓰기1회, 변함없는120회 갱신의 쓰기/mutation0·노드 유지, HP/maxHP/사망/동맹 없음 갱신을 확인했다. build/web-split·39개 실제 공개 그래프781파일 보존이 통과했다. P0.1 부모 공개 배포·대사2/11 재개 확인은 계획표에 반영했고 다른 단위는 착수하지 않았다. [재현 조건·검사](ally-roster-dom-p02-20261024/README.md).
