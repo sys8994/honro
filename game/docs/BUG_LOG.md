@@ -1,3 +1,7 @@
+# P1.1b story presentation 중복 제거 — 2026-10-24
+
+story.js가 narration/19비문/character 안쪽 copy/actions와 일반4페이지의 controls-focus-save tail을 반복했다. private storyCopy/finishPage로 해당 부분만 합치고 variant outer/ARIA/초상화/카메라와 staging controls-only early return을 유지했다. 기준/현재 production DOM8종 exact(비동기 canvas 상태 속성 정규화), escape1회·prev/next/audio/focus/save 순서/횟수·staging skip focus/추가save0, 상태/실제Continue differential·360/1280 실제레이아웃/버튼·build/web-split/공개44그래프845파일 보존 통과. 옛 document/11장 기대의 기존 테스트 실패는 기준에서도 확인해 범위 밖 수리를 하지 않았다. [근거·한계](story-presentation-p11b-20261024/README.md).
+
 # P1.1a 캠프 DOM 소유자 분리 — 2026-10-24
 
 skill-images가 이미지 수명 외 캠프 전체 key/sync/patch까지 소유했다. 기존 알고리즘을 mandatory camp-renderer로 그대로 옮기고 canRetainHost/scan으로 이미지 host 보존만 연결했다. 옛 patch alias/main 폴백은 제거했다. 이미지 lifecycle·main 나머지 exact, 실제 Chromium HUD/캠프 버튼·이미지 동일/상태갱신 중 추가요청·decode0, 랭크·스탯·분기·클래스 입력, 스크롤, 중복 slot key/details fixture와 제거된 loading target 정리, 기존 캠프 모델/build/web-split/실제 공개43그래프 보존 통과. 재렌더 포커스 body 이동은 기준에서도 같아 UX 수리는 범위 밖으로 유지했다. FPS 개선 주장은 없다. [검사·한계](camp-renderer-p11a-20261024/README.md).
