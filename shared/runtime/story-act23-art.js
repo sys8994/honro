@@ -4,7 +4,7 @@
 const marker=(b,id)=>b.honroMarkers?.find(m=>m.id===id),done=b=>b.honroState?.[b.honroStage<=20?'act2':'act3']?.done||{};
 function evidence(b){if(b.honroCustom||b.honroNarrativeRevision!==1)return[];const id=b.honroStage,d=done(b),at=(key,kind,extra={})=>{const m=marker(b,key);return m?{key,kind,x:m.x,y:m.y,...extra}:null;};let rows=[];
  if(id===15)rows=[at('groove','transport-traces')];
- if(id===16)rows=[at('record','torn-record')];
+ if(id===16&&(!G.HonroStage16Temple?.pilot(b)||d.hall))rows=[at('record','torn-record')];
  if(id===17)rows=[at('notes','work-log')];
  if(id===19)rows=[at('separate-1','mourning-hammer'),at('separate-2','mourning-bowl'),at('separate-3','farewell-place'),...[1,2,3].filter(i=>d['separate-'+i]&&!d['send-'+i]).map(i=>at('separate-'+i,'released-soul'))];
  if(id===22)rows=[at('compare-ledgers','paired-records')];

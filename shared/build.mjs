@@ -162,7 +162,7 @@ export async function runtimeEntries({vector=true,render=true,app=false}={}) {
 }
 
 // Keep the same authoring order for native consumers and the external web loader.
-export const projectAuthors=['HonroAct1Roster','HonroObjectiveRevision','HonroNarrativeRevision','HonroStage2Airborne','HonroBellAnomaly','HonroStoryCanonV1','HonroEvidenceQuests','HonroAct2Pacing','HonroNarrativeCatalogue','HonroStage11Quest','HonroStage14Rescue'];
+export const projectAuthors=['HonroAct1Roster','HonroObjectiveRevision','HonroNarrativeRevision','HonroStage2Airborne','HonroBellAnomaly','HonroStoryCanonV1','HonroEvidenceQuests','HonroAct2Pacing','HonroNarrativeCatalogue','HonroStage11Quest','HonroStage14Rescue','HonroStage16Temple'];
 export const authorProjectExpression=value=>projectAuthors.reduce((value,name)=>`${name}.author(${value})`,value);
 export async function runtimeParts(options={}) {
   return (await runtimeEntries(options)).map(entry=>entry.code);

@@ -27,5 +27,73 @@ W.execute=function(app,action){const b=app.engine?.b;
  mem.entries[action.source]={side:at.side,x:at.x,y:at.y,round:b.round,serial:b.honroState.actorTurnSerial||0};return result;
 };
 const tick=A.tick;A.tick=function(app,dt){if(active(app.engine?.b))warn(app);return tick(app,dt);};
-G.HonroStage16Temple={active,memory,entryFor};
+// Pilot A is authored into fresh entries only; old snapshots never acquire it.
+const pilot=b=>active(b)&&b.honroTempleEscortRevision===1;
+const monkIds=['objective','resident-1'];
+const escortMemory=b=>(b.honroState.templeEscort??={version:1,actors:{}});
+const mark=(b,id)=>b.honroMarkers.find(m=>m.id===id);
+const living=u=>!!u&&!u.dead&&u.hp>0;
+function author(project){return {...project,stages:project.stages.map(original=>{
+ if(!original.metadata?.campaign||original.metadata.stageId!==16||original.initialState?.honroTempleVersion!==1)return original;
+ const st=JSON.parse(JSON.stringify(original)),b=st.initialState,content=b.honroNarrativeContent;
+ b.honroTempleEscortRevision=1;
+ // Geometry, actors, combat resources and existing response events are untouched.
+ const list=b.honroAct2Steps.filter(s=>s.id!=='clear-rescue-threat');
+ const witness=list.find(s=>s.id==='witness');witness.afterEvidence='monk';
+ list.splice(list.findIndex(s=>s.id==='hall'),0,{id:'temple-escort',kind:'evidence',afterEvidence:'witness',label:'두 승려를 법당 툇마루로 안내'});
+ content.steps=JSON.parse(JSON.stringify(list));b.honroAct2Steps=list;
+ content.guide='승려를 구하고 증언과 열쇠를 받으세요. 두 승려를 법당 툇마루까지 안내한 뒤 기록방 안의 이송 기록을 확인하세요.';
+ const hall=st.markers.find(m=>m.id==='hall'),record=st.markers.find(m=>m.id==='record');
+ Object.assign(record,{x:6200,y:hall.y});
+ st.markers.push({id:'temple-escort',type:'act2',action:'act2',x:hall.x,y:hall.y,label:'두 승려를 법당 툇마루로 안내'});
+ const space=st.design.space;space.sites.record={...space.sites.record,x:record.x,y:record.y,surfaceId:'tm-great-hall-plinth',roomId:'great-hall',standing:{x:record.x,y:record.y,surfaceId:'tm-great-hall-plinth'}};
+ st.design.temple.escort={revision:1,actors:monkIds,arrival:{x:hall.x,y:hall.y},record:{x:record.x,y:record.y}};
+ return st;
+ })};}
+function arrived(b){const hall=mark(b,'hall');return monkIds.every(id=>{const u=b.units.find(u=>u.id===id);return living(u)&&Math.abs(u.y-hall.y)<20&&Math.abs(u.x-hall.x)<=180&&!u.jumping;});}
+function evidenceSatisfied(b,s){if(!pilot(b))return null;const done=A.memory(b).done;if(s.id==='temple-escort')return !!done.witness&&arrived(b);if(s.id==='witness'||s.id==='record')return !!done[s.afterEvidence]&&b.units.some(u=>u.side===0&&living(u)&&G.HonroEvidenceQuests.pickupNear(u,mark(b,s.id)));return null;}
+// The monks use the existing supported shelter exit and processional approach.
+// Walk/jump/integration remain the engine's swept physical movement. Reservations
+// add bodies to this civilian route only; no enemy-count or safety-radius gate.
+function blocked(b,u,p){const overlap=(at,v)=>Math.max(0,Math.min(at.x+u.r+2,v.x+v.r+2)-Math.max(at.x-u.r-2,v.x-v.r-2))*Math.max(0,Math.min(at.y,v.y)-Math.max(at.y-u.h,v.y-v.h));return b.units.some(v=>v.id!==u.id&&living(v)&&!v.honroObjectiveTarget&&!v.eaterCapturedBy&&overlap(p,v)>1e-5&&overlap(p,v)>=overlap(u,v)-1e-5);}
+function destination(b,u,index){const hall=mark(b,'hall');
+ for(const offset of [index?100:-100,index?150:-150,index?50:-50]){const p={x:hall.x+offset,y:hall.y};if(!blocked(b,u,p))return p;}
+ return {x:hall.x+(index?100:-100),y:hall.y};
+}
+function advanceMonks(app,dt){const e=app.engine,b=e.b,done=A.memory(b).done;
+ if(!pilot(b)||!done.witness||done['temple-escort']||app.dialogue||app.modal?.classList.contains('open')||!['aim','enemy','ally','summon'].includes(b.phase)||dt<=0)return;
+ const mem=escortMemory(b);
+ // Front first keeps the following monk from overtaking through a body.
+ for(const [index,id]of monkIds.entries()){
+  const u=e.unit(id);if(!living(u))continue;const q=mem.actors[id]??={};
+  u.fixed=false;
+  if(q.round!==b.round){q.round=b.round;u.moveLeft=u.maxMove;}
+  const end=destination(b,u,index);
+  if(Math.abs(u.x-end.x)<10&&Math.abs(u.y-end.y)<14&&!u.jumping){q.blocked=false;continue;}
+  // Leave the shelter on its authored right-hand exit, then climb the main route.
+  const surfaces=['tm-shelter-veranda','tm-processional-upper','tm-great-hall-plinth'];
+  const surface=e.surface(u.x,u.y-5,u.y+5),sid=surface?.t.honroSpaceSurfaceId||surface?.t.id;
+  let goal=end;
+  if(sid?.startsWith('tm-hall-')&&sid!=='tm-great-hall-plinth'&&u.y<end.y-40)q.escapeX=surface.t.x+surface.t.w+u.r+12;
+  if(u.y>=end.y-20)delete q.escapeX;
+  if(u.x<3505){const t=b.terrain.find(t=>t.id==='tm-shelter-veranda');goal={x:3510,y:C.topAt(b.terrain.find(t=>t.id==='tm-processional-upper'),3510)};if(u.x<3440)goal={x:3440,y:C.topAt(t,3440)};}
+  if(q.escapeX!==undefined)goal={x:q.escapeX,y:end.y};
+  const dir=Math.sign(goal.x-u.x),dtWalk=Math.min(dt,.05),nx=u.x+dir*Math.min(u.walkSpeed*dtWalk,Math.abs(goal.x-u.x));
+  const support=e.surface(nx,u.y-28,u.y+28),next={x:nx,y:support?.y??u.y};
+  q.blocked=blocked(b,u,next);
+  if(q.blocked){
+   // Re-plan a legal nearby passage above a body using the ordinary jump. A
+   // ceiling/another body still blocks horizontal travel; no snap or ghosting.
+   if(e.grounded(u)&&u.moveLeft>e.jumpCost(u)&&!blocked(b,u,{x:u.x,y:u.y-12}))e.jump(u);
+   continue;
+  }
+  if(u.moveLeft>0){const before=u.x;e.walk(u,dir,Math.min(dtWalk,Math.abs(goal.x-u.x)/u.walkSpeed));if(Math.abs(u.x-before)<.01&&e.grounded(u)&&surfaces.includes(sid))e.jump(u);}
+ }
+ // Current positions are also saved on the real actors, not reconstructed later.
+ app.dirty=true;
+}
+const eligible=A.eligibility;A.eligibility=function(app,m){const b=app.engine.b;if(pilot(b)&&m.id==='hall'&&!A.memory(b).done['temple-escort'])return{ok:false,reason:'두 승려가 아직 툇마루에 도착하지 않았습니다.'};return eligible(app,m);};
+const state=A.state;A.state=function(b){const out=state(b);if(!pilot(b)||A.current(b)?.id!=='temple-escort')return out;const hall=mark(b,'hall');out.targets=[{...hall,id:'temple-escort',kind:'exit',label:'두 승려를 법당 툇마루로 안내'},...monkIds.map(id=>b.units.find(u=>u.id===id)).filter(living).map(u=>({id:u.id,kind:'exit',x:u.x,y:u.y-u.h,label:u.name,unitId:u.id}))];return out;};
+const pilotTick=A.tick;A.tick=function(app,dt){advanceMonks(app,dt);return pilotTick(app,dt);};
+G.HonroStage16Temple={active,memory,entryFor,pilot,author,arrived,evidenceSatisfied,advanceMonks,blocked};
 })(globalThis);

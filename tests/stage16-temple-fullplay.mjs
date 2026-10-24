@@ -19,7 +19,7 @@ const gameplayProjectSha256=hash({terrain:stageSource.terrains,units:stageSource
 const provenance={sourceHash,runtimeSha256,gameplayProjectSha256,gameplayRuntimeSha256,controllerSha256:hash(await readFile(new URL(import.meta.url),'utf8')),helperSha256:hash(await readFile(new URL('./stage16-temple-fullplay-helper.mjs',import.meta.url),'utf8')),checkoutCommit:execFileSync('git',['rev-parse','HEAD'],{encoding:'utf8'}).trim(),productionCommit:process.env.HONRO_FULLPLAY_PRODUCTION_COMMIT||null};
 if(process.env.HONRO_FULLPLAY_PROVENANCE_ONLY==='1'){await writeFile(`${out}/provenance.json`,JSON.stringify(provenance,null,2));console.log(JSON.stringify(provenance));process.exit(0);}
 let virtualMs=resume?.virtualMs||0;g.performance={now:()=>virtualMs};
-const readiness=campaignEntryReadiness(g);await writeFile(`${out}/readiness-ledger.json`,JSON.stringify(readiness,null,2));
+const readiness=process.env.HONRO_FULLPLAY_ENTRY_FIXTURE?JSON.parse(await readFile(process.env.HONRO_FULLPLAY_ENTRY_FIXTURE,'utf8')):campaignEntryReadiness(g);await writeFile(`${out}/readiness-ledger.json`,JSON.stringify(readiness,null,2));
 const p=resume?.profile||plain(g.AppRegression.fresh());
 if(!resume){const training=prepareCamp(g,p,readiness);await writeFile(`${out}/camp-training.json`,JSON.stringify(training,null,2));}
 let app=h.load(p);
@@ -102,7 +102,9 @@ for(let turn=0;turn<actionLimit&&!terminal();turn++){
 if(!terminal()&&!stopReason)stopReason='controller action limit';if(terminal()){app.outcome();for(let i=0;app.dialogue&&i<300;i++)stories();}
 const checkpoint=terminal()?null:await save();
 const templeDefense=g.HonroStage16Temple.memory(b),waveTelegraphs=Object.entries(templeDefense.entries).map(([source,entry])=>({source,warning:templeDefense.warnings[source],entry,births:births.filter(v=>v.source===source)}));
-if(b.phase==='won'){
+if(b.phase==='won'&&g.HonroStage16Temple.pilot(b)){
+ assert.deepEqual(Object.keys(g.HonroAct2.memory(b).done),['monk','witness','temple-escort','hall','record']);assert(g.HonroStage16Temple.arrived(b));
+}else if(b.phase==='won'){
  assert.deepEqual(Object.keys(g.HonroAct2.memory(b).done),['clear-court','monk','hall','hold-hall','record','clear-temple','witness']);
  assert.equal(e.alive(1).length,0);assert.equal(births.filter(v=>/^hold-hall-/.test(v.source)).length,10);assert(g.HonroAct2.memory(b).holds['hold-hall'].progress>=5, 'At least five complete guarded rounds; occupied wave entries may prolong defense');
  assert(b.units.filter(u=>u.honroProtected).every(u=>!u.dead&&u.hp>0),'Every protected resident survives');assert(e.unit('resident-1').honroResolved,'The monk was rescued through E');

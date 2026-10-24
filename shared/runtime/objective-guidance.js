@@ -4,7 +4,7 @@
 const alive=u=>!!u&&!u.dead&&u.hp>0;
 const heroName=cls=>G.HONRO_CONTENT.hero[cls]?.name||'동행';
 const heroes=b=>b.units.filter(u=>u.side===0&&!u.summoned&&!u.enthrall&&alive(u));
-const action=s=>s.id==='party-reunion'?'네 사람 집결 후 행동 종료':s.kind==='destroy'?'공격으로 파괴':s.kind==='rescue'?'구조':s.kind==='interact'?'상호작용':s.kind==='hold'?`${s.rounds}회 유지`:s.kind==='clear'?'대상 적을 모두 제압':s.kind==='route'?'동행 1명 출구 도착':s.kind==='escort'?'호송 대상 도착':s.kind==='reach'?s.allHeroes?'생존 동행 전원 도착':'동행 1명 도착':'대상 제압';
+const action=s=>s.id==='temple-escort'?'호송 대상 도착':s.id==='party-reunion'?'네 사람 집결 후 행동 종료':s.kind==='destroy'?'공격으로 파괴':s.kind==='rescue'?'구조':s.kind==='interact'?'상호작용':s.kind==='hold'?`${s.rounds}회 유지`:s.kind==='clear'?'대상 적을 모두 제압':s.kind==='route'?'동행 1명 출구 도착':s.kind==='escort'?'호송 대상 도착':s.kind==='reach'?s.allHeroes?'생존 동행 전원 도착':'동행 1명 도착':'대상 제압';
 const stepText=(s,id)=>`${s.label}${s.requiredClass&&!s.label.includes(heroName(s.requiredClass))?' · '+heroName(s.requiredClass):''} · ${s.kind==='hold'?(id>=21?'적 턴 ':'라운드 ')+s.rounds+'회 완료':action(s)}`;
 const endings={
  1:'동행 1명이 고개 끝 도착 지점에 닿으면 완료',
@@ -48,6 +48,7 @@ function enhance(b,st,result){if(b.honroCustom)return result;
    if(s.kind==='reach'&&s.allHeroes){const group=heroes(b),inside=group.filter(u=>G.HonroAct3.sameFloor(u,m,s.radius||440)).length;summary+=' · 집결 '+inside+'/'+group.length;if(s.id==='party-reunion')summary+=' · 집결 후 행동 종료';}
   }}
  const presentation=progressive(b,st,result,list,s);
+ if(G.HonroStage16Temple?.pilot(b)&&s?.id==='temple-escort'){summary=s.label;presentation.currentInstruction=s.label;}
  return{...result,summary,blockReason,completionText:ending(b,st,list),failureText:failure(b,st,list,result),checklist,...presentation};
 }
 function legacySteps(b,st,r){const h=b.honroState||{},out=[],add=(id,text,done=false)=>out.push({id,text,done}),marks=b.honroMarkers||[],boss=b.units.find(u=>u.id==='boss'),seals=G.HonroQuestTargets.records(b).filter(t=>t.honroSeal);
