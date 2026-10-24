@@ -1,0 +1,41 @@
+{
+  "results": [
+    {
+      "mode": "two-monks",
+      "maxOverlapArea": 0,
+      "largestPhysicalStep": 9.375650675636969,
+      "arrivedBeforeExternalOverlap": true
+    },
+    {
+      "mode": "hero-jump",
+      "maxOverlapArea": 0,
+      "largestPhysicalStep": 9.375650675636969,
+      "arrivedBeforeExternalOverlap": true
+    },
+    {
+      "mode": "enemy-jump",
+      "maxOverlapArea": 0,
+      "largestPhysicalStep": 9.375650675636969,
+      "arrivedBeforeExternalOverlap": true
+    },
+    {
+      "mode": "tall-enemy",
+      "maxOverlapArea": 0,
+      "largestPhysicalStep": 9.375650675636969,
+      "arrivedBeforeExternalOverlap": true
+    },
+    {
+      "mode": "occupied-veranda",
+      "maxOverlapArea": 0,
+      "largestPhysicalStep": 9.375650675636969,
+      "arrivedBeforeExternalOverlap": true
+    },
+    {
+      "mode": "late-landing",
+      "maxOverlapArea": 0,
+      "largestPhysicalStep": 5.429868055555744,
+      "arrivedBeforeExternalOverlap": true
+    }
+  ],
+  "scope": "고정/후발 점유 fixture에서 정상 엔진 적분 사용. 라운드 직접 진행은 자원 복구용이며 실제 전투 턴 근거가 아니다."
+}

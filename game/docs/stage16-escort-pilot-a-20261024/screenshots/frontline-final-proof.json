@@ -1,0 +1,72 @@
+{
+  "sourceCommit": "4d53f8ce8a72e48e2334887f15c19e4be365a293",
+  "projectSha256": "c911d3f9e6ca636d9edb083beb03346088e2aa90b2e5dbd0103b64233791f587",
+  "runtimeSha256": "a8abd6802905bb40fccf89b449b397bbffd048945c8cd3a834692b1b7465addc",
+  "finalRuntimeExact": true,
+  "strategy": "frontline",
+  "round": 22,
+  "phase": "won",
+  "checkpoints": [
+    {
+      "id": "monk",
+      "round": 12
+    },
+    {
+      "id": "witness",
+      "round": 12
+    },
+    {
+      "id": "temple-escort",
+      "round": 19
+    },
+    {
+      "id": "hall",
+      "round": 20
+    },
+    {
+      "id": "record",
+      "round": 22
+    }
+  ],
+  "level": 13,
+  "sp": {
+    "archer": {
+      "earned": 27,
+      "spent": 27,
+      "statTraining": 1
+    },
+    "mage": {
+      "earned": 27,
+      "spent": 27,
+      "statTraining": 0
+    },
+    "knight": {
+      "earned": 27,
+      "spent": 27,
+      "statTraining": 1
+    },
+    "occultist": {
+      "earned": 27,
+      "spent": 27,
+      "statTraining": 3
+    }
+  },
+  "deaths": [],
+  "itemsUnchanged": true,
+  "actionCounts": {
+    "fire": 76,
+    "move": 28,
+    "defend": 23,
+    "heal-stake": 1,
+    "jump": 7,
+    "land": 9,
+    "E": 2,
+    "recovery-jump": 1,
+    "nav-blocked": 1
+  },
+  "enemyDefeats": 25,
+  "normalResources": true,
+  "fixtureScope": "입장 프로필/27SP 배분은 준비. 진입 후 Engine/App 실제 이동·도약·발사·방어·상호작용만 사용. 사용자 저장 없음. Node DOM/render/storage/clock double이므로 공개/실기기/사람의 체감시간 근거가 아님.",
+  "balanceLimit": "22턴으로 15턴 설계 목표 미달. 돌진 8턴은 몸 충돌 보완 전 후보의 별도 결과.",
+  "finalCandidate": "9f7091e782c82f8d4e9a5df23697132db5409fa0"
+}
