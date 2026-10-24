@@ -1,3 +1,7 @@
+# 명시적 디버그 휴식터 선택대화 eligibility 일치 — 2026-10-24
+
+클리어 없는 debug14에서 휘겸 버튼은 새 대화로 표시되지만 JourneyContent.optional의 일반 open 조건으로 빈 배열을 반환해 아무것도 열리지 않았다. 수정 전 실제 여정첩14→휴식터→휘겸 클릭으로 재현했다. 명시된 debugRestStage와 표시 목적지가 같은 때만 optional의 scoped preview를 전달하며, rest 표시/실행/복원은 같은 optionalLines를 사용한다. 일반 미해금 또는 선택 없는 debug는 disabled/새 대화 없음으로 표시하고 실행도 차단한다. recruit/첫 대화 장/일반 클리어 조건 및 원문·rowId·history 규칙은 유지한다. 네이티브 --debug-optional 및 Chromium4상태(debug14/normal locked/normal unlocked/debug no-selection), 반복 클릭/skip/camp 왕복·중복history 없음·cleared/normalProfile/storage 불변 통과. build/web-split·공개48그래프867파일 SHA/bytes 보존 확인. 포커스 선행 수정은 독립40c1bab86a11ae8c58c18d2beec0fe4267ddb534로 먼저 푸시했다. 전체30장/전스킬은 미실행, 미술/Library/16장 기믹은 변경하지 않았다. 원시 결과 _local/reports/rest-debug-optional/ 및 camp-fixes/.
+
 # 캠프 갱신 포커스 보존 — 2026-10-24
 
 keyed insertBefore와 영웅 카드 재배치가 연결된 버튼도 잠시 분리해 activeElement를 body로 떨어뜨렸다. 기존 캠프 내부 focus만 캡처하고 DOM patch/캠프 후처리 끝에 같은 visible/enabled 노드를 preventScroll로 복원한다. disabled/숨김/삭제는 같은 조작 그룹의 기존 노드만 대체하며 모달 또는 다른 컨트롤의 focus는 건드리지 않는다. Chromium390×844 정상 frame에서 Enter2회·rank8상한·SP1→0·stat/branch/hero·modal/return·scroll·local fallback 통과. 기존 HUD/camp 노드 유지·이미지 추가request/decode0·제거 target 정리와 캠프 모델/build/web-split 통과. 초상화 전달/16장 기믹은 이번 커밋에 없다. 원시 결과는 _local/reports/camp-focus/ 및 camp-renderer-p11a/.

@@ -8,6 +8,6 @@ const transitionAfter=id=>[1,9,18].includes(Number(id))?'direct':'rest';
 function interlude(id){return clone(D.arrivals[id]||[]);}
 function required(profile,id){if(id!=null)return open(profile,id)?interlude(id):[];if(profile?.cleared?.[30])return clone(D.restEndings[30].required);return profile?.cleared?.[20]&&!next(profile)?clone(D.restEndings[20].required):[];}
 const first={archer:1,mage:3,knight:6,occultist:11};
-function optional(profile,id,cls){if(!profile?.recruited?.includes(cls))return[];if(id!=null){if(!open(profile,id)||id<first[cls])return[];return clone(D.optional[id]?.[cls]||[]);}const end=profile?.cleared?.[30]?30:profile?.cleared?.[20]&&!next(profile)?20:null;return end?clone(D.restEndings[end]?.optional[cls]||[]):[];}
+function optional(profile,id,cls,{debugPreviewStage=null}={}){if(!profile?.recruited?.includes(cls))return[];if(id!=null){const preview=debugPreviewStage===Number(id)&&!!at(id);if((!open(profile,id)&&!preview)||id<first[cls])return[];return clone(D.optional[id]?.[cls]||[]);}const end=profile?.cleared?.[30]?30:profile?.cleared?.[20]&&!next(profile)?20:null;return end?clone(D.restEndings[end]?.optional[cls]||[]):[];}
 G.HonroJourneyContent={version,sources,places,ending,at,next,transitionAfter,interludeSources,interlude,required,optional};
 })(globalThis);

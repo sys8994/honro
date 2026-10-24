@@ -103,3 +103,8 @@ skill-images의 이미지 로딩·캐시와 모닥불 DOM 조정 책임을 분�
 - 이번 차수의 종료 기준은 확정된 작은 정리 단위의 원격 보존·master/Pages 반영과 관련 확인이다. 추후 실제 병목이나 새 회귀가 확인되면 그 근거로 다음 단위를 정한다.
 
 최종 문서 정리는 조정자가 직접 수행했다. README 진입 안내, ARCHITECTURE의 현재 모듈 소유권·Map6/profile4·선택 로딩·발행 보존, BUGFIX_CONTEXT의 역사 구분을 정리했다. 문서만 변경하므로 게임 빌드는 다시 하지 않는다.
+
+## 승인된 휴식터 후속 버그 수정 — 2026-10-24
+- 포커스: 독립40c1bab86a11ae8c58c18d2beec0fe4267ddb534 커밋/원격 보존. keyed DOM/카드 순서 갱신 후 기존 캠프 focus를 preventScroll로 복원. Enter/rank상한/SP소진/stat/branch/hero/modal/scroll·동일노드/추가이미지request/decode0 검증 통과.
+- 디버그 선택대화: 실제 debug14 휘겸 새 대화 무반응을 재현한 뒤 표시/실행 eligibility 공유 및 explicit stage preview로 수정. normal locked/unlocked/debug no-selection과 반복/skip/캠프 왕복·history/cleared/일반저장 불변, 관련 build/web-split·48공개그래프 보존 통과. 부모 후보 검토/배포 대기.
+- 초상화32 원본 전달은 Library 실패 상태로 보존하고 다운로드를 반복하지 않았다. 16장 시범A는 별도 승인 큐이며 상세 지시/확정 대사 수신 후 별도 브랜치·되돌릴 커밋 단위로 진행한다. 이 두 버그 수정에는 기믹/대사/지형 변경이 없다.
