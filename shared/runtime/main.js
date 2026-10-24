@@ -33,15 +33,15 @@
     // This clone is session-only; only the normal profile is ever exported/saved.
     function debugProfile(normal) { return clone(normal); }
     function terrain(id, x, y, w, h, mat = 'rock', extra = {}) { return { id, x, y, w, h, mat, hp: mat === 'wood' ? 330 : 99999, maxHp: mat === 'wood' ? 330 : 99999, route: true, ...extra }; }
-    function makeLegacyWorld(st, p, training = false, cls = 'archer', skill) {
+    function initializeTrainingBattle(st, p, _training, cls = 'archer', skill) {
         const b = C.createBattle(1, clone(p), 'practice', { party: [cls], distance: 900 });
         b.stage = st.id;
         b.stageId = st.id;
         b.honroStage = st.id;
-        b.mode = training ? 'practice' : 'campaign';
-        b.width = training ? 2400 : st.w;
-        b.height = training ? 1380 : st.h;
-        b.vertical = !training && st.theme === 'tree';
+        b.mode = 'practice';
+        b.width = 2400;
+        b.height = 1380;
+        b.vertical = false;
         b.terrain = [];
         b.units = [];
         b.projectiles = [];
@@ -61,7 +61,7 @@
         b.reviewDamage = {};
         b.heroes = clone(p.heroes);
         b.startXP = Object.fromEntries(ROSTER.map(c => [c, b.heroes[c].xp]));
-        b.wind = training ? 7 : ({ forest: 8, temple: -7, gate: 10, river: -12, valley: 23, bridge: 16, tree: 8, shrine: -15 }[st.theme] || 6);
+        b.wind = 7;
         b.enemyLimit = st.id === 1 ? 2 : 3;
         b.sceneVersion = (b.sceneVersion || 0) + 10;
         b.heroDamage = 0;
@@ -74,83 +74,8 @@
         b.honroState = { flags: {}, collected: [], hold: 0, lastRound: 1, rescued: false };
         b.honroMarkers = [];
         const add = (...args) => b.terrain.push(terrain(...args));
-        if (training) {
-            add('trainingfloor', 0, 1010, b.width, 400);
-            add('trainingstep', 1360, 850, 240, 23, 'wood', { oneWay: true });
-        }
-        else if (st.id === 1) {
-            add('ground', 0, 1080, st.w, 500);
-            add('lowrise', 820, 1020, 460, 35, 'wood', { oneWay: true });
-            add('ramp', 1440, 1080, 410, 230, 'rock', { slope: -100 });
-            add('far-bank', 1850, 980, 600, 570);
-        }
-        else if (st.id === 2) {
-            add('low', 0, 1190, st.w, 350);
-            add('left', 0, 1010, 780, 330);
-            add('steps1', 640, 1110, 330, 200);
-            add('middle', 1080, 990, 630, 360);
-            add('stair', 1580, 1090, 270, 220);
-            add('templeyard', 1860, 890, 990, 590);
-            add('roofwalk', 1930, 685, 310, 21, 'wood', { oneWay: true });
-        }
-        else if (st.id === 3) {
-            add('floor', 0, 1120, st.w, 400);
-            add('gatewalk', 900, 900, 360, 26, 'wood', { oneWay: true });
-            add('stair1', 610, 1020, 300, 20, 'wood', { oneWay: true });
-            add('eastledge', 1720, 1010, 360, 25, 'wood', { oneWay: true });
-            add('ruinwall', 2210, 930, 100, 190, 'stone', { hp: 470, maxHp: 470 });
-        }
-        else if (st.id === 4) {
-            add('mudfloor', 0, 1240, st.w, 500);
-            add('nearbank', 0, 1050, 680, 500);
-            add('reedland', 870, 1090, 510, 460);
-            add('midpier', 1570, 960, 430, 26, 'wood', { oneWay: true });
-            add('bridge1', 630, 1100, 270, 24, 'wood', { oneWay: true });
-            add('bridge2', 1350, 1080, 300, 24, 'wood', { oneWay: true });
-            add('farbank', 2220, 1080, 880, 500);
-            add('ramp3', 1940, 1170, 290, 180, 'rock', { slope: -90 });
-        }
-        else if (st.id === 5) {
-            add('valleyfloor', 0, 1540, st.w, 500);
-            add('west', 0, 1030, 850, 820);
-            add('westslant', 850, 1030, 700, 820, 'rock', { slope: 460 });
-            add('eastslope', 2140, 1490, 700, 390, 'rock', { slope: -460 });
-            add('east', 2840, 1030, 900, 820);
-            add('lowaltar', 1690, 1320, 290, 20, 'wood', { oneWay: true });
-            for (let i = 0; i < 4; i++)
-                add('weststair' + i, 980 + i * 150, 1200 + i * 87, 200, 18, 'wood', { oneWay: true });
-            for (let i = 0; i < 4; i++)
-                add('eaststair' + i, 2170 + i * 155, 1400 - i * 100, 220, 18, 'wood', { oneWay: true });
-        }
-        else if (st.id === 6) {
-            add('ravine', 0, 1470, st.w, 500);
-            add('west', 0, 1010, 760, 730);
-            add('east', 2610, 1010, 760, 730);
-            for (let i = 0; i < 8; i++)
-                add('plank' + i, 735 + i * 239, 1020 + Math.sin(i / 7 * Math.PI) * 100, 250, 25, 'wood', { hp: 420, maxHp: 420 });
-            for (let i = 0; i < 6; i++)
-                add('lower' + i, 900 + i * 295, 1360 - (i % 2) * 100, 245, 22, 'wood', { oneWay: true, hp: 99999, maxHp: 99999 });
-            add('rise', 2320, 1370, 350, 200, 'rock', { slope: -300 });
-        }
-        else if (st.id === 7) {
-            add('rootfloor', 0, 1970, st.w, 400);
-            for (let i = 0; i < 8; i++) {
-                const x = i % 2 ? 1470 : 710, yy = 1820 - i * 152;
-                add('branch' + i, x, yy, 780, 25, 'wood', { oneWay: true, hp: 99999, maxHp: 99999 });
-            }
-            add('altarledge', 1800, 720, 800, 28, 'stone', { oneWay: true });
-            for (let i = 0; i < 5; i++)
-                add('backroute' + i, 120 + i * 130, 1790 - i * 166, 320, 22, 'wood', { oneWay: true, hp: 99999, maxHp: 99999 });
-        }
-        else {
-            add('floor', 0, 1400, st.w, 550);
-            add('westterrace', 0, 1120, 970, 800);
-            add('midstep', 1090, 1250, 480, 20, 'wood', { oneWay: true });
-            add('shrinebase', 1870, 1050, 1260, 850);
-            add('slope', 1500, 1360, 480, 540, 'stone', { slope: -310 });
-            add('altarroof', 2210, 825, 380, 24, 'wood', { oneWay: true });
-            add('rearstep', 3140, 1220, 430, 22, 'wood', { oneWay: true });
-        }
+        add('trainingfloor', 0, 1010, b.width, 400);
+        add('trainingstep', 1360, 850, 240, 23, 'wood', { oneWay: true });
         const topAt = (x, limit = Infinity) => { let y = b.height - 180; for (const t of b.terrain) {
             if (t.broken || x < t.x || x > t.x + t.w)
                 continue;
@@ -158,99 +83,27 @@
             if (yy <= limit)
                 y = Math.min(y, yy);
         } return y; };
-        let party = training ? [cls] : p.recruited.slice();
-        party.forEach((c, i) => { let x = training ? 280 : st.id === 7 ? 270 + i * 140 : ({ archer: 205, mage: 370, knight: 535, occultist: 430 }[c]); let y = topAt(x); if (!training && c === 'archer' && st.id >= 3 && st.id !== 7) {
-            add('archer-perch', 100, y - 150, 280, 19, 'wood', { oneWay: true, hp: 99999, maxHp: 99999 });
-            y -= 150;
-        } const u = C.makeUnit(c, 0, x, y, { id: 'p-' + c, name: H.hero[c].name, loadout: [...p.loadouts[c]], tune: p.tuning[c] ?? .5 }); C.applyHero(u, b.heroes[c], true); u.acted = false; u.cooldowns = {}; u.spawnX = x; u.spawnY = y; b.units.push(u); });
-        if (training) {
-            const u = b.units[0];
-            u.focus = u.maxFocus = 9999;
-            u.ranks = { ...u.ranks };
-            if (skill) {
-                u.loadout = [skill];
-                u.ranks[skill] = S[skill]?.ultimate || S[skill]?.basic ? 1 : p.heroes[cls].ranks[skill] || 1;
-                b.heroes[cls].ranks = { ...u.ranks };
-            }
-            for (let i = 0; i < 5; i++) {
-                const x = 920 + i * 180, y = topAt(x);
-                const t = C.makeUnit(i % 2 ? 'knight' : 'archer', 1, x, y, { id: 'practice-' + i, name: '허상', role: 'dummy', fixed: true, hp: 9000, maxHp: 9000, loadout: ['A01'], awake: true });
-                t.honroType = ['ghost', 'beast', 'shade', 'human', 'crow'][i];
-                b.units.push(t);
-            }
+        const party = [cls];
+        party.forEach(c => { const x = 280, y = topAt(x); const u = C.makeUnit(c, 0, x, y, { id: 'p-' + c, name: H.hero[c].name, loadout: [...p.loadouts[c]], tune: p.tuning[c] ?? .5 }); C.applyHero(u, b.heroes[c], true); u.acted = false; u.cooldowns = {}; u.spawnX = x; u.spawnY = y; b.units.push(u); });
+        const u = b.units[0];
+        u.focus = u.maxFocus = 9999;
+        u.ranks = { ...u.ranks };
+        if (skill) {
+            u.loadout = [skill];
+            u.ranks[skill] = S[skill]?.ultimate || S[skill]?.basic ? 1 : p.heroes[cls].ranks[skill] || 1;
+            b.heroes[cls].ranks = { ...u.ranks };
         }
-        else {
-            let count = st.enemies;
-            for (let i = 0; i < count; i++) {
-                let x = 970 + (st.w - 1220) * (i / (count - 1 || 1));
-                if (st.id === 1)
-                    x = 850 + i * 315;
-                if (st.id === 7)
-                    x = i % 2 ? 1920 : 820;
-                let y = st.id === 7 ? 1820 - Math.floor(i / 2) * 304 : topAt(x);
-                let role = ['bow', 'fire', 'shield', 'bow', 'ice', 'leaper', 'bow', 'ward'][i % 8];
-                if (!C.ENEMIES[role])
-                    role = 'bow';
-                let u = C.makeEnemy({ role, x, y }, b.terrain, C.STAGES[st.id - 1], i);
-                u.id = 'foe-' + i;
-                u.x = x;
-                u.y = y;
-                u.spawnX = x;
-                u.spawnY = y;
-                u.name = ['길막이', '뿌리짐승', '빈갑옷', '등불 도둑', '행렬귀', '검은 날짐승'][i % 6];
-                u.honroType = ['ghost', 'beast', 'human', 'lantern', 'shade', 'crow'][i % 6];
-                u.hp = u.maxHp = Math.round(u.maxHp * (st.id === 1 ? .63 : .82));
-                u.attack *= st.id === 1 ? .64 : .79;
-                u.combatBaseHp = u.maxHp / (C.DIFFICULTIES[b.difficulty]?.hp || 1);
-                u.combatBaseAttack = u.attack / (C.DIFFICULTIES[b.difficulty]?.damage || 1);
-                u.awake = true;
-                u.aggroUntil = 999;
-                u.group = 0;
-                u.fixed = u.honroType === 'crow' || u.honroType === 'lantern';
-                if (u.fixed)
-                    u.y -= 90;
-                u.spawnY = u.y;
-                b.units.push(u);
-            }
-        }
-        const mk = (type, x, y, label) => b.honroMarkers.push({ type, x, y, label });
-        if (!training) {
-            if (st.objective === 'escort') {
-                const x = 390, y = topAt(x);
-                b.units.push(C.makeUnit('knight', 2, x, y, { id: 'objective', name: '상여', role: 'caravan', honroType: 'bier', hp: 1450, maxHp: 1450, r: 50, h: 88, fixed: true, loadout: [] }));
-                mk('exit', st.w - 180, topAt(st.w - 180), '고개');
-            }
-            if (st.objective === 'defend') {
-                const x = 820, y = topAt(x);
-                b.units.push(C.makeUnit('knight', 2, x, y, { id: 'objective', name: '피난문', role: 'ward', honroType: 'bier', hp: 1850, maxHp: 1850, r: 50, h: 90, fixed: true, loadout: [] }));
-                mk('shrine', x, y, '피난문');
-            }
-            if (['seals', 'boss'].includes(st.objective)) {
-                let xs = st.id === 2 ? [1550, 2540] : st.id === 5 ? [2920, 3400] : [2120, 2990];
-                xs.forEach((x, i) => add('seal-' + i, x - 35, topAt(x) - 132, 70, 132, 'stone', { honroSeal: true, device: 'ward', hp: st.id < 5 ? 340 : 500, maxHp: st.id < 5 ? 340 : 500, route: false }));
-            }
-            if (st.objective === 'recover') {
-                for (const x of [1050, 1690, 2480])
-                    mk('relic', x, topAt(x), '이름');
-                mk('exit', st.w - 170, topAt(st.w - 170), '나루');
-            }
-            if (st.objective === 'rescue') {
-                let x = 2540, y = topAt(x);
-                b.units.push(C.makeUnit('archer', 2, x, y, { id: 'objective', name: '생존자', role: 'prisoner', honroType: 'human', hp: 1100, maxHp: 1100, r: 22, h: 75, fixed: true, loadout: [] }));
-                mk('exit', st.w - 130, topAt(st.w - 130), '건너편');
-            }
-            if (st.objective === 'ritual')
-                mk('shrine', 2260, 720, '왕문');
-            if (st.objective === 'boss') {
-                const x = 2780, y = topAt(x);
-                b.units.push(C.makeUnit('knight', 1, x, y, { id: 'boss', name: '장례길의 주인', role: 'golem', boss: 1, honroType: 'boss', hp: 1900, maxHp: 1900, attack: 2.4, armor: .12, r: 44, h: 168, loadout: ['S09', 'S02'], fixed: false, awake: true, aggroUntil: 999, group: 0 }));
-            }
+        for (let i = 0; i < 5; i++) {
+            const x = 920 + i * 180, y = topAt(x);
+            const t = C.makeUnit(i % 2 ? 'knight' : 'archer', 1, x, y, { id: 'practice-' + i, name: '허상', role: 'dummy', fixed: true, hp: 9000, maxHp: 9000, loadout: ['A01'], awake: true });
+            t.honroType = ['ghost', 'beast', 'shade', 'human', 'crow'][i];
+            b.units.push(t);
         }
         b.active = b.units.find(u => u.side === 0).id;
         b.sceneVersion++;
         return b;
     }
-    function makeWorld(st,p,training=false,cls='archer',skill){return G.HonroWorld.build(st,p,training,cls,skill,makeLegacyWorld);}
+    function makeWorld(st,p,training=false,cls='archer',skill){return G.HonroWorld.build(st,p,training,cls,skill,initializeTrainingBattle);}
     class App {
         constructor() { this.root = $('app'); this.modal = $('modal'); this.profileStore = G.HonroProfileStore.create(); this.normalProfile = this.profileStore.initial; this.debugMode = !!this.normalProfile.settings.debugMode && !G.HONRO_EMBEDDED; this.profile = this.debugMode ? debugProfile(this.normalProfile) : this.normalProfile; this.engine = null; this.scene = null; this.screen = 'title'; this.stageId = this.profile.lastStage || 1; this.cls = this.profile.recruited[0]; this.profileImportSequence = 0; this.branch = 0; this.selectedByUnit = {}; this.selected = 'A01'; this.charging = false; this.power = .58; this.keys = new Set(); this.stick = { x: 0, y: 0 }; this.contacts = new Map(); this.audio = C.AudioEngine ? new G.HonroAudio() : null; this.audio?.configure(this.profile.settings); this.prev = performance.now(); this.acc = 0; this.uiAge = 0; this.dirty = false; this.dialogue = null; this.preview = null; this.trainingClass = 'archer'; this.trainingSkill = 'A01'; this.trainingPassives = {}; this.trainingRanks = {}; this.eventText = ''; this.eventUntil = 0; this.banterQueue=[]; this.banterCurrent=null; this.banterUntil=0; this.bind(); }
         persist() { if(G.HONRO_EMBEDDED||this.customMap||this.profileStore.locked)return false; G.HonroMukjongAudio?.observe(this); G.HonroProgression.persist(this); G.HonroSplitCampaign?.persist(this); this.profile.party = [...this.profile.recruited]; if(this.debugMode)return; this.normalProfile=this.profile; if (!this.profileStore.save(this.profile) && !this.storageWarned) {
