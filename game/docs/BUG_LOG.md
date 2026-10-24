@@ -1,3 +1,7 @@
+# P2.2 퇴역 이미지 지형 provider와 잔여 분기 — 2026-10-24
+
+이미 bundle에서 빠진 provider17개/153,642B를 삭제하고 vector 역사자료31,526B는 byte-exact migration 이동했다. inventory에 원본 hash/고정 링크를 기록했다. 현재 없는 provider를 묻는6파일 분기/registry만 정리해3,165B 감소했다. v8/legacy soundWindow와 12/24 tile/culling/정렬 유지. Native9개 렌더 픽셀·scale/tile/battle 불변·legacy clip/overlay exact, 실제 Chromium 정지 경계17항목/Game·Workshop 공통 기동·build/web-split/공개46그래프855파일 보존 통과. 기존 정지 검사의 retired registry 케이스만 부재 계약으로 교체했다. 활성 graph354파일/2,642B 감소는 source 퇴역량·실제 요청/FPS와 다르다. 원본 이미지/역사 테스트/입력은 보존했다. [범위·검사·한계](retired-art-providers-p22-20261024/README.md).
+
 # P2.1 training initializer의 도달 불가 캠페인 분기 제거 — 2026-10-24
 
 private makeLegacyWorld는 trainingWorld의 true callback으로만 호출되는데 옛 campaign 지형/enemy/objective 분기를 남기고 있었다. initializeTrainingBattle로 명명하고 해당 분기/mk만 제거했다. seed 지형2개/dummy5개를 포함한 training side effect와 callback ABI는 유지했다. main147행/8,608B 감소. production main/HONRO_TOOLS의4클래스20선택에서 seed·최종battle·profile exact(Date/RNG고정), sceneVersion12→13, canonical1/실제split-v1 25의 throw callback 비호출, 실제 모바일 UI 허공터 열기/리셋/나오기·기록불변, build/web-split/공개45그래프849파일 보존 통과. 다른 provider/hooks/밸런스는 수정하지 않았다. [검사·한계](training-initializer-p21-20261024/README.md).
