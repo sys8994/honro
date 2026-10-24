@@ -1,0 +1,110 @@
+[
+  {
+    "stage": 25,
+    "rows": [
+      {
+        "arrival": 1,
+        "hud": "2/8 · 두 동행이 중앙 점검창에 모이기",
+        "dialogue": "25.beats.stake-arrival-1:v2-1bb7c6ca72",
+        "goals": [
+          "stake-arrival-1"
+        ],
+        "frames": 35
+      },
+      {
+        "arrival": 2,
+        "hud": "3/8 · 두 동행이 상층 물받이에 모이기",
+        "dialogue": null,
+        "goals": [
+          "stake-arrival-1"
+        ],
+        "frames": 100
+      },
+      {
+        "arrival": 3,
+        "hud": "4/8 · 두 동행이 맞은편 검문실에 모이기",
+        "dialogue": "25.beats.stake-arrival-3:f8b5e7171d",
+        "goals": [
+          "stake-arrival-1",
+          "stake-arrival-3"
+        ],
+        "frames": 151
+      },
+      {
+        "arrival": 4,
+        "hud": "5/8 · 두 동행이 상층 봉인회랑에 모이기",
+        "dialogue": null,
+        "goals": [
+          "stake-arrival-1",
+          "stake-arrival-3"
+        ],
+        "frames": 214
+      },
+      {
+        "arrival": 5,
+        "hud": "7/8 · 안쪽 집하장 입구로 이동",
+        "dialogue": "25.beats.household-tally:cbc4f77655",
+        "goals": [
+          "stake-arrival-1",
+          "stake-arrival-3",
+          "household-tally"
+        ],
+        "frames": 259
+      }
+    ],
+    "trace": [
+      {
+        "kind": "dialogue",
+        "goal": "stake-arrival-1"
+      },
+      {
+        "kind": "dialogue",
+        "goal": "stake-arrival-3"
+      },
+      {
+        "kind": "dialogue",
+        "goal": "household-tally"
+      }
+    ],
+    "errors": [],
+    "normalAppFrame": true,
+    "scope": "Initial prerequisite and per-landing positions/traversal index prepared by tool; actual goal ticks/dialogue buttons/void skip/manual E use under normal frames; no full crossing combat claim."
+  },
+  {
+    "stage": 27,
+    "rows": [
+      {
+        "arrival": 1,
+        "hud": "2/7 · 두 동행이 맞은편 봉인통로에 모이기",
+        "dialogue": null,
+        "goals": [],
+        "frames": 41
+      },
+      {
+        "arrival": 2,
+        "hud": "3/7 · 두 동행이 회수 점검창에 모이기",
+        "dialogue": null,
+        "goals": [],
+        "frames": 88
+      },
+      {
+        "arrival": 3,
+        "hud": "4/7 · 두 동행이 윗층 대조대에 모이기",
+        "dialogue": null,
+        "goals": [],
+        "frames": 215
+      },
+      {
+        "arrival": 4,
+        "hud": "5/7 · 가족별 적재 명세 챙기기",
+        "dialogue": null,
+        "goals": [],
+        "frames": 303
+      }
+    ],
+    "trace": [],
+    "errors": [],
+    "normalAppFrame": true,
+    "scope": "Initial prerequisite and per-landing positions/traversal index prepared by tool; actual goal ticks/dialogue buttons/void skip/manual E use under normal frames; no full crossing combat claim."
+  }
+]

@@ -4794,3 +4794,7 @@ narration 전용 CSS에 따뜻한 밝은 글자·얇은 둘레와 가로 장식/
 
 ## 2026-10-25 · 승인 초상화 변형32종 연결
 부모 원본84487786의 주연20/NPC12를 기존 expression registry에 연결하고 기존 Q94/alpha100 WebP와 이미지별 표시 framing을 제작했다. PNG/기존13기본형·12변형/대사·진행/캐시 제품 코드는 보존했다. 신규32종 및 기존12종 실제 mount, 반복120회 추가요청/decode/paint0, 새 컨텍스트 모닥불·허공터·정보확대, native source/alpha exact, build/web-split 및49발행878파일 보존을 확인했다. ready672/pending15·기존감사42개는 분리 보고한다. 상세·로컬 fixture 한계와 캡처는 [연결 결과](portrait-variants-v2-20261024/README.md). master/Pages는 부모 검토 대상이다.
+
+
+## 2026-10-24 · 25/27장 중복 도착 안내 정리
+현재 catalogue1·waterworks3의 신규 완료 표시만 좁게 구분했다. 25장2/4/5의 반복 대화·검사 정지와27장1~4의 generic 완료 서술을 생략하고 HUD는 유지한다. 25장 조용한 물증은 기존 검사 마지막 그림만 즉시 반영해 마지막 화물 표시가 사라지지 않게 했다. 목표/물리/보상/원고/기존 저장 대화는 보존한다. 기준 대비 중단6→3/4→0·완료/보상/저장/cargo·필수27조우guard·28인계·모바일 정상frame·build/web-split 및50발행913파일 보존 확인. 기존 void 전체 검사의 카메라 부가필드 기대 실패는 기준에도 있으며 수정하지 않았다. [범위·근거·캡처](stake-arrival-dialogues-20261024/README.md).

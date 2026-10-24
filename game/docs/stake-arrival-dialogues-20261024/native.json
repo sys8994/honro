@@ -1,0 +1,36 @@
+{
+  "base": "def07505f5608f3b192d7e1361df3adce3c5767d",
+  "results": {
+    "25": {
+      "beforeStops": [
+        "stake-arrival-1",
+        "stake-arrival-2",
+        "stake-arrival-3",
+        "stake-arrival-4",
+        "stake-arrival-5",
+        "household-tally"
+      ],
+      "afterStops": [
+        "stake-arrival-1",
+        "stake-arrival-3",
+        "household-tally"
+      ],
+      "physicalStateExact": true,
+      "checkpointSerializationExact": true,
+      "historicalExact": true
+    },
+    "27": {
+      "beforeStops": [
+        "stake-arrival-1",
+        "stake-arrival-2",
+        "stake-arrival-3",
+        "stake-arrival-4"
+      ],
+      "afterStops": [],
+      "physicalStateExact": true,
+      "checkpointSerializationExact": true,
+      "historicalExact": true
+    }
+  },
+  "scope": "Production objective/engine with explicit noncombat landing checkpoints and intercepted presentation; no complete normal route/combat claim."
+}

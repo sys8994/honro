@@ -46,8 +46,12 @@ function eligibility(app,m){const b=app.engine?.b,u=app.engine?.active,next=b&&c
  return{ok:true,reason:s.label};
 }
 function openGate(b,id){if(!id)return;const t=G.HonroQuestTargets.records(b).find(t=>t.id===id);if(t&&!t.broken){t.hp=0;t.broken=true;b.sceneVersion++;}}
+// Only newly completed arrivals in the current authored waterworks use HUD-only
+// feedback. Stored dialogue bundles/queues keep their original text and cursors.
+function hudOnlyArrival(b,id){return G.HonroNarrativeCatalogue?.active(b)&&b.honroWaterworksRevision===3&&G.HonroStakeCrossing?.crossings(b).some(c=>c.markerId===id)&&(b.honroStage===25?['stake-arrival-2','stake-arrival-4','stake-arrival-5']:b.honroStage===27?['stake-arrival-1','stake-arrival-2','stake-arrival-3','stake-arrival-4']:[]).includes(id);}
 function completeStep(app,s,actor){const b=app.engine.b,a=memory(b);if(a.done[s.id])return true;if(G.HonroEvidenceQuests?.prepareComplete(app,s,actor)===false)return false;a.done[s.id]=true;a.checkpoints.push({id:s.id,round:b.round,enemyEnd:b.teamEnds?.[1]||0});const m=marker(b,s.id);if(m)m.collected=true;openGate(b,s.opens);
- const lines=(G.HonroObjectiveRevision?.contentFor(b,app.stage)||app.stage).beats?.[s.id];if(lines?.length&&!G.HonroObjectiveRevision?.stageScene(app,s))app.sayLines(G.HonroAct3Content.scene(`act3-${b.honroStage}-${s.id}`,app.stage.name,lines.map(([who,text,meta={}])=>[who,text,{...meta,evidenceGoal:s.id}])));if(!lines?.length)app.event(s.label+' · 완료',{kind:'narration',source:'objective:'+s.id});app.dirty=true;return true;
+ const hudOnly=hudOnlyArrival(b,s.id);if(hudOnly&&b.honroStage===25)G.HonroEvidenceQuests?.animateField(app,{goal:s.id},1);
+ if(!hudOnly){const lines=(G.HonroObjectiveRevision?.contentFor(b,app.stage)||app.stage).beats?.[s.id];if(lines?.length&&!G.HonroObjectiveRevision?.stageScene(app,s))app.sayLines(G.HonroAct3Content.scene(`act3-${b.honroStage}-${s.id}`,app.stage.name,lines.map(([who,text,meta={}])=>[who,text,{...meta,evidenceGoal:s.id}])));if(!lines?.length)app.event(s.label+' · 완료',{kind:'narration',source:'objective:'+s.id});}app.dirty=true;return true;
 }
 function use(app,m){if(!eligibility(app,m).ok)return false;const e=app.engine,b=e.b,s=readySteps(b).find(q=>q.id===m.id),a=memory(b),u=s.target&&e.unit(s.target);
  if(G.HonroEvidenceQuests?.prepareComplete(app,s,e.active)===false)return false;
