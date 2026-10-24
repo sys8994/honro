@@ -60,7 +60,7 @@
 
 [집중1](evidence/review1-capture.json), [집중2](evidence/review2-capture.json), [집중3 최초](evidence/review3-capture.json), [18장 집중3 보완](evidence/review3-18-recheck.json), [종합 최초](evidence/final-capture.json), [18장 최종 종합](evidence/final18-recheck.json)에 실행 SHA·카메라·화면비·상태·키 입력·오류를 보존했다.
 
-디버그 대표 실제 화면: [10장 기록](evidence/final-records-10-390x844.jpg), [20장 기록](evidence/final-records-20-390x844.jpg), [30장 기록](evidence/final-records-30-844x390.jpg), [1막 재생](evidence/final-ending-10-390x844.jpg), [2막 재생](evidence/final-ending-20-390x844.jpg), [3막 재생](evidence/final-ending-30-844x390.jpg), [30장 원래 메뉴 복귀](evidence/final-return-30-844x390.jpg), [기존 디버그 설정](evidence/settings-debug-390x844.jpg). 직접 열어 기록 메뉴·엔딩 그림/문구·복귀 버튼·모바일 가독성을 확인했다.
+디버그 대표 실제 화면: [10장 기록](evidence/final-records-10-390x844.jpg), [20장 기록](evidence/final-records-20-390x844.jpg), [30장 기록](evidence/final-records-30-844x390.jpg), [1막 재생](evidence/final-ending-10-390x844.jpg), [2막 재생](evidence/final-ending-20-390x844.jpg), [3막 재생](evidence/final-ending-30-844x390.jpg), [30장 원래 메뉴 복귀](evidence/final-records-30-844x390.jpg), [기존 디버그 설정](evidence/settings-debug-390x844.jpg). 직접 열어 기록 메뉴·엔딩 그림/문구·복귀 버튼·모바일 가독성을 확인했다.
 
 대표 JPG **24장, 최대118,001bytes, 모두1MB 미만**. [파일별 크기와 SHA-256](evidence/screenshots.json).
 

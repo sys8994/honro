@@ -1,0 +1,3439 @@
+{
+  "sourceSnapshot": "5154db899d3c9f62012c87b4f943cd44f2c3e676",
+  "deletedCopies": [
+    {
+      "path": "game/docs/debug-journal-ending-records-20261022/final-ending-10-390x844.jpg",
+      "canonical": "game/docs/act2-pacing-release-20261022/evidence/final-ending-10-390x844.jpg",
+      "bytes": 95706,
+      "gitBlobSha": "331c56199b5739b2902e2cdcb12807033cb2aadb"
+    },
+    {
+      "path": "game/docs/debug-journal-ending-records-20261022/final-ending-20-390x844.jpg",
+      "canonical": "game/docs/act2-pacing-release-20261022/evidence/final-ending-20-390x844.jpg",
+      "bytes": 90057,
+      "gitBlobSha": "17b335a89d5eede4e2c75d5c83f70369d47f612f"
+    },
+    {
+      "path": "game/docs/debug-journal-ending-records-20261022/final-ending-30-844x390.jpg",
+      "canonical": "game/docs/act2-pacing-release-20261022/evidence/final-ending-30-844x390.jpg",
+      "bytes": 110672,
+      "gitBlobSha": "06ccc009957a786e4f30d97ee217f5b68d5887c1"
+    },
+    {
+      "path": "game/docs/debug-journal-ending-records-20261022/final-records-10-390x844.jpg",
+      "canonical": "game/docs/act2-pacing-release-20261022/evidence/final-records-10-390x844.jpg",
+      "bytes": 57717,
+      "gitBlobSha": "9a9b4fd08937059e63f6b3a65af1f6e06240c3c3"
+    },
+    {
+      "path": "game/docs/debug-journal-ending-records-20261022/final-records-20-390x844.jpg",
+      "canonical": "game/docs/act2-pacing-release-20261022/evidence/final-records-20-390x844.jpg",
+      "bytes": 70152,
+      "gitBlobSha": "8f2bd7d29dccda43340ba63d03a0391fd6efedfb"
+    },
+    {
+      "path": "game/docs/act2-pacing-release-20261022/evidence/final-return-30-844x390.jpg",
+      "canonical": "game/docs/act2-pacing-release-20261022/evidence/final-records-30-844x390.jpg",
+      "bytes": 54487,
+      "gitBlobSha": "0e1e35e47accd5440d7665de6642c081cace7d4f"
+    },
+    {
+      "path": "game/docs/debug-journal-ending-records-20261022/final-records-30-844x390.jpg",
+      "canonical": "game/docs/act2-pacing-release-20261022/evidence/final-records-30-844x390.jpg",
+      "bytes": 54487,
+      "gitBlobSha": "0e1e35e47accd5440d7665de6642c081cace7d4f"
+    },
+    {
+      "path": "game/docs/debug-journal-ending-records-20261022/final-return-30-844x390.jpg",
+      "canonical": "game/docs/act2-pacing-release-20261022/evidence/final-records-30-844x390.jpg",
+      "bytes": 54487,
+      "gitBlobSha": "0e1e35e47accd5440d7665de6642c081cace7d4f"
+    },
+    {
+      "path": "game/docs/release-final-20261022/evidence/focus1-void/layout/360x800-cut1.jpg",
+      "canonical": "game/docs/act3-void-dialogue-pacing/evidence/final/360x800-cut1.jpg",
+      "bytes": 24520,
+      "gitBlobSha": "9e411bd242c994a7b079584164f74e0fe5a06de3"
+    },
+    {
+      "path": "game/docs/release-final-20261022/evidence/focus1-void/layout/360x800-cut2.jpg",
+      "canonical": "game/docs/act3-void-dialogue-pacing/evidence/final/360x800-cut2.jpg",
+      "bytes": 25700,
+      "gitBlobSha": "7ab53c41ff64514332525c15dc1713de31589003"
+    },
+    {
+      "path": "game/docs/release-final-20261022/evidence/focus1-void/layout/360x800-cut3.jpg",
+      "canonical": "game/docs/act3-void-dialogue-pacing/evidence/final/360x800-cut3.jpg",
+      "bytes": 26079,
+      "gitBlobSha": "0cc63aa98dd7e7d3375ba49b26c4d6f9742d79f1"
+    },
+    {
+      "path": "game/docs/release-final-20261022/evidence/focus1-void/layout/360x800-cut5.jpg",
+      "canonical": "game/docs/act3-void-dialogue-pacing/evidence/final/360x800-cut5.jpg",
+      "bytes": 26750,
+      "gitBlobSha": "40f888ec2c3c4c6bcad097a185b02822abf96a04"
+    },
+    {
+      "path": "game/docs/act3-void-dialogue-pacing/evidence/input/desktop-immediate-line.jpg",
+      "canonical": "game/docs/act3-void-dialogue-pacing/evidence/final/desktop-immediate-line.jpg",
+      "bytes": 16679,
+      "gitBlobSha": "67f5066c69d8372e74c102b26574b1928dd08473"
+    },
+    {
+      "path": "game/docs/release-final-20261022/evidence/focus1-void/input/desktop-resumed.jpg",
+      "canonical": "game/docs/act3-void-dialogue-pacing/evidence/final/desktop-resumed.jpg",
+      "bytes": 84954,
+      "gitBlobSha": "79d3187a46ad1d8b260ff5e582e3d6ceb97119ea"
+    },
+    {
+      "path": "game/docs/act3-void-dialogue-pacing/evidence/final/skip-falling-reloaded-return.jpg",
+      "canonical": "game/docs/act3-void-dialogue-pacing/evidence/final/skip-darkening-reloaded-return.jpg",
+      "bytes": 26795,
+      "gitBlobSha": "9269971040ad022967af6a708dacd9085e1d3da4"
+    },
+    {
+      "path": "game/docs/act3-void-dialogue-pacing/evidence/final/skip-void-reloaded-return.jpg",
+      "canonical": "game/docs/act3-void-dialogue-pacing/evidence/final/skip-darkening-reloaded-return.jpg",
+      "bytes": 26795,
+      "gitBlobSha": "9269971040ad022967af6a708dacd9085e1d3da4"
+    },
+    {
+      "path": "game/docs/release-final-20261022/evidence/holistic-void/final/skip-darkening-reloaded-return.jpg",
+      "canonical": "game/docs/act3-void-dialogue-pacing/evidence/final/skip-darkening-reloaded-return.jpg",
+      "bytes": 26795,
+      "gitBlobSha": "9269971040ad022967af6a708dacd9085e1d3da4"
+    },
+    {
+      "path": "game/docs/release-final-20261022/evidence/holistic-void/final/skip-falling-reloaded-return.jpg",
+      "canonical": "game/docs/act3-void-dialogue-pacing/evidence/final/skip-darkening-reloaded-return.jpg",
+      "bytes": 26795,
+      "gitBlobSha": "9269971040ad022967af6a708dacd9085e1d3da4"
+    },
+    {
+      "path": "game/docs/release-final-20261022/evidence/holistic-void/final/skip-void-reloaded-return.jpg",
+      "canonical": "game/docs/act3-void-dialogue-pacing/evidence/final/skip-darkening-reloaded-return.jpg",
+      "bytes": 26795,
+      "gitBlobSha": "9269971040ad022967af6a708dacd9085e1d3da4"
+    },
+    {
+      "path": "game/docs/act3-void-dialogue-pacing/evidence/state/skip-darkening-reloaded-return.jpg",
+      "canonical": "game/docs/act3-void-dialogue-pacing/evidence/final/skip-darkening-reloaded-return.jpg",
+      "bytes": 26795,
+      "gitBlobSha": "9269971040ad022967af6a708dacd9085e1d3da4"
+    },
+    {
+      "path": "game/docs/act3-void-dialogue-pacing/evidence/state/skip-falling-reloaded-return.jpg",
+      "canonical": "game/docs/act3-void-dialogue-pacing/evidence/final/skip-darkening-reloaded-return.jpg",
+      "bytes": 26795,
+      "gitBlobSha": "9269971040ad022967af6a708dacd9085e1d3da4"
+    },
+    {
+      "path": "game/docs/act3-void-dialogue-pacing/evidence/state/skip-void-reloaded-return.jpg",
+      "canonical": "game/docs/act3-void-dialogue-pacing/evidence/final/skip-darkening-reloaded-return.jpg",
+      "bytes": 26795,
+      "gitBlobSha": "9269971040ad022967af6a708dacd9085e1d3da4"
+    },
+    {
+      "path": "game/docs/release-final-20261022/evidence/focus1-void/state/skip-darkening-reloaded-return.jpg",
+      "canonical": "game/docs/act3-void-dialogue-pacing/evidence/final/skip-darkening-reloaded-return.jpg",
+      "bytes": 26795,
+      "gitBlobSha": "9269971040ad022967af6a708dacd9085e1d3da4"
+    },
+    {
+      "path": "game/docs/release-final-20261022/evidence/focus1-void/state/skip-falling-reloaded-return.jpg",
+      "canonical": "game/docs/act3-void-dialogue-pacing/evidence/final/skip-darkening-reloaded-return.jpg",
+      "bytes": 26795,
+      "gitBlobSha": "9269971040ad022967af6a708dacd9085e1d3da4"
+    },
+    {
+      "path": "game/docs/release-final-20261022/evidence/focus1-void/state/skip-void-reloaded-return.jpg",
+      "canonical": "game/docs/act3-void-dialogue-pacing/evidence/final/skip-darkening-reloaded-return.jpg",
+      "bytes": 26795,
+      "gitBlobSha": "9269971040ad022967af6a708dacd9085e1d3da4"
+    },
+    {
+      "path": "game/docs/art-review/pre-image-terrain-20261020/candidate-browser/stage01-1440-max-out.png",
+      "canonical": "game/docs/art-review/all-stage-image-far-20261020/captures/stage01-1440-max-out.png",
+      "bytes": 299779,
+      "gitBlobSha": "3137fec972b331c8d50dd8900004b46b85432731"
+    },
+    {
+      "path": "game/docs/art-review/pre-image-terrain-20261020/candidate-browser/stage01-1440-normal.png",
+      "canonical": "game/docs/art-review/all-stage-image-far-20261020/captures/stage01-1440-normal.png",
+      "bytes": 360071,
+      "gitBlobSha": "ad117fa2f04a2706a5e55b7ed54edf77cf7cd8e4"
+    },
+    {
+      "path": "game/docs/art-review/pre-image-terrain-20261020/candidate-browser/stage01-390-max-out.png",
+      "canonical": "game/docs/art-review/all-stage-image-far-20261020/captures/stage01-390-max-out.png",
+      "bytes": 68239,
+      "gitBlobSha": "e2f4c01fe85d25d171cf2f5abe05279a62d2e294"
+    },
+    {
+      "path": "game/docs/art-review/all-stage-image-far-20261020/captures/stage02-1440-normal.png",
+      "canonical": "game/docs/art-review/all-stage-image-far-20261020/captures/stage02-1440-max-in.png",
+      "bytes": 348225,
+      "gitBlobSha": "2fb120c465c1d8caef29c28c2dca5c8a271398d0"
+    },
+    {
+      "path": "game/docs/art-review/all-stage-image-far-20261020/captures/stage03-1440-normal.png",
+      "canonical": "game/docs/art-review/all-stage-image-far-20261020/captures/stage03-1440-max-in.png",
+      "bytes": 323584,
+      "gitBlobSha": "da349a95093f44c10787e85922f91868c86afe53"
+    },
+    {
+      "path": "game/docs/art-review/pre-image-terrain-20261020/candidate-browser/stage03-1440-normal.png",
+      "canonical": "game/docs/art-review/all-stage-image-far-20261020/captures/stage03-1440-max-in.png",
+      "bytes": 323584,
+      "gitBlobSha": "da349a95093f44c10787e85922f91868c86afe53"
+    },
+    {
+      "path": "game/docs/art-review/pre-image-terrain-20261020/candidate-browser/stage03-1440-max-out.png",
+      "canonical": "game/docs/art-review/all-stage-image-far-20261020/captures/stage03-1440-max-out.png",
+      "bytes": 275159,
+      "gitBlobSha": "8eda915815353e5827d762000d5d1078f0722186"
+    },
+    {
+      "path": "game/docs/art-review/pre-image-terrain-20261020/candidate-browser/stage03-390-max-out.png",
+      "canonical": "game/docs/art-review/all-stage-image-far-20261020/captures/stage03-390-max-out.png",
+      "bytes": 61358,
+      "gitBlobSha": "d84ea39cd7dfa754c4565545e4a5eee91d7b2cf0"
+    },
+    {
+      "path": "game/docs/art-review/all-stage-image-far-20261020/captures/stage04-1440-normal.png",
+      "canonical": "game/docs/art-review/all-stage-image-far-20261020/captures/stage04-1440-max-in.png",
+      "bytes": 277856,
+      "gitBlobSha": "2db8a07685e02e4514923515a8eb27961c2a3894"
+    },
+    {
+      "path": "game/docs/art-review/all-stage-image-far-20261020/captures/stage05-1440-normal.png",
+      "canonical": "game/docs/art-review/all-stage-image-far-20261020/captures/stage05-1440-max-in.png",
+      "bytes": 399404,
+      "gitBlobSha": "5c2e59c00510834f925fa5d775cd3a4e94c28e30"
+    },
+    {
+      "path": "game/docs/art-review/all-stage-image-far-20261020/captures/stage06-1440-normal.png",
+      "canonical": "game/docs/art-review/all-stage-image-far-20261020/captures/stage06-1440-max-in.png",
+      "bytes": 389241,
+      "gitBlobSha": "5514c551932ef9e064cef1028dd5b18962a94809"
+    },
+    {
+      "path": "game/docs/art-review/all-stage-image-far-20261020/captures/stage09-1440-normal.png",
+      "canonical": "game/docs/art-review/all-stage-image-far-20261020/captures/stage09-1440-max-in.png",
+      "bytes": 321593,
+      "gitBlobSha": "a88588cef08eb8559d3b1dd5865e16e0b30793eb"
+    },
+    {
+      "path": "game/docs/art-review/all-stage-image-far-20261020/captures/stage10-1440-normal.png",
+      "canonical": "game/docs/art-review/all-stage-image-far-20261020/captures/stage10-1440-max-in.png",
+      "bytes": 321627,
+      "gitBlobSha": "59b6013f5121b3d486dedc7981cf97dbbc957c8c"
+    },
+    {
+      "path": "game/docs/art-review/all-stage-image-far-20261020/captures/stage11-1440-normal.png",
+      "canonical": "game/docs/art-review/all-stage-image-far-20261020/captures/stage11-1440-max-in.png",
+      "bytes": 562842,
+      "gitBlobSha": "af4254aa1a9a16e43eb35c7f9c03bf351d9b03d3"
+    },
+    {
+      "path": "game/docs/art-review/authored-restoration-20261020/evidence/local-stage21-1440-max-out.png",
+      "canonical": "game/docs/art-review/all-stage-image-far-20261020/captures/stage21-1440-max-out.png",
+      "bytes": 525996,
+      "gitBlobSha": "0c990e586dbddcdbe238e8ecbced3bd0351067d1"
+    },
+    {
+      "path": "game/docs/art-review/pre-image-terrain-20261020/candidate-browser/stage21-1440-max-out.png",
+      "canonical": "game/docs/art-review/all-stage-image-far-20261020/captures/stage21-1440-max-out.png",
+      "bytes": 525996,
+      "gitBlobSha": "0c990e586dbddcdbe238e8ecbced3bd0351067d1"
+    },
+    {
+      "path": "game/docs/art-review/authored-restoration-20261020/evidence/local-stage21-1440-normal.png",
+      "canonical": "game/docs/art-review/all-stage-image-far-20261020/captures/stage21-1440-normal.png",
+      "bytes": 539566,
+      "gitBlobSha": "2184ab9815eb02563b8df7d430e5f15555fd2a09"
+    },
+    {
+      "path": "game/docs/art-review/pre-image-terrain-20261020/candidate-browser/stage21-1440-normal.png",
+      "canonical": "game/docs/art-review/all-stage-image-far-20261020/captures/stage21-1440-normal.png",
+      "bytes": 539566,
+      "gitBlobSha": "2184ab9815eb02563b8df7d430e5f15555fd2a09"
+    },
+    {
+      "path": "game/docs/art-review/authored-restoration-20261020/evidence/local-stage21-390-max-out.png",
+      "canonical": "game/docs/art-review/all-stage-image-far-20261020/captures/stage21-390-max-out.png",
+      "bytes": 121994,
+      "gitBlobSha": "1c8acbebf9eec3b3a2a236de83ea24bde8d081c3"
+    },
+    {
+      "path": "game/docs/art-review/pre-image-terrain-20261020/candidate-browser/stage21-390-max-out.png",
+      "canonical": "game/docs/art-review/all-stage-image-far-20261020/captures/stage21-390-max-out.png",
+      "bytes": 121994,
+      "gitBlobSha": "1c8acbebf9eec3b3a2a236de83ea24bde8d081c3"
+    },
+    {
+      "path": "game/docs/art-review/all-stage-image-far-20261020/captures/stage24-1440-normal.png",
+      "canonical": "game/docs/art-review/all-stage-image-far-20261020/captures/stage24-1440-max-in.png",
+      "bytes": 366796,
+      "gitBlobSha": "77b8f5bce47c0e798ae3ac239b26f9bdd16fbba0"
+    },
+    {
+      "path": "game/docs/art-review/all-stage-image-far-20261020/captures/stage25-1440-normal.png",
+      "canonical": "game/docs/art-review/all-stage-image-far-20261020/captures/stage25-1440-max-in.png",
+      "bytes": 429652,
+      "gitBlobSha": "b8dbd017ea6797492caca322ebbff5cceb8e36aa"
+    },
+    {
+      "path": "game/docs/art-review/all-stage-image-far-20261020/captures/stage29-1440-normal.png",
+      "canonical": "game/docs/art-review/all-stage-image-far-20261020/captures/stage29-1440-max-in.png",
+      "bytes": 165626,
+      "gitBlobSha": "292c8d27ca58834cadb4dcce85c1151f21d5f544"
+    },
+    {
+      "path": "game/docs/art-review/pre-image-terrain-20261020/candidate-browser/stage18-1440-max-out.png",
+      "canonical": "game/docs/art-review/authored-restoration-20261020/evidence/local-stage18-1440-max-out.png",
+      "bytes": 490207,
+      "gitBlobSha": "b7d728804eaefcd48fb4f52c3e4fc83e92cb7491"
+    },
+    {
+      "path": "game/docs/art-review/pre-image-terrain-20261020/candidate-browser/stage18-1440-normal.png",
+      "canonical": "game/docs/art-review/authored-restoration-20261020/evidence/local-stage18-1440-normal.png",
+      "bytes": 559938,
+      "gitBlobSha": "337b5965526bcb8324b6bb30a1edc91904567637"
+    },
+    {
+      "path": "game/docs/art-review/pre-image-terrain-20261020/candidate-browser/stage18-390-max-out.png",
+      "canonical": "game/docs/art-review/authored-restoration-20261020/evidence/local-stage18-390-max-out.png",
+      "bytes": 86113,
+      "gitBlobSha": "3fd5bf4ba6c9d72c3ae70be5bbb55325dbf7b9ce"
+    },
+    {
+      "path": "game/docs/art-review/pre-image-terrain-20261020/candidate-browser/stage18-390-normal.png",
+      "canonical": "game/docs/art-review/authored-restoration-20261020/evidence/local-stage18-390-normal.png",
+      "bytes": 91203,
+      "gitBlobSha": "09830fdde4c0fc38f972d1297fc3e16209147eb0"
+    },
+    {
+      "path": "game/docs/art-review/pre-image-terrain-20261020/candidate-browser/stage21-390-normal.png",
+      "canonical": "game/docs/art-review/authored-restoration-20261020/evidence/local-stage21-390-normal.png",
+      "bytes": 126909,
+      "gitBlobSha": "3e08a0d96e4ca8356949b285fb38ca219cdfbd7b"
+    },
+    {
+      "path": "game/docs/art-review/mage-volley-gate-20261021/ap01-after/AP01-1280-result.png",
+      "canonical": "game/docs/art-review/mage-volley-gate-20261021/ap01-after/AP01-1280-complete-volley.png",
+      "bytes": 115291,
+      "gitBlobSha": "5fb78706890851332ce6d755bd173ae79d9803c3"
+    },
+    {
+      "path": "game/docs/art-review/mage-volley-gate-20261021/ap01-before/AP01-1280-core.png",
+      "canonical": "game/docs/art-review/mage-volley-gate-20261021/ap01-after/AP01-1280-core.png",
+      "bytes": 116875,
+      "gitBlobSha": "2d3195bd915ec24098c125216368452d2765872c"
+    },
+    {
+      "path": "game/docs/art-review/mage-volley-gate-20261021/ap01-before/AP01-1280-start.png",
+      "canonical": "game/docs/art-review/mage-volley-gate-20261021/ap01-after/AP01-1280-start.png",
+      "bytes": 78848,
+      "gitBlobSha": "195c10249568ef589ba491e7f96aee228644255a"
+    },
+    {
+      "path": "game/docs/art-review/mage-volley-gate-20261021/ap01-after/AP01-360-result.png",
+      "canonical": "game/docs/art-review/mage-volley-gate-20261021/ap01-after/AP01-360-complete-volley.png",
+      "bytes": 49739,
+      "gitBlobSha": "d4575305b4b7baec0a38599efa3959990994dc59"
+    },
+    {
+      "path": "game/docs/art-review/mage-volley-gate-20261021/ap01-before/AP01-360-core.png",
+      "canonical": "game/docs/art-review/mage-volley-gate-20261021/ap01-after/AP01-360-core.png",
+      "bytes": 49570,
+      "gitBlobSha": "16bdf063c164fc7ac34829e43466c524da801591"
+    },
+    {
+      "path": "game/docs/art-review/mage-volley-gate-20261021/ap01-before/AP01-360-start.png",
+      "canonical": "game/docs/art-review/mage-volley-gate-20261021/ap01-after/AP01-360-start.png",
+      "bytes": 50129,
+      "gitBlobSha": "7846214871f5b36e537d1835c5572cc770584531"
+    },
+    {
+      "path": "game/docs/art-review/mage-volley-gate-20261021/ap01-before/AP01-1280-result.png",
+      "canonical": "game/docs/art-review/mage-volley-gate-20261021/ap01-before/AP01-1280-complete-volley.png",
+      "bytes": 115043,
+      "gitBlobSha": "fc040f272d967deadf49c1a08e5437d92d88de20"
+    },
+    {
+      "path": "game/docs/art-review/mage-volley-gate-20261021/ap01-before/AP01-360-result.png",
+      "canonical": "game/docs/art-review/mage-volley-gate-20261021/ap01-before/AP01-360-complete-volley.png",
+      "bytes": 49502,
+      "gitBlobSha": "0ad2efb773beb696067ffe697a00bde89ef47cad"
+    },
+    {
+      "path": "game/docs/art-review/mage-volley-gate-20261021/mage-after/MP02-360-result.png",
+      "canonical": "game/docs/art-review/mage-volley-gate-20261021/mage-after/MP02-360-regeneration.png",
+      "bytes": 52369,
+      "gitBlobSha": "31dc56c3e57a3f0cb32e48024c173767582e0329"
+    },
+    {
+      "path": "game/docs/art-review/skill-modal-preview-20261021/geometry-visible/M03-360-emission.png",
+      "canonical": "game/docs/art-review/mage-volley-gate-20261021/mage-before/M03-360-core.png",
+      "bytes": 49932,
+      "gitBlobSha": "d1945d0b8ab5322f4708ab9ada6ffe7701550bd7"
+    },
+    {
+      "path": "game/docs/art-review/skill-modal-preview-20261021/integration/A13-360-descent.png",
+      "canonical": "game/docs/art-review/skill-modal-preview-20261021/a13-homing/A13-r8-360-descent.png",
+      "bytes": 49766,
+      "gitBlobSha": "a8827efca87ec8c2e282f55e9e1c1468eda1a2ef"
+    },
+    {
+      "path": "game/docs/art-review/skill-modal-preview-20261021/integration/A13-360-hit.png",
+      "canonical": "game/docs/art-review/skill-modal-preview-20261021/a13-homing/A13-r8-360-hit.png",
+      "bytes": 46868,
+      "gitBlobSha": "ae96ea5eba2672d79e3e6ccf6c669675e35a85bb"
+    },
+    {
+      "path": "game/docs/art-review/skill-modal-preview-20261021/integration/A13-360-modal.png",
+      "canonical": "game/docs/art-review/skill-modal-preview-20261021/a13-homing/A13-r8-360-modal.png",
+      "bytes": 85362,
+      "gitBlobSha": "2fd3eb261daeefda83a9fc692602796788e79d11"
+    },
+    {
+      "path": "game/docs/art-review/skill-modal-preview-20261021/geometry-visible/M03-1280-visible.png",
+      "canonical": "game/docs/art-review/skill-modal-preview-20261021/audit/M03-core.png",
+      "bytes": 122505,
+      "gitBlobSha": "e3c1a22da4b853922b70951a5ce20c9077e82ea1"
+    },
+    {
+      "path": "game/docs/art-review/skill-modal-preview-20261021/geometry-visible/M12-1280-visible.png",
+      "canonical": "game/docs/art-review/skill-modal-preview-20261021/audit/M12-core.png",
+      "bytes": 152521,
+      "gitBlobSha": "b858973ded5c0a89e3c5411cd4d63d10310bdd36"
+    },
+    {
+      "path": "game/docs/art-review/skill-modal-preview-20261021/geometry-visible/M14-1280-visible.png",
+      "canonical": "game/docs/art-review/skill-modal-preview-20261021/audit/M14-core.png",
+      "bytes": 122817,
+      "gitBlobSha": "80d2275c42829bcfa280142d586a93dd990691df"
+    },
+    {
+      "path": "game/docs/art-review/skill-modal-preview-20261021/geometry-visible/M15-1280-visible.png",
+      "canonical": "game/docs/art-review/skill-modal-preview-20261021/audit/M15-core.png",
+      "bytes": 133459,
+      "gitBlobSha": "7e75d0364642c9f2781193dc7c31cdc13092f133"
+    },
+    {
+      "path": "game/docs/art-review/skill-modal-preview-20261021/occult-focused/O10-360-core.png",
+      "canonical": "game/docs/art-review/skill-modal-preview-20261021/integration/O10-360-core.png",
+      "bytes": 48387,
+      "gitBlobSha": "add6a9da142a61a7aa638f66f788ae420927e8eb"
+    },
+    {
+      "path": "game/docs/art-review/skill-modal-preview-20261021/occult-focused/O16-360-core.png",
+      "canonical": "game/docs/art-review/skill-modal-preview-20261021/integration/O16-360-core.png",
+      "bytes": 55030,
+      "gitBlobSha": "22a816168aebade32a08d395f1d6a15bb585e36f"
+    },
+    {
+      "path": "game/docs/art-review/skill-modal-preview-20261021/mage-focused/MP02-1280-result.png",
+      "canonical": "game/docs/art-review/skill-modal-preview-20261021/mage-focused/MP02-1280-regeneration.png",
+      "bytes": 120422,
+      "gitBlobSha": "ece0094976192a43a182168177f026f9bdf2a019"
+    },
+    {
+      "path": "game/docs/art-review/skill-modal-preview-20261021/mage-focused/MP02-360-result.png",
+      "canonical": "game/docs/art-review/skill-modal-preview-20261021/mage-focused/MP02-360-regeneration.png",
+      "bytes": 52055,
+      "gitBlobSha": "69d7c829307d1741c484274ede2b862c7e7ae530"
+    },
+    {
+      "path": "game/docs/art-review/skill-ui-restore-20261021/restored-tree-1280.png",
+      "canonical": "game/docs/art-review/skill-ui-restore-20261021/historical-84a0003e-tree-1280.png",
+      "bytes": 188693,
+      "gitBlobSha": "7bfc96bd1ac0a5bb4365ec2206ce73a0cc6db392"
+    },
+    {
+      "path": "game/docs/art-review/skill-ui-restore-20261021/restored-tree-360.png",
+      "canonical": "game/docs/art-review/skill-ui-restore-20261021/historical-84a0003e-tree-360.png",
+      "bytes": 77266,
+      "gitBlobSha": "8ebadfbc52e24c197545d8ec1d721653667422c6"
+    },
+    {
+      "path": "game/docs/art-review/skill-ui-restore-20261021/restored-tree-390.png",
+      "canonical": "game/docs/art-review/skill-ui-restore-20261021/historical-84a0003e-tree-390.png",
+      "bytes": 79063,
+      "gitBlobSha": "3cba8058e961cae18095f27a5c7b125bea9ced33"
+    },
+    {
+      "path": "game/docs/art-review/skill-ui-restore-20261021/restored-invested-1280.png",
+      "canonical": "game/docs/art-review/skill-ui-restore-20261021/integrated/restored-invested-1280.png",
+      "bytes": 197571,
+      "gitBlobSha": "ddb0cfe042e3fa81cd56ea3ab64817fe0ee50bb1"
+    },
+    {
+      "path": "game/docs/art-review/skill-ui-restore-20261021/restored-invested-360.png",
+      "canonical": "game/docs/art-review/skill-ui-restore-20261021/integrated/restored-invested-360.png",
+      "bytes": 90723,
+      "gitBlobSha": "95dec009d0db1af1e3c517c80d0d28616c02b875"
+    },
+    {
+      "path": "game/docs/render-update-architecture-20261022/integration-evidence/settled-display.jpg",
+      "canonical": "game/docs/battle-runtime-performance-20261022/evidence/settled-hits/fixed-display.jpg",
+      "bytes": 85804,
+      "gitBlobSha": "e2945d025e3249e8f4255ca04e58c4114701f757"
+    },
+    {
+      "path": "game/docs/debug-journal-ending-records-20261022/final-return-30-390x844.jpg",
+      "canonical": "game/docs/debug-journal-ending-records-20261022/final-records-30-390x844.jpg",
+      "bytes": 79775,
+      "gitBlobSha": "8fea190af626c520962f824c28aa2f29b8f646e8"
+    },
+    {
+      "path": "game/docs/feedback-integration-20261022/evidence/holistic/focus1-detail-360x800.jpg",
+      "canonical": "game/docs/feedback-integration-20261022/evidence/final-combined/focus1-detail-360x800.jpg",
+      "bytes": 31635,
+      "gitBlobSha": "0c2cd5a8ca6682348ded7af02b7a00721e313fab"
+    },
+    {
+      "path": "game/docs/release-final-20261022/evidence/holistic-report-map/focus1-detail-360x800.jpg",
+      "canonical": "game/docs/feedback-integration-20261022/evidence/final-combined/focus1-detail-360x800.jpg",
+      "bytes": 31635,
+      "gitBlobSha": "0c2cd5a8ca6682348ded7af02b7a00721e313fab"
+    },
+    {
+      "path": "game/docs/feedback-integration-20261022/evidence/holistic/focus1-detail-390x844.jpg",
+      "canonical": "game/docs/feedback-integration-20261022/evidence/final-combined/focus1-detail-390x844.jpg",
+      "bytes": 33486,
+      "gitBlobSha": "a039edf07406497bb579864fb95636b37b8c1857"
+    },
+    {
+      "path": "game/docs/release-final-20261022/evidence/focus3-report-map/focus1-detail-390x844.jpg",
+      "canonical": "game/docs/feedback-integration-20261022/evidence/final-combined/focus1-detail-390x844.jpg",
+      "bytes": 33486,
+      "gitBlobSha": "a039edf07406497bb579864fb95636b37b8c1857"
+    },
+    {
+      "path": "game/docs/release-final-20261022/evidence/holistic-report-map/focus1-detail-390x844.jpg",
+      "canonical": "game/docs/feedback-integration-20261022/evidence/final-combined/focus1-detail-390x844.jpg",
+      "bytes": 33486,
+      "gitBlobSha": "a039edf07406497bb579864fb95636b37b8c1857"
+    },
+    {
+      "path": "game/docs/feedback-integration-20261022/evidence/holistic/focus1-detail-844x390.jpg",
+      "canonical": "game/docs/feedback-integration-20261022/evidence/final-combined/focus1-detail-844x390.jpg",
+      "bytes": 25022,
+      "gitBlobSha": "5fb88d1c60c2c6b7b23b9be276a78fe0aa57ca9d"
+    },
+    {
+      "path": "game/docs/release-final-20261022/evidence/focus3-report-map/focus1-detail-844x390.jpg",
+      "canonical": "game/docs/feedback-integration-20261022/evidence/final-combined/focus1-detail-844x390.jpg",
+      "bytes": 25022,
+      "gitBlobSha": "5fb88d1c60c2c6b7b23b9be276a78fe0aa57ca9d"
+    },
+    {
+      "path": "game/docs/release-final-20261022/evidence/holistic-report-map/focus1-detail-844x390.jpg",
+      "canonical": "game/docs/feedback-integration-20261022/evidence/final-combined/focus1-detail-844x390.jpg",
+      "bytes": 25022,
+      "gitBlobSha": "5fb88d1c60c2c6b7b23b9be276a78fe0aa57ca9d"
+    },
+    {
+      "path": "game/docs/feedback-integration-20261022/evidence/holistic/focus1-summary-360x800.jpg",
+      "canonical": "game/docs/feedback-integration-20261022/evidence/final-combined/focus1-summary-360x800.jpg",
+      "bytes": 39660,
+      "gitBlobSha": "99f012d977ccd290542685ff5bb1b724ddcab053"
+    },
+    {
+      "path": "game/docs/feedback-integration-20261022/evidence/holistic/holistic-summary-bottom-360x800.jpg",
+      "canonical": "game/docs/feedback-integration-20261022/evidence/final-combined/focus1-summary-360x800.jpg",
+      "bytes": 39660,
+      "gitBlobSha": "99f012d977ccd290542685ff5bb1b724ddcab053"
+    },
+    {
+      "path": "game/docs/release-final-20261022/evidence/focus3-report-map/focus1-summary-360x800.jpg",
+      "canonical": "game/docs/feedback-integration-20261022/evidence/final-combined/focus1-summary-360x800.jpg",
+      "bytes": 39660,
+      "gitBlobSha": "99f012d977ccd290542685ff5bb1b724ddcab053"
+    },
+    {
+      "path": "game/docs/release-final-20261022/evidence/focus3-report-map/holistic-summary-bottom-360x800.jpg",
+      "canonical": "game/docs/feedback-integration-20261022/evidence/final-combined/focus1-summary-360x800.jpg",
+      "bytes": 39660,
+      "gitBlobSha": "99f012d977ccd290542685ff5bb1b724ddcab053"
+    },
+    {
+      "path": "game/docs/release-final-20261022/evidence/holistic-report-map/focus1-summary-360x800.jpg",
+      "canonical": "game/docs/feedback-integration-20261022/evidence/final-combined/focus1-summary-360x800.jpg",
+      "bytes": 39660,
+      "gitBlobSha": "99f012d977ccd290542685ff5bb1b724ddcab053"
+    },
+    {
+      "path": "game/docs/release-final-20261022/evidence/holistic-report-map/holistic-summary-bottom-360x800.jpg",
+      "canonical": "game/docs/feedback-integration-20261022/evidence/final-combined/focus1-summary-360x800.jpg",
+      "bytes": 39660,
+      "gitBlobSha": "99f012d977ccd290542685ff5bb1b724ddcab053"
+    },
+    {
+      "path": "game/docs/feedback-integration-20261022/evidence/holistic/focus1-summary-390x844.jpg",
+      "canonical": "game/docs/feedback-integration-20261022/evidence/final-combined/focus1-summary-390x844.jpg",
+      "bytes": 42085,
+      "gitBlobSha": "d7bab4254fd61543d29c30838399e9e1ba24fddc"
+    },
+    {
+      "path": "game/docs/release-final-20261022/evidence/holistic-report-map/focus1-summary-390x844.jpg",
+      "canonical": "game/docs/feedback-integration-20261022/evidence/final-combined/focus1-summary-390x844.jpg",
+      "bytes": 42085,
+      "gitBlobSha": "d7bab4254fd61543d29c30838399e9e1ba24fddc"
+    },
+    {
+      "path": "game/docs/feedback-integration-20261022/evidence/holistic/focus1-summary-844x390.jpg",
+      "canonical": "game/docs/feedback-integration-20261022/evidence/final-combined/focus1-summary-844x390.jpg",
+      "bytes": 28521,
+      "gitBlobSha": "5bc7362b91b3b74c94fe76f72b6cbb0a7b45bfa7"
+    },
+    {
+      "path": "game/docs/release-final-20261022/evidence/focus3-report-map/focus1-summary-844x390.jpg",
+      "canonical": "game/docs/feedback-integration-20261022/evidence/final-combined/focus1-summary-844x390.jpg",
+      "bytes": 28521,
+      "gitBlobSha": "5bc7362b91b3b74c94fe76f72b6cbb0a7b45bfa7"
+    },
+    {
+      "path": "game/docs/release-final-20261022/evidence/holistic-report-map/focus1-summary-844x390.jpg",
+      "canonical": "game/docs/feedback-integration-20261022/evidence/final-combined/focus1-summary-844x390.jpg",
+      "bytes": 28521,
+      "gitBlobSha": "5bc7362b91b3b74c94fe76f72b6cbb0a7b45bfa7"
+    },
+    {
+      "path": "game/docs/feedback-integration-20261022/evidence/holistic/focus2-map-act2-360x800.jpg",
+      "canonical": "game/docs/feedback-integration-20261022/evidence/final-combined/focus2-map-act2-360x800.jpg",
+      "bytes": 52840,
+      "gitBlobSha": "e9366062191e66d9897d59a2606fd1e256d508de"
+    },
+    {
+      "path": "game/docs/release-final-20261022/evidence/focus3-report-map/focus2-map-act2-360x800.jpg",
+      "canonical": "game/docs/feedback-integration-20261022/evidence/final-combined/focus2-map-act2-360x800.jpg",
+      "bytes": 52840,
+      "gitBlobSha": "e9366062191e66d9897d59a2606fd1e256d508de"
+    },
+    {
+      "path": "game/docs/release-final-20261022/evidence/holistic-report-map/focus2-map-act2-360x800.jpg",
+      "canonical": "game/docs/feedback-integration-20261022/evidence/final-combined/focus2-map-act2-360x800.jpg",
+      "bytes": 52840,
+      "gitBlobSha": "e9366062191e66d9897d59a2606fd1e256d508de"
+    },
+    {
+      "path": "game/docs/feedback-integration-20261022/evidence/holistic/focus2-map-act2-390x844.jpg",
+      "canonical": "game/docs/feedback-integration-20261022/evidence/final-combined/focus2-map-act2-390x844.jpg",
+      "bytes": 60113,
+      "gitBlobSha": "2ed901c1099357779a42a3e90bbf13a4e42491c1"
+    },
+    {
+      "path": "game/docs/release-final-20261022/evidence/focus3-report-map/focus2-map-act2-390x844.jpg",
+      "canonical": "game/docs/feedback-integration-20261022/evidence/final-combined/focus2-map-act2-390x844.jpg",
+      "bytes": 60113,
+      "gitBlobSha": "2ed901c1099357779a42a3e90bbf13a4e42491c1"
+    },
+    {
+      "path": "game/docs/release-final-20261022/evidence/holistic-report-map/focus2-map-act2-390x844.jpg",
+      "canonical": "game/docs/feedback-integration-20261022/evidence/final-combined/focus2-map-act2-390x844.jpg",
+      "bytes": 60113,
+      "gitBlobSha": "2ed901c1099357779a42a3e90bbf13a4e42491c1"
+    },
+    {
+      "path": "game/docs/feedback-integration-20261022/evidence/holistic/focus2-map-act2-844x390.jpg",
+      "canonical": "game/docs/feedback-integration-20261022/evidence/final-combined/focus2-map-act2-844x390.jpg",
+      "bytes": 41711,
+      "gitBlobSha": "fbfb871e3e327442cd9ff0e47f2df153d789c442"
+    },
+    {
+      "path": "game/docs/release-final-20261022/evidence/focus3-report-map/focus2-map-act2-844x390.jpg",
+      "canonical": "game/docs/feedback-integration-20261022/evidence/final-combined/focus2-map-act2-844x390.jpg",
+      "bytes": 41711,
+      "gitBlobSha": "fbfb871e3e327442cd9ff0e47f2df153d789c442"
+    },
+    {
+      "path": "game/docs/release-final-20261022/evidence/holistic-report-map/focus2-map-act2-844x390.jpg",
+      "canonical": "game/docs/feedback-integration-20261022/evidence/final-combined/focus2-map-act2-844x390.jpg",
+      "bytes": 41711,
+      "gitBlobSha": "fbfb871e3e327442cd9ff0e47f2df153d789c442"
+    },
+    {
+      "path": "game/docs/feedback-integration-20261022/evidence/holistic/focus2-map-act3-360x800.jpg",
+      "canonical": "game/docs/feedback-integration-20261022/evidence/final-combined/focus2-map-act3-360x800.jpg",
+      "bytes": 74750,
+      "gitBlobSha": "4b205b36ad896b8500ef25acb92583b4411d4b68"
+    },
+    {
+      "path": "game/docs/feedback-integration-20261022/evidence/holistic/holistic-journal-return-360x800.jpg",
+      "canonical": "game/docs/feedback-integration-20261022/evidence/final-combined/focus2-map-act3-360x800.jpg",
+      "bytes": 74750,
+      "gitBlobSha": "4b205b36ad896b8500ef25acb92583b4411d4b68"
+    },
+    {
+      "path": "game/docs/release-final-20261022/evidence/focus3-report-map/focus2-map-act3-360x800.jpg",
+      "canonical": "game/docs/feedback-integration-20261022/evidence/final-combined/focus2-map-act3-360x800.jpg",
+      "bytes": 74750,
+      "gitBlobSha": "4b205b36ad896b8500ef25acb92583b4411d4b68"
+    },
+    {
+      "path": "game/docs/release-final-20261022/evidence/focus3-report-map/holistic-journal-return-360x800.jpg",
+      "canonical": "game/docs/feedback-integration-20261022/evidence/final-combined/focus2-map-act3-360x800.jpg",
+      "bytes": 74750,
+      "gitBlobSha": "4b205b36ad896b8500ef25acb92583b4411d4b68"
+    },
+    {
+      "path": "game/docs/release-final-20261022/evidence/holistic-report-map/focus2-map-act3-360x800.jpg",
+      "canonical": "game/docs/feedback-integration-20261022/evidence/final-combined/focus2-map-act3-360x800.jpg",
+      "bytes": 74750,
+      "gitBlobSha": "4b205b36ad896b8500ef25acb92583b4411d4b68"
+    },
+    {
+      "path": "game/docs/feedback-integration-20261022/evidence/holistic/focus2-map-act3-390x844.jpg",
+      "canonical": "game/docs/feedback-integration-20261022/evidence/final-combined/focus2-map-act3-390x844.jpg",
+      "bytes": 86022,
+      "gitBlobSha": "ef974a2333ec30c133de42d7bcdf19594d71c90c"
+    },
+    {
+      "path": "game/docs/feedback-integration-20261022/evidence/holistic/holistic-journal-return-390x844.jpg",
+      "canonical": "game/docs/feedback-integration-20261022/evidence/final-combined/focus2-map-act3-390x844.jpg",
+      "bytes": 86022,
+      "gitBlobSha": "ef974a2333ec30c133de42d7bcdf19594d71c90c"
+    },
+    {
+      "path": "game/docs/release-final-20261022/evidence/focus3-report-map/focus2-map-act3-390x844.jpg",
+      "canonical": "game/docs/feedback-integration-20261022/evidence/final-combined/focus2-map-act3-390x844.jpg",
+      "bytes": 86022,
+      "gitBlobSha": "ef974a2333ec30c133de42d7bcdf19594d71c90c"
+    },
+    {
+      "path": "game/docs/release-final-20261022/evidence/focus3-report-map/holistic-journal-return-390x844.jpg",
+      "canonical": "game/docs/feedback-integration-20261022/evidence/final-combined/focus2-map-act3-390x844.jpg",
+      "bytes": 86022,
+      "gitBlobSha": "ef974a2333ec30c133de42d7bcdf19594d71c90c"
+    },
+    {
+      "path": "game/docs/release-final-20261022/evidence/holistic-report-map/focus2-map-act3-390x844.jpg",
+      "canonical": "game/docs/feedback-integration-20261022/evidence/final-combined/focus2-map-act3-390x844.jpg",
+      "bytes": 86022,
+      "gitBlobSha": "ef974a2333ec30c133de42d7bcdf19594d71c90c"
+    },
+    {
+      "path": "game/docs/release-final-20261022/evidence/holistic-report-map/holistic-journal-return-390x844.jpg",
+      "canonical": "game/docs/feedback-integration-20261022/evidence/final-combined/focus2-map-act3-390x844.jpg",
+      "bytes": 86022,
+      "gitBlobSha": "ef974a2333ec30c133de42d7bcdf19594d71c90c"
+    },
+    {
+      "path": "game/docs/feedback-integration-20261022/evidence/holistic/focus2-map-act3-844x390.jpg",
+      "canonical": "game/docs/feedback-integration-20261022/evidence/final-combined/focus2-map-act3-844x390.jpg",
+      "bytes": 63731,
+      "gitBlobSha": "6f6b9f47afaeb78b45f3a15dc4e679492fd0e7c7"
+    },
+    {
+      "path": "game/docs/feedback-integration-20261022/evidence/holistic/holistic-journal-return-844x390.jpg",
+      "canonical": "game/docs/feedback-integration-20261022/evidence/final-combined/focus2-map-act3-844x390.jpg",
+      "bytes": 63731,
+      "gitBlobSha": "6f6b9f47afaeb78b45f3a15dc4e679492fd0e7c7"
+    },
+    {
+      "path": "game/docs/release-final-20261022/evidence/focus3-report-map/focus2-map-act3-844x390.jpg",
+      "canonical": "game/docs/feedback-integration-20261022/evidence/final-combined/focus2-map-act3-844x390.jpg",
+      "bytes": 63731,
+      "gitBlobSha": "6f6b9f47afaeb78b45f3a15dc4e679492fd0e7c7"
+    },
+    {
+      "path": "game/docs/release-final-20261022/evidence/focus3-report-map/holistic-journal-return-844x390.jpg",
+      "canonical": "game/docs/feedback-integration-20261022/evidence/final-combined/focus2-map-act3-844x390.jpg",
+      "bytes": 63731,
+      "gitBlobSha": "6f6b9f47afaeb78b45f3a15dc4e679492fd0e7c7"
+    },
+    {
+      "path": "game/docs/release-final-20261022/evidence/holistic-report-map/focus2-map-act3-844x390.jpg",
+      "canonical": "game/docs/feedback-integration-20261022/evidence/final-combined/focus2-map-act3-844x390.jpg",
+      "bytes": 63731,
+      "gitBlobSha": "6f6b9f47afaeb78b45f3a15dc4e679492fd0e7c7"
+    },
+    {
+      "path": "game/docs/feedback-integration-20261022/evidence/holistic/focus2-map-fit-360x800.jpg",
+      "canonical": "game/docs/feedback-integration-20261022/evidence/final-combined/focus2-map-fit-360x800.jpg",
+      "bytes": 39367,
+      "gitBlobSha": "afd25d61be2baa5745ba9bf437d9d2bd25a5bbd7"
+    },
+    {
+      "path": "game/docs/release-final-20261022/evidence/focus3-report-map/focus2-map-fit-360x800.jpg",
+      "canonical": "game/docs/feedback-integration-20261022/evidence/final-combined/focus2-map-fit-360x800.jpg",
+      "bytes": 39367,
+      "gitBlobSha": "afd25d61be2baa5745ba9bf437d9d2bd25a5bbd7"
+    },
+    {
+      "path": "game/docs/release-final-20261022/evidence/holistic-report-map/focus2-map-fit-360x800.jpg",
+      "canonical": "game/docs/feedback-integration-20261022/evidence/final-combined/focus2-map-fit-360x800.jpg",
+      "bytes": 39367,
+      "gitBlobSha": "afd25d61be2baa5745ba9bf437d9d2bd25a5bbd7"
+    },
+    {
+      "path": "game/docs/feedback-integration-20261022/evidence/holistic/focus2-map-fit-390x844.jpg",
+      "canonical": "game/docs/feedback-integration-20261022/evidence/final-combined/focus2-map-fit-390x844.jpg",
+      "bytes": 49280,
+      "gitBlobSha": "2d5872eb859e5d11aeec3207eec05b2dfbbf49ee"
+    },
+    {
+      "path": "game/docs/release-final-20261022/evidence/focus3-report-map/focus2-map-fit-390x844.jpg",
+      "canonical": "game/docs/feedback-integration-20261022/evidence/final-combined/focus2-map-fit-390x844.jpg",
+      "bytes": 49280,
+      "gitBlobSha": "2d5872eb859e5d11aeec3207eec05b2dfbbf49ee"
+    },
+    {
+      "path": "game/docs/release-final-20261022/evidence/holistic-report-map/focus2-map-fit-390x844.jpg",
+      "canonical": "game/docs/feedback-integration-20261022/evidence/final-combined/focus2-map-fit-390x844.jpg",
+      "bytes": 49280,
+      "gitBlobSha": "2d5872eb859e5d11aeec3207eec05b2dfbbf49ee"
+    },
+    {
+      "path": "game/docs/feedback-integration-20261022/evidence/holistic/focus2-map-fit-844x390.jpg",
+      "canonical": "game/docs/feedback-integration-20261022/evidence/final-combined/focus2-map-fit-844x390.jpg",
+      "bytes": 52765,
+      "gitBlobSha": "21fb4fd2f608bb56a2c0d9209e3ce0e7b0706d3f"
+    },
+    {
+      "path": "game/docs/release-final-20261022/evidence/focus3-report-map/focus2-map-fit-844x390.jpg",
+      "canonical": "game/docs/feedback-integration-20261022/evidence/final-combined/focus2-map-fit-844x390.jpg",
+      "bytes": 52765,
+      "gitBlobSha": "21fb4fd2f608bb56a2c0d9209e3ce0e7b0706d3f"
+    },
+    {
+      "path": "game/docs/release-final-20261022/evidence/holistic-report-map/focus2-map-fit-844x390.jpg",
+      "canonical": "game/docs/feedback-integration-20261022/evidence/final-combined/focus2-map-fit-844x390.jpg",
+      "bytes": 52765,
+      "gitBlobSha": "21fb4fd2f608bb56a2c0d9209e3ce0e7b0706d3f"
+    },
+    {
+      "path": "game/docs/feedback-integration-20261022/evidence/holistic/focus2-map-zoom-360x800.jpg",
+      "canonical": "game/docs/feedback-integration-20261022/evidence/final-combined/focus2-map-zoom-360x800.jpg",
+      "bytes": 72975,
+      "gitBlobSha": "f9c4b2c7cd8c00efc73000f2c587212f20ecd108"
+    },
+    {
+      "path": "game/docs/release-final-20261022/evidence/focus3-report-map/focus2-map-zoom-360x800.jpg",
+      "canonical": "game/docs/feedback-integration-20261022/evidence/final-combined/focus2-map-zoom-360x800.jpg",
+      "bytes": 72975,
+      "gitBlobSha": "f9c4b2c7cd8c00efc73000f2c587212f20ecd108"
+    },
+    {
+      "path": "game/docs/release-final-20261022/evidence/holistic-report-map/focus2-map-zoom-360x800.jpg",
+      "canonical": "game/docs/feedback-integration-20261022/evidence/final-combined/focus2-map-zoom-360x800.jpg",
+      "bytes": 72975,
+      "gitBlobSha": "f9c4b2c7cd8c00efc73000f2c587212f20ecd108"
+    },
+    {
+      "path": "game/docs/feedback-integration-20261022/evidence/holistic/focus2-map-zoom-390x844.jpg",
+      "canonical": "game/docs/feedback-integration-20261022/evidence/final-combined/focus2-map-zoom-390x844.jpg",
+      "bytes": 81296,
+      "gitBlobSha": "f58847478856c6681f1e14838f65616194ca43e3"
+    },
+    {
+      "path": "game/docs/release-final-20261022/evidence/holistic-report-map/focus2-map-zoom-390x844.jpg",
+      "canonical": "game/docs/feedback-integration-20261022/evidence/final-combined/focus2-map-zoom-390x844.jpg",
+      "bytes": 81296,
+      "gitBlobSha": "f58847478856c6681f1e14838f65616194ca43e3"
+    },
+    {
+      "path": "game/docs/feedback-integration-20261022/evidence/holistic/focus2-map-zoom-844x390.jpg",
+      "canonical": "game/docs/feedback-integration-20261022/evidence/final-combined/focus2-map-zoom-844x390.jpg",
+      "bytes": 70100,
+      "gitBlobSha": "73bc6aee2c884a441c1bb47f85869d9b1fa9b019"
+    },
+    {
+      "path": "game/docs/release-final-20261022/evidence/focus3-report-map/focus2-map-zoom-844x390.jpg",
+      "canonical": "game/docs/feedback-integration-20261022/evidence/final-combined/focus2-map-zoom-844x390.jpg",
+      "bytes": 70100,
+      "gitBlobSha": "73bc6aee2c884a441c1bb47f85869d9b1fa9b019"
+    },
+    {
+      "path": "game/docs/release-final-20261022/evidence/holistic-report-map/focus2-map-zoom-844x390.jpg",
+      "canonical": "game/docs/feedback-integration-20261022/evidence/final-combined/focus2-map-zoom-844x390.jpg",
+      "bytes": 70100,
+      "gitBlobSha": "73bc6aee2c884a441c1bb47f85869d9b1fa9b019"
+    },
+    {
+      "path": "game/docs/feedback-integration-20261022/evidence/holistic/focus2-record-menu-360x800.jpg",
+      "canonical": "game/docs/feedback-integration-20261022/evidence/final-combined/focus2-record-menu-360x800.jpg",
+      "bytes": 73551,
+      "gitBlobSha": "18dbb1fe0fbea3b5420f58c493f325e6a1c339c3"
+    },
+    {
+      "path": "game/docs/release-final-20261022/evidence/focus3-report-map/focus2-record-menu-360x800.jpg",
+      "canonical": "game/docs/feedback-integration-20261022/evidence/final-combined/focus2-record-menu-360x800.jpg",
+      "bytes": 73551,
+      "gitBlobSha": "18dbb1fe0fbea3b5420f58c493f325e6a1c339c3"
+    },
+    {
+      "path": "game/docs/release-final-20261022/evidence/holistic-report-map/focus2-record-menu-360x800.jpg",
+      "canonical": "game/docs/feedback-integration-20261022/evidence/final-combined/focus2-record-menu-360x800.jpg",
+      "bytes": 73551,
+      "gitBlobSha": "18dbb1fe0fbea3b5420f58c493f325e6a1c339c3"
+    },
+    {
+      "path": "game/docs/feedback-integration-20261022/evidence/holistic/focus2-record-menu-390x844.jpg",
+      "canonical": "game/docs/feedback-integration-20261022/evidence/final-combined/focus2-record-menu-390x844.jpg",
+      "bytes": 88998,
+      "gitBlobSha": "6b0220c0e9aa2763c693aaba8388439d15151bf1"
+    },
+    {
+      "path": "game/docs/release-final-20261022/evidence/focus3-report-map/focus2-record-menu-390x844.jpg",
+      "canonical": "game/docs/feedback-integration-20261022/evidence/final-combined/focus2-record-menu-390x844.jpg",
+      "bytes": 88998,
+      "gitBlobSha": "6b0220c0e9aa2763c693aaba8388439d15151bf1"
+    },
+    {
+      "path": "game/docs/feedback-integration-20261022/evidence/holistic/focus2-record-menu-844x390.jpg",
+      "canonical": "game/docs/feedback-integration-20261022/evidence/final-combined/focus2-record-menu-844x390.jpg",
+      "bytes": 68918,
+      "gitBlobSha": "7515d55fb4e498f8b64ff001bf95d17525a580d6"
+    },
+    {
+      "path": "game/docs/release-final-20261022/evidence/holistic-report-map/focus2-record-menu-844x390.jpg",
+      "canonical": "game/docs/feedback-integration-20261022/evidence/final-combined/focus2-record-menu-844x390.jpg",
+      "bytes": 68918,
+      "gitBlobSha": "7515d55fb4e498f8b64ff001bf95d17525a580d6"
+    },
+    {
+      "path": "game/docs/feedback-integration-20261022/evidence/holistic/focus3-gallery-act1-360x800.jpg",
+      "canonical": "game/docs/feedback-integration-20261022/evidence/final-combined/focus3-gallery-act1-360x800.jpg",
+      "bytes": 82631,
+      "gitBlobSha": "7be0e2955473eb1fe2d4bd594140b34a3c6f4f62"
+    },
+    {
+      "path": "game/docs/release-final-20261022/evidence/focus3-report-map/focus3-gallery-act1-360x800.jpg",
+      "canonical": "game/docs/feedback-integration-20261022/evidence/final-combined/focus3-gallery-act1-360x800.jpg",
+      "bytes": 82631,
+      "gitBlobSha": "7be0e2955473eb1fe2d4bd594140b34a3c6f4f62"
+    },
+    {
+      "path": "game/docs/release-final-20261022/evidence/holistic-report-map/focus3-gallery-act1-360x800.jpg",
+      "canonical": "game/docs/feedback-integration-20261022/evidence/final-combined/focus3-gallery-act1-360x800.jpg",
+      "bytes": 82631,
+      "gitBlobSha": "7be0e2955473eb1fe2d4bd594140b34a3c6f4f62"
+    },
+    {
+      "path": "game/docs/feedback-integration-20261022/evidence/holistic/focus3-gallery-act1-390x844.jpg",
+      "canonical": "game/docs/feedback-integration-20261022/evidence/final-combined/focus3-gallery-act1-390x844.jpg",
+      "bytes": 92645,
+      "gitBlobSha": "eab0f047544e00a9d101799368db33c075e8b827"
+    },
+    {
+      "path": "game/docs/release-final-20261022/evidence/focus3-report-map/focus3-gallery-act1-390x844.jpg",
+      "canonical": "game/docs/feedback-integration-20261022/evidence/final-combined/focus3-gallery-act1-390x844.jpg",
+      "bytes": 92645,
+      "gitBlobSha": "eab0f047544e00a9d101799368db33c075e8b827"
+    },
+    {
+      "path": "game/docs/feedback-integration-20261022/evidence/holistic/focus3-gallery-act1-844x390.jpg",
+      "canonical": "game/docs/feedback-integration-20261022/evidence/final-combined/focus3-gallery-act1-844x390.jpg",
+      "bytes": 98384,
+      "gitBlobSha": "48a6d8aba1727451e515a4ffdfabe49afb35a606"
+    },
+    {
+      "path": "game/docs/release-final-20261022/evidence/focus3-report-map/focus3-gallery-act1-844x390.jpg",
+      "canonical": "game/docs/feedback-integration-20261022/evidence/final-combined/focus3-gallery-act1-844x390.jpg",
+      "bytes": 98384,
+      "gitBlobSha": "48a6d8aba1727451e515a4ffdfabe49afb35a606"
+    },
+    {
+      "path": "game/docs/release-final-20261022/evidence/holistic-report-map/focus3-gallery-act1-844x390.jpg",
+      "canonical": "game/docs/feedback-integration-20261022/evidence/final-combined/focus3-gallery-act1-844x390.jpg",
+      "bytes": 98384,
+      "gitBlobSha": "48a6d8aba1727451e515a4ffdfabe49afb35a606"
+    },
+    {
+      "path": "game/docs/feedback-integration-20261022/evidence/holistic/focus3-gallery-act2-360x800.jpg",
+      "canonical": "game/docs/feedback-integration-20261022/evidence/final-combined/focus3-gallery-act2-360x800.jpg",
+      "bytes": 77721,
+      "gitBlobSha": "3210f081765a8328b5d597a4251d3816fb80226a"
+    },
+    {
+      "path": "game/docs/release-final-20261022/evidence/focus3-report-map/focus3-gallery-act2-360x800.jpg",
+      "canonical": "game/docs/feedback-integration-20261022/evidence/final-combined/focus3-gallery-act2-360x800.jpg",
+      "bytes": 77721,
+      "gitBlobSha": "3210f081765a8328b5d597a4251d3816fb80226a"
+    },
+    {
+      "path": "game/docs/release-final-20261022/evidence/holistic-report-map/focus3-gallery-act2-360x800.jpg",
+      "canonical": "game/docs/feedback-integration-20261022/evidence/final-combined/focus3-gallery-act2-360x800.jpg",
+      "bytes": 77721,
+      "gitBlobSha": "3210f081765a8328b5d597a4251d3816fb80226a"
+    },
+    {
+      "path": "game/docs/feedback-integration-20261022/evidence/holistic/focus3-gallery-act2-390x844.jpg",
+      "canonical": "game/docs/feedback-integration-20261022/evidence/final-combined/focus3-gallery-act2-390x844.jpg",
+      "bytes": 87256,
+      "gitBlobSha": "110c072d25e0f5649324a7a133f7f588e42e6463"
+    },
+    {
+      "path": "game/docs/release-final-20261022/evidence/focus3-report-map/focus3-gallery-act2-390x844.jpg",
+      "canonical": "game/docs/feedback-integration-20261022/evidence/final-combined/focus3-gallery-act2-390x844.jpg",
+      "bytes": 87256,
+      "gitBlobSha": "110c072d25e0f5649324a7a133f7f588e42e6463"
+    },
+    {
+      "path": "game/docs/release-final-20261022/evidence/holistic-report-map/focus3-gallery-act2-390x844.jpg",
+      "canonical": "game/docs/feedback-integration-20261022/evidence/final-combined/focus3-gallery-act2-390x844.jpg",
+      "bytes": 87256,
+      "gitBlobSha": "110c072d25e0f5649324a7a133f7f588e42e6463"
+    },
+    {
+      "path": "game/docs/feedback-integration-20261022/evidence/holistic/focus3-gallery-act2-844x390.jpg",
+      "canonical": "game/docs/feedback-integration-20261022/evidence/final-combined/focus3-gallery-act2-844x390.jpg",
+      "bytes": 98408,
+      "gitBlobSha": "dec141c54aed9574cf6dc5327c3ba506ad755387"
+    },
+    {
+      "path": "game/docs/release-final-20261022/evidence/focus3-report-map/focus3-gallery-act2-844x390.jpg",
+      "canonical": "game/docs/feedback-integration-20261022/evidence/final-combined/focus3-gallery-act2-844x390.jpg",
+      "bytes": 98408,
+      "gitBlobSha": "dec141c54aed9574cf6dc5327c3ba506ad755387"
+    },
+    {
+      "path": "game/docs/feedback-integration-20261022/evidence/holistic/focus3-gallery-act3-360x800.jpg",
+      "canonical": "game/docs/feedback-integration-20261022/evidence/final-combined/focus3-gallery-act3-360x800.jpg",
+      "bytes": 91284,
+      "gitBlobSha": "45a5d0406619723d25d02f5b23825a26e3306a94"
+    },
+    {
+      "path": "game/docs/release-final-20261022/evidence/focus3-report-map/focus3-gallery-act3-360x800.jpg",
+      "canonical": "game/docs/feedback-integration-20261022/evidence/final-combined/focus3-gallery-act3-360x800.jpg",
+      "bytes": 91284,
+      "gitBlobSha": "45a5d0406619723d25d02f5b23825a26e3306a94"
+    },
+    {
+      "path": "game/docs/feedback-integration-20261022/evidence/holistic/focus3-gallery-act3-390x844.jpg",
+      "canonical": "game/docs/feedback-integration-20261022/evidence/final-combined/focus3-gallery-act3-390x844.jpg",
+      "bytes": 101791,
+      "gitBlobSha": "b1a308d384f4375fa28afeb2a123b2f09b9eec16"
+    },
+    {
+      "path": "game/docs/release-final-20261022/evidence/focus3-report-map/focus3-gallery-act3-390x844.jpg",
+      "canonical": "game/docs/feedback-integration-20261022/evidence/final-combined/focus3-gallery-act3-390x844.jpg",
+      "bytes": 101791,
+      "gitBlobSha": "b1a308d384f4375fa28afeb2a123b2f09b9eec16"
+    },
+    {
+      "path": "game/docs/release-final-20261022/evidence/holistic-report-map/focus3-gallery-act3-390x844.jpg",
+      "canonical": "game/docs/feedback-integration-20261022/evidence/final-combined/focus3-gallery-act3-390x844.jpg",
+      "bytes": 101791,
+      "gitBlobSha": "b1a308d384f4375fa28afeb2a123b2f09b9eec16"
+    },
+    {
+      "path": "game/docs/feedback-integration-20261022/evidence/holistic/focus3-gallery-act3-844x390.jpg",
+      "canonical": "game/docs/feedback-integration-20261022/evidence/final-combined/focus3-gallery-act3-844x390.jpg",
+      "bytes": 107412,
+      "gitBlobSha": "c0895b2d3e6770679d285606f6b7590ee7bbb516"
+    },
+    {
+      "path": "game/docs/release-final-20261022/evidence/focus3-report-map/focus3-gallery-act3-844x390.jpg",
+      "canonical": "game/docs/feedback-integration-20261022/evidence/final-combined/focus3-gallery-act3-844x390.jpg",
+      "bytes": 107412,
+      "gitBlobSha": "c0895b2d3e6770679d285606f6b7590ee7bbb516"
+    },
+    {
+      "path": "game/docs/release-final-20261022/evidence/holistic-report-map/focus3-gallery-act3-844x390.jpg",
+      "canonical": "game/docs/feedback-integration-20261022/evidence/final-combined/focus3-gallery-act3-844x390.jpg",
+      "bytes": 107412,
+      "gitBlobSha": "c0895b2d3e6770679d285606f6b7590ee7bbb516"
+    },
+    {
+      "path": "game/docs/feedback-integration-20261022/evidence/holistic/holistic-summary-bottom-390x844.jpg",
+      "canonical": "game/docs/feedback-integration-20261022/evidence/final-combined/holistic-summary-bottom-390x844.jpg",
+      "bytes": 41535,
+      "gitBlobSha": "b7e32e0c545a7e35ed532012011d72e3af9fdf23"
+    },
+    {
+      "path": "game/docs/release-final-20261022/evidence/focus3-report-map/holistic-summary-bottom-390x844.jpg",
+      "canonical": "game/docs/feedback-integration-20261022/evidence/final-combined/holistic-summary-bottom-390x844.jpg",
+      "bytes": 41535,
+      "gitBlobSha": "b7e32e0c545a7e35ed532012011d72e3af9fdf23"
+    },
+    {
+      "path": "game/docs/release-final-20261022/evidence/holistic-report-map/holistic-summary-bottom-390x844.jpg",
+      "canonical": "game/docs/feedback-integration-20261022/evidence/final-combined/holistic-summary-bottom-390x844.jpg",
+      "bytes": 41535,
+      "gitBlobSha": "b7e32e0c545a7e35ed532012011d72e3af9fdf23"
+    },
+    {
+      "path": "game/docs/feedback-integration-20261022/evidence/holistic/holistic-summary-bottom-844x390.jpg",
+      "canonical": "game/docs/feedback-integration-20261022/evidence/final-combined/holistic-summary-bottom-844x390.jpg",
+      "bytes": 28106,
+      "gitBlobSha": "4a1bdc22623256f8696e6c2dae191ad1d2cef647"
+    },
+    {
+      "path": "game/docs/release-final-20261022/evidence/focus3-report-map/holistic-summary-bottom-844x390.jpg",
+      "canonical": "game/docs/feedback-integration-20261022/evidence/final-combined/holistic-summary-bottom-844x390.jpg",
+      "bytes": 28106,
+      "gitBlobSha": "4a1bdc22623256f8696e6c2dae191ad1d2cef647"
+    },
+    {
+      "path": "game/docs/stage10-world-outro-ending-replay/evidence/final/endings/act1-copy3-repeat-390x844.jpg",
+      "canonical": "game/docs/stage10-world-outro-ending-replay/evidence/final/endings/act1-copy3-first-390x844.jpg",
+      "bytes": 110110,
+      "gitBlobSha": "53b4ef3ba1b344576c5252d4fd74c7c8b30b079f"
+    },
+    {
+      "path": "game/docs/feedback-integration-20261022/evidence/final-endings/act1-copy3-first-390x844.jpg",
+      "canonical": "game/docs/stage10-world-outro-ending-replay/evidence/final/endings/act1-copy3-first-390x844.jpg",
+      "bytes": 110110,
+      "gitBlobSha": "53b4ef3ba1b344576c5252d4fd74c7c8b30b079f"
+    },
+    {
+      "path": "game/docs/feedback-integration-20261022/evidence/final-endings/act1-copy3-repeat-390x844.jpg",
+      "canonical": "game/docs/stage10-world-outro-ending-replay/evidence/final/endings/act1-copy3-first-390x844.jpg",
+      "bytes": 110110,
+      "gitBlobSha": "53b4ef3ba1b344576c5252d4fd74c7c8b30b079f"
+    },
+    {
+      "path": "game/docs/release-final-20261022/evidence/focus3-endings/act1-copy3-first-390x844.jpg",
+      "canonical": "game/docs/stage10-world-outro-ending-replay/evidence/final/endings/act1-copy3-first-390x844.jpg",
+      "bytes": 110110,
+      "gitBlobSha": "53b4ef3ba1b344576c5252d4fd74c7c8b30b079f"
+    },
+    {
+      "path": "game/docs/stage10-world-outro-ending-replay/evidence/final/endings/act1-copy3-repeat-844x390.jpg",
+      "canonical": "game/docs/stage10-world-outro-ending-replay/evidence/final/endings/act1-copy3-first-844x390.jpg",
+      "bytes": 117247,
+      "gitBlobSha": "a301c7d71e190008bdc527658f841fd34985e822"
+    },
+    {
+      "path": "game/docs/feedback-integration-20261022/evidence/final-endings/act1-copy3-first-844x390.jpg",
+      "canonical": "game/docs/stage10-world-outro-ending-replay/evidence/final/endings/act1-copy3-first-844x390.jpg",
+      "bytes": 117247,
+      "gitBlobSha": "a301c7d71e190008bdc527658f841fd34985e822"
+    },
+    {
+      "path": "game/docs/feedback-integration-20261022/evidence/final-endings/act1-copy3-repeat-844x390.jpg",
+      "canonical": "game/docs/stage10-world-outro-ending-replay/evidence/final/endings/act1-copy3-first-844x390.jpg",
+      "bytes": 117247,
+      "gitBlobSha": "a301c7d71e190008bdc527658f841fd34985e822"
+    },
+    {
+      "path": "game/docs/release-final-20261022/evidence/focus3-endings/act1-copy3-first-844x390.jpg",
+      "canonical": "game/docs/stage10-world-outro-ending-replay/evidence/final/endings/act1-copy3-first-844x390.jpg",
+      "bytes": 117247,
+      "gitBlobSha": "a301c7d71e190008bdc527658f841fd34985e822"
+    },
+    {
+      "path": "game/docs/release-final-20261022/evidence/focus3-endings/act1-copy3-repeat-844x390.jpg",
+      "canonical": "game/docs/stage10-world-outro-ending-replay/evidence/final/endings/act1-copy3-first-844x390.jpg",
+      "bytes": 117247,
+      "gitBlobSha": "a301c7d71e190008bdc527658f841fd34985e822"
+    },
+    {
+      "path": "game/docs/stage10-world-outro-ending-replay/evidence/final/endings/act1-repeat-390x844.jpg",
+      "canonical": "game/docs/stage10-world-outro-ending-replay/evidence/final/endings/act1-first-390x844.jpg",
+      "bytes": 109045,
+      "gitBlobSha": "e3c2de1440dc4a76448c3ed1a794a323054c960c"
+    },
+    {
+      "path": "game/docs/feedback-integration-20261022/evidence/final-endings/act1-first-390x844.jpg",
+      "canonical": "game/docs/stage10-world-outro-ending-replay/evidence/final/endings/act1-first-390x844.jpg",
+      "bytes": 109045,
+      "gitBlobSha": "e3c2de1440dc4a76448c3ed1a794a323054c960c"
+    },
+    {
+      "path": "game/docs/feedback-integration-20261022/evidence/final-endings/act1-repeat-390x844.jpg",
+      "canonical": "game/docs/stage10-world-outro-ending-replay/evidence/final/endings/act1-first-390x844.jpg",
+      "bytes": 109045,
+      "gitBlobSha": "e3c2de1440dc4a76448c3ed1a794a323054c960c"
+    },
+    {
+      "path": "game/docs/release-final-20261022/evidence/focus3-endings/act1-first-390x844.jpg",
+      "canonical": "game/docs/stage10-world-outro-ending-replay/evidence/final/endings/act1-first-390x844.jpg",
+      "bytes": 109045,
+      "gitBlobSha": "e3c2de1440dc4a76448c3ed1a794a323054c960c"
+    },
+    {
+      "path": "game/docs/release-final-20261022/evidence/focus3-endings/act1-repeat-390x844.jpg",
+      "canonical": "game/docs/stage10-world-outro-ending-replay/evidence/final/endings/act1-first-390x844.jpg",
+      "bytes": 109045,
+      "gitBlobSha": "e3c2de1440dc4a76448c3ed1a794a323054c960c"
+    },
+    {
+      "path": "game/docs/stage10-world-outro-ending-replay/evidence/focus2-completion/act1-first-390x844.jpg",
+      "canonical": "game/docs/stage10-world-outro-ending-replay/evidence/final/endings/act1-first-390x844.jpg",
+      "bytes": 109045,
+      "gitBlobSha": "e3c2de1440dc4a76448c3ed1a794a323054c960c"
+    },
+    {
+      "path": "game/docs/stage10-world-outro-ending-replay/evidence/focus2-completion/act1-repeat-390x844.jpg",
+      "canonical": "game/docs/stage10-world-outro-ending-replay/evidence/final/endings/act1-first-390x844.jpg",
+      "bytes": 109045,
+      "gitBlobSha": "e3c2de1440dc4a76448c3ed1a794a323054c960c"
+    },
+    {
+      "path": "game/docs/stage10-world-outro-ending-replay/evidence/final/endings/act1-repeat-844x390.jpg",
+      "canonical": "game/docs/stage10-world-outro-ending-replay/evidence/final/endings/act1-first-844x390.jpg",
+      "bytes": 116473,
+      "gitBlobSha": "6dcc383d5ae7040a5a68b228d0446956bb543ec3"
+    },
+    {
+      "path": "game/docs/feedback-integration-20261022/evidence/final-endings/act1-first-844x390.jpg",
+      "canonical": "game/docs/stage10-world-outro-ending-replay/evidence/final/endings/act1-first-844x390.jpg",
+      "bytes": 116473,
+      "gitBlobSha": "6dcc383d5ae7040a5a68b228d0446956bb543ec3"
+    },
+    {
+      "path": "game/docs/feedback-integration-20261022/evidence/final-endings/act1-repeat-844x390.jpg",
+      "canonical": "game/docs/stage10-world-outro-ending-replay/evidence/final/endings/act1-first-844x390.jpg",
+      "bytes": 116473,
+      "gitBlobSha": "6dcc383d5ae7040a5a68b228d0446956bb543ec3"
+    },
+    {
+      "path": "game/docs/release-final-20261022/evidence/focus3-endings/act1-first-844x390.jpg",
+      "canonical": "game/docs/stage10-world-outro-ending-replay/evidence/final/endings/act1-first-844x390.jpg",
+      "bytes": 116473,
+      "gitBlobSha": "6dcc383d5ae7040a5a68b228d0446956bb543ec3"
+    },
+    {
+      "path": "game/docs/release-final-20261022/evidence/focus3-endings/act1-repeat-844x390.jpg",
+      "canonical": "game/docs/stage10-world-outro-ending-replay/evidence/final/endings/act1-first-844x390.jpg",
+      "bytes": 116473,
+      "gitBlobSha": "6dcc383d5ae7040a5a68b228d0446956bb543ec3"
+    },
+    {
+      "path": "game/docs/stage10-world-outro-ending-replay/evidence/focus2-completion/act1-first-844x390.jpg",
+      "canonical": "game/docs/stage10-world-outro-ending-replay/evidence/final/endings/act1-first-844x390.jpg",
+      "bytes": 116473,
+      "gitBlobSha": "6dcc383d5ae7040a5a68b228d0446956bb543ec3"
+    },
+    {
+      "path": "game/docs/stage10-world-outro-ending-replay/evidence/focus2-completion/act1-repeat-844x390.jpg",
+      "canonical": "game/docs/stage10-world-outro-ending-replay/evidence/final/endings/act1-first-844x390.jpg",
+      "bytes": 116473,
+      "gitBlobSha": "6dcc383d5ae7040a5a68b228d0446956bb543ec3"
+    },
+    {
+      "path": "game/docs/stage10-world-outro-ending-replay/evidence/final/endings/act1-title-repeat-390x844.jpg",
+      "canonical": "game/docs/stage10-world-outro-ending-replay/evidence/final/endings/act1-title-first-390x844.jpg",
+      "bytes": 24830,
+      "gitBlobSha": "e0ca61b92ecd1f70dcb9a186e42718e43ebb3438"
+    },
+    {
+      "path": "game/docs/feedback-integration-20261022/evidence/final-endings/act1-title-first-390x844.jpg",
+      "canonical": "game/docs/stage10-world-outro-ending-replay/evidence/final/endings/act1-title-first-390x844.jpg",
+      "bytes": 24830,
+      "gitBlobSha": "e0ca61b92ecd1f70dcb9a186e42718e43ebb3438"
+    },
+    {
+      "path": "game/docs/feedback-integration-20261022/evidence/final-endings/act1-title-repeat-390x844.jpg",
+      "canonical": "game/docs/stage10-world-outro-ending-replay/evidence/final/endings/act1-title-first-390x844.jpg",
+      "bytes": 24830,
+      "gitBlobSha": "e0ca61b92ecd1f70dcb9a186e42718e43ebb3438"
+    },
+    {
+      "path": "game/docs/release-final-20261022/evidence/focus3-endings/act1-title-first-390x844.jpg",
+      "canonical": "game/docs/stage10-world-outro-ending-replay/evidence/final/endings/act1-title-first-390x844.jpg",
+      "bytes": 24830,
+      "gitBlobSha": "e0ca61b92ecd1f70dcb9a186e42718e43ebb3438"
+    },
+    {
+      "path": "game/docs/release-final-20261022/evidence/focus3-endings/act1-title-repeat-390x844.jpg",
+      "canonical": "game/docs/stage10-world-outro-ending-replay/evidence/final/endings/act1-title-first-390x844.jpg",
+      "bytes": 24830,
+      "gitBlobSha": "e0ca61b92ecd1f70dcb9a186e42718e43ebb3438"
+    },
+    {
+      "path": "game/docs/stage10-world-outro-ending-replay/evidence/final/endings/act1-title-repeat-844x390.jpg",
+      "canonical": "game/docs/stage10-world-outro-ending-replay/evidence/final/endings/act1-title-first-844x390.jpg",
+      "bytes": 25537,
+      "gitBlobSha": "fa23646fe899b5c7829aea3f15fc028e279db544"
+    },
+    {
+      "path": "game/docs/feedback-integration-20261022/evidence/final-endings/act1-title-first-844x390.jpg",
+      "canonical": "game/docs/stage10-world-outro-ending-replay/evidence/final/endings/act1-title-first-844x390.jpg",
+      "bytes": 25537,
+      "gitBlobSha": "fa23646fe899b5c7829aea3f15fc028e279db544"
+    },
+    {
+      "path": "game/docs/feedback-integration-20261022/evidence/final-endings/act1-title-repeat-844x390.jpg",
+      "canonical": "game/docs/stage10-world-outro-ending-replay/evidence/final/endings/act1-title-first-844x390.jpg",
+      "bytes": 25537,
+      "gitBlobSha": "fa23646fe899b5c7829aea3f15fc028e279db544"
+    },
+    {
+      "path": "game/docs/release-final-20261022/evidence/focus3-endings/act1-title-first-844x390.jpg",
+      "canonical": "game/docs/stage10-world-outro-ending-replay/evidence/final/endings/act1-title-first-844x390.jpg",
+      "bytes": 25537,
+      "gitBlobSha": "fa23646fe899b5c7829aea3f15fc028e279db544"
+    },
+    {
+      "path": "game/docs/release-final-20261022/evidence/focus3-endings/act1-title-repeat-844x390.jpg",
+      "canonical": "game/docs/stage10-world-outro-ending-replay/evidence/final/endings/act1-title-first-844x390.jpg",
+      "bytes": 25537,
+      "gitBlobSha": "fa23646fe899b5c7829aea3f15fc028e279db544"
+    },
+    {
+      "path": "game/docs/stage10-world-outro-ending-replay/evidence/final/endings/act2-copy3-repeat-390x844.jpg",
+      "canonical": "game/docs/stage10-world-outro-ending-replay/evidence/final/endings/act2-copy3-first-390x844.jpg",
+      "bytes": 103614,
+      "gitBlobSha": "b33eb206be9492c0ab395a9953bd82a19968021f"
+    },
+    {
+      "path": "game/docs/feedback-integration-20261022/evidence/final-endings/act2-copy3-first-390x844.jpg",
+      "canonical": "game/docs/stage10-world-outro-ending-replay/evidence/final/endings/act2-copy3-first-390x844.jpg",
+      "bytes": 103614,
+      "gitBlobSha": "b33eb206be9492c0ab395a9953bd82a19968021f"
+    },
+    {
+      "path": "game/docs/feedback-integration-20261022/evidence/final-endings/act2-copy3-repeat-390x844.jpg",
+      "canonical": "game/docs/stage10-world-outro-ending-replay/evidence/final/endings/act2-copy3-first-390x844.jpg",
+      "bytes": 103614,
+      "gitBlobSha": "b33eb206be9492c0ab395a9953bd82a19968021f"
+    },
+    {
+      "path": "game/docs/release-final-20261022/evidence/focus3-endings/act2-copy3-first-390x844.jpg",
+      "canonical": "game/docs/stage10-world-outro-ending-replay/evidence/final/endings/act2-copy3-first-390x844.jpg",
+      "bytes": 103614,
+      "gitBlobSha": "b33eb206be9492c0ab395a9953bd82a19968021f"
+    },
+    {
+      "path": "game/docs/release-final-20261022/evidence/focus3-endings/act2-copy3-repeat-390x844.jpg",
+      "canonical": "game/docs/stage10-world-outro-ending-replay/evidence/final/endings/act2-copy3-first-390x844.jpg",
+      "bytes": 103614,
+      "gitBlobSha": "b33eb206be9492c0ab395a9953bd82a19968021f"
+    },
+    {
+      "path": "game/docs/stage10-world-outro-ending-replay/evidence/final/endings/act2-copy3-repeat-844x390.jpg",
+      "canonical": "game/docs/stage10-world-outro-ending-replay/evidence/final/endings/act2-copy3-first-844x390.jpg",
+      "bytes": 116562,
+      "gitBlobSha": "a6c1cbc48f880367e1b56726c67eaa1539ee9f5a"
+    },
+    {
+      "path": "game/docs/feedback-integration-20261022/evidence/final-endings/act2-copy3-first-844x390.jpg",
+      "canonical": "game/docs/stage10-world-outro-ending-replay/evidence/final/endings/act2-copy3-first-844x390.jpg",
+      "bytes": 116562,
+      "gitBlobSha": "a6c1cbc48f880367e1b56726c67eaa1539ee9f5a"
+    },
+    {
+      "path": "game/docs/feedback-integration-20261022/evidence/final-endings/act2-copy3-repeat-844x390.jpg",
+      "canonical": "game/docs/stage10-world-outro-ending-replay/evidence/final/endings/act2-copy3-first-844x390.jpg",
+      "bytes": 116562,
+      "gitBlobSha": "a6c1cbc48f880367e1b56726c67eaa1539ee9f5a"
+    },
+    {
+      "path": "game/docs/release-final-20261022/evidence/focus3-endings/act2-copy3-repeat-844x390.jpg",
+      "canonical": "game/docs/stage10-world-outro-ending-replay/evidence/final/endings/act2-copy3-first-844x390.jpg",
+      "bytes": 116562,
+      "gitBlobSha": "a6c1cbc48f880367e1b56726c67eaa1539ee9f5a"
+    },
+    {
+      "path": "game/docs/stage10-world-outro-ending-replay/evidence/final/endings/act2-repeat-390x844.jpg",
+      "canonical": "game/docs/stage10-world-outro-ending-replay/evidence/final/endings/act2-first-390x844.jpg",
+      "bytes": 102188,
+      "gitBlobSha": "f929a82671b4dec2fade1a1eadc97710115154af"
+    },
+    {
+      "path": "game/docs/feedback-integration-20261022/evidence/final-endings/act2-first-390x844.jpg",
+      "canonical": "game/docs/stage10-world-outro-ending-replay/evidence/final/endings/act2-first-390x844.jpg",
+      "bytes": 102188,
+      "gitBlobSha": "f929a82671b4dec2fade1a1eadc97710115154af"
+    },
+    {
+      "path": "game/docs/feedback-integration-20261022/evidence/final-endings/act2-repeat-390x844.jpg",
+      "canonical": "game/docs/stage10-world-outro-ending-replay/evidence/final/endings/act2-first-390x844.jpg",
+      "bytes": 102188,
+      "gitBlobSha": "f929a82671b4dec2fade1a1eadc97710115154af"
+    },
+    {
+      "path": "game/docs/release-final-20261022/evidence/focus3-endings/act2-first-390x844.jpg",
+      "canonical": "game/docs/stage10-world-outro-ending-replay/evidence/final/endings/act2-first-390x844.jpg",
+      "bytes": 102188,
+      "gitBlobSha": "f929a82671b4dec2fade1a1eadc97710115154af"
+    },
+    {
+      "path": "game/docs/release-final-20261022/evidence/focus3-endings/act2-repeat-390x844.jpg",
+      "canonical": "game/docs/stage10-world-outro-ending-replay/evidence/final/endings/act2-first-390x844.jpg",
+      "bytes": 102188,
+      "gitBlobSha": "f929a82671b4dec2fade1a1eadc97710115154af"
+    },
+    {
+      "path": "game/docs/stage10-world-outro-ending-replay/evidence/focus2-completion/act2-first-390x844.jpg",
+      "canonical": "game/docs/stage10-world-outro-ending-replay/evidence/final/endings/act2-first-390x844.jpg",
+      "bytes": 102188,
+      "gitBlobSha": "f929a82671b4dec2fade1a1eadc97710115154af"
+    },
+    {
+      "path": "game/docs/stage10-world-outro-ending-replay/evidence/focus2-completion/act2-repeat-390x844.jpg",
+      "canonical": "game/docs/stage10-world-outro-ending-replay/evidence/final/endings/act2-first-390x844.jpg",
+      "bytes": 102188,
+      "gitBlobSha": "f929a82671b4dec2fade1a1eadc97710115154af"
+    },
+    {
+      "path": "game/docs/stage10-world-outro-ending-replay/evidence/final/endings/act2-repeat-844x390.jpg",
+      "canonical": "game/docs/stage10-world-outro-ending-replay/evidence/final/endings/act2-first-844x390.jpg",
+      "bytes": 115040,
+      "gitBlobSha": "99dd9463953d2babec5d0fc3abb780a8ffa7b9b4"
+    },
+    {
+      "path": "game/docs/feedback-integration-20261022/evidence/final-endings/act2-first-844x390.jpg",
+      "canonical": "game/docs/stage10-world-outro-ending-replay/evidence/final/endings/act2-first-844x390.jpg",
+      "bytes": 115040,
+      "gitBlobSha": "99dd9463953d2babec5d0fc3abb780a8ffa7b9b4"
+    },
+    {
+      "path": "game/docs/feedback-integration-20261022/evidence/final-endings/act2-repeat-844x390.jpg",
+      "canonical": "game/docs/stage10-world-outro-ending-replay/evidence/final/endings/act2-first-844x390.jpg",
+      "bytes": 115040,
+      "gitBlobSha": "99dd9463953d2babec5d0fc3abb780a8ffa7b9b4"
+    },
+    {
+      "path": "game/docs/release-final-20261022/evidence/focus3-endings/act2-first-844x390.jpg",
+      "canonical": "game/docs/stage10-world-outro-ending-replay/evidence/final/endings/act2-first-844x390.jpg",
+      "bytes": 115040,
+      "gitBlobSha": "99dd9463953d2babec5d0fc3abb780a8ffa7b9b4"
+    },
+    {
+      "path": "game/docs/release-final-20261022/evidence/focus3-endings/act2-repeat-844x390.jpg",
+      "canonical": "game/docs/stage10-world-outro-ending-replay/evidence/final/endings/act2-first-844x390.jpg",
+      "bytes": 115040,
+      "gitBlobSha": "99dd9463953d2babec5d0fc3abb780a8ffa7b9b4"
+    },
+    {
+      "path": "game/docs/stage10-world-outro-ending-replay/evidence/focus2-completion/act2-first-844x390.jpg",
+      "canonical": "game/docs/stage10-world-outro-ending-replay/evidence/final/endings/act2-first-844x390.jpg",
+      "bytes": 115040,
+      "gitBlobSha": "99dd9463953d2babec5d0fc3abb780a8ffa7b9b4"
+    },
+    {
+      "path": "game/docs/stage10-world-outro-ending-replay/evidence/focus2-completion/act2-repeat-844x390.jpg",
+      "canonical": "game/docs/stage10-world-outro-ending-replay/evidence/final/endings/act2-first-844x390.jpg",
+      "bytes": 115040,
+      "gitBlobSha": "99dd9463953d2babec5d0fc3abb780a8ffa7b9b4"
+    },
+    {
+      "path": "game/docs/stage10-world-outro-ending-replay/evidence/final/endings/act2-title-repeat-390x844.jpg",
+      "canonical": "game/docs/stage10-world-outro-ending-replay/evidence/final/endings/act2-title-first-390x844.jpg",
+      "bytes": 24595,
+      "gitBlobSha": "efc22d49c45b0317cb577c9feb70f0777fe38b09"
+    },
+    {
+      "path": "game/docs/feedback-integration-20261022/evidence/final-endings/act2-title-first-390x844.jpg",
+      "canonical": "game/docs/stage10-world-outro-ending-replay/evidence/final/endings/act2-title-first-390x844.jpg",
+      "bytes": 24595,
+      "gitBlobSha": "efc22d49c45b0317cb577c9feb70f0777fe38b09"
+    },
+    {
+      "path": "game/docs/feedback-integration-20261022/evidence/final-endings/act2-title-repeat-390x844.jpg",
+      "canonical": "game/docs/stage10-world-outro-ending-replay/evidence/final/endings/act2-title-first-390x844.jpg",
+      "bytes": 24595,
+      "gitBlobSha": "efc22d49c45b0317cb577c9feb70f0777fe38b09"
+    },
+    {
+      "path": "game/docs/release-final-20261022/evidence/focus3-endings/act2-title-first-390x844.jpg",
+      "canonical": "game/docs/stage10-world-outro-ending-replay/evidence/final/endings/act2-title-first-390x844.jpg",
+      "bytes": 24595,
+      "gitBlobSha": "efc22d49c45b0317cb577c9feb70f0777fe38b09"
+    },
+    {
+      "path": "game/docs/release-final-20261022/evidence/focus3-endings/act2-title-repeat-390x844.jpg",
+      "canonical": "game/docs/stage10-world-outro-ending-replay/evidence/final/endings/act2-title-first-390x844.jpg",
+      "bytes": 24595,
+      "gitBlobSha": "efc22d49c45b0317cb577c9feb70f0777fe38b09"
+    },
+    {
+      "path": "game/docs/stage10-world-outro-ending-replay/evidence/final/endings/act2-title-repeat-844x390.jpg",
+      "canonical": "game/docs/stage10-world-outro-ending-replay/evidence/final/endings/act2-title-first-844x390.jpg",
+      "bytes": 27132,
+      "gitBlobSha": "6d367eb60f9b92a870d8302ebe2bcff5dff6980c"
+    },
+    {
+      "path": "game/docs/feedback-integration-20261022/evidence/final-endings/act2-title-first-844x390.jpg",
+      "canonical": "game/docs/stage10-world-outro-ending-replay/evidence/final/endings/act2-title-first-844x390.jpg",
+      "bytes": 27132,
+      "gitBlobSha": "6d367eb60f9b92a870d8302ebe2bcff5dff6980c"
+    },
+    {
+      "path": "game/docs/feedback-integration-20261022/evidence/final-endings/act2-title-repeat-844x390.jpg",
+      "canonical": "game/docs/stage10-world-outro-ending-replay/evidence/final/endings/act2-title-first-844x390.jpg",
+      "bytes": 27132,
+      "gitBlobSha": "6d367eb60f9b92a870d8302ebe2bcff5dff6980c"
+    },
+    {
+      "path": "game/docs/release-final-20261022/evidence/focus3-endings/act2-title-first-844x390.jpg",
+      "canonical": "game/docs/stage10-world-outro-ending-replay/evidence/final/endings/act2-title-first-844x390.jpg",
+      "bytes": 27132,
+      "gitBlobSha": "6d367eb60f9b92a870d8302ebe2bcff5dff6980c"
+    },
+    {
+      "path": "game/docs/release-final-20261022/evidence/focus3-endings/act2-title-repeat-844x390.jpg",
+      "canonical": "game/docs/stage10-world-outro-ending-replay/evidence/final/endings/act2-title-first-844x390.jpg",
+      "bytes": 27132,
+      "gitBlobSha": "6d367eb60f9b92a870d8302ebe2bcff5dff6980c"
+    },
+    {
+      "path": "game/docs/stage10-world-outro-ending-replay/evidence/final/endings/act3-copy3-repeat-390x844.jpg",
+      "canonical": "game/docs/stage10-world-outro-ending-replay/evidence/final/endings/act3-copy3-first-390x844.jpg",
+      "bytes": 119499,
+      "gitBlobSha": "9f2a742089d9762b86bbab9efe8036221cf61522"
+    },
+    {
+      "path": "game/docs/feedback-integration-20261022/evidence/final-endings/act3-copy3-first-390x844.jpg",
+      "canonical": "game/docs/stage10-world-outro-ending-replay/evidence/final/endings/act3-copy3-first-390x844.jpg",
+      "bytes": 119499,
+      "gitBlobSha": "9f2a742089d9762b86bbab9efe8036221cf61522"
+    },
+    {
+      "path": "game/docs/feedback-integration-20261022/evidence/final-endings/act3-copy3-repeat-390x844.jpg",
+      "canonical": "game/docs/stage10-world-outro-ending-replay/evidence/final/endings/act3-copy3-first-390x844.jpg",
+      "bytes": 119499,
+      "gitBlobSha": "9f2a742089d9762b86bbab9efe8036221cf61522"
+    },
+    {
+      "path": "game/docs/release-final-20261022/evidence/focus3-endings/act3-copy3-first-390x844.jpg",
+      "canonical": "game/docs/stage10-world-outro-ending-replay/evidence/final/endings/act3-copy3-first-390x844.jpg",
+      "bytes": 119499,
+      "gitBlobSha": "9f2a742089d9762b86bbab9efe8036221cf61522"
+    },
+    {
+      "path": "game/docs/stage10-world-outro-ending-replay/evidence/final/endings/act3-copy3-repeat-844x390.jpg",
+      "canonical": "game/docs/stage10-world-outro-ending-replay/evidence/final/endings/act3-copy3-first-844x390.jpg",
+      "bytes": 125762,
+      "gitBlobSha": "161697501c779677181132bc5816bd2e89d3a6ad"
+    },
+    {
+      "path": "game/docs/feedback-integration-20261022/evidence/final-endings/act3-copy3-first-844x390.jpg",
+      "canonical": "game/docs/stage10-world-outro-ending-replay/evidence/final/endings/act3-copy3-first-844x390.jpg",
+      "bytes": 125762,
+      "gitBlobSha": "161697501c779677181132bc5816bd2e89d3a6ad"
+    },
+    {
+      "path": "game/docs/feedback-integration-20261022/evidence/final-endings/act3-copy3-repeat-844x390.jpg",
+      "canonical": "game/docs/stage10-world-outro-ending-replay/evidence/final/endings/act3-copy3-first-844x390.jpg",
+      "bytes": 125762,
+      "gitBlobSha": "161697501c779677181132bc5816bd2e89d3a6ad"
+    },
+    {
+      "path": "game/docs/release-final-20261022/evidence/focus3-endings/act3-copy3-first-844x390.jpg",
+      "canonical": "game/docs/stage10-world-outro-ending-replay/evidence/final/endings/act3-copy3-first-844x390.jpg",
+      "bytes": 125762,
+      "gitBlobSha": "161697501c779677181132bc5816bd2e89d3a6ad"
+    },
+    {
+      "path": "game/docs/release-final-20261022/evidence/focus3-endings/act3-copy3-repeat-844x390.jpg",
+      "canonical": "game/docs/stage10-world-outro-ending-replay/evidence/final/endings/act3-copy3-first-844x390.jpg",
+      "bytes": 125762,
+      "gitBlobSha": "161697501c779677181132bc5816bd2e89d3a6ad"
+    },
+    {
+      "path": "game/docs/stage10-world-outro-ending-replay/evidence/final/endings/act3-repeat-390x844.jpg",
+      "canonical": "game/docs/stage10-world-outro-ending-replay/evidence/final/endings/act3-first-390x844.jpg",
+      "bytes": 117612,
+      "gitBlobSha": "137e9673f9330671bc0e33ee9a95167951ea8f4f"
+    },
+    {
+      "path": "game/docs/feedback-integration-20261022/evidence/final-endings/act3-first-390x844.jpg",
+      "canonical": "game/docs/stage10-world-outro-ending-replay/evidence/final/endings/act3-first-390x844.jpg",
+      "bytes": 117612,
+      "gitBlobSha": "137e9673f9330671bc0e33ee9a95167951ea8f4f"
+    },
+    {
+      "path": "game/docs/feedback-integration-20261022/evidence/final-endings/act3-repeat-390x844.jpg",
+      "canonical": "game/docs/stage10-world-outro-ending-replay/evidence/final/endings/act3-first-390x844.jpg",
+      "bytes": 117612,
+      "gitBlobSha": "137e9673f9330671bc0e33ee9a95167951ea8f4f"
+    },
+    {
+      "path": "game/docs/release-final-20261022/evidence/focus3-endings/act3-first-390x844.jpg",
+      "canonical": "game/docs/stage10-world-outro-ending-replay/evidence/final/endings/act3-first-390x844.jpg",
+      "bytes": 117612,
+      "gitBlobSha": "137e9673f9330671bc0e33ee9a95167951ea8f4f"
+    },
+    {
+      "path": "game/docs/release-final-20261022/evidence/focus3-endings/act3-repeat-390x844.jpg",
+      "canonical": "game/docs/stage10-world-outro-ending-replay/evidence/final/endings/act3-first-390x844.jpg",
+      "bytes": 117612,
+      "gitBlobSha": "137e9673f9330671bc0e33ee9a95167951ea8f4f"
+    },
+    {
+      "path": "game/docs/stage10-world-outro-ending-replay/evidence/focus2-completion/act3-first-390x844.jpg",
+      "canonical": "game/docs/stage10-world-outro-ending-replay/evidence/final/endings/act3-first-390x844.jpg",
+      "bytes": 117612,
+      "gitBlobSha": "137e9673f9330671bc0e33ee9a95167951ea8f4f"
+    },
+    {
+      "path": "game/docs/stage10-world-outro-ending-replay/evidence/focus2-completion/act3-repeat-390x844.jpg",
+      "canonical": "game/docs/stage10-world-outro-ending-replay/evidence/final/endings/act3-first-390x844.jpg",
+      "bytes": 117612,
+      "gitBlobSha": "137e9673f9330671bc0e33ee9a95167951ea8f4f"
+    },
+    {
+      "path": "game/docs/stage10-world-outro-ending-replay/evidence/final/endings/act3-repeat-844x390.jpg",
+      "canonical": "game/docs/stage10-world-outro-ending-replay/evidence/final/endings/act3-first-844x390.jpg",
+      "bytes": 124166,
+      "gitBlobSha": "ca2ff4996ef71521241a452e5131b1252faf74dd"
+    },
+    {
+      "path": "game/docs/feedback-integration-20261022/evidence/final-endings/act3-first-844x390.jpg",
+      "canonical": "game/docs/stage10-world-outro-ending-replay/evidence/final/endings/act3-first-844x390.jpg",
+      "bytes": 124166,
+      "gitBlobSha": "ca2ff4996ef71521241a452e5131b1252faf74dd"
+    },
+    {
+      "path": "game/docs/feedback-integration-20261022/evidence/final-endings/act3-repeat-844x390.jpg",
+      "canonical": "game/docs/stage10-world-outro-ending-replay/evidence/final/endings/act3-first-844x390.jpg",
+      "bytes": 124166,
+      "gitBlobSha": "ca2ff4996ef71521241a452e5131b1252faf74dd"
+    },
+    {
+      "path": "game/docs/release-final-20261022/evidence/focus3-endings/act3-first-844x390.jpg",
+      "canonical": "game/docs/stage10-world-outro-ending-replay/evidence/final/endings/act3-first-844x390.jpg",
+      "bytes": 124166,
+      "gitBlobSha": "ca2ff4996ef71521241a452e5131b1252faf74dd"
+    },
+    {
+      "path": "game/docs/release-final-20261022/evidence/focus3-endings/act3-repeat-844x390.jpg",
+      "canonical": "game/docs/stage10-world-outro-ending-replay/evidence/final/endings/act3-first-844x390.jpg",
+      "bytes": 124166,
+      "gitBlobSha": "ca2ff4996ef71521241a452e5131b1252faf74dd"
+    },
+    {
+      "path": "game/docs/stage10-world-outro-ending-replay/evidence/focus2-completion/act3-first-844x390.jpg",
+      "canonical": "game/docs/stage10-world-outro-ending-replay/evidence/final/endings/act3-first-844x390.jpg",
+      "bytes": 124166,
+      "gitBlobSha": "ca2ff4996ef71521241a452e5131b1252faf74dd"
+    },
+    {
+      "path": "game/docs/stage10-world-outro-ending-replay/evidence/focus2-completion/act3-repeat-844x390.jpg",
+      "canonical": "game/docs/stage10-world-outro-ending-replay/evidence/final/endings/act3-first-844x390.jpg",
+      "bytes": 124166,
+      "gitBlobSha": "ca2ff4996ef71521241a452e5131b1252faf74dd"
+    },
+    {
+      "path": "game/docs/stage10-world-outro-ending-replay/evidence/final/endings/act3-title-repeat-390x844.jpg",
+      "canonical": "game/docs/stage10-world-outro-ending-replay/evidence/final/endings/act3-title-first-390x844.jpg",
+      "bytes": 30406,
+      "gitBlobSha": "31050d2e3e39fd2de23bb30a2a1db928148724b5"
+    },
+    {
+      "path": "game/docs/feedback-integration-20261022/evidence/final-endings/act3-title-first-390x844.jpg",
+      "canonical": "game/docs/stage10-world-outro-ending-replay/evidence/final/endings/act3-title-first-390x844.jpg",
+      "bytes": 30406,
+      "gitBlobSha": "31050d2e3e39fd2de23bb30a2a1db928148724b5"
+    },
+    {
+      "path": "game/docs/feedback-integration-20261022/evidence/final-endings/act3-title-repeat-390x844.jpg",
+      "canonical": "game/docs/stage10-world-outro-ending-replay/evidence/final/endings/act3-title-first-390x844.jpg",
+      "bytes": 30406,
+      "gitBlobSha": "31050d2e3e39fd2de23bb30a2a1db928148724b5"
+    },
+    {
+      "path": "game/docs/release-final-20261022/evidence/focus3-endings/act3-title-first-390x844.jpg",
+      "canonical": "game/docs/stage10-world-outro-ending-replay/evidence/final/endings/act3-title-first-390x844.jpg",
+      "bytes": 30406,
+      "gitBlobSha": "31050d2e3e39fd2de23bb30a2a1db928148724b5"
+    },
+    {
+      "path": "game/docs/release-final-20261022/evidence/focus3-endings/act3-title-repeat-390x844.jpg",
+      "canonical": "game/docs/stage10-world-outro-ending-replay/evidence/final/endings/act3-title-first-390x844.jpg",
+      "bytes": 30406,
+      "gitBlobSha": "31050d2e3e39fd2de23bb30a2a1db928148724b5"
+    },
+    {
+      "path": "game/docs/stage10-world-outro-ending-replay/evidence/final/endings/act3-title-repeat-844x390.jpg",
+      "canonical": "game/docs/stage10-world-outro-ending-replay/evidence/final/endings/act3-title-first-844x390.jpg",
+      "bytes": 30716,
+      "gitBlobSha": "268d929c768ded564c8593763e56f57f53769af3"
+    },
+    {
+      "path": "game/docs/feedback-integration-20261022/evidence/final-endings/act3-title-first-844x390.jpg",
+      "canonical": "game/docs/stage10-world-outro-ending-replay/evidence/final/endings/act3-title-first-844x390.jpg",
+      "bytes": 30716,
+      "gitBlobSha": "268d929c768ded564c8593763e56f57f53769af3"
+    },
+    {
+      "path": "game/docs/feedback-integration-20261022/evidence/final-endings/act3-title-repeat-844x390.jpg",
+      "canonical": "game/docs/stage10-world-outro-ending-replay/evidence/final/endings/act3-title-first-844x390.jpg",
+      "bytes": 30716,
+      "gitBlobSha": "268d929c768ded564c8593763e56f57f53769af3"
+    },
+    {
+      "path": "game/docs/release-final-20261022/evidence/focus3-endings/act3-title-first-844x390.jpg",
+      "canonical": "game/docs/stage10-world-outro-ending-replay/evidence/final/endings/act3-title-first-844x390.jpg",
+      "bytes": 30716,
+      "gitBlobSha": "268d929c768ded564c8593763e56f57f53769af3"
+    },
+    {
+      "path": "game/docs/feedback-integration-20261022/evidence/final-endings/gallery-act1-390x844.jpg",
+      "canonical": "game/docs/stage10-world-outro-ending-replay/evidence/final/endings/gallery-act1-390x844.jpg",
+      "bytes": 109291,
+      "gitBlobSha": "24260a9c2eca336a6fd913d3d4cda345b42c9cba"
+    },
+    {
+      "path": "game/docs/release-final-20261022/evidence/focus3-endings/gallery-act1-390x844.jpg",
+      "canonical": "game/docs/stage10-world-outro-ending-replay/evidence/final/endings/gallery-act1-390x844.jpg",
+      "bytes": 109291,
+      "gitBlobSha": "24260a9c2eca336a6fd913d3d4cda345b42c9cba"
+    },
+    {
+      "path": "game/docs/stage10-world-outro-ending-replay/evidence/focus3-gallery/gallery-act1-390x844.jpg",
+      "canonical": "game/docs/stage10-world-outro-ending-replay/evidence/final/endings/gallery-act1-390x844.jpg",
+      "bytes": 109291,
+      "gitBlobSha": "24260a9c2eca336a6fd913d3d4cda345b42c9cba"
+    },
+    {
+      "path": "game/docs/feedback-integration-20261022/evidence/final-endings/gallery-act1-844x390.jpg",
+      "canonical": "game/docs/stage10-world-outro-ending-replay/evidence/final/endings/gallery-act1-844x390.jpg",
+      "bytes": 116712,
+      "gitBlobSha": "40257a70ed6111218a313fb380bf6c6ccbd18ab8"
+    },
+    {
+      "path": "game/docs/release-final-20261022/evidence/focus3-endings/gallery-act1-844x390.jpg",
+      "canonical": "game/docs/stage10-world-outro-ending-replay/evidence/final/endings/gallery-act1-844x390.jpg",
+      "bytes": 116712,
+      "gitBlobSha": "40257a70ed6111218a313fb380bf6c6ccbd18ab8"
+    },
+    {
+      "path": "game/docs/stage10-world-outro-ending-replay/evidence/focus3-gallery/gallery-act1-844x390.jpg",
+      "canonical": "game/docs/stage10-world-outro-ending-replay/evidence/final/endings/gallery-act1-844x390.jpg",
+      "bytes": 116712,
+      "gitBlobSha": "40257a70ed6111218a313fb380bf6c6ccbd18ab8"
+    },
+    {
+      "path": "game/docs/feedback-integration-20261022/evidence/final-endings/gallery-act2-390x844.jpg",
+      "canonical": "game/docs/stage10-world-outro-ending-replay/evidence/final/endings/gallery-act2-390x844.jpg",
+      "bytes": 102302,
+      "gitBlobSha": "7b4deb5c13e7c64fdfa4e999e67f6d8465955fc5"
+    },
+    {
+      "path": "game/docs/release-final-20261022/evidence/focus3-endings/gallery-act2-390x844.jpg",
+      "canonical": "game/docs/stage10-world-outro-ending-replay/evidence/final/endings/gallery-act2-390x844.jpg",
+      "bytes": 102302,
+      "gitBlobSha": "7b4deb5c13e7c64fdfa4e999e67f6d8465955fc5"
+    },
+    {
+      "path": "game/docs/stage10-world-outro-ending-replay/evidence/focus3-gallery/gallery-act2-390x844.jpg",
+      "canonical": "game/docs/stage10-world-outro-ending-replay/evidence/final/endings/gallery-act2-390x844.jpg",
+      "bytes": 102302,
+      "gitBlobSha": "7b4deb5c13e7c64fdfa4e999e67f6d8465955fc5"
+    },
+    {
+      "path": "game/docs/feedback-integration-20261022/evidence/final-endings/gallery-act2-844x390.jpg",
+      "canonical": "game/docs/stage10-world-outro-ending-replay/evidence/final/endings/gallery-act2-844x390.jpg",
+      "bytes": 115273,
+      "gitBlobSha": "d356dcc0040a00a01d6c3ce0e63c3a8e45ec1b95"
+    },
+    {
+      "path": "game/docs/release-final-20261022/evidence/focus3-endings/gallery-act2-844x390.jpg",
+      "canonical": "game/docs/stage10-world-outro-ending-replay/evidence/final/endings/gallery-act2-844x390.jpg",
+      "bytes": 115273,
+      "gitBlobSha": "d356dcc0040a00a01d6c3ce0e63c3a8e45ec1b95"
+    },
+    {
+      "path": "game/docs/stage10-world-outro-ending-replay/evidence/focus3-gallery/gallery-act2-844x390.jpg",
+      "canonical": "game/docs/stage10-world-outro-ending-replay/evidence/final/endings/gallery-act2-844x390.jpg",
+      "bytes": 115273,
+      "gitBlobSha": "d356dcc0040a00a01d6c3ce0e63c3a8e45ec1b95"
+    },
+    {
+      "path": "game/docs/feedback-integration-20261022/evidence/final-endings/gallery-act3-390x844.jpg",
+      "canonical": "game/docs/stage10-world-outro-ending-replay/evidence/final/endings/gallery-act3-390x844.jpg",
+      "bytes": 118231,
+      "gitBlobSha": "7589a620f633386e96a17cf8f784dacf15f0664a"
+    },
+    {
+      "path": "game/docs/release-final-20261022/evidence/focus3-endings/gallery-act3-390x844.jpg",
+      "canonical": "game/docs/stage10-world-outro-ending-replay/evidence/final/endings/gallery-act3-390x844.jpg",
+      "bytes": 118231,
+      "gitBlobSha": "7589a620f633386e96a17cf8f784dacf15f0664a"
+    },
+    {
+      "path": "game/docs/stage10-world-outro-ending-replay/evidence/focus3-gallery/gallery-act3-390x844.jpg",
+      "canonical": "game/docs/stage10-world-outro-ending-replay/evidence/final/endings/gallery-act3-390x844.jpg",
+      "bytes": 118231,
+      "gitBlobSha": "7589a620f633386e96a17cf8f784dacf15f0664a"
+    },
+    {
+      "path": "game/docs/feedback-integration-20261022/evidence/final-endings/gallery-act3-844x390.jpg",
+      "canonical": "game/docs/stage10-world-outro-ending-replay/evidence/final/endings/gallery-act3-844x390.jpg",
+      "bytes": 124723,
+      "gitBlobSha": "9ab2ff24dba5423d470291d3e9cbc684f34e4d47"
+    },
+    {
+      "path": "game/docs/release-final-20261022/evidence/focus3-endings/gallery-act3-844x390.jpg",
+      "canonical": "game/docs/stage10-world-outro-ending-replay/evidence/final/endings/gallery-act3-844x390.jpg",
+      "bytes": 124723,
+      "gitBlobSha": "9ab2ff24dba5423d470291d3e9cbc684f34e4d47"
+    },
+    {
+      "path": "game/docs/stage10-world-outro-ending-replay/evidence/focus3-gallery/gallery-act3-844x390.jpg",
+      "canonical": "game/docs/stage10-world-outro-ending-replay/evidence/final/endings/gallery-act3-844x390.jpg",
+      "bytes": 124723,
+      "gitBlobSha": "9ab2ff24dba5423d470291d3e9cbc684f34e4d47"
+    },
+    {
+      "path": "game/docs/release-final-20261022/evidence/focus3-endings/journal-act1-390x844.jpg",
+      "canonical": "game/docs/feedback-integration-20261022/evidence/final-endings/journal-act1-390x844.jpg",
+      "bytes": 102974,
+      "gitBlobSha": "5b150bdb955e4e53422d891337c713171a2b4f37"
+    },
+    {
+      "path": "game/docs/release-final-20261022/evidence/focus3-endings/journal-act1-844x390.jpg",
+      "canonical": "game/docs/feedback-integration-20261022/evidence/final-endings/journal-act1-844x390.jpg",
+      "bytes": 84026,
+      "gitBlobSha": "dee4ed10fb9ed52ca1edcc4c40720412d511a136"
+    },
+    {
+      "path": "game/docs/release-final-20261022/evidence/focus3-endings/journal-act2-390x844.jpg",
+      "canonical": "game/docs/feedback-integration-20261022/evidence/final-endings/journal-act2-390x844.jpg",
+      "bytes": 76028,
+      "gitBlobSha": "5a7ebb12aa5e7bc188df2dc03ab91503f3673285"
+    },
+    {
+      "path": "game/docs/release-final-20261022/evidence/focus3-endings/journal-act2-844x390.jpg",
+      "canonical": "game/docs/feedback-integration-20261022/evidence/final-endings/journal-act2-844x390.jpg",
+      "bytes": 62379,
+      "gitBlobSha": "6a322a5cc29ef8e964187d4fabf98b21da2789f8"
+    },
+    {
+      "path": "game/docs/release-final-20261022/evidence/focus3-endings/journal-act3-390x844.jpg",
+      "canonical": "game/docs/feedback-integration-20261022/evidence/final-endings/journal-act3-390x844.jpg",
+      "bytes": 109433,
+      "gitBlobSha": "488297fd69855a9c38df01bb2a6ae5dd91bd5518"
+    },
+    {
+      "path": "game/docs/release-final-20261022/evidence/focus3-endings/journal-act3-844x390.jpg",
+      "canonical": "game/docs/feedback-integration-20261022/evidence/final-endings/journal-act3-844x390.jpg",
+      "bytes": 79998,
+      "gitBlobSha": "64c18afb67e9c08aedf619d55b2d0edceda6aa01"
+    },
+    {
+      "path": "game/docs/release-final-20261022/evidence/focus3-endings/journal-return-act1-390x844.jpg",
+      "canonical": "game/docs/feedback-integration-20261022/evidence/final-endings/journal-return-act1-390x844.jpg",
+      "bytes": 104728,
+      "gitBlobSha": "56856a5097620b137b3bd4cf3b7cf881927108aa"
+    },
+    {
+      "path": "game/docs/release-final-20261022/evidence/focus3-endings/journal-return-act1-844x390.jpg",
+      "canonical": "game/docs/feedback-integration-20261022/evidence/final-endings/journal-return-act1-844x390.jpg",
+      "bytes": 88438,
+      "gitBlobSha": "42422e4d1456f6962796f5a8d2a52ada277aac37"
+    },
+    {
+      "path": "game/docs/release-final-20261022/evidence/focus3-endings/journal-return-act2-390x844.jpg",
+      "canonical": "game/docs/feedback-integration-20261022/evidence/final-endings/journal-return-act2-390x844.jpg",
+      "bytes": 76081,
+      "gitBlobSha": "d32a8aad1db728c19bd8ae1f305332fd21fba747"
+    },
+    {
+      "path": "game/docs/release-final-20261022/evidence/focus3-endings/journal-return-act2-844x390.jpg",
+      "canonical": "game/docs/feedback-integration-20261022/evidence/final-endings/journal-return-act2-844x390.jpg",
+      "bytes": 61171,
+      "gitBlobSha": "40103135fa9204675068f8e6364050bb24f1bd9e"
+    },
+    {
+      "path": "game/docs/release-final-20261022/evidence/focus3-endings/journal-return-act3-390x844.jpg",
+      "canonical": "game/docs/feedback-integration-20261022/evidence/final-endings/journal-return-act3-390x844.jpg",
+      "bytes": 112858,
+      "gitBlobSha": "c300b5140aaeddb987904f6dcb42a9b2a3dc505b"
+    },
+    {
+      "path": "game/docs/release-final-20261022/evidence/focus3-endings/journal-return-act3-844x390.jpg",
+      "canonical": "game/docs/feedback-integration-20261022/evidence/final-endings/journal-return-act3-844x390.jpg",
+      "bytes": 82072,
+      "gitBlobSha": "37cbeb9b2d704af45ac658c4d1e5fc4e2f78af48"
+    },
+    {
+      "path": "game/docs/feedback-integration-20261022/evidence/journey/integration-act1-mobile.jpg",
+      "canonical": "game/docs/feedback-integration-20261022/evidence/final-journey/final-integration-act1-mobile.jpg",
+      "bytes": 81088,
+      "gitBlobSha": "ab8ed39871aa65bd06718f9589201b5f45df8d47"
+    },
+    {
+      "path": "game/docs/release-final-20261022/evidence/focus3-journey/release-final-act1-mobile.jpg",
+      "canonical": "game/docs/feedback-integration-20261022/evidence/final-journey/final-integration-act1-mobile.jpg",
+      "bytes": 81088,
+      "gitBlobSha": "ab8ed39871aa65bd06718f9589201b5f45df8d47"
+    },
+    {
+      "path": "game/docs/feedback-integration-20261022/evidence/journey/integration-act1-overview.jpg",
+      "canonical": "game/docs/feedback-integration-20261022/evidence/final-journey/final-integration-act1-overview.jpg",
+      "bytes": 252644,
+      "gitBlobSha": "06436c7faf6f3a3946b2d4524f4b28b44fbad840"
+    },
+    {
+      "path": "game/docs/release-final-20261022/evidence/focus3-journey/release-final-act1-overview.jpg",
+      "canonical": "game/docs/feedback-integration-20261022/evidence/final-journey/final-integration-act1-overview.jpg",
+      "bytes": 252644,
+      "gitBlobSha": "06436c7faf6f3a3946b2d4524f4b28b44fbad840"
+    },
+    {
+      "path": "game/docs/feedback-integration-20261022/evidence/journey/integration-act2-mobile.jpg",
+      "canonical": "game/docs/feedback-integration-20261022/evidence/final-journey/final-integration-act2-mobile.jpg",
+      "bytes": 60135,
+      "gitBlobSha": "0c42de580dcd62fe391e09d1c2084f20276104e7"
+    },
+    {
+      "path": "game/docs/release-final-20261022/evidence/focus3-journey/release-final-act2-mobile.jpg",
+      "canonical": "game/docs/feedback-integration-20261022/evidence/final-journey/final-integration-act2-mobile.jpg",
+      "bytes": 60135,
+      "gitBlobSha": "0c42de580dcd62fe391e09d1c2084f20276104e7"
+    },
+    {
+      "path": "game/docs/feedback-integration-20261022/evidence/journey/integration-act2-overview.jpg",
+      "canonical": "game/docs/feedback-integration-20261022/evidence/final-journey/final-integration-act2-overview.jpg",
+      "bytes": 105470,
+      "gitBlobSha": "637c4f299e4df432fd543c12d5193ec74d02947d"
+    },
+    {
+      "path": "game/docs/release-final-20261022/evidence/focus3-journey/release-final-act2-overview.jpg",
+      "canonical": "game/docs/feedback-integration-20261022/evidence/final-journey/final-integration-act2-overview.jpg",
+      "bytes": 105470,
+      "gitBlobSha": "637c4f299e4df432fd543c12d5193ec74d02947d"
+    },
+    {
+      "path": "game/docs/feedback-integration-20261022/evidence/journey/integration-act3-mobile.jpg",
+      "canonical": "game/docs/feedback-integration-20261022/evidence/final-journey/final-integration-act3-mobile.jpg",
+      "bytes": 81001,
+      "gitBlobSha": "48781c66266e2a6d8d4b2ea3ca7d7b688abd063b"
+    },
+    {
+      "path": "game/docs/release-final-20261022/evidence/focus3-journey/release-final-act3-mobile.jpg",
+      "canonical": "game/docs/feedback-integration-20261022/evidence/final-journey/final-integration-act3-mobile.jpg",
+      "bytes": 81001,
+      "gitBlobSha": "48781c66266e2a6d8d4b2ea3ca7d7b688abd063b"
+    },
+    {
+      "path": "game/docs/feedback-integration-20261022/evidence/journey/integration-act3-overview.jpg",
+      "canonical": "game/docs/feedback-integration-20261022/evidence/final-journey/final-integration-act3-overview.jpg",
+      "bytes": 217691,
+      "gitBlobSha": "81dabcf9c9cdc7c39aa443062353a3a2e4d8fcc7"
+    },
+    {
+      "path": "game/docs/release-final-20261022/evidence/focus3-journey/release-final-act3-overview.jpg",
+      "canonical": "game/docs/feedback-integration-20261022/evidence/final-journey/final-integration-act3-overview.jpg",
+      "bytes": 217691,
+      "gitBlobSha": "81dabcf9c9cdc7c39aa443062353a3a2e4d8fcc7"
+    },
+    {
+      "path": "game/docs/feedback-integration-20261022/evidence/journey/integration-fixed-360x800.jpg",
+      "canonical": "game/docs/feedback-integration-20261022/evidence/final-journey/final-integration-fixed-360x800.jpg",
+      "bytes": 75507,
+      "gitBlobSha": "1ee092b427d10335d08d99b9e39e966650b22d83"
+    },
+    {
+      "path": "game/docs/release-final-20261022/evidence/focus3-journey/release-final-fixed-360x800.jpg",
+      "canonical": "game/docs/feedback-integration-20261022/evidence/final-journey/final-integration-fixed-360x800.jpg",
+      "bytes": 75507,
+      "gitBlobSha": "1ee092b427d10335d08d99b9e39e966650b22d83"
+    },
+    {
+      "path": "game/docs/feedback-integration-20261022/evidence/journey/integration-fixed-390x844.jpg",
+      "canonical": "game/docs/feedback-integration-20261022/evidence/final-journey/final-integration-fixed-390x844.jpg",
+      "bytes": 84345,
+      "gitBlobSha": "77e39b576cec31aa8306da6446bb73f6588a9aaa"
+    },
+    {
+      "path": "game/docs/release-final-20261022/evidence/focus3-journey/release-final-fixed-390x844.jpg",
+      "canonical": "game/docs/feedback-integration-20261022/evidence/final-journey/final-integration-fixed-390x844.jpg",
+      "bytes": 84345,
+      "gitBlobSha": "77e39b576cec31aa8306da6446bb73f6588a9aaa"
+    },
+    {
+      "path": "game/docs/feedback-integration-20261022/evidence/journey/integration-fixed-844x390.jpg",
+      "canonical": "game/docs/feedback-integration-20261022/evidence/final-journey/final-integration-fixed-844x390.jpg",
+      "bytes": 77684,
+      "gitBlobSha": "5b99b194869f7ddef2c589a69ce5557375982192"
+    },
+    {
+      "path": "game/docs/release-final-20261022/evidence/focus3-journey/release-final-fixed-844x390.jpg",
+      "canonical": "game/docs/feedback-integration-20261022/evidence/final-journey/final-integration-fixed-844x390.jpg",
+      "bytes": 77684,
+      "gitBlobSha": "5b99b194869f7ddef2c589a69ce5557375982192"
+    },
+    {
+      "path": "game/docs/feedback-integration-20261022/evidence/journey/integration-locked-initial.jpg",
+      "canonical": "game/docs/feedback-integration-20261022/evidence/final-journey/final-integration-locked-initial.jpg",
+      "bytes": 31133,
+      "gitBlobSha": "117d556916b3d68f5460c0481a35f5d021f64ec4"
+    },
+    {
+      "path": "game/docs/release-final-20261022/evidence/focus3-journey/release-final-locked-initial.jpg",
+      "canonical": "game/docs/feedback-integration-20261022/evidence/final-journey/final-integration-locked-initial.jpg",
+      "bytes": 31133,
+      "gitBlobSha": "117d556916b3d68f5460c0481a35f5d021f64ec4"
+    },
+    {
+      "path": "game/docs/feedback-integration-20261022/evidence/journey/integration-zoom10-390x844.jpg",
+      "canonical": "game/docs/feedback-integration-20261022/evidence/final-journey/final-integration-zoom10-390x844.jpg",
+      "bytes": 70559,
+      "gitBlobSha": "47c8327d996e1347e9baa221db8c68686af74b14"
+    },
+    {
+      "path": "game/docs/release-final-20261022/evidence/focus3-journey/release-final-zoom10-390x844.jpg",
+      "canonical": "game/docs/feedback-integration-20261022/evidence/final-journey/final-integration-zoom10-390x844.jpg",
+      "bytes": 70559,
+      "gitBlobSha": "47c8327d996e1347e9baa221db8c68686af74b14"
+    },
+    {
+      "path": "game/docs/feedback-integration-20261022/evidence/journey/integration-zoom10-844x390.jpg",
+      "canonical": "game/docs/feedback-integration-20261022/evidence/final-journey/final-integration-zoom10-844x390.jpg",
+      "bytes": 57218,
+      "gitBlobSha": "be435a67f828ae23311da0f175821f1482280f13"
+    },
+    {
+      "path": "game/docs/release-final-20261022/evidence/focus3-journey/release-final-zoom10-844x390.jpg",
+      "canonical": "game/docs/feedback-integration-20261022/evidence/final-journey/final-integration-zoom10-844x390.jpg",
+      "bytes": 57218,
+      "gitBlobSha": "be435a67f828ae23311da0f175821f1482280f13"
+    },
+    {
+      "path": "game/docs/feedback-integration-20261022/evidence/journey/integration-zoom9-390x844.jpg",
+      "canonical": "game/docs/feedback-integration-20261022/evidence/final-journey/final-integration-zoom9-390x844.jpg",
+      "bytes": 75310,
+      "gitBlobSha": "ff8a87b905e70df7d4a86f0b51bd71410b0b83b7"
+    },
+    {
+      "path": "game/docs/release-final-20261022/evidence/focus3-journey/release-final-zoom9-390x844.jpg",
+      "canonical": "game/docs/feedback-integration-20261022/evidence/final-journey/final-integration-zoom9-390x844.jpg",
+      "bytes": 75310,
+      "gitBlobSha": "ff8a87b905e70df7d4a86f0b51bd71410b0b83b7"
+    },
+    {
+      "path": "game/docs/feedback-integration-20261022/evidence/journey/integration-zoom9-844x390.jpg",
+      "canonical": "game/docs/feedback-integration-20261022/evidence/final-journey/final-integration-zoom9-844x390.jpg",
+      "bytes": 63060,
+      "gitBlobSha": "20114b3509c73a3d9ce43ad8773b037219ac3626"
+    },
+    {
+      "path": "game/docs/release-final-20261022/evidence/focus3-journey/release-final-zoom9-844x390.jpg",
+      "canonical": "game/docs/feedback-integration-20261022/evidence/final-journey/final-integration-zoom9-844x390.jpg",
+      "bytes": 63060,
+      "gitBlobSha": "20114b3509c73a3d9ce43ad8773b037219ac3626"
+    },
+    {
+      "path": "game/docs/feedback-integration-20261022/evidence/icon-joystick/drag/01-vertical-start.jpg",
+      "canonical": "game/docs/feedback-integration-20261022/evidence/final-joystick/01-vertical-start.jpg",
+      "bytes": 23340,
+      "gitBlobSha": "b48f35ebfa44a2b51869589c5b8f97ad2603c998"
+    },
+    {
+      "path": "game/docs/stage-clear-report/evidence/phase0-regression/sound-844.jpg",
+      "canonical": "game/docs/feedback-integration-20261022/evidence/settings/sound-844.jpg",
+      "bytes": 20858,
+      "gitBlobSha": "4224c1877d093538709b431e1824f6f761b91b40"
+    },
+    {
+      "path": "game/docs/npc-portraits-20261023/runtime/evidence/timeout-neutral.jpg",
+      "canonical": "game/docs/npc-portraits-20261023/runtime/evidence/404-neutral.jpg",
+      "bytes": 50745,
+      "gitBlobSha": "fd2b3d222836f33e0f6469afa5205655cdbca43a"
+    },
+    {
+      "path": "game/docs/release-final-20261022/evidence/holistic-crowd-corrected/crowded-safe-resume-360x800.jpg",
+      "canonical": "game/docs/release-final-20261022/evidence/focus2-crowd-corrected/crowded-safe-resume-360x800.jpg",
+      "bytes": 27145,
+      "gitBlobSha": "cf0f222ffb4fcfea08693c158dff4254ffa3b43d"
+    },
+    {
+      "path": "game/docs/release-final-20261022/evidence/holistic-crowd-corrected/crowded-safe-resume-390x844.jpg",
+      "canonical": "game/docs/release-final-20261022/evidence/focus2-crowd-corrected/crowded-safe-resume-390x844.jpg",
+      "bytes": 28916,
+      "gitBlobSha": "92dfe4573196b339562cbb5d8060002720a11b70"
+    },
+    {
+      "path": "game/docs/render-update-architecture-20261022/evidence/final-states/accepted-count-journey.jpg",
+      "canonical": "game/docs/render-update-architecture-20261022/evidence/final-states/accepted-count-journey-zoom.jpg",
+      "bytes": 67678,
+      "gitBlobSha": "243559fb5ed30251661423d61521c9d37b7f2b93"
+    },
+    {
+      "path": "game/docs/render-update-architecture-20261022/evidence/pixels/final-desktop-pause.jpg",
+      "canonical": "game/docs/render-update-architecture-20261022/evidence/historical/initial-unit-final-desktop-pause.jpg",
+      "bytes": 45670,
+      "gitBlobSha": "e078727f269b6bda98f9ef1d1bdc397493b4bdad"
+    },
+    {
+      "path": "game/docs/render-update-architecture-20261022/integration-evidence/final-desktop-pause.jpg",
+      "canonical": "game/docs/render-update-architecture-20261022/evidence/historical/initial-unit-final-desktop-pause.jpg",
+      "bytes": 45670,
+      "gitBlobSha": "e078727f269b6bda98f9ef1d1bdc397493b4bdad"
+    },
+    {
+      "path": "game/docs/render-update-architecture-20261022/evidence/pixels/final-mobile-preview.jpg",
+      "canonical": "game/docs/render-update-architecture-20261022/evidence/historical/initial-unit-final-mobile-preview.jpg",
+      "bytes": 53811,
+      "gitBlobSha": "0695bd9d1110cbd2fe31d6bd9c0c8c493a1216d3"
+    },
+    {
+      "path": "game/docs/render-update-architecture-20261022/integration-evidence/final-mobile-preview.jpg",
+      "canonical": "game/docs/render-update-architecture-20261022/evidence/historical/initial-unit-final-mobile-preview.jpg",
+      "bytes": 53811,
+      "gitBlobSha": "0695bd9d1110cbd2fe31d6bd9c0c8c493a1216d3"
+    },
+    {
+      "path": "game/docs/render-update-architecture-20261022/integration-evidence/final-desktop-charge.jpg",
+      "canonical": "game/docs/render-update-architecture-20261022/evidence/pixels/final-desktop-charge.jpg",
+      "bytes": 88120,
+      "gitBlobSha": "69292d7f8ece1d222450593e63169750ae529e0c"
+    },
+    {
+      "path": "game/docs/render-update-architecture-20261022/integration-evidence/final-desktop-idle.jpg",
+      "canonical": "game/docs/render-update-architecture-20261022/evidence/pixels/final-desktop-idle.jpg",
+      "bytes": 87764,
+      "gitBlobSha": "9f4f5cdbd213d32064f45c332ea1087705bf2467"
+    },
+    {
+      "path": "game/docs/render-update-architecture-20261022/integration-evidence/final-landscape-mage.jpg",
+      "canonical": "game/docs/render-update-architecture-20261022/evidence/pixels/final-landscape-mage.jpg",
+      "bytes": 52273,
+      "gitBlobSha": "25874a2ff1e988e20f8fd6fcbd962206033f61b7"
+    },
+    {
+      "path": "game/docs/render-update-architecture-20261022/integration-evidence/final-mobile-idle.jpg",
+      "canonical": "game/docs/render-update-architecture-20261022/evidence/pixels/final-mobile-idle.jpg",
+      "bytes": 48867,
+      "gitBlobSha": "5af5f93415975d1eb39f67cadcb53cd578124941"
+    },
+    {
+      "path": "game/docs/render-update-architecture-20261022/integration-evidence/final-mobile-mage.jpg",
+      "canonical": "game/docs/render-update-architecture-20261022/evidence/pixels/final-mobile-mage.jpg",
+      "bytes": 49100,
+      "gitBlobSha": "fb6464aa9b5f0fc8f20fcaa751b31f30f8780bcb"
+    },
+    {
+      "path": "game/docs/stage-review/final-integration-20261021/evidence/browser/act1-next-title.png",
+      "canonical": "game/docs/stage-review/final-integration-20261021/evidence/final-browser/act1-next-title.png",
+      "bytes": 73885,
+      "gitBlobSha": "16eb8f1b89be4be1bd46496df1935b3c3f3c02d3"
+    },
+    {
+      "path": "game/docs/stage-review/release-candidate-20261021/evidence/endings-final/act1-rest.png",
+      "canonical": "game/docs/stage-review/final-integration-20261021/evidence/final-browser/act1-rest.png",
+      "bytes": 168072,
+      "gitBlobSha": "936f5a372ee5c55fd62e95df5e706e472fecfb53"
+    },
+    {
+      "path": "game/docs/stage-review/final-integration-20261021/evidence/browser/act1-rest.png",
+      "canonical": "game/docs/stage-review/final-integration-20261021/evidence/final-browser/act1-rest.png",
+      "bytes": 168072,
+      "gitBlobSha": "936f5a372ee5c55fd62e95df5e706e472fecfb53"
+    },
+    {
+      "path": "game/docs/stage-review/release-candidate-20261021/evidence/endings-focus/act1-rest.png",
+      "canonical": "game/docs/stage-review/final-integration-20261021/evidence/final-browser/act1-rest.png",
+      "bytes": 168072,
+      "gitBlobSha": "936f5a372ee5c55fd62e95df5e706e472fecfb53"
+    },
+    {
+      "path": "game/docs/stage-review/final-integration-20261021/evidence/browser/act2-next-title.png",
+      "canonical": "game/docs/stage-review/final-integration-20261021/evidence/final-browser/act2-next-title.png",
+      "bytes": 77375,
+      "gitBlobSha": "43b27220d21e708ae57ea7c7e013c64c76738845"
+    },
+    {
+      "path": "game/docs/stage-review/release-candidate-20261021/evidence/endings-final/act2-rest.png",
+      "canonical": "game/docs/stage-review/final-integration-20261021/evidence/final-browser/act2-rest.png",
+      "bytes": 162181,
+      "gitBlobSha": "048472d7a943c0c7a186e593107ea3a053bea86d"
+    },
+    {
+      "path": "game/docs/stage-review/final-integration-20261021/evidence/browser/act2-rest.png",
+      "canonical": "game/docs/stage-review/final-integration-20261021/evidence/final-browser/act2-rest.png",
+      "bytes": 162181,
+      "gitBlobSha": "048472d7a943c0c7a186e593107ea3a053bea86d"
+    },
+    {
+      "path": "game/docs/stage-review/release-candidate-20261021/evidence/endings-focus/act2-rest.png",
+      "canonical": "game/docs/stage-review/final-integration-20261021/evidence/final-browser/act2-rest.png",
+      "bytes": 162181,
+      "gitBlobSha": "048472d7a943c0c7a186e593107ea3a053bea86d"
+    },
+    {
+      "path": "game/docs/stage-review/final-integration-20261021/evidence/browser/act3-next-title.png",
+      "canonical": "game/docs/stage-review/final-integration-20261021/evidence/final-browser/act3-next-title.png",
+      "bytes": 85146,
+      "gitBlobSha": "c56f223149d7ac8f74a618cd732c7c9e31ea911d"
+    },
+    {
+      "path": "game/docs/stage-review/release-candidate-20261021/evidence/endings-final/act3-rest.png",
+      "canonical": "game/docs/stage-review/final-integration-20261021/evidence/final-browser/act3-rest.png",
+      "bytes": 156194,
+      "gitBlobSha": "753e9a24752adcfa3beec76f19d96d72fb0c5113"
+    },
+    {
+      "path": "game/docs/stage-review/final-integration-20261021/evidence/browser/act3-rest.png",
+      "canonical": "game/docs/stage-review/final-integration-20261021/evidence/final-browser/act3-rest.png",
+      "bytes": 156194,
+      "gitBlobSha": "753e9a24752adcfa3beec76f19d96d72fb0c5113"
+    },
+    {
+      "path": "game/docs/stage-review/release-candidate-20261021/evidence/endings-focus/act3-rest.png",
+      "canonical": "game/docs/stage-review/final-integration-20261021/evidence/final-browser/act3-rest.png",
+      "bytes": 156194,
+      "gitBlobSha": "753e9a24752adcfa3beec76f19d96d72fb0c5113"
+    },
+    {
+      "path": "game/docs/stage-review/final-integration-20261021/evidence/browser/focus1-act1-landscape.png",
+      "canonical": "game/docs/stage-review/final-integration-20261021/evidence/final-browser/focus1-act1-landscape.png",
+      "bytes": 1410887,
+      "gitBlobSha": "ce4c648bfcbd8553fb359966d0f99ee32ac03e73"
+    },
+    {
+      "path": "game/docs/stage-review/final-integration-20261021/evidence/browser/focus1-act2-landscape.png",
+      "canonical": "game/docs/stage-review/final-integration-20261021/evidence/final-browser/focus1-act2-landscape.png",
+      "bytes": 1378709,
+      "gitBlobSha": "96df51400a3940c03fa29a9fce1926014994f3fc"
+    },
+    {
+      "path": "game/docs/stage-review/final-integration-20261021/evidence/browser/focus1-act3-landscape.png",
+      "canonical": "game/docs/stage-review/final-integration-20261021/evidence/final-browser/focus1-act3-landscape.png",
+      "bytes": 1474315,
+      "gitBlobSha": "d12e0e200ba09739e264b52d149fd2f21bb70a67"
+    },
+    {
+      "path": "game/docs/stage-review/final-integration-20261021/evidence/browser/focus2-act1-copy.png",
+      "canonical": "game/docs/stage-review/final-integration-20261021/evidence/final-browser/focus2-act1-copy.png",
+      "bytes": 1413428,
+      "gitBlobSha": "a961f42d3c26fec0a15b1688f513299434da582d"
+    },
+    {
+      "path": "game/docs/stage-review/final-integration-20261021/evidence/browser/focus2-act2-copy.png",
+      "canonical": "game/docs/stage-review/final-integration-20261021/evidence/final-browser/focus2-act2-copy.png",
+      "bytes": 1383070,
+      "gitBlobSha": "b566dbeb52e965fb561fea4ae56446773f63ddb4"
+    },
+    {
+      "path": "game/docs/stage-review/final-integration-20261021/evidence/browser/focus2-act3-copy.png",
+      "canonical": "game/docs/stage-review/final-integration-20261021/evidence/final-browser/focus2-act3-copy.png",
+      "bytes": 1478513,
+      "gitBlobSha": "fb130bfa90f5e1e2fde847f0349479778599dde7"
+    },
+    {
+      "path": "game/docs/stage-review/final-integration-20261021/evidence/browser/focus3-act1-320x568.png",
+      "canonical": "game/docs/stage-review/final-integration-20261021/evidence/final-browser/focus3-act1-320x568.png",
+      "bytes": 127650,
+      "gitBlobSha": "aa47913400af5126512851b7f75ee61ac38b1fc1"
+    },
+    {
+      "path": "game/docs/stage-review/final-integration-20261021/evidence/browser/focus3-act1-390x844.png",
+      "canonical": "game/docs/stage-review/final-integration-20261021/evidence/final-browser/focus3-act1-390x844.png",
+      "bytes": 176880,
+      "gitBlobSha": "bbab7ff21c34fdf89205e3629c6d4f34b02d3e83"
+    },
+    {
+      "path": "game/docs/stage-review/final-integration-20261021/evidence/browser/focus3-act1-844x390.png",
+      "canonical": "game/docs/stage-review/final-integration-20261021/evidence/final-browser/focus3-act1-844x390.png",
+      "bytes": 459781,
+      "gitBlobSha": "8f779fc49ea37fcde4deb220d34da5088f4dceea"
+    },
+    {
+      "path": "game/docs/stage-review/final-integration-20261021/evidence/browser/focus3-act2-320x568.png",
+      "canonical": "game/docs/stage-review/final-integration-20261021/evidence/final-browser/focus3-act2-320x568.png",
+      "bytes": 131759,
+      "gitBlobSha": "53f322f4cd4b9c780abe6cfb94e42e1493969b04"
+    },
+    {
+      "path": "game/docs/stage-review/final-integration-20261021/evidence/browser/focus3-act2-390x844.png",
+      "canonical": "game/docs/stage-review/final-integration-20261021/evidence/final-browser/focus3-act2-390x844.png",
+      "bytes": 181276,
+      "gitBlobSha": "43eac4a762ef1d88daea86a03e6e629253f0fe6a"
+    },
+    {
+      "path": "game/docs/stage-review/final-integration-20261021/evidence/browser/focus3-act2-844x390.png",
+      "canonical": "game/docs/stage-review/final-integration-20261021/evidence/final-browser/focus3-act2-844x390.png",
+      "bytes": 452941,
+      "gitBlobSha": "db8779de0597b02671b3e8e2643496de1255ca6f"
+    },
+    {
+      "path": "game/docs/stage-review/final-integration-20261021/evidence/browser/focus3-act3-320x568.png",
+      "canonical": "game/docs/stage-review/final-integration-20261021/evidence/final-browser/focus3-act3-320x568.png",
+      "bytes": 141767,
+      "gitBlobSha": "e12f1c38c71ab3e11440d81b72a97b89c67f114a"
+    },
+    {
+      "path": "game/docs/stage-review/final-integration-20261021/evidence/browser/focus3-act3-390x844.png",
+      "canonical": "game/docs/stage-review/final-integration-20261021/evidence/final-browser/focus3-act3-390x844.png",
+      "bytes": 194486,
+      "gitBlobSha": "c95b0fff1453dba569624f041407ea9759d8ffc1"
+    },
+    {
+      "path": "game/docs/stage-review/final-integration-20261021/evidence/browser/focus3-act3-844x390.png",
+      "canonical": "game/docs/stage-review/final-integration-20261021/evidence/final-browser/focus3-act3-844x390.png",
+      "bytes": 482281,
+      "gitBlobSha": "3174a0552c6509523f3fb87f3a8b5d42a8661633"
+    },
+    {
+      "path": "review/dialogue-motion-music-20261021/integration/shots/music-stage10-mobile.png",
+      "canonical": "game/docs/stage-review/integration-20261021/evidence/music/stage10-mobile.png",
+      "bytes": 212047,
+      "gitBlobSha": "a1f6983905207b159f6665e083952af4d0bcc2b4"
+    },
+    {
+      "path": "review/dialogue-motion-music-20261021/shots/music-stage10-mobile.png",
+      "canonical": "game/docs/stage-review/integration-20261021/evidence/music/stage10-mobile.png",
+      "bytes": 212047,
+      "gitBlobSha": "a1f6983905207b159f6665e083952af4d0bcc2b4"
+    },
+    {
+      "path": "game/docs/stage-review/stage02-road-strategy/evidence/render/fresh.png",
+      "canonical": "game/docs/stage-review/integration-20261021/evidence/stage2/fresh.png",
+      "bytes": 343095,
+      "gitBlobSha": "adc9d70418b94bd2b5d8cc676d4742178dbbb487"
+    },
+    {
+      "path": "game/docs/stage-review/joystick-intent/master-integration/mobile-390-aim-only.png",
+      "canonical": "game/docs/stage-review/joystick-intent/evidence/mobile-390-aim-only.png",
+      "bytes": 327742,
+      "gitBlobSha": "a55ca0bbc4ff47d6e7dfc40ab5c79bb1b262a615"
+    },
+    {
+      "path": "game/docs/stage-review/joystick-intent/master-integration/mobile-844-aim-only.png",
+      "canonical": "game/docs/stage-review/joystick-intent/evidence/mobile-844-aim-only.png",
+      "bytes": 367184,
+      "gitBlobSha": "709e77d01e0ad526095168b7181b60aa223fa5ee"
+    },
+    {
+      "path": "game/docs/stage-review/release-candidate-20261021/evidence/endings-focus/act1-next-title.png",
+      "canonical": "game/docs/stage-review/release-candidate-20261021/evidence/endings-final/act1-next-title.png",
+      "bytes": 204598,
+      "gitBlobSha": "27cf6c21aad24bd2123b3c15c2e1c408ee103c37"
+    },
+    {
+      "path": "game/docs/stage-review/release-candidate-20261021/evidence/endings-focus/act2-next-title.png",
+      "canonical": "game/docs/stage-review/release-candidate-20261021/evidence/endings-final/act2-next-title.png",
+      "bytes": 226955,
+      "gitBlobSha": "53719bb0c80a2233bec941cddb35743196a3010c"
+    },
+    {
+      "path": "game/docs/stage-review/release-candidate-20261021/evidence/endings-focus/act3-next-title.png",
+      "canonical": "game/docs/stage-review/release-candidate-20261021/evidence/endings-final/act3-next-title.png",
+      "bytes": 238016,
+      "gitBlobSha": "91fed1f2018601823d4a7aff27e9f569df68493b"
+    },
+    {
+      "path": "game/docs/stage-review/release-candidate-20261021/evidence/endings-focus/focus1-act1-landscape.png",
+      "canonical": "game/docs/stage-review/release-candidate-20261021/evidence/endings-final/focus1-act1-landscape.png",
+      "bytes": 1976680,
+      "gitBlobSha": "8483ef455e17f03ba913e808cffddf503c00aa70"
+    },
+    {
+      "path": "game/docs/stage-review/release-candidate-20261021/evidence/endings-focus/focus1-act1-landscape-q85.jpg",
+      "canonical": "game/docs/stage-review/release-candidate-20261021/evidence/endings-final/focus1-act1-landscape.q85.jpg",
+      "bytes": 276942,
+      "gitBlobSha": "584eb7a3348b32b5783b98e8c63bb50db4504a68"
+    },
+    {
+      "path": "game/docs/stage-review/release-candidate-20261021/evidence/endings-focus/focus1-act2-landscape.png",
+      "canonical": "game/docs/stage-review/release-candidate-20261021/evidence/endings-final/focus1-act2-landscape.png",
+      "bytes": 1952073,
+      "gitBlobSha": "7a4b2ed311c19e090de2c024710b6470bb5a24e5"
+    },
+    {
+      "path": "game/docs/stage-review/release-candidate-20261021/evidence/endings-focus/focus1-act2-landscape-q85.jpg",
+      "canonical": "game/docs/stage-review/release-candidate-20261021/evidence/endings-final/focus1-act2-landscape.q85.jpg",
+      "bytes": 290427,
+      "gitBlobSha": "47b9f968229f1fcf4d847080fa645611f27c1abd"
+    },
+    {
+      "path": "game/docs/stage-review/release-candidate-20261021/evidence/endings-focus/focus1-act3-landscape.png",
+      "canonical": "game/docs/stage-review/release-candidate-20261021/evidence/endings-final/focus1-act3-landscape.png",
+      "bytes": 2101819,
+      "gitBlobSha": "fe23c35fddff044ed40d235091f70fada6701043"
+    },
+    {
+      "path": "game/docs/stage-review/release-candidate-20261021/evidence/endings-focus/focus1-act3-landscape-q85.jpg",
+      "canonical": "game/docs/stage-review/release-candidate-20261021/evidence/endings-final/focus1-act3-landscape.q85.jpg",
+      "bytes": 320202,
+      "gitBlobSha": "a7c7428975f7e416ec2ea60fbc0daf12bb6ec1fc"
+    },
+    {
+      "path": "game/docs/stage-review/release-candidate-20261021/evidence/endings-focus/focus2-act1-copy.png",
+      "canonical": "game/docs/stage-review/release-candidate-20261021/evidence/endings-final/focus2-act1-copy.png",
+      "bytes": 1979006,
+      "gitBlobSha": "9f08392d701f3091c4bb789476a4b66c161c5d7c"
+    },
+    {
+      "path": "game/docs/stage-review/release-candidate-20261021/evidence/endings-focus/focus2-act2-copy.png",
+      "canonical": "game/docs/stage-review/release-candidate-20261021/evidence/endings-final/focus2-act2-copy.png",
+      "bytes": 1955440,
+      "gitBlobSha": "76997a4200086ef263b1901cc355ccbbe10f6977"
+    },
+    {
+      "path": "game/docs/stage-review/release-candidate-20261021/evidence/endings-focus/focus2-act3-copy.png",
+      "canonical": "game/docs/stage-review/release-candidate-20261021/evidence/endings-final/focus2-act3-copy.png",
+      "bytes": 2105555,
+      "gitBlobSha": "5fb2087f98ca3c212e7886d479042bc494be6584"
+    },
+    {
+      "path": "game/docs/stage-review/release-candidate-20261021/evidence/endings-focus/focus3-act1-320x568.png",
+      "canonical": "game/docs/stage-review/release-candidate-20261021/evidence/endings-final/focus3-act1-320x568.png",
+      "bytes": 332043,
+      "gitBlobSha": "8561da8704032ced2cd7482d71b9621f6253ecfb"
+    },
+    {
+      "path": "game/docs/stage-review/release-candidate-20261021/evidence/endings-focus/focus3-act1-390x844.png",
+      "canonical": "game/docs/stage-review/release-candidate-20261021/evidence/endings-final/focus3-act1-390x844.png",
+      "bytes": 539074,
+      "gitBlobSha": "8ca70a0970a5bfb0029936f093fb90db40f303c1"
+    },
+    {
+      "path": "game/docs/stage-review/release-candidate-20261021/evidence/endings-focus/focus3-act1-844x390.png",
+      "canonical": "game/docs/stage-review/release-candidate-20261021/evidence/endings-final/focus3-act1-844x390.png",
+      "bytes": 618404,
+      "gitBlobSha": "edac4f139b09649a41c3d50f26741e16ace36e8d"
+    },
+    {
+      "path": "game/docs/stage-review/release-candidate-20261021/evidence/endings-focus/focus3-act2-320x568.png",
+      "canonical": "game/docs/stage-review/release-candidate-20261021/evidence/endings-final/focus3-act2-320x568.png",
+      "bytes": 324172,
+      "gitBlobSha": "78fb3f3a9c54f9a9e2a0808a901b1d7351c112ff"
+    },
+    {
+      "path": "game/docs/stage-review/release-candidate-20261021/evidence/endings-focus/focus3-act2-390x844.png",
+      "canonical": "game/docs/stage-review/release-candidate-20261021/evidence/endings-final/focus3-act2-390x844.png",
+      "bytes": 529640,
+      "gitBlobSha": "0ce139ccd56d53b2e1bd95d801e72c0f17cbb32e"
+    },
+    {
+      "path": "game/docs/stage-review/release-candidate-20261021/evidence/endings-focus/focus3-act2-844x390.png",
+      "canonical": "game/docs/stage-review/release-candidate-20261021/evidence/endings-final/focus3-act2-844x390.png",
+      "bytes": 605177,
+      "gitBlobSha": "3da3912aec579fdec5fc5bb931e323d8d30868d0"
+    },
+    {
+      "path": "game/docs/stage-review/release-candidate-20261021/evidence/endings-focus/focus3-act3-320x568.png",
+      "canonical": "game/docs/stage-review/release-candidate-20261021/evidence/endings-final/focus3-act3-320x568.png",
+      "bytes": 344089,
+      "gitBlobSha": "a9378d0e42a1935104cf3189cadff7272aab847f"
+    },
+    {
+      "path": "game/docs/stage-review/release-candidate-20261021/evidence/endings-focus/focus3-act3-390x844.png",
+      "canonical": "game/docs/stage-review/release-candidate-20261021/evidence/endings-final/focus3-act3-390x844.png",
+      "bytes": 550331,
+      "gitBlobSha": "8e80d5b202eb2ee36bde39f8de0e8cb7bf29870a"
+    },
+    {
+      "path": "game/docs/stage-review/release-candidate-20261021/evidence/endings-focus/focus3-act3-844x390.png",
+      "canonical": "game/docs/stage-review/release-candidate-20261021/evidence/endings-final/focus3-act3-844x390.png",
+      "bytes": 664468,
+      "gitBlobSha": "af0b8a85e6ab59788eaaebf11f8bb68d34c5f9ad"
+    },
+    {
+      "path": "game/docs/stage-review/release-candidate-20261021/evidence/stage12-focus3/stage12-carrier-landscape.png",
+      "canonical": "game/docs/stage-review/release-candidate-20261021/evidence/stage12-final/stage12-carrier-landscape.png",
+      "bytes": 150018,
+      "gitBlobSha": "9e5295ddd1de5f0886c9b356d649c9fbd2e55e3c"
+    },
+    {
+      "path": "game/docs/stage-review/release-candidate-20261021/evidence/stage12-focus3/stage12-carrier-mobile.png",
+      "canonical": "game/docs/stage-review/release-candidate-20261021/evidence/stage12-final/stage12-carrier-mobile.png",
+      "bytes": 124200,
+      "gitBlobSha": "d520a30f65295182a49b3b3f01d684feeffcd3c0"
+    },
+    {
+      "path": "game/docs/stage-review/release-candidate-20261021/evidence/stage12-focus2/stage12-carrier-normal.png",
+      "canonical": "game/docs/stage-review/release-candidate-20261021/evidence/stage12-final/stage12-carrier-normal.png",
+      "bytes": 330707,
+      "gitBlobSha": "8d53addfccd7b92900edd9b6a39b00dc72216547"
+    },
+    {
+      "path": "game/docs/stage-review/release-candidate-20261021/evidence/stage12-focus2/stage12-carrier-normal.q85.jpg",
+      "canonical": "game/docs/stage-review/release-candidate-20261021/evidence/stage12-final/stage12-carrier-normal.q85.jpg",
+      "bytes": 79648,
+      "gitBlobSha": "17d712c3754f859874f5bc88bf86fcc70819cdc1"
+    },
+    {
+      "path": "game/docs/stage-review/release-candidate-20261021/evidence/stage12-focus2/stage12-cart-close.png",
+      "canonical": "game/docs/stage-review/release-candidate-20261021/evidence/stage12-final/stage12-cart-close.png",
+      "bytes": 363304,
+      "gitBlobSha": "f8dc03869872ba062d2e1565befe4f51487c8be3"
+    },
+    {
+      "path": "game/docs/stage-review/release-candidate-20261021/evidence/stage12-focus2/stage12-cart-close.q85.jpg",
+      "canonical": "game/docs/stage-review/release-candidate-20261021/evidence/stage12-final/stage12-cart-close.q85.jpg",
+      "bytes": 89268,
+      "gitBlobSha": "899d2faa107be2bc1948c3e3d32281d2b9a54e89"
+    },
+    {
+      "path": "game/docs/stage-review/release-candidate-20261021/evidence/stage12-focus1/stage12-center-overview.png",
+      "canonical": "game/docs/stage-review/release-candidate-20261021/evidence/stage12-final/stage12-center-overview.png",
+      "bytes": 412530,
+      "gitBlobSha": "644c76921394225dba4c45c52b06cf7b7e515515"
+    },
+    {
+      "path": "game/docs/stage-review/release-candidate-20261021/evidence/stage12-focus1/stage12-center-overview.q85.jpg",
+      "canonical": "game/docs/stage-review/release-candidate-20261021/evidence/stage12-final/stage12-center-overview.q85.jpg",
+      "bytes": 100690,
+      "gitBlobSha": "2710aa8a2c83d1faa4ae0527be045f008b4af8d6"
+    },
+    {
+      "path": "game/docs/stage-review/release-candidate-20261021/evidence/stage12-focus2/stage12-old-road-east.png",
+      "canonical": "game/docs/stage-review/release-candidate-20261021/evidence/stage12-final/stage12-old-road-east.png",
+      "bytes": 252937,
+      "gitBlobSha": "9baa45a968408f3327ec7d9467d9ab3c21546a53"
+    },
+    {
+      "path": "game/docs/stage-review/release-candidate-20261021/evidence/stage12-focus2/stage12-old-road-east.q85.jpg",
+      "canonical": "game/docs/stage-review/release-candidate-20261021/evidence/stage12-final/stage12-old-road-east.q85.jpg",
+      "bytes": 68042,
+      "gitBlobSha": "317227f5426a423d20361ece4c0ee302817a6b98"
+    },
+    {
+      "path": "game/docs/stage-review/release-candidate-20261021/evidence/stage12-focus2/stage12-old-road-normal.png",
+      "canonical": "game/docs/stage-review/release-candidate-20261021/evidence/stage12-final/stage12-old-road-normal.png",
+      "bytes": 271965,
+      "gitBlobSha": "b9b35ac906de3870d4245879997340466bc1a64e"
+    },
+    {
+      "path": "game/docs/stage-review/release-candidate-20261021/evidence/stage12-focus2/stage12-old-road-normal.q85.jpg",
+      "canonical": "game/docs/stage-review/release-candidate-20261021/evidence/stage12-final/stage12-old-road-normal.q85.jpg",
+      "bytes": 67903,
+      "gitBlobSha": "517a740f55db1b8cd405050fdaad6fd3be3239bc"
+    },
+    {
+      "path": "game/docs/stage-review/release-candidate-20261021/evidence/stage12-focus1/stage12-rear-root.png",
+      "canonical": "game/docs/stage-review/release-candidate-20261021/evidence/stage12-final/stage12-rear-root.png",
+      "bytes": 321583,
+      "gitBlobSha": "bbb7ff57fddec2519f400eb921194f62e9e897fd"
+    },
+    {
+      "path": "game/docs/stage-review/release-candidate-20261021/evidence/stage12-focus1/stage12-rear-root.q85.jpg",
+      "canonical": "game/docs/stage-review/release-candidate-20261021/evidence/stage12-final/stage12-rear-root.q85.jpg",
+      "bytes": 87373,
+      "gitBlobSha": "c8afc98b0f5bd5c9e2cb5302874c348f38098be2"
+    },
+    {
+      "path": "game/docs/stage-review/release-candidate-20261021/evidence/stage12-focus3/stage12-sign-mobile.png",
+      "canonical": "game/docs/stage-review/release-candidate-20261021/evidence/stage12-final/stage12-sign-mobile.png",
+      "bytes": 90122,
+      "gitBlobSha": "3929e5f9f71d990afab304b05a11f5fa09dbac99"
+    },
+    {
+      "path": "game/docs/stage-review/release-candidate-20261021/evidence/stage12-focus1/stage12-west-overview.png",
+      "canonical": "game/docs/stage-review/release-candidate-20261021/evidence/stage12-final/stage12-west-overview.png",
+      "bytes": 382815,
+      "gitBlobSha": "3ba5aecc480bed8899c9a545e43095b42e3a210e"
+    },
+    {
+      "path": "game/docs/stage-review/release-candidate-20261021/evidence/stage12-focus1/stage12-west-overview.q85.jpg",
+      "canonical": "game/docs/stage-review/release-candidate-20261021/evidence/stage12-final/stage12-west-overview.q85.jpg",
+      "bytes": 86060,
+      "gitBlobSha": "325c009fbfa10c570f24ef46d2f59cd2895489d3"
+    },
+    {
+      "path": "game/docs/stage-review/shared-geology/embedded-surface/after/stage02-west-ledge-close.png",
+      "canonical": "game/docs/stage-review/shared-geology/embedded-surface/after/stage02-embedded-ledge-close.png",
+      "bytes": 170170,
+      "gitBlobSha": "79278f9b63abd1a679b1507a44cf229f94b11fa3"
+    },
+    {
+      "path": "game/docs/stage-review/shared-geology/stone-junction/before/stage02-west-ledge-close.png",
+      "canonical": "game/docs/stage-review/shared-geology/embedded-surface/after/stage02-embedded-ledge-close.png",
+      "bytes": 170170,
+      "gitBlobSha": "79278f9b63abd1a679b1507a44cf229f94b11fa3"
+    },
+    {
+      "path": "game/docs/stage-review/shared-geology/stone-junction/before/stage02-mobile-hero.png",
+      "canonical": "game/docs/stage-review/shared-geology/embedded-surface/after/stage02-mobile-hero.png",
+      "bytes": 77054,
+      "gitBlobSha": "4844498d92160f987f616c811df84d742a90ebb1"
+    },
+    {
+      "path": "game/docs/stage-review/shared-geology/stone-junction/before/stage02-overview.png",
+      "canonical": "game/docs/stage-review/shared-geology/embedded-surface/after/stage02-overview.png",
+      "bytes": 332473,
+      "gitBlobSha": "2e3817f0c24f1a7b8fc232fca9bec85223f8098f"
+    },
+    {
+      "path": "game/docs/stage-review/shared-geology/embedded-surface/before/stage02-east-ledge-close.png",
+      "canonical": "game/docs/stage-review/shared-geology/joints-correction/final/stage02-east-ledge-close.png",
+      "bytes": 167949,
+      "gitBlobSha": "cda61051366883346d301208bf9d4e2fc8921568"
+    },
+    {
+      "path": "game/docs/stage-review/shared-geology/joints-correction/final/stage02-shared-geology-joints-overview.png",
+      "canonical": "game/docs/stage-review/shared-geology/joints-correction/final/stage02-overview.png",
+      "bytes": 332980,
+      "gitBlobSha": "3d67d671fa6f831c8162a4c30b619414949e5f90"
+    },
+    {
+      "path": "game/docs/stage-review/shared-geology/embedded-surface/before/stage02-overview.png",
+      "canonical": "game/docs/stage-review/shared-geology/joints-correction/final/stage02-overview.png",
+      "bytes": 332980,
+      "gitBlobSha": "3d67d671fa6f831c8162a4c30b619414949e5f90"
+    },
+    {
+      "path": "game/docs/stage-review/shared-geology/joints-correction/review5/stage02-overview.png",
+      "canonical": "game/docs/stage-review/shared-geology/joints-correction/final/stage02-overview.png",
+      "bytes": 332980,
+      "gitBlobSha": "3d67d671fa6f831c8162a4c30b619414949e5f90"
+    },
+    {
+      "path": "game/docs/stage-review/shared-geology/embedded-surface/before/stage02-west-ledge-close.png",
+      "canonical": "game/docs/stage-review/shared-geology/joints-correction/final/stage02-west-ledge-close.png",
+      "bytes": 169479,
+      "gitBlobSha": "07ef8738aff208546a38217d04abd3a570816021"
+    },
+    {
+      "path": "game/docs/stage-review/shared-geology/joints-correction/review1/stage02-mobile-start.png",
+      "canonical": "game/docs/stage-review/shared-geology/joints-correction/final/stage02-mobile-left.png",
+      "bytes": 48377,
+      "gitBlobSha": "a93d270c56c542b4c2962565dc366c23feb27386"
+    },
+    {
+      "path": "game/docs/stage-review/shared-geology/joints-correction/review2/stage02-mobile-start.png",
+      "canonical": "game/docs/stage-review/shared-geology/joints-correction/final/stage02-mobile-left.png",
+      "bytes": 48377,
+      "gitBlobSha": "a93d270c56c542b4c2962565dc366c23feb27386"
+    },
+    {
+      "path": "game/docs/stage-review/shared-geology/joints-correction/review3/stage02-mobile-start.png",
+      "canonical": "game/docs/stage-review/shared-geology/joints-correction/final/stage02-mobile-left.png",
+      "bytes": 48377,
+      "gitBlobSha": "a93d270c56c542b4c2962565dc366c23feb27386"
+    },
+    {
+      "path": "game/docs/stage-review/shared-geology/stage02-final/stage02-mobile-left.png",
+      "canonical": "game/docs/stage-review/shared-geology/joints-correction/final/stage02-mobile-left.png",
+      "bytes": 48377,
+      "gitBlobSha": "a93d270c56c542b4c2962565dc366c23feb27386"
+    },
+    {
+      "path": "game/docs/stage-review/shared-geology/stage02-review/round3/stage02-mobile-start.png",
+      "canonical": "game/docs/stage-review/shared-geology/joints-correction/final/stage02-mobile-left.png",
+      "bytes": 48377,
+      "gitBlobSha": "a93d270c56c542b4c2962565dc366c23feb27386"
+    },
+    {
+      "path": "game/docs/stage-review/shared-geology/stage02-review/round2/stage02-high-start.png",
+      "canonical": "game/docs/stage-review/shared-geology/stage02-final/stage02-high-start.png",
+      "bytes": 279333,
+      "gitBlobSha": "5c56f4e9887cc891dd2e9a3f66e6af9df271aaa7"
+    },
+    {
+      "path": "game/docs/stage-review/shared-geology/stage02-final/stage02-shared-geology-candidate-overview.png",
+      "canonical": "game/docs/stage-review/shared-geology/stage02-final/stage02-overview.png",
+      "bytes": 353940,
+      "gitBlobSha": "67086e2f9da797d37cb66d05ebc1d9092fb2ac20"
+    },
+    {
+      "path": "game/docs/stage-review/shared-geology/stage02-review/round2/stage02-overview.png",
+      "canonical": "game/docs/stage-review/shared-geology/stage02-final/stage02-overview.png",
+      "bytes": 353940,
+      "gitBlobSha": "67086e2f9da797d37cb66d05ebc1d9092fb2ac20"
+    },
+    {
+      "path": "game/docs/stage-review/shared-geology/stage02-review/round3/stage02-overview.png",
+      "canonical": "game/docs/stage-review/shared-geology/stage02-final/stage02-overview.png",
+      "bytes": 353940,
+      "gitBlobSha": "67086e2f9da797d37cb66d05ebc1d9092fb2ac20"
+    },
+    {
+      "path": "game/docs/stage-review/shared-geology/stage02-review/round2/stage02-road-exit.png",
+      "canonical": "game/docs/stage-review/shared-geology/stage02-final/stage02-road-exit.png",
+      "bytes": 156883,
+      "gitBlobSha": "ac4011a3ebcb69a5d6583370e07f20b7a653fc11"
+    },
+    {
+      "path": "game/docs/stage-review/shared-geology/stage02-review/round2/stage02-road-start.png",
+      "canonical": "game/docs/stage-review/shared-geology/stage02-final/stage02-road-start.png",
+      "bytes": 157021,
+      "gitBlobSha": "4a488a6e4c05f272c6ab27e6f281c7fed4fceb47"
+    },
+    {
+      "path": "game/docs/stage-review/shared-geology/stage02-review/round3/stage02-road-start.png",
+      "canonical": "game/docs/stage-review/shared-geology/stage02-final/stage02-road-start.png",
+      "bytes": 157021,
+      "gitBlobSha": "4a488a6e4c05f272c6ab27e6f281c7fed4fceb47"
+    },
+    {
+      "path": "game/docs/stage-review/shared-geology/stone-junction/after/stage02-stone-surface-mobile.png",
+      "canonical": "game/docs/stage-review/shared-geology/stone-junction/after/stage02-mobile-hero.png",
+      "bytes": 74813,
+      "gitBlobSha": "379ebb556d4891182c53d49ad3715f49be891da3"
+    },
+    {
+      "path": "game/docs/stage-review/stage02-layered-road/master-integration/visual/stage02-mobile.png",
+      "canonical": "game/docs/stage-review/shared-geology/stone-junction/after/stage02-mobile-hero.png",
+      "bytes": 74813,
+      "gitBlobSha": "379ebb556d4891182c53d49ad3715f49be891da3"
+    },
+    {
+      "path": "game/docs/stage-review/stage02-road-strategy/evidence/comparison/flat-layered-27efe8/stage02-mobile.png",
+      "canonical": "game/docs/stage-review/shared-geology/stone-junction/after/stage02-mobile-hero.png",
+      "bytes": 74813,
+      "gitBlobSha": "379ebb556d4891182c53d49ad3715f49be891da3"
+    },
+    {
+      "path": "game/docs/stage-review/stage02-layered-road/master-integration/visual/stage02-overview.png",
+      "canonical": "game/docs/stage-review/shared-geology/stone-junction/after/stage02-overview.png",
+      "bytes": 332802,
+      "gitBlobSha": "3427dc619084fa4042d168a8e09b665a842b8bfd"
+    },
+    {
+      "path": "game/docs/stage-review/stage02-road-strategy/evidence/comparison/flat-layered-27efe8/stage02-overview.png",
+      "canonical": "game/docs/stage-review/shared-geology/stone-junction/after/stage02-overview.png",
+      "bytes": 332802,
+      "gitBlobSha": "3427dc619084fa4042d168a8e09b665a842b8bfd"
+    },
+    {
+      "path": "game/docs/stage-review/stage01-positioning/evidence/refined-whole/stage01-midplay.png",
+      "canonical": "game/docs/stage-review/stage01-positioning/evidence/refined-final/stage01-midplay.png",
+      "bytes": 298695,
+      "gitBlobSha": "0d444f8698207a52b4e458dfd0374ab94a1baa24"
+    },
+    {
+      "path": "game/docs/stage-review/stage01-positioning/evidence/refined-whole/stage01-normal.png",
+      "canonical": "game/docs/stage-review/stage01-positioning/evidence/refined-final/stage01-normal.png",
+      "bytes": 297894,
+      "gitBlobSha": "984f74aba8cab9bf47b11682ecc424083ac4f672"
+    },
+    {
+      "path": "game/docs/stage-review/stage02-layered-road/common-v3/reference/stage01-normal.png",
+      "canonical": "game/docs/stage-review/stage01-positioning/evidence/refined-final/stage01-normal.png",
+      "bytes": 297894,
+      "gitBlobSha": "984f74aba8cab9bf47b11682ecc424083ac4f672"
+    },
+    {
+      "path": "game/docs/stage-review/stage01-positioning/evidence/refined-whole/stage01-overview.png",
+      "canonical": "game/docs/stage-review/stage01-positioning/evidence/refined-final/stage01-overview.png",
+      "bytes": 310674,
+      "gitBlobSha": "3a1078ad7ee9d4386bcbbeb42562d2ecdb27cbfc"
+    },
+    {
+      "path": "game/docs/stage-review/stage02-layered-road/common-v3/before/stage02-overview.png",
+      "canonical": "game/docs/stage-review/stage02-layered-road/correction-v2/final/stage02-overview.png",
+      "bytes": 298758,
+      "gitBlobSha": "12175d29c9c0b5895b7a8fb562678fed976f2499"
+    },
+    {
+      "path": "game/docs/stage-review/stage02-layered-road/correction-v2/review3/stage02-overview.png",
+      "canonical": "game/docs/stage-review/stage02-layered-road/correction-v2/final/stage02-overview.png",
+      "bytes": 298758,
+      "gitBlobSha": "12175d29c9c0b5895b7a8fb562678fed976f2499"
+    },
+    {
+      "path": "game/docs/stage-review/stage02-layered-road/common-v3/before/stage02-road-start.png",
+      "canonical": "game/docs/stage-review/stage02-layered-road/correction-v2/final/stage02-road-start.png",
+      "bytes": 143683,
+      "gitBlobSha": "76359c9e09f4e03e71fd2dbc66f39ae6631951cd"
+    },
+    {
+      "path": "game/docs/stage-review/stage02-layered-road/correction-v2/review3/stage02-road-start.png",
+      "canonical": "game/docs/stage-review/stage02-layered-road/correction-v2/final/stage02-road-start.png",
+      "bytes": 143683,
+      "gitBlobSha": "76359c9e09f4e03e71fd2dbc66f39ae6631951cd"
+    },
+    {
+      "path": "game/docs/stage-review/stage02-layered-road/common-v3/review1/stage02-high-start.png",
+      "canonical": "game/docs/stage-review/stage02-layered-road/common-v3/final/stage02-high-start.png",
+      "bytes": 275861,
+      "gitBlobSha": "3a45abda558df02cd719d3a5d47373d8e05d87cb"
+    },
+    {
+      "path": "game/docs/stage-review/stage02-layered-road/common-v3/review3/stage02-mobile-road.png",
+      "canonical": "game/docs/stage-review/stage02-layered-road/common-v3/final/stage02-mobile-left.png",
+      "bytes": 41010,
+      "gitBlobSha": "7d5021f6e0861e7b88178e66da656bc817bcc3f7"
+    },
+    {
+      "path": "game/docs/stage-review/stage02-layered-road/common-v3/review3/stage02-overview.png",
+      "canonical": "game/docs/stage-review/stage02-layered-road/common-v3/final/stage02-overview.png",
+      "bytes": 299423,
+      "gitBlobSha": "6282045a385a8a195996beae933ba001d4650e95"
+    },
+    {
+      "path": "game/docs/stage-review/stage02-layered-road/common-v3/stage02-common-assets-art-failed-overview.png",
+      "canonical": "game/docs/stage-review/stage02-layered-road/common-v3/final/stage02-overview.png",
+      "bytes": 299423,
+      "gitBlobSha": "6282045a385a8a195996beae933ba001d4650e95"
+    },
+    {
+      "path": "game/docs/stage-review/stage02-layered-road/common-v3/review2/stage02-road-start.png",
+      "canonical": "game/docs/stage-review/stage02-layered-road/common-v3/final/stage02-road-start.png",
+      "bytes": 128354,
+      "gitBlobSha": "1ea235fac1f15b9b151ecf67e3c855144545ea3c"
+    },
+    {
+      "path": "game/docs/stage-review/stage02-layered-road/correction-v2/review3/stage02-mobile-start.png",
+      "canonical": "game/docs/stage-review/stage02-layered-road/correction-v2/final/stage02-mobile-left.png",
+      "bytes": 45735,
+      "gitBlobSha": "4113bd97bdebb65118ffdb43bf502e2eb96ae306"
+    },
+    {
+      "path": "game/docs/stage-review/stage02-road-strategy/evidence/comparison/flat-layered-27efe8/stage02-normal.png",
+      "canonical": "game/docs/stage-review/stage02-layered-road/master-integration/visual/stage02-normal.png",
+      "bytes": 265834,
+      "gitBlobSha": "36b60b1842e6cd2d3c10536045afdf685d018595"
+    },
+    {
+      "path": "game/docs/stage-review/stage03-positioning/evidence/review2/stage03-cargo.png",
+      "canonical": "game/docs/stage-review/stage03-positioning/evidence/final-detail/stage03-cargo.png",
+      "bytes": 340373,
+      "gitBlobSha": "699c5a244ca4051d778f869f286bd612a71a94bf"
+    },
+    {
+      "path": "game/docs/stage-review/stage03-positioning/evidence/review2/stage03-dock.png",
+      "canonical": "game/docs/stage-review/stage03-positioning/evidence/final-detail/stage03-dock.png",
+      "bytes": 336394,
+      "gitBlobSha": "25524d8cfbd6765600fa22ab4d2cdf7aa48b7e72"
+    },
+    {
+      "path": "game/docs/stage-review/stage03-positioning/evidence/review3/stage03-normal-dock.png",
+      "canonical": "game/docs/stage-review/stage03-positioning/evidence/final-detail/stage03-dock.png",
+      "bytes": 336394,
+      "gitBlobSha": "25524d8cfbd6765600fa22ab4d2cdf7aa48b7e72"
+    },
+    {
+      "path": "game/docs/stage-review/stage03-positioning/evidence/review2/stage03-lowland.png",
+      "canonical": "game/docs/stage-review/stage03-positioning/evidence/final-detail/stage03-lowland.png",
+      "bytes": 299985,
+      "gitBlobSha": "bce2db54c7ae5b017793a2125898eb408349ab25"
+    },
+    {
+      "path": "game/docs/stage-review/stage03-positioning/evidence/review2/stage03-roof.png",
+      "canonical": "game/docs/stage-review/stage03-positioning/evidence/final-detail/stage03-roof.png",
+      "bytes": 259244,
+      "gitBlobSha": "d131fe8c28a9155ed1fea43d0ccf27d25cdc43a4"
+    },
+    {
+      "path": "game/docs/stage-review/stage04-positioning/evidence/review2/stage04-zoom-gallery.png",
+      "canonical": "game/docs/stage-review/stage04-positioning/evidence/final/stage04-zoom-gallery.png",
+      "bytes": 234218,
+      "gitBlobSha": "b63f43fecb204697fa4bd788ab590423760646b9"
+    },
+    {
+      "path": "game/docs/stage-review/stage05-waterfall/evidence/review1/stage05-west.png",
+      "canonical": "game/docs/stage-review/stage05-waterfall/evidence/baseline/stage05-west.png",
+      "bytes": 267983,
+      "gitBlobSha": "4ae1c263b283b4904d546db4bda5117dbe583ce9"
+    },
+    {
+      "path": "game/docs/stage-review/stage05-waterfall/evidence/review3/stage05-landscape-cave.png",
+      "canonical": "game/docs/stage-review/stage05-waterfall/evidence/final/stage05-landscape-cave.png",
+      "bytes": 97787,
+      "gitBlobSha": "3bc54f57f3aeba719a45cbad73f486f9d90fa387"
+    },
+    {
+      "path": "game/docs/stage-review/stage05-waterfall/evidence/review3/stage05-maxout.png",
+      "canonical": "game/docs/stage-review/stage05-waterfall/evidence/final/stage05-maxout.png",
+      "bytes": 319479,
+      "gitBlobSha": "01e77b0c504c2dc843e84cf7bd0072a69bc4669a"
+    },
+    {
+      "path": "game/docs/stage-review/stage05-waterfall/evidence/review3/stage05-mobile-cave.png",
+      "canonical": "game/docs/stage-review/stage05-waterfall/evidence/final/stage05-mobile-cave.png",
+      "bytes": 135721,
+      "gitBlobSha": "f961378fa6355795b23bb515bf6737a8a4bb0888"
+    },
+    {
+      "path": "game/docs/stage-review/stage05-waterfall/evidence/review2/stage05-mobile-ritual.png",
+      "canonical": "game/docs/stage-review/stage05-waterfall/evidence/final/stage05-mobile-ritual.png",
+      "bytes": 99982,
+      "gitBlobSha": "524aaca4c3e5ed148781cbc9e6dd7bad17b1635e"
+    },
+    {
+      "path": "game/docs/stage-review/stage05-waterfall/evidence/review3/stage05-mobile-ritual.png",
+      "canonical": "game/docs/stage-review/stage05-waterfall/evidence/final/stage05-mobile-ritual.png",
+      "bytes": 99982,
+      "gitBlobSha": "524aaca4c3e5ed148781cbc9e6dd7bad17b1635e"
+    },
+    {
+      "path": "game/docs/stage-review/stage05-waterfall/evidence/review2/stage05-normal-shore.png",
+      "canonical": "game/docs/stage-review/stage05-waterfall/evidence/final/stage05-normal-shore.png",
+      "bytes": 319931,
+      "gitBlobSha": "7f8478f51429bf336e62a1f5d1450b3bb96c3762"
+    },
+    {
+      "path": "game/docs/stage-review/stage05-waterfall/evidence/review3/stage05-normal-shore.png",
+      "canonical": "game/docs/stage-review/stage05-waterfall/evidence/final/stage05-normal-shore.png",
+      "bytes": 319931,
+      "gitBlobSha": "7f8478f51429bf336e62a1f5d1450b3bb96c3762"
+    },
+    {
+      "path": "game/docs/stage-review/stage05-waterfall/evidence/review3/stage05-water-open.png",
+      "canonical": "game/docs/stage-review/stage05-waterfall/evidence/final/stage05-water-open.png",
+      "bytes": 387850,
+      "gitBlobSha": "ecca93ba534e8422dc9a1912492c132e590f67fc"
+    },
+    {
+      "path": "game/docs/stage-review/stage05-waterfall/evidence/review3/stage05-water-released.png",
+      "canonical": "game/docs/stage-review/stage05-waterfall/evidence/final/stage05-water-released.png",
+      "bytes": 388521,
+      "gitBlobSha": "cc3d1a88a7b7d90d8d4e1200ac6d81c1f96f69a2"
+    },
+    {
+      "path": "game/docs/stage-review/stage05-waterfall/evidence/review3/stage05-zoom-cave.png",
+      "canonical": "game/docs/stage-review/stage05-waterfall/evidence/final/stage05-zoom-cave.png",
+      "bytes": 382130,
+      "gitBlobSha": "99a8698e4abfd8e1c192e81328b811f221a0cfe9"
+    },
+    {
+      "path": "game/docs/stage-review/stage07-roots/evidence/review3/stage07-landscape-crown.png",
+      "canonical": "game/docs/stage-review/stage07-roots/evidence/final/stage07-landscape-crown.png",
+      "bytes": 142167,
+      "gitBlobSha": "554d6ee0e17294f849a47d84377369e1dff43994"
+    },
+    {
+      "path": "game/docs/stage-review/stage07-roots/evidence/review3/stage07-maxout-lower.png",
+      "canonical": "game/docs/stage-review/stage07-roots/evidence/final/stage07-maxout-lower.png",
+      "bytes": 542584,
+      "gitBlobSha": "8829f192e790f34fcf846b5888e66aa23b089ebe"
+    },
+    {
+      "path": "game/docs/stage-review/stage07-roots/evidence/review3/stage07-maxout-upper.png",
+      "canonical": "game/docs/stage-review/stage07-roots/evidence/final/stage07-maxout-upper.png",
+      "bytes": 651274,
+      "gitBlobSha": "3e96b94f6ac55ee6d698af80086d656cd4460fd8"
+    },
+    {
+      "path": "game/docs/stage-review/stage07-roots/evidence/review3/stage07-mobile-middle.png",
+      "canonical": "game/docs/stage-review/stage07-roots/evidence/final/stage07-mobile-middle.png",
+      "bytes": 150189,
+      "gitBlobSha": "a2b9127690e4e74d8dd743d5dd529940e8f6a9d8"
+    },
+    {
+      "path": "game/docs/stage-review/stage07-roots/evidence/review3/stage07-mobile-root.png",
+      "canonical": "game/docs/stage-review/stage07-roots/evidence/final/stage07-mobile-root.png",
+      "bytes": 121413,
+      "gitBlobSha": "6f693c90e0c91bd9f6b4efbcddf2ac57e6e1e476"
+    },
+    {
+      "path": "game/docs/stage-review/stage07-roots/evidence/review3/stage07-normal-crown.png",
+      "canonical": "game/docs/stage-review/stage07-roots/evidence/final/stage07-normal-crown.png",
+      "bytes": 545860,
+      "gitBlobSha": "40e9a54739ba3f0934170468a866f993016ea546"
+    },
+    {
+      "path": "game/docs/stage-review/stage07-roots/evidence/review3/stage07-normal-lower.png",
+      "canonical": "game/docs/stage-review/stage07-roots/evidence/final/stage07-normal-lower.png",
+      "bytes": 448563,
+      "gitBlobSha": "5cc87401751dcedb7ba992523d0753d23d00dbea"
+    },
+    {
+      "path": "game/docs/stage-review/stage07-roots/evidence/review3/stage07-normal-middle.png",
+      "canonical": "game/docs/stage-review/stage07-roots/evidence/final/stage07-normal-middle.png",
+      "bytes": 523884,
+      "gitBlobSha": "1b64cd66387b293a71b22685d129400323a40be3"
+    },
+    {
+      "path": "game/docs/stage-review/stage07-roots/evidence/review3/stage07-zoom-fork.png",
+      "canonical": "game/docs/stage-review/stage07-roots/evidence/final/stage07-zoom-fork.png",
+      "bytes": 531186,
+      "gitBlobSha": "282b6354f784b1c872dc2484badb5b54375a167b"
+    },
+    {
+      "path": "game/docs/stage-review/stage08-bier/evidence/merged-final/stage08-court.png",
+      "canonical": "game/docs/stage-review/stage08-bier/evidence/final/stage08-court.png",
+      "bytes": 236202,
+      "gitBlobSha": "2972497d9da62304306f4f582091828c5a0b1da4"
+    },
+    {
+      "path": "game/docs/stage-review/stage08-bier/evidence/review2/stage08-court.png",
+      "canonical": "game/docs/stage-review/stage08-bier/evidence/final/stage08-court.png",
+      "bytes": 236202,
+      "gitBlobSha": "2972497d9da62304306f4f582091828c5a0b1da4"
+    },
+    {
+      "path": "game/docs/stage-review/stage08-bier/evidence/review3/stage08-court.png",
+      "canonical": "game/docs/stage-review/stage08-bier/evidence/final/stage08-court.png",
+      "bytes": 236202,
+      "gitBlobSha": "2972497d9da62304306f4f582091828c5a0b1da4"
+    },
+    {
+      "path": "game/docs/stage-review/stage08-bier/evidence/merged-final/stage08-crown.png",
+      "canonical": "game/docs/stage-review/stage08-bier/evidence/final/stage08-crown.png",
+      "bytes": 222738,
+      "gitBlobSha": "a84100e63f5e53ff7095eef8767f2223b248a0ad"
+    },
+    {
+      "path": "game/docs/stage-review/stage08-bier/evidence/review2/stage08-crown.png",
+      "canonical": "game/docs/stage-review/stage08-bier/evidence/final/stage08-crown.png",
+      "bytes": 222738,
+      "gitBlobSha": "a84100e63f5e53ff7095eef8767f2223b248a0ad"
+    },
+    {
+      "path": "game/docs/stage-review/stage08-bier/evidence/review3/stage08-crown.png",
+      "canonical": "game/docs/stage-review/stage08-bier/evidence/final/stage08-crown.png",
+      "bytes": 222738,
+      "gitBlobSha": "a84100e63f5e53ff7095eef8767f2223b248a0ad"
+    },
+    {
+      "path": "game/docs/stage-review/stage08-bier/evidence/merged-final/stage08-east.png",
+      "canonical": "game/docs/stage-review/stage08-bier/evidence/final/stage08-east.png",
+      "bytes": 203868,
+      "gitBlobSha": "55f94c21340a30a3d66ff67774556468721b27ed"
+    },
+    {
+      "path": "game/docs/stage-review/stage08-bier/evidence/review2/stage08-east.png",
+      "canonical": "game/docs/stage-review/stage08-bier/evidence/final/stage08-east.png",
+      "bytes": 203868,
+      "gitBlobSha": "55f94c21340a30a3d66ff67774556468721b27ed"
+    },
+    {
+      "path": "game/docs/stage-review/stage08-bier/evidence/review3/stage08-east.png",
+      "canonical": "game/docs/stage-review/stage08-bier/evidence/final/stage08-east.png",
+      "bytes": 203868,
+      "gitBlobSha": "55f94c21340a30a3d66ff67774556468721b27ed"
+    },
+    {
+      "path": "game/docs/stage-review/stage08-bier/evidence/merged-final/stage08-entry.png",
+      "canonical": "game/docs/stage-review/stage08-bier/evidence/final/stage08-entry.png",
+      "bytes": 225595,
+      "gitBlobSha": "31c7605bc79a6217b712161e5142bcbbd49d983a"
+    },
+    {
+      "path": "game/docs/stage-review/stage08-bier/evidence/review2/stage08-entry.png",
+      "canonical": "game/docs/stage-review/stage08-bier/evidence/final/stage08-entry.png",
+      "bytes": 225595,
+      "gitBlobSha": "31c7605bc79a6217b712161e5142bcbbd49d983a"
+    },
+    {
+      "path": "game/docs/stage-review/stage08-bier/evidence/review3/stage08-entry.png",
+      "canonical": "game/docs/stage-review/stage08-bier/evidence/final/stage08-entry.png",
+      "bytes": 225595,
+      "gitBlobSha": "31c7605bc79a6217b712161e5142bcbbd49d983a"
+    },
+    {
+      "path": "game/docs/stage-review/stage08-bier/evidence/merged-final/stage08-landscape-east.png",
+      "canonical": "game/docs/stage-review/stage08-bier/evidence/final/stage08-landscape-east.png",
+      "bytes": 101191,
+      "gitBlobSha": "56aadb34d62241726fa2228d893291017ca04cb7"
+    },
+    {
+      "path": "game/docs/stage-review/stage08-bier/evidence/review2/stage08-landscape-east.png",
+      "canonical": "game/docs/stage-review/stage08-bier/evidence/final/stage08-landscape-east.png",
+      "bytes": 101191,
+      "gitBlobSha": "56aadb34d62241726fa2228d893291017ca04cb7"
+    },
+    {
+      "path": "game/docs/stage-review/stage08-bier/evidence/review3/stage08-landscape-east.png",
+      "canonical": "game/docs/stage-review/stage08-bier/evidence/final/stage08-landscape-east.png",
+      "bytes": 101191,
+      "gitBlobSha": "56aadb34d62241726fa2228d893291017ca04cb7"
+    },
+    {
+      "path": "game/docs/stage-review/stage08-bier/evidence/merged-final/stage08-maxout-east.png",
+      "canonical": "game/docs/stage-review/stage08-bier/evidence/final/stage08-maxout-east.png",
+      "bytes": 252621,
+      "gitBlobSha": "29a3fd1191285973a630ebae73e7933780683ad2"
+    },
+    {
+      "path": "game/docs/stage-review/stage08-bier/evidence/review2/stage08-maxout-east.png",
+      "canonical": "game/docs/stage-review/stage08-bier/evidence/final/stage08-maxout-east.png",
+      "bytes": 252621,
+      "gitBlobSha": "29a3fd1191285973a630ebae73e7933780683ad2"
+    },
+    {
+      "path": "game/docs/stage-review/stage08-bier/evidence/review3/stage08-maxout-east.png",
+      "canonical": "game/docs/stage-review/stage08-bier/evidence/final/stage08-maxout-east.png",
+      "bytes": 252621,
+      "gitBlobSha": "29a3fd1191285973a630ebae73e7933780683ad2"
+    },
+    {
+      "path": "game/docs/stage-review/stage08-bier/evidence/merged-final/stage08-maxout-west.png",
+      "canonical": "game/docs/stage-review/stage08-bier/evidence/final/stage08-maxout-west.png",
+      "bytes": 272841,
+      "gitBlobSha": "6a0f34b47ecad2a6292c8c5af50456dd2b2e57e3"
+    },
+    {
+      "path": "game/docs/stage-review/stage08-bier/evidence/review2/stage08-maxout-west.png",
+      "canonical": "game/docs/stage-review/stage08-bier/evidence/final/stage08-maxout-west.png",
+      "bytes": 272841,
+      "gitBlobSha": "6a0f34b47ecad2a6292c8c5af50456dd2b2e57e3"
+    },
+    {
+      "path": "game/docs/stage-review/stage08-bier/evidence/review3/stage08-maxout-west.png",
+      "canonical": "game/docs/stage-review/stage08-bier/evidence/final/stage08-maxout-west.png",
+      "bytes": 272841,
+      "gitBlobSha": "6a0f34b47ecad2a6292c8c5af50456dd2b2e57e3"
+    },
+    {
+      "path": "game/docs/stage-review/stage08-bier/evidence/merged-final/stage08-mobile-court.png",
+      "canonical": "game/docs/stage-review/stage08-bier/evidence/final/stage08-mobile-court.png",
+      "bytes": 53246,
+      "gitBlobSha": "28296bac1028703c59f342007902ab3b1c7bea9d"
+    },
+    {
+      "path": "game/docs/stage-review/stage08-bier/evidence/review2/stage08-mobile-court.png",
+      "canonical": "game/docs/stage-review/stage08-bier/evidence/final/stage08-mobile-court.png",
+      "bytes": 53246,
+      "gitBlobSha": "28296bac1028703c59f342007902ab3b1c7bea9d"
+    },
+    {
+      "path": "game/docs/stage-review/stage08-bier/evidence/review3/stage08-mobile-court.png",
+      "canonical": "game/docs/stage-review/stage08-bier/evidence/final/stage08-mobile-court.png",
+      "bytes": 53246,
+      "gitBlobSha": "28296bac1028703c59f342007902ab3b1c7bea9d"
+    },
+    {
+      "path": "game/docs/stage-review/stage08-bier/evidence/merged-final/stage08-west.png",
+      "canonical": "game/docs/stage-review/stage08-bier/evidence/final/stage08-west.png",
+      "bytes": 248537,
+      "gitBlobSha": "bd0b822be760961c6fa4baaa7c60416e9012181c"
+    },
+    {
+      "path": "game/docs/stage-review/stage08-bier/evidence/review2/stage08-west.png",
+      "canonical": "game/docs/stage-review/stage08-bier/evidence/final/stage08-west.png",
+      "bytes": 248537,
+      "gitBlobSha": "bd0b822be760961c6fa4baaa7c60416e9012181c"
+    },
+    {
+      "path": "game/docs/stage-review/stage08-bier/evidence/review3/stage08-west.png",
+      "canonical": "game/docs/stage-review/stage08-bier/evidence/final/stage08-west.png",
+      "bytes": 248537,
+      "gitBlobSha": "bd0b822be760961c6fa4baaa7c60416e9012181c"
+    },
+    {
+      "path": "game/docs/stage-review/stage08-bier/evidence/merged-final/stage08-zoom-store.png",
+      "canonical": "game/docs/stage-review/stage08-bier/evidence/final/stage08-zoom-store.png",
+      "bytes": 230585,
+      "gitBlobSha": "5604e0ff43039fd165b4660b6b27149c050fd534"
+    },
+    {
+      "path": "game/docs/stage-review/stage08-bier/evidence/review3/stage08-zoom-store.png",
+      "canonical": "game/docs/stage-review/stage08-bier/evidence/final/stage08-zoom-store.png",
+      "bytes": 230585,
+      "gitBlobSha": "5604e0ff43039fd165b4660b6b27149c050fd534"
+    },
+    {
+      "path": "game/docs/stage-review/stage09-yard/evidence/review2/stage09-center.png",
+      "canonical": "game/docs/stage-review/stage09-yard/evidence/final/stage09-center.png",
+      "bytes": 285008,
+      "gitBlobSha": "4bb95a5708e38e1268c6f145e38e66e525afe2b3"
+    },
+    {
+      "path": "game/docs/stage-review/stage09-yard/evidence/review3/stage09-center.png",
+      "canonical": "game/docs/stage-review/stage09-yard/evidence/final/stage09-center.png",
+      "bytes": 285008,
+      "gitBlobSha": "4bb95a5708e38e1268c6f145e38e66e525afe2b3"
+    },
+    {
+      "path": "game/docs/stage-review/stage09-yard/evidence/review2/stage09-east.png",
+      "canonical": "game/docs/stage-review/stage09-yard/evidence/final/stage09-east.png",
+      "bytes": 282783,
+      "gitBlobSha": "bfdc76c565619bac96bac23454a5512a6c5816f5"
+    },
+    {
+      "path": "game/docs/stage-review/stage09-yard/evidence/review3/stage09-east.png",
+      "canonical": "game/docs/stage-review/stage09-yard/evidence/final/stage09-east.png",
+      "bytes": 282783,
+      "gitBlobSha": "bfdc76c565619bac96bac23454a5512a6c5816f5"
+    },
+    {
+      "path": "game/docs/stage-review/stage09-yard/evidence/review2/stage09-landscape-center.png",
+      "canonical": "game/docs/stage-review/stage09-yard/evidence/final/stage09-landscape-center.png",
+      "bytes": 97835,
+      "gitBlobSha": "da0768408a0161e757c49a64e8c7fb9ed2b39d4c"
+    },
+    {
+      "path": "game/docs/stage-review/stage09-yard/evidence/review3/stage09-landscape-center.png",
+      "canonical": "game/docs/stage-review/stage09-yard/evidence/final/stage09-landscape-center.png",
+      "bytes": 97835,
+      "gitBlobSha": "da0768408a0161e757c49a64e8c7fb9ed2b39d4c"
+    },
+    {
+      "path": "game/docs/stage-review/stage09-yard/evidence/review2/stage09-mobile-east.png",
+      "canonical": "game/docs/stage-review/stage09-yard/evidence/final/stage09-mobile-east.png",
+      "bytes": 91403,
+      "gitBlobSha": "1cb4386a4bcf2fa95640016e2e04d4f151786bd7"
+    },
+    {
+      "path": "game/docs/stage-review/stage09-yard/evidence/review3/stage09-mobile-east.png",
+      "canonical": "game/docs/stage-review/stage09-yard/evidence/final/stage09-mobile-east.png",
+      "bytes": 91403,
+      "gitBlobSha": "1cb4386a4bcf2fa95640016e2e04d4f151786bd7"
+    },
+    {
+      "path": "game/docs/stage-review/stage09-yard/evidence/review2/stage09-overview.png",
+      "canonical": "game/docs/stage-review/stage09-yard/evidence/final/stage09-overview.png",
+      "bytes": 163900,
+      "gitBlobSha": "ee28c153cf09c2915715d8e967acba701961fac2"
+    },
+    {
+      "path": "game/docs/stage-review/stage09-yard/evidence/review3/stage09-overview.png",
+      "canonical": "game/docs/stage-review/stage09-yard/evidence/final/stage09-overview.png",
+      "bytes": 163900,
+      "gitBlobSha": "ee28c153cf09c2915715d8e967acba701961fac2"
+    },
+    {
+      "path": "game/docs/stage-review/stage09-yard/evidence/review2/stage09-west.png",
+      "canonical": "game/docs/stage-review/stage09-yard/evidence/final/stage09-west.png",
+      "bytes": 283173,
+      "gitBlobSha": "9b9bf62ec624ca39cce9373aea097487a9b20136"
+    },
+    {
+      "path": "game/docs/stage-review/stage09-yard/evidence/review3/stage09-west.png",
+      "canonical": "game/docs/stage-review/stage09-yard/evidence/final/stage09-west.png",
+      "bytes": 283173,
+      "gitBlobSha": "9b9bf62ec624ca39cce9373aea097487a9b20136"
+    },
+    {
+      "path": "game/docs/stage-review/stage09-yard/evidence/review2/stage09-zoom-west.png",
+      "canonical": "game/docs/stage-review/stage09-yard/evidence/final/stage09-zoom-west.png",
+      "bytes": 264145,
+      "gitBlobSha": "ae5a9dd61b7722c250a462b23c9f7ae3a93e0fb5"
+    },
+    {
+      "path": "game/docs/stage-review/stage09-yard/evidence/review3/stage09-zoom-west.png",
+      "canonical": "game/docs/stage-review/stage09-yard/evidence/final/stage09-zoom-west.png",
+      "bytes": 264145,
+      "gitBlobSha": "ae5a9dd61b7722c250a462b23c9f7ae3a93e0fb5"
+    },
+    {
+      "path": "game/docs/stage-review/stage10-guardian/evidence/review2/stage10-center.png",
+      "canonical": "game/docs/stage-review/stage10-guardian/evidence/final/stage10-center.png",
+      "bytes": 300231,
+      "gitBlobSha": "e4ec37d78e8197bd1ef35d52229eea4f9eb2ab20"
+    },
+    {
+      "path": "game/docs/stage-review/stage10-guardian/evidence/review3/stage10-center.png",
+      "canonical": "game/docs/stage-review/stage10-guardian/evidence/final/stage10-center.png",
+      "bytes": 300231,
+      "gitBlobSha": "e4ec37d78e8197bd1ef35d52229eea4f9eb2ab20"
+    },
+    {
+      "path": "game/docs/stage-review/stage10-guardian/evidence/title-merged/screens/stage10-center.png",
+      "canonical": "game/docs/stage-review/stage10-guardian/evidence/final/stage10-center.png",
+      "bytes": 300231,
+      "gitBlobSha": "e4ec37d78e8197bd1ef35d52229eea4f9eb2ab20"
+    },
+    {
+      "path": "game/docs/stage-review/stage10-guardian/evidence/review2/stage10-east.png",
+      "canonical": "game/docs/stage-review/stage10-guardian/evidence/final/stage10-east.png",
+      "bytes": 247842,
+      "gitBlobSha": "54066ba1e3ff484ae73a9b2de6563d3d1487655b"
+    },
+    {
+      "path": "game/docs/stage-review/stage10-guardian/evidence/review3/stage10-east.png",
+      "canonical": "game/docs/stage-review/stage10-guardian/evidence/final/stage10-east.png",
+      "bytes": 247842,
+      "gitBlobSha": "54066ba1e3ff484ae73a9b2de6563d3d1487655b"
+    },
+    {
+      "path": "game/docs/stage-review/stage10-guardian/evidence/title-merged/screens/stage10-east.png",
+      "canonical": "game/docs/stage-review/stage10-guardian/evidence/final/stage10-east.png",
+      "bytes": 247842,
+      "gitBlobSha": "54066ba1e3ff484ae73a9b2de6563d3d1487655b"
+    },
+    {
+      "path": "game/docs/stage-review/stage10-guardian/evidence/review3/stage10-landscape-tree.png",
+      "canonical": "game/docs/stage-review/stage10-guardian/evidence/final/stage10-landscape-tree.png",
+      "bytes": 100263,
+      "gitBlobSha": "b692ecbca11d9f4b01ab0a47e74dc8b62e1e48f3"
+    },
+    {
+      "path": "game/docs/stage-review/stage10-guardian/evidence/title-merged/screens/stage10-landscape-tree.png",
+      "canonical": "game/docs/stage-review/stage10-guardian/evidence/final/stage10-landscape-tree.png",
+      "bytes": 100263,
+      "gitBlobSha": "b692ecbca11d9f4b01ab0a47e74dc8b62e1e48f3"
+    },
+    {
+      "path": "game/docs/stage-review/stage10-guardian/evidence/review2/stage10-mobile-tree.png",
+      "canonical": "game/docs/stage-review/stage10-guardian/evidence/final/stage10-mobile-tree.png",
+      "bytes": 91706,
+      "gitBlobSha": "fbf26f1646eb194a97265358d3fd1470b5c3980c"
+    },
+    {
+      "path": "game/docs/stage-review/stage10-guardian/evidence/review3/stage10-mobile-tree.png",
+      "canonical": "game/docs/stage-review/stage10-guardian/evidence/final/stage10-mobile-tree.png",
+      "bytes": 91706,
+      "gitBlobSha": "fbf26f1646eb194a97265358d3fd1470b5c3980c"
+    },
+    {
+      "path": "game/docs/stage-review/stage10-guardian/evidence/title-merged/screens/stage10-mobile-tree.png",
+      "canonical": "game/docs/stage-review/stage10-guardian/evidence/final/stage10-mobile-tree.png",
+      "bytes": 91706,
+      "gitBlobSha": "fbf26f1646eb194a97265358d3fd1470b5c3980c"
+    },
+    {
+      "path": "game/docs/stage-review/stage10-guardian/evidence/review3/stage10-overview.png",
+      "canonical": "game/docs/stage-review/stage10-guardian/evidence/final/stage10-overview.png",
+      "bytes": 239797,
+      "gitBlobSha": "b4f8e337aa2b6bb57cbf3475f7b5080b337fd0dd"
+    },
+    {
+      "path": "game/docs/stage-review/stage10-guardian/evidence/title-merged/screens/stage10-overview.png",
+      "canonical": "game/docs/stage-review/stage10-guardian/evidence/final/stage10-overview.png",
+      "bytes": 239797,
+      "gitBlobSha": "b4f8e337aa2b6bb57cbf3475f7b5080b337fd0dd"
+    },
+    {
+      "path": "game/docs/stage-review/stage10-guardian/evidence/review2/stage10-west.png",
+      "canonical": "game/docs/stage-review/stage10-guardian/evidence/final/stage10-west.png",
+      "bytes": 263926,
+      "gitBlobSha": "8d7f09edaeceb2ff1d16b5982ffffaa44b9dd1d9"
+    },
+    {
+      "path": "game/docs/stage-review/stage10-guardian/evidence/review3/stage10-west.png",
+      "canonical": "game/docs/stage-review/stage10-guardian/evidence/final/stage10-west.png",
+      "bytes": 263926,
+      "gitBlobSha": "8d7f09edaeceb2ff1d16b5982ffffaa44b9dd1d9"
+    },
+    {
+      "path": "game/docs/stage-review/stage10-guardian/evidence/title-merged/screens/stage10-west.png",
+      "canonical": "game/docs/stage-review/stage10-guardian/evidence/final/stage10-west.png",
+      "bytes": 263926,
+      "gitBlobSha": "8d7f09edaeceb2ff1d16b5982ffffaa44b9dd1d9"
+    },
+    {
+      "path": "game/docs/stage-review/stage10-guardian/evidence/review2/stage10-zoom-binding.png",
+      "canonical": "game/docs/stage-review/stage10-guardian/evidence/final/stage10-zoom-binding.png",
+      "bytes": 308287,
+      "gitBlobSha": "ab467973ed96fa51571a6bf8c56b0b96eef4fa60"
+    },
+    {
+      "path": "game/docs/stage-review/stage10-guardian/evidence/review3/stage10-zoom-binding.png",
+      "canonical": "game/docs/stage-review/stage10-guardian/evidence/final/stage10-zoom-binding.png",
+      "bytes": 308287,
+      "gitBlobSha": "ab467973ed96fa51571a6bf8c56b0b96eef4fa60"
+    },
+    {
+      "path": "game/docs/stage-review/stage10-guardian/evidence/title-merged/screens/stage10-zoom-binding.png",
+      "canonical": "game/docs/stage-review/stage10-guardian/evidence/final/stage10-zoom-binding.png",
+      "bytes": 308287,
+      "gitBlobSha": "ab467973ed96fa51571a6bf8c56b0b96eef4fa60"
+    },
+    {
+      "path": "game/docs/stage-review/stage10-knot-decoration/evidence/focused/focus3-stage10-mobile.png",
+      "canonical": "game/docs/stage-review/stage10-knot-decoration/evidence/final/stage10-mobile.png",
+      "bytes": 144910,
+      "gitBlobSha": "8cd82bf2dc0a6ce56fa376c4dbc4c7cd62b58c6b"
+    },
+    {
+      "path": "game/docs/stage-review/stage10-knot-decoration/evidence/integration3942/stage10-mobile.png",
+      "canonical": "game/docs/stage-review/stage10-knot-decoration/evidence/final/stage10-mobile.png",
+      "bytes": 144910,
+      "gitBlobSha": "8cd82bf2dc0a6ce56fa376c4dbc4c7cd62b58c6b"
+    },
+    {
+      "path": "game/docs/stage-review/stage10-knot-decoration/evidence/integration3942/stage10-normal.png",
+      "canonical": "game/docs/stage-review/stage10-knot-decoration/evidence/final/stage10-normal.png",
+      "bytes": 352443,
+      "gitBlobSha": "0940cc235ac7edfb7d91eb81ae7e56aa6973d916"
+    },
+    {
+      "path": "game/docs/stage-review/stage10-knot-decoration/evidence/integration3942/stage10-overview.png",
+      "canonical": "game/docs/stage-review/stage10-knot-decoration/evidence/final/stage10-overview.png",
+      "bytes": 268327,
+      "gitBlobSha": "068804c495b57c08b0ccf66c4f7da30b9ae6c08c"
+    },
+    {
+      "path": "game/docs/stage-review/stage11-ravine/evidence/focus1/stage11-court-overview.png",
+      "canonical": "game/docs/stage-review/stage11-ravine/evidence/final-correction-before/stage11-court-overview.png",
+      "bytes": 568449,
+      "gitBlobSha": "da8e18b2b8f6409d6634d529549784c2178702ac"
+    },
+    {
+      "path": "game/docs/stage-review/stage11-ravine/evidence/focus1/stage11-lower-overview.png",
+      "canonical": "game/docs/stage-review/stage11-ravine/evidence/final-correction-before/stage11-lower-overview.png",
+      "bytes": 484977,
+      "gitBlobSha": "0c2d2443debb80c3bd27a5b11231faf4013c2845"
+    },
+    {
+      "path": "game/docs/stage-review/stage11-ravine/evidence/integration/protection-complete.png",
+      "canonical": "game/docs/stage-review/stage11-ravine/evidence/final-progress/protection-complete.png",
+      "bytes": 471981,
+      "gitBlobSha": "fbc7014582e7f2f63966a98d38d3e97ee0b88dc9"
+    },
+    {
+      "path": "game/docs/stage-review/stage11-ravine/evidence/normal-browser/trace-victory.png",
+      "canonical": "game/docs/stage-review/stage11-ravine/evidence/final-progress/trace-victory.png",
+      "bytes": 462596,
+      "gitBlobSha": "515848cd42ad18f9029a07ac447078b67c3e5a01"
+    },
+    {
+      "path": "game/docs/stage-review/stage11-ravine/evidence/integration/stage11-court-normal.png",
+      "canonical": "game/docs/stage-review/stage11-ravine/evidence/final/stage11-court-normal.png",
+      "bytes": 479963,
+      "gitBlobSha": "f31649ac9aa163fbfc980a37f98ae1bf61ae984d"
+    },
+    {
+      "path": "game/docs/stage-review/stage11-ravine/evidence/integration/stage11-court-overview.png",
+      "canonical": "game/docs/stage-review/stage11-ravine/evidence/final/stage11-court-overview.png",
+      "bytes": 565851,
+      "gitBlobSha": "72421d7902a594ef63fd9ac3674d227bdb05a05e"
+    },
+    {
+      "path": "game/docs/stage-review/stage11-ravine/evidence/focus3/stage11-mobile-court.png",
+      "canonical": "game/docs/stage-review/stage11-ravine/evidence/final/stage11-mobile-court.png",
+      "bytes": 119289,
+      "gitBlobSha": "51ffdaefc2a81f12ea85bf2ce6061dea9592e3d1"
+    },
+    {
+      "path": "game/docs/stage-review/stage11-ravine/evidence/integration/stage11-mobile-refuge.png",
+      "canonical": "game/docs/stage-review/stage11-ravine/evidence/final/stage11-mobile-refuge.png",
+      "bytes": 80730,
+      "gitBlobSha": "db1605845d1df28d2875aaf327233bf285cf24d4"
+    },
+    {
+      "path": "game/docs/stage10-world-outro-ending-replay/evidence/focus3-gallery/journal-act1-390x844.jpg",
+      "canonical": "game/docs/stage10-world-outro-ending-replay/evidence/final/endings/journal-act1-390x844.jpg",
+      "bytes": 95516,
+      "gitBlobSha": "81ee73e57219b513294d74afa802e00b1238e58a"
+    },
+    {
+      "path": "game/docs/stage10-world-outro-ending-replay/evidence/focus3-gallery/journal-act1-844x390.jpg",
+      "canonical": "game/docs/stage10-world-outro-ending-replay/evidence/final/endings/journal-act1-844x390.jpg",
+      "bytes": 75179,
+      "gitBlobSha": "fe6b06d1be972ffa66a95bd6d6c33b54f645403c"
+    },
+    {
+      "path": "game/docs/stage10-world-outro-ending-replay/evidence/focus3-gallery/journal-act2-390x844.jpg",
+      "canonical": "game/docs/stage10-world-outro-ending-replay/evidence/final/endings/journal-act2-390x844.jpg",
+      "bytes": 66887,
+      "gitBlobSha": "f095ce725ec51de807b39c53219c1baa5496387f"
+    },
+    {
+      "path": "game/docs/stage10-world-outro-ending-replay/evidence/focus3-gallery/journal-act2-844x390.jpg",
+      "canonical": "game/docs/stage10-world-outro-ending-replay/evidence/final/endings/journal-act2-844x390.jpg",
+      "bytes": 52758,
+      "gitBlobSha": "389024b9e0cf3ef4923dd87e9ffa12eea8512a89"
+    },
+    {
+      "path": "game/docs/stage10-world-outro-ending-replay/evidence/focus3-gallery/journal-return-act1-390x844.jpg",
+      "canonical": "game/docs/stage10-world-outro-ending-replay/evidence/final/endings/journal-return-act1-390x844.jpg",
+      "bytes": 95973,
+      "gitBlobSha": "0b3f4a56b13526f6aa5895fbc6bb0722f046720a"
+    },
+    {
+      "path": "game/docs/stage10-world-outro-ending-replay/evidence/focus3-gallery/journal-return-act1-844x390.jpg",
+      "canonical": "game/docs/stage10-world-outro-ending-replay/evidence/final/endings/journal-return-act1-844x390.jpg",
+      "bytes": 75428,
+      "gitBlobSha": "844d9303911b7fafcc440f76dc16125fd50f8f57"
+    },
+    {
+      "path": "game/docs/stage10-world-outro-ending-replay/evidence/focus3-gallery/journal-return-act2-390x844.jpg",
+      "canonical": "game/docs/stage10-world-outro-ending-replay/evidence/final/endings/journal-return-act2-390x844.jpg",
+      "bytes": 67289,
+      "gitBlobSha": "15f14820b6d8804f3b395cdc36c917388841728b"
+    },
+    {
+      "path": "game/docs/stage10-world-outro-ending-replay/evidence/focus3-gallery/journal-return-act2-844x390.jpg",
+      "canonical": "game/docs/stage10-world-outro-ending-replay/evidence/final/endings/journal-return-act2-844x390.jpg",
+      "bytes": 53038,
+      "gitBlobSha": "a2166a710995451717f5d90d7fab43084c128091"
+    },
+    {
+      "path": "game/docs/stage17-route-and-pacing-check-20261022/review/actual-r17.jpg",
+      "canonical": "game/docs/stage17-art-route-release-20261022/review/actual-r17-continue.jpg",
+      "bytes": 65294,
+      "gitBlobSha": "6004eafad66579b36a9df55ffe9022d76ee64fe3"
+    }
+  ],
+  "historicalRecords": [
+    "game/docs/act2-pacing-release-20261022/evidence/screenshots.json",
+    "game/docs/art-review/all-stage-image-far-20261020/evidence-manifest.json",
+    "game/docs/art-review/skill-modal-preview-20261021/visual-review.json",
+    "game/docs/debug-journal-ending-records-20261022/screenshots.json",
+    "game/docs/feedback-integration-20261022/evidence/pixel-review.json",
+    "game/docs/feedback-integration-20261022/evidence/screenshots.json",
+    "game/docs/release-final-20261022/evidence/screenshots.json",
+    "game/docs/stage-review/final-integration-20261021/evidence/MANIFEST.json",
+    "game/docs/stage-review/integration-20261021/evidence/MANIFEST.json",
+    "game/docs/stage-review/release-candidate-20261021/evidence/MANIFEST.json",
+    "game/docs/stage-review/shared-geology/LIBRARY.json",
+    "game/docs/stage-review/shared-geology/joints-correction/LIBRARY.json",
+    "game/docs/stage-review/shared-geology/stone-junction/LIBRARY.json",
+    "game/docs/stage-review/stage02-layered-road/common-v3/LIBRARY.json",
+    "game/docs/stage-review/stage11-ravine/FINAL_REVIEW.json",
+    "game/docs/stage10-world-outro-ending-replay/evidence/final/pixel-comparison.json",
+    "game/docs/stage10-world-outro-ending-replay/evidence/final/pixel-review.json"
+  ],
+  "policy": "Exact duplicate bytes only; original historical metadata remains unchanged. Canonical targets are retained. Original files remain available at the pinned sourceSnapshot."
+}

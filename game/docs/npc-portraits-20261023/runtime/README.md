@@ -16,7 +16,7 @@
 
 1. **화자/분기:** [고정65행·동적3인 첫/반복](evidence/mapping.json), [실제7·14장 마커](evidence/actor-verification.json), [기존 identity 검사](evidence/story-identity-final.txt). 고정65행 중56개 매핑,5개 종지기 보류,3개 익명,1개 동적별칭이며 마지막 별칭은 실제 rescue 이름·마커·scene으로 구별한다. 고유3인과 노승/승려의 구별, unknown generic/주인공/종지기 제외가 통과했다.
 2. **UI/저장:**8종×PC1280/390/320/가로844의32개 실제 App 대사 표본에서 얼굴·본문·이전/다음 접근을 확인했다. 생산 원문 row와 index0 저장 복원 표시 경로를 사용하는 fixture이며 장 전투를 완주한 증거는 아니다. 정상 Story.save→reload→Continue가 같은 원문/metadata를 복원하고 실제 쉼터 prelude의 주막주인도 연결된다. [32표본 raw](evidence/browser-working.json), [390 앞4종](evidence/390-npc-1.jpg)·[뒤4종](evidence/390-npc-2.jpg), [844 앞4종](evidence/844-npc-1.jpg)·[뒤4종](evidence/844-npc-2.jpg). JPG 합본은 실제 화면을 축소 없이 나란히 배치한 것이다.
-3. **수명/실패/기존 영웅:** slow/404/8초 timeout에서 중립 영역, 본문·이전/다음 유지, 늦은 성공/재오픈 복구, NPC vectorBuilds/fallbackPaints0.404는 자동3회 뒤 재오픈4번째 물리 요청에서 복구했고 timeout은 Chromium의 진행 중 URL 공유로 물리1회였다. 정상 ready NPC의 동일 draw120회 추가 paint/clear/request/decode0. [404 중립](evidence/404-neutral.jpg), [timeout 중립](evidence/timeout-neutral.jpg). [기존 주인공 ready/abort/timeout의120회 추가 repaint0](evidence/hero-lifetime.txt). 실패 중 NPC에120회를 반복한 검사와 구분한다.
+3. **수명/실패/기존 영웅:** slow/404/8초 timeout에서 중립 영역, 본문·이전/다음 유지, 늦은 성공/재오픈 복구, NPC vectorBuilds/fallbackPaints0.404는 자동3회 뒤 재오픈4번째 물리 요청에서 복구했고 timeout은 Chromium의 진행 중 URL 공유로 물리1회였다. 정상 ready NPC의 동일 draw120회 추가 paint/clear/request/decode0. [404 중립](evidence/404-neutral.jpg), [timeout 중립](evidence/404-neutral.jpg). [기존 주인공 ready/abort/timeout의120회 추가 repaint0](evidence/hero-lifetime.txt). 실패 중 NPC에120회를 반복한 검사와 구분한다.
 
 ## P0 통합 후 종합 확인
 

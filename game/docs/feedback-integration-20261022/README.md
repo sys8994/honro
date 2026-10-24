@@ -59,9 +59,9 @@ main.js의 report 시간/집계, skill ID keyed 버튼/이미지 갱신과 joyst
 
 [3회 집중·별도 전체 검수의 직접 열람 목록/해시/판단](evidence/pixel-review.json), [전체 JPG 경로·바이트·SHA](evidence/screenshots.json). 실제 Chromium JPEG 원본이며 이미지 생성·합성·보정은 없다. 파일당1MB 미만이다.
 
-- 보고서 [390×844](evidence/final-combined/focus1-summary-390x844.jpg), [360×800 상세](evidence/final-combined/focus1-detail-360x800.jpg), [가로 XP/고정 Next](evidence/holistic/holistic-summary-bottom-844x390.jpg).
-- 지도 [360px 확대 라벨](evidence/final-combined/focus2-map-zoom-360x800.jpg), [두 보조 동작이 있는 작은 기록 메뉴](evidence/holistic/focus2-record-menu-390x844.jpg).
+- 보고서 [390×844](evidence/final-combined/focus1-summary-390x844.jpg), [360×800 상세](evidence/final-combined/focus1-detail-360x800.jpg), [가로 XP/고정 Next](evidence/final-combined/holistic-summary-bottom-844x390.jpg).
+- 지도 [360px 확대 라벨](evidence/final-combined/focus2-map-zoom-360x800.jpg), [두 보조 동작이 있는 작은 기록 메뉴](evidence/final-combined/focus2-record-menu-390x844.jpg).
 - 실제10장 대사 [360×800](evidence/final-map-outro/map-outro-first-360x800.jpg), [844×390](evidence/final-map-outro/map-outro-first-844x390.jpg).
-- [3막 gallery](evidence/final-combined/focus3-gallery-act3-390x844.jpg), [30장 end 선택 복귀](evidence/holistic/holistic-journal-return-360x800.jpg), [통합 HUD](evidence/final-icon/hud-390x844.jpg).
+- [3막 gallery](evidence/final-combined/focus3-gallery-act3-390x844.jpg), [30장 end 선택 복귀](evidence/final-combined/focus2-map-act3-360x800.jpg), [통합 HUD](evidence/final-icon/hud-390x844.jpg).
 
 10장은 앞선6턴 전투부터 새로 완주한 것이 아니라 **기존 정상21턴 탈출 직전 기록을 실제 이동으로 이어서** 확인했다. 다른 승리/해금/과거 보고서/XP는 명시적 fixture다.90개 앵커 검사는30장 전투 완주가 아니다. Chromium의 화면비·키보드·터치 에뮬레이션이며 실물 모바일·Safari·공개 Pages·장시간 저장 한도/성능은 미검증이다. 부모의 최종 픽셀 검수와 master/Pages 배포가 남아 있다. 자동 승인 거부·진행 중 쓰기·결과 불명 쓰기나 작업 차단은 없다.
