@@ -6,13 +6,15 @@ ROOT=Path(__file__).resolve().parents[2];sys.path.insert(0,str(ROOT/'tests'))
 from browser_support import launch,serve_game
 OUT=ROOT/'_local/reports/stage22-hold-20261024';saved=json.loads((OUT/'blocked-profile.json').read_text());baseline=os.environ.get('HONRO_STAGE22_BASELINE')=='1';old=json.loads(subprocess.check_output(['git','show','78818166:web/manifest.json'],cwd=ROOT));rows=[];errors=[]
 with serve_game() as base,sync_playwright() as pw:
- b=launch(pw);c=b.new_context(viewport={'width':390,'height':844},is_mobile=True,has_touch=True);p=c.new_page();p.on('pageerror',lambda e:errors.append(str(e)));p.add_init_script('if(!localStorage.getItem("honro-first-act-profile-1"))localStorage.setItem("honro-first-act-profile-1",'+json.dumps(json.dumps(saved))+');');url=base+'/'+(old['playtest'].split('?')[0]if baseline else 'HONRO.html');p.goto(url);p.wait_for_function('document.documentElement.dataset.honroReady',timeout=90000);p.locator('[data-action=continue]').tap();p.wait_for_function('HonroApp.engine?.b.honroStage===22&&HonroApp.canInput()&&!HonroApp.turnNotice',timeout=90000)
- def state():return p.evaluate('''(()=>{const a=HonroApp,b=a.engine.b;return{stage:b.honroStage,round:b.round,teamEnds:[...b.teamEnds],goal:HonroAct3.current(b)?.id,hold:structuredClone(b.honroState.act3.holds['compare-ledgers']),pairReady:HonroEvidenceQuests.pairReady(b),cargo:structuredClone(b.honroState.fieldEvidence.cargo),hud:document.getElementById('objective-text')?.textContent,waves:b.units.filter(u=>u.honroSpawnSource==='act3-compare-ledgers').map(u=>u.id),enemies:b.units.filter(u=>u.side===1&&!u.dead&&u.hp>0).map(u=>({id:u.id,x:u.x,y:u.y})),units:b.units.filter(u=>u.side===0).map(u=>({id:u.id,x:u.x,y:u.y,hp:u.hp})),modal:a.modalKind,dialogue:!!a.dialogue,canInput:a.canInput(),draws:window.__holdDraws||0,error:a.lastError||null}})()''')
+ b=launch(pw);c=b.new_context(viewport={'width':390,'height':844},is_mobile=True,has_touch=True);p=c.new_page();p.on('pageerror',lambda e:errors.append(str(e)));p.add_init_script('if(!localStorage.getItem("honro-first-act-profile-1"))localStorage.setItem("honro-first-act-profile-1",'+json.dumps(json.dumps(saved))+');');
+ if baseline:p.route('**/HONRO.html',lambda route:route.fulfill(body=subprocess.check_output(['git','show','78818166:HONRO.html'],cwd=ROOT),content_type='text/html'))
+ url=base+'/HONRO.html';p.goto(url);p.wait_for_function('document.documentElement.dataset.honroReady',timeout=90000);p.locator('[data-action=continue]').tap();p.wait_for_function('HonroApp.engine?.b.honroStage===22&&HonroApp.canInput()&&!HonroApp.turnNotice',timeout=90000)
+ def state():return p.evaluate('''(()=>{const a=HonroApp,b=a.engine.b;return{stage:b.honroStage,round:b.round,teamEnds:[...b.teamEnds],goal:HonroAct3.current(b)?.id,hold:structuredClone(b.honroState.act3.holds['compare-ledgers']),pairReady:HonroEvidenceQuests.pairReady(b),cargo:structuredClone(b.honroState.fieldEvidence.cargo),hud:document.getElementById('objective-text')?.textContent,waves:b.units.filter(u=>u.honroSpawnSource==='act3-compare-ledgers').map(u=>u.id),enemies:b.units.filter(u=>u.side===1&&!u.dead&&u.hp>0).map(u=>({id:u.id,x:u.x,y:u.y})),units:b.units.filter(u=>u.side===0).map(u=>({id:u.id,x:u.x,y:u.y,hp:u.hp,acted:u.acted})),active:b.active,warning:structuredClone(b.honroState.vertical22?.warnings?.['act3-compare-ledgers']||null),modal:a.modalKind,dialogue:!!a.dialogue,canInput:a.canInput(),draws:window.__holdDraws||0,error:a.lastError||null}})()''')
  def watch():p.evaluate('''()=>{__holdDraws=0;const s=HonroApp.scene,render=s.render.bind(s);s.render=(...args)=>{__holdDraws++;return render(...args)};Object.assign(s,{x:2475,y:1020,scale:.65,manual:true})}''')
  def capture(name):p.screenshot(path=str(OUT/(name+'.jpg')),type='jpeg',quality=82,scale='css')
  def readers():
   if p.evaluate('!!HonroApp.dialogue'):
-   p.locator('[data-action=dialogue-skip]'if p.locator('[data-action=dialogue-skip]').count() else '[data-action=dialogue-next]').tap();p.wait_for_timeout(80);return True
+   rows.append({'actualReader':p.evaluate('({row:HonroApp.dialogue.lines[HonroApp.dialogue.index],stage:HonroApp.engine.b.honroStage})')});p.locator('[data-action=dialogue-skip]'if p.locator('[data-action=dialogue-skip]').count() else '[data-action=dialogue-next]').tap();p.wait_for_timeout(80);return True
   return False
  watch();p.wait_for_timeout(500);initial=state();assert not initial['pairReady']and not initial['hold']['contested'];rows.append({'initial':initial});capture('before-blocked'if baseline else 'fixed-blocked')
  if not baseline:
@@ -27,7 +29,20 @@ with serve_game() as base,sync_playwright() as pw:
    assert s['hold']['progress']==0 and not s['pairReady'];rows.append({'twoRealEnemyEndsStillBlocked':s});capture('before-two-enemy-ends');break
   if not baseline and s['hold']['progress']==1 and not reloaded and s['canInput']:
    capture('fixed-one-enemy-end');p.wait_for_function('JSON.parse(localStorage.getItem("honro-first-act-profile-1")).honroBattle?.honroState.act3.holds["compare-ledgers"]?.progress===1',timeout=15000);before=state();p.reload();p.wait_for_function('document.documentElement.dataset.honroReady',timeout=90000);p.locator('[data-action=continue]').tap();p.wait_for_function('HonroApp.engine?.b.honroStage===22',timeout=90000);watch();p.wait_for_timeout(200);after=state();assert after['hold']['progress']==1 and after['waves']==before['waves'] and after['pairReady'];rows.append({'midHoldContinue':True,'before':before,'after':after});reloaded=True
+  if not baseline and s['goal']=='archive-exit' and s['canInput']and not p.evaluate('!!HonroApp.turnNotice'):
+   exitx=p.evaluate('HonroAct3.marker(HonroApp.engine.b,"archive-exit").x');active=next(u for u in s['units']if u['id']==s['active']);direction='ArrowRight'if active['x']<exitx else 'ArrowLeft';p.keyboard.down(direction)
+   try:p.wait_for_function('HonroApp.engine.b.phase==="won"||HonroAct3.memory(HonroApp.engine.b).done["archive-exit"]',timeout=15000)
+   finally:p.keyboard.up(direction)
+   rows.append({'actualExitMovement':state()});continue
+  if not baseline and not s['pairReady'] and s['canInput']and not p.evaluate('!!HonroApp.turnNotice'):
+   free=[u for u in s['units']if u['id']in ['p-archer','p-occultist']and not u['acted']]
+   if free:
+    chosen=next((u for u in free if u['id']=='p-archer'),free[0]);other=next(u for u in s['units']if u['id']in ['p-archer','p-occultist']and u['id']!=chosen['id']);p.locator('[data-action=select-hero][data-id="'+chosen['id']+'"]').first.tap();direction='ArrowLeft'if chosen['x']>other['x']else 'ArrowRight';p.keyboard.down(direction)
+    try:p.wait_for_function('''ids=>{const b=HonroApp.engine.b,u=b.units.find(u=>u.id===ids[0]),v=b.units.find(u=>u.id===ids[1]);return HonroEvidenceQuests.pairReady(b)&&Math.abs(u.x-v.x)<90}''',arg=[chosen['id'],other['id']],timeout=10000)
+    finally:p.keyboard.up(direction)
+    rows.append({'regroupViaRealInput':state()});continue
   if s['canInput']and not p.evaluate('!!HonroApp.turnNotice'):
+   if actions%4==0:print('hold actions',actions,'round',s['round'],'hold',s['hold'],'pair',s['pairReady'],flush=True)
    p.keyboard.press('f');actions+=1;p.wait_for_timeout(120)
   else:p.wait_for_timeout(80)
   assert actions<60,('too many defend actions',s)
