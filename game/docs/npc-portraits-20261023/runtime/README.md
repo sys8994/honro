@@ -1,5 +1,7 @@
 # 평범한 NPC v2 연결 · 최종 인계
 
+> 역사 자료 안내(P2.4): 이 문서의 옛 NPC WebP/encoding 자료와 전용 인코더는 퇴역했다. [당시 encoding.json](https://github.com/sys8994/honro/blob/24526d56bfdb6460d0cdf6205a744faf00ca45c6/shared/assets/portraits/npc-plain-v2/encoding.json)과 [당시 인코더](https://github.com/sys8994/honro/blob/24526d56bfdb6460d0cdf6205a744faf00ca45c6/tools/testing/encode-npc-portraits.mjs)는 고정 Git 자료다. PNG identity master와 기록 hash/증거는 보존하며 현재 실행 파일은 npc-game-tone-v3다. [삭제 inventory·결과](../../retired-npc-logo-p24-20261024/README.md).
+
 브랜치 `fix/plain-npc-portraits-v2-20261023`. 구현 `f602d99019d1a85abe9a79216c82b29fdfd43367`, P0 통합 `66758d137da48ba25ddd8abd9ebffb206084526f`, 최종 runtime/build 소스 `36ddbdd840fa54b71b483df101b917b8f575eb09`. 마지막 증거 커밋은 문서·사진과 검사 stdout/소스해시 설명만 바꾸며 런타임/생성물은 이 실행 소스와 같다. master/Pages는 부모 담당이다.
 
 기준 대본 master `aa4b7ab784a3f9f4a490c0004f0b74fc51b3f361`의661행과 부모 승인 art `ab9906822ea21bb08675058187944ee96bb5cafc`를 사용했다. 별도 S13 방어 후 다음 턴 이동 잠금 P0 master `67022abd0281c476d5ab223b2f05cb5420c3c06b`를 병합했다. 충돌은 생성 HTML/manifest만 공통 빌드로 해결했다. 엔진·지형·대본·카메라·스킬·카드·CSS는 이 최신 master 원본과 같고 주인공4명/종지기 registry도 aa4와 같다. 이 작업에서 P0 전투 검사를 다시 수행했다고 주장하지 않는다.
