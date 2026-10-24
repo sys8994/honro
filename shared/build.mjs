@@ -117,9 +117,6 @@ export async function runtimeEntries({vector=true,render=true,app=false}={}) {
     for(const [key,file] of [['clouded','act2-clouded-granite.svg'],['dawn','act2-dawn.svg'],['stage11-ravine','stage11-ravine-far.svg'],['stage11-ravine-readable','stage11-ravine-far-readable.svg']])act2Backdrops[key]='data:image/svg+xml;base64,'+Buffer.from((await readFile(path.join(root,'shared/assets/environment',file),'utf8')).replace(/\bstroke="[^"]*"/g,'stroke="none"')).toString('base64');
     data('HONRO_ACT2_FAR_DATA',act2Backdrops);
     data('HONRO_REST_BACKDROPS',await restBackdropData());
-    const pilots=JSON.parse(await read('shared/assets/environment/painted-pilots/manifest.json'));
-    for(const [key,file] of Object.entries(pilots.images))pilots.images[key]='data:image/webp;base64,'+(await readFile(path.join(root,'shared/assets/environment/painted-pilots',file))).toString('base64');
-    data('HONRO_PAINTED_PILOTS',pilots);
     const far=JSON.parse(await read('shared/assets/environment/campaign-far/manifest.json'));
     for(const [key,file] of Object.entries(far.images))far.images[key]='data:image/webp;base64,'+(await readFile(path.join(root,'shared/assets/environment/campaign-far',file))).toString('base64');
     data('HONRO_AUTHORED_FAR',far);

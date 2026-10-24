@@ -35,7 +35,7 @@ for(let stage=1;stage<=30;stage++){
  rows.push({stage,assembly:style.name,palette:style.palette,underground:!!style.underground,doors:doors.length,backdrop:style.backdrop});
 }
 // The unique guardian roots and taut ritual thread keep their old paths.
-g.HONRO_PAINTED_PILOTS={revision:1,images:{rest10RootSteps:'retained-root-steps'}};
+g.HONRO_REST_BACKDROPS.landmarks={guardianRootSteps:'retained-root-steps'};
 const guardian=g.HonroJourneyArt.scene('temple','surface',10);
 assert.match(guardian,/data-art-layer="guardian-root-stairs"/);
 assert.match(guardian,/href="retained-root-steps"/);

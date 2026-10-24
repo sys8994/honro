@@ -8,5 +8,8 @@ export function restBackdropData(){
   const source=await readFile(new URL('../../shared/assets/environment/'+spec.file,import.meta.url));
   const bytes=await sharp(source).resize({width:2048,withoutEnlargement:true}).webp({quality:82,effort:5}).toBuffer();
   return[key,'data:image/webp;base64,'+bytes.toString('base64')];
- })).then(entries=>({revision:1,images:Object.fromEntries(entries)}));
+ })).then(async entries=>{
+  const guardian=await readFile(new URL('../../shared/assets/environment/rest-stage10/root-stairs.webp',import.meta.url));
+  return{revision:1,images:Object.fromEntries(entries),landmarks:{guardianRootSteps:'data:image/webp;base64,'+guardian.toString('base64')}};
+ });
 }
