@@ -67,10 +67,10 @@ function legacySteps(b,st,r){const h=b.honroState||{},out=[],add=(id,text,done=f
  }return out;
 }
 function holdInstruction(b,st,s,h){const area=st.act===3?'범위':'원',comparison=s.id==='compare-ledgers'&&G.HonroEvidenceQuests?.comparisonState(b);
- if(!h?.contested&&comparison?.required&&!comparison.ready){const names=comparison.carriers.map(u=>u.name||heroName(u.cls)).join('·');return comparison.reason==='records'?'집계 대기 · 떨어진 기록함을 회수하세요':comparison.reason==='pair'?names+' · 집계 대기: 나란히 모으세요':names+' · 집계 대기: 상층 대조 지점 중앙으로 모으세요';}
- if(h?.contested)return(comparison?.required?'집계 중단 · ':'')+'표시된 '+area+' 안의 적을 처치하세요';
- if(st.act===3&&h?.progress>=s.rounds&&(h.spawned||0)<(s.wave?.count||0))return'유지 횟수 완료 · 범위를 지키며 행동을 마쳐 증원 경고를 확인하세요';
- const left=Math.max(0,s.rounds-(h?.progress||0));if(comparison?.required&&h?.guarded)return comparison.carriers.map(u=>u.name||heroName(u.cls)).join('·')+' · 집계 중: 적 턴 '+left+'회 더 유지하세요';const count=st.act===3?'적 턴 '+left+'회':left+'턴';return h?.guarded?'그 자리에서 '+count+' 더 버티세요':(s.requiredClass?heroName(s.requiredClass)+'로 ':'')+'표시된 '+area+' 안에서 '+(st.act===3?'적 턴 '+s.rounds+'회':s.rounds+'턴')+' 버티세요';
+ if(!h?.contested&&comparison?.required&&!comparison.ready){const names=comparison.carriers.map(u=>u.name||heroName(u.cls)).join('·');return comparison.reason==='records'?'기록함을 회수하세요':comparison.reason==='pair'?names+'를 모으세요':names+'를 중앙으로';}
+ if(h?.contested)return comparison?.required?'범위 안 적 처치':'표시된 '+area+' 안의 적을 처치하세요';
+ if(st.act===3&&h?.progress>=s.rounds&&(h.spawned||0)<(s.wave?.count||0))return comparison?.required?'행동 마쳐 증원 확인':'유지 횟수 완료 · 범위를 지키며 행동을 마쳐 증원 경고를 확인하세요';
+ const left=Math.max(0,s.rounds-(h?.progress||0));if(comparison?.required&&h?.guarded)return'수비 '+Math.min(s.rounds,h.progress||0)+'/'+s.rounds;const count=st.act===3?'적 턴 '+left+'회':left+'턴';return h?.guarded?'그 자리에서 '+count+' 더 버티세요':(s.requiredClass?heroName(s.requiredClass)+'로 ':'')+'표시된 '+area+' 안에서 '+(st.act===3?'적 턴 '+s.rounds+'회':s.rounds+'턴')+' 버티세요';
 }
 function progressive(b,st,result,list,current){
  let chosen=current,rows,instruction;
