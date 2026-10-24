@@ -4,22 +4,29 @@ from pathlib import Path
 from playwright.sync_api import sync_playwright
 ROOT=Path(__file__).resolve().parents[2];sys.path.insert(0,str(ROOT/'tests'))
 from browser_support import launch,serve_game
-OUT=ROOT/'_local/reports/stage22-hold-20261024';saved=json.loads((OUT/'blocked-profile.json').read_text());baseline=os.environ.get('HONRO_STAGE22_BASELINE')=='1';old=json.loads(subprocess.check_output(['git','show','78818166:web/manifest.json'],cwd=ROOT));rows=[];errors=[]
+OUT=ROOT/'_local/reports/stage22-hold-20261024';saved=json.loads((OUT/'blocked-profile.json').read_text());baseline=os.environ.get('HONRO_STAGE22_BASELINE')=='1';pending=os.environ.get('HONRO_STAGE22_PENDING')=='1';
+if pending:
+ checkpoint=saved['honroBattle'];checkpoint['honroState']['act3']['holds']['compare-ledgers']['progress']=2;at=next(m for m in checkpoint['honroMarkers']if m['id']=='compare-ledgers');
+ for i,uid in enumerate(['p-occultist','p-archer']):
+  u=next(u for u in checkpoint['units']if u['id']==uid);u['x']=at['x']-60+i*120;u['y']=at['y']
+old=json.loads(subprocess.check_output(['git','show','78818166:web/manifest.json'],cwd=ROOT));rows=[];errors=[]
 with serve_game() as base,sync_playwright() as pw:
  b=launch(pw);c=b.new_context(viewport={'width':390,'height':844},is_mobile=True,has_touch=True);p=c.new_page();p.on('pageerror',lambda e:errors.append(str(e)));p.add_init_script('if(!localStorage.getItem("honro-first-act-profile-1"))localStorage.setItem("honro-first-act-profile-1",'+json.dumps(json.dumps(saved))+');');
  if baseline:p.route('**/HONRO.html',lambda route:route.fulfill(body=subprocess.check_output(['git','show','78818166:HONRO.html'],cwd=ROOT),content_type='text/html'))
  url=base+'/HONRO.html';p.goto(url);p.wait_for_function('document.documentElement.dataset.honroReady',timeout=90000);p.locator('[data-action=continue]').tap();p.wait_for_function('HonroApp.engine?.b.honroStage===22&&HonroApp.canInput()&&!HonroApp.turnNotice',timeout=90000)
  def state():return p.evaluate('''(()=>{const a=HonroApp,b=a.engine.b;return{stage:b.honroStage,round:b.round,teamEnds:[...b.teamEnds],goal:HonroAct3.current(b)?.id,hold:structuredClone(b.honroState.act3.holds['compare-ledgers']),pairReady:HonroEvidenceQuests.pairReady(b),cargo:structuredClone(b.honroState.fieldEvidence.cargo),hud:document.getElementById('objective-text')?.textContent,waves:b.units.filter(u=>u.honroSpawnSource==='act3-compare-ledgers').map(u=>u.id),enemies:b.units.filter(u=>u.side===1&&!u.dead&&u.hp>0).map(u=>({id:u.id,x:u.x,y:u.y})),units:b.units.filter(u=>u.side===0).map(u=>({id:u.id,x:u.x,y:u.y,hp:u.hp,acted:u.acted})),active:b.active,warning:structuredClone(b.honroState.vertical22?.warnings?.['act3-compare-ledgers']||null),modal:a.modalKind,dialogue:!!a.dialogue,canInput:a.canInput(),draws:window.__holdDraws||0,error:a.lastError||null}})()''')
  def watch():p.evaluate('''()=>{__holdDraws=0;const s=HonroApp.scene,render=s.render.bind(s);s.render=(...args)=>{__holdDraws++;return render(...args)};Object.assign(s,{x:2475,y:1020,scale:.65,manual:true})}''')
- def capture(name):p.screenshot(path=str(OUT/(name+'.jpg')),type='jpeg',quality=82,scale='css')
+ def capture(name):p.screenshot(path=str(OUT/(('pending-'if pending else '')+name+'.jpg')),type='jpeg',quality=82,scale='css')
  def readers():
   if p.evaluate('!!HonroApp.dialogue'):
-   rows.append({'actualReader':p.evaluate('({row:HonroApp.dialogue.lines[HonroApp.dialogue.index],stage:HonroApp.engine.b.honroStage})')});p.locator('[data-action=dialogue-skip]'if p.locator('[data-action=dialogue-skip]').count() else '[data-action=dialogue-next]').tap();p.wait_for_timeout(80);return True
+   rows.append({'actualReader':p.evaluate('({row:HonroApp.dialogue.lines[HonroApp.dialogue.index],stage:HonroApp.engine?.b?.honroStage||null})')});p.locator('[data-action=dialogue-skip]'if p.locator('[data-action=dialogue-skip]').count() else '[data-action=dialogue-next]').tap();p.wait_for_timeout(80);return True
   return False
- watch();p.wait_for_timeout(500);initial=state();assert not initial['pairReady']and not initial['hold']['contested'];rows.append({'initial':initial});capture('before-blocked'if baseline else 'fixed-blocked')
- if not baseline:
+ watch();p.wait_for_timeout(500);initial=state();assert not initial['hold']['contested'];assert initial['pairReady']if pending else not initial['pairReady'];rows.append({'initial':initial});capture('before-blocked'if baseline else 'fixed-blocked')
+ if pending:
+  assert initial['hold']['progress']==2 and initial['hold']['spawned']==0 and '유지 횟수 완료'in initial['hud'];capture('two-counts-warning')
+ if not baseline and not pending:
   assert '소단'in initial['hud']and'설오'in initial['hud']and'나란히'in initial['hud'];p.keyboard.down('ArrowLeft');p.wait_for_function('HonroEvidenceQuests.pairReady(HonroApp.engine.b)',timeout=8000);p.keyboard.up('ArrowLeft');p.wait_for_timeout(200);assert state()['pairReady'];capture('fixed-records-together')
- target=initial['teamEnds'][1]+2;reloaded=False;actions=0;progress1=False
+ target=initial['teamEnds'][1]+2;reloaded=pending;actions=0;progress1=False
  for step in range(1600):
   s=state()
   if s['error']:raise AssertionError(s['error'])
@@ -56,4 +63,4 @@ with serve_game() as base,sync_playwright() as pw:
    if not readers():break
   capture('fixed-stage23');assert p.evaluate('!!HonroApp.profile.cleared[22]&&HonroApp.engine.heroesAlive().length===4');rows.append({'actual23Entry':True})
  assert not errors,errors
- (OUT/('browser-before.json'if baseline else 'browser.json')).write_text(json.dumps({'entry':old['gameEntry']if baseline else json.loads((ROOT/'web/manifest.json').read_text())['gameEntry'],'rows':rows,'errors':errors,'scope':__doc__+' Prior pickups/courts, actor poses, round11 and camera are prepared; no later objective/counter/HP writes, no frame shutdown. User original save/image pixels unavailable.'},ensure_ascii=False,indent=2));b.close();print('PASS',('baseline normal enemy ends blocked with misleading HUD'if baseline else 'real record movement, normal enemy ends, mid-Continue, clear modal with lower survivors and23 entry'))
+ (OUT/('browser-before.json'if baseline else 'browser-pending.json'if pending else 'browser.json')).write_text(json.dumps({'preparedTwoCountPendingSave':pending,'entry':old['gameEntry']if baseline else json.loads((ROOT/'web/manifest.json').read_text())['gameEntry'],'rows':rows,'errors':errors,'scope':__doc__+' Prior pickups/courts, actor poses, round11 and camera are prepared; no later objective/counter/HP writes, no frame shutdown. User original save/image pixels unavailable.'},ensure_ascii=False,indent=2));b.close();print('PASS',('baseline normal enemy ends blocked with misleading HUD'if baseline else 'prepared2-count pending Continue, real wave admission, clear and23 entry'if pending else 'real record movement, normal enemy ends, mid-Continue, clear modal with lower survivors and23 entry'))
