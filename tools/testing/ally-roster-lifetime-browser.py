@@ -1,10 +1,15 @@
 """P0.2: prepared real Stage2 save, normal App/rAF, title-return API and actual Continue click; scoped DOM/HP/death fixtures."""
-import json,sys
+import json,sys,subprocess
 from pathlib import Path
 from playwright.sync_api import sync_playwright
 ROOT=Path(__file__).resolve().parents[2];sys.path.insert(0,str(ROOT/'tests'))
 from browser_support import launch,serve_game
-OUT=ROOT/'_local/reports/ally-roster-p02';OUT.mkdir(parents=True,exist_ok=True);before='--before'in sys.argv;profile=json.loads((OUT/'profile.json').read_text());rows=[];errors=[]
+OUT=ROOT/'_local/reports/ally-roster-p02';OUT.mkdir(parents=True,exist_ok=True);before='--before'in sys.argv;fixture=OUT/'profile.json'
+if not fixture.exists():
+ subprocess.run(['node','--input-type=module','-e',"""import{writeFile}from'node:fs/promises';import{appHarness,plain}from'./tests/app-regression-helpers.mjs';const h=await appHarness(),a=h.load(h.profileThrough(1));a.launch(2);h.finish(a);a.stopBattle();const p=plain(a.profile);if(p.honroBattle.units.filter(u=>u.honroAlly&&!u.dead).length<2)throw Error('Stage2 allies missing');await writeFile('_local/reports/ally-roster-p02/profile.json',JSON.stringify(p));"""],cwd=ROOT,check=True)
+profile=json.loads(fixture.read_text());rows=[];errors=[]
+if '--prepare-only'in sys.argv:print('Prepared isolated Stage2 ally snapshot');raise SystemExit
+
 WATCH='''()=>{const a=HonroApp,frame=a.frame;a.frame=function(now){window.allyFrameCalls++;return frame.call(this,now)};window.allyFrameCalls=0;window.allyWrites=0;const prop=Object.getOwnPropertyDescriptor(Element.prototype,'innerHTML');Object.defineProperty(Element.prototype,'innerHTML',{...prop,set(value){if(this.id==='allied-roster')allyWrites++;return prop.set.call(this,value)}})}'''
 MEASURE='''()=>{const a=HonroApp,b=a.engine.b,r=document.getElementById('allied-roster');return{rows:[...r.children].map(n=>({name:n.querySelector('span').textContent,hp:n.querySelector('small').textContent,title:n.title,bar:n.querySelector('b').getAttribute('style')})),allies:b.units.filter(v=>v.honroAlly&&!v.dead).map(v=>({id:v.id,name:v.name,hp:v.hp,maxHp:v.maxHp})),html:r.innerHTML,writes:allyWrites,frames:allyFrameCalls,selected:a.selected,error:a.lastError||null}}'''
 with serve_game() as base,sync_playwright() as pw:

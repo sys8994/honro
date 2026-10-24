@@ -4,7 +4,7 @@
 
 ## 기준 재현과 수정 확인
 
-`tools/testing/ally-roster-lifetime-browser.py`는 기존 browser_support의 로컬 서버/Chromium을 재사용한다. Production Native App으로1장 완료 fixture→2장 진입/도입 완료→stopBattle 저장을 준비했다. 브라우저390×844 touch에서 실제 Continue를 누르고 원래 App.frame/rAF를 계속 실행한다. 제목 반환은 App.showTitle API를 호출한 테스트 경계이고 재진입은 실제 title Continue 버튼이다. 사용자 세이브·실기기·공개 배포·전체 캠페인 플레이를 주장하지 않는다.
+`tools/testing/ally-roster-lifetime-browser.py`는 기존 browser_support의 로컬 서버/Chromium을 재사용한다. Production Native App으로1장 완료 fixture→2장 진입/도입 완료→stopBattle 저장을 준비했다. fixture가 없으면 같은 검사기에서 Native App 준비를 자동 수행하며 `--prepare-only`로 준비만 할 수도 있다. 브라우저390×844 touch에서 실제 Continue를 누르고 원래 App.frame/rAF를 계속 실행한다. 제목 반환은 App.showTitle API를 호출한 테스트 경계이고 재진입은 실제 title Continue 버튼이다. 사용자 세이브·실기기·공개 배포·전체 캠페인 플레이를 주장하지 않는다.
 
 | 확인 | 결과 |
 | --- | --- |
