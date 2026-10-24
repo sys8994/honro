@@ -2,10 +2,10 @@
   "version": 1,
   "game": "HONRO.html",
   "workshop": "HONRO_WORKSHOP.html",
-  "playtest": "web/entries/game.313bbffa7734a141.html?embedded=1",
+  "playtest": "web/entries/game.1533cf1a1f95fb12.html?embedded=1",
   "project": "web/data/campaign.f355cadf4e1b4e54.json",
-  "gameEntry": "web/entries/game.313759e6ffc706a1.js",
-  "workshopEntry": "web/entries/workshop.28ac6e40301490fd.js",
+  "gameEntry": "web/entries/game.26d3b4afe6e0075f.js",
+  "workshopEntry": "web/entries/workshop.71d94d920bc2c68e.js",
   "common": [
     "web/runtime/ordered-common-1.143cc75f3fac4e47.js",
     "web/runtime/shared-runtime-title-markup.e0f242270b02362a.js",
@@ -39,7 +39,7 @@
     "web/runtime/ordered-common-11.fcae8510a0a31270.js",
     "web/runtime/ordered-common-12.d5b639597b9dacda.js",
     "web/runtime/ordered-common-13.67301379593bcd62.js",
-    "web/runtime/HONRO_SKILL_AUDIO.f7fa71c4771fe2ab.js",
+    "web/runtime/HONRO_SKILL_AUDIO.5cc5f912616f663f.js",
     "web/runtime/HONRO_MUKJONG_AUDIO.952cf1430f14dc38.js",
     "web/runtime/HONRO_JOURNEY_MAPS.c79ef6bb7a025453.js"
   ],
@@ -493,9 +493,9 @@
       "sha256": "5d529fd524509f492282657d571b433c7a4a3a84fe3d7258cfe7d83f356d5ee0"
     },
     {
-      "path": "web/data/HONRO_SKILL_AUDIO.d00a59dfd7fe6081.json",
+      "path": "web/data/HONRO_SKILL_AUDIO.386c4935607804f1.json",
       "bytes": 11737,
-      "sha256": "d00a59dfd7fe608199e2f87acd115149213d492ae3b96f189c23c5bffc1b8ae1"
+      "sha256": "386c4935607804f172fc6d629d9d56c4445281ad6ba3e36e0fdded1d2d6bfc63"
     },
     {
       "path": "web/data/HONRO_SKILL_ICON_MANIFEST.ce96d5880bfbc07c.json",
@@ -528,19 +528,19 @@
       "sha256": "3e39c11e1552111717a7532c8a7bc45ac6f5ddf63c872a5bbcd87e2326941eea"
     },
     {
-      "path": "web/entries/game.313759e6ffc706a1.js",
-      "bytes": 10680,
-      "sha256": "313759e6ffc706a142b6128e8b60742bdaa7c4e8bac9b474ab26a7e024de3580"
-    },
-    {
-      "path": "web/entries/game.313bbffa7734a141.html",
+      "path": "web/entries/game.1533cf1a1f95fb12.html",
       "bytes": 11354,
-      "sha256": "313bbffa7734a14105a6e7169b223f0f14bfe7697111736ab94ce7d7c9896856"
+      "sha256": "1533cf1a1f95fb12763e14f97f9b0756dd6785b43ae4274207b6cd1b49ff4a1b"
     },
     {
-      "path": "web/entries/workshop.28ac6e40301490fd.js",
+      "path": "web/entries/game.26d3b4afe6e0075f.js",
+      "bytes": 10680,
+      "sha256": "26d3b4afe6e0075f02fc419929c869fc48e13caa9d636bd57d50632e56fc1b85"
+    },
+    {
+      "path": "web/entries/workshop.71d94d920bc2c68e.js",
       "bytes": 7381,
-      "sha256": "28ac6e40301490fd89bd2ed9b38a61f765ef8952b39ad2ceea6916a0e851ee84"
+      "sha256": "71d94d920bc2c68e2bb50da6632c391a9243a2760425f475fe0f49a4b6a5a6e0"
     },
     {
       "path": "web/graphics/ending-10-image.6a631739bb1b7338.webp",
@@ -1608,9 +1608,9 @@
       "sha256": "9918c9ba3d76444d6697413874706a018b7e029b547e708658c3ce014b3dc7c8"
     },
     {
-      "path": "web/runtime/HONRO_SKILL_AUDIO.f7fa71c4771fe2ab.js",
+      "path": "web/runtime/HONRO_SKILL_AUDIO.5cc5f912616f663f.js",
       "bytes": 1074,
-      "sha256": "f7fa71c4771fe2ab1138a6a30f4c2f2ca5dd4f8fe1375151d54ec56b9a38d028"
+      "sha256": "5cc5f912616f663f4ee9069900f8d7ada1d81b42c4fd63434c385a806737968a"
     },
     {
       "path": "web/runtime/HONRO_SKILL_ICON_MANIFEST.830598dd56347b87.js",
@@ -1898,6 +1898,31 @@
       "path": "web/runtime/ordered-common-2.e3c5b463f737dc31.js",
       "bytes": 743015,
       "sha256": "e3c5b463f737dc31506d419f72fe109b054f72be7a902bf74e54eb39dc7a756b"
+    },
+    {
+      "path": "web/data/HONRO_SKILL_AUDIO.d00a59dfd7fe6081.json",
+      "bytes": 11737,
+      "sha256": "d00a59dfd7fe608199e2f87acd115149213d492ae3b96f189c23c5bffc1b8ae1"
+    },
+    {
+      "path": "web/entries/game.313759e6ffc706a1.js",
+      "bytes": 10680,
+      "sha256": "313759e6ffc706a142b6128e8b60742bdaa7c4e8bac9b474ab26a7e024de3580"
+    },
+    {
+      "path": "web/entries/game.313bbffa7734a141.html",
+      "bytes": 11354,
+      "sha256": "313bbffa7734a14105a6e7169b223f0f14bfe7697111736ab94ce7d7c9896856"
+    },
+    {
+      "path": "web/entries/workshop.28ac6e40301490fd.js",
+      "bytes": 7381,
+      "sha256": "28ac6e40301490fd89bd2ed9b38a61f765ef8952b39ad2ceea6916a0e851ee84"
+    },
+    {
+      "path": "web/runtime/HONRO_SKILL_AUDIO.f7fa71c4771fe2ab.js",
+      "bytes": 1074,
+      "sha256": "f7fa71c4771fe2ab1138a6a30f4c2f2ca5dd4f8fe1375151d54ec56b9a38d028"
     },
     {
       "path": "web/entries/game.85cf3d655e3f0db0.js",
@@ -4463,11 +4488,11 @@
   },
   "publishedGenerations": [
     {
-      "sourceSha": "24526d56bfdb6460d0cdf6205a744faf00ca45c6",
-      "publishedAt": "2026-10-24T05:37:35Z",
+      "sourceSha": "868a84589b502c2980e3cd205a14cc08e870570f",
+      "publishedAt": "2026-10-24T05:47:52Z",
       "publishedAtPrecision": "instant",
       "publicationOrder": 0,
-      "evidence": "https://github.com/sys8994/honro/actions/runs/40066840154 (parent verified success)",
+      "evidence": "https://github.com/sys8994/honro/actions/runs/40067516779 (parent verified success)",
       "graphSha256": "5db05ec862ea0b20517175d9d50fa7067cba334d8a7321b8fd543a7d59b456c3",
       "files": [
         {
