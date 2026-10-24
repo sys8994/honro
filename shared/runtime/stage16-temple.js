@@ -60,9 +60,11 @@ function destination(b,u,index){const hall=mark(b,'hall');
  for(const offset of [index?100:-100,index?150:-150,index?50:-50]){const p={x:hall.x+offset,y:hall.y};if(!blocked(b,u,p))return p;}
  return {x:hall.x+(index?100:-100),y:hall.y};
 }
+const observedEscort=new WeakMap();
+function escortSnapshot(b){return monkIds.flatMap(id=>{const u=b.units.find(u=>u.id===id),q=b.honroState.templeEscort?.actors[id];return[u?.fixed,u?.x,u?.y,u?.vx,u?.vy,u?.moveLeft,u?.jumping,u?.facing,u?.angle,u?.walkPhase,u?.moving,q?.round,q?.blocked,q?.cloister,q?.escapeX];});}
 function advanceMonks(app,dt){const e=app.engine,b=e.b,done=A.memory(b).done;
  if(!pilot(b)||!done.witness||done['temple-escort']||app.dialogue||app.modal?.classList.contains('open')||!['aim','enemy','ally','summon'].includes(b.phase)||dt<=0)return;
- const mem=escortMemory(b);
+ const before=observedEscort.get(b)||escortSnapshot(b),mem=escortMemory(b);
  // Front first keeps the following monk from overtaking through a body.
  for(const [index,id]of monkIds.entries()){
   const u=e.unit(id);if(!living(u))continue;const q=mem.actors[id]??={};
@@ -92,8 +94,9 @@ function advanceMonks(app,dt){const e=app.engine,b=e.b,done=A.memory(b).done;
   }
   if(u.moveLeft>0){const before=u.x;e.walk(u,dir,Math.min(dtWalk,Math.abs(goal.x-u.x)/u.walkSpeed));if(Math.abs(u.x-before)<.01&&e.grounded(u)&&surfaces.includes(sid))e.jump(u);}
  }
- // Current positions are also saved on the real actors, not reconstructed later.
- app.dirty=true;
+ // Observe the two physical actors as well as our narrow route state. This also
+ // catches the engine's falling/landing between calls, without dirtying idle waits.
+ const after=escortSnapshot(b);if(after.some((v,i)=>!Object.is(v,before[i])))app.dirty=true;observedEscort.set(b,after);
 }
 const eligible=A.eligibility;A.eligibility=function(app,m){const b=app.engine.b;if(pilot(b)&&m.id==='hall'&&!A.memory(b).done['temple-escort'])return{ok:false,reason:'두 승려가 아직 툇마루에 도착하지 않았습니다.'};return eligible(app,m);};
 const state=A.state;A.state=function(b){const out=state(b);if(!pilot(b)||A.current(b)?.id!=='temple-escort')return out;const hall=mark(b,'hall');out.targets=[{...hall,id:'temple-escort',kind:'exit',label:'두 승려를 법당 툇마루로 안내'},...monkIds.map(id=>b.units.find(u=>u.id===id)).filter(living).map(u=>({id:u.id,kind:'exit',x:u.x,y:u.y-u.h,label:u.name,unitId:u.id}))];return out;};
