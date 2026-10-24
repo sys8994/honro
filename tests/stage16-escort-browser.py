@@ -3,6 +3,7 @@ import json,sys
 from playwright.sync_api import sync_playwright
 from browser_support import ROOT,launch,serve_game
 FOLLOWUP='--followup' in sys.argv
+NO_CAPTURES='--no-captures' in sys.argv
 OUT=ROOT/'_local/reports/stage16-escort-pilot-a';entry=json.loads((OUT/'normal-entry.json').read_text());rows=[];errors=[]
 with serve_game() as base,sync_playwright() as pw:
  browser=launch(pw);p=browser.new_page(viewport={'width':390,'height':844},is_mobile=True,has_touch=True);p.on('pageerror',lambda e:errors.append(str(e)))
@@ -14,7 +15,9 @@ with serve_game() as base,sync_playwright() as pw:
    p.locator('[data-action=dialogue-next]').tap();p.wait_for_timeout(35)
   raise AssertionError('대화가 종료되지 않음')
  def camera(x,y,z=.52):p.evaluate('''v=>{const a=HonroApp,s=a.scene;a.close();Object.assign(s,{manual:true,x:v[0],y:v[1],scale:v[2],goalFocus:null,cinematic:null,storyTween:null});a.updateHUD(true)}''',[x,y,z]);p.wait_for_timeout(300)
- def shot(name):p.screenshot(path=str(OUT/(name+'.jpg')),type='jpeg',quality=88)
+ def shot(name):
+  if NO_CAPTURES:return
+  p.screenshot(path=str(OUT/(name+'.jpg')),type='jpeg',quality=88)
  def state():return p.evaluate('''()=>{const a=HonroApp,b=a.engine.b;return{frameCount,round:b.round,phase:b.phase,goal:HonroAct2.current(b)?.id,done:structuredClone(HonroAct2.memory(b).done),monks:b.units.filter(u=>u.honroCivilian).map(u=>({id:u.id,x:u.x,y:u.y,hp:u.hp,moveLeft:u.moveLeft})),targets:HonroObjectives.state(b,a.stage).targets,camera:{x:a.scene.x,y:a.scene.y,scale:a.scene.scale}}}''')
  finish();p.wait_for_function('HonroApp.canInput()&&!HonroApp.turnNotice',timeout=30000)
  p.evaluate('''()=>{const a=HonroApp,e=a.engine,b=e.b;for(const u of b.units)if(u.side===1){u.dead=true;u.hp=0}const u=e.heroesAlive().find(u=>u.cls==='occultist'),m=b.honroMarkers.find(m=>m.id==='monk');Object.assign(u,{x:m.x,y:m.y,vx:0,vy:0,acted:false});b.active=u.id;b.phase='aim';b.side=0;a.turnNotice=null;a.updateHUD(true);HonroInteractions.refresh(a)}''')
