@@ -1,7 +1,8 @@
 /** 16장 검사용 호위 우선 입력과 읽기 전용 계측. 게임 상태를 직접 설정하지 않는다. */
-export function escortPacing({g,e,app,nav,attack,heal,record,tick,ready}){
- const C=g.HONRO_CORE,b=e.b,ids=['objective','resident-1'],rows=new Map();let last=new Map(),finished=false;
+export function escortPacing({g,e,app,nav,attack,heal,record,tick,ready,state}){
+ const C=g.HONRO_CORE,b=e.b,ids=['objective','resident-1'],rows=new Map((state?.rounds||[]).map(r=>[r.round+':'+r.id,{...r,seconds:{...r.seconds},contacts:new Set(r.contacts)}]));let last=new Map(),finished=false;
  const monks=()=>ids.map(id=>e.unit(id)).filter(u=>u&&!u.dead&&u.hp>0),alive=u=>u&&!u.dead&&u.hp>0,dist=(a,z)=>Math.hypot(a.x-z.x,a.y-z.y),mission=()=>g.HonroAct2.current(b)?.id;
+ for(const u of monks())last.set(u.id,{x:u.x,y:u.y});
  const row=u=>{const key=b.round+':'+u.id;let r=rows.get(key);if(!r){r={round:b.round,id:u.id,from:{x:u.x,y:u.y},to:{x:u.x,y:u.y},startMove:u.moveLeft,endMove:u.moveLeft,walkCost:0,jumpCost:0,jumps:0,distance:0,seconds:{moving:0,budgetExhausted:0,bodyContact:0,arrived:0,other:0},contacts:new Set()};rows.set(key,r);}return r;};
  const tracked=u=>ids.includes(u?.id)&&e.unit(u.id)===u&&g.HonroAct2.memory(b).done.witness&&!finished;
  const walk=e.walk;e.walk=function(u,...args){const before=tracked(u)?u.moveLeft:null,value=walk.call(e,u,...args);if(before!==null)row(u).walkCost+=Math.max(0,before-u.moveLeft);return value;};
