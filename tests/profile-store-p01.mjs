@@ -1,0 +1,39 @@
+import assert from'node:assert/strict';import vm from'node:vm';import{execFileSync}from'node:child_process';import{mkdir,writeFile}from'node:fs/promises';import{appHarness,plain,KEY}from'./app-regression-helpers.mjs';
+const h=await appHarness(),{g,C}=h,out='_local/reports/profile-store-p01';await mkdir(out,{recursive:true});const results=[];
+const storage=g.localStorage,good=JSON.stringify(h.profileThrough(12)),raw=' \n{broken-profile-fixture\t';let writes=0,readFailure=false,writeFailure=false;
+g.localStorage={getItem(k){if(readFailure)throw Error('fixture read');return h.storage.has(k)?h.storage.get(k):null;},setItem(k,v){writes++;if(writeFailure)throw Error('fixture quota');return storage.setItem(k,v);}};
+const check=async(name,run)=>{await run();results.push(name);console.log('PASS',name);};
+await check('Absent is unlocked; invalid JSON/empty/null/array/wrong format/version are separate and preserve exact bytes',()=>{
+ h.storage.delete(KEY);let s=g.HonroProfileStore.create();assert.equal(s.state.kind,'absent');assert(!s.locked);assert(s.save(s.initial));
+ for(const[text,reason]of[[raw,'parse'],['','parse'],['null','format'],['[]','format'],['{}','format'],[JSON.stringify({...JSON.parse(good),schema:99}),'version']]){h.storage.set(KEY,text);const before=writes;s=g.HonroProfileStore.create();assert(s.locked);assert.equal(s.state.reason,reason);assert.equal(s.original().text,text);assert(!s.save(s.initial));assert.equal(h.storage.get(KEY),text);assert.equal(writes,before);}
+});
+await check('Schema1–4 load/import migrations equal prior load, including growth/SP/party/battle/dialogue and map revision order',()=>{
+ const prep=h.load(JSON.parse(good));prep.launch(13);h.finish(prep);const validBattle=plain(prep.engine.b);
+ const source=execFileSync('git',['show','7cab23ef:shared/runtime/main.js'],{encoding:'utf8'}),hook=/    const app=new App\(\),loader=G.HonroCampaignLoader[\s\S]*?(?=    G.HONRO_TOOLS)/;vm.runInContext(source.replace(hook,'G.P01Baseline={load};'),g);
+ for(const schema of[1,2,3,4])for(const revision of[10,12,13]){const p=JSON.parse(good);p.schema=schema;p.revision=revision;p.heroes.archer.statRanks={hp:2};p.honroFlags.p01='preserved';p.honroJourney={stageId:13,story:{index:1,lines:[['guide','existing-row']]}};p.honroBattle={...plain(validBattle),heroes:plain(p.heroes),honroStory:{index:1,lines:[['narration','existing-body']]}};const text=JSON.stringify(p);h.storage.set(KEY,text);const expected=plain(g.P01Baseline.load()),s=g.HonroProfileStore.create();assert(!s.locked);assert.deepEqual(plain(s.initial),expected);assert.deepEqual(plain(g.HonroProfileStore.migrate(text)),expected);}
+});
+await check('Every migration exception locks, writes nothing and exposes only classified failure',()=>{
+ for(const[owner,key]of[[C,'migrateSkills'],[C,'migrateXp12'],[g.HonroCampaignMapRevision,'discard'],[g.HonroProgression,'repairRecruits'],[g.HonroProgression,'reconcileCampAllocations']]){h.storage.set(KEY,JSON.stringify({...JSON.parse(good),revision:12}));const original=owner[key],before=writes;owner[key]=()=>{throw Error('fixture private details');};try{const s=g.HonroProfileStore.create();assert(s.locked);assert.equal(s.state.reason,'migration');assert(!s.save(s.initial));assert.equal(writes,before);assert.equal(s.original().text,h.storage.get(KEY));}finally{owner[key]=original;}}
+});
+await check('Read throw has no invented export; retry requires explicit import confirmation and cancellation keeps lock',()=>{
+ h.storage.set(KEY,good);readFailure=true;const s=g.HonroProfileStore.create();assert.equal(s.state.reason,'read');assert(!s.original().ok);assert(!s.save(s.initial));assert(!s.retry().ok);readFailure=false;assert(s.retry().ok);assert(s.locked);s.cancelRetry();assert(!s.confirmRetry().ok);assert(s.locked);assert(s.retry().ok);assert(s.confirmRetry().ok);assert(!s.locked);
+});
+await check('Failed import/new journey/quota preserve previous store state and bytes; only successful replacement unlocks',()=>{
+ h.storage.set(KEY,raw);const s=g.HonroProfileStore.create(),before=plain(s.state);assert(!s.importText('{bad import').ok);assert.deepEqual(plain(s.state),before);writeFailure=true;assert.equal(s.importText(good).reason,'write');assert.equal(s.newJourney().reason,'write');assert.deepEqual(plain(s.state),before);assert.equal(h.storage.get(KEY),raw);assert.equal(s.original().text,raw);writeFailure=false;assert(s.importText(good).ok);assert(!s.locked);assert.equal(JSON.parse(h.storage.get(KEY)).schema,4);assert(s.newJourney().ok);assert.deepEqual(plain(JSON.parse(h.storage.get(KEY)).cleared),{});
+});
+await check('Normal quota failure locks later autosaves, preserving last successfully read bytes',()=>{
+ h.storage.set(KEY,good);const s=g.HonroProfileStore.create();writeFailure=true;assert(!s.save(s.initial));const before=writes;assert(s.locked);assert.equal(s.state.reason,'write');assert(!s.save(s.initial));assert.equal(writes,before);assert.equal(h.storage.get(KEY),good);writeFailure=false;
+});
+await check('App failed load blocks persist, direct debug preferences and normal Continue/launch/rest without modifying storage',()=>{
+ h.storage.set(KEY,raw);const app=h.reload(),before=writes;app.persist();app.setMinimapVisible(false);app.debugMode=true;app.setMinimapVisible(true);app.setDebugTerrainOutline(true);app.debugMode=false;app.continue();assert.equal(app.modalKind,'profile-recovery');app.launch(1);app.showRest();app.showMap();assert.equal(app.engine,null);assert.equal(app.screen,'title');assert.equal(writes,before);assert.equal(h.storage.get(KEY),raw);assert(!app.modal.innerHTML.includes(raw));
+});
+await check('App invalid/quota import and confirmed new journey failure preserve live session; success atomically replaces',async()=>{
+ let app=h.load(JSON.parse(good));const owner=app.profile;writeFailure=true;await h.import({...JSON.parse(good),lastStage:9});assert.strictEqual(app.profile,owner);assert(!app.lastNotice?.includes('불러왔어'));h.click('newgame');h.click('menu-confirm');assert.strictEqual(app.profile,owner);writeFailure=false;await h.import({...JSON.parse(good),lastStage:9});assert.equal(app.stageId,9);assert.equal(app.lastNotice,'기록을 불러왔어.');h.click('confirm-newgame');assert.equal(app.modalKind,'menu-confirm');assert.equal(app.stageId,9);h.click('menu-cancel');assert.equal(app.stageId,9);h.click('newgame');h.click('menu-confirm');assert.equal(app.stageId,1);assert.deepEqual(plain(app.profile.cleared),{});
+});
+await check('Embedded never reads/writes campaign; debug writes only normal preferences; custom saves remain isolated',()=>{
+ h.storage.set(KEY,good);const before=writes;g.HONRO_EMBEDDED=true;readFailure=true;const embedded=h.reload();assert.equal(embedded.profileStore.state.kind,'embedded');embedded.persist();assert(!embedded.profileStore.importText(good).ok);assert.equal(writes,before);g.HONRO_EMBEDDED=false;readFailure=false;const app=h.reload();app.setDebugMode(true);app.profile.honroFlags.p01Debug='session';app.persist();assert(!JSON.parse(h.storage.get(KEY)).honroFlags.p01Debug);app.setMinimapVisible(false);assert(!JSON.parse(h.storage.get(KEY)).settings.minimapVisible);assert(!JSON.parse(h.storage.get(KEY)).honroFlags.p01Debug);const raw=h.storage.get(KEY);app.customMap={};app.persist();assert.equal(h.storage.get(KEY),raw);
+});
+const resumeApp=h.load(JSON.parse(good));resumeApp.launch(13);h.finish(resumeApp);resumeApp.stopBattle();
+await writeFile(out+'/continue-profile.json',JSON.stringify(plain(resumeApp.profile)));
+await writeFile(out+'/valid-profile.json',good);
+await writeFile(out+'/native.json',JSON.stringify({checks:results,scope:'Production profile/App with VM DOM/storage doubles; synthetic isolated records only. Migration output equals7cab load; no user data or browser normal-play claim.'},null,2));

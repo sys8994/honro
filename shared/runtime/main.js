@@ -1,7 +1,7 @@
 (function (G) {
     'use strict';
     const C = G.HONRO_CORE, H = G.HONRO_CONTENT, $ = id => document.getElementById(id), clone = x => JSON.parse(JSON.stringify(x)), clamp = (v, a, b) => Math.max(a, Math.min(b, v)), esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
-    const KEY = 'honro-first-act-profile-1', ROSTER = ['archer', 'mage', 'knight', 'occultist'], BASE = C.STAGES.map(clone);
+    const ROSTER = ['archer', 'mage', 'knight', 'occultist'], BASE = C.STAGES.map(clone);
     const S = C.SKILLS, FA = G.HonroFA;
     // Display values own their DOM writes; unchanged values keep existing nodes.
     const setText=(node,value)=>{if(node.textContent!==String(value))node.textContent=value;};
@@ -27,50 +27,11 @@
         C.STAGES[st.id - 1] = { ...b, id: st.id, name: st.name, subtitle: st.goal, region: 0, local: st.id - 1, objective: (st.objective === 'escort'||st.objective==='overwatch') ? 'escort' : st.objective === 'defend' ? 'banner' : st.objective === 'boss' ? 'boss' : 'clear', boss: st.objective === 'boss', intro: '', outro: st.outro.map(x => x[1]).join(' ') };
     }
     C.STAGES.length = H.stages.length;
-    function fresh() { const p = C.defaults(); for (const c of ROSTER)
-        C.sanitizeLoadout(p, c); p.saved = null; p.cleared = {}; p.party = ['archer']; p.recruited = ['archer']; p.lastStage = 1; p.mapNode = 1; p.schema = 4; p.game = 'honro'; p.seen = {}; p.record = []; p.honroFlags = {}; p.settings = { ...p.settings, orientation: 'auto', music: true, musicVolume: .65, speed: 1.5, playerSpeed: 1.5, sound: true, volume: .55, minimapVisible: true, debugTerrainOutline: false }; return p; }
-    function migrateGrowth(p,revision){
-        for(const roster of [p.heroes,p.saved?.heroes,p.honroBattle?.heroes])if(roster)for(const cls of ROSTER){const hero=roster[cls];if(!hero)continue;if(!Number.isInteger(hero.statTraining))hero.statTraining=Object.values(hero.statRanks||{}).reduce((sum,n)=>sum+(Number.isInteger(n)&&n>0?n:0),0);delete hero.statRanks;}
-        if(revision>=13)return;
-        const convert=revision<=10?C.migrateLegacyXp9:C.migrateXp12;
-        const oldBattleXp=new Map([p.saved,p.honroBattle].filter(Boolean).map(b=>[b,Math.max(...ROSTER.map(cls=>Number.isFinite(b.heroes?.[cls]?.xp)?b.heroes[cls].xp:0))]));
-        for(const roster of [p.heroes,p.saved?.heroes,p.honroBattle?.heroes])if(roster)for(const cls of ROSTER){const hero=roster[cls];if(hero&&Number.isFinite(hero.xp))hero.xp=convert(hero.xp);}
-        for(const battle of [p.saved,p.honroBattle])if(battle){
-            if(battle.startXP)for(const cls of ROSTER)if(Number.isFinite(battle.startXP[cls]))battle.startXP[cls]=convert(battle.startXP[cls]);
-            if(battle.honroGrowth?.limit){
-                const newHero=Math.max(...ROSTER.map(cls=>Number.isFinite(battle.heroes?.[cls]?.xp)?battle.heroes[cls].xp:0));
-                const shift=Math.max(0,newHero-(oldBattleXp.get(battle)||0));battle.honroGrowth.limit.start+=shift;battle.honroGrowth.limit.end+=shift;
-            }
-        }
-        p.revision=13;
-    }
-    function load() { if(G.HONRO_EMBEDDED)return fresh(); try {
-        let x = JSON.parse(localStorage.getItem(KEY) || 'null');
-        if (x && x.game === 'honro' && [1,2,3,4].includes(x.schema) && x.heroes && Array.isArray(x.recruited) && x.recruited.includes('archer')) {
-            const p = fresh();
-            Object.assign(p, x);
-            p.schema = 4;
-            p.settings = { ...fresh().settings, ...x.settings };
-            C.migrateSkills(p);
-            migrateGrowth(p,x.revision||12);
-            G.HonroCampaignMapRevision.discard(p);
-            G.HonroProgression.repairRecruits(p);
-            G.HonroProgression.reconcileCampAllocations(p);
-            return p;
-        }
-    }
-    catch { } return fresh(); }
+    const fresh = () => G.HonroProfileStore.fresh();
     // Debug clones every campaign-owned value so
     // story, growth, allocations and a suspended battle use normal semantics.
     // This clone is session-only; only the normal profile is ever exported/saved.
     function debugProfile(normal) { return clone(normal); }
-    function save(p) { if(G.HONRO_EMBEDDED)return false; try {
-        localStorage.setItem(KEY, JSON.stringify(p));
-        return true;
-    }
-    catch {
-        return false;
-    } }
     function terrain(id, x, y, w, h, mat = 'rock', extra = {}) { return { id, x, y, w, h, mat, hp: mat === 'wood' ? 330 : 99999, maxHp: mat === 'wood' ? 330 : 99999, route: true, ...extra }; }
     function makeLegacyWorld(st, p, training = false, cls = 'archer', skill) {
         const b = C.createBattle(1, clone(p), 'practice', { party: [cls], distance: 900 });
@@ -291,16 +252,29 @@
     }
     function makeWorld(st,p,training=false,cls='archer',skill){return G.HonroWorld.build(st,p,training,cls,skill,makeLegacyWorld);}
     class App {
-        constructor() { this.root = $('app'); this.modal = $('modal'); this.normalProfile = load(); this.debugMode = !!this.normalProfile.settings.debugMode && !G.HONRO_EMBEDDED; this.profile = this.debugMode ? debugProfile(this.normalProfile) : this.normalProfile; this.engine = null; this.scene = null; this.screen = 'title'; this.stageId = this.profile.lastStage || 1; this.cls = this.profile.recruited[0]; this.branch = 0; this.selectedByUnit = {}; this.selected = 'A01'; this.charging = false; this.power = .58; this.keys = new Set(); this.stick = { x: 0, y: 0 }; this.contacts = new Map(); this.audio = C.AudioEngine ? new G.HonroAudio() : null; this.audio?.configure(this.profile.settings); this.prev = performance.now(); this.acc = 0; this.uiAge = 0; this.dirty = false; this.dialogue = null; this.preview = null; this.trainingClass = 'archer'; this.trainingSkill = 'A01'; this.trainingPassives = {}; this.trainingRanks = {}; this.eventText = ''; this.eventUntil = 0; this.banterQueue=[]; this.banterCurrent=null; this.banterUntil=0; this.bind(); }
-        persist() { if(G.HONRO_EMBEDDED||this.customMap)return; G.HonroMukjongAudio?.observe(this); G.HonroProgression.persist(this); G.HonroSplitCampaign?.persist(this); this.profile.party = [...this.profile.recruited]; if(this.debugMode)return; this.normalProfile=this.profile; if (!save(this.profile) && !this.storageWarned) {
+        constructor() { this.root = $('app'); this.modal = $('modal'); this.profileStore = G.HonroProfileStore.create(); this.normalProfile = this.profileStore.initial; this.debugMode = !!this.normalProfile.settings.debugMode && !G.HONRO_EMBEDDED; this.profile = this.debugMode ? debugProfile(this.normalProfile) : this.normalProfile; this.engine = null; this.scene = null; this.screen = 'title'; this.stageId = this.profile.lastStage || 1; this.cls = this.profile.recruited[0]; this.profileImportSequence = 0; this.branch = 0; this.selectedByUnit = {}; this.selected = 'A01'; this.charging = false; this.power = .58; this.keys = new Set(); this.stick = { x: 0, y: 0 }; this.contacts = new Map(); this.audio = C.AudioEngine ? new G.HonroAudio() : null; this.audio?.configure(this.profile.settings); this.prev = performance.now(); this.acc = 0; this.uiAge = 0; this.dirty = false; this.dialogue = null; this.preview = null; this.trainingClass = 'archer'; this.trainingSkill = 'A01'; this.trainingPassives = {}; this.trainingRanks = {}; this.eventText = ''; this.eventUntil = 0; this.banterQueue=[]; this.banterCurrent=null; this.banterUntil=0; this.bind(); }
+        persist() { if(G.HONRO_EMBEDDED||this.customMap||this.profileStore.locked)return false; G.HonroMukjongAudio?.observe(this); G.HonroProgression.persist(this); G.HonroSplitCampaign?.persist(this); this.profile.party = [...this.profile.recruited]; if(this.debugMode)return; this.normalProfile=this.profile; if (!this.profileStore.save(this.profile) && !this.storageWarned) {
             this.storageWarned = true;
             this.notify('이 환경에서는 자동 기록이 제한돼. 설정에서 기록 파일을 보관해줘.');
         } }
+        campaignReady(){if(!this.profileStore.locked||this.customMap||G.HONRO_EMBEDDED)return true;this.recoverProfile();return false;}
+        recoverProfile(){G.HonroMenuUI.recovery(this);}
+        replaceProfile(result){
+            if(!result.ok){this.notify(G.HonroMenuUI.profileFailure(result.reason));return false;}
+            ++this.profileImportSequence;this.engine=null;this.stopBattle();
+            this.normalProfile=result.profile;this.debugMode=!!result.profile.settings.debugMode&&!G.HONRO_EMBEDDED;
+            this.profile=this.debugMode?debugProfile(this.normalProfile):this.normalProfile;
+            this.stageId=this.profile.lastStage||1;this.cls=this.profile.recruited[0];this.debugRestStage=null;
+            this.journeySelection=null;this.journeyLayer=null;this.journeyAct=null;this.storageWarned=false;
+            this.audio?.configure(this.profile.settings);this.showTitle();return true;
+        }
+        exportOriginal(){const original=this.profileStore.original();if(!original.ok){this.notify('원본을 읽지 못해 내보낼 수 없습니다. 다시 읽기를 시도해 주세요.');return false;}this.downloadProfile(original.text,'혼로_원본_');return true;}
+        downloadProfile(text,prefix='혼로_기록_'){const blob=new Blob([text],{type:'application/json'}),url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download=prefix+new Date().toISOString().slice(0,10)+'.json';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);}
         notify(text) { let n = $('notice'); n.textContent = text; n.hidden = false; clearTimeout(this.noti); this.noti = setTimeout(() => n.hidden = true, 3200); }
         top(title, back = 'title') { return `<header class="top"><button class="icon ghost" data-action="${back}" aria-label="뒤로">${fa('chevronUp',17,'back-icon')}</button><h2>${esc(title)}</h2>${this.debugMode?'<span class="debug-badge">디버그 · 기록 분리</span>':''}<span class="grow"></span><button class="icon ghost" data-action="settings" aria-label="설정">${fa('gear',18)}</button></header>`; }
         portrait(cls, size = 1) { return G.HonroPortraits.markup(cls,'icon'); }
         drawPortraits() { for(const host of document.querySelectorAll('[data-portrait-host]')){const cls=host.dataset.portraitHost;G.HonroPortraits.mount(host,null,cls,{identity:H.hero[cls]?.name,surface:'hud',framing:host.dataset.portraitFraming||'icon',slot:host.dataset.portraitSlot});}for(const cv of document.querySelectorAll('canvas[data-portrait]'))G.HonroPortraits.draw(cv,null,cv.dataset.portrait,{identity:H.hero[cv.dataset.portrait]?.name,surface:'hud',framing:'icon'}); }
-        showTitle() { this.stopBattle(); this.close(); this.screen = 'title'; G.HonroTitleMarkup.mount(this.root,{scene:G.HONRO_TITLE_SCENE,logo:G.HONRO_TITLE_LOGO,hanja:G.HONRO_TITLE_HANJA,profile:this.profile,debugMode:this.debugMode,splitLocked:G.HonroSplitCampaign.locked(this.profile),settingsIcon:fa('gear',19)}); }
+        showTitle() { this.stopBattle(); this.close(); this.screen = 'title'; G.HonroTitleMarkup.mount(this.root,{scene:G.HONRO_TITLE_SCENE,logo:G.HONRO_TITLE_LOGO,hanja:G.HONRO_TITLE_HANJA,profile:this.profile,debugMode:this.debugMode,splitLocked:G.HonroSplitCampaign.locked(this.profile),profileLocked:this.profileStore.locked,settingsIcon:fa('gear',19)}); if(this.profileStore.locked&&!this.profileRecoveryShown){this.profileRecoveryShown=true;this.recoverProfile();} }
         stopBattle() { this.audio?.skills?.stopAll();this.cancelOptionalWork();G.HonroCampaignEntry?.cancel(this); G.HonroAct3Void?.abort(this); G.HonroRestJourney?.stopMotion(this); if (this.engine && !this.training && !this.done) {
             G.HonroProgression.syncRoster(this.profile,this.engine.b);
             this.profile.honroBattle = clone(this.engine.b);
@@ -309,8 +283,8 @@
           if(this.customMap){this.profile=this.customMap.returnProfile;this.stageId=this.customMap.returnStageId;this.customMap=null;}
         }
         isOpen(st) { return this.debugMode || st.requires.every(id => this.profile.cleared[id]); }
-        showRest(){return G.HonroRestJourney.showRest(this);}
-        showMap(){return G.HonroRestJourney.showBook(this);}
+        showRest(){if(!this.campaignReady())return;return G.HonroRestJourney.showRest(this);}
+        showMap(){if(!this.campaignReady())return;return G.HonroRestJourney.showBook(this);}
 
         prepareDebugCamp(){
             if(!this.debugMode||this.customMap||G.HONRO_EMBEDDED)return;
@@ -323,7 +297,7 @@
             }
         }
 
-        showCamp(cls=this.cls){if(!G.HonroRestJourney.state(this.profile).restStageId&&G.HonroSplitCampaign?.redirectRest(this))return;const y=$('armory')?.scrollTop||0,details=this.root.querySelector('[data-camp-details="training"]')?.open;this.stopBattle();this.close();this.screen='camp';this.prepareDebugCamp();if(!this.profile.recruited.includes(cls))cls=this.profile.recruited[0];this.cls=cls;let html=G.HonroUI.camp(this.profile,cls,this.top('모닥불','rest'),this.branch).replace('id="camp-scroll"','id="armory"');if(this.debugMode)html=html.replace('</nav>','</nav>'+this.debugLevelMarkup(cls));if(G.HonroSkillImages)G.HonroSkillImages.patch(this.root,html);else this.root.innerHTML=html;this.drawPortraits();$('armory').scrollTop=y;const training=this.root.querySelector('[data-camp-details="training"]');if(training)training.open=!!details;G.HonroPlayerTurnOrder?.camp(this);}
+        showCamp(cls=this.cls){if(!this.campaignReady())return;if(!G.HonroRestJourney.state(this.profile).restStageId&&G.HonroSplitCampaign?.redirectRest(this))return;const y=$('armory')?.scrollTop||0,details=this.root.querySelector('[data-camp-details="training"]')?.open;this.stopBattle();this.close();this.screen='camp';this.prepareDebugCamp();if(!this.profile.recruited.includes(cls))cls=this.profile.recruited[0];this.cls=cls;let html=G.HonroUI.camp(this.profile,cls,this.top('모닥불','rest'),this.branch).replace('id="camp-scroll"','id="armory"');if(this.debugMode)html=html.replace('</nav>','</nav>'+this.debugLevelMarkup(cls));if(G.HonroSkillImages)G.HonroSkillImages.patch(this.root,html);else this.root.innerHTML=html;this.drawPortraits();$('armory').scrollTop=y;const training=this.root.querySelector('[data-camp-details="training"]');if(training)training.open=!!details;G.HonroPlayerTurnOrder?.camp(this);}
 
 
         debugLevelMarkup(cls){const level=C.levelOf(this.profile.heroes[cls]);return `<div class="camp-resume-note debug-level-control"><label for="debug-hero-level">디버그 · ${esc(H.hero[cls].name)} 경지</label> <select id="debug-hero-level" data-debug-level="${cls}">${Array.from({length:C.levelOf(Number.MAX_SAFE_INTEGER)},(_,i)=>`<option value="${i+1}" ${level===i+1?'selected':''}>경지 ${i+1}</option>`).join('')}</select><p>기예는 자유롭게 선택합니다. 경지를 낮추면 능력치 수련을 해당 경지의 수련점 한도로 맞춥니다. 준비는 새 진입·다시 걷기에 적용됩니다.</p></div>`;}
@@ -414,7 +388,7 @@
             // Match minimap preference persistence without storing debug battles.
             if(!G.HONRO_EMBEDDED&&!this.customMap){
                 this.normalProfile.settings.debugTerrainOutline=visible;
-                if(!save(this.normalProfile))this.notify('지형 윤곽선 설정을 저장하지 못했습니다.');
+                if(!this.profileStore.save(this.normalProfile))this.notify('지형 윤곽선 설정을 저장하지 못했습니다.');
             }else this.persist();
         }
         setMinimapVisible(visible) {
@@ -425,10 +399,11 @@
             // View preferences persist in debug mode without writing debug progress.
             if(this.debugMode&&!G.HONRO_EMBEDDED&&!this.customMap){
                 this.normalProfile.settings.minimapVisible=visible;
-                if(!save(this.normalProfile))this.notify('미니맵 설정을 저장하지 못했습니다.');
+                if(!this.profileStore.save(this.normalProfile))this.notify('미니맵 설정을 저장하지 못했습니다.');
             }else this.persist();
         }
         setDebugMode(enabled) {
+            if(this.profileStore.locked){this.recoverProfile();return;}
             if(G.HONRO_EMBEDDED||enabled===this.debugMode)return;
             this.stopBattle();
             if(enabled){
@@ -483,6 +458,7 @@
         }
         launch(id = this.stageId, training = false, skill = null) {
             if(this.customMap&&!training&&id===this.stageId)return this.launchMap(this.customMap.project,this.customMap.stageId);
+            if(!training&&!this.campaignReady())return;
             if(!G.HonroSplitCampaign.allowLaunch(this,id,training))return;
             if(training&&this.deferTraining(()=>this.launch(id,training,skill)))return;
             // Changing a training loadout rebuilds combat, but stays in the same musical session.
@@ -568,6 +544,7 @@
             this.launch(this.stageId,this.training,this.trainingSkill);
         }
         continue() {
+            if(!this.campaignReady())return;
             if(G.HonroActEndings?.show(this))return;
             const target=G.HonroCampaignLoader?.destination(this.profile);
             if(target&&G.HonroCampaignEntry?.defer(this,target,()=>this.continue()))return;
@@ -998,7 +975,7 @@
             } });
             window.addEventListener('blur', () => { this.cancelInput(); });
             document.addEventListener('click', e => { if(e.target===this.modal)return; let el = e.target.closest('[data-action]'); if (!el || el.disabled)
-                return; if(this.dialogue&&!['dialogue-prev','dialogue-next','dialogue-skip'].includes(el.dataset.action))return; const a = el.dataset.action, id = el.dataset.id, sk = el.dataset.skill; if(e.isTrusted&&((e.detail>0&&performance.now()<(this.journeyInputAfter||0))||(e.detail>1&&['journey-book','journey-travel','journey-enter','journey-replay','rest','confirm-journey-launch'].includes(a))))return; if(G.HonroPlayerTurnOrder?.handle(this,el,e))return; switch (a) {
+                return; if(this.dialogue&&!['dialogue-prev','dialogue-next','dialogue-skip'].includes(el.dataset.action))return; const a = el.dataset.action, id = el.dataset.id, sk = el.dataset.skill; if(e.isTrusted&&((e.detail>0&&performance.now()<(this.journeyInputAfter||0))||(e.detail>1&&['journey-book','journey-travel','journey-enter','journey-replay','rest','confirm-journey-launch'].includes(a))))return; if(this.profileStore.locked&&!this.customMap&&['rest','journey-book','journey-select','journey-act','journey-travel','journey-enter','journey-replay','confirm-journey-launch','map','camp','hero','continue','launch','debug-act-ending-preview','debug-journal-ending-preview','act-ending-replay'].includes(a)){this.recoverProfile();return;} if(G.HonroPlayerTurnOrder?.handle(this,el,e))return; switch (a) {
                 case 'title':
                     this.showTitle();
                     break;
@@ -1186,6 +1163,9 @@
                 case 'journal':
                     this.journal();
                     break;
+                case 'profile-recovery':this.recoverProfile();break;
+                case 'profile-retry': {const result=this.profileStore.retry();if(result.ok)G.HonroMenuUI.confirm(this,'recover');else{this.recoverProfile();this.notify(G.HonroMenuUI.profileFailure(result.reason));}break;}
+                case 'profile-original':this.exportOriginal();break;
                 case 'settings-page':this.settings(id);break;
                 case 'settings-back':G.HonroMenuUI.back(this);break;
                 case 'settings-help':this.battleHelp(true);break;
@@ -1195,7 +1175,7 @@
                 case 'menu-confirm': {
                     const type=this.menuConfirmation?.type;this.menuConfirmation=null;
                     if(type==='import'){this.settings('records');$('file-import').click();}
-                    else if(type==='newgame'){this.engine=null;this.stopBattle();this.profile=fresh();this.normalProfile=this.profile;this.persist();this.showTitle();}
+                    else if(type==='newgame'||type==='recover'){const result=type==='newgame'?this.profileStore.newJourney():this.profileStore.confirmRetry();if(!this.replaceProfile(result)){if(this.profileStore.locked)this.recoverProfile();else this.settings('records');}}
                     else if(type==='segment')G.HonroStakeCrossing.retry(this,'출발 상태로 다시 준비합니다.');
                     else if(type==='battle')this.retry();
                     break;
@@ -1224,13 +1204,8 @@
                     G.HonroMenuUI.confirm(this,'newgame');
                     break;
                 case 'confirm-newgame':
-                    if(this.debugMode)break;
-                    this.engine = null;
-                    this.stopBattle();
-                    this.profile = fresh();
-                    this.normalProfile = this.profile;
-                    this.persist();
-                    this.showTitle();
+                    // Legacy action must still pass through the visible confirmation.
+                    if(!this.debugMode)G.HonroMenuUI.confirm(this,'newgame');
                     break;
                 case 'select-hero':
                     G.HonroUnitInfo.close(this);
@@ -1295,24 +1270,11 @@
             else if (el.id === 'file-import' && el.files[0]) {
                 try {
                     if(this.debugMode)throw Error('디버그 모드를 끈 뒤 기록을 가져오세요.');
-                    let data = JSON.parse(await el.files[0].text());
-                    if (data.game !== 'honro' || ![1,2,3,4].includes(data.schema) || !data.heroes || !Array.isArray(data.recruited) || !data.recruited.includes('archer'))
-                        throw Error('혼로의 기록 파일이 아니야.');
-                    const migrated=fresh(); Object.assign(migrated,data); migrated.schema=4; migrated.settings={...fresh().settings,...data.settings}; C.migrateSkills(migrated); migrateGrowth(migrated,data.revision||12); G.HonroCampaignMapRevision.discard(migrated);
-                    G.HonroProgression.repairRecruits(migrated);
-                    G.HonroProgression.reconcileCampAllocations(migrated);
-                    // Imported normal progress replaces the session, including
-                    // any pending custom return owner, before persistence resumes.
-                    this.stopBattle();
-                    this.engine = null;
-                    this.profile = migrated;
-                    this.normalProfile = migrated;
-                    this.persist();
-                    this.showTitle();
-                    this.notify('기록을 불러왔어.');
+                    const request=++this.profileImportSequence,text=await el.files[0].text();
+                    if(request===this.profileImportSequence&&this.replaceProfile(this.profileStore.importText(text)))this.notify('기록을 불러왔어.');
                 }
                 catch (err) {
-                    this.notify(this.debugMode?'디버그 모드를 끈 뒤 기록을 가져오세요.':'기록 파일을 읽을 수 없습니다. 혼로에서 내보낸 JSON 파일인지 확인해 주세요.');
+                    this.notify(this.debugMode?'디버그 모드를 끈 뒤 기록을 가져오세요.':'기록 파일을 읽지 못했습니다. 현재 기록은 유지됩니다.');
                 }
                 el.value = '';
             } });
@@ -1327,11 +1289,11 @@
         } }
         equipConfirm(i) {const id=this.equipIncoming;if(!Number.isInteger(i)||i<1||i>3||!this.canEquip(id))return;const l=this.profile.loadouts[this.cls],j=l.indexOf(id),old=l[i];if(j===i)return;l[i]=id;if(j>0)l[j]=old||'';C.sanitizeLoadout(this.profile,this.cls);this.saveCampAllocation();const context=this.equipReturn;this.equipReturn=null;this.showCamp();if(context)this.restoreTalent(context);}
         nextDialogue(){G.HonroStory.next(this);}
-        export() { if (this.engine && !this.training && !this.debugMode && !this.done) {
+        export() { if(this.profileStore.locked)return this.exportOriginal(); if (this.engine && !this.training && !this.debugMode && !this.done) {
             G.HonroProgression.syncRoster(this.profile,this.engine.b);
             this.profile.honroBattle = clone(this.engine.b);
             G.HonroProgression.persist(this);
-        } const blob = new Blob([JSON.stringify(this.debugMode?this.normalProfile:this.profile)], { type: 'application/json' }), url = URL.createObjectURL(blob), a = document.createElement('a'); a.href = url; a.download = '혼로_기록_' + new Date().toISOString().slice(0, 10) + '.json'; a.click(); setTimeout(() => URL.revokeObjectURL(url), 1000); }
+        } this.downloadProfile(JSON.stringify(this.debugMode?this.normalProfile:this.profile)); }
         frame(now) {
             if(this.endingGallery?.debug){this.prev=now;requestAnimationFrame(t=>this.frame(t));return;}
             this.updateAudio();

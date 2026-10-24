@@ -38,7 +38,7 @@ await check('Import works without retry and an invalid file preserves the active
  normal();custom();const session=app.customMap,engine=app.engine;await h.import({game:'wrong'});assert.equal(app.customMap,session);assert.equal(app.engine,engine);protectedSave();await h.import(original);restored();
 });
 await check('A confirmed new journey replaces the protected record after ending custom mode',()=>{
- normal();custom();click('retry');click('confirm-newgame');assert.equal(app.screen,'title');assert.equal(app.customMap,null);assert.equal(app.profile.lastStage,1);assert.deepEqual(plain(app.profile.cleared),{});assert.equal(app.profile.honroFlags.returnProbe,undefined);assert.deepEqual(saved(),plain(app.profile));const fresh=plain(app.profile);app=reload();assert.deepEqual(plain(app.profile),{...fresh,honroBattle:null,upgradeNotice:false});
+ normal();custom();click('retry');click('confirm-newgame');assert.equal(app.modalKind,'menu-confirm');click('menu-confirm');assert.equal(app.screen,'title');assert.equal(app.customMap,null);assert.equal(app.profile.lastStage,1);assert.deepEqual(plain(app.profile.cleared),{});assert.equal(app.profile.honroFlags.returnProbe,undefined);assert.deepEqual(saved(),plain(app.profile));const fresh=plain(app.profile);app=reload();assert.deepEqual(plain(app.profile),{...fresh,honroBattle:null,upgradeNotice:false});
 });
 await check('Result retry after both won and lost fixtures keeps the original return owner',()=>{
  for(const phase of ['won','lost']){normal();const owner=app.profile;custom();app.engine.b.phase=phase;app.outcome(true);const once=plain(app.profile);app.outcome(true);assert.deepEqual(plain(app.profile),once);click('retry');assert.equal(app.customMap.returnProfile,owner);click('title');restored();}
