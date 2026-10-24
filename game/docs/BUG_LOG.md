@@ -1,6 +1,6 @@
 # P0.3b 선택 SVG 원문 대기/실패 경계 — 2026-10-24
 
-ACT1_FAR_DATA의 비핵심 SVG 원문 요청도 hydrate Promise.all의 필수 조건이라503에 HONRO_READY가 거부됐다. 로컬 Chromium에서 재현했다. 이 생성 데이터에만 svgSources:optional을 전달하고 URL별 성공/실패 작업을 문서 수명 동안 기억하며 초기 batch 전체 대기를1500ms로 제한했다. 늦은 성공은 기존 registry에 정확한 원문을 넣고 초기화를 재시작하지 않는다. generic scene만 같은 mood/URI 선택 결과의 준비 여부를 캐시에 반영한다. sharedRest/Canvas 이미지 로딩은 바꾸지 않았다. Native1499/1500·늦은 결과·중복·필수 오류·generic 늦은 캐시 갱신·현재 rest1/10/21 및10장 root/thread 동치5묶음 통과. 실제 브라우저 수정 후 검증과 최종 빌드는 진행 중이다.
+ACT1_FAR_DATA의 비핵심 SVG 원문 요청도 hydrate Promise.all의 필수 조건이라503에 HONRO_READY가 거부됐다. 로컬 Chromium에서 재현했다. 이 생성 데이터에만 svgSources:optional을 전달하고 URL별 성공/실패 작업을 문서 수명 동안 기억하며 초기 batch 전체 대기를1500ms로 제한했다. 늦은 성공은 기존 registry에 정확한 원문을 넣고 초기화를 재시작하지 않는다. generic scene만 같은 mood/URI 선택 결과의 준비 여부를 캐시에 반영한다. sharedRest/Canvas 이미지 로딩은 바꾸지 않았다. Native1499/1500·늦은 결과·중복·필수 오류·generic 늦은 캐시 갱신·현재 rest1/10/21 및10장 root/thread 동치5묶음 통과. 실제 브라우저7묶음에서 SVG503/무응답/늦은 성공·실패 기동, 실패 dedup/새로고침 정상 exact 원문, 필수 JSON503/파싱 오류 거부를 확인했다. 실제1530–1556ms는 첫 SVG 요청부터 남은 초기화까지의 관측이며 전체 기동1500ms 보장은 아니다. build/web-split·41개 공개 그래프829파일 보존 통과. [검사·범위](optional-far-svg-p03b-20261024/README.md).
 
 # P0.3a 미사용21장 painted 빌드 데이터 생성 제거 — 2026-10-24
 

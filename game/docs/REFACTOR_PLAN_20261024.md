@@ -62,5 +62,5 @@ Act별로 한 단위씩 정리하고 같은 목표의 진행·차단 이유·Con
 - P0.1: master4cd877f0 배포 완료. Pages40058013225 success(2026-10-24T03:24:28Z). 부모가 공개 DOM의 game.66fcb6346e75df3e.js 및 새 여정→주막 대사2/11→reload→쉼터 대화 이어가기→같은2/11을 실제 UI로 확인했다. [범위·검사·한계](profile-store-p01-20261024/README.md).
 - P0.2: master46cb2b8d 배포 완료. Pages40058841045 success(2026-10-24T03:37:03Z). 부모가 공개 DOM의 game.d89af9c13535e2a5.js와 실제 debug→여정첩2장→전투 처음부터 확인 후 복만387/백산529/담허494/연실324 유지를 확인했다. [근거·범위](ally-roster-dom-p02-20261024/README.md).
 - P0.3a: 미사용 HONRO_STAGE21_PAINTED 빌드 생성만 제거·검증 완료. 활성414→408파일/-829,353B, 실제 초기 Game/Workshop 각각2요청/-29,346B. 현재21장 원경 draw 동일, build/web-split·40개 공개 그래프 보존 통과. master3a8f0ac8 배포 완료. Pages40059998501 success(2026-10-24T03:53:36Z). 부모가 공개 game.ecae7cabb80a83fd.js·title 준비 완료·기존 이어가기 버튼을 실제 브라우저로 확인했다. [근거·한계](stage21-unused-build-p03a-20261024/README.md).
-- P0.3b: ACT1_FAR_DATA 선택 SVG batch1500ms·문서 수명 URL dedup과 generic scene 준비 여부 캐시만 구현/검증 중. 다른 P0.3/P1은 대기.
+- P0.3b: 선택 SVG 실패/지연 격리 및 generic 준비 여부 캐시 구현 완료. 기준503 실제 재현, Native5/브라우저7묶음·build/web-split·41개 공개 그래프 보존 통과. 실제 cold 기동 관측1530–1556ms는 batch 이후 작업을 포함하며 전체 초기화1500ms 보장은 아니다. 부모 후보 검토/배포 대기. [근거·한계](optional-far-svg-p03b-20261024/README.md). 다른 P0.3/P1은 대기.
 - P1/P2: 순차 대기. 조사 결과로 단위 분리와 순서는 갱신한다.
