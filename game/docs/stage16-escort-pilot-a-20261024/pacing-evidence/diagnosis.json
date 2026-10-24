@@ -1,0 +1,173 @@
+{
+  "gameCommit": "9f7091e782c82f8d4e9a5df23697132db5409fa0",
+  "oldStrategy": "frontline (1500px 공격 우선)",
+  "oldRound": 22,
+  "checkpoints": [
+    {
+      "id": "monk",
+      "round": 12
+    },
+    {
+      "id": "witness",
+      "round": 12
+    },
+    {
+      "id": "temple-escort",
+      "round": 19
+    },
+    {
+      "id": "hall",
+      "round": 20
+    },
+    {
+      "id": "record",
+      "round": 22
+    }
+  ],
+  "segments": [
+    {
+      "goal": "monk",
+      "rounds": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12
+      ],
+      "actions": {
+        "fire": 38,
+        "move": 15,
+        "defend": 14,
+        "heal-stake": 1,
+        "jump": 6,
+        "land": 6,
+        "E": 1
+      },
+      "fireActionGroupsWithoutMove": 26,
+      "groundMoveWorldDistance": 7279.171038617312
+    },
+    {
+      "goal": "temple-escort",
+      "rounds": [
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19
+      ],
+      "actions": {
+        "land": 3,
+        "move": 10,
+        "defend": 8,
+        "fire": 30,
+        "jump": 1
+      },
+      "fireActionGroupsWithoutMove": 22,
+      "groundMoveWorldDistance": 7391.547983693403
+    },
+    {
+      "goal": "hall",
+      "rounds": [
+        20
+      ],
+      "actions": {
+        "E": 1
+      },
+      "fireActionGroupsWithoutMove": 0,
+      "groundMoveWorldDistance": 0
+    },
+    {
+      "goal": "record",
+      "rounds": [
+        20,
+        21,
+        22
+      ],
+      "actions": {
+        "fire": 8,
+        "recovery-jump": 1,
+        "nav-blocked": 1,
+        "move": 3,
+        "defend": 1
+      },
+      "fireActionGroupsWithoutMove": 5,
+      "groundMoveWorldDistance": 630.6701488226859
+    }
+  ],
+  "npcs": [
+    {
+      "id": "resident-1",
+      "maxMove": 900,
+      "walkSpeed": 260,
+      "horizontalArrivalLowerBound": 3,
+      "costs": [
+        {
+          "endX": 5470,
+          "groundContourDistance": 2685.139238077645,
+          "ceilFreshBudgets": 3,
+          "continuousWalkSeconds": 10.327458607990943
+        },
+        {
+          "endX": 5750,
+          "groundContourDistance": 2965.139238077645,
+          "ceilFreshBudgets": 4,
+          "continuousWalkSeconds": 11.40438168491402
+        }
+      ]
+    },
+    {
+      "id": "objective",
+      "maxMove": 850,
+      "walkSpeed": 240,
+      "horizontalArrivalLowerBound": 3,
+      "costs": [
+        {
+          "endX": 5470,
+          "groundContourDistance": 2512.391409944168,
+          "ceilFreshBudgets": 3,
+          "continuousWalkSeconds": 10.468297541434033
+        },
+        {
+          "endX": 5550,
+          "groundContourDistance": 2592.391409944168,
+          "ceilFreshBudgets": 4,
+          "continuousWalkSeconds": 10.801630874767367
+        }
+      ]
+    }
+  ],
+  "heroes": [
+    {
+      "cls": "archer",
+      "maxMove": 1551,
+      "walkSpeed": 365
+    },
+    {
+      "cls": "mage",
+      "maxMove": 1552,
+      "walkSpeed": 342
+    },
+    {
+      "cls": "knight",
+      "maxMove": 2015,
+      "walkSpeed": 360
+    },
+    {
+      "cls": "occultist",
+      "maxMove": 1653,
+      "walkSpeed": 356
+    }
+  ],
+  "budgetAndBodyWaitLimitation": "옛 trace는 NPC별 매 frame 예산/몸접촉을 수집하지 않았다. 기존 자료로 대기 시간을 정량 분리하지 않고 새 호위 전략에서 수집한다. 기하 비용은 직행 보행선 계산이며 교전/도약/착지/상호 몸 회피를 제외한다. 3회 예산은 3개 라운드 창이며 3개 추가 종료 턴을 뜻하지 않는다.",
+  "doorRecord": "hall 20턴, record 22턴. 이 구간 사격8회, 별도 휘겸 입력기 경로 막힘1회. 설오는 사격 후 AP03 이탈보18% 약279.18 예산으로 21턴273px, 22턴33px 이동. 550px 방내 이동이 3턴을 강제한 것으로 해석할 수 없다."
+}

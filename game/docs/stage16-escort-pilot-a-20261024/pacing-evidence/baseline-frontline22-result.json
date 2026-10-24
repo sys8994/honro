@@ -1,0 +1,390 @@
+{
+  "sourceHash": "c911d3f9e6ca636d9edb083beb03346088e2aa90b2e5dbd0103b64233791f587",
+  "runtimeSha256": "a8abd6802905bb40fccf89b449b397bbffd048945c8cd3a834692b1b7465addc",
+  "gameplayProjectSha256": "debcb3f2a24896da5a76fbdf2961e08fd16013732e3e609712ede897b6058789",
+  "gameplayRuntimeSha256": "cfa4aab11a855476cb50d43b2d41dab9258ac033dfff2b604da24c62ab6d29d2",
+  "controllerSha256": "98ea2cccdac3fe5d54447d695a866f74d48e10ef3642b4d19879da32ff69bbcc",
+  "helperSha256": "b06a096459bfe42f761f1e2c2319cdc3b99b8ef6c447c0e8dfd67b5770846196",
+  "checkoutCommit": "4d53f8ce8a72e48e2334887f15c19e4be365a293",
+  "productionCommit": null,
+  "strategy": "frontline",
+  "completedAt": "2026-10-24T08:45:27.281Z",
+  "initialEnemies": 49,
+  "enemyDefeats": 25,
+  "waveTelegraphs": [
+    {
+      "source": "hold-hall-0",
+      "warning": {
+        "serial": 175,
+        "round": 20,
+        "offered": {
+          "p-mage": true,
+          "p-knight": true,
+          "p-occultist": true,
+          "p-archer": true
+        },
+        "opportunity": {
+          "id": "p-mage",
+          "round": 20,
+          "serial": 177
+        }
+      },
+      "entry": {
+        "side": "west",
+        "x": 5330,
+        "y": 4250,
+        "round": 21,
+        "serial": 186
+      },
+      "births": [
+        {
+          "round": 21,
+          "frame": 42983,
+          "turn": 186,
+          "id": "event-216",
+          "source": "hold-hall-0",
+          "x": 5215,
+          "y": 4250
+        },
+        {
+          "round": 21,
+          "frame": 42983,
+          "turn": 186,
+          "id": "event-217",
+          "source": "hold-hall-0",
+          "x": 5330,
+          "y": 4250
+        },
+        {
+          "round": 21,
+          "frame": 42983,
+          "turn": 186,
+          "id": "event-218",
+          "source": "hold-hall-0",
+          "x": 5573,
+          "y": 4250
+        }
+      ]
+    }
+  ],
+  "phase": "won",
+  "round": 22,
+  "stopReason": null,
+  "winnerReason": "들린 승려를 구하고 종지기가 인양축을 숨겨 사람들의 구조를 막았다는 증언을 들었다. 주민들의 며칠과 외부의 칠십 년이 어긋나 있음을 확인했다. 봉인 속에서 멎었던 시간이 길이 열린 뒤 다시 흐르고 있다.",
+  "done": {
+    "monk": true,
+    "witness": true,
+    "temple-escort": true,
+    "hall": true,
+    "record": true
+  },
+  "seconds": 421.818444245,
+  "segmentTiming": {
+    "simulationSeconds": 377.6333333333333,
+    "storyPauseSeconds": 0.8333333333333334,
+    "botAttackPlanningSeconds": 351.5082057360004,
+    "nativePhysicsWallSeconds": 58.87850567300098
+  },
+  "simulationSeconds": 377.6333333333333,
+  "storyPauseSeconds": 0.8333333333333334,
+  "botAttackPlanningSeconds": 351.5082057360004,
+  "nativePhysicsWallSeconds": 58.87850567300098,
+  "controllerWallSecondsIncludingMovement": 368.29055266400024,
+  "botIdleWaitWallSeconds": 0,
+  "timingScope": "Simulation seconds counts production Engine ticks; story/turn pauses use a virtual clock; attack planning is Node wall time, excluding native physics; no human wall-time claim.",
+  "frames": 45316,
+  "inputCount": 6823,
+  "actions": 148,
+  "actionCounts": {
+    "fire": 76,
+    "move": 28,
+    "defend": 23,
+    "heal-stake": 1,
+    "jump": 7,
+    "land": 9,
+    "E": 2,
+    "recovery-jump": 1,
+    "nav-blocked": 1
+  },
+  "readinessXP": 37445,
+  "readinessLevel": 13,
+  "trainingBudget": {
+    "archer": {
+      "earned": 27,
+      "spent": 27,
+      "statTraining": 1
+    },
+    "mage": {
+      "earned": 27,
+      "spent": 27,
+      "statTraining": 0
+    },
+    "knight": {
+      "earned": 27,
+      "spent": 27,
+      "statTraining": 1
+    },
+    "occultist": {
+      "earned": 27,
+      "spent": 27,
+      "statTraining": 3
+    }
+  },
+  "initialHeroes": [
+    {
+      "cls": "archer",
+      "level": 13,
+      "hp": 736,
+      "maxHp": 736,
+      "ranks": {
+        "A01": 1,
+        "AP04": 3,
+        "AP01": 4,
+        "AP02": 4,
+        "AP03": 2,
+        "A14": 1,
+        "A02": 4,
+        "A06": 3,
+        "A11": 1,
+        "A09": 1,
+        "A05": 3
+      },
+      "loadout": [
+        "A01",
+        "A02",
+        "A06",
+        "A05"
+      ],
+      "focus": 171
+    },
+    {
+      "cls": "mage",
+      "level": 13,
+      "hp": 774,
+      "maxHp": 774,
+      "ranks": {
+        "M01": 1,
+        "M07": 1,
+        "M10": 4,
+        "M03": 1,
+        "M11": 4,
+        "M06": 1,
+        "M02": 1,
+        "M04": 4,
+        "MP01": 4,
+        "MP02": 3,
+        "MP03": 2,
+        "MP04": 2
+      },
+      "loadout": [
+        "M01",
+        "M10",
+        "M11",
+        "M04"
+      ],
+      "focus": 239
+    },
+    {
+      "cls": "knight",
+      "level": 13,
+      "hp": 1432,
+      "maxHp": 1432,
+      "ranks": {
+        "S00": 1,
+        "S01": 4,
+        "S03": 4,
+        "S05": 3,
+        "S09": 3,
+        "SP01": 4,
+        "SP02": 4,
+        "SP03": 2,
+        "SP04": 2
+      },
+      "loadout": [
+        "S00",
+        "S01",
+        "S03",
+        "S05"
+      ],
+      "focus": 191
+    },
+    {
+      "cls": "occultist",
+      "level": 13,
+      "hp": 946,
+      "maxHp": 946,
+      "ranks": {
+        "O01": 1,
+        "O06": 1,
+        "O02": 4,
+        "O03": 1,
+        "O04": 4,
+        "O07": 1,
+        "O08": 1,
+        "OP01": 3,
+        "OP02": 4,
+        "OP03": 3,
+        "OP04": 2
+      },
+      "loadout": [
+        "O01",
+        "O02",
+        "O04",
+        "O08"
+      ],
+      "focus": 279
+    }
+  ],
+  "initialItems": {
+    "heal": 3,
+    "focus": 3,
+    "cleanse": 2,
+    "ward": 2
+  },
+  "items": {
+    "heal": 3,
+    "focus": 3,
+    "cleanse": 2,
+    "ward": 2
+  },
+  "heroes": [
+    {
+      "cls": "archer",
+      "hp": 733.85,
+      "maxHp": 736,
+      "dead": false,
+      "x": 5942.639415242387,
+      "y": 4250
+    },
+    {
+      "cls": "mage",
+      "hp": 745.85904,
+      "maxHp": 774,
+      "dead": false,
+      "x": 4283.04937324776,
+      "y": 4426.536084813003
+    },
+    {
+      "cls": "knight",
+      "hp": 880.2,
+      "maxHp": 1432,
+      "dead": false,
+      "x": 5407.434086705408,
+      "y": 3710
+    },
+    {
+      "cls": "occultist",
+      "hp": 857,
+      "maxHp": 946,
+      "dead": false,
+      "x": 4533.602644334755,
+      "y": 4281.870730719318
+    }
+  ],
+  "protectedResidents": [
+    {
+      "id": "resident-1",
+      "hp": 902,
+      "maxHp": 950,
+      "dead": false,
+      "resolved": true,
+      "shield": 285
+    },
+    {
+      "id": "objective",
+      "hp": 1578,
+      "maxHp": 1900,
+      "dead": false,
+      "shield": 0
+    }
+  ],
+  "deaths": [],
+  "damageTaken": 1192.5,
+  "damageDealt": 27201,
+  "births": [
+    {
+      "round": 12,
+      "frame": 22264,
+      "turn": 98,
+      "id": "event-105",
+      "source": "temple-cloister-answer",
+      "x": 3370,
+      "y": 4688.333333333333
+    },
+    {
+      "round": 12,
+      "frame": 22264,
+      "turn": 98,
+      "id": "event-106",
+      "source": "temple-cloister-answer",
+      "x": 3500,
+      "y": 4580
+    },
+    {
+      "round": 12,
+      "frame": 22264,
+      "turn": 98,
+      "id": "event-107",
+      "source": "temple-cloister-answer",
+      "x": 3430,
+      "y": 4408.333333333333
+    },
+    {
+      "round": 20,
+      "frame": 40521,
+      "turn": 177,
+      "id": "event-203",
+      "source": "temple-record-answer",
+      "x": 8330,
+      "y": 4633.859649122807
+    },
+    {
+      "round": 20,
+      "frame": 40521,
+      "turn": 177,
+      "id": "event-204",
+      "source": "temple-record-answer",
+      "x": 8450,
+      "y": 4686.491228070176
+    },
+    {
+      "round": 20,
+      "frame": 40521,
+      "turn": 177,
+      "id": "event-205",
+      "source": "temple-record-answer",
+      "x": 8380,
+      "y": 4425.789473684211
+    },
+    {
+      "round": 21,
+      "frame": 42983,
+      "turn": 186,
+      "id": "event-216",
+      "source": "hold-hall-0",
+      "x": 5215,
+      "y": 4250
+    },
+    {
+      "round": 21,
+      "frame": 42983,
+      "turn": 186,
+      "id": "event-217",
+      "source": "hold-hall-0",
+      "x": 5330,
+      "y": 4250
+    },
+    {
+      "round": 21,
+      "frame": 42983,
+      "turn": 186,
+      "id": "event-218",
+      "source": "hold-hall-0",
+      "x": 5573,
+      "y": 4250
+    }
+  ],
+  "continues": [],
+  "dialogueLines": 36,
+  "scope": "Native production App/Engine with DOM/render/storage/clock doubles. Prepared actual level13 first-clear campaign-ledger readiness and normal camp training, Normal difficulty; previous clear records are entry fixtures. No consumables, actor pose/HP/focus/move/objective edits after entry. Not browser/UI/human balance or time evidence."
+}

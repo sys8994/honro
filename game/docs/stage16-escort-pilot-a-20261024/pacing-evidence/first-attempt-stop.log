@@ -1,0 +1,23 @@
+ROUND {"round":1,"goal":"monk","heroes":[{"cls":"archer","hp":736,"maxHp":736,"x":570,"y":5480,"support":"act2-floor"},{"cls":"mage","hp":774,"maxHp":774,"x":460,"y":5480,"support":"act2-floor"},{"cls":"knight","hp":1432,"maxHp":1432,"x":680,"y":5480,"support":"act2-floor"},{"cls":"occultist","hp":946,"maxHp":946,"x":350,"y":5480,"support":"act2-floor"}],"enemies":49,"done":{}}
+ROUND {"round":2,"goal":"monk","heroes":[{"cls":"archer","hp":703,"maxHp":736,"x":2375.6549132085256,"y":5298.816624301613,"support":"tm-processional-stair"},{"cls":"mage","hp":774,"maxHp":774,"x":1972.413590118057,"y":5405.1724665693055,"support":"act2-floor"},{"cls":"knight","hp":1432,"maxHp":1432,"x":2496.6375298240214,"y":5264.941491649274,"support":"tm-processional-stair"},{"cls":"occultist","hp":946,"maxHp":946,"x":1990.4566894992693,"y":5400.48126073019,"support":"act2-floor"}],"enemies":48,"done":{}}
+ROUND {"round":3,"goal":"temple-escort","heroes":[{"cls":"archer","hp":732,"maxHp":736,"x":3726.1273217696858,"y":4793.468169557578,"support":"tm-processional-upper"},{"cls":"mage","hp":774,"maxHp":774,"x":3064.134792491101,"y":5055.479312111338,"support":"tm-processional-bridge"},{"cls":"knight","hp":1432,"maxHp":1432,"x":4243.7534464986875,"y":4459.7193118455525,"support":"tm-processional-upper"},{"cls":"occultist","hp":879,"maxHp":946,"x":2943.3210610107167,"y":5005.23909706035,"support":"tm-shelter-veranda"}],"enemies":50,"done":{"monk":true,"witness":true}}
+ROUND {"round":4,"goal":"temple-escort","heroes":[{"cls":"archer","hp":705,"maxHp":736,"x":5222.224484229164,"y":4250,"support":"tm-great-hall-plinth"},{"cls":"mage","hp":774,"maxHp":774,"x":4406.258094394626,"y":4342.99611469058,"support":"tm-processional-upper"},{"cls":"knight","hp":1432,"maxHp":1432,"x":4906.180783200842,"y":4250,"support":"tm-great-hall-plinth"},{"cls":"occultist","hp":879,"maxHp":946,"x":4395.407495148164,"y":4348.204402328881,"support":"tm-processional-upper"}],"enemies":48,"done":{"monk":true,"witness":true}}
+ROUND {"round":5,"goal":"temple-escort","heroes":[{"cls":"archer","hp":705,"maxHp":736,"x":5222.224484229164,"y":4250,"support":"tm-great-hall-plinth"},{"cls":"mage","hp":688.2,"maxHp":774,"x":5057.979896907674,"y":4250,"support":"tm-great-hall-plinth"},{"cls":"knight","hp":1432,"maxHp":1432,"x":4715.8123310605815,"y":4250,"support":"tm-great-hall-plinth"},{"cls":"occultist","hp":879,"maxHp":946,"x":4986.565710296187,"y":4250,"support":"tm-great-hall-plinth"}],"enemies":47,"done":{"monk":true,"witness":true}}
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:
+
+  assert(g.HonroStage16Temple.arrived(b))
+
+    at file:///workspace/honro-profile-p01/tests/stage16-temple-fullplay.mjs:111:111 {
+  generatedMessage: true,
+  code: 'ERR_ASSERTION',
+  actual: false,
+  expected: true,
+  operator: '==',
+  diff: 'simple'
+}
+
+Node.js v24.19.0

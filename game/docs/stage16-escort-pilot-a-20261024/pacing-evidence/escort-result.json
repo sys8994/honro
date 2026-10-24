@@ -1,0 +1,347 @@
+{
+  "sourceHash": "c911d3f9e6ca636d9edb083beb03346088e2aa90b2e5dbd0103b64233791f587",
+  "runtimeSha256": "a8abd6802905bb40fccf89b449b397bbffd048945c8cd3a834692b1b7465addc",
+  "gameplayProjectSha256": "debcb3f2a24896da5a76fbdf2961e08fd16013732e3e609712ede897b6058789",
+  "gameplayRuntimeSha256": "cfa4aab11a855476cb50d43b2d41dab9258ac033dfff2b604da24c62ab6d29d2",
+  "controllerSha256": "114ad74f3e7e6f5ed748e4d99e4e822da8900a5dade5df82544f998c2e058446",
+  "helperSha256": "b06a096459bfe42f761f1e2c2319cdc3b99b8ef6c447c0e8dfd67b5770846196",
+  "checkoutCommit": "3ab1c5f63b5c9bc0ac7ff09cd68891b672a1b1d9",
+  "productionCommit": null,
+  "strategy": "escort",
+  "arrivalProof": {
+    "round": 5,
+    "frame": 15335,
+    "valid": true,
+    "monks": [
+      {
+        "id": "resident-1",
+        "x": 5646.999890225445,
+        "y": 4250,
+        "hp": 950,
+        "vx": 0,
+        "vy": 0,
+        "jumping": false,
+        "grounded": true
+      },
+      {
+        "id": "objective",
+        "x": 5470.999587473968,
+        "y": 4250,
+        "hp": 1837,
+        "vx": 0,
+        "vy": 0,
+        "jumping": false,
+        "grounded": true
+      }
+    ]
+  },
+  "finalArrivalAfterOutro": {
+    "valid": false,
+    "monks": [
+      {
+        "id": "resident-1",
+        "x": 5646.999890225445,
+        "y": 4250,
+        "hp": 950,
+        "grounded": true
+      },
+      {
+        "id": "objective",
+        "x": 5470.999587473968,
+        "y": 4250,
+        "hp": 1837,
+        "grounded": true
+      }
+    ]
+  },
+  "completedAt": "2026-10-24T09:16:21.263Z",
+  "initialEnemies": 49,
+  "enemyDefeats": 5,
+  "waveTelegraphs": [],
+  "phase": "won",
+  "round": 5,
+  "stopReason": null,
+  "winnerReason": "들린 승려를 구하고 종지기가 인양축을 숨겨 사람들의 구조를 막았다는 증언을 들었다. 주민들의 며칠과 외부의 칠십 년이 어긋나 있음을 확인했다. 봉인 속에서 멎었던 시간이 길이 열린 뒤 다시 흐르고 있다.",
+  "done": {
+    "monk": true,
+    "witness": true,
+    "temple-escort": true,
+    "hall": true,
+    "record": true
+  },
+  "seconds": 10.643426948,
+  "segmentTiming": {
+    "simulationSeconds": 18.266666666666666,
+    "storyPauseSeconds": 0.21666666666666667,
+    "botAttackPlanningSeconds": 7.136374868999992,
+    "nativePhysicsWallSeconds": 1.5837884280002181
+  },
+  "simulationSeconds": 134.7,
+  "storyPauseSeconds": 0.8333333333333334,
+  "botAttackPlanningSeconds": 49.16326802299998,
+  "nativePhysicsWallSeconds": 45.39540119400025,
+  "controllerWallSecondsIncludingMovement": 76.89712481500004,
+  "botIdleWaitWallSeconds": 0,
+  "timingScope": "Simulation seconds counts production Engine ticks; story/turn pauses use a virtual clock; attack planning is Node wall time, excluding native physics; no human wall-time claim.",
+  "frames": 16164,
+  "inputCount": 13164,
+  "actions": 96,
+  "actionCounts": {
+    "decision": 26,
+    "move": 21,
+    "fire": 11,
+    "escort-engagement": 11,
+    "defend": 9,
+    "jump": 5,
+    "land": 6,
+    "E": 2,
+    "observe-evacuation": 4,
+    "escort-arrival-proof": 1
+  },
+  "readinessXP": 37445,
+  "readinessLevel": 13,
+  "trainingBudget": {
+    "archer": {
+      "earned": 27,
+      "spent": 27,
+      "statTraining": 1
+    },
+    "mage": {
+      "earned": 27,
+      "spent": 27,
+      "statTraining": 0
+    },
+    "knight": {
+      "earned": 27,
+      "spent": 27,
+      "statTraining": 1
+    },
+    "occultist": {
+      "earned": 27,
+      "spent": 27,
+      "statTraining": 3
+    }
+  },
+  "initialHeroes": [
+    {
+      "cls": "archer",
+      "level": 13,
+      "hp": 736,
+      "maxHp": 736,
+      "ranks": {
+        "A01": 1,
+        "AP04": 3,
+        "AP01": 4,
+        "AP02": 4,
+        "AP03": 2,
+        "A14": 1,
+        "A02": 4,
+        "A06": 3,
+        "A11": 1,
+        "A09": 1,
+        "A05": 3
+      },
+      "loadout": [
+        "A01",
+        "A02",
+        "A06",
+        "A05"
+      ],
+      "focus": 171
+    },
+    {
+      "cls": "mage",
+      "level": 13,
+      "hp": 774,
+      "maxHp": 774,
+      "ranks": {
+        "M01": 1,
+        "M07": 1,
+        "M10": 4,
+        "M03": 1,
+        "M11": 4,
+        "M06": 1,
+        "M02": 1,
+        "M04": 4,
+        "MP01": 4,
+        "MP02": 3,
+        "MP03": 2,
+        "MP04": 2
+      },
+      "loadout": [
+        "M01",
+        "M10",
+        "M11",
+        "M04"
+      ],
+      "focus": 239
+    },
+    {
+      "cls": "knight",
+      "level": 13,
+      "hp": 1432,
+      "maxHp": 1432,
+      "ranks": {
+        "S00": 1,
+        "S01": 4,
+        "S03": 4,
+        "S05": 3,
+        "S09": 3,
+        "SP01": 4,
+        "SP02": 4,
+        "SP03": 2,
+        "SP04": 2
+      },
+      "loadout": [
+        "S00",
+        "S01",
+        "S03",
+        "S05"
+      ],
+      "focus": 191
+    },
+    {
+      "cls": "occultist",
+      "level": 13,
+      "hp": 946,
+      "maxHp": 946,
+      "ranks": {
+        "O01": 1,
+        "O06": 1,
+        "O02": 4,
+        "O03": 1,
+        "O04": 4,
+        "O07": 1,
+        "O08": 1,
+        "OP01": 3,
+        "OP02": 4,
+        "OP03": 3,
+        "OP04": 2
+      },
+      "loadout": [
+        "O01",
+        "O02",
+        "O04",
+        "O08"
+      ],
+      "focus": 279
+    }
+  ],
+  "initialItems": {
+    "heal": 3,
+    "focus": 3,
+    "cleanse": 2,
+    "ward": 2
+  },
+  "items": {
+    "heal": 3,
+    "focus": 3,
+    "cleanse": 2,
+    "ward": 2
+  },
+  "heroes": [
+    {
+      "cls": "archer",
+      "hp": 766,
+      "maxHp": 766,
+      "dead": false,
+      "x": 5753.299484229228,
+      "y": 4250
+    },
+    {
+      "cls": "mage",
+      "hp": 688.2,
+      "maxHp": 774,
+      "dead": false,
+      "x": 5636.244896907762,
+      "y": 4250
+    },
+    {
+      "cls": "knight",
+      "hp": 1432,
+      "maxHp": 1432,
+      "dead": false,
+      "x": 4715.8123310605815,
+      "y": 4250
+    },
+    {
+      "cls": "occultist",
+      "hp": 879,
+      "maxHp": 946,
+      "dead": false,
+      "x": 5941.684043629366,
+      "y": 4250
+    }
+  ],
+  "protectedResidents": [
+    {
+      "id": "resident-1",
+      "hp": 950,
+      "maxHp": 950,
+      "dead": false,
+      "resolved": true,
+      "shield": 285
+    },
+    {
+      "id": "objective",
+      "hp": 1837,
+      "maxHp": 1900,
+      "dead": false,
+      "shield": 0
+    }
+  ],
+  "deaths": [],
+  "damageTaken": 212.79999999999995,
+  "damageDealt": 7245,
+  "births": [
+    {
+      "round": 2,
+      "frame": 5557,
+      "turn": 12,
+      "id": "event-11",
+      "source": "temple-cloister-answer",
+      "x": 3370,
+      "y": 4688.333333333333
+    },
+    {
+      "round": 2,
+      "frame": 5557,
+      "turn": 12,
+      "id": "event-12",
+      "source": "temple-cloister-answer",
+      "x": 3500,
+      "y": 4580
+    },
+    {
+      "round": 2,
+      "frame": 5557,
+      "turn": 12,
+      "id": "event-13",
+      "source": "temple-cloister-answer",
+      "x": 3430,
+      "y": 4408.333333333333
+    }
+  ],
+  "continues": [
+    {
+      "path": "_local/reports/stage16-escort-pacing/escort-final/checkpoint.json",
+      "round": 5,
+      "method": "production App Continue; exact actors/terrain/items/turn/objectives/waves/progression asserted",
+      "statePreserved": true,
+      "previousProvenance": {
+        "sourceHash": "c911d3f9e6ca636d9edb083beb03346088e2aa90b2e5dbd0103b64233791f587",
+        "runtimeSha256": "a8abd6802905bb40fccf89b449b397bbffd048945c8cd3a834692b1b7465addc",
+        "gameplayProjectSha256": "debcb3f2a24896da5a76fbdf2961e08fd16013732e3e609712ede897b6058789",
+        "gameplayRuntimeSha256": "cfa4aab11a855476cb50d43b2d41dab9258ac033dfff2b604da24c62ab6d29d2",
+        "controllerSha256": "27946bd0763ee1e3f679fb8c9a924e2e11d5b36d077109e2acb9589858952062",
+        "helperSha256": "b06a096459bfe42f761f1e2c2319cdc3b99b8ef6c447c0e8dfd67b5770846196",
+        "checkoutCommit": "97425c2254cc33be125265d030a6e39159dc267d",
+        "productionCommit": null
+      },
+      "priorFrames": 13972,
+      "priorPurePlanningCounterAvailable": true
+    }
+  ],
+  "dialogueLines": 36,
+  "scope": "Native production App/Engine with DOM/render/storage/clock doubles. Prepared actual level13 first-clear campaign-ledger readiness and normal camp training, Normal difficulty; previous clear records are entry fixtures. No consumables, actor pose/HP/focus/move/objective edits after entry. Not browser/UI/human balance or time evidence."
+}

@@ -1,0 +1,258 @@
+{
+  "scope": "게임 상태 직접 변경 없음. NPC 예산/몸 접촉/이동은 실제 엔진 tick에서 읽음. 위험 사선은 현재 보이는 적의 정상 예측만 사용. 관찰 대기는 정상 aim phase에서 실제 NPC가 움직이는 동안만 기록.",
+  "npcs": [
+    {
+      "id": "objective",
+      "maxMove": 850,
+      "walkSpeed": 240
+    },
+    {
+      "id": "resident-1",
+      "maxMove": 900,
+      "walkSpeed": 260
+    }
+  ],
+  "rounds": [
+    {
+      "round": 2,
+      "id": "objective",
+      "from": {
+        "x": 3160,
+        "y": 4978.077922077922
+      },
+      "to": {
+        "x": 3947.6070006325967,
+        "y": 4709.798532799141
+      },
+      "startMove": 850,
+      "endMove": 0,
+      "walkCost": 849.9999999999992,
+      "jumpCost": 0,
+      "jumps": 0,
+      "distance": 848.935018502061,
+      "seconds": {
+        "moving": 3.5083333333333235,
+        "budgetExhausted": 21.458333333332757,
+        "bodyContact": 0,
+        "arrived": 0,
+        "other": 0.6500000000000001
+      },
+      "contacts": [
+        "p-knight"
+      ]
+    },
+    {
+      "round": 2,
+      "id": "resident-1",
+      "from": {
+        "x": 2990,
+        "y": 5001.428571428572
+      },
+      "to": {
+        "x": 3840.6231063222062,
+        "y": 4764.844223419448
+      },
+      "startMove": 900,
+      "endMove": 0,
+      "walkCost": 900.0000000000014,
+      "jumpCost": 0,
+      "jumps": 0,
+      "distance": 898.0709816314939,
+      "seconds": {
+        "moving": 3.433333333333324,
+        "budgetExhausted": 21.533333333332752,
+        "bodyContact": 0,
+        "arrived": 0,
+        "other": 0.6500000000000001
+      },
+      "contacts": [
+        "p-knight"
+      ]
+    },
+    {
+      "round": 3,
+      "id": "objective",
+      "from": {
+        "x": 3949.1350604642907,
+        "y": 4708.5081711634875
+      },
+      "to": {
+        "x": 4611.664507593322,
+        "y": 4250
+      },
+      "startMove": 847.9999999999993,
+      "endMove": 1.9184653865522705e-13,
+      "walkCost": 774.999999999998,
+      "jumpCost": 75,
+      "jumps": 1,
+      "distance": 983.6011370682529,
+      "seconds": {
+        "moving": 3.9666666666666552,
+        "budgetExhausted": 27.94166666666572,
+        "bodyContact": 0,
+        "arrived": 0,
+        "other": 0
+      },
+      "contacts": [
+        "p-knight",
+        "p-archer",
+        "a2-enemy-11"
+      ]
+    },
+    {
+      "round": 3,
+      "id": "resident-1",
+      "from": {
+        "x": 3842.7250817391878,
+        "y": 4764.318729565203
+      },
+      "to": {
+        "x": 4493.621151869322,
+        "y": 4301.061847102726
+      },
+      "startMove": 897.8333333333335,
+      "endMove": 4.263256414560601e-13,
+      "walkCost": 749.9999999999997,
+      "jumpCost": 150,
+      "jumps": 2,
+      "distance": 1128.6107131857812,
+      "seconds": {
+        "moving": 3.7749999999999893,
+        "budgetExhausted": 27.99999999999905,
+        "bodyContact": 0.13333333333333333,
+        "arrived": 0,
+        "other": 0
+      },
+      "contacts": [
+        "p-archer",
+        "p-knight"
+      ]
+    },
+    {
+      "round": 4,
+      "id": "objective",
+      "from": {
+        "x": 4611.664507593322,
+        "y": 4250
+      },
+      "to": {
+        "x": 5236.706618723968,
+        "y": 4157.9999977181205
+      },
+      "startMove": 850,
+      "endMove": 0,
+      "walkCost": 625,
+      "jumpCost": 225,
+      "jumps": 3,
+      "distance": 1250.1668372797765,
+      "seconds": {
+        "moving": 4.750000000000026,
+        "budgetExhausted": 2.6333333333333266,
+        "bodyContact": 11.699999999999976,
+        "arrived": 0,
+        "other": 0
+      },
+      "contacts": [
+        "a2-enemy-11",
+        "resident-1",
+        "p-mage",
+        "p-knight",
+        "p-occultist",
+        "p-archer",
+        "tm-hall-west-flank"
+      ]
+    },
+    {
+      "round": 4,
+      "id": "resident-1",
+      "from": {
+        "x": 4495.5744518271695,
+        "y": 4300.124263122959
+      },
+      "to": {
+        "x": 5085.224377530054,
+        "y": 4157.9999977181205
+      },
+      "startMove": 897.8333333333336,
+      "endMove": 2.2737367544323206e-13,
+      "walkCost": 599.9999999999998,
+      "jumpCost": 300,
+      "jumps": 4,
+      "distance": 1288.3987083898735,
+      "seconds": {
+        "moving": 4.124999999999995,
+        "budgetExhausted": 3.133333333333325,
+        "bodyContact": 8.41666666666683,
+        "arrived": 0,
+        "other": 3.408333333333324
+      },
+      "contacts": [
+        "objective",
+        "p-mage",
+        "p-occultist",
+        "p-knight"
+      ]
+    },
+    {
+      "round": 5,
+      "id": "objective",
+      "from": {
+        "x": 5238.706618723968,
+        "y": 4157.9999977181205
+      },
+      "to": {
+        "x": 5470.999587473968,
+        "y": 4250
+      },
+      "startMove": 848,
+      "endMove": 465.70703125,
+      "walkCost": 234.29296875,
+      "jumpCost": 150,
+      "jumps": 2,
+      "distance": 900.3452168059291,
+      "seconds": {
+        "moving": 3.1249999999999916,
+        "budgetExhausted": 0,
+        "bodyContact": 0.12499999999999999,
+        "arrived": 0,
+        "other": 8.116666666666847
+      },
+      "contacts": [
+        "p-archer",
+        "tm-hall-west-lamp",
+        "tm-hall-west-flank",
+        "resident-1"
+      ]
+    },
+    {
+      "round": 5,
+      "id": "resident-1",
+      "from": {
+        "x": 5087.391044196721,
+        "y": 4157.9999977181205
+      },
+      "to": {
+        "x": 5646.999890225445,
+        "y": 4250
+      },
+      "startMove": 897.833333333333,
+      "endMove": 263.2244873046093,
+      "walkCost": 561.7755126953907,
+      "jumpCost": 75,
+      "jumps": 1,
+      "distance": 899.812524889744,
+      "seconds": {
+        "moving": 2.758333333333326,
+        "budgetExhausted": 0,
+        "bodyContact": 0,
+        "arrived": 8.608333333333485,
+        "other": 0
+      },
+      "contacts": [
+        "p-mage",
+        "tm-hall-west-flank",
+        "objective"
+      ]
+    }
+  ]
+}

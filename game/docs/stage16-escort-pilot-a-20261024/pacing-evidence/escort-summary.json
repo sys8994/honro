@@ -1,0 +1,138 @@
+{
+  "gameCommit": "9f7091e782c82f8d4e9a5df23697132db5409fa0",
+  "projectSha256": "c911d3f9e6ca636d9edb083beb03346088e2aa90b2e5dbd0103b64233791f587",
+  "runtimeSha256": "a8abd6802905bb40fccf89b449b397bbffd048945c8cd3a834692b1b7465addc",
+  "sameGameAs22TurnRun": true,
+  "sameNormalEntryHeroesNPCsAndResources": true,
+  "strategy": "이동/진로·NPC 사선 교전 우선",
+  "result": {
+    "phase": "won",
+    "round": 5,
+    "checkpoints": [
+      {
+        "id": "monk",
+        "round": 2
+      },
+      {
+        "id": "witness",
+        "round": 2
+      },
+      {
+        "id": "temple-escort",
+        "round": 5
+      },
+      {
+        "id": "hall",
+        "round": 5
+      },
+      {
+        "id": "record",
+        "round": 5
+      }
+    ],
+    "deaths": [],
+    "itemsUnchanged": true,
+    "enemyDefeats": 5,
+    "fires": 11,
+    "defends": 9,
+    "observeActions": 4,
+    "simulationSeconds": 134.7
+  },
+  "arrivalProof": {
+    "round": 5,
+    "frame": 15335,
+    "valid": true,
+    "monks": [
+      {
+        "id": "resident-1",
+        "x": 5646.999890225445,
+        "y": 4250,
+        "hp": 950,
+        "vx": 0,
+        "vy": 0,
+        "jumping": false,
+        "grounded": true
+      },
+      {
+        "id": "objective",
+        "x": 5470.999587473968,
+        "y": 4250,
+        "hp": 1837,
+        "vx": 0,
+        "vy": 0,
+        "jumping": false,
+        "grounded": true
+      }
+    ]
+  },
+  "npcMetrics": [
+    {
+      "id": "objective",
+      "windows": [
+        2,
+        3,
+        4,
+        5
+      ],
+      "maxMove": 850,
+      "walkSpeed": 240,
+      "spent": {
+        "walk": 2484.2929687499973,
+        "jump": 450,
+        "jumps": 6
+      },
+      "left": 465.70703125,
+      "seconds": {
+        "moving": 15.349999999999996,
+        "budgetExhausted": 52.033333333331804,
+        "bodyContact": 11.824999999999976,
+        "arrived": 0,
+        "other": 8.766666666666847
+      },
+      "notes": "moving은 실제 위치 변화, budgetExhausted는 자원<=5 정지, bodyContact는 blocked/몸근접 정지, other는 나머지 미분류다. 기하 최단 소요나 사람 체감 시간이 아니다."
+    },
+    {
+      "id": "resident-1",
+      "windows": [
+        2,
+        3,
+        4,
+        5
+      ],
+      "maxMove": 900,
+      "walkSpeed": 260,
+      "spent": {
+        "walk": 2811.7755126953916,
+        "jump": 525,
+        "jumps": 7
+      },
+      "left": 263.2244873046093,
+      "seconds": {
+        "moving": 14.091666666666633,
+        "budgetExhausted": 52.66666666666513,
+        "bodyContact": 8.550000000000162,
+        "arrived": 8.608333333333485,
+        "other": 4.058333333333324
+      },
+      "notes": "moving은 실제 위치 변화, budgetExhausted는 자원<=5 정지, bodyContact는 blocked/몸근접 정지, other는 나머지 미분류다. 기하 최단 소요나 사람 체감 시간이 아니다."
+    }
+  ],
+  "continue": {
+    "round": 5,
+    "preservedState": true,
+    "controlPolicyUnchanged": true,
+    "reason": "첫 실행은 승리 뒤에도 도착 상태가 영속해야 한다는 검사 assertion에서 중단. 실제 완료 순간의 접지/비점유 증거로 검사시점을 고쳐 생산 Continue로 이어갔다. 위치/HP/자원/목표를 수정하지 않았다."
+  },
+  "postArrivalOverlap": {
+    "pairs": [
+      {
+        "npc": "resident-1",
+        "hero": "p-mage",
+        "area": 3058.5406147732174
+      }
+    ],
+    "explanation": "도착 완료 시 valid=true이며 NPC 좌표는 이후 그대로다. 담허가 문에 접근하면서 제자와 겹친 기존 플레이어 이동 규칙 때문에 사후 arrived=false다. 도착 이전 NPC의 관통이나 목표완료 조작과 구분하며 이 일반 이동 규칙은 변경하지 않았다."
+  },
+  "conclusion": "예산 소진 대기는 존재하지만 4개 예산 창으로 5턴에 전체 완료했다. 예산이 불필요한5~7개 추가 턴을 강제한다는 근거는 없고 게임 수치 개선을 제안하지 않는다. 옛22턴 결과는 공격 우선 전략의 별도 결과로 보존한다.",
+  "limits": "Native Engine/App 실제 입력, DOM/render/storage/clock double. 초기13레벨27SP/normal 준비 후 상태 직접 변경 없음. 실제 공개/실기기 플레이 아님. 첫 중단과 5턴 Continue를 숨기지 않는다."
+}

@@ -1,0 +1,6478 @@
+{
+  "actions": [
+    {
+      "round": 1,
+      "frame": 0,
+      "goal": "monk",
+      "missionGoal": "monk",
+      "op": "decision",
+      "hero": "occultist",
+      "goalBefore": "monk",
+      "position": {
+        "x": 350,
+        "y": 5480,
+        "move": 1653,
+        "focus": 279,
+        "retreat": false
+      },
+      "target": {
+        "id": "monk",
+        "x": 2950,
+        "y": 5004.693877551021
+      },
+      "risks": [
+        {
+          "id": "resident-spirit-1",
+          "reason": "npc-sightline"
+        },
+        {
+          "id": "a2-enemy-4",
+          "reason": "npc-sightline"
+        },
+        {
+          "id": "tm-court-flank",
+          "reason": "npc-sightline"
+        },
+        {
+          "id": "a2-enemy-5",
+          "reason": "npc-sightline"
+        },
+        {
+          "id": "a2-enemy-9",
+          "reason": "npc-sightline"
+        }
+      ]
+    },
+    {
+      "round": 1,
+      "frame": 645,
+      "goal": {
+        "id": "monk",
+        "x": 2950,
+        "y": 5004.693877551021
+      },
+      "missionGoal": "monk",
+      "op": "move",
+      "hero": "occultist",
+      "from": {
+        "x": 350,
+        "y": 5480
+      },
+      "to": {
+        "x": 1990.4566894992693,
+        "y": 5400.48126073019
+      },
+      "support": "act2-floor"
+    },
+    {
+      "round": 1,
+      "frame": 645,
+      "goal": "monk",
+      "missionGoal": "monk",
+      "op": "fire",
+      "hero": "occultist",
+      "skill": "O04",
+      "target": "resident-spirit-1",
+      "hpBefore": 936,
+      "angle": 28.11427586015816,
+      "power": 0.7602139326084494
+    },
+    {
+      "round": 1,
+      "frame": 645,
+      "goal": "monk",
+      "missionGoal": "monk",
+      "op": "escort-engagement",
+      "hero": "occultist",
+      "target": "resident-spirit-1",
+      "reason": "npc-sightline",
+      "moveBefore": 1653,
+      "moveAfter": 5.56857601307474
+    },
+    {
+      "round": 1,
+      "frame": 938,
+      "turn": 1,
+      "goal": "monk",
+      "missionGoal": "monk",
+      "op": "decision",
+      "hero": "archer",
+      "goalBefore": "monk",
+      "position": {
+        "x": 570,
+        "y": 5480,
+        "move": 1551,
+        "focus": 171,
+        "retreat": false
+      },
+      "target": {
+        "id": "guard-rescue-archer",
+        "x": 3650,
+        "y": 4812.5
+      },
+      "risks": [
+        {
+          "id": "a2-enemy-4",
+          "reason": "npc-sightline"
+        },
+        {
+          "id": "tm-court-flank",
+          "reason": "npc-sightline"
+        }
+      ]
+    },
+    {
+      "round": 1,
+      "frame": 1526,
+      "turn": 1,
+      "goal": {
+        "id": "guard-rescue-archer",
+        "x": 3650,
+        "y": 4812.5
+      },
+      "missionGoal": "monk",
+      "op": "move",
+      "hero": "archer",
+      "from": {
+        "x": 570,
+        "y": 5480
+      },
+      "to": {
+        "x": 2104.595521340365,
+        "y": 5370.805164451505
+      },
+      "support": "act2-floor"
+    },
+    {
+      "round": 1,
+      "frame": 1526,
+      "turn": 1,
+      "goal": "monk",
+      "missionGoal": "monk",
+      "op": "fire",
+      "hero": "archer",
+      "skill": "A02",
+      "target": "tm-court-flank",
+      "hpBefore": 936,
+      "angle": 26.114492313975898,
+      "power": 0.7652212208649597
+    },
+    {
+      "round": 1,
+      "frame": 1526,
+      "turn": 1,
+      "goal": "monk",
+      "missionGoal": "monk",
+      "op": "escort-engagement",
+      "hero": "archer",
+      "target": "tm-court-flank",
+      "reason": "npc-sightline",
+      "moveBefore": 1551,
+      "moveAfter": 5.634935246806428
+    },
+    {
+      "round": 1,
+      "frame": 1930,
+      "turn": 1,
+      "goal": "monk",
+      "missionGoal": "monk",
+      "op": "decision",
+      "hero": "archer",
+      "goalBefore": "monk",
+      "position": {
+        "x": 2104.595521340365,
+        "y": 5370.805164451505,
+        "move": 279.18,
+        "focus": 142,
+        "retreat": true
+      },
+      "target": {
+        "id": "guard-rescue-archer",
+        "x": 3650,
+        "y": 4812.5
+      },
+      "risks": [
+        {
+          "id": "a2-enemy-4",
+          "reason": "npc-sightline"
+        },
+        {
+          "id": "tm-court-flank",
+          "reason": "npc-sightline"
+        }
+      ]
+    },
+    {
+      "round": 1,
+      "frame": 2049,
+      "turn": 1,
+      "goal": {
+        "id": "guard-rescue-archer",
+        "x": 3650,
+        "y": 4812.5
+      },
+      "missionGoal": "monk",
+      "op": "move",
+      "hero": "archer",
+      "from": {
+        "x": 2104.595521340365,
+        "y": 5370.805164451505
+      },
+      "to": {
+        "x": 2368.4640481305364,
+        "y": 5300.83006652345
+      },
+      "support": "tm-processional-stair"
+    },
+    {
+      "round": 1,
+      "frame": 2049,
+      "turn": 1,
+      "goal": "monk",
+      "missionGoal": "monk",
+      "op": "defend",
+      "hero": "archer",
+      "decision": {
+        "x": 2104.595521340365,
+        "y": 5370.805164451505,
+        "move": 279.18,
+        "focus": 142,
+        "retreat": true
+      },
+      "moveAfter": 6.181645676301508,
+      "reason": "no-safe-shot"
+    },
+    {
+      "round": 1,
+      "frame": 2049,
+      "turn": 2,
+      "goal": "monk",
+      "missionGoal": "monk",
+      "op": "decision",
+      "hero": "mage",
+      "goalBefore": "monk",
+      "position": {
+        "x": 460,
+        "y": 5480,
+        "move": 1552,
+        "focus": 239,
+        "retreat": false
+      },
+      "target": {
+        "id": "guard-rescue-mage",
+        "x": 3430,
+        "y": 4870.779220779221
+      },
+      "risks": [
+        {
+          "id": "a2-enemy-4",
+          "reason": "npc-sightline"
+        },
+        {
+          "id": "tm-court-flank",
+          "reason": "npc-sightline"
+        }
+      ]
+    },
+    {
+      "round": 1,
+      "frame": 2687,
+      "turn": 2,
+      "goal": {
+        "id": "guard-rescue-mage",
+        "x": 3430,
+        "y": 4870.779220779221
+      },
+      "missionGoal": "monk",
+      "op": "move",
+      "hero": "mage",
+      "from": {
+        "x": 460,
+        "y": 5480
+      },
+      "to": {
+        "x": 1972.413590118057,
+        "y": 5405.1724665693055
+      },
+      "support": "act2-floor"
+    },
+    {
+      "round": 1,
+      "frame": 2687,
+      "turn": 2,
+      "goal": "monk",
+      "missionGoal": "monk",
+      "op": "defend",
+      "hero": "mage",
+      "decision": {
+        "x": 460,
+        "y": 5480,
+        "move": 1552,
+        "focus": 239,
+        "retreat": false
+      },
+      "moveAfter": 7.846559881170384,
+      "reason": "no-safe-shot"
+    },
+    {
+      "round": 1,
+      "frame": 2765,
+      "turn": 3,
+      "goal": "monk",
+      "missionGoal": "monk",
+      "op": "decision",
+      "hero": "knight",
+      "goalBefore": "monk",
+      "position": {
+        "x": 680,
+        "y": 5480,
+        "move": 2015,
+        "focus": 191,
+        "retreat": false
+      },
+      "target": {
+        "id": "guard-rescue-knight",
+        "x": 3300,
+        "y": 4922.441558441558
+      },
+      "risks": [
+        {
+          "id": "a2-enemy-4",
+          "reason": "npc-sightline"
+        },
+        {
+          "id": "tm-court-flank",
+          "reason": "npc-sightline"
+        }
+      ]
+    },
+    {
+      "round": 1,
+      "frame": 3488,
+      "turn": 3,
+      "goal": {
+        "id": "guard-rescue-knight",
+        "x": 3300,
+        "y": 4922.441558441558
+      },
+      "missionGoal": "monk",
+      "op": "move",
+      "hero": "knight",
+      "from": {
+        "x": 680,
+        "y": 5480
+      },
+      "to": {
+        "x": 2496.6375298240214,
+        "y": 5264.941491649274
+      },
+      "support": "tm-processional-stair"
+    },
+    {
+      "round": 1,
+      "frame": 3488,
+      "turn": 3,
+      "goal": "monk",
+      "missionGoal": "monk",
+      "op": "fire",
+      "hero": "knight",
+      "skill": "S03",
+      "target": "tm-court-flank",
+      "hpBefore": 383,
+      "angle": 35.821703561103,
+      "power": 1
+    },
+    {
+      "round": 1,
+      "frame": 3488,
+      "turn": 3,
+      "goal": "monk",
+      "missionGoal": "monk",
+      "op": "escort-engagement",
+      "hero": "knight",
+      "target": "tm-court-flank",
+      "reason": "npc-sightline",
+      "moveBefore": 2015,
+      "moveAfter": 173.53349600044075
+    },
+    {
+      "round": 2,
+      "frame": 4130,
+      "turn": 10,
+      "goal": "monk",
+      "missionGoal": "monk",
+      "op": "decision",
+      "hero": "occultist",
+      "goalBefore": "monk",
+      "position": {
+        "x": 1990.4566894992693,
+        "y": 5400.48126073019,
+        "move": 1653,
+        "focus": 257,
+        "retreat": false
+      },
+      "target": {
+        "id": "monk",
+        "x": 2950,
+        "y": 5004.693877551021
+      },
+      "risks": [
+        {
+          "id": "resident-spirit-1",
+          "reason": "npc-sightline"
+        },
+        {
+          "id": "a2-enemy-4",
+          "reason": "npc-sightline"
+        },
+        {
+          "id": "a2-enemy-5",
+          "reason": "npc-sightline"
+        },
+        {
+          "id": "a2-enemy-9",
+          "reason": "npc-sightline"
+        },
+        {
+          "id": "tm-court-point",
+          "reason": "npc-sightline"
+        }
+      ]
+    },
+    {
+      "round": 2,
+      "frame": 4357,
+      "turn": 10,
+      "goal": "monk",
+      "missionGoal": "monk",
+      "op": "jump",
+      "hero": "occultist",
+      "from": {
+        "x": 2506.808214612483,
+        "y": 5262.093699908505
+      },
+      "to": {
+        "kind": "jump",
+        "x": 2520,
+        "support": "tm-shelter-step",
+        "speed": 0.5
+      }
+    },
+    {
+      "round": 2,
+      "frame": 4500,
+      "turn": 10,
+      "goal": "monk",
+      "missionGoal": "monk",
+      "op": "land",
+      "hero": "occultist",
+      "x": 2517.191547945815,
+      "y": 5172.187230136946,
+      "support": "tm-shelter-step",
+      "expected": "tm-shelter-step"
+    },
+    {
+      "round": 2,
+      "frame": 4556,
+      "turn": 10,
+      "goal": "monk",
+      "missionGoal": "monk",
+      "op": "jump",
+      "hero": "occultist",
+      "from": {
+        "x": 2656.0200488594583,
+        "y": 5162.931996742703
+      },
+      "to": {
+        "kind": "jump",
+        "x": 2710,
+        "support": "tm-shelter-veranda",
+        "speed": 0.5
+      }
+    },
+    {
+      "round": 2,
+      "frame": 4685,
+      "turn": 10,
+      "goal": "monk",
+      "missionGoal": "monk",
+      "op": "land",
+      "hero": "occultist",
+      "x": 2707.9367155261175,
+      "y": 5024.454145671338,
+      "support": "tm-shelter-veranda",
+      "expected": "tm-shelter-veranda"
+    },
+    {
+      "round": 2,
+      "frame": 4778,
+      "turn": 10,
+      "goal": {
+        "id": "monk",
+        "x": 2950,
+        "y": 5004.693877551021
+      },
+      "missionGoal": "monk",
+      "op": "move",
+      "hero": "occultist",
+      "from": {
+        "x": 1990.4566894992693,
+        "y": 5400.48126073019
+      },
+      "to": {
+        "x": 2936.795437011317,
+        "y": 5005.7718010603
+      },
+      "support": "tm-shelter-veranda"
+    },
+    {
+      "round": 2,
+      "frame": 4778,
+      "turn": 10,
+      "goal": "temple-escort",
+      "missionGoal": "temple-escort",
+      "op": "E",
+      "hero": "occultist",
+      "target": "monk",
+      "decision": {
+        "x": 1990.4566894992693,
+        "y": 5400.48126073019,
+        "move": 1653,
+        "focus": 257,
+        "retreat": false
+      }
+    },
+    {
+      "round": 2,
+      "frame": 4856,
+      "turn": 11,
+      "goal": "temple-escort",
+      "missionGoal": "temple-escort",
+      "op": "decision",
+      "hero": "archer",
+      "goalBefore": "temple-escort",
+      "position": {
+        "x": 2375.6549132085256,
+        "y": 5298.816624301613,
+        "move": 1551,
+        "focus": 163,
+        "retreat": false
+      },
+      "target": {
+        "id": "guard-evacuation-archer",
+        "x": 3760,
+        "y": 4785
+      },
+      "risks": []
+    },
+    {
+      "round": 2,
+      "frame": 4907,
+      "turn": 11,
+      "goal": "temple-escort",
+      "missionGoal": "temple-escort",
+      "op": "jump",
+      "hero": "archer",
+      "from": {
+        "x": 2496.476805057032,
+        "y": 5264.986494584031
+      },
+      "to": {
+        "kind": "jump",
+        "x": 2730,
+        "support": "tm-processional-bridge",
+        "speed": 1
+      }
+    },
+    {
+      "round": 2,
+      "frame": 5055,
+      "turn": 11,
+      "goal": "temple-escort",
+      "missionGoal": "temple-escort",
+      "op": "land",
+      "hero": "archer",
+      "x": 2727.643471723687,
+      "y": 5200.391385241506,
+      "support": "tm-processional-bridge",
+      "expected": "tm-processional-bridge"
+    },
+    {
+      "round": 2,
+      "frame": 5479,
+      "turn": 11,
+      "goal": {
+        "id": "guard-evacuation-archer",
+        "x": 3760,
+        "y": 4785
+      },
+      "missionGoal": "temple-escort",
+      "op": "move",
+      "hero": "archer",
+      "from": {
+        "x": 2375.6549132085256,
+        "y": 5298.816624301613
+      },
+      "to": {
+        "x": 3726.1273217696858,
+        "y": 4793.468169557578
+      },
+      "support": "tm-processional-upper"
+    },
+    {
+      "round": 2,
+      "frame": 5479,
+      "turn": 11,
+      "goal": "temple-escort",
+      "missionGoal": "temple-escort",
+      "op": "defend",
+      "hero": "archer",
+      "decision": {
+        "x": 2375.6549132085256,
+        "y": 5298.816624301613,
+        "move": 1551,
+        "focus": 163,
+        "retreat": false
+      },
+      "moveAfter": 37.21661090153716,
+      "reason": "no-route-threat"
+    },
+    {
+      "round": 2,
+      "frame": 5557,
+      "turn": 12,
+      "goal": "temple-escort",
+      "missionGoal": "temple-escort",
+      "op": "decision",
+      "hero": "mage",
+      "goalBefore": "temple-escort",
+      "position": {
+        "x": 1972.413590118057,
+        "y": 5405.1724665693055,
+        "move": 1552,
+        "focus": 239,
+        "retreat": false
+      },
+      "target": {
+        "id": "guard-evacuation-mage",
+        "x": 4397.607000632597,
+        "y": 4347.148639696354
+      },
+      "risks": []
+    },
+    {
+      "round": 2,
+      "frame": 5926,
+      "turn": 12,
+      "goal": "temple-escort",
+      "missionGoal": "temple-escort",
+      "op": "jump",
+      "hero": "mage",
+      "from": {
+        "x": 2496.7517490558585,
+        "y": 5264.90951026436
+      },
+      "to": {
+        "kind": "jump",
+        "x": 2730,
+        "support": "tm-processional-bridge",
+        "speed": 1
+      }
+    },
+    {
+      "round": 2,
+      "frame": 6074,
+      "turn": 12,
+      "goal": "temple-escort",
+      "missionGoal": "temple-escort",
+      "op": "land",
+      "hero": "mage",
+      "x": 2727.601749055851,
+      "y": 5200.403143447897,
+      "support": "tm-processional-bridge",
+      "expected": "tm-processional-bridge"
+    },
+    {
+      "round": 2,
+      "frame": 6223,
+      "turn": 12,
+      "goal": {
+        "id": "guard-evacuation-mage",
+        "x": 4397.607000632597,
+        "y": 4347.148639696354
+      },
+      "missionGoal": "temple-escort",
+      "op": "move",
+      "hero": "mage",
+      "from": {
+        "x": 1972.413590118057,
+        "y": 5405.1724665693055
+      },
+      "to": {
+        "x": 3064.134792491101,
+        "y": 5055.479312111338
+      },
+      "support": "tm-processional-bridge"
+    },
+    {
+      "round": 2,
+      "frame": 6223,
+      "turn": 12,
+      "goal": "temple-escort",
+      "missionGoal": "temple-escort",
+      "op": "defend",
+      "hero": "mage",
+      "decision": {
+        "x": 1972.413590118057,
+        "y": 5405.1724665693055,
+        "move": 1552,
+        "focus": 239,
+        "retreat": false
+      },
+      "moveAfter": 6.945299290341865,
+      "reason": "no-route-threat"
+    },
+    {
+      "round": 2,
+      "frame": 6301,
+      "turn": 13,
+      "goal": "temple-escort",
+      "missionGoal": "temple-escort",
+      "op": "decision",
+      "hero": "knight",
+      "goalBefore": "temple-escort",
+      "position": {
+        "x": 2496.6375298240214,
+        "y": 5264.941491649274,
+        "move": 2015,
+        "focus": 191,
+        "retreat": false
+      },
+      "target": {
+        "id": "guard-evacuation-knight",
+        "x": 4247.607000632597,
+        "y": 4456.465199465807
+      },
+      "risks": []
+    },
+    {
+      "round": 2,
+      "frame": 6301,
+      "turn": 13,
+      "goal": "temple-escort",
+      "missionGoal": "temple-escort",
+      "op": "jump",
+      "hero": "knight",
+      "from": {
+        "x": 2496.6375298240214,
+        "y": 5264.941491649274
+      },
+      "to": {
+        "kind": "jump",
+        "x": 2730,
+        "support": "tm-processional-bridge",
+        "speed": 1
+      }
+    },
+    {
+      "round": 2,
+      "frame": 6456,
+      "turn": 13,
+      "goal": "temple-escort",
+      "missionGoal": "temple-escort",
+      "op": "land",
+      "hero": "knight",
+      "x": 2727.6375298240214,
+      "y": 5200.393059776867,
+      "support": "tm-processional-bridge",
+      "expected": "tm-processional-bridge"
+    },
+    {
+      "round": 2,
+      "frame": 7131,
+      "turn": 13,
+      "goal": {
+        "id": "guard-evacuation-knight",
+        "x": 4247.607000632597,
+        "y": 4456.465199465807
+      },
+      "missionGoal": "temple-escort",
+      "op": "move",
+      "hero": "knight",
+      "from": {
+        "x": 2496.6375298240214,
+        "y": 5264.941491649274
+      },
+      "to": {
+        "x": 4243.7534464986875,
+        "y": 4459.7193118455525
+      },
+      "support": "tm-processional-upper"
+    },
+    {
+      "round": 2,
+      "frame": 7131,
+      "turn": 13,
+      "goal": "temple-escort",
+      "missionGoal": "temple-escort",
+      "op": "defend",
+      "hero": "knight",
+      "decision": {
+        "x": 2496.6375298240214,
+        "y": 5264.941491649274,
+        "move": 2015,
+        "focus": 191,
+        "retreat": false
+      },
+      "moveAfter": 7.700551197702378,
+      "reason": "no-route-threat"
+    },
+    {
+      "round": 3,
+      "frame": 7853,
+      "turn": 20,
+      "goal": "temple-escort",
+      "missionGoal": "temple-escort",
+      "op": "decision",
+      "hero": "archer",
+      "goalBefore": "temple-escort",
+      "position": {
+        "x": 3726.1273217696858,
+        "y": 4793.468169557578,
+        "move": 1551,
+        "focus": 171,
+        "retreat": false
+      },
+      "target": {
+        "id": "guard-evacuation-archer",
+        "x": 4549.13506046429,
+        "y": 4274.41517097714
+      },
+      "risks": []
+    },
+    {
+      "round": 3,
+      "frame": 8238,
+      "turn": 20,
+      "goal": {
+        "id": "guard-evacuation-archer",
+        "x": 4549.13506046429,
+        "y": 4274.41517097714
+      },
+      "missionGoal": "temple-escort",
+      "op": "move",
+      "hero": "archer",
+      "from": {
+        "x": 3726.1273217696858,
+        "y": 4793.468169557578
+      },
+      "to": {
+        "x": 4526.220040441379,
+        "y": 4285.414380588139
+      },
+      "support": "tm-processional-upper"
+    },
+    {
+      "round": 3,
+      "frame": 8298,
+      "turn": 20,
+      "goal": "temple-escort",
+      "missionGoal": "temple-escort",
+      "op": "observe-evacuation",
+      "hero": "archer",
+      "seconds": 0.5,
+      "progress": true
+    },
+    {
+      "round": 3,
+      "frame": 8298,
+      "turn": 20,
+      "goal": "temple-escort",
+      "missionGoal": "temple-escort",
+      "op": "decision",
+      "hero": "archer",
+      "goalBefore": "temple-escort",
+      "position": {
+        "x": 4526.220040441379,
+        "y": 4285.414380588139,
+        "move": 587.3247176204491,
+        "focus": 171,
+        "retreat": false
+      },
+      "target": {
+        "id": "guard-evacuation-archer",
+        "x": 5221.950002994058,
+        "y": 4250
+      },
+      "risks": [
+        {
+          "id": "a2-enemy-10",
+          "reason": "route-body"
+        },
+        {
+          "id": "a2-enemy-12",
+          "reason": "route-body"
+        },
+        {
+          "id": "a2-enemy-11",
+          "reason": "route-body"
+        },
+        {
+          "id": "tm-hall-west-flank",
+          "reason": "route-body"
+        },
+        {
+          "id": "tm-hall-west-lamp",
+          "reason": "route-body"
+        }
+      ]
+    },
+    {
+      "round": 3,
+      "frame": 8521,
+      "turn": 20,
+      "goal": {
+        "id": "guard-evacuation-archer",
+        "x": 5221.950002994058,
+        "y": 4250
+      },
+      "missionGoal": "temple-escort",
+      "op": "move",
+      "hero": "archer",
+      "from": {
+        "x": 4526.220040441379,
+        "y": 4285.414380588139
+      },
+      "to": {
+        "x": 5097.598262559124,
+        "y": 4250
+      },
+      "support": "tm-great-hall-plinth"
+    },
+    {
+      "round": 3,
+      "frame": 8521,
+      "turn": 20,
+      "goal": "temple-escort",
+      "missionGoal": "temple-escort",
+      "op": "fire",
+      "hero": "archer",
+      "skill": "A02",
+      "target": "a2-enemy-10",
+      "hpBefore": 936,
+      "angle": 185.15587717262363,
+      "power": 0.2889989891690507
+    },
+    {
+      "round": 3,
+      "frame": 8521,
+      "turn": 20,
+      "goal": "temple-escort",
+      "missionGoal": "temple-escort",
+      "op": "escort-engagement",
+      "hero": "archer",
+      "target": "a2-enemy-10",
+      "reason": "route-body",
+      "moveBefore": 587.3247176204491,
+      "moveAfter": 7.887217620393585
+    },
+    {
+      "round": 3,
+      "frame": 8906,
+      "turn": 20,
+      "goal": "temple-escort",
+      "missionGoal": "temple-escort",
+      "op": "decision",
+      "hero": "archer",
+      "goalBefore": "temple-escort",
+      "position": {
+        "x": 5097.598262559124,
+        "y": 4250,
+        "move": 279.18,
+        "focus": 142,
+        "retreat": true
+      },
+      "target": {
+        "id": "guard-evacuation-archer",
+        "x": 5221.950002994058,
+        "y": 4250
+      },
+      "risks": [
+        {
+          "id": "a2-enemy-10",
+          "reason": "route-body"
+        },
+        {
+          "id": "a2-enemy-12",
+          "reason": "route-body"
+        },
+        {
+          "id": "a2-enemy-11",
+          "reason": "route-body"
+        },
+        {
+          "id": "tm-hall-west-flank",
+          "reason": "route-body"
+        },
+        {
+          "id": "tm-hall-west-lamp",
+          "reason": "route-body"
+        }
+      ]
+    },
+    {
+      "round": 3,
+      "frame": 8956,
+      "turn": 20,
+      "goal": {
+        "id": "guard-evacuation-archer",
+        "x": 5221.950002994058,
+        "y": 4250
+      },
+      "missionGoal": "temple-escort",
+      "op": "move",
+      "hero": "archer",
+      "from": {
+        "x": 5097.598262559124,
+        "y": 4250
+      },
+      "to": {
+        "x": 5222.002429225808,
+        "y": 4250
+      },
+      "support": "tm-great-hall-plinth"
+    },
+    {
+      "round": 3,
+      "frame": 8956,
+      "turn": 20,
+      "goal": "temple-escort",
+      "missionGoal": "temple-escort",
+      "op": "defend",
+      "hero": "archer",
+      "decision": {
+        "x": 5097.598262559124,
+        "y": 4250,
+        "move": 279.18,
+        "focus": 142,
+        "retreat": true
+      },
+      "moveAfter": 154.77583333331648,
+      "reason": "no-safe-shot"
+    },
+    {
+      "round": 3,
+      "frame": 8956,
+      "turn": 21,
+      "goal": "temple-escort",
+      "missionGoal": "temple-escort",
+      "op": "decision",
+      "hero": "mage",
+      "goalBefore": "temple-escort",
+      "position": {
+        "x": 3064.134792491101,
+        "y": 5055.479312111338,
+        "move": 1552,
+        "focus": 239,
+        "retreat": false
+      },
+      "target": {
+        "id": "guard-evacuation-mage",
+        "x": 5071.950002994058,
+        "y": 4250
+      },
+      "risks": [
+        {
+          "id": "a2-enemy-10",
+          "reason": "route-body"
+        },
+        {
+          "id": "a2-enemy-12",
+          "reason": "route-body"
+        },
+        {
+          "id": "a2-enemy-11",
+          "reason": "route-body"
+        },
+        {
+          "id": "tm-hall-west-flank",
+          "reason": "route-body"
+        },
+        {
+          "id": "tm-hall-west-lamp",
+          "reason": "route-body"
+        }
+      ]
+    },
+    {
+      "round": 3,
+      "frame": 9599,
+      "turn": 21,
+      "goal": {
+        "id": "guard-evacuation-mage",
+        "x": 5071.950002994058,
+        "y": 4250
+      },
+      "missionGoal": "temple-escort",
+      "op": "move",
+      "hero": "mage",
+      "from": {
+        "x": 3064.134792491101,
+        "y": 5055.479312111338
+      },
+      "to": {
+        "x": 4406.258094394626,
+        "y": 4342.99611469058
+      },
+      "support": "tm-processional-upper"
+    },
+    {
+      "round": 3,
+      "frame": 9599,
+      "turn": 21,
+      "goal": "temple-escort",
+      "missionGoal": "temple-escort",
+      "op": "defend",
+      "hero": "mage",
+      "decision": {
+        "x": 3064.134792491101,
+        "y": 5055.479312111338,
+        "move": 1552,
+        "focus": 239,
+        "retreat": false
+      },
+      "moveAfter": 6.432287666161866,
+      "reason": "no-safe-shot"
+    },
+    {
+      "round": 3,
+      "frame": 9677,
+      "turn": 22,
+      "goal": "temple-escort",
+      "missionGoal": "temple-escort",
+      "op": "decision",
+      "hero": "knight",
+      "goalBefore": "temple-escort",
+      "position": {
+        "x": 4243.7534464986875,
+        "y": 4459.7193118455525,
+        "move": 2015,
+        "focus": 191,
+        "retreat": false
+      },
+      "target": {
+        "id": "guard-evacuation-knight",
+        "x": 4921.950002994058,
+        "y": 4250
+      },
+      "risks": [
+        {
+          "id": "a2-enemy-10",
+          "reason": "route-body"
+        },
+        {
+          "id": "a2-enemy-12",
+          "reason": "route-body"
+        },
+        {
+          "id": "a2-enemy-11",
+          "reason": "route-body"
+        },
+        {
+          "id": "tm-hall-west-flank",
+          "reason": "route-body"
+        },
+        {
+          "id": "tm-hall-west-lamp",
+          "reason": "route-body"
+        }
+      ]
+    },
+    {
+      "round": 3,
+      "frame": 9977,
+      "turn": 22,
+      "goal": {
+        "id": "guard-evacuation-knight",
+        "x": 4921.950002994058,
+        "y": 4250
+      },
+      "missionGoal": "temple-escort",
+      "op": "move",
+      "hero": "knight",
+      "from": {
+        "x": 4243.7534464986875,
+        "y": 4459.7193118455525
+      },
+      "to": {
+        "x": 4906.180783200842,
+        "y": 4250
+      },
+      "support": "tm-great-hall-plinth"
+    },
+    {
+      "round": 3,
+      "frame": 9977,
+      "turn": 22,
+      "goal": "temple-escort",
+      "missionGoal": "temple-escort",
+      "op": "fire",
+      "hero": "knight",
+      "skill": "S03",
+      "target": "a2-enemy-10",
+      "hpBefore": 149,
+      "angle": -21.556085343210746,
+      "power": 1
+    },
+    {
+      "round": 3,
+      "frame": 9977,
+      "turn": 22,
+      "goal": "temple-escort",
+      "missionGoal": "temple-escort",
+      "op": "escort-engagement",
+      "hero": "knight",
+      "target": "a2-enemy-10",
+      "reason": "route-body",
+      "moveBefore": 2015,
+      "moveAfter": 1292.4499999999623
+    },
+    {
+      "round": 3,
+      "frame": 10099,
+      "turn": 23,
+      "goal": "temple-escort",
+      "missionGoal": "temple-escort",
+      "op": "decision",
+      "hero": "occultist",
+      "goalBefore": "temple-escort",
+      "position": {
+        "x": 2943.3210610107167,
+        "y": 5005.23909706035,
+        "move": 1653,
+        "focus": 279,
+        "retreat": false
+      },
+      "target": {
+        "id": "guard-evacuation-occultist",
+        "x": 5021.950002994058,
+        "y": 4250
+      },
+      "risks": [
+        {
+          "id": "a2-enemy-11",
+          "reason": "route-body"
+        },
+        {
+          "id": "tm-hall-west-flank",
+          "reason": "route-body"
+        },
+        {
+          "id": "tm-hall-west-lamp",
+          "reason": "route-body"
+        },
+        {
+          "id": "a2-enemy-7",
+          "reason": "npc-sightline"
+        }
+      ]
+    },
+    {
+      "round": 3,
+      "frame": 10391,
+      "turn": 23,
+      "goal": "temple-escort",
+      "missionGoal": "temple-escort",
+      "op": "land",
+      "hero": "occultist",
+      "x": 3500.127369476195,
+      "y": 4849.968157630951,
+      "support": "tm-processional-upper",
+      "expected": "tm-processional-upper"
+    },
+    {
+      "round": 3,
+      "frame": 10811,
+      "turn": 23,
+      "goal": {
+        "id": "guard-evacuation-occultist",
+        "x": 5021.950002994058,
+        "y": 4250
+      },
+      "missionGoal": "temple-escort",
+      "op": "move",
+      "hero": "occultist",
+      "from": {
+        "x": 2943.3210610107167,
+        "y": 5005.23909706035
+      },
+      "to": {
+        "x": 4395.407495148164,
+        "y": 4348.204402328881
+      },
+      "support": "tm-processional-upper"
+    },
+    {
+      "round": 3,
+      "frame": 10811,
+      "turn": 23,
+      "goal": "temple-escort",
+      "missionGoal": "temple-escort",
+      "op": "fire",
+      "hero": "occultist",
+      "skill": "O04",
+      "target": "a2-enemy-11",
+      "hpBefore": 866,
+      "angle": 52,
+      "power": 0.165
+    },
+    {
+      "round": 3,
+      "frame": 10811,
+      "turn": 23,
+      "goal": "temple-escort",
+      "missionGoal": "temple-escort",
+      "op": "escort-engagement",
+      "hero": "occultist",
+      "target": "a2-enemy-11",
+      "reason": "route-body",
+      "moveBefore": 1653,
+      "moveAfter": 5.75134058998001
+    },
+    {
+      "round": 4,
+      "frame": 11682,
+      "turn": 30,
+      "goal": "temple-escort",
+      "missionGoal": "temple-escort",
+      "op": "decision",
+      "hero": "archer",
+      "goalBefore": "temple-escort",
+      "position": {
+        "x": 5222.224484229164,
+        "y": 4250,
+        "move": 1551,
+        "focus": 163,
+        "retreat": false
+      },
+      "target": {
+        "id": "guard-evacuation-archer",
+        "x": 5211.664507593322,
+        "y": 4250
+      },
+      "risks": [
+        {
+          "id": "a2-enemy-11",
+          "reason": "route-body"
+        },
+        {
+          "id": "tm-hall-west-flank",
+          "reason": "route-body"
+        },
+        {
+          "id": "tm-hall-west-lamp",
+          "reason": "route-body"
+        }
+      ]
+    },
+    {
+      "round": 4,
+      "frame": 11682,
+      "turn": 30,
+      "goal": "temple-escort",
+      "missionGoal": "temple-escort",
+      "op": "fire",
+      "hero": "archer",
+      "skill": "A02",
+      "target": "tm-hall-west-lamp",
+      "hpBefore": 1451,
+      "angle": 6.423146585961996,
+      "power": 0.1524151045018612
+    },
+    {
+      "round": 4,
+      "frame": 11682,
+      "turn": 30,
+      "goal": "temple-escort",
+      "missionGoal": "temple-escort",
+      "op": "escort-engagement",
+      "hero": "archer",
+      "target": "tm-hall-west-lamp",
+      "reason": "route-body",
+      "moveBefore": 1551,
+      "moveAfter": 1551
+    },
+    {
+      "round": 4,
+      "frame": 12092,
+      "turn": 30,
+      "goal": "temple-escort",
+      "missionGoal": "temple-escort",
+      "op": "decision",
+      "hero": "archer",
+      "goalBefore": "temple-escort",
+      "position": {
+        "x": 5222.224484229164,
+        "y": 4250,
+        "move": 279.18,
+        "focus": 134,
+        "retreat": true
+      },
+      "target": {
+        "id": "guard-evacuation-archer",
+        "x": 5211.685563158645,
+        "y": 4250
+      },
+      "risks": [
+        {
+          "id": "a2-enemy-11",
+          "reason": "route-body"
+        },
+        {
+          "id": "tm-hall-west-flank",
+          "reason": "route-body"
+        },
+        {
+          "id": "tm-hall-west-lamp",
+          "reason": "route-body"
+        }
+      ]
+    },
+    {
+      "round": 4,
+      "frame": 12152,
+      "turn": 30,
+      "goal": "temple-escort",
+      "missionGoal": "temple-escort",
+      "op": "observe-evacuation",
+      "hero": "archer",
+      "seconds": 0.5,
+      "progress": true
+    },
+    {
+      "round": 4,
+      "frame": 12152,
+      "turn": 30,
+      "goal": "temple-escort",
+      "missionGoal": "temple-escort",
+      "op": "decision",
+      "hero": "archer",
+      "goalBefore": "temple-escort",
+      "position": {
+        "x": 5222.224484229164,
+        "y": 4250,
+        "move": 279.18,
+        "focus": 134,
+        "retreat": true
+      },
+      "target": {
+        "id": "guard-evacuation-archer",
+        "x": 5211.685563158645,
+        "y": 4250
+      },
+      "risks": [
+        {
+          "id": "a2-enemy-11",
+          "reason": "route-body"
+        },
+        {
+          "id": "tm-hall-west-flank",
+          "reason": "route-body"
+        },
+        {
+          "id": "tm-hall-west-lamp",
+          "reason": "route-body"
+        }
+      ]
+    },
+    {
+      "round": 4,
+      "frame": 12212,
+      "turn": 30,
+      "goal": "temple-escort",
+      "missionGoal": "temple-escort",
+      "op": "observe-evacuation",
+      "hero": "archer",
+      "seconds": 0.5,
+      "progress": false
+    },
+    {
+      "round": 4,
+      "frame": 12212,
+      "turn": 30,
+      "goal": "temple-escort",
+      "missionGoal": "temple-escort",
+      "op": "defend",
+      "hero": "archer",
+      "decision": {
+        "x": 5222.224484229164,
+        "y": 4250,
+        "move": 279.18,
+        "focus": 134,
+        "retreat": true
+      },
+      "moveAfter": 279.18,
+      "reason": "no-safe-shot"
+    },
+    {
+      "round": 4,
+      "frame": 12212,
+      "turn": 31,
+      "goal": "temple-escort",
+      "missionGoal": "temple-escort",
+      "op": "decision",
+      "hero": "mage",
+      "goalBefore": "temple-escort",
+      "position": {
+        "x": 4406.258094394626,
+        "y": 4342.99611469058,
+        "move": 1552,
+        "focus": 239,
+        "retreat": false
+      },
+      "target": {
+        "id": "guard-evacuation-mage",
+        "x": 5061.685563158645,
+        "y": 4250
+      },
+      "risks": [
+        {
+          "id": "a2-enemy-11",
+          "reason": "route-body"
+        },
+        {
+          "id": "tm-hall-west-flank",
+          "reason": "route-body"
+        },
+        {
+          "id": "tm-hall-west-lamp",
+          "reason": "route-body"
+        }
+      ]
+    },
+    {
+      "round": 4,
+      "frame": 12491,
+      "turn": 31,
+      "goal": {
+        "id": "guard-evacuation-mage",
+        "x": 5061.685563158645,
+        "y": 4250
+      },
+      "missionGoal": "temple-escort",
+      "op": "move",
+      "hero": "mage",
+      "from": {
+        "x": 4406.258094394626,
+        "y": 4342.99611469058
+      },
+      "to": {
+        "x": 5057.979896907674,
+        "y": 4250
+      },
+      "support": "tm-great-hall-plinth"
+    },
+    {
+      "round": 4,
+      "frame": 12491,
+      "turn": 31,
+      "goal": "temple-escort",
+      "missionGoal": "temple-escort",
+      "op": "fire",
+      "hero": "mage",
+      "skill": "M11",
+      "target": "a2-enemy-11",
+      "hpBefore": 799,
+      "angle": 154,
+      "power": 0.37
+    },
+    {
+      "round": 4,
+      "frame": 12491,
+      "turn": 31,
+      "goal": "temple-escort",
+      "missionGoal": "temple-escort",
+      "op": "escort-engagement",
+      "hero": "mage",
+      "target": "a2-enemy-11",
+      "reason": "route-body",
+      "moveBefore": 1552,
+      "moveAfter": 879.1149999999484
+    },
+    {
+      "round": 4,
+      "frame": 12778,
+      "turn": 32,
+      "goal": "temple-escort",
+      "missionGoal": "temple-escort",
+      "op": "decision",
+      "hero": "knight",
+      "goalBefore": "temple-escort",
+      "position": {
+        "x": 4906.180783200842,
+        "y": 4250,
+        "move": 2015,
+        "focus": 191,
+        "retreat": false
+      },
+      "target": {
+        "id": "guard-evacuation-knight",
+        "x": 4911.685563158645,
+        "y": 4250
+      },
+      "risks": [
+        {
+          "id": "a2-enemy-11",
+          "reason": "route-body"
+        },
+        {
+          "id": "tm-hall-west-flank",
+          "reason": "route-body"
+        },
+        {
+          "id": "tm-hall-west-lamp",
+          "reason": "route-body"
+        }
+      ]
+    },
+    {
+      "round": 4,
+      "frame": 12778,
+      "turn": 32,
+      "goal": "temple-escort",
+      "missionGoal": "temple-escort",
+      "op": "fire",
+      "hero": "knight",
+      "skill": "S01",
+      "target": "a2-enemy-11",
+      "hpBefore": 281,
+      "angle": 178.15299776992504,
+      "power": 0.6800973266657614
+    },
+    {
+      "round": 4,
+      "frame": 12778,
+      "turn": 32,
+      "goal": "temple-escort",
+      "missionGoal": "temple-escort",
+      "op": "escort-engagement",
+      "hero": "knight",
+      "target": "a2-enemy-11",
+      "reason": "route-body",
+      "moveBefore": 2015,
+      "moveAfter": 2015
+    },
+    {
+      "round": 4,
+      "frame": 12911,
+      "turn": 33,
+      "goal": "temple-escort",
+      "missionGoal": "temple-escort",
+      "op": "decision",
+      "hero": "occultist",
+      "goalBefore": "temple-escort",
+      "position": {
+        "x": 4395.407495148164,
+        "y": 4348.204402328881,
+        "move": 1653,
+        "focus": 257,
+        "retreat": false
+      },
+      "target": {
+        "id": "guard-evacuation-occultist",
+        "x": 5013.685563158645,
+        "y": 4250
+      },
+      "risks": [
+        {
+          "id": "tm-hall-west-flank",
+          "reason": "route-body"
+        },
+        {
+          "id": "tm-hall-west-lamp",
+          "reason": "route-body"
+        }
+      ]
+    },
+    {
+      "round": 4,
+      "frame": 13162,
+      "turn": 33,
+      "goal": {
+        "id": "guard-evacuation-occultist",
+        "x": 5013.685563158645,
+        "y": 4250
+      },
+      "missionGoal": "temple-escort",
+      "op": "move",
+      "hero": "occultist",
+      "from": {
+        "x": 4395.407495148164,
+        "y": 4348.204402328881
+      },
+      "to": {
+        "x": 4986.565710296187,
+        "y": 4250
+      },
+      "support": "tm-great-hall-plinth"
+    },
+    {
+      "round": 4,
+      "frame": 13162,
+      "turn": 33,
+      "goal": "temple-escort",
+      "missionGoal": "temple-escort",
+      "op": "fire",
+      "hero": "occultist",
+      "skill": "O04",
+      "target": "tm-hall-west-lamp",
+      "hpBefore": 941,
+      "angle": 10,
+      "power": 0.28500000000000003
+    },
+    {
+      "round": 4,
+      "frame": 13162,
+      "turn": 33,
+      "goal": "temple-escort",
+      "missionGoal": "temple-escort",
+      "op": "escort-engagement",
+      "hero": "occultist",
+      "target": "tm-hall-west-lamp",
+      "reason": "route-body",
+      "moveBefore": 1653,
+      "moveAfter": 1039.493333333392
+    },
+    {
+      "round": 5,
+      "frame": 13972,
+      "turn": 40,
+      "goal": "temple-escort",
+      "missionGoal": "temple-escort",
+      "op": "decision",
+      "hero": "archer",
+      "goalBefore": "temple-escort",
+      "position": {
+        "x": 5222.224484229164,
+        "y": 4250,
+        "move": 1551,
+        "focus": 155,
+        "retreat": false
+      },
+      "target": {
+        "id": "guard-evacuation-archer",
+        "x": 6050,
+        "y": 4250
+      },
+      "risks": [
+        {
+          "id": "tm-hall-west-flank",
+          "reason": "route-body"
+        },
+        {
+          "id": "tm-hall-west-lamp",
+          "reason": "route-body"
+        },
+        {
+          "id": "a2-enemy-15",
+          "reason": "npc-sightline"
+        }
+      ]
+    },
+    {
+      "round": 5,
+      "frame": 14276,
+      "turn": 40,
+      "goal": {
+        "id": "guard-evacuation-archer",
+        "x": 6050,
+        "y": 4250
+      },
+      "missionGoal": "temple-escort",
+      "op": "move",
+      "hero": "archer",
+      "from": {
+        "x": 5222.224484229164,
+        "y": 4250
+      },
+      "to": {
+        "x": 6026.289067562597,
+        "y": 4250
+      },
+      "support": "tm-great-hall-plinth"
+    },
+    {
+      "round": 5,
+      "frame": 14276,
+      "turn": 40,
+      "goal": "temple-escort",
+      "missionGoal": "temple-escort",
+      "op": "fire",
+      "hero": "archer",
+      "skill": "A02",
+      "target": "tm-cloister-guard",
+      "hpBefore": 1451,
+      "angle": 106,
+      "power": 0.8800000000000001
+    },
+    {
+      "round": 5,
+      "frame": 14276,
+      "turn": 40,
+      "goal": "temple-escort",
+      "missionGoal": "temple-escort",
+      "op": "escort-engagement",
+      "hero": "archer",
+      "target": "tm-cloister-guard",
+      "reason": "npc-sightline",
+      "moveBefore": 1551,
+      "moveAfter": 746.9354166665671
+    },
+    {
+      "round": 5,
+      "frame": 15310,
+      "turn": 40,
+      "goal": "temple-escort",
+      "missionGoal": "temple-escort",
+      "op": "decision",
+      "hero": "archer",
+      "goalBefore": "temple-escort",
+      "position": {
+        "x": 6026.289067562597,
+        "y": 4250,
+        "move": 279.18,
+        "focus": 126,
+        "retreat": true
+      },
+      "target": {
+        "id": "guard-evacuation-archer",
+        "x": 6050,
+        "y": 4250
+      },
+      "risks": [
+        {
+          "id": "tm-hall-west-lamp",
+          "reason": "npc-sightline"
+        }
+      ]
+    },
+    {
+      "round": 5,
+      "frame": 15335,
+      "turn": 40,
+      "goal": "hall",
+      "missionGoal": "hall",
+      "op": "escort-arrival-proof",
+      "valid": true,
+      "monks": [
+        {
+          "id": "resident-1",
+          "x": 5646.999890225445,
+          "y": 4250,
+          "hp": 950,
+          "vx": 0,
+          "vy": 0,
+          "jumping": false,
+          "grounded": true
+        },
+        {
+          "id": "objective",
+          "x": 5470.999587473968,
+          "y": 4250,
+          "hp": 1837,
+          "vx": 0,
+          "vy": 0,
+          "jumping": false,
+          "grounded": true
+        }
+      ]
+    },
+    {
+      "round": 5,
+      "frame": 15370,
+      "turn": 40,
+      "goal": "hall",
+      "missionGoal": "hall",
+      "op": "observe-evacuation",
+      "hero": "archer",
+      "seconds": 0.5,
+      "progress": true
+    },
+    {
+      "round": 5,
+      "frame": 15370,
+      "turn": 40,
+      "goal": "hall",
+      "missionGoal": "hall",
+      "op": "decision",
+      "hero": "archer",
+      "goalBefore": "hall",
+      "position": {
+        "x": 6026.289067562597,
+        "y": 4250,
+        "move": 279.18,
+        "focus": 126,
+        "retreat": true
+      },
+      "target": {
+        "id": "hall",
+        "x": 5650,
+        "y": 4250
+      },
+      "risks": [
+        {
+          "id": "tm-hall-west-lamp",
+          "reason": "npc-sightline"
+        }
+      ]
+    },
+    {
+      "round": 5,
+      "frame": 15476,
+      "turn": 40,
+      "goal": {
+        "id": "hall",
+        "x": 5650,
+        "y": 4250
+      },
+      "missionGoal": "hall",
+      "op": "move",
+      "hero": "archer",
+      "from": {
+        "x": 6026.289067562597,
+        "y": 4250
+      },
+      "to": {
+        "x": 5753.299484229228,
+        "y": 4250
+      },
+      "support": "tm-great-hall-plinth"
+    },
+    {
+      "round": 5,
+      "frame": 15476,
+      "turn": 40,
+      "goal": "hall",
+      "missionGoal": "hall",
+      "op": "defend",
+      "hero": "archer",
+      "decision": {
+        "x": 6026.289067562597,
+        "y": 4250,
+        "move": 279.18,
+        "focus": 126,
+        "retreat": true
+      },
+      "moveAfter": 6.190416666631506,
+      "reason": "no-safe-shot"
+    },
+    {
+      "round": 5,
+      "frame": 15476,
+      "turn": 41,
+      "goal": "hall",
+      "missionGoal": "hall",
+      "op": "decision",
+      "hero": "mage",
+      "goalBefore": "hall",
+      "position": {
+        "x": 5057.979896907674,
+        "y": 4250,
+        "move": 1552,
+        "focus": 239,
+        "retreat": false
+      },
+      "target": {
+        "id": "hall",
+        "x": 5650,
+        "y": 4250
+      },
+      "risks": [
+        {
+          "id": "tm-hall-west-lamp",
+          "reason": "npc-sightline"
+        }
+      ]
+    },
+    {
+      "round": 5,
+      "frame": 15714,
+      "turn": 41,
+      "goal": {
+        "id": "hall",
+        "x": 5650,
+        "y": 4250
+      },
+      "missionGoal": "hall",
+      "op": "move",
+      "hero": "mage",
+      "from": {
+        "x": 5057.979896907674,
+        "y": 4250
+      },
+      "to": {
+        "x": 5636.244896907762,
+        "y": 4250
+      },
+      "support": "tm-great-hall-plinth"
+    },
+    {
+      "round": 5,
+      "frame": 15714,
+      "turn": 41,
+      "goal": "record",
+      "missionGoal": "record",
+      "op": "E",
+      "hero": "mage",
+      "target": "hall",
+      "decision": {
+        "x": 5057.979896907674,
+        "y": 4250,
+        "move": 1552,
+        "focus": 239,
+        "retreat": false
+      }
+    },
+    {
+      "round": 5,
+      "frame": 15792,
+      "turn": 42,
+      "goal": "record",
+      "missionGoal": "record",
+      "op": "decision",
+      "hero": "occultist",
+      "goalBefore": "record",
+      "position": {
+        "x": 4986.565710296187,
+        "y": 4250,
+        "move": 1653,
+        "focus": 235,
+        "retreat": false
+      },
+      "target": {
+        "id": "record",
+        "x": 6200,
+        "y": 4250
+      },
+      "risks": [
+        {
+          "id": "tm-hall-west-lamp",
+          "reason": "npc-sightline"
+        }
+      ]
+    },
+    {
+      "round": 5,
+      "frame": 16164,
+      "turn": 42,
+      "goal": {
+        "id": "record",
+        "x": 6200,
+        "y": 4250
+      },
+      "op": "move",
+      "hero": "occultist",
+      "from": {
+        "x": 4986.565710296187,
+        "y": 4250
+      },
+      "to": {
+        "x": 5941.684043629366,
+        "y": 4250
+      },
+      "support": "tm-great-hall-plinth"
+    }
+  ],
+  "rounds": [
+    {
+      "round": 1,
+      "goal": "monk",
+      "heroes": [
+        {
+          "cls": "archer",
+          "hp": 736,
+          "maxHp": 736,
+          "x": 570,
+          "y": 5480,
+          "support": "act2-floor"
+        },
+        {
+          "cls": "mage",
+          "hp": 774,
+          "maxHp": 774,
+          "x": 460,
+          "y": 5480,
+          "support": "act2-floor"
+        },
+        {
+          "cls": "knight",
+          "hp": 1432,
+          "maxHp": 1432,
+          "x": 680,
+          "y": 5480,
+          "support": "act2-floor"
+        },
+        {
+          "cls": "occultist",
+          "hp": 946,
+          "maxHp": 946,
+          "x": 350,
+          "y": 5480,
+          "support": "act2-floor"
+        }
+      ],
+      "enemies": [
+        {
+          "id": "tm-gate-point",
+          "hp": 936,
+          "x": 1490,
+          "y": 5463.285714285715
+        },
+        {
+          "id": "a2-enemy-0",
+          "hp": 936,
+          "x": 1670,
+          "y": 5455.571428571428
+        },
+        {
+          "id": "a2-enemy-1",
+          "hp": 936,
+          "x": 1765,
+          "y": 5451.5
+        },
+        {
+          "id": "tm-gate-captain",
+          "hp": 1451,
+          "x": 1585,
+          "y": 5459.214285714285
+        },
+        {
+          "id": "tm-gate-bat",
+          "hp": 509,
+          "x": 1755,
+          "y": 5261.928571428572
+        },
+        {
+          "id": "tm-court-point",
+          "hp": 1451,
+          "x": 2350,
+          "y": 5306
+        },
+        {
+          "id": "a2-enemy-2",
+          "hp": 936,
+          "x": 2440,
+          "y": 5280.8
+        },
+        {
+          "id": "a2-enemy-3",
+          "hp": 1451,
+          "x": 2530,
+          "y": 5255.6
+        },
+        {
+          "id": "a2-enemy-4",
+          "hp": 936,
+          "x": 2770,
+          "y": 5188.454545454545
+        },
+        {
+          "id": "tm-court-flank",
+          "hp": 936,
+          "x": 2660,
+          "y": 5162.666666666667
+        },
+        {
+          "id": "a2-enemy-5",
+          "hp": 936,
+          "x": 2505,
+          "y": 4933
+        },
+        {
+          "id": "a2-enemy-9",
+          "hp": 936,
+          "x": 2390,
+          "y": 5034.8
+        },
+        {
+          "id": "a2-enemy-6",
+          "hp": 936,
+          "x": 4300,
+          "y": 3764
+        },
+        {
+          "id": "a2-enemy-8",
+          "hp": 936,
+          "x": 4430,
+          "y": 3612.6666666666665
+        },
+        {
+          "id": "a2-enemy-7",
+          "hp": 1451,
+          "x": 4560,
+          "y": 3655
+        },
+        {
+          "id": "tm-cloister-guard",
+          "hp": 1451,
+          "x": 4395,
+          "y": 3892.8333333333335
+        },
+        {
+          "id": "tm-cloister-point",
+          "hp": 936,
+          "x": 4310,
+          "y": 3929.6666666666665
+        },
+        {
+          "id": "a2-enemy-10",
+          "hp": 936,
+          "x": 4940,
+          "y": 4250
+        },
+        {
+          "id": "a2-enemy-12",
+          "hp": 936,
+          "x": 5035,
+          "y": 4250
+        },
+        {
+          "id": "a2-enemy-11",
+          "hp": 1451,
+          "x": 5125,
+          "y": 4250
+        },
+        {
+          "id": "tm-hall-west-flank",
+          "hp": 936,
+          "x": 5230,
+          "y": 4250
+        },
+        {
+          "id": "tm-hall-west-lamp",
+          "hp": 1451,
+          "x": 5340,
+          "y": 4250
+        },
+        {
+          "id": "tm-hall-screen",
+          "hp": 936,
+          "x": 6900,
+          "y": 4250
+        },
+        {
+          "id": "a2-enemy-13",
+          "hp": 936,
+          "x": 6995,
+          "y": 4250
+        },
+        {
+          "id": "a2-enemy-14",
+          "hp": 936,
+          "x": 7080,
+          "y": 4250
+        },
+        {
+          "id": "tm-hall-east-lamp",
+          "hp": 936,
+          "x": 7200,
+          "y": 4250
+        },
+        {
+          "id": "tm-hall-echo",
+          "hp": 936,
+          "x": 7130,
+          "y": 4070
+        },
+        {
+          "id": "a2-enemy-15",
+          "hp": 789,
+          "x": 5375.425625842204,
+          "y": 3542
+        },
+        {
+          "id": "tm-gallery-lantern",
+          "hp": 936,
+          "x": 5470,
+          "y": 3710
+        },
+        {
+          "id": "tm-gallery-bat",
+          "hp": 509,
+          "x": 5440,
+          "y": 3420
+        },
+        {
+          "id": "tm-lower-front",
+          "hp": 936,
+          "x": 4690,
+          "y": 5897.9
+        },
+        {
+          "id": "tm-lower-point",
+          "hp": 936,
+          "x": 4590,
+          "y": 5886.9
+        },
+        {
+          "id": "tm-lower-elite",
+          "hp": 1451,
+          "x": 4890,
+          "y": 5730
+        },
+        {
+          "id": "tm-lower-bat",
+          "hp": 509,
+          "x": 4990,
+          "y": 5560
+        },
+        {
+          "id": "tm-lower-flank",
+          "hp": 936,
+          "x": 6290,
+          "y": 5957.375
+        },
+        {
+          "id": "tm-lower-captain",
+          "hp": 1451,
+          "x": 6375,
+          "y": 5958.4375
+        },
+        {
+          "id": "a2-enemy-16",
+          "hp": 509,
+          "x": 6440,
+          "y": 5749.25
+        },
+        {
+          "id": "tm-archive-front",
+          "hp": 936,
+          "x": 8990,
+          "y": 4827.333333333333
+        },
+        {
+          "id": "a2-enemy-20",
+          "hp": 936,
+          "x": 9080,
+          "y": 4821.333333333333
+        },
+        {
+          "id": "a2-enemy-21",
+          "hp": 936,
+          "x": 9165,
+          "y": 4815.666666666667
+        },
+        {
+          "id": "tm-archive-point",
+          "hp": 936,
+          "x": 8900,
+          "y": 4833.333333333333
+        },
+        {
+          "id": "a2-enemy-17",
+          "hp": 509,
+          "x": 9140,
+          "y": 4458.333333333333
+        },
+        {
+          "id": "a2-enemy-18",
+          "hp": 509,
+          "x": 9630,
+          "y": 4300.2
+        },
+        {
+          "id": "a2-enemy-19",
+          "hp": 789,
+          "x": 9790,
+          "y": 4223.548387096775
+        },
+        {
+          "id": "a2-enemy-22",
+          "hp": 936,
+          "x": 9510,
+          "y": 4485
+        },
+        {
+          "id": "tm-archive-seal",
+          "hp": 1451,
+          "x": 9595,
+          "y": 4481.6
+        },
+        {
+          "id": "a2-enemy-23",
+          "hp": 1451,
+          "x": 10070,
+          "y": 4762.777777777777
+        },
+        {
+          "id": "tm-archive-rear",
+          "hp": 936,
+          "x": 10170,
+          "y": 4572.222222222223
+        },
+        {
+          "id": "resident-spirit-1",
+          "hp": 936,
+          "x": 3080,
+          "y": 4839.081632653061
+        }
+      ],
+      "done": {}
+    },
+    {
+      "round": 2,
+      "goal": "monk",
+      "heroes": [
+        {
+          "cls": "archer",
+          "hp": 703,
+          "maxHp": 736,
+          "x": 2375.6549132085256,
+          "y": 5298.816624301613,
+          "support": "tm-processional-stair"
+        },
+        {
+          "cls": "mage",
+          "hp": 774,
+          "maxHp": 774,
+          "x": 1972.413590118057,
+          "y": 5405.1724665693055,
+          "support": "act2-floor"
+        },
+        {
+          "cls": "knight",
+          "hp": 1432,
+          "maxHp": 1432,
+          "x": 2496.6375298240214,
+          "y": 5264.941491649274,
+          "support": "tm-processional-stair"
+        },
+        {
+          "cls": "occultist",
+          "hp": 946,
+          "maxHp": 946,
+          "x": 1990.4566894992693,
+          "y": 5400.48126073019,
+          "support": "act2-floor"
+        }
+      ],
+      "enemies": [
+        {
+          "id": "tm-gate-point",
+          "hp": 936,
+          "x": 1490,
+          "y": 5463.285714285715
+        },
+        {
+          "id": "a2-enemy-0",
+          "hp": 936,
+          "x": 1670,
+          "y": 5455.571428571428
+        },
+        {
+          "id": "a2-enemy-1",
+          "hp": 936,
+          "x": 1765,
+          "y": 5451.5
+        },
+        {
+          "id": "tm-gate-captain",
+          "hp": 1451,
+          "x": 1585,
+          "y": 5459.214285714285
+        },
+        {
+          "id": "tm-gate-bat",
+          "hp": 509,
+          "x": 1754.9999999999989,
+          "y": 5237.928571428572
+        },
+        {
+          "id": "tm-court-point",
+          "hp": 1451,
+          "x": 2146.767585269018,
+          "y": 5359.840427830055
+        },
+        {
+          "id": "a2-enemy-2",
+          "hp": 360,
+          "x": 2440,
+          "y": 5280.8
+        },
+        {
+          "id": "a2-enemy-3",
+          "hp": 347,
+          "x": 2530,
+          "y": 5255.6
+        },
+        {
+          "id": "a2-enemy-4",
+          "hp": 936,
+          "x": 2770,
+          "y": 5188.454545454545
+        },
+        {
+          "id": "a2-enemy-5",
+          "hp": 936,
+          "x": 2505,
+          "y": 4933
+        },
+        {
+          "id": "a2-enemy-9",
+          "hp": 936,
+          "x": 2390,
+          "y": 5034.8
+        },
+        {
+          "id": "a2-enemy-6",
+          "hp": 936,
+          "x": 4300,
+          "y": 3764
+        },
+        {
+          "id": "a2-enemy-8",
+          "hp": 936,
+          "x": 4430,
+          "y": 3612.6666666666665
+        },
+        {
+          "id": "a2-enemy-7",
+          "hp": 1451,
+          "x": 4560,
+          "y": 3655
+        },
+        {
+          "id": "tm-cloister-guard",
+          "hp": 1451,
+          "x": 4395,
+          "y": 3892.8333333333335
+        },
+        {
+          "id": "tm-cloister-point",
+          "hp": 936,
+          "x": 4310,
+          "y": 3929.6666666666665
+        },
+        {
+          "id": "a2-enemy-10",
+          "hp": 936,
+          "x": 4940,
+          "y": 4250
+        },
+        {
+          "id": "a2-enemy-12",
+          "hp": 936,
+          "x": 5035,
+          "y": 4250
+        },
+        {
+          "id": "a2-enemy-11",
+          "hp": 1451,
+          "x": 5125,
+          "y": 4250
+        },
+        {
+          "id": "tm-hall-west-flank",
+          "hp": 936,
+          "x": 5230,
+          "y": 4250
+        },
+        {
+          "id": "tm-hall-west-lamp",
+          "hp": 1451,
+          "x": 5340,
+          "y": 4250
+        },
+        {
+          "id": "tm-hall-screen",
+          "hp": 936,
+          "x": 6900,
+          "y": 4250
+        },
+        {
+          "id": "a2-enemy-13",
+          "hp": 936,
+          "x": 6995,
+          "y": 4250
+        },
+        {
+          "id": "a2-enemy-14",
+          "hp": 936,
+          "x": 7080,
+          "y": 4250
+        },
+        {
+          "id": "tm-hall-east-lamp",
+          "hp": 936,
+          "x": 7200,
+          "y": 4250
+        },
+        {
+          "id": "tm-hall-echo",
+          "hp": 936,
+          "x": 7130,
+          "y": 4070
+        },
+        {
+          "id": "a2-enemy-15",
+          "hp": 789,
+          "x": 5343.925625842204,
+          "y": 3542
+        },
+        {
+          "id": "tm-gallery-lantern",
+          "hp": 936,
+          "x": 5470,
+          "y": 3710
+        },
+        {
+          "id": "tm-gallery-bat",
+          "hp": 509,
+          "x": 5417.372583002028,
+          "y": 3403.0294372515245
+        },
+        {
+          "id": "tm-lower-front",
+          "hp": 936,
+          "x": 4690,
+          "y": 5897.9
+        },
+        {
+          "id": "tm-lower-point",
+          "hp": 936,
+          "x": 4590,
+          "y": 5886.9
+        },
+        {
+          "id": "tm-lower-elite",
+          "hp": 1451,
+          "x": 4890,
+          "y": 5730
+        },
+        {
+          "id": "tm-lower-bat",
+          "hp": 509,
+          "x": 4989.999999999998,
+          "y": 5536
+        },
+        {
+          "id": "tm-lower-flank",
+          "hp": 936,
+          "x": 6290,
+          "y": 5957.375
+        },
+        {
+          "id": "tm-lower-captain",
+          "hp": 1451,
+          "x": 6375,
+          "y": 5958.4375
+        },
+        {
+          "id": "a2-enemy-16",
+          "hp": 509,
+          "x": 6417.37258300203,
+          "y": 5732.279437251524
+        },
+        {
+          "id": "tm-archive-front",
+          "hp": 936,
+          "x": 8990,
+          "y": 4827.333333333333
+        },
+        {
+          "id": "a2-enemy-20",
+          "hp": 936,
+          "x": 9080,
+          "y": 4821.333333333333
+        },
+        {
+          "id": "a2-enemy-21",
+          "hp": 936,
+          "x": 9165,
+          "y": 4815.666666666667
+        },
+        {
+          "id": "tm-archive-point",
+          "hp": 936,
+          "x": 8900,
+          "y": 4833.333333333333
+        },
+        {
+          "id": "a2-enemy-17",
+          "hp": 509,
+          "x": 9139.999999999998,
+          "y": 4434.333333333333
+        },
+        {
+          "id": "a2-enemy-18",
+          "hp": 509,
+          "x": 9607.37258300203,
+          "y": 4317.170562748477
+        },
+        {
+          "id": "a2-enemy-19",
+          "hp": 789,
+          "x": 9821.5,
+          "y": 4223.548387096775
+        },
+        {
+          "id": "a2-enemy-22",
+          "hp": 936,
+          "x": 9510,
+          "y": 4485
+        },
+        {
+          "id": "tm-archive-seal",
+          "hp": 1451,
+          "x": 9595,
+          "y": 4481.6
+        },
+        {
+          "id": "a2-enemy-23",
+          "hp": 1451,
+          "x": 10070,
+          "y": 4762.777777777777
+        },
+        {
+          "id": "tm-archive-rear",
+          "hp": 936,
+          "x": 10170,
+          "y": 4572.222222222223
+        },
+        {
+          "id": "resident-spirit-1",
+          "hp": 572,
+          "x": 3080,
+          "y": 4839.081632653061
+        }
+      ],
+      "done": {}
+    },
+    {
+      "round": 3,
+      "goal": "temple-escort",
+      "heroes": [
+        {
+          "cls": "archer",
+          "hp": 732,
+          "maxHp": 736,
+          "x": 3726.1273217696858,
+          "y": 4793.468169557578,
+          "support": "tm-processional-upper"
+        },
+        {
+          "cls": "mage",
+          "hp": 774,
+          "maxHp": 774,
+          "x": 3064.134792491101,
+          "y": 5055.479312111338,
+          "support": "tm-processional-bridge"
+        },
+        {
+          "cls": "knight",
+          "hp": 1432,
+          "maxHp": 1432,
+          "x": 4243.7534464986875,
+          "y": 4459.7193118455525,
+          "support": "tm-processional-upper"
+        },
+        {
+          "cls": "occultist",
+          "hp": 879,
+          "maxHp": 946,
+          "x": 2943.3210610107167,
+          "y": 5005.23909706035,
+          "support": "tm-shelter-veranda"
+        }
+      ],
+      "enemies": [
+        {
+          "id": "tm-gate-point",
+          "hp": 936,
+          "x": 1490,
+          "y": 5463.285714285715
+        },
+        {
+          "id": "a2-enemy-0",
+          "hp": 936,
+          "x": 1670,
+          "y": 5455.571428571428
+        },
+        {
+          "id": "a2-enemy-1",
+          "hp": 936,
+          "x": 1765,
+          "y": 5451.5
+        },
+        {
+          "id": "tm-gate-captain",
+          "hp": 1451,
+          "x": 1585,
+          "y": 5459.214285714285
+        },
+        {
+          "id": "tm-gate-bat",
+          "hp": 509,
+          "x": 1777.4805886611814,
+          "y": 5278.633277955537
+        },
+        {
+          "id": "tm-court-point",
+          "hp": 1451,
+          "x": 2146.767585269018,
+          "y": 5359.840427830055
+        },
+        {
+          "id": "a2-enemy-2",
+          "hp": 360,
+          "x": 2440,
+          "y": 5280.8
+        },
+        {
+          "id": "a2-enemy-3",
+          "hp": 347,
+          "x": 2530,
+          "y": 5255.6
+        },
+        {
+          "id": "a2-enemy-4",
+          "hp": 936,
+          "x": 2770,
+          "y": 5188.454545454545
+        },
+        {
+          "id": "a2-enemy-5",
+          "hp": 936,
+          "x": 2505,
+          "y": 4933
+        },
+        {
+          "id": "a2-enemy-9",
+          "hp": 936,
+          "x": 2390,
+          "y": 5034.8
+        },
+        {
+          "id": "a2-enemy-6",
+          "hp": 936,
+          "x": 4300,
+          "y": 3764
+        },
+        {
+          "id": "a2-enemy-8",
+          "hp": 936,
+          "x": 4430,
+          "y": 3612.6666666666665
+        },
+        {
+          "id": "a2-enemy-7",
+          "hp": 1451,
+          "x": 4560,
+          "y": 3655
+        },
+        {
+          "id": "tm-cloister-guard",
+          "hp": 1451,
+          "x": 4395,
+          "y": 3892.8333333333335
+        },
+        {
+          "id": "tm-cloister-point",
+          "hp": 936,
+          "x": 4310,
+          "y": 3929.6666666666665
+        },
+        {
+          "id": "a2-enemy-10",
+          "hp": 936,
+          "x": 4940,
+          "y": 4250
+        },
+        {
+          "id": "a2-enemy-12",
+          "hp": 936,
+          "x": 5035,
+          "y": 4250
+        },
+        {
+          "id": "a2-enemy-11",
+          "hp": 1451,
+          "x": 5125,
+          "y": 4250
+        },
+        {
+          "id": "tm-hall-west-flank",
+          "hp": 936,
+          "x": 5230,
+          "y": 4250
+        },
+        {
+          "id": "tm-hall-west-lamp",
+          "hp": 1451,
+          "x": 5340,
+          "y": 4250
+        },
+        {
+          "id": "tm-hall-screen",
+          "hp": 936,
+          "x": 6900,
+          "y": 4250
+        },
+        {
+          "id": "a2-enemy-13",
+          "hp": 936,
+          "x": 6995,
+          "y": 4250
+        },
+        {
+          "id": "a2-enemy-14",
+          "hp": 936,
+          "x": 7080,
+          "y": 4250
+        },
+        {
+          "id": "tm-hall-east-lamp",
+          "hp": 936,
+          "x": 7200,
+          "y": 4250
+        },
+        {
+          "id": "tm-hall-echo",
+          "hp": 936,
+          "x": 7130,
+          "y": 4070
+        },
+        {
+          "id": "a2-enemy-15",
+          "hp": 789,
+          "x": 5396.883713728684,
+          "y": 3525.3960568716852
+        },
+        {
+          "id": "tm-gallery-lantern",
+          "hp": 936,
+          "x": 5470,
+          "y": 3710
+        },
+        {
+          "id": "tm-gallery-bat",
+          "hp": 509,
+          "x": 5470.373909095326,
+          "y": 3419.4948383202222
+        },
+        {
+          "id": "tm-lower-front",
+          "hp": 936,
+          "x": 4690,
+          "y": 5897.9
+        },
+        {
+          "id": "tm-lower-point",
+          "hp": 936,
+          "x": 4590,
+          "y": 5886.9
+        },
+        {
+          "id": "tm-lower-elite",
+          "hp": 1451,
+          "x": 4890,
+          "y": 5730
+        },
+        {
+          "id": "tm-lower-bat",
+          "hp": 509,
+          "x": 5012.480588661182,
+          "y": 5576.704706526965
+        },
+        {
+          "id": "tm-lower-flank",
+          "hp": 936,
+          "x": 6290,
+          "y": 5957.375
+        },
+        {
+          "id": "tm-lower-captain",
+          "hp": 1451,
+          "x": 6375,
+          "y": 5958.4375
+        },
+        {
+          "id": "a2-enemy-16",
+          "hp": 509,
+          "x": 6471.806377368108,
+          "y": 5749.189849159916
+        },
+        {
+          "id": "tm-archive-front",
+          "hp": 936,
+          "x": 8990,
+          "y": 4827.333333333333
+        },
+        {
+          "id": "a2-enemy-20",
+          "hp": 936,
+          "x": 9080,
+          "y": 4821.333333333333
+        },
+        {
+          "id": "a2-enemy-21",
+          "hp": 936,
+          "x": 9165,
+          "y": 4815.666666666667
+        },
+        {
+          "id": "tm-archive-point",
+          "hp": 936,
+          "x": 8900,
+          "y": 4833.333333333333
+        },
+        {
+          "id": "a2-enemy-17",
+          "hp": 509,
+          "x": 9162.480588661181,
+          "y": 4475.038039860298
+        },
+        {
+          "id": "a2-enemy-18",
+          "hp": 509,
+          "x": 9598,
+          "y": 4300.2
+        },
+        {
+          "id": "a2-enemy-19",
+          "hp": 789,
+          "x": 9767.37258300203,
+          "y": 4240.518949845252
+        },
+        {
+          "id": "a2-enemy-22",
+          "hp": 936,
+          "x": 9510,
+          "y": 4485
+        },
+        {
+          "id": "tm-archive-seal",
+          "hp": 1451,
+          "x": 9595,
+          "y": 4481.6
+        },
+        {
+          "id": "a2-enemy-23",
+          "hp": 1451,
+          "x": 10070,
+          "y": 4762.777777777777
+        },
+        {
+          "id": "tm-archive-rear",
+          "hp": 936,
+          "x": 10170,
+          "y": 4572.222222222223
+        },
+        {
+          "id": "event-11",
+          "hp": 936,
+          "x": 3370,
+          "y": 4688.333333333333
+        },
+        {
+          "id": "event-12",
+          "hp": 1451,
+          "x": 3500,
+          "y": 4580
+        },
+        {
+          "id": "event-13",
+          "hp": 509,
+          "x": 3672.4871130596375,
+          "y": 4268.333333333336
+        }
+      ],
+      "done": {
+        "monk": true,
+        "witness": true
+      }
+    },
+    {
+      "round": 4,
+      "goal": "temple-escort",
+      "heroes": [
+        {
+          "cls": "archer",
+          "hp": 705,
+          "maxHp": 736,
+          "x": 5222.224484229164,
+          "y": 4250,
+          "support": "tm-great-hall-plinth"
+        },
+        {
+          "cls": "mage",
+          "hp": 774,
+          "maxHp": 774,
+          "x": 4406.258094394626,
+          "y": 4342.99611469058,
+          "support": "tm-processional-upper"
+        },
+        {
+          "cls": "knight",
+          "hp": 1432,
+          "maxHp": 1432,
+          "x": 4906.180783200842,
+          "y": 4250,
+          "support": "tm-great-hall-plinth"
+        },
+        {
+          "cls": "occultist",
+          "hp": 879,
+          "maxHp": 946,
+          "x": 4395.407495148164,
+          "y": 4348.204402328881,
+          "support": "tm-processional-upper"
+        }
+      ],
+      "enemies": [
+        {
+          "id": "tm-gate-point",
+          "hp": 936,
+          "x": 1490,
+          "y": 5463.285714285715
+        },
+        {
+          "id": "a2-enemy-0",
+          "hp": 936,
+          "x": 1670,
+          "y": 5455.571428571428
+        },
+        {
+          "id": "a2-enemy-1",
+          "hp": 936,
+          "x": 1765,
+          "y": 5451.5
+        },
+        {
+          "id": "tm-gate-captain",
+          "hp": 1451,
+          "x": 1585,
+          "y": 5459.214285714285
+        },
+        {
+          "id": "tm-gate-bat",
+          "hp": 509,
+          "x": 1723,
+          "y": 5261.928571428572
+        },
+        {
+          "id": "tm-court-point",
+          "hp": 1451,
+          "x": 2146.767585269018,
+          "y": 5359.840427830055
+        },
+        {
+          "id": "a2-enemy-2",
+          "hp": 360,
+          "x": 2440,
+          "y": 5280.8
+        },
+        {
+          "id": "a2-enemy-3",
+          "hp": 347,
+          "x": 2530,
+          "y": 5255.6
+        },
+        {
+          "id": "a2-enemy-4",
+          "hp": 936,
+          "x": 2770,
+          "y": 5188.454545454545
+        },
+        {
+          "id": "a2-enemy-5",
+          "hp": 936,
+          "x": 2505,
+          "y": 4933
+        },
+        {
+          "id": "a2-enemy-9",
+          "hp": 936,
+          "x": 2390,
+          "y": 5034.8
+        },
+        {
+          "id": "a2-enemy-6",
+          "hp": 936,
+          "x": 4300,
+          "y": 3764
+        },
+        {
+          "id": "a2-enemy-8",
+          "hp": 936,
+          "x": 4430,
+          "y": 3612.6666666666665
+        },
+        {
+          "id": "a2-enemy-7",
+          "hp": 1451,
+          "x": 4560,
+          "y": 3655
+        },
+        {
+          "id": "tm-cloister-guard",
+          "hp": 1451,
+          "x": 4395,
+          "y": 3892.8333333333335
+        },
+        {
+          "id": "tm-cloister-point",
+          "hp": 936,
+          "x": 4310,
+          "y": 3929.6666666666665
+        },
+        {
+          "id": "a2-enemy-11",
+          "hp": 799,
+          "x": 4625.8410501246535,
+          "y": 4250
+        },
+        {
+          "id": "tm-hall-west-flank",
+          "hp": 936,
+          "x": 5230,
+          "y": 4250
+        },
+        {
+          "id": "tm-hall-west-lamp",
+          "hp": 1451,
+          "x": 5340,
+          "y": 4250
+        },
+        {
+          "id": "tm-hall-screen",
+          "hp": 936,
+          "x": 6900,
+          "y": 4250
+        },
+        {
+          "id": "a2-enemy-13",
+          "hp": 936,
+          "x": 6995,
+          "y": 4250
+        },
+        {
+          "id": "a2-enemy-14",
+          "hp": 936,
+          "x": 7080,
+          "y": 4250
+        },
+        {
+          "id": "tm-hall-east-lamp",
+          "hp": 936,
+          "x": 7200,
+          "y": 4250
+        },
+        {
+          "id": "tm-hall-echo",
+          "hp": 936,
+          "x": 7130,
+          "y": 4070
+        },
+        {
+          "id": "a2-enemy-15",
+          "hp": 789,
+          "x": 5343.881445118486,
+          "y": 3541.858423717731
+        },
+        {
+          "id": "tm-gallery-lantern",
+          "hp": 936,
+          "x": 5470,
+          "y": 3710
+        },
+        {
+          "id": "tm-gallery-bat",
+          "hp": 509,
+          "x": 5417.372583002028,
+          "y": 3403.029437251525
+        },
+        {
+          "id": "tm-lower-front",
+          "hp": 936,
+          "x": 4690,
+          "y": 5897.9
+        },
+        {
+          "id": "tm-lower-point",
+          "hp": 936,
+          "x": 4590,
+          "y": 5886.9
+        },
+        {
+          "id": "tm-lower-elite",
+          "hp": 1451,
+          "x": 4890,
+          "y": 5730
+        },
+        {
+          "id": "tm-lower-bat",
+          "hp": 509,
+          "x": 4968.006995969353,
+          "y": 5543.503056672162
+        },
+        {
+          "id": "tm-lower-flank",
+          "hp": 936,
+          "x": 6290,
+          "y": 5957.375
+        },
+        {
+          "id": "tm-lower-captain",
+          "hp": 1451,
+          "x": 6375,
+          "y": 5958.4375
+        },
+        {
+          "id": "a2-enemy-16",
+          "hp": 509,
+          "x": 6417.406755578191,
+          "y": 5766.209871166823
+        },
+        {
+          "id": "tm-archive-front",
+          "hp": 936,
+          "x": 8990,
+          "y": 4827.333333333333
+        },
+        {
+          "id": "a2-enemy-20",
+          "hp": 936,
+          "x": 9080,
+          "y": 4821.333333333333
+        },
+        {
+          "id": "a2-enemy-21",
+          "hp": 936,
+          "x": 9165,
+          "y": 4815.666666666667
+        },
+        {
+          "id": "tm-archive-point",
+          "hp": 936,
+          "x": 8900,
+          "y": 4833.333333333333
+        },
+        {
+          "id": "a2-enemy-17",
+          "hp": 509,
+          "x": 9108,
+          "y": 4458.333333333333
+        },
+        {
+          "id": "a2-enemy-18",
+          "hp": 509,
+          "x": 9607.37258300203,
+          "y": 4283.229437251523
+        },
+        {
+          "id": "a2-enemy-19",
+          "hp": 789,
+          "x": 9789.85317166321,
+          "y": 4199.814243318287
+        },
+        {
+          "id": "a2-enemy-22",
+          "hp": 936,
+          "x": 9510,
+          "y": 4485
+        },
+        {
+          "id": "tm-archive-seal",
+          "hp": 1451,
+          "x": 9595,
+          "y": 4481.6
+        },
+        {
+          "id": "a2-enemy-23",
+          "hp": 1451,
+          "x": 10070,
+          "y": 4762.777777777777
+        },
+        {
+          "id": "tm-archive-rear",
+          "hp": 936,
+          "x": 10170,
+          "y": 4572.222222222223
+        },
+        {
+          "id": "event-11",
+          "hp": 936,
+          "x": 3370,
+          "y": 4688.333333333333
+        },
+        {
+          "id": "event-12",
+          "hp": 1451,
+          "x": 3500,
+          "y": 4580
+        },
+        {
+          "id": "event-13",
+          "hp": 509,
+          "x": 3640.9871130596375,
+          "y": 4268.333333333338
+        }
+      ],
+      "done": {
+        "monk": true,
+        "witness": true
+      }
+    },
+    {
+      "round": 5,
+      "goal": "temple-escort",
+      "heroes": [
+        {
+          "cls": "archer",
+          "hp": 705,
+          "maxHp": 736,
+          "x": 5222.224484229164,
+          "y": 4250,
+          "support": "tm-great-hall-plinth"
+        },
+        {
+          "cls": "mage",
+          "hp": 688.2,
+          "maxHp": 774,
+          "x": 5057.979896907674,
+          "y": 4250,
+          "support": "tm-great-hall-plinth"
+        },
+        {
+          "cls": "knight",
+          "hp": 1432,
+          "maxHp": 1432,
+          "x": 4715.8123310605815,
+          "y": 4250,
+          "support": "tm-great-hall-plinth"
+        },
+        {
+          "cls": "occultist",
+          "hp": 879,
+          "maxHp": 946,
+          "x": 4986.565710296187,
+          "y": 4250,
+          "support": "tm-great-hall-plinth"
+        }
+      ],
+      "enemies": [
+        {
+          "id": "tm-gate-point",
+          "hp": 936,
+          "x": 1490,
+          "y": 5463.285714285715
+        },
+        {
+          "id": "a2-enemy-0",
+          "hp": 936,
+          "x": 1670,
+          "y": 5455.571428571428
+        },
+        {
+          "id": "a2-enemy-1",
+          "hp": 936,
+          "x": 1765,
+          "y": 5451.5
+        },
+        {
+          "id": "tm-gate-captain",
+          "hp": 1451,
+          "x": 1585,
+          "y": 5459.214285714285
+        },
+        {
+          "id": "tm-gate-bat",
+          "hp": 509,
+          "x": 1777.4337943660785,
+          "y": 5245.018159520177
+        },
+        {
+          "id": "tm-court-point",
+          "hp": 1451,
+          "x": 2146.767585269018,
+          "y": 5359.840427830055
+        },
+        {
+          "id": "a2-enemy-2",
+          "hp": 360,
+          "x": 2440,
+          "y": 5280.8
+        },
+        {
+          "id": "a2-enemy-3",
+          "hp": 347,
+          "x": 2530,
+          "y": 5255.6
+        },
+        {
+          "id": "a2-enemy-4",
+          "hp": 936,
+          "x": 2770,
+          "y": 5188.454545454545
+        },
+        {
+          "id": "a2-enemy-5",
+          "hp": 936,
+          "x": 2505,
+          "y": 4933
+        },
+        {
+          "id": "a2-enemy-9",
+          "hp": 936,
+          "x": 2390,
+          "y": 5034.8
+        },
+        {
+          "id": "a2-enemy-6",
+          "hp": 936,
+          "x": 4300,
+          "y": 3764
+        },
+        {
+          "id": "a2-enemy-8",
+          "hp": 936,
+          "x": 4430,
+          "y": 3612.6666666666665
+        },
+        {
+          "id": "a2-enemy-7",
+          "hp": 1451,
+          "x": 4560,
+          "y": 3655
+        },
+        {
+          "id": "tm-cloister-guard",
+          "hp": 1451,
+          "x": 4395,
+          "y": 3892.8333333333335
+        },
+        {
+          "id": "tm-cloister-point",
+          "hp": 936,
+          "x": 4310,
+          "y": 3929.6666666666665
+        },
+        {
+          "id": "tm-hall-west-flank",
+          "hp": 936,
+          "x": 5230,
+          "y": 4250
+        },
+        {
+          "id": "tm-hall-west-lamp",
+          "hp": 941,
+          "x": 5340,
+          "y": 4250
+        },
+        {
+          "id": "tm-hall-screen",
+          "hp": 936,
+          "x": 6900,
+          "y": 4250
+        },
+        {
+          "id": "a2-enemy-13",
+          "hp": 936,
+          "x": 6995,
+          "y": 4250
+        },
+        {
+          "id": "a2-enemy-14",
+          "hp": 936,
+          "x": 7080,
+          "y": 4250
+        },
+        {
+          "id": "tm-hall-east-lamp",
+          "hp": 936,
+          "x": 7200,
+          "y": 4250
+        },
+        {
+          "id": "tm-hall-echo",
+          "hp": 936,
+          "x": 7130,
+          "y": 4070
+        },
+        {
+          "id": "a2-enemy-15",
+          "hp": 789,
+          "x": 5352.798208844233,
+          "y": 3525.0294372515236
+        },
+        {
+          "id": "tm-gallery-lantern",
+          "hp": 936,
+          "x": 5470,
+          "y": 3710
+        },
+        {
+          "id": "tm-gallery-bat",
+          "hp": 509,
+          "x": 5439.999999999998,
+          "y": 3396
+        },
+        {
+          "id": "tm-lower-front",
+          "hp": 936,
+          "x": 4690,
+          "y": 5897.9
+        },
+        {
+          "id": "tm-lower-point",
+          "hp": 936,
+          "x": 4590,
+          "y": 5886.9
+        },
+        {
+          "id": "tm-lower-elite",
+          "hp": 1451,
+          "x": 4890,
+          "y": 5730
+        },
+        {
+          "id": "tm-lower-bat",
+          "hp": 509,
+          "x": 5012.62741699797,
+          "y": 5543.029437251523
+        },
+        {
+          "id": "tm-lower-flank",
+          "hp": 936,
+          "x": 6290,
+          "y": 5957.375
+        },
+        {
+          "id": "tm-lower-captain",
+          "hp": 1451,
+          "x": 6375,
+          "y": 5958.4375
+        },
+        {
+          "id": "a2-enemy-16",
+          "hp": 509,
+          "x": 6439.865808920189,
+          "y": 5725.493278443683
+        },
+        {
+          "id": "tm-archive-front",
+          "hp": 936,
+          "x": 8990,
+          "y": 4827.333333333333
+        },
+        {
+          "id": "a2-enemy-20",
+          "hp": 936,
+          "x": 9080,
+          "y": 4821.333333333333
+        },
+        {
+          "id": "a2-enemy-21",
+          "hp": 936,
+          "x": 9165,
+          "y": 4815.666666666667
+        },
+        {
+          "id": "tm-archive-point",
+          "hp": 936,
+          "x": 8900,
+          "y": 4833.333333333333
+        },
+        {
+          "id": "a2-enemy-17",
+          "hp": 509,
+          "x": 9162.433794366061,
+          "y": 4441.422921424944
+        },
+        {
+          "id": "a2-enemy-18",
+          "hp": 509,
+          "x": 9652.627416997972,
+          "y": 4317.170562748476
+        },
+        {
+          "id": "a2-enemy-19",
+          "hp": 789,
+          "x": 9812.557751675471,
+          "y": 4240.394436103266
+        },
+        {
+          "id": "a2-enemy-22",
+          "hp": 936,
+          "x": 9510,
+          "y": 4485
+        },
+        {
+          "id": "tm-archive-seal",
+          "hp": 1451,
+          "x": 9595,
+          "y": 4481.6
+        },
+        {
+          "id": "a2-enemy-23",
+          "hp": 1451,
+          "x": 10070,
+          "y": 4762.777777777777
+        },
+        {
+          "id": "tm-archive-rear",
+          "hp": 936,
+          "x": 10170,
+          "y": 4572.222222222223
+        },
+        {
+          "id": "event-11",
+          "hp": 936,
+          "x": 3540.73884518401,
+          "y": 4550.371748957084
+        },
+        {
+          "id": "event-12",
+          "hp": 1451,
+          "x": 3500,
+          "y": 4580
+        },
+        {
+          "id": "event-13",
+          "hp": 509,
+          "x": 3850.237113059638,
+          "y": 4147.522789505407
+        }
+      ],
+      "done": {
+        "monk": true,
+        "witness": true
+      }
+    },
+    {
+      "round": 5,
+      "goal": "temple-escort",
+      "heroes": [
+        {
+          "cls": "archer",
+          "hp": 705,
+          "maxHp": 736,
+          "x": 5222.224484229164,
+          "y": 4250,
+          "support": "tm-great-hall-plinth"
+        },
+        {
+          "cls": "mage",
+          "hp": 688.2,
+          "maxHp": 774,
+          "x": 5057.979896907674,
+          "y": 4250,
+          "support": "tm-great-hall-plinth"
+        },
+        {
+          "cls": "knight",
+          "hp": 1432,
+          "maxHp": 1432,
+          "x": 4715.8123310605815,
+          "y": 4250,
+          "support": "tm-great-hall-plinth"
+        },
+        {
+          "cls": "occultist",
+          "hp": 879,
+          "maxHp": 946,
+          "x": 4986.565710296187,
+          "y": 4250,
+          "support": "tm-great-hall-plinth"
+        }
+      ],
+      "enemies": [
+        {
+          "id": "tm-gate-point",
+          "hp": 936,
+          "x": 1490,
+          "y": 5463.285714285715
+        },
+        {
+          "id": "a2-enemy-0",
+          "hp": 936,
+          "x": 1670,
+          "y": 5455.571428571428
+        },
+        {
+          "id": "a2-enemy-1",
+          "hp": 936,
+          "x": 1765,
+          "y": 5451.5
+        },
+        {
+          "id": "tm-gate-captain",
+          "hp": 1451,
+          "x": 1585,
+          "y": 5459.214285714285
+        },
+        {
+          "id": "tm-gate-bat",
+          "hp": 509,
+          "x": 1777.4337943660785,
+          "y": 5245.018159520177
+        },
+        {
+          "id": "tm-court-point",
+          "hp": 1451,
+          "x": 2146.767585269018,
+          "y": 5359.840427830055
+        },
+        {
+          "id": "a2-enemy-2",
+          "hp": 360,
+          "x": 2440,
+          "y": 5280.8
+        },
+        {
+          "id": "a2-enemy-3",
+          "hp": 347,
+          "x": 2530,
+          "y": 5255.6
+        },
+        {
+          "id": "a2-enemy-4",
+          "hp": 936,
+          "x": 2770,
+          "y": 5188.454545454545
+        },
+        {
+          "id": "a2-enemy-5",
+          "hp": 936,
+          "x": 2505,
+          "y": 4933
+        },
+        {
+          "id": "a2-enemy-9",
+          "hp": 936,
+          "x": 2390,
+          "y": 5034.8
+        },
+        {
+          "id": "a2-enemy-6",
+          "hp": 936,
+          "x": 4300,
+          "y": 3764
+        },
+        {
+          "id": "a2-enemy-8",
+          "hp": 936,
+          "x": 4430,
+          "y": 3612.6666666666665
+        },
+        {
+          "id": "a2-enemy-7",
+          "hp": 1451,
+          "x": 4560,
+          "y": 3655
+        },
+        {
+          "id": "tm-cloister-guard",
+          "hp": 1451,
+          "x": 4395,
+          "y": 3892.8333333333335
+        },
+        {
+          "id": "tm-cloister-point",
+          "hp": 936,
+          "x": 4310,
+          "y": 3929.6666666666665
+        },
+        {
+          "id": "tm-hall-west-flank",
+          "hp": 936,
+          "x": 5230,
+          "y": 4250
+        },
+        {
+          "id": "tm-hall-west-lamp",
+          "hp": 941,
+          "x": 5340,
+          "y": 4250
+        },
+        {
+          "id": "tm-hall-screen",
+          "hp": 936,
+          "x": 6900,
+          "y": 4250
+        },
+        {
+          "id": "a2-enemy-13",
+          "hp": 936,
+          "x": 6995,
+          "y": 4250
+        },
+        {
+          "id": "a2-enemy-14",
+          "hp": 936,
+          "x": 7080,
+          "y": 4250
+        },
+        {
+          "id": "tm-hall-east-lamp",
+          "hp": 936,
+          "x": 7200,
+          "y": 4250
+        },
+        {
+          "id": "tm-hall-echo",
+          "hp": 936,
+          "x": 7130,
+          "y": 4070
+        },
+        {
+          "id": "a2-enemy-15",
+          "hp": 789,
+          "x": 5352.798208844233,
+          "y": 3525.0294372515236
+        },
+        {
+          "id": "tm-gallery-lantern",
+          "hp": 936,
+          "x": 5470,
+          "y": 3710
+        },
+        {
+          "id": "tm-gallery-bat",
+          "hp": 509,
+          "x": 5439.999999999998,
+          "y": 3396
+        },
+        {
+          "id": "tm-lower-front",
+          "hp": 936,
+          "x": 4690,
+          "y": 5897.9
+        },
+        {
+          "id": "tm-lower-point",
+          "hp": 936,
+          "x": 4590,
+          "y": 5886.9
+        },
+        {
+          "id": "tm-lower-elite",
+          "hp": 1451,
+          "x": 4890,
+          "y": 5730
+        },
+        {
+          "id": "tm-lower-bat",
+          "hp": 509,
+          "x": 5012.62741699797,
+          "y": 5543.029437251523
+        },
+        {
+          "id": "tm-lower-flank",
+          "hp": 936,
+          "x": 6290,
+          "y": 5957.375
+        },
+        {
+          "id": "tm-lower-captain",
+          "hp": 1451,
+          "x": 6375,
+          "y": 5958.4375
+        },
+        {
+          "id": "a2-enemy-16",
+          "hp": 509,
+          "x": 6439.865808920189,
+          "y": 5725.493278443683
+        },
+        {
+          "id": "tm-archive-front",
+          "hp": 936,
+          "x": 8990,
+          "y": 4827.333333333333
+        },
+        {
+          "id": "a2-enemy-20",
+          "hp": 936,
+          "x": 9080,
+          "y": 4821.333333333333
+        },
+        {
+          "id": "a2-enemy-21",
+          "hp": 936,
+          "x": 9165,
+          "y": 4815.666666666667
+        },
+        {
+          "id": "tm-archive-point",
+          "hp": 936,
+          "x": 8900,
+          "y": 4833.333333333333
+        },
+        {
+          "id": "a2-enemy-17",
+          "hp": 509,
+          "x": 9162.433794366061,
+          "y": 4441.422921424944
+        },
+        {
+          "id": "a2-enemy-18",
+          "hp": 509,
+          "x": 9652.627416997972,
+          "y": 4317.170562748476
+        },
+        {
+          "id": "a2-enemy-19",
+          "hp": 789,
+          "x": 9812.557751675471,
+          "y": 4240.394436103266
+        },
+        {
+          "id": "a2-enemy-22",
+          "hp": 936,
+          "x": 9510,
+          "y": 4485
+        },
+        {
+          "id": "tm-archive-seal",
+          "hp": 1451,
+          "x": 9595,
+          "y": 4481.6
+        },
+        {
+          "id": "a2-enemy-23",
+          "hp": 1451,
+          "x": 10070,
+          "y": 4762.777777777777
+        },
+        {
+          "id": "tm-archive-rear",
+          "hp": 936,
+          "x": 10170,
+          "y": 4572.222222222223
+        },
+        {
+          "id": "event-11",
+          "hp": 936,
+          "x": 3540.73884518401,
+          "y": 4550.371748957084
+        },
+        {
+          "id": "event-12",
+          "hp": 1451,
+          "x": 3500,
+          "y": 4580
+        },
+        {
+          "id": "event-13",
+          "hp": 509,
+          "x": 3850.237113059638,
+          "y": 4147.522789505407
+        }
+      ],
+      "done": {
+        "monk": true,
+        "witness": true
+      }
+    }
+  ],
+  "damage": [
+    {
+      "round": 1,
+      "frame": 845,
+      "target": "resident-spirit-1",
+      "side": 1,
+      "owner": "p-occultist",
+      "amount": 364,
+      "remaining": 572,
+      "dead": false
+    },
+    {
+      "round": 1,
+      "frame": 1563,
+      "target": "a2-enemy-2",
+      "side": 1,
+      "owner": "p-archer",
+      "amount": 290,
+      "remaining": 646,
+      "dead": false
+    },
+    {
+      "round": 1,
+      "frame": 1576,
+      "target": "a2-enemy-3",
+      "side": 1,
+      "owner": "p-archer",
+      "amount": 263,
+      "remaining": 1188,
+      "dead": false
+    },
+    {
+      "round": 1,
+      "frame": 1595,
+      "target": "tm-court-flank",
+      "side": 1,
+      "owner": "p-archer",
+      "amount": 241,
+      "remaining": 695,
+      "dead": false
+    },
+    {
+      "round": 1,
+      "frame": 1622,
+      "target": "a2-enemy-2",
+      "side": 1,
+      "owner": "p-archer",
+      "amount": 104,
+      "remaining": 542,
+      "dead": false
+    },
+    {
+      "round": 1,
+      "frame": 1635,
+      "target": "a2-enemy-3",
+      "side": 1,
+      "owner": "p-archer",
+      "amount": 95,
+      "remaining": 1093,
+      "dead": false
+    },
+    {
+      "round": 1,
+      "frame": 1654,
+      "target": "tm-court-flank",
+      "side": 1,
+      "owner": "p-archer",
+      "amount": 87,
+      "remaining": 608,
+      "dead": false
+    },
+    {
+      "round": 1,
+      "frame": 1682,
+      "target": "a2-enemy-2",
+      "side": 1,
+      "owner": "p-archer",
+      "amount": 69,
+      "remaining": 473,
+      "dead": false
+    },
+    {
+      "round": 1,
+      "frame": 1695,
+      "target": "a2-enemy-3",
+      "side": 1,
+      "owner": "p-archer",
+      "amount": 62,
+      "remaining": 1031,
+      "dead": false
+    },
+    {
+      "round": 1,
+      "frame": 1714,
+      "target": "tm-court-flank",
+      "side": 1,
+      "owner": "p-archer",
+      "amount": 130,
+      "remaining": 478,
+      "dead": false
+    },
+    {
+      "round": 1,
+      "frame": 1742,
+      "target": "a2-enemy-2",
+      "side": 1,
+      "owner": "p-archer",
+      "amount": 45,
+      "remaining": 428,
+      "dead": false
+    },
+    {
+      "round": 1,
+      "frame": 1755,
+      "target": "a2-enemy-3",
+      "side": 1,
+      "owner": "p-archer",
+      "amount": 94,
+      "remaining": 937,
+      "dead": false
+    },
+    {
+      "round": 1,
+      "frame": 1774,
+      "target": "tm-court-flank",
+      "side": 1,
+      "owner": "p-archer",
+      "amount": 38,
+      "remaining": 440,
+      "dead": false
+    },
+    {
+      "round": 1,
+      "frame": 1803,
+      "target": "a2-enemy-2",
+      "side": 1,
+      "owner": "p-archer",
+      "amount": 68,
+      "remaining": 360,
+      "dead": false
+    },
+    {
+      "round": 1,
+      "frame": 1817,
+      "target": "a2-enemy-3",
+      "side": 1,
+      "owner": "p-archer",
+      "amount": 27,
+      "remaining": 910,
+      "dead": false
+    },
+    {
+      "round": 1,
+      "frame": 1837,
+      "target": "tm-court-flank",
+      "side": 1,
+      "owner": "p-archer",
+      "amount": 57,
+      "remaining": 383,
+      "dead": false
+    },
+    {
+      "round": 1,
+      "frame": 3496,
+      "target": "a2-enemy-3",
+      "side": 1,
+      "owner": "p-knight",
+      "amount": 563,
+      "remaining": 347,
+      "dead": false
+    },
+    {
+      "round": 1,
+      "frame": 3496,
+      "target": "tm-court-flank",
+      "side": 1,
+      "owner": "p-knight",
+      "amount": 383,
+      "remaining": 0,
+      "dead": true
+    },
+    {
+      "round": 1,
+      "frame": 3833,
+      "target": "p-archer",
+      "side": 0,
+      "owner": "tm-court-point",
+      "amount": 33,
+      "remaining": 703,
+      "dead": false,
+      "source": "normal"
+    },
+    {
+      "round": 2,
+      "frame": 7250,
+      "target": "p-occultist",
+      "side": 0,
+      "owner": "a2-enemy-4",
+      "amount": 41,
+      "remaining": 905,
+      "dead": false,
+      "source": "normal"
+    },
+    {
+      "round": 2,
+      "frame": 7469,
+      "target": "p-occultist",
+      "side": 0,
+      "owner": "event-11",
+      "amount": 26,
+      "remaining": 879,
+      "dead": false,
+      "source": "normal"
+    },
+    {
+      "round": 3,
+      "frame": 8521,
+      "target": "a2-enemy-12",
+      "side": 1,
+      "owner": "p-archer",
+      "amount": 266,
+      "remaining": 670,
+      "dead": false
+    },
+    {
+      "round": 3,
+      "frame": 8550,
+      "target": "a2-enemy-10",
+      "side": 1,
+      "owner": "p-archer",
+      "amount": 548,
+      "remaining": 388,
+      "dead": false
+    },
+    {
+      "round": 3,
+      "frame": 8580,
+      "target": "a2-enemy-12",
+      "side": 1,
+      "owner": "p-archer",
+      "amount": 96,
+      "remaining": 574,
+      "dead": false
+    },
+    {
+      "round": 3,
+      "frame": 8609,
+      "target": "a2-enemy-10",
+      "side": 1,
+      "owner": "p-archer",
+      "amount": 87,
+      "remaining": 301,
+      "dead": false
+    },
+    {
+      "round": 3,
+      "frame": 8640,
+      "target": "a2-enemy-12",
+      "side": 1,
+      "owner": "p-archer",
+      "amount": 63,
+      "remaining": 511,
+      "dead": false
+    },
+    {
+      "round": 3,
+      "frame": 8669,
+      "target": "a2-enemy-10",
+      "side": 1,
+      "owner": "p-archer",
+      "amount": 57,
+      "remaining": 244,
+      "dead": false
+    },
+    {
+      "round": 3,
+      "frame": 8700,
+      "target": "a2-enemy-12",
+      "side": 1,
+      "owner": "p-archer",
+      "amount": 42,
+      "remaining": 469,
+      "dead": false
+    },
+    {
+      "round": 3,
+      "frame": 8729,
+      "target": "a2-enemy-10",
+      "side": 1,
+      "owner": "p-archer",
+      "amount": 38,
+      "remaining": 206,
+      "dead": false
+    },
+    {
+      "round": 3,
+      "frame": 8760,
+      "target": "a2-enemy-12",
+      "side": 1,
+      "owner": "p-archer",
+      "amount": 28,
+      "remaining": 441,
+      "dead": false
+    },
+    {
+      "round": 3,
+      "frame": 8789,
+      "target": "a2-enemy-10",
+      "side": 1,
+      "owner": "p-archer",
+      "amount": 57,
+      "remaining": 149,
+      "dead": false
+    },
+    {
+      "round": 3,
+      "frame": 9985,
+      "target": "a2-enemy-10",
+      "side": 1,
+      "owner": "p-knight",
+      "amount": 149,
+      "remaining": 0,
+      "dead": true
+    },
+    {
+      "round": 3,
+      "frame": 9985,
+      "target": "a2-enemy-12",
+      "side": 1,
+      "owner": "p-knight",
+      "amount": 441,
+      "remaining": 0,
+      "dead": true
+    },
+    {
+      "round": 3,
+      "frame": 9985,
+      "target": "a2-enemy-11",
+      "side": 1,
+      "owner": "p-knight",
+      "amount": 585,
+      "remaining": 866,
+      "dead": false
+    },
+    {
+      "round": 3,
+      "frame": 10925,
+      "target": "p-archer",
+      "side": 0,
+      "owner": "tm-hall-west-flank",
+      "amount": 27,
+      "remaining": 705,
+      "dead": false,
+      "source": "normal"
+    },
+    {
+      "round": 3,
+      "frame": 11263,
+      "target": "objective",
+      "side": 2,
+      "owner": "a2-enemy-11",
+      "amount": 31,
+      "remaining": 1869,
+      "dead": false,
+      "source": "normal"
+    },
+    {
+      "round": 3,
+      "frame": 11263,
+      "target": "a2-enemy-11",
+      "side": 1,
+      "owner": "a2-enemy-11",
+      "amount": 35,
+      "remaining": 831,
+      "dead": false,
+      "source": "normal"
+    },
+    {
+      "round": 3,
+      "frame": 11515,
+      "target": "objective",
+      "side": 2,
+      "owner": "tm-hall-west-lamp",
+      "amount": 32,
+      "remaining": 1837,
+      "dead": false,
+      "source": "normal"
+    },
+    {
+      "round": 3,
+      "frame": 11515,
+      "target": "a2-enemy-11",
+      "side": 1,
+      "owner": "tm-hall-west-lamp",
+      "amount": 32,
+      "remaining": 799,
+      "dead": false,
+      "source": "normal"
+    },
+    {
+      "round": 4,
+      "frame": 11709,
+      "target": "tm-hall-west-lamp",
+      "side": 1,
+      "owner": "p-archer",
+      "amount": 275,
+      "remaining": 1176,
+      "dead": false
+    },
+    {
+      "round": 4,
+      "frame": 11768,
+      "target": "tm-hall-west-lamp",
+      "side": 1,
+      "owner": "p-archer",
+      "amount": 99,
+      "remaining": 1077,
+      "dead": false
+    },
+    {
+      "round": 4,
+      "frame": 11828,
+      "target": "tm-hall-west-lamp",
+      "side": 1,
+      "owner": "p-archer",
+      "amount": 65,
+      "remaining": 1012,
+      "dead": false
+    },
+    {
+      "round": 4,
+      "frame": 11888,
+      "target": "tm-hall-west-lamp",
+      "side": 1,
+      "owner": "p-archer",
+      "amount": 43,
+      "remaining": 969,
+      "dead": false
+    },
+    {
+      "round": 4,
+      "frame": 11948,
+      "target": "tm-hall-west-lamp",
+      "side": 1,
+      "owner": "p-archer",
+      "amount": 28,
+      "remaining": 941,
+      "dead": false
+    },
+    {
+      "round": 4,
+      "frame": 12669,
+      "target": "a2-enemy-11",
+      "side": 1,
+      "owner": "p-mage",
+      "amount": 259,
+      "remaining": 540,
+      "dead": false
+    },
+    {
+      "round": 4,
+      "frame": 12685,
+      "target": "a2-enemy-11",
+      "side": 1,
+      "owner": "p-mage",
+      "amount": 259,
+      "remaining": 281,
+      "dead": false
+    },
+    {
+      "round": 4,
+      "frame": 12818,
+      "target": "a2-enemy-11",
+      "side": 1,
+      "owner": "p-knight",
+      "amount": 281,
+      "remaining": 0,
+      "dead": true
+    },
+    {
+      "round": 4,
+      "frame": 13163,
+      "target": "p-mage",
+      "side": 0,
+      "owner": "p-occultist",
+      "amount": 85.79999999999995,
+      "remaining": 688.2,
+      "dead": false
+    },
+    {
+      "round": 5,
+      "frame": 14982,
+      "target": "tm-cloister-guard",
+      "side": 1,
+      "owner": "p-archer",
+      "amount": 422,
+      "remaining": 1029,
+      "dead": false
+    },
+    {
+      "round": 5,
+      "frame": 15172,
+      "target": "a2-enemy-8",
+      "side": 1,
+      "owner": "p-archer",
+      "amount": 10,
+      "remaining": 926,
+      "dead": false
+    }
+  ],
+  "births": [
+    {
+      "round": 2,
+      "frame": 5557,
+      "turn": 12,
+      "id": "event-11",
+      "source": "temple-cloister-answer",
+      "x": 3370,
+      "y": 4688.333333333333
+    },
+    {
+      "round": 2,
+      "frame": 5557,
+      "turn": 12,
+      "id": "event-12",
+      "source": "temple-cloister-answer",
+      "x": 3500,
+      "y": 4580
+    },
+    {
+      "round": 2,
+      "frame": 5557,
+      "turn": 12,
+      "id": "event-13",
+      "source": "temple-cloister-answer",
+      "x": 3430,
+      "y": 4408.333333333333
+    }
+  ],
+  "notices": [
+    {
+      "round": 2,
+      "frame": 4778,
+      "turn": 10,
+      "text": "승려의 혼이 풀리자 서회랑 아래 돌계단에 석등과 날갯짓이 모인다. 다음 행동 뒤 회랑 경비가 진입한다."
+    },
+    {
+      "round": 2,
+      "frame": 5556,
+      "turn": 12
+    },
+    {
+      "round": 5,
+      "frame": 15334,
+      "turn": 40,
+      "text": "두 승려를 법당 툇마루로 안내 · 완료"
+    },
+    {
+      "round": 5,
+      "frame": 15714,
+      "turn": 41,
+      "text": "기록함이 열리자 동쪽 돌계단에서 호위 셋이 응답한다. 기록방으로 향하는 측면을 살피세요."
+    },
+    {
+      "round": 5,
+      "frame": 15714,
+      "turn": 41,
+      "text": "지나온 길에서 들림이 움직인다. 다음 행동으로 사선을 살피세요."
+    }
+  ],
+  "dialogs": [
+    {
+      "round": 1,
+      "frame": 0,
+      "title": "잠운사",
+      "index": 0,
+      "line": [
+        "서술",
+        "암벽에 붙은 법당 아래에서 노승이 쓰러진 제자를 붙들고 있었다. 손바닥에 써준 이름을 보고도 제자는 다른 이름을 말했다.",
+        {
+          "storyId": "act1-v6:entry-16",
+          "storyTitle": "잠운사",
+          "optional": false,
+          "kind": "narration",
+          "presentation": "inline",
+          "rowId": "arrival.16:281aab977a",
+          "arrivalCamera": {
+            "id": "arrival.16:281aab977a",
+            "intent": "situation",
+            "targets": [
+              {
+                "actor": "resident-1"
+              }
+            ],
+            "padding": 80,
+            "maxScale": 0.8
+          },
+          "camera": {
+            "id": "arrival.16:281aab977a",
+            "intent": "situation",
+            "targets": [
+              {
+                "actor": "resident-1"
+              }
+            ],
+            "padding": 80,
+            "maxScale": 0.8,
+            "speakerPolicy": "none"
+          },
+          "stagingScene": "direction-v2:entry-16"
+        }
+      ]
+    },
+    {
+      "round": 1,
+      "frame": 0,
+      "title": "잠운사",
+      "index": 1,
+      "line": [
+        "설오",
+        "아래 동굴마을에서 올라왔습니다! 쓰러진 스님은 어디 다치셨습니까?",
+        {
+          "storyId": "act1-v6:entry-16",
+          "storyTitle": "잠운사",
+          "rowId": "16.story:fac9522b15",
+          "entryCamera": {
+            "id": "16.story:fac9522b15",
+            "intent": "object-introduction",
+            "targets": [
+              {
+                "actor": "objective"
+              },
+              {
+                "actor": "resident-1"
+              }
+            ],
+            "padding": 80,
+            "maxScale": 0.85
+          },
+          "portraitExpression": "emotion.concern",
+          "camera": {
+            "id": "16.story:fac9522b15",
+            "intent": "object-introduction",
+            "targets": [
+              {
+                "actor": "objective"
+              },
+              {
+                "actor": "resident-1"
+              }
+            ],
+            "padding": 80,
+            "maxScale": 0.85,
+            "speakerPolicy": "context-portrait"
+          },
+          "stagingScene": "direction-v2:entry-16"
+        }
+      ]
+    },
+    {
+      "round": 1,
+      "frame": 0,
+      "title": "잠운사",
+      "index": 2,
+      "line": [
+        "노승",
+        "내 제자요. 정신을 못 차리고 자꾸 남의 이름만 부르오. 손바닥에 제 법명을 먹으로 써 줘도 알아보질 못하오…….",
+        {
+          "storyId": "act1-v6:entry-16",
+          "storyTitle": "잠운사",
+          "rowId": "16.story:c031e526dd",
+          "direction": [
+            {
+              "type": "look",
+              "actor": "objective",
+              "at": {
+                "actor": "resident-1"
+              },
+              "pose": "inspect",
+              "camera": false,
+              "duration": 650
+            },
+            {
+              "type": "look",
+              "at": {
+                "between": [
+                  "objective",
+                  "resident-1"
+                ]
+              },
+              "duration": 650,
+              "scale": 0.8
+            }
+          ],
+          "portraitExpression": "emotion.concern",
+          "stagingScene": "direction-v2:entry-16",
+          "camera": {
+            "intent": "object-introduction",
+            "targets": [
+              {
+                "actor": "objective"
+              },
+              {
+                "actor": "resident-1"
+              }
+            ],
+            "padding": 65,
+            "maxScale": 0.8,
+            "id": "16.story:c031e526dd",
+            "speakerPolicy": "context-portrait"
+          }
+        }
+      ]
+    },
+    {
+      "round": 1,
+      "frame": 0,
+      "title": "잠운사",
+      "index": 3,
+      "line": [
+        "소단",
+        "스님, 그 손 놓지 말고 꼭 잡고 계세요! 제자분 몸에 붙은 혼부터 제가 떼어낼게요!",
+        {
+          "storyId": "act1-v6:entry-16",
+          "storyTitle": "잠운사",
+          "rowId": "16.story:5362278a2a",
+          "direction": [
+            {
+              "type": "look",
+              "actor": "occultist",
+              "at": {
+                "actor": "resident-1"
+              },
+              "pose": "hold-bell",
+              "camera": false,
+              "duration": 650
+            }
+          ],
+          "entryCamera": {
+            "id": "16.story:5362278a2a",
+            "intent": "object-introduction",
+            "targets": [
+              {
+                "actor": "resident-1"
+              }
+            ],
+            "padding": 80,
+            "maxScale": 0.85
+          },
+          "portraitExpression": "emotion.resolve",
+          "camera": {
+            "id": "16.story:5362278a2a",
+            "intent": "object-introduction",
+            "targets": [
+              {
+                "actor": "resident-1"
+              }
+            ],
+            "padding": 80,
+            "maxScale": 0.85,
+            "speakerPolicy": "context-portrait"
+          },
+          "stagingScene": "direction-v2:entry-16"
+        }
+      ]
+    },
+    {
+      "round": 1,
+      "frame": 0,
+      "title": "잠운사",
+      "index": 4,
+      "line": [
+        "안내",
+        "들린 승려 구조 · 구조",
+        {
+          "kind": "guide",
+          "focus": "interact",
+          "storyId": "act1-v6:entry-16",
+          "storyTitle": "잠운사",
+          "stagingScene": "direction-v2:entry-16",
+          "camera": {
+            "intent": "objective",
+            "targets": [
+              {
+                "objective": "interact"
+              }
+            ],
+            "padding": 100,
+            "maxScale": 0.75,
+            "id": "16:entry:4",
+            "speakerPolicy": "none"
+          }
+        }
+      ]
+    },
+    {
+      "round": 1,
+      "frame": 938,
+      "title": "첫 혼령의 기척",
+      "index": 0,
+      "line": [
+        "설오",
+        "저기 움직이는 것 보이십니까? 윤곽이 자꾸 흩어집니다.",
+        {
+          "storyId": "act2:first-spirit-encounter",
+          "storyTitle": "첫 혼령의 기척",
+          "sceneTarget": "a2-enemy-9",
+          "exposureMethod": "manifest",
+          "rowId": "first-spirit.observe",
+          "spiritPart": "observe",
+          "portraitExpression": "base",
+          "delivery": "dialogue",
+          "waitForClear": false,
+          "afterAction": 1,
+          "waitActor": "p-occultist",
+          "waitRound": 1,
+          "stagingScene": "direction-v2:act2:first-spirit-encounter",
+          "camera": {
+            "intent": "object-introduction",
+            "targets": [
+              {
+                "actor": "a2-enemy-9"
+              }
+            ],
+            "padding": 65,
+            "maxScale": 0.8,
+            "id": "first-spirit.observe",
+            "speakerPolicy": "context-portrait"
+          }
+        }
+      ]
+    },
+    {
+      "round": 1,
+      "frame": 938,
+      "title": "첫 혼령의 기척",
+      "index": 1,
+      "line": [
+        "휘겸",
+        "발소리가 없소. 눈앞에 있는데도.",
+        {
+          "storyId": "act2:first-spirit-encounter",
+          "storyTitle": "첫 혼령의 기척",
+          "sceneTarget": "a2-enemy-9",
+          "exposureMethod": "manifest",
+          "rowId": "first-spirit.hwigyeom",
+          "spiritPart": "hwigyeom",
+          "portraitExpression": "base",
+          "delivery": "dialogue",
+          "waitForClear": false,
+          "afterAction": 1,
+          "waitActor": "p-occultist",
+          "waitRound": 1,
+          "stagingScene": "direction-v2:act2:first-spirit-encounter",
+          "camera": {
+            "intent": "conversation",
+            "targets": [
+              {
+                "speaker": "휘겸"
+              },
+              {
+                "actor": "p-archer"
+              }
+            ],
+            "padding": 40,
+            "maxScale": 1.05,
+            "participants": [
+              {
+                "actor": "p-archer"
+              },
+              {
+                "actor": "p-knight"
+              },
+              {
+                "actor": "p-occultist"
+              }
+            ],
+            "id": "first-spirit.hwigyeom",
+            "speakerPolicy": "world"
+          }
+        }
+      ]
+    },
+    {
+      "round": 1,
+      "frame": 938,
+      "title": "첫 혼령의 기척",
+      "index": 2,
+      "line": [
+        "소단",
+        "혼이에요. 제 눈에는 보여요. 아직 떠나지 못했어요.",
+        {
+          "storyId": "act2:first-spirit-encounter",
+          "storyTitle": "첫 혼령의 기척",
+          "sceneTarget": "a2-enemy-9",
+          "exposureMethod": "manifest",
+          "rowId": "first-spirit.recognize",
+          "spiritPart": "recognize",
+          "portraitExpression": "action.listen",
+          "delivery": "dialogue",
+          "waitForClear": false,
+          "afterAction": 1,
+          "waitActor": "p-occultist",
+          "waitRound": 1,
+          "stagingScene": "direction-v2:act2:first-spirit-encounter",
+          "camera": {
+            "intent": "object-introduction",
+            "targets": [
+              {
+                "actor": "occultist"
+              },
+              {
+                "actor": "a2-enemy-9"
+              }
+            ],
+            "padding": 65,
+            "maxScale": 0.8,
+            "id": "first-spirit.recognize",
+            "speakerPolicy": "context-portrait"
+          }
+        }
+      ]
+    },
+    {
+      "round": 1,
+      "frame": 938,
+      "title": "첫 혼령의 기척",
+      "index": 3,
+      "line": [
+        "설오",
+        "화살로 맞힐 수 있습니까?",
+        {
+          "storyId": "act2:first-spirit-encounter",
+          "storyTitle": "첫 혼령의 기척",
+          "sceneTarget": "a2-enemy-9",
+          "exposureMethod": "manifest",
+          "rowId": "first-spirit.ask",
+          "spiritPart": "ask",
+          "portraitExpression": "base",
+          "delivery": "dialogue",
+          "waitForClear": false,
+          "afterAction": 1,
+          "waitActor": "p-occultist",
+          "waitRound": 1,
+          "stagingScene": "direction-v2:act2:first-spirit-encounter",
+          "camera": {
+            "intent": "conversation",
+            "targets": [
+              {
+                "speaker": "설오"
+              },
+              {
+                "actor": "p-knight"
+              }
+            ],
+            "padding": 40,
+            "maxScale": 1.05,
+            "participants": [
+              {
+                "actor": "p-archer"
+              },
+              {
+                "actor": "p-knight"
+              },
+              {
+                "actor": "p-occultist"
+              }
+            ],
+            "id": "first-spirit.ask",
+            "speakerPolicy": "world"
+          }
+        }
+      ]
+    },
+    {
+      "round": 1,
+      "frame": 938,
+      "title": "첫 혼령의 기척",
+      "index": 4,
+      "line": [
+        "소단",
+        "제 혼 공격은 닿아요. 현형부로 붙들면 활과 검도 맞힐 수 있어요.",
+        {
+          "storyId": "act2:first-spirit-encounter",
+          "storyTitle": "첫 혼령의 기척",
+          "sceneTarget": "a2-enemy-9",
+          "exposureMethod": "manifest",
+          "rowId": "first-spirit.reply",
+          "spiritPart": "reply",
+          "portraitExpression": "base",
+          "delivery": "dialogue",
+          "waitForClear": false,
+          "afterAction": 1,
+          "waitActor": "p-occultist",
+          "waitRound": 1,
+          "stagingScene": "direction-v2:act2:first-spirit-encounter",
+          "camera": {
+            "intent": "portrait",
+            "targets": [
+              {
+                "speaker": "소단"
+              }
+            ],
+            "padding": 40,
+            "maxScale": 1.05,
+            "participants": [
+              {
+                "actor": "p-archer"
+              },
+              {
+                "actor": "p-knight"
+              },
+              {
+                "actor": "p-occultist"
+              }
+            ],
+            "id": "first-spirit.reply",
+            "speakerPolicy": "world"
+          }
+        }
+      ]
+    },
+    {
+      "round": 1,
+      "frame": 938,
+      "title": "첫 혼령의 기척",
+      "index": 5,
+      "line": [
+        "안내",
+        "소단의 혼령탄은 드러나지 않은 혼령도 공격할 수 있습니다. 현형부를 맞히면 혼령이 드러나 동행의 활과 검도 제대로 닿습니다.",
+        {
+          "storyId": "act2:first-spirit-encounter",
+          "storyTitle": "첫 혼령의 기척",
+          "sceneTarget": "a2-enemy-9",
+          "exposureMethod": "manifest",
+          "kind": "guide",
+          "guideTitle": "혼령과 현형",
+          "rowId": "first-spirit.guide",
+          "spiritPart": "guide",
+          "delivery": "dialogue",
+          "waitForClear": false,
+          "afterAction": 1,
+          "waitActor": "p-occultist",
+          "waitRound": 1,
+          "stagingScene": "direction-v2:act2:first-spirit-encounter",
+          "camera": {
+            "intent": "objective",
+            "targets": [
+              {
+                "actor": "a2-enemy-9"
+              }
+            ],
+            "padding": 100,
+            "maxScale": 0.75,
+            "id": "first-spirit.guide",
+            "speakerPolicy": "none"
+          }
+        }
+      ]
+    },
+    {
+      "round": 2,
+      "frame": 4856,
+      "title": "잠운사",
+      "index": 0,
+      "line": [
+        "승려",
+        "스님…… 손목이 아픕니다.",
+        {
+          "rowId": "16.beats.monk:0f4bb7f6e6",
+          "portraitExpression": "emotion.concern",
+          "evidenceGoal": "monk",
+          "storyId": "act2-v1:act2-16-monk",
+          "storyTitle": "잠운사",
+          "delivery": "dialogue",
+          "waitForClear": false,
+          "afterAction": 11,
+          "waitActor": "p-occultist",
+          "waitRound": 2,
+          "stagingScene": "direction-v2:act2-v1:act2-16-monk",
+          "camera": {
+            "intent": "conversation",
+            "targets": [
+              {
+                "speaker": "승려"
+              },
+              {
+                "actor": "objective"
+              }
+            ],
+            "padding": 40,
+            "maxScale": 1.05,
+            "participants": [
+              {
+                "actor": "resident-1"
+              },
+              {
+                "actor": "objective"
+              }
+            ],
+            "id": "16.beats.monk:0f4bb7f6e6",
+            "speakerPolicy": "world"
+          }
+        }
+      ]
+    },
+    {
+      "round": 2,
+      "frame": 4856,
+      "title": "잠운사",
+      "index": 1,
+      "line": [
+        "노승",
+        "미안하다. 어서 네 이름부터 말해 보아라.",
+        {
+          "rowId": "16.beats.monk:9dbe497186",
+          "portraitExpression": "emotion.concern",
+          "evidenceGoal": "monk",
+          "storyId": "act2-v1:act2-16-monk",
+          "storyTitle": "잠운사",
+          "delivery": "dialogue",
+          "waitForClear": false,
+          "afterAction": 11,
+          "waitActor": "p-occultist",
+          "waitRound": 2,
+          "stagingScene": "direction-v2:act2-v1:act2-16-monk",
+          "camera": {
+            "intent": "conversation",
+            "targets": [
+              {
+                "speaker": "노승"
+              },
+              {
+                "actor": "resident-1"
+              }
+            ],
+            "padding": 40,
+            "maxScale": 1.05,
+            "participants": [
+              {
+                "actor": "resident-1"
+              },
+              {
+                "actor": "objective"
+              }
+            ],
+            "id": "16.beats.monk:9dbe497186",
+            "speakerPolicy": "world"
+          }
+        }
+      ]
+    },
+    {
+      "round": 2,
+      "frame": 4856,
+      "title": "잠운사",
+      "index": 2,
+      "line": [
+        "서술",
+        "제자가 자기 이름을 말했다. 노승은 그 손의 먹을 소매로 닦았다.",
+        {
+          "rowId": "16.beats.monk:2f98f4516a",
+          "direction": [
+            {
+              "type": "look",
+              "actor": "objective",
+              "at": {
+                "actor": "resident-1"
+              },
+              "pose": "inspect",
+              "camera": false,
+              "duration": 650
+            },
+            {
+              "type": "look",
+              "actor": "resident-1",
+              "at": {
+                "actor": "objective"
+              },
+              "pose": "listen",
+              "camera": false,
+              "duration": 650
+            },
+            {
+              "type": "look",
+              "at": {
+                "between": [
+                  "objective",
+                  "resident-1"
+                ]
+              },
+              "duration": 650,
+              "scale": 0.8
+            }
+          ],
+          "kind": "narration",
+          "evidenceGoal": "monk",
+          "storyId": "act2-v1:act2-16-monk",
+          "storyTitle": "잠운사",
+          "delivery": "dialogue",
+          "waitForClear": false,
+          "afterAction": 11,
+          "waitActor": "p-occultist",
+          "waitRound": 2,
+          "stagingScene": "direction-v2:act2-v1:act2-16-monk",
+          "presentation": "inline",
+          "camera": {
+            "intent": "object-introduction",
+            "targets": [
+              {
+                "actor": "objective"
+              },
+              {
+                "actor": "resident-1"
+              }
+            ],
+            "padding": 65,
+            "maxScale": 0.8,
+            "id": "16.beats.monk:2f98f4516a",
+            "speakerPolicy": "none"
+          }
+        }
+      ]
+    },
+    {
+      "round": 2,
+      "frame": 4856,
+      "title": "잠운사",
+      "index": 0,
+      "line": [
+        "승려",
+        "내려앉은 대종 안에서 사흘 내내 벽을 두드렸습니다. 물 한 모금만 달라고…… 제 귀에 다 들렸는데도…….",
+        {
+          "rowId": "16.beats.witness:83a831d914",
+          "portraitExpression": "emotion.concern",
+          "evidenceGoal": "witness",
+          "storyId": "act2-v1:act2-16-witness",
+          "storyTitle": "잠운사",
+          "delivery": "dialogue",
+          "waitForClear": false,
+          "afterAction": 11,
+          "waitActor": "p-occultist",
+          "waitRound": 2,
+          "camera": {
+            "intent": "conversation",
+            "targets": [
+              {
+                "speaker": "승려"
+              },
+              {
+                "actor": "objective"
+              },
+              {
+                "actor": "p-knight"
+              }
+            ],
+            "padding": 40,
+            "maxScale": 1.05,
+            "participants": [
+              {
+                "actor": "resident-1"
+              },
+              {
+                "actor": "p-archer"
+              },
+              {
+                "actor": "p-knight"
+              },
+              {
+                "actor": "objective"
+              },
+              {
+                "actor": "p-mage"
+              }
+            ],
+            "id": "16.beats.witness:83a831d914",
+            "speakerPolicy": "world"
+          }
+        }
+      ]
+    },
+    {
+      "round": 2,
+      "frame": 4856,
+      "title": "잠운사",
+      "index": 1,
+      "line": [
+        "설오",
+        "사흘 동안이나 살아 있었다면 종을 들어 올려 꺼낼 수 있지 않았습니까?",
+        {
+          "rowId": "16.beats.witness:v2-997ea0aa27",
+          "portraitExpression": "emotion.concern",
+          "evidenceGoal": "witness",
+          "storyId": "act2-v1:act2-16-witness",
+          "storyTitle": "잠운사",
+          "delivery": "dialogue",
+          "waitForClear": false,
+          "afterAction": 11,
+          "waitActor": "p-occultist",
+          "waitRound": 2,
+          "camera": {
+            "intent": "conversation",
+            "targets": [
+              {
+                "speaker": "설오"
+              },
+              {
+                "actor": "p-knight"
+              },
+              {
+                "actor": "p-mage"
+              }
+            ],
+            "padding": 40,
+            "maxScale": 1.05,
+            "participants": [
+              {
+                "actor": "resident-1"
+              },
+              {
+                "actor": "p-archer"
+              },
+              {
+                "actor": "p-knight"
+              },
+              {
+                "actor": "objective"
+              },
+              {
+                "actor": "p-mage"
+              }
+            ],
+            "id": "16.beats.witness:v2-997ea0aa27",
+            "speakerPolicy": "world"
+          }
+        }
+      ]
+    },
+    {
+      "round": 2,
+      "frame": 4856,
+      "title": "잠운사",
+      "index": 2,
+      "line": [
+        "승려",
+        "인양틀은 고장 나지 않았어요! 종지기가 축을 뽑아 감추고, 종 둘레에 검은 줄을 걸었습니다. 줄을 당길 때마다 살려 달라는 소리가 뚝 끊겼어요. 손을 놓으면 다시 들렸는데…….",
+        {
+          "rowId": "16.beats.witness:e8017626a6",
+          "portraitExpression": "emotion.concern",
+          "evidenceGoal": "witness",
+          "storyId": "act2-v1:act2-16-witness",
+          "storyTitle": "잠운사",
+          "delivery": "dialogue",
+          "waitForClear": false,
+          "afterAction": 11,
+          "waitActor": "p-occultist",
+          "waitRound": 2,
+          "camera": {
+            "intent": "conversation",
+            "targets": [
+              {
+                "speaker": "승려"
+              },
+              {
+                "actor": "objective"
+              },
+              {
+                "actor": "p-knight"
+              }
+            ],
+            "padding": 40,
+            "maxScale": 1.05,
+            "participants": [
+              {
+                "actor": "resident-1"
+              },
+              {
+                "actor": "p-archer"
+              },
+              {
+                "actor": "p-knight"
+              },
+              {
+                "actor": "objective"
+              },
+              {
+                "actor": "p-mage"
+              }
+            ],
+            "id": "16.beats.witness:e8017626a6",
+            "speakerPolicy": "world"
+          }
+        }
+      ]
+    },
+    {
+      "round": 2,
+      "frame": 4856,
+      "title": "잠운사",
+      "index": 3,
+      "line": [
+        "휘겸",
+        "멀쩡한 축을 뽑아 사람을 사흘간 가둬 죽였단 말이오? 축을 뺀 작업장이 어디요, 내 눈으로 직접 확인하겠소.",
+        {
+          "rowId": "16.beats.witness:36ea204ae5",
+          "portraitExpression": "emotion.anger",
+          "evidenceGoal": "witness",
+          "storyId": "act2-v1:act2-16-witness",
+          "storyTitle": "잠운사",
+          "delivery": "dialogue",
+          "waitForClear": false,
+          "afterAction": 11,
+          "waitActor": "p-occultist",
+          "waitRound": 2,
+          "camera": {
+            "intent": "conversation",
+            "targets": [
+              {
+                "speaker": "휘겸"
+              },
+              {
+                "actor": "p-archer"
+              },
+              {
+                "actor": "p-mage"
+              }
+            ],
+            "padding": 40,
+            "maxScale": 1.05,
+            "participants": [
+              {
+                "actor": "resident-1"
+              },
+              {
+                "actor": "p-archer"
+              },
+              {
+                "actor": "p-knight"
+              },
+              {
+                "actor": "objective"
+              },
+              {
+                "actor": "p-mage"
+              }
+            ],
+            "id": "16.beats.witness:36ea204ae5",
+            "speakerPolicy": "world"
+          }
+        }
+      ]
+    },
+    {
+      "round": 2,
+      "frame": 4856,
+      "title": "잠운사",
+      "index": 4,
+      "line": [
+        "노승",
+        "법당 뒤편 작업굴로 이어지오. 이 열쇠도 가져가시오. 동쪽 회랑의 기록방을 열면 옛 장부가 남아 있을 거요.",
+        {
+          "rowId": "16.beats.witness:23207f698b",
+          "portraitExpression": "base",
+          "evidenceGoal": "witness",
+          "storyId": "act2-v1:act2-16-witness",
+          "storyTitle": "잠운사",
+          "delivery": "dialogue",
+          "waitForClear": false,
+          "afterAction": 11,
+          "waitActor": "p-occultist",
+          "waitRound": 2,
+          "camera": {
+            "intent": "conversation",
+            "targets": [
+              {
+                "speaker": "노승"
+              },
+              {
+                "actor": "resident-1"
+              },
+              {
+                "actor": "p-knight"
+              }
+            ],
+            "padding": 40,
+            "maxScale": 1.05,
+            "participants": [
+              {
+                "actor": "resident-1"
+              },
+              {
+                "actor": "p-archer"
+              },
+              {
+                "actor": "p-knight"
+              },
+              {
+                "actor": "objective"
+              },
+              {
+                "actor": "p-mage"
+              }
+            ],
+            "id": "16.beats.witness:23207f698b",
+            "speakerPolicy": "world"
+          }
+        }
+      ]
+    },
+    {
+      "round": 2,
+      "frame": 4856,
+      "title": "잠운사",
+      "index": 5,
+      "line": [
+        "서술",
+        "노승이 열쇠를 건넸다. 제자는 그 곁에 남았다.",
+        {
+          "rowId": "16.beats.witness:d6d6df6d30",
+          "kind": "narration",
+          "evidenceGoal": "witness",
+          "storyId": "act2-v1:act2-16-witness",
+          "storyTitle": "잠운사",
+          "delivery": "dialogue",
+          "waitForClear": false,
+          "afterAction": 11,
+          "waitActor": "p-occultist",
+          "waitRound": 2,
+          "camera": {
+            "intent": "situation",
+            "targets": [
+              {
+                "actor": "resident-1"
+              },
+              {
+                "actor": "p-archer"
+              },
+              {
+                "actor": "p-knight"
+              },
+              {
+                "actor": "objective"
+              },
+              {
+                "actor": "p-mage"
+              }
+            ],
+            "padding": 65,
+            "maxScale": 0.8,
+            "id": "16.beats.witness:d6d6df6d30",
+            "speakerPolicy": "none"
+          }
+        }
+      ]
+    },
+    {
+      "round": 2,
+      "frame": 4856,
+      "title": "잠운사",
+      "index": 6,
+      "line": [
+        "담허",
+        "대종을 이곳으로 옮겨 온 건 언제인가?",
+        {
+          "rowId": "16.beats.witness:time-question",
+          "portraitExpression": "base",
+          "evidenceGoal": "witness",
+          "storyId": "act2-v1:act2-16-witness",
+          "storyTitle": "잠운사",
+          "delivery": "dialogue",
+          "waitForClear": false,
+          "afterAction": 11,
+          "waitActor": "p-occultist",
+          "waitRound": 2,
+          "camera": {
+            "intent": "conversation",
+            "targets": [
+              {
+                "speaker": "담허"
+              },
+              {
+                "actor": "p-archer"
+              },
+              {
+                "actor": "p-knight"
+              }
+            ],
+            "padding": 40,
+            "maxScale": 1.05,
+            "participants": [
+              {
+                "actor": "resident-1"
+              },
+              {
+                "actor": "p-archer"
+              },
+              {
+                "actor": "p-knight"
+              },
+              {
+                "actor": "objective"
+              },
+              {
+                "actor": "p-mage"
+              }
+            ],
+            "id": "16.beats.witness:time-question",
+            "speakerPolicy": "world"
+          }
+        }
+      ]
+    },
+    {
+      "round": 2,
+      "frame": 4856,
+      "title": "잠운사",
+      "index": 7,
+      "line": [
+        "노승",
+        "열흘도 지나지 않았소. 내 제자가 짐꾼들 물을 떠다 주었으니, 날짜를 잘못 셌을 리는 없소.",
+        {
+          "rowId": "16.beats.witness:time-local-memory",
+          "portraitExpression": "emotion.concern",
+          "evidenceGoal": "witness",
+          "storyId": "act2-v1:act2-16-witness",
+          "storyTitle": "잠운사",
+          "delivery": "dialogue",
+          "waitForClear": false,
+          "afterAction": 11,
+          "waitActor": "p-occultist",
+          "waitRound": 2,
+          "camera": {
+            "intent": "conversation",
+            "targets": [
+              {
+                "speaker": "노승"
+              },
+              {
+                "actor": "resident-1"
+              },
+              {
+                "actor": "p-knight"
+              }
+            ],
+            "padding": 40,
+            "maxScale": 1.05,
+            "participants": [
+              {
+                "actor": "resident-1"
+              },
+              {
+                "actor": "p-archer"
+              },
+              {
+                "actor": "p-knight"
+              },
+              {
+                "actor": "objective"
+              },
+              {
+                "actor": "p-mage"
+              }
+            ],
+            "id": "16.beats.witness:time-local-memory",
+            "speakerPolicy": "world"
+          }
+        }
+      ]
+    },
+    {
+      "round": 2,
+      "frame": 4856,
+      "title": "잠운사",
+      "index": 8,
+      "line": [
+        "휘겸",
+        "두 분은 법당 툇마루로 가시오. 앞은 우리가 맡겠소.",
+        {
+          "rowId": "16.beats.witness:escort-pilot-a",
+          "portraitExpression": "emotion.resolve",
+          "evidenceGoal": "witness",
+          "storyId": "act2-v1:act2-16-witness",
+          "storyTitle": "잠운사",
+          "delivery": "dialogue",
+          "waitForClear": false,
+          "afterAction": 11,
+          "waitActor": "p-occultist",
+          "waitRound": 2,
+          "camera": {
+            "intent": "conversation",
+            "targets": [
+              {
+                "speaker": "휘겸"
+              },
+              {
+                "actor": "p-archer"
+              },
+              {
+                "actor": "p-mage"
+              }
+            ],
+            "padding": 40,
+            "maxScale": 1.05,
+            "participants": [
+              {
+                "actor": "resident-1"
+              },
+              {
+                "actor": "p-archer"
+              },
+              {
+                "actor": "p-knight"
+              },
+              {
+                "actor": "objective"
+              },
+              {
+                "actor": "p-mage"
+              }
+            ],
+            "id": "16.beats.witness:escort-pilot-a",
+            "speakerPolicy": "world"
+          }
+        }
+      ]
+    },
+    {
+      "round": 5,
+      "frame": 15792,
+      "title": "잠운사",
+      "index": 0,
+      "line": [
+        "설오",
+        "기록방 자물쇠가 열렸습니다. 두 스님은 법당 툇마루 쪽에 무사히 계십니다.",
+        {
+          "rowId": "16.beats.hall:55c42c8952",
+          "portraitExpression": "emotion.relief",
+          "evidenceGoal": "hall",
+          "storyId": "act2-v1:act2-16-hall",
+          "storyTitle": "잠운사",
+          "delivery": "dialogue",
+          "waitForClear": false,
+          "afterAction": 42,
+          "waitActor": "p-mage",
+          "waitRound": 5,
+          "camera": {
+            "intent": "portrait",
+            "targets": [
+              {
+                "speaker": "설오"
+              }
+            ],
+            "padding": 40,
+            "maxScale": 1.05,
+            "participants": [
+              {
+                "actor": "p-archer"
+              },
+              {
+                "actor": "p-knight"
+              }
+            ],
+            "id": "16.beats.hall:55c42c8952",
+            "speakerPolicy": "world"
+          }
+        }
+      ]
+    },
+    {
+      "round": 5,
+      "frame": 15792,
+      "title": "잠운사",
+      "index": 1,
+      "line": [
+        "휘겸",
+        "안쪽 기록함부터 살펴봅시다.",
+        {
+          "rowId": "16.beats.hall:646c07f072",
+          "portraitExpression": "base",
+          "evidenceGoal": "hall",
+          "storyId": "act2-v1:act2-16-hall",
+          "storyTitle": "잠운사",
+          "delivery": "dialogue",
+          "waitForClear": false,
+          "afterAction": 42,
+          "waitActor": "p-mage",
+          "waitRound": 5,
+          "camera": {
+            "intent": "portrait",
+            "targets": [
+              {
+                "speaker": "휘겸"
+              }
+            ],
+            "padding": 40,
+            "maxScale": 1.05,
+            "participants": [
+              {
+                "actor": "p-archer"
+              },
+              {
+                "actor": "p-knight"
+              }
+            ],
+            "id": "16.beats.hall:646c07f072",
+            "speakerPolicy": "world"
+          }
+        }
+      ]
+    },
+    {
+      "round": 5,
+      "frame": 16164,
+      "title": "잠운사",
+      "index": 0,
+      "line": [
+        "기록",
+        "칠십 년 전, 대종 외부 이송\n타종 금지 · 인양로와 바깥길 봉쇄\n출처: [잘려 나감]",
+        {
+          "kind": "document",
+          "documentTitle": "잠운사 이송 기록",
+          "documentId": "temple-transfer",
+          "rowId": "16.beats.record:b15346fb64",
+          "evidenceGoal": "record",
+          "storyId": "act2-v1:act2-16-record",
+          "storyTitle": "잠운사",
+          "delivery": "dialogue",
+          "waitForClear": false,
+          "afterAction": 43,
+          "waitActor": "p-occultist",
+          "waitRound": 5,
+          "camera": {
+            "intent": "situation",
+            "targets": [
+              {
+                "actor": "p-knight"
+              },
+              {
+                "actor": "p-archer"
+              },
+              {
+                "actor": "p-mage"
+              },
+              {
+                "actor": "p-occultist"
+              }
+            ],
+            "padding": 65,
+            "maxScale": 0.8,
+            "id": "16.beats.record:b15346fb64",
+            "speakerPolicy": "none"
+          }
+        }
+      ]
+    },
+    {
+      "round": 5,
+      "frame": 16164,
+      "title": "잠운사",
+      "index": 1,
+      "line": [
+        "휘겸",
+        "이 연호면 칠십 년 전이오. 종을 들여왔다는 날짜가 분명히 여기 있소.",
+        {
+          "rowId": "16.beats.record:time-outside-date",
+          "portraitExpression": "base",
+          "evidenceGoal": "record",
+          "storyId": "act2-v1:act2-16-record",
+          "storyTitle": "잠운사",
+          "delivery": "dialogue",
+          "waitForClear": false,
+          "afterAction": 43,
+          "waitActor": "p-occultist",
+          "waitRound": 5,
+          "camera": {
+            "intent": "conversation",
+            "targets": [
+              {
+                "speaker": "휘겸"
+              },
+              {
+                "actor": "p-mage"
+              }
+            ],
+            "padding": 40,
+            "maxScale": 1.05,
+            "participants": [
+              {
+                "actor": "p-knight"
+              },
+              {
+                "actor": "p-archer"
+              },
+              {
+                "actor": "p-mage"
+              },
+              {
+                "actor": "p-occultist"
+              }
+            ],
+            "id": "16.beats.record:time-outside-date",
+            "speakerPolicy": "world"
+          }
+        }
+      ]
+    },
+    {
+      "round": 5,
+      "frame": 16164,
+      "title": "잠운사",
+      "index": 2,
+      "line": [
+        "설오",
+        "노승은 열흘도 안 됐다고 했습니다. 길에서 만난 석공도 그렇게 말했고요.",
+        {
+          "rowId": "16.beats.record:time-conflict",
+          "portraitExpression": "emotion.concern",
+          "evidenceGoal": "record",
+          "storyId": "act2-v1:act2-16-record",
+          "storyTitle": "잠운사",
+          "delivery": "dialogue",
+          "waitForClear": false,
+          "afterAction": 43,
+          "waitActor": "p-occultist",
+          "waitRound": 5,
+          "camera": {
+            "intent": "conversation",
+            "targets": [
+              {
+                "speaker": "설오"
+              },
+              {
+                "actor": "p-mage"
+              },
+              {
+                "actor": "p-occultist"
+              }
+            ],
+            "padding": 40,
+            "maxScale": 1.05,
+            "participants": [
+              {
+                "actor": "p-knight"
+              },
+              {
+                "actor": "p-archer"
+              },
+              {
+                "actor": "p-mage"
+              },
+              {
+                "actor": "p-occultist"
+              }
+            ],
+            "id": "16.beats.record:time-conflict",
+            "speakerPolicy": "world"
+          }
+        }
+      ]
+    },
+    {
+      "round": 5,
+      "frame": 16164,
+      "title": "잠운사",
+      "index": 3,
+      "line": [
+        "담허",
+        "문서 끝에 찍힌 이 표식…… 산길 길표에 걸려 있던 돌림진과 똑같네. 내가 배운 진법에도 있는 문양이야.",
+        {
+          "rowId": "16.beats.record:3badf85532",
+          "portraitExpression": "base",
+          "evidenceGoal": "record",
+          "storyId": "act2-v1:act2-16-record",
+          "storyTitle": "잠운사",
+          "delivery": "dialogue",
+          "waitForClear": false,
+          "afterAction": 43,
+          "waitActor": "p-occultist",
+          "waitRound": 5,
+          "camera": {
+            "intent": "conversation",
+            "targets": [
+              {
+                "speaker": "담허"
+              },
+              {
+                "actor": "p-archer"
+              },
+              {
+                "actor": "p-occultist"
+              }
+            ],
+            "padding": 40,
+            "maxScale": 1.05,
+            "participants": [
+              {
+                "actor": "p-knight"
+              },
+              {
+                "actor": "p-archer"
+              },
+              {
+                "actor": "p-mage"
+              },
+              {
+                "actor": "p-occultist"
+              }
+            ],
+            "id": "16.beats.record:3badf85532",
+            "speakerPolicy": "world"
+          }
+        }
+      ]
+    },
+    {
+      "round": 5,
+      "frame": 16164,
+      "title": "잠운사",
+      "index": 4,
+      "line": [
+        "설오",
+        "정작 종을 어디서 가져왔는지만 칼로 도려내듯 잘려 나갔군요. 누가 이 산속까지 옮겨 온 겁니까?",
+        {
+          "rowId": "16.beats.record:f67c5a7e76",
+          "portraitExpression": "base",
+          "evidenceGoal": "record",
+          "storyId": "act2-v1:act2-16-record",
+          "storyTitle": "잠운사",
+          "delivery": "dialogue",
+          "waitForClear": false,
+          "afterAction": 43,
+          "waitActor": "p-occultist",
+          "waitRound": 5,
+          "camera": {
+            "intent": "conversation",
+            "targets": [
+              {
+                "speaker": "설오"
+              },
+              {
+                "actor": "p-mage"
+              },
+              {
+                "actor": "p-occultist"
+              }
+            ],
+            "padding": 40,
+            "maxScale": 1.05,
+            "participants": [
+              {
+                "actor": "p-knight"
+              },
+              {
+                "actor": "p-archer"
+              },
+              {
+                "actor": "p-mage"
+              },
+              {
+                "actor": "p-occultist"
+              }
+            ],
+            "id": "16.beats.record:f67c5a7e76",
+            "speakerPolicy": "world"
+          }
+        }
+      ]
+    },
+    {
+      "round": 5,
+      "frame": 16164,
+      "title": "잠운사",
+      "index": 5,
+      "line": [
+        "담허",
+        "마을 사람들 말이 틀린 게 아니었네. 밖에서 칠십 년이 흐르는 동안, 이 안의 때가 멎어 있었던 게야.",
+        {
+          "rowId": "16.beats.record:8b4bd8a300",
+          "portraitExpression": "base",
+          "evidenceGoal": "record",
+          "storyId": "act2-v1:act2-16-record",
+          "storyTitle": "잠운사",
+          "delivery": "dialogue",
+          "waitForClear": false,
+          "afterAction": 43,
+          "waitActor": "p-occultist",
+          "waitRound": 5,
+          "camera": {
+            "intent": "conversation",
+            "targets": [
+              {
+                "speaker": "담허"
+              },
+              {
+                "actor": "p-archer"
+              },
+              {
+                "actor": "p-occultist"
+              }
+            ],
+            "padding": 40,
+            "maxScale": 1.05,
+            "participants": [
+              {
+                "actor": "p-knight"
+              },
+              {
+                "actor": "p-archer"
+              },
+              {
+                "actor": "p-mage"
+              },
+              {
+                "actor": "p-occultist"
+              }
+            ],
+            "id": "16.beats.record:8b4bd8a300",
+            "speakerPolicy": "world"
+          }
+        }
+      ]
+    },
+    {
+      "round": 5,
+      "frame": 16164,
+      "title": "잠운사",
+      "index": 6,
+      "line": [
+        "설오",
+        "그럼 우리가 길을 풀었을 때…….",
+        {
+          "rowId": "16.beats.record:time-realization",
+          "portraitExpression": "emotion.concern",
+          "evidenceGoal": "record",
+          "storyId": "act2-v1:act2-16-record",
+          "storyTitle": "잠운사",
+          "delivery": "dialogue",
+          "waitForClear": false,
+          "afterAction": 43,
+          "waitActor": "p-occultist",
+          "waitRound": 5,
+          "camera": {
+            "intent": "conversation",
+            "targets": [
+              {
+                "speaker": "설오"
+              },
+              {
+                "actor": "p-mage"
+              },
+              {
+                "actor": "p-occultist"
+              }
+            ],
+            "padding": 40,
+            "maxScale": 1.05,
+            "participants": [
+              {
+                "actor": "p-knight"
+              },
+              {
+                "actor": "p-archer"
+              },
+              {
+                "actor": "p-mage"
+              },
+              {
+                "actor": "p-occultist"
+              }
+            ],
+            "id": "16.beats.record:time-realization",
+            "speakerPolicy": "world"
+          }
+        }
+      ]
+    },
+    {
+      "round": 5,
+      "frame": 16164,
+      "title": "잠운사",
+      "index": 7,
+      "line": [
+        "담허",
+        "그래. 바깥과 이어지면서 다시 흐른 거지. 진목은 길을 막았지만, 사람의 때까지 붙들 술법은 아니네. 저 종을 살펴봐야겠어.",
+        {
+          "rowId": "16.beats.record:time-rule",
+          "portraitExpression": "base",
+          "evidenceGoal": "record",
+          "storyId": "act2-v1:act2-16-record",
+          "storyTitle": "잠운사",
+          "delivery": "dialogue",
+          "waitForClear": false,
+          "afterAction": 43,
+          "waitActor": "p-occultist",
+          "waitRound": 5,
+          "camera": {
+            "intent": "conversation",
+            "targets": [
+              {
+                "speaker": "담허"
+              },
+              {
+                "actor": "p-archer"
+              },
+              {
+                "actor": "p-occultist"
+              }
+            ],
+            "padding": 40,
+            "maxScale": 1.05,
+            "participants": [
+              {
+                "actor": "p-knight"
+              },
+              {
+                "actor": "p-archer"
+              },
+              {
+                "actor": "p-mage"
+              },
+              {
+                "actor": "p-occultist"
+              }
+            ],
+            "id": "16.beats.record:time-rule",
+            "speakerPolicy": "world"
+          }
+        }
+      ]
+    },
+    {
+      "round": 5,
+      "frame": 16164,
+      "title": "잠운사",
+      "index": 8,
+      "line": [
+        "소단",
+        "아래 분들은 아무것도 모르고 기다리고 있었는데…… 돌아오겠다는 말만 믿고.",
+        {
+          "rowId": "16.beats.record:time-human-cost",
+          "portraitExpression": "emotion.sorrow",
+          "evidenceGoal": "record",
+          "storyId": "act2-v1:act2-16-record",
+          "storyTitle": "잠운사",
+          "delivery": "dialogue",
+          "waitForClear": false,
+          "afterAction": 43,
+          "waitActor": "p-occultist",
+          "waitRound": 5,
+          "camera": {
+            "intent": "conversation",
+            "targets": [
+              {
+                "speaker": "소단"
+              },
+              {
+                "actor": "p-archer"
+              },
+              {
+                "actor": "p-mage"
+              }
+            ],
+            "padding": 40,
+            "maxScale": 1.05,
+            "participants": [
+              {
+                "actor": "p-knight"
+              },
+              {
+                "actor": "p-archer"
+              },
+              {
+                "actor": "p-mage"
+              },
+              {
+                "actor": "p-occultist"
+              }
+            ],
+            "id": "16.beats.record:time-human-cost",
+            "speakerPolicy": "world"
+          }
+        }
+      ]
+    },
+    {
+      "round": 5,
+      "frame": 16164,
+      "title": "잠운사",
+      "index": 9,
+      "line": [
+        "휘겸",
+        "법당 뒤편 작업굴로 갑시다. 종지기가 빼돌렸다는 인양축부터 직접 찾아보겠소.",
+        {
+          "storyId": "act1-v6:outcome-16",
+          "storyTitle": "잠운사",
+          "rowId": "16.outro:c7561a06ab",
+          "portraitExpression": "base",
+          "camera": {
+            "intent": "conversation",
+            "targets": [
+              {
+                "speaker": "휘겸"
+              },
+              {
+                "actor": "p-mage"
+              }
+            ],
+            "padding": 40,
+            "maxScale": 1.05,
+            "participants": [
+              {
+                "actor": "p-knight"
+              },
+              {
+                "actor": "p-archer"
+              },
+              {
+                "actor": "p-mage"
+              },
+              {
+                "actor": "p-occultist"
+              }
+            ],
+            "id": "16.outro:c7561a06ab",
+            "speakerPolicy": "world"
+          }
+        }
+      ]
+    },
+    {
+      "round": 5,
+      "frame": 16164,
+      "title": "잠운사",
+      "index": 10,
+      "line": [
+        "설오",
+        "사흘 동안이나 두드렸다는데…… 그 축을 숨긴 자가 아직 안에 있습니다.",
+        {
+          "storyId": "act1-v6:outcome-16",
+          "storyTitle": "잠운사",
+          "rowId": "16.outro:1e1d99971c",
+          "portraitExpression": "base",
+          "camera": {
+            "intent": "conversation",
+            "targets": [
+              {
+                "speaker": "설오"
+              },
+              {
+                "actor": "p-mage"
+              },
+              {
+                "actor": "p-occultist"
+              }
+            ],
+            "padding": 40,
+            "maxScale": 1.05,
+            "participants": [
+              {
+                "actor": "p-knight"
+              },
+              {
+                "actor": "p-archer"
+              },
+              {
+                "actor": "p-mage"
+              },
+              {
+                "actor": "p-occultist"
+              }
+            ],
+            "id": "16.outro:1e1d99971c",
+            "speakerPolicy": "world"
+          }
+        }
+      ]
+    }
+  ],
+  "continues": [
+    {
+      "path": "_local/reports/stage16-escort-pacing/escort-final/checkpoint.json",
+      "round": 5,
+      "method": "production App Continue; exact actors/terrain/items/turn/objectives/waves/progression asserted",
+      "statePreserved": true,
+      "previousProvenance": {
+        "sourceHash": "c911d3f9e6ca636d9edb083beb03346088e2aa90b2e5dbd0103b64233791f587",
+        "runtimeSha256": "a8abd6802905bb40fccf89b449b397bbffd048945c8cd3a834692b1b7465addc",
+        "gameplayProjectSha256": "debcb3f2a24896da5a76fbdf2961e08fd16013732e3e609712ede897b6058789",
+        "gameplayRuntimeSha256": "cfa4aab11a855476cb50d43b2d41dab9258ac033dfff2b604da24c62ab6d29d2",
+        "controllerSha256": "27946bd0763ee1e3f679fb8c9a924e2e11d5b36d077109e2acb9589858952062",
+        "helperSha256": "b06a096459bfe42f761f1e2c2319cdc3b99b8ef6c447c0e8dfd67b5770846196",
+        "checkoutCommit": "97425c2254cc33be125265d030a6e39159dc267d",
+        "productionCommit": null
+      },
+      "priorFrames": 13972,
+      "priorPurePlanningCounterAvailable": true
+    }
+  ]
+}
