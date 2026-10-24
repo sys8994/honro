@@ -1,3 +1,7 @@
+# P2.4 교체된 NPC 가공본·옛 로고 정리 — 2026-10-24
+
+부모 확정13개/10,331,934B를 blob/크기 일치 후 삭제했다. 현재 config가공본25/master35 및 metadata·나머지 승인 assets/rc11 장이미지10개는 exact다. 실제 resolver 현재46행/17named, portrait data3개·전체manifest.files/HTML/entry exact, build/web-split/공개47그래프855파일 보존 확인. 기존 mapping 검사는 기준의 select 준비 누락과 옛19장 포인터 기대를 확인해 통과로 꾸미지 않았고 원상 보존했다. 역사 문서에 고정 encoding/tool 링크만 안내했다. 코드/표정/오디오·최종 README/ARCHITECTURE는 변경하지 않았다. [삭제 inventory·검사·한계](retired-npc-logo-p24-20261024/README.md).
+
 # P2.3 퇴역 이미지 지형 데이터·도구 정리 — 2026-10-24
 
 부모 확정112파일/101,954,246B를 blob 일치 후 삭제했다. 역사 rest 검사의 pilots binary/manifest/old web JSON을 고정 Git 소유로 옮겨 삭제·보호파일 만료와 독립시켰고 기존 assertion을 유지했다. 혼합 도구3개는 지정된 원경6처리만 남겼으며 임시 생성6개가 승인 파일과 byte-exact였다. 나머지 승인 자산/입력·root/fixtures/migration/보호 그래프 보존,30장 native/web SVG exact·generic/root hash·build/web-split·실제 Game/Workshop 기본 진입 통과. 현재 graph354파일/34,594,315B/HTML/entry exact이며 발행metadata만 추가됐다. runtime fallback/재인코딩은 없다. [삭제 inventory·검사·한계](retired-art-assets-p23-20261024/README.md).
