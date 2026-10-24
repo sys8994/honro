@@ -1,3 +1,7 @@
+# 캠프 갱신 포커스 보존 — 2026-10-24
+
+keyed insertBefore와 영웅 카드 재배치가 연결된 버튼도 잠시 분리해 activeElement를 body로 떨어뜨렸다. 기존 캠프 내부 focus만 캡처하고 DOM patch/캠프 후처리 끝에 같은 visible/enabled 노드를 preventScroll로 복원한다. disabled/숨김/삭제는 같은 조작 그룹의 기존 노드만 대체하며 모달 또는 다른 컨트롤의 focus는 건드리지 않는다. Chromium390×844 정상 frame에서 Enter2회·rank8상한·SP1→0·stat/branch/hero·modal/return·scroll·local fallback 통과. 기존 HUD/camp 노드 유지·이미지 추가request/decode0·제거 target 정리와 캠프 모델/build/web-split 통과. 초상화 전달/16장 기믹은 이번 커밋에 없다. 원시 결과는 _local/reports/camp-focus/ 및 camp-renderer-p11a/.
+
 # P2.5 교체된 SFX와 중복 bank 소유권 — 2026-10-24
 
 최신 weapon/arrow/bowstring에 덮여 사용되지 않던8파일/53,011B와 manifest8항목만 제거했다. build의 작은 effective bank helper에서 ID별 소유자를 하나로 정하고 중복을 오류로 거부한다. 기준최종29ID metadata/오디오430,957B·현재 emit exact, fixed Git의28파일/5파일 역사 계약·현재bow18c/d359.../gain.95, player7항목·실제 WebAudio 활/검 대표23항목·bow quick/held/cancel/mute11항목·build/web-split/공개47그래프860파일 보존 통과. 순서 변화로5hash가 바뀌지만 활성354파일/34,594,315B는 동일하다. Engine/runtime·인코딩·source/license 및 부모 docs/gallery 변경은 보존했다. 전체64스킬 전투는 미실행. [결과·한계](SFX_RETIREMENT_P25_20261024.md).

@@ -16,7 +16,7 @@ export async function appHarness(){
  g.window={addEventListener(){}};g.NodeFilter={SHOW_TEXT:4};g.localStorage={getItem:k=>storage.get(k)||null,setItem:(k,v)=>storage.set(k,v)};g.requestAnimationFrame=()=>0;g.setTimeout=()=>0;g.clearTimeout=()=>{};g.innerWidth=1440;
  g.Blob=Blob;g.URL={createObjectURL(blob){exported=blob;return 'blob:regression';},revokeObjectURL(){}};
  // Model-only DOM double; real camp reconciliation is checked in Chromium.
- g.HonroAudio=class{configure(){}play(){}update(){}};g.HonroScene=class{event(){}focusUnit(){}human(){}};g.HonroCampRenderer={patch(root,html){root.innerHTML=html;}};g.HonroUI={camp:()=>'<div id="armory"></div>',bottom:()=>'',portraits:()=>({})};g.HonroUnitInfo={tick(){}};g.HonroPortraits={draw(){}};
+ g.HonroAudio=class{configure(){}play(){}update(){}};g.HonroScene=class{event(){}focusUnit(){}human(){}};g.HonroCampRenderer={captureFocus:()=>()=>{},patch(root,html){root.innerHTML=html;}};g.HonroUI={camp:()=>'<div id="armory"></div>',bottom:()=>'',portraits:()=>({})};g.HonroUnitInfo={tick(){}};g.HonroPortraits={draw(){}};
  g.HONRO_STORY_PORTRAITS=new Proxy({}, {get:()=>({src:'data:image/png;base64,',class:'archer'})});
  vm.runInContext(await readFile('game/vendor/ui/fa.js','utf8'),g);
  g.HONRO_JOURNEY_MAPS=JSON.parse(await readFile('shared/assets/journey-maps/v1/manifest.json','utf8'));

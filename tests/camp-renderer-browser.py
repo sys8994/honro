@@ -36,12 +36,7 @@ with serve_game() as base,sync_playwright() as pw:
  assert all(rows['campStable'][k]==0 for k in ('requests','decodes','srcWrites')),rows['campStable']
  p.evaluate("()=>{window.focusNode=document.querySelector('[data-action=branch][data-id=\"0\"]');focusNode.focus({preventScroll:true});document.getElementById('armory').scrollTop=120;window.scrollBefore=document.getElementById('armory').scrollTop;HonroApp.showCamp('archer')}")
  rows['context']=p.evaluate("({sameFocus:document.activeElement===focusNode,scrollBefore,scrollAfter:document.getElementById('armory').scrollTop,liveDetails:document.querySelectorAll('#armory details').length})")
- # Compare any focus behavior with the exact pre-move algorithm, not a new UI policy.
- old=subprocess.check_output(['git','show','5154db899d3c9f62012c87b4f943cd44f2c3e676:shared/runtime/skill-images.js'],text=True)
- block=old[old.index('// Scoped armory reconciliation.'):old.index('function retry(){')]
- p.evaluate("code=>{window.oldCampPatch=eval('(()=>{const scan=HonroSkillImages.scan;'+code+';return patch;})()')}",block)
- rows['context']['baselineSameFocus']=p.evaluate("()=>{const current=HonroCampRenderer.patch;HonroCampRenderer.patch=oldCampPatch;focusNode.focus({preventScroll:true});HonroApp.showCamp('archer');HonroCampRenderer.patch=current;return document.activeElement===focusNode}")
- assert rows['context']['sameFocus']==rows['context']['baselineSameFocus'],rows['context']
+ assert rows['context']['sameFocus'],rows['context']
  assert rows['context']['scrollBefore']>0 and rows['context']['scrollBefore']==rows['context']['scrollAfter'],rows['context']
  p.locator('[data-action=branch][data-id="1"]').click();assert p.evaluate('HonroApp.branch===1')
  p.locator('[data-action=hero][data-class=mage]').click();assert p.evaluate("HonroApp.cls==='mage'")
