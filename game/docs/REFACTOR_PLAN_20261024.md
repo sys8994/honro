@@ -34,6 +34,8 @@
 부모 감사에 따라 현행 sharedRest10이 추출하던 thread/root 두 그룹을 작은 retained helper로 독립한다. 원본 raw root 이미지1개만 현행 휴식터 데이터에 연결하고 paintedRest1–10/옛 dispatch/pilots 전체 주입을 제거한다. 위치·원본 bytes·30장 sharedRest·generic·P0.3b는 보존하며 다른 P1은 대기한다.
 
 ### P1.1 UI 갱신 책임 분리
+P1.1a는 skill-images의 기존 key/sync/patch만 mandatory camp-renderer로 옮긴다. 이미지 모듈에는 canRetainHost/scan 계약을 두고 queue/cache/observer는 보존한다. ui-bridge parsing/localize와 나머지 패널 정리는 후속 대기다.
+
 skill-images의 이미지 로딩·캐시와 모닥불 DOM 조정 책임을 분리한다. 이미 적용된 keyed skill DOM을 새로 만들지 않는다. 대화/서술/목표/모달의 공통 패널 수명과 입력·리사이즈 규칙을 정리한다.
 작은 화면별 단위로 진행하고 노드 재생성·이벤트 중복·숨김/재열기·포커스·스크롤을 관련 범위에서 확인한다.
 
@@ -66,5 +68,6 @@ Act별로 한 단위씩 정리하고 같은 목표의 진행·차단 이유·Con
 - P0.2: master46cb2b8d 배포 완료. Pages40058841045 success(2026-10-24T03:37:03Z). 부모가 공개 DOM의 game.d89af9c13535e2a5.js와 실제 debug→여정첩2장→전투 처음부터 확인 후 복만387/백산529/담허494/연실324 유지를 확인했다. [근거·범위](ally-roster-dom-p02-20261024/README.md).
 - P0.3a: 미사용 HONRO_STAGE21_PAINTED 빌드 생성만 제거·검증 완료. 활성414→408파일/-829,353B, 실제 초기 Game/Workshop 각각2요청/-29,346B. 현재21장 원경 draw 동일, build/web-split·40개 공개 그래프 보존 통과. master3a8f0ac8 배포 완료. Pages40059998501 success(2026-10-24T03:53:36Z). 부모가 공개 game.ecae7cabb80a83fd.js·title 준비 완료·기존 이어가기 버튼을 실제 브라우저로 확인했다. [근거·한계](stage21-unused-build-p03a-20261024/README.md).
 - P0.3b: 선택 SVG 실패/지연 격리 및 generic 준비 여부 캐시 구현 완료. 기준503 실제 재현, Native5/브라우저7묶음·build/web-split·41개 공개 그래프 보존 통과. 실제 cold 기동 관측1530–1556ms는 batch 이후 작업을 포함하며 전체 초기화1500ms 보장은 아니다. master9dcca54e 배포 완료. Pages40061152181 success(2026-10-24T04:10:43Z). 부모가 공개 game.d8d63d9c496bc88a.js·title 준비·기존 이어가기 버튼을 실제 브라우저로 확인했다. [근거·한계](optional-far-svg-p03b-20261024/README.md).
-- P1.0: 구현·검증 완료. 원본 root bytes와30장 native SVG exact/web 이미지SHA 정규화 exact,10장 desktop/mobile pan/zoom/camp 및 P0.3b 관련 회귀 통과. 활성408→354파일/-21,812,619B와 초기 HTTP2요청/-62,963B를 구분했다. build/web-split·42개 공개 그래프 보존 통과. 부모 후보 검토/배포 대기. [범위·검사·한계](retained-guardian-rest-p10-20261024/README.md).
-- P1.1 이후/P2: 대기.
+- P1.0: 구현·검증 완료. 원본 root bytes와30장 native SVG exact/web 이미지SHA 정규화 exact,10장 desktop/mobile pan/zoom/camp 및 P0.3b 관련 회귀 통과. 활성408→354파일/-21,812,619B와 초기 HTTP2요청/-62,963B를 구분했다. build/web-split·42개 공개 그래프 보존 통과. master5154db89 배포 완료. Pages40062856393 success(2026-10-24T04:36:39Z). 부모가 공개 game.9675f9baa1a8dba7.js 및 title→rest→journey10→battle→pause/rest 확인 복귀를 실제 UI로 확인했다. 복귀는 기존 정책상9장 쉼터이며 공개10장 장식 검수는 아니다. 10장 정확 비교는 기존 로컬 근거다. [범위·검사·한계](retained-guardian-rest-p10-20261024/README.md).
+- P1.1a: 기존 key/sync/patch를 mandatory camp-renderer로 이동, 이미지 lifecycle exact 보존. Native 동치/캠프 모델·Chromium 실제 랭크/분기/클래스·동일 노드/중복 요청0·스크롤/제거 target 정리·build/web-split/공개43그래프 보존 통과. 포커스의 body 이동은 기준에서도 동일해 유지 성공으로 주장하지 않는다. 부모 후보 검토/배포 대기. [검사·한계](camp-renderer-p11a-20261024/README.md).
+- 나머지 P1/P2: 대기.

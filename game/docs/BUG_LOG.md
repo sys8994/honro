@@ -1,3 +1,7 @@
+# P1.1a 캠프 DOM 소유자 분리 — 2026-10-24
+
+skill-images가 이미지 수명 외 캠프 전체 key/sync/patch까지 소유했다. 기존 알고리즘을 mandatory camp-renderer로 그대로 옮기고 canRetainHost/scan으로 이미지 host 보존만 연결했다. 옛 patch alias/main 폴백은 제거했다. 이미지 lifecycle·main 나머지 exact, 실제 Chromium HUD/캠프 버튼·이미지 동일/상태갱신 중 추가요청·decode0, 랭크·스탯·분기·클래스 입력, 스크롤, 중복 slot key/details fixture와 제거된 loading target 정리, 기존 캠프 모델/build/web-split/실제 공개43그래프 보존 통과. 재렌더 포커스 body 이동은 기준에서도 같아 UX 수리는 범위 밖으로 유지했다. FPS 개선 주장은 없다. [검사·한계](camp-renderer-p11a-20261024/README.md).
+
 # P1.0 현행 수호목 장식의 독립 — 2026-10-24
 
 현행 sharedRest10이 도달하지 않는 paintedRest10 전체를 만든 뒤 두 그룹만 regex로 추출해 전체 pilots manifest/53이미지 빌드를 의존했다. thread→roots 두 그룹 helper와 raw root 원본1개의 휴식터 데이터 소유로 분리하고 paintedRest1–10/옛 dispatch/pilots 주입을 제거했다. 원래 제거되던 filter는 넣지 않았다. source 이미지 폴더와 실행 목록 밖 painted-pilots-art provider는 보존한다. 기존30장 mapping·전체 native SVG exact/web 이미지SHA 정규화 exact,10장 두 그룹 순서/속성/filter 없음·raw245,372B SHA 동일, desktop/mobile pan/zoom/camp·P0.3b 관련5묶음·build/web-split·공개42그래프836파일 보존을 확인했다. 활성 graph21,812,619B 감소와 cold HTTP62,963B 감소를 구분한다. [범위·검사·한계](retained-guardian-rest-p10-20261024/README.md). 다른 P1은 착수하지 않았다.
