@@ -9,6 +9,7 @@ import {execFileSync} from 'node:child_process';
 import vm from 'node:vm';
 import {runtimeParts} from '../shared/build.mjs';
 import {appHarness,plain} from './app-regression-helpers.mjs';
+import {escortPacing} from './stage16-escort-pacing-helper.mjs';
 import {navigator,campaignEntryReadiness,prepareCamp,analyzeWaits} from './stage16-temple-fullplay-helper.mjs';
 const hash=v=>createHash('sha256').update(typeof v==='string'?v:JSON.stringify(v)).digest('hex');
 const h=await appHarness(),{g,C}=h;vm.runInContext(await readFile('shared/runtime/interactions.js','utf8'),g);
@@ -43,14 +44,14 @@ const hurt=e.hurt.bind(e);e.hurt=function(u,...args){const before=u.hp,out=hurt(
 for(const name of ['move','jump','fire','wait','select']){const fn=e[name].bind(e);e[name]=(...args)=>{inputCount++;return fn(...args);};}
 const terminal=()=>['won','lost'].includes(b.phase);
 function stories(){if(app.dialogue){const d=app.dialogue;dialogs.push({round:b.round,frame:frames,title:d.title,index:d.index,line:plain(d.lines[d.index])});g.HonroStory.next(app);storyFrames++;virtualMs+=1000/60;return true;}if(['aim','enemy','ally','summon'].includes(b.phase))g.HonroStory.turn(app);if(g.HonroStory.turnPaused(app)){storyFrames++;virtualMs+=1000/60;return true;}return false;}
-function tick(){const t0=performance.now();virtualMs+=C.STEP*1000;e.tick(C.STEP);if(!app.dialogue)app.missionTick(C.STEP);frames++;for(const u of b.units)if(!known.has(u.id)){known.add(u.id);births.push({round:b.round,frame:frames,turn:b.honroState.actorTurnSerial,id:u.id,source:u.honroSpawnSource,x:u.x,y:u.y});}nativePhysicsMs+=performance.now()-t0;}
+function tick(){const t0=performance.now();virtualMs+=C.STEP*1000;e.tick(C.STEP);if(!app.dialogue)app.missionTick(C.STEP);frames++;pacing?.afterTick(C.STEP);for(const u of b.units)if(!known.has(u.id)){known.add(u.id);births.push({round:b.round,frame:frames,turn:b.honroState.actorTurnSerial,id:u.id,source:u.honroSpawnSource,x:u.x,y:u.y});}nativePhysicsMs+=performance.now()-t0;}
 const ready=()=>app.canInput();const nav=navigator(g,b,e,{tick,ready,record}),dist=(a,z)=>Math.hypot(a.x-z.x,a.y-z.y),fraction=u=>u.hp/u.maxHp;
 function attack(u,target){const begin=performance.now();try{return attackPlan(u,target);}finally{attackPlanningMs+=performance.now()-begin;}}
 function attackPlan(u,target){
  const spirit=target.honroSpirit&&!target.manifested;
  const skills=u.loadout.map(id=>C.SKILLS[id]).filter(s=>s.damage>0&&!s.passive&&e.cooldownLeft(u,s.id)<=0&&e.manaCost(s,u)<=u.focus).sort((a,z)=>(spirit?Number(z.id==='O08')-Number(a.id==='O08'):0)||Number(z.id==='A06'&&fraction(u)<.8)-Number(a.id==='A06'&&fraction(u)<.8)||z.damage-a.damage);
  for(const s of skills){
-  if(s.martial&&s.branch==='sword'){let angle=Math.atan2(u.y-u.h*.58-(target.y-target.h*.5),target.x-u.x)*180/Math.PI;if(angle< -90)angle+=360;for(const power of[1,.7,.2])if(C.meleeContains(e,u,target,C.meleeRange(u,s,power),-angle*Math.PI/180,C.meleeSpan(u,s,power))&&e.fire(s.id,angle,power)){record({op:'fire',hero:u.cls,skill:s.id,target:target.id,hpBefore:target.hp,angle,power});return true;}continue;}
+  if(s.martial&&s.branch==='sword'){let angle=Math.atan2(u.y-u.h*.58-(target.y-target.h*.5),target.x-u.x)*180/Math.PI;if(angle< -90)angle+=360;for(const power of[1,.7,.2])if(!(strategy==='escort'&&b.units.some(v=>v!==u&&!v.dead&&v.hp>0&&(v.side===0||v.honroCivilian)&&C.meleeContains(e,u,v,C.meleeRange(u,s,power),-angle*Math.PI/180,C.meleeSpan(u,s,power))))&&C.meleeContains(e,u,target,C.meleeRange(u,s,power),-angle*Math.PI/180,C.meleeSpan(u,s,power))&&e.fire(s.id,angle,power)){record({op:'fire',hero:u.cls,skill:s.id,target:target.id,hpBefore:target.hp,angle,power});return true;}continue;}
   let best=null;for(const aim of e.shotSeeds(u,s,target)){const v=C.shotViable(e,u,s,target,aim.angle,aim.power);if((v.ok||target.hp<=2&&v.enemyDamage>0)&&v.risk<1&&v.miss<Math.max(85,s.radius+target.r+55)&&(!best||v.net>best.net))best={...aim,net:v.net};}
   if(!best&&s===skills[0]){const aim=e.bestShot(u,s,target),v=C.shotViable(e,u,s,target,aim.angle,aim.power);if((v.ok||target.hp<=2&&v.enemyDamage>0)&&v.risk<1&&v.miss<Math.max(85,s.radius+target.r+55))best=aim;}
   if(best&&e.fire(s.id,best.angle,best.power)){record({op:'fire',hero:u.cls,skill:s.id,target:target.id,hpBefore:target.hp,angle:best.angle,power:best.power});return true;}
@@ -67,11 +68,12 @@ function heal(u){
 }
 async function save(name='checkpoint'){
  app.export();const profile=await h.exported();assert.deepEqual(profile.honroBattle.units,plain(b.units),'Production export preserves actors');
- const data={sourceHash,runtimeSha256,provenance,initial,profile,actions,rounds,damage,births,notices,dialogs,continues,frames,storyFrames,planningMs,nativePhysicsMs,attackPlanningMs,inputCount,virtualMs};
+ const data={sourceHash,runtimeSha256,provenance,initial,profile,pacing:pacing?.snapshot(),actions,rounds,damage,births,notices,dialogs,continues,frames,storyFrames,planningMs,nativePhysicsMs,attackPlanningMs,inputCount,virtualMs};
  await writeFile(`${out}/${name}.json`,JSON.stringify(data));return data;
 }
 await writeFile(`${out}/initial.json`,JSON.stringify({provenance,initial},null,2));
 const strategy=process.env.HONRO_FULLPLAY_STRATEGY||'frontline';
+const untouched=JSON.stringify(b),pacing=strategy==='escort'?escortPacing({g,e,app,nav,attack,heal,record,tick,ready}):null;assert.equal(JSON.stringify(b),untouched,'Installing escort input/telemetry cannot change battle state');
 const actionLimit=Number(process.env.HONRO_FULLPLAY_ACTION_LIMIT||2200),roundLimit=Number(process.env.HONRO_FULLPLAY_ROUND_LIMIT||220);let lastSignature='',stalled=0;const savedGoals=new Set();
 for(let turn=0;turn<actionLimit&&!terminal();turn++){
  while(!ready()&&!terminal()){if(stories())continue;tick();if(frames>2200000){stopReason='native simulation budget';break;}}if(stopReason||terminal())break;
@@ -82,6 +84,7 @@ for(let turn=0;turn<actionLimit&&!terminal();turn++){
   if(stalled>=3){stopReason='controller unchanged for 3 rounds';break;}if(b.round>roundLimit){stopReason='requested round observation limit';break;}
  }
  const t0=performance.now(),goal=g.HonroAct2.current(b),m=b.honroMarkers.find(v=>v.id===goal?.id);
+ if(pacing){pacing.step(goal,m);planningMs+=performance.now()-t0;continue;}
  if(strategy==='rush'&&goal?.id==='monk'){const rescuer=e.heroesAlive().find(u=>!u.acted&&u.cls==='occultist');if(rescuer)e.select(rescuer.id);}
  if(goal?.requiredClass){const specialist=e.heroesAlive().find(u=>!u.acted&&u.cls===goal.requiredClass);if(specialist)e.select(specialist.id);}
  const u=e.active;if(!u||u.dead){stopReason='no usable active hero';break;}
@@ -113,6 +116,7 @@ if(b.phase==='won'&&g.HonroStage16Temple.pilot(b)){
  assert.deepEqual(waveTelegraphs.map(w=>w.entry.side),['west','east','west','east']);
  for(const wave of waveTelegraphs)assert(wave.warning&&wave.entry.serial>wave.warning.serial&&wave.births.every(v=>v.turn>wave.warning.serial),'Every wave follows a warning at an earlier ordinary actor boundary');
 }
+if(pacing)await writeFile(`${out}/pacing.json`,JSON.stringify(pacing.snapshot(),null,2));
 const result={...provenance,strategy,completedAt:new Date().toISOString(),initialEnemies:initial.battle.units.filter(u=>u.side===1).length,enemyDefeats:b.units.filter(u=>u.side===1&&u.dead).length,waveTelegraphs,phase:b.phase,round:b.round,stopReason,winnerReason:b.winnerReason,done:plain(g.HonroAct2.memory(b).done),hold:g.HonroAct2.memory(b).holds?.['hold-hall'],seconds:(performance.now()-started)/1000,
  segmentTiming:{simulationSeconds:(frames-segmentStart.frames)*C.STEP,storyPauseSeconds:(storyFrames-segmentStart.storyFrames)/60,botAttackPlanningSeconds:(attackPlanningMs-segmentStart.attackPlanningMs)/1000,nativePhysicsWallSeconds:(nativePhysicsMs-segmentStart.nativePhysicsMs)/1000},
  simulationSeconds:frames*C.STEP,storyPauseSeconds:storyFrames/60,botAttackPlanningSeconds:attackPlanningMs/1000,nativePhysicsWallSeconds:nativePhysicsMs/1000,controllerWallSecondsIncludingMovement:planningMs/1000,botIdleWaitWallSeconds:0,timingScope:'Simulation seconds counts production Engine ticks; story/turn pauses use a virtual clock; attack planning is Node wall time, excluding native physics; no human wall-time claim.',frames,inputCount,actions:actions.length,
