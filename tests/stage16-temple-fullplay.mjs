@@ -71,6 +71,7 @@ async function save(name='checkpoint'){
  await writeFile(`${out}/${name}.json`,JSON.stringify(data));return data;
 }
 await writeFile(`${out}/initial.json`,JSON.stringify({provenance,initial},null,2));
+const strategy=process.env.HONRO_FULLPLAY_STRATEGY||'frontline';
 const actionLimit=Number(process.env.HONRO_FULLPLAY_ACTION_LIMIT||2200),roundLimit=Number(process.env.HONRO_FULLPLAY_ROUND_LIMIT||220);let lastSignature='',stalled=0;const savedGoals=new Set();
 for(let turn=0;turn<actionLimit&&!terminal();turn++){
  while(!ready()&&!terminal()){if(stories())continue;tick();if(frames>2200000){stopReason='native simulation budget';break;}}if(stopReason||terminal())break;
@@ -81,6 +82,7 @@ for(let turn=0;turn<actionLimit&&!terminal();turn++){
   if(stalled>=3){stopReason='controller unchanged for 3 rounds';break;}if(b.round>roundLimit){stopReason='requested round observation limit';break;}
  }
  const t0=performance.now(),goal=g.HonroAct2.current(b),m=b.honroMarkers.find(v=>v.id===goal?.id);
+ if(strategy==='rush'&&goal?.id==='monk'){const rescuer=e.heroesAlive().find(u=>!u.acted&&u.cls==='occultist');if(rescuer)e.select(rescuer.id);}
  if(goal?.requiredClass){const specialist=e.heroesAlive().find(u=>!u.acted&&u.cls===goal.requiredClass);if(specialist)e.select(specialist.id);}
  const u=e.active;if(!u||u.dead){stopReason='no usable active hero';break;}
  const interact=()=>m?.action&&g.HonroInteractions.eligibility(app,m).ok&&g.HonroInteractions.use(app,m);
@@ -89,7 +91,7 @@ for(let turn=0;turn<actionLimit&&!terminal();turn++){
  let foes=e.alive(1).filter(v=>g.HonroAct2.visible(b,v));
  const priority=v=>goal?.kind==='clear'&&goal.cohorts!=='all'?Number(v.honroCohort===goal.cohorts)*100000:goal?.kind==='defeat'?Number(v.id===goal.target)*100000:goal?.kind==='hold'?Number(dist(v,m)<goal.contestRadius+170)*100000:0;
  foes.sort((a,z)=>priority(z)-priority(a)||dist(a,u)-dist(z,u));
- let fired=false;for(const target of foes.filter(v=>dist(v,u)<1500).slice(0,4))if(attack(u,target)){fired=true;break;}if(fired){planningMs+=performance.now()-t0;continue;}
+ let fired=false;for(const target of (strategy==='rush'?[]:foes).filter(v=>dist(v,u)<1500).slice(0,4))if(attack(u,target)){fired=true;break;}if(fired){planningMs+=performance.now()-t0;continue;}
  let point=m,enemy=false;const currentFoes=goal?.kind==='clear'?foes.filter(v=>goal.cohorts==='all'||v.honroCohort===goal.cohorts):goal?.kind==='defeat'?foes.filter(v=>v.id===goal.target):[];
  const healStake=(b.stakes||[]).filter(s=>s.skill==='M10'&&s.expires>b.round&&s.usedRounds?.[u.id]!==b.round&&dist(s,u)<1600).sort((a,z)=>dist(a,u)-dist(z,u))[0];
  if(fraction(u)<.75&&healStake)point=healStake;else if(currentFoes.length){point=currentFoes[0];enemy=true;}else if(goal?.kind==='hold')point=m;else if(!point&&foes.length){point=foes[0];enemy=true;}
@@ -111,7 +113,7 @@ if(b.phase==='won'&&g.HonroStage16Temple.pilot(b)){
  assert.deepEqual(waveTelegraphs.map(w=>w.entry.side),['west','east','west','east']);
  for(const wave of waveTelegraphs)assert(wave.warning&&wave.entry.serial>wave.warning.serial&&wave.births.every(v=>v.turn>wave.warning.serial),'Every wave follows a warning at an earlier ordinary actor boundary');
 }
-const result={...provenance,completedAt:new Date().toISOString(),initialEnemies:initial.battle.units.filter(u=>u.side===1).length,enemyDefeats:b.units.filter(u=>u.side===1&&u.dead).length,waveTelegraphs,phase:b.phase,round:b.round,stopReason,winnerReason:b.winnerReason,done:plain(g.HonroAct2.memory(b).done),hold:g.HonroAct2.memory(b).holds?.['hold-hall'],seconds:(performance.now()-started)/1000,
+const result={...provenance,strategy,completedAt:new Date().toISOString(),initialEnemies:initial.battle.units.filter(u=>u.side===1).length,enemyDefeats:b.units.filter(u=>u.side===1&&u.dead).length,waveTelegraphs,phase:b.phase,round:b.round,stopReason,winnerReason:b.winnerReason,done:plain(g.HonroAct2.memory(b).done),hold:g.HonroAct2.memory(b).holds?.['hold-hall'],seconds:(performance.now()-started)/1000,
  segmentTiming:{simulationSeconds:(frames-segmentStart.frames)*C.STEP,storyPauseSeconds:(storyFrames-segmentStart.storyFrames)/60,botAttackPlanningSeconds:(attackPlanningMs-segmentStart.attackPlanningMs)/1000,nativePhysicsWallSeconds:(nativePhysicsMs-segmentStart.nativePhysicsMs)/1000},
  simulationSeconds:frames*C.STEP,storyPauseSeconds:storyFrames/60,botAttackPlanningSeconds:attackPlanningMs/1000,nativePhysicsWallSeconds:nativePhysicsMs/1000,controllerWallSecondsIncludingMovement:planningMs/1000,botIdleWaitWallSeconds:0,timingScope:'Simulation seconds counts production Engine ticks; story/turn pauses use a virtual clock; attack planning is Node wall time, excluding native physics; no human wall-time claim.',frames,inputCount,actions:actions.length,
  actionCounts:Object.fromEntries([...new Set(actions.map(a=>a.op))].map(op=>[op,actions.filter(a=>a.op===op).length])),readinessXP:initial.profile.heroes.archer.xp,readinessLevel:readiness.level,

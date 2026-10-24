@@ -71,12 +71,15 @@ function advanceMonks(app,dt){const e=app.engine,b=e.b,done=A.memory(b).done;
   const end=destination(b,u,index);
   if(Math.abs(u.x-end.x)<10&&Math.abs(u.y-end.y)<14&&!u.jumping){q.blocked=false;continue;}
   // Leave the shelter on its authored right-hand exit, then climb the main route.
-  const surfaces=['tm-shelter-veranda','tm-processional-upper','tm-great-hall-plinth'];
+  const surfaces=['tm-shelter-veranda','tm-processional-upper','tm-great-hall-plinth','tm-cloister-stair','tm-cloister-landing'];
   const surface=e.surface(u.x,u.y-5,u.y+5),sid=surface?.t.honroSpaceSurfaceId||surface?.t.id;
   let goal=end;
+  if(['tm-cloister-stair','tm-cloister-landing'].includes(sid))q.cloister=true;
+  if(sid?.startsWith('tm-hall-'))delete q.cloister;
+  if(q.cloister)goal={x:4825,y:3830};
   if(sid?.startsWith('tm-hall-')&&sid!=='tm-great-hall-plinth'&&u.y<end.y-40)q.escapeX=surface.t.x+surface.t.w+u.r+12;
   if(u.y>=end.y-20)delete q.escapeX;
-  if(u.x<3505){const t=b.terrain.find(t=>t.id==='tm-shelter-veranda');goal={x:3510,y:C.topAt(b.terrain.find(t=>t.id==='tm-processional-upper'),3510)};if(u.x<3440)goal={x:3440,y:C.topAt(t,3440)};}
+  if(u.x<3505&&!q.cloister){const t=b.terrain.find(t=>t.id==='tm-shelter-veranda');goal={x:3510,y:C.topAt(b.terrain.find(t=>t.id==='tm-processional-upper'),3510)};if(u.x<3435)goal={x:3440,y:C.topAt(t,3440)};}
   if(q.escapeX!==undefined)goal={x:q.escapeX,y:end.y};
   const dir=Math.sign(goal.x-u.x),dtWalk=Math.min(dt,.05),nx=u.x+dir*Math.min(u.walkSpeed*dtWalk,Math.abs(goal.x-u.x));
   const support=e.surface(nx,u.y-28,u.y+28),next={x:nx,y:support?.y??u.y};
