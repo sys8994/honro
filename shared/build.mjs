@@ -39,6 +39,26 @@ export const modelFiles=['action-prompts','narrative-catalogue','content','story
   'clear-report','split-campaign','campaign-map-revision','stake-crossing','contribution-xp','progression','profile-store','encounters','world','act1-roster','difficulty','allies','sodan-withdrawal','mission','objectives','objective-contributions','combat-status','authored','act2-content','act2','stage11-ravine-encounters','stage17-worksite','stage16-temple','act3-content','act3-encounters','act3-objectives','objective-revision','stage18-bell','stage30-ferry','stage12-quarry','stage23-escort','objective-guidance','journey-content','act3-journey','story-staging','story-direction','story-framing','stage8-bier','encounter-density','stage14-vertical','stage22-vertical','route-branches','narrative-revision','stage11-trace-exit','stage2-airborne','stage5-waterfall-geometry','stage5-waterfall','stage5-positioning','quest-targets','story-canon-v1','bell-anomaly','act3-void','evidence-quests','stage2-layered-road','act2-pacing'];
 
 modelFiles.push('player-turn-order','stage11-quest-simplification','stage14-rescue-gates','stage15-drain-contact','stage18-short-quest','keeper-ritual','stage19-farewell');
+// Every ID has one owner; a duplicate bank entry is a build error.
+export async function skillAudioData(){
+  const base=JSON.parse(await read('shared/assets/sfx/skills-v2/manifest.json'));
+  const weapons=JSON.parse(await read('shared/assets/sfx/weapons-v3/manifest.json'));
+  const arrows=JSON.parse(await read('shared/assets/sfx/weapons-v3/arrow-hits.json'));
+  const thunder={...JSON.parse(await read('shared/assets/sfx/weapons-v3/cheonroe_thunder.json')),file:'cheonroe_thunder.mp3'};
+  const bowstring={...JSON.parse(await read('shared/assets/sfx/bowstring-v4/manifest.json')),id:'bow_release',file:'bowstring_release.mp3'};
+  const banks=[
+    ['skills-v2',Object.entries(base.assets)],
+    ['weapons-v3',weapons.assets.map(a=>[a.id,{...a,processing:weapons.processing}])],
+    ['weapons-v3',arrows.assets.map(a=>[a.id,{...a,workTitle:'Fleshy Fight Sounds',processing:arrows.processing}])],
+    ['weapons-v3',[[thunder.id,thunder]]],
+    ['bowstring-v4',[[bowstring.id,bowstring]]]
+  ],assets={};
+  for(const [folder,entries]of banks)for(const [id,metadata]of entries){
+    if(Object.hasOwn(assets,id))throw Error('Duplicate skill audio asset ID: '+id);
+    const asset={...metadata};asset.src='data:audio/'+(asset.file.endsWith('.wav')?'wav':'mpeg')+';base64,'+(await readFile(path.join(root,'shared/assets/sfx',folder,asset.file))).toString('base64');assets[id]=asset;
+  }
+  return {version:3,assets};
+}
 // This is the only bundle manifest. Game, Stage view and playtest use it.
 export async function runtimeEntries({vector=true,render=true,app=false}={}) {
   const parts=[];
@@ -126,17 +146,7 @@ export async function runtimeEntries({vector=true,render=true,app=false}={}) {
   }
   if(render)await file('shared/runtime/authored-far-art.js');
   if(app){
-    const skillAudio=JSON.parse(await read('shared/assets/sfx/skills-v2/manifest.json'));
-    const weaponSpec=JSON.parse(await read('shared/assets/sfx/weapons-v3/manifest.json'));
-    const arrowHits=JSON.parse(await read('shared/assets/sfx/weapons-v3/arrow-hits.json'));
-    const thunder={...JSON.parse(await read('shared/assets/sfx/weapons-v3/cheonroe_thunder.json')),file:'cheonroe_thunder.mp3'};
-    const bowstring={...JSON.parse(await read('shared/assets/sfx/bowstring-v4/manifest.json')),id:'bow_release',file:'bowstring_release.mp3'};
-    const weapons=new Map([...weaponSpec.assets.map(asset=>({...asset,processing:weaponSpec.processing})),...arrowHits.assets.map(asset=>({...asset,workTitle:'Fleshy Fight Sounds',processing:arrowHits.processing})),thunder,bowstring].map(asset=>[asset.id,asset]));
-    for(const id of new Set([...Object.keys(skillAudio.assets),...weapons.keys()])){
-      const weapon=weapons.get(id),asset=skillAudio.assets[id]=weapon?{...weapon}:skillAudio.assets[id];
-      asset.src='data:audio/'+(asset.file.endsWith('.wav')?'wav':'mpeg')+';base64,'+(await readFile(path.join(root,'shared/assets/sfx',id==='bow_release'?'bowstring-v4':weapon?'weapons-v3':'skills-v2',asset.file))).toString('base64');
-    }
-    data('HONRO_SKILL_AUDIO',{version:3,assets:skillAudio.assets});
+    data('HONRO_SKILL_AUDIO',await skillAudioData());
     data('HONRO_MUKJONG_AUDIO',{src:'data:audio/mpeg;base64,'+(await readFile(path.join(root,'shared/assets/sfx/mukjong-b.mp3'))).toString('base64')});
     data('HONRO_JOURNEY_MAPS',JSON.parse(await read('shared/assets/journey-maps/v1/manifest.json')));
     await file('game/vendor/ui/fa.js');
