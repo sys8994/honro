@@ -1,7 +1,8 @@
 """로컬 Chromium: 준비한 입장/진입 위치/빈 이동로 fixture, 정상 frame과 실제 버튼."""
-import json
+import json,sys
 from playwright.sync_api import sync_playwright
 from browser_support import ROOT,launch,serve_game
+FOLLOWUP='--followup' in sys.argv
 OUT=ROOT/'_local/reports/stage16-escort-pilot-a';entry=json.loads((OUT/'normal-entry.json').read_text());rows=[];errors=[]
 with serve_game() as base,sync_playwright() as pw:
  browser=launch(pw);p=browser.new_page(viewport={'width':390,'height':844},is_mobile=True,has_touch=True);p.on('pageerror',lambda e:errors.append(str(e)))
@@ -17,7 +18,11 @@ with serve_game() as base,sync_playwright() as pw:
  def state():return p.evaluate('''()=>{const a=HonroApp,b=a.engine.b;return{frameCount,round:b.round,phase:b.phase,goal:HonroAct2.current(b)?.id,done:structuredClone(HonroAct2.memory(b).done),monks:b.units.filter(u=>u.honroCivilian).map(u=>({id:u.id,x:u.x,y:u.y,hp:u.hp,moveLeft:u.moveLeft})),targets:HonroObjectives.state(b,a.stage).targets,camera:{x:a.scene.x,y:a.scene.y,scale:a.scene.scale}}}''')
  finish();p.wait_for_function('HonroApp.canInput()&&!HonroApp.turnNotice',timeout=30000)
  p.evaluate('''()=>{const a=HonroApp,e=a.engine,b=e.b;for(const u of b.units)if(u.side===1){u.dead=true;u.hp=0}const u=e.heroesAlive().find(u=>u.cls==='occultist'),m=b.honroMarkers.find(m=>m.id==='monk');Object.assign(u,{x:m.x,y:m.y,vx:0,vy:0,acted:false});b.active=u.id;b.phase='aim';b.side=0;a.turnNotice=null;a.updateHUD(true);HonroInteractions.refresh(a)}''')
- camera(3060,4840,.6);shot('390-rescue-site');p.locator('[data-context-interact=monk]').tap()
+
+ if FOLLOWUP:p.evaluate("()=>{const e=HonroApp.engine,t=e.b.terrain.find(t=>t.id==='tm-shelter-veranda');for(const[cls,x]of [['knight',3300],['archer',2810],['mage',3400]]){const u=e.heroesAlive().find(u=>u.cls===cls);Object.assign(u,{x,y:HONRO_CORE.topAt(t,x),vx:0,vy:0});}}")
+ camera(3060,4840,.6)
+ if not FOLLOWUP:shot('390-rescue-site')
+ p.locator('[data-context-interact=monk]').tap()
  for _ in range(80):
   if p.evaluate("HonroApp.dialogue?.lines.some(r=>r[2]?.rowId==='16.beats.witness:escort-pilot-a')"):break
   if p.evaluate('!!HonroApp.dialogue'):p.locator('[data-action=dialogue-next]').tap()
@@ -28,7 +33,20 @@ with serve_game() as base,sync_playwright() as pw:
   if p.evaluate("HonroApp.dialogue?.lines[HonroApp.dialogue.index]?.[2]?.rowId==='16.beats.witness:escort-pilot-a'"):break
   p.locator('[data-action=dialogue-next]').tap()
  assert p.locator('#story-line').inner_text()=='두 분은 법당 툇마루로 가시오. 앞은 우리가 맡겠소.'
- r=p.locator('#story-line').bounding_box();assert r and r['height']>20;shot('390-witness-order');finish()
+ p.wait_for_timeout(1400)
+ p.wait_for_function('Array.from(document.querySelectorAll(".story-portrait img")).every(i=>i.complete&&i.naturalWidth>0)')
+ r=p.locator('#story-line').bounding_box();assert r and r['height']>20;shot('390-witness-order')
+ if FOLLOWUP:
+  stable=p.evaluate('''()=>{const a=HonroApp,s=a.scene,{w,h}=s.size(),n=document.getElementById('story-line');let opacity=1;for(let p=n;p;p=p.parentElement)opacity*=Number(getComputedStyle(p).opacity);return{row:a.dialogue.lines[a.dialogue.index][2].rowId,opacity,frameCount,camera:{x:s.x,y:s.y,scale:s.scale},monks:a.engine.b.units.filter(u=>u.honroCivilian).map(u=>({id:u.id,x:w/2+(u.x-s.x)*s.scale,y:h/2+(u.y-s.y)*s.scale}))}}''');assert stable['opacity']>.99,stable
+  finish();p.wait_for_timeout(400)
+  p.evaluate('''()=>{const a=HonroApp,b=a.engine.b;for(const u of b.units.filter(u=>u.honroCivilian)){u.moveLeft=0;b.honroState.templeEscort.actors[u.id].round=b.round;}}''')
+  p.wait_for_timeout(1800)
+  p.evaluate('''()=>{const a=HonroApp;window.idleSaves=0;window.idleFrame=frameCount;window.idleBefore=JSON.stringify(a.engine.b.units.filter(u=>u.honroCivilian).map(u=>[u.x,u.y,u.moveLeft]));const save=a.profileStore.save.bind(a.profileStore);a.profileStore.save=(...args)=>{idleSaves++;return save(...args)};a.dirty=false;}''')
+  p.wait_for_timeout(4500)
+  idle=p.evaluate('''()=>({saves:idleSaves,frames:frameCount-idleFrame,unchanged:idleBefore===JSON.stringify(HonroApp.engine.b.units.filter(u=>u.honroCivilian).map(u=>[u.x,u.y,u.moveLeft])),dirty:HonroApp.dirty})''');assert idle['saves']==0 and idle['unchanged'] and not idle['dirty'] and idle['frames']>60,idle
+  assert not errors,errors
+  (OUT/'followup-browser.json').write_text(json.dumps({'entry':json.loads((ROOT/'web/manifest.json').read_text())['gameEntry'],'witness':stable,'idle':idle,'scope':'입장/현장 위치·자원 소진은 도구 준비. 정상 frame 유지·실제 대화 버튼·4.5초 실제 저장 호출 계측. 증언 한 컷만 교체, 다른 fixture 캡처는 보존.'},ensure_ascii=False,indent=2));browser.close();print('PASS 안정된 현장 증언, 정상 frame 정지 대기 실제 저장 호출 0');sys.exit(0)
+ finish()
  p.evaluate('''()=>{const a=HonroApp,e=a.engine,b=e.b,u=e.active,m=b.honroMarkers.find(m=>m.id==='hall');Object.assign(u,{x:m.x,y:m.y,vx:0,vy:0,acted:false});b.phase='aim';a.updateHUD(true);HonroInteractions.refresh(a)}''')
  assert p.locator('[data-context-interact=hall]').is_disabled();assert '두 승려가 아직 툇마루에 도착하지 않았습니다.' in p.locator('#context-interact').inner_text();rows.append({'earlyDoor':True,'state':state()})
  camera(3770,4620,.43);p.wait_for_timeout(1000);shot('390-monks-moving');start=state();assert start['frameCount']>60
