@@ -1,0 +1,13 @@
+{
+  "id": "seoro-action-lower-bow",
+  "actor": "seoro",
+  "variant": "action.lower_bow",
+  "prompt": "Fresh independent portrait of exactly the SAME character in reference1. Preserve identity/face proportions/age/hair/scars/beard and all costume construction, colors and existing props, no beautification or de-aging. Ref2, if present, is style ONLY. Clean medium-detail painted 2D Korean dark fantasy game art; coherent broad/medium planes on face/hands/cloth, no pores, repeated microtexture, fabric weave, speckles, grain, hatch grids or plastic anime style. Vertical 1024x1536 waist-up; comparable head scale to reference, slight three-quarter right, natural hands. True alpha-transparent background, no vignette, scenery, halo, text or frame. A clearly non-threatening gesture: lower the bow down and outward toward his right thigh, open and relax the other hand palm-down near waist, release the drawing-hand tension. Face is cautious but reassuring, eye contact toward screen right. Not aiming, arrow not nocked. Same known bow/quiver/robes and exact character identity; hands visible and anatomically credible.",
+  "references": [
+    {
+      "identity": "seoro",
+      "sha256": "d05ce83f8487515f127abb441dbae4a4616c66181ffbea15498060a237a090a9"
+    }
+  ],
+  "status": "image visually reviewed; runtime framing and integration not yet performed"
+}

@@ -1,0 +1,17 @@
+{
+  "id": "monk-young-emotion-concern",
+  "actor": "monk_young",
+  "variant": "emotion.concern",
+  "prompt": "Fresh independent identity-preserving portrait of the exact ordinary Korean person in reference1. Reference2 is common STYLE ONLY, never copy its face, scar or costume. Preserve original age, facial proportions/asymmetry, body build, hair/shaved head, and all simple clothing/props. Do not beautify, de-age, give model-like face or add decorations. Coherent medium-detail painted2D game art with broad/medium tones and selected folds, no pores/weave/repetitive microtexture/stippling/noise/grain or glossy anime styling. Vertical1024x1536 waist-up, same head scale and30px head margin. Genuine alpha transparency, no backdrop/vignette/halo/text/frame. Natural hands. Young adult monk quietly worried: eyes alert toward screen-right, brows drawn upward inward, lips parted a little, one hand gathers robe at waist as in reference. Preserve shaved head, ordinary adult facial proportions, blue-grey robe, ivory collar and grey sash. No magic or extra prop.",
+  "references": [
+    {
+      "identity": "monk_young",
+      "sha256": "ac2cfccef8867b94155f0cd49242b8236d4c04d0e8d935f39048c031ddd22e3d"
+    },
+    {
+      "identity": "seoro",
+      "sha256": "d05ce83f8487515f127abb441dbae4a4616c66181ffbea15498060a237a090a9"
+    }
+  ],
+  "status": "image visually reviewed; runtime framing and integration not yet performed"
+}

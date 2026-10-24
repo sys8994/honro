@@ -1,0 +1,17 @@
+{
+  "id": "worker-mature-emotion-concern",
+  "actor": "worker_mature",
+  "variant": "emotion.concern",
+  "prompt": "Fresh independently rendered portrait of the exact ordinary Korean man in reference1. Reference2 is STYLE ONLY. Lock identity, age, face proportions, hair/facialhair, body build, plain clothing and props from reference1. No beautification, heroic model jaw, de-aging or extra decorations. Medium-detail clean painted2D Korean dark fantasy game style, broad/medium tones, selected folds/hair groups; no photo pores/fabric weave/microtexture/noisy grain/stippling/hatching. Vertical1024x1536 waist-up with consistent head size and30px clear top margin; natural hands. Genuine transparent alpha background, no scenery/vignette/halo/text/frame. Middle-aged worker worried and alert: eyes searching screen-right, inner eyebrows raised, mouth slightly open as if warning someone, hands clasp forearm more tensely. Preserve stocky ordinary face, short moustache/beard, brown headband, brown vest over ivory sleeves, grey sash and plain wooden tool at belt.",
+  "references": [
+    {
+      "identity": "worker_mature",
+      "sha256": "6db32403f0318da8077a7461afb2cc1f6a1e17de9e35cf3b40df3e7baa2cfe7a"
+    },
+    {
+      "identity": "seoro",
+      "sha256": "d05ce83f8487515f127abb441dbae4a4616c66181ffbea15498060a237a090a9"
+    }
+  ],
+  "status": "image visually reviewed; runtime framing and integration not yet performed"
+}

@@ -1,0 +1,17 @@
+{
+  "id": "yeonsil-emotion-sorrow",
+  "actor": "yeonsil",
+  "variant": "emotion.sorrow",
+  "prompt": "One fresh independent portrait of the exact ordinary Korean village woman in reference1. Identity and costume are LOCKED to reference1; reference2 is style-only, never copy male face/scar/clothes. Preserve ordinary unidealized facial structure, age, natural asymmetry, eye/nose/mouth proportions, hairstyle, complexion and plain clothing. Do NOT beautify, slim face, de-age, add makeup or glamour. Medium-detail clean painted2D game style consistent on skin and cloth, broad/medium tones and selected folds, no photoreal pores/weave/repeated microtexture/stipple/noise/grain. Vertical1024x1536 waist-up, same head scale, complete hair with30px margin, natural hands. True alpha transparency, no backdrop/vignette/halo/text/frame. Yeonsil's quiet grief over loss: eyes cast down, inner brows lifted slightly, mouth corners lowered, hands clasped loosely at waist. No theatrical crying or tears streaming. Preserve her exact plain ivory jacket with brown collar/tie and brown skirt, dark low bun; no new accessory.",
+  "references": [
+    {
+      "identity": "yeonsil",
+      "sha256": "2574aefc3e1011277d3215290013c293075071c60db65fa95444eba0e00aca06"
+    },
+    {
+      "identity": "seoro",
+      "sha256": "d05ce83f8487515f127abb441dbae4a4616c66181ffbea15498060a237a090a9"
+    }
+  ],
+  "status": "image visually reviewed; runtime framing and integration not yet performed"
+}

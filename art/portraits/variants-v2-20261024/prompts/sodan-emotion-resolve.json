@@ -1,0 +1,17 @@
+{
+  "id": "sodan-emotion-resolve",
+  "actor": "sodan",
+  "variant": "emotion.resolve",
+  "prompt": "Fresh independent portrait of exactly the SAME character in reference1. Preserve identity/face proportions/age/hair/scars/beard and all costume construction, colors and existing props, no beautification or de-aging. Ref2, if present, is style ONLY. Clean medium-detail painted 2D Korean dark fantasy game art; coherent broad/medium planes on face/hands/cloth, no pores, repeated microtexture, fabric weave, speckles, grain, hatch grids or plastic anime style. Vertical 1024x1536 waist-up; comparable head scale to reference, slight three-quarter right, natural hands. True alpha-transparent background, no vignette, scenery, halo, text or frame. Gentle but unwavering resolve to guide a frightened soul: steady eyes, settled eyebrows, firmly closed lips, shoulders upright. No smile or aggressive glare. Bell held lightly near waist without ringing. Preserve ivory outer robe, lavender inner trims, flat red sash and hair ribbon; same adult face, no beauty enhancement.",
+  "references": [
+    {
+      "identity": "sodan",
+      "sha256": "0268f8f89b5ac19608baf38e048b02cc50309a2e191ca14556cc6a8fdc49abb4"
+    },
+    {
+      "identity": "seoro",
+      "sha256": "d05ce83f8487515f127abb441dbae4a4616c66181ffbea15498060a237a090a9"
+    }
+  ],
+  "status": "image visually reviewed; runtime framing and integration not yet performed"
+}

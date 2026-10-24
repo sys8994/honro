@@ -1,0 +1,17 @@
+{
+  "id": "worker-young-emotion-relief",
+  "actor": "worker_young",
+  "variant": "emotion.relief",
+  "prompt": "Fresh independent identity-preserving portrait of the exact ordinary Korean person in reference1. Reference2 is common STYLE ONLY, never copy its face, scar or costume. Preserve original age, facial proportions/asymmetry, body build, hair/shaved head, and all simple clothing/props. Do not beautify, de-age, give model-like face or add decorations. Coherent medium-detail painted2D game art with broad/medium tones and selected folds, no pores/weave/repetitive microtexture/stippling/noise/grain or glossy anime styling. Vertical1024x1536 waist-up, same head scale and30px head margin. Genuine alpha transparency, no backdrop/vignette/halo/text/frame. Natural hands. Young adult worker visibly relieved: brows relax, eyes soften, small closed-mouth smile, clasped hands loosen. No teeth/grin or glamour. Preserve exact ordinary face, dark tied hair, blue-grey robe, ivory collar and cloth strap/sash.",
+  "references": [
+    {
+      "identity": "worker_young",
+      "sha256": "d7125f5ad391dd0b89608df5e41c7da50c34d569f09be474e42ad697456d27a6"
+    },
+    {
+      "identity": "seoro",
+      "sha256": "d05ce83f8487515f127abb441dbae4a4616c66181ffbea15498060a237a090a9"
+    }
+  ],
+  "status": "image visually reviewed; runtime framing and integration not yet performed"
+}

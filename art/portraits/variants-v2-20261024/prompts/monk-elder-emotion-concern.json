@@ -1,0 +1,17 @@
+{
+  "id": "monk-elder-emotion-concern",
+  "actor": "monk_elder",
+  "variant": "emotion.concern",
+  "prompt": "Fresh independent identity-preserving portrait of the exact ordinary Korean person in reference1. Reference2 is common STYLE ONLY, never copy its face, scar or costume. Preserve original age, facial proportions/asymmetry, body build, hair/shaved head, and all simple clothing/props. Do not beautify, de-age, give model-like face or add decorations. Coherent medium-detail painted2D game art with broad/medium tones and selected folds, no pores/weave/repetitive microtexture/stippling/noise/grain or glossy anime styling. Vertical1024x1536 waist-up, same head scale and30px head margin. Genuine alpha transparency, no backdrop/vignette/halo/text/frame. Natural hands. Elder monk grave and concerned: eyebrows raised inward, eyes attentive toward screen-right, lips slightly parted, prayer beads held with mild tension. Preserve round aged face, shaved head, plain grey robe with brown outer drape and wooden beads; no halo or new ritual accessory.",
+  "references": [
+    {
+      "identity": "monk_elder",
+      "sha256": "84923a08cca41e3c87830990d753b737b5e5a4032e4cc4afff69cdf1d0a80a3a"
+    },
+    {
+      "identity": "seoro",
+      "sha256": "d05ce83f8487515f127abb441dbae4a4616c66181ffbea15498060a237a090a9"
+    }
+  ],
+  "status": "image visually reviewed; runtime framing and integration not yet performed"
+}

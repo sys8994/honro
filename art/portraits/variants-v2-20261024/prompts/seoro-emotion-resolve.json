@@ -1,0 +1,13 @@
+{
+  "id": "seoro-emotion-resolve",
+  "actor": "seoro",
+  "variant": "emotion.resolve",
+  "prompt": "Fresh independent portrait of exactly the SAME character in reference1. Preserve identity/face proportions/age/hair/scars/beard and all costume construction, colors and existing props, no beautification or de-aging. Ref2, if present, is style ONLY. Clean medium-detail painted 2D Korean dark fantasy game art; coherent broad/medium planes on face/hands/cloth, no pores, repeated microtexture, fabric weave, speckles, grain, hatch grids or plastic anime style. Vertical 1024x1536 waist-up; comparable head scale to reference, slight three-quarter right, natural hands. True alpha-transparent background, no vignette, scenery, halo, text or frame. Quiet resolve: level focused eyes, brows slightly drawn together, chin subtly lifted, lips firmly closed, upright shoulders. Not an angry snarl and not a smile. Retain cheek scar, stubble, hair, green-grey robe and leather, bow lowered as in reference.",
+  "references": [
+    {
+      "identity": "seoro",
+      "sha256": "d05ce83f8487515f127abb441dbae4a4616c66181ffbea15498060a237a090a9"
+    }
+  ],
+  "status": "image visually reviewed; runtime framing and integration not yet performed"
+}

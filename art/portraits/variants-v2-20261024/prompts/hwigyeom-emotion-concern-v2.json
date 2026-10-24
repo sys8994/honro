@@ -1,0 +1,17 @@
+{
+  "id": "hwigyeom-emotion-concern-v2",
+  "actor": "hwigyeom",
+  "variant": "emotion.concern",
+  "prompt": "Fresh independent portrait of exactly the SAME character in reference1. Preserve identity/face proportions/age/hair/scars/beard and all costume construction, colors and existing props, no beautification or de-aging. Ref2, if present, is style ONLY. Clean medium-detail painted 2D Korean dark fantasy game art; coherent broad/medium planes on face/hands/cloth, no pores, repeated microtexture, fabric weave, speckles, grain, hatch grids or plastic anime style. Vertical 1024x1536 waist-up; comparable head scale to reference, slight three-quarter right, natural hands. True alpha-transparent background, no vignette, scenery, halo, text or frame. Concern and protective alarm: eyebrows slightly raised inward, eyes looking urgently to screen right, mouth a little parted, no anger. CRITICAL COMPOSITION: retain the full black gat crown AND both brim tips, move the portrait DOWN enough to leave at least 45 pixels of clear transparent space above the crown, no hat pixel touches top/side edges. Keep face at reference scale, do not shrink his head. Preserve blue-grey robe, dark sleeves, ivory collar, square brass buckle on diagonal brown strap, red sash, sheathed sword.",
+  "references": [
+    {
+      "identity": "hwigyeom",
+      "sha256": "ecffdbfd43b4e8e6f5e5d59b0290ac470cd28e2618c13fcb5174a17256364f06"
+    },
+    {
+      "identity": "seoro",
+      "sha256": "d05ce83f8487515f127abb441dbae4a4616c66181ffbea15498060a237a090a9"
+    }
+  ],
+  "status": "image visually reviewed; runtime framing and integration not yet performed"
+}

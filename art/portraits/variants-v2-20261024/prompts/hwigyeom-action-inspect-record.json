@@ -1,0 +1,17 @@
+{
+  "id": "hwigyeom-action-inspect-record",
+  "actor": "hwigyeom",
+  "variant": "action.inspect_record",
+  "prompt": "Create one fresh independent portrait of exactly Hwigyeom in reference1; reference2 is only the common painted 2D style, never face/costume. Preserve mature Korean face, moustache and short beard, black hair, full black gat, blue-grey outer robe, dark sleeves, ivory collar, diagonal brown leather strap/square brass buckle, dark red sash, sheathed sword. Do not beautify or de-age. Full gat crown/brim with at least45px transparent top margin and side margins; keep face at reference scale, shift body down rather than shrink head. Vertical1024x1536 upper body. Clean broad/medium tonal planes across face/hands/cloth, medium-detail game painting, no microtexture/pore/fabric-weave/noise/grain/stippling/hatching, no anime or photo styling. Genuine alpha transparency, no background/vignette/halo/frame/text. Carefully inspecting one plain folded old paper record held in both hands at lower chest: eyes directed down to paper, focused measured brow, mouth closed. The paper shows only broad faint ink lines with no readable invented words, seals or names. Keep face and hat fully visible above it. Natural hands/fingers, sleeves and strap unchanged, sword sheathed. This single paper is the only added scene prop.",
+  "references": [
+    {
+      "identity": "hwigyeom",
+      "sha256": "ecffdbfd43b4e8e6f5e5d59b0290ac470cd28e2618c13fcb5174a17256364f06"
+    },
+    {
+      "identity": "seoro",
+      "sha256": "d05ce83f8487515f127abb441dbae4a4616c66181ffbea15498060a237a090a9"
+    }
+  ],
+  "status": "image visually reviewed; runtime framing and integration not yet performed"
+}

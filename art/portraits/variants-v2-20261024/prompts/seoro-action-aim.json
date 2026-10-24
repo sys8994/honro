@@ -1,0 +1,13 @@
+{
+  "id": "seoro-action-aim",
+  "actor": "seoro",
+  "variant": "action.aim",
+  "prompt": "Fresh independent identity-preserving Korean dark fantasy game portrait of exactly the person in reference1. Reference2 is only common clean medium-detail painted 2D style, never copy its identity. Lock face proportions, age, hair/scars, exact clothing colors/construction and props. No beautification/de-aging. Broad and medium tonal planes on face/hands/cloth; no pores, repetitive microtexture, grain, weave, stippling, hatch grids or anime face. Vertical1024x1536 upper body; same face scale, full head with30px top margin, natural hands. Genuine alpha-transparent background, no scenery/vignette/halo/text/frame. Seoro aiming his existing compact traditional bow at a hostile target offscreen upper-right. Correct archery anatomy: bow-hand forward, drawing hand anchored near cheek with a single nocked arrow and taut bowstring, elbows plausible. Compose forearms diagonally so both hands and face fit inside portrait; face intent along arrow, no magical arrow. Preserve cheek scar, dark tied hair, grey-green robe, ivory sleeves, leather guards, rusty red sash and quiver. Do not cover face with bow.",
+  "references": [
+    {
+      "identity": "seoro",
+      "sha256": "d05ce83f8487515f127abb441dbae4a4616c66181ffbea15498060a237a090a9"
+    }
+  ],
+  "status": "image visually reviewed; runtime framing and integration not yet performed"
+}

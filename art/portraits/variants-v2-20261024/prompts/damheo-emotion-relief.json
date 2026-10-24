@@ -1,0 +1,17 @@
+{
+  "id": "damheo-emotion-relief",
+  "actor": "damheo",
+  "variant": "emotion.relief",
+  "prompt": "Use case identity-preserve stylized-concept. One fresh independently rendered portrait of the SAME older Korean monk-mage Damheo in reference1, with reference2 used ONLY for consistent medium-detail painted 2D game style. Preserve exact weathered face proportions, narrow mature eyes, age, grey topknot, grey beard, dark grey-olive outer robe, warm ivory inner robe, simple brown leather belt, forked wooden staff and gourd. No beautification/de-aging. Face, hands and clothes share broad/medium painted planes, selective folds/hair locks. No pores, fabric weave, repetitive microtexture, dots, scratch noise, grain, over-sharpening or anime styling. Vertical 1024x1536 waist-up composition with same head scale and full hair at least30px from top. Genuine alpha-transparent background, no vignette/scenery/glow/frame/text. Natural readable hands and same props only. Quiet tired relief after helping someone: brows relax, eyes soften, a small closed-mouth smile partly visible under moustache, shoulders drop gently. Staff and gourd held in familiar resting position. Not laughter or celebration.",
+  "references": [
+    {
+      "identity": "damheo",
+      "sha256": "8b923c1aaa18e6e1bfd329987f1621c918fa943c2490ff8adbb48aab802e8d1a"
+    },
+    {
+      "identity": "seoro",
+      "sha256": "d05ce83f8487515f127abb441dbae4a4616c66181ffbea15498060a237a090a9"
+    }
+  ],
+  "status": "image visually reviewed; runtime framing and integration not yet performed"
+}

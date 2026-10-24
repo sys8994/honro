@@ -1,0 +1,17 @@
+{
+  "id": "woman-mature-emotion-concern",
+  "actor": "woman_mature",
+  "variant": "emotion.concern",
+  "prompt": "One fresh independent portrait of the exact ordinary Korean village woman in reference1. Identity and costume are LOCKED to reference1; reference2 is style-only, never copy male face/scar/clothes. Preserve ordinary unidealized facial structure, age, natural asymmetry, eye/nose/mouth proportions, hairstyle, complexion and plain clothing. Do NOT beautify, slim face, de-age, add makeup or glamour. Medium-detail clean painted2D game style consistent on skin and cloth, broad/medium tones and selected folds, no photoreal pores/weave/repeated microtexture/stipple/noise/grain. Vertical1024x1536 waist-up, same head scale, complete hair with30px margin, natural hands. True alpha transparency, no backdrop/vignette/halo/text/frame. Concerned middle-aged woman looking screen-right for someone's safety: eyes more alert, inner brows raised and drawn together, lips parted slightly. Hands hold her existing white cloth with slight tension. Preserve brown jacket, ivory collar/cuffs, charcoal skirt, grey-streaked low bun and mature unidealized face.",
+  "references": [
+    {
+      "identity": "woman_mature",
+      "sha256": "4194ab7d306d941cbee5e50bbc41471c20173dde5aa3bade119760548d0d311e"
+    },
+    {
+      "identity": "seoro",
+      "sha256": "d05ce83f8487515f127abb441dbae4a4616c66181ffbea15498060a237a090a9"
+    }
+  ],
+  "status": "image visually reviewed; runtime framing and integration not yet performed"
+}

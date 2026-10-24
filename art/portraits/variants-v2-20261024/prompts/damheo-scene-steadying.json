@@ -1,0 +1,17 @@
+{
+  "id": "damheo-scene-steadying",
+  "actor": "damheo",
+  "variant": "scene.steadying",
+  "prompt": "Use case identity-preserve stylized-concept. One fresh independently rendered portrait of the SAME older Korean monk-mage Damheo in reference1, with reference2 used ONLY for consistent medium-detail painted 2D game style. Preserve exact weathered face proportions, narrow mature eyes, age, grey topknot, grey beard, dark grey-olive outer robe, warm ivory inner robe, simple brown leather belt, forked wooden staff and gourd. No beautification/de-aging. Face, hands and clothes share broad/medium painted planes, selective folds/hair locks. No pores, fabric weave, repetitive microtexture, dots, scratch noise, grain, over-sharpening or anime styling. Vertical 1024x1536 waist-up composition with same head scale and full hair at least30px from top. Genuine alpha-transparent background, no vignette/scenery/glow/frame/text. Natural readable hands and same props only. Scene pose: bracing to steady a shaken companion just outside frame. Lean upper body slightly toward screen-right; one arm reaches forward and slightly down with an OPEN supportive palm, not pointing or spellcasting. Other hand holds the forked staff planted upright. Concerned attentive gaze toward the offscreen companion. Keep gourd secured at belt. NO second person or extra face/hand. One anatomically clear open hand with five fingers; full head unchanged.",
+  "references": [
+    {
+      "identity": "damheo",
+      "sha256": "8b923c1aaa18e6e1bfd329987f1621c918fa943c2490ff8adbb48aab802e8d1a"
+    },
+    {
+      "identity": "seoro",
+      "sha256": "d05ce83f8487515f127abb441dbae4a4616c66181ffbea15498060a237a090a9"
+    }
+  ],
+  "status": "image visually reviewed; runtime framing and integration not yet performed"
+}

@@ -1,0 +1,17 @@
+{
+  "id": "sodan-emotion-anger",
+  "actor": "sodan",
+  "variant": "emotion.anger",
+  "prompt": "Fresh independent identity-preserving Korean dark fantasy game portrait of exactly the person in reference1. Reference2 is only common clean medium-detail painted 2D style, never copy its identity. Lock face proportions, age, hair/scars, exact clothing colors/construction and props. No beautification/de-aging. Broad and medium tonal planes on face/hands/cloth; no pores, repetitive microtexture, grain, weave, stippling, hatch grids or anime face. Vertical1024x1536 upper body; same face scale, full head with30px top margin, natural hands. Genuine alpha-transparent background, no scenery/vignette/halo/text/frame. Sodan expresses suppressed moral anger: brows gather and lower, eyes direct and firm toward screen right, lips pressed, chin slightly forward; no shout, no bared teeth. Bell held firmly near waist without magical effects. Same adult face and ivory/lavender/red clothing.",
+  "references": [
+    {
+      "identity": "sodan",
+      "sha256": "0268f8f89b5ac19608baf38e048b02cc50309a2e191ca14556cc6a8fdc49abb4"
+    },
+    {
+      "identity": "seoro",
+      "sha256": "d05ce83f8487515f127abb441dbae4a4616c66181ffbea15498060a237a090a9"
+    }
+  ],
+  "status": "image visually reviewed; runtime framing and integration not yet performed"
+}
