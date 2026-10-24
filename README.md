@@ -1,5 +1,7 @@
 # HONRO · Game + Workshop
 
+현재 실행 책임, 퇴역 코드·에셋 정리, 실제 배포와 검증 범위는 [2026-10-24 리팩토링 계획과 결과](game/docs/REFACTOR_PLAN_20261024.md)를 참고합니다. 아래 날짜별 기록은 당시 변경 이력이며 이후 개정과 함께 읽습니다.
+
 대사 원칙 v2와 부모 원고의 별도 통합·정확한 SHA·검사 및 시작 전송량/옛 검사 한계는 [서사 통합 기록](game/docs/story/narrative-voice-v2-release-20261022/README.md)을 참고합니다.
 
 현재 BGM·승인된 11장·master 실루엣 개선을 결합한 부모 검토본은 [최종 통합 기록](game/docs/bgm-stage11-release-20261022/README.md)을 따릅니다. 아래 단독 BGM 검수의 소스/빌드와 이번 통합의 소스/빌드를 구분합니다.
