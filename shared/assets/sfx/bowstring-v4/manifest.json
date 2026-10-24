@@ -1,0 +1,26 @@
+{
+  "source": "https://freesound.org/people/saturdaysoundguy/sounds/394178/",
+  "author": "saturdaysoundguy",
+  "title": "Longbow Release 1.wav",
+  "license": "CC0 1.0",
+  "licenseURL": "https://creativecommons.org/publicdomain/zero/1.0/",
+  "sourceFormat": "Public HQ MP3 preview, not original WAV",
+  "sourceSHA256": "20a930640f49d86777253643f491b937cdea6b4d7d6716b1de089be8f70fa4cb",
+  "outputSHA256": "d359936cf63869053ace383263162c9b45bb1e52af1a9bf1612d27a31107872a",
+  "bytes": 8402,
+  "processing": "Decode; 65Hz high-pass; compressor threshold0.04 ratio3 attack0.2ms release35ms; +1.5dB broad2.3kHz presence; normalize master peak0.85; mono44100Hz128kbpsMP3. Pitch unchanged; no added layers or synthetic thud. Remove60ms quiet pre-roll;0.5ms entry ramp and12ms tail fade.",
+  "sourceMetrics": {
+    "duration": 0.5280045351473923,
+    "peak": 0.8163548111915588,
+    "rmsDBFS": -29.630138397216797,
+    "first50msRMS": -54.1447639465332
+  },
+  "outputMetrics": {
+    "duration": 0.46800453514739226,
+    "peak": 0.8569705486297607,
+    "rmsDBFS": -25.84303855895996
+  },
+  "requestedRuntimeGain": 0.95,
+  "previousReleaseGain": 0.8,
+  "listeningQA": "Not subjectively auditioned; technical signal checks only."
+}
