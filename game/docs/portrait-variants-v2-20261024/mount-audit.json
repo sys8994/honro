@@ -1,0 +1,3159 @@
+{
+  "head": "84487786677e9f3b979f52d21ba410d0d53fec34",
+  "rows": [
+    {
+      "id": "damheo-emotion-resolve",
+      "mounted": {
+        "identity": "damheo",
+        "requested": "emotion.resolve",
+        "actor": "담허",
+        "cls": "mage"
+      },
+      "selected": {
+        "source": "approved",
+        "state": "ready",
+        "identity": "damheo",
+        "expression": "emotion.resolve",
+        "requestedExpression": "emotion.resolve",
+        "fallbackReason": "exact",
+        "framing": "dialogue",
+        "crop": {
+          "x": -161.45454545454538,
+          "y": -41.4677419354839,
+          "width": 1090.9090909090908,
+          "height": 1200
+        },
+        "head": {
+          "left": 0,
+          "top": 0,
+          "right": 768,
+          "bottom": 525,
+          "width": 768,
+          "height": 525
+        },
+        "bounds": {
+          "left": 0,
+          "top": 0,
+          "right": 768,
+          "bottom": 1152,
+          "width": 768,
+          "height": 1152
+        }
+      },
+      "inspectionChangedCounters": false,
+      "repeat120": {
+        "before": {
+          "requests": 2,
+          "decodes": 2,
+          "paints": 2,
+          "fallbackPaints": 0,
+          "vectorBuilds": 0,
+          "imageEntries": 2,
+          "pending": 0,
+          "errors": 0,
+          "vectorEntries": 0,
+          "waiters": 0,
+          "decodedRgbaBytes": 9830400,
+          "pendingRgbaBytes": 0,
+          "budgetBytes": 16777216,
+          "protectedRgbaBytes": 0
+        },
+        "after": {
+          "requests": 2,
+          "decodes": 2,
+          "paints": 2,
+          "fallbackPaints": 0,
+          "vectorBuilds": 0,
+          "imageEntries": 2,
+          "pending": 0,
+          "errors": 0,
+          "vectorEntries": 0,
+          "waiters": 0,
+          "decodedRgbaBytes": 9830400,
+          "pendingRgbaBytes": 0,
+          "budgetBytes": 16777216,
+          "protectedRgbaBytes": 3538944
+        },
+        "paints": 0,
+        "clears": 0
+      },
+      "visibility": {
+        "width": 276.53125,
+        "height": 304.1875,
+        "opacity": "1",
+        "stats": {
+          "requests": 2,
+          "decodes": 2,
+          "paints": 2,
+          "fallbackPaints": 0,
+          "vectorBuilds": 0,
+          "imageEntries": 2,
+          "pending": 0,
+          "errors": 0,
+          "vectorEntries": 0,
+          "waiters": 0,
+          "decodedRgbaBytes": 9830400,
+          "pendingRgbaBytes": 0,
+          "budgetBytes": 16777216,
+          "protectedRgbaBytes": 3538944
+        }
+      }
+    },
+    {
+      "id": "seoro-emotion-resolve",
+      "mounted": {
+        "identity": "seoro",
+        "requested": "emotion.resolve",
+        "actor": "설오",
+        "cls": "archer"
+      },
+      "selected": {
+        "source": "approved",
+        "state": "ready",
+        "identity": "seoro",
+        "expression": "emotion.resolve",
+        "requestedExpression": "emotion.resolve",
+        "fallbackReason": "exact",
+        "framing": "dialogue",
+        "crop": {
+          "x": -152.93181818181813,
+          "y": -37.83050847457628,
+          "width": 1073.8636363636363,
+          "height": 1181.25
+        },
+        "head": {
+          "left": 0,
+          "top": 0,
+          "right": 768,
+          "bottom": 525,
+          "width": 768,
+          "height": 525
+        },
+        "bounds": {
+          "left": 0,
+          "top": 0,
+          "right": 768,
+          "bottom": 1152,
+          "width": 768,
+          "height": 1152
+        }
+      },
+      "inspectionChangedCounters": false,
+      "repeat120": {
+        "before": {
+          "requests": 3,
+          "decodes": 3,
+          "paints": 3,
+          "fallbackPaints": 0,
+          "vectorBuilds": 0,
+          "imageEntries": 3,
+          "pending": 0,
+          "errors": 0,
+          "vectorEntries": 0,
+          "waiters": 0,
+          "decodedRgbaBytes": 13369344,
+          "pendingRgbaBytes": 0,
+          "budgetBytes": 16777216,
+          "protectedRgbaBytes": 0
+        },
+        "after": {
+          "requests": 3,
+          "decodes": 3,
+          "paints": 3,
+          "fallbackPaints": 0,
+          "vectorBuilds": 0,
+          "imageEntries": 3,
+          "pending": 0,
+          "errors": 0,
+          "vectorEntries": 0,
+          "waiters": 0,
+          "decodedRgbaBytes": 13369344,
+          "pendingRgbaBytes": 0,
+          "budgetBytes": 16777216,
+          "protectedRgbaBytes": 3538944
+        },
+        "paints": 0,
+        "clears": 0
+      },
+      "visibility": {
+        "width": 276.53125,
+        "height": 304.1875,
+        "opacity": "1",
+        "stats": {
+          "requests": 3,
+          "decodes": 3,
+          "paints": 3,
+          "fallbackPaints": 0,
+          "vectorBuilds": 0,
+          "imageEntries": 3,
+          "pending": 0,
+          "errors": 0,
+          "vectorEntries": 0,
+          "waiters": 0,
+          "decodedRgbaBytes": 13369344,
+          "pendingRgbaBytes": 0,
+          "budgetBytes": 16777216,
+          "protectedRgbaBytes": 3538944
+        }
+      }
+    },
+    {
+      "id": "damheo-emotion-relief",
+      "mounted": {
+        "identity": "damheo",
+        "requested": "emotion.relief",
+        "actor": "담허",
+        "cls": "mage"
+      },
+      "selected": {
+        "source": "approved",
+        "state": "ready",
+        "identity": "damheo",
+        "expression": "emotion.relief",
+        "requestedExpression": "emotion.relief",
+        "fallbackReason": "exact",
+        "framing": "dialogue",
+        "crop": {
+          "x": -161.45454545454538,
+          "y": -41.4677419354839,
+          "width": 1090.9090909090908,
+          "height": 1200
+        },
+        "head": {
+          "left": 0,
+          "top": 0,
+          "right": 768,
+          "bottom": 525,
+          "width": 768,
+          "height": 525
+        },
+        "bounds": {
+          "left": 0,
+          "top": 0,
+          "right": 768,
+          "bottom": 1152,
+          "width": 768,
+          "height": 1152
+        }
+      },
+      "inspectionChangedCounters": false,
+      "repeat120": {
+        "before": {
+          "requests": 4,
+          "decodes": 4,
+          "paints": 4,
+          "fallbackPaints": 0,
+          "vectorBuilds": 0,
+          "imageEntries": 3,
+          "pending": 0,
+          "errors": 0,
+          "vectorEntries": 0,
+          "waiters": 0,
+          "decodedRgbaBytes": 10616832,
+          "pendingRgbaBytes": 0,
+          "budgetBytes": 16777216,
+          "protectedRgbaBytes": 0
+        },
+        "after": {
+          "requests": 4,
+          "decodes": 4,
+          "paints": 4,
+          "fallbackPaints": 0,
+          "vectorBuilds": 0,
+          "imageEntries": 3,
+          "pending": 0,
+          "errors": 0,
+          "vectorEntries": 0,
+          "waiters": 0,
+          "decodedRgbaBytes": 10616832,
+          "pendingRgbaBytes": 0,
+          "budgetBytes": 16777216,
+          "protectedRgbaBytes": 3538944
+        },
+        "paints": 0,
+        "clears": 0
+      },
+      "visibility": {
+        "width": 276.53125,
+        "height": 304.1875,
+        "opacity": "1",
+        "stats": {
+          "requests": 4,
+          "decodes": 4,
+          "paints": 4,
+          "fallbackPaints": 0,
+          "vectorBuilds": 0,
+          "imageEntries": 3,
+          "pending": 0,
+          "errors": 0,
+          "vectorEntries": 0,
+          "waiters": 0,
+          "decodedRgbaBytes": 10616832,
+          "pendingRgbaBytes": 0,
+          "budgetBytes": 16777216,
+          "protectedRgbaBytes": 3538944
+        }
+      }
+    },
+    {
+      "id": "yeonsil-emotion-sorrow",
+      "mounted": {
+        "identity": "yeonsil",
+        "requested": "emotion.sorrow",
+        "actor": "연실",
+        "cls": "mage"
+      },
+      "selected": {
+        "source": "approved",
+        "state": "ready",
+        "identity": "yeonsil",
+        "expression": "emotion.sorrow",
+        "requestedExpression": "emotion.sorrow",
+        "fallbackReason": "exact",
+        "framing": "dialogue",
+        "crop": {
+          "x": -169.97727272727275,
+          "y": -69.75,
+          "width": 1107.9545454545455,
+          "height": 1218.75
+        },
+        "head": {
+          "left": 0,
+          "top": 0,
+          "right": 768,
+          "bottom": 525,
+          "width": 768,
+          "height": 525
+        },
+        "bounds": {
+          "left": 0,
+          "top": 0,
+          "right": 768,
+          "bottom": 1152,
+          "width": 768,
+          "height": 1152
+        }
+      },
+      "inspectionChangedCounters": false,
+      "repeat120": {
+        "before": {
+          "requests": 5,
+          "decodes": 5,
+          "paints": 5,
+          "fallbackPaints": 0,
+          "vectorBuilds": 0,
+          "imageEntries": 4,
+          "pending": 0,
+          "errors": 0,
+          "vectorEntries": 0,
+          "waiters": 0,
+          "decodedRgbaBytes": 14155776,
+          "pendingRgbaBytes": 0,
+          "budgetBytes": 16777216,
+          "protectedRgbaBytes": 0
+        },
+        "after": {
+          "requests": 5,
+          "decodes": 5,
+          "paints": 5,
+          "fallbackPaints": 0,
+          "vectorBuilds": 0,
+          "imageEntries": 4,
+          "pending": 0,
+          "errors": 0,
+          "vectorEntries": 0,
+          "waiters": 0,
+          "decodedRgbaBytes": 14155776,
+          "pendingRgbaBytes": 0,
+          "budgetBytes": 16777216,
+          "protectedRgbaBytes": 3538944
+        },
+        "paints": 0,
+        "clears": 0
+      },
+      "visibility": {
+        "width": 276.53125,
+        "height": 304.1875,
+        "opacity": "1",
+        "stats": {
+          "requests": 5,
+          "decodes": 5,
+          "paints": 5,
+          "fallbackPaints": 0,
+          "vectorBuilds": 0,
+          "imageEntries": 4,
+          "pending": 0,
+          "errors": 0,
+          "vectorEntries": 0,
+          "waiters": 0,
+          "decodedRgbaBytes": 14155776,
+          "pendingRgbaBytes": 0,
+          "budgetBytes": 16777216,
+          "protectedRgbaBytes": 3538944
+        }
+      }
+    },
+    {
+      "id": "seoro-action-lower-bow",
+      "mounted": {
+        "identity": "seoro",
+        "requested": "action.lower_bow",
+        "actor": "설오",
+        "cls": "archer"
+      },
+      "selected": {
+        "source": "approved",
+        "state": "ready",
+        "identity": "seoro",
+        "expression": "action.lower_bow",
+        "requestedExpression": "action.lower_bow",
+        "fallbackReason": "exact",
+        "framing": "dialogue",
+        "crop": {
+          "x": -152.93181818181813,
+          "y": -37.83050847457628,
+          "width": 1073.8636363636363,
+          "height": 1181.25
+        },
+        "head": {
+          "left": 0,
+          "top": 0,
+          "right": 768,
+          "bottom": 525,
+          "width": 768,
+          "height": 525
+        },
+        "bounds": {
+          "left": 0,
+          "top": 0,
+          "right": 768,
+          "bottom": 1152,
+          "width": 768,
+          "height": 1152
+        }
+      },
+      "inspectionChangedCounters": false,
+      "repeat120": {
+        "before": {
+          "requests": 6,
+          "decodes": 6,
+          "paints": 6,
+          "fallbackPaints": 0,
+          "vectorBuilds": 0,
+          "imageEntries": 4,
+          "pending": 0,
+          "errors": 0,
+          "vectorEntries": 0,
+          "waiters": 0,
+          "decodedRgbaBytes": 14155776,
+          "pendingRgbaBytes": 0,
+          "budgetBytes": 16777216,
+          "protectedRgbaBytes": 3538944
+        },
+        "after": {
+          "requests": 6,
+          "decodes": 6,
+          "paints": 6,
+          "fallbackPaints": 0,
+          "vectorBuilds": 0,
+          "imageEntries": 4,
+          "pending": 0,
+          "errors": 0,
+          "vectorEntries": 0,
+          "waiters": 0,
+          "decodedRgbaBytes": 14155776,
+          "pendingRgbaBytes": 0,
+          "budgetBytes": 16777216,
+          "protectedRgbaBytes": 3538944
+        },
+        "paints": 0,
+        "clears": 0
+      },
+      "visibility": {
+        "width": 276.53125,
+        "height": 304.1875,
+        "opacity": "1",
+        "stats": {
+          "requests": 6,
+          "decodes": 6,
+          "paints": 6,
+          "fallbackPaints": 0,
+          "vectorBuilds": 0,
+          "imageEntries": 4,
+          "pending": 0,
+          "errors": 0,
+          "vectorEntries": 0,
+          "waiters": 0,
+          "decodedRgbaBytes": 14155776,
+          "pendingRgbaBytes": 0,
+          "budgetBytes": 16777216,
+          "protectedRgbaBytes": 0
+        }
+      }
+    },
+    {
+      "id": "seoro-emotion-sorrow",
+      "mounted": {
+        "identity": "seoro",
+        "requested": "emotion.sorrow",
+        "actor": "설오",
+        "cls": "archer"
+      },
+      "selected": {
+        "source": "approved",
+        "state": "ready",
+        "identity": "seoro",
+        "expression": "emotion.sorrow",
+        "requestedExpression": "emotion.sorrow",
+        "fallbackReason": "exact",
+        "framing": "dialogue",
+        "crop": {
+          "x": -152.93181818181813,
+          "y": -37.83050847457628,
+          "width": 1073.8636363636363,
+          "height": 1181.25
+        },
+        "head": {
+          "left": 0,
+          "top": 0,
+          "right": 768,
+          "bottom": 525,
+          "width": 768,
+          "height": 525
+        },
+        "bounds": {
+          "left": 0,
+          "top": 0,
+          "right": 768,
+          "bottom": 1152,
+          "width": 768,
+          "height": 1152
+        }
+      },
+      "inspectionChangedCounters": false,
+      "repeat120": {
+        "before": {
+          "requests": 7,
+          "decodes": 7,
+          "paints": 7,
+          "fallbackPaints": 0,
+          "vectorBuilds": 0,
+          "imageEntries": 4,
+          "pending": 0,
+          "errors": 0,
+          "vectorEntries": 0,
+          "waiters": 0,
+          "decodedRgbaBytes": 14155776,
+          "pendingRgbaBytes": 0,
+          "budgetBytes": 16777216,
+          "protectedRgbaBytes": 3538944
+        },
+        "after": {
+          "requests": 7,
+          "decodes": 7,
+          "paints": 7,
+          "fallbackPaints": 0,
+          "vectorBuilds": 0,
+          "imageEntries": 4,
+          "pending": 0,
+          "errors": 0,
+          "vectorEntries": 0,
+          "waiters": 0,
+          "decodedRgbaBytes": 14155776,
+          "pendingRgbaBytes": 0,
+          "budgetBytes": 16777216,
+          "protectedRgbaBytes": 3538944
+        },
+        "paints": 0,
+        "clears": 0
+      },
+      "visibility": {
+        "width": 276.53125,
+        "height": 304.1875,
+        "opacity": "1",
+        "stats": {
+          "requests": 7,
+          "decodes": 7,
+          "paints": 7,
+          "fallbackPaints": 0,
+          "vectorBuilds": 0,
+          "imageEntries": 4,
+          "pending": 0,
+          "errors": 0,
+          "vectorEntries": 0,
+          "waiters": 0,
+          "decodedRgbaBytes": 14155776,
+          "pendingRgbaBytes": 0,
+          "budgetBytes": 16777216,
+          "protectedRgbaBytes": 3538944
+        }
+      }
+    },
+    {
+      "id": "seoro-emotion-relief",
+      "mounted": {
+        "identity": "seoro",
+        "requested": "emotion.relief",
+        "actor": "설오",
+        "cls": "archer"
+      },
+      "selected": {
+        "source": "approved",
+        "state": "ready",
+        "identity": "seoro",
+        "expression": "emotion.relief",
+        "requestedExpression": "emotion.relief",
+        "fallbackReason": "exact",
+        "framing": "dialogue",
+        "crop": {
+          "x": -152.93181818181813,
+          "y": -37.83050847457628,
+          "width": 1073.8636363636363,
+          "height": 1181.25
+        },
+        "head": {
+          "left": 0,
+          "top": 0,
+          "right": 768,
+          "bottom": 525,
+          "width": 768,
+          "height": 525
+        },
+        "bounds": {
+          "left": 0,
+          "top": 0,
+          "right": 768,
+          "bottom": 1152,
+          "width": 768,
+          "height": 1152
+        }
+      },
+      "inspectionChangedCounters": false,
+      "repeat120": {
+        "before": {
+          "requests": 10,
+          "decodes": 10,
+          "paints": 10,
+          "fallbackPaints": 0,
+          "vectorBuilds": 0,
+          "imageEntries": 3,
+          "pending": 0,
+          "errors": 0,
+          "vectorEntries": 0,
+          "waiters": 0,
+          "decodedRgbaBytes": 16121856,
+          "pendingRgbaBytes": 0,
+          "budgetBytes": 16777216,
+          "protectedRgbaBytes": 0
+        },
+        "after": {
+          "requests": 10,
+          "decodes": 10,
+          "paints": 10,
+          "fallbackPaints": 0,
+          "vectorBuilds": 0,
+          "imageEntries": 3,
+          "pending": 0,
+          "errors": 0,
+          "vectorEntries": 0,
+          "waiters": 0,
+          "decodedRgbaBytes": 16121856,
+          "pendingRgbaBytes": 0,
+          "budgetBytes": 16777216,
+          "protectedRgbaBytes": 3538944
+        },
+        "paints": 0,
+        "clears": 0
+      },
+      "visibility": {
+        "width": 276.53125,
+        "height": 304.1875,
+        "opacity": "1",
+        "stats": {
+          "requests": 10,
+          "decodes": 10,
+          "paints": 10,
+          "fallbackPaints": 0,
+          "vectorBuilds": 0,
+          "imageEntries": 3,
+          "pending": 0,
+          "errors": 0,
+          "vectorEntries": 0,
+          "waiters": 0,
+          "decodedRgbaBytes": 16121856,
+          "pendingRgbaBytes": 0,
+          "budgetBytes": 16777216,
+          "protectedRgbaBytes": 0
+        }
+      }
+    },
+    {
+      "id": "woman-mature-emotion-concern",
+      "mounted": {
+        "identity": "woman_mature",
+        "requested": "emotion.concern",
+        "actor": "춘례",
+        "cls": "mage"
+      },
+      "selected": {
+        "source": "approved",
+        "state": "ready",
+        "identity": "woman_mature",
+        "expression": "emotion.concern",
+        "requestedExpression": "emotion.concern",
+        "fallbackReason": "exact",
+        "framing": "dialogue",
+        "crop": {
+          "x": -132.1079545454545,
+          "y": -8,
+          "width": 1032.215909090909,
+          "height": 1135.4375
+        },
+        "head": {
+          "left": 0,
+          "top": 0,
+          "right": 768,
+          "bottom": 525,
+          "width": 768,
+          "height": 525
+        },
+        "bounds": {
+          "left": 0,
+          "top": 0,
+          "right": 768,
+          "bottom": 1152,
+          "width": 768,
+          "height": 1152
+        }
+      },
+      "inspectionChangedCounters": false,
+      "repeat120": {
+        "before": {
+          "requests": 13,
+          "decodes": 13,
+          "paints": 13,
+          "fallbackPaints": 0,
+          "vectorBuilds": 0,
+          "imageEntries": 3,
+          "pending": 0,
+          "errors": 0,
+          "vectorEntries": 0,
+          "waiters": 0,
+          "decodedRgbaBytes": 10616832,
+          "pendingRgbaBytes": 0,
+          "budgetBytes": 16777216,
+          "protectedRgbaBytes": 0
+        },
+        "after": {
+          "requests": 13,
+          "decodes": 13,
+          "paints": 13,
+          "fallbackPaints": 0,
+          "vectorBuilds": 0,
+          "imageEntries": 3,
+          "pending": 0,
+          "errors": 0,
+          "vectorEntries": 0,
+          "waiters": 0,
+          "decodedRgbaBytes": 10616832,
+          "pendingRgbaBytes": 0,
+          "budgetBytes": 16777216,
+          "protectedRgbaBytes": 3538944
+        },
+        "paints": 0,
+        "clears": 0
+      },
+      "visibility": {
+        "width": 276.53125,
+        "height": 304.1875,
+        "opacity": "1",
+        "stats": {
+          "requests": 13,
+          "decodes": 13,
+          "paints": 13,
+          "fallbackPaints": 0,
+          "vectorBuilds": 0,
+          "imageEntries": 3,
+          "pending": 0,
+          "errors": 0,
+          "vectorEntries": 0,
+          "waiters": 0,
+          "decodedRgbaBytes": 10616832,
+          "pendingRgbaBytes": 0,
+          "budgetBytes": 16777216,
+          "protectedRgbaBytes": 3538944
+        }
+      }
+    },
+    {
+      "id": "hwigyeom-emotion-relief",
+      "mounted": {
+        "identity": "hwigyeom",
+        "requested": "emotion.relief",
+        "actor": "휘겸",
+        "cls": "knight"
+      },
+      "selected": {
+        "source": "approved",
+        "state": "ready",
+        "identity": "hwigyeom",
+        "expression": "emotion.relief",
+        "requestedExpression": "emotion.relief",
+        "fallbackReason": "exact",
+        "framing": "dialogue",
+        "crop": {
+          "x": -93.27272727272725,
+          "y": -53.14285714285711,
+          "width": 954.5454545454545,
+          "height": 1050
+        },
+        "head": {
+          "left": 0,
+          "top": 0,
+          "right": 768,
+          "bottom": 525,
+          "width": 768,
+          "height": 525
+        },
+        "bounds": {
+          "left": 0,
+          "top": 0,
+          "right": 768,
+          "bottom": 1152,
+          "width": 768,
+          "height": 1152
+        }
+      },
+      "inspectionChangedCounters": false,
+      "repeat120": {
+        "before": {
+          "requests": 14,
+          "decodes": 14,
+          "paints": 14,
+          "fallbackPaints": 0,
+          "vectorBuilds": 0,
+          "imageEntries": 4,
+          "pending": 0,
+          "errors": 0,
+          "vectorEntries": 0,
+          "waiters": 0,
+          "decodedRgbaBytes": 14155776,
+          "pendingRgbaBytes": 0,
+          "budgetBytes": 16777216,
+          "protectedRgbaBytes": 0
+        },
+        "after": {
+          "requests": 14,
+          "decodes": 14,
+          "paints": 14,
+          "fallbackPaints": 0,
+          "vectorBuilds": 0,
+          "imageEntries": 4,
+          "pending": 0,
+          "errors": 0,
+          "vectorEntries": 0,
+          "waiters": 0,
+          "decodedRgbaBytes": 14155776,
+          "pendingRgbaBytes": 0,
+          "budgetBytes": 16777216,
+          "protectedRgbaBytes": 3538944
+        },
+        "paints": 0,
+        "clears": 0
+      },
+      "visibility": {
+        "width": 276.53125,
+        "height": 304.1875,
+        "opacity": "1",
+        "stats": {
+          "requests": 14,
+          "decodes": 14,
+          "paints": 14,
+          "fallbackPaints": 0,
+          "vectorBuilds": 0,
+          "imageEntries": 4,
+          "pending": 0,
+          "errors": 0,
+          "vectorEntries": 0,
+          "waiters": 0,
+          "decodedRgbaBytes": 14155776,
+          "pendingRgbaBytes": 0,
+          "budgetBytes": 16777216,
+          "protectedRgbaBytes": 3538944
+        }
+      }
+    },
+    {
+      "id": "hwigyeom-emotion-concern-v2",
+      "mounted": {
+        "identity": "hwigyeom",
+        "requested": "emotion.concern",
+        "actor": "휘겸",
+        "cls": "knight"
+      },
+      "selected": {
+        "source": "approved",
+        "state": "ready",
+        "identity": "hwigyeom",
+        "expression": "emotion.concern",
+        "requestedExpression": "emotion.concern",
+        "fallbackReason": "exact",
+        "framing": "dialogue",
+        "crop": {
+          "x": -93.27272727272725,
+          "y": -53.14285714285711,
+          "width": 954.5454545454545,
+          "height": 1050
+        },
+        "head": {
+          "left": 0,
+          "top": 0,
+          "right": 768,
+          "bottom": 525,
+          "width": 768,
+          "height": 525
+        },
+        "bounds": {
+          "left": 0,
+          "top": 0,
+          "right": 768,
+          "bottom": 1152,
+          "width": 768,
+          "height": 1152
+        }
+      },
+      "inspectionChangedCounters": false,
+      "repeat120": {
+        "before": {
+          "requests": 18,
+          "decodes": 18,
+          "paints": 18,
+          "fallbackPaints": 0,
+          "vectorBuilds": 0,
+          "imageEntries": 3,
+          "pending": 0,
+          "errors": 0,
+          "vectorEntries": 0,
+          "waiters": 0,
+          "decodedRgbaBytes": 16121856,
+          "pendingRgbaBytes": 0,
+          "budgetBytes": 16777216,
+          "protectedRgbaBytes": 0
+        },
+        "after": {
+          "requests": 18,
+          "decodes": 18,
+          "paints": 18,
+          "fallbackPaints": 0,
+          "vectorBuilds": 0,
+          "imageEntries": 3,
+          "pending": 0,
+          "errors": 0,
+          "vectorEntries": 0,
+          "waiters": 0,
+          "decodedRgbaBytes": 16121856,
+          "pendingRgbaBytes": 0,
+          "budgetBytes": 16777216,
+          "protectedRgbaBytes": 3538944
+        },
+        "paints": 0,
+        "clears": 0
+      },
+      "visibility": {
+        "width": 276.53125,
+        "height": 304.1875,
+        "opacity": "1",
+        "stats": {
+          "requests": 18,
+          "decodes": 18,
+          "paints": 18,
+          "fallbackPaints": 0,
+          "vectorBuilds": 0,
+          "imageEntries": 3,
+          "pending": 0,
+          "errors": 0,
+          "vectorEntries": 0,
+          "waiters": 0,
+          "decodedRgbaBytes": 16121856,
+          "pendingRgbaBytes": 0,
+          "budgetBytes": 16777216,
+          "protectedRgbaBytes": 3538944
+        }
+      }
+    },
+    {
+      "id": "hwigyeom-emotion-resolve",
+      "mounted": {
+        "identity": "hwigyeom",
+        "requested": "emotion.resolve",
+        "actor": "휘겸",
+        "cls": "knight"
+      },
+      "selected": {
+        "source": "approved",
+        "state": "ready",
+        "identity": "hwigyeom",
+        "expression": "emotion.resolve",
+        "requestedExpression": "emotion.resolve",
+        "fallbackReason": "exact",
+        "framing": "dialogue",
+        "crop": {
+          "x": -93.27272727272725,
+          "y": -53.14285714285711,
+          "width": 954.5454545454545,
+          "height": 1050
+        },
+        "head": {
+          "left": 0,
+          "top": 0,
+          "right": 768,
+          "bottom": 525,
+          "width": 768,
+          "height": 525
+        },
+        "bounds": {
+          "left": 0,
+          "top": 0,
+          "right": 768,
+          "bottom": 1152,
+          "width": 768,
+          "height": 1152
+        }
+      },
+      "inspectionChangedCounters": false,
+      "repeat120": {
+        "before": {
+          "requests": 19,
+          "decodes": 19,
+          "paints": 19,
+          "fallbackPaints": 0,
+          "vectorBuilds": 0,
+          "imageEntries": 3,
+          "pending": 0,
+          "errors": 0,
+          "vectorEntries": 0,
+          "waiters": 0,
+          "decodedRgbaBytes": 13369344,
+          "pendingRgbaBytes": 0,
+          "budgetBytes": 16777216,
+          "protectedRgbaBytes": 3538944
+        },
+        "after": {
+          "requests": 19,
+          "decodes": 19,
+          "paints": 19,
+          "fallbackPaints": 0,
+          "vectorBuilds": 0,
+          "imageEntries": 3,
+          "pending": 0,
+          "errors": 0,
+          "vectorEntries": 0,
+          "waiters": 0,
+          "decodedRgbaBytes": 13369344,
+          "pendingRgbaBytes": 0,
+          "budgetBytes": 16777216,
+          "protectedRgbaBytes": 3538944
+        },
+        "paints": 0,
+        "clears": 0
+      },
+      "visibility": {
+        "width": 276.53125,
+        "height": 304.1875,
+        "opacity": "1",
+        "stats": {
+          "requests": 19,
+          "decodes": 19,
+          "paints": 19,
+          "fallbackPaints": 0,
+          "vectorBuilds": 0,
+          "imageEntries": 3,
+          "pending": 0,
+          "errors": 0,
+          "vectorEntries": 0,
+          "waiters": 0,
+          "decodedRgbaBytes": 13369344,
+          "pendingRgbaBytes": 0,
+          "budgetBytes": 16777216,
+          "protectedRgbaBytes": 3538944
+        }
+      }
+    },
+    {
+      "id": "worker-mature-emotion-concern",
+      "mounted": {
+        "identity": "worker_mature",
+        "requested": "emotion.concern",
+        "actor": "덕수",
+        "cls": "mage"
+      },
+      "selected": {
+        "source": "approved",
+        "state": "ready",
+        "identity": "worker_mature",
+        "expression": "emotion.concern",
+        "requestedExpression": "emotion.concern",
+        "fallbackReason": "exact",
+        "framing": "dialogue",
+        "crop": {
+          "x": -125.50284090909088,
+          "y": -8,
+          "width": 1019.0056818181818,
+          "height": 1120.90625
+        },
+        "head": {
+          "left": 0,
+          "top": 0,
+          "right": 768,
+          "bottom": 525,
+          "width": 768,
+          "height": 525
+        },
+        "bounds": {
+          "left": 0,
+          "top": 0,
+          "right": 768,
+          "bottom": 1152,
+          "width": 768,
+          "height": 1152
+        }
+      },
+      "inspectionChangedCounters": false,
+      "repeat120": {
+        "before": {
+          "requests": 22,
+          "decodes": 22,
+          "paints": 23,
+          "fallbackPaints": 0,
+          "vectorBuilds": 0,
+          "imageEntries": 3,
+          "pending": 0,
+          "errors": 0,
+          "vectorEntries": 0,
+          "waiters": 0,
+          "decodedRgbaBytes": 16121856,
+          "pendingRgbaBytes": 0,
+          "budgetBytes": 16777216,
+          "protectedRgbaBytes": 0
+        },
+        "after": {
+          "requests": 22,
+          "decodes": 22,
+          "paints": 23,
+          "fallbackPaints": 0,
+          "vectorBuilds": 0,
+          "imageEntries": 3,
+          "pending": 0,
+          "errors": 0,
+          "vectorEntries": 0,
+          "waiters": 0,
+          "decodedRgbaBytes": 16121856,
+          "pendingRgbaBytes": 0,
+          "budgetBytes": 16777216,
+          "protectedRgbaBytes": 3538944
+        },
+        "paints": 0,
+        "clears": 0
+      },
+      "visibility": {
+        "width": 276.53125,
+        "height": 304.1875,
+        "opacity": "1",
+        "stats": {
+          "requests": 22,
+          "decodes": 22,
+          "paints": 23,
+          "fallbackPaints": 0,
+          "vectorBuilds": 0,
+          "imageEntries": 3,
+          "pending": 0,
+          "errors": 0,
+          "vectorEntries": 0,
+          "waiters": 0,
+          "decodedRgbaBytes": 16121856,
+          "pendingRgbaBytes": 0,
+          "budgetBytes": 16777216,
+          "protectedRgbaBytes": 0
+        }
+      }
+    },
+    {
+      "id": "damheo-emotion-sorrow",
+      "mounted": {
+        "identity": "damheo",
+        "requested": "emotion.sorrow",
+        "actor": "담허",
+        "cls": "mage"
+      },
+      "selected": {
+        "source": "approved",
+        "state": "ready",
+        "identity": "damheo",
+        "expression": "emotion.sorrow",
+        "requestedExpression": "emotion.sorrow",
+        "fallbackReason": "exact",
+        "framing": "dialogue",
+        "crop": {
+          "x": -161.45454545454538,
+          "y": -41.4677419354839,
+          "width": 1090.9090909090908,
+          "height": 1200
+        },
+        "head": {
+          "left": 0,
+          "top": 0,
+          "right": 768,
+          "bottom": 525,
+          "width": 768,
+          "height": 525
+        },
+        "bounds": {
+          "left": 0,
+          "top": 0,
+          "right": 768,
+          "bottom": 1152,
+          "width": 768,
+          "height": 1152
+        }
+      },
+      "inspectionChangedCounters": false,
+      "repeat120": {
+        "before": {
+          "requests": 24,
+          "decodes": 24,
+          "paints": 27,
+          "fallbackPaints": 0,
+          "vectorBuilds": 0,
+          "imageEntries": 3,
+          "pending": 0,
+          "errors": 0,
+          "vectorEntries": 0,
+          "waiters": 0,
+          "decodedRgbaBytes": 16121856,
+          "pendingRgbaBytes": 0,
+          "budgetBytes": 16777216,
+          "protectedRgbaBytes": 0
+        },
+        "after": {
+          "requests": 24,
+          "decodes": 24,
+          "paints": 27,
+          "fallbackPaints": 0,
+          "vectorBuilds": 0,
+          "imageEntries": 3,
+          "pending": 0,
+          "errors": 0,
+          "vectorEntries": 0,
+          "waiters": 0,
+          "decodedRgbaBytes": 16121856,
+          "pendingRgbaBytes": 0,
+          "budgetBytes": 16777216,
+          "protectedRgbaBytes": 3538944
+        },
+        "paints": 0,
+        "clears": 0
+      },
+      "visibility": {
+        "width": 276.53125,
+        "height": 304.1875,
+        "opacity": "1",
+        "stats": {
+          "requests": 24,
+          "decodes": 24,
+          "paints": 27,
+          "fallbackPaints": 0,
+          "vectorBuilds": 0,
+          "imageEntries": 3,
+          "pending": 0,
+          "errors": 0,
+          "vectorEntries": 0,
+          "waiters": 0,
+          "decodedRgbaBytes": 16121856,
+          "pendingRgbaBytes": 0,
+          "budgetBytes": 16777216,
+          "protectedRgbaBytes": 3538944
+        }
+      }
+    },
+    {
+      "id": "sodan-emotion-resolve",
+      "mounted": {
+        "identity": "sodan",
+        "requested": "emotion.resolve",
+        "actor": "소단",
+        "cls": "occultist"
+      },
+      "selected": {
+        "source": "approved",
+        "state": "ready",
+        "identity": "sodan",
+        "expression": "emotion.resolve",
+        "requestedExpression": "emotion.resolve",
+        "fallbackReason": "exact",
+        "framing": "dialogue",
+        "crop": {
+          "x": -135.88636363636363,
+          "y": -26.2763157894737,
+          "width": 1039.7727272727273,
+          "height": 1143.75
+        },
+        "head": {
+          "left": 0,
+          "top": 0,
+          "right": 768,
+          "bottom": 525,
+          "width": 768,
+          "height": 525
+        },
+        "bounds": {
+          "left": 0,
+          "top": 0,
+          "right": 768,
+          "bottom": 1152,
+          "width": 768,
+          "height": 1152
+        }
+      },
+      "inspectionChangedCounters": false,
+      "repeat120": {
+        "before": {
+          "requests": 27,
+          "decodes": 27,
+          "paints": 32,
+          "fallbackPaints": 0,
+          "vectorBuilds": 0,
+          "imageEntries": 3,
+          "pending": 0,
+          "errors": 0,
+          "vectorEntries": 0,
+          "waiters": 0,
+          "decodedRgbaBytes": 16121856,
+          "pendingRgbaBytes": 0,
+          "budgetBytes": 16777216,
+          "protectedRgbaBytes": 0
+        },
+        "after": {
+          "requests": 27,
+          "decodes": 27,
+          "paints": 32,
+          "fallbackPaints": 0,
+          "vectorBuilds": 0,
+          "imageEntries": 3,
+          "pending": 0,
+          "errors": 0,
+          "vectorEntries": 0,
+          "waiters": 0,
+          "decodedRgbaBytes": 16121856,
+          "pendingRgbaBytes": 0,
+          "budgetBytes": 16777216,
+          "protectedRgbaBytes": 3538944
+        },
+        "paints": 0,
+        "clears": 0
+      },
+      "visibility": {
+        "width": 276.53125,
+        "height": 304.1875,
+        "opacity": "1",
+        "stats": {
+          "requests": 27,
+          "decodes": 27,
+          "paints": 32,
+          "fallbackPaints": 0,
+          "vectorBuilds": 0,
+          "imageEntries": 3,
+          "pending": 0,
+          "errors": 0,
+          "vectorEntries": 0,
+          "waiters": 0,
+          "decodedRgbaBytes": 16121856,
+          "pendingRgbaBytes": 0,
+          "budgetBytes": 16777216,
+          "protectedRgbaBytes": 3538944
+        }
+      }
+    },
+    {
+      "id": "sodan-emotion-relief",
+      "mounted": {
+        "identity": "sodan",
+        "requested": "emotion.relief",
+        "actor": "소단",
+        "cls": "occultist"
+      },
+      "selected": {
+        "source": "approved",
+        "state": "ready",
+        "identity": "sodan",
+        "expression": "emotion.relief",
+        "requestedExpression": "emotion.relief",
+        "fallbackReason": "exact",
+        "framing": "dialogue",
+        "crop": {
+          "x": -135.88636363636363,
+          "y": -26.2763157894737,
+          "width": 1039.7727272727273,
+          "height": 1143.75
+        },
+        "head": {
+          "left": 0,
+          "top": 0,
+          "right": 768,
+          "bottom": 525,
+          "width": 768,
+          "height": 525
+        },
+        "bounds": {
+          "left": 0,
+          "top": 0,
+          "right": 768,
+          "bottom": 1152,
+          "width": 768,
+          "height": 1152
+        }
+      },
+      "inspectionChangedCounters": false,
+      "repeat120": {
+        "before": {
+          "requests": 28,
+          "decodes": 28,
+          "paints": 33,
+          "fallbackPaints": 0,
+          "vectorBuilds": 0,
+          "imageEntries": 3,
+          "pending": 0,
+          "errors": 0,
+          "vectorEntries": 0,
+          "waiters": 0,
+          "decodedRgbaBytes": 13369344,
+          "pendingRgbaBytes": 0,
+          "budgetBytes": 16777216,
+          "protectedRgbaBytes": 0
+        },
+        "after": {
+          "requests": 28,
+          "decodes": 28,
+          "paints": 33,
+          "fallbackPaints": 0,
+          "vectorBuilds": 0,
+          "imageEntries": 3,
+          "pending": 0,
+          "errors": 0,
+          "vectorEntries": 0,
+          "waiters": 0,
+          "decodedRgbaBytes": 13369344,
+          "pendingRgbaBytes": 0,
+          "budgetBytes": 16777216,
+          "protectedRgbaBytes": 3538944
+        },
+        "paints": 0,
+        "clears": 0
+      },
+      "visibility": {
+        "width": 276.53125,
+        "height": 304.1875,
+        "opacity": "1",
+        "stats": {
+          "requests": 28,
+          "decodes": 28,
+          "paints": 33,
+          "fallbackPaints": 0,
+          "vectorBuilds": 0,
+          "imageEntries": 3,
+          "pending": 0,
+          "errors": 0,
+          "vectorEntries": 0,
+          "waiters": 0,
+          "decodedRgbaBytes": 13369344,
+          "pendingRgbaBytes": 0,
+          "budgetBytes": 16777216,
+          "protectedRgbaBytes": 3538944
+        }
+      }
+    },
+    {
+      "id": "man-elder-emotion-concern",
+      "mounted": {
+        "identity": "man_elder",
+        "requested": "emotion.concern",
+        "actor": "동굴 주민",
+        "cls": "knight"
+      },
+      "selected": {
+        "source": "approved",
+        "state": "ready",
+        "identity": "man_elder",
+        "expression": "emotion.concern",
+        "requestedExpression": "emotion.concern",
+        "fallbackReason": "exact",
+        "framing": "dialogue",
+        "crop": {
+          "x": -110.15441176470586,
+          "y": -8,
+          "width": 988.3088235294117,
+          "height": 1087.139705882353
+        },
+        "head": {
+          "left": 0,
+          "top": 0,
+          "right": 768,
+          "bottom": 525,
+          "width": 768,
+          "height": 525
+        },
+        "bounds": {
+          "left": 0,
+          "top": 0,
+          "right": 768,
+          "bottom": 1152,
+          "width": 768,
+          "height": 1152
+        }
+      },
+      "inspectionChangedCounters": false,
+      "repeat120": {
+        "before": {
+          "requests": 32,
+          "decodes": 32,
+          "paints": 38,
+          "fallbackPaints": 0,
+          "vectorBuilds": 0,
+          "imageEntries": 3,
+          "pending": 0,
+          "errors": 0,
+          "vectorEntries": 0,
+          "waiters": 0,
+          "decodedRgbaBytes": 16121856,
+          "pendingRgbaBytes": 0,
+          "budgetBytes": 16777216,
+          "protectedRgbaBytes": 3538944
+        },
+        "after": {
+          "requests": 32,
+          "decodes": 32,
+          "paints": 38,
+          "fallbackPaints": 0,
+          "vectorBuilds": 0,
+          "imageEntries": 3,
+          "pending": 0,
+          "errors": 0,
+          "vectorEntries": 0,
+          "waiters": 0,
+          "decodedRgbaBytes": 16121856,
+          "pendingRgbaBytes": 0,
+          "budgetBytes": 16777216,
+          "protectedRgbaBytes": 3538944
+        },
+        "paints": 0,
+        "clears": 0
+      },
+      "visibility": {
+        "width": 276.53125,
+        "height": 304.1875,
+        "opacity": "1",
+        "stats": {
+          "requests": 32,
+          "decodes": 32,
+          "paints": 38,
+          "fallbackPaints": 0,
+          "vectorBuilds": 0,
+          "imageEntries": 3,
+          "pending": 0,
+          "errors": 0,
+          "vectorEntries": 0,
+          "waiters": 0,
+          "decodedRgbaBytes": 16121856,
+          "pendingRgbaBytes": 0,
+          "budgetBytes": 16777216,
+          "protectedRgbaBytes": 0
+        }
+      }
+    },
+    {
+      "id": "man-elder-emotion-anger",
+      "mounted": {
+        "identity": "man_elder",
+        "requested": "emotion.anger",
+        "actor": "동굴 주민",
+        "cls": "knight"
+      },
+      "selected": {
+        "source": "approved",
+        "state": "ready",
+        "identity": "man_elder",
+        "expression": "emotion.anger",
+        "requestedExpression": "emotion.anger",
+        "fallbackReason": "exact",
+        "framing": "dialogue",
+        "crop": {
+          "x": -110.15441176470586,
+          "y": -8,
+          "width": 988.3088235294117,
+          "height": 1087.139705882353
+        },
+        "head": {
+          "left": 0,
+          "top": 0,
+          "right": 768,
+          "bottom": 525,
+          "width": 768,
+          "height": 525
+        },
+        "bounds": {
+          "left": 0,
+          "top": 0,
+          "right": 768,
+          "bottom": 1152,
+          "width": 768,
+          "height": 1152
+        }
+      },
+      "inspectionChangedCounters": false,
+      "repeat120": {
+        "before": {
+          "requests": 33,
+          "decodes": 33,
+          "paints": 39,
+          "fallbackPaints": 0,
+          "vectorBuilds": 0,
+          "imageEntries": 3,
+          "pending": 0,
+          "errors": 0,
+          "vectorEntries": 0,
+          "waiters": 0,
+          "decodedRgbaBytes": 13369344,
+          "pendingRgbaBytes": 0,
+          "budgetBytes": 16777216,
+          "protectedRgbaBytes": 3538944
+        },
+        "after": {
+          "requests": 33,
+          "decodes": 33,
+          "paints": 39,
+          "fallbackPaints": 0,
+          "vectorBuilds": 0,
+          "imageEntries": 3,
+          "pending": 0,
+          "errors": 0,
+          "vectorEntries": 0,
+          "waiters": 0,
+          "decodedRgbaBytes": 13369344,
+          "pendingRgbaBytes": 0,
+          "budgetBytes": 16777216,
+          "protectedRgbaBytes": 3538944
+        },
+        "paints": 0,
+        "clears": 0
+      },
+      "visibility": {
+        "width": 276.53125,
+        "height": 304.1875,
+        "opacity": "1",
+        "stats": {
+          "requests": 33,
+          "decodes": 33,
+          "paints": 39,
+          "fallbackPaints": 0,
+          "vectorBuilds": 0,
+          "imageEntries": 3,
+          "pending": 0,
+          "errors": 0,
+          "vectorEntries": 0,
+          "waiters": 0,
+          "decodedRgbaBytes": 13369344,
+          "pendingRgbaBytes": 0,
+          "budgetBytes": 16777216,
+          "protectedRgbaBytes": 0
+        }
+      }
+    },
+    {
+      "id": "worker-young-emotion-concern",
+      "mounted": {
+        "identity": "worker_young",
+        "requested": "emotion.concern",
+        "actor": "동굴 주민",
+        "cls": "knight"
+      },
+      "selected": {
+        "source": "approved",
+        "state": "ready",
+        "identity": "worker_young",
+        "expression": "emotion.concern",
+        "requestedExpression": "emotion.concern",
+        "fallbackReason": "exact",
+        "framing": "dialogue",
+        "crop": {
+          "x": -107.90082644628092,
+          "y": -12.545454545454504,
+          "width": 983.8016528925618,
+          "height": 1082.181818181818
+        },
+        "head": {
+          "left": 0,
+          "top": 0,
+          "right": 768,
+          "bottom": 525,
+          "width": 768,
+          "height": 525
+        },
+        "bounds": {
+          "left": 0,
+          "top": 0,
+          "right": 768,
+          "bottom": 1152,
+          "width": 768,
+          "height": 1152
+        }
+      },
+      "inspectionChangedCounters": false,
+      "repeat120": {
+        "before": {
+          "requests": 37,
+          "decodes": 37,
+          "paints": 44,
+          "fallbackPaints": 0,
+          "vectorBuilds": 0,
+          "imageEntries": 3,
+          "pending": 0,
+          "errors": 0,
+          "vectorEntries": 0,
+          "waiters": 0,
+          "decodedRgbaBytes": 16121856,
+          "pendingRgbaBytes": 0,
+          "budgetBytes": 16777216,
+          "protectedRgbaBytes": 0
+        },
+        "after": {
+          "requests": 37,
+          "decodes": 37,
+          "paints": 44,
+          "fallbackPaints": 0,
+          "vectorBuilds": 0,
+          "imageEntries": 3,
+          "pending": 0,
+          "errors": 0,
+          "vectorEntries": 0,
+          "waiters": 0,
+          "decodedRgbaBytes": 16121856,
+          "pendingRgbaBytes": 0,
+          "budgetBytes": 16777216,
+          "protectedRgbaBytes": 3538944
+        },
+        "paints": 0,
+        "clears": 0
+      },
+      "visibility": {
+        "width": 276.53125,
+        "height": 304.1875,
+        "opacity": "1",
+        "stats": {
+          "requests": 37,
+          "decodes": 37,
+          "paints": 44,
+          "fallbackPaints": 0,
+          "vectorBuilds": 0,
+          "imageEntries": 3,
+          "pending": 0,
+          "errors": 0,
+          "vectorEntries": 0,
+          "waiters": 0,
+          "decodedRgbaBytes": 16121856,
+          "pendingRgbaBytes": 0,
+          "budgetBytes": 16777216,
+          "protectedRgbaBytes": 0
+        }
+      }
+    },
+    {
+      "id": "worker-young-emotion-relief",
+      "mounted": {
+        "identity": "worker_young",
+        "requested": "emotion.relief",
+        "actor": "동굴 주민",
+        "cls": "knight"
+      },
+      "selected": {
+        "source": "approved",
+        "state": "ready",
+        "identity": "worker_young",
+        "expression": "emotion.relief",
+        "requestedExpression": "emotion.relief",
+        "fallbackReason": "exact",
+        "framing": "dialogue",
+        "crop": {
+          "x": -107.90082644628092,
+          "y": -12.545454545454504,
+          "width": 983.8016528925618,
+          "height": 1082.181818181818
+        },
+        "head": {
+          "left": 0,
+          "top": 0,
+          "right": 768,
+          "bottom": 525,
+          "width": 768,
+          "height": 525
+        },
+        "bounds": {
+          "left": 0,
+          "top": 0,
+          "right": 768,
+          "bottom": 1152,
+          "width": 768,
+          "height": 1152
+        }
+      },
+      "inspectionChangedCounters": false,
+      "repeat120": {
+        "before": {
+          "requests": 38,
+          "decodes": 38,
+          "paints": 45,
+          "fallbackPaints": 0,
+          "vectorBuilds": 0,
+          "imageEntries": 3,
+          "pending": 0,
+          "errors": 0,
+          "vectorEntries": 0,
+          "waiters": 0,
+          "decodedRgbaBytes": 13369344,
+          "pendingRgbaBytes": 0,
+          "budgetBytes": 16777216,
+          "protectedRgbaBytes": 3538944
+        },
+        "after": {
+          "requests": 38,
+          "decodes": 38,
+          "paints": 45,
+          "fallbackPaints": 0,
+          "vectorBuilds": 0,
+          "imageEntries": 3,
+          "pending": 0,
+          "errors": 0,
+          "vectorEntries": 0,
+          "waiters": 0,
+          "decodedRgbaBytes": 13369344,
+          "pendingRgbaBytes": 0,
+          "budgetBytes": 16777216,
+          "protectedRgbaBytes": 3538944
+        },
+        "paints": 0,
+        "clears": 0
+      },
+      "visibility": {
+        "width": 276.53125,
+        "height": 304.1875,
+        "opacity": "1",
+        "stats": {
+          "requests": 38,
+          "decodes": 38,
+          "paints": 45,
+          "fallbackPaints": 0,
+          "vectorBuilds": 0,
+          "imageEntries": 3,
+          "pending": 0,
+          "errors": 0,
+          "vectorEntries": 0,
+          "waiters": 0,
+          "decodedRgbaBytes": 13369344,
+          "pendingRgbaBytes": 0,
+          "budgetBytes": 16777216,
+          "protectedRgbaBytes": 3538944
+        }
+      }
+    },
+    {
+      "id": "monk-elder-emotion-concern",
+      "mounted": {
+        "identity": "monk_elder",
+        "requested": "emotion.concern",
+        "actor": "노승",
+        "cls": "knight"
+      },
+      "selected": {
+        "source": "approved",
+        "state": "ready",
+        "identity": "monk_elder",
+        "expression": "emotion.concern",
+        "requestedExpression": "emotion.concern",
+        "fallbackReason": "exact",
+        "framing": "dialogue",
+        "crop": {
+          "x": -131.70247933884298,
+          "y": -58.97727272727269,
+          "width": 1031.404958677686,
+          "height": 1134.5454545454545
+        },
+        "head": {
+          "left": 0,
+          "top": 0,
+          "right": 768,
+          "bottom": 525,
+          "width": 768,
+          "height": 525
+        },
+        "bounds": {
+          "left": 0,
+          "top": 0,
+          "right": 768,
+          "bottom": 1152,
+          "width": 768,
+          "height": 1152
+        }
+      },
+      "inspectionChangedCounters": false,
+      "repeat120": {
+        "before": {
+          "requests": 42,
+          "decodes": 42,
+          "paints": 50,
+          "fallbackPaints": 0,
+          "vectorBuilds": 0,
+          "imageEntries": 3,
+          "pending": 0,
+          "errors": 0,
+          "vectorEntries": 0,
+          "waiters": 0,
+          "decodedRgbaBytes": 16121856,
+          "pendingRgbaBytes": 0,
+          "budgetBytes": 16777216,
+          "protectedRgbaBytes": 3538944
+        },
+        "after": {
+          "requests": 42,
+          "decodes": 42,
+          "paints": 50,
+          "fallbackPaints": 0,
+          "vectorBuilds": 0,
+          "imageEntries": 3,
+          "pending": 0,
+          "errors": 0,
+          "vectorEntries": 0,
+          "waiters": 0,
+          "decodedRgbaBytes": 16121856,
+          "pendingRgbaBytes": 0,
+          "budgetBytes": 16777216,
+          "protectedRgbaBytes": 3538944
+        },
+        "paints": 0,
+        "clears": 0
+      },
+      "visibility": {
+        "width": 276.53125,
+        "height": 304.1875,
+        "opacity": "1",
+        "stats": {
+          "requests": 42,
+          "decodes": 42,
+          "paints": 50,
+          "fallbackPaints": 0,
+          "vectorBuilds": 0,
+          "imageEntries": 3,
+          "pending": 0,
+          "errors": 0,
+          "vectorEntries": 0,
+          "waiters": 0,
+          "decodedRgbaBytes": 16121856,
+          "pendingRgbaBytes": 0,
+          "budgetBytes": 16777216,
+          "protectedRgbaBytes": 3538944
+        }
+      }
+    },
+    {
+      "id": "monk-young-emotion-concern",
+      "mounted": {
+        "identity": "monk_young",
+        "requested": "emotion.concern",
+        "actor": "잠운사 승려",
+        "cls": "knight"
+      },
+      "selected": {
+        "source": "approved",
+        "state": "ready",
+        "identity": "monk_young",
+        "expression": "emotion.concern",
+        "requestedExpression": "emotion.concern",
+        "fallbackReason": "exact",
+        "framing": "dialogue",
+        "crop": {
+          "x": -156.52785923753652,
+          "y": -86.34677419354841,
+          "width": 1081.055718475073,
+          "height": 1189.1612903225805
+        },
+        "head": {
+          "left": 0,
+          "top": 0,
+          "right": 768,
+          "bottom": 525,
+          "width": 768,
+          "height": 525
+        },
+        "bounds": {
+          "left": 0,
+          "top": 0,
+          "right": 768,
+          "bottom": 1152,
+          "width": 768,
+          "height": 1152
+        }
+      },
+      "inspectionChangedCounters": false,
+      "repeat120": {
+        "before": {
+          "requests": 43,
+          "decodes": 43,
+          "paints": 51,
+          "fallbackPaints": 0,
+          "vectorBuilds": 0,
+          "imageEntries": 3,
+          "pending": 0,
+          "errors": 0,
+          "vectorEntries": 0,
+          "waiters": 0,
+          "decodedRgbaBytes": 13369344,
+          "pendingRgbaBytes": 0,
+          "budgetBytes": 16777216,
+          "protectedRgbaBytes": 3538944
+        },
+        "after": {
+          "requests": 43,
+          "decodes": 43,
+          "paints": 51,
+          "fallbackPaints": 0,
+          "vectorBuilds": 0,
+          "imageEntries": 3,
+          "pending": 0,
+          "errors": 0,
+          "vectorEntries": 0,
+          "waiters": 0,
+          "decodedRgbaBytes": 13369344,
+          "pendingRgbaBytes": 0,
+          "budgetBytes": 16777216,
+          "protectedRgbaBytes": 3538944
+        },
+        "paints": 0,
+        "clears": 0
+      },
+      "visibility": {
+        "width": 276.53125,
+        "height": 304.1875,
+        "opacity": "1",
+        "stats": {
+          "requests": 43,
+          "decodes": 43,
+          "paints": 51,
+          "fallbackPaints": 0,
+          "vectorBuilds": 0,
+          "imageEntries": 3,
+          "pending": 0,
+          "errors": 0,
+          "vectorEntries": 0,
+          "waiters": 0,
+          "decodedRgbaBytes": 13369344,
+          "pendingRgbaBytes": 0,
+          "budgetBytes": 16777216,
+          "protectedRgbaBytes": 3538944
+        }
+      }
+    },
+    {
+      "id": "damheo-emotion-anger",
+      "mounted": {
+        "identity": "damheo",
+        "requested": "emotion.anger",
+        "actor": "담허",
+        "cls": "mage"
+      },
+      "selected": {
+        "source": "approved",
+        "state": "ready",
+        "identity": "damheo",
+        "expression": "emotion.anger",
+        "requestedExpression": "emotion.anger",
+        "fallbackReason": "exact",
+        "framing": "dialogue",
+        "crop": {
+          "x": -161.45454545454538,
+          "y": -41.4677419354839,
+          "width": 1090.9090909090908,
+          "height": 1200
+        },
+        "head": {
+          "left": 0,
+          "top": 0,
+          "right": 768,
+          "bottom": 525,
+          "width": 768,
+          "height": 525
+        },
+        "bounds": {
+          "left": 0,
+          "top": 0,
+          "right": 768,
+          "bottom": 1152,
+          "width": 768,
+          "height": 1152
+        }
+      },
+      "inspectionChangedCounters": false,
+      "repeat120": {
+        "before": {
+          "requests": 47,
+          "decodes": 47,
+          "paints": 56,
+          "fallbackPaints": 0,
+          "vectorBuilds": 0,
+          "imageEntries": 3,
+          "pending": 0,
+          "errors": 0,
+          "vectorEntries": 0,
+          "waiters": 0,
+          "decodedRgbaBytes": 16121856,
+          "pendingRgbaBytes": 0,
+          "budgetBytes": 16777216,
+          "protectedRgbaBytes": 0
+        },
+        "after": {
+          "requests": 47,
+          "decodes": 47,
+          "paints": 56,
+          "fallbackPaints": 0,
+          "vectorBuilds": 0,
+          "imageEntries": 3,
+          "pending": 0,
+          "errors": 0,
+          "vectorEntries": 0,
+          "waiters": 0,
+          "decodedRgbaBytes": 16121856,
+          "pendingRgbaBytes": 0,
+          "budgetBytes": 16777216,
+          "protectedRgbaBytes": 3538944
+        },
+        "paints": 0,
+        "clears": 0
+      },
+      "visibility": {
+        "width": 276.53125,
+        "height": 304.1875,
+        "opacity": "1",
+        "stats": {
+          "requests": 47,
+          "decodes": 47,
+          "paints": 56,
+          "fallbackPaints": 0,
+          "vectorBuilds": 0,
+          "imageEntries": 3,
+          "pending": 0,
+          "errors": 0,
+          "vectorEntries": 0,
+          "waiters": 0,
+          "decodedRgbaBytes": 16121856,
+          "pendingRgbaBytes": 0,
+          "budgetBytes": 16777216,
+          "protectedRgbaBytes": 3538944
+        }
+      }
+    },
+    {
+      "id": "sodan-emotion-anger",
+      "mounted": {
+        "identity": "sodan",
+        "requested": "emotion.anger",
+        "actor": "소단",
+        "cls": "occultist"
+      },
+      "selected": {
+        "source": "approved",
+        "state": "ready",
+        "identity": "sodan",
+        "expression": "emotion.anger",
+        "requestedExpression": "emotion.anger",
+        "fallbackReason": "exact",
+        "framing": "dialogue",
+        "crop": {
+          "x": -135.88636363636363,
+          "y": -26.2763157894737,
+          "width": 1039.7727272727273,
+          "height": 1143.75
+        },
+        "head": {
+          "left": 0,
+          "top": 0,
+          "right": 768,
+          "bottom": 525,
+          "width": 768,
+          "height": 525
+        },
+        "bounds": {
+          "left": 0,
+          "top": 0,
+          "right": 768,
+          "bottom": 1152,
+          "width": 768,
+          "height": 1152
+        }
+      },
+      "inspectionChangedCounters": false,
+      "repeat120": {
+        "before": {
+          "requests": 48,
+          "decodes": 48,
+          "paints": 57,
+          "fallbackPaints": 0,
+          "vectorBuilds": 0,
+          "imageEntries": 3,
+          "pending": 0,
+          "errors": 0,
+          "vectorEntries": 0,
+          "waiters": 0,
+          "decodedRgbaBytes": 13369344,
+          "pendingRgbaBytes": 0,
+          "budgetBytes": 16777216,
+          "protectedRgbaBytes": 0
+        },
+        "after": {
+          "requests": 48,
+          "decodes": 48,
+          "paints": 57,
+          "fallbackPaints": 0,
+          "vectorBuilds": 0,
+          "imageEntries": 3,
+          "pending": 0,
+          "errors": 0,
+          "vectorEntries": 0,
+          "waiters": 0,
+          "decodedRgbaBytes": 13369344,
+          "pendingRgbaBytes": 0,
+          "budgetBytes": 16777216,
+          "protectedRgbaBytes": 3538944
+        },
+        "paints": 0,
+        "clears": 0
+      },
+      "visibility": {
+        "width": 276.53125,
+        "height": 304.1875,
+        "opacity": "1",
+        "stats": {
+          "requests": 48,
+          "decodes": 48,
+          "paints": 57,
+          "fallbackPaints": 0,
+          "vectorBuilds": 0,
+          "imageEntries": 3,
+          "pending": 0,
+          "errors": 0,
+          "vectorEntries": 0,
+          "waiters": 0,
+          "decodedRgbaBytes": 13369344,
+          "pendingRgbaBytes": 0,
+          "budgetBytes": 16777216,
+          "protectedRgbaBytes": 3538944
+        }
+      }
+    },
+    {
+      "id": "sodan-emotion-sorrow",
+      "mounted": {
+        "identity": "sodan",
+        "requested": "emotion.sorrow",
+        "actor": "소단",
+        "cls": "occultist"
+      },
+      "selected": {
+        "source": "approved",
+        "state": "ready",
+        "identity": "sodan",
+        "expression": "emotion.sorrow",
+        "requestedExpression": "emotion.sorrow",
+        "fallbackReason": "exact",
+        "framing": "dialogue",
+        "crop": {
+          "x": -135.88636363636363,
+          "y": -26.2763157894737,
+          "width": 1039.7727272727273,
+          "height": 1143.75
+        },
+        "head": {
+          "left": 0,
+          "top": 0,
+          "right": 768,
+          "bottom": 525,
+          "width": 768,
+          "height": 525
+        },
+        "bounds": {
+          "left": 0,
+          "top": 0,
+          "right": 768,
+          "bottom": 1152,
+          "width": 768,
+          "height": 1152
+        }
+      },
+      "inspectionChangedCounters": false,
+      "repeat120": {
+        "before": {
+          "requests": 54,
+          "decodes": 54,
+          "paints": 62,
+          "fallbackPaints": 0,
+          "vectorBuilds": 0,
+          "imageEntries": 3,
+          "pending": 0,
+          "errors": 0,
+          "vectorEntries": 0,
+          "waiters": 0,
+          "decodedRgbaBytes": 10616832,
+          "pendingRgbaBytes": 0,
+          "budgetBytes": 16777216,
+          "protectedRgbaBytes": 0
+        },
+        "after": {
+          "requests": 54,
+          "decodes": 54,
+          "paints": 62,
+          "fallbackPaints": 0,
+          "vectorBuilds": 0,
+          "imageEntries": 3,
+          "pending": 0,
+          "errors": 0,
+          "vectorEntries": 0,
+          "waiters": 0,
+          "decodedRgbaBytes": 10616832,
+          "pendingRgbaBytes": 0,
+          "budgetBytes": 16777216,
+          "protectedRgbaBytes": 3538944
+        },
+        "paints": 0,
+        "clears": 0
+      },
+      "visibility": {
+        "width": 276.53125,
+        "height": 304.1875,
+        "opacity": "1",
+        "stats": {
+          "requests": 54,
+          "decodes": 54,
+          "paints": 62,
+          "fallbackPaints": 0,
+          "vectorBuilds": 0,
+          "imageEntries": 3,
+          "pending": 0,
+          "errors": 0,
+          "vectorEntries": 0,
+          "waiters": 0,
+          "decodedRgbaBytes": 10616832,
+          "pendingRgbaBytes": 0,
+          "budgetBytes": 16777216,
+          "protectedRgbaBytes": 0
+        }
+      }
+    },
+    {
+      "id": "worker-mature-emotion-sorrow",
+      "mounted": {
+        "identity": "worker_mature",
+        "requested": "emotion.sorrow",
+        "actor": "동생을 잃은 형",
+        "cls": "knight"
+      },
+      "selected": {
+        "source": "approved",
+        "state": "ready",
+        "identity": "worker_mature",
+        "expression": "emotion.sorrow",
+        "requestedExpression": "emotion.sorrow",
+        "fallbackReason": "exact",
+        "framing": "dialogue",
+        "crop": {
+          "x": -125.50284090909088,
+          "y": -8,
+          "width": 1019.0056818181818,
+          "height": 1120.90625
+        },
+        "head": {
+          "left": 0,
+          "top": 0,
+          "right": 768,
+          "bottom": 525,
+          "width": 768,
+          "height": 525
+        },
+        "bounds": {
+          "left": 0,
+          "top": 0,
+          "right": 768,
+          "bottom": 1152,
+          "width": 768,
+          "height": 1152
+        }
+      },
+      "inspectionChangedCounters": false,
+      "repeat120": {
+        "before": {
+          "requests": 57,
+          "decodes": 57,
+          "paints": 65,
+          "fallbackPaints": 0,
+          "vectorBuilds": 0,
+          "imageEntries": 3,
+          "pending": 0,
+          "errors": 0,
+          "vectorEntries": 0,
+          "waiters": 0,
+          "decodedRgbaBytes": 16121856,
+          "pendingRgbaBytes": 0,
+          "budgetBytes": 16777216,
+          "protectedRgbaBytes": 3538944
+        },
+        "after": {
+          "requests": 57,
+          "decodes": 57,
+          "paints": 65,
+          "fallbackPaints": 0,
+          "vectorBuilds": 0,
+          "imageEntries": 3,
+          "pending": 0,
+          "errors": 0,
+          "vectorEntries": 0,
+          "waiters": 0,
+          "decodedRgbaBytes": 16121856,
+          "pendingRgbaBytes": 0,
+          "budgetBytes": 16777216,
+          "protectedRgbaBytes": 3538944
+        },
+        "paints": 0,
+        "clears": 0
+      },
+      "visibility": {
+        "width": 276.53125,
+        "height": 304.1875,
+        "opacity": "1",
+        "stats": {
+          "requests": 57,
+          "decodes": 57,
+          "paints": 65,
+          "fallbackPaints": 0,
+          "vectorBuilds": 0,
+          "imageEntries": 3,
+          "pending": 0,
+          "errors": 0,
+          "vectorEntries": 0,
+          "waiters": 0,
+          "decodedRgbaBytes": 16121856,
+          "pendingRgbaBytes": 0,
+          "budgetBytes": 16777216,
+          "protectedRgbaBytes": 3538944
+        }
+      }
+    },
+    {
+      "id": "sodan-action-listen",
+      "mounted": {
+        "identity": "sodan",
+        "requested": "action.listen",
+        "actor": "소단",
+        "cls": "occultist"
+      },
+      "selected": {
+        "source": "approved",
+        "state": "ready",
+        "identity": "sodan",
+        "expression": "action.listen",
+        "requestedExpression": "action.listen",
+        "fallbackReason": "exact",
+        "framing": "dialogue",
+        "crop": {
+          "x": -135.88636363636363,
+          "y": -26.2763157894737,
+          "width": 1039.7727272727273,
+          "height": 1143.75
+        },
+        "head": {
+          "left": 0,
+          "top": 0,
+          "right": 768,
+          "bottom": 525,
+          "width": 768,
+          "height": 525
+        },
+        "bounds": {
+          "left": 0,
+          "top": 0,
+          "right": 768,
+          "bottom": 1152,
+          "width": 768,
+          "height": 1152
+        }
+      },
+      "inspectionChangedCounters": false,
+      "repeat120": {
+        "before": {
+          "requests": 58,
+          "decodes": 58,
+          "paints": 66,
+          "fallbackPaints": 0,
+          "vectorBuilds": 0,
+          "imageEntries": 3,
+          "pending": 0,
+          "errors": 0,
+          "vectorEntries": 0,
+          "waiters": 0,
+          "decodedRgbaBytes": 13369344,
+          "pendingRgbaBytes": 0,
+          "budgetBytes": 16777216,
+          "protectedRgbaBytes": 3538944
+        },
+        "after": {
+          "requests": 58,
+          "decodes": 58,
+          "paints": 66,
+          "fallbackPaints": 0,
+          "vectorBuilds": 0,
+          "imageEntries": 3,
+          "pending": 0,
+          "errors": 0,
+          "vectorEntries": 0,
+          "waiters": 0,
+          "decodedRgbaBytes": 13369344,
+          "pendingRgbaBytes": 0,
+          "budgetBytes": 16777216,
+          "protectedRgbaBytes": 3538944
+        },
+        "paints": 0,
+        "clears": 0
+      },
+      "visibility": {
+        "width": 276.53125,
+        "height": 304.1875,
+        "opacity": "1",
+        "stats": {
+          "requests": 58,
+          "decodes": 58,
+          "paints": 66,
+          "fallbackPaints": 0,
+          "vectorBuilds": 0,
+          "imageEntries": 3,
+          "pending": 0,
+          "errors": 0,
+          "vectorEntries": 0,
+          "waiters": 0,
+          "decodedRgbaBytes": 13369344,
+          "pendingRgbaBytes": 0,
+          "budgetBytes": 16777216,
+          "protectedRgbaBytes": 3538944
+        }
+      }
+    },
+    {
+      "id": "woman-mature-emotion-sorrow",
+      "mounted": {
+        "identity": "woman_mature",
+        "requested": "emotion.sorrow",
+        "actor": "언니를 잃은 동생",
+        "cls": "knight"
+      },
+      "selected": {
+        "source": "approved",
+        "state": "ready",
+        "identity": "woman_mature",
+        "expression": "emotion.sorrow",
+        "requestedExpression": "emotion.sorrow",
+        "fallbackReason": "exact",
+        "framing": "dialogue",
+        "crop": {
+          "x": -132.1079545454545,
+          "y": -8,
+          "width": 1032.215909090909,
+          "height": 1135.4375
+        },
+        "head": {
+          "left": 0,
+          "top": 0,
+          "right": 768,
+          "bottom": 525,
+          "width": 768,
+          "height": 525
+        },
+        "bounds": {
+          "left": 0,
+          "top": 0,
+          "right": 768,
+          "bottom": 1152,
+          "width": 768,
+          "height": 1152
+        }
+      },
+      "inspectionChangedCounters": false,
+      "repeat120": {
+        "before": {
+          "requests": 59,
+          "decodes": 59,
+          "paints": 67,
+          "fallbackPaints": 0,
+          "vectorBuilds": 0,
+          "imageEntries": 3,
+          "pending": 0,
+          "errors": 0,
+          "vectorEntries": 0,
+          "waiters": 0,
+          "decodedRgbaBytes": 10616832,
+          "pendingRgbaBytes": 0,
+          "budgetBytes": 16777216,
+          "protectedRgbaBytes": 0
+        },
+        "after": {
+          "requests": 59,
+          "decodes": 59,
+          "paints": 67,
+          "fallbackPaints": 0,
+          "vectorBuilds": 0,
+          "imageEntries": 3,
+          "pending": 0,
+          "errors": 0,
+          "vectorEntries": 0,
+          "waiters": 0,
+          "decodedRgbaBytes": 10616832,
+          "pendingRgbaBytes": 0,
+          "budgetBytes": 16777216,
+          "protectedRgbaBytes": 3538944
+        },
+        "paints": 0,
+        "clears": 0
+      },
+      "visibility": {
+        "width": 276.53125,
+        "height": 304.1875,
+        "opacity": "1",
+        "stats": {
+          "requests": 59,
+          "decodes": 59,
+          "paints": 67,
+          "fallbackPaints": 0,
+          "vectorBuilds": 0,
+          "imageEntries": 3,
+          "pending": 0,
+          "errors": 0,
+          "vectorEntries": 0,
+          "waiters": 0,
+          "decodedRgbaBytes": 10616832,
+          "pendingRgbaBytes": 0,
+          "budgetBytes": 16777216,
+          "protectedRgbaBytes": 3538944
+        }
+      }
+    },
+    {
+      "id": "woman-mature-emotion-relief",
+      "mounted": {
+        "identity": "woman_mature",
+        "requested": "emotion.relief",
+        "actor": "생존자 행렬",
+        "cls": "knight"
+      },
+      "selected": {
+        "source": "approved",
+        "state": "ready",
+        "identity": "woman_mature",
+        "expression": "emotion.relief",
+        "requestedExpression": "emotion.relief",
+        "fallbackReason": "exact",
+        "framing": "dialogue",
+        "crop": {
+          "x": -132.1079545454545,
+          "y": -8,
+          "width": 1032.215909090909,
+          "height": 1135.4375
+        },
+        "head": {
+          "left": 0,
+          "top": 0,
+          "right": 768,
+          "bottom": 525,
+          "width": 768,
+          "height": 525
+        },
+        "bounds": {
+          "left": 0,
+          "top": 0,
+          "right": 768,
+          "bottom": 1152,
+          "width": 768,
+          "height": 1152
+        }
+      },
+      "inspectionChangedCounters": false,
+      "repeat120": {
+        "before": {
+          "requests": 64,
+          "decodes": 64,
+          "paints": 72,
+          "fallbackPaints": 0,
+          "vectorBuilds": 0,
+          "imageEntries": 3,
+          "pending": 0,
+          "errors": 0,
+          "vectorEntries": 0,
+          "waiters": 0,
+          "decodedRgbaBytes": 16121856,
+          "pendingRgbaBytes": 0,
+          "budgetBytes": 16777216,
+          "protectedRgbaBytes": 3538944
+        },
+        "after": {
+          "requests": 64,
+          "decodes": 64,
+          "paints": 72,
+          "fallbackPaints": 0,
+          "vectorBuilds": 0,
+          "imageEntries": 3,
+          "pending": 0,
+          "errors": 0,
+          "vectorEntries": 0,
+          "waiters": 0,
+          "decodedRgbaBytes": 16121856,
+          "pendingRgbaBytes": 0,
+          "budgetBytes": 16777216,
+          "protectedRgbaBytes": 3538944
+        },
+        "paints": 0,
+        "clears": 0
+      },
+      "visibility": {
+        "width": 276.53125,
+        "height": 304.1875,
+        "opacity": "1",
+        "stats": {
+          "requests": 64,
+          "decodes": 64,
+          "paints": 72,
+          "fallbackPaints": 0,
+          "vectorBuilds": 0,
+          "imageEntries": 3,
+          "pending": 0,
+          "errors": 0,
+          "vectorEntries": 0,
+          "waiters": 0,
+          "decodedRgbaBytes": 16121856,
+          "pendingRgbaBytes": 0,
+          "budgetBytes": 16777216,
+          "protectedRgbaBytes": 0
+        }
+      }
+    },
+    {
+      "id": "hwigyeom-action-inspect-record",
+      "mounted": {
+        "identity": "hwigyeom",
+        "requested": "action.inspect_record",
+        "actor": "휘겸",
+        "cls": "knight"
+      },
+      "selected": {
+        "source": "approved",
+        "state": "ready",
+        "identity": "hwigyeom",
+        "expression": "action.inspect_record",
+        "requestedExpression": "action.inspect_record",
+        "fallbackReason": "exact",
+        "framing": "dialogue",
+        "crop": {
+          "x": -93.27272727272725,
+          "y": -53.14285714285711,
+          "width": 954.5454545454545,
+          "height": 1050
+        },
+        "head": {
+          "left": 0,
+          "top": 0,
+          "right": 768,
+          "bottom": 525,
+          "width": 768,
+          "height": 525
+        },
+        "bounds": {
+          "left": 0,
+          "top": 0,
+          "right": 768,
+          "bottom": 1152,
+          "width": 768,
+          "height": 1152
+        }
+      },
+      "inspectionChangedCounters": false,
+      "repeat120": {
+        "before": {
+          "requests": 67,
+          "decodes": 67,
+          "paints": 77,
+          "fallbackPaints": 0,
+          "vectorBuilds": 0,
+          "imageEntries": 3,
+          "pending": 0,
+          "errors": 0,
+          "vectorEntries": 0,
+          "waiters": 0,
+          "decodedRgbaBytes": 16121856,
+          "pendingRgbaBytes": 0,
+          "budgetBytes": 16777216,
+          "protectedRgbaBytes": 0
+        },
+        "after": {
+          "requests": 67,
+          "decodes": 67,
+          "paints": 77,
+          "fallbackPaints": 0,
+          "vectorBuilds": 0,
+          "imageEntries": 3,
+          "pending": 0,
+          "errors": 0,
+          "vectorEntries": 0,
+          "waiters": 0,
+          "decodedRgbaBytes": 16121856,
+          "pendingRgbaBytes": 0,
+          "budgetBytes": 16777216,
+          "protectedRgbaBytes": 3538944
+        },
+        "paints": 0,
+        "clears": 0
+      },
+      "visibility": {
+        "width": 276.53125,
+        "height": 304.1875,
+        "opacity": "1",
+        "stats": {
+          "requests": 67,
+          "decodes": 67,
+          "paints": 77,
+          "fallbackPaints": 0,
+          "vectorBuilds": 0,
+          "imageEntries": 3,
+          "pending": 0,
+          "errors": 0,
+          "vectorEntries": 0,
+          "waiters": 0,
+          "decodedRgbaBytes": 16121856,
+          "pendingRgbaBytes": 0,
+          "budgetBytes": 16777216,
+          "protectedRgbaBytes": 3538944
+        }
+      }
+    },
+    {
+      "id": "hwigyeom-emotion-sorrow",
+      "mounted": {
+        "identity": "hwigyeom",
+        "requested": "emotion.sorrow",
+        "actor": "휘겸",
+        "cls": "knight"
+      },
+      "selected": {
+        "source": "approved",
+        "state": "ready",
+        "identity": "hwigyeom",
+        "expression": "emotion.sorrow",
+        "requestedExpression": "emotion.sorrow",
+        "fallbackReason": "exact",
+        "framing": "dialogue",
+        "crop": {
+          "x": -93.27272727272725,
+          "y": -53.14285714285711,
+          "width": 954.5454545454545,
+          "height": 1050
+        },
+        "head": {
+          "left": 0,
+          "top": 0,
+          "right": 768,
+          "bottom": 525,
+          "width": 768,
+          "height": 525
+        },
+        "bounds": {
+          "left": 0,
+          "top": 0,
+          "right": 768,
+          "bottom": 1152,
+          "width": 768,
+          "height": 1152
+        }
+      },
+      "inspectionChangedCounters": false,
+      "repeat120": {
+        "before": {
+          "requests": 68,
+          "decodes": 68,
+          "paints": 78,
+          "fallbackPaints": 0,
+          "vectorBuilds": 0,
+          "imageEntries": 3,
+          "pending": 0,
+          "errors": 0,
+          "vectorEntries": 0,
+          "waiters": 0,
+          "decodedRgbaBytes": 13369344,
+          "pendingRgbaBytes": 0,
+          "budgetBytes": 16777216,
+          "protectedRgbaBytes": 3538944
+        },
+        "after": {
+          "requests": 68,
+          "decodes": 68,
+          "paints": 78,
+          "fallbackPaints": 0,
+          "vectorBuilds": 0,
+          "imageEntries": 3,
+          "pending": 0,
+          "errors": 0,
+          "vectorEntries": 0,
+          "waiters": 0,
+          "decodedRgbaBytes": 13369344,
+          "pendingRgbaBytes": 0,
+          "budgetBytes": 16777216,
+          "protectedRgbaBytes": 3538944
+        },
+        "paints": 0,
+        "clears": 0
+      },
+      "visibility": {
+        "width": 276.53125,
+        "height": 304.1875,
+        "opacity": "1",
+        "stats": {
+          "requests": 68,
+          "decodes": 68,
+          "paints": 78,
+          "fallbackPaints": 0,
+          "vectorBuilds": 0,
+          "imageEntries": 3,
+          "pending": 0,
+          "errors": 0,
+          "vectorEntries": 0,
+          "waiters": 0,
+          "decodedRgbaBytes": 13369344,
+          "pendingRgbaBytes": 0,
+          "budgetBytes": 16777216,
+          "protectedRgbaBytes": 3538944
+        }
+      }
+    },
+    {
+      "id": "damheo-scene-steadying",
+      "mounted": {
+        "identity": "damheo",
+        "requested": "scene.steadying",
+        "actor": "담허",
+        "cls": "mage"
+      },
+      "selected": {
+        "source": "approved",
+        "state": "ready",
+        "identity": "damheo",
+        "expression": "scene.steadying",
+        "requestedExpression": "scene.steadying",
+        "fallbackReason": "exact",
+        "framing": "dialogue",
+        "crop": {
+          "x": -152.93181818181813,
+          "y": -27.10887096774195,
+          "width": 1073.8636363636363,
+          "height": 1181.25
+        },
+        "head": {
+          "left": 0,
+          "top": 0,
+          "right": 768,
+          "bottom": 525,
+          "width": 768,
+          "height": 525
+        },
+        "bounds": {
+          "left": 0,
+          "top": 0,
+          "right": 768,
+          "bottom": 1152,
+          "width": 768,
+          "height": 1152
+        }
+      },
+      "inspectionChangedCounters": false,
+      "repeat120": {
+        "before": {
+          "requests": 69,
+          "decodes": 69,
+          "paints": 79,
+          "fallbackPaints": 0,
+          "vectorBuilds": 0,
+          "imageEntries": 3,
+          "pending": 0,
+          "errors": 0,
+          "vectorEntries": 0,
+          "waiters": 0,
+          "decodedRgbaBytes": 10616832,
+          "pendingRgbaBytes": 0,
+          "budgetBytes": 16777216,
+          "protectedRgbaBytes": 0
+        },
+        "after": {
+          "requests": 69,
+          "decodes": 69,
+          "paints": 79,
+          "fallbackPaints": 0,
+          "vectorBuilds": 0,
+          "imageEntries": 3,
+          "pending": 0,
+          "errors": 0,
+          "vectorEntries": 0,
+          "waiters": 0,
+          "decodedRgbaBytes": 10616832,
+          "pendingRgbaBytes": 0,
+          "budgetBytes": 16777216,
+          "protectedRgbaBytes": 3538944
+        },
+        "paints": 0,
+        "clears": 0
+      },
+      "visibility": {
+        "width": 276.53125,
+        "height": 304.1875,
+        "opacity": "1",
+        "stats": {
+          "requests": 69,
+          "decodes": 69,
+          "paints": 79,
+          "fallbackPaints": 0,
+          "vectorBuilds": 0,
+          "imageEntries": 3,
+          "pending": 0,
+          "errors": 0,
+          "vectorEntries": 0,
+          "waiters": 0,
+          "decodedRgbaBytes": 10616832,
+          "pendingRgbaBytes": 0,
+          "budgetBytes": 16777216,
+          "protectedRgbaBytes": 3538944
+        }
+      }
+    },
+    {
+      "id": "seoro-action-aim",
+      "mounted": {
+        "identity": "seoro",
+        "requested": "action.aim",
+        "actor": "설오",
+        "cls": "archer"
+      },
+      "selected": {
+        "source": "approved",
+        "state": "ready",
+        "identity": "seoro",
+        "expression": "action.aim",
+        "requestedExpression": "action.aim",
+        "fallbackReason": "exact",
+        "framing": "dialogue",
+        "crop": {
+          "x": -101.7954545454545,
+          "y": -8,
+          "width": 971.590909090909,
+          "height": 1068.75
+        },
+        "head": {
+          "left": 0,
+          "top": 0,
+          "right": 768,
+          "bottom": 525,
+          "width": 768,
+          "height": 525
+        },
+        "bounds": {
+          "left": 0,
+          "top": 0,
+          "right": 768,
+          "bottom": 1152,
+          "width": 768,
+          "height": 1152
+        }
+      },
+      "inspectionChangedCounters": false,
+      "repeat120": {
+        "before": {
+          "requests": 70,
+          "decodes": 70,
+          "paints": 80,
+          "fallbackPaints": 0,
+          "vectorBuilds": 0,
+          "imageEntries": 4,
+          "pending": 0,
+          "errors": 0,
+          "vectorEntries": 0,
+          "waiters": 0,
+          "decodedRgbaBytes": 14155776,
+          "pendingRgbaBytes": 0,
+          "budgetBytes": 16777216,
+          "protectedRgbaBytes": 3538944
+        },
+        "after": {
+          "requests": 70,
+          "decodes": 70,
+          "paints": 80,
+          "fallbackPaints": 0,
+          "vectorBuilds": 0,
+          "imageEntries": 4,
+          "pending": 0,
+          "errors": 0,
+          "vectorEntries": 0,
+          "waiters": 0,
+          "decodedRgbaBytes": 14155776,
+          "pendingRgbaBytes": 0,
+          "budgetBytes": 16777216,
+          "protectedRgbaBytes": 3538944
+        },
+        "paints": 0,
+        "clears": 0
+      },
+      "visibility": {
+        "width": 276.53125,
+        "height": 304.1875,
+        "opacity": "1",
+        "stats": {
+          "requests": 70,
+          "decodes": 70,
+          "paints": 80,
+          "fallbackPaints": 0,
+          "vectorBuilds": 0,
+          "imageEntries": 4,
+          "pending": 0,
+          "errors": 0,
+          "vectorEntries": 0,
+          "waiters": 0,
+          "decodedRgbaBytes": 14155776,
+          "pendingRgbaBytes": 0,
+          "budgetBytes": 16777216,
+          "protectedRgbaBytes": 3538944
+        }
+      }
+    }
+  ],
+  "cold": {
+    "requests": 0,
+    "decodes": 0,
+    "paints": 0,
+    "fallbackPaints": 0,
+    "vectorBuilds": 0,
+    "imageEntries": 0,
+    "pending": 0,
+    "errors": 0,
+    "vectorEntries": 0,
+    "waiters": 0,
+    "decodedRgbaBytes": 0,
+    "pendingRgbaBytes": 0,
+    "budgetBytes": 16777216,
+    "protectedRgbaBytes": 0
+  },
+  "errors": [],
+  "noDrawPolling": true
+}

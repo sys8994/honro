@@ -2,10 +2,10 @@
   "version": 1,
   "game": "HONRO.html",
   "workshop": "HONRO_WORKSHOP.html",
-  "playtest": "web/entries/game.9fc774952091b6e1.html?embedded=1",
+  "playtest": "web/entries/game.e8ac61f6398e7d1d.html?embedded=1",
   "project": "web/data/campaign.f355cadf4e1b4e54.json",
-  "gameEntry": "web/entries/game.7e7357a01737b7b3.js",
-  "workshopEntry": "web/entries/workshop.c1c9c1f5fa2f4dc9.js",
+  "gameEntry": "web/entries/game.56ce46dfdfbd8b0c.js",
+  "workshopEntry": "web/entries/workshop.1821c9cecdcde448.js",
   "common": [
     "web/runtime/ordered-common-1.143cc75f3fac4e47.js",
     "web/runtime/shared-runtime-title-markup.e0f242270b02362a.js",
@@ -463,9 +463,9 @@
       "sha256": "1b1a16777125d7dc04b262967d9d5de54534e0e940575205d6998fd6da74bac5"
     },
     {
-      "path": "web/data/HONRO_NPC_PORTRAITS.3a5963d19e35619d.json",
-      "bytes": 17724,
-      "sha256": "3a5963d19e35619d2ebffe6152103036bd65357ba9e37decfe93e9ed60b373f3"
+      "path": "web/data/HONRO_NPC_PORTRAITS.f6fd15022216a566.json",
+      "bytes": 28314,
+      "sha256": "f6fd15022216a566f8dc2fe49e131d7bf1a8e33c209e27668d53043790442f25"
     },
     {
       "path": "web/data/HONRO_OPEN_STRUCTURES.bd10fa99a7eaab14.json",
@@ -513,9 +513,9 @@
       "sha256": "2fd23f2b329a0e2779d1e9833e66b52b1589d0577106bbef0881b122c2c691cc"
     },
     {
-      "path": "web/data/HONRO_STORY_PORTRAITS.1c0c311ed0c709d7.json",
-      "bytes": 13669,
-      "sha256": "1c0c311ed0c709d7372c0fc7ba036054d052367af7202ae2d159cb76e0af513e"
+      "path": "web/data/HONRO_STORY_PORTRAITS.98951dd5cd879ca9.json",
+      "bytes": 30595,
+      "sha256": "98951dd5cd879ca90bc89498ed9a22da5e5c18686c353f4c6c4c4ea9ca712c58"
     },
     {
       "path": "web/data/HONRO_TITLE_ART.5005ea77f273dae9.json",
@@ -528,19 +528,19 @@
       "sha256": "0183a77b880579d78a266eaad57213f0fc581acc757f3e2ed0af6f3838c1eec9"
     },
     {
-      "path": "web/entries/game.7e7357a01737b7b3.js",
+      "path": "web/entries/game.56ce46dfdfbd8b0c.js",
       "bytes": 10680,
-      "sha256": "7e7357a01737b7b3bd7393b0e8b9c428a147b74bed847bf561df50c33fc82c31"
+      "sha256": "56ce46dfdfbd8b0c243bf920ed98db3a15a335790f95f5e0e3e5b5cce7b99b6a"
     },
     {
-      "path": "web/entries/game.9fc774952091b6e1.html",
+      "path": "web/entries/game.e8ac61f6398e7d1d.html",
       "bytes": 11354,
-      "sha256": "9fc774952091b6e1a493aefa63ea1ed5c3a9ecd07ed6db824b96efc6cc91734e"
+      "sha256": "e8ac61f6398e7d1d5072b21f4e333f9235bfee122717809c47c6eb899b228d8c"
     },
     {
-      "path": "web/entries/workshop.c1c9c1f5fa2f4dc9.js",
+      "path": "web/entries/workshop.1821c9cecdcde448.js",
       "bytes": 7381,
-      "sha256": "c1c9c1f5fa2f4dc94c0b2910b28e13b087708759ddffb69379abbe917ca87074"
+      "sha256": "1821c9cecdcde448705adead0fa4e7ec4dfcb1afe3130c94a902e3d53c9d8668"
     },
     {
       "path": "web/graphics/ending-10-image.6a631739bb1b7338.webp",
@@ -928,9 +928,24 @@
       "sha256": "21817e18a4d1f3784e9d56640e55268d688807274ac405f1f3446417702d55e1"
     },
     {
+      "path": "web/graphics/npc-portrait-man_elder-emotion-anger.8ade147154f4987c.webp",
+      "bytes": 155420,
+      "sha256": "8ade147154f4987ceb292ac1f9f32b2b31bb012a1da22bf63705946680699b1a"
+    },
+    {
+      "path": "web/graphics/npc-portrait-man_elder-emotion-concern.0bca436c296ddfcc.webp",
+      "bytes": 147354,
+      "sha256": "0bca436c296ddfccab32d6686b7e4d545d88918f6ecdeb7b1c04bfe8af7df8df"
+    },
+    {
       "path": "web/graphics/npc-portrait-man_elder.1dc51a333883addf.webp",
       "bytes": 140150,
       "sha256": "1dc51a333883addf93fda5ef1eacc62ca69e582b05c667206bede5b6d709d50f"
+    },
+    {
+      "path": "web/graphics/npc-portrait-monk_elder-emotion-concern.47498ea7fb03fbff.webp",
+      "bytes": 141560,
+      "sha256": "47498ea7fb03fbff7acd7e1b6b38a42485284dc6955590b710b4463344430fe5"
     },
     {
       "path": "web/graphics/npc-portrait-monk_elder.5afa0987e5990df4.webp",
@@ -938,9 +953,29 @@
       "sha256": "5afa0987e5990df41454acddc500d686de6d744b09184840a358f2882275dd52"
     },
     {
+      "path": "web/graphics/npc-portrait-monk_young-emotion-concern.7f2183085ec8af8c.webp",
+      "bytes": 126484,
+      "sha256": "7f2183085ec8af8cf696068b49d722e9a14d7efd6d2c55a288592951ac08c0cb"
+    },
+    {
       "path": "web/graphics/npc-portrait-monk_young.5bd0659721945296.webp",
       "bytes": 120830,
       "sha256": "5bd0659721945296de901051895a90d91fd3ca63a4915af011901d51a8693787"
+    },
+    {
+      "path": "web/graphics/npc-portrait-woman_mature-emotion-concern.ced46a37352f587e.webp",
+      "bytes": 162466,
+      "sha256": "ced46a37352f587e40b6c03ffaef56d45a6fc960563e7cf1d2813acc3adf3cc3"
+    },
+    {
+      "path": "web/graphics/npc-portrait-woman_mature-emotion-relief.66362be8b1386d88.webp",
+      "bytes": 161840,
+      "sha256": "66362be8b1386d88948bba1f4ad0951f854889f93f1fb51fb776c9302b3b192d"
+    },
+    {
+      "path": "web/graphics/npc-portrait-woman_mature-emotion-sorrow.70844f9680fdcfc4.webp",
+      "bytes": 157156,
+      "sha256": "70844f9680fdcfc403da05961ec10f4e62bb0534070d32179af4f1e6ffecbfc4"
     },
     {
       "path": "web/graphics/npc-portrait-woman_mature.c9688a3ba6f49b73.webp",
@@ -948,9 +983,19 @@
       "sha256": "c9688a3ba6f49b7308e56f0c9f4e464c94724366206aaa9bc895b1fd561785d9"
     },
     {
+      "path": "web/graphics/npc-portrait-worker_mature-emotion-concern.23d04cafbed62025.webp",
+      "bytes": 156206,
+      "sha256": "23d04cafbed620258a30a0a8346540427f4108401f9dfc0784b7f6ba2d6809ce"
+    },
+    {
       "path": "web/graphics/npc-portrait-worker_mature-emotion-relief.71b6326e4c6e543f.webp",
       "bytes": 174510,
       "sha256": "71b6326e4c6e543f866158bac8a7d62a2fc1d73e0a4b7d8e34017bd461ad1b91"
+    },
+    {
+      "path": "web/graphics/npc-portrait-worker_mature-emotion-sorrow.5dd338d53ef54bbe.webp",
+      "bytes": 154774,
+      "sha256": "5dd338d53ef54bbe8d61aa80000638e88488c35963ba31bd77a955bcc1f81291"
     },
     {
       "path": "web/graphics/npc-portrait-worker_mature.d4f9806b4a9810ad.webp",
@@ -958,9 +1003,24 @@
       "sha256": "d4f9806b4a9810ad1cfa700a181b6fd04e24cfdd86b3f539d45a0cef386db144"
     },
     {
+      "path": "web/graphics/npc-portrait-worker_young-emotion-concern.a7b19553d9832a54.webp",
+      "bytes": 157368,
+      "sha256": "a7b19553d9832a5417bb7a4ccf9a3da67666646a8af6b875eed3f1d50a8a9621"
+    },
+    {
+      "path": "web/graphics/npc-portrait-worker_young-emotion-relief.aecdb6e3f773002b.webp",
+      "bytes": 155990,
+      "sha256": "aecdb6e3f773002b00bbcfe0407021953200bc138732ce4572ffce256120c1f9"
+    },
+    {
       "path": "web/graphics/npc-portrait-worker_young.0a6758a4b97807e1.webp",
       "bytes": 144104,
       "sha256": "0a6758a4b97807e1a9f3449b8caaca2af7bd7a212a70e51874825b1cb64a267b"
+    },
+    {
+      "path": "web/graphics/npc-portrait-yeonsil-emotion-sorrow.77e4b7eb7b033e7f.webp",
+      "bytes": 155684,
+      "sha256": "77e4b7eb7b033e7ff7c8e0778e5c3c3db63273ac90045ef36109b1500adbb896"
     },
     {
       "path": "web/graphics/npc-portrait-yeonsil.6a79ba32cc70096d.webp",
@@ -978,14 +1038,44 @@
       "sha256": "354084a697188d563032a15317fd124eaac52b2a1a1886599808962ffd87844b"
     },
     {
+      "path": "web/graphics/portrait-damheo-emotion-anger.983da6448921615f.webp",
+      "bytes": 193232,
+      "sha256": "983da6448921615f05f77d649c4964ce806528f333c25d2afdddb52e5be866e6"
+    },
+    {
       "path": "web/graphics/portrait-damheo-emotion-concern.437a50645ae1b9f8.webp",
       "bytes": 193114,
       "sha256": "437a50645ae1b9f80dafc37172645b24f60a5a51bfe1dbb583e5719a707d8fe8"
     },
     {
+      "path": "web/graphics/portrait-damheo-emotion-relief.54e792fe234bf74b.webp",
+      "bytes": 188670,
+      "sha256": "54e792fe234bf74b450fa031ce79e4ad86c64db6f0ff3bb9722fa14feefda879"
+    },
+    {
+      "path": "web/graphics/portrait-damheo-emotion-resolve.fe0c1db1eb29d3ca.webp",
+      "bytes": 194976,
+      "sha256": "fe0c1db1eb29d3cae895b1928742707e13cf3c275da01732621a76c33e6f242a"
+    },
+    {
+      "path": "web/graphics/portrait-damheo-emotion-sorrow.f44e3daae7411a07.webp",
+      "bytes": 195814,
+      "sha256": "f44e3daae7411a07a55f17c2e8f2f31b44beff9016fd1f962c894c7d4f73a68b"
+    },
+    {
+      "path": "web/graphics/portrait-damheo-scene-steadying.de53b6be3bb502ca.webp",
+      "bytes": 218934,
+      "sha256": "de53b6be3bb502ca22144ba98361dda60535dccabd99db44be964d2bfeb1636a"
+    },
+    {
       "path": "web/graphics/portrait-hwigyeom-action-guard.a85a9d1e1cba98cc.webp",
       "bytes": 176276,
       "sha256": "a85a9d1e1cba98cc955c4e499add03f3252b3c100e5699224c8cce424f54c6bc"
+    },
+    {
+      "path": "web/graphics/portrait-hwigyeom-action-inspect_record.c719ee39c460ba5e.webp",
+      "bytes": 172254,
+      "sha256": "c719ee39c460ba5e2ef42096ea2c9fc8abbf259e074e8d24bf5c11e9c6af40d8"
     },
     {
       "path": "web/graphics/portrait-hwigyeom-base.90a546dd2fda53da.webp",
@@ -996,6 +1086,36 @@
       "path": "web/graphics/portrait-hwigyeom-emotion-anger.75a234353722a446.webp",
       "bytes": 152768,
       "sha256": "75a234353722a44698efeb98c7bed8addd0e6a12a6a722e256a21f825213ed18"
+    },
+    {
+      "path": "web/graphics/portrait-hwigyeom-emotion-concern.097d9191739bd05c.webp",
+      "bytes": 156592,
+      "sha256": "097d9191739bd05cc1b01fb9cf9705100bebd2ec57e53619c5274828a834c84b"
+    },
+    {
+      "path": "web/graphics/portrait-hwigyeom-emotion-relief.67fb05d9fc3cc8c5.webp",
+      "bytes": 149810,
+      "sha256": "67fb05d9fc3cc8c5997704878dc358730065243525d8379ce0a41050411bd6e6"
+    },
+    {
+      "path": "web/graphics/portrait-hwigyeom-emotion-resolve.cd78d610dd86a06b.webp",
+      "bytes": 167440,
+      "sha256": "cd78d610dd86a06b4bd28cec6dd7947206b76148f8d40504cc20b620e036dfd7"
+    },
+    {
+      "path": "web/graphics/portrait-hwigyeom-emotion-sorrow.3924070c34ea4e75.webp",
+      "bytes": 151656,
+      "sha256": "3924070c34ea4e75e042d8cd9a51ea8141336048873673722a2cc33af1bf267b"
+    },
+    {
+      "path": "web/graphics/portrait-seoro-action-aim.55abaa987b8dc545.webp",
+      "bytes": 249544,
+      "sha256": "55abaa987b8dc545df2d492716a24f4d5571cf348755eee0886b229d4afbfa86"
+    },
+    {
+      "path": "web/graphics/portrait-seoro-action-lower_bow.349c5a541a01528e.webp",
+      "bytes": 211306,
+      "sha256": "349c5a541a01528ecbefd39b9e7d96cc309a6c69d0c1214c1aa30c8fd05e0843"
     },
     {
       "path": "web/graphics/portrait-seoro-base.5461c4d01847334a.webp",
@@ -1013,6 +1133,26 @@
       "sha256": "04cae7f0a837a7413a9c4539df01bd9830079ff6be6cf22925437217ce29e1a9"
     },
     {
+      "path": "web/graphics/portrait-seoro-emotion-relief.08e93a65eb4e9539.webp",
+      "bytes": 210412,
+      "sha256": "08e93a65eb4e9539d336e9ffa4f3aa4586e390417bb6f876b2379f10044d9e83"
+    },
+    {
+      "path": "web/graphics/portrait-seoro-emotion-resolve.1a8f4e3fddbb346d.webp",
+      "bytes": 218610,
+      "sha256": "1a8f4e3fddbb346d64b51c2df99af47b25bfd765361cd58cefa33c4a3177338b"
+    },
+    {
+      "path": "web/graphics/portrait-seoro-emotion-sorrow.c93c1061c3c07715.webp",
+      "bytes": 206792,
+      "sha256": "c93c1061c3c0771593276e24379a1170361f977cc77cfc9ad9c80895cf120fab"
+    },
+    {
+      "path": "web/graphics/portrait-sodan-action-listen.24f8ccf877561cbe.webp",
+      "bytes": 178324,
+      "sha256": "24f8ccf877561cbe96173fbad19ba6bf3b9d814a0842bb0d03cca58e7afb8a47"
+    },
+    {
       "path": "web/graphics/portrait-sodan-action-rest_hands.63435c224a95f765.webp",
       "bytes": 155468,
       "sha256": "63435c224a95f765a0c6807df9b2214ddd8193086e8d5aea334240346b999d0c"
@@ -1023,9 +1163,29 @@
       "sha256": "08ae11c4ce6c63cf6157b2bdddbd9a0509fa004ee77ef9403ce91859dd84fd06"
     },
     {
+      "path": "web/graphics/portrait-sodan-emotion-anger.e3f7d37cb148723c.webp",
+      "bytes": 169448,
+      "sha256": "e3f7d37cb148723c3a0d1d7c96ae01652f51681aa562157e9fda54fd06ccf54a"
+    },
+    {
       "path": "web/graphics/portrait-sodan-emotion-concern.90835bc9820cf001.webp",
       "bytes": 168082,
       "sha256": "90835bc9820cf0015a165cb1fa73b2e9c5edfde47dede16f1aa74c950b06a311"
+    },
+    {
+      "path": "web/graphics/portrait-sodan-emotion-relief.b7c41bd616d6d451.webp",
+      "bytes": 160738,
+      "sha256": "b7c41bd616d6d451b9313cee181a7f49cdf8088d9964007bcb620e2b409d2d63"
+    },
+    {
+      "path": "web/graphics/portrait-sodan-emotion-resolve.c00caac809f73519.webp",
+      "bytes": 167440,
+      "sha256": "c00caac809f73519f8b6cc55851c55ac93c3c4a79d1f7cf512d2ceda268abfef"
+    },
+    {
+      "path": "web/graphics/portrait-sodan-emotion-sorrow.f8552b13a2a33e4f.webp",
+      "bytes": 155854,
+      "sha256": "f8552b13a2a33e4fda9a448e7da9cd93fb142bec09ca9ae5353faf2c5e6ad2aa"
     },
     {
       "path": "web/graphics/portrait-sodan-scene-holding_threads.87fd6163b83f51fc.webp",
@@ -1538,9 +1698,9 @@
       "sha256": "137cab25b09985f471619a0a04eab891da7abcb4642ab470ccfdb54deaeb3cac"
     },
     {
-      "path": "web/runtime/game-art.481c4140aac739e8.js",
-      "bytes": 2017,
-      "sha256": "481c4140aac739e87dc471b2cc5a46c5702fee74f911211d8fcdb1920ca2715b"
+      "path": "web/runtime/game-art.8ec3547b8af83316.js",
+      "bytes": 4113,
+      "sha256": "8ec3547b8af833161aea49c164d684e8fc40b0b0cb09e9bf325fee5178f06fb4"
     },
     {
       "path": "web/runtime/HONRO_ACT1_FAR_DATA.da2ce3328bd07ae5.js",
@@ -1855,6 +2015,21 @@
   ],
   "previousFiles": [
     {
+      "path": "web/entries/game.7e7357a01737b7b3.js",
+      "bytes": 10680,
+      "sha256": "7e7357a01737b7b3bd7393b0e8b9c428a147b74bed847bf561df50c33fc82c31"
+    },
+    {
+      "path": "web/entries/game.9fc774952091b6e1.html",
+      "bytes": 11354,
+      "sha256": "9fc774952091b6e1a493aefa63ea1ed5c3a9ecd07ed6db824b96efc6cc91734e"
+    },
+    {
+      "path": "web/entries/workshop.c1c9c1f5fa2f4dc9.js",
+      "bytes": 7381,
+      "sha256": "c1c9c1f5fa2f4dc94c0b2910b28e13b087708759ddffb69379abbe917ca87074"
+    },
+    {
       "path": "web/entries/game.5b9db523afd5156c.js",
       "bytes": 10680,
       "sha256": "5b9db523afd5156c605f71d1af98e5b70b3a4ecbe109adfbbd80dc5c49364d43"
@@ -1875,24 +2050,14 @@
       "sha256": "135589508c75309b2a1afcea5a14e49e1fe75098f41274d59e14d2b38e41b029"
     },
     {
-      "path": "web/entries/game.729f48c4543b9854.html",
-      "bytes": 11354,
-      "sha256": "729f48c4543b98548cbdabd72248466e3e7edd266c1691c14b306b3c824218fb"
+      "path": "web/data/HONRO_NPC_PORTRAITS.3a5963d19e35619d.json",
+      "bytes": 17724,
+      "sha256": "3a5963d19e35619d2ebffe6152103036bd65357ba9e37decfe93e9ed60b373f3"
     },
     {
-      "path": "web/entries/game.83e881ccd25d62a0.js",
-      "bytes": 10680,
-      "sha256": "83e881ccd25d62a0a5cc641b7f4383e940ddfe2fad4a2004b4976111719e9ba6"
-    },
-    {
-      "path": "web/entries/workshop.00dd93c8299c54dc.js",
-      "bytes": 7381,
-      "sha256": "00dd93c8299c54dc18b0403d254ce67338e79e44857f1bb3fb6c6665f3c69933"
-    },
-    {
-      "path": "web/runtime/ordered-common-5.90bda017154b4b3e.js",
-      "bytes": 172561,
-      "sha256": "90bda017154b4b3e632086506dbb9ef95364372e99bf5973ce69252948d890fb"
+      "path": "web/data/HONRO_STORY_PORTRAITS.1c0c311ed0c709d7.json",
+      "bytes": 13669,
+      "sha256": "1c0c311ed0c709d7372c0fc7ba036054d052367af7202ae2d159cb76e0af513e"
     },
     {
       "path": "web/data/narrative-data.3e39c11e15521117.json",
@@ -1918,6 +2083,11 @@
       "path": "web/runtime/campaign.6cfdab5f135cc2b0.js",
       "bytes": 435,
       "sha256": "6cfdab5f135cc2b049dcdbdfdf5a4739a778d2a3617c21b685703840ef4eb0ba"
+    },
+    {
+      "path": "web/runtime/game-art.481c4140aac739e8.js",
+      "bytes": 2017,
+      "sha256": "481c4140aac739e87dc471b2cc5a46c5702fee74f911211d8fcdb1920ca2715b"
     },
     {
       "path": "web/runtime/narrative-data.fdbc3716c9e9e832.js",
@@ -4518,6 +4688,23 @@
   "previousGenerations": [
     [
       {
+        "path": "web/entries/game.7e7357a01737b7b3.js",
+        "bytes": 10680,
+        "sha256": "7e7357a01737b7b3bd7393b0e8b9c428a147b74bed847bf561df50c33fc82c31"
+      },
+      {
+        "path": "web/entries/game.9fc774952091b6e1.html",
+        "bytes": 11354,
+        "sha256": "9fc774952091b6e1a493aefa63ea1ed5c3a9ecd07ed6db824b96efc6cc91734e"
+      },
+      {
+        "path": "web/entries/workshop.c1c9c1f5fa2f4dc9.js",
+        "bytes": 7381,
+        "sha256": "c1c9c1f5fa2f4dc94c0b2910b28e13b087708759ddffb69379abbe917ca87074"
+      }
+    ],
+    [
+      {
         "path": "web/entries/game.5b9db523afd5156c.js",
         "bytes": 10680,
         "sha256": "5b9db523afd5156c605f71d1af98e5b70b3a4ecbe109adfbbd80dc5c49364d43"
@@ -4536,28 +4723,6 @@
         "path": "web/runtime/ordered-common-5.135589508c75309b.js",
         "bytes": 172777,
         "sha256": "135589508c75309b2a1afcea5a14e49e1fe75098f41274d59e14d2b38e41b029"
-      }
-    ],
-    [
-      {
-        "path": "web/entries/game.729f48c4543b9854.html",
-        "bytes": 11354,
-        "sha256": "729f48c4543b98548cbdabd72248466e3e7edd266c1691c14b306b3c824218fb"
-      },
-      {
-        "path": "web/entries/game.83e881ccd25d62a0.js",
-        "bytes": 10680,
-        "sha256": "83e881ccd25d62a0a5cc641b7f4383e940ddfe2fad4a2004b4976111719e9ba6"
-      },
-      {
-        "path": "web/entries/workshop.00dd93c8299c54dc.js",
-        "bytes": 7381,
-        "sha256": "00dd93c8299c54dc18b0403d254ce67338e79e44857f1bb3fb6c6665f3c69933"
-      },
-      {
-        "path": "web/runtime/ordered-common-5.90bda017154b4b3e.js",
-        "bytes": 172561,
-        "sha256": "90bda017154b4b3e632086506dbb9ef95364372e99bf5973ce69252948d890fb"
       }
     ]
   ],

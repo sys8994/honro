@@ -1,0 +1,41 @@
+{
+  "campReady": 5,
+  "trainingReady": 4,
+  "trainingRepeat5": {
+    "same": true,
+    "before": {
+      "requests": 6,
+      "decodes": 6,
+      "paints": 11,
+      "fallbackPaints": 0,
+      "vectorBuilds": 0,
+      "imageEntries": 2,
+      "pending": 0,
+      "errors": 0,
+      "vectorEntries": 0,
+      "waiters": 0,
+      "decodedRgbaBytes": 12582912,
+      "pendingRgbaBytes": 0,
+      "budgetBytes": 16777216,
+      "protectedRgbaBytes": 0
+    },
+    "after": {
+      "requests": 6,
+      "decodes": 6,
+      "paints": 11,
+      "fallbackPaints": 0,
+      "vectorBuilds": 0,
+      "imageEntries": 2,
+      "pending": 0,
+      "errors": 0,
+      "vectorEntries": 0,
+      "waiters": 0,
+      "decodedRgbaBytes": 12582912,
+      "pendingRgbaBytes": 0,
+      "budgetBytes": 16777216,
+      "protectedRgbaBytes": 0
+    }
+  },
+  "unitInfoLargeReady": true,
+  "scope": "fresh browser fixture context; actual modal buttons, normal App frame"
+}

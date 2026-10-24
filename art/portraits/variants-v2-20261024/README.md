@@ -6,4 +6,4 @@
 
 [manifest](manifest.json)에 identity/expression,원본PNG hash/bytes,참조 경로를 기록하고 prompts/에 각 요청문을 보존했다. 이미지 바이트를 후처리로 다시 그리거나 인코딩하지 않았다.
 
-현재는 이미지 제작·검수 결과다. game/config의 ready registry,런타임WebP,얼굴크롭은 아직 연결하지 않았으며 게임에 적용됐다고 표시하지 않는다. 연결 시 같은 기존 expression ID에 등록하고 승인base를 덮어쓰지 않으며, 실제 모바일 대사창/허공터/모닥불과 갓·손 크롭 및 캐시 확인을 별도 수행한다. 모든32장을 인트로에 선로드하지 않는다.
+32종을 기존 expression ID의 ready registry와 런타임 WebP에 연결했다. 원본 PNG·기존 base·이전 12개 변형·대사 태그는 보존한다. 프롬프트 JSON의 status는 이미지 제작 당시의 기록이며 현재 구현 상태는 [연결·검수 결과](../../../game/docs/portrait-variants-v2-20261024/README.md)를 따른다. 전체 변형을 인트로에 선로드하지 않고 기존 필요 시 요청·decode·캐시를 사용한다.

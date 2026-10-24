@@ -42,7 +42,49 @@
         "file": "art/portraits/npc-plain-v2/yeonsil.png",
         "sha256": "55ddd9f99998cb74acd65e8d229ac977af3ffac7f4f27d1dfd0bfa35450f52aa"
       },
-      "sourceCommit": "c21cfd1192606ff6181bdf7f6a69ac60a79a62ce"
+      "sourceCommit": "c21cfd1192606ff6181bdf7f6a69ac60a79a62ce",
+      "expressions": {
+        "emotion.sorrow": {
+          "file": "shared/assets/portraits/variants-v2-20261024/yeonsil-emotion-sorrow.webp",
+          "source": "art/portraits/variants-v2-20261024/yeonsil-emotion-sorrow.png",
+          "sourceSha256": "96105df139244232b2439b0bedf67b5ba9158a679cb9a772d233ed8e74c6e99c",
+          "identityMaster": "art/portraits/npc-game-tone-v3/yeonsil.png",
+          "identityMasterSha256": "2574aefc3e1011277d3215290013c293075071c60db65fa95444eba0e00aca06",
+          "status": "ready",
+          "width": 768,
+          "height": 1152,
+          "head": {
+            "left": 0,
+            "top": 0,
+            "right": 768,
+            "bottom": 525,
+            "width": 768,
+            "height": 525
+          },
+          "bust": {
+            "left": 0,
+            "top": 0,
+            "right": 768,
+            "bottom": 1152,
+            "width": 768,
+            "height": 1152
+          },
+          "framing": {
+            "dialogue": {
+              "face": {
+                "left": 273.75,
+                "top": 135,
+                "right": 510,
+                "bottom": 378.75,
+                "width": 236.25,
+                "height": 243.75
+              },
+              "top": -69.75,
+              "maxHeight": 1218.75
+            }
+          }
+        }
+      }
     },
     "guard_spirit": {
       "id": "guard_spirit",
@@ -128,7 +170,89 @@
         "file": "art/portraits/npc-plain-v2/worker_young.png",
         "sha256": "79d2732ee6a4ff2ed2066fe565f8fed004b11263a9a9a0fc86aee9dcf88c07f3"
       },
-      "sourceCommit": "c21cfd1192606ff6181bdf7f6a69ac60a79a62ce"
+      "sourceCommit": "c21cfd1192606ff6181bdf7f6a69ac60a79a62ce",
+      "expressions": {
+        "emotion.concern": {
+          "file": "shared/assets/portraits/variants-v2-20261024/worker-young-emotion-concern.webp",
+          "source": "art/portraits/variants-v2-20261024/worker-young-emotion-concern.png",
+          "sourceSha256": "0674158553a9e677bd1bd831df31d00d0a23e1a634b29d0ae249024bc16e3a90",
+          "identityMaster": "art/portraits/npc-game-tone-v3/worker_young.png",
+          "identityMasterSha256": "d7125f5ad391dd0b89608df5e41c7da50c34d569f09be474e42ad697456d27a6",
+          "status": "ready",
+          "width": 768,
+          "height": 1152,
+          "head": {
+            "left": 0,
+            "top": 0,
+            "right": 768,
+            "bottom": 525,
+            "width": 768,
+            "height": 525
+          },
+          "bust": {
+            "left": 0,
+            "top": 0,
+            "right": 768,
+            "bottom": 1152,
+            "width": 768,
+            "height": 1152
+          },
+          "framing": {
+            "dialogue": {
+              "face": {
+                "left": 273.75,
+                "top": 165,
+                "right": 506.25,
+                "bottom": 397.5,
+                "width": 232.5,
+                "height": 232.5
+              },
+              "top": -12.545454545454504,
+              "maxHeight": 1082.181818181818
+            }
+          }
+        },
+        "emotion.relief": {
+          "file": "shared/assets/portraits/variants-v2-20261024/worker-young-emotion-relief.webp",
+          "source": "art/portraits/variants-v2-20261024/worker-young-emotion-relief.png",
+          "sourceSha256": "222a01b058bdde441cb77c39b21e9f4e5fbcd18e383b4c323166509b01ed4dfa",
+          "identityMaster": "art/portraits/npc-game-tone-v3/worker_young.png",
+          "identityMasterSha256": "d7125f5ad391dd0b89608df5e41c7da50c34d569f09be474e42ad697456d27a6",
+          "status": "ready",
+          "width": 768,
+          "height": 1152,
+          "head": {
+            "left": 0,
+            "top": 0,
+            "right": 768,
+            "bottom": 525,
+            "width": 768,
+            "height": 525
+          },
+          "bust": {
+            "left": 0,
+            "top": 0,
+            "right": 768,
+            "bottom": 1152,
+            "width": 768,
+            "height": 1152
+          },
+          "framing": {
+            "dialogue": {
+              "face": {
+                "left": 273.75,
+                "top": 165,
+                "right": 506.25,
+                "bottom": 397.5,
+                "width": 232.5,
+                "height": 232.5
+              },
+              "top": -12.545454545454504,
+              "maxHeight": 1082.181818181818
+            }
+          }
+        }
+      }
     },
     "monk_elder": {
       "id": "monk_elder",
@@ -171,7 +295,49 @@
         "file": "art/portraits/npc-plain-v2/monk_elder.png",
         "sha256": "d452a89d6dd478174da4fba2c341c33a1b5174f23e4b847d65f2e4003b276b20"
       },
-      "sourceCommit": "c21cfd1192606ff6181bdf7f6a69ac60a79a62ce"
+      "sourceCommit": "c21cfd1192606ff6181bdf7f6a69ac60a79a62ce",
+      "expressions": {
+        "emotion.concern": {
+          "file": "shared/assets/portraits/variants-v2-20261024/monk-elder-emotion-concern.webp",
+          "source": "art/portraits/variants-v2-20261024/monk-elder-emotion-concern.png",
+          "sourceSha256": "5feaa7c10c2f589f254fdd5aef930f054f3902f1ffa92d612f7eda5a697bd24a",
+          "identityMaster": "art/portraits/npc-game-tone-v3/monk_elder.png",
+          "identityMasterSha256": "84923a08cca41e3c87830990d753b737b5e5a4032e4cc4afff69cdf1d0a80a3a",
+          "status": "ready",
+          "width": 768,
+          "height": 1152,
+          "head": {
+            "left": 0,
+            "top": 0,
+            "right": 768,
+            "bottom": 525,
+            "width": 768,
+            "height": 525
+          },
+          "bust": {
+            "left": 0,
+            "top": 0,
+            "right": 768,
+            "bottom": 1152,
+            "width": 768,
+            "height": 1152
+          },
+          "framing": {
+            "dialogue": {
+              "face": {
+                "left": 288.75,
+                "top": 105,
+                "right": 532.5,
+                "bottom": 348.75,
+                "width": 243.75,
+                "height": 243.75
+              },
+              "top": -58.97727272727269,
+              "maxHeight": 1134.5454545454545
+            }
+          }
+        }
+      }
     },
     "man_elder": {
       "id": "man_elder",
@@ -214,7 +380,89 @@
         "file": "art/portraits/npc-plain-v2/man_elder.png",
         "sha256": "be26cec4780ff6900ed4319546560edff1f9f2f9eecf25aa12aec35789885bdf"
       },
-      "sourceCommit": "c21cfd1192606ff6181bdf7f6a69ac60a79a62ce"
+      "sourceCommit": "c21cfd1192606ff6181bdf7f6a69ac60a79a62ce",
+      "expressions": {
+        "emotion.concern": {
+          "file": "shared/assets/portraits/variants-v2-20261024/man-elder-emotion-concern.webp",
+          "source": "art/portraits/variants-v2-20261024/man-elder-emotion-concern.png",
+          "sourceSha256": "e3ecf8ac2f3ee183dff1bef29b4a80d77ad1939621d4e597983068d2ac317591",
+          "identityMaster": "art/portraits/npc-game-tone-v3/man_elder.png",
+          "identityMasterSha256": "4b8a60881f241c4c384e03eeae005f9fef2d2cc816208db76cdd497980349802",
+          "status": "ready",
+          "width": 768,
+          "height": 1152,
+          "head": {
+            "left": 0,
+            "top": 0,
+            "right": 768,
+            "bottom": 525,
+            "width": 768,
+            "height": 525
+          },
+          "bust": {
+            "left": 0,
+            "top": 0,
+            "right": 768,
+            "bottom": 1152,
+            "width": 768,
+            "height": 1152
+          },
+          "framing": {
+            "dialogue": {
+              "face": {
+                "left": 277.5,
+                "top": 180,
+                "right": 510,
+                "bottom": 416.25,
+                "width": 232.5,
+                "height": 236.25
+              },
+              "top": -8,
+              "maxHeight": 1087.139705882353
+            }
+          }
+        },
+        "emotion.anger": {
+          "file": "shared/assets/portraits/variants-v2-20261024/man-elder-emotion-anger.webp",
+          "source": "art/portraits/variants-v2-20261024/man-elder-emotion-anger.png",
+          "sourceSha256": "b28b16e07b71b5d23931a11184da8a261dca34a74794aac5f8361e48f294e17a",
+          "identityMaster": "art/portraits/npc-game-tone-v3/man_elder.png",
+          "identityMasterSha256": "4b8a60881f241c4c384e03eeae005f9fef2d2cc816208db76cdd497980349802",
+          "status": "ready",
+          "width": 768,
+          "height": 1152,
+          "head": {
+            "left": 0,
+            "top": 0,
+            "right": 768,
+            "bottom": 525,
+            "width": 768,
+            "height": 525
+          },
+          "bust": {
+            "left": 0,
+            "top": 0,
+            "right": 768,
+            "bottom": 1152,
+            "width": 768,
+            "height": 1152
+          },
+          "framing": {
+            "dialogue": {
+              "face": {
+                "left": 277.5,
+                "top": 180,
+                "right": 510,
+                "bottom": 416.25,
+                "width": 232.5,
+                "height": 236.25
+              },
+              "top": -8,
+              "maxHeight": 1087.139705882353
+            }
+          }
+        }
+      }
     },
     "worker_mature": {
       "id": "worker_mature",
@@ -298,6 +546,86 @@
               "maxHeight": 1188
             }
           }
+        },
+        "emotion.concern": {
+          "file": "shared/assets/portraits/variants-v2-20261024/worker-mature-emotion-concern.webp",
+          "source": "art/portraits/variants-v2-20261024/worker-mature-emotion-concern.png",
+          "sourceSha256": "a94414e6e915feb7bbf76d31a80c178a58f8f47266f756317781cf30f5eeb1a7",
+          "identityMaster": "art/portraits/npc-game-tone-v3/worker_mature.png",
+          "identityMasterSha256": "6db32403f0318da8077a7461afb2cc1f6a1e17de9e35cf3b40df3e7baa2cfe7a",
+          "status": "ready",
+          "width": 768,
+          "height": 1152,
+          "head": {
+            "left": 0,
+            "top": 0,
+            "right": 768,
+            "bottom": 525,
+            "width": 768,
+            "height": 525
+          },
+          "bust": {
+            "left": 0,
+            "top": 0,
+            "right": 768,
+            "bottom": 1152,
+            "width": 768,
+            "height": 1152
+          },
+          "framing": {
+            "dialogue": {
+              "face": {
+                "left": 281.25,
+                "top": 180,
+                "right": 517.5,
+                "bottom": 412.5,
+                "width": 236.25,
+                "height": 232.5
+              },
+              "top": -8,
+              "maxHeight": 1120.90625
+            }
+          }
+        },
+        "emotion.sorrow": {
+          "file": "shared/assets/portraits/variants-v2-20261024/worker-mature-emotion-sorrow.webp",
+          "source": "art/portraits/variants-v2-20261024/worker-mature-emotion-sorrow.png",
+          "sourceSha256": "1d49b1a9f189081246520e09dd505097bab70c1ecf56b9df462c454024609f84",
+          "identityMaster": "art/portraits/npc-game-tone-v3/worker_mature.png",
+          "identityMasterSha256": "6db32403f0318da8077a7461afb2cc1f6a1e17de9e35cf3b40df3e7baa2cfe7a",
+          "status": "ready",
+          "width": 768,
+          "height": 1152,
+          "head": {
+            "left": 0,
+            "top": 0,
+            "right": 768,
+            "bottom": 525,
+            "width": 768,
+            "height": 525
+          },
+          "bust": {
+            "left": 0,
+            "top": 0,
+            "right": 768,
+            "bottom": 1152,
+            "width": 768,
+            "height": 1152
+          },
+          "framing": {
+            "dialogue": {
+              "face": {
+                "left": 281.25,
+                "top": 180,
+                "right": 517.5,
+                "bottom": 412.5,
+                "width": 236.25,
+                "height": 232.5
+              },
+              "top": -8,
+              "maxHeight": 1120.90625
+            }
+          }
         }
       }
     },
@@ -342,7 +670,49 @@
         "file": "art/portraits/npc-plain-v2/monk_young.png",
         "sha256": "1b7dab75d8a166dd5066c7b8e4fb621ca08f2f321d0be05e16ba685dd29dc21b"
       },
-      "sourceCommit": "c21cfd1192606ff6181bdf7f6a69ac60a79a62ce"
+      "sourceCommit": "c21cfd1192606ff6181bdf7f6a69ac60a79a62ce",
+      "expressions": {
+        "emotion.concern": {
+          "file": "shared/assets/portraits/variants-v2-20261024/monk-young-emotion-concern.webp",
+          "source": "art/portraits/variants-v2-20261024/monk-young-emotion-concern.png",
+          "sourceSha256": "3d5d9f5de9572769839ff86cca90b6b47adfe983af2f5545119648087557fc8e",
+          "identityMaster": "art/portraits/npc-game-tone-v3/monk_young.png",
+          "identityMasterSha256": "ac2cfccef8867b94155f0cd49242b8236d4c04d0e8d935f39048c031ddd22e3d",
+          "status": "ready",
+          "width": 768,
+          "height": 1152,
+          "head": {
+            "left": 0,
+            "top": 0,
+            "right": 768,
+            "bottom": 525,
+            "width": 768,
+            "height": 525
+          },
+          "bust": {
+            "left": 0,
+            "top": 0,
+            "right": 768,
+            "bottom": 1152,
+            "width": 768,
+            "height": 1152
+          },
+          "framing": {
+            "dialogue": {
+              "face": {
+                "left": 285,
+                "top": 108.75,
+                "right": 517.5,
+                "bottom": 348.75,
+                "width": 232.5,
+                "height": 240
+              },
+              "top": -86.34677419354841,
+              "maxHeight": 1189.1612903225805
+            }
+          }
+        }
+      }
     },
     "woman_mature": {
       "id": "woman_mature",
@@ -385,7 +755,129 @@
         "file": "art/portraits/npc-plain-v2/woman_mature.png",
         "sha256": "4a0f1562bd3c6574be83f62c95b90ae6f0d0ba498a35d926d96bee2c43e14ff3"
       },
-      "sourceCommit": "c21cfd1192606ff6181bdf7f6a69ac60a79a62ce"
+      "sourceCommit": "c21cfd1192606ff6181bdf7f6a69ac60a79a62ce",
+      "expressions": {
+        "emotion.concern": {
+          "file": "shared/assets/portraits/variants-v2-20261024/woman-mature-emotion-concern.webp",
+          "source": "art/portraits/variants-v2-20261024/woman-mature-emotion-concern.png",
+          "sourceSha256": "75b4ae436b17b244fe7d8f4f50949515a91b0ad79bff469767f228c191b11bbf",
+          "identityMaster": "art/portraits/npc-game-tone-v3/woman_mature.png",
+          "identityMasterSha256": "4194ab7d306d941cbee5e50bbc41471c20173dde5aa3bade119760548d0d311e",
+          "status": "ready",
+          "width": 768,
+          "height": 1152,
+          "head": {
+            "left": 0,
+            "top": 0,
+            "right": 768,
+            "bottom": 525,
+            "width": 768,
+            "height": 525
+          },
+          "bust": {
+            "left": 0,
+            "top": 0,
+            "right": 768,
+            "bottom": 1152,
+            "width": 768,
+            "height": 1152
+          },
+          "framing": {
+            "dialogue": {
+              "face": {
+                "left": 285,
+                "top": 180,
+                "right": 521.25,
+                "bottom": 412.5,
+                "width": 236.25,
+                "height": 232.5
+              },
+              "top": -8,
+              "maxHeight": 1135.4375
+            }
+          }
+        },
+        "emotion.sorrow": {
+          "file": "shared/assets/portraits/variants-v2-20261024/woman-mature-emotion-sorrow.webp",
+          "source": "art/portraits/variants-v2-20261024/woman-mature-emotion-sorrow.png",
+          "sourceSha256": "4acf5a30eba04528842d8559720ee30096171008cec4f112576196ef21978f91",
+          "identityMaster": "art/portraits/npc-game-tone-v3/woman_mature.png",
+          "identityMasterSha256": "4194ab7d306d941cbee5e50bbc41471c20173dde5aa3bade119760548d0d311e",
+          "status": "ready",
+          "width": 768,
+          "height": 1152,
+          "head": {
+            "left": 0,
+            "top": 0,
+            "right": 768,
+            "bottom": 525,
+            "width": 768,
+            "height": 525
+          },
+          "bust": {
+            "left": 0,
+            "top": 0,
+            "right": 768,
+            "bottom": 1152,
+            "width": 768,
+            "height": 1152
+          },
+          "framing": {
+            "dialogue": {
+              "face": {
+                "left": 285,
+                "top": 180,
+                "right": 521.25,
+                "bottom": 412.5,
+                "width": 236.25,
+                "height": 232.5
+              },
+              "top": -8,
+              "maxHeight": 1135.4375
+            }
+          }
+        },
+        "emotion.relief": {
+          "file": "shared/assets/portraits/variants-v2-20261024/woman-mature-emotion-relief.webp",
+          "source": "art/portraits/variants-v2-20261024/woman-mature-emotion-relief.png",
+          "sourceSha256": "0fbbdeaffb62bebf55db59ded425e948410eb1b06a9fbc5c47aa664a906c4434",
+          "identityMaster": "art/portraits/npc-game-tone-v3/woman_mature.png",
+          "identityMasterSha256": "4194ab7d306d941cbee5e50bbc41471c20173dde5aa3bade119760548d0d311e",
+          "status": "ready",
+          "width": 768,
+          "height": 1152,
+          "head": {
+            "left": 0,
+            "top": 0,
+            "right": 768,
+            "bottom": 525,
+            "width": 768,
+            "height": 525
+          },
+          "bust": {
+            "left": 0,
+            "top": 0,
+            "right": 768,
+            "bottom": 1152,
+            "width": 768,
+            "height": 1152
+          },
+          "framing": {
+            "dialogue": {
+              "face": {
+                "left": 285,
+                "top": 180,
+                "right": 521.25,
+                "bottom": 412.5,
+                "width": 236.25,
+                "height": 232.5
+              },
+              "top": -8,
+              "maxHeight": 1135.4375
+            }
+          }
+        }
+      }
     },
     "keeper_ritual": {
       "id": "keeper_ritual",

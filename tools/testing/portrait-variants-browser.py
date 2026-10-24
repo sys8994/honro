@@ -4,8 +4,8 @@ import json,sys,subprocess,hashlib
 from playwright.sync_api import sync_playwright
 ROOT=Path(__file__).resolve().parents[2];sys.path.insert(0,str(ROOT/'tests'))
 from browser_support import launch,serve_game
-OUT=ROOT/'_local/reports/portrait-variants';OUT.mkdir(parents=True,exist_ok=True)
-D=json.loads((ROOT/'shared/data/narrative-current.json').read_text());H=json.loads((ROOT/'game/config/story-portraits.json').read_text());N=json.loads((ROOT/'game/config/npc-portraits.json').read_text());M=json.loads((ROOT/'art/portraits/variants-v1/manifest.json').read_text());allrows=[]
+OUT=ROOT/('_local/reports/portrait-variants32/browser' if '--v2' in sys.argv else '_local/reports/portrait-variants');OUT.mkdir(parents=True,exist_ok=True)
+D=json.loads((ROOT/'shared/data/narrative-current.json').read_text());H=json.loads((ROOT/'game/config/story-portraits.json').read_text());N=json.loads((ROOT/'game/config/npc-portraits.json').read_text());M=json.loads((ROOT/('art/portraits/variants-v2-20261024/manifest.json' if '--v2' in sys.argv else 'art/portraits/variants-v1/manifest.json')).read_text());M=[dict(r,id=Path(r['file']).stem,actor=r['identity'],variant=r['expression']) for r in M['images']] if '--v2' in sys.argv else M;allrows=[]
 def walk(x,stage=1):
  if isinstance(x,list):
   if len(x)>2 and isinstance(x[0],str)and isinstance(x[1],str)and isinstance(x[2],dict)and x[2].get('rowId'):allrows.append({'stage':stage,'line':x})
@@ -33,16 +33,37 @@ def pixels(p):return p.evaluate('document.getElementById("story-portrait-canvas"
 def repeat(p):
  return p.evaluate('''()=>{const c=document.getElementById('story-portrait-canvas'),ctx=c.getContext('2d'),draw=ctx.drawImage,clear=ctx.clearRect;let paints=0,clears=0;ctx.drawImage=function(...a){paints++;return draw.apply(this,a)};ctx.clearRect=function(...a){clears++;return clear.apply(this,a)};const [who,,meta]=HonroApp.dialogue.lines[HonroApp.dialogue.index],asset=HonroNPCPortraits.resolve(HonroApp,who,meta),cls=HONRO_STORY_PORTRAITS[who]?.class,before=HonroPortraits.stats();for(let i=0;i<120;i++)HonroPortraits.draw(c,null,cls,{npcAsset:asset,identity:who,portraitExpression:meta.portraitExpression,framing:'dialogue'});return{before,after:HonroPortraits.stats(),paints,clears};}''')
 def check_repeat(r):assert r['paints']==r['clears']==0 and r['before']==r['after'],r
-seoro=json.loads(json.dumps(cases['seoro-anger']));basecase=json.loads(json.dumps(seoro));basecase['line'][2]['portraitExpression']='base';damheo=json.loads(json.dumps(cases['damheo-concern']));damheo['line'][2]['portraitExpression']='base'
-if '--mount-audit'in sys.argv:
+seoro=json.loads(json.dumps(cases['seoro-emotion-resolve' if '--v2' in sys.argv else 'seoro-anger']));basecase=json.loads(json.dumps(seoro));basecase['line'][2]['portraitExpression']='base';damheo=json.loads(json.dumps(cases['damheo-emotion-resolve' if '--v2' in sys.argv else 'damheo-concern']));damheo['line'][2]['portraitExpression']='base'
+if '--mount-audit'in sys.argv or '--v2' in sys.argv:
  audit=[]
  with serve_game()as base,sync_playwright()as pw:
-  b=launch(pw);c,p=openpage(b,base)
+  b=launch(pw);c,p=openpage(b,base);errors=[];p.on('pageerror',lambda e:errors.append(str(e)))
+  cold=p.evaluate('HonroPortraits.stats()');assert cold['requests']==0,cold
   p.evaluate("""()=>{const api=HonroPortraits;globalThis.HonroPortraits=Object.freeze({...api,mount(...args){const v=api.mount(...args);if(args[3]?.surface==='dialogue')window.actualMount={identity:v?.identity,requested:args[3].portraitExpression,actor:args[1]?.name,cls:args[2]};return v;}});} """)
-  for r in M:
-   show(p,cases[r['id']]);p.wait_for_function('document.getElementById("story-portrait-canvas")?.dataset.portraitState==="ready"');mounted=p.evaluate('actualMount');assert mounted['identity']==r['actor']and mounted['requested']==r['variant'],(r,mounted);before=p.evaluate('HonroPortraits.stats()');selected=info(p);after=p.evaluate('HonroPortraits.stats()');assert before==after and selected['expression']==r['variant'],(r,before,after,selected);audit.append({'id':r['id'],'mounted':mounted,'selected':selected,'inspectionChangedCounters':False})
+  for r in ([] if '--consumers-only' in sys.argv else M):
+   show(p,cases[r['id']]);p.wait_for_function('document.getElementById("story-portrait-canvas")?.dataset.portraitState==="ready"');mounted=p.evaluate('actualMount');assert mounted['identity']==r['actor']and mounted['requested']==r['variant'],(r,mounted);before=p.evaluate('HonroPortraits.stats()');selected=info(p);after=p.evaluate('HonroPortraits.stats()');assert all(before[k]==after[k] for k in ['requests','decodes','paints','fallbackPaints','vectorBuilds']) and selected['expression']==r['variant'],(r,before,after,selected);audit.append({'id':r['id'],'fixtureExpression':cases[r['id']]['fixtureExpression'],'rowId':cases[r['id']]['line'][2]['rowId'],'mounted':mounted,'selected':selected,'inspectionChangedCounters':False})
+   if '--v2' in sys.argv:
+    stable=repeat(p);assert stable['paints']==stable['clears']==0 and all(stable['before'][k]==stable['after'][k] for k in ['requests','decodes','paints','fallbackPaints','vectorBuilds']);audit[-1]['repeat120']=stable;checks=p.evaluate("""()=>{const c=document.getElementById('story-portrait-canvas'),r=c.getBoundingClientRect();return {width:r.width,height:r.height,opacity:getComputedStyle(c).opacity,stats:HonroPortraits.stats()}}""");assert checks['width']>0 and checks['height']>0 and checks['stats']['decodedRgbaBytes']<=checks['stats']['budgetBytes'];audit[-1]['visibility']=checks
+    if r['id'] in ['hwigyeom-emotion-concern-v2','seoro-action-aim','damheo-scene-steadying','sodan-action-listen','woman-mature-emotion-concern']:
+     for w,h in [(390,844),(844,390)]:
+      p.set_viewport_size({'width':w,'height':h});p.wait_for_timeout(500);p.screenshot(path=str(OUT/(str(w)+'-'+r['id']+'.jpg')),type='jpeg',quality=90)
+     p.set_viewport_size({'width':390,'height':844})
+  if audit:(OUT/'mount-audit.json').write_text(json.dumps({'head':subprocess.check_output(['git','rev-parse','HEAD'],text=True).strip(),'rows':audit,'cold':cold,'errors':errors,'noDrawPolling':True},ensure_ascii=False,indent=2))
+  if '--v2' in sys.argv:
+   # Real camp/training consumers deliberately request unchanged base portraits.
+   c.close();c,p=openpage(b,base)
+   p.evaluate("""()=>{HonroStory.finish(HonroApp);HonroRestJourney.state(HonroApp.profile).restStageId=1;HonroApp.showRest();for(let i=0;HonroApp.dialogue&&i<30;i++)HonroStory.finish(HonroApp);HonroApp.showCamp();}""");p.wait_for_function("[...document.querySelectorAll('.hero-tabs canvas,.summary-identity canvas')].length===5&&[...document.querySelectorAll('.hero-tabs canvas,.summary-identity canvas')].every(c=>c.dataset.portraitState==='ready')");p.screenshot(path=str(OUT/'v2-camp.jpg'),type='jpeg',quality=90)
+   p.evaluate('async()=>{await HonroOptionalRuntime.load("training");HonroApp.close();HonroApp.startTraining();}');p.wait_for_selector('.training-dialog');p.wait_for_function("[...document.querySelectorAll('.training-heroes canvas')].length===4&&[...document.querySelectorAll('.training-heroes canvas')].every(c=>c.dataset.portraitState==='ready')");p.screenshot(path=str(OUT/'v2-training.jpg'),type='jpeg',quality=90)
+   training=p.evaluate("""()=>{const a=HonroApp,old=[...document.querySelectorAll('.training-heroes canvas')],before=HonroPortraits.stats();for(let i=0;i<5;i++){a.close();HonroTraining.open(a);}return {same:old.every((c,i)=>c===document.querySelectorAll('.training-heroes canvas')[i]),before,after:HonroPortraits.stats()}}""");assert training['same'] and all(training['before'][k]==training['after'][k] for k in ['requests','decodes','paints'])
+   p.locator('[data-training-action="hero"][data-value="knight"]').click();p.locator('[data-training-action="apply"]').click();p.wait_for_timeout(200)
+   p.evaluate('HonroUnitInfo.show(HonroApp,HonroApp.engine.heroesAlive()[0])');p.wait_for_function('document.querySelector(".unit-info-portrait canvas")?.dataset.portraitState==="ready"');p.locator('.unit-info-portrait').click();p.wait_for_function('document.querySelector(".unit-portrait-image canvas")?.dataset.portraitState==="ready"');p.screenshot(path=str(OUT/'v2-unit-info-large.jpg'),type='jpeg',quality=90)
+   (OUT/'consumers.json').write_text(json.dumps({'campReady':5,'trainingReady':4,'trainingRepeat5':training,'unitInfoLargeReady':True,'scope':'fresh browser fixture context; actual modal buttons, normal App frame'},indent=2))
+
+
+  assert not errors,errors
   c.close();b.close()
- (OUT/'mount-audit.json').write_text(json.dumps({'head':subprocess.check_output(['git','rev-parse','HEAD'],text=True).strip(),'rows':audit,'noDrawPolling':True},ensure_ascii=False,indent=2));print('PASS12 actual story mount identities, passive onload readiness, inspection adds0 paint/request/decode');sys.exit(0)
+ if audit:(OUT/'mount-audit.json').write_text(json.dumps({'head':subprocess.check_output(['git','rev-parse','HEAD'],text=True).strip(),'rows':audit,'cold':cold,'errors':errors,'noDrawPolling':True},ensure_ascii=False,indent=2))
+ print('PASS',len(audit),'actual story mounts; requested consumer checks complete');sys.exit(0)
 rows=[];faults=[]
 with serve_game()as base,sync_playwright()as pw:
  b=launch(pw);c,p=openpage(b,base);errors=[];p.on('pageerror',lambda e:errors.append(str(e)));cold=p.evaluate('HonroPortraits.stats()');assert cold['requests']==0,cold

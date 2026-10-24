@@ -1,0 +1,120 @@
+{
+  "baseline": "e975a63646af0e55f1a5c2edc01a5cca22cbe8c9",
+  "sourceBytes": 60714071,
+  "runtimeBytes": 5550148,
+  "beforeSummary": {
+    "fixedRows": 770,
+    "taggedFixed": 688,
+    "excluded": 82,
+    "rescueMetadata": 6,
+    "valueBranches": 4,
+    "readyRows": 485,
+    "pendingRows": 202,
+    "dynamicContextRows": 1
+  },
+  "summary": {
+    "fixedRows": 770,
+    "taggedFixed": 688,
+    "excluded": 82,
+    "rescueMetadata": 6,
+    "valueBranches": 4,
+    "readyRows": 672,
+    "pendingRows": 15,
+    "dynamicContextRows": 1
+  },
+  "pending": [
+    {
+      "identity": "동생의 혼",
+      "portraitExpression": "base",
+      "count": 2,
+      "rowIds": [
+        "19.beats.send-1:spirit-answer",
+        "19.beats.separate-1:spirit-warning"
+      ]
+    },
+    {
+      "identity": "서술",
+      "count": 8,
+      "rowIds": [
+        "19.beats.send-1:hand-opens",
+        "19.beats.old-soul:wrong-direction",
+        "19.beats.old-soul:no-door",
+        "19.beats.separate-1:wrapped-handle",
+        "19.beats.separate-2:stifled-breath",
+        "19.beats.separate-3:no-answer",
+        "19.beats.separate-3:cannot-remember",
+        "19.beats.send-3:keeps-place"
+      ]
+    },
+    {
+      "identity": "언니의 혼",
+      "portraitExpression": "base",
+      "count": 2,
+      "rowIds": [
+        "19.beats.send-2:spirit-rises",
+        "19.beats.separate-2:spirit-answer"
+      ]
+    },
+    {
+      "identity": "종 안의 혼",
+      "portraitExpression": "base",
+      "count": 1,
+      "rowIds": [
+        "19.beats.old-soul:wrong-door"
+      ]
+    },
+    {
+      "identity": "이름 없는 혼",
+      "portraitExpression": "base",
+      "count": 2,
+      "rowIds": [
+        "19.beats.separate-3:waiting",
+        "19.beats.send-3:permission"
+      ]
+    }
+  ],
+  "existingEditorialErrors": [
+    "12.beats.sign:time-resume-observation differs from parent-approved intent",
+    "16.beats.record:time-outside-date differs from parent-approved intent",
+    "16.beats.record:time-conflict differs from parent-approved intent",
+    "16.beats.record:time-realization differs from parent-approved intent",
+    "16.beats.record:time-rule differs from parent-approved intent",
+    "16.beats.record:time-human-cost differs from parent-approved intent",
+    "16.beats.witness:time-question differs from parent-approved intent",
+    "16.beats.witness:time-local-memory differs from parent-approved intent",
+    "16.beats.witness:escort-pilot-a differs from parent-approved intent",
+    "19.beats.send-1:unfinished-promise differs from parent-approved intent",
+    "19.beats.send-1:spirit-answer differs from parent-approved intent",
+    "19.beats.send-1:hand-opens missing/unknown portraitExpression: undefined",
+    "19.beats.send-2:first-call differs from parent-approved intent",
+    "19.beats.send-2:second-call differs from parent-approved intent",
+    "19.beats.send-2:spirit-rises differs from parent-approved intent",
+    "19.beats.send-2:farewell differs from parent-approved intent",
+    "19.beats.old-soul:wrong-direction missing/unknown portraitExpression: undefined",
+    "19.beats.old-soul:warning differs from parent-approved intent",
+    "19.beats.old-soul:wrong-door differs from parent-approved intent",
+    "19.beats.old-soul:no-door missing/unknown portraitExpression: undefined",
+    "19.beats.old-soul:older-than-transfer differs from parent-approved intent",
+    "19.beats.old-soul:cannot-release differs from parent-approved intent",
+    "19.beats.old-soul:unresolved-promise differs from parent-approved intent",
+    "19.beats.route:sodan-takes-over differs from parent-approved intent",
+    "19.beats.separate-1:wrapped-handle missing/unknown portraitExpression: undefined",
+    "19.beats.separate-1:brother-habit differs from parent-approved intent",
+    "19.beats.separate-1:spirit-warning differs from parent-approved intent",
+    "19.beats.separate-1:recognition differs from parent-approved intent",
+    "19.beats.separate-2:home-name differs from parent-approved intent",
+    "19.beats.separate-2:stifled-breath missing/unknown portraitExpression: undefined",
+    "19.beats.separate-2:ordinary-memory differs from parent-approved intent",
+    "19.beats.separate-2:spirit-answer differs from parent-approved intent",
+    "19.beats.separate-3:no-answer missing/unknown portraitExpression: undefined",
+    "19.beats.separate-3:waiting differs from parent-approved intent",
+    "19.beats.separate-3:asking differs from parent-approved intent",
+    "19.beats.separate-3:cannot-remember missing/unknown portraitExpression: undefined",
+    "19.beats.send-3:permission differs from parent-approved intent",
+    "19.beats.send-3:stay differs from parent-approved intent",
+    "19.beats.send-3:guide differs from parent-approved intent",
+    "19.beats.send-3:keeps-place missing/unknown portraitExpression: undefined",
+    "20.outro:time-changed-world differs from parent-approved intent",
+    "20.outro:time-still-family differs from parent-approved intent"
+  ]
+}
