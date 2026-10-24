@@ -55,7 +55,7 @@ function create(){
   initial,
   get locked(){return locked;},
   get state(){return{kind,reason,hasOriginal:typeof raw==='string'};},
-  save(profile){if(G.HONRO_EMBEDDED||locked)return false;try{write(profile);return true;}catch{fail('write');return false;}},
+  save(profile){if(G.HONRO_EMBEDDED||locked)return false;try{write(profile);return true;}catch{return false;}},
   importText(text){return replace(()=>migrate(text));},
   newJourney(){return replace(fresh);},
   original(){return typeof raw==='string'?{ok:true,text:raw}:{ok:false};},

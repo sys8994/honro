@@ -1193,19 +1193,19 @@
                     this.export();
                     break;
                 case 'import':
-                    if(this.debugMode&&!this.profileStore.locked)break;
+                    if(this.debugMode)break;
                     G.HonroMenuUI.confirm(this,'import');
                     break;
                 case 'import-map':
                     $('map-import').click();
                     break;
                 case 'newgame':
-                    if(this.debugMode&&!this.profileStore.locked)break;
+                    if(this.debugMode)break;
                     G.HonroMenuUI.confirm(this,'newgame');
                     break;
                 case 'confirm-newgame':
                     // Legacy action must still pass through the visible confirmation.
-                    if(!this.debugMode||this.profileStore.locked)G.HonroMenuUI.confirm(this,'newgame');
+                    if(!this.debugMode)G.HonroMenuUI.confirm(this,'newgame');
                     break;
                 case 'select-hero':
                     G.HonroUnitInfo.close(this);
@@ -1269,12 +1269,12 @@
             }
             else if (el.id === 'file-import' && el.files[0]) {
                 try {
-                    if(this.debugMode&&!this.profileStore.locked)throw Error('디버그 모드를 끈 뒤 기록을 가져오세요.');
+                    if(this.debugMode)throw Error('디버그 모드를 끈 뒤 기록을 가져오세요.');
                     const request=++this.profileImportSequence,text=await el.files[0].text();
                     if(request===this.profileImportSequence&&this.replaceProfile(this.profileStore.importText(text)))this.notify('기록을 불러왔어.');
                 }
                 catch (err) {
-                    this.notify(this.debugMode&&!this.profileStore.locked?'디버그 모드를 끈 뒤 기록을 가져오세요.':'기록 파일을 읽지 못했습니다. 현재 기록은 유지됩니다.');
+                    this.notify(this.debugMode?'디버그 모드를 끈 뒤 기록을 가져오세요.':'기록 파일을 읽지 못했습니다. 현재 기록은 유지됩니다.');
                 }
                 el.value = '';
             } });
