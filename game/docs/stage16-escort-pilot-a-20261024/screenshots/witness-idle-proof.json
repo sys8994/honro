@@ -1,0 +1,32 @@
+{
+  "entry": "web/entries/game.7e7357a01737b7b3.js",
+  "witness": {
+    "row": "16.beats.witness:escort-pilot-a",
+    "opacity": 1,
+    "frameCount": 474,
+    "camera": {
+      "x": 3278.5,
+      "y": 4819.696366027546,
+      "scale": 0.78
+    },
+    "monks": [
+      {
+        "id": "resident-1",
+        "x": -30.03,
+        "y": 465.55580771279995
+      },
+      {
+        "id": "objective",
+        "x": 102.57,
+        "y": 447.3423012192935
+      }
+    ]
+  },
+  "idle": {
+    "saves": 0,
+    "frames": 270,
+    "unchanged": true,
+    "dirty": false
+  },
+  "scope": "입장/현장 위치·자원 소진은 도구 준비. 정상 frame 유지·실제 대화 버튼·4.5초 실제 저장 호출 계측. 증언 한 컷만 교체, 다른 fixture 캡처는 보존."
+}
