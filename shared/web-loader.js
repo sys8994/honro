@@ -20,11 +20,21 @@ function workerParse(buffer){if(typeof Worker==='undefined')return Promise.resol
  }catch{retireParser();return Promise.resolve(parseBuffer(buffer));}
 }
 function request(file,text=false,priority='auto'){const url=new URL(file,root).href,key=url+'|'+text;if(!requests.has(key)){const pending=fetch(url,{priority}).then(async response=>{if(!response.ok)throw Error('Load failed: '+response.status+' '+url);if(text)return response.text();if(Number(response.headers.get('content-length'))>400000||file.includes('campaign-library.'))return workerParse(await response.arrayBuffer());return response.json();});requests.set(key,pending);pending.catch(()=>{if(requests.get(key)===pending)requests.delete(key);});}return requests.get(key);}
+// Optional source text has document lifetime, including failed/completed attempts.
+// Required data/module loading keeps the strict request and rejection contract.
+const optionalSvgSources=new Map();
+function optionalSvgSource(file,url){
+ if(!optionalSvgSources.has(url))optionalSvgSources.set(url,request(file,true).then(text=>{globalThis.HONRO_SVG_SOURCES[url]=text;}).catch(()=>{}));
+ return optionalSvgSources.get(url);
+}
+async function optionalSvgBatch(pending,value){
+ let timer;await Promise.race([Promise.all(pending),new Promise(resolve=>{timer=setTimeout(resolve,1500);})]);clearTimeout(timer);return value;
+}
 function hydrate(value,refs,{svgSources=true}={}){const pending=[];
- const asset=record=>{if(!record?.$honroAsset)return record;const file=record.$honroAsset;let url=assetURLs.get(file);if(!url){url=new URL(file,root).href;assetURLs.set(file,url);}if(svgSources&&file.endsWith('.svg')){globalThis.HONRO_SVG_SOURCES??=Object.create(null);pending.push(request(file,true).then(text=>{globalThis.HONRO_SVG_SOURCES[url]=text;}));}return url;};
+ const asset=record=>{if(!record?.$honroAsset)return record;const file=record.$honroAsset;let url=assetURLs.get(file);if(!url){url=new URL(file,root).href;assetURLs.set(file,url);}if(svgSources&&file.endsWith('.svg')){globalThis.HONRO_SVG_SOURCES??=Object.create(null);pending.push(svgSources==='optional'?optionalSvgSource(file,url):request(file,true).then(text=>{globalThis.HONRO_SVG_SOURCES[url]=text;}));}return url;};
  if(refs){for(const path of refs){if(!path.length){value=asset(value);continue;}let parent=value;for(let i=0;i<path.length-1;i++)parent=parent[path[i]];const key=path.at(-1);parent[key]=asset(parent[key]);}}
  else {const visit=node=>{if(!node||typeof node!=='object')return node;if(node.$honroAsset)return asset(node);for(const key in node){const child=node[key];if(child&&typeof child==='object')node[key]=visit(child);}return node;};value=visit(value);}
- return pending.length?Promise.all(pending).then(()=>value):value;
+ return pending.length?(svgSources==='optional'?optionalSvgBatch(pending,value):Promise.all(pending).then(()=>value)):value;
 }
 export async function loadData(file,refs,options){const value=await request(file);return hydrate(options?.jsonPool?unpackJson(value):value,refs,options);}
 // Fetch only known required JSON while earlier scripts execute. Registration and

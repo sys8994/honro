@@ -1,3 +1,7 @@
+# P0.3b 선택 SVG 원문 대기/실패 경계 — 2026-10-24
+
+ACT1_FAR_DATA의 비핵심 SVG 원문 요청도 hydrate Promise.all의 필수 조건이라503에 HONRO_READY가 거부됐다. 로컬 Chromium에서 재현했다. 이 생성 데이터에만 svgSources:optional을 전달하고 URL별 성공/실패 작업을 문서 수명 동안 기억하며 초기 batch 전체 대기를1500ms로 제한했다. 늦은 성공은 기존 registry에 정확한 원문을 넣고 초기화를 재시작하지 않는다. generic scene만 같은 mood/URI 선택 결과의 준비 여부를 캐시에 반영한다. sharedRest/Canvas 이미지 로딩은 바꾸지 않았다. Native1499/1500·늦은 결과·중복·필수 오류·generic 늦은 캐시 갱신·현재 rest1/10/21 및10장 root/thread 동치5묶음 통과. 실제 브라우저 수정 후 검증과 최종 빌드는 진행 중이다.
+
 # P0.3a 미사용21장 painted 빌드 데이터 생성 제거 — 2026-10-24
 
 현재 공통 실행 목록에 유일한 소비자 stage21-painted-art.js가 없는데 build가 HONRO_STAGE21_PAINTED JSON/이미지를 생성·로딩하고 있었다. shared/build.mjs의 해당6행만 제거했다. provider 소스/이미지 폴더·현행 원경·휴식터·HONRO_PAINTED_PILOTS는 그대로다. 활성 graph414→408파일/-829,353B와 달리 실제 초기 Game/Workshop 요청은 각각2건/-29,346B였다(로컬 비압축 body, 이미지4출력은 시작 시 요청되지 않음). 현재21장 원경 draw 픽셀 동일·공통 기동·build/web-split/활성 참조0과40개 실제 공개 그래프784파일 보존 확인. 부모 P0.2 발행 사실도 기존 도구로 등록했다. 추가21장 Playtest 대기는 변경 전 기준에서 미성립해 성공을 주장하지 않으며 범위 밖 수리는 하지 않았다. [측정·검사·한계](stage21-unused-build-p03a-20261024/README.md).

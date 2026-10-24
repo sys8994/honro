@@ -185,13 +185,15 @@
         `<circle cx="1377" cy="616" r="2.5" fill="#292c26"/><circle cx="1376" cy="638" r="2.5" fill="#292c26"/>` +
         path('M1354 773L1362 749 1367 765 1387 745 1380 770 1399 761 1394 775Z', '#26352c'));
   }
-  // Reuse the exact battlefield SVG and shared act-one palette pass.
-  // Web loading retains external SVG text before the synchronous scene render.
-  function campaignBackdrop(stage, id) {
+  // Reuse the selected battlefield SVG; source text may arrive after startup.
+  function campaignBackdropSource(stage) {
     const mood=G.HonroEnvironment?.campaignMood(stage),finish=G.HonroEnvironment?.ACT1_FAR;
     const uri=mood&&G.HONRO_ACT1_FAR_DATA?.[mood.variant];
-    if(!uri||!finish)return '';
-    const source=G.HONRO_SVG_SOURCES?.[uri]||(/^data:image\/svg\+xml;base64,/.test(uri)&&G.atob?G.atob(uri.slice(uri.indexOf(',')+1)):'');
+    const source=uri&&finish?(G.HONRO_SVG_SOURCES?.[uri]||(/^data:image\/svg\+xml;base64,/.test(uri)&&G.atob?G.atob(uri.slice(uri.indexOf(',')+1)):'')):'';
+    return {mood,finish,source};
+  }
+  function campaignBackdrop(stage, id, backdrop=campaignBackdropSource(stage)) {
+    const {mood,finish,source}=backdrop;
     if(!source)return '';
     // Inline the vector markup rather than nesting an SVG data-image: retained
     // SVG-in-SVG images are inconsistently decoded by screenshot renderers.
@@ -625,7 +627,8 @@
     if(stage===8&&!underground&&G.HONRO_PAINTED_PILOTS?.images?.bierStore8)return paintedRest8();
     if(stage===9&&!underground&&G.HONRO_PAINTED_PILOTS?.images?.ritualCorridor9)return paintedRest9();
     if(stage===10&&!underground&&G.HONRO_PAINTED_PILOTS?.images?.rest10RootSteps)return paintedRest10();
-    const key = `scene:${variant}:${layer}:${stage}:${!!G.HONRO_ACT1_FAR_DATA}`;
+    const backdrop=underground?null:campaignBackdropSource(stage);
+    const key = `scene:${variant}:${layer}:${stage}:${!!backdrop?.source}`;
     if (cache.has(key)) return cache.get(key);
     const p = underground ? {...palettes[variant], sky:'#101f28', horizon:'#38565d', ridge:'#223d48', mist:'#83a4a5'} : palettes[variant];
     const id = `honro-journey-${variant}-${layer}`;
@@ -639,7 +642,7 @@
       `<radialGradient cx="50%" cy="50%" r="50%" id="${id}-fire-ground"><stop offset="0" stop-color="#c29659" stop-opacity=".3"/><stop offset=".5" stop-color="#b17d43" stop-opacity=".13"/><stop offset="1" stop-color="#ab703d" stop-opacity="0"/></radialGradient>` +
       `<radialGradient cx="50%" cy="50%" r="50%" id="${id}-fire-halo"><stop offset="0" stop-color="#edb65c" stop-opacity=".3"/><stop offset=".35" stop-color="#d29748" stop-opacity=".11"/><stop offset="1" stop-color="#d29748" stop-opacity="0"/></radialGradient></defs>`;
     const svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" width="1600" height="900" preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false" data-journey-art="${variant}" data-journey-layer="${layer}">` + defs +
-      (underground ? cavernBackdrop(p, id) : campaignBackdrop(stage,id)||farLandscape(p, id, variant)) + placeLandscape(variant, p, id, underground) + (stage===8&&!underground?warehouseApproach(p):'') + weather(variant, underground) + campGround(p, id) + campProps(id) + '</svg>';
+      (underground ? cavernBackdrop(p, id) : campaignBackdrop(stage,id,backdrop)||farLandscape(p, id, variant)) + placeLandscape(variant, p, id, underground) + (stage===8&&!underground?warehouseApproach(p):'') + weather(variant, underground) + campGround(p, id) + campProps(id) + '</svg>';
     cache.set(key, svg);
     return svg;
   }

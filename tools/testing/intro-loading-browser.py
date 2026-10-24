@@ -26,8 +26,8 @@ with sync_playwright() as p:
  page.evaluate('HonroApp.launch(20)');page.wait_for_function('HonroApp.engine?.b.honroStage===20');page.wait_for_function('HonroAuthoredFarArt.ready(20)');checks['stage20Transition']=True
  page.evaluate('window.sameImage=HonroAct1Background.imageFor(1)');page.wait_for_function('sameImage.complete&&sameImage.naturalWidth>0');assert page.evaluate('sameImage===HonroAct1Background.imageFor(1)');checks['fallbackImageIdentityAndDecode']=True
  assert not errors,errors
- # A failed required source leaves the title and offers the existing reload retry.
- fail=context.new_page();pattern=re.compile(r'/honro_act1_far_data-mountains\.[^/]+\.svg$');fail.route(pattern,lambda route:route.abort());fail.goto(base+'/HONRO.html');fail.locator('[data-startup-retry]').wait_for(timeout=30000);assert fail.locator('.title-painting').count()==1;fail.unroute(pattern);fail.locator('[data-startup-retry]').click();fail.wait_for_function('document.documentElement.dataset.honroReady',timeout=30000);checks['startupSourceErrorRetry']=True
+ # A failed required data JSON leaves the title and offers the existing reload retry.
+ fail=context.new_page();pattern=re.compile(r'/HONRO_ACT1_FAR_DATA\.[^/]+\.json$');fail.route(pattern,lambda route:route.abort());fail.goto(base+'/HONRO.html');fail.locator('[data-startup-retry]').wait_for(timeout=30000);assert fail.locator('.title-painting').count()==1;fail.unroute(pattern);fail.locator('[data-startup-retry]').click();fail.wait_for_function('document.documentElement.dataset.honroReady',timeout=30000);checks['startupRequiredJsonErrorRetry']=True
  # Load the exact base commit HTML against the retained immutable assets.
  old=subprocess.check_output(['git','show','544825ee77930756dd28ce056ab15e12bb885278:HONRO.html'],cwd=ROOT,text=True).replace('<head>','<head><base href="/">',1)
  (OUT/'old-entry.html').write_text(old);cached=context.new_page();cached.goto(base+'/_local/reports/intro-audit/old-entry.html');cached.wait_for_function('document.documentElement.dataset.honroReady',timeout=30000);assert cached.locator('[data-action="import-map"]').count()==1;checks['previousHTMLRetainedAssets']=True

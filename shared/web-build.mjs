@@ -80,7 +80,7 @@ export async function buildWeb({vector=true,destination=path.join(root,'HONRO.ht
   const dataModule=async(name,values)=>{
     const records=[];
     for(const [global,value]of Object.entries(values)){const external=await externalize(value,global.toLowerCase());records.push([global,await json(global,external),assetPaths(external)]);}
-    const file=await emit('runtime',name,'js',loaderImport+records.map(([global,file,refs])=>`globalThis.${global}=await loadData(${quote(file)},${quote(refs)},${quote({svgSources:global==='HONRO_ACT1_FAR_DATA'})});`).join('\n')+'\n');
+    const file=await emit('runtime',name,'js',loaderImport+records.map(([global,file,refs])=>`globalThis.${global}=await loadData(${quote(file)},${quote(refs)},${quote({svgSources:global==='HONRO_ACT1_FAR_DATA'?'optional':false})});`).join('\n')+'\n');
     moduleData.set(file,records.map(([,file])=>file));return file;
   };
   const entries=await runtimeEntries({vector,app:true}),common=[],gameOnly=[],optionalModules={};
