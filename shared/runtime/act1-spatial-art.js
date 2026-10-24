@@ -201,7 +201,7 @@ function prepareScene(b){let q=sceneCache.get(b);if(q?.source===b.honroMap.act1S
  }
  q={source:art,version:b.sceneVersion,rocks,shelfNecks,replaced:new Set(art.replaced||[]),scenery:new Map((art.scenery||[]).map(s=>[s.id,s]))};sceneCache.set(b,q);return q;
 }
-function supports(c,b){if(G.HonroStage3LocationArt?.active(b)&&G.HonroStage3LocationArt.ready(b)||G.HonroStage4LocationArt?.active(b)&&G.HonroStage4LocationArt.ready(b)||G.HonroStage6LocationArt?.active(b)&&G.HonroStage6LocationArt.ready(b))return;c=G.HonroVisualStyle?.context(c,'L1')||c;
+function supports(c,b){c=G.HonroVisualStyle?.context(c,'L1')||c;
  // The three homes keep their original anchors. Short rear legs bridge
  // their level sills to the sloped living bough; no extra walkable floor.
  if(b.honroStage===7&&b.honroMap?.positioning){c.save();c.strokeStyle='#303b2d';c.lineWidth=15;

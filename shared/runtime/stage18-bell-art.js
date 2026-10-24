@@ -17,7 +17,7 @@ function prepare(t,b){let q=cache.get(t);if(q?.vertices===t.vertices&&q.version=
  q={shape,vertices:t.vertices,version:b.sceneVersion};cache.set(t,q);return q;
 }
 function shell(c,t,b){if(!active(b)||!(t.honroBellShell||t.honroBellBody))return false;if(approvedBattle(b))return true;const q=prepare(t,b);c.save();
- const pilot=G.HonroPaintedPilots?.active(b),g=c.createLinearGradient(t.x,t.y,t.x+t.w,t.y+t.h*.22);g.addColorStop(0,pilot?'#8a7553':'#867957');g.addColorStop(.42,pilot?'#525b48':'#59634d');g.addColorStop(1,pilot?'#1e3630':'#304b40');c.fillStyle=g;c.fill(q.shape);
+ const g=c.createLinearGradient(t.x,t.y,t.x+t.w,t.y+t.h*.22);g.addColorStop(0,'#867957');g.addColorStop(.42,'#59634d');g.addColorStop(1,'#304b40');c.fillStyle=g;c.fill(q.shape);
  c.strokeStyle='#192f2c';c.lineWidth=9;c.lineJoin='round';c.stroke(q.shape);c.restore();return true;
 }
 // Broad curved mineral planes are clipped to each authored collider. The
@@ -42,9 +42,8 @@ const terrain=S.terrain;S.terrain=function(c,t){const b=this.battle;if(active(b)
 // The 0.9-second safe descent reuses the still cavern tiles. Only this one
 // retained SVG is drawn live, with the position already moved by the runtime.
 const bellPaintCache=new WeakMap();
-function bellPaint(asset,b){if(asset.params?.approvedArtRevision===8)return null;const pilot=b?.honroStage===18&&G.HonroPaintedPilots?.active(b);let rows=bellPaintCache.get(asset);if(!rows){rows=new Map();bellPaintCache.set(asset,rows);}if(rows.has(!!pilot))return rows.get(!!pilot);const spec=asset.params?.soundWindow;if(!spec)return null;const box=asset.bounds,clip=new Path2D(`M${box.x-20} ${box.y-20}h${box.w+40}v${box.h+40}h${-box.w-40}Z ${spec.interiorReveal}`);let paint=asset;
- if(pilot){paint={...asset,vector:{...asset.vector,gradients:JSON.parse(JSON.stringify(asset.vector.gradients))}};const colors={bronze:['#3c382d','#8f7855','#767057','#485447','#31453d','#182c2b'],'bell-lip':['#b6a075','#897550','#4e5645','#203936'],'aged-crown':['#9e875c','#77694c','#425846','#223c35']};for(const [id,values]of Object.entries(colors))paint.vector.gradients[id].stops.forEach((s,i)=>s.color=values[i]);}
- const overlays={...paint,vector:{...paint.vector,root:{...paint.vector.root,children:paint.vector.root.children.filter(node=>spec.overlays.includes(node.id))}}},q={clip,overlays,paint};rows.set(!!pilot,q);return q;}
+function bellPaint(asset,b){if(asset.params?.approvedArtRevision===8)return null;const cached=bellPaintCache.get(asset);if(cached)return cached;const spec=asset.params?.soundWindow;if(!spec)return null;const box=asset.bounds,clip=new Path2D(`M${box.x-20} ${box.y-20}h${box.w+40}v${box.h+40}h${-box.w-40}Z ${spec.interiorReveal}`),paint=asset;
+ const overlays={...paint,vector:{...paint.vector,root:{...paint.vector.root,children:paint.vector.root.children.filter(node=>spec.overlays.includes(node.id))}}},q={clip,overlays,paint};bellPaintCache.set(asset,q);return q;}
 function drawBell(c,body,b){const asset=approvedBody(body.asset);if(asset!==body.asset)body={...body,asset};const q=bellPaint(body.asset,b);if(!q)return G.HonroVectorArt.draw(c,body.asset,body);
  // The cast side aperture is transparent to the actual gallery and actors.
  // Its physical outer opening is authored in soundWindow.shellOpening; the
@@ -56,8 +55,7 @@ function movingBody(c,b){if(!lowering(b))return false;const body=b.honroLandmark
 // These two fixed stones stand in the open mouth, in front of its dark
 // underside. Paint their actual polygons once, after the bell and before
 // actors. They are omitted from the cached terrain/readability passes above.
-function interiorStones(c,b,scene){if(!active(b))return false;for(const t of b.terrain||[]){if(!interiorStoneIds.has(t.id))continue;if(G.HonroPaintedPilots?.terrain(c,t,b,true))continue;if(rock(c,t,b))continue;let q=stoneProxies.get(t);if(!q||q.source!==t.vertices||q.version!==b.sceneVersion){q={source:t.vertices,version:b.sceneVersion,view:{...t,optional:false}};stoneProxies.set(t,q);}G.HonroAct2SpatialArt.terrain(c,q.view,b);}
- if(G.HonroPaintedPresentation?.forBattle(b)?.naturalEdges)return true;
+function interiorStones(c,b,scene){if(!active(b))return false;for(const t of b.terrain||[]){if(!interiorStoneIds.has(t.id))continue;if(rock(c,t,b))continue;let q=stoneProxies.get(t);if(!q||q.source!==t.vertices||q.version!==b.sceneVersion){q={source:t.vertices,version:b.sceneVersion,view:{...t,optional:false}};stoneProxies.set(t,q);}G.HonroAct2SpatialArt.terrain(c,q.view,b);}
  const style=G.HonroTerrainReadability.STYLE,unit=1/Math.max(.05,scene.scale||1);c.save();c.lineJoin='round';c.lineCap='butt';for(const group of G.HonroTerrainReadability.prepare(b).groups){if(!interiorStoneIds.has(group.id))continue;c.strokeStyle=style.edgeInk;c.lineWidth=style.edgePixels*unit;c.stroke(group.edge);c.lineWidth=style.topInkPixels*unit;c.stroke(group.top);c.strokeStyle=style.topLight;c.lineWidth=style.topLightPixels*unit;c.stroke(group.top);}c.restore();return true;
 }
 function rect(zone){if(!zone)return null;const z=zone.bounds||zone;if([z.x,z.y,z.w,z.h].every(Number.isFinite))return z;if(Number.isFinite(z.x)&&Number.isFinite(z.y)&&Number.isFinite(z.radius))return{x:z.x-z.radius,y:z.y-110,w:z.radius*2,h:110};return null;}

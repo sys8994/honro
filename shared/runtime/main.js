@@ -644,7 +644,7 @@
             const scene=this.scene,canvas=scene.canvas,now=performance.now();
             // Only the ordinary pause menu owns a motionless base battlefield.
             // Dialogue/camera staging, previews, training and loading keep rendering.
-            const stablePause=this.modalKind==='pause-dialog'&&this.modal.classList.contains('open')&&!this.dialogue&&!this.preview&&!this.training&&!this.customMap&&!this.done&&!G.HonroPaintedPresentation?.forBattle(e.b)&&
+            const stablePause=this.modalKind==='pause-dialog'&&this.modal.classList.contains('open')&&!this.dialogue&&!this.preview&&!this.training&&!this.customMap&&!this.done&&
                 !G.HonroReinforcementCamera?.active(scene)&&!scene.storyFrame&&!scene.storyTween&&!scene.storyFrozen&&!scene.goalFocus&&!scene.editorView&&!scene.skillPreview&&
                 !(scene.focusUntil>now)&&!(scene.speakerUntil>now)&&dt===0&&effectDt===0&&paused&&
                 G.HonroAuthoredFarArt?.ready(e.b.honroStage)&&document.fonts?.status==='loaded'&&!scene.ctx.isContextLost?.();

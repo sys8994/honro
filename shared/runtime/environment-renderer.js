@@ -112,7 +112,7 @@ function ensureBattle(b){if(b.honroEnvironment?.version===E.VERSION)return b.hon
  battleEnvironments.set(b,{source:b.honroEnvironment,key,environment});return environment;
 }
 Scene.prototype.environmentTone=function(c,w,h,b){const mood=E.campaignMood(b.honroStage);if(!mood)return;c.save();c.globalCompositeOperation='multiply';c.globalAlpha*=mood.opacity;c.fillStyle=mood.tint;c.fillRect(0,0,w,h);c.restore();};
-function customSpatialScenery(scene,c,w,h,b,painted21=false){const env=ensureBattle(b),custom=new Set(env.placements.filter(e=>!/^scenery-stage-\d+-\d+$/.test(e.id)&&!(painted21&&/^a3-korean-town-21-/.test(e.id))).map(e=>e.id));if(!custom.size)return;
+function customSpatialScenery(scene,c,w,h,b){const env=ensureBattle(b),custom=new Set(env.placements.filter(e=>!/^scenery-stage-\d+-\d+$/.test(e.id)).map(e=>e.id));if(!custom.size)return;
  const st={width:b.width,height:b.height,backdrop:b.honroBackdrop,environment:env},data=prepare(env),time=A.time(scene);let visible=0,active=0;
  for(const unit of data.groups){const g=unit.group;if(env.hiddenLayers?.includes(g.depthLayer)||!unit.children.some(e=>custom.has(e.id)))continue;const tr=E.groupTransform(scene,w,h,st,g),a=E.atmosphere(st,env.zones.find(z=>z.id===g.zoneId));active++;c.save();c.globalAlpha=tr.opacity;c.translate(tr.x,tr.y);c.scale(tr.scale,tr.scale);
   // Author-created finite supports remain physical WORLD scenery. Generated
@@ -122,9 +122,7 @@ function customSpatialScenery(scene,c,w,h,b,painted21=false){const env=ensureBat
  }
  if(scene.environmentStats){scene.environmentStats.groups+=active;scene.environmentStats.visibleAssets+=visible;scene.environmentStats.cachedPaths+=data.paths;}
 }
-Scene.prototype.background=function(c,w,h,b){if(G.HonroStage21Painted?.background(c,w,h,b,this)){
- this.environmentStats={groups:0,visibleAssets:1,cachedPaths:0,backgroundAnimatedPrimitives:0,animatedPrimitives:0,...A.stats()};customSpatialScenery(this,c,w,h,b,true);return;
-}if(G.HonroAct2SpatialArt?.active(b)){
+Scene.prototype.background=function(c,w,h,b){if(G.HonroAct2SpatialArt?.active(b)){
  const key=[this._worldCacheKey(b,w),this.x,this.y,this.scale,G.HonroAct2SpatialArt.ready(b)].join(':');
  const cached=G.HonroAct2SpatialArt.ready(b)&&this._screenRaster(c,key,w,h,cc=>{G.HonroAct2SpatialArt.background(cc,b,this,w,h);this._screenBackgroundStats={...this.environmentStats};},'_screenBackgroundCache',false);
  if(cached)this.environmentStats={...this._screenBackgroundStats};else G.HonroAct2SpatialArt.background(c,b,this,w,h);
