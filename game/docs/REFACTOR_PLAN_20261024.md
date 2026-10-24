@@ -48,7 +48,7 @@ skill-images의 이미지 로딩·캐시와 모닥불 DOM 조정 책임을 분�
 옛 대사 데이터에는 저장 compat 소비가 있으므로 삭제 승인 범위가 아니다. 과거 40장 또는 Workshop 경로를 30장만 보고 지우지 않는다. 대사를 새로 쓰는 작업이 아니다. 시작 용량이 늘어나는 호환 사본 추가도 피한다.
 
 ## P2: 퇴역 코드·데이터와 개발 동선 정리
-- training을 보존하면서 도달하지 않는 makeLegacyWorld의 옛 캠페인 생성 분기를 제거한다.
+- P2.1: training을 보존하면서 private makeLegacyWorld의 도달하지 않는 옛 캠페인 생성 분기만 제거하고 initializeTrainingBattle로 명명한다. public makeWorld와 callback positional ABI는 유지하며 seed geometry/dummy도 보존한다. 다른 퇴역/hooks 정리는 대기다.
 - 구 atlas/REST_STYLES/초상화 대체 구현은 현재 소비자와 사용자 맵 지원을 확인한 뒤 단위별 퇴역시킨다.
 - 사용하지 않는 에셋은 현재 및 보호된 발행 그래프와 겹치지 않는 범위에서만 삭제한다.
 - README/ARCHITECTURE/BUGFIX_CONTEXT의 옛 8장·revision·구 방식 설명은 현재 계약과 역사 기록을 분리한다.
@@ -70,6 +70,7 @@ skill-images의 이미지 로딩·캐시와 모닥불 DOM 조정 책임을 분�
 - P0.3b: 선택 SVG 실패/지연 격리 및 generic 준비 여부 캐시 구현 완료. 기준503 실제 재현, Native5/브라우저7묶음·build/web-split·41개 공개 그래프 보존 통과. 실제 cold 기동 관측1530–1556ms는 batch 이후 작업을 포함하며 전체 초기화1500ms 보장은 아니다. master9dcca54e 배포 완료. Pages40061152181 success(2026-10-24T04:10:43Z). 부모가 공개 game.d8d63d9c496bc88a.js·title 준비·기존 이어가기 버튼을 실제 브라우저로 확인했다. [근거·한계](optional-far-svg-p03b-20261024/README.md).
 - P1.0: 구현·검증 완료. 원본 root bytes와30장 native SVG exact/web 이미지SHA 정규화 exact,10장 desktop/mobile pan/zoom/camp 및 P0.3b 관련 회귀 통과. 활성408→354파일/-21,812,619B와 초기 HTTP2요청/-62,963B를 구분했다. build/web-split·42개 공개 그래프 보존 통과. master5154db89 배포 완료. Pages40062856393 success(2026-10-24T04:36:39Z). 부모가 공개 game.9675f9baa1a8dba7.js 및 title→rest→journey10→battle→pause/rest 확인 복귀를 실제 UI로 확인했다. 복귀는 기존 정책상9장 쉼터이며 공개10장 장식 검수는 아니다. 10장 정확 비교는 기존 로컬 근거다. [범위·검사·한계](retained-guardian-rest-p10-20261024/README.md).
 - P1.1a: 기존 key/sync/patch를 mandatory camp-renderer로 이동, 이미지 lifecycle exact 보존. Native 동치/캠프 모델·Chromium 실제 랭크/분기/클래스·동일 노드/중복 요청0·스크롤/제거 target 정리·build/web-split/공개43그래프 보존 통과. 포커스의 body 이동은 기준에서도 동일해 유지 성공으로 주장하지 않는다. masterd1e45a0f 배포 완료. Pages40063833834 success(2026-10-24T04:51:47Z). 부모가 공개 game.2fdc7017a36f3482.js와 debug rest→모닥불→급소시1→2 실제 클릭, 이미지25ready/4offscreen observed를 확인했다. 노드 동일성·요청수 계측 근거는 기존 로컬 검사다. [검사·한계](camp-renderer-p11a-20261024/README.md).
-- P1.1b: story.js private copy/일반 페이지 tail 중복만 공유. production DOM8종·호출 순서/횟수·staging skip focus/추가save0·상태/실제Continue differential·작은 모바일/desktop 입력·build/web-split/공개44그래프 보존 통과. 낡은 document/11장 기대는 기준 실패로 구분했다. 부모 후보 검토/배포 대기. [검사·한계](story-presentation-p11b-20261024/README.md).
+- P1.1b: story.js private copy/일반 페이지 tail 중복만 공유. production DOM8종·호출 순서/횟수·staging skip focus/추가save0·상태/실제Continue differential·작은 모바일/desktop 입력·build/web-split/공개44그래프 보존 통과. 낡은 document/11장 기대는 기준 실패로 구분했다. master936f2629 배포 완료. Pages40064536944 success(2026-10-24T05:02:22Z). 부모가 공개 game.48d68fb3a174b033.js 및 debug rest→설오 선택대화 본문/초상화/다음→종료복귀를 실제 UI로 확인했다. [검사·한계](story-presentation-p11b-20261024/README.md).
 - P1.2: 부모 조사 완료, 기존 의미 경계 유지·광범위 재작성 제외. objective 소스 변경 없음.
+- P2.1: private initializer의 도달 불가 campaign 분기 제거·training 전용 명명. main147행/8,608B 감소, production main4클래스20선택의 seed/최종battle/profile exact와 canonical1/실제split-v1 25의 callback 비호출, 실제 모바일 허공터 열기/리셋/나오기·build/web-split/공개45그래프 보존 통과. 부모 후보 검토/배포 대기. [검사·한계](training-initializer-p21-20261024/README.md).
 - 나머지 P1/P2: 대기.

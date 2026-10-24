@@ -1,3 +1,7 @@
+# P2.1 training initializer의 도달 불가 캠페인 분기 제거 — 2026-10-24
+
+private makeLegacyWorld는 trainingWorld의 true callback으로만 호출되는데 옛 campaign 지형/enemy/objective 분기를 남기고 있었다. initializeTrainingBattle로 명명하고 해당 분기/mk만 제거했다. seed 지형2개/dummy5개를 포함한 training side effect와 callback ABI는 유지했다. main147행/8,608B 감소. production main/HONRO_TOOLS의4클래스20선택에서 seed·최종battle·profile exact(Date/RNG고정), sceneVersion12→13, canonical1/실제split-v1 25의 throw callback 비호출, 실제 모바일 UI 허공터 열기/리셋/나오기·기록불변, build/web-split/공개45그래프849파일 보존 통과. 다른 provider/hooks/밸런스는 수정하지 않았다. [검사·한계](training-initializer-p21-20261024/README.md).
+
 # P1.1b story presentation 중복 제거 — 2026-10-24
 
 story.js가 narration/19비문/character 안쪽 copy/actions와 일반4페이지의 controls-focus-save tail을 반복했다. private storyCopy/finishPage로 해당 부분만 합치고 variant outer/ARIA/초상화/카메라와 staging controls-only early return을 유지했다. 기준/현재 production DOM8종 exact(비동기 canvas 상태 속성 정규화), escape1회·prev/next/audio/focus/save 순서/횟수·staging skip focus/추가save0, 상태/실제Continue differential·360/1280 실제레이아웃/버튼·build/web-split/공개44그래프845파일 보존 통과. 옛 document/11장 기대의 기존 테스트 실패는 기준에서도 확인해 범위 밖 수리를 하지 않았다. [근거·한계](story-presentation-p11b-20261024/README.md).
