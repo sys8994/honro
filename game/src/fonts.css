@@ -206,9 +206,9 @@
 @font-face{font-family:"Honro Serif";font-style:normal;font-weight:200 900;font-display:swap;src:url("../../shared/assets/fonts/noto-serif-kr/kr-02f8.woff2") format("woff2");unicode-range:U+2F815,U+2F818,U+2F81A,U+2F82C,U+2F833,U+2F852,U+2F862,U+2F877,U+2F884,U+2F8B2,U+2F8ED,U+2F8FC}
 @font-face{font-family:"Honro Serif";font-style:normal;font-weight:200 900;font-display:swap;src:url("../../shared/assets/fonts/noto-serif-kr/kr-02f9.woff2") format("woff2");unicode-range:U+2F920,U+2F96C,U+2F9D0,U+2F9DF}
 /* Titles, prose and compact numbers have explicit roles; no synthetic weights. */
-:root{--font-title:"Honro Serif",serif;--font-body:"Honro Serif",serif;--font-readout:system-ui,sans-serif}
-:root,.honro,#app,.honro button,.honro input,.honro select{font-family:var(--font-body);font-synthesis:none}
-.honro{font-weight:500}
+:root{--font-title:"Honro Serif",serif;--font-body:"Honro Serif",serif;--font-story:"Honro Serif",serif;--font-readout:system-ui,sans-serif}
+:root,body.honro,#app,.honro button,.honro input,.honro select{font-family:var(--font-body);font-synthesis:none}
+body.honro{font-weight:500}
 .honro :is(h1,h2,h3,.new-title,.hero-name){font-family:var(--font-title)}
 .honro :is(.dialog p,.menu-note,.skill-desc,.training-card-desc,.rest-location p,.journey-detail p){font-weight:500;font-size:max(13px,1em)}
 .honro :is(.debug-badge,.context-interact .keycap,.map-node .stage-index,.atlas-progress span,.shot-readout,.hpmp label,kbd){font-family:var(--font-readout);font-variant-numeric:tabular-nums}

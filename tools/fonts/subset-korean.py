@@ -29,9 +29,9 @@ for page,points in groups.items():
  css.append('@font-face{font-family:"Honro Serif";font-style:normal;font-weight:200 900;font-display:swap;src:url("../../shared/assets/fonts/noto-serif-kr/'+name+'") format("woff2");unicode-range:'+','.join(ranges)+'}')
  records.append({'file':name,'codepoints':points,'bytes':(out/name).stat().st_size})
 Path('game/src/fonts.css').write_text('\n'.join(css)+'\n'+'''/* Titles, prose and compact numbers have explicit roles; no synthetic weights. */
-:root{--font-title:"Honro Serif",serif;--font-body:"Honro Serif",serif;--font-readout:system-ui,sans-serif}
-:root,.honro,#app,.honro button,.honro input,.honro select{font-family:var(--font-body);font-synthesis:none}
-.honro{font-weight:500}
+:root{--font-title:"Honro Serif",serif;--font-body:"Honro Serif",serif;--font-story:"Honro Serif",serif;--font-readout:system-ui,sans-serif}
+:root,body.honro,#app,.honro button,.honro input,.honro select{font-family:var(--font-body);font-synthesis:none}
+body.honro{font-weight:500}
 .honro :is(h1,h2,h3,.new-title,.hero-name){font-family:var(--font-title)}
 .honro :is(.dialog p,.menu-note,.skill-desc,.training-card-desc,.rest-location p,.journey-detail p){font-weight:500;font-size:max(13px,1em)}
 .honro :is(.debug-badge,.context-interact .keycap,.map-node .stage-index,.atlas-progress span,.shot-readout,.hpmp label,kbd){font-family:var(--font-readout);font-variant-numeric:tabular-nums}

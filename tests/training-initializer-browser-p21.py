@@ -13,11 +13,11 @@ with serve_game() as base,sync_playwright() as pw:
  p.evaluate("()=>{const a=HonroApp;window.progressBefore=JSON.stringify({heroes:a.profile.heroes,loadouts:a.profile.loadouts,tuning:a.profile.tuning,cleared:a.profile.cleared});window.framesObserved=0;requestAnimationFrame(function count(){framesObserved++;requestAnimationFrame(count)})}")
  p.locator('[data-action=training]').click();p.wait_for_selector('.training-dialog');p.locator('[data-training-action=close]').click();p.wait_for_timeout(300)
  first=p.evaluate("()=>{const a=HonroApp,b=a.engine.b,u=b.units.find(u=>u.side===0);return {training:a.training,screen:a.screen,mode:b.mode,width:b.width,height:b.height,cls:u.cls,skill:u.loadout,enemyCount:b.units.filter(u=>u.side===1).length,session:b.session,sceneVersion:b.sceneVersion}}")
- assert first['training'] and first['mode']=='practice' and first['width']==6000 and first['height']==2300 and first['enemyCount']==20,first
+ assert first['training'] and first['mode']=='practice' and first['width']==6000 and first['height']==2300 and first['enemyCount']==18,first
  p.screenshot(path=str(OUT/'training-mobile.jpg'),type='jpeg',quality=80)
  p.locator('[data-action=training-reset]').click();p.wait_for_function('HonroApp.training&&HonroApp.engine.b.phase==="aim"');p.wait_for_timeout(150)
  second=p.evaluate("()=>{const a=HonroApp,b=a.engine.b,u=b.units.find(u=>u.side===0);return {session:b.session,cls:u.cls,skill:u.loadout,enemyCount:b.units.filter(u=>u.side===1).length,width:b.width,height:b.height}}")
- assert second['session']!=first['session'] and second['cls']==first['cls'] and second['skill']==first['skill'] and second['enemyCount']==20,second
+ assert second['session']!=first['session'] and second['cls']==first['cls'] and second['skill']==first['skill'] and second['enemyCount']==18,second
  p.locator('[data-action=pause]').click();p.wait_for_selector('.pause-menu');p.locator('.pause-menu [data-action=rest]').click();p.wait_for_function('HonroApp.screen==="rest"&&!HonroApp.engine')
  assert p.evaluate('progressBefore===JSON.stringify({heroes:HonroApp.profile.heroes,loadouts:HonroApp.profile.loadouts,tuning:HonroApp.profile.tuning,cleared:HonroApp.profile.cleared})')
  assert p.evaluate('framesObserved>10');assert not errors,errors

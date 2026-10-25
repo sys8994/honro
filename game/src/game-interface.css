@@ -17,7 +17,7 @@
 .honro .pause-seal{display:flex;align-items:center;justify-content:center;gap:17px;margin:-8px 0 18px;color:#8a7953}.honro .pause-seal span{height:1px;width:44px;background:linear-gradient(90deg,transparent,#8a7953,transparent)}.honro .pause-seal .menu-insignia{width:23px;height:23px}
 .honro .menu-body .pause-menu{gap:10px}
 .honro .menu-body .pause-menu>button{position:relative;display:flex;align-items:center;gap:16px;min-height:76px;padding:12px 18px;border:1px solid #72613f;border-radius:0;background:linear-gradient(110deg,#30352999,#13201ccc);color:#ccb98e;text-align:left;box-shadow:inset 0 0 0 3px #111b17,inset 0 0 0 4px #8d79552b;transition:background .12s,transform .08s,border-color .12s}
-.honro .pause-menu>button>span{flex:1}.honro .pause-menu strong{display:block;font-size:17px;letter-spacing:.04em;font-weight:600}.honro .pause-menu small{display:block;color:#a79f87;font-size:11px;margin-top:5px;letter-spacing:.03em}.honro .pause-menu i{font-style:normal;font-size:8px;color:#78694c}
+.honro .pause-menu>button>span{flex:1}.honro .pause-menu strong{display:block;word-break:keep-all;font-size:17px;letter-spacing:.04em;font-weight:600}.honro .pause-menu small{display:block;word-break:keep-all;color:#a79f87;font-size:11px;margin-top:5px;letter-spacing:.03em}.honro .pause-menu i{font-style:normal;font-size:8px;color:#78694c}
 .honro .menu-body .pause-menu>button.primary{background:linear-gradient(110deg,#6a5933aa,#283426);color:#f1dfad;border-color:#bca16c;box-shadow:inset 3px 0 #d2b878,inset 0 0 0 3px #172019,inset 0 0 0 4px #b59c5b55}
 .honro .pause-menu>button.primary i{color:#e4c78b}.honro .pause-menu>button.primary small{color:#c3b78f}
 .honro .menu-body .menu-row{border-radius:0;background:linear-gradient(110deg,#293127,#14211c);border-color:#665b3f;color:#dfd2b1;box-shadow:inset 0 0 0 2px #111b17}
@@ -34,3 +34,5 @@
 /* Portal styling also works outside .honro and within a fullscreen root. */
 .honro-tooltip{position:fixed;z-index:2147483647;box-sizing:border-box;pointer-events:none;display:flex;gap:12px;align-items:flex-start;width:max-content;max-width:340px;padding:11px 14px;border:1px solid #a58d5c;box-shadow:inset 0 0 0 2px #0b1412,0 4px 18px #0009;background:#111b18f7;color:#ecdfc0;font:500 13px/1.65 "Honro Serif",serif;overflow:hidden;overflow-wrap:anywhere;word-break:keep-all;font-synthesis:none}
 .honro-tooltip span{min-width:0;white-space:pre-line}.honro-tooltip kbd{flex:none;max-width:40%;white-space:normal;padding:1px 5px;border:1px solid #7b6a48;background:#313829;color:#f2dfad;font:600 11px/1.7 system-ui,sans-serif}
+
+@media(max-height:540px){.honro .menu-body .pause-menu>button{gap:10px}.honro .pause-menu .menu-insignia{width:26px;height:26px}}

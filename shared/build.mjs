@@ -149,6 +149,7 @@ export async function runtimeEntries({vector=true,render=true,app=false}={}) {
     data('HONRO_SKILL_AUDIO',await skillAudioData());
     data('HONRO_MUKJONG_AUDIO',{src:'data:audio/mpeg;base64,'+(await readFile(path.join(root,'shared/assets/sfx/mukjong-b.mp3'))).toString('base64')});
     data('HONRO_JOURNEY_MAPS',JSON.parse(await read('shared/assets/journey-maps/v1/manifest.json')));
+    await file('shared/runtime/tooltips.js');
     await file('game/vendor/ui/fa.js');
     await file('shared/runtime/skill-images.js');
     await file('shared/runtime/camp-renderer.js');

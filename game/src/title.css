@@ -1,6 +1,6 @@
 /* The title owns its initial layout so gameplay styles need not block its first paint. */
 html,body{margin:0;width:100%;height:100%;background:#10191d;overflow:hidden}
-body.honro{font:14px system-ui,-apple-system,'Malgun Gothic',sans-serif;color:#d9d1bb}
+body.honro{font:500 14px var(--font-body,serif);color:#d9d1bb}
 .honro #app{position:relative;width:100%;height:100dvh}
 .honro-title,.honro-title *{box-sizing:border-box;-webkit-user-select:none;user-select:none;-webkit-tap-highlight-color:transparent}
 .honro-title{width:100%;height:100dvh;position:relative;display:flex;flex-direction:column}

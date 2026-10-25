@@ -115,11 +115,11 @@ function refresh(app,u){
  }
  for(const chip of document.querySelectorAll('#hero-switches [data-id]')){
   const v=app.engine.unit(chip.dataset.id);if(!v)continue;const state=effects(b,v),tag=v.dead?'전투불능':v.stunnedRound===b.round&&v.acted||v.stun>0?'기절':v.bound>0?'결박':v.curseTurns>0?'저주':v.acted?'완료':'';
-  const title=`${v.name} · ${state.join(' / ')|| (v.acted?'행동 완료':'행동 가능')}`;if(chip.title!==title)chip.title=title;chip.classList.toggle('status-impaired',['기절','결박','저주'].includes(tag));
+  const title=`${v.name} · ${state.join(' / ')|| (v.acted?'행동 완료':'행동 가능')}`;if(chip.dataset.tooltip!==title)chip.dataset.tooltip=title;chip.classList.toggle('status-impaired',['기절','결박','저주'].includes(tag));
   const small=chip.querySelector('small');const text=tag||`${Math.round(Math.max(0,v.hp)/v.maxHp*100)}%`;if(small&&small.textContent!==text)small.textContent=text;
  }
  // This HUD refresh owns the action hint; the per-frame charge label cannot overwrite a blocked-action reason.
- const fire=document.getElementById('fire');if(fire){const previous=b.lastShots?.[u.id]?.power||0,title=fire.disabled?why:previous?'이전 발사 '+Math.round(previous*100)+'%':'누른 채 충전, 손을 떼어 발사';if(fire.title!==title)fire.title=title;if(fire.getAttribute('aria-describedby')!=='combat-action-reason')fire.setAttribute('aria-describedby','combat-action-reason');}
+ const fire=document.getElementById('fire');if(fire){const previous=b.lastShots?.[u.id]?.power||0,title=fire.disabled?why:previous?'이전 발사 '+Math.round(previous*100)+'%':'누른 채 충전, 손을 떼어 발사';if(fire.dataset.tooltip!==title)fire.dataset.tooltip=title;if(!(fire.getAttribute('aria-describedby')||'').split(/\s+/).includes('combat-action-reason'))fire.setAttribute('aria-describedby',[(fire.getAttribute('aria-describedby')||''),'combat-action-reason'].filter(Boolean).join(' '));}
 }
 function passivePresentation(u){
  const C=G.HONRO_CORE,r=u.ranks?.MP05||0,chain=u.swordChain||[];
@@ -136,7 +136,7 @@ function passivePresentation(u){
 function passives(app,u){
  const host=document.getElementById('combat-passives');if(!host)return;const trigger=document.getElementById('combat-status')?.querySelector('.status-trigger'),view=passivePresentation(u),sig=JSON.stringify([u.id,view]);if(host.dataset.sig===sig)return;host.dataset.sig=sig;
  host.hidden=!view;host.innerHTML=view?.html||'';
- if(trigger){if(view){trigger.dataset.passive=view.kind;trigger.dataset.passiveLabel=view.label;trigger.title=view.description+' · 상태와 캐릭터 정보';}else{delete trigger.dataset.passive;delete trigger.dataset.passiveLabel;trigger.removeAttribute?.('title');}}
+ if(trigger){if(view){trigger.dataset.passive=view.kind;trigger.dataset.passiveLabel=view.label;trigger.dataset.tooltip=view.description+' · 상태와 캐릭터 정보';}else{delete trigger.dataset.passive;delete trigger.dataset.passiveLabel;delete trigger.dataset.tooltip;}}
 }
 G.HonroCombatStatus={entries,effects,draw,reason,embedded,refresh,passives,passivePresentation};
 })(globalThis);
