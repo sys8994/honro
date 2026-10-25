@@ -1,3 +1,7 @@
+# 일시정지 하위 설명 정리 — 2026-10-25
+
+버튼 아래의 분위기용 문구 네 개를 제거하고 기존 SVG 표식·레이블·프레임·hover/pressed를 유지했다. 동작 설명은 공통 custom tooltip에 둔다. 변경 뒤 360×320 설정 본문 스크롤·44px 고정 닫기·설정에서 pause 복귀·pause 닫기를 확인했고, 준비한 3장 진행 상태에서 실제 담허 선택 대화와 custom tooltip을 캡처했다. Library 검토 이미지는 별도로 남긴다. 기존 125% 이미지는 Linux Chromium CSS zoom 표본이며 브라우저 125% UI 검증으로 사용하지 않는다.
+
 # 허공터·데스크톱 조작·메뉴와 한글 outline — 2026-10-25
 
 허공터의 큰 V자 사면/직선 표적 배치를 연결된 수련 마당·단·바위 그늘·얕은 물·혼합/공중 표적 빈터로 교체했다. 공통 야외 재질과 벡터 에셋·기존 이미지 원경을 쓰며 18표적/정예1/공중3/적 행동상한2다. 캠페인과 기예 수치는 보존한다. Alt 단독 누름은 release에서 기존 drop/canDrop으로 들어가며 수정키·AltGr·편집/대화/모달·반복·blur는 제외한다. 공통 delegated custom tooltip은 동적 버튼, 실제 단축키, disabled 설명, 전체화면·모서리·focus/DOM 정리를 처리하고 native title을 제거한다. 일시정지/설정은 각진 황동·먹색 프레임과 로컬 SVG 표식을, 글꼴은 OFL Noto Serif KR outline 가변 subset을 쓴다. 설계/배치 기준은 TRAINING_GROUND.md.

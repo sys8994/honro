@@ -1,0 +1,38 @@
+/* Tarnished bronze, ink and ivory: shared controls keep their game silhouettes. */
+:root{--game-bronze:#9e8658;--game-ivory:#e8dcc0;--game-ink:#101817;--game-edge:#685c40;--game-danger:#c88d7e}
+.honro :is(.actions,.dialog-actions,.rest-tools,.training-footer)>button,.honro .top>button{border-radius:2px;border-color:var(--game-edge);box-shadow:inset 0 0 0 2px #101817,inset 0 0 0 3px #8d795525;background:linear-gradient(110deg,#2a3029,#17211f);color:var(--game-ivory)}
+.honro :is(.actions,.dialog-actions,.training-footer)>button.primary{background:linear-gradient(110deg,#b59a64,#8f794c);color:#131b18;border-color:#d2b67a}
+.honro .dialog{border-radius:2px;border-color:var(--game-edge)}
+.honro #modal:has(.menu-fixed){background:#050b0cba;backdrop-filter:blur(2px)}
+.honro #modal .dialog:has(.menu-fixed){width:min(440px,100%);border:1px solid #a18a58;border-radius:1px;background:linear-gradient(120deg,#242921,#101917 65%);color:var(--game-ivory);box-shadow:0 18px 80px #000b,inset 0 0 0 4px #0b1412,inset 0 0 0 5px #70603f88}
+.honro .menu-fixed{padding:18px 24px 0;background:transparent}
+.honro .menu-fixed .fullscreen-setting{min-height:44px;padding:7px 11px;border:1px solid #70603f;border-radius:0;background:#0b141266;color:#c4b68f;font-size:12px;box-shadow:inset 0 0 0 2px #101817}
+.honro .fullscreen-setting>span{display:flex;align-items:center;gap:9px}.honro .fullscreen-setting b{font-weight:500;font-size:12px}
+.honro .menu-insignia{width:30px;height:30px;flex:none;fill:currentColor;overflow:visible}.honro .menu-insignia .cut{fill:none;stroke:#101817;stroke-width:1.2}.honro .fullscreen-setting .menu-insignia{width:20px;height:20px}
+.honro .menu-header{height:72px;margin-top:5px;border-bottom:1px solid #8d79556b}
+.honro .menu-header:after{content:"";position:absolute;bottom:-4px;width:6px;height:6px;background:#9e8658;transform:rotate(45deg);box-shadow:0 0 0 3px #1a221c}
+.honro .menu-header h2{font-size:23px;letter-spacing:.07em;font-weight:600;color:#ede0be}
+.honro .menu-header :is(.menu-back,.menu-close){top:14px;color:#b7a47c;border-radius:0;background:transparent;box-shadow:none}
+.honro .menu-body{padding:22px 26px 28px}
+.honro .pause-seal{display:flex;align-items:center;justify-content:center;gap:17px;margin:-8px 0 18px;color:#8a7953}.honro .pause-seal span{height:1px;width:44px;background:linear-gradient(90deg,transparent,#8a7953,transparent)}.honro .pause-seal .menu-insignia{width:23px;height:23px}
+.honro .menu-body .pause-menu{gap:10px}
+.honro .menu-body .pause-menu>button{position:relative;display:flex;align-items:center;gap:16px;min-height:76px;padding:12px 18px;border:1px solid #72613f;border-radius:0;background:linear-gradient(110deg,#30352999,#13201ccc);color:#ccb98e;text-align:left;box-shadow:inset 0 0 0 3px #111b17,inset 0 0 0 4px #8d79552b;transition:background .12s,transform .08s,border-color .12s}
+.honro .pause-menu>button>span{flex:1}.honro .pause-menu strong{display:block;word-break:keep-all;font-size:17px;letter-spacing:.04em;font-weight:600}.honro .pause-menu i{font-style:normal;font-size:8px;color:#78694c}
+.honro .menu-body .pause-menu>button.primary{background:linear-gradient(110deg,#6a5933aa,#283426);color:#f1dfad;border-color:#bca16c;box-shadow:inset 3px 0 #d2b878,inset 0 0 0 3px #172019,inset 0 0 0 4px #b59c5b55}
+.honro .pause-menu>button.primary i{color:#e4c78b}.honro .pause-menu>button.primary small{color:#c3b78f}
+.honro .menu-body .menu-row{border-radius:0;background:linear-gradient(110deg,#293127,#14211c);border-color:#665b3f;color:#dfd2b1;box-shadow:inset 0 0 0 2px #111b17}
+.honro .menu-row small,.honro .menu-row b,.honro .menu-note,.honro .volume-setting label{color:#b2aa92}
+.honro .menu-body select{background:#17231e;border-color:#7b6a48;color:#e5d7b6;border-radius:0}
+.honro .menu-body hr{border-color:#77654166}.honro .menu-body h3{color:#c1af83}
+.honro .menu-body .danger{border-color:#986859;color:#e0aa96;background:linear-gradient(110deg,#422d26,#231b18)}
+.honro .dialog .menu-body input[type=checkbox]::before{border-radius:0;background:#14211c;border-color:#8b7a52}.honro .dialog .menu-body input[type=checkbox]:checked::before{background:#baa16b;border-color:#d6bd84}.honro .volume-setting input{accent-color:#baa16b}
+@media(hover:hover){.honro .menu-body :is(.pause-menu>button,.menu-row):not(:disabled):hover{background:linear-gradient(110deg,#4d4930,#253227);border-color:#dfc58a;filter:none}.honro .menu-fixed button:hover{color:#f1dfad;border-color:#bca16c}}
+.honro .menu-body :is(.pause-menu>button,.menu-row):not(:disabled):active{transform:translateY(1px);background:#111b17;box-shadow:inset 0 2px 6px #0009}
+.honro .dialog:has(.menu-fixed) :is(button,input,select):focus-visible{outline:2px solid #e4c78b;outline-offset:-5px}
+@media(max-height:540px){.honro .menu-fixed{padding:10px 18px 0}.honro .menu-header{height:52px}.honro .menu-header :is(.menu-back,.menu-close){top:4px}.honro .menu-body{padding:16px 20px 20px}.honro .pause-seal{display:none}.honro .menu-body .pause-menu>button{min-height:65px;padding:10px 13px}.honro .pause-menu strong{font-size:15px}}
+@media(max-width:420px){.honro .menu-fixed{padding-inline:18px}.honro .menu-body{padding-inline:20px}.honro .menu-body .pause-menu>button{min-height:70px}.honro .menu-header h2{font-size:21px}}
+/* Portal styling also works outside .honro and within a fullscreen root. */
+.honro-tooltip{position:fixed;z-index:2147483647;box-sizing:border-box;pointer-events:none;display:flex;gap:12px;align-items:flex-start;width:max-content;max-width:340px;padding:11px 14px;border:1px solid #a58d5c;box-shadow:inset 0 0 0 2px #0b1412,0 4px 18px #0009;background:#111b18f7;color:#ecdfc0;font:500 13px/1.65 "Honro Serif",serif;overflow:hidden;overflow-wrap:anywhere;word-break:keep-all;font-synthesis:none}
+.honro-tooltip span{min-width:0;white-space:pre-line}.honro-tooltip kbd{flex:none;max-width:40%;white-space:normal;padding:1px 5px;border:1px solid #7b6a48;background:#313829;color:#f2dfad;font:600 11px/1.7 system-ui,sans-serif}
+
+@media(max-height:540px){.honro .menu-body .pause-menu>button{gap:10px}.honro .pause-menu .menu-insignia{width:26px;height:26px}}
