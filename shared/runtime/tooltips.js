@@ -29,8 +29,8 @@ const actions={
  export:['현재 여정 기록을 파일로 내보냅니다.'],import:['기존 기록 파일을 가져오는 확인 창을 엽니다.']
 };
 const selector='[data-tooltip],button,[role="button"]';
-let suppressFocus=false;
-let owner=null,tip=null,mode='',frame=0,observer=null,lastPointer='';
+let owner=null,tip=null,mode='',frame=0,observer=null,visibilityObserver=null;
+let navigation=null,navigationFrame=0,hoverBlocked=false,mouse=null;
 const desktop=()=>G.matchMedia?.('(hover: hover) and (pointer: fine)').matches;
 function describe(el){
  const a=el.dataset.action,base=actions[a],training=el.dataset.trainingAction;
@@ -45,15 +45,22 @@ function describe(el){
  if(a==='hero'&&G.HonroApp?.screen==='battle')shortcut='Tab';
  return {text,shortcut};
 }
+function clearNavigation(){if(navigationFrame)G.cancelAnimationFrame(navigationFrame);navigationFrame=0;navigation=null;}
 function hide(suppress=false){
- if(suppress===true){suppressFocus=true;queueMicrotask(()=>{suppressFocus=false;});}
- if(frame){G.cancelAnimationFrame(frame);frame=0;}observer?.disconnect();observer=null;
+ if(suppress===true){clearNavigation();hoverBlocked=true;}
+ if(frame){G.cancelAnimationFrame(frame);frame=0;}observer?.disconnect();observer=null;visibilityObserver?.disconnect();visibilityObserver=null;
  if(owner){const ids=(owner.getAttribute('aria-describedby')||'').split(/\s+/).filter(v=>v&&v!=='honro-tooltip');if(ids.length)owner.setAttribute('aria-describedby',ids.join(' '));else owner.removeAttribute('aria-describedby');}
  tip?.remove();tip=null;owner=null;mode='';
 }
-function valid(){if(!owner?.isConnected||!owner.getClientRects().length)return false;const modal=D.querySelector('#modal.open');return !modal||modal.contains(owner);}
+function valid(){
+ if(D.hidden||!owner?.isConnected||!owner.getClientRects().length||owner.closest('[hidden],[inert],[aria-hidden="true"]'))return false;
+ if(owner.checkVisibility?.({checkOpacity:true,checkVisibilityCSS:true})===false)return false;
+ const style=G.getComputedStyle(owner);if(style.visibility==='hidden'||style.visibility==='collapse')return false;
+ if(mode==='focus'&&D.activeElement!==owner)return false;
+ const modal=D.querySelector('#modal.open');return !modal||modal.contains(owner);
+}
 function position(){
- frame=0;if(!tip)return;if(!valid()){hide();return;}
+ frame=0;if(!tip)return;if(!valid()){hide(true);return;}
  const root=D.fullscreenElement||D.body;if(tip.parentElement!==root)root.appendChild(tip);
  const vv=G.visualViewport,left=vv?.offsetLeft||0,top=vv?.offsetTop||0,w=vv?.width||G.innerWidth,h=vv?.height||G.innerHeight,pad=10;
  const scale=Math.max(.01,tip.getBoundingClientRect().width/Math.max(1,tip.offsetWidth));
@@ -67,25 +74,62 @@ function position(){
 }
 function schedule(){if(tip&&!frame)frame=G.requestAnimationFrame(position);}
 function show(el,source){
- if(!desktop()||!el)return hide();if(owner===el&&mode===source)return;
+ if(!desktop()||!el)return hide();if(owner===el&&tip){mode=source;return;}
  const description=describe(el);hide();if(!description)return;
- owner=el;mode=source;if(!valid()){hide();return;}
+ owner=el;mode=source;if(!valid()){hide(true);return;}
  tip=D.createElement('div');tip.id='honro-tooltip';tip.className='honro-tooltip';tip.setAttribute('role','tooltip');
  const text=D.createElement('span');text.textContent=description.text;tip.appendChild(text);
  if(description.shortcut){const key=D.createElement('kbd');key.textContent=description.shortcut;tip.appendChild(key);}
  (D.fullscreenElement||D.body).appendChild(tip);
  owner.setAttribute('aria-describedby',[owner.getAttribute('aria-describedby'),tip.id].filter(Boolean).join(' '));position();
- // Observe only while visible; no per-frame scans or tooltip reconstruction.
- observer=new MutationObserver(()=>{if(!valid())hide();else schedule();});observer.observe(D.body,{childList:true,subtree:true});
- const modal=D.getElementById('modal');if(modal)observer.observe(modal,{childList:true,subtree:true,attributes:true,attributeFilter:['class']});
+ // Observe only while visible. Owner/ancestor visibility attributes are local;
+ // observing tooltip positioning styles would otherwise create a feedback loop.
+ const refresh=()=>{if(!valid())hide(true);else schedule();};
+ observer=new MutationObserver(refresh);observer.observe(D.body,{childList:true,subtree:true});
+ visibilityObserver=new MutationObserver(refresh);
+ const attrs={attributes:true,attributeFilter:['class','style','hidden','inert','aria-hidden','open']};
+ for(let node=owner;node;node=node.parentElement)visibilityObserver.observe(node,attrs);
+ const modal=D.getElementById('modal');if(modal&&!modal.contains(owner))visibilityObserver.observe(modal,{attributes:true,attributeFilter:['class']});
 }
-D.addEventListener('pointerover',e=>{if(e.pointerType!=='mouse'){hide();return;}const el=e.target.closest?.(selector);if(el&&!el.contains(e.relatedTarget))show(el,'pointer');});
-D.addEventListener('pointerout',e=>{if(mode==='pointer'&&owner&&!owner.contains(e.relatedTarget))hide();});
-D.addEventListener('pointerdown',e=>{lastPointer=e.pointerType;hide();},true);
-D.addEventListener('focusin',e=>{const el=e.target.closest?.(selector);if(!suppressFocus&&(lastPointer==='keyboard'||lastPointer!=='touch'&&el?.matches(':focus-visible')))show(el,'focus');});
+const dismiss=()=>hide(true);
+const target=e=>e.target.closest?.(selector);
+function underPointer(el,e){if(!el||!el.contains(e.target))return false;const r=el.getBoundingClientRect();return e.clientX>=r.left&&e.clientX<=r.right&&e.clientY>=r.top&&e.clientY<=r.bottom;}
+D.addEventListener('pointerover',e=>{
+ if(e.pointerType!=='mouse'){dismiss();return;}
+ const el=target(e);if(!hoverBlocked&&el&&!el.contains(e.relatedTarget))show(el,'pointer');
+});
+D.addEventListener('pointermove',e=>{
+ if(e.pointerType!=='mouse'||e.buttons){dismiss();return;}
+ const moved=!mouse||e.clientX!==mouse.x||e.clientY!==mouse.y;
+ mouse={x:e.clientX,y:e.clientY};if(!moved)return;
+ clearNavigation();hoverBlocked=false;
+ const el=target(e);if(underPointer(el,e))show(el,'pointer');else hide();
+});
+D.addEventListener('pointerout',e=>{
+ if(!e.relatedTarget){dismiss();return;}
+ if(owner&&!owner.contains(e.relatedTarget))hide();
+});
+D.addEventListener('pointerdown',e=>{if(e.pointerType==='mouse')mouse={x:e.clientX,y:e.clientY};dismiss();},true);
+D.addEventListener('click',dismiss,true);
+D.addEventListener('focusin',e=>{
+ // Consume only the focus change caused by this Tab press. Programmatic
+ // autofocus/restore and activation keys never grant tooltip ownership.
+ const intent=navigation;clearNavigation();const el=target(e);
+ if(intent&&el&&D.activeElement!==intent.from)show(el,'focus');
+});
 D.addEventListener('focusout',()=>{if(mode==='focus')hide();});
-D.addEventListener('keydown',e=>{lastPointer='keyboard';if(e.key==='Escape')hide();},true);
-D.addEventListener('scroll',schedule,true);D.addEventListener('fullscreenchange',hide);
-G.addEventListener?.('resize',schedule);G.addEventListener?.('blur',hide);G.visualViewport?.addEventListener('resize',schedule);G.visualViewport?.addEventListener('scroll',schedule);
+D.addEventListener('keydown',e=>{
+ dismiss();
+ if(e.code==='Tab'&&!e.altKey&&!e.ctrlKey&&!e.metaKey&&!e.isComposing){
+  const intent=navigation={from:D.activeElement};
+  // A one-frame expiry also handles prevented navigation or a lost keyup.
+  navigationFrame=G.requestAnimationFrame(()=>{if(navigation===intent)clearNavigation();});
+ }
+},true);
+D.addEventListener('keyup',e=>{if(e.code==='Tab')clearNavigation();},true);
+D.addEventListener('visibilitychange',()=>{if(D.hidden)dismiss();});
+D.addEventListener('scroll',schedule,true);D.addEventListener('fullscreenchange',dismiss);
+G.addEventListener?.('resize',schedule);G.addEventListener?.('blur',dismiss);G.visualViewport?.addEventListener('resize',schedule);G.visualViewport?.addEventListener('scroll',schedule);
+
 G.HonroTooltips={hide,describe};
 })(globalThis);
