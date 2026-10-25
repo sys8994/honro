@@ -11,6 +11,7 @@ const require=createRequire(import.meta.url),native=require('@napi-rs/canvas');
 // Evidence-only platform font registration; production CSS/fonts are unchanged.
 native.GlobalFonts.registerFromPath('/usr/share/fonts/opentype/noto/NotoSansCJK-Regular.ttc','sans-serif');
 const tag=process.argv[2]||'final',out=path.resolve(root,'_local/reports/stage5-traversal',tag);
+const requestedViews=process.argv.find(v=>v.startsWith('--views='))?.slice(8).split(','),actualState=process.argv.includes('--actual-state');
 await mkdir(out,{recursive:true});
 let seed=3910;const math=Object.create(Math);math.random=()=>((seed=(seed*1664525+1013904223)>>>0)/2**32);
 function canvas(w=300,h=150){const c=native.createCanvas(w,h);Object.defineProperties(c,{clientWidth:{get:()=>c.width},clientHeight:{get:()=>c.height}});c.getBoundingClientRect=()=>({left:0,top:0,width:c.width,height:c.height});return c;}
@@ -31,7 +32,7 @@ for(const id of ids){const st=g.HONRO_PROJECT.stages.find(s=>s.metadata.stageId=
  if(g.HonroAct2SpatialArt&&!g.HonroAct2SpatialArt.ready())throw Error('Act 2 image decode incomplete');
  const views=[{name:'overview',x:2650,y:2500,scale:.18,width:1440,height:960,overview:true},{name:'array-route',x:1830,y:2540,scale:.66,width:1440,height:960},{name:'open-tactics',x:3320,y:2230,scale:.52,width:1440,height:960,waterOpen:true},{name:'target-detail',x:4100,y:2280,scale:1.1,width:1440,height:960,waterOpen:true},{name:'mobile-shot',x:3890,y:2220,scale:.46,width:720,height:1080,waterOpen:true},{name:'mobile-array',x:2280,y:2500,scale:.55,width:720,height:1080},{name:'final-combined',x:3350,y:2350,scale:.46,width:1440,height:960,waterOpen:true}];
  const battlePath=process.argv.find(v=>v.startsWith('--battle='))?.slice(9),saved=battlePath&&JSON.parse(await readFile(battlePath,'utf8'));
- for(const view of views){const b=saved?structuredClone(saved.final||saved.battle||saved):g.HonroMaps.createBattle(st,g.HONRO_PROJECT);g.HonroStageRules.sanitizeStageBattle(b);if(b.honroStage5WaterfallRevision===1){g.HonroStage5WaterGeometry.setOpen(b,!!view.waterOpen);b.honroState.waterfallSight=!!view.waterOpen;if(view.waterOpen)b.honroState.ritual={active:true,holderId:b.units.find(u=>u.cls==="mage"&&u.side===0)?.id};}else if(view.waterOpen){const veil=b.terrain.find(t=>t.id==='waterfall-veil');if(veil)veil.broken=true;}const e=new g.HONRO_CORE.Engine(b,()=>{},true),cv=canvas(view.width,view.height),scene=new g.HonroScene(cv);
+ for(const view of views.filter(v=>!requestedViews||requestedViews.includes(v.name))){const b=saved?structuredClone(saved.final||saved.battle||saved):g.HonroMaps.createBattle(st,g.HONRO_PROJECT);g.HonroStageRules.sanitizeStageBattle(b);if(!actualState){if(b.honroStage5WaterfallRevision===1){g.HonroStage5WaterGeometry.setOpen(b,!!view.waterOpen);b.honroState.waterfallSight=!!view.waterOpen;if(view.waterOpen)b.honroState.ritual={active:true,holderId:b.units.find(u=>u.cls==="mage"&&u.side===0)?.id};}else if(view.waterOpen){const veil=b.terrain.find(t=>t.id==='waterfall-veil');if(veil)veil.broken=true;}}const e=new g.HONRO_CORE.Engine(b,()=>{},true),cv=canvas(view.width,view.height),scene=new g.HonroScene(cv);
   Object.assign(scene,{x:view.x,y:view.y,scale:view.scale,manual:true,time:2,editorView:!!view.overview,skillPreview:!!view.overview});
   const battleBefore=JSON.stringify(b);scene.render(e,0,'',.6,false,0);await new Promise(resolve=>setTimeout(resolve,20));scene.render(e,0,'',.6,false,0);assert.equal(JSON.stringify(b),battleBefore,`Stage ${id}/${view.name} renderer changed battle state`);
   const file=`stage-${id}-${view.name}.png`,bytes=cv.toBuffer('image/png');await writeFile(path.join(out,file),bytes);
@@ -39,4 +40,4 @@ for(const id of ids){const st=g.HONRO_PROJECT.stages.find(s=>s.metadata.stageId=
   console.log(tag,id,view.name);
  }
 }
-await writeFile(path.join(out,'manifest.json'),JSON.stringify({tag,bundleSha256:sha(parts.join('\n')),projectSha256:sha(JSON.stringify(g.HONRO_PROJECT)),baselineProjectOverride:!!sourceProject,battleSnapshot:process.argv.find(v=>v.startsWith('--battle='))?.slice(9)||null,results},null,2)+'\n');
+await writeFile(path.join(out,'manifest.json'),JSON.stringify({tag,bundleSha256:sha(parts.join('\n')),projectSha256:sha(JSON.stringify(g.HONRO_PROJECT)),baselineProjectOverride:!!sourceProject,battleSnapshot:process.argv.find(v=>v.startsWith('--battle='))?.slice(9)||null,actualState,results},null,2)+'\n');
