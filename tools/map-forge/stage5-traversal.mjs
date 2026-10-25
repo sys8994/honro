@@ -7,9 +7,9 @@ export function authorStage5Traversal(s){
  const solid=(id,xy)=>({...clone(floor),id,name:id,points:xy.map(([x,y])=>({x,y})),playProjection:undefined,oneWay:false,properties:{...floor.properties,route:true,surfaceKind:'rock'}});
  const shoulder=s.terrains.find(t=>t.id==='stage5-west-shoulder');
  // Open a real body-height lower passage under the connected upper ridge.
- shoulder.points=[[650,2390],[790,2290],[1060,2250],[1330,2250],[1550,2290],[1790,2360],[1790,2490],[1570,2490],[1330,2470],[1110,2490],[890,2510],[740,2580],[650,2560]].map(([x,y])=>({x,y}));
+ shoulder.points=[[650,2390],[790,2290],[1060,2250],[1330,2250],[1550,2290],[1790,2360],[1790,2490],[1570,2490],[1330,2470],[1110,2490],[890,2510],[740,2530],[650,2510]].map(([x,y])=>({x,y}));
  s.terrains=s.terrains.filter(t=>!['stage5-upper-ridge','stage5-ritual-stone','stage5-cave-brow'].includes(t.id));
- s.terrains.push(solid('stage5-upper-ridge',[...ridgeTop,[3500,2330],[3220,2390],[3050,2480],[2860,2520],[2700,2860],[2570,3162],[2460,2947],[2410,2800],[2320,2400],[2160,2380],[1980,2480],[1790,2480]]));
+ s.terrains.push(solid('stage5-upper-ridge',[...ridgeTop,[3500,2330],[3220,2390],[3050,2480],[2860,2520],[2700,2860],[2570,3162],[2460,2947],[2410,2800],[2320,2400],[2160,2380],[1980,2440],[1790,2480]]));
  s.terrains.push(solid('stage5-ritual-stone',[[2150,2560],[2280,2550],[2380,2720],[2350,2800],[2150,2640]]));
  s.terrains.push(solid('stage5-cave-brow',[[3620,1940],[3890,1840],[4000,1910],[4010,2120],[3820,2080],[3620,2050]]));
  const receiver={x:2280,y:2550,support:'stage5-ritual-stone'},shot={x:3450,y:upper(3450),support:'stage5-upper-ridge'};

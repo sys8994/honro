@@ -8,6 +8,8 @@ assert.deepEqual(plain(authorStage5Waterfall(p,g)),p,'Canonical generator remain
 const profile=C.defaults();profile.recruited=['archer','mage'];for(const cls of profile.recruited){profile.heroes[cls].xp=g.HonroProgression.entryHero(g.HONRO_CONTENT.stages[4]).xp;C.autoTrain(profile.heroes[cls],cls);}
 function make(stage=s){const project={...p,stages:p.stages.map(q=>q.id===stage.id?stage:q)},b=g.HonroMaps.createBattle(stage,project,profile,{origin:'campaign'}),e=new C.Engine(b);e.checkEnd=()=>false;return{b,e};}
 for(const cls of ['archer','mage']){const {b,e}=make(),u=b.units.find(u=>u.side===0&&u.cls===cls);b.units=[u];const route=s.design.positioning.routes[cls==='archer'?'upper':'lower'];const r=traverse(g,b,e,u,route);assert(r.passed,JSON.stringify({cls,...r}));report.routes.push({cls,maxMove:u.maxMove,...r});assert((cls==='mage'?s.anchors.receiver.x-440-125:s.anchors.upperShot.x-330)>u.maxMove,'A useful position is beyond one entry move');}
+// The authored response uses 116px stags, not the 92px companion body.
+for(const x of [490,590,690,790,890,990]){const {b,e}=make(),u=g.HonroWorld.createEnemy(b,g.HONRO_CONTENT.stages[4],x,'stag',999,g.HonroWorld.top(b,x,2800,'valley-floor'));b.units=[u];b.active=u.id;const route=s.design.positioning.routes.lower.filter(p=>p.x>x+25),r=traverse(g,b,e,u,route);assert(r.passed,JSON.stringify({kind:'stag',x,h:u.h,...r}));report.routes.push({kind:'stag',startX:x,height:u.h,...r});}
 assert(old.anchors.receiver.x-440<=report.routes.find(r=>r.cls==='mage').maxMove+125,'Baseline array was one-move reachable');
 // Explicit old working shortcuts, their current collisions, and the genuine
 // advanced firing position. Execute every arrow, do not count predicted hits as damage.
