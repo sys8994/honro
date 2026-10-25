@@ -1,5 +1,23 @@
 (function(G){'use strict';
 const durability=t=>Number.isFinite(t?.hp)?Math.max(0,Math.ceil(t.hp))+(Number.isFinite(t.maxHp)&&t.maxHp>0?'/'+Math.ceil(t.maxHp):''):'';
+const oldSettlement=(b,st)=>({ledger:1,seals:1,rescue3:2,bierboss:b.honroNarrativeRevision===1?0:1,prepare:b.honroNarrativeRevision===1?0:2})[st.objective]||0;
+function settlement(b,st){
+ const hs=b.honroState||{},old=oldSettlement(b,st),rounds=old===1?2:old,h=hs.objectiveSettlement;
+ if(h?.version===1)return{rounds,progress:Math.min(rounds,h.progress+Math.max(0,(b.teamEnds?.[1]||0)-h.enemyEnd)),preserved:!!h.preserved};
+ const elapsed=hs.objectiveReadyRound===undefined?0:Math.max(0,b.round-hs.objectiveReadyRound);
+ return{rounds,progress:Math.min(old,elapsed),preserved:old>0&&elapsed>=old};
+}
+function updateSettlement(b,st,ready){
+ const hs=b.honroState;if(!hs)return;
+ if(!ready){delete hs.objectiveReadyRound;delete hs.objectiveSettlement;return;}
+ const s=settlement(b,st);hs.objectiveReadyRound??=b.round;
+ if(!s.rounds)return;
+ const h=hs.objectiveSettlement;
+ // A phase already in progress at completion is not a complete defence interval.
+ const enemyEnd=(b.teamEnds?.[1]||0)+(b.side===1?1:0);
+ if(h?.version!==1)hs.objectiveSettlement={version:1,progress:s.progress,preserved:s.preserved,enemyEnd};
+ else {h.progress=s.progress;h.enemyEnd=Math.max(h.enemyEnd,b.teamEnds?.[1]||0);}
+}
 // Rescue follows its referenced person in this battle, never its old authoring
 // point. Keep the original marker for collection/progress writes and saved maps.
 function interactionTarget(b,m){
@@ -36,10 +54,9 @@ function rawState(b,st){
   case'sodan':complete=G.HonroSodanWithdrawal.complete(b);summary=!hs.sodanCoop?(binding?'바깥 주박을 약화하기':'소단의 주박을 비살상으로 낮추고 두 받이진 활성화'):`소단 보호 · 혼매듭 ${hs.coopHold||0}/6턴 · 적 ${foes.length}명`;kinds=!hs.sodanCoop?(binding?['binding']:['boss','interact']):['boss'];if(G.HonroSodanWithdrawal.ready(b)){add('exit','sodan-safe-exit',G.HonroSodanWithdrawal.exit(b).x,G.HonroSodanWithdrawal.exit(b).y,'동쪽 안전 출구 · 한 명 도착 후 함께 철수');summary=complete?'일행과 소단 철수 완료':'소단을 지키며 동쪽 출구 확보 · 한 명이 도착하면 함께 철수';kinds=['exit','boss'];}break;
   default:complete=!foes.length;
  }
- const objectiveReady=complete,minimumRound=1,settleRounds=({ledger:1,seals:1,rescue3:2,bierboss:b.honroNarrativeRevision===1?0:1,prepare:b.honroNarrativeRevision===1?0:2})[st.objective]||0;
- const readyRound=hs.objectiveReadyRound,stable=settleRounds===0||readyRound!==undefined&&b.round-readyRound>=settleRounds;
+ const objectiveReady=complete,minimumRound=1,s=settlement(b,st),settleRounds=s.rounds,stable=settleRounds===0||s.preserved||s.progress>=settleRounds;
  complete=complete&&b.round>=minimumRound&&stable;
- if(objectiveReady&&settleRounds&&!stable)summary+=` · ${st.objective==='ledger'?'장부를 챙겨 철수':st.objective==='rescue3'?'구조한 주민 보호':'진과 주변 안정화'} ${Math.min(settleRounds,Math.max(0,b.round-(readyRound??b.round)))}/${settleRounds}턴`;
+ if(objectiveReady&&settleRounds&&!stable)summary+=` · ${st.objective==='ledger'?'장부를 챙겨 철수':st.objective==='rescue3'?'구조한 주민 보호':'진과 주변 안정화'} ${s.progress}/${settleRounds}회 적 행동 종료`;
  const authored=G.HonroAuthored?.objectiveState(b);
  if(authored?.allTargets.length){complete=complete&&authored.complete;summary+=' · '+authored.summary;}
  const targets=all.filter(t=>kinds.includes(t.kind)&&!t.done);if(st.id===10&&G.HonroSodanWithdrawal.ready(b))targets.sort((a,c)=>Number(c.id==='sodan-safe-exit')-Number(a.id==='sodan-safe-exit'));
@@ -127,5 +144,5 @@ function draw(scene,e){
  c.restore();
 }
 function minimap(app,c,sx,sy){if(app.training)return;const s=state(app.engine.b,app.stage);c.save();c.strokeStyle='#ffe0a0';for(const t of s.targets)c.strokeRect(t.x*sx-3,t.y*sy-3,6,6);if(app.scene?.storyFrame?.camera.intent==='objective'){c.lineWidth=2;for(const box of app.scene.storyFrameReport?.boxes||[]){c.beginPath();c.arc((box.x+box.w/2)*sx,(box.y+box.h)*sy,7,0,Math.PI*2);c.stroke();}}c.restore();}
-G.HonroObjectives={interactionTarget,state,failure,lines,entry,help,focus,refresh,draw,minimap,briefings,markerLift};
+G.HonroObjectives={interactionTarget,state,failure,lines,entry,help,focus,refresh,draw,minimap,briefings,markerLift,settlement,updateSettlement};
 })(globalThis);

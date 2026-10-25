@@ -34,24 +34,29 @@ function finale(app){const e=app.engine,b=e.b,hs=b.honroState,sodan=e.unit('boss
 }
 function reinforceHold(app,boundary){
  const e=app.engine,b=e.b,hs=b.honroState,st=app.stage;
- if(!boundary||b.side!==0||st.id===10||hs.lastHabitatRound===b.round)return;
+ if(!app.actorBoundary||b.side!==0||st.id===10||hs.lastHabitatRound===b.round)return;
  const objective=G.HonroObjectives.state(b,st);
  const holding=st.objective==='defend'||objective.objectiveReady&&!objective.complete&&objective.settleRounds>0;
  if(!holding||objective.complete)return;
- hs.lastHabitatRound=b.round;
- const foes=e.alive(1).length,minimum=st.objective==='defend'?7:5;
+ const response=hs.habitatHold??={version:1,remaining:Math.max(0,(st.objective==='defend'?12:6)-(hs.habitatContributionWave||0)*3)};
+ if(!response.remaining)return;
+ const foes=e.combatEnemies().length,minimum=st.objective==='defend'?7:5;
  if(foes>=minimum||b.units.filter(u=>!u.honroObjectiveTarget).length>=68)return;
  const sites=(b.honroMarkers||[]).filter(m=>m.type==='hauntHabitat');if(!sites.length)return;
  // Alternate habitats and keep emergence away from the party's feet.
  const heroes=e.heroesAlive(),ranked=sites.map(site=>({site,distance:Math.min(...heroes.map(u=>Math.hypot(u.x-site.x,(u.y-site.y)*.6)))})).sort((a,c)=>c.distance-a.distance);
- const distant=ranked.filter(item=>item.distance>=400),contested=!distant.length,choices=contested?ranked:distant;
- const ordered=choices.length>1?[choices[b.round%choices.length],...choices.filter((_,i)=>i!==b.round%choices.length)]:choices;
- const n=Math.min(contested?2:4,minimum-foes,68-b.units.filter(u=>!u.honroObjectiveTarget).length);
+ const choices=ranked.filter(item=>item.distance>=400&&item.distance<=1600).sort((a,c)=>a.distance-c.distance);
+ if(!choices.length)return;
+ const serial=hs.actorTurnSerial||0;
+ if(!response.warning){response.warning={serial,site:choices[0].site.id};app.event(`${choices[0].site.label}에서 기척이 다가온다. 다음 동행 행동 뒤 빈 진입로로 들어온다.`);return;}
+ if(serial<=response.warning.serial)return;
+ const ordered=[...choices.filter(q=>q.site.id===response.warning.site),...choices.filter(q=>q.site.id!==response.warning.site)];
+ const n=Math.min(3,response.remaining,minimum-foes,68-b.units.filter(u=>!u.honroObjectiveTarget).length);
  for(const item of ordered){const site=item.site;
   for(let count=n;count>=1;count--){
-   const spawned=G.HonroAllies.execute(app,{type:'spawn',n:count,kind:site.kind,x:site.x,y:site.y,support:site.support,spacing:contested?240:110,maxDistance:260,clearance:contested?100:18,source:site.id,contributionSource:`habitat:${st.objective}:${hs.habitatContributionWave||0}`});
+   const spawned=G.HonroAllies.execute(app,{type:'spawn',n:count,kind:site.kind,x:site.x,y:site.y,support:site.support,spacing:110,maxDistance:260,clearance:100,source:site.id,contributionSource:`habitat:${st.objective}:${hs.habitatContributionWave||0}`});
    if(spawned===false)continue;
-   hs.habitatContributionWave=(hs.habitatContributionWave||0)+1;
+   hs.habitatContributionWave=(hs.habitatContributionWave||0)+1;response.remaining-=count;delete response.warning;hs.lastHabitatRound=b.round;
    e.fx('ring',site.x,site.y-28,'#a46f73',56);app.event(`${site.label}에서 들린 짐승이 나타났다.`);return;
   }
  }
@@ -98,5 +103,5 @@ function tick(app,dt){
  G.HonroObjectiveContributions?.observe(b,heroes);
  app.checkMission(e);
 }
-G.HonroMission={tick,finale,finaleSites,FINALE_TURNS,FINALE_CAP};
+G.HonroMission={tick,finale,finaleSites,FINALE_TURNS,FINALE_CAP,reinforceHold};
 })(globalThis);

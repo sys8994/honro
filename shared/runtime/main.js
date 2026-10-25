@@ -428,7 +428,7 @@
                 return true;
             }
             const st=this.stage,state=G.HonroObjectives.state(b,st);
-            if(state.objectiveReady){b.honroState.objectiveReadyRound??=b.round;}else delete b.honroState.objectiveReadyRound;
+            G.HonroObjectives.updateSettlement(b,st,state.objectiveReady);
             const win=G.HonroObjectives.state(b,st).complete;
             if (win) {
                 b.phase = 'won';this.cancelInput();b.projectiles=[];b.volley=undefined;for(const u of b.units)delete u.meleeAction;
