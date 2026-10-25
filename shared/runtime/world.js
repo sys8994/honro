@@ -79,39 +79,55 @@ function midboss(b,st,id,name,kind,x,y){const u=createEnemy(b,st,x,kind,900+st.i
 
 function trainingWorld(st,profile,cls,skill,legacy){
  const b=legacy(st,profile,true,cls,skill);Object.assign(b,{width:6000,height:2300,practiceCombat:true,practiceWind:7,enemyLimit:2,honroRevision:20,terrain:[],waters:[],drafts:[],decor:[],honroLandmarks:[],honroSurfaceZones:[]});
- const floor=(id,x,w,y,slope=0)=>b.terrain.push({id,x,y,w,h:2300-y,mat:'rock',slope,hp:99999,maxHp:99999,indestructible:true,route:true});
- floor('training-west',0,1100,1400);floor('training-descent',1100,300,1400,240);floor('training-stream-bed',1400,400,1640);
- floor('training-ridge-ascent',1800,700,1640,-520);floor('training-ridge',2500,900,1120);floor('training-ridge-descent',3400,540,1120,470);
- floor('training-lake-bed',3940,810,1590);floor('training-east-ascent',4750,750,1590,-350);floor('training-east',5500,500,1240);
- // One continuous polygon keeps the hill, valley and ground shading connected.
- const ground=b.terrain,crest=ground.map(t=>({x:t.x,y:t.y}));crest.push({x:6000,y:1240});
- b.terrain=[{id:'training-ground',x:0,y:1120,w:6000,h:1580,vertices:[...crest,{x:6000,y:2700},{x:0,y:2700}],mat:'rock',hp:99999,maxHp:99999,indestructible:true,route:true}];
- ground.forEach((t,i)=>{const a=[t.x,t.y],z=[t.x+t.w,t.y+(t.slope||0)];b.honroSurfaceZones.push({id:'training-surface-'+i,kind:['grass-mass','moss-mass','mud-mass','exposed-rock-mass','stone-road','dry-grass-mass','mud-mass','grass-mass','moss-mass'][i],points:[a,z,[z[0],z[1]+65],[a[0],a[1]+65]],surface:[a,z],attached:true});});
- const ledge=(id,x,y,w)=>b.terrain.push({id,x,y,w,h:22,mat:'wood',hp:210,maxHp:210,oneWay:true,route:true});
- ledge('training-bridge',1410,1450,380);ledge('training-perch',2770,890,210);ledge('training-lake-ledge',4260,1380,230);
- b.terrain.push({id:'training-barrel',x:3110,y:1060,w:45,h:60,mat:'barrel',hp:48,maxHp:48});
- for(const [x,y,w,depth] of [[1400,1530,400,110],[3940,1480,810,110]]){
-  b.waters.push({x,y,w,depth,frozen:0,kind:'water',conductive:true,bottom:[{x,y:y+depth},{x:x+w,y:y+depth}]});
-  b.honroSurfaceZones.push({id:'training-water-'+x,kind:'water-pool',points:[[x,y],[x+w,y],[x+w,y+depth],[x,y+depth]],surface:[[x,y],[x+w,y]],bottom:[[x,y+depth],[x+w,y+depth]],attached:true});
+ // A continuous mountain footpath, with a roof reached by the western ledges.
+ // The sheltered lower lane is a deliberate dead end; its roof is the through route.
+ const crest=[[0,1510],[480,1510],[900,1490],[1210,1510],[1420,1450],[1650,1400],[1880,1400],[2140,1480],[2450,1500],[2900,1500],[3240,1490],[3430,1100],[3570,1090],[3780,1330],[3970,1470],[4100,1530],[4520,1530],[4660,1460],[4920,1430],[5250,1460],[5500,1420],[5770,1430],[6000,1390]];
+ b.terrain=[{id:'training-ground',x:-1600,y:1090,w:9200,h:2210,vertices:[{x:-1600,y:1540},...crest.map(([x,y])=>({x,y})),{x:7600,y:1470},{x:7600,y:3300},{x:-1600,y:3300}],mat:'rock',hp:99999,maxHp:99999,indestructible:true,route:true}];
+ const solid=(id,vertices)=>{const xs=vertices.map(p=>p[0]),ys=vertices.map(p=>p[1]);b.terrain.push({id,x:Math.min(...xs),y:Math.min(...ys),w:Math.max(...xs)-Math.min(...xs),h:Math.max(...ys)-Math.min(...ys),vertices:vertices.map(([x,y])=>({x,y})),mat:'rock',hp:99999,maxHp:99999,indestructible:true,route:true});};
+ solid('training-shelter',[[2630,1150],[2750,1090],[3020,1060],[3250,1080],[3470,1100],[3440,1370],[3330,1450],[3280,1240],[3010,1220],[2780,1240],[2630,1220]]);
+ solid('training-cover',[[2840,1500],[2830,1420],[2890,1400],[2940,1435],[2950,1500]]);
+ const ledge=(id,x,y,w)=>b.terrain.push({id,x,y,w,h:22,mat:'wood',hp:99999,maxHp:99999,indestructible:true,oneWay:true,route:true});
+ ledge('training-low-ledge',1550,1230,260);ledge('training-high-ledge',1810,1060,250);ledge('training-return-ledge',2110,1280,230);
+ ledge('training-shelter-step',2390,1310,210);ledge('training-shelter-perch',2530,1130,180);
+ b.terrain.push({id:'training-barrel',x:3160,y:1430,w:45,h:70,mat:'barrel',hp:48,maxHp:48});
+ for(let i=0;i<crest.length-1;i++){const a=crest[i],z=crest[i+1];b.honroSurfaceZones.push({id:'training-surface-'+i,kind:i>=14&&i<=16?'mud-mass':i>=9&&i<=13?'exposed-rock-mass':i%3===0?'stone-road':'moss-mass',points:[a,z,[z[0],z[1]+48],[a[0],a[1]+48]],surface:[a,z],attached:true});}
+ // Sloped banks share the actual ground: no rectangular water floating above a pit.
+ b.waters.push({x:4035,y:1500,w:545,depth:30,frozen:0,kind:'water',conductive:true,bottom:[{x:4035,y:1500},{x:4100,y:1530},{x:4520,y:1530},{x:4580,y:1500}]});
+ b.honroSurfaceZones.push({id:'training-shallows',kind:'water-pool',points:[[4035,1500],[4580,1500],[4520,1530],[4100,1530]],surface:[[4035,1500],[4580,1500]],bottom:[[4035,1500],[4100,1530],[4520,1530],[4580,1500]],attached:true});
+ // Reuse the common outdoor material pass and its grounded rear rock forms.
+ b.honroMap={act1Scene:{version:1,scenery:[],replaced:[],lights:[],rocks:[
+  {id:'yard-shoulder',supportId:'training-ground',x:650,width:720,height:230,kind:'shoulder'},
+  {id:'ledge-back',supportId:'training-ground',x:1760,width:760,height:300,kind:'shoulder'},
+  {id:'shelter-root',supportId:'training-ground',x:3490,width:700,height:520,kind:'buttress'},
+  {id:'bank-shoulder',supportId:'training-ground',x:4880,width:600,height:240,kind:'shoulder'}
+ ]}};
+ b.honroMap.act1Scene.rocks.forEach(r=>{r.y=top(b,r.x,2200);});
+ // Keep the common atmosphere/sky without generic campaign scenery placements.
+ const trainingStage={id:'training',width:b.width,height:b.height,backdrop:'forest',metadata:{stageId:1},elements:[]},environmentProject={library:G.HONRO_PROJECT.library.map(a=>({...a})),stages:[trainingStage]};
+ G.HonroEnvironment.upgradeComposition(environmentProject);b.honroEnvironment={...trainingStage.environment,placements:[]};
+ for(const [id,assetId,x,scale] of [['west-pine','rooted-pine',160,.72],['yard-remains','ruined-court',1220,.55],['ridge-pine','rooted-pine',2310,.62],['roof-pine','rooted-pine',3530,.65],['bank-court','ruined-court',4810,.65],['east-pine','rooted-pine',5900,.8]]){
+  const asset=G.HONRO_PROJECT.library.find(a=>a.id==='act1-scene:'+assetId);if(!asset)continue;
+  const y=top(b,x,2200)+5*scale;b.honroLandmarks.push({id:'training-'+id,kind:'canonical-element',asset,assetId:asset.id,x,y,scale,rotation:0,layer:'back',depthLayer:'L1'});
+  b.honroMap.act1Scene.scenery.push({id:'training-'+id,supportId:'training-ground',x,y,scale,visualOnly:true});
  }
- for(const [kind,x,size] of [['giantPine',130,1.1],['forestPath',550,1.4],['waterShrine',1510,.8],['rockPile',1840,1.1],['gate',2510,.8],['deadPines',2920,1.3],['watchtower',3490,.9],['reeds',4050,1.2],['waterShrine',4580,1],['Pines',4970,1.4],['ruin',5720,1],['giantPine',2770,.65]])b.honroLandmarks.push({kind,x,y:top(b,x,2200),size,layer:'back'});
- for(const x of [450,860,1770,2230,3050,4540,5080,5480])b.honroLandmarks.push({kind:'fernPatch',x,y:top(b,x,2200),size:1.3,layer:'prop'});
- const hero=b.units.find(u=>u.side===0);b.units=[hero];C.applyHero(hero,b.heroes[cls],true);Object.assign(hero,{x:340,y:1400,spawnX:340,spawnY:1400,acted:false,cooldowns:{},vx:0,vy:0});
+ for(const [kind,x,size] of [['reeds',4020,.8],['reeds',4590,.65],['fernPatch',490,.75],['fernPatch',3850,.8]])b.honroLandmarks.push({kind,x,y:top(b,x,2200),size,layer:'prop'});
+ const hero=b.units.find(u=>u.side===0);b.units=[hero];C.applyHero(hero,b.heroes[cls],true);Object.assign(hero,{x:340,y:1510,spawnX:340,spawnY:1510,acted:false,cooldowns:{},vx:0,vy:0});
  // Practice stations share the normal combat simulation. Clear approach spaces
  // separate deliberate dense targets from isolated precision/elite targets.
  const stations=[
-  {id:'near',targets:[['hound',800],['human',890],['boar',1010]]},
-  {id:'cluster',targets:[['human',2550],['hound',2630],['ghost',2715],['shade',2840],['human',2920],['mourner',3000]]},
-  {id:'air',targets:[['crow',2200,1040],['bat',2320,860],['lantern',3090,770],['bat',3210,920]]},
-  {id:'water',targets:[['ghost',4100],['shade',4190],['hound',4510],['stag',4610]]},
-  {id:'precision',targets:[['human',5640],['mourner',5860]]},
-  {id:'elite',targets:[['warden',3290]]}
+  {id:'precision',targets:[['human',840],['hound',1090]]},
+  {id:'elevation',targets:[['human',1720,1230],['shade',1980,1060],['boar',2180]]},
+  {id:'shelter',targets:[['ghost',3040],['human',3220]]},
+  {id:'water',targets:[['ghost',4230],['hound',4430],['stag',4690]]},
+  {id:'mixed',targets:[['hound',5320],['mourner',5415],['shade',5510],['human',5680]]},
+  {id:'air',targets:[['bat',5160,1140],['crow',5620,990],['lantern',5820,1200]]},
+  {id:'elite',targets:[['warden',5550]]}
  ];
  let index=0;
  for(const [group,station] of stations.entries())for(const [kind,x,airY] of station.targets){
   const i=index++,u=createEnemy(b,{...st,w:b.width},x,kind,i,airY??top(b,x,2200),airY!==undefined),elite=station.id==='elite',hp=elite?3400:130+(i%4)*45;
   u.name=elite?'정예 산지기 · 수련':u.name+' · 수련';
-  Object.assign(u,{hp,maxHp:hp,attack:elite?1.05:.72,armor:elite?.12:.04,elite,awake:true,aggroUntil:0,group,honroTrainingStation:station.id,cooldowns:{},focus:180,maxFocus:180});if(['bat','crow'].includes(kind))u.combatBaseHp=hp/(C.DIFFICULTIES[b.difficulty]||C.DIFFICULTIES.normal).hp;delete u.honroAirborneBalanceRevision;C.migrateAirborneBalance(u);b.units.push(u);
+  Object.assign(u,{hp,maxHp:hp,attack:elite?1.05:.72,armor:elite?.28:.04,elite,awake:true,aggroUntil:0,group,honroTrainingStation:station.id,cooldowns:{},focus:180,maxFocus:180});if(['bat','crow'].includes(kind))u.combatBaseHp=hp/(C.DIFFICULTIES[b.difficulty]||C.DIFFICULTIES.normal).hp;delete u.honroAirborneBalanceRevision;C.migrateAirborneBalance(u);b.units.push(u);
  }
  b.active=hero.id;b.sceneVersion++;return b;
 }

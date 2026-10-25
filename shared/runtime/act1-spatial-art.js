@@ -212,7 +212,7 @@ function supports(c,b){c=G.HonroVisualStyle?.context(c,'L1')||c;
  }
  // Real optional decks receive visibly open timber trestles. Gaps remain gaps;
  // these narrow, darker members are scenery and never suggest extra floor.
- if(![3,4,6,8,9,10].includes(b.honroStage))return;
+ if(![3,4,6,8,9,10].includes(b.honroStage)&&!b.practiceCombat)return;
  // Stage 6's surviving deck spans are carried by the original stone piers.
  // Two knee braces per pier make their cantilevers readable without painting
  // another floor or closing either broken span.
