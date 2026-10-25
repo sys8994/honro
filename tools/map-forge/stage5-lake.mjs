@@ -1,3 +1,4 @@
+import {authorStage5Traversal} from './stage5-traversal.mjs';
 import {authorStage5Positioning} from './stage5-positioning.mjs';
 /** Remote lake/cave transform. Western land/actors have one positioning author. */
 export function authorStage5Lake(s,old,g){
@@ -18,5 +19,5 @@ export function authorStage5Lake(s,old,g){
  for(const e of s.elements)if(e.kind==='waterfall'||e.id.includes('crest'))e.x+=dx;
  s.elements=s.elements.filter(e=>!['landmark-2','landmark-4'].includes(e.id));
  s.design.waterfall.lakeRevision=1;for(const k of ['headwater','lip','pool'])s.design.waterfall[k].x+=dx;
- authorStage5Positioning(s,g);
+ authorStage5Positioning(s,g);authorStage5Traversal(s);
 }

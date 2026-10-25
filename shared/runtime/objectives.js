@@ -14,7 +14,7 @@ function updateSettlement(b,st,ready){
  if(!s.rounds)return;
  const h=hs.objectiveSettlement;
  // A phase already in progress at completion is not a complete defence interval.
- const enemyEnd=(b.teamEnds?.[1]||0)+(b.side===1?1:0);
+ const enemyEnd=(b.teamEnds?.[1]||0)+(b.side===1&&b.phase!=='transition'?1:0);
  if(h?.version!==1)hs.objectiveSettlement={version:1,progress:s.progress,preserved:s.preserved,enemyEnd};
  else {h.progress=s.progress;h.enemyEnd=Math.max(h.enemyEnd,b.teamEnds?.[1]||0);}
 }

@@ -11,7 +11,7 @@ for(const stage of [1,5,16,24,30]){
  for(const cls of p.recruited){p.heroes[cls].xp=g.HonroProgression.entryHero(st).xp;C.autoTrain(p.heroes[cls],cls);assert(C.pointsSpent(p.heroes[cls],cls)<=C.pointsEarned(p.heroes[cls]));}
  const source=battlefield(g,stage,{profile:p}).b;
  const samples=[source.units.find(u=>u.side===1&&!u.boss&&!u.honroMidboss&&(u.honroType==='beast'||u.honroType==='picks')),source.units.find(u=>u.side===1&&!u.boss&&!u.honroMidboss&&['human','stoneLantern'].includes(u.honroType)),source.units.find(u=>u.side===1&&!u.boss&&!u.honroMidboss&&['bat','crow','lantern'].includes(u.honroType))].filter(Boolean);
- for(const specimen of samples){const skill=specimen.loadout.find(id=>C.SKILLS[id].damage>0);if(!skill)continue;
+ for(const specimen of samples)for(const skill of specimen.loadout.filter(id=>C.SKILLS[id].damage>0)){
   for(const cls of p.recruited){const results=[];
    for(const before of [true,false]){
     const b=plain(source),u=plain(specimen),target=plain(source.units.find(v=>v.side===0&&v.cls===cls));
@@ -59,6 +59,7 @@ for(const stage of [1,5,16,24,30]){
  // Equal-distance usable attackers rotate before a stale irrelevant reserve.
  ready.stun=0;ready.lastAct=10;const peer=foe(hound,'peer-ready',1660,1000,1);b.units=[hero,ready,peer,vertical];assert.equal(C.rankEnemyQueue(e,[ready,peer,vertical])[0].unit.id,peer.id);
 }
-for(const id of [1,2,5,22,25,26,27,30]){const {b}=battlefield(g,id),current=b.enemyLimit;new C.Engine(b);assert.equal(b.enemyLimit,current);assert(current<=6);if([25,26,27].includes(id))assert.equal(current,3);}
+for(const id of [1,2,5,19,22,25,26,27,30]){const {b}=battlefield(g,id),current=b.enemyLimit;new C.Engine(b);assert.equal(b.enemyLimit,current);assert(current<=6);if([25,26,27].includes(id))assert.equal(current,3);}
+{const b={mode:'campaign',honroStage:19,enemyLimit:3,honroActiveLimit:3};C.migrateCampaignActionBudget(b);assert.equal(b.enemyLimit,3);assert.equal(b.honroActionBudgetRevision,undefined);}
 await mkdir('_local/reports/combat-pressure',{recursive:true});await writeFile('_local/reports/combat-pressure/damage.json',JSON.stringify({scope:'Production attacks against legal entry heroes in controlled contact lanes; no guaranteed campaign volley/whole-run claim',rows},null,2));
 console.log('PASS queue/cap/save boundaries;',rows.length,'actual attack comparisons');console.table(rows.filter(r=>r.cls==='archer').map(r=>({stage:r.stage,level:r.level,kind:r.kind,skill:r.skill,hp:r.after.hp,before:r.before.loss,after:r.after.loss,share:(100*r.after.share).toFixed(1)+'%'})));

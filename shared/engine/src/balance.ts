@@ -21,7 +21,7 @@ export function migrateCampaignEnemyDamage(u:Unit){
 }
 export function migrateCampaignActionBudget(b:Battle){
  const v=b as any;
- if(b.mode!=='campaign'||!v.honroStage||v.honroCustom||v.honroMapOrigin==='workshop'||v.honroActionBudgetRevision===1)return;
+ if(b.mode!=='campaign'||!v.honroStage||v.honroStage===19||v.honroCustom||v.honroMapOrigin==='workshop'||v.honroActionBudgetRevision===1)return;
  const limit=v.honroActiveLimit??b.enemyLimit;
  // Six is the existing scripted finale ceiling. Noncombat zero stays zero.
  if(limit>0&&limit<6&&!(v.honroStage===10&&v.honroState?.sodanCoop))v.honroActiveLimit=Math.min(6,limit+1);

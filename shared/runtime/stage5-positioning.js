@@ -4,9 +4,9 @@ const E=G.HonroEncounters,A=G.HonroAllies;
 const active=b=>b?.honroStage===5&&!b.honroCustom&&b.honroStage5PositioningRevision===1;
 const memory=b=>(b.honroState.stage5Positioning??={alert:{},wave:null});
 function refresh(e){const b=e.b,m=memory(b),heroes=e.heroesAlive();
- for(const cell of ['entry','ritual','shore']){
+ for(const cell of b.honroStage5TraversalRevision?[...new Set(e.alive(1).map(u=>u.honroStage5Cell).filter(Boolean))]:['entry','ritual','shore']){
   const units=e.alive(1).filter(u=>u.honroStage5Cell===cell);
-  const entered=cell==='entry'?units.some(u=>heroes.some(h=>Math.hypot(h.x-u.x,(h.y-u.y)*.8)<=540)):heroes.some(h=>h.x>=(cell==='ritual'?1300:1950));
+  const entered=b.honroStage5TraversalRevision?units.some(u=>heroes.some(h=>Math.hypot(h.x-u.x,h.y-u.y)<=500)):cell==='entry'?units.some(u=>heroes.some(h=>Math.hypot(h.x-u.x,(h.y-u.y)*.8)<=540)):heroes.some(h=>h.x>=(cell==='ritual'?1300:1950));
   if(entered||units.some(u=>u.aggroUntil>=b.round))m.alert[cell]=true;
   for(const u of units)u.awake=!!m.alert[cell];
  }
@@ -18,8 +18,11 @@ const execute=A.execute;A.execute=function(app,a){const b=app.engine?.b;if(!acti
  const m=memory(b);if(m.wave?.ids?.length)return true;
  // One six-stag wave through the vacated western approach. Reserve all six
  // standard bodies; occupancy never causes partial spawns or teleports.
- for(const [choice,at]of [{x:345,y:2520}].entries()){
-  const before=b.units.length,result=execute(app,{...a,...at,support:'valley-floor',spacing:100,maxDistance:0});if(result===false)continue;
+ for(const [choice,at]of (b.honroStage5TraversalRevision?(a.entryOptions||[{x:a.x,y:a.y}]):[{x:345,y:2520}]).entries()){
+  // Exact authored entries only. Keep normal spacing between monsters while
+  // reserving a separate full body margin around companions.
+  if(b.honroStage5TraversalRevision&&Array.from({length:a.n||1},(_,i)=>{const x=at.x+(i-((a.n||1)-1)/2)*(a.spacing??100),y=G.HonroWorld.top(b,x,at.y,a.support);return app.engine.heroesAlive().some(h=>Math.hypot(h.x-x,h.y-y)<180);}).some(Boolean))continue;
+  const before=b.units.length,result=execute(app,{...a,...at,support:a.support||'valley-floor',spacing:a.spacing??100,maxDistance:b.honroStage5TraversalRevision?(a.maxDistance??0):0});if(result===false)continue;
   m.wave={round:b.round,choice,...at,ids:b.units.slice(before).map(u=>u.id)};
   const ev=b.honroEvents.find(e=>e.id==='lower-beasts');if(ev)ev.entry={...at};return result;
  }

@@ -1,7 +1,7 @@
 (function(G){'use strict';
 // Compose the shared approved granite material on the three real Stage5 masses.
 // Collision, saved state and the actual contact rim are never derived from art.
-const S=G.HonroScene.prototype,ids=new Set(['valley-floor','stage5-west-shoulder','stage5-ritual-stone']),active=b=>G.HonroStage5Positioning.active(b);
+const S=G.HonroScene.prototype,ids=new Set(['valley-floor','stage5-west-shoulder','stage5-ritual-stone','stage5-upper-ridge','stage5-cave-brow']),active=b=>G.HonroStage5Positioning.active(b);
 const terrain=S.terrain;S.terrain=function(c,t){if(active(this.battle)&&ids.has(t.id)&&!t.broken){
  const b=this.battle,A=G.HonroAct1SpatialArt,q=A.prepareTerrain(t,b),scale=this._staticCacheBuild?this._worldRasterScale(b,this.canvas.clientWidth):this.scale;
  // Reuse the original broad weathered faces beneath a few native-size shared
