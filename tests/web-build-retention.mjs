@@ -1,7 +1,14 @@
 import assert from 'node:assert/strict';
-import {planWebAssetRetention,selectPublishedGenerations,graphSha256} from '../shared/web-retention.mjs';
+import {planWebAssetRetention,selectPublishedGenerations,graphSha256,safeWebAsset,validateAsset} from '../shared/web-retention.mjs';
 
 const asset=name=>({path:`web/runtime/${name}.1234567890abcdef.js`});
+const font={path:'web/fonts/hangul-common.1234567890abcdef.woff2',bytes:12,sha256:'f'.repeat(64)};
+assert(safeWebAsset(font));assert.doesNotThrow(()=>validateAsset(font));
+assert(!safeWebAsset({...font,path:'web/fonts/../../escape.woff2'}));
+assert(!safeWebAsset({...font,path:'web/fonts/nested/escape.woff2'}));
+const fontPublication={sourceSha:'1'.repeat(40),publishedAt:'2026-10-25T00:00:00Z',publishedAtPrecision:'instant',evidence:'confirmed Pages fixture',files:[font],graphSha256:graphSha256([font])};
+const fontPlan=planWebAssetRetention({files:[font],publishedGenerations:[fontPublication]},[],{now:Date.parse('2026-10-26T00:00:00Z')});
+assert(fontPlan.previousFiles.some(f=>f.path===font.path));assert(!fontPlan.obsoleteFiles.some(f=>f.path===font.path));
 const common=asset('common'),first=asset('first'),second=asset('second'),third=asset('third'),fourth=asset('fourth');
 const firstFiles=[common,first],secondFiles=[common,second],thirdFiles=[common,third];
 assert.deepEqual(planWebAssetRetention(undefined,firstFiles),{previousFiles:[],previousGenerations:[],obsoleteFiles:[]});

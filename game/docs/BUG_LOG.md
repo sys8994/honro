@@ -1,3 +1,9 @@
+# 허공터·데스크톱 조작·메뉴와 한글 outline — 2026-10-25
+
+허공터의 큰 V자 사면/직선 표적 배치를 연결된 수련 마당·단·바위 그늘·얕은 물·혼합/공중 표적 빈터로 교체했다. 공통 야외 재질과 벡터 에셋·기존 이미지 원경을 쓰며 18표적/정예1/공중3/적 행동상한2다. 캠페인과 기예 수치는 보존한다. Alt 단독 누름은 release에서 기존 drop/canDrop으로 들어가며 수정키·AltGr·편집/대화/모달·반복·blur는 제외한다. 공통 delegated custom tooltip은 동적 버튼, 실제 단축키, disabled 설명, 전체화면·모서리·focus/DOM 정리를 처리하고 native title을 제거한다. 일시정지/설정은 각진 황동·먹색 프레임과 로컬 SVG 표식을, 글꼴은 OFL Noto Serif KR outline 가변 subset을 쓴다. 설계/배치 기준은 TRAINING_GROUND.md.
+
+검증: 네 체형의 연속 지형 왕복과 발판 drop, 여섯 배치의 실제 실탄, 근접·투과·반사·다중 피해, 8초 접지·일반 프로필 불변을 확인했다. Chromium은 Alt/수정키/입력 게이트·Ctrl/F·tooltip 네 모서리/동적 DOM/전체화면/터치·수련 변경/초기화/일반 저장 격리와 pause 흐름을 선별 확인했다. 원시 결과와 집중 미술 3관점/최종 종합 캡처는 `_local/reports/training-ui/`, `_local/reports/training-layout/`에 둔다. 125%는 Linux Chromium CSS zoom이고 Windows 글꼴 rasterization·전체 캠페인 완주는 검사하지 않는다. 원본 사용자 Library 이미지3개는 prepare_materialize와 허용된 소비 환경 재시도 모두 전송 실패여서 직접 비교는 미완료다. master/Pages 통합은 부모의 candidate 미술 검토 후 진행한다.
+
 # 명시적 디버그 휴식터 선택대화 eligibility 일치 — 2026-10-24
 
 클리어 없는 debug14에서 휘겸 버튼은 새 대화로 표시되지만 JourneyContent.optional의 일반 open 조건으로 빈 배열을 반환해 아무것도 열리지 않았다. 수정 전 실제 여정첩14→휴식터→휘겸 클릭으로 재현했다. 명시된 debugRestStage와 표시 목적지가 같은 때만 optional의 scoped preview를 전달하며, rest 표시/실행/복원은 같은 optionalLines를 사용한다. 일반 미해금 또는 선택 없는 debug는 disabled/새 대화 없음으로 표시하고 실행도 차단한다. recruit/첫 대화 장/일반 클리어 조건 및 원문·rowId·history 규칙은 유지한다. 네이티브 --debug-optional 및 Chromium4상태(debug14/normal locked/normal unlocked/debug no-selection), 반복 클릭/skip/camp 왕복·중복history 없음·cleared/normalProfile/storage 불변 통과. build/web-split·공개48그래프867파일 SHA/bytes 보존 확인. 포커스 선행 수정은 독립40c1bab86a11ae8c58c18d2beec0fe4267ddb534로 먼저 푸시했다. 전체30장/전스킬은 미실행, 미술/Library/16장 기믹은 변경하지 않았다. 원시 결과 _local/reports/rest-debug-optional/ 및 camp-fixes/.

@@ -76,7 +76,7 @@ function show(el,source){
  (D.fullscreenElement||D.body).appendChild(tip);
  owner.setAttribute('aria-describedby',[owner.getAttribute('aria-describedby'),tip.id].filter(Boolean).join(' '));position();
  // Observe only while visible; no per-frame scans or tooltip reconstruction.
- observer=new MutationObserver(()=>{if(!valid())hide();else schedule();});observer.observe(D.getElementById('app')||D.body,{childList:true,subtree:true});observer.observe(D.body,{childList:true});
+ observer=new MutationObserver(()=>{if(!valid())hide();else schedule();});observer.observe(D.body,{childList:true,subtree:true});
  const modal=D.getElementById('modal');if(modal)observer.observe(modal,{childList:true,subtree:true,attributes:true,attributeFilter:['class']});
 }
 D.addEventListener('pointerover',e=>{if(e.pointerType!=='mouse'){hide();return;}const el=e.target.closest?.(selector);if(el&&!el.contains(e.relatedTarget))show(el,'pointer');});

@@ -2,7 +2,7 @@ import {createHash} from 'node:crypto';
 
 export const publishedRetention={version:2,windowDays:7,minGraphs:2};
 const dayMs=86400000;
-export const safeWebAsset=file=>/^web\/(runtime|entries|data|styles|graphics)\/[\w.-]+$/.test(file?.path||'');
+export const safeWebAsset=file=>/^web\/(runtime|entries|data|styles|graphics|fonts)\/[\w.-]+$/.test(file?.path||'');
 export function validateAsset(file){
   if(!safeWebAsset(file)||!Number.isSafeInteger(file.bytes)||file.bytes<0||!/^[a-f0-9]{64}$/.test(file.sha256||''))throw Error('Invalid immutable asset: '+file?.path);
 }

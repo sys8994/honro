@@ -110,7 +110,7 @@ function trainingWorld(st,profile,cls,skill,legacy){
   const y=top(b,x,2200)+5*scale;b.honroLandmarks.push({id:'training-'+id,kind:'canonical-element',asset,assetId:asset.id,x,y,scale,rotation:0,layer:'back',depthLayer:'L1'});
   b.honroMap.act1Scene.scenery.push({id:'training-'+id,supportId:'training-ground',x,y,scale,visualOnly:true});
  }
- for(const [kind,x,size] of [['reeds',4020,.8],['reeds',4590,.65],['fernPatch',490,.75],['fernPatch',3850,.8]])b.honroLandmarks.push({kind,x,y:top(b,x,2200),size,layer:'prop'});
+ for(const [kind,x,size] of [['fernPatch',4020,.8],['fernPatch',4590,.65],['fernPatch',490,.75],['fernPatch',3850,.8]])b.honroLandmarks.push({kind,x,y:top(b,x,2200),size,layer:'prop'});
  const hero=b.units.find(u=>u.side===0);b.units=[hero];C.applyHero(hero,b.heroes[cls],true);Object.assign(hero,{x:340,y:1510,spawnX:340,spawnY:1510,acted:false,cooldowns:{},vx:0,vy:0});
  // Practice stations share the normal combat simulation. Clear approach spaces
  // separate deliberate dense targets from isolated precision/elite targets.

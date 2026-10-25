@@ -1,7 +1,6 @@
-<!doctype html>
-<html lang="ko"><head><meta charset="utf-8"><base href="../../"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover"><meta name="theme-color" content="#101b20"><title>혼로 · HONRO</title><script>globalThis.HONRO_EMBEDDED=new URLSearchParams(location.search).get('embedded')==='1';if(HONRO_EMBEDDED)document.documentElement.classList.add('honro-embedded');</script><style>/* The title owns its initial layout so gameplay styles need not block its first paint. */
+/* The title owns its initial layout so gameplay styles need not block its first paint. */
 html,body{margin:0;width:100%;height:100%;background:#10191d;overflow:hidden}
-body.honro{font:14px system-ui,-apple-system,'Malgun Gothic',sans-serif;color:#d9d1bb}
+body.honro{font:500 14px var(--font-body,serif);color:#d9d1bb}
 .honro #app{position:relative;width:100%;height:100dvh}
 .honro-title,.honro-title *{box-sizing:border-box;-webkit-user-select:none;user-select:none;-webkit-tap-highlight-color:transparent}
 .honro-title{width:100%;height:100dvh;position:relative;display:flex;flex-direction:column}
@@ -31,7 +30,7 @@ body.honro{font:14px system-ui,-apple-system,'Malgun Gothic',sans-serif;color:#d
 .honro-title .top>.icon{margin-left:auto;border-color:#c4cccf30;background:#0b182180;width:44px;height:44px;border-radius:50%}
 .honro-title .title-main{width:min(420px,40vw);max-width:none;margin:auto 0 auto clamp(32px,7vw,130px);padding:0 0 28px;gap:0;align-items:flex-start}
 .honro-title .honro-logo-wrap{width:min(390px,100%);filter:drop-shadow(0 3px 12px #0005)}
-.honro-title .title-main .title-brand{display:block;width:100%;aspect-ratio:1.85;font:400 170px/1 Batang,'Noto Serif KR',serif;letter-spacing:.025em;text-align:center;color:#7d827c;margin:0;position:relative;filter:url(#honro-title-ink)}
+.honro-title .title-main .title-brand{display:block;width:100%;aspect-ratio:1.85;font:400 170px/1 var(--font-body);letter-spacing:.025em;text-align:center;color:#7d827c;margin:0;position:relative;filter:url(#honro-title-ink)}
 /* Keep the approved source alpha/strokes; a stationary coarse ink wash colors only their pixels. */
 .honro-title .title-ink-defs{position:absolute;width:0;height:0;overflow:hidden;pointer-events:none}
 .honro-title .title-hanja{display:grid;place-items:center;width:100%;aspect-ratio:1859/846}
@@ -109,5 +108,3 @@ body.honro{font:14px system-ui,-apple-system,'Malgun Gothic',sans-serif;color:#d
 
 /* Short portrait crops keep the ferry and lantern below both resume actions. */
 @media(orientation:portrait) and (max-height:650px){.honro-title .title-painting img{object-position:center top}}
-</style></head><body class="honro"><div id="app"></div><div id="modal" class="dialog-back"></div><div id="notice" class="notice" hidden></div><div id="bgm-now-playing" hidden></div><input type="file" id="file-import" accept="application/json" hidden><noscript>혼로는 JavaScript를 사용하는 게임입니다.</noscript>
-<script type="module" src="web/entries/game.921d9dbe24440236.js"></script></body></html>
