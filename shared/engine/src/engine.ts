@@ -29,7 +29,7 @@ import type { Battle, Unit, Projectile, Skill, Side, Terrain, Vec, Zone, Event, 
 import { SKILLS, STAGES, ENEMIES, CLASSES } from './data';
 import {attackForHit,attackForSkill,calculateDamage,existenceMultiplier,migrateAirborneBalance} from './existence';
 import {lureStakeFor} from './totemBehavior';
-import { rankEnemyQueue, type EnemyQueuePriority, planEnemyLuresSteps, planEnemyMoveSteps, advanceEnemyMove, targetFor, chooseEnemyShotSteps, finishPlanning, friendlyFireRisk, shotViable, shotImpactValue, flyingEnemy, knockbackFlyingEnemy, planWaitingFlights, FLY_MOVE_BUDGET } from './enemyAI';
+import { rankEnemyQueueSteps, type EnemyQueuePriority, planEnemyLuresSteps, planEnemyMoveSteps, advanceEnemyMove, targetFor, chooseEnemyShotSteps, finishPlanning, friendlyFireRisk, shotViable, shotImpactValue, flyingEnemy, knockbackFlyingEnemy, planWaitingFlights, FLY_MOVE_BUDGET } from './enemyAI';
 import { G, STEP, WORLD_W, WORLD_H, clamp, rad, poly, segRect, segmentTerrain, segmentProjectileTerrain, topAt, terrainSurfaces, terrainSlopeAt, terrainRectIntersects, dist, AIM_MIN, AIM_MAX } from './math';
 import { createBattle, groundY, makeEnemy, makeUnit } from './world';
 import { grantXP, applyHero, levelOf, TALENT_MAP, passiveBonus, recommendedLevel, equippedRank, passiveRank, skillDamageFactor, skillRadiusFactor, skillManaFactor, volleyCount, volleyDamage, knockbackResistance, ultimateUnlocked } from './progression';
@@ -2112,6 +2112,7 @@ export class Engine {
             delete u.shieldUntil;
         } }
     endTeam(){if(this.b.phase==='summon')return;if(this.b.side===0&&this.runSummonTurn()>0)return;this.completeTeamTransition();}
+    private queuePlanning?:{key:string;steps:Generator<void,EnemyQueuePriority[],unknown>};
     private queuePriorities=new Map<string,EnemyQueuePriority>();
     enemyQueuePriority(u:Unit|undefined){return u?this.queuePriorities.get(u.id):undefined;}
     switchTeam() {
@@ -2119,9 +2120,11 @@ export class Engine {
         if (this.checkEnd())
             return;
         if (b.side === 0) {
-            b.side = 1;
-            this.refreshActivation();
-            const ranked=rankEnemyQueue(this,this.combatEnemies());
+            const key=this.planningKey();
+            if(!this.queuePlanning||this.queuePlanning.key!==key){this.refreshActivation();this.queuePlanning={key:this.planningKey(),steps:rankEnemyQueueSteps(this,this.combatEnemies())};}
+            const work=this.queuePlanning,next=this.continuePlanning(work.steps);
+            if(!next||!next.done){work.key=this.planningKey();return;}
+            const ranked=next.value;this.queuePlanning=undefined;b.side=1;
             this.queuePriorities=new Map(ranked.map(p=>[p.unit.id,p]));
             const opportunities=new Set(ranked.slice(0,b.enemyLimit).map(p=>p.unit.id));
             const skipped = new Set<string>();

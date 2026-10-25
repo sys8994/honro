@@ -14,34 +14,39 @@ export interface EnemyQueuePriority{unit:Unit;tier:number;distance:number;band:n
 /** Once per hostile planning boundary: six ordinary arc probes, then at most
  * four real travel probes. No full aim search, persistent cache or RNG changes.
  * Contact/valid shots outrank approach; fairness applies within a nearby band. */
-export function rankEnemyQueue(e:Engine,units:Unit[]):EnemyQueuePriority[]{
+export function rankEnemyQueue(e:Engine,units:Unit[]){return finishPlanning(rankEnemyQueueSteps(e,units));}
+export function* rankEnemyQueueSteps(e:Engine,units:Unit[]):Generator<void,EnemyQueuePriority[],unknown>{
  const targets=e.b.units.filter(v=>!v.dead&&v.hp>0&&!v.eaterCapturedBy&&(v.side===0||(v.side===2&&((v as any).honroAlly||v.id==='objective'))));
- const rows=units.map(unit=>{
+ const rows:EnemyQueuePriority[]=[];
+ for(const unit of units){
   const nearby=targets.slice().sort((a,b)=>Math.hypot(a.x-unit.x,a.y-unit.y)-Math.hypot(b.x-unit.x,b.y-unit.y)).slice(0,2);
   const distance=Math.min(...nearby.map(t=>Math.hypot(t.x-unit.x,t.y-unit.y)));
   let tier=0;
   for(const target of nearby){
    const ghost={...unit,facing:target.x>=unit.x?1:-1};
-   if(beastKind(unit)?beastContact(e,ghost,target):queueShotReady(e,unit,target)){tier=2;break;}
+   if(beastKind(unit)?beastContact(e,ghost,target):yield* queueShotReadySteps(e,unit,target)){tier=2;break;}
+   yield;
   }
   if(!tier){const target=nearby[0];if(target){
    if(flyingEnemy(unit)){
     const budget=Math.min(FLY_MOVE_BUDGET,unit.moveLeft),angle=Math.atan2(target.y-unit.y,target.x-unit.x);
-    for(const turn of [0,-Math.PI/4,Math.PI/4]){const p={x:unit.x+Math.cos(angle+turn)*budget,y:unit.y+Math.sin(angle+turn)*budget};if(budget>=24&&routeGuardAllows(e,unit,p)&&flightLeg(e,unit,p)&&Math.hypot(p.x-target.x,p.y-target.y)<distance-24){tier=1;break;}}
+    for(const turn of [0,-Math.PI/4,Math.PI/4]){const p={x:unit.x+Math.cos(angle+turn)*budget,y:unit.y+Math.sin(angle+turn)*budget};if(budget>=24&&routeGuardAllows(e,unit,p)&&flightLeg(e,unit,p)&&Math.hypot(p.x-target.x,p.y-target.y)<distance-24){tier=1;break;}yield;}
    }else if(!unit.fixed&&e.grounded(unit)){
     const poses=candidates(e,unit,target).filter(p=>Math.hypot(p.x-target.x,p.y-target.y)<distance-24||p.y<unit.y-45&&Math.abs(p.x-target.x)<=Math.abs(unit.x-target.x)+40).slice(0,4);
-    if(poses.some(p=>traceTravel(e,unit,unit,p,Math.min(610,unit.moveLeft))))tier=1;
+    for(const p of poses){if(yield* traceTravelSteps(e,unit,unit,p,Math.min(610,unit.moveLeft))){tier=1;break;}}
    }
   }}
-  return {unit,tier,distance,band:Math.floor(distance/240)};
- });
+  rows.push({unit,tier,distance,band:Math.floor(distance/240)});yield;
+ }
  return rows.sort((a,b)=>b.tier-a.tier||a.band-b.band||a.unit.lastAct-b.unit.lastAct||a.distance-b.distance||a.unit.id.localeCompare(b.unit.id));
 }
-function queueShotReady(e:Engine,u:Unit,target:Unit){
- const skill=u.loadout.map(id=>SKILLS[id]).find(s=>s&&!s.passive&&s.damage>0&&e.manaCost(s,u)<=u.focus&&!((u.cooldowns?.[s.id]||0)>e.b.round));
- if(!skill||!e.npcShotInReach(u,skill))return false;
- const right=target.x>=u.x,seeds=[...e.shotSeeds(u,skill,target).slice(0,3),...[18,50,82].map(a=>({angle:right?a:180-a,power:1}))];
- return seeds.some(a=>shotViable(e,u,skill,target,a.angle,a.power).ok);
+function* queueShotReadySteps(e:Engine,u:Unit,target:Unit):Generator<void,boolean,unknown>{
+ const skills=u.loadout.map(id=>SKILLS[id]).filter(s=>s&&!s.passive&&s.damage>0&&e.manaCost(s,u)<=u.focus&&!((u.cooldowns?.[s.id]||0)>e.b.round)&&e.npcShotInReach(u,s)).slice(0,3);
+ const right=target.x>=u.x,budget=6,perSkill=Math.floor(budget/Math.max(1,skills.length));
+ for(const skill of skills){const seeds=e.shotSeeds(u,skill,target).slice(0,perSkill-1);seeds.push({angle:right?50:130,power:1});
+  for(const aim of seeds){const ok=shotViable(e,u,skill,target,aim.angle,aim.power).ok;yield;if(ok)return true;}
+ }
+ return false;
 }
 
 export const FLY_MOVE_BUDGET=280;
@@ -462,7 +467,13 @@ export function* planEnemyMoveSteps(e:Engine,u:Unit,target:Unit,attackFailed=fal
  if(!forceAdvance&&best.score<stayScore+4){
   if(!attackFailed)return;
   const distance=Math.hypot(u.x-target.x,u.y-target.y),danger=dangerAt(e,u,start);
-  const approach=reachable.filter(p=>dangerAt(e,u,p)<=danger&&Math.hypot(p.x-target.x,p.y-target.y)<distance-4);
+  const approaches=(p:Vec)=>dangerAt(e,u,p)<=danger&&Math.hypot(p.x-target.x,p.y-target.y)<distance-4;
+  let approach=reachable.filter(approaches);
+  // A range-preference shortlist may contain only retreats. On the one failed
+  // shot retry, test up to four closer stepping stones before giving up.
+  if(!approach.length)for(const p of poses.filter(approaches).slice(0,4)){
+   const leg=yield* traceTravelSteps(e,u,start,p,budget);if(leg){approach=[{...p,cost:leg.cost,path:[{...p,jump:leg.jump,...(leg.jumpX!==undefined?{jumpX:leg.jumpX}:{})}],score:0}];break;}
+  }
   if(!approach.length)return;
   best=approach.sort((a,b)=>Math.hypot(a.x-target.x,a.y-target.y)-Math.hypot(b.x-target.x,b.y-target.y)||a.cost-b.cost)[0];
  }
