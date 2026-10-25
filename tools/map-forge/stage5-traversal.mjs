@@ -23,7 +23,7 @@ export function authorStage5Traversal(s){
  // Separate the remote upper watch from the lower ritual approach.
  for(const u of s.units.filter(u=>u.team==='enemy')){const cell=['foe-6','foe-7','foe-11'].includes(u.id)?'crest':u.id==='foe-10'?'shore':['foe-4','foe-5','foe-8','foe-9'].includes(u.id)?'ritual':'entry';Object.assign(u,{honroStage5Cell:cell,honroCluster:cell,group:{entry:1,ritual:2,crest:3,shore:4}[cell]});}
  s.encounters=['entry','ritual','crest','shore'].map(key=>({id:'encounter:'+key,key,unitIds:s.units.filter(u=>u.honroStage5Cell===key).map(u=>u.id)}));
- const wave=s.events.find(e=>e.id==='lower-beasts');if(wave){Object.assign(wave.action,{x:1040,y:land(1040),support:'valley-floor',spacing:100,maxDistance:0,clearance:18,entryOptions:[{x:1040,y:land(1040)},{x:740,y:land(740)}]});wave.entry={x:1040,y:land(1040)};}
+ const wave=s.events.find(e=>e.id==='lower-beasts');if(wave){Object.assign(wave.action,{x:1040,y:land(1040),support:'valley-floor',spacing:100,maxDistance:0,clearance:18,pursuitSupports:['valley-floor','stage5-ritual-stone'],entryOptions:[{x:1040,y:land(1040)},{x:740,y:land(740)}]});wave.entry={x:1040,y:land(1040)};}
  s.initialState.honroStage5TraversalRevision=1;
  s.design.question='담허는 암반 아래 안쪽 물길진을 확보하고, 설오는 동쪽 높은 암반길을 올라 동굴 안으로 사선을 만든다.';
  s.design.positioning.routes.upper=[{x:580,y:land(580),support:'valley-floor',jumpTo:{x:740,support:'stage5-west-shoulder'}},{x:1100,y:2250,support:'stage5-west-shoulder'},{x:1740,y:2345,support:'stage5-west-shoulder'},{x:2050,y:upper(2050),support:'stage5-upper-ridge'},{x:2400,y:upper(2400),support:'stage5-upper-ridge'},{x:2800,y:upper(2800),support:'stage5-upper-ridge'},shot];

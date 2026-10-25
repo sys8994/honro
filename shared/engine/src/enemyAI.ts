@@ -336,8 +336,13 @@ function candidates(e:Engine,u:Unit,target:Unit):Vec[]{
   if(x<30||x>e.b.width-30||Math.abs(x-u.x)>u.moveLeft||y<u.y-420||y>u.y+260)return;
   if(Math.hypot(x-u.x,y-u.y)<22||found.some(p=>Math.abs(p.x-x)<23&&Math.abs(p.y-y)<18))return;
   const foot=e.surface(x,y-3,y+4);if(!foot)return;
+  // Authored ground pursuit stays on its actual route supports. This is only
+  // waypoint selection; impulses, jumping and paid locomotion remain physical.
+  const supports=(u as any).honroPursuitSupports as string[]|undefined;
+  if(u.side===1&&!u.enthrall&&!(e.b as any).honroCustom&&supports?.length&&!supports.includes(foot.t.id))return;
   // A standing body must fit, not merely its feet. One-way platforms may be overhead.
-  if(e.b.terrain.some(t=>!t.broken&&!t.oneWay&&t.id!==foot.t.id&&x>t.x-4&&x<t.x+t.w+4&&y-8>topAt(t,clamp(x,t.x,t.x+t.w))&&y-u.h<t.y+t.h))return;
+  // A terrain's bounding bottom can be far below a genuine concave undercut.
+  if(e.b.terrain.some(t=>!t.broken&&!t.oneWay&&t.id!==foot.t.id&&terrainRectIntersects(t,x-u.r,y-u.h,u.r*2,u.h-8,0)))return;
   found.push({x,y});
  };
  if(beastKind(u))for(const sign of [-1,1]){const x=target.x+sign*(u.r+target.r+beastReach(u)*.5),g=e.surface(x,target.y-45,target.y+45);if(g)add(x,g.y);}
@@ -478,6 +483,9 @@ export function* planEnemyMoveSteps(e:Engine,u:Unit,target:Unit,attackFailed=fal
   best=approach.sort((a,b)=>Math.hypot(a.x-target.x,a.y-target.y)-Math.hypot(b.x-target.x,b.y-target.y)||a.cost-b.cost)[0];
  }
  const before=Math.hypot(u.x-target.x,u.y-target.y),after=Math.hypot(best.x-target.x,best.y-target.y);
+ // A distant authored pursuer waits for a friendly body to clear the route
+ // rather than alternating retreats. Hazard escape and wounded retreat remain.
+ if((u as any).honroPursuitSupports?.length&&forceAdvance&&u.hp/u.maxHp>=.32&&after>=before-4&&dangerAt(e,u,best)>=dangerAt(e,u,start))return;
  const intent=dangerAt(e,u,start)>30?'위험 회피':best.y<u.y-45?'고지 확보':u.role==='healer'?'지원 위치로':after>before+35?'거리 확보':after<before-35?'전진':'사선 확보';
  return {round:e.b.round,targetId:target.id,path:best.path,index:0,elapsed:0,stalled:0,lastX:u.x,lastY:u.y,jumping:false,intent};
 }
