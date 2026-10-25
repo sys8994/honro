@@ -10,6 +10,40 @@ const HEAVY=new Set(['guard','leaper']);
 interface Stance extends Vec {cost:number;path:{x:number;y:number;jump:boolean;jumpX?:number}[];score:number;}
 export function finishPlanning<T>(steps:Generator<void,T,unknown>):T{let next=steps.next();while(!next.done)next=steps.next();return next.value;}
 
+export interface EnemyQueuePriority{unit:Unit;tier:number;distance:number;band:number;}
+/** Once per hostile planning boundary: six ordinary arc probes, then at most
+ * four real travel probes. No full aim search, persistent cache or RNG changes.
+ * Contact/valid shots outrank approach; fairness applies within a nearby band. */
+export function rankEnemyQueue(e:Engine,units:Unit[]):EnemyQueuePriority[]{
+ const targets=e.b.units.filter(v=>!v.dead&&v.hp>0&&!v.eaterCapturedBy&&(v.side===0||(v.side===2&&((v as any).honroAlly||v.id==='objective'))));
+ const rows=units.map(unit=>{
+  const nearby=targets.slice().sort((a,b)=>Math.hypot(a.x-unit.x,a.y-unit.y)-Math.hypot(b.x-unit.x,b.y-unit.y)).slice(0,2);
+  const distance=Math.min(...nearby.map(t=>Math.hypot(t.x-unit.x,t.y-unit.y)));
+  let tier=0;
+  for(const target of nearby){
+   const ghost={...unit,facing:target.x>=unit.x?1:-1};
+   if(beastKind(unit)?beastContact(e,ghost,target):queueShotReady(e,unit,target)){tier=2;break;}
+  }
+  if(!tier){const target=nearby[0];if(target){
+   if(flyingEnemy(unit)){
+    const budget=Math.min(FLY_MOVE_BUDGET,unit.moveLeft),angle=Math.atan2(target.y-unit.y,target.x-unit.x);
+    for(const turn of [0,-Math.PI/4,Math.PI/4]){const p={x:unit.x+Math.cos(angle+turn)*budget,y:unit.y+Math.sin(angle+turn)*budget};if(budget>=24&&routeGuardAllows(e,unit,p)&&flightLeg(e,unit,p)&&Math.hypot(p.x-target.x,p.y-target.y)<distance-24){tier=1;break;}}
+   }else if(!unit.fixed&&e.grounded(unit)){
+    const poses=candidates(e,unit,target).filter(p=>Math.hypot(p.x-target.x,p.y-target.y)<distance-24||p.y<unit.y-45&&Math.abs(p.x-target.x)<=Math.abs(unit.x-target.x)+40).slice(0,4);
+    if(poses.some(p=>traceTravel(e,unit,unit,p,Math.min(610,unit.moveLeft))))tier=1;
+   }
+  }}
+  return {unit,tier,distance,band:Math.floor(distance/240)};
+ });
+ return rows.sort((a,b)=>b.tier-a.tier||a.band-b.band||a.unit.lastAct-b.unit.lastAct||a.distance-b.distance||a.unit.id.localeCompare(b.unit.id));
+}
+function queueShotReady(e:Engine,u:Unit,target:Unit){
+ const skill=u.loadout.map(id=>SKILLS[id]).find(s=>s&&!s.passive&&s.damage>0&&e.manaCost(s,u)<=u.focus&&!((u.cooldowns?.[s.id]||0)>e.b.round));
+ if(!skill||!e.npcShotInReach(u,skill))return false;
+ const right=target.x>=u.x,seeds=[...e.shotSeeds(u,skill,target).slice(0,3),...[18,50,82].map(a=>({angle:right?a:180-a,power:1}))];
+ return seeds.some(a=>shotViable(e,u,skill,target,a.angle,a.power).ok);
+}
+
 export const FLY_MOVE_BUDGET=280;
 export function flyingEnemy(u:Unit){return u.side===1&&u.fixed&&['bat','crow','lantern'].includes((u as any).honroType);}
 // Only the authored alternative-exit guards defend this local territory.
@@ -423,9 +457,15 @@ export function* planEnemyMoveSteps(e:Engine,u:Unit,target:Unit,attackFailed=fal
  const stayScore=positionScore(e,u,target,start)+(yield* shotOpportunity(e,u,target,start));
  const top=reachable.sort((a,c)=>c.score-a.score).slice(0,4);
  for(const r of top)r.score+=yield* shotOpportunity(e,u,target,r);
- const best=top.sort((a,c)=>c.score-a.score)[0];
+ let best=top.sort((a,c)=>c.score-a.score)[0];
  const currentDistance=Math.hypot(u.x-target.x,(u.y-target.y)*.72), forceAdvance=currentDistance>preferredRange(u)[1]+90;
- if(!forceAdvance&&best.score<stayScore+4)return;
+ if(!forceAdvance&&best.score<stayScore+4){
+  if(!attackFailed)return;
+  const distance=Math.hypot(u.x-target.x,u.y-target.y),danger=dangerAt(e,u,start);
+  const approach=reachable.filter(p=>dangerAt(e,u,p)<=danger&&Math.hypot(p.x-target.x,p.y-target.y)<distance-4);
+  if(!approach.length)return;
+  best=approach.sort((a,b)=>Math.hypot(a.x-target.x,a.y-target.y)-Math.hypot(b.x-target.x,b.y-target.y)||a.cost-b.cost)[0];
+ }
  const before=Math.hypot(u.x-target.x,u.y-target.y),after=Math.hypot(best.x-target.x,best.y-target.y);
  const intent=dangerAt(e,u,start)>30?'위험 회피':best.y<u.y-45?'고지 확보':u.role==='healer'?'지원 위치로':after>before+35?'거리 확보':after<before-35?'전진':'사선 확보';
  return {round:e.b.round,targetId:target.id,path:best.path,index:0,elapsed:0,stalled:0,lastX:u.x,lastY:u.y,jumping:false,intent};

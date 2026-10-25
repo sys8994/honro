@@ -83,7 +83,8 @@ function reserveQueue(e){const b=e.b;if(!active(b)||b.honroDensityQueueReserve!=
  const candidates=e.combatEnemies().filter(u=>u.stunnedRound!==b.round),waiting=u=>!!u&&Number.isInteger(u.honroDensityBornRound)&&u.lastAct<u.honroDensityBornRound;
  if(b.queue.some(id=>waiting(e.unit(id))))return b.queue;
  const heroes=e.heroesAlive(),distance=u=>Math.min(...heroes.map(h=>Math.hypot(h.x-u.x,h.y-u.y)));
- const next=candidates.filter(waiting).sort((a,z)=>a.honroDensityBornRound-z.honroDensityBornRound||distance(a)-distance(z)||String(a.id).localeCompare(String(z.id)))[0];if(!next)return b.queue;
+ const displaced=e.enemyQueuePriority?.(e.unit(b.queue.at(-1))),relevant=u=>{const p=e.enemyQueuePriority?.(u);return !!p&&p.tier>0&&(!displaced||p.tier>displaced.tier||p.tier===displaced.tier&&p.band<=displaced.band+1);};
+ const next=candidates.filter(u=>waiting(u)&&relevant(u)).sort((a,z)=>a.honroDensityBornRound-z.honroDensityBornRound||distance(a)-distance(z)||String(a.id).localeCompare(String(z.id)))[0];if(!next)return b.queue;
  const queue=b.queue.slice(0,Math.max(0,b.enemyLimit-1));queue.push(next.id);return queue;
 }
 const attach=E.attach;E.attach=function(app,e){const out=attach(app,e);if(!active(e.b)||e.honroDensityAttached)return out;e.honroDensityAttached=true;memory(e.b);installActivation(e);

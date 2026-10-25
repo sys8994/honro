@@ -38,12 +38,13 @@ function installActivation(e){const b=e.b,defs=b.honroVerticalStage22Activation;
 }
 // Reserve one of the existing three actions for a newly arrived local group.
 // No fourth action, no last-wave kill gate, and no mutation while mounting.
-function reserveQueue(e){const b=e.b;if(!active(b)||b.enemyLimit!==3)return b.queue;
+function reserveQueue(e){const b=e.b;if(!active(b)||b.enemyLimit<3)return b.queue;
  const waiting=u=>alive(u)&&Number.isInteger(u.honroVertical22BornRound)&&u.lastAct<u.honroVertical22BornRound;
  if(b.queue.some(id=>waiting(e.unit(id))))return b.queue;
  const heroes=e.heroesAlive(),distance=u=>Math.min(...heroes.map(h=>Math.hypot(h.x-u.x,h.y-u.y)));
- const next=e.combatEnemies().filter(u=>u.stunnedRound!==b.round&&waiting(u)).sort((a,z)=>a.honroVertical22BornRound-z.honroVertical22BornRound||distance(a)-distance(z)||String(a.id).localeCompare(String(z.id)))[0];
- if(!next)return b.queue;return[...b.queue.filter(id=>id!==next.id).slice(0,2),next.id];
+ const displaced=e.enemyQueuePriority?.(e.unit(b.queue.at(-1))),relevant=u=>{const p=e.enemyQueuePriority?.(u);return !!p&&p.tier>0&&(!displaced||p.tier>displaced.tier||p.tier===displaced.tier&&p.band<=displaced.band+1);};
+ const next=e.combatEnemies().filter(u=>u.stunnedRound!==b.round&&waiting(u)&&relevant(u)).sort((a,z)=>a.honroVertical22BornRound-z.honroVertical22BornRound||distance(a)-distance(z)||String(a.id).localeCompare(String(z.id)))[0];
+ if(!next)return b.queue;return[...b.queue.filter(id=>id!==next.id).slice(0,b.enemyLimit-1),next.id];
 }
 function cancel(app,reason='battle-ended'){const b=app.engine.b,m=memory(b);let changed=false;for(const [source,w]of Object.entries(m.warnings))if(!m.entries[source]&&!w.cancelled){w.cancelled=reason;w.cancelledRound=b.round;w.cancelledSerial=serial(b);w.status='cancelled';changed=true;}if(changed)app.dirty=true;return changed;}
 function offer(app){if(ended(app)||paused(app))return;const e=app.engine,b=e.b,u=e.active;if(b.phase!=='aim'||b.side!==0||!hero(u)||u.acted||u.airborne)return;const m=memory(b);for(const[source,w]of Object.entries(m.warnings))if(!m.entries[source]&&!w.opportunity&&!w.cancelled)(w.offered??={})[u.id]={round:b.round,serial:serial(b)};}

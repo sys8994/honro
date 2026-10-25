@@ -22,14 +22,14 @@ import type {PhysicsPatch} from './physics';
 import {multishotProfile,volleyAngles,waveCount} from './projectileGrowth';
 import {MAGE_AREA_SCALE} from './mageGeometry';
 import {resolveGate} from './gateTravel';
-import { ACTION_REVIEW_SECONDS, CHARGE_ACCELERATION, MAX_CHARGE_SECONDS, VOLLEY_INTERVAL, VOLLEY_SPREAD, DIFFICULTIES, MANA_COST_MULTIPLIER, PLAYER_MAGE_DAMAGE_MULTIPLIER, PLAYER_MAGE_OFFENSE_BOOST } from './balance';
+import { migrateCampaignEnemyDamage, migrateCampaignActionBudget, ACTION_REVIEW_SECONDS, CHARGE_ACCELERATION, MAX_CHARGE_SECONDS, VOLLEY_INTERVAL, VOLLEY_SPREAD, DIFFICULTIES, MANA_COST_MULTIPLIER, PLAYER_MAGE_DAMAGE_MULTIPLIER, PLAYER_MAGE_OFFENSE_BOOST } from './balance';
 import { skillBalanceFactor } from './balanceModel';
 import { evaluateStageEnd } from './stageRules';
 import type { Battle, Unit, Projectile, Skill, Side, Terrain, Vec, Zone, Event, Profile } from './types';
 import { SKILLS, STAGES, ENEMIES, CLASSES } from './data';
 import {attackForHit,attackForSkill,calculateDamage,existenceMultiplier,migrateAirborneBalance} from './existence';
 import {lureStakeFor} from './totemBehavior';
-import { planEnemyLuresSteps, planEnemyMoveSteps, advanceEnemyMove, targetFor, chooseEnemyShotSteps, finishPlanning, friendlyFireRisk, shotViable, shotImpactValue, flyingEnemy, knockbackFlyingEnemy, planWaitingFlights, FLY_MOVE_BUDGET } from './enemyAI';
+import { rankEnemyQueue, type EnemyQueuePriority, planEnemyLuresSteps, planEnemyMoveSteps, advanceEnemyMove, targetFor, chooseEnemyShotSteps, finishPlanning, friendlyFireRisk, shotViable, shotImpactValue, flyingEnemy, knockbackFlyingEnemy, planWaitingFlights, FLY_MOVE_BUDGET } from './enemyAI';
 import { G, STEP, WORLD_W, WORLD_H, clamp, rad, poly, segRect, segmentTerrain, segmentProjectileTerrain, topAt, terrainSurfaces, terrainSlopeAt, terrainRectIntersects, dist, AIM_MIN, AIM_MAX } from './math';
 import { createBattle, groundY, makeEnemy, makeUnit } from './world';
 import { grantXP, applyHero, levelOf, TALENT_MAP, passiveBonus, recommendedLevel, equippedRank, passiveRank, skillDamageFactor, skillRadiusFactor, skillManaFactor, volleyCount, volleyDamage, knockbackResistance, ultimateUnlocked } from './progression';
@@ -85,7 +85,7 @@ export class Engine {
             if(next.done)return next;
         }
     }
-    constructor(b: Battle, onEvent: (e: Event) => void = () => { }, fresh = false) { b.fields ??= []; b.physics ??= makePhysics(STAGES[b.stageId-1]?.physics); b.reviewDamage ??= {}; b.reviewLeft ??= 0; b.occultRevision ??= 1; this.b = b; initializeKeeperRitual(b); if(b.phase!=='won'&&b.phase!=='lost')initializeDamageSequence(b); (globalThis as any).HonroQuestTargets?.migrate(b); ensureWaterfallBody(b); for(const u of b.units){migrateEnemySkills(u);migrateAirborneBalance(u);} this.onEvent = onEvent; restoreWarriorFollow(b); migrateEaters(this); this.applyPhysicsCues(); if (fresh) {
+    constructor(b: Battle, onEvent: (e: Event) => void = () => { }, fresh = false) { b.fields ??= []; b.physics ??= makePhysics(STAGES[b.stageId-1]?.physics); b.reviewDamage ??= {}; b.reviewLeft ??= 0; b.occultRevision ??= 1; this.b = b; migrateCampaignActionBudget(b); if(b.mode==='campaign'&&(b as any).honroStage&&!(b as any).honroCustom&&(b as any).honroMapOrigin!=='workshop')for(const u of b.units)migrateCampaignEnemyDamage(u); initializeKeeperRitual(b); if(b.phase!=='won'&&b.phase!=='lost')initializeDamageSequence(b); (globalThis as any).HonroQuestTargets?.migrate(b); ensureWaterfallBody(b); for(const u of b.units){migrateEnemySkills(u);migrateAirborneBalance(u);} this.onEvent = onEvent; restoreWarriorFollow(b); migrateEaters(this); this.applyPhysicsCues(); if (fresh) {
         this.refreshActivation();
         this.refreshIntents();
     } }
@@ -2112,6 +2112,8 @@ export class Engine {
             delete u.shieldUntil;
         } }
     endTeam(){if(this.b.phase==='summon')return;if(this.b.side===0&&this.runSummonTurn()>0)return;this.completeTeamTransition();}
+    private queuePriorities=new Map<string,EnemyQueuePriority>();
+    enemyQueuePriority(u:Unit|undefined){return u?this.queuePriorities.get(u.id):undefined;}
     switchTeam() {
         settled(this);const b = this.b;
         if (this.checkEnd())
@@ -2119,7 +2121,9 @@ export class Engine {
         if (b.side === 0) {
             b.side = 1;
             this.refreshActivation();
-            const opportunityAllies=this.actors(0),opportunities=new Set(this.combatEnemies().sort((a,c)=>a.lastAct-c.lastAct||Math.min(...opportunityAllies.map(p=>Math.abs(p.x-a.x)))-Math.min(...opportunityAllies.map(p=>Math.abs(p.x-c.x)))).slice(0,b.enemyLimit).map(u=>u.id));
+            const ranked=rankEnemyQueue(this,this.combatEnemies());
+            this.queuePriorities=new Map(ranked.map(p=>[p.unit.id,p]));
+            const opportunities=new Set(ranked.slice(0,b.enemyLimit).map(p=>p.unit.id));
             const skipped = new Set<string>();
             for (const v of this.actors(1))
                 if ((v.stun || 0) > 0) {
@@ -2129,7 +2133,7 @@ export class Engine {
                     skipped.add(v.id);
                     this.fx('text', v.x, v.y - v.h - 15, '#ecd09a', 15, '기절');
                 }
-            const allies = this.actors(0), enemies = this.combatEnemies().filter(v => !skipped.has(v.id)).sort((a, c) => a.lastAct - c.lastAct || Math.min(...allies.map(p => Math.abs(p.x - a.x))) - Math.min(...allies.map(p => Math.abs(p.x - c.x)))).slice(0, b.enemyLimit);
+            const enemies=ranked.filter(p=>!skipped.has(p.unit.id)).slice(0,b.enemyLimit).map(p=>p.unit);
             b.queue = enemies.map(u => u.id);
             for (const u of this.actors(1))
                 u.acted = !b.queue.includes(u.id);
