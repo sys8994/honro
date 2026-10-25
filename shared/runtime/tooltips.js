@@ -128,8 +128,10 @@ D.addEventListener('keydown',e=>{
 },true);
 D.addEventListener('keyup',e=>{if(e.code==='Tab')clearNavigation();},true);
 D.addEventListener('visibilitychange',()=>{if(D.hidden)dismiss();});
-D.addEventListener('scroll',schedule,true);D.addEventListener('fullscreenchange',dismiss);
-G.addEventListener?.('resize',schedule);G.addEventListener?.('blur',dismiss);G.visualViewport?.addEventListener('resize',schedule);G.visualViewport?.addEventListener('scroll',schedule);
+// A stationary pointer no longer owns a button after its viewport moves.
+const viewMoved=()=>{if(mode==='pointer')dismiss();else schedule();};
+D.addEventListener('scroll',viewMoved,true);D.addEventListener('fullscreenchange',dismiss);
+G.addEventListener?.('resize',viewMoved);G.addEventListener?.('blur',dismiss);G.visualViewport?.addEventListener('resize',viewMoved);G.visualViewport?.addEventListener('scroll',viewMoved);
 
 G.HonroTooltips={hide,describe};
 })(globalThis);

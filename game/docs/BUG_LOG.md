@@ -1,6 +1,6 @@
 # 대화·포커스 복원 뒤 남는 tooltip — 2026-10-25
 
-실제 6장 휘겸 선택 대화를 E/Space 키 입력 뒤 열면, 다음 버튼의 자동 focus만으로 tooltip이 생기고 커서가 멀어져도 남는 현상을 재현했다. 모든 키를 keyboard 모드로 기억하던 조건과 focus-visible 대체 조건을 없애고, 한 번의 Tab/Shift+Tab 이동에만 focus tooltip을 허용한다. activation·대화 draw·modal/screen 전환은 intent를 버리고 hover도 실제 포인터 이동 전까지 다시 열지 않는다. 포인터가 재개되면 실제 hovered 소유자로 전환하거나 닫으며 focus는 유지한다. visible tooltip 동안만 DOM 제거와 owner/조상 visibility 속성을 관찰한다. window exit·blur·visibility·fullscreen에서도 닫고 기존 모서리 flip/clamp는 유지한다. 대화 원문·rowId·저장 상태 로직은 변경하지 않았다. 승인된 활/부적 아이콘도 그대로 포함한다.
+실제 6장 휘겸 선택 대화를 E/Space 키 입력 뒤 열면, 다음 버튼의 자동 focus만으로 tooltip이 생기고 커서가 멀어져도 남는 현상을 재현했다. 모든 키를 keyboard 모드로 기억하던 조건과 focus-visible 대체 조건을 없애고, 한 번의 Tab/Shift+Tab 이동에만 focus tooltip을 허용한다. activation·대화 draw·modal/screen 전환은 intent를 버리고 hover도 실제 포인터 이동 전까지 다시 열지 않는다. 포인터가 재개되면 실제 hovered 소유자로 전환하거나 닫으며 focus는 유지한다. visible tooltip 동안만 DOM 제거와 owner/조상 visibility 속성을 관찰한다. window exit·blur·visibility·fullscreen에서도 닫고 기존 모서리 flip/clamp는 유지한다. 포인터 소유 tooltip은 scroll·resize·visualViewport 이동에서도 닫아 정지한 커서와 버튼 위치가 어긋나면 잔존하지 않게 한다. `tests/tooltip-scroll-browser.py`는 실제 wheel로 버튼을 이동시키고 pointermove 0회/tooltip 0개를 확인한다. 대화 원문·rowId·저장 상태 로직은 변경하지 않았다. 승인된 활/부적 아이콘도 그대로 포함한다.
 
 집중 Chromium 확인: E/Space 진입·반복 Space/Enter·hover 후 exit·click/new page·Escape focus restore·Tab↔mouse 전환·중첩 SVG/text 비깜박임·window/hidden owner/DOM 제거·fullscreen·긴 설명 네 모서리 통과. 창 이탈/visibility 이벤트는 명시적 DOM lifecycle fixture다. 전후 재현과 assertion 원본은 `_local/reports/tooltip-lifecycle/`, 검사는 `tests/tooltip-lifecycle-browser.py`. 넓은 게임 검사는 실행하지 않았다.
 
