@@ -30,7 +30,7 @@ body.honro{font:14px system-ui,-apple-system,'Malgun Gothic',sans-serif;color:#d
 .honro-title .top>.icon{margin-left:auto;border-color:#c4cccf30;background:#0b182180;width:44px;height:44px;border-radius:50%}
 .honro-title .title-main{width:min(420px,40vw);max-width:none;margin:auto 0 auto clamp(32px,7vw,130px);padding:0 0 28px;gap:0;align-items:flex-start}
 .honro-title .honro-logo-wrap{width:min(390px,100%);filter:drop-shadow(0 3px 12px #0005)}
-.honro-title .title-main .title-brand{display:block;width:100%;aspect-ratio:1.85;font:400 170px/1 Batang,'Noto Serif KR',serif;letter-spacing:.025em;text-align:center;color:#7d827c;margin:0;position:relative;filter:url(#honro-title-ink)}
+.honro-title .title-main .title-brand{display:block;width:100%;aspect-ratio:1.85;font:400 170px/1 var(--font-body);letter-spacing:.025em;text-align:center;color:#7d827c;margin:0;position:relative;filter:url(#honro-title-ink)}
 /* Keep the approved source alpha/strokes; a stationary coarse ink wash colors only their pixels. */
 .honro-title .title-ink-defs{position:absolute;width:0;height:0;overflow:hidden;pointer-events:none}
 .honro-title .title-hanja{display:grid;place-items:center;width:100%;aspect-ratio:1859/846}

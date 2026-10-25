@@ -13,7 +13,7 @@ import {planWebAssetRetention,selectPublishedGenerations,publishedRetention} fro
 const read=async p=>(await readFile(path.join(root,p),'utf8')).replace(/\r\n/g,'\n');
 const hash=body=>createHash('sha256').update(body).digest('hex');
 const quote=JSON.stringify;
-const gameStyles=['game/vendor/ui/arcfall-layout.css','game/vendor/style.css',...['hud','presentation','controls','unit-info','training','guide','skill-presentation','journey','title','fonts','act3-void','act-endings','skill-icons','clear-report'].map(n=>`game/src/${n}.css`)];
+const gameStyles=['game/vendor/ui/arcfall-layout.css','game/vendor/style.css',...['hud','presentation','controls','unit-info','training','guide','skill-presentation','journey','title','fonts','act3-void','act-endings','skill-icons','clear-report','game-interface'].map(n=>`game/src/${n}.css`)];
 const vectorGlobals=new Set(['shared/assets/party/party.runtime.js','shared/assets/monsters/monsters.runtime.js','shared/assets/actors/actors.runtime.js']);
 const cssTag=file=>`<link rel="stylesheet" href="${file}">`;
 const scriptTag=file=>`<script type="module" src="${file}"></script>`;
@@ -175,7 +175,14 @@ export async function buildWeb({vector=true,destination=path.join(root,'HONRO.ht
   await flushScripts(gameOnly);
   const stageRules=gameOnly.find(file=>file.includes('shared-runtime-stage-rules.'));
   assert(stageRules,'Stage View rules required');
-  const styles=[];for(const source of gameStyles)styles.push(await emit('styles',source.replace(/\.css$/,''),'css',await read(source)));
+  const styles=[];for(const source of gameStyles){
+    let css=await read(source);
+    if(source==='game/src/fonts.css'){
+      const refs=[...new Set([...css.matchAll(/url\("(\.\.\/\.\.\/shared\/assets\/fonts\/[^"]+)"\)/g)].map(m=>m[1]))];
+      for(const ref of refs){const asset=path.posix.normalize(path.posix.join('game/src',ref)),file=await emit('fonts',path.posix.basename(asset,'.woff2'),'woff2',await readFile(path.join(root,asset)));css=css.replaceAll(ref,relative('web/styles/fonts.css',file));}
+    }
+    styles.push(await emit('styles',source.replace(/\.css$/,''),'css',css));
+  }
   const workshopStyle=await emit('styles','workshop','css',await read('workshop/src/style.css'));
   const art={};
   for(const [key,file]of Object.entries({landscape:'landscape.webp',portrait:'portrait.webp',landscapeFallback:'landscape.jpg',portraitFallback:'portrait.jpg',logo:'wordmark.png',hanja:'hanja-wordmark.png'})){
