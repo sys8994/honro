@@ -186,6 +186,8 @@
 @media (hover:none) and (pointer:coarse) and (orientation:landscape) and (max-height:550px){.honro .context-interact{bottom:max(132px,calc(env(safe-area-inset-bottom) + 122px))}.honro .context-interact button{min-height:48px;min-width:145px;padding:6px 11px}}
 
 .honro .context-interact button{display:grid;grid-template-columns:1fr;grid-template-rows:auto auto;align-items:center}
+.honro .context-interact button:disabled{opacity:1;background:#1c2e34;border-color:#687779;color:#c5cec8;box-shadow:none}
+.honro .context-interact button:disabled strong{white-space:normal;overflow:visible;overflow-wrap:anywhere;line-height:1.4}
 
 /* Experience belongs in character inspection, not a permanent HUD row. */
 .honro #app .arcfall-hud .hud-vitals{position:relative!important;padding-bottom:0!important}
