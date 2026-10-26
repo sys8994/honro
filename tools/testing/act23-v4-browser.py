@@ -22,7 +22,7 @@ with sync_playwright() as p:
  page.goto(BASE+'/HONRO.html');page.wait_for_function('!!globalThis.HonroApp&&!!globalThis.HonroAct23V4',timeout=120000)
  assert page.evaluate('HONRO_ACT23_V4_PHASE_A===true'),'private candidate build required'
  page.evaluate(SETUP);rows=[]
- for stage in ([] if os.environ.get('HONRO_STATE_ONLY')=='1' else range(11,31)):
+ for stage in ([] if os.environ.get('HONRO_STATE_ONLY')=='1' or os.environ.get('HONRO_CARE_ONLY')=='1' else range(11,31)):
   page.evaluate(LAUNCH,stage);page.wait_for_function('n=>HonroApp.engine?.b.honroStage===n&&HonroApp.screen==="battle"',arg=stage,timeout=120000)
   assert page.evaluate('HonroApp.engine.b.honroAct23V4Revision===1')
   for mode in ['structure','detail','mobile']:
@@ -40,6 +40,22 @@ with sync_playwright() as p:
   page.set_viewport_size({'width':1280,'height':800})
   page.evaluate('p=>{const a=HonroApp,s=a.scene;a.updateHUD(true);s.manual=true;s.cinematic=null;s.goalFocus=null;s.storyTween=null;s.focusUntil=0;s.cameraIntent=null;s.x=p.x;s.y=p.y;s.scale=p.scale;s.render(a.engine,0,a.selected,a.power,false,0,true);}',{'x':x,'y':y,'scale':scale})
   file=f'{stage}-{name}.png';page.locator('#battlecanvas').screenshot(path=str(OUT/file));rows.append({'stage':stage,'state':name,'proof':proof,'file':file,'scope':'qualified placement/combat fixture; actual production topology/movement and Canvas'})
+ if os.environ.get('HONRO_CARE_ONLY')=='1':
+  page.evaluate(LAUNCH,20)
+  setup20="""()=>{const a=HonroApp,e=a.engine,b=e.b,V=HonroAct23V4,r=V.mem(b),floor=x=>HonroMapEngine.surfaceY(b.terrain,x,undefined,'act2-floor').y;for(const u of b.units)if(u.side===1){u.dead=true;u.hp=0;}for(const s of V.steps(b)){if(s.id==='escort-mid')break;r.done[s.id]=true;}r.convoyStarted=true;r.ringRemoved=true;for(const h of V.heroes(b))Object.assign(h,{x:7000,y:floor(7000),vx:0,vy:0,airborne:false,jumping:false,acted:false});const u=e.unit('objective');Object.assign(u,{x:4000,y:floor(4000),vx:0,vy:0,airborne:false,jumping:false});e.hurt(u,20,'fixture');V.tick(a,.025);if(HonroAct23V4Act3.convoyCare(b).injured.status!=='waiting-support')throw Error('care wait');return HonroAct23V4Act3.convoyCare(b);}"""
+  state(20,'injured-waiting',setup20,4100,3720,.8)
+  page.evaluate('HonroApp.stopBattle()');page.reload();page.wait_for_function('!!globalThis.HonroApp&&HonroApp.screen==="title"');page.evaluate(SETUP);page.evaluate('HonroApp.continue()');page.wait_for_function('HonroApp.screen==="battle"')
+  assert page.evaluate('HonroAct23V4Act3.convoyCare(HonroApp.engine.b).injured.status==="waiting-support"')
+  join20="""()=>{const a=HonroApp,e=a.engine,b=e.b,u=e.unit('objective'),h=HonroAct23V4.heroes(b)[0],from=u.x;for(let i=0;i<20;i++){const x=u.x+110;Object.assign(h,{x,y:HonroMapEngine.surfaceY(b.terrain,x,undefined,'act2-floor').y,vx:0,vy:0,airborne:false,jumping:false,acted:false});b.active=h.id;b.side=0;b.phase='aim';HonroAct23V4.tick(a,.025);e.stepUnits(.025);}const q=HonroAct23V4Act3.convoyCare(b);if(q.injured.status!=='supported'||u.x<=from)throw Error(JSON.stringify(q));return{from,to:u.x,care:q};}"""
+  state(20,'injured-supported',join20,4180,3700,.8)
+  bag20="""()=>{const a=HonroApp,e=a.engine,b=e.b;for(const[id,x]of[['convoy-mason',5105],['convoy-gilchan',5200]])Object.assign(e.unit(id),{x,y:HonroMapEngine.surfaceY(b.terrain,x,undefined,'act2-floor').y,vx:0,vy:0,airborne:false,jumping:false});for(let i=0;i<12;i++){b.phase='aim';b.side=0;HonroAct23V4.tick(a,.025);e.stepUnits(.025);}const q=HonroAct23V4Act3.convoyCare(b);if(q.baggage.status!=='handoff')throw Error(JSON.stringify(q));return q.baggage;}"""
+  state(20,'baggage-handoff',bag20,5160,3550,.9)
+  page.evaluate('HonroApp.stopBattle()');page.reload();page.wait_for_function('!!globalThis.HonroApp&&HonroApp.screen==="title"');page.evaluate(SETUP);page.evaluate('HonroApp.continue()');page.wait_for_function('HonroApp.screen==="battle"')
+  assert page.evaluate('HonroAct23V4Act3.convoyCare(HonroApp.engine.b).baggage.status==="handoff"')
+  state(20,'baggage-carried',"""()=>{const a=HonroApp;for(let i=0;i<25;i++){a.engine.b.phase='aim';a.engine.b.side=0;HonroAct23V4.tick(a,.025);a.engine.stepUnits(.025);}const q=HonroAct23V4Act3.convoyCare(a.engine.b);if(q.baggage.status!=='carried'||q.baggage.owner!=='convoy-gilchan'||q.baggage.transfers!==1)throw Error(JSON.stringify(q));return q.baggage;}""",5160,3550,.9)
+  context.close();browser.close();assert not errors,errors
+  (OUT/'care-capture.json').write_text(json.dumps({'scope':'Supported poses/combat fixture; original care motion, actual Canvas and browser localStorage/Continue','rows':rows,'pageErrors':errors},ensure_ascii=False,indent=2)+'\n')
+  print('PASS actual20 Canvas care wait/join, bag handoff/carried and two browser reload/Continue boundaries',flush=True);raise SystemExit(0)
  page.evaluate(LAUNCH,13);state(13,'inside-latch-work-shelves',None,4400,3800,.7)
  if os.environ.get('HONRO_ART_SINGLE')=='13':
   context.close();browser.close();print('PASS focused13 work-shelf Canvas capture',flush=True);raise SystemExit(0)

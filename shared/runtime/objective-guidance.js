@@ -36,7 +36,7 @@ function interactReason(b,st,s,m){const u=b.units.find(u=>u.id===b.active),point
  if(st.act===2&&s.kind==='rescue'){const spirit=b.units.find(v=>v.id===m?.spiritId);if(alive(spirit)&&u.cls!=='occultist')return'소단으로 전환하거나 붙은 혼을 제압';}
  return s.label;
 }
-function enhance(b,st,result){if(b.honroCustom)return result;
+function enhance(b,st,result){if(b.honroCustom||G.HonroAct23V4?.active(b))return result;
  const A=st.act===3?G.HonroAct3:st.act===2?G.HonroAct2:null,list=A?.steps(b)||[],s=A?.current(b),checklist=list.map(q=>({id:q.id,text:stepText(q,st.id),done:!!result.allTargets?.find(t=>t.id===q.id)?.done}));
  let summary=result.summary,blockReason='';
  if(list.length){summary=summary.replace(/^(\d+\/\d+) · /,'완료 $1 · ');if(s){const m=A.marker?A.marker(b,s.id):(b.honroMarkers||[]).find(m=>m.id===s.id);

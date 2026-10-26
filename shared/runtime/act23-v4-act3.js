@@ -13,6 +13,21 @@ function walk(app,u,goal,{radius=90,lead=true}={}){const b=app.engine.b;if(!aliv
  const before={x:u.x,y:u.y};u.fixed=false;app.engine.walk(u,dir,Math.min(app.honroV4Dt||.016,.05),true);u.honroV4Distance=(u.honroV4Distance||0)+Math.hypot(u.x-before.x,u.y-before.y);app.dirty=true;return V.near(u,goal,radius);
 }
 function capture(app,id,point){const b=app.engine.b,key='v4:'+b.honroStage+':'+id;if(m(b).cargo?.[key])return;const actor=V.heroes(b).find(u=>V.near(u,point,260));if(!actor)return;m(b).cargo??={};m(b).cargo[key]={id:key,owner:actor.cls,round:b.round,source:{x:point.x,y:point.y},revision:1};app.profile.honroV4Cargo??={};app.profile.honroV4Cargo[key]=clone(m(b).cargo[key]);}
+function convoyCare(b){return m(b).convoyCare??={version:1,injured:{id:'objective',status:'walking',distance:0,supportedDistance:0,supportId:null,joins:0},baggage:{id:'20.family-baggage',owner:'convoy-mason',status:'with-mason',elapsed:0,transfers:0}};}
+const grounded=(b,u)=>alive(u)&&!u.airborne&&!u.jumping&&G.HONRO_CORE.validTerrainContactPose(b.terrain,u);
+function careReady(b){const q=convoyCare(b);return q.injured.reachedRest===true&&q.injured.supportedDistance>=80&&q.baggage.status==='carried'&&q.baggage.owner==='convoy-gilchan'&&q.baggage.transfers===1;}
+function careTick(app,dt){const b=app.engine.b,q=convoyCare(b),a=q.injured,u=unit(b,a.id),bag=q.baggage,rest=mark(b,'hold-convoy'),father=unit(b,'convoy-mason'),son=unit(b,'convoy-gilchan');if(!alive(u))return;
+ // The existing anonymous convoy body represents the injured survivor. No
+ // extra crowd or random damage is fabricated, and ordinary damage stays real.
+ if(!a.stopped&&(a.distance>=120||u.hp<u.maxHp)){a.stopped=true;a.status='waiting-support';a.stop={x:u.x,y:u.y,round:b.round};V.slot(app,'20.injured-support',{source:u.id,point:a.stop});}
+ if(a.stopped){const old=unit(b,a.supportId),eligible=h=>grounded(b,h)&&V.near(h,u,185);if(!eligible(old)){a.supportId=null;a.status='waiting-support';const next=V.heroes(b).filter(eligible).sort((x,y)=>Math.abs(x.x-u.x)-Math.abs(y.x-u.x))[0];if(next){a.supportId=next.id;a.status='supported';a.joins++;}}
+  if(a.status==='supported'&&grounded(b,u)&&V.near(u,rest,120)&&a.supportedDistance>=80){a.reachedRest=true;V.ackSlot(b,'20.injured-support',{support:a.supportId,distance:a.supportedDistance,rest:{x:u.x,y:u.y}});}}
+ if(bag.status!=='carried'&&grounded(b,father)&&grounded(b,son)&&V.near(father,rest,220)&&V.near(father,son,180)){
+  if(bag.status==='with-mason'){bag.status='handoff';V.slot(app,'20.gilchan-baggage',{source:father.id,recipient:son.id,item:bag.id});}
+  bag.elapsed=Math.min(.65,bag.elapsed+Math.max(0,dt));father.honroScenePose={kind:'inspect',time:bag.elapsed};son.honroScenePose={kind:'inspect',time:bag.elapsed};
+  if(bag.elapsed>=.65){bag.status='carried';bag.owner=son.id;bag.transfers=1;bag.proof={from:father.id,to:son.id,round:b.round,point:{x:son.x,y:son.y}};delete father.honroScenePose;delete son.honroScenePose;V.ackSlot(b,'20.gilchan-baggage',bag.proof);app.engine.emit?.('save');}
+ }else if(bag.status==='handoff'){delete father?.honroScenePose;delete son?.honroScenePose;}
+}
 function author(map,project){const n=map.metadata.stageId,base=clone(map.initialState[n<=20?'honroAct2Steps':'honroAct3Steps']||[]);map.initialState.honroV4Steps=base;
  if(n===19){setSteps(map,base.map(s=>s.id.startsWith('send-')?{...s,kind:'v4-farewell'}:s));for(const p of map.markers)if(p.id.startsWith('send-'))delete p.action;map.events=[];map.units=map.units.filter(u=>u.team!=='enemy');for(const [i,u]of map.units.filter(u=>u.team!=='player').entries()){u.label='19.visitor.'+i;u.stageOverrides={...u.stageOverrides,name:u.label};}map.initialState.honroV4Offerings=[1,2,3].map(i=>({id:'v4.19.offering.'+i,...at(map,'separate-'+i)}));
   // This is the same bell after the new partial lift, not the legacy +200
@@ -28,7 +43,7 @@ function author(map,project){const n=map.metadata.stageId,base=clone(map.initial
   marker(map,'20.ring',ring);marker(map,'20.outside',outside);marker(map,'wave-clear-pass',wave);
   const list=base.map(s=>s.id==='hold-convoy'?step(s.id,'v4-regroup'):s.id==='clear-pass'?step(s.id,'v4-ambush-clear',{defeatIds:map.units.filter(u=>u.team==='enemy'&&u.x>=6550&&u.x<=8700).map(u=>u.id)}):s);
   setSteps(map,[step('20.ring','interact',{requiredClass:'mage'}),...list,step('20.outside','v4-outside',{requiredClass:'knight'})]);
-  for(const u of map.units)if(u.stageOverrides?.honroConvoyMember){delete u.stageOverrides.honroConvoyMember;u.stageOverrides.honroProtected=true;u.stageOverrides.fixed=false;u.stageOverrides.maxMove=600;u.stageOverrides.moveLeft=600;}
+  for(const u of map.units)if(u.stageOverrides?.honroConvoyMember){delete u.stageOverrides.honroConvoyMember;u.stageOverrides.honroProtected=true;u.stageOverrides.fixed=false;u.stageOverrides.maxMove=600;u.stageOverrides.moveLeft=600;if(u.id==='objective'){u.label='20.injured-survivor';u.stageOverrides.name=u.label;u.stageOverrides.honroV4RescueRole='injured';}}
   map.initialState.honroV4Convoy=['objective','convoy-gilchan','convoy-mason'];map.initialState.honroV4ConvoyAmbush={id:'v4.20.ambush',count:4,point:wave};npc(map,'20.town-refugee',outside);
  }
  if(n===21){setSteps(map,base);const p=at(map,'refuge-hold');npc(map,'v4.gwakjin',{x:p.x+290,y:p.y},{guard:true});npc(map,'v4.gate-soldier-1',{x:p.x+410,y:p.y},{guard:true,honroProtected:false});npc(map,'v4.gate-soldier-2',{x:p.x+490,y:p.y},{guard:true,honroProtected:false});map.initialState.honroV4ArmorDistinction={current:['v4.gwakjin','v4.gate-soldier-1','v4.gate-soldier-2'],old:map.units.filter(u=>u.team==='enemy'&&/possessed/.test(u.kind)).map(u=>u.id)};}
@@ -40,7 +55,7 @@ function author(map,project){const n=map.metadata.stageId,base=clone(map.initial
  if(n===27){setSteps(map,base);map.initialState.honroV4Steps.find(s=>s.id==='depot-route-ledger').kind='v4-stake-proof';map.initialState.honroV4MaterialEvidence=[{id:'v4.27.family-tags',...at(map,'family-manifest')}];}
  if(n===28){const list=base.filter(s=>!['closure-order','suppression-order'].includes(s.id));for(const s of list)if(s.id==='party-reunion')Object.assign(s,{allHeroes:true,radius:440});const p=at(map,'party-reunion');npc(map,'v4.gwakjin',{x:p.x+400,y:p.y},{guard:true,allyRole:'channeler'});npc(map,'v4.fire-resident-1',{x:p.x+510,y:p.y});npc(map,'v4.fire-resident-2',{x:p.x+600,y:p.y});setSteps(map,list);map.initialState.honroV4FireEvacuation={ids:['v4.fire-resident-1','v4.fire-resident-2'],guard:'v4.gwakjin',destination:{x:6650,y:2590}};}
 }
-function prepare(b){const n=b.honroStage;m(b);if(n===20){b.honroConvoyActors=[];for(const id of b.honroV4Convoy||[]){const u=unit(b,id);if(u){delete u.honroVisualOnly;u.honroProtected=true;u.maxMove=u.moveLeft=600;u.fixed=false;}}}
+function prepare(b){const n=b.honroStage;m(b);if(n===20){convoyCare(b);b.honroConvoyActors=[];for(const id of b.honroV4Convoy||[]){const u=unit(b,id);if(u){delete u.honroVisualOnly;u.honroProtected=true;u.maxMove=600;if(!Number.isFinite(u.moveLeft))u.moveLeft=600;u.fixed=false;}}}
  if(n===19)G.HonroStage19Farewell.prepare(b);
  if(n===28){m(b).fireStartEnd??=b.teamEnds?.[1]||0;m(b).fireTurns??=0;}
  if(n===27)G.HonroAct3Void.initializeFresh(b);
@@ -60,7 +75,7 @@ function use(app,p){const b=app.engine.b,s=V.readySteps(b).find(s=>s.id===p.id),
 }
 function stepSatisfied(b,s){const n=b.honroStage,root=m(b);if(n===19&&s.id.startsWith('send-'))return root.farewell?.[s.id]?.status==='done';
  if(n===19&&s.id==='old-soul')return !!root.transportTraceProof;
- if(n===20&&s.id==='hold-convoy')return !!root.convoyGoals?.[s.id]&&!b.units.some(u=>u.side===1&&alive(u)&&!u.honroObjectiveTarget&&V.near(u,mark(b,s.id),600));
+ if(n===20&&s.id==='hold-convoy')return careReady(b)&&!!root.convoyGoals?.[s.id]&&!b.units.some(u=>u.side===1&&alive(u)&&!u.honroObjectiveTarget&&V.near(u,mark(b,s.id),600));
  if(n===20&&s.id==='clear-pass'){const q=root.convoyAmbush;return !!q?.admitted&&q.ids.length===b.honroV4ConvoyAmbush.count&&[...q.ids,...(s.defeatIds||[])].every(id=>{const u=unit(b,id);return !!u&&(!alive(u)||u.side!==1||u.honroSubdued);});}
  if(n===20&&s.id==='20.outside')return !!root.outsideProof;
  if(n===24&&s.id==='land-register')return !!root.entrances?.water&&!!root.entrances?.ground;
@@ -71,7 +86,10 @@ function stepSatisfied(b,s){const n=b.honroStage,root=m(b);if(n===19&&s.id.start
 }
 function escort(app,s,ids,rootkey){const b=app.engine.b,root=m(b),goal=mark(b,s.id);if(!goal)return;root[rootkey]??={};let all=true;
  const waypoints=b.honroMarkers.filter(p=>p.id.startsWith('route:'+s.id+':')).sort((a,z)=>Number(a.id.split(':').at(-1))-Number(z.id.split(':').at(-1)));
- for(const [i,id]of ids.entries()){const u=unit(b,id);if(!alive(u)){all=false;continue;}root.escortWaypoints??={};const k=s.id+':'+id;let index=root.escortWaypoints[k]||0;while(waypoints[index]&&V.near(u,waypoints[index],100))index++;root.escortWaypoints[k]=index;const dest=waypoints[index]||{x:goal.x-i*65,y:goal.y};if(!walk(app,u,dest,{radius:90}))all=false;}
+ for(const [i,id]of ids.entries()){const u=unit(b,id);if(!alive(u)){all=false;continue;}const care=b.honroStage===20?convoyCare(b):null,a=care?.injured,bag=care?.baggage;
+  if((a?.id===id&&a.stopped&&a.status!=='supported')||(bag?.status==='handoff'&&['convoy-mason','convoy-gilchan'].includes(id))){all=false;continue;}
+  root.escortWaypoints??={};const k=s.id+':'+id;let index=root.escortWaypoints[k]||0;while(waypoints[index]&&V.near(u,waypoints[index],100))index++;root.escortWaypoints[k]=index;const dest=waypoints[index]||{x:goal.x-i*65,y:goal.y},before={x:u.x,y:u.y};if(!walk(app,u,dest,{radius:90,lead:!(a?.id===id&&a.stopped)}))all=false;
+  if(a?.id===id){const moved=Math.hypot(u.x-before.x,u.y-before.y);a.distance+=moved;if(a.status==='supported')a.supportedDistance+=moved;}}
  if(all&&ids.every(id=>(unit(b,id)?.honroV4Distance||0)>80))root[rootkey][s.id]=true;
 }
 function convoyPressure(app){const e=app.engine,b=e.b,root=m(b),spec=b.honroV4ConvoyAmbush;if(!spec)return;let q=root.convoyAmbush;
@@ -91,7 +109,7 @@ function tick(app,dt){const b=app.engine.b,n=b.honroStage,root=m(b);app.honroV4D
   for(const [id,q]of Object.entries(root.farewell||{}))if(q.status==='moving'){q.elapsed=Math.min(1,q.elapsed+Math.max(0,dt));if(q.elapsed>=1){q.status='done';V.ackSlot(b,'19.'+id,{movement:180});const s=V.steps(b).find(s=>s.id===id);if(s)V.completeStep(app,s);}}
   if(root.transportMarks&&!root.transportTraceProof){const q=root.transportMarks,u=unit(b,q.actor);if(alive(u)&&V.near(u,mark(b,'old-soul'),260)){q.elapsed=Math.min(.8,q.elapsed+Math.max(0,dt));u.honroScenePose={kind:'inspect',time:q.elapsed};if(q.elapsed>=.8){delete u.honroScenePose;root.transportTraceProof={ids:['mumyeong-transfer','royal-seal','jeomungol-mark'],actor:q.actor};V.ackSlot(b,'19.transport-traces',root.transportTraceProof);}}}
   if(root.done.route)G.HonroStage19Farewell.prepare(b);}
- if(n===20&&root.convoyStarted){const s=V.current(b);if(['escort-mid','hold-convoy','escape'].includes(s?.id))escort(app,s,b.honroV4Convoy||['objective'],'convoyGoals');if(root.done['hold-convoy'])convoyPressure(app);
+ if(n===20&&root.convoyStarted){careTick(app,dt);const s=V.current(b);if(['escort-mid','hold-convoy','escape'].includes(s?.id))escort(app,s,b.honroV4Convoy||['objective'],'convoyGoals');if(root.done['hold-convoy'])convoyPressure(app);
   if(root.outsideScene&&!root.outsideProof&&root.convoyGoals?.escape){const q=root.outsideScene,point=mark(b,'20.outside'),party=V.heroes(b),worker=unit(b,'convoy-mason'),child=unit(b,'convoy-gilchan');if(alive(worker)&&alive(child)&&alive(unit(b,'20.town-refugee'))&&party.some(u=>u.cls==='knight'&&V.near(u,point,300))&&[worker,child].every(u=>V.near(u,point,650))){q.elapsed=Math.min(.8,q.elapsed+Math.max(0,dt));if(q.elapsed>=.8){root.outsideProof={phaseA:true,actor:q.actor,townReporter:'20.town-refugee',survivors:(b.honroV4Convoy||[]).filter(id=>alive(unit(b,id))),timeGapReady:true,townCrisisReady:true};V.ackSlot(b,'20.time-gap.required',{phaseA:true,place:'outside'});V.ackSlot(b,'20.current-town-crisis.required',{phaseA:true,place:'outside'});}}}
  }
  if(n===23&&root.carrierStarted){const s=V.current(b);if(['dock-mid','dock-exit'].includes(s?.id))escort(app,s,['act3-carrier'],'carrierGoals');}
@@ -101,16 +119,20 @@ function tick(app,dt){const b=app.engine.b,n=b.honroStage,root=m(b);app.honroV4D
  }
 }
 function failure(b){if(b.honroStage===28&&!(m(b).done['fire-screen']&&m(b).done['water-release'])&&m(b).fireTurns>=12)return'v4.28.fire';return null;}
-function complete(b){if(b.honroStage===28)return !!m(b).evacuationSafe;if(b.honroStage===19)return !!m(b).transportTraceProof;if(b.honroStage===20)return !!m(b).ringRemoved&&!!m(b).outsideProof&&!!m(b).convoyGoals?.escape;return true;}
+function complete(b){if(b.honroStage===28)return !!m(b).evacuationSafe;if(b.honroStage===19)return !!m(b).transportTraceProof;if(b.honroStage===20)return careReady(b)&&!!m(b).ringRemoved&&!!m(b).outsideProof&&!!m(b).convoyGoals?.escape;return true;}
+function state(b){if(b.honroStage!==20)return{};const q=convoyCare(b),u=unit(b,q.injured.id);return q.injured.status==='waiting-support'&&alive(u)?{targets:[{id:'20.injured-support',kind:'actor',label:'20.injured-support',x:u.x,y:u.y}]}:{};}
 function draw(scene,c,b){const n=b.honroStage,root=m(b),time=scene.time||0;
  if(n===19){for(let i=1;i<=3;i++){const p=mark(b,'separate-'+i),q=root.farewell?.['send-'+i],progress=q?.elapsed||0;if(root.done['send-'+i])continue;const x=p.x+38+progress*180,y=p.y-progress*120;c.save();c.translate(x,y);c.scale(.6,.6);c.globalAlpha=(root.done['separate-'+i]?.8:.35)*(1-progress);for(const path of G.HONRO_FAREWELL_SPIRITS?.farewell||[]){c.fillStyle=path.fill;c.fill(new Path2D(path.d));}c.restore();if(root.done['separate-'+i]){c.fillStyle='#a89b76';c.fillRect(p.x-38,p.y-12,30,12);}}
   const p=mark(b,'old-soul');c.save();c.translate(p.x,p.y);c.fillStyle='#70796b';c.fillRect(-70,-27,140,27);c.strokeStyle='#b9ae85';c.lineWidth=3;for(let i=0;i<3;i++){c.strokeRect(-52+i*44,-24,27,19);c.beginPath();c.moveTo(-47+i*44,-18);c.lineTo(-31+i*44,-11);c.stroke();}c.restore();
  }
- if(n===20){const p=mark(b,'20.ring');c.save();c.translate(p.x,p.y);c.rotate(root.ringRemoved?Math.PI*.42:0);c.fillStyle='#645640';c.fillRect(-7,-60,14,60);c.fillStyle='#b3a889';c.fillRect(-10,-50,20,13);c.restore();}
+ if(n===20){const p=mark(b,'20.ring');c.save();c.translate(p.x,p.y);c.rotate(root.ringRemoved?Math.PI*.42:0);c.fillStyle='#645640';c.fillRect(-7,-60,14,60);c.fillStyle='#b3a889';c.fillRect(-10,-50,20,13);c.restore();
+  const q=convoyCare(b),a=q.injured,u=unit(b,a.id),h=unit(b,a.supportId),bag=q.baggage,owner=unit(b,bag.owner),son=unit(b,'convoy-gilchan');
+  if(alive(u)&&a.stopped){c.save();c.strokeStyle='#b5ae93';c.lineWidth=7;c.beginPath();c.moveTo(u.x-13,u.y-u.h*.59);c.lineTo(u.x+13,u.y-u.h*.67);if(a.status==='supported'&&alive(h)&&V.near(h,u,185)){c.moveTo(u.x,u.y-u.h*.6);c.lineTo(h.x,h.y-h.h*.59);}c.stroke();c.restore();}
+  if(alive(owner)){const t=bag.status==='handoff'?bag.elapsed/.65:0,x=owner.x+(alive(son)?son.x-owner.x:0)*t,y=owner.y+(alive(son)?son.y-owner.y:0)*t;c.save();c.translate(x+owner.r+4,y-owner.h*.49);c.fillStyle='#79664b';c.strokeStyle='#c3b18a';c.lineWidth=2;c.fillRect(-13,-14,26,29);c.strokeRect(-13,-14,26,29);c.beginPath();c.moveTo(-13,1);c.lineTo(13,1);c.moveTo(0,-14);c.lineTo(0,15);c.stroke();c.restore();}}
  for(const q of b.honroV4MaterialEvidence||[]){c.save();c.translate(q.x+45,q.y);c.fillStyle='#8c7958';c.fillRect(-27,-29,54,29);c.strokeStyle='#b9a780';c.lineWidth=3;c.strokeRect(-25,-28,50,27);c.beginPath();c.moveTo(-14,-27);c.lineTo(5,-55);c.lineTo(18,-24);c.stroke();c.restore();}
  if(n===22&&b.honroV4RecordBundle){const q=b.honroV4RecordBundle;c.fillStyle='#c1b493';for(let i=0;i<3;i++)c.fillRect(q.x-36+i*26,q.y-44+i*5,22,33);}
  if(n===26||n===28){const p=n===26?b.honroV4Smoke:{x:5270,y:2080};if(p){c.save();c.fillStyle='#20292755';for(let i=0;i<4;i++){c.beginPath();c.ellipse(p.x+Math.sin(time*.35+i)*25,p.y-i*45-(time*10%35),32+i*8,55,0,0,Math.PI*2);c.fill();}c.restore();}}
 }
-const plugin={author,prepare,attach,use,stepSatisfied,tick,failure,complete,draw};for(const id of [19,20,21,22,23,24,25,26,27,28])V.register(id,plugin);
+const plugin={author,prepare,attach,use,stepSatisfied,tick,failure,complete,state,draw,convoyCare,careReady};for(const id of [19,20,21,22,23,24,25,26,27,28])V.register(id,plugin);
 G.HonroAct23V4Act3=plugin;
 })(globalThis);

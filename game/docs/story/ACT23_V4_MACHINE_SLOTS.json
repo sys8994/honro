@@ -5,12 +5,12 @@
   "sources": {
     "act23-v4-act2-scenes.js": "ffdd9fc4095447e5adf4d75882dad82708cc2ff0ddcd10c05f6c9a6a2e5dd6f8",
     "act23-v4-act2.js": "dba50ebc002433cc6b43358bb4d3ca168dbd480dac285e16bc2872fc900efe7e",
-    "act23-v4-act3.js": "7f35c25ec5b5e46367dd3c1d217f61e761efeb592fa2590d858fb2b284879a30",
+    "act23-v4-act3.js": "747785d148226cd73cbfeb00e0fe97bf1034e904e80e48a31af756e55a5d1b93",
     "act23-v4-city.js": "63ce2b53ea42a080023db25536f7cff0b1e374109a6d34ce3f3ff9e7e7fa9d27",
     "act23-v4-stage18.js": "cbc0e9902149c8399d43c6701ac76e2563bc6705d0eda271492eaf4e6b3cbc19",
     "act23-v4-stage29.js": "78787ef352c6c7370c370cc2342a60e8279f6c79831676e2449778cc97130f4d",
     "act23-v4-stage30.js": "8bf287d2c2347413ed774da851e3c5f2a9ea5bca406e6c5ea5d2ce55d7fa94f3",
-    "act23-v4.js": "135dc3420e4b5fcf3ef42a4b70d2b36acf7cacf04fabdd4bf9d025355cebb628"
+    "act23-v4.js": "0f7898fee0b8ebba25143267a0c694a133807b7c093dded6a5da7944a894f545"
   },
   "slotDeclarations": [
     {
@@ -40,57 +40,67 @@
     },
     {
       "file": "act23-v4-act3.js",
-      "line": 51,
+      "line": 22,
+      "expression": "'20.injured-support'"
+    },
+    {
+      "file": "act23-v4-act3.js",
+      "line": 26,
+      "expression": "'20.gilchan-baggage'"
+    },
+    {
+      "file": "act23-v4-act3.js",
+      "line": 66,
       "expression": "'19.transport-traces'"
     },
     {
       "file": "act23-v4-act3.js",
-      "line": 52,
+      "line": 67,
       "expression": "'20.ring-removed'"
     },
     {
       "file": "act23-v4-act3.js",
-      "line": 54,
+      "line": 69,
       "expression": "'20.time-gap.required'"
     },
     {
       "file": "act23-v4-act3.js",
-      "line": 54,
+      "line": 69,
       "expression": "'20.current-town-crisis.required'"
     },
     {
       "file": "act23-v4-act3.js",
-      "line": 55,
+      "line": 70,
       "expression": "'22.records-compare'"
     },
     {
       "file": "act23-v4-act3.js",
-      "line": 56,
+      "line": 71,
       "expression": "'23.material-tags'"
     },
     {
       "file": "act23-v4-act3.js",
-      "line": 57,
+      "line": 72,
       "expression": "'26.ancestor-testimony'"
     },
     {
       "file": "act23-v4-act3.js",
-      "line": 58,
+      "line": 73,
       "expression": "'28.orders-bundle'"
     },
     {
       "file": "act23-v4-act3.js",
-      "line": 78,
+      "line": 96,
       "expression": "'20.ambush.warning'"
     },
     {
       "file": "act23-v4-act3.js",
-      "line": 83,
+      "line": 101,
       "expression": "'20.ambush.admitted'"
     },
     {
       "file": "act23-v4-act3.js",
-      "line": 90,
+      "line": 108,
       "expression": "'19.'+id"
     },
     {
@@ -1811,7 +1821,7 @@
     },
     {
       "stage": 20,
-      "mapRevision": 220,
+      "mapRevision": 320,
       "steps": [
         {
           "id": "20.ring",
