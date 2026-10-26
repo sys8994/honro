@@ -14,4 +14,10 @@
 - 1차 전체 구조: `pass1/stage-5-overview.png`. 상하 동선과 높은 주박목의 위치를 확인했다.
 - 2차 재질/가독성: `pass2/stage-5-tree-detail.png`, `pass2/stage-5-cave-detail.png`. 공통 장식 정책 때문에 빠졌던 굵은 나뭇가지/버팀대를 채워진 재질로 복원했고 공중에 남았던 휴식 표식을 높은 잔교에 접지했다.
 
-위 증거의 루트는 Git 제외된 `_local/reports/stage5-dynamic-20261026/`이다. 생산 HonroScene/Engine의 native Canvas 캡처이며 브라우저 HUD/실제 입력 확인과 구분한다. 3차 모바일/상태 변화는 `pass3/stage-5-mobile-tree.png`, `pass3/stage-5-mobile-cave.png`, `pass3/stage-5-high-shot.png`에서 가지 착지면·동굴 입구·열린 낙수의 실제 사격창을 확인했다. Alt 하강은 세 발판 모두 통과했으며 중간 가지의 다음 착지면은 약97 아래 처마여서 임의100 낙하 검사 임계값을20으로 바로잡았다. revision4→5의 구전투 재시작, 성장/현재 전투/Workshop 보존, 물 상태 반복 적용도 통과했다. 최종 종합, 필요한 빌드와 짧은 정상 입력은 진행 중이다. master/Pages는 부모 검토 전 보류한다.
+위 증거의 루트는 Git 제외된 `_local/reports/stage5-dynamic-20261026/`이다. 생산 HonroScene/Engine의 native Canvas 캡처이며 브라우저 HUD/실제 입력 확인과 구분한다. 3차 모바일/상태 변화는 `pass3/stage-5-mobile-tree.png`, `pass3/stage-5-mobile-cave.png`, `pass3/stage-5-high-shot.png`에서 가지 착지면·동굴 입구·열린 낙수의 실제 사격창을 확인했다. Alt 하강은 세 발판 모두 통과했으며 중간 가지의 다음 착지면은 약97 아래 처마여서 임의100 낙하 검사 임계값을20으로 바로잡았다. revision4→5의 구전투 재시작, 성장/현재 전투/Workshop 보존, 물 상태 반복 적용도 통과했다. 최종 Chromium 종합은 `final-browser/overview.png`, `tree.png`, `cave.png`, `open-shot.png`, `mobile-tree.png`로 확인했다. 빌드된 실제 App/HUD와 canonical revision1 지형을 사용하며 카메라와 열린 물 상태는 명시된 관찰 fixture이다. 브라우저 실행 오류는0건이다. 원경·호수·높은 절벽, 발판/버팀대, 왼쪽 동굴 입구, 열린 낙수와 주박목의 분리를 확인했다.
+
+`npm run build` 완료. 기존 성공 발행 a639460f 그래프를 Pages 실행40272153754의 성공 시각으로 보존한 뒤 빌드했다. 생성 진입 문서는 `web/entries/game.99ea4f551d86ef55.html?embedded=1`이다.
+
+정상 입력 관찰은 `node tests/stage5-dynamic-input-segment.mjs`의 단 한 번 완성된6행동/3적 페이즈로 제한했다(`input/trace.json`). 첫 시도는 반환값 없는 App.jump를 검사 코드가 false로 오인한28프레임 실패로 보존했다. 재시도는 실제 점프 속도를 확인했고1694프레임/R4 아군 시작에서 계획대로 멈췄다. 실제 완료 보상 원장1~4를 사용한 진입 fixture, 정상 난도, 획득 SP의 합법적 훈련/능력 투자, 기본 장비만 사용했다. 장1~4 실제 플레이 및 Stage5 완주를 주장하지 않는다. DOM/시계/렌더는 App harness double이며 전투와 입력은 생산 코드이다.
+
+설오는 (296,2420)에서 실제 점프해 상부(517,2344)에 착지하고(848,2157)로 이동했다. 가까운 박쥐 foe-2를 실제 두 발로 제거하고 사수 foe-3를 공격했다. 담허는(699,2617)로 이동해 가까운 사냥개 foe-0에 실제 피해107을 주고 이후 방어했다. UI에 정규화된 실제 기예는 A14/M06이며 기예 허용·기력·충전·발사 입력을 통과했다. 적 박쥐31, 상부 사수52/51/44, 사냥개57, 접근한 멧돼지51의 실제 아군 피해를 기록했다. 최종 설오297/475·담허444/512로 생존했다. 본 관찰은 입구 점프/상하 진입과 적의 실제 압력을 확인하며, 전체 동선/진 유지/목표 파괴를 잇는 정상 입력 승리는 미검증이다. 전체 물리 경로와 높은 자리 실타격은 위 고립 진단의 범위이다. master/Pages는 부모 검토 전 보류한다.
