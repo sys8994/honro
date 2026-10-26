@@ -13,3 +13,5 @@ These are static documentation evidence; no gameplay assets or build outputs wer
 | `portrait-min.png` | 188386 | `5605644e9f7eaf66fa4a9b1a4329d2efd4cca1ee0dac4fd22c9a49f1f794c331` |
 | `observed-role-phase.png` | 370218 | `fa262169cb57b3d115c1c3c056d4990a716f54f4cc4d94b0caa75ef4e950deb3` |
 | `stage5-review-contact.jpg` | 16208 | `a1bac7eba418ca1491e35a3d9eb421c09d424794c19d174ab5ab8c5d5f2b93da` |
+
+`normal-input-summary.json` records the separate final continuous Stage5 attempt from legal entry through `won` at round15, including actions, actual damage, saved boundaries, initial resources and explicit harness limits. The prepared-pose screenshot above remains diagnostic evidence, not a picture of this winning attempt.
