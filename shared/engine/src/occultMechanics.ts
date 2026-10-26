@@ -22,7 +22,7 @@ export function echoAim(e:Engine,origin:Unit,s:Skill,point:Vec,preferredPower:nu
 }
 
 export function beginOccultCast(e:Engine,u:Unit,s:Skill,roots:Projectile[]){
- if(e.rangePredicting||u.side!==0||u.summoned||!s.id.startsWith('O')||s.enemyOnly)return;
+ if(u.side!==0||u.summoned||!s.id.startsWith('O')||s.enemyOnly)return;
  const soul=SOUL_SKILLS.has(s.id),summon=SUMMON_SKILLS.has(s.id);
  const empowered=(u.soulRemnants||0)>=3;
  if(empowered){u.soulRemnants=0;e.fx('spark',u.x,u.y-u.h*.6,'#d8cfaa',34);}

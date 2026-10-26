@@ -1,5 +1,5 @@
 import {playerRangeSpeed,initializePlayerRange,flightRangeSpent,boundRushMotion,playerRangeApplies,PLAYER_LANTERN_RANGE} from './playerRange';
-import {playerRangePrediction,endPlayerFlight} from './playerRangeMechanics';
+import {endPlayerFlight} from './playerRangeMechanics';
 import {PLAYER_SKILL_AUDIO,type SkillAudioPhase,type SkillAudioSignal} from './skillAudioMap';
 import {initializeKeeperRitual,keeperCollision,keeperImpact,keeperEchoVelocity,beginKeeperRitual,tickKeeperRitual,keeperCastBusy,keeperActionCompleted,keeperBindingReplaced,keeperPressure,clearKeeperRitual} from './keeperRitual';
 import {initializeDamageSequence,rollDamage} from './damageVariance';
@@ -144,9 +144,11 @@ export class Engine {
         }
         if(s.redesigned&&s.cls==='mage')damage*=1+jucheonBoost(u,s);
         if(s.martial&&u.side===0){if(u.harmony)damage*=1+passiveTuning(passiveRank(u,'SP04')).harmonyDamage;if(s.branch==='rush'){damage*=1+passiveTuning(passiveRank(u,'SP01')).rushDamage;speed*=1+.015*passiveRank(u,'SP03');}if(s.branch==='blade')speed*=1+passiveTuning(passiveRank(u,'SP01')).bladeGeometry;}
+        speed=playerRangeSpeed(u,s,speed);
+        // Control effects apply after launch calibration, including tuned BODY casts.
         if (u.bound > 0 && BODY.has(s.mode))
             speed *= .72;
-        return { speed:playerRangeSpeed(u,s,speed), damage, radius };
+        return { speed, damage, radius };
     }
     award(u: Unit, amount: number) {
         if((this.b as any).honroGrowth){(globalThis as any).HonroProgression.awardCombat(this,u,amount);return;}
@@ -320,20 +322,24 @@ export class Engine {
     projectileCollision(a: Vec, c: Vec, r: number, owner: string, hit: string[] = [], units = true, skip: string[] = [], terrain = true, attack?:Projectile): Collision | null {
         return this.collision(a,c,r,owner,hit,units,skip,terrain,true,attack || ('owner' in a ? a as Projectile : undefined));
     }
-    rangePredicting=false;
     predict(u: Unit, skill: Skill, angle: number, power: number, target?: Unit, collect = true, ignoreUnits = false): Prediction {
         if(this.noncombatWalk())return {points:[],x:u.x,y:u.y,closest:99999};
-        const bounded=playerRangePrediction(this,u,skill,angle,power,ignoreUnits,target);if(bounded)return bounded;
         const martial=warriorPrediction(this,u,skill,angle,power);if(martial)return martial;
         const custom=redesignPrediction(this,u,skill,angle,power,false,ignoreUnits);if(custom)return custom;
         const body = BODY.has(skill.mode), origin = this.projectileOrigin(u, skill, angle), v = this.velocity(u, skill, angle, power);
         let x = origin.x, y = origin.y, vx = v.vx, vy = v.vy, apex = false, bounce = 0, pierce = 0, meteor = false, closest = 99999;
         const points: Vec[] = [], ignored: string[] = SOUL_SKILLS.has(skill.id)?this.actors(u.side).map(v=>v.id):[], skips: string[] = [];
         let ap: Vec | undefined;
-        const dt = collect||skill.id==='O05' ? STEP : 1 / 80, r = body ? u.r : ARROWS.has(skill.mode) ? 3 : 6;
+        // The ordinary force/collision predictor shares the immutable launch budget.
+        // No battle clone, simulated fire, summon creation or damage during aiming.
+        const rangeProbe={x,y,flightAge:0} as Projectile;
+        if(skill.cls==='occultist')initializePlayerRange(rangeProbe,u,skill);
+        const bounded=!!rangeProbe.flightRange,newWraith=bounded&&skill.id==='O05';
+        const dt = collect||skill.id==='O05'||bounded ? STEP : 1 / 80, r = body ? u.r : ARROWS.has(skill.mode) ? 3 : 6;
         let age=0,keeperEchoUsed=false,predictionOwner=u.id;
         for (let i = 0; i < Math.ceil((skill.id==='O05'?WRAITH_OUTBOUND_SECONDS:skill.mode.startsWith('honro')?6:12.2) / dt); i++) {
-            age+=dt;
+            age+=dt;Object.assign(rangeProbe,{x,y,flightAge:age});
+            if(!newWraith&&flightRangeSpent(rangeProbe)){if(collect)points.push({x,y});return{points,x,y,closest,apex:ap};}
             // Match live pre-motion triggers, including reverseGhost's timed airburst.
             const fuse=(skill.fuse??0)*(skill.mode==='phaseWraith'?(.55+power*1.05):1);
             if((fuse>0&&age>=fuse)||(skill.mode==='reverseGhost'&&(y<-420||age>2.55))){if(collect)points.push({x,y});return {points,x,y,closest,apex:ap};}
@@ -396,12 +402,15 @@ export class Engine {
                         points.push({ x: h.x, y: h.y });
                     continue;
                 }
+                // New O05 guides end at the same manifest offset as the live path.
+                const endpoint=newWraith&&h.terrain?{x:h.x+h.n.x*(r+2),y:h.y+h.n.y*(r+2)}:h;
                 if (collect)
-                    points.push({ x: h.x, y: h.y });
-                return { points, x: h.x, y: h.y, unit: h.unit?.id, terrain: h.terrain?.id, closest, apex: ap };
+                    points.push({x:endpoint.x,y:endpoint.y});
+                return { points, x:endpoint.x,y:endpoint.y, unit:h.unit?.id,terrain:h.terrain?.id,closest,apex:ap };
             }
             x = nx;
             y = ny;
+            if(newWraith&&flightRangeSpent({...rangeProbe,x,y})){if(collect)points.push({x,y});return{points,x,y,closest,apex:ap};}
             if (collect && i % 3 === 0)
                 points.push({ x, y });
             // Use the live projectile's removal bounds, including phase-through shots

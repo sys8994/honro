@@ -20,6 +20,21 @@ for(const id of ['O01','O04','O05','O16']){
  endpoint??={x:f.p.x,y:f.p.y};assert(Math.hypot(endpoint.x-prediction.x,endpoint.y-prediction.y)<1e-6,id+' live and guide endpoint');
  assert(f.p.flightRange&&f.p.rangeRevision===1);rows.push({id,kind:'guide/airburst',endpoint,age:f.p.age});
 }
+// Control penalties follow calibration; legacy BODY and a tuned BODY fixture retain .72.
+{
+ const f=arena('S01'),skills=[C.SKILLS.LS01,{...C.SKILLS.S01,mode:'leap'}];
+ for(const skill of skills){f.u.bound=0;const clear=f.e.effective(skill,f.u);f.u.bound=1;const bound=f.e.effective(skill,f.u);assert(Math.abs(bound.speed/clear.speed-.72)<1e-12);assert.equal(bound.damage,clear.damage);rows.push({id:skill.id,kind:'BODY bound after calibration',clear:clear.speed,bound:bound.speed});}
+}
+// Aiming never clones the world, casts, damages or summons. collect=false is honored.
+{
+ const clone=g.structuredClone;let clones=0;g.structuredClone=(v)=>{clones++;return clone(v);};
+ for(const id of ['O01','O04','O05','O06','O11','O14']){
+  const f=arena(id),before=plain(f.b),slow=f.e.predict(f.u,C.SKILLS[id],5,1),fast=f.e.predict(f.u,C.SKILLS[id],5,1,undefined,false);
+  assert.equal(fast.points.length,0,id+' collect=false');assert.deepEqual(plain(f.b),before,id+' prediction side effects');
+  if(['O01','O04','O05'].includes(id))assert(Math.hypot(slow.x-fast.x,slow.y-fast.y)<1e-6,id+' exact budget endpoint');
+ }
+ assert.equal(clones,0);g.structuredClone=clone;
+}
 // Low charge ends nearby; range/time is immutable across delayed clones and children.
 for(const id of ['O01','O04','O05']){const f=arena(id,{power:.15});finish(f);assert(f.p.x<1700,id+' weak charge cannot fly to maximum range');}
 {
