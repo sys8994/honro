@@ -1,0 +1,167 @@
+{
+  "frozen_inputs": [
+    "honro-act2-v4-dialogue-draft-part1.json",
+    "honro-act2-v4-dialogue-draft-part2.json"
+  ],
+  "target": "honro-act2-v4-dialogue-draft.json",
+  "changes": [
+    {
+      "id": "A2.S11.MID.03",
+      "kind": "wording",
+      "before": "몸에서 나온 혼을 놓치지 마라. 다른 것에 붙는다.",
+      "after": "몸에서 나온 혼을 놓치지 말게. 다른 것에 붙네."
+    },
+    {
+      "id": "A2.S12.MID.03",
+      "kind": "wording",
+      "before": "길표에 진이 걸렸다. 돌림진이다.",
+      "after": "길표에 진이 걸렸네. 돌림진이야."
+    },
+    {
+      "id": "A2.S12.MID.05",
+      "kind": "wording",
+      "before": "한쪽이 풀렸군. 혼만 바깥으로 새고 있다.",
+      "after": "한쪽이 풀렸군. 혼만 바깥으로 새고 있네."
+    },
+    {
+      "id": "A2.S12.MID.08",
+      "kind": "wording",
+      "before": "이제 같은 자리로 돌려보내지는 못한다.",
+      "after": "이제 같은 자리로 돌려보내지는 못하네."
+    },
+    {
+      "old_id": "A2.S12.CHOICE.01",
+      "new_id": "A2.S12.UI_CHOICE.01",
+      "namespace": "ui_only",
+      "kind": "id_migration",
+      "reason": "dialogue CHOICE IDs are preserved; only UI IDs migrate"
+    },
+    {
+      "old_id": "A2.S12.CHOICE.02",
+      "new_id": "A2.S12.UI_CHOICE.02",
+      "namespace": "ui_only",
+      "kind": "id_migration",
+      "reason": "dialogue CHOICE IDs are preserved; only UI IDs migrate"
+    },
+    {
+      "id": "A2.S13.MID.03",
+      "kind": "wording",
+      "before": "손을 펴게. 붙은 것은 우리가 잡는다.",
+      "after": "손을 펴게. 붙은 것은 우리가 잡겠네."
+    },
+    {
+      "id": "A2.S14.MID.08",
+      "kind": "wording",
+      "before": "귀를 막게. 우리 쪽을 봐.",
+      "after": "귀를 막게. 우리 쪽을 보게."
+    },
+    {
+      "id": "A2.S15.COMPLETE.01",
+      "kind": "wording",
+      "before": "앞에 법당이 있다. 그쪽을 살펴보자.",
+      "after": "앞에 법당이 있네. 그쪽을 살펴보세."
+    },
+    {
+      "old_id": "A2.S15.CHOICE.01",
+      "new_id": "A2.S15.UI_CHOICE.01",
+      "namespace": "ui_only",
+      "kind": "id_migration",
+      "reason": "dialogue CHOICE IDs are preserved; only UI IDs migrate"
+    },
+    {
+      "old_id": "A2.S15.CHOICE.02",
+      "new_id": "A2.S15.UI_CHOICE.02",
+      "namespace": "ui_only",
+      "kind": "id_migration",
+      "reason": "dialogue CHOICE IDs are preserved; only UI IDs migrate"
+    },
+    {
+      "id": "A2.S16.MID.06",
+      "kind": "wording",
+      "before": "아직 갇혀 있군. 종 아래를 열어야 한다.",
+      "after": "아직 갇혀 있군. 종 아래를 열어야겠네."
+    },
+    {
+      "id": "A2.S18.PHASE2.05",
+      "kind": "wording",
+      "before": "진목이 장치 쪽을 겨눈다. 저 연결을 끊어라.",
+      "after": "진목이 장치 쪽을 겨누네. 저 연결을 끊게."
+    },
+    {
+      "id": "A2.S18.DEATH.02",
+      "kind": "wording",
+      "before": "숨이 끊겼다.",
+      "after": "숨이 끊겼네."
+    },
+    {
+      "id": "A2.S18.BRANCH.02",
+      "kind": "wording",
+      "before": "유헌은 죽었다. 줄은 아직 당겨지고 있다.",
+      "after": "유헌은 죽었네. 종 아래를 다시 살피세."
+    },
+    {
+      "id": "A2.S18.STABILIZE.01",
+      "kind": "wording",
+      "before": "붙은 혼이 아래에 남았다. 틈을 조금만 열자.",
+      "after": "붙은 혼이 아래에 남았네. 틈을 조금만 열어보세."
+    },
+    {
+      "id": "A2.S18.COMPLETE.01",
+      "kind": "wording",
+      "before": "이제 움직이지 않는다.",
+      "after": "이제 움직이지 않네."
+    },
+    {
+      "id": "A2.S19.MID.02",
+      "kind": "wording",
+      "before": "길은 열렸다. 얽힌 데부터 풀어라.",
+      "after": "길은 열렸네. 얽힌 데부터 풀게."
+    },
+    {
+      "id": "A2.S19.COMPLETE.01",
+      "kind": "wording",
+      "before": "이제 산길의 돌림진을 거두자.",
+      "after": "이제 산길의 돌림진을 거두세."
+    },
+    {
+      "id": "A2.S20.INTRO.01",
+      "kind": "wording",
+      "before": "이제 돌아오는 길은 없다. 밖으로 이어진다.",
+      "after": "풀렸네. 이 길로 나가세."
+    },
+    {
+      "id": "A2.S20.INTRO.02",
+      "kind": "wording",
+      "before": "아이와 다친 분은 가운데 서시오. 서로 놓치지 마시오.",
+      "after": "다친 분은 가운데 서시오. 서로 놓치지 마시오."
+    },
+    {
+      "id": "A2.S20.TIME.08",
+      "kind": "wording",
+      "before": "안과 밖의 세월이 다르게 흐른 게다.",
+      "after": "안과 밖의 세월이 다르게 흐른 게로군."
+    },
+    {
+      "id": "A2.S20.NEWS.05",
+      "kind": "wording",
+      "before": "여기 종을 잠재워도 끝나지 않는군. 무명사에 무엇이 남았는지 봐야겠다.",
+      "after": "여기 종을 잠재워도 끝나지 않는군. 무명사에 무엇이 남았는지 봐야겠네."
+    },
+    {
+      "id": "A2.S20.COMPLETE.01",
+      "kind": "wording",
+      "before": "밖에서 내려오는 혼도 있어요. 아직 멀리 가지 마세요.",
+      "after": "다친 분 옆에 자리가 있어요. 이쪽에 앉으세요."
+    },
+    {
+      "id": "A2.S16.BRANCH.01",
+      "kind": "missing_route_added",
+      "after": "수문 아래로 올라왔습니다. 저기 사람이 있습니다."
+    },
+    {
+      "id": "A2.S16.BRANCH.02",
+      "kind": "missing_route_added",
+      "after": "위 회랑으로 들어왔습니다. 아래에 두 분이 계십니다."
+    }
+  ]
+}
