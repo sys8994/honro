@@ -97,6 +97,7 @@ function buriedVault(l,b){
  return{...l,asset,honroTerrainMaterialClip:new Path2D(pathString(full))};
 }
 function stage5FoundationMaterial(l,b,terrain){
+ if(l.x||l.y||(l.scale??1)!==1||l.rotation)return l;
  const bank=l.asset?.id==='stage5-dynamic:lower-bank',cliff=l.asset?.id==='stage5-dynamic:east-cliff';if(!bank&&!cliff)return l;
  const mass=terrain.find(t=>t.id===(bank?'valley-floor':'waterfall-cliff')&&!t.broken);if(!mass)return l;
  const asset=clone(l.asset),vector=asset.vector,body=vector.root.children[0],local=mass.vertices.map(p=>({x:p.x,y:p.y-1000}));
@@ -119,7 +120,7 @@ function stage5FoundationMaterial(l,b,terrain){
  return{...l,asset,honroTerrainMaterialClip:new Path2D(pathString(mass.vertices))};
 }
 function materialLandmarks(b){
- const stage5=b.honroStage===5&&b.honroStage5FoundationRevision===1;
+ const stage5=b?.honroStage===5&&b.honroStage5FoundationRevision===1;
  if(!active(b)||b.honroCustom||!stage5&&(b.honroStage<21||b.honroStage>30))return b.honroLandmarks||[];
  const source=b.honroLandmarks||[],terrain=render(b),old=materialViews.get(b);
  if(old?.source===source&&old.terrain===terrain&&old.version===b.sceneVersion)return old.landmarks;
