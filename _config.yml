@@ -1,0 +1,14 @@
+# Keep source and review evidence in Git; omit only these diagnostic trees from Pages.
+exclude:
+  - game/docs/stage-review/**
+  - game/docs/art-review/**
+  - review/**
+
+# This is an already-built static site, not a Markdown/theme conversion.
+url: https://sys8994.github.io
+baseurl: /honro
+theme: null
+optional_front_matter:
+  enabled: false
+readme_index:
+  enabled: false
