@@ -484,6 +484,7 @@
             if(won&&!b.honroJourneyReplay){const handoff=G.HonroRouteBranches?.handoff(b);if(handoff)this.profile.honroRouteHandoff=handoff;}
             G.HonroProgression.syncRoster(this.profile,b);
             delete this.profile.honroCampPending;
+            G.HonroAct23V4?.recordOutcome(this,won);
             this.profile.honroBattle = null;
             if (won) {
                 const first = !this.profile.cleared[st.id];
@@ -499,7 +500,7 @@
             G.HonroRestJourney?.recordOutcome(this,won);
             this.persist();
             if(won&&G.HonroActEndings?.show(this)){this.audio?.play('win');return;}
-            this.open(`<header class="result-fixed"><div class="result-title">${won ? '길이 열렸다' : '길에서 물러났다'}</div></header><div class="result-body"><p>${won ? esc(b.winnerReason || st.storySummary || '길을 확보했다.') : esc(b.winnerReason || '얻은 경험은 남는다.')}</p>${won?G.HonroClearReportUI.summary(b.honroReport?.final,this.resultJoined):`<div class="result-team">${this.profile.recruited.map(c => `<div><strong>${H.hero[c].name}</strong><small>경지 ${C.levelOf(this.profile.heroes[c])}</small></div>`).join('')}</div>`}${won && st.id === 10 ? '<p>첫째 막 끝 · 북쪽 산길에서 둘째 막이 이어집니다.</p>' : won && st.id===20 ? '<p>둘째 막 끝 · 다음 목적지는 저문골·무명사 기록을 찾을 읍성 문서고입니다. 셋째 막으로 이어집니다.</p>' : won && st.id===30 ? '<p>셋째 막 끝 · 끊긴 옛 운송로와 장례길을 따라 무명사로 향합니다. 넷째 막은 준비 중입니다.</p>' : !won && st.act>=2 ? '<p>이 장을 다시 시작할 수 있습니다. 획득한 경험은 유지됩니다.</p>' : ''}</div><div class="actions result-actions"><button data-action="retry">다시 걷기</button>${won?'<button data-action="clear-report">상세 보고서</button>':''}${won&&b.honroJourneyReplay&&G.HonroRouteBranches?.handoff(b)?'<button data-action="route-continue">선택한 길로 다음 장</button>':''}<button class="primary" data-action="result-continue">${G.HonroRestJourney?.resultLabel(this)||'다음 쉼터로'}</button></div>`, 'result');
+            this.open(`<header class="result-fixed"><div class="result-title">${won ? '길이 열렸다' : '길에서 물러났다'}</div></header><div class="result-body"><p>${won ? esc(b.winnerReason || st.storySummary || '길을 확보했다.') : esc(b.winnerReason || '얻은 경험은 남는다.')}</p>${won?G.HonroClearReportUI.summary(b.honroReport?.final,this.resultJoined):`<div class="result-team">${this.profile.recruited.map(c => `<div><strong>${H.hero[c].name}</strong><small>경지 ${C.levelOf(this.profile.heroes[c])}</small></div>`).join('')}</div>`}${won && st.id === 10 ? '<p>첫째 막 끝 · 북쪽 산길에서 둘째 막이 이어집니다.</p>' : won && st.id===20&&!G.HonroAct23V4?.active(b) ? '<p>둘째 막 끝 · 다음 목적지는 저문골·무명사 기록을 찾을 읍성 문서고입니다. 셋째 막으로 이어집니다.</p>' : won && st.id===30&&!G.HonroAct23V4?.active(b) ? '<p>셋째 막 끝 · 끊긴 옛 운송로와 장례길을 따라 무명사로 향합니다. 넷째 막은 준비 중입니다.</p>' : !won && st.act>=2 ? '<p>이 장을 다시 시작할 수 있습니다. 획득한 경험은 유지됩니다.</p>' : ''}</div><div class="actions result-actions"><button data-action="retry">다시 걷기</button>${won?'<button data-action="clear-report">상세 보고서</button>':''}${won&&b.honroJourneyReplay&&G.HonroRouteBranches?.handoff(b)?'<button data-action="route-continue">선택한 길로 다음 장</button>':''}<button class="primary" data-action="result-continue">${G.HonroRestJourney?.resultLabel(this)||'다음 쉼터로'}</button></div>`, 'result');
             this.audio?.play(won ? 'win' : 'lose');
         }
         battleHelp(fromSettings=false) {

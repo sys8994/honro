@@ -1,89 +1,88 @@
 import assert from 'node:assert/strict';
 import {runtimeCandidate,battlefield} from './act23-v4-helpers.mjs';
-
+// Explicit objective/occupancy fixtures; real Engine collision and walking.
 const g=await runtimeCandidate(),P=g.HonroAct23V4Stage29,V=g.HonroAct23V4,C=g.HONRO_CORE;
-const plain=v=>JSON.parse(JSON.stringify(v));
-const down=u=>{u.hp=0;u.dead=true;};
-const live=b=>b.units.filter(u=>u.side===1&&!u.dead&&u.hp>0);
-const mem=b=>P.memory(b);
-const boundary=q=>{q.b.honroState.actorTurnSerial=(q.b.honroState.actorTurnSerial||0)+1;q.b.teamEnds[1]++;q.b.round++;q.app.actorBoundary=q.b.units.find(u=>u.side===0&&!u.dead).id;P.tick(q.app,0);delete q.app.actorBoundary;};
-const make=()=>battlefield(g,29);
-function flush(q){let clearedBeforePressure=false;
- for(let i=0;i<18;i++){
-  // Defeat the command cohort and the single ambient door occupant required
-  // to vacate the collapse sweep. Remote ambient/route guards stay alive.
-  const blockers=new Set(P.coverBlockers(q.b));for(const u of live(q.b))if(u.honroStage29Required||blockers.has(u.id))down(u);
-  boundary(q);const allAdmitted=q.b.honroV4Stage29Waves.every(w=>mem(q.b).sources[w.id]?.admitted);
-  if(P.stepSatisfied(q.b,{id:'stage29-cohort'})&&!allAdmitted)clearedBeforePressure=true;
-  if(allAdmitted&&!live(q.b).some(u=>u.honroStage29Required))break;
+const plain=v=>JSON.parse(JSON.stringify(v)),down=u=>{u.hp=0;u.dead=true;};
+const live=b=>b.units.filter(u=>u.side===1&&!u.dead&&u.hp>0),mem=b=>P.memory(b),make=()=>battlefield(g,29);
+const boss=q=>q.e.unit(P.bossId),marker=(q,id)=>q.b.honroMarkers.find(m=>m.id===id);
+function aim(q){Object.assign(q.b,{phase:'aim',side:0,active:'p-archer'});Object.assign(q.e.active,{acted:false,vx:0,vy:0,airborne:false,jumping:false});delete q.e.active.meleeAction;delete q.e.active.meleeFollow;}
+function at(q,id){aim(q);Object.assign(q.e.active,{x:marker(q,id).x,y:marker(q,id).y});}
+function boundary(q){
+ const round=q.b.round;
+ for(let i=0;i<120;i++){
+  P.tick(q.app,0);
+  if(q.b.phase==='aim'&&q.b.side===0){if(q.b.round>round)return;q.e.finishAction(true);}
+  else if(q.b.phase==='enemy')q.e.finishAction(true);
+  else if(q.b.phase==='transition')q.e.switchTeam();
+  else q.e.tick(C.STEP);
  }
- assert(clearedBeforePressure,'optional route-pressure admission does not gate the command objective');
- assert(!live(q.b).some(u=>u.honroStage29Required));assert(live(q.b).some(u=>u.id==='a3-29-moonlit-exit-watch-1'),'unrelated exit guard remains alive');assert.equal(Object.keys(mem(q.b).sources).length,5);
+ assert.fail('bounded actual action/team cycle stalled: '+q.b.phase);
 }
-function echo(q){const u=q.e.active,m=q.b.honroMarkers.find(m=>m.id==='stage29-echo');Object.assign(u,{x:m.x,y:m.y});assert.equal(P.use(q.app,m),true);assert.equal(V.mem(q.b).sceneDone?.['stage29-echo'],undefined);for(let i=0;i<19;i++)P.tick(q.app,.05);assert.equal(V.mem(q.b).sceneDone['stage29-echo'],true);assert.equal(mem(q.b).echo.done,true);}
-function resume(q){const b=plain(q.b),e=new C.Engine(b,()=>{},false),app={...q.app,engine:e};P.attach(app,e);return{...q,b,e,app};}
-
-// Authored candidate retains the large map's actual roster and both exits.
+function resume(q){const b=plain(q.b),e=new C.Engine(b,()=>{},false),app={...q.app,engine:e,canInput:()=>e.canAct()};g.HonroEncounters.attach(app,e);P.attach(app,e);return{...q,b,e,app};}
+function defeatScreen(q){for(const u of live(q.b))if(u.honroStage29Source==='stage29-command-screen')down(u);}
+function startCollapse(q){at(q,'stage29-sluice');defeatScreen(q);const blockers=new Set(P.coverBlockers(q.b));for(const u of live(q.b))if(blockers.has(u.id))down(u);P.tick(q.app,0);assert(mem(q.b)['stage29-cover-warning']);assert(!mem(q.b).coverCommitted);}
+function reclaim(q){at(q,'stage29-echo');assert.equal(P.use(q.app,marker(q,'stage29-echo')),false);at(q,'stage29-sluice');assert.equal(P.use(q.app,marker(q,'stage29-sluice')),true);assert.equal(mem(q.b).sluiceReclaimed,true);assert.equal(mem(q.b).checkpoints.filter(c=>c.id==='stage29-sluice-reclaimed').length,1);aim(q);}
+function echo(q){at(q,'stage29-echo');assert.equal(P.use(q.app,marker(q,'stage29-echo')),true);for(let i=0;i<9;i++)P.tick(q.app,.05);assert(!V.mem(q.b).sceneDone['stage29-echo']);q=resume(q);for(let i=0;i<10;i++)P.tick(q.app,.05);assert.equal(V.mem(q.b).sceneDone['stage29-echo'],true);return q;}
+function handoff(q,route){at(q,route==='A'?'route-upper-exit':'route-lower-exit');boundary(q);assert.equal(P.complete(q.b),true);assert.equal(q.b.honroRouteChoice.selectedRoute,route);q.b.phase='won';assert.deepEqual(plain(g.HonroRouteBranches.handoff(q.b)),{fromStage:29,toStage:30,choice:route,revision:1,sourceRun:q.b.session});assert(live(q.b).some(u=>u.id==='a3-29-moonlit-exit-watch-1'));}
 {
- const q=make();assert.equal(q.b.units.filter(u=>u.side===1).length,32);assert.equal(q.b.honroV4Stage29Waves.reduce((n,s)=>n+s.n,0),11);
- assert.equal(q.b.units.filter(u=>u.id.startsWith('a3-29-')).length,27);
- assert.equal(q.b.units.filter(u=>u.id.startsWith('stage29-shield-')).length,2);
- assert(q.b.units.filter(u=>u.id.startsWith('stage29-shield-')).every(u=>u.loadout.includes('LS11')&&u.armor>=.26));
- assert.equal(q.b.units.filter(u=>u.id.startsWith('stage29-upper-')).length,2);
- assert.equal(q.b.units.filter(u=>u.honroStage29Required).length,5);assert(q.b.units.filter(u=>u.id.startsWith('a3-29-')).every(u=>!u.honroStage29Required));
- assert.equal(q.b.honroV4Stage29Waves.filter(s=>s.required).reduce((n,s)=>n+s.n,0),4);
- assert(!q.b.honroMarkers.some(m=>['old-seal','hyeonmuk-letter'].includes(m.id)));
- assert(!q.b.honroAct3Steps.some(s=>['old-seal','hyeonmuk-letter'].includes(s.id)));
- assert.equal(q.b.honroEvents.length,0);
- assert.equal(P.complete(q.b),false);
- for(const id of ['route-upper-exit','route-lower-exit']){const m=q.b.honroMarkers.find(m=>m.id===id);Object.assign(q.e.active,{x:m.x,y:m.y});q.app.actorBoundary=q.e.active.id;assert.equal(P.use(q.app,m),false);assert(!q.b.honroRouteChoice?.selectedRoute);}
+ const q=make();assert.equal(live(q.b).length,32);assert.equal(q.b.units.filter(u=>u.id.startsWith('a3-29-')).length,27);assert.equal(q.b.honroV4Stage29Waves.reduce((n,s)=>n+s.n,0),11);
+ assert.equal(q.b.units.filter(u=>u.honroStage29Required).length,5);assert(q.b.units.filter(u=>u.id.startsWith('stage29-shield-')).every(u=>u.loadout.includes('LS11')&&u.armor>=.26));
+ assert(!q.b.honroMarkers.some(m=>['old-seal','hyeonmuk-letter'].includes(m.id)));assert.equal(q.b.honroEvents.length,0);
+ for(const id of ['route-upper-exit','route-lower-exit','stage29-sluice','stage29-echo']){at(q,id);assert.equal(P.use(q.app,marker(q,id)),false);}
+ at(q,'stage29-sluice');boss(q).hp=boss(q).maxHp*.05;P.tick(q.app,0);for(let i=0;i<5;i++)boundary(q);assert.equal(mem(q.b).phase,1,'HP/time cannot skip the command screen');assert(!mem(q.b)['stage29-cover-warning']);
 }
-
-// Full swept area, including a hero, a stake and a projectile, blocks the
-// atomic commit. These are explicit occupancy fixtures, not combat completion.
+// Counter changes or summon completion cannot stand in for main hero turns.
+// Persist one genuinely ended action, then finish the remaining party through
+// Engine.finishAction/switchTeam in four-, two- and one-survivor fixtures.
+for(const count of [4,2,1]){
+ let q=make();const team=q.b.units.filter(u=>u.side===0&&!u.summoned);for(const u of team.slice(count))down(u);startCollapse(q);
+ q.b.teamEnds[1]+=8;q.app.actorBoundary='p-archer';P.tick(q.app,0);delete q.app.actorBoundary;assert(!mem(q.b).coverCommitted);
+ if(count===4){const summon={...plain(q.e.active),id:'stage29-test-summon',summoned:true,summonActionRound:q.b.round,acted:false};q.b.units.push(summon);q.b.active=summon.id;q.e.finishAction(true);const w=mem(q.b)['stage29-cover-warning'];assert(!w.offered[summon.id]);assert(!w.ended[summon.id]);assert(!mem(q.b).coverCommitted);}
+ P.tick(q.app,0);q.e.finishAction(true);const proof=plain(mem(q.b)['stage29-cover-warning']);assert(proof.ended['p-archer']);assert(!mem(q.b).coverCommitted,'proof waits for the next safe boundary');
+ q=resume(q);assert.deepEqual(plain(mem(q.b)['stage29-cover-warning']),proof);boundary(q);assert(mem(q.b).coverCommitted);const w=mem(q.b)['stage29-cover-warning'];assert.equal(Object.keys(w.ended).length,count);assert.equal(Object.keys(w.offered).length,count);
+}
+// A warned collapse retains safe opportunity and occupancy checks after death.
 {
- const q=make(),u=q.e.active;for(const v of live(q.b))down(v);P.tick(q.app,0);
- const version=q.b.sceneVersion;Object.assign(u,{x:3100,y:2220});boundary(q);assert(!mem(q.b).coverCommitted);assert(P.coverBlockers(q.b).includes(u.id));
- Object.assign(u,{x:2800,y:2220});q.b.stakes=[{id:987,x:3100,y:2200,active:true}];boundary(q);assert(!mem(q.b).coverCommitted);assert(P.coverBlockers(q.b).includes('stake:987'));
- q.b.stakes=[];q.b.projectiles=[{id:'occupancy-test',x:3100,y:2100,radius:8}];boundary(q);assert(!mem(q.b).coverCommitted);
- q.b.projectiles=[];
- const ray=(a,z)=>q.e.projectileCollision(a,z,1,u.id,[],false);
- assert.equal(ray({x:2960,y:2110},{x:3240,y:2110})?.terrain.id,'old-door');
- boundary(q);assert.equal(mem(q.b).coverCommitted,true);assert(q.b.sceneVersion>version);const committedVersion=q.b.sceneVersion;
- assert.equal(ray({x:2960,y:2110},{x:3240,y:2110}),null,'upper vault shot opens');
- assert.equal(ray({x:2960,y:2200},{x:3240,y:2200})?.terrain.id,'stage29-fallen-door','fallen wood really blocks a low shot');
- for(const list of [q.b.terrain,q.b.honroWorldTerrain].filter(Boolean)){assert.equal(list.find(t=>t.id==='old-door').broken,true);assert.equal(list.find(t=>t.id==='stage29-fallen-door').broken,false);}
- for(let i=0;i<4;i++)boundary(q);assert.equal(q.b.sceneVersion,committedVersion,'topology commits once');assert.equal(mem(q.b).checkpoints.filter(c=>c.id==='stage29-cover-commit').length,1);
+ let q=make();startCollapse(q);const warning=plain(mem(q.b)['stage29-cover-warning']);down(boss(q));P.tick(q.app,0);assert.deepEqual(plain(mem(q.b)['stage29-cover-warning']),warning);q=resume(q);
+ Object.assign(q.e.active,{x:3100,y:2220});boundary(q);assert(!mem(q.b).coverCommitted);assert(P.coverBlockers(q.b).includes(q.e.active.id));
+ at(q,'stage29-sluice');q.b.stakes=[{id:987,x:3100,y:2200,active:true}];boundary(q);assert(!mem(q.b).coverCommitted);assert(P.coverBlockers(q.b).includes('stake:987'));
+ q.b.stakes=[];q.b.projectiles=[{id:'occupancy-test',x:3100,y:2100,radius:8}];assert(P.coverBlockers(q.b).includes('projectile:occupancy-test'));P.tick(q.app,0);assert(!mem(q.b).coverCommitted);q.b.projectiles=[];
+ const ray=(a,z)=>q.e.projectileCollision(a,z,1,q.e.active.id,[],false);assert.equal(ray({x:2960,y:2110},{x:3240,y:2110})?.terrain.id,'old-door');
+ boundary(q);assert.equal(mem(q.b).gateGeometry,'fallen');assert.equal(mem(q.b).phase,1,'death does not jump phases');
+ assert.equal(ray({x:2960,y:2110},{x:3240,y:2110}),null);assert.equal(ray({x:2960,y:2200},{x:3240,y:2200})?.terrain.id,'stage29-fallen-door');assert.equal(ray({x:3190,y:2200},{x:3320,y:2200})?.terrain.id,'stage29-fallen-stone');
+ for(const list of [q.b.terrain,q.b.honroWorldTerrain].filter(Boolean)){assert(list.find(t=>t.id==='old-door').broken);for(const id of ['stage29-fallen-door','stage29-fallen-stone'])assert.equal(list.find(t=>t.id===id).broken,false);}
+ const version=q.b.sceneVersion;for(let i=0;i<4;i++)boundary(q);assert.equal(q.b.sceneVersion,version);assert.equal(mem(q.b).checkpoints.filter(c=>c.id==='stage29-cover-commit').length,1);assert.equal(q.b.units.filter(u=>u.honroSpawnSource).length,0);
 }
-
-// Each phase survives Engine JSON resume. Phase 3 advances through the real
-// walking primitive, consuming the existing movement budget and collision.
+// Normal phase 3 waits for actual admitted soldiers, then uses real walking.
 {
- let q=make(),u=q.b.units.find(u=>u.id===P.bossId);q.e.active.x=2800;q.e.active.y=2220;P.tick(q.app,0);assert.equal(mem(q.b).phase,1);q=resume(q);u=q.b.units.find(u=>u.id===P.bossId);
- assert.equal(u.fixed,true);for(const v of live(q.b))if(v.id!==u.id)down(v);u.hp=u.maxHp*.65;P.tick(q.app,0);boundary(q);assert.equal(mem(q.b).phase,2);q=resume(q);u=q.b.units.find(u=>u.id===P.bossId);
- assert.equal(mem(q.b).coverCommitted,true);u.hp=u.maxHp*.3;P.tick(q.app,0);assert.equal(mem(q.b).phase,3);q=resume(q);u=q.b.units.find(u=>u.id===P.bossId);
- Object.assign(q.b,{phase:'enemy',side:1,active:u.id});Object.assign(u,{acted:false,moveLeft:360,maxMove:360});const x=u.x,move=u.moveLeft;
- for(let i=0;i<18;i++)P.tick(q.app,.05);assert(u.x<x,'boss physically walks forward');assert(u.moveLeft<move,'walk uses normal move budget');assert(mem(q.b).advanceDistance>0);
- assert.equal(mem(q.b).checkpoints.filter(c=>c.id==='stage29-phase-3').length,1);
+ let q=make();at(q,'stage29-sluice');P.tick(q.app,0);q=resume(q);assert.equal(mem(q.b).phase,1);assert.equal(boss(q).fixed,true);startCollapse(q);boundary(q);assert.equal(mem(q.b).phase,2);q=resume(q);
+ boundary(q);assert.equal(mem(q.b).sources['stage29-rear'].admitted,true);boss(q).hp=boss(q).maxHp*.05;
+ for(let i=0;i<4;i++)boundary(q);assert.equal(mem(q.b).phase,2,'living command guards prevent advance');assert.equal(boss(q).fixed,true);
+ for(const u of live(q.b))if(u.honroStage29Required&&u.id!==P.bossId)down(u);boundary(q);assert.equal(mem(q.b).phase,3);q=resume(q);assert.equal(boss(q).fixed,false);
+ for(let i=0;i<5;i++)boundary(q);for(const spec of q.b.honroV4Stage29Waves){assert.equal(mem(q.b).sources[spec.id].admitted,true);assert.equal(q.b.units.filter(u=>u.honroSpawnSource===spec.id).length,spec.n);}
+ Object.assign(q.b,{phase:'enemy',side:1,active:P.bossId});Object.assign(boss(q),{acted:false,moveLeft:360,maxMove:360});const x=boss(q).x,move=boss(q).moveLeft;
+ for(let i=0;i<18;i++)P.tick(q.app,.05);assert(boss(q).x<x);assert(boss(q).moveLeft<move);assert(mem(q.b).advanceDistance>0);assert.equal(mem(q.b).checkpoints.filter(c=>c.id==='stage29-phase-3').length,1);
+ aim(q);q.e.hurt(boss(q),boss(q).maxHp*100,q.e.active.id,false);assert(mem(q.b).death.observed);assert(V.mem(q.b).slots['stage29-boss-defeated']);const death=plain(mem(q.b).death);q=resume(q);P.tick(q.app,0);assert.deepEqual(plain(mem(q.b).death),death);
+ const count=q.b.units.length;for(let i=0;i<4;i++)boundary(q);assert.equal(q.b.units.length,count);
+ const required=q.b.units.find(u=>u.honroStage29Source==='stage29-rear');q.b.units=q.b.units.filter(u=>u!==required);assert.equal(P.stepSatisfied(q.b,{id:'stage29-cohort'}),false);q.b.units.push(required);
+ const source=mem(q.b).sources['stage29-rear'];delete mem(q.b).sources['stage29-rear'];assert.equal(P.stepSatisfied(q.b,{id:'stage29-cohort'}),false);mem(q.b).sources['stage29-rear']=source;
+ reclaim(q);q=echo(q);handoff(q,'A');assert(live(q.b).some(u=>u.honroStage29Source==='act3-response-29-2'));
 }
-
-// A flank kill cannot resurrect or lock the boss behind phases. The commanded
-// cohort, physical echo and either route remain mandatory; ambient guards do not.
+// Before collapse starts: stable physical opening, cancelled reserves, no phase jump.
 for(const route of ['A','B']){
- let q=make();down(q.b.units.find(u=>u.id===P.bossId));P.tick(q.app,0);assert.equal(mem(q.b).earlyKill,true);assert.equal(P.complete(q.b),false);
- assert(!V.mem(q.b).slots?.['stage29-phase-1']);q=resume(q);flush(q);
- assert.equal(mem(q.b).phase,3);assert.equal(mem(q.b).checkpoints.filter(c=>c.id==='stage29-boss-death').length,1);
- assert.equal(q.b.units.filter(u=>u.honroSpawnSource&&u.honroStage29Source).length,11);
- for(const w of q.b.honroV4Stage29Waves){assert.equal(q.b.units.filter(u=>u.honroSpawnSource===w.id).length,w.n);assert.equal(mem(q.b).checkpoints.filter(c=>c.id==='stage29-source:'+w.id).length,1);}
- const count=q.b.units.length;for(let i=0;i<8;i++)boundary(q);assert.equal(q.b.units.length,count,'finite cohorts never respawn');
- const initial=q.b.units.find(u=>u.id==='stage29-upper-0'),wave=q.b.units.find(u=>u.honroStage29Source==='stage29-rear');
- for(const required of [initial,wave]){q.b.units=q.b.units.filter(u=>u!==required);assert.equal(P.stepSatisfied(q.b,{id:'stage29-cohort'}),false,'missing commanded member cannot count as defeated');q.b.units.push(required);}
- const admission=mem(q.b).sources['stage29-rear'];delete mem(q.b).sources['stage29-rear'];assert.equal(P.stepSatisfied(q.b,{id:'stage29-cohort'}),false,'absent source cannot count as defeated');mem(q.b).sources['stage29-rear']=admission;
- assert.equal(P.complete(q.b),false);echo(q);q=resume(q);assert.equal(P.use(q.app,q.b.honroMarkers.find(m=>m.id==='stage29-echo')),false);
- const m=q.b.honroMarkers.find(m=>m.id===(route==='A'?'route-upper-exit':'route-lower-exit'));Object.assign(q.b,{phase:'aim',side:0});Object.assign(q.e.active,{x:m.x,y:m.y});boundary(q);
- assert.equal(P.complete(q.b),true);assert.equal(q.b.honroRouteChoice.selectedRoute,route);q.b.phase='won';const handoff=g.HonroRouteBranches.handoff(q.b);assert.equal(handoff.toStage,30);assert.equal(handoff.choice,route);assert.equal(handoff.sourceRun,q.b.session);
- assert(live(q.b).some(u=>u.id==='a3-29-moonlit-exit-watch-1'));assert(live(q.b).some(u=>u.honroStage29Source==='act3-response-29-2'),'unrelated finite route-pressure cohort may also remain alive');
- assert(!V.mem(q.b).slots?.['stage29-phase-2']);assert(!V.mem(q.b).slots?.['stage29-phase-3']);
- assert(!Object.keys(q.b.honroFieldCargo?.cargo||{}).some(id=>id.includes('hyeonmuk-letter')));
+ let q=make();down(boss(q));P.tick(q.app,0);assert(mem(q.b).earlyKill);assert.equal(mem(q.b).phase,1);assert(!mem(q.b)['stage29-cover-warning']);assert(!V.mem(q.b).slots['stage29-boss-defeated']);
+ for(const spec of q.b.honroV4Stage29Waves){const source=mem(q.b).sources[spec.id];assert(source.cancelled);assert.equal(source.admitted,false);assert.deepEqual(plain(source.ids),[]);}
+ q=resume(q);boundary(q);assert.equal(mem(q.b).gateGeometry,'stable_open');assert(!mem(q.b).coverCommitted);assert.equal(P.stepSatisfied(q.b,{id:'stage29-cohort'}),false);defeatScreen(q);boundary(q);assert.equal(P.stepSatisfied(q.b,{id:'stage29-cohort'}),true);
+ for(const list of [q.b.terrain,q.b.honroWorldTerrain].filter(Boolean)){assert(list.find(t=>t.id==='old-door').broken);for(const id of ['stage29-fallen-door','stage29-fallen-stone'])assert(list.find(t=>t.id===id).broken);}
+ const door=q.b.terrain.find(t=>t.id==='old-door');door.broken=false;assert.equal(P.stepSatisfied(q.b,{id:'stage29-cover'}),false);door.broken=true;
+ for(let i=0;i<6;i++)boundary(q);assert.equal(q.b.units.length,36);assert.equal(mem(q.b).phase,1);assert.equal(boss(q).hp,0);assert(live(q.b).length>=27);
+ for(const phase of [1,2,3])assert(!V.mem(q.b).slots['stage29-phase-'+phase]);
+ reclaim(q);q=echo(q);q=resume(q);at(q,'stage29-echo');assert.equal(P.use(q.app,marker(q,'stage29-echo')),false);handoff(q,route);assert(!Object.keys(q.b.honroFieldCargo?.cargo||{}).some(id=>id.includes('hyeonmuk-letter')));
 }
-console.log('Stage29 Phase A: roster, route gates, collision/occupancy, three-phase resume, real walk, early kill, finite waves, command-only clearance, echo and A/B handoff with living ambient guards passed (model/Engine fixtures; no real UI claim).');
+// Death between admissions preserves the rear pair and cancels later reserves.
+{
+ let q=make();startCollapse(q);boundary(q);boundary(q);assert(mem(q.b).sources['stage29-rear'].admitted);assert(!mem(q.b).sources['stage29-vault-echo']?.admitted);down(boss(q));P.tick(q.app,0);q=resume(q);
+ assert.equal(mem(q.b).sources['stage29-rear'].admitted,true);assert(mem(q.b).sources['stage29-vault-echo'].cancelled);assert.equal(P.stepSatisfied(q.b,{id:'stage29-cohort'}),false);
+ for(const u of live(q.b))if(u.honroStage29Source==='stage29-rear')down(u);boundary(q);assert.equal(P.stepSatisfied(q.b,{id:'stage29-cohort'}),true);assert.equal(mem(q.b).phase,2);assert.equal(q.b.units.filter(u=>u.honroSpawnSource).length,2);
+}
+console.log('Stage29: real 4/2/1-hero action opportunities with summon/save isolation, cover safety/collision, command-gated phases/walk, stable early opening, reserve cancellation, admitted-only clearance, observed death, sluice, echo resume and A/B handoff passed (Engine fixtures; no normal-play/UI claim).');

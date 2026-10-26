@@ -25,7 +25,7 @@ function eligible(app){if(!safe(app)||state(app.engine.b).recovered)return false
  return inZone(hero(b),z);
 }
 function begin(app,reason='approach'){if(!safe(app))return false;const b=app.engine.b,s=state(b),u=hero(b);s.return={unit:clone(u),active:b.active,camera:cameraSnapshot(app.scene)};s.state='FALLING';s.fallProgress=0;s.reason=reason;delete s.recovered;
- app.cancelInput?.();app.acc=0;app.honroVoidSession={lines:G.HonroAct23V4?.active(b)?[{text:'',align:'center'}]:G.HonroNarrativeCatalogue.active(b)?sceneLines:structuredClone(G.HONRO_NARRATIVE_COMPAT.extras['27.void.sceneLines']),elapsed:0,line:0,lastInputAt:-Infinity,returning:0,focus:G.document?.activeElement,rootInert:app.root?.inert,rootAria:app.root?.getAttribute?.('aria-hidden'),hudOpacity:G.document?.body?.style?.getPropertyValue?.('--void-hud-opacity')||''};
+ app.cancelInput?.();app.acc=0;app.honroVoidSession={lines:G.HonroAct23V4?.active(b)?[{text:'',align:'far'},{text:'',align:'near'}]:G.HonroNarrativeCatalogue.active(b)?sceneLines:structuredClone(G.HONRO_NARRATIVE_COMPAT.extras['27.void.sceneLines']),elapsed:0,line:0,lastInputAt:-Infinity,returning:0,focus:G.document?.activeElement,rootInert:app.root?.inert,rootAria:app.root?.getAttribute?.('aria-hidden'),hudOpacity:G.document?.body?.style?.getPropertyValue?.('--void-hud-opacity')||''};
  save(app);mountOverlay(app);app.updateAudio?.();return true;
 }
 function mountOverlay(app){if(!G.document?.createElement)return;const session=app.honroVoidSession,host=G.document.createElement('section');host.className='honro-void-scene';host.setAttribute('role','dialog');host.setAttribute('aria-modal','true');host.setAttribute('aria-label','설오가 떨어진 검은 공간');host.setAttribute('aria-describedby','honro-void-instructions');host.tabIndex=-1;
@@ -38,7 +38,7 @@ function mountOverlay(app){if(!G.document?.createElement)return;const session=ap
  for(const [selector,action]of [['.honro-void-pause',pause],['.honro-void-skip',skip]])host.querySelector(selector).onclick=ev=>{ev.preventDefault();ev.stopPropagation();action(app);};
  // Reserve both speakers' longest line at the current font/viewport, even
  // while another line is displayed. The actor never shifts between cuts.
- for(const align of ['far','near']){const measure=G.document.createElement('p');measure.className='honro-void-text honro-void-measure';measure.dataset.align=align;measure.setAttribute('aria-hidden','true');measure.textContent=session.lines.filter(l=>l.align===align).sort((a,b)=>b.text.length-a.text.length)[0].text;host.appendChild(measure);session[align+'Measure']=measure;}
+ for(const align of ['far','near']){const measure=G.document.createElement('p');measure.className='honro-void-text honro-void-measure';measure.dataset.align=align;measure.setAttribute('aria-hidden','true');measure.textContent=session.lines.filter(l=>l.align===align).sort((a,b)=>b.text.length-a.text.length)[0]?.text||'';host.appendChild(measure);session[align+'Measure']=measure;}
  if(app.root){app.root.inert=true;app.root.setAttribute?.('aria-hidden','true');}G.document.body.classList.add('honro-void-active');G.document.body.appendChild(host);host.focus?.({preventScroll:true});
  paint(app);
 }

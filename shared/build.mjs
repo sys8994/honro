@@ -39,7 +39,7 @@ export const modelFiles=['action-prompts','narrative-catalogue','content','story
   'clear-report','split-campaign','campaign-map-revision','stake-crossing','contribution-xp','progression','profile-store','encounters','world','act1-roster','difficulty','allies','sodan-withdrawal','mission','objectives','objective-contributions','combat-status','authored','act2-content','act2','stage11-ravine-encounters','stage17-worksite','stage16-temple','act3-content','act3-encounters','act3-objectives','objective-revision','stage18-bell','stage30-ferry','stage12-quarry','stage23-escort','objective-guidance','journey-content','act3-journey','story-staging','story-direction','story-framing','stage8-bier','encounter-density','stage14-vertical','stage22-vertical','route-branches','narrative-revision','stage11-trace-exit','stage2-airborne','stage5-waterfall-geometry','stage5-waterfall','stage5-positioning','quest-targets','story-canon-v1','bell-anomaly','act3-void','evidence-quests','stage2-layered-road','act2-pacing'];
 
 modelFiles.push('player-turn-order','stage11-quest-simplification','stage14-rescue-gates','stage15-drain-contact','stage18-short-quest','keeper-ritual','stage19-farewell');
-modelFiles.push('act23-v4','act23-v4-act2','act23-v4-stage18','act23-v4-act3','act23-v4-stage29','act23-v4-stage30');
+modelFiles.push('act23-v4','act23-v4-act2','act23-v4-act2-scenes','act23-v4-stage18','act23-v4-act3','act23-v4-city','act23-v4-stage29','act23-v4-stage30');
 // Every ID has one owner; a duplicate bank entry is a build error.
 export async function skillAudioData(){
   const base=JSON.parse(await read('shared/assets/sfx/skills-v2/manifest.json'));

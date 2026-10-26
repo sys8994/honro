@@ -6,6 +6,7 @@ const preview=()=>G.HONRO_ACT23_V4_PHASE_A===true;
 const active=b=>!!b&&!b.honroCustom&&b.honroMapOrigin!=='workshop'&&b.honroAct23V4Revision===1&&b.honroStage>=11&&b.honroStage<=30;
 const alive=u=>!!u&&!u.dead&&u.hp>0;
 const heroes=b=>b.units.filter(u=>u.side===0&&!u.summoned&&!u.enthrall&&alive(u));
+const approvedCommon=lines=>Array.isArray(lines)&&lines.length>0&&lines.every(row=>row?.[2]?.storyId==='act2:first-spirit-encounter');
 const plugin=b=>plugins.get(b.honroStage);
 function mem(b){b.honroState??={flags:{},collected:[]};const m=b.honroState.act23v4??={revision:1,done:{},holds:{},events:{},checkpoints:[],slots:{},sceneDone:{}};
  for(const key of ['done','holds','events','slots','sceneDone'])m[key]??={};m.checkpoints??=[];
@@ -40,7 +41,7 @@ function eligibility(app,m){const b=app.engine?.b,u=app.engine?.active;if(!activ
 }
 function use(app,m){const b=app.engine.b;if(!eligibility(app,m).ok)return false;const s=readySteps(b).find(s=>s.id===m.id),custom=plugin(b)?.use?.(app,m,s);if(typeof custom==='boolean')return custom;
  if(s.id==='family-manifest'&&G.HonroAct3Void?.beforeManifest?.(app,m))return false;
- if(s.kind==='v4-slot'&&s.slot){if(!mem(b).pendingSlots?.[s.slot])return false;ackSlot(b,s.slot,{phaseA:true,actor:app.engine.active.id});completeStep(app,s,app.engine.active);app.engine.finishAction();return true;}
+ if(s.kind==='v4-slot'&&s.slot){if(mem(b).slots?.[s.slot]?.status!=='pending')return false;if(!ackSlot(b,s.slot,{phaseA:true,actor:app.engine.active.id}))return false;completeStep(app,s,app.engine.active);app.engine.finishAction();return true;}
  if(!['interact','rescue'].includes(s.kind))return false;
  if(s.kind==='rescue'){const u=b.units.find(u=>u.id===s.target||u.id===m.target),spirit=b.units.find(u=>u.id===m.spiritId);if(!alive(u))return false;if(alive(spirit)){if(app.engine.active.cls!=='occultist')return false;G.HonroProgression.defeat(app.engine,spirit,app.engine.active);spirit.hp=0;spirit.dead=true;spirit.honroReleased=true;}u.honroResolved=true;}
  completeStep(app,s,app.engine.active);if(!app.checkMission?.(app.engine))app.engine.finishAction();return true;
@@ -56,7 +57,7 @@ function hold(app,s){const b=app.engine.b,m=mem(b),p=marker(b,s.id);if(!p)return
  if(guarded&&s.wave&&(h.spawned||0)<s.wave.count){const serial=b.honroState.actorTurnSerial||0;h.warning??={serial,offered:{}};const actor=app.engine.active;if(actor?.side===0&&!actor.acted)h.warning.offered[actor.id]=true;const ended=app.actorBoundary&&app.engine.unit(app.actorBoundary);if(ended?.side===0&&ended.acted&&h.warning.offered[ended.id]&&serial>h.warning.serial)h.warning.opportunity=true;
   slot(app,'warning:'+s.id,{source:'v4:'+s.id});if(h.warning.opportunity&&app.actorBoundary&&safe(app)){const w=marker(b,'wave-'+s.id);if(w){const ok=G.HonroAllies.execute(app,{type:'spawn',kind:s.wave.kind,n:s.wave.count-h.spawned,x:w.x,y:w.y,spacing:130,maxDistance:500,source:'v4:'+s.id});if(ok!==false)h.spawned=s.wave.count;}}}
 }
-function tick(app,dt){const b=app.engine?.b;if(!active(b)||!safe(app))return;mem(b);plugin(b)?.tick?.(app,dt);if(!safe(app))return;
+function tick(app,dt){const b=app.engine?.b;if(!active(b)||!safe(app))return;mem(b);if(b.honroStage<=20)G.HonroAct2.firstSpiritEncounter?.(app,heroes(b));plugin(b)?.tick?.(app,dt);if(!safe(app))return;
  for(const q of steps(b)){if(mem(b).done[q.id])continue;if(q.optional&&!satisfied(b,q))continue;if(!satisfied(b,q))break;completeStep(app,q);}
  for(const s of readySteps(b)){plugin(b)?.stepTick?.(app,s,dt);const p=marker(b,s.id);if(s.kind==='hold')hold(app,s);else if(s.kind==='route')route(app,s);else if(s.kind==='reach'&&p){const group=heroes(b),cross=G.HonroStakeCrossing?.crossings(b).some(c=>c.markerId===s.id),isPair=['waterworks-exit','deep-depot-exit','workshop-exit'].includes(s.id),everyone=s.allHeroes||isPair||cross;
    if(s.id==='party-reunion'&&!app.actorBoundary)continue;if(cross&&!G.HonroStakeCrossing.allowsStep(b,s.id))continue;if((isPair||s.id==='party-reunion')&&!G.HonroSplitCampaign.allPresent(b))continue;
@@ -81,7 +82,7 @@ function author(project,options={}){if(!(options.enabled??preview()))return proj
   for(const o of map.objectives||[])if(o.type==='campaign')o.label='v4.'+id;
   return map;});return p;}
 function prepare(b,profile){if(!active(b))return;mem(b);b.honroAct2Steps=b.honroStage<=20?steps(b):b.honroAct2Steps;b.honroAct3Steps=b.honroStage>=21?steps(b):b.honroAct3Steps;
- b.honroStory=null;b.honroState.storyQueue=[];b.honroState.deferredStory=[];b.honroState.storyBanter=[];b.honroState.banterLine=null;
+ if(!approvedCommon(b.honroStory?.lines))b.honroStory=null;b.honroState.storyQueue=(b.honroState.storyQueue||[]).filter(row=>approvedCommon([row]));b.honroState.deferredStory=(b.honroState.deferredStory||[]).map(q=>({...q,lines:(q.lines||[]).filter(row=>approvedCommon([row]))})).filter(q=>q.lines.length);b.honroState.storyBanter=[];b.honroState.banterLine=null;
  b.honroNarrativeContent=content(b,G.HONRO_CONTENT.stages[b.honroStage-1]);delete b.honroBellWitness;
  plugin(b)?.prepare?.(b,profile);return b;
 }
@@ -95,7 +96,10 @@ function migratePresentation(p){if(!preview()||p.honroAct23V4PresentationRevisio
  if(p.honroMapStory&&/-(1[0-9]|2[0-9]|30)$/.test(p.honroMapStory.id||''))p.honroMapStory=null;p.honroAct23V4PresentationRevision=1;
 }
 function validateBattle(b){if(!active(b))return true;if(!steps(b).length||steps(b).length>60||new Set(steps(b).map(s=>s.id)).size!==steps(b).length)return false;const m=b.honroState?.act23v4;if(m?.revision!==1||!m.done||!m.slots||Object.values(m.done).some(v=>typeof v!=='boolean'))return false;return Object.values(m.slots).every(s=>s&&typeof s.id==='string'&&['pending','done','cancelled'].includes(s.status));}
-G.HonroAct23V4={register:(id,p)=>plugins.set(id,p),plugins,preview,active,mem,steps,current,marker,heroes,alive,near,slot,ackSlot,safe,satisfied,readySteps,completeStep,eligibility,use,route,hold,tick,failure,state,content,author,prepare,bindApp,projectileForce,draw,migratePresentation,validateBattle,mapRevision:id=>preview()&&id>=11&&id<=30?100+id:undefined};
+function recordOutcome(app,won){const b=app.engine?.b;if(!won||!active(b))return;const root=mem(b),history=app.profile.honroAct23V4History??={revision:1,stages:{}};history.stages??={};if(history.stages[b.honroStage]?.run===b.session)return;
+ history.stages[b.honroStage]={revision:1,phase:'A',run:b.session,round:b.round,steps:Object.keys(root.done).filter(id=>root.done[id]),slots:Object.keys(root.sceneDone).filter(id=>root.sceneDone[id]),...(b.honroStage===18?{keeperDeath:root.stage18?.bossDeath===true,bellStable:root.stage18?.stable===true}:{}),...(b.honroStage===19?{transportTraces:clone(root.transportTraceProof||null)}:{}),...(b.honroStage===20?{ringRemoved:root.ringRemoved===true,convoy:clone(root.convoyGoals||{}),outside:clone(root.outsideProof||null)}:{}),...(b.honroStage===27?{voidWitness:b.honroAct3Void?.state==='RESOLVED'&&b.honroVoidWitness===true}:{}),...(b.honroStage===29?{bossDeath:!!root.stage29?.death,echo:!!root.stage29?.echo?.done,sluiceReclaimed:!!root.stage29?.sluiceReclaimed}:{}),...(b.honroStage===30?{transport:clone(root.stage30?.boat||null),rescued:clone(root.stage30?.rescued||[]),proof:clone(root.stage30?.proof||null)}:{})};
+}
+G.HonroAct23V4={register:(id,p)=>plugins.set(id,p),plugins,preview,active,mem,steps,current,marker,heroes,alive,near,slot,ackSlot,safe,satisfied,readySteps,completeStep,eligibility,use,route,hold,tick,failure,state,content,author,prepare,bindApp,projectileForce,draw,migratePresentation,validateBattle,approvedCommon,recordOutcome,mapRevision:id=>preview()&&id>=11&&id<=30?200+id:undefined};
 for(const A of [G.HonroAct2,G.HonroAct3])for(const [key,next]of Object.entries({steps,current,readySteps,satisfied,state,failure,eligibility,use,tick,entry:()=>[],memory:mem,attach:bindApp})){const old=A[key];A[key]=function(first,...args){const b=['eligibility','use','tick','entry','attach'].includes(key)?first?.engine?.b:first;return active(b)?next(first,...args):old?.call(A,first,...args);};}
 const resolve=G.HonroNarrativeCatalogue.resolve;G.HonroNarrativeCatalogue.resolve=(b,st)=>active(b)?content(b,st):resolve(b,st);
 const build=G.HonroWorld.build;G.HonroWorld.build=function(...args){const b=build(...args);if(active(b))delete b.honroBellWitness;return b;};

@@ -1,52 +1,56 @@
 # 2·3막 v4 비대사 Phase A
 
-기준 성장/합류 소스는 `c7aa5850`. 1막·Stage5·4–6막·전체 XP/아이템 설계와 production manuscript JSON은 변경하지 않는다. 새 원고의 Gemini 3단 검수는 아직 전달되지 않았다. 이번 소스는 승인된 기계 계약과 안정적인 장면 슬롯의 내부 검수판이며, 새 사건과 구대사를 섞은 공개 완성본이 아니다.
+이 브랜치는 검수 전 내부 기계 후보판이다. 새 원고의 Gemini 검수는0회이며 새 대사·저널·내레이션·목표 문구를 production catalogue에 넣지 않았다. 구 사건과 새 사건을 섞은 공개 완료본으로 취급하지 않는다. master 병합·공개 배포는 보류한다.
 
-## 활성화와 원본 경계
+## 기준과 입력
 
-- 기본 build와 일반 프로젝트는 v4를 활성화하지 않는다. `HONRO_ACT23_V4_PHASE_A=1 npm run build`로 만든 **별도 내부 검수 디렉터리**에서만 새 author를 적용한다. 소스별 호출은 `HonroAct23V4.author(project,{enabled:true})`다.
-- `HonroAct23V4`는 공통 모델 목록 마지막에 등록되며 최종 projectAuthor다. 이후 과거 author가 신규 목표를 되돌리지 않는다. 원본 campaign.json, stage-contracts.json, narrative-current/compat/legacy JSON은 byte-exact 보존한다.
-- candidate initialState의 `honroAct23V4Revision=1`과 `honroV4Steps`만 새 기계를 선택한다. catalogueRevision은 기존 `===1`을 유지한다. 단계 라벨은 기술 ID다. 신판 전투의 구 story/outro/beats/failure/queues와 20/30 구 엔딩 노출을 막으며, 새 대사는 넣지 않는다. 실제 검은 공간 동작은 유지하되 Phase A overlay 문구는 비운다.
-- 장면 슬롯은 `honroState.act23v4.slots[id]`의 pending/done/cancelled와 `rowPrefix`/context/proof로 직렬화한다. 승인 원고는 Phase B에서 이 슬롯에 연결한다. 테스트의 fixture acknowledgment는 실제 대본 검수나 사용자의 승인으로 해석하지 않는다. 현재16장 필수 슬롯은 내부 검수의 명시적 E acknowledgment만 지원한다.
-- 신판18은 기존 기본화살 소실/소실 witness를 생성하지 않는다. 한정 구역 고정 수평 편향만 공통 advanceProjectile에서 실제/예측에 동일 적용한다. 구판 profile의 관측 역사와 compat는 지우지 않는다.
+- 성장·합류 기준 c7aa5850, 통합 master ae32a56c(Stage5 revision6/기반암·역할 조우·Pages 패키징 포함).1막·4–6막·전체 성장·아이템 설계는 개편 범위가 아니다.
+- 입력 문서10개는 부모 문서 커밋99016126을 정상 통합했다. `v4-planning/honro-v4-source-extracted.md`는 실제53,466바이트이며 SHA256 `76a30c4d1968ab31d9d9ba112e254d63958f9bd7d41d43371c60714af3aaa6d2`와 일치한다.
+- Library ZIP은 지원 전송+1회 지원 재시도가 모두 실패하여 중단했다. ZIP/MANIFEST 자체를 검증한 것은 아니다. 이후 Git의 원본 바이트로 상세 계획·audit addendum·migration map·공통268대응표를 읽고 요약 인수인계와의 차이를 보완했다.
+- 양막 대사 초안과 공통 대응표는 진단 문서다. 중복 제거·3단 검수·최종 바인딩 전이다.
 
-## 구현 소유
+## 활성화와 텍스트 경계
 
-| 범위 | 파일 | 기계 계약 |
-|---|---|---|
-| 공통 | shared/runtime/act23-v4.js | opt-in author, 단계/상호작용/슬롯, 출구, bounded force, 이관/검증 경계 |
-|11–17| act23-v4-act2.js | 잔실/북쪽 혼의 ambient, 반복 구도, 석공 실제 이동, 길찬1인/홀림/혼분리/은신처, A/B 물길, 제자 구조/증언 슬롯, 부품·맞물림·유한 방어·축 회전 |
-|18| act23-v4-stage18.js | 새 lethal 종지기, 실제 생존자 보행, 인양틀 보호, 음수 offset 부분인양/새 받침 재안착, 독립 완료 불변조건과 죽은 보스 pending 정리 |
-|19–28| act23-v4-act3.js | 비전투 천도/이동, 실제 소수 행렬, 곽진/현재 병사, 기록1묶음, 짐꾼 호송/물자, 분리, 진목·검은 공간 유지, 지상 증언, 12적턴 화재/4인 합류/주민 보행 |
-|29| act23-v4-stage29.js | 방패2/상층궁수2→실제 안전 차폐+후위2→보스 실제 전진, 조기 처치 허용, 명령 부하만 완료 조건, 신판 잔영/두 출구 |
-|30| act23-v4-stage30.js | 현재 수역의 실제 선박/승객 동기화, 승하선/곽진 호송 후 구조, 유한 방어, 직렬화/차폐 |
+`HONRO_ACT23_V4_PHASE_A=1 npm run build`를 **별도 내부 프리뷰 디렉터리**에서만 사용한다. 기본 build와 Workshop 사용자 프로젝트는 활성화하지 않는다. 소스 호출은 `HonroAct23V4.author(project,{enabled:true})`다. projectAuthors의 마지막 단계에서 author를 실행하므로 구 author가 목표를 재주입하지 않는다.
 
-기존 지형·초기 적의 넓은 밀도는 유지하고 필요한 새 받침/차폐/선착장 연결만 국소 저작한다. 29장은 관계 없는 기존 수비병이 살아 있어도 명령 부대·보스·차폐·잔영을 마치면 이탈할 수 있다. 보스 무적/HP잠금/부활을 사용하지 않는다.18은 bossDeath/rescueSafe/liftDone/settled 등 각 불변조건을 따로 확인한다. 종이 위로 이동하지 않은 구판200하강을 부분 인양으로 표시하지 않는다.
+후보판은 `honroAct23V4Revision=1`/`honroV4Steps`로 선택한다. catalogueRevision===1을 새 판본으로 오인하지 않는다. 새 stage story/outro/beats와 구 chapter queue·20/30 엔딩·쉼터 본문을 비우고 기계 ID만 표시한다. 승인된 공통 firstSpirit는 원래 관측·기예·화자 조건과 원문 그대로 예외 보존하며, pending/save/Continue도 보존한다. 신판18의 화살 소실/witness는 퇴역한다. 구판 실제 관측·원문/history는 유지한다.
 
-## 저장과 진행
+장면 슬롯은 `honroState.act23v4.slots[id]`에 pending/done/cancelled, rowPrefix/context/proof로 저장한다. Phase A의 E acknowledgment는 기계 검사이며 원고 검수나 실제 대사 전달을 뜻하지 않는다. Phase B는 검수된 원고를 이 슬롯에 연결하고, common/본편/분기/쉼터/엔딩의 중복을 해소해야 한다. `ACT23_V4_MACHINE_SLOTS.json`은 각 장의 현재 목표·좌표·scene 선언·초안 ID 목록이며 production 입력이 아니다. `node tools/story/act23-v4-slot-map.mjs`로 재생성한다.
 
-내부 검수 활성 상태의 11–30은 mapRevision111–130을 사용한다. 기본 build의 장별 기존 revision은 보존한다. 변경된 중간 전투는 기존 discard/preserveGrowth/split.restartForMap 경로로 같은 장의 안전 시작을 사용한다. 같은 신판 snapshot의 actor/terrain/state/성장/턴은 유지한다. 24–28 split은 기존 시작 checkpoint 자원과 팀을 보존하며 실제 level-up 회복은 최신 규칙을 따른다. Workshop 사용자 snapshot은 discard 대상이 아니다.
+## 구현 계약
 
-쉼터의 index-only 진행과20/30 pending 엔딩을 신판 원고의 같은 index에 붙이지 않는다. 대상 쉼터 cursor만 초기화하고 구 pending 엔딩은 `honroAct23V4LegacyEnding`으로 보관한다. cleared/seen/기존 내러티브 기록과 과거18 실제 소실 witness는 보존하며 유헌 사망 목격으로 위조하지 않는다.27 void witness는 정상 복귀 후 기존 key로 확정한다.
+| 범위 | 구현 |
+|---|---|
+|11–16|자동 잔실 회수/실제 출구·국소 위협/종 ambient, 실제 길표 왕복 후 담허 접근 조정, 석공의 가까운 외부 대피와 내부 빗장 접근용 작은 작업 발판, 길찬1인 실제 홀림·경고·소단 대응 기회·가까운 은신처, 고정 탄도/수문·수차/두드림, 두 승려 실제 회복 이동·필수 증언·작업굴 출구|
+|17|석공·길찬 실제 작업 이동, 동일 부품의 영웅 운반→길찬 인수/짧은 운반→석공 맞물림, 독립 잠금·유한6 방어·축 회전·시험 하중·실제 철수. 운반자 사망 시 같은 부품을 작업 소켓으로 돌려 재인수, 보상/체크포인트1회|
+|18|동쪽 회랑의 실제 홀림 보행, 예고된80단위 근접 하강 위협(압사 시뮬레이션 아님), 별도 제동과 소단 분리·실제 대피, 실제 사망/연결 확인 후 부분 인양,32단위 수평 재안착, 양쪽 최종 잠금·안정화.880HP/종 보존, 조기·혼·낙사 처치, 죽은 보스 pending 폐기. 매 구간2D sweep/동행 대응 기회/점유 안전. 새 방향·경고면·이동 캐시 연결|
+|19–20|적·증원0 천도, 세 만남 자유 순서와 분리 뒤 자동 이동, 짧은 운반 표식3종, 중립 NPC·안전한 무피해 추락 복귀.20은 실제3인 호송/집결·국소 위협·유한 매복4, 돌림진 조작, 바깥 도착 뒤 시간차/외부 피란민 소식 슬롯|
+|21–28|실제 수레 정지/주민·곽진 대피, 기록1묶음 안전 접근, 짐꾼 실제 호송, 팀별 출입/분리 유지,25다섯·27네 지점 각각 두 사람 실제 도착·자유 순서,26소단 분리/실제 주민 이동 후 자동 증언, 독립 선택형 검은 공간/복구·witness,28두 기구 순서 자유·12적턴·4인 안전 경계 재합류·무휴식·실제 피란/휘겸 안전 증거 확보|
+|29|방패2·상부궁수2→안전한 실제 문짝/석재 변화·후위→명령 부하 해소 뒤 실제 전진. 명시적 무적/HP잠금/부활 없음. 조기 사망 시 미입장 예비병 취소 terminal, 경고 전에는 stable_open. 초기·기입장 실제 위협만 해소. 별도 수문 회수→진목 손짓 잔영→A/B출구. 실제 offered/ended 영웅 집합을 저장해 대응 기회 검증|
+|30|기존 수역의 실제 승선·선체/승객 동기화·하선, 곽진의 부상자 동행·첫 항차·회수·귀항·둘째 무리 재합류,4인 구조. 기존16 유한 증원을 실제 출항/승선에 연결, 모든 예약 source의 종료와 승선로 안전이 완료 조건. 실제 구조 사공의 증언→현재 지도 대조 슬롯→출구|
 
-## 현재 확인 범위
+기존 초기 적 밀도와 먼 선택 경로를 대량 삭제하지 않는다. 필수 적은 해당 구조/명령/호송로의 실제 위협으로 한정한다.12장은 기존 지형의 실제 길표→기존 낮은 길→길표 왕복을 쓴다. 완전한 새 지형 루프를 만든 것은 아니다. 추가 지형은13작업 발판,18받침,21수레,29차폐,30선착장 연결 등 필요한 작은 부분이다.
 
-다음은 실제 소스/Engine와 production App의 제어된 fixture 검사다. 지형·체력·원장 상태를 둔 fixture를 정상 캠페인 완주라고 하지 않는다.
+## 저장
 
-- `node tests/act23-v4-act2.mjs`:11–17 author/compiler/attach/use, 길찬 실제8,978월드단위 보행, 경로/수문/필수 슬롯/작업·6유한 방어/회전. 길찬 경로 검사는 합성 안내자·적 제외와 라운드별 정상 이동예산 보충을 사용했다.
-- `node tests/act23-v4-stage18.mjs`:10집중 항목. 실제 보행/살상·낙사/독립 불변조건/단계별 sweep/각 동행의 행동 기회/이동 중 저장·재안착 exactly-once.
-- `node tests/act23-v4-stage29.mjs`: 세 단계·실제 차폐/보행·유한 증원·조기 처치·저장·잔영·A/B. 관계 없는 적이 남아도 이탈, 필수 부하 source 누락은 미완료.
-- `node tests/act23-v4-stage30.mjs`:13집중 항목. 실제 물·선착장/승하선/1,230월드단위 왕복 이동/승객 동기화/4인 하선·호송/3구간 복원/차폐·사망/3적턴 방어/16유한 증원/완료 conjunction.
-- `node tests/act23-v4-integration.mjs`:20장 진입·원본 byte 보존·공통 탄도·5/4진목·19비전투·28양순서/화재동결·재개/재시작/성장/SP/장착/기존완료/분할자원/Workshop 제외.
-- `node tests/levelup-companion-growth.mjs`: 기존12항목 통과. 경지 상한·장별 예산·기여도 정책은 바꾸지 않았다.
-- `npm --prefix game run typecheck`: 통과.
+최종 내부 후보 map revision은211–230이다. 초기 사내 프리뷰111–130의 미완성 저장도 안전 시작으로 재설정한다. 기본 build의 기존 revision과 Stage5 revision6은 유지한다. 변경된 중간 전투만 기존 discard/preserveGrowth/split restart 경로를 쓰며 XP/SP/장착/완료/설정/기지급 원장은 보존한다. 같은 후보 revision은 배우·지형·슬롯·현재 이동/행동 증거를 그대로 재개한다.24–28은 팀별 시작 checkpoint와 실제 체력/자원·성장을 보존하고 휴식을 추가하지 않는다.
 
-실제 Canvas/이동·사격·상태 변화·모바일과 SOP의 서로 다른 미술3회 및 최종 종합은 별도 증거로 갱신한다. 기계 검사만으로 미술·재미·20장 정상 완주를 합격 처리하지 않는다. 미검수 대본 적용, master 병합 및 공개 배포는 금지 상태다.
+대상11–30 쉼터의 index-only cursor와20/30 pending ending을 새 본문 같은 index에 붙이지 않는다. pending ending은 legacy 보관, seen/talked/cleared/history는 유지한다. 후보판 완료는 `profile.honroAct23V4History.stages[stage]`에 실제 run/steps/scene/장별 증거를 남긴다. 구판18 완료를 유헌 사망으로, 구판30 완료를 새 보스/배/사공 증언으로 합성하지 않는다.27 witness는 실제 복귀 완료 뒤에만 확정한다.
 
-## 전달 패킷 접근 상태
+## 실행한 검사와 한계
 
-Library `libfile_c75de7efe8b48191adb7be869cf4ce1b`의 새154,850바이트 ZIP은 prepare 응답을 받았으나 실제 전송과 지원 경로1회 재시도가 모두 download failed였다. 추가 우회/재시도하지 않았다. ZIP/MANIFEST의 파일별 SHA/크기나 전체 v4 MD의53,466바이트/지정 해시는 이 소비 환경에서 검증하지 못했다. 부모에게 act2/act3 plan·audit addendum·migration map의 짧은 구간 전송을 요청했다. 현재 구현은 부모가 직접 전달한 확정 계약과 이전 v4 본문+누락 보충을 근거로 하며, 패킷을 모두 읽었다고 주장하지 않는다.
+집중 검사들은 실제 root/compiler/Engine/App를 쓰되 전투 사망·영웅 위치·안내자·일부 선행조건을 명시적으로 둔 fixture다. 정상 캠페인 완주나 밸런스 합격으로 보고하지 않는다.
 
-## 통합 제한
+- `tests/act23-v4-act2.mjs`: 원본 framework를 쓰는11–16/부품 복구/작업굴/탄도 검사 모음. 초기 isolated root mock은 수용 근거에서 제외하고 Git 이력·로컬 archive에 남겼다.
+- `tests/act23-v4-stage18.mjs`:14집중 검사. 실제 홀림/분리·이동/3개 이동 구간×점유 유형/2D 저장 재개/최종 접지/독립 잠금/단일 bell draw 경로.
+- `tests/act23-v4-farewell.mjs`:6순서 자동 천도·이동 중 복구·표식/역할·무피해 복귀.
+- `tests/act23-v4-convoy-pressure.mjs`:20실제4/2/1인 finishAction/팀 전환·유한 매복·비타이머 집결.
+- `tests/act23-v4-convoys.mjs`:20·23 실제 NPC 경로.28의 새 이동/점유·저장은 city 검사에서 확인한다.
+- `tests/act23-v4-city.mjs`:15집중 검사.21/26/28 보행·슬롯·장치·12적턴·재합류,25/27 각 도착 증거·checkpoint·선택 void/복구.
+- `tests/act23-v4-stage29.mjs`:조기 사망 취소/안전 개방,4/2/1인 실제 대응 기회·소환 제외·저장, 실제 차폐/보행/수문/잔영/A-B.
+- `tests/act23-v4-stage30.mjs`:19집중 검사. 실제 행동 종료/review·팀 전환/소환·저장, 예약 cap 지연,16유한 source, 곽진 왕복·5이동 상태 저장, 사공/지도 순서와 최종 conjunction.
+- `tests/act23-v4-integration.mjs`:20장 진입·권위 원본 보존·이관/동일판 재개/성장/SP/장착·구 완료·split·16원본 E→저장→Continue.
+- `tests/act23-v4-common.mjs`:승인 firstSpirit pending/재생/Continue 및 판본 완료 provenance.
+- 기존 `levelup-companion-growth.mjs`12항목과 game typecheck를 확인한다.
 
-별도 브랜치 `codex/act23-v4-phase-a`만 사용한다. 최신 master의 Pages 패키징 진단 디렉터리 제외 수정(`b3486006`)과 부모 시각 검수 대기 Stage5 후보를 보존한다. 후보의 생성 web/HTML을 master에 가져오지 않고 Phase B 최종 통합 소스에서 재빌드한다. 공개 배포를 재실행하지 않는다.
+실제 Canvas 검수는 최종 소스의 별도 프리뷰에서 갱신한다. 초기 프리뷰60뷰/짧은 입력과16E·27DOM/reload 검사는 수행했으나 이후 상세 보완이 있어 최종 소스 증거로 재사용하지 않는다. 최종 미술3회·상태 변화·종합 판정은 후속 증거를 읽어야 한다. 헤드리스 브라우저의 사운드 이벤트 확인은 실제 기기 청취를 뜻하지 않는다. Phase B 원고 바인딩·중복 해소·원고가 있는 최종 종합·공개 배포는 미완료다.

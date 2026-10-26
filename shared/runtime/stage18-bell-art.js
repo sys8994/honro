@@ -8,7 +8,7 @@ const approvedBodies=new WeakMap();
 function approvedBody(asset){if(asset?.params?.approvedArtRevision===8)return asset;let q=approvedBodies.get(asset);if(q)return q;q=G.HONRO_PROJECT?.library?.find(a=>a.id===asset.id&&a.params?.approvedArtRevision===8);if(q)approvedBodies.set(asset,q);return q||asset;}
 function approvedBattle(b){return b?.honroLandmarks?.some(l=>l.id==='sb-bell-body'&&approvedBody(l.asset).params?.approvedArtRevision===8);}
 const active=b=>[18,19].includes(b?.honroStage)&&b.honroBellRevision===1;
-const lowering=b=>active(b)&&b.honroState?.bellDescent?.status==='lowering';
+const lowering=b=>active(b)&&(G.HonroAct23V4?.active(b)&&b.honroStage===18?b.honroState?.act23v4?.stage18?.bell?.status==='moving':b.honroState?.bellDescent?.status==='lowering');
 const shellIds=new Set(['sb-bell-crown','sb-bell-west-wall','sb-bell-east-wall','sb-bell-east-lip','sb-bell-east-yoke']);
 const interiorStoneIds=new Set(['sb-inner-upper-turn','sb-inner-sound-stone']);
 const omitReadability=(group,b)=>active(b)&&(shellIds.has(group.id)||interiorStoneIds.has(group.id));
@@ -67,7 +67,7 @@ function sweepArt(b){const spec=b.honroBellDescent,shapes=G.HonroStage18Bell?.sw
  const union={terrain:shapes,sceneVersion:0,honroLandmarks:[]},rims=G.HonroTerrainReadability.prepare(union).groups.map(group=>group.edge);
  q={source:shapes,fill,rims};guideCache.set(spec,q);return q;
 }
-function descentGuide(c,b,scene){if(!active(b)||b.honroStage!==18)return false;const m=b.honroState?.bellDescent,spec=b.honroBellDescent;if(!m||!spec||!['warning','waiting','lowering'].includes(m.status))return false;
+function descentGuide(c,b,scene){if(!active(b)||b.honroStage!==18||G.HonroAct23V4?.active(b))return false;const m=b.honroState?.bellDescent,spec=b.honroBellDescent;if(!m||!spec||!['warning','waiting','lowering'].includes(m.status))return false;
  const z=Math.max(.05,scene.scale||1),time=G.HonroEnvironmentArt?.time?.(scene)||0,pulse=.74+Math.sin(time*2.3)*.08;c.save();c.lineJoin='round';
  // Safe floor cues are intentionally quieter than the amber moving edge.
  for(const zone of spec.safeZones||[]){const r=rect(zone);if(!r)continue;c.fillStyle='#8cc7c811';c.fillRect(r.x,r.y,r.w,r.h);c.strokeStyle='#8ebfc991';c.lineWidth=1.25/z;c.beginPath();c.moveTo(r.x,r.y+r.h);c.lineTo(r.x+r.w,r.y+r.h);c.stroke();}

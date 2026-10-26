@@ -270,5 +270,5 @@ function tick(app,dt){const e=app.engine,b=e.b;if(!active(b)||app.dialogue||app.
  app.checkMission(e);
 }
 function entry(app,options={}){return [...(options.interlude===false?[]:app.stage.narration).map(text=>['서술',text,{kind:'narration',art:'road'}]),...G.HonroRouteBranches?.entryLines(app.engine?.b)||[],...app.stage.story,G.HonroAct2Content.guide(app.stage.guide)];}
-G.HonroAct2={active,configureEnemy,recruit,memory,current,readySteps,retiredSafety,prerequisite,satisfied,subdue,state,eligibility,interactionThreats,use,attach,tick,failure,entry,expose,steps,enemiesFor,visible,revision2,tuneEncounter,wave};
+G.HonroAct2={firstSpiritEncounter,active,configureEnemy,recruit,memory,current,readySteps,retiredSafety,prerequisite,satisfied,subdue,state,eligibility,interactionThreats,use,attach,tick,failure,entry,expose,steps,enemiesFor,visible,revision2,tuneEncounter,wave};
 })(globalThis);

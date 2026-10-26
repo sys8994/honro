@@ -10,7 +10,7 @@ function prepare(b){if(!active(b))return;const d=done(b),terminal=['won','lost']
  b.honroStage19FarewellRevision=1;
 }
 const names=['동생의 혼','언니의 혼','이름 없는 혼'];
-function spirit(b,id){if(!active(b))return null;const i=names.indexOf(id),m=i>=0?marker(b,'separate-'+(i+1)):id==='종 안의 혼'?marker(b,'old-soul'):null;if(!m)return null;return{id:i>=0?'farewell-spirit-'+(i+1):'farewell-old-spirit',name:id,side:2,h:116,r:25,hp:1,maxHp:1,x:m.x+(i>=0?38:62),y:m.y,honroVisualOnly:true};}
+function spirit(b,id){if(!active(b))return null;const i=names.indexOf(id),m=i>=0?marker(b,'separate-'+(i+1)):id==='종 안의 혼'?marker(b,'old-soul'):null;if(!m)return null;return{id:i>=0?'farewell-spirit-'+(i+1):'farewell-old-spirit',name:G.HonroAct23V4?.active(b)?'19.soul.'+(i>=0?i+1:'transport'):id,side:2,h:116,r:25,hp:1,maxHp:1,x:m.x+(i>=0?38:62),y:m.y,honroVisualOnly:true};}
 function actor(b,id){if(!active(b))return null;const i=/^farewell-spirit-([123])$/.exec(id);if(i)return spirit(b,names[+i[1]-1]);if(id==='farewell-old-spirit')return spirit(b,'종 안의 혼');return b.units.find(u=>u.honroFarewellNPC&&u.cls===id)||null;}
 function camera(b,meta){if(!active(b))return null;const match=/^19\.beats\.(route|separate-[123]|send-[123]|old-soul):/.exec(meta.rowId||'');if(!match)return null;const key=match[1],old=key==='old-soul',site=old?'old-soul':key.startsWith('send-')?key.replace('send-','separate-'):key;return{intent:'object-introduction',targets:[{marker:site}],padding:old?95:90,maxScale:.8,speakerPolicy:'context-portrait'};}
 // This one landscape scene needs its real silhouettes, not a padded marker point.

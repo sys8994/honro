@@ -1,0 +1,3264 @@
+{
+  "scope": "Diagnostic Phase A machine IDs, coordinates and source-declared scene slots. No manuscript is loaded from this file.",
+  "bindingStatus": "Unreviewed draft IDs are candidates only. Phase B must bind and deduplicate the reviewed script; no order or one-to-one mapping is implied.",
+  "planningCommit": "99016126ba40c93f7fa0f3210e5be946e128adf7",
+  "sources": {
+    "act23-v4-act2-scenes.js": "a8652b51b69aa3b1a7937fa2a53eecf49077c9543af0c9d5c467695ea1d67b71",
+    "act23-v4-act2.js": "dba50ebc002433cc6b43358bb4d3ca168dbd480dac285e16bc2872fc900efe7e",
+    "act23-v4-act3.js": "7f35c25ec5b5e46367dd3c1d217f61e761efeb592fa2590d858fb2b284879a30",
+    "act23-v4-city.js": "63ce2b53ea42a080023db25536f7cff0b1e374109a6d34ce3f3ff9e7e7fa9d27",
+    "act23-v4-stage18.js": "cbc0e9902149c8399d43c6701ac76e2563bc6705d0eda271492eaf4e6b3cbc19",
+    "act23-v4-stage29.js": "78787ef352c6c7370c370cc2342a60e8279f6c79831676e2449778cc97130f4d",
+    "act23-v4-stage30.js": "8bf287d2c2347413ed774da851e3c5f2a9ea5bca406e6c5ea5d2ce55d7fa94f3",
+    "act23-v4.js": "135dc3420e4b5fcf3ef42a4b70d2b36acf7cacf04fabdd4bf9d025355cebb628"
+  },
+  "slotDeclarations": [
+    {
+      "file": "act23-v4-act2-scenes.js",
+      "line": 77,
+      "expression": "'14.hypnosis.warning'"
+    },
+    {
+      "file": "act23-v4-act2-scenes.js",
+      "line": 83,
+      "expression": "s.slot"
+    },
+    {
+      "file": "act23-v4-act2.js",
+      "line": 122,
+      "expression": "id+'.warning'"
+    },
+    {
+      "file": "act23-v4-act2.js",
+      "line": 136,
+      "expression": "s.slot"
+    },
+    {
+      "file": "act23-v4-act2.js",
+      "line": 139,
+      "expression": "'17.wheel.knock'"
+    },
+    {
+      "file": "act23-v4-act3.js",
+      "line": 51,
+      "expression": "'19.transport-traces'"
+    },
+    {
+      "file": "act23-v4-act3.js",
+      "line": 52,
+      "expression": "'20.ring-removed'"
+    },
+    {
+      "file": "act23-v4-act3.js",
+      "line": 54,
+      "expression": "'20.time-gap.required'"
+    },
+    {
+      "file": "act23-v4-act3.js",
+      "line": 54,
+      "expression": "'20.current-town-crisis.required'"
+    },
+    {
+      "file": "act23-v4-act3.js",
+      "line": 55,
+      "expression": "'22.records-compare'"
+    },
+    {
+      "file": "act23-v4-act3.js",
+      "line": 56,
+      "expression": "'23.material-tags'"
+    },
+    {
+      "file": "act23-v4-act3.js",
+      "line": 57,
+      "expression": "'26.ancestor-testimony'"
+    },
+    {
+      "file": "act23-v4-act3.js",
+      "line": 58,
+      "expression": "'28.orders-bundle'"
+    },
+    {
+      "file": "act23-v4-act3.js",
+      "line": 78,
+      "expression": "'20.ambush.warning'"
+    },
+    {
+      "file": "act23-v4-act3.js",
+      "line": 83,
+      "expression": "'20.ambush.admitted'"
+    },
+    {
+      "file": "act23-v4-act3.js",
+      "line": 90,
+      "expression": "'19.'+id"
+    },
+    {
+      "file": "act23-v4-city.js",
+      "line": 84,
+      "expression": "'26.spirit-separated'"
+    },
+    {
+      "file": "act23-v4-city.js",
+      "line": 110,
+      "expression": "'26.ancestor-testimony'"
+    },
+    {
+      "file": "act23-v4-city.js",
+      "line": 115,
+      "expression": "'21.refuge-pressure'"
+    },
+    {
+      "file": "act23-v4-stage18.js",
+      "line": 14,
+      "expression": "id"
+    },
+    {
+      "file": "act23-v4-stage18.js",
+      "line": 14,
+      "expression": "id"
+    },
+    {
+      "file": "act23-v4-stage18.js",
+      "line": 64,
+      "expression": "'18.'+kind+'.warning'"
+    },
+    {
+      "file": "act23-v4-stage18.js",
+      "line": 80,
+      "expression": "'18.'+q.kind+'.complete');e.emit?.('save');"
+    },
+    {
+      "file": "act23-v4-stage18.js",
+      "line": 83,
+      "expression": "'18.keeper.death'"
+    },
+    {
+      "file": "act23-v4-stage18.js",
+      "line": 104,
+      "expression": "'18.rescue.safe'"
+    },
+    {
+      "file": "act23-v4-stage18.js",
+      "line": 108,
+      "expression": "'18.hoist.protected');}"
+    },
+    {
+      "file": "act23-v4-stage18.js",
+      "line": 112,
+      "expression": "'18.support.prepared');app.dirty=true;app.engine.emit?.('save');"
+    },
+    {
+      "file": "act23-v4-stage18.js",
+      "line": 120,
+      "expression": "'18.brake.locked');completeInteraction(app"
+    },
+    {
+      "file": "act23-v4-stage18.js",
+      "line": 121,
+      "expression": "'18.rescue.released'"
+    },
+    {
+      "file": "act23-v4-stage18.js",
+      "line": 122,
+      "expression": "'18.hoist.started');ok=true;}"
+    },
+    {
+      "file": "act23-v4-stage18.js",
+      "line": 123,
+      "expression": "'18.connections.checked');completeInteraction(app"
+    },
+    {
+      "file": "act23-v4-stage18.js",
+      "line": 127,
+      "expression": "site.id+'.confirmed');completeInteraction(app"
+    },
+    {
+      "file": "act23-v4-stage18.js",
+      "line": 128,
+      "expression": "'18.souls.ready');completeInteraction(app"
+    },
+    {
+      "file": "act23-v4-stage29.js",
+      "line": 61,
+      "expression": "id"
+    },
+    {
+      "file": "act23-v4-stage29.js",
+      "line": 79,
+      "expression": "'stage29-phase-2'"
+    },
+    {
+      "file": "act23-v4-stage29.js",
+      "line": 95,
+      "expression": "'stage29-boss-defeated'"
+    },
+    {
+      "file": "act23-v4-stage29.js",
+      "line": 139,
+      "expression": "'stage29-sluice-reclaimed'"
+    },
+    {
+      "file": "act23-v4-stage29.js",
+      "line": 140,
+      "expression": "ECHO"
+    },
+    {
+      "file": "act23-v4-stage29.js",
+      "line": 147,
+      "expression": "'stage29-phase-1'"
+    },
+    {
+      "file": "act23-v4-stage29.js",
+      "line": 152,
+      "expression": "'stage29-phase-3'"
+    },
+    {
+      "file": "act23-v4-stage30.js",
+      "line": 121,
+      "expression": "'s30-resident-safe:'+id"
+    },
+    {
+      "file": "act23-v4-stage30.js",
+      "line": 149,
+      "expression": "'s30-crossing-start:'+boat.leg"
+    },
+    {
+      "file": "act23-v4-stage30.js",
+      "line": 181,
+      "expression": "'s30-pressure:'+row.id"
+    },
+    {
+      "file": "act23-v4-stage30.js",
+      "line": 203,
+      "expression": "TESTIMONY"
+    },
+    {
+      "file": "act23-v4-stage30.js",
+      "line": 204,
+      "expression": "COMPARISON"
+    },
+    {
+      "file": "act23-v4.js",
+      "line": 18,
+      "expression": "id"
+    },
+    {
+      "file": "act23-v4.js",
+      "line": 37,
+      "expression": "'objective:'+s.id"
+    },
+    {
+      "file": "act23-v4.js",
+      "line": 58,
+      "expression": "'warning:'+s.id"
+    }
+  ],
+  "stages": [
+    {
+      "stage": 11,
+      "mapRevision": 211,
+      "steps": [
+        {
+          "id": "11.thread",
+          "label": "11.thread",
+          "kind": "v4-entry",
+          "marker": {
+            "id": "11.thread",
+            "type": "act2",
+            "action": "act2",
+            "label": "11.thread",
+            "x": 400,
+            "y": 6500,
+            "radius": 220
+          },
+          "objectiveSlot": {
+            "id": "objective:11.thread",
+            "rowPrefix": "v4.11.objective:11.thread"
+          }
+        },
+        {
+          "id": "11.exit-threat",
+          "label": "11.exit-threat",
+          "kind": "clear",
+          "radius": 650,
+          "marker": {
+            "id": "11.exit-threat",
+            "type": "act2",
+            "action": "act2",
+            "label": "11.exit-threat",
+            "x": 10350,
+            "y": 8740,
+            "radius": 650
+          },
+          "objectiveSlot": {
+            "id": "objective:11.exit-threat",
+            "rowPrefix": "v4.11.objective:11.exit-threat"
+          }
+        },
+        {
+          "id": "11.exit",
+          "label": "11.exit",
+          "kind": "reach",
+          "marker": {
+            "id": "11.exit",
+            "type": "act2",
+            "action": "act2",
+            "label": "11.exit",
+            "x": 11900,
+            "y": 8000,
+            "radius": 220
+          },
+          "objectiveSlot": {
+            "id": "objective:11.exit",
+            "rowPrefix": "v4.11.objective:11.exit"
+          }
+        },
+        {
+          "id": "11.north",
+          "label": "11.north",
+          "kind": "v4-world",
+          "marker": {
+            "id": "11.north",
+            "type": "act2",
+            "action": "act2",
+            "label": "11.north",
+            "x": 11900,
+            "y": 8000,
+            "radius": 220
+          },
+          "objectiveSlot": {
+            "id": "objective:11.north",
+            "rowPrefix": "v4.11.objective:11.north"
+          }
+        }
+      ],
+      "events": [],
+      "draftIds": [
+        "A2.S11.INTRO.01",
+        "A2.S11.INTRO.02",
+        "A2.S11.INTRO.03",
+        "A2.S11.INTRO.04",
+        "A2.S11.MID.01",
+        "A2.S11.MID.02",
+        "A2.S11.MID.03",
+        "A2.S11.MID.04",
+        "A2.S11.MID.05",
+        "A2.S11.WARN.01",
+        "A2.S11.COMPLETE.01",
+        "A2.S11.COMPLETE.02",
+        "A2.S11.COMPLETE.03",
+        "A2.S11.COMPLETE.04",
+        "A2.S11.COMPLETE.05",
+        "A2.S11.OBJECTIVE.01",
+        "A2.S11.POPUP.01",
+        "A2.S11.JOURNAL.01"
+      ]
+    },
+    {
+      "stage": 12,
+      "mapRevision": 212,
+      "steps": [
+        {
+          "id": "12.recurrence",
+          "label": "12.recurrence",
+          "kind": "v4-recurrence",
+          "marker": {
+            "id": "12.recurrence",
+            "type": "act2",
+            "action": "act2",
+            "label": "12.recurrence",
+            "x": 6520,
+            "y": 4800,
+            "radius": 220
+          },
+          "objectiveSlot": {
+            "id": "objective:12.recurrence",
+            "rowPrefix": "v4.12.objective:12.recurrence"
+          }
+        },
+        {
+          "id": "sign",
+          "label": "sign",
+          "kind": "interact",
+          "marker": {
+            "id": "sign",
+            "type": "act2",
+            "action": "act2",
+            "label": "sign",
+            "x": 6520,
+            "y": 4800,
+            "radius": 220
+          },
+          "objectiveSlot": {
+            "id": "objective:sign",
+            "rowPrefix": "v4.12.objective:sign"
+          }
+        },
+        {
+          "id": "route-exit",
+          "label": "route-exit",
+          "kind": "route",
+          "marker": {
+            "id": "route-exit",
+            "type": "act2",
+            "action": "act2",
+            "label": "route-exit",
+            "x": 7370,
+            "y": 4627.5,
+            "radius": 220
+          },
+          "objectiveSlot": {
+            "id": "objective:route-exit",
+            "rowPrefix": "v4.12.objective:route-exit"
+          }
+        }
+      ],
+      "events": [],
+      "route": {
+        "revision": 1,
+        "toStage": 13,
+        "common": [
+          "sign"
+        ],
+        "routes": [
+          {
+            "id": "A",
+            "markerId": "route-upper-exit",
+            "defeatIds": [
+              "sq-g1",
+              "sq-g2",
+              "sq-g3",
+              "sq-g4",
+              "sq-g5"
+            ],
+            "requiresDone": []
+          },
+          {
+            "id": "B",
+            "markerId": "route-lower-exit",
+            "requiresDone": [],
+            "requiresTerrainOpen": [
+              "sq-turning-veil"
+            ]
+          }
+        ]
+      },
+      "draftIds": [
+        "A2.S12.INTRO.01",
+        "A2.S12.MID.01",
+        "A2.S12.MID.02",
+        "A2.S12.MID.03",
+        "A2.S12.MID.04",
+        "A2.S12.MID.05",
+        "A2.S12.MID.06",
+        "A2.S12.MID.07",
+        "A2.S12.MID.08",
+        "A2.S12.CHOICE.01",
+        "A2.S12.CHOICE.02",
+        "A2.S12.BRANCH.01",
+        "A2.S12.BRANCH.02",
+        "A2.S12.COMPLETE.01",
+        "A2.S12.COMPLETE.02",
+        "A2.S12.COMPLETE.03",
+        "A2.S12.OBJECTIVE.01",
+        "A2.S12.OBJECTIVE.02",
+        "A2.S12.OBJECTIVE.03",
+        "A2.S12.UI_CHOICE.01",
+        "A2.S12.UI_CHOICE.02",
+        "A2.S12.POPUP.01",
+        "A2.S12.JOURNAL.01"
+      ]
+    },
+    {
+      "stage": 13,
+      "mapRevision": 213,
+      "steps": [
+        {
+          "id": "13.extract",
+          "label": "13.extract",
+          "kind": "v4-extract",
+          "target": "resident-1",
+          "spiritId": "resident-spirit-1",
+          "requiredClass": "occultist",
+          "marker": {
+            "id": "13.extract",
+            "type": "act2",
+            "action": "act2",
+            "label": "13.extract",
+            "x": 2400,
+            "y": 3440,
+            "radius": 220,
+            "target": "resident-1",
+            "spiritId": "resident-spirit-1"
+          },
+          "objectiveSlot": {
+            "id": "objective:13.extract",
+            "rowPrefix": "v4.13.objective:13.extract"
+          }
+        },
+        {
+          "id": "13.escort",
+          "label": "13.escort",
+          "kind": "v4-escort",
+          "target": "resident-1",
+          "marker": {
+            "id": "13.escort",
+            "type": "act2",
+            "action": "act2",
+            "label": "13.escort",
+            "x": 2750,
+            "y": 3475,
+            "radius": 220,
+            "target": "resident-1"
+          },
+          "objectiveSlot": {
+            "id": "objective:13.escort",
+            "rowPrefix": "v4.13.objective:13.escort"
+          }
+        },
+        {
+          "id": "13.release",
+          "label": "13.release",
+          "kind": "interact",
+          "marker": {
+            "id": "13.release",
+            "type": "act2",
+            "action": "act2",
+            "label": "13.release",
+            "x": 2750,
+            "y": 3475,
+            "radius": 220
+          },
+          "objectiveSlot": {
+            "id": "objective:13.release",
+            "rowPrefix": "v4.13.objective:13.release"
+          }
+        },
+        {
+          "id": "gate",
+          "label": "gate",
+          "kind": "interact",
+          "radius": 85,
+          "marker": {
+            "id": "gate",
+            "type": "act2",
+            "action": "act2",
+            "label": "gate",
+            "x": 4605,
+            "y": 4092.15,
+            "radius": 85
+          },
+          "objectiveSlot": {
+            "id": "objective:gate",
+            "rowPrefix": "v4.13.objective:gate"
+          }
+        },
+        {
+          "id": "13.party-pass",
+          "label": "13.party-pass",
+          "kind": "v4-party-pass",
+          "marker": {
+            "id": "13.party-pass",
+            "type": "act2",
+            "action": "act2",
+            "label": "13.party-pass",
+            "x": 4830,
+            "y": 4098.9,
+            "radius": 220
+          },
+          "objectiveSlot": {
+            "id": "objective:13.party-pass",
+            "rowPrefix": "v4.13.objective:13.party-pass"
+          }
+        }
+      ],
+      "events": [],
+      "draftIds": [
+        "A2.S13.BRANCH.01",
+        "A2.S13.BRANCH.02",
+        "A2.S13.BRANCH.03",
+        "A2.S13.INTRO.01",
+        "A2.S13.INTRO.02",
+        "A2.S13.MID.01",
+        "A2.S13.MID.02",
+        "A2.S13.MID.03",
+        "A2.S13.MID.04",
+        "A2.S13.MID.05",
+        "A2.S13.MID.06",
+        "A2.S13.MID.07",
+        "A2.S13.MID.08",
+        "A2.S13.MID.09",
+        "A2.S13.MID.10",
+        "A2.S13.MID.11",
+        "A2.S13.MID.12",
+        "A2.S13.COMPLETE.01",
+        "A2.S13.COMPLETE.02",
+        "A2.S13.OBJECTIVE.01",
+        "A2.S13.OBJECTIVE.02",
+        "A2.S13.OBJECTIVE.03",
+        "A2.S13.POPUP.01",
+        "A2.S13.FAIL.01",
+        "A2.S13.JOURNAL.01"
+      ]
+    },
+    {
+      "stage": 14,
+      "mapRevision": 214,
+      "steps": [
+        {
+          "id": "14.door-threat",
+          "label": "14.door-threat",
+          "kind": "clear",
+          "defeatIds": [
+            "v14-b2",
+            "v14-b3",
+            "v14-b5",
+            "v14-b6",
+            "v14-b8",
+            "v14-b9",
+            "v14-b10"
+          ],
+          "marker": {
+            "id": "14.door-threat",
+            "type": "act2",
+            "action": "act2",
+            "label": "14.door-threat",
+            "x": 2980,
+            "y": 2300,
+            "radius": 220
+          },
+          "objectiveSlot": {
+            "id": "objective:14.door-threat",
+            "rowPrefix": "v4.14.objective:14.door-threat"
+          }
+        },
+        {
+          "id": "14.house",
+          "label": "14.house",
+          "kind": "interact",
+          "marker": {
+            "id": "14.house",
+            "type": "act2",
+            "action": "act2",
+            "label": "14.house",
+            "x": 2980,
+            "y": 2300,
+            "radius": 220
+          },
+          "objectiveSlot": {
+            "id": "objective:14.house",
+            "rowPrefix": "v4.14.objective:14.house"
+          }
+        },
+        {
+          "id": "14.bell",
+          "label": "14.bell",
+          "kind": "v4-hypnosis",
+          "marker": {
+            "id": "14.bell",
+            "type": "act2",
+            "action": "act2",
+            "label": "14.bell",
+            "x": 2980,
+            "y": 2300,
+            "radius": 220
+          },
+          "objectiveSlot": {
+            "id": "objective:14.bell",
+            "rowPrefix": "v4.14.objective:14.bell"
+          }
+        },
+        {
+          "id": "14.extract",
+          "label": "14.extract",
+          "kind": "v4-extract",
+          "target": "14.gilchan",
+          "spiritId": "resident-spirit-1",
+          "requiredClass": "occultist",
+          "marker": {
+            "id": "14.extract",
+            "type": "act2",
+            "action": "act2",
+            "label": "14.extract",
+            "x": 2980,
+            "y": 2300,
+            "radius": 220,
+            "target": "14.gilchan",
+            "spiritId": "resident-spirit-1"
+          },
+          "objectiveSlot": {
+            "id": "objective:14.extract",
+            "rowPrefix": "v4.14.objective:14.extract"
+          }
+        },
+        {
+          "id": "14.refuge",
+          "label": "14.refuge",
+          "kind": "v4-escort",
+          "target": "14.gilchan",
+          "marker": {
+            "id": "14.refuge",
+            "type": "act2",
+            "action": "act2",
+            "label": "14.refuge",
+            "x": 2675,
+            "y": 2300,
+            "radius": 220,
+            "target": "14.gilchan"
+          },
+          "objectiveSlot": {
+            "id": "objective:14.refuge",
+            "rowPrefix": "v4.14.objective:14.refuge"
+          }
+        },
+        {
+          "id": "14.transport-threat",
+          "label": "14.transport-threat",
+          "kind": "clear",
+          "radius": 560,
+          "marker": {
+            "id": "14.transport-threat",
+            "type": "act2",
+            "action": "act2",
+            "label": "14.transport-threat",
+            "x": 2820,
+            "y": 2300,
+            "radius": 560
+          },
+          "objectiveSlot": {
+            "id": "objective:14.transport-threat",
+            "rowPrefix": "v4.14.objective:14.transport-threat"
+          }
+        }
+      ],
+      "events": [],
+      "draftIds": [
+        "A2.S14.INTRO.01",
+        "A2.S14.INTRO.02",
+        "A2.S14.INTRO.03",
+        "A2.S14.INTRO.04",
+        "A2.S14.MID.01",
+        "A2.S14.MID.02",
+        "A2.S14.MID.03",
+        "A2.S14.MID.04",
+        "A2.S14.MID.05",
+        "A2.S14.MID.06",
+        "A2.S14.MID.07",
+        "A2.S14.MID.08",
+        "A2.S14.MID.09",
+        "A2.S14.MID.10",
+        "A2.S14.MID.11",
+        "A2.S14.COMPLETE.01",
+        "A2.S14.COMPLETE.02",
+        "A2.S14.COMPLETE.03",
+        "A2.S14.OBJECTIVE.01",
+        "A2.S14.OBJECTIVE.02",
+        "A2.S14.POPUP.01",
+        "A2.S14.FAIL.01",
+        "A2.S14.JOURNAL.01"
+      ]
+    },
+    {
+      "stage": 15,
+      "mapRevision": 215,
+      "steps": [
+        {
+          "id": "sluice",
+          "label": "sluice",
+          "kind": "interact",
+          "optional": true,
+          "marker": {
+            "id": "sluice",
+            "type": "act2",
+            "action": "act2",
+            "label": "sluice",
+            "x": 2350,
+            "y": 3800,
+            "radius": 220
+          },
+          "objectiveSlot": {
+            "id": "objective:sluice",
+            "rowPrefix": "v4.15.objective:sluice"
+          }
+        },
+        {
+          "id": "15.drift",
+          "label": "15.drift",
+          "kind": "v4-drift",
+          "marker": {
+            "id": "15.drift",
+            "type": "act2",
+            "action": "act2",
+            "label": "15.drift",
+            "x": 6240,
+            "y": 4395,
+            "radius": 220
+          },
+          "objectiveSlot": {
+            "id": "objective:15.drift",
+            "rowPrefix": "v4.15.objective:15.drift"
+          }
+        },
+        {
+          "id": "groove",
+          "label": "groove",
+          "kind": "interact",
+          "marker": {
+            "id": "groove",
+            "type": "act2",
+            "action": "act2",
+            "label": "groove",
+            "x": 6240,
+            "y": 4395,
+            "radius": 220
+          },
+          "objectiveSlot": {
+            "id": "objective:groove",
+            "rowPrefix": "v4.15.objective:groove"
+          }
+        },
+        {
+          "id": "15.knocks",
+          "label": "15.knocks",
+          "kind": "v4-knocks",
+          "marker": {
+            "id": "15.knocks",
+            "type": "act2",
+            "action": "act2",
+            "label": "15.knocks",
+            "x": 6240,
+            "y": 4395,
+            "radius": 220
+          },
+          "objectiveSlot": {
+            "id": "objective:15.knocks",
+            "rowPrefix": "v4.15.objective:15.knocks"
+          }
+        },
+        {
+          "id": "route-exit",
+          "label": "route-exit",
+          "kind": "route",
+          "marker": {
+            "id": "route-exit",
+            "type": "act2",
+            "action": "act2",
+            "label": "route-exit",
+            "x": 6240,
+            "y": 4395,
+            "radius": 220
+          },
+          "objectiveSlot": {
+            "id": "objective:route-exit",
+            "rowPrefix": "v4.15.objective:route-exit"
+          }
+        }
+      ],
+      "events": [],
+      "route": {
+        "revision": 1,
+        "toStage": 16,
+        "common": [
+          "groove",
+          "15.knocks"
+        ],
+        "routes": [
+          {
+            "id": "A",
+            "markerId": "route-lower-exit",
+            "requiresDone": [
+              "sluice"
+            ],
+            "requiresTerrainActive": [
+              "fc15-drained-ledge"
+            ]
+          },
+          {
+            "id": "B",
+            "markerId": "route-upper-exit",
+            "requiresDone": []
+          }
+        ]
+      },
+      "force": {
+        "revision": 1,
+        "ax": 36,
+        "zone": {
+          "x": 5600,
+          "y": 3300,
+          "w": 1500,
+          "h": 1300
+        }
+      },
+      "draftIds": [
+        "A2.S15.INTRO.01",
+        "A2.S15.INTRO.02",
+        "A2.S15.INTRO.03",
+        "A2.S15.CHOICE.01",
+        "A2.S15.BRANCH.01",
+        "A2.S15.BRANCH.02",
+        "A2.S15.MID.01",
+        "A2.S15.MID.02",
+        "A2.S15.MID.03",
+        "A2.S15.MID.04",
+        "A2.S15.MID.05",
+        "A2.S15.MID.06",
+        "A2.S15.MID.07",
+        "A2.S15.COMPLETE.01",
+        "A2.S15.COMPLETE.02",
+        "A2.S15.OBJECTIVE.01",
+        "A2.S15.UI_CHOICE.01",
+        "A2.S15.UI_CHOICE.02",
+        "A2.S15.POPUP.01",
+        "A2.S15.JOURNAL.01"
+      ]
+    },
+    {
+      "stage": 16,
+      "mapRevision": 216,
+      "steps": [
+        {
+          "id": "16.elder",
+          "label": "16.elder",
+          "kind": "v4-rescue",
+          "target": "objective",
+          "marker": {
+            "id": "16.elder",
+            "type": "act2",
+            "action": "act2",
+            "label": "16.elder",
+            "x": 3080,
+            "y": 4994,
+            "radius": 220,
+            "target": "objective"
+          },
+          "objectiveSlot": {
+            "id": "objective:16.elder",
+            "rowPrefix": "v4.16.objective:16.elder"
+          }
+        },
+        {
+          "id": "16.disciple",
+          "label": "16.disciple",
+          "kind": "v4-extract",
+          "target": "resident-1",
+          "spiritId": "resident-spirit-1",
+          "requiredClass": "occultist",
+          "marker": {
+            "id": "16.disciple",
+            "type": "act2",
+            "action": "act2",
+            "label": "16.disciple",
+            "x": 2950,
+            "y": 5004.693877551021,
+            "radius": 220,
+            "target": "resident-1",
+            "spiritId": "resident-spirit-1"
+          },
+          "objectiveSlot": {
+            "id": "objective:16.disciple",
+            "rowPrefix": "v4.16.objective:16.disciple"
+          }
+        },
+        {
+          "id": "16.safe",
+          "label": "16.safe",
+          "kind": "v4-recovery",
+          "target": "resident-1",
+          "marker": {
+            "id": "16.safe",
+            "type": "act2",
+            "action": "act2",
+            "label": "16.safe",
+            "x": 2755,
+            "y": 5020.6122448979595,
+            "radius": 220,
+            "target": "resident-1"
+          },
+          "objectiveSlot": {
+            "id": "objective:16.safe",
+            "rowPrefix": "v4.16.objective:16.safe"
+          }
+        },
+        {
+          "id": "16.testimony",
+          "label": "16.testimony",
+          "kind": "v4-slot",
+          "slot": "16.testimony.required",
+          "marker": {
+            "id": "16.testimony",
+            "type": "act2",
+            "action": "act2",
+            "label": "16.testimony",
+            "x": 2915,
+            "y": 5007.551020408164,
+            "radius": 220
+          },
+          "objectiveSlot": {
+            "id": "objective:16.testimony",
+            "rowPrefix": "v4.16.objective:16.testimony"
+          }
+        },
+        {
+          "id": "16.work-exit",
+          "label": "16.work-exit",
+          "kind": "reach",
+          "marker": {
+            "id": "16.work-exit",
+            "type": "act2",
+            "action": "act2",
+            "label": "16.work-exit",
+            "x": 10470,
+            "y": 4750,
+            "radius": 220
+          },
+          "objectiveSlot": {
+            "id": "objective:16.work-exit",
+            "rowPrefix": "v4.16.objective:16.work-exit"
+          }
+        }
+      ],
+      "events": [
+        {
+          "id": "v4.16.temple-cloister-answer",
+          "when": {
+            "after": "density-gate-v4.16.temple-cloister-answer"
+          },
+          "source": "v4.16.temple-cloister-answer"
+        },
+        {
+          "id": "v4.16.temple-record-answer",
+          "when": {
+            "after": "density-gate-v4.16.temple-record-answer"
+          },
+          "source": "v4.16.temple-record-answer"
+        }
+      ],
+      "draftIds": [
+        "A2.S16.BRANCH.02",
+        "A2.S16.BRANCH.01",
+        "A2.S16.INTRO.01",
+        "A2.S16.INTRO.02",
+        "A2.S16.INTRO.03",
+        "A2.S16.MID.01",
+        "A2.S16.MID.02",
+        "A2.S16.MID.03",
+        "A2.S16.MID.04",
+        "A2.S16.MID.05",
+        "A2.S16.WITNESS.01",
+        "A2.S16.WITNESS.02",
+        "A2.S16.WITNESS.03",
+        "A2.S16.WITNESS.04",
+        "A2.S16.WITNESS.05",
+        "A2.S16.WITNESS.06",
+        "A2.S16.WITNESS.07",
+        "A2.S16.WITNESS.08",
+        "A2.S16.MID.06",
+        "A2.S16.MID.07",
+        "A2.S16.COMPLETE.01",
+        "A2.S16.COMPLETE.02",
+        "A2.S16.OBJECTIVE.01",
+        "A2.S16.OBJECTIVE.02",
+        "A2.S16.OBJECTIVE.03",
+        "A2.S16.POPUP.01",
+        "A2.S16.FAIL.01",
+        "A2.S16.JOURNAL.01"
+      ]
+    },
+    {
+      "stage": 17,
+      "mapRevision": 217,
+      "steps": [
+        {
+          "id": "17.work-threat",
+          "label": "17.work-threat",
+          "kind": "clear",
+          "defeatIds": [
+            "a2-enemy-0",
+            "a2-enemy-1",
+            "ws-west-screen",
+            "a2-enemy-2",
+            "a2-enemy-3",
+            "ws-brace-cart",
+            "ws-brace-captain"
+          ],
+          "marker": {
+            "id": "17.work-threat",
+            "type": "act2",
+            "action": "act2",
+            "label": "17.work-threat",
+            "x": 2440,
+            "y": 4351.454545454545,
+            "radius": 220
+          },
+          "objectiveSlot": {
+            "id": "objective:17.work-threat",
+            "rowPrefix": "v4.17.objective:17.work-threat"
+          }
+        },
+        {
+          "id": "17.brace",
+          "label": "17.brace",
+          "kind": "v4-work",
+          "worker": "@actor",
+          "duration": 1.25,
+          "marker": {
+            "id": "17.brace",
+            "type": "act2",
+            "action": "act2",
+            "label": "17.brace",
+            "x": 3040,
+            "y": 4275.777777777777,
+            "radius": 220
+          },
+          "objectiveSlot": {
+            "id": "objective:17.brace",
+            "rowPrefix": "v4.17.objective:17.brace"
+          }
+        },
+        {
+          "id": "17.hoist",
+          "label": "17.hoist",
+          "kind": "v4-defeat",
+          "target": "act2-hoist",
+          "marker": {
+            "id": "17.hoist",
+            "type": "act2",
+            "action": "act2",
+            "label": "17.hoist",
+            "x": 6140,
+            "y": 4718,
+            "target": "act2-hoist",
+            "radius": 220
+          },
+          "objectiveSlot": {
+            "id": "objective:17.hoist",
+            "rowPrefix": "v4.17.objective:17.hoist"
+          }
+        },
+        {
+          "id": "17.parts",
+          "label": "17.parts",
+          "kind": "interact",
+          "marker": {
+            "id": "17.parts",
+            "type": "act2",
+            "action": "act2",
+            "label": "17.parts",
+            "x": 6140,
+            "y": 4718,
+            "radius": 220
+          },
+          "objectiveSlot": {
+            "id": "objective:17.parts",
+            "rowPrefix": "v4.17.objective:17.parts"
+          }
+        },
+        {
+          "id": "17.mesh",
+          "label": "17.mesh",
+          "kind": "v4-work",
+          "worker": "17.mason",
+          "duration": 1.5,
+          "marker": {
+            "id": "17.mesh",
+            "type": "act2",
+            "action": "act2",
+            "label": "17.mesh",
+            "x": 8660,
+            "y": 4580,
+            "radius": 220
+          },
+          "objectiveSlot": {
+            "id": "objective:17.mesh",
+            "rowPrefix": "v4.17.objective:17.mesh"
+          }
+        },
+        {
+          "id": "17.lock",
+          "label": "17.lock",
+          "kind": "v4-lock",
+          "marker": {
+            "id": "17.lock",
+            "type": "act2",
+            "action": "act2",
+            "label": "17.lock",
+            "x": 8660,
+            "y": 4580,
+            "radius": 220
+          },
+          "objectiveSlot": {
+            "id": "objective:17.lock",
+            "rowPrefix": "v4.17.objective:17.lock"
+          }
+        },
+        {
+          "id": "17.defense",
+          "label": "17.defense",
+          "kind": "v4-defense",
+          "marker": {
+            "id": "17.defense",
+            "type": "act2",
+            "action": "act2",
+            "label": "17.defense",
+            "x": 8530,
+            "y": 4580,
+            "radius": 220
+          },
+          "objectiveSlot": {
+            "id": "objective:17.defense",
+            "rowPrefix": "v4.17.objective:17.defense"
+          }
+        },
+        {
+          "id": "17.wheel",
+          "label": "17.wheel",
+          "kind": "v4-wheel",
+          "marker": {
+            "id": "17.wheel",
+            "type": "act2",
+            "action": "act2",
+            "label": "17.wheel",
+            "x": 8660,
+            "y": 4580,
+            "radius": 220
+          },
+          "objectiveSlot": {
+            "id": "objective:17.wheel",
+            "rowPrefix": "v4.17.objective:17.wheel"
+          }
+        },
+        {
+          "id": "17.load-test",
+          "label": "17.load-test",
+          "kind": "v4-load",
+          "marker": {
+            "id": "17.load-test",
+            "type": "act2",
+            "action": "act2",
+            "label": "17.load-test",
+            "x": 8660,
+            "y": 4580,
+            "radius": 220
+          },
+          "objectiveSlot": {
+            "id": "objective:17.load-test",
+            "rowPrefix": "v4.17.objective:17.load-test"
+          }
+        },
+        {
+          "id": "17.withdraw",
+          "label": "17.withdraw",
+          "kind": "v4-withdraw",
+          "marker": {
+            "id": "17.withdraw",
+            "type": "act2",
+            "action": "act2",
+            "label": "17.withdraw",
+            "x": 8380,
+            "y": 4580,
+            "radius": 220
+          },
+          "objectiveSlot": {
+            "id": "objective:17.withdraw",
+            "rowPrefix": "v4.17.objective:17.withdraw"
+          }
+        }
+      ],
+      "events": [
+        {
+          "id": "v4.17.worksite-brace-answer",
+          "when": {
+            "after": "density-gate-v4.17.worksite-brace-answer"
+          },
+          "source": "v4.17.worksite-brace-answer"
+        },
+        {
+          "id": "v4.17.worksite-axle-answer",
+          "when": {
+            "after": "density-gate-v4.17.worksite-axle-answer"
+          },
+          "source": "v4.17.worksite-axle-answer"
+        }
+      ],
+      "draftIds": [
+        "A2.S17.INTRO.01",
+        "A2.S17.INTRO.02",
+        "A2.S17.INTRO.03",
+        "A2.S17.INTRO.04",
+        "A2.S17.MID.01",
+        "A2.S17.MID.02",
+        "A2.S17.MID.03",
+        "A2.S17.MID.04",
+        "A2.S17.MID.05",
+        "A2.S17.MID.06",
+        "A2.S17.MID.07",
+        "A2.S17.MID.08",
+        "A2.S17.MID.09",
+        "A2.S17.MID.10",
+        "A2.S17.MID.11",
+        "A2.S17.MID.12",
+        "A2.S17.MID.13",
+        "A2.S17.MID.14",
+        "A2.S17.COMPLETE.01",
+        "A2.S17.COMPLETE.02",
+        "A2.S17.OBJECTIVE.01",
+        "A2.S17.OBJECTIVE.02",
+        "A2.S17.OBJECTIVE.03",
+        "A2.S17.OBJECTIVE.04",
+        "A2.S17.POPUP.01",
+        "A2.S17.POPUP.02",
+        "A2.S17.FAIL.01",
+        "A2.S17.JOURNAL.01"
+      ]
+    },
+    {
+      "stage": 18,
+      "mapRevision": 218,
+      "steps": [
+        {
+          "id": "18.descent",
+          "label": "18.descent",
+          "kind": "v4-18-descent",
+          "parallelGroup": "18.brake-phase",
+          "marker": {
+            "id": "18.descent",
+            "type": "act2",
+            "action": "act2",
+            "label": "18.descent",
+            "x": 9410,
+            "y": 6370,
+            "radius": 220
+          },
+          "objectiveSlot": {
+            "id": "objective:18.descent",
+            "rowPrefix": "v4.18.objective:18.descent"
+          }
+        },
+        {
+          "id": "18.brake",
+          "label": "18.brake",
+          "kind": "v4-18-brake",
+          "parallelGroup": "18.brake-phase",
+          "marker": {
+            "id": "18.brake",
+            "type": "act2",
+            "action": "act2",
+            "label": "18.brake",
+            "x": 9410,
+            "y": 6370,
+            "radius": 220
+          },
+          "objectiveSlot": {
+            "id": "objective:18.brake",
+            "rowPrefix": "v4.18.objective:18.brake"
+          }
+        },
+        {
+          "id": "18.rescue",
+          "label": "18.rescue",
+          "kind": "v4-18-rescue",
+          "requiredClass": "occultist",
+          "marker": {
+            "id": "18.rescue",
+            "type": "act2",
+            "action": "act2",
+            "label": "18.rescue",
+            "x": 9080,
+            "y": 6370,
+            "radius": 220,
+            "target": "18.survivor"
+          },
+          "objectiveSlot": {
+            "id": "objective:18.rescue",
+            "rowPrefix": "v4.18.objective:18.rescue"
+          }
+        },
+        {
+          "id": "18.rescue-safe",
+          "label": "18.rescue-safe",
+          "kind": "v4-18-rescue-safe",
+          "marker": {
+            "id": "18.rescue-safe",
+            "type": "act2",
+            "action": "act2",
+            "label": "18.rescue-safe",
+            "x": 9420,
+            "y": 6370,
+            "radius": 220
+          },
+          "objectiveSlot": {
+            "id": "objective:18.rescue-safe",
+            "rowPrefix": "v4.18.objective:18.rescue-safe"
+          }
+        },
+        {
+          "id": "18.hoist",
+          "label": "18.hoist",
+          "kind": "v4-18-hoist",
+          "marker": {
+            "id": "18.hoist",
+            "type": "act2",
+            "action": "act2",
+            "label": "18.hoist",
+            "x": 6910,
+            "y": 7185.625,
+            "radius": 220
+          },
+          "objectiveSlot": {
+            "id": "objective:18.hoist",
+            "rowPrefix": "v4.18.objective:18.hoist"
+          }
+        },
+        {
+          "id": "18.keeper",
+          "label": "18.keeper",
+          "kind": "v4-18-death",
+          "marker": {
+            "id": "18.keeper",
+            "type": "act2",
+            "action": "act2",
+            "label": "18.keeper",
+            "x": 7740,
+            "y": 7524.186046511628,
+            "radius": 220
+          },
+          "objectiveSlot": {
+            "id": "objective:18.keeper",
+            "rowPrefix": "v4.18.objective:18.keeper"
+          }
+        },
+        {
+          "id": "18.inspect",
+          "label": "18.inspect",
+          "kind": "v4-18-inspect",
+          "marker": {
+            "id": "18.inspect",
+            "type": "act2",
+            "action": "act2",
+            "label": "18.inspect",
+            "x": 6910,
+            "y": 7185.625,
+            "radius": 220
+          },
+          "objectiveSlot": {
+            "id": "objective:18.inspect",
+            "rowPrefix": "v4.18.objective:18.inspect"
+          }
+        },
+        {
+          "id": "18.lift",
+          "label": "18.lift",
+          "kind": "v4-18-lift",
+          "marker": {
+            "id": "18.lift",
+            "type": "act2",
+            "action": "act2",
+            "label": "18.lift",
+            "x": 6910,
+            "y": 7185.625,
+            "radius": 220
+          },
+          "objectiveSlot": {
+            "id": "objective:18.lift",
+            "rowPrefix": "v4.18.objective:18.lift"
+          }
+        },
+        {
+          "id": "18.support",
+          "label": "18.support",
+          "kind": "v4-18-support",
+          "marker": {
+            "id": "18.support",
+            "type": "act2",
+            "action": "act2",
+            "label": "18.support",
+            "x": 6770,
+            "y": 7187.142857142857,
+            "radius": 220
+          },
+          "objectiveSlot": {
+            "id": "objective:18.support",
+            "rowPrefix": "v4.18.objective:18.support"
+          }
+        },
+        {
+          "id": "18.settle",
+          "label": "18.settle",
+          "kind": "v4-18-settle",
+          "marker": {
+            "id": "18.settle",
+            "type": "act2",
+            "action": "act2",
+            "label": "18.settle",
+            "x": 6910,
+            "y": 7185.625,
+            "radius": 220
+          },
+          "objectiveSlot": {
+            "id": "objective:18.settle",
+            "rowPrefix": "v4.18.objective:18.settle"
+          }
+        },
+        {
+          "id": "18.lock-west",
+          "label": "18.lock-west",
+          "kind": "v4-18-lock",
+          "parallelGroup": "18.final-locks",
+          "marker": {
+            "id": "18.lock-west",
+            "type": "act2",
+            "action": "act2",
+            "label": "18.lock-west",
+            "x": 6500,
+            "y": 7245.454545454545,
+            "radius": 220
+          },
+          "objectiveSlot": {
+            "id": "objective:18.lock-west",
+            "rowPrefix": "v4.18.objective:18.lock-west"
+          }
+        },
+        {
+          "id": "18.lock-east",
+          "label": "18.lock-east",
+          "kind": "v4-18-lock",
+          "parallelGroup": "18.final-locks",
+          "marker": {
+            "id": "18.lock-east",
+            "type": "act2",
+            "action": "act2",
+            "label": "18.lock-east",
+            "x": 9000,
+            "y": 7407.777777777777,
+            "radius": 220
+          },
+          "objectiveSlot": {
+            "id": "objective:18.lock-east",
+            "rowPrefix": "v4.18.objective:18.lock-east"
+          }
+        },
+        {
+          "id": "18.souls",
+          "label": "18.souls",
+          "kind": "v4-18-souls",
+          "marker": {
+            "id": "18.souls",
+            "type": "act2",
+            "action": "act2",
+            "label": "18.souls",
+            "x": 6770,
+            "y": 7187.142857142857,
+            "radius": 220
+          },
+          "objectiveSlot": {
+            "id": "objective:18.souls",
+            "rowPrefix": "v4.18.objective:18.souls"
+          }
+        }
+      ],
+      "events": [
+        {
+          "id": "18.rescue-response",
+          "when": {
+            "after": "density-gate-18.rescue-response"
+          },
+          "source": "18.rescue-response"
+        }
+      ],
+      "force": {
+        "revision": 1,
+        "ax": 40,
+        "zone": {
+          "x": 6250,
+          "y": 6700,
+          "w": 1900,
+          "h": 650
+        }
+      },
+      "draftIds": [
+        "A2.S18.INTRO.01",
+        "A2.S18.INTRO.02",
+        "A2.S18.INTRO.03",
+        "A2.S18.INTRO.04",
+        "A2.S18.PHASE1.01",
+        "A2.S18.PHASE1.02",
+        "A2.S18.PHASE1.03",
+        "A2.S18.MID.01",
+        "A2.S18.MID.02",
+        "A2.S18.MID.03",
+        "A2.S18.MID.04",
+        "A2.S18.MID.05",
+        "A2.S18.PHASE2.01",
+        "A2.S18.PHASE2.02",
+        "A2.S18.PHASE2.03",
+        "A2.S18.PHASE2.04",
+        "A2.S18.PHASE2.05",
+        "A2.S18.PHASE2.06",
+        "A2.S18.DEATH.01",
+        "A2.S18.DEATH.02",
+        "A2.S18.BRANCH.01",
+        "A2.S18.BRANCH.02",
+        "A2.S18.STABILIZE.01",
+        "A2.S18.STABILIZE.02",
+        "A2.S18.STABILIZE.03",
+        "A2.S18.STABILIZE.04",
+        "A2.S18.STABILIZE.05",
+        "A2.S18.COMPLETE.01",
+        "A2.S18.COMPLETE.02",
+        "A2.S18.COMPLETE.03",
+        "A2.S18.OBJECTIVE.01",
+        "A2.S18.OBJECTIVE.02",
+        "A2.S18.OBJECTIVE.03",
+        "A2.S18.OBJECTIVE.04",
+        "A2.S18.POPUP.01",
+        "A2.S18.POPUP.02",
+        "A2.S18.POPUP.03",
+        "A2.S18.POPUP.04",
+        "A2.S18.FAIL.01",
+        "A2.S18.JOURNAL.01"
+      ]
+    },
+    {
+      "stage": 19,
+      "mapRevision": 219,
+      "steps": [
+        {
+          "id": "route",
+          "label": "route",
+          "kind": "interact",
+          "requiredClass": "mage",
+          "marker": {
+            "id": "route",
+            "type": "act2",
+            "action": "act2",
+            "x": 6550,
+            "y": 7218.571428571428,
+            "label": "route",
+            "requiredClass": "mage"
+          },
+          "objectiveSlot": {
+            "id": "objective:route",
+            "rowPrefix": "v4.19.objective:route"
+          }
+        },
+        {
+          "id": "separate-1",
+          "label": "separate-1",
+          "kind": "interact",
+          "requiredClass": "occultist",
+          "parallelGroup": "farewell",
+          "marker": {
+            "id": "separate-1",
+            "type": "act2",
+            "action": "act2",
+            "x": 6770,
+            "y": 7187.142857142857,
+            "label": "separate-1",
+            "requiredClass": "occultist"
+          },
+          "objectiveSlot": {
+            "id": "objective:separate-1",
+            "rowPrefix": "v4.19.objective:separate-1"
+          }
+        },
+        {
+          "id": "send-1",
+          "label": "send-1",
+          "kind": "v4-farewell",
+          "parallelGroup": "farewell",
+          "requiresDone": [
+            "separate-1"
+          ],
+          "marker": {
+            "id": "send-1",
+            "type": "act2",
+            "x": 6770,
+            "y": 7187.142857142857,
+            "label": "send-1"
+          },
+          "objectiveSlot": {
+            "id": "objective:send-1",
+            "rowPrefix": "v4.19.objective:send-1"
+          }
+        },
+        {
+          "id": "separate-2",
+          "label": "separate-2",
+          "kind": "interact",
+          "requiredClass": "occultist",
+          "parallelGroup": "farewell",
+          "marker": {
+            "id": "separate-2",
+            "type": "act2",
+            "action": "act2",
+            "x": 7010,
+            "y": 7191.875,
+            "label": "separate-2",
+            "requiredClass": "occultist"
+          },
+          "objectiveSlot": {
+            "id": "objective:separate-2",
+            "rowPrefix": "v4.19.objective:separate-2"
+          }
+        },
+        {
+          "id": "send-2",
+          "label": "send-2",
+          "kind": "v4-farewell",
+          "parallelGroup": "farewell",
+          "requiresDone": [
+            "separate-2"
+          ],
+          "marker": {
+            "id": "send-2",
+            "type": "act2",
+            "x": 7010,
+            "y": 7191.875,
+            "label": "send-2"
+          },
+          "objectiveSlot": {
+            "id": "objective:send-2",
+            "rowPrefix": "v4.19.objective:send-2"
+          }
+        },
+        {
+          "id": "separate-3",
+          "label": "separate-3",
+          "kind": "interact",
+          "requiredClass": "occultist",
+          "parallelGroup": "farewell",
+          "marker": {
+            "id": "separate-3",
+            "type": "act2",
+            "action": "act2",
+            "x": 7210,
+            "y": 7262.758620689655,
+            "label": "separate-3",
+            "requiredClass": "occultist"
+          },
+          "objectiveSlot": {
+            "id": "objective:separate-3",
+            "rowPrefix": "v4.19.objective:separate-3"
+          }
+        },
+        {
+          "id": "send-3",
+          "label": "send-3",
+          "kind": "v4-farewell",
+          "parallelGroup": "farewell",
+          "requiresDone": [
+            "separate-3"
+          ],
+          "marker": {
+            "id": "send-3",
+            "type": "act2",
+            "x": 7210,
+            "y": 7262.758620689655,
+            "label": "send-3"
+          },
+          "objectiveSlot": {
+            "id": "objective:send-3",
+            "rowPrefix": "v4.19.objective:send-3"
+          }
+        },
+        {
+          "id": "old-soul",
+          "label": "old-soul",
+          "kind": "interact",
+          "marker": {
+            "id": "old-soul",
+            "type": "act2",
+            "action": "act2",
+            "x": 7340,
+            "y": 7379.310344827586,
+            "label": "old-soul"
+          },
+          "objectiveSlot": {
+            "id": "objective:old-soul",
+            "rowPrefix": "v4.19.objective:old-soul"
+          }
+        }
+      ],
+      "events": [],
+      "draftIds": [
+        "A2.S19.INTRO.01",
+        "A2.S19.INTRO.02",
+        "A2.S19.INTRO.03",
+        "A2.S19.MID.01",
+        "A2.S19.MID.02",
+        "A2.S19.MID.03",
+        "A2.S19.MID.04",
+        "A2.S19.MID.05",
+        "A2.S19.MID.06",
+        "A2.S19.MID.07",
+        "A2.S19.EVIDENCE.01",
+        "A2.S19.EVIDENCE.02",
+        "A2.S19.EVIDENCE.03",
+        "A2.S19.EVIDENCE.04",
+        "A2.S19.EVIDENCE.05",
+        "A2.S19.COMPLETE.01",
+        "A2.S19.COMPLETE.02",
+        "A2.S19.COMPLETE.03",
+        "A2.S19.OBJECTIVE.01",
+        "A2.S19.OBJECTIVE.02",
+        "A2.S19.OBJECTIVE.03",
+        "A2.S19.POPUP.01",
+        "A2.S19.JOURNAL.01",
+        "A2.S19.JOURNAL.02"
+      ]
+    },
+    {
+      "stage": 20,
+      "mapRevision": 220,
+      "steps": [
+        {
+          "id": "20.ring",
+          "label": "20.ring",
+          "kind": "interact",
+          "requiredClass": "mage",
+          "marker": {
+            "id": "20.ring",
+            "type": "act2",
+            "action": "act2",
+            "label": "20.ring",
+            "x": 1000,
+            "y": 4443.636363636364
+          },
+          "objectiveSlot": {
+            "id": "objective:20.ring",
+            "rowPrefix": "v4.20.objective:20.ring"
+          }
+        },
+        {
+          "id": "clear-mouth",
+          "label": "clear-mouth",
+          "kind": "clear",
+          "cohorts": "west",
+          "marker": {
+            "id": "clear-mouth",
+            "type": "act2",
+            "x": 1670,
+            "y": 4380.521739130435,
+            "label": "clear-mouth"
+          },
+          "objectiveSlot": {
+            "id": "objective:clear-mouth",
+            "rowPrefix": "v4.20.objective:clear-mouth"
+          }
+        },
+        {
+          "id": "escort",
+          "label": "escort",
+          "kind": "interact",
+          "marker": {
+            "id": "escort",
+            "type": "act2",
+            "x": 3290,
+            "y": 4032.470588235294,
+            "label": "escort",
+            "action": "act2"
+          },
+          "objectiveSlot": {
+            "id": "objective:escort",
+            "rowPrefix": "v4.20.objective:escort"
+          }
+        },
+        {
+          "id": "escort-mid",
+          "label": "escort-mid",
+          "kind": "escort",
+          "marker": {
+            "id": "escort-mid",
+            "type": "exit",
+            "x": 5240,
+            "y": 3680,
+            "label": "escort-mid"
+          },
+          "objectiveSlot": {
+            "id": "objective:escort-mid",
+            "rowPrefix": "v4.20.objective:escort-mid"
+          }
+        },
+        {
+          "id": "hold-convoy",
+          "label": "hold-convoy",
+          "kind": "v4-regroup",
+          "marker": {
+            "id": "hold-convoy",
+            "type": "act2",
+            "x": 5240,
+            "y": 3680,
+            "label": "hold-convoy"
+          },
+          "objectiveSlot": {
+            "id": "objective:hold-convoy",
+            "rowPrefix": "v4.20.objective:hold-convoy"
+          }
+        },
+        {
+          "id": "clear-pass",
+          "label": "clear-pass",
+          "kind": "v4-ambush-clear",
+          "defeatIds": [
+            "a2-enemy-11",
+            "a2-enemy-12",
+            "a2-enemy-13",
+            "a2-enemy-14",
+            "a2-enemy-15",
+            "a2-enemy-16",
+            "a2-enemy-17"
+          ],
+          "marker": {
+            "id": "clear-pass",
+            "type": "act2",
+            "x": 7150,
+            "y": 3022,
+            "label": "clear-pass"
+          },
+          "objectiveSlot": {
+            "id": "objective:clear-pass",
+            "rowPrefix": "v4.20.objective:clear-pass"
+          }
+        },
+        {
+          "id": "escape",
+          "label": "escape",
+          "kind": "escort",
+          "marker": {
+            "id": "escape",
+            "type": "exit",
+            "x": 8490,
+            "y": 2741.2727272727275,
+            "label": "escape"
+          },
+          "objectiveSlot": {
+            "id": "objective:escape",
+            "rowPrefix": "v4.20.objective:escape"
+          }
+        },
+        {
+          "id": "20.outside",
+          "label": "20.outside",
+          "kind": "v4-outside",
+          "requiredClass": "knight",
+          "marker": {
+            "id": "20.outside",
+            "type": "act2",
+            "action": "act2",
+            "label": "20.outside",
+            "x": 8750,
+            "y": 2740
+          },
+          "objectiveSlot": {
+            "id": "objective:20.outside",
+            "rowPrefix": "v4.20.objective:20.outside"
+          }
+        }
+      ],
+      "events": [],
+      "draftIds": [
+        "A2.S20.INTRO.01",
+        "A2.S20.INTRO.02",
+        "A2.S20.INTRO.03",
+        "A2.S20.MID.01",
+        "A2.S20.MID.02",
+        "A2.S20.MID.03",
+        "A2.S20.MID.04",
+        "A2.S20.MID.05",
+        "A2.S20.MID.06",
+        "A2.S20.MID.07",
+        "A2.S20.BRANCH.01",
+        "A2.S20.BRANCH.02",
+        "A2.S20.TIME.01",
+        "A2.S20.TIME.02",
+        "A2.S20.TIME.03",
+        "A2.S20.TIME.04",
+        "A2.S20.TIME.05",
+        "A2.S20.TIME.06",
+        "A2.S20.TIME.07",
+        "A2.S20.TIME.08",
+        "A2.S20.NEWS.01",
+        "A2.S20.NEWS.02",
+        "A2.S20.NEWS.03",
+        "A2.S20.NEWS.04",
+        "A2.S20.NEWS.05",
+        "A2.S20.NEWS.06",
+        "A2.S20.COMPLETE.01",
+        "A2.S20.OBJECTIVE.01",
+        "A2.S20.OBJECTIVE.02",
+        "A2.S20.OBJECTIVE.03",
+        "A2.S20.OBJECTIVE.04",
+        "A2.S20.POPUP.01",
+        "A2.S20.POPUP.02",
+        "A2.S20.FAIL.01",
+        "A2.S20.JOURNAL.01",
+        "A2.S20.JOURNAL.02"
+      ]
+    },
+    {
+      "stage": 21,
+      "mapRevision": 221,
+      "steps": [
+        {
+          "id": "v4.gate-cart",
+          "label": "v4.gate-cart",
+          "kind": "destroy",
+          "marker": {
+            "id": "v4.gate-cart",
+            "type": "act3",
+            "action": "act3",
+            "label": "v4.gate-cart",
+            "x": 1740,
+            "y": 2640
+          },
+          "objectiveSlot": {
+            "id": "objective:v4.gate-cart",
+            "rowPrefix": "v4.21.objective:v4.gate-cart"
+          }
+        },
+        {
+          "id": "gate-resident",
+          "label": "gate-resident",
+          "kind": "v4-city-rescue",
+          "target": "act3-resident",
+          "marker": {
+            "id": "gate-resident",
+            "type": "act3",
+            "x": 1580,
+            "y": 2640,
+            "label": "gate-resident",
+            "action": "act3",
+            "target": "act3-resident"
+          },
+          "objectiveSlot": {
+            "id": "objective:gate-resident",
+            "rowPrefix": "v4.21.objective:gate-resident"
+          }
+        },
+        {
+          "id": "refuge-hold",
+          "label": "refuge-hold",
+          "kind": "v4-city-safe",
+          "marker": {
+            "id": "refuge-hold",
+            "type": "act3",
+            "x": 2600,
+            "y": 2560,
+            "label": "refuge-hold"
+          },
+          "objectiveSlot": {
+            "id": "objective:refuge-hold",
+            "rowPrefix": "v4.21.objective:refuge-hold"
+          }
+        },
+        {
+          "id": "city-exit",
+          "label": "city-exit",
+          "kind": "reach",
+          "marker": {
+            "id": "city-exit",
+            "type": "exit",
+            "x": 6140,
+            "y": 2220,
+            "label": "city-exit"
+          },
+          "objectiveSlot": {
+            "id": "objective:city-exit",
+            "rowPrefix": "v4.21.objective:city-exit"
+          }
+        }
+      ],
+      "events": [],
+      "draftIds": [
+        "A3.S21.INTRO.01",
+        "A3.S21.INTRO.02",
+        "A3.S21.INTRO.03",
+        "A3.S21.INTRO.04",
+        "A3.S21.CART_STOP.01",
+        "A3.S21.CART_STOP.02",
+        "A3.S21.CIVILIAN_DANGER.01",
+        "A3.S21.CIVILIAN_DANGER.02",
+        "A3.S21.LAST_ESCORT.01",
+        "A3.S21.CLEAR.01",
+        "A3.S21.CLEAR.02",
+        "A3.S21.CLEAR.03",
+        "A3.S21.CLEAR.04",
+        "A3.S21.CLEAR.05",
+        "A3.S21.CLEAR.06",
+        "A3.S21.EXIT.01",
+        "A3.S21.EXIT.02",
+        "A3.S21.REST_ARCHER.01",
+        "A3.S21.REST_MAGE.01",
+        "A3.S21.REST_KNIGHT.01",
+        "A3.S21.REST_OCCULTIST.01",
+        "A3.S21.OBJ.01",
+        "A3.S21.OBJ.02",
+        "A3.S21.OBJ.03",
+        "A3.S21.JOURNAL.01",
+        "A3.S21.GUIDE.01"
+      ]
+    },
+    {
+      "stage": 22,
+      "mapRevision": 222,
+      "steps": [
+        {
+          "id": "archive-seal",
+          "label": "archive-seal",
+          "kind": "interact",
+          "requiredClass": "knight",
+          "opens": "archive-door",
+          "marker": {
+            "id": "archive-seal",
+            "type": "act3",
+            "x": 1250,
+            "y": 5300,
+            "label": "archive-seal",
+            "action": "act3",
+            "requiredClass": "knight",
+            "surfaceId": "v22-lower-court"
+          },
+          "objectiveSlot": {
+            "id": "objective:archive-seal",
+            "rowPrefix": "v4.22.objective:archive-seal"
+          }
+        },
+        {
+          "id": "v4.record-bundle",
+          "label": "v4.record-bundle",
+          "kind": "interact",
+          "opens": "upper-door",
+          "marker": {
+            "id": "v4.record-bundle",
+            "type": "act3",
+            "action": "act3",
+            "label": "v4.record-bundle",
+            "x": 1450,
+            "y": 3700
+          },
+          "objectiveSlot": {
+            "id": "objective:v4.record-bundle",
+            "rowPrefix": "v4.22.objective:v4.record-bundle"
+          }
+        },
+        {
+          "id": "archive-exit",
+          "label": "archive-exit",
+          "kind": "reach",
+          "marker": {
+            "id": "archive-exit",
+            "type": "exit",
+            "x": 2715,
+            "y": 1200,
+            "label": "archive-exit",
+            "surfaceId": "v22-comparison-mass"
+          },
+          "objectiveSlot": {
+            "id": "objective:archive-exit",
+            "rowPrefix": "v4.22.objective:archive-exit"
+          }
+        }
+      ],
+      "events": [],
+      "draftIds": [
+        "A3.S22.INTRO.01",
+        "A3.S22.INTRO.02",
+        "A3.S22.INTRO.03",
+        "A3.S22.SEAL.01",
+        "A3.S22.UPPER_DANGER.01",
+        "A3.S22.COMPARE.01",
+        "A3.S22.COMPARE.02",
+        "A3.S22.COMPARE.03",
+        "A3.S22.COMPARE.04",
+        "A3.S22.COMPARE.05",
+        "A3.S22.COMPARE.06",
+        "A3.S22.MAP.01",
+        "A3.S22.MAP.02",
+        "A3.S22.MAP.03",
+        "A3.S22.EXIT.01",
+        "A3.S22.EXIT.02",
+        "A3.S22.REST_ARCHER.01",
+        "A3.S22.REST_MAGE.01",
+        "A3.S22.REST_KNIGHT.01",
+        "A3.S22.REST_OCCULTIST.01",
+        "A3.S22.OBJ.01",
+        "A3.S22.OBJ.02",
+        "A3.S22.OBJ.03",
+        "A3.S22.JOURNAL.01",
+        "A3.S22.DOC.REPORT",
+        "A3.S22.DOC.REGISTER",
+        "A3.S22.DOC.MAP"
+      ]
+    },
+    {
+      "stage": 23,
+      "mapRevision": 223,
+      "steps": [
+        {
+          "id": "dispatch-bundle",
+          "label": "dispatch-bundle",
+          "kind": "interact",
+          "target": "act3-carrier",
+          "marker": {
+            "id": "dispatch-bundle",
+            "type": "act3",
+            "x": 1080,
+            "y": 4265.272727272727,
+            "label": "dispatch-bundle",
+            "action": "act3",
+            "target": "act3-carrier"
+          },
+          "objectiveSlot": {
+            "id": "objective:dispatch-bundle",
+            "rowPrefix": "v4.23.objective:dispatch-bundle"
+          }
+        },
+        {
+          "id": "dock-mid",
+          "label": "dock-mid",
+          "kind": "escort",
+          "target": "act3-carrier",
+          "marker": {
+            "id": "dock-mid",
+            "type": "act3",
+            "x": 5660,
+            "y": 4350,
+            "label": "dock-mid",
+            "target": "act3-carrier"
+          },
+          "objectiveSlot": {
+            "id": "objective:dock-mid",
+            "rowPrefix": "v4.23.objective:dock-mid"
+          }
+        },
+        {
+          "id": "dock-exit",
+          "label": "dock-exit",
+          "kind": "escort",
+          "target": "act3-carrier",
+          "marker": {
+            "id": "dock-exit",
+            "type": "exit",
+            "x": 9150,
+            "y": 4170,
+            "label": "dock-exit",
+            "target": "act3-carrier"
+          },
+          "objectiveSlot": {
+            "id": "objective:dock-exit",
+            "rowPrefix": "v4.23.objective:dock-exit"
+          }
+        }
+      ],
+      "events": [],
+      "draftIds": [
+        "A3.S23.INTRO.01",
+        "A3.S23.INTRO.02",
+        "A3.S23.INTRO.03",
+        "A3.S23.ESCORT.01",
+        "A3.S23.ESCORT.02",
+        "A3.S23.ESCORT.03",
+        "A3.S23.GOODS.01",
+        "A3.S23.GOODS.02",
+        "A3.S23.GOODS.03",
+        "A3.S23.GOODS.04",
+        "A3.S23.BLOCKED.01",
+        "A3.S23.BLOCKED.02",
+        "A3.S23.FLAG.01",
+        "A3.S23.CLEAR.01",
+        "A3.S23.CLEAR.02",
+        "A3.S23.CLEAR.03",
+        "A3.S23.CLEAR.04",
+        "A3.S23.REST_ARCHER.01",
+        "A3.S23.REST_MAGE.01",
+        "A3.S23.REST_KNIGHT.01",
+        "A3.S23.REST_OCCULTIST.01",
+        "A3.S23.OBJ.01",
+        "A3.S23.OBJ.02",
+        "A3.S23.OBJ.03",
+        "A3.S23.JOURNAL.01",
+        "A3.S23.GUIDE.01"
+      ]
+    },
+    {
+      "stage": 24,
+      "mapRevision": 224,
+      "steps": [
+        {
+          "id": "family-crest",
+          "label": "family-crest",
+          "kind": "interact",
+          "requiredClass": "knight",
+          "marker": {
+            "id": "family-crest",
+            "type": "act3",
+            "x": 2070,
+            "y": 2460,
+            "label": "family-crest",
+            "action": "act3",
+            "requiredClass": "knight"
+          },
+          "objectiveSlot": {
+            "id": "objective:family-crest",
+            "rowPrefix": "v4.24.objective:family-crest"
+          }
+        },
+        {
+          "id": "shrine-seal",
+          "label": "shrine-seal",
+          "kind": "interact",
+          "requiredClass": "mage",
+          "opens": "shrine-door",
+          "marker": {
+            "id": "shrine-seal",
+            "type": "act3",
+            "x": 4370,
+            "y": 2544.1666666666665,
+            "label": "shrine-seal",
+            "action": "act3",
+            "requiredClass": "mage"
+          },
+          "objectiveSlot": {
+            "id": "objective:shrine-seal",
+            "rowPrefix": "v4.24.objective:shrine-seal"
+          }
+        },
+        {
+          "id": "land-register",
+          "label": "land-register",
+          "kind": "evidence",
+          "evidenceAction": "entrances",
+          "marker": {
+            "id": "land-register",
+            "type": "act3",
+            "x": 4920,
+            "y": 2260,
+            "label": "land-register",
+            "action": "act3"
+          },
+          "objectiveSlot": {
+            "id": "objective:land-register",
+            "rowPrefix": "v4.24.objective:land-register"
+          }
+        },
+        {
+          "id": "garden-exit",
+          "label": "garden-exit",
+          "kind": "reach",
+          "marker": {
+            "id": "garden-exit",
+            "type": "exit",
+            "x": 6810,
+            "y": 2440,
+            "label": "garden-exit"
+          },
+          "objectiveSlot": {
+            "id": "objective:garden-exit",
+            "rowPrefix": "v4.24.objective:garden-exit"
+          }
+        }
+      ],
+      "events": [],
+      "draftIds": [
+        "A3.S24.INTRO.01",
+        "A3.S24.INTRO.02",
+        "A3.S24.INTRO.03",
+        "A3.S24.CREST.01",
+        "A3.S24.CREST.02",
+        "A3.S24.ENTRY.01",
+        "A3.S24.ENTRY.02",
+        "A3.S24.ENTRY.03",
+        "A3.S24.SPLIT.01",
+        "A3.S24.SPLIT.02",
+        "A3.S24.SPLIT.03",
+        "A3.S24.SPLIT.04",
+        "A3.S24.SPLIT.05",
+        "A3.S24.DEPART.01",
+        "A3.S24.DEPART.02",
+        "A3.S24.APPROACH_DANGER.01",
+        "A3.S24.REST_ARCHER.01",
+        "A3.S24.REST_MAGE.01",
+        "A3.S24.REST_KNIGHT.01",
+        "A3.S24.REST_OCCULTIST.01",
+        "A3.S24.OBJ.01",
+        "A3.S24.OBJ.02",
+        "A3.S24.JOURNAL.01",
+        "A3.S24.GUIDE.01"
+      ]
+    },
+    {
+      "stage": 25,
+      "mapRevision": 225,
+      "steps": [
+        {
+          "id": "depot-entry-seal",
+          "label": "depot-entry-seal",
+          "kind": "interact",
+          "requiredClass": "mage",
+          "marker": {
+            "id": "depot-entry-seal",
+            "type": "act3",
+            "x": 1080,
+            "y": 5400,
+            "label": "depot-entry-seal",
+            "action": "act3",
+            "requiredClass": "mage"
+          },
+          "objectiveSlot": {
+            "id": "objective:depot-entry-seal",
+            "rowPrefix": "v4.25.objective:depot-entry-seal"
+          }
+        },
+        {
+          "id": "stake-arrival-1",
+          "label": "stake-arrival-1",
+          "kind": "v4-city-arrival",
+          "allHeroes": true,
+          "radius": 150,
+          "parallelGroup": "city-arrivals",
+          "marker": {
+            "id": "stake-arrival-1",
+            "type": "act3",
+            "x": 2100,
+            "y": 4950,
+            "label": "stake-arrival-1"
+          },
+          "objectiveSlot": {
+            "id": "objective:stake-arrival-1",
+            "rowPrefix": "v4.25.objective:stake-arrival-1"
+          }
+        },
+        {
+          "id": "stake-arrival-2",
+          "label": "stake-arrival-2",
+          "kind": "v4-city-arrival",
+          "allHeroes": true,
+          "radius": 150,
+          "parallelGroup": "city-arrivals",
+          "marker": {
+            "id": "stake-arrival-2",
+            "type": "act3",
+            "x": 3100,
+            "y": 4500,
+            "label": "stake-arrival-2"
+          },
+          "objectiveSlot": {
+            "id": "objective:stake-arrival-2",
+            "rowPrefix": "v4.25.objective:stake-arrival-2"
+          }
+        },
+        {
+          "id": "stake-arrival-3",
+          "label": "stake-arrival-3",
+          "kind": "v4-city-arrival",
+          "allHeroes": true,
+          "radius": 150,
+          "parallelGroup": "city-arrivals",
+          "marker": {
+            "id": "stake-arrival-3",
+            "type": "act3",
+            "x": 1650,
+            "y": 3600,
+            "label": "stake-arrival-3"
+          },
+          "objectiveSlot": {
+            "id": "objective:stake-arrival-3",
+            "rowPrefix": "v4.25.objective:stake-arrival-3"
+          }
+        },
+        {
+          "id": "stake-arrival-4",
+          "label": "stake-arrival-4",
+          "kind": "v4-city-arrival",
+          "allHeroes": true,
+          "radius": 150,
+          "parallelGroup": "city-arrivals",
+          "marker": {
+            "id": "stake-arrival-4",
+            "type": "act3",
+            "x": 3500,
+            "y": 3600,
+            "label": "stake-arrival-4"
+          },
+          "objectiveSlot": {
+            "id": "objective:stake-arrival-4",
+            "rowPrefix": "v4.25.objective:stake-arrival-4"
+          }
+        },
+        {
+          "id": "stake-arrival-5",
+          "label": "stake-arrival-5",
+          "kind": "v4-city-arrival",
+          "allHeroes": true,
+          "radius": 150,
+          "parallelGroup": "city-arrivals",
+          "marker": {
+            "id": "stake-arrival-5",
+            "type": "act3",
+            "x": 3080,
+            "y": 3150,
+            "label": "stake-arrival-5"
+          },
+          "objectiveSlot": {
+            "id": "objective:stake-arrival-5",
+            "rowPrefix": "v4.25.objective:stake-arrival-5"
+          }
+        },
+        {
+          "id": "household-tally",
+          "label": "household-tally",
+          "kind": "evidence",
+          "afterEvidence": "stake-arrival-5",
+          "marker": {
+            "id": "household-tally",
+            "type": "act3",
+            "x": 2400,
+            "y": 3150,
+            "label": "household-tally",
+            "action": "act3"
+          },
+          "objectiveSlot": {
+            "id": "objective:household-tally",
+            "rowPrefix": "v4.25.objective:household-tally"
+          }
+        },
+        {
+          "id": "waterworks-exit",
+          "label": "waterworks-exit",
+          "kind": "reach",
+          "allHeroes": true,
+          "marker": {
+            "id": "waterworks-exit",
+            "type": "exit",
+            "x": 1760,
+            "y": 3150,
+            "label": "waterworks-exit"
+          },
+          "objectiveSlot": {
+            "id": "objective:waterworks-exit",
+            "rowPrefix": "v4.25.objective:waterworks-exit"
+          }
+        }
+      ],
+      "events": [],
+      "draftIds": [
+        "A3.S25.INTRO.01",
+        "A3.S25.INTRO.02",
+        "A3.S25.EAST.01",
+        "A3.S25.EAST.02",
+        "A3.S25.WINDOW.01",
+        "A3.S25.LINK_DANGER.01",
+        "A3.S25.LINK_DANGER.02",
+        "A3.S25.WATER.01",
+        "A3.S25.WATER.02",
+        "A3.S25.HOUSEHOLDS.01",
+        "A3.S25.HOUSEHOLDS.02",
+        "A3.S25.HOUSEHOLDS.03",
+        "A3.S25.FAR_SIDE.01",
+        "A3.S25.FAR_SIDE.02",
+        "A3.S25.DEPTH.01",
+        "A3.S25.DEPTH.02",
+        "A3.S25.EXIT.01",
+        "A3.S25.EXIT.02",
+        "A3.S25.OBJ.01",
+        "A3.S25.OBJ.02",
+        "A3.S25.JOURNAL.01",
+        "A3.S25.GUIDE.01",
+        "A3.S25.GUIDE.02"
+      ]
+    },
+    {
+      "stage": 26,
+      "mapRevision": 226,
+      "steps": [
+        {
+          "id": "hidden-latch",
+          "label": "hidden-latch",
+          "kind": "interact",
+          "requiredClass": "knight",
+          "opens": "hidden-door",
+          "marker": {
+            "id": "hidden-latch",
+            "type": "act3",
+            "x": 780,
+            "y": 2392.8571428571427,
+            "label": "hidden-latch",
+            "action": "act3",
+            "requiredClass": "knight"
+          },
+          "objectiveSlot": {
+            "id": "objective:hidden-latch",
+            "rowPrefix": "v4.26.objective:hidden-latch"
+          }
+        },
+        {
+          "id": "artisan-resident",
+          "label": "artisan-resident",
+          "kind": "v4-city-rescue",
+          "target": "act3-resident",
+          "requiredClass": "occultist",
+          "marker": {
+            "id": "artisan-resident",
+            "type": "act3",
+            "x": 4760,
+            "y": 2150,
+            "label": "artisan-resident",
+            "action": "act3",
+            "target": "act3-resident",
+            "spiritId": "v4.workshop-spirit"
+          },
+          "objectiveSlot": {
+            "id": "objective:artisan-resident",
+            "rowPrefix": "v4.26.objective:artisan-resident"
+          }
+        },
+        {
+          "id": "v4.ancestor-testimony",
+          "label": "v4.ancestor-testimony",
+          "kind": "evidence",
+          "marker": {
+            "id": "v4.ancestor-testimony",
+            "type": "act3",
+            "label": "v4.ancestor-testimony",
+            "x": 4760,
+            "y": 2150
+          },
+          "objectiveSlot": {
+            "id": "objective:v4.ancestor-testimony",
+            "rowPrefix": "v4.26.objective:v4.ancestor-testimony"
+          }
+        },
+        {
+          "id": "workshop-exit",
+          "label": "workshop-exit",
+          "kind": "reach",
+          "allHeroes": true,
+          "marker": {
+            "id": "workshop-exit",
+            "type": "exit",
+            "x": 6680,
+            "y": 2250,
+            "label": "workshop-exit"
+          },
+          "objectiveSlot": {
+            "id": "objective:workshop-exit",
+            "rowPrefix": "v4.26.objective:workshop-exit"
+          }
+        }
+      ],
+      "events": [],
+      "draftIds": [
+        "A3.S26.INTRO.01",
+        "A3.S26.INTRO.02",
+        "A3.S26.INTRO.03",
+        "A3.S26.DANGER.01",
+        "A3.S26.DANGER.02",
+        "A3.S26.RESCUE.01",
+        "A3.S26.RESCUE.02",
+        "A3.S26.RESCUE.03",
+        "A3.S26.TESTIMONY.01",
+        "A3.S26.TESTIMONY.02",
+        "A3.S26.TESTIMONY.03",
+        "A3.S26.TESTIMONY.04",
+        "A3.S26.TESTIMONY.05",
+        "A3.S26.FIRE.01",
+        "A3.S26.FIRE.02",
+        "A3.S26.EXIT.01",
+        "A3.S26.EXIT.02",
+        "A3.S26.OBJ.01",
+        "A3.S26.OBJ.02",
+        "A3.S26.OBJ.03",
+        "A3.S26.JOURNAL.01",
+        "A3.S26.DOC.TESTIMONY",
+        "A3.S26.GUIDE.01"
+      ]
+    },
+    {
+      "stage": 27,
+      "mapRevision": 227,
+      "steps": [
+        {
+          "id": "stake-arrival-1",
+          "label": "stake-arrival-1",
+          "kind": "v4-city-arrival",
+          "allHeroes": true,
+          "radius": 150,
+          "parallelGroup": "city-arrivals",
+          "marker": {
+            "id": "stake-arrival-1",
+            "type": "act3",
+            "x": 4650,
+            "y": 4850,
+            "label": "stake-arrival-1"
+          },
+          "objectiveSlot": {
+            "id": "objective:stake-arrival-1",
+            "rowPrefix": "v4.27.objective:stake-arrival-1"
+          }
+        },
+        {
+          "id": "stake-arrival-2",
+          "label": "stake-arrival-2",
+          "kind": "v4-city-arrival",
+          "allHeroes": true,
+          "radius": 150,
+          "parallelGroup": "city-arrivals",
+          "marker": {
+            "id": "stake-arrival-2",
+            "type": "act3",
+            "x": 6300,
+            "y": 4400,
+            "label": "stake-arrival-2"
+          },
+          "objectiveSlot": {
+            "id": "objective:stake-arrival-2",
+            "rowPrefix": "v4.27.objective:stake-arrival-2"
+          }
+        },
+        {
+          "id": "stake-arrival-3",
+          "label": "stake-arrival-3",
+          "kind": "v4-city-arrival",
+          "allHeroes": true,
+          "radius": 150,
+          "parallelGroup": "city-arrivals",
+          "marker": {
+            "id": "stake-arrival-3",
+            "type": "act3",
+            "x": 6660,
+            "y": 3950,
+            "label": "stake-arrival-3"
+          },
+          "objectiveSlot": {
+            "id": "objective:stake-arrival-3",
+            "rowPrefix": "v4.27.objective:stake-arrival-3"
+          }
+        },
+        {
+          "id": "stake-arrival-4",
+          "label": "stake-arrival-4",
+          "kind": "v4-city-arrival",
+          "allHeroes": true,
+          "radius": 150,
+          "parallelGroup": "city-arrivals",
+          "marker": {
+            "id": "stake-arrival-4",
+            "type": "act3",
+            "x": 4100,
+            "y": 3050,
+            "label": "stake-arrival-4"
+          },
+          "objectiveSlot": {
+            "id": "objective:stake-arrival-4",
+            "rowPrefix": "v4.27.objective:stake-arrival-4"
+          }
+        },
+        {
+          "id": "deep-depot-exit",
+          "label": "deep-depot-exit",
+          "kind": "reach",
+          "allHeroes": true,
+          "marker": {
+            "id": "deep-depot-exit",
+            "type": "exit",
+            "x": 1260,
+            "y": 2600,
+            "label": "deep-depot-exit"
+          },
+          "objectiveSlot": {
+            "id": "objective:deep-depot-exit",
+            "rowPrefix": "v4.27.objective:deep-depot-exit"
+          }
+        }
+      ],
+      "events": [],
+      "draftIds": [
+        "A3.S27.INTRO.01",
+        "A3.S27.INTRO.02",
+        "A3.S27.FIRST_STAKE.01",
+        "A3.S27.FIRST_STAKE.02",
+        "A3.S27.LOADING.01",
+        "A3.S27.OPPOSITE.01",
+        "A3.S27.VOID.01",
+        "A3.S27.VOID.02",
+        "A3.S27.VOID.03",
+        "A3.S27.VOID.04",
+        "A3.S27.VOID.05",
+        "A3.S27.RETURN.01",
+        "A3.S27.RETURN.02",
+        "A3.S27.RECOVERY.01",
+        "A3.S27.UPPER.01",
+        "A3.S27.UPPER.02",
+        "A3.S27.EXIT.01",
+        "A3.S27.EXIT.02",
+        "A3.S27.OBJ.01",
+        "A3.S27.OBJ.02",
+        "A3.S27.JOURNAL.01",
+        "A3.S27.JOURNAL.PRIVATE",
+        "A3.S27.GUIDE.01"
+      ]
+    },
+    {
+      "stage": 28,
+      "mapRevision": 228,
+      "steps": [
+        {
+          "id": "fire-screen",
+          "label": "fire-screen",
+          "kind": "interact",
+          "requiredClass": "knight",
+          "opens": "fire-door",
+          "parallelGroup": "fire-control",
+          "marker": {
+            "id": "fire-screen",
+            "type": "act3",
+            "x": 1120,
+            "y": 2658.095238095238,
+            "label": "fire-screen",
+            "action": "act3",
+            "requiredClass": "knight",
+            "fireSite": "fire-west"
+          },
+          "objectiveSlot": {
+            "id": "objective:fire-screen",
+            "rowPrefix": "v4.28.objective:fire-screen"
+          }
+        },
+        {
+          "id": "water-release",
+          "label": "water-release",
+          "kind": "interact",
+          "requiredClass": "archer",
+          "opens": "water-gate",
+          "parallelGroup": "fire-control",
+          "marker": {
+            "id": "water-release",
+            "type": "act3",
+            "x": 6040,
+            "y": 2590,
+            "label": "water-release",
+            "action": "act3",
+            "requiredClass": "archer",
+            "fireSite": "fire-east"
+          },
+          "objectiveSlot": {
+            "id": "objective:water-release",
+            "rowPrefix": "v4.28.objective:water-release"
+          }
+        },
+        {
+          "id": "party-reunion",
+          "label": "party-reunion",
+          "kind": "reach",
+          "allHeroes": true,
+          "radius": 440,
+          "marker": {
+            "id": "party-reunion",
+            "type": "act3",
+            "x": 3500,
+            "y": 2380,
+            "label": "party-reunion"
+          },
+          "objectiveSlot": {
+            "id": "objective:party-reunion",
+            "rowPrefix": "v4.28.objective:party-reunion"
+          }
+        },
+        {
+          "id": "petition-record",
+          "label": "petition-record",
+          "kind": "interact",
+          "requiredClass": "knight",
+          "marker": {
+            "id": "petition-record",
+            "type": "act3",
+            "x": 3860,
+            "y": 2380,
+            "label": "petition-record",
+            "action": "act3"
+          },
+          "objectiveSlot": {
+            "id": "objective:petition-record",
+            "rowPrefix": "v4.28.objective:petition-record"
+          }
+        },
+        {
+          "id": "office-exit",
+          "label": "office-exit",
+          "kind": "reach",
+          "marker": {
+            "id": "office-exit",
+            "type": "exit",
+            "x": 6920,
+            "y": 2590,
+            "label": "office-exit"
+          },
+          "objectiveSlot": {
+            "id": "objective:office-exit",
+            "rowPrefix": "v4.28.objective:office-exit"
+          }
+        }
+      ],
+      "events": [],
+      "draftIds": [
+        "A3.S28.INTRO_GROUND.01",
+        "A3.S28.INTRO_GROUND.02",
+        "A3.S28.INTRO_UNDERGROUND.01",
+        "A3.S28.INTRO_UNDERGROUND.02",
+        "A3.S28.FIRE_CONTROL.01",
+        "A3.S28.FIRE_CONTROL.02",
+        "A3.S28.REUNION.01",
+        "A3.S28.REUNION.02",
+        "A3.S28.REUNION.03",
+        "A3.S28.ESCORT_DANGER.01",
+        "A3.S28.DOCUMENTS.01",
+        "A3.S28.DOCUMENTS.02",
+        "A3.S28.DOCUMENTS.03",
+        "A3.S28.DOCUMENTS.04",
+        "A3.S28.DOCUMENTS.05",
+        "A3.S28.DOCUMENTS.06",
+        "A3.S28.DOCUMENTS.07",
+        "A3.S28.PRESENT.01",
+        "A3.S28.PRESENT.02",
+        "A3.S28.PRESENT.03",
+        "A3.S28.EXIT.01",
+        "A3.S28.EXIT.02",
+        "A3.S28.FIRE_WARNING.01",
+        "A3.S28.OBJ.01",
+        "A3.S28.OBJ.02",
+        "A3.S28.OBJ.03",
+        "A3.S28.OBJ.04",
+        "A3.S28.JOURNAL.01",
+        "A3.S28.DOC.APPROVAL",
+        "A3.S28.DOC.EXECUTION",
+        "A3.S28.DOC.CONCEALMENT",
+        "A3.S28.DOC.ANCESTOR",
+        "A3.S28.GUIDE.01",
+        "A3.S28.GUIDE.FAIL_FIRE"
+      ]
+    },
+    {
+      "stage": 29,
+      "mapRevision": 229,
+      "steps": [
+        {
+          "id": "stage29-boss",
+          "kind": "stage29",
+          "label": "stage29-boss",
+          "marker": {
+            "id": "stage29-boss",
+            "type": "act3",
+            "action": "act3",
+            "x": 3520,
+            "y": 2220,
+            "label": "stage29-boss"
+          },
+          "objectiveSlot": {
+            "id": "objective:stage29-boss",
+            "rowPrefix": "v4.29.objective:stage29-boss"
+          }
+        },
+        {
+          "id": "stage29-cover",
+          "kind": "stage29",
+          "label": "stage29-cover",
+          "marker": {
+            "id": "stage29-cover",
+            "type": "act3",
+            "action": "act3",
+            "x": 3105,
+            "y": 2220,
+            "label": "stage29-cover"
+          },
+          "objectiveSlot": {
+            "id": "objective:stage29-cover",
+            "rowPrefix": "v4.29.objective:stage29-cover"
+          }
+        },
+        {
+          "id": "stage29-cohort",
+          "kind": "stage29",
+          "label": "stage29-cohort",
+          "marker": {
+            "id": "stage29-cohort",
+            "type": "act3",
+            "action": "act3",
+            "x": 3500,
+            "y": 2220,
+            "label": "stage29-cohort"
+          },
+          "objectiveSlot": {
+            "id": "objective:stage29-cohort",
+            "rowPrefix": "v4.29.objective:stage29-cohort"
+          }
+        },
+        {
+          "id": "stage29-sluice",
+          "kind": "interact",
+          "label": "stage29-sluice",
+          "marker": {
+            "id": "stage29-sluice",
+            "type": "act3",
+            "action": "act3",
+            "x": 2780,
+            "y": 2220,
+            "label": "stage29-sluice"
+          },
+          "objectiveSlot": {
+            "id": "objective:stage29-sluice",
+            "rowPrefix": "v4.29.objective:stage29-sluice"
+          }
+        },
+        {
+          "id": "stage29-echo",
+          "kind": "interact",
+          "label": "stage29-echo",
+          "marker": {
+            "id": "stage29-echo",
+            "type": "act3",
+            "action": "act3",
+            "x": 2830,
+            "y": 2220,
+            "label": "stage29-echo"
+          },
+          "objectiveSlot": {
+            "id": "objective:stage29-echo",
+            "rowPrefix": "v4.29.objective:stage29-echo"
+          }
+        },
+        {
+          "id": "route-exit",
+          "kind": "route",
+          "label": "route-exit",
+          "marker": {
+            "id": "route-exit",
+            "type": "act3",
+            "action": "act3",
+            "x": 3690,
+            "y": 2263.2,
+            "label": "route-exit"
+          },
+          "objectiveSlot": {
+            "id": "objective:route-exit",
+            "rowPrefix": "v4.29.objective:route-exit"
+          }
+        }
+      ],
+      "events": [],
+      "route": {
+        "revision": 1,
+        "toStage": 30,
+        "common": [
+          "stage29-boss",
+          "stage29-cover",
+          "stage29-cohort",
+          "stage29-sluice",
+          "stage29-echo"
+        ],
+        "routes": [
+          {
+            "id": "A",
+            "markerId": "route-upper-exit",
+            "requiresDone": []
+          },
+          {
+            "id": "B",
+            "markerId": "route-lower-exit",
+            "requiresDone": []
+          }
+        ]
+      },
+      "draftIds": [
+        "A3.S29.INTRO.01",
+        "A3.S29.INTRO.02",
+        "A3.S29.INTRO.03",
+        "A3.S29.INTRO.04",
+        "A3.S29.PHASE1.01",
+        "A3.S29.PHASE1.02",
+        "A3.S29.FALL_WARNING.01",
+        "A3.S29.FALL_WARNING.02",
+        "A3.S29.PHASE2.01",
+        "A3.S29.PHASE2.02",
+        "A3.S29.SOUL_DANGER.01",
+        "A3.S29.PHASE3.01",
+        "A3.S29.PHASE3.02",
+        "A3.S29.THRUST_WARNING.01",
+        "A3.S29.DEFEAT.01",
+        "A3.S29.GATE.01",
+        "A3.S29.GATE.02",
+        "A3.S29.TRACE.01",
+        "A3.S29.TRACE.02",
+        "A3.S29.TRACE.03",
+        "A3.S29.EXIT.01",
+        "A3.S29.REST_ARCHER.01",
+        "A3.S29.REST_MAGE.01",
+        "A3.S29.REST_KNIGHT.01",
+        "A3.S29.REST_OCCULTIST.01",
+        "A3.S29.OBJ.01",
+        "A3.S29.OBJ.02",
+        "A3.S29.OBJ.03",
+        "A3.S29.OBJ.04",
+        "A3.S29.OBJ.05",
+        "A3.S29.JOURNAL.01",
+        "A3.S29.GUIDE.01",
+        "A3.S29.GUIDE.02",
+        "A3.S29.GUIDE.FAIL"
+      ]
+    },
+    {
+      "stage": 30,
+      "mapRevision": 230,
+      "steps": [
+        {
+          "id": "s30-route-ready",
+          "kind": "evidence",
+          "label": "s30-route-ready",
+          "marker": {
+            "id": "s30-route-ready",
+            "type": "act3",
+            "x": 5900,
+            "y": 6110,
+            "label": "s30-route-ready"
+          },
+          "objectiveSlot": {
+            "id": "objective:s30-route-ready",
+            "rowPrefix": "v4.30.objective:s30-route-ready"
+          }
+        },
+        {
+          "id": "ferry-hold",
+          "kind": "evidence",
+          "label": "ferry-hold",
+          "marker": {
+            "id": "ferry-hold",
+            "type": "act3",
+            "x": 5960,
+            "y": 6110,
+            "label": "ferry-hold"
+          },
+          "objectiveSlot": {
+            "id": "objective:ferry-hold",
+            "rowPrefix": "v4.30.objective:ferry-hold"
+          }
+        },
+        {
+          "id": "s30-evacuate",
+          "kind": "evidence",
+          "label": "s30-evacuate",
+          "marker": {
+            "id": "s30-evacuate",
+            "type": "act3",
+            "x": 6410,
+            "y": 6435.56,
+            "label": "s30-evacuate"
+          },
+          "objectiveSlot": {
+            "id": "objective:s30-evacuate",
+            "rowPrefix": "v4.30.objective:s30-evacuate"
+          }
+        },
+        {
+          "id": "s30-seaman-testimony",
+          "kind": "v4-slot",
+          "slot": "s30-seaman-testimony",
+          "target": "s30-resident-4",
+          "label": "s30-seaman-testimony",
+          "marker": {
+            "id": "s30-seaman-testimony",
+            "type": "act3",
+            "action": "act3",
+            "target": "s30-resident-4",
+            "x": 7620,
+            "y": 6242,
+            "label": "s30-seaman-testimony"
+          },
+          "objectiveSlot": {
+            "id": "objective:s30-seaman-testimony",
+            "rowPrefix": "v4.30.objective:s30-seaman-testimony"
+          }
+        },
+        {
+          "id": "s30-map-comparison",
+          "kind": "v4-slot",
+          "slot": "s30-map-comparison",
+          "target": "s30-resident-4",
+          "label": "s30-map-comparison",
+          "marker": {
+            "id": "s30-map-comparison",
+            "type": "act3",
+            "action": "act3",
+            "target": "s30-resident-4",
+            "x": 7620,
+            "y": 6242,
+            "label": "s30-map-comparison"
+          },
+          "objectiveSlot": {
+            "id": "objective:s30-map-comparison",
+            "rowPrefix": "v4.30.objective:s30-map-comparison"
+          }
+        },
+        {
+          "id": "old-road",
+          "kind": "reach",
+          "label": "old-road",
+          "allHeroes": true,
+          "radius": 440,
+          "marker": {
+            "id": "old-road",
+            "type": "exit",
+            "x": 9450,
+            "y": 4300,
+            "label": "old-road"
+          },
+          "objectiveSlot": {
+            "id": "objective:old-road",
+            "rowPrefix": "v4.30.objective:old-road"
+          }
+        }
+      ],
+      "events": [],
+      "draftIds": [
+        "A3.S30.ROUTE_A.01",
+        "A3.S30.ROUTE_B.01",
+        "A3.S30.INTRO.01",
+        "A3.S30.INTRO.02",
+        "A3.S30.INTRO.03",
+        "A3.S30.FIRST_BOARD.01",
+        "A3.S30.FIRST_BOARD.02",
+        "A3.S30.DEPART.01",
+        "A3.S30.RETURN.01",
+        "A3.S30.LAST_DANGER.01",
+        "A3.S30.LAST_DANGER.02",
+        "A3.S30.SAFE.01",
+        "A3.S30.SAFE.02",
+        "A3.S30.THIRTEEN.01",
+        "A3.S30.THIRTEEN.02",
+        "A3.S30.THIRTEEN.03",
+        "A3.S30.THIRTEEN.04",
+        "A3.S30.ROUTE.01",
+        "A3.S30.ROUTE.02",
+        "A3.S30.ENDING.01",
+        "A3.S30.ENDING.02",
+        "A3.S30.ENDING.03",
+        "A3.S30.REST_ARCHER.01",
+        "A3.S30.REST_MAGE.01",
+        "A3.S30.REST_KNIGHT.01",
+        "A3.S30.REST_OCCULTIST.01",
+        "A3.S30.REST_END.01",
+        "A3.S30.REST_END_ARCHER.01",
+        "A3.S30.REST_END_MAGE.01",
+        "A3.S30.REST_END_KNIGHT.01",
+        "A3.S30.REST_END_OCCULTIST.01",
+        "A3.S30.OBJ.01",
+        "A3.S30.OBJ.02",
+        "A3.S30.OBJ.03",
+        "A3.S30.OBJ.04",
+        "A3.S30.JOURNAL.01",
+        "A3.S30.GUIDE.01",
+        "A3.S30.GUIDE.02"
+      ]
+    }
+  ]
+}
