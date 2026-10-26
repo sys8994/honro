@@ -478,7 +478,7 @@
             this.cancelInput();
             const b = this.engine.b, won = b.phase === 'won', st = G.HonroObjectiveRevision?.contentFor(b,this.stage)||this.stage;this.resultJoined=[];
             // The immutable report settled XP before the outro; presentation never settles again.
-            if(won&&!b.honroReport?.final)G.HonroProgression.complete(b);
+            if(won&&!b.honroReport?.final)G.HonroProgression.complete(b,this.engine);
             if(won&&!b.honroJourneyReplay){const handoff=G.HonroRouteBranches?.handoff(b);if(handoff)this.profile.honroRouteHandoff=handoff;}
             G.HonroProgression.syncRoster(this.profile,b);
             delete this.profile.honroCampPending;

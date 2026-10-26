@@ -37,8 +37,7 @@ function configureEnemy(u,d){
 }
 function recruit(profile){
  if(!profile.cleared?.[10]||profile.recruited.includes('occultist'))return;
- const level=Math.max(1,...['archer','mage','knight'].map(c=>C.levelOf(profile.heroes[c])));
- G.HonroProgression.recruit(profile,{id:10,recruit:'occultist',joinLevel:level});
+ G.HonroProgression.recruit(profile,{id:10,recruit:'occultist'});
 }
 const revision2=b=>b.honroAct2Revision>=2;
 function lowerPool(z,amount){

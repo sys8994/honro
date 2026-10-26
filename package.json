@@ -222,7 +222,9 @@
     "capture:eater-revision": "python tests/eater-revision-browser.py",
     "capture:sodan-radial": "python tests/sodan-radial-browser.py",
     "test:skill-preview-audit": "node tests/skill-preview-audit.mjs && python -X utf8 tests/skill-preview-audit-browser.py",
-    "test:skill-modal-shell": "python -X utf8 tests/skill-modal-shell-browser.py && node tests/camp-skill-ux.mjs"
+    "test:skill-modal-shell": "python -X utf8 tests/skill-modal-shell-browser.py && node tests/camp-skill-ux.mjs",
+    "test:levelup-growth": "node tests/levelup-companion-growth.mjs",
+    "test:levelup-growth:browser": "python -X utf8 tests/levelup-companion-growth-browser.py"
   },
   "devDependencies": {
     "@napi-rs/canvas": "0.1.100",

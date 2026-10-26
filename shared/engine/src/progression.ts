@@ -246,6 +246,14 @@ export function heroStats(h:HeroProgress,cls:ClassId,loadout:string[]=[]){const 
  const gain=STAT_GAINS[cls],invested=(key:StatKey)=>statTrainingRank(h)*gain[key],hp=(hpBase+L*hpGain)*(1+vitality*.05)*(1+invested('hp')),atkBase=[1.75,1.75,1.75,1.86][i],atkGain=[.18,.18,.18,.19][i],crit=criticalStats(cls,level,h.ranks),mp=Math.round(([120,96,104,144][i]+L*[8,6,7,9.5][i])*(1+(cls==='mage'?passiveTuning(h.ranks.MP02||0).maxMana:0))*(1+invested('mp')));
  return {...crit,critChance:Math.min(.75,crit.critChance+invested('critChance')),critMultiplier:Math.min(3.5,crit.critMultiplier+invested('critMultiplier')),level,hp:Math.round(hp),mp,attack:(atkBase+L*atkGain)*(1+invested('attack')),armor:Math.min(HERO_ARMOR_CAP,armorBase+L*.008+defense*.03+invested('armor')),move:Math.round(([1120,1100,1210,1150][i]+L*36)*(1+mobility*.08+leap*.10)*(1+invested('move'))),speed:Math.round(([282,305,300,296][i]+L*5)*(1+mobility*.04)),regen:[14,14,14,18][i]+Math.floor(L*.6)+(cls==='mage'?passiveTuning(h.ranks.MP02||0).manaRegenFlat+mp*passiveTuning(h.ranks.MP02||0).manaRegenMax:0)};}
 export function applyHero(u:Unit,h:HeroProgress,full=false){const s=heroStats(h,u.cls,u.loadout),dh=s.hp-u.maxHp,dm=s.mp-u.maxFocus,oldMove=u.maxMove;u.level=s.level;u.hp=u.dead?0:full?s.hp:clamp(u.hp+Math.max(0,dh),0,s.hp);u.maxHp=s.hp;u.focus=full?s.mp:clamp(u.focus+Math.max(0,dm),0,s.mp);u.maxFocus=s.mp;u.attack=s.attack;u.armor=s.armor;u.critChance=s.critChance;u.critMultiplier=s.critMultiplier;u.maxMove=s.move;u.walkSpeed=s.speed;u.regen=s.regen;u.moveLeft=full?s.move:Math.min(s.move,u.moveLeft+Math.max(0,s.move-oldMove));u.ranks={...h.ranks};}
+/** Only an actual XP grant may call this; applying stats/loading never refills. */
+export function applyLevelUp(u:Unit,h:HeroProgress,before:number){
+ const after=levelOf(h);if(after<=before||u.level>=after)return null;
+ const alive=!u.dead&&u.hp>0,hp=u.hp,focus=u.focus;
+ applyHero(u,h,alive);
+ if(!alive){u.hp=0;u.focus=clamp(focus,0,u.maxFocus);}
+ return {before,after,alive,hp:Math.max(0,u.hp-hp),focus:Math.max(0,u.focus-focus)};
+}
 export function grantXP(h: HeroProgress, amount: number) { const before = levelOf(h); const actual = Math.max(0, Math.min(XP_CAP - h.xp, Math.round(amount))); h.xp += actual; return { actual, before, after: levelOf(h) }; }
 export function recommendedLevel(stage: number) { return [1,1,2,2,3,4,4,5,5,6,7,8,8,9,10,10,11,12,12,13,14,15,16,17,17,18,19,20,21,22,22,23,23,24,24,25][clamp(Math.floor(stage),1,36)-1]; }
 export interface MapNode {

@@ -85,9 +85,9 @@ function recoverXp(b,cls,before,after){
  if(recovered){r.recovered=num(r.recovered)+recovered;r.last=Math.max(r.last,num(after));s.partial=true;}
 }
 const xpSnapshot=b=>Object.fromEntries(ALL.map(cls=>[cls,num(b.heroes?.[cls]?.xp)]));
-function settle(b){
+function settle(b,e){
  const s=b?.honroReport;if(!s||s.final)return;
- const before=xpSnapshot(b);G.HonroProgression.complete(b);
+ const before=xpSnapshot(b);G.HonroProgression.complete(b,e);
  const split=G.HonroSplitCampaign?.active(b),end=b.honroSplit?.version===1?27:28;
  const kind=split&&s.stage===end?'reunion':'settlement';
  for(const cls of ALL)grant(b,cls,before[cls],b.heroes?.[cls]?.xp,kind);
@@ -101,7 +101,7 @@ function freeze(b){
  s.final=deepFreeze(clone({version:VERSION,gameVersion:s.gameVersion,attempt:s.attempt,stage:s.stage,scope:s.scope,partial:s.partial,startedRound:s.startedRound,rounds:b.round,seconds:s.seconds,retries:s.retries,order:s.order,heroes:s.heroes,xp:s.xp,counts:s.counts,other:s.other,missing:Object.keys(s.missing),totals,deferred:!!s.deferred,reunionStages:s.reunionStages||null,completedAt:new Date().toISOString(),difficulty:b.difficulty}));
  return s.final;
 }
-function finish(app){const b=app.engine?.b;if(!b||b.phase!=='won')return null;begin(b,{scope:scopeOf(app)});settle(b);const report=freeze(b),scope=scopeOf(app);
+function finish(app){const b=app.engine?.b;if(!b||b.phase!=='won')return null;begin(b,{scope:scopeOf(app)});settle(b,app.engine);const report=freeze(b),scope=scopeOf(app);
  if(scope==='campaign'){
   const records=app.profile.honroClearReports??={};records[report.stage]=report;
   for(const id of Object.keys(records))if(!/^([1-9]|[12][0-9]|30)$/.test(id)||records[id]?.version!==VERSION)delete records[id];

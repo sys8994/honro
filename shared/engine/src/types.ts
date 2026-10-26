@@ -550,6 +550,7 @@ export interface Profile {
     migrated?: boolean;
 }
 export interface Event {
+    previousLevel?: number;
     lightningSeed?: number;
     damage?: number;
     targetId?: string;

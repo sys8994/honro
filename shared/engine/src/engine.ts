@@ -34,7 +34,7 @@ import {lureStakeFor} from './totemBehavior';
 import { rankEnemyQueueSteps, type EnemyQueuePriority, planEnemyLuresSteps, planEnemyMoveSteps, advanceEnemyMove, targetFor, chooseEnemyShotSteps, finishPlanning, friendlyFireRisk, shotViable, shotImpactValue, flyingEnemy, knockbackFlyingEnemy, planWaitingFlights, FLY_MOVE_BUDGET } from './enemyAI';
 import { G, STEP, WORLD_W, WORLD_H, clamp, rad, poly, segRect, segmentTerrain, segmentProjectileTerrain, topAt, terrainSurfaces, terrainSlopeAt, terrainRectIntersects, dist, AIM_MIN, AIM_MAX } from './math';
 import { createBattle, groundY, makeEnemy, makeUnit } from './world';
-import { grantXP, applyHero, levelOf, TALENT_MAP, passiveBonus, recommendedLevel, equippedRank, passiveRank, skillDamageFactor, skillRadiusFactor, skillManaFactor, volleyCount, volleyDamage, knockbackResistance, ultimateUnlocked } from './progression';
+import { grantXP, applyHero, applyLevelUp, levelOf, TALENT_MAP, passiveBonus, recommendedLevel, equippedRank, passiveRank, skillDamageFactor, skillRadiusFactor, skillManaFactor, volleyCount, volleyDamage, knockbackResistance, ultimateUnlocked } from './progression';
 const CURSES = new Set(['curseWeak','curseBetray','curseDot','curseBind','curseChain','curseManifest','curseEnthrall','curseEarth']);
 const SUMMONS = new Set(['summonStalker','summonLantern','summonCharger','summonWarden','summonHost','summonEater','summonEcho']);
 const BODY = new Set(['leap', 'slam', 'spin', 'dash', 'quake', 'guard', 'lift', 'recall', 'charge', 'vault', 'cataclysmCharge']);
@@ -159,12 +159,10 @@ export class Engine {
         if (!result.actual)
             return;
         this.emit('xp', { cls: u.cls, value: result.actual });
-        if (result.after > result.before) {
-            applyHero(u, h, !u.dead);
-            this.fx('rune', u.x, u.y - u.h * .5, '#eed49c', 110);
-            this.fx('text', u.x, u.y - u.h - 35, '#f4d797', 22, `LEVEL ${result.after}`);
-            this.emit('sound', { name: 'heal' });
-            this.emit('level', { cls: u.cls, value: result.after });
+        const growth=applyLevelUp(u,h,result.before);
+        if(growth?.alive){
+            this.emit('level',{cls:u.cls,targetId:u.id,previousLevel:result.before,value:result.after});
+            this.emit('sound',{name:'heal'});
         }
     }
     rewardKill(u: Unit, killer?: Unit) {
