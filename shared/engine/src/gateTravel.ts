@@ -35,6 +35,16 @@ function dangerous(e:Engine,u:Unit,p:Vec){
  return e.b.waters.some(w=>p.x+u.r>w.x&&p.x-u.r<w.x+w.w&&p.y>=w.y-9&&p.y-u.h<w.y+w.depth&&
   (w.kind==='lava'||p.y-w.y>u.h*.65));
 }
+function stage5Restriction(b:Battle,p:GateSpot){
+ const q=b as any;
+ if(q.honroStage!==5||q.honroStage5LakeRevision!==1||q.honroCustom)return false;
+ // Dynamic Stage5 moved the ordinary upper route and ritual cave beyond the
+ // old lake's x=2380 boundary. Keep old snapshots' rule, and use the authored
+ // wet cliff support in the new layout; shared clearance/hazards still apply.
+ return q.honroStage5DynamicRevision===1
+  ? p.support.id==='waterfall-cliff'||p.support.id==='waterfall-veil'
+  : p.x>2380||p.y>3000;
+}
 export function resolveGate(e:Engine,u=e.active):GateResolution{
  const from=gateSource(e,u);if(!from||!u)return {ok:false,reason:'가까운 축지진목 한 쌍이 필요합니다.'};
  const to=(e.b.stakes||[]).find(z=>z.skill==='M09'&&z.side===u.side&&z.id!==from.id&&(z.expires===undefined||z.expires>e.b.round))!;
@@ -69,7 +79,7 @@ export function resolveGate(e:Engine,u=e.active):GateResolution{
   // The fallback is local to the destination gate's room. A low foot-level
   // sight line may leave a cramped head space, but cannot cross a solid wall.
   else if(terrain.some(t=>!t.oneWay&&segmentTerrain({x:to.x,y:to.y-12},{x:p.x,y:p.y-12},t,0)))reason='도착 진목과 벽으로 분리됨';
-  else if((e.b as any).honroStage===5&&(e.b as any).honroStage5LakeRevision===1&&!(e.b as any).honroCustom&&(p.x>2380||p.y>3000))reason='깊은 소와 젖은 절벽에는 축지진목의 발디딤을 이을 수 없습니다.';
+  else if(stage5Restriction(e.b,p))reason='깊은 소와 젖은 절벽에는 축지진목의 발디딤을 이을 수 없습니다.';
   else reason=(e as any).gateDestinationReason?.(p,from,to)||'';
   if(!reason)return {ok:true,reason:'축지진목 사용',from,to,spot:p};
   if(index===0)firstReason=reason;

@@ -4,7 +4,7 @@
 
 ## 기준과 입력
 
-- 성장·합류 기준 c7aa5850, 통합 master ae32a56c(Stage5 revision6/기반암·역할 조우·Pages 패키징 포함).1막·4–6막·전체 성장·아이템 설계는 개편 범위가 아니다.
+- 성장·합류 기준 c7aa5850, 통합 master0f19f8f7(Stage5 revision6/기반암·역할 조우·Pages 패키징과5cacef7d의 실제 지지면 축지 도착 수정 포함).1막·4–6막·전체 성장·아이템 설계는 개편 범위가 아니다.
 - 입력 문서10개는 부모 문서 커밋99016126을 정상 통합했다. `v4-planning/honro-v4-source-extracted.md`는 실제53,466바이트이며 SHA256 `76a30c4d1968ab31d9d9ba112e254d63958f9bd7d41d43371c60714af3aaa6d2`와 일치한다.
 - Library ZIP은 지원 전송+1회 지원 재시도가 모두 실패하여 중단했다. ZIP/MANIFEST 자체를 검증한 것은 아니다. 이후 Git의 원본 바이트로 상세 계획·audit addendum·migration map·공통268대응표를 읽고 요약 인수인계와의 차이를 보완했다.
 - 양막 대사 초안과 공통 대응표는 진단 문서다. 중복 제거·3단 검수·최종 바인딩 전이다.

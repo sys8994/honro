@@ -51,3 +51,7 @@
 기계 Phase A의 집중 검사와 제한된 미술/입력 검토를 완료했다. 정상 난이도로20장 전투를 연속 완주하거나 전투 균형·사운드 실기기 청취·실기기 터치를 검수한 것은 아니다. 미검수 본문이 없어 원고와 플레이의 최종 결합 검수는 Phase B에서 해야 한다.12장 반복은 기존 길표/낮은 길의 실제 왕복이며 완전히 새 지형 루프가 아니다.18장 위협은 예고된80단위 근접 하강이며 압사 시뮬레이션은 아니다.29는 기존 군인/망령 공유 미술이며 새 전용 보스 에셋을 제작하지 않았다.
 
 Gemini3단 검수는 부모 측 credential_state_unavailable 안전 차단으로0회다. 새 production catalogue 적용·master 병합·Pages 배포는 의도적으로 보류한다. Library ZIP의 바이트 전송은 지원 재시도까지 실패했으나 Git 문서10개와 원본53,466바이트/SHA256 확인으로 구현 입력은 확보했다. ZIP/MANIFEST 자체를 검증했다고 보고하지 않는다.
+
+## 최신 master 축지 수정 보존 통합
+
+Phase A82f52640에 master0f19f8f7을 정상 merge했다. 실제 지지면으로 현행 Stage5의 도착 제한을 판정하는5cacef7d와 E 실패 안내·HUD·master 생성물을 그대로 보존했다. 코드 충돌은 없었으며 BUG_LOG의 양쪽 추가 기록만 함께 유지했다. `stage5-gate-arrival.mjs`15표본과 `gate-arrival-resolver.mjs`10묶음,실제 Chromium의1280/390/360폭 Stage5 pointer/touch/E·reload/Continue가 통과했고 page error0이었다. 브라우저 검사는 master에서 가져온 기본 생성물을 사용했으며 Phase A 공개판을 새로 빌드하거나 배포하지 않았다. Phase A 원본 모델/App의 집중 integration12항목(16장 실제 E/저장·재개,25/27 도착·28 화재/split 포함)도 통과했다. 전체 캠페인 재플레이·전체 verify·원고 검수·master 쓰기·스토리 배포는 하지 않았다.
