@@ -26,7 +26,12 @@ function careTick(app,dt){const b=app.engine.b,q=convoyCare(b),a=q.injured,u=uni
   if(bag.status==='with-mason'){bag.status='handoff';V.slot(app,'20.gilchan-baggage',{source:father.id,recipient:son.id,item:bag.id});}
   bag.elapsed=Math.min(.65,bag.elapsed+Math.max(0,dt));father.honroScenePose={kind:'inspect',time:bag.elapsed};son.honroScenePose={kind:'inspect',time:bag.elapsed};
   if(bag.elapsed>=.65){bag.status='carried';bag.owner=son.id;bag.transfers=1;bag.proof={from:father.id,to:son.id,round:b.round,point:{x:son.x,y:son.y}};delete father.honroScenePose;delete son.honroScenePose;V.ackSlot(b,'20.gilchan-baggage',bag.proof);app.engine.emit?.('save');}
- }else if(bag.status==='handoff'){delete father?.honroScenePose;delete son?.honroScenePose;}
+ }else if(bag.status==='handoff'){
+  // Knockback may separate either actor during the gesture. Keep the same
+  // item/owner and free escort walking so they can physically rejoin, including
+  // snapshots saved while the old handoff was stranded. No partial transfer.
+  bag.status='with-mason';bag.elapsed=0;delete father?.honroScenePose;delete son?.honroScenePose;app.engine.emit?.('save');
+ }
 }
 function author(map,project){const n=map.metadata.stageId,base=clone(map.initialState[n<=20?'honroAct2Steps':'honroAct3Steps']||[]);map.initialState.honroV4Steps=base;
  if(n===19){setSteps(map,base.map(s=>s.id.startsWith('send-')?{...s,kind:'v4-farewell'}:s));for(const p of map.markers)if(p.id.startsWith('send-'))delete p.action;map.events=[];map.units=map.units.filter(u=>u.team!=='enemy');for(const [i,u]of map.units.filter(u=>u.team!=='player').entries()){u.label='19.visitor.'+i;u.stageOverrides={...u.stageOverrides,name:u.label};}map.initialState.honroV4Offerings=[1,2,3].map(i=>({id:'v4.19.offering.'+i,...at(map,'separate-'+i)}));
