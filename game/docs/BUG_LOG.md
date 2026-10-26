@@ -1,3 +1,11 @@
+# 축지진목 설치 후 현행 5장 도착 거부 — 2026-10-26
+
+공개 master ae32a56c에서 새 서쪽 경사·상부 사격턱·하부 물길진에 M09 한 쌍을 정상 설치해도 옛 호수 지도의 `x>2380 || y>3000` 금지 조건이 적용됐다. 현행 dynamic revision1에서는 젖은 동쪽 절벽/물막의 실제 support를 제한하고, 옛 스냅샷은 기존 좌표 제한을 유지한다. 깊은 물·낙사·몸체/천장·다른 배우 점유·도착 진목과 벽으로 분리된 후보의 공통 거부, 220 탐색/55 활성 범위·턴당1회·수명·자원과 다른 장의 저작 제한은 그대로다. 설치된 진목이나 저장의 좌표·revision을 다시 쓰지 않는다. 비활성 상호작용 안내는 전체 이유를 줄바꿈하고 불투명 배경으로 읽게 했으며 E 실패도 같은 이유를 알린다.
+
+`node tests/stage5-gate-arrival.mjs` 15표본은 실제 설치 처리·별도 설오/행동 완료 담허·기력/이동력0·경사 fallback·세 oneWay 턱·물길진·깊은 소/젖은 절벽·옛 지도/custom·사용 후 저장/턴/수명 경계를 확인한다. 그중1개는 강제 impact 없이 실제 M09 투사체를 끝까지 적분한다. 원본 master에서 새 회귀 실패를 확인했다. 기존 `gate-arrival-resolver.mjs` 10묶음, `stage5-foundation-encounters.mjs`, `levelup-companion-growth.mjs` 12묶음, build/typecheck와 `web-split.mjs` 통과. 캠페인/기반암·몬스터·성장/밸런스 소스는 동일하다.
+
+실제 Chromium에서 `gate-arrival-browser.py`와 `stage5-gate-arrival-browser.py`의1280/390/360폭 pointer·touch/E, 실패 안내 가독성, 실제 reload/Continue의 착지·성장·장착·같은 턴 제한을 확인했다. pageerror0. 자동화는 명시적 좌표/자원 fixture이며 정상 캠페인 완주나 실기기 터치 검증이 아니다. 전체30장/verify는 미실행. 첨부 원본은 소비자 환경 Library 지원 전송2회 모두 download failed로 직접 픽셀 확인이 차단되어, 부모 환경의 실제 픽셀 관찰과 별도 코드 재현을 사용했다. 사용자 이미지·저장 데이터를 저장소에 추가하지 않았다. 로컬 검사 산출물은 `_local/reports/stage5-gate-arrival/`에 둔다.
+
 # 사거리 후속 검토: 구속·조준 예측 비용 — 2026-10-26
 
 발사 캘리브레이션 뒤에 BODY 구속 속도0.72배를 적용해 설정값 덮어쓰기로 제어 효과가 지워지지 않게 했다. 기존 LS01과 튜닝+BODY 교차 표본에서 속도 비율0.72/피해 동일을 확인한다. 신규 warriorLeap 계열을 기존 BODY enum에 추가해 구속 규칙을 확장하지는 않았다.
