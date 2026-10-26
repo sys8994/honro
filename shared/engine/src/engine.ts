@@ -257,6 +257,8 @@ export class Engine {
         // They never enter body/environment physics or alter collision geometry.
         const a=this.forceSample(p),story=(globalThis as any).HonroBellAnomaly?.force(this.b,p);
         if(story){a.x+=story.x;a.y+=story.y;}
+        const revisionForce=!p.body&&!BODY.has(p.mode||'')?(globalThis as any).HonroAct23V4?.projectileForce(this.b,p):null;
+        if(revisionForce){a.x+=revisionForce.x;a.y+=revisionForce.y;}
         const air=(q:{x:number;y:number;vx:number;vy:number},step:number)=>advanceLinear(q.x,q.y,q.vx,q.vy,a.x,a.y,a.k,step);
         const water=!p.body&&!BODY.has(p.mode||'')?waterfallSheet(this.b):undefined;
         const motion=water?advanceWaterfall(p,dt,water,air):{...air(p,dt),waterEntered:false,waterEntryPoint:undefined};return {...motion,...boundRushMotion(p,motion)};

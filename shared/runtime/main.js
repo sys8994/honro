@@ -362,9 +362,11 @@
                 this.profile.lastStage = st.id;
                 this.profile.honroBattle = clone(this.engine.b);
                 this.persist();
+    if(!G.HonroAct23V4?.active(battle)){
     const text = st.story.map(x => x.slice(0,2).join(' · ')).join('\n');
     const last = this.profile.record[this.profile.record.length - 1];
     if(!last || last.place !== st.name || last.text !== text){ this.profile.record.push({ place: st.name, text }); this.persist(); }
+    }
     if(G.HonroRestJourney)G.HonroRestJourney.startEntry(this,st.name);else G.HonroStory.start(this,G.HonroObjectives.entry(this),{title:st.name,after:'entry'});
             }
         }

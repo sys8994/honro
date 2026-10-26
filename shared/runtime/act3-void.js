@@ -25,7 +25,7 @@ function eligible(app){if(!safe(app)||state(app.engine.b).recovered)return false
  return inZone(hero(b),z);
 }
 function begin(app,reason='approach'){if(!safe(app))return false;const b=app.engine.b,s=state(b),u=hero(b);s.return={unit:clone(u),active:b.active,camera:cameraSnapshot(app.scene)};s.state='FALLING';s.fallProgress=0;s.reason=reason;delete s.recovered;
- app.cancelInput?.();app.acc=0;app.honroVoidSession={lines:G.HonroNarrativeCatalogue.active(b)?sceneLines:structuredClone(G.HONRO_NARRATIVE_COMPAT.extras['27.void.sceneLines']),elapsed:0,line:0,lastInputAt:-Infinity,returning:0,focus:G.document?.activeElement,rootInert:app.root?.inert,rootAria:app.root?.getAttribute?.('aria-hidden'),hudOpacity:G.document?.body?.style?.getPropertyValue?.('--void-hud-opacity')||''};
+ app.cancelInput?.();app.acc=0;app.honroVoidSession={lines:G.HonroAct23V4?.active(b)?[{text:'',align:'center'}]:G.HonroNarrativeCatalogue.active(b)?sceneLines:structuredClone(G.HONRO_NARRATIVE_COMPAT.extras['27.void.sceneLines']),elapsed:0,line:0,lastInputAt:-Infinity,returning:0,focus:G.document?.activeElement,rootInert:app.root?.inert,rootAria:app.root?.getAttribute?.('aria-hidden'),hudOpacity:G.document?.body?.style?.getPropertyValue?.('--void-hud-opacity')||''};
  save(app);mountOverlay(app);app.updateAudio?.();return true;
 }
 function mountOverlay(app){if(!G.document?.createElement)return;const session=app.honroVoidSession,host=G.document.createElement('section');host.className='honro-void-scene';host.setAttribute('role','dialog');host.setAttribute('aria-modal','true');host.setAttribute('aria-label','설오가 떨어진 검은 공간');host.setAttribute('aria-describedby','honro-void-instructions');host.tabIndex=-1;

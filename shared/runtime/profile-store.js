@@ -27,7 +27,7 @@ function migrate(text){
  if(![1,2,3,4].includes(x.schema))throw failure('version');
  try{
   const p=fresh();Object.assign(p,x);p.schema=4;p.settings={...fresh().settings,...x.settings};
-  C.migrateSkills(p);migrateGrowth(p,x.revision||12);G.HonroCampaignMapRevision.discard(p);
+  C.migrateSkills(p);migrateGrowth(p,x.revision||12);G.HonroAct23V4?.migratePresentation(p);G.HonroCampaignMapRevision.discard(p);
   G.HonroProgression.repairRecruits(p);G.HonroProgression.reconcileCampAllocations(p);return p;
  }catch{throw failure('migration');}
 }

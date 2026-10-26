@@ -3,7 +3,7 @@
 const INTERVAL=2,MAX_SEMITONES=5;
 const ROW='12.beats.sign:a6e603d56a',cache=new WeakMap();
 function record(audio){let s=cache.get(audio);if(!s){s={buffer:null,promise:null,attempts:0,retryAt:0,requests:0,decodes:0,plays:0,lastRate:null};cache.set(audio,s);}return s;}
-const relevant=app=>!app.training&&!app.engine?.b.honroCustom&&[12,18].includes(app.engine?.b.honroStage);
+const relevant=app=>!app.training&&!app.engine?.b.honroCustom&&([12,18].includes(app.engine?.b.honroStage)||G.HonroAct23V4?.active(app.engine?.b)&&[11,14].includes(app.engine.b.honroStage));
 function warm(app){const a=app.audio,c=a?.context;if(!relevant(app)||!a?.enabled||a.volume<=0||!c||c.state==='closed'||!G.HONRO_MUKJONG_AUDIO?.src)return Promise.resolve(false);const s=record(a);if(s.buffer)return Promise.resolve(true);if(s.promise)return s.promise;if(s.attempts>=2||performance.now()<s.retryAt)return Promise.resolve(false);
  s.attempts++;s.requests++;const controller=new AbortController(),timer=setTimeout(()=>controller.abort(),8000);
  s.promise=(async()=>{try{const r=await fetch(G.HONRO_MUKJONG_AUDIO.src,{signal:controller.signal});if(!r.ok)throw Error('Bell sample unavailable');const bytes=await r.arrayBuffer();s.decodes++;const buffer=await c.decodeAudioData(bytes);if(controller.signal.aborted||c.state==='closed')return false;s.buffer=buffer;return true;}catch{s.retryAt=performance.now()+1000;return false;}finally{clearTimeout(timer);s.promise=null;}})();return s.promise;
@@ -53,5 +53,5 @@ function update(app){if(!relevant(app)||app.engine.b.honroStage!==18)return;cons
 
 const lineStart=G.HonroStoryStaging?.lineStart;if(lineStart)G.HonroStoryStaging.lineStart=function(app,skip=false,...rest){const out=lineStart.call(this,app,skip,...rest);line(app,skip);return out;};
 function stats(audio){const s=audio&&cache.get(audio);return s?{attempts:s.attempts,requests:s.requests,decodes:s.decodes,plays:s.plays,lastRate:s.lastRate,ready:!!s.buffer,duration:s.buffer?.duration||0,bufferBytes:s.buffer?s.buffer.length*s.buffer.numberOfChannels*4:0}:null;}
-G.HonroMukjongAudio={warm,attach,line,keeper,observe,update,suppressed,stopped,pitchValid,stats,INTERVAL,MAX_SEMITONES};
+G.HonroMukjongAudio={warm,attach,line,keeper,observe,update,suppressed,stopped,pitchValid,stats,INTERVAL,MAX_SEMITONES,playCandidate:(app,rate=1)=>G.HonroAct23V4?.active(app.engine?.b)&&play(app,rate)};
 })(globalThis);

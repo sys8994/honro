@@ -1,0 +1,115 @@
+(function(G){'use strict';
+// Private candidate mechanics. Identifiers are deliberately the only new text.
+const V=G.HonroAct23V4,C=G.HONRO_CORE,clone=x=>JSON.parse(JSON.stringify(x));
+const active=b=>b?.honroAct23V4Revision===1&&!b.honroCustom&&b.honroStage>=11&&b.honroStage<=17;
+const alive=u=>!!u&&!u.dead&&u.hp>0,hero=u=>alive(u)&&u.side===0&&!u.summoned&&!u.enthrall;
+const mark=(b,id)=>(b.honroMarkers||[]).find(m=>m.id===id),unit=(b,id)=>b.units.find(u=>u.id===id);
+const mem=b=>V.mem(b).earlyAct2??={version:1,proof:{},escorts:{},work:{},slots:{}};
+const serial=b=>b.honroState.actorTurnSerial||0;
+const paused=app=>!!app.dialogue||!!app.modal?.classList.contains('open')||!!G.HonroStory?.turnPaused?.(app)||['won','lost'].includes(app.engine.b.phase);
+const near=(u,p,r=220)=>alive(u)&&!!p&&Math.hypot(u.x-p.x,u.y-p.y)<r;
+const threats=(b,p,r=360)=>b.units.filter(u=>alive(u)&&u.side===1&&!u.honroObjectiveTarget&&near(u,p,r));
+const step=(id,kind='interact',extra={})=>({id,label:id,kind,...extra});
+function point(map,id){const p=map.markers.find(m=>m.id===id);if(!p)throw Error('act23v4.missing:'+id);return{x:p.x,y:p.y};}
+function npc(id,p,extra={}){return{id,kind:'object:civilian',team:'npc',...p,label:id,stageOverrides:{honroProtected:true,honroCivilian:true,fixed:true,h:92,r:22,hp:950,maxHp:950,walkSpeed:230,maxMove:850,moveLeft:850,...extra}};}
+function author(map){const n=map.metadata.stageId;if(n<11||n>17)return;const init=map.initialState??={},old=clone(map.markers),positions={},steps=[];
+ const add=(id,kind,p,extra={})=>{steps.push(step(id,kind,extra));positions[id]=p;};
+ const at=id=>point({markers:old},id);
+ if(n===11){map.units=map.units.filter(u=>u.id!=='resident-4');add('11.thread','interact',at('resident'));add('11.north','v4-world',at('trace'));init.honroV4Ambient={from:at('resident'),to:at('trace')};}
+ if(n===12){add('12.recurrence','v4-recurrence',at('sign'));add('sign','interact',at('sign'));add('route-exit','route',at('route-exit'));init.honroV4Recurrence={duration:2.4,passes:2,path:clone(map.design?.quarry?.routes?.find(r=>r.id==='FG')?.anchors||map.routes).filter((_,i)=>i%3===0)};}
+ if(n===13){add('13.extract','v4-extract',at('resident'),{target:'resident-1',spiritId:'resident-spirit-1',requiredClass:'occultist'});add('gate','interact',at('gate'));add('13.escort','v4-escort',at('exit'),{target:'resident-1'});add('13.release','interact',at('exit'));init.honroV4EscortPaths={'13.escort':clone(map.routes).filter(p=>p.x>=2445)};const u=map.units.find(u=>u.id==='resident-1');u.label='13.mason';}
+ if(n===14){const home=at('family-upper'),end={x:3450,y:8150};map.units=map.units.filter(u=>!['resident-1','resident-3','resident-4','objective'].includes(u.id));map.units.push(npc('14.gilchan',home,{honroHypnotized:true}));
+ add('14.door-threat','clear',home,{defeatIds:map.units.filter(u=>u.team==='enemy'&&Math.hypot(u.x-home.x,u.y-home.y)<650&&u.id!=='resident-spirit-1').map(u=>u.id)});add('14.house','interact',home);add('14.bell','v4-hypnosis',home);add('14.extract','v4-extract',home,{target:'14.gilchan',spiritId:'resident-spirit-1',requiredClass:'occultist'});add('14.refuge','v4-escort',end,{target:'14.gilchan'});
+ const route=clone(map.routes),first=route.findIndex(p=>p.x===3000&&p.y===2300);const descent=route.slice(first),turn=descent.findIndex(p=>p.x===5680&&p.y===4990);if(turn>=0)descent.splice(turn,0,{x:5910,y:4990});init.honroV4EscortPaths={'14.refuge':[...descent,{x:3000,y:8150},end]};}
+ if(n===15){add('sluice','interact',at('sluice'),{optional:true});add('15.drift','v4-drift',at('groove'));add('groove','interact',at('groove'));add('route-exit','route',at('route-exit'));init.honroAct23V4TrajectoryForce={revision:1,ax:36,zone:{x:5600,y:3300,w:1500,h:1300}};}
+ if(n===16){add('16.elder','v4-rescue',at('witness'),{target:'objective'});add('16.disciple','v4-extract',at('monk'),{target:'resident-1',spiritId:'resident-spirit-1',requiredClass:'occultist'});add('16.testimony','v4-slot',at('witness'),{slot:'16.testimony.required'});}
+ if(n===17){const brace=at('brace'),parts=at('hoist'),shaft=at('repair');map.units.push(npc('17.mason',{x:brace.x+90,y:brace.y+8}),npc('17.gilchan',{x:shaft.x+90,y:shaft.y}));
+ const oldClear=init.honroAct2Steps.find(s=>s.id==='clear-works');add('17.work-threat','clear',at('clear-works'),{defeatIds:clone(oldClear.defeatIds)});add('17.brace','v4-work',brace,{worker:'17.mason',duration:1.25});add('17.hoist','v4-defeat',parts,{target:'act2-hoist'});add('17.parts','interact',parts);add('17.mesh','v4-work',shaft,{worker:'17.gilchan',duration:1.5});add('17.defense','v4-defense',at('hold-hoist'));add('17.wheel','v4-wheel',shaft);init.honroV4DefenseEntries=clone(init.honroWorksiteDefenseEntries||[]);}
+ init.honroV4Steps=steps;map.markers=old.filter(m=>!['act2','act2-wave','exit'].includes(m.type)&&m.action!=='act2');
+ for(const s of steps)map.markers.push({id:s.id,type:'act2',action:'act2',label:s.id,...positions[s.id],...(s.target?{target:s.target}:{}),...(s.spiritId?{spiritId:s.spiritId}:{}),radius:220});
+ for(const m of old.filter(m=>/^route-(upper|lower)-exit$/.test(m.id)))map.markers.push({...m,label:m.id});
+ for(const key of ['honroQuarryRevision','honroTempleVersion','honroTempleEscortRevision','honroWorksiteVersion'])init[key]=0;
+ // Existing finite density responses are retained, with the replacement trigger.
+ const replacement={11:{resident:'11.thread',trace:'11.north'},12:{sign:'sign'},13:{resident:'13.extract',gate:'gate'},14:{'family-upper':'14.house','family-mid':'14.extract','family-lower':'14.extract',bridge:'14.extract','hold-refuge':'14.extract'},15:{groove:'groove',sluice:'sluice'},16:{monk:'16.disciple',witness:'16.elder',hall:'16.elder',record:'16.elder'},17:{brace:'17.brace',repair:'17.mesh','hold-hoist':'17.mesh'}}[n];
+ const retag=(action,id)=>!action?action:{...action,source:id,...(action.actions?{actions:action.actions.map(a=>retag(a,id))}:{})};
+ map.events=(map.events||[]).filter(e=>e.honroDensityResponse&&replacement[e.honroDensityTrigger?.objectiveDone]).map(e=>{const id='v4.'+n+'.'+e.id;return{...e,id,warning:id+'.warning',text:undefined,when:{after:'density-gate-'+id},action:retag(e.action,id),honroDensityAlternatives:e.honroDensityAlternatives?.map(rows=>rows.map(a=>retag(a,id))),honroDensityTrigger:{...e.honroDensityTrigger,objectiveDone:replacement[e.honroDensityTrigger.objectiveDone]}};});
+}
+function prepare(b){if(!active(b))return;mem(b);for(const key of ['honroQuarryRevision','honroTempleVersion','honroTempleEscortRevision','honroWorksiteVersion'])b[key]=0;
+ delete mem(b).recurrence?.cameraCue;
+ if(b.honroStage===17){for(const id of ['17.mason','17.gilchan']){const u=unit(b,id);if(u){u.name=id;u.honroProtected=true;}}}
+}
+function complete(app,s){V.completeStep(app,s,app.engine.active);}
+function finish(app){app.dirty=true;if(!app.checkMission(app.engine))app.engine.finishAction();return true;}
+function open(b,id){let changed=false;for(const list of [b.terrain,b.honroWorldTerrain]){const t=list?.find(t=>t.id===id);if(t&&!t.broken){t.broken=true;changed=true;}}if(changed)b.sceneVersion=(b.sceneVersion||0)+1;}
+function extract(app,s){const e=app.engine,b=e.b,u=unit(b,s.target),spirit=unit(b,s.spiritId);if(!alive(u)||s.requiredClass&&e.active?.cls!==s.requiredClass)return false;
+ if(alive(spirit)){G.HonroProgression?.defeat(e,spirit,e.active);spirit.hp=0;spirit.dead=true;spirit.honroReleased=true;b.queue=b.queue.filter(id=>id!==spirit.id);}u.honroResolved=true;u.honroHypnotized=false;mem(b).proof[s.id]={target:u.id,serial:serial(b)};complete(app,s);return finish(app);}
+function drain(b){const a=mem(b);if(a.drained)return;a.drained=true;a.drainPending=true;
+ b.honroSurfaceZones=(b.honroSurfaceZones||[]).map(z=>{if(z.kind!=='water-pool')return z;const level=z.surface[0][1]+120,bed=z.bottom;let bottom=clone(bed),surface=z.surface.map(([x,y])=>[x,y+120]);if(z.honroCarvedBasin){const first=bed.findIndex(p=>p[1]>=level),last=bed.findLastIndex(p=>p[1]>=level),cross=(p,q)=>[p[0]+(q[0]-p[0])*(level-p[1])/(q[1]-p[1]),level];if(first<=0||last<first||last>=bed.length-1)return{...z,surface:[],bottom:[],points:[]};bottom=[cross(bed[first-1],bed[first]),...bed.slice(first,last+1),cross(bed[last],bed[last+1])];surface=[[bottom[0][0],level],[bottom.at(-1)[0],level]];}return{...z,surface,bottom,points:[...surface,...bottom.slice().reverse()]};});
+ b.waters=b.honroSurfaceZones.filter(z=>z.kind==='water-pool'&&z.surface.length===2).map((z,i)=>({...b.waters[i],x:z.surface[0][0],y:z.surface[0][1],w:z.surface[1][0]-z.surface[0][0],depth:Math.max(...z.bottom.map(p=>p[1]))-z.surface[0][1],bottom:z.bottom.map(([x,y])=>({x,y}))}));open(b,'water-gate');b.sceneVersion=(b.sceneVersion||0)+1;
+}
+function use(app,m){const e=app.engine,b=e.b,current=V.current(b),s=V.steps(b).find(s=>s.id===m?.id&&(s.optional||s.id===current?.id)),a=mem(b);if(!s)return undefined;if(!near(e.active,m,m.radius||220)||paused(app))return false;
+ if(s.id==='sluice'){drain(b);complete(app,s);return finish(app);}
+ if(s.kind==='v4-extract')return extract(app,s);
+ if(s.kind==='v4-rescue'){if(!alive(unit(b,s.target)))return false;a.proof[s.id]={target:s.target,serial:serial(b)};complete(app,s);return finish(app);}
+ if(s.kind==='v4-work'){if(s.id==='17.mesh'&&!a.proof['17.parts'])return false;if(threats(b,m,280).length)return false;a.work[s.id]??={elapsed:0,actor:e.active.id,serial:serial(b),working:true};return finish(app);}
+ if(s.id==='11.thread'||s.id==='14.house'||s.id==='17.parts'||s.id==='13.release'||s.id==='gate'||s.id==='sign'){
+  if(s.id==='14.house'){a.houseOpen=true;a.proof['14.house']={serial:serial(b)};}
+  if(s.id==='17.parts')a.proof[s.id]={carrier:e.active.id,pickup:{x:e.active.x,y:e.active.y},serial:serial(b)};
+  if(s.id==='13.release'){const u=unit(b,'resident-1');if(!a.escorts['13.escort']?.arrived||!near(u,m,160))return false;u.fixed=true;u.honroReleasedInside=true;}
+  if(s.id==='gate')open(b,'gate-gate');
+  if(s.id==='sign'){if(!a.proof['12.recurrence'])return false;open(b,'sq-turning-veil');a.stakeAdjusted={serial:serial(b),x:m.x,y:m.y};}
+  complete(app,s);return finish(app);
+ }
+ return undefined;
+}
+// Body reservations supplement ordinary walk/jump integration for these escorts.
+function overlap(u,p,v){return Math.max(0,Math.min(p.x+u.r,v.x+v.r)-Math.max(p.x-u.r,v.x-v.r))*Math.max(0,Math.min(p.y,v.y)-Math.max(p.y-u.h,v.y-v.h));}
+function bodyBlock(b,u,p,from=u){return b.units.some(v=>v!==u&&alive(v)&&!v.honroObjectiveTarget&&overlap(u,p,v)>Math.max(1e-6,overlap(u,from,v)));}
+function escort(app,s,dt){const e=app.engine,b=e.b,a=mem(b),u=unit(b,s.target),end=mark(b,s.id);if(!alive(u)||dt<=0)return;const q=a.escorts[s.id]??={index:0,distance:0,start:{x:u.x,y:u.y}},path=b.honroV4EscortPaths?.[s.id]||[end];
+ u.fixed=false;if(q.round!==b.round){q.round=b.round;u.moveLeft=u.maxMove;}
+ while(q.index<path.length-1&&near(u,path[q.index],95))q.index++;
+ const p=path[q.index],leaders=b.units.filter(hero).filter(v=>Math.hypot(v.x-u.x,v.y-u.y)<700);if(!leaders.length)return;
+ if(s.id==='14.refuge'&&Math.hypot(u.x-3000,u.y-8150)<450)open(b,'gate-bridge');
+ const before={x:u.x,y:u.y},dir=Math.sign(p.x-u.x),d=Math.min(dt,.05,Math.abs(p.x-u.x)/(u.walkSpeed||230));
+ if(dir&&d>0&&u.moveLeft>0){const nx=u.x+dir*(u.walkSpeed||230)*d,support=e.surface(nx,u.y-28,u.y+28),next={x:nx,y:support?.y??u.y};if(!bodyBlock(b,u,next)){e.walk(u,dir,d);if(Math.abs(u.x-before.x)<.01&&e.grounded(u))e.jump(u);}else if(e.grounded(u)&&!bodyBlock(b,u,{x:u.x,y:u.y-14}))e.jump(u);}
+ q.distance+=Math.hypot(u.x-before.x,u.y-before.y);if(q.index===path.length-1&&q.distance>120&&near(u,end,110)&&e.grounded(u)){q.arrived=true;u.fixed=true;u.honroV4Safe=true;}app.dirty=true;
+}
+function defense(app,s){const e=app.engine,b=e.b,a=mem(b),m=mark(b,s.id),q=a.defense??={warnings:{},sources:{},actions:{},progress:0};
+ const action=a.lastAction;if(action&&app.actorBoundary===action.id&&action.kind==='defense'&&!q.actions[action.serial]){q.actions[action.serial]=true;q.progress++;}
+ for(let i=0;i<2;i++){const id='17.defense.'+i;if(q.sources[id])continue;const entry=b.honroV4DefenseEntries?.[i];if(!entry)break;
+ if(!q.warnings[id]){q.warnings[id]={serial:serial(b)};V.slot(app,id+'.warning',{source:id,...entry,count:3});return;}
+ if(serial(b)<=q.warnings[id].serial||!app.actorBoundary)return;
+ const previous=new Set(b.units.map(u=>u.id));if(G.HonroAllies.execute(app,{type:'spawn',kind:'minecart',n:3,x:entry.x,y:entry.y,support:entry.surfaceId,spacing:100,maxDistance:180,source:id})===false)return;
+ q.sources[id]=b.units.filter(u=>!previous.has(u.id)).map(u=>u.id);return;}
+ const ids=Object.values(q.sources).flat();if(Object.keys(q.sources).length===2&&q.progress>=3&&ids.every(id=>!alive(unit(b,id))))a.proof[s.id]={actions:q.progress,sources:clone(q.sources)};
+}
+function tick(app,dt){const e=app.engine,b=e.b;if(!active(b)||paused(app))return;const s=V.current(b);if(!s)return;const a=mem(b);if(a.drainPending){if(G.HonroStage15Drain?.active(b)){if(G.HonroStage15Drain.transition(b).ok)a.drainPending=false;}else{const ids=b.honroDrainRevealTerrains||[];if(ids.every(id=>{const t=b.terrain.find(t=>t.id===id);return t&&!b.units.some(u=>alive(u)&&C.terrainRectIntersects(t,u.x-u.r-4,u.y-u.h-4,u.r*2+8,u.h+10,.01));})){for(const list of [b.terrain,b.honroWorldTerrain])for(const id of ids){const t=list?.find(t=>t.id===id);if(t)t.broken=false;}a.drainPending=false;}}if(!a.drainPending)b.sceneVersion=(b.sceneVersion||0)+1;}const p=mark(b,s.id),delta=Math.max(0,Math.min(dt,.05));
+ if(s.kind==='v4-escort')escort(app,s,delta);
+ if(s.kind==='v4-world'&&b.units.some(u=>hero(u)&&near(u,p,300))){a.ambientElapsed=(a.ambientElapsed||0)+delta;if(!a.lowBellAudible&&G.HonroMukjongAudio?.playCandidate?.(app,.82))a.lowBellAudible=true;if(a.ambientElapsed>=1.8)a.proof[s.id]={soulNorth:true,lowBellVisual:true,lowBellAudible:a.lowBellAudible===true,elapsed:a.ambientElapsed};}
+ if(s.kind==='v4-recurrence'&&b.units.some(u=>hero(u)&&near(u,p,300))){const q=a.recurrence??={elapsed:0,passes:0};q.elapsed+=delta;const spec=b.honroV4Recurrence,duration=spec.duration;q.passes=Math.min(2,Math.floor(q.elapsed/duration));
+ if(app.scene?.storyFocusPoint){q.camera??={x:app.scene.x,y:app.scene.y,scale:app.scene.scale,manual:app.scene.manual};const cue=Math.min(7,Math.floor(q.elapsed/duration*4));if(q.cameraCue!==cue){q.cameraCue=cue;const path=spec.path,at=path[Math.min(path.length-1,Math.floor((cue%4)/4*path.length))]||p;app.scene.storyFocusPoint(at.x,at.y-80,240,.34);}if(q.passes===2&&!q.released){app.scene.storyRelease?.(q.camera,250);q.released=true;}}
+ if(q.passes===2)a.proof[s.id]={passes:2,elapsed:q.elapsed,cameraPasses:q.camera?2:0};}
+ if(s.kind==='v4-hypnosis'&&a.houseOpen&&b.units.some(u=>hero(u)&&near(u,p,270))){a.hypnosisElapsed=(a.hypnosisElapsed||0)+delta;const cycle=Math.min(2,Math.ceil(a.hypnosisElapsed/.9));if(cycle>(a.hypnosisTones||0)&&G.HonroMukjongAudio?.playCandidate?.(app,.88))a.hypnosisTones=cycle;const u=unit(b,'14.gilchan');if(u)u.honroHypnotized=true;if(a.hypnosisElapsed>=1.8)a.proof[s.id]={bellCycles:2,elapsed:a.hypnosisElapsed};}
+ if(s.kind==='v4-drift'&&b.units.some(u=>hero(u)&&near(u,p,400))){a.driftElapsed=(a.driftElapsed||0)+delta;if(a.driftElapsed>=1.2)a.proof[s.id]={ax:b.honroAct23V4TrajectoryForce.ax,elapsed:a.driftElapsed};}
+ if(s.kind==='v4-slot'){if(!a.slots[s.slot]){a.slots[s.slot]=true;V.slot(app,s.slot,{elder:'objective',disciple:'resident-1'});}}
+ if(s.kind==='v4-work'){const q=a.work[s.id],worker=unit(b,s.worker),carrier=s.id==='17.mesh'?unit(b,a.proof['17.parts']?.carrier):unit(b,q?.actor);if(q?.working&&alive(worker)&&near(carrier,p,260)&&near(worker,p,180)&&!threats(b,p,280).length){q.elapsed+=delta;worker.honroV4Working=true;if(q.elapsed>=s.duration){worker.honroV4Working=false;q.working=false;a.proof[s.id]={worker:s.worker,elapsed:q.elapsed,actor:q.actor,...(s.id==='17.mesh'?{parts:clone(a.proof['17.parts'])}:{})};}}}
+ if(s.kind==='v4-defense')defense(app,s);
+ if(s.kind==='v4-wheel'){a.wheelElapsed=Math.min(2,(a.wheelElapsed||0)+delta);a.wheelAngle=a.wheelElapsed*Math.PI;if(a.wheelElapsed>=2)a.proof[s.id]={angle:a.wheelAngle,rotationCount:1};}
+}
+function stepSatisfied(b,s){if(!active(b))return null;if(!s.id.startsWith(b.honroStage+'.')&&!['sign','gate'].includes(s.id))return null;const a=mem(b);if(s.kind==='v4-escort')return !!a.escorts[s.id]?.arrived;if(s.kind==='v4-defeat')return !!unit(b,s.target)?.dead;if(s.kind==='v4-slot')return !!V.mem(b).sceneDone?.[s.slot];if(s.kind.startsWith('v4-'))return !!a.proof[s.id];return null;}
+function sweepStop(b,u,from,to){const n=Math.max(1,Math.ceil(Math.max(Math.abs(to.x-from.x),Math.abs(to.y-from.y))/2));let last=from;for(let i=1;i<=n;i++){const p={x:from.x+(to.x-from.x)*i/n,y:from.y+(to.y-from.y)*i/n};if(bodyBlock(b,u,p,from))return last;last=p;}return null;}
+const engines=new WeakSet();function attach(app,e){if(!active(e.b)||engines.has(e))return;engines.add(e);
+ const owns=u=>{const s=V.current(e.b);return s?.kind==='v4-escort'&&s.target===u.id&&!u.fixed;};
+ const walk=e.walk;e.walk=function(u,...args){if(!owns(u))return walk.call(e,u,...args);const from={x:u.x,y:u.y},left=u.moveLeft,out=walk.call(e,u,...args),stop=sweepStop(e.b,u,from,u);if(stop){const travelled=Math.hypot(u.x-from.x,u.y-from.y),actual=Math.hypot(stop.x-from.x,stop.y-from.y);u.moveLeft=left-(left-u.moveLeft)*(travelled?actual/travelled:0);u.x=stop.x;u.y=stop.y;}return out;};
+ const integrate=e.integrateBody;e.integrateBody=function(u,dt,...args){const from=owns(u)?{x:u.x,y:u.y}:null,out=integrate.call(e,u,dt,...args);if(from){const stop=sweepStop(e.b,u,from,u);if(stop){u.x=stop.x;u.y=stop.y;u.vx=u.vy=0;}}return out;};
+ const finishAction=e.finishAction;e.finishAction=function(...args){const b=e.b,s=V.current(b),u=e.active;if(s?.kind==='v4-defense'&&hero(u)&&near(u,mark(b,s.id),420)&&!threats(b,mark(b,s.id),230).length)mem(b).lastAction={id:u.id,serial:serial(b)+1,kind:'defense'};return finishAction.apply(e,args);};}
+function failure(b){if(!active(b))return null;const ids={13:['resident-1'],14:['14.gilchan'],16:['objective','resident-1'],17:['17.mason','17.gilchan']}[b.honroStage]||[];return ids.some(id=>!alive(unit(b,id)))?'act23v4.actor-lost':null;}
+function draw(scene,c,b){if(!active(b))return;const a=mem(b),n=b.honroStage,time=scene.time||0;c.save();c.lineWidth=3;
+ if(n===11){const spec=b.honroV4Ambient;if(spec){for(let i=0;i<4;i++){const t=((time*.16+i*.17)%1),x=spec.from.x+(spec.to.x-spec.from.x)*t,y=spec.from.y+(spec.to.y-spec.from.y)*t-100-Math.sin(t*Math.PI)*110;c.globalAlpha=.45;c.strokeStyle='#b5c8bf';c.beginPath();c.ellipse(x,y,15,30,-.3,0,Math.PI*2);c.stroke();}c.globalAlpha=.25+.2*Math.sin(time*4);c.strokeStyle='#c1b98c';c.beginPath();c.arc(spec.to.x,spec.to.y-100,65+12*Math.sin(time*4),Math.PI,Math.PI*2);c.stroke();}}
+ if(n===12){const q=a.recurrence,p=mark(b,'sign');if(q&&!a.stakeAdjusted){const path=b.honroV4Recurrence.path||[],t=(q.elapsed%b.honroV4Recurrence.duration)/b.honroV4Recurrence.duration;c.strokeStyle='#c6bc93';c.globalAlpha=.65;c.beginPath();for(let i=0;i<path.length;i++)i?c.lineTo(path[i].x,path[i].y-18):c.moveTo(path[i].x,path[i].y-18);c.stroke();const v=path[Math.min(path.length-1,Math.floor(t*path.length))];if(v){c.beginPath();c.arc(v.x,v.y-18,24,0,Math.PI*2);c.stroke();}}if(p){c.globalAlpha=1;c.strokeStyle='#b3ad86';c.beginPath();c.moveTo(p.x,p.y);c.lineTo(p.x+(a.stakeAdjusted?24:0),p.y-100);c.stroke();}}
+ if(n===14){const home=mark(b,'14.house');if(home){c.globalAlpha=1;c.strokeStyle='#a49877';c.lineWidth=5;c.strokeRect(home.x-80,home.y-145,65,145);c.save();c.translate(home.x-80,home.y-145);c.scale(a.houseOpen ? .24 : 1,1);c.fillStyle='#4a4b3d';c.fillRect(0,0,65,145);c.strokeRect(0,0,65,145);c.restore();}const u=unit(b,'14.gilchan');if(a.houseOpen&&u&&!a.proof['14.extract']){c.strokeStyle='#b2ac83';c.globalAlpha=.5;for(let i=0;i<3;i++){c.beginPath();c.ellipse(u.x,u.y-u.h*.6,24+i*18+Math.sin(time*7)*5,10+i*10,0,0,Math.PI*2);c.stroke();}}}
+ if(n===15){const z=b.honroAct23V4TrajectoryForce?.zone;if(z){c.strokeStyle='#b3c7c7';c.globalAlpha=.7;for(let i=0;i<12;i++){const t=(time*.5+i/12)%1,x=z.x+80+i*95+.5*b.honroAct23V4TrajectoryForce.ax*(t*2)**2,y=z.y+t*z.h;c.beginPath();c.moveTo(x-10,y-18);c.quadraticCurveTo(x-4,y-5,x,y);c.stroke();}}}
+ if(n===17){const carrier=unit(b,a.proof['17.parts']?.carrier);if(carrier&&!a.proof['17.mesh']){c.globalAlpha=1;c.strokeStyle='#a3a695';c.lineWidth=8;c.beginPath();c.moveTo(carrier.x-20,carrier.y-60);c.lineTo(carrier.x+30,carrier.y-85);c.moveTo(carrier.x-15,carrier.y-85);c.lineTo(carrier.x+25,carrier.y-55);c.stroke();}for(const id of ['17.mason','17.gilchan']){const u=unit(b,id);if(u?.honroV4Working){c.save();c.translate(u.x+18,u.y-65);c.rotate(Math.sin(time*9)*.6);c.globalAlpha=1;c.strokeStyle='#a6a085';c.lineWidth=5;c.beginPath();c.moveTo(0,0);c.lineTo(12,-45);c.moveTo(0,-45);c.lineTo(24,-45);c.stroke();c.restore();}}for(const id of ['17.brace','17.mesh']){const p=mark(b,id);if(a.proof[id]){c.strokeStyle='#b5a77d';c.globalAlpha=1;c.beginPath();c.moveTo(p.x-45,p.y);c.lineTo(p.x,p.y-90);c.lineTo(p.x+45,p.y);c.moveTo(p.x-32,p.y-30);c.lineTo(p.x+32,p.y-30);c.stroke();}}const p=mark(b,'17.wheel');if(p&&a.proof['17.mesh']){c.translate(p.x,p.y-150);c.rotate(a.wheelAngle||0);c.strokeStyle='#b7ac83';c.globalAlpha=1;c.lineWidth=7;c.beginPath();c.arc(0,0,65,0,Math.PI*2);for(let i=0;i<6;i++){const t=i*Math.PI/3;c.moveTo(0,0);c.lineTo(Math.cos(t)*65,Math.sin(t)*65);}c.stroke();}}
+ c.restore();}
+const api={active,author,prepare,attach,tick,use,stepSatisfied,failure,draw,memory:mem,escort,defense,bodyBlock};G.HonroAct23V4Act2=api;for(let n=11;n<=17;n++)V.register(n,api);
+})(globalThis);

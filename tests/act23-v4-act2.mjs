@@ -1,0 +1,49 @@
+// Focused candidate model checks. Synthetic actor placement isolates work and
+// walking physics; these checks make no browser, encounter-clear or UI claim.
+import assert from 'node:assert/strict';
+import vm from 'node:vm';
+import {readFile} from 'node:fs/promises';
+import {runtime} from '../game/tests/helpers.mjs';
+const g=await runtime({legacyMaps:false}),C=g.HONRO_CORE,plain=x=>JSON.parse(JSON.stringify(x));
+// A small boundary fixture keeps these plugin tests independent of root wiring.
+g.HonroAct23V4={...g.HonroAct23V4,prepare(){},projectileForce(){return null;},plugins:{},register(n,p){this.plugins[n]=p;},mem(b){b.honroState??={};const m=b.honroState.act23v4??={done:{},holds:{},events:{},checkpoints:[],sceneDone:{}};b.honroState.act2=m;return m;},steps(b){return b.honroV4Steps;},current(b){return this.steps(b).find(s=>!s.optional&&!this.mem(b).done[s.id]);},completeStep(app,s){this.mem(app.engine.b).done[s.id]=true;},slot(app,key,ctx){const m=this.mem(app.engine.b);(m.pendingSlots??={})[key]=ctx;}};
+vm.runInContext(await readFile('shared/runtime/act23-v4-act2.js','utf8'),g);
+const V=g.HonroAct23V4,A=g.HonroAct23V4Act2,project=plain(g.HONRO_PROJECT),mark=(b,id)=>b.honroMarkers.find(m=>m.id===id);
+function fixture(n){const map=plain(project.stages[n-1]);A.author(map,project);map.initialState.honroAct23V4Revision=1;const p=C.defaults();p.recruited=['archer','mage','knight','occultist'];const b=g.HonroMaps.createBattle(map,project,p,{origin:'campaign'}),e=new C.Engine(b,()=>{},true),app={engine:e,profile:p,stage:g.HONRO_CONTENT.stages[n-1],event(){},sayLines(){throw Error('unapproved speech');},checkMission(){return false;}};A.prepare(b);A.attach(app,e);return{map,b,e,app};}
+function current(q,id){for(const s of q.b.honroV4Steps)V.mem(q.b).done[s.id]=s.id!==id&&q.b.honroV4Steps.indexOf(s)<q.b.honroV4Steps.findIndex(s=>s.id===id);return q.b.honroV4Steps.find(s=>s.id===id);}
+function actor(q,id,cls='occultist'){const u=q.e.heroesAlive().find(u=>u.cls===cls),m=mark(q.b,id);Object.assign(u,{x:m.x-95,y:m.y,vx:0,vy:0,acted:false});q.b.active=u.id;q.b.phase='aim';q.b.side=0;return u;}
+function tick(q,id,seconds){for(let i=0;i<Math.ceil(seconds/.05);i++)A.tick(q.app,.05);return A.stepSatisfied(q.b,q.b.honroV4Steps.find(s=>s.id===id));}
+for(let n=11;n<=17;n++){const q=fixture(n),old=project.stages[n-1];assert.deepEqual(q.map.terrains,old.terrains,'terrain '+n);assert.deepEqual(q.map.units.filter(u=>u.team==='enemy'),old.units.filter(u=>u.team==='enemy'),'enemy density '+n);assert.deepEqual(q.map.initialState.honroEntryVariants,old.initialState.honroEntryVariants,'A/B entry '+n);assert.deepEqual(q.map.initialState.honroRouteSpec,old.initialState.honroRouteSpec,'A/B exit '+n);assert(q.b.honroV4Steps.every(s=>s.label===s.id));for(const u of q.b.units.filter(u=>['17.mason','17.gilchan','14.gilchan'].includes(u.id)))assert(C.validTerrainContactPose(q.b.terrain,u),'supported '+u.id+':'+JSON.stringify({x:u.x,y:u.y}));}
+{
+ const q=fixture(14);assert.deepEqual(q.map.units.filter(u=>u.team==='npc').map(u=>u.id),['14.gilchan']);assert(!q.b.honroV4Steps.some(s=>s.kind==='hold'||s.cohorts==='all'));const s=current(q,'14.house');actor(q,s.id);assert(A.use(q.app,mark(q.b,s.id)));assert(A.memory(q.b).houseOpen);
+ const bell=current(q,'14.bell');actor(q,bell.id);assert(!A.stepSatisfied(q.b,bell));assert(tick(q,bell.id,2));const extraction=current(q,'14.extract'),gilchan=q.e.unit('14.gilchan'),hp=gilchan.hp;actor(q,extraction.id,'archer');assert.equal(A.use(q.app,mark(q.b,extraction.id)),false);actor(q,extraction.id);assert(A.use(q.app,mark(q.b,extraction.id)));assert.equal(gilchan.hp,hp);assert(q.e.unit('resident-spirit-1').dead);assert.equal(gilchan.honroHypnotized,false);assert(!A.stepSatisfied(q.b,current(q,'14.refuge')));
+ const saved=plain(q.b);assert.deepEqual(plain(A.memory(saved)),plain(A.memory(q.b)),'physical proof serialized');
+}
+{
+ const q=fixture(16);assert.deepEqual(plain(q.b.honroV4Steps.map(s=>s.id)),['16.elder','16.disciple','16.testimony']);for(const id of ['16.elder','16.disciple']){current(q,id);actor(q,id);assert(A.use(q.app,mark(q.b,id)));}const s=current(q,'16.testimony');A.tick(q.app,.05);assert(V.mem(q.b).pendingSlots[s.slot]);assert.equal(A.stepSatisfied(q.b,s),false);V.mem(q.b).sceneDone[s.slot]={ack:true};assert.equal(A.stepSatisfied(q.b,s),true);assert(!q.b.honroV4Steps.some(s=>/key|record|hall/.test(s.id)));
+}
+{
+ const q=fixture(17),a=A.memory(q.b);let s=current(q,'17.brace');actor(q,s.id);q.b.units=q.b.units.filter(u=>u.side!==1||Math.hypot(u.x-mark(q.b,s.id).x,u.y-mark(q.b,s.id).y)>300);assert(A.use(q.app,mark(q.b,s.id)));assert(tick(q,s.id,1.5));assert(a.proof[s.id].worker==='17.mason');
+ s=current(q,'17.parts');actor(q,s.id);assert(A.use(q.app,mark(q.b,s.id)));assert(a.proof['17.parts'].carrier);s=current(q,'17.mesh');const carrier=q.e.unit(a.proof['17.parts'].carrier);Object.assign(carrier,{x:mark(q.b,s.id).x-100,y:mark(q.b,s.id).y});q.b.active=carrier.id;q.b.phase='aim';q.b.units=q.b.units.filter(u=>u.side!==1||Math.hypot(u.x-mark(q.b,s.id).x,u.y-mark(q.b,s.id).y)>300);assert(A.use(q.app,mark(q.b,s.id)));assert(tick(q,s.id,1.8));assert(a.proof[s.id].parts.carrier===carrier.id);
+ s=current(q,'17.defense');actor(q,s.id);const execute=g.HonroAllies.execute,calls=[];g.HonroAllies.execute=(app,action)=>{calls.push(plain(action));for(let i=0;i<action.n;i++)app.engine.b.units.push({id:action.source+':'+i,side:1,hp:10,maxHp:10,dead:false,x:action.x,y:action.y,r:20,h:80});return true;};
+ A.tick(q.app,.05);assert.equal(calls.length,0,'warning first');for(let i=1;i<=5;i++){q.b.honroState.actorTurnSerial=i;q.app.actorBoundary=carrier.id;a.lastAction={id:carrier.id,serial:i,kind:'defense'};A.tick(q.app,.05);}assert.equal(calls.length,2);assert.equal(calls.reduce((n,c)=>n+c.n,0),6);assert.equal(new Set(calls.map(c=>c.source)).size,2);assert.equal(A.stepSatisfied(q.b,s),false,'finite cohort must be defeated');for(const ids of Object.values(a.defense.sources))for(const id of ids)q.e.unit(id).dead=true;A.tick(q.app,.05);assert(A.stepSatisfied(q.b,s));g.HonroAllies.execute=execute;
+ s=current(q,'17.wheel');assert(tick(q,s.id,2.1));assert(a.wheelAngle>6);assert.equal(a.proof[s.id].rotationCount,1);const angle=a.wheelAngle;tick(q,s.id,2);assert.equal(a.wheelAngle,angle,'finite rotation');
+}
+{
+ const q=fixture(13),s=current(q,'13.escort'),npc=q.e.unit('resident-1');q.b.units=q.b.units.filter(u=>u.id===npc.id||u.side===0);const end={x:npc.x+180,y:npc.y+18};Object.assign(mark(q.b,s.id),end);q.b.honroV4EscortPaths[s.id]=[end];const leader=q.e.heroesAlive()[0];Object.assign(leader,{x:npc.x+280,y:npc.y+28});for(const h of q.e.heroesAlive().filter(h=>h!==leader)){h.x=100;h.y=2950;}let walks=0;const walk=q.e.walk.bind(q.e);q.e.walk=(...args)=>{walks++;return walk(...args);};const start=npc.x;for(let i=0;i<300&&!A.stepSatisfied(q.b,s);i++){A.tick(q.app,.05);q.e.stepUnits(.05);}assert(walks>0);assert(npc.x>start+120);assert(A.stepSatisfied(q.b,s));assert(A.memory(q.b).escorts[s.id].distance>120);assert(C.validTerrainContactPose(q.b.terrain,npc),'escort uses supported real engine pose');
+}
+{
+ const q=fixture(12);current(q,'12.recurrence');actor(q,'12.recurrence');assert(!tick(q,'12.recurrence',2.4));assert(tick(q,'12.recurrence',2.5));assert.equal(A.memory(q.b).proof['12.recurrence'].passes,2);current(q,'sign');actor(q,'sign');assert(A.use(q.app,mark(q.b,'sign')));assert(A.memory(q.b).stakeAdjusted);assert(q.b.terrain.find(t=>t.id==='sq-turning-veil').broken);
+}
+{
+ const q=fixture(14),s=current(q,'14.refuge'),npc=q.e.unit('14.gilchan'),guide=q.e.heroesAlive()[0];q.b.units=[npc,guide];let walks=0;const walk=q.e.walk.bind(q.e);q.e.walk=(...args)=>{walks++;return walk(...args);};for(let i=0;i<24000&&!A.stepSatisfied(q.b,s);i++){Object.assign(guide,{x:npc.x-430,y:npc.y,vx:0,vy:0});if(npc.moveLeft<80)q.b.round++;A.tick(q.app,.05);q.e.stepUnits(.05);}const proof=A.memory(q.b).escorts[s.id];assert(proof.arrived,'full14 escort '+JSON.stringify({x:npc.x,y:npc.y,proof}));assert(walks>50&&proof.distance>5000);assert(C.validTerrainContactPose(q.b.terrain,npc));assert(q.b.terrain.find(t=>t.id==='gate-bridge').broken);console.log('PASS isolated full14 escort',Math.round(proof.distance),'physical world units',walks,'walk calls');
+}
+{
+ const q=fixture(15),s=q.b.honroV4Steps.find(s=>s.id==='sluice'),water=q.b.waters[0]?.y;actor(q,s.id);assert(A.use(q.app,mark(q.b,s.id)));A.tick(q.app,.05);assert(V.mem(q.b).done.sluice);if(water!==undefined)assert(q.b.waters[0].y>=water+119);assert(!q.b.terrain.find(t=>t.id==='fc15-drained-ledge').broken,'A lower route exposed');
+}
+{
+ const {runtimeCandidate,battlefield}=await import('./act23-v4-helpers.mjs'),production=await runtimeCandidate(),root=production.HonroAct23V4;
+ for(const n of [11,12,13,14,15,16,17]){const q=battlefield(production,n);assert(root.active(q.b));assert(q.b.honroV4Steps.every(s=>s.label===s.id));assert(q.b.honroEvents.every(e=>e.id.startsWith('v4.')));assert.equal(q.app.speeches.length,0);assert(root.validateBattle(q.b));}
+ const q=battlefield(production,14),u=q.e.heroesAlive().find(u=>u.cls==='occultist'),p=root.marker(q.b,'14.house');root.mem(q.b).done['14.door-threat']=true;q.b.units=q.b.units.filter(v=>v.side===0||v.id==='14.gilchan');Object.assign(u,{x:p.x-100,y:p.y,acted:false,vx:0,vy:0});q.b.active=u.id;q.b.phase='aim';q.b.side=0;assert(root.eligibility(q.app,p).ok);assert(root.use(q.app,p));assert(root.mem(q.b).done['14.house']);assert(production.HonroAct23V4Act2.memory(q.b).houseOpen);assert.equal(q.app.speeches.length,0);console.log('PASS real root author/compiler/prepare/attach/use boundary for stages11–17');
+}
+console.log('PASS private Act2 stages11–17: terrain/enemy/A-B preservation, Gilchan extraction, required testimony slot, physical work, finite defense/wheel, real walking escort and double recurrence (model only).');

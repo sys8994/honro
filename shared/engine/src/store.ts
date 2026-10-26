@@ -127,6 +127,7 @@ function validBattle(raw: unknown,legacyXp=false,oldXp=false): Battle {
         if(u.impactCooldown!==undefined&&(!finite(u.impactCooldown)||u.impactCooldown<0||u.impactCooldown>1))return fail();
     }
     if(!validateKeeperRitual(b))return fail();
+    if((globalThis as any).HonroAct23V4?.validateBattle(b)===false)return fail();
     const tids = new Set<string>();
     for (const t of b.terrain) {
         if (!safe(t.id) || tids.has(t.id) || !nums(t, ['x', 'y', 'w', 'h', 'hp', 'maxHp']) || t.w <= 0 || t.h <= 0 || t.w > 15000 || t.h > 6000 || !['rock', 'stone', 'wood', 'metal', 'ice', 'barrel', 'device', 'support', 'crystal'].includes(t.mat) || t.slope !== undefined && !finite(t.slope))
