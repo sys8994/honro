@@ -14,7 +14,8 @@ const interiorStoneIds=new Set(['sb-inner-upper-turn','sb-inner-sound-stone']);
 const omitReadability=(group,b)=>active(b)&&(shellIds.has(group.id)||interiorStoneIds.has(group.id));
 function prepare(t,b){let q=cache.get(t);if(q?.vertices===t.vertices&&q.version===b.sceneVersion)return q;
  const shape=new Path2D(),ps=C.poly(t);ps.forEach((p,i)=>i?shape.lineTo(p.x,p.y):shape.moveTo(p.x,p.y));shape.closePath();
- q={shape,vertices:t.vertices,version:b.sceneVersion};cache.set(t,q);return q;
+ let cap;if(t.honroV4Support){cap=new Path2D();cap.moveTo(t.x,t.y);cap.lineTo(t.x+32,t.y-32);cap.lineTo(t.x+t.w-18,t.y-32);cap.lineTo(t.x+t.w,t.y);cap.closePath();}
+ q={shape,cap,vertices:t.vertices,version:b.sceneVersion};cache.set(t,q);return q;
 }
 function shell(c,t,b){if(!active(b)||!(t.honroBellShell||t.honroBellBody))return false;if(approvedBattle(b))return true;const q=prepare(t,b);c.save();
  const g=c.createLinearGradient(t.x,t.y,t.x+t.w,t.y+t.h*.22);g.addColorStop(0,'#867957');g.addColorStop(.42,'#59634d');g.addColorStop(1,'#304b40');c.fillStyle=g;c.fill(q.shape);
@@ -29,7 +30,7 @@ const rockForms=[
  ['M-100-180H1100V159Q921 313 710 276Q553 304 403 418Q191 463 54 348L-100 455Z','M751-100Q587 33 695 257Q805 463 644 547Q563 719 668 1100H1110V-120Z','M-70 641Q181 469 375 540Q610 629 723 474Q865 377 1080 464V622Q882 548 768 696Q565 862 333 709Q132 639-70 789Z','M385 89Q340 183 419 298Q475 379 402 481L391 708Q357 824 403 947']
 ].map(a=>a.map(d=>new Path2D(d)));
 function rock(c,t,b){if(!active(b)||!t.honroBell||t.mat!=='rock'||t.oneWay||['act2-floor','cave-roof'].includes(t.id)||t.w<170||t.h<170)return false;
- const q=prepare(t,b),index=/crown|court/.test(t.id)?2:/lower|buttress|saddle/.test(t.id)?1:/east|return/.test(t.id)?3:0,forms=rockForms[index];c.save();c.clip(q.shape);const base=c.createLinearGradient(t.x,t.y,t.x+t.w*.47,t.y+t.h);base.addColorStop(0,'#6c817b');base.addColorStop(.48,'#4d676b');base.addColorStop(1,'#263f4d');c.fillStyle=base;c.fill(q.shape);c.translate(t.x,t.y);c.scale(t.w/1000,t.h/1000);
+ const q=prepare(t,b),index=/crown|court/.test(t.id)?2:/lower|buttress|saddle/.test(t.id)?1:/east|return/.test(t.id)?3:0,forms=rockForms[index];c.save();if(q.cap){c.fillStyle='#73877d';c.strokeStyle='#2a444b';c.lineWidth=2;c.fill(q.cap);c.stroke(q.cap);}c.clip(q.shape);const base=c.createLinearGradient(t.x,t.y,t.x+t.w*.47,t.y+t.h);base.addColorStop(0,'#6c817b');base.addColorStop(.48,'#4d676b');base.addColorStop(1,'#263f4d');c.fillStyle=base;c.fill(q.shape);c.translate(t.x,t.y);c.scale(t.w/1000,t.h/1000);
  c.fillStyle='#8f9a822b';c.fill(forms[0]);c.fillStyle='#152f408f';c.fill(forms[1]);c.fillStyle='#91a08a13';c.fill(forms[2]);if(/west-middle|west-crown|maintenance-buttress|east-resonance-mass|east-keeper-mass|return-cave-buttress/.test(t.id)){c.strokeStyle='#203c486a';c.lineWidth=8;c.lineCap='round';c.stroke(forms[3]);c.strokeStyle='#a3ae901c';c.lineWidth=3;c.translate(-8,-5);c.stroke(forms[3]);}c.restore();return true;
 }
 const stoneProxies=new WeakMap();

@@ -23,7 +23,7 @@ function author(map,p){const n=map.metadata.stageId,original=clone(map);base.aut
   init.honroV4EscortPaths={'13.escort':[safe]};init.honroV4InsideLatch={x:4495,point:latch};
   // The source has no upper connection at the closed door. These three small
   // one-way work shelves connect the existing floor to its upper edge.
-  for(const [i,x,y,w]of [[0,4150,3940,170],[1,4290,3795,125],[2,4380,3655,125]])map.terrains.push({id:'v4.13.latch-step.'+i,name:'v4.13.latch-step.'+i,type:'solid',points:[{x,y},{x:x+w,y},{x:x+w,y:y+18},{x,y:y+18}],baseMaterial:'wood',breakable:false,oneWay:true,layer:'terrain',properties:{surfaceKind:'wood',honroCave:true,honroWalkEdges:[0],honroSurfaceRole:'shelf'}});
+  for(const [i,x,y,w]of [[0,4150,3940,170],[1,4290,3795,125],[2,4380,3655,125]])map.terrains.push({id:'v4.13.latch-step.'+i,name:'v4.13.latch-step.'+i,type:'solid',points:[{x,y},{x:x+w,y},{x:x+w,y:y+18},{x,y:y+18}],baseMaterial:'wood',breakable:false,oneWay:true,layer:'terrain',properties:{surfaceKind:'wood',honroCave:true,honroWalkEdges:[0],honroSurfaceRole:'shelf',honroWorkAccess:true}});
  }
  if(n===14){for(const id of ['14.door-threat','14.house','14.bell','14.extract'])keep(id);const home=at('family-upper'),safe=point(2675,2300);add('14.refuge','v4-escort',safe,{target:'14.gilchan'});add('14.transport-threat','clear',point(2820,2300),{radius:560});init.honroV4EscortPaths={'14.refuge':[safe]};const descent=map.routes.find(p=>p.x===4080),ground=x=>home.y+(descent.y-home.y)*(x-3000)/(descent.x-3000);init.honroV4Hypnosis={start:home,toward:point(3380,ground(3380)),boundaryX:3380,warningX:3260,warningY:ground(3260),warningPoint:point(3260,ground(3260)),minimumDistance:90};}
  if(n===15){for(const id of ['sluice','15.drift','groove'])keep(id);add('15.knocks','v4-knocks',at('groove'));keep('route-exit');const wheels=map.units.filter(u=>u.kind==='waterwheel').sort((a,b)=>Math.hypot(a.x-at('sluice').x,a.y-at('sluice').y)-Math.hypot(b.x-at('sluice').x,b.y-at('sluice').y));init.honroV4LowWheel=wheels[0]?.id;init.honroV4KnockSource=clone(map.routes.at(-1));init.honroRouteSpec.common.push('15.knocks');}
@@ -31,7 +31,7 @@ function author(map,p){const n=map.metadata.stageId,original=clone(map);base.aut
  init.honroV4Steps=steps;map.markers=map.markers.filter(m=>!oldSteps.some(s=>s.id===m.id));
  for(const s of steps)map.markers.push({id:s.id,type:'act2',action:'act2',label:s.id,...positions[s.id],radius:s.radius||220,...(s.target?{target:s.target}:{}),...(s.spiritId?{spiritId:s.spiritId}:{})});
 }
-function prepare(b,p){base.prepare(b,p);if(!active(b))return;memory(b);if(b.honroStage===13){const u=unit(b,'resident-1');if(u)u.name='13.mason';}if(b.honroStage===16)for(const id of ['resident-1','objective']){const u=unit(b,id);if(u)u.name=id==='resident-1'?'16.disciple':'16.elder';}}
+function prepare(b,p){base.prepare(b,p);if(!active(b))return;memory(b);if(b.honroStage===13){const u=unit(b,'resident-1');if(u)u.name='13.mason';for(const list of [b.terrain,b.honroWorldTerrain])for(const t of list||[])if(t.id.startsWith('v4.13.latch-step.'))t.honroWorkAccess=true;}if(b.honroStage===16)for(const id of ['resident-1','objective']){const u=unit(b,id);if(u)u.name=id==='resident-1'?'16.disciple':'16.elder';}}
 function open(b,id){for(const list of [b.terrain,b.honroWorldTerrain]){const t=list?.find(t=>t.id===id);if(t)t.broken=true;}b.sceneVersion++;}
 function complete(app,s){V.completeStep(app,s,app.engine.active);}
 function finish(app,s){complete(app,s);app.dirty=true;if(!app.checkMission(app.engine))app.engine.finishAction();return true;}

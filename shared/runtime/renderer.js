@@ -134,6 +134,7 @@
             for(const layer of ['back','structural-back','mid','prop','front'])this._landmarkLayer(c,candidates,layer);
             c.restore();
         }
+        _terrainPaintBounds(t){const work=!!t.honroWorkAccess,cap=t.honroV4Support?32:0;return{left:t.x-(work?32:0),right:t.x+t.w+(work?32:0),top:t.y-cap,bottom:t.y+Math.max(t.h,work?600:0)};}
         _drawTerrainDomainTiles(c,b,w,h){
             // Geographically fixed tiles, never a bitmap cut at Play Bounds.
             // Pixel-aligned clips consume each gutter sample exactly once.
@@ -149,7 +150,7 @@
                     const cc=cv.getContext('2d',{alpha:true}),left=x*size,top=y*size;cc.setTransform(rs,0,0,rs,gutter-left*rs,gutter-top*rs);
                     const landmarks=(G.HonroTerrainDomain.materialLandmarks(b)).filter(l=>this._landmarkVisible(l,{left,top,right:left+size,bottom:top+size}));
                     this._landmarkLayer(cc,landmarks,'back');this._landmarkLayer(cc,landmarks,'structural-back');
-                    for(const t of terrain)if(!t.broken&&t.x+t.w>=left&&t.x<=left+size&&t.y+t.h>=top&&t.y<=top+size)this.terrain(cc,t);
+                    for(const t of terrain){const r=this._terrainPaintBounds(t);if(!t.broken&&r.right>=left&&r.left<=left+size&&r.bottom>=top&&r.top<=top+size)this.terrain(cc,t);}
                     this.surfaceZones?.(cc,b);for(const layer of ['mid','prop','front'])this._landmarkLayer(cc,landmarks,layer);
                     this.terrainReadability?.(cc,b,{left,top,right:left+size,bottom:top+size});
                     tile={canvas:cv,left,top};q.tiles.set(id,tile);this._cacheStats.domainTileBuilds=(this._cacheStats.domainTileBuilds||0)+1;this._cacheStats.worldBuildMs+=performance.now()-start;

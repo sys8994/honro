@@ -2,7 +2,7 @@
 
 검수 전 원고를 적용하지 않는 opt-in 후보 author/장면 슬롯과 저장 경계를 추가했다. 상세 기획을 Git99016126으로 확보한 뒤 요약 인수인계에서 빠졌던 실제 구조·작업자/주민 이동·제동·자동 천도·개별 진목 도착·조기 보스 사망·배 왕복을 보완했다.16증언의 slots/pendingSlots 불일치,17부품 운반자 사망 소프트락,27빈 far/near DOM 오류,30한 생존자 팀 전환에서 증원 입장이 막히는 경계를 실제 원본 흐름으로 검사했다.29미입장 증원 취소·실제 offered/ended 대응 기회와30예약 종료/곽진 왕복도 집중 검증했다. 구판 완료를 새 목격으로 합성하지 않으며 기존 성장·합류와 최신 Stage5/Pages 패키징을 보존한다.
 
-검사 입력·범위·남은 최종 Canvas/원고 검수는 `game/docs/story/ACT23_V4_PHASE_A.md`에 적었다. 초기 isolated mock/옛 프리뷰를 최종 수용 근거로 쓰지 않는다. 새 catalogue 원문·master·공개 Pages는 변경하지 않는다.
+검사 입력·범위는 `game/docs/story/ACT23_V4_PHASE_A.md`, 실제 Canvas3관점·상태/DOM·최종 종합은 `game/docs/story/ACT23_V4_PHASE_A_REVIEW.md`에 적었다. 시각 검수에서13장 새 작업 발판을 기존 목재 지지대에 연결하고 collider 밖 지지대의 타일 잘림을 paint bounds로 고쳤다.18장 새 받침의 상면도 공통 암반 외형에 맞췄으며 두 수정 모두 충돌은 그대로다.16장 브라우저 검사도 실제 안전 보행·회복을 건너뛰지 않는다. 초기 isolated mock/옛 프리뷰를 최종 수용 근거로 쓰지 않는다. 새 catalogue 원문·master·공개 Pages는 변경하지 않는다.
 
 # 사거리 후속 검토: 구속·조준 예측 비용 — 2026-10-26
 
