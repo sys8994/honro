@@ -7886,7 +7886,7 @@
     "firstSpirit.observation.current": [
       [
         "설오",
-        "저기 움직이는 것 보이십니까? 윤곽이 자꾸 흩어집니다.",
+        "저기 움직이는 것 보이십니까? 흐릿하게 보입니다.",
         {
           "rowId": "first-spirit.observe",
           "spiritPart": "observe",
@@ -7904,7 +7904,7 @@
       ],
       [
         "소단",
-        "혼이에요. 제 눈에는 보여요. 아직 떠나지 못했어요.",
+        "아직 떠나지 못한 혼이에요. 제 눈에는 뚜렷하게 보여요.",
         {
           "rowId": "first-spirit.recognize",
           "spiritPart": "recognize",
@@ -7913,7 +7913,7 @@
       ],
       [
         "설오",
-        "화살로 맞힐 수 있습니까?",
+        "저런 건 화살이나 칼이 제대로 먹힙니까?",
         {
           "rowId": "first-spirit.ask",
           "spiritPart": "ask",
@@ -11477,9 +11477,9 @@
     }
   },
   "values": {
-    "firstSpirit.reply.manifest": "제 혼 공격은 닿아요. 현형부로 붙들면 활과 검도 맞힐 수 있어요.",
-    "firstSpirit.reply.lamp": "제 혼 공격은 닿아요. 저 원혼등불을 켜면 활과 검도 맞힐 수 있어요.",
-    "firstSpirit.reply.neither": "활과 검은 잘 안 들어요. 제가 혼 공격으로 막을게요.",
+    "firstSpirit.reply.manifest": "그대로는 잘 안 먹혀요. 제 힘은 닿지만, 현형부로 모습을 드러내면 그때 치세요.",
+    "firstSpirit.reply.lamp": "그대로는 잘 안 먹혀요. 제 힘은 닿지만, 활과 검으로 치려면 저 원혼등불부터 밝혀야 해요.",
+    "firstSpirit.reply.neither": "그대로는 잘 안 먹혀요. 제 힘은 닿으니까 이쪽은 제가 맡을게요.",
     "bellAnomaly.settledLastLine": "지금은 모르겠네. 우선 종 안의 혼부터 살피세.",
     "interaction.rescue.activeActor": {
       "설오": "제 손 잡으십시오. 몸 가누실 때까지만 붙들겠습니다.",

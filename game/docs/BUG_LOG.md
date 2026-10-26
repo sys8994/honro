@@ -4858,3 +4858,7 @@ narration 전용 CSS에 따뜻한 밝은 글자·얇은 둘레와 가로 장식/
 ### 2026-10-26 Stage5 B3 노송 잔교 후보
 - 승인된 역동적 능선·나무 발판·높은 폭포 절벽·왼쪽 입구 물길진 동굴을 canonical 생성기/공통 벡터로 저작. 기존 사거리와 성장·다른29장 보존. Stage5 구전투만 revision5 재시작.
 - 고립 실제 몸체의 상부5점프/하부 동선, 기본 화살 네 위치 실타격, 동굴 차폐, Alt 하강, 저장 경계 통과. 빌드/Chromium 화면과6행동의 정상 입력 교전 확인. 전체 정상 입력 승리는 미검증이며 부모 검토 전 master/Pages 보류. 상세: `game/docs/STAGE5_DYNAMIC_20261026.md`.
+
+## 2026-10-26 — 첫 혼령 공통 대사 승인 원고
+
+공통 관찰4행과 응답3분기의 승인 문구를 현재 catalogue에 적용했다(휘겸1행은 동일하여 실제6문자열 변경). 첫 설오 발언은 최신 사용자 지시인 “흐릿하게 보입니다.”를 따른다. rowId/spiritPart/portraitExpression, 첫 발동·seen·현형부 우선순위·후속 기술 안내와 compat 원문은 보존한다. 세 분기의 실제 함수 출력(발화5행+기존 안내1행), metadata/guide 불변과 로컬 Chromium390×844의 첫 행·현형부 응답 표시를 확인했다. 정상 Game/Workshop 빌드가 통과했고 직전 성공 발행 de89c236의 immutable 그래프를 보존했다. 근거는 `_local/reports/first-spirit-approved-20261026/`에 남겼다. 전 장 순회·전체 verify·전투/맵 변경은 하지 않는다.
