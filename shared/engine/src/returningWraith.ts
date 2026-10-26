@@ -1,3 +1,4 @@
+import {flightRangeSpent} from './playerRange';
 import type {Engine} from './engine';
 import type {Battle,Projectile,Vec} from './types';
 import {segRect} from './math';
@@ -34,7 +35,10 @@ export function stepReturningWraith(e:Engine,p:Projectile,dt:number){
    const at={x:a.x+(end.x-a.x)*h.t,y:a.y+(end.y-a.y)*h.t};e.hurt(u,p.damage*.28,p.owner,true,{...p,autonomous:true},at);p.hit.push(u.id);p.wraithMarked!.push(u.id);e.fx('rune',at.x,at.y,p.color,20);
   }
   Object.assign(p,{x:end.x,y:end.y,vx:motion.vx,vy:motion.vy});append(p,end);trail(p);
-  if(hit){p.x+=hit.n.x*(p.radius+2);p.y+=hit.n.y*(p.radius+2);append(p,p,true);p.wraithState='manifest';p.wraithPause=0;p.vx=p.vy=0;e.fx('rune',p.x,p.y,p.color,58);e.emit('sound',{name:'spiritSummon'});p.maxAge=returnDeadline(p);}
+  if(hit||flightRangeSpent(p)){
+   if(!hit&&!p.wraithAirBurst){p.wraithAirBurst=true;e.blast(p.x,p.y,p.blast,p.damage*.38,p.owner,false,{...p,wraithBurst:true,autonomous:true});}
+   if(hit){p.x+=hit.n.x*(p.radius+2);p.y+=hit.n.y*(p.radius+2);}
+   append(p,p,true);p.wraithState='manifest';p.wraithPause=0;p.vx=p.vy=0;e.fx('rune',p.x,p.y,p.color,58);e.emit('sound',{name:'spiritSummon'});p.maxAge=returnDeadline(p);}
   else if(returningWraithOutboundEnded(e.b,p))e.remove(p);
   return true;
  }
@@ -42,7 +46,7 @@ export function stepReturningWraith(e:Engine,p:Projectile,dt:number){
  while(remaining>0&&p.wraithCursor!>=0){
   const a={x:p.x,y:p.y},to=path[p.wraithCursor!],distance=Math.hypot(to.x-a.x,to.y-a.y),ratio=distance>0?Math.min(1,remaining/distance):1,end={x:a.x+(to.x-a.x)*ratio,y:a.y+(to.y-a.y)*ratio};
   const first=e.b.units.filter(u=>e.guidanceTarget(owner,u)).map(u=>({u,h:segRect(a,end,u.x-u.r,u.y-u.h,u.r*2,u.h,p.radius+2)})).filter(v=>v.h).sort((a,b)=>a.h!.t-b.h!.t)[0];
-  if(first){p.x=a.x+(end.x-a.x)*first.h!.t;p.y=a.y+(end.y-a.y)*first.h!.t;p.wraithBurst=true;p.directId=first.u.id;e.blast(p.x,p.y,p.blast,p.damage*.95,p.owner,false,p);e.remove(p);return true;}
+  if(first){p.x=a.x+(end.x-a.x)*first.h!.t;p.y=a.y+(end.y-a.y)*first.h!.t;p.wraithBurst=true;p.directId=first.u.id;e.blast(p.x,p.y,p.blast,p.damage*(p.wraithAirBurst?.57:.95),p.owner,false,p);e.remove(p);return true;}
   p.vx=distance?(to.x-a.x)/distance*1100:0;p.vy=distance?(to.y-a.y)/distance*1100:0;p.x=end.x;p.y=end.y;remaining-=distance*ratio;if(ratio>=1)p.wraithCursor!--;else break;
  }
  trail(p);if(p.wraithCursor!<0)e.remove(p);return true;

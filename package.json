@@ -206,6 +206,7 @@
     "test:title:browser": "python -X utf8 tests/title-redesign-browser.py",
     "capture:title:art": "node tools/testing/capture-title-hanja-native.mjs",
     "test:eater-capture": "node tests/eater-capture.mjs && node tests/eater-independent-review.mjs && node tests/two-skill-balance-contracts.mjs && node tests/eater-contribution.mjs && node tests/eater-app-resume.mjs && node tests/eater-ui-boundaries.mjs && node tests/eater-inspector-review.mjs",
+    "test:player-range": "node tests/player-range.mjs && node tests/returning-wraith-fall.mjs",
     "test:damheo-damage": "node tests/damheo-damage-balance.mjs",
     "test:cheonroe-target-lightning": "node tests/cheonroe-target-lightning.mjs",
     "test:cheonroe-target-lightning:browser": "python -X utf8 tests/cheonroe-target-lightning-browser.py",

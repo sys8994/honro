@@ -35,8 +35,8 @@ export function trajectoryMultiplier(p:Projectile,u:Unit,hit:Vec){
  const s=SKILLS[p.skill];if(!s?.redesigned||s.cls!=='archer'||p.secondary)return 1;
  const extra=passiveTuning(passiveRank(u,'AP04')).trajectory;
  if(s.branch==='distance')return 1+((s.id==='A99'?.60:.40)+extra+(p.preparedRank?lerpRank(.08,.22,p.preparedRank):0))*clamp(Math.abs(hit.x-(p.launchX??p.x))/1800,0,1);
- if(s.branch==='drop')return 1+((s.id==='A15'?.55:s.id==='A13'?.35:.45)+extra)*clamp(Math.max(0,hit.y-(p.apexY??p.launchY??p.y))/900,0,1);
- if(s.branch==='speed')return 1+((s.id==='A08'?.35:.45)+extra)*clamp((Math.hypot(p.vx,p.vy)-500)/650,0,1);
+ if(s.branch==='drop')return 1+((s.id==='A15'?.55:s.id==='A13'?.35:.45)+extra)*clamp(Math.max(0,hit.y-(p.apexY??p.launchY??p.y))*(p.trajectoryDropScale||1)/900,0,1);
+ if(s.branch==='speed')return 1+((s.id==='A08'?.35:.45)+extra)*clamp((Math.hypot(p.vx,p.vy)*(p.trajectorySpeedScale||1)-500)/650,0,1);
  return 1;
 }
 export function redesignConditionBonuses(p:Projectile,u:Unit,hit:Vec,direct:boolean){

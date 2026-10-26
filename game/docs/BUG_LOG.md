@@ -1,3 +1,9 @@
+# 플레이어 사거리 체계·소단 유한 비행 — 2026-10-26
+
+플레이어의 발사속도/목표 사거리를 playerRange.ts 한 곳에서 관리하고 설오 중복 속도 배율, 소단 저중력 초장거리, 휘겸 몸체/검기 성장의 제곱 확장을 조정했다. 소단은 최초 발사 예산을 상속해 공중 효과를 내며 회귀망령은 기존95% 폭발을38% 공중+57% 귀환으로 나눈다. 등불귀 선택1100/탄 예산1200·1.2초, 휘겸 수평1500 후 실제 낙하·착지를 적용한다. 강궁/곡사 조건부 피해 기준을 새 궤적에 정규화하고 기존 피해·NPC/적 legacy·비행 저장 탄·성장/완료 기록을 보존한다. 새 발사부터 적용하며 전투/map revision 리셋은 없다. 폭포 지형·캠페인 스토리는 수정하지 않았다.
+
+56대상 실제 STEP 캘리브레이션에서 기본 목표 오차0.32% 이내, rank8/상시8/조율 양끝과 몸체 강풍·낙차 cap을 확인했다. 실제 조준/공중 폭발·O05 피해 합계/저장3상태/자탄 예산/독립 반향/등불귀 정상 명중·예전 탄 무변경을 집중 검사했다. Stage5 의도된 upperShot에서 현행풍18·열린 물길진 조건의 평사/급소시 실제 주박목 피해를 확인했다(진단 장착/자원 표본이며 정상 완주 아님). 전후 표·브라우저/빌드·한계는 `_local/reports/player-range/`, 현행 명세는 PLAYER_RANGE.md다. 전체84개 브라우저 순회·전체30장·verify는 실행하지 않았다.
+
 # 대화·포커스 복원 뒤 남는 tooltip — 2026-10-25
 
 실제 6장 휘겸 선택 대화를 E/Space 키 입력 뒤 열면, 다음 버튼의 자동 focus만으로 tooltip이 생기고 커서가 멀어져도 남는 현상을 재현했다. 모든 키를 keyboard 모드로 기억하던 조건과 focus-visible 대체 조건을 없애고, 한 번의 Tab/Shift+Tab 이동에만 focus tooltip을 허용한다. activation·대화 draw·modal/screen 전환은 intent를 버리고 hover도 실제 포인터 이동 전까지 다시 열지 않는다. 포인터가 재개되면 실제 hovered 소유자로 전환하거나 닫으며 focus는 유지한다. visible tooltip 동안만 DOM 제거와 owner/조상 visibility 속성을 관찰한다. window exit·blur·visibility·fullscreen에서도 닫고 기존 모서리 flip/clamp는 유지한다. 포인터 소유 tooltip은 scroll·resize·visualViewport 이동에서도 닫아 정지한 커서와 버튼 위치가 어긋나면 잔존하지 않게 한다. `tests/tooltip-scroll-browser.py`는 실제 wheel로 버튼을 이동시키고 pointermove 0회/tooltip 0개를 확인한다. 대화 원문·rowId·저장 상태 로직은 변경하지 않았다. 승인된 활/부적 아이콘도 그대로 포함한다.

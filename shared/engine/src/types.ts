@@ -294,6 +294,13 @@ export interface Projectile extends DamageOrigin {
     /** Automatic continuation; inherited by child effects and serialized in flight. */
     autonomous?: boolean;
     waterfallTouched?: boolean;
+    /** Versioned immutable root budget; child age resets never replenish it. */
+    rangeRevision?: 1;
+    flightRange?: {x:number;y:number;distance?:number;seconds?:number;rush?:number};
+    flightAge?: number;
+    trajectorySpeedScale?: number;
+    trajectoryDropScale?: number;
+    wraithAirBurst?: boolean;
     existenceAttack?: ExistenceVector;
     echoDelay?: number;
     echoSource?: string;

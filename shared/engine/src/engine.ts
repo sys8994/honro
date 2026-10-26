@@ -1,3 +1,5 @@
+import {playerRangeSpeed,initializePlayerRange,flightRangeSpent,boundRushMotion,playerRangeApplies,PLAYER_LANTERN_RANGE} from './playerRange';
+import {playerRangePrediction,endPlayerFlight} from './playerRangeMechanics';
 import {PLAYER_SKILL_AUDIO,type SkillAudioPhase,type SkillAudioSignal} from './skillAudioMap';
 import {initializeKeeperRitual,keeperCollision,keeperImpact,keeperEchoVelocity,beginKeeperRitual,tickKeeperRitual,keeperCastBusy,keeperActionCompleted,keeperBindingReplaced,keeperPressure,clearKeeperRitual} from './keeperRitual';
 import {initializeDamageSequence,rollDamage} from './damageVariance';
@@ -144,7 +146,7 @@ export class Engine {
         if(s.martial&&u.side===0){if(u.harmony)damage*=1+passiveTuning(passiveRank(u,'SP04')).harmonyDamage;if(s.branch==='rush'){damage*=1+passiveTuning(passiveRank(u,'SP01')).rushDamage;speed*=1+.015*passiveRank(u,'SP03');}if(s.branch==='blade')speed*=1+passiveTuning(passiveRank(u,'SP01')).bladeGeometry;}
         if (u.bound > 0 && BODY.has(s.mode))
             speed *= .72;
-        return { speed, damage, radius };
+        return { speed:playerRangeSpeed(u,s,speed), damage, radius };
     }
     award(u: Unit, amount: number) {
         if((this.b as any).honroGrowth){(globalThis as any).HonroProgression.awardCombat(this,u,amount);return;}
@@ -250,14 +252,14 @@ export class Engine {
     }
     acceleration(p:{x:number;y:number;wind:number;gravityScale?:number;vx?:number;vy?:number;drag?:number;skill?:string;mode?:string}){const a=this.forceSample(p);return{x:a.x-a.k*(p.vx||0),y:a.y-a.k*(p.vy||0)};}
     inWaterfall(p:{x:number;y:number}){return insideWater(waterfallSheet(this.b),p);}
-    advanceProjectile(p:{x:number;y:number;wind:number;vx:number;vy:number;gravityScale?:number;drag?:number;skill?:string;mode?:string;body?:boolean},dt:number){
+    advanceProjectile(p:{x:number;y:number;wind:number;vx:number;vy:number;gravityScale?:number;drag?:number;skill?:string;mode?:string;body?:boolean;flightRange?:Projectile['flightRange']},dt:number){
         // Story-local projectile forces share this path with every prediction.
         // They never enter body/environment physics or alter collision geometry.
         const a=this.forceSample(p),story=(globalThis as any).HonroBellAnomaly?.force(this.b,p);
         if(story){a.x+=story.x;a.y+=story.y;}
         const air=(q:{x:number;y:number;vx:number;vy:number},step:number)=>advanceLinear(q.x,q.y,q.vx,q.vy,a.x,a.y,a.k,step);
         const water=!p.body&&!BODY.has(p.mode||'')?waterfallSheet(this.b):undefined;
-        return water?advanceWaterfall(p,dt,water,air):{...air(p,dt),waterEntered:false,waterEntryPoint:undefined};
+        const motion=water?advanceWaterfall(p,dt,water,air):{...air(p,dt),waterEntered:false,waterEntryPoint:undefined};return {...motion,...boundRushMotion(p,motion)};
     }
     private waterEntry(p:Projectile,m:{waterEntered:boolean;waterEntryPoint?:Vec}){
         if(m.waterEntered&&!p.waterfallTouched){p.waterfallTouched=true;const at=m.waterEntryPoint||p;this.fx('ring',at.x,at.y,'#c8e1d9',22);this.fx('spark',at.x,at.y,'#9fcbd0',16);}
@@ -318,8 +320,10 @@ export class Engine {
     projectileCollision(a: Vec, c: Vec, r: number, owner: string, hit: string[] = [], units = true, skip: string[] = [], terrain = true, attack?:Projectile): Collision | null {
         return this.collision(a,c,r,owner,hit,units,skip,terrain,true,attack || ('owner' in a ? a as Projectile : undefined));
     }
+    rangePredicting=false;
     predict(u: Unit, skill: Skill, angle: number, power: number, target?: Unit, collect = true, ignoreUnits = false): Prediction {
         if(this.noncombatWalk())return {points:[],x:u.x,y:u.y,closest:99999};
+        const bounded=playerRangePrediction(this,u,skill,angle,power,ignoreUnits,target);if(bounded)return bounded;
         const martial=warriorPrediction(this,u,skill,angle,power);if(martial)return martial;
         const custom=redesignPrediction(this,u,skill,angle,power,false,ignoreUnits);if(custom)return custom;
         const body = BODY.has(skill.mode), origin = this.projectileOrigin(u, skill, angle), v = this.velocity(u, skill, angle, power);
@@ -523,7 +527,7 @@ export class Engine {
         if(beastKind(u))return startBeastCast(this,u,s,e.damage,targetFor(this,u),damageRoll);
         const origin = this.projectileOrigin(u, s, u.angle);
         const attackSide=this.allegiance(u);
-        const make = (a: number, damage = e.damage, child = false) => { const origin=this.projectileOrigin(u,s,a),v = this.velocity(u, s, a, u.lastPower); const p: Projectile = { damageRoll, attackSide, id: b.nextId++, skill: skillId, owner: u.id, side: u.side, x: origin.x, y: origin.y, vx: v.vx, vy: v.vy, prevVy: v.vy, age: 0, radius: BODY.has(s.mode) ? u.r : ARROWS.has(s.mode) ? 3 : s.mode === 'shieldthrow' ? 9 : 6, damage, blast: e.radius, wind: s.wind, mode: s.mode, color: s.color, bounces: 0, pierces: 0, apex: false, hit: [], phase: 0, body: BODY.has(s.mode), returnX: u.x, returnY: u.y, trail: [origin], child, rolled: 0, shot: b.shot, emissions: 0, fieldHits: [], amplification: 1, launchX:origin.x,launchY:origin.y, repeatIndex:0,carry:[], skillRank:s.ultimate?1:(u.ranks[s.id]||1),drag:dragFor(s), gravityScale:s.gravity??1, phaseMode:s.phase, fuseAt:s.fuse? s.fuse*(s.mode==='phaseWraith'?(.55+u.lastPower*1.05):1):undefined }; if(s.id==='O05')initializeReturningWraith(p);projectileCredit(b,p,u);b.projectiles.push(p); return p; };
+        const make = (a: number, damage = e.damage, child = false) => { const origin=this.projectileOrigin(u,s,a),v = this.velocity(u, s, a, u.lastPower); const p: Projectile = { damageRoll, attackSide, id: b.nextId++, skill: skillId, owner: u.id, side: u.side, x: origin.x, y: origin.y, vx: v.vx, vy: v.vy, prevVy: v.vy, age: 0, radius: BODY.has(s.mode) ? u.r : ARROWS.has(s.mode) ? 3 : s.mode === 'shieldthrow' ? 9 : 6, damage, blast: e.radius, wind: s.wind, mode: s.mode, color: s.color, bounces: 0, pierces: 0, apex: false, hit: [], phase: 0, body: BODY.has(s.mode), returnX: u.x, returnY: u.y, trail: [origin], child, rolled: 0, shot: b.shot, emissions: 0, fieldHits: [], amplification: 1, launchX:origin.x,launchY:origin.y, repeatIndex:0,carry:[], skillRank:s.ultimate?1:(u.ranks[s.id]||1),drag:dragFor(s), gravityScale:s.gravity??1, phaseMode:s.phase, fuseAt:s.fuse? s.fuse*(s.mode==='phaseWraith'?(.55+u.lastPower*1.05):1):undefined }; initializePlayerRange(p,u,s);if(s.id==='O05')initializeReturningWraith(p);projectileCredit(b,p,u);b.projectiles.push(p); return p; };
         if (s.mode === 'triple') {
             const plan=multishotProfile(s,u.ranks[s.id]||1)!;
             for(const angle of volleyAngles(s,plan.rank,u.angle))make(angle,e.damage*plan.damageScale);
@@ -1209,7 +1213,9 @@ export class Engine {
     }
     private launchSummonBolt(s:Unit,target:Unit){
         const x=s.x,y=s.y-s.h*.52,dx=target.x-x,dy=target.y-target.h*.5-y,n=Math.max(1,Math.hypot(dx,dy));
-        const p:Projectile={attackSide:s.summonDamageOrigin?.attackSide,damageRoll:s.summonDamageOrigin?.damageRoll,id:this.b.nextId++,skill:'O12',owner:s.id,side:0,x,y,vx:dx/n*1250,vy:dy/n*1250,prevVy:dy/n*1250,age:0,radius:6,damage:s.attack*SUMMON_TUNING.lantern.damage,blast:0,wind:0,mode:'summonBolt',color:'#acdded',bounces:0,pierces:0,apex:true,hit:[],phase:0,body:false,returnX:s.x,returnY:s.y,trail:[{x,y}],child:true,autonomous:true,rolled:0,shot:this.b.shot,emissions:99,fieldHits:[],amplification:1,launchX:x,launchY:y,gravityScale:0,drag:.006,phaseMode:'all',targetId:target.id,skillRank:1};
+        const owner=s.summonOwner?this.unit(s.summonOwner):undefined,bounded=!!owner&&playerRangeApplies(owner,SKILLS.O12);
+        if(bounded&&n>PLAYER_LANTERN_RANGE.reach+target.r)return;
+        const p:Projectile={attackSide:s.summonDamageOrigin?.attackSide,damageRoll:s.summonDamageOrigin?.damageRoll,id:this.b.nextId++,skill:'O12',owner:s.id,side:0,x,y,vx:dx/n*1250,vy:dy/n*1250,prevVy:dy/n*1250,age:0,radius:6,damage:s.attack*SUMMON_TUNING.lantern.damage,blast:0,wind:0,mode:'summonBolt',color:'#acdded',bounces:0,pierces:0,apex:true,hit:[],phase:0,body:false,returnX:s.x,returnY:s.y,trail:[{x,y}],child:true,autonomous:true,rolled:0,shot:this.b.shot,emissions:99,fieldHits:[],amplification:1,launchX:x,launchY:y,gravityScale:0,drag:.006,phaseMode:'all',targetId:target.id,skillRank:1,...(bounded?{rangeRevision:1 as const,flightRange:{x,y,distance:PLAYER_LANTERN_RANGE.distance,seconds:PLAYER_LANTERN_RANGE.seconds},flightAge:0}:{})};
         this.b.projectiles.push(p);
     }
     private stepSummonBolt(p:Projectile,dt:number){
@@ -1222,7 +1228,7 @@ export class Engine {
         if(h?.unit){p.x=h.x;p.y=h.y;this.hurt(h.unit,p.damage,p.owner,true,p,p);this.fx('burst',p.x,p.y,p.color,35);this.remove(p);return;}
         p.x=m.x;p.y=m.y;p.vx=m.vx;p.vy=m.vy;
         if(this.counter%2===0){p.trail.push({x:p.x,y:p.y});if(p.trail.length>28)p.trail.shift();}
-        if(p.age>4.5)this.remove(p);
+        if(p.age>(p.rangeRevision===1?PLAYER_LANTERN_RANGE.seconds:4.5))this.remove(p);
     }
     private stepSummonTurn(dt:number){
         const b=this.b,t=b.summonTurn;if(!t){this.completeTeamTransition();return;}
@@ -1230,7 +1236,7 @@ export class Engine {
         if(t.index>=t.queue.length){b.active=t.returnActive;delete b.summonTurn;b.reviewFocus=undefined;
             if(t.practice){this.resetPractice();}else if(t.afterActor)this.advanceAfterAction();else this.completeTeamTransition();return;}
         const u=this.unit(t.queue[t.index]);if(!u||u.dead){t.index++;t.stage='approach';t.elapsed=0;t.start=undefined;t.destination=undefined;return;}
-        b.active=u.id;const kind=u.summonKind||'stalker',cfg=SUMMON_TUNING[kind],groundBound=!u.enthrall&&(kind==='stalker'||kind==='warden');
+        b.active=u.id;const kind=u.summonKind||'stalker',owner=u.summonOwner?this.unit(u.summonOwner):undefined,cfg=kind==='lantern'&&owner&&playerRangeApplies(owner,SKILLS.O12)?{...SUMMON_TUNING[kind],reach:PLAYER_LANTERN_RANGE.reach}:SUMMON_TUNING[kind],groundBound=!u.enthrall&&(kind==='stalker'||kind==='warden');
         if(groundBound&&u.summonFloating){
             // Restore a spirit saved during the former airborne approach to nearby ground.
             for(const offset of [0,20,-20,40,-40,80,-80,160,-160]){
@@ -1622,7 +1628,8 @@ export class Engine {
             return;
         }
         if((p.echoDelay||0)>0){p.echoDelay=Math.max(0,p.echoDelay!-dt);if(!p.echoDelay){this.fx('spark',p.x,p.y,'#c5c9b8',20);if(!this.skillSound('launch',p.owner,p.skill,p.shot,undefined,true))this.emit('sound',{name:'spiritCast'});}return;}
-        p.age += dt;
+        p.age += dt;if(p.flightAge!==undefined)p.flightAge+=dt;
+        if(p.wraithVersion!==1&&flightRangeSpent(p)&&endPlayerFlight(this,p))return;
         if(p.mode==='convergeSpirit'){stepConvergingSpirit(this,p,dt);return;}
         
         // Never teleport the visible representative to a predicted point. The
@@ -1645,7 +1652,7 @@ export class Engine {
         }
         // Low-gravity ultimate must open its gate inside the playable sky even when its ballistic apex would be far above the camera.
         if(p.mode==='nightParade'&&!p.ultimateBurst&&(p.age>1.35||p.y<-620)){p.ultimateBurst=true;if(this.launchUltimateChildren(p))return;}
-        if(p.mode==='reverseGhost'&&(p.y<-420||p.age>2.55)){
+        if(p.mode==='reverseGhost'&&(flightRangeSpent(p)||p.y<-420||p.age>2.55)){
             this.fx('burst',p.x,p.y,p.color,90);for(let i=-3;i<=3;i++){const c:Projectile={...p,id:this.b.nextId++,mode:'spiritRain',vx:i*70,vy:210+Math.abs(i)*22,prevVy:210,age:0,gravityScale:.55,phaseMode:undefined,fuseAt:undefined,damage:p.damage*.48,blast:p.blast*.62,radius:5,child:true,autonomous:true,hit:[],trail:[],apex:true};this.b.projectiles.push(c);}this.remove(p);return;
         }
         if (p.phase === 2) {

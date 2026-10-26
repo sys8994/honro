@@ -204,6 +204,10 @@ function validBattle(raw: unknown,legacyXp=false,oldXp=false): Battle {
     for(const u of b.units)if((u as any).keeperBinding!==undefined&&(u as any).keeperBinding!=='act2-keeper')return fail();
     const modes = new Set([...Object.values(SKILLS).map(s => s.mode), 'meteor', 'grappletravel', 'iceShard', 'stormBolt', 'seekChild', 'arcBolt', 'hunterBolt', 'nightBolt', 'spiritRain','summonBolt','convergeSpirit','ironChip','fireChip','frostChip','ironEmitter','microEmitter','microWait','skyWait']);
     for (const q of [...b.projectiles, ...(b.volley ? [b.volley.template] : [])]) {
+        if(q.rangeRevision!==undefined&&q.rangeRevision!==1)return fail();
+        if(!optionalNumber(q.flightAge,0,120)||!optionalNumber(q.trajectorySpeedScale,.01,100)||!optionalNumber(q.trajectoryDropScale,.0001,10000)||q.wraithAirBurst!==undefined&&typeof q.wraithAirBurst!=='boolean')return fail();
+        if(q.flightRange){const r=q.flightRange;if(q.rangeRevision!==1||!nums(r,['x','y'])||!optionalNumber(r.distance,1,20000)||!optionalNumber(r.seconds,.01,120)||!optionalNumber(r.rush,1,1500))return fail();}
+
         if((q as any).keeperReturned!==undefined&&typeof (q as any).keeperReturned!=='boolean')return fail();
         const echo=(q as any).keeperEchoOrigin;if(echo&&(!ids.has(echo.owner)||![0,1,2].includes(echo.side)||!Number.isSafeInteger(echo.shot)))return fail();
         if (!nums(q, ['id', 'x', 'y', 'vx', 'vy', 'prevVy', 'age', 'radius', 'damage', 'blast', 'wind', 'bounces', 'pierces', 'phase', 'returnX', 'returnY', 'rolled', 'shot']) || !ids.has(q.owner) || !SKILLS[q.skill] || !modes.has(q.mode) || !Array.isArray(q.hit) || q.hit.length > 100 || !Array.isArray(q.trail) || q.trail.length > 400 || q.trail.some(v => !nums(v, ['x', 'y'])) || typeof q.body !== 'boolean' || typeof q.child !== 'boolean')
