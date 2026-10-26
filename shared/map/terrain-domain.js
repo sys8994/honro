@@ -96,11 +96,35 @@ function buriedVault(l,b){
  asset.bounds={x:left,y:top,w:right-left,h:1900-top};vector.viewBox=[left,top,right-left,1900-top];
  return{...l,asset,honroTerrainMaterialClip:new Path2D(pathString(full))};
 }
+function stage5FoundationMaterial(l,b,terrain){
+ const bank=l.asset?.id==='stage5-dynamic:lower-bank',cliff=l.asset?.id==='stage5-dynamic:east-cliff';if(!bank&&!cliff)return l;
+ const mass=terrain.find(t=>t.id===(bank?'valley-floor':'waterfall-cliff')&&!t.broken);if(!mass)return l;
+ const asset=clone(l.asset),vector=asset.vector,body=vector.root.children[0],local=mass.vertices.map(p=>({x:p.x,y:p.y-1000}));
+ // The same complete canonical polygon supplies contact, underpaint and clip.
+ // Keep the pine/cave detail and deepen only the buried bank's broad stratum.
+ body.children[0].d=pathString(local);vector.clips[bank?'lower-bank-clip':'east-cliff-clip']=[pathString(local)];
+ if(cliff){for(const node of body.children[1].children){const ps=paintPolygon(node.d);if(ps)node.d=pathString(extend(ps,{width:6400,height:3300,terrainBounds:{...b.honroTerrainBounds,top:b.honroTerrainBounds.top-1000,bottom:b.honroTerrainBounds.bottom-1000},metadata:{stageId:5}}));}}
+ else{
+ const deep=body.children[1].children.at(-1),ps=paintPolygon(deep.d),bounds=b.honroTerrainBounds;
+ deep.d=pathString(extend(ps,{width:6000,height:2700,terrainBounds:{...bounds,top:bounds.top-1000,bottom:bounds.bottom-1000},metadata:{stageId:5}}));
+ for(const [id,node,end]of [['bank-depth',body.children[0],'#122930'],['bank-stratum',deep,'#10252b']]){vector.gradients[id]={type:'linear',x1:0,y1:2700,x2:0,y2:11000,stops:[{offset:0,color:node.fill,opacity:1},{offset:1,color:end,opacity:1}]};node.fill='url(#'+id+')';}
+ const planes=[
+  [[-6000,2300],[-1800,2100],[900,2500],[2100,3400],[1750,5200],[-700,7100],[-6000,7800]],
+  [[600,2400],[2800,2550],[4350,4000],[3850,6600],[1800,8400],[300,10400],[-2500,11600]],
+  [[4700,2300],[7800,2500],[12400,2100],[12400,7400],[9900,8200],[7100,5200],[5900,3900]]
+ ];
+ for(const [i,ps]of planes.entries()){const key='bank-plane-'+i;vector.gradients[key]={type:'linear',x1:0,y1:2300,x2:0,y2:11000,stops:[{offset:0,color:['#30474e','#263e47','#2b434a'][i],opacity:1},{offset:1,color:'#11272e',opacity:1}]};body.children[1].children.push({tag:'path',d:pathString(ps.map(([x,y])=>({x,y}))),fill:'url(#'+key+')'});}
+ }
+ asset.bounds={x:mass.x,y:mass.y,w:mass.w,h:mass.h};vector.viewBox=[mass.x,mass.y,mass.w,mass.h];
+ return{...l,asset,honroTerrainMaterialClip:new Path2D(pathString(mass.vertices))};
+}
 function materialLandmarks(b){
- if(!active(b)||b.honroCustom||b.honroStage<21||b.honroStage>30)return b.honroLandmarks||[];
+ const stage5=b.honroStage===5&&b.honroStage5FoundationRevision===1;
+ if(!active(b)||b.honroCustom||!stage5&&(b.honroStage<21||b.honroStage>30))return b.honroLandmarks||[];
  const source=b.honroLandmarks||[],terrain=render(b),old=materialViews.get(b);
  if(old?.source===source&&old.terrain===terrain&&old.version===b.sceneVersion)return old.landmarks;
  const bounds=b.honroTerrainBounds,landmarks=source.map(l=>{
+  if(stage5)return stage5FoundationMaterial(l,b,terrain);
   const spec=materialSpecs[l.asset?.id];if(!spec||!l.asset.vector||l.x||l.y||(l.scale??1)!==1||l.rotation)return l;
   if(spec.vault)return buriedVault(l,b);
   const mass=terrain.find(t=>t.id===spec.terrain&&!t.broken);if(!spec.rear&&!spec.panorama&&!mass)return l;
