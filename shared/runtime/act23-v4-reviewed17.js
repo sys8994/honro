@@ -41,7 +41,7 @@ function allow(app,r){const b=app.engine.b,q=mem(b),a=base(b),w=B.worksite(b);if
  if(r.id===id('COMPLETE.02'))return allow(app,api.row(id('COMPLETE.01')))&&spoken(b,'load');
  if(r.id===id('POPUP.01'))return !!q.retreat;
  if(r.id===id('POPUP.02'))return !!a.proof['17.mesh']&&!a.proof['17.wheel']&&(q.idle||0)>=1;
- if(r.id===id('JOURNAL.01')||r.id==='EDGE.RUNTIME.STAGE17.PROTECT_LABEL')return B.complete(b)&&separated(b)&&spoken(b,'depart');
+ if(r.id===id('JOURNAL.01')||r.id==='EDGE.RUNTIME.STAGE17.PROTECT_LABEL')return B.complete(b)&&separated(b)&&api.done(b,'depart');
  return r.id.startsWith(id('OBJECTIVE.'));
 }
 // A living possessed drum physically takes up its cable before release.
@@ -86,7 +86,7 @@ function before(app,a,dt){const b=app.engine.b,q=mem(b),p=base(b);if(!V.safe(app
  if(p.proof['17.mesh']&&!spoken(b,'delivery'))return false;
  if(p.proof['17.lock']&&!spoken(b,'lock'))return false;
  if((p.wheelAngle||0)>.1&&!spoken(b,'rotation'))return false;
- if(p.proof['17.load-test']&&!spoken(b,'depart'))return false;
+ if(p.proof['17.load-test']&&!api.done(b,'depart'))return false;
  return true;
 }
 function eligibility(app,m,s){const b=app.engine.b;if(s.id==='17.hoist')return{ok:!!mem(b).events.hoist&&['mage','occultist'].includes(app.engine.active?.cls)&&!foes(b,b.honroV4Reviewed17.hoist,280).some(u=>u.id!=='act2-hoist'),reason:s.id};
