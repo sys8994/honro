@@ -22,5 +22,5 @@ function place(b,u,{x=u.x,y=u.y,flying=!!u.fixed,maxDistance=1600,clearance=18,a
   }
   return null;
 }
-G.HonroTerrain={topAt:C.topAt,intersects,place};
+G.HonroTerrain={topAt:C.topAt,intersects,place,separated};
 })(globalThis);

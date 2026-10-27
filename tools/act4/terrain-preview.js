@@ -95,8 +95,8 @@ function create(n){
  return G.HonroTerrainDomain.author(project);
 }
 function launch(n){const app=G.HonroApp,project=create(n),map=project.stages[0];
- const owner=app.profile;app.launchMap(project,map.id,{story:false,profile:{settings:{music:false}}});const b=app.engine.b;
- b.honroAct4Preview=n;b.honroPreviewFar={key:'act4Dawn'};if(G.innerWidth<600)Object.assign(app.scene,{scale:.62,x:450,y:app.engine.active.y-40});
+ const owner=app.profile;app.launchMap(project,map.id,{story:false,profile:{...(G.HonroAct4TerrainPreview.runProfile||{}),settings:{...(G.HonroAct4TerrainPreview.runProfile?.settings||{}),music:false}}});const b=app.engine.b;
+ b.honroAct4Preview=n;b.honroPreviewFar={key:[32,33,34,37,38,39,40].includes(n)?'act4Sea':'act4Dawn'};if(G.innerWidth<600)Object.assign(app.scene,{scale:.62,x:450,y:app.engine.active.y-40});
  // Stage30 is an explicit combat fixture, not an authored Act4 growth policy.
  app.stage.name=n+' · '+names[n];app.stage.goal=G.HONRO_ACT4_PREVIEW_SEEDS?.ui.find(v=>v[0]===`A4.S${n}.OBJECTIVE`)?.[1]||'';b.honroAct4Design=clone(map.design.act4);
  app.engine.checkEnd=()=>false;app.updateHUD(true);const goal=G.document?.getElementById('objective-text');if(goal)goal.textContent=app.stage.goal;
