@@ -25,6 +25,9 @@ with sync_playwright() as p:
   for _ in range(count):ev(f'HonroAct4TerrainPreview.observe(HonroApp,{dt})');render()
  ev('HonroAct4TerrainPreview.freezeReviewClock=true')
  setup(35,6250,1850,6320,1730,'mage');assert not ev('HonroAct4TerrainPreview.interact()');assert not ev('HonroApp.engine.b.honroAct4FactEvents?.some(f=>f.eventId==="eq_da_t3b")')
+ ev("()=>{const e=HonroApp.engine,u=HONRO_CORE.makeUnit('knight',0,6370,1850,{id:'captured-giver',enthrall:{owner:'occultist'}});e.b.units.push(u);}")
+ assert not ev('HonroAct4TerrainPreview.interact()'),'enthralled enemy is not a companion giver'
+ ev("HonroApp.engine.b.units=HonroApp.engine.b.units.filter(u=>u.id!=='captured-giver')")
  ev("""()=>{const e=HonroApp.engine,u=e.unit('knight'),p=HonroTerrain.place(e.b,u,{x:6370,y:1850,maxDistance:80});Object.assign(u,p,{vx:0,vy:0});}""");render()
  assert ev('HonroAct4TerrainPreview.interact()')
  for i in range(18):ev('HonroAct4TerrainPreview.observe(HonroApp,.1)')

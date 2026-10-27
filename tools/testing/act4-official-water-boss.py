@@ -54,7 +54,7 @@ with sync_playwright() as p:
  print('PASS occupied same-side low bank -> pending action ended -> normal companion walk frees slot -> once-only HP penalty/noMP reset',flush=True)
  launch(39)
  ev("""()=>{const a=HonroApp,e=a.engine,b=e.b;for(const u of b.units.filter(u=>u.side===1&&!u.honroAct4WreckBoss))e.hurt(u,100000);for(const [i,u]of b.units.filter(u=>u.side===0).entries()){u.x=6850+i*100;u.y=1700;u.vx=u.vy=0;}Object.assign(a.scene,{manual:true,editorView:true,x:6900,y:1500,scale:.65});}""")
- step(1);finish();step(1);render()
+ step(1);finish();step(1);ev('Object.assign(HonroApp.scene,{manual:true,editorView:true,skillPreview:true,x:6900,y:1500,scale:.65,storyFrame:null,storyTween:null,goalFocus:null});HonroReinforcementCamera.prime(HonroApp.scene,HonroApp.engine.b)');render()
  assert ev('HonroApp.engine.combatEnemies().some(u=>u.id==="a4-wreck")'),'boss must remain active at far high ground'
  assert ev('HonroApp.engine.b.honroAct4PreviewState.artillery.next.warningSeen')
  page.locator('#battlecanvas').screenshot(path=str(OUT/'39-live-boss-warning.png'))
