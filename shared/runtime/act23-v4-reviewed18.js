@@ -5,6 +5,7 @@ const P=G.HonroAct23V4ReviewedChapters,V=G.HonroAct23V4,C=G.HONRO_CORE,S=G.Honro
 if(!P||G.HonroAct23V4Reviewed18)return;
 const api=P.apiFor(18),clone=x=>JSON.parse(JSON.stringify(x)),unit=(b,id)=>b.units.find(u=>u.id===id),boss=b=>unit(b,'act2-keeper'),resident=b=>unit(b,'18.survivor'),alive=V.alive;
 const mem=b=>{const q=api.memory(b);return q.observations??={rope:{elapsed:0,pull:0},knocks:[]};},physical=S.memory;
+const dying=new WeakMap();
 const near=(b,p,r=300)=>V.heroes(b).some(u=>V.near(u,p,r));
 const coreWitness=['01','02','04','06','08'].map(n=>'A2.S16.WITNESS.'+n);
 const physicalReceipt=(p,n)=>{const h=p?.honroAct23V4History?.stages?.[n],f=h?.reviewedPhysical;return f?.revision===1&&typeof h.run==='string'&&h.run.length>0&&h.run===f.sourceRun?{h,f}:null;};
@@ -45,9 +46,8 @@ function allow(app,r){const b=app.engine?.b;if(r.channel==='optional')return opt
  if(id==='A2.S18.PHASE2.04')return live&&said('accusation');
  if(id==='A2.S18.PHASE2.05')return live&&!!q.ritualAtDevice;
  if(id==='A2.S18.PHASE2.06')return live&&!!q.openShot;
- // The shared actor guard has no dying-event exception. Never resurrect or
- // clear dead to make the last breath pass as living speech.
- if(id==='A2.S18.DEATH.01')return false;
+ // This lease exists only in the live fatal-damage callback/current frame.
+ if(id==='A2.S18.DEATH.01')return dyingBoundary(app,'last-breath',[id]);
  if(id==='A2.S18.DEATH.02')return m.bossDeath&&corpseAccess(app);
  if(id==='A2.S18.BRANCH.01')return m.bossDeath&&!m.rescueSafe;
  if(id==='A2.S18.BRANCH.02')return m.bossDeath&&q.death?.environment===true&&q.death.witnessed===true&&!corpseAccess(app);
@@ -66,6 +66,12 @@ function allow(app,r){const b=app.engine?.b;if(r.channel==='optional')return opt
  if(id==='A2.S18.POPUP.04')return m.bossDeath&&q.death?.environment===true;
  return r.channel==='objective';
 }
+function dyingBoundary(app,key,ids){const b=app.engine?.b,lease=dying.get(b);return !!lease&&key==='last-breath'&&ids.length===1&&ids[0]==='A2.S18.DEATH.01'&&boss(b)?.dead===true&&boss(b).hp<=0&&(lease.opening||app.dialogue?.reviewedStage===18&&app.dialogue.reviewedEvent==='last-breath')&&!['done','discarded'].includes(api.memory(b).events['last-breath']?.status);}
+function lastBreath(app,owner){const b=app.engine.b,q=mem(b),death=q.death,events=api.memory(b).events;
+ if(app.dialogue||death.method!=='normal'||death.environment||death.instant||!death.witnessed||!q.burialWitness||!safeResident(b)||!q.confronted||!alive(owner)||owner.side!==0||owner.summoned||owner.honroSpirit||!['question','answer','accusation','hostile'].every(k=>events[k]?.status==='done'&&events[k].ids.length))return false;
+ const lease={opening:true};dying.set(b,lease);const out=api.begin(app,'last-breath',['A2.S18.DEATH.01'],death);lease.opening=false;if(!out)dying.delete(b);return out;
+}
+function discardEndedBoundary(b){const event=api.memory(b).events['last-breath'];if(event?.status==='open'&&!dying.has(b)){event.status='discarded';event.reason='18.death-boundary-ended';if(b.honroStory?.reviewedEvent==='last-breath')b.honroStory=null;const slot=V.mem(b).slots['18.reviewed.last-breath'];if(slot){slot.status='cancelled';slot.reason=event.reason;}}}
 function scene(app,key,id,proof={}){return api.begin(app,key,[id],proof);}
 function cancelKeeper(app){const b=app.engine.b;if(alive(boss(b)))return;
  const keys=['warning','aware','lowering','hands-off','rescue-answer','repeat','question','answer','accusation','hostile','ritual','open-shot'],q=api.memory(b);
@@ -128,10 +134,10 @@ function eligibility(app,site){const b=app.engine.b,m=physical(b),q=mem(b);
  if(site.id==='18.settle'&&(!m.supportReady||!api.done(b,'gap')))return{ok:false,reason:api.row('A2.S18.OBJECTIVE.04').text};
  return undefined;
 }
-function attach(app,e){if(e.honroReviewed18Bound)return;e.honroReviewed18Bound=true;
+function attach(app,e){discardEndedBoundary(e.b);if(e.honroReviewed18Bound)return;e.honroReviewed18Bound=true;
  const predict=e.predict;e.predict=function(u,skill,...args){const out=predict.call(e,u,skill,...args);if(api.active(e.b)&&u?.side===0&&e.b.honroBellDescent.terrainIds.includes(out.terrain)){const q=mem(e.b);q.bellAim=true;q.bellAimProof={actor:u.id,skill:skill.id,terrain:out.terrain,endpoint:{x:out.x,y:out.y}};}return out;};
  const hurt=e.hurt;e.hurt=function(u,...args){const watching=api.active(e.b)&&u?.id==='act2-keeper'&&alive(u),oldHp=u?.hp,owner=unit(e.b,args[1]),source=args[5]||'normal',witness=watching&&V.heroes(e.b).some(h=>sight(e,h,u));const out=hurt.call(e,u,...args);
-  if(watching&&u.hp<oldHp){const q=mem(e.b);q.bossHits=(q.bossHits||0)+1;if(!alive(u)){q.death={method:owner?.honroSpirit||owner?.summoned?'spirit':source,environment:source==='environment',witnessed:witness,instant:q.bossHits===1,point:{x:u.x,y:u.y}};S.cleanupDeath(app);cancelKeeper(app);}}return out;};
+  if(watching&&u.hp<oldHp){const q=mem(e.b);q.bossHits=(q.bossHits||0)+1;if(!alive(u)){q.death={method:owner?.honroSpirit||owner?.summoned?'spirit':source,environment:source==='environment',witnessed:witness,instant:q.bossHits===1,point:{x:u.x,y:u.y}};S.cleanupDeath(app);cancelKeeper(app);lastBreath(app,owner);}}return out;};
  const recover=e.recover;e.recover=function(u,...args){const watching=api.active(e.b)&&u?.id==='act2-keeper'&&alive(u),witness=watching&&V.heroes(e.b).some(h=>Math.abs(h.x-u.x)<1800&&sight(e,h,u));const out=recover.call(e,u,...args);if(watching&&!alive(u)){mem(e.b).death={method:'fall',environment:true,witnessed:witness,point:{x:u.x,y:u.y}};S.cleanupDeath(app);cancelKeeper(app);}return out;};
  const tick=e.tick;e.tick=function(dt){const s=api.active(e.b)&&physical(e.b).bell.segment;if(s?.kind==='translate'&&physical(e.b).bell.status==='moving'){translate(app,dt);return;}const out=tick.call(e,dt);if(s?.kind==='threat')observe(app,0);return out;};
 }
@@ -162,7 +168,7 @@ P.register(18,{mapRevision:518,actors:{'유헌':'act2-keeper','생존자':'18.su
  // Use the existing supported gallery, outside all three bell sweeps.
  Object.assign(keeper,point);keeper.stageOverrides={...keeper.stageOverrides,honroEncounterSupport:'sb-east-gallery-sill'};
  map.initialState.honroV4Reviewed18={revision:1,keeperPoint:point,keeperSupport:'sb-east-gallery-sill'};
- },prepare(b){mem(b);if(boss(b))boss(b).name='유헌';if(resident(b))resident(b).name='생존자';},attach,allow,before,drive,use,eligibility,draw,camera,optional,
+ },prepare(b){mem(b);discardEndedBoundary(b);if(boss(b))boss(b).name='유헌';if(resident(b))resident(b).name='생존자';},attach,allow,dyingBoundary,before,drive,use,eligibility,draw,camera,optional,
  objective(b){const m=physical(b);return 'A2.S18.OBJECTIVE.'+(m.bossDeath?(m.rescueSafe?'04':'03'):(m.rescueSafe?'02':'01'));},
  failure:b=>!alive(resident(b))?'A2.S18.FAIL.01':null,
  complete:b=>stable(b)&&api.done(b,'depart')&&(!mem(b).burialWitness||!!api.memory(b).journal),

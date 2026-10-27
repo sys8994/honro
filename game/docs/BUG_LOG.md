@@ -4968,3 +4968,9 @@ commonReviewRevision의 첫 혼령 대기열은 생성 후 소단/sceneTarget가
 ### 검수 17장 휘겸 부재 철수 경계 추가 확인
 
 같은 선택 발언 패턴을 좁게 점검해 출발 발언 skipped 뒤에도 기존 작업자 철수 보행과 실제 완료 기록이 이어지도록 before/기록 조건을 맞췄다. `node tests/act23-v4-reviewed17.mjs`는 시험 하중 장면에서 Engine.hurt로 휘겸을 잃은 저장을 Continue한 뒤, skipped 보존·두 작업자 실제 철수/접지·장 완료까지 통과했다. 다른11–20장은 해당 대사/물리 게이트를 정적으로 점검했으며 전체 장 순회를 수행한 것은 아니다.
+
+## 2026-10-27 — 검수 18장 마지막 말의 실제 사망 경계 연결
+
+정상 대면4이벤트 완료·실제 생존자 구출·의도 관측 뒤, 2회 이상 실피해를 받은 유헌이 살아 있는 비소환 동행의 일반 피해로 사망한 바로 그 hurt 콜백에서만 확정 DEATH.01을 한 번 표시한다. 짧은 비직렬화 lease로 해당 행만 허용하며 dead/HP/기존 사망 정리를 변경하지 않는다. 일반 사후 발언·조기/즉사·환경사·낙사·혼 처치에는 발동하지 않고, 열린 마지막 말을 저장한 Continue는 폐기한다. `node tests/act23-v4-reviewed18.mjs`의 기존 구조/사망/안정화 및 새 경계·무재발 검사 통과. 로컬 Chromium에서도 실제 Engine.hurt 뒤 원문 표시/HP0·dead와 페이지 reload/Continue 후 discarded를 확인했다. 정상 플레이가 아니라 실제 대면 진행에서 얻은 전투 저장 fixture의 경계 검사다.
+
+복구 묶음의 일반/검수 Game·Workshop 빌드 및 검수16/17/18/20 로컬 Canvas 진입 통과(pageerror0). 11장 실제 받침 혼 생성 복구와 공통 기존 queue/Continue, build gate 집중 검사를 다시 확인했다. 원고·Stage5·26/28–30 소스는 수정하지 않았고 전체30장 순회도 하지 않았다. 로컬 근거는 `_local/reports/act2-audit-20261027/`; 생성 HTML/web은 부모 통합 빌드 대상이라 커밋에서 제외한다. master 병합·공개 Pages 배포/검증은 부모 담당으로 미실행이다.

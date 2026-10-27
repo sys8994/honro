@@ -2,7 +2,7 @@
  * prerequisite fixtures. These checks are not normal full-play evidence. */
 import assert from 'node:assert/strict';
 import vm from 'node:vm';
-import {readFile} from 'node:fs/promises';
+import {readFile,mkdir,writeFile} from 'node:fs/promises';
 import {appHarness,plain} from './app-regression-helpers.mjs';
 const h=await appHarness(),g=h.g,V=g.HonroAct23V4,C=g.HONRO_CORE,S=g.HonroAct23V4Stage18;
 if(!g.HonroAct23V4ReviewedChapters)vm.runInContext(await readFile('shared/runtime/act23-v4-reviewed-chapters.js','utf8'),g);
@@ -60,4 +60,24 @@ console.log('PASS actual lift/clear support/horizontal32 save/resume/clear-below
 
 launch();const aim=actor();pose(aim,9200);const prediction=e.predict(aim,C.SKILLS.A01,95,.45);assert(b.honroBellDescent.terrainIds.includes(prediction.terrain));assert(R.memory(b).bellAim);pump(12);assert(api.memory(b).events['bell-guide']);
 const profile=h.profileThrough(17);assert(!g.HonroJourneyContent.optional(profile,18,'knight').length);assert(!g.HonroJourneyContent.optional(profile,18,'occultist').length);knowledge(profile);assert.equal(g.HonroJourneyContent.optional(profile,18,'occultist').length,0,'chapter17 separation/axis rotation does not prove spirit tried to lift');assert.equal(g.HonroJourneyContent.optional(profile,18,'archer').length,1);profile.honroAct23V4History.stages[16].reviewedPhysical.sourceRun='different-run';assert(!g.HonroJourneyContent.optional(profile,18,'archer').length);profile.honroAct23V4History.stages[17].reviewedPhysical.hoistLiftAttemptObserved={kind:'hoist-upward-pull',observer:'p-occultist',source:'act2-hoist',from:{angle:0,hookLift:0},to:{angle:.3,hookLift:10},ropeTaut:true};assert.equal(g.HonroJourneyContent.optional(profile,18,'occultist').length,1);assert(!P.rowsReviewed([['유헌','invented',{rowId:'A2.S18.INTRO.03',reviewedStage:18,reviewedRevision:1}]]));g.HONRO_ACT23_V4_PHASE_B_STAGES=[];assert(!P.enabled(18));assert.equal(V.mapRevision(18),218);
-console.log('PASS chapter gate, exact whitelist and knowledge receipts; held DEATH01 requires a real dying-event bridge');
+console.log('PASS chapter gate, exact whitelist and knowledge receipts');
+
+// Real fatal callback after the actually completed confrontation. No dead/hp
+// restoration, delayed queue, or saved receipt may manufacture a last breath.
+g.HONRO_ACT23_V4_PHASE_B_STAGES=[18];
+// Reconstruct the *pre-death* path through actual scenes in a fresh encounter.
+launch();approach();q=R.memory(b);pump(30);
+for(let i=0;i<600&&!S.memory(b).threat.started;i++){finish();tick();}finish();opportunities();e.tick(1);pump(3);
+assert(q.burialWitness);assert(use('18.brake'));pump(6);assert(use('18.rescue','occultist'));pose(actor('knight'),9420);
+for(let i=0;i<500&&!S.memory(b).rescueSafe;i++){finish();tick();if(i%30===0){b.round++;e.unit('18.survivor').moveLeft=e.unit('18.survivor').maxMove;}}pump(12);
+assert(['question','answer','accusation','hostile'].every(k=>api.memory(b).events[k]?.status==='done'));
+const keeper=e.unit('act2-keeper');e.hurt(keeper,1,actor().id);assert(V.alive(keeper));const beforeLethal=plain(app.profile);beforeLethal.honroBattle=plain(b);if(process.env.HONRO_AUDIT_EVIDENCE_DIR){await mkdir(process.env.HONRO_AUDIT_EVIDENCE_DIR,{recursive:true});await writeFile(process.env.HONRO_AUDIT_EVIDENCE_DIR+'/before-lethal.json',JSON.stringify(beforeLethal));}
+e.hurt(keeper,999999,actor().id);assert(keeper.dead&&keeper.hp===0);assert.equal(rowId(),'A2.S18.DEATH.01');assert.equal(app.dialogue.lines[0][1],api.row('A2.S18.DEATH.01').text);
+assert(!P.actor(b,'유헌'));assert(P.dyingAllowed(app,'유헌',app.dialogue.lines[0][2]));assert(!P.lineAllowed(app,'유헌',{rowId:'A2.S18.INTRO.03',reviewedStage:18,reviewedRevision:1}));
+g.HonroStory.tick(app,performance.now());assert.equal(rowId(),'A2.S18.DEATH.01');
+const duringDeath=plain(app.profile);duringDeath.honroBattle=plain(b);g.HonroStory.next(app);assert.equal(api.memory(b).events['last-breath'].status,'done');assert(!R.allow(app,api.row('A2.S18.DEATH.01')));e.hurt(keeper,999999,actor().id);assert.notEqual(rowId(),'A2.S18.DEATH.01');
+app.stopBattle();app=h.load(duringDeath);app.continue();app.turnNotice=null;b=app.engine.b;e=app.engine;assert(e.unit('act2-keeper').dead&&e.unit('act2-keeper').hp===0);assert.notEqual(rowId(),'A2.S18.DEATH.01');assert.equal(api.memory(b).events['last-breath'].status,'discarded');assert(!R.allow(app,api.row('A2.S18.DEATH.01')));
+console.log('PASS DEATH01 once at actual normal lethal callback after presented confrontation, dead body unchanged; no replay from damage, ordinary dialogue or saved Continue');
+
+for(const method of ['environment','fall','spirit']){app=h.load(beforeLethal);app.continue();app.turnNotice=null;b=app.engine.b;e=app.engine;kill(method);assert.notEqual(rowId(),'A2.S18.DEATH.01');assert(!api.memory(b).events['last-breath']);assert(e.unit('act2-keeper').dead);}
+console.log('PASS faced keeper environment/fall/spirit lethal boundaries never speak DEATH01');
