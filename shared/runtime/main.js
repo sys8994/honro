@@ -500,6 +500,7 @@
             }
             G.HonroSplitCampaign.outcome(this,won);
             G.HonroRestJourney?.recordOutcome(this,won);
+            G.HonroEquipment.capture(this,{won});
             G.HonroEquipment.observe(this,{won,battle:b});
             this.persist();
             if(won&&G.HonroActEndings?.show(this)){this.audio?.play('win');return;}
