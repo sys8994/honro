@@ -7,7 +7,7 @@ const active=b=>enabled()&&V.active(b)&&b.honroStage===21&&b.honroReviewedNarrat
 const row=id=>data()?.rows.find(r=>r.id===id),memory=S.memory,cls={'설오':'archer','담허':'mage','휘겸':'knight','소단':'occultist'};
 const actor=(b,who)=>who==='곽진'?b.units.find(u=>u.id==='v4.gwakjin'&&V.alive(u)):V.heroes(b).find(u=>u.cls===cls[who]);
 const closed=q=>['done','skipped','cancelled'].includes(q?.status);
-function rowsReviewed(ls){return enabled()&&Array.isArray(ls)&&ls.length>0&&ls.every(l=>{const r=row(l?.[2]?.rowId);return r&&r.speaker===l[0]&&r.text===l[1]&&l[2].reviewedStage===21&&l[2].reviewedRevision===1;});}
+function rowsReviewed(ls){return enabled()&&Array.isArray(ls)&&ls.length>0&&ls.every(l=>{const r=row(l?.[2]?.rowId);return r&&r.speaker===l[0]&&r.text===l[1]&&l[2].reviewedStage===21&&l[2].reviewedRevision===1&&['audience','delivery','once','group','order','progress','deadline','owner','party_shared','presentation'].every(k=>JSON.stringify(l[2][k])===JSON.stringify(r[k]));});}
 function restAllowed(profile,who){const c=cls[who],q=profile.honroReviewed21RestObservation,b=profile.honroBattle;return !!c&&profile.recruited?.includes(c)&&profile.party?.includes(c)&&q?.stage===21&&q.revision===1&&q.visible===true&&q.actors?.[c]?.alive===true&&!profile.cleared?.[21]&&!b&&G.HonroJourneyContent.next(profile)?.stageId===21;}
 // Called only by a real pre-entry field preview renderer. A place description,
 // map unlock or chapter number alone supplies no observation evidence.
@@ -19,7 +19,7 @@ function lineAllowed(app,who,meta){const r=row(meta?.rowId);if(!enabled()||!r||m
  if(r.channel==='failure')return b.phase==='lost'&&!!actor(b,'휘겸');if(['won','lost'].includes(b.phase))return false;
  return S.facts(b,r.id);
 }
-function lines(ids,event){return ids.map(id=>{const r=row(id);return[r.speaker,r.text,{rowId:id,reviewedStage:21,reviewedRevision:1,reviewedEvent:event,storyId:'v4.reviewed.21.'+event,storyTitle:G.HONRO_CONTENT.stages[20].name,...(r.channel==='arrival'?{kind:'narration'}:r.channel==='guide'?{kind:'guide'}:{})}];});}
+function lines(ids,event){return ids.map(id=>{const r=row(id);return[r.speaker,r.text,{...copy(r),rowId:id,reviewedStage:21,reviewedRevision:1,reviewedEvent:event,storyId:'v4.reviewed.21.'+event,storyTitle:G.HONRO_CONTENT.stages[20].name,...(r.channel==='arrival'?{kind:'narration'}:r.channel==='guide'?{kind:'guide'}:{})}];});}
 function accepts(app,ls){return rowsReviewed(ls)&&ls.some(l=>lineAllowed(app,l[0],l[2]));}
 function begin(app,key,ids){const b=app.engine.b,q=memory(b);if(q.events[key])return false;const ls=lines(ids,key).filter(l=>lineAllowed(app,l[0],l[2]));q.events[key]={status:ls.length?'open':'skipped',ids:ls.map(l=>l[2].rowId)};
  const targets=['clear','exit'].includes(key)?[q.wreck,{actor:'v4.gwakjin'}]:[{actor:b.honroV4CitySpec.resident},{actor:'v4.gwakjin'},key==='intro'?{actor:b.honroV4Chapter21.old}:{x:1740,y:2640}];
