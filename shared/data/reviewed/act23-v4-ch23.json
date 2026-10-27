@@ -1,0 +1,416 @@
+{
+  "stage": 23,
+  "status": "gemini_pass1_parent_review_gemini_pass3_complete",
+  "rows": [
+    {
+      "id": "A3.S23.INTRO.01",
+      "speaker_channel": "짐꾼 · dialogue",
+      "condition": "stage_enter; 짐꾼이 움직이는 운반구와 상자 사이에 갇힘",
+      "text": "거기 누구요! 수레가 제멋대로 움직여요!",
+      "audience": "현장 동행",
+      "delivery": "scene",
+      "once": true,
+      "group": "A3.S23.INTRO",
+      "order": 1,
+      "speaker": "짐꾼",
+      "channel": "dialogue"
+    },
+    {
+      "id": "A3.S23.INTRO.02",
+      "speaker_channel": "휘겸 · dialogue",
+      "condition": "stage_enter; 짐꾼이 움직이는 운반구와 상자 사이에 갇힘",
+      "text": "상자 뒤에 붙어 있으시오. 길이 열리면 이쪽으로 오시오.",
+      "audience": "현장 동행",
+      "delivery": "scene",
+      "once": true,
+      "group": "A3.S23.INTRO",
+      "order": 2,
+      "speaker": "휘겸",
+      "channel": "dialogue"
+    },
+    {
+      "id": "A3.S23.INTRO.03",
+      "speaker_channel": "설오 · dialogue",
+      "condition": "stage_enter; 짐꾼이 움직이는 운반구와 상자 사이에 갇힘",
+      "text": "짐꾼 앞은 막혔습니다. 위쪽으로는 닿겠습니다.",
+      "audience": "현장 동행",
+      "delivery": "scene",
+      "once": true,
+      "group": "A3.S23.INTRO",
+      "order": 3,
+      "speaker": "설오",
+      "channel": "dialogue"
+    },
+    {
+      "id": "A3.S23.ESCORT.01",
+      "speaker_channel": "짐꾼 · dialogue",
+      "condition": "porter_route_opened; carrier-start 구출 경로가 실제로 열림",
+      "text": "이 짐은 내가 나르던 게 아니오. 안쪽 옛 창고에서 굴러 나왔소.",
+      "audience": "현장 동행",
+      "delivery": "scene",
+      "once": true,
+      "group": "A3.S23.ESCORT",
+      "order": 1,
+      "speaker": "짐꾼",
+      "channel": "dialogue"
+    },
+    {
+      "id": "A3.S23.ESCORT.02",
+      "speaker_channel": "휘겸 · dialogue",
+      "condition": "porter_route_opened; carrier-start 구출 경로가 실제로 열림",
+      "text": "몸은 움직일 만하오?",
+      "audience": "현장 동행",
+      "delivery": "scene",
+      "once": true,
+      "group": "A3.S23.ESCORT",
+      "order": 2,
+      "speaker": "휘겸",
+      "channel": "dialogue"
+    },
+    {
+      "id": "A3.S23.ESCORT.03",
+      "speaker_channel": "짐꾼 · dialogue",
+      "condition": "porter_route_opened; carrier-start 구출 경로가 실제로 열림",
+      "text": "걸을 수 있소. 여기만 벗어나게 해 주시오.",
+      "audience": "현장 동행",
+      "delivery": "scene",
+      "once": true,
+      "group": "A3.S23.ESCORT",
+      "order": 3,
+      "speaker": "짐꾼",
+      "channel": "dialogue"
+    },
+    {
+      "id": "A3.S23.GOODS.01",
+      "speaker_channel": "설오 · dialogue",
+      "condition": "cargo_revealed; 호송 중 기존 dispatch-bundle 지점의 포장재와 생활금속이 보임",
+      "text": "삼베 안에 뼈가 있습니다.",
+      "audience": "현장 동행",
+      "delivery": "scene",
+      "once": true,
+      "group": "A3.S23.GOODS",
+      "order": 1,
+      "speaker": "설오",
+      "channel": "dialogue"
+    },
+    {
+      "id": "A3.S23.GOODS.02",
+      "speaker_channel": "휘겸 · dialogue",
+      "condition": "cargo_revealed; 호송 중 기존 dispatch-bundle 지점의 포장재와 생활금속이 보임",
+      "text": "사람을 실었던 짐이군.",
+      "audience": "현장 동행",
+      "delivery": "scene",
+      "once": true,
+      "group": "A3.S23.GOODS",
+      "order": 2,
+      "speaker": "휘겸",
+      "channel": "dialogue"
+    },
+    {
+      "id": "A3.S23.GOODS.03",
+      "speaker_channel": "설오 · dialogue",
+      "condition": "cargo_revealed; 호송 중 기존 dispatch-bundle 지점의 포장재와 생활금속이 보임",
+      "text": "옆에는 놋그릇과 문고리입니다. 같은 표찰이 달렸습니다.",
+      "audience": "현장 동행",
+      "delivery": "scene",
+      "once": true,
+      "group": "A3.S23.GOODS",
+      "order": 3,
+      "speaker": "설오",
+      "channel": "dialogue"
+    },
+    {
+      "id": "A3.S23.GOODS.04",
+      "speaker_channel": "소단 · dialogue",
+      "condition": "cargo_revealed; 호송 중 기존 dispatch-bundle 지점의 포장재와 생활금속이 보임",
+      "text": "짐을 지나던 혼들이 여기서 멈춰요. 사람 곁으로는 못 가게 할게요.",
+      "audience": "현장 동행",
+      "delivery": "scene",
+      "once": true,
+      "group": "A3.S23.GOODS",
+      "order": 4,
+      "speaker": "소단",
+      "channel": "dialogue"
+    },
+    {
+      "id": "A3.S23.BLOCKED.01",
+      "speaker_channel": "짐꾼 · dialogue",
+      "condition": "porter_threatened; 짐꾼 앞의 다음 엄폐 지점이 적에게 막힘",
+      "text": "앞에서도 옵니다!",
+      "audience": "현장 동행",
+      "delivery": "bark",
+      "once": true,
+      "group": "A3.S23.BLOCKED",
+      "order": 1,
+      "speaker": "짐꾼",
+      "channel": "dialogue"
+    },
+    {
+      "id": "A3.S23.BLOCKED.02",
+      "speaker_channel": "휘겸 · dialogue",
+      "condition": "porter_threatened; 짐꾼 앞의 다음 엄폐 지점이 적에게 막힘",
+      "text": "그 자리에 있으시오. 뒤로 뛰면 물길이오.",
+      "audience": "현장 동행",
+      "delivery": "bark",
+      "once": true,
+      "group": "A3.S23.BLOCKED",
+      "order": 2,
+      "speaker": "휘겸",
+      "channel": "dialogue"
+    },
+    {
+      "id": "A3.S23.FLAG.01",
+      "speaker_channel": "설오 · dialogue",
+      "condition": "old_banner_visible; 먼 옛 통로에서 낡은 군기가 한 번 움직임; 21장 빈 옛 갑주의 문장 실제 목격과 23장 군기의 문장 일치가 실제 화면에서 식별될 때. Gemini의 군기 목격 설명을 별도 사실로 생성하지 않음.",
+      "text": "저 통로 끝에 군기가 있습니다. 성문에서 본 것과 같습니다.",
+      "audience": "현장 동행",
+      "delivery": "bark",
+      "once": true,
+      "group": "A3.S23.FLAG",
+      "order": 1,
+      "speaker": "설오",
+      "channel": "dialogue"
+    },
+    {
+      "id": "A3.S23.CLEAR.01",
+      "speaker_channel": "짐꾼 · dialogue",
+      "condition": "porter_safe; 짐꾼이 dock-exit 안전영역에 도달하고 주변 위협이 사라짐",
+      "text": "저 뒤가 옛 반입구요. 방금 짐도 그쪽에서 나왔소.",
+      "audience": "현장 동행",
+      "delivery": "scene",
+      "once": true,
+      "group": "A3.S23.CLEAR",
+      "order": 1,
+      "speaker": "짐꾼",
+      "channel": "dialogue"
+    },
+    {
+      "id": "A3.S23.CLEAR.02",
+      "speaker_channel": "휘겸 · dialogue",
+      "condition": "porter_safe; 짐꾼이 dock-exit 안전영역에 도달하고 주변 위협이 사라짐; porter_safe 후 성문까지 실제 안전한 퇴로가 확보된 때만; 주민을 위험 경로로 보내지 않음. 곽진의 성문 구조 상태 유지.",
+      "text": "이제 성문 안으로 가시오. 곽진 군관이 사람들을 모으고 있소.",
+      "audience": "현장 동행",
+      "delivery": "scene",
+      "once": true,
+      "group": "A3.S23.CLEAR",
+      "order": 2,
+      "speaker": "휘겸",
+      "channel": "dialogue"
+    },
+    {
+      "id": "A3.S23.CLEAR.03",
+      "speaker_channel": "설오 · dialogue",
+      "condition": "porter_safe; 짐꾼이 dock-exit 안전영역에 도달하고 주변 위협이 사라짐",
+      "text": "수레 자국이 집 뒤로 이어집니다.",
+      "audience": "현장 동행",
+      "delivery": "scene",
+      "once": true,
+      "group": "A3.S23.CLEAR",
+      "order": 3,
+      "speaker": "설오",
+      "channel": "dialogue"
+    },
+    {
+      "id": "A3.S23.CLEAR.04",
+      "speaker_channel": "담허 · dialogue",
+      "condition": "porter_safe; 짐꾼이 dock-exit 안전영역에 도달하고 주변 위협이 사라짐",
+      "text": "아래에서 물소리도 들리는군. 입구가 가까운 듯하네.",
+      "audience": "현장 동행",
+      "delivery": "scene",
+      "once": true,
+      "group": "A3.S23.CLEAR",
+      "order": 4,
+      "speaker": "담허",
+      "channel": "dialogue"
+    },
+    {
+      "id": "A3.S23.OBJ.01",
+      "speaker_channel": "objective_texts · objective_texts",
+      "condition": "stage_enter; 항상",
+      "text": "짐꾼이 갇힌 운반구 주변 확보하기",
+      "speaker": "목표 UI",
+      "channel": "objective"
+    },
+    {
+      "id": "A3.S23.OBJ.02",
+      "speaker_channel": "objective_texts · objective_texts",
+      "condition": "porter_route_opened; 항상",
+      "text": "짐꾼을 하역장 안전지대까지 호송하기",
+      "speaker": "목표 UI",
+      "channel": "objective"
+    },
+    {
+      "id": "A3.S23.OBJ.03",
+      "speaker_channel": "objective_texts · objective_texts",
+      "condition": "porter_safe; 항상",
+      "text": "짐꾼이 가리킨 옛 반입구로 이동하기",
+      "speaker": "목표 UI",
+      "channel": "objective"
+    },
+    {
+      "id": "A3.S23.JOURNAL.01",
+      "speaker_channel": "journal_entries · journal_entries",
+      "condition": "porter_safe; 항상; 짐꾼 실제 안전 도달 AND 시신운반 흔적·놋그릇/경첩/농기구·같은 마을 표찰 실제 관찰 완료. 모든 오브젝트를 개별 클릭하는 수집 목표 추가 금지.",
+      "text": "현재의 짐꾼을 구했다. 옛 창고에서 나온 짐에는 시신을 실었던 흔적과 놋그릇·경첩·농기구가 함께 있었다. 같은 마을 표찰이 반복되었다. 오래된 수송로는 집 뒤 출입구로 이어진다.",
+      "speaker": "저널 UI",
+      "channel": "journal"
+    },
+    {
+      "id": "A3.S23.GUIDE.01",
+      "speaker_channel": "guide_texts · guide_texts",
+      "condition": "porter_route_blocked; 항상",
+      "text": "짐꾼은 안전한 곳에서 기다립니다. 다음 이동 구간을 확보하면 호송이 재개됩니다.",
+      "speaker": "안내 UI",
+      "channel": "guide"
+    },
+    {
+      "id": "EDGE.ARRIVALS_23_0",
+      "speaker_channel": "서술 · arrival",
+      "condition": "장 도착 때 한 번",
+      "text": "수로로 이어지는 하역장에 오래된 수레와 상자가 쌓여 있었다. 짐꾼 하나가 움직이는 운반구 사이에 갇혔다.",
+      "speaker": "서술",
+      "channel": "arrival"
+    },
+    {
+      "id": "EDGE.OPTIONAL_23_ARCHER_0",
+      "speaker_channel": "설오 · optional",
+      "condition": "동료 선택대화; 실제 출연·생존한 화자만; 22장 필수 보고·호적 대조 완료 후, 실제 생존/출연 설오의 전투 전 선택대화.",
+      "text": "호적에는 아이 이름도 있었습니다. 보고에는 누가 죽었는지조차 쓰지 않았어요.",
+      "speaker": "설오",
+      "channel": "optional"
+    },
+    {
+      "id": "EDGE.OPTIONAL_23_MAGE_0",
+      "speaker_channel": "담허 · optional",
+      "condition": "동료 선택대화; 실제 출연·생존한 화자만",
+      "text": "보고만으론 모르겠네. 실제로 무엇을 실어 날랐는지 보세.",
+      "speaker": "담허",
+      "channel": "optional"
+    },
+    {
+      "id": "EDGE.OPTIONAL_23_KNIGHT_0",
+      "speaker_channel": "휘겸 · optional",
+      "condition": "동료 선택대화; 실제 출연·생존한 화자만",
+      "text": "관아 보고서엔 그저 혐의자를 제압했다고만 썼소. 현장에서 무슨 일이 벌어졌는지가 통째로 빠져 있소.",
+      "speaker": "휘겸",
+      "channel": "optional"
+    },
+    {
+      "id": "EDGE.OPTIONAL_23_OCCULTIST_0",
+      "speaker_channel": "소단 · optional",
+      "condition": "동료 선택대화; 실제 출연·생존한 화자만; 해당 그릇 묶음이 실제 시야에 있는 전투 전 선택대화; 세계 오브젝트 미노출 시 재생하지 않음.",
+      "text": "저 묶음 안에 그릇이 보여요. 사람이 쓰던 물건 같아요.",
+      "speaker": "소단",
+      "channel": "optional"
+    },
+    {
+      "id": "EDGE.RUNTIME.JOURNAL.EVIDENCE23.TAG",
+      "speaker_channel": "서술 · runtime_dynamic",
+      "condition": "해당 물증의 실제 확보 뒤 저널 요약 / fresh_v4=True; 시야 내 현장물증 관찰 완료로 기록; 물품 회수/서류읽기 퀘스트로 바꾸지 않음.",
+      "text": "같은 마을 표찰 아래에 시신을 실었던 흔적과 놋그릇·경첩·농기구가 함께 남아 있다.",
+      "speaker": "서술",
+      "channel": "runtime_dynamic"
+    }
+  ],
+  "changes_vs_input": [],
+  "coverage": {
+    "rows": 28,
+    "unique": 28,
+    "missing": []
+  },
+  "pass3_source": "HONRO-CH23-PASS3-20261027-response.md",
+  "pass3_assessment": "실제 PASS3 28/28 KEEP 확인. 새 수정/질문 없음. 현재 짐꾼의 증언과 옛 군기 실제 목격, 가족번호 표찰과 가문문장 구별을 유지. 부모 최종채택 대기. MAGE_0 라벨의 다국어 잡문자는 무시하고 원고의 명시화자 담허를 보존. FLAG.01은 21장 옛 빈 갑주문장과 23장 군기문장의 동일성 확인이 기준이며 모델 설명은 구현증거가 아님.",
+  "alias_review": [
+    {
+      "id": "A3.S23.REST_ARCHER.01",
+      "status": "ALTERNATIVE_NOT_REPLAYED",
+      "canonical_ids": [
+        "EDGE.OPTIONAL_23_ARCHER_0"
+      ],
+      "text_identity": "비활성/대체/호환 계약 보존; 본문동일 alias로 자동 통합 금지",
+      "guard_requirement": {
+        "event": "rest_optional_archer",
+        "condition": "23장 전투 진입 전 허용된 쉼터에서 해당 동행을 선택; 동행 recruited+alive; split 무휴식에는 실행 금지"
+      },
+      "runtime_verification": "PENDING"
+    },
+    {
+      "id": "A3.S23.REST_MAGE.01",
+      "status": "ALTERNATIVE_NOT_REPLAYED",
+      "canonical_ids": [
+        "EDGE.OPTIONAL_23_MAGE_0"
+      ],
+      "text_identity": "비활성/대체/호환 계약 보존; 본문동일 alias로 자동 통합 금지",
+      "guard_requirement": {
+        "event": "rest_optional_mage",
+        "condition": "23장 전투 진입 전 허용된 쉼터에서 해당 동행을 선택; 동행 recruited+alive; split 무휴식에는 실행 금지"
+      },
+      "runtime_verification": "PENDING"
+    },
+    {
+      "id": "A3.S23.REST_KNIGHT.01",
+      "status": "ALTERNATIVE_NOT_REPLAYED",
+      "canonical_ids": [
+        "EDGE.OPTIONAL_23_KNIGHT_0"
+      ],
+      "text_identity": "비활성/대체/호환 계약 보존; 본문동일 alias로 자동 통합 금지",
+      "guard_requirement": {
+        "event": "rest_optional_knight",
+        "condition": "23장 전투 진입 전 허용된 쉼터에서 해당 동행을 선택; 동행 recruited+alive; split 무휴식에는 실행 금지"
+      },
+      "runtime_verification": "PENDING"
+    },
+    {
+      "id": "A3.S23.REST_OCCULTIST.01",
+      "status": "ALTERNATIVE_NOT_REPLAYED",
+      "canonical_ids": [
+        "EDGE.OPTIONAL_23_OCCULTIST_0"
+      ],
+      "text_identity": "비활성/대체/호환 계약 보존; 본문동일 alias로 자동 통합 금지",
+      "guard_requirement": {
+        "event": "rest_optional_occultist",
+        "condition": "23장 전투 진입 전 허용된 쉼터에서 해당 동행을 선택; 동행 recruited+alive; split 무휴식에는 실행 금지"
+      },
+      "runtime_verification": "PENDING"
+    },
+    {
+      "id": "EDGE.PLACES_22_RESTDESCRIPTION",
+      "status": "IDENTICAL_TEXT_ALIAS",
+      "canonical_ids": [
+        "EDGE.ARRIVALS_23_0"
+      ],
+      "text_identity": "canonical 본문과 동일; 가드는 별개",
+      "guard_requirement": {
+        "event": "장소 설명 UI; actual stageId=23",
+        "guards": {}
+      },
+      "runtime_verification": "PENDING"
+    },
+    {
+      "id": "EDGE.FAILURE_GUARD.S23",
+      "status": "IDENTICAL_TEXT_ALIAS",
+      "canonical_ids": [
+        "EDGE.FAILURE_GUARD.S21"
+      ],
+      "text_identity": "canonical 본문과 동일; 가드는 별개",
+      "guard_requirement": {
+        "event": "해당 장의 실제 실패",
+        "guards": {
+          "speaker_actual_living_present_required": true,
+          "required_actual_speaker": "휘겸"
+        },
+        "v4_constraints": [
+          "휘겸가 실제 출연·생존할 때만. 사망/부재/전멸이면 음성 없이 owner 실패 UI만.",
+          "27 검은 공간 연출 낙하에는 일반 실패를 재생하지 않음."
+        ]
+      },
+      "runtime_verification": "PENDING"
+    }
+  ],
+  "implementation_verified": false,
+  "implementation_note": "본문검수와 각 alias/출연/생존/목격/저장 가드의 실제 구현 검증은 별개. 부모 최종채택 전 코드적용 금지.",
+  "parent_adoption": "28행 KEEP 승인. Gemini 라벨 잡문자 적용 금지; 군기 동일성 설명은 코드증거 아님.",
+  "revision": 1,
+  "adopted_status_verbatim": "Gemini PASS1 → 제작측 독립검토 → Gemini PASS3 → 부모 최종채택 완료; 구현검증 별도",
+  "sourceCommit": "c6bb72992f2e920739f7f95e15f9ac95ba34dddb"
+}

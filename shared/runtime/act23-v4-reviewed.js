@@ -95,4 +95,9 @@ const oldSummary=G.HonroNarrativeCatalogue.summary;G.HonroNarrativeCatalogue.sum
 const oldPlugin=V.plugins.get(11);V.register(11,{...oldPlugin,tick(app,dt){if(active(app.engine.b)&&V.mem(app.engine.b).done['11.exit']&&!memory(app.engine.b).events.gather){tick(app,0);if(app.dialogue)return;}oldPlugin.tick(app,dt);tick(app,dt);},complete(b){return oldPlugin.complete(b)&&complete(b);},draw(scene,c,b,e){if(active(b)){G.HonroAct23V4Chapter11?.draw(scene,c,b);draw(scene,c,b);}else oldPlugin.draw(scene,c,b,e);}});
 for(const key of ['interlude','required','optional']){const old=G.HonroJourneyContent[key];G.HonroJourneyContent[key]=function(...args){const id=key==='interlude'?args[0]:args[1];if(enabled()&&Number(id)===11)return key==='optional'?optional(...args):[];return old.apply(this,args);};}
 G.HonroAct23V4Reviewed={enabled,active,row,rowsReviewed,lineAllowed,accepts,finished,present,content,failure,optional,blocked,requiredScenes,memory,complete,gathered,journal,talkId:(id,c)=>enabled()&&Number(id)===11?'rest-talk-v1-11-'+c+'-reviewed1':null};
+// Resolve Act3-only providers after their own modules have loaded.
+const chapterProvider=id=>({21:G.HonroAct23V4Chapter21Reviewed,22:G.HonroAct23V4Chapter22Reviewed})[id]||G.HonroAct3V4ReviewedCore?.providers.get(id);
+G.HonroAct23V4Reviewed.provider=chapterProvider;
+for(const key of ['rowsReviewed','accepts','finished','failure']){const old=G.HonroAct23V4Reviewed[key];G.HonroAct23V4Reviewed[key]=(...args)=>[21,22,23,24,25,27].some(id=>chapterProvider(id)?.[key](...args))||old(...args);}
+for(const key of ['lineAllowed','present','journal','talkId']){const old=G.HonroAct23V4Reviewed[key];G.HonroAct23V4Reviewed[key]=(...args)=>{const id=key==='lineAllowed'?args[2]?.reviewedStage:key==='present'?args[0]?.honroStage:key==='talkId'?args[0]:args[1];return chapterProvider(Number(id))?.[key](...args)??old(...args);};}
 })(globalThis);

@@ -15,7 +15,7 @@ const sceneLines=currentScript(),returnLines=G.HonroNarrativeCatalogue.rows('27.
 const INPUT_GUARD=120,now=()=>G.performance?.now?.()??Date.now();
 function initializeFresh(b){if(b?.honroStage===27&&!b.honroCustom&&b.honroSplit?.version===2&&(b.honroMap?.act3?.waterworksRevision||0)>=3)b.honroAct3Void??={revision:REVISION,state:'READY'};}
 function restorePose(b){const s=state(b),u=hero(b);if(s?.return?.unit&&u){for(const k of Object.keys(u))delete u[k];Object.assign(u,clone(s.return.unit));}if(s?.return?.active)b.active=s.return.active;}
-function recover(b){if(!blocked(b))return false;restorePose(b);const s=state(b);if(s.return?.camera)s.recoveredCamera=clone(s.return.camera);delete s.return;delete s.fallProgress;s.state='READY';s.recovered=true;return true;}
+function recover(b){if(!blocked(b))return false;restorePose(b);const s=state(b);if(s.return?.camera)s.recoveredCamera=clone(s.return.camera);delete s.return;delete s.fallProgress;s.state='READY';s.recovered=true;G.HonroAct23V4Chapter27Reviewed?.voidRecovery(b);return true;}
 function restoreRecoveredCamera(app){const s=state(app.engine?.b);if(!s?.recoveredCamera||!app.scene)return false;Object.assign(app.scene,clone(s.recoveredCamera));delete s.recoveredCamera;return true;}
 function save(app){if(app.training||app.done)return;app.profile.honroBattle=clone(app.engine.b);app.dirty=true;app.persist?.();}
 function cameraSnapshot(scene){return scene?Object.fromEntries(['x','y','scale','manual','focusId','focusUntil','speakerId','speakerUntil','storyTween','turnTarget'].map(k=>[k,clone(scene[k])])):null;}
@@ -25,7 +25,7 @@ function eligible(app){if(!safe(app)||state(app.engine.b).recovered)return false
  return inZone(hero(b),z);
 }
 function begin(app,reason='approach'){if(!safe(app))return false;const b=app.engine.b,s=state(b),u=hero(b);s.return={unit:clone(u),active:b.active,camera:cameraSnapshot(app.scene)};s.state='FALLING';s.fallProgress=0;s.reason=reason;delete s.recovered;
- app.cancelInput?.();app.acc=0;app.honroVoidSession={lines:G.HonroAct23V4?.active(b)?[{text:'',align:'far'},{text:'',align:'near'}]:G.HonroNarrativeCatalogue.active(b)?sceneLines:structuredClone(G.HONRO_NARRATIVE_COMPAT.extras['27.void.sceneLines']),elapsed:0,line:0,lastInputAt:-Infinity,returning:0,focus:G.document?.activeElement,rootInert:app.root?.inert,rootAria:app.root?.getAttribute?.('aria-hidden'),hudOpacity:G.document?.body?.style?.getPropertyValue?.('--void-hud-opacity')||''};
+ app.cancelInput?.();app.acc=0;app.honroVoidSession={lines:G.HonroAct23V4Chapter27Reviewed?.voidLines(app)||(G.HonroAct23V4?.active(b)?[{text:'',align:'far'},{text:'',align:'near'}]:G.HonroNarrativeCatalogue.active(b)?sceneLines:structuredClone(G.HONRO_NARRATIVE_COMPAT.extras['27.void.sceneLines'])),elapsed:0,line:0,lastInputAt:-Infinity,returning:0,focus:G.document?.activeElement,rootInert:app.root?.inert,rootAria:app.root?.getAttribute?.('aria-hidden'),hudOpacity:G.document?.body?.style?.getPropertyValue?.('--void-hud-opacity')||''};
  save(app);mountOverlay(app);app.updateAudio?.();return true;
 }
 function mountOverlay(app){if(!G.document?.createElement)return;const session=app.honroVoidSession,host=G.document.createElement('section');host.className='honro-void-scene';host.setAttribute('role','dialog');host.setAttribute('aria-modal','true');host.setAttribute('aria-label','설오가 떨어진 검은 공간');host.setAttribute('aria-describedby','honro-void-instructions');host.tabIndex=-1;
@@ -46,14 +46,14 @@ function cleanup(app){const session=app.honroVoidSession;if(!session)return;sess
  app.honroVoidSession=null;app.acc=0;app.cancelInput?.();if(session.focus?.isConnected)session.focus.focus?.({preventScroll:true});
 }
 function restore(app){const b=app.engine?.b,s=state(b);if(!s)return;restorePose(b);if(s.return?.camera&&app.scene)Object.assign(app.scene,clone(s.return.camera));}
-function finish(app){if(!blocked(app))return false;const b=app.engine.b,s=state(b);restore(app);delete s.return;delete s.fallProgress;s.state='RESOLVED';s.completed=true;cleanup(app);
+function finish(app){if(!blocked(app))return false;const session=app.honroVoidSession,b=app.engine.b,s=state(b);restore(app);delete s.return;delete s.fallProgress;s.state='RESOLVED';s.completed=true;cleanup(app);
  // This evidence is experiential, never substituted for the manifest. It is
  // copied to later fresh entries; old in-progress content is left untouched.
- app.profile.honroStoryEvents??={};app.profile.honroStoryEvents[KEY]=true;b.honroVoidWitness=true;
+ app.profile.honroStoryEvents??={};app.profile.honroStoryEvents[KEY]=true;b.honroVoidWitness=true;G.HonroAct23V4Chapter27Reviewed?.voidResolved(app,session);
  save(app);app.updateAudio?.();app.updateHUD?.(true);const script=G.HonroNarrativeCatalogue.active(b)?G.HonroNarrativeCatalogue.rows('27.void.returnLines'):G.HONRO_NARRATIVE_COMPAT.extras['27.void.returnLines'],lines=script.map(([who,text,meta={}])=>[who,text,{...meta,storyId:KEY+'-return',storyTitle:'검은 집하장'}]);
  // Returning is already a safe authored story boundary; waiting for another
  // combat action would postpone Damheo's response until after the manifest.
- if(G.HonroStory?.start)G.HonroStory.start(app,lines,{title:'검은 집하장'});else app.sayLines?.(lines);return true;
+ if(G.HonroAct23V4Chapter27Reviewed?.active(b))return true;if(G.HonroStory?.start)G.HonroStory.start(app,lines,{title:'검은 집하장'});else app.sayLines?.(lines);return true;
 }
 function abort(app){if(!blocked(app)){cleanup(app);return false;}restore(app);const s=state(app.engine.b);delete s.return;delete s.fallProgress;s.state='READY';s.recovered=true;cleanup(app);app.updateAudio?.();save(app);return true;}
 function advance(app){const session=app.honroVoidSession,s=state(app.engine?.b);if(!blocked(app)||!session||app.modal?.classList.contains('open')||s.state!=='VOID'||now()-session.lastInputAt<INPUT_GUARD)return false;

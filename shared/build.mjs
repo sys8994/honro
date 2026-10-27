@@ -39,7 +39,7 @@ export const modelFiles=['action-prompts','narrative-catalogue','content','story
   'clear-report','split-campaign','campaign-map-revision','stake-crossing','contribution-xp','progression','profile-store','encounters','world','act1-roster','difficulty','allies','sodan-withdrawal','mission','objectives','objective-contributions','combat-status','authored','act2-content','act2','stage11-ravine-encounters','stage17-worksite','stage16-temple','act3-content','act3-encounters','act3-objectives','objective-revision','stage18-bell','stage30-ferry','stage12-quarry','stage23-escort','objective-guidance','journey-content','act3-journey','story-staging','story-direction','story-framing','stage8-bier','encounter-density','stage14-vertical','stage22-vertical','route-branches','narrative-revision','stage11-trace-exit','stage2-airborne','stage5-waterfall-geometry','stage5-waterfall','stage5-positioning','quest-targets','story-canon-v1','bell-anomaly','act3-void','evidence-quests','stage2-layered-road','act2-pacing'];
 
 modelFiles.push('player-turn-order','stage11-quest-simplification','stage14-rescue-gates','stage15-drain-contact','stage18-short-quest','keeper-ritual','stage19-farewell');
-modelFiles.push('act23-v4','act23-v4-act2','act23-v4-act2-scenes','act23-v4-stage18','act23-v4-act3','act23-v4-city','act23-v4-stage29','act23-v4-stage30','act23-v4-ch11-scenes','act23-v4-reviewed','act23-v4-reviewed-chapters','act23-v4-reviewed12','act23-v4-reviewed13','act23-v4-reviewed14','act23-v4-reviewed15','act23-v4-reviewed16','act23-v4-reviewed17','act23-v4-reviewed18','act23-v4-reviewed19','act23-v4-reviewed20','act23-v4-reviewed-common');
+modelFiles.push('act23-v4','act23-v4-act2','act23-v4-act2-scenes','act23-v4-stage18','act23-v4-act3','act23-v4-city','act23-v4-stage29','act23-v4-stage30','act23-v4-ch11-scenes','act23-v4-reviewed','act23-v4-reviewed-chapters','act23-v4-reviewed12','act23-v4-reviewed13','act23-v4-reviewed14','act23-v4-reviewed15','act23-v4-reviewed16','act23-v4-reviewed17','act23-v4-reviewed18','act23-v4-reviewed19','act23-v4-reviewed20','act23-v4-reviewed-common','act23-v4-ch21-scenes','act23-v4-ch21-reviewed','act23-v4-ch22-reviewed','act3-v4-reviewed-core','act23-v4-ch23-reviewed','act23-v4-ch24-reviewed','act3-v4-reviewed-waterworks','act23-v4-ch25-reviewed','act23-v4-ch27-reviewed');
 // Every ID has one owner; a duplicate bank entry is a build error.
 export async function skillAudioData(){
   const base=JSON.parse(await read('shared/assets/sfx/skills-v2/manifest.json'));
@@ -97,6 +97,10 @@ export async function runtimeEntries({vector=true,render=true,app=false}={}) {
   data('HONRO_ACT23_V4_REVIEWED_CHAPTERS',reviewedChapters);
   const reviewedCommon=process.env.HONRO_ACT23_V4_PHASE_A==='1'&&process.env.HONRO_ACT23_V4_PHASE_B_COMMON==='1';
   data('HONRO_ACT23_V4_REVIEWED_COMMON',reviewedCommon?JSON.parse(await read('shared/data/reviewed/act23-v4-common.json')):null);
+  // Only completed, explicitly opted-in Act3 bindings enter a private build.
+  const reviewedAct3Stages=[21,22,23,24,25,27];
+  const reviewedAct3=Object.fromEntries(reviewedAct3Stages.map(id=>[id,process.env.HONRO_ACT23_V4_PHASE_A==='1'&&process.env['HONRO_ACT23_V4_PHASE_B_CH'+id]==='1']));
+  for(const id of reviewedAct3Stages){data('HONRO_ACT23_V4_PHASE_B_CH'+id,reviewedAct3[id]);data('HONRO_ACT23_V4_REVIEWED_CH'+id,(id===21?Object.values(reviewedAct3).some(Boolean):reviewedAct3[id])?JSON.parse(await read('shared/data/reviewed/act23-v4-ch'+id+'.json')):null);}
   data('HONRO_PORTRAIT_VARIANTS',JSON.parse(await read('game/config/portrait-variants.json')));
   for(const name of modelFiles)await file(`shared/runtime/${name}.js`);
   await file('shared/runtime/camera.js');
@@ -153,7 +157,7 @@ export async function runtimeEntries({vector=true,render=true,app=false}={}) {
     data('HONRO_AUTHORED_FAR',far);
     await file('shared/assets/monsters/monsters.runtime.js');
     await file('shared/assets/actors/actors.runtime.js');
-    for(const name of ['renderer','art-dark','terrain-skirt','environment-art','map-art-polish','monster-vector','actor-vector','elements','environment-renderer','cave-enclosure','act2-spatial-art','stage11-landscape-art','keeper-ritual-art','act2-art','act3-art','act1-spatial-art','terrain-readability','geology-art','geology-rear-support','stage2-layered-road-art','stage18-bell-art','stage30-ferry-art','stage12-quarry-art','stage23-escort-art','stage8-bier-art','object-damage','combat-feedback','story-act1-art','stage5-waterfall-art','stage5-positioning-art','story-act23-art','narrative-art','stage19-farewell-art','quest-target-art','story-anomaly-art','visual-hierarchy'])await file(`shared/runtime/${name}.js`);
+    for(const name of ['renderer','art-dark','terrain-skirt','environment-art','map-art-polish','monster-vector','actor-vector','act23-v4-ch21-art','act3-v4-reviewed-rest','elements','environment-renderer','cave-enclosure','act2-spatial-art','stage11-landscape-art','keeper-ritual-art','act2-art','act3-art','act1-spatial-art','terrain-readability','geology-art','geology-rear-support','stage2-layered-road-art','stage18-bell-art','stage30-ferry-art','stage12-quarry-art','stage23-escort-art','stage8-bier-art','object-damage','combat-feedback','story-act1-art','stage5-waterfall-art','stage5-positioning-art','story-act23-art','narrative-art','stage19-farewell-art','quest-target-art','story-anomaly-art','visual-hierarchy'])await file(`shared/runtime/${name}.js`);
   }
   if(render)await file('shared/runtime/authored-far-art.js');
   if(app){
