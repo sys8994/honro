@@ -22,7 +22,7 @@ function register(config){const n=config.stage,base=V.plugins.get(n),prefix='A3.
   if(app.screen==='rest')return r.channel==='rest_ending'?config.restLineAllowed?.(app.profile,r)===true:r.channel==='optional'&&restAllowed(app.profile,r);
   const b=app.engine?.b;if(!active(b))return false;
   if(r.channel==='failure')return b.phase==='lost'&&liveSpeaker(app,r)&&config.failureGuard?.(app,r)!==false;
-  if(b.phase==='lost'&&r.channel==='guide'&&config.failureGuide?.(app,r)===true)return true;if(['won','lost'].includes(b.phase))return false;if(r.channel==='optional')return fieldAllowed(app,r,meta);if(!liveSpeaker(app,r)&&config.speakerException?.(app,r)!==true)return false;
+  if(b.phase==='lost'&&r.channel==='guide'&&config.failureGuide?.(app,r)===true)return true;if(['won','lost'].includes(b.phase))return false;if(r.channel==='optional')return meta.reviewedEvent?.startsWith('field-talk.')===true&&fieldAllowed(app,r,meta);if(!liveSpeaker(app,r)&&config.speakerException?.(app,r)!==true)return false;
   const event=eventFor(r.id);return !!event&&event.when(app)&&config.facts?.(app,r,event)!==false;
  }
  function lines(ids,event){return ids.map(id=>{const r=row(id);if(!r)throw Error('reviewed row missing '+n+':'+id);return[r.speaker,r.text,{...copy(r),rowId:id,reviewedStage:n,reviewedRevision:1,reviewedPayloadRevision:2,reviewedEvent:event,storyId:'v4.reviewed.'+n+'.'+event,storyTitle:G.HONRO_CONTENT.stages[n-1].name,...(r.channel==='arrival'||r.channel==='act_ending'?{kind:'narration'}:r.channel==='guide'?{kind:'guide'}:r.channel==='document'?{kind:'document'}:{})}];});}
