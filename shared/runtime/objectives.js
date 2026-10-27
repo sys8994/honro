@@ -102,7 +102,7 @@ function draw(scene,e){
  if(!targets?.length)return;
  const farewell=G.HonroStage19Farewell?.active(e.b),app=scene.storyFrame?.app||G.HonroApp;
  // The reader owns chapter19's speaker framing. Next-objective tags must not cover it.
- if(farewell&&app?.engine?.b===e.b&&app.dialogue)return;
+ if((farewell||G.HonroAct23V4Reviewed?.active(e.b)||G.HonroAct23V4ReviewedChapters?.active(e.b))&&app?.engine?.b===e.b&&app.dialogue)return;
  const c=scene.ctx,{w,h,d}=scene.size(),z=scene.scale,cv=scene.canvas.getBoundingClientRect(),hud=document.querySelector('.honro-compact-hud')?.getBoundingClientRect();
  const top=110,bottom=Math.max(top+30,Math.min(h-24,(hud?.top??h)-cv.top-26)),mini=document.getElementById('minimap')?.getBoundingClientRect();
  // Parallel family steps need no remote hint while the current interaction is in view.
