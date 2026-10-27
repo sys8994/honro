@@ -93,7 +93,7 @@ function escort(app,s,ids,rootkey){const b=app.engine.b,root=m(b),goal=mark(b,s.
  const waypoints=b.honroMarkers.filter(p=>p.id.startsWith('route:'+s.id+':')).sort((a,z)=>Number(a.id.split(':').at(-1))-Number(z.id.split(':').at(-1)));
  for(const [i,id]of ids.entries()){const u=unit(b,id);if(!alive(u)){all=false;continue;}const care=b.honroStage===20?convoyCare(b):null,a=care?.injured,bag=care?.baggage;
   if((a?.id===id&&a.stopped&&a.status!=='supported')||(bag?.status==='handoff'&&['convoy-mason','convoy-gilchan'].includes(id))){all=false;continue;}
-  root.escortWaypoints??={};const k=s.id+':'+id;let index=root.escortWaypoints[k]||0;while(waypoints[index]&&V.near(u,waypoints[index],100))index++;root.escortWaypoints[k]=index;const dest=waypoints[index]||{x:goal.x-i*65,y:goal.y},before={x:u.x,y:u.y};if(!walk(app,u,dest,{radius:90,lead:!(a?.id===id&&a.stopped)}))all=false;
+  root.escortWaypoints??={};const k=s.id+':'+id;let index=root.escortWaypoints[k]||0;while(waypoints[index]&&V.near(u,waypoints[index],100))index++;root.escortWaypoints[k]=index;const dest=waypoints[index]||{x:goal.x-i*65,y:goal.y},before={x:u.x,y:u.y};const familyRejoin=!waypoints[index]&&bag?.status==='with-mason'&&['convoy-mason','convoy-gilchan'].includes(id);if(familyRejoin&&!V.heroes(b).some(h=>V.near(h,u,950))){all=false;continue;}if(!walk(app,u,dest,{radius:familyRejoin?40:90,lead:!familyRejoin&&!(a?.id===id&&a.stopped)}))all=false;
   if(a?.id===id){const moved=Math.hypot(u.x-before.x,u.y-before.y);a.distance+=moved;if(a.status==='supported')a.supportedDistance+=moved;}}
  if(all&&ids.every(id=>(unit(b,id)?.honroV4Distance||0)>80))root[rootkey][s.id]=true;
 }
