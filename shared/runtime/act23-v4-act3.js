@@ -16,7 +16,13 @@ function capture(app,id,point){const b=app.engine.b,key='v4:'+b.honroStage+':'+i
 function convoyCare(b){return m(b).convoyCare??={version:1,injured:{id:'objective',status:'walking',distance:0,supportedDistance:0,supportId:null,joins:0},baggage:{id:'20.family-baggage',owner:'convoy-mason',status:'with-mason',elapsed:0,transfers:0}};}
 const grounded=(b,u)=>alive(u)&&!u.airborne&&!u.jumping&&G.HONRO_CORE.validTerrainContactPose(b.terrain,u);
 function careReady(b){const q=convoyCare(b);return q.injured.reachedRest===true&&q.injured.supportedDistance>=80&&q.baggage.status==='carried'&&q.baggage.owner==='convoy-gilchan'&&q.baggage.transfers===1;}
-function careTick(app,dt){const b=app.engine.b,q=convoyCare(b),a=q.injured,u=unit(b,a.id),bag=q.baggage,rest=mark(b,'hold-convoy'),father=unit(b,'convoy-mason'),son=unit(b,'convoy-gilchan');if(!alive(u))return;
+// Reconcile the existing gesture before a reviewed acknowledgement can pause
+// escort walking. This never advances or completes a transfer.
+function reconcileHandoff(app){const b=app.engine.b,bag=convoyCare(b).baggage,father=unit(b,'convoy-mason'),son=unit(b,'convoy-gilchan');
+ if(bag.status!=='handoff'||grounded(b,father)&&grounded(b,son)&&V.near(father,mark(b,'hold-convoy'),220)&&V.near(father,son,180))return false;
+ bag.status='with-mason';bag.elapsed=0;delete father?.honroScenePose;delete son?.honroScenePose;app.engine.emit?.('save');return true;
+}
+function careTick(app,dt){reconcileHandoff(app);const b=app.engine.b,q=convoyCare(b),a=q.injured,u=unit(b,a.id),bag=q.baggage,rest=mark(b,'hold-convoy'),father=unit(b,'convoy-mason'),son=unit(b,'convoy-gilchan');if(!alive(u))return;
  // The existing anonymous convoy body represents the injured survivor. No
  // extra crowd or random damage is fabricated, and ordinary damage stays real.
  if(!a.stopped&&(a.distance>=120||u.hp<u.maxHp)){a.stopped=true;a.status='waiting-support';a.stop={x:u.x,y:u.y,round:b.round};V.slot(app,'20.injured-support',{source:u.id,point:a.stop});}
@@ -138,6 +144,6 @@ function draw(scene,c,b){const n=b.honroStage,root=m(b),time=scene.time||0;
  if(n===22&&b.honroV4RecordBundle){const q=b.honroV4RecordBundle;c.fillStyle='#c1b493';for(let i=0;i<3;i++)c.fillRect(q.x-36+i*26,q.y-44+i*5,22,33);}
  if(n===26||n===28){const p=n===26?b.honroV4Smoke:{x:5270,y:2080};if(p){c.save();c.fillStyle='#20292755';for(let i=0;i<4;i++){c.beginPath();c.ellipse(p.x+Math.sin(time*.35+i)*25,p.y-i*45-(time*10%35),32+i*8,55,0,0,Math.PI*2);c.fill();}c.restore();}}
 }
-const plugin={author,prepare,attach,use,stepSatisfied,tick,failure,complete,state,draw,convoyCare,careReady};for(const id of [19,20,21,22,23,24,25,26,27,28])V.register(id,plugin);
+const plugin={author,prepare,attach,use,stepSatisfied,tick,failure,complete,state,draw,convoyCare,careReady,reconcileHandoff};for(const id of [19,20,21,22,23,24,25,26,27,28])V.register(id,plugin);
 G.HonroAct23V4Act3=plugin;
 })(globalThis);

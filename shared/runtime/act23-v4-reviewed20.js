@@ -79,10 +79,10 @@ function drive(app){const b=app.engine.b,m=memory(b),q=api.memory(b),r=base(b),c
  if(api.done(b,'news')&&!app.profile.record?.some(r=>r.rowId==='A2.S20.JOURNAL.02'))api.journal(app,'A2.S20.JOURNAL.02');
  event('rest',['A2.S20.COMPLETE.01'],m.seated);
 }
-function before(app,a,dt){if(!a.safe(app))return false;observe(app,dt);drive(app);if(app.dialogue)return false;const b=app.engine.b,care=A.convoyCare(b);
+function before(app,a,dt){if(!a.safe(app))return false;A.reconcileHandoff(app);observe(app,dt);drive(app);if(app.dialogue)return false;const b=app.engine.b,care=A.convoyCare(b);
  // Keep the real waiting and handoff state visible until the corresponding
- // reviewed response is acknowledged; interrupted handoffs still recover in
- // the physical owner after that acknowledgement.
+ // reviewed response is acknowledged. Invalid gestures have already been
+ // cancelled by the physical owner, so escort reapproach is never gated.
  // The seat sequence owns these two walks until the witnessed handoff;
  // do not let the older escape waypoint pull the bearer back each tick.
  if(api.done(b,'time-6')&&outside(b)&&baggage(b)&&!memory(b).seated)return false;

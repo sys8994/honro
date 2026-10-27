@@ -42,3 +42,23 @@ console.log('PASS20 all-living roster, mutually exclusive counts, sequential sav
 // the default authored policy still permits no losses and cannot finish this.
 const casualty=app.engine.unit('objective');casualty.dead=true;casualty.hp=0;casualty.honroProtected=false;b.honroV4Reviewed20.permittedLosses=['objective'];Object.assign(b,{side:0,phase:'aim'});assert.deepEqual(plain(R.counts(b)),{survived_count:2,lost_count:1});assert(!allow('A2.S20.BRANCH.01'));assert(allow('A2.S20.BRANCH.02'));assert(api.begin(app,'loss-template-fixture',['A2.S20.POPUP.02']));assert.equal(app.dialogue.lines[0][1],'호송 결과: 바깥 도착 2명 · 돌아오지 못한 주민 1명');assert(P.rowsReviewed(app.dialogue.lines));const malformed=plain(app.dialogue.lines);malformed[0][2].templateVars.lost_count='1';assert(!P.rowsReviewed(malformed));finish();b.honroV4Reviewed20.permittedLosses=[];assert(!R.complete(b));console.log('PASS20 permitted-loss template fixture excludes the dead, renders exact integer slots and rejects string substitution');
 g.HONRO_ACT23_V4_PHASE_B_STAGES=[];assert(!P.enabled(20));assert.equal(V.mapRevision(20),320);
+
+// Audit pre-ack boundary: injury wins scene priority in the same care tick.
+g.HONRO_ACT23_V4_PHASE_B_STAGES=[20];
+for(const interrupted of ['distance','airborne']){
+ launch();at('EDGE.ARRIVALS_20_0');finish();pose(app.engine.unit('p-mage'),V.marker(b,'20.ring'));b.active='p-mage';assert(V.use(app,V.marker(b,'20.ring')));at('A2.S20.INTRO.01');finish();
+ for(const u of b.units)if(u.side===1){u.hp=0;u.dead=true;}
+ root=V.mem(b);for(const s of V.steps(b)){if(s.id==='escort-mid')break;root.done[s.id]=true;}root.convoyStarted=true;
+ for(const [i,u]of V.heroes(b).entries())pose(u,{x:7000-i*100,y:ground(7000-i*100)});
+ const patient=app.engine.unit('objective'),f=app.engine.unit('convoy-mason'),kid=app.engine.unit('convoy-gilchan');pose(patient,{x:4000,y:ground(4000)});pose(f,{x:5105,y:ground(5105)});pose(kid,{x:5200,y:ground(5200)});app.engine.hurt(patient,20);
+ at('A2.S20.MID.01');finish();at('A2.S20.MID.06');assert.equal(A.convoyCare(b).baggage.status,'handoff');assert(!P.memory(b).events.baggage);finish();
+ const item=A.convoyCare(b).baggage.id;app.engine.impulse(kid,350,-160);
+ if(interrupted==='distance'){for(let i=0;i<200;i++)app.engine.stepUnits(.025);assert(Math.abs(kid.x-f.x)>180);assert(C.validTerrainContactPose(b.terrain,kid));}
+ else{app.engine.stepUnits(.025);assert(!C.validTerrainContactPose(b.terrain,kid));assert(A.reconcileHandoff(app));for(let i=0;i<200;i++)app.engine.stepUnits(.025);}
+ resume();tick();const pending=A.convoyCare(b).baggage;assert.equal(pending.status,'with-mason');assert.equal(pending.elapsed,0);assert.equal(pending.owner,f.id);assert.equal(pending.transfers,0);assert.equal(pending.id,item);assert(!P.memory(b).events.baggage);
+ // A physical return to the same interaction pose permits the original bag.
+ const returned=app.engine.unit('convoy-gilchan'),parent=app.engine.unit('convoy-mason');pose(returned,{x:parent.x+95,y:ground(parent.x+95)});at('A2.S20.MID.02');finish();
+ for(let i=0;i<200&&A.convoyCare(b).baggage.status!=='carried';i++){tick();if(app.dialogue)finish();}
+ assert.equal(A.convoyCare(b).baggage.status,'carried');assert.equal(A.convoyCare(b).baggage.id,item);assert.equal(A.convoyCare(b).baggage.transfers,1);resume();tick(20);assert.equal(A.convoyCare(b).baggage.transfers,1);
+ console.log('PASS audit20 pre-ack '+interrupted+' cancellation, Continue and same bag exactly one transfer (controlled return pose)');
+}
