@@ -38,3 +38,7 @@ Stage5 담당이 수정할 수 있는 `shared/runtime/main.js`는 후속 현장 
 - 공개 상태: 기본 검수 flags/payload는 여전히 비활성이다. production 전환은 아직 하지 않았고, 장별 보류3건 및 부모 최종 QA/통합 승인 상태를 확인한 뒤 별도 최종 빌드/배포한다. 과거15243 exact 문자열 패치는 다시 실행하지 않는다.
 
 실제 공통 충돌 우선 파일은 `main.js`(29 retry 및 field menu 한 곳), `shared/build.mjs`(모듈/명시 flag), `interactions.js`(승인 목표 이유), `story.js`(생존/사망 경계/문서/bark), `rest-journey.js`, `act23-v4-reviewed.js`, `act23-v4.js`, `stake-crossing.js`, `act-endings.js`다. Stage5 담당의 지형·수역·엔진 계산은 이 후속 통합에서 수정하지 않았다. `terrain-domain.js`는 그대로다. master0f19는 여전히 이 브랜치의 공통 선조다.
+
+### 현장 선택 대화 관측 receipt 후속
+
+11장 혼합생존 예외를 계기로 수동 reader도 실제 DOM 표시 ID만 versioned receipt로 남긴다. event terminal/once·물리 진행과 목격 목록은 분리한다. Act2 공통 및21/22/factory provider의 slot/최종 이력도 동일 원칙이다. 종료 시 살아 있거나 최초 admission된 것만으로 목격을 보충하지 않는다. 구 저장의 진행·cursor/기존 확정 이력을 소급 수정하지 않고, 새 결과에서 근거 없는 admission을 표시 증거로 올리지 않는다. 명시적16장 witnessPresented와 live bark의 실제 표시 ID는 유지한다.

@@ -1,0 +1,25 @@
+/** Production App/Story/Engine; DOM/scheduling and controlled outcomes are
+ * doubles. These receipt checks do not claim physical chapter completion. */
+import assert from 'node:assert/strict';import vm from 'node:vm';import{readFile}from'node:fs/promises';import{appHarness,plain}from'./app-regression-helpers.mjs';
+const h=await appHarness(),g=h.g,V=g.HonroAct23V4,P=g.HonroAct23V4ReviewedChapters,R=g.HonroAct23V4Reviewed;
+vm.runInContext(await readFile('shared/runtime/act23-v4-field-talk.js','utf8'),g);g.HONRO_ACT23_V4_PHASE_A=true;g.HONRO_ACT23_V4_PHASE_B_CH11=true;g.HONRO_ACT23_V4_REVIEWED=JSON.parse(await readFile('shared/data/reviewed/act23-v4-ch11.json'));g.HONRO_ACT23_V4_PHASE_B_STAGES=[17];g.HONRO_ACT23_V4_REVIEWED_CHAPTERS={17:JSON.parse(await readFile('shared/data/reviewed/act23-v4-ch17.json'))};for(const n of[21,22,23]){g['HONRO_ACT23_V4_PHASE_B_CH'+n]=true;g['HONRO_ACT23_V4_REVIEWED_CH'+n]=JSON.parse(await readFile('shared/data/reviewed/act23-v4-ch'+n+'.json'));}g.HONRO_PROJECT=V.author(g.HONRO_PROJECT,{enabled:true});
+let app,b;const row=()=>app.dialogue?.lines[app.dialogue.index]?.[2]?.rowId;
+function launch(n){const profile=h.profileThrough(n-1);profile.seen['act2:first-spirit-encounter']=true;app=h.load(profile);app.launch(n);app.turnNotice=null;b=app.engine.b;Object.assign(b,{side:0,phase:'aim'});}
+function nextAll(){for(let i=0;app.dialogue&&i<30;i++)g.HonroStory.next(app);assert(!app.dialogue);}
+function openIntro(n){for(let i=0;i<300&&!row()?.startsWith('A'+(n<21?'2':'3')+'.S'+n+'.INTRO.');i++){if(app.dialogue)nextAll();Object.assign(b,{side:0,phase:'aim'});V.tick(app,.025);}assert.equal(row(),'A'+(n<21?'2':'3')+'.S'+n+'.INTRO.01');}
+function resume(){app.stopBattle();app=h.load(plain(app.profile));app.continue();app.turnNotice=null;b=app.engine.b;Object.assign(b,{side:0,phase:'aim'});}
+function history(n){V.recordOutcome(app,true);return app.profile.honroAct23V4History.stages[n].reviewedNarrative.rows;}
+for(const save of[false,true]){
+ launch(11);assert(g.HonroAct23V4FieldTalk.use(app,'occultist'));const key=app.dialogue.reviewedEvent,event=R.memory(b).events[key],ids=plain(event.ids);assert.equal(ids.length,3);assert.deepEqual(plain(event.presentedIds),[ids[0]]);
+ app.engine.hurt(app.engine.unit('p-archer'),999999);if(save)resume();g.HonroStory.next(app);assert.equal(row(),ids[2]);nextAll();const done=R.memory(b).events[key];assert.equal(done.status,'done');assert.deepEqual(plain(done.ids),ids);assert.deepEqual(plain(done.presentedIds),[ids[0],ids[2]]);assert.deepEqual(plain(done.retiredIds),[ids[1]]);assert.deepEqual(plain(history(11)),[ids[0],ids[2]]);assert.deepEqual(plain(V.mem(b).slots['11.reviewed.'+key].proof.rowIds),[ids[0],ids[2]]);
+ assert(!g.HonroAct23V4FieldTalk.available(app).some(c=>c.cls==='occultist'),'terminal once is separate from observed IDs');
+ console.log('PASS11 mixed living optional speakers, Engine.hurt before second row, '+(save?'saved Continue':'same reader')+', terminal/actual receipt/outcome separation');
+}
+launch(11);assert(g.HonroAct23V4FieldTalk.use(app,'occultist'));const optional=app.dialogue.reviewedEvent,one=row();g.HonroStory.finish(app);assert.equal(R.memory(b).events[optional].status,'done');assert.deepEqual(plain(history(11)),[one],'skip does not witness remaining living lines');R.memory(b).events.legacy={status:'done',ids:['EDGE.OPTIONAL_11_OCCULTIST_1'],presentedIds:['EDGE.OPTIONAL_11_OCCULTIST_1']};assert.deepEqual(plain(history(11)),[one],'old inferred/unversioned list is not new display evidence');
+for(const n of[17,21,22,23]){
+ launch(n);openIntro(n);const provider=n===17?P:R.provider(n),key=app.dialogue.reviewedEvent,first=row(),all=plain(provider.memory(b).events[key].ids),victim=n===22?'p-archer':'p-knight';app.engine.hurt(app.engine.unit(victim),999999);nextAll();const event=provider.memory(b).events[key],observed=plain(event.presentedIds);assert.equal(event.status,'done');assert(observed.includes(first));assert(observed.length<all.length);assert(event.retiredIds.length);assert.deepEqual(plain(history(n)).filter(id=>all.includes(id)),observed);for(const id of event.retiredIds)assert(!history(n).includes(id));
+ console.log('PASS'+n+' '+(n===17?'Act2 shared':n<=22?'dedicated':'factory')+' provider mixed-death outcome excludes every unpresented admitted row');
+}
+launch(23);openIntro(23);const provider=R.provider(23),first=row(),key=app.dialogue.reviewedEvent;g.HonroStory.finish(app);assert.equal(provider.memory(b).events[key].status,'done');assert.deepEqual(plain(history(23)).filter(id=>id.includes('INTRO.')),[first]);
+console.log('PASS scene skip closes event without observing undisplayed living rows; no new manuscript or physical facts');
+g.HONRO_ACT23_V4_PHASE_A=false;launch(1);g.HonroStory.draw(app);assert.equal(b.honroStage,1);assert(!Object.hasOwn(V.mem(b),'reviewed11'));console.log('PASS ordinary unreviewed App/Story entry stays outside reviewed receipts');

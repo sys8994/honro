@@ -4992,3 +4992,9 @@ commonReviewRevision의 첫 혼령 대기열은 생성 후 소단/sceneTarget가
 ## 2026-10-27 — v4 전체 원고 metadata와 비활성 빌드 경계 점검
 
 전체665장별+11공통 canonical의 ID/본문/원본 조건·전달 필드 및 alias/retire를 대조했다. 11장 runtime 데이터에서 빠졌던 원본 speaker_and_condition을 보존하고11–20장 씬 metadata에도 원본 필드를 전달한다. 본문/사건/실제 지식 가드는 변경하지 않으며 구 cursor는 기존 검증으로 계속 읽는다. `act23-v4-reviewed-source-all`의676행 전체 필드와 normal/PhaseA없음/private전체/30단독21alias payload 검사가 통과했다. 일반 전투에는 빈 bark 상태도 추가하지 않는다. 일반 및 명시적 opt-in 검수 빌드·로컬 Chromium 기본 비활성 Canvas 진입을 확인했다. 원고 일치는 전체 플레이/676행 실제 전달 완료의 증거가 아니며29창 경고/30곽진 이별/본문 없는 COMPAT30 보류는 별도 담당이다. 최종 통합 범위/충돌 파일은 `story/ACT23_V4_INTEGRATION_20261027.md`에 남겼다. master/Pages는 미발행이다.
+
+## 2026-10-27 — 현장 선택 대화 미표시 행의 허위 목격 기록 수정
+
+11장 소단 선택3행 중 설오가2행 표시 전에 사망하면 reader는 해당 행을 버렸지만 event.ids 전체가 결과 목격으로 기록됐다. Story가 현재 행 DOM을 만든 직후에만 versioned presentedIds를 추가하고, 대화 종료/once와 관측 receipt를 분리한다. slot/결과 이력은 실제 표시 ID만 쓰며 admission·끝날 때 생존·skip으로 미표시 행을 관측 처리하지 않는다. Act2 공통과21/22 전용·23이후 factory의 같은 패턴도 함께 고쳤다. 구 cursor/물리/완료 상태는 보존하며, 과거 admission만 있는 데이터는 새 표시 증거로 추정하지 않는다. 16장 기존 실제 witnessPresented는 명시적 과거 표시 증거로 보존한다.
+
+`act23-v4-presented-receipts`는 실제 Engine.hurt의11장 혼합생존/Continue/slot·controlled outcome,17/21/22/23 같은 provider 결과, 살아 있는 미표시 행의 skip 및 구 inferred 목록 배제/일반 Story 진입을 통과했다. 기존 field-talk/live-barks/16장 필수 노승5행 검사도 통과했다. private Game/Workshop 빌드 및 Chromium 실제 메뉴·키 입력·혼합생존 결과에서0/2행만 기록되는 것을 확인했다(pageerror0). fixture/DOM·스케줄 double/controlled outcome과 실제 로컬 Chromium을 구분하며 정상 전체 플레이/공개 배포는 아니다. 원고는 변경하지 않았다.
