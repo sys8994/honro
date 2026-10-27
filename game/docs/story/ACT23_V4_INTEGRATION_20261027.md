@@ -15,7 +15,7 @@
 
 `act23-v4-reviewed.js`의 provider dispatch, `story.js`의 common 생존/기예/관측 및18장 사망 경계, `rest-journey.js`의 Act2/Act3 preview와20장 쉼터를 함께 보존한다. stake retry는 검수 목격/표시 상태만 기존 물리 checkpoint 전후에 복원한다.29장 App.retry, 승인 목표 이유, 문서 span/actor paint, 실제 profile의30장 ending 조회를 연결하며 Act2 ending은 유지한다. 새 미검수 대사나 원고 수정은 없다.
 
-Stage5의 `terrain-domain.js`, `stage5-waterfall-geometry.js`, `stage5-waterfall.js`, `stage5-positioning.js`는 공개0f19 바이트와 같다. 보류 중인 미술/수역 작업을 병합하지 않았다. 빌드는 성공 발행59개 generation metadata와 보호 immutable 파일을 보존한다. 후보를 새 발행으로 등록하지 않았다.
+Stage5의 `terrain-domain.js`, `stage5-waterfall-geometry.js`, `stage5-waterfall.js`, `stage5-positioning.js`는 공개0f19 바이트와 같다. 보류 중인 미술/수역 작업을 병합하지 않았다. 기존 성공 발행59개 generation metadata를 보존하고, 공개0f19의 실제 deploy 성공(2026-10-26T22:55:40Z, Actions40415887989)을 추가 등록해60개와 보호 immutable 파일을 유지한다. 후보를 새 발행으로 등록하지 않았다.
 
 ## 검증 결과와 한계
 
@@ -23,7 +23,8 @@ Stage5의 `terrain-domain.js`, `stage5-waterfall-geometry.js`, `stage5-waterfall
 - 집중 App/Engine fixture:11장 실제받침 혼생성/회복,16장 담허·설오 사망과 핵심5행,17장 결원 brace/withdrawal,18장 실제 fatal 경계와 무발화 경계,20장 pre-ack 공중·접지 취소/같은짐1회,공통 stale안내,25/27 자유순서·개인기록,26/28/29/30 물리·불길·retry·배·이별·호환,실제표시 receipt·선택메뉴·live bark를 통과했다.
 - production App fixture:구216→516 전투 재시작에서 성장/XP/SP/ranks/장착/party/기록 보존,같은 검수 revision의 두번 Continue에서HP/focus/위치/session 완전보존,실제 과거Lv17 23장 export→423 재시작에서 지급성장·장착·완료·기록 보존을 통과했다.
 - 기본 빌드 Chromium:Game/Workshop20장 flag·676 payload,stage1 원래 전달/no empty bark state,Canvas/pageerror0. live bark 중 실제 키보드 이동·순서/cursor reload·대상 사망 제거,실제 field 메뉴/Enter/390px,29장 native 경고/공격·저장·모바일,30장 실제 두 항차·NPC보행·곽진곁3행·저장/모바일·과거기록 보존이 통과했다. Game·Workshop 빌드 및 TypeScript typecheck도 통과했다.
-- 추가 실행한 `stage23-escort-growth-resume.mjs`의 첫 assertion은 과거 snapshot 전체가SP migration만 받고 그대로 Continue된다고 기대해 실패했다. 해당 실제 snapshot은 map revision이 없어 현행 공개 지형 계약에서도 재시작 대상이다. rollout-off model에서도 재현했다. 이 오래된 검사는 수정하지 않았으며 production-resume 검사가 현행 재시작·성장/장착 보존을 따로 통과했다.
+- `stage23-escort-growth-resume.mjs`의 낡은 exact-snapshot assertion을 현행 계약으로 갱신했다. detached 공개0f19에서 원본 검사의 동일 첫 assertion 실패와 missing map revision→same-chapter restart를 직접 확인했다. 갱신한 전체 검사도 공개0f19와 후보 양쪽에서 통과했다. 과거 snapshot의 성장/XP/SP/ranks/장착/완료/기록을 검증하고, 현재 revision으로 시작한 뒤 HP/focus/이동량/item을 달리해4회 export/import/Continue/mount에서 전투 전체가 같음을 계속 요구한다. 기존 fresh-entry v3 XP 경계와 crit normalization 범위 검사도 유지한다. 지급ledger는 기존 credits/limits/clear를 유지하면서23장 legacy policy3 표식만 허용한다.
+
 
 모든 실행 결과는 제어 fixture와 로컬 빌드 검증이다. 정상30장 자동완주·공개 Pages 동작 검증은 하지 않았다. 부모가 감사5건과18장 마지막말,11장 혼합생존 receipt를 별도 확인했다.
 

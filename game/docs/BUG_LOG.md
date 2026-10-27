@@ -5012,3 +5012,10 @@ commonReviewRevision의 첫 혼령 대기열은 생성 후 소단/sceneTarget가
 - 변경: story-release 정책을 true로 전환해 Game/Workshop의 검수676행·20장 기본값을 활성화했다. 명시 rollback/private opt-in/PhaseA cap은 유지한다. 새 배포 등록 없이 보호 발행 그래프를 유지한 생성물을 빌드했다.
 - 확인: source676/alias/retire,집중11/16/17/18/20/common/25–30,receipt/menu/live,구저장성장·장착·동일revision Continue,기본676 Game/Workshop Chromium,29창/30배·근접이별/모바일,typecheck·build 통과. 공개 Stage5 주요소스와59개 발행generation metadata는 바이트 보존했다.
 - 한계:과거23장 exact-snapshot 검사1건은 map revision 없는 옛 저장을 그대로 재개한다고 기대해 실패(rollout-off에서도 동일).현행 재시작+성장/장착보존은 별도 통과.전체 정상플레이·공개배포는 미실행이며 부모 후보확인 뒤 진행한다.
+
+
+### 2026-10-27 · 과거23장 저장 검사 계약 갱신
+
+- 근거: 공개master0f19의 detached 원본에서도 동일Lv17 snapshot에 map revision이 없어 첫 exact-battle assertion이 실패했다. 직접 probe가 current23=1, obsolete=true, battle만 폐기하고 같은23장 재시작을 확인했다.
+- 변경: 낡은 첫 assertion을 성장/XP/SP/ranks/장착/완료/기록 보존과 현행 지형 재시작으로 갱신했다. legacy 지급ledger의 policy3 표식만 정규화하고 나머지 credits/limits/clear를 비교한다. 현행 전투의 서로 다른HP/focus/이동/item을 네번export/import/Continue/mount해 전체전투 동등성을 요구한다. 기존 fresh-entry XP/crit/scope 검사도 유지한다.
+- 확인: 갱신 전체검사를 공개0f19와 통합후보에서 통과했다. production-resume/receipt/source/release-policy 및빌드/typecheck를 재확인한다. 공개0f19 실제성공 배포graph도 보호보존에 추가한다. 스토리원고/실행코드/폭포후보 변경은 없다.

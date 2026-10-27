@@ -1,6 +1,7 @@
 /** Actual Lv17 production export plus explicit legacy-field/XP boundary probes.
  * DOM/storage are App harness doubles. The real source run stopped at the
- * failed Continue; this is not normal completion or corrected-geometry proof. */
+ * failed Continue; obsolete geometry restarts while owned growth survives.
+ * Exact battle continuity applies only after the current revision is stamped. */
 import assert from 'node:assert/strict';
 import {readFile,mkdir,writeFile} from 'node:fs/promises';
 import {createHash} from 'node:crypto';
@@ -11,10 +12,24 @@ const hash=b=>createHash('sha256').update(b).digest('hex'),crit=u=>({critChance:
 assert.equal(saved.sourceSha256,'db3399a0d18471af318787703dd381a3cf32d74fdd471f8ef70f91b60a0994cf');assert.equal(saved.provenance.sourceCommit,'aca4e414168f0daa54695b0953db0b77fb9203f9');assert.equal(saved.round,16);assert.equal(saved.frames,40593);
 const bodies=b=>b.units.filter(u=>u.side===0&&!u.summoned),legacy=u=>crit(C.heroStats({xp:C.xpAtLevel(u.level||1),ranks:u.ranks||{}},u.cls)),trained=(b,u)=>crit(C.heroStats({...b.heroes[u.cls],ranks:u.ranks||{}},u.cls,u.loadout));
 async function check(name,fn){await fn();rows.push(name);console.log('PASS',name);}
-await check('actual Lv17 dock-mid export receives only the authorized SP migration, then stays exact across four resumes',async()=>{
- let app=h.load(saved.profile);app.continue();assert.deepEqual(plain(app.engine.b),plain(C.applySpBalanceMigration(plain(saved.profile.honroBattle))));assert.deepEqual(plain(app.engine.b.heroes),saved.profile.honroBattle.heroes);
+await check('actual Lv17 dock-mid export restarts obsolete geometry while preserving paid growth, SP, equipment and completion; current revision stays exact across four resumes',async()=>{
+ const old=plain(saved.profile),snapshot=old.honroBattle,revision=g.HonroCampaignMapRevision.current(23);
+ // The identical missing-revision fixture fails the former exact-snapshot
+ // assertion on public0f19 too. Never stamp old terrain just to bypass discard.
+ assert.equal(snapshot.honroCampaignMapRevision,undefined);assert(revision>0);assert(g.HonroCampaignMapRevision.obsolete(snapshot));
+ let app=h.load(old);assert.equal(app.profile.honroBattle,null);assert.equal(app.profile.honroMapRestart,23);
+ for(const cls of old.recruited){const hero=app.profile.heroes[cls];assert.equal(hero.xp,Math.max(old.heroes[cls].xp,snapshot.heroes[cls].xp));assert.deepEqual(plain(hero.ranks),old.heroes[cls].ranks);assert.equal(hero.statTraining,old.heroes[cls].statTraining);assert.equal(C.pointsSpent(hero,cls),C.pointsSpent(old.heroes[cls],cls));assert.equal(C.pointsEarned(hero),C.pointsEarned(snapshot.heroes[cls]));}
+ for(const key of ['loadouts','cleared','party','recruited','record','seen'])assert.deepEqual(plain(app.profile[key]),old[key],key+' preserved');
+ assert.deepEqual(plain(app.profile.honroGrowth),snapshot.honroGrowth.ledger);const owned=plain(app.profile.heroes),gear=plain(app.profile.loadouts),ledger=plain(app.profile.honroGrowth);
+ // initialize stamps the already-paid historical stage as immutable policy3.
+ // Its credits, limits and cleared flags must otherwise remain byte-identical.
+ ledger.stages[23].policy??=3;
+ app.continue();h.finish(app);assert.equal(app.engine.b.honroStage,23);assert.equal(app.engine.b.honroCampaignMapRevision,revision);assert(!app.engine.b.cast);assert(!app.engine.b.projectiles.length);assert.deepEqual(plain(app.engine.b.heroes),owned);assert.deepEqual(plain(app.profile.loadouts),gear);assert.deepEqual(plain(app.profile.honroGrowth),ledger);
  for(const u of bodies(app.engine.b)){assert.equal(u.level,17);assert.equal(app.engine.b.heroes[u.cls].statTraining,6);assert.deepEqual(crit(u),crit(C.heroStats(app.engine.b.heroes[u.cls],u.cls)));assert.notDeepEqual(crit(u),legacy(u));}
- for(let i=0;i<4;i++){const before=plain(app.engine.b);P.initialize(app.engine.b,app.profile);assert.deepEqual(plain(app.engine.b),before);app.export();const exported=await h.exported();await h.import(exported);assert.equal(app.lastNotice,'기록을 불러왔어.');app.continue();assert.deepEqual(plain(app.engine.b),before);app.mount(app.engine.b);assert.deepEqual(plain(app.engine.b),before);}
+ // Non-default resources make the same-revision assertion detect an accidental
+ // fresh rebuild, even if its geometry/hero data happened to compare equal.
+ const archer=app.engine.unit('p-archer');archer.hp-=31;archer.focus-=7;archer.moveLeft=37;app.engine.b.items.heal=1;
+ for(let i=0;i<4;i++){const before=plain(app.engine.b);P.initialize(app.engine.b,app.profile);assert.deepEqual(plain(app.engine.b),before);app.export();const exported=await h.exported();await h.import(exported);assert.equal(app.lastNotice,'기록을 불러왔어.');app.continue();assert.deepEqual(plain(app.engine.b),before);app.mount(app.engine.b);assert.deepEqual(plain(app.engine.b),before);assert.deepEqual(plain(app.profile.heroes),owned);assert.deepEqual(plain(app.profile.loadouts),gear);assert.deepEqual(plain(app.profile.cleared),old.cleared);}
 });
 await check('fresh entry includes trained critical stats and an explicit v3 XP grant applies the same Lv17 stats',async()=>{
  let app=h.load({...plain(g.AppRegression.fresh()),...plain(escortEntryProfile(g).profile)});app.launch(23);h.finish(app);const e=app.engine,b=e.b;
