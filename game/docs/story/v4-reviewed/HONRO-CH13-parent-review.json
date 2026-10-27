@@ -1,0 +1,238 @@
+{
+  "stage": 13,
+  "status": "35개 문구 최종 확정; 구현가드 검증은 별도",
+  "input_ids": 35,
+  "decisions": [
+    {
+      "id": "EDGE.ARRIVALS_13_0",
+      "decision": "CHANGE",
+      "old": "돌림진 너머로 석문과 깊은 인양굴이 드러났다. 피 묻은 밧줄을 붙든 석공 곁으로 들린 것들이 다가왔다.",
+      "candidate": "돌림진 너머로 석문과 깊은 인양굴이 드러났다. 피 묻은 밧줄을 붙든 사람 곁으로 들린 것들이 다가왔다.",
+      "reason": "안전 이동 후 알게 될 직업을 도착 서술이 선취하지 않음."
+    },
+    {
+      "id": "A2.S13.BRANCH.01",
+      "decision": "KEEP"
+    },
+    {
+      "id": "A2.S13.BRANCH.02",
+      "decision": "KEEP"
+    },
+    {
+      "id": "A2.S13.BRANCH.03",
+      "decision": "KEEP"
+    },
+    {
+      "id": "A2.S13.INTRO.01",
+      "decision": "KEEP"
+    },
+    {
+      "id": "A2.S13.INTRO.02",
+      "decision": "KEEP"
+    },
+    {
+      "id": "A2.S13.MID.01",
+      "decision": "KEEP"
+    },
+    {
+      "id": "A2.S13.MID.02",
+      "decision": "KEEP"
+    },
+    {
+      "id": "A2.S13.MID.03",
+      "decision": "CHANGE",
+      "old": "손을 펴게. 붙은 것은 우리가 잡겠네.",
+      "candidate": "조금만 버티게. 붙은 것은 우리가 떼겠네.",
+      "reason": "혼 분리 전 밧줄을 쥔 손을 펴라는 명령이 추락 위험과 충돌할 수 있어 제거. 하게체 유지."
+    },
+    {
+      "id": "A2.S13.MID.04",
+      "decision": "CHANGE",
+      "old": "떨어졌어요. 이제 줄을 놓아도 돼요.",
+      "candidate": "떨어졌어요. 제 쪽으로 천천히 오세요.",
+      "reason": "혼 분리 성공만으로 밧줄 해제 안전성을 단정하지 않고 다음 보호 이동으로 연결. 실제 지지/안전 동선 확인은 별도 필요."
+    },
+    {
+      "id": "A2.S13.MID.05",
+      "decision": "KEEP"
+    },
+    {
+      "id": "A2.S13.MID.06",
+      "decision": "KEEP"
+    },
+    {
+      "id": "A2.S13.MID.07",
+      "decision": "KEEP"
+    },
+    {
+      "id": "A2.S13.MID.08",
+      "decision": "KEEP"
+    },
+    {
+      "id": "A2.S13.MID.09",
+      "decision": "KEEP"
+    },
+    {
+      "id": "A2.S13.MID.10",
+      "decision": "KEEP"
+    },
+    {
+      "id": "A2.S13.MID.11",
+      "decision": "KEEP"
+    },
+    {
+      "id": "A2.S13.MID.12",
+      "decision": "KEEP"
+    },
+    {
+      "id": "A2.S13.COMPLETE.01",
+      "decision": "KEEP"
+    },
+    {
+      "id": "A2.S13.COMPLETE.02",
+      "decision": "KEEP"
+    },
+    {
+      "id": "A2.S13.OBJECTIVE.01",
+      "decision": "CHANGE",
+      "old": "석공에게 접근하는 적을 막고 붙은 혼 분리",
+      "candidate": "밧줄을 잡은 사람에게 접근하는 적을 막고 붙은 혼 분리",
+      "reason": "구조 전 직업 선취 제거. 대상 식별은 밧줄로 유지."
+    },
+    {
+      "id": "A2.S13.OBJECTIVE.02",
+      "decision": "CHANGE",
+      "old": "석공을 바위 안쪽 안전자리까지 보호",
+      "candidate": "구조한 사람을 바위 안쪽 안전자리까지 보호",
+      "reason": "안전자리 도착 전 직업 선취 제거."
+    },
+    {
+      "id": "A2.S13.OBJECTIVE.03",
+      "decision": "KEEP"
+    },
+    {
+      "id": "A2.S13.POPUP.01",
+      "decision": "CHANGE",
+      "old": "석공은 살아 있습니다. 붙은 혼을 분리해 구출하세요.",
+      "candidate": "이 사람은 살아 있습니다. 붙은 혼을 분리해 구출하세요.",
+      "reason": "구조 전 직업 선취 제거."
+    },
+    {
+      "id": "A2.S13.FAIL.01",
+      "decision": "CHANGE",
+      "old": "석공을 구하지 못했습니다. 구조 지점에서 다시 시작합니다.",
+      "candidate": "밧줄을 잡았던 사람을 구하지 못했습니다. 구조 지점에서 다시 시작합니다.",
+      "reason": "구조 실패 시에도 미공개 직업을 추가하지 않음."
+    },
+    {
+      "id": "A2.S13.JOURNAL.01",
+      "decision": "KEEP"
+    },
+    {
+      "id": "EDGE.OPTIONAL_13_ARCHER_0",
+      "decision": "KEEP"
+    },
+    {
+      "id": "EDGE.OPTIONAL_13_ARCHER_1",
+      "decision": "KEEP"
+    },
+    {
+      "id": "EDGE.OPTIONAL_13_MAGE_0",
+      "decision": "KEEP"
+    },
+    {
+      "id": "EDGE.OPTIONAL_13_MAGE_1",
+      "decision": "CHANGE",
+      "old": "막힌 천장에서는 번개가 바위에 걸리네. 호리병만 맞게 되지.",
+      "candidate": "막힌 천장에서는 번개가 바위에 걸리네. 호리병만 던져 맞히게 되지.",
+      "reason": "호리병 자체가 피격된다는 오독 제거. 기존 원문은 호리병을 던져 맞히는 뜻이며 새 술법 설정 추가 없음."
+    },
+    {
+      "id": "EDGE.OPTIONAL_13_MAGE_2",
+      "decision": "KEEP"
+    },
+    {
+      "id": "EDGE.OPTIONAL_13_MAGE_3",
+      "decision": "KEEP"
+    },
+    {
+      "id": "EDGE.OPTIONAL_13_KNIGHT_0",
+      "decision": "KEEP"
+    },
+    {
+      "id": "EDGE.OPTIONAL_13_OCCULTIST_0",
+      "decision": "KEEP"
+    },
+    {
+      "id": "EDGE.OPTIONAL_13_OCCULTIST_1",
+      "decision": "KEEP"
+    }
+  ],
+  "pass1_rejected": [
+    {
+      "id": "EDGE.OPTIONAL_13_MAGE_0",
+      "reason": "설오가 담허에게 묻는 정상 질문. ID 묶음을 화자로 오독했고 저래는 오타를 추가함."
+    },
+    {
+      "id": "EDGE.OPTIONAL_13_OCCULTIST_1",
+      "reason": "아직 안 들림→들리거든 알려 달라는 정상 조건응답. 기척으로 범위를 넓힐 이유 없음."
+    },
+    {
+      "id": "EDGE.OPTIONAL_13_OCCULTIST_2",
+      "reason": "실제 입력에 없는 창작 ID. 커버리지 및 검수 대상에서 제외."
+    }
+  ],
+  "coverage_note": "실제 입력 35개를 모두 확인. 1차 응답은 실제35개 외 창작1개를 추가했고 소제목18/11개도 실제20/9개와 불일치. 자체32KEEP/3CHANGE 집계를 신뢰하지 않음.",
+  "implementation_questions": [
+    "밧줄을 잡은 사람의 실제 발 지지와 안전자리 동선이 확보된 뒤 MID.04 및 보호 이동이 시작되는가?",
+    "안쪽 빗장은 기존 상부 우회로로 도달 가능한가? 벽 관통 조작 금지.",
+    "안전자리 도착 전 화자명/actor label도 사람 등 미공개 직업 표기로 처리 가능한가?",
+    "모든 문구 alias가 별도 발동조건을 보존하는가?"
+  ],
+  "sources": [
+    "HONRO-CH13-PASS1-20261027-response.md",
+    "HONRO_13장_대사검수.txt",
+    "internal_stage13_map.json",
+    "sources/honro-act2-v4-plan.md"
+  ],
+  "external_send": "프롬프트 승인됨. 전송은 recover_gemini_review 담당. 이 에이전트는 전송하지 않음.",
+  "parent_approval": "2026-10-27 00:50 UTC 부모 메시지 승인",
+  "pass1_correction_comparison": {
+    "file": "HONRO-CH13-PASS1-CORRECTION-20261027-response.md",
+    "actual_unique_ids": 35,
+    "missing": [],
+    "extra": [],
+    "assessment": "실제35 ID KEEP으로 정정했고 화자/창작ID 오류는 해소. 다만 오타가 정돈됐다는 서술은 모델 자신의 오류를 입력 수정처럼 표현한 것. 구조 전 직업 선취, 줄 해제 안전, 호리병 문장 중의성에 대한 근거 있는 답이 없어 부모 승인8수정 후보를 변경할 이유가 없음. 최종 검수로 간주하지 않음.",
+    "candidate_changed": false
+  },
+  "pass3_independent_comparison": {
+    "file": "HONRO-CH13-PASS3-20261027-response.md",
+    "actual_unique_ids": 35,
+    "missing": [],
+    "extra": [],
+    "model_decisions": "KEEP34 CHANGE1",
+    "proposed_change": "EDGE.OPTIONAL_13_MAGE_1 → 호리병만 떨어지고 끝이지.",
+    "recommendation": "기각 권고; 부모 승인 후보 유지. 부모에게 사유 전달함.",
+    "evidence": "internal_stage13_map.json original_edges MAGE_1 oldtext: 천장이 꽉 막힌 굴에선 번개가 바위에 가로막히네. 호리병만 던져서 맞히는 꼴이 되지. (source snapshot c7aa5850)",
+    "reason": "현재 원문의 물리 타격 의미를 무용지물 낙하로 바꾸며, 근거로 제시한 10/23 카탈로그 문구는 현재 입력에 없는 외부 기억이다. 현 후보를 엉뚱한 행동이라고 단정할 근거 없음.",
+    "candidate_changed": false
+  },
+  "runtime_followup": {
+    "status": "MAGE_1만 보류; 나머지34 final 후보 JSON 분리",
+    "evidence": "HONRO-CH13-MAGE1-code-evidence.json",
+    "finding": "현재 master gourdSky는 충돌시 skyWait로 전환하고 즉시return. 직접 호리병 피해 없음; 상부 지형 충돌점에서 지연blast. 기존원문만으로 후보를 유지하자는 앞 권고는 이 코드 근거 확인 후 철회. Gemini 낙하종료안도 단정 불가.",
+    "parent_requested_candidate": "막힌 천장에서는 번개가 바위에 걸리네.",
+    "next": "부모가 브라우저 담당에게 이 기존 첫 문장만 남긴 단축안 추가 최종검수를 요청했음; 응답 후35행 확정."
+  },
+  "pass3_addendum": {
+    "file": "HONRO-CH13-PASS3-ADDENDUM-20261027-response.md",
+    "target_match": true,
+    "model": "3.5 Flash-Lite",
+    "url": "Gemini private review conversation (evidence retained in owner Library)",
+    "gemini_change": "막힌 천장에서는 번개가 걸리네.",
+    "decision": "기각",
+    "reason": "바위에는 앞 질문의 암벽 및 상부 지형차폐와 호응. 주어 번개이므로 호리병 효용 단정과 무관.",
+    "parent_approved_final": "막힌 천장에서는 번개가 바위에 걸리네.",
+    "wording_pending": false
+  }
+}

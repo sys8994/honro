@@ -1,0 +1,358 @@
+{
+  "stage": 26,
+  "status": "Gemini PASS1 → 제작측 독립검토 → Gemini PASS3 → 부모 최종채택 완료; 구현검증 별도",
+  "rows": [
+    {
+      "id": "A3.S26.INTRO.01",
+      "speaker_channel": "휘겸 · dialogue",
+      "condition": "stage_enter; 휘겸·소단만 공방과 사당 쪽으로 진입",
+      "text": "안에서 부르는 소리요. 공방 문부터 열어야겠소.",
+      "audience": "현장 동행",
+      "delivery": "scene",
+      "once": true,
+      "group": "A3.S26.INTRO",
+      "order": 1
+    },
+    {
+      "id": "A3.S26.INTRO.02",
+      "speaker_channel": "소단 · dialogue",
+      "condition": "stage_enter; 휘겸·소단만 공방과 사당 쪽으로 진입",
+      "text": "사람 몸에 혼이 붙어 있어요. 아직 살아 계세요.",
+      "audience": "현장 동행",
+      "delivery": "scene",
+      "once": true,
+      "group": "A3.S26.INTRO",
+      "order": 2
+    },
+    {
+      "id": "A3.S26.INTRO.03",
+      "speaker_channel": "휘겸 · dialogue",
+      "condition": "stage_enter; 휘겸·소단만 공방과 사당 쪽으로 진입",
+      "text": "그 사람에게는 칼을 대지 않겠소. 가까이 갈 길을 봐 주시오.",
+      "audience": "현장 동행",
+      "delivery": "scene",
+      "once": true,
+      "group": "A3.S26.INTRO",
+      "order": 3
+    },
+    {
+      "id": "A3.S26.DANGER.01",
+      "speaker_channel": "소단 · dialogue",
+      "condition": "resident_threatened; 주민 위의 구조물이 흔들리거나 적이 접근; 실제 위험 효과가 보임; 머리 위 구조물이 실제 흔들림/붕괴 예고를 보일 때만. 적접근만 있는 경우에는 이 붕괴경고를 재생하지 않음.",
+      "text": "머리 위가 무너져요!",
+      "audience": "현장 동행",
+      "delivery": "bark",
+      "once": true,
+      "group": "A3.S26.DANGER",
+      "order": 1
+    },
+    {
+      "id": "A3.S26.DANGER.02",
+      "speaker_channel": "휘겸 · dialogue",
+      "condition": "resident_threatened; 주민 위의 구조물이 흔들리거나 적이 접근; 실제 위험 효과가 보임; DANGER.01과 같은 실제 머리 위 붕괴위협 및 실제 안전한 탁자 피신 공간이 존재할 때.",
+      "text": "탁자 아래로 몸을 낮추시오!",
+      "audience": "현장 동행",
+      "delivery": "bark",
+      "once": true,
+      "group": "A3.S26.DANGER",
+      "order": 2
+    },
+    {
+      "id": "A3.S26.RESCUE.01",
+      "speaker_channel": "주민 · dialogue",
+      "condition": "resident_spirit_separated; 소단이 주민의 혼을 분리했고 주민이 살아 있음; 주민 자신의 혼이 아니라 몸에 붙은 다른 혼이 실제 분리된 뒤; 주민 생존 및 실제 이동 가능.",
+      "text": "다리가... 움직입니다.",
+      "audience": "현장 동행",
+      "delivery": "scene",
+      "once": true,
+      "group": "A3.S26.RESCUE",
+      "order": 1
+    },
+    {
+      "id": "A3.S26.RESCUE.02",
+      "speaker_channel": "소단 · dialogue",
+      "condition": "resident_spirit_separated; 소단이 주민의 혼을 분리했고 주민이 살아 있음; 주민에게 붙은 혼 실제 분리 및 살아 있는 주민이 접근 가능한 문밖 경로 존재.",
+      "text": "제 목소리를 따라오세요. 문 밖으로 나갈 수 있어요.",
+      "audience": "현장 동행",
+      "delivery": "scene",
+      "once": true,
+      "group": "A3.S26.RESCUE",
+      "order": 2
+    },
+    {
+      "id": "A3.S26.RESCUE.03",
+      "speaker_channel": "휘겸 · dialogue",
+      "condition": "resident_spirit_separated; 소단이 주민의 혼을 분리했고 주민이 살아 있음; 주민에게 붙은 혼 실제 분리 및 안전한 앞길 확보 후.",
+      "text": "앞길은 열렸소. 서두르되 뛰지는 마시오.",
+      "audience": "현장 동행",
+      "delivery": "scene",
+      "once": true,
+      "group": "A3.S26.RESCUE",
+      "order": 3
+    },
+    {
+      "id": "A3.S26.TESTIMONY.01",
+      "speaker_channel": "휘겸 · dialogue",
+      "condition": "ancestor_testimony_acquired; 구조 동선 안의 가문 물건과 선조 증언을 확보; 주민은 안전하고 위협 해소",
+      "text": "우리 선조의 글씨요. 이 문장도 같은 것이오.",
+      "audience": "현장 동행",
+      "delivery": "scene",
+      "once": true,
+      "group": "A3.S26.TESTIMONY",
+      "order": 1
+    },
+    {
+      "id": "A3.S26.TESTIMONY.02",
+      "speaker_channel": "휘겸 · dialogue",
+      "condition": "ancestor_testimony_acquired; 구조 동선 안의 가문 물건과 선조 증언을 확보; 주민은 안전하고 위협 해소",
+      "text": "“저문골에는 군막도 무기고도 없었다. 대도사를 따라온 자들이 민가에서 사람들을 끌어냈다.”",
+      "audience": "현장 동행",
+      "delivery": "scene",
+      "once": true,
+      "group": "A3.S26.TESTIMONY",
+      "order": 2
+    },
+    {
+      "id": "A3.S26.TESTIMONY.03",
+      "speaker_channel": "소단 · dialogue",
+      "condition": "ancestor_testimony_acquired; 구조 동선 안의 가문 물건과 선조 증언을 확보; 주민은 안전하고 위협 해소",
+      "text": "이 문고리들도 그 집들에서 떼어 온 걸까요?",
+      "audience": "현장 동행",
+      "delivery": "scene",
+      "once": true,
+      "group": "A3.S26.TESTIMONY",
+      "order": 3
+    },
+    {
+      "id": "A3.S26.TESTIMONY.04",
+      "speaker_channel": "휘겸 · dialogue",
+      "condition": "ancestor_testimony_acquired; 구조 동선 안의 가문 물건과 선조 증언을 확보; 주민은 안전하고 위협 해소; 주민 안전 도달·위협해소 후 선조 증언과 해당 생활물자 실제 대조; 이 시점 대도사의 학살 실행 최종확정/고관승인/한태록 책임으로 확대하지 않음.",
+      "text": "현장에 남은 물건도 이 증언과 같소. 무장한 무리를 진압했다는 보고는 거짓이오.",
+      "audience": "현장 동행",
+      "delivery": "scene",
+      "once": true,
+      "group": "A3.S26.TESTIMONY",
+      "order": 4
+    },
+    {
+      "id": "A3.S26.TESTIMONY.05",
+      "speaker_channel": "소단 · dialogue",
+      "condition": "ancestor_testimony_acquired; 구조 동선 안의 가문 물건과 선조 증언을 확보; 주민은 안전하고 위협 해소",
+      "text": "그분이 남긴 글을 가져가요. 아래 두 분도 보셔야 해요.",
+      "audience": "현장 동행",
+      "delivery": "scene",
+      "once": true,
+      "group": "A3.S26.TESTIMONY",
+      "order": 5
+    },
+    {
+      "id": "A3.S26.FIRE.01",
+      "speaker_channel": "소단 · dialogue",
+      "condition": "office_smoke_visible; 관아 쪽 실제 연기가 화면에 보임",
+      "text": "관아 지붕에서 연기가 나요.",
+      "audience": "현장 동행",
+      "delivery": "bark",
+      "once": true,
+      "group": "A3.S26.FIRE",
+      "order": 1
+    },
+    {
+      "id": "A3.S26.FIRE.02",
+      "speaker_channel": "휘겸 · dialogue",
+      "condition": "office_smoke_visible; 관아 쪽 실제 연기가 화면에 보임",
+      "text": "뒤뜰로 가야겠소. 두 사람이 올라올 길까지 막히겠소.",
+      "audience": "현장 동행",
+      "delivery": "bark",
+      "once": true,
+      "group": "A3.S26.FIRE",
+      "order": 2
+    },
+    {
+      "id": "A3.S26.EXIT.01",
+      "speaker_channel": "휘겸 · dialogue",
+      "condition": "workshop_exit_reached; 주민 구출·짧은 증언 완료; 두 사람이 기존 뒤뜰 접근 출구에 도달",
+      "text": "뒤뜰로 난 길은 아직 열려 있소.",
+      "audience": "현장 동행",
+      "delivery": "bark",
+      "once": true,
+      "group": "A3.S26.EXIT",
+      "order": 1
+    },
+    {
+      "id": "A3.S26.EXIT.02",
+      "speaker_channel": "소단 · dialogue",
+      "condition": "workshop_exit_reached; 주민 구출·짧은 증언 완료; 두 사람이 기존 뒤뜰 접근 출구에 도달",
+      "text": "물길 쪽에서도 혼이 올라와요. 서둘러요.",
+      "audience": "현장 동행",
+      "delivery": "bark",
+      "once": true,
+      "group": "A3.S26.EXIT",
+      "order": 2
+    },
+    {
+      "id": "A3.S26.OBJ.01",
+      "speaker_channel": "objective_texts · objective_texts",
+      "condition": "stage_enter; 항상",
+      "text": "공방 주민에게 갈 길 확보하기"
+    },
+    {
+      "id": "A3.S26.OBJ.02",
+      "speaker_channel": "objective_texts · objective_texts",
+      "condition": "resident_reachable; 항상",
+      "text": "소단으로 주민에게 붙은 혼을 분리하고 안전지대로 인도하기"
+    },
+    {
+      "id": "A3.S26.OBJ.03",
+      "speaker_channel": "objective_texts · objective_texts",
+      "condition": "ancestor_testimony_acquired; 항상",
+      "text": "관아 뒤뜰 접근로로 이동하기"
+    },
+    {
+      "id": "A3.S26.JOURNAL.01",
+      "speaker_channel": "journal_entries · journal_entries",
+      "condition": "ancestor_testimony_acquired; 항상; ancestor_testimony_acquired AND office_smoke_visible의 실제 관아화재 목격 후 전체 저널 기록. 증언만 확보하고 연기 미목격이면 마지막 화재 사실은 지연; 지하팀에 자동 공유하지 않음.",
+      "text": "공방 주민을 구했다. 구조 현장에서 찾은 휘겸 선조의 짧은 증언에는 저문골에 군막도 무기고도 없었으며, 대도사를 따라온 자들이 민가에서 사람들을 끌어냈다고 적혔다. 무장 저항 세력을 진압했다는 관아 보고는 거짓이었다. 관아 쪽에는 불이 번지고 있다."
+    },
+    {
+      "id": "A3.S26.DOC.TESTIMONY",
+      "speaker_channel": "document_texts · document_texts",
+      "condition": "ancestor_testimony_acquired; 항상",
+      "text": "저문골에는 군막도 무기고도 없었다. 대도사를 따라온 자들이 민가에서 사람들을 끌어냈다.",
+      "presentation": "휘겸이 구조 현장에서 읽는 두 문장. 별도 문서 열람 목표 없음."
+    },
+    {
+      "id": "A3.S26.GUIDE.01",
+      "speaker_channel": "guide_texts · guide_texts",
+      "condition": "living_possessed_resident_selected; 항상",
+      "text": "살아 있는 주민입니다. 일반 적처럼 처치하지 말고 혼 분리·구조 상호작용을 사용하세요."
+    },
+    {
+      "id": "EDGE.ARRIVALS_26_0",
+      "speaker_channel": "서술 · arrival",
+      "condition": "장 도착 때 한 번 / split v2의 직접 진입 interlude로만 소비. 쉼터·자동회복 생성 금지.; 정확한 소비/seen 계약은 NM.SPLIT_REST 참조.; split v2 직접진입; 휘겸·소단만 실제 활성, 설오·담허의25장 경험 미공유. 24출발 이후 자원연속/무휴식.",
+      "text": "휘겸과 소단은 지상의 폐공방으로 향했다. 낡은 분류대 너머로 가문 사당의 담이 보였다."
+    },
+    {
+      "id": "EDGE.PLACES_25_PLACE",
+      "speaker_channel": "서술 · place_label",
+      "condition": "장소 UI",
+      "text": "폐공방과 가문 사당"
+    },
+    {
+      "id": "EDGE.PLACES_25_RESTNAME",
+      "speaker_channel": "서술 · place_label",
+      "condition": "장소 UI",
+      "text": "폐공방 앞 지상길"
+    },
+    {
+      "id": "EDGE.RUNTIME.JOURNAL.EVIDENCE26.TESTIMONY",
+      "speaker_channel": "서술 · runtime_dynamic",
+      "condition": "해당 물증의 실제 확보 뒤 저널 요약 / fresh_v4=True",
+      "text": "선조의 증언에는 군막도 무기고도 없었으며, 대도사를 따라온 자들이 민가에서 사람들을 끌어냈다고 적혀 있다."
+    },
+    {
+      "id": "EDGE.RUNTIME.JOURNAL.EVIDENCE26.CASTING",
+      "speaker_channel": "서술 · runtime_dynamic",
+      "condition": "해당 물증의 실제 확보 뒤 저널 요약 / fresh_v4=True; 분류대 금속/제련도구와 군대운송표식 실제 관찰 후; 이 정보가28장 실제합류 전 지하팀 지식으로 승격되지 않음.",
+      "text": "분류대에는 집에서 뜯어낸 금속과 제련 도구가 남아 있다. 군대의 운송 표식도 보인다."
+    }
+  ],
+  "changes_vs_input": [
+    {
+      "id": "A3.S26.OBJ.02",
+      "old": "소단으로 주민의 혼을 분리하고 안전지대로 인도하기",
+      "text": "소단으로 주민에게 붙은 혼을 분리하고 안전지대로 인도하기",
+      "reason": "살아 있는 주민 자신의 혼을 뽑는다는 오독을 피하고 INTRO.02 및 v4의 빙의한 혼 분리와 일치."
+    },
+    {
+      "id": "EDGE.RUNTIME.JOURNAL.EVIDENCE26.CASTING",
+      "old": "분류대에는 집에서 뜯어낸 금속과 제련 도구가 남아 있다. 봉문군의 운송 표식도 보인다.",
+      "text": "분류대에는 집에서 뜯어낸 금속과 제련 도구가 남아 있다. 군대의 운송 표식도 보인다.",
+      "reason": "현장 표식은 원본에 존재하지만 봉문군 명칭을 이때 인물이 식별했다는 필수근거는 부족. 명칭/지휘관 확인은28장으로 보존하며 현재 물증은 유지."
+    }
+  ],
+  "coverage": {
+    "rows": 28,
+    "unique": 28,
+    "missing": []
+  },
+  "pass3_source": "HONRO-CH26-PASS3-20261027-response.md",
+  "pass3_assessment": "실제 PASS3 28/28 판정. CHANGE2의 수정안은 제출된 부모승인후보와 같아 새변경 없음. 주민에게 붙은 혼과 군대운송표식 일반화, 실제붕괴/연기목격/지상팀 지식가드 유지. 부모 최종채택 대기.",
+  "alias_review": [
+    {
+      "id": "EDGE.OPTIONAL_26_KNIGHT_0",
+      "status": "RETIRED",
+      "canonical_ids": [],
+      "text_identity": "비활성/대체/호환 계약 보존; 본문동일 alias로 자동 통합 금지",
+      "guard_requirement": {
+        "event": "optional companion click; recruited + stage unlocked + first conversation stage; debug scoped preview allowed",
+        "guards": {
+          "optional": true
+        }
+      },
+      "runtime_verification": "PENDING"
+    },
+    {
+      "id": "EDGE.OPTIONAL_26_KNIGHT_1",
+      "status": "RETIRED",
+      "canonical_ids": [],
+      "text_identity": "비활성/대체/호환 계약 보존; 본문동일 alias로 자동 통합 금지",
+      "guard_requirement": {
+        "event": "optional companion click; recruited + stage unlocked + first conversation stage; debug scoped preview allowed",
+        "guards": {
+          "optional": true
+        }
+      },
+      "runtime_verification": "PENDING"
+    },
+    {
+      "id": "EDGE.OPTIONAL_26_OCCULTIST_0",
+      "status": "RETIRED",
+      "canonical_ids": [],
+      "text_identity": "비활성/대체/호환 계약 보존; 본문동일 alias로 자동 통합 금지",
+      "guard_requirement": {
+        "event": "optional companion click; recruited + stage unlocked + first conversation stage; debug scoped preview allowed",
+        "guards": {
+          "optional": true
+        }
+      },
+      "runtime_verification": "PENDING"
+    },
+    {
+      "id": "EDGE.PLACES_25_RESTDESCRIPTION",
+      "status": "IDENTICAL_TEXT_ALIAS",
+      "canonical_ids": [
+        "EDGE.ARRIVALS_26_0"
+      ],
+      "text_identity": "canonical 본문과 동일; 가드는 별개",
+      "guard_requirement": {
+        "event": "장소 설명 UI; actual stageId=26",
+        "guards": {}
+      },
+      "runtime_verification": "PENDING"
+    },
+    {
+      "id": "EDGE.FAILURE_GUARD.S26",
+      "status": "IDENTICAL_TEXT_ALIAS",
+      "canonical_ids": [
+        "EDGE.FAILURE_GUARD.S21"
+      ],
+      "text_identity": "canonical 본문과 동일; 가드는 별개",
+      "guard_requirement": {
+        "event": "해당 장의 실제 실패",
+        "guards": {
+          "speaker_actual_living_present_required": true,
+          "required_actual_speaker": "휘겸"
+        },
+        "v4_constraints": [
+          "휘겸가 실제 출연·생존할 때만. 사망/부재/전멸이면 음성 없이 owner 실패 UI만.",
+          "27 검은 공간 연출 낙하에는 일반 실패를 재생하지 않음."
+        ]
+      },
+      "runtime_verification": "PENDING"
+    }
+  ],
+  "implementation_verified": false,
+  "implementation_note": "본문검수와 각 alias/출연/생존/목격/저장 가드의 실제 구현 검증은 별개. 부모 최종채택 전 코드적용 금지.",
+  "parent_adoption": "28후보그대로 승인; 최초원문대비2수정/추가변경0"
+}

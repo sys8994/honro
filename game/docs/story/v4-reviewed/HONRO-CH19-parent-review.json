@@ -1,0 +1,174 @@
+{
+  "stage": 19,
+  "status": "33문구최종확정;실제물증확보·가드코드검증대기",
+  "sources": [
+    "HONRO_19장_대사검수.txt",
+    "HONRO-CH19-PASS1-20261027-response.md"
+  ],
+  "input_ids": 33,
+  "decisions": [
+    {
+      "id": "A2.S19.INTRO.01",
+      "decision": "KEEP"
+    },
+    {
+      "id": "A2.S19.INTRO.02",
+      "decision": "KEEP"
+    },
+    {
+      "id": "A2.S19.INTRO.03",
+      "decision": "KEEP"
+    },
+    {
+      "id": "A2.S19.MID.01",
+      "decision": "KEEP"
+    },
+    {
+      "id": "A2.S19.MID.02",
+      "decision": "KEEP"
+    },
+    {
+      "id": "A2.S19.MID.03",
+      "decision": "KEEP"
+    },
+    {
+      "id": "A2.S19.MID.04",
+      "decision": "KEEP",
+      "condition_addition": "실제로 두 혼이 엉킨 상태일 때만; 세 만남의 자유순서를 고정하지 않음"
+    },
+    {
+      "id": "A2.S19.MID.05",
+      "decision": "KEEP"
+    },
+    {
+      "id": "A2.S19.MID.06",
+      "decision": "KEEP"
+    },
+    {
+      "id": "A2.S19.MID.07",
+      "decision": "KEEP",
+      "condition_addition": "모든 만남의 분리/천도 완료 및 마지막 혼의 실제 퇴장 확인"
+    },
+    {
+      "id": "A2.S19.EVIDENCE.01",
+      "decision": "KEEP"
+    },
+    {
+      "id": "A2.S19.EVIDENCE.02",
+      "decision": "KEEP",
+      "condition_addition": "무명사 표식의 실제 관찰 후; 종 제작기원 단정으로 확대하지 않음"
+    },
+    {
+      "id": "A2.S19.EVIDENCE.03",
+      "decision": "KEEP"
+    },
+    {
+      "id": "A2.S19.EVIDENCE.04",
+      "decision": "KEEP"
+    },
+    {
+      "id": "A2.S19.EVIDENCE.05",
+      "decision": "KEEP",
+      "condition_addition": "무명사/왕실봉인/저문골 세 흔적 실제 확인 후"
+    },
+    {
+      "id": "A2.S19.COMPLETE.01",
+      "decision": "KEEP"
+    },
+    {
+      "id": "A2.S19.COMPLETE.02",
+      "decision": "KEEP"
+    },
+    {
+      "id": "A2.S19.COMPLETE.03",
+      "decision": "KEEP"
+    },
+    {
+      "id": "A2.S19.OBJECTIVE.01",
+      "decision": "KEEP"
+    },
+    {
+      "id": "A2.S19.OBJECTIVE.02",
+      "decision": "KEEP"
+    },
+    {
+      "id": "A2.S19.OBJECTIVE.03",
+      "decision": "KEEP"
+    },
+    {
+      "id": "A2.S19.POPUP.01",
+      "decision": "KEEP",
+      "condition_addition": "무명사/왕실봉인/저문골 세 흔적 실제 확보 후"
+    },
+    {
+      "id": "A2.S19.JOURNAL.01",
+      "decision": "KEEP"
+    },
+    {
+      "id": "A2.S19.JOURNAL.02",
+      "decision": "KEEP",
+      "condition_addition": "무명사/왕실봉인/저문골 세 흔적 실제 확보 후"
+    },
+    {
+      "id": "EDGE.ARRIVALS_19_0",
+      "decision": "KEEP"
+    },
+    {
+      "id": "EDGE.OPTIONAL_19_ARCHER_0",
+      "decision": "KEEP",
+      "condition_addition": "종 안정화 후 AND 최종천도 전; 현재 안쪽 혼의 기척이 실제 남아 있을 때"
+    },
+    {
+      "id": "EDGE.OPTIONAL_19_MAGE_0",
+      "decision": "KEEP",
+      "condition_addition": "떠날 자리 열기 전; 완료 뒤 같은 요청 재생 금지"
+    },
+    {
+      "id": "EDGE.OPTIONAL_19_KNIGHT_0",
+      "decision": "KEEP",
+      "condition_addition": "해당 통로 실제 확보 후 AND 가족들이 내려가기 전/진행 중"
+    },
+    {
+      "id": "EDGE.OPTIONAL_19_OCCULTIST_0",
+      "decision": "KEEP",
+      "condition_addition": "최종천도 전; 실제 혼 목소리를 구분할 수 있고 부를 가족이 남은 때"
+    },
+    {
+      "id": "EDGE.OPTIONAL_19_OCCULTIST_1",
+      "decision": "KEEP",
+      "condition_addition": "앞 소단행과 같은 미완료 만남 시점; 이미 다 떠난 뒤 재생 금지"
+    },
+    {
+      "id": "EDGE.OPTIONAL_19_OCCULTIST_2",
+      "decision": "KEEP",
+      "condition_addition": "유품을 든 가족이 실제 대기하고 부를 혼이 남은 때; 체인 전체 같은 상태 유지"
+    },
+    {
+      "id": "EDGE.RUNTIME.JOURNAL.EVIDENCE19.MARKS",
+      "decision": "KEEP",
+      "condition_addition": "통합요약이므로 무명사/왕실봉인/저문골 세 흔적 모두 실제 확보 후"
+    },
+    {
+      "id": "EDGE.RUNTIME.STAGE19.SPIRIT_LABEL.1",
+      "decision": "KEEP"
+    }
+  ],
+  "pass1_question_disposition": "고향열셋 미언급은 오류 아님. 공통 지식은 금지선이며 이 장에 새 대사를 추가할 필요 없음.",
+  "speaker_note": "담허 INTRO02는 주민/MID05는 혼 대상. 동료 하게체 규칙으로 일괄 수정하지 않음.",
+  "implementation_questions": [
+    "세 만남이 자유순서이며 부분완료시 마지막혼/두드림소멸 대사가 잘못 발동하지 않는가?",
+    "선택대화는 실제 혼/대기 가족/유품/통로 및 천도진행상태와 일치하는가?",
+    "세흔적 통합UI와 저널은 실제 모두확보 뒤에만 뜨는가?",
+    "시각전용혼에 전투AI/증원이 연결되지 않는가?"
+  ],
+  "coverage_note": "1차의 실제33고유ID/누락0/추가0 확인. 원고33개와 실제시점/자유순서/누적물증 조건을 별도 대조.",
+  "pass3_final": {
+    "file": "HONRO-CH19-PASS3-20261027-response.md",
+    "actual_unique_ids": 33,
+    "missing": [],
+    "extra": [],
+    "parent_decision": "33개후보그대로확정",
+    "explanation_error": "MID02는 동료에게 풀게 하는 하게체 지시. 혼들을 향한다는 설명은 오분류. 문구수정없음.",
+    "implementation_verified": false
+  }
+}

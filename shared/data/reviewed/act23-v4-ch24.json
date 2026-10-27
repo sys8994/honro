@@ -1,224 +1,377 @@
 {
   "stage": 24,
-  "revision": 1,
   "status": "gemini_pass1_parent_review_gemini_pass3_complete",
-  "parent_adoption": "28후보 최종확정; 최초원문 대비5수정; 실제분할출발/지식·노출 가드 보존",
-  "reviewFiles": [
-    "HONRO-CH24-PASS3-20261027-response.md"
-  ],
-  "source": "Parent delegation adopted final JSON 2026-10-27; review file itself not downloaded",
   "rows": [
     {
       "id": "A3.S24.INTRO.01",
-      "speaker": "설오",
-      "channel": "dialogue",
+      "speaker_channel": "설오 · dialogue",
       "condition": "stage_enter; 왕실 방계의 옛 집과 사당 주변으로 진입",
-      "text": "수레에 있던 문장이 저기에도 있습니다."
+      "text": "수레에 있던 문장이 저기에도 있습니다.",
+      "audience": "현장 동행",
+      "delivery": "scene",
+      "once": true,
+      "group": "A3.S24.INTRO",
+      "order": 1,
+      "speaker": "설오",
+      "channel": "dialogue"
     },
     {
       "id": "A3.S24.INTRO.02",
-      "speaker": "휘겸",
-      "channel": "dialogue",
+      "speaker_channel": "휘겸 · dialogue",
       "condition": "stage_enter; 왕실 방계의 옛 집과 사당 주변으로 진입",
-      "text": "우리 집안 문장이오."
+      "text": "우리 집안 문장이오.",
+      "audience": "현장 동행",
+      "delivery": "scene",
+      "once": true,
+      "group": "A3.S24.INTRO",
+      "order": 2,
+      "speaker": "휘겸",
+      "channel": "dialogue"
     },
     {
       "id": "A3.S24.INTRO.03",
-      "speaker": "소단",
-      "channel": "dialogue",
+      "speaker_channel": "소단 · dialogue",
       "condition": "stage_enter; 왕실 방계의 옛 집과 사당 주변으로 진입; 지상 공방 주민 존재/소리의 실제 감지 시; 원거리 새 감각능력 추가하지 않음.",
-      "text": "수로에서 혼이 올라와요. 공방 쪽에 사람이 있어요."
+      "text": "수로에서 혼이 올라와요. 공방 쪽에 사람이 있어요.",
+      "audience": "현장 동행",
+      "delivery": "scene",
+      "once": true,
+      "group": "A3.S24.INTRO",
+      "order": 3,
+      "speaker": "소단",
+      "channel": "dialogue"
     },
     {
       "id": "A3.S24.CREST.01",
-      "speaker": "담허",
-      "channel": "dialogue",
+      "speaker_channel": "담허 · dialogue",
       "condition": "family_crest_seen; 기존 family-crest 지점에서 휘겸이 물건의 문장을 확인",
-      "text": "이 집을 아는가?"
+      "text": "이 집을 아는가?",
+      "audience": "현장 동행",
+      "delivery": "scene",
+      "once": true,
+      "group": "A3.S24.CREST",
+      "order": 1,
+      "speaker": "담허",
+      "channel": "dialogue"
     },
     {
       "id": "A3.S24.CREST.02",
-      "speaker": "휘겸",
-      "channel": "dialogue",
+      "speaker_channel": "휘겸 · dialogue",
       "condition": "family_crest_seen; 기존 family-crest 지점에서 휘겸이 물건의 문장을 확인",
-      "text": "문장만 알겠소. 우리 집안 물건이 왜 여기 있는지는 아직 모르오."
+      "text": "문장만 알겠소. 우리 집안 물건이 왜 여기 있는지는 아직 모르오.",
+      "audience": "현장 동행",
+      "delivery": "scene",
+      "once": true,
+      "group": "A3.S24.CREST",
+      "order": 2,
+      "speaker": "휘겸",
+      "channel": "dialogue"
     },
     {
       "id": "A3.S24.ENTRY.01",
-      "speaker": "설오",
-      "channel": "dialogue",
+      "speaker_channel": "설오 · dialogue",
       "condition": "both_routes_visible; 기존 split-route-a와 split-route-b 양쪽 위험이 화면에 제시됨",
-      "text": "집 뒤에 내려가는 계단이 있습니다. 물이 안쪽으로 빠집니다."
+      "text": "집 뒤에 내려가는 계단이 있습니다. 물이 안쪽으로 빠집니다.",
+      "audience": "현장 동행; 주민 목소리는 지상 공방에서 들림",
+      "delivery": "scene",
+      "once": true,
+      "group": "A3.S24.ENTRY",
+      "order": 1,
+      "speaker": "설오",
+      "channel": "dialogue"
     },
     {
       "id": "A3.S24.ENTRY.02",
-      "speaker": "담허",
-      "channel": "dialogue",
+      "speaker_channel": "담허 · dialogue",
       "condition": "both_routes_visible; 기존 split-route-a와 split-route-b 양쪽 위험이 화면에 제시됨",
-      "text": "혼도 그 계단에서 올라오는군. 아래 길을 살펴야겠네."
+      "text": "혼도 그 계단에서 올라오는군. 아래 길을 살펴야겠네.",
+      "audience": "현장 동행; 주민 목소리는 지상 공방에서 들림",
+      "delivery": "scene",
+      "once": true,
+      "group": "A3.S24.ENTRY",
+      "order": 2,
+      "speaker": "담허",
+      "channel": "dialogue"
     },
     {
       "id": "A3.S24.ENTRY.03",
-      "speaker": "주민",
-      "channel": "dialogue",
+      "speaker_channel": "주민 · dialogue",
       "condition": "both_routes_visible; 기존 split-route-a와 split-route-b 양쪽 위험이 화면에 제시됨",
-      "text": "공방에 사람 있어요! 문이 안 열려요!"
+      "text": "공방에 사람 있어요! 문이 안 열려요!",
+      "audience": "현장 동행; 주민 목소리는 지상 공방에서 들림",
+      "delivery": "scene",
+      "once": true,
+      "group": "A3.S24.ENTRY",
+      "order": 3,
+      "speaker": "주민",
+      "channel": "dialogue"
     },
     {
       "id": "A3.S24.SPLIT.01",
-      "speaker": "휘겸",
-      "channel": "dialogue",
+      "speaker_channel": "휘겸 · dialogue",
       "condition": "split_decision; 두 출입로가 확보되었고 네 사람이 분할 직전 안전지점에 모임",
-      "text": "공방에 사람이 남았소. 소단, 나와 지상에 남아 주겠소?"
+      "text": "공방에 사람이 남았소. 소단, 나와 지상에 남아 주겠소?",
+      "audience": "현장 동행",
+      "delivery": "scene",
+      "once": true,
+      "group": "A3.S24.SPLIT",
+      "order": 1,
+      "speaker": "휘겸",
+      "channel": "dialogue"
     },
     {
       "id": "A3.S24.SPLIT.02",
-      "speaker": "소단",
-      "channel": "dialogue",
+      "speaker_channel": "소단 · dialogue",
       "condition": "split_decision; 두 출입로가 확보되었고 네 사람이 분할 직전 안전지점에 모임",
-      "text": "네. 저쪽으로 넘어간 혼부터 붙잡을게요."
+      "text": "네. 저쪽으로 넘어간 혼부터 붙잡을게요.",
+      "audience": "현장 동행",
+      "delivery": "scene",
+      "once": true,
+      "group": "A3.S24.SPLIT",
+      "order": 2,
+      "speaker": "소단",
+      "channel": "dialogue"
     },
     {
       "id": "A3.S24.SPLIT.03",
-      "speaker": "설오",
-      "channel": "dialogue",
+      "speaker_channel": "설오 · dialogue",
       "condition": "split_decision; 두 출입로가 확보되었고 네 사람이 분할 직전 안전지점에 모임",
-      "text": "담허 어른, 아래 계단은 아직 이어져 있습니다."
+      "text": "담허 어른, 아래 계단은 아직 이어져 있습니다.",
+      "audience": "현장 동행",
+      "delivery": "scene",
+      "once": true,
+      "group": "A3.S24.SPLIT",
+      "order": 3,
+      "speaker": "설오",
+      "channel": "dialogue"
     },
     {
       "id": "A3.S24.SPLIT.04",
-      "speaker": "담허",
-      "channel": "dialogue",
+      "speaker_channel": "담허 · dialogue",
       "condition": "split_decision; 두 출입로가 확보되었고 네 사람이 분할 직전 안전지점에 모임",
-      "text": "함께 내려가세. 지상으로 나오면 관아 뒤뜰로 가겠네."
+      "text": "함께 내려가세. 지상으로 나오면 관아 뒤뜰로 가겠네.",
+      "audience": "현장 동행",
+      "delivery": "scene",
+      "once": true,
+      "group": "A3.S24.SPLIT",
+      "order": 4,
+      "speaker": "담허",
+      "channel": "dialogue"
     },
     {
       "id": "A3.S24.SPLIT.05",
-      "speaker": "휘겸",
-      "channel": "dialogue",
+      "speaker_channel": "휘겸 · dialogue",
       "condition": "split_decision; 두 출입로가 확보되었고 네 사람이 분할 직전 안전지점에 모임",
-      "text": "우리도 뒤뜰로 가겠소. 퇴로가 끊기면 더 들어가지 마시오."
+      "text": "우리도 뒤뜰로 가겠소. 퇴로가 끊기면 더 들어가지 마시오.",
+      "audience": "현장 동행",
+      "delivery": "scene",
+      "once": true,
+      "group": "A3.S24.SPLIT",
+      "order": 5,
+      "speaker": "휘겸",
+      "channel": "dialogue"
     },
     {
       "id": "A3.S24.DEPART.01",
-      "speaker": "설오",
-      "channel": "dialogue",
+      "speaker_channel": "설오 · dialogue",
       "condition": "split_departure; 두 팀이 서로 다른 출구로 실제 이동 중",
-      "text": "뒤뜰에서 뵙겠습니다."
+      "text": "뒤뜰에서 뵙겠습니다.",
+      "audience": "현장 동행",
+      "delivery": "bark",
+      "once": true,
+      "group": "A3.S24.DEPART",
+      "order": 1,
+      "speaker": "설오",
+      "channel": "dialogue"
     },
     {
       "id": "A3.S24.DEPART.02",
-      "speaker": "소단",
-      "channel": "dialogue",
+      "speaker_channel": "소단 · dialogue",
       "condition": "split_departure; 두 팀이 서로 다른 출구로 실제 이동 중",
-      "text": "두 분도 조심하세요."
+      "text": "두 분도 조심하세요.",
+      "audience": "현장 동행",
+      "delivery": "bark",
+      "once": true,
+      "group": "A3.S24.DEPART",
+      "order": 2,
+      "speaker": "소단",
+      "channel": "dialogue"
     },
     {
       "id": "A3.S24.APPROACH_DANGER.01",
-      "speaker": "담허",
-      "channel": "dialogue",
+      "speaker_channel": "담허 · dialogue",
       "condition": "underground_spirit_approaching; 분할 확정 전 수로의 혼이 가까워짐",
-      "text": "계단에서 하나 더 올라오네. 입구를 비워 두지 말게."
+      "text": "계단에서 하나 더 올라오네. 입구를 비워 두지 말게.",
+      "audience": "현장 동행",
+      "delivery": "bark",
+      "once": true,
+      "group": "A3.S24.APPROACH_DANGER",
+      "order": 1,
+      "speaker": "담허",
+      "channel": "dialogue"
     },
     {
       "id": "A3.S24.OBJ.01",
-      "speaker": "목표 UI",
-      "channel": "objective",
+      "speaker_channel": "objective_texts · objective_texts",
       "condition": "stage_enter; 항상",
-      "text": "옛 저택의 두 출입로 확보하기"
+      "text": "옛 저택의 두 출입로 확보하기",
+      "speaker": "목표 UI",
+      "channel": "objective"
     },
     {
       "id": "A3.S24.OBJ.02",
-      "speaker": "목표 UI",
-      "channel": "objective",
+      "speaker_channel": "objective_texts · objective_texts",
       "condition": "split_decision; 항상",
-      "text": "설오·담허는 지하로, 휘겸·소단은 공방으로 이동하기"
+      "text": "설오·담허는 지하로, 휘겸·소단은 공방으로 이동하기",
+      "speaker": "목표 UI",
+      "channel": "objective"
     },
     {
       "id": "A3.S24.JOURNAL.01",
-      "speaker": "저널 UI",
-      "channel": "journal",
+      "speaker_channel": "journal_entries · journal_entries",
       "condition": "split_departure; 항상; 분할 대화만이 아니라 두 팀이 각각 출입 앵커에 실제 도달한 split_departure 확정 후.",
-      "text": "옛 저택에서 휘겸의 가문 문장을 보았다. 설오와 담허는 지하 수로를, 휘겸과 소단은 지상 공방을 맡았다. 관아 뒤뜰에서 다시 만나기로 했다."
+      "text": "옛 저택에서 휘겸의 가문 문장을 보았다. 설오와 담허는 지하 수로를, 휘겸과 소단은 지상 공방을 맡았다. 관아 뒤뜰에서 다시 만나기로 했다.",
+      "speaker": "저널 UI",
+      "channel": "journal"
     },
     {
       "id": "A3.S24.GUIDE.01",
-      "speaker": "안내 UI",
-      "channel": "guide",
+      "speaker_channel": "guide_texts · guide_texts",
       "condition": "split_departure; 항상",
-      "text": "다음 지하 구간에서는 설오와 담허만 조작합니다. 지상 구간은 휘겸과 소단으로 이어집니다."
+      "text": "다음 지하 구간에서는 설오와 담허만 조작합니다. 지상 구간은 휘겸과 소단으로 이어집니다.",
+      "speaker": "안내 UI",
+      "channel": "guide"
     },
     {
       "id": "EDGE.ARRIVALS_24_0",
-      "speaker": "서술",
-      "channel": "arrival",
+      "speaker_channel": "서술 · arrival",
       "condition": "장 도착 때 한 번",
-      "text": "수레에 남은 문장을 따라 빈 저택에 닿았다. 휘겸은 문간에서 걸음을 멈췄다."
+      "text": "수레에 남은 문장을 따라 빈 저택에 닿았다. 휘겸은 문간에서 걸음을 멈췄다.",
+      "speaker": "서술",
+      "channel": "arrival"
     },
     {
       "id": "EDGE.OPTIONAL_24_ARCHER_0",
+      "speaker_channel": "설오 · optional",
+      "condition": "동료 선택대화; 실제 출연·생존한 화자만; 24장 본편 가문소개·팀 분할 전 허용된 선택대화만. 각 행 명시 화자 recruited+alive+present. 선택대화 서로 중복되거나 이미 확인한 뒤 질문을 반복하지 않도록 대화 묶음 seen/지식 가드. 분할 후 쉼터·자동회복 없음.",
+      "text": "짐꾼은 내보냈습니다. 휘겸 씨, 저 문장을 아십니까?",
       "speaker": "설오",
-      "channel": "optional",
-      "condition": "실제 출연·생존한 화자; 전투 전 허용 쉼터; 가문소개·팀 분할 전; 각 행 recruited+alive+present; 대화 묶음 seen/지식 가드; 분할 후 쉼터·자동회복 없음.",
-      "text": "짐꾼은 내보냈습니다. 휘겸 씨, 저 문장을 아십니까?"
+      "channel": "optional"
     },
     {
       "id": "EDGE.OPTIONAL_24_MAGE_0",
+      "speaker_channel": "담허 · optional",
+      "condition": "동료 선택대화; 실제 출연·생존한 화자만; 24장 본편 가문소개·팀 분할 전 허용된 선택대화만. 각 행 명시 화자 recruited+alive+present. 선택대화 서로 중복되거나 이미 확인한 뒤 질문을 반복하지 않도록 대화 묶음 seen/지식 가드. 분할 후 쉼터·자동회복 없음.",
+      "text": "수레에서 본 문장이 저 빈 저택에도 있네. 안으로 들어가 보세.",
       "speaker": "담허",
-      "channel": "optional",
-      "condition": "실제 출연·생존한 화자; 전투 전 허용 쉼터; 가문소개·팀 분할 전; 각 행 recruited+alive+present; 대화 묶음 seen/지식 가드; 분할 후 쉼터·자동회복 없음.",
-      "text": "수레에서 본 문장이 저 빈 저택에도 있네. 안으로 들어가 보세."
+      "channel": "optional"
     },
     {
       "id": "EDGE.OPTIONAL_24_KNIGHT_0",
+      "speaker_channel": "휘겸 · optional",
+      "condition": "동료 선택대화; 실제 출연·생존한 화자만; 24장 본편 가문소개·팀 분할 전 허용된 선택대화만. 각 행 명시 화자 recruited+alive+present. 선택대화 서로 중복되거나 이미 확인한 뒤 질문을 반복하지 않도록 대화 묶음 seen/지식 가드. 분할 후 쉼터·자동회복 없음.",
+      "text": "어릴 적 집안 사당에서 보던 문장이오. 이런 읍성 폐가에까지 그 문장이 남아 있을 줄은 몰랐소.",
       "speaker": "휘겸",
-      "channel": "optional",
-      "condition": "실제 출연·생존한 화자; 전투 전 허용 쉼터; 가문소개·팀 분할 전; 각 행 recruited+alive+present; 대화 묶음 seen/지식 가드; 분할 후 쉼터·자동회복 없음.",
-      "text": "어릴 적 집안 사당에서 보던 문장이오. 이런 읍성 폐가에까지 그 문장이 남아 있을 줄은 몰랐소."
+      "channel": "optional"
     },
     {
       "id": "EDGE.OPTIONAL_24_KNIGHT_1",
+      "speaker_channel": "설오 · optional",
+      "condition": "동료 선택대화; 실제 출연·생존한 화자만; 24장 본편 가문소개·팀 분할 전 허용된 선택대화만. 각 행 명시 화자 recruited+alive+present. 선택대화 서로 중복되거나 이미 확인한 뒤 질문을 반복하지 않도록 대화 묶음 seen/지식 가드. 분할 후 쉼터·자동회복 없음.",
+      "text": "안으로 직접 들어가 보시겠습니까?",
       "speaker": "설오",
-      "channel": "optional",
-      "condition": "실제 출연·생존한 화자; 전투 전 허용 쉼터; 가문소개·팀 분할 전; 각 행 recruited+alive+present; 대화 묶음 seen/지식 가드; 분할 후 쉼터·자동회복 없음.",
-      "text": "안으로 직접 들어가 보시겠습니까?"
+      "channel": "optional"
     },
     {
       "id": "EDGE.OPTIONAL_24_KNIGHT_2",
+      "speaker_channel": "휘겸 · optional",
+      "condition": "동료 선택대화; 실제 출연·생존한 화자만; 24장 본편 가문소개·팀 분할 전 허용된 선택대화만. 각 행 명시 화자 recruited+alive+present. 선택대화 서로 중복되거나 이미 확인한 뒤 질문을 반복하지 않도록 대화 묶음 seen/지식 가드. 분할 후 쉼터·자동회복 없음.",
+      "text": "그러겠소. 우리 집안 문장이 왜 여기에 남았는지 내 눈으로 봐야겠소.",
       "speaker": "휘겸",
-      "channel": "optional",
-      "condition": "실제 출연·생존한 화자; 전투 전 허용 쉼터; 가문소개·팀 분할 전; 각 행 recruited+alive+present; 대화 묶음 seen/지식 가드; 분할 후 쉼터·자동회복 없음.",
-      "text": "그러겠소. 우리 집안 문장이 왜 여기에 남았는지 내 눈으로 봐야겠소."
+      "channel": "optional"
     },
     {
       "id": "EDGE.OPTIONAL_24_OCCULTIST_0",
+      "speaker_channel": "소단 · optional",
+      "condition": "동료 선택대화; 실제 출연·생존한 화자만; 24장 본편 가문소개·팀 분할 전 허용된 선택대화만. 각 행 명시 화자 recruited+alive+present. 선택대화 서로 중복되거나 이미 확인한 뒤 질문을 반복하지 않도록 대화 묶음 seen/지식 가드. 분할 후 쉼터·자동회복 없음.",
+      "text": "짐꾼은 살아서 나갔어요. 다른 분들도 무사히 피하셨을까요?",
       "speaker": "소단",
-      "channel": "optional",
-      "condition": "실제 출연·생존한 화자; 전투 전 허용 쉼터; 가문소개·팀 분할 전; 각 행 recruited+alive+present; 대화 묶음 seen/지식 가드; 분할 후 쉼터·자동회복 없음.",
-      "text": "짐꾼은 살아서 나갔어요. 다른 분들도 무사히 피하셨을까요?"
+      "channel": "optional"
     },
     {
       "id": "EDGE.RUNTIME.JOURNAL.EVIDENCE24.PLAN",
+      "speaker_channel": "서술 · runtime_dynamic",
+      "condition": "해당 물증의 실제 확보 뒤 저널 요약 / fresh_v4=True; 두 실제 동선 확인 후; 토지문서 읽기/새 물증 수집은 추가하지 않음.",
+      "text": "저택 뒤에는 지하 수로로 내려가는 입구가, 지상에는 공방과 관아 뒤뜰로 가는 길이 남아 있다.",
       "speaker": "서술",
-      "channel": "runtime_dynamic",
-      "condition": "실제 시야 내 현장물증 관찰 뒤 기록; fresh_v4=True; 두 실제 동선 확인 후; 토지문서 읽기/새 물증 수집 추가하지 않음.",
-      "text": "저택 뒤에는 지하 수로로 내려가는 입구가, 지상에는 공방과 관아 뒤뜰로 가는 길이 남아 있다."
+      "channel": "runtime_dynamic"
     }
   ],
-  "aliases": [
+  "changes_vs_input": [
+    {
+      "id": "A3.S24.INTRO.03",
+      "old": "수로에서 혼이 올라와요. 집 안에도 사람이 있어요.",
+      "text": "수로에서 혼이 올라와요. 공방 쪽에 사람이 있어요.",
+      "reason": "빈 저택 안 주민으로 읽히지 않도록 실제 구조요청과 다음 지상 경로의 공방으로 위치를 맞춤."
+    },
+    {
+      "id": "EDGE.ARRIVALS_24_0",
+      "old": "표찰의 문장을 따라 빈 저택에 닿았다. 휘겸은 문간에서 걸음을 멈췄다.",
+      "text": "수레에 남은 문장을 따라 빈 저택에 닿았다. 휘겸은 문간에서 걸음을 멈췄다.",
+      "reason": "v4 3-4는 수레에 남은 가문 문장. 23장 가족/마을 번호 표찰과 가문 문장을 동일물로 새로 단정하지 않음."
+    },
+    {
+      "id": "EDGE.OPTIONAL_24_MAGE_0",
+      "old": "표찰의 문장이 가리키는 저 빈 저택부터 들어가 보세.",
+      "text": "수레에서 본 문장이 저 빈 저택에도 있네. 안으로 들어가 보세.",
+      "reason": "표찰의 마을 번호와 가문 문장을 혼동하지 않게 v4 수레→저택 연결을 보존."
+    },
+    {
+      "id": "EDGE.OPTIONAL_24_KNIGHT_2",
+      "old": "그러겠소. 우리 선조가 저문골 일에 어떻게 얽혀 있었는지 내 눈으로 봐야겠소.",
+      "text": "그러겠소. 우리 집안 문장이 왜 여기에 남았는지 내 눈으로 봐야겠소.",
+      "reason": "선조의 저문골 관여 확인은 지상 증언/28장 조사결과 이전. 현재 알 수 있는 가문 문장의 위치를 확인하는 의도로 한정."
+    },
+    {
+      "id": "EDGE.OPTIONAL_24_OCCULTIST_0",
+      "old": "하역장 문을 막고 있던 병사들은 이미 숨이 끊어져서 살릴 수 없었어요. 성 밖으로 살아 나간 분들은 얼마나 될까요?",
+      "text": "짐꾼은 살아서 나갔어요. 다른 분들도 무사히 피하셨을까요?",
+      "reason": "23장의 옛 빈 갑주와 현 죽은 병사를 혼동하지 않음. 죽은 병사의 구조불능을 직접 확인한 장면은 없고 짐꾼의 실제 구출만 확인됨."
+    }
+  ],
+  "coverage": {
+    "rows": 28,
+    "unique": 28,
+    "missing": []
+  },
+  "pass3_source": "HONRO-CH24-PASS3-20261027-response.md",
+  "pass3_assessment": "실제 PASS3 28/28 KEEP, 제작측5수정 후보 모두 유지. 응답의 짐꾼 귀가라는 이유는 실제 구조·탈출보다 과도하므로 채택하지 않는다. 원고는 살아서 나갔다만 보존하며 새 귀가 설정/이동을 만들지 않는다. 부모 최종채택 대기.",
+  "alias_review": [
     {
       "id": "A3.S24.REST_ARCHER.01",
       "status": "ALTERNATIVE_NOT_REPLAYED",
       "canonical_ids": [
         "EDGE.OPTIONAL_24_ARCHER_0"
-      ]
+      ],
+      "text_identity": "비활성/대체/호환 계약 보존; 본문동일 alias로 자동 통합 금지",
+      "guard_requirement": {
+        "event": "rest_optional_archer",
+        "condition": "24장 전투 진입 전 허용된 쉼터에서 해당 동행을 선택; 동행 recruited+alive; split 무휴식에는 실행 금지"
+      },
+      "runtime_verification": "PENDING"
     },
     {
       "id": "A3.S24.REST_MAGE.01",
       "status": "ALTERNATIVE_NOT_REPLAYED",
       "canonical_ids": [
         "EDGE.OPTIONAL_24_MAGE_0"
-      ]
+      ],
+      "text_identity": "비활성/대체/호환 계약 보존; 본문동일 alias로 자동 통합 금지",
+      "guard_requirement": {
+        "event": "rest_optional_mage",
+        "condition": "24장 전투 진입 전 허용된 쉼터에서 해당 동행을 선택; 동행 recruited+alive; split 무휴식에는 실행 금지"
+      },
+      "runtime_verification": "PENDING"
     },
     {
       "id": "A3.S24.REST_KNIGHT.01",
@@ -227,14 +380,26 @@
         "EDGE.OPTIONAL_24_KNIGHT_0",
         "EDGE.OPTIONAL_24_KNIGHT_1",
         "EDGE.OPTIONAL_24_KNIGHT_2"
-      ]
+      ],
+      "text_identity": "비활성/대체/호환 계약 보존; 본문동일 alias로 자동 통합 금지",
+      "guard_requirement": {
+        "event": "rest_optional_knight",
+        "condition": "24장 전투 진입 전 허용된 쉼터에서 해당 동행을 선택; 동행 recruited+alive; split 무휴식에는 실행 금지"
+      },
+      "runtime_verification": "PENDING"
     },
     {
       "id": "A3.S24.REST_OCCULTIST.01",
       "status": "ALTERNATIVE_NOT_REPLAYED",
       "canonical_ids": [
         "EDGE.OPTIONAL_24_OCCULTIST_0"
-      ]
+      ],
+      "text_identity": "비활성/대체/호환 계약 보존; 본문동일 alias로 자동 통합 금지",
+      "guard_requirement": {
+        "event": "rest_optional_occultist",
+        "condition": "24장 전투 진입 전 허용된 쉼터에서 해당 동행을 선택; 동행 recruited+alive; split 무휴식에는 실행 금지"
+      },
+      "runtime_verification": "PENDING"
     },
     {
       "id": "EDGE.PLACES_23_RESTDESCRIPTION",
@@ -242,7 +407,12 @@
       "canonical_ids": [
         "EDGE.ARRIVALS_24_0"
       ],
-      "guard": "actual stageId=24; lookup does not consume arrival once/seen"
+      "text_identity": "canonical 본문과 동일; 가드는 별개",
+      "guard_requirement": {
+        "event": "장소 설명 UI; actual stageId=24",
+        "guards": {}
+      },
+      "runtime_verification": "PENDING"
     },
     {
       "id": "EDGE.FAILURE_GUARD.S24",
@@ -250,7 +420,25 @@
       "canonical_ids": [
         "EDGE.FAILURE_GUARD.S21"
       ],
-      "guard": "actual stage24 lost; actual living present knight only; no speaker after death/absence/annihilation; owner failure UI"
+      "text_identity": "canonical 본문과 동일; 가드는 별개",
+      "guard_requirement": {
+        "event": "해당 장의 실제 실패",
+        "guards": {
+          "speaker_actual_living_present_required": true,
+          "required_actual_speaker": "휘겸"
+        },
+        "v4_constraints": [
+          "휘겸가 실제 출연·생존할 때만. 사망/부재/전멸이면 음성 없이 owner 실패 UI만.",
+          "27 검은 공간 연출 낙하에는 일반 실패를 재생하지 않음."
+        ]
+      },
+      "runtime_verification": "PENDING"
     }
-  ]
+  ],
+  "implementation_verified": false,
+  "implementation_note": "본문검수와 각 alias/출연/생존/목격/저장 가드의 실제 구현 검증은 별개. 부모 최종채택 전 코드적용 금지.",
+  "parent_adoption": "승인된28후보 최종확정; 최초원문대비5수정 및 실제분할출발/지식·노출가드 보존",
+  "revision": 1,
+  "adopted_status_verbatim": "Gemini PASS1 → 제작측 독립검토 → Gemini PASS3 → 부모 최종채택 완료; 구현검증 별도",
+  "sourceCommit": "c6bb72992f2e920739f7f95e15f9ac95ba34dddb"
 }

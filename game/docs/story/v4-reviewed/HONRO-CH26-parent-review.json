@@ -1,0 +1,258 @@
+{
+  "stage": 26,
+  "status": "PASS2_DRAFT_AWAITING_PARENT_APPROVAL_AND_GEMINI_PASS3",
+  "sources": [
+    "HONRO-CH26-PASS1-20261027-response.md",
+    "HONRO_26장_대사검수.txt",
+    "internal_stage26_map.json",
+    "sources/honro-v4-source-extracted.md",
+    "sources/honro-act3-v4-plan.md"
+  ],
+  "pass1": {
+    "actual_response_read": true,
+    "model": "3.5 Flash-Lite",
+    "assessment": "실제 Gemini 1차28KEEP. 지상팀은 휘겸·소단이며 지하경험/검은공간을 모른다. v4는 군막·무기고 부재와 현장물증/선조 증언으로 무장저항 진압 보고의 거짓을 밝히므로 TESTIMONY.04의 주장 수준은 유지. 학살 실행/승인/은폐책임 최종정리는28장. OBJ.02는 주민에게 붙은 혼으로 명료화하고 저널 CASTING의 군명은 식별 근거가 확인되기 전까지 일반 표식으로 제안. 피해주민 안전도달·증언·관아화재는 서로 다른 실제 사건이며 저널은 화재를 선취하지 않는다."
+  },
+  "input_ids": 28,
+  "decisions": [
+    {
+      "id": "A3.S26.INTRO.01",
+      "speaker": "휘겸",
+      "decision": "KEEP"
+    },
+    {
+      "id": "A3.S26.INTRO.02",
+      "speaker": "소단",
+      "decision": "KEEP"
+    },
+    {
+      "id": "A3.S26.INTRO.03",
+      "speaker": "휘겸",
+      "decision": "KEEP"
+    },
+    {
+      "id": "A3.S26.DANGER.01",
+      "speaker": "소단",
+      "decision": "KEEP",
+      "condition_addition": "머리 위 구조물이 실제 흔들림/붕괴 예고를 보일 때만. 적접근만 있는 경우에는 이 붕괴경고를 재생하지 않음."
+    },
+    {
+      "id": "A3.S26.DANGER.02",
+      "speaker": "휘겸",
+      "decision": "KEEP",
+      "condition_addition": "DANGER.01과 같은 실제 머리 위 붕괴위협 및 실제 안전한 탁자 피신 공간이 존재할 때."
+    },
+    {
+      "id": "A3.S26.RESCUE.01",
+      "speaker": "주민",
+      "decision": "KEEP",
+      "condition_addition": "주민 자신의 혼이 아니라 몸에 붙은 다른 혼이 실제 분리된 뒤; 주민 생존 및 실제 이동 가능."
+    },
+    {
+      "id": "A3.S26.RESCUE.02",
+      "speaker": "소단",
+      "decision": "KEEP",
+      "condition_addition": "주민에게 붙은 혼 실제 분리 및 살아 있는 주민이 접근 가능한 문밖 경로 존재."
+    },
+    {
+      "id": "A3.S26.RESCUE.03",
+      "speaker": "휘겸",
+      "decision": "KEEP",
+      "condition_addition": "주민에게 붙은 혼 실제 분리 및 안전한 앞길 확보 후."
+    },
+    {
+      "id": "A3.S26.TESTIMONY.01",
+      "speaker": "휘겸",
+      "decision": "KEEP"
+    },
+    {
+      "id": "A3.S26.TESTIMONY.02",
+      "speaker": "휘겸",
+      "decision": "KEEP"
+    },
+    {
+      "id": "A3.S26.TESTIMONY.03",
+      "speaker": "소단",
+      "decision": "KEEP"
+    },
+    {
+      "id": "A3.S26.TESTIMONY.04",
+      "speaker": "휘겸",
+      "decision": "KEEP",
+      "condition_addition": "주민 안전 도달·위협해소 후 선조 증언과 해당 생활물자 실제 대조; 이 시점 대도사의 학살 실행 최종확정/고관승인/한태록 책임으로 확대하지 않음."
+    },
+    {
+      "id": "A3.S26.TESTIMONY.05",
+      "speaker": "소단",
+      "decision": "KEEP"
+    },
+    {
+      "id": "A3.S26.FIRE.01",
+      "speaker": "소단",
+      "decision": "KEEP"
+    },
+    {
+      "id": "A3.S26.FIRE.02",
+      "speaker": "휘겸",
+      "decision": "KEEP"
+    },
+    {
+      "id": "A3.S26.EXIT.01",
+      "speaker": "휘겸",
+      "decision": "KEEP"
+    },
+    {
+      "id": "A3.S26.EXIT.02",
+      "speaker": "소단",
+      "decision": "KEEP"
+    },
+    {
+      "id": "A3.S26.OBJ.01",
+      "speaker": "objective_texts",
+      "decision": "KEEP"
+    },
+    {
+      "id": "A3.S26.OBJ.02",
+      "speaker": "objective_texts",
+      "decision": "CHANGE",
+      "old": "소단으로 주민의 혼을 분리하고 안전지대로 인도하기",
+      "candidate": "소단으로 주민에게 붙은 혼을 분리하고 안전지대로 인도하기",
+      "reason": "살아 있는 주민 자신의 혼을 뽑는다는 오독을 피하고 INTRO.02 및 v4의 빙의한 혼 분리와 일치."
+    },
+    {
+      "id": "A3.S26.OBJ.03",
+      "speaker": "objective_texts",
+      "decision": "KEEP"
+    },
+    {
+      "id": "A3.S26.JOURNAL.01",
+      "speaker": "journal_entries",
+      "decision": "KEEP",
+      "condition_addition": "ancestor_testimony_acquired AND office_smoke_visible의 실제 관아화재 목격 후 전체 저널 기록. 증언만 확보하고 연기 미목격이면 마지막 화재 사실은 지연; 지하팀에 자동 공유하지 않음."
+    },
+    {
+      "id": "A3.S26.DOC.TESTIMONY",
+      "speaker": "document_texts",
+      "decision": "KEEP"
+    },
+    {
+      "id": "A3.S26.GUIDE.01",
+      "speaker": "guide_texts",
+      "decision": "KEEP"
+    },
+    {
+      "id": "EDGE.ARRIVALS_26_0",
+      "speaker": "서술",
+      "decision": "KEEP",
+      "condition_addition": "split v2 직접진입; 휘겸·소단만 실제 활성, 설오·담허의25장 경험 미공유. 24출발 이후 자원연속/무휴식."
+    },
+    {
+      "id": "EDGE.PLACES_25_PLACE",
+      "speaker": "서술",
+      "decision": "KEEP"
+    },
+    {
+      "id": "EDGE.PLACES_25_RESTNAME",
+      "speaker": "서술",
+      "decision": "KEEP"
+    },
+    {
+      "id": "EDGE.RUNTIME.JOURNAL.EVIDENCE26.TESTIMONY",
+      "speaker": "서술",
+      "decision": "KEEP"
+    },
+    {
+      "id": "EDGE.RUNTIME.JOURNAL.EVIDENCE26.CASTING",
+      "speaker": "서술",
+      "decision": "CHANGE",
+      "old": "분류대에는 집에서 뜯어낸 금속과 제련 도구가 남아 있다. 봉문군의 운송 표식도 보인다.",
+      "candidate": "분류대에는 집에서 뜯어낸 금속과 제련 도구가 남아 있다. 군대의 운송 표식도 보인다.",
+      "reason": "현장 표식은 원본에 존재하지만 봉문군 명칭을 이때 인물이 식별했다는 필수근거는 부족. 명칭/지휘관 확인은28장으로 보존하며 현재 물증은 유지.",
+      "condition_addition": "분류대 금속/제련도구와 군대운송표식 실제 관찰 후; 이 정보가28장 실제합류 전 지하팀 지식으로 승격되지 않음."
+    }
+  ],
+  "alias_review": [
+    {
+      "id": "EDGE.OPTIONAL_26_KNIGHT_0",
+      "status": "RETIRED",
+      "canonical_ids": [],
+      "text_identity": "비활성/대체/호환 계약 보존; 본문동일 alias로 자동 통합 금지",
+      "guard_requirement": {
+        "event": "optional companion click; recruited + stage unlocked + first conversation stage; debug scoped preview allowed",
+        "guards": {
+          "optional": true
+        }
+      },
+      "runtime_verification": "PENDING"
+    },
+    {
+      "id": "EDGE.OPTIONAL_26_KNIGHT_1",
+      "status": "RETIRED",
+      "canonical_ids": [],
+      "text_identity": "비활성/대체/호환 계약 보존; 본문동일 alias로 자동 통합 금지",
+      "guard_requirement": {
+        "event": "optional companion click; recruited + stage unlocked + first conversation stage; debug scoped preview allowed",
+        "guards": {
+          "optional": true
+        }
+      },
+      "runtime_verification": "PENDING"
+    },
+    {
+      "id": "EDGE.OPTIONAL_26_OCCULTIST_0",
+      "status": "RETIRED",
+      "canonical_ids": [],
+      "text_identity": "비활성/대체/호환 계약 보존; 본문동일 alias로 자동 통합 금지",
+      "guard_requirement": {
+        "event": "optional companion click; recruited + stage unlocked + first conversation stage; debug scoped preview allowed",
+        "guards": {
+          "optional": true
+        }
+      },
+      "runtime_verification": "PENDING"
+    },
+    {
+      "id": "EDGE.PLACES_25_RESTDESCRIPTION",
+      "status": "IDENTICAL_TEXT_ALIAS",
+      "canonical_ids": [
+        "EDGE.ARRIVALS_26_0"
+      ],
+      "text_identity": "canonical 본문과 동일; 가드는 별개",
+      "guard_requirement": {
+        "event": "장소 설명 UI; actual stageId=26",
+        "guards": {}
+      },
+      "runtime_verification": "PENDING"
+    },
+    {
+      "id": "EDGE.FAILURE_GUARD.S26",
+      "status": "IDENTICAL_TEXT_ALIAS",
+      "canonical_ids": [
+        "EDGE.FAILURE_GUARD.S21"
+      ],
+      "text_identity": "canonical 본문과 동일; 가드는 별개",
+      "guard_requirement": {
+        "event": "해당 장의 실제 실패",
+        "guards": {
+          "speaker_actual_living_present_required": true,
+          "required_actual_speaker": "휘겸"
+        },
+        "v4_constraints": [
+          "휘겸가 실제 출연·생존할 때만. 사망/부재/전멸이면 음성 없이 owner 실패 UI만.",
+          "27 검은 공간 연출 낙하에는 일반 실패를 재생하지 않음."
+        ]
+      },
+      "runtime_verification": "PENDING"
+    }
+  ],
+  "open_questions": [
+    "봉문군 명칭을26장에 인물들이 실제 식별하는 별도 표기/증언이 이미 있다면 CASTING의 원문 봉문군을 유지해도 되는지 원문/구현 근거 확인 필요. 새로운 식별장면을 창작해 해결하지 않는다."
+  ],
+  "coverage": {
+    "canonical_decisions": 28,
+    "unique_ids": 28,
+    "changes": 2,
+    "keep": 26,
+    "runtime_guard_verification": "PENDING"
+  }
+}

@@ -1,0 +1,194 @@
+{
+  "stage": 14,
+  "status": "정상대상 최종검수와 부모 최종판단 완료;29문구확정/구현검증별도",
+  "input_ids": 29,
+  "decisions": [
+    {
+      "id": "EDGE.ARRIVALS_14_0",
+      "decision": "KEEP",
+      "condition_addition": null
+    },
+    {
+      "id": "A2.S14.INTRO.01",
+      "decision": "KEEP",
+      "condition_addition": null
+    },
+    {
+      "id": "A2.S14.INTRO.02",
+      "decision": "KEEP",
+      "condition_addition": null
+    },
+    {
+      "id": "A2.S14.INTRO.03",
+      "decision": "KEEP",
+      "condition_addition": null
+    },
+    {
+      "id": "A2.S14.INTRO.04",
+      "decision": "KEEP",
+      "condition_addition": null
+    },
+    {
+      "id": "A2.S14.MID.01",
+      "decision": "KEEP",
+      "condition_addition": null
+    },
+    {
+      "id": "A2.S14.MID.02",
+      "decision": "KEEP",
+      "condition_addition": null
+    },
+    {
+      "id": "A2.S14.MID.03",
+      "decision": "KEEP",
+      "condition_addition": null
+    },
+    {
+      "id": "A2.S14.MID.04",
+      "decision": "KEEP",
+      "condition_addition": null
+    },
+    {
+      "id": "A2.S14.MID.05",
+      "decision": "KEEP",
+      "condition_addition": null
+    },
+    {
+      "id": "A2.S14.MID.06",
+      "decision": "KEEP",
+      "condition_addition": null
+    },
+    {
+      "id": "A2.S14.MID.07",
+      "decision": "KEEP",
+      "condition_addition": null
+    },
+    {
+      "id": "A2.S14.MID.08",
+      "decision": "KEEP",
+      "condition_addition": null
+    },
+    {
+      "id": "A2.S14.MID.09",
+      "decision": "KEEP",
+      "condition_addition": null
+    },
+    {
+      "id": "A2.S14.MID.10",
+      "decision": "KEEP",
+      "condition_addition": null
+    },
+    {
+      "id": "A2.S14.MID.11",
+      "decision": "KEEP",
+      "condition_addition": null
+    },
+    {
+      "id": "A2.S14.COMPLETE.01",
+      "decision": "KEEP",
+      "condition_addition": null
+    },
+    {
+      "id": "A2.S14.COMPLETE.02",
+      "decision": "KEEP",
+      "condition_addition": null
+    },
+    {
+      "id": "A2.S14.COMPLETE.03",
+      "decision": "KEEP",
+      "condition_addition": null
+    },
+    {
+      "id": "A2.S14.OBJECTIVE.01",
+      "decision": "KEEP",
+      "condition_addition": null
+    },
+    {
+      "id": "A2.S14.OBJECTIVE.02",
+      "decision": "KEEP",
+      "condition_addition": null
+    },
+    {
+      "id": "A2.S14.POPUP.01",
+      "decision": "KEEP",
+      "condition_addition": null
+    },
+    {
+      "id": "A2.S14.FAIL.01",
+      "decision": "KEEP",
+      "condition_addition": null
+    },
+    {
+      "id": "A2.S14.JOURNAL.01",
+      "decision": "KEEP",
+      "condition_addition": null
+    },
+    {
+      "id": "EDGE.OPTIONAL_14_ARCHER_0",
+      "decision": "KEEP",
+      "condition_addition": "E02 아버지 소식 전달 전"
+    },
+    {
+      "id": "EDGE.OPTIONAL_14_MAGE_0",
+      "decision": "KEEP",
+      "condition_addition": null
+    },
+    {
+      "id": "EDGE.OPTIONAL_14_KNIGHT_0",
+      "decision": "KEEP",
+      "condition_addition": null
+    },
+    {
+      "id": "EDGE.OPTIONAL_14_KNIGHT_1",
+      "decision": "KEEP",
+      "condition_addition": "E02 아버지 소식 전달 전"
+    },
+    {
+      "id": "EDGE.OPTIONAL_14_OCCULTIST_0",
+      "decision": "KEEP",
+      "condition_addition": "E03 집 앞 확보 완료 전"
+    }
+  ],
+  "pass1_rejected": [
+    {
+      "id": "A2.S14.COMPLETE.01",
+      "reason": "은신처 도착 뒤 집이 비었다는 진술. 다른 주민들의 더 깊은 은신과 모순 없음. 이 집엔 나와 우리뿐이라는 제안은 장소·시점 변경 및 어색한 나와 우리 지칭을 추가."
+    },
+    {
+      "id": "EDGE.OPTIONAL_14_KNIGHT_1",
+      "reason": "아버님/기다리신다고가 이미 존대. 께서는 가능한 격식 대안이지 필수 교정 아님. 최소 수정 원칙으로 KEEP."
+    }
+  ],
+  "implementation_questions": [
+    "선택 ARCHER0/KNIGHT1이 E02 아버지 소식 전달 후에는 재생되지 않는가?",
+    "선택 OCCULTIST0이 집 앞 확보 후에는 재생되지 않는가?",
+    "길찬만 구조하며 13장 석공은 안전자리에 남는 출연 조건이 보존되는가?",
+    "COMPLETE.02가 가리키는 후방길이 실제로 확보됐는가?"
+  ],
+  "sources": [
+    "HONRO_14장_대사검수.txt",
+    "HONRO-CH14-PASS1-20261027-response.md"
+  ],
+  "coverage_note": "실제29 ID 전부 대조. Gemini 본편17항목/UI6항목은 실제19/5와 불일치하지만 ID 누락은 없음.",
+  "pass3_attempt_status": {
+    "reported_by": "recover_gemini_review",
+    "quality_report": "HONRO-CH14-PASS3-CORRECTION-20261027-quality-failure.json",
+    "actual_target_response": false,
+    "final_review_complete": false,
+    "note": "새 전용대화 및 좁은정정 후에도13장한행을 답했다는 브라우저 담당 보고. 14장 최종으로 세지 않음."
+  },
+  "pass3_final": {
+    "file": "HONRO-CH14-PASS3-20261027-response.md",
+    "actual_unique_ids": 29,
+    "missing": [],
+    "extra": [],
+    "reviewer_recommendation": "2건 모두 기존후보유지 권고",
+    "parent_decision": "최종제안2건은 떠나온 집 지칭과 존대 표현을 명료화하므로 그대로 채택; 나머지27KEEP",
+    "accepted_verbatim": {
+      "A2.S14.COMPLETE.01": "주민들은 더 깊은 곳으로 갔소. 내가 숨어 있던 집에 남은 사람은 없소.",
+      "EDGE.OPTIONAL_14_KNIGHT_1": "아버님이 석문 밖에서 기다리고 계신다고 전하겠습니다."
+    },
+    "guards_preserved": true,
+    "parent_rationale": "원문도 성립하지만 명료성 선택으로 채택. 갔다가 은신을 부정하지 않고 저널/전후 맥락이 은신 사실을 유지하므로 정보 손실은 경미하다. 내가 숨어 있던 집이 플레이어의 장소 지칭을 더 명료하게 한다. 존대 대안도 원문 오류 판정이 아니라 자연스러운 선택으로 수용."
+  }
+}
