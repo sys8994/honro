@@ -213,7 +213,7 @@ function firstSpiritEncounter(app,heroes){const e=app.engine,b=e?.b,key='act2:fi
  const guidance=soulGuide+(manifest?' 현형부를 맞히면 혼령이 드러나 동행의 활과 검도 제대로 닿습니다.':lamp?' 원혼등불에 다가가 밝히면 주변 혼령이 드러나 동행의 활과 검도 제대로 닿습니다.':' 소단을 선택해 혼령을 상대하세요.');
  app.profile.seen??={};
  app.profile.seen[key]=true;
- const meta={storyId:key,storyTitle:'첫 혼령의 기척',sceneTarget:spirit.id,...(!manifest&&lamp?{sceneLamp:lamp.id}:{}),exposureMethod:manifest?'manifest':lamp?'lamp':'soul'};
+ const meta={storyId:key,storyTitle:'첫 혼령의 기척',sceneTarget:spirit.id,...(useCommon&&soul?{sceneSoul:soul}:{}),...(!manifest&&lamp?{sceneLamp:lamp.id}:{}),exposureMethod:manifest?'manifest':lamp?'lamp':'soul'};
  const observation=current?G.HonroNarrativeCatalogue.rows('firstSpirit.observation.current'):structuredClone(G.HONRO_NARRATIVE_COMPAT.extras[b.honroNarrativeRevision===1?'firstSpirit.observation.current':'firstSpirit.observation.v0']);
  G.HonroStory.queue(app,(useCommon?common.markLocked:ls=>ls)([...observation.map(([who,text,cue={}])=>[who,text,{...meta,...cue}]),
  ['소단',reply,{...meta,...(current?{rowId:'first-spirit.reply',spiritPart:'reply',portraitExpression:G.HONRO_PORTRAIT_VARIANTS.valueExpressions['firstSpirit.reply.'+(manifest?'manifest':lamp?'lamp':'neither')]}:{})}],

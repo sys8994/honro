@@ -10,6 +10,15 @@ function lampAvailable(e,m,spirit,heroes){if(!m?.id?.startsWith('spirit-lamp')||
  // The guide explicitly asks the player to approach a reachable lamp.
  const u=heroes.find(live),surface=e.surface(m.x,m.y-80,m.y+100);return !!u&&!!surface&&C.validTerrainContactPose(e.b.terrain,{...u,x:m.x,y:surface.y});
 }
+function firstSpiritAllowed(app,who,meta){const e=app.engine,b=e?.b;if(!enabled()||!V.active(b)||app.screen!=='battle'||meta.storyId!=='act2:first-spirit-encounter')return false;
+ const heroes=V.heroes(b),sodan=heroes.find(u=>u.cls==='occultist'&&live(u)),spirit=b.units.find(u=>u.id===meta.sceneTarget);
+ // Recheck the actual observed encounter at admission, drain, saved restore
+ // and every displayed line. A generated queue is no survival receipt.
+ if(!sodan||!live(spirit)||spirit.side!==1||!spirit.honroSpirit||!heroes.some(h=>V.near(h,spirit,680)))return false;
+ if(who!=='안내'&&meta.spiritPart!=='reply')return true;
+ const method=meta.exposureMethod,valid=method==='manifest'?usable(e,sodan,'O08'):method==='lamp'?lampAvailable(e,(b.honroMarkers||[]).find(m=>m.id===meta.sceneLamp),spirit,heroes):['O01','O02','O03','O04','O05','O16'].some(id=>usable(e,sodan,id));
+ return valid&&(who!=='안내'||selectable(e,sodan)&&(!meta.sceneSoul||usable(e,sodan,meta.sceneSoul)));
+}
 function allowed(app,meta){if(!enabled())return false;const b=app.engine?.b;if(!V.active(b))return false;
  if(meta?.rowId==='EDGE.RUNTIME.VOID.REJOIN_PROMPT'){if(b.honroStage!==27||G.HonroAct3Void.blocked(b)||b.honroAct3Void?.state==='RESOLVED')return false;const a=V.heroes(b).find(u=>u.cls==='archer'),m=V.marker(b,'family-manifest'),z=b.honroMap?.act3?.voidEncounter?.trigger||b.honroMap?.act3?.crossings?.at(-1)?.landing,inZone=!!a&&!!z&&a.x>=z.left&&a.x<=z.right&&Math.abs(a.y-z.y)<125;return !!a&&!!m&&!inZone&&!(Math.abs(a.x-m.x)<520&&Math.abs(a.y-m.y)<150);}
  return false;
@@ -23,5 +32,5 @@ function lockedId(index,branch){return index<4?'EDGE.SCENES_FIRSTSPIRIT_OBSERVAT
 function markLocked(lines,branch){if(!enabled())return lines;return lines.map((l,i)=>[l[0],l[1],{...l[2],canonicalId:lockedId(i,branch),...(i===5?{canonicalParts:['EDGE.RUNTIME.FIRST_SPIRIT.GUIDE.211','EDGE.RUNTIME.FIRST_SPIRIT.GUIDE.213']}:{}),commonReviewRevision:1}]);}
 const resolve=G.HonroNarrativeCatalogue.resolve;G.HonroNarrativeCatalogue.resolve=function(b,st){const out=resolve(b,st);if(templeAvailable(b))return{...out,guide:row('EDGE.RUNTIME.TEMPLE.GUIDE').text,honroGuideId:'EDGE.RUNTIME.TEMPLE.GUIDE'};return out;};
 const help=G.HonroObjectives.help;G.HonroObjectives.help=function(app){const out=help(app);return templeAvailable(app.engine?.b)?{...out,guide:row('EDGE.RUNTIME.TEMPLE.GUIDE').text,guideRowId:'EDGE.RUNTIME.TEMPLE.GUIDE'}:out;};
-G.HonroAct23V4ReviewedCommon={enabled,row,usable,selectable,lampAvailable,templeAvailable,allowed,guide,rowsReviewed,markLocked};
+G.HonroAct23V4ReviewedCommon={enabled,row,usable,selectable,lampAvailable,templeAvailable,firstSpiritAllowed,allowed,guide,rowsReviewed,markLocked};
 })(globalThis);
