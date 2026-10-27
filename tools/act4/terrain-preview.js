@@ -89,6 +89,7 @@ function create(n){
 
  extras.find(a=>a.id==='a4:bamboo').reference.heightM=14;
  const project={...G.HONRO_PROJECT,stages:[s],activeStageId:s.id,library:[...G.HONRO_PROJECT.library,...clone(extras)]};
+ G.HonroAct4ReviewArt?.install(s,project.library);
  return G.HonroTerrainDomain.author(project);
 }
 function launch(n){const app=G.HonroApp,project=create(n),map=project.stages[0];

@@ -5,7 +5,7 @@
 <iframe src="../../HONRO.html" title="shared game runtime"></iframe>
 <script>
 const frame=document.querySelector('iframe');let loaded=false;
-async function start(n){const w=frame.contentWindow;await w.HonroCampaignLoader.ensureStage(30);await w.HonroCampaignLoader.ensureStage(21);await w.HonroCampaignLoader.ensureStage(13);if(!loaded){w.HONRO_ACT4_PREVIEW_SEEDS=await (await w.fetch('game/docs/act4/dialogue-seeds-31-35-36-reviewed-final.json')).json();for(const path of ['terrain-preview.js','preview-events.js'])await new Promise((resolve,reject)=>{const s=w.document.createElement('script');s.src='tools/act4/'+path;s.onload=resolve;s.onerror=reject;w.document.head.append(s);});loaded=true;}w.HonroAct4TerrainPreview.launch(n);}
+async function start(n){const w=frame.contentWindow;await w.HonroCampaignLoader.ensureStage(30);await w.HonroCampaignLoader.ensureStage(21);await w.HonroCampaignLoader.ensureStage(13);if(!loaded){w.HONRO_ACT4_PREVIEW_SEEDS=await (await w.fetch('game/docs/act4/dialogue-seeds-31-35-36-reviewed-final.json')).json();for(const path of ['review-art.js','terrain-preview.js','preview-events.js'])await new Promise((resolve,reject)=>{const s=w.document.createElement('script');s.src='tools/act4/'+path;s.onload=resolve;s.onerror=reject;w.document.head.append(s);});loaded=true;}w.HonroAct4TerrainPreview.launch(n);}
 frame.onload=()=>{const timer=setInterval(()=>{if(frame.contentWindow.HonroApp){clearInterval(timer);start(31);}},100);};
 document.querySelectorAll('[data-stage]').forEach(b=>b.onclick=()=>start(+b.dataset.stage));document.querySelector('#interact').onclick=()=>frame.contentWindow.HonroAct4TerrainPreview?.interact();
 </script></html>
