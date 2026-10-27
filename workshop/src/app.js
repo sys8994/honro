@@ -80,7 +80,7 @@ function layerLocked(st,id){return st.layers.find(l=>l.id===id)?.locked===true}
 function init(){cacheDom();bindTop();bindCanvas(dom.stageCanvas,'stage');bindCanvas(dom.elementCanvas,'element');resizeAll();addEventListener('resize',resizeAll);renderAll();requestAnimationFrame(loop)}
 function cacheDom(){Object.assign(dom,{stageCanvas:$('#stageCanvas'),stageOverlay:$('#stageOverlay'),elementCanvas:$('#elementCanvas'),playCanvas:$('#playCanvas'),status:$('#statusText'),left:$('#leftContent'),right:$('#rightContent')})}
 function bindTop(){
- $('#productionToggle').onclick=()=>{productionMode=!productionMode;switchTab('stage');renderAll();};
+ $('#productionToggle').onclick=()=>{productionMode=!productionMode;switchTab('stage');};
  $$('.tab[data-tab]').forEach(b=>b.onclick=()=>switchTab(b.dataset.tab));$('#overlayToggle').onchange=e=>{overlayEnabled=e.target.checked;renderStage()};$('#boundsToggle').onchange=e=>{boundsEnabled=e.target.checked;renderStage()};$('#undoBtn').onclick=undo;$('#redoBtn').onclick=redo;
  $('#exportBtn').onclick=downloadProject;$('#importBtn').onclick=()=>$('#fileInput').click();$('#fileInput').onchange=importFile;$('#newStageBtn').onclick=createStageDialog;
  document.addEventListener('keydown',e=>{if((e.ctrlKey||e.metaKey)&&e.key.toLowerCase()==='z'){e.preventDefault();e.shiftKey?redo():undo();return}if((e.ctrlKey||e.metaKey)&&e.key.toLowerCase()==='y'){e.preventDefault();redo();return}if(e.key==='Enter'){if(currentTab==='stage'&&tool==='solid')finalizeSolid();else if(currentTab==='element'&&elementTool==='polygon')finalizeElementPolygon();return}if(e.key==='Delete'||e.key==='Backspace'){if(['INPUT','TEXTAREA'].includes(document.activeElement?.tagName))return;if(currentTab==='element'){const a=activeAsset();if(a.vector)return;if(selectedNode>=0){const n=nodeByGlobal(a,selectedNode);if(n&&n.shape.points.length>3)commit('Vertex 삭제',()=>{n.shape.points.splice(n.index,1);syncAssetCollision(a);selectedNode=-1})}else if(selectedShapeIndex>=0&&a.visual.length>1)commit('Polygon 삭제',()=>{a.visual.splice(selectedShapeIndex,1);syncAssetCollision(a);selectedShapeIndex=-1});return}deleteSelection()}if(e.key==='Escape'){selected=null;selectedNode=-1;selectedShapeIndex=-1;solidDraft=[];elementPolygonDraft=[];renderAll()}})
@@ -89,7 +89,7 @@ function switchTab(t){if(currentTab==='play'&&t!=='play')stopPlay(false);current
 function resizeAll(){for(const c of [dom.stageCanvas,dom.stageOverlay,dom.elementCanvas]){if(!c)continue;const r=c.getBoundingClientRect(),d=Math.min(2,devicePixelRatio||1);c.width=Math.max(1,Math.round(r.width*d));c.height=Math.max(1,Math.round(r.height*d));c._dpr=d}fitInitialViews();renderAll()}
 function fitInitialViews(){const st=stage();if(!stageView._fit&&dom.stageCanvas?.clientWidth){stageView.zoom=Math.min(dom.stageCanvas.clientWidth/st.width,dom.stageCanvas.clientHeight/st.height)*.9;stageView.x=st.width/2;stageView.y=st.height/2;stageView._fit=true}if(!elementView._fit){elementView.zoom=1;elementView.x=0;elementView.y=-100;elementView._fit=true}}
 
-function renderAll(){invalidateRuntime();renderToolbars();renderPanels();if(productionMode&&currentTab==='stage')renderProductionPanel();if(currentTab==='stage')renderStage();else if(currentTab==='element')renderElement();else renderPlay();updateTop();requestAnimationFrame(()=>{renderAssetPreviews();renderUnitPreviews()})}
+function renderAll(){invalidateRuntime();renderToolbars();renderPanels();if(productionMode&&currentTab==='stage')renderProductionPanel();if(currentTab==='stage')renderStage();else if(currentTab==='element')renderElement();else renderPlay();updateTop();schedulePreviews()}
 function updateTop(){$('#projectName').textContent=project.name;$('#undoBtn').disabled=!history.length;$('#redoBtn').disabled=!future.length}
 function renderPanels(){if(currentTab==='stage')renderStagePanels();else if(currentTab==='element')renderElementPanels();else renderPlayPanels()}
 
@@ -222,11 +222,24 @@ function drawBounds(ctx,c,st,view){const B=HonroBounds,w=c.clientWidth,h=c.clien
  ctx.setLineDash([]);ctx.fillStyle='#d8ddd4';ctx.fillText('가로 시야 '+Math.round(w/view.zoom)+' · 최소 줌 '+Math.round(B.zoomLimits(w).min*100)+'%',20,150);ctx.restore();
 }
 
-function renderAssetPreviews(){for(const c of $$('[data-asset-preview]')){
- const a=project.library.find(x=>x.id===c.dataset.assetPreview);if(!a)continue;
+// Preview only visible library tiles. Rebuilding all ~900 thumbnails on each
+// selection used to monopolize the UI thread, especially after resizeAll.
+let previewFrame=0,previewObserver=null;
+function schedulePreviews(){
+ if(previewFrame)cancelAnimationFrame(previewFrame);
+ previewObserver?.disconnect();
+ previewFrame=requestAnimationFrame(()=>{previewFrame=0;
+  previewObserver=new IntersectionObserver(entries=>{for(const entry of entries){if(!entry.isIntersecting)continue;renderAssetPreview(entry.target);previewObserver.unobserve(entry.target);}}, {root:null,rootMargin:'80px'});
+  for(const c of $$('[data-asset-preview]'))previewObserver.observe(c);
+  renderUnitPreviews();
+ });
+}
+function renderAssetPreview(c){
+ if(!c.isConnected)return;
+ const a=project.library.find(x=>x.id===c.dataset.assetPreview);if(!a)return;
  const r=c.getBoundingClientRect();c.width=Math.max(80,Math.round(r.width));c.height=Math.max(40,Math.round(r.height));const ctx=c.getContext('2d'),b=assetBounds(a),z=Math.min(c.width/(b.w+20),c.height/(b.h+20));
  const scene=Object.assign(Object.create(HonroScene.prototype),{_staticCacheBuild:true,time:0,scale:z});ctx.save();ctx.translate(c.width/2,c.height/2);ctx.scale(z,z);ctx.translate(-(b.x+b.w/2),-(b.y+b.h/2));HonroElements.draw(ctx,a,{x:0,y:0,scale:1,rotation:0},scene);ctx.restore();
-}}
+}
 
 let elementTool='point';
 function renderElement(){if(!dom.elementCanvas)return;const c=dom.elementCanvas,ctx=c.getContext('2d'),d=c._dpr||1,w=c.clientWidth,h=c.clientHeight,a=activeAsset(),grid=Math.max(4,project.settings.grid||40);ctx.setTransform(d,0,0,d,0,0);ctx.clearRect(0,0,w,h);ctx.fillStyle='#0c171b';ctx.fillRect(0,0,w,h);ctx.save();ctx.translate(w/2,h/2);ctx.scale(elementView.zoom,elementView.zoom);ctx.translate(-elementView.x,-elementView.y);ctx.strokeStyle='#263a3d';ctx.lineWidth=1/elementView.zoom;for(let x=-1500;x<1500;x+=grid){ctx.beginPath();ctx.moveTo(x,-1500);ctx.lineTo(x,1500);ctx.stroke()}for(let y=-1500;y<1500;y+=grid){ctx.beginPath();ctx.moveTo(-1500,y);ctx.lineTo(1500,y);ctx.stroke()}HonroElements.draw(ctx,a,{x:a.anchor.x,y:a.anchor.y,scale:1,rotation:0},Object.assign(Object.create(HonroScene.prototype),{_staticCacheBuild:true,time:0,scale:elementView.zoom}));if(!a.vector&&selectedShapeIndex>=0&&a.visual[selectedShapeIndex]){const sh=a.visual[selectedShapeIndex];ctx.beginPath();sh.points.forEach((p,i)=>i?ctx.lineTo(p.x,p.y):ctx.moveTo(p.x,p.y));ctx.closePath();ctx.strokeStyle='#f0ce80';ctx.lineWidth=2/elementView.zoom;ctx.stroke();}ctx.fillStyle='#f0ce80';for(const sh of a.vector?[]:a.visual)for(let i=0;i<sh.points.length;i++){const p=sh.points[i];ctx.beginPath();ctx.arc(p.x,p.y,5/elementView.zoom,0,Math.PI*2);ctx.fillStyle=selectedNode===nodeGlobalIndex(a,sh,i)?'#fff0b0':'#c39f5e';ctx.fill()}if(elementPolygonDraft.length){ctx.strokeStyle='#e3c67f';ctx.fillStyle='#e3c67f';ctx.setLineDash([5/elementView.zoom,4/elementView.zoom]);ctx.beginPath();elementPolygonDraft.forEach((p,i)=>i?ctx.lineTo(p.x,p.y):ctx.moveTo(p.x,p.y));ctx.stroke();ctx.setLineDash([]);for(const p of elementPolygonDraft){ctx.beginPath();ctx.arc(p.x,p.y,4/elementView.zoom,0,Math.PI*2);ctx.fill()}}ctx.strokeStyle='#8dc0a8';ctx.lineWidth=2/elementView.zoom;ctx.beginPath();ctx.moveTo(a.anchor.x-8,a.anchor.y);ctx.lineTo(a.anchor.x+8,a.anchor.y);ctx.moveTo(a.anchor.x,a.anchor.y-8);ctx.lineTo(a.anchor.x,a.anchor.y+8);ctx.stroke();for(const s of a.sockets){ctx.strokeStyle='#a7a8d7';ctx.beginPath();ctx.arc(s.x,s.y,7/elementView.zoom,0,Math.PI*2);ctx.stroke()}ctx.restore()}
@@ -296,7 +309,10 @@ function stopPlay(returnToStage=true){
  if(returnToStage)switchTab('stage');
 }
 function renderPlay(){}
-function loop(ts){if(currentTab==='stage')renderStage();requestAnimationFrame(loop)}
+// Stage editing is a static inspection view, not the 60fps game loop.
+// Direct edits still paint immediately; slow animated scenery must not starve UI.
+let lastEditorPaint=0;
+function loop(ts){if(!document.hidden&&currentTab==='stage'&&ts-lastEditorPaint>=125){lastEditorPaint=ts;renderStage()}requestAnimationFrame(loop)}
 
 function renderToolbars(){const host=$('#stageToolbar');if(host)host.innerHTML=[['select','선택'],['terrain','지형'],['solid','Solid'],['material','재질'],['place','배치'],['scatter','Scatter'],['unit','유닛'],['event','이벤트'],['pan','Pan']].map(([id,n])=>`<button class="tool ${tool===id?'active':''}" data-tool="${id}">${n}</button>`).join('<span class="toolbar-sep"></span>');$$('[data-tool]').forEach(b=>b.onclick=()=>{tool=b.dataset.tool;if(tool!=='solid')solidDraft=[];renderAll()});const eh=$('#elementToolbar');if(eh)eh.innerHTML=[['point','Point'],['polygon','Polygon'],['anchor','Anchor'],['socket','Socket']].map(([id,n])=>`<button class="tool ${elementTool===id?'active':''}" data-etool="${id}" ${activeAsset().vector&&['point','polygon'].includes(id)?'disabled title="SVG 원본에서 경로를 편집하세요"':''}>${n}</button>`).join('');$$('[data-etool]').forEach(b=>b.onclick=()=>{elementTool=b.dataset.etool;if(elementTool!=='polygon')elementPolygonDraft=[];renderAll()})}
 function validateStage(st){return HonroMaps.validate({...activeProject(),stages:[st]})}
