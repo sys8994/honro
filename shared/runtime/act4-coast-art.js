@@ -1,4 +1,4 @@
-(function(G){'use strict';
+(function(G){'use strict';if(G.HonroAct4CoastArt)return;
 // Authored world landmarks use the existing vector/Canvas renderer. No screen
 // tint touches actors or projectiles, and all near forms keep real foot points.
 const clone=x=>JSON.parse(JSON.stringify(x)),P=G.HonroAct4CoastMaps,E=G.HonroEnvironment;
@@ -53,7 +53,7 @@ function environment(s,library){const n=s.metadata.act4Preview;library.push(...c
 }
 const create=P.create;P.create=function(n){const project=create(n),s=project.stages[0];environment(s,project.library);return G.HonroTerrainDomain.author(project);};
 const unit=G.HonroScene.prototype.unit,body=G.HonroScene.prototype.unitBody;
-G.HonroScene.prototype.unit=function(c,u,...args){const b=this.battle;if(b?.honroCustom&&b.honroAct4Preview&&(u.honroAct4Sheltered||u.honroAct4OnBoat))return;return unit.call(this,c,u,...args);};
-G.HonroScene.prototype.unitBody=function(c,u,...args){const b=this.battle;if(b?.honroCustom&&b.honroAct4Preview&&(u.honroAct4Sheltered||u.honroAct4OnBoat))return;if(u.honroAct4WreckBoss){if(u.dead)return;return this.landmark(c,{kind:'canonical-element',asset:assets.find(v=>v.id==='a4-coast:wreck'),x:u.x,y:u.y,scale:1,rotation:Math.sin(this.time*.7)*.012,depthLayer:'L1'});}return body.call(this,c,u,...args);};
+G.HonroScene.prototype.unit=function(c,u,...args){const b=this.battle;if((b?.honroCustom||b?.honroAct4Official===1)&&b.honroAct4Preview&&(u.honroAct4Sheltered||u.honroAct4OnBoat))return;return unit.call(this,c,u,...args);};
+G.HonroScene.prototype.unitBody=function(c,u,...args){const b=this.battle;if((b?.honroCustom||b?.honroAct4Official===1)&&b.honroAct4Preview&&(u.honroAct4Sheltered||u.honroAct4OnBoat))return;if(u.honroAct4WreckBoss){if(u.dead)return;return this.landmark(c,{kind:'canonical-element',asset:assets.find(v=>v.id==='a4-coast:wreck'),x:u.x,y:u.y,scale:1,rotation:Math.sin(this.time*.7)*.012,depthLayer:'L1'});}return body.call(this,c,u,...args);};
 G.HonroAct4CoastArt={assets,environment};
 })(globalThis);

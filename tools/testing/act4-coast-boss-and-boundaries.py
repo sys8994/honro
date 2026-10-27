@@ -7,7 +7,7 @@ with sync_playwright() as p:
  page=browser.new_page(viewport={'width':1440,'height':900});errors=[];page.on('pageerror',lambda e:errors.append(str(e)))
  page.goto('http://127.0.0.1:8772/HONRO.html');page.wait_for_function('!!window.HonroApp')
  page.evaluate('''async()=>{await HonroCampaignLoader.ensureStage(30);await HonroCampaignLoader.ensureStage(21);await HonroCampaignLoader.ensureStage(13);HonroApp.frame=()=>{};const ss=await Promise.all(['31-35-36','32-33-34-37','38-39-40'].map(async s=>(await fetch('game/docs/act4/dialogue-seeds-'+s+'-reviewed-final.json')).json()));HONRO_ACT4_PREVIEW_SEEDS={scenes:ss.flatMap(s=>s.scenes),ui:ss.flatMap(s=>s.ui)};window.ownerBefore=JSON.stringify(HonroApp.profile);}''')
- for name in ['review-art','terrain-preview','coast-maps','coast-art','preview-events','coast-events','preview-lifecycle']:page.add_script_tag(url='http://127.0.0.1:8772/tools/act4/'+name+'.js')
+ for name in ['review-art','terrain-preview','coast-maps','coast-art','preview-events','coast-events','preview-lifecycle']:page.add_script_tag(url='http://127.0.0.1:8772/'+{'review-art':'shared/runtime/act4-art.js','terrain-preview':'shared/runtime/act4-maps.js','coast-maps':'shared/runtime/act4-coast-maps.js','coast-art':'shared/runtime/act4-coast-art.js','preview-events':'shared/runtime/act4-events.js','coast-events':'shared/runtime/act4-coast-events.js'}.get(name,'tools/act4/'+name+'.js'))
  def ev(code):return page.evaluate(code)
  def render():ev("HonroApp.scene.render(HonroApp.engine,0,'',.5,false,0)")
  def finish():

@@ -7,7 +7,7 @@ with sync_playwright() as p:
  page=browser.new_page(viewport={'width':390,'height':844});errors=[];page.on('pageerror',lambda e:errors.append(str(e)))
  page.goto('http://127.0.0.1:8772/HONRO.html');page.wait_for_function('!!window.HonroApp')
  page.evaluate('''async()=>{await HonroCampaignLoader.ensureStage(30);await HonroCampaignLoader.ensureStage(21);HonroApp.frame=()=>{};const ss=await Promise.all(['31-35-36','32-33-34-37','38-39-40'].map(async s=>(await fetch('game/docs/act4/dialogue-seeds-'+s+'-reviewed-final.json')).json()));HONRO_ACT4_PREVIEW_SEEDS={scenes:ss.flatMap(s=>s.scenes),ui:ss.flatMap(s=>s.ui)};}''')
- for f in ['review-art','terrain-preview','coast-maps','coast-art','preview-events','coast-events','preview-lifecycle']:page.add_script_tag(url='http://127.0.0.1:8772/tools/act4/'+f+'.js')
+ for f in ['review-art','terrain-preview','coast-maps','coast-art','preview-events','coast-events','preview-lifecycle']:page.add_script_tag(url='http://127.0.0.1:8772/'+{'review-art':'shared/runtime/act4-art.js','terrain-preview':'shared/runtime/act4-maps.js','coast-maps':'shared/runtime/act4-coast-maps.js','coast-art':'shared/runtime/act4-coast-art.js','preview-events':'shared/runtime/act4-events.js','coast-events':'shared/runtime/act4-coast-events.js'}.get(f,'tools/act4/'+f+'.js'))
  def ev(s):return page.evaluate(s)
  ev('HonroAct4TerrainPreview.freezeReviewClock=true')
  def render(dt=.04):ev(f"HonroApp.scene.render(HonroApp.engine,{dt},'',.5,false,{dt})")
@@ -45,5 +45,5 @@ with sync_playwright() as p:
  # Enlarged water-plane detail, camera only; no actor or collision edits.
  ev('Object.assign(HonroApp.scene,{manual:true,x:1170,y:1550,scale:1.0})');render(0);page.locator('#battlecanvas').screenshot(path=str(OUT/'31-sandbar-detail.png'))
  assert not errors,errors
- source=hashlib.sha256(b''.join((ROOT/'tools/act4'/f).read_bytes() for f in ['review-art.js','terrain-preview.js','preview-events.js'])).hexdigest()
+ source=hashlib.sha256(b''.join((ROOT/{'review-art':'shared/runtime/act4-art.js','terrain-preview':'shared/runtime/act4-maps.js','coast-maps':'shared/runtime/act4-coast-maps.js','coast-art':'shared/runtime/act4-coast-art.js','preview-events':'shared/runtime/act4-events.js','coast-events':'shared/runtime/act4-coast-events.js'}.get(f.removesuffix('.js'),'tools/act4/'+f)).read_bytes() for f in ['review-art.js','terrain-preview.js','preview-events.js'])).hexdigest()
  (OUT/'results.json').write_text(json.dumps({'scope':__doc__,'sourceSHA256':source,'rows':rows,'pageErrors':errors},ensure_ascii=False,indent=2));browser.close()

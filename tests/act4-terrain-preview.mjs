@@ -5,8 +5,8 @@ import {readFile,mkdir,writeFile} from 'node:fs/promises';
 import {runtime} from '../game/tests/helpers.mjs';
 const g=await runtime({legacyMaps:false}),C=g.HONRO_CORE;
 const campaign=JSON.stringify(g.HONRO_PROJECT),content=JSON.stringify(g.HONRO_CONTENT.stages);
-vm.runInContext(await readFile('tools/act4/review-art.js','utf8'),g);
-vm.runInContext(await readFile('tools/act4/terrain-preview.js','utf8'),g);
+vm.runInContext(await readFile('shared/runtime/act4-art.js','utf8'),g);
+vm.runInContext(await readFile('shared/runtime/act4-maps.js','utf8'),g);
 const rows=[];
 for(const n of [31,35,36]){
  const project=g.HonroAct4TerrainPreview.create(n),map=project.stages[0];

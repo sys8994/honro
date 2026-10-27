@@ -1,6 +1,6 @@
 (function(G){'use strict';
 const C=G.HONRO_CORE,classes=['archer','mage','knight','occultist'],clone=x=>structuredClone(x),events=new Map(C.EQUIPMENT_EVENTS.map(e=>[e.eventId,e]));
-const publicEvent=e=>!!e&&e.normalEnabled&&e.releaseGate==='publicAct1to3';
+const publicEvent=e=>!!e&&(e.normalEnabled&&e.releaseGate==='publicAct1to3'||G.HONRO_ACT4_RELEASE===true&&e.act===4&&e.releaseGate==='officialAct4');
 const empty=()=>({schema:1,definitionRevision:1,runId:'eq-'+Date.now().toString(36)+'-'+Math.random().toString(36).slice(2,10),ownedItemIds:[],eligibleEventIds:[],equippedByClass:Object.fromEntries(classes.map(c=>[c,{personal:null,common:null}])),rewardLedger:{}});
 function validate(eq){
  if(!eq||eq.schema!==1||eq.definitionRevision!==1||typeof eq.runId!=='string'||eq.runId.length>100||!Array.isArray(eq.ownedItemIds)||eq.ownedItemIds.length>52||new Set(eq.ownedItemIds).size!==eq.ownedItemIds.length||eq.ownedItemIds.some(id=>!C.EQUIPMENT_MAP[id])||!eq.equippedByClass||!eq.rewardLedger||Array.isArray(eq.rewardLedger))throw Error('장비 기록 버전을 읽을 수 없습니다.');
@@ -37,6 +37,7 @@ function transaction(app,change){
 function stepDone(b,id){const m=b?.honroState;return !!(m?.act23v4?.done?.[id]||m?.act2?.done?.[id]||m?.act3?.done?.[id]);}
 const stepRewards={12:['sign','eq_se_t2_choice'],13:['13.release','eq_so_resident'],16:['16.testimony','eq_da_t2_choice'],17:['17.hoist','eq_hw_t2_choice'],18:['18.keeper','eq_so_t2_choice'],19:['old-soul','eq_so_t3a'],20:['escape','eq_co_t2_choice'],22:['v4.record-bundle','eq_se_t3a'],24:['family-crest','eq_hw_t3a'],26:['artisan-resident','eq_co_11'],29:['stage29-echo','eq_da_t3a']};
 function collect(p,b,{won=false,initial=false}={}){let changed=recruitFacts(p);const stage=b?.honroStage;
+ if(G.HONRO_ACT4_RELEASE===true&&p.honroAct4?.runId===p.equipment.runId)for(const [id,f]of Object.entries(p.honroAct4.factEvents||{})){const e=events.get(id),source=p.honroAct4.completed?.[e?.stage]?.sourceRun,live=b?.honroAct4Official===1&&b.honroStage===e?.stage&&b.session===f.sourceRun;const proof=f.proof;const verified=id==='eq_se_t3b'?proof?.boarded&&Array.isArray(proof.party)&&proof.party.length>0:id==='eq_co_12'?proof?.tag==='eq-co-31'&&!!proof.reachedBy:id==='eq_da_t3b'?proof?.itemId==='itm_da_06'&&proof.receiver==='mage'&&proof.giver!==proof.receiver&&Number.isFinite(proof.receivedAt)&&proof.positions?.length===2:id==='eq_co_t3_choice'?proof?.tag==='rooted-third-clearing'&&proof.reached===true:id==='eq_hw_t3b'?proof?.elite===true&&typeof proof.target==='string':id==='eq_so_t3b'?proof?.roster?.total===13&&proof.roster.living===11&&proof.roster.priorDeaths===2&&proof.rescued?.ids?.length===4:false;if(e?.act===4&&f.officialAct4===true&&f.stage===e.stage&&f.campaignRunId===p.equipment.runId&&(live||source===f.sourceRun)&&verified)changed=grant(p,id)||changed;}
  for(const id of p.equipment.eligibleEventIds||[])changed=grant(p,id)||changed;
  for(const [id,n]of Object.entries({...clears,...mandatory}))if(p.cleared[n])changed=grant(p,id)||changed;
  if(won)for(const [id,n]of Object.entries(clears))if(stage===n)changed=grant(p,id)||changed;

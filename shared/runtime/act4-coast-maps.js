@@ -1,4 +1,4 @@
-(function(G){'use strict';
+(function(G){'use strict';if(G.HonroAct4CoastMaps)return;
 const C=G.HONRO_CORE,M=G.HonroMaps,copy=x=>JSON.parse(JSON.stringify(x)),pts=a=>a.map(([x,y])=>({x,y}));
 const names={32:'빈 포구',33:'물 빠진 갯길',34:'파도에 깎인 절벽',37:'곶의 뒤편',38:'어긋난 해식굴',39:'돌아오는 물',40:'돌아가는 배'};
 const layouts={

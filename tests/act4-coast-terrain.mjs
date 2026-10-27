@@ -1,7 +1,7 @@
 /** Native Engine fixtures: geometry with bodies removed and movement replenished. */
 import assert from 'node:assert/strict';import vm from 'node:vm';import{readFile,mkdir,writeFile}from'node:fs/promises';import{runtime}from'../game/tests/helpers.mjs';
 const g=await runtime({legacyMaps:false}),C=g.HONRO_CORE,before=JSON.stringify(g.HONRO_PROJECT),rows=[];
-for(const p of ['review-art','terrain-preview','coast-maps'])vm.runInContext(await readFile('tools/act4/'+p+'.js','utf8'),g);
+for(const p of ['review-art','terrain-preview','coast-maps'])vm.runInContext(await readFile({'review-art':'shared/runtime/act4-art.js','terrain-preview':'shared/runtime/act4-maps.js','coast-maps':'shared/runtime/act4-coast-maps.js','coast-art':'shared/runtime/act4-coast-art.js','preview-events':'shared/runtime/act4-events.js','coast-events':'shared/runtime/act4-coast-events.js'}[p],'utf8'),g);
 for(const chapter of [32,33,34,37,38,39,40]){
  const p=g.HonroAct4TerrainPreview.create(chapter),s=p.stages[0];assert.deepEqual(Array.from(g.HonroMaps.validate(p).filter(x=>x.level==='err')),[]);assert.equal(s.metadata.campaign,false);
  const b=g.HonroMaps.createBattle(s,p),e=new C.Engine(b,()=>{});e.checkEnd=()=>false;const spawn=b.units.map(u=>({x:u.x,y:u.y,hp:u.hp}));

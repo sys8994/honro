@@ -335,6 +335,114 @@
           "labelOffsetY": 42
         }
       ]
+    },
+    {
+      "act": 4,
+      "width": 1600,
+      "height": 1000,
+      "asset": "shared/assets/journey-maps/v1/act4.svg",
+      "stages": [
+        {
+          "stageId": "stage-31",
+          "stageNumber": 31,
+          "title": "강 끝의 갈대",
+          "mapLabel": "강 끝의 갈대",
+          "x": 180,
+          "y": 830,
+          "labelOffsetX": 65,
+          "labelOffsetY": -45
+        },
+        {
+          "stageId": "stage-32",
+          "stageNumber": 32,
+          "title": "빈 포구",
+          "mapLabel": "빈 포구",
+          "x": 400,
+          "y": 780,
+          "labelOffsetX": -70,
+          "labelOffsetY": -45
+        },
+        {
+          "stageId": "stage-33",
+          "stageNumber": 33,
+          "title": "물 빠진 갯길",
+          "mapLabel": "물 빠진 갯길",
+          "x": 640,
+          "y": 835,
+          "labelOffsetX": 65,
+          "labelOffsetY": -45
+        },
+        {
+          "stageId": "stage-34",
+          "stageNumber": 34,
+          "title": "파도에 깎인 절벽",
+          "mapLabel": "파도에 깎인 절벽",
+          "x": 930,
+          "y": 660,
+          "labelOffsetX": -70,
+          "labelOffsetY": -45
+        },
+        {
+          "stageId": "stage-35",
+          "stageNumber": 35,
+          "title": "대숲의 옛길",
+          "mapLabel": "대숲의 옛길",
+          "x": 720,
+          "y": 450,
+          "labelOffsetX": 65,
+          "labelOffsetY": -45
+        },
+        {
+          "stageId": "stage-36",
+          "stageNumber": 36,
+          "title": "쇠가 없는 마을",
+          "mapLabel": "쇠가 없는 마을",
+          "x": 440,
+          "y": 360,
+          "labelOffsetX": -70,
+          "labelOffsetY": -45
+        },
+        {
+          "stageId": "stage-37",
+          "stageNumber": 37,
+          "title": "곶의 뒤편",
+          "mapLabel": "곶의 뒤편",
+          "x": 1000,
+          "y": 290,
+          "labelOffsetX": 65,
+          "labelOffsetY": -45
+        },
+        {
+          "stageId": "stage-38",
+          "stageNumber": 38,
+          "title": "어긋난 해식굴",
+          "mapLabel": "어긋난 해식굴",
+          "x": 1230,
+          "y": 440,
+          "labelOffsetX": -70,
+          "labelOffsetY": -45
+        },
+        {
+          "stageId": "stage-39",
+          "stageNumber": 39,
+          "title": "돌아오는 물",
+          "mapLabel": "돌아오는 물",
+          "x": 1330,
+          "y": 690,
+          "labelOffsetX": 65,
+          "labelOffsetY": -45
+        },
+        {
+          "stageId": "stage-40",
+          "stageNumber": 40,
+          "title": "돌아가는 배",
+          "mapLabel": "돌아가는 배",
+          "x": 1480,
+          "y": 860,
+          "labelOffsetX": -70,
+          "labelOffsetY": -45
+        }
+      ]
     }
   ],
   "notes": [

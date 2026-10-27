@@ -1,7 +1,8 @@
 (function(G){'use strict';
 const P=G.HonroAct4TerrainPreview,A=P.eventAPI,{alive,party,memory,seed,event,inView,play}=A,C=G.HONRO_CORE;
+if(P.attachCoast)return;
 const airborne=u=>u.side===1&&u.fixed&&['airborne','spirit'].includes(u.honroAct4WaterTrait);
-const active=b=>b?.honroCustom&&b.honroAct4Preview>=31&&b.honroAct4Preview<=40,copy=x=>JSON.parse(JSON.stringify(x));
+const active=b=>(b?.honroCustom||b?.honroAct4Official===1)&&b.honroAct4Preview>=31&&b.honroAct4Preview<=40,copy=x=>JSON.parse(JSON.stringify(x));
 const near=(u,p,r=160)=>alive(u)&&Math.hypot(u.x-p.x,u.y-p.y)<r;
 const foes=b=>b.units.filter(u=>u.side===1&&alive(u));
 // damageSequence is the persistent damage RNG cursor, not a pending impact.
@@ -17,7 +18,7 @@ const residents=b=>b.units.filter(u=>u.honroAct4Resident);
 function unobscured(app,p){const s=app.scene,cv=s.canvas,r=cv.getBoundingClientRect(),x=r.left+cv.clientWidth/2+(p.x-s.x)*s.scale,y=r.top+cv.clientHeight/2+(p.y-s.y)*s.scale,box={left:x-22*s.scale,right:x+22*s.scale,top:y-90*s.scale,bottom:y+4*s.scale};if(box.left<r.left+3||box.right>r.right-3||box.top<r.top+5||box.bottom>r.bottom-5)return false;return ['.battle-info','.battle-head>button','#minimap-dock'].every(selector=>{const n=app.root.querySelector(selector),a=n?.getBoundingClientRect();return !a||!a.width||!a.height||box.right<a.left||box.left>a.right||box.bottom<a.top||box.top>a.bottom;});}
 function goal(app,id){const text=G.HONRO_ACT4_PREVIEW_SEEDS.ui.find(v=>v[0]===id)?.[1];if(!text)return;app.stage.goal=text;const n=G.document.getElementById('objective-text');if(n)n.textContent=text;}
 function hasFact(b,id){return b.honroAct4FactEvents?.some(v=>v.eventId===id)||P.campaignProof?.runId===b.honroAct4ReviewRunId&&!!P.campaignProof.factEvents?.[id];}
-function fact(b,id,proof){if(hasFact(b,id))return;const row={eventId:id,stage:b.honroAct4Preview,sourceRun:b.session,campaignRunId:b.honroAct4ReviewRunId,officialAct4:false,proof:copy(proof)};(b.honroAct4FactEvents??=[]).push(row);if(P.campaignProof?.runId===b.honroAct4ReviewRunId)(P.campaignProof.factEvents??={})[id]=copy(row);}
+function fact(b,id,proof){if(hasFact(b,id))return;const row={eventId:id,stage:b.honroAct4Preview,sourceRun:b.session,campaignRunId:b.honroAct4ReviewRunId,officialAct4:b.honroAct4Official===1,proof:copy(proof)};(b.honroAct4FactEvents??=[]).push(row);if(P.campaignProof?.runId===b.honroAct4ReviewRunId)(P.campaignProof.factEvents??={})[id]=copy(row);}
 function flaskPair(e){const b=e.b,mage=party(b).find(u=>u.cls==='mage');if(!alive(mage)||mage.x<6100||mage.x>6620||!e.grounded(mage)||!quiet(b)||hasFact(b,'eq_da_t3b'))return null;const giver=party(b).find(u=>u!==mage&&e.grounded(u)&&near(u,mage,150));return giver?{mage,giver}:null;}
 function complete(app,proof){const b=app.engine.b,q=memory(b);if(q.complete||q.failure)return;q.complete=true;q.completionProof=copy(proof);b.phase='won';if(b.honroAct4Preview===40)fact(b,'eq_so_t3b',proof);P.save?.();}
 function fail(b,reason){const q=memory(b);if(q.complete||q.failure)return;q.failure=reason;b.phase='lost';}
@@ -128,22 +129,22 @@ P.coastObserve=function(app,dt){const b=app.engine.b,n=b.honroAct4Preview;if(!ac
   }
  }
 };
-const interact=P.interact;P.interact=function(app=G.HonroApp){if(interact(app))return true;const e=app.engine,b=e?.b;if(!active(b)||app.dialogue||b.phase!=='aim')return false;const q=memory(b),n=b.honroAct4Preview,u=e.active,cfg=b.honroAct4Design;if(!alive(u)||!e.grounded(u))return false;
- if(n===32&&quiet(b)&&closed(q,'missing_four')&&!q.safeSeven&&near(u,{x:e.unit('a4-shelter-speaker').x,y:2010},340)){const report=event(q,'missing_four');report.started=false;report.terminal=false;return play(app,'missing_four');}
- if(n===35&&!q.flaskDelivery){const pair=flaskPair(e);if(pair&&u===pair.mage){q.flaskDelivery={phase:'passing',giver:pair.giver.id,receiver:pair.mage.id,elapsed:0};return true;}}
+const interact=P.interact;P.interact=function(app=G.HonroApp,probe=false){if(interact(app,probe))return true;const e=app.engine,b=e?.b;if(!active(b)||app.dialogue||b.phase!=='aim')return false;const q=memory(b),n=b.honroAct4Preview,u=e.active,cfg=b.honroAct4Design;if(!alive(u)||!e.grounded(u))return false;
+ if(n===32&&quiet(b)&&closed(q,'missing_four')&&!q.safeSeven&&near(u,{x:e.unit('a4-shelter-speaker').x,y:2010},340)){if(probe)return true;const report=event(q,'missing_four');report.started=false;report.terminal=false;return play(app,'missing_four');}
+ if(n===35&&!q.flaskDelivery){const pair=flaskPair(e);if(pair&&u===pair.mage){if(probe)return true;q.flaskDelivery={phase:'passing',giver:pair.giver.id,receiver:pair.mage.id,elapsed:0};return true;}}
  if(n===38&&near(u,cfg.connection.entry,250)){
-  if(!q.connectionProbe){q.connectionProbe={phase:'entry',at:q.clock};return true;}
-  if(!q.connected&&q.connectionProbe.phase==='observed'&&u.cls==='mage'){q.anchorAction={actor:u.id,elapsed:0};play(app,'anchor');return true;}
-  if(q.connected){const p=space(b,u,q.connected.destination,240);if(!p)return false;feet(e,u,p);return true;}
+  if(!q.connectionProbe){if(probe)return true;q.connectionProbe={phase:'entry',at:q.clock};return true;}
+  if(!q.connected&&q.connectionProbe.phase==='observed'&&u.cls==='mage'){if(probe)return true;q.anchorAction={actor:u.id,elapsed:0};play(app,'anchor');return true;}
+  if(q.connected){const p=space(b,u,q.connected.destination,240);if(!p)return false;if(probe)return true;feet(e,u,p);return true;}
  }
- if(n===39){if(near(u,cfg.rescue.anchor,u.cls==='mage'?360:180)&&!q.exitStable&&!q.stabilizing){q.stabilizing={actor:u.id,elapsed:0};return true;}if(near(u,cfg.rescue.net,u.cls==='occultist'?340:180)&&!q.netOpen&&!q.releasing){q.releasing={actor:u.id,elapsed:0};return true;}
-  if(q.exitStable&&q.rescued?.ids.length===4&&cfg.rescue.ids.every(id=>rescueSafe(e,e.unit(id)))&&party(b).every(v=>v.x>cfg.rescue.exit-260&&e.grounded(v))){complete(app,{exitStable:q.exitStable,rescued:q.rescued,bossAlive:alive(e.unit('a4-wreck'))});return true;}
+ if(n===39){if(near(u,cfg.rescue.anchor,u.cls==='mage'?360:180)&&!q.exitStable&&!q.stabilizing){if(probe)return true;q.stabilizing={actor:u.id,elapsed:0};return true;}if(near(u,cfg.rescue.net,u.cls==='occultist'?340:180)&&!q.netOpen&&!q.releasing){if(probe)return true;q.releasing={actor:u.id,elapsed:0};return true;}
+  if(q.exitStable&&q.rescued?.ids.length===4&&cfg.rescue.ids.every(id=>rescueSafe(e,e.unit(id)))&&party(b).every(v=>v.x>cfg.rescue.exit-260&&e.grounded(v))){if(probe)return true;complete(app,{exitStable:q.exitStable,rescued:q.rescued,bossAlive:alive(e.unit('a4-wreck'))});return true;}
  }
- if(n===32&&quiet(b)&&closed(q,'missing_four')&&q.safeSeven&&party(b).every(v=>v.x>cfg.exit.x-300)){complete(app,{safeSeven:q.safeSeven});return true;}
- if([33,34,37,38].includes(n)&&party(b).every(v=>v.x>cfg.exit.x-300&&e.grounded(v))&&(![37].includes(n)||closed(q,'signal'))){complete(app,{exit:cfg.exit,connection:q.connected||{physicalRoute:true},signal:q.events.signal?.presented});return true;}
- if(n===40&&q.returnEscort?.phase==='safe'&&closed(q,'next')&&party(b).every(v=>v.x>5300)){complete(app,{roster:q.roster,rescued:q.rescued});return true;}
+ if(n===32&&quiet(b)&&closed(q,'missing_four')&&q.safeSeven&&party(b).every(v=>v.x>cfg.exit.x-300)){if(probe)return true;complete(app,{safeSeven:q.safeSeven});return true;}
+ if([33,34,37,38].includes(n)&&party(b).every(v=>v.x>cfg.exit.x-300&&e.grounded(v))&&(![37].includes(n)||closed(q,'signal'))){if(probe)return true;complete(app,{exit:cfg.exit,connection:q.connected||{physicalRoute:true},signal:q.events.signal?.presented});return true;}
+ if(n===40&&q.returnEscort?.phase==='safe'&&closed(q,'next')&&party(b).every(v=>v.x>5300)){if(probe)return true;complete(app,{roster:q.roster,rescued:q.rescued});return true;}
  return false;};
-const launch=P.launch;P.launch=function(n){const r=launch(n),app=G.HonroApp,e=app.engine,b=e.b,q=memory(b);if(!active(b))return r;
+const attached=new WeakSet();P.attachCoast=function(app){const e=app.engine,b=e.b,n=b.honroAct4Preview;if(!active(b)||attached.has(e))return;attached.add(e);
  // Every observer is scoped to the captured battle; changing chapter ends its
  // loop. Core Engine remains the sole physics, hit and locomotion provider.
  for(const name of ['move','jump','fire']){const original=e[name].bind(e);e[name]=function(...args){if((name==='jump'?args[0]:e.active)?.honroAct4Recovering)return false;return original(...args);};}
@@ -152,14 +153,16 @@ const launch=P.launch;P.launch=function(n){const r=launch(n),app=G.HonroApp,e=ap
  const walk=e.walk.bind(e);e.walk=function(u,d,dt,...args){if(reserved(u)&&forbidden(u,u.x+Math.sign(d)*u.walkSpeed*dt,u.y))return false;return walk(u,d,dt,...args);};
  const integrate=e.integrateBody.bind(e);e.integrateBody=function(u,dt,...args){if(u.honroAct4RecoverPending){u.vx=u.vy=0;return;}const before={x:u.x,y:u.y};const out=integrate(u,dt,...args);if(reserved(u)&&forbidden(u,u.x,u.y)&&!forbidden(u,before.x,before.y)){u.x=before.x;u.y=before.y;u.vx=u.vy=0;delete u.aiMove;delete u.moveTarget;}return out;};
  const tick=e.tick.bind(e);e.tick=function(dt){if(memory(b).vista?.active)return;const out=tick(dt);if(!app.dialogue){tide(b);water(e,dt);}return out;};
- const hurt=e.hurt.bind(e);e.hurt=function(u,...args){const was=alive(u),out=hurt(u,...args);if(was&&!alive(u)&&u.honroAct4WreckBoss&&q.artillery)q.artillery.next=null;if(was&&!alive(u)&&n===32&&u.cls==='archer'&&u.side===0)fail(b,'required-reunion-speaker-defeated');if(was&&!alive(u)&&u.honroAct4RewardTag==='eq-hw-36')fact(b,'eq_hw_t3b',{target:u.id,elite:!!u.elite});if([38,39,40].includes(n)&&u.honroAct4Resident&&!alive(u))fail(b,'rescue-casualty');return out;};
- if(n===39){const enemyAction=e.enemyAction.bind(e);e.enemyAction=function(){const u=e.active;if(!u?.honroAct4WreckBoss)return enemyAction();if(!alive(u)){if(q.artillery)q.artillery.next=null;e.finishAction();return;}const a=memory(b).artillery,t=a?.next;if(!t||!t.warningSeen||b.round<t.dueRound){e.finishAction();return;}u.facing=t.x>u.x?1:-1;const before=new Set(b.projectiles.map(p=>p.id));if(e.fire('HWD01',u.facing>0?55:125,.8,true)){for(const p of b.projectiles.filter(p=>!before.has(p.id))){const seconds=Math.max(1.8,Math.min(3.2,Math.abs(t.x-p.x)/900)),acc=e.acceleration({...p,wind:0,gravityScale:1,drag:0,vx:0,vy:0});Object.assign(p,{vx:(t.x-p.x)/seconds,vy:(t.y-p.y-.5*acc.y*seconds*seconds)/seconds,gravityScale:1,wind:0,drag:0,blast:75,honroAct4Artillery:true});p.prevVy=p.vy;}a.history.push({...t,shot:b.shot});a.count++;a.next=null;}else e.finishAction();};}
+ const hurt=e.hurt.bind(e);e.hurt=function(u,...args){const was=alive(u),out=hurt(u,...args);if(was&&!alive(u)&&u.honroAct4WreckBoss&&memory(b).artillery)memory(b).artillery.next=null;if(was&&!alive(u)&&n===32&&u.cls==='archer'&&u.side===0)fail(b,'required-reunion-speaker-defeated');if(was&&!alive(u)&&u.honroAct4RewardTag==='eq-hw-36')fact(b,'eq_hw_t3b',{target:u.id,elite:!!u.elite});if([38,39,40].includes(n)&&u.honroAct4Resident&&!alive(u))fail(b,'rescue-casualty');return out;};
+ if(n===39){const enemyAction=e.enemyAction.bind(e);e.enemyAction=function(){const u=e.active;if(!u?.honroAct4WreckBoss)return enemyAction();if(!alive(u)){if(memory(b).artillery)memory(b).artillery.next=null;e.finishAction();return;}const a=memory(b).artillery,t=a?.next;if(!t||!t.warningSeen||b.round<t.dueRound){e.finishAction();return;}u.facing=t.x>u.x?1:-1;const before=new Set(b.projectiles.map(p=>p.id));if(e.fire('HWD01',u.facing>0?55:125,.8,true)){for(const p of b.projectiles.filter(p=>!before.has(p.id))){const seconds=Math.max(1.8,Math.min(3.2,Math.abs(t.x-p.x)/900)),acc=e.acceleration({...p,wind:0,gravityScale:1,drag:0,vx:0,vy:0});Object.assign(p,{vx:(t.x-p.x)/seconds,vy:(t.y-p.y-.5*acc.y*seconds*seconds)/seconds,gravityScale:1,wind:0,drag:0,blast:75,honroAct4Artillery:true});p.prevVy=p.vy;}a.history.push({...t,shot:b.shot});a.count++;a.next=null;}else e.finishAction();};}
  const allows=e.attackAllows.bind(e);e.attackAllows=function(u,...args){if(u?.honroAct4Sheltered)return false;return allows(u,...args);};
  if(n===40&&!b.terrain.some(t=>t.id==='a4-return-boarding'))b.terrain.push({id:'a4-return-boarding',x:2820,y:1950,w:180,h:18,mat:'wood',oneWay:true,hp:9999,maxHp:9999,indestructible:true});
  if(n===40&&!b.terrain.some(t=>t.id==='a4-return-deck'))b.terrain.push({id:'a4-return-deck',x:2920,y:1950,w:360,h:20,mat:'wood',oneWay:true,hp:9999,maxHp:9999,indestructible:true,honroAct4MovingDeck:true});
  if(n===32){const npc=e.unit('a4-shelter-speaker');npc.name='고향 사람';}
  for(const u of residents(b))if(u.id==='a4-rescue-3')u.name='도식';
- return r;};
+};
+const launch=P.launch;P.launch=function(n){const r=launch(n);P.attachCoast(G.HonroApp);return r;};
+
 // Visibility receipts are written only by the actual Scene pass. Their points
 // refer to finite authored actors/geometry rather than an off-screen timer.
 const render=G.HonroScene.prototype.render;G.HonroScene.prototype.render=function(e,...args){const out=render.call(this,e,...args),b=e.b;if(!active(b))return out;const app=G.HonroApp;if(app.scene!==this||G.document.hidden||app.modal.classList.contains('open'))return out;const q=memory(b),n=b.honroAct4Preview,cfg=b.honroAct4Design;if(!cfg)return out;q.observed??={};const mark=(key,p,guard=true)=>{if(guard&&inView(app,p))q.observed[key]??=q.clock;};

@@ -42,13 +42,13 @@ export async function loadData(file,refs,options){const value=await request(file
 export function prefetchData(files){for(const file of files)void request(file).catch(()=>{});}
 export async function loadProject(file){const manifest=await request(file),refs=manifest.assetPaths;const [base,library,stages]=await Promise.all([loadData(manifest.base,refs?.base),loadData(manifest.library,refs?.library),Promise.all(manifest.stages.map((file,i)=>loadData(file,refs?.stages[i])))]);return {...base,library,stages};}
 // The hint is read-only. App.load remains the sole migration/save authority.
-function savedHint(){try{const p=JSON.parse(localStorage.getItem('honro-first-act-profile-1'));return p?.game==='honro'&&[1,2,3,4].includes(p.schema)&&p.heroes&&Array.isArray(p.recruited)&&p.recruited.includes('archer')?p:null;}catch{return null;}}
+function savedHint(){try{const p=JSON.parse(localStorage.getItem('honro-first-act-profile-1'));return p?.game==='honro'&&[1,2,3,4,5].includes(p.schema)&&p.heroes&&Array.isArray(p.recruited)&&p.recruited.includes('archer')?p:null;}catch{return null;}}
 export function destination(profile){
- const valid=id=>Number.isInteger(id)&&id>=1&&id<=30;
+ const valid=id=>Number.isInteger(id)&&id>=1&&id<=(globalThis.HONRO_ACT4_RELEASE===true?40:30);
  if(valid(profile?.honroMapRestart))return profile.honroMapRestart;
  const battle=profile?.honroBattle;if(battle?.mode==='campaign'&&!battle.honroCustom&&Array.isArray(battle.units)&&valid(battle.honroStage))return battle.honroStage;
  const content=globalThis.HONRO_CONTENT?.stages;
- return content?.find(stage=>!profile?.cleared?.[stage.id]&&(stage.requires||[]).every(id=>profile?.cleared?.[id]))?.id||Array.from({length:30},(_,i)=>i+1).find(id=>!profile?.cleared?.[id])||30;
+ return content?.find(stage=>!profile?.cleared?.[stage.id]&&(stage.requires||[]).every(id=>profile?.cleared?.[id]))?.id||Array.from({length:globalThis.HONRO_ACT4_RELEASE===true?40:30},(_,i)=>i+1).find(id=>!profile?.cleared?.[id])||(content?.at(-1)?.id||30);
 }
 let hint;
 export function prefetchProject(file){hint=destination(savedHint());void request(file).then(manifest=>Promise.all([manifest.base,manifest.shared,manifest.stages[hint-1],manifest.stageLibraries[hint-1]].filter(Boolean).map(path=>request(path)))).catch(()=>{});}

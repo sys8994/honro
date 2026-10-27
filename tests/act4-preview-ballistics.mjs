@@ -4,8 +4,8 @@ import vm from 'node:vm';
 import {readFile,writeFile,mkdir} from 'node:fs/promises';
 import {runtime} from '../game/tests/helpers.mjs';
 const g=await runtime({legacyMaps:false}),C=g.HONRO_CORE;
-vm.runInContext(await readFile('tools/act4/review-art.js','utf8'),g);
-vm.runInContext(await readFile('tools/act4/terrain-preview.js','utf8'),g);
+vm.runInContext(await readFile('shared/runtime/act4-art.js','utf8'),g);
+vm.runInContext(await readFile('shared/runtime/act4-maps.js','utf8'),g);
 const rows=[];
 for(const [n,x,targetX,angle,power,blocked]of [[31,3600,4140,45,.5,false],[35,3040,3490,5,.2,true],[35,3350,3490,5,.2,false]]){
  const p=g.HonroAct4TerrainPreview.create(n),b=g.HonroMaps.createBattle(p.stages[0],p);

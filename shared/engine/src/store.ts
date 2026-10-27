@@ -65,7 +65,7 @@ function validBattle(raw: unknown,legacyXp=false,oldXp=false): Battle {
         return fail();
     if (!['move', 'aim'].includes(b.controlMode))
         return fail();
-    if (!Number.isInteger(b.stageId) || b.stageId < 1 || b.stageId > 36 || !finite(b.width) || b.width < 1400 || b.width > 12000 || !finite(b.height) || b.height < 680 || b.height > 6500)
+    if (!Number.isInteger(b.stageId) || b.stageId < 1 || b.stageId > 40 || !finite(b.width) || b.width < 1400 || b.width > 12000 || !finite(b.height) || b.height < 680 || b.height > 6500)
         return fail();
     for (const [key, limit] of [['units', 80], ['terrain', 512], ['waters', 80], ['drafts', 60], ['decor', 250], ['projectiles', 512], ['zones', 160], ['events', 60], ['queue', 80], ['awardIds', 600], ['fields', 30]] as const)
         if (!Array.isArray(b[key]) || b[key].length > limit)
@@ -332,8 +332,8 @@ export function validate(input: unknown): Profile {
     }
     p.settings.music = false;
     if (finite(raw.lastStage))
-        p.lastStage = clampInt(raw.lastStage, 1, 36);
-    p.mapNode = legacy ? p.lastStage : finite(raw.mapNode) ? clampInt(raw.mapNode, 1, 36) : 1;
+        p.lastStage = clampInt(raw.lastStage, 1, 40);
+    p.mapNode = legacy ? p.lastStage : finite(raw.mapNode) ? clampInt(raw.mapNode, 1, 40) : 1;
     if (!isOpen(p, p.mapNode))
         p.mapNode = 1;
     if (!legacy && [4,5,6,7,8,9,10,11,12,13].includes(raw.revision) && raw.saved) {

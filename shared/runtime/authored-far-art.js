@@ -29,7 +29,7 @@ function request(key){
  item.image.src=src;return item;
 }
 function layers(scene,w,h,b){
- const spec=b?.honroCustom&&b.honroAct4Preview&&['act4Dawn','act4Sea'].includes(b.honroPreviewFar?.key)?b.honroPreviewFar:manifest?.stages[b?.honroStage];if(!spec)return [];
+ const spec=(b?.honroCustom||b?.honroAct4Official===1)&&b.honroAct4Preview&&['act4Dawn','act4Sea'].includes(b.honroPreviewFar?.key)?b.honroPreviewFar:manifest?.stages[b?.honroStage];if(!spec)return [];
  const out=[{key:spec.key,alpha:1}];
  if(spec.enclosed){
   // Camera depth blends whole paintings: no vertical pasted-image seam, and

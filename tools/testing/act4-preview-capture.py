@@ -8,8 +8,8 @@ with sync_playwright() as p:
  page=browser.new_page(viewport={'width':1440,'height':900});errors=[];page.on('pageerror',lambda e:errors.append(str(e)))
  page.goto('http://127.0.0.1:8772/HONRO.html');page.wait_for_function('!!window.HonroApp')
  page.evaluate('async()=>{await HonroCampaignLoader.ensureStage(30);await HonroCampaignLoader.ensureStage(21);await HonroCampaignLoader.ensureStage(13);HonroApp.frame=()=>{};HonroApp.profile.settings.sound=false;HonroApp.profile.settings.music=false;}')
- if not os.getenv('HONRO_ACT4_BASELINE'):page.add_script_tag(url='http://127.0.0.1:8772/tools/act4/review-art.js')
- page.add_script_tag(url='http://127.0.0.1:8772/'+('_local/reports/act4-preview/baseline-factory.js' if os.getenv('HONRO_ACT4_BASELINE') else 'tools/act4/terrain-preview.js'))
+ if not os.getenv('HONRO_ACT4_BASELINE'):page.add_script_tag(url='http://127.0.0.1:8772/shared/runtime/act4-art.js')
+ page.add_script_tag(url='http://127.0.0.1:8772/'+('_local/reports/act4-preview/baseline-factory.js' if os.getenv('HONRO_ACT4_BASELINE') else 'shared/runtime/act4-maps.js'))
  rows=[]
  for n,x,y,z,w,h,name in [(31,3500,1750,.24,1440,900,'31-wide'),(35,3500,1700,.24,1440,900,'35-wide'),(36,3500,1750,.24,1440,900,'36-wide'),(31,4200,1710,.56,1440,900,'31-bank'),(35,3100,1700,.56,1440,900,'35-cover'),(36,2450,1760,.56,1440,900,'36-house'),(31,1650,1750,.36,390,844,'31-mobile'),(35,3300,1750,.34,390,844,'35-mobile'),(36,2500,1800,.36,390,844,'36-mobile')]:
   page.set_viewport_size({'width':w,'height':h})

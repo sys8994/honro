@@ -7,7 +7,7 @@ with sync_playwright() as p:
  page=browser.new_page(viewport={'width':1440,'height':900});errors=[];page.on('pageerror',lambda e:errors.append(str(e)))
  page.goto('http://127.0.0.1:8772/HONRO.html');page.wait_for_function('!!window.HonroApp')
  page.evaluate('''async()=>{await HonroCampaignLoader.ensureStage(30);await HonroCampaignLoader.ensureStage(21);HonroApp.frame=()=>{};HonroApp.profile.settings.music=false;HonroApp.profile.settings.sound=false;window.HONRO_ACT4_PREVIEW_SEEDS=await(await fetch('game/docs/act4/dialogue-seeds-31-35-36-reviewed-final.json')).json();}''')
- for path in ['review-art.js','terrain-preview.js','preview-events.js']:page.add_script_tag(url='http://127.0.0.1:8772/tools/act4/'+path)
+ for path in ['review-art.js','terrain-preview.js','preview-events.js']:page.add_script_tag(url='http://127.0.0.1:8772/'+{'review-art':'shared/runtime/act4-art.js','terrain-preview':'shared/runtime/act4-maps.js','coast-maps':'shared/runtime/act4-coast-maps.js','coast-art':'shared/runtime/act4-coast-art.js','preview-events':'shared/runtime/act4-events.js','coast-events':'shared/runtime/act4-coast-events.js'}.get(path.removesuffix('.js'),'tools/act4/'+path))
  def ev(s):return page.evaluate(s)
  def settle():page.wait_for_timeout(180)
  def finish():

@@ -1,4 +1,4 @@
-(function(G){'use strict';
+(function(G){'use strict';if(G.HonroAct4ReviewArt)return;
 // Native authored art for the isolated review maps. The same vector/terrain
 // renderer, depth groups and full geological polygons remain authoritative.
 const C=G.HONRO_CORE,clone=x=>JSON.parse(JSON.stringify(x)),pt=a=>a.map(([x,y])=>({x,y}));
@@ -167,7 +167,7 @@ function prepare(t){let q=forms.get(t);if(q)return q;const vertices=C.poly(t),sh
  const band=(near,far,phase)=>{const line=top.length?[top[0][0],...top.map(e=>e[1])]:[];if(!line.length)return null;const p=new Path2D();for(const [i,v]of line.entries()){const y=v.y+near+Math.sin(v.x/570+phase)*23;i?p.lineTo(v.x,y):p.moveTo(v.x,y);}for(const v of line.slice().reverse())p.lineTo(v.x,v.y+far+Math.sin(v.x/890+phase)*39);p.closePath();return p;};
  q={shape,top,coastCap:band(0,55,.3),bands:[band(18,116,.3),band(155,335,1.4),band(395,570,2.2)]};forms.set(t,q);return q;
 }
-function draw(scene,c,t,b){if(!b?.honroCustom||b.honroAct4ArtRevision!==2||t.honroElementCollision)return false;const n=b.honroAct4Preview,p=palettes[n];if(!p||t.mat==='wood')return false;const q=prepare(t),top=Math.min(...q.top.flat().map(v=>v.y)),g=c.createLinearGradient(0,top,0,top+1900);g.addColorStop(0,p.top);g.addColorStop(.23,p.body);g.addColorStop(1,p.deep);c.save();c.fillStyle=g;c.fill(q.shape);c.clip(q.shape);
+function draw(scene,c,t,b){if(!(b?.honroCustom||b?.honroAct4Official===1)||b.honroAct4ArtRevision!==2||t.honroElementCollision)return false;const n=b.honroAct4Preview,p=palettes[n];if(!p||t.mat==='wood')return false;const q=prepare(t),top=Math.min(...q.top.flat().map(v=>v.y)),g=c.createLinearGradient(0,top,0,top+1900);g.addColorStop(0,p.top);g.addColorStop(.23,p.body);g.addColorStop(1,p.deep);c.save();c.fillStyle=g;c.fill(q.shape);c.clip(q.shape);
  if(n>=32&&![35,36].includes(n)){if(q.coastCap){c.fillStyle=p.top;c.fill(q.coastCap);}const faces=({34:[[670,1730,860],[2990,1860,1190],[5310,1910,940]],38:[[260,1780,740],[2730,1510,980],[4820,1760,870]],39:[[370,1490,750],[2190,1940,1230],[5290,1630,890]]})[n]||[];for(const [x,w,d]of faces){const a=C.topAt(t,x,NaN),z=C.topAt(t,x+w,NaN);if(!Number.isFinite(a)||!Number.isFinite(z))continue;c.fillStyle=p.top+'45';c.beginPath();c.moveTo(x,a+42);c.lineTo(x+w*.43,a+110);c.lineTo(x+w,z+65);c.lineTo(x+w*.82,z+d*.72);c.lineTo(x+w*.26,a+d);c.lineTo(x+w*.13,a+d*.5);c.closePath();c.fill();}}else if(q.bands[0]&&n!==31){c.fillStyle=p.light+'70';c.fill(q.bands[0]);}
  // Broad interrupted planes belong to the banks and house plots, not three
  // identical stripes across every landscape.
@@ -179,6 +179,6 @@ function draw(scene,c,t,b){if(!b?.honroCustom||b.honroAct4ArtRevision!==2||t.hon
  c.restore();return true;
 }
 if(G.HonroScene){const old=G.HonroScene.prototype.terrain;G.HonroScene.prototype.terrain=function(c,t,...args){if(draw(this,c,t,this.battle))return;return old.call(this,c,t,...args);};}
-const createUnit=G.HonroUnits.create;G.HonroUnits.create=function(record,b,...args){const u=createUnit(record,b,...args);if(b.honroCustom&&b.honroAct4Preview===36&&record.stageOverrides?.honroAct4RewardTag==='eq-hw-36'){u.elite=true;u.hp=u.maxHp=Math.round(u.maxHp*1.55);u.attack*=1.15;if(u.combatBaseHp)u.combatBaseHp*=1.55;u.honroAct4EliteTuned=1;}return u;};
+const createUnit=G.HonroUnits.create;G.HonroUnits.create=function(record,b,...args){const u=createUnit(record,b,...args);if((b.honroCustom||b.honroAct4Official===1)&&b.honroAct4Preview===36&&record.stageOverrides?.honroAct4RewardTag==='eq-hw-36'){u.elite=true;u.hp=u.maxHp=Math.round(u.maxHp*1.55);u.attack*=1.15;if(u.combatBaseHp)u.combatBaseHp*=1.55;u.honroAct4EliteTuned=1;}return u;};
 G.HonroAct4ReviewArt={install,revision:2,palettes,assets:()=>clone(artAssets)};
 })(globalThis);
