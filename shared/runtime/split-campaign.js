@@ -10,7 +10,7 @@ const fields=['shield','bound','mark','markSide','breaks','stun','curseTurns','c
 const clocks=['stunUntil','betrayalUntil','manifestedUntil','soulBonusUntil'];
 const nested={prepared:'expires',slowed:'expires',earthbind:'until',martialGuard:'round',bladeScreen:'round'};
 function snapshot(b,u){
- const s={hp:u.hp,maxHp:u.maxHp,focus:u.focus,maxFocus:u.maxFocus,dead:!!u.dead||u.hp<=0,status:{},cooldowns:{}};
+ const s={hp:u.hp,maxHp:u.maxHp,focus:u.focus,maxFocus:u.maxFocus,dead:!!u.dead||u.hp<=0,equipmentIds:[...(u.equipmentIds||[])],status:{},cooldowns:{}};
  for(const key of fields)if(u[key]!==undefined)s.status[key]=clone(u[key]);
  for(const key of clocks)if(u[key]>=b.round)s.status[key]=u[key]-b.round;
  for(const [key,clock] of Object.entries(nested))if(u[key]?.[clock]>=b.round)s.status[key]={...clone(u[key]),[clock]:u[key][clock]-b.round};
@@ -24,8 +24,9 @@ function restore(b,u,s){
  if(!s)return;
  // A maximum-stat increase is paid once against the saved maximum; damage and
  // spent MP survive it. Never resurrect an unconscious actor via applyHero.
- u.dead=!!s.dead||s.hp<=0;u.hp=u.dead?0:Math.min(u.maxHp,Math.max(0,s.hp+Math.max(0,u.maxHp-s.maxHp)));
- u.focus=Math.min(u.maxFocus,Math.max(0,s.focus+Math.max(0,u.maxFocus-s.maxFocus)));
+ const sameGear=JSON.stringify(s.equipmentIds||[])===JSON.stringify(u.equipmentIds||[]);
+ u.dead=!!s.dead||s.hp<=0;u.hp=u.dead?0:Math.min(u.maxHp,Math.max(0,s.hp+(sameGear?Math.max(0,u.maxHp-s.maxHp):0)));
+ u.focus=Math.min(u.maxFocus,Math.max(0,s.focus+(sameGear?Math.max(0,u.maxFocus-s.maxFocus):0)));
  for(const key of [...fields,...clocks,...Object.keys(nested)])delete u[key];
  Object.assign(u,clone(s.status||{}));
  for(const key of clocks)if(s.status?.[key]!==undefined)u[key]=b.round+s.status[key];
@@ -82,7 +83,7 @@ function persist(app){const b=app.engine?.b;if(!active(b)||app.training||app.cus
 function outcome(app,won){const b=app.engine?.b;if(!active(b))return;const s=b.honroSplit;
  // Clear rewards can grow maximum stats even though the core clear path only
  // updates HeroProgress. Apply just the earned delta before checkpointing.
- if(won)for(const u of b.units.filter(hero))C.applyHero(u,b.heroes[u.cls]);
+ if(won)for(const u of b.units.filter(hero))C.applyHero(u,b.heroes[u.cls],false,'restore');
  capture(b);if(won){s.completed[b.honroStage]=true;s.nextStage=b.honroStage<last(s)?b.honroStage+1:null;s.finished=b.honroStage===last(s);}else s.nextStage=b.honroStage;
  app.profile.honroSplitCampaign=clone(s);
 }

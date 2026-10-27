@@ -149,6 +149,7 @@ function use(app,m){const e=app.engine,b=e.b,a=memory(b),s=readySteps(b).find(q=
    resident.honroResolved=true;resident.shield=Math.max(resident.shield,Math.round(resident.maxHp*.3));a.rescued.push(resident.id);
   }
   if(s.id==='sluice'){
+   (b.honroEquipmentFacts??={}).sluiceInteraction={actor:e.active.id,round:b.round};
    if(b.honroDrainRevealTerrains?.length)a.drainRevealPending=true;
    b.honroSurfaceZones=b.honroSurfaceZones.map(z=>z.kind==='water-pool'?lowerPool(z,120):z);
    const pools=b.honroSurfaceZones.filter(z=>z.kind==='water-pool'&&z.surface.length===2);

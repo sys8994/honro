@@ -96,6 +96,8 @@ export interface Decoration {
     variant: number;
 }
 export interface HeroProgress {
+    /** Derived read-only personal/common snapshot; inventory belongs to campaign profile. */
+    equipmentIds?: string[];
     /** Session-only Honro QA allocation; never persisted to the normal profile. */
     honroDebugSkills?: boolean;
     martialRevision?: number;
@@ -135,6 +137,7 @@ export interface AIMovePlan {
     intent:string;
 }
 export interface Unit {
+    equipmentIds?: string[];
     summonDamageOrigin?: DamageOrigin;
     curseDamageOrigin?: DamageOrigin;
     /** Optional overrides and temporary shifts; absent fields use the species/role baseline. */
@@ -434,7 +437,7 @@ export interface Battle {
     practiceCombat?: boolean;
     skillRevision?: number;
     cast?: {owner:string;skill:string;shot:number;cost:number;enemyDamage:number;refunded?:boolean};
-    stakes?: (DamageOrigin & {effectBoost?:number;id:number;skill:string;owner:string;side:Side;x:number;y:number;rank:number;damage:number;shot:number;active?:boolean;expires?:number;lastTriggerRound?:number;usedRounds?:Record<string,number>;inside?:string[];crossed?:Record<string,string>;budgetTurns?:Record<string,string>})[];
+    stakes?: (DamageOrigin & {equipmentHealScale?:number;effectBoost?:number;id:number;skill:string;owner:string;side:Side;x:number;y:number;rank:number;damage:number;shot:number;active?:boolean;expires?:number;lastTriggerRound?:number;usedRounds?:Record<string,number>;inside?:string[];crossed?:Record<string,string>;budgetTurns?:Record<string,string>})[];
     physics?:PhysicsEnvironment;
     summonTurn?:{queue:string[];index:number;stage:'approach'|'attack'|'wait';elapsed:number;hold:number;start?:Vec;destination?:Vec;targetId?:string;returnActive:string;practice:boolean;afterActor?:boolean};
     occultTraps?: (DamageOrigin & {autonomous?:boolean;id:number;x:number;y:number;owner:string;skill:string;rank:number;damage:number;expires:number})[];

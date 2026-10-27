@@ -31,7 +31,7 @@
     // Debug clones every campaign-owned value so
     // story, growth, allocations and a suspended battle use normal semantics.
     // This clone is session-only; only the normal profile is ever exported/saved.
-    function debugProfile(normal) { return clone(normal); }
+    function debugProfile(normal) { return G.HonroEquipment.debug(clone(normal)); }
     function terrain(id, x, y, w, h, mat = 'rock', extra = {}) { return { id, x, y, w, h, mat, hp: mat === 'wood' ? 330 : 99999, maxHp: mat === 'wood' ? 330 : 99999, route: true, ...extra }; }
     function initializeTrainingBattle(st, p, _training, cls = 'archer', skill) {
         const b = C.createBattle(1, clone(p), 'practice', { party: [cls], distance: 900 });
@@ -136,7 +136,7 @@
           if(this.customMap){this.profile=this.customMap.returnProfile;this.stageId=this.customMap.returnStageId;this.customMap=null;}
         }
         isOpen(st) { return this.debugMode || st.requires.every(id => this.profile.cleared[id]); }
-        showRest(){if(!this.campaignReady())return;return G.HonroRestJourney.showRest(this);}
+        showRest(){if(!this.campaignReady())return;const out=G.HonroRestJourney.showRest(this);G.HonroEquipmentUI.tick(this);return out;}
         showMap(){if(!this.campaignReady())return;return G.HonroRestJourney.showBook(this);}
 
         prepareDebugCamp(){
@@ -150,7 +150,7 @@
             }
         }
 
-        showCamp(cls=this.cls){if(!this.campaignReady())return;if(!G.HonroRestJourney.state(this.profile).restStageId&&G.HonroSplitCampaign?.redirectRest(this))return;const y=$('armory')?.scrollTop||0,details=this.root.querySelector('[data-camp-details="training"]')?.open;this.stopBattle();this.close();const restoreFocus=G.HonroCampRenderer.captureFocus(this.root);this.screen='camp';this.prepareDebugCamp();if(!this.profile.recruited.includes(cls))cls=this.profile.recruited[0];this.cls=cls;let html=G.HonroUI.camp(this.profile,cls,this.top('모닥불','rest'),this.branch).replace('id="camp-scroll"','id="armory"');if(this.debugMode)html=html.replace('</nav>','</nav>'+this.debugLevelMarkup(cls));G.HonroCampRenderer.patch(this.root,html);this.drawPortraits();$('armory').scrollTop=y;const training=this.root.querySelector('[data-camp-details="training"]');if(training)training.open=!!details;G.HonroPlayerTurnOrder?.camp(this);restoreFocus();}
+        showCamp(cls=this.cls){if(!this.campaignReady())return;if(!G.HonroRestJourney.state(this.profile).restStageId&&G.HonroSplitCampaign?.redirectRest(this))return;const y=$('armory')?.scrollTop||0,details=this.root.querySelector('[data-camp-details="training"]')?.open;this.stopBattle();this.close();const restoreFocus=G.HonroCampRenderer.captureFocus(this.root);this.screen='camp';this.prepareDebugCamp();if(!this.profile.recruited.includes(cls))cls=this.profile.recruited[0];this.cls=cls;let html=G.HonroUI.camp(this.profile,cls,this.top('모닥불','rest'),this.branch).replace('id="camp-scroll"','id="armory"');html=html.replace('<div class="armory-shell">','<div class="armory-shell">'+G.HonroEquipmentUI.panel(this));if(this.debugMode)html=html.replace('</nav>','</nav>'+this.debugLevelMarkup(cls));G.HonroCampRenderer.patch(this.root,html);this.drawPortraits();$('armory').scrollTop=y;const training=this.root.querySelector('[data-camp-details="training"]');if(training)training.open=!!details;G.HonroPlayerTurnOrder?.camp(this);restoreFocus();}
 
 
         debugLevelMarkup(cls){const level=C.levelOf(this.profile.heroes[cls]);return `<div class="camp-resume-note debug-level-control"><label for="debug-hero-level">디버그 · ${esc(H.hero[cls].name)} 경지</label> <select id="debug-hero-level" data-debug-level="${cls}">${Array.from({length:C.levelOf(Number.MAX_SAFE_INTEGER)},(_,i)=>`<option value="${i+1}" ${level===i+1?'selected':''}>경지 ${i+1}</option>`).join('')}</select><p>기예는 자유롭게 선택합니다. 경지를 낮추면 능력치 수련을 해당 경지의 수련점 한도로 맞춥니다. 준비는 새 진입·다시 걷기에 적용됩니다.</p></div>`;}
@@ -165,7 +165,7 @@
 
         sig(id){return C.icon('skill:'+id,'',28);}
 
-        open(html, kind = '') { G.HonroTooltips?.hide(true); G.HonroUnitInfo?.portraitClosed?.(this);this.cancelOptionalWork();G.HonroCampaignEntry?.cancel(this);this.modalKind=kind;this.cancelInput(); if(!this.modal.classList.contains('open')){const active=document.activeElement;this.modalReturnFocus=active?.matches?.('button,input,select,textarea,a[href],[tabindex]')?active:this.root?.querySelector('button');} const close=`<button class="close" data-action="close" aria-label="닫기">${fa('xmark',18)}</button>`;this.modal.innerHTML = `<section class="dialog ${kind}" role="dialog" aria-modal="true"${kind==='clear-report'?' aria-labelledby="clear-report-title"':html.includes('class="menu-fixed"')?' aria-labelledby="menu-title"':''}>${html.includes('class="skill-modal-title"')?html.replace('<div class="skill-modal-title">','<div class="skill-modal-title">'+close):html.includes('class="menu-fixed"')||html.includes('class="report-shell"')?html:close+html}</section>`; this.modal.classList.add('open'); this.drawPortraits(); this.updateAudio(); this.modal.querySelector('[data-action="close"]')?.focus({preventScroll:true}); }
+        open(html, kind = '') { const acquired=document.getElementById('equipment-acquired');if(acquired)acquired.hidden=true;G.HonroTooltips?.hide(true); G.HonroUnitInfo?.portraitClosed?.(this);this.cancelOptionalWork();G.HonroCampaignEntry?.cancel(this);this.modalKind=kind;this.cancelInput(); if(!this.modal.classList.contains('open')){const active=document.activeElement;this.modalReturnFocus=active?.matches?.('button,input,select,textarea,a[href],[tabindex]')?active:this.root?.querySelector('button');} const close=`<button class="close" data-action="close" aria-label="닫기">${fa('xmark',18)}</button>`;this.modal.innerHTML = `<section class="dialog ${kind}" role="dialog" aria-modal="true"${kind==='clear-report'?' aria-labelledby="clear-report-title"':html.includes('class="menu-fixed"')?' aria-labelledby="menu-title"':''}>${html.includes('class="skill-modal-title"')?html.replace('<div class="skill-modal-title">','<div class="skill-modal-title">'+close):html.includes('class="menu-fixed"')||html.includes('class="report-shell"')?html:close+html}</section>`; this.modal.classList.add('open'); this.drawPortraits(); this.updateAudio(); this.modal.querySelector('[data-action="close"]')?.focus({preventScroll:true}); }
         close() { G.HonroTooltips?.hide(true); G.HonroUnitInfo?.portraitClosed?.(this);this.cancelOptionalWork();G.HonroCampaignEntry?.cancel(this);this.modalKind='';this.pendingJourneyLaunch=null;const wasOpen=this.modal.classList.contains('open'),previous=this.modalReturnFocus;this.modal.classList.remove('open'); this.modal.innerHTML = ''; this.preview = null; this.last = performance.now();this.modalReturnFocus=null;if(wasOpen)(previous?.isConnected?previous:this.root?.querySelector('[data-action="pause"],button'))?.focus?.({preventScroll:true}); if(this.engine)this.updateAudio(); }
         dismissModal(){if(this.modalKind==='clear-report'){G.HonroClearReportUI.close(this);return;}if(this.modalKind==='journey-confirm'&&this.pendingJourneyLaunch){const returnMenu=this.pendingJourneyLaunch.returnMenu;this.pendingJourneyLaunch=null;if(returnMenu==='pause')this.pause();else this.close();return;}if(['settings-dialog','settings-help','pause-retry','menu-confirm'].includes(this.modalKind)){G.HonroMenuUI.back(this);return;}if(this.modalKind==='result')this.resultContinue();else if(this.equipReturn){const context=this.equipReturn;this.equipReturn=null;this.restoreTalent(context);}else this.close();}
         resultContinue(){if(this.resultDismissed||!this.modal.classList.contains('open'))return;if(G.HonroCampaignEntry?.defer(this,G.HonroCampaignEntry.next(this),()=>this.resultContinue()))return;this.resultDismissed=true;this.close();if(this.customMap)this.showRest();else G.HonroRestJourney.resultContinue(this);}
@@ -330,7 +330,7 @@
             this.stageId = st.id;
             this.training = training;
             this.stage = st;
-            if(!training){if(!this.customMap)G.HonroProgression.recruitAtEntry(this.profile,st.id);if(st.act===2)G.HonroAct2.recruit(this.profile);G.HonroProgression.repairRecruits(this.profile);}
+            if(!training){if(!this.customMap)G.HonroProgression.recruitAtEntry(this.profile,st.id);if(st.act===2)G.HonroAct2.recruit(this.profile);G.HonroProgression.repairRecruits(this.profile);G.HonroEquipment.observe(this,{initial:true});}
             const p = clone(this.profile);
             if(!training&&this.honroRouteRetry){p._honroRouteRetry=clone(this.honroRouteRetry);this.honroRouteRetry=null;}
             if (training) {
@@ -500,6 +500,8 @@
             }
             G.HonroSplitCampaign.outcome(this,won);
             G.HonroRestJourney?.recordOutcome(this,won);
+            G.HonroEquipment.capture(this,{won});
+            G.HonroEquipment.observe(this,{won,battle:b});
             this.persist();
             if(won&&G.HonroActEndings?.show(this)){this.audio?.play('win');return;}
             this.open(`<header class="result-fixed"><div class="result-title">${won ? '길이 열렸다' : '길에서 물러났다'}</div></header><div class="result-body"><p>${won ? esc(b.winnerReason || st.storySummary || '길을 확보했다.') : esc(b.winnerReason || '얻은 경험은 남는다.')}</p>${won?G.HonroClearReportUI.summary(b.honroReport?.final,this.resultJoined):`<div class="result-team">${this.profile.recruited.map(c => `<div><strong>${H.hero[c].name}</strong><small>경지 ${C.levelOf(this.profile.heroes[c])}</small></div>`).join('')}</div>`}${won && st.id === 10 ? '<p>첫째 막 끝 · 북쪽 산길에서 둘째 막이 이어집니다.</p>' : won && st.id===20&&!G.HonroAct23V4?.active(b) ? '<p>둘째 막 끝 · 다음 목적지는 저문골·무명사 기록을 찾을 읍성 문서고입니다. 셋째 막으로 이어집니다.</p>' : won && st.id===30&&!G.HonroAct23V4?.active(b) ? '<p>셋째 막 끝 · 끊긴 옛 운송로와 장례길을 따라 무명사로 향합니다. 넷째 막은 준비 중입니다.</p>' : !won && st.act>=2 ? '<p>이 장을 다시 시작할 수 있습니다. 획득한 경험은 유지됩니다.</p>' : ''}</div><div class="actions result-actions"><button data-action="retry">다시 걷기</button>${won?'<button data-action="clear-report">상세 보고서</button>':''}${won&&b.honroJourneyReplay&&G.HonroRouteBranches?.handoff(b)?'<button data-action="route-continue">선택한 길로 다음 장</button>':''}<button class="primary" data-action="result-continue">${G.HonroRestJourney?.resultLabel(this)||'다음 쉼터로'}</button></div>`, 'result');
@@ -841,7 +843,7 @@
             } });
             window.addEventListener('blur', () => { this.cancelInput(); });
             document.addEventListener('click', e => { if(e.target===this.modal)return; let el = e.target.closest('[data-action]'); if (!el || el.disabled)
-                return; if(this.dialogue&&!['dialogue-prev','dialogue-next','dialogue-skip'].includes(el.dataset.action))return; const a = el.dataset.action, id = el.dataset.id, sk = el.dataset.skill; if(e.isTrusted&&((e.detail>0&&performance.now()<(this.journeyInputAfter||0))||(e.detail>1&&['journey-book','journey-travel','journey-enter','journey-replay','rest','confirm-journey-launch'].includes(a))))return; if(this.profileStore.locked&&!this.customMap&&['rest','journey-book','journey-select','journey-act','journey-travel','journey-enter','journey-replay','confirm-journey-launch','map','camp','hero','continue','launch','debug-act-ending-preview','debug-journal-ending-preview','act-ending-replay'].includes(a)){this.recoverProfile();return;} if(G.HonroPlayerTurnOrder?.handle(this,el,e))return; switch (a) {
+                return; if(this.dialogue&&!['dialogue-prev','dialogue-next','dialogue-skip'].includes(el.dataset.action))return; const a = el.dataset.action, id = el.dataset.id, sk = el.dataset.skill; if(e.isTrusted&&((e.detail>0&&performance.now()<(this.journeyInputAfter||0))||(e.detail>1&&['journey-book','journey-travel','journey-enter','journey-replay','rest','confirm-journey-launch'].includes(a))))return; if(this.profileStore.locked&&!this.customMap&&['rest','journey-book','journey-select','journey-act','journey-travel','journey-enter','journey-replay','confirm-journey-launch','map','camp','hero','continue','launch','debug-act-ending-preview','debug-journal-ending-preview','act-ending-replay'].includes(a)){this.recoverProfile();return;} if(G.HonroPlayerTurnOrder?.handle(this,el,e))return;if(G.HonroEquipmentUI.handle(this,el))return; switch (a) {
                 case 'title':
                     this.showTitle();
                     break;
@@ -1172,7 +1174,7 @@
                 G.HonroStory.tick(this,now);
                 G.HonroMukjongAudio?.update(this);
                 G.HonroMukjongPitchDialogue?.tick(this);
-                G.HonroRestJourney?.frame(this,dt);
+                G.HonroRestJourney?.frame(this,dt);G.HonroEquipmentUI.tick(this);
                 if(this.preview?.canvas.isConnected&&this.modal.classList.contains('open'))G.HonroSkillPreview.tick(this,this.preview,dt);
                 if (this.engine && this.scene && this.screen === 'battle') {
                     const e = this.engine;let simulated=0;

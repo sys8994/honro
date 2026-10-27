@@ -1,0 +1,4601 @@
+{
+  "meta": {
+    "title": "혼로 장비 52개 설계와 구현 인계",
+    "subtitle": "기존 56개 카탈로그 개정안 · 후보 96개와 다른 실제 장비 목록",
+    "version": "장비 설계 0.3",
+    "date": "2026-10-27",
+    "sourceCommit": "bdb6fe6f1c1531c6ebfdaf60569c455ba307c437",
+    "equipmentStatus": "전체 신규 설계. 이 문서 작성 세션은 게임 코드를 수정/배포하지 않았음.",
+    "counts": {
+      "catalog": 52,
+      "personal": 32,
+      "common": 20,
+      "fixedItems": 24,
+      "choiceItems": 28,
+      "choiceGroups": 12,
+      "rewardEvents": 36,
+      "maxPerRun": 36,
+      "public1to3Definitions": 31,
+      "act4Definitions": 8,
+      "act5to6ReservedDefinitions": 13,
+      "maxThroughAct3": 23,
+      "maxThroughAct4": 29
+    },
+    "initialIncluded": "캐릭터별 기본 지급 4개는 전용8개 안에 포함",
+    "scope": "1–4막 정의39개를 우선 구현 범위로 잡되 현재 정상 공개1–3막31개만 일반 획득 가능. 4막8개는 정식 공개까지 잠금. 5–6막13개는 예약."
+  },
+  "items": [
+    {
+      "itemId": "itm_se_01",
+      "name": "낡은 깃매듭",
+      "owner": "설오",
+      "characterClass": "archer",
+      "slot": "personal",
+      "kind": "활 장식",
+      "tier": 1,
+      "basicOptions": [
+        {
+          "key": "attack",
+          "label": "공격",
+          "value": 2,
+          "unit": "%"
+        }
+      ],
+      "uniqueEffect": null,
+      "acquisition": {
+        "eventId": "eq_se_start",
+        "stage": 1,
+        "condition": "새 회차 설오 초기 합류, 전투 시작 전",
+        "kind": "story",
+        "choiceGroup": null,
+        "alternativeIds": [],
+        "onePerRun": true
+      },
+      "contentAvailability": "1–3막 공개 콘텐츠 / 장비 보상 미구현·신규 대상",
+      "equipmentImplementation": "미구현 — 구현 인계 설계",
+      "releaseGate": "publicAct1to3",
+      "initialIncluded": true,
+      "iconBrief": "작은 휘어진 뼈고리 아래 회백색 짧은 깃 두 장이 비대칭으로 늘어진 활 부착 장식. 가는 적갈색 실을 고리 윗부분에 세 번 감고 한 가닥만 짧게 풀려 있음. 뼈는 누런 무광, 깃 끝은 닳아 있음. 활 전체·문자·발광 없음.",
+      "iconStyle": "탁한 회갈색 한지 바탕, 거친 붓결/담채의 한국풍 실제 소품 한 개 중심. 실루엣·재질·매듭/부착물로 구분. 글자·숫자·티어문자·인물·발사 궤적·불꽃·강한 발광·스킬 장면 없음.",
+      "iconAssetProposal": "shared/assets/item-icons/v1/itm_se_01.webp"
+    },
+    {
+      "itemId": "itm_se_02",
+      "name": "솔바람 화살통",
+      "owner": "설오",
+      "characterClass": "archer",
+      "slot": "personal",
+      "kind": "화살통",
+      "tier": 1,
+      "basicOptions": [
+        {
+          "key": "hp",
+          "label": "최대 HP",
+          "value": 8,
+          "unit": "%"
+        },
+        {
+          "key": "move",
+          "label": "이동력",
+          "value": 3,
+          "unit": "%"
+        }
+      ],
+      "uniqueEffect": null,
+      "acquisition": {
+        "eventId": "eq_se_ledger",
+        "stage": 3,
+        "condition": "3장 첫 클리어 정산",
+        "kind": "clear",
+        "choiceGroup": null,
+        "alternativeIds": [],
+        "onePerRun": true
+      },
+      "contentAvailability": "1–3막 공개 콘텐츠 / 장비 보상 미구현·신규 대상",
+      "equipmentImplementation": "미구현 — 구현 인계 설계",
+      "releaseGate": "publicAct1to3",
+      "initialIncluded": false,
+      "iconBrief": "가늘고 긴 대나무 원통 화살통, 윗입구가 사선으로 잘려 있음. 녹갈색 낡은 가죽 띠 하나가 몸통을 비스듬히 감싸고 입구 위로 깃 화살 세 끝만 보임. 원통 바닥의 단단한 고리와 긴 끈 실루엣 강조. 활·인물·문자 없음.",
+      "iconStyle": "탁한 회갈색 한지 바탕, 거친 붓결/담채의 한국풍 실제 소품 한 개 중심. 실루엣·재질·매듭/부착물로 구분. 글자·숫자·티어문자·인물·발사 궤적·불꽃·강한 발광·스킬 장면 없음.",
+      "iconAssetProposal": "shared/assets/item-icons/v1/itm_se_02.webp"
+    },
+    {
+      "itemId": "itm_se_03",
+      "name": "능선 깃장식",
+      "owner": "설오",
+      "characterClass": "archer",
+      "slot": "personal",
+      "kind": "활 장식",
+      "tier": 2,
+      "basicOptions": [
+        {
+          "key": "attack",
+          "label": "공격",
+          "value": 4,
+          "unit": "%"
+        },
+        {
+          "key": "mp",
+          "label": "최대 기력",
+          "value": 12,
+          "unit": "%"
+        },
+        {
+          "key": "cost",
+          "label": "기예 기력 비용 감소",
+          "value": 5,
+          "unit": "%"
+        }
+      ],
+      "uniqueEffect": null,
+      "acquisition": {
+        "eventId": "eq_se_t2_choice",
+        "stage": 12,
+        "condition": "기존 step sign 완료 + 장면/강제 입력 해소 뒤 길표 조사 장면 완결",
+        "kind": "choice-story",
+        "choiceGroup": "cg_se_t2",
+        "alternativeIds": [
+          "itm_se_04"
+        ],
+        "onePerRun": true
+      },
+      "contentAvailability": "1–3막 공개 콘텐츠 / 장비 보상 미구현·신규 대상",
+      "equipmentImplementation": "미구현 — 구현 인계 설계",
+      "releaseGate": "publicAct1to3",
+      "initialIncluded": false,
+      "iconBrief": "길쭉한 잎 모양 청동판 세 장이 층층이 겹친 장식. 짧은 가죽 고리, 둔한 녹청.",
+      "iconStyle": "탁한 회갈색 한지 바탕, 거친 붓결/담채의 한국풍 실제 소품 한 개 중심. 실루엣·재질·매듭/부착물로 구분. 글자·숫자·티어문자·인물·발사 궤적·불꽃·강한 발광·스킬 장면 없음.",
+      "iconAssetProposal": "shared/assets/item-icons/v1/itm_se_03.webp"
+    },
+    {
+      "itemId": "itm_se_04",
+      "name": "바위턱 화살통",
+      "owner": "설오",
+      "characterClass": "archer",
+      "slot": "personal",
+      "kind": "화살통",
+      "tier": 2,
+      "basicOptions": [
+        {
+          "key": "hp",
+          "label": "최대 HP",
+          "value": 12,
+          "unit": "%"
+        },
+        {
+          "key": "armor",
+          "label": "방어",
+          "value": 1.5,
+          "unit": "%p"
+        },
+        {
+          "key": "move",
+          "label": "이동력",
+          "value": 4,
+          "unit": "%"
+        }
+      ],
+      "uniqueEffect": null,
+      "acquisition": {
+        "eventId": "eq_se_t2_choice",
+        "stage": 12,
+        "condition": "기존 step sign 완료 + 장면/강제 입력 해소 뒤 길표 조사 장면 완결",
+        "kind": "choice-story",
+        "choiceGroup": "cg_se_t2",
+        "alternativeIds": [
+          "itm_se_03"
+        ],
+        "onePerRun": true
+      },
+      "contentAvailability": "1–3막 공개 콘텐츠 / 장비 보상 미구현·신규 대상",
+      "equipmentImplementation": "미구현 — 구현 인계 설계",
+      "releaseGate": "publicAct1to3",
+      "initialIncluded": false,
+      "iconBrief": "넓적한 사각 가죽 화살집, 돌회색 덧댐 천과 굵은 십자 끈, 낮은 평평한 입구.",
+      "iconStyle": "탁한 회갈색 한지 바탕, 거친 붓결/담채의 한국풍 실제 소품 한 개 중심. 실루엣·재질·매듭/부착물로 구분. 글자·숫자·티어문자·인물·발사 궤적·불꽃·강한 발광·스킬 장면 없음.",
+      "iconAssetProposal": "shared/assets/item-icons/v1/itm_se_04.webp"
+    },
+    {
+      "itemId": "itm_se_05",
+      "name": "고개깃 활장식",
+      "owner": "설오",
+      "characterClass": "archer",
+      "slot": "personal",
+      "kind": "활 장식",
+      "tier": 3,
+      "basicOptions": [
+        {
+          "key": "attack",
+          "label": "공격",
+          "value": 6,
+          "unit": "%"
+        },
+        {
+          "key": "mp",
+          "label": "최대 기력",
+          "value": 16,
+          "unit": "%"
+        },
+        {
+          "key": "crit",
+          "label": "치명 확률",
+          "value": 2,
+          "unit": "%p"
+        }
+      ],
+      "uniqueEffect": {
+        "effectId": "se_drop",
+        "summary": "급락시의 낙차 계수에 +0.10. 낙차 0에서는 이득 없음.",
+        "targetSkills": [
+          "A11"
+        ],
+        "params": {
+          "dropCoefficientAdd": 0.1
+        },
+        "calculationPoint": "trajectoryMultiplier의 drop 계수, 기존 낙차/900 clamp 앞",
+        "stacking": "같은 effectId는 1회만. 기본 스탯과 고유 계수는 지정 위치에서 각각 한 번 적용.",
+        "limits": "사거리·중력·최고점·기존 낙차 상한 불변. 파편/소환 제외.",
+        "codeRefs": [
+          "drop"
+        ],
+        "implementationDelta": "A11 분기에서 계수만 가산. 미리보기와 실피해 동일 helper 사용.",
+        "status": "연결 지점 읽기 확인 / 장비 효과 신규 구현 대상"
+      },
+      "acquisition": {
+        "eventId": "eq_se_t3a",
+        "stage": 22,
+        "condition": "기존 step upper-register 완료, 안전한 메시지 경계",
+        "kind": "story",
+        "choiceGroup": null,
+        "alternativeIds": [],
+        "onePerRun": true
+      },
+      "contentAvailability": "1–3막 공개 콘텐츠 / 장비 보상 미구현·신규 대상",
+      "equipmentImplementation": "미구현 — 구현 인계 설계",
+      "releaseGate": "publicAct1to3",
+      "initialIncluded": false,
+      "iconBrief": "위로 굽은 갈고리형 단단한 나무 조각에 긴 꿩깃 한 장. 끝에 작은 납추가 아래로 늘어짐.",
+      "iconStyle": "탁한 회갈색 한지 바탕, 거친 붓결/담채의 한국풍 실제 소품 한 개 중심. 실루엣·재질·매듭/부착물로 구분. 글자·숫자·티어문자·인물·발사 궤적·불꽃·강한 발광·스킬 장면 없음.",
+      "iconAssetProposal": "shared/assets/item-icons/v1/itm_se_05.webp"
+    },
+    {
+      "itemId": "itm_se_06",
+      "name": "멎은줄 화살통",
+      "owner": "설오",
+      "characterClass": "archer",
+      "slot": "personal",
+      "kind": "화살통",
+      "tier": 3,
+      "basicOptions": [
+        {
+          "key": "hp",
+          "label": "최대 HP",
+          "value": 16,
+          "unit": "%"
+        },
+        {
+          "key": "move",
+          "label": "이동력",
+          "value": 5,
+          "unit": "%"
+        },
+        {
+          "key": "armor",
+          "label": "방어",
+          "value": 2,
+          "unit": "%p"
+        }
+      ],
+      "uniqueEffect": {
+        "effectId": "se_push",
+        "summary": "격퇴시의 첫 적 밀침 수평 성분 +20%.",
+        "targetSkills": [
+          "A05"
+        ],
+        "params": {
+          "horizontalKnockbackScale": 1.2
+        },
+        "calculationPoint": "arrowImpact의 A05 최초 impulse",
+        "stacking": "같은 effectId는 1회만. 기본 스탯과 고유 계수는 지정 위치에서 각각 한 번 적용.",
+        "limits": "수직 성분·후속 충돌 수·보스 면역 불변. 새 밀침/추가 피해 생성 없음.",
+        "codeRefs": [
+          "arrow"
+        ],
+        "implementationDelta": "기존 최초 impulse의 vx에만 적용. 후속 shove 힘에 다시 곱하지 않음.",
+        "status": "연결 지점 읽기 확인 / 장비 효과 신규 구현 대상"
+      },
+      "acquisition": {
+        "eventId": "eq_se_t3b",
+        "stage": 31,
+        "condition": "4막 정식 공개 후31장 첫 클리어",
+        "kind": "clear",
+        "choiceGroup": null,
+        "alternativeIds": [],
+        "onePerRun": true
+      },
+      "contentAvailability": "4막 초기미리보기만 존재 / 일반 보상 잠금",
+      "equipmentImplementation": "미구현 — 구현 인계 설계",
+      "releaseGate": "officialAct4",
+      "initialIncluded": false,
+      "iconBrief": "두 개의 짧은 대통을 나란히 엮은 쌍통 화살집, 중앙 굵은 매듭과 네모난 목제 받침.",
+      "iconStyle": "탁한 회갈색 한지 바탕, 거친 붓결/담채의 한국풍 실제 소품 한 개 중심. 실루엣·재질·매듭/부착물로 구분. 글자·숫자·티어문자·인물·발사 궤적·불꽃·강한 발광·스킬 장면 없음.",
+      "iconAssetProposal": "shared/assets/item-icons/v1/itm_se_06.webp"
+    },
+    {
+      "itemId": "itm_se_07",
+      "name": "송곳눈 활장식",
+      "owner": "설오",
+      "characterClass": "archer",
+      "slot": "personal",
+      "kind": "활 장식",
+      "tier": 4,
+      "basicOptions": [
+        {
+          "key": "attack",
+          "label": "공격",
+          "value": 8,
+          "unit": "%"
+        },
+        {
+          "key": "crit",
+          "label": "치명 확률",
+          "value": 2.5,
+          "unit": "%p"
+        },
+        {
+          "key": "mp",
+          "label": "최대 기력",
+          "value": 20,
+          "unit": "%"
+        },
+        {
+          "key": "cost",
+          "label": "기예 기력 비용 감소",
+          "value": 9,
+          "unit": "%"
+        }
+      ],
+      "uniqueEffect": {
+        "effectId": "se_pierce",
+        "summary": "관통시가 적·지원 목재를 지난 뒤 유지하는 피해 88%→94%.",
+        "targetSkills": [
+          "A02"
+        ],
+        "params": {
+          "pierceRetain": 0.94
+        },
+        "calculationPoint": "A02 관통 성공 뒤 p.damage 감쇠",
+        "stacking": "같은 effectId는 1회만. 기본 스탯과 고유 계수는 지정 위치에서 각각 한 번 적용.",
+        "limits": "첫 적 피해·관통 수·목재 두께 제한·사거리 불변.",
+        "codeRefs": [
+          "arrow"
+        ],
+        "implementationDelta": "유닛/목재 두 기존 .88 경로를 같은 효과값으로 치환.",
+        "status": "연결 지점 읽기 확인 / 장비 효과 신규 구현 대상"
+      },
+      "acquisition": {
+        "eventId": "eq_se_t4_choice",
+        "stage": 52,
+        "condition": "해당 막 정식 공개 뒤 지정 보상 사건 완료. 구체 적/NPC는 콘텐츠 제작 시 연결",
+        "kind": "choice-clear",
+        "choiceGroup": "cg_se_t4",
+        "alternativeIds": [
+          "itm_se_08"
+        ],
+        "onePerRun": true
+      },
+      "contentAvailability": "5–6막 미구현 / 예약",
+      "equipmentImplementation": "미구현 — 구현 인계 설계",
+      "releaseGate": "officialAct6",
+      "initialIncluded": false,
+      "iconBrief": "작은 상아빛 타원 고리 두 개를 긴 무딘 청동 핀이 관통한 장식. 뾰족한 외곽과 짧은 가죽 매듭.",
+      "iconStyle": "탁한 회갈색 한지 바탕, 거친 붓결/담채의 한국풍 실제 소품 한 개 중심. 실루엣·재질·매듭/부착물로 구분. 글자·숫자·티어문자·인물·발사 궤적·불꽃·강한 발광·스킬 장면 없음.",
+      "iconAssetProposal": "shared/assets/item-icons/v1/itm_se_07.webp"
+    },
+    {
+      "itemId": "itm_se_08",
+      "name": "잔숨 화살통",
+      "owner": "설오",
+      "characterClass": "archer",
+      "slot": "personal",
+      "kind": "화살통",
+      "tier": 4,
+      "basicOptions": [
+        {
+          "key": "hp",
+          "label": "최대 HP",
+          "value": 20,
+          "unit": "%"
+        },
+        {
+          "key": "mp",
+          "label": "최대 기력",
+          "value": 20,
+          "unit": "%"
+        },
+        {
+          "key": "armor",
+          "label": "방어",
+          "value": 2.5,
+          "unit": "%p"
+        },
+        {
+          "key": "regen",
+          "label": "턴 기력 회복",
+          "value": 4,
+          "unit": "고정"
+        }
+      ],
+      "uniqueEffect": {
+        "effectId": "se_recover",
+        "summary": "회기시의 HP 회수율 +25%. 기존 한 사격 HP 15% 상한은 그대로.",
+        "targetSkills": [
+          "A06"
+        ],
+        "params": {
+          "hpRecoveryScale": 1.25,
+          "hpPerShotCap": 0.15
+        },
+        "calculationPoint": "recordRedesignDamage의 기존 HP fraction",
+        "stacking": "같은 effectId는 1회만. 기본 스탯과 고유 계수는 지정 위치에서 각각 한 번 적용.",
+        "limits": "MP 회수와 상한 불변. 기존 실제 적 HP 손실만 사용, 별도 흡수/지원 XP 사건 생성 없음.",
+        "codeRefs": [
+          "recovery"
+        ],
+        "implementationDelta": "HP fraction만 곱함. 기존 shot 원장·회복 처리 재사용.",
+        "status": "연결 지점 읽기 확인 / 장비 효과 신규 구현 대상"
+      },
+      "acquisition": {
+        "eventId": "eq_se_t4_choice",
+        "stage": 52,
+        "condition": "해당 막 정식 공개 뒤 지정 보상 사건 완료. 구체 적/NPC는 콘텐츠 제작 시 연결",
+        "kind": "choice-clear",
+        "choiceGroup": "cg_se_t4",
+        "alternativeIds": [
+          "itm_se_07"
+        ],
+        "onePerRun": true
+      },
+      "contentAvailability": "5–6막 미구현 / 예약",
+      "equipmentImplementation": "미구현 — 구현 인계 설계",
+      "releaseGate": "officialAct6",
+      "initialIncluded": false,
+      "iconBrief": "초승달처럼 아래가 굽은 짧은 나무껍질 화살통, 넓은 천 덮개와 작은 뼈 단추 하나.",
+      "iconStyle": "탁한 회갈색 한지 바탕, 거친 붓결/담채의 한국풍 실제 소품 한 개 중심. 실루엣·재질·매듭/부착물로 구분. 글자·숫자·티어문자·인물·발사 궤적·불꽃·강한 발광·스킬 장면 없음.",
+      "iconAssetProposal": "shared/assets/item-icons/v1/itm_se_08.webp"
+    },
+    {
+      "itemId": "itm_da_01",
+      "name": "풀매듭 호리병",
+      "owner": "담허",
+      "characterClass": "mage",
+      "slot": "personal",
+      "kind": "호리병",
+      "tier": 1,
+      "basicOptions": [
+        {
+          "key": "mp",
+          "label": "최대 기력",
+          "value": 8,
+          "unit": "%"
+        }
+      ],
+      "uniqueEffect": null,
+      "acquisition": {
+        "eventId": "eq_da_join",
+        "stage": 2,
+        "condition": "2장 클리어 뒤 담허 최초 합류",
+        "kind": "recruit",
+        "choiceGroup": null,
+        "alternativeIds": [],
+        "onePerRun": true
+      },
+      "contentAvailability": "1–3막 공개 콘텐츠 / 장비 보상 미구현·신규 대상",
+      "equipmentImplementation": "미구현 — 구현 인계 설계",
+      "releaseGate": "publicAct1to3",
+      "initialIncluded": true,
+      "iconBrief": "크고 작은 두 배가 이어진 말린 박 호리병 하나, 윗배가 작고 아랫배가 약간 눌린 비대칭 형태. 거친 풀섬유 끈이 허리에 묶여 짧은 손잡이 고리, 목에는 작은 나무 마개. 누런 황토색 박 표면과 갈색 실금. 액체·연기·불꽃 없음.",
+      "iconStyle": "탁한 회갈색 한지 바탕, 거친 붓결/담채의 한국풍 실제 소품 한 개 중심. 실루엣·재질·매듭/부착물로 구분. 글자·숫자·티어문자·인물·발사 궤적·불꽃·강한 발광·스킬 장면 없음.",
+      "iconAssetProposal": "shared/assets/item-icons/v1/itm_da_01.webp"
+    },
+    {
+      "itemId": "itm_da_02",
+      "name": "숯칠 지팡이매듭",
+      "owner": "담허",
+      "characterClass": "mage",
+      "slot": "personal",
+      "kind": "지팡이 장식",
+      "tier": 1,
+      "basicOptions": [
+        {
+          "key": "attack",
+          "label": "공격",
+          "value": 2,
+          "unit": "%"
+        },
+        {
+          "key": "mp",
+          "label": "최대 기력",
+          "value": 8,
+          "unit": "%"
+        }
+      ],
+      "uniqueEffect": null,
+      "acquisition": {
+        "eventId": "eq_da_gate",
+        "stage": 4,
+        "condition": "4장 첫 클리어 정산",
+        "kind": "clear",
+        "choiceGroup": null,
+        "alternativeIds": [],
+        "onePerRun": true
+      },
+      "contentAvailability": "1–3막 공개 콘텐츠 / 장비 보상 미구현·신규 대상",
+      "equipmentImplementation": "미구현 — 구현 인계 설계",
+      "releaseGate": "publicAct1to3",
+      "initialIncluded": false,
+      "iconBrief": "타원형 나무 구슬 두 개와 납작한 삼각 목패 한 개를 묶은 짧은 지팡이 부착 매듭. 한 구슬은 먹빛 숯칠이 벗겨져 밝은 나뭇결이 드러나고 목패에는 글자 없이 깊은 사선 홈 한 줄. 두 갈래 베이지 실꼬리. 지팡이 전체·문자·번개 없음.",
+      "iconStyle": "탁한 회갈색 한지 바탕, 거친 붓결/담채의 한국풍 실제 소품 한 개 중심. 실루엣·재질·매듭/부착물로 구분. 글자·숫자·티어문자·인물·발사 궤적·불꽃·강한 발광·스킬 장면 없음.",
+      "iconAssetProposal": "shared/assets/item-icons/v1/itm_da_02.webp"
+    },
+    {
+      "itemId": "itm_da_03",
+      "name": "청뢰 지팡이장식",
+      "owner": "담허",
+      "characterClass": "mage",
+      "slot": "personal",
+      "kind": "지팡이 장식",
+      "tier": 2,
+      "basicOptions": [
+        {
+          "key": "attack",
+          "label": "공격",
+          "value": 4,
+          "unit": "%"
+        },
+        {
+          "key": "mp",
+          "label": "최대 기력",
+          "value": 12,
+          "unit": "%"
+        },
+        {
+          "key": "cost",
+          "label": "기예 기력 비용 감소",
+          "value": 5,
+          "unit": "%"
+        }
+      ],
+      "uniqueEffect": null,
+      "acquisition": {
+        "eventId": "eq_da_t2_choice",
+        "stage": 16,
+        "condition": "기존 step witness 완료 + 장면/강제 입력 해소 뒤 생존 승려 증언 완결",
+        "kind": "choice-story",
+        "choiceGroup": "cg_da_t2",
+        "alternativeIds": [
+          "itm_da_04"
+        ],
+        "onePerRun": true
+      },
+      "contentAvailability": "1–3막 공개 콘텐츠 / 장비 보상 미구현·신규 대상",
+      "equipmentImplementation": "미구현 — 구현 인계 설계",
+      "releaseGate": "publicAct1to3",
+      "initialIncluded": false,
+      "iconBrief": "아래로 꺾여 내려오는 세 마디 청동 장식, 끝의 네모 금속 고리와 짧은 청회색 술. 번개/발광은 없음.",
+      "iconStyle": "탁한 회갈색 한지 바탕, 거친 붓결/담채의 한국풍 실제 소품 한 개 중심. 실루엣·재질·매듭/부착물로 구분. 글자·숫자·티어문자·인물·발사 궤적·불꽃·강한 발광·스킬 장면 없음.",
+      "iconAssetProposal": "shared/assets/item-icons/v1/itm_da_03.webp"
+    },
+    {
+      "itemId": "itm_da_04",
+      "name": "절수 호리병",
+      "owner": "담허",
+      "characterClass": "mage",
+      "slot": "personal",
+      "kind": "호리병",
+      "tier": 2,
+      "basicOptions": [
+        {
+          "key": "hp",
+          "label": "최대 HP",
+          "value": 12,
+          "unit": "%"
+        },
+        {
+          "key": "armor",
+          "label": "방어",
+          "value": 1.5,
+          "unit": "%p"
+        },
+        {
+          "key": "mp",
+          "label": "최대 기력",
+          "value": 12,
+          "unit": "%"
+        }
+      ],
+      "uniqueEffect": null,
+      "acquisition": {
+        "eventId": "eq_da_t2_choice",
+        "stage": 16,
+        "condition": "기존 step witness 완료 + 장면/강제 입력 해소 뒤 생존 승려 증언 완결",
+        "kind": "choice-story",
+        "choiceGroup": "cg_da_t2",
+        "alternativeIds": [
+          "itm_da_03"
+        ],
+        "onePerRun": true
+      },
+      "contentAvailability": "1–3막 공개 콘텐츠 / 장비 보상 미구현·신규 대상",
+      "equipmentImplementation": "미구현 — 구현 인계 설계",
+      "releaseGate": "publicAct1to3",
+      "initialIncluded": false,
+      "iconBrief": "옆으로 납작한 원형 잿빛 도기 호리병, 긴 가는 목과 넓은 삼베 띠, 마개를 덮는 작은 천.",
+      "iconStyle": "탁한 회갈색 한지 바탕, 거친 붓결/담채의 한국풍 실제 소품 한 개 중심. 실루엣·재질·매듭/부착물로 구분. 글자·숫자·티어문자·인물·발사 궤적·불꽃·강한 발광·스킬 장면 없음.",
+      "iconAssetProposal": "shared/assets/item-icons/v1/itm_da_04.webp"
+    },
+    {
+      "itemId": "itm_da_05",
+      "name": "장정 지팡이매듭",
+      "owner": "담허",
+      "characterClass": "mage",
+      "slot": "personal",
+      "kind": "지팡이 장식",
+      "tier": 3,
+      "basicOptions": [
+        {
+          "key": "mp",
+          "label": "최대 기력",
+          "value": 16,
+          "unit": "%"
+        },
+        {
+          "key": "cost",
+          "label": "기예 기력 비용 감소",
+          "value": 7,
+          "unit": "%"
+        },
+        {
+          "key": "armor",
+          "label": "방어",
+          "value": 2,
+          "unit": "%p"
+        }
+      ],
+      "uniqueEffect": {
+        "effectId": "da_stake",
+        "summary": "파진목 유지 +1라운드.",
+        "targetSkills": [
+          "M07"
+        ],
+        "params": {
+          "lifetimeRoundsAdd": 1,
+          "maxLifetimeRounds": 10
+        },
+        "calculationPoint": "파진목 최초 생성 시 expires",
+        "stacking": "같은 effectId는 1회만. 기본 스탯과 고유 계수는 지정 위치에서 각각 한 번 적용.",
+        "limits": "M09 축지·M10 회생진목 제외. 틱당 피해·대상별 턴당 1회·기존 설치 정책 불변.",
+        "codeRefs": [
+          "stake",
+          "stakeHeal"
+        ],
+        "implementationDelta": "M07 expires에만 1 추가. 재로드/재판정으로 재연장 금지.",
+        "status": "연결 지점 읽기 확인 / 장비 효과 신규 구현 대상"
+      },
+      "acquisition": {
+        "eventId": "eq_da_t3a",
+        "stage": 29,
+        "condition": "기존 step hyeonmuk-letter 완료, 안전한 메시지 경계",
+        "kind": "story",
+        "choiceGroup": null,
+        "alternativeIds": [],
+        "onePerRun": true
+      },
+      "contentAvailability": "1–3막 공개 콘텐츠 / 장비 보상 미구현·신규 대상",
+      "equipmentImplementation": "미구현 — 구현 인계 설계",
+      "releaseGate": "publicAct1to3",
+      "initialIncluded": false,
+      "iconBrief": "세 토막 대나무 패를 세로로 엮은 긴 장식. 각 토막의 갈라진 단면과 낡은 붉은 밧줄.",
+      "iconStyle": "탁한 회갈색 한지 바탕, 거친 붓결/담채의 한국풍 실제 소품 한 개 중심. 실루엣·재질·매듭/부착물로 구분. 글자·숫자·티어문자·인물·발사 궤적·불꽃·강한 발광·스킬 장면 없음.",
+      "iconAssetProposal": "shared/assets/item-icons/v1/itm_da_05.webp"
+    },
+    {
+      "itemId": "itm_da_06",
+      "name": "맑은숨 호리병",
+      "owner": "담허",
+      "characterClass": "mage",
+      "slot": "personal",
+      "kind": "호리병",
+      "tier": 3,
+      "basicOptions": [
+        {
+          "key": "hp",
+          "label": "최대 HP",
+          "value": 16,
+          "unit": "%"
+        },
+        {
+          "key": "mp",
+          "label": "최대 기력",
+          "value": 16,
+          "unit": "%"
+        },
+        {
+          "key": "regen",
+          "label": "턴 기력 회복",
+          "value": 3,
+          "unit": "고정"
+        }
+      ],
+      "uniqueEffect": {
+        "effectId": "da_heal",
+        "summary": "회생진목의 기존 HP 회복량 +20%.",
+        "targetSkills": [
+          "M10"
+        ],
+        "params": {
+          "hpHealScale": 1.2
+        },
+        "calculationPoint": "M10 usedRounds 검사 뒤 기존 HP 회복식",
+        "stacking": "같은 effectId는 1회만. 기본 스탯과 고유 계수는 지정 위치에서 각각 한 번 적용.",
+        "limits": "MP·이동 회복·범위·수명·아군별 턴당 1회 불변. 기존 치유 이벤트 한 번만 정산.",
+        "codeRefs": [
+          "stakeHeal"
+        ],
+        "implementationDelta": "HP 식에만 계수 적용. 새 회복 트리거·XP 사건 추가 없음.",
+        "status": "연결 지점 읽기 확인 / 장비 효과 신규 구현 대상"
+      },
+      "acquisition": {
+        "eventId": "eq_da_t3b",
+        "stage": 35,
+        "condition": "4막 정식 공개 후35장 NPC 전달(대상 태그 제작 필요)",
+        "kind": "npc",
+        "choiceGroup": null,
+        "alternativeIds": [],
+        "onePerRun": true
+      },
+      "contentAvailability": "4막 초기미리보기만 존재 / 일반 보상 잠금",
+      "equipmentImplementation": "미구현 — 구현 인계 설계",
+      "releaseGate": "officialAct4",
+      "initialIncluded": false,
+      "iconBrief": "작고 둥근 백자 박병을 거친 짚망이 반쯤 감싼 모습, 얕은 빙렬과 단단한 검은 나무 마개.",
+      "iconStyle": "탁한 회갈색 한지 바탕, 거친 붓결/담채의 한국풍 실제 소품 한 개 중심. 실루엣·재질·매듭/부착물로 구분. 글자·숫자·티어문자·인물·발사 궤적·불꽃·강한 발광·스킬 장면 없음.",
+      "iconAssetProposal": "shared/assets/item-icons/v1/itm_da_06.webp"
+    },
+    {
+      "itemId": "itm_da_07",
+      "name": "좁은벼락 호리병",
+      "owner": "담허",
+      "characterClass": "mage",
+      "slot": "personal",
+      "kind": "호리병",
+      "tier": 4,
+      "basicOptions": [
+        {
+          "key": "attack",
+          "label": "공격",
+          "value": 8,
+          "unit": "%"
+        },
+        {
+          "key": "mp",
+          "label": "최대 기력",
+          "value": 20,
+          "unit": "%"
+        },
+        {
+          "key": "cost",
+          "label": "기예 기력 비용 감소",
+          "value": 9,
+          "unit": "%"
+        },
+        {
+          "key": "armor",
+          "label": "방어",
+          "value": 2.5,
+          "unit": "%p"
+        }
+      ],
+      "uniqueEffect": {
+        "effectId": "da_sky",
+        "summary": "천뢰호 위력 +18%, 폭발 반경 -10%. 하늘 낙뢰 방식은 그대로.",
+        "targetSkills": [
+          "M05"
+        ],
+        "params": {
+          "damageScale": 1.18,
+          "radiusScale": 0.9
+        },
+        "calculationPoint": "effective()에서 기존 damage/radius 산출",
+        "stacking": "같은 effectId는 1회만. 기본 스탯과 고유 계수는 지정 위치에서 각각 한 번 적용.",
+        "limits": "기존 0.35초 대기·상부 차폐·표적별 판정·총 타격 수 불변.",
+        "codeRefs": [
+          "cost",
+          "cast"
+        ],
+        "implementationDelta": "기존 e.damage/e.radius만 변경, skyWait 경로 교체 없음.",
+        "status": "연결 지점 읽기 확인 / 장비 효과 신규 구현 대상"
+      },
+      "acquisition": {
+        "eventId": "eq_da_t4_choice",
+        "stage": 48,
+        "condition": "해당 막 정식 공개 뒤 지정 보상 사건 완료. 구체 적/NPC는 콘텐츠 제작 시 연결",
+        "kind": "choice-clear",
+        "choiceGroup": "cg_da_t4",
+        "alternativeIds": [
+          "itm_da_08"
+        ],
+        "onePerRun": true
+      },
+      "contentAvailability": "5–6막 미구현 / 예약",
+      "equipmentImplementation": "미구현 — 구현 인계 설계",
+      "releaseGate": "officialAct5",
+      "initialIncluded": false,
+      "iconBrief": "각진 세 면의 검은 도기 박병, 좁은 목과 두꺼운 철제 테두리. 마른 회색 균열만, 빛은 없음.",
+      "iconStyle": "탁한 회갈색 한지 바탕, 거친 붓결/담채의 한국풍 실제 소품 한 개 중심. 실루엣·재질·매듭/부착물로 구분. 글자·숫자·티어문자·인물·발사 궤적·불꽃·강한 발광·스킬 장면 없음.",
+      "iconAssetProposal": "shared/assets/item-icons/v1/itm_da_07.webp"
+    },
+    {
+      "itemId": "itm_da_08",
+      "name": "원륜 지팡이장식",
+      "owner": "담허",
+      "characterClass": "mage",
+      "slot": "personal",
+      "kind": "지팡이 장식",
+      "tier": 4,
+      "basicOptions": [
+        {
+          "key": "hp",
+          "label": "최대 HP",
+          "value": 20,
+          "unit": "%"
+        },
+        {
+          "key": "mp",
+          "label": "최대 기력",
+          "value": 20,
+          "unit": "%"
+        },
+        {
+          "key": "armor",
+          "label": "방어",
+          "value": 2.5,
+          "unit": "%p"
+        },
+        {
+          "key": "regen",
+          "label": "턴 기력 회복",
+          "value": 4,
+          "unit": "고정"
+        }
+      ],
+      "uniqueEffect": {
+        "effectId": "da_arc",
+        "summary": "원호파의 두께 +20%, 위력 -10%. 반경·각도는 그대로.",
+        "targetSkills": [
+          "M03"
+        ],
+        "params": {
+          "geometryThicknessScale": 1.2,
+          "damageScale": 0.9
+        },
+        "calculationPoint": "M03 geometryBoost와 effective damage",
+        "stacking": "같은 effectId는 1회만. 기본 스탯과 고유 계수는 지정 위치에서 각각 한 번 적용.",
+        "limits": "반경·각도·발사체 사거리·차폐·타격 수 불변.",
+        "codeRefs": [
+          "cost",
+          "waveGeometry"
+        ],
+        "implementationDelta": "기존 geometryBoost가 두께만 조정함을 확인. M03에서×1.20; 미리보기/실전의 동일 helper 재사용.",
+        "status": "연결 지점 읽기 확인 / 장비 효과 신규 구현 대상"
+      },
+      "acquisition": {
+        "eventId": "eq_da_t4_choice",
+        "stage": 48,
+        "condition": "해당 막 정식 공개 뒤 지정 보상 사건 완료. 구체 적/NPC는 콘텐츠 제작 시 연결",
+        "kind": "choice-clear",
+        "choiceGroup": "cg_da_t4",
+        "alternativeIds": [
+          "itm_da_07"
+        ],
+        "onePerRun": true
+      },
+      "contentAvailability": "5–6막 미구현 / 예약",
+      "equipmentImplementation": "미구현 — 구현 인계 설계",
+      "releaseGate": "officialAct5",
+      "initialIncluded": false,
+      "iconBrief": "가운데 구멍이 큰 원반형 담녹색 옥륜, 바깥 얕은 홈 여덟 개와 옆으로 묶인 짧은 갈색 끈. 글자 없음.",
+      "iconStyle": "탁한 회갈색 한지 바탕, 거친 붓결/담채의 한국풍 실제 소품 한 개 중심. 실루엣·재질·매듭/부착물로 구분. 글자·숫자·티어문자·인물·발사 궤적·불꽃·강한 발광·스킬 장면 없음.",
+      "iconAssetProposal": "shared/assets/item-icons/v1/itm_da_08.webp"
+    },
+    {
+      "itemId": "itm_hw_01",
+      "name": "삼베 손목감개",
+      "owner": "휘겸",
+      "characterClass": "knight",
+      "slot": "personal",
+      "kind": "손목 감개",
+      "tier": 1,
+      "basicOptions": [
+        {
+          "key": "hp",
+          "label": "최대 HP",
+          "value": 8,
+          "unit": "%"
+        }
+      ],
+      "uniqueEffect": null,
+      "acquisition": {
+        "eventId": "eq_hw_join",
+        "stage": 6,
+        "condition": "5장 완료 후 6장 진입에서 휘겸 최초 합류",
+        "kind": "recruit",
+        "choiceGroup": null,
+        "alternativeIds": [],
+        "onePerRun": true
+      },
+      "contentAvailability": "1–3막 공개 콘텐츠 / 장비 보상 미구현·신규 대상",
+      "equipmentImplementation": "미구현 — 구현 인계 설계",
+      "releaseGate": "publicAct1to3",
+      "initialIncluded": true,
+      "iconBrief": "넓은 삼베 띠가 손목 굵기의 빈 고리로 세 겹 말린 물건 하나. 한쪽 띠 끝이 길게 대각선으로 풀려 있고 성긴 직조와 해진 가장자리, 바랜 회황색. 손·인물·검은 그리지 않음.",
+      "iconStyle": "탁한 회갈색 한지 바탕, 거친 붓결/담채의 한국풍 실제 소품 한 개 중심. 실루엣·재질·매듭/부착물로 구분. 글자·숫자·티어문자·인물·발사 궤적·불꽃·강한 발광·스킬 장면 없음.",
+      "iconAssetProposal": "shared/assets/item-icons/v1/itm_hw_01.webp"
+    },
+    {
+      "itemId": "itm_hw_02",
+      "name": "낡은 칼끈",
+      "owner": "휘겸",
+      "characterClass": "knight",
+      "slot": "personal",
+      "kind": "칼끈",
+      "tier": 1,
+      "basicOptions": [
+        {
+          "key": "move",
+          "label": "이동력",
+          "value": 3,
+          "unit": "%"
+        },
+        {
+          "key": "armor",
+          "label": "방어",
+          "value": 1,
+          "unit": "%p"
+        }
+      ],
+      "uniqueEffect": null,
+      "acquisition": {
+        "eventId": "eq_hw_bier",
+        "stage": 8,
+        "condition": "8장 상여 관련 전투 완료 후 첫 클리어",
+        "kind": "defeat-clear",
+        "choiceGroup": null,
+        "alternativeIds": [],
+        "onePerRun": true
+      },
+      "contentAvailability": "1–3막 공개 콘텐츠 / 장비 보상 미구현·신규 대상",
+      "equipmentImplementation": "미구현 — 구현 인계 설계",
+      "releaseGate": "publicAct1to3",
+      "initialIncluded": false,
+      "iconBrief": "얇고 단단한 흑갈색 가죽끈이 길쭉한 타원 고리를 이루고, 아래 교차 매듭에 납작한 검은 목제 토글 하나와 작은 닳은 청동 고리 하나가 달림. 고리 한쪽 끈이 끊어졌다 다시 꿰맨 자국. 검·손·발광 없음.",
+      "iconStyle": "탁한 회갈색 한지 바탕, 거친 붓결/담채의 한국풍 실제 소품 한 개 중심. 실루엣·재질·매듭/부착물로 구분. 글자·숫자·티어문자·인물·발사 궤적·불꽃·강한 발광·스킬 장면 없음.",
+      "iconAssetProposal": "shared/assets/item-icons/v1/itm_hw_02.webp"
+    },
+    {
+      "itemId": "itm_hw_03",
+      "name": "석결 손목감개",
+      "owner": "휘겸",
+      "characterClass": "knight",
+      "slot": "personal",
+      "kind": "손목 감개",
+      "tier": 2,
+      "basicOptions": [
+        {
+          "key": "hp",
+          "label": "최대 HP",
+          "value": 12,
+          "unit": "%"
+        },
+        {
+          "key": "armor",
+          "label": "방어",
+          "value": 1.5,
+          "unit": "%p"
+        },
+        {
+          "key": "attack",
+          "label": "공격",
+          "value": 4,
+          "unit": "%"
+        }
+      ],
+      "uniqueEffect": null,
+      "acquisition": {
+        "eventId": "eq_hw_t2_choice",
+        "stage": 17,
+        "condition": "기존 step hoist 완료 + 장면/강제 입력 해소 뒤 들린 인양틀 제압",
+        "kind": "choice-defeat",
+        "choiceGroup": "cg_hw_t2",
+        "alternativeIds": [
+          "itm_hw_04"
+        ],
+        "onePerRun": true
+      },
+      "contentAvailability": "1–3막 공개 콘텐츠 / 장비 보상 미구현·신규 대상",
+      "equipmentImplementation": "미구현 — 구현 인계 설계",
+      "releaseGate": "publicAct1to3",
+      "initialIncluded": false,
+      "iconBrief": "폭 넓은 짙은 삼베 감개에 네모 돌조각 하나가 꿰매짐. 끈 끝은 짧고 가장자리는 두꺼운 박음질.",
+      "iconStyle": "탁한 회갈색 한지 바탕, 거친 붓결/담채의 한국풍 실제 소품 한 개 중심. 실루엣·재질·매듭/부착물로 구분. 글자·숫자·티어문자·인물·발사 궤적·불꽃·강한 발광·스킬 장면 없음.",
+      "iconAssetProposal": "shared/assets/item-icons/v1/itm_hw_03.webp"
+    },
+    {
+      "itemId": "itm_hw_04",
+      "name": "수문 검집끈",
+      "owner": "휘겸",
+      "characterClass": "knight",
+      "slot": "personal",
+      "kind": "검집끈",
+      "tier": 2,
+      "basicOptions": [
+        {
+          "key": "move",
+          "label": "이동력",
+          "value": 4,
+          "unit": "%"
+        },
+        {
+          "key": "mp",
+          "label": "최대 기력",
+          "value": 12,
+          "unit": "%"
+        },
+        {
+          "key": "cost",
+          "label": "기예 기력 비용 감소",
+          "value": 5,
+          "unit": "%"
+        }
+      ],
+      "uniqueEffect": null,
+      "acquisition": {
+        "eventId": "eq_hw_t2_choice",
+        "stage": 17,
+        "condition": "기존 step hoist 완료 + 장면/강제 입력 해소 뒤 들린 인양틀 제압",
+        "kind": "choice-defeat",
+        "choiceGroup": "cg_hw_t2",
+        "alternativeIds": [
+          "itm_hw_03"
+        ],
+        "onePerRun": true
+      },
+      "contentAvailability": "1–3막 공개 콘텐츠 / 장비 보상 미구현·신규 대상",
+      "equipmentImplementation": "미구현 — 구현 인계 설계",
+      "releaseGate": "publicAct1to3",
+      "initialIncluded": false,
+      "iconBrief": "긴 두 줄 가죽끈이 가운데 납작한 물고기 모양 목제 버클로 모임. 한쪽 줄만 고리로 접힘.",
+      "iconStyle": "탁한 회갈색 한지 바탕, 거친 붓결/담채의 한국풍 실제 소품 한 개 중심. 실루엣·재질·매듭/부착물로 구분. 글자·숫자·티어문자·인물·발사 궤적·불꽃·강한 발광·스킬 장면 없음.",
+      "iconAssetProposal": "shared/assets/item-icons/v1/itm_hw_04.webp"
+    },
+    {
+      "itemId": "itm_hw_05",
+      "name": "가벼운 칼끈",
+      "owner": "휘겸",
+      "characterClass": "knight",
+      "slot": "personal",
+      "kind": "칼끈",
+      "tier": 3,
+      "basicOptions": [
+        {
+          "key": "move",
+          "label": "이동력",
+          "value": 5,
+          "unit": "%"
+        },
+        {
+          "key": "mp",
+          "label": "최대 기력",
+          "value": 16,
+          "unit": "%"
+        },
+        {
+          "key": "armor",
+          "label": "방어",
+          "value": 2,
+          "unit": "%p"
+        }
+      ],
+      "uniqueEffect": {
+        "effectId": "hw_jump_cost",
+        "summary": "일반 점프의 이동력 비용 -20. 최소 비용 25.",
+        "targetSkills": [
+          "JUMP"
+        ],
+        "params": {
+          "jumpCostFlatReduction": 20,
+          "minJumpCost": 25
+        },
+        "calculationPoint": "Engine.jumpCost 최종값",
+        "stacking": "같은 effectId는 1회만. 기본 스탯과 고유 계수는 지정 위치에서 각각 한 번 적용.",
+        "limits": "추가 점프·돌격 거리·물/낙사 면제 없음. 기존 SP03과 합산 후 최저25.",
+        "codeRefs": [
+          "jump"
+        ],
+        "implementationDelta": "기존 비용 반환식에 고정 감소. 점프 높이·속도는 변경 안 함.",
+        "status": "연결 지점 읽기 확인 / 장비 효과 신규 구현 대상"
+      },
+      "acquisition": {
+        "eventId": "eq_hw_t3a",
+        "stage": 24,
+        "condition": "기존 step family-crest 완료, 안전한 메시지 경계",
+        "kind": "story",
+        "choiceGroup": null,
+        "alternativeIds": [],
+        "onePerRun": true
+      },
+      "contentAvailability": "1–3막 공개 콘텐츠 / 장비 보상 미구현·신규 대상",
+      "equipmentImplementation": "미구현 — 구현 인계 설계",
+      "releaseGate": "publicAct1to3",
+      "initialIncluded": false,
+      "iconBrief": "가늘게 꼰 삼색이 아닌 한 가지 옅은 갈색 실끈, 윗부분 큰 빈 삼각 고리와 아주 작은 뼈 추 하나.",
+      "iconStyle": "탁한 회갈색 한지 바탕, 거친 붓결/담채의 한국풍 실제 소품 한 개 중심. 실루엣·재질·매듭/부착물로 구분. 글자·숫자·티어문자·인물·발사 궤적·불꽃·강한 발광·스킬 장면 없음.",
+      "iconAssetProposal": "shared/assets/item-icons/v1/itm_hw_05.webp"
+    },
+    {
+      "itemId": "itm_hw_06",
+      "name": "침골 손목감개",
+      "owner": "휘겸",
+      "characterClass": "knight",
+      "slot": "personal",
+      "kind": "손목 감개",
+      "tier": 3,
+      "basicOptions": [
+        {
+          "key": "hp",
+          "label": "최대 HP",
+          "value": 16,
+          "unit": "%"
+        },
+        {
+          "key": "attack",
+          "label": "공격",
+          "value": 6,
+          "unit": "%"
+        },
+        {
+          "key": "critMult",
+          "label": "치명 배율",
+          "value": 0.1,
+          "unit": "배 가산"
+        }
+      ],
+      "uniqueEffect": {
+        "effectId": "hw_life",
+        "summary": "사생참의 실제 HP 소비분이 더하는 피해 +15%.",
+        "targetSkills": [
+          "S02"
+        ],
+        "params": {
+          "lifeCostDamageScale": 1.15
+        },
+        "calculationPoint": "meleeAction 생성 시 lifeCost 비례 항",
+        "stacking": "같은 effectId는 1회만. 기본 스탯과 고유 계수는 지정 위치에서 각각 한 번 적용.",
+        "limits": "HP 비용 floor(현재 HP/3)은 그대로 먼저 지불. 기본 피해·실제 비용·자해 보상은 복제하지 않음.",
+        "codeRefs": [
+          "lifeSlash"
+        ],
+        "implementationDelta": "기존 lifeCost 곱셈 항만 변경. 비용을 취소하고 보너스를 남기지 않음.",
+        "status": "연결 지점 읽기 확인 / 장비 효과 신규 구현 대상"
+      },
+      "acquisition": {
+        "eventId": "eq_hw_t3b",
+        "stage": 36,
+        "condition": "4막 정식 공개 후36장 지정 정예 rewardTag=eq-hw-36 제압",
+        "kind": "elite",
+        "choiceGroup": null,
+        "alternativeIds": [],
+        "onePerRun": true
+      },
+      "contentAvailability": "4막 초기미리보기만 존재 / 일반 보상 잠금",
+      "equipmentImplementation": "미구현 — 구현 인계 설계",
+      "releaseGate": "officialAct4",
+      "initialIncluded": false,
+      "iconBrief": "거친 검갈색 감개 세로에 긴 상아빛 뼛조각 한 개가 덧대어짐. 끊어진 매듭을 다시 묶은 굵은 실.",
+      "iconStyle": "탁한 회갈색 한지 바탕, 거친 붓결/담채의 한국풍 실제 소품 한 개 중심. 실루엣·재질·매듭/부착물로 구분. 글자·숫자·티어문자·인물·발사 궤적·불꽃·강한 발광·스킬 장면 없음.",
+      "iconAssetProposal": "shared/assets/item-icons/v1/itm_hw_06.webp"
+    },
+    {
+      "itemId": "itm_hw_07",
+      "name": "검세 손목감개",
+      "owner": "휘겸",
+      "characterClass": "knight",
+      "slot": "personal",
+      "kind": "손목 감개",
+      "tier": 4,
+      "basicOptions": [
+        {
+          "key": "hp",
+          "label": "최대 HP",
+          "value": 20,
+          "unit": "%"
+        },
+        {
+          "key": "armor",
+          "label": "방어",
+          "value": 2.5,
+          "unit": "%p"
+        },
+        {
+          "key": "attack",
+          "label": "공격",
+          "value": 8,
+          "unit": "%"
+        },
+        {
+          "key": "crit",
+          "label": "치명 확률",
+          "value": 2.5,
+          "unit": "%p"
+        }
+      ],
+      "uniqueEffect": {
+        "effectId": "hw_guard",
+        "summary": "피격 직전 HP가 30% 이하면 방어 +3%p.",
+        "targetSkills": [
+          "INCOMING_NORMAL"
+        ],
+        "params": {
+          "hpThreshold": 0.3,
+          "armorAdd": 0.03,
+          "armorCap": 0.7
+        },
+        "calculationPoint": "applyHit의 해당 방어계수 산출 직전",
+        "stacking": "같은 effectId는 1회만. 기본 스탯과 고유 계수는 지정 위치에서 각각 한 번 적용.",
+        "limits": "기존 방어70% 상한·보스/환경/추락 규칙 유지. 새 보호막·불굴·무적 없음.",
+        "codeRefs": [
+          "hit"
+        ],
+        "implementationDelta": "현재 HP 비율 조건 한 번 검사. 상태·타이머 생성 없음.",
+        "status": "연결 지점 읽기 확인 / 장비 효과 신규 구현 대상"
+      },
+      "acquisition": {
+        "eventId": "eq_hw_t4_choice",
+        "stage": 55,
+        "condition": "해당 막 정식 공개 뒤 지정 보상 사건 완료. 구체 적/NPC는 콘텐츠 제작 시 연결",
+        "kind": "choice-elite",
+        "choiceGroup": "cg_hw_t4",
+        "alternativeIds": [
+          "itm_hw_08"
+        ],
+        "onePerRun": true
+      },
+      "contentAvailability": "5–6막 미구현 / 예약",
+      "equipmentImplementation": "미구현 — 구현 인계 설계",
+      "releaseGate": "officialAct6",
+      "initialIncluded": false,
+      "iconBrief": "접어 포개진 넓은 회갈색 천 감개, 겉에 낮은 청동 마디판 세 개가 계단처럼 이어짐. 손/검 없음.",
+      "iconStyle": "탁한 회갈색 한지 바탕, 거친 붓결/담채의 한국풍 실제 소품 한 개 중심. 실루엣·재질·매듭/부착물로 구분. 글자·숫자·티어문자·인물·발사 궤적·불꽃·강한 발광·스킬 장면 없음.",
+      "iconAssetProposal": "shared/assets/item-icons/v1/itm_hw_07.webp"
+    },
+    {
+      "itemId": "itm_hw_08",
+      "name": "먼칼 검집끈",
+      "owner": "휘겸",
+      "characterClass": "knight",
+      "slot": "personal",
+      "kind": "검집끈",
+      "tier": 4,
+      "basicOptions": [
+        {
+          "key": "mp",
+          "label": "최대 기력",
+          "value": 20,
+          "unit": "%"
+        },
+        {
+          "key": "cost",
+          "label": "기예 기력 비용 감소",
+          "value": 9,
+          "unit": "%"
+        },
+        {
+          "key": "move",
+          "label": "이동력",
+          "value": 6,
+          "unit": "%"
+        },
+        {
+          "key": "armor",
+          "label": "방어",
+          "value": 2.5,
+          "unit": "%p"
+        }
+      ],
+      "uniqueEffect": {
+        "effectId": "hw_blade",
+        "summary": "검기 계통의 기력 비용 -15%, 위력 -8%.",
+        "targetSkills": [
+          "S09",
+          "S10",
+          "S11",
+          "S14",
+          "S12"
+        ],
+        "params": {
+          "manaDiscount": 0.15,
+          "damageScale": 0.92
+        },
+        "calculationPoint": "manaCost/effective에서 해당 skillId 검사",
+        "stacking": "같은 effectId는 1회만. 기본 스탯과 고유 계수는 지정 위치에서 각각 한 번 적용.",
+        "limits": "사거리·검기 수·관통·후속 타격 원장 불변. 원래 무료가 되는 기예는 계속 무료.",
+        "codeRefs": [
+          "cost",
+          "cast"
+        ],
+        "implementationDelta": "계통 한정 비용/위력 두 계수, 자탄마다 재적용 금지.",
+        "status": "연결 지점 읽기 확인 / 장비 효과 신규 구현 대상"
+      },
+      "acquisition": {
+        "eventId": "eq_hw_t4_choice",
+        "stage": 55,
+        "condition": "해당 막 정식 공개 뒤 지정 보상 사건 완료. 구체 적/NPC는 콘텐츠 제작 시 연결",
+        "kind": "choice-elite",
+        "choiceGroup": "cg_hw_t4",
+        "alternativeIds": [
+          "itm_hw_07"
+        ],
+        "onePerRun": true
+      },
+      "contentAvailability": "5–6막 미구현 / 예약",
+      "equipmentImplementation": "미구현 — 구현 인계 설계",
+      "releaseGate": "officialAct6",
+      "initialIncluded": false,
+      "iconBrief": "길고 넓은 남회색 직물 끈이 S자로 느슨하게 접힘. 양 끝의 사각 목제 마감과 중앙 낡은 은빛 고리.",
+      "iconStyle": "탁한 회갈색 한지 바탕, 거친 붓결/담채의 한국풍 실제 소품 한 개 중심. 실루엣·재질·매듭/부착물로 구분. 글자·숫자·티어문자·인물·발사 궤적·불꽃·강한 발광·스킬 장면 없음.",
+      "iconAssetProposal": "shared/assets/item-icons/v1/itm_hw_08.webp"
+    },
+    {
+      "itemId": "itm_so_01",
+      "name": "해진 방울끈",
+      "owner": "소단",
+      "characterClass": "occultist",
+      "slot": "personal",
+      "kind": "방울끈",
+      "tier": 1,
+      "basicOptions": [
+        {
+          "key": "mp",
+          "label": "최대 기력",
+          "value": 8,
+          "unit": "%"
+        }
+      ],
+      "uniqueEffect": null,
+      "acquisition": {
+        "eventId": "eq_so_join",
+        "stage": 11,
+        "condition": "10장 사건 뒤 소단 정식 합류가 저장된 첫 안전 경계",
+        "kind": "recruit",
+        "choiceGroup": null,
+        "alternativeIds": [],
+        "onePerRun": true
+      },
+      "contentAvailability": "1–3막 공개 콘텐츠 / 장비 보상 미구현·신규 대상",
+      "equipmentImplementation": "미구현 — 구현 인계 설계",
+      "releaseGate": "publicAct1to3",
+      "initialIncluded": true,
+      "iconBrief": "짧은 빛바랜 청회색 짜임끈에 크기가 서로 다른 작은 청동 방울 두 개가 붙은 물건. 큰 방울은 아래, 작은 방울은 옆에 치우쳐 있고 방울 밑 갈라진 틈과 검은 산화 얼룩. 윗부분은 닳은 둥근 고리. 음파·혼령·문자 없음.",
+      "iconStyle": "탁한 회갈색 한지 바탕, 거친 붓결/담채의 한국풍 실제 소품 한 개 중심. 실루엣·재질·매듭/부착물로 구분. 글자·숫자·티어문자·인물·발사 궤적·불꽃·강한 발광·스킬 장면 없음.",
+      "iconAssetProposal": "shared/assets/item-icons/v1/itm_so_01.webp"
+    },
+    {
+      "itemId": "itm_so_02",
+      "name": "무명 매듭",
+      "owner": "소단",
+      "characterClass": "occultist",
+      "slot": "personal",
+      "kind": "부적 매듭",
+      "tier": 1,
+      "basicOptions": [
+        {
+          "key": "attack",
+          "label": "공격",
+          "value": 2,
+          "unit": "%"
+        },
+        {
+          "key": "armor",
+          "label": "방어",
+          "value": 1,
+          "unit": "%p"
+        }
+      ],
+      "uniqueEffect": null,
+      "acquisition": {
+        "eventId": "eq_so_resident",
+        "stage": 13,
+        "condition": "고립된 석공 구조 step resident 완료 후 전달",
+        "kind": "npc",
+        "choiceGroup": null,
+        "alternativeIds": [],
+        "onePerRun": true
+      },
+      "contentAvailability": "1–3막 공개 콘텐츠 / 장비 보상 미구현·신규 대상",
+      "equipmentImplementation": "미구현 — 구현 인계 설계",
+      "releaseGate": "publicAct1to3",
+      "initialIncluded": false,
+      "iconBrief": "글자 없는 얇은 한지 네모 봉투를 세 번 접고 짙은 자주갈색 실이 중앙을 가로질러 세 개의 작은 매듭으로 고정. 봉투 한 귀퉁이만 비스듬히 접혀 종이 단면이 보이고 아래로 짧은 실 한 가닥. 부적 문양·숫자·얼굴·발광 없음.",
+      "iconStyle": "탁한 회갈색 한지 바탕, 거친 붓결/담채의 한국풍 실제 소품 한 개 중심. 실루엣·재질·매듭/부착물로 구분. 글자·숫자·티어문자·인물·발사 궤적·불꽃·강한 발광·스킬 장면 없음.",
+      "iconAssetProposal": "shared/assets/item-icons/v1/itm_so_02.webp"
+    },
+    {
+      "itemId": "itm_so_03",
+      "name": "잔향 방울끈",
+      "owner": "소단",
+      "characterClass": "occultist",
+      "slot": "personal",
+      "kind": "방울끈",
+      "tier": 2,
+      "basicOptions": [
+        {
+          "key": "attack",
+          "label": "공격",
+          "value": 4,
+          "unit": "%"
+        },
+        {
+          "key": "mp",
+          "label": "최대 기력",
+          "value": 12,
+          "unit": "%"
+        },
+        {
+          "key": "cost",
+          "label": "기예 기력 비용 감소",
+          "value": 5,
+          "unit": "%"
+        }
+      ],
+      "uniqueEffect": null,
+      "acquisition": {
+        "eventId": "eq_so_t2_choice",
+        "stage": 18,
+        "condition": "기존 step keeper 완료 + 장면/강제 입력 해소 뒤 종지기 제압",
+        "kind": "choice-story",
+        "choiceGroup": "cg_so_t2",
+        "alternativeIds": [
+          "itm_so_04"
+        ],
+        "onePerRun": true
+      },
+      "contentAvailability": "1–3막 공개 콘텐츠 / 장비 보상 미구현·신규 대상",
+      "equipmentImplementation": "미구현 — 구현 인계 설계",
+      "releaseGate": "publicAct1to3",
+      "initialIncluded": false,
+      "iconBrief": "길이가 다른 가는 끈 세 개 끝에 매우 작은 종형 방울이 각각 달림. 윗부분 작은 둥근 나무 테두리.",
+      "iconStyle": "탁한 회갈색 한지 바탕, 거친 붓결/담채의 한국풍 실제 소품 한 개 중심. 실루엣·재질·매듭/부착물로 구분. 글자·숫자·티어문자·인물·발사 궤적·불꽃·강한 발광·스킬 장면 없음.",
+      "iconAssetProposal": "shared/assets/item-icons/v1/itm_so_03.webp"
+    },
+    {
+      "itemId": "itm_so_04",
+      "name": "나루길 매듭",
+      "owner": "소단",
+      "characterClass": "occultist",
+      "slot": "personal",
+      "kind": "부적 매듭",
+      "tier": 2,
+      "basicOptions": [
+        {
+          "key": "hp",
+          "label": "최대 HP",
+          "value": 12,
+          "unit": "%"
+        },
+        {
+          "key": "armor",
+          "label": "방어",
+          "value": 1.5,
+          "unit": "%p"
+        },
+        {
+          "key": "move",
+          "label": "이동력",
+          "value": 4,
+          "unit": "%"
+        }
+      ],
+      "uniqueEffect": null,
+      "acquisition": {
+        "eventId": "eq_so_t2_choice",
+        "stage": 18,
+        "condition": "기존 step keeper 완료 + 장면/강제 입력 해소 뒤 종지기 제압",
+        "kind": "choice-story",
+        "choiceGroup": "cg_so_t2",
+        "alternativeIds": [
+          "itm_so_03"
+        ],
+        "onePerRun": true
+      },
+      "contentAvailability": "1–3막 공개 콘텐츠 / 장비 보상 미구현·신규 대상",
+      "equipmentImplementation": "미구현 — 구현 인계 설계",
+      "releaseGate": "publicAct1to3",
+      "initialIncluded": false,
+      "iconBrief": "두꺼운 삼베 봉투가 배 모양으로 길쭉하게 접혀 검은 밧줄 두 바퀴로 묶임. 납작한 나무 표식, 글자 없음.",
+      "iconStyle": "탁한 회갈색 한지 바탕, 거친 붓결/담채의 한국풍 실제 소품 한 개 중심. 실루엣·재질·매듭/부착물로 구분. 글자·숫자·티어문자·인물·발사 궤적·불꽃·강한 발광·스킬 장면 없음.",
+      "iconAssetProposal": "shared/assets/item-icons/v1/itm_so_04.webp"
+    },
+    {
+      "itemId": "itm_so_05",
+      "name": "머문혼 방울끈",
+      "owner": "소단",
+      "characterClass": "occultist",
+      "slot": "personal",
+      "kind": "방울끈",
+      "tier": 3,
+      "basicOptions": [
+        {
+          "key": "mp",
+          "label": "최대 기력",
+          "value": 16,
+          "unit": "%"
+        },
+        {
+          "key": "cost",
+          "label": "기예 기력 비용 감소",
+          "value": 7,
+          "unit": "%"
+        },
+        {
+          "key": "regen",
+          "label": "턴 기력 회복",
+          "value": 3,
+          "unit": "고정"
+        }
+      ],
+      "uniqueEffect": {
+        "effectId": "so_echo",
+        "summary": "반향령 유지 +1라운드. 활성 수 상한은 기존 1~3개.",
+        "targetSkills": [
+          "O15"
+        ],
+        "params": {
+          "lifetimeRoundsAdd": 1,
+          "maxLifetimeRounds": 9
+        },
+        "calculationPoint": "spawnSummon의 echo 전용 summonExpires 계산",
+        "stacking": "같은 effectId는 1회만. 기본 스탯과 고유 계수는 지정 위치에서 각각 한 번 적용.",
+        "limits": "ECHO_LIMIT·반향 위력·복제 발사 수·자연 소멸 보전/회수 규칙 불변. 재인계/재연장 없음.",
+        "codeRefs": [
+          "summon",
+          "summonData"
+        ],
+        "implementationDelta": "echo 생성 시 만료만 +1. 일반 소환물 전체로 무검증 확대하지 않음.",
+        "status": "연결 지점 읽기 확인 / 장비 효과 신규 구현 대상"
+      },
+      "acquisition": {
+        "eventId": "eq_so_t3a",
+        "stage": 19,
+        "condition": "기존 step old-soul 완료, 안전한 메시지 경계",
+        "kind": "story",
+        "choiceGroup": null,
+        "alternativeIds": [],
+        "onePerRun": true
+      },
+      "contentAvailability": "1–3막 공개 콘텐츠 / 장비 보상 미구현·신규 대상",
+      "equipmentImplementation": "미구현 — 구현 인계 설계",
+      "releaseGate": "publicAct1to3",
+      "initialIncluded": false,
+      "iconBrief": "큰 둥근 방울 하나를 작은 타원 나무틀이 감싼 장식, 윗쪽 매듭 두 개와 짧은 올리브 회색 술.",
+      "iconStyle": "탁한 회갈색 한지 바탕, 거친 붓결/담채의 한국풍 실제 소품 한 개 중심. 실루엣·재질·매듭/부착물로 구분. 글자·숫자·티어문자·인물·발사 궤적·불꽃·강한 발광·스킬 장면 없음.",
+      "iconAssetProposal": "shared/assets/item-icons/v1/itm_so_05.webp"
+    },
+    {
+      "itemId": "itm_so_06",
+      "name": "여운 매듭",
+      "owner": "소단",
+      "characterClass": "occultist",
+      "slot": "personal",
+      "kind": "부적 매듭",
+      "tier": 3,
+      "basicOptions": [
+        {
+          "key": "hp",
+          "label": "최대 HP",
+          "value": 16,
+          "unit": "%"
+        },
+        {
+          "key": "mp",
+          "label": "최대 기력",
+          "value": 16,
+          "unit": "%"
+        },
+        {
+          "key": "armor",
+          "label": "방어",
+          "value": 2,
+          "unit": "%p"
+        }
+      ],
+      "uniqueEffect": {
+        "effectId": "so_weak",
+        "summary": "쇠망부의 공격 약화12%→15%. 방어 약화13%·지속은 그대로.",
+        "targetSkills": [
+          "O06"
+        ],
+        "params": {
+          "weakAttackReduction": 0.15
+        },
+        "calculationPoint": "applyCurse(kind=weak)의 curseAttack 산출",
+        "stacking": "같은 effectId는 1회만. 기본 스탯과 고유 계수는 지정 위치에서 각각 한 번 적용.",
+        "limits": "다른 주박과 공유하는 curseTurns는 변경하지 않음. DOT·증오 지속 연장/추가 틱 없음. 기존 trap 강도·max 병합 유지.",
+        "codeRefs": [
+          "curseApply"
+        ],
+        "implementationDelta": "12% 기본 공격 약화 계수에만 +3%p. trap이면 기존 strength를 그대로 곱함.",
+        "status": "연결 지점 읽기 확인 / 장비 효과 신규 구현 대상"
+      },
+      "acquisition": {
+        "eventId": "eq_so_t3b",
+        "stage": 40,
+        "condition": "4막 정식 공개 후40장 첫 클리어",
+        "kind": "clear",
+        "choiceGroup": null,
+        "alternativeIds": [],
+        "onePerRun": true
+      },
+      "contentAvailability": "4막 제작중 / 장비 보상 잠금",
+      "equipmentImplementation": "미구현 — 구현 인계 설계",
+      "releaseGate": "officialAct4",
+      "initialIncluded": false,
+      "iconBrief": "긴 직사각 무문 한지 묶음의 아래가 세 갈래로 접힘. 위쪽 가로로 묶은 두꺼운 자주갈색 끈과 무딘 뼈 단추.",
+      "iconStyle": "탁한 회갈색 한지 바탕, 거친 붓결/담채의 한국풍 실제 소품 한 개 중심. 실루엣·재질·매듭/부착물로 구분. 글자·숫자·티어문자·인물·발사 궤적·불꽃·강한 발광·스킬 장면 없음.",
+      "iconAssetProposal": "shared/assets/item-icons/v1/itm_so_06.webp"
+    },
+    {
+      "itemId": "itm_so_07",
+      "name": "넓은울림 방울끈",
+      "owner": "소단",
+      "characterClass": "occultist",
+      "slot": "personal",
+      "kind": "방울끈",
+      "tier": 4,
+      "basicOptions": [
+        {
+          "key": "attack",
+          "label": "공격",
+          "value": 8,
+          "unit": "%"
+        },
+        {
+          "key": "mp",
+          "label": "최대 기력",
+          "value": 20,
+          "unit": "%"
+        },
+        {
+          "key": "cost",
+          "label": "기예 기력 비용 감소",
+          "value": 9,
+          "unit": "%"
+        },
+        {
+          "key": "armor",
+          "label": "방어",
+          "value": 2.5,
+          "unit": "%p"
+        }
+      ],
+      "uniqueEffect": {
+        "effectId": "so_basic",
+        "summary": "혼령탄 폭발 반경 +20%, 위력 -10%.",
+        "targetSkills": [
+          "O01"
+        ],
+        "params": {
+          "radiusScale": 1.2,
+          "damageScale": 0.9
+        },
+        "calculationPoint": "effective의 O01 damage/radius",
+        "stacking": "같은 effectId는 1회만. 기본 스탯과 고유 계수는 지정 위치에서 각각 한 번 적용.",
+        "limits": "무료 평타 비용0 유지. 비행 시간·도달 거리·차폐·반사 규칙 불변.",
+        "codeRefs": [
+          "cost",
+          "cast"
+        ],
+        "implementationDelta": "기존 radius/damage 두 필드만 조정.",
+        "status": "연결 지점 읽기 확인 / 장비 효과 신규 구현 대상"
+      },
+      "acquisition": {
+        "eventId": "eq_so_t4_choice",
+        "stage": 58,
+        "condition": "해당 막 정식 공개 뒤 지정 보상 사건 완료. 구체 적/NPC는 콘텐츠 제작 시 연결",
+        "kind": "choice-npc",
+        "choiceGroup": "cg_so_t4",
+        "alternativeIds": [
+          "itm_so_08"
+        ],
+        "onePerRun": true
+      },
+      "contentAvailability": "5–6막 미구현 / 예약",
+      "equipmentImplementation": "미구현 — 구현 인계 설계",
+      "releaseGate": "officialAct6",
+      "initialIncluded": false,
+      "iconBrief": "납작하고 큰 원반형 청동 방울 두 개가 좌우로 벌어진 짧은 V자 끈. 표면의 낮은 두드림 자국, 음파 없음.",
+      "iconStyle": "탁한 회갈색 한지 바탕, 거친 붓결/담채의 한국풍 실제 소품 한 개 중심. 실루엣·재질·매듭/부착물로 구분. 글자·숫자·티어문자·인물·발사 궤적·불꽃·강한 발광·스킬 장면 없음.",
+      "iconAssetProposal": "shared/assets/item-icons/v1/itm_so_07.webp"
+    },
+    {
+      "itemId": "itm_so_08",
+      "name": "결끝 매듭",
+      "owner": "소단",
+      "characterClass": "occultist",
+      "slot": "personal",
+      "kind": "부적 매듭",
+      "tier": 4,
+      "basicOptions": [
+        {
+          "key": "hp",
+          "label": "최대 HP",
+          "value": 20,
+          "unit": "%"
+        },
+        {
+          "key": "mp",
+          "label": "최대 기력",
+          "value": 20,
+          "unit": "%"
+        },
+        {
+          "key": "regen",
+          "label": "턴 기력 회복",
+          "value": 4,
+          "unit": "고정"
+        },
+        {
+          "key": "crit",
+          "label": "치명 확률",
+          "value": 2.5,
+          "unit": "%p"
+        }
+      ],
+      "uniqueEffect": {
+        "effectId": "so_converge",
+        "summary": "만혼귀결 위력 +15%, 기력 비용 +15%.",
+        "targetSkills": [
+          "O16"
+        ],
+        "params": {
+          "damageScale": 1.15,
+          "manaSurcharge": 0.15
+        },
+        "calculationPoint": "effective/manaCost의 O16",
+        "stacking": "같은 effectId는 1회만. 기본 스탯과 고유 계수는 지정 위치에서 각각 한 번 적용.",
+        "limits": "모이는 혼 수·대상당 타격/총량 상한·귀결점/벽 규칙은 그대로.",
+        "codeRefs": [
+          "cost",
+          "cast"
+        ],
+        "implementationDelta": "원본 산출값만 조정. 파생 공격에 다시 계수를 곱하지 않음.",
+        "status": "연결 지점 읽기 확인 / 장비 효과 신규 구현 대상"
+      },
+      "acquisition": {
+        "eventId": "eq_so_t4_choice",
+        "stage": 58,
+        "condition": "해당 막 정식 공개 뒤 지정 보상 사건 완료. 구체 적/NPC는 콘텐츠 제작 시 연결",
+        "kind": "choice-npc",
+        "choiceGroup": "cg_so_t4",
+        "alternativeIds": [
+          "itm_so_07"
+        ],
+        "onePerRun": true
+      },
+      "contentAvailability": "5–6막 미구현 / 예약",
+      "equipmentImplementation": "미구현 — 구현 인계 설계",
+      "releaseGate": "officialAct6",
+      "initialIncluded": false,
+      "iconBrief": "마름모로 접은 두꺼운 한지 주머니를 검은 끈이 대각선으로 엮음. 아래 긴 단일 술과 가운데 작은 백옥 구슬.",
+      "iconStyle": "탁한 회갈색 한지 바탕, 거친 붓결/담채의 한국풍 실제 소품 한 개 중심. 실루엣·재질·매듭/부착물로 구분. 글자·숫자·티어문자·인물·발사 궤적·불꽃·강한 발광·스킬 장면 없음.",
+      "iconAssetProposal": "shared/assets/item-icons/v1/itm_so_08.webp"
+    },
+    {
+      "itemId": "itm_co_01",
+      "name": "해진 장명부",
+      "owner": "공용",
+      "characterClass": null,
+      "slot": "common",
+      "kind": "부적",
+      "tier": 1,
+      "basicOptions": [
+        {
+          "key": "hp",
+          "label": "최대 HP",
+          "value": 8,
+          "unit": "%"
+        },
+        {
+          "key": "armor",
+          "label": "방어",
+          "value": 1,
+          "unit": "%p"
+        }
+      ],
+      "uniqueEffect": null,
+      "acquisition": {
+        "eventId": "eq_co_01",
+        "stage": 1,
+        "condition": "1장 첫 클리어 정산",
+        "kind": "clear",
+        "choiceGroup": null,
+        "alternativeIds": [],
+        "onePerRun": true
+      },
+      "contentAvailability": "1–3막 공개 콘텐츠 / 장비 보상 미구현·신규 대상",
+      "equipmentImplementation": "미구현 — 구현 인계 설계",
+      "releaseGate": "publicAct1to3",
+      "initialIncluded": false,
+      "iconBrief": "낡은 세로 한지 부적 주머니, 글자 없는 빛바랜 종이와 위를 묶은 두 줄 갈색 실. 끝 모서리 닳음.",
+      "iconStyle": "탁한 회갈색 한지 바탕, 거친 붓결/담채의 한국풍 실제 소품 한 개 중심. 실루엣·재질·매듭/부착물로 구분. 글자·숫자·티어문자·인물·발사 궤적·불꽃·강한 발광·스킬 장면 없음.",
+      "iconAssetProposal": "shared/assets/item-icons/v1/itm_co_01.webp"
+    },
+    {
+      "itemId": "itm_co_02",
+      "name": "숨돌림 옥돌",
+      "owner": "공용",
+      "characterClass": null,
+      "slot": "common",
+      "kind": "옥돌",
+      "tier": 1,
+      "basicOptions": [
+        {
+          "key": "mp",
+          "label": "최대 기력",
+          "value": 8,
+          "unit": "%"
+        },
+        {
+          "key": "regen",
+          "label": "턴 기력 회복",
+          "value": 1,
+          "unit": "고정"
+        }
+      ],
+      "uniqueEffect": null,
+      "acquisition": {
+        "eventId": "eq_co_02",
+        "stage": 3,
+        "condition": "3장 장부 확보 후 클리어 정산",
+        "kind": "story",
+        "choiceGroup": null,
+        "alternativeIds": [],
+        "onePerRun": true
+      },
+      "contentAvailability": "1–3막 공개 콘텐츠 / 장비 보상 미구현·신규 대상",
+      "equipmentImplementation": "미구현 — 구현 인계 설계",
+      "releaseGate": "publicAct1to3",
+      "initialIncluded": false,
+      "iconBrief": "납작하고 둥근 회청색 강돌에 작은 구멍, 한쪽 짧은 삼베 끈. 자연스럽게 불균등한 돌 윤곽.",
+      "iconStyle": "탁한 회갈색 한지 바탕, 거친 붓결/담채의 한국풍 실제 소품 한 개 중심. 실루엣·재질·매듭/부착물로 구분. 글자·숫자·티어문자·인물·발사 궤적·불꽃·강한 발광·스킬 장면 없음.",
+      "iconAssetProposal": "shared/assets/item-icons/v1/itm_co_02.webp"
+    },
+    {
+      "itemId": "itm_co_03",
+      "name": "약향 주머니",
+      "owner": "공용",
+      "characterClass": null,
+      "slot": "common",
+      "kind": "향 주머니",
+      "tier": 1,
+      "basicOptions": [
+        {
+          "key": "hp",
+          "label": "최대 HP",
+          "value": 8,
+          "unit": "%"
+        },
+        {
+          "key": "mp",
+          "label": "최대 기력",
+          "value": 8,
+          "unit": "%"
+        }
+      ],
+      "uniqueEffect": null,
+      "acquisition": {
+        "eventId": "eq_co_t1_choice",
+        "stage": 7,
+        "condition": "7장 구조 목표 완료와 클리어 뒤3택1",
+        "kind": "choice-clear",
+        "choiceGroup": "cg_co_t1",
+        "alternativeIds": [
+          "itm_co_04",
+          "itm_co_05"
+        ],
+        "onePerRun": true
+      },
+      "contentAvailability": "1–3막 공개 콘텐츠 / 장비 보상 미구현·신규 대상",
+      "equipmentImplementation": "미구현 — 구현 인계 설계",
+      "releaseGate": "publicAct1to3",
+      "initialIncluded": false,
+      "iconBrief": "입구를 조여 묶은 작은 갈색 마 직물 주머니, 부푼 바닥과 옆에 말린 잎 한 조각. 매듭 끝 두 개.",
+      "iconStyle": "탁한 회갈색 한지 바탕, 거친 붓결/담채의 한국풍 실제 소품 한 개 중심. 실루엣·재질·매듭/부착물로 구분. 글자·숫자·티어문자·인물·발사 궤적·불꽃·강한 발광·스킬 장면 없음.",
+      "iconAssetProposal": "shared/assets/item-icons/v1/itm_co_03.webp"
+    },
+    {
+      "itemId": "itm_co_04",
+      "name": "마른 솔가지패",
+      "owner": "공용",
+      "characterClass": null,
+      "slot": "common",
+      "kind": "나무패",
+      "tier": 1,
+      "basicOptions": [
+        {
+          "key": "attack",
+          "label": "공격",
+          "value": 2,
+          "unit": "%"
+        },
+        {
+          "key": "move",
+          "label": "이동력",
+          "value": 3,
+          "unit": "%"
+        }
+      ],
+      "uniqueEffect": null,
+      "acquisition": {
+        "eventId": "eq_co_t1_choice",
+        "stage": 7,
+        "condition": "7장 구조 목표 완료와 클리어 뒤3택1",
+        "kind": "choice-clear",
+        "choiceGroup": "cg_co_t1",
+        "alternativeIds": [
+          "itm_co_03",
+          "itm_co_05"
+        ],
+        "onePerRun": true
+      },
+      "contentAvailability": "1–3막 공개 콘텐츠 / 장비 보상 미구현·신규 대상",
+      "equipmentImplementation": "미구현 — 구현 인계 설계",
+      "releaseGate": "publicAct1to3",
+      "initialIncluded": false,
+      "iconBrief": "Y자 마른 솔가지와 아주 얇은 직사각 목패를 끈으로 함께 묶은 물건. 짧은 잎 몇 개, 글자 없음.",
+      "iconStyle": "탁한 회갈색 한지 바탕, 거친 붓결/담채의 한국풍 실제 소품 한 개 중심. 실루엣·재질·매듭/부착물로 구분. 글자·숫자·티어문자·인물·발사 궤적·불꽃·강한 발광·스킬 장면 없음.",
+      "iconAssetProposal": "shared/assets/item-icons/v1/itm_co_04.webp"
+    },
+    {
+      "itemId": "itm_co_05",
+      "name": "먹빛 종이학",
+      "owner": "공용",
+      "characterClass": null,
+      "slot": "common",
+      "kind": "종이 부적",
+      "tier": 1,
+      "basicOptions": [
+        {
+          "key": "cost",
+          "label": "기예 기력 비용 감소",
+          "value": 3,
+          "unit": "%"
+        },
+        {
+          "key": "regen",
+          "label": "턴 기력 회복",
+          "value": 1,
+          "unit": "고정"
+        }
+      ],
+      "uniqueEffect": null,
+      "acquisition": {
+        "eventId": "eq_co_t1_choice",
+        "stage": 7,
+        "condition": "7장 구조 목표 완료와 클리어 뒤3택1",
+        "kind": "choice-clear",
+        "choiceGroup": "cg_co_t1",
+        "alternativeIds": [
+          "itm_co_03",
+          "itm_co_04"
+        ],
+        "onePerRun": true
+      },
+      "contentAvailability": "1–3막 공개 콘텐츠 / 장비 보상 미구현·신규 대상",
+      "equipmentImplementation": "미구현 — 구현 인계 설계",
+      "releaseGate": "publicAct1to3",
+      "initialIncluded": false,
+      "iconBrief": "단단하게 접힌 작은 무문 한지 학 한 마리, 날개 한쪽 끝에만 먹이 스민 흔적. 종이 주름 중심.",
+      "iconStyle": "탁한 회갈색 한지 바탕, 거친 붓결/담채의 한국풍 실제 소품 한 개 중심. 실루엣·재질·매듭/부착물로 구분. 글자·숫자·티어문자·인물·발사 궤적·불꽃·강한 발광·스킬 장면 없음.",
+      "iconAssetProposal": "shared/assets/item-icons/v1/itm_co_05.webp"
+    },
+    {
+      "itemId": "itm_co_06",
+      "name": "석수 호신패",
+      "owner": "공용",
+      "characterClass": null,
+      "slot": "common",
+      "kind": "호신패",
+      "tier": 2,
+      "basicOptions": [
+        {
+          "key": "hp",
+          "label": "최대 HP",
+          "value": 12,
+          "unit": "%"
+        },
+        {
+          "key": "armor",
+          "label": "방어",
+          "value": 1.5,
+          "unit": "%p"
+        },
+        {
+          "key": "move",
+          "label": "이동력",
+          "value": 4,
+          "unit": "%"
+        }
+      ],
+      "uniqueEffect": null,
+      "acquisition": {
+        "eventId": "eq_co_06",
+        "stage": 12,
+        "condition": "처음 제압한 해당 장 유한 증원 중 honroAct2Elite=true && honroQuarryEntry 존재인 적",
+        "kind": "elite",
+        "choiceGroup": null,
+        "alternativeIds": [],
+        "onePerRun": true
+      },
+      "contentAvailability": "1–3막 공개 콘텐츠 / 장비 보상 미구현·신규 대상",
+      "equipmentImplementation": "미구현 — 구현 인계 설계",
+      "releaseGate": "publicAct1to3",
+      "initialIncluded": false,
+      "iconBrief": "모서리를 깎은 사각 현무암 패, 상단 구멍과 굵은 마끈, 표면 짧은 정 자국. 비문 없음.",
+      "iconStyle": "탁한 회갈색 한지 바탕, 거친 붓결/담채의 한국풍 실제 소품 한 개 중심. 실루엣·재질·매듭/부착물로 구분. 글자·숫자·티어문자·인물·발사 궤적·불꽃·강한 발광·스킬 장면 없음.",
+      "iconAssetProposal": "shared/assets/item-icons/v1/itm_co_06.webp"
+    },
+    {
+      "itemId": "itm_co_07",
+      "name": "맑은 샘 구슬",
+      "owner": "공용",
+      "characterClass": null,
+      "slot": "common",
+      "kind": "구슬",
+      "tier": 2,
+      "basicOptions": [
+        {
+          "key": "mp",
+          "label": "최대 기력",
+          "value": 12,
+          "unit": "%"
+        },
+        {
+          "key": "cost",
+          "label": "기예 기력 비용 감소",
+          "value": 5,
+          "unit": "%"
+        },
+        {
+          "key": "regen",
+          "label": "턴 기력 회복",
+          "value": 2,
+          "unit": "고정"
+        }
+      ],
+      "uniqueEffect": null,
+      "acquisition": {
+        "eventId": "eq_co_07",
+        "stage": 15,
+        "condition": "선택 step sluice에 실제로 도달해 수문 상호작용 완료",
+        "kind": "reach-interact",
+        "choiceGroup": null,
+        "alternativeIds": [],
+        "onePerRun": true
+      },
+      "contentAvailability": "1–3막 공개 콘텐츠 / 장비 보상 미구현·신규 대상",
+      "equipmentImplementation": "미구현 — 구현 인계 설계",
+      "releaseGate": "publicAct1to3",
+      "initialIncluded": false,
+      "iconBrief": "반투명하지 않은 물방울형 옅은 청옥 하나, 큰 가죽 구멍 고리와 작은 우윳빛 돌 구슬 두 개.",
+      "iconStyle": "탁한 회갈색 한지 바탕, 거친 붓결/담채의 한국풍 실제 소품 한 개 중심. 실루엣·재질·매듭/부착물로 구분. 글자·숫자·티어문자·인물·발사 궤적·불꽃·강한 발광·스킬 장면 없음.",
+      "iconAssetProposal": "shared/assets/item-icons/v1/itm_co_07.webp"
+    },
+    {
+      "itemId": "itm_co_08",
+      "name": "붉은 실 호패",
+      "owner": "공용",
+      "characterClass": null,
+      "slot": "common",
+      "kind": "호패",
+      "tier": 2,
+      "basicOptions": [
+        {
+          "key": "attack",
+          "label": "공격",
+          "value": 4,
+          "unit": "%"
+        },
+        {
+          "key": "hp",
+          "label": "최대 HP",
+          "value": 12,
+          "unit": "%"
+        },
+        {
+          "key": "crit",
+          "label": "치명 확률",
+          "value": 1.5,
+          "unit": "%p"
+        }
+      ],
+      "uniqueEffect": null,
+      "acquisition": {
+        "eventId": "eq_co_t2_choice",
+        "stage": 20,
+        "condition": "escape 호송 완료 뒤 생존자 전달 장면에서3택1",
+        "kind": "choice-npc",
+        "choiceGroup": "cg_co_t2",
+        "alternativeIds": [
+          "itm_co_09",
+          "itm_co_10"
+        ],
+        "onePerRun": true
+      },
+      "contentAvailability": "1–3막 공개 콘텐츠 / 장비 보상 미구현·신규 대상",
+      "equipmentImplementation": "미구현 — 구현 인계 설계",
+      "releaseGate": "publicAct1to3",
+      "initialIncluded": false,
+      "iconBrief": "길쭉한 짙은 나무 호패를 가는 적갈색 실이 사선으로 감음. 중앙 닳은 금속 못 하나, 글자 없음.",
+      "iconStyle": "탁한 회갈색 한지 바탕, 거친 붓결/담채의 한국풍 실제 소품 한 개 중심. 실루엣·재질·매듭/부착물로 구분. 글자·숫자·티어문자·인물·발사 궤적·불꽃·강한 발광·스킬 장면 없음.",
+      "iconAssetProposal": "shared/assets/item-icons/v1/itm_co_08.webp"
+    },
+    {
+      "itemId": "itm_co_09",
+      "name": "청동 뇌문",
+      "owner": "공용",
+      "characterClass": null,
+      "slot": "common",
+      "kind": "청동패",
+      "tier": 2,
+      "basicOptions": [
+        {
+          "key": "attack",
+          "label": "공격",
+          "value": 4,
+          "unit": "%"
+        },
+        {
+          "key": "mp",
+          "label": "최대 기력",
+          "value": 12,
+          "unit": "%"
+        },
+        {
+          "key": "cost",
+          "label": "기예 기력 비용 감소",
+          "value": 5,
+          "unit": "%"
+        }
+      ],
+      "uniqueEffect": null,
+      "acquisition": {
+        "eventId": "eq_co_t2_choice",
+        "stage": 20,
+        "condition": "escape 호송 완료 뒤 생존자 전달 장면에서3택1",
+        "kind": "choice-npc",
+        "choiceGroup": "cg_co_t2",
+        "alternativeIds": [
+          "itm_co_08",
+          "itm_co_10"
+        ],
+        "onePerRun": true
+      },
+      "contentAvailability": "1–3막 공개 콘텐츠 / 장비 보상 미구현·신규 대상",
+      "equipmentImplementation": "미구현 — 구현 인계 설계",
+      "releaseGate": "publicAct1to3",
+      "initialIncluded": false,
+      "iconBrief": "불규칙 오각 청동판에 깊은 갈래 홈, 윗부분 작은 구멍과 짧은 둥근 끈. 문자/번개 연출 없음.",
+      "iconStyle": "탁한 회갈색 한지 바탕, 거친 붓결/담채의 한국풍 실제 소품 한 개 중심. 실루엣·재질·매듭/부착물로 구분. 글자·숫자·티어문자·인물·발사 궤적·불꽃·강한 발광·스킬 장면 없음.",
+      "iconAssetProposal": "shared/assets/item-icons/v1/itm_co_09.webp"
+    },
+    {
+      "itemId": "itm_co_10",
+      "name": "흙먼지 발고리",
+      "owner": "공용",
+      "characterClass": null,
+      "slot": "common",
+      "kind": "끈 고리",
+      "tier": 2,
+      "basicOptions": [
+        {
+          "key": "move",
+          "label": "이동력",
+          "value": 4,
+          "unit": "%"
+        },
+        {
+          "key": "hp",
+          "label": "최대 HP",
+          "value": 12,
+          "unit": "%"
+        },
+        {
+          "key": "mp",
+          "label": "최대 기력",
+          "value": 12,
+          "unit": "%"
+        }
+      ],
+      "uniqueEffect": null,
+      "acquisition": {
+        "eventId": "eq_co_t2_choice",
+        "stage": 20,
+        "condition": "escape 호송 완료 뒤 생존자 전달 장면에서3택1",
+        "kind": "choice-npc",
+        "choiceGroup": "cg_co_t2",
+        "alternativeIds": [
+          "itm_co_08",
+          "itm_co_09"
+        ],
+        "onePerRun": true
+      },
+      "contentAvailability": "1–3막 공개 콘텐츠 / 장비 보상 미구현·신규 대상",
+      "equipmentImplementation": "미구현 — 구현 인계 설계",
+      "releaseGate": "publicAct1to3",
+      "initialIncluded": false,
+      "iconBrief": "두꺼운 풀섬유 밧줄을 둥근 고리로 짜고 아래 넓은 천 조각을 한 장 꿰맴. 마른 흙 자국과 거친 섬유.",
+      "iconStyle": "탁한 회갈색 한지 바탕, 거친 붓결/담채의 한국풍 실제 소품 한 개 중심. 실루엣·재질·매듭/부착물로 구분. 글자·숫자·티어문자·인물·발사 궤적·불꽃·강한 발광·스킬 장면 없음.",
+      "iconAssetProposal": "shared/assets/item-icons/v1/itm_co_10.webp"
+    },
+    {
+      "itemId": "itm_co_11",
+      "name": "고갯돌 매듭",
+      "owner": "공용",
+      "characterClass": null,
+      "slot": "common",
+      "kind": "발 매듭",
+      "tier": 3,
+      "basicOptions": [
+        {
+          "key": "move",
+          "label": "이동력",
+          "value": 5,
+          "unit": "%"
+        },
+        {
+          "key": "hp",
+          "label": "최대 HP",
+          "value": 16,
+          "unit": "%"
+        },
+        {
+          "key": "armor",
+          "label": "방어",
+          "value": 2,
+          "unit": "%p"
+        }
+      ],
+      "uniqueEffect": {
+        "effectId": "co_jump",
+        "summary": "일반 점프의 수직 최고점 약 +20%.",
+        "targetSkills": [
+          "JUMP"
+        ],
+        "params": {
+          "jumpHeightScale": 1.2,
+          "jumpVelocityScale": 1.0954451150103321
+        },
+        "calculationPoint": "Engine.jump의 vy에 sqrt(1.20) 적용",
+        "stacking": "같은 effectId는 1회만. 기본 스탯과 고유 계수는 지정 위치에서 각각 한 번 적용.",
+        "limits": "일반 점프만. 수평 속도값·돌격 사거리 불변이나 체공 증가의 자연 수평 변화는 가능. 이동 예산·충돌·입수/낙사 판정 유지.",
+        "codeRefs": [
+          "jump",
+          "range"
+        ],
+        "implementationDelta": "기존 vy 값 하나를 조정. 높은 실제 지면/물골 도약 허용, 새 공중 조작/생존 면제 없음.",
+        "status": "연결 지점 읽기 확인 / 장비 효과 신규 구현 대상"
+      },
+      "acquisition": {
+        "eventId": "eq_co_11",
+        "stage": 26,
+        "condition": "artisan-resident 구조 완료 뒤 주민 전달",
+        "kind": "npc",
+        "choiceGroup": null,
+        "alternativeIds": [],
+        "onePerRun": true
+      },
+      "contentAvailability": "1–3막 공개 콘텐츠 / 장비 보상 미구현·신규 대상",
+      "equipmentImplementation": "미구현 — 구현 인계 설계",
+      "releaseGate": "publicAct1to3",
+      "initialIncluded": false,
+      "iconBrief": "작고 납작한 세모 강돌 두 개를 짧은 가죽끈이 양쪽으로 묶은 물건. 큰 빈 가운데 고리와 돌의 마모면.",
+      "iconStyle": "탁한 회갈색 한지 바탕, 거친 붓결/담채의 한국풍 실제 소품 한 개 중심. 실루엣·재질·매듭/부착물로 구분. 글자·숫자·티어문자·인물·발사 궤적·불꽃·강한 발광·스킬 장면 없음.",
+      "iconAssetProposal": "shared/assets/item-icons/v1/itm_co_11.webp"
+    },
+    {
+      "itemId": "itm_co_12",
+      "name": "고른돌 추",
+      "owner": "공용",
+      "characterClass": null,
+      "slot": "common",
+      "kind": "추",
+      "tier": 3,
+      "basicOptions": [
+        {
+          "key": "attack",
+          "label": "공격",
+          "value": 6,
+          "unit": "%"
+        },
+        {
+          "key": "crit",
+          "label": "치명 확률",
+          "value": 2,
+          "unit": "%p"
+        },
+        {
+          "key": "mp",
+          "label": "최대 기력",
+          "value": 16,
+          "unit": "%"
+        }
+      ],
+      "uniqueEffect": {
+        "effectId": "co_stable",
+        "summary": "피해 편차 폭을 절반으로 줄인다. 평균과 치명타는 그대로.",
+        "targetSkills": [
+          "NORMAL_DAMAGING_CAST"
+        ],
+        "params": {
+          "damageMean": 1,
+          "nativeSpreadScale": 0.5
+        },
+        "calculationPoint": "기존 rollDamage 한 번의 표본에 적용",
+        "stacking": "같은 effectId는 1회만. 기본 스탯과 고유 계수는 지정 위치에서 각각 한 번 적용.",
+        "limits": "기존 spread0인 기술은0 유지. 새 추첨·버프·원장 없음, 같은 시전의 모든 파생이 같은 roll 사용.",
+        "codeRefs": [
+          "variance",
+          "cast"
+        ],
+        "implementationDelta": "같은 표본의 진폭만 줄임. 저장 seed/index는 기존 그대로.",
+        "status": "연결 지점 읽기 확인 / 장비 효과 신규 구현 대상"
+      },
+      "acquisition": {
+        "eventId": "eq_co_12",
+        "stage": 31,
+        "condition": "4막 정식 공개 뒤31장의 보행 가능한 옆길 실제 도달",
+        "kind": "hidden-reach",
+        "choiceGroup": null,
+        "alternativeIds": [],
+        "onePerRun": true
+      },
+      "contentAvailability": "4막 초기미리보기만 존재 / 일반 보상 잠금",
+      "equipmentImplementation": "미구현 — 구현 인계 설계",
+      "releaseGate": "officialAct4",
+      "initialIncluded": false,
+      "iconBrief": "정확한 대칭에 가까운 매끈한 타원 검은 돌추 하나와 가는 곧은 끈. 윗쪽 작은 청동 덮개, 장식 없음.",
+      "iconStyle": "탁한 회갈색 한지 바탕, 거친 붓결/담채의 한국풍 실제 소품 한 개 중심. 실루엣·재질·매듭/부착물로 구분. 글자·숫자·티어문자·인물·발사 궤적·불꽃·강한 발광·스킬 장면 없음.",
+      "iconAssetProposal": "shared/assets/item-icons/v1/itm_co_12.webp"
+    },
+    {
+      "itemId": "itm_co_13",
+      "name": "요동추",
+      "owner": "공용",
+      "characterClass": null,
+      "slot": "common",
+      "kind": "추",
+      "tier": 3,
+      "basicOptions": [
+        {
+          "key": "attack",
+          "label": "공격",
+          "value": 6,
+          "unit": "%"
+        },
+        {
+          "key": "mp",
+          "label": "최대 기력",
+          "value": 16,
+          "unit": "%"
+        },
+        {
+          "key": "armor",
+          "label": "방어",
+          "value": 2,
+          "unit": "%p"
+        }
+      ],
+      "uniqueEffect": {
+        "effectId": "co_wild",
+        "summary": "정상 공격 피해 평균 +3%, 행동별 편차 ±25%로 변경.",
+        "targetSkills": [
+          "NORMAL_DAMAGING_CAST"
+        ],
+        "params": {
+          "damageMean": 1.03,
+          "damageSpread": 0.25,
+          "damageRollMin": 0.78,
+          "damageRollMax": 1.28
+        },
+        "calculationPoint": "기존 rollDamage에서 같은 표본으로 1.03+x×.25",
+        "stacking": "같은 effectId는 1회만. 기본 스탯과 고유 계수는 지정 위치에서 각각 한 번 적용.",
+        "limits": "비치명 방어 전 범위78~128%. 치명타는 기존대로 별도 적용. 기존 spread0·환경/추가 추첨 제외.",
+        "codeRefs": [
+          "variance",
+          "varianceSave",
+          "cast"
+        ],
+        "implementationDelta": "새 난수 원장 불필요. 저장 origin 허용범위를 .78~1.28로 확장하고 기존 roll은 재추첨하지 않음.",
+        "status": "연결 지점 읽기 확인 / 장비 효과 신규 구현 대상"
+      },
+      "acquisition": {
+        "eventId": "eq_co_t3_choice",
+        "stage": 35,
+        "condition": "4막 정식 공개 뒤35장 선택 어려운 장소 완료, 안전 경계에서3택1",
+        "kind": "choice-challenge",
+        "choiceGroup": "cg_co_t3",
+        "alternativeIds": [
+          "itm_co_14",
+          "itm_co_15"
+        ],
+        "onePerRun": true
+      },
+      "contentAvailability": "4막 초기미리보기만 존재 / 일반 보상 잠금",
+      "equipmentImplementation": "미구현 — 구현 인계 설계",
+      "releaseGate": "officialAct4",
+      "initialIncluded": false,
+      "iconBrief": "한쪽으로 무겁게 기운 비대칭 청동 추, 옆으로 비껴 난 둥근 구멍과 휘어진 쇠고리. 주사위/숫자 없음.",
+      "iconStyle": "탁한 회갈색 한지 바탕, 거친 붓결/담채의 한국풍 실제 소품 한 개 중심. 실루엣·재질·매듭/부착물로 구분. 글자·숫자·티어문자·인물·발사 궤적·불꽃·강한 발광·스킬 장면 없음.",
+      "iconAssetProposal": "shared/assets/item-icons/v1/itm_co_13.webp"
+    },
+    {
+      "itemId": "itm_co_14",
+      "name": "절수옥",
+      "owner": "공용",
+      "characterClass": null,
+      "slot": "common",
+      "kind": "옥패",
+      "tier": 3,
+      "basicOptions": [
+        {
+          "key": "mp",
+          "label": "최대 기력",
+          "value": 16,
+          "unit": "%"
+        },
+        {
+          "key": "cost",
+          "label": "기예 기력 비용 감소",
+          "value": 7,
+          "unit": "%"
+        },
+        {
+          "key": "regen",
+          "label": "턴 기력 회복",
+          "value": 3,
+          "unit": "고정"
+        }
+      ],
+      "uniqueEffect": {
+        "effectId": "co_costly",
+        "summary": "장비 미적용 실제 비용이 40 이상인 기예의 기력 비용 -15%.",
+        "targetSkills": [
+          "PAID_SKILLS"
+        ],
+        "params": {
+          "nativeManaThreshold": 40,
+          "manaDiscount": 0.15
+        },
+        "calculationPoint": "manaCost의 기존 패시브 적용 뒤/장비 보정 전",
+        "stacking": "같은 effectId는 1회만. 기본 스탯과 고유 계수는 지정 위치에서 각각 한 번 적용.",
+        "limits": "원래 최종 비용0이면0. 장비발 총 감소30% 상한. 환급·추가 MP 회복 없음.",
+        "codeRefs": [
+          "cost"
+        ],
+        "implementationDelta": "현재 비용을 한 번 읽어 할인. UI와 발사 가능 검사도 동일 helper 사용.",
+        "status": "연결 지점 읽기 확인 / 장비 효과 신규 구현 대상"
+      },
+      "acquisition": {
+        "eventId": "eq_co_t3_choice",
+        "stage": 35,
+        "condition": "4막 정식 공개 뒤35장 선택 어려운 장소 완료, 안전 경계에서3택1",
+        "kind": "choice-challenge",
+        "choiceGroup": "cg_co_t3",
+        "alternativeIds": [
+          "itm_co_13",
+          "itm_co_15"
+        ],
+        "onePerRun": true
+      },
+      "contentAvailability": "4막 초기미리보기만 존재 / 일반 보상 잠금",
+      "equipmentImplementation": "미구현 — 구현 인계 설계",
+      "releaseGate": "officialAct4",
+      "initialIncluded": false,
+      "iconBrief": "긴 네모 담녹색 옥패에 가느다란 평행 구멍 셋, 옆면 가죽끈이 작은 네모 고리로 묶임. 글자 없음.",
+      "iconStyle": "탁한 회갈색 한지 바탕, 거친 붓결/담채의 한국풍 실제 소품 한 개 중심. 실루엣·재질·매듭/부착물로 구분. 글자·숫자·티어문자·인물·발사 궤적·불꽃·강한 발광·스킬 장면 없음.",
+      "iconAssetProposal": "shared/assets/item-icons/v1/itm_co_14.webp"
+    },
+    {
+      "itemId": "itm_co_15",
+      "name": "묵향 부적집",
+      "owner": "공용",
+      "characterClass": null,
+      "slot": "common",
+      "kind": "부적집",
+      "tier": 3,
+      "basicOptions": [
+        {
+          "key": "hp",
+          "label": "최대 HP",
+          "value": 16,
+          "unit": "%"
+        },
+        {
+          "key": "attack",
+          "label": "공격",
+          "value": 6,
+          "unit": "%"
+        },
+        {
+          "key": "critMult",
+          "label": "치명 배율",
+          "value": 0.1,
+          "unit": "배 가산"
+        }
+      ],
+      "uniqueEffect": {
+        "effectId": "co_cursed",
+        "summary": "저주/지박이 이미 남은 적에게 장착자 주공격 피해 +12%.",
+        "targetSkills": [
+          "NORMAL_HERO_CAST"
+        ],
+        "params": {
+          "conditionBonus": 0.12
+        },
+        "calculationPoint": "applyHit conditionBonuses에 가산",
+        "stacking": "같은 effectId는 1회만. 기본 스탯과 고유 계수는 지정 위치에서 각각 한 번 적용.",
+        "limits": "원래 저주·지박 표식만 읽음. 소환·섭혼·자율 후속·지속·환경 제외, 새 상태/기간/타격 없음.",
+        "codeRefs": [
+          "hit",
+          "curse"
+        ],
+        "implementationDelta": "기존 대상 표식 조건과 보너스 배열 재사용. 기본 공격 스탯에 중복 적용 금지.",
+        "status": "연결 지점 읽기 확인 / 장비 효과 신규 구현 대상"
+      },
+      "acquisition": {
+        "eventId": "eq_co_t3_choice",
+        "stage": 35,
+        "condition": "4막 정식 공개 뒤35장 선택 어려운 장소 완료, 안전 경계에서3택1",
+        "kind": "choice-challenge",
+        "choiceGroup": "cg_co_t3",
+        "alternativeIds": [
+          "itm_co_13",
+          "itm_co_14"
+        ],
+        "onePerRun": true
+      },
+      "contentAvailability": "4막 초기미리보기만 존재 / 일반 보상 잠금",
+      "equipmentImplementation": "미구현 — 구현 인계 설계",
+      "releaseGate": "officialAct4",
+      "initialIncluded": false,
+      "iconBrief": "납작한 어두운 천 부적집을 열어 무문 한지 귀퉁이 두 장만 보임. 짧은 검은 매듭과 닳은 목제 단추.",
+      "iconStyle": "탁한 회갈색 한지 바탕, 거친 붓결/담채의 한국풍 실제 소품 한 개 중심. 실루엣·재질·매듭/부착물로 구분. 글자·숫자·티어문자·인물·발사 궤적·불꽃·강한 발광·스킬 장면 없음.",
+      "iconAssetProposal": "shared/assets/item-icons/v1/itm_co_15.webp"
+    },
+    {
+      "itemId": "itm_co_16",
+      "name": "무구 백의",
+      "owner": "공용",
+      "characterClass": null,
+      "slot": "common",
+      "kind": "흰 부적",
+      "tier": 4,
+      "basicOptions": [
+        {
+          "key": "hp",
+          "label": "최대 HP",
+          "value": 20,
+          "unit": "%"
+        },
+        {
+          "key": "armor",
+          "label": "방어",
+          "value": 2.5,
+          "unit": "%p"
+        },
+        {
+          "key": "move",
+          "label": "이동력",
+          "value": 6,
+          "unit": "%"
+        },
+        {
+          "key": "regen",
+          "label": "턴 기력 회복",
+          "value": 4,
+          "unit": "고정"
+        }
+      ],
+      "uniqueEffect": {
+        "effectId": "co_friendly",
+        "summary": "장착자 공격 본체의 아군 HP 피해를 추가로 50% 줄인다.",
+        "targetSkills": [
+          "NORMAL_HERO_PRIMARY"
+        ],
+        "params": {
+          "friendlyHpScale": 0.5
+        },
+        "calculationPoint": "기존 아군 피해 경감/반올림 뒤 실제 HP 피해 확정 전",
+        "stacking": "같은 effectId는 1회만. 기본 스탯과 고유 계수는 지정 위치에서 각각 한 번 적용.",
+        "limits": "탄환 통과·밀침·상태·지형 보호는 아님. 자율 후속·밀침 충돌·소환·지속 제외, 아군 적중 자원/XP 없음.",
+        "codeRefs": [
+          "hit"
+        ],
+        "implementationDelta": "기존 30% 아군 피해를 주공격에서15%로. 이미 경감된 shove/후속에는 다시 곱하지 않는 적격검사 필요.",
+        "status": "연결 지점 읽기 확인 / 장비 효과 신규 구현 대상"
+      },
+      "acquisition": {
+        "eventId": "eq_co_16",
+        "stage": 43,
+        "condition": "5막 정식 공개 뒤43장 첫 클리어",
+        "kind": "clear",
+        "choiceGroup": null,
+        "alternativeIds": [],
+        "onePerRun": true
+      },
+      "contentAvailability": "5–6막 미구현 / 예약",
+      "equipmentImplementation": "미구현 — 구현 인계 설계",
+      "releaseGate": "officialAct5",
+      "initialIncluded": false,
+      "iconBrief": "길고 폭 좁은 흰 삼베에 작은 타원 청동판이 꿰매진 부적. 위쪽은 단정한 고리, 아래 끝은 갈라짐. 사람/옷 전체 없음.",
+      "iconStyle": "탁한 회갈색 한지 바탕, 거친 붓결/담채의 한국풍 실제 소품 한 개 중심. 실루엣·재질·매듭/부착물로 구분. 글자·숫자·티어문자·인물·발사 궤적·불꽃·강한 발광·스킬 장면 없음.",
+      "iconAssetProposal": "shared/assets/item-icons/v1/itm_co_16.webp"
+    },
+    {
+      "itemId": "itm_co_17",
+      "name": "온혼 거울",
+      "owner": "공용",
+      "characterClass": null,
+      "slot": "common",
+      "kind": "손거울",
+      "tier": 4,
+      "basicOptions": [
+        {
+          "key": "attack",
+          "label": "공격",
+          "value": 8,
+          "unit": "%"
+        },
+        {
+          "key": "mp",
+          "label": "최대 기력",
+          "value": 20,
+          "unit": "%"
+        },
+        {
+          "key": "crit",
+          "label": "치명 확률",
+          "value": 2.5,
+          "unit": "%p"
+        },
+        {
+          "key": "armor",
+          "label": "방어",
+          "value": 2.5,
+          "unit": "%p"
+        }
+      ],
+      "uniqueEffect": {
+        "effectId": "co_soul",
+        "summary": "정상 주공격의 형·기 몫 30%를 혼으로 옮긴다.",
+        "targetSkills": [
+          "NORMAL_HERO_CAST"
+        ],
+        "params": {
+          "soulConversion": 0.3
+        },
+        "calculationPoint": "applyHit에서 기존 attack vector 복사 후 existenceMultiplier 전",
+        "stacking": "같은 effectId는 1회만. 기본 스탯과 고유 계수는 지정 위치에서 각각 한 번 적용.",
+        "limits": "총 비중1 보존. 전역 ATTACK_EXISTENCE 변경 금지. 원래 속성 반응/보스 기믹 유지, 소환/지속/반사 제외.",
+        "codeRefs": [
+          "existence",
+          "hit"
+        ],
+        "implementationDelta": "기존 normalizedAttack/existenceMultiplier 경로에 소유자 한정 복사 보정.",
+        "status": "연결 지점 읽기 확인 / 장비 효과 신규 구현 대상"
+      },
+      "acquisition": {
+        "eventId": "eq_co_17",
+        "stage": 56,
+        "condition": "6막 정식 공개 뒤56장 선택 장소 도달/조사",
+        "kind": "hidden-reach",
+        "choiceGroup": null,
+        "alternativeIds": [],
+        "onePerRun": true
+      },
+      "contentAvailability": "5–6막 미구현 / 예약",
+      "equipmentImplementation": "미구현 — 구현 인계 설계",
+      "releaseGate": "officialAct6",
+      "initialIncluded": false,
+      "iconBrief": "짧고 부러진 손잡이가 붙은 넓은 둥근 청동 거울. 둔한 잿빛 반사면과 옆에 묶인 낡은 옥구슬, 얼굴 반사 없음.",
+      "iconStyle": "탁한 회갈색 한지 바탕, 거친 붓결/담채의 한국풍 실제 소품 한 개 중심. 실루엣·재질·매듭/부착물로 구분. 글자·숫자·티어문자·인물·발사 궤적·불꽃·강한 발광·스킬 장면 없음.",
+      "iconAssetProposal": "shared/assets/item-icons/v1/itm_co_17.webp"
+    },
+    {
+      "itemId": "itm_co_18",
+      "name": "빈샘옥",
+      "owner": "공용",
+      "characterClass": null,
+      "slot": "common",
+      "kind": "옥 장식",
+      "tier": 4,
+      "basicOptions": [
+        {
+          "key": "mp",
+          "label": "최대 기력",
+          "value": 20,
+          "unit": "%"
+        },
+        {
+          "key": "cost",
+          "label": "기예 기력 비용 감소",
+          "value": 9,
+          "unit": "%"
+        },
+        {
+          "key": "hp",
+          "label": "최대 HP",
+          "value": 20,
+          "unit": "%"
+        },
+        {
+          "key": "regen",
+          "label": "턴 기력 회복",
+          "value": 4,
+          "unit": "고정"
+        }
+      ],
+      "uniqueEffect": {
+        "effectId": "co_low_mp",
+        "summary": "시전 직전 기력이 최대치의25% 이하면 유료 기예 비용 -15%.",
+        "targetSkills": [
+          "PAID_SKILLS"
+        ],
+        "params": {
+          "mpRatioThreshold": 0.25,
+          "manaDiscount": 0.15
+        },
+        "calculationPoint": "manaCost에서 실제 소비 전 focus/maxFocus 검사",
+        "stacking": "같은 effectId는 1회만. 기본 스탯과 고유 계수는 지정 위치에서 각각 한 번 적용.",
+        "limits": "원래 무료0 유지. 비용 차감 뒤 재평가/환급 없음. 장비 총 할인30% 상한.",
+        "codeRefs": [
+          "cost"
+        ],
+        "implementationDelta": "현재 기력 비율 읽기만. 새 상태·잔량 예치 없음.",
+        "status": "연결 지점 읽기 확인 / 장비 효과 신규 구현 대상"
+      },
+      "acquisition": {
+        "eventId": "eq_co_t4_choice",
+        "stage": 54,
+        "condition": "6막 정식 공개 뒤54장 NPC 전달에서3택1",
+        "kind": "choice-npc",
+        "choiceGroup": "cg_co_t4",
+        "alternativeIds": [
+          "itm_co_19",
+          "itm_co_20"
+        ],
+        "onePerRun": true
+      },
+      "contentAvailability": "5–6막 미구현 / 예약",
+      "equipmentImplementation": "미구현 — 구현 인계 설계",
+      "releaseGate": "officialAct6",
+      "initialIncluded": false,
+      "iconBrief": "가운데 크게 비어 있는 물방울형 청회색 옥환, 위에 작은 검은 목제 마개 같은 구슬과 짧은 갈색 끈.",
+      "iconStyle": "탁한 회갈색 한지 바탕, 거친 붓결/담채의 한국풍 실제 소품 한 개 중심. 실루엣·재질·매듭/부착물로 구분. 글자·숫자·티어문자·인물·발사 궤적·불꽃·강한 발광·스킬 장면 없음.",
+      "iconAssetProposal": "shared/assets/item-icons/v1/itm_co_18.webp"
+    },
+    {
+      "itemId": "itm_co_19",
+      "name": "무딘 동전",
+      "owner": "공용",
+      "characterClass": null,
+      "slot": "common",
+      "kind": "청동전",
+      "tier": 4,
+      "basicOptions": [
+        {
+          "key": "attack",
+          "label": "공격",
+          "value": 8,
+          "unit": "%"
+        },
+        {
+          "key": "hp",
+          "label": "최대 HP",
+          "value": 20,
+          "unit": "%"
+        },
+        {
+          "key": "mp",
+          "label": "최대 기력",
+          "value": 20,
+          "unit": "%"
+        },
+        {
+          "key": "armor",
+          "label": "방어",
+          "value": 2.5,
+          "unit": "%p"
+        }
+      ],
+      "uniqueEffect": {
+        "effectId": "co_noncrit",
+        "summary": "비치명 주공격 피해 +12%, 치명 배율 -0.20배.",
+        "targetSkills": [
+          "NORMAL_HERO_CAST"
+        ],
+        "params": {
+          "noncriticalBonus": 0.12,
+          "criticalMultiplierAdd": -0.2,
+          "criticalMultiplierMin": 1
+        },
+        "calculationPoint": "critProfile와 applyHit 기존 critical 분기",
+        "stacking": "같은 effectId는 1회만. 기본 스탯과 고유 계수는 지정 위치에서 각각 한 번 적용.",
+        "limits": "치명 확률은 그대로, 최종 치명 배율1~3.5. 소환·지속·자율후속 제외. 새 추첨 없음.",
+        "codeRefs": [
+          "hit"
+        ],
+        "implementationDelta": "기존 critProfile/조건부 배열만 사용. 피해 편차 표본을 재추첨하지 않음.",
+        "status": "연결 지점 읽기 확인 / 장비 효과 신규 구현 대상"
+      },
+      "acquisition": {
+        "eventId": "eq_co_t4_choice",
+        "stage": 54,
+        "condition": "6막 정식 공개 뒤54장 NPC 전달에서3택1",
+        "kind": "choice-npc",
+        "choiceGroup": "cg_co_t4",
+        "alternativeIds": [
+          "itm_co_18",
+          "itm_co_20"
+        ],
+        "onePerRun": true
+      },
+      "contentAvailability": "5–6막 미구현 / 예약",
+      "equipmentImplementation": "미구현 — 구현 인계 설계",
+      "releaseGate": "officialAct6",
+      "initialIncluded": false,
+      "iconBrief": "두꺼운 팔각 청동전 하나, 가운데 사각 구멍의 모서리가 닳아 둥글고 한 귀퉁이에 작은 천 조각. 도안/문자/숫자 없음.",
+      "iconStyle": "탁한 회갈색 한지 바탕, 거친 붓결/담채의 한국풍 실제 소품 한 개 중심. 실루엣·재질·매듭/부착물로 구분. 글자·숫자·티어문자·인물·발사 궤적·불꽃·강한 발광·스킬 장면 없음.",
+      "iconAssetProposal": "shared/assets/item-icons/v1/itm_co_19.webp"
+    },
+    {
+      "itemId": "itm_co_20",
+      "name": "틈새 호패",
+      "owner": "공용",
+      "characterClass": null,
+      "slot": "common",
+      "kind": "금속 호패",
+      "tier": 4,
+      "basicOptions": [
+        {
+          "key": "hp",
+          "label": "최대 HP",
+          "value": 20,
+          "unit": "%"
+        },
+        {
+          "key": "attack",
+          "label": "공격",
+          "value": 8,
+          "unit": "%"
+        },
+        {
+          "key": "move",
+          "label": "이동력",
+          "value": 6,
+          "unit": "%"
+        },
+        {
+          "key": "crit",
+          "label": "치명 확률",
+          "value": 2.5,
+          "unit": "%p"
+        }
+      ],
+      "uniqueEffect": {
+        "effectId": "co_armor",
+        "summary": "일반 적의 방어 수치30%를 무시한다.",
+        "targetSkills": [
+          "NORMAL_HERO_CAST"
+        ],
+        "params": {
+          "armorIgnoreFraction": 0.3
+        },
+        "calculationPoint": "guard 방향방어 덮어쓰기 뒤 armor/armorWithoutSupport×.70 → ward .32 floor → 기존 S02 .65",
+        "stacking": "같은 effectId는 1회만. 기본 스탯과 고유 계수는 지정 위치에서 각각 한 번 적용.",
+        "limits": "boss/midboss/honroAct2Boss/honroFinalBoss/목표 객체 제외. ward의 최소방어 .32·속성 반응·방호·무적은 유지.",
+        "codeRefs": [
+          "hit"
+        ],
+        "implementationDelta": "827–830의 guard/보스 방어 결정 뒤,831–832 ward floor 앞에서 두 armor값에만×.70. 보스류는 제외.846의 S02 .65는 기존 위치 유지.",
+        "status": "연결 지점 읽기 확인 / 장비 효과 신규 구현 대상"
+      },
+      "acquisition": {
+        "eventId": "eq_co_t4_choice",
+        "stage": 54,
+        "condition": "6막 정식 공개 뒤54장 NPC 전달에서3택1",
+        "kind": "choice-npc",
+        "choiceGroup": "cg_co_t4",
+        "alternativeIds": [
+          "itm_co_18",
+          "itm_co_19"
+        ],
+        "onePerRun": true
+      },
+      "contentAvailability": "5–6막 미구현 / 예약",
+      "equipmentImplementation": "미구현 — 구현 인계 설계",
+      "releaseGate": "officialAct6",
+      "initialIncluded": false,
+      "iconBrief": "가늘고 긴 구멍이 난 두 장의 겹친 철제 호패, 위쪽 가죽 고리와 옆으로 튀어나온 짧은 무딘 못. 무문 검갈색 금속.",
+      "iconStyle": "탁한 회갈색 한지 바탕, 거친 붓결/담채의 한국풍 실제 소품 한 개 중심. 실루엣·재질·매듭/부착물로 구분. 글자·숫자·티어문자·인물·발사 궤적·불꽃·강한 발광·스킬 장면 없음.",
+      "iconAssetProposal": "shared/assets/item-icons/v1/itm_co_20.webp"
+    }
+  ],
+  "events": [
+    {
+      "eventId": "eq_se_start",
+      "stage": 1,
+      "act": 1,
+      "stageName": "연목 고갯길",
+      "kind": "story",
+      "condition": "새 회차 설오 초기 합류, 전투 시작 전",
+      "evidence": "stage-contracts 1 / content hero archer",
+      "contentStatus": "1–3막 공개 콘텐츠 / 장비 보상 미구현·신규 대상",
+      "rewardStatus": "신규 구현 대상",
+      "releaseGate": "publicAct1to3",
+      "normalEnabled": true,
+      "choiceGroup": null,
+      "itemIds": [
+        "itm_se_01"
+      ]
+    },
+    {
+      "eventId": "eq_se_ledger",
+      "stage": 3,
+      "act": 1,
+      "stageName": "나루의 남은 장부",
+      "kind": "clear",
+      "condition": "3장 첫 클리어 정산",
+      "evidence": "stage-contracts 3 objective=ledger / main outcome",
+      "contentStatus": "1–3막 공개 콘텐츠 / 장비 보상 미구현·신규 대상",
+      "rewardStatus": "신규 구현 대상",
+      "releaseGate": "publicAct1to3",
+      "normalEnabled": true,
+      "choiceGroup": null,
+      "itemIds": [
+        "itm_se_02"
+      ]
+    },
+    {
+      "eventId": "eq_da_join",
+      "stage": 2,
+      "act": 1,
+      "stageName": "상여 위의 높은 길",
+      "kind": "recruit",
+      "condition": "2장 클리어 뒤 담허 최초 합류",
+      "evidence": "stage-contracts 2 recruit=mage",
+      "contentStatus": "1–3막 공개 콘텐츠 / 장비 보상 미구현·신규 대상",
+      "rewardStatus": "신규 구현 대상",
+      "releaseGate": "publicAct1to3",
+      "normalEnabled": true,
+      "choiceGroup": null,
+      "itemIds": [
+        "itm_da_01"
+      ]
+    },
+    {
+      "eventId": "eq_da_gate",
+      "stage": 4,
+      "act": 1,
+      "stageName": "문 밖에 남은 사람들",
+      "kind": "clear",
+      "condition": "4장 첫 클리어 정산",
+      "evidence": "stage-contracts 4 defend / main outcome",
+      "contentStatus": "1–3막 공개 콘텐츠 / 장비 보상 미구현·신규 대상",
+      "rewardStatus": "신규 구현 대상",
+      "releaseGate": "publicAct1to3",
+      "normalEnabled": true,
+      "choiceGroup": null,
+      "itemIds": [
+        "itm_da_02"
+      ]
+    },
+    {
+      "eventId": "eq_hw_join",
+      "stage": 6,
+      "act": 1,
+      "stageName": "끊어진 나무다리",
+      "kind": "recruit",
+      "condition": "5장 완료 후 6장 진입에서 휘겸 최초 합류",
+      "evidence": "runtime/progression recruitAtEntry: legacy stage5 anchor, actual stage6 entry",
+      "contentStatus": "1–3막 공개 콘텐츠 / 장비 보상 미구현·신규 대상",
+      "rewardStatus": "신규 구현 대상",
+      "releaseGate": "publicAct1to3",
+      "normalEnabled": true,
+      "choiceGroup": null,
+      "itemIds": [
+        "itm_hw_01"
+      ]
+    },
+    {
+      "eventId": "eq_hw_bier",
+      "stage": 8,
+      "act": 1,
+      "stageName": "돌아오는 빈 상여",
+      "kind": "defeat-clear",
+      "condition": "8장 상여 관련 전투 완료 후 첫 클리어",
+      "evidence": "stage-contracts 8 objective=bierboss; 바닥 드롭 아님",
+      "contentStatus": "1–3막 공개 콘텐츠 / 장비 보상 미구현·신규 대상",
+      "rewardStatus": "신규 구현 대상",
+      "releaseGate": "publicAct1to3",
+      "normalEnabled": true,
+      "choiceGroup": null,
+      "itemIds": [
+        "itm_hw_02"
+      ]
+    },
+    {
+      "eventId": "eq_so_join",
+      "stage": 11,
+      "act": 2,
+      "stageName": "매듭을 거둔 아침",
+      "kind": "recruit",
+      "condition": "10장 사건 뒤 소단 정식 합류가 저장된 첫 안전 경계",
+      "evidence": "stage-contracts 10 sodan / 11 playableRoster 및 summary; 실제 합류 함수 연결 최종확인",
+      "contentStatus": "1–3막 공개 콘텐츠 / 장비 보상 미구현·신규 대상",
+      "rewardStatus": "신규 구현 대상",
+      "releaseGate": "publicAct1to3",
+      "normalEnabled": true,
+      "choiceGroup": null,
+      "itemIds": [
+        "itm_so_01"
+      ]
+    },
+    {
+      "eventId": "eq_so_resident",
+      "stage": 13,
+      "act": 2,
+      "stageName": "숨은 석문",
+      "kind": "npc",
+      "condition": "고립된 석공 구조 step resident 완료 후 전달",
+      "evidence": "stage-contracts 13 resident rescue",
+      "contentStatus": "1–3막 공개 콘텐츠 / 장비 보상 미구현·신규 대상",
+      "rewardStatus": "신규 구현 대상",
+      "releaseGate": "publicAct1to3",
+      "normalEnabled": true,
+      "choiceGroup": null,
+      "itemIds": [
+        "itm_so_02"
+      ]
+    },
+    {
+      "eventId": "eq_se_t2_choice",
+      "stage": 12,
+      "act": 2,
+      "stageName": "돌아오는 산길",
+      "kind": "choice-story",
+      "condition": "기존 step sign 완료 + 장면/강제 입력 해소 뒤 길표 조사 장면 완결",
+      "evidence": "stage-contracts 12 step sign 확인; 선택 보상 연결 신규",
+      "contentStatus": "1–3막 공개 콘텐츠 / 장비 보상 미구현·신규 대상",
+      "rewardStatus": "신규 구현 대상",
+      "releaseGate": "publicAct1to3",
+      "normalEnabled": true,
+      "choiceGroup": "cg_se_t2",
+      "itemIds": [
+        "itm_se_03",
+        "itm_se_04"
+      ]
+    },
+    {
+      "eventId": "eq_da_t2_choice",
+      "stage": 16,
+      "act": 2,
+      "stageName": "잠운사",
+      "kind": "choice-story",
+      "condition": "기존 step witness 완료 + 장면/강제 입력 해소 뒤 생존 승려 증언 완결",
+      "evidence": "stage-contracts 16 step witness 확인; 선택 보상 연결 신규",
+      "contentStatus": "1–3막 공개 콘텐츠 / 장비 보상 미구현·신규 대상",
+      "rewardStatus": "신규 구현 대상",
+      "releaseGate": "publicAct1to3",
+      "normalEnabled": true,
+      "choiceGroup": "cg_da_t2",
+      "itemIds": [
+        "itm_da_03",
+        "itm_da_04"
+      ]
+    },
+    {
+      "eventId": "eq_hw_t2_choice",
+      "stage": 17,
+      "act": 2,
+      "stageName": "두드리는 벽",
+      "kind": "choice-defeat",
+      "condition": "기존 step hoist 완료 + 장면/강제 입력 해소 뒤 들린 인양틀 제압",
+      "evidence": "stage-contracts 17 step hoist 확인; 선택 보상 연결 신규",
+      "contentStatus": "1–3막 공개 콘텐츠 / 장비 보상 미구현·신규 대상",
+      "rewardStatus": "신규 구현 대상",
+      "releaseGate": "publicAct1to3",
+      "normalEnabled": true,
+      "choiceGroup": "cg_hw_t2",
+      "itemIds": [
+        "itm_hw_03",
+        "itm_hw_04"
+      ]
+    },
+    {
+      "eventId": "eq_so_t2_choice",
+      "stage": 18,
+      "act": 2,
+      "stageName": "묵종",
+      "kind": "choice-story",
+      "condition": "기존 step keeper 완료 + 장면/강제 입력 해소 뒤 종지기 제압",
+      "evidence": "stage-contracts 18 step keeper 확인; 선택 보상 연결 신규",
+      "contentStatus": "1–3막 공개 콘텐츠 / 장비 보상 미구현·신규 대상",
+      "rewardStatus": "신규 구현 대상",
+      "releaseGate": "publicAct1to3",
+      "normalEnabled": true,
+      "choiceGroup": "cg_so_t2",
+      "itemIds": [
+        "itm_so_03",
+        "itm_so_04"
+      ]
+    },
+    {
+      "eventId": "eq_se_t3a",
+      "stage": 22,
+      "act": 3,
+      "stageName": "옛 장부",
+      "kind": "story",
+      "condition": "기존 step upper-register 완료, 안전한 메시지 경계",
+      "evidence": "stage-contracts 22 step upper-register 확인",
+      "contentStatus": "1–3막 공개 콘텐츠 / 장비 보상 미구현·신규 대상",
+      "rewardStatus": "신규 구현 대상",
+      "releaseGate": "publicAct1to3",
+      "normalEnabled": true,
+      "choiceGroup": null,
+      "itemIds": [
+        "itm_se_05"
+      ]
+    },
+    {
+      "eventId": "eq_da_t3a",
+      "stage": 29,
+      "act": 3,
+      "stageName": "현묵의 글",
+      "kind": "story",
+      "condition": "기존 step hyeonmuk-letter 완료, 안전한 메시지 경계",
+      "evidence": "stage-contracts 29 step hyeonmuk-letter 확인",
+      "contentStatus": "1–3막 공개 콘텐츠 / 장비 보상 미구현·신규 대상",
+      "rewardStatus": "신규 구현 대상",
+      "releaseGate": "publicAct1to3",
+      "normalEnabled": true,
+      "choiceGroup": null,
+      "itemIds": [
+        "itm_da_05"
+      ]
+    },
+    {
+      "eventId": "eq_hw_t3a",
+      "stage": 24,
+      "act": 3,
+      "stageName": "휘겸의 문장",
+      "kind": "story",
+      "condition": "기존 step family-crest 완료, 안전한 메시지 경계",
+      "evidence": "stage-contracts 24 step family-crest 확인",
+      "contentStatus": "1–3막 공개 콘텐츠 / 장비 보상 미구현·신규 대상",
+      "rewardStatus": "신규 구현 대상",
+      "releaseGate": "publicAct1to3",
+      "normalEnabled": true,
+      "choiceGroup": null,
+      "itemIds": [
+        "itm_hw_05"
+      ]
+    },
+    {
+      "eventId": "eq_so_t3a",
+      "stage": 19,
+      "act": 2,
+      "stageName": "종 안의 사람들",
+      "kind": "story",
+      "condition": "기존 step old-soul 완료, 안전한 메시지 경계",
+      "evidence": "stage-contracts 19 step old-soul 확인",
+      "contentStatus": "1–3막 공개 콘텐츠 / 장비 보상 미구현·신규 대상",
+      "rewardStatus": "신규 구현 대상",
+      "releaseGate": "publicAct1to3",
+      "normalEnabled": true,
+      "choiceGroup": null,
+      "itemIds": [
+        "itm_so_05"
+      ]
+    },
+    {
+      "eventId": "eq_se_t3b",
+      "stage": 31,
+      "act": 4,
+      "stageName": "4막 31장 (세부 사건 미정)",
+      "kind": "clear",
+      "condition": "4막 정식 공개 후31장 첫 클리어",
+      "evidence": "31장 초기미리보기만. 정식 보상 훅 신규/현재 잠금",
+      "contentStatus": "4막 초기미리보기만 존재 / 일반 보상 잠금",
+      "rewardStatus": "신규 구현 대상",
+      "releaseGate": "officialAct4",
+      "normalEnabled": false,
+      "choiceGroup": null,
+      "itemIds": [
+        "itm_se_06"
+      ]
+    },
+    {
+      "eventId": "eq_da_t3b",
+      "stage": 35,
+      "act": 4,
+      "stageName": "4막 35장 (세부 사건 미정)",
+      "kind": "npc",
+      "condition": "4막 정식 공개 후35장 NPC 전달(대상 태그 제작 필요)",
+      "evidence": "NPC/이벤트 미매핑. 35장 미리보기만이며 완료로 보고하지 않음",
+      "contentStatus": "4막 초기미리보기만 존재 / 일반 보상 잠금",
+      "rewardStatus": "신규 구현 대상",
+      "releaseGate": "officialAct4",
+      "normalEnabled": false,
+      "choiceGroup": null,
+      "itemIds": [
+        "itm_da_06"
+      ]
+    },
+    {
+      "eventId": "eq_hw_t3b",
+      "stage": 36,
+      "act": 4,
+      "stageName": "4막 36장 (세부 사건 미정)",
+      "kind": "elite",
+      "condition": "4막 정식 공개 후36장 지정 정예 rewardTag=eq-hw-36 제압",
+      "evidence": "정예 태그 신규 제작 대상. 36장 미리보기 보상으로 미리 지급 금지",
+      "contentStatus": "4막 초기미리보기만 존재 / 일반 보상 잠금",
+      "rewardStatus": "신규 구현 대상",
+      "releaseGate": "officialAct4",
+      "normalEnabled": false,
+      "choiceGroup": null,
+      "itemIds": [
+        "itm_hw_06"
+      ]
+    },
+    {
+      "eventId": "eq_so_t3b",
+      "stage": 40,
+      "act": 4,
+      "stageName": "4막 40장 (세부 사건 미정)",
+      "kind": "clear",
+      "condition": "4막 정식 공개 후40장 첫 클리어",
+      "evidence": "40장 제작 전. 보상 정의만 예약",
+      "contentStatus": "4막 제작중 / 장비 보상 잠금",
+      "rewardStatus": "신규 구현 대상",
+      "releaseGate": "officialAct4",
+      "normalEnabled": false,
+      "choiceGroup": null,
+      "itemIds": [
+        "itm_so_06"
+      ]
+    },
+    {
+      "eventId": "eq_se_t4_choice",
+      "stage": 52,
+      "act": 6,
+      "stageName": "6막 52장 (세부 사건 미정)",
+      "kind": "choice-clear",
+      "condition": "해당 막 정식 공개 뒤 지정 보상 사건 완료. 구체 적/NPC는 콘텐츠 제작 시 연결",
+      "evidence": "5–6막 콘텐츠/사건 미구현. 선택 그룹과 보상만 예약",
+      "contentStatus": "5–6막 미구현 / 예약",
+      "rewardStatus": "미구현 예약",
+      "releaseGate": "officialAct6",
+      "normalEnabled": false,
+      "choiceGroup": "cg_se_t4",
+      "itemIds": [
+        "itm_se_07",
+        "itm_se_08"
+      ]
+    },
+    {
+      "eventId": "eq_da_t4_choice",
+      "stage": 48,
+      "act": 5,
+      "stageName": "5막 48장 (세부 사건 미정)",
+      "kind": "choice-clear",
+      "condition": "해당 막 정식 공개 뒤 지정 보상 사건 완료. 구체 적/NPC는 콘텐츠 제작 시 연결",
+      "evidence": "5–6막 콘텐츠/사건 미구현. 선택 그룹과 보상만 예약",
+      "contentStatus": "5–6막 미구현 / 예약",
+      "rewardStatus": "미구현 예약",
+      "releaseGate": "officialAct5",
+      "normalEnabled": false,
+      "choiceGroup": "cg_da_t4",
+      "itemIds": [
+        "itm_da_07",
+        "itm_da_08"
+      ]
+    },
+    {
+      "eventId": "eq_hw_t4_choice",
+      "stage": 55,
+      "act": 6,
+      "stageName": "6막 55장 (세부 사건 미정)",
+      "kind": "choice-elite",
+      "condition": "해당 막 정식 공개 뒤 지정 보상 사건 완료. 구체 적/NPC는 콘텐츠 제작 시 연결",
+      "evidence": "5–6막 콘텐츠/사건 미구현. 선택 그룹과 보상만 예약",
+      "contentStatus": "5–6막 미구현 / 예약",
+      "rewardStatus": "미구현 예약",
+      "releaseGate": "officialAct6",
+      "normalEnabled": false,
+      "choiceGroup": "cg_hw_t4",
+      "itemIds": [
+        "itm_hw_07",
+        "itm_hw_08"
+      ]
+    },
+    {
+      "eventId": "eq_so_t4_choice",
+      "stage": 58,
+      "act": 6,
+      "stageName": "6막 58장 (세부 사건 미정)",
+      "kind": "choice-npc",
+      "condition": "해당 막 정식 공개 뒤 지정 보상 사건 완료. 구체 적/NPC는 콘텐츠 제작 시 연결",
+      "evidence": "5–6막 콘텐츠/사건 미구현. 선택 그룹과 보상만 예약",
+      "contentStatus": "5–6막 미구현 / 예약",
+      "rewardStatus": "미구현 예약",
+      "releaseGate": "officialAct6",
+      "normalEnabled": false,
+      "choiceGroup": "cg_so_t4",
+      "itemIds": [
+        "itm_so_07",
+        "itm_so_08"
+      ]
+    },
+    {
+      "eventId": "eq_co_01",
+      "stage": 1,
+      "act": 1,
+      "stageName": "연목 고갯길",
+      "kind": "clear",
+      "condition": "1장 첫 클리어 정산",
+      "evidence": "stage-contracts1 arrival / main outcome",
+      "contentStatus": "1–3막 공개 콘텐츠 / 장비 보상 미구현·신규 대상",
+      "rewardStatus": "신규 구현 대상",
+      "releaseGate": "publicAct1to3",
+      "normalEnabled": true,
+      "choiceGroup": null,
+      "itemIds": [
+        "itm_co_01"
+      ]
+    },
+    {
+      "eventId": "eq_co_02",
+      "stage": 3,
+      "act": 1,
+      "stageName": "나루의 남은 장부",
+      "kind": "story",
+      "condition": "3장 장부 확보 후 클리어 정산",
+      "evidence": "stage-contracts3 ledger / main outcome",
+      "contentStatus": "1–3막 공개 콘텐츠 / 장비 보상 미구현·신규 대상",
+      "rewardStatus": "신규 구현 대상",
+      "releaseGate": "publicAct1to3",
+      "normalEnabled": true,
+      "choiceGroup": null,
+      "itemIds": [
+        "itm_co_02"
+      ]
+    },
+    {
+      "eventId": "eq_co_t1_choice",
+      "stage": 7,
+      "act": 1,
+      "stageName": "살아 있는 사람을 꺼내는 법",
+      "kind": "choice-clear",
+      "condition": "7장 구조 목표 완료와 클리어 뒤3택1",
+      "evidence": "stage-contracts7 rescue3 / main outcome",
+      "contentStatus": "1–3막 공개 콘텐츠 / 장비 보상 미구현·신규 대상",
+      "rewardStatus": "신규 구현 대상",
+      "releaseGate": "publicAct1to3",
+      "normalEnabled": true,
+      "choiceGroup": "cg_co_t1",
+      "itemIds": [
+        "itm_co_03",
+        "itm_co_04",
+        "itm_co_05"
+      ]
+    },
+    {
+      "eventId": "eq_co_06",
+      "stage": 12,
+      "act": 2,
+      "stageName": "돌아오는 산길",
+      "kind": "elite",
+      "condition": "처음 제압한 해당 장 유한 증원 중 honroAct2Elite=true && honroQuarryEntry 존재인 적",
+      "evidence": "stage12-quarry.js 61에서 유한 증원 정예/진입 태그 확인. actor 고유ID를 별도 고정할 필요 없음",
+      "contentStatus": "1–3막 공개 콘텐츠 / 장비 보상 미구현·신규 대상",
+      "rewardStatus": "신규 구현 대상",
+      "releaseGate": "publicAct1to3",
+      "normalEnabled": true,
+      "choiceGroup": null,
+      "itemIds": [
+        "itm_co_06"
+      ]
+    },
+    {
+      "eventId": "eq_co_07",
+      "stage": 15,
+      "act": 2,
+      "stageName": "물 아래의 길",
+      "kind": "reach-interact",
+      "condition": "선택 step sluice에 실제로 도달해 수문 상호작용 완료",
+      "evidence": "stage-contracts15 sluice optional=true. 장거리 공격/특정 장비 불필요",
+      "contentStatus": "1–3막 공개 콘텐츠 / 장비 보상 미구현·신규 대상",
+      "rewardStatus": "신규 구현 대상",
+      "releaseGate": "publicAct1to3",
+      "normalEnabled": true,
+      "choiceGroup": null,
+      "itemIds": [
+        "itm_co_07"
+      ]
+    },
+    {
+      "eventId": "eq_co_t2_choice",
+      "stage": 20,
+      "act": 2,
+      "stageName": "다시 하늘 아래",
+      "kind": "choice-npc",
+      "condition": "escape 호송 완료 뒤 생존자 전달 장면에서3택1",
+      "evidence": "stage-contracts20 escape escort 확인",
+      "contentStatus": "1–3막 공개 콘텐츠 / 장비 보상 미구현·신규 대상",
+      "rewardStatus": "신규 구현 대상",
+      "releaseGate": "publicAct1to3",
+      "normalEnabled": true,
+      "choiceGroup": "cg_co_t2",
+      "itemIds": [
+        "itm_co_08",
+        "itm_co_09",
+        "itm_co_10"
+      ]
+    },
+    {
+      "eventId": "eq_co_11",
+      "stage": 26,
+      "act": 3,
+      "stageName": "지상에 남은 증언",
+      "kind": "npc",
+      "condition": "artisan-resident 구조 완료 뒤 주민 전달",
+      "evidence": "stage-contracts26 artisan-resident rescue 확인",
+      "contentStatus": "1–3막 공개 콘텐츠 / 장비 보상 미구현·신규 대상",
+      "rewardStatus": "신규 구현 대상",
+      "releaseGate": "publicAct1to3",
+      "normalEnabled": true,
+      "choiceGroup": null,
+      "itemIds": [
+        "itm_co_11"
+      ]
+    },
+    {
+      "eventId": "eq_co_12",
+      "stage": 31,
+      "act": 4,
+      "stageName": "4막 31장 (세부 사건 미정)",
+      "kind": "hidden-reach",
+      "condition": "4막 정식 공개 뒤31장의 보행 가능한 옆길 실제 도달",
+      "evidence": "새 영역 태그 eq-co-31 제작 필요. 최장거리 기술/특정 장비 요구 금지",
+      "contentStatus": "4막 초기미리보기만 존재 / 일반 보상 잠금",
+      "rewardStatus": "신규 구현 대상",
+      "releaseGate": "officialAct4",
+      "normalEnabled": false,
+      "choiceGroup": null,
+      "itemIds": [
+        "itm_co_12"
+      ]
+    },
+    {
+      "eventId": "eq_co_t3_choice",
+      "stage": 35,
+      "act": 4,
+      "stageName": "4막 35장 (세부 사건 미정)",
+      "kind": "choice-challenge",
+      "condition": "4막 정식 공개 뒤35장 선택 어려운 장소 완료, 안전 경계에서3택1",
+      "evidence": "새 선택 도전 이벤트 제작 대상; 일반 도보/기존 기술만으로 가능해야 함",
+      "contentStatus": "4막 초기미리보기만 존재 / 일반 보상 잠금",
+      "rewardStatus": "신규 구현 대상",
+      "releaseGate": "officialAct4",
+      "normalEnabled": false,
+      "choiceGroup": "cg_co_t3",
+      "itemIds": [
+        "itm_co_13",
+        "itm_co_14",
+        "itm_co_15"
+      ]
+    },
+    {
+      "eventId": "eq_co_16",
+      "stage": 43,
+      "act": 5,
+      "stageName": "5막 43장 (세부 사건 미정)",
+      "kind": "clear",
+      "condition": "5막 정식 공개 뒤43장 첫 클리어",
+      "evidence": "5막 미구현, 예약",
+      "contentStatus": "5–6막 미구현 / 예약",
+      "rewardStatus": "미구현 예약",
+      "releaseGate": "officialAct5",
+      "normalEnabled": false,
+      "choiceGroup": null,
+      "itemIds": [
+        "itm_co_16"
+      ]
+    },
+    {
+      "eventId": "eq_co_17",
+      "stage": 56,
+      "act": 6,
+      "stageName": "6막 56장 (세부 사건 미정)",
+      "kind": "hidden-reach",
+      "condition": "6막 정식 공개 뒤56장 선택 장소 도달/조사",
+      "evidence": "6막 미구현. 안전 경로와 좌표를 콘텐츠 제작 때 확정",
+      "contentStatus": "5–6막 미구현 / 예약",
+      "rewardStatus": "미구현 예약",
+      "releaseGate": "officialAct6",
+      "normalEnabled": false,
+      "choiceGroup": null,
+      "itemIds": [
+        "itm_co_17"
+      ]
+    },
+    {
+      "eventId": "eq_co_t4_choice",
+      "stage": 54,
+      "act": 6,
+      "stageName": "6막 54장 (세부 사건 미정)",
+      "kind": "choice-npc",
+      "condition": "6막 정식 공개 뒤54장 NPC 전달에서3택1",
+      "evidence": "6막 미구현, 예약",
+      "contentStatus": "5–6막 미구현 / 예약",
+      "rewardStatus": "미구현 예약",
+      "releaseGate": "officialAct6",
+      "normalEnabled": false,
+      "choiceGroup": "cg_co_t4",
+      "itemIds": [
+        "itm_co_18",
+        "itm_co_19",
+        "itm_co_20"
+      ]
+    }
+  ],
+  "choiceGroups": [
+    {
+      "choiceGroup": "cg_se_t2",
+      "eventId": "eq_se_t2_choice",
+      "choose": 1,
+      "itemIds": [
+        "itm_se_03",
+        "itm_se_04"
+      ],
+      "lockedPerRun": true
+    },
+    {
+      "choiceGroup": "cg_da_t2",
+      "eventId": "eq_da_t2_choice",
+      "choose": 1,
+      "itemIds": [
+        "itm_da_03",
+        "itm_da_04"
+      ],
+      "lockedPerRun": true
+    },
+    {
+      "choiceGroup": "cg_hw_t2",
+      "eventId": "eq_hw_t2_choice",
+      "choose": 1,
+      "itemIds": [
+        "itm_hw_03",
+        "itm_hw_04"
+      ],
+      "lockedPerRun": true
+    },
+    {
+      "choiceGroup": "cg_so_t2",
+      "eventId": "eq_so_t2_choice",
+      "choose": 1,
+      "itemIds": [
+        "itm_so_03",
+        "itm_so_04"
+      ],
+      "lockedPerRun": true
+    },
+    {
+      "choiceGroup": "cg_se_t4",
+      "eventId": "eq_se_t4_choice",
+      "choose": 1,
+      "itemIds": [
+        "itm_se_07",
+        "itm_se_08"
+      ],
+      "lockedPerRun": true
+    },
+    {
+      "choiceGroup": "cg_da_t4",
+      "eventId": "eq_da_t4_choice",
+      "choose": 1,
+      "itemIds": [
+        "itm_da_07",
+        "itm_da_08"
+      ],
+      "lockedPerRun": true
+    },
+    {
+      "choiceGroup": "cg_hw_t4",
+      "eventId": "eq_hw_t4_choice",
+      "choose": 1,
+      "itemIds": [
+        "itm_hw_07",
+        "itm_hw_08"
+      ],
+      "lockedPerRun": true
+    },
+    {
+      "choiceGroup": "cg_so_t4",
+      "eventId": "eq_so_t4_choice",
+      "choose": 1,
+      "itemIds": [
+        "itm_so_07",
+        "itm_so_08"
+      ],
+      "lockedPerRun": true
+    },
+    {
+      "choiceGroup": "cg_co_t1",
+      "eventId": "eq_co_t1_choice",
+      "choose": 1,
+      "itemIds": [
+        "itm_co_03",
+        "itm_co_04",
+        "itm_co_05"
+      ],
+      "lockedPerRun": true
+    },
+    {
+      "choiceGroup": "cg_co_t2",
+      "eventId": "eq_co_t2_choice",
+      "choose": 1,
+      "itemIds": [
+        "itm_co_08",
+        "itm_co_09",
+        "itm_co_10"
+      ],
+      "lockedPerRun": true
+    },
+    {
+      "choiceGroup": "cg_co_t3",
+      "eventId": "eq_co_t3_choice",
+      "choose": 1,
+      "itemIds": [
+        "itm_co_13",
+        "itm_co_14",
+        "itm_co_15"
+      ],
+      "lockedPerRun": true
+    },
+    {
+      "choiceGroup": "cg_co_t4",
+      "eventId": "eq_co_t4_choice",
+      "choose": 1,
+      "itemIds": [
+        "itm_co_18",
+        "itm_co_19",
+        "itm_co_20"
+      ],
+      "lockedPerRun": true
+    }
+  ],
+  "effects": [
+    {
+      "effectId": "se_drop",
+      "summary": "급락시의 낙차 계수에 +0.10. 낙차 0에서는 이득 없음.",
+      "targetSkills": [
+        "A11"
+      ],
+      "params": {
+        "dropCoefficientAdd": 0.1
+      },
+      "calculationPoint": "trajectoryMultiplier의 drop 계수, 기존 낙차/900 clamp 앞",
+      "stacking": "같은 effectId는 1회만. 기본 스탯과 고유 계수는 지정 위치에서 각각 한 번 적용.",
+      "limits": "사거리·중력·최고점·기존 낙차 상한 불변. 파편/소환 제외.",
+      "codeRefs": [
+        "drop"
+      ],
+      "implementationDelta": "A11 분기에서 계수만 가산. 미리보기와 실피해 동일 helper 사용.",
+      "status": "연결 지점 읽기 확인 / 장비 효과 신규 구현 대상"
+    },
+    {
+      "effectId": "se_push",
+      "summary": "격퇴시의 첫 적 밀침 수평 성분 +20%.",
+      "targetSkills": [
+        "A05"
+      ],
+      "params": {
+        "horizontalKnockbackScale": 1.2
+      },
+      "calculationPoint": "arrowImpact의 A05 최초 impulse",
+      "stacking": "같은 effectId는 1회만. 기본 스탯과 고유 계수는 지정 위치에서 각각 한 번 적용.",
+      "limits": "수직 성분·후속 충돌 수·보스 면역 불변. 새 밀침/추가 피해 생성 없음.",
+      "codeRefs": [
+        "arrow"
+      ],
+      "implementationDelta": "기존 최초 impulse의 vx에만 적용. 후속 shove 힘에 다시 곱하지 않음.",
+      "status": "연결 지점 읽기 확인 / 장비 효과 신규 구현 대상"
+    },
+    {
+      "effectId": "se_pierce",
+      "summary": "관통시가 적·지원 목재를 지난 뒤 유지하는 피해 88%→94%.",
+      "targetSkills": [
+        "A02"
+      ],
+      "params": {
+        "pierceRetain": 0.94
+      },
+      "calculationPoint": "A02 관통 성공 뒤 p.damage 감쇠",
+      "stacking": "같은 effectId는 1회만. 기본 스탯과 고유 계수는 지정 위치에서 각각 한 번 적용.",
+      "limits": "첫 적 피해·관통 수·목재 두께 제한·사거리 불변.",
+      "codeRefs": [
+        "arrow"
+      ],
+      "implementationDelta": "유닛/목재 두 기존 .88 경로를 같은 효과값으로 치환.",
+      "status": "연결 지점 읽기 확인 / 장비 효과 신규 구현 대상"
+    },
+    {
+      "effectId": "se_recover",
+      "summary": "회기시의 HP 회수율 +25%. 기존 한 사격 HP 15% 상한은 그대로.",
+      "targetSkills": [
+        "A06"
+      ],
+      "params": {
+        "hpRecoveryScale": 1.25,
+        "hpPerShotCap": 0.15
+      },
+      "calculationPoint": "recordRedesignDamage의 기존 HP fraction",
+      "stacking": "같은 effectId는 1회만. 기본 스탯과 고유 계수는 지정 위치에서 각각 한 번 적용.",
+      "limits": "MP 회수와 상한 불변. 기존 실제 적 HP 손실만 사용, 별도 흡수/지원 XP 사건 생성 없음.",
+      "codeRefs": [
+        "recovery"
+      ],
+      "implementationDelta": "HP fraction만 곱함. 기존 shot 원장·회복 처리 재사용.",
+      "status": "연결 지점 읽기 확인 / 장비 효과 신규 구현 대상"
+    },
+    {
+      "effectId": "da_stake",
+      "summary": "파진목 유지 +1라운드.",
+      "targetSkills": [
+        "M07"
+      ],
+      "params": {
+        "lifetimeRoundsAdd": 1,
+        "maxLifetimeRounds": 10
+      },
+      "calculationPoint": "파진목 최초 생성 시 expires",
+      "stacking": "같은 effectId는 1회만. 기본 스탯과 고유 계수는 지정 위치에서 각각 한 번 적용.",
+      "limits": "M09 축지·M10 회생진목 제외. 틱당 피해·대상별 턴당 1회·기존 설치 정책 불변.",
+      "codeRefs": [
+        "stake",
+        "stakeHeal"
+      ],
+      "implementationDelta": "M07 expires에만 1 추가. 재로드/재판정으로 재연장 금지.",
+      "status": "연결 지점 읽기 확인 / 장비 효과 신규 구현 대상"
+    },
+    {
+      "effectId": "da_heal",
+      "summary": "회생진목의 기존 HP 회복량 +20%.",
+      "targetSkills": [
+        "M10"
+      ],
+      "params": {
+        "hpHealScale": 1.2
+      },
+      "calculationPoint": "M10 usedRounds 검사 뒤 기존 HP 회복식",
+      "stacking": "같은 effectId는 1회만. 기본 스탯과 고유 계수는 지정 위치에서 각각 한 번 적용.",
+      "limits": "MP·이동 회복·범위·수명·아군별 턴당 1회 불변. 기존 치유 이벤트 한 번만 정산.",
+      "codeRefs": [
+        "stakeHeal"
+      ],
+      "implementationDelta": "HP 식에만 계수 적용. 새 회복 트리거·XP 사건 추가 없음.",
+      "status": "연결 지점 읽기 확인 / 장비 효과 신규 구현 대상"
+    },
+    {
+      "effectId": "da_sky",
+      "summary": "천뢰호 위력 +18%, 폭발 반경 -10%. 하늘 낙뢰 방식은 그대로.",
+      "targetSkills": [
+        "M05"
+      ],
+      "params": {
+        "damageScale": 1.18,
+        "radiusScale": 0.9
+      },
+      "calculationPoint": "effective()에서 기존 damage/radius 산출",
+      "stacking": "같은 effectId는 1회만. 기본 스탯과 고유 계수는 지정 위치에서 각각 한 번 적용.",
+      "limits": "기존 0.35초 대기·상부 차폐·표적별 판정·총 타격 수 불변.",
+      "codeRefs": [
+        "cost",
+        "cast"
+      ],
+      "implementationDelta": "기존 e.damage/e.radius만 변경, skyWait 경로 교체 없음.",
+      "status": "연결 지점 읽기 확인 / 장비 효과 신규 구현 대상"
+    },
+    {
+      "effectId": "da_arc",
+      "summary": "원호파의 두께 +20%, 위력 -10%. 반경·각도는 그대로.",
+      "targetSkills": [
+        "M03"
+      ],
+      "params": {
+        "geometryThicknessScale": 1.2,
+        "damageScale": 0.9
+      },
+      "calculationPoint": "M03 geometryBoost와 effective damage",
+      "stacking": "같은 effectId는 1회만. 기본 스탯과 고유 계수는 지정 위치에서 각각 한 번 적용.",
+      "limits": "반경·각도·발사체 사거리·차폐·타격 수 불변.",
+      "codeRefs": [
+        "cost",
+        "waveGeometry"
+      ],
+      "implementationDelta": "기존 geometryBoost가 두께만 조정함을 확인. M03에서×1.20; 미리보기/실전의 동일 helper 재사용.",
+      "status": "연결 지점 읽기 확인 / 장비 효과 신규 구현 대상"
+    },
+    {
+      "effectId": "hw_jump_cost",
+      "summary": "일반 점프의 이동력 비용 -20. 최소 비용 25.",
+      "targetSkills": [
+        "JUMP"
+      ],
+      "params": {
+        "jumpCostFlatReduction": 20,
+        "minJumpCost": 25
+      },
+      "calculationPoint": "Engine.jumpCost 최종값",
+      "stacking": "같은 effectId는 1회만. 기본 스탯과 고유 계수는 지정 위치에서 각각 한 번 적용.",
+      "limits": "추가 점프·돌격 거리·물/낙사 면제 없음. 기존 SP03과 합산 후 최저25.",
+      "codeRefs": [
+        "jump"
+      ],
+      "implementationDelta": "기존 비용 반환식에 고정 감소. 점프 높이·속도는 변경 안 함.",
+      "status": "연결 지점 읽기 확인 / 장비 효과 신규 구현 대상"
+    },
+    {
+      "effectId": "hw_life",
+      "summary": "사생참의 실제 HP 소비분이 더하는 피해 +15%.",
+      "targetSkills": [
+        "S02"
+      ],
+      "params": {
+        "lifeCostDamageScale": 1.15
+      },
+      "calculationPoint": "meleeAction 생성 시 lifeCost 비례 항",
+      "stacking": "같은 effectId는 1회만. 기본 스탯과 고유 계수는 지정 위치에서 각각 한 번 적용.",
+      "limits": "HP 비용 floor(현재 HP/3)은 그대로 먼저 지불. 기본 피해·실제 비용·자해 보상은 복제하지 않음.",
+      "codeRefs": [
+        "lifeSlash"
+      ],
+      "implementationDelta": "기존 lifeCost 곱셈 항만 변경. 비용을 취소하고 보너스를 남기지 않음.",
+      "status": "연결 지점 읽기 확인 / 장비 효과 신규 구현 대상"
+    },
+    {
+      "effectId": "hw_guard",
+      "summary": "피격 직전 HP가 30% 이하면 방어 +3%p.",
+      "targetSkills": [
+        "INCOMING_NORMAL"
+      ],
+      "params": {
+        "hpThreshold": 0.3,
+        "armorAdd": 0.03,
+        "armorCap": 0.7
+      },
+      "calculationPoint": "applyHit의 해당 방어계수 산출 직전",
+      "stacking": "같은 effectId는 1회만. 기본 스탯과 고유 계수는 지정 위치에서 각각 한 번 적용.",
+      "limits": "기존 방어70% 상한·보스/환경/추락 규칙 유지. 새 보호막·불굴·무적 없음.",
+      "codeRefs": [
+        "hit"
+      ],
+      "implementationDelta": "현재 HP 비율 조건 한 번 검사. 상태·타이머 생성 없음.",
+      "status": "연결 지점 읽기 확인 / 장비 효과 신규 구현 대상"
+    },
+    {
+      "effectId": "hw_blade",
+      "summary": "검기 계통의 기력 비용 -15%, 위력 -8%.",
+      "targetSkills": [
+        "S09",
+        "S10",
+        "S11",
+        "S14",
+        "S12"
+      ],
+      "params": {
+        "manaDiscount": 0.15,
+        "damageScale": 0.92
+      },
+      "calculationPoint": "manaCost/effective에서 해당 skillId 검사",
+      "stacking": "같은 effectId는 1회만. 기본 스탯과 고유 계수는 지정 위치에서 각각 한 번 적용.",
+      "limits": "사거리·검기 수·관통·후속 타격 원장 불변. 원래 무료가 되는 기예는 계속 무료.",
+      "codeRefs": [
+        "cost",
+        "cast"
+      ],
+      "implementationDelta": "계통 한정 비용/위력 두 계수, 자탄마다 재적용 금지.",
+      "status": "연결 지점 읽기 확인 / 장비 효과 신규 구현 대상"
+    },
+    {
+      "effectId": "so_echo",
+      "summary": "반향령 유지 +1라운드. 활성 수 상한은 기존 1~3개.",
+      "targetSkills": [
+        "O15"
+      ],
+      "params": {
+        "lifetimeRoundsAdd": 1,
+        "maxLifetimeRounds": 9
+      },
+      "calculationPoint": "spawnSummon의 echo 전용 summonExpires 계산",
+      "stacking": "같은 effectId는 1회만. 기본 스탯과 고유 계수는 지정 위치에서 각각 한 번 적용.",
+      "limits": "ECHO_LIMIT·반향 위력·복제 발사 수·자연 소멸 보전/회수 규칙 불변. 재인계/재연장 없음.",
+      "codeRefs": [
+        "summon",
+        "summonData"
+      ],
+      "implementationDelta": "echo 생성 시 만료만 +1. 일반 소환물 전체로 무검증 확대하지 않음.",
+      "status": "연결 지점 읽기 확인 / 장비 효과 신규 구현 대상"
+    },
+    {
+      "effectId": "so_weak",
+      "summary": "쇠망부의 공격 약화12%→15%. 방어 약화13%·지속은 그대로.",
+      "targetSkills": [
+        "O06"
+      ],
+      "params": {
+        "weakAttackReduction": 0.15
+      },
+      "calculationPoint": "applyCurse(kind=weak)의 curseAttack 산출",
+      "stacking": "같은 effectId는 1회만. 기본 스탯과 고유 계수는 지정 위치에서 각각 한 번 적용.",
+      "limits": "다른 주박과 공유하는 curseTurns는 변경하지 않음. DOT·증오 지속 연장/추가 틱 없음. 기존 trap 강도·max 병합 유지.",
+      "codeRefs": [
+        "curseApply"
+      ],
+      "implementationDelta": "12% 기본 공격 약화 계수에만 +3%p. trap이면 기존 strength를 그대로 곱함.",
+      "status": "연결 지점 읽기 확인 / 장비 효과 신규 구현 대상"
+    },
+    {
+      "effectId": "so_basic",
+      "summary": "혼령탄 폭발 반경 +20%, 위력 -10%.",
+      "targetSkills": [
+        "O01"
+      ],
+      "params": {
+        "radiusScale": 1.2,
+        "damageScale": 0.9
+      },
+      "calculationPoint": "effective의 O01 damage/radius",
+      "stacking": "같은 effectId는 1회만. 기본 스탯과 고유 계수는 지정 위치에서 각각 한 번 적용.",
+      "limits": "무료 평타 비용0 유지. 비행 시간·도달 거리·차폐·반사 규칙 불변.",
+      "codeRefs": [
+        "cost",
+        "cast"
+      ],
+      "implementationDelta": "기존 radius/damage 두 필드만 조정.",
+      "status": "연결 지점 읽기 확인 / 장비 효과 신규 구현 대상"
+    },
+    {
+      "effectId": "so_converge",
+      "summary": "만혼귀결 위력 +15%, 기력 비용 +15%.",
+      "targetSkills": [
+        "O16"
+      ],
+      "params": {
+        "damageScale": 1.15,
+        "manaSurcharge": 0.15
+      },
+      "calculationPoint": "effective/manaCost의 O16",
+      "stacking": "같은 effectId는 1회만. 기본 스탯과 고유 계수는 지정 위치에서 각각 한 번 적용.",
+      "limits": "모이는 혼 수·대상당 타격/총량 상한·귀결점/벽 규칙은 그대로.",
+      "codeRefs": [
+        "cost",
+        "cast"
+      ],
+      "implementationDelta": "원본 산출값만 조정. 파생 공격에 다시 계수를 곱하지 않음.",
+      "status": "연결 지점 읽기 확인 / 장비 효과 신규 구현 대상"
+    },
+    {
+      "effectId": "co_jump",
+      "summary": "일반 점프의 수직 최고점 약 +20%.",
+      "targetSkills": [
+        "JUMP"
+      ],
+      "params": {
+        "jumpHeightScale": 1.2,
+        "jumpVelocityScale": 1.0954451150103321
+      },
+      "calculationPoint": "Engine.jump의 vy에 sqrt(1.20) 적용",
+      "stacking": "같은 effectId는 1회만. 기본 스탯과 고유 계수는 지정 위치에서 각각 한 번 적용.",
+      "limits": "일반 점프만. 수평 속도값·돌격 사거리 불변이나 체공 증가의 자연 수평 변화는 가능. 이동 예산·충돌·입수/낙사 판정 유지.",
+      "codeRefs": [
+        "jump",
+        "range"
+      ],
+      "implementationDelta": "기존 vy 값 하나를 조정. 높은 실제 지면/물골 도약 허용, 새 공중 조작/생존 면제 없음.",
+      "status": "연결 지점 읽기 확인 / 장비 효과 신규 구현 대상"
+    },
+    {
+      "effectId": "co_stable",
+      "summary": "피해 편차 폭을 절반으로 줄인다. 평균과 치명타는 그대로.",
+      "targetSkills": [
+        "NORMAL_DAMAGING_CAST"
+      ],
+      "params": {
+        "damageMean": 1,
+        "nativeSpreadScale": 0.5
+      },
+      "calculationPoint": "기존 rollDamage 한 번의 표본에 적용",
+      "stacking": "같은 effectId는 1회만. 기본 스탯과 고유 계수는 지정 위치에서 각각 한 번 적용.",
+      "limits": "기존 spread0인 기술은0 유지. 새 추첨·버프·원장 없음, 같은 시전의 모든 파생이 같은 roll 사용.",
+      "codeRefs": [
+        "variance",
+        "cast"
+      ],
+      "implementationDelta": "같은 표본의 진폭만 줄임. 저장 seed/index는 기존 그대로.",
+      "status": "연결 지점 읽기 확인 / 장비 효과 신규 구현 대상"
+    },
+    {
+      "effectId": "co_wild",
+      "summary": "정상 공격 피해 평균 +3%, 행동별 편차 ±25%로 변경.",
+      "targetSkills": [
+        "NORMAL_DAMAGING_CAST"
+      ],
+      "params": {
+        "damageMean": 1.03,
+        "damageSpread": 0.25,
+        "damageRollMin": 0.78,
+        "damageRollMax": 1.28
+      },
+      "calculationPoint": "기존 rollDamage에서 같은 표본으로 1.03+x×.25",
+      "stacking": "같은 effectId는 1회만. 기본 스탯과 고유 계수는 지정 위치에서 각각 한 번 적용.",
+      "limits": "비치명 방어 전 범위78~128%. 치명타는 기존대로 별도 적용. 기존 spread0·환경/추가 추첨 제외.",
+      "codeRefs": [
+        "variance",
+        "varianceSave",
+        "cast"
+      ],
+      "implementationDelta": "새 난수 원장 불필요. 저장 origin 허용범위를 .78~1.28로 확장하고 기존 roll은 재추첨하지 않음.",
+      "status": "연결 지점 읽기 확인 / 장비 효과 신규 구현 대상"
+    },
+    {
+      "effectId": "co_costly",
+      "summary": "장비 미적용 실제 비용이 40 이상인 기예의 기력 비용 -15%.",
+      "targetSkills": [
+        "PAID_SKILLS"
+      ],
+      "params": {
+        "nativeManaThreshold": 40,
+        "manaDiscount": 0.15
+      },
+      "calculationPoint": "manaCost의 기존 패시브 적용 뒤/장비 보정 전",
+      "stacking": "같은 effectId는 1회만. 기본 스탯과 고유 계수는 지정 위치에서 각각 한 번 적용.",
+      "limits": "원래 최종 비용0이면0. 장비발 총 감소30% 상한. 환급·추가 MP 회복 없음.",
+      "codeRefs": [
+        "cost"
+      ],
+      "implementationDelta": "현재 비용을 한 번 읽어 할인. UI와 발사 가능 검사도 동일 helper 사용.",
+      "status": "연결 지점 읽기 확인 / 장비 효과 신규 구현 대상"
+    },
+    {
+      "effectId": "co_cursed",
+      "summary": "저주/지박이 이미 남은 적에게 장착자 주공격 피해 +12%.",
+      "targetSkills": [
+        "NORMAL_HERO_CAST"
+      ],
+      "params": {
+        "conditionBonus": 0.12
+      },
+      "calculationPoint": "applyHit conditionBonuses에 가산",
+      "stacking": "같은 effectId는 1회만. 기본 스탯과 고유 계수는 지정 위치에서 각각 한 번 적용.",
+      "limits": "원래 저주·지박 표식만 읽음. 소환·섭혼·자율 후속·지속·환경 제외, 새 상태/기간/타격 없음.",
+      "codeRefs": [
+        "hit",
+        "curse"
+      ],
+      "implementationDelta": "기존 대상 표식 조건과 보너스 배열 재사용. 기본 공격 스탯에 중복 적용 금지.",
+      "status": "연결 지점 읽기 확인 / 장비 효과 신규 구현 대상"
+    },
+    {
+      "effectId": "co_friendly",
+      "summary": "장착자 공격 본체의 아군 HP 피해를 추가로 50% 줄인다.",
+      "targetSkills": [
+        "NORMAL_HERO_PRIMARY"
+      ],
+      "params": {
+        "friendlyHpScale": 0.5
+      },
+      "calculationPoint": "기존 아군 피해 경감/반올림 뒤 실제 HP 피해 확정 전",
+      "stacking": "같은 effectId는 1회만. 기본 스탯과 고유 계수는 지정 위치에서 각각 한 번 적용.",
+      "limits": "탄환 통과·밀침·상태·지형 보호는 아님. 자율 후속·밀침 충돌·소환·지속 제외, 아군 적중 자원/XP 없음.",
+      "codeRefs": [
+        "hit"
+      ],
+      "implementationDelta": "기존 30% 아군 피해를 주공격에서15%로. 이미 경감된 shove/후속에는 다시 곱하지 않는 적격검사 필요.",
+      "status": "연결 지점 읽기 확인 / 장비 효과 신규 구현 대상"
+    },
+    {
+      "effectId": "co_soul",
+      "summary": "정상 주공격의 형·기 몫 30%를 혼으로 옮긴다.",
+      "targetSkills": [
+        "NORMAL_HERO_CAST"
+      ],
+      "params": {
+        "soulConversion": 0.3
+      },
+      "calculationPoint": "applyHit에서 기존 attack vector 복사 후 existenceMultiplier 전",
+      "stacking": "같은 effectId는 1회만. 기본 스탯과 고유 계수는 지정 위치에서 각각 한 번 적용.",
+      "limits": "총 비중1 보존. 전역 ATTACK_EXISTENCE 변경 금지. 원래 속성 반응/보스 기믹 유지, 소환/지속/반사 제외.",
+      "codeRefs": [
+        "existence",
+        "hit"
+      ],
+      "implementationDelta": "기존 normalizedAttack/existenceMultiplier 경로에 소유자 한정 복사 보정.",
+      "status": "연결 지점 읽기 확인 / 장비 효과 신규 구현 대상"
+    },
+    {
+      "effectId": "co_low_mp",
+      "summary": "시전 직전 기력이 최대치의25% 이하면 유료 기예 비용 -15%.",
+      "targetSkills": [
+        "PAID_SKILLS"
+      ],
+      "params": {
+        "mpRatioThreshold": 0.25,
+        "manaDiscount": 0.15
+      },
+      "calculationPoint": "manaCost에서 실제 소비 전 focus/maxFocus 검사",
+      "stacking": "같은 effectId는 1회만. 기본 스탯과 고유 계수는 지정 위치에서 각각 한 번 적용.",
+      "limits": "원래 무료0 유지. 비용 차감 뒤 재평가/환급 없음. 장비 총 할인30% 상한.",
+      "codeRefs": [
+        "cost"
+      ],
+      "implementationDelta": "현재 기력 비율 읽기만. 새 상태·잔량 예치 없음.",
+      "status": "연결 지점 읽기 확인 / 장비 효과 신규 구현 대상"
+    },
+    {
+      "effectId": "co_noncrit",
+      "summary": "비치명 주공격 피해 +12%, 치명 배율 -0.20배.",
+      "targetSkills": [
+        "NORMAL_HERO_CAST"
+      ],
+      "params": {
+        "noncriticalBonus": 0.12,
+        "criticalMultiplierAdd": -0.2,
+        "criticalMultiplierMin": 1
+      },
+      "calculationPoint": "critProfile와 applyHit 기존 critical 분기",
+      "stacking": "같은 effectId는 1회만. 기본 스탯과 고유 계수는 지정 위치에서 각각 한 번 적용.",
+      "limits": "치명 확률은 그대로, 최종 치명 배율1~3.5. 소환·지속·자율후속 제외. 새 추첨 없음.",
+      "codeRefs": [
+        "hit"
+      ],
+      "implementationDelta": "기존 critProfile/조건부 배열만 사용. 피해 편차 표본을 재추첨하지 않음.",
+      "status": "연결 지점 읽기 확인 / 장비 효과 신규 구현 대상"
+    },
+    {
+      "effectId": "co_armor",
+      "summary": "일반 적의 방어 수치30%를 무시한다.",
+      "targetSkills": [
+        "NORMAL_HERO_CAST"
+      ],
+      "params": {
+        "armorIgnoreFraction": 0.3
+      },
+      "calculationPoint": "guard 방향방어 덮어쓰기 뒤 armor/armorWithoutSupport×.70 → ward .32 floor → 기존 S02 .65",
+      "stacking": "같은 effectId는 1회만. 기본 스탯과 고유 계수는 지정 위치에서 각각 한 번 적용.",
+      "limits": "boss/midboss/honroAct2Boss/honroFinalBoss/목표 객체 제외. ward의 최소방어 .32·속성 반응·방호·무적은 유지.",
+      "codeRefs": [
+        "hit"
+      ],
+      "implementationDelta": "827–830의 guard/보스 방어 결정 뒤,831–832 ward floor 앞에서 두 armor값에만×.70. 보스류는 제외.846의 S02 .65는 기존 위치 유지.",
+      "status": "연결 지점 읽기 확인 / 장비 효과 신규 구현 대상"
+    }
+  ],
+  "codeReferences": {
+    "stats": {
+      "path": "shared/engine/src/progression.ts",
+      "lines": [
+        243,
+        248
+      ],
+      "note": "heroStats/applyHero. 장비 재계산은 증가분 회복과 분리 필요",
+      "url": "https://github.com/sys8994/honro/blob/bdb6fe6f1c1531c6ebfdaf60569c455ba307c437/shared/engine/src/progression.ts#L243-L248"
+    },
+    "cost": {
+      "path": "shared/engine/src/engine.ts",
+      "lines": [
+        113,
+        125
+      ],
+      "note": "manaCost/effective. 비용·기본 피해·반경 산출",
+      "url": "https://github.com/sys8994/honro/blob/bdb6fe6f1c1531c6ebfdaf60569c455ba307c437/shared/engine/src/engine.ts#L113-L125"
+    },
+    "cast": {
+      "path": "shared/engine/src/engine.ts",
+      "lines": [
+        514,
+        539
+      ],
+      "note": "실제 비용 차감과 시전당 damageRoll, 투사체 생성",
+      "url": "https://github.com/sys8994/honro/blob/bdb6fe6f1c1531c6ebfdaf60569c455ba307c437/shared/engine/src/engine.ts#L514-L539"
+    },
+    "hit": {
+      "path": "shared/engine/src/engine.ts",
+      "lines": [
+        796,
+        875
+      ],
+      "note": "조건부 보정·치명·방어·속성·아군 피해·실제 HP 손실",
+      "url": "https://github.com/sys8994/honro/blob/bdb6fe6f1c1531c6ebfdaf60569c455ba307c437/shared/engine/src/engine.ts#L796-L875"
+    },
+    "jump": {
+      "path": "shared/engine/src/engine.ts",
+      "lines": [
+        597,
+        600
+      ],
+      "note": "jumpCost 및 점프 vy. 기존 충돌/물/착지 경로 유지",
+      "url": "https://github.com/sys8994/honro/blob/bdb6fe6f1c1531c6ebfdaf60569c455ba307c437/shared/engine/src/engine.ts#L597-L600"
+    },
+    "variance": {
+      "path": "shared/engine/src/damageVariance.ts",
+      "lines": [
+        1,
+        42
+      ],
+      "note": "DAMAGE_SPREAD와 기존 seed/index 한 번 추첨",
+      "url": "https://github.com/sys8994/honro/blob/bdb6fe6f1c1531c6ebfdaf60569c455ba307c437/shared/engine/src/damageVariance.ts#L1-L42"
+    },
+    "varianceSave": {
+      "path": "shared/engine/src/store.ts",
+      "lines": [
+        166,
+        169
+      ],
+      "note": "기존 origin.damageRoll .85~1.15 검증. 요동추 범위 .78~1.28로 확장 필요",
+      "url": "https://github.com/sys8994/honro/blob/bdb6fe6f1c1531c6ebfdaf60569c455ba307c437/shared/engine/src/store.ts#L166-L169"
+    },
+    "drop": {
+      "path": "shared/engine/src/skillMechanics.ts",
+      "lines": [
+        34,
+        44
+      ],
+      "note": "trajectoryMultiplier 낙차 계수와 기존 0~1 clamp",
+      "url": "https://github.com/sys8994/honro/blob/bdb6fe6f1c1531c6ebfdaf60569c455ba307c437/shared/engine/src/skillMechanics.ts#L34-L44"
+    },
+    "arrow": {
+      "path": "shared/engine/src/skillMechanics.ts",
+      "lines": [
+        298,
+        310
+      ],
+      "note": "격퇴시 밀침·관통시 .88 감쇠 경로",
+      "url": "https://github.com/sys8994/honro/blob/bdb6fe6f1c1531c6ebfdaf60569c455ba307c437/shared/engine/src/skillMechanics.ts#L298-L310"
+    },
+    "recovery": {
+      "path": "shared/engine/src/skillMechanics.ts",
+      "lines": [
+        70,
+        76
+      ],
+      "note": "A06 실제 손실 기반 기존 HP/MP 회수와 shot별 상한",
+      "url": "https://github.com/sys8994/honro/blob/bdb6fe6f1c1531c6ebfdaf60569c455ba307c437/shared/engine/src/skillMechanics.ts#L70-L76"
+    },
+    "stake": {
+      "path": "shared/engine/src/skillMechanics.ts",
+      "lines": [
+        240,
+        245
+      ],
+      "note": "진목 생성 시 expires=round+stakeDuration",
+      "url": "https://github.com/sys8994/honro/blob/bdb6fe6f1c1531c6ebfdaf60569c455ba307c437/shared/engine/src/skillMechanics.ts#L240-L245"
+    },
+    "stakeHeal": {
+      "path": "shared/engine/src/skillMechanics.ts",
+      "lines": [
+        410,
+        421
+      ],
+      "note": "M10 기존 대상별 usedRounds와 HP/MP/이동 회복",
+      "url": "https://github.com/sys8994/honro/blob/bdb6fe6f1c1531c6ebfdaf60569c455ba307c437/shared/engine/src/skillMechanics.ts#L410-L421"
+    },
+    "summon": {
+      "path": "shared/engine/src/engine.ts",
+      "lines": [
+        1177,
+        1205
+      ],
+      "note": "소환 자연 만료와 생성, 반향령 ECHO_LIMIT",
+      "url": "https://github.com/sys8994/honro/blob/bdb6fe6f1c1531c6ebfdaf60569c455ba307c437/shared/engine/src/engine.ts#L1177-L1205"
+    },
+    "summonData": {
+      "path": "shared/engine/src/occultData.ts",
+      "lines": [
+        3,
+        9
+      ],
+      "note": "ECHO_TURNS/ECHO_LIMIT/SPIRIT_TURNS",
+      "url": "https://github.com/sys8994/honro/blob/bdb6fe6f1c1531c6ebfdaf60569c455ba307c437/shared/engine/src/occultData.ts#L3-L9"
+    },
+    "lifeSlash": {
+      "path": "shared/engine/src/warriorMechanics.ts",
+      "lines": [
+        77,
+        88
+      ],
+      "note": "S02 실제 HP 1/3 비용과 그 비용 비례 추가 피해",
+      "url": "https://github.com/sys8994/honro/blob/bdb6fe6f1c1531c6ebfdaf60569c455ba307c437/shared/engine/src/warriorMechanics.ts#L77-L88"
+    },
+    "curse": {
+      "path": "shared/engine/src/engine.ts",
+      "lines": [
+        1309,
+        1313
+      ],
+      "note": "기존 저주 남은 턴 감소와 피해 처리",
+      "url": "https://github.com/sys8994/honro/blob/bdb6fe6f1c1531c6ebfdaf60569c455ba307c437/shared/engine/src/engine.ts#L1309-L1313"
+    },
+    "existence": {
+      "path": "shared/engine/src/existence.ts",
+      "lines": [
+        87,
+        116
+      ],
+      "note": "normalizedAttack/existenceMultiplier/attackForHit/단일 피해계층",
+      "url": "https://github.com/sys8994/honro/blob/bdb6fe6f1c1531c6ebfdaf60569c455ba307c437/shared/engine/src/existence.ts#L87-L116"
+    },
+    "profile": {
+      "path": "shared/runtime/profile-store.js",
+      "lines": [
+        5,
+        71
+      ],
+      "note": "캠페인 schema4, 단일 저장 writer/save 실패 처리",
+      "url": "https://github.com/sys8994/honro/blob/bdb6fe6f1c1531c6ebfdaf60569c455ba307c437/shared/runtime/profile-store.js#L5-L71"
+    },
+    "outcome": {
+      "path": "shared/runtime/main.js",
+      "lines": [
+        483,
+        503
+      ],
+      "note": "클리어 기록/동료 합류 후 persist",
+      "url": "https://github.com/sys8994/honro/blob/bdb6fe6f1c1531c6ebfdaf60569c455ba307c437/shared/runtime/main.js#L483-L503"
+    },
+    "stages": {
+      "path": "shared/data/stage-contracts.json",
+      "lines": [
+        1,
+        100
+      ],
+      "note": "1~30장 이름/목표/step ID 확인. 실제 장비 보상은 아직 없음",
+      "url": "https://github.com/sys8994/honro/blob/bdb6fe6f1c1531c6ebfdaf60569c455ba307c437/shared/data/stage-contracts.json#L1-L100"
+    },
+    "quarry": {
+      "path": "shared/runtime/stage12-quarry.js",
+      "lines": [
+        29,
+        61
+      ],
+      "note": "sign 완료 및 유한 증원 honroAct2Elite 태그",
+      "url": "https://github.com/sys8994/honro/blob/bdb6fe6f1c1531c6ebfdaf60569c455ba307c437/shared/runtime/stage12-quarry.js#L29-L61"
+    },
+    "range": {
+      "path": "shared/engine/src/playerRange.ts",
+      "lines": [
+        1,
+        70
+      ],
+      "note": "플레이어 스킬별 실제 사거리 조정·비행 제한. 장비로 변경하지 않음",
+      "url": "https://github.com/sys8994/honro/blob/bdb6fe6f1c1531c6ebfdaf60569c455ba307c437/shared/engine/src/playerRange.ts#L1-L70"
+    },
+    "curseApply": {
+      "path": "shared/engine/src/engine.ts",
+      "lines": [
+        1122,
+        1130
+      ],
+      "note": "weak/dot/betray가 curseTurns를 공유하므로 장비로 duration을 늘리지 않음",
+      "url": "https://github.com/sys8994/honro/blob/bdb6fe6f1c1531c6ebfdaf60569c455ba307c437/shared/engine/src/engine.ts#L1122-L1130"
+    },
+    "waveGeometry": {
+      "path": "shared/engine/src/skillMechanics.ts",
+      "lines": [
+        162,
+        170
+      ],
+      "note": "geometryBoost는 두께에 적용. 반경/각도는 별도값",
+      "url": "https://github.com/sys8994/honro/blob/bdb6fe6f1c1531c6ebfdaf60569c455ba307c437/shared/engine/src/skillMechanics.ts#L162-L170"
+    }
+  },
+  "iconStyle": "탁한 회갈색 한지 바탕, 거친 붓결/담채의 한국풍 실제 소품 한 개 중심. 실루엣·재질·매듭/부착물로 구분. 글자·숫자·티어문자·인물·발사 궤적·불꽃·강한 발광·스킬 장면 없음.",
+  "architecture": [
+    {
+      "heading": "분량과 선택 구조",
+      "paragraphs": [
+        "실제 장비는52개다. 전용은 캐릭터당8개로32개, 공용은 티어당5개로20개다. 기본 지급 소품4개는 전용8개에 포함한다. 티어당 총13개이며 T1/T2 고유능력 없음, T3/T4 고유능력은 항목당 하나다.",
+        "전용은 각 캐릭터의 T1 두 개와 T3 두 개가 고정 획득, T2 두 개와 T4 두 개가 각각2택1이다. 캐릭터별 한 회차 최대6개다. 공용은 티어마다 고정2개+3택1 한 사건이므로 한 회차 최대12개다. 전체 고정24개+선택12건=최대36/52개다.",
+        "12개 선택 그룹의 미선택16개는 같은 회차의 다른 보상·회수·상점·재처치로 지급하지 않는다. 이전56개안의 미선택 회수 장부는 이번안에서 폐기한다. 새 회차의 새 runId에서는 다시 고를 수 있다."
+      ]
+    },
+    {
+      "heading": "공개 범위와 예약",
+      "paragraphs": [
+        "현재 공개 콘텐츠는1–3막30장이다. 현재 장비 시스템/보상이 이미 구현됐다는 뜻은 아니다. 그 콘텐츠에 매핑한 정의31개를 우선 연결하면 회차 최대23개다. 4막 정의8개를 더하면1–4막39종·회차 최대29개다. 5–6막13종은 예약으로 둔다.",
+        "31/35/36 초기미리보기는4막 정식 공개가 아니다. 모든4막 보상은 officialAct4=false인 동안 일반 진행에서 잠근다. 테스트용 강제 진입이나 미리보기 승리가 정상 보상 원장에 쓰이면 안 된다. 아직 없는 NPC/정예/도달영역은 현재 완료가 아니라 제작 대상이라고 명시했다.",
+        "5–6막은 정확한 사건·적·NPC가 없으므로 단계별 eventId와 선택 그룹만 예약한다. 해당 막 콘텐츠의 기존 조건에 연결하기 전 normalEnabled를 켜지 않는다. 장비를 위해 현재30장 공개 범위를 확장하지 않는다."
+      ]
+    },
+    {
+      "heading": "기본 수치와 상한",
+      "paragraphs": [
+        "장비 기본 옵션은 장비를 뺀 heroStats 결과에 합산해 한 번 적용한다. HP/기력/공격/이동력은 비율, 방어와 치명 확률은 %p, 치명 배율은 배 가산, 턴 기력 회복은 고정값이다. 예를 들어 기본 HP1000에 HP+20% 두 개면1400이다.",
+        "두 장비의 카탈로그상 기본 옵션 최대 합은 HP+40%, 기력+40%, 공격+16%, 이동력+12%, 방어+5%p, 치명 확률+5%p, 치명 배율+0.20, 턴 기력 회복+8이다. 방어 최종 상한은 현재 HERO_ARMOR_CAP=70%, 기본 치명 확률은 heroStats의75%, 스킬 치명 최종 확률은 기존 critProfile의80%, 치명 배율3.5를 유지한다.",
+        "기력 비용은 기존 manaCost(랭크·패시브·주천·소환 할인) 뒤 장비 할인율을 합산해 최대30%로 제한하고, 비용 할증을 그 뒤 더한다. 원래 무료가 된 비용0은0으로 유지한다. 기존 소수 비용 정책은 그대로 두고 임의 정수 올림을 전역 도입하지 않는다. 가격 표시와 발사 가능 검사도 같은 함수를 쓴다.",
+        "고유 위력·반경·수명·방어·회수 계수는 항목에 적힌 곳에만 한 번 적용한다. 원본 SKILLS/전역 속성표를 변조하지 않는다. 기존 랭크·패시브 효과를 장비로 두 번 계산하지 않는다. 후속탄·소환 공격은 이미 강화된 주인/원본의 값을 복사하는 기존 경로를 따라야 한다."
+      ]
+    },
+    {
+      "heading": "낮은 티어가 남을 이유",
+      "paragraphs": [
+        "T1/T2는 입문·성장 역할이며 모든 낮은 티어를 종결품으로 유지하려고 새 승급 시스템을 만들지 않는다. 그러나 T2의 공격/기력형과 HP/방어/이동형은 같은 티어에서 다른 역할이다. 선택 전 현재 기본 스탯에 장착한 차이를 보여 준다.",
+        "T3 급락시·격퇴시·파진목·회생진목·점프 비용·사생참·반향령·쇠약 강도은 T4의 관통 감쇠·회기시 회수·좁은 천뢰호·넓은 원호파·저HP 방어·검기 비용·넓은 혼령탄·강한 귀결과 역할이 다르다. T4의 숫자가 높아도 해당 T3의 기능까지 포함하지 않는다.",
+        "공용 고른돌추와 요동추는 같은 티어의 안정/위험 선택이다. 고비용 할인과 저기력 할인도 발동 조건이 달라 후자가 항상 상위가 아니다. 각 선택지는 피해만이 아니라 자원·생존·이동·특정 기술 투자를 비교하게 한다. 어떤 아이템도 필수 진행이나 보스 공략의 열쇠로 쓰지 않는다.",
+        "선택 비교로 공용T1은 HP/기력·공격/이동·비용/회복으로, 공용T2는 공격/HP/치명·공격/기력/비용·HP/기력/이동으로 역할을 나눴다. 초기 청동뇌문의 작은 치명배율 옵션은 비교 가치가 약해 공격/비용형으로 교체했다."
+      ]
+    },
+    {
+      "heading": "기존 코드에서 확인한 점과 추가 변경",
+      "paragraphs": [
+        "읽기 기준은 master bdb6fe6f1c1531c6ebfdaf60569c455ba307c437다. 점프는 engine.ts jumpCost()/jump(), 편차는 damageVariance.ts rollDamage(), 진목은 skillMechanics.ts 생성/만료, 반향령은 engine.ts spawnSummon/expireSummon의 기존 라운드 필드가 실제로 있다. 새 공중 조작·난수 원장·독자 객체 시계를 만들 필요가 없다.",
+        "점프 높이20%는 수직 속도에 sqrt(1.20)를 곱하는 안이다. 수평 속도값은 바꾸지 않지만 체공 시간 증가로 자연 수평 이동이 달라질 수 있다. 실제 지지면의 새 길과 정상 물골 횡단은 허용한다. 기존 충돌·천장·이동 예산·입수·낙사 판정은 그대로다.",
+        "고른돌추는 기존 난수 표본의 진폭만 절반으로 한다. 요동추는 기존 표본 x를 이용해1.03+0.25x로 만든다. 비치명 방어 전 기본100에서 기대 평균103, 표준편차 약14.43, 하한78·상한128이다. 기존 피해 편차는 균등 표본 계열이며 정규분포라고 부르지 않는다. 치명타의 별도 추첨·상한은 유지한다.",
+        "기존 세이브는 damageRoll을 .85~1.15만 허용한다. 요동추를 넣으려면 store.ts validOrigin의 허용범위 .78~1.28과 관련 미리보기 설명을 함께 조정해야 한다. 기존 seed/index와 이미 저장된 roll은 유지하며 불러오기 때 재추첨하지 않는다. 단일플레이 저장 재추첨 방지용 별도 영구 원장을 이번에 추가하지 않는다.",
+        "진목과 소환령 수명은 모두 현재 라운드 기준이다. 파진목은 최대9→10라운드, 반향령은 최대8→9라운드로 한 번만 늘린다. 반향령 활성 상한은 ECHO_LIMIT의1~3 그대로다. 일반 소환령 전체의 상한을 확인하지 않은 채 일괄 연장하지 않는다. M07은 명시적인 개수 상한 대신 기존 유한 수명/설치 정책을 따르며, 장비가 새 설치 행동을 주지 않는다.",
+        "천뢰호 전달 출발점 변경, 소단 공격의 아군 치유 전환, 일반 장비 흡수 이벤트 신설은 이번52개에서 제외했다. 대신 기존 천뢰호 반경/위력, 기존 M10 치유량, 기존 A06 회수율만 보정한다. 실제 읽기 확인된 연결점이 있어도 장비 기능 자체가 구현 완료됐다는 뜻은 아니다.",
+        "마지막 검수로 두 coupling을 피했다. O06 duration을 늘리면 공용 curseTurns 때문에 DOT도 늘 수 있어 지속 대신 공격약화12→15%로 바꿨다. M03은 새 반경 인자 대신 기존 geometryBoost의 두께만20% 늘린다. 일반 적 방어무시는 ward .32 하한보다 먼저 적용하며 보스류에는 넣지 않는다."
+      ]
+    },
+    {
+      "heading": "데이터와 effect dispatch 인계",
+      "paragraphs": [
+        "제안 파일은 equipmentData(아이템/이벤트/선택 정의), equipmentState(검증/획득/선택/장착), equipmentEffects(순수 수치/조건 조회), equipmentUI(기존 쉼터 연결)로 책임을 나눈다. 이 이름은 새 설계상의 책임이며 현재 파일이 존재한다는 주장이 아니다.",
+        "itemId는 회차 안의 한 실물을 식별한다. 랜덤 인스턴스ID/affix/내구도/강화/세트는 없다. 모든 효과는 whitelist effectId와 검증된 params로 선언하고 임의 eval 함수나 임의 스크립트 문자열을 데이터에 넣지 않는다.",
+        "단순 스탯은 heroStats 뒤 재계산, 비용/기본 위력/반경은 manaCost/effective, 낙차·관통·회수·진목·반향·사생참은 각 기존 helper, 조건부 피해/방어/속성은 applyHit의 지정 계층에 얇게 연결한다. 스킬 미리보기와 실전이 다른 공식을 쓰지 않게 modifier 조회를 공통화한다.",
+        "효과 적격 주체는 실제 파티 영웅이다. 소환·섭혼·일반 동맹·시민·적에게 장비 목록을 복사하지 않는다. 소환/진목에 필요한 효과는 주인의 생성 시점에 지정된 값만 기록한다. Battle/Unit에는 장착된 두 itemId의 읽기전용 스냅샷만 두고, 소유/선택 원장은 프로필에만 둔다. 일반 공격 스탯은 주인 공격에 이미 들어가므로 소환·자탄에서 다시 장비 공격%를 곱하지 않는다.",
+        "조건부 주공격은 정상 영웅 시전의 기존 공격 문맥으로 판별한다. 자율 후속/소환/지속/환경·살흔·먹귀 전달을 새 발동원으로 보지 않는다. 무구백의는 원래30% 아군 HP 피해를 본체에서15%로 줄이는 범위이며 이미 경감된 shove/자율후속에 재경감을 곱하지 않는다. 이 적격 경계는 좁은 테스트가 필요하다."
+      ]
+    },
+    {
+      "heading": "장착과 stat recompute",
+      "paragraphs": [
+        "공용 물건 하나는 전 파티에서 한 사람만 장착한다. 이미 담허가 착용한 공용품을 설오가 고르면 “담허에서 해제하고 설오에게 장착”을 한 번 확인한 뒤 원자적으로 이동한다. 개인 소품은 해당 classId의 개인 슬롯에서만 사용한다. 해제하면 물건은 인벤토리에 남는다.",
+        "착용/해제는 실제 휴식터에서만 가능하다. 전투 중·일시정지·전투 결과 장면·증원 사이에는 불가하다. 분할 원정 중에는 기존 팀/체크포인트 잠금에 맞춰 합류한 휴식터까지 변경을 잠근다. 전투 스냅샷마다 소품 복사본을 만드는 방식은 피한다.",
+        "현재 applyHero는 최대치 증가분으로 현재 HP/기력을 올리는 동작이 있으므로 장비 교체에 그대로 사용하면 안 된다. 성장/레벨업 경로는 보존하고 장비 재계산 경로는 현재 HP·기력의 절대값 유지, 감소 시 새 최대치로 clamp, 최대치 증가로 회복 없음으로 분리한다. 이동 예산도 전투 중 재생성하지 않는다.",
+        "장착 전후 비교는 HP/기력/공격/방어/이동/치명/턴회복과 적용 기예 비용, 고유효과의 대상 스킬을 보여 준다. 고유효과가 대상 미습득 때문에 아직 작동하지 않는 경우 “기예 미습득”이라고 표시하되 그 기술을 강제 해금하거나 해금 시점을 늦추지 않는다.",
+        "heroStats는 장비 없는 기저값과 장비 보정을 구분해 계산하고, applyHero의 성장/레벨업 호출도 같은 장비ID를 전달해 효과를 지우지 않게 한다. 장비 교체만 current 절대값 유지 모드로 실행한다. split-campaign의 snapshot/restore/outcome 재적용도 같은 recompute 경로와 현재값 정책을 써야 하며 별도 최대치 차이만큼 회복시키면 안 된다.",
+        "독립 읽기검수는 최신039f342의 split-campaign.js snapshot12–21/restore23–38/initialize60–78/outcome82–87도 확인했다. restore27–28의 최대치 증가분 회복과 outcome85의 C.applyHero를 그대로 두지 말고, 같은 장비 포함 기저와 reason별 현재치 정책으로 통합한다. 분할 원정 전체를 재설계하는 것이 아니다.",
+        "장비 reason에서는 hp/focus/moveLeft 셋 모두 절대값을 유지하고 새 maxHp/maxFocus/maxMove가 작아질 때만 clamp한다. 성장 증가분 보정이나 split restore의 최대치 차이 보정을 장비 착탈로 호출하지 않는다. 새 전투 시작의 정상 이동 예산 지급은 별도 기존 규칙이다."
+      ]
+    },
+    {
+      "heading": "저장 구조와 중복 방지",
+      "paragraphs": [
+        "프로필에 equipment.schema=1, runId, definitionRevision, ownedItemIds, equippedByClass, rewardLedger를 둔다. rewardLedger[eventId]는 eligible/pending/committed 및 선택한 itemId/choiceGroup을 기록한다. 미결정 선택 목록은 ledger에서 파생해 별도 원장과 불일치하지 않게 한다.",
+        "선택 확정은 이벤트 적격·공개 gate·그룹 미결정·선택 itemId membership을 먼저 검사한다. 복제 프로필에서 선택/owned/equipped 변경을 완성하고 기존 단일 profileStore writer에 저장 성공한 뒤만 화면에 획득을 확정한다. 저장 실패면 성공 메시지/능력 적용을 하지 않고 선택을 유지한다. 이중 클릭은 in-flight UI 잠금과 committed 검사로 모두 차단한다.",
+        "엔진 전투 스냅샷/장 시작 체크포인트를 불러올 때도 장비 원장은 현재 회차 프로필이 권위다. 이전 battle.rewardFacts를 다시 읽어 이미 committed된 eventId는 무시한다. 반복 처치·승리 화면 재진입·장 재도전은 같은 선택을 다시 띄우거나 미선택 보상을 주지 않는다.",
+        "유효성 검사는 itemId/소유권/slot/classId/중복 공용/choice membership/그룹당1개/공개 gate/유한 params를 확인한다. 인벤토리는 committed 원장에서 정합성을 확인하되 알 수 없는 새 버전 항목을 조용히 삭제하지 않는다. 형식 충돌은 기존 저장 실패 소유자에 넘겨 원본 바이트를 보존한다.",
+        "외부에서 의도적으로 편집한 JSON이나 선택 전의 별도 옛 파일을 강제로 덮어쓰는 치팅까지 완전 차단하는 서버 원장은 도입하지 않는다. 일반 이어하기·재접속·장 체크포인트·동일회차 구버전 스냅샷 재처리에서의 중복/재선택을 보장 범위로 삼고 이 한계를 숨기지 않는다.",
+        "실제 App.persist()는 성공 시에도 undefined를 반환한다. 선택 commit은 이 반환값을 성공 판정으로 쓰지 않는다. 기존 profileStore.save(candidate)의 boolean을 받는 얇은 commit 어댑터를 두고, 저장 성공 뒤에만 app.profile/normalProfile을 candidate로 교체한다. 단일 저장 writer와 기존 실패 복구 소유자를 그대로 사용한다."
+      ]
+    },
+    {
+      "heading": "세이브 버전과 과거 보상 소급",
+      "paragraphs": [
+        "현재 캠페인 schema4, 코어 Profile.version2/revision13이다. 기본 인계안은 equipment.schema1과 캠페인 schema5를 추가하되 코어 revision13은 유지한다. 코어 revision을14로 올리면 store.validate의 상한뿐 아니라 [4..13].includes에 묶인 성장/튜토리얼 분기도 전부 다뤄야 하므로 장비만을 위해 불필요하게 올리지 않는다. 기존 XP/스킬 마이그레이션 재실행 금지.",
+        "기존 세이브에는 장비 원장이 없으므로 최초 전환 때 runId를 한 번 부여한다. 이미 합류한 동료의 기본품과 이미 깬 장의 필수 클리어/필수 사건 고정 보상은 정책상 소급 지급할 수 있다. 이는 과거의 실제 이벤트 수행을 복원했다는 뜻이 아니라 오래 플레이한 진행을 존중하는 명시적 소급 정책이다.",
+        "이미 깬 장의 선택 보상은 자동 선택하지 않고 pending으로 등록해 다음 안전한 휴식터에서 비교 후 한 번 고르게 한다. 선택 보상이 도입되기 전 세이브라고 양쪽/세 개 전부 주지 않는다. 실제 수행을 증명할 수 없는 선택 정예/선택 수문/숨은 도달 보상은 클리어 사실만으로 소급하지 않으며 미획득 상태로 재방문할 수 있다.",
+        "기존 진행 중 전투에는 새 장비를 자동 장착해 저장된 투사체 위력/HP를 바꾸지 않는다. 새 물건은 소급 인벤토리에 두고 다음 휴식터에서 장착하게 한다. 새 회차의 기본품 자동 장착은 빈 개인 슬롯에서 전투 생성 전만 처리한다. 신규 회차는 원장과 선택을 초기화하며 기존 회차의 인벤토리를 계승하지 않는다."
+      ]
+    },
+    {
+      "heading": "획득 알림과 선택 UX",
+      "paragraphs": [
+        "아이템은 전장에 떨어지는 물리 오브젝트가 아니다. 기존 성공 이벤트를 관찰해 “아이콘+이름+얻었다/발견했다” 메시지를 넣는다. 선택 수문은 실제 접근/상호작용, 정예는 실제 처치 사실, 스토리/NPC는 실제 step 완료를 사용한다. 공격으로 멀리서 오브젝트를 맞히기만 해서 위치 도달을 대신하지 않는다.",
+        "고정 보상은 저장 확정 후 기존 메시지/알림 흐름에 표시한다. 비행·강제 조작·대사 읽기·보스 전환 중에는 획득 사실을 큐에 보존하고 다음 안전 경계에서 보여 준다. 선택 UI는 획득 알림과 다른 “소품 선택” 화면이며 비교 전에는 어느 물건도 획득되지 않는다.",
+        "선택 화면은 각 대안의 이름·물건 아이콘·기본 옵션·고유효과/대상 스킬을 모두 보여 준다. “이번 회차에서는 하나만. 고르지 않은 소품은 얻을 수 없고 결정 후 바꿀 수 없다”를 확인 버튼 바로 위에 표시한다. 미결정 상태로 닫거나 재접속해도 같은 대안이 남으며 진행을 막지 않는다.",
+        "모바일은 기존 성장/기예 쉼터 UI 안에 소품 항목을 넣고 동행 전환→개인/공용 두 줄→소지 목록→비교→장착/해제를 같은 문법으로 처리한다. 터치 대상은 최소44px, 이름/효과는 줄바꿈하고 hover에 의존하지 않는다. 새 SaaS 대시보드나 전투 위 별도 관리창은 만들지 않는다."
+      ]
+    },
+    {
+      "heading": "아이콘과 제작 순서",
+      "paragraphs": [
+        "아이콘은 itemId와 물건 이름으로 고정한다. 제안 자산 경로는 shared/assets/item-icons/v1/<itemId>.webp이며 실제 제작 경로는 담당 세션과 맞춘다. iconBrief는 행동/폭발이 아니라 물건의 실루엣·재질·주색·매듭/부착물을 설명한다. 같은 형태의 색놀이로52개를 만들지 않는다.",
+        "탁한 회갈색 한지 바탕, 거친 붓결/담채의 한국풍 실제 소품 한 개 중심. 실루엣·재질·매듭/부착물로 구분. 글자·숫자·티어문자·인물·발사 궤적·불꽃·강한 발광·스킬 장면 없음.",
+        "순서는 데이터/원장/장착 기저→기본 스탯과 소수 대표 효과→나머지 기존 helper 보정→1–3막 보상 연결→잠긴4막 정의→짧은 UI/저장/이벤트 검수다. 아이콘은 안정된 itemId와 병행 제작하되 부모가 자산 품질과 파일 연결을 확인한다. 이 문서 세션은 이미지 생성/실제 게임 코드 수정/배포를 수행하지 않았다."
+      ]
+    }
+  ],
+  "focusedVerification": [
+    {
+      "area": "데이터",
+      "check": "52개ID·이름·tier13씩·전용8씩/공용20·기본옵션수·T3/T4고유1·이벤트36·선택12·최대36을 자동 검증한다. 선택 itemId는 유일 획득 이벤트 하나만 가진다."
+    },
+    {
+      "area": "선택/저장",
+      "check": "2택1 하나와3택1 하나에서 비교→취소/닫기→재접속→확정→이중탭→재도전 순서만 집중 확인한다. 미결정 보존·commit 후 대안 잠금·저장 실패 시 미지급을 확인한다."
+    },
+    {
+      "area": "고정/정예/위치",
+      "check": "대표 클리어1건,12장 정예 태그1건,15장 선택 수문1건만 검수한다. 처치/도달 사실 없이 지급되지 않고 같은 eventId 재처리는 무시해야 한다."
+    },
+    {
+      "area": "공개 gate/디버그",
+      "check": "정상30장 완료로31/35/36/40 보상이 나오지 않는지 확인한다. 디버그 소지52개/미리보기 획득이 정상 프로필에 저장되지 않아야 한다."
+    },
+    {
+      "area": "장착/자원",
+      "check": "휴식터 착용/해제, 다른 동행의 공용품 이동, 전투중 거부, 분할원정잠금만 확인한다. HP/기력 최대치 착탈 반복으로 현재값이 증가하지 않아야 한다."
+    },
+    {
+      "area": "기본스탯/미리보기",
+      "check": "대표 두 장비의 합산과 실제 unit값/비교창/스킬 비용을 맞춘다. 공격 스탯을 원본/소환/파생에서 두 번 적용하지 않는지 한 기술만 확인한다."
+    },
+    {
+      "area": "점프",
+      "check": "고갯돌매듭의 높이, 가벼운칼끈의 비용을 평지·낮은천장·물골 정상착지·실제낙수에서만 확인한다. 새 공중조작이나 면제 경로는 없다."
+    },
+    {
+      "area": "편차",
+      "check": "동일 시전의 원본/다중탄이 같은 damageRoll을 쓰는지,고른돌 평균불변,요동추 .78~1.28,치명타 분리,저장/재개가 유효한지만 확인한다. 새 재추첨 방지 시스템을 만들지 않는다."
+    },
+    {
+      "area": "수명",
+      "check": "파진목 +1라운드와 반향령 +1라운드를 각각 한 번 확인한다.재접속재연장없음,대상별usedRounds 유지,반향령 ECHO_LIMIT/소멸 보전은 기존대로여야 한다."
+    },
+    {
+      "area": "기술별 얇은 보정",
+      "check": "급락·격퇴·관통·회기·M10·천뢰호/원호파·사생참·검기·쇠약·혼령탄/귀결은 각 수정 helper당 대표 기술1개만 비교한다. 새 전체30장 순회를 요구하지 않는다."
+    },
+    {
+      "area": "경계 효과",
+      "check": "무구백의의 주공격/자율후속/밀침충돌 구분,온혼거울 비중합1,틈새호패의 보스/ward보호 예외,저HP방어70%상한,무딘동전 치명최저1을 해당 대상만 확인한다."
+    },
+    {
+      "area": "아이콘/모바일",
+      "check": "52개 물건을 접촉시트로 한 번 비교하고24px 판독성과 실제 획득/선택/착용 화면의 소수 대표만 본다. 카드형 기획문서를 다시 만들지 않는다."
+    }
+  ],
+  "deferredEffects": [
+    "천뢰호 하늘 낙뢰→충격점 직접방전",
+    "소단 공격→아군 치유 전환",
+    "일반 흡수 사건 신설",
+    "행동순서/공중조작/예약공격/이동진법/피해원장승계/추가슬롯"
+  ],
+  "basicOptionMaximaFromAllLegalPairs": {
+    "attack": 16.0,
+    "hp": 40.0,
+    "armor": 5.0,
+    "mp": 40.0,
+    "regen": 8.0,
+    "move": 12.0,
+    "cost": 18.0,
+    "crit": 5.0,
+    "critMult": 0.2
+  },
+  "latestIndependentSourceReview": "039f342: ward floor 순서, core revision 분기, App.persist 반환, split snapshot/restore/outcome 연결부 확인. 본문 코드 참조 URL은 주 읽기 기준 bdb6fe6f1c1531c6ebfdaf60569c455ba307c437를 가리킴."
+}

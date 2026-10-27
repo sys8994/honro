@@ -1,3 +1,4 @@
+import {equipmentActor,equipmentParam,equipmentCast,equipmentManaCost,equipmentPrimary,equipmentSoulVector} from './equipment';
 import {playerRangeSpeed,initializePlayerRange,flightRangeSpent,boundRushMotion,playerRangeApplies,PLAYER_LANTERN_RANGE} from './playerRange';
 import {endPlayerFlight} from './playerRangeMechanics';
 import {PLAYER_SKILL_AUDIO,type SkillAudioPhase,type SkillAudioSignal} from './skillAudioMap';
@@ -110,7 +111,7 @@ export class Engine {
     canAct() { return this.b.phase === 'aim' && this.b.side === 0 && !!this.active && !this.active.dead && !this.active.summoned && !this.active.enthrall && !this.active.acted && !this.active.airborne && (!this.active.platformDrop||this.active.platformDrop.phase==='land'); }
     select(id: string) { const u = this.unit(id); if (this.b.phase !== 'aim' || (this.active?.retreat || this.active?.meleeFollow==='ready' || this.active?.platformDrop && this.active.platformDrop.phase!=='land') || !u || u.side !== 0 || u.summoned || u.enthrall || u.dead || u.acted)
         return false; this.b.active = id; this.emit('change'); return true; }
-    manaCost(s: Skill, u: Unit, power=u.lastPower) { const rank=s.ultimate||s.basic?1:(u.ranks[s.id] || 1),scale=u.side===0?MANA_COST_MULTIPLIER:1,charge=meleeSkill(s)&&!['counterStance','lifeSlash'].includes(s.mode)?.75+.25*clamp(power,0,1):1; return passiveCost(u,s,s.cost*skillManaFactor(rank)*scale*charge)*(SUMMON_SKILLS.has(s.id)?1-(u.nextSummonDiscount||0):1); }
+    manaCost(s: Skill, u: Unit, power=u.lastPower) { const rank=s.ultimate||s.basic?1:(u.ranks[s.id] || 1),scale=u.side===0?MANA_COST_MULTIPLIER:1,charge=meleeSkill(s)&&!['counterStance','lifeSlash'].includes(s.mode)?.75+.25*clamp(power,0,1):1; return equipmentManaCost(u,s,passiveCost(u,s,s.cost*skillManaFactor(rank)*scale*charge)*(SUMMON_SKILLS.has(s.id)?1-(u.nextSummonDiscount||0):1)); }
     noncombatWalk(){const b=this.b as Battle&{honroStage?:number;honroCustom?:boolean};return b.honroStage===19&&!b.honroCustom&&b.mode==='campaign';}
     skillAllowed(s:Skill,u=this.active){return !this.noncombatWalk()&&!!u&&warriorAllowed(u,s);}
     manualDive(){return manualDive(this);}
@@ -148,6 +149,7 @@ export class Engine {
         // Control effects apply after launch calibration, including tuned BODY casts.
         if (u.bound > 0 && BODY.has(s.mode))
             speed *= .72;
+        const gear=equipmentCast(u,s.id);damage*=gear.damage;radius*=gear.radius;
         return { speed, damage, radius };
     }
     award(u: Unit, amount: number) {
@@ -532,7 +534,7 @@ export class Engine {
         (globalThis as any).HonroClearReport?.cast(b,u,skillId);
         b.shotDamage = {}; b.reviewDamage={}; b.reviewFocus=undefined;
         b.shots += u.side === 0 ? 1 : 0;
-        const damageRoll=u.meleeFollow==='ready'?(u.meleeFollowOrigin?.damageRoll??1):rollDamage(b,s);
+        const damageRoll=u.meleeFollow==='ready'?(u.meleeFollowOrigin?.damageRoll??1):rollDamage(b,s,u);
         if(beastKind(u))return startBeastCast(this,u,s,e.damage,targetFor(this,u),damageRoll);
         const origin = this.projectileOrigin(u, s, u.angle);
         const attackSide=this.allegiance(u);
@@ -594,9 +596,9 @@ export class Engine {
         if(u.platformDrop?.phase!=='fall'||!u.platformDrop.contacts.length)return this.contactSurface(x,min,max);
         return terrainSurface(this.collisionTerrain({x,y:0},{x,y:0},3),x,min,max,Infinity,(t,edge)=>!!this.dropEdges(u,t)?.includes(edge));
     }
-    jumpCost(u:Unit){return Math.max(25,75-passiveRank(u,'SP03')*5);}
+    jumpCost(u:Unit){return Math.max(25,75-passiveRank(u,'SP03')*5-equipmentParam(u,'hw_jump_cost','jumpCostFlatReduction',0));}
     jump(u = this.active) { if(this.noncombatWalk()&&u?.side===0)u.moveLeft=u.maxMove; if (!u || u.dead || u.eaterCapturedBy || u.summonKind==='eater' || u.meleeFollow==='ready' || u.fixed || u.airborne || u.moveLeft < this.jumpCost(u) || !this.grounded(u))
-        return false; delete u.platformDrop;delete u.moveTarget; u.jumping = true; u.vy = -660*(1+passiveRank(u,'SP03')*.02); u.moveLeft = Math.max(0, u.moveLeft - this.jumpCost(u)); u.landing = 0; this.fx('spark', u.x, u.y, '#d7d0b8', 20); this.emit('sound', { name: 'jump' }); return true; }
+        return false; delete u.platformDrop;delete u.moveTarget; u.jumping = true; u.vy = -660*(1+passiveRank(u,'SP03')*.02)*equipmentParam(u,'co_jump','jumpVelocityScale',1); u.moveLeft = Math.max(0, u.moveLeft - this.jumpCost(u)); u.landing = 0; this.fx('spark', u.x, u.y, '#d7d0b8', 20); this.emit('sound', { name: 'jump' }); return true; }
     walk(u:Unit,direction:number,dt:number,requireSupport=false){if(u.eaterCapturedBy||u.summonKind==='eater')return false;if(u.meleeFollow==='ready'||u.platformDrop&&u.platformDrop.phase!=='land')return;if(this.noncombatWalk()&&u.side===0)u.moveLeft=u.maxMove;const result=walkTerrain(this,u,direction,dt*(1-(u.slowed?.factor||0)),requireSupport);if(this.noncombatWalk()&&u.side===0)u.moveLeft=u.maxMove;return result;}
     turnArrow(point?:Vec){return turnArrow(this,point);}
     useGate(){return useGate(this);}
@@ -800,10 +802,11 @@ export class Engine {
         const damageRoll=damageSource==='normal'?((p||provenance)?.damageRoll??1):1;
         let dmg = amount*damageRoll;if(p?.wraithBurst&&p.wraithMarked?.includes(u.id)&&this.guidanceTarget(rawSrc,u))dmg*=1.30;
         const canCritical=damageSource==='normal'&&!!src&&src.side!==1&&!rawSrc?.summoned&&(!!p||direct);
-        const crit=canCritical?critProfile(p||{skill:'',skillRank:1} as Projectile,src!):undefined;
+        const crit=canCritical?critProfile(p||{skill:'',skillRank:1} as Projectile,src!,rawSrc):undefined;
         const critical=canCritical&&this.random()<crit!.chance;
         const criticalMultiplier=critical?crit!.multiplier:1;
-        const conditionBonuses:number[]=[];
+        const primary=equipmentPrimary(rawSrc,p,damageSource),conditionBonuses:number[]=[];
+        if(primary){if(!critical)conditionBonuses.push(equipmentParam(rawSrc,'co_noncrit','noncriticalBonus',0));if(u.side===1&&((u.curseTurns||0)>0||u.earthbind&&u.earthbind.until>=this.b.round))conditionBonuses.push(equipmentParam(rawSrc,'co_cursed','conditionBonus',0));}
         if(src?.side===0 && direct && src.cls==='archer' && !p?.skill.startsWith('A'))conditionBonuses.push(.04*equippedRank(src,'AP02'));
         // Jucheon is applied at cast time, never on old or secondary on-hit hooks.
         if (p && !newSkill(p) && src && src.side === 0 && direct && (src.cls === 'archer' || p.body && src.cls === 'knight'))
@@ -828,6 +831,8 @@ export class Engine {
             armorWithoutSupport=armor = (source.x - u.x) * u.facing > 0 ? .40 : .05;
         if (u.boss && u.boss !== 5)
             armorWithoutSupport=armor = (this.b.round % 2 === 0 ? .06 : .29);
+        if(damageSource==='normal'&&equipmentActor(u)&&u.hp/u.maxHp<=.30){const add=equipmentParam(u,'hw_guard','armorAdd',0);armor=Math.min(.7,armor+add);armorWithoutSupport=Math.min(.7,armorWithoutSupport+add);}
+        if(primary&&u.side===1&&!u.boss&&!(u as any).honroMidboss&&!(u as any).honroAct2Boss&&!(u as any).honroFinalBoss&&!u.honroObjectiveTarget){const keep=1-equipmentParam(rawSrc,'co_armor','armorIgnoreFraction',0);armor*=keep;armorWithoutSupport*=keep;}
         if (u.side === 1 && !u.honroObjectiveTarget && u.summonKind!=='eater' && ((globalThis as any).HonroQuestTargets?.records(this.b)||this.b.terrain).some((t:Terrain) => !t.broken && t.device === 'ward'))
             {armor = Math.max(armor, .32);armorWithoutSupport=Math.max(armorWithoutSupport,.32);}
         if (u.breaks > 0 && damageSource!=='eaterTransfer') {
@@ -846,7 +851,8 @@ export class Engine {
         const defenseMultiplier=(damageSource==='normal'?1-clamp(armor*(p?.skill==='S02'?.65:1),0,HERO_ARMOR_CAP):1)
             *(u.arrivalGuard!==undefined?.90:1)
             *(u.martialGuard&&u.martialGuard.round>=this.b.round?1-u.martialGuard.reduction:1);
-        const attack=damageSource==='normal'?(damageSkill&&SKILLS[damageSkill]?attackForSkill(SKILLS[damageSkill]):attackForHit(p,rawSrc,src,SKILLS)):undefined;
+        let attack=damageSource==='normal'?(damageSkill&&SKILLS[damageSkill]?attackForSkill(SKILLS[damageSkill]):attackForHit(p,rawSrc,src,SKILLS)):undefined;
+        if(attack&&primary)attack=equipmentSoulVector(rawSrc!,attack);
         const existence=attack?existenceMultiplier(attack,u,rawSrc||src):1;
         const layers=calculateDamage({skillDamage:dmg/(preCondition*criticalMultiplier),conditionBonuses,criticalMultiplier,existenceMultiplier:existence,defenseMultiplier});
         dmg=damageSource==='eaterTransfer'?amount:layers.finalDamage;let contributionDamageLimit=Infinity;
@@ -873,6 +879,7 @@ export class Engine {
         const absorbed = damageSource==='eaterTransfer'?0:Math.min(u.shield, dmg);
         u.shield -= absorbed;
         dmg -= absorbed;
+        if(primary&&u.side===0&&friendlyFire<1)dmg*=equipmentParam(rawSrc,'co_friendly','friendlyHpScale',1);
         if(u.side===0&&u.cls==='occultist'&&!u.summoned&&!u.enthrall&&passiveRank(u,'OP03')&&dmg>0){
             const near=this.actors(0).filter(v=>v.summoned&&v.summonOwner===u.id&&Math.hypot(v.x-u.x,v.y-u.y)<340).sort((a,c)=>Math.hypot(a.x-u.x,a.y-u.y)-Math.hypot(c.x-u.x,c.y-u.y))[0];
             if(near){const shared=Math.min(Math.round(dmg*passiveTuning(passiveRank(u,'OP03')).soulShare),Math.round(u.maxHp*passiveTuning(passiveRank(u,'OP03')).soulShareCap),near.hp);dmg-=shared;this.hurt(near,shared,owner,false,undefined,source,'salheun',damageSkill||p?.skill);}
@@ -1124,7 +1131,7 @@ export class Engine {
         const duration=Math.max(1,Math.ceil(((kind==='weak'?WEAK_TURNS[clamp(rank,1,8)-1]:kind==='betray'?BETRAY_TURNS[clamp(rank,1,8)-1]:kind==='dot'?5:kind==='chain'?3:2)+bonus)*(trap?.45:1))),strength=trap?.5:1;
         target.curseOwner=owner.id;
         const provenance=target as any;if((kind==='weak'||kind==='bind')&&!(target.curseAttack||0))provenance.honroWeakOwner=owner.id;if(kind==='weak'&&!(target.curseArmor||0))provenance.honroArmorOwner=owner.id;if((kind==='dot'||kind==='chain')&&damage>=(target.curseDamage||0)){target.curseDamageOrigin={attackSide:this.attackSide(owner.id,attack),damageRoll:attack?.damageRoll};provenance.honroDotOwner=owner.id;provenance.honroDotSkill=attack?.skill;provenance.honroDotReport=attack?.honroReportSource||(globalThis as any).HonroClearReport?.origin(this.b,owner.id,attack?.skill);}
-        if(kind==='weak'){target.curseTurns=Math.max(target.curseTurns||0,duration);target.curseAttack=Math.max(target.curseAttack||0,.12*strength);target.curseArmor=Math.max(target.curseArmor||0,.13*strength);}
+        if(kind==='weak'){target.curseTurns=Math.max(target.curseTurns||0,duration);target.curseAttack=Math.max(target.curseAttack||0,(attack?.skill==='O06'?equipmentParam(owner,'so_weak','weakAttackReduction',.12):.12)*strength);target.curseArmor=Math.max(target.curseArmor||0,.13*strength);}
         if(kind==='betray'){target.curseTurns=Math.max(target.curseTurns||0,duration);target.betrayalUntil=Math.max(target.betrayalUntil||0,this.b.round+duration-1);}
         if(kind==='dot'||kind==='chain'){if(damage>=(target.curseDamage||0))target.curseAutonomous=this.autonomousAttack(owner.id,attack);target.curseTurns=Math.max(target.curseTurns||0,duration);target.curseDamage=Math.max(target.curseDamage||0,Math.round(damage));}
         if(kind==='bind'){keeperBindingReplaced(target);target.curseTurns=Math.max(target.curseTurns||0,duration);target.bound=Math.max(target.bound,2);target.curseAttack=Math.max(target.curseAttack||0,.18);}
@@ -1198,7 +1205,7 @@ export class Engine {
         const grounded=kind==='stalker'||kind==='warden'||kind==='eater';
         const summon=makeUnit('occultist',kind==='eater'?1:0,clamp(x,30,this.b.width-30),sy,{id:`summon-${this.b.nextId++}`,name:{stalker:'배회령',lantern:'등불귀',charger:'돌격귀',warden:'호혼령',host:'문지기귀',eater:'먹귀',echo:'반향령',earthbound:'지박령'}[kind],role:`summon-${kind}`,summoned:true,summonOwner:owner.id,summonKind:kind,summonRank:rank,summonExpires:this.b.round+dur-1,hp,maxHp:hp,r:base.r,h:base.h,attack:owner.attack*base.atk*atkScale,armor:kind==='eater'?0:kind==='warden'?.20:.07,focus:0,maxFocus:0,regen:0,loadout:[],fixed:floating,summonFloating:!grounded,acted:true,moveLeft:0,maxMove:grounded?SUMMON_TUNING[kind].move:0,walkSpeed:grounded?SUMMON_TUNING[kind].speed:0,ranks:{...owner.ranks},awake:true,xpBudget:0});
         if(kind==='echo'){
-            summon.summonExpires=this.b.round+ECHO_TURNS[clamp(rank,1,8)-1]-1;
+            summon.summonExpires=this.b.round+ECHO_TURNS[clamp(rank,1,8)-1]-1+equipmentParam(owner,'so_echo','lifetimeRoundsAdd',0);
             const echoes=this.b.units.filter(v=>!v.dead&&v.summonKind==='echo'&&v.summonOwner===owner.id);
             if(echoes.length>=ECHO_LIMIT[clamp(rank,1,8)-1])echoes.sort((a,c)=>(a.summonExpires||0)-(c.summonExpires||0))[0].dead=true;
         }

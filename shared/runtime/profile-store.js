@@ -3,7 +3,7 @@
 // until explicitly downloaded or replaced; temporary title defaults are never saved.
 const C=G.HONRO_CORE,ROSTER=['archer','mage','knight','occultist'],KEY='honro-first-act-profile-1';
     function fresh() { const p = C.defaults(); for (const c of ROSTER)
-        C.sanitizeLoadout(p, c); p.saved = null; p.cleared = {}; p.party = ['archer']; p.recruited = ['archer']; p.lastStage = 1; p.mapNode = 1; p.schema = 4; p.game = 'honro'; p.seen = {}; p.record = []; p.honroFlags = {}; p.settings = { ...p.settings, orientation: 'auto', music: true, musicVolume: .65, speed: 1.5, playerSpeed: 1.5, sound: true, volume: .55, minimapVisible: true, debugTerrainOutline: false }; return p; }
+        C.sanitizeLoadout(p, c); p.saved = null; p.cleared = {}; p.party = ['archer']; p.recruited = ['archer']; p.lastStage = 1; p.mapNode = 1; p.schema = 5; p.game = 'honro'; p.seen = {}; p.record = []; p.honroFlags = {}; p.settings = { ...p.settings, orientation: 'auto', music: true, musicVolume: .65, speed: 1.5, playerSpeed: 1.5, sound: true, volume: .55, minimapVisible: true, debugTerrainOutline: false }; return G.HonroEquipment.fresh(p); }
     function migrateGrowth(p,revision){
         for(const roster of [p.heroes,p.saved?.heroes,p.honroBattle?.heroes])if(roster)for(const cls of ROSTER){const hero=roster[cls];if(!hero)continue;if(!Number.isInteger(hero.statTraining))hero.statTraining=Object.values(hero.statRanks||{}).reduce((sum,n)=>sum+(Number.isInteger(n)&&n>0?n:0),0);delete hero.statRanks;}
         if(revision>=13)return;
@@ -24,11 +24,12 @@ function failure(reason){return Object.assign(new Error('Profile '+reason),{prof
 function migrate(text){
  let x;try{x=JSON.parse(text);}catch{throw failure('parse');}
  if(!x||typeof x!=='object'||Array.isArray(x)||x.game!=='honro'||!x.heroes||typeof x.heroes!=='object'||Array.isArray(x.heroes)||!Array.isArray(x.recruited)||!x.recruited.includes('archer'))throw failure('format');
- if(![1,2,3,4].includes(x.schema))throw failure('version');
+ if(x.schema===5&&!x.equipment)throw failure('format');
+ if(![1,2,3,4,5].includes(x.schema))throw failure('version');
  try{
-  const p=fresh();Object.assign(p,x);p.schema=4;p.settings={...fresh().settings,...x.settings};
+  const p=fresh();Object.assign(p,x);p.schema=5;p.settings={...fresh().settings,...x.settings};
   C.migrateSkills(p);migrateGrowth(p,x.revision||12);G.HonroAct23V4?.migratePresentation(p);G.HonroCampaignMapRevision.discard(p);
-  G.HonroProgression.repairRecruits(p);G.HonroProgression.reconcileCampAllocations(p);return p;
+  G.HonroProgression.repairRecruits(p);G.HonroProgression.reconcileCampAllocations(p);if(x.equipment===undefined)delete p.equipment;G.HonroEquipment.migrate(p);return p;
  }catch{throw failure('migration');}
 }
 function create(){

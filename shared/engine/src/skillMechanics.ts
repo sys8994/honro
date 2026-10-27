@@ -1,3 +1,4 @@
+import {equipmentParam,equipmentPrimary} from './equipment';
 import {keeperEchoVelocity} from './keeperRitual';
 import {cheonroeVisualSeed} from './lightningGeometry';
 import {gateSource} from './gateTravel';
@@ -35,7 +36,7 @@ export function trajectoryMultiplier(p:Projectile,u:Unit,hit:Vec){
  const s=SKILLS[p.skill];if(!s?.redesigned||s.cls!=='archer'||p.secondary)return 1;
  const extra=passiveTuning(passiveRank(u,'AP04')).trajectory;
  if(s.branch==='distance')return 1+((s.id==='A99'?.60:.40)+extra+(p.preparedRank?lerpRank(.08,.22,p.preparedRank):0))*clamp(Math.abs(hit.x-(p.launchX??p.x))/1800,0,1);
- if(s.branch==='drop')return 1+((s.id==='A15'?.55:s.id==='A13'?.35:.45)+extra)*clamp(Math.max(0,hit.y-(p.apexY??p.launchY??p.y))*(p.trajectoryDropScale||1)/900,0,1);
+ if(s.branch==='drop')return 1+((s.id==='A15'?.55:s.id==='A13'?.35:.45)+extra+(s.id==='A11'?equipmentParam(u,'se_drop','dropCoefficientAdd',0):0))*clamp(Math.max(0,hit.y-(p.apexY??p.launchY??p.y))*(p.trajectoryDropScale||1)/900,0,1);
  if(s.branch==='speed')return 1+((s.id==='A08'?.35:.45)+extra)*clamp((Math.hypot(p.vx,p.vy)*(p.trajectorySpeedScale||1)-500)/650,0,1);
  return 1;
 }
@@ -43,10 +44,10 @@ export function redesignConditionBonuses(p:Projectile,u:Unit,hit:Vec,direct:bool
  if(!newSkill(p)||u.cls!=='archer'||!direct)return [];
  return [trajectoryMultiplier(p,u,hit)-1,...(p.skill==='A09'&&p.turned?[lerpRank(.30,.65,rank(p))]:[])];
 }
-export function critProfile(p:Projectile,u:Unit){
+export function critProfile(p:Projectile,u:Unit,actor:Unit|undefined=u){
  const r=rank(p),id=p.skill,base=criticalStats(u.cls,u.level,u.ranks);
  return {chance:Math.min(.80,(u.critChance??base.critChance)+(id==='A14'?lerpRank(.18,.39,r):id==='A99'?lerpRank(.25,.39,r):0)+(p.preparedRank?lerpRank(.06,.20,p.preparedRank):0)),
-  multiplier:Math.min(3.5,(u.critMultiplier??base.critMultiplier)+(id==='A14'?lerpRank(.20,.55,r):id==='A99'?lerpRank(.50,.85,r):0))};
+  multiplier:Math.max(1,Math.min(3.5,(u.critMultiplier??base.critMultiplier)+(id==='A14'?lerpRank(.20,.55,r):id==='A99'?lerpRank(.50,.85,r):0)+(equipmentPrimary(actor,p)?equipmentParam(actor,'co_noncrit','criticalMultiplierAdd',0):0)))};
 }
 export function redrawDamage(e:Engine,p:Projectile,u:Unit,target:Unit,amount:number,point:Vec,direct:boolean,critical=false){
  if(!newSkill(p))return amount;
@@ -71,7 +72,7 @@ export function recordRedesignDamage(e:Engine,p:Projectile|undefined,src:Unit,ta
  if(e.b.cast?.shot===p?.shot&&e.b.cast?.owner===src.id&&enemy({side:src.side},target))e.b.cast.enemyDamage+=actual;
  if(!p||!newSkill(p)||p.skill!=='A06'||!enemy(p,target))return;
  const r=rank(p);for(const [field,max,fraction,cap] of [['hp','maxHp',lerpRank(.05,.12,r),.15],['focus','maxFocus',lerpRank(.03,.07,r),.18]] as const){
-  const key=`recover:${p.shot}:${field}`,used=e.b.shotDamage[key]||0,n=Math.min(actual*fraction,src[max]*cap-used,src[max]-src[field]);
+  const key=`recover:${p.shot}:${field}`,used=e.b.shotDamage[key]||0,n=Math.min(actual*fraction*(field==='hp'?equipmentParam(src,'se_recover','hpRecoveryScale',1):1),src[max]*cap-used,src[max]-src[field]);
   src[field]+=Math.max(0,n);e.b.shotDamage[key]=used+Math.max(0,n);
  }
  e.emit('fx',{name:'inkLine',x:p.x,y:p.y,x2:src.x,y2:src.y-src.h*.5,color:'#bfc9c6',size:1});
@@ -190,7 +191,7 @@ export function geometryHits(g:SkillGeometry,u:Pick<Unit,'x'|'y'|'h'|'r'>){
  const vs=baguaVertices(g);let count=vs.some((v,i)=>lineDistance(p,v,vs[(i+1)%8])<=width)?1:0;for(const v of vs)if(lineDistance(p,g,v)<=width)count++;
  return {count:Math.min(3,count),center:d<=70+u.r,interior:false};
 }
-const geometryBoost=(u:Unit,s:Skill,boost=jucheonBoost(u,s))=>(1+passiveTuning(passiveRank(u,'MP01')).geometry)*(1+Math.min(.05,boost/3));
+export const geometryBoost=(u:Unit,s:Skill,boost=jucheonBoost(u,s))=>(1+passiveTuning(passiveRank(u,'MP01')).geometry)*(1+Math.min(.05,boost/3))*(s.id==='M03'?equipmentParam(u,'da_arc','geometryThicknessScale',1):1);
 function emitGeometry(e:Engine,g:SkillGeometry){
  // Serialize the exact hit shape as one event; renderer does no independent geometry reconstruction.
  e.emit('fx',{name:'skillGeometry',x:g.x,y:g.y,color:'#ced4cd',text:JSON.stringify(g),size:g.radius});
@@ -241,7 +242,7 @@ function placeStake(e:Engine,p:Projectile,h:Collision){
  const b=e.b;b.stakes??=[];const support=h.terrain?.oneWay&&h.n.y<0?h.terrain:undefined,x=support?clamp(p.x,support.x,support.x+support.w):p.x;
  const floor=support?topAt(support,x,h.y):h.n.y<-.3?h.y:e.surface(p.x,p.y-3,b.height)?.y;if(floor===undefined){e.remove(p);return;}
  const all=b.stakes;if(p.skill==='M09'){const gates=all.filter(s=>s.skill==='M09'&&s.side===p.side);if(!gates.length){const u=e.unit(p.owner)!;const home=e.surface(u.x,u.y-8,u.y+80);if(home)b.stakes.push({attackSide:p.attackSide,damageRoll:p.damageRoll,id:b.nextId++,skill:p.skill,owner:p.owner,side:p.side,x:u.x,y:home.y,rank:rank(p),damage:0,shot:p.shot,effectBoost:p.effectBoost,expires:b.round+stakeDuration(p.skill,rank(p))});}else if(gates.length>=2)b.stakes=all.filter(s=>s.id!==gates[0].id);}
- b.stakes.push({attackSide:p.attackSide,damageRoll:p.damageRoll,id:b.nextId++,skill:p.skill,owner:p.owner,side:p.side,x,y:floor,rank:rank(p),damage:p.damage,shot:p.shot,effectBoost:p.effectBoost,expires:b.round+stakeDuration(p.skill,rank(p))});
+ b.stakes.push({attackSide:p.attackSide,damageRoll:p.damageRoll,id:b.nextId++,skill:p.skill,owner:p.owner,side:p.side,x,y:floor,rank:rank(p),damage:p.damage,shot:p.shot,effectBoost:p.effectBoost,equipmentHealScale:p.skill==='M10'?equipmentParam(e.unit(p.owner),'da_heal','hpHealScale',1):undefined,expires:b.round+stakeDuration(p.skill,rank(p))+(p.skill==='M07'?equipmentParam(e.unit(p.owner),'da_stake','lifetimeRoundsAdd',0):0)});
  e.fx('spark',x,floor,'#a89b7f',15);e.remove(p);
  if(!e.skillSound('plant',p.owner,p.skill,p.shot))e.emit('sound',{name:'ceramic'});
 }
@@ -298,15 +299,15 @@ export function redesignImpact(e:Engine,p:Projectile,h:Collision){
  if(h.unit){
   const target=h.unit,prior=p.outboundHits?.includes(target.id),factor=p.returning?.7*(prior?1.2:1):1;
   const before=target.hp;e.hurt(target,p.damage*factor,p.owner,true,p,h);p.hit.push(target.id);
-  if(p.mode==='push'){e.impulse(target,Math.sign(p.vx)*280,-130);target.shove={attackSide:e.attackSide(p.owner,p),friendlyFireApplied:e.friendlyFireMultiplier(target,p.owner,p)<1,autonomous:e.autonomousAttack(p.owner,p),owner:p.owner,damage:(before-target.hp)*.18,remaining:Math.round(lerpRank(2,5,r)),hit:[target.id],life:1.5};}
-  if(p.mode==='pierce'&&p.pierces<[1,1,2,2,3,3,4,5][r-1]){p.pierces++;p.damage*=.88;return true;}
+  if(p.mode==='push'){e.impulse(target,Math.sign(p.vx)*280*equipmentParam(u,'se_push','horizontalKnockbackScale',1),-130);target.shove={attackSide:e.attackSide(p.owner,p),friendlyFireApplied:e.friendlyFireMultiplier(target,p.owner,p)<1,autonomous:e.autonomousAttack(p.owner,p),owner:p.owner,damage:(before-target.hp)*.18,remaining:Math.round(lerpRank(2,5,r)),hit:[target.id],life:1.5};}
+  if(p.mode==='pierce'&&p.pierces<[1,1,2,2,3,3,4,5][r-1]){p.pierces++;p.damage*=equipmentParam(u,'se_pierce','pierceRetain',.88);return true;}
   if(p.mode==='return'&&p.hit.length<=1)return true;
   if(p.mode==='chainArrow'&&chainArrowHop(e,p,r))return true;
  }
  if(h.terrain){e.damageTerrain(h.terrain,p.damage*s.terrain,0,p.owner,p);
   e.emit('sound',{name:'arrowhit'});
   if(p.mode==='chainArrow'&&!p.chain){p.x+=h.n.x*(p.radius+2);p.y+=h.n.y*(p.radius+2);if(chainArrowHop(e,p,r))return true;}
-  if(p.mode==='pierce'&&h.terrain.mat==='wood'&&h.terrain.w<=90&&p.pierces<[1,1,2,2,3,3,4,5][r-1]){p.pierces++;p.damage*=.88;p.x+=Math.sign(p.vx)*(h.terrain.w+8);return true;}
+  if(p.mode==='pierce'&&h.terrain.mat==='wood'&&h.terrain.w<=90&&p.pierces<[1,1,2,2,3,3,4,5][r-1]){p.pierces++;p.damage*=equipmentParam(u,'se_pierce','pierceRetain',.88);p.x+=Math.sign(p.vx)*(h.terrain.w+8);return true;}
  }
  if(p.mode==='breakArrow'){
   for(const t of e.b.units.filter(t=>!t.dead&&e.attackAllows(t,p.owner,p)&&t.id!==h.unit?.id&&Math.hypot(t.x-p.x,t.y-t.h*.5-p.y)<70+t.r)){e.hurt(t,p.damage*.55,p.owner,false,p,h);e.impulse(t,Math.sign(t.x-p.x)*230,-110);}
@@ -418,7 +419,7 @@ export function tickRedesign(e:Engine,dt:number){
   const available=z.skill==='M10'?nearby.filter(u=>z.usedRounds?.[u.id]!==b.round):nearby;
   if(!z.active&&available.length&&(z.skill==='M10'||z.lastTriggerRound!==b.round)){
    z.lastTriggerRound=b.round;const t=available[0];
-   if(z.skill==='M10'){e.skillSound('heal',z.owner,z.skill,z.shot,`${z.id}:${b.round}`);z.usedRounds??={};for(const ally of available){z.usedRounds[ally.id]=b.round;const hpBefore=ally.hp;ally.hp=Math.min(ally.maxHp,ally.hp+ally.maxHp*(.06+.01*z.rank)*boost);healed(b,ally,z.owner,hpBefore,z.skill);ally.focus=Math.min(ally.maxFocus,ally.focus+ally.maxFocus*(.07+.01*z.rank)*boost);ally.moveLeft=Math.min(ally.maxMove,ally.moveLeft+ally.maxMove*(.12+.03*z.rank)*boost);e.fx('ring',ally.x,ally.y,'#bfcbb6',35);}}
+   if(z.skill==='M10'){e.skillSound('heal',z.owner,z.skill,z.shot,`${z.id}:${b.round}`);z.usedRounds??={};for(const ally of available){z.usedRounds[ally.id]=b.round;const hpBefore=ally.hp;ally.hp=Math.min(ally.maxHp,ally.hp+ally.maxHp*(.06+.01*z.rank)*boost*(z.equipmentHealScale||1));healed(b,ally,z.owner,hpBefore,z.skill);ally.focus=Math.min(ally.maxFocus,ally.focus+ally.maxFocus*(.07+.01*z.rank)*boost);ally.moveLeft=Math.min(ally.maxMove,ally.moveLeft+ally.maxMove*(.12+.03*z.rank)*boost);e.fx('ring',ally.x,ally.y,'#bfcbb6',35);}}
    if(z.skill==='M99'){e.skillSound('trigger',z.owner,z.skill,z.shot,`${z.id}:${b.round}`);z.active=true;z.inside=[];z.crossed={};z.budgetTurns={};for(const v of b.units.filter(v=>enemy(z,v)&&Math.hypot(v.x-z.x,v.y-z.y)<220)){e.hurt(v,z.damage,z.owner,false,p,z);z.inside.push(v.id);}}
   }
   if(z.active){

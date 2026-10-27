@@ -1,3 +1,4 @@
+import {validateEquipmentIds,equipmentActor} from './equipment';
 import {validateKeeperRitual} from './keeperRitual';
 import {normalizePlayerTurnOrder} from './turnOrder';
 import {poly} from './math';
@@ -20,6 +21,7 @@ function validHero(raw: unknown, cls: ClassId, legacyXp=false, oldXp=false): Her
     if (!object(raw) || !finite(raw.xp) || raw.xp < 0 || raw.xp > maxXp || !object(raw.ranks)) return fail();
     const converted=legacyXp?migrateLegacyXp9(raw.xp):oldXp?migrateXp12(raw.xp):Math.floor(raw.xp);
     const h: HeroProgress = { xp: converted, ranks: {}, statTraining:0, kills: 0, damage: 0, skillRevision:raw.skillRevision,martialRevision:raw.martialRevision,occultRevision:raw.occultRevision };
+    if(raw.equipmentIds!==undefined)h.equipmentIds=validateEquipmentIds(raw.equipmentIds,cls);
     let formerRanks=0;
     if(raw.statRanks!==undefined){if(!object(raw.statRanks))return fail();for(const [key,rank] of Object.entries(raw.statRanks)){if(!STAT_KEYS.includes(key as typeof STAT_KEYS[number])||!finite(rank)||!Number.isInteger(rank)||rank<0||rank>30)return fail();formerRanks+=rank;}}
     if(raw.statTraining!==undefined&&(!finite(raw.statTraining)||!Number.isInteger(raw.statTraining)||raw.statTraining<0||raw.statTraining>60))return fail();
@@ -77,6 +79,7 @@ function validBattle(raw: unknown,legacyXp=false,oldXp=false): Battle {
     for (const u of b.units) {
         if (!safe(u.id) || ids.has(u.id) || !safe(u.name) || !safe(u.role) || !CLASS_IDS.includes(u.cls) || ![0, 1, 2].includes(u.side) || !nums(u, ['x', 'y', 'vx', 'vy', 'hp', 'maxHp', 'r', 'h', 'focus', 'maxFocus', 'regen', 'level', 'attack', 'armor', 'shield', 'bound', 'mark', 'breaks', 'moveLeft', 'maxMove', 'walkSpeed', 'angle', 'lastPower', 'tune', 'facing', 'hurt', 'anim', 'spawnX', 'spawnY', 'group', 'lastAct', 'aggroUntil', 'xpBudget', 'xpGranted']) || u.hp < 0 || u.hp > u.maxHp || u.maxHp <= 0 || u.maxHp > 100000 || u.focus < 0 || u.focus > u.maxFocus || u.maxFocus > 10000 || u.r <= 0 || u.r > 160 || u.h <= 0 || u.h > 300 || !Array.isArray(u.loadout) || u.loadout.some(id => !Object.prototype.hasOwnProperty.call(SKILLS, id)) || !object(u.damageBy) || !object(u.ranks))
             return fail();
+        if(u.equipmentIds!==undefined){validateEquipmentIds(u.equipmentIds,u.cls);if(u.equipmentIds.length&&!equipmentActor(u))return fail();}
         for (const f of ['dead', 'airborne', 'acted', 'fixed', 'awake', 'killRewarded'] as const)
             if (typeof u[f] !== 'boolean')
                 return fail();
@@ -164,7 +167,7 @@ function validBattle(raw: unknown,legacyXp=false,oldXp=false): Battle {
             return fail();
     }
     if(b.damageSequence){const d=b.damageSequence;if(d.version!==1||!Number.isInteger(d.seed)||d.seed<0||d.seed>0xffffffff||!Number.isSafeInteger(d.index)||d.index<0)return fail();}
-    const validOrigin=(o:any)=>!o||(o.damageRoll===undefined||finite(o.damageRoll)&&o.damageRoll>=.85&&o.damageRoll<=1.15)&&(o.attackSide===undefined||[0,1,2].includes(o.attackSide))&&(o.friendlyFireApplied===undefined||typeof o.friendlyFireApplied==='boolean');
+    const validOrigin=(o:any)=>!o||(o.damageRoll===undefined||finite(o.damageRoll)&&o.damageRoll>=.78&&o.damageRoll<=1.28)&&(o.attackSide===undefined||[0,1,2].includes(o.attackSide))&&(o.friendlyFireApplied===undefined||typeof o.friendlyFireApplied==='boolean');
     const origins=[...b.projectiles,...b.zones,...(b.stakes||[]),...(b.occultTraps||[]),...(b.volley?[b.volley.template]:[]),...b.units.flatMap(u=>[u.meleeFollowOrigin,u.meleeAction,u.beastAction,u.martialGuard,u.shove,u.enthrall,u.earthbind,u.curseDamageOrigin,u.summonDamageOrigin])];
     if(!origins.every(validOrigin))return fail();
     if(b.skillRevision!==undefined&&b.skillRevision!==SKILL_REVISION)return fail();
@@ -196,6 +199,7 @@ function validBattle(raw: unknown,legacyXp=false,oldXp=false): Battle {
     if(b.stakes){
         if(!Array.isArray(b.stakes)||b.stakes.length>512)return fail();
         const seen=new Set<number>();for(const z of b.stakes){
+            if(z.equipmentHealScale!==undefined&&(z.skill!=='M10'||![1,1.2].includes(z.equipmentHealScale)))return fail();
             if(!nums(z,['id','x','y','rank','damage','shot'])||!ids.has(z.owner)||SKILLS[z.skill]?.branch!=='stake'||![0,1,2].includes(z.side)||seen.has(z.id)||!Number.isInteger(z.rank)||z.rank<1||z.rank>8)return fail();seen.add(z.id);
             if(z.active!==undefined&&typeof z.active!=='boolean'||z.expires!==undefined&&!finite(z.expires)||z.inside&&(!Array.isArray(z.inside)||z.inside.some(id=>!ids.has(id))))return fail();
             if(!optionalNumber(z.effectBoost,0,.15))return fail();

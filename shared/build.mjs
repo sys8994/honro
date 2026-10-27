@@ -36,7 +36,7 @@ import {buildActors} from '../tools/actor-forge/build.mjs';
 export const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
 const read=async p=>(await readFile(path.join(root,p),'utf8')).replace(/\r\n/g,'\n');
 export const modelFiles=['action-prompts','narrative-catalogue','content','story-content-v0','story-content-v1','story-content','terrain-space','map-engine','battlefield-layouts',
-  'clear-report','split-campaign','campaign-map-revision','stake-crossing','contribution-xp','progression','profile-store','encounters','world','act1-roster','difficulty','allies','sodan-withdrawal','mission','objectives','objective-contributions','combat-status','authored','act2-content','act2','stage11-ravine-encounters','stage17-worksite','stage16-temple','act3-content','act3-encounters','act3-objectives','objective-revision','stage18-bell','stage30-ferry','stage12-quarry','stage23-escort','objective-guidance','journey-content','act3-journey','story-staging','story-direction','story-framing','stage8-bier','encounter-density','stage14-vertical','stage22-vertical','route-branches','narrative-revision','stage11-trace-exit','stage2-airborne','stage5-waterfall-geometry','stage5-waterfall','stage5-positioning','quest-targets','story-canon-v1','bell-anomaly','act3-void','evidence-quests','stage2-layered-road','act2-pacing'];
+  'clear-report','split-campaign','campaign-map-revision','stake-crossing','contribution-xp','progression','equipment-state','profile-store','encounters','world','act1-roster','difficulty','allies','sodan-withdrawal','mission','objectives','objective-contributions','combat-status','authored','act2-content','act2','stage11-ravine-encounters','stage17-worksite','stage16-temple','act3-content','act3-encounters','act3-objectives','objective-revision','stage18-bell','stage30-ferry','stage12-quarry','stage23-escort','objective-guidance','journey-content','act3-journey','story-staging','story-direction','story-framing','stage8-bier','encounter-density','stage14-vertical','stage22-vertical','route-branches','narrative-revision','stage11-trace-exit','stage2-airborne','stage5-waterfall-geometry','stage5-waterfall','stage5-positioning','quest-targets','story-canon-v1','bell-anomaly','act3-void','evidence-quests','stage2-layered-road','act2-pacing'];
 
 modelFiles.push('player-turn-order','stage11-quest-simplification','stage14-rescue-gates','stage15-drain-contact','stage18-short-quest','keeper-ritual','stage19-farewell');
 modelFiles.push('act23-v4','act23-v4-act2','act23-v4-act2-scenes','act23-v4-stage18','act23-v4-act3','act23-v4-city','act23-v4-stage29','act23-v4-stage30','act23-v4-ch11-scenes','act23-v4-reviewed','act23-v4-reviewed-chapters','act23-v4-reviewed12','act23-v4-reviewed13','act23-v4-reviewed14','act23-v4-reviewed15','act23-v4-reviewed16','act23-v4-reviewed17','act23-v4-reviewed18','act23-v4-reviewed19','act23-v4-reviewed20','act23-v4-reviewed-common','act23-v4-ch21-scenes','act23-v4-ch21-reviewed','act23-v4-ch22-reviewed','act3-v4-reviewed-core','act23-v4-ch23-reviewed','act23-v4-ch24-reviewed','act3-v4-reviewed-waterworks','act23-v4-ch25-reviewed','act23-v4-ch27-reviewed','act23-v4-ch26-reviewed','act23-v4-ch28-reviewed','act23-v4-ch29-reviewed-spear','act23-v4-ch29-reviewed','act23-v4-ch30-reviewed');
@@ -78,6 +78,10 @@ export async function runtimeEntries({vector=true,render=true,app=false,producti
   if(skillImages.errors.length)throw Error(skillImages.errors.join('\n'));
   data('HONRO_SKILL_ICON_MANIFEST',{...skillImages.source,complete:skillImages.complete,icons:Object.fromEntries(Object.entries(skillImages.source.icons).map(([id,item])=>[id,{...item,url:item.status==='ready'?item.file:null}]))});
   code('engine/core',await buildCore());
+  const itemIcons={},itemDefinitions=JSON.parse(await read('game/docs/equipment/honro_equipment_52_v03.json')).items;
+  if(itemDefinitions.length!==52)throw Error('Equipment requires all 52 approved definitions');
+  for(const item of itemDefinitions)itemIcons[item.itemId]='data:image/webp;base64,'+(await readFile(path.join(root,item.iconAssetProposal))).toString('base64');
+  data('HONRO_EQUIPMENT_ICONS',itemIcons);
   code('shared/environment-vector-kit',await vectorKitRuntime());
   data('HONRO_BALANCE',JSON.parse(await read('game/config/balance.json')));
   data('HONRO_NARRATIVE_V0',JSON.parse(await read('shared/data/narrative-legacy-v0.json')));
@@ -173,7 +177,7 @@ export async function runtimeEntries({vector=true,render=true,app=false,producti
     await file('game/vendor/ui/fa.js');
     await file('shared/runtime/skill-images.js');
     await file('shared/runtime/camp-renderer.js');
-    for(const name of ['campaign-entry','portraits','npc-portraits','ui-bridge','stage-rules','music-titles','audio','mukjong-audio','story','story-barks','act23-v4-field-talk','act3-v4-reviewed-documents','mukjong-pitch-dialogue','act-endings-content','act-endings','interactions','unit-info','training','skill-preview','journey-art','journey-images','rest-journey','menu-ui','clear-report-ui','main']){
+    for(const name of ['campaign-entry','portraits','npc-portraits','ui-bridge','stage-rules','music-titles','audio','mukjong-audio','story','story-barks','act23-v4-field-talk','act3-v4-reviewed-documents','mukjong-pitch-dialogue','act-endings-content','act-endings','interactions','unit-info','training','skill-preview','journey-art','journey-images','rest-journey','menu-ui','clear-report-ui','equipment-ui','main']){
       await file(`shared/runtime/${name}.js`);
       // Metadata only: native/full consumers retain the same scripts and order.
       if(name==='training'||name==='skill-preview')parts.at(-1).optional=name;
