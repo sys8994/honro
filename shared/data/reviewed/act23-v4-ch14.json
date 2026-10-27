@@ -1,0 +1,189 @@
+{
+  "stage": 14,
+  "status": "Gemini pass1 → 제작 측 독립 재검토 → Gemini pass3 → 부모 최종판단 완료",
+  "final_decisions": [
+    "부모가 COMPLETE01 최종제안과 KNIGHT1 첫 번째 최종대안을 그대로 채택: 떠나온 집 지칭과 존대 표현 명료화.",
+    "나머지27문구KEEP. 승인된 선택대화3개 노출 시점가드 보존."
+  ],
+  "rows": [
+    {
+      "id": "EDGE.ARRIVALS_14_0",
+      "speaker_channel": "서술 · 도착 서술",
+      "condition": "해당 장 도착 때 한 번",
+      "text": "석문 안의 집들은 창문이 막혀 있었다. 꺼진 화덕 사이로 들린 살림도구가 움직였다."
+    },
+    {
+      "id": "A2.S14.INTRO.01",
+      "speaker_channel": "길찬 · 대사",
+      "condition": "장면01 집 앞 최초 접근; 이 장 첫 사람 목소리",
+      "text": "누구요? 종지기가 보냈소?"
+    },
+    {
+      "id": "A2.S14.INTRO.02",
+      "speaker_channel": "설오 · 대사",
+      "condition": "장면02 석공 구출 확인",
+      "text": "아버님을 만났습니다. 석문 밖에 계십니다."
+    },
+    {
+      "id": "A2.S14.INTRO.03",
+      "speaker_channel": "길찬 · 대사",
+      "condition": "장면02 아버지 소식 직후",
+      "text": "살아 계시오?"
+    },
+    {
+      "id": "A2.S14.INTRO.04",
+      "speaker_channel": "휘겸 · 대사",
+      "condition": "장면02 길찬 질문",
+      "text": "살아 계시오. 문 앞부터 치우겠소."
+    },
+    {
+      "id": "A2.S14.MID.01",
+      "speaker_channel": "소단 · 대사",
+      "condition": "장면03 집 쪽으로 적 접근",
+      "text": "문 쪽으로 붙어요. 안의 사람을 알아챘어요."
+    },
+    {
+      "id": "A2.S14.MID.02",
+      "speaker_channel": "설오 · 대사",
+      "condition": "장면03 좁은 진입로 확인",
+      "text": "저 길만 막으면 집 앞으로 못 옵니다."
+    },
+    {
+      "id": "A2.S14.MID.03",
+      "speaker_channel": "휘겸 · 대사",
+      "condition": "장면03 집 앞 안전 확보",
+      "text": "길찬, 이제 나오시오. 문에서 멀리 가지 마시오."
+    },
+    {
+      "id": "A2.S14.MID.04",
+      "speaker_channel": "길찬 · 대사",
+      "condition": "장면04 문을 연 직후",
+      "text": "아버지는 왜 안 오셨소?"
+    },
+    {
+      "id": "A2.S14.MID.05",
+      "speaker_channel": "설오 · 대사",
+      "condition": "장면04 아직 종이 울리기 전",
+      "text": "다치셨습니다. 안전한 곳에서 기다리고 계십니다."
+    },
+    {
+      "id": "A2.S14.MID.06",
+      "speaker_channel": "소단 · 대사",
+      "condition": "장면04 종에 반응해 길찬이 걸음",
+      "text": "길찬 씨, 멈추세요. 혼이 앞을 막고 있어요."
+    },
+    {
+      "id": "A2.S14.MID.07",
+      "speaker_channel": "휘겸 · 대사",
+      "condition": "장면04 길찬이 위험 방향으로 향함",
+      "text": "그 아래로 가면 안 되오!"
+    },
+    {
+      "id": "A2.S14.MID.08",
+      "speaker_channel": "담허 · 대사",
+      "condition": "장면05 혼 분리 접근",
+      "text": "귀를 막게. 우리 쪽을 보게."
+    },
+    {
+      "id": "A2.S14.MID.09",
+      "speaker_channel": "길찬 · 대사",
+      "condition": "장면05 홀림 해제 후",
+      "text": "내가 왜 저기로……."
+    },
+    {
+      "id": "A2.S14.MID.10",
+      "speaker_channel": "소단 · 대사",
+      "condition": "장면05 길찬이 제자리로 돌아옴",
+      "text": "지금은 떨어졌어요. 제 곁으로 오세요."
+    },
+    {
+      "id": "A2.S14.MID.11",
+      "speaker_channel": "휘겸 · 대사",
+      "condition": "장면05 은신처 이동 시작",
+      "text": "바위 뒤로 가시오. 뒤는 내가 보겠소."
+    },
+    {
+      "id": "A2.S14.COMPLETE.01",
+      "speaker_channel": "길찬 · 대사",
+      "condition": "장면06 은신처 안 도착",
+      "text": "주민들은 더 깊은 곳으로 갔소. 내가 숨어 있던 집에 남은 사람은 없소."
+    },
+    {
+      "id": "A2.S14.COMPLETE.02",
+      "speaker_channel": "설오 · 대사",
+      "condition": "장면06 확보된 후방 연결로를 가리킴",
+      "text": "저 길로 가면 아버님 계신 곳입니다."
+    },
+    {
+      "id": "A2.S14.COMPLETE.03",
+      "speaker_channel": "길찬 · 대사",
+      "condition": "장면06 퇴장 직전",
+      "text": "종이 나면 문을 닫으시오. 밖을 보면 안 되오."
+    },
+    {
+      "id": "A2.S14.OBJECTIVE.01",
+      "speaker_channel": "목표 UI · 목표 UI",
+      "condition": "장면01",
+      "text": "길찬에게 아버지의 소식을 전하고 집 앞 확보"
+    },
+    {
+      "id": "A2.S14.OBJECTIVE.02",
+      "speaker_channel": "목표 UI · 목표 UI",
+      "condition": "장면04",
+      "text": "종 쪽으로 향하는 길찬을 멈추고 은신처로 보호 이동"
+    },
+    {
+      "id": "A2.S14.POPUP.01",
+      "speaker_channel": "안내 UI · 안내 UI",
+      "condition": "장면04",
+      "text": "길찬이 종 쪽으로 향합니다. 붙는 혼을 떼고 안전한 길로 이끄세요."
+    },
+    {
+      "id": "A2.S14.FAIL.01",
+      "speaker_channel": "실패 UI · 실패 UI",
+      "condition": "길찬 구조 실패",
+      "text": "길찬을 구하지 못했습니다. 문을 열기 전부터 다시 시작합니다."
+    },
+    {
+      "id": "A2.S14.JOURNAL.01",
+      "speaker_channel": "저널 UI · 저널 UI",
+      "condition": "장면06",
+      "text": "길찬은 빈집에 홀로 숨어 있었다. 종이 울리자 자신도 모르게 안쪽으로 걸었다. 일행이 그를 멈추고 은신처로 옮겼다. 다른 주민들은 더 깊은 곳에 숨어 있다."
+    },
+    {
+      "id": "EDGE.OPTIONAL_14_ARCHER_0",
+      "speaker_channel": "설오 · 선택 동료 대화",
+      "condition": "플레이어가 동료에게 말을 걸 때; 실제 출연·생존한 화자만; E02 아버지 소식 전달 전",
+      "text": "석공의 아들이 길찬이라 했습니다. 아버님이 살아 계시다고 전해야겠습니다."
+    },
+    {
+      "id": "EDGE.OPTIONAL_14_MAGE_0",
+      "speaker_channel": "담허 · 선택 동료 대화",
+      "condition": "플레이어가 동료에게 말을 걸 때; 실제 출연·생존한 화자만",
+      "text": "밧줄에 손이 다 찢어졌더군. 그런데도 아들부터 찾았네."
+    },
+    {
+      "id": "EDGE.OPTIONAL_14_KNIGHT_0",
+      "speaker_channel": "휘겸 · 선택 동료 대화",
+      "condition": "플레이어가 동료에게 말을 걸 때; 실제 출연·생존한 화자만",
+      "text": "집 안에 사람이 보이면 이름부터 부르시오. 문은 함부로 깨지 마시오."
+    },
+    {
+      "id": "EDGE.OPTIONAL_14_KNIGHT_1",
+      "speaker_channel": "설오 · 선택 동료 대화",
+      "condition": "플레이어가 동료에게 말을 걸 때; 실제 출연·생존한 화자만; E02 아버지 소식 전달 전",
+      "text": "아버님이 석문 밖에서 기다리고 계신다고 전하겠습니다."
+    },
+    {
+      "id": "EDGE.OPTIONAL_14_OCCULTIST_0",
+      "speaker_channel": "소단 · 선택 동료 대화",
+      "condition": "플레이어가 동료에게 말을 걸 때; 실제 출연·생존한 화자만; E03 집 앞 확보 완료 전",
+      "text": "저 문틈에 불빛이 있어요. 집 앞부터 비워 줘요."
+    }
+  ],
+  "reviewed_id_count": 29,
+  "pending_wording_ids": [],
+  "implementation_verified": false,
+  "pass3_source": "HONRO-CH14-PASS3-20261027-response.md",
+  "revision": 1
+}
