@@ -46,7 +46,7 @@ function use(app,m){const b=app.engine.b;if(!eligibility(app,m).ok)return false;
  if(s.kind==='rescue'){const u=b.units.find(u=>u.id===s.target||u.id===m.target),spirit=b.units.find(u=>u.id===m.spiritId);if(!alive(u))return false;if(alive(spirit)){if(app.engine.active.cls!=='occultist')return false;G.HonroProgression.defeat(app.engine,spirit,app.engine.active);spirit.hp=0;spirit.dead=true;spirit.honroReleased=true;}u.honroResolved=true;}
  completeStep(app,s,app.engine.active);if(!app.checkMission?.(app.engine))app.engine.finishAction();return true;
 }
-function route(app,s){const b=app.engine.b,spec=b.honroRouteSpec;if(!spec||!(spec.common||[]).every(id=>mem(b).done[id]))return;
+function route(app,s){const b=app.engine.b,spec=b.honroRouteSpec;if(G.HonroAct23V4ReviewedChapters?.active(b)&&!G.HonroAct23V4ReviewedChapters.routeReady(b))return;if(!spec||!(spec.common||[]).every(id=>mem(b).done[id]))return;
  for(const r of spec.routes||[]){if(!(r.requiresDone||[]).every(id=>mem(b).done[id])||!(r.defeatIds||[]).every(id=>{const u=b.units.find(u=>u.id===id);return u&&(!alive(u)||u.side!==1);})||!(r.requiresTerrainOpen||[]).every(id=>G.HonroQuestTargets.records(b).some(t=>t.id===id&&t.broken))||!(r.requiresTerrainActive||[]).every(id=>G.HonroQuestTargets.records(b).some(t=>t.id===id&&!t.broken)))continue;
   if(!heroes(b).some(u=>near(u,marker(b,r.markerId),180)))continue;b.honroRouteChoice={revision:1,selectedRoute:r.id,sourceRun:b.session,fromStage:b.honroStage,toStage:spec.toStage,exitId:r.markerId,round:b.round};completeStep(app,s);return;
  }
