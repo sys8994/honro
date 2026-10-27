@@ -13,14 +13,14 @@ function request(key){
   if(cache.get(key)!==item)return;
   const image=item.image,cv=document.createElement('canvas'),c=cv.getContext('2d');
   cv.width=Math.min(2048,image.naturalWidth);cv.height=Math.round(cv.width*image.naturalHeight/image.naturalWidth);
-  const dark=['bellRear','depotRear'].includes(key),interior=key.endsWith('-interior');
-  c.filter=dark?'saturate(.55) contrast(.65) brightness(.66)':interior?'saturate(.42) contrast(.58) brightness(.68)':'saturate(.50) contrast(.76) brightness(.80)';
+  const dark=['bellRear','depotRear'].includes(key),interior=key.endsWith('-interior'),overcast=['townSky','town-river','town-wall','workshop-yard'].includes(key);
+  c.filter=overcast?'none':dark?'saturate(.55) contrast(.65) brightness(.66)':interior?'saturate(.42) contrast(.58) brightness(.68)':'saturate(.50) contrast(.76) brightness(.80)';
   c.drawImage(image,0,0,cv.width,cv.height);c.filter='none';
-  if(['townSky','town-river','town-wall','workshop-yard'].includes(key)){
-   // Cached distance palette only: foggy grey-beige daylight. Preserve a little
-   // source hue; actors, terrain, warnings and interior paintings never enter.
-   const pixels=c.getImageData(0,0,cv.width,cv.height),p=pixels.data,low=[102,97,88],high=[193,188,176];
-   for(let i=0;i<p.length;i+=4){const y=p[i]*.2126+p[i+1]*.7152+p[i+2]*.0722,t=Math.sqrt(y/255),row=Math.floor(i/4/cv.width)/cv.height,q=Math.max(0,Math.min(1,(.65-row)/.32)),cloud=q*q*(3-2*q)*.94;for(let j=0;j<3;j++){const far=low[j]+(high[j]-low[j])*t+(p[i+j]-y)*.12;p[i+j]=Math.round(far*(1-cloud)+[188,185,176][j]*cloud);}}
+  if(overcast){
+   // Preserve the source's irregular cloud/forest/mist separations. The daylight
+   // town source has no moon; no opaque upper-sky wash erases its cloud detail.
+   const pixels=c.getImageData(0,0,cv.width,cv.height),p=pixels.data,low=[77,79,76],high=[205,200,186];
+   for(let i=0;i<p.length;i+=4){const y=p[i]*.2126+p[i+1]*.7152+p[i+2]*.0722,t=Math.pow(y/255,.72);for(let j=0;j<3;j++)p[i+j]=Math.round(low[j]+(high[j]-low[j])*t+(p[i+j]-y)*.16);}
    c.putImageData(pixels,0,0);
   }else {c.fillStyle=dark||interior?'#152a3b44':'#263c4524';c.fillRect(0,0,cv.width,cv.height);}
   item.canvas=cv;image.onload=null;image.onerror=null;item.image=null;

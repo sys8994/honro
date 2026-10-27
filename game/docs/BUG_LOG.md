@@ -5027,3 +5027,8 @@ commonReviewRevision의 첫 혼령 대기열은 생성 후 소단/sceneTarget가
 - 변경: 기존거리별 context에 명시 재질palette를 추가해 황토/회갈 보행면·갈흑 깊은 하부와 저대비 회베이지 원경을 분리했다.실제지면을 덮는 벡터재료에도 연결하고,물/나무/건물/배우/경고/표식 직접색은 보존한다.원경같은파일/crop/시차/bounded cache,지형·이벤트·저장revision과1/2막은 보존했다.4막·폭포74cbf49는 제외했다.
 - 검수: 실제Chromium baseline→3회집중수정→최종종합을 같은camera/zoom/해상도로 캡처했다.지면벡터의미적용,30장비충돌암반의청록,21장원반/하부명도 문제를 각각 확인하고 수정했다.최종1/16/22/27 대조는 픽셀동일.모바일390px에서 인물·목표·물색분리 확인.카메라/선행진척은 fixture이며 정상완주/공개검증과 구분한다.
 - 확인: visual-hierarchy의 역할/alpha/cache/theme/기본게임색 검증과 production-save/실제키보드 live bark·menu/29native경고·hit·모바일,build/typecheck 통과.격리visual검사의누락된quest-record adapter,옛12장raster기대/고정인접문자열은현행연결에맞춰갱신했다.실행범위와사진은ACT3_OVERCAST_COLOUR_20261027에기록한다.
+
+
+### 2026-10-27 · 흐린 낮의 원경 구름·안개숲 깊이 복원
+
+부모 Library/공개21 검수에서 f96a4b3의 거의불투명한상부wash가 구름과26안개숲을지워단색베이지로평평해진결함을확인했다.21은 달없는기존흐린낮그림으로연결하고,야외원경은중복감광/상부wash없이원래결을낮은대비의낮palette로보존한다.동일camera21/26/30/모바일과실내22을실제재촬영해직접확인했고22픽셀동일·7뷰전투JSON불변·pageerror0이다.지면색·물리·원고·배우/표식/기존1/2막·폭포는보존했다.
