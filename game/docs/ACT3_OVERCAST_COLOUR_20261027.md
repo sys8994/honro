@@ -32,3 +32,5 @@
 최종 `final2`의 같은16뷰를 다시 캡처해 야외7장 전체,실내/지하3장과모바일2뷰,1/2막 대조를 열었다. 깊은21/23/26 하부가 갈흑으로 내려가고 보행면/벽은 중간명도로 남는다.30의 강물·나무,29의 의식/건물 내부색,배우·위험·목표색은 별개다.1/16/22/27 비교는 최종에서도 픽셀동일이며 모든 캡처에서 렌더 전후 battle JSON이 같다.기본공유bundle/typecheck와 visual-hierarchy·production-resume 통과.실제키보드 이동 중 live bark/menu/모바일 및29native창경고/저장/타격도 pageerror0으로 통과했다. 전체캠페인완주 검사는 하지 않았다.
 
 사진 Library 전달과 master/Pages 반영 결과는 최종보고에서 정확한SHA와 함께 구분한다.
+
+비교 스크린샷 `HONRO-Act3-overcast-before-after-20261027.png`를 Library에 저장했다.21/23/30/26 야외와22 실내의 같은뷰 전후,390px 모바일 전후를 포함한다. 로컬 원본과16뷰별 camera/viewport/entryScript는 함께 보존한다. 공개8baad559의 실제 Pages성공 graph를 보존등록에 추가한 뒤 동일시각결과의 release build를 만들었다.
