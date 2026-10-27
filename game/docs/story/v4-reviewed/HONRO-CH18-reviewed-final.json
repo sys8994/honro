@@ -1,0 +1,328 @@
+{
+  "stage": 18,
+  "status": "Gemini pass1 → 제작 측 독립 재검토 → Gemini pass3 → 부모 최종판단 완료",
+  "rows": [
+    {
+      "id": "A2.S18.INTRO.01",
+      "speaker_channel": "소단 · dialogue",
+      "condition": "E01 생존자가 종 아래로 향함",
+      "text": "사람이 내려가요. 소리에 붙잡혔어요.",
+      "speaker_guard": "화자가 실제 출연·생존한 경우. DEATH.01은 치명타 직후의 짧은 사망 경계에서만 예외."
+    },
+    {
+      "id": "A2.S18.INTRO.02",
+      "speaker_channel": "휘겸 · dialogue",
+      "condition": "E01 유헌이 줄에 손댐",
+      "text": "거기 멈추시오! 밑에 사람이 있소.",
+      "speaker_guard": "화자가 실제 출연·생존한 경우. DEATH.01은 치명타 직후의 짧은 사망 경계에서만 예외."
+    },
+    {
+      "id": "A2.S18.INTRO.03",
+      "speaker_channel": "유헌 · dialogue",
+      "condition": "E01 !keeper_dead; 생존자를 직접 봄",
+      "text": "안다. 비켜라.",
+      "speaker_guard": "화자가 실제 출연·생존한 경우. DEATH.01은 치명타 직후의 짧은 사망 경계에서만 예외."
+    },
+    {
+      "id": "A2.S18.INTRO.04",
+      "speaker_channel": "설오 · dialogue",
+      "condition": "E01 고정구가 움직임; !keeper_dead AND 유헌의 실제 하강 조작 목격",
+      "text": "더 내리지 마십시오!",
+      "speaker_guard": "화자가 실제 출연·생존한 경우. DEATH.01은 치명타 직후의 짧은 사망 경계에서만 예외."
+    },
+    {
+      "id": "A2.S18.PHASE1.01",
+      "speaker_channel": "유헌 · dialogue",
+      "condition": "E02 !keeper_dead; 제동점 접근; !keeper_dead AND 해당 선행 문답/행동이 실제 발생한 경우; 대기 중 사망하면 후속 문답 취소",
+      "text": "그 고정구에서 손 떼라.",
+      "speaker_guard": "화자가 실제 출연·생존한 경우. DEATH.01은 치명타 직후의 짧은 사망 경계에서만 예외."
+    },
+    {
+      "id": "A2.S18.PHASE1.02",
+      "speaker_channel": "휘겸 · dialogue",
+      "condition": "E02 유헌의 방해; !keeper_dead AND 해당 선행 문답/행동이 실제 발생한 경우; 대기 중 사망하면 후속 문답 취소",
+      "text": "사람부터 빼겠소.",
+      "speaker_guard": "화자가 실제 출연·생존한 경우. DEATH.01은 치명타 직후의 짧은 사망 경계에서만 예외."
+    },
+    {
+      "id": "A2.S18.PHASE1.03",
+      "speaker_channel": "유헌 · dialogue",
+      "condition": "E02 !keeper_dead; 종 울림 반복; !keeper_dead AND 해당 선행 문답/행동이 실제 발생한 경우; 대기 중 사망하면 후속 문답 취소",
+      "text": "종이 울린다. 내려야 해.",
+      "speaker_guard": "화자가 실제 출연·생존한 경우. DEATH.01은 치명타 직후의 짧은 사망 경계에서만 예외."
+    },
+    {
+      "id": "A2.S18.MID.01",
+      "speaker_channel": "설오 · dialogue",
+      "condition": "E02 제동점 사격선 확보",
+      "text": "위의 고정구가 보입니다. 아래는 비우십시오.",
+      "speaker_guard": "화자가 실제 출연·생존한 경우. DEATH.01은 치명타 직후의 짧은 사망 경계에서만 예외."
+    },
+    {
+      "id": "A2.S18.MID.02",
+      "speaker_channel": "소단 · dialogue",
+      "condition": "E02 생존자 곁 도착",
+      "text": "저를 보세요. 그쪽으로 가면 안 돼요.",
+      "speaker_guard": "화자가 실제 출연·생존한 경우. DEATH.01은 치명타 직후의 짧은 사망 경계에서만 예외."
+    },
+    {
+      "id": "A2.S18.MID.03",
+      "speaker_channel": "담허 · dialogue",
+      "condition": "E02 제동 완료",
+      "text": "멎었네. 지금 빼내게.",
+      "speaker_guard": "화자가 실제 출연·생존한 경우. DEATH.01은 치명타 직후의 짧은 사망 경계에서만 예외."
+    },
+    {
+      "id": "A2.S18.MID.04",
+      "speaker_channel": "생존자 · dialogue",
+      "condition": "E02 홀림 해제 후 안전지대로 이동 중",
+      "text": "다리가…… 움직이오.",
+      "speaker_guard": "화자가 실제 출연·생존한 경우. DEATH.01은 치명타 직후의 짧은 사망 경계에서만 예외."
+    },
+    {
+      "id": "A2.S18.MID.05",
+      "speaker_channel": "휘겸 · dialogue",
+      "condition": "E02 생존자 안전지대 도착",
+      "text": "여기 계시오. 종 아래로 돌아가면 안 되오.",
+      "speaker_guard": "화자가 실제 출연·생존한 경우. DEATH.01은 치명타 직후의 짧은 사망 경계에서만 예외."
+    },
+    {
+      "id": "A2.S18.PHASE2.01",
+      "speaker_channel": "휘겸 · dialogue",
+      "condition": "E03 !keeper_dead; 생존자 구조 후 보스 대면; !keeper_dead AND 해당 선행 문답/행동이 실제 발생한 경우; 대기 중 사망하면 후속 문답 취소",
+      "text": "그때도 안에서 두드렸다지. 듣고도 축을 뺐소?",
+      "speaker_guard": "화자가 실제 출연·생존한 경우. DEATH.01은 치명타 직후의 짧은 사망 경계에서만 예외."
+    },
+    {
+      "id": "A2.S18.PHASE2.02",
+      "speaker_channel": "유헌 · dialogue",
+      "condition": "E03 !keeper_dead; 앞 질문 뒤; !keeper_dead AND 해당 선행 문답/행동이 실제 발생한 경우; 대기 중 사망하면 후속 문답 취소",
+      "text": "그 종을 올렸으면 밖의 사람도 끌려왔을 거다.",
+      "speaker_guard": "화자가 실제 출연·생존한 경우. DEATH.01은 치명타 직후의 짧은 사망 경계에서만 예외."
+    },
+    {
+      "id": "A2.S18.PHASE2.03",
+      "speaker_channel": "휘겸 · dialogue",
+      "condition": "E03 앞 답변 뒤; !keeper_dead AND 해당 선행 문답/행동이 실제 발생한 경우; 대기 중 사망하면 후속 문답 취소",
+      "text": "그래서 이번에도 사람을 묻겠다는 거요?",
+      "speaker_guard": "화자가 실제 출연·생존한 경우. DEATH.01은 치명타 직후의 짧은 사망 경계에서만 예외."
+    },
+    {
+      "id": "A2.S18.PHASE2.04",
+      "speaker_channel": "유헌 · dialogue",
+      "condition": "E03 !keeper_dead; 적대 확정; !keeper_dead AND 해당 선행 문답/행동이 실제 발생한 경우; 대기 중 사망하면 후속 문답 취소",
+      "text": "비켜라. 다시는 올리지 못하게 하겠다.",
+      "speaker_guard": "화자가 실제 출연·생존한 경우. DEATH.01은 치명타 직후의 짧은 사망 경계에서만 예외."
+    },
+    {
+      "id": "A2.S18.PHASE2.05",
+      "speaker_channel": "담허 · dialogue",
+      "condition": "E03 유헌 진목 공격 실제 발생; !keeper_dead AND 해당 선행 문답/행동이 실제 발생한 경우; 대기 중 사망하면 후속 문답 취소",
+      "text": "진목이 장치 쪽을 겨누네. 저 연결을 끊게.",
+      "speaker_guard": "화자가 실제 출연·생존한 경우. DEATH.01은 치명타 직후의 짧은 사망 경계에서만 예외."
+    },
+    {
+      "id": "A2.S18.PHASE2.06",
+      "speaker_channel": "설오 · dialogue",
+      "condition": "E03 엄폐 변화로 새 사격선 열림; !keeper_dead AND 해당 선행 문답/행동이 실제 발생한 경우; 대기 중 사망하면 후속 문답 취소",
+      "text": "이제 보입니다. 줄 옆에서 물러나십시오.",
+      "speaker_guard": "화자가 실제 출연·생존한 경우. DEATH.01은 치명타 직후의 짧은 사망 경계에서만 예외."
+    },
+    {
+      "id": "A2.S18.DEATH.01",
+      "speaker_channel": "유헌 · dialogue",
+      "condition": "E04 정상 대면 치명타; !instant_kill; !environment_death",
+      "text": "올리지…… 마라.",
+      "speaker_guard": "화자가 실제 출연·생존한 경우. DEATH.01은 치명타 직후의 짧은 사망 경계에서만 예외."
+    },
+    {
+      "id": "A2.S18.DEATH.02",
+      "speaker_channel": "담허 · dialogue",
+      "condition": "E04 시신 접근 가능·사망 확인",
+      "text": "숨이 끊겼네.",
+      "speaker_guard": "화자가 실제 출연·생존한 경우. DEATH.01은 치명타 직후의 짧은 사망 경계에서만 예외."
+    },
+    {
+      "id": "A2.S18.BRANCH.01",
+      "speaker_channel": "휘겸 · dialogue",
+      "condition": "E04 조기처치 AND !rescued18",
+      "text": "아직 밑에 사람이 있소. 고정구부터 거시오.",
+      "speaker_guard": "화자가 실제 출연·생존한 경우. DEATH.01은 치명타 직후의 짧은 사망 경계에서만 예외."
+    },
+    {
+      "id": "A2.S18.BRANCH.02",
+      "speaker_channel": "담허 · dialogue",
+      "condition": "E04 환경사망 AND 시신 접근 불가; 환경사망이 장면/상태로 실제 확정·목격됐을 때; 단순 실종으로 죽음 단정 금지",
+      "text": "유헌은 죽었네. 종 아래를 다시 살피세.",
+      "speaker_guard": "화자가 실제 출연·생존한 경우. DEATH.01은 치명타 직후의 짧은 사망 경계에서만 예외."
+    },
+    {
+      "id": "A2.S18.STABILIZE.01",
+      "speaker_channel": "담허 · dialogue",
+      "condition": "E05 유헌 사망·구조·제동 완료; 연결 고정구 점검 완료 포함; keeper_dead AND rescued18 AND brake_locked",
+      "text": "붙은 혼이 아래에 남았네. 틈을 조금만 열어보세.",
+      "speaker_guard": "화자가 실제 출연·생존한 경우. DEATH.01은 치명타 직후의 짧은 사망 경계에서만 예외."
+    },
+    {
+      "id": "A2.S18.STABILIZE.02",
+      "speaker_channel": "설오 · dialogue",
+      "condition": "E05 부분 인양 시작; 실제 부분 인양으로 받침이 보이는 시점",
+      "text": "받침이 보입니다.",
+      "speaker_guard": "화자가 실제 출연·생존한 경우. DEATH.01은 치명타 직후의 짧은 사망 경계에서만 예외."
+    },
+    {
+      "id": "A2.S18.STABILIZE.03",
+      "speaker_channel": "소단 · dialogue",
+      "condition": "E05 bell_gap_open=true",
+      "text": "열렸어요. 아래에 있던 혼들이 보여요.",
+      "speaker_guard": "화자가 실제 출연·생존한 경우. DEATH.01은 치명타 직후의 짧은 사망 경계에서만 예외."
+    },
+    {
+      "id": "A2.S18.STABILIZE.04",
+      "speaker_channel": "휘겸 · dialogue",
+      "condition": "E06 재안착 전 하부 확인; 최소 수평 이동 후 실제 재안착 받침의 하부가 비었음 확인",
+      "text": "내릴 자리에는 사람이 없소. 천천히 내리시오.",
+      "speaker_guard": "화자가 실제 출연·생존한 경우. DEATH.01은 치명타 직후의 짧은 사망 경계에서만 예외."
+    },
+    {
+      "id": "A2.S18.STABILIZE.05",
+      "speaker_channel": "설오 · dialogue",
+      "condition": "E06 종이 받침에 닿음",
+      "text": "받침에 닿았습니다. 고정구를 거십시오.",
+      "speaker_guard": "화자가 실제 출연·생존한 경우. DEATH.01은 치명타 직후의 짧은 사망 경계에서만 예외."
+    },
+    {
+      "id": "A2.S18.COMPLETE.01",
+      "speaker_channel": "담허 · dialogue",
+      "condition": "E07 모든 안정화 조건 충족",
+      "text": "이제 움직이지 않네.",
+      "speaker_guard": "화자가 실제 출연·생존한 경우. DEATH.01은 치명타 직후의 짧은 사망 경계에서만 예외."
+    },
+    {
+      "id": "A2.S18.COMPLETE.02",
+      "speaker_channel": "소단 · dialogue",
+      "condition": "E07 두드림이 남아 있음",
+      "text": "아직 안에서 두드려요.",
+      "speaker_guard": "화자가 실제 출연·생존한 경우. DEATH.01은 치명타 직후의 짧은 사망 경계에서만 예외."
+    },
+    {
+      "id": "A2.S18.COMPLETE.03",
+      "speaker_channel": "휘겸 · dialogue",
+      "condition": "E07 구조된 생존자 확인",
+      "text": "다친 분은 뒤로 모시겠소. 남은 이들을 보내주시오.",
+      "speaker_guard": "화자가 실제 출연·생존한 경우. DEATH.01은 치명타 직후의 짧은 사망 경계에서만 예외."
+    },
+    {
+      "id": "A2.S18.OBJECTIVE.01",
+      "speaker_channel": "objective · objective",
+      "condition": "E01",
+      "text": "종의 하강을 멈추고 홀린 생존자 구출"
+    },
+    {
+      "id": "A2.S18.OBJECTIVE.02",
+      "speaker_channel": "objective · objective",
+      "condition": "E02",
+      "text": "인양 장치를 지키며 유헌 저지"
+    },
+    {
+      "id": "A2.S18.OBJECTIVE.03",
+      "speaker_channel": "objective · objective",
+      "condition": "E04 생존자 미구출",
+      "text": "유헌은 사망했습니다. 제동·생존자 구출을 마치세요."
+    },
+    {
+      "id": "A2.S18.OBJECTIVE.04",
+      "speaker_channel": "objective · objective",
+      "condition": "E04 구조 완료; keeper_dead AND rescued18; 인양 수행은 제동/연결점검 전제도 충족해야 함",
+      "text": "묵종을 조금 들어 아래 공간을 열고 받침에 재고정"
+    },
+    {
+      "id": "A2.S18.POPUP.01",
+      "speaker_channel": "popup · popup",
+      "condition": "제동 없이 줄 해제 시",
+      "text": "하강 고정구가 열려 있습니다. 먼저 종의 하강을 멈추세요."
+    },
+    {
+      "id": "A2.S18.POPUP.02",
+      "speaker_channel": "popup · popup",
+      "condition": "인양 전 생존자 위험 위치",
+      "text": "아직 종 아래에 사람이 있습니다. 안전지대로 옮긴 뒤 인양하세요."
+    },
+    {
+      "id": "A2.S18.POPUP.03",
+      "speaker_channel": "popup · popup",
+      "condition": "종에 공격 조준",
+      "text": "묵종은 파괴할 대상이 아닙니다. 인양 장치와 고정구를 조작하세요."
+    },
+    {
+      "id": "A2.S18.POPUP.04",
+      "speaker_channel": "popup · popup",
+      "condition": "유헌 환경사망",
+      "text": "유헌이 전투 중 사망했습니다. 남은 구조·안정화 목표를 계속하세요."
+    },
+    {
+      "id": "A2.S18.FAIL.01",
+      "speaker_channel": "fail · fail",
+      "condition": "구조 대상 사망",
+      "text": "종 아래의 생존자를 구하지 못했습니다. 구조 시작 전부터 다시 시작합니다."
+    },
+    {
+      "id": "A2.S18.JOURNAL.01",
+      "speaker_channel": "journal · journal",
+      "condition": "E07; 실제 재매장 시도 목격 및 keeper_dead/rescued18/bell_gap_open/bell_reseated/bell_stable 확인 후; 미목격이면 고의 단정문을 강제재생하지 않음",
+      "text": "유헌은 아래에 사람이 있는 것을 보고도 종을 내리려 했다. 생존자는 살아 나왔고 유헌은 전투 중 죽었다. 묵종은 깨뜨리지 않고 조금 들어 옮긴 뒤 받침에 고정했다. 아래에 갇힌 혼들은 아직 떠나지 못했다."
+    },
+    {
+      "id": "EDGE.ARRIVALS_18_0",
+      "speaker_channel": "서술 · arrival",
+      "condition": "장 도착 때 한 번",
+      "text": "묵종이 공동 아래를 막고 있었다. 줄을 쥔 유헌 아래로 사람 하나가 걸어갔다."
+    },
+    {
+      "id": "EDGE.OPTIONAL_18_ARCHER_0",
+      "speaker_channel": "설오 · optional",
+      "condition": "동료 선택대화; 실제 출연·생존한 화자만",
+      "text": "축은 돌아갔습니다. 사람들이 두드릴 때도 다시 걸 수 있었겠지요."
+    },
+    {
+      "id": "EDGE.OPTIONAL_18_MAGE_0",
+      "speaker_channel": "담허 · optional",
+      "condition": "동료 선택대화; 실제 출연·생존한 화자만; 종 안정화 완료 전",
+      "text": "이만한 종을 움직일 때는 서두르지 말게. 줄이 팽팽해지면 발밑부터 보세."
+    },
+    {
+      "id": "EDGE.OPTIONAL_18_KNIGHT_0",
+      "speaker_channel": "휘겸 · optional",
+      "condition": "동료 선택대화; 실제 출연·생존한 화자만; witness16_heard=true AND !keeper_dead AND 유헌과의 직접 문답 전; 뒤따르는 1~2행도 같은 조건",
+      "text": "축은 무너져 부러진 게 아니라 사람 손으로 뽑아낸 것이오."
+    },
+    {
+      "id": "EDGE.OPTIONAL_18_KNIGHT_1",
+      "speaker_channel": "소단 · optional",
+      "condition": "동료 선택대화; 실제 출연·생존한 화자만; witness16_heard=true AND !keeper_dead AND 유헌과의 직접 문답 전",
+      "text": "사흘째에도 안에서 두드렸다잖아요. 그 소리를 듣고 축을 뺐어요."
+    },
+    {
+      "id": "EDGE.OPTIONAL_18_KNIGHT_2",
+      "speaker_channel": "휘겸 · optional",
+      "condition": "동료 선택대화; 실제 출연·생존한 화자만; !keeper_dead AND 유헌과의 직접 문답 전; 사망/문답완료 후 재생 금지",
+      "text": "유헌에게 직접 묻겠소."
+    },
+    {
+      "id": "EDGE.OPTIONAL_18_OCCULTIST_0",
+      "speaker_channel": "소단 · optional",
+      "condition": "동료 선택대화; 실제 출연·생존한 화자만; 17장 인양틀의 혼 행동을 실제 목격했을 때; 가족관계는 질문일 뿐 확정 아님",
+      "text": "인양틀에 붙어 있던 혼은 죽어서도 종을 들어 올리려고만 했어요. 저 종 밑에 자기 가족이 갇혀 있었던 걸까요?"
+    }
+  ],
+  "reviewed_id_count": 47,
+  "pending_wording_ids": [],
+  "final_decisions": [
+    "부모 승인한7개최소수정과40KEEP 후보 그대로47행확정.",
+    "DEATH01 정상치명타 경계예외/환경사망실제확인/유헌사망후대기문답취소·선택가드 보존.",
+    "실제제동/혼분리·구출/연결확인/부분인양·받침노출/최소수평재안착/양쪽잠금 가드 보존."
+  ],
+  "implementation_verified": false,
+  "implementation_note": "문구검수완료는 실제 물리/구조/사망/인양/재안착 구현완료가 아님. alias와각기계상태 실제검증별도.",
+  "pass3_source": "HONRO-CH18-PASS3-20261027-response.md"
+}

@@ -1,0 +1,259 @@
+{
+  "stage": 18,
+  "status": "47문구최종확정;실제기계·가드구현검증별도",
+  "sources": [
+    "HONRO_18장_대사검수.txt",
+    "HONRO-CH18-PASS1-20261027-response.md",
+    "HONRO_16장_대사검수.txt",
+    "sources/honro-act2-v4-plan.md"
+  ],
+  "input_ids": 47,
+  "decisions": [
+    {
+      "id": "A2.S18.INTRO.01",
+      "decision": "KEEP"
+    },
+    {
+      "id": "A2.S18.INTRO.02",
+      "decision": "KEEP"
+    },
+    {
+      "id": "A2.S18.INTRO.03",
+      "decision": "KEEP"
+    },
+    {
+      "id": "A2.S18.INTRO.04",
+      "decision": "CHANGE",
+      "old": "줄을 놓으십시오!",
+      "candidate": "더 내리지 마십시오!",
+      "reason": "제동 전 줄을 해제하라는 위험한 조작 지시 오독 제거. 유헌의 하강 시도를 멈추려는 뜻 보존.",
+      "condition_addition": "!keeper_dead AND 유헌의 실제 하강 조작 목격"
+    },
+    {
+      "id": "A2.S18.PHASE1.01",
+      "decision": "KEEP",
+      "condition_addition": "!keeper_dead AND 해당 선행 문답/행동이 실제 발생한 경우; 대기 중 사망하면 후속 문답 취소"
+    },
+    {
+      "id": "A2.S18.PHASE1.02",
+      "decision": "KEEP",
+      "condition_addition": "!keeper_dead AND 해당 선행 문답/행동이 실제 발생한 경우; 대기 중 사망하면 후속 문답 취소"
+    },
+    {
+      "id": "A2.S18.PHASE1.03",
+      "decision": "KEEP",
+      "condition_addition": "!keeper_dead AND 해당 선행 문답/행동이 실제 발생한 경우; 대기 중 사망하면 후속 문답 취소"
+    },
+    {
+      "id": "A2.S18.MID.01",
+      "decision": "KEEP"
+    },
+    {
+      "id": "A2.S18.MID.02",
+      "decision": "KEEP"
+    },
+    {
+      "id": "A2.S18.MID.03",
+      "decision": "CHANGE",
+      "old": "멎었다. 지금 빼내시오.",
+      "candidate": "멎었네. 지금 빼내게.",
+      "reason": "실제 제동 확인 후 동료에게 하는 하게체로 통일."
+    },
+    {
+      "id": "A2.S18.MID.04",
+      "decision": "CHANGE",
+      "old": "다리가…… 움직여지오.",
+      "candidate": "다리가…… 움직이오.",
+      "reason": "불필요한 피동을 덜어 홀림 해제 후 다리 움직임을 자연스럽게 표현."
+    },
+    {
+      "id": "A2.S18.MID.05",
+      "decision": "KEEP"
+    },
+    {
+      "id": "A2.S18.PHASE2.01",
+      "decision": "KEEP",
+      "condition_addition": "!keeper_dead AND 해당 선행 문답/행동이 실제 발생한 경우; 대기 중 사망하면 후속 문답 취소"
+    },
+    {
+      "id": "A2.S18.PHASE2.02",
+      "decision": "KEEP",
+      "condition_addition": "!keeper_dead AND 해당 선행 문답/행동이 실제 발생한 경우; 대기 중 사망하면 후속 문답 취소"
+    },
+    {
+      "id": "A2.S18.PHASE2.03",
+      "decision": "KEEP",
+      "condition_addition": "!keeper_dead AND 해당 선행 문답/행동이 실제 발생한 경우; 대기 중 사망하면 후속 문답 취소"
+    },
+    {
+      "id": "A2.S18.PHASE2.04",
+      "decision": "KEEP",
+      "condition_addition": "!keeper_dead AND 해당 선행 문답/행동이 실제 발생한 경우; 대기 중 사망하면 후속 문답 취소"
+    },
+    {
+      "id": "A2.S18.PHASE2.05",
+      "decision": "KEEP",
+      "condition_addition": "!keeper_dead AND 해당 선행 문답/행동이 실제 발생한 경우; 대기 중 사망하면 후속 문답 취소"
+    },
+    {
+      "id": "A2.S18.PHASE2.06",
+      "decision": "KEEP",
+      "condition_addition": "!keeper_dead AND 해당 선행 문답/행동이 실제 발생한 경우; 대기 중 사망하면 후속 문답 취소"
+    },
+    {
+      "id": "A2.S18.DEATH.01",
+      "decision": "KEEP"
+    },
+    {
+      "id": "A2.S18.DEATH.02",
+      "decision": "KEEP"
+    },
+    {
+      "id": "A2.S18.BRANCH.01",
+      "decision": "KEEP"
+    },
+    {
+      "id": "A2.S18.BRANCH.02",
+      "decision": "KEEP",
+      "condition_addition": "환경사망이 장면/상태로 실제 확정·목격됐을 때; 단순 실종으로 죽음 단정 금지"
+    },
+    {
+      "id": "A2.S18.STABILIZE.01",
+      "decision": "KEEP",
+      "condition_addition": "연결 고정구 점검 완료 포함; keeper_dead AND rescued18 AND brake_locked"
+    },
+    {
+      "id": "A2.S18.STABILIZE.02",
+      "decision": "CHANGE",
+      "condition_addition": "실제 부분 인양으로 받침이 보이는 시점",
+      "old": "받침이 보입니다. 더 올리면 줄이 닿습니다.",
+      "candidate": "받침이 보입니다.",
+      "reason": "접촉대상 불명확한 후문을 삭제. 기존 첫문장만 남겨 확인되지 않은 줄충돌/손상 기믹 추가 방지."
+    },
+    {
+      "id": "A2.S18.STABILIZE.03",
+      "decision": "KEEP"
+    },
+    {
+      "id": "A2.S18.STABILIZE.04",
+      "decision": "CHANGE",
+      "old": "밑에는 아무도 없소. 천천히 내리시오.",
+      "candidate": "내릴 자리에는 사람이 없소. 천천히 내리시오.",
+      "reason": "갇힌 혼은 아직 남아 있으므로 살아 있는 사람의 안전 확인임을 명료화. 옆 받침 재안착 자리 확인과 연결.",
+      "condition_addition": "최소 수평 이동 후 실제 재안착 받침의 하부가 비었음 확인"
+    },
+    {
+      "id": "A2.S18.STABILIZE.05",
+      "decision": "KEEP"
+    },
+    {
+      "id": "A2.S18.COMPLETE.01",
+      "decision": "KEEP"
+    },
+    {
+      "id": "A2.S18.COMPLETE.02",
+      "decision": "KEEP"
+    },
+    {
+      "id": "A2.S18.COMPLETE.03",
+      "decision": "KEEP"
+    },
+    {
+      "id": "A2.S18.OBJECTIVE.01",
+      "decision": "KEEP"
+    },
+    {
+      "id": "A2.S18.OBJECTIVE.02",
+      "decision": "KEEP"
+    },
+    {
+      "id": "A2.S18.OBJECTIVE.03",
+      "decision": "KEEP"
+    },
+    {
+      "id": "A2.S18.OBJECTIVE.04",
+      "decision": "KEEP",
+      "condition_addition": "keeper_dead AND rescued18; 인양 수행은 제동/연결점검 전제도 충족해야 함"
+    },
+    {
+      "id": "A2.S18.POPUP.01",
+      "decision": "KEEP"
+    },
+    {
+      "id": "A2.S18.POPUP.02",
+      "decision": "KEEP"
+    },
+    {
+      "id": "A2.S18.POPUP.03",
+      "decision": "KEEP"
+    },
+    {
+      "id": "A2.S18.POPUP.04",
+      "decision": "KEEP"
+    },
+    {
+      "id": "A2.S18.FAIL.01",
+      "decision": "KEEP"
+    },
+    {
+      "id": "A2.S18.JOURNAL.01",
+      "decision": "CHANGE",
+      "old": "유헌은 아래에 사람이 있는 것을 보고도 종을 내리려 했다. 일행이 생존자를 빼내고 그를 저지했다. 유헌은 전투 중 죽었다. 묵종은 깨뜨리지 않고 조금 들어 옮긴 뒤 받침에 고정했다. 아래에 갇힌 혼들은 아직 떠나지 못했다.",
+      "candidate": "유헌은 아래에 사람이 있는 것을 보고도 종을 내리려 했다. 생존자는 살아 나왔고 유헌은 전투 중 죽었다. 묵종은 깨뜨리지 않고 조금 들어 옮긴 뒤 받침에 고정했다. 아래에 갇힌 혼들은 아직 떠나지 못했다.",
+      "reason": "조기처치 때도 구출 뒤 보스저지라는 순서를 강요하지 않고 구출/사망 결과를 병렬로 기록.",
+      "condition_addition": "실제 재매장 시도 목격 및 keeper_dead/rescued18/bell_gap_open/bell_reseated/bell_stable 확인 후; 미목격이면 고의 단정문을 강제재생하지 않음"
+    },
+    {
+      "id": "EDGE.ARRIVALS_18_0",
+      "decision": "KEEP"
+    },
+    {
+      "id": "EDGE.OPTIONAL_18_ARCHER_0",
+      "decision": "KEEP"
+    },
+    {
+      "id": "EDGE.OPTIONAL_18_MAGE_0",
+      "decision": "KEEP",
+      "condition_addition": "종 안정화 완료 전"
+    },
+    {
+      "id": "EDGE.OPTIONAL_18_KNIGHT_0",
+      "decision": "KEEP",
+      "condition_addition": "witness16_heard=true AND !keeper_dead AND 유헌과의 직접 문답 전; 뒤따르는 1~2행도 같은 조건"
+    },
+    {
+      "id": "EDGE.OPTIONAL_18_KNIGHT_1",
+      "decision": "CHANGE",
+      "old": "사흘째에도 물을 달랬다잖아요. 그 소리를 듣고 축을 뺐어요.",
+      "candidate": "사흘째에도 안에서 두드렸다잖아요. 그 소리를 듣고 축을 뺐어요.",
+      "reason": "16장 증언은 첫날 물 요청/사흘째 두드림. 사흘째 물 요청을 새 사실로 바꾸지 않음.",
+      "condition_addition": "witness16_heard=true AND !keeper_dead AND 유헌과의 직접 문답 전"
+    },
+    {
+      "id": "EDGE.OPTIONAL_18_KNIGHT_2",
+      "decision": "KEEP",
+      "condition_addition": "!keeper_dead AND 유헌과의 직접 문답 전; 사망/문답완료 후 재생 금지"
+    },
+    {
+      "id": "EDGE.OPTIONAL_18_OCCULTIST_0",
+      "decision": "KEEP",
+      "condition_addition": "17장 인양틀의 혼 행동을 실제 목격했을 때; 가족관계는 질문일 뿐 확정 아님"
+    }
+  ],
+  "implementation_questions": [
+    "STABILIZE02는 실제 부분 인양으로 받침이 보이는 시점에 발동하는가?",
+    "유헌 사망이 PHASE 대기문답 및 선택 KNIGHT체인을 취소하는가?",
+    "환경사망 후 시신접근이 없어도 실제 사망이 장면/상태로 명료하게 확인되는가?",
+    "재매장 시도 목격 전 극조기처치가 가능하다면 JOURNAL 고의목격 문구를 별도 가드/대안으로 처리하는가?",
+    "안정화는 실제 구조/제동/연결점검/부분인양/최소수평이동/재안착/양쪽잠금으로 판정되는가?"
+  ],
+  "coverage_note": "1차47KEEP의 실제47고유ID/누락0/추가0 확인. 입력47개 및16장 증언/18장 실제 순서분기 독립 대조.",
+  "pass3_final": {
+    "file": "HONRO-CH18-PASS3-20261027-response.md",
+    "actual_unique_ids": 47,
+    "missing": [],
+    "extra": [],
+    "parent_decision": "검수받은7수정/40KEEP 후보그대로47행확정",
+    "implementation_verified": false
+  }
+}

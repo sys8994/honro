@@ -1,0 +1,192 @@
+{
+  "stage": 16,
+  "status": "35문구 최종확정; 실제 구현검증 별도",
+  "sources": [
+    "HONRO-CH16-PASS1-20261027-response-option-a.txt",
+    "HONRO-CH16-PASS1-20261027-response-option-b.txt",
+    "HONRO_16장_대사검수.txt",
+    "sources/honro-act2-v4-plan.md"
+  ],
+  "input_ids": 35,
+  "decisions": [
+    {
+      "id": "A2.S16.BRANCH.02",
+      "decision": "KEEP"
+    },
+    {
+      "id": "A2.S16.BRANCH.01",
+      "decision": "KEEP"
+    },
+    {
+      "id": "A2.S16.INTRO.01",
+      "decision": "KEEP"
+    },
+    {
+      "id": "A2.S16.INTRO.02",
+      "decision": "CHANGE",
+      "old": "알아요. 몸 안의 혼만 떼어낼게요.",
+      "candidate": "알아요. 붙은 혼만 떼어낼게요.",
+      "reason": "살아 있는 제자의 본래 혼이 아니라 붙은 혼 분리라는 목적 명료화."
+    },
+    {
+      "id": "A2.S16.INTRO.03",
+      "decision": "KEEP"
+    },
+    {
+      "id": "A2.S16.MID.01",
+      "decision": "KEEP"
+    },
+    {
+      "id": "A2.S16.MID.02",
+      "decision": "KEEP"
+    },
+    {
+      "id": "A2.S16.MID.03",
+      "decision": "KEEP"
+    },
+    {
+      "id": "A2.S16.MID.04",
+      "decision": "KEEP"
+    },
+    {
+      "id": "A2.S16.MID.05",
+      "decision": "KEEP"
+    },
+    {
+      "id": "A2.S16.WITNESS.01",
+      "decision": "KEEP",
+      "condition_addition": "노승·제자 실제 안전자리 도착 후"
+    },
+    {
+      "id": "A2.S16.WITNESS.02",
+      "decision": "KEEP",
+      "condition_addition": "노승·제자 실제 안전자리 도착 후"
+    },
+    {
+      "id": "A2.S16.WITNESS.03",
+      "decision": "KEEP",
+      "condition_addition": "노승·제자 실제 안전자리 도착 후"
+    },
+    {
+      "id": "A2.S16.WITNESS.04",
+      "decision": "KEEP",
+      "condition_addition": "노승·제자 실제 안전자리 도착 후"
+    },
+    {
+      "id": "A2.S16.WITNESS.05",
+      "decision": "KEEP",
+      "condition_addition": "노승·제자 실제 안전자리 도착 후"
+    },
+    {
+      "id": "A2.S16.WITNESS.06",
+      "decision": "KEEP",
+      "condition_addition": "노승·제자 실제 안전자리 도착 후"
+    },
+    {
+      "id": "A2.S16.WITNESS.07",
+      "decision": "KEEP",
+      "condition_addition": "노승·제자 실제 안전자리 도착 후"
+    },
+    {
+      "id": "A2.S16.WITNESS.08",
+      "decision": "KEEP",
+      "condition_addition": "노승·제자 실제 안전자리 도착 후"
+    },
+    {
+      "id": "A2.S16.MID.06",
+      "decision": "KEEP",
+      "condition_addition": "현재 갇힌 혼을 실제 확인 후; 현재 살아 있는 피해자 수 단정 아님"
+    },
+    {
+      "id": "A2.S16.MID.07",
+      "decision": "KEEP"
+    },
+    {
+      "id": "A2.S16.COMPLETE.01",
+      "decision": "KEEP"
+    },
+    {
+      "id": "A2.S16.COMPLETE.02",
+      "decision": "KEEP"
+    },
+    {
+      "id": "A2.S16.OBJECTIVE.01",
+      "decision": "KEEP"
+    },
+    {
+      "id": "A2.S16.OBJECTIVE.02",
+      "decision": "KEEP",
+      "condition_addition": "혼 분리 및 노승·제자의 실제 안전자리 이동 완료 후"
+    },
+    {
+      "id": "A2.S16.OBJECTIVE.03",
+      "decision": "KEEP"
+    },
+    {
+      "id": "A2.S16.POPUP.01",
+      "decision": "KEEP"
+    },
+    {
+      "id": "A2.S16.FAIL.01",
+      "decision": "KEEP"
+    },
+    {
+      "id": "A2.S16.JOURNAL.01",
+      "decision": "KEEP"
+    },
+    {
+      "id": "EDGE.ARRIVALS_16_0",
+      "decision": "KEEP"
+    },
+    {
+      "id": "EDGE.OPTIONAL_16_ARCHER_0",
+      "decision": "KEEP"
+    },
+    {
+      "id": "EDGE.OPTIONAL_16_MAGE_0",
+      "decision": "KEEP",
+      "condition_addition": "구조 및 필수 증언 전; 뒤따르는 대화 묶음도 같은 시점"
+    },
+    {
+      "id": "EDGE.OPTIONAL_16_MAGE_1",
+      "decision": "KEEP",
+      "condition_addition": "노승·제자 구조 완료 전"
+    },
+    {
+      "id": "EDGE.OPTIONAL_16_MAGE_2",
+      "decision": "KEEP",
+      "condition_addition": "제자 혼 분리 전; 붙은 혼을 실제 확인"
+    },
+    {
+      "id": "EDGE.OPTIONAL_16_KNIGHT_0",
+      "decision": "KEEP",
+      "condition_addition": "노승·제자 구조 완료 전; 실제 두 명 확인"
+    },
+    {
+      "id": "EDGE.OPTIONAL_16_OCCULTIST_0",
+      "decision": "KEEP",
+      "condition_addition": "이전 물길에서 수문 아래 혼들이 위로 손 뻗는 모습을 실제 목격했을 때만; 경로별 미목격이면 재생하지 않음"
+    }
+  ],
+  "pass1_rejected": [
+    "A의 담허 겠네를 잘못 분류한 뒤 스스로철회한 겠어 제안은 기각.",
+    "A의 구하자오는 비문. 구합시다 유지.",
+    "B의 전체KEEP을 자동채택하지 않고 실제 안전이동/목격/생존 조건을 별도 확인."
+  ],
+  "implementation_questions": [
+    "E03 분리후 노승·제자의 실제 안전자리 도착을 확인한 뒤 증언이 시작되는가?",
+    "선택 MAGE0~2 체인/KNIGHT0가 구조 전에만 재생되는가?",
+    "고지우회 경로도 수문 아래 혼의 손짓을 실제 목격했는가? 미목격시 OCCULTIST0를 비활성화하는가?",
+    "WITNESS03의 인양축 질문을 할 정도로 기존 운반시설이 보이거나 알려졌는가? 현재 원문 유지하며 근거부족이면 최종검수 질문으로 남김."
+  ],
+  "coverage_note": "A 실제35ID지만 MID06 중복판정 및 MAGE1 UNKNOWN/유지혼재. B 실제35KEEP. 두응답 모두 실제 입력35개와 대조.",
+  "pass3_final": {
+    "file": "HONRO-CH16-PASS3-20261027-response.md",
+    "actual_unique_ids": 35,
+    "missing": [],
+    "extra": [],
+    "parent_decision": "35개 그대로확정",
+    "explanation_error": "MID02 놓아주시오/갑니다를 하게체라고 부른 것은 오분류. 노승에게 하는 존대 요청이라는 실제 맥락으로 유지.",
+    "implementation_pending": "WITNESS03 운반시설가시성 및 안전자리/관찰/선택대화시점 가드"
+  }
+}

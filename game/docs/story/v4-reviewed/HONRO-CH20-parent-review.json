@@ -1,0 +1,284 @@
+{
+  "stage": 20,
+  "status": "52문구최종확정;NPC실동작·지식가드·세이브구현별도",
+  "sources": [
+    "HONRO_20장_대사검수.txt",
+    "HONRO-CH20-PASS1-20261027-response.md",
+    "HONRO-CH20-PASS1-COVERAGE-20261027-response.md",
+    "sources/honro-act2-v4-plan.md",
+    "internal_stage20_map.json"
+  ],
+  "input_ids": 52,
+  "decisions": [
+    {
+      "id": "A2.S20.INTRO.01",
+      "decision": "KEEP"
+    },
+    {
+      "id": "A2.S20.INTRO.02",
+      "decision": "KEEP"
+    },
+    {
+      "id": "A2.S20.INTRO.03",
+      "decision": "KEEP"
+    },
+    {
+      "id": "A2.S20.MID.01",
+      "decision": "KEEP"
+    },
+    {
+      "id": "A2.S20.MID.02",
+      "decision": "KEEP",
+      "condition_addition": "같은 짐 1회 인수 시작; 실제 접근/인계/보유로 이어짐"
+    },
+    {
+      "id": "A2.S20.MID.03",
+      "decision": "KEEP"
+    },
+    {
+      "id": "A2.S20.MID.04",
+      "decision": "KEEP"
+    },
+    {
+      "id": "A2.S20.MID.05",
+      "decision": "KEEP"
+    },
+    {
+      "id": "A2.S20.MID.06",
+      "decision": "KEEP",
+      "condition_addition": "실제 뒤처진 부상자 존재; 지원자 접근/부축/동반이동 완료를 대사만으로 대신하지 않음"
+    },
+    {
+      "id": "A2.S20.MID.07",
+      "decision": "KEEP"
+    },
+    {
+      "id": "A2.S20.BRANCH.01",
+      "decision": "KEEP",
+      "condition_addition": "생존자 roster 전원 실제 도착; 손실분기와 상호배타"
+    },
+    {
+      "id": "A2.S20.BRANCH.02",
+      "decision": "KEEP",
+      "condition_addition": "실제 허용된 익명주민 손실 및 나머지 도착 확정; 전원도착대사와 상호배타"
+    },
+    {
+      "id": "A2.S20.TIME.01",
+      "decision": "CHANGE",
+      "old": "저기 주막은 어찌 됐소?",
+      "candidate": "저기 있던 주막은 어찌 됐소?",
+      "reason": "Gemini 제안 수용. 주막터를 보며 과거 주막을 찾는 상황 명료화.",
+      "condition_addition": "석공·길찬 및 생존 호송대의 실제 외부 도착 후; 선행 문답 완료 순서 보존"
+    },
+    {
+      "id": "A2.S20.TIME.02",
+      "decision": "KEEP",
+      "condition_addition": "석공·길찬 및 생존 호송대의 실제 외부 도착 후; 선행 문답 완료 순서 보존"
+    },
+    {
+      "id": "A2.S20.TIME.03",
+      "decision": "KEEP",
+      "condition_addition": "석공·길찬 및 생존 호송대의 실제 외부 도착 후; 선행 문답 완료 순서 보존"
+    },
+    {
+      "id": "A2.S20.TIME.04",
+      "decision": "KEEP",
+      "condition_addition": "석공·길찬 및 생존 호송대의 실제 외부 도착 후; 선행 문답 완료 순서 보존"
+    },
+    {
+      "id": "A2.S20.TIME.05",
+      "decision": "KEEP",
+      "condition_addition": "석공·길찬 및 생존 호송대의 실제 외부 도착 후; 선행 문답 완료 순서 보존"
+    },
+    {
+      "id": "A2.S20.TIME.06",
+      "decision": "KEEP",
+      "condition_addition": "석공·길찬 및 생존 호송대의 실제 외부 도착 후; 선행 문답 완료 순서 보존"
+    },
+    {
+      "id": "A2.S20.TIME.07",
+      "decision": "KEEP",
+      "condition_addition": "석공·길찬 및 생존 호송대의 실제 외부 도착 후; 선행 문답 완료 순서 보존",
+      "condition_correction": "E03 인수한 같은짐을 계속 든 채 앉을자리 안내;두번째인수없음"
+    },
+    {
+      "id": "A2.S20.TIME.08",
+      "decision": "KEEP",
+      "condition_addition": "석공·길찬 및 생존 호송대의 실제 외부 도착 후; 선행 문답 완료 순서 보존"
+    },
+    {
+      "id": "A2.S20.NEWS.01",
+      "decision": "CHANGE",
+      "old": "읍성으로 가시오? 성문에서 수레가 사람을 덮쳤소.",
+      "candidate": "읍성으로 가시오? 성문에서 들린 수레가 사람을 덮쳤소.",
+      "reason": "계획 퇴장지식/저널/막종료는 들린 수레 피해를 명시하나 실제 전달대사가 일반 수레사고만 말해 근거가 비어 있음. 계획에 이미 있는 들림을 전달대사에 한 단어로 연결.",
+      "condition_addition": "동굴주민 아닌 바깥 피란민이 실제 조우하여 현재 들린 수레 피해를 증언"
+    },
+    {
+      "id": "A2.S20.NEWS.02",
+      "decision": "KEEP"
+    },
+    {
+      "id": "A2.S20.NEWS.03",
+      "decision": "KEEP"
+    },
+    {
+      "id": "A2.S20.NEWS.04",
+      "decision": "KEEP"
+    },
+    {
+      "id": "A2.S20.NEWS.05",
+      "decision": "KEEP"
+    },
+    {
+      "id": "A2.S20.NEWS.06",
+      "decision": "KEEP"
+    },
+    {
+      "id": "A2.S20.COMPLETE.01",
+      "decision": "KEEP"
+    },
+    {
+      "id": "A2.S20.OBJECTIVE.01",
+      "decision": "KEEP"
+    },
+    {
+      "id": "A2.S20.OBJECTIVE.02",
+      "decision": "KEEP",
+      "condition_addition": "완료는 실제 주민의 쉼터 도착·집결로 판정; 대기턴수/문구만으로 완료 금지"
+    },
+    {
+      "id": "A2.S20.OBJECTIVE.03",
+      "decision": "KEEP"
+    },
+    {
+      "id": "A2.S20.OBJECTIVE.04",
+      "decision": "KEEP"
+    },
+    {
+      "id": "A2.S20.POPUP.01",
+      "decision": "KEEP"
+    },
+    {
+      "id": "A2.S20.POPUP.02",
+      "decision": "KEEP",
+      "condition_addition": "실제 roster로 survived_count/lost_count 계산; 사망자를 생존수에 포함하지 않음"
+    },
+    {
+      "id": "A2.S20.FAIL.01",
+      "decision": "KEEP"
+    },
+    {
+      "id": "A2.S20.JOURNAL.01",
+      "decision": "KEEP",
+      "condition_addition": "실제 외부 도착 및 TIME04~08 문답 완료 후; 시간차 선공개 금지"
+    },
+    {
+      "id": "A2.S20.JOURNAL.02",
+      "decision": "KEEP",
+      "condition_addition": "바깥 피란민의 NEWS01~03 실제 청취 후"
+    },
+    {
+      "id": "EDGE.ARRIVALS_20_0",
+      "decision": "KEEP"
+    },
+    {
+      "id": "EDGE.OPTIONAL_20_ARCHER_0",
+      "decision": "KEEP",
+      "condition_addition": "실제 외부 도착 전 AND 돌림진 해제 전; 이어지는0~2행 전체 같은 시점"
+    },
+    {
+      "id": "EDGE.OPTIONAL_20_ARCHER_1",
+      "decision": "KEEP",
+      "condition_addition": "돌림진 해제 전; 이미 거둔 뒤 다시 거두겠다고 말하지 않음"
+    },
+    {
+      "id": "EDGE.OPTIONAL_20_ARCHER_2",
+      "decision": "KEEP",
+      "condition_addition": "외부 도착 전; 저문골 물증은 이미 실제 확보"
+    },
+    {
+      "id": "EDGE.OPTIONAL_20_MAGE_0",
+      "decision": "KEEP",
+      "condition_addition": "19장 천도완료 AND 외부 도착 전"
+    },
+    {
+      "id": "EDGE.OPTIONAL_20_KNIGHT_0",
+      "decision": "CHANGE",
+      "old": "이송 표식과 왕실 봉인은 종이에 똑똑히 베껴 챙겼소. 저문골이라는 세 글자도 빠뜨리지 않았소.",
+      "candidate": "이송 표식과 왕실 봉인은 종이에 똑똑히 베껴 챙겼소. 저문골이라는 이름도 빠뜨리지 않았소.",
+      "reason": "Gemini 지명 표현 대안 수용. 기존 종이 기록 의미는 보존하며 실제 확보/기록 상태와 구별 검증.",
+      "condition_addition": "19장 세 물증 실제확보 및 기록상태;별도필기애니메이션 필수아님"
+    },
+    {
+      "id": "EDGE.OPTIONAL_20_OCCULTIST_0",
+      "decision": "KEEP",
+      "condition_addition": "19장 천도 실제목격 후; 혼들의 이름/손목 감각은 기존 소단의 목격담 범위이며 시간정지로 확대하지 않음"
+    },
+    {
+      "id": "EDGE.RESTENDINGS_20_REQUIRED_0",
+      "decision": "KEEP",
+      "condition_addition": "살아 나온 주민들이 실제 양지에서 쉬는 상태"
+    },
+    {
+      "id": "EDGE.RESTENDINGS_20_OPTIONAL_ARCHER_0",
+      "decision": "KEEP"
+    },
+    {
+      "id": "EDGE.RESTENDINGS_20_OPTIONAL_MAGE_0",
+      "decision": "KEEP"
+    },
+    {
+      "id": "EDGE.RESTENDINGS_20_OPTIONAL_KNIGHT_0",
+      "decision": "KEEP",
+      "condition_addition": "E03 한 번 인수한 같은 짐을 길찬이 외부까지 운반한 사실 확인 후"
+    },
+    {
+      "id": "EDGE.RESTENDINGS_20_OPTIONAL_OCCULTIST_0",
+      "decision": "KEEP"
+    },
+    {
+      "id": "EDGE.ACTENDINGS_20_LINES_0",
+      "decision": "KEEP",
+      "condition_addition": "19장 실제 천도완료/가족호명 목격 저장을 확인; 미경험 저장에 강제 부여 금지"
+    },
+    {
+      "id": "EDGE.ACTENDINGS_20_LINES_1",
+      "decision": "KEEP",
+      "condition_addition": "실제 외부도착 및 시간차 문답 완료; 살아 나온 인원만 반영"
+    },
+    {
+      "id": "EDGE.ACTENDINGS_20_LINES_2",
+      "decision": "KEEP",
+      "condition_addition": "외부 시간차 공개 및19물증 실제확보 후"
+    },
+    {
+      "id": "EDGE.ACTENDINGS_20_LINES_3",
+      "decision": "KEEP",
+      "condition_addition": "외부 피란민의 현재 들림/수로실종 소식 실제청취 및 생존자 안전인계 후"
+    }
+  ],
+  "pass1_decisions": [
+    "TIME01/OPTIONAL_KNIGHT0 제안수용",
+    "TIME02 퍽 오래되었소는 필수개선아니므로 원문유지"
+  ],
+  "implementation_questions": [
+    "TIME문답 전에 필수인물과 실제생존호송대가 모두 외부도착했는가?",
+    "길찬의 짐인수는 E03 한 번이고 TIME07에서 재인수/복제가 없는가?",
+    "부상자 정지→지원접근→부축→실제동반이동과 집결이 판정되는가?",
+    "선택 ARCHER체인/MAGE는 외부도착 및돌림진해제 시점과 일치하는가?",
+    "기존 종이 기록을 챙겼다는 대사의 기록근거는 실제물증/기록 상태에 있는가?",
+    "20막종료는 실제 해당사건을 경험한 신판저장에만 노출하며 과거pending cursor를 잘못재사용하지 않는가?"
+  ],
+  "coverage_note": "최초응답은 범위묶음으로KNIGHT0 CHANGE/KEEP중복 가능. 보완응답을 직접읽고실제52고유ID/누락0/추가0/CHANGE3를대조함. 원고전체조건은 별도독립검토.",
+  "parent_clarification": "종이에 베껴 챙김은 별도필기애니메이션필수가 아니라 실제세물증확보/기록상태 요구. TIME07 재인수없음. 부모승인3문구외OBJECTIVE02는원문유지.",
+  "pass3_final": {
+    "file": "HONRO-CH20-PASS3-20261027-response.md",
+    "actual_unique_ids": 52,
+    "missing": [],
+    "extra": [],
+    "parent_decision": "52개입력후보그대로확정",
+    "label_error": "TIME01/NEWS01/OPTIONAL_KNIGHT0 CHANGE3이지만 후보문장=수정안완전동일. 실제추가변경0.",
+    "implementation_verified": false
+  }
+}
