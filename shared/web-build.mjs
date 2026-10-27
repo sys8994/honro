@@ -104,7 +104,7 @@ export async function buildWeb({vector=true,destination=path.join(root,'HONRO.ht
       moduleData.set(file,[packet]);target.push(file);i+=3;continue;
     }
     if(entry.global==='HONRO_JOURNEY_MAPS'){
-      for(const act of entry.data.acts)act.url={$honroAsset:await emit('graphics',`journey-map-act${act.act}`,'webp',await readFile(path.join(root,act.asset)))};
+      for(const act of entry.data.acts)act.url={$honroAsset:await emit('graphics',`journey-map-act${act.act}`,path.extname(act.asset).slice(1),await readFile(path.join(root,act.asset)))};
     }
     if(entry.global==='HONRO_SKILL_ICON_MANIFEST'){
       for(const [id,item]of Object.entries(entry.data.icons)){
