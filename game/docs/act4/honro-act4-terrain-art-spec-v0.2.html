@@ -1,0 +1,933 @@
+<!doctype html>
+<html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="color-scheme" content="light"><meta name="description" content="혼로 4막 돌아오는 물 31–40장 지형과 미술 구현 인계서. 확정 방향과 설계 제안, 검증 게이트를 구분한 장별 계약."><title>혼로 4막 지형과 미술 구현 인계서</title><style>
+:root{color-scheme:light;--ink:#172a35;--muted:#526874;--line:#ccd9df;--accent:#255b73;--paper:#fff;--bg:#f2f6f7}
+*{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:22px}body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.8 system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans KR","Malgun Gothic",sans-serif;word-break:keep-all;overflow-wrap:anywhere}main{max-width:1060px;margin:0 auto;padding:58px 56px 80px;background:var(--paper);min-height:100vh}h1,h2,h3,h4{color:#000;line-height:1.35;letter-spacing:-.025em}h1{font-size:2.5rem;font-weight:800;margin:0 0 16px}h2{font-size:1.55rem;margin:48px 0 18px}h3{font-size:1.18rem;margin:30px 0 12px}p{margin:12px 0 18px}a{color:var(--accent);text-decoration-thickness:1px;text-underline-offset:3px}a:hover{color:#073047}strong{font-weight:750}ul,ol{padding-left:1.35em;margin:14px 0 22px}li{margin:9px 0}li::marker{color:var(--muted)}code{font-family:ui-monospace,SFMono-Regular,Consolas,"Liberation Mono",monospace;font-size:.88em;background:#edf3f5;padding:2px 5px;border-radius:4px}pre{margin:18px 0 22px;padding:16px 18px;background:#f3f7f8;overflow:auto;border-radius:5px;font-size:.83rem;line-height:1.8;tab-size:2}pre code{padding:0;background:none;white-space:pre;word-break:normal;overflow-wrap:normal}.table-scroll{overflow:auto;margin:20px 0 26px;scrollbar-width:thin}table{border-collapse:collapse;width:100%;font-size:.9rem;line-height:1.65;min-width:650px}th,td{border:1px solid #d9d9d9;padding:12px 14px;text-align:left;vertical-align:middle}th{background:#e6eef2;color:#000;font-weight:750}tbody tr:nth-child(even){background:#f7f9fa}td:first-child{font-weight:650;min-width:92px}.common{margin-bottom:10px}.stage-nav{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px 18px;margin:26px 0 20px}.stage-nav a{display:flex;gap:14px;align-items:baseline;padding:8px 0;text-decoration:none;border-bottom:1px solid #e1e9ed}.stage-nav b{font-size:.82rem;font-variant-numeric:tabular-nums;color:var(--muted)}.stage-nav span{font-size:.95rem}.controls{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:20px 0 26px}.controls span{font-size:.82rem;color:var(--muted);flex-basis:100%}button{font:inherit;font-size:.86rem;padding:9px 14px;background:#fff;border:1px solid #9eb5c0;color:#21485d;border-radius:6px;cursor:pointer}button:hover{background:#edf4f7}button:focus-visible,a:focus-visible,summary:focus-visible{outline:3px solid #3986ae;outline-offset:4px}.stage{margin:16px 0;border:1px solid var(--line);border-radius:8px;overflow:hidden;background:#fff}.stage>summary{display:flex;align-items:center;gap:16px;padding:23px 25px;cursor:pointer;list-style:none;min-height:98px}.stage>summary::-webkit-details-marker{display:none}.number{font-size:1.4rem;font-weight:750;color:#4a7184;font-variant-numeric:tabular-nums;min-width:33px}.stage summary strong{display:block;font-size:1.22rem;color:#000;line-height:1.5}.stage summary small{display:block;font-size:.79rem;color:var(--muted);line-height:1.5;margin-top:4px}.toggle{margin-left:auto;font-size:1.5rem;color:#63808f;font-weight:300}.stage[open] .toggle{transform:rotate(45deg)}.stage[open]>summary{background:#f4f8fa}.stage-body{padding:14px 28px 22px}.stage-body>p:first-child{margin-top:12px}.swatches{display:flex;gap:12px 20px;flex-wrap:wrap;margin:18px 0 20px}.swatches span{display:inline-flex;align-items:center;gap:7px;font-size:.8rem}.swatches i{width:24px;height:24px;background:var(--swatch);border:1px solid #9aadb6;border-radius:50%;display:block}.swatches code{background:none;padding:0;color:#405d6b}.profile{margin:22px 0 12px}.profile svg{display:block;width:100%;height:auto;background:#f9fbfc}.profile figcaption{color:var(--muted);font-size:.76rem;margin-top:8px;line-height:1.55}.check{list-style:none;margin-left:-1.2em}.check input{margin-right:7px;accent-color:#255b73}footer{font-size:.8rem;color:var(--muted);margin-top:48px}.top-links{display:flex;gap:16px;flex-wrap:wrap;font-size:.82rem;margin:0 0 30px}.eyebrow{font-size:.75rem;letter-spacing:.1em;color:var(--muted);font-weight:700;margin-bottom:14px}.back-top{display:block;font-size:.83rem;text-align:right;margin-top:26px}
+@media(max-width:700px){body{font-size:15px;line-height:1.8}main{padding:28px 19px 48px}h1{font-size:1.95rem}h2{font-size:1.38rem;margin-top:35px}h3{font-size:1.08rem}.stage>summary{padding:19px 16px;gap:12px}.stage summary strong{font-size:1.08rem}.stage-body{padding:10px 17px 19px}.stage-nav{grid-template-columns:1fr;gap:3px}table{font-size:.85rem}th,td{padding:10px 12px}pre{font-size:.75rem;padding:13px}.controls button{flex:1}.profile figcaption{font-size:.72rem}.top-links{gap:12px}.swatches{gap:10px 13px}}
+@media print{body{background:white;font-size:10pt}main{padding:0;max-width:none}.controls,.top-links,.back-top{display:none}.stage{border:0;border-radius:0;break-before:page}.stage>summary{padding:0 0 14px;background:white!important}.stage-body{padding:0}.stage summary .toggle{display:none}h2,h3{break-after:avoid}table{min-width:0;font-size:8pt}pre{white-space:pre-wrap;overflow-wrap:anywhere}.table-scroll{overflow:visible}.profile{max-width:16cm}.stage-nav{display:none}a{color:#000}details:not([open])>div{display:block}}
+</style></head><body><main id="top"><div class="eyebrow">HONRO · ACT 04 · TERRAIN AND ART</div><nav class="top-links" aria-label="문서 바로 가기"><a href="#section-decisions">결정 상태</a><a href="#section-overview">10장 비교</a><a href="#section-measurements">측정표</a><a href="#section-acceptance">수용 검수</a></nav><h1>혼로 4막 지형과 미술 구현 인계서</h1>
+<p>4막 돌아오는 물 · 전체 31–40장 · 지형 설계 제안 v0.2 · 2026년 10월 27일</p>
+<p><strong>넓고 적막한 해안 우회로를 기본으로 하되, 포구·대숲·폐촌·운송길·해식굴·폐선 구조전이 서로 다른 지형과 전투 리듬을 갖게 한다.</strong> 푸른 새벽은 공통 시간대이지, 열 장을 같은 해안 배경으로 만드는 규칙이 아니다. 이 문서는 장별 구현 계약과 검수 기준을 정리한다. 게임 코드 구현, 신규 시안 제작, 최종 대사 작성은 범위 밖이다.</p>
+<p>원안 연결 기준은 <a href="https://chatgpt.com/g/g-p-6a9fd17f05c481919ff57c899905b268-frost/c/6abfdaa8-e9c8-83ee-9855-e87c092c90b7">최신 4막 돌아오는 물 v0.1 대화</a>다. 장 이름과 서사 연결은 이 원안에 맞춰 유지하며, 아래 상세 공간 구성은 원안을 구현하기 위한 제안으로 분리한다.</p>
+<section class="common"><h2 id="section-decisions">결정 상태와 구현 게이트</h2>
+<div class="table-scroll" tabindex="0" role="region" aria-label="가로로 스크롤 가능한 표"><table>
+<thead>
+<tr>
+<th>표시</th>
+<th>의미</th>
+<th>이 문서에서의 적용</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>사용자 확정</td>
+<td>사용자 선택을 유지해야 하는 방향</td>
+<td>A의 넓고 적막한 파식대·해안 우회로 기본, B의 절벽 안팎 다층 구조와 C의 폐선·암반 구조전 변주 허용, 조금 더 밝은 푸른 새벽, 대숲·폐촌 추가 시안의 분위기·공간 방향, 실종자 13명의 7명 안전·4명 구조·2명 이주 후 사망 구성</td>
+</tr>
+<tr>
+<td>원안 연계</td>
+<td>v0.1의 장 순서와 사건을 훼손하지 않는 연결 조건</td>
+<td>31–40장, 연실의 배, 고향 생존자 재회, 저문골, 도식 구조와 재회, 무명사로 향할 동기</td>
+</tr>
+<tr>
+<td>설계 제안</td>
+<td>이번 지형 설계에서 구체화한 구현 방식</td>
+<td>정규화 구역, 경로·교전군, 상태 전환, 색 코드, 체크포인트, 37장 짐길의 옹벽·적재 구조, 39장 암반 분지</td>
+</tr>
+<tr>
+<td>검증 또는 승인 대기</td>
+<td>사실이나 최종 결정으로 쓰지 않을 값</td>
+<td>실제 사거리·점프·카메라·AI, 조수 턴 수, 아직 특정되지 않은 개별 신원 대응과 두 아이의 세부 정보, 가칭 이름, 최종 대사, 신규 영구 스킬</td>
+</tr>
+</tbody></table></div>
+<p><strong>추가 시안 승인:</strong> 대숲·폐촌 추가 시안의 분위기와 공간 방향은 사용자의 “나쁘지않네. 진행해”로 승인되었다. 이는 아래 상세 지형 단면·배치·충돌·수치가 실측 또는 최종 승인되었다는 뜻은 아니다.</p>
+<p><strong>실종자 구성 확정:</strong> 사용자의 “이 부분은 그냥 원안대로 해”에 따라 <strong>7명은 안전한 은신처에 생존, 도식을 포함한 4명은 곶 너머 구조 대상, 2명은 이주 후 이미 사망</strong>한 구성을 채택한다. <strong>7 + 4 + 2 = 13명</strong>이며, 39장의 구조 성공 후 결산은 <strong>생존 11명과 사망 2명</strong>이다. 사망한 2명은 기존 이주 후 사망 사실이며, 4막에서 새 사망 사건을 추가하지 않는다. 이 집단별 숫자는 승인 대기가 아니다.</p>
+<div class="table-scroll" tabindex="0" role="region" aria-label="가로로 스크롤 가능한 표"><table>
+<thead>
+<tr>
+<th>구분</th>
+<th>확정 인원</th>
+<th>장별 반영</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>안전한 은신처의 생존자</td>
+<td>7명</td>
+<td>32장에서 존재와 생존을 확인</td>
+</tr>
+<tr>
+<td>곶 너머 구조 대상</td>
+<td>도식 포함 4명</td>
+<td>37–38장에서 접근, 39장에서 4명 모두 구조</td>
+</tr>
+<tr>
+<td>이주 후 이미 사망한 사람</td>
+<td>2명</td>
+<td>40장 행방 결산에 반영, 새 사망 사건은 추가하지 않음</td>
+</tr>
+<tr>
+<td>합계와 구조 후 결과</td>
+<td>총 13명, 구조 후 생존 11명·사망 2명</td>
+<td>40장의 화면·UI·서사·저장 상태가 같은 총계를 사용</td>
+</tr>
+</tbody></table></div>
+<p><strong>개별 설정의 미확정 범위:</strong> 두 아이 각각의 생사·현재 나이·어느 집단에 속하는지는 원안에 특정되지 않았으므로 새로 정하지 않는다. 도식과 설오의 친족 관계·서열도 임의로 추가하지 않는다. 집단별 총계를 확정한 것과 개별 이름을 그 집단에 대응시키는 것은 구분한다.</p>
+<p><strong>가칭과 작업 식별자:</strong> 생존자 이름 ‘연복’과 보스 이름 ‘그물귀’는 원안의 가칭 상태를 유지한다. <code>SURVIVOR_IDENTITIES_TBD</code>는 미정인 개별 신원 대응만, <code>SURVIVOR_NAME_TBD</code>는 가칭 생존자 이름만, <code>ACT4_BOSS_TBD</code>는 가칭 보스 이름만 나타낸다. 확정된 7명·4명·2명의 구성이나 총 13명을 전체 미정으로 취급하지 않는다.</p>
+<p><strong>대사 게이트:</strong> 아래 이벤트 표는 발화 목적·화자·발생 조건만 정한다. 최종 대사 검수 전에는 임시 대사를 코드, 자막, 음성, 저장 데이터에 넣지 않는다. 지형과 상태 검증에는 무음 이벤트 식별자를 쓴다. 화자도 원안에서 확정되지 않은 경우 ‘후보’로 표시한다.</p>
+<p><strong>착수 게이트:</strong> 장별 공간·적·기믹은 설계 제안이다. 실제 구현 전 현재 코드의 측정표를 채우고, 미확정 서사와 충돌하지 않는지 확인한다. 신규 물리 파괴 엔진, 임의 무료 영구 스킬 지급, 신규 적 열 종 제작을 전제로 삼지 않는다. 3막 개편은 별도 작업이며 이 문서로 그 코드를 변경하지 않는다.</p>
+</section><section class="common"><h2 id="section-rhythm">막 전체의 시각과 리듬</h2>
+<div class="table-scroll" tabindex="0" role="region" aria-label="가로로 스크롤 가능한 표"><table>
+<thead>
+<tr>
+<th>막</th>
+<th>시간과 색감 기준</th>
+<th>4막과 구별할 요소</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1막</td>
+<td>짙은 녹색 저녁</td>
+<td>4막 대숲은 더 밝은 회청록 안개와 마른 대의 결</td>
+</tr>
+<tr>
+<td>2막</td>
+<td>검정·회색 동굴</td>
+<td>4막 해식굴은 곡면 암벽, 수면 반사, 밝은 바깥 출구</td>
+</tr>
+<tr>
+<td>3막</td>
+<td>저채도 황토빛의 흐리고 음울한 낮</td>
+<td>4막은 푸른 새벽과 차가운 반사광, 3막 개편과 독립</td>
+</tr>
+<tr>
+<td>4막</td>
+<td>반쯤 밝고 반쯤 어둡되 기존 시안보다 조금 밝은 푸른 새벽</td>
+<td>어두운 전경 아래에서도 지지면·적·출구가 읽혀야 함</td>
+</tr>
+</tbody></table></div>
+<p><strong>밝기 계약:</strong> 기존 시안 대비 ‘조금 밝게’는 화면 비교로 확인할 상대 기준이다. 임의 감마나 조명 수치를 확정하지 않는다. 하늘·수면·돌 윗면에서 새벽빛을 보이고, 그늘은 푸른 회색으로 남긴다. 화면 전체를 같은 파란 필터로 덮거나 그림자 속 발판을 잃게 하지 않는다.</p>
+<p><strong>전투 리듬:</strong> 31 적응 → 32 교전 후 고요한 재회 → 33 긴 사선과 조수 → 34 막 내 가장 강한 고저차 포격 → 35 빈터 이동전 → 36 저밀도 정적 → 37 원거리 신호와 접근 → 38 공간 연결 해독 → 39 구조 보스전 → 40 짧은 호송과 여운.</p>
+<p><strong>지형 식별 검수:</strong> 배경과 색을 가려도 지형 실루엣, 사격 각, 이동 폭, 전투 빈도로 각 장을 구분할 수 있어야 한다. 특히 34의 자연 오버행과 37의 인공 경사로, 35의 대숲 빈터와 36의 폐촌 분지를 서로 바꿔 끼워도 같아 보이면 재설계한다.</p>
+</section><section class="common"><h2 id="section-contracts">공통 지형과 전투 계약</h2>
+<h3>좌표와 지지면</h3>
+<ul>
+<li>문서의 X는 해당 장 진행 축의 시작 0부터 끝 1까지, Y는 해당 장의 상대 지형 높이 0부터 1까지다. 엔진 좌표·픽셀·월드 길이가 아니며, 장끼리 같은 Y가 같은 높이라는 뜻도 아니다. 구역 경계는 초기 블록아웃 가정이다.</li>
+<li>각 도식은 <strong>인접 관계와 상대 고저를 읽는 개념 단면</strong>이다. 픽셀 지형, 정확한 카메라 구도, 실제 이동 가능 폭을 확정하지 않는다. 실측 후 경계와 높이를 이동해도 사건의 연결과 대안 동선은 유지한다.</li>
+<li>모든 지표 아래에는 충분한 암반·흙 덩어리가 화면 바닥까지 자연스럽게 이어진다. 플레이 줌과 최대 줌아웃 모두에서 얇은 떠 있는 발판이나 잘린 공중섬이 되지 않는다. 실제로 열린 동굴·다리 밑만 의도된 빈 공간으로 남긴다.</li>
+<li>균등한 층층계단을 반복하지 않는다. 넓은 중심 공간, 비워 둔 이동 구간, 밀집 차폐를 비대칭으로 연결하고 길마다 폭·고도·굴곡을 달리한다.</li>
+<li>비충돌 배경, 이동 가능한 지지면, 투사체 차폐, 이벤트 상호작용 표식을 분리한다. 같은 외형의 물체가 이유 없이 서로 다른 충돌 규칙을 갖지 않는다.</li>
+<li>NPC와 적은 실제 유효 지지면을 확인한 뒤 생성한다. 발 아래 여유 공간을 확보하고 낭떠러지·벽·수면 회수 경계에 겹쳐 배치하지 않는다.</li>
+</ul>
+<h3>사거리와 교전군</h3>
+<ul>
+<li>사거리 순서는 <strong>설오 &gt; 소단 ≥ 담허 &gt; 휘겸</strong>이다. 정확한 현재 수치, 투사체 종류, 곡사 가능 범위, 점프 폭은 구현 전 코드와 플레이에서 확인한다.</li>
+<li>‘설오의 원거리 이점’은 모든 목표를 시작점에서 제거한다는 뜻이 아니다. 가까운 압박군, 사선을 끊는 차폐군, 높이 차를 사용하는 원거리군에 각각 목적을 준다.</li>
+<li>기존 적 행동을 우선 사용한다. 장별로 실루엣·재질·소리·배치 목적을 변주하되 외형만 바뀌어 공격 판정이 오해되지 않게 한다. 별도 신규 설계의 중심은 39장 보스다.</li>
+<li>현재 AI의 표적·접근 우선순위를 확인해 현 교전 구역을 우선 처리하게 한다. 무관한 먼 적이 이동도 공격도 못 하는 턴을 소비하지 않게 배치·활성 범위를 조정한다. 이를 위해 전면 AI 재작성을 가정하지 않는다.</li>
+<li>사거리 연장 아이템·곡사·관통·이동 스킬로 적을 조기 처치해도 필수 구조와 이동 상태가 정상적으로 진행되어야 한다. 보이지 않는 임의 무적벽 대신 실제 충돌, 사건 구역, 구조 조건을 사용한다.</li>
+</ul>
+<h3>물과 실패 복구</h3>
+<p><strong>사용자 승인 규칙과 구현 상태를 구분한다.</strong> 연결된 해안 물의 회수 규칙은 아래와 같지만 실제 동작이 모두 검증된 것은 아니다. 현재 회수 기능 후보에서 <strong>전원 회수 대기와 안전 지점 적 점유가 겹칠 때 턴 교착</strong>이 발견되었고 해결 확인 전이다. 아래는 구현 완료 보고가 아니라 수용 조건이다.</p>
+<div class="table-scroll" tabindex="0" role="region" aria-label="가로로 스크롤 가능한 표"><table>
+<thead>
+<tr>
+<th>물 구역</th>
+<th>설계와 행동 규칙</th>
+<th>미술과 경로 조건</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>shallow</code> 얕은물</td>
+<td>연결된 지지면의 이동 가능 물. 허용 행동은 현재 얕은물 판정과 대조</td>
+<td>바닥과 물 깊이가 읽히고 경로가 이어짐</td>
+</tr>
+<tr>
+<td><code>recover</code> 회수형</td>
+<td>연결된 해안 물 입수 시 <strong>같은 진입 쪽의 낮은 안전 지지면</strong>으로 회수. 최대 HP의 25% 피해, 잔여 행동 종료. 무의미한 턴·MP 리셋 없음. 물에서 공격·의식 불가</td>
+<td>진입 쪽 회수 범위를 사전에 읽고, 높은 고지나 반대편으로 무료 워프하지 않음</td>
+</tr>
+<tr>
+<td><code>lethal</code> 위험한 깊은물</td>
+<td>깊은물·스토리상 위험한 물은 명시적인 낭떠러지형 사망 구역</td>
+<td>깊이·낭떠러지·위험 표시로 예고하고 필수 진행의 안전 우회 유지</td>
+</tr>
+</tbody></table></div>
+<ul>
+<li>모든 파란 물을 일괄 회수형으로 선언하지 않는다. 장별 물 구역마다 <code>shallow/recover/lethal</code>과 경계, 위험 예고, 안전 우회를 지정하고 실제 판정과 대조한다.</li>
+<li>회수 후보가 점유되면 <strong>같은 진입 쪽의 낮은 유효 지점 안에서만</strong> 처리한다. 반대편·높은 고지로 보내지 않는다. 안전 고지 도달은 플레이어가 이동해서 얻는다. 후보가 모두 무효일 때도 정상 턴 스케줄링과 회수 또는 명시된 실패로 전이해야 하며, 구체 전이 규칙은 엔진 검증 항목이다. 무한 대기·전원 행동 불능 정지는 불합격이다.</li>
+<li>조수는 자연스럽게 오르내리는 물이며 공간 접속 오류와 별개다. 실제 수면과 예고 표식이 일치해야 한다. 턴 경계에서 바뀌고, 변할 구역과 다음 안전 위치를 행동 전에 읽을 수 있어야 한다. 점유 때문에 조수가 멈추거나 역류하지 않는다.</li>
+<li>필수 목표에는 모든 허용 상태에서 접근 경로나 명확한 실패·재시작이 있다. 멀쩡한 화면에서 영원히 진행할 수 없는 상태는 불합격이다. 플레이어 실수에 따른 실패는 허용하지만 진행 불능은 허용하지 않는다.</li>
+<li>필수 생존 인물이 있다면 임무 시작에 명시한다. 해당 인물이 사망해 더는 성공할 수 없다면 즉시 이유를 알리고 재시작한다. 가능하면 필수 전용 행동을 최소화하고 나머지는 대체 전투·상호작용으로 성립시킨다.</li>
+<li>안전 고지는 침수에 안전한 지지면이지 투명한 무적 성역이 아니다. 적의 공격은 실제 사거리·지형·충돌에 따라 도달할 수 있다.</li>
+<li>체크포인트는 이 문서의 제안이다. 기존 저장 시스템을 우선 활용하며, 지원 여부를 확인하지 않은 중간 저장 기능을 이미 있는 기능처럼 다루지 않는다. 재개 시 이벤트 완료·조수·적·NPC·연결 상태를 일관되게 복원한다.</li>
+</ul>
+</section><section class="common"><h2 id="section-overview">장별 빠른 비교</h2>
+<div class="table-scroll" tabindex="0" role="region" aria-label="가로로 스크롤 가능한 표"><table>
+<thead>
+<tr>
+<th>장</th>
+<th>지형 실루엣</th>
+<th>바다의 역할</th>
+<th>핵심 플레이</th>
+<th>감정과 전투 밀도</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>31 강 끝의 갈대</td>
+<td>낮고 긴 둑과 비대칭 갈대섬</td>
+<td>강이 바다로 넓어지는 원경</td>
+<td>두 교전 주머니와 낮은 둑 곡사</td>
+<td>넓음·적막, 보통</td>
+</tr>
+<tr>
+<td>32 빈 포구</td>
+<td>처마·담·골목·안전한 마당</td>
+<td>가장자리의 끊어진 부두</td>
+<td>짧은 위험 골목과 담 우회</td>
+<td>경계 후 조용한 재회</td>
+</tr>
+<tr>
+<td>33 물 빠진 갯길</td>
+<td>굽은 물골과 낮은 암반섬</td>
+<td>정상 조수의 변화</td>
+<td>갯길과 상부 우회 선택</td>
+<td>열린 긴장, 보통</td>
+</tr>
+<tr>
+<td>34 파도에 깎인 절벽</td>
+<td>자연 오버행과 돌출부</td>
+<td>열린 바깥 공간 유지</td>
+<td>막 내 가장 강한 고저차와 오버행 포격</td>
+<td>수직 긴장, 보통</td>
+</tr>
+<tr>
+<td>35 대숲의 옛길</td>
+<td>비대칭 빈터 셋과 도랑</td>
+<td>보이지 않고 파도 소리도 물러남</td>
+<td>이동·조준을 반복하는 빈터 전투</td>
+<td>서늘한 안개, 보통</td>
+</tr>
+<tr>
+<td>36 쇠가 없는 마을</td>
+<td>낮은 폐촌 분지와 비어 있는 집터</td>
+<td>보이지 않고 빈집 바람이 중심</td>
+<td>외곽 짧은 위협과 중심부 고요</td>
+<td>과거를 마주함, 낮음</td>
+</tr>
+<tr>
+<td>37 곶의 뒤편</td>
+<td>인공 운송 경사로와 무너진 옹벽</td>
+<td>고개 뒤에서 다시 나타남</td>
+<td>먼 신호 확인과 실제 접근 분리</td>
+<td>발견과 재촉, 보통</td>
+</tr>
+<tr>
+<td>38 어긋난 해식굴</td>
+<td>좁은 목과 넓은 공동의 연결</td>
+<td>반사광·수면선·밝은 출구</td>
+<td>읽을 수 있는 공간 연결 정정</td>
+<td>혼란에서 이해로, 선택적</td>
+</tr>
+<tr>
+<td>39 돌아오는 물</td>
+<td>폐선 골조와 바다에 열린 암반 분지</td>
+<td>눈에 보이는 수로로 조수 유입</td>
+<td>약점·연결·생존자 이동</td>
+<td>구조 보스전, 높음</td>
+</tr>
+<tr>
+<td>40 바다에서 돌아온 사람들</td>
+<td>넓어진 출구와 배·고지의 갈림</td>
+<td>귀환과 다음 이동의 여백</td>
+<td>짧은 호송 후 안전한 마무리</td>
+<td>안도와 남은 위협, 낮음</td>
+</tr>
+</tbody></table></div>
+<nav class="stage-nav" aria-label="장별 바로 가기"><a href="#stage-31"><b>31</b><span>강 끝의 갈대</span></a><a href="#stage-32"><b>32</b><span>빈 포구</span></a><a href="#stage-33"><b>33</b><span>물 빠진 갯길</span></a><a href="#stage-34"><b>34</b><span>파도에 깎인 절벽</span></a><a href="#stage-35"><b>35</b><span>대숲의 옛길</span></a><a href="#stage-36"><b>36</b><span>쇠가 없는 마을</span></a><a href="#stage-37"><b>37</b><span>곶의 뒤편</span></a><a href="#stage-38"><b>38</b><span>어긋난 해식굴</span></a><a href="#stage-39"><b>39</b><span>돌아오는 물</span></a><a href="#stage-40"><b>40</b><span>바다에서 돌아온 사람들</span></a></nav><div class="controls"><button type="button" id="expand">모든 장 펼치기</button><button type="button" id="collapse">모든 장 접기</button><span>장 제목을 눌러 내용을 열고 닫을 수 있습니다.</span></div></section><details class="stage" id="stage-31" open><summary><span class="number">31</span><span><strong>강 끝의 갈대</strong><small>하구 · 두 교전 주머니</small></span><span class="toggle" aria-hidden="true">+</span></summary><div class="stage-body"><p><strong>목적과 원안 연결:</strong> 강이 바다로 퍼지는 넓은 하구에서 4막의 거리감과 적막을 연다. 연실의 배가 건널 물길과 선착장을 확보하는 것이 장의 목표다. 배가 강에서 접근할 연속 통로를 남기며, 첫 시점의 장거리 공격만으로 장이 끝나지 않는다.</p>
+<h3>공간 단면과 배경</h3>
+<p><strong>설계 제안:</strong> X 0–0.22 진입 둑, 0.22–0.48 첫 교전 갈대섬, 0.48–0.66 빈 수로 가장자리, 0.66–0.86 둘째 교전 둑, 0.86–1 배 접근 시야. Y는 낮은 영역에 모으되 섬마다 둑 굴곡과 폭이 다르다. 강 수로는 전투 지지면을 억지로 끊지 않고 배가 지나갈 연속 공간으로 읽힌다.</p>
+<figure class="profile"><svg viewBox="0 0 620 188" role="img" aria-label="31장 상대 고저 개념 단면 실제 비율과 충돌 지형이 아님"><path d="M 0 118 L 55 111 L 110 116 L 145 101 L 220 111 L 265 127 L 305 121 L 350 102 L 405 107 L 460 94 L 520 107 L 570 109 L 620 114 L 620 184 L 0 184 Z" fill="#dce6e8" stroke="#69828d" stroke-width="2"/><path d="M10 142 Q90 137 160 142 T315 142 T470 142 T610 142" fill="none" stroke="#82b2c4" stroke-width="3" stroke-dasharray="8 5"/><text x="12" y="169" fill="#536c77" font-size="12">연속된 하부 지반</text><text x="12" y="18" fill="#536c77" font-size="11">진입 X 0</text><text x="550" y="18" fill="#536c77" font-size="11">출구 X 1</text></svg><figcaption>설계 제안 · 상대 고저 개념도. 실제 길이·폭·높이·충돌은 실측 후 조정한다.</figcaption></figure><pre><code class="language-text">진입 둑 ─ 첫 갈대섬 ─ 굽은 수로 가장자리 ─ 둘째 둑 ─ 강의 열린 시야
+              ╲ 낮은 얕은물 우회 ╱          ╲ 낮은 둑 차폐 ╱
+아래는 이어진 흙과 하구 퇴적층                  배 접근 수로는 연속
+</code></pre>
+<ul>
+<li>먼 레이어: 바다로 옅어지는 수평선과 강물 띠. 중간: 비대칭 갈대섬·버려진 나룻배. 가까운 레이어: 젖은 흙 단면·성긴 갈대·낮은 둑.</li>
+<li>색 제안: 새벽 하늘 <code>#B3CDD8</code>, 젖은 흙 <code>#566A70</code>, 갈대 <code>#7E8A7A</code>, 얕은물 <code>#7FA6B4</code>. 반짝임이 지지면 외곽선을 지우지 않게 한다.</li>
+</ul>
+<div class="swatches" aria-label="제안 색상"><span><i style="--swatch:#B3CDD8"></i><code>#B3CDD8</code></span><span><i style="--swatch:#566A70"></i><code>#566A70</code></span><span><i style="--swatch:#7E8A7A"></i><code>#7E8A7A</code></span><span><i style="--swatch:#7FA6B4"></i><code>#7FA6B4</code></span></div><h3>동선과 교전군</h3>
+<ul>
+<li>주동선은 둑의 넓은 지지면, 대안은 연결된 얕은물 가장자리다. 두 길은 첫·둘째 교전 사이에서 다시 합류하며 서로 다른 사선을 준다.</li>
+<li>G31-A는 첫 굴곡 뒤 근접 압박과 낮은 둑 뒤 차폐 적. G31-B는 둘째 둑의 원거리 적과 아래 접근을 막는 근접 적. 먼 G31-B가 첫 위치의 전원에게 동시에 공격하지 않게 한다.</li>
+<li>설오는 긴 사선, 곡사 가능한 행동은 낮은 둑 뒤, 휘겸은 둑 사이 좁아진 접근로에서 역할이 있다. 시작점에서 전부 사격 가능한 일직선은 금지한다.</li>
+</ul>
+<h3>상태와 이벤트 순서</h3>
+<ol>
+<li>진입 상태에서 하구와 배 접근 수로를 읽는다.</li>
+<li>첫 교전 주머니를 통과하면 중앙의 빈 구간이 드러난다. 둘째 교전은 실제 접근과 현재 AI 규칙에 맞춰 연결한다.</li>
+<li>두 교전 주머니를 통과해 물길과 선착장의 위협을 해소한다. 배의 통과 확인과 안전 승선 구역 도달을 묶어 완료 판정하며, 단순 출구 도달로 원안의 수상 이동을 대체하지 않는다. 원거리 조기 처치는 인정하되 필요한 물길 확보·승선 상태는 확인한다.</li>
+</ol>
+<div class="table-scroll" tabindex="0" role="region" aria-label="가로로 스크롤 가능한 표"><table>
+<thead>
+<tr>
+<th>발화 목적</th>
+<th>화자</th>
+<th>발생 조건과 보호</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>강이 바다로 넓어졌음을 인지</td>
+<td>일행 중 원안에 맞는 화자 검토</td>
+<td>첫 안전 지지면 도달, 발화 중 먼 적 강제 동시 활성 금지</td>
+</tr>
+<tr>
+<td>배 접근 가능성을 연결</td>
+<td>연실 관련 발화 담당 검토</td>
+<td>열린 강 시야 확보, 배 통과와 안전 승선 상태를 확인하며, 대사 시점은 최종 원안 검수</td>
+</tr>
+</tbody></table></div>
+<h3>실패와 재개</h3>
+<p>물 구역 제안은 둑 옆 연결 바닥 <code>shallow</code>, 같은 진입 쪽 낮은 둑으로 돌아오는 물 <code>recover</code>다. 깊은 배 접근 수로는 비진입 배경으로 분리하고, 접촉 가능한 위험 구역이라면 <code>lethal</code>을 명시한다. 회수는 공통 승인 규칙을 적용하며 반대편 둑·높은 둑으로 보내지 않는다. 점유 시 턴 교착 해소는 검증 전이다. 전멸 재개는 첫 진입 상태를 기준으로 검토하며, 중앙 체크포인트를 쓴다면 첫 교전 완료와 둘째 교전 비활성을 함께 복원한다.</p>
+<h3>검수와 실측</h3>
+<ul>
+<li>미술: 최대 줌아웃에서 흙 덩어리가 화면 아래까지 이어지고 배 통로가 갈대 장식으로 막혀 보이지 않는다.</li>
+<li>플레이: 시작점 최대 사거리 공격으로 적을 먼저 제거해도 두 공간을 통과하고 물길·선착장 확보와 배 통과·안전 승선 상태를 확인해야 한다. 가까운 적과만 교전할 때 먼 적이 헛턴을 반복하지 않는다.</li>
+<li>측정: 직사·곡사 도달 범위, 낮은 둑 충돌, 얕은물 이동·회수, 두 교전군 활성 거리, 배 시야와 카메라 범위.</li>
+</ul>
+</div></details><details class="stage" id="stage-32" ><summary><span class="number">32</span><span><strong>빈 포구</strong><small>포구 · 안전한 재회</small></span><span class="toggle" aria-hidden="true">+</span></summary><div class="stage-body"><p><strong>목적과 원안 연결:</strong> 바다가 아니라 사람이 살던 집·골목·마당을 보여 준다. 적 정리 뒤 설오가 고향 생존자와 안전한 마당에서 조용히 재회한다. 안전한 은신처에 살아 있는 고향 사람은 확정된 7명이다. 도식 포함 4명은 곶 너머 구조 대상으로 이어지며, 2명은 이주 후 이미 사망했다. 가칭 이름과 아직 특정되지 않은 개별 신원 대응은 새로 확정하지 않는다.</p>
+<h3>공간 단면과 배경</h3>
+<p><strong>설계 제안:</strong> X 0–0.2 포구 입구, 0.2–0.58 두 골목, 0.58–0.8 공동 마당, 0.8–1 은신처와 다음 길. 낮은 담과 처마 높이는 변주하되 지붕 위가 유일한 정답이 되지 않는다. 끊어진 부두는 가장자리 맥락이며 화면 중심은 집과 빈 마당이다.</p>
+<figure class="profile"><svg viewBox="0 0 620 188" role="img" aria-label="32장 상대 고저 개념 단면 실제 비율과 충돌 지형이 아님"><path d="M 0 115 L 70 115 L 90 106 L 145 106 L 170 119 L 220 119 L 245 109 L 300 109 L 320 115 L 450 115 L 480 109 L 530 109 L 550 114 L 620 114 L 620 184 L 0 184 Z" fill="#dce6e8" stroke="#69828d" stroke-width="2"/><text x="12" y="169" fill="#536c77" font-size="12">연속된 하부 지반</text><text x="12" y="18" fill="#536c77" font-size="11">진입 X 0</text><text x="550" y="18" fill="#536c77" font-size="11">출구 X 1</text></svg><figcaption>설계 제안 · 상대 고저 개념도. 실제 길이·폭·높이·충돌은 실측 후 조정한다.</figcaption></figure><pre><code class="language-text">입구 ─┬─ 짧고 노출된 골목 ─┬─ 안전 마당 ─ 은신처 앞 ─ 다음 길
+      └─ 낮은 담 우회 ─────┘
+집터와 골목의 연속 지반                         부두는 주변부
+</code></pre>
+<ul>
+<li>먼 레이어: 겹친 지붕·처마, 틈새로만 바다. 중간: 빈 작업 마당·무너진 담·끊어진 부두. 가까이: 문틀·흙길·생활 흔적.</li>
+<li>색 제안: 회청 벽 <code>#8D9BA1</code>, 묵은 목재 <code>#6D7471</code>, 새벽광 <code>#BAD0D9</code>, 그늘 <code>#465C68</code>. NPC 은신처는 적의 위협색·실루엣 연출과 구별한다.</li>
+</ul>
+<div class="swatches" aria-label="제안 색상"><span><i style="--swatch:#8D9BA1"></i><code>#8D9BA1</code></span><span><i style="--swatch:#6D7471"></i><code>#6D7471</code></span><span><i style="--swatch:#BAD0D9"></i><code>#BAD0D9</code></span><span><i style="--swatch:#465C68"></i><code>#465C68</code></span></div><h3>동선과 교전군</h3>
+<ul>
+<li>짧은 골목은 빠르지만 정면 사선에 노출된다. 담 우회는 길지만 차폐와 측면 접근이 가능하다. 좁은 통로 양끝을 적으로 완전히 봉쇄하지 않는다.</li>
+<li>G32-A는 짧은 골목의 사격 압박, G32-B는 낮은 담 주변의 근접 견제다. 적은 마당 안전화 전까지만 실제 교전 구역에 존재한다.</li>
+<li>생존자를 적처럼 실루엣 경고·조준 표식·추격 음향으로 먼저 소개하지 않는다. 은신처 확인은 전투 대상 탐색과 다른 표식·거리에서 이루어진다.</li>
+</ul>
+<h3>상태와 이벤트 순서</h3>
+<ol>
+<li>입구에서 두 골목 선택을 읽고 적을 정리한다.</li>
+<li>마당과 인접 사선의 적·투사체·잔여 위협을 제거해 안전 상태를 확정한다.</li>
+<li>안전 마당에서 은신처의 생존자 7명을 확인하는 재회 이벤트를 진행한다. 도식 포함 4명이 곶 너머에 남아 있다는 다음 목적을 연결하고 길을 연다. 7명을 한 프레임에 모두 등장시킬지는 미술·연출 판단이며 인원 집계는 바뀌지 않는다.</li>
+</ol>
+<div class="table-scroll" tabindex="0" role="region" aria-label="가로로 스크롤 가능한 표"><table>
+<thead>
+<tr>
+<th>발화 목적</th>
+<th>화자</th>
+<th>발생 조건과 보호</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>숨은 사람이 있음을 확인</td>
+<td>설오, 생존자 화자 검토</td>
+<td>마당 안전 판정 후, NPC 적 오인 연출 금지</td>
+</tr>
+<tr>
+<td>고향 사람과의 재회와 은신처 생존 7명 확인</td>
+<td>설오와 고향 생존자, 개별 화자 검토</td>
+<td>적 AI·잔여 투사체·배경 몬스터 소란이 없는 상태에서 시작, 가칭 이름을 확정하지 않음</td>
+</tr>
+<tr>
+<td>도식 포함 4명을 구조하러 갈 필요를 알림</td>
+<td>원안 화자 검토</td>
+<td>재회 완료 후, 확정된 집단별 인원만 사용하고 두 아이의 소속·개별 생사를 임의로 연결하지 않음</td>
+</tr>
+</tbody></table></div>
+<h3>실패와 재개</h3>
+<p>교전 실패는 골목 진입 이전으로 복귀하는 방식을 우선 검토한다. 재회 도중 전투가 재개되지 않는다. 저장 후 복귀 시 안전화 완료라면 적을 다시 생성하지 않으며, 재회 완료 플래그가 없으면 안전 마당에서 해당 이벤트만 재개한다.</p>
+<h3>검수와 실측</h3>
+<ul>
+<li>미술: 바다를 가려도 포구임을 집·마당·부두 사용 흔적으로 읽는다. NPC는 유효 마당 지지면 위에 있고 담에 겹치지 않는다.</li>
+<li>플레이: 두 길 모두 전원 이동 가능하다. 장거리 투사체나 지연 효과가 재회 중 도달하지 않는다. 배경 적 소리도 멈춘다.</li>
+<li>측정: 골목 최소 이동 폭, 담 우회 점프 조건, 잔여 투사체 소멸·일시정지 규칙, 재회 이벤트의 입력·카메라 잠금과 복구.</li>
+</ul>
+</div></details><details class="stage" id="stage-33" ><summary><span class="number">33</span><span><strong>물 빠진 갯길</strong><small>갯길 · 정상 조수</small></span><span class="toggle" aria-hidden="true">+</span></summary><div class="stage-body"><p><strong>목적과 원안 연결:</strong> 넓게 드러난 갯벌과 굽은 물골을 건넌다. 작은 고저차와 긴 사선을 조합하고, 예고되는 정상 조수를 배운다.</p>
+<h3>공간 단면과 배경</h3>
+<p><strong>설계 제안:</strong> X 0–0.18 단단한 입구 암반, 0.18–0.48 넓은 갯벌, 0.48–0.7 굽은 물골·암반섬, 0.7–1 상부 길과 출구. 짧은 갯길은 아래를 굽이치고 상부 바위 길은 모든 조수 상태에서 이어진다. 갯벌을 하나의 평평한 선으로 깔지 않는다.</p>
+<figure class="profile"><svg viewBox="0 0 620 188" role="img" aria-label="33장 상대 고저 개념 단면 실제 비율과 충돌 지형이 아님"><path d="M 0 102 L 65 109 L 95 118 L 140 124 L 190 111 L 225 130 L 275 118 L 310 110 L 345 125 L 395 107 L 435 121 L 485 110 L 530 95 L 620 98 L 620 184 L 0 184 Z" fill="#dce6e8" stroke="#69828d" stroke-width="2"/><path d="M10 142 Q90 137 160 142 T315 142 T470 142 T610 142" fill="none" stroke="#82b2c4" stroke-width="3" stroke-dasharray="8 5"/><text x="12" y="169" fill="#536c77" font-size="12">연속된 하부 지반</text><text x="12" y="18" fill="#536c77" font-size="11">진입 X 0</text><text x="550" y="18" fill="#536c77" font-size="11">출구 X 1</text></svg><figcaption>설계 제안 · 상대 고저 개념도. 실제 길이·폭·높이·충돌은 실측 후 조정한다.</figcaption></figure><pre><code class="language-text">입구 암반 ─┬─ 굽은 갯길 ─ 물골 옆 암반섬 ─┬─ 출구
+           └─ 상부 바위 우회 ──────────────┘
+               조수 영향 구역                 상시 연결 유지
+</code></pre>
+<ul>
+<li>먼 레이어: 넓은 하늘과 멀어진 수면. 중간: 비대칭 물골·낮은 암반섬·젖고 마른 갯벌 차이. 가까이: 진흙 단면·작은 퇴적 굴곡.</li>
+<li>색 제안: 갯벌 <code>#7C8B8F</code>, 물골 <code>#729AA8</code>, 암반 <code>#5E727B</code>, 반사광 <code>#C5D7DC</code>. 조수 예고는 색 외에 경계선·방향·상태 문구로도 읽힌다.</li>
+</ul>
+<div class="swatches" aria-label="제안 색상"><span><i style="--swatch:#7C8B8F"></i><code>#7C8B8F</code></span><span><i style="--swatch:#729AA8"></i><code>#729AA8</code></span><span><i style="--swatch:#5E727B"></i><code>#5E727B</code></span><span><i style="--swatch:#C5D7DC"></i><code>#C5D7DC</code></span></div><h3>동선과 교전군</h3>
+<ul>
+<li>짧은 갯길은 이동 거리가 적지만 사선이 길게 열린다. 상부 우회는 더 돌아가되 침수와 직접 사격을 피할 선택지를 준다.</li>
+<li>G33-A는 낮은 암반 뒤 원거리 압박, G33-B는 물골 굴곡에서의 근접 차단이다. 상부 길 전체를 적 하나의 판정으로 봉쇄하지 않는다.</li>
+<li>물골을 가로지르는 공격과 섬에 접근하는 짧은 공격이 함께 유효하도록 차폐의 간격을 다르게 둔다.</li>
+</ul>
+<h3>상태와 이벤트 순서</h3>
+<ol>
+<li>물 빠진 상태에서 두 길과 상시 안전 연결을 보여 준다.</li>
+<li>조수 변화 예고를 제시한다. 바뀔 구역·다음 안전 위치·발생할 턴 경계를 행동 전에 확인할 수 있다.</li>
+<li>예고된 턴 경계에서 수면이 바뀐다. 물 안의 캐릭터 처리와 회수는 공통 규칙을 따른다.</li>
+<li>필수 출구는 어느 허용 조수 상태에서도 상부 우회로 접근할 수 있다.</li>
+</ol>
+<div class="table-scroll" tabindex="0" role="region" aria-label="가로로 스크롤 가능한 표"><table>
+<thead>
+<tr>
+<th>발화 목적</th>
+<th>화자</th>
+<th>발생 조건과 보호</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>조수가 정상적으로 돌아옴을 인지</td>
+<td>일행 화자 검토</td>
+<td>최초 예고 시, 공간 오류와 혼동하는 설명 금지</td>
+</tr>
+<tr>
+<td>안전 경로를 확인</td>
+<td>일행 화자 검토</td>
+<td>상부 연결을 화면에 보여 준 뒤, 튜토리얼 대사는 최종 검수 대기</td>
+</tr>
+</tbody></table></div>
+<h3>실패와 재개</h3>
+<p>물 구역 제안은 노출 갯길의 연결 얕은 바닥 <code>shallow</code>, 물골 일부 <code>recover</code>, 접근 가능한 깊은 외해가 있다면 별도 예고된 <code>lethal</code>이다. 같은 파란색으로 규칙을 뭉개지 않는다. 조수 변화 자체가 전원 영구 고립을 만들지 않아야 한다. 같은 진입 쪽 낮은 회수 지점의 점유·길목 사망체·이동 제약을 함께 시험한다. 현재 회수 교착은 해결 검증 전이다. 재개 시 조수 상태와 예고 상태를 세트로 복원하며, 예고 없이 즉시 침수되는 로드를 금지한다.</p>
+<h3>검수와 실측</h3>
+<ul>
+<li>미술: 흑백 실루엣에서도 굽은 물골과 암반섬이 비대칭이다. 수면 경계와 충돌 경계가 어긋나지 않는다.</li>
+<li>플레이: 모든 조수 상태에서 필수 출구까지 도달한다. 최대 사거리 캐릭터도 굴곡 때문에 이동 판단이 남는다.</li>
+<li>측정: 턴 경계와 효과 처리 순서, 최소 예고 시간·행동 기회, 상부 길 이동 폭, 수면 충돌·회수 목적지, 조수 상태별 AI 경로.</li>
+</ul>
+</div></details><details class="stage" id="stage-34" ><summary><span class="number">34</span><span><strong>파도에 깎인 절벽</strong><small>자연 오버행 · 막 최대 고저차</small></span><span class="toggle" aria-hidden="true">+</span></summary><div class="stage-body"><p><strong>목적과 원안 연결:</strong> 열린 해안의 폭을 유지하면서 <strong>4막에서 고저차와 오버행을 가장 강하게 활용하는 포격 지형</strong>으로 만든다. 높이·오버행·바위틈은 뚜렷한 큰 구조로 쓰되 모든 통로를 복층 동굴로 닫지 않는다. 공간 접속 오류는 처음의 작은 암시로만 드러난다.</p>
+<h3>공간 단면과 배경</h3>
+<p><strong>설계 제안:</strong> X 0–0.24 낮은 바위 해안, 0.24–0.55 굽은 안쪽 길, 0.55–0.8 높은 돌출부, 0.8–1 열린 출구. 상대 Y는 낮은 파식대와 높은 돌출부 사이의 큰 고저차를 강조한다. A 기본이라는 이유로 낮고 평평하게 축소하지 않으며, 전체를 균일한 복층 계단으로 만들지도 않는다. 바다를 완전히 가리는 동굴형 다층맵은 금지한다.</p>
+<figure class="profile"><svg viewBox="0 0 620 188" role="img" aria-label="34장 상대 고저 개념 단면 실제 비율과 충돌 지형이 아님"><path d="M 0 134 L 80 132 L 115 125 L 180 128 L 225 115 L 260 110 L 285 78 L 340 70 L 370 48 L 425 45 L 445 72 L 475 78 L 530 76 L 620 80 L 620 184 L 0 184 Z" fill="#dce6e8" stroke="#69828d" stroke-width="2"/><path d="M260 110 L315 100 L292 84 L340 70" fill="none" stroke="#435f6d" stroke-width="5"/><text x="12" y="169" fill="#536c77" font-size="12">연속된 하부 지반</text><text x="12" y="18" fill="#536c77" font-size="11">진입 X 0</text><text x="550" y="18" fill="#536c77" font-size="11">출구 X 1</text></svg><figcaption>설계 제안 · 상대 고저 개념도. 실제 길이·폭·높이·충돌은 실측 후 조정한다.</figcaption></figure><pre><code class="language-text">                         높은 돌출부 ─ 열린 출구
+                        ╱      ↓ 아래와 교전 가능
+낮은 해안 ─ 굽은 안쪽 길 ─ 바위틈의 근거리 전투
+               자연 암벽 오버행           바깥 시야 유지
+</code></pre>
+<ul>
+<li>먼 레이어: 바다와 푸른 수평선. 중간: 파식 곡면·오버행·돌출 암반. 가까이: 큰 암반 덩어리와 실제 지지면을 강조한 균열.</li>
+<li>색 제안: 암벽 <code>#637C89</code>, 젖은 그늘 <code>#3F5969</code>, 바다 <code>#86AABB</code>, 빛받은 면 <code>#BBCFD7</code>. 공간 이상 표식은 작은 구간에만 둔다.</li>
+</ul>
+<div class="swatches" aria-label="제안 색상"><span><i style="--swatch:#637C89"></i><code>#637C89</code></span><span><i style="--swatch:#3F5969"></i><code>#3F5969</code></span><span><i style="--swatch:#86AABB"></i><code>#86AABB</code></span><span><i style="--swatch:#BBCFD7"></i><code>#BBCFD7</code></span></div><h3>동선과 교전군</h3>
+<ul>
+<li>위쪽은 긴 사선과 일부 곡사 각도를 얻는다. 높은 적에게 무조건 고각만 쓰는 것이 아니라 암반 아래 좁은 사격창과 담허의 반사형 공격도 유효하게 설계하고 현재 판정을 실측한다. 아래쪽은 바위틈 차폐와 근거리 교전으로 이어진다. 높은 돌출부만 안전·공격 모두 우월한 단일 정답이 되지 않는다.</li>
+<li>G34-A는 낮은 안쪽 길의 근접 압박, G34-B는 돌출부 옆 사선 적. 위에서 아래를 공격할 수 있고, 휘겸도 아래 적에게 접근해 전투를 해결할 수 있다.</li>
+<li>37장과 달리 인간이 만든 경사로가 아니라 <strong>자연 암벽 오버행과 곡사 각</strong>이 이 장의 식별 요소다.</li>
+</ul>
+<h3>상태와 이벤트 순서</h3>
+<ol>
+<li>낮은 해안에서 높은 지형과 열린 바깥 시야를 읽는다.</li>
+<li>안쪽 길과 돌출부에서 교전한다.</li>
+<li>작은 한 지점의 공간 불일치를 관찰한다. 실제 주요 통로는 정상 연결을 유지한다.</li>
+<li>열린 출구로 이동한다. 오류 관찰 여부가 미확정 필수 스킬이나 숨은 수집물을 요구하지 않는다.</li>
+</ol>
+<div class="table-scroll" tabindex="0" role="region" aria-label="가로로 스크롤 가능한 표"><table>
+<thead>
+<tr>
+<th>발화 목적</th>
+<th>화자</th>
+<th>발생 조건과 보호</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>바위틈의 작은 공간 불일치를 인지</td>
+<td>담허 등 원안 화자 검토</td>
+<td>해당 지점 접근, 안전하게 시야 확보 후</td>
+</tr>
+<tr>
+<td>아직 진행 가능한 길을 확인</td>
+<td>일행 화자 검토</td>
+<td>정상 통로가 보일 때, 모든 공간이 뒤틀렸다는 확정 발화 금지</td>
+</tr>
+</tbody></table></div>
+<h3>실패와 재개</h3>
+<p>높은 곳에서 떨어져 아래 유효 지지면에 착지하면 정상 동선으로 복귀한다. 물에 닿는 구역은 낮은 해안의 <code>recover</code>와 깊은 외해의 <code>lethal</code>을 명시적으로 구별한다. 회수로 높은 돌출부를 공짜로 얻지 못한다. 작은 오류는 영구 루프·잘못된 출구 저장을 만들지 않는다. 재개 시 첫 암시의 관찰 플래그와 실제 이동 연결을 구분한다.</p>
+<h3>검수와 실측</h3>
+<ul>
+<li>미술: 플레이 카메라 여러 지점에서 바다가 계속 맥락으로 보인다. 암반 아래가 줌아웃에서 잘리지 않는다.</li>
+<li>플레이: 위·아래 두 길 모두 전투 역할이 있다. 자연 오버행에 투사체가 실제로 맞는지, 곡사 예측선과 일치하는지 확인한다.</li>
+<li>측정: 고저차별 사거리·사선·곡사, 안전 낙하와 점프, 돌출부 수용 폭, 카메라 수직 추적 범위.</li>
+</ul>
+</div></details><details class="stage" id="stage-35" ><summary><span class="number">35</span><span><strong>대숲의 옛길</strong><small>대숲 · 비대칭 빈터</small></span><span class="toggle" aria-hidden="true">+</span></summary><div class="stage-body"><p><strong>목적과 원안 연결:</strong> 바다가 전혀 보이지 않는 옛길로 장소와 호흡을 바꾼다. 회청록 안개, 돌계단, 도랑, 빈터로 1막의 짙은 녹색 저녁과 구분한다.</p>
+<h3>공간 단면과 배경</h3>
+<p><strong>설계 제안:</strong> X 0–0.18 굽은 진입 계단, 0.18–0.4 낮고 넓은 빈터, 0.4–0.66 도랑 옆 비스듬한 빈터, 0.66–0.88 돌담 아래 빈터, 0.88–1 출구. 셋의 폭·높이·차폐 위치를 비대칭으로 한다. 뿌리가 들어 올린 돌담과 쓰러진 대나무는 길의 모양을 설명한다.</p>
+<figure class="profile"><svg viewBox="0 0 620 188" role="img" aria-label="35장 상대 고저 개념 단면 실제 비율과 충돌 지형이 아님"><path d="M 0 128 L 45 122 L 70 115 L 100 103 L 175 105 L 200 117 L 225 140 L 255 119 L 290 106 L 350 100 L 380 96 L 400 82 L 470 80 L 500 90 L 550 85 L 620 78 L 620 184 L 0 184 Z" fill="#dce6e8" stroke="#69828d" stroke-width="2"/><text x="12" y="169" fill="#536c77" font-size="12">연속된 하부 지반</text><text x="12" y="18" fill="#536c77" font-size="11">진입 X 0</text><text x="550" y="18" fill="#536c77" font-size="11">출구 X 1</text></svg><figcaption>설계 제안 · 상대 고저 개념도. 실제 길이·폭·높이·충돌은 실측 후 조정한다.</figcaption></figure><pre><code class="language-text">진입 계단 ─ 넓은 빈터 ① ─╲ 도랑 옆 빈터 ② ─ 돌담 아래 빈터 ③ ─ 출구
+             ╲ 낮은 우회 ╱                    ╲ 옆 틈 우회 ╱
+가는 배경 대나무는 비충돌        굵은 군락과 돌담만 명확한 차폐
+</code></pre>
+<ul>
+<li>먼 레이어: 회청록 안개 속 가는 대나무, 하늘의 가는 밝은 틈. 중간: 굵은 차폐 군락·쓰러진 대·돌담. 가까이: 뿌리·돌계단·깊은 도랑의 토층.</li>
+<li>색 제안: 안개 <code>#A6BEC0</code>, 마른 대 <code>#718E8B</code>, 돌계단 <code>#637B80</code>, 깊은 그늘 <code>#3F6065</code>. 채도 높은 녹색 숲으로 회귀하지 않는다.</li>
+<li>음향: 파도 앰비언스를 물리고 잎 스침·마른 대 줄기·도랑 바람을 중심으로 한다. 해안 효과음을 그대로 반복하지 않는다.</li>
+</ul>
+<div class="swatches" aria-label="제안 색상"><span><i style="--swatch:#A6BEC0"></i><code>#A6BEC0</code></span><span><i style="--swatch:#718E8B"></i><code>#718E8B</code></span><span><i style="--swatch:#637B80"></i><code>#637B80</code></span><span><i style="--swatch:#3F6065"></i><code>#3F6065</code></span></div><h3>동선과 교전군</h3>
+<ul>
+<li>각 빈터는 조준할 공간을 주고 다음 빈터까지는 차폐를 끼고 이동하게 한다. 꼭대기로만 오르면 모두 해결되는 계단 퍼즐을 금지한다.</li>
+<li>G35-A는 빈터 ①의 근접 압박, G35-B는 ②의 돌담 사선, G35-C는 ③의 측면 견제 역할이다. 동시에 전 구역이 공격하지 않는다.</li>
+<li>가는 대나무 장식 대부분은 비충돌이다. 굵은 군락·돌담만 시각적으로 두껍고 일관된 차폐를 갖는다. 투사체가 장식 사이에서 임의로 멈추지 않는다.</li>
+</ul>
+<h3>상태와 이벤트 순서</h3>
+<ol>
+<li>첫 빈터에서 비충돌 배경과 실제 차폐 차이를 읽는다.</li>
+<li>빈터의 안전 공간과 이동 구간을 번갈아 통과한다.</li>
+<li>세 번째 빈터에서 다음 장소로 이어지는 길을 확보한다. 전투 사이에 수집 퀘스트나 새 서사를 추가하지 않는다.</li>
+</ol>
+<div class="table-scroll" tabindex="0" role="region" aria-label="가로로 스크롤 가능한 표"><table>
+<thead>
+<tr>
+<th>발화 목적</th>
+<th>화자</th>
+<th>발생 조건과 보호</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>해안을 벗어난 옛길의 분위기를 인지</td>
+<td>원안 화자 검토</td>
+<td>첫 빈터 진입, 새로운 역사 설정 확정 금지</td>
+</tr>
+<tr>
+<td>이동 가능한 길을 확인</td>
+<td>일행 화자 검토</td>
+<td>도랑·돌담 우회가 실제 화면에 보일 때</td>
+</tr>
+</tbody></table></div>
+<h3>실패와 재개</h3>
+<p>깊은 도랑은 기존 추락·회수 규칙을 우선 사용한다. 도랑에서 점프 스킬 부족으로 갇히지 않는다. 빈터 사이 재개를 지원하면 완료 군집과 다음 군집을 섞어 중복 생성하지 않는다.</p>
+<h3>검수와 실측</h3>
+<ul>
+<li>미술: 바다·수평선이 전혀 없고 파도 소리도 중심이 아니다. 배경색을 가려도 세 빈터의 폭과 도랑 형태가 다르다.</li>
+<li>플레이: 가는 대나무에 직사가 임의 차단되지 않는다. 아래 길과 측면 길로도 전투를 해결하며 꼭대기만 정답이 아니다.</li>
+<li>측정: 차폐별 충돌 마스크, 빈터별 근접 접근 거리, 도랑 점프·회수, 배경 대나무의 조준 가독성, 군집 활성 범위.</li>
+</ul>
+</div></details><details class="stage" id="stage-36" ><summary><span class="number">36</span><span><strong>쇠가 없는 마을</strong><small>폐촌 · 고요한 사건</small></span><span class="toggle" aria-hidden="true">+</span></summary><div class="stage-body"><p><strong>목적과 원안 연결:</strong> 저문골 학살 장소에서 휘겸이 과거를 마주한다. 철물을 묵종 제작에 빼앗긴 빈 집터와 작업장이 단서다. 기록 찾기·문서 수집 퀘스트로 사건을 치환하지 않는다.</p>
+<h3>공간 단면과 배경</h3>
+<p><strong>설계 제안:</strong> X 0–0.2 폐촌 입구, 0.2–0.42 빈 작업장 외곽, 0.42–0.72 고요한 사건 장소와 마당, 0.72–1 외곽 이탈길. 낮은 분지에 집터를 비대칭으로 놓고 중앙을 넓게 비운다. 철물의 부재는 문틀·빈 경첩 자리·못이 빠진 목재·솥 없는 자리의 미술 단서로 표현한다.</p>
+<figure class="profile"><svg viewBox="0 0 620 188" role="img" aria-label="36장 상대 고저 개념 단면 실제 비율과 충돌 지형이 아님"><path d="M 0 88 L 70 96 L 100 110 L 160 116 L 210 126 L 330 128 L 410 124 L 460 118 L 500 105 L 540 99 L 620 92 L 620 184 L 0 184 Z" fill="#dce6e8" stroke="#69828d" stroke-width="2"/><text x="12" y="169" fill="#536c77" font-size="12">연속된 하부 지반</text><text x="12" y="18" fill="#536c77" font-size="11">진입 X 0</text><text x="550" y="18" fill="#536c77" font-size="11">출구 X 1</text></svg><figcaption>설계 제안 · 상대 고저 개념도. 실제 길이·폭·높이·충돌은 실측 후 조정한다.</figcaption></figure><pre><code class="language-text">입구의 낮은 위협 ─ 빈 작업장 ─ 넓고 고요한 사건 마당 ─ 외곽 이탈길
+                         ╲ 짧은 측면 이동 ╱            짧은 방어 가능
+                         중심부에는 교전 배치하지 않음
+</code></pre>
+<ul>
+<li>먼 레이어: 빈 지붕선과 희미한 새벽 하늘. 중간: 무너진 처마·집터·빈 작업장. 가까이: 철물 없는 결합 흔적·재·마른 흙. 바다는 보이지 않는다.</li>
+<li>색 제안: 재회색 <code>#777D7C</code>, 부패 갈색 <code>#756B61</code>, 옅은 새벽광 <code>#A6BDC6</code>, 빈집 그늘 <code>#4D5C62</code>. 다른 장보다 갈색·회색을 허용하고 푸른 빛은 공통 시간대 정도로만 남긴다.</li>
+<li>음향: 파도 대신 빈집 바람·목재 흔들림·드문 발소리. 중심 사건에서 적 소리와 반복 위협음을 비운다.</li>
+</ul>
+<div class="swatches" aria-label="제안 색상"><span><i style="--swatch:#777D7C"></i><code>#777D7C</code></span><span><i style="--swatch:#756B61"></i><code>#756B61</code></span><span><i style="--swatch:#A6BDC6"></i><code>#A6BDC6</code></span><span><i style="--swatch:#4D5C62"></i><code>#4D5C62</code></span></div><h3>동선과 교전군</h3>
+<ul>
+<li>중심 마당에 접근 가능한 넓은 주동선과 작업장 바깥의 짧은 측면 길을 둔다. 길을 해금하려고 기록을 수집하게 하지 않는다.</li>
+<li>G36-A는 입구·외곽의 소수 목상 또는 사물 빙의체 변주. 필요할 때 G36-B를 이탈길의 짧은 방어로만 둔다. 주민 전원을 몬스터화하지 않는다.</li>
+<li>중심부 전투는 피한다. 이벤트 뒤 적을 과도하게 소환해 조용한 장의 밀도를 다시 올리지 않는다. 신규 물리 파괴 엔진 없이 미술과 기존 충돌로 구현한다.</li>
+</ul>
+<h3>상태와 이벤트 순서</h3>
+<ol>
+<li>입구의 낮은 위협을 처리하거나 안전한 접근을 확보한다.</li>
+<li>철물이 사라진 생활 흔적을 지나 중심 사건 장소에 도달한다.</li>
+<li>휘겸의 대면 이벤트는 고요한 상태에서 진행한다.</li>
+<li>필요하다면 외곽의 짧은 방어를 통과하고 떠난다. 방어의 채택·강도는 플레이 검토 대상이다.</li>
+</ol>
+<div class="table-scroll" tabindex="0" role="region" aria-label="가로로 스크롤 가능한 표"><table>
+<thead>
+<tr>
+<th>발화 목적</th>
+<th>화자</th>
+<th>발생 조건과 보호</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>철물이 사라진 흔적을 인지</td>
+<td>휘겸 또는 원안 화자 검토</td>
+<td>생활 흔적이 보이는 안전 지점, 수집 UI 요구 금지</td>
+</tr>
+<tr>
+<td>과거와 마주함</td>
+<td>휘겸 중심, 상대 발화는 원안 검토</td>
+<td>중심부 안전화 후, 적 공격·배경 소란 금지</td>
+</tr>
+<tr>
+<td>떠날 준비를 연결</td>
+<td>일행 화자 검토</td>
+<td>사건 완료 후, 새로운 학살 사실·생사 확정 금지</td>
+</tr>
+</tbody></table></div>
+<h3>실패와 재개</h3>
+<p>외곽 교전 실패로 중심 사건을 매번 강제로 반복하지 않도록 기존 이벤트 스킵·완료 상태를 검토한다. 이벤트 종료 뒤 입력·카메라가 정상 복구되어야 한다. 철물 단서 하나를 지나쳤다고 출구가 잠기지 않는다.</p>
+<h3>검수와 실측</h3>
+<ul>
+<li>미술: 철물 부재가 단순 저해상도 누락이 아니라 의도적 흔적으로 읽힌다. 중심 마당의 비움이 유지된다.</li>
+<li>플레이: 중심부에서 적 공격·추적·투사체가 발생하지 않는다. 수집 없이 진행 가능하며 전투 밀도가 주변 장보다 낮다.</li>
+<li>측정: 안전 구역 판정, 외곽 AI 사선·추적 범위, 이벤트 입력 복귀, 미술 단서의 플레이 줌 가독성, 필요 방어의 실제 턴 수.</li>
+</ul>
+</div></details><details class="stage" id="stage-37" ><summary><span class="number">37</span><span><strong>곶의 뒤편</strong><small>운송길 · 신호와 접근</small></span><span class="toggle" aria-hidden="true">+</span></summary><div class="stage-body"><p><strong>목적과 원안 연결:</strong> 옛 운송길에서 먼 구조 신호를 발견하고 설오가 도식의 몸짓을 알아본다. 발견과 구조 완료를 분리한다. 옛 짐길 자체는 원안 연결 조건이다. 아래 옹벽·절개면·적재 및 운반 구조의 구체 배치는 이번 구현 제안이다.</p>
+<h3>공간 단면과 배경</h3>
+<p><strong>설계 제안:</strong> X 0–0.24 산허리 절개면, 0.24–0.5 무너진 옹벽·짐길, 0.5–0.74 굽은 고개와 신호 시야, 0.74–1 실제 접근 목표. 인공 운송 경사로의 사선과 불규칙한 옹벽 높이가 핵심이다. 고개를 돌면 바다가 다시 보인다.</p>
+<figure class="profile"><svg viewBox="0 0 620 188" role="img" aria-label="37장 상대 고저 개념 단면 실제 비율과 충돌 지형이 아님"><path d="M 0 140 L 80 125 L 150 103 L 205 88 L 230 105 L 280 85 L 350 62 L 390 57 L 420 68 L 460 73 L 490 63 L 540 67 L 620 70 L 620 184 L 0 184 Z" fill="#dce6e8" stroke="#69828d" stroke-width="2"/><text x="12" y="169" fill="#536c77" font-size="12">연속된 하부 지반</text><text x="12" y="18" fill="#536c77" font-size="11">진입 X 0</text><text x="550" y="18" fill="#536c77" font-size="11">출구 X 1</text></svg><figcaption>설계 제안 · 상대 고저 개념도. 실제 길이·폭·높이·충돌은 실측 후 조정한다.</figcaption></figure><pre><code class="language-text">산허리 절개면 ╱ 운송 경사로 ╱ 무너진 옹벽 ─ 고개 ─ 실제 접근 목표
+                                  ╲ 짧은 하부 우회 ╱
+                                         시야 너머 먼 구조 신호
+</code></pre>
+<ul>
+<li>먼 레이어: 처음에는 산허리, 고개 이후 다시 열린 바다. 중간: 옹벽·짐길·버려진 목재 운반 구조. 가까이: 흙·석축 단면과 닳은 운송로.</li>
+<li>색 제안: 석축 <code>#7C8B8E</code>, 흙길 <code>#7D8177</code>, 새벽 바다 <code>#96B5C2</code>, 오래된 목재 <code>#65716F</code>. 폐선 장식은 절제해 39장 식별 요소를 앞당겨 소진하지 않는다.</li>
+</ul>
+<div class="swatches" aria-label="제안 색상"><span><i style="--swatch:#7C8B8E"></i><code>#7C8B8E</code></span><span><i style="--swatch:#7D8177"></i><code>#7D8177</code></span><span><i style="--swatch:#96B5C2"></i><code>#96B5C2</code></span><span><i style="--swatch:#65716F"></i><code>#65716F</code></span></div><h3>동선과 교전군</h3>
+<ul>
+<li>주동선은 인공 경사로를 따라 사선으로 오르고, 대안은 무너진 옹벽 아래를 돌아 측면 접근한다. 34장의 자연 오버행과 형태·사격 각이 달라야 한다.</li>
+<li>G37-A는 경사로 사선 적, G37-B는 옹벽 하부의 근접 견제다. 목재 구조는 차폐·경로 표시 역할에 한정하며 신규 운반 물리 기믹을 요구하지 않는다.</li>
+<li>구조 대상의 먼 위치는 관찰 대상이고 실제 조작 목표는 도달 가능한 접근 구역이다. 장거리 공격·순간 이동만으로 구조 완료 판정이 나지 않는다.</li>
+</ul>
+<h3>상태와 이벤트 순서</h3>
+<ol>
+<li>운송길 교전과 이동을 통해 고개로 접근한다.</li>
+<li>고개를 돌아 바다가 열리면서 구조 신호를 확인한다.</li>
+<li>설오가 도식의 몸짓을 알아본다. 이때 구조는 미완료다.</li>
+<li>실제 접근 목표에 도달해 38장의 연결 문제로 이어진다.</li>
+</ol>
+<div class="table-scroll" tabindex="0" role="region" aria-label="가로로 스크롤 가능한 표"><table>
+<thead>
+<tr>
+<th>발화 목적</th>
+<th>화자</th>
+<th>발생 조건과 보호</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>먼 구조 신호를 발견</td>
+<td>일행 화자 검토</td>
+<td>고개 시야가 열리고 신호가 화면에서 읽힐 때</td>
+</tr>
+<tr>
+<td>도식의 몸짓을 알아봄</td>
+<td>설오</td>
+<td>신호 확인 뒤, 구조 완료·재회로 잘못 처리하지 않음</td>
+</tr>
+<tr>
+<td>접근 경로를 정함</td>
+<td>일행 화자 검토</td>
+<td>실제 접근 목표가 드러난 뒤</td>
+</tr>
+</tbody></table></div>
+<h3>실패와 재개</h3>
+<p>신호 확인 이후 되돌아가도 발견 상태는 일관되게 유지한다. 사거리·이동 스킬로 관찰 지점을 건너뛰면 접근 구역에서 안전하게 필요한 확인 이벤트를 보완한다. 스킬로 배경의 구조 대상 위치에 접근할 수 있는지 확인하고 실제 이동 공간과 분리한다.</p>
+<h3>검수와 실측</h3>
+<ul>
+<li>미술: 배경을 가려도 인공 사선·옹벽 때문에 34장과 다르다. 신호는 플레이 줌에서 읽되 자세한 생존자 명단을 노출하지 않는다.</li>
+<li>플레이: 신호를 공격하거나 최대 이동 스킬을 써도 구조가 끝나지 않는다. 실제 접근 목표는 모든 기본 이동 구성으로 도달한다.</li>
+<li>측정: 신호 최소 가독 크기·카메라 전환, 이동 스킬의 경계·착지, 관찰과 접근 트리거 순서, 경사면 충돌.</li>
+</ul>
+</div></details><details class="stage" id="stage-38" ><summary><span class="number">38</span><span><strong>어긋난 해식굴</strong><small>해식굴 · 읽을 수 있는 연결</small></span><span class="toggle" aria-hidden="true">+</span></summary><div class="stage-body"><p><strong>목적과 원안 연결:</strong> 실제 입출구 두세 개가 잘못 이어진 공간을 읽고 바로잡는다. 담허가 축지진목을 응용해 길을 찾는 원안의 서사 역할을 유지한다. 스테이지 한정 표식·고정 연결을 마련하는 장면과 성장 스킬의 비용·영구 습득을 분리하고, 이후 고정 출구는 누구나 사용한다. 성장 스킬 미습득·MP 부족이나 설명되지 않은 생존 조건이 숨은 교착을 만들지 않아야 한다. 도식의 짧은 목소리는 구조의 연결감만 전달한다.</p>
+<h3>공간 단면과 배경</h3>
+<p><strong>설계 제안:</strong> X 0–0.2 좁은 입구, 0.2–0.58 넓은 공동, 0.58–0.82 출구가 보이는 연결 공간, 0.82–1 외부 빛의 출구. 연결부는 식별 가능한 2–3개로 제한하고, 각 출구 결과를 상호작용 전에 확인한다. 중력 무작위·물 순간이동은 사용하지 않는다.</p>
+<figure class="profile"><svg viewBox="0 0 620 188" role="img" aria-label="38장 상대 고저 개념 단면 실제 비율과 충돌 지형이 아님"><path d="M 0 115 L 65 110 L 100 122 L 150 130 L 220 128 L 300 125 L 365 126 L 410 116 L 455 110 L 500 111 L 550 98 L 620 92 L 620 184 L 0 184 Z" fill="#dce6e8" stroke="#69828d" stroke-width="2"/><path d="M0 30 L90 44 L160 14 L260 8 L360 22 L430 14 L500 32 L560 13 L620 8" fill="none" stroke="#607c8a" stroke-width="15"/><text x="12" y="169" fill="#536c77" font-size="12">연속된 하부 지반</text><text x="12" y="18" fill="#536c77" font-size="11">진입 X 0</text><text x="550" y="18" fill="#536c77" font-size="11">출구 X 1</text></svg><figcaption>설계 제안 · 상대 고저 개념도. 실제 길이·폭·높이·충돌은 실측 후 조정한다.</figcaption></figure><pre><code class="language-text">좁은 입구 ─ 넓은 공동 ─ [바위틈과 고유 돌문 형상] ─ 밝은 외부 출구
+                         관찰 → 결과 미리보기 → 연결 정정
+                 출구마다 고유 표식         성장 스킬과 독립된 필수 통과
+</code></pre>
+<ul>
+<li>먼 레이어: 밝은 외부 출구와 흘러드는 반사광. 중간: 매끈한 해식 곡면·수면선·공동. 가까이: 바위틈·고유 돌문 형상·소리로 구별되는 자연 연결부와 실제 발판. 판타지 포탈 UI나 카드형 제어판 퍼즐로 보이게 하지 않는다.</li>
+<li>색 제안: 해식벽 <code>#6A8794</code>, 수면 반사 <code>#9FC6D1</code>, 공동 그늘 <code>#3D5B6D</code>, 출구 빛 <code>#D0E1E4</code>. 검정·회색 2막 동굴처럼 닫힌 어둠이 되지 않는다.</li>
+</ul>
+<div class="swatches" aria-label="제안 색상"><span><i style="--swatch:#6A8794"></i><code>#6A8794</code></span><span><i style="--swatch:#9FC6D1"></i><code>#9FC6D1</code></span><span><i style="--swatch:#3D5B6D"></i><code>#3D5B6D</code></span><span><i style="--swatch:#D0E1E4"></i><code>#D0E1E4</code></span></div><h3>동선과 교전군</h3>
+<ul>
+<li>넓은 공동에서 자연 연결부와 나갈 장소를 비교한 뒤 연결 공간으로 이동한다. 바위틈 형상·돌문 윤곽·공간을 타고 들리는 소리를 결합하고 필요 최소한의 확인 문구만 보조한다. 색만 외우거나 A/B/C 제어판을 조작하는 퍼즐로 만들지 않는다.</li>
+<li>G38-A는 필요할 때 입구 또는 공동 외곽의 기존 적 소수로 제한한다. 연결 확인 UI를 읽는 동안 불가피한 공격을 받게 하지 않는다. 전투가 공간 이해를 덮어서는 안 된다.</li>
+<li><strong>채택 설계 제안:</strong> 담허가 축지진목 응용으로 스테이지 한정 표식·고정 연결을 마련하는 장면을 둔다. 이 장면은 성장 스킬 습득·MP 비용과 분리하며, 형성된 고정 연결은 누구나 통과한다. 성장 축지 스킬은 추가 우회·전투 이점·해설로 차별화할 수 있다. 무료 영구 스킬 지급은 금지한다.</li>
+<li>시작부터 담허가 전투 불능인 경우는 현재 캠페인 전투 불능 계약을 확인해 보장된 대체 동선 또는 임무 시작에 명시한 실패로 처리한다. 담허의 서사 역할을 삭제하거나, 설명 없이 길만 영원히 잠그지 않는다. 이 장도 포격과 이동이 중심이며 무의미한 연결 맞추기 퍼즐이 되지 않는다.</li>
+<li>출구 착지면과 주변에는 적을 스폰하지 않는다. 아군이 점유하면 자원을 소비하지 않고 점유를 안내하며, 먼저 비킨 뒤 이용할 수 있게 한다. 점유 상태에서 강제 겹침·즉시 추락·자원만 소모되는 이동을 금지한다.</li>
+</ul>
+<h3>상태와 이벤트 순서</h3>
+<ol>
+<li>바위틈·돌문 형상과 소리를 관찰해 현재 잘못된 연결과 나갈 장소를 확인한다.</li>
+<li>담허가 축지진목을 응용해 건너편과 이어질 길을 찾고 스테이지 한정 표식·고정 연결을 마련한다. 이 서사 장면에 성장 스킬 미습득·MP 비용을 숨은 잠금으로 걸지 않는다.</li>
+<li>나갈 장소를 사전에 확인한 뒤 누구나 고정 연결을 통과하며, 이동 위치를 바꿔 먼 적을 포격한다. 어긋난 연결에 들어갔다면 읽을 수 있는 결과와 되돌아갈 길을 제공한다.</li>
+<li>밝은 출구로 나간다. 같은 장소로 무작정 되돌아오는 반복 미로는 금지한다.</li>
+</ol>
+<div class="table-scroll" tabindex="0" role="region" aria-label="가로로 스크롤 가능한 표"><table>
+<thead>
+<tr>
+<th>발화 목적</th>
+<th>화자</th>
+<th>발생 조건과 보호</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>축지진목을 응용해 길을 찾고 고정 연결을 마련함</td>
+<td>담허</td>
+<td>공간 관찰 뒤, 스테이지 한정 장면과 성장 스킬 비용·영구 습득을 분리</td>
+</tr>
+<tr>
+<td>구조 대상과의 거리감을 연결</td>
+<td>도식의 짧은 목소리</td>
+<td>원안에 맞는 연결 확인 시점, 긴 대사·새 정보 추가 금지</td>
+</tr>
+<tr>
+<td>정정된 출구를 확인</td>
+<td>일행 화자 검토</td>
+<td>결과 미리보기 또는 연결 완료 뒤</td>
+</tr>
+</tbody></table></div>
+<h3>실패와 재개</h3>
+<p>어긋난 연결에 진입했을 때는 출발 쪽 유효 지지면으로 돌아오거나 자연 연결부를 다시 확인할 수 있다. 물 구역은 얕은 공동 바닥 <code>shallow</code>, 같은 진입 쪽 낮은 선반으로만 회수 가능한 물 <code>recover</code>, 깊은 외해 <code>lethal</code>로 구분하는 제안이며, 필수 길은 위험한 물을 통과하지 않는다. MP 0·성장 축지 스킬 미습득이 고정 출구 이용을 막지 않는다. 담허가 시작부터 전투 불능인 경우는 캠페인 계약에 맞는 보장 대체 동선 또는 명시 임무 실패로 결정하고 숨은 교착을 금지한다. 필수 생존 인물은 임무 시작에 알린다. 재개 시 연결부 선택·사전 확인·연결 결과가 서로 다른 상태로 복원되지 않는다.</p>
+<h3>검수와 실측</h3>
+<ul>
+<li>미술: 입구·공동·출구가 한눈에 역할을 달리하며 외부 빛과 해식 곡면이 2막과 구별된다.</li>
+<li>플레이: 처음 보는 사람도 출구 결과를 진입 전에 확인한다. 선택을 틀려도 반복 노동 없이 수정한다. MP 0·성장 스킬 미습득에서 필수 길을 통과한다. 담허 전투 불능은 캠페인 계약에 맞는 대체 동선 또는 명시 실패를 확인한다. 아군의 출구 점유를 풀기 전에는 자원이 소비되지 않는다.</li>
+<li>측정: 기존 축지진목의 실제 조건·비용·대상, 고정 연결부의 상호작용 지원, 출구 점유 사전 확인, 연결 전환의 캐릭터·투사체 처리, 로드 복원, 자연 연결부별 도달성.</li>
+</ul>
+</div></details><details class="stage" id="stage-39" ><summary><span class="number">39</span><span><strong>돌아오는 물</strong><small>폐선 · 구조 보스전</small></span><span class="toggle" aria-hidden="true">+</span></summary><div class="stage-body"><p><strong>목적과 원안 연결:</strong> 폐선 골조·그물·암반을 활용해 곶 너머의 <strong>도식 포함 4명</strong>을 구조하는 보스전이다. 네 명 모두가 필수 구조 대상이며, 은신처의 7명과 중복 집계하지 않는다. ‘그물귀’는 가칭이며 한국식 오래된 어선과 밧줄·그물에 깃든 존재라는 방향을 따른다. 서양 해적선은 금지한다. 아래 암반 분지는 이번 지형 제안이며 원안 확정 지형이 아니다.</p>
+<h3>공간 단면과 배경</h3>
+<p><strong>설계 제안:</strong> X 0–0.18 진입 고지, 0.18–0.42 폐선 골조와 낮은 전투면, 0.42–0.68 구조 구역·연결 목표, 0.68–0.86 둘째 안전 고지, 0.86–1 이탈 연결. 바다로 열린 수로가 실제 화면에 보여 정상 조수의 유입을 설명한다. 폐쇄 호수처럼 보이는 분지는 금지한다.</p>
+<figure class="profile"><svg viewBox="0 0 620 188" role="img" aria-label="39장 상대 고저 개념 단면 실제 비율과 충돌 지형이 아님"><path d="M 0 63 L 70 65 L 100 102 L 165 118 L 200 109 L 235 126 L 280 118 L 330 122 L 380 106 L 420 109 L 455 67 L 520 62 L 550 83 L 620 80 L 620 184 L 0 184 Z" fill="#dce6e8" stroke="#69828d" stroke-width="2"/><path d="M10 142 Q90 137 160 142 T315 142 T470 142 T610 142" fill="none" stroke="#82b2c4" stroke-width="3" stroke-dasharray="8 5"/><text x="12" y="169" fill="#536c77" font-size="12">연속된 하부 지반</text><text x="12" y="18" fill="#536c77" font-size="11">진입 X 0</text><text x="550" y="18" fill="#536c77" font-size="11">출구 X 1</text></svg><figcaption>설계 제안 · 상대 고저 개념도. 실제 길이·폭·높이·충돌은 실측 후 조정한다.</figcaption></figure><pre><code class="language-text">안전 고지 A ─ 폐선 골조 ─ 구조 구역과 연결 목표 ─ 안전 고지 B ─ 이탈
+       ╲──────── 침수와 무관한 우회 연결 ─────────╱
+                    바다에 열린 수로 → 정상 조수 유입
+       암반 하부는 연속                    고지는 둘 이상 유지
+</code></pre>
+<ul>
+<li>먼 레이어: 수로로 이어지는 실제 바다·밝아지는 하늘. 중간: 한국식 오래된 어선의 골조·그물·암반. 가까이: 두꺼운 지지 암반·밧줄 압박 구간·안전 고지 표식.</li>
+<li>색 제안: 폐선 목재 <code>#657C81</code>, 젖은 그물 <code>#526873</code>, 유입 수면 <code>#80AFBF</code>, 고지 빛 <code>#BDD7DF</code>. 약점·구조 대상·회수 위치는 서로 다른 형태 표식을 쓴다.</li>
+</ul>
+<div class="swatches" aria-label="제안 색상"><span><i style="--swatch:#657C81"></i><code>#657C81</code></span><span><i style="--swatch:#526873"></i><code>#526873</code></span><span><i style="--swatch:#80AFBF"></i><code>#80AFBF</code></span><span><i style="--swatch:#BDD7DF"></i><code>#BDD7DF</code></span></div><h3>동선과 교전군</h3>
+<ul>
+<li>적어도 두 영구 고지와 두 접근로를 유지한다. 고지는 플레이어 일행 전원과 구조 대상 4명이 서 있을 충분한 수용 용량을 갖고, 고수위에서도 보스를 타격할 경로가 있다. 낮은 전투면은 빠른 접근과 공격 기회를 주되 필수 목표로 가는 유일한 길이 아니다.</li>
+<li>고지는 침수 안전 지형이지 공격 무효 성역이 아니다. 보스의 고정 위치, 물가 적의 실제 이동 특성, 지형 폭과 충돌, 구조 착지·필수 통로의 전용 스폰 배제로 영구 봉쇄를 방지한다. 적의 합법적인 공격은 허용한다.</li>
+<li>보스는 별도 설계한다. 보조 적은 기존 근접 압박·사선 견제 행동을 변주하며 구조 회수 지점과 모든 우회 입구를 동시에 점유하지 못하게 한다.</li>
+<li>권장 역할은 설오의 원거리 약점 공격, 담허의 출구 고정, 소단의 혼 해방, 휘겸의 가까운 적·밧줄 압박 차단이다. 네 행동을 매번 특정 순서로 강제하는 엄격한 4인 퍼즐로 만들지 않는다.</li>
+<li>최소 강제 행동은 출구 안정화와 구조 진행에 필요한 것만 남긴다. 출구 안정화는 삭제하지 않되 시작 또는 구조 단계의 <strong>한 번의 연결 사건</strong>으로 제한한다. 보스전 내내 공간 퍼즐을 반복하지 않으며 주된 전투 판단은 포격과 예고된 조수다.</li>
+<li>캐릭터 전용 필수 행동과 대체 상호작용의 경계는 구현 전 확정한다. 필수 생존 인물은 임무 시작에 명시하고, 그 사망으로 전용 행동이 불가능해지면 즉시 실패·재시작한다. 숨은 생존 조건은 금지한다.</li>
+</ul>
+<h3>상태와 이벤트 순서</h3>
+<ol>
+<li>진입 시 도식 포함 구조 대상 4명의 위치, 둘 이상의 안전 고지, 바다 연결 수로, 구조 목표를 읽는다.</li>
+<li>시작 또는 구조 단계에서 한 번의 연결 사건으로 오류를 정정하고 출구를 안정화한다. 안정화된 출구는 반복 퍼즐로 되돌리지 않는다. 보스 피해 처리와 구조 상태는 별도 관리한다.</li>
+<li>정상 조수의 상승을 예고하고 다음 턴 경계에서 반영한다. 안전 고지와 우회는 유지한다.</li>
+<li>도식 포함 구조 대상 4명이 연결된 경로를 통해 고지로 이동한다. 이동이 막히면 어떤 조건이 남았는지 표시하며, 네 명의 도달 상태를 중복 없이 집계한다.</li>
+<li><strong>승리는 도식 포함 필수 구조 대상 4명 모두의 안전 고지 도달과 일행 이탈·출구 안정 조건으로 판정한다.</strong> 보스는 처치하거나 억제하면서 탈출할 수 있다. 보스 HP 0만으로 자동 종료하지 않으며, 반대로 보스가 살아 있다는 이유로 구조 성공 후 전멸전을 강제하지 않는다. 조기 처치 후에도 남은 구조를 마칠 수 있어야 한다.</li>
+</ol>
+<div class="table-scroll" tabindex="0" role="region" aria-label="가로로 스크롤 가능한 표"><table>
+<thead>
+<tr>
+<th>발화 목적</th>
+<th>화자</th>
+<th>발생 조건과 보호</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>구조 우선 목표와 접근을 확인</td>
+<td>설오 등 원안 화자 검토</td>
+<td>진입 고지에서 전체 구조가 보인 뒤</td>
+</tr>
+<tr>
+<td>공간 연결과 정상 조수를 구분</td>
+<td>담허 등 원안 화자 검토</td>
+<td>연결 관찰 및 조수 예고 시, 물 자체의 순간이동 설명 금지</td>
+</tr>
+<tr>
+<td>혼 해방과 압박 차단의 역할을 전달</td>
+<td>소단·휘겸, 원안 검토</td>
+<td>관련 행동 가능 시점, 실제 최종 대사는 승인 대기</td>
+</tr>
+<tr>
+<td>구조 대상 4명 모두의 구조 완료를 확인</td>
+<td>도식·구조 대상·일행 화자 검토</td>
+<td>네 명의 고지 도달 상태 확인 후, 은신처 7명과 합쳐 생존 11명으로 집계하며 미정 개별 이름·두 아이의 소속은 추가하지 않음</td>
+</tr>
+</tbody></table></div>
+<h3>실패와 재개</h3>
+<p>물 구역은 연결 얕은 가장자리 <code>shallow</code>, 같은 진입 쪽 낮은 해안으로 돌아오는 물 <code>recover</code>, 깊은 유입 수로·외해 <code>lethal</code>을 구별하는 제안이다. 회수는 최대 HP 25% 피해와 잔여 행동 종료를 따르며, 높은 고지·반대편 무료 이동이나 MP 리셋을 제공하지 않는다. 물에서는 공격·의식을 할 수 없다. 안전 고지는 직접 이동해서 확보한다.</p>
+<p>현재 회수 후보에서 전원 회수 대기와 안전 지점 적 점유가 겹친 턴 교착은 해결 확인 전이다. 같은 진입 쪽 낮은 유효 지점과 정상 턴 스케줄링으로 회수하거나 명시된 실패로 전이하도록 검증해야 한다. 점유 때문에 조수를 멈추거나 역류시키지 않는다. 구조 대상이 경로에 끼면 재탐색·대기 해소 또는 안전한 복구가 가능해야 하며, 복구 불가면 명확한 실패를 제시한다. 보스전 재개 시 생존자 위치·조수 예고·연결·보스 상태를 같은 시점으로 복원한다.</p>
+<h3>검수와 실측</h3>
+<ul>
+<li>미술: 바다 유입 수로가 보여 조수가 납득된다. 한국식 어선 골조로 읽히며 서양 돛대·해적선 장식에 의존하지 않는다.</li>
+<li>플레이: 출구 안정화는 한 번으로 끝나고 이후 포격·조수 판단에 집중한다. 두 고지의 전원 수용, 두 접근로, 고수위 보스 타격 경로를 확인한다. 장거리·사거리 증가·관통·곡사·이동 스킬로 약점이나 보스를 조기 처리해도 구조가 정상 완결된다. HP 0 뒤 남은 구조가 영구 잠기지 않는다. 보스 생존 상태에서도 구조와 이탈 조건을 충족하면 승리한다.</li>
+<li>복합 시험: 최대 조수 + 한 고지 점유 + 회수 지점 점유 + 캐릭터 전투 불능 조합에서 성공 경로 또는 즉시 명확한 실패가 있다. 물 안에서 전원 헛턴 반복은 불합격이다.</li>
+<li>측정: 보스 약점의 실제 사거리·충돌, 조수 예고 행동 기회, NPC 고지 도달 경로·이동 속도, 회수 후보 선택, 고지 수용 용량과 두 접근로, 고수위 공격 경로, 1회 출구 안정화, 전용 행동 대체 가능성, 승리 조건의 판정 순서.</li>
+</ul>
+</div></details><details class="stage" id="stage-40" ><summary><span class="number">40</span><span><strong>바다에서 돌아온 사람들</strong><small>호송 · 재회와 여운</small></span><span class="toggle" aria-hidden="true">+</span></summary><div class="stage-body"><p><strong>목적과 원안 연결:</strong> 짧은 호송을 마친 뒤 부상자는 연실의 배로, 다른 사람들은 높은 길로 이동한다. 지하에서 나와 시야가 넓어지고 고향을 돌아본다. 설오와 도식의 재회, 새 터전도 위협받을 수 있어 무명사로 향할 동기를 연결한다. <strong>확정된 13명의 행방은 은신처 생존 7명, 도식 포함 구조 성공 4명, 이주 후 이미 사망한 2명으로 결산한다. 구조 후 생존자는 11명이며 새로운 사망 사건은 추가하지 않는다.</strong></p>
+<h3>공간 단면과 배경</h3>
+<p><strong>설계 제안:</strong> X 0–0.2 지하를 벗어나는 출구, 0.2–0.46 짧은 호송로, 0.46–0.72 배 접근지와 고지 길의 갈림, 0.72–1 돌아보는 넓은 지지면. 31장의 하구 자산을 재사용할 수 있지만 동선 방향·폭·고지·시선 목표를 새로 배치한다. 동일 맵 복붙은 금지한다.</p>
+<figure class="profile"><svg viewBox="0 0 620 188" role="img" aria-label="40장 상대 고저 개념 단면 실제 비율과 충돌 지형이 아님"><path d="M 0 132 L 80 120 L 140 118 L 210 111 L 275 106 L 320 107 L 370 93 L 420 78 L 480 75 L 550 72 L 620 74 L 620 184 L 0 184 Z" fill="#dce6e8" stroke="#69828d" stroke-width="2"/><path d="M10 142 Q90 137 160 142 T315 142 T470 142 T610 142" fill="none" stroke="#82b2c4" stroke-width="3" stroke-dasharray="8 5"/><text x="12" y="169" fill="#536c77" font-size="12">연속된 하부 지반</text><text x="12" y="18" fill="#536c77" font-size="11">진입 X 0</text><text x="550" y="18" fill="#536c77" font-size="11">출구 X 1</text></svg><figcaption>설계 제안 · 상대 고저 개념도. 실제 길이·폭·높이·충돌은 실측 후 조정한다.</figcaption></figure><pre><code class="language-text">밝아지는 출구 ─ 짧은 호송 ─┬─ 연실의 배 접근지
+                           └─ 높은 길 ─ 넓은 돌아보기 지점
+                                  뒤쪽 고향으로 열린 시야
+</code></pre>
+<ul>
+<li>먼 레이어: 열린 바다·고향 방향의 낮은 실루엣·밝아진 하늘. 중간: 배 접근 수로·높은 길·낮은 둑. 가까이: 넓고 안정된 흙·암반 지지면.</li>
+<li>색 제안: 하늘 <code>#C1D7DE</code>, 수면 <code>#93B7C5</code>, 고지 <code>#6E858B</code>, 그늘 <code>#526D78</code>. 31장과 자산이 같아도 더 넓은 이탈 시야와 시선 방향으로 마무리를 구분한다.</li>
+</ul>
+<div class="swatches" aria-label="제안 색상"><span><i style="--swatch:#C1D7DE"></i><code>#C1D7DE</code></span><span><i style="--swatch:#93B7C5"></i><code>#93B7C5</code></span><span><i style="--swatch:#6E858B"></i><code>#6E858B</code></span><span><i style="--swatch:#526D78"></i><code>#526D78</code></span></div><h3>동선과 교전군</h3>
+<ul>
+<li>짧은 호송 구간은 선행 안전화와 뒤따르는 이동이 읽히게 한다. 배 접근지와 높은 길은 서사상 이동 분기다. 생존자 11명 중 누가 어느 경로를 이용하는지, 부상자가 몇 명인지는 임의로 추가하지 않는다. 이 이동 분기는 확정된 7명·4명·2명의 행방 집계를 바꾸지 않는다.</li>
+<li>G40-A는 호송 초반의 제한된 잔여 위협을 쓸 때만 배치한다. 재회·승선·돌아보기 구간은 적과 투사체가 없는 안전 상태다.</li>
+<li>끝없이 몬스터를 새로 소환하거나 다음 목적지를 열기 위해 추가 파밍을 요구하지 않는다. 마지막 장의 전투 밀도는 39장보다 분명히 낮다.</li>
+</ul>
+<h3>상태와 이벤트 순서</h3>
+<ol>
+<li>해식굴·지하에서 나와 넓어진 시야를 확보한다.</li>
+<li>짧은 호송 구간의 위험을 해소한다.</li>
+<li>부상자의 배 이동과 다른 사람들의 높은 길 이동을 원안에 맞춰 연결한다. 행방 결산은 은신처의 7명과 구조한 4명을 합친 생존 11명, 이주 후 이미 사망한 2명으로 고정한다. 개별 이름의 집단 대응과 두 아이의 세부 정보는 만들지 않는다.</li>
+<li>안전한 공간에서 설오와 도식의 재회를 진행한다.</li>
+<li>고향을 돌아보고 무명사로 향할 동기를 연결한 뒤 장을 끝낸다. 사건별 정확한 앞뒤는 최종 대사 검수에서 원안과 대조한다.</li>
+</ol>
+<div class="table-scroll" tabindex="0" role="region" aria-label="가로로 스크롤 가능한 표"><table>
+<thead>
+<tr>
+<th>발화 목적</th>
+<th>화자</th>
+<th>발생 조건과 보호</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>생존자 이동과 13명의 행방을 결산</td>
+<td>연실·일행, 원안 화자 검토</td>
+<td>배·고지 경로가 안전해진 뒤, 생존 11명·이주 후 사망 2명을 확인하며 새 사망 사건·미정 개별 신원 대응은 추가하지 않음</td>
+</tr>
+<tr>
+<td>재회</td>
+<td>설오와 도식</td>
+<td>호송 위협 종료 후, 적·몬스터 앰비언스 소란 금지</td>
+</tr>
+<tr>
+<td>고향을 돌아보고 다음 목적을 세움</td>
+<td>일행 화자 검토</td>
+<td>돌아보기 지점, 새 터전의 위협과 무명사 동기만 원안 범위로 연결</td>
+</tr>
+</tbody></table></div>
+<h3>실패와 재개</h3>
+<p>배 접근 얕은 가장자리 <code>shallow</code>, 연결 해안의 입수 구역 <code>recover</code>, 깊은 배 수로의 접촉 가능한 위험 구역 <code>lethal</code>을 구별하는 제안이다. 호송 대상은 실제 지지면을 따라 이동하고 길목이 막히면 재탐색·대기 해소가 가능해야 한다. 승선·고지 이동 완료 후 로드해 NPC가 다시 전투 구간으로 돌아오지 않는다. 마무리 이벤트가 끝나면 반복 소환·끝없는 턴 진행 없이 명확히 종료한다.</p>
+<h3>검수와 실측</h3>
+<ul>
+<li>미술: 31장의 자산 재사용을 해도 지형 배치와 진행 방향이 다르다. 마지막 넓은 시야에서 고향을 돌아보는 방향이 읽힌다.</li>
+<li>플레이: 호송이 짧고 끝이 명확하다. 재회 중 적 공격·소란이 없다. 최종 화면·UI·저장 로그는 총 13명, 생존 11명·이주 후 사망 2명으로 일치한다. 미정 개별 신원 대응·두 아이의 소속·새 사망 사건을 노출하지 않는다.</li>
+<li>측정: 호송 AI 경로·속도·막힘 복구, 배 접근 이벤트와 고지 도달 판정, 컷신 카메라 방향, 완료 상태 저장·로드, 실제 호송 턴 수.</li>
+</ul>
+</div></details><section class="common"><h2 id="section-measurements">구현 전 측정표</h2>
+<p>측정값은 현재 코드와 실제 플레이에서 채운다. 빈칸을 임의 수치로 메우지 않는다. 이 문서에는 실제 측정을 수행했다는 주장이 없다.</p>
+<div class="table-scroll" tabindex="0" role="region" aria-label="가로로 스크롤 가능한 표"><table>
+<thead>
+<tr>
+<th>측정 항목</th>
+<th>확인 방법</th>
+<th>적용 장</th>
+<th>완료 기준</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>캐릭터별 기본·스킬·아이템 사거리</td>
+<td>현재 상수·판정 코드와 실제 최대 도달 비교</td>
+<td>전체, 특히 31·37·39</td>
+<td>설오 &gt; 소단 ≥ 담허 &gt; 휘겸 확인 및 예외 행동 기록</td>
+</tr>
+<tr>
+<td>직사·곡사·관통과 차폐</td>
+<td>표면별 예측선·명중·충돌 시험</td>
+<td>31·32·34·35·39</td>
+<td>미술 차폐와 실제 판정의 일치</td>
+</tr>
+<tr>
+<td>이동·점프·낙하·착지</td>
+<td>기본 성장·최소 자원 상태로 각 대안 동선 통과</td>
+<td>전체</td>
+<td>필수 길의 무스킬 교착 없음</td>
+</tr>
+<tr>
+<td>물과 회수</td>
+<td>물 구역 분류·같은 진입 쪽 낮은 회수·25% 피해·행동 종료·전원 대기와 적 점유 조합</td>
+<td>31·33·39</td>
+<td>발견된 회수 교착 해결 확인, 고지 무료 워프·MP 리셋·전원 정지 없음</td>
+</tr>
+<tr>
+<td>AI 우선순위·경로·활성</td>
+<td>근접·원거리·고저차 군집 로그와 턴 관찰</td>
+<td>전체</td>
+<td>먼 무관한 적의 반복 헛턴 없음</td>
+</tr>
+<tr>
+<td>조수와 턴 경계</td>
+<td>예고부터 변경까지 행동 기회와 효과 순서 추적</td>
+<td>33·39</td>
+<td>행동 전 예고 및 모든 상태 출구 확보</td>
+</tr>
+<tr>
+<td>축지진목과 연결 상호작용</td>
+<td>미습득·MP 0·전투 불능·로드 시험</td>
+<td>38·39</td>
+<td>38장 필수 통과의 성장 조건 독립, 39장 1회 연결과 명확한 실패, 영구 교착 없음</td>
+</tr>
+<tr>
+<td>NPC 지지면과 호송</td>
+<td>생성·길막·낙하·회수·고지 도착</td>
+<td>32·39·40</td>
+<td>낭떠러지 겹침·끊긴 경로 없음</td>
+</tr>
+<tr>
+<td>카메라와 하부 지반</td>
+<td>기본 줌·최대 줌아웃·화면비 변화</td>
+<td>전체</td>
+<td>공중섬처럼 잘린 하부와 필수 표식 잘림 없음</td>
+</tr>
+<tr>
+<td>이벤트 안전화와 복원</td>
+<td>잔여 투사체·적 소리·입력 잠금·로드</td>
+<td>32·36·40</td>
+<td>조용한 사건 중 위협 없음, 입력 정상 복귀</td>
+</tr>
+<tr>
+<td>승리·실패 판정</td>
+<td>조기 보스 처치·구조 지연·필수 인물 전투 불능</td>
+<td>39</td>
+<td>성공 가능 상태 유지 또는 즉시 명확한 실패</td>
+</tr>
+<tr>
+<td>자산 재사용과 성능</td>
+<td>레이어·충돌 분리, 기존 적·지형 재사용 확인</td>
+<td>전체</td>
+<td>미술 변주가 불필요한 신규 엔진 요구로 번지지 않음</td>
+</tr>
+</tbody></table></div>
+</section><section class="common"><h2 id="section-acceptance">최종 수용 검수</h2>
+<h3>미술 검수</h3>
+<ul>
+<li class="check"><input disabled="" type="checkbox"> 4막은 조금 밝아진 푸른 새벽이며 지지면·적·출구가 그늘에서도 읽힌다.</li>
+<li class="check"><input disabled="" type="checkbox"> 35·36장은 바다가 보이지 않고 음향까지 해안과 구별된다.</li>
+<li class="check"><input disabled="" type="checkbox"> 34는 자연 오버행, 37은 인공 운송 경사로, 39는 한국식 폐선 구조전으로 구별된다.</li>
+<li class="check"><input disabled="" type="checkbox"> 39장 바다 유입 수로가 실제 화면에 보인다.</li>
+<li class="check"><input disabled="" type="checkbox"> 배경·색을 가려도 열 장의 실루엣·이동 폭·사격 각·전투 밀도 차이가 남는다.</li>
+<li class="check"><input disabled="" type="checkbox"> 최대 줌아웃에서도 지표 하부의 흙·암반이 자연스럽게 화면 아래까지 이어진다.</li>
+<li class="check"><input disabled="" type="checkbox"> 비충돌 장식과 실제 지지면·차폐가 일관되게 읽힌다.</li>
+</ul>
+<h3>플레이 검수</h3>
+<ul>
+<li class="check"><input disabled="" type="checkbox"> 시작점 최대 사거리로 장 전체를 우회 완료하지 않는다. 조기 처치도 정상 진행에 연결된다.</li>
+<li class="check"><input disabled="" type="checkbox"> 근접 캐릭터가 접근 가능한 교전 역할을 갖고 고지 사수만 정답이 되지 않는다.</li>
+<li class="check"><input disabled="" type="checkbox"> 조수의 모든 허용 상태에서 필수 목표에 접근 가능하거나 즉시 명확한 실패가 있다.</li>
+<li class="check"><input disabled="" type="checkbox"> 회수 지점 점유, MP 0, 스킬 미습득, 캐릭터 전투 불능을 조합해도 영구 교착이 없다.</li>
+<li class="check"><input disabled="" type="checkbox"> 먼 무관한 적이 턴을 반복 낭비하지 않고 목적 있는 군집 단위로 싸운다.</li>
+<li class="check"><input disabled="" type="checkbox"> 32·36·40장의 고요한 사건에는 잔여 투사체·적 공격·몬스터 소란이 없다.</li>
+<li class="check"><input disabled="" type="checkbox"> 39장은 보스 HP 0과 구조 완료를 구분하며, 보스를 억제한 채 고지 구조·이탈·출구 안정 조건을 충족해 승리할 수도 있다.</li>
+<li class="check"><input disabled="" type="checkbox"> 40장은 짧은 호송과 명확한 종료가 있으며 끝없는 소환이 없다.</li>
+</ul>
+<h3>서사와 범위 검수</h3>
+<ul>
+<li class="check"><input disabled="" type="checkbox"> 은신처 생존 7명 + 도식 포함 구조 대상 4명 + 이주 후 이미 사망한 2명 = 13명이 일관되며, 구조 후 생존 11명·사망 2명으로 결산한다.</li>
+<li class="check"><input disabled="" type="checkbox"> 32장의 7명, 39장의 구조 대상 4명, 40장의 총계를 중복 집계하지 않으며 새 사망 사건을 추가하지 않았다.</li>
+<li class="check"><input disabled="" type="checkbox"> 두 아이의 개별 생사·나이·소속 집단과 도식·설오의 친족 관계·서열을 임의로 정하지 않았다. ‘연복’과 ‘그물귀’는 가칭으로 유지한다.</li>
+<li class="check"><input disabled="" type="checkbox"> 최종 대사 검수 전 실제 대사·자막·음성은 코드에 들어가지 않는다.</li>
+<li class="check"><input disabled="" type="checkbox"> 36장을 기록 수집 퀘스트로 바꾸거나 주민 전원을 몬스터로 만들지 않았다.</li>
+<li class="check"><input disabled="" type="checkbox"> 38장은 담허의 축지진목 응용 장면을 유지하고 이후 누구나 고정 출구를 사용한다. 스킬·MP를 숨은 잠금으로 삼지 않으며 담허 전투 불능은 대체 동선 또는 명시 실패로 처리한다.</li>
+<li class="check"><input disabled="" type="checkbox"> 38장 출구 적 스폰이 없고 아군 점유 시 자원 소비 전에 안내·해소할 수 있다.</li>
+<li class="check"><input disabled="" type="checkbox"> 39장 출구 안정화는 한 번이며 두 영구 고지·두 접근로·전원 수용·고수위 타격이 보장된다.</li>
+<li class="check"><input disabled="" type="checkbox"> 필수 생존 인물은 시작에 알리며 사망 시 즉시 실패한다.</li>
+<li class="check"><input disabled="" type="checkbox"> 38장 때문에 승인 없는 무료 영구 스킬을 지급하지 않았다.</li>
+<li class="check"><input disabled="" type="checkbox"> 지형·군집·색 코드·체크포인트는 설계 제안이며 실측값과 구분돼 있다.</li>
+<li class="check"><input disabled="" type="checkbox"> 3막 별도 개편, 신규 물리 엔진, 고유 신규 적 열 종 제작으로 범위를 넓히지 않았다.</li>
+</ul>
+</section><section class="common"><h2 id="section-pending">서사 확인과 엔진 검증 대기</h2>
+<p><strong>서사 확인 대기:</strong> 7명 안전·4명 구조·2명 이주 후 사망 구성은 확정되었다. 아래 미정 세부는 집단별 인원을 다시 승인받는 항목이 아니며, 원안 밖 사실을 임의로 채우지 않는다.</p>
+<ol>
+<li>아직 특정되지 않은 개별 이름과 집단의 대응, 가칭 이름을 최종 원안에서 확인한다. 두 아이의 개별 생사·현재 나이·소속 집단과 도식·설오의 친족 관계·서열은 원안에 없으므로 별도 근거 없이 추가하지 않는다.</li>
+<li>이벤트별 화자와 최종 대사 검수. 이 문서의 발화 목적은 대사 승인으로 간주하지 않음.</li>
+</ol>
+<p><strong>엔진 검증 대기:</strong> 다음은 사용자에게 기술 설계 승인을 다시 요청하는 목록이 아니라 구현 담당자가 증거를 확보할 항목이다.</p>
+<ol start="3">
+<li>38장 담허의 스테이지 한정 응용 장면과 누구나 사용하는 고정 연결부의 구현, 점유 안내·착지 안전 검증. 성장 조건 독립을 유지하고 담허 전투 불능 시 캠페인 계약과 대체 동선·명시 실패를 확인한다.</li>
+<li>39장 최소 필수 행동과 대체 가능한 역할의 경계, 전투 불능 시 즉시 실패 조건.</li>
+<li>기존 시스템 기준 사거리·점프·조수 예고·회수·체크포인트 실측과 블록아웃 조정. 특히 전원 회수 대기와 적 점유의 턴 교착 해소를 직접 검증.</li>
+<li>기본 줌과 최대 줌아웃의 10장 비교 검수 후 최종 미술 밝기·색감 확정.</li>
+</ol>
+</section><a class="back-top" href="#top">문서 처음으로 ↑</a><footer>4막 돌아오는 물 · 설계 제안 v0.2 · 외부 글꼴·라이브러리·이미지 없이 열리는 단일 HTML 문서</footer></main><script>const stages=[...document.querySelectorAll('details.stage')];document.querySelector('#expand').addEventListener('click',()=>stages.forEach(d=>d.open=true));document.querySelector('#collapse').addEventListener('click',()=>stages.forEach(d=>d.open=false));function openHash(){const el=document.getElementById(location.hash.slice(1));if(el?.matches('details')){el.open=true;setTimeout(()=>el.scrollIntoView({block:'start'}),0)}}window.addEventListener('hashchange',openHash);openHash();let beforePrint=[];window.addEventListener('beforeprint',()=>{beforePrint=stages.map(d=>d.open);stages.forEach(d=>d.open=true)});window.addEventListener('afterprint',()=>stages.forEach((d,i)=>d.open=beforePrint[i]??d.open));</script></body></html>

@@ -1,0 +1,212 @@
+{
+  "version": "reviewed-1.0",
+  "status": "TRIPLE_REVIEW_COMPLETE_IMPLEMENTATION_GUARDS_REQUIRED",
+  "scope": "Act4 stage31,35,36 dialogue seeds; terrain remains under implementation",
+  "source": "https://chatgpt.com/g/g-p-6a9fd17f05c481919ff57c899905b268-frost/c/6abfdaa8-e9c8-83ee-9855-e87c092c90b7",
+  "voice": {
+    "설오": "동행과 임무 대화에서 ~습니다/~습니까/~십시오, 담허 어른, 휘겸 씨. 고향 인물에게는 친밀도 미확정.",
+    "담허": "~네/~게/~세/~군/~는가",
+    "휘겸": "~소/~오/~시오/~겠소",
+    "소단": "~요/~어요/~세요/~게요",
+    "연실": "~요/~세요, 짧은 승선/하선/배 상태 확인"
+  },
+  "scenes": [
+    {
+      "stage": 31,
+      "event": "arrival",
+      "condition": "강 하구 첫 안전 지지면. 배와 막힌 물길/선착장이 실제로 보임.",
+      "lines": [
+        [
+          "A4.S31.ENTRY.01",
+          "연실",
+          "저 선착장으로 건너야 해요. 들린 것들이 물길을 막고 있어요."
+        ],
+        [
+          "A4.S31.ENTRY.02",
+          "휘겸",
+          "물가부터 비웁시다. 연실, 배는 아직 대지 마시오."
+        ]
+      ]
+    },
+    {
+      "stage": 31,
+      "event": "second_bank",
+      "condition": "둘째 둑의 적이 화면에 확인됨. 전투 중 비차단 짧은 발화.",
+      "lines": [
+        [
+          "A4.S31.MID.01",
+          "설오",
+          "둑 뒤에도 있습니다."
+        ],
+        [
+          "A4.S31.MID.02",
+          "담허",
+          "흙턱을 넘겨 쏘게."
+        ]
+      ]
+    },
+    {
+      "stage": 31,
+      "event": "boat_approach",
+      "condition": "배 통로의 실제 위협 제거. 배가 이동을 시작할 때만.",
+      "lines": [
+        [
+          "A4.S31.BOAT.01",
+          "연실",
+          "됐어요. 배를 댈게요."
+        ]
+      ]
+    },
+    {
+      "stage": 31,
+      "event": "board_ready",
+      "condition": "배가 실제 승선 위치에 도착하고 인접 선착장 안전 확보.",
+      "lines": [
+        [
+          "A4.S31.BOARD.01",
+          "연실",
+          "한 사람씩 타세요."
+        ]
+      ]
+    },
+    {
+      "stage": 35,
+      "event": "entry",
+      "condition": "바다가 보이지 않는 대숲의 옛 돌담 길. 사격 시작 전.",
+      "lines": [
+        [
+          "A4.S35.ENTRY.01",
+          "담허",
+          "돌담을 따라가세. 저문골로 이어지는 길이네."
+        ],
+        [
+          "A4.S35.ENTRY.02",
+          "휘겸",
+          "길이 많이 무너졌소. 발밑을 보시오."
+        ]
+      ]
+    },
+    {
+      "stage": 35,
+      "event": "blocked_shot",
+      "condition": "실제 충돌하는 굵은 대 군락이 사선을 막고 옆 빈터 길이 보일 때. 장식 대나무만 있는 곳에서는 발화 금지.",
+      "lines": [
+        [
+          "A4.S35.MID.01",
+          "설오",
+          "여기서는 대에 가립니다. 옆 빈터로 돌아가야겠습니다."
+        ]
+      ]
+    },
+    {
+      "stage": 35,
+      "event": "edge",
+      "condition": "세 번째 빈터 지나 숲 너머 집터가 처음 보임.",
+      "lines": [
+        [
+          "A4.S35.EXIT.01",
+          "소단",
+          "저 앞에 집이 있어요."
+        ]
+      ]
+    },
+    {
+      "stage": 36,
+      "event": "arrival",
+      "condition": "폐촌의 넓은 마당과 집터가 드러남. 외곽 적과 잔여 투사체 없는 안전 상태.",
+      "lines": [
+        [
+          "A4.S36.ENTRY.01",
+          "휘겸",
+          "여기가 저문골이오."
+        ]
+      ]
+    },
+    {
+      "stage": 36,
+      "event": "door_falls",
+      "condition": "휘겸이 문을 밀어 경첩 없는 문짝이 실제 쓰러진 뒤. 소리 뒤 침묵을 두고, 마을 전체를 다시 설명하지 않음.",
+      "lines": [
+        [
+          "A4.S36.DOOR.01",
+          "휘겸",
+          "경첩까지 떼어 갔소."
+        ],
+        [
+          "A4.S36.DOOR.02",
+          "휘겸",
+          "잠깐만 기다려 주시오."
+        ]
+      ],
+      "direction": "카메라는 빈 집터와 마당을 보인다. 문이 무너지는 연출을 구현하지 못하면 그 전제의 대사를 공개하지 않는다. 애도 독백/새 기록/시체/새 학살 사실 추가 금지."
+    },
+    {
+      "stage": 36,
+      "event": "leave",
+      "condition": "휘겸이 빈 집터를 본 뒤 플레이어가 출구로 이동. 정적을 충분히 둔 뒤 한번만.",
+      "lines": [
+        [
+          "A4.S36.EXIT.01",
+          "설오",
+          "더 살펴보시겠습니까?"
+        ],
+        [
+          "A4.S36.EXIT.02",
+          "휘겸",
+          "아니오. 갑시다."
+        ]
+      ]
+    }
+  ],
+  "ui": [
+    [
+      "A4.S31.OBJECTIVE",
+      "물길과 선착장을 확보하기"
+    ],
+    [
+      "A4.S31.BOARD_OBJECTIVE",
+      "배에 올라 건너편으로 가기"
+    ],
+    [
+      "A4.S35.OBJECTIVE",
+      "대숲을 지나 저문골로 가기"
+    ],
+    [
+      "A4.S36.OBJECTIVE",
+      "저문골 옛터를 지나기"
+    ]
+  ],
+  "reviewQuestions": [
+    "말투가 현재 검수 원고와 일치하는가?",
+    "장면에 없는 정보를 단정하거나 상황에 맞지 않는 문장이 있는가?",
+    "과장된 감상/AI스러운 추상 비유/지시의 반복을 줄일 필요가 있는가?",
+    "말을 더 늘리지 않고 감정이 드러나는가? 특히36은 침묵을 보존할 것.",
+    "고칠 필요 없는 문장은 유지하고, 삭제가 낫다면 삭제 의견도 허용. 부모 초안에 동의하도록 유도하지 말 것."
+  ],
+  "parentReview": {
+    "pass1Model": "4 Argon",
+    "reviewedAllIds": 19,
+    "decision": "Gemini proposed change to A4.S35.MID.01 accepted; remaining 18 retained after independent line and trigger review",
+    "rejectedAssumptions": [
+      "2~3막 전체가 기록·표찰 추적이라는 검수 이유는 현행 개편을 설명하지 않으므로 설정 근거로 사용하지 않음.",
+      "휘겸의 선조의 보호지라는 관계는 제공 원안에서 확인되지 않아 채택하지 않음."
+    ],
+    "guards": [
+      "31 MID.02는 현재 선택/발화 위치에서 실제 둑 뒤 곡사 명중 가능한 경우에만 표시한다.",
+      "35 MID.01은 옆 빈터에 실제 이동 가능하고 거기서 해당 대상에 대한 사선이 확보되는 경우에만 표시한다. 원래 위치에서도 대 군락이 실제 충돌 차폐여야 한다.",
+      "36 DOOR 두 행은 문 쓰러짐 화면/음향 완료 뒤에만, EXIT 문답은 DOOR 장면을 본 뒤 충분한 정적/플레이어 출구 접근을 두고 표시한다.",
+      "36 빠른 진행/스킵/로드에도 보지 않은 장면을 봤다고 서술하지 않도록 실제 표시 완료 영수증과 이벤트 상태를 분리한다."
+    ]
+  },
+  "finalReview": {
+    "model": "4 Argon",
+    "submittedAt": "2026-10-27T13:08:28Z",
+    "verdict": "KEEP 19 / CHANGE 0 / missing 0 / extra 0",
+    "sequence": [
+      "Gemini 4 Argon first review",
+      "Parent independent review",
+      "Gemini 4 Argon final review"
+    ],
+    "implementationStatus": "Not applied; validate actual terrain/visibility/receipts before display"
+  }
+}
