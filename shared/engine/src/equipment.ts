@@ -3,6 +3,7 @@ import {EQUIPMENT_ITEMS,EQUIPMENT_EFFECTS,EQUIPMENT_EVENTS,EQUIPMENT_CHOICES,EQU
 export {EQUIPMENT_ITEMS,EQUIPMENT_EFFECTS,EQUIPMENT_EVENTS,EQUIPMENT_CHOICES,EQUIPMENT_DEFINITION_REVISION};
 export const EQUIPMENT_MAP=Object.fromEntries(EQUIPMENT_ITEMS.map(i=>[i.itemId,i]));
 export const EQUIPMENT_EFFECT_MAP=Object.fromEntries(EQUIPMENT_EFFECTS.map(e=>[e.effectId,e]));
+Object.setPrototypeOf(EQUIPMENT_MAP,null);Object.setPrototypeOf(EQUIPMENT_EFFECT_MAP,null);
 export function validateEquipmentIds(value:unknown,cls:ClassId):string[]{
  if(!Array.isArray(value)||value.length>2||value.some(id=>typeof id!=='string'||!EQUIPMENT_MAP[id]))throw Error('Unknown equipment snapshot');
  const slots=new Set<string>();

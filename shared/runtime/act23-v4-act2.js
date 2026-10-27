@@ -87,7 +87,7 @@ function drain(b){const a=mem(b);if(a.drained)return;a.drained=true;a.drainPendi
  b.waters=b.honroSurfaceZones.filter(z=>z.kind==='water-pool'&&z.surface.length===2).map((z,i)=>({...b.waters[i],x:z.surface[0][0],y:z.surface[0][1],w:z.surface[1][0]-z.surface[0][0],depth:Math.max(...z.bottom.map(p=>p[1]))-z.surface[0][1],bottom:z.bottom.map(([x,y])=>({x,y}))}));open(b,'water-gate');b.sceneVersion=(b.sceneVersion||0)+1;
 }
 function use(app,m){const e=app.engine,b=e.b,current=V.current(b),s=V.steps(b).find(s=>s.id===m?.id&&(s.optional||s.id===current?.id)),a=mem(b);if(!s)return undefined;if(!near(e.active,m,m.radius||220)||paused(app))return false;const eligible=eligibility(app,m,s);if(eligible&&!eligible.ok)return false;
- if(s.id==='sluice'){drain(b);complete(app,s);return finish(app);}
+ if(s.id==='sluice'){(b.honroEquipmentFacts??={}).sluiceInteraction={actor:e.active.id,round:b.round};drain(b);complete(app,s);return finish(app);}
  if(s.kind==='v4-extract')return extract(app,s);
  if(s.kind==='v4-rescue'){if(!alive(unit(b,s.target)))return false;a.proof[s.id]={target:s.target,serial:serial(b)};complete(app,s);return finish(app);}
  if(s.id==='17.lock'){a.proof[s.id]={actor:e.active.id,serial:serial(b),pinSeated:true};complete(app,s);return finish(app);}
