@@ -18,12 +18,13 @@ with sync_playwright() as p:
  def setup(n,x,y,cx,cy,cls='archer'):
   page.evaluate('n=>HonroCampaignLoader.ensureStage(n)',n)
   page.evaluate('n=>{for(let i=31;i<n;i++)HonroApp.profile.cleared[i]??={visits:1,rounds:1};HonroApp.launch(n);HonroApp.close();}',n)
+  page.wait_for_function('n=>HonroApp.engine?.b.honroStage===n',arg=n);page.wait_for_timeout(200);finish()
   page.evaluate("""v=>{const a=HonroApp,e=a.engine,b=e.b;for(const u of b.units.filter(u=>u.side===1))e.hurt(u,100000);for(let i=0;i<300;i++)e.tick(HONRO_CORE.STEP);b.phase='aim';b.side=0;b.active=v.cls;const u=e.active;const p=HonroTerrain.place(b,u,{x:v.x,y:v.y,maxDistance:80});if(!p)throw Error('fixture placement');Object.assign(u,p,{vx:0,vy:0});Object.assign(a.scene,{manual:true,editorView:true,skillPreview:true,x:v.cx,y:v.cy,scale:.5,storyTween:null,cinematic:null,storyFrame:null,goalFocus:null});HonroReinforcementCamera.prime(a.scene,b);} """,dict(x=x,y=y,cx=cx,cy=cy,cls=cls))
   render()
  def step(count=1,dt=.1):
   for _ in range(count):ev(f'HonroAct4TerrainPreview.observe(HonroApp,{dt})');render()
  setup(32,4620,2010,4900,1850)
- step(100);finish();step(30);finish();step(20);finish();print(ev('({scene:{x:HonroApp.scene.x,y:HonroApp.scene.y,scale:HonroApp.scene.scale,w:HonroApp.scene.canvas.clientWidth,h:HonroApp.scene.canvas.clientHeight},modal:HonroApp.modal.className,official:HonroApp.engine.b.honroAct4Official,design:!!HonroApp.engine.b.honroAct4Design})'),flush=True)
+ step(100);finish();step(30);finish();step(20);finish()
  q=ev('HonroApp.engine.b.honroAct4PreviewState');assert q.get('safeSeven',{}).get('ids') and len(q['safeSeven']['ids'])==7,q
  assert q['events']['reunion']['terminal'] and q['events']['missing_four']['terminal'],q
  assert set(q['receipts'])==set(v[0] for scene in ev('HONRO_ACT4_PREVIEW_SEEDS.scenes.filter(s=>s.stage===32)') for v in scene['lines']),q
@@ -38,7 +39,12 @@ with sync_playwright() as p:
  q=ev('HonroApp.engine.b.honroAct4PreviewState');assert q.get('connected'),q
  before=ev('HonroApp.engine.active.focus');assert ev('HonroAct4TerrainPreview.interact()');assert ev('HonroApp.engine.active.x')>4300;assert ev('HonroApp.engine.active.focus')==before==0;assert ev('HonroApp.engine.active.ranks.M09')==0
  print('PASS 38 actual probe/anchor/clear landing/fixed connection/no MP cost',flush=True)
- setup(39,5930,1720,6100,1850,'mage');assert not ev('HonroApp.engine.b.honroAct4PreviewState.complete'),'early boss kill cannot win'
+ ev("()=>{const a=HonroApp,e=a.engine,u=e.b.units.find(u=>u.honroAct4Resident);if(u.hp>1)e.hurt(u,1);window.expectedResident={id:u.id,hp:u.hp};HonroAct4TerrainPreview.save();a.stopBattle();a.continue();}")
+ assert ev('HonroApp.engine.unit(expectedResident.id).hp===expectedResident.hp'),'Continue must not restore entry HP'
+ ev("()=>{const e=HonroApp.engine;for(const [i,u]of e.b.units.filter(u=>u.side===0).entries()){u.x=6600+i*80;u.y=HonroMapEngine.surfaceY(e.b.terrain,u.x).y;u.vx=u.vy=0;u.acted=false;}e.b.active='mage';e.b.phase='aim';e.b.side=0;}")
+ assert ev('HonroAct4TerrainPreview.interact()'),ev('({q:HonroApp.engine.b.honroAct4PreviewState,d:HonroApp.dialogue,phase:HonroApp.engine.b.phase,input:HonroApp.canInput(),units:HonroApp.engine.b.units.filter(u=>u.side===0).map(u=>[u.id,u.x,u.y,u.hp,u.acted,HonroApp.engine.grounded(u)])})');ev('HonroApp.outcome();HonroApp.close()')
+
+ setup(39,5930,1720,6100,1850,'mage');assert ev('HonroApp.engine.unit(expectedResident.id).hp===expectedResident.hp'),'38 ->39 carries actual resident HP';assert not ev('HonroApp.engine.b.honroAct4PreviewState.complete'),'early boss kill cannot win'
  assert ev('HonroAct4TerrainPreview.interact()');step(20);finish();step(3)
  assert ev('!!HonroApp.engine.b.honroAct4PreviewState.exitStable')
  ev("""()=>{const e=HonroApp.engine;e.b.active='occultist';const u=e.active;const p=HonroTerrain.place(e.b,u,{x:5470,y:1720,maxDistance:100});if(!p)throw Error('net placement');Object.assign(u,p,{vx:0,vy:0});Object.assign(HonroApp.scene,{x:5600,y:1850});}""")
@@ -50,14 +56,15 @@ with sync_playwright() as p:
  assert not q['complete'];assert not q.get('failure')
  ev("""()=>{const e=HonroApp.engine;for(const [i,u]of e.b.units.filter(u=>u.side===0).entries()){u.x=8300+i*80;u.y=HonroMapEngine.surfaceY(e.b.terrain,u.x).y;u.vx=u.vy=0;}}""")
  assert ev('HonroAct4TerrainPreview.interact()');assert ev('HonroApp.engine.b.phase')=='won'
- ev('HonroApp.outcome();HonroApp.close()');assert ev('HonroAct4TerrainPreview.campaignProof.rescued.ids.length')==4
+ ev('HonroApp.outcome()');assert ev('HonroAct4TerrainPreview.campaignProof.rescued.ids.length')==4
  print('PASS 39 early boss kill does not win; actual anchor/net/4NPC walk/party exit wins',flush=True)
- ev('HonroCampaignLoader.ensureStage(40)');ev('HonroApp.resultContinue()');assert ev('HonroApp.engine.b.honroAct4Preview')==40
- ev("""()=>{const a=HonroApp,e=a.engine;for(const u of e.b.units.filter(u=>u.side===1))e.hurt(u,100000);const u=e.unit('archer');e.b.active=u.id;u.x=6000;u.y=HonroMapEngine.surfaceY(e.b.terrain,u.x,1710).y;u.vx=u.vy=0;Object.assign(a.scene,{manual:true,x:3000,y:1850,scale:.5});}""");render();step(25);finish();step(5)
+ ev('HonroCampaignLoader.ensureStage(40)');ev('HonroApp.resultContinue()');page.wait_for_function('HonroApp.engine?.b.honroStage===40');finish();assert ev('HonroApp.engine.b.honroAct4Preview')==40
+ ev("""()=>{const a=HonroApp,e=a.engine;for(const u of e.b.units.filter(u=>u.side===1))e.hurt(u,100000);const u=e.unit('archer');e.b.active=u.id;u.x=6000;u.y=HonroMapEngine.surfaceY(e.b.terrain,u.x,1710).y;u.vx=u.vy=0;Object.assign(a.scene,{manual:true,editorView:true,skillPreview:true,storyTween:null,cinematic:null,storyFrame:null,goalFocus:null,x:3000,y:1850,scale:.5});HonroReinforcementCamera.prime(a.scene,e.b);}""");render();step(25);finish();step(5)
  captured=set()
  for i in range(520):
   ev('HonroApp.engine.tick(.1)');step(1)
   state=ev('HonroApp.engine.b.honroAct4PreviewState.returnEscort')
+  assert state is not None,ev('({q:HonroApp.engine.b.honroAct4PreviewState,dialogue:HonroApp.dialogue,scene:[HonroApp.scene.x,HonroApp.scene.y,HonroApp.scene.scale],modal:HonroApp.modal.className})')
   phase=state['phase']
   if phase not in captured and (phase!='sailing' or state['boatX']>3600):
    captured.add(phase);camera=state['boatX'] if phase=='sailing' else 4850 if phase=='landed' else 5630 if phase=='safe' else 3100
@@ -73,6 +80,10 @@ with sync_playwright() as p:
   assert ev('''()=>{const P=HonroAct4TerrainPreview,b=HonroApp.engine.b,backup=JSON.parse(JSON.stringify(P.campaignProof)),entry=JSON.parse(JSON.stringify(b.honroAct4EntryProof));const p=P.campaignProof;'''+mutation+''';const valid=P.proofValid(b);P.campaignProof=backup;b.honroAct4EntryProof=entry;return !valid;}'''),mutation
  print('PASS 40 same-run exact IDs/source/report proof rejects six altered inputs',flush=True)
  print('PASS 40 physical low-deck boarding/boat+high-road movement/quiet return/13 accounting/resume',flush=True)
+ ev("""()=>{const e=HonroApp.engine;for(const [i,u]of e.b.units.filter(u=>u.side===0).entries()){u.x=5800+i*70;u.y=HonroMapEngine.surfaceY(e.b.terrain,u.x).y;u.vx=u.vy=0;u.acted=false;}e.b.active='archer';e.b.side=0;e.b.phase='aim';}""")
+ assert ev('HonroAct4TerrainPreview.interact()');ev('HonroApp.outcome()');assert ev('!!HonroApp.profile.cleared[40]');assert ev('HonroApp.profile.equipment.ownedItemIds.includes("itm_so_06")');ev('HonroApp.resultContinue()');page.wait_for_timeout(200);assert ev('HonroApp.screen')=='rest';assert page.locator('.rest-next').is_disabled();assert page.locator('#battlecanvas').count()==0;page.screenshot(path=str(OUT/'40-official-safe-ending.png'))
+ print('PASS 40 native clear/equipment once/result -> safe rest; no unimplemented next act',flush=True)
+
 
  setup(33,800,2100,1800,2100)
  ev('HonroApp.engine.b.round=2;HonroAct4TerrainPreview.observe(HonroApp,.1)');render();finish();ev('HonroApp.engine.b.round=5;HonroAct4TerrainPreview.observe(HonroApp,.1)')

@@ -16,6 +16,7 @@ for(let n=31;n<=40;n++){const exit=exits[Math.min(n-31,exits.length-1)];if(!bala
 const J=G.HonroJourneyContent;
 for(const st of G.HONRO_ACT4_CONTENT)if(!J.at(st.id))J.places.push({stageId:st.id,region:'끊긴 옛길',place:st.place,event:st.name,layer:[35,36].includes(st.id)?'mountain':'city',variant:[35,36].includes(st.id)?'forest':'river',restName:st.name,restDescription:'',map:[150+(st.id-31)*145,650]});
 const required=J.required;J.required=(p,id)=>id>=31||id==null&&p.cleared[40]?[]:required(p,id);
+const optional=J.optional;J.optional=(p,id,...args)=>id>=31||id==null&&p.cleared[40]?[]:optional(p,id,...args);
 const transition=J.transitionAfter;J.transitionAfter=id=>id>=31&&id<40?'direct':transition(id);
 Object.defineProperty(J,'ending',{configurable:true,value:{stageId:40,region:'끊긴 옛길',place:'돌아가는 배',event:'돌아가는 배',layer:'city',variant:'river',restName:'돌아가는 배',restDescription:'',endingTitle:G.HONRO_ACT4_REVIEWED.ui.find(r=>r[0]==='A4.S40.ROSTER')[1],nextText:'다음 여정은 준비 중입니다.'}});
 })(globalThis);

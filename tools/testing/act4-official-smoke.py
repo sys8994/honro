@@ -4,7 +4,7 @@ from playwright.sync_api import sync_playwright
 ROOT=pathlib.Path(__file__).resolve().parents[2];OUT=ROOT/'_local/reports/act4-official';OUT.mkdir(parents=True,exist_ok=True)
 with sync_playwright() as p:
  browser=p.chromium.launch(executable_path='/usr/bin/chromium',headless=True,args=['--no-sandbox','--disable-dev-shm-usage'])
- page=browser.new_page(viewport={'width':1440,'height':900});errors=[];page.on('pageerror',lambda e:errors.append(str(e)))
+ page=browser.new_page(viewport={'width':1440,'height':900});errors=[];page.on('pageerror',lambda e:(errors.append(str(e)),print('PAGEERROR',e.stack,flush=True)))
  page.goto('http://127.0.0.1:8772/HONRO.html');page.wait_for_function('!!window.HonroAct4Campaign',timeout=30000)
  print(page.evaluate('({enabled:HONRO_ACT4_RELEASE,chapters:HONRO_CONTENT.stages.length,loader:HonroCampaignLoader.catalog.length})'),flush=True)
  page.evaluate('''()=>{const a=HonroApp,C=HONRO_CORE;a.frame=()=>{};for(let n=1;n<=30;n++)a.profile.cleared[n]={visits:1,rounds:1};a.profile.recruited=['archer','mage','knight','occultist'];a.profile.party=[...a.profile.recruited];for(const cls of a.profile.recruited)a.profile.heroes[cls].xp=C.xpAtLevel(22);a.profile.lastStage=30;a.persist();}''')
@@ -20,7 +20,11 @@ with sync_playwright() as p:
   page.evaluate('HonroApp.stopBattle();HonroApp.continue()');page.wait_for_timeout(80)
   assert page.evaluate('HonroApp.engine.b.honroStage')==n
   assert saved==page.evaluate('HonroApp.engine.b.units.filter(u=>u.side===0).map(u=>[u.id,u.x,u.y,u.hp,u.focus])')
-  rows.append(row);print('PASS official',n,'native mount/finite budget/same-revision Continue',flush=True)
+
+  page.reload();page.wait_for_function('!!window.HonroAct4Campaign');page.evaluate('HonroApp.frame=()=>{};HonroApp.continue()');page.wait_for_function('n=>HonroApp.engine?.b.honroStage===n',arg=n);page.wait_for_timeout(150)
+  assert not page.evaluate('HonroApp.profileStore.locked')
+  assert saved==page.evaluate('HonroApp.engine.b.units.filter(u=>u.side===0).map(u=>[u.id,u.x,u.y,u.hp,u.focus])')
+  rows.append(row);print('PASS official',n,'native mount/finite budget/same-revision Continue + actual page reload',flush=True)
   page.evaluate('n=>{HonroApp.profile.cleared[n]={visits:1,rounds:1};HonroApp.profile.honroBattle=null;HonroApp.stopBattle();}',n)
  page.evaluate('HonroApp.showRest()');page.wait_for_timeout(120)
  assert page.locator('.rest-screen').count()==1
