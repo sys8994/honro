@@ -1,0 +1,262 @@
+{
+  "stage": 21,
+  "revision": 1,
+  "status": "gemini_pass1_parent_review_gemini_pass3_complete",
+  "parent_adoption": "30후보 그대로 승인; 최초입력 대비 28KEEP/2CHANGE",
+  "reviewFiles": [
+    "HONRO-CH21-PASS3-20261027-response.md"
+  ],
+  "source": "Parent delegation final JSON received 2026-10-27; review file itself not downloaded",
+  "rows": [
+    {
+      "id": "A3.S21.INTRO.01",
+      "speaker": "곽진",
+      "channel": "dialogue",
+      "condition": "stage_enter; 수레가 주민의 퇴로를 가로막고 곽진이 보인다",
+      "text": "문턱에 사람이 깔렸다! 수레를 세워라!"
+    },
+    {
+      "id": "A3.S21.INTRO.02",
+      "speaker": "휘겸",
+      "channel": "dialogue",
+      "condition": "stage_enter; 수레가 주민의 퇴로를 가로막고 곽진이 보인다",
+      "text": "곽진! 다친 사람을 맡아 주시오."
+    },
+    {
+      "id": "A3.S21.INTRO.03",
+      "speaker": "곽진",
+      "channel": "dialogue",
+      "condition": "stage_enter; 수레가 주민의 퇴로를 가로막고 곽진이 보인다",
+      "text": "휘겸? 저 갑주까지 움직이오. 문 안쪽은 내가 지키겠소."
+    },
+    {
+      "id": "A3.S21.INTRO.04",
+      "speaker": "설오",
+      "channel": "dialogue",
+      "condition": "stage_enter; 수레가 주민의 퇴로를 가로막고 곽진이 보인다",
+      "text": "바퀴 아래에 사람이 있습니다. 수레 뒤쪽은 비었습니다."
+    },
+    {
+      "id": "A3.S21.CART_STOP.01",
+      "speaker": "곽진",
+      "channel": "dialogue",
+      "condition": "cart_stopped; 수레가 실제 정지하고 주민 퇴로가 열림",
+      "text": "지금이다. 다친 사람부터 안으로!"
+    },
+    {
+      "id": "A3.S21.CART_STOP.02",
+      "speaker": "소단",
+      "channel": "dialogue",
+      "condition": "cart_stopped; 갑주/혼이 실제 주민 방향으로 돌아서는 행동이 확인된 경우만; 위험 해소 후 pending 폐기",
+      "text": "갑주 안의 혼이 사람 쪽으로 돌아섰어요."
+    },
+    {
+      "id": "A3.S21.CIVILIAN_DANGER.01",
+      "speaker": "휘겸",
+      "channel": "dialogue",
+      "condition": "civilian_threatened; 적 접근 범위, 아직 안전지대 미도달",
+      "text": "그 사람 뒤로 놈이 붙었소!"
+    },
+    {
+      "id": "A3.S21.CIVILIAN_DANGER.02",
+      "speaker": "설오",
+      "channel": "dialogue",
+      "condition": "civilian_threatened; 적 접근 범위, 아직 안전지대 미도달",
+      "text": "고개 숙이십시오. 문 안으로 가셔야 합니다."
+    },
+    {
+      "id": "A3.S21.LAST_ESCORT.01",
+      "speaker": "곽진",
+      "channel": "dialogue",
+      "condition": "last_civilian_moving; 마지막 부상자가 살아서 문턱을 통과 중",
+      "text": "문턱을 비워라. 부상자가 지나간다."
+    },
+    {
+      "id": "A3.S21.CLEAR.01",
+      "speaker": "휘겸",
+      "channel": "dialogue",
+      "condition": "gate_rescue_complete; 모든 구출 대상 안전지대 도달, 주변 위협 사라짐",
+      "text": "다 들어왔소?"
+    },
+    {
+      "id": "A3.S21.CLEAR.02",
+      "speaker": "곽진",
+      "channel": "dialogue",
+      "condition": "gate_rescue_complete; 모든 구출 대상 안전지대 도달, 주변 위협 사라짐",
+      "text": "그렇소. 이 앞에서는 더 쓰러진 사람이 없소."
+    },
+    {
+      "id": "A3.S21.CLEAR.03",
+      "speaker": "설오",
+      "channel": "dialogue",
+      "condition": "gate_rescue_complete; 옛 빈 갑주 실제 식별, 현재 죽은 수비병 갑주와 구분",
+      "text": "저 갑주는 안이 비어 있습니다."
+    },
+    {
+      "id": "A3.S21.CLEAR.04",
+      "speaker": "휘겸",
+      "channel": "dialogue",
+      "condition": "gate_rescue_complete; 모든 구출 대상 안전지대 도달, 주변 위협 사라짐",
+      "text": "이 문장도 당신 부대 것이오?"
+    },
+    {
+      "id": "A3.S21.CLEAR.05",
+      "speaker": "곽진",
+      "channel": "dialogue",
+      "condition": "gate_rescue_complete; 모든 구출 대상 안전지대 도달, 주변 위협 사라짐",
+      "text": "아니오. 우리 병사들은 저 문장을 쓰지 않소."
+    },
+    {
+      "id": "A3.S21.CLEAR.06",
+      "speaker": "담허",
+      "channel": "dialogue",
+      "condition": "gate_rescue_complete; 모든 구출 대상 안전지대 도달, 주변 위협 사라짐",
+      "text": "몸 없이 갑주에 붙어 있었군. 다른 혼이 남았는지도 살펴보세."
+    },
+    {
+      "id": "A3.S21.EXIT.01",
+      "speaker": "곽진",
+      "channel": "dialogue",
+      "condition": "old_emblem_seen; 빈 옛 갑주 문장 관측, 전투 후 안전",
+      "text": "수로에 보낸 병사들도 소식이 끊겼소. 관아 문서고에 옛길 지도가 있소."
+    },
+    {
+      "id": "A3.S21.EXIT.02",
+      "speaker": "휘겸",
+      "channel": "dialogue",
+      "condition": "old_emblem_seen; 빈 옛 갑주 문장 관측, 전투 후 안전",
+      "text": "문은 맡기겠소. 아래로 내려갈 길을 찾아보리다."
+    },
+    {
+      "id": "A3.S21.OBJ.01",
+      "speaker": "목표 UI",
+      "channel": "objective",
+      "condition": "stage_enter",
+      "text": "들린 수레를 멈추고 주민의 퇴로 확보하기"
+    },
+    {
+      "id": "A3.S21.OBJ.02",
+      "speaker": "목표 UI",
+      "channel": "objective",
+      "condition": "cart_stopped",
+      "text": "주민이 성문 안 안전지대까지 이동하도록 지키기"
+    },
+    {
+      "id": "A3.S21.OBJ.03",
+      "speaker": "목표 UI",
+      "channel": "objective",
+      "condition": "gate_rescue_complete",
+      "text": "관아 문서고로 이동하기"
+    },
+    {
+      "id": "A3.S21.JOURNAL.01",
+      "speaker": "저널 UI",
+      "channel": "journal",
+      "condition": "old_emblem_seen",
+      "text": "곽진은 휘겸을 알아보았다. 그와 현재 수비병들은 성문 주민을 구했다. 움직이던 빈 갑주에는 현 수비대와 다른 옛 문장이 있었다. 수로로 보낸 병사들도 돌아오지 않았다."
+    },
+    {
+      "id": "A3.S21.GUIDE.01",
+      "speaker": "안내 UI",
+      "channel": "guide",
+      "condition": "civilian_route_blocked",
+      "text": "구출 대상의 앞길이 막혔습니다. 장애물과 주변 적을 확인하세요."
+    },
+    {
+      "id": "EDGE.ARRIVALS_21_0",
+      "speaker": "서술",
+      "channel": "arrival",
+      "condition": "장 도착 때 한 번",
+      "text": "들림과 실종 소식을 따라 읍성에 닿았다. 성문에서는 들린 수레가 병사와 주민의 길을 막고 있었다."
+    },
+    {
+      "id": "EDGE.OPTIONAL_21_ARCHER_0",
+      "speaker": "설오",
+      "channel": "optional",
+      "condition": "동료 선택대화; 구조 전 허용 쉼터; 실제 현장 관찰; 각 화자 recruited+alive+present; 구조 완료 뒤 금지",
+      "text": "읍성도 위험하다더니, 성문부터 막혔군요."
+    },
+    {
+      "id": "EDGE.OPTIONAL_21_ARCHER_1",
+      "speaker": "휘겸",
+      "channel": "optional",
+      "condition": "동료 선택대화; 구조 전 허용 쉼터; 실제 현장 관찰; 각 화자 recruited+alive+present; 구조 완료 뒤 금지",
+      "text": "성문 앞에 주민들이 갇혀 있소. 성문 안으로 갈 길부터 뚫읍시다."
+    },
+    {
+      "id": "EDGE.OPTIONAL_21_ARCHER_2",
+      "speaker": "설오",
+      "channel": "optional",
+      "condition": "동료 선택대화; 구조 전 허용 쉼터; 실제 현장 관찰; 각 화자 recruited+alive+present; 구조 완료 뒤 금지",
+      "text": "수레 밑에 살아 있는 사람이 깔려 있는지부터 살피겠습니다."
+    },
+    {
+      "id": "EDGE.OPTIONAL_21_MAGE_0",
+      "speaker": "담허",
+      "channel": "optional",
+      "condition": "동료 선택대화; 구조 전 허용 쉼터; 실제 현장 관찰; 각 화자 recruited+alive+present; 구조 완료 뒤 금지",
+      "text": "수레 밑을 보게. 사람을 빼내기 전엔 크게 터뜨리지 말게."
+    },
+    {
+      "id": "EDGE.OPTIONAL_21_KNIGHT_0",
+      "speaker": "휘겸",
+      "channel": "optional",
+      "condition": "동료 선택대화; 구조 전 허용 쉼터; 실제 현장 관찰; 각 화자 recruited+alive+present; 구조 완료 뒤 금지",
+      "text": "성문 뒤에는 수비병이 남아 있소. 우리는 수레 앞을 비웁시다."
+    },
+    {
+      "id": "EDGE.OPTIONAL_21_OCCULTIST_0",
+      "speaker": "소단",
+      "channel": "optional",
+      "condition": "동료 선택대화; 구조 전 허용 쉼터; 실제 현장 관찰; 각 화자 recruited+alive+present; 구조 완료 뒤 금지",
+      "text": "도망치는 사람들 틈에 악귀 기척이 섞여 있어요. 살아 있는 분부터 성문 안으로 옮겨 줘요!"
+    },
+    {
+      "id": "EDGE.FAILURE_GUARD.S21",
+      "speaker": "휘겸",
+      "channel": "failure",
+      "condition": "실제 lost; 실제 출연·생존 휘겸만. 사망·부재·전멸이면 생략, owner 실패 UI",
+      "text": "전열이 무너졌소. 물러서서 길을 다시 잡읍시다. 어렵게 찾아낸 단서까지 여기서 잃을 수는 없소."
+    }
+  ],
+  "aliases": [
+    {
+      "id": "A3.S21.REST_ARCHER.01",
+      "status": "ALTERNATIVE_NOT_REPLAYED",
+      "canonical_ids": [
+        "EDGE.OPTIONAL_21_ARCHER_0",
+        "EDGE.OPTIONAL_21_ARCHER_1",
+        "EDGE.OPTIONAL_21_ARCHER_2"
+      ]
+    },
+    {
+      "id": "A3.S21.REST_MAGE.01",
+      "status": "ALTERNATIVE_NOT_REPLAYED",
+      "canonical_ids": [
+        "EDGE.OPTIONAL_21_MAGE_0"
+      ]
+    },
+    {
+      "id": "A3.S21.REST_KNIGHT.01",
+      "status": "ALTERNATIVE_NOT_REPLAYED",
+      "canonical_ids": [
+        "EDGE.OPTIONAL_21_KNIGHT_0"
+      ]
+    },
+    {
+      "id": "A3.S21.REST_OCCULTIST.01",
+      "status": "ALTERNATIVE_NOT_REPLAYED",
+      "canonical_ids": [
+        "EDGE.OPTIONAL_21_OCCULTIST_0"
+      ]
+    },
+    {
+      "id": "EDGE.PLACES_20_RESTDESCRIPTION",
+      "status": "IDENTICAL_TEXT_ALIAS",
+      "canonical_ids": [
+        "EDGE.ARRIVALS_21_0"
+      ],
+      "guard": "actual stageId=21 only; UI lookup must not consume arrival once/seen"
+    }
+  ]
+}
