@@ -4978,3 +4978,9 @@ commonReviewRevision의 첫 혼령 대기열은 생성 후 소단/sceneTarget가
 ## 2026-10-27 — 검수 Act2 현장 선택 대사 메뉴 연결
 
 쉼터 선택 대사 API만으로는16–20장의 현장 사실 조건을 충족한 선택 대사에 전투 중 진입할 수 없었다. 기존 목표·조작 안내창의 현장 대화 버튼에서 현재 출연/생존·파티·장별 사실 가드를 재검사해 원고만 재생한다. 해당 전투의 기존 검수 이벤트에 cursor/once를 저장하며 행동·HP/자원·물리/퀘스트 proof를 변경하지 않는다. 11장 optional 행 허용과14장 현재 battle 참조를 함께 정리했다. `act23-v4-field-talk`은 실제 help 진입/클릭시 사망 배제/저장 재개/한 번 표시/무행동 비용을 통과했다(전투 상태 fixture, DOM double). Act3의 전투 전/쉼터 전용 대사는 기존 전용 provider를 유지한다. 통합 브랜치이며 master/Pages 미발행.
+
+## 2026-10-27 — 검수 Act3 live bark 실제 전달 연결
+
+`delivery=bark`인 검수 행은 기존 `#banter` 비대화형 자막을 사용하고 Story reader/전투 정지/카메라 이동을 만들지 않는다. battlefield의 별도 queue에 원본 metadata·순서·행 cursor·경과시간·실제 제시 ID를 저장한다. 각 행 표시 직전/표시 중 provider 생존·관측 가드를 다시 검사하고, 미표시 폐기 행은 cancelled로 남긴다. 실제 제시한 행만 완료 receipt에 포함한다. 수동 scene/guide/document와 원래 물리 이벤트 계약은 유지한다. 21장의 open-event 정리는 살아 있는 bark cursor를 취소하지 않도록 연결했다.
+
+`act23-v4-live-barks`는 실제 수레 파괴/갑주 회전에서 두 행 순서·이동 허용·저장 elapsed/index·once·미표시 위험 행 취소·표시 중 화자/대상 변화·모달 timer 정지를 통과했다. 검수 Game/Workshop 빌드와 `act23-v4-live-delivery-browser.py`의 실제 Chromium 자막/190px 키보드 이동·reload/Continue·사망 즉시 제거·현장 메뉴 click/Enter/390px 검사가 통과(pageerror0). 입력 시간과 장부/위치/전투는 집중 fixture이며 정상 전체 플레이/공개 Pages 검증이 아니다. 기존26장 Chromium 스크립트의 문서 구간도 실제 두 문장 span1회/저장 cursor/desktop·mobile을 통과했다. 근거는 `_local/reports/act23-v4/integration-delivery/` 및 `reviewed25-30-browser/`에 있다.

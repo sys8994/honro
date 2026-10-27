@@ -27,10 +27,10 @@ function begin(app,key,ids){const b=app.engine.b,q=memory(b);if(q.events[key])re
  V.slot(app,'21.reviewed.'+key,{rowIds:ids});if(!ls.length){Object.assign(V.mem(b).slots['21.reviewed.'+key],{status:'cancelled',proof:{skipped:true}});return false;}
  if(!G.HonroStory?.start(app,ls,{title:app.stage.name,reviewedStage:21,reviewedEvent:key})){delete q.events[key];return false;}return true;
 }
-function finished(app,d){if(d?.reviewedStage!==21||!active(app.engine?.b))return false;const b=app.engine.b,q=memory(b),event=q.events[d.reviewedEvent];if(event){event.retiredIds=event.ids.filter(id=>!lineAllowed(app,row(id).speaker,{...row(id),rowId:id,reviewedStage:21,reviewedRevision:1}));event.status=event.retiredIds.length===event.ids.length?'cancelled':'done';if(event.status==='done')V.ackSlot(b,'21.reviewed.'+d.reviewedEvent,{rowIds:event.ids,retiredIds:event.retiredIds});else Object.assign(V.mem(b).slots['21.reviewed.'+d.reviewedEvent],{status:'cancelled',proof:{guardLost:true}});G.HonroStory.save(app);}
+function finished(app,d){if(d?.reviewedStage!==21||!active(app.engine?.b))return false;const b=app.engine.b,q=memory(b),event=q.events[d.reviewedEvent];if(event){event.retiredIds=event.ids.filter(id=>d.liveBarkPresented?!d.liveBarkPresented.includes(id):!lineAllowed(app,row(id).speaker,{...row(id),rowId:id,reviewedStage:21,reviewedRevision:1}));event.status=event.retiredIds.length===event.ids.length?'cancelled':'done';if(event.status==='done')V.ackSlot(b,'21.reviewed.'+d.reviewedEvent,{rowIds:event.ids,retiredIds:event.retiredIds});else Object.assign(V.mem(b).slots['21.reviewed.'+d.reviewedEvent],{status:'cancelled',proof:{guardLost:true}});G.HonroStory.save(app);}
  if(d.reviewedEvent==='failure'){app.outcome(true);return true;}return false;}
 function tick(app){const b=app.engine.b;if(!active(b)||!V.safe(app))return;const q=memory(b);
- for(const [key,event]of Object.entries(q.events))if(event.status==='open'&&!app.dialogue){event.status='cancelled';Object.assign(V.mem(b).slots['21.reviewed.'+key],{status:'cancelled',proof:{guardLost:true}});}
+ for(const [key,event]of Object.entries(q.events))if(event.status==='open'&&!app.dialogue&&!G.HonroStoryBarks?.pending(app,21,key)){event.status='cancelled';Object.assign(V.mem(b).slots['21.reviewed.'+key],{status:'cancelled',proof:{guardLost:true}});}
  if((b.honroState.storyQueue||[]).length)return;
  if(!q.events.arrival){begin(app,'arrival',['EDGE.ARRIVALS_21_0']);return;}
  if(!q.events.intro){begin(app,'intro',[1,2,3,4].map(i=>'A3.S21.INTRO.0'+i));return;}
