@@ -1,47 +1,71 @@
+"""Focused real UI checks on ordinary profiles. Chapter victories/progress are fixtures."""
 import json,os
 from pathlib import Path
 from playwright.sync_api import sync_playwright
 from browser_support import launch,serve_game,ROOT
-PUBLIC=os.environ.get('HONRO_EQUIPMENT_PUBLIC');OUT=ROOT/('_local/reports/equipment-public' if PUBLIC else '_local/reports/equipment-browser');OUT.mkdir(parents=True,exist_ok=True)
+PUBLIC=os.environ.get('HONRO_EQUIPMENT_PUBLIC');OUT=ROOT/('_local/reports/equipment-public' if PUBLIC else '_local/reports/equipment-ux');OUT.mkdir(parents=True,exist_ok=True)
+RESET=r'''(through=0)=>{const a=HonroApp;a.frame=()=>{};const p=HonroProfileStore.fresh();p.settings.sound=false;p.settings.music=false;p.settings.debugMode=false;p.honroJourney={version:1,restStageId:through?21:2,talked:{}};if(through){p.recruited=['archer','mage','knight','occultist'];for(let i=1;i<=through;i++)p.cleared[i]={visits:1};}a.replaceProfile(a.profileStore.importText(JSON.stringify(p)));a.equipmentSelected=null;a.equipmentFilter=null;a.equipmentTransferId=null;if(through)HonroEquipment.observe(a);a.showCamp('archer');}'''
+FIRST=r'''()=>{const a=HonroApp;a.launch(1);for(let n=0;a.dialogue&&n<50;n++)HonroStory.finish(a);a.engine.b.phase='won';a.outcome(true);a.engine=null;a.scene=null;a.done=false;a.profile.honroBattle=null;a.profile.honroJourney={version:1,restStageId:2,talked:{}};a.persist();a.showCamp('archer');}'''
 rows=[]
-SETUP=r'''()=>{const a=HonroApp,E=HonroEquipment;a.frame=()=>{};a.stopBattle();a.profile=HonroProfileStore.fresh();a.normalProfile=a.profile;a.debugMode=false;a.profile.recruited=['archer','mage'];a.profile.honroJourney={version:1,restStageId:3,talked:{}};a.profile.settings.music=false;a.profile.settings.sound=false;E.transaction(a,p=>{E.grant(p,'eq_se_ledger');E.grant(p,'eq_co_01');E.grant(p,'eq_co_02');E.grant(p,'eq_se_t2_choice');E.grant(p,'eq_co_t1_choice');return true;});a.cls='archer';a.showCamp();}'''
 with serve_game() as base,sync_playwright() as p:
  browser=launch(p)
  if PUBLIC:base='https://sys8994.github.io/honro'
- for name,viewport in [('desktop',{'width':1280,'height':800}),('mobile',{'width':390,'height':844}),('mobile-landscape',{'width':844,'height':390})]:
-  context=browser.new_context(viewport=viewport,is_mobile=name!='desktop',has_touch=name!='desktop',device_scale_factor=1)
-  page=context.new_page();errors=[];page.on('pageerror',lambda e:errors.append(str(e)))
-  try:
-   response=page.goto(base+'/HONRO.html'+('?equipment='+PUBLIC if PUBLIC else ''),wait_until='domcontentloaded')
+ for label,size in [('mobile',{'width':390,'height':844}),('small',{'width':320,'height':568}),('landscape',{'width':844,'height':390}),('desktop',{'width':1280,'height':800})]:
+  ctx=browser.new_context(viewport=size,is_mobile=label!='desktop',has_touch=label!='desktop');page=ctx.new_page();errors=[];page.on('pageerror',lambda e:errors.append(str(e)))
+  try:response=page.goto(base+'/HONRO.html'+('?equipment='+PUBLIC if PUBLIC else ''),wait_until='domcontentloaded')
   except Exception as error:
    if not PUBLIC:raise
    (OUT/'summary.json').write_text(json.dumps({'status':'access-limited','url':base+'/HONRO.html','error':str(error),'gameAssertions':'not run'},ensure_ascii=False,indent=2));print('PUBLIC ACCESS LIMITED',str(error),flush=True);browser.close();raise SystemExit(0)
-  if PUBLIC and response.status==403:
-   (OUT/'summary.json').write_text(json.dumps({'status':'access-limited','url':page.url,'http':403,'gameAssertions':'not run'},ensure_ascii=False,indent=2));print('PUBLIC ACCESS LIMITED HTTP403',flush=True);browser.close();raise SystemExit(0)
   assert response.status==200,response.status
   if PUBLIC:assert json.loads((ROOT/'web/manifest.json').read_text())['gameEntry'] in page.content(),'published entry differs from verified build'
-  page.wait_for_function('window.HonroApp');page.evaluate(SETUP)
-  page.locator('[data-action="equipment-open"]').click();page.locator('[data-action="equipment-inspect"][data-id="itm_se_02"]').click()
-  assert page.locator('.equipment-stat-compare').is_visible();page.screenshot(path=str(OUT/f'{name}-comparison.png'))
-  bounds=page.locator('.equipment-dialog').evaluate('(e)=>({width:e.getBoundingClientRect().width,viewport:innerWidth,overflow:e.scrollWidth>e.clientWidth+2})');assert bounds['width']<=bounds['viewport'] and not bounds['overflow'],bounds
-  page.locator('[data-action="equipment-equip"]').click();page.locator('.equipment-dialog [data-action="close"]').click()
-  assert '솔바람 화살통' in page.locator('.equipment-slots').inner_text()
-  page.locator('[data-action="equipment-pending"]').click();page.locator('[data-action="equipment-choice"][data-id="eq_se_t2_choice"]').click();page.locator('[data-action="equipment-inspect"][data-id="itm_se_03"]').click();page.screenshot(path=str(OUT/f'{name}-two-choice.png'))
-  page.locator('.equipment-dialog [data-action="close"]').click();page.reload();page.wait_for_function('window.HonroApp');state=page.evaluate("()=>{HonroApp.frame=()=>{};return HonroApp.profile.equipment.rewardLedger.eq_se_t2_choice.state;}");assert state=='pending'
-  page.evaluate("()=>{HonroApp.showCamp();HonroEquipmentUI.choice(HonroApp,'eq_se_t2_choice');}");page.locator('[data-action="equipment-inspect"][data-id="itm_se_04"]').click();page.locator('[data-action="equipment-choice-confirm"]').dblclick()
-  assert page.evaluate("HonroApp.profile.equipment.rewardLedger.eq_se_t2_choice.selectedItemId")=='itm_se_04'
-  page.evaluate("HonroEquipmentUI.choice(HonroApp,'eq_co_t1_choice')");page.locator('[data-action="equipment-inspect"][data-id="itm_co_04"]').click();page.screenshot(path=str(OUT/f'{name}-three-choice.png'))
-  # Real localStorage failure: failed save preserves pending choice and selected comparison.
-  page.evaluate("()=>{window.savedSet=Storage.prototype.setItem;Storage.prototype.setItem=function(){throw Error('test quota');};}");page.locator('[data-action="equipment-choice-confirm"]').click();assert page.evaluate("HonroApp.profile.equipment.rewardLedger.eq_co_t1_choice.state")=='pending';assert page.locator('[data-action="equipment-choice-confirm"]').is_visible();page.evaluate('()=>{Storage.prototype.setItem=window.savedSet;}');page.locator('[data-action="equipment-choice-confirm"]').click()
-  # One shared item transfers through a separate explicit confirmation.
-  page.evaluate("()=>{HonroApp.showCamp('archer');HonroEquipmentUI.open(HonroApp,'common');}");page.locator('[data-action="equipment-inspect"][data-id="itm_co_01"]').click();page.locator('[data-action="equipment-equip"]').click();page.locator('.equipment-dialog [data-action="close"]').click()
-  page.evaluate("()=>{HonroApp.showCamp('mage');HonroEquipmentUI.open(HonroApp,'common');}");page.locator('[data-action="equipment-inspect"][data-id="itm_co_01"]').click();page.locator('[data-action="equipment-equip"]').click();assert page.locator('[data-action="equipment-transfer"]').is_visible();page.screenshot(path=str(OUT/f'{name}-transfer.png'));page.locator('[data-action="equipment-transfer"]').click()
-  worn=page.evaluate('HonroApp.profile.equipment.equippedByClass');assert worn['archer']['common'] is None and worn['mage']['common']=='itm_co_01';assert not errors,errors
-  page.locator('.equipment-dialog [data-action="close"]').click();page.evaluate("()=>{const a=HonroApp;HonroEquipment.transaction(a,p=>HonroEquipment.grant(p,'eq_da_gate'));a.equipmentNextCheck=0;a.equipmentNextToast=0;HonroEquipmentUI.tick(a);}");page.locator('#equipment-acquired:not([hidden]) img').first.wait_for();page.wait_for_function("[...document.querySelectorAll('#equipment-acquired img')].every(i=>i.complete&&i.naturalWidth===256)");page.screenshot(path=str(OUT/f'{name}-acquired.png'));assert page.locator('img.equipment-icon').evaluate_all('(es)=>es.every(e=>e.complete&&e.naturalWidth===256)');
-  if name=='desktop':
-   page.evaluate(r'''()=>{const a=HonroApp;a.launch(1);for(let i=0;a.dialogue&&i<40;i++)HonroStory.finish(a);a.turnNotice=null;const b=a.engine.b;b.phase='aim';b.side=0;b.projectiles=[];delete b.volley;for(const u of b.units)Object.assign(u,{vx:0,vy:0,airborne:false,jumping:false});HonroEquipment.transaction(a,p=>{HonroEquipment.grant(p,'eq_da_t2_choice');HonroEquipment.grant(p,'eq_co_t2_choice');return true;});a.equipmentNextCheck=0;HonroEquipmentUI.tick(a);}''')
-   page.locator('#equipment-pending-battle').click();assert page.locator('.equipment-event-list').is_visible();page.locator('[data-action="equipment-choice"][data-id="eq_da_t2_choice"]').click();page.locator('[data-action="equipment-inspect"][data-id="itm_da_03"]').click();assert page.locator('[data-action="equipment-choice-confirm"]').is_visible();page.evaluate('()=>Object.getPrototypeOf(HonroApp).frame.call(HonroApp,performance.now()+2500)');assert page.locator('#turn-banner').is_hidden();page.screenshot(path=str(OUT/'desktop-battle-pending2.png'))
-   page.locator('.equipment-dialog [data-action="close"]').click()
-  assets=page.evaluate("async()=>await Promise.all(Object.entries(HONRO_EQUIPMENT_ICONS).map(async([id,url])=>({id,status:(await fetch(url)).status})))");assert len(assets)==52 and all(a['status']==200 for a in assets),assets;rows.append({'viewport':name,'bounds':bounds,'worn':worn,'pageErrors':errors,'checks':['compare','equip','2-choice close/reload/commit/doubletap','3-choice save failure/retry','shared transfer confirmation']});print('PASS',name,flush=True);context.close()
+  page.wait_for_function('window.HonroApp');page.evaluate(RESET,0)
+  assert page.locator('.armory-shell').evaluate('e=>e.firstElementChild.classList.contains("hero-tabs")')
+  assert page.locator('.equipment-empty').is_visible();assert page.locator('.equipment-bag-item').count()==0
+  page.screenshot(path=str(OUT/f'{label}-empty.png'))
+  # First ordinary campaign reward: only the victory is a fixture, outcome/save/grant are real.
+  page.evaluate(FIRST);assert page.evaluate("HonroApp.profile.equipment.rewardLedger.eq_co_01.state")=='committed';assert not page.evaluate('HonroApp.debugMode')
+  page.locator('.equipment-bag-item[data-id="itm_co_01"]').click();equip=page.locator('.equipment-detail-actions [data-action="equipment-equip"]');assert equip.is_visible()
+  page.screenshot(path=str(OUT/f'{label}-first-item.png'));equip.click();assert page.evaluate("HonroApp.profile.equipment.equippedByClass.archer.common")=='itm_co_01';assert not page.locator('#modal').evaluate('e=>e.classList.contains("open")')
+  assert '해진 장명부' in page.locator('.equipment-slots').inner_text()
+  page.locator('.equipment-detail-actions [data-action="equipment-remove"]').click();assert page.evaluate('HonroApp.profile.equipment.equippedByClass.archer.common') is None
+  page.locator('.equipment-detail-actions [data-action="equipment-equip"]').click()
+  # Real normal save with six accumulated exclusive rewards; no debug inventory.
+  page.evaluate(RESET,20);assert page.evaluate("Object.values(HonroApp.profile.equipment.rewardLedger).filter(r=>r.state==='pending').length")==6
+  assert not page.evaluate('HonroApp.debugMode');assert page.locator('.equipment-bag-item').count()<20
+  cols=page.locator('.equipment-inventory').evaluate('e=>getComputedStyle(e).gridTemplateColumns.split(" ").length');assert cols==2,cols
+  page.wait_for_function("[...document.querySelectorAll('.hero-tabs canvas')].every(e=>e.dataset.portraitState==='ready')");page.screenshot(path=str(OUT/f'{label}-bag-six-rewards.png'));page.locator('.equipment-unclaimed').click()
+  assert page.locator('.equipment-event-list').count()==0;assert page.locator('.equipment-reward-item').count()==3
+  assert '1 / 6' in page.locator('.equipment-reward-head').inner_text();assert page.locator('.equipment-confirm').is_disabled()
+  page.evaluate('window.rewardSurface=document.querySelector(".equipment-choice-dialog")');page.locator('.equipment-reward-item[data-id="itm_co_04"]').click();assert page.evaluate('window.rewardSurface===document.querySelector(".equipment-choice-dialog")')
+  assert page.locator('.equipment-confirm').is_enabled();assert page.evaluate("HonroApp.profile.equipment.rewardLedger.eq_co_t1_choice.state")=='pending'
+  page.screenshot(path=str(OUT/f'{label}-reward-three.png'));page.get_by_role('button',name='나중에',exact=True).click()
+  page.reload();page.wait_for_function('window.HonroApp');page.evaluate('()=>{HonroApp.frame=()=>{};HonroApp.showCamp();}')
+  assert page.evaluate("Object.values(HonroApp.profile.equipment.rewardLedger).filter(r=>r.state==='pending').length")==6
+  page.locator('.equipment-unclaimed').click();page.locator('.equipment-reward-item[data-id="itm_co_04"]').click()
+  page.evaluate("()=>{window.originalSet=Storage.prototype.setItem;Storage.prototype.setItem=function(){throw Error('quota fixture');};}")
+  page.locator('.equipment-confirm').click();assert page.evaluate("HonroApp.profile.equipment.rewardLedger.eq_co_t1_choice.state")=='pending';assert page.locator('.equipment-save-error').is_visible()
+  page.screenshot(path=str(OUT/f'{label}-save-failure.png'));page.evaluate('()=>{Storage.prototype.setItem=window.originalSet;}');page.locator('.equipment-confirm').dblclick()
+  assert page.evaluate("HonroApp.profile.equipment.rewardLedger.eq_co_t1_choice.selectedItemId")=='itm_co_04'
+  assert page.evaluate("Object.values(HonroApp.profile.equipment.rewardLedger).filter(r=>r.state==='pending').length")==5
+  assert page.locator('.equipment-reward-item').count()==2;assert page.locator('.equipment-confirm').is_disabled()
+  page.screenshot(path=str(OUT/f'{label}-reward-two.png'));page.get_by_role('button',name='나중에',exact=True).click()
+  # Equip the chosen common item directly, then transfer it without another modal.
+  page.locator('.equipment-bag-item[data-id="itm_co_04"]').click();page.locator('.equipment-detail-actions [data-action="equipment-equip"]').click()
+  page.locator('.hero-tab[data-class="mage"]').click();page.locator('.equipment-bag-item[data-id="itm_co_04"]').click();page.locator('.equipment-detail-actions [data-action="equipment-equip"]').click()
+  assert page.evaluate("HonroApp.profile.equipment.equippedByClass.archer.common")=='itm_co_04';assert page.locator('[data-action="equipment-transfer"]').is_visible();assert not page.locator('#modal').evaluate('e=>e.classList.contains("open")')
+  page.screenshot(path=str(OUT/f'{label}-transfer.png'));page.locator('[data-action="equipment-transfer"]').click()
+  assert page.evaluate('HonroApp.profile.equipment.equippedByClass.archer.common') is None;assert page.evaluate("HonroApp.profile.equipment.equippedByClass.mage.common")=='itm_co_04'
+  # Read-only bag while a real suspended battle remains active.
+  page.evaluate("()=>{const a=HonroApp;a.launch(21);}")
+  page.wait_for_function('HonroApp.engine&&HonroApp.screen==="battle"');page.evaluate("()=>{const a=HonroApp;for(let n=0;a.dialogue&&n<50;n++)HonroStory.finish(a);a.turnNotice=null;a.close();const b=a.engine.b;b.phase='aim';b.side=0;b.projectiles=[];delete b.volley;for(const u of b.units)Object.assign(u,{vx:0,vy:0,airborne:false,jumping:false});a.equipmentNextCheck=0;HonroEquipmentUI.tick(a);}")
+  page.locator('#equipment-pending-battle').click();assert page.locator('.equipment-reward-item').count() in [2,3];before=page.evaluate('HonroApp.equipmentChoice');page.get_by_role('button',name='다음 보상',exact=True).click();assert page.evaluate('HonroApp.equipmentChoice')!=before
+  page.screenshot(path=str(OUT/f'{label}-battle-rewards.png'));page.get_by_role('button',name='나중에',exact=True).click()
+  page.evaluate("()=>{const a=HonroApp;a.profile.honroJourney={version:1,restStageId:21,talked:{}};a.showCamp('mage');}")
+  page.locator('.equipment-bag-item[data-id="itm_co_04"]').click();assert page.locator('.equipment-detail-actions button').is_disabled();assert page.locator('.equipment-lock').is_visible();page.screenshot(path=str(OUT/f'{label}-locked.png'))
+  assets=page.evaluate("async()=>await Promise.all(Object.entries(HONRO_EQUIPMENT_ICONS).map(async([id,url])=>({id,status:(await fetch(url)).status})))");assert len(assets)==52 and all(a['status']==200 for a in assets),assets
+  assert not errors,errors
+  assert page.locator('.equipment-panel').evaluate('e=>e.scrollWidth<=e.clientWidth+1')
+  rows.append({'viewport':label,'size':size,'ordinaryProfile':True,'inventoryColumns':cols,'checks':['empty','real outcome first reward/equip/unequip','six pending direct items','same modal selection','close/reload','save failure/retry/doubletap','common transfer inline','battle rewards direct/paging','battle lock','52 icons HTTP200'],'pageErrors':errors})
+  print('PASS',label,flush=True);ctx.close()
  browser.close()
-(OUT/'summary.json').write_text(json.dumps({'status':'passed','rows':rows,'limits':['Inventory/story progress were fixtures; real DOM, input, localStorage and production runtime were used.','Final52 icons were supplied and used; source PNG/prompts are not deployed.','Public target checked after deployment.' if PUBLIC else 'Local source build; public target checked separately.']},ensure_ascii=False,indent=2))
+(OUT/'summary.json').write_text(json.dumps({'status':'passed','rows':rows,'sourceShaBeforeCommit':os.popen('git rev-parse HEAD').read().strip(),'limits':['Chapter victory and prior cleared chapters are fixtures. No complete campaign playthrough.','User Library originals could not be materialized; current source was reproduced locally.']},ensure_ascii=False,indent=2)+'\n')
