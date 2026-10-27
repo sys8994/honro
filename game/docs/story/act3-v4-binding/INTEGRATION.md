@@ -4,7 +4,7 @@
 
 | 부모 파일 | 필요한 작은 통합 |
 |---|---|
-| shared/build.mjs |21–30 전용 provider/model·render·문서 span 모듈 등록. 각 CH flag와 검수 JSON 입력. 공통21 alias 본문은 어느3막 flag가 켜져도 로드. 기본은 비활성.|
+| shared/build.mjs |21–30 전용 provider/model·render·문서 span 모듈 등록. 후속29 창은 `act23-v4-ch29-reviewed-spear`를 `act23-v4-ch29-reviewed` 직전에 추가(원래 native 기예 검증 전에 초기화). 각 CH flag와 검수 JSON 입력. 공통21 alias 본문은 어느3막 flag가 켜져도 로드. 기본은 비활성.|
 | shared/runtime/act23-v4-reviewed.js | 장별 provider dispatch: rowsReviewed/accepts/finished/failure/lineAllowed/present/journal/talkId. 기존11장 경로 보존.|
 | shared/runtime/story.js | reviewedStage 정수 장에 실제 provider guard 적용. 문자 원고 DOM 생성 후 전용 문서 span bind 호출. 기존 인용문을 한 번만 표시.|
 | shared/runtime/act23-v4.js | opt-in 검수 장 map revision421–430. 구판 전투만 시작점 재작성, 성장/장착/완료 보존.|
@@ -18,6 +18,6 @@
 
 `tests/act3-v4-reviewed-source.mjs`는321 canonical 원고와 모든 원본 필드/별칭/문서 blob manifest 보존 검사다. gameplay 통과 증거가 아니다. 장별 focused 검사는 production App/Engine이며 전투 결과/영웅 안내 위치/선행 지식은 fixture다. Chromium 스크립트는 실제 DOM/Canvas/Enter/E/localStorage를 검사하며 정상 전투/Pages로 표시하지 않는다. 전체30장 자동플레이·범위 밖 미술·배포는 수행하지 않았다.
 
-부모 BUG_LOG 병합용 요약: 검수3막 원고를 장별 실제 물리 proof/생존·출연/목격/저장 cursor에 연결했다. 필수 구조·분할·재합류·수문·사공·지도 조작을 선택 화자 대사 done에서 분리해 사망 소프트락을 막았다. skipped/cancelled 발화는 done으로 승격하지 않는다. 다만 실제 네 사람 집결 전 필수 동행 상실과 보호 NPC 상실은 실제 실패로 처리한다. 남은29장 창 경고·30장 먼 곽진 이별2행·COMPAT30 본문은 각 장 문서대로 보류한다.
+부모 BUG_LOG 병합용 요약: 검수3막 원고를 장별 실제 물리 proof/생존·출연/목격/저장 cursor에 연결했다. 필수 구조·분할·재합류·수문·사공·지도 조작을 선택 화자 대사 done에서 분리해 사망 소프트락을 막았다. skipped/cancelled 발화는 done으로 승격하지 않는다. 다만 실제 네 사람 집결 전 필수 동행 상실과 보호 NPC 상실은 실제 실패로 처리한다. 29장 경고는 실제 native 창 공격에 연결했고,30장 이별은 두 항차·증언·지도 뒤 곽진 옆 실제 접지 집결에서 재생한 뒤 원래 높은 옛길 출구로 이어진다. 구판 저장의 역사 기록을 유지하고 본문 없는 COMPAT30 표시3개만 생략하며, 여정 UI 상태 없는 구판 저장 migration도 보호한다. 정확한 조건·ID·검증 한계는 각 장 문서를 따른다.
 
-전달 방식의 공통 후속: 원고의 delivery/audience/group/order/once 등 원본 필드는 씬/저장까지 그대로 보존한다. 현 고정 기준의 Story reader는 `delivery=bark`도 수동 대화창으로 표시한다. 별도 live bark 표시와 cursor/생존 가드 전환은 아직 구현하지 않았으므로, 메타데이터 보존을 비정지 bark 연출 검증으로 보고하지 않는다. 이 공통 reader 정책은 부모 담당과 통합해야 한다.
+전달 방식의 공통 후속: 원고의 delivery/audience/group/order/once 등 원본 필드는 씬/저장까지 그대로 보존한다. 현 고정 기준의 Story reader는 `delivery=bark`도 수동 대화창으로 표시한다. 별도 live bark 표시와 cursor/생존 가드 전환은 아직 구현하지 않았으므로, 메타데이터 보존을 비정지 bark 연출 검증으로 보고하지 않는다. 이 공통 reader 정책과 live bark 어댑터는 부모의 통합 담당 소유로 넘겼다. 이 브랜치에서 수정하지 않는다.
