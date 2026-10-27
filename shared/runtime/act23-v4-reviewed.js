@@ -30,6 +30,7 @@ function gathered(b){const p=V.marker(b,'11.exit');return ['archer','mage','knig
 function lineAllowed(app,who,meta){const id=meta?.rowId;if(!enabled()||!row(id)||meta.reviewedStage!==11||blocked[id])return false;
  if(app.screen==='rest')return row(id).channel==='optional'&&(app.profile.honroJourney?.restStageId===11||app.debugRestStage===11||G.HonroJourneyContent.next(app.profile)?.stageId===11)&&restAllowed(app.profile,who);
  const b=app.engine?.b;if(!active(b)||cls[who]&&!actor(b,who))return false;const q=memory(b),s=scenes(b);
+ if(row(id).channel==='optional')return restAllowed({...app.profile,honroBattle:b},who);
  if(id==='EDGE.FAILURE_GUARD.S11')return b.phase==='lost'&&!!actor(b,'휘겸');
  if(['won','lost'].includes(b.phase))return false;
  if(requiredScenes[id])return G.HonroAct23V4Chapter11?.facts(b,id)===true;
@@ -94,7 +95,7 @@ const oldResolve=G.HonroNarrativeCatalogue.resolve;G.HonroNarrativeCatalogue.res
 const oldSummary=G.HonroNarrativeCatalogue.summary;G.HonroNarrativeCatalogue.summary=(b,st)=>active(b)?(memory(b).journal?row('A2.S11.JOURNAL.01').text:''):oldSummary(b,st);
 const oldPlugin=V.plugins.get(11);V.register(11,{...oldPlugin,tick(app,dt){if(active(app.engine.b)&&V.mem(app.engine.b).done['11.exit']&&!memory(app.engine.b).events.gather){tick(app,0);if(app.dialogue)return;}oldPlugin.tick(app,dt);tick(app,dt);},complete(b){return oldPlugin.complete(b)&&complete(b);},draw(scene,c,b,e){if(active(b)){G.HonroAct23V4Chapter11?.draw(scene,c,b);draw(scene,c,b);}else oldPlugin.draw(scene,c,b,e);}});
 for(const key of ['interlude','required','optional']){const old=G.HonroJourneyContent[key];G.HonroJourneyContent[key]=function(...args){const id=key==='interlude'?args[0]:args[1];if(enabled()&&Number(id)===11)return key==='optional'?optional(...args):[];return old.apply(this,args);};}
-G.HonroAct23V4Reviewed={enabled,active,row,rowsReviewed,lineAllowed,accepts,finished,present,content,failure,optional,blocked,requiredScenes,memory,complete,gathered,journal,talkId:(id,c)=>enabled()&&Number(id)===11?'rest-talk-v1-11-'+c+'-reviewed1':null};
+G.HonroAct23V4Reviewed={enabled,active,begin,row,rowsReviewed,lineAllowed,accepts,finished,present,content,failure,optional,blocked,requiredScenes,memory,complete,gathered,journal,talkId:(id,c)=>enabled()&&Number(id)===11?'rest-talk-v1-11-'+c+'-reviewed1':null};
 // Resolve Act3-only providers after their own modules have loaded.
 const chapterProvider=id=>({21:G.HonroAct23V4Chapter21Reviewed,22:G.HonroAct23V4Chapter22Reviewed})[id]||G.HonroAct3V4ReviewedCore?.providers.get(id);
 G.HonroAct23V4Reviewed.provider=chapterProvider;

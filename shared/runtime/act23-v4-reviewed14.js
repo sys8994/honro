@@ -16,7 +16,7 @@ function optional(profile,row){const b=profile.honroBattle;if(b?.honroStage!==14
  if(row.id==='EDGE.OPTIONAL_14_OCCULTIST_0')return !clearDoor(b);
  return true;
 }
-function allow(app,row){const b=app.engine?.b,id=row.id;if(row.channel==='optional'||id.startsWith('EDGE.OPTIONAL_'))return optional(app.profile,row);
+function allow(app,row){const b=app.engine?.b,id=row.id;if(row.channel==='optional'||id.startsWith('EDGE.OPTIONAL_'))return optional({...app.profile,honroBattle:b},row);
  if(!b)return false;const q=mem(b),s=physical(b),a=base(b),u=gil(b);
  if(id==='EDGE.ARRIVALS_14_0')return !a.houseOpen;
  if(id==='A2.S14.FAIL.01')return b.phase==='lost';

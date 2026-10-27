@@ -4974,3 +4974,7 @@ commonReviewRevision의 첫 혼령 대기열은 생성 후 소단/sceneTarget가
 정상 대면4이벤트 완료·실제 생존자 구출·의도 관측 뒤, 2회 이상 실피해를 받은 유헌이 살아 있는 비소환 동행의 일반 피해로 사망한 바로 그 hurt 콜백에서만 확정 DEATH.01을 한 번 표시한다. 짧은 비직렬화 lease로 해당 행만 허용하며 dead/HP/기존 사망 정리를 변경하지 않는다. 일반 사후 발언·조기/즉사·환경사·낙사·혼 처치에는 발동하지 않고, 열린 마지막 말을 저장한 Continue는 폐기한다. `node tests/act23-v4-reviewed18.mjs`의 기존 구조/사망/안정화 및 새 경계·무재발 검사 통과. 로컬 Chromium에서도 실제 Engine.hurt 뒤 원문 표시/HP0·dead와 페이지 reload/Continue 후 discarded를 확인했다. 정상 플레이가 아니라 실제 대면 진행에서 얻은 전투 저장 fixture의 경계 검사다.
 
 복구 묶음의 일반/검수 Game·Workshop 빌드 및 검수16/17/18/20 로컬 Canvas 진입 통과(pageerror0). 11장 실제 받침 혼 생성 복구와 공통 기존 queue/Continue, build gate 집중 검사를 다시 확인했다. 원고·Stage5·26/28–30 소스는 수정하지 않았고 전체30장 순회도 하지 않았다. 로컬 근거는 `_local/reports/act2-audit-20261027/`; 생성 HTML/web은 부모 통합 빌드 대상이라 커밋에서 제외한다. master 병합·공개 Pages 배포/검증은 부모 담당으로 미실행이다.
+
+## 2026-10-27 — 검수 Act2 현장 선택 대사 메뉴 연결
+
+쉼터 선택 대사 API만으로는16–20장의 현장 사실 조건을 충족한 선택 대사에 전투 중 진입할 수 없었다. 기존 목표·조작 안내창의 현장 대화 버튼에서 현재 출연/생존·파티·장별 사실 가드를 재검사해 원고만 재생한다. 해당 전투의 기존 검수 이벤트에 cursor/once를 저장하며 행동·HP/자원·물리/퀘스트 proof를 변경하지 않는다. 11장 optional 행 허용과14장 현재 battle 참조를 함께 정리했다. `act23-v4-field-talk`은 실제 help 진입/클릭시 사망 배제/저장 재개/한 번 표시/무행동 비용을 통과했다(전투 상태 fixture, DOM double). Act3의 전투 전/쉼터 전용 대사는 기존 전용 provider를 유지한다. 통합 브랜치이며 master/Pages 미발행.

@@ -168,7 +168,7 @@ export async function runtimeEntries({vector=true,render=true,app=false}={}) {
     await file('game/vendor/ui/fa.js');
     await file('shared/runtime/skill-images.js');
     await file('shared/runtime/camp-renderer.js');
-    for(const name of ['campaign-entry','portraits','npc-portraits','ui-bridge','stage-rules','music-titles','audio','mukjong-audio','story','act3-v4-reviewed-documents','mukjong-pitch-dialogue','act-endings-content','act-endings','interactions','unit-info','training','skill-preview','journey-art','journey-images','rest-journey','menu-ui','clear-report-ui','main']){
+    for(const name of ['campaign-entry','portraits','npc-portraits','ui-bridge','stage-rules','music-titles','audio','mukjong-audio','story','act23-v4-field-talk','act3-v4-reviewed-documents','mukjong-pitch-dialogue','act-endings-content','act-endings','interactions','unit-info','training','skill-preview','journey-art','journey-images','rest-journey','menu-ui','clear-report-ui','main']){
       await file(`shared/runtime/${name}.js`);
       // Metadata only: native/full consumers retain the same scripts and order.
       if(name==='training'||name==='skill-preview')parts.at(-1).optional=name;
