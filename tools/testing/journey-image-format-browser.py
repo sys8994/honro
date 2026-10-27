@@ -20,7 +20,7 @@ with sync_playwright() as p:
  page.route('**/journey-map-act4.*',fail_once)
  page.evaluate('HonroRestJourney.showBook(HonroApp,31)');page.wait_for_function('HonroJourneyImages.cacheInfo().some(v=>v.act===4&&v.state==="error")')
  assert page.locator('.journey-pin').count()==10;page.locator('[data-action="journey-image-retry"]').click();page.wait_for_function('()=>document.querySelector(".journey-map-image")?.naturalWidth>0')
- assert page.locator('.journey-image-status').is_hidden();row=page.evaluate('({src:document.querySelector(".journey-map-image").src,width:document.querySelector(".journey-map-image").naturalWidth,height:document.querySelector(".journey-map-image").naturalHeight})');assert row['src'].endswith('.svg') and abs(row['width']/row['height']-1.6)<.001,row
- assert any(r['url']==row['src'] and r['status']==200 and 'image/svg+xml' in r['type'] for r in responses),responses
+ assert page.locator('.journey-image-status').is_hidden();row=page.evaluate('({src:document.querySelector(".journey-map-image").src,width:document.querySelector(".journey-map-image").naturalWidth,height:document.querySelector(".journey-map-image").naturalHeight})');assert row['src'].endswith('.webp') and row['width']==1586 and row['height']==992,row
+ assert any(r['url']==row['src'] and r['status']==200 and 'image/webp' in r['type'] for r in responses),responses
  page.screenshot(path=str(OUT/'act4-decoded.png'));assert not errors,errors
- (OUT/'result.json').write_text(json.dumps({'scope':__doc__,'responses':responses,'forcedFailure':attempts[0],'act4':row,'errors':errors},ensure_ascii=False,indent=2));print('PASS four journal maps actual decode/HTTP200; SVG content type; failed request preserves10 pins; visible retry succeeds; no page errors');b.close()
+ (OUT/'result.json').write_text(json.dumps({'scope':__doc__,'responses':responses,'forcedFailure':attempts[0],'act4':row,'errors':errors},ensure_ascii=False,indent=2));print('PASS four journal maps actual decode/HTTP200; raster WebP content type; failed request preserves10 pins; visible retry succeeds; no page errors');b.close()
