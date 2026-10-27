@@ -10,12 +10,26 @@ const threats=(b,p,r=320)=>b.units.filter(u=>alive(u)&&u.side===1&&!u.honroObjec
 const field=b=>b.honroAct23V4TrajectoryForce;
 const inside=(p,z)=>p.x>=z.x&&p.x<=z.x+z.w&&p.y>=z.y&&p.y<=z.y+z.h;
 function author(map){const init=map.initialState,at=id=>map.markers.find(m=>m.id===id);
- init.honroV4Reviewed15={revision:1,wheel:init.honroV4LowWheel,pulleys:[{x:2140,y:3800},{x:6200,y:4399}],returnBridge:{support:'fc15-crown-return',x:4420,y:3140},highSupports:['fc15-west-arch','fc15-crown-return','fc15-safe-crown-descent'],merge:{x:at('groove').x,y:at('groove').y},entries:[{x:5650,y:4210},{x:5900,y:4180}],lowerPlatform:{id:'fc15-drained-ledge',x:5700,y:4600}};
+ init.honroV4Reviewed15={revision:1,wheel:init.honroV4LowWheel,pulleys:[{x:2140,y:3800},{x:5680,y:4765,angle:Math.atan(1/6)}],returnBridge:{support:'fc15-crown-return',x:4420,y:3140},highSupports:['fc15-west-arch','fc15-crown-return','fc15-safe-crown-descent'],merge:{x:at('groove').x,y:at('groove').y},entries:[{x:5650,y:4210},{x:5900,y:4180}],lowerPlatform:{id:'fc15-drained-ledge',x:5700,y:4600}};
  // The sound is below the existing bed, in the deep eastward hollow. It is
  // deliberately not an on-screen civilian or a voice from a living survivor.
  init.honroV4KnockSource={x:7530,y:4880};
 }
 function prepare(b){memory(b);}
+// Match Engine.waterFloor: the rectangular depth alone includes dry bank/rock.
+function waterFloor(w,x){const ps=w.bottom;if(!ps?.length)return w.y+w.depth;for(let i=1;i<ps.length;i++){const a=ps[i-1],b=ps[i];if(x>=a.x&&x<=b.x)return a.y+(b.y-a.y)*(x-a.x)/(b.x-a.x||1);}return w.y+w.depth;}
+function pulleyPoint(p,x,y){const a=p.angle||0;return{x:p.x+x*Math.cos(a)-y*Math.sin(a),y:p.y+x*Math.sin(a)+y*Math.cos(a)};}
+function submergedPulley(b,p){const points=[[-55,0],[116,0],[-55,-132],[116,-132]].map(([x,y])=>pulleyPoint(p,x,y));return(b.waters||[]).find(w=>points.every(q=>q.x>=w.x&&q.x<=w.x+w.w&&q.y>w.y+4&&q.y<=waterFloor(w,q.x)+1));}
+function inView(scene,p){const r=scene.canvas?.getBoundingClientRect?.();if(!r?.width||!r?.height||!(scene.scale>0))return false;const x=(p.x-scene.x)*scene.scale+r.width/2,y=(p.y-scene.y)*scene.scale+r.height/2;return x>=12&&x<=r.width-12&&y>=12&&y<=r.height-12;}
+function observePulleys(scene,e,b){if(e?.b!==b||!api.active(b)||!b.session)return;const u=api.actor(b,'설오');if(!alive(u))return;
+ const eye={x:u.x,y:u.y-u.h*.63};if(!inView(scene,eye))return;
+ for(const p of b.honroV4Reviewed15.pulleys){const w=submergedPulley(b,p),point=pulleyPoint(p,-8,-103);if(!w||!V.near(u,point,650)||scene.scale*46<14||![[-55,-132],[116,-132],[-55,0],[116,0]].every(([x,y])=>inView(scene,pulleyPoint(p,x,y)))||e.projectileCollision(eye,point,1,u.id,[],false))continue;
+  const m=memory(b),q=m.continuity??={revision:1,sourceRun:b.session};if(q.sourceRun!==b.session)continue;
+  if(q.brokenPulley)continue;
+  q.brokenPulley={sourceRun:b.session,observer:u.id,observerClass:u.cls,from:eye,point,prop:clone(p),water:{x:w.x,y:w.y,w:w.w,depth:w.depth,floor:waterFloor(w,point.x)},sight:{terrainClear:true,renderedUnderWater:true,viewport:{x:scene.x,y:scene.y,scale:scene.scale,width:scene.canvas.getBoundingClientRect().width,height:scene.canvas.getBoundingClientRect().height}}};e.emit('save');
+ }
+}
+
 function flooded(b){const m=memory(b),s=b.honroV4Reviewed15,p=s.lowerPlatform,t=b.terrain.find(t=>t.id===p.id);
  return !B.memory(b).drained&&!m.drained&&!!t?.broken&&(b.waters||[]).some(w=>p.x>=w.x&&p.x<=w.x+w.w&&p.y>w.y&&p.y<=w.y+w.depth+5);
 }
@@ -140,14 +154,22 @@ function present(b,result){const m=memory(b);if(!m.lowObserved||V.mem(b).done.gr
  const choices=[['A2.S15.UI_CHOICE.01','sluice'],['A2.S15.UI_CHOICE.02','route-upper-exit']].map(([id,marker])=>({...V.marker(b,marker),id:marker,rowId:id,label:api.row(id).text,kind:'exit',reviewedStage:15,reviewedRevision:1}));
  return{...result,targets:[...result.targets,...choices],allTargets:[...result.allTargets,...choices]};
 }
-function draw(scene,c,b){const m=memory(b),s=b.honroV4Reviewed15,w=unit(b,s.wheel);c.save();
- // Two grounded remains, with an open rim and slack cut rope. No new collision
- // or separate water renderer is introduced for these small factual props.
- for(const p of s.pulleys){c.save();c.translate(p.x,p.y);c.strokeStyle='#8d8064';c.lineWidth=7;c.beginPath();c.moveTo(-55,0);c.lineTo(-46,-115);c.lineTo(15,-132);c.lineTo(39,-75);c.moveTo(-36,-114);c.lineTo(8,-124);c.stroke();c.strokeStyle='#a49b7b';c.lineWidth=4;c.beginPath();c.arc(-8,-103,23,.35,Math.PI*1.6);c.moveTo(-8,-103);c.lineTo(-8,-126);c.moveTo(-8,-103);c.lineTo(-29,-98);c.moveTo(11,-89);c.lineTo(24,-47);c.lineTo(17,-29);c.stroke();c.fillStyle='#485454';c.beginPath();c.moveTo(36,0);c.lineTo(43,-34);c.lineTo(98,-43);c.lineTo(116,-10);c.lineTo(108,0);c.closePath();c.fill();c.restore();}
+function drawPulley(c,p,submerged=false){c.save();if(submerged)c.globalAlpha*=.68;c.translate(p.x,p.y);c.rotate(p.angle||0);c.strokeStyle=submerged?'#76948b':'#8d8064';c.lineWidth=7;c.beginPath();c.moveTo(-55,0);c.lineTo(-46,-115);c.lineTo(15,-132);c.lineTo(39,-75);c.moveTo(-36,-114);c.lineTo(8,-124);c.stroke();c.strokeStyle=submerged?'#aec6b7':'#a49b7b';c.lineWidth=4;c.beginPath();c.arc(-8,-103,23,.35,Math.PI*1.6);c.moveTo(-8,-103);c.lineTo(-8,-126);c.moveTo(-8,-103);c.lineTo(-29,-98);c.moveTo(11,-89);c.lineTo(24,-47);c.lineTo(17,-29);c.stroke();c.fillStyle=submerged?'#526d68':'#485454';c.beginPath();c.moveTo(36,0);c.lineTo(43,-34);c.lineTo(98,-43);c.lineTo(116,-10);c.lineTo(108,0);c.closePath();c.fill();c.restore();}
+function draw(scene,c,b,e){const m=memory(b),s=b.honroV4Reviewed15,w=unit(b,s.wheel);c.save();
+ // The shared pool fill is opaque. Render submerged remains in its blue-green
+ // palette after that pass, below the surface in the actual basin polygon.
+ for(const p of s.pulleys)drawPulley(c,p,!!submergedPulley(b,p));
+ observePulleys(scene,e,b);
  if(alive(w)){c.save();c.translate(w.x,w.y-w.h*.55);c.rotate(m.wheel.angle);c.strokeStyle='#bdd0c1';c.globalAlpha=.55;c.lineWidth=3;c.beginPath();c.ellipse(0,0,54,69,0,0,Math.PI*2);c.moveTo(-54,0);c.lineTo(54,0);c.stroke();c.restore();}
  c.restore();}
 function complete(b){const m=memory(b);return api.done(b,'depart')&&m.merge.cleared===true&&!!A.memory(b).proof['15.knocks'];}
 P.register(15,{mapRevision:515,author,prepare,allow,before,drive,use,eligibility,attach,present,draw,optional,objective:()=> 'A2.S15.OBJECTIVE.01',complete});
-const outcome=V.recordOutcome;V.recordOutcome=function(app,won){outcome(app,won);const b=app.engine?.b;if(won&&api.active(b)){const h=app.profile.honroAct23V4History?.stages?.[15];if(h?.reviewedNarrative&&memory(b).journalWithheld)h.reviewedNarrative.journalWithheld=clone(memory(b).journalWithheld);}};
-G.HonroAct23V4Reviewed15={memory,allow,flooded,optional,blockedSight,complete};
+const outcome=V.recordOutcome;V.recordOutcome=function(app,won){outcome(app,won);const b=app.engine?.b;if(won&&api.active(b)){const h=app.profile.honroAct23V4History?.stages?.[15];if(h?.reviewedNarrative&&memory(b).journalWithheld)h.reviewedNarrative.journalWithheld=clone(memory(b).journalWithheld);
+ if(h?.run===b.session){const q=memory(b).continuity,proof=q?.revision===1&&q.sourceRun===b.session&&q.brokenPulley?.sourceRun===b.session?q.brokenPulley:null;
+  // The actual merge spirits are not below the sluice. Never infer this claim
+  // from their admission, death, a reviewed line, or a chapter-clear ledger.
+  h.reviewedPhysical={revision:1,sourceRun:b.session,brokenPulleysObserved:!!proof,upwardHandsObserved:false,proof:{brokenPulley:clone(proof),upwardHands:null}};
+ }
+}};
+G.HonroAct23V4Reviewed15={memory,allow,flooded,optional,blockedSight,complete,submergedPulley};
 })(globalThis);
