@@ -203,11 +203,11 @@ function failure(b){if(!active(b))return null;const list=steps(b),a=memory(b);
  return null;
 }
 function firstSpiritEncounter(app,heroes){const e=app.engine,b=e?.b,key='act2:first-spirit-encounter';if(!b||app.screen!=='battle'||!G.HonroStory?.queue||app.profile?.seen?.[key]||!app.profile?.recruited?.includes('occultist')||app.dialogue)return;
- const sodan=heroes.find(u=>u.cls==='occultist'&&!u.dead&&u.hp>0&&!u.summoned&&!u.enthrall);if(!sodan)return;
+ const sodan=heroes.find(u=>u.cls==='occultist'&&!u.dead&&u.hp>0&&!u.summoned&&!u.enthrall);if(!sodan)return;const common=G.HonroAct23V4ReviewedCommon,useCommon=common?.enabled()&&G.HonroAct23V4.active(b)&&G.HonroNarrativeCatalogue.active(b);if(useCommon&&!common.selectable(e,sodan))return;
  const spirit=b.units.find(u=>u.side===1&&u.honroSpirit&&!u.dead&&u.hp>0&&heroes.some(h=>Math.hypot(h.x-u.x,h.y-u.y)<680));if(!spirit)return;
- const usable=id=>sodan.loadout?.includes(id)&&C.SKILLS[id]&&sodan.focus>=e.manaCost(C.SKILLS[id],sodan)&&!e.cooldownLeft(sodan,id);
+ const usable=id=>useCommon?common.usable(e,sodan,id):sodan.loadout?.includes(id)&&C.SKILLS[id]&&sodan.focus>=e.manaCost(C.SKILLS[id],sodan)&&!e.cooldownLeft(sodan,id);
  const soul=['O01','O02','O03','O04','O05','O16'].find(usable),manifest=usable('O08');
- const lamp=(b.honroMarkers||[]).find(m=>m.id?.startsWith('spirit-lamp')&&m.action==='act2'&&!m.collected&&(!m.requiredClass||heroes.some(u=>u.cls===m.requiredClass))&&Math.hypot(spirit.x-m.x,spirit.y-m.y)<=(m.radius||1200));
+ const lamp=(b.honroMarkers||[]).find(m=>useCommon?common.lampAvailable(e,m,spirit,heroes):m.id?.startsWith('spirit-lamp')&&m.action==='act2'&&!m.collected&&(!m.requiredClass||heroes.some(u=>u.cls===m.requiredClass))&&Math.hypot(spirit.x-m.x,spirit.y-m.y)<=(m.radius||1200));
  const soulGuide=soul?`소단의 ${C.SKILLS[soul].name}은 드러나지 않은 혼령도 공격할 수 있습니다.`:'소단의 혼 공격은 드러나지 않은 혼령에게도 유효합니다.';
  const current=G.HonroNarrativeCatalogue.active(b),reply=(current?G.HonroNarrativeCatalogue.data.values:G.HONRO_NARRATIVE_COMPAT.values)['firstSpirit.reply.'+(manifest?'manifest':lamp?'lamp':'neither')];
  const guidance=soulGuide+(manifest?' 현형부를 맞히면 혼령이 드러나 동행의 활과 검도 제대로 닿습니다.':lamp?' 원혼등불에 다가가 밝히면 주변 혼령이 드러나 동행의 활과 검도 제대로 닿습니다.':' 소단을 선택해 혼령을 상대하세요.');
@@ -215,9 +215,9 @@ function firstSpiritEncounter(app,heroes){const e=app.engine,b=e?.b,key='act2:fi
  app.profile.seen[key]=true;
  const meta={storyId:key,storyTitle:'첫 혼령의 기척',sceneTarget:spirit.id,...(!manifest&&lamp?{sceneLamp:lamp.id}:{}),exposureMethod:manifest?'manifest':lamp?'lamp':'soul'};
  const observation=current?G.HonroNarrativeCatalogue.rows('firstSpirit.observation.current'):structuredClone(G.HONRO_NARRATIVE_COMPAT.extras[b.honroNarrativeRevision===1?'firstSpirit.observation.current':'firstSpirit.observation.v0']);
- G.HonroStory.queue(app,[...observation.map(([who,text,cue={}])=>[who,text,{...meta,...cue}]),
+ G.HonroStory.queue(app,(useCommon?common.markLocked:ls=>ls)([...observation.map(([who,text,cue={}])=>[who,text,{...meta,...cue}]),
  ['소단',reply,{...meta,...(current?{rowId:'first-spirit.reply',spiritPart:'reply',portraitExpression:G.HONRO_PORTRAIT_VARIANTS.valueExpressions['firstSpirit.reply.'+(manifest?'manifest':lamp?'lamp':'neither')]}:{})}],
- ['안내',guidance,{...meta,kind:'guide',guideTitle:manifest||lamp?'혼령과 현형':'혼령과 혼 공격',...(current?{rowId:'first-spirit.guide',spiritPart:'guide'}:{})}]]);
+ ['안내',guidance,{...meta,kind:'guide',guideTitle:manifest||lamp?'혼령과 현형':'혼령과 혼 공격',...(current?{rowId:'first-spirit.guide',spiritPart:'guide'}:{})}]],meta.exposureMethod));
  G.HonroStory.save(app);
 }
 function tick(app,dt){const e=app.engine,b=e.b;if(!active(b)||app.dialogue||app.modal?.classList.contains('open')||['won','lost'].includes(b.phase))return;

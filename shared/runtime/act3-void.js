@@ -109,7 +109,7 @@ function beforeManifest(app,m){if(!enabled(app.engine?.b)||m?.id!=='family-manif
  // Guard the document itself as well as the approach. A longer gate shot,
  // a jumping route or Damheo taking the lead may never bypass this event.
  if(blocked(app))return true;const b=app.engine.b,u=hero(b),z=b.honroMap?.act3?.voidEncounter?.trigger||b.honroMap?.act3?.crossings?.at(-1)?.landing,nearManifest=u&&Math.abs(u.y-m.y)<=150&&Math.abs(u.x-m.x)<=520;
- if(!inZone(u,z)&&!nearManifest){app.event?.('설오도 명세가 놓인 심부 석대로 와야 합니다. 이어 둔 길로 합류하세요.');return true;}
+ if(!inZone(u,z)&&!nearManifest){if(G.HonroAct23V4ReviewedCommon?.enabled()&&G.HonroAct23V4?.active(b))G.HonroAct23V4ReviewedCommon.guide(app,'EDGE.RUNTIME.VOID.REJOIN_PROMPT');else app.event?.('설오도 명세가 놓인 심부 석대로 와야 합니다. 이어 둔 길로 합류하세요.');return true;}
  begin(app,'manifest');return true;
 }
 function attach(app,e){if(!enabled(e.b)||e.honroVoidAttached)return;e.honroVoidAttached=true;

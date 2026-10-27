@@ -1,0 +1,114 @@
+{
+  "scope": "common",
+  "status": "Gemini pass1, editorial review, Gemini pass3, parent final text adoption complete; runtime checks separate",
+  "rows": [
+    {
+      "id": "EDGE.SCENES_FIRSTSPIRIT_OBSERVATION_CURRENT_0",
+      "speaker_or_channel": "설오 KEEP_LOCKED",
+      "text": "저기 움직이는 것 보이십니까? 흐릿하게 보입니다.",
+      "review": "KEEP_LOCKED"
+    },
+    {
+      "id": "EDGE.SCENES_FIRSTSPIRIT_OBSERVATION_CURRENT_1",
+      "speaker_or_channel": "휘겸 KEEP_LOCKED",
+      "text": "발소리가 없소. 눈앞에 있는데도.",
+      "review": "KEEP_LOCKED"
+    },
+    {
+      "id": "EDGE.SCENES_FIRSTSPIRIT_OBSERVATION_CURRENT_2",
+      "speaker_or_channel": "소단 KEEP_LOCKED",
+      "text": "아직 떠나지 못한 혼이에요. 제 눈에는 뚜렷하게 보여요.",
+      "review": "KEEP_LOCKED"
+    },
+    {
+      "id": "EDGE.SCENES_FIRSTSPIRIT_OBSERVATION_CURRENT_3",
+      "speaker_or_channel": "설오 KEEP_LOCKED",
+      "text": "저런 건 화살이나 칼이 제대로 먹힙니까?",
+      "review": "KEEP_LOCKED"
+    },
+    {
+      "id": "EDGE.VALUES_FIRSTSPIRIT_REPLY_MANIFEST",
+      "speaker_or_channel": "소단 KEEP_LOCKED",
+      "text": "그대로는 잘 안 먹혀요. 제 힘은 닿지만, 현형부로 모습을 드러내면 그때 치세요.",
+      "review": "KEEP_LOCKED"
+    },
+    {
+      "id": "EDGE.VALUES_FIRSTSPIRIT_REPLY_LAMP",
+      "speaker_or_channel": "소단 KEEP_LOCKED",
+      "text": "그대로는 잘 안 먹혀요. 제 힘은 닿지만, 활과 검으로 치려면 저 원혼등불부터 밝혀야 해요.",
+      "review": "KEEP_LOCKED"
+    },
+    {
+      "id": "EDGE.VALUES_FIRSTSPIRIT_REPLY_NEITHER",
+      "speaker_or_channel": "소단 KEEP_LOCKED",
+      "text": "그대로는 잘 안 먹혀요. 제 힘은 닿으니까 이쪽은 제가 맡을게요.",
+      "review": "KEEP_LOCKED"
+    },
+    {
+      "id": "EDGE.RUNTIME.VOID.REJOIN_PROMPT",
+      "speaker_or_channel": "안내 UI",
+      "text": "설오도 심부 석대로 와야 합니다. 이어 둔 길로 합류하세요.",
+      "review": "KEEP"
+    },
+    {
+      "id": "EDGE.RUNTIME.TEMPLE.GUIDE",
+      "speaker_or_channel": "안내 UI",
+      "text": "제자에게 붙은 혼을 떼어내고 안전한 자리로 옮기세요. 노승의 말을 들은 뒤 뒤편 작업굴로 향하세요.",
+      "review": "KEEP"
+    },
+    {
+      "id": "EDGE.RUNTIME.FIRST_SPIRIT.GUIDE.211",
+      "speaker_or_channel": "안내 UI",
+      "text": "소단의 ${C.SKILLS[soul].name}은 드러나지 않은 혼령도 공격할 수 있습니다.",
+      "review": "KEEP"
+    },
+    {
+      "id": "EDGE.RUNTIME.FIRST_SPIRIT.GUIDE.213",
+      "speaker_or_channel": "안내 UI",
+      "text": "${soulGuide}${manifest 또는 lamp 또는 soul 분기 안내}",
+      "review": "KEEP"
+    }
+  ],
+  "dynamic_variants": [
+    {
+      "id": "EDGE.RUNTIME.FIRST_SPIRIT.GUIDE.211",
+      "when": "usable soul skill exists",
+      "text": "소단의 ${C.SKILLS[soul].name}은 드러나지 않은 혼령도 공격할 수 있습니다."
+    },
+    {
+      "id": "EDGE.RUNTIME.FIRST_SPIRIT.GUIDE.211",
+      "when": "no usable soul skill name",
+      "text": "소단의 혼 공격은 드러나지 않은 혼령에게도 유효합니다."
+    },
+    {
+      "id": "EDGE.RUNTIME.FIRST_SPIRIT.GUIDE.213",
+      "when": "manifest",
+      "text": " 현형부를 맞히면 혼령이 드러나 동행의 활과 검도 제대로 닿습니다."
+    },
+    {
+      "id": "EDGE.RUNTIME.FIRST_SPIRIT.GUIDE.213",
+      "when": "lamp",
+      "text": " 원혼등불에 다가가 밝히면 주변 혼령이 드러나 동행의 활과 검도 제대로 닿습니다."
+    },
+    {
+      "id": "EDGE.RUNTIME.FIRST_SPIRIT.GUIDE.213",
+      "when": "neither",
+      "text": " 소단을 선택해 혼령을 상대하세요."
+    }
+  ],
+  "required_runtime_checks": [
+    "Actual spirit observation and participating speakers recruited/alive/present; keep observation sequence and exactly one appropriate response branch, not all three responses.",
+    "Use existing actual skill/interaction availability logic; never classify manifest skill as inventory item solely because Gemini assumed it.",
+    "Lamp approach instruction may be shown before entering immediate interaction distance if the relevant lamp is genuinely reachable; do not add an immediate-distance prerequisite solely from model speculation.",
+    "Bind skill name safely and use generic fallback when no usable name exists; do not show a concrete currently usable skill that is unavailable.",
+    "Do not instruct selecting Sodan when Sodan is not actually selectable/alive/present.",
+    "VOID rejoin guidance follows actual stage27 pair arrival; TEMPLE guidance follows stage16 real separation/safe movement/testimony."
+  ],
+  "rejected_model_claims": [
+    "Manifest was described by Gemini as a possessed/throwable inventory item without code evidence.",
+    "Lamp instruction was restricted by Gemini to current interaction distance, despite saying approach it.",
+    "Observation line4 was conflated with the one-of-three reply branching rule.",
+    "Gemini code-guard assertions are review questions, not verified code execution."
+  ],
+  "revision": 1
+}
