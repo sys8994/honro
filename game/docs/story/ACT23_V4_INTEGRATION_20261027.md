@@ -28,3 +28,13 @@ Stage5 담당이 수정할 수 있는 `shared/runtime/main.js`는 후속 현장 
 이후 `a8d4ba0bee53fc5f85c9e322f878e69a5d6a41d3`까지 추가 병합했다. 위의26/28–30 미구현 상태는 이 이전 checkpoint의 기록이며, 현재 해당 provider/원고/검사는 포함하되 기본 비활성은 유지한다. [Act3 통합 요구](act3-v4-binding/INTEGRATION.md)의9파일 계약 중 기존6파일 연결은 보존하고 새 문서 span/전용 actor paint,29장 App.retry, 내부 interaction 이유 및30장 context ending 조회를 연결했다. ending 조회는 전역 App 대신 실제 호출의 profile을 넘겨 Act2 엔딩 계약과 독립 검사를 보존한다.
 
 `act23-v4-reviewed26-30`이 실제 구조/NPC 보행·불길12적턴 경계·조기처치/수문·배 두 항차/하선·사공·저널·retry/XP 보존을 통과했다. 이 역시 위치/전투 fixture 검사다. Act3 담당이 명시한 보류3개(29장 실제 창 예고,30장 먼 곽진 이별2행, 채택 본문 없는 COMPAT30)는 완료로 승격하지 않는다. live bark 전달은 별도 공통 후속이다.
+
+## 현재 통합 준비 상태
+
+- 현장 선택 대사: Act2 목표·조작 안내창에 실제 메뉴가 연결돼 있다. 현재 생존/출연/지식/물리 조건을 확인하고 일반 Story cursor와 전투별 once로 저장한다. Act3의 전투 전 대사는 기존 쉼터/preview 가드를 유지한다.
+- 전달 방식: `delivery=bark`는 기존 자막의 비정지 커서로 재생하며 reader를 열지 않는다. queued/표시 행의 생존·관측 검증, 실제 표시 receipt/취소 행 분리, elapsed/index 재개를 구현했다. scene/guide/document는 수동 reader 계약을 유지한다. 이 구현은 뒤에 추가한 `story-barks.js`가 제공하며 과거 Act3 보고서의 수동 bark 상태를 대체한다.
+- 원고: `act23-v4-reviewed-source-all`이665장별+11공통=676 canonical의 ID/본문/조건/전달/원본 행 필드와 alias/retire 계약을 대조한다. 11장의 원본 `speaker_and_condition`도 데이터/씬 metadata에 보존했고12–20의 원본 필드도 씬으로 전달한다. 이 정적 검사는 전체676행의 실제 도달/정상 플레이 수락을 의미하지 않는다.
+- 검증: 일반/전체 opt-in 검수 Game·Workshop 빌드, 실제 Chromium live bark 중 키보드 이동190px·cursor reload/Continue·대상 사망 제거·현장 menu/Enter/390px,26장 실제 단일 문서 span/cursor 검사가 통과했다. 통합된 Act2 감사16/17/18/20/common 집중 재검사도 통과했다. 기존 Act3 장별 focused 검사는 물리/가드 계약이며 새 delivery 경계는 별도 `act23-v4-live-barks` 및 `act23-v4-live-delivery-browser.py`가 검사한다. 모두 fixture·로컬 검증이며 정상 전체 플레이/공개 Pages 검증은 아니다.
+- 공개 상태: 기본 검수 flags/payload는 여전히 비활성이다. production 전환은 아직 하지 않았고, 장별 보류3건 및 부모 최종 QA/통합 승인 상태를 확인한 뒤 별도 최종 빌드/배포한다. 과거15243 exact 문자열 패치는 다시 실행하지 않는다.
+
+실제 공통 충돌 우선 파일은 `main.js`(29 retry 및 field menu 한 곳), `shared/build.mjs`(모듈/명시 flag), `interactions.js`(승인 목표 이유), `story.js`(생존/사망 경계/문서/bark), `rest-journey.js`, `act23-v4-reviewed.js`, `act23-v4.js`, `stake-crossing.js`, `act-endings.js`다. Stage5 담당의 지형·수역·엔진 계산은 이 후속 통합에서 수정하지 않았다. `terrain-domain.js`는 그대로다. master0f19는 여전히 이 브랜치의 공통 선조다.

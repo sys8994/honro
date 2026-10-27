@@ -43,7 +43,7 @@ function lineAllowed(app,who,meta){const id=meta?.rowId;if(!enabled()||!row(id)|
  if(id==='A2.S11.COMPLETE.05')return !!s.proof['11.north']&&closed(q.events.reaction);
  return false;
 }
-function lines(ids,event){return ids.map(id=>{const r=row(id);return[r.speaker,r.text,{rowId:id,reviewedStage:11,reviewedRevision:1,reviewedEvent:event,storyId:'v4.reviewed.11.'+event,storyTitle:G.HONRO_CONTENT.stages[10].name,...(r.channel==='guide'?{kind:'guide'}:r.channel==='arrival'?{kind:'narration'}:{})}];});}
+function lines(ids,event){return ids.map(id=>{const r=row(id);return[r.speaker,r.text,{...clone(r),rowId:id,reviewedStage:11,reviewedRevision:1,reviewedEvent:event,storyId:'v4.reviewed.11.'+event,storyTitle:G.HONRO_CONTENT.stages[10].name,...(r.channel==='guide'?{kind:'guide'}:r.channel==='arrival'?{kind:'narration'}:{})}];});}
 function accepts(app,ls){return rowsReviewed(ls)&&ls.every(l=>!blocked[l[2].rowId])&&ls.some(l=>lineAllowed(app,l[0],l[2]));}
 function begin(app,key,ids,proof={}){const b=app.engine.b,q=memory(b);if(q.events[key])return false;const valid=lines(ids,key).filter(l=>lineAllowed(app,l[0],l[2]));q.events[key]={status:valid.length?'open':'skipped',ids:valid.map(l=>l[2].rowId),proof:clone(proof)};
  for(const l of valid){const target=key==='approach'?(proof.ambient?{x:1000,y:6280}:{actor:proof.ids[0]}):['arrival','low-beast','high-sightline','blocked-shot','cover-guide'].includes(key)?{x:1500,y:6330}:['bell','reaction','gather','depart'].includes(key)?{marker:'11.north'}:null;if(target)l[2].camera={id:l[2].rowId,intent:'situation',targets:[target],padding:110,maxScale:.8};}

@@ -10,7 +10,7 @@ function hide(){const node=host();if(node){node.hidden=true;delete node.dataset.
 function pending(app,stage,key){return !!app.engine?.b.honroState.reviewedBarks?.queue.some(q=>q.session===app.engine.b.session&&q.options.reviewedStage===stage&&q.options.reviewedEvent===key);}
 function finish(app,q){const b=app.engine.b;state(b).queue.shift();hide();G.HonroAct23V4Reviewed.finished(app,{...q.options,lines:q.lines,index:q.lines.length,liveBarkPresented:q.presented,delivery:'bark'});G.HonroStory.save(app);}
 function tick(app,now=performance.now()){const b=app.engine?.b,previous=app.reviewedBarkClock;app.reviewedBarkClock=now;if(!b||app.screen!=='battle'){hide();return;}
- const s=state(b);if(!s.queue.length){hide();return;}
+ const s=b.honroState.reviewedBarks;if(!s?.queue?.length){hide();return;}
  if(app.dialogue||app.modal?.classList.contains('open')||G.document?.hidden||G.HonroAct3Void?.blocked(b)){hide();return;}
  let elapsed=previous===undefined?0:Math.max(0,Math.min(250,now-previous));
  for(let pass=0;pass<100&&s.queue.length;pass++){

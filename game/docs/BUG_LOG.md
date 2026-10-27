@@ -4988,3 +4988,7 @@ commonReviewRevision의 첫 혼령 대기열은 생성 후 소단/sceneTarget가
 ### live bark 완료 이력 보완
 
 일부만 실제 표시한 bark 묶음의 admitted IDs 전체가 후속 목격 이력에 들어가지 않도록 presentedIds와 retiredIds를 구분한다. slot 및 완료 이력은 실제 표시한 ID만 기록하고, 한 번도 표시하지 않은 위험 묶음은 cancelled를 유지한다. 기존 저장은 retiredIds가 있으면 제외하고 없으면 기존 ID를 보존한다. `act23-v4-live-barks`에서 실제 표시01/미표시 사망02/전부 취소 danger의 제어된 outcome 이력을 대조해 통과했다. 실제 물리 완료의 증거로 이 fixture outcome을 사용하지 않는다.
+
+## 2026-10-27 — v4 전체 원고 metadata와 비활성 빌드 경계 점검
+
+전체665장별+11공통 canonical의 ID/본문/원본 조건·전달 필드 및 alias/retire를 대조했다. 11장 runtime 데이터에서 빠졌던 원본 speaker_and_condition을 보존하고11–20장 씬 metadata에도 원본 필드를 전달한다. 본문/사건/실제 지식 가드는 변경하지 않으며 구 cursor는 기존 검증으로 계속 읽는다. `act23-v4-reviewed-source-all`의676행 전체 필드와 normal/PhaseA없음/private전체/30단독21alias payload 검사가 통과했다. 일반 전투에는 빈 bark 상태도 추가하지 않는다. 일반 및 명시적 opt-in 검수 빌드·로컬 Chromium 기본 비활성 Canvas 진입을 확인했다. 원고 일치는 전체 플레이/676행 실제 전달 완료의 증거가 아니며29창 경고/30곽진 이별/본문 없는 COMPAT30 보류는 별도 담당이다. 최종 통합 범위/충돌 파일은 `story/ACT23_V4_INTEGRATION_20261027.md`에 남겼다. master/Pages는 미발행이다.
