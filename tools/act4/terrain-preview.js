@@ -51,6 +51,7 @@ extras.push(asset('boat',[
 function ground(id,line,mat='rock'){return{id,type:'solid',baseMaterial:mat,breakable:false,oneWay:false,points:pts([...line,[line.at(-1)[0],3100],[line[0][0],3100]])};}
 function solid(id,x,y,w,h,mat='rock'){return ground(id,[[x,y+h],[x,y],[x+w,y],[x+w,y+h]],mat);}
 function create(n){
+ if(![31,35,36].includes(n)&&G.HonroAct4CoastMaps)return G.HonroAct4CoastMaps.create(n);
  if(!names[n])throw Error('Act4 review map unavailable: '+n);
  const s=M.emptyStage('act4-preview-'+n,n+' · '+names[n],7200,3100);
  s.metadata={stageId:30,campaign:false,act4Preview:n};s.backdrop=n===31?'river':'forest';
@@ -97,10 +98,10 @@ function launch(n){const app=G.HonroApp,project=create(n),map=project.stages[0];
  const owner=app.profile;app.launchMap(project,map.id,{story:false,profile:{settings:{music:false}}});const b=app.engine.b;
  b.honroAct4Preview=n;b.honroPreviewFar={key:'act4Dawn'};if(G.innerWidth<600)Object.assign(app.scene,{scale:.62,x:450,y:app.engine.active.y-40});
  // Stage30 is an explicit combat fixture, not an authored Act4 growth policy.
- app.stage.name=n+' · '+names[n];app.stage.goal=n===31?'물길과 선착장을 확보하기':n===35?'대숲을 지나 저문골로 가기':'저문골 옛터를 지나기';
+ app.stage.name=n+' · '+names[n];app.stage.goal=G.HONRO_ACT4_PREVIEW_SEEDS?.ui.find(v=>v[0]===`A4.S${n}.OBJECTIVE`)?.[1]||'';b.honroAct4Design=clone(map.design.act4);
  app.engine.checkEnd=()=>false;app.updateHUD(true);const goal=G.document?.getElementById('objective-text');if(goal)goal.textContent=app.stage.goal;
  return{project,b,owner};
 }
 const oldGradient=G.HonroTerrainGradient;G.HonroTerrainGradient=function(c,t,b){if(!b?.honroCustom||!b.honroAct4Preview||t.mat==='wood')return oldGradient(c,t,b);const top=Math.min(...b.terrain.filter(v=>!v.oneWay&&!v.honroElementCollision).map(v=>v.y));const base=t.oneWay?t.y:top;const g=c.createLinearGradient(0,base,0,base+(t.oneWay?160:1900));for(const [at,color]of [[0,'#71888e'],[.10,'#516c77'],[.32,'#3d5662'],[.7,'#243c4b'],[1,'#152a37']])g.addColorStop(at,color);return g;};
-G.HonroAct4TerrainPreview={create,launch,names,revision:1};
+G.HonroAct4TerrainPreview={create,launch,names,revision:1,baseAssets:()=>clone(extras)};
 })(globalThis);

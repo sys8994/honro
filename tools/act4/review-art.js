@@ -159,7 +159,7 @@ function prepare(t){let q=forms.get(t);if(q)return q;const vertices=C.poly(t),sh
  q={shape,top,bands:[band(18,116,.3),band(155,335,1.4),band(395,570,2.2)]};forms.set(t,q);return q;
 }
 function draw(scene,c,t,b){if(!b?.honroCustom||b.honroAct4ArtRevision!==2||t.honroElementCollision)return false;const n=b.honroAct4Preview,p=palettes[n];if(!p||t.mat==='wood')return false;const q=prepare(t),top=Math.min(...b.terrain.filter(v=>!v.oneWay&&!v.honroElementCollision).map(v=>v.y)),g=c.createLinearGradient(0,top,0,top+1900);g.addColorStop(0,p.top);g.addColorStop(.23,p.body);g.addColorStop(1,p.deep);c.save();c.fillStyle=g;c.fill(q.shape);c.clip(q.shape);
- if(q.bands[0]&&n!==31){c.fillStyle=p.light+'70';c.fill(q.bands[0]);}
+ if(q.bands[0]&&n!==31){c.fillStyle=n>31&&![35,36].includes(n)?p.top:p.light+'70';c.fill(q.bands[0]);}
  // Broad interrupted planes belong to the banks and house plots, not three
  // identical stripes across every landscape.
  const patches=n===31?[[0,1860,70,310],[2170,1080,110,400],[3890,930,90,440],[5160,1160,160,350]]:n===35?[[120,1710,100,420],[2130,1100,180,550],[3710,1280,120,370],[5330,1460,90,470]]:[[600,1510,110,330],[2320,1180,190,430],[4010,1530,100,480],[5740,1120,160,390]];
@@ -171,5 +171,5 @@ function draw(scene,c,t,b){if(!b?.honroCustom||b.honroAct4ArtRevision!==2||t.hon
 }
 if(G.HonroScene){const old=G.HonroScene.prototype.terrain;G.HonroScene.prototype.terrain=function(c,t,...args){if(draw(this,c,t,this.battle))return;return old.call(this,c,t,...args);};}
 const createUnit=G.HonroUnits.create;G.HonroUnits.create=function(record,b,...args){const u=createUnit(record,b,...args);if(b.honroCustom&&b.honroAct4Preview===36&&record.stageOverrides?.honroAct4RewardTag==='eq-hw-36'){u.elite=true;u.hp=u.maxHp=Math.round(u.maxHp*1.55);u.attack*=1.15;if(u.combatBaseHp)u.combatBaseHp*=1.55;u.honroAct4EliteTuned=1;}return u;};
-G.HonroAct4ReviewArt={install,revision:2,palettes};
+G.HonroAct4ReviewArt={install,revision:2,palettes,assets:()=>clone(artAssets)};
 })(globalThis);
