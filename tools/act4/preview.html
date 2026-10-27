@@ -1,0 +1,10 @@
+<!doctype html><html lang="ko"><meta charset="utf-8"><title>HONRO Act4 terrain review</title>
+<style>html,body{margin:0;background:#182832;color:#cddbe0;font:14px sans-serif}nav{height:40px;display:flex;align-items:center;gap:14px;padding:0 12px}button{background:#435f6d;color:white;border:0;padding:6px 14px}iframe{border:0;width:100%;height:calc(100vh - 40px)}</style>
+<nav>4막 지형 검수 · 미출시 <button data-stage="31">31 하구</button><button data-stage="35">35 대숲</button><button data-stage="36">36 폐촌</button><span>전투 예산: 기존 30장 · 저장 분리 · 대사 미연결</span></nav>
+<iframe src="../../HONRO.html" title="shared game runtime"></iframe>
+<script>
+const frame=document.querySelector('iframe');let loaded=false;
+async function start(n){const w=frame.contentWindow;await w.HonroCampaignLoader.ensureStage(30);await w.HonroCampaignLoader.ensureStage(21);await w.HonroCampaignLoader.ensureStage(13);if(!loaded){await new Promise((resolve,reject)=>{const s=w.document.createElement('script');s.src='tools/act4/terrain-preview.js';s.onload=resolve;s.onerror=reject;w.document.head.append(s);});loaded=true;}w.HonroAct4TerrainPreview.launch(n);}
+frame.onload=()=>{const timer=setInterval(()=>{if(frame.contentWindow.HonroApp){clearInterval(timer);start(31);}},100);};
+document.querySelectorAll('button').forEach(b=>b.onclick=()=>start(+b.dataset.stage));
+</script></html>

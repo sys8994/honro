@@ -14,7 +14,7 @@ function request(key){
   const image=item.image,cv=document.createElement('canvas'),c=cv.getContext('2d');
   cv.width=Math.min(2048,image.naturalWidth);cv.height=Math.round(cv.width*image.naturalHeight/image.naturalWidth);
   const dark=['bellRear','depotRear'].includes(key),interior=key.endsWith('-interior'),overcast=['townSky','town-river','town-wall','workshop-yard'].includes(key);
-  c.filter=overcast?'none':dark?'saturate(.55) contrast(.65) brightness(.66)':interior?'saturate(.42) contrast(.58) brightness(.68)':'saturate(.50) contrast(.76) brightness(.80)';
+  c.filter=key==='act4Dawn'?'saturate(.48) contrast(.80) brightness(1.10)':overcast?'none':dark?'saturate(.55) contrast(.65) brightness(.66)':interior?'saturate(.42) contrast(.58) brightness(.68)':'saturate(.50) contrast(.76) brightness(.80)';
   c.drawImage(image,0,0,cv.width,cv.height);c.filter='none';
   if(overcast){
    // Preserve the source's irregular cloud/forest/mist separations. The daylight
@@ -28,7 +28,7 @@ function request(key){
  item.image.src=src;return item;
 }
 function layers(scene,w,h,b){
- const spec=manifest?.stages[b?.honroStage];if(!spec)return [];
+ const spec=b?.honroCustom&&b.honroAct4Preview&&b.honroPreviewFar?.key==='act4Dawn'?b.honroPreviewFar:manifest?.stages[b?.honroStage];if(!spec)return [];
  const out=[{key:spec.key,alpha:1}];
  if(spec.enclosed){
   // Camera depth blends whole paintings: no vertical pasted-image seam, and
@@ -56,7 +56,7 @@ S.landmark=function(c,l){
 const worldKey=S._worldCacheKey;
 S._worldCacheKey=function(b,w){return worldKey.call(this,b,w)+([16,17,18,19,25,27].includes(b.honroStage)?':rear-image:'+!!request(keyFor(b.honroStage))?.canvas:'');};
 S.background=function(c,w,h,b){
- if(b?.honroCustom)return previous.call(this,c,w,h,b);
+ if(b?.honroCustom&&!b.honroAct4Preview)return previous.call(this,c,w,h,b);
  const ls=layers(this,w,h,b);if(!ls.length||ls.some(l=>!l.canvas))return previous.call(this,c,w,h,b);
  const raw=G.HonroVisualStyle.raw(c),paint=cc=>{
   for(const l of ls){const f=l.frame;cc.save();
@@ -72,7 +72,7 @@ S.background=function(c,w,h,b){
  // in background(). Keep that pass, omitting only its old sky/flat cave base.
  if([11,13,14,15,16,17,19,20].includes(b.honroStage))G.HonroAct2SpatialArt.background(c,b,this,w,h,true);
  this.environmentStats={...this.environmentStats,groups:this.environmentStats?.groups||0,cachedPaths:this.environmentStats?.cachedPaths||0,visibleAssets:ls.length,backgroundAnimatedPrimitives:0,authoredFar:ls.map(l=>l.key)};
- if([11,13,14,15,16,17,19,20,22,24,25,26,28,29].includes(b.honroStage))G.HonroEnvironmentRenderer.customSpatialScenery(this,c,w,h,b);
+ if(b.honroAct4Preview||[11,13,14,15,16,17,19,20,22,24,25,26,28,29].includes(b.honroStage))G.HonroEnvironmentRenderer.customSpatialScenery(this,c,w,h,b);
 };
 G.HonroAuthoredFarArt={keyFor,manifest,ready:n=>{const s=manifest?.stages[n];return !!s&&[s.key,s.enclosed].filter(Boolean).every(k=>!!request(k)?.canvas);},frames:(scene,w,h,b)=>layers(scene,w,h,b).map(({canvas,...l})=>l),stats:()=>({entries:cache.size,maxEntries:MAX,keys:[...cache.keys()],errors:[...cache.entries()].filter(([,v])=>v.error).map(([k])=>k),canvasBytes:[...cache.values()].reduce((n,v)=>n+(v.canvas?v.canvas.width*v.canvas.height*4:0),0)})};
 })(globalThis);
