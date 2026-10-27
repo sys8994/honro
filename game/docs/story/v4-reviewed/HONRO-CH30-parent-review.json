@@ -1,0 +1,640 @@
+{
+  "stage": 30,
+  "status": "PASS3_CORRECTION_PENDING_NOT_FINAL",
+  "sources": [
+    "HONRO-CH30-PASS1-20261027-response.md",
+    "HONRO_30장_대사검수.txt",
+    "internal_stage30_map.json",
+    "sources/honro-v4-source-extracted.md",
+    "sources/honro-act3-v4-plan.md"
+  ],
+  "pass1": {
+    "actual_response_read": true,
+    "model": "3.5 Flash-Lite",
+    "assessment": "실제1차50KEEP. 제작측은 새문서 청원서/미확정 고향지리/완주후의 미확인형 희망/사공의 직접송출 역할 확장을 최소수정4개로 제안한다. 열셋(아이둘포함)의 현재생사·위치는미확정. 실제선체승객동반이동·하선·곽진회수와둘째호송이 있어야하며유한공격종료후안전사공증언→지도대조→출구순서. 현장대사와쉼터/막엔딩은별도채널로중복재생금지. 옛물류/현재피란민/설오고향열셋은서로다른사건. 후보에동의할의무없으며근거있는KEEP/새오류발견가능."
+  },
+  "input_ids": 50,
+  "decisions": [
+    {
+      "id": "A3.S30.INTRO.01",
+      "speaker": "연실",
+      "decision": "KEEP"
+    },
+    {
+      "id": "A3.S30.INTRO.02",
+      "speaker": "곽진",
+      "decision": "KEEP"
+    },
+    {
+      "id": "A3.S30.INTRO.03",
+      "speaker": "휘겸",
+      "decision": "KEEP"
+    },
+    {
+      "id": "A3.S30.FIRST_BOARD.01",
+      "speaker": "연실",
+      "decision": "KEEP"
+    },
+    {
+      "id": "A3.S30.FIRST_BOARD.02",
+      "speaker": "곽진",
+      "decision": "KEEP",
+      "condition_addition": "곽진 실제 접근·부축/동승 위치에서만; 첫항차 후 실제귀항/도보회수로 둘째무리에 합류."
+    },
+    {
+      "id": "A3.S30.DEPART.01",
+      "speaker": "소단",
+      "decision": "KEEP"
+    },
+    {
+      "id": "A3.S30.RETURN.01",
+      "speaker": "연실",
+      "decision": "KEEP"
+    },
+    {
+      "id": "A3.S30.LAST_DANGER.01",
+      "speaker": "곽진",
+      "decision": "KEEP"
+    },
+    {
+      "id": "A3.S30.LAST_DANGER.02",
+      "speaker": "설오",
+      "decision": "KEEP"
+    },
+    {
+      "id": "A3.S30.SAFE.01",
+      "speaker": "곽진",
+      "decision": "KEEP",
+      "condition_addition": "두 항차 전원 실제하선·안전도달+예정된 유한공격해소+승선로안전."
+    },
+    {
+      "id": "A3.S30.SAFE.02",
+      "speaker": "연실",
+      "decision": "KEEP"
+    },
+    {
+      "id": "A3.S30.THIRTEEN.01",
+      "speaker": "설오",
+      "decision": "KEEP"
+    },
+    {
+      "id": "A3.S30.THIRTEEN.02",
+      "speaker": "연실",
+      "decision": "KEEP"
+    },
+    {
+      "id": "A3.S30.THIRTEEN.03",
+      "speaker": "나루 사공",
+      "decision": "KEEP",
+      "condition_addition": "실제구조한 현재 나루사공이 안전 후 증언; 홍만 재등장 아님. 아이둘 포함열셋의 과거하구행만,현재생사/위치 미확정."
+    },
+    {
+      "id": "A3.S30.THIRTEEN.04",
+      "speaker": "설오",
+      "decision": "KEEP"
+    },
+    {
+      "id": "A3.S30.ROUTE.01",
+      "speaker": "휘겸",
+      "decision": "KEEP"
+    },
+    {
+      "id": "A3.S30.ROUTE.02",
+      "speaker": "담허",
+      "decision": "KEEP"
+    },
+    {
+      "id": "A3.S30.ENDING.01",
+      "speaker": "휘겸",
+      "decision": "KEEP"
+    },
+    {
+      "id": "A3.S30.ENDING.02",
+      "speaker": "곽진",
+      "decision": "KEEP"
+    },
+    {
+      "id": "A3.S30.ENDING.03",
+      "speaker": "설오",
+      "decision": "KEEP"
+    },
+    {
+      "id": "A3.S30.OBJ.01",
+      "speaker": "objective_texts",
+      "decision": "KEEP"
+    },
+    {
+      "id": "A3.S30.OBJ.02",
+      "speaker": "objective_texts",
+      "decision": "KEEP",
+      "condition_addition": "progress는 실제 하선+안전영역 도달 인원만. 승선/타이머경과만으로 증가 금지."
+    },
+    {
+      "id": "A3.S30.OBJ.03",
+      "speaker": "objective_texts",
+      "decision": "KEEP"
+    },
+    {
+      "id": "A3.S30.OBJ.04",
+      "speaker": "objective_texts",
+      "decision": "KEEP"
+    },
+    {
+      "id": "A3.S30.JOURNAL.01",
+      "speaker": "journal_entries",
+      "decision": "CHANGE",
+      "old": "연실의 배와 곽진의 호송으로 피란민들이 안전지대에 도착했다. 나루 사공은 아이 둘을 포함한 열셋을 서쪽 하구로 보냈다고 말했다. 그 뒤의 소식과 현재 생사는 알지 못한다. 옛 이송도도 이 물길에서 저문골 옛길로 이어진다. 다음 행선지는 서해안 하구다.",
+      "candidate": "연실의 배와 곽진의 호송으로 피란민들이 안전지대에 도착했다. 나루 사공은 아이 둘을 포함한 열셋이 서쪽 하구로 갔다고 말했다. 그 뒤의 소식과 현재 생사는 알지 못한다. 옛 이송도도 이 물길에서 저문골 옛길로 이어진다. 다음 행선지는 서해안 하구다.",
+      "reason": "사공 대사는 과거 행선지 증언이므로 자신이 직접 보냈다는 역할까지 저널에서 확장하지 않음."
+    },
+    {
+      "id": "A3.S30.GUIDE.01",
+      "speaker": "guide_texts",
+      "decision": "KEEP"
+    },
+    {
+      "id": "A3.S30.GUIDE.02",
+      "speaker": "guide_texts",
+      "decision": "KEEP"
+    },
+    {
+      "id": "EDGE.ARRIVALS_30_0",
+      "speaker": "서술",
+      "decision": "KEEP"
+    },
+    {
+      "id": "EDGE.OPTIONAL_30_ARCHER_0",
+      "speaker": "설오",
+      "decision": "KEEP"
+    },
+    {
+      "id": "EDGE.OPTIONAL_30_ARCHER_1",
+      "speaker": "소단",
+      "decision": "KEEP"
+    },
+    {
+      "id": "EDGE.OPTIONAL_30_ARCHER_2",
+      "speaker": "설오",
+      "decision": "KEEP"
+    },
+    {
+      "id": "EDGE.OPTIONAL_30_MAGE_0",
+      "speaker": "담허",
+      "decision": "KEEP",
+      "condition_addition": "29장 실제잔영 목격+담허생존. 구판클리어만으로 신판목격을 부여하지 않음."
+    },
+    {
+      "id": "EDGE.OPTIONAL_30_KNIGHT_0",
+      "speaker": "휘겸",
+      "decision": "CHANGE",
+      "old": "선조의 청원서와 작위를 거둔 처분문을 챙겼소. 물이 들지 않게 묶겠소.",
+      "candidate": "선조의 증언과 작위를 거둔 처분문을 챙겼소. 물이 들지 않게 묶겠소.",
+      "reason": "26장 조사증언/28장 처분문은 확보했지만 별도 청원서는 확인되지 않아 기존문서명으로 정합화."
+    },
+    {
+      "id": "EDGE.OPTIONAL_30_KNIGHT_1",
+      "speaker": "담허",
+      "decision": "KEEP"
+    },
+    {
+      "id": "EDGE.OPTIONAL_30_OCCULTIST_0",
+      "speaker": "소단",
+      "decision": "KEEP"
+    },
+    {
+      "id": "EDGE.RESTENDINGS_30_REQUIRED_0",
+      "speaker": "설오",
+      "decision": "KEEP",
+      "condition_addition": "실제배호송완주+사공증언+경로확인후 막종료쉼터. 현장이별대사 재생금지. 구판완료자는 COMPAT30별도."
+    },
+    {
+      "id": "EDGE.RESTENDINGS_30_OPTIONAL_ARCHER_0",
+      "speaker": "설오",
+      "decision": "CHANGE",
+      "old": "옛길이 제 고향 곁을 지납니다. 하구에 가면 소식을 더 들을 수 있겠지요.",
+      "candidate": "하구에 가면 그분들의 소식을 더 들을 수 있겠지요.",
+      "reason": "옛길이 설오고향 곁이라는 지리관계는 이 원고에서 확정되지 않아 확인된 하구 탐문 의도만 보존."
+    },
+    {
+      "id": "EDGE.RESTENDINGS_30_OPTIONAL_MAGE_0",
+      "speaker": "담허",
+      "decision": "KEEP"
+    },
+    {
+      "id": "EDGE.RESTENDINGS_30_OPTIONAL_KNIGHT_0",
+      "speaker": "휘겸",
+      "decision": "KEEP"
+    },
+    {
+      "id": "EDGE.RESTENDINGS_30_OPTIONAL_OCCULTIST_0",
+      "speaker": "소단",
+      "decision": "CHANGE",
+      "old": "배 소리가 멀어졌어요. 다들 물에 젖지 않고 건넜으면 좋겠어요.",
+      "candidate": "배 소리가 멀어졌어요. 다들 무사히 건너서 다행이에요.",
+      "reason": "실제 전원하선·안전도달 후 쉼터이므로 아직 건넜는지 모르는 희망형을 완료확인과 맞춤.",
+      "condition_addition": "실제 전원 안전도달과 배이동 목격 후만; 구판완료자에 신판구조기억 부여금지."
+    },
+    {
+      "id": "EDGE.ROUTES_30_VARIANTS_A_LINES_0",
+      "speaker": "휘겸",
+      "decision": "KEEP",
+      "condition_addition": "실제29장 A handoff fresh진입일 때만;B와중복재생금지."
+    },
+    {
+      "id": "EDGE.ROUTES_30_VARIANTS_B_LINES_0",
+      "speaker": "설오",
+      "decision": "KEEP",
+      "condition_addition": "실제29장 B handoff fresh진입일 때만;A와중복재생금지."
+    },
+    {
+      "id": "EDGE.ACTENDINGS_30_LINES_0",
+      "speaker": "서술",
+      "decision": "KEEP"
+    },
+    {
+      "id": "EDGE.ACTENDINGS_30_LINES_1",
+      "speaker": "서술",
+      "decision": "KEEP"
+    },
+    {
+      "id": "EDGE.ACTENDINGS_30_LINES_2",
+      "speaker": "서술",
+      "decision": "CHANGE",
+      "condition_addition": "한태록 실제처치/수문회수/진목잔영 실제목격 후. 현묵의 행방·새술법/정체문답 없음. 구판COMPAT별도.",
+      "old": "한태록의 군기가 꺾인 수문 뒤에는 현묵이 남긴 진목이 있었다. 짧은 잔영만으로는 그의 행방을 알 수 없었다.",
+      "candidate": "한태록이 지키던 수문 뒤에는 현묵이 남긴 진목이 있었다. 짧은 잔영만으로는 그의 행방을 알 수 없었다.",
+      "reason": "부모의29장조기처치분기 일관성 보완: 군기꺾임 미목격 때도 공통성공서술이 성립하도록 물리연출을 단정하지 않음."
+    },
+    {
+      "id": "EDGE.ACTENDINGS_30_LINES_3",
+      "speaker": "서술",
+      "decision": "KEEP"
+    },
+    {
+      "id": "EDGE.ENDINGPLACE_RESTDESCRIPTION",
+      "speaker": "서술",
+      "decision": "KEEP"
+    },
+    {
+      "id": "EDGE.ENDINGPLACE_ENDINGTITLE",
+      "speaker": "서술",
+      "decision": "KEEP"
+    },
+    {
+      "id": "EDGE.ENDINGPLACE_NEXTTEXT",
+      "speaker": "서술",
+      "decision": "KEEP"
+    },
+    {
+      "id": "EDGE.RUNTIME.JOURNAL.EVIDENCE30.ROUTE",
+      "speaker": "서술",
+      "decision": "KEEP",
+      "condition_addition": "옛물류도와19장 이송표식/28장 책임기록 실제대조 후. 시신·금속→무명사, 묵종→잠운사 구분. 열셋의 이동을 여든해전 이송과 혼동하지 않음."
+    }
+  ],
+  "alias_review": [
+    {
+      "id": "A3.S30.ROUTE_A.01",
+      "status": "ALTERNATIVE_NOT_REPLAYED",
+      "canonical_ids": [
+        "EDGE.ROUTES_30_VARIANTS_A_LINES_0",
+        "EDGE.ROUTES_30_VARIANTS_B_LINES_0"
+      ],
+      "text_identity": "비활성/대체/호환 계약 보존; 본문동일 alias로 자동 통합 금지",
+      "guard_requirement": {
+        "event": "route_entry_A",
+        "condition": "29장 높은 수문길 route A handoff 일치"
+      },
+      "runtime_verification": "PENDING"
+    },
+    {
+      "id": "A3.S30.ROUTE_B.01",
+      "status": "ALTERNATIVE_NOT_REPLAYED",
+      "canonical_ids": [
+        "EDGE.ROUTES_30_VARIANTS_A_LINES_0",
+        "EDGE.ROUTES_30_VARIANTS_B_LINES_0"
+      ],
+      "text_identity": "비활성/대체/호환 계약 보존; 본문동일 alias로 자동 통합 금지",
+      "guard_requirement": {
+        "event": "route_entry_B",
+        "condition": "29장 아래 점검다리 route B handoff 일치"
+      },
+      "runtime_verification": "PENDING"
+    },
+    {
+      "id": "A3.S30.REST_ARCHER.01",
+      "status": "ALTERNATIVE_NOT_REPLAYED",
+      "canonical_ids": [
+        "EDGE.OPTIONAL_30_ARCHER_0",
+        "EDGE.OPTIONAL_30_ARCHER_1",
+        "EDGE.OPTIONAL_30_ARCHER_2"
+      ],
+      "text_identity": "비활성/대체/호환 계약 보존; 본문동일 alias로 자동 통합 금지",
+      "guard_requirement": {
+        "event": "rest_optional_archer",
+        "condition": "30장 전투 진입 전 허용된 쉼터에서 해당 동행을 선택; 동행 recruited+alive; split 무휴식에는 실행 금지"
+      },
+      "runtime_verification": "PENDING"
+    },
+    {
+      "id": "A3.S30.REST_MAGE.01",
+      "status": "ALTERNATIVE_NOT_REPLAYED",
+      "canonical_ids": [
+        "EDGE.OPTIONAL_30_MAGE_0"
+      ],
+      "text_identity": "비활성/대체/호환 계약 보존; 본문동일 alias로 자동 통합 금지",
+      "guard_requirement": {
+        "event": "rest_optional_mage",
+        "condition": "30장 전투 진입 전 허용된 쉼터에서 해당 동행을 선택; 동행 recruited+alive; split 무휴식에는 실행 금지"
+      },
+      "runtime_verification": "PENDING"
+    },
+    {
+      "id": "A3.S30.REST_KNIGHT.01",
+      "status": "ALTERNATIVE_NOT_REPLAYED",
+      "canonical_ids": [
+        "EDGE.OPTIONAL_30_KNIGHT_0",
+        "EDGE.OPTIONAL_30_KNIGHT_1"
+      ],
+      "text_identity": "비활성/대체/호환 계약 보존; 본문동일 alias로 자동 통합 금지",
+      "guard_requirement": {
+        "event": "rest_optional_knight",
+        "condition": "30장 전투 진입 전 허용된 쉼터에서 해당 동행을 선택; 동행 recruited+alive; split 무휴식에는 실행 금지"
+      },
+      "runtime_verification": "PENDING"
+    },
+    {
+      "id": "A3.S30.REST_OCCULTIST.01",
+      "status": "ALTERNATIVE_NOT_REPLAYED",
+      "canonical_ids": [
+        "EDGE.OPTIONAL_30_OCCULTIST_0"
+      ],
+      "text_identity": "비활성/대체/호환 계약 보존; 본문동일 alias로 자동 통합 금지",
+      "guard_requirement": {
+        "event": "rest_optional_occultist",
+        "condition": "30장 전투 진입 전 허용된 쉼터에서 해당 동행을 선택; 동행 recruited+alive; split 무휴식에는 실행 금지"
+      },
+      "runtime_verification": "PENDING"
+    },
+    {
+      "id": "A3.S30.REST_END.01",
+      "status": "ALTERNATIVE_NOT_REPLAYED",
+      "canonical_ids": [
+        "EDGE.RESTENDINGS_30_REQUIRED_0",
+        "EDGE.RESTENDINGS_30_OPTIONAL_ARCHER_0",
+        "EDGE.RESTENDINGS_30_OPTIONAL_MAGE_0",
+        "EDGE.RESTENDINGS_30_OPTIONAL_KNIGHT_0",
+        "EDGE.RESTENDINGS_30_OPTIONAL_OCCULTIST_0",
+        "EDGE.ACTENDINGS_30_LINES_0",
+        "EDGE.ACTENDINGS_30_LINES_1",
+        "EDGE.ACTENDINGS_30_LINES_2",
+        "EDGE.ACTENDINGS_30_LINES_3"
+      ],
+      "text_identity": "비활성/대체/호환 계약 보존; 본문동일 alias로 자동 통합 금지",
+      "guard_requirement": {
+        "event": "act3_rest_required",
+        "condition": "30장 완료 후 기존 막 종료 쉼터의 required 1회; 엔딩 앞뒤 순서는 runtime 보존"
+      },
+      "runtime_verification": "PENDING"
+    },
+    {
+      "id": "A3.S30.REST_END_ARCHER.01",
+      "status": "ALTERNATIVE_NOT_REPLAYED",
+      "canonical_ids": [
+        "EDGE.RESTENDINGS_30_REQUIRED_0",
+        "EDGE.RESTENDINGS_30_OPTIONAL_ARCHER_0",
+        "EDGE.RESTENDINGS_30_OPTIONAL_MAGE_0",
+        "EDGE.RESTENDINGS_30_OPTIONAL_KNIGHT_0",
+        "EDGE.RESTENDINGS_30_OPTIONAL_OCCULTIST_0",
+        "EDGE.ACTENDINGS_30_LINES_0",
+        "EDGE.ACTENDINGS_30_LINES_1",
+        "EDGE.ACTENDINGS_30_LINES_2",
+        "EDGE.ACTENDINGS_30_LINES_3"
+      ],
+      "text_identity": "비활성/대체/호환 계약 보존; 본문동일 alias로 자동 통합 금지",
+      "guard_requirement": {
+        "event": "act3_rest_optional_archer",
+        "condition": "30장 완료 후 막 종료 쉼터에서 해당 동행 선택; 실제 호송 성공"
+      },
+      "runtime_verification": "PENDING"
+    },
+    {
+      "id": "A3.S30.REST_END_MAGE.01",
+      "status": "ALTERNATIVE_NOT_REPLAYED",
+      "canonical_ids": [
+        "EDGE.RESTENDINGS_30_REQUIRED_0",
+        "EDGE.RESTENDINGS_30_OPTIONAL_ARCHER_0",
+        "EDGE.RESTENDINGS_30_OPTIONAL_MAGE_0",
+        "EDGE.RESTENDINGS_30_OPTIONAL_KNIGHT_0",
+        "EDGE.RESTENDINGS_30_OPTIONAL_OCCULTIST_0",
+        "EDGE.ACTENDINGS_30_LINES_0",
+        "EDGE.ACTENDINGS_30_LINES_1",
+        "EDGE.ACTENDINGS_30_LINES_2",
+        "EDGE.ACTENDINGS_30_LINES_3"
+      ],
+      "text_identity": "비활성/대체/호환 계약 보존; 본문동일 alias로 자동 통합 금지",
+      "guard_requirement": {
+        "event": "act3_rest_optional_mage",
+        "condition": "30장 완료 후 막 종료 쉼터에서 해당 동행 선택; 실제 호송 성공"
+      },
+      "runtime_verification": "PENDING"
+    },
+    {
+      "id": "A3.S30.REST_END_KNIGHT.01",
+      "status": "ALTERNATIVE_NOT_REPLAYED",
+      "canonical_ids": [
+        "EDGE.RESTENDINGS_30_REQUIRED_0",
+        "EDGE.RESTENDINGS_30_OPTIONAL_ARCHER_0",
+        "EDGE.RESTENDINGS_30_OPTIONAL_MAGE_0",
+        "EDGE.RESTENDINGS_30_OPTIONAL_KNIGHT_0",
+        "EDGE.RESTENDINGS_30_OPTIONAL_OCCULTIST_0",
+        "EDGE.ACTENDINGS_30_LINES_0",
+        "EDGE.ACTENDINGS_30_LINES_1",
+        "EDGE.ACTENDINGS_30_LINES_2",
+        "EDGE.ACTENDINGS_30_LINES_3"
+      ],
+      "text_identity": "비활성/대체/호환 계약 보존; 본문동일 alias로 자동 통합 금지",
+      "guard_requirement": {
+        "event": "act3_rest_optional_knight",
+        "condition": "30장 완료 후 막 종료 쉼터에서 해당 동행 선택; 실제 호송 성공"
+      },
+      "runtime_verification": "PENDING"
+    },
+    {
+      "id": "A3.S30.REST_END_OCCULTIST.01",
+      "status": "ALTERNATIVE_NOT_REPLAYED",
+      "canonical_ids": [
+        "EDGE.RESTENDINGS_30_REQUIRED_0",
+        "EDGE.RESTENDINGS_30_OPTIONAL_ARCHER_0",
+        "EDGE.RESTENDINGS_30_OPTIONAL_MAGE_0",
+        "EDGE.RESTENDINGS_30_OPTIONAL_KNIGHT_0",
+        "EDGE.RESTENDINGS_30_OPTIONAL_OCCULTIST_0",
+        "EDGE.ACTENDINGS_30_LINES_0",
+        "EDGE.ACTENDINGS_30_LINES_1",
+        "EDGE.ACTENDINGS_30_LINES_2",
+        "EDGE.ACTENDINGS_30_LINES_3"
+      ],
+      "text_identity": "비활성/대체/호환 계약 보존; 본문동일 alias로 자동 통합 금지",
+      "guard_requirement": {
+        "event": "act3_rest_optional_occultist",
+        "condition": "30장 완료 후 막 종료 쉼터에서 해당 동행 선택; 실제 호송 성공"
+      },
+      "runtime_verification": "PENDING"
+    },
+    {
+      "id": "EDGE.OPTIONAL_30_OCCULTIST_1",
+      "status": "RETIRED",
+      "canonical_ids": [],
+      "text_identity": "비활성/대체/호환 계약 보존; 본문동일 alias로 자동 통합 금지",
+      "guard_requirement": {
+        "event": "optional companion click; recruited + stage unlocked + first conversation stage; debug scoped preview allowed",
+        "guards": {
+          "optional": true
+        }
+      },
+      "runtime_verification": "PENDING"
+    },
+    {
+      "id": "EDGE.OPTIONAL_30_OCCULTIST_2",
+      "status": "RETIRED",
+      "canonical_ids": [],
+      "text_identity": "비활성/대체/호환 계약 보존; 본문동일 alias로 자동 통합 금지",
+      "guard_requirement": {
+        "event": "optional companion click; recruited + stage unlocked + first conversation stage; debug scoped preview allowed",
+        "guards": {
+          "optional": true
+        }
+      },
+      "runtime_verification": "PENDING"
+    },
+    {
+      "id": "EDGE.PLACES_29_RESTDESCRIPTION",
+      "status": "IDENTICAL_TEXT_ALIAS",
+      "canonical_ids": [
+        "EDGE.ARRIVALS_30_0"
+      ],
+      "text_identity": "canonical 본문과 동일; 가드는 별개",
+      "guard_requirement": {
+        "event": "장소 설명 UI; actual stageId=30",
+        "guards": {}
+      },
+      "runtime_verification": "PENDING"
+    },
+    {
+      "id": "COMPAT.30.REST",
+      "status": "LEGACY_ONLY",
+      "canonical_ids": [],
+      "text_identity": "비활성/대체/호환 계약 보존; 본문동일 alias로 자동 통합 금지",
+      "guard_requirement": {
+        "event": "restEndings.30.required.0 선택 대체",
+        "guards": {
+          "narrative_condition": "구판30 완료; 실제 배호송 완료 증거 없음"
+        },
+        "implementation_guard": "needs_mapping NM.COMPAT_PROVENANCE"
+      },
+      "runtime_verification": "PENDING"
+    },
+    {
+      "id": "COMPAT.30.ENDING.01",
+      "status": "LEGACY_ONLY",
+      "canonical_ids": [],
+      "text_identity": "비활성/대체/호환 계약 보존; 본문동일 alias로 자동 통합 금지",
+      "guard_requirement": {
+        "event": "actEndings.30.lines.0 선택 대체",
+        "guards": {
+          "narrative_condition": "구판30 완료; 한태록/배호송 신판 증거 없음"
+        },
+        "implementation_guard": "needs_mapping NM.COMPAT_PROVENANCE"
+      },
+      "runtime_verification": "PENDING"
+    },
+    {
+      "id": "COMPAT.30.ENDING.03",
+      "status": "LEGACY_ONLY",
+      "canonical_ids": [],
+      "text_identity": "비활성/대체/호환 계약 보존; 본문동일 alias로 자동 통합 금지",
+      "guard_requirement": {
+        "event": "actEndings.30.lines.2 선택 대체",
+        "guards": {
+          "narrative_condition": "구판30 완료; 현묵 잔영 신판 증거 없음"
+        },
+        "implementation_guard": "needs_mapping NM.COMPAT_PROVENANCE"
+      },
+      "runtime_verification": "PENDING"
+    },
+    {
+      "id": "EDGE.RUNTIME.FERRY.WARNING",
+      "status": "LEGACY_DEVICE_ONLY",
+      "canonical_ids": [],
+      "text_identity": "비활성/대체/호환 계약 보존; 본문동일 alias로 자동 통합 금지",
+      "guard_requirement": {
+        "event": "shared/runtime/stage30-ferry.js:63",
+        "source": null,
+        "old_goal_id": "ferry-hold",
+        "verified_old_state": "m.status='warned'; warningEnemyEnd/ActorSerial/Round 기록, offered={}, playerOpportunity=null",
+        "guards": {
+          "legacy_contract_only": true,
+          "fresh_v4_default_disabled": true
+        },
+        "needs_mapping": "NM.MOTION_TEXT_LEGACY_ONLY"
+      },
+      "runtime_verification": "PENDING"
+    },
+    {
+      "id": "EDGE.RUNTIME.FERRY.SETTLED",
+      "status": "LEGACY_DEVICE_ONLY",
+      "canonical_ids": [],
+      "text_identity": "비활성/대체/호환 계약 보존; 본문동일 alias로 자동 통합 금지",
+      "guard_requirement": {
+        "event": "shared/runtime/stage30-ferry.js:55",
+        "source": "ferry-settled",
+        "old_goal_id": "ferry-hold",
+        "verified_old_state": "commit(): m.status='settled'; commitCount=1; finalShapeVersion=1; terrain enable/disable을 원자 반영",
+        "guards": {
+          "legacy_contract_only": true,
+          "fresh_v4_default_disabled": true
+        },
+        "needs_mapping": "NM.MOTION_TEXT_LEGACY_ONLY"
+      },
+      "runtime_verification": "PENDING"
+    },
+    {
+      "id": "EDGE.FAILURE_GUARD.S30",
+      "status": "IDENTICAL_TEXT_ALIAS",
+      "canonical_ids": [
+        "EDGE.FAILURE_GUARD.S21"
+      ],
+      "text_identity": "canonical 본문과 동일; 가드는 별개",
+      "guard_requirement": {
+        "event": "해당 장의 실제 실패",
+        "guards": {
+          "speaker_actual_living_present_required": true,
+          "required_actual_speaker": "휘겸"
+        },
+        "v4_constraints": [
+          "휘겸가 실제 출연·생존할 때만. 사망/부재/전멸이면 음성 없이 owner 실패 UI만.",
+          "27 검은 공간 연출 낙하에는 일반 실패를 재생하지 않음."
+        ]
+      },
+      "runtime_verification": "PENDING"
+    }
+  ],
+  "open_questions": [],
+  "coverage": {
+    "canonical_decisions": 50,
+    "unique_ids": 50,
+    "changes": 5,
+    "keep": 45,
+    "runtime_guard_verification": "PENDING"
+  },
+  "parent_approval": "기존4수정 승인+ACTENDINGS30_LINES2 군기미관측분기 보완 승인;50개 PASS3전송허용",
+  "pass3_assessment": {
+    "response_read": true,
+    "claimed_ids": 50,
+    "valid_target_text_coverage": 49,
+    "invalid_id": "EDGE.OPTIONAL_30_OCCULTIST_0",
+    "error": "전투 전 실제문구를 쉼터 RESTENDINGS 문구로 잘못 인용한 오대상 CHANGE. 폐기. 총평CHANGE5와 개별CHANGE6도 불일치.",
+    "remaining": "부모승인된2개ID 보완검수 진행 대기",
+    "other_49": "부모가추가변경없이수용; 전체최종확정아님"
+  }
+}

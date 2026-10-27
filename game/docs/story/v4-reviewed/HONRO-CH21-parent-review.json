@@ -1,0 +1,249 @@
+{
+  "stage": 21,
+  "status": "PASS2_DRAFT_AWAITING_PARENT_APPROVAL_AND_GEMINI_PASS3",
+  "sources": [
+    "HONRO-CH21-PASS1-20261027-response.md",
+    "HONRO_21장_대사검수.txt",
+    "internal_stage21_map.json",
+    "sources/honro-v4-source-extracted.md III 3-1",
+    "sources/honro-act3-v4-plan.md 21장"
+  ],
+  "pass1": {
+    "actual_response_read": true,
+    "model": "3.5 Flash-Lite",
+    "claimed_keep": 30,
+    "coverage": 30,
+    "assessment": "ID coverage 일치. 성문 안/밖 구조 방향 충돌을 놓쳤으므로 전원 KEEP 결론을 부분 기각."
+  },
+  "input_ids": 30,
+  "decisions": [
+    {
+      "id": "A3.S21.INTRO.01",
+      "speaker": "곽진",
+      "decision": "KEEP"
+    },
+    {
+      "id": "A3.S21.INTRO.02",
+      "speaker": "휘겸",
+      "decision": "KEEP"
+    },
+    {
+      "id": "A3.S21.INTRO.03",
+      "speaker": "곽진",
+      "decision": "KEEP"
+    },
+    {
+      "id": "A3.S21.INTRO.04",
+      "speaker": "설오",
+      "decision": "KEEP"
+    },
+    {
+      "id": "A3.S21.CART_STOP.01",
+      "speaker": "곽진",
+      "decision": "KEEP"
+    },
+    {
+      "id": "A3.S21.CART_STOP.02",
+      "speaker": "소단",
+      "decision": "KEEP",
+      "condition_addition": "갑주/혼이 실제 주민 방향으로 돌아서는 행동이 확인된 경우만; 위험 해소 후 pending 폐기"
+    },
+    {
+      "id": "A3.S21.CIVILIAN_DANGER.01",
+      "speaker": "휘겸",
+      "decision": "KEEP"
+    },
+    {
+      "id": "A3.S21.CIVILIAN_DANGER.02",
+      "speaker": "설오",
+      "decision": "KEEP"
+    },
+    {
+      "id": "A3.S21.LAST_ESCORT.01",
+      "speaker": "곽진",
+      "decision": "KEEP"
+    },
+    {
+      "id": "A3.S21.CLEAR.01",
+      "speaker": "휘겸",
+      "decision": "KEEP"
+    },
+    {
+      "id": "A3.S21.CLEAR.02",
+      "speaker": "곽진",
+      "decision": "KEEP"
+    },
+    {
+      "id": "A3.S21.CLEAR.03",
+      "speaker": "설오",
+      "decision": "KEEP",
+      "condition_addition": "옛 빈 갑주를 실제 식별 가능한 상태; 현재 죽은 수비병의 갑주와 구분"
+    },
+    {
+      "id": "A3.S21.CLEAR.04",
+      "speaker": "휘겸",
+      "decision": "KEEP"
+    },
+    {
+      "id": "A3.S21.CLEAR.05",
+      "speaker": "곽진",
+      "decision": "KEEP"
+    },
+    {
+      "id": "A3.S21.CLEAR.06",
+      "speaker": "담허",
+      "decision": "KEEP"
+    },
+    {
+      "id": "A3.S21.EXIT.01",
+      "speaker": "곽진",
+      "decision": "KEEP"
+    },
+    {
+      "id": "A3.S21.EXIT.02",
+      "speaker": "휘겸",
+      "decision": "KEEP"
+    },
+    {
+      "id": "A3.S21.OBJ.01",
+      "speaker": "objective_texts",
+      "decision": "KEEP"
+    },
+    {
+      "id": "A3.S21.OBJ.02",
+      "speaker": "objective_texts",
+      "decision": "KEEP"
+    },
+    {
+      "id": "A3.S21.OBJ.03",
+      "speaker": "objective_texts",
+      "decision": "KEEP"
+    },
+    {
+      "id": "A3.S21.JOURNAL.01",
+      "speaker": "journal_entries",
+      "decision": "KEEP"
+    },
+    {
+      "id": "A3.S21.GUIDE.01",
+      "speaker": "guide_texts",
+      "decision": "KEEP"
+    },
+    {
+      "id": "EDGE.ARRIVALS_21_0",
+      "speaker": "서술",
+      "decision": "KEEP"
+    },
+    {
+      "id": "EDGE.OPTIONAL_21_ARCHER_0",
+      "speaker": "설오",
+      "decision": "KEEP",
+      "condition_addition": "전투 진입 전 허용 쉼터의 구조 전 상황에서만; 실제 현장 관찰 가능하고 각 행 화자 recruited+alive+present; 구조 완료 뒤 재생 금지"
+    },
+    {
+      "id": "EDGE.OPTIONAL_21_ARCHER_1",
+      "speaker": "휘겸",
+      "decision": "CHANGE",
+      "old": "성안 주민들도 미처 못 빠져나오고 있소. 성문 앞길부터 뚫읍시다.",
+      "candidate": "성문 앞에 주민들이 갇혀 있소. 성문 안으로 갈 길부터 뚫읍시다.",
+      "reason": "성안에서 밖으로 탈출하는 방향을 본편의 성문 안 안전영역 구조와 맞춤.",
+      "condition_addition": "전투 진입 전 허용 쉼터의 구조 전 상황에서만; 실제 현장 관찰 가능하고 각 행 화자 recruited+alive+present; 구조 완료 뒤 재생 금지"
+    },
+    {
+      "id": "EDGE.OPTIONAL_21_ARCHER_2",
+      "speaker": "설오",
+      "decision": "KEEP",
+      "condition_addition": "전투 진입 전 허용 쉼터의 구조 전 상황에서만; 실제 현장 관찰 가능하고 각 행 화자 recruited+alive+present; 구조 완료 뒤 재생 금지"
+    },
+    {
+      "id": "EDGE.OPTIONAL_21_MAGE_0",
+      "speaker": "담허",
+      "decision": "KEEP",
+      "condition_addition": "전투 진입 전 허용 쉼터의 구조 전 상황에서만; 실제 현장 관찰 가능하고 각 행 화자 recruited+alive+present; 구조 완료 뒤 재생 금지"
+    },
+    {
+      "id": "EDGE.OPTIONAL_21_KNIGHT_0",
+      "speaker": "휘겸",
+      "decision": "KEEP",
+      "condition_addition": "전투 진입 전 허용 쉼터의 구조 전 상황에서만; 실제 현장 관찰 가능하고 각 행 화자 recruited+alive+present; 구조 완료 뒤 재생 금지"
+    },
+    {
+      "id": "EDGE.OPTIONAL_21_OCCULTIST_0",
+      "speaker": "소단",
+      "decision": "CHANGE",
+      "old": "도망치는 사람들 틈에 악귀 기척이 섞여 있어요. 살아 있는 분부터 성문 밖으로 빼내 줘요!",
+      "candidate": "도망치는 사람들 틈에 악귀 기척이 섞여 있어요. 살아 있는 분부터 성문 안으로 옮겨 줘요!",
+      "reason": "밖으로 빼내라는 방향이 본편 OBJ.02/CIVILIAN_DANGER.02와 반대이므로 안으로 수정.",
+      "condition_addition": "전투 진입 전 허용 쉼터의 구조 전 상황에서만; 실제 현장 관찰 가능하고 각 행 화자 recruited+alive+present; 구조 완료 뒤 재생 금지"
+    },
+    {
+      "id": "EDGE.FAILURE_GUARD.S21",
+      "speaker": "휘겸",
+      "decision": "KEEP"
+    }
+  ],
+  "alias_review": [
+    {
+      "id": "A3.S21.REST_ARCHER.01",
+      "status": "ALTERNATIVE_NOT_REPLAYED",
+      "canonical_ids": [
+        "EDGE.OPTIONAL_21_ARCHER_0",
+        "EDGE.OPTIONAL_21_ARCHER_1",
+        "EDGE.OPTIONAL_21_ARCHER_2"
+      ],
+      "text_identity": "대체초안이며 본문동일 alias 아님; 중복 재생 금지",
+      "guard_requirement": "canonical 선택대화만 활성; 각 실제 화자의 생존/출연 및 구조 전 시점 별도 확인",
+      "runtime_verification": "PENDING"
+    },
+    {
+      "id": "A3.S21.REST_MAGE.01",
+      "status": "ALTERNATIVE_NOT_REPLAYED",
+      "canonical_ids": [
+        "EDGE.OPTIONAL_21_MAGE_0"
+      ],
+      "text_identity": "대체초안이며 본문동일 alias 아님; 중복 재생 금지",
+      "guard_requirement": "canonical 선택대화만 활성; 각 실제 화자의 생존/출연 및 구조 전 시점 별도 확인",
+      "runtime_verification": "PENDING"
+    },
+    {
+      "id": "A3.S21.REST_KNIGHT.01",
+      "status": "ALTERNATIVE_NOT_REPLAYED",
+      "canonical_ids": [
+        "EDGE.OPTIONAL_21_KNIGHT_0"
+      ],
+      "text_identity": "대체초안이며 본문동일 alias 아님; 중복 재생 금지",
+      "guard_requirement": "canonical 선택대화만 활성; 각 실제 화자의 생존/출연 및 구조 전 시점 별도 확인",
+      "runtime_verification": "PENDING"
+    },
+    {
+      "id": "A3.S21.REST_OCCULTIST.01",
+      "status": "ALTERNATIVE_NOT_REPLAYED",
+      "canonical_ids": [
+        "EDGE.OPTIONAL_21_OCCULTIST_0"
+      ],
+      "text_identity": "대체초안이며 본문동일 alias 아님; 중복 재생 금지",
+      "guard_requirement": "canonical 선택대화만 활성; 각 실제 화자의 생존/출연 및 구조 전 시점 별도 확인",
+      "runtime_verification": "PENDING"
+    },
+    {
+      "id": "EDGE.PLACES_20_RESTDESCRIPTION",
+      "status": "IDENTICAL_TEXT_ALIAS",
+      "canonical_ids": [
+        "EDGE.ARRIVALS_21_0"
+      ],
+      "text_identity": "동일 arrival 문구 확인",
+      "guard_requirement": "actual stageId=21 장소 UI만; arrival once/seen을 장소 UI 조회가 소비하지 않음",
+      "runtime_verification": "PENDING"
+    }
+  ],
+  "open_questions": [
+    "실제 주민 통과 경로는 큰 성문을 새로 활짝 여는 연출 없이 확보되어야 한다. 구체적인 틈/문 구조는 구현 확인 대상이며 신규 설정을 창작하지 않는다."
+  ],
+  "coverage": {
+    "canonical_decisions": 30,
+    "unique_ids": 30,
+    "changes": 2,
+    "keep": 28,
+    "runtime_guard_verification": "PENDING"
+  }
+}

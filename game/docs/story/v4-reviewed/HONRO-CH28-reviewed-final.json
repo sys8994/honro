@@ -1,0 +1,483 @@
+{
+  "stage": 28,
+  "status": "Gemini PASS1 → 제작측 독립검토 → Gemini PASS3 → 부모 최종채택 완료; 구현검증 별도",
+  "rows": [
+    {
+      "id": "A3.S28.INTRO_GROUND.01",
+      "speaker_channel": "휘겸 · dialogue",
+      "condition": "stage_enter_ground_view; 서쪽 지상팀의 기존 split spawn이 보임",
+      "text": "불이 뒤뜰까지 붙었소. 저쪽으로는 사람을 보낼 수 없소.",
+      "audience": "현장 동행",
+      "delivery": "scene",
+      "once": true,
+      "group": "A3.S28.INTRO_GROUND",
+      "order": 1
+    },
+    {
+      "id": "A3.S28.INTRO_GROUND.02",
+      "speaker_channel": "소단 · dialogue",
+      "condition": "stage_enter_ground_view; 서쪽 지상팀의 기존 split spawn이 보임",
+      "text": "수로 쪽에서도 올라와요. 물길 입구를 봐 주세요.",
+      "audience": "현장 동행",
+      "delivery": "scene",
+      "once": true,
+      "group": "A3.S28.INTRO_GROUND",
+      "order": 2
+    },
+    {
+      "id": "A3.S28.INTRO_UNDERGROUND.01",
+      "speaker_channel": "설오 · dialogue",
+      "condition": "stage_enter_underground_view; 동쪽 설오·담허의 기존 split spawn이 보임",
+      "text": "휘겸 씨가 맞은편에 있습니다. 가운데가 불에 막혔습니다.",
+      "audience": "현장 동행",
+      "delivery": "scene",
+      "once": true,
+      "group": "A3.S28.INTRO_UNDERGROUND",
+      "order": 1
+    },
+    {
+      "id": "A3.S28.INTRO_UNDERGROUND.02",
+      "speaker_channel": "담허 · dialogue",
+      "condition": "stage_enter_underground_view; 동쪽 설오·담허의 기존 split spawn이 보임",
+      "text": "수문 걸쇠가 보이는군. 물을 흘려보내면 저쪽까지 닿겠네.",
+      "audience": "현장 동행",
+      "delivery": "scene",
+      "once": true,
+      "group": "A3.S28.INTRO_UNDERGROUND",
+      "order": 2
+    },
+    {
+      "id": "A3.S28.FIRE_CONTROL.01",
+      "speaker_channel": "휘겸 · dialogue",
+      "condition": "fire_control_complete; fire-screen과 water-release 모두 완료; 실제 불길 차단 상태 변화",
+      "text": "불이 넘어오지 않소. 이쪽 길로 오시오!",
+      "audience": "현장 동행",
+      "delivery": "bark",
+      "once": true,
+      "group": "A3.S28.FIRE_CONTROL",
+      "order": 1
+    },
+    {
+      "id": "A3.S28.FIRE_CONTROL.02",
+      "speaker_channel": "설오 · dialogue",
+      "condition": "fire_control_complete; fire-screen과 water-release 모두 완료; 실제 불길 차단 상태 변화",
+      "text": "물길이 열렸습니다. 가운데로 갈 수 있습니다.",
+      "audience": "현장 동행",
+      "delivery": "bark",
+      "once": true,
+      "group": "A3.S28.FIRE_CONTROL",
+      "order": 2
+    },
+    {
+      "id": "A3.S28.REUNION.01",
+      "speaker_channel": "휘겸 · dialogue",
+      "condition": "party_reunion_complete; 기존 party-reunion 판정에서 네 사람이 실제 집결; fire-screen+water-release 둘 다 완료 AND 실제 네 동행 안전경계 집결 뒤. 입구 양편 도착/카메라교차만으로 합류처리 금지.",
+      "text": "두 사람 다 무사하오?",
+      "audience": "현장 동행",
+      "delivery": "scene",
+      "once": true,
+      "group": "A3.S28.REUNION",
+      "order": 1
+    },
+    {
+      "id": "A3.S28.REUNION.02",
+      "speaker_channel": "설오 · dialogue",
+      "condition": "party_reunion_complete; 기존 party-reunion 판정에서 네 사람이 실제 집결; 실제 합류 후 지하물품 정보 첫 공유. 검은공간의 질문/내용은 말하지 않음.",
+      "text": "저희는 괜찮습니다. 지하에 집집마다 묶은 살림이 있었습니다.",
+      "audience": "현장 동행",
+      "delivery": "scene",
+      "once": true,
+      "group": "A3.S28.REUNION",
+      "order": 2
+    },
+    {
+      "id": "A3.S28.REUNION.03",
+      "speaker_channel": "소단 · dialogue",
+      "condition": "party_reunion_complete; 기존 party-reunion 판정에서 네 사람이 실제 집결; 실제 합류 후 지상 생활금속 정보 공유; 곽진 부상자 실제 남아 있을 때 구조 권유.",
+      "text": "여기도 문고리와 농기구가 쌓여 있었어요. 먼저 다친 분들을 빼내요.",
+      "audience": "현장 동행",
+      "delivery": "scene",
+      "once": true,
+      "group": "A3.S28.REUNION",
+      "order": 3
+    },
+    {
+      "id": "A3.S28.ESCORT_DANGER.01",
+      "speaker_channel": "곽진 · dialogue",
+      "condition": "wounded_route_threatened; 곽진이 부상자를 부축하는 실제 경로에 적이 접근",
+      "text": "부상자 앞을 비워라! 이쪽은 물러날 곳이 없다!",
+      "audience": "현장 동행",
+      "delivery": "bark",
+      "once": true,
+      "group": "A3.S28.ESCORT_DANGER",
+      "order": 1
+    },
+    {
+      "id": "A3.S28.DOCUMENTS.01",
+      "speaker_channel": "휘겸 · dialogue",
+      "condition": "responsibility_packet_secured; 화재 차단·주민 구조·재합류 완료 후 한 기록함을 안전하게 확보",
+      "text": "폐쇄와 제압을 승인한 고관들의 인장이오.",
+      "audience": "현장 동행",
+      "delivery": "scene",
+      "once": true,
+      "group": "A3.S28.DOCUMENTS",
+      "order": 1
+    },
+    {
+      "id": "A3.S28.DOCUMENTS.02",
+      "speaker_channel": "담허 · dialogue",
+      "condition": "responsibility_packet_secured; 화재 차단·주민 구조·재합류 완료 후 한 기록함을 안전하게 확보; 실제 합류·화재차단·주민안전도달·기록함 안전확보 후 집행보고와 기존물증/지상증언을 함께 확인. 이전 지하팀에게 26장지식 자동부여하지 않음.",
+      "text": "집행 보고에 대도사가 현장을 지휘했다고 적혔군. 주민들을 죽이는 일을 이끌었네.",
+      "audience": "현장 동행",
+      "delivery": "scene",
+      "once": true,
+      "group": "A3.S28.DOCUMENTS",
+      "order": 2
+    },
+    {
+      "id": "A3.S28.DOCUMENTS.03",
+      "speaker_channel": "휘겸 · dialogue",
+      "condition": "responsibility_packet_secured; 화재 차단·주민 구조·재합류 완료 후 한 기록함을 안전하게 확보",
+      "text": "시신과 살림을 옮기고 기록을 지우라는 명은 그 뒤에 내려왔소.",
+      "audience": "현장 동행",
+      "delivery": "scene",
+      "once": true,
+      "group": "A3.S28.DOCUMENTS",
+      "order": 3
+    },
+    {
+      "id": "A3.S28.DOCUMENTS.04",
+      "speaker_channel": "휘겸 · dialogue",
+      "condition": "responsibility_packet_secured; 화재 차단·주민 구조·재합류 완료 후 한 기록함을 안전하게 확보",
+      "text": "관리들, 봉문군... 지휘관 이름이 한태록이오. 여든 해 전 문서요.",
+      "audience": "현장 동행",
+      "delivery": "scene",
+      "once": true,
+      "group": "A3.S28.DOCUMENTS",
+      "order": 4
+    },
+    {
+      "id": "A3.S28.DOCUMENTS.05",
+      "speaker_channel": "곽진 · dialogue",
+      "condition": "responsibility_packet_secured; 화재 차단·주민 구조·재합류 완료 후 한 기록함을 안전하게 확보; 곽진 실제 현장생존·기록함문답에 참여 및 수문방향 옛 군기 실제 목격/근거가 있을 때.",
+      "text": "그 군기가 지금 수문에 서 있소.",
+      "audience": "현장 동행",
+      "delivery": "scene",
+      "once": true,
+      "group": "A3.S28.DOCUMENTS",
+      "order": 5
+    },
+    {
+      "id": "A3.S28.DOCUMENTS.06",
+      "speaker_channel": "휘겸 · dialogue",
+      "condition": "responsibility_packet_secured; 화재 차단·주민 구조·재합류 완료 후 한 기록함을 안전하게 확보",
+      "text": "우리 선조의 작위를 거둔 명도 있소. 조사를 계속하지 못하게 한 것이오.",
+      "audience": "현장 동행",
+      "delivery": "scene",
+      "once": true,
+      "group": "A3.S28.DOCUMENTS",
+      "order": 6
+    },
+    {
+      "id": "A3.S28.DOCUMENTS.07",
+      "speaker_channel": "설오 · dialogue",
+      "condition": "responsibility_packet_secured; 화재 차단·주민 구조·재합류 완료 후 한 기록함을 안전하게 확보",
+      "text": "사람이 죽은 뒤에도, 그 일을 찾는 사람까지 막았군요.",
+      "audience": "현장 동행",
+      "delivery": "scene",
+      "once": true,
+      "group": "A3.S28.DOCUMENTS",
+      "order": 7
+    },
+    {
+      "id": "A3.S28.PRESENT.01",
+      "speaker_channel": "휘겸 · dialogue",
+      "condition": "responsibility_scene_done; 핵심 증거 장면 뒤 곽진과 현재 병사들의 실제 구조 동작이 보임",
+      "text": "곽진, 다친 사람들은 어떻소?",
+      "audience": "현장 동행",
+      "delivery": "scene",
+      "once": true,
+      "group": "A3.S28.PRESENT",
+      "order": 1
+    },
+    {
+      "id": "A3.S28.PRESENT.02",
+      "speaker_channel": "곽진 · dialogue",
+      "condition": "responsibility_scene_done; 핵심 증거 장면 뒤 곽진과 현재 병사들의 실제 구조 동작이 보임",
+      "text": "걸을 수 있는 이들이 부축하고 있소. 나루로 옮기겠소.",
+      "audience": "현장 동행",
+      "delivery": "scene",
+      "once": true,
+      "group": "A3.S28.PRESENT",
+      "order": 2
+    },
+    {
+      "id": "A3.S28.PRESENT.03",
+      "speaker_channel": "담허 · dialogue",
+      "condition": "responsibility_scene_done; 핵심 증거 장면 뒤 곽진과 현재 병사들의 실제 구조 동작이 보임",
+      "text": "수문을 되찾아야겠네. 저쪽에서 혼이 계속 올라오고 있네.",
+      "audience": "현장 동행",
+      "delivery": "scene",
+      "once": true,
+      "group": "A3.S28.PRESENT",
+      "order": 3
+    },
+    {
+      "id": "A3.S28.EXIT.01",
+      "speaker_channel": "휘겸 · dialogue",
+      "condition": "office_exit_enabled; 핵심 사실 확인 및 현재 호송 출발 조건 충족",
+      "text": "수문은 우리가 맡겠소. 사람들을 먼저 데려가시오.",
+      "audience": "현장 동행",
+      "delivery": "scene",
+      "once": true,
+      "group": "A3.S28.EXIT",
+      "order": 1
+    },
+    {
+      "id": "A3.S28.EXIT.02",
+      "speaker_channel": "곽진 · dialogue",
+      "condition": "office_exit_enabled; 핵심 사실 확인 및 현재 호송 출발 조건 충족",
+      "text": "나루에서 기다리겠소. 돌아올 길은 남겨 두시오.",
+      "audience": "현장 동행",
+      "delivery": "scene",
+      "once": true,
+      "group": "A3.S28.EXIT",
+      "order": 2
+    },
+    {
+      "id": "A3.S28.FIRE_WARNING.01",
+      "speaker_channel": "소단 · dialogue",
+      "condition": "fire_deadline_warning; 기존 12적턴 화재 마감 전에 미완료 장치가 있고 실제 불길 확산 경고가 보임",
+      "text": "불이 출입구까지 붙었어요!",
+      "audience": "현장 동행",
+      "delivery": "bark",
+      "once": true,
+      "group": "A3.S28.FIRE_WARNING",
+      "order": 1
+    },
+    {
+      "id": "A3.S28.OBJ.01",
+      "speaker_channel": "objective_texts · objective_texts",
+      "condition": "stage_enter; 항상; 기존12번째 적턴 종료 전 두 장치 완료, 순서자유. 대화·설정·연출 정지 중 카운터/피해동결. deadline 메타데이터 그대로 보존.",
+      "text": "휘겸의 서쪽 화재 차단과 설오의 동쪽 수문 개방 완료하기",
+      "deadline": {
+        "source": "기존 적 턴 종료 카운터",
+        "limit": 12,
+        "rule": "12번째 적 턴 종료 전; 대화·설정·연출 중 정지"
+      }
+    },
+    {
+      "id": "A3.S28.OBJ.02",
+      "speaker_channel": "objective_texts · objective_texts",
+      "condition": "fire_control_complete; 항상",
+      "text": "네 동행이 관아 뒤뜰에 모이기"
+    },
+    {
+      "id": "A3.S28.OBJ.03",
+      "speaker_channel": "objective_texts · objective_texts",
+      "condition": "party_reunion_complete; 항상",
+      "text": "주민과 부상자의 퇴로를 지키고 기록함 구출하기"
+    },
+    {
+      "id": "A3.S28.OBJ.04",
+      "speaker_channel": "objective_texts · objective_texts",
+      "condition": "responsibility_scene_done; 항상",
+      "text": "곽진의 호송을 보내고 옛 수문으로 이동하기"
+    },
+    {
+      "id": "A3.S28.JOURNAL.01",
+      "speaker_channel": "journal_entries · journal_entries",
+      "condition": "responsibility_scene_done; 항상; 책임문서 대조 완료 AND 곽진/현재병사들의 실제 나루호송 이동 시작 뒤 전체기록. 아직 호송출발전이면 마지막 현재이동 문장은 지연.",
+      "text": "두 팀은 관아 뒤뜰의 불길을 차단하고 다시 만났다. 기록함은 책임을 나누어 보여 준다. 일부 왕실 고관이 저문골의 폐쇄와 제압을 승인했고, 대도사가 현장의 학살을 지휘했다. 뒤이어 관리들과 한태록의 봉문군이 수송·봉쇄·기록 은폐를 맡았다. 휘겸의 선조는 이를 조사하다 작위를 잃었다. 현재 군관 곽진과 병사들은 주민을 나루로 옮기고 있다."
+    },
+    {
+      "id": "A3.S28.DOC.APPROVAL",
+      "speaker_channel": "document_texts · document_texts",
+      "condition": "responsibility_packet_secured; 항상",
+      "text": "폐쇄 승인문: 저문골의 출입을 닫고 제압하라는 청에 일부 왕실 고관의 인장이 찍혀 있다.",
+      "presentation": "한 기록함의 첫 면"
+    },
+    {
+      "id": "A3.S28.DOC.EXECUTION",
+      "speaker_channel": "document_texts · document_texts",
+      "condition": "responsibility_packet_secured; 항상",
+      "text": "집행 보고: 대도사가 현장 지휘를 맡았으며 주민들을 처분했다고 적혔다. 호적과 시신 운반 흔적, 선조의 현장 증언이 그 말의 뜻을 뒷받침한다.",
+      "presentation": "한 기록함의 집행 보고와 이미 확보한 증거 병치"
+    },
+    {
+      "id": "A3.S28.DOC.CONCEALMENT",
+      "speaker_channel": "document_texts · document_texts",
+      "condition": "responsibility_packet_secured; 항상",
+      "text": "사후처리 명령: 관리들과 봉문군이 시신과 물자를 옮기고 출입로를 봉쇄하며 관련 기록을 제거하도록 했다. 봉문군 지휘관은 한태록이다.",
+      "presentation": "한 기록함의 후속 명령; 별도 수집 목표 없음"
+    },
+    {
+      "id": "A3.S28.DOC.ANCESTOR",
+      "speaker_channel": "document_texts · document_texts",
+      "condition": "responsibility_packet_secured; 항상",
+      "text": "처분문: 저문골 사건의 조사를 이어간 휘겸의 선조에게서 작위를 거두었다.",
+      "presentation": "같은 묶음의 처분문"
+    },
+    {
+      "id": "A3.S28.GUIDE.01",
+      "speaker_channel": "guide_texts · guide_texts",
+      "condition": "fire_deadline_warning; 항상",
+      "text": "화재 마감이 다가옵니다. 미완료인 화재 차단 장치를 확인하세요."
+    },
+    {
+      "id": "A3.S28.GUIDE.FAIL_FIRE",
+      "speaker_channel": "guide_texts · guide_texts",
+      "condition": "fire_deadline_failed; 항상; 실제 화재실패 뒤 완전한 장 시작 분할스냅숏 복구를 지원할 때만. 장면플래그만 되돌려 부분복구하지 않음.",
+      "text": "불길에 합류 경로가 막혔습니다. 장 시작의 분할 상태에서 다시 시도하세요."
+    },
+    {
+      "id": "EDGE.ARRIVALS_28_0",
+      "speaker_channel": "서술 · arrival",
+      "condition": "장 도착 때 한 번 / split v2의 직접 진입 interlude로만 소비. 쉼터·자동회복 생성 금지.; 정확한 소비/seen 계약은 NM.SPLIT_REST 참조.; split v2 두 실제입구 도착은 아직 재합류 아님. 무휴식 HP·기력·상태·쿨다운·아이템 연속.",
+      "text": "두 팀이 관아 뒤뜰 양쪽에 닿았다. 불길이 가운데 길을 막았고, 곽진의 병사들이 부상자를 끌어냈다."
+    },
+    {
+      "id": "EDGE.RUNTIME.JOURNAL.EVIDENCE28.APPROVAL",
+      "speaker_channel": "서술 · runtime_dynamic",
+      "condition": "해당 물증의 실제 확보 뒤 저널 요약 / fresh_v4=True; 승인문 실제확보/대조 후. 고관 전원/왕실전체의 학살명령·학살무관함 어느 쪽으로도 확대하지 않음.",
+      "text": "일부 왕실 고관이 저문골의 폐쇄와 제압을 승인했다."
+    },
+    {
+      "id": "EDGE.RUNTIME.JOURNAL.EVIDENCE28.COVERUP",
+      "speaker_channel": "서술 · runtime_dynamic",
+      "condition": "해당 물증의 실제 확보 뒤 저널 요약 / fresh_v4=True; 집행보고·사후처리명령 및 앞선 증언/물증 실제 대조 후; 승인·학살실행·은폐책임을 하나의 행위로 합치지 않음.",
+      "text": "대도사가 저문골 주민들을 학살했다. 그 뒤 관리들과 봉문군이 수송로를 막고 조사를 가로막았다."
+    }
+  ],
+  "changes_vs_input": [
+    {
+      "id": "EDGE.RUNTIME.JOURNAL.EVIDENCE28.APPROVAL",
+      "old": "일부 왕실 고관이 저문골의 폐쇄와 제압을 승인했다. 이 결재에는 주민을 죽이라는 명령은 없다.",
+      "text": "일부 왕실 고관이 저문골의 폐쇄와 제압을 승인했다.",
+      "reason": "v4가 확정하는 승인 범위만 기록. 이 결재에 살해명령이 없다는 전면 부재판정은 원본의 책임구분보다 강하므로 별도 면책성 해설로 확대하지 않음."
+    }
+  ],
+  "coverage": {
+    "rows": 37,
+    "unique": 37,
+    "missing": []
+  },
+  "pass3_source": "HONRO-CH28-PASS3-20261027-response.md",
+  "pass3_assessment": "실제 PASS3 37/37. APPROVAL CHANGE1은 최초원문대비 삭제후보 그대로여서 새변경0. 책임의 승인/실행/은폐 구분은 보존하고 살해명령 부재/면책 해설 추가하지 않음. deadline12적턴 메타데이터와 실제합류/호송시작/문서확보 가드는 구현검증별도. 부모 최종채택 대기.",
+  "alias_review": [
+    {
+      "id": "EDGE.OPTIONAL_28_ARCHER_0",
+      "status": "RETIRED",
+      "canonical_ids": [],
+      "text_identity": "비활성/대체/호환 계약 보존; 본문동일 alias로 자동 통합 금지",
+      "guard_requirement": {
+        "event": "optional companion click; recruited + stage unlocked + first conversation stage; debug scoped preview allowed",
+        "guards": {
+          "optional": true
+        }
+      },
+      "runtime_verification": "PENDING"
+    },
+    {
+      "id": "EDGE.OPTIONAL_28_MAGE_0",
+      "status": "RETIRED",
+      "canonical_ids": [],
+      "text_identity": "비활성/대체/호환 계약 보존; 본문동일 alias로 자동 통합 금지",
+      "guard_requirement": {
+        "event": "optional companion click; recruited + stage unlocked + first conversation stage; debug scoped preview allowed",
+        "guards": {
+          "optional": true
+        }
+      },
+      "runtime_verification": "PENDING"
+    },
+    {
+      "id": "EDGE.OPTIONAL_28_KNIGHT_0",
+      "status": "RETIRED",
+      "canonical_ids": [],
+      "text_identity": "비활성/대체/호환 계약 보존; 본문동일 alias로 자동 통합 금지",
+      "guard_requirement": {
+        "event": "optional companion click; recruited + stage unlocked + first conversation stage; debug scoped preview allowed",
+        "guards": {
+          "optional": true
+        }
+      },
+      "runtime_verification": "PENDING"
+    },
+    {
+      "id": "EDGE.OPTIONAL_28_KNIGHT_1",
+      "status": "RETIRED",
+      "canonical_ids": [],
+      "text_identity": "비활성/대체/호환 계약 보존; 본문동일 alias로 자동 통합 금지",
+      "guard_requirement": {
+        "event": "optional companion click; recruited + stage unlocked + first conversation stage; debug scoped preview allowed",
+        "guards": {
+          "optional": true
+        }
+      },
+      "runtime_verification": "PENDING"
+    },
+    {
+      "id": "EDGE.OPTIONAL_28_OCCULTIST_0",
+      "status": "RETIRED",
+      "canonical_ids": [],
+      "text_identity": "비활성/대체/호환 계약 보존; 본문동일 alias로 자동 통합 금지",
+      "guard_requirement": {
+        "event": "optional companion click; recruited + stage unlocked + first conversation stage; debug scoped preview allowed",
+        "guards": {
+          "optional": true
+        }
+      },
+      "runtime_verification": "PENDING"
+    },
+    {
+      "id": "EDGE.STAGES_28_OUTRO_1",
+      "status": "RETIRED",
+      "canonical_ids": [],
+      "text_identity": "비활성/대체/호환 계약 보존; 본문동일 alias로 자동 통합 금지",
+      "guard_requirement": {
+        "event": "mission won -> outcome dialogue; deferred/unread event recovery may precede it",
+        "guards": {
+          "requiresVoidWitness": true
+        }
+      },
+      "runtime_verification": "PENDING"
+    },
+    {
+      "id": "EDGE.PLACES_27_RESTDESCRIPTION",
+      "status": "IDENTICAL_TEXT_ALIAS",
+      "canonical_ids": [
+        "EDGE.ARRIVALS_28_0"
+      ],
+      "text_identity": "canonical 본문과 동일; 가드는 별개",
+      "guard_requirement": {
+        "event": "장소 설명 UI; actual stageId=28",
+        "guards": {}
+      },
+      "runtime_verification": "PENDING"
+    },
+    {
+      "id": "EDGE.FAILURE_GUARD.S28",
+      "status": "IDENTICAL_TEXT_ALIAS",
+      "canonical_ids": [
+        "EDGE.FAILURE_GUARD.S21"
+      ],
+      "text_identity": "canonical 본문과 동일; 가드는 별개",
+      "guard_requirement": {
+        "event": "해당 장의 실제 실패",
+        "guards": {
+          "speaker_actual_living_present_required": true,
+          "required_actual_speaker": "휘겸"
+        },
+        "v4_constraints": [
+          "휘겸가 실제 출연·생존할 때만. 사망/부재/전멸이면 음성 없이 owner 실패 UI만.",
+          "27 검은 공간 연출 낙하에는 일반 실패를 재생하지 않음."
+        ]
+      },
+      "runtime_verification": "PENDING"
+    }
+  ],
+  "implementation_verified": false,
+  "implementation_note": "본문검수와 각 alias/출연/생존/목격/저장 가드의 실제 구현 검증은 별개. 부모 최종채택 전 코드적용 금지.",
+  "parent_adoption": "37후보그대로 승인; 최초원문대비1문장삭제/추가변경0"
+}

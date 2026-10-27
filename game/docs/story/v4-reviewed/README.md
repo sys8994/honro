@@ -1,9 +1,9 @@
-# Reviewed dialogue candidates: Act 2 (stages 11–20)
+# Reviewed Act 2–3 dialogue candidates
 
-These 344 canonical text IDs completed Gemini first review → editorial review → Gemini final review. The final JSON files, not arbitrary raw suggestions, are the implementation source. Some Gemini suggestions were rejected against current source facts and code; editorial logs preserve those decisions.
+676 canonical text IDs (665 in stages 11–30 and 11 common IDs, including 7 previously approved locked lines) completed Gemini first review → editorial review → Gemini final review → editorial final adoption. Five dynamic UI branches were reviewed separately. Use the final JSON files; raw model suggestions can contain errors, which the editorial logs distinguish and reject.
 
-Model history: stage 11 used 4 Argon for both passes; stage 12 used 4 Argon first and 3.5 Flash-Lite final; stages 13–20 used 3.5 Flash-Lite after the owner authorized a model substitution. Wrong-target responses and invented IDs were excluded, not counted as review completion.
+Stage 11 used 4 Argon for both passes; stage 12 used Argon first and 3.5 Flash-Lite final. Later stages used Flash-Lite after the owner authorized substitution. Incorrect-target replies were excluded and corrected. Exact evidence is retained in the owner's Library, not counted by mere model claims of completion.
 
-Text review is NOT proof of implemented NPC movement, dialogue guards, save migration, playthrough, integration, or production deployment. Preserve each text's actual speaker, knowledge timing, and event conditions. Stages 21–30 and common cross-act surfaces are NOT approved by this commit. Existing firstSpirit locked lines remain unchanged.
+This is TEXT REVIEW, not proof of actual scene delivery, NPC movement, safe destinations, speaker guards, knowledge timing, save migration, successful playthrough, or deployment. All runtime requirements must be tested during integration. Preserve progress/deadline/owner/party_shared/presentation metadata, alias mappings, previously locked firstSpirit text, split-resource continuity and legacy-save boundaries. Stage24 place-description alias must match its adopted arrival text.
 
-The complete raw evidence for stages 11–15 is retained in the owner's Library as HONRO_11-15_review_evidence_20261027.zip; implementation candidates and decisions are versioned here. No screenshots, account credentials, or user save data are included.
+No credentials, account screenshots, player saves, or private review-conversation URLs are included. Final shared publication is owned by the integration task, not this documentation branch.

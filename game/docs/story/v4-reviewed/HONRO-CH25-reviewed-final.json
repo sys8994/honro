@@ -1,0 +1,329 @@
+{
+  "stage": 25,
+  "status": "Gemini PASS1 → 제작측 독립검토 → Gemini PASS3 → 부모 최종채택 완료; 구현검증 별도",
+  "rows": [
+    {
+      "id": "A3.S25.INTRO.01",
+      "speaker_channel": "설오 · dialogue",
+      "condition": "stage_enter; 설오·담허만 지하 집하장 첫 안전 발판에 진입",
+      "text": "물소리가 뒤에서 납니다. 물길은 앞에 있는데요.",
+      "audience": "현장 동행",
+      "delivery": "scene",
+      "once": true,
+      "group": "A3.S25.INTRO",
+      "order": 1
+    },
+    {
+      "id": "A3.S25.INTRO.02",
+      "speaker_channel": "담허 · dialogue",
+      "condition": "stage_enter; 설오·담허만 지하 집하장 첫 안전 발판에 진입",
+      "text": "통로가 눈에 보이는 대로 이어지지 않는군. 남은 진목을 써야겠네.",
+      "audience": "현장 동행",
+      "delivery": "scene",
+      "once": true,
+      "group": "A3.S25.INTRO",
+      "order": 2
+    },
+    {
+      "id": "A3.S25.EAST.01",
+      "speaker_channel": "설오 · dialogue",
+      "condition": "stake_arrival_1_complete; 설오·담허 모두 기존 동쪽 정비실에 안전 도착",
+      "text": "발판이 끊겼습니다. 저 선반 위에도 적이 있습니다.",
+      "audience": "현장 동행",
+      "delivery": "bark",
+      "once": true,
+      "group": "A3.S25.EAST",
+      "order": 1
+    },
+    {
+      "id": "A3.S25.EAST.02",
+      "speaker_channel": "담허 · dialogue",
+      "condition": "stake_arrival_1_complete; 설오·담허 모두 기존 동쪽 정비실에 안전 도착",
+      "text": "진목은 남아 있네. 건너갈 자리부터 비워야겠군.",
+      "audience": "현장 동행",
+      "delivery": "bark",
+      "once": true,
+      "group": "A3.S25.EAST",
+      "order": 2
+    },
+    {
+      "id": "A3.S25.WINDOW.01",
+      "speaker_channel": "설오 · dialogue",
+      "condition": "stake_arrival_2_complete; 설오·담허 모두 기존 중앙 점검창에 안전 도착; 중앙 점검창 실제 도착 및 살아 있는 해당 적 실제 노출 시. 이미 적이 없으면 전투상황 문구 생략.",
+      "text": "여기서는 짐 뒤의 적이 보입니다.",
+      "audience": "현장 동행",
+      "delivery": "bark",
+      "once": true,
+      "group": "A3.S25.WINDOW",
+      "order": 1
+    },
+    {
+      "id": "A3.S25.LINK_DANGER.01",
+      "speaker_channel": "설오 · dialogue",
+      "condition": "link_work_threatened; 담허가 기존 진목 연결을 살피는 동안 적이 작업 범위에 접근",
+      "text": "담허 어른, 짐 사이로 옵니다.",
+      "audience": "현장 동행",
+      "delivery": "bark",
+      "once": true,
+      "group": "A3.S25.LINK_DANGER",
+      "order": 1
+    },
+    {
+      "id": "A3.S25.LINK_DANGER.02",
+      "speaker_channel": "담허 · dialogue",
+      "condition": "link_work_threatened; 담허가 기존 진목 연결을 살피는 동안 적이 작업 범위에 접근; 담허가 실제 연결작업 중이고 작업범위에 접근한 적을 인지할 때만. 단순 적접근으로 불가능한 작업상태를 말하지 않음.",
+      "text": "보았네. 지금은 진목 곁을 비울 수 없네.",
+      "audience": "현장 동행",
+      "delivery": "bark",
+      "once": true,
+      "group": "A3.S25.LINK_DANGER",
+      "order": 2
+    },
+    {
+      "id": "A3.S25.WATER.01",
+      "speaker_channel": "설오 · dialogue",
+      "condition": "wall_water_visible; 상층 물받이 근처에서 물방울이 벽을 따라 흐르는 효과가 보임",
+      "text": "물이 벽을 타고 갑니다.",
+      "audience": "현장 동행",
+      "delivery": "scene",
+      "once": true,
+      "group": "A3.S25.WATER",
+      "order": 1
+    },
+    {
+      "id": "A3.S25.WATER.02",
+      "speaker_channel": "담허 · dialogue",
+      "condition": "wall_water_visible; 상층 물받이 근처에서 물방울이 벽을 따라 흐르는 효과가 보임",
+      "text": "발밑의 돌을 확인하게. 물이 떨어지는 쪽만 보고 걸으면 위험하네.",
+      "audience": "현장 동행",
+      "delivery": "scene",
+      "once": true,
+      "group": "A3.S25.WATER",
+      "order": 2
+    },
+    {
+      "id": "A3.S25.HOUSEHOLDS.01",
+      "speaker_channel": "설오 · dialogue",
+      "condition": "household_goods_visible; 기존 household-tally 주변의 서로 다른 생활도구와 가구별 표찰이 시야에 들어옴",
+      "text": "그릇과 문고리에 같은 번호가 달렸습니다.",
+      "audience": "현장 동행",
+      "delivery": "scene",
+      "once": true,
+      "group": "A3.S25.HOUSEHOLDS",
+      "order": 1
+    },
+    {
+      "id": "A3.S25.HOUSEHOLDS.02",
+      "speaker_channel": "담허 · dialogue",
+      "condition": "household_goods_visible; 기존 household-tally 주변의 서로 다른 생활도구와 가구별 표찰이 시야에 들어옴",
+      "text": "옆의 묶음은 번호가 다르군. 집마다 따로 실었네.",
+      "audience": "현장 동행",
+      "delivery": "scene",
+      "once": true,
+      "group": "A3.S25.HOUSEHOLDS",
+      "order": 2
+    },
+    {
+      "id": "A3.S25.HOUSEHOLDS.03",
+      "speaker_channel": "설오 · dialogue",
+      "condition": "household_goods_visible; 기존 household-tally 주변의 서로 다른 생활도구와 가구별 표찰이 시야에 들어옴",
+      "text": "살림을 통째로 가져왔군요.",
+      "audience": "현장 동행",
+      "delivery": "scene",
+      "once": true,
+      "group": "A3.S25.HOUSEHOLDS",
+      "order": 3
+    },
+    {
+      "id": "A3.S25.FAR_SIDE.01",
+      "speaker_channel": "설오 · dialogue",
+      "condition": "stake_arrival_4_complete; 설오·담허 모두 기존 맞은편 검문실에 안전 도착; 맞은편 검문실 실제 도착 및 아래길 연결이 실제 시각적으로 확인되는 경우.",
+      "text": "이 통로는 아래쪽 길과 이어져 있습니다.",
+      "audience": "현장 동행",
+      "delivery": "bark",
+      "once": true,
+      "group": "A3.S25.FAR_SIDE",
+      "order": 1
+    },
+    {
+      "id": "A3.S25.FAR_SIDE.02",
+      "speaker_channel": "담허 · dialogue",
+      "condition": "stake_arrival_4_complete; 설오·담허 모두 기존 맞은편 검문실에 안전 도착; 귀환 진목이 실제로 남아 있고 연결 복귀 가능한 상태에서만. 자유순서를 고정시키지 않음.",
+      "text": "돌아갈 진목도 남아 있네. 건너온 길은 잃지 않았군.",
+      "audience": "현장 동행",
+      "delivery": "bark",
+      "once": true,
+      "group": "A3.S25.FAR_SIDE",
+      "order": 2
+    },
+    {
+      "id": "A3.S25.DEPTH.01",
+      "speaker_channel": "설오 · dialogue",
+      "condition": "stake_arrival_5_complete; 설오·담허 모두 기존 상층 봉인회랑에 안전 도착",
+      "text": "안쪽에 더 큰 운반대가 있습니다. 저기서 길이 다시 끊깁니다.",
+      "audience": "현장 동행",
+      "delivery": "scene",
+      "once": true,
+      "group": "A3.S25.DEPTH",
+      "order": 1
+    },
+    {
+      "id": "A3.S25.DEPTH.02",
+      "speaker_channel": "담허 · dialogue",
+      "condition": "stake_arrival_5_complete; 설오·담허 모두 기존 상층 봉인회랑에 안전 도착; 기존 연결 대상 진목이 실제 시야에 있으며 이용가능한 경로임을 확인할 때; 여섯째 필수 도착점/새 보상 진목을 만들지 않음.",
+      "text": "진목 하나가 더 보이는군. 저곳으로 이어갈 수 있겠네.",
+      "audience": "현장 동행",
+      "delivery": "scene",
+      "once": true,
+      "group": "A3.S25.DEPTH",
+      "order": 2
+    },
+    {
+      "id": "A3.S25.EXIT.01",
+      "speaker_channel": "설오 · dialogue",
+      "condition": "waterworks_exit_reached; 다섯 도착점과 필수 통로를 확보하고 waterworks-exit 접근",
+      "text": "지상으로 오르는 계단은 아직 안 보입니다.",
+      "audience": "현장 동행",
+      "delivery": "scene",
+      "once": true,
+      "group": "A3.S25.EXIT",
+      "order": 1
+    },
+    {
+      "id": "A3.S25.EXIT.02",
+      "speaker_channel": "담허 · dialogue",
+      "condition": "waterworks_exit_reached; 다섯 도착점과 필수 통로를 확보하고 waterworks-exit 접근",
+      "text": "운반길을 따라가 보세. 짐을 내보내던 출구가 있을 걸세.",
+      "audience": "현장 동행",
+      "delivery": "scene",
+      "once": true,
+      "group": "A3.S25.EXIT",
+      "order": 2
+    },
+    {
+      "id": "A3.S25.OBJ.01",
+      "speaker_channel": "objective_texts · objective_texts",
+      "condition": "stage_enter; 항상",
+      "text": "축지진목으로 끊어진 집하장 건너기",
+      "progress": {
+        "source": "기존 stake-arrival-1~5",
+        "total": 5,
+        "display": "안전 도착 {done}/5"
+      }
+    },
+    {
+      "id": "A3.S25.OBJ.02",
+      "speaker_channel": "objective_texts · objective_texts",
+      "condition": "all_five_destinations_safe; 항상",
+      "text": "더 깊은 집하장 입구로 이동하기"
+    },
+    {
+      "id": "A3.S25.JOURNAL.01",
+      "speaker_channel": "journal_entries · journal_entries",
+      "condition": "household_goods_visible; 항상; 가구별 생활도구 관찰 AND 거리/방향 이상 실제 관찰 완료 이후만 전체 문장 기록. 자유방문 때문에 household_goods_visible 때 이상 미목격이면 그 부분 기록을 지연; 선행 방문순서나 신규 수집목표를 강제하지 않음.",
+      "text": "잠긴 집하장에는 생활도구들이 가구별 표찰로 묶여 있었다. 서로 다른 집의 살림이 함께 운송되었다. 통로의 거리와 물이 떨어지는 방향도 정상적이지 않다. 설오와 담허는 남은 축지진목으로 길을 잇고 있다."
+    },
+    {
+      "id": "A3.S25.GUIDE.01",
+      "speaker_channel": "guide_texts · guide_texts",
+      "condition": "first_stake_available; 항상",
+      "text": "기존 축지진목에서 도착점을 선택할 수 있습니다. 두 동행이 안전하게 도착해야 해당 지점의 진행이 반영됩니다."
+    },
+    {
+      "id": "A3.S25.GUIDE.02",
+      "speaker_channel": "guide_texts · guide_texts",
+      "condition": "destination_unsafe; 항상",
+      "text": "도착할 발판이 위험합니다. 해당 구역의 장애물과 적을 먼저 확인하세요."
+    },
+    {
+      "id": "EDGE.ARRIVALS_25_0",
+      "speaker_channel": "서술 · arrival",
+      "condition": "장 도착 때 한 번 / split v2의 직접 진입 interlude로만 소비. 쉼터·자동회복 생성 금지.; 정확한 소비/seen 계약은 NM.SPLIT_REST 참조.; split v2 직접진입 interlude만; 설오·담허 활성/휘겸·소단 비활성, HP·기력·상태·쿨다운·아이템 연속. 쉼터/자동회복/새 실패복구 도입 금지.",
+      "text": "설오와 담허는 지하 수로로 내려갔다. 끊긴 운반길 너머 석대에 살림 물품들이 묶여 있었다."
+    },
+    {
+      "id": "EDGE.FAILURE_GUARD.S25",
+      "speaker_channel": "담허 · failure_guard",
+      "condition": "실제 실패; 지정 화자가 살아서 현장에 있을 때만. 사망·부재·전멸이면 생략 / speaker_actual_living_present_required=True; required_actual_speaker=담허; 담허가 실제 출연·생존할 때만. 사망/부재/전멸이면 음성 없이 owner 실패 UI만.; 27 검은 공간 연출 낙하에는 일반 실패를 재생하지 않음.; 실제 일반 실패 AND 담허 alive+present. 담허 부재/사망/전멸은 음성 없이 실패 UI. 27장 검은공간 연출낙하에 전용 가드 없는 본문동일 alias로 재생 금지.",
+      "text": "이대로는 더 버티기 어렵네. 온 길로 물러나세."
+    }
+  ],
+  "changes_vs_input": [
+    {
+      "id": "A3.S25.WINDOW.01",
+      "old": "여기서는 짐 뒤가 보입니다. 아까 가렸던 놈도 보입니다.",
+      "text": "여기서는 짐 뒤의 적이 보입니다.",
+      "reason": "자유 방문 순서에서 아까 가려진 같은 적을 이미 봤다는 선행목격을 강제하지 않음."
+    },
+    {
+      "id": "A3.S25.FAR_SIDE.01",
+      "old": "아래에서 올려다보던 통로가 여기로 이어집니다.",
+      "text": "이 통로는 아래쪽 길과 이어져 있습니다.",
+      "reason": "아래에서 미리 올려다본 순서가 필요하지 않도록 현재 연결 관찰만 표현."
+    }
+  ],
+  "coverage": {
+    "rows": 25,
+    "unique": 25,
+    "missing": []
+  },
+  "pass3_source": "HONRO-CH25-PASS3-20261027-response.md",
+  "pass3_assessment": "실제25/25 판정 확인. CHANGE2는 최초원문 대비이며 응답 수정안과 현재후보가 동일해 새변경없음. 부모가25후보 그대로최종채택. progress 안전도착 {done}/5 보존. 실제동작은별도검증.",
+  "alias_review": [
+    {
+      "id": "EDGE.OPTIONAL_25_ARCHER_0",
+      "status": "RETIRED",
+      "canonical_ids": [],
+      "text_identity": "비활성/대체/호환 계약 보존; 본문동일 alias로 자동 통합 금지",
+      "guard_requirement": {
+        "event": "optional companion click; recruited + stage unlocked + first conversation stage; debug scoped preview allowed",
+        "guards": {
+          "optional": true
+        }
+      },
+      "runtime_verification": "PENDING"
+    },
+    {
+      "id": "EDGE.OPTIONAL_25_MAGE_0",
+      "status": "RETIRED",
+      "canonical_ids": [],
+      "text_identity": "비활성/대체/호환 계약 보존; 본문동일 alias로 자동 통합 금지",
+      "guard_requirement": {
+        "event": "optional companion click; recruited + stage unlocked + first conversation stage; debug scoped preview allowed",
+        "guards": {
+          "optional": true
+        }
+      },
+      "runtime_verification": "PENDING"
+    },
+    {
+      "id": "EDGE.OPTIONAL_25_MAGE_1",
+      "status": "RETIRED",
+      "canonical_ids": [],
+      "text_identity": "비활성/대체/호환 계약 보존; 본문동일 alias로 자동 통합 금지",
+      "guard_requirement": {
+        "event": "optional companion click; recruited + stage unlocked + first conversation stage; debug scoped preview allowed",
+        "guards": {
+          "optional": true
+        }
+      },
+      "runtime_verification": "PENDING"
+    },
+    {
+      "id": "EDGE.PLACES_24_RESTDESCRIPTION",
+      "status": "IDENTICAL_TEXT_ALIAS",
+      "canonical_ids": [
+        "EDGE.ARRIVALS_25_0"
+      ],
+      "text_identity": "canonical 본문과 동일; 가드는 별개",
+      "guard_requirement": {
+        "event": "장소 설명 UI; actual stageId=25",
+        "guards": {}
+      },
+      "runtime_verification": "PENDING"
+    }
+  ],
+  "implementation_verified": false,
+  "implementation_note": "본문검수와 각 alias/출연/생존/목격/저장 가드의 실제 구현 검증은 별개. 부모 최종채택 전 코드적용 금지.",
+  "parent_adoption": "25후보그대로 승인, 최초원문대비2수정"
+}
