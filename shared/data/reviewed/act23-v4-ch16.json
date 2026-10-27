@@ -1,0 +1,226 @@
+{
+  "stage": 16,
+  "status": "Gemini pass1 → 제작 측 독립 재검토 → Gemini pass3 → 부모 최종판단 완료",
+  "rows": [
+    {
+      "id": "A2.S16.BRANCH.02",
+      "speaker_channel": "설오 · dialogue",
+      "condition": "E01 route15=B/upper 실제 진입 AND 노승·제자 두 명 시야 확보",
+      "text": "위 회랑으로 들어왔습니다. 아래에 두 분이 계십니다."
+    },
+    {
+      "id": "A2.S16.BRANCH.01",
+      "speaker_channel": "설오 · dialogue",
+      "condition": "E01 route15=A/lower 실제 진입",
+      "text": "수문 아래로 올라왔습니다. 저기 사람이 있습니다."
+    },
+    {
+      "id": "A2.S16.INTRO.01",
+      "speaker_channel": "노승 · dialogue",
+      "condition": "E01 제자를 감싸며",
+      "text": "이 아이는 살아 있소. 칼을 거두시오."
+    },
+    {
+      "id": "A2.S16.INTRO.02",
+      "speaker_channel": "소단 · dialogue",
+      "condition": "E01 제자의 혼을 확인",
+      "text": "알아요. 붙은 혼만 떼어낼게요."
+    },
+    {
+      "id": "A2.S16.INTRO.03",
+      "speaker_channel": "휘겸 · dialogue",
+      "condition": "E02 법당 위협 접근",
+      "text": "스님도 안쪽으로 물러나시오. 문 앞은 맡겠소."
+    },
+    {
+      "id": "A2.S16.MID.01",
+      "speaker_channel": "설오 · dialogue",
+      "condition": "E02 석등 사격선 확인",
+      "text": "석등 뒤가 가립니다. 옆으로 돌아가겠습니다."
+    },
+    {
+      "id": "A2.S16.MID.02",
+      "speaker_channel": "담허 · dialogue",
+      "condition": "E03 제자 곁에 도착",
+      "text": "제자 손을 놓아주시오. 붙은 혼이 함께 끌고 갑니다."
+    },
+    {
+      "id": "A2.S16.MID.03",
+      "speaker_channel": "소단 · dialogue",
+      "condition": "E03 분리 직전",
+      "text": "이쪽이에요. 그 몸에서 나오세요."
+    },
+    {
+      "id": "A2.S16.MID.04",
+      "speaker_channel": "노승 · dialogue",
+      "condition": "E03 제자가 숨을 고름",
+      "text": "숨이 돌아왔구려."
+    },
+    {
+      "id": "A2.S16.MID.05",
+      "speaker_channel": "설오 · dialogue",
+      "condition": "E04 금속 두드림이 들림",
+      "text": "저 소리는 어디서 납니까?"
+    },
+    {
+      "id": "A2.S16.WITNESS.01",
+      "speaker_channel": "노승 · dialogue",
+      "condition": "E04 필수 증언 시작; 노승·제자 실제 안전자리 도착 후",
+      "text": "종 밑이오. 스무 명 남짓 갇혔소."
+    },
+    {
+      "id": "A2.S16.WITNESS.02",
+      "speaker_channel": "노승 · dialogue",
+      "condition": "E04 앞줄 직후; 노승·제자 실제 안전자리 도착 후",
+      "text": "첫날엔 물을 달라고 했소."
+    },
+    {
+      "id": "A2.S16.WITNESS.03",
+      "speaker_channel": "휘겸 · dialogue",
+      "condition": "E04 노승 증언; 노승·제자 실제 안전자리 도착 후",
+      "text": "축을 걸면 열 수 있었소?"
+    },
+    {
+      "id": "A2.S16.WITNESS.04",
+      "speaker_channel": "노승 · dialogue",
+      "condition": "E04 휘겸 질문; 노승·제자 실제 안전자리 도착 후",
+      "text": "석공들이 올리겠다고 했지."
+    },
+    {
+      "id": "A2.S16.WITNESS.05",
+      "speaker_channel": "휘겸 · dialogue",
+      "condition": "E04 인양 가능 사실 뒤; 노승·제자 실제 안전자리 도착 후",
+      "text": "누가 막았소?"
+    },
+    {
+      "id": "A2.S16.WITNESS.06",
+      "speaker_channel": "노승 · dialogue",
+      "condition": "E04 핵심 증언; 노승·제자 실제 안전자리 도착 후",
+      "text": "유헌이 빼라 했소. 사흘째에도 안에서 두드렸는데."
+    },
+    {
+      "id": "A2.S16.WITNESS.07",
+      "speaker_channel": "휘겸 · dialogue",
+      "condition": "E04 축 제거 증언 직후; 노승·제자 실제 안전자리 도착 후",
+      "text": "사람이 있는 줄 알면서 축을 뺐다는 말이오?"
+    },
+    {
+      "id": "A2.S16.WITNESS.08",
+      "speaker_channel": "노승 · dialogue",
+      "condition": "E04 고의 확인; 노승·제자 실제 안전자리 도착 후",
+      "text": "알았소. 그 소리를 곁에서 들었으니."
+    },
+    {
+      "id": "A2.S16.MID.06",
+      "speaker_channel": "담허 · dialogue",
+      "condition": "E04 증언 뒤 현재 혼 확인; 현재 갇힌 혼을 실제 확인 후; 현재 살아 있는 피해자 수 단정 아님",
+      "text": "아직 갇혀 있군. 종 아래를 열어야겠네."
+    },
+    {
+      "id": "A2.S16.MID.07",
+      "speaker_channel": "노승 · dialogue",
+      "condition": "E04 종 쪽을 돌아봄",
+      "text": "처음엔 마을을 지킨다 했소. 누구도 저 아래엔 못 가게 했지."
+    },
+    {
+      "id": "A2.S16.COMPLETE.01",
+      "speaker_channel": "휘겸 · dialogue",
+      "condition": "E05 작업굴 출구 확인",
+      "text": "축이 빠진 자리로 가겠소. 두 분은 여기 계시오."
+    },
+    {
+      "id": "A2.S16.COMPLETE.02",
+      "speaker_channel": "노승 · dialogue",
+      "condition": "E05 일행 출발",
+      "text": "법당 뒤로 가시오. 석공이 그 장치를 알 거요."
+    },
+    {
+      "id": "A2.S16.OBJECTIVE.01",
+      "speaker_channel": "objective · objective",
+      "condition": "E01",
+      "text": "노승과 제자를 보호하고 붙은 혼 분리"
+    },
+    {
+      "id": "A2.S16.OBJECTIVE.02",
+      "speaker_channel": "objective · objective",
+      "condition": "E03; 혼 분리 및 노승·제자의 실제 안전자리 이동 완료 후",
+      "text": "구조자리에서 노승의 증언 듣기"
+    },
+    {
+      "id": "A2.S16.OBJECTIVE.03",
+      "speaker_channel": "objective · objective",
+      "condition": "E04",
+      "text": "절 뒤 작업굴로 이동"
+    },
+    {
+      "id": "A2.S16.POPUP.01",
+      "speaker_channel": "popup · popup",
+      "condition": "제자에게 공격 조준 시",
+      "text": "제자는 살아 있습니다. 주변 위협을 막고 붙은 혼을 분리하세요."
+    },
+    {
+      "id": "A2.S16.FAIL.01",
+      "speaker_channel": "fail · fail",
+      "condition": "노승·제자 사망",
+      "text": "법당의 생존자를 지키지 못했습니다. 구조 전부터 다시 시작합니다."
+    },
+    {
+      "id": "A2.S16.JOURNAL.01",
+      "speaker_channel": "journal · journal",
+      "condition": "E04",
+      "text": "노승은 종 아래에서 사흘 동안 이어진 두드림을 들었다. 갇힌 사람은 스무 명 남짓이었다. 석공들이 종을 올리려 했으나 유헌은 살아 있는 사람들이 두드리는 동안 인양축을 빼게 했다."
+    },
+    {
+      "id": "EDGE.ARRIVALS_16_0",
+      "speaker_channel": "서술 · arrival",
+      "condition": "장 도착 때 한 번",
+      "text": "암벽에 붙은 법당 아래에서 노승이 쓰러진 제자를 붙들고 있었다."
+    },
+    {
+      "id": "EDGE.OPTIONAL_16_ARCHER_0",
+      "speaker_channel": "설오 · optional",
+      "condition": "동료 선택대화; 실제 출연·생존한 화자만",
+      "text": "물속에 부러진 도르래가 있었습니다. 저 법당에서 쓰던 것일까요?"
+    },
+    {
+      "id": "EDGE.OPTIONAL_16_MAGE_0",
+      "speaker_channel": "담허 · optional",
+      "condition": "동료 선택대화; 실제 출연·생존한 화자만; 구조 및 필수 증언 전; 뒤따르는 대화 묶음도 같은 시점",
+      "text": "큰 짐을 나르던 자리네. 여기 남은 스님에게 물어보세."
+    },
+    {
+      "id": "EDGE.OPTIONAL_16_MAGE_1",
+      "speaker_channel": "휘겸 · optional",
+      "condition": "동료 선택대화; 실제 출연·생존한 화자만; 노승·제자 구조 완료 전",
+      "text": "지금은 계단 아래 두 분부터 구합시다."
+    },
+    {
+      "id": "EDGE.OPTIONAL_16_MAGE_2",
+      "speaker_channel": "담허 · optional",
+      "condition": "동료 선택대화; 실제 출연·생존한 화자만; 제자 혼 분리 전; 붙은 혼을 실제 확인",
+      "text": "그러세. 쓰러진 사람에게 혼이 붙었네."
+    },
+    {
+      "id": "EDGE.OPTIONAL_16_KNIGHT_0",
+      "speaker_channel": "휘겸 · optional",
+      "condition": "동료 선택대화; 실제 출연·생존한 화자만; 노승·제자 구조 완료 전; 실제 두 명 확인",
+      "text": "법당 아래에 두 분이 있소. 먼저 몸을 피할 자리를 만들겠소."
+    },
+    {
+      "id": "EDGE.OPTIONAL_16_OCCULTIST_0",
+      "speaker_channel": "소단 · optional",
+      "condition": "동료 선택대화; 실제 출연·생존한 화자만; 이전 물길에서 수문 아래 혼들이 위로 손 뻗는 모습을 실제 목격했을 때만; 경로별 미목격이면 재생하지 않음",
+      "text": "수문 아래 붙어 있던 혼들이 위쪽으로 손을 뻗었어요. 종이 있는 쪽인가 봐요."
+    }
+  ],
+  "reviewed_id_count": 35,
+  "pending_wording_ids": [],
+  "final_decisions": [
+    "부모 승인후보35개 그대로 확정.",
+    "MID02는 노승에게 하는 존대 요청이며 하게체라고 부른 Gemini 설명은 오분류. 실제 문구는 유지."
+  ],
+  "implementation_verified": false,
+  "implementation_note": "운반시설 실제 가시성, 안전자리 도착, 목격·구조전 선택대화 가드는 별도 검증 필요.",
+  "pass3_source": "HONRO-CH16-PASS3-20261027-response.md",
+  "revision": 1
+}
