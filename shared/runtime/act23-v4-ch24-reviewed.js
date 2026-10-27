@@ -47,7 +47,7 @@ R=F.register({stage:24,
  finished(app,key,event){const b=app.engine.b,q=mem(b);if(key==='split'){q.departStart=Object.fromEntries(V.heroes(b).map(u=>[u.cls,{id:u.id,x:u.x,y:u.y}]));q.proof.splitDecision={actors:V.heroes(b).map(u=>u.id),safe:routeSafe(b)};}},
  journals:[{id:'EDGE.RUNTIME.JOURNAL.EVIDENCE24.PLAN',when:app=>!!mem(app.engine.b).proof.routes},{id:'A3.S24.JOURNAL.01',when:app=>!!mem(app.engine.b).proof.departure&&F.closed(mem(app.engine.b).events.depart)}],
  complete:b=>!!mem(b).proof.departure&&F.closed(mem(b).events.depart)&&F.closed(mem(b).events.guide)&&!!mem(b).journals['A3.S24.JOURNAL.01'],
- failure:b=>['archer','mage','knight','occultist'].some(c=>!hero(b,c))?'v4.24.required-party':null,
+ failure:b=>!V.alive(b.honroReviewed24Voice)?'v4.24.workshop-voice-lost':['archer','mage','knight','occultist'].some(c=>!hero(b,c))?'v4.24.required-party':null,
  objective:b=>'A3.S24.OBJ.0'+(F.closed(mem(b).events.split)?2:1),
  camera(app,key){const b=app.engine.b;return{id:'v4.24.'+key,intent:'situation',targets:['arrival','intro','crest'].includes(key)?[{marker:'family-crest'}]:[{marker:'split-route-a'},{marker:'split-route-b'},spec(b).voice],padding:110,maxScale:.75};},
  draw(scene,c,b){const q=mem(b);for(const p of[mark(b,'family-crest'),mark(b,'shrine-seal')]){c.save();c.translate(p.x+38,p.y-82);c.fillStyle='#4e513c';c.fillRect(-25,-28,50,55);c.strokeStyle='#bdb18a';c.lineWidth=3;for(let i=0;i<3;i++){c.beginPath();c.ellipse(Math.cos(i*2.094)*7,Math.sin(i*2.094)*7,7,11,i*2.094,0,Math.PI*2);c.stroke();}c.restore();}
