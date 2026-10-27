@@ -1,0 +1,328 @@
+{
+  "stage": 20,
+  "status": "Gemini pass1/coverage보완 → 제작 측 독립 재검토 → Gemini pass3 → 부모 최종판단 완료",
+  "rows": [
+    {
+      "id": "A2.S20.INTRO.01",
+      "speaker_channel": "담허 · dialogue",
+      "condition": "E01 돌림진 거둠",
+      "text": "풀렸네. 이 길로 나가세."
+    },
+    {
+      "id": "A2.S20.INTRO.02",
+      "speaker_channel": "휘겸 · dialogue",
+      "condition": "E01 호송 목록 합류",
+      "text": "다친 분은 가운데 서시오. 서로 놓치지 마시오."
+    },
+    {
+      "id": "A2.S20.INTRO.03",
+      "speaker_channel": "설오 · dialogue",
+      "condition": "E02 출구 매복이 보임",
+      "text": "입구에 남아 있습니다. 아직 나오지 마십시오."
+    },
+    {
+      "id": "A2.S20.MID.01",
+      "speaker_channel": "휘겸 · dialogue",
+      "condition": "E02 출구 확보·대열 출발",
+      "text": "이제 나오시오. 앞사람 발을 따라오시오."
+    },
+    {
+      "id": "A2.S20.MID.02",
+      "speaker_channel": "길찬 · dialogue",
+      "condition": "E03 아버지가 뒤처짐; 같은 짐 1회 인수 시작; 실제 접근/인계/보유로 이어짐",
+      "text": "아버지, 짐은 제가 들게요."
+    },
+    {
+      "id": "A2.S20.MID.03",
+      "speaker_channel": "석공 · dialogue",
+      "condition": "E03 길찬 곁",
+      "text": "돌 끝을 밟지 마라. 젖었다."
+    },
+    {
+      "id": "A2.S20.MID.04",
+      "speaker_channel": "소단 · dialogue",
+      "condition": "E04 매복 원혼 실제 접근",
+      "text": "위쪽에서 내려와요. 사람들 뒤로 돌아요."
+    },
+    {
+      "id": "A2.S20.MID.05",
+      "speaker_channel": "설오 · dialogue",
+      "condition": "E04 고지 사격선 확보",
+      "text": "뒤쪽 바위가 보입니다. 모두 길 안쪽으로 붙으십시오."
+    },
+    {
+      "id": "A2.S20.MID.06",
+      "speaker_channel": "휘겸 · dialogue",
+      "condition": "E03 부상자 실제로 뒤처짐; 실제 뒤처진 부상자 존재; 지원자 접근/부축/동반이동 완료를 대사만으로 대신하지 않음",
+      "text": "한 분이 못 따라오오. 부축해서 데려오시오."
+    },
+    {
+      "id": "A2.S20.MID.07",
+      "speaker_channel": "휘겸 · dialogue",
+      "condition": "E04 마지막 길 확보",
+      "text": "앞길이 열렸소. 멈추지 말고 나가시오."
+    },
+    {
+      "id": "A2.S20.BRANCH.01",
+      "speaker_channel": "휘겸 · dialogue",
+      "condition": "E05 모든 호송 대상 생존·밖 도착; 생존자 roster 전원 실제 도착; 손실분기와 상호배타",
+      "text": "모두 나왔소. 서로 얼굴을 확인하시오."
+    },
+    {
+      "id": "A2.S20.BRANCH.02",
+      "speaker_channel": "휘겸 · dialogue",
+      "condition": "E05 익명 주민 손실 분기; 생존 인원 도착; 실제 허용된 익명주민 손실 및 나머지 도착 확정; 전원도착대사와 상호배타",
+      "text": "빠진 사람이 있소. 남은 분들은 여기서 기다리시오."
+    },
+    {
+      "id": "A2.S20.TIME.01",
+      "speaker_channel": "석공 · dialogue",
+      "condition": "E05 처음 주막 터를 봄; 석공·길찬 및 생존 호송대의 실제 외부 도착 후; 선행 문답 완료 순서 보존",
+      "text": "저기 있던 주막은 어찌 됐소?"
+    },
+    {
+      "id": "A2.S20.TIME.02",
+      "speaker_channel": "휘겸 · dialogue",
+      "condition": "E05 주막 질문; 석공·길찬 및 생존 호송대의 실제 외부 도착 후; 선행 문답 완료 순서 보존",
+      "text": "없어진 지 오래됐소."
+    },
+    {
+      "id": "A2.S20.TIME.03",
+      "speaker_channel": "석공 · dialogue",
+      "condition": "E05 앞 대답 뒤; 석공·길찬 및 생존 호송대의 실제 외부 도착 후; 선행 문답 완료 순서 보존",
+      "text": "얼마나요?"
+    },
+    {
+      "id": "A2.S20.TIME.04",
+      "speaker_channel": "휘겸 · dialogue",
+      "condition": "E05 외부 시간차 최초 확정; 석공·길찬 및 생존 호송대의 실제 외부 도착 후; 선행 문답 완료 순서 보존",
+      "text": "칠십 해는 넘었소."
+    },
+    {
+      "id": "A2.S20.TIME.05",
+      "speaker_channel": "석공 · dialogue",
+      "condition": "E05 앞 대답 뒤; 석공·길찬 및 생존 호송대의 실제 외부 도착 후; 선행 문답 완료 순서 보존",
+      "text": "칠십 해라니. 지금 어느 임금 때요? 이 아래가 무슨 고을이오?"
+    },
+    {
+      "id": "A2.S20.TIME.06",
+      "speaker_channel": "휘겸 · dialogue",
+      "condition": "E05 석공의 혼란; 석공·길찬 및 생존 호송대의 실제 외부 도착 후; 선행 문답 완료 순서 보존",
+      "text": "길을 잘못 든 게 아니오. 댁이 알던 때와 달라진 거요."
+    },
+    {
+      "id": "A2.S20.TIME.07",
+      "speaker_channel": "길찬 · dialogue",
+      "condition": "E05 길찬이 E03에 인수한 같은 짐을 계속 든 채 아버지를 앉을 자리로 안내; 짐 재인수/복제 없음; 석공·길찬 및 생존 호송대의 실제 외부 도착 후; 선행 문답 완료 순서 보존",
+      "text": "아버지, 일단 저기 앉아요."
+    },
+    {
+      "id": "A2.S20.TIME.08",
+      "speaker_channel": "담허 · dialogue",
+      "condition": "E05 길찬과 석공의 연속 생활을 확인; 석공·길찬 및 생존 호송대의 실제 외부 도착 후; 선행 문답 완료 순서 보존",
+      "text": "안과 밖의 세월이 다르게 흐른 게로군."
+    },
+    {
+      "id": "A2.S20.NEWS.01",
+      "speaker_channel": "읍성 피란민 · dialogue",
+      "condition": "E06 바깥 안전구역 최초 조우; 동굴주민 아닌 바깥 피란민이 실제 조우하여 현재 들린 수레 피해를 증언",
+      "text": "읍성으로 가시오? 성문에서 들린 수레가 사람을 덮쳤소."
+    },
+    {
+      "id": "A2.S20.NEWS.02",
+      "speaker_channel": "휘겸 · dialogue",
+      "condition": "E06 현재 피해 소식",
+      "text": "수비병은 있소?"
+    },
+    {
+      "id": "A2.S20.NEWS.03",
+      "speaker_channel": "읍성 피란민 · dialogue",
+      "condition": "E06 질문 뒤",
+      "text": "문은 지키고 있소. 수로에 내려간 사람들은 안 돌아오고."
+    },
+    {
+      "id": "A2.S20.NEWS.04",
+      "speaker_channel": "설오 · dialogue",
+      "condition": "E06 현재 피해 방향 확인",
+      "text": "성문으로 가겠습니다. 길을 알려주십시오."
+    },
+    {
+      "id": "A2.S20.NEWS.05",
+      "speaker_channel": "담허 · dialogue",
+      "condition": "E06 묵종 안정화와 현재 재난 비교",
+      "text": "여기 종을 잠재워도 끝나지 않는군. 무명사에 무엇이 남았는지 봐야겠네."
+    },
+    {
+      "id": "A2.S20.NEWS.06",
+      "speaker_channel": "휘겸 · dialogue",
+      "condition": "E06 다음 목적 확정",
+      "text": "먼저 읍성 사람부터 빼내야 하오. 저문골의 이름도 거기서 묻겠소."
+    },
+    {
+      "id": "A2.S20.COMPLETE.01",
+      "speaker_channel": "소단 · dialogue",
+      "condition": "E07 바깥 안전자리에 다친 생존자와 빈자리가 실제로 보임",
+      "text": "다친 분 옆에 자리가 있어요. 이쪽에 앉으세요."
+    },
+    {
+      "id": "A2.S20.OBJECTIVE.01",
+      "speaker_channel": "objective · objective",
+      "condition": "E01",
+      "text": "돌림진을 거두고 출구 매복 차단"
+    },
+    {
+      "id": "A2.S20.OBJECTIVE.02",
+      "speaker_channel": "objective · objective",
+      "condition": "E02; 완료는 실제 주민의 쉼터 도착·집결로 판정; 대기턴수/문구만으로 완료 금지",
+      "text": "생존자를 쉼터까지 실제로 호송"
+    },
+    {
+      "id": "A2.S20.OBJECTIVE.03",
+      "speaker_channel": "objective · objective",
+      "condition": "E03",
+      "text": "뒤처진 사람을 부축하고 마지막 매복 차단"
+    },
+    {
+      "id": "A2.S20.OBJECTIVE.04",
+      "speaker_channel": "objective · objective",
+      "condition": "E04",
+      "text": "생존자와 함께 바깥 산길에 도착"
+    },
+    {
+      "id": "A2.S20.POPUP.01",
+      "speaker_channel": "popup · popup",
+      "condition": "부상자 정지",
+      "text": "부상자가 뒤처졌습니다. 가까이 가서 부축하세요."
+    },
+    {
+      "id": "A2.S20.POPUP.02",
+      "speaker_channel": "popup · popup",
+      "condition": "호송 손실 분기; 실제 roster로 survived_count/lost_count 계산; 사망자를 생존수에 포함하지 않음",
+      "text": "호송 결과: 바깥 도착 {survived_count}명 · 돌아오지 못한 주민 {lost_count}명"
+    },
+    {
+      "id": "A2.S20.FAIL.01",
+      "speaker_channel": "fail · fail",
+      "condition": "석공·길찬 사망 또는 기본안 전체 구조 실패",
+      "text": "생존자를 지키지 못했습니다. 직전 호송 지점부터 다시 시작합니다."
+    },
+    {
+      "id": "A2.S20.JOURNAL.01",
+      "speaker_channel": "journal · journal",
+      "condition": "E05; 실제 외부 도착 및 TIME04~08 문답 완료 후; 시간차 선공개 금지",
+      "text": "돌림진을 걷고 생존자들을 산 밖으로 이끌었다. 석공이 기억하던 주막은 없어진 지 칠십 해가 넘었다. 그들은 동굴에서 하루하루를 이어왔지만 바깥에는 훨씬 긴 세월이 흘렀다."
+    },
+    {
+      "id": "A2.S20.JOURNAL.02",
+      "speaker_channel": "journal · journal",
+      "condition": "E06; 바깥 피란민의 NEWS01~03 실제 청취 후",
+      "text": "읍성 성문에서 들린 수레가 사람들을 덮쳤고 지하 수로에 간 이들은 돌아오지 않는다. 일행은 먼저 그곳으로 향한다. 종이 왔던 무명사와 받침의 저문골이라는 이름은 아직 풀지 못한 단서다."
+    },
+    {
+      "id": "EDGE.ARRIVALS_20_0",
+      "speaker_channel": "서술 · arrival",
+      "condition": "장 도착 때 한 번",
+      "text": "종소리가 멎은 동굴을 생존자들이 걸었다. 앞쪽 틈에서 바람이 들어왔다."
+    },
+    {
+      "id": "EDGE.OPTIONAL_20_ARCHER_0",
+      "speaker_channel": "설오 · optional",
+      "condition": "동료 선택대화; 실제 출연·생존한 화자만; 실제 외부 도착 전 AND 돌림진 해제 전; 이어지는0~2행 전체 같은 시점",
+      "text": "두드림은 멎었습니다. 이제 주민들을 밖으로 모시면 됩니까?"
+    },
+    {
+      "id": "EDGE.OPTIONAL_20_ARCHER_1",
+      "speaker_channel": "담허 · optional",
+      "condition": "동료 선택대화; 실제 출연·생존한 화자만; 돌림진 해제 전; 이미 거둔 뒤 다시 거두겠다고 말하지 않음",
+      "text": "그러세. 출구의 돌림진은 내가 거두겠네."
+    },
+    {
+      "id": "EDGE.OPTIONAL_20_ARCHER_2",
+      "speaker_channel": "설오 · optional",
+      "condition": "동료 선택대화; 실제 출연·생존한 화자만; 외부 도착 전; 저문골 물증은 이미 실제 확보",
+      "text": "산 밖으로 나가면 저문골이라는 곳을 아는 사람이 있는지부터 수소문해 보겠습니다."
+    },
+    {
+      "id": "EDGE.OPTIONAL_20_MAGE_0",
+      "speaker_channel": "담허 · optional",
+      "condition": "동료 선택대화; 실제 출연·생존한 화자만; 19장 천도완료 AND 외부 도착 전",
+      "text": "종 아래는 비었네. 이제 살아 있는 사람들을 밖으로 데리고 나가세."
+    },
+    {
+      "id": "EDGE.OPTIONAL_20_KNIGHT_0",
+      "speaker_channel": "휘겸 · optional",
+      "condition": "동료 선택대화; 실제 출연·생존한 화자만; 19장 세 물증을 실제 확보해 기록한 상태; 별도 필기 애니메이션은 필수 아님",
+      "text": "이송 표식과 왕실 봉인은 종이에 똑똑히 베껴 챙겼소. 저문골이라는 이름도 빠뜨리지 않았소."
+    },
+    {
+      "id": "EDGE.OPTIONAL_20_OCCULTIST_0",
+      "speaker_channel": "소단 · optional",
+      "condition": "동료 선택대화; 실제 출연·생존한 화자만; 19장 천도 실제목격 후; 혼들의 이름/손목 감각은 기존 소단의 목격담 범위이며 시간정지로 확대하지 않음",
+      "text": "보낸 분들은 서로 이름을 부르면서 멀어졌어요. 이제 제 손목을 잡아당기는 줄은 없어요."
+    },
+    {
+      "id": "EDGE.RESTENDINGS_20_REQUIRED_0",
+      "speaker_channel": "설오 · rest_ending",
+      "condition": "해당 장 실제 완료 뒤 쉼터; 화자 실제 생존·출연; 살아 나온 주민들이 실제 양지에서 쉬는 상태",
+      "text": "마을 분들은 아래 양지에서 쉬고 있어요. 저도 잠깐 앉아야겠습니다."
+    },
+    {
+      "id": "EDGE.RESTENDINGS_20_OPTIONAL_ARCHER_0",
+      "speaker_channel": "설오 · rest_ending",
+      "condition": "해당 장 실제 완료 뒤 쉼터; 화자 실제 생존·출연",
+      "text": "바위 천장만 보다가 나오니 하늘이 넓군요. 자꾸 올려다보게 됩니다."
+    },
+    {
+      "id": "EDGE.RESTENDINGS_20_OPTIONAL_MAGE_0",
+      "speaker_channel": "담허 · rest_ending",
+      "condition": "해당 장 실제 완료 뒤 쉼터; 화자 실제 생존·출연",
+      "text": "귓속에 종소리가 남을 줄 알았는데, 솔바람부터 들리네."
+    },
+    {
+      "id": "EDGE.RESTENDINGS_20_OPTIONAL_KNIGHT_0",
+      "speaker_channel": "휘겸 · rest_ending",
+      "condition": "해당 장 실제 완료 뒤 쉼터; 화자 실제 생존·출연; E03 한 번 인수한 같은 짐을 길찬이 외부까지 운반한 사실 확인 후",
+      "text": "길찬이 아버지의 연장을 대신 졌소. 노인도 말없이 내주었소."
+    },
+    {
+      "id": "EDGE.RESTENDINGS_20_OPTIONAL_OCCULTIST_0",
+      "speaker_channel": "소단 · rest_ending",
+      "condition": "해당 장 실제 완료 뒤 쉼터; 화자 실제 생존·출연",
+      "text": "조금만 이대로 앉아 있을래요. 손에 줄도 방울도 안 쥐고요."
+    },
+    {
+      "id": "EDGE.ACTENDINGS_20_LINES_0",
+      "speaker_channel": "서술 · act_ending",
+      "condition": "실제 완료와 관련 사건 목격 뒤 표시하는 막종료 서술 / stage_complete=20; 과거 pending cursor는 행 번호 그대로 재사용하지 않음. 20/30 해당 판본에만 재정렬.; COMPAT.30 엔딩은 신판 보스/배호송 미경험 사용자에게 별도 적용.; 19장 실제 천도완료/가족호명 목격 저장을 확인; 미경험 저장에 강제 부여 금지",
+      "text": "가족들이 부르는 이름을 따라 종 아래 갇혔던 혼들이 떠났다."
+    },
+    {
+      "id": "EDGE.ACTENDINGS_20_LINES_1",
+      "speaker_channel": "서술 · act_ending",
+      "condition": "실제 완료와 관련 사건 목격 뒤 표시하는 막종료 서술 / stage_complete=20; 과거 pending cursor는 행 번호 그대로 재사용하지 않음. 20/30 해당 판본에만 재정렬.; COMPAT.30 엔딩은 신판 보스/배호송 미경험 사용자에게 별도 적용.; 실제 외부도착 및 시간차 문답 완료; 살아 나온 인원만 반영",
+      "text": "생존자들은 동굴 밖으로 걸어 나왔다. 석공이 찾던 주막은 사라진 지 칠십 해가 넘었다."
+    },
+    {
+      "id": "EDGE.ACTENDINGS_20_LINES_2",
+      "speaker_channel": "서술 · act_ending",
+      "condition": "실제 완료와 관련 사건 목격 뒤 표시하는 막종료 서술 / stage_complete=20; 과거 pending cursor는 행 번호 그대로 재사용하지 않음. 20/30 해당 판본에만 재정렬.; COMPAT.30 엔딩은 신판 보스/배호송 미경험 사용자에게 별도 적용.; 외부 시간차 공개 및19물증 실제확보 후",
+      "text": "동굴 안에서는 하루하루가 이어졌지만, 밖에는 훨씬 긴 세월이 흘렀다. 종의 고리와 받침에는 무명사와 저문골의 이름이 남았다."
+    },
+    {
+      "id": "EDGE.ACTENDINGS_20_LINES_3",
+      "speaker_channel": "서술 · act_ending",
+      "condition": "실제 완료와 관련 사건 목격 뒤 표시하는 막종료 서술 / stage_complete=20; 과거 pending cursor는 행 번호 그대로 재사용하지 않음. 20/30 해당 판본에만 재정렬.; COMPAT.30 엔딩은 신판 보스/배호송 미경험 사용자에게 별도 적용.; 외부 피란민의 현재 들림/수로실종 소식 실제청취 및 생존자 안전인계 후",
+      "text": "읍성에서도 들림과 실종이 이어지고 있었다. 일행은 생존자들을 안전한 길로 보낸 뒤 성문으로 향했다."
+    }
+  ],
+  "reviewed_id_count": 52,
+  "pending_wording_ids": [],
+  "final_decisions": [
+    "부모 승인후보52개 그대로확정.",
+    "최종응답의 TIME01/NEWS01/OPTIONAL_KNIGHT0 CHANGE3은 후보문장=수정안이완전동일한 판정표기오류. 실제추가변경0."
+  ],
+  "implementation_verified": false,
+  "implementation_note": "NPC실제호송/부축·같은짐1회인수/외부도착후시간차/물증기록/지식가드/호환세이브는별도구현검증.",
+  "pass3_source": "HONRO-CH20-PASS3-20261027-response.md",
+  "revision": 1
+}
