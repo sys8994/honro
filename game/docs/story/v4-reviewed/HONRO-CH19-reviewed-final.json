@@ -1,0 +1,213 @@
+{
+  "stage": 19,
+  "status": "Gemini pass1 → 제작 측 독립 재검토 → Gemini pass3 → 부모 최종판단 완료",
+  "rows": [
+    {
+      "id": "A2.S19.INTRO.01",
+      "speaker_channel": "주민 1 · dialogue",
+      "condition": "E01 망치를 내려놓음",
+      "text": "이 망치를 두고 가도 되겠소?"
+    },
+    {
+      "id": "A2.S19.INTRO.02",
+      "speaker_channel": "담허 · dialogue",
+      "condition": "E01 물건 자리 확인",
+      "text": "그 앞에 놓으시오."
+    },
+    {
+      "id": "A2.S19.INTRO.03",
+      "speaker_channel": "주민 2 · dialogue",
+      "condition": "E01 밥그릇을 내려놓음",
+      "text": "깨지지 않은 건 이것뿐이오."
+    },
+    {
+      "id": "A2.S19.MID.01",
+      "speaker_channel": "소단 · dialogue",
+      "condition": "E02 첫 혼 반응",
+      "text": "물건 쪽으로 모여요."
+    },
+    {
+      "id": "A2.S19.MID.02",
+      "speaker_channel": "담허 · dialogue",
+      "condition": "E02 떠날 자리 열림",
+      "text": "길은 열렸네. 얽힌 데부터 풀게."
+    },
+    {
+      "id": "A2.S19.MID.03",
+      "speaker_channel": "소단 · dialogue",
+      "condition": "E03 첫 매듭 분리",
+      "text": "놓아드릴게요. 이제 나오세요."
+    },
+    {
+      "id": "A2.S19.MID.04",
+      "speaker_channel": "소단 · dialogue",
+      "condition": "E03 다음 혼이 뒤엉킨 상태; 실제로 두 혼이 엉킨 상태일 때만; 세 만남의 자유순서를 고정하지 않음",
+      "text": "여기 둘이 붙어 있어요. 잠깐만요."
+    },
+    {
+      "id": "A2.S19.MID.05",
+      "speaker_channel": "담허 · dialogue",
+      "condition": "E03 분리 완료 뒤",
+      "text": "뒤에서 잡는 것은 없다. 가시오."
+    },
+    {
+      "id": "A2.S19.MID.06",
+      "speaker_channel": "생존자 · dialogue",
+      "condition": "E04 마지막 두드림 소멸",
+      "text": "멎었소."
+    },
+    {
+      "id": "A2.S19.MID.07",
+      "speaker_channel": "소단 · dialogue",
+      "condition": "E04 마지막 혼 떠남; 모든 만남의 분리/천도 완료 및 마지막 혼의 실제 퇴장 확인",
+      "text": "다 나왔어요."
+    },
+    {
+      "id": "A2.S19.EVIDENCE.01",
+      "speaker_channel": "설오 · dialogue",
+      "condition": "E05 운반 고리의 표식 발견",
+      "text": "고리에 글자가 남아 있습니다."
+    },
+    {
+      "id": "A2.S19.EVIDENCE.02",
+      "speaker_channel": "담허 · dialogue",
+      "condition": "E05 무명사 표식 확인; 무명사 표식의 실제 관찰 후; 종 제작기원 단정으로 확대하지 않음",
+      "text": "무명사. 저 절에서 옮겨온 종이군."
+    },
+    {
+      "id": "A2.S19.EVIDENCE.03",
+      "speaker_channel": "휘겸 · dialogue",
+      "condition": "E05 봉인 확인",
+      "text": "이건 왕실 봉인이오."
+    },
+    {
+      "id": "A2.S19.EVIDENCE.04",
+      "speaker_channel": "설오 · dialogue",
+      "condition": "E05 받침 글자 확인",
+      "text": "여긴 저문골이라고 새겼습니다."
+    },
+    {
+      "id": "A2.S19.EVIDENCE.05",
+      "speaker_channel": "휘겸 · dialogue",
+      "condition": "E05 세 흔적 확인 뒤; 무명사/왕실봉인/저문골 세 흔적 실제 확인 후",
+      "text": "누가 무엇을 옮겼는지 확인해야겠소."
+    },
+    {
+      "id": "A2.S19.COMPLETE.01",
+      "speaker_channel": "담허 · dialogue",
+      "condition": "E06 출구 준비",
+      "text": "이제 산길의 돌림진을 거두세."
+    },
+    {
+      "id": "A2.S19.COMPLETE.02",
+      "speaker_channel": "주민 1 · dialogue",
+      "condition": "E06 은신처로 돌아감",
+      "text": "숨은 사람들에게 알리겠소."
+    },
+    {
+      "id": "A2.S19.COMPLETE.03",
+      "speaker_channel": "휘겸 · dialogue",
+      "condition": "E06 주민이 후방 안전길로 이동",
+      "text": "혼자 서두르지 마시오. 함께 나갑시다."
+    },
+    {
+      "id": "A2.S19.OBJECTIVE.01",
+      "speaker_channel": "objective · objective",
+      "condition": "E01",
+      "text": "갇힌 혼이 떠날 자리 열기"
+    },
+    {
+      "id": "A2.S19.OBJECTIVE.02",
+      "speaker_channel": "objective · objective",
+      "condition": "E02",
+      "text": "뒤엉킨 혼을 풀어 보내기"
+    },
+    {
+      "id": "A2.S19.OBJECTIVE.03",
+      "speaker_channel": "objective · objective",
+      "condition": "E04",
+      "text": "종의 운반 고리와 받침에 남은 흔적 확인"
+    },
+    {
+      "id": "A2.S19.POPUP.01",
+      "speaker_channel": "popup · popup",
+      "condition": "E05; 무명사/왕실봉인/저문골 세 흔적 실제 확보 후",
+      "text": "이송 흔적: 무명사 · 왕실 봉인 · 저문골"
+    },
+    {
+      "id": "A2.S19.JOURNAL.01",
+      "speaker_channel": "journal · journal",
+      "condition": "E04",
+      "text": "종 아래 혼들을 보내자 사흘의 참사 뒤 남아 있던 두드림이 멎었다. 주민들이 놓은 망치와 밥그릇 곁에는 물방울 소리만 남았다."
+    },
+    {
+      "id": "A2.S19.JOURNAL.02",
+      "speaker_channel": "journal · journal",
+      "condition": "E05; 무명사/왕실봉인/저문골 세 흔적 실제 확보 후",
+      "text": "운반 고리에는 무명사의 흔적, 받침에는 왕실 봉인과 저문골이라는 지명이 남았다. 이 흔적만으로 종의 제작 경위나 저문골에서 벌어진 일을 단정할 수는 없다."
+    },
+    {
+      "id": "EDGE.ARRIVALS_19_0",
+      "speaker_channel": "서술 · arrival",
+      "condition": "장 도착 때 한 번",
+      "text": "열린 통로로 주민 몇 명이 들어왔다. 종 아래에 망치와 밥그릇을 내려놓았다."
+    },
+    {
+      "id": "EDGE.OPTIONAL_19_ARCHER_0",
+      "speaker_channel": "설오 · optional",
+      "condition": "동료 선택대화; 실제 출연·생존한 화자만; 종 안정화 후 AND 최종천도 전; 현재 안쪽 혼의 기척이 실제 남아 있을 때",
+      "text": "종이 멎으니 안쪽 기척이 들립니다. 가족들이 알아볼 수 있겠습니까?"
+    },
+    {
+      "id": "EDGE.OPTIONAL_19_MAGE_0",
+      "speaker_channel": "담허 · optional",
+      "condition": "동료 선택대화; 실제 출연·생존한 화자만; 떠날 자리 열기 전; 완료 뒤 같은 요청 재생 금지",
+      "text": "종 아래 혼들이 엉켜 있네. 나갈 자리부터 열어 주세."
+    },
+    {
+      "id": "EDGE.OPTIONAL_19_KNIGHT_0",
+      "speaker_channel": "휘겸 · optional",
+      "condition": "동료 선택대화; 실제 출연·생존한 화자만; 해당 통로 실제 확보 후 AND 가족들이 내려가기 전/진행 중",
+      "text": "가족들이 올라올 통로는 비워 두었소. 종 밑으로 내려가는 분부터 살피겠소."
+    },
+    {
+      "id": "EDGE.OPTIONAL_19_OCCULTIST_0",
+      "speaker_channel": "소단 · optional",
+      "condition": "동료 선택대화; 실제 출연·생존한 화자만; 최종천도 전; 실제 혼 목소리를 구분할 수 있고 부를 가족이 남은 때",
+      "text": "이제 목소리가 하나씩 따로 들려요. 살아 있는 식구가 부르면 바로 알아듣는 혼들이 있을 거예요."
+    },
+    {
+      "id": "EDGE.OPTIONAL_19_OCCULTIST_1",
+      "speaker_channel": "설오 · optional",
+      "condition": "동료 선택대화; 실제 출연·생존한 화자만; 앞 소단행과 같은 미완료 만남 시점; 이미 다 떠난 뒤 재생 금지",
+      "text": "어느 분부터 모셔서 부르면 됩니까?"
+    },
+    {
+      "id": "EDGE.OPTIONAL_19_OCCULTIST_2",
+      "speaker_channel": "소단 · optional",
+      "condition": "동료 선택대화; 실제 출연·생존한 화자만; 유품을 든 가족이 실제 대기하고 부를 혼이 남은 때; 체인 전체 같은 상태 유지",
+      "text": "손에 유품을 들고 기다리는 가족분부터요. 불러 줄 사람이 없는 혼도 남았는지는 제가 끝까지 볼게요."
+    },
+    {
+      "id": "EDGE.RUNTIME.JOURNAL.EVIDENCE19.MARKS",
+      "speaker_channel": "서술 · runtime_dynamic",
+      "condition": "해당 물증의 실제 확보 뒤 저널 요약 / fresh_v4=True; 통합요약이므로 무명사/왕실봉인/저문골 세 흔적 모두 실제 확보 후",
+      "text": "종의 운반 고리에는 무명사의 흔적이, 받침에는 왕실 봉인과 저문골이라는 이름이 남아 있다."
+    },
+    {
+      "id": "EDGE.RUNTIME.STAGE19.SPIRIT_LABEL.1",
+      "speaker_channel": "안내 · runtime_dynamic",
+      "condition": "비전투 혼 visual-only actor 이름 / fresh_v4=True",
+      "text": "종 아래의 혼"
+    }
+  ],
+  "reviewed_id_count": 33,
+  "pending_wording_ids": [],
+  "final_decisions": [
+    "부모 승인후보33개 그대로확정.",
+    "MID02는 소단 등 동료에게 얽힌혼을 풀게 하는 하게체 지시. 혼들을 향한 말이라는 Gemini 설명 오분류와 문구채택은 구분."
+  ],
+  "implementation_verified": false,
+  "implementation_note": "실제 비전투/세만남자유순서/천도상태/세물증확보/선택대화가드는 코드검증대기.",
+  "pass3_source": "HONRO-CH19-PASS3-20261027-response.md"
+}

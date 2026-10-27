@@ -1,0 +1,165 @@
+{
+  "stage": 15,
+  "status": "정상대상 Gemini pass1 → 제작 측 독립 재검토 → Gemini pass3 → 부모 최종판단 완료",
+  "rows": [
+    {
+      "id": "EDGE.ARRIVALS_15_0",
+      "speaker_channel": "서술 · 도착 서술",
+      "condition": "해당 장 도착 때 한 번",
+      "text": "수차에 막힌 물이 작업굴까지 차 있었다. 물가에는 부러진 도르래가 남아 있었다."
+    },
+    {
+      "id": "A2.S15.INTRO.01",
+      "speaker_channel": "설오 · 대사",
+      "condition": "장면01 수차가 움직임",
+      "text": "수차가 물을 막고 있습니다."
+    },
+    {
+      "id": "A2.S15.INTRO.02",
+      "speaker_channel": "소단 · 대사",
+      "condition": "장면01 수차에 붙은 혼 확인",
+      "text": "저것에도 붙었어요. 물이 미는 게 아니에요."
+    },
+    {
+      "id": "A2.S15.INTRO.03",
+      "speaker_channel": "휘겸 · 대사",
+      "condition": "장면02 낮은 길을 확인",
+      "text": "아래 길로 가려면 저 수차부터 멈춰야겠소."
+    },
+    {
+      "id": "A2.S15.CHOICE.01",
+      "speaker_channel": "설오 · 대사",
+      "condition": "장면02 고지 우회로도 보임",
+      "text": "위로 돌아갈 수도 있습니다. 발판은 남아 있어요."
+    },
+    {
+      "id": "A2.S15.BRANCH.01",
+      "speaker_channel": "휘겸 · 대사",
+      "condition": "장면02 낮은 길 선택; 수문 조작 접근",
+      "text": "수문 앞을 비우겠소. 물이 빠지면 건너시오."
+    },
+    {
+      "id": "A2.S15.BRANCH.02",
+      "speaker_channel": "설오 · 대사",
+      "condition": "장면02 높은 길 선택; 아래쪽 사격이 가려짐",
+      "text": "여기선 아래가 안 보입니다. 다음 턱으로 옮기겠습니다."
+    },
+    {
+      "id": "A2.S15.MID.01",
+      "speaker_channel": "설오 · 대사",
+      "condition": "장면03 물방울 편향 첫 목격",
+      "text": "물이 옆으로 떨어집니다."
+    },
+    {
+      "id": "A2.S15.MID.02",
+      "speaker_channel": "담허 · 대사",
+      "condition": "장면03 같은 구역의 반복 관찰",
+      "text": "저 좁은 자리에서만 어긋나는군."
+    },
+    {
+      "id": "A2.S15.MID.03",
+      "speaker_channel": "설오 · 대사",
+      "condition": "장면03 예상 궤적 확인",
+      "text": "화살도 같은 쪽으로 휩니다."
+    },
+    {
+      "id": "A2.S15.MID.04",
+      "speaker_channel": "소단 · 대사",
+      "condition": "장면04 합류 원혼 실제 진입",
+      "text": "물 위로 둘이 와요."
+    },
+    {
+      "id": "A2.S15.MID.05",
+      "speaker_channel": "휘겸 · 대사",
+      "condition": "장면04 출구 확보",
+      "text": "좁은 데서 멈추지 마시오. 건넌 사람부터 안으로 가시오."
+    },
+    {
+      "id": "A2.S15.MID.06",
+      "speaker_channel": "설오 · 대사",
+      "condition": "장면05 첫 두드림",
+      "text": "벽 너머입니까?"
+    },
+    {
+      "id": "A2.S15.MID.07",
+      "speaker_channel": "소단 · 대사",
+      "condition": "장면05 깊은 방향에서 두드림 반복",
+      "text": "아니에요. 더 아래서 들려요."
+    },
+    {
+      "id": "A2.S15.COMPLETE.01",
+      "speaker_channel": "담허 · 대사",
+      "condition": "장면05 두드림 뒤 잠운사 방향 확인",
+      "text": "앞에 법당이 있네. 그쪽을 살펴보세."
+    },
+    {
+      "id": "A2.S15.COMPLETE.02",
+      "speaker_channel": "휘겸 · 대사",
+      "condition": "장면05 출구 이동",
+      "text": "발판 끝을 조심하시오. 물 아래는 안 보이오."
+    },
+    {
+      "id": "A2.S15.OBJECTIVE.01",
+      "speaker_channel": "목표 UI · 목표 UI",
+      "condition": "장면01",
+      "text": "수문길 또는 고지 우회길을 확보해 잠운사로 이동"
+    },
+    {
+      "id": "A2.S15.UI_CHOICE.01",
+      "speaker_channel": "선택지 UI · 선택지 UI",
+      "condition": "장면02",
+      "text": "수차를 멈추고 낮은 점검로 통과"
+    },
+    {
+      "id": "A2.S15.UI_CHOICE.02",
+      "speaker_channel": "선택지 UI · 선택지 UI",
+      "condition": "장면02",
+      "text": "고지 발판으로 우회"
+    },
+    {
+      "id": "A2.S15.POPUP.01",
+      "speaker_channel": "안내 UI · 안내 UI",
+      "condition": "장면03",
+      "text": "이 구역에서는 탄도가 조금 휘어집니다. 예상 궤적에 같은 변화가 표시됩니다."
+    },
+    {
+      "id": "A2.S15.JOURNAL.01",
+      "speaker_channel": "저널 UI · 저널 UI",
+      "condition": "장면05",
+      "text": "물길 옆에는 낡은 운반 시설이 남아 있었다. 일부 구역에서 물방울과 발사체가 같은 방향으로 조금 치우쳤다. 물소리 사이의 두드림은 깊은 공동 쪽에서 들려왔다."
+    },
+    {
+      "id": "EDGE.OPTIONAL_15_ARCHER_0",
+      "speaker_channel": "설오 · 선택 동료 대화",
+      "condition": "플레이어가 동료에게 말을 걸 때; 실제 출연·생존한 화자만",
+      "text": "길찬은 아버님께 가는 길로 보냈습니다. 이제 저 물길을 보겠습니다."
+    },
+    {
+      "id": "EDGE.OPTIONAL_15_MAGE_0",
+      "speaker_channel": "담허 · 선택 동료 대화",
+      "condition": "플레이어가 동료에게 말을 걸 때; 실제 출연·생존한 화자만",
+      "text": "종이 울리자 길찬의 발부터 움직였네. 또 울리면 서로를 살피게."
+    },
+    {
+      "id": "EDGE.OPTIONAL_15_KNIGHT_0",
+      "speaker_channel": "휘겸 · 선택 동료 대화",
+      "condition": "플레이어가 동료에게 말을 걸 때; 실제 출연·생존한 화자만; 돌아갈 다리 실제 확인 후 AND 아래 발판이 아직 물에 잠겨 있을 때",
+      "text": "돌아갈 다리는 확인했소. 아래 발판은 아직 물에 잠겨 있으니 조심하시오."
+    },
+    {
+      "id": "EDGE.OPTIONAL_15_OCCULTIST_0",
+      "speaker_channel": "소단 · 선택 동료 대화",
+      "condition": "플레이어가 동료에게 말을 걸 때; 실제 출연·생존한 화자만",
+      "text": "길찬 씨는 혼을 떼고도 한참 떨었어요. 종소리가 나면 제 곁에 있어 주세요."
+    }
+  ],
+  "final_decisions": [
+    "OPTIONAL_KNIGHT0의 현재 침수상태 지속 표현을 최종제안 그대로 채택. 승인된 실제 다리 확인 후/발판이 아직 잠긴 때 발동조건 보존.",
+    "나머지24 KEEP; 여기에는 제작 측 종소리가 나면 수정후보 포함."
+  ],
+  "reviewed_id_count": 25,
+  "pending_wording_ids": [],
+  "implementation_verified": false,
+  "implementation_note": "문구 검수 완료와 실제 발판 침수상태/다리 확인/이동동선 및 발동가드 구현 검증은 별개.",
+  "pass3_source": "HONRO-CH15-PASS3-20261027-response.md"
+}

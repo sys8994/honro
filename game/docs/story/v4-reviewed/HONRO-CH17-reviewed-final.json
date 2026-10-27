@@ -1,0 +1,219 @@
+{
+  "stage": 17,
+  "status": "Gemini pass1 → 제작 측 독립 재검토 → Gemini pass3 → 부모 최종판단 완료",
+  "rows": [
+    {
+      "id": "A2.S17.INTRO.01",
+      "speaker_channel": "길찬 · dialogue",
+      "condition": "E01 아버지와 후방길에서 합류",
+      "text": "아버지, 저기 비어 있어요."
+    },
+    {
+      "id": "A2.S17.INTRO.02",
+      "speaker_channel": "석공 · dialogue",
+      "condition": "E01 빠진 축 확인",
+      "text": "축을 아예 빼놓았소. 부러진 게 아니오."
+    },
+    {
+      "id": "A2.S17.INTRO.03",
+      "speaker_channel": "휘겸 · dialogue",
+      "condition": "E01 작업장 위험을 확인",
+      "text": "고칠 수 있소?"
+    },
+    {
+      "id": "A2.S17.INTRO.04",
+      "speaker_channel": "석공 · dialogue",
+      "condition": "E01 복구 질문",
+      "text": "맞물림은 남았소. 저 위 바위부터 받쳐주시오."
+    },
+    {
+      "id": "A2.S17.MID.01",
+      "speaker_channel": "설오 · dialogue",
+      "condition": "E02 낙석 사격선 확인",
+      "text": "버팀목 위가 갈라졌습니다. 그 아래는 비우십시오."
+    },
+    {
+      "id": "A2.S17.MID.02",
+      "speaker_channel": "휘겸 · dialogue",
+      "condition": "E02 길찬이 부품 길로 접근",
+      "text": "길찬은 아버지 곁에 있으시오. 길이 열리면 부르겠소."
+    },
+    {
+      "id": "A2.S17.MID.03",
+      "speaker_channel": "소단 · dialogue",
+      "condition": "E03 인양틀에 접근",
+      "text": "틀 안에 붙었어요. 줄을 건드리면 같이 움직여요."
+    },
+    {
+      "id": "A2.S17.MID.04",
+      "speaker_channel": "담허 · dialogue",
+      "condition": "E03 들림을 분리함",
+      "text": "줄에서 손 떼시오. 혼부터 떼겠습니다."
+    },
+    {
+      "id": "A2.S17.MID.05",
+      "speaker_channel": "석공 · dialogue",
+      "condition": "E04 인양틀 정지 후 빈 축에 손댐",
+      "text": "이걸 누가 뽑았는지 알고 있소?"
+    },
+    {
+      "id": "A2.S17.MID.06",
+      "speaker_channel": "휘겸 · dialogue",
+      "condition": "E04 witness16_heard=true",
+      "text": "유헌이 시켰다고 들었소. 안에서 두드리는 동안에."
+    },
+    {
+      "id": "A2.S17.MID.07",
+      "speaker_channel": "석공 · dialogue",
+      "condition": "E04 짧은 멈춤 뒤 작업 재개",
+      "text": "길찬아. 작은 고정구를 가져오너라."
+    },
+    {
+      "id": "A2.S17.MID.08",
+      "speaker_channel": "길찬 · dialogue",
+      "condition": "E04 부품 운반 완료",
+      "text": "여기 있어요. 이쪽에 놓을까요?"
+    },
+    {
+      "id": "A2.S17.MID.09",
+      "speaker_channel": "석공 · dialogue",
+      "condition": "E04 축을 끼우며",
+      "text": "내 손 옆에 놓아라. 손가락은 빼고."
+    },
+    {
+      "id": "A2.S17.MID.10",
+      "speaker_channel": "소단 · dialogue",
+      "condition": "E04 유한 증원 실제 접근",
+      "text": "깊은 굴에서 올라와요. 축 쪽으로 와요."
+    },
+    {
+      "id": "A2.S17.MID.11",
+      "speaker_channel": "설오 · dialogue",
+      "condition": "E04 작업자와 적 사이 사격선 확보",
+      "text": "축에는 안 닿습니다. 앞의 놈부터 쏘겠습니다."
+    },
+    {
+      "id": "A2.S17.MID.12",
+      "speaker_channel": "석공 · dialogue",
+      "condition": "E05 고정구 잠금 완료",
+      "text": "이제 걸렸소. 줄을 조금만 당겨 보시오."
+    },
+    {
+      "id": "A2.S17.MID.13",
+      "speaker_channel": "길찬 · dialogue",
+      "condition": "E05 도르래가 실제 회전함",
+      "text": "아버지, 돌아가요."
+    },
+    {
+      "id": "A2.S17.MID.14",
+      "speaker_channel": "소단 · dialogue",
+      "condition": "E05 먼 두드림 재개",
+      "text": "아래에서도 소리가 나요."
+    },
+    {
+      "id": "A2.S17.COMPLETE.01",
+      "speaker_channel": "석공 · dialogue",
+      "condition": "E06 시험 하중 성공",
+      "text": "이젠 종을 받을 수 있소. 갑자기 풀지만 마시오."
+    },
+    {
+      "id": "A2.S17.COMPLETE.02",
+      "speaker_channel": "휘겸 · dialogue",
+      "condition": "E06 출발 전",
+      "text": "두 분은 뒤로 가시오. 종 밑엔 들어가지 마시오."
+    },
+    {
+      "id": "A2.S17.OBJECTIVE.01",
+      "speaker_channel": "objective · objective",
+      "condition": "E01",
+      "text": "작업장을 확보하고 안전 버팀목 고정"
+    },
+    {
+      "id": "A2.S17.OBJECTIVE.02",
+      "speaker_channel": "objective · objective",
+      "condition": "E02",
+      "text": "인양틀의 들림을 떼어 장치 정지"
+    },
+    {
+      "id": "A2.S17.OBJECTIVE.03",
+      "speaker_channel": "objective · objective",
+      "condition": "E03",
+      "text": "부품 운반로를 확보하고 인양축 장착"
+    },
+    {
+      "id": "A2.S17.OBJECTIVE.04",
+      "speaker_channel": "objective · objective",
+      "condition": "E04",
+      "text": "고정구를 잠그고 시험 하중 받치기"
+    },
+    {
+      "id": "A2.S17.POPUP.01",
+      "speaker_channel": "popup · popup",
+      "condition": "작업 중 접근 위협; 작업자가 실제로 물러난 뒤",
+      "text": "작업자가 물러났습니다. 작업자리와 부품 운반로를 다시 확보하세요."
+    },
+    {
+      "id": "A2.S17.POPUP.02",
+      "speaker_channel": "popup · popup",
+      "condition": "축 장착 후 대기만 하는 경우; 축 장착 완료 AND 고정구 잠금/도르래 작동 미완료",
+      "text": "축은 끼웠습니다. 고정구를 잠그고 도르래를 작동해야 합니다."
+    },
+    {
+      "id": "A2.S17.FAIL.01",
+      "speaker_channel": "fail · fail",
+      "condition": "석공·길찬 구조 실패",
+      "text": "작업자를 지키지 못했습니다. 직전 복구 단계부터 다시 시작합니다."
+    },
+    {
+      "id": "A2.S17.JOURNAL.01",
+      "speaker_channel": "journal · journal",
+      "condition": "E06",
+      "text": "석공과 길찬이 빠진 인양축을 복원했다. 축은 부러진 것이 아니라 일부러 제거되어 있었다. 고정구를 잠그고 시험 하중을 받친 장치는 이제 묵종을 조심스럽게 들어 올릴 수 있다."
+    },
+    {
+      "id": "EDGE.ARRIVALS_17_0",
+      "speaker_channel": "서술 · arrival",
+      "condition": "장 도착 때 한 번",
+      "text": "법당 뒤 작업굴에 석공과 길찬이 와 있었다. 인양틀 한쪽에 축이 빠진 자리가 보였다."
+    },
+    {
+      "id": "EDGE.OPTIONAL_17_ARCHER_0",
+      "speaker_channel": "설오 · optional",
+      "condition": "동료 선택대화; 실제 출연·생존한 화자만; witness16_heard=true AND 인양축 장착 전",
+      "text": "살아 있는 줄 알면서 축을 뺐다지요. 다시 걸 수 있는지 보겠습니다."
+    },
+    {
+      "id": "EDGE.OPTIONAL_17_MAGE_0",
+      "speaker_channel": "담허 · optional",
+      "condition": "동료 선택대화; 실제 출연·생존한 화자만; E01 석공이 축 제거를 확인하는 INTRO.02 발언 전; 이후에는 이 미확인 추측 발화를 재생하지 않음",
+      "text": "축이 빠진 자리를 보세. 부러졌는지 뽑아냈는지 남아 있겠네."
+    },
+    {
+      "id": "EDGE.OPTIONAL_17_KNIGHT_0",
+      "speaker_channel": "휘겸 · optional",
+      "condition": "동료 선택대화; 실제 출연·생존한 화자만; witness16_heard=true AND 인양축 장착 전",
+      "text": "노승의 말은 들었소. 석공과 함께 축부터 걸겠소."
+    },
+    {
+      "id": "EDGE.OPTIONAL_17_OCCULTIST_0",
+      "speaker_channel": "소단 · optional",
+      "condition": "동료 선택대화; 실제 출연·생존한 화자만; 16장에서 노승이 제자를 붙든 모습을 실제 목격한 경우",
+      "text": "스님이 제자분 손을 꼭 붙들고 계셨어요. 혼에 끌려갈까 봐 그러셨던 걸까요."
+    },
+    {
+      "id": "EDGE.RUNTIME.STAGE17.PROTECT_LABEL",
+      "speaker_channel": "안내 · runtime_dynamic",
+      "condition": "새17 시험하중·잠금 완료 결과; 기존 hold-hoist 자동완료와 분리 / fresh_v4=True",
+      "text": "인양축 잠금과 시험 하중 확인"
+    }
+  ],
+  "reviewed_id_count": 34,
+  "pending_wording_ids": [],
+  "final_decisions": [
+    "부모 검수후보34개 그대로확정.",
+    "OCCULTIST0 최종제안 기각: 제자가 혼에 끌려갈까 보호한 추측을 혼이 빠져나가지 못하게 억류한 의도로 뒤집음."
+  ],
+  "implementation_verified": false,
+  "implementation_note": "선택MAGE0의 INTRO02 이전 실제 발동가능성, 부품 운반/잠금/회전/시험하중 및 팝업 실제 상태는 별도검증.",
+  "pass3_source": "HONRO-CH17-PASS3-20261027-response.md"
+}
