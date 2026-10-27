@@ -42,3 +42,22 @@ for(const [i,u]of V.heroes(b).entries())pose(u,9000+i*90,4580);run(()=>V.mem(b).
 const oldCompatible=plain(b);P.memory(oldCompatible).witness16_heard=false;assert(R.complete(oldCompatible),'completed machinery does not require invented past knowledge');const committed=plain({proof:base().proof,work:B.worksite(b),events:q().events});resume();tick(10);assert.deepEqual(plain({proof:base().proof,work:B.worksite(b),events:q().events}),committed);assert.equal(app.profile.record.filter(r=>r.rowId==='A2.S17.JOURNAL.01').length,1);
 console.log('PASS exact34, actual NPC speakers, compatible old16/missing-witness guards, supported brace/hoist spirit separation, same-part worker haul, finite6 actual response approach, lock/rotation/knocks/load boundary and physical withdrawal, saved cursors/proofs and exact journal/runtime label');
 launch();at('EDGE.ARRIVALS_17_0');nextAll();at('A2.S17.INTRO.01');nextAll();unit('act2-hoist').dead=true;unit('act2-hoist').hp=0;ready('occultist','17.hoist');tick(40);if(app.dialogue)nextAll();assert(!q().hoistLiftAttemptObserved,'early dead hoist cannot invent a pull receipt');unit('17.mason').dead=true;b.phase='lost';assert.equal(V.state(b).failureText,api.row('A2.S17.FAIL.01').text);g.HONRO_ACT23_V4_PHASE_B_STAGES=[];assert.equal(V.mapRevision(17),217);console.log('PASS worker loss text and private stage gate');
+
+// Audit: absent optional warning/request speakers cannot block living workers.
+g.HONRO_ACT23_V4_PHASE_B_STAGES=[17];
+for(const missing of ['archer','mage']){
+ launch();at('EDGE.ARRIVALS_17_0');nextAll();at('A2.S17.INTRO.01');nextAll();
+ for(const u of b.units)if(u.side===1&&u.id!=='act2-hoist'){u.dead=true;u.hp=0;}
+ app.engine.hurt(hero(missing),100000);resume();
+ const helper=missing==='archer'?'knight':'archer';ready(helper,'17.brace');
+ if(missing==='archer'){tick(1000);assert.equal(q().events.crack.status,'skipped');assert(!app.dialogue);}
+ else{at('A2.S17.MID.01');nextAll();tick();}
+ use('17.brace',helper);ready(helper,'17.brace');run(()=>V.mem(b).done['17.brace']);assert(base().proof['17.brace'].elapsed>=1.25);
+ ready('occultist','17.hoist');at('A2.S17.MID.03');nextAll();use('17.hoist','occultist');
+ if(missing==='mage'){tick();assert.equal(q().events.separation.status,'skipped');resume();}
+ else{at('A2.S17.MID.04');nextAll();}
+ // Clearing an optional request does not fabricate the machinery proof.
+ assert(R.separated(b));ready(helper,'17.parts');assert(V.eligibility(app,marker('17.parts')).ok);assert(V.use(app,marker('17.parts')));
+ assert(base().proof['17.parts']);
+ console.log('PASS audit17 missing '+missing+': actual hurt/Continue, supported brace and hoist separation, same physical parts accessible');
+}
