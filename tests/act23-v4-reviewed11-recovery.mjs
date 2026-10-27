@@ -1,0 +1,14 @@
+/** Conditional corpse placement fixture, original movement. Not AI fullplay. */
+import assert from 'node:assert/strict';
+import {readFile} from 'node:fs/promises';
+import {appHarness,plain} from './app-regression-helpers.mjs';
+const h=await appHarness(),g=h.g,V=g.HonroAct23V4,S=g.HonroAct23V4Chapter11,R=g.HonroAct23V4Reviewed,C=g.HONRO_CORE;
+g.HONRO_ACT23_V4_PHASE_A=true;g.HONRO_ACT23_V4_PHASE_B_CH11=true;g.HONRO_ACT23_V4_REVIEWED=JSON.parse(await readFile('shared/data/reviewed/act23-v4-ch11.json','utf8'));g.HONRO_PROJECT=V.author(g.HONRO_PROJECT,{enabled:true});let app;
+function launch(){const p=h.profileThrough(10);p.seen['act2:first-spirit-encounter']=true;p.seen['map-story-v'+g.HonroStoryContent.version+'-10']=true;app=h.load(p);app.launch(11);app.turnNotice=null;return app.engine.b;}
+function ready(b){app.dialogue=null;b.honroStory=null;Object.assign(b,{phase:'aim',side:0});}
+function resume(){app.stopBattle();app=h.load(plain(app.profile));app.continue();app.turnNotice=null;return app.engine.b;}
+let b=launch(),e=app.engine,host=e.unit(b.honroV4Chapter11.host);for(const u of b.units)if(u.id!==host.id&&u.side===1){u.hp=0;u.dead=true;}for(const [i,u]of V.heroes(b).entries())Object.assign(u,{x:220+i*100,y:6500,vx:0,vy:0});
+// Original movement out of shoulder, through air, onto the adjacent floor.
+host.fixed=false;host.maxMove=host.moveLeft=6000;let walked=0;for(let i=0;i<500;i++){ready(b);host.moveLeft=6000;const old=host.x;if(host.x<1640&&host.x>1280&&e.grounded(host))e.jump(host);e.walk(host,-1,.025);if(host.x<1280&&e.grounded(host))break;e.stepUnits(.025);walked+=Math.abs(host.x-old);}
+assert(host.x<1300&&C.validTerrainContactPose(b.terrain,host),JSON.stringify({x:host.x,y:host.y}));assert.equal(e.surface(host.x,host.y-8,host.y+8).t.id,'act2-floor');assert(walked>100);const beforeKnock=host.x;e.impulse(host,-140,-100);for(let i=0;i<300;i++){e.stepUnits(.025);if(i>20&&e.grounded(host))break;}assert(C.validTerrainContactPose(b.terrain,host));assert.equal(e.surface(host.x,host.y-8,host.y+8).t.id,'act2-floor');assert(Math.abs(host.x-beforeKnock)>1,'real impulse moved host on adjacent support');e.hurt(host,999999,'p-archer');ready(b);b=resume();ready(b);e=app.engine;
+for(let i=0;i<1000&&!S.memory(b).release.admitted;i++)S.tick(app,.025);assert(S.memory(b).release.admitted);assert.equal(S.memory(b).release.support.id,'act2-floor');assert.equal(S.memory(b).release.ids.length,1);const ghost=e.unit(S.memory(b).release.ids[0]);assert(C.validTerrainContactPose(b.terrain,ghost));b=resume();ready(b);for(let i=0;i<50;i++)S.tick(app,.025);assert.equal(S.memory(b).release.ids.length,1);assert.equal(b.units.filter(u=>u.honroContributionId?.includes('reviewed.11.beast-spirit')).length,1);console.log('PASS original walk/fall to other support, death then Continue, safe spirit admission and exactly-once resume');
