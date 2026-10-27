@@ -8,11 +8,7 @@ const row=id=>data()?.rows.find(r=>r.id===id),memory=S.memory,cls={'설오':'arc
 const actor=(b,who)=>who==='곽진'?b.units.find(u=>u.id==='v4.gwakjin'&&V.alive(u)):V.heroes(b).find(u=>u.cls===cls[who]);
 const closed=q=>['done','skipped','cancelled'].includes(q?.status);
 function rowsReviewed(ls){return enabled()&&Array.isArray(ls)&&ls.length>0&&ls.every(l=>{const r=row(l?.[2]?.rowId);return r&&r.speaker===l[0]&&r.text===l[1]&&l[2].reviewedStage===21&&l[2].reviewedRevision===1&&['audience','delivery','once','group','order','progress','deadline','owner','party_shared','presentation','condition','speaker_channel'].every(k=>JSON.stringify(l[2][k])===JSON.stringify(r[k]));});}
-function restAllowed(profile,who){const c=cls[who],q=profile.honroReviewed21RestObservation,b=profile.honroBattle;return !!c&&profile.recruited?.includes(c)&&profile.party?.includes(c)&&q?.stage===21&&q.revision===1&&q.visible===true&&q.actors?.[c]?.alive===true&&!profile.cleared?.[21]&&!b&&G.HonroJourneyContent.next(profile)?.stageId===21;}
-// Called only by a real pre-entry field preview renderer. A place description,
-// map unlock or chapter number alone supplies no observation evidence.
-function observeRest(app,preview){const p=app.profile,b=preview?.battle;if(app.screen!=='rest'||!preview?.rendered||!S.active(b)||p.honroBattle||p.cleared?.[21]||!S.introReady(b)||V.mem(b).city?.started)return false;
- p.honroReviewed21RestObservation={stage:21,revision:1,visible:true,sourceRun:b.session,actors:Object.fromEntries(V.heroes(b).map(u=>[u.cls,{id:u.id,alive:true}]))};return true;}
+function restAllowed(profile,who){const c=cls[who],q=profile.honroReviewed21RestObservation,b=profile.honroBattle;return !!c&&profile.recruited?.includes(c)&&profile.party?.includes(c)&&q?.source==='actual-stage'&&q?.stage===21&&q.revision===1&&q.visible===true&&q.actors?.[c]?.alive===true&&!profile.cleared?.[21]&&!b&&G.HonroJourneyContent.next(profile)?.stageId===21;}
 function lineAllowed(app,who,meta){const r=row(meta?.rowId);if(!enabled()||!r||meta.reviewedStage!==21||meta.reviewedRevision!==1||who!==r.speaker)return false;
  if(app.screen==='rest')return r.channel==='optional'&&(app.profile.honroJourney?.restStageId===21||app.debugRestStage===21||G.HonroJourneyContent.next(app.profile)?.stageId===21)&&restAllowed(app.profile,who);
  const b=app.engine?.b;if(meta.rowId==='A3.S21.INTRO.03'&&b&&!actor(b,'휘겸'))return false;if(!active(b)||!['dialogue','arrival','guide','failure'].includes(r.channel))return false;if((cls[who]||who==='곽진')&&!actor(b,who))return false;
@@ -69,5 +65,5 @@ for(const key of ['interlude','required','optional']){const old=G.HonroJourneyCo
 const placeAt=G.HonroJourneyContent.at,placeNext=G.HonroJourneyContent.next;
 const placeAlias=p=>enabled()&&p?.stageId===21?{...p,restDescription:row('EDGE.ARRIVALS_21_0').text}:p;
 G.HonroJourneyContent.at=(...args)=>placeAlias(placeAt(...args));G.HonroJourneyContent.next=(...args)=>placeAlias(placeNext(...args));
-G.HonroAct23V4Chapter21Reviewed={enabled,active,row,rowsReviewed,lineAllowed,accepts,finished,present,content,failure,optional,journal,tick,memory,complete,observeRest,restAllowed,lines,talkId:(id,c)=>enabled()&&Number(id)===21?'rest-talk-v1-21-'+c+'-reviewed1':null,place:id=>enabled()&&Number(id)===21?{restDescription:row('EDGE.ARRIVALS_21_0').text}:null};
+G.HonroAct23V4Chapter21Reviewed={enabled,active,row,rowsReviewed,lineAllowed,accepts,finished,present,content,failure,optional,journal,tick,memory,complete,restAllowed,lines,talkId:(id,c)=>enabled()&&Number(id)===21?'rest-talk-v1-21-'+c+'-reviewed1':null,place:id=>enabled()&&Number(id)===21?{restDescription:row('EDGE.ARRIVALS_21_0').text}:null};
 })(globalThis);

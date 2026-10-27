@@ -4,6 +4,9 @@ const V=G.HonroAct23V4,copy=x=>JSON.parse(JSON.stringify(x)),classes={'설오':'
 const fields=['audience','delivery','once','group','order','progress','deadline','owner','party_shared','presentation','condition','speaker_channel'];
 // Presentation terminal state only; physical facts must be tested separately.
 const closed=q=>['done','skipped','cancelled'].includes(q?.status);
+// Menu artwork is not an observation of live evidence. Ignore the retired
+// canvas-preview flags; only actual stage proof can supply a witness.
+const witnessed=(p,stage,key)=>!!p.honroAct23V4History?.stages?.[stage]?.run&&!!p.honroAct23V4History.stages[stage].reviewedNarrative?.proof?.[key];
 function register(config){const n=config.stage,base=V.plugins.get(n),prefix='A3.S'+n+'.',data=()=>G['HONRO_ACT23_V4_REVIEWED_CH'+n];
  const enabled=()=>V.preview()&&G['HONRO_ACT23_V4_PHASE_B_CH'+n]===true&&data()?.stage===n&&data().revision===1&&data().status==='gemini_pass1_parent_review_gemini_pass3_complete';
  const active=b=>enabled()&&V.active(b)&&b.honroStage===n&&b.honroReviewedNarrativeRevision===1;
@@ -48,5 +51,5 @@ function register(config){const n=config.stage,base=V.plugins.get(n),prefix='A3.
  const api={enabled,active,memory,row,rowsReviewed,lineAllowed,accepts,finished,present,content,failure,optional,journal,complete,lines,record,tick,config,closed,talkId:(id,c)=>enabled()&&Number(id)===n?'rest-talk-v1-'+n+'-'+c+'-reviewed1':null};providers.set(n,api);return api;
 }
 function interactionReason(app,reason){const b=app.engine?.b,R=G.HonroAct23V4Reviewed?.provider?.(b?.honroStage);if(!R?.active(b)||!((b.honroMarkers||[]).some(p=>p.id===reason)||V.steps(b).some(s=>s.id===reason)||/^v4\./.test(reason||'')))return null;return R.present(b,{targets:[],allTargets:[]}).summary;}
-G.HonroAct3V4ReviewedCore={register,providers,closed,copy,classes,interactionReason};
+G.HonroAct3V4ReviewedCore={witnessed,register,providers,closed,copy,classes,interactionReason};
 })(globalThis);

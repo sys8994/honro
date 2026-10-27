@@ -1,4 +1,6 @@
 /* Travelling rest scenes and the secondary, geographical journey book. */
+/* No optional line means a disabled talk control, never a translucent person. */
+.honro #app .rest-person:disabled{opacity:1;cursor:default}
 .honro #app .rest-screen,.honro #app .journey-screen{display:flex;flex-direction:column;padding:0;background:#091416;color:#e0dac7;overflow:auto;height:100%;min-height:0;font-family:inherit}
 .honro #app .rest-screen>.top,.honro #app .journey-screen>.top{position:relative;flex:none;z-index:4;padding:12px 26px;background:#0b181bc9;border-bottom:1px solid #b7b39528}
 .honro #app .rest-landscape{position:relative;flex:1;min-height:400px;isolation:isolate;overflow:hidden}
