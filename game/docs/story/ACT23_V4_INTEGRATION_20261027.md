@@ -1,57 +1,32 @@
-# v4 통합 준비 · 2026-10-27
+# v4 통합 후보 · 2026-10-27
 
-별도 브랜치 `codex/act23-v4-integration-20261027`는 현재 공개 master `0f19f8f75ebf77a356f9f8016fcb81ea51ff9fa2`를 포함하는 Act2 감사 복구 `47c1e8a91837b77a45d97be8889a5529b91adf3c`에, 확인된 Act3 `8a02a97eec4b44bf382d21c6348dec11d9e31b9a`를 병합했다. 기존 두 작업 브랜치를 변경하지 않는다. master/Pages는 미발행이다.
+전용 브랜치 `codex/act23-v4-integration-20261027`는 Act2 감사 복구 `47c1e8a91837b77a45d97be8889a5529b91adf3c`와 최종 Act3 `dfe699a576d72bba00678b3198bdf767932e458c`를 포함한다. 공개 master `0f19f8f75ebf77a356f9f8016fcb81ea51ff9fa2`의 레벨업·합류·축지 수정도 공통 선조로 보존한다. 기존 작업 브랜치를 reset/덮어쓰기하지 않았다. master/Pages는 미발행이며 부모의 최종 후보 확인 뒤 별도 배포한다.
 
-## 공통 연결
+## 최종 동작
 
-- `shared/build.mjs`: 현재 Act2 모듈 순서 뒤에 Act3 모듈/전용 미술을 연결한다. 21/22/23/24/25/27만 개별 private opt-in을 지원한다. 21장 데이터는 Act3 alias 해석에도 필요하므로 다른 허용 Act3 장만 활성화한 경우 데이터만 포함하며 21장 실행 flag는 켜지 않는다.
-- `act23-v4-reviewed.js`: 장별 provider dispatch를 지연 조회해 Act2 wrappers와 함께 쓴다.
-- `story.js`: 기존 commonReviewRevision 생존/기예/관측 및 DEATH.01 일회 경계 가드를 유지하고, reviewedStage 검사를 Act3 provider에도 적용한다.
-- `rest-journey.js`: Act3 전투 전 현장 관측/재개와 기존 Act2 enabledFor/20장 쉼터를 함께 보존한다. 과거11장 전용 문자열 조건으로 되돌리지 않는다.
-- `stake-crossing.js`: 기존 물리 checkpoint 복구 전후로 Act3의 검수 목격/표시 상태만 capture/restore한다. 자원/적/지형/XP 계약은 기존 담당을 유지한다.
-- `act23-v4.js`: 활성 provider의 revision421–427을 사용하며 Act2 revision과 비활성 장을 보존한다.
+- `game/config/story-release.json`의 `reviewedAct23=true`가 Game·Workshop·직접 Playtest의 기본 2·3막 검수본을 활성화한다. `HONRO_ACT23_V4_RELEASE=0`은 전체 기본값 rollback이며 기존 명시 opt-in과 Phase A off cap은 유지한다. model-only fixture는 명시 활성 방식이므로 production 기본값은 별도 release-policy/App/Chromium 검사로 검증한다.
+- `shared/build.mjs`는 Act2·Act3 provider와 데이터/렌더 공통 모듈을 같은 목록으로 연결한다. 29장 실제 창 모듈은29장 provider 직전이다. 21장 데이터는 다른 Act3 장의 alias 조회에도 포함한다. 과거15243 기준 exact 문자열 패치는 다시 실행하지 않는다.
+- 현장 선택 대사는 Act2 목표·조작 안내창의 실제 메뉴에서 현재 생존·출연·지식·물리 조건을 재확인하고 Story cursor와 전투별 once로 저장한다. Act3의 전투 전 대사는 기존 쉼터/preview 계약을 유지한다.
+- `story-barks.js`가 기존 `#banter` 자막으로 `delivery=bark`를 비정지 전달한다. reader/camera/input lock을 만들지 않는다. queued·표시 행의 생존·관측 검사, elapsed/index 재개, 실제 표시 receipt와 취소를 보존한다. 혼합 bark/guide 묶음은 기존 수동 안내와 live cursor로 나눈다. 즉시 창·낙하·화재 경고가 일반 자막에 우선하며 중단된 cursor는 남는다.
+- 수동 reader도 실제 DOM 표시 ID만 versioned receipt로 기록한다. event terminal/once·물리 진행과 목격 목록은 분리하며 나중 취소돼도 이미 본 행은 사실로 남는다. 최초 admission이나 종료 시 생존만으로 미표시 행을 추가하지 않는다. 구 저장 진행·cursor/확정 이력을 소급 변조하지 않으며16장 명시 witnessPresented를 보존한다.
+- 최종29장은 실제 phase3 전진·동일 지면 native 창 예고와 유료 공격, 이탈/가림/보스 사망 취소를 연결한다. 최종30장은 실제 두 항차/증언/지도 뒤 곽진 곁 집결에서 승인 이별3행을 표시하고 기존 높은 출구는 별도 유지한다. 채택 본문 없는 COMPAT30 세 항목은 새 대체표시를 생략하며 과거 기록·성장·완료를 보존하는 확정 정책이다. 장별 원고 보류는 없다.
 
-`tools/testing/act3-v4-parent-integration.mjs`는 오래된 base용 검증 복사본 제안이다. 이 통합 브랜치에 그대로 재실행하지 않는다. 현재 Story·쉼터·build 앵커에 맞춰 비교한 결과가 위6개 활성 파일이다.
+## 공통 보존 계약
 
-## 확인과 미완료
+`act23-v4-reviewed.js`의 provider dispatch, `story.js`의 common 생존/기예/관측 및18장 사망 경계, `rest-journey.js`의 Act2/Act3 preview와20장 쉼터를 함께 보존한다. stake retry는 검수 목격/표시 상태만 기존 물리 checkpoint 전후에 복원한다.29장 App.retry, 승인 목표 이유, 문서 span/actor paint, 실제 profile의30장 ending 조회를 연결하며 Act2 ending은 유지한다. 새 미검수 대사나 원고 수정은 없다.
 
-`act3-v4-reviewed-source`의 문서 manifest/321행 전체 필드 보존, `act23-v4-reviewed21/22/23/24/25-27` 집중 검사를 통과했다. 제어된 전투·영웅 위치·시간 fixture이며 정상 캠페인 완주/공개 검증이 아니다. 26/28–30은 원고 데이터만 보존했고 구현 완료로 취급하지 않는다. 기본 production 및 Phase A 단독의 검수 플래그는 계속 꺼져 있다.
+Stage5의 `terrain-domain.js`, `stage5-waterfall-geometry.js`, `stage5-waterfall.js`, `stage5-positioning.js`는 공개0f19 바이트와 같다. 보류 중인 미술/수역 작업을 병합하지 않았다. 빌드는 성공 발행59개 generation metadata와 보호 immutable 파일을 보존한다. 후보를 새 발행으로 등록하지 않았다.
+
+## 검증 결과와 한계
+
+- canonical 정적 대조:665장별+11공통=676 ID/본문/조건/전달/모든 원본 행 필드 및 alias/retire 보존. Act3 문서321행 manifest·원본 blob도 대조했다. 정적 대조는 모든 대사의 실제 도달을 의미하지 않는다.
+- 집중 App/Engine fixture:11장 실제받침 혼생성/회복,16장 담허·설오 사망과 핵심5행,17장 결원 brace/withdrawal,18장 실제 fatal 경계와 무발화 경계,20장 pre-ack 공중·접지 취소/같은짐1회,공통 stale안내,25/27 자유순서·개인기록,26/28/29/30 물리·불길·retry·배·이별·호환,실제표시 receipt·선택메뉴·live bark를 통과했다.
+- production App fixture:구216→516 전투 재시작에서 성장/XP/SP/ranks/장착/party/기록 보존,같은 검수 revision의 두번 Continue에서HP/focus/위치/session 완전보존,실제 과거Lv17 23장 export→423 재시작에서 지급성장·장착·완료·기록 보존을 통과했다.
+- 기본 빌드 Chromium:Game/Workshop20장 flag·676 payload,stage1 원래 전달/no empty bark state,Canvas/pageerror0. live bark 중 실제 키보드 이동·순서/cursor reload·대상 사망 제거,실제 field 메뉴/Enter/390px,29장 native 경고/공격·저장·모바일,30장 실제 두 항차·NPC보행·곽진곁3행·저장/모바일·과거기록 보존이 통과했다. Game·Workshop 빌드 및 TypeScript typecheck도 통과했다.
+- 추가 실행한 `stage23-escort-growth-resume.mjs`의 첫 assertion은 과거 snapshot 전체가SP migration만 받고 그대로 Continue된다고 기대해 실패했다. 해당 실제 snapshot은 map revision이 없어 현행 공개 지형 계약에서도 재시작 대상이다. rollout-off model에서도 재현했다. 이 오래된 검사는 수정하지 않았으며 production-resume 검사가 현행 재시작·성장/장착 보존을 따로 통과했다.
+
+모든 실행 결과는 제어 fixture와 로컬 빌드 검증이다. 정상30장 자동완주·공개 Pages 동작 검증은 하지 않았다. 부모가 감사5건과18장 마지막말,11장 혼합생존 receipt를 별도 확인했다.
 
 ## 병행 작업 충돌 예상
 
-Stage5 담당이 수정할 수 있는 `shared/runtime/main.js`는 후속 현장 선택 대사 메뉴의 최소 연결 지점과 겹칠 수 있다. `shared/build.mjs`도 모듈/자산 등록 시 충돌 가능하다. `shared/runtime/interactions.js`, `shared/runtime/renderer.js`, `game/src/journey.css`는 이전 Phase A 변경이 있어 기준을 대조해야 한다. `shared/map/terrain-domain.js`는 이번 통합에서 수정하지 않는다. 생성 `HONRO.html`/`HONRO_WORKSHOP.html`/`index.html`/`web/manifest.json`·immutable 파일은 최종 통합 빌드에서 다시 만들며 서로의 생성물로 덮지 않는다.
-
-현재 공개 master의 레벨업·합류·축지 수정은 공통 선조에 포함되어 있다. 이번 공통 연결은 해당 엔진/성장/축지 계산을 변경하지 않는다.
-
-## 최신 Act3 병합 · a8d4ba0b
-
-이후 `a8d4ba0bee53fc5f85c9e322f878e69a5d6a41d3`까지 추가 병합했다. 위의26/28–30 미구현 상태는 이 이전 checkpoint의 기록이며, 현재 해당 provider/원고/검사는 포함하되 기본 비활성은 유지한다. [Act3 통합 요구](act3-v4-binding/INTEGRATION.md)의9파일 계약 중 기존6파일 연결은 보존하고 새 문서 span/전용 actor paint,29장 App.retry, 내부 interaction 이유 및30장 context ending 조회를 연결했다. ending 조회는 전역 App 대신 실제 호출의 profile을 넘겨 Act2 엔딩 계약과 독립 검사를 보존한다.
-
-`act23-v4-reviewed26-30`이 실제 구조/NPC 보행·불길12적턴 경계·조기처치/수문·배 두 항차/하선·사공·저널·retry/XP 보존을 통과했다. 이 역시 위치/전투 fixture 검사다. Act3 담당이 명시한 보류3개(29장 실제 창 예고,30장 먼 곽진 이별2행, 채택 본문 없는 COMPAT30)는 완료로 승격하지 않는다. live bark 전달은 별도 공통 후속이다.
-
-## 현재 통합 준비 상태
-
-- 현장 선택 대사: Act2 목표·조작 안내창에 실제 메뉴가 연결돼 있다. 현재 생존/출연/지식/물리 조건을 확인하고 일반 Story cursor와 전투별 once로 저장한다. Act3의 전투 전 대사는 기존 쉼터/preview 가드를 유지한다.
-- 전달 방식: `delivery=bark`는 기존 자막의 비정지 커서로 재생하며 reader를 열지 않는다. queued/표시 행의 생존·관측 검증, 실제 표시 receipt/취소 행 분리, elapsed/index 재개를 구현했다. scene/guide/document는 수동 reader 계약을 유지한다. 이 구현은 뒤에 추가한 `story-barks.js`가 제공하며 과거 Act3 보고서의 수동 bark 상태를 대체한다.
-- 원고: `act23-v4-reviewed-source-all`이665장별+11공통=676 canonical의 ID/본문/조건/전달/원본 행 필드와 alias/retire 계약을 대조한다. 11장의 원본 `speaker_and_condition`도 데이터/씬 metadata에 보존했고12–20의 원본 필드도 씬으로 전달한다. 이 정적 검사는 전체676행의 실제 도달/정상 플레이 수락을 의미하지 않는다.
-- 검증: 일반/전체 opt-in 검수 Game·Workshop 빌드, 실제 Chromium live bark 중 키보드 이동190px·cursor reload/Continue·대상 사망 제거·현장 menu/Enter/390px,26장 실제 단일 문서 span/cursor 검사가 통과했다. 통합된 Act2 감사16/17/18/20/common 집중 재검사도 통과했다. 기존 Act3 장별 focused 검사는 물리/가드 계약이며 새 delivery 경계는 별도 `act23-v4-live-barks` 및 `act23-v4-live-delivery-browser.py`가 검사한다. 모두 fixture·로컬 검증이며 정상 전체 플레이/공개 Pages 검증은 아니다.
-- 공개 상태: 기본 검수 flags/payload는 여전히 비활성이다. production 전환은 아직 하지 않았고, 장별 보류3건 및 부모 최종 QA/통합 승인 상태를 확인한 뒤 별도 최종 빌드/배포한다. 과거15243 exact 문자열 패치는 다시 실행하지 않는다.
-
-실제 공통 충돌 우선 파일은 `main.js`(29 retry 및 field menu 한 곳), `shared/build.mjs`(모듈/명시 flag), `interactions.js`(승인 목표 이유), `story.js`(생존/사망 경계/문서/bark), `rest-journey.js`, `act23-v4-reviewed.js`, `act23-v4.js`, `stake-crossing.js`, `act-endings.js`다. Stage5 담당의 지형·수역·엔진 계산은 이 후속 통합에서 수정하지 않았다. `terrain-domain.js`는 그대로다. master0f19는 여전히 이 브랜치의 공통 선조다.
-
-### 현장 선택 대화 관측 receipt 후속
-
-11장 혼합생존 예외를 계기로 수동 reader도 실제 DOM 표시 ID만 versioned receipt로 남긴다. event terminal/once·물리 진행과 목격 목록은 분리한다. Act2 공통 및21/22/factory provider의 slot/최종 이력도 동일 원칙이다. 종료 시 살아 있거나 최초 admission된 것만으로 목격을 보충하지 않는다. 구 저장의 진행·cursor/기존 확정 이력을 소급 수정하지 않고, 새 결과에서 근거 없는 admission을 표시 증거로 올리지 않는다. 명시적16장 witnessPresented와 live bark의 실제 표시 ID는 유지한다.
-
-
-## 최종 Act3 통합 · dfe699a5
-
-`dfe699a576d72bba00678b3198bdf767932e458c`까지 병합했다. 위 checkpoint의 보류3개는 해소됐다. 29장 실제 전진/동일 지면 창 예고·유료 native 공격·이탈/가림/사망 취소, 30장 실제 두 항차 뒤 곽진 곁 집결에서 기존 이별3행 및 별도의 기존 높은 출구 조건을 연결한다. COMPAT30 세 항목은 채택 본문이 없으므로 새 대체표시를 생략하고 과거 기록·성장·완료를 보존하는 것이 확정 정책이다.
-
-혼합 bark/guide 묶음은 안내 reader와 비정지 자막으로 나누며, 같은 사건의 실제 표시 receipt를 합친다. 창/낙하/화재의 즉시 경고는 일반 자막보다 먼저 표시하며 중단된 일반 cursor를 보존한다. 사건이 이후 생존/물리 가드를 잃어 취소돼도 실제로 이미 본 행과 terminal 상태를 분리한다. 30장의 필수 증언은 끝내기 호출만으로 목격 처리하지 않고 실제 각 행 표시를 요구한다.
-
-11/16/17/18/20/common 감사 예외,25/27 순서·개인기록,26/28/29/30 물리 계약과 actual-receipt/live-bark/menu 검사를 통과했다. Chromium29 창 경고 중 입력/저장/native hit와30 두 항차·곽진 곁3행·모바일·호환도 pageerror 없이 통과했다. 제어 fixture/로컬 브라우저 결과이며 정상 전체 완주·공개 Pages 검증은 아니다. production 활성 전환은 별도 커밋으로 남긴다. Stage5 public 소스는 보존한다.
-
-### production 전환 준비
-
-`game/config/story-release.json`이 product App 번들의 기본 검수 활성 정책을 한 곳에서 소유한다. 이 준비 커밋의 값은 false이며 별도 후보 커밋에서 true로 바꾼다. `HONRO_ACT23_V4_RELEASE=0` rollback, 기존 명시 private opt-in, Phase A off cap을 지원한다. model-only fixture는 명시 활성 방식을 유지하므로 product 기본값은 release-policy와 실제 App/Chromium 검사에서 별도로 확인한다. 기본값 false 및 rollback/private/cap source 검사는 통과했다.
+공통 수정 파일은 `main.js`(29 retry/field 메뉴),`shared/build.mjs`,`interactions.js`,`story.js`,`story-barks.js`,`rest-journey.js`,`act23-v4-reviewed.js`,`act23-v4.js`,`stake-crossing.js`,`act-endings.js`다. `renderer.js`와`game/src/journey.css`에도 앞선 통합 변경이 있으므로 미술 작업과 대조한다. 생성 HTML/immutable/manifest는 최종 병합 소스로 재빌드하며 서로 다른 후보 생성물로 덮지 않는다.

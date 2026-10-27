@@ -5005,3 +5005,10 @@ commonReviewRevision의 첫 혼령 대기열은 생성 후 소단/sceneTarget가
 - 원인: 최종29장 native 창과30장 근접 이별 계약이 이전 통합 checkpoint에 없었고, bark/guide 혼합 묶음과 나중 취소 사건의 실제 목격은 전달 방식별로 분리할 필요가 있었다.
 - 변경: Act3 dfe699a5까지 병합, 창 모듈을 provider 직전 등록, mixed reader/live cursor 및 실제 표시 receipt 합산, 즉시 물리 경고 우선 표시를 연결했다. 생존/물리 취소 terminal과 과거 표시 관측은 독립 보존한다. 승인 본문 없는 COMPAT30은 과거 기록을 유지하고 새 표시만 생략한다.
 - 확인: focused11/16/17/18/20/common/25–30 및 원고676/receipt/menu/bark 검사 통과. Chromium29 실제 창 hit/취소·save와30 실제 배 두 항차/근접 이별/모바일/구저장 통과. fixture·로컬 결과이며 전체 정상 플레이/공개 배포는 아님.
+
+
+### 2026-10-27 · 검수 2·3막 기본 활성 후보
+
+- 변경: story-release 정책을 true로 전환해 Game/Workshop의 검수676행·20장 기본값을 활성화했다. 명시 rollback/private opt-in/PhaseA cap은 유지한다. 새 배포 등록 없이 보호 발행 그래프를 유지한 생성물을 빌드했다.
+- 확인: source676/alias/retire,집중11/16/17/18/20/common/25–30,receipt/menu/live,구저장성장·장착·동일revision Continue,기본676 Game/Workshop Chromium,29창/30배·근접이별/모바일,typecheck·build 통과. 공개 Stage5 주요소스와59개 발행generation metadata는 바이트 보존했다.
+- 한계:과거23장 exact-snapshot 검사1건은 map revision 없는 옛 저장을 그대로 재개한다고 기대해 실패(rollout-off에서도 동일).현행 재시작+성장/장착보존은 별도 통과.전체 정상플레이·공개배포는 미실행이며 부모 후보확인 뒤 진행한다.

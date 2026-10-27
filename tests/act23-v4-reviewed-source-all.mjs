@@ -13,6 +13,6 @@ try{
   for(const k of keys)delete process.env[k];if(scenario==='flags-without-phase'||scenario==='private-all')for(const n of stages)process.env['HONRO_ACT23_V4_PHASE_B_CH'+n]='1';if(scenario.startsWith('private'))process.env.HONRO_ACT23_V4_PHASE_A='1';if(scenario==='private30-alias')process.env.HONRO_ACT23_V4_PHASE_B_CH30='1';
   const entries=await runtimeEntries({vector:false,render:false}),get=k=>entries.find(e=>e.global===k)?.data;
   for(const n of stages){assert.equal(get('HONRO_ACT23_V4_PHASE_B_CH'+n),scenario==='private-all'||scenario==='private30-alias'&&n===30);assert.equal(!!get('HONRO_ACT23_V4_REVIEWED_CH'+n),scenario==='private-all'||scenario==='private30-alias'&&[21,30].includes(n));}
-  console.log('PASS production/private Act3 payload gate: '+scenario);
+  console.log('PASS isolated-model/private Act3 payload gate: '+scenario);
  }
 }finally{for(const k of keys)if(saved[k]===undefined)delete process.env[k];else process.env[k]=saved[k];}
