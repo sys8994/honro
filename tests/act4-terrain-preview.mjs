@@ -19,8 +19,8 @@ for(const n of [31,35,36]){
  // Remove bodies to isolate terrain connectivity. Refill movement explicitly;
  // this proves a route with ordinary locomotion, not an encounter turn budget.
  b.units=b.units.filter(u=>u.id==='archer');const u=e.active;let blocked=0,jumps=0;
- for(let i=0;i<5000&&u.x<6800;i++){u.moveLeft=10000;const x=u.x;e.move(1,C.STEP);e.tick(C.STEP);blocked=u.x-x<.05?blocked+1:0;if(blocked>5&&e.grounded(u)){if(e.jump(u))jumps++;blocked=0;}}
- assert(u.x>=6800,n+' connected lower route');assert.equal(u.hp,start[0].hp);
+ const destination=n===31?6150:6800;for(let i=0;i<5000&&u.x<destination;i++){u.moveLeft=10000;const x=u.x;e.move(1,C.STEP);e.tick(C.STEP);blocked=u.x-x<.05?blocked+1:0;if(blocked>5&&e.grounded(u)){if(e.jump(u))jumps++;blocked=0;}}
+ assert(u.x>=destination,n+' connected lower route');assert.equal(u.hp,start[0].hp);
  rows.push({chapter:n,initial:start.length,enemies:start.length-4,routeEnd:u.x,jumps,spawnStable:true,fullTerrainDomain:true});
 }
 assert.equal(JSON.stringify(g.HONRO_PROJECT),campaign,'campaign maps changed');

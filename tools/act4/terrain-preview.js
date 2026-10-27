@@ -23,6 +23,8 @@ extras.push(asset('empty-house',[
 extras.push(asset('door',[polygon([[-80,0],[-80,-280],[65,-280],[65,0]],'#857d67'),polygon([[-69,-7],[-69,-272],[-55,-272],[-55,-7]],'#a29c84'),polygon([[-78,-262],[-78,-244],[-48,-244],[-48,-262]],'#293d43'),polygon([[-78,-64],[-78,-46],[-48,-46],[-48,-64]],'#293d43')]));
 extras.push(asset('reeds',Array.from({length:9},(_,i)=>{const x=(i-4)*28,h=100+(i*47%95);return [polygon([[x-2,0],[x-8,-h],[x-5,-h],[x+2,0]],'#718987'),polygon([[x-8,-h+12],[x-15,-h-12],[x-10,-h-31],[x-2,-h-13]],'#9da18e'),polygon([[x,-50],[x+35,-94],[x+30,-70]],'#799088')];}).flat()));
 extras.push(asset('estuary-water',[
+ polygon([[-900,-440],[8100,-440],[8100,6000],[-900,6000]],'#243f50'),
+ polygon([[-900,40],[8100,40],[8100,400],[-900,400]],'#526f7c'),
  polygon([[-900,-440],[8100,-440],[8100,40],[-900,40]],'#789ca8'),
  ...[0,1,2,3,4].map(i=>polygon([[-900,-385+i*73],[8100,-390+i*73],[8100,-382+i*73],[-900,-378+i*73]],i%2?'#a7c2c6':'#91b0b8'))
 ]));
@@ -36,6 +38,11 @@ extras.push(asset('dock',[
  ...[-210,190].map(x=>polygon([[x,-40],[x+26,-40],[x+26,210],[x,190]],'#45585a')),
  polygon([[-230,-43],[240,-43],[240,-30],[-230,-30]],'#a2a393')
 ]));
+extras.push(asset('old-wall',[
+ polygon([[-180,0],[-175,-93],[-105,-125],[-30,-105],[15,-132],[100,-102],[175,-80],[180,0]],'#526b71'),
+ polygon([[-175,-93],[-105,-125],[-30,-105],[15,-132],[100,-102],[175,-80],[100,-73],[12,-103],[-40,-80],[-112,-99]],'#8b9a92'),
+ ...[[-150,-65],[-70,-58],[22,-67],[105,-47],[-120,-25],[-15,-20],[82,-16]].map(([x,y])=>polygon([[x,y],[x+55,y-5],[x+62,y+16],[x+5,y+21]],'#6f8484'))
+],[pts([[-180,0],[-175,-93],[-105,-125],[-30,-105],[15,-132],[100,-102],[175,-80],[180,0]])]));
 extras.push(asset('boat',[
  polygon([[-260,-65],[-190,0],[170,12],[280,-70],[110,-32],[-150,-40]],'#596d70'),
  polygon([[-210,-56],[-174,-10],[157,1],[230,-53],[110,-32],[-150,-40]],'#83938e'),
@@ -50,7 +57,7 @@ function create(n){
  s.initialState={honroActiveLimit:3,honroAct4Preview:n};
  s.objectives=[];s.design={act4:{revision:1,chapter:n,combatBudgetStage:30,release:false,water:'visual/shallow only; recover/lethal pending separate verified implementation',dialogue:'reviewed seeds not yet bound'}};
  const lines={
- 31:[[0,1920],[620,1930],[1100,1900],[1580,1840],[1920,1840],[2280,1970],[2700,2010],[3260,1980],[3710,1900],[4120,1870],[4540,1870],[4890,1950],[5250,1970],[5700,1910],[6150,1870],[7200,1890]],
+ 31:[[0,1920],[620,1930],[1100,1900],[1580,1840],[1920,1840],[2280,1970],[2700,2010],[3260,1980],[3710,1900],[4120,1870],[4540,1870],[4890,1950],[5250,1970],[5700,1910],[6150,1870],[6280,1870]],
  35:[[0,1910],[540,1910],[920,1800],[1380,1800],[1840,1850],[2180,2010],[2650,2030],[3080,1940],[3550,1820],[3900,1810],[4390,1910],[4820,1900],[5340,1730],[5790,1730],[6220,1840],[6680,1860],[7200,1800]],
  36:[[0,1800],[650,1810],[1120,1910],[1800,1970],[2450,2020],[3090,2040],[4200,2040],[4930,2010],[5550,1930],[6300,1830],[7200,1800]]
  };
@@ -61,8 +68,8 @@ function create(n){
  const geom=s.terrains.map(t=>G.HonroGeometry.terrain(t,s.height));
  const floor=x=>G.HonroMapEngine.surfaceY(geom,x)?.y||2000;
  const put=(id,x,scale=1,y=floor(x),layer='back')=>s.elements.push({id:'a4-'+n+'-'+id+'-'+s.elements.length,assetId:'a4:'+id,x,y,scale,snap:false,rotation:0,depthLayer:'L1',layer});
- if(n===31){put('estuary-water',0,1,1900);for(const [x,z] of [[700,.7],[1200,.9],[1700,1.1],[2550,.6],[3500,.8],[4500,1],[5600,.8],[6500,.7]])put('reeds',x,z);put('dock',6470,1,1890);put('boat',6800,1,1735);}
- if(n===35){for(const [x,z]of [[50,1.3],[500,1.1],[1770,1.2],[2000,.9],[2700,1.4],[3500,1.1],[4000,1.3],[4500,1.1],[5900,1.4],[6520,1.2],[7040,1.5]])put('bamboo',x,z);for(const x of [3125,4920])put('thick-bamboo',x,.35,floor(x));put('empty-house',6980,.4);}
+ if(n===31){put('estuary-water',0,1,1900);for(const [x,z] of [[700,.7],[1200,.9],[1700,1.1],[2550,.6],[3500,.8],[4500,1],[5600,.8],[6150,.7]])put('reeds',x,z);put('dock',6150,.45,1890);put('boat',500,1,1735);}
+ if(n===35){for(const [x,z]of [[50,1.3],[500,1.1],[1770,1.2],[2000,.9],[2700,1.4],[3500,1.1],[4000,1.3],[4500,1.1],[5900,1.4],[6520,1.2],[7040,1.5]])put('bamboo',x,z);for(const x of [3125,4920])put('thick-bamboo',x,.35,floor(x));put('old-wall',900,.8);put('empty-house',6980,.4);}
  if(n===36){for(const [x,z,id]of [[1520,1.2,'a3-korean-town-21-L3-house-2'],[2570,1.35,'a3-korean-town-21-L3-house-0'],[4550,1.5,'act1-scene:ferry-house'],[5740,1.3,'a3-korean-town-21-L3-house-2']])s.elements.push({id:'a4-36-house-'+x,assetId:id,x,y:floor(x),scale:z,snap:false,rotation:0,depthLayer:'L1',layer:'back'});put('door',2370,1, floor(2370),'prop');}
  const party=['archer','mage','knight','occultist'];
  s.units=party.map((c,i)=>({...G.HonroUnits.record(c,c,260+i*120,floor(260+i*120),'player'),facing:1}));
@@ -85,13 +92,13 @@ function create(n){
  return G.HonroTerrainDomain.author(project);
 }
 function launch(n){const app=G.HonroApp,project=create(n),map=project.stages[0];
- const owner=app.profile;app.launchMap(project,map.id,{story:false});const b=app.engine.b;
+ const owner=app.profile;app.launchMap(project,map.id,{story:false,profile:{settings:{music:false}}});const b=app.engine.b;
  b.honroAct4Preview=n;b.honroPreviewFar={key:'act4Dawn'};
  // Stage30 is an explicit combat fixture, not an authored Act4 growth policy.
  app.stage.name=n+' · '+names[n];app.stage.goal=n===31?'물길과 선착장을 확보하기':n===35?'대숲을 지나 저문골로 가기':'저문골 옛터를 지나기';
- app.engine.checkEnd=()=>false;app.updateHUD(true);
+ app.engine.checkEnd=()=>false;app.updateHUD(true);const goal=G.document?.getElementById('objective-text');if(goal)goal.textContent=app.stage.goal;
  return{project,b,owner};
 }
-const oldGradient=G.HonroTerrainGradient;G.HonroTerrainGradient=function(c,t,b){if(!b?.honroCustom||!b.honroAct4Preview)return oldGradient(c,t,b);const top=Math.min(...b.terrain.filter(v=>!v.oneWay&&!v.honroElementCollision).map(v=>v.y));const base=t.oneWay?t.y:top;const g=c.createLinearGradient(0,base,0,base+(t.oneWay?160:1900));for(const [at,color]of [[0,'#71888e'],[.10,'#516c77'],[.32,'#3d5662'],[.7,'#243c4b'],[1,'#152a37']])g.addColorStop(at,color);return g;};
+const oldGradient=G.HonroTerrainGradient;G.HonroTerrainGradient=function(c,t,b){if(!b?.honroCustom||!b.honroAct4Preview||t.mat==='wood')return oldGradient(c,t,b);const top=Math.min(...b.terrain.filter(v=>!v.oneWay&&!v.honroElementCollision).map(v=>v.y));const base=t.oneWay?t.y:top;const g=c.createLinearGradient(0,base,0,base+(t.oneWay?160:1900));for(const [at,color]of [[0,'#71888e'],[.10,'#516c77'],[.32,'#3d5662'],[.7,'#243c4b'],[1,'#152a37']])g.addColorStop(at,color);return g;};
 G.HonroAct4TerrainPreview={create,launch,names,revision:1};
 })(globalThis);
