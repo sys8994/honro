@@ -98,6 +98,6 @@ G.HonroAct23V4Reviewed={enabled,active,row,rowsReviewed,lineAllowed,accepts,fini
 // Resolve Act3-only providers after their own modules have loaded.
 const chapterProvider=id=>({21:G.HonroAct23V4Chapter21Reviewed,22:G.HonroAct23V4Chapter22Reviewed})[id]||G.HonroAct3V4ReviewedCore?.providers.get(id);
 G.HonroAct23V4Reviewed.provider=chapterProvider;
-for(const key of ['rowsReviewed','accepts','finished','failure']){const old=G.HonroAct23V4Reviewed[key];G.HonroAct23V4Reviewed[key]=(...args)=>[21,22,23,24,25,27].some(id=>chapterProvider(id)?.[key](...args))||old(...args);}
+for(const key of ['rowsReviewed','accepts','finished','failure']){const old=G.HonroAct23V4Reviewed[key];G.HonroAct23V4Reviewed[key]=(...args)=>[21,22,23,24,25,26,27,28,29,30].some(id=>chapterProvider(id)?.[key](...args))||old(...args);}
 for(const key of ['lineAllowed','present','journal','talkId']){const old=G.HonroAct23V4Reviewed[key];G.HonroAct23V4Reviewed[key]=(...args)=>{const id=key==='lineAllowed'?args[2]?.reviewedStage:key==='present'?args[0]?.honroStage:key==='talkId'?args[0]:args[1];return chapterProvider(Number(id))?.[key](...args)??old(...args);};}
 })(globalThis);

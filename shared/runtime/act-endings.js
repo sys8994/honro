@@ -1,6 +1,6 @@
 (function(G){'use strict';
 const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-const content=(id,profile,prospective=false)=>{const reviewed=G.HonroAct23V4ReviewedChapters?.endingContent(profile,id,prospective);return reviewed===undefined?G.HONRO_ACT_ENDINGS[id]:reviewed;},stamp=id=>'act-ending-v1:'+id;
+const content=(id,profile,prospective=false)=>{const reviewed=G.HonroAct23V4ReviewedChapters?.endingContent(profile,id,prospective);return reviewed===undefined?(G.HonroAct23V4Chapter30Reviewed?.endingContent({profile},id,G.HONRO_ACT_ENDINGS[id])??G.HONRO_ACT_ENDINGS[id]):reviewed;},stamp=id=>'act-ending-v1:'+id;
 const normal=app=>!app.debugMode&&!app.training&&!app.customMap&&!G.HONRO_EMBEDDED;
 // Called by outcome after its exactly-once guard, for first and repeat wins.
 // Keep the first argument contract for outcome/report integrations; presentation

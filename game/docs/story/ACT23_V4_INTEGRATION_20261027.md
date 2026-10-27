@@ -22,3 +22,9 @@
 Stage5 담당이 수정할 수 있는 `shared/runtime/main.js`는 후속 현장 선택 대사 메뉴의 최소 연결 지점과 겹칠 수 있다. `shared/build.mjs`도 모듈/자산 등록 시 충돌 가능하다. `shared/runtime/interactions.js`, `shared/runtime/renderer.js`, `game/src/journey.css`는 이전 Phase A 변경이 있어 기준을 대조해야 한다. `shared/map/terrain-domain.js`는 이번 통합에서 수정하지 않는다. 생성 `HONRO.html`/`HONRO_WORKSHOP.html`/`index.html`/`web/manifest.json`·immutable 파일은 최종 통합 빌드에서 다시 만들며 서로의 생성물로 덮지 않는다.
 
 현재 공개 master의 레벨업·합류·축지 수정은 공통 선조에 포함되어 있다. 이번 공통 연결은 해당 엔진/성장/축지 계산을 변경하지 않는다.
+
+## 최신 Act3 병합 · a8d4ba0b
+
+이후 `a8d4ba0bee53fc5f85c9e322f878e69a5d6a41d3`까지 추가 병합했다. 위의26/28–30 미구현 상태는 이 이전 checkpoint의 기록이며, 현재 해당 provider/원고/검사는 포함하되 기본 비활성은 유지한다. [Act3 통합 요구](act3-v4-binding/INTEGRATION.md)의9파일 계약 중 기존6파일 연결은 보존하고 새 문서 span/전용 actor paint,29장 App.retry, 내부 interaction 이유 및30장 context ending 조회를 연결했다. ending 조회는 전역 App 대신 실제 호출의 profile을 넘겨 Act2 엔딩 계약과 독립 검사를 보존한다.
+
+`act23-v4-reviewed26-30`이 실제 구조/NPC 보행·불길12적턴 경계·조기처치/수문·배 두 항차/하선·사공·저널·retry/XP 보존을 통과했다. 이 역시 위치/전투 fixture 검사다. Act3 담당이 명시한 보류3개(29장 실제 창 예고,30장 먼 곽진 이별2행, 채택 본문 없는 COMPAT30)는 완료로 승격하지 않는다. live bark 전달은 별도 공통 후속이다.

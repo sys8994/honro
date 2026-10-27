@@ -391,6 +391,7 @@
         }
         retry() {
             if(!this.training&&G.HonroCampaignEntry?.defer(this,this.stageId,()=>this.retry()))return;
+            if(!this.training&&G.HonroAct23V4Reviewed?.provider?.(this.stageId)?.retry?.(this))return;
             if(!this.training)G.HonroRouteBranches?.retry(this);
             if(this.engine&&!this.training&&!this.done){G.HonroProgression.syncRoster(this.profile,this.engine.b);this.persist();}
             // Practice owns no campaign snapshot; restarting it keeps the suspended journey.
