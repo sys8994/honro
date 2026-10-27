@@ -3,7 +3,7 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "build": "node workshop/build.mjs",
+    "build": "node tools/stage31/check-release.mjs && node workshop/build.mjs",
     "migrate": "node migration/migrate-stages.mjs && node tools/map-forge/apply-act2.mjs && node tools/map-forge/apply-act1.mjs && node tools/map-forge/apply-terrain-domain.mjs && node tools/map-forge/apply-act1-roster.mjs",
     "verify": "npm run test:release-guard && npm run build && npm run test:title && npm run test:campaign-metadata && npm run test:campaign-contracts && npm run test:runtime-contracts && npm run test:migration-ledger && npm run test:migration-current-meta && npm run test:current-story-display && npm run test:binding-detail && npm --prefix game run verify && npm run test:integration && npm run test:performance",
     "test:binding-detail": "node tests/binding-detail-normalization.mjs && node tests/narrative-revision.mjs",
@@ -224,7 +224,8 @@
     "test:skill-preview-audit": "node tests/skill-preview-audit.mjs && python -X utf8 tests/skill-preview-audit-browser.py",
     "test:skill-modal-shell": "python -X utf8 tests/skill-modal-shell-browser.py && node tests/camp-skill-ux.mjs",
     "test:levelup-growth": "node tests/levelup-companion-growth.mjs",
-    "test:levelup-growth:browser": "python -X utf8 tests/levelup-companion-growth-browser.py"
+    "test:levelup-growth:browser": "python -X utf8 tests/levelup-companion-growth-browser.py",
+    "test:production-contract": "node tests/production-contract.mjs"
   },
   "devDependencies": {
     "@napi-rs/canvas": "0.1.100",

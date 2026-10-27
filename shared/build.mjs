@@ -120,7 +120,7 @@ export async function runtimeEntries({vector=true,render=true,app=false,producti
   await file('shared/runtime/camera.js');
   await file('shared/runtime/attack-camera.js');
   await file('shared/runtime/reinforcement-camera.js');
-  for(const name of ['bounds','environment','geometry','terrain-domain','stage7-reentry','platform-passages','open-structures','projectile-targets','visual-style','vector-art','space-layout','schema','units','compiler','commands'])await file(`shared/map/${name}.js`);
+  for(const name of ['bounds','environment','geometry','terrain-domain','stage7-reentry','platform-passages','open-structures','projectile-targets','visual-style','vector-art','space-layout','schema','units','compiler','commands','production-contract'])await file(`shared/map/${name}.js`);
   let project=applyCavernTransitionLayers(applyCavernPlaceLayers(await applyAct1SceneComposition(await applyAct2SceneComposition(await applyAct2VectorArt(JSON.parse(await read('shared/data/campaign.json'))))),{existingOnly:true}),{existingOnly:true});
   project=await applyGeologyArt(project);
   project=applyCommonCartArt(project);
