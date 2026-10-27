@@ -1,0 +1,221 @@
+{
+  "stage": 25,
+  "status": "PASS2_DRAFT_AWAITING_PARENT_APPROVAL_AND_GEMINI_PASS3",
+  "sources": [
+    "HONRO-CH25-PASS1-20261027-response.md",
+    "HONRO_25장_대사검수.txt",
+    "internal_stage25_map.json",
+    "sources/honro-v4-source-extracted.md",
+    "sources/honro-act3-v4-plan.md"
+  ],
+  "pass1": {
+    "actual_response_read": true,
+    "model": "3.5 Flash-Lite",
+    "assessment": "실제 1차 25KEEP. 다섯 도착점은 자유순서라서 아까 가려졌던 적/아래에서 올려다보던 통로의 선행목격이 모든 경로에 성립하지 않을 수 있어 두 행 최소수정 제안. 두 인물의 실제 현재 관찰만 유지하며 지상팀 26장 새 지식은 없음. 진목 추가 발견 문구는 기존 경로 연결 대상의 관찰일 뿐 필수 도착점 증가가 아니다. 저널의 거리·물이상은 물품관찰만으로 자동확정하면 안 되므로 별도 실제목격을 기다린다. 분리기간 무휴식과 자원연속은 문구검수와 별개 구현검증이다."
+  },
+  "input_ids": 25,
+  "decisions": [
+    {
+      "id": "A3.S25.INTRO.01",
+      "speaker": "설오",
+      "decision": "KEEP"
+    },
+    {
+      "id": "A3.S25.INTRO.02",
+      "speaker": "담허",
+      "decision": "KEEP"
+    },
+    {
+      "id": "A3.S25.EAST.01",
+      "speaker": "설오",
+      "decision": "KEEP"
+    },
+    {
+      "id": "A3.S25.EAST.02",
+      "speaker": "담허",
+      "decision": "KEEP"
+    },
+    {
+      "id": "A3.S25.WINDOW.01",
+      "speaker": "설오",
+      "decision": "CHANGE",
+      "old": "여기서는 짐 뒤가 보입니다. 아까 가렸던 놈도 보입니다.",
+      "candidate": "여기서는 짐 뒤의 적이 보입니다.",
+      "reason": "자유 방문 순서에서 아까 가려진 같은 적을 이미 봤다는 선행목격을 강제하지 않음.",
+      "condition_addition": "중앙 점검창 실제 도착 및 살아 있는 해당 적 실제 노출 시. 이미 적이 없으면 전투상황 문구 생략."
+    },
+    {
+      "id": "A3.S25.LINK_DANGER.01",
+      "speaker": "설오",
+      "decision": "KEEP"
+    },
+    {
+      "id": "A3.S25.LINK_DANGER.02",
+      "speaker": "담허",
+      "decision": "KEEP",
+      "condition_addition": "담허가 실제 연결작업 중이고 작업범위에 접근한 적을 인지할 때만. 단순 적접근으로 불가능한 작업상태를 말하지 않음."
+    },
+    {
+      "id": "A3.S25.WATER.01",
+      "speaker": "설오",
+      "decision": "KEEP"
+    },
+    {
+      "id": "A3.S25.WATER.02",
+      "speaker": "담허",
+      "decision": "KEEP"
+    },
+    {
+      "id": "A3.S25.HOUSEHOLDS.01",
+      "speaker": "설오",
+      "decision": "KEEP"
+    },
+    {
+      "id": "A3.S25.HOUSEHOLDS.02",
+      "speaker": "담허",
+      "decision": "KEEP"
+    },
+    {
+      "id": "A3.S25.HOUSEHOLDS.03",
+      "speaker": "설오",
+      "decision": "KEEP"
+    },
+    {
+      "id": "A3.S25.FAR_SIDE.01",
+      "speaker": "설오",
+      "decision": "CHANGE",
+      "old": "아래에서 올려다보던 통로가 여기로 이어집니다.",
+      "candidate": "이 통로는 아래쪽 길과 이어져 있습니다.",
+      "reason": "아래에서 미리 올려다본 순서가 필요하지 않도록 현재 연결 관찰만 표현.",
+      "condition_addition": "맞은편 검문실 실제 도착 및 아래길 연결이 실제 시각적으로 확인되는 경우."
+    },
+    {
+      "id": "A3.S25.FAR_SIDE.02",
+      "speaker": "담허",
+      "decision": "KEEP",
+      "condition_addition": "귀환 진목이 실제로 남아 있고 연결 복귀 가능한 상태에서만. 자유순서를 고정시키지 않음."
+    },
+    {
+      "id": "A3.S25.DEPTH.01",
+      "speaker": "설오",
+      "decision": "KEEP"
+    },
+    {
+      "id": "A3.S25.DEPTH.02",
+      "speaker": "담허",
+      "decision": "KEEP",
+      "condition_addition": "기존 연결 대상 진목이 실제 시야에 있으며 이용가능한 경로임을 확인할 때; 여섯째 필수 도착점/새 보상 진목을 만들지 않음."
+    },
+    {
+      "id": "A3.S25.EXIT.01",
+      "speaker": "설오",
+      "decision": "KEEP"
+    },
+    {
+      "id": "A3.S25.EXIT.02",
+      "speaker": "담허",
+      "decision": "KEEP"
+    },
+    {
+      "id": "A3.S25.OBJ.01",
+      "speaker": "objective_texts",
+      "decision": "KEEP"
+    },
+    {
+      "id": "A3.S25.OBJ.02",
+      "speaker": "objective_texts",
+      "decision": "KEEP"
+    },
+    {
+      "id": "A3.S25.JOURNAL.01",
+      "speaker": "journal_entries",
+      "decision": "KEEP",
+      "condition_addition": "가구별 생활도구 관찰 AND 거리/방향 이상 실제 관찰 완료 이후만 전체 문장 기록. 자유방문 때문에 household_goods_visible 때 이상 미목격이면 그 부분 기록을 지연; 선행 방문순서나 신규 수집목표를 강제하지 않음."
+    },
+    {
+      "id": "A3.S25.GUIDE.01",
+      "speaker": "guide_texts",
+      "decision": "KEEP"
+    },
+    {
+      "id": "A3.S25.GUIDE.02",
+      "speaker": "guide_texts",
+      "decision": "KEEP"
+    },
+    {
+      "id": "EDGE.ARRIVALS_25_0",
+      "speaker": "서술",
+      "decision": "KEEP",
+      "condition_addition": "split v2 직접진입 interlude만; 설오·담허 활성/휘겸·소단 비활성, HP·기력·상태·쿨다운·아이템 연속. 쉼터/자동회복/새 실패복구 도입 금지."
+    },
+    {
+      "id": "EDGE.FAILURE_GUARD.S25",
+      "speaker": "담허",
+      "decision": "KEEP",
+      "condition_addition": "실제 일반 실패 AND 담허 alive+present. 담허 부재/사망/전멸은 음성 없이 실패 UI. 27장 검은공간 연출낙하에 전용 가드 없는 본문동일 alias로 재생 금지."
+    }
+  ],
+  "alias_review": [
+    {
+      "id": "EDGE.OPTIONAL_25_ARCHER_0",
+      "status": "RETIRED",
+      "canonical_ids": [],
+      "text_identity": "비활성/대체/호환 계약 보존; 본문동일 alias로 자동 통합 금지",
+      "guard_requirement": {
+        "event": "optional companion click; recruited + stage unlocked + first conversation stage; debug scoped preview allowed",
+        "guards": {
+          "optional": true
+        }
+      },
+      "runtime_verification": "PENDING"
+    },
+    {
+      "id": "EDGE.OPTIONAL_25_MAGE_0",
+      "status": "RETIRED",
+      "canonical_ids": [],
+      "text_identity": "비활성/대체/호환 계약 보존; 본문동일 alias로 자동 통합 금지",
+      "guard_requirement": {
+        "event": "optional companion click; recruited + stage unlocked + first conversation stage; debug scoped preview allowed",
+        "guards": {
+          "optional": true
+        }
+      },
+      "runtime_verification": "PENDING"
+    },
+    {
+      "id": "EDGE.OPTIONAL_25_MAGE_1",
+      "status": "RETIRED",
+      "canonical_ids": [],
+      "text_identity": "비활성/대체/호환 계약 보존; 본문동일 alias로 자동 통합 금지",
+      "guard_requirement": {
+        "event": "optional companion click; recruited + stage unlocked + first conversation stage; debug scoped preview allowed",
+        "guards": {
+          "optional": true
+        }
+      },
+      "runtime_verification": "PENDING"
+    },
+    {
+      "id": "EDGE.PLACES_24_RESTDESCRIPTION",
+      "status": "IDENTICAL_TEXT_ALIAS",
+      "canonical_ids": [
+        "EDGE.ARRIVALS_25_0"
+      ],
+      "text_identity": "canonical 본문과 동일; 가드는 별개",
+      "guard_requirement": {
+        "event": "장소 설명 UI; actual stageId=25",
+        "guards": {}
+      },
+      "runtime_verification": "PENDING"
+    }
+  ],
+  "open_questions": [],
+  "coverage": {
+    "canonical_decisions": 25,
+    "unique_ids": 25,
+    "changes": 2,
+    "keep": 23,
+    "runtime_guard_verification": "PENDING"
+  },
+  "parent_approval": "25개 PASS3 승인; WINDOW는 숨은→뒤의 로 의도추정 제거"
+}
