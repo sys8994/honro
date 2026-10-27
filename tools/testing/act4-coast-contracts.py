@@ -31,12 +31,12 @@ with sync_playwright() as p:
  ev("""()=>{const e=HonroApp.engine;for(const [i,u]of e.b.units.filter(u=>u.side===0).entries()){u.x=6000+i*100;u.y=HonroMapEngine.surfaceY(e.b.terrain,u.x).y;u.vx=u.vy=0;}}""")
  assert ev('HonroAct4TerrainPreview.interact()');ev('HonroApp.outcome();HonroApp.close()');assert ev('HonroAct4TerrainPreview.campaignProof.safeSeven.ids.length')==7
  print('PASS 32 physical emergence/threshold/quiet/all8 receipts/own-storage resume',flush=True)
- setup(38,3100,3050,3700,2800,'mage');step(45);finish();step(2)
+ setup(38,3100,3050,3700,2800,'mage');ev("HonroApp.engine.active.focus=0;HonroApp.engine.active.ranks.M09=0");step(45);finish();step(2)
  assert ev('HonroAct4TerrainPreview.interact()');render();step(10);render();step(3)
  assert ev('HonroApp.engine.b.honroAct4PreviewState.connectionProbe.phase')=='observed'
  assert ev('HonroAct4TerrainPreview.interact()');finish();step(20);finish()
  q=ev('HonroApp.engine.b.honroAct4PreviewState');assert q.get('connected'),q
- before=ev('HonroApp.engine.active.focus');assert ev('HonroAct4TerrainPreview.interact()');assert ev('HonroApp.engine.active.x')>4300;assert ev('HonroApp.engine.active.focus')==before
+ before=ev('HonroApp.engine.active.focus');assert ev('HonroAct4TerrainPreview.interact()');assert ev('HonroApp.engine.active.x')>4300;assert ev('HonroApp.engine.active.focus')==before==0;assert ev('HonroApp.engine.active.ranks.M09')==0
  print('PASS 38 actual probe/anchor/clear landing/fixed connection/no MP cost',flush=True)
  setup(39,5930,1720,6100,1850,'mage');assert not ev('HonroApp.engine.b.honroAct4PreviewState.complete'),'early boss kill cannot win'
  assert ev('HonroAct4TerrainPreview.interact()');step(20);finish();step(3)
@@ -68,6 +68,10 @@ with sync_playwright() as p:
  q=ev('HonroApp.engine.b.honroAct4PreviewState');assert q.get('roster')=={'total':13,'living':11,'priorDeaths':2},q
  assert q['events']['next']['terminal'],q
  assert ev('HonroAct4TerrainPreview.save()');ev('HonroApp.stopBattle()');assert ev('HonroAct4TerrainPreview.resume()');assert ev('HonroApp.engine.b.honroAct4PreviewState.roster.living')==11
+ assert ev('HonroAct4TerrainPreview.proofValid(HonroApp.engine.b)')
+ for mutation in ["p.runId='other-run'","p.safeSeven.ids[1]=p.safeSeven.ids[0]","p.rescued.ids[0]='wrong-resident'","p.completed[39].sourceRun='other-battle'","b.honroAct4EntryProof.sourceRun='other-battle'","p.safeSeven.reportIds=[]"]:
+  assert ev('''()=>{const P=HonroAct4TerrainPreview,b=HonroApp.engine.b,backup=JSON.parse(JSON.stringify(P.campaignProof)),entry=JSON.parse(JSON.stringify(b.honroAct4EntryProof));const p=P.campaignProof;'''+mutation+''';const valid=P.proofValid(b);P.campaignProof=backup;b.honroAct4EntryProof=entry;return !valid;}'''),mutation
+ print('PASS 40 same-run exact IDs/source/report proof rejects six altered inputs',flush=True)
  print('PASS 40 physical low-deck boarding/boat+high-road movement/quiet return/13 accounting/resume',flush=True)
 
  setup(33,800,2100,1800,2100)

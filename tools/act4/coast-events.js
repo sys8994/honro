@@ -11,6 +11,8 @@ const quiet=b=>!foes(b).length&&stable(b)&&P.quietReady(b);
 const seen=(q,k)=>q.observed?.[k]!==undefined;
 const closed=(q,k)=>!!q.events[k]?.terminal;
 const cast=app=>app.engine.active;
+const working=(e,u,point,r)=>alive(u)&&u.side===0&&e.b.side===0&&e.b.phase==='aim'&&e.active===u&&!u.acted&&e.grounded(u)&&near(u,point,r);
+function cancelWork(q,key,u,observation){if(u)delete u.honroScenePose;q[key]=null;if(q.observed)delete q.observed[observation];}
 const residents=b=>b.units.filter(u=>u.honroAct4Resident);
 function unobscured(app,p){const s=app.scene,cv=s.canvas,r=cv.getBoundingClientRect(),x=r.left+cv.clientWidth/2+(p.x-s.x)*s.scale,y=r.top+cv.clientHeight/2+(p.y-s.y)*s.scale,box={left:x-22*s.scale,right:x+22*s.scale,top:y-90*s.scale,bottom:y+4*s.scale};if(box.left<r.left+3||box.right>r.right-3||box.top<r.top+5||box.bottom>r.bottom-5)return false;return ['.battle-info','.battle-head>button','#minimap-dock'].every(selector=>{const n=app.root.querySelector(selector),a=n?.getBoundingClientRect();return !a||!a.width||!a.height||box.right<a.left||box.left>a.right||box.bottom<a.top||box.top>a.bottom;});}
 function goal(app,id){const text=G.HONRO_ACT4_PREVIEW_SEEDS.ui.find(v=>v[0]===id)?.[1];if(!text)return;app.stage.goal=text;const n=G.document.getElementById('objective-text');if(n)n.textContent=text;}
@@ -37,10 +39,12 @@ function syncWater(b){const q=memory(b),level=q.tide?.surface;if(!Number.isFinit
 function closeRecoveryAction(e,u,r){const b=e.b,token=b.round+':'+b.side;if(b.active!==u.id||b.side!==0||b.phase!=='aim'||b.projectiles.length||b.volley||r.closedToken===token)return;r.closedToken=token;e.finishAction(true);if(b.active===u.id&&u.acted&&b.phase==='aim')e.advanceAfterAction();}
 function water(e,dt=0){const b=e.b;if(!active(b))return;const q=memory(b),policies=b.honroAct4Design?.waterPolicies||[];q.water??={dry:{},recoveries:[]};
  for(const u of b.units.filter(u=>alive(u)&&!u.honroAct4Sheltered&&!u.honroAct4OnBoat)){
-  const zones=policies.filter(z=>u.x>z.x1&&u.x<z.x2),z=u.honroAct4Recovering?policies.find(z=>z.id===u.honroAct4Recovering.zone):zones.find(z=>u.y>(q.tide?.surface??z.surface)+35);
+  const zones=policies.filter(z=>u.x>z.x1&&u.x<z.x2),z=u.honroAct4Recovering?policies.find(z=>z.id===u.honroAct4Recovering.zone):zones.find(z=>u.y>(q.tide?.surface??z.surface)+35&&(z.kind!=='recover'||!q.tide||q.tide.phase==='high'));
   if(u.side===1&&(u.honroAct4WaterTrait==='spirit'||u.honroAct4Aquatic))continue;
   if(u.side===1&&z){u.honroAct4WaterRounds??={};if(u.honroAct4WaterRounds[z.id]!==b.round){u.honroAct4WaterRounds[z.id]=b.round;e.hurt(u,Math.ceil(u.maxHp*.25),'',false,undefined,undefined,'environment');if(alive(u)){spend(e,u);u.slowed={factor:.55,expires:b.round+1};}}continue;}
-  if(!z){if(e.grounded(u)&&!u.honroAct4Recovering&&policies.every(v=>u.y<(q.tide?.surface??v.surface)-10))q.water.dry[u.id]={x:u.x,y:u.y};continue;}
+  // Low tide exposes walkable mud. It is not a new dry return bank: preserve
+  // the last entry point that will still be safe at the declared high water.
+  if(!z){if(e.grounded(u)&&!u.honroAct4Recovering&&policies.every(v=>u.y<v.surface-10))q.water.dry[u.id]={x:u.x,y:u.y};continue;}
   if(z.kind==='lethal'){e.hurt(u,u.maxHp*10,'',false,undefined,undefined,'environment');continue;}
   const last=q.water.dry[u.id]||{x:u.spawnX??260,y:u.spawnY??u.y},side=last.x<(z.x1+z.x2)/2?'Left':'Right',span=z['entry'+side];if(!span)continue;
   if(!u.honroAct4Recovering){u.honroAct4Recovering={zone:z.id,entry:copy(last),side,damage:Math.ceil(u.maxHp*.25),damaged:false,surface:q.tide?.surface??z.surface};spend(e,u);}
@@ -100,13 +104,13 @@ P.coastObserve=function(app,dt){const b=app.engine.b,n=b.honroAct4Preview;if(!ac
 
   if(q.connectionProbe?.phase==='entry'&&seen(q,'probe-entry')&&q.clock-q.connectionProbe.at>.6){q.connectionProbe={phase:'wrong-exit',at:q.clock};}
   if(q.connectionProbe?.phase==='wrong-exit'&&seen(q,'probe-wrong'))q.connectionProbe.phase='observed';
-  if(q.anchorAction&&!q.connected){const mage=e.unit(q.anchorAction.actor);if(!alive(mage)){q.anchorAction=null;return;}mage.honroScenePose={kind:'point',time:1};mage.facing=1;q.anchorAction.elapsed+=dt;if(q.anchorAction.elapsed>1&&seen(q,'anchor-action')){const p=space(b,mage,c.destination,220);if(p){q.connected={destination:p,sourceRun:b.session,stageOnly:true,mpSpent:0};delete mage.honroScenePose;goal(app,'A4.S38.CONNECT_OBJECTIVE');play(app,'connected');}}}
+  if(q.anchorAction&&!q.connected){const mage=e.unit(q.anchorAction.actor);if(!working(e,mage,c.entry,250)){cancelWork(q,'anchorAction',mage,'anchor-action');return;}mage.honroScenePose={kind:'point',time:1};mage.facing=1;q.anchorAction.elapsed+=dt;if(q.anchorAction.elapsed>1&&seen(q,'anchor-action')){const p=space(b,mage,c.destination,220);if(p){q.connected={destination:p,sourceRun:b.session,stageOnly:true,mpSpent:0};delete mage.honroScenePose;q.anchorAction=null;goal(app,'A4.S38.CONNECT_OBJECTIVE');play(app,'connected');}}}
  }
  if(n===39){const r=cfg.rescue,boss=e.unit('a4-wreck');if(alive(boss)&&seen(q,'wreck'))play(app,'boss');
-  if(alive(boss)&&party(b).some(u=>u.x>1100)&&!q.artillery?.next){const count=q.artillery?.count||0,targets=count%2?residents(b).filter(alive):party(b).sort((a,c)=>Math.abs(c.x-boss.x)-Math.abs(a.x-boss.x));const t=targets[0]||party(b)[0];if(t){q.artillery??={count:0,history:[]};q.artillery.next={x:t.x,y:t.y-t.h*.5,target:t.id,dueRound:b.round+1,warningSeen:false};}}
+  if(alive(boss)&&party(b).some(u=>u.x>1100)){boss.awake=true;boss.aggroUntil=Math.max(boss.aggroUntil,b.round+1);if(!q.artillery?.next){const count=q.artillery?.count||0,targets=count%2?residents(b).filter(alive):party(b).sort((a,c)=>Math.abs(c.x-boss.x)-Math.abs(a.x-boss.x));const t=targets[0]||party(b)[0];if(t){q.artillery??={count:0,history:[]};q.artillery.next={x:t.x,y:t.y-t.h*.5,target:t.id,dueRound:b.round+1,warningSeen:false};}}}
 
-  if(q.stabilizing){const actor=e.unit(q.stabilizing.actor);if(!alive(actor)){q.stabilizing=null;}else{actor.honroScenePose={kind:'point',time:1};q.stabilizing.elapsed+=dt;if(q.stabilizing.elapsed>1&&seen(q,'stabilizing')){q.exitStable={sourceRun:b.session,actor:actor.id,once:true};delete actor.honroScenePose;q.stabilizing=null;if(actor.cls==='mage')play(app,'stabilize');}}}
-  if(q.releasing){const actor=e.unit(q.releasing.actor);if(!alive(actor)){q.releasing=null;}else{actor.honroScenePose={kind:'point',time:1};q.releasing.elapsed+=dt;if(q.releasing.elapsed>1&&seen(q,'net-action')){q.netOpen={sourceRun:b.session,actor:actor.id};delete actor.honroScenePose;q.releasing=null;b.sceneVersion++;if(actor.cls==='occultist')q.releasePending={actor:actor.id};}}}
+  if(q.stabilizing){const actor=e.unit(q.stabilizing.actor);if(!working(e,actor,r.anchor,actor?.cls==='mage'?360:180)){cancelWork(q,'stabilizing',actor,'stabilizing');}else{actor.honroScenePose={kind:'point',time:1};q.stabilizing.elapsed+=dt;if(q.stabilizing.elapsed>1&&seen(q,'stabilizing')){q.exitStable={sourceRun:b.session,actor:actor.id,once:true};delete actor.honroScenePose;q.stabilizing=null;if(actor.cls==='mage')play(app,'stabilize');}}}
+  if(q.releasing){const actor=e.unit(q.releasing.actor);if(!working(e,actor,r.net,actor?.cls==='occultist'?340:180)){cancelWork(q,'releasing',actor,'net-action');}else{actor.honroScenePose={kind:'point',time:1};q.releasing.elapsed+=dt;if(q.releasing.elapsed>1&&seen(q,'net-action')){q.netOpen={sourceRun:b.session,actor:actor.id};delete actor.honroScenePose;q.releasing=null;b.sceneVersion++;if(actor.cls==='occultist')q.releasePending={actor:actor.id};}}}
   escort(e,q,dt);if(q.releasePending&&residents(b).some(u=>u.x>cfg.rescue.net.x+60&&e.grounded(u))&&q.clock-(q.pathProbeAt??-10)>.5){q.pathProbeAt=q.clock;q.livePathClear=routeClear(b);if(q.livePathClear){q.npcRouteObserved=true;play(app,'souls_freed');}}const dosik=e.unit('a4-rescue-3'),seolo=party(b).find(u=>u.cls==='archer');
   if(q.exitStable&&q.netOpen&&dosik.x>6570&&dosik.x<6740&&near(seolo,{x:dosik.x+70,y:dosik.y},160)){q.hand??={at:q.clock,actor:seolo.id};seolo.honroScenePose={kind:'point',time:1};if(seen(q,'hand')){play(app,'hand',true);q.hand.completed=true;}}
   if(r.ids.every(id=>q.escort?.[id]?.safe&&rescueSafe(e,e.unit(id)))){q.rescued={ids:copy(r.ids),sourceRun:b.session,campaignRunId:b.honroAct4ReviewRunId};goal(app,'A4.S39.ESCAPE_OBJECTIVE');}
