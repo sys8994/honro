@@ -7,7 +7,7 @@ const g=await runtime({legacyMaps:false}),C=g.HONRO_CORE;
 vm.runInContext(await readFile('tools/act4/review-art.js','utf8'),g);
 vm.runInContext(await readFile('tools/act4/terrain-preview.js','utf8'),g);
 const rows=[];
-for(const [n,x,targetX,angle,power,blocked]of [[31,3600,4140,30,.65,false],[35,3060,3490,0,.2,true],[35,3350,3490,0,.2,false]]){
+for(const [n,x,targetX,angle,power,blocked]of [[31,3600,4140,45,.5,false],[35,3040,3490,5,.2,true],[35,3350,3490,5,.2,false]]){
  const p=g.HonroAct4TerrainPreview.create(n),b=g.HonroMaps.createBattle(p.stages[0],p);
  b.units=b.units.filter(u=>u.id==='archer'||u.x===targetX);const u=b.units[0],target=b.units[1];
  Object.assign(u,{x,y:g.HonroMapEngine.surfaceY(b.terrain,x).y,vx:0,vy:0,critChance:0});

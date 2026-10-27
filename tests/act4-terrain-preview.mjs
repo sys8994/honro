@@ -22,13 +22,9 @@ for(const n of [31,35,36]){
  // this proves a route with ordinary locomotion, not an encounter turn budget.
  b.units=b.units.filter(u=>u.id==='archer');const u=e.active;let blocked=0,jumps=0;
  const destination=n===31?6150:6800;for(let i=0;i<5000&&u.x<destination;i++){u.moveLeft=10000;const x=u.x;e.move(1,C.STEP);e.tick(C.STEP);blocked=u.x-x<.05?blocked+1:0;if(blocked>5&&e.grounded(u)){if(e.jump(u))jumps++;blocked=0;}}
- assert(u.x>=destination,n+' connected lower route');assert.equal(u.hp,start[0].hp);
- if(n===35){
-  for(const upper of [false,true]){const world=JSON.parse(JSON.stringify(routeBase));world.units=world.units.filter(v=>v.id==='archer');const engine=new C.Engine(world,()=>{});engine.checkEnd=()=>false;const actor=engine.active,land=world.terrain.find(t=>t.id==='a4-35-land'),bridge=world.terrain.find(t=>t.id==='a4-35-wall');actor.x=upper?3000:2970;actor.y=g.HonroMapEngine.surfaceY([upper?bridge:land],actor.x).y;actor.vx=actor.vy=0;let jams=0,leaps=0,minimumHeadroom=Infinity;
-   for(let i=0;i<1200&&actor.x<3500;i++){actor.moveLeft=10000;const x=actor.x;engine.move(1,C.STEP);engine.tick(C.STEP);jams=actor.x-x<.05?jams+1:0;if(upper&&jams>5&&engine.grounded(actor)){if(engine.jump(actor))leaps++;jams=0;}if(!upper&&actor.x<3260){const roof=C.topAt(bridge,actor.x,0);if(Number.isFinite(roof))minimumHeadroom=Math.min(minimumHeadroom,actor.y-actor.h-roof-35);}}
-   assert(actor.x>=3500,upper?'upper bridge route':'underpass route');assert.equal(actor.hp,start[0].hp);if(!upper)assert(minimumHeadroom>=0,'actual body fits under bridge');else assert(leaps>0,'upper route crosses actual bamboo with basic jump');rows.push({chapter:n,route:upper?'upper bamboo crossing':'underpass',routeEnd:actor.x,leaps,minimumHeadroom:upper?null:minimumHeadroom});
-  }
- }
+ assert(u.x>=destination,n+' connected lower route '+JSON.stringify({x:u.x,y:u.y,ground:e.grounded(u),phase:b.phase,jumps}));assert.equal(u.hp,start[0].hp);
+ if(n===35){for(const [from,to,label]of [[2350,3500,'gully and rooted earth steps'],[3970,5500,'low wall approach']]){const world=JSON.parse(JSON.stringify(routeBase));world.units=world.units.filter(v=>v.id==='archer');const engine=new C.Engine(world,()=>{});engine.checkEnd=()=>false;const actor=engine.active;actor.x=from;actor.y=g.HonroMapEngine.surfaceY(world.terrain,from).y;actor.vx=actor.vy=0;let jams=0,leaps=0;for(let i=0;i<1600&&actor.x<to;i++){actor.moveLeft=10000;const x=actor.x;engine.move(1,C.STEP);engine.tick(C.STEP);jams=actor.x-x<.05?jams+1:0;if(jams>5&&engine.grounded(actor)){if(engine.jump(actor))leaps++;jams=0;}}assert(actor.x>=to,label);assert.equal(actor.hp,start[0].hp);rows.push({chapter:n,route:label,routeEnd:actor.x,leaps});}}
+
  rows.push({chapter:n,initial:start.length,enemies:start.length-4,routeEnd:u.x,jumps,spawnStable:true,fullTerrainDomain:true});
 }
 assert.equal(JSON.stringify(g.HONRO_PROJECT),campaign,'campaign maps changed');

@@ -16,9 +16,9 @@ with sync_playwright() as p:
    settle();ev('HonroStory.next(HonroApp)')
   assert not ev('!!window.HonroApp.dialogue')
  render='''()=>{const a=HonroApp;Object.assign(a.scene,{manual:true,storyTween:null,cinematic:null,goalFocus:null,storyFrame:null,editorView:true,skillPreview:true});a.scene.render(a.engine,0,'',.6,false,0);}'''
- ev('HonroAct4TerrainPreview.launch(31)');ev(render);settle();assert ev('HonroApp.dialogue?.lines[0][2].act4PreviewRow')=='A4.S31.ENTRY.01';finish();settle()
+ ev('HonroAct4TerrainPreview.launch(31)');ev('''()=>{for(let i=0;i<45;i++){HonroAct4TerrainPreview.observe(HonroApp,.1);HonroApp.scene.render(HonroApp.engine,0,'',.6,false,0);}}''');ev(render);settle();assert ev('HonroApp.dialogue?.lines[0][2].act4PreviewRow')=='A4.S31.ENTRY.01';finish();settle()
  assert ev('HonroApp.engine.b.honroAct4PreviewState.events.arrival.presented.length')==2
- ev('''()=>{const e=HonroApp.engine;for(const u of e.b.units.filter(u=>u.side===1))e.hurt(u,u.hp+100); }''');settle();assert ev('HonroApp.engine.b.honroAct4PreviewState.boat.phase')=='approach';finish();settle()
+ ev('''()=>{const e=HonroApp.engine;for(const u of e.b.units.filter(u=>u.side===1))e.hurt(u,100000); }''');settle();assert ev('HonroApp.engine.b.honroAct4PreviewState.boat.phase')=='approach';finish();settle()
  ev('''()=>{for(let i=0;i<18;i++)HonroAct4TerrainPreview.observe(HonroApp,1);}''');finish();settle();ev(render)
  assert ev('HonroApp.engine.b.honroAct4PreviewState.boat.phase')=='docked';assert not ev('HonroAct4TerrainPreview.interact()')
  assert not ev('HonroApp.engine.b.honroAct4PreviewState.complete')
@@ -26,7 +26,7 @@ with sync_playwright() as p:
  assert ev('HonroAct4TerrainPreview.interact()');page.locator('#battlecanvas').screenshot(path=str(OUT/'31-boat-docked.png'))
  ev('window.boatSaved=HonroAct4TerrainPreview.snapshot();HonroAct4TerrainPreview.restore(boatSaved)');assert ev('HonroApp.engine.b.honroAct4PreviewState.complete')
  ev('HonroAct4TerrainPreview.launch(36)')
- ev('''()=>{const a=HonroApp,e=a.engine;for(const u of e.b.units.filter(u=>u.side===1))e.hurt(u,u.hp+100);e.b.active='knight';const u=e.active;u.x=2370;u.y=HonroMapEngine.surfaceY(e.b.terrain,u.x).y;u.vx=u.vy=0;Object.assign(a.scene,{x:2600,y:1800,scale:.6});}''');ev(render);settle();finish();settle();assert ev('HonroAct4TerrainPreview.interact()')
+ ev('''()=>{const a=HonroApp,e=a.engine;for(const u of e.b.units.filter(u=>u.side===1))e.hurt(u,100000);e.b.active='knight';const u=e.active;u.x=2370;u.y=HonroMapEngine.surfaceY(e.b.terrain,u.x).y;u.vx=u.vy=0;Object.assign(a.scene,{x:2600,y:1800,scale:.6});}''');ev(render);settle();finish();settle();assert ev('HonroAct4TerrainPreview.interact()')
  ev('''()=>{for(let i=0;i<6;i++)HonroAct4TerrainPreview.observe(HonroApp,1);}''')
  assert not ev('!!window.HonroApp.engine.b.honroAct4PreviewState.events.door_falls?.started'),'unrendered fall must not narrate'
  ev('window.doorSaved=HonroAct4TerrainPreview.snapshot();HonroAct4TerrainPreview.restore(doorSaved)');ev('HonroAct4TerrainPreview.observe(HonroApp,5)');assert not ev('!!window.HonroApp.engine.b.honroAct4PreviewState.events.door_falls?.started')
@@ -38,7 +38,7 @@ with sync_playwright() as p:
  assert 'A4.S36.DOOR.02' in state['events']['door_falls']['retired'],state
  assert 'A4.S36.DOOR.02' not in state['receipts'];assert not state['events'].get('leave',{}).get('started')
  ev('HonroAct4TerrainPreview.launch(35)');settle();finish();settle()
- ev('''()=>{const a=HonroApp,e=a.engine,u=e.b.units.find(u=>u.id==='archer');e.b.active=u.id;const cast=x=>{u.x=x;u.y=HonroMapEngine.surfaceY(e.b.terrain,x).y;u.vx=u.vy=0;u.acted=false;u.focus=u.maxFocus;u.critChance=0;e.b.phase='aim';e.b.side=0;if(!e.fire('A01',0,.2))throw Error('fixture fire rejected');for(let i=0;i<1000&&e.b.projectiles.length;i++)for(const p of [...e.b.projectiles])if(e.b.projectiles.includes(p))e.stepProjectile(p,HONRO_CORE.STEP);};cast(3060);cast(3350);u.x=3060;u.y=HonroMapEngine.surfaceY(e.b.terrain,u.x).y;e.b.phase='aim';HonroAct4TerrainPreview.observe(a,.1);}''');settle()
+ ev('''()=>{const a=HonroApp,e=a.engine,u=e.b.units.find(u=>u.id==='archer');e.b.active=u.id;const cast=x=>{u.x=x;u.y=HonroMapEngine.surfaceY(e.b.terrain,x).y;u.vx=u.vy=0;u.acted=false;u.focus=u.maxFocus;u.critChance=0;e.b.phase='aim';e.b.side=0;if(!e.fire('A01',5,.2))throw Error('fixture fire rejected');for(let i=0;i<1000&&e.b.projectiles.length;i++)for(const p of [...e.b.projectiles])if(e.b.projectiles.includes(p))e.stepProjectile(p,HONRO_CORE.STEP);};cast(3040);cast(3350);u.x=3040;u.y=HonroMapEngine.surfaceY(e.b.terrain,u.x).y;e.b.phase='aim';HonroAct4TerrainPreview.observe(a,.1);}''');settle()
  assert ev('HonroApp.engine.b.honroAct4PreviewState.blockedAtBamboo&&HonroApp.engine.b.honroAct4PreviewState.clearShotFromSide')
  assert not ev('!!HonroApp.dialogue');assert ev('HonroApp.engine.b.phase')=='aim'
  assert 'A4.S35.MID.01' in ev('HonroApp.engine.b.honroAct4PreviewState.receipts')

@@ -68,13 +68,14 @@ function create(n){
  const geom=s.terrains.map(t=>G.HonroGeometry.terrain(t,s.height));
  const floor=x=>G.HonroMapEngine.surfaceY(geom,x)?.y||2000;
  const put=(id,x,scale=1,y=floor(x),layer='back')=>s.elements.push({id:'a4-'+n+'-'+id+'-'+s.elements.length,assetId:'a4:'+id,x,y,scale,snap:false,rotation:0,depthLayer:'L1',layer});
- if(n===31){put('estuary-water',0,1,1900);for(const [x,z] of [[700,.7],[1200,.9],[1700,1.1],[2550,.6],[3500,.8],[4500,1],[5600,.8],[6150,.7]])put('reeds',x,z);put('dock',6150,.45,1890);put('boat',500,1,1735);}
+ if(n===31){put('estuary-water',0,1,1900);for(const [x,z] of [[700,.7],[1200,.9],[1700,1.1],[2550,.6],[3500,.8],[4500,1],[5600,.8],[6150,.7]])put('reeds',x,z);put('dock',6150,.45,1890);put('boat',500,.6,1735);}
  if(n===35){for(const [x,z]of [[50,1.3],[500,1.1],[1770,1.2],[2000,.9],[2700,1.4],[3500,1.1],[4000,1.3],[4500,1.1],[5900,1.4],[6520,1.2],[7040,1.5]])put('bamboo',x,z);for(const x of [3125,4920])put('thick-bamboo',x,.35,floor(x));put('old-wall',900,.8);put('empty-house',6980,.4);}
  if(n===36){for(const [x,z,id]of [[1520,1.2,'a3-korean-town-21-L3-house-2'],[2570,1.35,'a3-korean-town-21-L3-house-0'],[4550,1.5,'act1-scene:ferry-house'],[5740,1.3,'a3-korean-town-21-L3-house-2']])s.elements.push({id:'a4-36-house-'+x,assetId:id,x,y:floor(x),scale:z,snap:false,rotation:0,depthLayer:'L1',layer:'back'});put('door',2370,1, floor(2370),'prop');}
  const party=['archer','mage','knight','occultist'];
  s.units=party.map((c,i)=>({...G.HonroUnits.record(c,c,260+i*120,floor(260+i*120),'player'),facing:1}));
- const groups=n===31?[[[1390,'hound'],[1640,'human'],[1860,'archer']],[[4140,'archer'],[4490,'human'],[4700,'hound']]]:n===35?[[[1460,'hound'],[1730,'human']],[[2830,'human'],[3490,'archer']],[[5360,'human'],[5690,'archer']]]:[[[950,'human'],[1240,'hound']]];
+ const groups=n===31?[[[1390,'hound'],[1640,'possessedGuard'],[1860,'possessedArcher']],[[4140,'possessedArcher'],[4490,'possessedGuard'],[4700,'hound']]]:n===35?[[[1460,'hound'],[1730,'possessedGuard']],[[2830,'possessedGuard'],[3490,'possessedArcher']],[[5360,'possessedGuard'],[5690,'possessedArcher']]]:[[[1220,'warden'],[1450,'hound']]];
  groups.forEach((group,i)=>{const ids=[];for(const [x,kind]of group){const id='a4-'+n+'-g'+i+'-'+ids.length;ids.push(id);s.units.push({...G.HonroUnits.record(kind,id,x,floor(x),'enemy'),encounterGroup:'a4-'+n+'-'+i,stageOverrides:{elite:false,group:100+i,awake:false,aggroUntil:0}});}s.encounters.push({id:'a4-'+n+'-'+i,key:'a4-'+n+'-'+i,unitIds:ids,behavior:'guard'});});
+ if(n===36)Object.assign(s.units.find(u=>u.id==='a4-36-g0-0').stageOverrides,{elite:true,honroAct4RewardTag:'eq-hw-36'});
  s.environment=G.HonroEnvironment.makeEnvironment(s);
  s.environment.atmosphere={preset:'valley',overrides:{skyTop:'#809ba9',skyBottom:'#b3cbd3',ambientTint:n===36?'#8a8b80':'#809c9e',hazeColor:'#9eb7bf',farFogColor:'#b4c8cd',nearFogColor:'#9eb7b8',shadowTint:'#304751',keyLightColor:'#b5cbd2',lightStrength:.02,mistStrength:.29}};
  // The shared far image provides cloud detail; these world groups supply the
@@ -94,7 +95,7 @@ function create(n){
 }
 function launch(n){const app=G.HonroApp,project=create(n),map=project.stages[0];
  const owner=app.profile;app.launchMap(project,map.id,{story:false,profile:{settings:{music:false}}});const b=app.engine.b;
- b.honroAct4Preview=n;b.honroPreviewFar={key:'act4Dawn'};
+ b.honroAct4Preview=n;b.honroPreviewFar={key:'act4Dawn'};if(G.innerWidth<600)Object.assign(app.scene,{scale:.62,x:450,y:app.engine.active.y-40});
  // Stage30 is an explicit combat fixture, not an authored Act4 growth policy.
  app.stage.name=n+' · '+names[n];app.stage.goal=n===31?'물길과 선착장을 확보하기':n===35?'대숲을 지나 저문골로 가기':'저문골 옛터를 지나기';
  app.engine.checkEnd=()=>false;app.updateHUD(true);const goal=G.document?.getElementById('objective-text');if(goal)goal.textContent=app.stage.goal;
