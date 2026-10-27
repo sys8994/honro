@@ -51,3 +51,7 @@ Stage5 담당이 수정할 수 있는 `shared/runtime/main.js`는 후속 현장 
 혼합 bark/guide 묶음은 안내 reader와 비정지 자막으로 나누며, 같은 사건의 실제 표시 receipt를 합친다. 창/낙하/화재의 즉시 경고는 일반 자막보다 먼저 표시하며 중단된 일반 cursor를 보존한다. 사건이 이후 생존/물리 가드를 잃어 취소돼도 실제로 이미 본 행과 terminal 상태를 분리한다. 30장의 필수 증언은 끝내기 호출만으로 목격 처리하지 않고 실제 각 행 표시를 요구한다.
 
 11/16/17/18/20/common 감사 예외,25/27 순서·개인기록,26/28/29/30 물리 계약과 actual-receipt/live-bark/menu 검사를 통과했다. Chromium29 창 경고 중 입력/저장/native hit와30 두 항차·곽진 곁3행·모바일·호환도 pageerror 없이 통과했다. 제어 fixture/로컬 브라우저 결과이며 정상 전체 완주·공개 Pages 검증은 아니다. production 활성 전환은 별도 커밋으로 남긴다. Stage5 public 소스는 보존한다.
+
+### production 전환 준비
+
+`game/config/story-release.json`이 product App 번들의 기본 검수 활성 정책을 한 곳에서 소유한다. 이 준비 커밋의 값은 false이며 별도 후보 커밋에서 true로 바꾼다. `HONRO_ACT23_V4_RELEASE=0` rollback, 기존 명시 private opt-in, Phase A off cap을 지원한다. model-only fixture는 명시 활성 방식을 유지하므로 product 기본값은 release-policy와 실제 App/Chromium 검사에서 별도로 확인한다. 기본값 false 및 rollback/private/cap source 검사는 통과했다.

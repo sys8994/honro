@@ -61,7 +61,7 @@ export async function skillAudioData(){
   return {version:3,assets};
 }
 // This is the only bundle manifest. Game, Stage view and playtest use it.
-export async function runtimeEntries({vector=true,render=true,app=false}={}) {
+export async function runtimeEntries({vector=true,render=true,app=false,productionStory=app}={}) {
   const parts=[];
   const code=(name,code)=>parts.push({name,code});
   const file=async source=>code(source,await read(source));
@@ -87,19 +87,24 @@ export async function runtimeEntries({vector=true,render=true,app=false}={}) {
   data('HONRO_NARRATIVE_CATALOGUE',JSON.parse(await read('shared/data/narrative-current.json')));
   data('HONRO_NARRATIVE_COMPAT',JSON.parse(await read('shared/data/narrative-compat-v1.json')));
   data('HONRO_STAGE_CONTRACTS',JSON.parse(await read('shared/data/stage-contracts.json')));
-  data('HONRO_ACT23_V4_PHASE_A',process.env.HONRO_ACT23_V4_PHASE_A==='1');
-  const reviewed11=process.env.HONRO_ACT23_V4_PHASE_A==='1'&&process.env.HONRO_ACT23_V4_PHASE_B_CH11==='1';
+  const storyRelease=JSON.parse(await read('game/config/story-release.json'));
+  if(storyRelease.revision!==1||typeof storyRelease.reviewedAct23!=='boolean')throw Error('Invalid story release policy');
+  const release=productionStory&&storyRelease.reviewedAct23&&process.env.HONRO_ACT23_V4_RELEASE!=='0';
+  const storyFlag=(key,fallback=release)=>process.env[key]===undefined?fallback:process.env[key]==='1';
+  const phaseA=storyFlag('HONRO_ACT23_V4_PHASE_A');
+  data('HONRO_ACT23_V4_PHASE_A',phaseA);
+  const reviewed11=phaseA&&storyFlag('HONRO_ACT23_V4_PHASE_B_CH11');
   data('HONRO_ACT23_V4_PHASE_B_CH11',reviewed11);
   data('HONRO_ACT23_V4_REVIEWED',reviewed11?JSON.parse(await read('shared/data/reviewed/act23-v4-ch11.json')):null);
-  const reviewedStages=process.env.HONRO_ACT23_V4_PHASE_A==='1'?(process.env.HONRO_ACT23_V4_PHASE_B_STAGES||'').split(',').map(Number).filter(n=>[12,13,14,15,16,17,18,19,20].includes(n)):[];
+  const reviewedStages=phaseA?(process.env.HONRO_ACT23_V4_PHASE_B_STAGES===undefined?(release?[12,13,14,15,16,17,18,19,20]:[]):process.env.HONRO_ACT23_V4_PHASE_B_STAGES.split(',').map(Number).filter(n=>[12,13,14,15,16,17,18,19,20].includes(n))):[];
   data('HONRO_ACT23_V4_PHASE_B_STAGES',reviewedStages);
   const reviewedChapters={};for(const n of reviewedStages)reviewedChapters[n]=JSON.parse(await read('shared/data/reviewed/act23-v4-ch'+n+'.json'));
   data('HONRO_ACT23_V4_REVIEWED_CHAPTERS',reviewedChapters);
-  const reviewedCommon=process.env.HONRO_ACT23_V4_PHASE_A==='1'&&process.env.HONRO_ACT23_V4_PHASE_B_COMMON==='1';
+  const reviewedCommon=phaseA&&storyFlag('HONRO_ACT23_V4_PHASE_B_COMMON');
   data('HONRO_ACT23_V4_REVIEWED_COMMON',reviewedCommon?JSON.parse(await read('shared/data/reviewed/act23-v4-common.json')):null);
-  // Only completed, explicitly opted-in Act3 bindings enter a private build.
+  // App bundles follow the release policy; model fixtures retain explicit opt-in.
   const reviewedAct3Stages=[21,22,23,24,25,26,27,28,29,30];
-  const reviewedAct3=Object.fromEntries(reviewedAct3Stages.map(id=>[id,process.env.HONRO_ACT23_V4_PHASE_A==='1'&&process.env['HONRO_ACT23_V4_PHASE_B_CH'+id]==='1']));
+  const reviewedAct3=Object.fromEntries(reviewedAct3Stages.map(id=>[id,phaseA&&storyFlag('HONRO_ACT23_V4_PHASE_B_CH'+id)]));
   for(const id of reviewedAct3Stages){data('HONRO_ACT23_V4_PHASE_B_CH'+id,reviewedAct3[id]);data('HONRO_ACT23_V4_REVIEWED_CH'+id,(id===21?Object.values(reviewedAct3).some(Boolean):reviewedAct3[id])?JSON.parse(await read('shared/data/reviewed/act23-v4-ch'+id+'.json')):null);}
   data('HONRO_PORTRAIT_VARIANTS',JSON.parse(await read('game/config/portrait-variants.json')));
   for(const name of modelFiles)await file(`shared/runtime/${name}.js`);

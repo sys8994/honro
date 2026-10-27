@@ -7,8 +7,8 @@ import {readFile,mkdir,writeFile} from 'node:fs/promises';
 import {createHash} from 'node:crypto';
 import {runtime} from '../game/tests/helpers.mjs';
 export const plain=x=>JSON.parse(JSON.stringify(x)),KEY='honro-first-act-profile-1';
-export async function appHarness(){
- const g=await runtime({legacyMaps:false}),storage=new Map(),listeners=new Map(),nodes=new Map();let exported;
+export async function appHarness({productionStory=false}={}){
+ const g=await runtime({legacyMaps:false,productionStory}),storage=new Map(),listeners=new Map(),nodes=new Map();let exported;
  function node(){const classes=new Set();return {innerHTML:'',dataset:{},children:[],hidden:false,isConnected:true,tagName:'BUTTON',style:{setProperty(){}},
  classList:{add:k=>classes.add(k),remove:k=>classes.delete(k),contains:k=>classes.has(k),toggle(k,v){v??=!classes.has(k);v?classes.add(k):classes.delete(k);}},
  querySelector(selector){if(selector==='.training-dialog'&&!this.innerHTML.includes('dialog training-dialog'))return null;return node();},querySelectorAll(){return[];},remove(){},appendChild(){},insertAdjacentHTML(){},getClientRects(){return[{}];},setAttribute(){},removeAttribute(){},matches(){return true;},focus(){g.document.activeElement=this;},click(){},getContext(){return {translate(){},scale(){},save(){},restore(){},clearRect(){}};},toDataURL(){return'';}};}
