@@ -11,8 +11,8 @@ function crestVisible(app){const b=app.engine?.b,s=app.scene,p=b&&mark(b,'family
 }
 function fieldWindow(b){const q=mem(b);return !q.events.intro&&!q.events.crest&&!q.events.split&&!root(b).done['family-crest']&&!q.proof.familyCrest&&!q.proof.departure;}
 function fieldView(app,meta){const b=app.engine.b,q=mem(b),key=meta?.reviewedEvent,v=q.fieldViews?.[key],p=mark(b,'family-crest');return crestVisible(app)||!!(key?.startsWith('field-talk.')&&q.events[key]?.status==='open'&&v?.run===b.session&&p&&v.x===p.x+38&&v.y===p.y-82);}
-function fieldOptional(app,r,meta){const b=app.engine.b,c=cls[r.speaker],u=hero(b,c),p=mark(b,'family-crest');if(b.side!==0||b.phase!=='aim'||r.id==='EDGE.OPTIONAL_24_OCCULTIST_0'||!fieldWindow(b)||!fieldView(app,meta)||!ground(b,u)||distance(u,p)>650)return false;
- if((r.id==='EDGE.OPTIONAL_24_ARCHER_0'||r.id.startsWith('EDGE.OPTIONAL_24_KNIGHT_'))&&(!ground(b,hero(b,'knight'))||distance(hero(b,'knight'),p)>650))return false;
+function fieldOptional(app,r,meta){const b=app.engine.b,c=cls[r.speaker],u=hero(b,c),p=mark(b,'family-crest');if(b.side!==0||b.phase!=='aim'||r.id==='EDGE.OPTIONAL_24_OCCULTIST_0'||!fieldWindow(b)||!fieldView(app,meta)||!ground(b,u)||!app.engine.grounded(u)||distance(u,p)>650)return false;
+ if((r.id==='EDGE.OPTIONAL_24_ARCHER_0'||r.id.startsWith('EDGE.OPTIONAL_24_KNIGHT_'))&&(!ground(b,hero(b,'knight'))||!app.engine.grounded(hero(b,'knight'))||distance(hero(b,'knight'),p)>650))return false;
  const target={x:p.x+38,y:p.y-82},eye={x:u.x,y:u.y-u.h*.7};if(b.terrain.some(t=>!t.broken&&!t.oneWay&&C.segmentTerrain(eye,target,t,0)?.t<.97))return false;
  if(r.id==='EDGE.OPTIONAL_24_ARCHER_0')return porterSafe(app.profile)&&!heard(app.profile,'knight',b);if(r.id==='EDGE.OPTIONAL_24_MAGE_0')return wagonKnown(app.profile);return true;
 }
