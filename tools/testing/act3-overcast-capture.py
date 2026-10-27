@@ -1,0 +1,16 @@
+"""Controlled actual Chromium render/camera fixtures, no campaign completion claim."""
+import os,json,pathlib,hashlib,sys
+from playwright.sync_api import sync_playwright
+ROOT=pathlib.Path(__file__).resolve().parents[2];label=sys.argv[1];OUT=ROOT/'_local/reports/act3-overcast'/label;OUT.mkdir(parents=True,exist_ok=True)
+VIEWS={'24-garden':(24,3500,2470,.32,1440,900),'28-court':(28,4000,2600,.32,1440,900),'25-deep':(25,2800,5200,.30,1440,900),'21-wide':(21,2600,2450,.28,1440,900),'21-play':(21,1500,2470,.62,1440,900),'23-wide':(23,4800,4400,.18,1440,900),'23-play':(23,3000,4650,.48,1440,900),'26-yard':(26,3200,2480,.40,1440,900),'29-wall':(29,3700,2480,.32,1440,900),'30-river':(30,4800,4750,.24,1440,900),'22-inside':(22,1500,3600,.42,1440,900),'27-deep':(27,3300,5300,.30,1440,900),'30-mobile':(30,3500,4680,.30,390,844),'21-mobile':(21,1500,2470,.40,390,844),'act1-control':(1,2000,1500,.42,1440,900),'act2-control':(16,3000,5300,.26,1440,900)}
+selected=sys.argv[2:] or list(VIEWS)
+with sync_playwright() as pw:
+ browser=pw.chromium.launch(executable_path='/usr/bin/chromium',headless=True,args=['--no-sandbox','--disable-dev-shm-usage']);page=browser.new_page(viewport={'width':1440,'height':900},device_scale_factor=1);errors=[];page.on('pageerror',lambda e:errors.append(str(e)));page.goto(os.getenv('HONRO_BASE_URL','http://127.0.0.1:8771')+'/HONRO.html');page.wait_for_function('!!globalThis.HonroApp',timeout=90000);rows=[];current=None
+ for name in selected:
+  n,x,y,z,w,h=VIEWS[name];page.set_viewport_size({'width':w,'height':h})
+  if current!=n:
+   page.evaluate('''async n=>{await HonroCampaignLoader.ensureStage(n);const a=HonroApp;a.reviewPaused=true;a.frame=()=>{};a.stopBattle();a.close();const p=HonroProfileStore.fresh();p.revision=13;p.recruited=['archer','mage','knight','occultist'];p.party=[...p.recruited];for(let i=1;i<n;i++)p.cleared[i]={visits:1};for(const c of p.recruited)p.heroes[c].xp=HONRO_CORE.xpAtLevel(20);p.settings.music=p.settings.sound=false;a.profile=p;a.launch(n);for(let i=0;i<20&&a.dialogue;i++)HonroStory.finish(a);a.turnNotice=null;a.scene.time=2;}''',n)
+   page.wait_for_function('n=>HonroAuthoredFarArt.ready(n)',arg=n,timeout=90000);current=n
+  result=page.evaluate('''v=>{const a=HonroApp,s=a.scene,b=a.engine.b;Object.assign(s,{manual:true,x:v.x,y:v.y,scale:v.z,storyTween:null,cinematic:null,goalFocus:null,storyFrame:null,editorView:true,skillPreview:true,time:2});const before=JSON.stringify(b);s.render(a.engine,0,'',.6,false,0);s.render(a.engine,0,'',.6,false,0);return{camera:[s.x,s.y,s.scale],pure:before===JSON.stringify(b),far:s.environmentStats.authoredFar,hero:b.units.filter(u=>u.side===0).map(u=>[u.id,u.x,u.y]),stage:b.honroStage};}''',{'x':x,'y':y,'z':z});assert result['pure'],result
+  page.locator('#battlecanvas').screenshot(path=str(OUT/(name+'.png')));rows.append({'name':name,'viewport':[w,h],'requested':[x,y,z],**result});print(label,name,result['camera'],flush=True)
+ assert not errors,errors;(OUT/'captures.json').write_text(json.dumps({'label':label,'scope':__doc__,'entryScripts':page.evaluate('[...document.scripts].map(s=>s.src).filter(Boolean)'),'rows':rows,'pageErrors':errors},ensure_ascii=False,indent=2)+'\n');browser.close()

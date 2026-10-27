@@ -5019,3 +5019,11 @@ commonReviewRevision의 첫 혼령 대기열은 생성 후 소단/sceneTarget가
 - 근거: 공개master0f19의 detached 원본에서도 동일Lv17 snapshot에 map revision이 없어 첫 exact-battle assertion이 실패했다. 직접 probe가 current23=1, obsolete=true, battle만 폐기하고 같은23장 재시작을 확인했다.
 - 변경: 낡은 첫 assertion을 성장/XP/SP/ranks/장착/완료/기록 보존과 현행 지형 재시작으로 갱신했다. legacy 지급ledger의 policy3 표식만 정규화하고 나머지 credits/limits/clear를 비교한다. 현행 전투의 서로 다른HP/focus/이동/item을 네번export/import/Continue/mount해 전체전투 동등성을 요구한다. 기존 fresh-entry XP/crit/scope 검사도 유지한다.
 - 확인: 갱신 전체검사를 공개0f19와 통합후보에서 통과했다. production-resume/receipt/source/release-policy 및빌드/typecheck를 재확인한다. 공개0f19 실제성공 배포graph도 보호보존에 추가한다. 스토리원고/실행코드/폭포후보 변경은 없다.
+
+
+### 2026-10-27 · 3막 야외를 탁한 황토빛 흐린 낮으로 분리
+
+- 원인: 실제야외21/23/24/26/28/29/30이 밤색 원경grading과 청록 지면재료/후반 청색multiply를 공유했다.22기록고·25/27지하는 실내다.26 legacy skyVisible=false는 실제 공방마당 지리와 다르다.
+- 변경: 기존거리별 context에 명시 재질palette를 추가해 황토/회갈 보행면·갈흑 깊은 하부와 저대비 회베이지 원경을 분리했다.실제지면을 덮는 벡터재료에도 연결하고,물/나무/건물/배우/경고/표식 직접색은 보존한다.원경같은파일/crop/시차/bounded cache,지형·이벤트·저장revision과1/2막은 보존했다.4막·폭포74cbf49는 제외했다.
+- 검수: 실제Chromium baseline→3회집중수정→최종종합을 같은camera/zoom/해상도로 캡처했다.지면벡터의미적용,30장비충돌암반의청록,21장원반/하부명도 문제를 각각 확인하고 수정했다.최종1/16/22/27 대조는 픽셀동일.모바일390px에서 인물·목표·물색분리 확인.카메라/선행진척은 fixture이며 정상완주/공개검증과 구분한다.
+- 확인: visual-hierarchy의 역할/alpha/cache/theme/기본게임색 검증과 production-save/실제키보드 live bark·menu/29native경고·hit·모바일,build/typecheck 통과.격리visual검사의누락된quest-record adapter,옛12장raster기대/고정인접문자열은현행연결에맞춰갱신했다.실행범위와사진은ACT3_OVERCAST_COLOUR_20261027에기록한다.

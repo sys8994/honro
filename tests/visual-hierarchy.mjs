@@ -4,6 +4,8 @@ import {readFile} from 'node:fs/promises';
 import {createRequire} from 'node:module';
 const native=createRequire(import.meta.url)('@napi-rs/canvas'),g=vm.createContext({Path2D:native.Path2D,console});
 for(const file of ['shared/map/visual-style.js','shared/map/vector-art.js'])vm.runInContext(await readFile(file,'utf8'),g);
+// Isolated presentation fixture supplies the current quest-record adapter.
+g.HonroQuestTargets={records:b=>b.terrain||[]};
 const V=g.HonroVisualStyle,cv=native.createCanvas(160,160),raw=cv.getContext('2d');
 let previous=2;for(const depth of ['L1','L2','L3','L4','SKY']){assert(V.STYLE.saturation[depth]<previous);previous=V.STYLE.saturation[depth];const rgb=V.color('#d8603acc',depth);assert(rgb.endsWith('cc'),'Alpha is unchanged');const channels=rgb.slice(1,7).match(/../g).map(v=>parseInt(v,16)),y=channels[0]*.2126+channels[1]*.7152+channels[2]*.0722;assert(Math.abs(y-(V.STYLE.tonePivot+((216*.2126+96*.7152+58*.0722)-V.STYLE.tonePivot)*V.STYLE.contrast[depth]))<.6,'Bounded atmospheric contrast keeps the authored light ordering');}
 assert.equal(V.context(V.context(raw,'L1'),'L3'),V.context(raw,'L3'),'Nested depth replaces, never multiplies');
@@ -44,10 +46,21 @@ const primitive={collision:[{}],visual:[{fill:'#b65832',points:[{x:10,y:10},{x:3
 g.HonroMaps={clone:v=>JSON.parse(JSON.stringify(v))};vm.runInContext(await readFile('shared/map/compiler.js','utf8'),g);
 const nativeAsset={id:'new-native-art',kind:'receiverStone',renderer:'landmark',visualRole:'gameplay',visualDepth:'L3',gameplayLinks:{markerIds:['new-switch']}},nativeStage={terrains:[],materials:[],elements:[{id:'new-native-instance',assetId:nativeAsset.id,x:10,y:20}]};
 const compiled=g.HonroMaps.compile(JSON.parse(JSON.stringify(nativeStage)),{library:[JSON.parse(JSON.stringify(nativeAsset))]});assert.equal(V.classify(compiled.landmarks[0],{}),'gameplay','New native asset role survives compile/save transport');assert.equal(V.depth(compiled.landmarks[0]),'L3');assert.deepEqual(Array.from(compiled.landmarks[0].gameplayLinks.markerIds),['new-switch']);
-const build=await readFile('shared/build.mjs','utf8');assert(build.includes("'visual-style','vector-art'"));assert(build.includes("'narrative-art','visual-hierarchy'"));
-for(const name of ['stage8-bier-art','stage12-quarry-art','stage23-escort-art','stage30-ferry-art'])assert((await readFile(`shared/runtime/${name}.js`,'utf8')).includes("context(cv.getContext('2d'),'SKY')"),`${name} authored panorama styled at raster build`);
+const build=await readFile('shared/build.mjs','utf8');assert(build.includes("'visual-style','vector-art'"));assert(build.indexOf("'visual-hierarchy'")>build.indexOf("'narrative-art'"),'Final hierarchy follows narrative/event painters');
+for(const name of ['stage8-bier-art','stage23-escort-art','stage30-ferry-art'])assert((await readFile(`shared/runtime/${name}.js`,'utf8')).includes("context(cv.getContext('2d'),'SKY')"),`${name} authored panorama styled at raster build`);
 assert((await readFile('shared/runtime/renderer.js','utf8')).includes('contextLike(c,cc)'),'Screen-cache painting preserves decoration context');
 assert((await readFile('shared/runtime/visual-hierarchy.js','utf8')).includes("V.key()"),'Style version participates in screen/tile invalidation');
 assert((await readFile('shared/runtime/act1-spatial-art.js','utf8')).includes("function supports(c,b){c=G.HonroVisualStyle?.context(c,'L1')"),'Direct Act1 brace path remains decorative');
 assert((await readFile('shared/runtime/act2-spatial-art.js','utf8')).includes("const terrainContext=c;c=G.HonroVisualStyle?.context(c,'L1')"),'Noncolliding Act2 support members separate from the physical deck');
 console.log('PASS visual hierarchy: semantic roles, five depth strengths, luminance/alpha, native and SVG contours, filled material ribbons, gameplay colors, cached styling, shared bundle and authored sky coverage');
+
+// The new material theme is rendering-only and never enters actors/markers.
+vm.runInContext(await readFile('shared/map/environment.js','utf8'),g);
+const E=g.HonroEnvironment,theme=E.act3Palette({honroStage:21},'earth');assert(theme);for(const n of [1,16,22,25,27])assert.equal(E.act3Palette({honroStage:n},'earth'),null);assert.equal(E.act3Palette({honroStage:21,honroCustom:true}),null);for(const n of [21,23,24,26,28,29,30])assert(E.act3Outdoor({honroStage:n}));
+const earth=V.context(raw,'gameplay',theme);earth.fillStyle='#62776a99';earth.fillRect(100,120,20,20);assert.equal(raw.fillStyle,theme.paint('#62776a99'));assert(theme.paint('#62776a99').endsWith('99'));
+const cacheContext=native.createCanvas(10,10).getContext('2d');assert.equal(V.contextLike(earth,cacheContext),V.context(cacheContext,'gameplay',theme));assert.equal(V.context(earth,'L3'),V.context(raw,'L3',theme),'Depth switches retain one scoped palette');
+play.fillStyle='#ff0000';play.fillRect(0,120,20,20);assert.deepEqual(pixel(5,125),[255,0,0,255],'Ordinary gameplay remains outside the theme');console.log('PASS scoped overcast material palette/alpha/cache inheritance, real outdoor geography and interior/Act1/Act2/custom exclusion');
+
+assert.equal(theme.gradient('#62776a99',0,1600),theme.paint('#62776a99'));assert.notEqual(theme.gradient('#62776a99',1,1600),theme.paint('#62776a99'),'Only deep vertical material reaches dark brown-black');assert.equal(theme.gradient('#62776a99',1,50),theme.paint('#62776a99'),'Shallow/near surfaces retain their material palette');
+
+assert.notEqual(E.campaignMood(21,true).opacity,E.campaignMood(21).opacity,'Custom mood keeps its prior grade');

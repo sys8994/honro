@@ -59,7 +59,17 @@ const FINISH={L1:{haze:0,detail:1},L2:{haze:.18,detail:1},L3:{haze:.48,detail:.5
 const ACT1_FAR={saturation:.45,brightness:{mountains:.80,gorge:.76,dawn:1,act3:.86},veil:'#1b2730',veilOpacity:.08,panX:.025,panY:.0035,marginX:.022,marginY:.007};
 function act1Mood(stage){const n=Number(stage);if(!Number.isInteger(n)||n<1||n>10)return null;const t=(n-1)/9;
  return{stage:n,variant:n<6?'mountains':'gorge',tint:mixColor('#83968f','#52627e',t),opacity:.03+t*.12};}
-function campaignMood(stage){const first=act1Mood(stage);if(first)return first;const n=Number(stage);if(n>=21&&n<=30)return{stage:n,variant:'act3',tint:mixColor('#9ba58e','#52667e',(n-21)/9),opacity:.025+(n-21)/9*.10};if(![11,12,20].includes(n))return null;
+// Actual outdoor geography, not legacy skyVisible/backdrop labels:26 is an
+// open workshop yard;22 is an archive interior,25/27 remain underground.
+const ACT3_OUTDOOR=Object.freeze([21,23,24,26,28,29,30]);
+const act3Outdoor=b=>!!b&&!b.honroCustom&&ACT3_OUTDOOR.includes(Number(b.honroStage??b.metadata?.stageId));
+const act3Palettes=new Map();
+function act3Palette(b,material='stone'){
+ if(!act3Outdoor(b))return null;const kind=material==='earth'||material==='soil'?'earth':material==='wood'?'wood':'stone';if(act3Palettes.has(kind))return act3Palettes.get(kind);
+ const stops=kind==='earth'?[[26,22,19],[110,94,71],[177,161,130]]:kind==='wood'?[[27,24,21],[105,91,72],[177,161,130]]:[[29,28,26],[110,106,95],[177,171,150]];
+ const palette={key:'act3-overcast-1-'+kind,paint(value){const m=/^#([0-9a-f]{6})([0-9a-f]{2})?$/i.exec(value);if(!m)return value;const rgb=[0,2,4].map(i=>parseInt(m[1].slice(i,i+2),16)),y=rgb[0]*.2126+rgb[1]*.7152+rgb[2]*.0722,t=Math.min(1,y/220),u=t<.45?t/.45:(t-.45)/.55,aa=stops[t<.45?0:1],zz=stops[t<.45?1:2];return '#'+aa.map((v,i)=>Math.max(0,Math.min(255,Math.round(v+(zz[i]-v)*u+(rgb[i]-y)*.22))).toString(16).padStart(2,'0')).join('')+(m[2]||'');}};palette.gradient=(value,at,span)=>{const painted=palette.paint(value);if(span<600||at*span<=500||!/^#[0-9a-f]{6}(?:[0-9a-f]{2})?$/i.test(painted))return painted;return mixColor(painted.slice(0,7),'#211c18',Math.min(.80,(at*span-500)/1400*.80))+painted.slice(7);};act3Palettes.set(kind,palette);return palette;
+}
+function campaignMood(stage,custom=false){const first=act1Mood(stage);if(first)return first;const n=Number(stage);if(n>=21&&n<=30)return ACT3_OUTDOOR.includes(n)&&!custom?{stage:n,variant:'act3',tint:'#aea493',opacity:0}:{stage:n,variant:'act3',tint:mixColor('#9ba58e','#52667e',(n-21)/9),opacity:.025+(n-21)/9*.10};if(![11,12,20].includes(n))return null;
  return{stage:n,variant:n===12?'gorge':n===20?'dawn':'mountains',tint:n===20?'#d7c9a9':'#899b92',opacity:n===12?.06:.025};}
 function act1BackdropFrame(view,w,h,b,iw=1600,ih=900){const mx=w*ACT1_FAR.marginX,my=h*ACT1_FAR.marginY,
  s=Math.max((w+2*mx)/iw,(h+2*my)/ih),dw=iw*s,dh=ih*s,
@@ -253,5 +263,5 @@ function validate(project){const issues=[],error=text=>issues.push({level:'err',
  }
  return issues;
 }
-G.HonroEnvironment={VERSION,REFERENCE_SCALE,WORLD_UNITS_PER_METER,D0_METERS,PRESETS,SCENE_PRESETS,LAYERS,preset,depth,factor,ratio,screen,world,vectorScale,screenBounds,classifyLegacyElement,referenceForLegacyAsset,makePlacements,makeEnvironment,resize,upgradeLegacy,upgradeComposition,validate,VERTICAL_MODES,COVERAGE,FINISH,ACT1_FAR,act1Mood,campaignMood,act1BackdropFrame,ATMOSPHERES,ATMOSPHERE_BY_SCENE,mixColor,atmosphere,atmosphereAt,zoneWeights,assetRole,surfaceY,groupOf,supportOf,placementPosition,placementScreen,groupTransform,groupWorld,coveragePad,place,generatedAssets:()=>copy([...ENV_ASSETS,...COMPOSITION_ASSETS])};
+G.HonroEnvironment={VERSION,REFERENCE_SCALE,WORLD_UNITS_PER_METER,D0_METERS,PRESETS,SCENE_PRESETS,LAYERS,preset,depth,factor,ratio,screen,world,vectorScale,screenBounds,classifyLegacyElement,referenceForLegacyAsset,makePlacements,makeEnvironment,resize,upgradeLegacy,upgradeComposition,validate,VERTICAL_MODES,COVERAGE,FINISH,ACT1_FAR,act1Mood,campaignMood,ACT3_OUTDOOR,act3Outdoor,act3Palette,act1BackdropFrame,ATMOSPHERES,ATMOSPHERE_BY_SCENE,mixColor,atmosphere,atmosphereAt,zoneWeights,assetRole,surfaceY,groupOf,supportOf,placementPosition,placementScreen,groupTransform,groupWorld,coveragePad,place,generatedAssets:()=>copy([...ENV_ASSETS,...COMPOSITION_ASSETS])};
 })(globalThis);

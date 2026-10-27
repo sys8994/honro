@@ -29,8 +29,9 @@ function brush(paths,width,cap){const key=JSON.stringify([paths,width,cap]);if(b
  for(const pts of paths)for(let i=1;i<pts.length;i++){const a=pts[i-1],z=pts[i],dx=z[0]-a[0],dy=z[1]-a[1],len=Math.hypot(dx,dy);if(!len)continue;const nx=-dy*r/len,ny=dx*r/len;p.moveTo(a[0]+nx,a[1]+ny);p.lineTo(a[0]-nx,a[1]-ny);p.lineTo(z[0]-nx,z[1]-ny);p.lineTo(z[0]+nx,z[1]+ny);p.closePath();if(cap==='round')for(const v of [a,z]){p.moveTo(v[0]+r,v[1]);p.arc(v[0],v[1],r,0,Math.PI*2);}}
  if(brushes.size>=512)brushes.delete(brushes.keys().next().value);brushes.set(key,p);return p;
 }
-function context(input,layer='L1'){
- const c=raw(input);let rows=contexts.get(c);if(!rows){rows=new Map();contexts.set(c,rows);}if(rows.has(layer))return rows.get(layer);
+function context(input,layer='L1',palette=metadata.get(input)?.palette){
+ const c=raw(input),cacheKey=layer+':'+(palette?.key||'');let rows=contexts.get(c);if(!rows){rows=new Map();contexts.set(c,rows);}if(rows.has(cacheKey))return rows.get(cacheKey);
+ const paint=value=>palette?.paint(typeof value==='string'?value:'')||value;
  const gameplay=layer==='gameplay',methods=new Map();let paths=[],points=null,closed=false,filled=false;
  const add=(x,y)=>{if(!points){points=[];paths.push(points);}points.push([x,y]);};
  const track=(name,a)=>{
@@ -40,17 +41,18 @@ function context(input,layer='L1'){
  };
  const proxy=new Proxy(c,{
   get(_,name){if(name==='honroVisualLayer')return layer;const value=c[name];if(typeof value!=='function')return value;if(methods.has(name))return methods.get(name);let fn;
-   if(!gameplay&&['createLinearGradient','createRadialGradient','createConicGradient'].includes(name))fn=(...args)=>{const gradient=c[name](...args),stop=gradient.addColorStop.bind(gradient);gradient.addColorStop=(at,paint)=>stop(at,color(paint,layer));return gradient;};
+   if(!gameplay&&['createLinearGradient','createRadialGradient','createConicGradient'].includes(name))fn=(...args)=>{const gradient=c[name](...args),stop=gradient.addColorStop.bind(gradient);gradient.addColorStop=(at,paint)=>stop(at,palette?.gradient?.(color(paint,layer),at,name==='createLinearGradient'?args[3]-args[1]:0)||palette?.paint(color(paint,layer))||color(paint,layer));return gradient;};
+   else if(palette&&gameplay&&['createLinearGradient','createRadialGradient','createConicGradient'].includes(name))fn=(...args)=>{const gradient=c[name](...args),stop=gradient.addColorStop.bind(gradient);gradient.addColorStop=(at,value)=>stop(at,palette.gradient?.(value,at,name==='createLinearGradient'?args[3]-args[1]:0)||paint(value));return gradient;};
    else if(!gameplay&&name==='stroke')fn=(path)=>{if(path||closed||filled||c.lineWidth<STYLE.materialWidth||!points)return;c.save();c.fillStyle=c.strokeStyle;c.fill(brush(paths,c.lineWidth,c.lineCap));c.restore();};
    else if(!gameplay&&(name==='strokeRect'||name==='strokeText'))fn=()=>{};
    else if(!gameplay&&name==='fill')fn=(...args)=>{if(!args.length||typeof args[0]==='string')filled=true;return c.fill(...args);};
    else if(!gameplay&&name==='drawImage')fn=(source,...args)=>c.drawImage(image(source,layer),...args);
    else if(!gameplay&&['beginPath','moveTo','lineTo','closePath','rect','roundRect','quadraticCurveTo','bezierCurveTo','arc','ellipse'].includes(name))fn=(...args)=>{track(name,args);return c[name](...args);};
    else fn=value.bind(c);methods.set(name,fn);return fn;
-  },set(_,name,value){c[name]=!gameplay&&['fillStyle','strokeStyle','shadowColor'].includes(name)?color(value,layer):value;return true;}
- });metadata.set(proxy,{raw:c,layer});rows.set(layer,proxy);return proxy;
+  },set(_,name,value){c[name]=['fillStyle','strokeStyle','shadowColor'].includes(name)?paint(!gameplay?color(value,layer):value):value;return true;}
+ });metadata.set(proxy,{raw:c,layer,palette});rows.set(cacheKey,proxy);return proxy;
 }
-function contextLike(source,target){const layer=role(source);return layer?context(target,layer):target;}
+function contextLike(source,target){const layer=role(source);return layer?context(target,layer,metadata.get(source)?.palette):target;}
 // Compatibility only: shipped maps/saves predate explicit visualRole and
 // gameplayLinks. New official/custom assets never need an entry in this table.
 const legacyMissionAssets=Object.freeze({11:['s11-art-ritual-clearing'],12:['sq-art-waymark','quest-upper-quarry-mouth'],15:['a2-15-0','quest-new-cut-marks','quest-upper-water-mouth'],17:['s17-art-main-hoist','s17-art-control-drive-link'],19:['sb-old-soul-stone'],30:['sf-art-map-stone']});

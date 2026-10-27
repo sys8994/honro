@@ -111,7 +111,7 @@ function ensureBattle(b){if(b.honroEnvironment?.version===E.VERSION)return b.hon
  const environment={...st.environment,placements:st.environment.placements.map(e=>({...e,asset:p.library.find(a=>a.id===e.assetId)}))};
  battleEnvironments.set(b,{source:b.honroEnvironment,key,environment});return environment;
 }
-Scene.prototype.environmentTone=function(c,w,h,b){const mood=E.campaignMood(b.honroStage);if(!mood)return;c.save();c.globalCompositeOperation='multiply';c.globalAlpha*=mood.opacity;c.fillStyle=mood.tint;c.fillRect(0,0,w,h);c.restore();};
+Scene.prototype.environmentTone=function(c,w,h,b){const mood=E.campaignMood(b.honroStage,b.honroCustom);if(!mood)return;c.save();c.globalCompositeOperation='multiply';c.globalAlpha*=mood.opacity;c.fillStyle=mood.tint;c.fillRect(0,0,w,h);c.restore();};
 function customSpatialScenery(scene,c,w,h,b){const env=ensureBattle(b),custom=new Set(env.placements.filter(e=>!/^scenery-stage-\d+-\d+$/.test(e.id)).map(e=>e.id));if(!custom.size)return;
  const st={width:b.width,height:b.height,backdrop:b.honroBackdrop,environment:env},data=prepare(env),time=A.time(scene);let visible=0,active=0;
  for(const unit of data.groups){const g=unit.group;if(env.hiddenLayers?.includes(g.depthLayer)||!unit.children.some(e=>custom.has(e.id)))continue;const tr=E.groupTransform(scene,w,h,st,g),a=E.atmosphere(st,env.zones.find(z=>z.id===g.zoneId));active++;c.save();c.globalAlpha=tr.opacity;c.translate(tr.x,tr.y);c.scale(tr.scale,tr.scale);
