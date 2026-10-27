@@ -31,3 +31,31 @@ app=h.load(witnessProfile);app.continue();app.turnNotice=null;b=app.engine.b;Obj
 console.log('PASS missing-knight testimony records exactly the five actually presented elder facts');
 
 launch('B');at('EDGE.ARRIVALS_16_0');nextAll();for(const u of V.heroes(b))pose(u,2800,5016.94);at('A2.S16.BRANCH.02');assert(!allow('A2.S16.BRANCH.01'));nextAll();npc('objective').dead=true;assert(!allow('A2.S16.INTRO.01'));b.phase='lost';assert.equal(V.state(b).failureText,api.row('A2.S16.FAIL.01').text);g.HONRO_ACT23_V4_PHASE_B_STAGES=[];assert.equal(V.mapRevision(16),216);console.log('PASS actual route-entry branch, dead-speaker/failure and private-stage gate');
+
+// Audit exceptions: actual Engine damage, saved Continue and production NPC
+// recovery. Enemy removals/hero poses are fixtures, not normal-play evidence.
+g.HONRO_ACT23_V4_PHASE_B_STAGES=[16];
+for(const missing of ['mage','archer']){
+ launch();at('EDGE.ARRIVALS_16_0');nextAll();
+ for(const [i,u]of V.heroes(b).entries())pose(u,2550-i*100,5037.35);
+ at('A2.S16.INTRO.01');nextAll();pose(hero('occultist'),2820,5015.3);at('A2.S16.INTRO.02');nextAll();
+ if(missing==='mage'){
+  app.engine.hurt(hero('mage'),100000);assert(hero('mage')===undefined);
+  resume();tick(1000);assert.equal(P.memory(b).events['release-request'].status,'skipped');
+  // Sodan is already nearby and her own separation line must still appear.
+  at('A2.S16.MID.03');nextAll();
+ }else{pose(hero('mage'),2720,5023.47);at('A2.S16.MID.02');nextAll();at('A2.S16.MID.03');nextAll();}
+ for(const u of b.units)if(u.side===1&&u.id!=='resident-spirit-1'){u.dead=true;u.hp=0;}
+ const rescuer=hero(missing==='archer'?'knight':'archer');pose(rescuer,3270,4950);Object.assign(b,{active:rescuer.id,phase:'aim',side:0});assert(V.use(app,V.marker(b,'16.elder')));app.turnNotice=null;
+ pose(hero('occultist'),2850,5012.86);Object.assign(b,{active:hero('occultist').id,phase:'aim',side:0});assert(V.eligibility(app,V.marker(b,'16.disciple')).ok);assert(V.use(app,V.marker(b,'16.disciple')));app.turnNotice=null;
+ for(const [i,u]of V.heroes(b).entries())pose(u,2200-i*100,app.engine.surface(2200-i*100,4700,5500).y);pose(rescuer,2700,5025.102040816327);
+ at('A2.S16.MID.04',1200);assert(R.recovered(b));nextAll();
+ if(missing==='archer'){app.engine.hurt(hero('archer'),100000);resume();tick();assert.equal(P.memory(b).events.sound.status,'skipped');}
+ else{at('A2.S16.MID.05');nextAll();}
+ at('A2.S16.WITNESS.01');assert(!R.heard(b));g.HonroStory.finish(app);assert(!R.heard(b));at('A2.S16.WITNESS.01');nextAll();tick();assert(R.heard(b));
+ assert(R.coreWitness.every(k=>P.memory(b).witnessPresented.includes(k)));
+ const observer=hero('mage')||hero('occultist');pose(observer,3100,4925.986394557824);tick();
+ assert(P.memory(b).trappedObserved);assert.equal(P.memory(b).trappedObserved.observer,observer.id);
+ assert.equal(current(),missing==='mage'?'A2.S16.MID.07':'A2.S16.MID.06');nextAll();
+ console.log('PASS audit16 missing '+missing+': skipped question, actual separation/recovery, Continue, five presented elder facts and living soul observer');
+}
