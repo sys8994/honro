@@ -38,7 +38,11 @@ const stepRewards={12:['sign','eq_se_t2_choice'],13:['13.release','eq_so_residen
 function collect(p,b,{won=false,initial=false}={}){let changed=recruitFacts(p);const stage=b?.honroStage;
  if(won)for(const [id,n]of Object.entries(clears))if(stage===n)changed=grant(p,id)||changed;
  const pair=stepRewards[stage];if(pair&&(stepDone(b,pair[0])||stepDone(b,({13:'resident',16:'witness',17:'hoist',18:'keeper',22:'upper-register',29:'hyeonmuk-letter'})[stage])))changed=grant(p,pair[1])||changed;
- if(stage===12&&b.units.some(u=>u.side===1&&u.dead&&u.hp<=0&&u.honroAct2Elite===true&&u.honroQuarryEntry))changed=grant(p,'eq_co_06')||changed;
+ // V4 replaced the old finite quarry carts with this recorded two-spirit wave.
+ // Use its actual admitted IDs/source, never initial enemies or chapter clears.
+ const wave=stage===12&&b.honroAct23V4Revision===1?b.honroState?.act23v4?.reviewedChapter?.wave:null;
+ const gapDefeated=wave?.admitted&&Array.isArray(wave.ids)&&wave.ids.length===2&&wave.ids.some(id=>b.units.some(u=>u.id===id&&u.honroSpawnSource==='reviewed.12.gap'&&u.side===1&&u.dead&&u.hp<=0));
+ if(stage===12&&(gapDefeated||b.units.some(u=>u.side===1&&u.dead&&u.hp<=0&&u.honroAct2Elite===true&&u.honroQuarryEntry)))changed=grant(p,'eq_co_06')||changed;
  // This receipt is set by the successful interaction, not projectile completion.
  if(stage===15&&b.honroEquipmentFacts?.sluiceInteraction)changed=grant(p,'eq_co_07')||changed;
  if(initial&&p.equipment.initialAutoEquip)for(const cls of p.recruited){if(p.equipment.basicPrepared.includes(cls))continue;p.equipment.basicPrepared.push(cls);changed=true;const basic={archer:'itm_se_01',mage:'itm_da_01',knight:'itm_hw_01',occultist:'itm_so_01'}[cls],slot=p.equipment.equippedByClass[cls];if(!slot.personal&&p.equipment.ownedItemIds.includes(basic)){slot.personal=basic;changed=true;}}

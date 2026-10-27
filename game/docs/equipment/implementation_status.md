@@ -1,7 +1,7 @@
 # 장비52 구현 기록 (2026-10-27)
 
 기준: 휴식터 복원 `039f3426`, 설계 `3ff01388`, 최종 아이콘 `ef7c3ae1`.
-구현 브랜치: `codex/equipment-52`. 최종 공개 반영 상태는 아래 미결정 항목과 별도로 확인한다.
+구현 브랜치: `codex/equipment-52`. 최종 공개 반영 상태는 별도 발행 결과로 확인한다.
 
 ## 구현 정책
 
@@ -28,11 +28,11 @@
 
 15장 수문은 실제 상호작용 성공에서 별도 receipt를 남긴다. 접근 장면·명중·step 값을 만드는 것만으로는 주지 않는다.
 
-## 미결정: 정식12장 공용품06
+## 정식12장 공용품06 대응
 
-인계서 eq_co_06은 `honroAct2Elite && honroQuarryEntry`인 유한 수레 정예 제압이다. 옛 스냅샷 경로의 실제 유한 증원→제압→지급은 검증했다. 하지만 정식 v4는 `honroQuarryRevision=0`으로 이 경로를 끄고, 현재 `reviewed.12.gap`의 원혼2명만 유한 증원한다. 이들은 지정 정예가 아니고 옛 진입 표지도 없다.
+인계서 eq_co_06의 옛 조건 `honroAct2Elite && honroQuarryEntry`인 유한 수레 정예 제압은 기존 스냅샷에서 보존한다. 정식 v4는 `honroQuarryRevision=0`으로 그 경로를 끄고 현재 `reviewed.12.gap`의 원혼2명만 유한 증원한다.
 
-전투 수·능력치·XP를 임의 변경하지 않았다. 현재 유한 증원 첫 제압으로 사건을 옮길지 조정자에게 확인 중이다. 이 대응 전에는 정상 정식1–3막의 자동 획득 연결을31개/최대23개 완료로 보고하지 않으며 master/Pages에 발행하지 않는다.
+최신 정식 콘텐츠에서는 실제로 admitted된 그 파동의 두 ID와 source를 대조해 첫 실제 제압에서 같은 eq_co_06을 확정한다. 적 수·능력치·XP는 바꾸지 않았다. 첫 접근 장면·초기 적·클리어 기록·옛 선택 기록만으로는 지급하지 않고 소급하지 않는다. 기존 원장으로 재도전/재접속 중복을 막는다. 현재 공개 연결은31정의/회차 최대23개이며 미래 막 잠금은 유지한다.
 
 ## 집중 검증
 
@@ -40,9 +40,9 @@
 - `node tests/equipment-core.mjs`:21묶음.26효과의 수정 helper, 상한, 기력 비용 순서, 같은 난수 표본·저장 범위, 피해/방어 순서, 수명 생성시 반영, HP만 회복 등을 확인.
 - `node tests/equipment-state.mjs`:12묶음.2/3택 미결정·재접속·이중 확정·실패 원자성·중복 보상·공용 이전·4막 잠금·디버그 분리·소급·분할 복원.
 - `node tests/equipment-app.mjs`: 실제 App5묶음. DOM/storage doubles이며 실제 브라우저 증거와 구분.
-- `node tests/equipment-events.mjs`: 옛12장 실제 유한 증원/Engine 제압, 현재15장 실제 상호작용/receipt. 전투·위치·대사 종료 선행조건은 fixture다.
+- `node tests/equipment-events.mjs`: 옛12장 실제 유한 증원/Engine 제압, 현재12장 실제 유한 파동/첫 제압,15장 실제 상호작용/receipt. 전투·위치·대사 종료 선행조건은 fixture다.
 - `node tests/equipment-icons.mjs`:52개 승인 Git blob·256px·출력 바이트 동일.
 - 기존 `tests/combat-damage-variance.mjs`, `tests/levelup-companion-growth.mjs`12묶음, `tests/act3-split-v2.mjs`6묶음 통과.
 - `node game/build.mjs`; `python3 tests/equipment-browser.py`: Chromium1280×800/390×844/844×390. 비교·착용·2택 닫기/재접속/확정/이중탭·3택 저장 실패/재시도·공용 이전·이름+아이콘 알림.52개 실제 로컬 HTTP200과256px 디코딩 확인. 스크린샷은 `_local/reports/equipment-browser/`에 둔다.
 
-전체30장 순회는 실행하지 않았다. 정식12장 대상 대응, 최종 통합 SHA의 Pages 성공·공개 UI/아이콘 HTTP 확인은 아직 완료가 아니다.
+전체30장 순회는 실행하지 않았다. 최종 통합 SHA의 Pages 성공·공개 UI/아이콘 HTTP 확인은 별도 발행 결과로 보고한다.
