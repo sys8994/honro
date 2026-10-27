@@ -1,0 +1,10 @@
+/** Fixed high-ground poses; native projectiles and damage, no injected hit. */
+import assert from 'node:assert/strict';import vm from 'node:vm';import{readFile,mkdir,writeFile}from'node:fs/promises';import{runtime}from'../game/tests/helpers.mjs';
+const g=await runtime({legacyMaps:false}),C=g.HONRO_CORE;for(const f of ['review-art','terrain-preview','coast-maps'])vm.runInContext(await readFile('tools/act4/'+f+'.js','utf8'),g);
+const project=g.HonroAct4TerrainPreview.create(39),base=g.HonroMaps.createBattle(project.stages[0],project),rows=[];
+for(const [x,y,skill,angle,power,expectHit]of [[1000,1800,'A01',30,1,false],[1000,1800,'O02',-15,1,true],[6800,1700,'M11',180,.9,true]]){
+ const b=JSON.parse(JSON.stringify(base)),cls=C.SKILLS[skill].cls;b.units=b.units.filter(u=>u.id===cls||u.id==='a4-wreck');b.active=cls;const u=b.units.find(u=>u.id===cls),boss=b.units.find(u=>u.id==='a4-wreck');Object.assign(u,{x,y,loadout:[skill],ranks:{[skill]:1},focus:10000,maxFocus:10000,acted:false,critChance:0});const e=new C.Engine(b,()=>{});e.checkEnd=()=>false;assert(e.grounded(u));const before=boss.hp,impacts=[];const impact=e.impact.bind(e);e.impact=(p,h)=>{impacts.push({terrain:h.terrain?.id,unit:h.unit?.id,x:h.x,y:h.y});return impact(p,h);};assert(e.fire(skill,angle,power));
+ for(let i=0;i<2000&&b.projectiles.length;i++)for(const p of [...b.projectiles])if(b.projectiles.includes(p))e.stepProjectile(p,C.STEP);
+ assert.equal(b.projectiles.length,0);assert.equal(boss.hp<before,expectHit,JSON.stringify({skill,impacts}));rows.push({x,y,cls,skill,angle,power,damage:before-boss.hp,impacts});
+}
+await mkdir('_local/reports/act4-preview',{recursive:true});await writeFile('_local/reports/act4-preview/high-ground-shots.json',JSON.stringify({scope:'native high-ground fixed poses, no pressure/completion claim; ordinary arrow intentionally blocked by cover',rows},null,2));console.log('PASS 39 west phase-spirit and east lightning actual high-ground hits; solid cover still blocks ordinary arrow');

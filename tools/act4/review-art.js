@@ -153,13 +153,13 @@ function install(s,library){const n=s.metadata.act4Preview;if(![31,35,36].includ
 const palettes={31:{top:'#7b8276',light:'#9c9d89',body:'#5b685e',seam:'#3f514a',deep:'#263c3d'},35:{top:'#788c80',light:'#98a58e',body:'#4b6460',seam:'#314c43',deep:'#253c3b'},36:{top:'#85857a',light:'#a29b88',body:'#69685c',seam:'#494e44',deep:'#2d3935'}};
 const forms=new WeakMap();
 function prepare(t){let q=forms.get(t);if(q)return q;const vertices=C.poly(t),shape=new Path2D();vertices.forEach((p,i)=>i?shape.lineTo(p.x,p.y):shape.moveTo(p.x,p.y));shape.closePath();
- const top=[];for(let i=0;i<vertices.length-1;i++){const a=vertices[i],z=vertices[i+1];if(z.x>a.x+.1&&a.y<3100&&z.y<3100)top.push([a,z]);}
+ const top=[];for(let i=0;i<vertices.length-1;i++){const a=vertices[i],z=vertices[i+1];if(z.x>a.x+.1)top.push([a,z]);}
  top.sort((a,z)=>a[0].x-z[0].x);
  const band=(near,far,phase)=>{const line=top.length?[top[0][0],...top.map(e=>e[1])]:[];if(!line.length)return null;const p=new Path2D();for(const [i,v]of line.entries()){const y=v.y+near+Math.sin(v.x/570+phase)*23;i?p.lineTo(v.x,y):p.moveTo(v.x,y);}for(const v of line.slice().reverse())p.lineTo(v.x,v.y+far+Math.sin(v.x/890+phase)*39);p.closePath();return p;};
- q={shape,top,bands:[band(18,116,.3),band(155,335,1.4),band(395,570,2.2)]};forms.set(t,q);return q;
+ q={shape,top,coastCap:band(0,55,.3),bands:[band(18,116,.3),band(155,335,1.4),band(395,570,2.2)]};forms.set(t,q);return q;
 }
-function draw(scene,c,t,b){if(!b?.honroCustom||b.honroAct4ArtRevision!==2||t.honroElementCollision)return false;const n=b.honroAct4Preview,p=palettes[n];if(!p||t.mat==='wood')return false;const q=prepare(t),top=Math.min(...b.terrain.filter(v=>!v.oneWay&&!v.honroElementCollision).map(v=>v.y)),g=c.createLinearGradient(0,top,0,top+1900);g.addColorStop(0,p.top);g.addColorStop(.23,p.body);g.addColorStop(1,p.deep);c.save();c.fillStyle=g;c.fill(q.shape);c.clip(q.shape);
- if(q.bands[0]&&n!==31){c.fillStyle=n>31&&![35,36].includes(n)?p.top:p.light+'70';c.fill(q.bands[0]);}
+function draw(scene,c,t,b){if(!b?.honroCustom||b.honroAct4ArtRevision!==2||t.honroElementCollision)return false;const n=b.honroAct4Preview,p=palettes[n];if(!p||t.mat==='wood')return false;const q=prepare(t),top=Math.min(...q.top.flat().map(v=>v.y)),g=c.createLinearGradient(0,top,0,top+1900);g.addColorStop(0,p.top);g.addColorStop(.23,p.body);g.addColorStop(1,p.deep);c.save();c.fillStyle=g;c.fill(q.shape);c.clip(q.shape);
+ if(n>=32&&![35,36].includes(n)){if(q.coastCap){c.fillStyle=p.top;c.fill(q.coastCap);}const faces=({34:[[670,1730,860],[2990,1860,1190],[5310,1910,940]],38:[[260,1780,740],[2730,1510,980],[4820,1760,870]],39:[[370,1490,750],[2190,1940,1230],[5290,1630,890]]})[n]||[];for(const [x,w,d]of faces){const a=C.topAt(t,x,NaN),z=C.topAt(t,x+w,NaN);if(!Number.isFinite(a)||!Number.isFinite(z))continue;c.fillStyle=p.top+'45';c.beginPath();c.moveTo(x,a+42);c.lineTo(x+w*.43,a+110);c.lineTo(x+w,z+65);c.lineTo(x+w*.82,z+d*.72);c.lineTo(x+w*.26,a+d);c.lineTo(x+w*.13,a+d*.5);c.closePath();c.fill();}}else if(q.bands[0]&&n!==31){c.fillStyle=p.light+'70';c.fill(q.bands[0]);}
  // Broad interrupted planes belong to the banks and house plots, not three
  // identical stripes across every landscape.
  const patches=n===31?[[0,1860,70,310],[2170,1080,110,400],[3890,930,90,440],[5160,1160,160,350]]:n===35?[[120,1710,100,420],[2130,1100,180,550],[3710,1280,120,370],[5330,1460,90,470]]:[[600,1510,110,330],[2320,1180,190,430],[4010,1530,100,480],[5740,1120,160,390]];
