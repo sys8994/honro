@@ -28,8 +28,8 @@ function tick(app,now=performance.now()){const b=app.engine?.b,previous=app.revi
 }
 function start(app,lines,options={}){const b=app.engine?.b;if(!b||app.screen!=='battle'||!lines.length||!lines.every(isBark)||!G.HonroAct23V4Reviewed.rowsReviewed(lines))return false;
  const s=state(b),stage=options.reviewedStage??lines[0][2].reviewedStage,key=options.reviewedEvent??lines[0][2].reviewedEvent;
- if(!pending(app,stage,key))s.queue.push({session:b.session,lines:copy(lines),options:{...copy(options),reviewedStage:stage,reviewedEvent:key},index:Math.max(0,Math.min(options.index||0,lines.length)),elapsed:0,presented:[]});
- b.honroStory=null;G.HonroStory.save(app);tick(app);return true;
+ if(!pending(app,stage,key)){const entry={session:b.session,lines:copy(lines),options:{...copy(options),reviewedStage:stage,reviewedEvent:key},index:Math.max(0,Math.min(options.index||0,lines.length)),elapsed:0,presented:[]};if(lines.some(l=>/(?:THRUST_WARNING|FALL_WARNING|FIRE_WARNING)$/.test(l[2].group||'')))s.queue.unshift(entry);else s.queue.push(entry);}
+ b.honroStory=null;G.HonroStory.save(app);if(!options.deferDisplay)tick(app);return true;
 }
 G.HonroStoryBarks={isBark,start,tick,pending,duration};
 })(globalThis);

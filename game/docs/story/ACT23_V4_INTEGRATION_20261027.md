@@ -42,3 +42,12 @@ Stage5 담당이 수정할 수 있는 `shared/runtime/main.js`는 후속 현장 
 ### 현장 선택 대화 관측 receipt 후속
 
 11장 혼합생존 예외를 계기로 수동 reader도 실제 DOM 표시 ID만 versioned receipt로 남긴다. event terminal/once·물리 진행과 목격 목록은 분리한다. Act2 공통 및21/22/factory provider의 slot/최종 이력도 동일 원칙이다. 종료 시 살아 있거나 최초 admission된 것만으로 목격을 보충하지 않는다. 구 저장의 진행·cursor/기존 확정 이력을 소급 수정하지 않고, 새 결과에서 근거 없는 admission을 표시 증거로 올리지 않는다. 명시적16장 witnessPresented와 live bark의 실제 표시 ID는 유지한다.
+
+
+## 최종 Act3 통합 · dfe699a5
+
+`dfe699a576d72bba00678b3198bdf767932e458c`까지 병합했다. 위 checkpoint의 보류3개는 해소됐다. 29장 실제 전진/동일 지면 창 예고·유료 native 공격·이탈/가림/사망 취소, 30장 실제 두 항차 뒤 곽진 곁 집결에서 기존 이별3행 및 별도의 기존 높은 출구 조건을 연결한다. COMPAT30 세 항목은 채택 본문이 없으므로 새 대체표시를 생략하고 과거 기록·성장·완료를 보존하는 것이 확정 정책이다.
+
+혼합 bark/guide 묶음은 안내 reader와 비정지 자막으로 나누며, 같은 사건의 실제 표시 receipt를 합친다. 창/낙하/화재의 즉시 경고는 일반 자막보다 먼저 표시하며 중단된 일반 cursor를 보존한다. 사건이 이후 생존/물리 가드를 잃어 취소돼도 실제로 이미 본 행과 terminal 상태를 분리한다. 30장의 필수 증언은 끝내기 호출만으로 목격 처리하지 않고 실제 각 행 표시를 요구한다.
+
+11/16/17/18/20/common 감사 예외,25/27 순서·개인기록,26/28/29/30 물리 계약과 actual-receipt/live-bark/menu 검사를 통과했다. Chromium29 창 경고 중 입력/저장/native hit와30 두 항차·곽진 곁3행·모바일·호환도 pageerror 없이 통과했다. 제어 fixture/로컬 브라우저 결과이며 정상 전체 완주·공개 Pages 검증은 아니다. production 활성 전환은 별도 커밋으로 남긴다. Stage5 public 소스는 보존한다.

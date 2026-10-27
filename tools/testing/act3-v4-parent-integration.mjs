@@ -6,7 +6,7 @@ const stages=[21,22,23,24,25,26,27,28,29,30];
 export function patch(file,source){
  const replace=(from,to)=>{if(source.split(from).length!==2)throw Error('integration base mismatch: '+file+' '+from.slice(0,85));source=source.replace(from,to);};
  if(file==='shared/build.mjs'){
-  replace("'act23-v4-reviewed');","'act23-v4-reviewed','act23-v4-ch21-scenes','act23-v4-ch21-reviewed','act23-v4-ch22-reviewed','act3-v4-reviewed-core','act23-v4-ch23-reviewed','act23-v4-ch24-reviewed','act3-v4-reviewed-waterworks','act23-v4-ch25-reviewed','act23-v4-ch27-reviewed','act23-v4-ch26-reviewed','act23-v4-ch28-reviewed','act23-v4-ch29-reviewed','act23-v4-ch30-reviewed');");
+  replace("'act23-v4-reviewed');","'act23-v4-reviewed','act23-v4-ch21-scenes','act23-v4-ch21-reviewed','act23-v4-ch22-reviewed','act3-v4-reviewed-core','act23-v4-ch23-reviewed','act23-v4-ch24-reviewed','act3-v4-reviewed-waterworks','act23-v4-ch25-reviewed','act23-v4-ch27-reviewed','act23-v4-ch26-reviewed','act23-v4-ch28-reviewed','act23-v4-ch29-reviewed-spear','act23-v4-ch29-reviewed','act23-v4-ch30-reviewed');");
   replace("  data('HONRO_PORTRAIT_VARIANTS'",`  const reviewedAct3=Object.fromEntries(${JSON.stringify(stages)}.map(id=>[id,process.env.HONRO_ACT23_V4_PHASE_A==='1'&&process.env['HONRO_ACT23_V4_PHASE_B_CH'+id]==='1']));
   for(const id of ${JSON.stringify(stages)}){data('HONRO_ACT23_V4_PHASE_B_CH'+id,reviewedAct3[id]);data('HONRO_ACT23_V4_REVIEWED_CH'+id,(id===21?Object.values(reviewedAct3).some(Boolean):reviewedAct3[id])?JSON.parse(await read('shared/data/reviewed/act23-v4-ch'+id+'.json')):null);}
   data('HONRO_PORTRAIT_VARIANTS'`);

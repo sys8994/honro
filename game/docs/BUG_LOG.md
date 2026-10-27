@@ -4998,3 +4998,10 @@ commonReviewRevision의 첫 혼령 대기열은 생성 후 소단/sceneTarget가
 11장 소단 선택3행 중 설오가2행 표시 전에 사망하면 reader는 해당 행을 버렸지만 event.ids 전체가 결과 목격으로 기록됐다. Story가 현재 행 DOM을 만든 직후에만 versioned presentedIds를 추가하고, 대화 종료/once와 관측 receipt를 분리한다. slot/결과 이력은 실제 표시 ID만 쓰며 admission·끝날 때 생존·skip으로 미표시 행을 관측 처리하지 않는다. Act2 공통과21/22 전용·23이후 factory의 같은 패턴도 함께 고쳤다. 구 cursor/물리/완료 상태는 보존하며, 과거 admission만 있는 데이터는 새 표시 증거로 추정하지 않는다. 16장 기존 실제 witnessPresented는 명시적 과거 표시 증거로 보존한다.
 
 `act23-v4-presented-receipts`는 실제 Engine.hurt의11장 혼합생존/Continue/slot·controlled outcome,17/21/22/23 같은 provider 결과, 살아 있는 미표시 행의 skip 및 구 inferred 목록 배제/일반 Story 진입을 통과했다. 기존 field-talk/live-barks/16장 필수 노승5행 검사도 통과했다. private Game/Workshop 빌드 및 Chromium 실제 메뉴·키 입력·혼합생존 결과에서0/2행만 기록되는 것을 확인했다(pageerror0). fixture/DOM·스케줄 double/controlled outcome과 실제 로컬 Chromium을 구분하며 정상 전체 플레이/공개 배포는 아니다. 원고는 변경하지 않았다.
+
+
+### 2026-10-27 · v4 최종 3막 계약 및 전달 경계 통합
+
+- 원인: 최종29장 native 창과30장 근접 이별 계약이 이전 통합 checkpoint에 없었고, bark/guide 혼합 묶음과 나중 취소 사건의 실제 목격은 전달 방식별로 분리할 필요가 있었다.
+- 변경: Act3 dfe699a5까지 병합, 창 모듈을 provider 직전 등록, mixed reader/live cursor 및 실제 표시 receipt 합산, 즉시 물리 경고 우선 표시를 연결했다. 생존/물리 취소 terminal과 과거 표시 관측은 독립 보존한다. 승인 본문 없는 COMPAT30은 과거 기록을 유지하고 새 표시만 생략한다.
+- 확인: focused11/16/17/18/20/common/25–30 및 원고676/receipt/menu/bark 검사 통과. Chromium29 실제 창 hit/취소·save와30 실제 배 두 항차/근접 이별/모바일/구저장 통과. fixture·로컬 결과이며 전체 정상 플레이/공개 배포는 아님.
