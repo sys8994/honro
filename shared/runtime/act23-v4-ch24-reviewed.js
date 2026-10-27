@@ -4,6 +4,18 @@ const mem=b=>R.memory(b),spec=b=>b.honroReviewed24Spec,ground=(b,u)=>V.alive(u)&
 const wagonKnown=p=>p.honroAct23V4History?.stages?.[23]?.reviewedNarrative?.proof?.goods?.familyCrest==='family-three-petals';
 const porterSafe=p=>!!p.honroAct23V4History?.stages?.[23]?.reviewedNarrative?.proof?.safe;
 const talked=(p,c)=>!!p.honroJourney?.talked?.['rest-talk-v1-24-'+c+'-reviewed1'];
+const received=(b,id)=>Object.values(mem(b).events).some(e=>G.HonroAct23V4Reviewed.receiptIds(e).includes(id));
+const heard=(p,c,b)=>talked(p,c)||!!b&&received(b,'EDGE.OPTIONAL_24_'+c.toUpperCase()+'_0');
+function crestVisible(app){const b=app.engine?.b,s=app.scene,p=b&&mark(b,'family-crest'),view=s?.honroReviewed24CrestDraw,size=s?.size?.();if(!R.active(b)||!p||s?.battle!==b||view?.run!==b.session||view.x!==p.x+38||view.y!==p.y-82||!size||s.scale<.4)return false;
+ const x=(view.x-s.x)*s.scale+size.w/2,y=(view.y-s.y)*s.scale+size.h/2;return x>35&&x<size.w-35&&y>35&&y<size.h-120;
+}
+function fieldWindow(b){const q=mem(b);return !q.events.intro&&!q.events.crest&&!q.events.split&&!root(b).done['family-crest']&&!q.proof.familyCrest&&!q.proof.departure;}
+function fieldView(app,meta){const b=app.engine.b,q=mem(b),key=meta?.reviewedEvent,v=q.fieldViews?.[key],p=mark(b,'family-crest');return crestVisible(app)||!!(key?.startsWith('field-talk.')&&q.events[key]?.status==='open'&&v?.run===b.session&&p&&v.x===p.x+38&&v.y===p.y-82);}
+function fieldOptional(app,r,meta){const b=app.engine.b,c=cls[r.speaker],u=hero(b,c),p=mark(b,'family-crest');if(b.side!==0||b.phase!=='aim'||r.id==='EDGE.OPTIONAL_24_OCCULTIST_0'||!fieldWindow(b)||!fieldView(app,meta)||!ground(b,u)||distance(u,p)>650)return false;
+ if((r.id==='EDGE.OPTIONAL_24_ARCHER_0'||r.id.startsWith('EDGE.OPTIONAL_24_KNIGHT_'))&&(!ground(b,hero(b,'knight'))||distance(hero(b,'knight'),p)>650))return false;
+ const target={x:p.x+38,y:p.y-82},eye={x:u.x,y:u.y-u.h*.7};if(b.terrain.some(t=>!t.broken&&!t.oneWay&&C.segmentTerrain(eye,target,t,0)?.t<.97))return false;
+ if(r.id==='EDGE.OPTIONAL_24_ARCHER_0')return porterSafe(app.profile)&&!heard(app.profile,'knight',b);if(r.id==='EDGE.OPTIONAL_24_MAGE_0')return wagonKnown(app.profile);return true;
+}
 function nearCrest(b){return ground(b,hero(b,'knight'))&&V.near(hero(b,'knight'),mark(b,'family-crest'),180);}
 function routesVisible(b){const p=spec(b).gather;return V.heroes(b).some(u=>ground(b,u)&&distance(u,p)<360)&&!!mem(b).proof.routes;}
 function voiceHeard(b){const u=b.honroReviewed24Voice;return ground(b,u)&&V.heroes(b).some(h=>distance(h,u)<=650);}
@@ -30,8 +42,9 @@ R=F.register({stage:24,
  prepare(b,p){delete p.honroReviewed24RestObservation;},
  observe,
  speaker(app,r){return r.speaker==='주민'&&voiceHeard(app.engine.b);},
- facts(app,r){const b=app.engine.b,q=mem(b);if(r.id==='A3.S24.INTRO.01')return wagonKnown(app.profile)&&!talked(app.profile,'mage');if(r.id==='A3.S24.INTRO.02')return !talked(app.profile,'knight');if(r.id==='A3.S24.ENTRY.03')return voiceHeard(b);return true;},
- optional(p,r){const c=/_24_(ARCHER|MAGE|KNIGHT|OCCULTIST)_/.exec(r.id)?.[1]?.toLowerCase();if(!c||talked(p,c)||!F.witnessed(p,24,'familyCrest'))return false;if(c==='archer')return porterSafe(p)&&!talked(p,'knight');if(c==='mage')return wagonKnown(p);if(c==='knight')return !talked(p,'knight');if(c==='occultist')return porterSafe(p);return true;},
+ facts(app,r){const b=app.engine.b,q=mem(b);if(r.id==='A3.S24.INTRO.01')return wagonKnown(app.profile)&&!heard(app.profile,'mage',b);if(r.id==='A3.S24.INTRO.02')return !heard(app.profile,'knight',b);if(r.id==='A3.S24.ENTRY.03')return voiceHeard(b);return true;},
+ optional(p,r){return r.id==='EDGE.OPTIONAL_24_OCCULTIST_0'&&!talked(p,'occultist')&&porterSafe(p);},
+ fieldOptional,fieldStart(app,key){if(!crestVisible(app))return false;const b=app.engine.b;mem(b).fieldViews??={};mem(b).fieldViews[key]={...copy(app.scene.honroReviewed24CrestDraw),source:'actual-stage-render'};return true;},fieldChoice(app,c){return c!=='occultist'&&!heard(app.profile,c,app.engine.b);},
  events:[
   {key:'arrival',ids:['EDGE.ARRIVALS_24_0'],when:app=>nearCrest(app.engine.b)&&wagonKnown(app.profile)},
   {key:'intro',ids:['A3.S24.INTRO.01','A3.S24.INTRO.02'],when:app=>nearCrest(app.engine.b)},
@@ -48,11 +61,11 @@ R=F.register({stage:24,
  complete:b=>!!mem(b).proof.departure&&F.closed(mem(b).events.depart)&&F.closed(mem(b).events.guide)&&!!mem(b).journals['A3.S24.JOURNAL.01'],
  failure:b=>!V.alive(b.honroReviewed24Voice)?'v4.24.workshop-voice-lost':['archer','mage','knight','occultist'].some(c=>!hero(b,c))?'v4.24.required-party':null,
  objective:b=>'A3.S24.OBJ.0'+(F.closed(mem(b).events.split)?2:1),
- camera(app,key){const b=app.engine.b;return{id:'v4.24.'+key,intent:'situation',targets:['arrival','intro','crest'].includes(key)?[{marker:'family-crest'}]:[{marker:'split-route-a'},{marker:'split-route-b'},spec(b).voice],padding:110,maxScale:.75};},
- draw(scene,c,b){const q=mem(b);for(const p of[mark(b,'family-crest'),mark(b,'shrine-seal')]){c.save();c.translate(p.x+38,p.y-82);c.fillStyle='#4e513c';c.fillRect(-25,-28,50,55);c.strokeStyle='#bdb18a';c.lineWidth=3;for(let i=0;i<3;i++){c.beginPath();c.ellipse(Math.cos(i*2.094)*7,Math.sin(i*2.094)*7,7,11,i*2.094,0,Math.PI*2);c.stroke();}c.restore();}
+ camera(app,key){const b=app.engine.b;return{id:'v4.24.'+key,intent:'situation',targets:key.startsWith('field-talk.')?[{marker:'family-crest'},...V.heroes(b).filter(u=>distance(u,mark(b,'family-crest'))<650).map(u=>({actor:u.id}))]:['arrival','intro','crest'].includes(key)?[{marker:'family-crest'}]:[{marker:'split-route-a'},{marker:'split-route-b'},spec(b).voice],padding:110,maxScale:.75};},
+ draw(scene,c,b){const q=mem(b);scene.honroReviewed24CrestDraw=null;for(const p of[mark(b,'family-crest'),mark(b,'shrine-seal')].filter(Boolean)){c.save();c.translate(p.x+38,p.y-82);c.fillStyle='#4e513c';c.fillRect(-25,-28,50,55);c.strokeStyle='#bdb18a';c.lineWidth=3;for(let i=0;i<3;i++){c.beginPath();c.ellipse(Math.cos(i*2.094)*7,Math.sin(i*2.094)*7,7,11,i*2.094,0,Math.PI*2);c.stroke();}c.restore();if(p.id==='family-crest')scene.honroReviewed24CrestDraw={run:b.session,x:p.x+38,y:p.y-82};}
  const a=mark(b,'split-route-a');if(q.souls){c.save();c.strokeStyle='#b5cfc1';c.lineWidth=2;for(const [i,d]of[q.souls.first,q.souls.second].entries()){if(d<=0)continue;c.globalAlpha=.4;c.beginPath();c.ellipse(a.x+d*1.4-i*30,a.y-40-d*.7,12,28,-.2,0,Math.PI*2);c.stroke();}c.restore();}
  const v=b.honroReviewed24Voice;c.save();c.fillStyle='#4c5546';c.fillRect(v.x-44,v.y-136,88,136);c.strokeStyle='#ad9b74';c.lineWidth=5;c.strokeRect(v.x-44,v.y-136,88,136);if(V.alive(v))scene.unitBody(c,v,0);c.fillStyle='#56604d';c.fillRect(v.x-38,v.y-76,76,76);c.strokeStyle='#ad9b74';c.lineWidth=4;c.strokeRect(v.x-38,v.y-76,76,76);c.beginPath();c.moveTo(v.x,v.y-76);c.lineTo(v.x,v.y);c.moveTo(v.x-35,v.y-72);c.lineTo(v.x+35,v.y-5);c.stroke();c.lineWidth=3;for(const x of[-26,-10,10,26]){c.beginPath();c.moveTo(v.x+x,v.y-121);c.lineTo(v.x+x,v.y-80);c.stroke();}c.strokeStyle='#817456';c.lineWidth=7;c.beginPath();c.moveTo(v.x-32,v.y-118);c.lineTo(v.x-32,v.y);c.moveTo(v.x+32,v.y-118);c.lineTo(v.x+32,v.y);c.stroke();c.restore();
  }
 });
-G.HonroAct23V4Chapter24Reviewed=R;G.HonroAct23V4Chapter24Facts={nearCrest,routesVisible,voiceHeard,routeSafe,gathered,finalArrivals,wagonKnown,porterSafe,spec};
+G.HonroAct23V4Chapter24Reviewed=R;G.HonroAct23V4Chapter24Facts={crestVisible,fieldWindow,fieldOptional,received,nearCrest,routesVisible,voiceHeard,routeSafe,gathered,finalArrivals,wagonKnown,porterSafe,spec};
 })(globalThis);
