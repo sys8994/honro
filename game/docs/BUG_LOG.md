@@ -4984,3 +4984,7 @@ commonReviewRevision의 첫 혼령 대기열은 생성 후 소단/sceneTarget가
 `delivery=bark`인 검수 행은 기존 `#banter` 비대화형 자막을 사용하고 Story reader/전투 정지/카메라 이동을 만들지 않는다. battlefield의 별도 queue에 원본 metadata·순서·행 cursor·경과시간·실제 제시 ID를 저장한다. 각 행 표시 직전/표시 중 provider 생존·관측 가드를 다시 검사하고, 미표시 폐기 행은 cancelled로 남긴다. 실제 제시한 행만 완료 receipt에 포함한다. 수동 scene/guide/document와 원래 물리 이벤트 계약은 유지한다. 21장의 open-event 정리는 살아 있는 bark cursor를 취소하지 않도록 연결했다.
 
 `act23-v4-live-barks`는 실제 수레 파괴/갑주 회전에서 두 행 순서·이동 허용·저장 elapsed/index·once·미표시 위험 행 취소·표시 중 화자/대상 변화·모달 timer 정지를 통과했다. 검수 Game/Workshop 빌드와 `act23-v4-live-delivery-browser.py`의 실제 Chromium 자막/190px 키보드 이동·reload/Continue·사망 즉시 제거·현장 메뉴 click/Enter/390px 검사가 통과(pageerror0). 입력 시간과 장부/위치/전투는 집중 fixture이며 정상 전체 플레이/공개 Pages 검증이 아니다. 기존26장 Chromium 스크립트의 문서 구간도 실제 두 문장 span1회/저장 cursor/desktop·mobile을 통과했다. 근거는 `_local/reports/act23-v4/integration-delivery/` 및 `reviewed25-30-browser/`에 있다.
+
+### live bark 완료 이력 보완
+
+일부만 실제 표시한 bark 묶음의 admitted IDs 전체가 후속 목격 이력에 들어가지 않도록 presentedIds와 retiredIds를 구분한다. slot 및 완료 이력은 실제 표시한 ID만 기록하고, 한 번도 표시하지 않은 위험 묶음은 cancelled를 유지한다. 기존 저장은 retiredIds가 있으면 제외하고 없으면 기존 ID를 보존한다. `act23-v4-live-barks`에서 실제 표시01/미표시 사망02/전부 취소 danger의 제어된 outcome 이력을 대조해 통과했다. 실제 물리 완료의 증거로 이 fixture outcome을 사용하지 않는다.
