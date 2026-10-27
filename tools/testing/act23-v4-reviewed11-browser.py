@@ -1,0 +1,45 @@
+"""Reviewed11 actual DOM/Canvas and localStorage; declared combat/pose fixtures."""
+import json,os,pathlib
+from playwright.sync_api import sync_playwright
+ROOT=pathlib.Path(__file__).resolve().parents[2];OUT=ROOT/'_local/reports/act23-v4/reviewed11-browser';OUT.mkdir(parents=True,exist_ok=True)
+BASE=os.environ.get('HONRO_BASE_URL','http://127.0.0.1:8768')
+PAUSE="""()=>{const a=HonroApp,f=a.frame;a.reviewPaused=true;a.frame=function(t){if(this.reviewPaused&&this.engine&&this.scene&&this.screen==='battle'){this.prev=t;this.scene.render(this.engine,0,this.selected,this.power,false,0,true);requestAnimationFrame(n=>this.frame(n));}else f.call(this,t);};}"""
+LAUNCH="""async()=>{const a=HonroApp;await HonroCampaignLoader.ensureStage(11);a.stopBattle();a.close();const p=HonroProfileStore.fresh();p.revision=13;p.recruited=['archer','mage','knight','occultist'];p.party=[...p.recruited];for(let i=1;i<=10;i++)p.cleared[i]={visits:1,rounds:1};for(const c of p.recruited)HONRO_CORE.grantXP(p.heroes[c],HONRO_CORE.xpAtLevel(16));p.seen['act2:first-spirit-encounter']=true;p.seen['map-story-v'+HonroStoryContent.version+'-10']=true;a.profile=p;a.launch(11);a.turnNotice=null;a.lastTurnNotice='1:player';return a.engine.b.honroCampaignMapRevision;}"""
+TICK="""n=>{const a=HonroApp;for(let i=0;i<n&&!a.dialogue;i++){a.engine.b.side=0;a.engine.b.phase='aim';HonroAct23V4.tick(a,.025);if(!a.dialogue)a.engine.stepUnits(.025);}}"""
+with sync_playwright() as pw:
+ browser=pw.chromium.launch(executable_path='/usr/bin/chromium',headless=True,args=['--no-sandbox','--disable-dev-shm-usage'])
+ page=browser.new_page(viewport={'width':1280,'height':800});errors=[];rows=[];page.on('pageerror',lambda e:errors.append(str(e)))
+ def boot():
+  page.goto(BASE+'/HONRO.html');page.wait_for_function('!!globalThis.HonroApp&&!!globalThis.HonroAct23V4Reviewed');page.evaluate(PAUSE)
+ def capture(name,x=None,y=None):
+  if x is not None:page.evaluate('p=>{const a=HonroApp,s=a.scene;s.manual=true;s.storyTween=null;s.cinematic=null;s.goalFocus=null;s.x=p.x;s.y=p.y;s.scale=.7;s.render(a.engine,0,a.selected,a.power,false,0,true);}',{'x':x,'y':y})
+  page.screenshot(path=str(OUT/(name+'.png')))
+ def at(id):
+  actual=page.evaluate('({id:HonroApp.dialogue?.lines[HonroApp.dialogue.index]?.[2]?.rowId,text:HonroApp.dialogue?.lines[HonroApp.dialogue.index]?.[1]})')
+  assert actual['id']==id,actual
+  assert page.locator('#story-line').text_content()==actual['text'];assert actual['text']==page.evaluate('id=>HonroAct23V4Reviewed.row(id).text',id);rows.append(actual)
+ def next():page.keyboard.press('Enter')
+ def resume():
+  page.evaluate('HonroApp.stopBattle()');page.reload();page.wait_for_function('!!globalThis.HonroApp&&HonroApp.screen==="title"');page.evaluate(PAUSE);page.evaluate('HonroApp.continue()');page.wait_for_function('HonroApp.screen==="battle"')
+ boot();assert page.evaluate('HonroAct23V4Reviewed.enabled()');assert page.evaluate(LAUNCH)==412
+ assert not page.evaluate('!!HonroApp.dialogue');assert page.locator('#objective-text').text_content()==page.evaluate('HonroAct23V4Reviewed.row("A2.S11.OBJECTIVE.01").text')
+ page.evaluate(TICK,50);at('EDGE.ARRIVALS_11_0');capture('arrival-bier',1450,6250);resume();at('EDGE.ARRIVALS_11_0');next();page.evaluate(TICK,60);at('A2.S11.INTRO.01');capture('thread');resume();at('A2.S11.INTRO.01');next();page.evaluate(TICK,40);at('A2.S11.INTRO.02');next();at('A2.S11.INTRO.03');resume();at('A2.S11.INTRO.03');next();page.evaluate(TICK,20);at('A2.S11.INTRO.04');next()
+ for id in ['A2.S11.MID.01','A2.S11.MID.02','A2.S11.POPUP.01']:
+  page.evaluate(TICK,50);at(id)
+  if id=='A2.S11.MID.02':capture('bier-and-firing-rocks',1430,6240)
+  next()
+ page.evaluate("""()=>{const a=HonroApp,e=a.engine,b=e.b,u=e.heroesAlive().find(u=>u.cls==='archer'),t=b.terrain.find(t=>t.id==='rv-west-shoulder');Object.assign(u,{x:1325,y:HONRO_CORE.topAt(t,1325),vx:0,vy:0,airborne:false,jumping:false,acted:false});Object.assign(b,{active:u.id,side:0,phase:'aim'});let shot;for(const angle of[8,10,12,15,20,25,30])for(const power of[.2,.3,.4,.5,.6,.7])if(e.predict(u,HONRO_CORE.SKILLS.A01,angle,power).terrain==='v4.11.bier'){shot={angle,power};break;}if(!shot||!e.fire('A01',shot.angle,shot.power))throw Error('low shot');for(let i=0;i<2400&&b.projectiles.length;i++)for(const p of[...b.projectiles])e.stepProjectile(p,HONRO_CORE.STEP);Object.assign(b,{active:u.id,side:0,phase:'aim'});u.acted=false;for(let i=0;i<20;i++)e.stepUnits(.025);}""")
+ page.evaluate(TICK,50);at('A2.S11.WARN.01');capture('blocked-shot',1450,6250);next()
+ page.evaluate("""()=>{const a=HonroApp,e=a.engine,b=e.b,u=e.heroesAlive().find(u=>u.cls==='archer'),p=b.honroV4Chapter11.high,host=e.unit(b.honroV4Chapter11.host);Object.assign(u,{x:p.x,y:p.y,vx:0,vy:0,airborne:false,jumping:false,acted:false});Object.assign(b,{active:u.id,side:0,phase:'aim'});let shot;for(let angle=8;angle<=65&&!shot;angle+=3)for(let power=.15;power<=1;power+=.05)if(e.predict(u,HONRO_CORE.SKILLS.A01,angle,power).unit===host.id){shot={angle,power};break;}if(!shot||!e.fire('A01',shot.angle,shot.power))throw Error('high shot');for(let i=0;i<2400&&b.projectiles.length;i++)for(const p of[...b.projectiles])e.stepProjectile(p,HONRO_CORE.STEP);if(host.hp>0)e.hurt(host,999999,u.id);Object.assign(b,{active:u.id,side:0,phase:'aim'});u.acted=false;for(let i=0;i<20;i++)e.stepUnits(.025);}""")
+ page.evaluate(TICK,120);at('A2.S11.MID.03');capture('released-spirit',1850,6200);resume();at('A2.S11.MID.03');next();page.evaluate(TICK,60);at('A2.S11.MID.04');assert page.evaluate('HonroAct23V4Chapter11.memory(HonroApp.engine.b).north.ids.length===0');next();page.evaluate(TICK,1);page.evaluate('HonroApp.engine.finishAction(true)');page.evaluate(TICK,50);at('A2.S11.MID.05');assert page.evaluate('HonroAct23V4Chapter11.memory(HonroApp.engine.b).north.ids.length===2');capture('two-new-spirits',2750,5950);page.set_viewport_size({'width':390,'height':844});capture('two-new-spirits-mobile');page.set_viewport_size({'width':1280,'height':800});resume();at('A2.S11.MID.05');next()
+ # Declared combat completion and grounded exit group; no route/fullplay claim.
+ page.evaluate("""()=>{const a=HonroApp,e=a.engine,b=e.b,V=HonroAct23V4,p=V.marker(b,'11.exit');for(const u of b.units)if(u.side===1){u.dead=true;u.hp=0;}for(const[i,u]of e.heroesAlive().entries())Object.assign(u,{x:p.x-i*45,y:HONRO_CORE.topAt(b.terrain.find(t=>t.id==='rv-north-trace'),p.x-i*45),vx:0,vy:0,airborne:false,jumping:false,acted:false});V.mem(b).done['11.exit-threat']=V.mem(b).done['11.exit']=true;V.tick(a,.05);}""")
+ at('A2.S11.COMPLETE.01');assert not page.evaluate('!!HonroAct23V4Act2Scenes.memory(HonroApp.engine.b).bell');next();page.evaluate(TICK,2);at('A2.S11.COMPLETE.02');assert page.evaluate('HonroAct23V4Act2Scenes.memory(HonroApp.engine.b).bell.struck');capture('bell',11900,7820);next()
+ page.evaluate(TICK,15);at('A2.S11.COMPLETE.03');assert page.evaluate('HonroAct23V4Reviewed.memory(HonroApp.engine.b).ambient.distance>=80');capture('ambient-reaction',11950,7820);next();at('A2.S11.COMPLETE.04');resume();at('A2.S11.COMPLETE.04');next();page.evaluate(TICK,35);at('A2.S11.COMPLETE.05');capture('departure',11950,7820);next();page.evaluate(TICK,2);assert page.evaluate('HonroAct23V4Reviewed.complete(HonroApp.engine.b)')
+ assert page.evaluate('HonroApp.profile.record.filter(r=>r.rowId==="A2.S11.JOURNAL.01").length===1');page.evaluate('HonroRestJourney.showRest(HonroApp)');page.locator('[data-action="journey-book"]').click();page.locator('.journey-records > summary').click();assert page.locator('[data-reviewed-row="A2.S11.JOURNAL.01"]').count()==1;capture('journal')
+ # Pre-entry rest profile is a separate fixture, preserving actual optional UI.
+ page.evaluate("""()=>{const a=HonroApp;a.engine=null;a.profile.honroBattle=null;a.profile.record=[];a.profile.honroJourney={version:1,talked:{}};HonroRestJourney.showRest(a);}""")
+ page.locator('[data-action="rest-talk"][data-class="occultist"]').click();at('EDGE.OPTIONAL_11_OCCULTIST_0');next();at('EDGE.OPTIONAL_11_OCCULTIST_1');page.reload();page.wait_for_function('!!globalThis.HonroApp');page.evaluate(PAUSE);page.evaluate('HonroRestJourney.showRest(HonroApp)');at('EDGE.OPTIONAL_11_OCCULTIST_1');next();at('EDGE.OPTIONAL_11_OCCULTIST_2');capture('optional');next();assert page.evaluate('HonroApp.profile.honroJourney.talked["rest-talk-v1-11-occultist-reviewed1"]')
+ assert page.evaluate('HonroJourneyContent.optional(HonroApp.profile,12,"archer").length===0');assert not errors,errors
+ (OUT/'capture.json').write_text(json.dumps({'scope':'Actual Chromium dialogue controls/Canvas/localStorage. Explicit profile/hero positions/combat outcomes; no normal route or combat completion claim. Actual frame collision/first arrow, body-spirit movement and two new admitted spirits verified. Combat/hero poses remain declared fixtures.','rows':rows,'pageErrors':errors},ensure_ascii=False,indent=2)+'\n')
+ browser.close();print('PASS reviewed11 actual dialogue order, battle reload cursors, rest optional cursor, objective and post-bell journal; no page errors')

@@ -1,0 +1,307 @@
+{
+  "source": "parent_supplied_review_records",
+  "recorded_date": "2026-10-27",
+  "model": "Gemini 4 Argon",
+  "stage11": {
+    "status": "gemini_pass1_parent_review_gemini_pass3_complete",
+    "pass1_complete": true,
+    "parent_independent_review_complete": true,
+    "pass3_complete": true,
+    "reviewed_item_count": 26,
+    "approved_for_stage11_binding": true,
+    "final_response_choice": "COMPLETE.05: Gemini final short alternative accepted verbatim",
+    "accepted_complete05": "산길로 올라가 확인해 보죠.",
+    "source_files": [
+      "HONRO-CH11-PASS1-20261027-response.md",
+      "HONRO-CH11-parent-review.txt",
+      "HONRO-CH11-PASS3-20261027-response.md"
+    ],
+    "evidence_verification": "parent_verified_correct_target",
+    "verification_source": "parent_screen_dom_and_id_crosscheck",
+    "branch_implementation_allowed": true
+  },
+  "stage12": {
+    "status": "gemini_argon_pass1_parent_review_gemini_flash_lite_pass3_complete",
+    "pass1_complete": true,
+    "pass1_model": "Gemini 4 Argon",
+    "parent_independent_review_complete": true,
+    "pass3_prompt_present": true,
+    "pass3_raw_response_present": false,
+    "pass3_result_source": "parent_supplied_final_json",
+    "pass3_complete": true,
+    "pass3_model": "Gemini 3.5 Flash-Lite",
+    "pass3_model_substitution_explicitly_authorized_by_user": true,
+    "reviewed_item_count": 28,
+    "approved_for_binding": true,
+    "application_prohibited": false,
+    "final_decisions": [
+      "COMPLETE03: Gemini final shorter alternative accepted verbatim",
+      "OPTIONAL_ARCHER: retain reviewed parent candidate; reject final suggestion because it presupposes loop experience before E02"
+    ],
+    "accepted_complete03": "바위 아래로 길이 이어집니다.",
+    "accepted_optional_archer": "돌아올 길을 알아볼 수 있게 표식을 남겨두지요.",
+    "rejected_final_optional_archer_reason": "The suggestion presupposed loop experience before E02 and conflicted with the actual trigger condition; retain the reviewed parent candidate.",
+    "source_files": [
+      "HONRO-CH12-PASS1-20261027-response.md",
+      "HONRO-CH12-parent-review.txt",
+      "HONRO-CH12-PASS3-20261027-prompt.txt",
+      "HONRO-CH12-approved-final.json"
+    ],
+    "evidence_verification": "parent_verified_correct_target",
+    "verification_source": "parent_screen_dom_and_id_crosscheck",
+    "branch_implementation_allowed": true
+  },
+  "public_deployment_on_hold": true,
+  "contains_account_login_or_password_data": false,
+  "raw_files_policy": "Parent-supplied source strings and final JSON values are preserved without rewriting. Earlier incomplete, evidence-crosscheck-pending, and discarded wrong-target Stage14 states remain in history. Correct-target review completion for Stages11–15 is parent-confirmed; this archive does not claim mechanical implementation verification. Referenced raw responses absent locally and the Stage13 runtime-evidence original have not been reconstructed or fabricated. The Library ZIP transfer failed twice and its README/manifest/content were not verified. No public/master story deployment is authorized by this archive update.",
+  "history": [
+    {
+      "stage": 12,
+      "recorded_date": "2026-10-27",
+      "source": "parent_supplied_review_records_before_final_approval",
+      "review_state": {
+        "status": "pass3_incomplete_waiting_for_same_model_usage_limit",
+        "pass1_complete": true,
+        "parent_independent_review_complete": true,
+        "pass3_prompt_present": true,
+        "pass3_response_present": false,
+        "pass3_complete": false,
+        "approved_for_binding": false,
+        "application_prohibited": true,
+        "pending_reason": "Gemini 4 Argon five-hour usage limit; waiting",
+        "switch_to_another_model": false,
+        "source_files": [
+          "HONRO-CH12-PASS1-20261027-response.md",
+          "HONRO-CH12-parent-review.txt",
+          "HONRO-CH12-PASS3-20261027-prompt.txt"
+        ]
+      }
+    },
+    {
+      "recorded_date": "2026-10-27",
+      "source": "parent_supplied_review_state_before_evidence_crosscheck",
+      "stage11": {
+        "status": "gemini_pass1_parent_review_gemini_pass3_complete",
+        "pass1_complete": true,
+        "parent_independent_review_complete": true,
+        "pass3_complete": true,
+        "reviewed_item_count": 26,
+        "approved_for_stage11_binding": true,
+        "final_response_choice": "COMPLETE.05: Gemini final short alternative accepted verbatim",
+        "accepted_complete05": "산길로 올라가 확인해 보죠.",
+        "source_files": [
+          "HONRO-CH11-PASS1-20261027-response.md",
+          "HONRO-CH11-parent-review.txt",
+          "HONRO-CH11-PASS3-20261027-response.md"
+        ]
+      },
+      "stage12": {
+        "status": "gemini_argon_pass1_parent_review_gemini_flash_lite_pass3_complete",
+        "pass1_complete": true,
+        "pass1_model": "Gemini 4 Argon",
+        "parent_independent_review_complete": true,
+        "pass3_prompt_present": true,
+        "pass3_raw_response_present": false,
+        "pass3_result_source": "parent_supplied_final_json",
+        "pass3_complete": true,
+        "pass3_model": "Gemini 3.5 Flash-Lite",
+        "pass3_model_substitution_explicitly_authorized_by_user": true,
+        "reviewed_item_count": 28,
+        "approved_for_binding": true,
+        "application_prohibited": false,
+        "final_decisions": [
+          "COMPLETE03: Gemini final shorter alternative accepted verbatim",
+          "OPTIONAL_ARCHER: retain reviewed parent candidate; reject final suggestion because it presupposes loop experience before E02"
+        ],
+        "accepted_complete03": "바위 아래로 길이 이어집니다.",
+        "accepted_optional_archer": "돌아올 길을 알아볼 수 있게 표식을 남겨두지요.",
+        "rejected_final_optional_archer_reason": "The suggestion presupposed loop experience before E02 and conflicted with the actual trigger condition; retain the reviewed parent candidate.",
+        "source_files": [
+          "HONRO-CH12-PASS1-20261027-response.md",
+          "HONRO-CH12-parent-review.txt",
+          "HONRO-CH12-PASS3-20261027-prompt.txt",
+          "HONRO-CH12-approved-final.json"
+        ]
+      },
+      "stages13_30": {
+        "status": "unreviewed",
+        "approved_for_binding": false
+      }
+    },
+    {
+      "recorded_date": "2026-10-27",
+      "source": "parent_notice_clipboard_dom_crosscheck_pending",
+      "stages": [
+        11,
+        12,
+        13
+      ],
+      "evidence_verification": "pending_clipboard_dom_crosscheck",
+      "branch_implementation_allowed": true,
+      "external_review_evidence_finalization_prohibited": true,
+      "master_write_prohibited": true,
+      "public_deployment_on_hold": true,
+      "wording_rollback_required": false,
+      "reason": "Repeated prior-response copies were being compared against screen/DOM to distinguish wrong-target model output from asynchronous clipboard delay."
+    },
+    {
+      "recorded_date": "2026-10-27",
+      "source": "parent_supplied_review_state_before_correct_target_stage14_and_stage15_final_approval",
+      "stage14": {
+        "status": "wrong_target_response_discarded_pending_review",
+        "evidence_verification": "parent_verified_wrong_target",
+        "requested_stage": 14,
+        "wrong_target_response_stage": 13,
+        "response_discarded": true,
+        "discarded_response_raw_file_supplied": false,
+        "new_wording_supplied": false,
+        "approved_for_binding": false,
+        "application_prohibited": true
+      },
+      "stages15_30": {
+        "status": "unreviewed",
+        "approved_for_binding": false,
+        "application_prohibited": true
+      },
+      "evidence_verification": {
+        "status": "parent_verified_correct_target_for_stages11_13",
+        "recorded_date": "2026-10-27",
+        "verified_by": "parent_after_screen_dom_and_id_crosscheck",
+        "clipboard_issue_ruled_out": true,
+        "resolution": "The substitute model answered a Stage14 request with Stage13 material. That wrong-target Stage14 response was discarded. Previously supplied Stage11, Stage12, and the correctly targeted Stage13 response remain valid after separate ID checks.",
+        "wording_rollback_required": false
+      }
+    }
+  ],
+  "stage13": {
+    "status": "Gemini pass1 → 제작 측 독립 재검토 → Gemini pass3 및 MAGE_1 추가 최종검수 → 부모 최종판단 완료",
+    "source": "parent_supplied_final_json",
+    "reviewed_item_count": 35,
+    "evidence_verification": "parent_verified_correct_target",
+    "verification_source": "parent_screen_dom_and_id_crosscheck",
+    "branch_implementation_allowed": true,
+    "approved_for_binding": true,
+    "implementation_verified": false,
+    "source_files": [
+      "HONRO-CH13-parent-final.json"
+    ],
+    "runtime_evidence_reference": "HONRO-CH13-MAGE1-code-evidence.json",
+    "runtime_evidence_original_supplied": false,
+    "runtime_evidence_file_created": false,
+    "runtime_evidence_note": "The referenced original code-evidence JSON was not supplied to this archive task; it has not been reconstructed or fabricated.",
+    "final_decisions": [
+      "MAGE_1: 코드근거 확인 후 호리병 관련 후문 삭제. 단축 후보를 추가 최종검수받음.",
+      "추가검수의 바위에 삭제 제안 기각: 주어는 번개이고 앞 질문은 암벽이며 실제 상부 지형 차폐에 부합. 호리병 효용과 무관한 삭제. 부모가 기존 단축 후보 유지 확정."
+    ],
+    "pending_wording_ids": []
+  },
+  "stage14": {
+    "status": "Gemini pass1 → 제작 측 독립 재검토 → Gemini pass3 → 부모 최종판단 완료",
+    "source": "parent_supplied_final_json",
+    "pass1_complete": true,
+    "parent_independent_review_complete": true,
+    "pass3_complete": true,
+    "pass3_raw_response_present": false,
+    "pass3_result_source": "parent_supplied_final_json_and_correct_target_confirmation",
+    "reviewed_item_count": 29,
+    "evidence_verification": "parent_verified_correct_target",
+    "verification_source": "parent_confirmed_correct_chapter_screen_and_id_review",
+    "branch_implementation_allowed": true,
+    "approved_for_binding": true,
+    "application_prohibited": false,
+    "implementation_verified": false,
+    "source_files": [
+      "HONRO-CH14-parent-final.json"
+    ],
+    "pass3_source_reference": "HONRO-CH14-PASS3-20261027-response.md",
+    "pass3_source_reference_local_file_present": false,
+    "final_decisions": [
+      "부모가 COMPLETE01 최종제안과 KNIGHT1 첫 번째 최종대안을 그대로 채택: 떠나온 집 지칭과 존대 표현 명료화.",
+      "나머지27문구KEEP. 승인된 선택대화3개 노출 시점가드 보존."
+    ],
+    "pending_wording_ids": [],
+    "prior_wrong_target_response_discarded": true,
+    "correct_target_review_note": "The earlier Stage14 request answered with Stage13 material remains discarded in history. The parent subsequently confirmed a separate correctly targeted 29-item Stage14 response from a chapter-specific Gemini conversation outside the notebook."
+  },
+  "evidence_verification": {
+    "status": "parent_verified_correct_target_for_stages11_15",
+    "recorded_date": "2026-10-27",
+    "verified_by": "parent_after_screen_dom_and_id_crosscheck",
+    "clipboard_issue_ruled_out": true,
+    "resolution": "The substitute model answered an earlier Stage14 request with Stage13 material; that response remains discarded. The parent separately verified correct targets for Stages11–13 and subsequently confirmed correctly targeted three-pass final reviews for Stages14–15. Final JSON values were supplied directly by the parent; the Library evidence ZIP was not materialized locally.",
+    "wording_rollback_required": false
+  },
+  "branch_implementation_allowed_for_stages": [
+    11,
+    12,
+    13,
+    14,
+    15
+  ],
+  "master_write_prohibited": true,
+  "stage15": {
+    "status": "정상대상 Gemini pass1 → 제작 측 독립 재검토 → Gemini pass3 → 부모 최종판단 완료",
+    "source": "parent_supplied_final_json",
+    "pass1_complete": true,
+    "parent_independent_review_complete": true,
+    "pass3_complete": true,
+    "pass3_raw_response_present": false,
+    "pass3_result_source": "parent_supplied_final_json_and_correct_target_confirmation",
+    "reviewed_item_count": 25,
+    "evidence_verification": "parent_verified_correct_target",
+    "verification_source": "parent_confirmed_correct_chapter_screen_and_id_review",
+    "branch_implementation_allowed": true,
+    "approved_for_binding": true,
+    "application_prohibited": false,
+    "implementation_verified": false,
+    "source_files": [
+      "HONRO-CH15-parent-final.json"
+    ],
+    "pass3_source_reference": "HONRO-CH15-PASS3-20261027-response.md",
+    "pass3_source_reference_local_file_present": false,
+    "final_decisions": [
+      "OPTIONAL_KNIGHT0의 현재 침수상태 지속 표현을 최종제안 그대로 채택. 승인된 실제 다리 확인 후/발판이 아직 잠긴 때 발동조건 보존.",
+      "나머지24 KEEP; 여기에는 제작 측 종소리가 나면 수정후보 포함."
+    ],
+    "pending_wording_ids": [],
+    "implementation_note": "문구 검수 완료와 실제 발판 침수상태/다리 확인/이동동선 및 발동가드 구현 검증은 별개."
+  },
+  "stages16_30": {
+    "status": "unreviewed",
+    "approved_for_binding": false,
+    "application_prohibited": true
+  },
+  "story_master_deployment_on_hold": true,
+  "library_evidence_zip": {
+    "library_file_id": "libfile_5788f915ea70819185fdea2065bf944e",
+    "file_id": "file_000000002a7c81f4b877feddefdcd0fe",
+    "file_name": "HONRO_11-15_review_evidence_20261027.zip",
+    "expected_size_bytes": 223824,
+    "expected_version": 0,
+    "route": "Current Library skill resolved-reference prepare_materialize and bundled transfer helper",
+    "prepare_attempts": 2,
+    "prepare_status": "Both successful; each returned exact IDs, size223824, version0, no unavailable items or warnings, no workspace_path",
+    "transfer_attempts": 2,
+    "transfer_results": [
+      {
+        "attempt": 1,
+        "exit_code": 1,
+        "error": "library file transfer failed: download failed"
+      },
+      {
+        "attempt": 2,
+        "exit_code": 1,
+        "error": "library file transfer failed: download failed"
+      }
+    ],
+    "local_zip_exists": false,
+    "materialized": false,
+    "manifest_verified": false,
+    "zip_sha256_verified": false,
+    "readme_read": false,
+    "final_json_extracted": false,
+    "outcome": "known technical transfer failure; retry limit reached; not a permission denial and not pending or uncertain",
+    "local_status_path": "/workspace/honro/_local/archive/review-evidence-11-15/MATERIALIZATION_STATUS.json",
+    "manuscript_source": "parent_supplied_messages; not extracted from the unavailable ZIP"
+  }
+}

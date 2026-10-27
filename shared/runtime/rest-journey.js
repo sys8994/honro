@@ -11,7 +11,7 @@ function towards(place){const jong=finalConsonant(place);return place+(jong&&jon
 function together(name){return name+(finalConsonant(name)?'과':'와');}
 function speakerId(cls){return H.hero[cls]?.name;}
 const endStoryKey=()=>H.stages.at(-1).id>20?'end-'+H.stages.at(-1).id:'end';
-function talkId(next,cls){return `rest-talk-v1-${next?.stageId||endStoryKey()}-${cls}`;}
+function talkId(next,cls){const reviewed=G.HonroAct23V4Reviewed?.talkId(next?.stageId,cls);if(reviewed)return reviewed;return `rest-talk-v1-${next?.stageId||endStoryKey()}-${cls}`;}
 function restNext(app){return data().at(app.debugMode&&app.debugRestStage||state(app.profile).restStageId)||data().next(app.profile);}
 // Only an explicit debug rest selection may preview its authored optional lines.
 function optionalLines(app,cls,id=restNext(app)?.stageId??null){const debugPreviewStage=app.debugMode&&app.debugRestStage===id?id:null;return data().optional(app.profile,id,cls,{debugPreviewStage});}
@@ -90,7 +90,7 @@ function restoreStory(app){const saved=state(app.profile).story;if(!saved)return
  // place's dialogue from the new destination or let optional talk skip arrival.
  const nextStage=restNext(app)?.stageId??null,match=/^rest-(?:interlude|talk)-v1-(\d+|end)(?:-|$)/.exec(saved.id||''),savedStage=saved.kind==='map'?(saved.completed>=H.stages.length?null:saved.completed+1):match?(match[1]==='end'?null:Number(match[1])):undefined;
  const completed=nextStage==null?H.stages.at(-1).id:nextStage-1,mapId=`map-story-v${G.HonroStoryContent.version}-${completed}`,arrivalId=`rest-interlude-v1-${nextStage??endStoryKey()}`;
- const requiredPending=nextStage===data().next(app.profile)?.stageId&&((!app.profile.seen[mapId]&&prelude(completed).length)||!app.profile.seen[arrivalId]);
+ const requiredPending=nextStage===data().next(app.profile)?.stageId&&((!app.profile.seen[mapId]&&prelude(completed).length)||!app.profile.seen[arrivalId]&&(!G.HonroAct23V4Reviewed?.enabled()||nextStage!==11||arrivalLines(app.profile,11).length>0));
  if(savedStage!==nextStage||(saved.stageId!==undefined&&saved.stageId!==savedStage)||(saved.kind==='optional'&&requiredPending)){state(app.profile).story=null;app.persist();return false;}
  let lines;if(saved.kind==='map')lines=prelude(saved.completed);else if(saved.kind==='optional')lines=optionalLines(app,saved.cls,nextStage);else lines=arrivalLines(app.profile,data().next(app.profile)?.stageId??null,saved.description===true,saved.evidenceRevision||0);if(!lines?.length){state(app.profile).story=null;return false;}return G.HonroStory.start(app,lines,{id:saved.id,index:saved.index||0,title:location(app.profile).restName,after:'rest',restKind:saved.kind,restClass:saved.cls,restCompleted:saved.completed,restDescription:saved.description===true,restEvidenceRevision:saved.evidenceRevision||0});}
 function nextStory(app){if(app.debugMode&&app.debugRestStage)return false;if(app.screen!=='rest'||app.dialogue)return false;if(restNext(app)?.stageId!==data().next(app.profile)?.stageId){const saved=state(app.profile).story;if(saved?.kind!=='optional')return false;return restoreStory(app);}if(restoreStory(app))return true;const p=app.profile,next=data().next(p),completed=next?next.stageId-1:H.stages.at(-1).id,mapId=`map-story-v${G.HonroStoryContent.version}-${completed}`,mapLines=prelude(completed);
@@ -142,7 +142,7 @@ const progressRoutes={
 };
 function routeMarkup(act,def,visible,profile,current){const ids=new Set(visible.map(v=>v.stageId));return `<svg class="journey-progress" viewBox="0 0 ${def.width} ${def.height}" aria-hidden="true">${(progressRoutes[act]||[]).map((d,i)=>{const from=(act-1)*10+i+1,to=from+1;if(!ids.has(from)||!ids.has(to))return '';const state=profile.cleared[to]?'complete':to===current?'current':'next';return `<path class="progress-underlay" d="${d}" vector-effect="non-scaling-stroke"/><path data-from="${from}" data-to="${to}" class="progress-${state}" d="${d}" vector-effect="non-scaling-stroke"/>`;}).join('')}</svg>`;}
 function bookRecords(app,id){
- const actions=(G.HonroClearReportUI?.journal(app,id)||'')+(G.HonroActEndings?.replayButton?.(app,id)||'');
+ const reviewed=G.HonroAct23V4Reviewed?.journal(app.profile,id),actions=(G.HonroClearReportUI?.journal(app,id)||'')+(G.HonroActEndings?.replayButton?.(app,id)||'')+(reviewed?`<p data-reviewed-row="${esc(reviewed.rowId)}">${esc(reviewed.text)}</p>`:'');
  return actions?`<details class="journey-records"><summary aria-label="선택한 길목의 보고서와 막 엔딩 기록">기록</summary><div class="journey-record-menu">${actions}</div></details>`:'';
 }
 function bookMarkup(app){

@@ -472,6 +472,7 @@
         outcome(afterStory=false) {
             // Guard before outro: completed saves must never reopen or resave.
             if(this.done||!this.engine)return;
+            if(!afterStory&&G.HonroAct23V4Reviewed?.failure(this))return;
             if(this.engine.b.phase==='won'&&!this.engine.b.honroReport?.final)G.HonroClearReport.finish(this);
             if(!afterStory&&this.engine?.b.phase==='won'&&!this.dialogue){G.HonroSodanWithdrawal.prepareWorldOutro(this);G.HonroActEndings?.preload(this,this.stage.id);this.cancelInput();if(G.HonroStory.start(this,G.HonroSodanWithdrawal.outro(this.engine.b,(G.HonroObjectiveRevision?.contentFor(this.engine.b,this.stage)||this.stage).outro),{title:this.stage.name,after:'outcome'}))return;}
             if (this.done || !this.engine)

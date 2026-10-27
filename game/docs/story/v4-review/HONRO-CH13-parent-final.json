@@ -1,0 +1,224 @@
+{
+  "stage": 13,
+  "status": "Gemini pass1 → 제작 측 독립 재검토 → Gemini pass3 및 MAGE_1 추가 최종검수 → 부모 최종판단 완료",
+  "rows": [
+    {
+      "id": "EDGE.ARRIVALS_13_0",
+      "speaker_channel": "서술 · 도착 서술",
+      "condition": "해당 장 도착 때 한 번",
+      "text": "돌림진 너머로 석문과 깊은 인양굴이 드러났다. 피 묻은 밧줄을 붙든 사람 곁으로 들린 것들이 다가왔다."
+    },
+    {
+      "id": "A2.S13.BRANCH.01",
+      "speaker_channel": "설오 · 대사",
+      "condition": "장면01 route12=upper",
+      "text": "밑에 사람 있습니다. 밧줄을 잡고 있어요."
+    },
+    {
+      "id": "A2.S13.BRANCH.02",
+      "speaker_channel": "휘겸 · 대사",
+      "condition": "장면01 route12=lower",
+      "text": "위에 사람이 있소! 줄을 놓지 마시오."
+    },
+    {
+      "id": "A2.S13.BRANCH.03",
+      "speaker_channel": "설오 · 대사",
+      "condition": "장면01 route12 누락 공통",
+      "text": "밧줄 잡은 사람부터 구해야 합니다."
+    },
+    {
+      "id": "A2.S13.INTRO.01",
+      "speaker_channel": "석공 · 대사",
+      "condition": "장면01 일행을 발견",
+      "text": "오지 마시오. 내 팔이 말을 안 듣소."
+    },
+    {
+      "id": "A2.S13.INTRO.02",
+      "speaker_channel": "소단 · 대사",
+      "condition": "장면02 석공의 붙은 혼 확인",
+      "text": "팔에 붙었어요. 저 사람을 쏘면 안 돼요."
+    },
+    {
+      "id": "A2.S13.MID.01",
+      "speaker_channel": "설오 · 대사",
+      "condition": "장면02 높은 사격 자리 확보",
+      "text": "줄 뒤의 놈은 보입니다. 몸을 바위에 붙이십시오."
+    },
+    {
+      "id": "A2.S13.MID.02",
+      "speaker_channel": "휘겸 · 대사",
+      "condition": "장면02 아래 접근 적이 석공에게 접근",
+      "text": "아래쪽은 내가 막겠소. 그 사람을 빼시오."
+    },
+    {
+      "id": "A2.S13.MID.03",
+      "speaker_channel": "담허 · 대사",
+      "condition": "장면03 혼 분리 시작",
+      "text": "조금만 버티게. 붙은 것은 우리가 떼겠네."
+    },
+    {
+      "id": "A2.S13.MID.04",
+      "speaker_channel": "소단 · 대사",
+      "condition": "장면03 분리 성공; 실제 발 지지와 안전자리까지 이동 가능한 동선 확인 후",
+      "text": "떨어졌어요. 제 쪽으로 천천히 오세요."
+    },
+    {
+      "id": "A2.S13.MID.05",
+      "speaker_channel": "석공 · 대사",
+      "condition": "장면04 안전자리 도착",
+      "text": "안쪽에 내 아들이 있소. 길찬이요."
+    },
+    {
+      "id": "A2.S13.MID.06",
+      "speaker_channel": "설오 · 대사",
+      "condition": "장면04 아들 소식 직후",
+      "text": "어디로 가야 합니까?"
+    },
+    {
+      "id": "A2.S13.MID.07",
+      "speaker_channel": "석공 · 대사",
+      "condition": "장면04 위치 질문",
+      "text": "석문 지나 집들이 있소. 거길 떠나지 말랬는데."
+    },
+    {
+      "id": "A2.S13.MID.08",
+      "speaker_channel": "휘겸 · 대사",
+      "condition": "장면04 안전자리 확보",
+      "text": "여기서 기다리시오. 아들은 우리가 찾겠소."
+    },
+    {
+      "id": "A2.S13.MID.09",
+      "speaker_channel": "석공 · 대사",
+      "condition": "장면04 실제 걸쇠를 바로잡으며",
+      "text": "이 걸쇠부터 걸어야 줄이 안 풀리오."
+    },
+    {
+      "id": "A2.S13.MID.10",
+      "speaker_channel": "설오 · 대사",
+      "condition": "장면05 문을 확인",
+      "text": "문이 안쪽에서 잠겼습니다."
+    },
+    {
+      "id": "A2.S13.MID.11",
+      "speaker_channel": "석공 · 대사",
+      "condition": "장면05 빗장 위치가 실제로 보이거나 손으로 가리킴",
+      "text": "안의 빗장을 밀어야 하오. 문을 쳐선 안 열리오."
+    },
+    {
+      "id": "A2.S13.MID.12",
+      "speaker_channel": "소단 · 대사",
+      "condition": "장면05 아래굴 원혼 2 진입",
+      "text": "굴 밑에서 둘이 더 올라와요."
+    },
+    {
+      "id": "A2.S13.COMPLETE.01",
+      "speaker_channel": "휘겸 · 대사",
+      "condition": "장면06 문 개방·석공 안전 확인",
+      "text": "안쪽으로 가겠소. 여기서 움직이지 마시오."
+    },
+    {
+      "id": "A2.S13.COMPLETE.02",
+      "speaker_channel": "석공 · 대사",
+      "condition": "장면06 일행 출발",
+      "text": "길찬에게 말해 주시오. 아비가 여기 있다고."
+    },
+    {
+      "id": "A2.S13.OBJECTIVE.01",
+      "speaker_channel": "목표 UI · 목표 UI",
+      "condition": "장면01",
+      "text": "밧줄을 잡은 사람에게 접근하는 적을 막고 붙은 혼 분리"
+    },
+    {
+      "id": "A2.S13.OBJECTIVE.02",
+      "speaker_channel": "목표 UI · 목표 UI",
+      "condition": "장면03",
+      "text": "구조한 사람을 바위 안쪽 안전자리까지 보호"
+    },
+    {
+      "id": "A2.S13.OBJECTIVE.03",
+      "speaker_channel": "목표 UI · 목표 UI",
+      "condition": "장면04",
+      "text": "석문 안쪽 빗장을 풀고 거주지로 진입"
+    },
+    {
+      "id": "A2.S13.POPUP.01",
+      "speaker_channel": "안내 UI · 안내 UI",
+      "condition": "석공에게 공격 조준 시",
+      "text": "이 사람은 살아 있습니다. 붙은 혼을 분리해 구출하세요."
+    },
+    {
+      "id": "A2.S13.FAIL.01",
+      "speaker_channel": "실패 UI · 실패 UI",
+      "condition": "석공 사망·추락",
+      "text": "밧줄을 잡았던 사람을 구하지 못했습니다. 구조 지점에서 다시 시작합니다."
+    },
+    {
+      "id": "A2.S13.JOURNAL.01",
+      "speaker_channel": "저널 UI · 저널 UI",
+      "condition": "장면06",
+      "text": "석문 앞에서 석공을 구했다. 아들 길찬은 안쪽 거주지에 있다. 석공은 낡은 인양 장치의 걸쇠를 망설임 없이 다뤘다."
+    },
+    {
+      "id": "EDGE.OPTIONAL_13_ARCHER_0",
+      "speaker_channel": "설오 · 선택 동료 대화",
+      "condition": "플레이어가 동료에게 말을 걸 때; 실제 출연·생존한 화자만",
+      "text": "돌계단 끝이 안개에 묻혀 보이지도 않는군요. 관아 지도엔 그냥 빈 돌산이었는데."
+    },
+    {
+      "id": "EDGE.OPTIONAL_13_ARCHER_1",
+      "speaker_channel": "휘겸 · 선택 동료 대화",
+      "condition": "플레이어가 동료에게 말을 걸 때; 실제 출연·생존한 화자만",
+      "text": "내려가는 갈림길마다 표식을 남겨 두시오. 볼일을 마치고 올라올 때 헤매지 않게 말이오."
+    },
+    {
+      "id": "EDGE.OPTIONAL_13_MAGE_0",
+      "speaker_channel": "설오 · 선택 동료 대화",
+      "condition": "플레이어가 동료에게 말을 걸 때; 실제 출연·생존한 화자만",
+      "text": "어르신, 저 아래 동굴로 들어가 암벽이 머리 위를 덮으면 천뢰호는 쓰기 어렵습니까?"
+    },
+    {
+      "id": "EDGE.OPTIONAL_13_MAGE_1",
+      "speaker_channel": "담허 · 선택 동료 대화",
+      "condition": "플레이어가 동료에게 말을 걸 때; 실제 출연·생존한 화자만",
+      "text": "막힌 천장에서는 번개가 바위에 걸리네."
+    },
+    {
+      "id": "EDGE.OPTIONAL_13_MAGE_2",
+      "speaker_channel": "휘겸 · 선택 동료 대화",
+      "condition": "플레이어가 동료에게 말을 걸 때; 실제 출연·생존한 화자만",
+      "text": "바위 천장 아래선 다른 술법을 써야겠소."
+    },
+    {
+      "id": "EDGE.OPTIONAL_13_MAGE_3",
+      "speaker_channel": "담허 · 선택 동료 대화",
+      "condition": "플레이어가 동료에게 말을 걸 때; 실제 출연·생존한 화자만",
+      "text": "불씨나 얼음 술법은 굴 안에서도 걸리는 게 없네. 안으로 들어가거든 머리 위가 트였는지부터 보세."
+    },
+    {
+      "id": "EDGE.OPTIONAL_13_KNIGHT_0",
+      "speaker_channel": "휘겸 · 선택 동료 대화",
+      "condition": "플레이어가 동료에게 말을 걸 때; 실제 출연·생존한 화자만",
+      "text": "지도에 없는 깊은 계단이오. 내려온 갈림길은 눈에 새겨 두시오."
+    },
+    {
+      "id": "EDGE.OPTIONAL_13_OCCULTIST_0",
+      "speaker_channel": "소단 · 선택 동료 대화",
+      "condition": "플레이어가 동료에게 말을 걸 때; 실제 출연·생존한 화자만",
+      "text": "석문 너머에서도 혼들이 움직여요. 산 사람 목소리는 아직 안 들려요."
+    },
+    {
+      "id": "EDGE.OPTIONAL_13_OCCULTIST_1",
+      "speaker_channel": "담허 · 선택 동료 대화",
+      "condition": "플레이어가 동료에게 말을 걸 때; 실제 출연·생존한 화자만",
+      "text": "들리거든 알려 주게. 문 안에 사람이 남았을 수 있네."
+    }
+  ],
+  "runtime_evidence": "HONRO-CH13-MAGE1-code-evidence.json",
+  "final_decisions": [
+    "MAGE_1: 코드근거 확인 후 호리병 관련 후문 삭제. 단축 후보를 추가 최종검수받음.",
+    "추가검수의 바위에 삭제 제안 기각: 주어는 번개이고 앞 질문은 암벽이며 실제 상부 지형 차폐에 부합. 호리병 효용과 무관한 삭제. 부모가 기존 단축 후보 유지 확정."
+  ],
+  "reviewed_id_count": 35,
+  "pending_wording_ids": [],
+  "implementation_verified": false
+}

@@ -1,0 +1,178 @@
+{
+  "stage": 12,
+  "status": "gemini_argon_pass1_parent_review_gemini_flash_lite_pass3_complete",
+  "final_decisions": [
+    "COMPLETE03: Gemini final shorter alternative accepted verbatim",
+    "OPTIONAL_ARCHER: retain reviewed parent candidate; reject final suggestion because it presupposes loop experience before E02"
+  ],
+  "rows": [
+    {
+      "id": "EDGE.ARRIVALS_12_0",
+      "speaker_channel": "서술 · 도착 서술",
+      "condition": "해당 장 도착 때 한 번",
+      "text": "돌비탈 아래로 길이 이어졌다. 바위 곁에는 낡은 길표가 서 있었다."
+    },
+    {
+      "id": "A2.S12.INTRO.01",
+      "speaker_channel": "설오 · 대사",
+      "condition": "장면01 길표 첫 통과",
+      "text": "저 고목 아래로 내려가면 됩니다."
+    },
+    {
+      "id": "A2.S12.MID.01",
+      "speaker_channel": "설오 · 대사",
+      "condition": "장면02 고목 재등장",
+      "text": "아까 지나온 고목입니다. 바위 곁 길표도 그대로고요."
+    },
+    {
+      "id": "A2.S12.MID.02",
+      "speaker_channel": "휘겸 · 대사",
+      "condition": "장면02 되돌아온 길을 확인",
+      "text": "갈림길은 없었소."
+    },
+    {
+      "id": "A2.S12.MID.03",
+      "speaker_channel": "담허 · 대사",
+      "condition": "장면02 길표를 확인",
+      "text": "길표에 진이 걸렸네. 돌림진일세."
+    },
+    {
+      "id": "A2.S12.MID.04",
+      "speaker_channel": "소단 · 대사",
+      "condition": "장면03 진목 틈에서 혼이 보임",
+      "text": "저 진목 틈으로 혼이 빠져나와요."
+    },
+    {
+      "id": "A2.S12.MID.05",
+      "speaker_channel": "담허 · 대사",
+      "condition": "장면03 느슨한 진목 확인",
+      "text": "한쪽이 풀렸군. 혼만 바깥으로 새고 있네."
+    },
+    {
+      "id": "A2.S12.MID.06",
+      "speaker_channel": "휘겸 · 대사",
+      "condition": "장면03 적이 접근함",
+      "text": "진목을 살피시오. 놈들은 내가 막겠소."
+    },
+    {
+      "id": "A2.S12.MID.07",
+      "speaker_channel": "설오 · 대사",
+      "condition": "장면03 진목 뒤 적 사격 가능",
+      "text": "바위 뒤가 보입니다. 고개 숙이십시오."
+    },
+    {
+      "id": "A2.S12.MID.08",
+      "speaker_channel": "담허 · 대사",
+      "condition": "장면04 조정 직후",
+      "text": "이제 같은 자리로 되돌아가진 않을 걸세."
+    },
+    {
+      "id": "A2.S12.CHOICE.01",
+      "speaker_channel": "설오 · 대사",
+      "condition": "장면05 두 기존 경로를 확인",
+      "text": "위로 가면 안쪽이 보이겠습니다."
+    },
+    {
+      "id": "A2.S12.CHOICE.02",
+      "speaker_channel": "휘겸 · 대사",
+      "condition": "장면05 두 기존 경로를 확인",
+      "text": "아래 길은 좁소. 붙어서 가야겠소."
+    },
+    {
+      "id": "A2.S12.BRANCH.01",
+      "speaker_channel": "설오 · 대사",
+      "condition": "장면05 route12=upper 확정",
+      "text": "저 발판을 따라가겠습니다."
+    },
+    {
+      "id": "A2.S12.BRANCH.02",
+      "speaker_channel": "휘겸 · 대사",
+      "condition": "장면05 route12=lower 확정",
+      "text": "앞이 어둡소. 너무 벌어지지 마시오."
+    },
+    {
+      "id": "A2.S12.COMPLETE.01",
+      "speaker_channel": "소단 · 대사",
+      "condition": "장면05 내리막 진입",
+      "text": "혼들이 바위 밑으로 내려가요."
+    },
+    {
+      "id": "A2.S12.COMPLETE.02",
+      "speaker_channel": "담허 · 대사",
+      "condition": "장면05 내리막 확보",
+      "text": "저 안쪽을 감추려고 만든 진이군."
+    },
+    {
+      "id": "A2.S12.COMPLETE.03",
+      "speaker_channel": "설오 · 대사",
+      "condition": "장면05 출구 도착",
+      "text": "바위 아래로 길이 이어집니다."
+    },
+    {
+      "id": "A2.S12.OBJECTIVE.01",
+      "speaker_channel": "목표 UI · 목표 UI",
+      "condition": "장면01",
+      "text": "길표를 따라 북쪽 산길로 이동"
+    },
+    {
+      "id": "A2.S12.OBJECTIVE.02",
+      "speaker_channel": "목표 UI · 목표 UI",
+      "condition": "장면02",
+      "text": "진목 주변을 확보하고 돌림진 조정"
+    },
+    {
+      "id": "A2.S12.OBJECTIVE.03",
+      "speaker_channel": "목표 UI · 목표 UI",
+      "condition": "장면04",
+      "text": "열린 내리막으로 진입"
+    },
+    {
+      "id": "A2.S12.UI_CHOICE.01",
+      "speaker_channel": "선택지 UI · 선택지 UI",
+      "condition": "장면05",
+      "text": "높은 경로로 이동"
+    },
+    {
+      "id": "A2.S12.UI_CHOICE.02",
+      "speaker_channel": "선택지 UI · 선택지 UI",
+      "condition": "장면05",
+      "text": "낮은 경로로 이동"
+    },
+    {
+      "id": "A2.S12.POPUP.01",
+      "speaker_channel": "안내 UI · 안내 UI",
+      "condition": "장면04 조정 중 근접 위협",
+      "text": "진목 곁의 적을 물리치면 조정을 계속할 수 있습니다."
+    },
+    {
+      "id": "A2.S12.JOURNAL.01",
+      "speaker_channel": "저널 UI · 저널 UI",
+      "condition": "장면05",
+      "text": "돌림진이 같은 산길로 일행을 되돌리고 있었다. 느슨해진 진목 곁으로 혼이 새어 나왔다. 진목을 조정하자 바위 아래의 길이 드러났다."
+    },
+    {
+      "id": "EDGE.OPTIONAL_12_ARCHER_0",
+      "speaker_channel": "설오 · 선택 동료 대화",
+      "condition": "플레이어가 동료에게 말을 걸 때; 실제 출연·생존한 화자만",
+      "text": "돌아올 길을 알아볼 수 있게 표식을 남겨두지요."
+    },
+    {
+      "id": "EDGE.OPTIONAL_12_MAGE_0",
+      "speaker_channel": "담허 · 선택 동료 대화",
+      "condition": "플레이어가 동료에게 말을 걸 때; 실제 출연·생존한 화자만",
+      "text": "산울림이 등 뒤에서 들리네. 소리만 쫓다간 길을 잃겠네."
+    },
+    {
+      "id": "EDGE.OPTIONAL_12_KNIGHT_0",
+      "speaker_channel": "휘겸 · 선택 동료 대화",
+      "condition": "플레이어가 동료에게 말을 걸 때; 실제 출연·생존한 화자만",
+      "text": "돌가루가 깔려 비탈이 미끄럽소. 발밑을 조심하시오."
+    },
+    {
+      "id": "EDGE.OPTIONAL_12_OCCULTIST_0",
+      "speaker_channel": "소단 · 선택 동료 대화",
+      "condition": "플레이어가 동료에게 말을 걸 때; 실제 출연·생존한 화자만",
+      "text": "혼들은 저 바위 너머로 들어가요."
+    }
+  ]
+}

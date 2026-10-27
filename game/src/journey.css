@@ -204,3 +204,5 @@ body:has(#modal.open .journey-confirm) #turn-banner,body:has(#modal.open .pause-
 .honro #app .journey-records>summary:focus-visible{outline:2px solid #e4d2a8;outline-offset:2px}
 .honro #app .journey-record-menu{position:absolute;bottom:calc(100% + 8px);right:0;z-index:20;width:max-content;max-width:min(240px,70vw);padding:4px;background:#10272d;border:1px solid #78836f;border-radius:5px;box-shadow:0 4px 18px #0008}
 .honro #app .journey-record-menu :is(button,.report-missing){display:block;width:100%;min-height:44px;box-sizing:border-box;margin:0;padding:10px 12px;font-size:12px;white-space:normal;text-align:left}
+.honro #app .journey-record-menu:has(>p[data-reviewed-row]){width:min(34rem,80vw);max-width:min(34rem,80vw)}
+.honro #app .journey-record-menu>p[data-reviewed-row]{margin:0;padding:14px 16px;font-size:14px;line-height:1.7;white-space:normal}
