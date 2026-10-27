@@ -245,6 +245,14 @@
   }
   // Shared world kit, retained menu SVG adapter. Static nodes compile once;
   // the existing motion loop continues to own the retained live transforms.
+  // Same retained SVG geometry/images; only the agreed outdoor Act3 colour
+  // mapping changes. Interiors and underground keep their existing palettes.
+  function restColour(svg,stage){
+    const palette=G.HonroEnvironment?.act3Palette({honroStage:stage});if(!palette)return svg;
+    const id=`honro-rest-overcast-${stage}`;
+    const filter=`<filter id="${id}" color-interpolation-filters="sRGB"><feColorMatrix type="saturate" values=".22"/><feComponentTransfer><feFuncR type="linear" slope=".92" intercept=".12"/><feFuncG type="linear" slope=".84" intercept=".10"/><feFuncB type="linear" slope=".69" intercept=".07"/></feComponentTransfer></filter>`;
+    return svg.replace(/#[0-9a-f]{6}(?:[0-9a-f]{2})?\b/gi,colour=>palette.paint(colour)).replace('</defs>',filter+'</defs>').replace(/<image /g,`<image filter="url(#${id})" `);
+  }
   function sharedRest(stage,variant){
     const K=G.HonroEnvironmentVectorKit,style=K.REST_STYLES[stage];
     const underground=!!style.underground,id=`honro-rest-shared-${stage}`;
@@ -272,7 +280,7 @@
     const floor=group('shared-rest-ground',body(assembly.ground,'ground'));
     const light=group('fire-ground-light',glow(800,758,300,103,`${id}-fire-ground`),'data-rest-motion="fire-ground"');
     const svg=`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" width="1600" height="900" preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false" data-journey-art="shared-${style.name}" data-rest-stage="${stage}" data-journey-layer="${underground?'underground':'surface'}">`+defs+far+water+buildings+(stage===5?retainedRestFall(id):'')+floor+body(assembly.near,'near')+landmark+flag+weather(variant,underground)+grass+light+campProps(id)+'</svg>';
-    cache.set(key,svg);return svg;
+    const coloured=restColour(svg,stage);cache.set(key,coloured);return coloured;
   }
   function scene(variant, layer = 'surface', stage = 0) {
     variant = variants.includes(variant) ? variant : 'forest';

@@ -19,19 +19,5 @@ const plugin=V.plugins.get(21);V.register(21,{...plugin,draw(scene,c,b,e){plugin
  if(q.wreck){c.save();scene.unitBody(c,{...b.units.find(u=>u.id===q.wreck.id),...q.wreck,dead:true,hp:0},0);c.restore();}
 
 }});
-// Render the actual unchanged gate battlefield behind the pre-entry camp.
-// This supplies observation evidence without entering battle, moving any NPC,
-// granting rewards or touching the player's serialized battle/resources.
-function mountRest(app,ready){const R=G.HonroAct23V4Chapter21Reviewed,p=app.profile,id=app.debugRestStage||p.honroJourney?.restStageId||G.HonroJourneyContent.next(p)?.stageId;
- if(!R.enabled()||app.screen!=='rest'||id!==21||p.honroBattle||p.cleared?.[21])return false;
- const token={};app.honroReviewed21RestRequest=token;const root=app.root,buttons=[...root.querySelectorAll('[data-action="rest-talk"]')];for(const button of buttons)button.disabled=true;
- Promise.resolve(G.HonroCampaignLoader.ensureStage(21)).then(()=>{if(app.honroReviewed21RestRequest!==token||app.root!==root||app.screen!=='rest'||app.profile!==p||p.honroBattle||(app.debugRestStage||p.honroJourney?.restStageId||G.HonroJourneyContent.next(p)?.stageId)!==21)return;
-  const backdrop=root.querySelector('.rest-background');if(!backdrop)return;const canvas=document.createElement('canvas');canvas.style.cssText='width:100%;height:100%;display:block;pointer-events:none';backdrop.replaceChildren(canvas);
-  const profile=clone(p),b=G.HonroWorld.build(G.HONRO_CONTENT.stages[20],profile,false,'archer','A01');V.prepare(b,profile);const engine=new G.HONRO_CORE.Engine(b,()=>{},true),scene=new G.HonroScene(canvas);scene.manual=true;scene.x=2200;scene.y=2490;scene.scale=Math.max(.3,canvas.getBoundingClientRect().width/2000);scene.render(engine,0,null,0,false,0,true);scene.x=2200;scene.y=2490;scene.render(engine,0,null,0,false,0,true);
-  if(!R.observeRest(app,{rendered:true,battle:b}))return;app.honroReviewed21RestPreview={scene,engine,canvas};
-  for(const button of buttons){const available=R.optional(p,21,button.dataset.class).length>0;button.disabled=!available;if(available)button.removeAttribute('aria-disabled');}
-  app.persist();ready();
- }).catch(error=>{app.honroReviewed21RestPreviewError=String(error);});return true;
-}
-G.HonroAct23V4Chapter21Art={asset:a,emblem:'old-sealed-diamond',mountRest};
+G.HonroAct23V4Chapter21Art={asset:a,emblem:'old-sealed-diamond'};
 })(globalThis);
