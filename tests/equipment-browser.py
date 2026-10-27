@@ -19,6 +19,7 @@ with serve_game() as base,sync_playwright() as p:
   if PUBLIC and response.status==403:
    (OUT/'summary.json').write_text(json.dumps({'status':'access-limited','url':page.url,'http':403,'gameAssertions':'not run'},ensure_ascii=False,indent=2));print('PUBLIC ACCESS LIMITED HTTP403',flush=True);browser.close();raise SystemExit(0)
   assert response.status==200,response.status
+  if PUBLIC:assert json.loads((ROOT/'web/manifest.json').read_text())['gameEntry'] in page.content(),'published entry differs from verified build'
   page.wait_for_function('window.HonroApp');page.evaluate(SETUP)
   page.locator('[data-action="equipment-open"]').click();page.locator('[data-action="equipment-inspect"][data-id="itm_se_02"]').click()
   assert page.locator('.equipment-stat-compare').is_visible();page.screenshot(path=str(OUT/f'{name}-comparison.png'))
