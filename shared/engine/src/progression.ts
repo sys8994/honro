@@ -248,9 +248,9 @@ export function heroStats(h:HeroProgress,cls:ClassId,loadout:string[]=[]){const 
  const base={...crit,critChance:Math.min(.75,crit.critChance+invested('critChance')),critMultiplier:Math.min(3.5,crit.critMultiplier+invested('critMultiplier')),level,hp:Math.round(hp),mp,attack:(atkBase+L*atkGain)*(1+invested('attack')),armor:Math.min(HERO_ARMOR_CAP,armorBase+L*.008+defense*.03+invested('armor')),move:Math.round(([1120,1100,1210,1150][i]+L*36)*(1+mobility*.08+leap*.10)*(1+invested('move'))),speed:Math.round(([282,305,300,296][i]+L*5)*(1+mobility*.04)),regen:[14,14,14,18][i]+Math.floor(L*.6)+(cls==='mage'?passiveTuning(h.ranks.MP02||0).manaRegenFlat+mp*passiveTuning(h.ranks.MP02||0).manaRegenMax:0)};
  return equipmentStats(base,h.equipmentIds||[],cls);}
 export function applyHero(u:Unit,h:HeroProgress,full=false,reason:'growth'|'equipment'|'restore'='growth'){
- const ids=equipmentActor(u)?(h.equipmentIds??u.equipmentIds??[]):[],s=heroStats({...h,equipmentIds:ids},u.cls,u.loadout),dh=s.hp-u.maxHp,dm=s.mp-u.maxFocus,oldMove=u.maxMove,preserve=reason!=='growth';
- u.level=s.level;u.hp=u.dead?0:full?s.hp:clamp(u.hp+(preserve?0:Math.max(0,dh)),0,s.hp);u.maxHp=s.hp;u.focus=full?s.mp:clamp(u.focus+(preserve?0:Math.max(0,dm)),0,s.mp);u.maxFocus=s.mp;
- u.attack=s.attack;u.armor=s.armor;u.critChance=s.critChance;u.critMultiplier=s.critMultiplier;u.maxMove=s.move;u.walkSpeed=s.speed;u.regen=s.regen;u.moveLeft=full?s.move:clamp(u.moveLeft+(preserve?0:Math.max(0,s.move-oldMove)),0,s.move);u.ranks={...h.ranks};
+ const ids=equipmentActor(u)?(h.equipmentIds??u.equipmentIds??[]):[],s=heroStats({...h,equipmentIds:ids},u.cls,u.loadout),dh=s.hp-u.maxHp,dm=s.mp-u.maxFocus,oldMove=u.maxMove,preserve=reason!=='growth',refill=full&&!preserve;
+ u.level=s.level;u.hp=u.dead?0:refill?s.hp:clamp(u.hp+(preserve?0:Math.max(0,dh)),0,s.hp);u.maxHp=s.hp;u.focus=refill?s.mp:clamp(u.focus+(preserve?0:Math.max(0,dm)),0,s.mp);u.maxFocus=s.mp;
+ u.attack=s.attack;u.armor=s.armor;u.critChance=s.critChance;u.critMultiplier=s.critMultiplier;u.maxMove=s.move;u.walkSpeed=s.speed;u.regen=s.regen;u.moveLeft=refill?s.move:clamp(u.moveLeft+(preserve?0:Math.max(0,s.move-oldMove)),0,s.move);u.ranks={...h.ranks};
  if(ids.length||u.equipmentIds||h.equipmentIds)u.equipmentIds=validateEquipmentIds(ids,u.cls);
 }
 /** Only an actual XP grant may call this; applying stats/loading never refills. */

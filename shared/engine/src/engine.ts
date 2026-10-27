@@ -802,10 +802,10 @@ export class Engine {
         const damageRoll=damageSource==='normal'?((p||provenance)?.damageRoll??1):1;
         let dmg = amount*damageRoll;if(p?.wraithBurst&&p.wraithMarked?.includes(u.id)&&this.guidanceTarget(rawSrc,u))dmg*=1.30;
         const canCritical=damageSource==='normal'&&!!src&&src.side!==1&&!rawSrc?.summoned&&(!!p||direct);
-        const crit=canCritical?critProfile(p||{skill:'',skillRank:1} as Projectile,src!):undefined;
+        const crit=canCritical?critProfile(p||{skill:'',skillRank:1} as Projectile,src!,rawSrc):undefined;
         const critical=canCritical&&this.random()<crit!.chance;
         const criticalMultiplier=critical?crit!.multiplier:1;
-        const primary=equipmentPrimary(rawSrc,p||provenance,damageSource),conditionBonuses:number[]=[];
+        const primary=equipmentPrimary(rawSrc,p,damageSource),conditionBonuses:number[]=[];
         if(primary){if(!critical)conditionBonuses.push(equipmentParam(rawSrc,'co_noncrit','noncriticalBonus',0));if(u.side===1&&((u.curseTurns||0)>0||u.earthbind&&u.earthbind.until>=this.b.round))conditionBonuses.push(equipmentParam(rawSrc,'co_cursed','conditionBonus',0));}
         if(src?.side===0 && direct && src.cls==='archer' && !p?.skill.startsWith('A'))conditionBonuses.push(.04*equippedRank(src,'AP02'));
         // Jucheon is applied at cast time, never on old or secondary on-hit hooks.

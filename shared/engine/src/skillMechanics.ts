@@ -44,10 +44,10 @@ export function redesignConditionBonuses(p:Projectile,u:Unit,hit:Vec,direct:bool
  if(!newSkill(p)||u.cls!=='archer'||!direct)return [];
  return [trajectoryMultiplier(p,u,hit)-1,...(p.skill==='A09'&&p.turned?[lerpRank(.30,.65,rank(p))]:[])];
 }
-export function critProfile(p:Projectile,u:Unit){
+export function critProfile(p:Projectile,u:Unit,actor:Unit|undefined=u){
  const r=rank(p),id=p.skill,base=criticalStats(u.cls,u.level,u.ranks);
  return {chance:Math.min(.80,(u.critChance??base.critChance)+(id==='A14'?lerpRank(.18,.39,r):id==='A99'?lerpRank(.25,.39,r):0)+(p.preparedRank?lerpRank(.06,.20,p.preparedRank):0)),
-  multiplier:Math.max(1,Math.min(3.5,(u.critMultiplier??base.critMultiplier)+(id==='A14'?lerpRank(.20,.55,r):id==='A99'?lerpRank(.50,.85,r):0)+(equipmentPrimary(u,p)?equipmentParam(u,'co_noncrit','criticalMultiplierAdd',0):0)))};
+  multiplier:Math.max(1,Math.min(3.5,(u.critMultiplier??base.critMultiplier)+(id==='A14'?lerpRank(.20,.55,r):id==='A99'?lerpRank(.50,.85,r):0)+(equipmentPrimary(actor,p)?equipmentParam(actor,'co_noncrit','criticalMultiplierAdd',0):0)))};
 }
 export function redrawDamage(e:Engine,p:Projectile,u:Unit,target:Unit,amount:number,point:Vec,direct:boolean,critical=false){
  if(!newSkill(p))return amount;

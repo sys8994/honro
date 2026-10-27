@@ -39,8 +39,12 @@ export function equipmentCast(u:Unit,id:string){
  if(equipmentActor(u))for(const key of ['da_sky','da_arc','hw_blade','so_basic','so_converge']){const effect=equipmentEffect(u,key);if(!effect?.targetSkills.includes(id))continue;const p=effect.params as unknown as Record<string,number>;damage*=p.damageScale||1;radius*=p.radiusScale||1;}
  return {damage,radius};
 }
+/** A concrete cast descriptor is required. DOT/zone/shove receipts are not casts.
+ * Aimed twin-crescent roots use child for their legacy cap, not automation. */
 export function equipmentPrimary(u:Unit|undefined,origin:Partial<Projectile>|undefined,source='normal'){
- return equipmentActor(u)&&source==='normal'&&!origin?.autonomous&&!origin?.child&&!origin?.secondary&&!(origin as any)?.keeperReturned;
+ return equipmentActor(u)&&source==='normal'&&!!origin&&origin.owner===u!.id&&!!origin.skill
+  &&typeof origin.vx==='number'&&typeof origin.vy==='number'&&origin.mode!=='stake'&&!origin.autonomous&&!origin.secondary&&!origin.followup&&!origin.echoSource
+  &&!(origin.mode==='chainArrow'&&(origin.chain||0)>0)&&!(origin.child&&origin.mode!=='crescent')&&!(origin as any).keeperReturned;
 }
 export function equipmentSoulVector(u:Unit,attack:ExistenceVector):ExistenceVector{
  const fraction=equipmentParam(u,'co_soul','soulConversion',0);return fraction?{form:attack.form*(1-fraction),qi:attack.qi*(1-fraction),soul:attack.soul+(attack.form+attack.qi)*fraction}:{...attack};
