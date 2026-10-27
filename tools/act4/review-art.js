@@ -39,8 +39,8 @@ function ruin(id,variant=0){const n=[];
   n.push(poly([[-514,-299],[-480,-353],[-150,-387],[119,-342],[130,-286]],'#414e46'));
   n.push(path('M-585-297Q-452-323-371-420L-132-459Q3-439 70-397L45-330L-146-370L-343-340Z','#46514c'));
   n.push(path('M-574-297L-341-353L-143-390L92-351L130-336L80-324L-144-367L-343-337Z','#8a8d77'));
-  n.push(poly([[111,-340],[145,-350],[480,-47],[522,4],[478,-2],[164,-274]],'#655f50'));
-  n.push(poly([[145,-350],[181,-335],[521,-23],[522,4],[480,-47]],'#94917a'));
+  n.push(poly([[111,-340],[145,-350],[480,-47],[501,-22],[491,-14],[522,4],[495,0],[486,12],[478,-2],[164,-274]],'#655f50'));
+  n.push(poly([[145,-350],[181,-335],[506,-35],[499,-24],[521,-23],[511,-10],[522,4],[495,0],[480,-47]],'#94917a'));
   n.push(poly([[-139,-453],[-82,-435],[82,-396],[43,-379],[-38,-403]],'#6f7e70'));
 
  }else{
@@ -50,7 +50,7 @@ function ruin(id,variant=0){const n=[];
  }
  n.push(poly([[-485,8],[-337,3],[-294,24],[-391,35]],'#aaa28a'));
  n.push(poly([[333,10],[418,-3],[477,21],[381,38]],'#777c6c'));
- n.push(poly([[485,-7],[543,-2],[575,15],[532,23]],'#92947f'));
+ n.push(poly([[485,-7],[543,-2],[575,15],[532,23]],'#92947f'));n.push(poly([[461,3],[516,0],[553,11],[518,19],[472,12]],'#293d3760'));n.push(poly([[526,4],[549,7],[566,24],[552,28],[537,18]],'#8b8873'));
  // Broken purlins and empty hinge sockets are wood cavities, not metal plates.
  n.push(poly([[-268,-236],[-252,-235],[-252,-216],[-266,-216]],'#253938'));
  n.push(poly([[-264,-79],[-248,-77],[-247,-58],[-263,-59]],'#253938'));
@@ -108,6 +108,15 @@ artAssets.find(a=>a.id==='a4-art:delta-bars').vector.root.children.push(
  path('M5130-150Q5360 40 5170 211Q4990 336 5150 451L5580 460Q5390 342 5590 179Q5770 12 5490-194Z','#718a7a')
 );
 for(const x of [-740,-390,60,2180,2710,5210,5570])for(const [j,dx]of [[0,-19],[1,7],[2,29]])artAssets.find(a=>a.id==='a4-art:delta-bars').vector.root.children.push(path(`M${x+dx} -26Q${x+dx-6} -76 ${x+dx+j*10} ${-121-j*17}L${x+dx+j*10+4} ${-121-j*17}L${x+dx+5} -24Z`,'#82947e'));
+// Sandbars sit low in the same water plane. Retain the forked channels while
+// compressing the formerly hanging S forms and letting their tips submerge.
+const delta=artAssets.find(a=>a.id==='a4-art:delta-bars');
+delta.vector.root.children.push(
+ path('M-103 292Q33 356 220 410L181 425Q-18 396-103 312Z','#88a6a9'),
+ path('M2910 385Q3140 426 3370 422L3302 439Q3060 444 2910 406Z','#91acac'),
+ path('M5160 416Q5394 443 5580 460L5531 473Q5330 467 5160 438Z','#8aa8a9'),
+ path('M-125 327Q17 376 140 392L109 399Q-38 381-125 344Z','#b4c3b385'));
+for(const node of delta.vector.root.children)node.transform=[.9,0,0,.28,0,40];
 for(const [original,id]of [['a4:bamboo','a4-art:bamboo-background'],['a4-art:bamboo-lean','a4-art:bamboo-background-lean']]){const a=clone(artAssets.find(v=>v.id===original));a.id=id;const tone=node=>{if(/^#[0-9a-f]{6}$/i.test(node.fill||''))node.fill=G.HonroEnvironment.mixColor(node.fill,'#b0c0b8',.40);for(const c of node.children||[])tone(c);};tone(a.vector.root);artAssets.push(a);}
 
 function install(s,library){const n=s.metadata.act4Preview;if(![31,35,36].includes(n))return;s.initialState.honroAct4ArtRevision=2;
@@ -130,7 +139,7 @@ function install(s,library){const n=s.metadata.act4Preview;if(![31,35,36].includ
  }
  if(n===35){
   s.elements.filter(e=>e.assetId==='a4:bamboo').forEach((e,i)=>{e.assetId=i%2?'a4-art:bamboo-background-lean':'a4-art:bamboo-background';e.scale*=.85;});
-  add('a4-art:fallen-bamboo',2280,.65);add('a4:old-wall',4140,1.05);
+  add('a4-art:fallen-bamboo',2280,.65);add('a4:old-wall',4140,1.05);add('a4-art:rubble-wall',4280,.4);add('a4-art:rubble-wall',3990,.16);
   // Back-plane buttresses and roots meet actual ground beneath the finite
   // walkways; they are not new collision or dummy geological skirts.
   const supports=vector('a4-art:walkway-support',[-240,-500,480,550],[path('M-132 8L-111-322L-73-378L-29-365L-57 6Z','#596e65'),path('M48 8L63-340L100-402L130-385L117 15Z','#425d55'),path('M-170 10Q-39-42 163 14L183 43Q-17 17-183 38Z','#5f745e')],{height:7});library.push(supports);
