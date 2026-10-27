@@ -1,3 +1,4 @@
+import {equipmentStats,validateEquipmentIds,equipmentActor} from './equipment';
 import {damageSpread} from './damageVariance';
 import {GATE_SEARCH_RADIUS} from './gateTravel';
 import {waveArcDimensions,shatterStakeDimensions,MAGE_AREA_SCALE} from './mageGeometry';
@@ -244,8 +245,14 @@ export function heroStats(h:HeroProgress,cls:ClassId,loadout:string[]=[]){const 
  const rank=(id:string)=>TALENT_MAP[id]?.cls===cls?rankPower(h.ranks[id]||0):0,vitality=cls==='knight'?durabilityPower(h.ranks.SP02||0):0,mobility=0,leap=rank('SP03'),defense=vitality;
  const hpBase=[390,365,610,460][i], hpGain=[32,30,48,36][i], armorBase=[.06,.08,.22,.11][i];
  const gain=STAT_GAINS[cls],invested=(key:StatKey)=>statTrainingRank(h)*gain[key],hp=(hpBase+L*hpGain)*(1+vitality*.05)*(1+invested('hp')),atkBase=[1.75,1.75,1.75,1.86][i],atkGain=[.18,.18,.18,.19][i],crit=criticalStats(cls,level,h.ranks),mp=Math.round(([120,96,104,144][i]+L*[8,6,7,9.5][i])*(1+(cls==='mage'?passiveTuning(h.ranks.MP02||0).maxMana:0))*(1+invested('mp')));
- return {...crit,critChance:Math.min(.75,crit.critChance+invested('critChance')),critMultiplier:Math.min(3.5,crit.critMultiplier+invested('critMultiplier')),level,hp:Math.round(hp),mp,attack:(atkBase+L*atkGain)*(1+invested('attack')),armor:Math.min(HERO_ARMOR_CAP,armorBase+L*.008+defense*.03+invested('armor')),move:Math.round(([1120,1100,1210,1150][i]+L*36)*(1+mobility*.08+leap*.10)*(1+invested('move'))),speed:Math.round(([282,305,300,296][i]+L*5)*(1+mobility*.04)),regen:[14,14,14,18][i]+Math.floor(L*.6)+(cls==='mage'?passiveTuning(h.ranks.MP02||0).manaRegenFlat+mp*passiveTuning(h.ranks.MP02||0).manaRegenMax:0)};}
-export function applyHero(u:Unit,h:HeroProgress,full=false){const s=heroStats(h,u.cls,u.loadout),dh=s.hp-u.maxHp,dm=s.mp-u.maxFocus,oldMove=u.maxMove;u.level=s.level;u.hp=u.dead?0:full?s.hp:clamp(u.hp+Math.max(0,dh),0,s.hp);u.maxHp=s.hp;u.focus=full?s.mp:clamp(u.focus+Math.max(0,dm),0,s.mp);u.maxFocus=s.mp;u.attack=s.attack;u.armor=s.armor;u.critChance=s.critChance;u.critMultiplier=s.critMultiplier;u.maxMove=s.move;u.walkSpeed=s.speed;u.regen=s.regen;u.moveLeft=full?s.move:Math.min(s.move,u.moveLeft+Math.max(0,s.move-oldMove));u.ranks={...h.ranks};}
+ const base={...crit,critChance:Math.min(.75,crit.critChance+invested('critChance')),critMultiplier:Math.min(3.5,crit.critMultiplier+invested('critMultiplier')),level,hp:Math.round(hp),mp,attack:(atkBase+L*atkGain)*(1+invested('attack')),armor:Math.min(HERO_ARMOR_CAP,armorBase+L*.008+defense*.03+invested('armor')),move:Math.round(([1120,1100,1210,1150][i]+L*36)*(1+mobility*.08+leap*.10)*(1+invested('move'))),speed:Math.round(([282,305,300,296][i]+L*5)*(1+mobility*.04)),regen:[14,14,14,18][i]+Math.floor(L*.6)+(cls==='mage'?passiveTuning(h.ranks.MP02||0).manaRegenFlat+mp*passiveTuning(h.ranks.MP02||0).manaRegenMax:0)};
+ return equipmentStats(base,h.equipmentIds||[],cls);}
+export function applyHero(u:Unit,h:HeroProgress,full=false,reason:'growth'|'equipment'|'restore'='growth'){
+ const ids=equipmentActor(u)?(h.equipmentIds??u.equipmentIds??[]):[],s=heroStats({...h,equipmentIds:ids},u.cls,u.loadout),dh=s.hp-u.maxHp,dm=s.mp-u.maxFocus,oldMove=u.maxMove,preserve=reason!=='growth';
+ u.level=s.level;u.hp=u.dead?0:full?s.hp:clamp(u.hp+(preserve?0:Math.max(0,dh)),0,s.hp);u.maxHp=s.hp;u.focus=full?s.mp:clamp(u.focus+(preserve?0:Math.max(0,dm)),0,s.mp);u.maxFocus=s.mp;
+ u.attack=s.attack;u.armor=s.armor;u.critChance=s.critChance;u.critMultiplier=s.critMultiplier;u.maxMove=s.move;u.walkSpeed=s.speed;u.regen=s.regen;u.moveLeft=full?s.move:clamp(u.moveLeft+(preserve?0:Math.max(0,s.move-oldMove)),0,s.move);u.ranks={...h.ranks};
+ if(ids.length||u.equipmentIds||h.equipmentIds)u.equipmentIds=validateEquipmentIds(ids,u.cls);
+}
 /** Only an actual XP grant may call this; applying stats/loading never refills. */
 export function applyLevelUp(u:Unit,h:HeroProgress,before:number){
  const after=levelOf(h);if(after<=before||u.level>=after)return null;

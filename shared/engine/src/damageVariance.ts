@@ -1,4 +1,5 @@
-import type {Battle,Skill,Side} from './types';
+import {equipmentDamageRoll} from './equipment';
+import type {Battle,Skill,Side,Unit} from './types';
 
 /** Explicit cast policy, including non-damaging skills. No character-wide tuning. */
 export const DAMAGE_SPREAD:Readonly<Record<string,number>>={
@@ -35,8 +36,8 @@ export function initializeDamageSequence(b:Battle){
  return b.damageSequence;
 }
 export function damageSpread(s:Pick<Skill,'id'|'enemyOnly'|'passive'>){return s.passive?0:s.enemyOnly ? .10 : DAMAGE_SPREAD[s.id]??0;}
-export function rollDamage(b:Battle,s:Pick<Skill,'id'|'enemyOnly'|'passive'>){
+export function rollDamage(b:Battle,s:Pick<Skill,'id'|'enemyOnly'|'passive'>,u?:Unit){
  const spread=damageSpread(s);if(!spread)return 1;
  const state=initializeDamageSequence(b),value=buffer(state)[state.index%DAMAGE_BUFFER_SIZE];state.index++;
- return 1+value*spread;
+ return equipmentDamageRoll(u,spread,value);
 }
