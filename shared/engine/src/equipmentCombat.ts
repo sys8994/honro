@@ -13,7 +13,7 @@ export function gearCapture(u:Unit,s:Skill,damage:number,grounded:boolean,cycle:
  const air=!grounded||u.jumping||u.airborne,jumped=u.equipmentState?.jumpCycle===cycle,a=attackForSkill(s),vector=equipmentEffect(u,'co_soul')?(jumped?{form:a.form*.5,qi:a.qi*.5,soul:a.soul+(a.form+a.qi)*.5}:{form:a.form*.7,qi:a.qi+a.form*.3,soul:a.soul}):undefined;
  return{version:1,items:[...(u.equipmentIds||[])],airborne:air,jumped,lowFocus:u.maxFocus>0&&u.focus/u.maxFocus<=.4,rootDamage:damage,skillDamage:1+equipmentSkillModifier(u,s.id).damage,vector};
 }
-export function gearBody(p:Partial<Projectile>|undefined){return !!p&&!!p.skill&&typeof p.vx==='number'&&typeof p.vy==='number'&&!p.secondary&&!p.autonomous&&!p.followup&&!p.echoSource&&!(p.child&&p.mode!=='crescent')&&p.mode!=='stake'&&!(p as any).keeperReturned;}
+export function gearBody(p:Partial<Projectile>|undefined){return !!p&&!!p.skill&&typeof p.vx==='number'&&typeof p.vy==='number'&&!p.secondary&&!p.autonomous&&!p.followup&&!p.echoSource&&!(p.child&&p.mode!=='crescent')&&p.mode!=='stake'&&p.mode!=='keeperBinding'&&!(p as any).keeperReturned;}
 export function gearLoan(u:Unit,cost:number){const missing=Math.max(0,cost-u.focus);return equipmentEffect(u,'co_costly')&&!u.equipmentState?.loanUsed&&cost>0&&missing>0&&missing<=u.maxFocus*.2+1e-8?missing:0;}
 export function gearCanPay(u:Unit,cost:number){return u.focus>=cost||gearLoan(u,cost)>0;}
 export function gearPay(u:Unit,cost:number){const loan=gearLoan(u,cost);if(loan){u.focus+=loan;const st=gearState(u);st.loanUsed=true;st.regenHalf=true;}u.focus=Math.max(0,u.focus-cost);}
@@ -49,16 +49,16 @@ export function gearAlly(e:Engine,u:Unit,owner:Unit,p:Partial<Projectile>){
 }
 export function gearDanger(e:Engine,u:Unit,x:number,y:number){
  if((u as any).honroAct4Recovering)return true;
- if(e.b.waters.some(w=>w.frozen<=0&&x+u.r>=w.x&&x-u.r<=w.x+w.w&&y>=w.y-4&&(w.kind==='lava'||w.depth>u.h*.4)))return true;
+ if(e.b.waters.some(w=>(w.frozen||0)<=0&&x+u.r>=w.x&&x-u.r<=w.x+w.w&&y>=w.y-4&&(w.kind==='lava'||w.depth>u.h*.4)))return true;
  const b=e.b as any,policies=b.honroAct4Design?.waterPolicies||[],live=b.honroAct4PreviewState?.tide?.surface;
  return policies.some((z:any)=>['recover','lethal'].includes(z.kind)&&x+u.r>z.x1&&x-u.r<z.x2&&y>Math.min(z.surface,Number.isFinite(live)?live:z.surface)-10);
 }
 /** A ground path is verified before it is animated; no endpoint teleport. */
 export function gearGroundPath(e:Engine,u:Unit,dx:number){
- if(!Number.isFinite(dx)||Math.abs(dx)<2||!validTerrainContactPose(e.b.terrain,u))return [];
+ if(u.dead||u.fixed||u.eaterCapturedBy||u.carriedBy!==undefined||u.summonFloating||!Number.isFinite(dx)||Math.abs(dx)<2||!validTerrainContactPose(e.b.terrain,u)||gearDanger(e,u,u.x,u.y))return [];
  const points:Vec[]=[{x:u.x,y:u.y}],steps=Math.ceil(Math.abs(dx)/6);let last=points[0];
  for(let n=1;n<=steps;n++){
-  const x=u.x+dx*n/steps,floor=e.surface(x,last.y-8,last.y+10);if(!floor||Math.abs(floor.y-last.y)>10)return [];
+  const x=u.x+dx*n/steps;if(x<25||x>e.b.width-25)return [];const floor=e.surface(x,last.y-8,last.y+10);if(!floor||Math.abs(floor.y-last.y)>10)return [];
   const pose={...u,x,y:floor.y};
   if(!validTerrainContactPose(e.b.terrain,pose)||e.b.units.some(t=>!t.dead&&!t.eaterCapturedBy&&t.id!==u.id&&Math.abs(t.x-x)<t.r+u.r&&Math.abs(t.y-floor.y)<Math.min(t.h,u.h)))return [];
   if(gearDanger(e,u,x,floor.y))return [];
@@ -68,7 +68,7 @@ export function gearGroundPath(e:Engine,u:Unit,dx:number){
  return points;
 }
 export function gearMove(e:Engine,u:Unit,dx:number){const points=gearGroundPath(e,u,dx);if(points.length<2)return false;gearState(u).motion={points,cursor:0};u.vx=u.vy=0;delete u.moveTarget; e.emit('fx',{name:'inkLine',x:u.x,y:u.y-u.h*.5,x2:points.at(-1)!.x,y2:points.at(-1)!.y-u.h*.5,color:'#c5c2a8',size:1.8});return true;}
-export function gearStepMove(e:Engine,u:Unit,dt:number){const st=u.equipmentState,m=st?.motion;if(!m)return false;if(u.dead){delete st!.motion;return false;}
+export function gearStepMove(e:Engine,u:Unit,dt:number){const st=u.equipmentState,m=st?.motion;if(!m)return false;if(u.dead||u.fixed||u.eaterCapturedBy||u.carriedBy!==undefined||u.airborne){delete st!.motion;return false;}
  m.cursor=Math.min(m.points.length-1,m.cursor+dt*150);const at=m.points[Math.floor(m.cursor)];
  const pose={...u,x:at.x,y:at.y},wall=e.sweepBody(u,{x:u.x,y:u.y},at);
  if(wall&&wall.n.y>=-.01||gearDanger(e,u,at.x,at.y)||!validTerrainContactPose(e.b.terrain,pose)){delete st!.motion;return true;}

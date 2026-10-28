@@ -1,15 +1,15 @@
 {
   "meta": {
     "date": "2026-10-28",
-    "baseSha": "33697b6f76578f051547205cfe61960894306c21",
+    "baseSha": "b5536e1a60b2feb049a156c1ce3004a8bb043de3",
     "count": 52,
-    "status": "부모 확정 원고52개를 게임과 문서에 그대로 적용. 획득 근거와 새 설정을 구분하며, 5·6막의 실제 획득 사건·획득자·장소는 미정이다.",
+    "status": "확정 lore52 유지. 고유 매핑26개 중25개 적용, U26 목재 보존은 미적용. 저티어16개 스킬/계열 기초 옵션 추가. 획득·배타 선택·슬롯·성장 원장은 유지.",
     "definition": "특정 스킬/계열의 피해·범위·효율·지속 수치만 바꾸면 기초 보정. 조준·충돌·자원 교환·대상/행동 방식이 달라질 때 고유능력. T1부터 계열 기초 옵션 허용; 낮은 티어를 범용 능력치에만 가두지 않음.",
-    "legacy": "v03 uniqueEffect/effectId는 기존 실행 연결명으로 보존. effectCategory가 현재 화면 분류의 기준. 기존26효과 중22개 수치 보정,4개 운용 차이로 재분류; 효과 공식은 변경하지 않음.",
+    "legacy": "effectId는 기존 실행 연결명으로 보존. 현재 동작은 currentModifier와 effectCategory가 기준. T3/T4 운용 효과25개와 틈새호패의 방어무시 기초 보정을 구분한다.",
     "copyCompletion": {
       "implemented": "부모 확정 원고52개 정확 적용 및 검토 문서 동기화",
       "incomplete": "5·6막의 실제 획득 사건·획득자·장소 확정은 별도 콘텐츠 제작 범위",
-      "thisRevision": "확정 문구만 적용. 새 NPC·퀘스트·화면상 아이템 객체·컷신을 추가하지 않고 기존 효과·조건·보상·저장을 유지한다."
+      "thisRevision": "확정 원고를 그대로 보존하고 승인된 전술 효과와 기초 옵션을 구현한다. 후반 실제 획득 사건은 별도 콘텐츠 범위다."
     },
     "writingScope": "작은 사용 습관·이전 주인의 흔적은 이번 요청으로 창작한 설정이다. 코드가 이미 이 세부를 연출한다고 주장하지 않는다. 후반 아이템은 과거 용도만 쓰고 실제 획득자를 정하지 않는다.",
     "reviewProcess": "부모 원고 검토와 내부 집중 검토. 확정 원고의 임의 재창작·문장 다듬기 없음.",
@@ -17,7 +17,23 @@
       "shared/runtime/equipment-state.js",
       "shared/engine/src/equipmentData.ts",
       "game/docs/act4/EQUIPMENT_FACT_HOOKS.md"
-    ]
+    ],
+    "tacticalImplementation": {
+      "mapped": 26,
+      "implemented": 25,
+      "deferred": [
+        "U26"
+      ],
+      "notAdopted": [
+        "U05",
+        "U14",
+        "U18",
+        "U19"
+      ],
+      "lowTierSkillOptions": 16,
+      "u23": "같은 본인 턴의 실제 일반 점프 성공→착지 뒤 시전. 공중 발사는 불허.",
+      "u26": "일반 목재/필수 파괴 구분의 안전한 공통 표지가 없어 미적용. 1장 소나무 가지2개는 비목표 예시이나 전장 전체의 분류 근거가 아니다. 틈새호패 방어무시30% 기초 보정만 유지."
+    }
   },
   "items": [
     {
@@ -41,7 +57,7 @@
       "iconPath": "shared/assets/item-icons/v1/itm_se_01.webp",
       "lore": "설오가 오래도록 활에 매어 둔 깃매듭. 바람을 읽을 때면 화살보다 먼저 이 깃을 본다.",
       "effectCategory": "none",
-      "classification": "기초 옵션만",
+      "classification": "기초 옵션",
       "conceptAndIcon": "활 결속 / 기본시·절명",
       "currentModifier": null,
       "proposedBasicTargets": [
@@ -54,8 +70,8 @@
           "name": "급소시"
         }
       ],
-      "review": "현재 외형·개념과 연결 유지. 수치 보정은 고유능력으로 부르지 않는다. T1부터 해당 기본기/계열의 피해·범위·비용 보정을 기초 옵션으로 허용하는 안이며 아직 수치 적용 전이다.",
-      "implementation": "부모 확정 원고 그대로 적용. 기존 분류·옵션·효과·획득 조건·보상 선택·저장 구조는 유지.",
+      "review": "특정 스킬의 단순 피해/비용 증감은 기초 옵션으로 표시한다. 고유능력은 시전·충돌·이동·자원 사용 방식의 차이다.",
+      "implementation": "확정 lore·획득·배타 선택·슬롯·성장 저장 보존. 승인된 스킬/계열 기초 옵션 적용.",
       "acquisitionEvidence": {
         "status": "현재 런타임 획득 근거",
         "eventId": "eq_se_start",
@@ -64,7 +80,15 @@
           "shared/runtime/equipment-state.js"
         ]
       },
-      "settingScope": "이번 요청으로 작성한 사용 습관·배경 설정. 별도 장면·인물·퀘스트를 구현했다는 뜻은 아니다."
+      "settingScope": "이번 요청으로 작성한 사용 습관·배경 설정. 별도 장면·인물·퀘스트를 구현했다는 뜻은 아니다.",
+      "skillOptions": {
+        "skills": [
+          "A01",
+          "A14"
+        ],
+        "damage": 0.06,
+        "cost": 0
+      }
     },
     {
       "itemId": "itm_se_02",
@@ -93,21 +117,17 @@
       "iconPath": "shared/assets/item-icons/v1/itm_se_02.webp",
       "lore": "나루를 오가던 사냥꾼들이 쓰던 화살통. 배에 오를 때도 활은 손에 들고, 화살은 등에 바짝 붙여 물에서 지켰다.",
       "effectCategory": "none",
-      "classification": "기초 옵션만",
+      "classification": "기초 옵션",
       "conceptAndIcon": "화살 보관 / 기본시·강궁",
       "currentModifier": null,
       "proposedBasicTargets": [
-        {
-          "id": "A01",
-          "name": "평사"
-        },
         {
           "id": "A04",
           "name": "산개사"
         }
       ],
-      "review": "현재 외형·개념과 연결 유지. 수치 보정은 고유능력으로 부르지 않는다. T1부터 해당 기본기/계열의 피해·범위·비용 보정을 기초 옵션으로 허용하는 안이며 아직 수치 적용 전이다.",
-      "implementation": "부모 확정 원고 그대로 적용. 기존 분류·옵션·효과·획득 조건·보상 선택·저장 구조는 유지.",
+      "review": "특정 스킬의 단순 피해/비용 증감은 기초 옵션으로 표시한다. 고유능력은 시전·충돌·이동·자원 사용 방식의 차이다.",
+      "implementation": "확정 lore·획득·배타 선택·슬롯·성장 저장 보존. 승인된 스킬/계열 기초 옵션 적용.",
       "acquisitionEvidence": {
         "status": "현재 런타임 획득 근거",
         "eventId": "eq_se_ledger",
@@ -116,7 +136,14 @@
           "shared/runtime/equipment-state.js"
         ]
       },
-      "settingScope": "이번 요청으로 작성한 사용 습관·배경 설정. 별도 장면·인물·퀘스트를 구현했다는 뜻은 아니다."
+      "settingScope": "이번 요청으로 작성한 사용 습관·배경 설정. 별도 장면·인물·퀘스트를 구현했다는 뜻은 아니다.",
+      "skillOptions": {
+        "skills": [
+          "A04"
+        ],
+        "damage": 0,
+        "cost": 0.05
+      }
     },
     {
       "itemId": "itm_se_03",
@@ -151,7 +178,7 @@
       "iconPath": "shared/assets/item-icons/v1/itm_se_03.webp",
       "lore": "돌아 나오는 길을 살피던 산사람의 활장식. 앞만 보며 걸으면 같은 바위 곁으로 돌아온다는 말이 전해진다.",
       "effectCategory": "none",
-      "classification": "기초 옵션만",
+      "classification": "기초 옵션",
       "conceptAndIcon": "깃 모양 금속 / 곡사",
       "currentModifier": null,
       "proposedBasicTargets": [
@@ -164,8 +191,8 @@
           "name": "전로시"
         }
       ],
-      "review": "현재 외형·개념과 연결 유지. 수치 보정은 고유능력으로 부르지 않는다. T1부터 해당 기본기/계열의 피해·범위·비용 보정을 기초 옵션으로 허용하는 안이며 아직 수치 적용 전이다.",
-      "implementation": "부모 확정 원고 그대로 적용. 기존 분류·옵션·효과·획득 조건·보상 선택·저장 구조는 유지.",
+      "review": "특정 스킬의 단순 피해/비용 증감은 기초 옵션으로 표시한다. 고유능력은 시전·충돌·이동·자원 사용 방식의 차이다.",
+      "implementation": "확정 lore·획득·배타 선택·슬롯·성장 저장 보존. 승인된 스킬/계열 기초 옵션 적용.",
       "acquisitionEvidence": {
         "status": "현재 런타임 획득 근거",
         "eventId": "eq_se_t2_choice",
@@ -174,7 +201,15 @@
           "shared/runtime/equipment-state.js"
         ]
       },
-      "settingScope": "이번 요청으로 작성한 사용 습관·배경 설정. 별도 장면·인물·퀘스트를 구현했다는 뜻은 아니다."
+      "settingScope": "이번 요청으로 작성한 사용 습관·배경 설정. 별도 장면·인물·퀘스트를 구현했다는 뜻은 아니다.",
+      "skillOptions": {
+        "skills": [
+          "A11",
+          "A09"
+        ],
+        "damage": 0.1,
+        "cost": 0
+      }
     },
     {
       "itemId": "itm_se_04",
@@ -209,7 +244,7 @@
       "iconPath": "shared/assets/item-icons/v1/itm_se_04.webp",
       "lore": "바위 비탈에서 화살을 쏟지 않도록 아가리를 조인 화살통. 남은 화살을 세려면 잠시 멈춰 앉아야 한다.",
       "effectCategory": "none",
-      "classification": "기초 옵션만",
+      "classification": "기초 옵션",
       "conceptAndIcon": "보강 화살통 / 강궁",
       "currentModifier": null,
       "proposedBasicTargets": [
@@ -222,8 +257,8 @@
           "name": "쇄암시"
         }
       ],
-      "review": "현재 외형·개념과 연결 유지. 수치 보정은 고유능력으로 부르지 않는다. T1부터 해당 기본기/계열의 피해·범위·비용 보정을 기초 옵션으로 허용하는 안이며 아직 수치 적용 전이다.",
-      "implementation": "부모 확정 원고 그대로 적용. 기존 분류·옵션·효과·획득 조건·보상 선택·저장 구조는 유지.",
+      "review": "특정 스킬의 단순 피해/비용 증감은 기초 옵션으로 표시한다. 고유능력은 시전·충돌·이동·자원 사용 방식의 차이다.",
+      "implementation": "확정 lore·획득·배타 선택·슬롯·성장 저장 보존. 승인된 스킬/계열 기초 옵션 적용.",
       "acquisitionEvidence": {
         "status": "현재 런타임 획득 근거",
         "eventId": "eq_se_t2_choice",
@@ -232,7 +267,15 @@
           "shared/runtime/equipment-state.js"
         ]
       },
-      "settingScope": "이번 요청으로 작성한 사용 습관·배경 설정. 별도 장면·인물·퀘스트를 구현했다는 뜻은 아니다."
+      "settingScope": "이번 요청으로 작성한 사용 습관·배경 설정. 별도 장면·인물·퀘스트를 구현했다는 뜻은 아니다.",
+      "skillOptions": {
+        "skills": [
+          "A05",
+          "A07"
+        ],
+        "damage": 0.1,
+        "cost": 0
+      }
     },
     {
       "itemId": "itm_se_05",
@@ -266,19 +309,23 @@
       "eventId": "eq_se_t3a",
       "iconPath": "shared/assets/item-icons/v1/itm_se_05.webp",
       "lore": "고갯바람을 살피는 데 쓰던 장식이 관아 문서고에 들어와 있었다. 끈을 풀자 접혀 있던 깃이 다시 벌어졌다.",
-      "effectCategory": "basic",
-      "classification": "기초 옵션 + 수치 보정",
+      "effectCategory": "unique",
+      "classification": "고유능력",
       "conceptAndIcon": "긴 깃 활 장식 / 곡사",
       "currentModifier": {
         "effectId": "se_drop",
-        "summary": "급락시의 낙차 계수에 +0.10. 낙차 0에서는 이득 없음.",
+        "summary": "급락시가 바닥에서 낮게 한 번 튕깁니다. 튕김 위력65% · 남은 사거리 안 최대600 · 재적중 없음",
         "targetSkills": [
           "A11"
         ],
         "params": {
-          "dropCoefficientAdd": 0.1
+          "bounceDamage": 0.65,
+          "bounceDistance": 600
         },
-        "limits": "사거리·중력·최고점·기존 낙차 상한 불변. 파편/소환 제외."
+        "limits": "튕김 위력65% · 남은 사거리 안 최대600 · 재적중 없음",
+        "candidateId": "U01",
+        "benefit": "급락시가 바닥에서 낮게 한 번 튕깁니다.",
+        "limit": "튕김 위력65% · 남은 사거리 안 최대600 · 재적중 없음"
       },
       "proposedBasicTargets": [
         {
@@ -286,8 +333,8 @@
           "name": "급락시"
         }
       ],
-      "review": "현재 외형·개념과 연결 유지. 수치 보정은 고유능력으로 부르지 않는다.",
-      "implementation": "부모 확정 원고 그대로 적용. 기존 분류·옵션·효과·획득 조건·보상 선택·저장 구조는 유지.",
+      "review": "특정 스킬의 단순 피해/비용 증감은 기초 옵션으로 표시한다. 고유능력은 시전·충돌·이동·자원 사용 방식의 차이다.",
+      "implementation": "확정 lore·획득·배타 선택·슬롯·성장 저장 보존. 승인된 전술 효과 적용.",
       "acquisitionEvidence": {
         "status": "현재 런타임 획득 근거",
         "eventId": "eq_se_t3a",
@@ -296,7 +343,8 @@
           "shared/runtime/equipment-state.js"
         ]
       },
-      "settingScope": "이번 요청으로 작성한 사용 습관·배경 설정. 별도 장면·인물·퀘스트를 구현했다는 뜻은 아니다."
+      "settingScope": "이번 요청으로 작성한 사용 습관·배경 설정. 별도 장면·인물·퀘스트를 구현했다는 뜻은 아니다.",
+      "skillOptions": null
     },
     {
       "itemId": "itm_se_06",
@@ -330,19 +378,22 @@
       "eventId": "eq_se_t3b",
       "iconPath": "shared/assets/item-icons/v1/itm_se_06.webp",
       "lore": "나루에서 건너온 화살통. 한쪽 통을 비워 젖은 화살을 따로 담게 했다. 다시 쏘기 전에 어느 쪽인지 손으로 짚어 확인한다.",
-      "effectCategory": "basic",
-      "classification": "기초 옵션 + 수치 보정",
+      "effectCategory": "unique",
+      "classification": "고유능력",
       "conceptAndIcon": "이중 화살통 / 격퇴·연사",
       "currentModifier": {
         "effectId": "se_push",
-        "summary": "격퇴시의 첫 적 밀침 수평 성분 +20%.",
+        "summary": "격퇴된 첫 적이 벽에 닿으면 느려집니다. 이동35% 감속1턴 · 보스 제외",
         "targetSkills": [
           "A05"
         ],
         "params": {
-          "horizontalKnockbackScale": 1.2
+          "wallSlow": 0.35
         },
-        "limits": "수직 성분·후속 충돌 수·보스 면역 불변. 새 밀침/추가 피해 생성 없음."
+        "limits": "이동35% 감속1턴 · 보스 제외",
+        "candidateId": "U04",
+        "benefit": "격퇴된 첫 적이 벽에 닿으면 느려집니다.",
+        "limit": "이동35% 감속1턴 · 보스 제외"
       },
       "proposedBasicTargets": [
         {
@@ -350,8 +401,8 @@
           "name": "격퇴시"
         }
       ],
-      "review": "현재 외형·개념과 연결 유지. 수치 보정은 고유능력으로 부르지 않는다.",
-      "implementation": "부모 확정 원고 그대로 적용. 기존 분류·옵션·효과·획득 조건·보상 선택·저장 구조는 유지.",
+      "review": "특정 스킬의 단순 피해/비용 증감은 기초 옵션으로 표시한다. 고유능력은 시전·충돌·이동·자원 사용 방식의 차이다.",
+      "implementation": "확정 lore·획득·배타 선택·슬롯·성장 저장 보존. 승인된 전술 효과 적용.",
       "acquisitionEvidence": {
         "status": "현재 런타임 획득 근거",
         "eventId": "eq_se_t3b",
@@ -361,7 +412,8 @@
           "game/docs/act4/EQUIPMENT_FACT_HOOKS.md"
         ]
       },
-      "settingScope": "이번 요청으로 작성한 사용 습관·배경 설정. 별도 장면·인물·퀘스트를 구현했다는 뜻은 아니다."
+      "settingScope": "이번 요청으로 작성한 사용 습관·배경 설정. 별도 장면·인물·퀘스트를 구현했다는 뜻은 아니다.",
+      "skillOptions": null
     },
     {
       "itemId": "itm_se_07",
@@ -401,19 +453,23 @@
       "eventId": "eq_se_t4_choice",
       "iconPath": "shared/assets/item-icons/v1/itm_se_07.webp",
       "lore": "작은 구멍으로 먼 곳을 가늠하던 궁수의 장식. 오래 들여다보면 겨눈 것 곁의 움직임을 놓치기 쉬웠다고 한다.",
-      "effectCategory": "basic",
-      "classification": "기초 옵션 + 수치 보정",
+      "effectCategory": "unique",
+      "classification": "고유능력",
       "conceptAndIcon": "고리 활 장식 / 관통",
       "currentModifier": {
         "effectId": "se_pierce",
-        "summary": "관통시가 적·지원 목재를 지난 뒤 유지하는 피해 88%→94%.",
+        "summary": "마지막 관통 뒤 마무리 충격을 냅니다. 반경120 · 기본 피해45% · 마지막 직격 대상 제외",
         "targetSkills": [
           "A02"
         ],
         "params": {
-          "pierceRetain": 0.94
+          "finishRadius": 120,
+          "finishDamage": 0.45
         },
-        "limits": "첫 적 피해·관통 수·목재 두께 제한·사거리 불변."
+        "limits": "반경120 · 기본 피해45% · 마지막 직격 대상 제외",
+        "candidateId": "U02",
+        "benefit": "마지막 관통 뒤 마무리 충격을 냅니다.",
+        "limit": "반경120 · 기본 피해45% · 마지막 직격 대상 제외"
       },
       "proposedBasicTargets": [
         {
@@ -421,8 +477,8 @@
           "name": "관통시"
         }
       ],
-      "review": "현재 외형·개념과 연결 유지. 수치 보정은 고유능력으로 부르지 않는다.",
-      "implementation": "부모 확정 원고 그대로 적용. 기존 분류·옵션·효과·획득 조건·보상 선택·저장 구조는 유지.",
+      "review": "특정 스킬의 단순 피해/비용 증감은 기초 옵션으로 표시한다. 고유능력은 시전·충돌·이동·자원 사용 방식의 차이다.",
+      "implementation": "확정 lore·획득·배타 선택·슬롯·성장 저장 보존. 승인된 전술 효과 적용.",
       "acquisitionEvidence": {
         "status": "예약 비활성 · 실제 획득 사건 미정",
         "eventId": "eq_se_t4_choice",
@@ -432,7 +488,8 @@
           "shared/engine/src/equipmentData.ts"
         ]
       },
-      "settingScope": "과거 사용 용도에 한정한 창작 설정. 현재 획득자·장소·사건을 정하지 않는다."
+      "settingScope": "과거 사용 용도에 한정한 창작 설정. 현재 획득자·장소·사건을 정하지 않는다.",
+      "skillOptions": null
     },
     {
       "itemId": "itm_se_08",
@@ -472,20 +529,24 @@
       "eventId": "eq_se_t4_choice",
       "iconPath": "shared/assets/item-icons/v1/itm_se_08.webp",
       "lore": "화살을 뽑는 소리를 줄이려 입구에 천을 댄 화살통. 주인은 빈 통을 메고 돌아올 때에도 그 천을 걷어내지 않았다.",
-      "effectCategory": "basic",
-      "classification": "기초 옵션 + 수치 보정",
+      "effectCategory": "unique",
+      "classification": "고유능력",
       "conceptAndIcon": "천을 댄 화살통 / 회수",
       "currentModifier": {
         "effectId": "se_recover",
-        "summary": "회기시의 HP 회수율 +25%. 기존 한 사격 HP 15% 상한은 그대로.",
+        "summary": "기력이 낮을 때 체력은 그대로, 기력을 두 배 회수합니다. 시전 기력40% 이하 · 한 사격 기력25% 상한",
         "targetSkills": [
           "A06"
         ],
         "params": {
-          "hpRecoveryScale": 1.25,
-          "hpPerShotCap": 0.15
+          "lowFocus": 0.4,
+          "focusScale": 2,
+          "focusCap": 0.25
         },
-        "limits": "MP 회수와 상한 불변. 기존 실제 적 HP 손실만 사용, 별도 흡수/지원 XP 사건 생성 없음."
+        "limits": "시전 기력40% 이하 · 한 사격 기력25% 상한",
+        "candidateId": "U03",
+        "benefit": "기력이 낮을 때 체력은 그대로, 기력을 두 배 회수합니다.",
+        "limit": "시전 기력40% 이하 · 한 사격 기력25% 상한"
       },
       "proposedBasicTargets": [
         {
@@ -493,8 +554,8 @@
           "name": "회기시"
         }
       ],
-      "review": "현재 외형·개념과 연결 유지. 수치 보정은 고유능력으로 부르지 않는다.",
-      "implementation": "부모 확정 원고 그대로 적용. 기존 분류·옵션·효과·획득 조건·보상 선택·저장 구조는 유지.",
+      "review": "특정 스킬의 단순 피해/비용 증감은 기초 옵션으로 표시한다. 고유능력은 시전·충돌·이동·자원 사용 방식의 차이다.",
+      "implementation": "확정 lore·획득·배타 선택·슬롯·성장 저장 보존. 승인된 전술 효과 적용.",
       "acquisitionEvidence": {
         "status": "예약 비활성 · 실제 획득 사건 미정",
         "eventId": "eq_se_t4_choice",
@@ -504,7 +565,8 @@
           "shared/engine/src/equipmentData.ts"
         ]
       },
-      "settingScope": "과거 사용 용도에 한정한 창작 설정. 현재 획득자·장소·사건을 정하지 않는다."
+      "settingScope": "과거 사용 용도에 한정한 창작 설정. 현재 획득자·장소·사건을 정하지 않는다.",
+      "skillOptions": null
     },
     {
       "itemId": "itm_da_01",
@@ -527,7 +589,7 @@
       "iconPath": "shared/assets/item-icons/v1/itm_da_01.webp",
       "lore": "담허가 길에서 물을 얻을 때마다 내미는 호리병. 술법에 쓸 것과 마실 것은 꼭 따로 담는다.",
       "effectCategory": "none",
-      "classification": "기초 옵션만",
+      "classification": "기초 옵션",
       "conceptAndIcon": "박 호리병 / 호리병술",
       "currentModifier": null,
       "proposedBasicTargets": [
@@ -542,10 +604,18 @@
         {
           "id": "M04",
           "name": "뇌호"
+        },
+        {
+          "id": "M13",
+          "name": "연폭호"
+        },
+        {
+          "id": "M05",
+          "name": "천뢰호"
         }
       ],
-      "review": "현재 외형·개념과 연결 유지. 수치 보정은 고유능력으로 부르지 않는다. T1부터 해당 기본기/계열의 피해·범위·비용 보정을 기초 옵션으로 허용하는 안이며 아직 수치 적용 전이다.",
-      "implementation": "부모 확정 원고 그대로 적용. 기존 분류·옵션·효과·획득 조건·보상 선택·저장 구조는 유지.",
+      "review": "특정 스킬의 단순 피해/비용 증감은 기초 옵션으로 표시한다. 고유능력은 시전·충돌·이동·자원 사용 방식의 차이다.",
+      "implementation": "확정 lore·획득·배타 선택·슬롯·성장 저장 보존. 승인된 스킬/계열 기초 옵션 적용.",
       "acquisitionEvidence": {
         "status": "현재 런타임 획득 근거",
         "eventId": "eq_da_join",
@@ -554,7 +624,18 @@
           "shared/runtime/equipment-state.js"
         ]
       },
-      "settingScope": "이번 요청으로 작성한 사용 습관·배경 설정. 별도 장면·인물·퀘스트를 구현했다는 뜻은 아니다."
+      "settingScope": "이번 요청으로 작성한 사용 습관·배경 설정. 별도 장면·인물·퀘스트를 구현했다는 뜻은 아니다.",
+      "skillOptions": {
+        "skills": [
+          "M06",
+          "M02",
+          "M04",
+          "M13",
+          "M05"
+        ],
+        "damage": 0,
+        "cost": 0.05
+      }
     },
     {
       "itemId": "itm_da_02",
@@ -583,7 +664,7 @@
       "iconPath": "shared/assets/item-icons/v1/itm_da_02.webp",
       "lore": "문밖을 지키던 이들이 지팡이에 매던 숯칠 매듭. 밤새 문을 두드리는 소리가 나면, 손을 뻗기 전에 매듭부터 쥐었다.",
       "effectCategory": "none",
-      "classification": "기초 옵션만",
+      "classification": "기초 옵션",
       "conceptAndIcon": "지팡이 숯칠 매듭 / 기파·파문",
       "currentModifier": null,
       "proposedBasicTargets": [
@@ -596,8 +677,8 @@
           "name": "원호파"
         }
       ],
-      "review": "현재 외형·개념과 연결 유지. 수치 보정은 고유능력으로 부르지 않는다. T1부터 해당 기본기/계열의 피해·범위·비용 보정을 기초 옵션으로 허용하는 안이며 아직 수치 적용 전이다.",
-      "implementation": "부모 확정 원고 그대로 적용. 기존 분류·옵션·효과·획득 조건·보상 선택·저장 구조는 유지.",
+      "review": "특정 스킬의 단순 피해/비용 증감은 기초 옵션으로 표시한다. 고유능력은 시전·충돌·이동·자원 사용 방식의 차이다.",
+      "implementation": "확정 lore·획득·배타 선택·슬롯·성장 저장 보존. 승인된 스킬/계열 기초 옵션 적용.",
       "acquisitionEvidence": {
         "status": "현재 런타임 획득 근거",
         "eventId": "eq_da_gate",
@@ -606,7 +687,15 @@
           "shared/runtime/equipment-state.js"
         ]
       },
-      "settingScope": "이번 요청으로 작성한 사용 습관·배경 설정. 별도 장면·인물·퀘스트를 구현했다는 뜻은 아니다."
+      "settingScope": "이번 요청으로 작성한 사용 습관·배경 설정. 별도 장면·인물·퀘스트를 구현했다는 뜻은 아니다.",
+      "skillOptions": {
+        "skills": [
+          "M01",
+          "M03"
+        ],
+        "damage": 0.06,
+        "cost": 0
+      }
     },
     {
       "itemId": "itm_da_03",
@@ -641,7 +730,7 @@
       "iconPath": "shared/assets/item-icons/v1/itm_da_03.webp",
       "lore": "잠운사에 남은 지팡이장식. 술법을 익히던 이는 같은 파문을 거듭 펼치며 끈의 길이를 조금씩 줄였다.",
       "effectCategory": "none",
-      "classification": "기초 옵션만",
+      "classification": "기초 옵션",
       "conceptAndIcon": "지팡이 쇠장식 / 기파·파문",
       "currentModifier": null,
       "proposedBasicTargets": [
@@ -670,8 +759,8 @@
           "name": "팔괘파"
         }
       ],
-      "review": "청뢰 지팡이장식: 현재는 범용 공격/기력 옵션뿐. 기파 M01 및 파문 계열의 단순 보정을 T2 기초 옵션으로 제안한다. 고유능력 포장은 하지 않는다. T1부터 해당 기본기/계열의 피해·범위·비용 보정을 기초 옵션으로 허용하는 안이며 아직 수치 적용 전이다.",
-      "implementation": "부모 확정 원고 그대로 적용. 기존 분류·옵션·효과·획득 조건·보상 선택·저장 구조는 유지.",
+      "review": "특정 스킬의 단순 피해/비용 증감은 기초 옵션으로 표시한다. 고유능력은 시전·충돌·이동·자원 사용 방식의 차이다.",
+      "implementation": "확정 lore·획득·배타 선택·슬롯·성장 저장 보존. 승인된 스킬/계열 기초 옵션 적용.",
       "acquisitionEvidence": {
         "status": "현재 런타임 획득 근거",
         "eventId": "eq_da_t2_choice",
@@ -680,7 +769,19 @@
           "shared/runtime/equipment-state.js"
         ]
       },
-      "settingScope": "이번 요청으로 작성한 사용 습관·배경 설정. 별도 장면·인물·퀘스트를 구현했다는 뜻은 아니다."
+      "settingScope": "이번 요청으로 작성한 사용 습관·배경 설정. 별도 장면·인물·퀘스트를 구현했다는 뜻은 아니다.",
+      "skillOptions": {
+        "skills": [
+          "M01",
+          "M03",
+          "M11",
+          "M12",
+          "M14",
+          "M15"
+        ],
+        "damage": 0.1,
+        "cost": 0
+      }
     },
     {
       "itemId": "itm_da_04",
@@ -715,7 +816,7 @@
       "iconPath": "shared/assets/item-icons/v1/itm_da_04.webp",
       "lore": "잠운사에서 물을 조금씩 나누어 따르던 병. 종 아래서 물을 청했다는 말을 듣고, 담허는 남은 물이 있는지 먼저 살폈다.",
       "effectCategory": "none",
-      "classification": "기초 옵션만",
+      "classification": "기초 옵션",
       "conceptAndIcon": "끈 두른 병 / 호리병술",
       "currentModifier": null,
       "proposedBasicTargets": [
@@ -728,8 +829,8 @@
           "name": "뇌호"
         }
       ],
-      "review": "현재 외형·개념과 연결 유지. 수치 보정은 고유능력으로 부르지 않는다. T1부터 해당 기본기/계열의 피해·범위·비용 보정을 기초 옵션으로 허용하는 안이며 아직 수치 적용 전이다.",
-      "implementation": "부모 확정 원고 그대로 적용. 기존 분류·옵션·효과·획득 조건·보상 선택·저장 구조는 유지.",
+      "review": "특정 스킬의 단순 피해/비용 증감은 기초 옵션으로 표시한다. 고유능력은 시전·충돌·이동·자원 사용 방식의 차이다.",
+      "implementation": "확정 lore·획득·배타 선택·슬롯·성장 저장 보존. 승인된 스킬/계열 기초 옵션 적용.",
       "acquisitionEvidence": {
         "status": "현재 런타임 획득 근거",
         "eventId": "eq_da_t2_choice",
@@ -738,7 +839,15 @@
           "shared/runtime/equipment-state.js"
         ]
       },
-      "settingScope": "이번 요청으로 작성한 사용 습관·배경 설정. 별도 장면·인물·퀘스트를 구현했다는 뜻은 아니다."
+      "settingScope": "이번 요청으로 작성한 사용 습관·배경 설정. 별도 장면·인물·퀘스트를 구현했다는 뜻은 아니다.",
+      "skillOptions": {
+        "skills": [
+          "M02",
+          "M04"
+        ],
+        "damage": 0,
+        "cost": 0.08
+      }
     },
     {
       "itemId": "itm_da_05",
@@ -772,20 +881,23 @@
       "eventId": "eq_da_t3a",
       "iconPath": "shared/assets/item-icons/v1/itm_da_05.webp",
       "lore": "옛 수문에서 진을 세우던 잔영을 본 뒤, 담허가 지팡이에 옮겨 단 매듭. 끈을 풀어 보려다 매인 순서를 잊지 않으려고 그대로 두었다.",
-      "effectCategory": "basic",
-      "classification": "기초 옵션 + 수치 보정",
+      "effectCategory": "unique",
+      "classification": "고유능력",
       "conceptAndIcon": "지팡이 대통 매듭 / 기파·파문",
       "currentModifier": {
         "effectId": "da_stake",
-        "summary": "파진목 유지 +1라운드.",
+        "summary": "반탄파가 분열 대신 두 번 더 반사합니다. 한 발 집중형 · 반사 후 위력90% · 수명 유지",
         "targetSkills": [
-          "M07"
+          "M11"
         ],
         "params": {
-          "lifetimeRoundsAdd": 1,
-          "maxLifetimeRounds": 10
+          "extraReflections": 2,
+          "reflectionRetain": 0.9
         },
-        "limits": "M09 축지·M10 회생진목 제외. 틱당 피해·대상별 턴당 1회·기존 설치 정책 불변."
+        "limits": "한 발 집중형 · 반사 후 위력90% · 수명 유지",
+        "candidateId": "U07",
+        "benefit": "반탄파가 분열 대신 두 번 더 반사합니다.",
+        "limit": "한 발 집중형 · 반사 후 위력90% · 수명 유지"
       },
       "proposedBasicTargets": [
         {
@@ -801,8 +913,8 @@
           "name": "삼재파"
         }
       ],
-      "review": "지팡이 매듭인데 파진목 M07 수명 보정. 기파·반탄파·삼재파 쪽으로 재매핑 제안. 현재 M07 효과는 이번에 바꾸지 않았다.",
-      "implementation": "부모 확정 원고 그대로 적용. 기존 분류·옵션·효과·획득 조건·보상 선택·저장 구조는 유지.",
+      "review": "특정 스킬의 단순 피해/비용 증감은 기초 옵션으로 표시한다. 고유능력은 시전·충돌·이동·자원 사용 방식의 차이다.",
+      "implementation": "확정 lore·획득·배타 선택·슬롯·성장 저장 보존. 승인된 전술 효과 적용.",
       "acquisitionEvidence": {
         "status": "현재 런타임 획득 근거",
         "eventId": "eq_da_t3a",
@@ -811,7 +923,8 @@
           "shared/runtime/equipment-state.js"
         ]
       },
-      "settingScope": "이번 요청으로 작성한 사용 습관·배경 설정. 별도 장면·인물·퀘스트를 구현했다는 뜻은 아니다."
+      "settingScope": "이번 요청으로 작성한 사용 습관·배경 설정. 별도 장면·인물·퀘스트를 구현했다는 뜻은 아니다.",
+      "skillOptions": null
     },
     {
       "itemId": "itm_da_06",
@@ -845,19 +958,24 @@
       "eventId": "eq_da_t3b",
       "iconPath": "shared/assets/item-icons/v1/itm_da_06.webp",
       "lore": "숲의 빈터를 지나 동행이 담허에게 건넨 병. 한 손으로 마개를 열 수 있어, 다른 손으로 누군가를 부축할 때에도 쓸 수 있다.",
-      "effectCategory": "basic",
-      "classification": "기초 옵션 + 수치 보정",
+      "effectCategory": "unique",
+      "classification": "고유능력",
       "conceptAndIcon": "유약 병 / 호리병술",
       "currentModifier": {
         "effectId": "da_heal",
-        "summary": "회생진목의 기존 HP 회복량 +20%.",
+        "summary": "빙호가 터진 자리에 서리를 남깁니다. 폭발100% · 파편75% · 반경160/감속35%/1턴",
         "targetSkills": [
-          "M10"
+          "M02"
         ],
         "params": {
-          "hpHealScale": 1.2
+          "frostRadius": 160,
+          "frostSlow": 0.35,
+          "fragmentScale": 0.75
         },
-        "limits": "MP·이동 회복·범위·수명·아군별 턴당 1회 불변. 기존 치유 이벤트 한 번만 정산."
+        "limits": "폭발100% · 파편75% · 반경160/감속35%/1턴",
+        "candidateId": "U08",
+        "benefit": "빙호가 터진 자리에 서리를 남깁니다.",
+        "limit": "폭발100% · 파편75% · 반경160/감속35%/1턴"
       },
       "proposedBasicTargets": [
         {
@@ -881,8 +999,8 @@
           "name": "천뢰호"
         }
       ],
-      "review": "맑은숨 호리병: M10 회생진목 HP +20%는 진법 수치 보정이며 외형과 불일치. 호리병술 M06/M02/M04/M13/M05의 기초 옵션 + 후보 U08로 교체 검토. 이번 게임에는 기존 M10을 기초 보정으로만 표기한다.",
-      "implementation": "부모 확정 원고 그대로 적용. 기존 분류·옵션·효과·획득 조건·보상 선택·저장 구조는 유지.",
+      "review": "특정 스킬의 단순 피해/비용 증감은 기초 옵션으로 표시한다. 고유능력은 시전·충돌·이동·자원 사용 방식의 차이다.",
+      "implementation": "확정 lore·획득·배타 선택·슬롯·성장 저장 보존. 승인된 전술 효과 적용.",
       "acquisitionEvidence": {
         "status": "현재 런타임 획득 근거",
         "eventId": "eq_da_t3b",
@@ -892,7 +1010,8 @@
           "game/docs/act4/EQUIPMENT_FACT_HOOKS.md"
         ]
       },
-      "settingScope": "이번 요청으로 작성한 사용 습관·배경 설정. 별도 장면·인물·퀘스트를 구현했다는 뜻은 아니다."
+      "settingScope": "이번 요청으로 작성한 사용 습관·배경 설정. 별도 장면·인물·퀘스트를 구현했다는 뜻은 아니다.",
+      "skillOptions": null
     },
     {
       "itemId": "itm_da_07",
@@ -932,20 +1051,23 @@
       "eventId": "eq_da_t4_choice",
       "iconPath": "shared/assets/item-icons/v1/itm_da_07.webp",
       "lore": "벼락 술법을 익히던 이가 쓰던 호리병. 병을 쥐는 손보다 마개를 여는 손을 더 엄하게 가르쳤다고 한다.",
-      "effectCategory": "basic",
-      "classification": "기초 옵션 + 수치 보정",
+      "effectCategory": "unique",
+      "classification": "고유능력",
       "conceptAndIcon": "그을린 병 / 화호·천뢰호",
       "currentModifier": {
         "effectId": "da_sky",
-        "summary": "천뢰호 위력 +18%, 폭발 반경 -10%. 하늘 낙뢰 방식은 그대로.",
+        "summary": "천뢰호의 중심 적에게 강한 벼락을 내립니다. 중심180% · 나머지60% · 상부 차폐 유지",
         "targetSkills": [
           "M05"
         ],
         "params": {
-          "damageScale": 1.18,
-          "radiusScale": 0.9
+          "focusDamage": 1.8,
+          "otherDamage": 0.6
         },
-        "limits": "기존 0.35초 대기·상부 차폐·표적별 판정·총 타격 수 불변."
+        "limits": "중심180% · 나머지60% · 상부 차폐 유지",
+        "candidateId": "U09",
+        "benefit": "천뢰호의 중심 적에게 강한 벼락을 내립니다.",
+        "limit": "중심180% · 나머지60% · 상부 차폐 유지"
       },
       "proposedBasicTargets": [
         {
@@ -957,8 +1079,8 @@
           "name": "화호"
         }
       ],
-      "review": "현재 외형·개념과 연결 유지. 수치 보정은 고유능력으로 부르지 않는다.",
-      "implementation": "부모 확정 원고 그대로 적용. 기존 분류·옵션·효과·획득 조건·보상 선택·저장 구조는 유지.",
+      "review": "특정 스킬의 단순 피해/비용 증감은 기초 옵션으로 표시한다. 고유능력은 시전·충돌·이동·자원 사용 방식의 차이다.",
+      "implementation": "확정 lore·획득·배타 선택·슬롯·성장 저장 보존. 승인된 전술 효과 적용.",
       "acquisitionEvidence": {
         "status": "예약 비활성 · 실제 획득 사건 미정",
         "eventId": "eq_da_t4_choice",
@@ -968,7 +1090,8 @@
           "shared/engine/src/equipmentData.ts"
         ]
       },
-      "settingScope": "과거 사용 용도에 한정한 창작 설정. 현재 획득자·장소·사건을 정하지 않는다."
+      "settingScope": "과거 사용 용도에 한정한 창작 설정. 현재 획득자·장소·사건을 정하지 않는다.",
+      "skillOptions": null
     },
     {
       "itemId": "itm_da_08",
@@ -1008,20 +1131,22 @@
       "eventId": "eq_da_t4_choice",
       "iconPath": "shared/assets/item-icons/v1/itm_da_08.webp",
       "lore": "지팡이 끝에 걸어 파문의 퍼짐을 가늠하던 고리. 원을 새긴 홈마다 손가락이 멎던 자리가 다르다.",
-      "effectCategory": "basic",
-      "classification": "기초 옵션 + 수치 보정",
+      "effectCategory": "unique",
+      "classification": "고유능력",
       "conceptAndIcon": "원형 고리 / 원호파·동심파",
       "currentModifier": {
         "effectId": "da_arc",
-        "summary": "원호파의 두께 +20%, 위력 -10%. 반경·각도는 그대로.",
+        "summary": "벽에 닿은 원호파를 뒤로 넓게 펼칩니다. 위력100% · 각도20% 확대 · 반경 유지",
         "targetSkills": [
           "M03"
         ],
         "params": {
-          "geometryThicknessScale": 1.2,
-          "damageScale": 0.9
+          "arcSpan": 1.2
         },
-        "limits": "반경·각도·발사체 사거리·차폐·타격 수 불변."
+        "limits": "위력100% · 각도20% 확대 · 반경 유지",
+        "candidateId": "U06",
+        "benefit": "벽에 닿은 원호파를 뒤로 넓게 펼칩니다.",
+        "limit": "위력100% · 각도20% 확대 · 반경 유지"
       },
       "proposedBasicTargets": [
         {
@@ -1033,8 +1158,8 @@
           "name": "동심파"
         }
       ],
-      "review": "현재 외형·개념과 연결 유지. 수치 보정은 고유능력으로 부르지 않는다.",
-      "implementation": "부모 확정 원고 그대로 적용. 기존 분류·옵션·효과·획득 조건·보상 선택·저장 구조는 유지.",
+      "review": "특정 스킬의 단순 피해/비용 증감은 기초 옵션으로 표시한다. 고유능력은 시전·충돌·이동·자원 사용 방식의 차이다.",
+      "implementation": "확정 lore·획득·배타 선택·슬롯·성장 저장 보존. 승인된 전술 효과 적용.",
       "acquisitionEvidence": {
         "status": "예약 비활성 · 실제 획득 사건 미정",
         "eventId": "eq_da_t4_choice",
@@ -1044,7 +1169,8 @@
           "shared/engine/src/equipmentData.ts"
         ]
       },
-      "settingScope": "과거 사용 용도에 한정한 창작 설정. 현재 획득자·장소·사건을 정하지 않는다."
+      "settingScope": "과거 사용 용도에 한정한 창작 설정. 현재 획득자·장소·사건을 정하지 않는다.",
+      "skillOptions": null
     },
     {
       "itemId": "itm_hw_01",
@@ -1067,7 +1193,7 @@
       "iconPath": "shared/assets/item-icons/v1/itm_hw_01.webp",
       "lore": "휘겸이 칼을 잡기 전에 감는 삼베. 다친 손목을 받치는 날에도 감는 순서는 바꾸지 않는다.",
       "effectCategory": "none",
-      "classification": "기초 옵션만",
+      "classification": "기초 옵션",
       "conceptAndIcon": "삼베 감개 / 근접 기본기",
       "currentModifier": null,
       "proposedBasicTargets": [
@@ -1080,8 +1206,8 @@
           "name": "횡참"
         }
       ],
-      "review": "현재 외형·개념과 연결 유지. 수치 보정은 고유능력으로 부르지 않는다. T1부터 해당 기본기/계열의 피해·범위·비용 보정을 기초 옵션으로 허용하는 안이며 아직 수치 적용 전이다.",
-      "implementation": "부모 확정 원고 그대로 적용. 기존 분류·옵션·효과·획득 조건·보상 선택·저장 구조는 유지.",
+      "review": "특정 스킬의 단순 피해/비용 증감은 기초 옵션으로 표시한다. 고유능력은 시전·충돌·이동·자원 사용 방식의 차이다.",
+      "implementation": "확정 lore·획득·배타 선택·슬롯·성장 저장 보존. 승인된 스킬/계열 기초 옵션 적용.",
       "acquisitionEvidence": {
         "status": "현재 런타임 획득 근거",
         "eventId": "eq_hw_join",
@@ -1090,7 +1216,15 @@
           "shared/runtime/equipment-state.js"
         ]
       },
-      "settingScope": "이번 요청으로 작성한 사용 습관·배경 설정. 별도 장면·인물·퀘스트를 구현했다는 뜻은 아니다."
+      "settingScope": "이번 요청으로 작성한 사용 습관·배경 설정. 별도 장면·인물·퀘스트를 구현했다는 뜻은 아니다.",
+      "skillOptions": {
+        "skills": [
+          "S00",
+          "S03"
+        ],
+        "damage": 0.06,
+        "cost": 0
+      }
     },
     {
       "itemId": "itm_hw_02",
@@ -1119,7 +1253,7 @@
       "iconPath": "shared/assets/item-icons/v1/itm_hw_02.webp",
       "lore": "빈 상여가 돌아오던 길에 남은 칼끈. 칼은 보이지 않았고, 끈에는 급히 잘라낸 짧은 끝만 남았다.",
       "effectCategory": "none",
-      "classification": "기초 옵션만",
+      "classification": "기초 옵션",
       "conceptAndIcon": "칼끈 / 검기",
       "currentModifier": null,
       "proposedBasicTargets": [
@@ -1132,8 +1266,8 @@
           "name": "관통참"
         }
       ],
-      "review": "현재 외형·개념과 연결 유지. 수치 보정은 고유능력으로 부르지 않는다. T1부터 해당 기본기/계열의 피해·범위·비용 보정을 기초 옵션으로 허용하는 안이며 아직 수치 적용 전이다.",
-      "implementation": "부모 확정 원고 그대로 적용. 기존 분류·옵션·효과·획득 조건·보상 선택·저장 구조는 유지.",
+      "review": "특정 스킬의 단순 피해/비용 증감은 기초 옵션으로 표시한다. 고유능력은 시전·충돌·이동·자원 사용 방식의 차이다.",
+      "implementation": "확정 lore·획득·배타 선택·슬롯·성장 저장 보존. 승인된 스킬/계열 기초 옵션 적용.",
       "acquisitionEvidence": {
         "status": "현재 런타임 획득 근거",
         "eventId": "eq_hw_bier",
@@ -1142,7 +1276,15 @@
           "shared/runtime/equipment-state.js"
         ]
       },
-      "settingScope": "이번 요청으로 작성한 사용 습관·배경 설정. 별도 장면·인물·퀘스트를 구현했다는 뜻은 아니다."
+      "settingScope": "이번 요청으로 작성한 사용 습관·배경 설정. 별도 장면·인물·퀘스트를 구현했다는 뜻은 아니다.",
+      "skillOptions": {
+        "skills": [
+          "S09",
+          "S11"
+        ],
+        "damage": 0,
+        "cost": 0.05
+      }
     },
     {
       "itemId": "itm_hw_03",
@@ -1177,7 +1319,7 @@
       "iconPath": "shared/assets/item-icons/v1/itm_hw_03.webp",
       "lore": "인양틀 곁에서 거둔 손목감개. 무거운 줄을 붙들던 손에도, 그 줄을 끊으려던 손에도 맞을 만한 크기다.",
       "effectCategory": "none",
-      "classification": "기초 옵션만",
+      "classification": "기초 옵션",
       "conceptAndIcon": "금속 손목대 / 근접 받아내기",
       "currentModifier": null,
       "proposedBasicTargets": [
@@ -1190,8 +1332,8 @@
           "name": "회신참"
         }
       ],
-      "review": "현재 외형·개념과 연결 유지. 수치 보정은 고유능력으로 부르지 않는다. T1부터 해당 기본기/계열의 피해·범위·비용 보정을 기초 옵션으로 허용하는 안이며 아직 수치 적용 전이다.",
-      "implementation": "부모 확정 원고 그대로 적용. 기존 분류·옵션·효과·획득 조건·보상 선택·저장 구조는 유지.",
+      "review": "특정 스킬의 단순 피해/비용 증감은 기초 옵션으로 표시한다. 고유능력은 시전·충돌·이동·자원 사용 방식의 차이다.",
+      "implementation": "확정 lore·획득·배타 선택·슬롯·성장 저장 보존. 승인된 스킬/계열 기초 옵션 적용.",
       "acquisitionEvidence": {
         "status": "현재 런타임 획득 근거",
         "eventId": "eq_hw_t2_choice",
@@ -1200,7 +1342,15 @@
           "shared/runtime/equipment-state.js"
         ]
       },
-      "settingScope": "이번 요청으로 작성한 사용 습관·배경 설정. 별도 장면·인물·퀘스트를 구현했다는 뜻은 아니다."
+      "settingScope": "이번 요청으로 작성한 사용 습관·배경 설정. 별도 장면·인물·퀘스트를 구현했다는 뜻은 아니다.",
+      "skillOptions": {
+        "skills": [
+          "S08",
+          "S05"
+        ],
+        "damage": 0.1,
+        "cost": 0
+      }
     },
     {
       "itemId": "itm_hw_04",
@@ -1235,7 +1385,7 @@
       "iconPath": "shared/assets/item-icons/v1/itm_hw_04.webp",
       "lore": "인양 장치 곁에 남아 있던 검집끈. 칼을 뽑을 때 검집이 흔들리지 않도록 허리에 두 번 감게 되어 있다.",
       "effectCategory": "none",
-      "classification": "기초 옵션만",
+      "classification": "기초 옵션",
       "conceptAndIcon": "검집끈 / 견인·검기",
       "currentModifier": null,
       "proposedBasicTargets": [
@@ -1248,8 +1398,8 @@
           "name": "관통참"
         }
       ],
-      "review": "현재 외형·개념과 연결 유지. 수치 보정은 고유능력으로 부르지 않는다. T1부터 해당 기본기/계열의 피해·범위·비용 보정을 기초 옵션으로 허용하는 안이며 아직 수치 적용 전이다.",
-      "implementation": "부모 확정 원고 그대로 적용. 기존 분류·옵션·효과·획득 조건·보상 선택·저장 구조는 유지.",
+      "review": "특정 스킬의 단순 피해/비용 증감은 기초 옵션으로 표시한다. 고유능력은 시전·충돌·이동·자원 사용 방식의 차이다.",
+      "implementation": "확정 lore·획득·배타 선택·슬롯·성장 저장 보존. 승인된 스킬/계열 기초 옵션 적용.",
       "acquisitionEvidence": {
         "status": "현재 런타임 획득 근거",
         "eventId": "eq_hw_t2_choice",
@@ -1258,7 +1408,15 @@
           "shared/runtime/equipment-state.js"
         ]
       },
-      "settingScope": "이번 요청으로 작성한 사용 습관·배경 설정. 별도 장면·인물·퀘스트를 구현했다는 뜻은 아니다."
+      "settingScope": "이번 요청으로 작성한 사용 습관·배경 설정. 별도 장면·인물·퀘스트를 구현했다는 뜻은 아니다.",
+      "skillOptions": {
+        "skills": [
+          "S10",
+          "S11"
+        ],
+        "damage": 0,
+        "cost": 0.08
+      }
     },
     {
       "itemId": "itm_hw_05",
@@ -1292,20 +1450,22 @@
       "eventId": "eq_hw_t3a",
       "iconPath": "shared/assets/item-icons/v1/itm_hw_05.webp",
       "lore": "가문 문장이 남은 저택에서 거둔 칼끈. 휘겸은 집안에서 쓰던 매듭을 알아보았지만, 누구의 것인지는 말하지 못했다.",
-      "effectCategory": "basic",
-      "classification": "기초 옵션 + 수치 보정",
+      "effectCategory": "unique",
+      "classification": "고유능력",
       "conceptAndIcon": "가벼운 칼끈 / 도약",
       "currentModifier": {
         "effectId": "hw_jump_cost",
-        "summary": "일반 점프의 이동력 비용 -20. 최소 비용 25.",
+        "summary": "도약참 뒤 안전한 뒷자리로 착지합니다. 피해 유지 · 최대180 · 불가 경로는 원래 착지",
         "targetSkills": [
-          "JUMP"
+          "S01"
         ],
         "params": {
-          "jumpCostFlatReduction": 20,
-          "minJumpCost": 25
+          "retreatDistance": 180
         },
-        "limits": "추가 점프·돌격 거리·물/낙사 면제 없음. 기존 SP03과 합산 후 최저25."
+        "limits": "피해 유지 · 최대180 · 불가 경로는 원래 착지",
+        "candidateId": "U11",
+        "benefit": "도약참 뒤 안전한 뒷자리로 착지합니다.",
+        "limit": "피해 유지 · 최대180 · 불가 경로는 원래 착지"
       },
       "proposedBasicTargets": [
         {
@@ -1313,8 +1473,8 @@
           "name": "도약참"
         }
       ],
-      "review": "현재 외형·개념과 연결 유지. 수치 보정은 고유능력으로 부르지 않는다.",
-      "implementation": "부모 확정 원고 그대로 적용. 기존 분류·옵션·효과·획득 조건·보상 선택·저장 구조는 유지.",
+      "review": "특정 스킬의 단순 피해/비용 증감은 기초 옵션으로 표시한다. 고유능력은 시전·충돌·이동·자원 사용 방식의 차이다.",
+      "implementation": "확정 lore·획득·배타 선택·슬롯·성장 저장 보존. 승인된 전술 효과 적용.",
       "acquisitionEvidence": {
         "status": "현재 런타임 획득 근거",
         "eventId": "eq_hw_t3a",
@@ -1323,7 +1483,8 @@
           "shared/runtime/equipment-state.js"
         ]
       },
-      "settingScope": "이번 요청으로 작성한 사용 습관·배경 설정. 별도 장면·인물·퀘스트를 구현했다는 뜻은 아니다."
+      "settingScope": "이번 요청으로 작성한 사용 습관·배경 설정. 별도 장면·인물·퀘스트를 구현했다는 뜻은 아니다.",
+      "skillOptions": null
     },
     {
       "itemId": "itm_hw_06",
@@ -1357,19 +1518,23 @@
       "eventId": "eq_hw_t3b",
       "iconPath": "shared/assets/item-icons/v1/itm_hw_06.webp",
       "lore": "외곽의 정예가 쓰러진 뒤 남은 손목감개. 끈을 풀자 눌려 있던 안감이 천천히 펴졌다. 안쪽까지 단단히 조여 썼다.",
-      "effectCategory": "basic",
-      "classification": "기초 옵션 + 수치 보정",
+      "effectCategory": "unique",
+      "classification": "고유능력",
       "conceptAndIcon": "두꺼운 감개 / 사생참",
       "currentModifier": {
         "effectId": "hw_life",
-        "summary": "사생참의 실제 HP 소비분이 더하는 피해 +15%.",
+        "summary": "사생참의 체력 비용 절반을 기력으로 대신 냅니다. 대체 HP의25% 기력 대납 · 기력 부족 시 원래 HP 비용",
         "targetSkills": [
           "S02"
         ],
         "params": {
-          "lifeCostDamageScale": 1.15
+          "lifeShare": 0.5,
+          "focusPerHp": 0.25
         },
-        "limits": "HP 비용 floor(현재 HP/3)은 그대로 먼저 지불. 기본 피해·실제 비용·자해 보상은 복제하지 않음."
+        "limits": "대체 HP의25% 기력 대납 · 기력 부족 시 원래 HP 비용",
+        "candidateId": "U12",
+        "benefit": "사생참의 체력 비용 절반을 기력으로 대신 냅니다.",
+        "limit": "대체 HP의25% 기력 대납 · 기력 부족 시 원래 HP 비용"
       },
       "proposedBasicTargets": [
         {
@@ -1377,8 +1542,8 @@
           "name": "사생참"
         }
       ],
-      "review": "현재 외형·개념과 연결 유지. 수치 보정은 고유능력으로 부르지 않는다.",
-      "implementation": "부모 확정 원고 그대로 적용. 기존 분류·옵션·효과·획득 조건·보상 선택·저장 구조는 유지.",
+      "review": "특정 스킬의 단순 피해/비용 증감은 기초 옵션으로 표시한다. 고유능력은 시전·충돌·이동·자원 사용 방식의 차이다.",
+      "implementation": "확정 lore·획득·배타 선택·슬롯·성장 저장 보존. 승인된 전술 효과 적용.",
       "acquisitionEvidence": {
         "status": "현재 런타임 획득 근거",
         "eventId": "eq_hw_t3b",
@@ -1388,7 +1553,8 @@
           "game/docs/act4/EQUIPMENT_FACT_HOOKS.md"
         ]
       },
-      "settingScope": "이번 요청으로 작성한 사용 습관·배경 설정. 별도 장면·인물·퀘스트를 구현했다는 뜻은 아니다."
+      "settingScope": "이번 요청으로 작성한 사용 습관·배경 설정. 별도 장면·인물·퀘스트를 구현했다는 뜻은 아니다.",
+      "skillOptions": null
     },
     {
       "itemId": "itm_hw_07",
@@ -1428,21 +1594,23 @@
       "eventId": "eq_hw_t4_choice",
       "iconPath": "shared/assets/item-icons/v1/itm_hw_07.webp",
       "lore": "반격을 익히던 무사가 오래 쓴 감개. 안쪽에는 손목을 뒤로 젖히지 말라는 짧은 글이 남아 있다.",
-      "effectCategory": "basic",
-      "classification": "기초 옵션 + 수치 보정",
+      "effectCategory": "unique",
+      "classification": "고유능력",
       "conceptAndIcon": "겹판 감개 / 응수세",
       "currentModifier": {
         "effectId": "hw_guard",
-        "summary": "피격 직전 HP가 30% 이하면 방어 +3%p.",
+        "summary": "반격을 그대로 맞히고 밀어내며 물러섭니다. 적 최대100/자기 최대120 · 턴주기1회 · 안전 지면만",
         "targetSkills": [
-          "INCOMING_NORMAL"
+          "S08"
         ],
         "params": {
-          "hpThreshold": 0.3,
-          "armorAdd": 0.03,
-          "armorCap": 0.7
+          "counterPush": 100,
+          "counterRetreat": 120
         },
-        "limits": "기존 방어70% 상한·보스/환경/추락 규칙 유지. 새 보호막·불굴·무적 없음."
+        "limits": "적 최대100/자기 최대120 · 턴주기1회 · 안전 지면만",
+        "candidateId": "U13",
+        "benefit": "반격을 그대로 맞히고 밀어내며 물러섭니다.",
+        "limit": "적 최대100/자기 최대120 · 턴주기1회 · 안전 지면만"
       },
       "proposedBasicTargets": [
         {
@@ -1450,8 +1618,8 @@
           "name": "응수세"
         }
       ],
-      "review": "현재 외형·개념과 연결 유지. 수치 보정은 고유능력으로 부르지 않는다.",
-      "implementation": "부모 확정 원고 그대로 적용. 기존 분류·옵션·효과·획득 조건·보상 선택·저장 구조는 유지.",
+      "review": "특정 스킬의 단순 피해/비용 증감은 기초 옵션으로 표시한다. 고유능력은 시전·충돌·이동·자원 사용 방식의 차이다.",
+      "implementation": "확정 lore·획득·배타 선택·슬롯·성장 저장 보존. 승인된 전술 효과 적용.",
       "acquisitionEvidence": {
         "status": "예약 비활성 · 실제 획득 사건 미정",
         "eventId": "eq_hw_t4_choice",
@@ -1461,7 +1629,8 @@
           "shared/engine/src/equipmentData.ts"
         ]
       },
-      "settingScope": "과거 사용 용도에 한정한 창작 설정. 현재 획득자·장소·사건을 정하지 않는다."
+      "settingScope": "과거 사용 용도에 한정한 창작 설정. 현재 획득자·장소·사건을 정하지 않는다.",
+      "skillOptions": null
     },
     {
       "itemId": "itm_hw_08",
@@ -1501,24 +1670,22 @@
       "eventId": "eq_hw_t4_choice",
       "iconPath": "shared/assets/item-icons/v1/itm_hw_08.webp",
       "lore": "긴 검기를 다루던 이의 검집끈. 칼을 넣고도 한동안 손을 떼지 않는 버릇 때문에, 고리 한쪽만 깊이 닳았다.",
-      "effectCategory": "basic",
-      "classification": "기초 옵션 + 수치 보정",
+      "effectCategory": "unique",
+      "classification": "고유능력",
       "conceptAndIcon": "긴 검집끈 / 회륜검기",
       "currentModifier": {
         "effectId": "hw_blade",
-        "summary": "검기 계통의 기력 비용 -15%, 위력 -8%.",
+        "summary": "월영참이 바닥을 따라 더 전진합니다. 최대400 · 원래 수명·사거리 · 벼랑/벽에서 종료",
         "targetSkills": [
-          "S09",
-          "S10",
-          "S11",
-          "S14",
-          "S12"
+          "S09"
         ],
         "params": {
-          "manaDiscount": 0.15,
-          "damageScale": 0.92
+          "groundDistance": 400
         },
-        "limits": "사거리·검기 수·관통·후속 타격 원장 불변. 원래 무료가 되는 기예는 계속 무료."
+        "limits": "최대400 · 원래 수명·사거리 · 벼랑/벽에서 종료",
+        "candidateId": "U10",
+        "benefit": "월영참이 바닥을 따라 더 전진합니다.",
+        "limit": "최대400 · 원래 수명·사거리 · 벼랑/벽에서 종료"
       },
       "proposedBasicTargets": [
         {
@@ -1530,8 +1697,8 @@
           "name": "파열참"
         }
       ],
-      "review": "현재 외형·개념과 연결 유지. 수치 보정은 고유능력으로 부르지 않는다.",
-      "implementation": "부모 확정 원고 그대로 적용. 기존 분류·옵션·효과·획득 조건·보상 선택·저장 구조는 유지.",
+      "review": "특정 스킬의 단순 피해/비용 증감은 기초 옵션으로 표시한다. 고유능력은 시전·충돌·이동·자원 사용 방식의 차이다.",
+      "implementation": "확정 lore·획득·배타 선택·슬롯·성장 저장 보존. 승인된 전술 효과 적용.",
       "acquisitionEvidence": {
         "status": "예약 비활성 · 실제 획득 사건 미정",
         "eventId": "eq_hw_t4_choice",
@@ -1541,7 +1708,8 @@
           "shared/engine/src/equipmentData.ts"
         ]
       },
-      "settingScope": "과거 사용 용도에 한정한 창작 설정. 현재 획득자·장소·사건을 정하지 않는다."
+      "settingScope": "과거 사용 용도에 한정한 창작 설정. 현재 획득자·장소·사건을 정하지 않는다.",
+      "skillOptions": null
     },
     {
       "itemId": "itm_so_01",
@@ -1564,7 +1732,7 @@
       "iconPath": "shared/assets/item-icons/v1/itm_so_01.webp",
       "lore": "소단이 늘 지니던 방울끈. 울리는 소리를 견디기 어려워하는 사람 곁에서는 방울을 손으로 감싸 쥔다.",
       "effectCategory": "none",
-      "classification": "기초 옵션만",
+      "classification": "기초 옵션",
       "conceptAndIcon": "놋방울 / 혼행",
       "currentModifier": null,
       "proposedBasicTargets": [
@@ -1577,8 +1745,8 @@
           "name": "투과령"
         }
       ],
-      "review": "현재 외형·개념과 연결 유지. 수치 보정은 고유능력으로 부르지 않는다. T1부터 해당 기본기/계열의 피해·범위·비용 보정을 기초 옵션으로 허용하는 안이며 아직 수치 적용 전이다.",
-      "implementation": "부모 확정 원고 그대로 적용. 기존 분류·옵션·효과·획득 조건·보상 선택·저장 구조는 유지.",
+      "review": "특정 스킬의 단순 피해/비용 증감은 기초 옵션으로 표시한다. 고유능력은 시전·충돌·이동·자원 사용 방식의 차이다.",
+      "implementation": "확정 lore·획득·배타 선택·슬롯·성장 저장 보존. 승인된 스킬/계열 기초 옵션 적용.",
       "acquisitionEvidence": {
         "status": "현재 런타임 획득 근거",
         "eventId": "eq_so_join",
@@ -1587,7 +1755,15 @@
           "shared/runtime/equipment-state.js"
         ]
       },
-      "settingScope": "이번 요청으로 작성한 사용 습관·배경 설정. 별도 장면·인물·퀘스트를 구현했다는 뜻은 아니다."
+      "settingScope": "이번 요청으로 작성한 사용 습관·배경 설정. 별도 장면·인물·퀘스트를 구현했다는 뜻은 아니다.",
+      "skillOptions": {
+        "skills": [
+          "O01",
+          "O02"
+        ],
+        "damage": 0.06,
+        "cost": 0
+      }
     },
     {
       "itemId": "itm_so_02",
@@ -1616,7 +1792,7 @@
       "iconPath": "shared/assets/item-icons/v1/itm_so_02.webp",
       "lore": "석문 앞에서 구한 석공이 건넨 매듭. 아들 길찬이 안쪽에 있다는 말을 하면서도, 매듭을 쥔 손은 쉽게 펴지지 않았다.",
       "effectCategory": "none",
-      "classification": "기초 옵션만",
+      "classification": "기초 옵션",
       "conceptAndIcon": "접은 무명 / 부적",
       "currentModifier": null,
       "proposedBasicTargets": [
@@ -1625,12 +1801,12 @@
           "name": "쇠망부"
         },
         {
-          "id": "O08",
-          "name": "현형부"
+          "id": "O10",
+          "name": "지박부"
         }
       ],
-      "review": "현재 외형·개념과 연결 유지. 수치 보정은 고유능력으로 부르지 않는다. T1부터 해당 기본기/계열의 피해·범위·비용 보정을 기초 옵션으로 허용하는 안이며 아직 수치 적용 전이다.",
-      "implementation": "부모 확정 원고 그대로 적용. 기존 분류·옵션·효과·획득 조건·보상 선택·저장 구조는 유지.",
+      "review": "특정 스킬의 단순 피해/비용 증감은 기초 옵션으로 표시한다. 고유능력은 시전·충돌·이동·자원 사용 방식의 차이다.",
+      "implementation": "확정 lore·획득·배타 선택·슬롯·성장 저장 보존. 승인된 스킬/계열 기초 옵션 적용.",
       "acquisitionEvidence": {
         "status": "현재 런타임 획득 근거",
         "eventId": "eq_so_resident",
@@ -1639,7 +1815,15 @@
           "shared/runtime/equipment-state.js"
         ]
       },
-      "settingScope": "이번 요청으로 작성한 사용 습관·배경 설정. 별도 장면·인물·퀘스트를 구현했다는 뜻은 아니다."
+      "settingScope": "이번 요청으로 작성한 사용 습관·배경 설정. 별도 장면·인물·퀘스트를 구현했다는 뜻은 아니다.",
+      "skillOptions": {
+        "skills": [
+          "O06",
+          "O10"
+        ],
+        "damage": 0,
+        "cost": 0.05
+      }
     },
     {
       "itemId": "itm_so_03",
@@ -1674,21 +1858,21 @@
       "iconPath": "shared/assets/item-icons/v1/itm_so_03.webp",
       "lore": "묵종 곁에 남아 있던 방울끈. 큰 종의 울림이 멎은 뒤에야 작은 방울 소리가 들렸다.",
       "effectCategory": "none",
-      "classification": "기초 옵션만",
+      "classification": "기초 옵션",
       "conceptAndIcon": "작은 방울 / 혼행·반향",
       "currentModifier": null,
       "proposedBasicTargets": [
         {
-          "id": "O03",
-          "name": "역천령"
+          "id": "O12",
+          "name": "등불귀"
         },
         {
-          "id": "O05",
-          "name": "회귀망령"
+          "id": "O15",
+          "name": "반향령"
         }
       ],
-      "review": "현재 외형·개념과 연결 유지. 수치 보정은 고유능력으로 부르지 않는다. T1부터 해당 기본기/계열의 피해·범위·비용 보정을 기초 옵션으로 허용하는 안이며 아직 수치 적용 전이다.",
-      "implementation": "부모 확정 원고 그대로 적용. 기존 분류·옵션·효과·획득 조건·보상 선택·저장 구조는 유지.",
+      "review": "특정 스킬의 단순 피해/비용 증감은 기초 옵션으로 표시한다. 고유능력은 시전·충돌·이동·자원 사용 방식의 차이다.",
+      "implementation": "확정 lore·획득·배타 선택·슬롯·성장 저장 보존. 승인된 스킬/계열 기초 옵션 적용.",
       "acquisitionEvidence": {
         "status": "현재 런타임 획득 근거",
         "eventId": "eq_so_t2_choice",
@@ -1697,7 +1881,15 @@
           "shared/runtime/equipment-state.js"
         ]
       },
-      "settingScope": "이번 요청으로 작성한 사용 습관·배경 설정. 별도 장면·인물·퀘스트를 구현했다는 뜻은 아니다."
+      "settingScope": "이번 요청으로 작성한 사용 습관·배경 설정. 별도 장면·인물·퀘스트를 구현했다는 뜻은 아니다.",
+      "skillOptions": {
+        "skills": [
+          "O12",
+          "O15"
+        ],
+        "damage": 0,
+        "cost": 0.08
+      }
     },
     {
       "itemId": "itm_so_04",
@@ -1732,21 +1924,21 @@
       "iconPath": "shared/assets/item-icons/v1/itm_so_04.webp",
       "lore": "종지기를 물리친 뒤 거둔 매듭. 물길을 건널 때 짐에 묶던 것으로 보인다. 이곳까지 온 길은 남아 있지 않다.",
       "effectCategory": "none",
-      "classification": "기초 옵션만",
+      "classification": "기초 옵션",
       "conceptAndIcon": "묶은 천 / 부적",
       "currentModifier": null,
       "proposedBasicTargets": [
         {
-          "id": "O07",
-          "name": "증오부"
+          "id": "O06",
+          "name": "쇠망부"
         },
         {
           "id": "O10",
           "name": "지박부"
         }
       ],
-      "review": "현재 외형·개념과 연결 유지. 수치 보정은 고유능력으로 부르지 않는다. T1부터 해당 기본기/계열의 피해·범위·비용 보정을 기초 옵션으로 허용하는 안이며 아직 수치 적용 전이다.",
-      "implementation": "부모 확정 원고 그대로 적용. 기존 분류·옵션·효과·획득 조건·보상 선택·저장 구조는 유지.",
+      "review": "특정 스킬의 단순 피해/비용 증감은 기초 옵션으로 표시한다. 고유능력은 시전·충돌·이동·자원 사용 방식의 차이다.",
+      "implementation": "확정 lore·획득·배타 선택·슬롯·성장 저장 보존. 승인된 스킬/계열 기초 옵션 적용.",
       "acquisitionEvidence": {
         "status": "현재 런타임 획득 근거",
         "eventId": "eq_so_t2_choice",
@@ -1755,7 +1947,15 @@
           "shared/runtime/equipment-state.js"
         ]
       },
-      "settingScope": "이번 요청으로 작성한 사용 습관·배경 설정. 별도 장면·인물·퀘스트를 구현했다는 뜻은 아니다."
+      "settingScope": "이번 요청으로 작성한 사용 습관·배경 설정. 별도 장면·인물·퀘스트를 구현했다는 뜻은 아니다.",
+      "skillOptions": {
+        "skills": [
+          "O06",
+          "O10"
+        ],
+        "damage": 0.1,
+        "cost": 0
+      }
     },
     {
       "itemId": "itm_so_05",
@@ -1789,20 +1989,23 @@
       "eventId": "eq_so_t3a",
       "iconPath": "shared/assets/item-icons/v1/itm_so_05.webp",
       "lore": "종 아래 혼들을 보내고 챙긴 방울끈. 망치와 밥그릇이 놓인 자리에서 소단은 한 번만 흔들어 보고 거두었다.",
-      "effectCategory": "basic",
-      "classification": "기초 옵션 + 수치 보정",
+      "effectCategory": "unique",
+      "classification": "고유능력",
       "conceptAndIcon": "큰 방울 / 반향·소환",
       "currentModifier": {
         "effectId": "so_echo",
-        "summary": "반향령 유지 +1라운드. 활성 수 상한은 기존 1~3개.",
+        "summary": "반향령 하나가 유료 혼행을 한 번 더 따라 쏩니다. 개체당1회/시전당1회 · 남은 수명2턴 이상에서1턴 소모",
         "targetSkills": [
           "O15"
         ],
         "params": {
-          "lifetimeRoundsAdd": 1,
-          "maxLifetimeRounds": 9
+          "lifeCost": 1,
+          "minLife": 2
         },
-        "limits": "ECHO_LIMIT·반향 위력·복제 발사 수·자연 소멸 보전/회수 규칙 불변. 재인계/재연장 없음."
+        "limits": "개체당1회/시전당1회 · 남은 수명2턴 이상에서1턴 소모",
+        "candidateId": "U17",
+        "benefit": "반향령 하나가 유료 혼행을 한 번 더 따라 쏩니다.",
+        "limit": "개체당1회/시전당1회 · 남은 수명2턴 이상에서1턴 소모"
       },
       "proposedBasicTargets": [
         {
@@ -1814,8 +2017,8 @@
           "name": "배회령"
         }
       ],
-      "review": "현재 외형·개념과 연결 유지. 수치 보정은 고유능력으로 부르지 않는다.",
-      "implementation": "부모 확정 원고 그대로 적용. 기존 분류·옵션·효과·획득 조건·보상 선택·저장 구조는 유지.",
+      "review": "특정 스킬의 단순 피해/비용 증감은 기초 옵션으로 표시한다. 고유능력은 시전·충돌·이동·자원 사용 방식의 차이다.",
+      "implementation": "확정 lore·획득·배타 선택·슬롯·성장 저장 보존. 승인된 전술 효과 적용.",
       "acquisitionEvidence": {
         "status": "현재 런타임 획득 근거",
         "eventId": "eq_so_t3a",
@@ -1824,7 +2027,8 @@
           "shared/runtime/equipment-state.js"
         ]
       },
-      "settingScope": "이번 요청으로 작성한 사용 습관·배경 설정. 별도 장면·인물·퀘스트를 구현했다는 뜻은 아니다."
+      "settingScope": "이번 요청으로 작성한 사용 습관·배경 설정. 별도 장면·인물·퀘스트를 구현했다는 뜻은 아니다.",
+      "skillOptions": null
     },
     {
       "itemId": "itm_so_06",
@@ -1858,19 +2062,23 @@
       "eventId": "eq_so_t3b",
       "iconPath": "shared/assets/item-icons/v1/itm_so_06.webp",
       "lore": "구조한 이들과 돌아온 뒤 남은 매듭. 서둘러 짐을 묶었다 풀어낸 자리마다, 서로 다른 손이 맨 매듭이 겹쳐 있다.",
-      "effectCategory": "basic",
-      "classification": "기초 옵션 + 수치 보정",
+      "effectCategory": "unique",
+      "classification": "고유능력",
       "conceptAndIcon": "붉은 실 무명 / 쇠망부",
       "currentModifier": {
         "effectId": "so_weak",
-        "summary": "쇠망부의 공격 약화12%→15%. 방어 약화13%·지속은 그대로.",
+        "summary": "쓰러진 적의 쇠망부가 가까운 적에게 옮겨갑니다. 반경450 · 약화1~2턴 · 재전염/벽 통과 없음",
         "targetSkills": [
           "O06"
         ],
         "params": {
-          "weakAttackReduction": 0.15
+          "spreadRadius": 450,
+          "spreadMaxTurns": 2
         },
-        "limits": "다른 주박과 공유하는 curseTurns는 변경하지 않음. DOT·증오 지속 연장/추가 틱 없음. 기존 trap 강도·max 병합 유지."
+        "limits": "반경450 · 약화1~2턴 · 재전염/벽 통과 없음",
+        "candidateId": "U15",
+        "benefit": "쓰러진 적의 쇠망부가 가까운 적에게 옮겨갑니다.",
+        "limit": "반경450 · 약화1~2턴 · 재전염/벽 통과 없음"
       },
       "proposedBasicTargets": [
         {
@@ -1878,8 +2086,8 @@
           "name": "쇠망부"
         }
       ],
-      "review": "현재 외형·개념과 연결 유지. 수치 보정은 고유능력으로 부르지 않는다.",
-      "implementation": "부모 확정 원고 그대로 적용. 기존 분류·옵션·효과·획득 조건·보상 선택·저장 구조는 유지.",
+      "review": "특정 스킬의 단순 피해/비용 증감은 기초 옵션으로 표시한다. 고유능력은 시전·충돌·이동·자원 사용 방식의 차이다.",
+      "implementation": "확정 lore·획득·배타 선택·슬롯·성장 저장 보존. 승인된 전술 효과 적용.",
       "acquisitionEvidence": {
         "status": "현재 런타임 획득 근거",
         "eventId": "eq_so_t3b",
@@ -1889,7 +2097,8 @@
           "game/docs/act4/EQUIPMENT_FACT_HOOKS.md"
         ]
       },
-      "settingScope": "이번 요청으로 작성한 사용 습관·배경 설정. 별도 장면·인물·퀘스트를 구현했다는 뜻은 아니다."
+      "settingScope": "이번 요청으로 작성한 사용 습관·배경 설정. 별도 장면·인물·퀘스트를 구현했다는 뜻은 아니다.",
+      "skillOptions": null
     },
     {
       "itemId": "itm_so_07",
@@ -1929,20 +2138,23 @@
       "eventId": "eq_so_t4_choice",
       "iconPath": "shared/assets/item-icons/v1/itm_so_07.webp",
       "lore": "서로 다른 소리를 내는 두 방울. 혼을 부르던 이는 어느 쪽이 먼저 울리는지 듣고서야 다음 말을 꺼냈다.",
-      "effectCategory": "basic",
-      "classification": "기초 옵션 + 수치 보정",
+      "effectCategory": "unique",
+      "classification": "고유능력",
       "conceptAndIcon": "한 쌍의 방울 / 혼령탄",
       "currentModifier": {
         "effectId": "so_basic",
-        "summary": "혼령탄 폭발 반경 +20%, 위력 -10%.",
+        "summary": "혼령탄 폭발 뒤 작은 파편이 돌아옵니다. 기존 폭발100% + 귀환50% · 최대600 · 폭발 대상 재적중 없음",
         "targetSkills": [
           "O01"
         ],
         "params": {
-          "radiusScale": 1.2,
-          "damageScale": 0.9
+          "returnDamage": 0.5,
+          "returnDistance": 600
         },
-        "limits": "무료 평타 비용0 유지. 비행 시간·도달 거리·차폐·반사 규칙 불변."
+        "limits": "기존 폭발100% + 귀환50% · 최대600 · 폭발 대상 재적중 없음",
+        "candidateId": "U20",
+        "benefit": "혼령탄 폭발 뒤 작은 파편이 돌아옵니다.",
+        "limit": "기존 폭발100% + 귀환50% · 최대600 · 폭발 대상 재적중 없음"
       },
       "proposedBasicTargets": [
         {
@@ -1950,8 +2162,8 @@
           "name": "혼령탄"
         }
       ],
-      "review": "현재 외형·개념과 연결 유지. 수치 보정은 고유능력으로 부르지 않는다.",
-      "implementation": "부모 확정 원고 그대로 적용. 기존 분류·옵션·효과·획득 조건·보상 선택·저장 구조는 유지.",
+      "review": "특정 스킬의 단순 피해/비용 증감은 기초 옵션으로 표시한다. 고유능력은 시전·충돌·이동·자원 사용 방식의 차이다.",
+      "implementation": "확정 lore·획득·배타 선택·슬롯·성장 저장 보존. 승인된 전술 효과 적용.",
       "acquisitionEvidence": {
         "status": "예약 비활성 · 실제 획득 사건 미정",
         "eventId": "eq_so_t4_choice",
@@ -1961,7 +2173,8 @@
           "shared/engine/src/equipmentData.ts"
         ]
       },
-      "settingScope": "과거 사용 용도에 한정한 창작 설정. 현재 획득자·장소·사건을 정하지 않는다."
+      "settingScope": "과거 사용 용도에 한정한 창작 설정. 현재 획득자·장소·사건을 정하지 않는다.",
+      "skillOptions": null
     },
     {
       "itemId": "itm_so_08",
@@ -2001,20 +2214,22 @@
       "eventId": "eq_so_t4_choice",
       "iconPath": "shared/assets/item-icons/v1/itm_so_08.webp",
       "lore": "의식이 끝나면 마지막으로 푸는 매듭. 먼저 풀어 버린 제자는 남은 술을 하나하나 다시 묶어야 했다.",
-      "effectCategory": "basic",
-      "classification": "기초 옵션 + 수치 보정",
+      "effectCategory": "unique",
+      "classification": "고유능력",
       "conceptAndIcon": "술 달린 패 / 귀결",
       "currentModifier": {
         "effectId": "so_converge",
-        "summary": "만혼귀결 위력 +15%, 기력 비용 +15%.",
+        "summary": "지박된 적이 움직이면 부착 자리로 한 번 당깁니다. 최대140 · 원래 피해 유지 · 보스/불가 경로 제외",
         "targetSkills": [
-          "O16"
+          "O10"
         ],
         "params": {
-          "damageScale": 1.15,
-          "manaSurcharge": 0.15
+          "pullDistance": 140
         },
-        "limits": "모이는 혼 수·대상당 타격/총량 상한·귀결점/벽 규칙은 그대로."
+        "limits": "최대140 · 원래 피해 유지 · 보스/불가 경로 제외",
+        "candidateId": "U16",
+        "benefit": "지박된 적이 움직이면 부착 자리로 한 번 당깁니다.",
+        "limit": "최대140 · 원래 피해 유지 · 보스/불가 경로 제외"
       },
       "proposedBasicTargets": [
         {
@@ -2022,8 +2237,8 @@
           "name": "만혼귀결"
         }
       ],
-      "review": "현재 외형·개념과 연결 유지. 수치 보정은 고유능력으로 부르지 않는다.",
-      "implementation": "부모 확정 원고 그대로 적용. 기존 분류·옵션·효과·획득 조건·보상 선택·저장 구조는 유지.",
+      "review": "특정 스킬의 단순 피해/비용 증감은 기초 옵션으로 표시한다. 고유능력은 시전·충돌·이동·자원 사용 방식의 차이다.",
+      "implementation": "확정 lore·획득·배타 선택·슬롯·성장 저장 보존. 승인된 전술 효과 적용.",
       "acquisitionEvidence": {
         "status": "예약 비활성 · 실제 획득 사건 미정",
         "eventId": "eq_so_t4_choice",
@@ -2033,7 +2248,8 @@
           "shared/engine/src/equipmentData.ts"
         ]
       },
-      "settingScope": "과거 사용 용도에 한정한 창작 설정. 현재 획득자·장소·사건을 정하지 않는다."
+      "settingScope": "과거 사용 용도에 한정한 창작 설정. 현재 획득자·장소·사건을 정하지 않는다.",
+      "skillOptions": null
     },
     {
       "itemId": "itm_co_01",
@@ -2062,12 +2278,12 @@
       "iconPath": "shared/assets/item-icons/v1/itm_co_01.webp",
       "lore": "고갯길을 나서는 사람이 품에 넣던 장명부. 오래 살게 해 달라는 글 아래, 집에 돌아오는 날을 적을 자리가 비어 있다.",
       "effectCategory": "none",
-      "classification": "기초 옵션만",
+      "classification": "기초 옵션",
       "conceptAndIcon": "종이를 넣은 주머니 / 생존",
       "currentModifier": null,
       "proposedBasicTargets": [],
-      "review": "공용 개념 유지. 특정 캐릭터·스킬 ID를 강제로 부여하지 않는다.",
-      "implementation": "부모 확정 원고 그대로 적용. 기존 분류·옵션·효과·획득 조건·보상 선택·저장 구조는 유지.",
+      "review": "특정 스킬의 단순 피해/비용 증감은 기초 옵션으로 표시한다. 고유능력은 시전·충돌·이동·자원 사용 방식의 차이다.",
+      "implementation": "확정 lore·획득·배타 선택·슬롯·성장 저장 보존. 기존 기초 능력치 유지.",
       "acquisitionEvidence": {
         "status": "현재 런타임 획득 근거",
         "eventId": "eq_co_01",
@@ -2076,7 +2292,8 @@
           "shared/runtime/equipment-state.js"
         ]
       },
-      "settingScope": "이번 요청으로 작성한 사용 습관·배경 설정. 별도 장면·인물·퀘스트를 구현했다는 뜻은 아니다."
+      "settingScope": "이번 요청으로 작성한 사용 습관·배경 설정. 별도 장면·인물·퀘스트를 구현했다는 뜻은 아니다.",
+      "skillOptions": null
     },
     {
       "itemId": "itm_co_02",
@@ -2105,12 +2322,12 @@
       "iconPath": "shared/assets/item-icons/v1/itm_co_02.webp",
       "lore": "나루의 장부 곁에 놓였던 돌. 배를 기다리는 동안 손에 쥐고, 차례가 오면 다음 사람에게 넘겼다고 한다.",
       "effectCategory": "none",
-      "classification": "기초 옵션만",
+      "classification": "기초 옵션",
       "conceptAndIcon": "쥐는 돌 / 기력 관리",
       "currentModifier": null,
       "proposedBasicTargets": [],
-      "review": "공용 개념 유지. 특정 캐릭터·스킬 ID를 강제로 부여하지 않는다.",
-      "implementation": "부모 확정 원고 그대로 적용. 기존 분류·옵션·효과·획득 조건·보상 선택·저장 구조는 유지.",
+      "review": "특정 스킬의 단순 피해/비용 증감은 기초 옵션으로 표시한다. 고유능력은 시전·충돌·이동·자원 사용 방식의 차이다.",
+      "implementation": "확정 lore·획득·배타 선택·슬롯·성장 저장 보존. 기존 기초 능력치 유지.",
       "acquisitionEvidence": {
         "status": "현재 런타임 획득 근거",
         "eventId": "eq_co_02",
@@ -2119,7 +2336,8 @@
           "shared/runtime/equipment-state.js"
         ]
       },
-      "settingScope": "이번 요청으로 작성한 사용 습관·배경 설정. 별도 장면·인물·퀘스트를 구현했다는 뜻은 아니다."
+      "settingScope": "이번 요청으로 작성한 사용 습관·배경 설정. 별도 장면·인물·퀘스트를 구현했다는 뜻은 아니다.",
+      "skillOptions": null
     },
     {
       "itemId": "itm_co_03",
@@ -2148,12 +2366,12 @@
       "iconPath": "shared/assets/item-icons/v1/itm_co_03.webp",
       "lore": "갇힌 사람들을 꺼낸 뒤 챙길 수 있었던 약주머니. 마른 잎은 얼마 남지 않았지만, 물에 적시면 아직 향이 난다.",
       "effectCategory": "none",
-      "classification": "기초 옵션만",
+      "classification": "기초 옵션",
       "conceptAndIcon": "약초 주머니 / 제한 회복",
       "currentModifier": null,
       "proposedBasicTargets": [],
-      "review": "공용 개념 유지. 특정 캐릭터·스킬 ID를 강제로 부여하지 않는다.",
-      "implementation": "부모 확정 원고 그대로 적용. 기존 분류·옵션·효과·획득 조건·보상 선택·저장 구조는 유지.",
+      "review": "특정 스킬의 단순 피해/비용 증감은 기초 옵션으로 표시한다. 고유능력은 시전·충돌·이동·자원 사용 방식의 차이다.",
+      "implementation": "확정 lore·획득·배타 선택·슬롯·성장 저장 보존. 기존 기초 능력치 유지.",
       "acquisitionEvidence": {
         "status": "현재 런타임 획득 근거",
         "eventId": "eq_co_t1_choice",
@@ -2162,7 +2380,8 @@
           "shared/runtime/equipment-state.js"
         ]
       },
-      "settingScope": "이번 요청으로 작성한 사용 습관·배경 설정. 별도 장면·인물·퀘스트를 구현했다는 뜻은 아니다."
+      "settingScope": "이번 요청으로 작성한 사용 습관·배경 설정. 별도 장면·인물·퀘스트를 구현했다는 뜻은 아니다.",
+      "skillOptions": null
     },
     {
       "itemId": "itm_co_04",
@@ -2191,12 +2410,12 @@
       "iconPath": "shared/assets/item-icons/v1/itm_co_04.webp",
       "lore": "구조 현장에서 건져 낸 솔가지패. 산에 드는 이들이 짐에 매달던 것으로, 꺾인 끝을 버리지 않고 다시 묶었다.",
       "effectCategory": "none",
-      "classification": "기초 옵션만",
+      "classification": "기초 옵션",
       "conceptAndIcon": "묶은 솔가지 / 이동·조준",
       "currentModifier": null,
       "proposedBasicTargets": [],
-      "review": "공용 개념 유지. 특정 캐릭터·스킬 ID를 강제로 부여하지 않는다.",
-      "implementation": "부모 확정 원고 그대로 적용. 기존 분류·옵션·효과·획득 조건·보상 선택·저장 구조는 유지.",
+      "review": "특정 스킬의 단순 피해/비용 증감은 기초 옵션으로 표시한다. 고유능력은 시전·충돌·이동·자원 사용 방식의 차이다.",
+      "implementation": "확정 lore·획득·배타 선택·슬롯·성장 저장 보존. 기존 기초 능력치 유지.",
       "acquisitionEvidence": {
         "status": "현재 런타임 획득 근거",
         "eventId": "eq_co_t1_choice",
@@ -2205,7 +2424,8 @@
           "shared/runtime/equipment-state.js"
         ]
       },
-      "settingScope": "이번 요청으로 작성한 사용 습관·배경 설정. 별도 장면·인물·퀘스트를 구현했다는 뜻은 아니다."
+      "settingScope": "이번 요청으로 작성한 사용 습관·배경 설정. 별도 장면·인물·퀘스트를 구현했다는 뜻은 아니다.",
+      "skillOptions": null
     },
     {
       "itemId": "itm_co_05",
@@ -2234,12 +2454,12 @@
       "iconPath": "shared/assets/item-icons/v1/itm_co_05.webp",
       "lore": "사람들을 구하고 남은 물건들 사이의 종이학. 펼친 자리에 짧은 이름이 적혀 있다. 누구를 부르던 이름인지는 알 수 없다.",
       "effectCategory": "none",
-      "classification": "기초 옵션만",
+      "classification": "기초 옵션",
       "conceptAndIcon": "접은 종이 / 기력 효율",
       "currentModifier": null,
       "proposedBasicTargets": [],
-      "review": "공용 개념 유지. 특정 캐릭터·스킬 ID를 강제로 부여하지 않는다.",
-      "implementation": "부모 확정 원고 그대로 적용. 기존 분류·옵션·효과·획득 조건·보상 선택·저장 구조는 유지.",
+      "review": "특정 스킬의 단순 피해/비용 증감은 기초 옵션으로 표시한다. 고유능력은 시전·충돌·이동·자원 사용 방식의 차이다.",
+      "implementation": "확정 lore·획득·배타 선택·슬롯·성장 저장 보존. 기존 기초 능력치 유지.",
       "acquisitionEvidence": {
         "status": "현재 런타임 획득 근거",
         "eventId": "eq_co_t1_choice",
@@ -2248,7 +2468,8 @@
           "shared/runtime/equipment-state.js"
         ]
       },
-      "settingScope": "이번 요청으로 작성한 사용 습관·배경 설정. 별도 장면·인물·퀘스트를 구현했다는 뜻은 아니다."
+      "settingScope": "이번 요청으로 작성한 사용 습관·배경 설정. 별도 장면·인물·퀘스트를 구현했다는 뜻은 아니다.",
+      "skillOptions": null
     },
     {
       "itemId": "itm_co_06",
@@ -2283,12 +2504,12 @@
       "iconPath": "shared/assets/item-icons/v1/itm_co_06.webp",
       "lore": "돌을 다루던 이들이 지니던 호신패. 돌림진에서 달려들던 혼이 흩어진 자리에 남았다. 귀퉁이에 석분이 박혀 있다.",
       "effectCategory": "none",
-      "classification": "기초 옵션만",
+      "classification": "기초 옵션",
       "conceptAndIcon": "돌 호신패 / 방어",
       "currentModifier": null,
       "proposedBasicTargets": [],
-      "review": "공용 개념 유지. 특정 캐릭터·스킬 ID를 강제로 부여하지 않는다.",
-      "implementation": "부모 확정 원고 그대로 적용. 기존 분류·옵션·효과·획득 조건·보상 선택·저장 구조는 유지.",
+      "review": "특정 스킬의 단순 피해/비용 증감은 기초 옵션으로 표시한다. 고유능력은 시전·충돌·이동·자원 사용 방식의 차이다.",
+      "implementation": "확정 lore·획득·배타 선택·슬롯·성장 저장 보존. 기존 기초 능력치 유지.",
       "acquisitionEvidence": {
         "status": "현재 런타임 획득 근거",
         "eventId": "eq_co_06",
@@ -2297,7 +2518,8 @@
           "shared/runtime/equipment-state.js"
         ]
       },
-      "settingScope": "이번 요청으로 작성한 사용 습관·배경 설정. 별도 장면·인물·퀘스트를 구현했다는 뜻은 아니다."
+      "settingScope": "이번 요청으로 작성한 사용 습관·배경 설정. 별도 장면·인물·퀘스트를 구현했다는 뜻은 아니다.",
+      "skillOptions": null
     },
     {
       "itemId": "itm_co_07",
@@ -2332,12 +2554,12 @@
       "iconPath": "shared/assets/item-icons/v1/itm_co_07.webp",
       "lore": "수문을 열고 살핀 자리에서 건진 구슬. 물때를 닦자 안쪽의 금이 드러났다. 오래 잠겨 있었어도 깨지지는 않았다.",
       "effectCategory": "none",
-      "classification": "기초 옵션만",
+      "classification": "기초 옵션",
       "conceptAndIcon": "물빛 돌 / 회복·재생",
       "currentModifier": null,
       "proposedBasicTargets": [],
-      "review": "공용 개념 유지. 특정 캐릭터·스킬 ID를 강제로 부여하지 않는다.",
-      "implementation": "부모 확정 원고 그대로 적용. 기존 분류·옵션·효과·획득 조건·보상 선택·저장 구조는 유지.",
+      "review": "특정 스킬의 단순 피해/비용 증감은 기초 옵션으로 표시한다. 고유능력은 시전·충돌·이동·자원 사용 방식의 차이다.",
+      "implementation": "확정 lore·획득·배타 선택·슬롯·성장 저장 보존. 기존 기초 능력치 유지.",
       "acquisitionEvidence": {
         "status": "현재 런타임 획득 근거",
         "eventId": "eq_co_07",
@@ -2346,7 +2568,8 @@
           "shared/runtime/equipment-state.js"
         ]
       },
-      "settingScope": "이번 요청으로 작성한 사용 습관·배경 설정. 별도 장면·인물·퀘스트를 구현했다는 뜻은 아니다."
+      "settingScope": "이번 요청으로 작성한 사용 습관·배경 설정. 별도 장면·인물·퀘스트를 구현했다는 뜻은 아니다.",
+      "skillOptions": null
     },
     {
       "itemId": "itm_co_08",
@@ -2381,12 +2604,12 @@
       "iconPath": "shared/assets/item-icons/v1/itm_co_08.webp",
       "lore": "동굴을 빠져나온 이가 내민 호패. 끈은 새로 맸지만 패에 적힌 이름은 그대로 두었다.",
       "effectCategory": "none",
-      "classification": "기초 옵션만",
+      "classification": "기초 옵션",
       "conceptAndIcon": "붉은 실 패 / 몸 상태",
       "currentModifier": null,
       "proposedBasicTargets": [],
-      "review": "공용 개념 유지. 특정 캐릭터·스킬 ID를 강제로 부여하지 않는다.",
-      "implementation": "부모 확정 원고 그대로 적용. 기존 분류·옵션·효과·획득 조건·보상 선택·저장 구조는 유지.",
+      "review": "특정 스킬의 단순 피해/비용 증감은 기초 옵션으로 표시한다. 고유능력은 시전·충돌·이동·자원 사용 방식의 차이다.",
+      "implementation": "확정 lore·획득·배타 선택·슬롯·성장 저장 보존. 기존 기초 능력치 유지.",
       "acquisitionEvidence": {
         "status": "현재 런타임 획득 근거",
         "eventId": "eq_co_t2_choice",
@@ -2395,7 +2618,8 @@
           "shared/runtime/equipment-state.js"
         ]
       },
-      "settingScope": "이번 요청으로 작성한 사용 습관·배경 설정. 별도 장면·인물·퀘스트를 구현했다는 뜻은 아니다."
+      "settingScope": "이번 요청으로 작성한 사용 습관·배경 설정. 별도 장면·인물·퀘스트를 구현했다는 뜻은 아니다.",
+      "skillOptions": null
     },
     {
       "itemId": "itm_co_09",
@@ -2430,12 +2654,12 @@
       "iconPath": "shared/assets/item-icons/v1/itm_co_09.webp",
       "lore": "밖으로 나온 생존자가 챙겨 온 청동 조각. 손에서 놓을 때까지도 엄지로 같은 홈을 문지르고 있었다.",
       "effectCategory": "none",
-      "classification": "기초 옵션만",
+      "classification": "기초 옵션",
       "conceptAndIcon": "청동 홈 / 공격 속성",
       "currentModifier": null,
       "proposedBasicTargets": [],
-      "review": "공용 개념 유지. 특정 캐릭터·스킬 ID를 강제로 부여하지 않는다.",
-      "implementation": "부모 확정 원고 그대로 적용. 기존 분류·옵션·효과·획득 조건·보상 선택·저장 구조는 유지.",
+      "review": "특정 스킬의 단순 피해/비용 증감은 기초 옵션으로 표시한다. 고유능력은 시전·충돌·이동·자원 사용 방식의 차이다.",
+      "implementation": "확정 lore·획득·배타 선택·슬롯·성장 저장 보존. 기존 기초 능력치 유지.",
       "acquisitionEvidence": {
         "status": "현재 런타임 획득 근거",
         "eventId": "eq_co_t2_choice",
@@ -2444,7 +2668,8 @@
           "shared/runtime/equipment-state.js"
         ]
       },
-      "settingScope": "이번 요청으로 작성한 사용 습관·배경 설정. 별도 장면·인물·퀘스트를 구현했다는 뜻은 아니다."
+      "settingScope": "이번 요청으로 작성한 사용 습관·배경 설정. 별도 장면·인물·퀘스트를 구현했다는 뜻은 아니다.",
+      "skillOptions": null
     },
     {
       "itemId": "itm_co_10",
@@ -2479,12 +2704,12 @@
       "iconPath": "shared/assets/item-icons/v1/itm_co_10.webp",
       "lore": "동굴 밖까지 걸어 나온 이가 건넨 발고리. 오래 묶어 둔 자리가 부어, 풀어낸 뒤에도 발목에 자국이 남았다.",
       "effectCategory": "none",
-      "classification": "기초 옵션만",
+      "classification": "기초 옵션",
       "conceptAndIcon": "천 발고리 / 발 디딤",
       "currentModifier": null,
       "proposedBasicTargets": [],
-      "review": "공용 개념 유지. 특정 캐릭터·스킬 ID를 강제로 부여하지 않는다.",
-      "implementation": "부모 확정 원고 그대로 적용. 기존 분류·옵션·효과·획득 조건·보상 선택·저장 구조는 유지.",
+      "review": "특정 스킬의 단순 피해/비용 증감은 기초 옵션으로 표시한다. 고유능력은 시전·충돌·이동·자원 사용 방식의 차이다.",
+      "implementation": "확정 lore·획득·배타 선택·슬롯·성장 저장 보존. 기존 기초 능력치 유지.",
       "acquisitionEvidence": {
         "status": "현재 런타임 획득 근거",
         "eventId": "eq_co_t2_choice",
@@ -2493,7 +2718,8 @@
           "shared/runtime/equipment-state.js"
         ]
       },
-      "settingScope": "이번 요청으로 작성한 사용 습관·배경 설정. 별도 장면·인물·퀘스트를 구현했다는 뜻은 아니다."
+      "settingScope": "이번 요청으로 작성한 사용 습관·배경 설정. 별도 장면·인물·퀘스트를 구현했다는 뜻은 아니다.",
+      "skillOptions": null
     },
     {
       "itemId": "itm_co_11",
@@ -2527,24 +2753,27 @@
       "eventId": "eq_co_11",
       "iconPath": "shared/assets/item-icons/v1/itm_co_11.webp",
       "lore": "폐공방에서 구한 주민이 내준 돌매듭. 문밖으로 나오면서도 손에 꼭 쥐고 있던 물건이다.",
-      "effectCategory": "basic",
-      "classification": "기초 옵션 + 수치 보정",
+      "effectCategory": "unique",
+      "classification": "고유능력",
       "conceptAndIcon": "돌 매듭 / 도약",
       "currentModifier": {
         "effectId": "co_jump",
-        "summary": "일반 점프의 수직 최고점 약 +20%.",
+        "summary": "낮고 길게 도약합니다. 수평 약30% 증가 · 높이 약10% 감소 · 기본 비용 유지",
         "targetSkills": [
           "JUMP"
         ],
         "params": {
-          "jumpHeightScale": 1.2,
-          "jumpVelocityScale": 1.0954451150103321
+          "jumpHorizontal": 1.3,
+          "jumpHeight": 0.9
         },
-        "limits": "일반 점프만. 수평 속도값·돌격 사거리 불변이나 체공 증가의 자연 수평 변화는 가능. 이동 예산·충돌·입수/낙사 판정 유지."
+        "limits": "수평 약30% 증가 · 높이 약10% 감소 · 기본 비용 유지",
+        "candidateId": "U21",
+        "benefit": "낮고 길게 도약합니다.",
+        "limit": "수평 약30% 증가 · 높이 약10% 감소 · 기본 비용 유지"
       },
       "proposedBasicTargets": [],
-      "review": "공용 개념 유지. 특정 캐릭터·스킬 ID를 강제로 부여하지 않는다.",
-      "implementation": "부모 확정 원고 그대로 적용. 기존 분류·옵션·효과·획득 조건·보상 선택·저장 구조는 유지.",
+      "review": "특정 스킬의 단순 피해/비용 증감은 기초 옵션으로 표시한다. 고유능력은 시전·충돌·이동·자원 사용 방식의 차이다.",
+      "implementation": "확정 lore·획득·배타 선택·슬롯·성장 저장 보존. 승인된 전술 효과 적용.",
       "acquisitionEvidence": {
         "status": "현재 런타임 획득 근거",
         "eventId": "eq_co_11",
@@ -2553,7 +2782,8 @@
           "shared/runtime/equipment-state.js"
         ]
       },
-      "settingScope": "이번 요청으로 작성한 사용 습관·배경 설정. 별도 장면·인물·퀘스트를 구현했다는 뜻은 아니다."
+      "settingScope": "이번 요청으로 작성한 사용 습관·배경 설정. 별도 장면·인물·퀘스트를 구현했다는 뜻은 아니다.",
+      "skillOptions": null
     },
     {
       "itemId": "itm_co_12",
@@ -2588,23 +2818,25 @@
       "iconPath": "shared/assets/item-icons/v1/itm_co_12.webp",
       "lore": "나루의 갈대 곁 작은 둑에서 찾은 추. 물살에 떠내려가지 않도록 무언가를 묶어 두었던 듯, 끈 끝에는 큰 고리가 남아 있다.",
       "effectCategory": "unique",
-      "classification": "기초 옵션 + 고유능력",
+      "classification": "고유능력",
       "conceptAndIcon": "매단 추 / 안정",
       "currentModifier": {
         "effectId": "co_stable",
-        "summary": "피해 편차 폭을 절반으로 줄인다. 평균과 치명타는 그대로.",
+        "summary": "피해 편차를 절반으로 줄입니다. 평균과 치명타는 그대로",
         "targetSkills": [
           "NORMAL_DAMAGING_CAST"
         ],
         "params": {
-          "damageMean": 1,
-          "nativeSpreadScale": 0.5
+          "spreadScale": 0.5
         },
-        "limits": "기존 spread0인 기술은0 유지. 새 추첨·버프·원장 없음, 같은 시전의 모든 파생이 같은 roll 사용."
+        "limits": "평균과 치명타는 그대로",
+        "candidateId": "EXISTING_STABLE",
+        "benefit": "피해 편차를 절반으로 줄입니다.",
+        "limit": "평균과 치명타는 그대로"
       },
       "proposedBasicTargets": [],
-      "review": "공용 개념 유지. 특정 캐릭터·스킬 ID를 강제로 부여하지 않는다.",
-      "implementation": "부모 확정 원고 그대로 적용. 기존 분류·옵션·효과·획득 조건·보상 선택·저장 구조는 유지.",
+      "review": "특정 스킬의 단순 피해/비용 증감은 기초 옵션으로 표시한다. 고유능력은 시전·충돌·이동·자원 사용 방식의 차이다.",
+      "implementation": "확정 lore·획득·배타 선택·슬롯·성장 저장 보존. 승인된 전술 효과 적용.",
       "acquisitionEvidence": {
         "status": "현재 런타임 획득 근거",
         "eventId": "eq_co_12",
@@ -2614,7 +2846,8 @@
           "game/docs/act4/EQUIPMENT_FACT_HOOKS.md"
         ]
       },
-      "settingScope": "이번 요청으로 작성한 사용 습관·배경 설정. 별도 장면·인물·퀘스트를 구현했다는 뜻은 아니다."
+      "settingScope": "이번 요청으로 작성한 사용 습관·배경 설정. 별도 장면·인물·퀘스트를 구현했다는 뜻은 아니다.",
+      "skillOptions": null
     },
     {
       "itemId": "itm_co_13",
@@ -2649,25 +2882,27 @@
       "iconPath": "shared/assets/item-icons/v1/itm_co_13.webp",
       "lore": "숲의 깊은 빈터에 남은 요동추. 가만히 놓아도 한쪽으로 기운다. 무게를 고치려 깎은 자국이 여러 번 겹쳐 있다.",
       "effectCategory": "unique",
-      "classification": "기초 옵션 + 고유능력",
+      "classification": "고유능력",
       "conceptAndIcon": "기운 쇠추 / 위험 감수",
       "currentModifier": {
         "effectId": "co_wild",
-        "summary": "정상 공격 피해 평균 +3%, 행동별 편차 ±25%로 변경.",
+        "summary": "평균 피해가10% 높아집니다. 행동별 편차±25% · 같은 사격 표본 유지",
         "targetSkills": [
           "NORMAL_DAMAGING_CAST"
         ],
         "params": {
-          "damageMean": 1.03,
-          "damageSpread": 0.25,
-          "damageRollMin": 0.78,
-          "damageRollMax": 1.28
+          "damageMean": 1.1,
+          "damageRollMin": 0.85,
+          "damageRollMax": 1.35
         },
-        "limits": "비치명 방어 전 범위78~128%. 치명타는 기존대로 별도 적용. 기존 spread0·환경/추가 추첨 제외."
+        "limits": "행동별 편차±25% · 같은 사격 표본 유지",
+        "candidateId": "EXISTING_WILD",
+        "benefit": "평균 피해가10% 높아집니다.",
+        "limit": "행동별 편차±25% · 같은 사격 표본 유지"
       },
       "proposedBasicTargets": [],
-      "review": "공용 개념 유지. 특정 캐릭터·스킬 ID를 강제로 부여하지 않는다.",
-      "implementation": "부모 확정 원고 그대로 적용. 기존 분류·옵션·효과·획득 조건·보상 선택·저장 구조는 유지.",
+      "review": "특정 스킬의 단순 피해/비용 증감은 기초 옵션으로 표시한다. 고유능력은 시전·충돌·이동·자원 사용 방식의 차이다.",
+      "implementation": "확정 lore·획득·배타 선택·슬롯·성장 저장 보존. 승인된 전술 효과 적용.",
       "acquisitionEvidence": {
         "status": "현재 런타임 획득 근거",
         "eventId": "eq_co_t3_choice",
@@ -2677,7 +2912,8 @@
           "game/docs/act4/EQUIPMENT_FACT_HOOKS.md"
         ]
       },
-      "settingScope": "이번 요청으로 작성한 사용 습관·배경 설정. 별도 장면·인물·퀘스트를 구현했다는 뜻은 아니다."
+      "settingScope": "이번 요청으로 작성한 사용 습관·배경 설정. 별도 장면·인물·퀘스트를 구현했다는 뜻은 아니다.",
+      "skillOptions": null
     },
     {
       "itemId": "itm_co_14",
@@ -2711,24 +2947,27 @@
       "eventId": "eq_co_t3_choice",
       "iconPath": "shared/assets/item-icons/v1/itm_co_14.webp",
       "lore": "셋째 빈터의 뿌리 곁에서 거둔 옥. 끈을 꿰는 홈 옆에 작은 눈금이 있어, 무언가를 조금씩 덜어 세던 물건처럼 보인다.",
-      "effectCategory": "basic",
-      "classification": "기초 옵션 + 수치 보정",
+      "effectCategory": "unique",
+      "classification": "고유능력",
       "conceptAndIcon": "홈 난 옥 / 큰 기력 지출",
       "currentModifier": {
         "effectId": "co_costly",
-        "summary": "장비 미적용 실제 비용이 40 이상인 기예의 기력 비용 -15%.",
+        "summary": "기력이 조금 모자라도 한 번 시전합니다. 전투1회/최대기력20% 부족분 · 다음 기본 회복50% 감소1회",
         "targetSkills": [
           "PAID_SKILLS"
         ],
         "params": {
-          "nativeManaThreshold": 40,
-          "manaDiscount": 0.15
+          "loanCap": 0.2,
+          "regenScale": 0.5
         },
-        "limits": "원래 최종 비용0이면0. 장비발 총 감소30% 상한. 환급·추가 MP 회복 없음."
+        "limits": "전투1회/최대기력20% 부족분 · 다음 기본 회복50% 감소1회",
+        "candidateId": "U27",
+        "benefit": "기력이 조금 모자라도 한 번 시전합니다.",
+        "limit": "전투1회/최대기력20% 부족분 · 다음 기본 회복50% 감소1회"
       },
       "proposedBasicTargets": [],
-      "review": "공용 개념 유지. 특정 캐릭터·스킬 ID를 강제로 부여하지 않는다.",
-      "implementation": "부모 확정 원고 그대로 적용. 기존 분류·옵션·효과·획득 조건·보상 선택·저장 구조는 유지.",
+      "review": "특정 스킬의 단순 피해/비용 증감은 기초 옵션으로 표시한다. 고유능력은 시전·충돌·이동·자원 사용 방식의 차이다.",
+      "implementation": "확정 lore·획득·배타 선택·슬롯·성장 저장 보존. 승인된 전술 효과 적용.",
       "acquisitionEvidence": {
         "status": "현재 런타임 획득 근거",
         "eventId": "eq_co_t3_choice",
@@ -2738,7 +2977,8 @@
           "game/docs/act4/EQUIPMENT_FACT_HOOKS.md"
         ]
       },
-      "settingScope": "이번 요청으로 작성한 사용 습관·배경 설정. 별도 장면·인물·퀘스트를 구현했다는 뜻은 아니다."
+      "settingScope": "이번 요청으로 작성한 사용 습관·배경 설정. 별도 장면·인물·퀘스트를 구현했다는 뜻은 아니다.",
+      "skillOptions": null
     },
     {
       "itemId": "itm_co_15",
@@ -2772,23 +3012,28 @@
       "eventId": "eq_co_t3_choice",
       "iconPath": "shared/assets/item-icons/v1/itm_co_15.webp",
       "lore": "깊은 빈터까지 가져왔다가 남겨진 부적집. 다 쓴 종이는 빼냈지만, 덮개 안쪽에는 마지막 한 장이 눌린 자국이 있다.",
-      "effectCategory": "basic",
-      "classification": "기초 옵션 + 수치 보정",
+      "effectCategory": "unique",
+      "classification": "고유능력",
       "conceptAndIcon": "부적집 / 상태 활용",
       "currentModifier": {
         "effectId": "co_cursed",
-        "summary": "저주/지박이 이미 남은 적에게 장착자 주공격 피해 +12%.",
+        "summary": "동행에게 쏜 본체로 상처를 돌봅니다. 최대HP15% 회복/실회복1/3 자기부담 · 턴주기1회 · 자기HP20% 보존",
         "targetSkills": [
-          "NORMAL_HERO_CAST"
+          "NORMAL_HERO_PRIMARY"
         ],
         "params": {
-          "conditionBonus": 0.12
+          "allyHeal": 0.15,
+          "selfShare": 0.3333333333333333,
+          "selfFloor": 0.2
         },
-        "limits": "원래 저주·지박 표식만 읽음. 소환·섭혼·자율 후속·지속·환경 제외, 새 상태/기간/타격 없음."
+        "limits": "최대HP15% 회복/실회복1/3 자기부담 · 턴주기1회 · 자기HP20% 보존",
+        "candidateId": "U25",
+        "benefit": "동행에게 쏜 본체로 상처를 돌봅니다.",
+        "limit": "최대HP15% 회복/실회복1/3 자기부담 · 턴주기1회 · 자기HP20% 보존"
       },
       "proposedBasicTargets": [],
-      "review": "공용 개념 유지. 특정 캐릭터·스킬 ID를 강제로 부여하지 않는다.",
-      "implementation": "부모 확정 원고 그대로 적용. 기존 분류·옵션·효과·획득 조건·보상 선택·저장 구조는 유지.",
+      "review": "특정 스킬의 단순 피해/비용 증감은 기초 옵션으로 표시한다. 고유능력은 시전·충돌·이동·자원 사용 방식의 차이다.",
+      "implementation": "확정 lore·획득·배타 선택·슬롯·성장 저장 보존. 승인된 전술 효과 적용.",
       "acquisitionEvidence": {
         "status": "현재 런타임 획득 근거",
         "eventId": "eq_co_t3_choice",
@@ -2798,7 +3043,8 @@
           "game/docs/act4/EQUIPMENT_FACT_HOOKS.md"
         ]
       },
-      "settingScope": "이번 요청으로 작성한 사용 습관·배경 설정. 별도 장면·인물·퀘스트를 구현했다는 뜻은 아니다."
+      "settingScope": "이번 요청으로 작성한 사용 습관·배경 설정. 별도 장면·인물·퀘스트를 구현했다는 뜻은 아니다.",
+      "skillOptions": null
     },
     {
       "itemId": "itm_co_16",
@@ -2839,22 +3085,25 @@
       "iconPath": "shared/assets/item-icons/v1/itm_co_16.webp",
       "lore": "동행의 옷에 맞춰 찢어 나누던 흰 천. 서로를 알아보려고 팔에 묶었고, 헤어질 때는 풀어 돌려주었다.",
       "effectCategory": "unique",
-      "classification": "기초 옵션 + 고유능력",
+      "classification": "고유능력",
       "conceptAndIcon": "흰 천 / 아군 오사격",
       "currentModifier": {
         "effectId": "co_friendly",
-        "summary": "장착자 공격 본체의 아군 HP 피해를 추가로 50% 줄인다.",
+        "summary": "주공격이 첫 동행 한 명을 피해 없이 통과합니다. 사격당1명 · 적 관통예산 유지 · 폭발 아군 HP피해 추가50% 완화",
         "targetSkills": [
           "NORMAL_HERO_PRIMARY"
         ],
         "params": {
           "friendlyHpScale": 0.5
         },
-        "limits": "탄환 통과·밀침·상태·지형 보호는 아님. 자율 후속·밀침 충돌·소환·지속 제외, 아군 적중 자원/XP 없음."
+        "limits": "사격당1명 · 적 관통예산 유지 · 폭발 아군 HP피해 추가50% 완화",
+        "candidateId": "U22",
+        "benefit": "주공격이 첫 동행 한 명을 피해 없이 통과합니다.",
+        "limit": "사격당1명 · 적 관통예산 유지 · 폭발 아군 HP피해 추가50% 완화"
       },
       "proposedBasicTargets": [],
-      "review": "공용 개념 유지. 특정 캐릭터·스킬 ID를 강제로 부여하지 않는다.",
-      "implementation": "부모 확정 원고 그대로 적용. 기존 분류·옵션·효과·획득 조건·보상 선택·저장 구조는 유지.",
+      "review": "특정 스킬의 단순 피해/비용 증감은 기초 옵션으로 표시한다. 고유능력은 시전·충돌·이동·자원 사용 방식의 차이다.",
+      "implementation": "확정 lore·획득·배타 선택·슬롯·성장 저장 보존. 승인된 전술 효과 적용.",
       "acquisitionEvidence": {
         "status": "예약 비활성 · 실제 획득 사건 미정",
         "eventId": "eq_co_16",
@@ -2864,7 +3113,8 @@
           "shared/engine/src/equipmentData.ts"
         ]
       },
-      "settingScope": "과거 사용 용도에 한정한 창작 설정. 현재 획득자·장소·사건을 정하지 않는다."
+      "settingScope": "과거 사용 용도에 한정한 창작 설정. 현재 획득자·장소·사건을 정하지 않는다.",
+      "skillOptions": null
     },
     {
       "itemId": "itm_co_17",
@@ -2905,22 +3155,26 @@
       "iconPath": "shared/assets/item-icons/v1/itm_co_17.webp",
       "lore": "혼을 살피던 이가 쓰던 손거울. 살아 있는 사람에게도 먼저 이름을 물은 뒤에야 거울을 들었다고 한다.",
       "effectCategory": "unique",
-      "classification": "기초 옵션 + 고유능력",
+      "classification": "고유능력",
       "conceptAndIcon": "손거울 / 형·기·혼 전환",
       "currentModifier": {
         "effectId": "co_soul",
-        "summary": "정상 주공격의 형·기 몫 30%를 혼으로 옮긴다.",
+        "summary": "도약 후 시전하면 형·기의 절반을 혼으로 바꿉니다. 같은 본인 턴의 실제 점프·착지 후 시전 · 그 외 형30%를 기로 전환",
         "targetSkills": [
           "NORMAL_HERO_CAST"
         ],
         "params": {
-          "soulConversion": 0.3
+          "groundFormToQi": 0.3,
+          "afterJumpToSoul": 0.5
         },
-        "limits": "총 비중1 보존. 전역 ATTACK_EXISTENCE 변경 금지. 원래 속성 반응/보스 기믹 유지, 소환/지속/반사 제외."
+        "limits": "같은 본인 턴의 실제 점프·착지 후 시전 · 그 외 형30%를 기로 전환",
+        "candidateId": "U23",
+        "benefit": "도약 후 시전하면 형·기의 절반을 혼으로 바꿉니다.",
+        "limit": "같은 본인 턴의 실제 점프·착지 후 시전 · 그 외 형30%를 기로 전환"
       },
       "proposedBasicTargets": [],
-      "review": "공용 개념 유지. 특정 캐릭터·스킬 ID를 강제로 부여하지 않는다.",
-      "implementation": "부모 확정 원고 그대로 적용. 기존 분류·옵션·효과·획득 조건·보상 선택·저장 구조는 유지.",
+      "review": "특정 스킬의 단순 피해/비용 증감은 기초 옵션으로 표시한다. 고유능력은 시전·충돌·이동·자원 사용 방식의 차이다.",
+      "implementation": "확정 lore·획득·배타 선택·슬롯·성장 저장 보존. 승인된 전술 효과 적용.",
       "acquisitionEvidence": {
         "status": "예약 비활성 · 실제 획득 사건 미정",
         "eventId": "eq_co_17",
@@ -2930,7 +3184,8 @@
           "shared/engine/src/equipmentData.ts"
         ]
       },
-      "settingScope": "과거 사용 용도에 한정한 창작 설정. 현재 획득자·장소·사건을 정하지 않는다."
+      "settingScope": "과거 사용 용도에 한정한 창작 설정. 현재 획득자·장소·사건을 정하지 않는다.",
+      "skillOptions": null
     },
     {
       "itemId": "itm_co_18",
@@ -2970,24 +3225,28 @@
       "eventId": "eq_co_t4_choice",
       "iconPath": "shared/assets/item-icons/v1/itm_co_18.webp",
       "lore": "긴 의식을 치를 때 손에 쥐던 옥고리. 주인은 물을 마실 때에만 내려놓았다고 한다.",
-      "effectCategory": "basic",
-      "classification": "기초 옵션 + 수치 보정",
+      "effectCategory": "unique",
+      "classification": "고유능력",
       "conceptAndIcon": "빈 옥고리 / 기력 고갈",
       "currentModifier": {
         "effectId": "co_low_mp",
-        "summary": "시전 직전 기력이 최대치의25% 이하면 유료 기예 비용 -15%.",
+        "summary": "첫 적 본체 피격의 피해와 밀침을 줄입니다. HP피해15%/밀침75% 감소 · 최대기력5% · 턴주기1회",
         "targetSkills": [
-          "PAID_SKILLS"
+          "INCOMING_NORMAL"
         ],
         "params": {
-          "mpRatioThreshold": 0.25,
-          "manaDiscount": 0.15
+          "hpScale": 0.85,
+          "impulseScale": 0.25,
+          "focusCost": 0.05
         },
-        "limits": "원래 무료0 유지. 비용 차감 뒤 재평가/환급 없음. 장비 총 할인30% 상한."
+        "limits": "HP피해15%/밀침75% 감소 · 최대기력5% · 턴주기1회",
+        "candidateId": "U24",
+        "benefit": "첫 적 본체 피격의 피해와 밀침을 줄입니다.",
+        "limit": "HP피해15%/밀침75% 감소 · 최대기력5% · 턴주기1회"
       },
       "proposedBasicTargets": [],
-      "review": "공용 개념 유지. 특정 캐릭터·스킬 ID를 강제로 부여하지 않는다.",
-      "implementation": "부모 확정 원고 그대로 적용. 기존 분류·옵션·효과·획득 조건·보상 선택·저장 구조는 유지.",
+      "review": "특정 스킬의 단순 피해/비용 증감은 기초 옵션으로 표시한다. 고유능력은 시전·충돌·이동·자원 사용 방식의 차이다.",
+      "implementation": "확정 lore·획득·배타 선택·슬롯·성장 저장 보존. 승인된 전술 효과 적용.",
       "acquisitionEvidence": {
         "status": "예약 비활성 · 실제 획득 사건 미정",
         "eventId": "eq_co_t4_choice",
@@ -2997,7 +3256,8 @@
           "shared/engine/src/equipmentData.ts"
         ]
       },
-      "settingScope": "과거 사용 용도에 한정한 창작 설정. 현재 획득자·장소·사건을 정하지 않는다."
+      "settingScope": "과거 사용 용도에 한정한 창작 설정. 현재 획득자·장소·사건을 정하지 않는다.",
+      "skillOptions": null
     },
     {
       "itemId": "itm_co_19",
@@ -3037,25 +3297,26 @@
       "eventId": "eq_co_t4_choice",
       "iconPath": "shared/assets/item-icons/v1/itm_co_19.webp",
       "lore": "몇 번이나 주인을 바꾼 동전. 돈으로 쓰기에는 너무 닳았지만, 길을 떠나는 사람에게 건네는 일은 끊기지 않았다.",
-      "effectCategory": "basic",
-      "classification": "기초 옵션 + 수치 보정",
+      "effectCategory": "unique",
+      "classification": "고유능력",
       "conceptAndIcon": "닳은 동전 / 치명 포기",
       "currentModifier": {
         "effectId": "co_noncrit",
-        "summary": "비치명 주공격 피해 +12%, 치명 배율 -0.20배.",
+        "summary": "지상에서 첫 적 밀침을 한 번 버팁니다. 턴주기1회 · 다음 이동력10% 감소1회 · 환경 추락 제외",
         "targetSkills": [
-          "NORMAL_HERO_CAST"
+          "INCOMING_NORMAL"
         ],
         "params": {
-          "noncriticalBonus": 0.12,
-          "criticalMultiplierAdd": -0.2,
-          "criticalMultiplierMin": 1
+          "nextMoveScale": 0.9
         },
-        "limits": "치명 확률은 그대로, 최종 치명 배율1~3.5. 소환·지속·자율후속 제외. 새 추첨 없음."
+        "limits": "턴주기1회 · 다음 이동력10% 감소1회 · 환경 추락 제외",
+        "candidateId": "U28",
+        "benefit": "지상에서 첫 적 밀침을 한 번 버팁니다.",
+        "limit": "턴주기1회 · 다음 이동력10% 감소1회 · 환경 추락 제외"
       },
       "proposedBasicTargets": [],
-      "review": "공용 개념 유지. 특정 캐릭터·스킬 ID를 강제로 부여하지 않는다.",
-      "implementation": "부모 확정 원고 그대로 적용. 기존 분류·옵션·효과·획득 조건·보상 선택·저장 구조는 유지.",
+      "review": "특정 스킬의 단순 피해/비용 증감은 기초 옵션으로 표시한다. 고유능력은 시전·충돌·이동·자원 사용 방식의 차이다.",
+      "implementation": "확정 lore·획득·배타 선택·슬롯·성장 저장 보존. 승인된 전술 효과 적용.",
       "acquisitionEvidence": {
         "status": "예약 비활성 · 실제 획득 사건 미정",
         "eventId": "eq_co_t4_choice",
@@ -3065,7 +3326,8 @@
           "shared/engine/src/equipmentData.ts"
         ]
       },
-      "settingScope": "과거 사용 용도에 한정한 창작 설정. 현재 획득자·장소·사건을 정하지 않는다."
+      "settingScope": "과거 사용 용도에 한정한 창작 설정. 현재 획득자·장소·사건을 정하지 않는다.",
+      "skillOptions": null
     },
     {
       "itemId": "itm_co_20",
@@ -3106,22 +3368,27 @@
       "iconPath": "shared/assets/item-icons/v1/itm_co_20.webp",
       "lore": "좁은 문을 지키던 이가 남긴 호패. 사람을 들일 때마다 패를 돌려 쥐는 버릇이 있어, 양면의 글자가 모두 흐려졌다.",
       "effectCategory": "basic",
-      "classification": "기초 옵션 + 수치 보정",
+      "classification": "기초 보정",
       "conceptAndIcon": "좁은 쇠패 / 방어 틈",
       "currentModifier": {
         "effectId": "co_armor",
-        "summary": "일반 적의 방어 수치30%를 무시한다.",
+        "summary": "적 방어의 30%를 무시합니다. 보스·목표물 제외",
         "targetSkills": [
           "NORMAL_HERO_CAST"
         ],
         "params": {
           "armorIgnoreFraction": 0.3
         },
-        "limits": "boss/midboss/honroAct2Boss/honroFinalBoss/목표 객체 제외. ward의 최소방어 .32·속성 반응·방호·무적은 유지."
+        "limits": "보스·목표물 제외",
+        "candidateId": "U26",
+        "benefit": "적 방어의 30%를 무시합니다.",
+        "limit": "보스·목표물 제외",
+        "implementation": "deferred",
+        "implementationNote": "U26 목재 보존은 안전한 일반 목재 분류 부재로 미적용. 기존 방어 무시 기초 보정만 유지."
       },
       "proposedBasicTargets": [],
-      "review": "공용 개념 유지. 특정 캐릭터·스킬 ID를 강제로 부여하지 않는다.",
-      "implementation": "부모 확정 원고 그대로 적용. 기존 분류·옵션·효과·획득 조건·보상 선택·저장 구조는 유지.",
+      "review": "특정 스킬의 단순 피해/비용 증감은 기초 옵션으로 표시한다. 고유능력은 시전·충돌·이동·자원 사용 방식의 차이다.",
+      "implementation": "확정 lore·획득·배타 선택·슬롯·성장 저장 보존. U26 미적용, 기존 방어무시30%만 기초 보정으로 유지.",
       "acquisitionEvidence": {
         "status": "예약 비활성 · 실제 획득 사건 미정",
         "eventId": "eq_co_t4_choice",
@@ -3131,7 +3398,8 @@
           "shared/engine/src/equipmentData.ts"
         ]
       },
-      "settingScope": "과거 사용 용도에 한정한 창작 설정. 현재 획득자·장소·사건을 정하지 않는다."
+      "settingScope": "과거 사용 용도에 한정한 창작 설정. 현재 획득자·장소·사건을 정하지 않는다.",
+      "skillOptions": null
     }
   ]
 }

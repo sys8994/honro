@@ -1,23 +1,14 @@
-import assert from 'node:assert/strict';
-import vm from 'node:vm';
-import {readFileSync} from 'node:fs';
-import {execFileSync} from 'node:child_process';
-import {buildCore} from '../game/engine/build.mjs';
+import assert from 'node:assert/strict';import vm from 'node:vm';import{readFileSync}from'node:fs';import{execFileSync}from'node:child_process';import{buildCore}from'../game/engine/build.mjs';
 const g=vm.createContext({console,performance,structuredClone});vm.runInContext(await buildCore(),g);const C=g.HONRO_CORE,plain=x=>JSON.parse(JSON.stringify(x));
-const baseline=execFileSync('git',['show','ddc9577648a27a4795a928baddd4b8f61edc9c5b:shared/engine/src/equipmentData.ts'],{encoding:'utf8'});
-for(const key of ['ITEMS','EFFECTS','EVENTS','CHOICES']){const b=JSON.parse(baseline.split('export const EQUIPMENT_'+key+'=')[1].split(';')[0]);const a=plain(C['EQUIPMENT_'+key]);if(key==='ITEMS')for(const i of a){delete i.lore;delete i.effectCategory;}assert.deepEqual(a,b,`${key} gameplay fields changed`);}
-const review=JSON.parse(readFileSync('game/docs/equipment/equipment_review_20261028.json')),proposal=JSON.parse(readFileSync('game/docs/equipment/unique_candidates_20261028.json'));
-const approved=JSON.parse(readFileSync('tests/fixtures/equipment-lore-approved-20261028.json'));
-const priorPresentation=JSON.parse(execFileSync('git',['show','33697b6f76578f051547205cfe61960894306c21:shared/engine/src/equipmentPresentation.ts'],{encoding:'utf8'}).split('>=')[1].trim().replace(/;$/,''));
-const reviewHtml=readFileSync('game/docs/equipment/equipment_review_20261028.html','utf8'),reviewMd=readFileSync('game/docs/equipment/equipment_review_20261028.md','utf8');
-assert.equal(Object.keys(approved).length,52);assert.deepEqual(review.items.map(i=>i.itemId).sort(),Object.keys(approved).sort());
-assert.equal(review.items.length,52);assert.equal(new Set(review.items.map(i=>i.lore)).size,52);
-for(const r of review.items){const i=C.EQUIPMENT_MAP[r.itemId];assert.equal(i.lore,r.lore);assert.equal(i.effectCategory,r.effectCategory);assert.equal(i.lore,approved[i.itemId]);assert.equal(i.effectCategory,priorPresentation[i.itemId].effectCategory);assert(reviewHtml.includes(i.lore),i.itemId+' HTML');assert(reviewMd.includes(i.lore),i.itemId+' MD');}
-assert.equal(review.items.filter(i=>i.acquisitionEvidence.status.startsWith('예약')).length,13);
-assert.match(review.items.find(i=>i.itemId==='itm_da_05').acquisitionEvidence.condition,/진목 표식·잔영 관측 stage29-echo/);
-assert.match(review.items.find(i=>i.itemId==='itm_da_06').acquisitionEvidence.condition,/기존 동행/);
-assert.equal(review.items.filter(r=>r.effectCategory==='unique').length,4);
-assert.equal(C.EQUIPMENT_MAP.itm_da_06.effectCategory,'basic');assert.deepEqual(plain(C.EQUIPMENT_EFFECT_MAP.da_heal.targetSkills),['M10']);assert(review.items.find(i=>i.itemId==='itm_da_06').proposedBasicTargets.every(t=>['M06','M02','M04','M13','M05'].includes(t.id)));
-assert(review.items.find(i=>i.itemId==='itm_da_03').proposedBasicTargets.some(t=>t.id==='M01'));
-assert.equal(proposal.candidates.length,28);assert.equal(new Set(proposal.candidates.map(c=>c.candidateId)).size,28);for(const c of proposal.candidates){assert(['추천','후보','보류'].includes(c.status));for(const id of c.proposedItems)assert(C.EQUIPMENT_MAP[id]);assert(c.effect&&c.playChoice&&c.costAndCap&&c.implementationHook&&c.risk);}
-console.log('PASS exact approved52 lore/categories, actual29/35 evidence, reserved13; 52 review rows, 28 proposals, targeted mage mappings; all gameplay definitions/effects/events/choices byte-equivalent as data');
+const baseline=execFileSync('git',['show','b5536e1a60b2feb049a156c1ce3004a8bb043de3:shared/engine/src/equipmentData.ts'],{encoding:'utf8'});
+for(const key of ['ITEMS','EVENTS','CHOICES']){const b=JSON.parse(baseline.split('export const EQUIPMENT_'+key+'=')[1].split(';')[0].split('.map(')[0]);const a=plain(C['EQUIPMENT_'+key]);if(key==='ITEMS')for(const i of a){delete i.lore;delete i.effectCategory;}assert.deepEqual(a,b,key+' identity/basic/acquisition changed');}
+const review=JSON.parse(readFileSync('game/docs/equipment/equipment_review_20261028.json')),proposal=JSON.parse(readFileSync('game/docs/equipment/unique_candidates_20261028.json')),approved=JSON.parse(readFileSync('tests/fixtures/equipment-lore-approved-20261028.json')),mapping=JSON.parse(readFileSync('tests/fixtures/equipment-tactical-adoption-20261028.json'));
+const html=readFileSync('game/docs/equipment/equipment_review_20261028.html','utf8'),md=readFileSync('game/docs/equipment/equipment_review_20261028.md','utf8'),candidateHtml=readFileSync('game/docs/equipment/unique_candidates_20261028.html','utf8');
+assert.equal(review.items.length,52);assert.equal(Object.keys(approved).length,52);
+for(const r of review.items){const i=C.EQUIPMENT_MAP[r.itemId];assert.equal(r.lore,approved[r.itemId]);assert.equal(i.lore,r.lore);assert.equal(r.effectCategory,i.effectCategory);assert(html.includes(r.lore));assert(md.includes(r.lore));assert.deepEqual(r.currentModifier,plain(C.EQUIPMENT_EFFECT_MAP[i.effectId]||null));assert.deepEqual(r.skillOptions,plain(C.EQUIPMENT_SKILL_OPTIONS[i.itemId]||null));if(i.effectId)assert.equal(C.EQUIPMENT_EFFECT_MAP[i.effectId].candidateId,mapping[i.itemId]);}
+assert.equal(review.items.filter(i=>i.acquisitionEvidence.status.startsWith('예약')).length,13);assert.match(review.items.find(i=>i.itemId==='itm_da_05').acquisitionEvidence.condition,/진목 표식·잔영 관측 stage29-echo/);assert.match(review.items.find(i=>i.itemId==='itm_da_06').acquisitionEvidence.condition,/기존 동행/);
+assert.equal(review.items.filter(i=>i.effectCategory==='unique').length,25);assert.equal(C.EQUIPMENT_MAP.itm_co_20.effectCategory,'basic');assert.equal(C.EQUIPMENT_EFFECT_MAP.co_armor.implementation,'deferred');assert.deepEqual(plain(C.EQUIPMENT_EFFECT_MAP.da_heal.targetSkills),['M02']);assert.deepEqual(plain(C.EQUIPMENT_EFFECT_MAP.da_stake.targetSkills),['M11']);assert.equal(C.EQUIPMENT_EFFECT_MAP.hw_life.params.focusPerHp,.25);
+assert.equal(proposal.candidates.length,28);assert.equal(proposal.candidates.filter(c=>c.status==='적용').length,23);assert.equal(proposal.candidates.find(c=>c.candidateId==='U26').status,'미적용');for(const id of ['U05','U14','U18','U19'])assert.equal(proposal.candidates.find(c=>c.candidateId===id).status,'이번 미채택');
+for(const c of proposal.candidates){assert(candidateHtml.includes('id="'+c.candidateId+'"'));assert(c.effect&&c.playChoice&&c.costAndCap&&c.implementationHook&&c.risk);for(const id of c.proposedItems)assert(C.EQUIPMENT_MAP[id]);}
+assert.equal((html.match(/class="candidate-row"/g)||[]).length,52);assert.equal((html.match(/class="row-more"/g)||[]).length,52);assert.equal((candidateHtml.match(/class="row-more"/g)||[]).length,28);assert(!/class="row-more"[^>]*\bopen\b/.test(html+candidateHtml));
+console.log('PASS original52 lore/identities/basic/acquisition/choices; current mapping26, active25/U26deferred; low-tier16; visible excluded4; compact rows52/28; original29/35 evidence and reserved13');

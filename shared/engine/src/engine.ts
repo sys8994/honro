@@ -602,7 +602,7 @@ export class Engine {
         return terrainSurface(this.collisionTerrain({x,y:0},{x,y:0},3),x,min,max,Infinity,(t,edge)=>!!this.dropEdges(u,t)?.includes(edge));
     }
     jumpCost(u:Unit){return Math.max(25,75-passiveRank(u,'SP03')*5);}
-    jump(u = this.active) { if(this.noncombatWalk()&&u?.side===0)u.moveLeft=u.maxMove; if (!u || u.dead || u.eaterCapturedBy || u.summonKind==='eater' || u.meleeFollow==='ready' || u.fixed || u.airborne || u.moveLeft < this.jumpCost(u) || !this.grounded(u))
+    jump(u = this.active) { if(this.noncombatWalk()&&u?.side===0)u.moveLeft=u.maxMove; if (!u || u.dead || u.eaterCapturedBy || u.summonKind==='eater' || u.meleeFollow==='ready' || u.equipmentState?.motion || u.fixed || u.airborne || u.moveLeft < this.jumpCost(u) || !this.grounded(u))
         return false; delete u.platformDrop;delete u.moveTarget;if(equipmentActor(u))gearState(u).jumpCycle=gearCycle(this.b); u.jumping = true; u.vy = -660*(1+passiveRank(u,'SP03')*.02)*((u.equipmentIds?.includes('itm_co_11')&&equipmentActor(u)?1.3:1)>1?Math.sqrt(.9):1); u.moveLeft = Math.max(0, u.moveLeft - this.jumpCost(u)); u.landing = 0; this.fx('spark', u.x, u.y, '#d7d0b8', 20); this.emit('sound', { name: 'jump' }); return true; }
     walk(u:Unit,direction:number,dt:number,requireSupport=false){if(u.eaterCapturedBy||u.summonKind==='eater')return false;if(u.meleeFollow==='ready'||u.platformDrop&&u.platformDrop.phase!=='land')return;if(this.noncombatWalk()&&u.side===0)u.moveLeft=u.maxMove;const result=walkTerrain(this,u,direction,dt*(1-Math.max(u.slowed?.factor||0,gearFrostSlow(this,u)))*(u.jumping&&(u.equipmentIds?.includes('itm_co_11')&&equipmentActor(u)?1.3:1)>1?1.3/Math.sqrt(.9):1),requireSupport);if(this.noncombatWalk()&&u.side===0)u.moveLeft=u.maxMove;return result;}
     turnArrow(point?:Vec){return turnArrow(this,point);}
@@ -958,7 +958,7 @@ export class Engine {
         }
     }
     impulse(u: Unit, vx: number, vy: number,attack?:Partial<Projectile>) { if (u.dead || u.eaterCapturedBy || u.summonFloating) return;
-        ({vx,vy}=gearImpulse(this,u,vx,vy,attack));
+        ({vx,vy}=gearImpulse(this,u,vx,vy,attack));if(u.equipmentState&&(Math.abs(vx)+Math.abs(vy)>0)){delete u.equipmentState.motion;delete u.equipmentState.landingRetreat;}
         if(flyingEnemy(u)){knockbackFlyingEnemy(this,u,vx,vy);return;}
         if(u.fixed)return; delete u.platformDrop; delete u.moveTarget; const resist=1-knockbackResistance(passiveRank(u,'SP02'));  u.vx = clamp(u.vx + vx*resist, -480, 480); u.vy = Math.min(u.vy, vy*resist); if (vy < 0)
         u.jumping = false; }
@@ -1368,7 +1368,7 @@ export class Engine {
             return;
         }
         if(h.unit&&gearBody(p)&&equipmentActor(u)&&equipmentActor(h.unit)&&h.unit.id!==u.id&&this.allegiance(h.unit)===this.allegiance(u)){
-            if(gearPass(this,h.unit,p)){const n=Math.hypot(p.vx,p.vy)||1;p.x+=p.vx/n*2;p.y+=p.vy/n*2;return;}
+            if(gearPass(this,h.unit,p)){return;}
             if(gearAlly(this,h.unit,u,p)){this.remove(p);return;}
         }
         if(gearReturn(this,p,h))return;
