@@ -682,7 +682,7 @@
                 attr('data-action','combat-skill');attr('data-skill',id);attr('aria-label',s.name);attr('aria-pressed',String(selected));
                 if(button.disabled===allowed)button.disabled=!allowed;if(!allowed)attr('title','파진연격 · 검술만 가능');else if(button.hasAttribute('title'))button.removeAttribute('title');
                 if(button.style.getPropertyValue('--skill')!==s.color)button.style.setProperty('--skill',s.color);
-                for(const [selector,value] of [['.key',String(i+1)],['.mana-cost',String(r?r+'회':e.manaCost(s,u)||'')],['.skill-name',s.name]]){const node=button.querySelector(selector);if(node.textContent!==value)node.textContent=value;}
+                for(const [selector,value] of [['.key',String(i+1)],['.mana-cost',String(r?r+'회':Number(e.manaCost(s,u).toFixed(1))||'')],['.skill-name',s.name]]){const node=button.querySelector(selector);if(node.textContent!==value)node.textContent=value;}
             });for(const button of unused)button.remove();
         }
         updateHUD(force = false) {

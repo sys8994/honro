@@ -263,7 +263,7 @@ export function redesignImpact(e:Engine,p:Projectile,h:Collision){
  const s=SKILLS[p.skill],u=e.unit(p.owner)!,r=rank(p);p.x=h.x;p.y=h.y;
  if(p.secondary){if(h.unit){e.hurt(h.unit,p.damage,p.owner,false,p,h);if(p.mode==='frostChip'&&enemy(p,h.unit))h.unit.slowed={factor:lerpRank(.20,.35,r),expires:e.b.round+1};}e.remove(p);return true;}
  if(p.mode==='waveArc'){
-  const reversed=!!h.terrain&&gearHas(p,'da_arc')&&gearBody(p),g=skillGeometry(s,r,h.x+(reversed?h.n.x*2:0),h.y+(reversed?h.n.y*2:0),Math.atan2(p.vy,p.vx)+(reversed?Math.PI:0),u.lastPower,undefined,undefined,geometryBoost(u,s,p.effectBoost));if(reversed)g.span*=1.2;
+  const reversed=!!h.terrain&&gearHas(p,'da_arc')&&gearBody(p),g=skillGeometry(s,r,h.x+(reversed?h.n.x*2:0),h.y+(reversed?h.n.y*2:0),Math.atan2(p.vy,p.vx)+(reversed?Math.PI:0),u.lastPower,undefined,undefined,geometryBoost(u,s,p.effectBoost));if(reversed){g.span*=1.2;g.x=g.impact!.x;g.y=g.impact!.y;}
   strikeGeometry(e,p,g,h.unit,reversed);e.remove(p);return true;
  }
  if(p.mode==='qiPulse'){
@@ -505,7 +505,7 @@ export function redesignPrediction(e:Engine,u:Unit,s:Skill,angle:number,power:nu
   if(i%3===0)points.push({x:p.x,y:p.y});if(p.y>e.b.height+100||p.x<0||p.x>e.b.width||p.y< -1700)break;
  }
  points.push({x:p.x,y:p.y});
- const reverse=arc&&terrainAtEnd&&!!u.equipmentIds?.includes('itm_da_08'),geometry=arc||bagua||s.mode==='waveTriangle'?skillGeometry(s,r,p.x+(reverse?(contact?.n.x||0)*2:0),p.y+(reverse?(contact?.n.y||0)*2:0),arc?Math.atan2(p.vy,p.vx)+(reverse?Math.PI:0):-rad(angle),power,contacts,origin,geometryBoost(u,s)):undefined;if(reverse&&geometry)geometry.span*=1.2;
+ const reverse=arc&&terrainAtEnd&&!!u.equipmentIds?.includes('itm_da_08'),geometry=arc||bagua||s.mode==='waveTriangle'?skillGeometry(s,r,p.x+(reverse?(contact?.n.x||0)*2:0),p.y+(reverse?(contact?.n.y||0)*2:0),arc?Math.atan2(p.vy,p.vx)+(reverse?Math.PI:0):-rad(angle),power,contacts,origin,geometryBoost(u,s)):undefined;if(reverse&&geometry){geometry.span*=1.2;geometry.x=geometry.impact!.x;geometry.y=geometry.impact!.y;}
  const secondaryPoint=s.id==='M05'?skyStrikePoint(e,{x:p.x,y:p.y},u.id):s.id==='M07'?{x:p.x,y:p.y-20}:undefined;
  const ranges=s.branch==='stake'?stakeRanges(e,{id:0,skill:s.id,owner:u.id,side:u.side,x:p.x,y:p.y,rank:r,damage:0,shot:0,effectBoost:jucheonBoost(u,s)}):undefined;
  return {x:p.x,y:p.y,unit:contact?.unit?.id,terrain:contact?.terrain?.id,terrainAtEnd,points,time,closest,contacts,apex,geometry,secondaryPoint,triggerRadius:ranges&&s.id!=='M09'?ranges.trigger:undefined,secondaryRadius:s.branch==='gourd'?(s.id==='M04'?260+10*(r-1):s.id==='M13'?240:e.effective(s,u).radius):ranges?.effect};

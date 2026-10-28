@@ -3,7 +3,7 @@
     "date": "2026-10-28",
     "baseSha": "b5536e1a60b2feb049a156c1ce3004a8bb043de3",
     "count": 52,
-    "status": "확정 lore52 유지. 고유 매핑26개 중25개 적용, U26 목재 보존은 미적용. 저티어16개 스킬/계열 기초 옵션 추가. 획득·배타 선택·슬롯·성장 원장은 유지.",
+    "status": "확정 lore52 유지. 고유 매핑26개 중25개 적용, U26 목재 보존은 미적용. 계열 계열 옵션16개 적용. 지정한 범용 옵션12개를 대체해 T1최대2개·T2최대3개를 유지. 획득·배타 선택·슬롯·성장 원장은 유지.",
     "definition": "특정 스킬/계열의 피해·범위·효율·지속 수치만 바꾸면 기초 보정. 조준·충돌·자원 교환·대상/행동 방식이 달라질 때 고유능력. T1부터 계열 기초 옵션 허용; 낮은 티어를 범용 능력치에만 가두지 않음.",
     "legacy": "effectId는 기존 실행 연결명으로 보존. 현재 동작은 currentModifier와 effectCategory가 기준. T3/T4 운용 효과25개와 틈새호패의 방어무시 기초 보정을 구분한다.",
     "copyCompletion": {
@@ -98,12 +98,6 @@
       "tier": 1,
       "basicOptions": [
         {
-          "key": "hp",
-          "label": "최대 HP",
-          "value": 8,
-          "unit": "%"
-        },
-        {
           "key": "move",
           "label": "이동력",
           "value": 3,
@@ -152,12 +146,6 @@
       "slot": "personal",
       "tier": 2,
       "basicOptions": [
-        {
-          "key": "attack",
-          "label": "공격",
-          "value": 4,
-          "unit": "%"
-        },
         {
           "key": "mp",
           "label": "최대 기력",
@@ -223,12 +211,6 @@
           "label": "최대 HP",
           "value": 12,
           "unit": "%"
-        },
-        {
-          "key": "armor",
-          "label": "방어",
-          "value": 1.5,
-          "unit": "%p"
         },
         {
           "key": "move",
@@ -645,12 +627,6 @@
       "tier": 1,
       "basicOptions": [
         {
-          "key": "attack",
-          "label": "공격",
-          "value": 2,
-          "unit": "%"
-        },
-        {
           "key": "mp",
           "label": "최대 기력",
           "value": 8,
@@ -704,12 +680,6 @@
       "slot": "personal",
       "tier": 2,
       "basicOptions": [
-        {
-          "key": "attack",
-          "label": "공격",
-          "value": 4,
-          "unit": "%"
-        },
         {
           "key": "mp",
           "label": "최대 기력",
@@ -795,12 +765,6 @@
           "label": "최대 HP",
           "value": 12,
           "unit": "%"
-        },
-        {
-          "key": "armor",
-          "label": "방어",
-          "value": 1.5,
-          "unit": "%p"
         },
         {
           "key": "mp",
@@ -1238,12 +1202,6 @@
           "label": "이동력",
           "value": 3,
           "unit": "%"
-        },
-        {
-          "key": "armor",
-          "label": "방어",
-          "value": 1,
-          "unit": "%p"
         }
       ],
       "releaseGate": "publicAct1to3",
@@ -1304,12 +1262,6 @@
           "label": "방어",
           "value": 1.5,
           "unit": "%p"
-        },
-        {
-          "key": "attack",
-          "label": "공격",
-          "value": 4,
-          "unit": "%"
         }
       ],
       "releaseGate": "publicAct1to3",
@@ -1369,12 +1321,6 @@
           "key": "mp",
           "label": "최대 기력",
           "value": 12,
-          "unit": "%"
-        },
-        {
-          "key": "cost",
-          "label": "기예 기력 비용 감소",
-          "value": 5,
           "unit": "%"
         }
       ],
@@ -1773,12 +1719,6 @@
       "tier": 1,
       "basicOptions": [
         {
-          "key": "attack",
-          "label": "공격",
-          "value": 2,
-          "unit": "%"
-        },
-        {
           "key": "armor",
           "label": "방어",
           "value": 1,
@@ -1843,12 +1783,6 @@
           "label": "최대 기력",
           "value": 12,
           "unit": "%"
-        },
-        {
-          "key": "cost",
-          "label": "기예 기력 비용 감소",
-          "value": 5,
-          "unit": "%"
         }
       ],
       "releaseGate": "publicAct1to3",
@@ -1903,12 +1837,6 @@
           "label": "최대 HP",
           "value": 12,
           "unit": "%"
-        },
-        {
-          "key": "armor",
-          "label": "방어",
-          "value": 1.5,
-          "unit": "%p"
         },
         {
           "key": "move",
