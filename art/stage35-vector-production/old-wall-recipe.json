@@ -1,0 +1,19 @@
+{
+  "skeleton": "old-wall-skeleton.png",
+  "concept": "old-wall-concept.png",
+  "source": "old-wall-source.svg",
+  "raw": "old-wall-raw.svg",
+  "final": "old-wall-final.svg",
+  "trace": {
+    "application": "Inkscape native GUI",
+    "colors": 8,
+    "smooth": true,
+    "stack": true,
+    "removeBackground": true,
+    "speckles": 25
+  },
+  "cleanup": "Inkscape .0003 inner paths; raw exterior path7 restored unchanged.",
+  "collision": "Exact original a4:old-wall collision copied in assembly. Instance IDs/positions/scales unchanged.",
+  "fidelity": "vector-fidelity.json includes 1x sampling diagnostic and8x resolution, no threshold waiver",
+  "reusable": "Common isolated masonry prop; no stageground or background fused into it."
+}
