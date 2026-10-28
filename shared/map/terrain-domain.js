@@ -101,6 +101,15 @@ function stage5FoundationMaterial(l,b,terrain){
  const bank=l.asset?.id==='stage5-dynamic:lower-bank',cliff=l.asset?.id==='stage5-dynamic:east-cliff';if(!bank&&!cliff)return l;
  const mass=terrain.find(t=>t.id===(bank?'valley-floor':'waterfall-cliff')&&!t.broken);if(!mass)return l;
  const asset=clone(l.asset),vector=asset.vector,body=vector.root.children[0],local=mass.vertices.map(p=>({x:p.x,y:p.y-1000}));
+ if(b.honroStage5FoundationRevision>=2){
+  // Revision2 authors broad strata itself. Continue only its base polygon and
+  // clip to the canonical world mass; never reintroduce the old triangle planes.
+  body.d=pathString(local);
+  if(bank){vector.gradients['stage5-buried']={type:'linear',x1:0,y1:2500,x2:0,y2:11000,stops:[{offset:0,color:body.fill,opacity:1},{offset:1,color:'#102832',opacity:1}]};body.fill='url(#stage5-buried)';}
+  asset.bounds={x:mass.x,y:mass.y,w:mass.w,h:mass.h};vector.viewBox=[mass.x,mass.y,mass.w,mass.h];
+  return{...l,asset,honroTerrainMaterialClip:new Path2D(pathString(mass.vertices))};
+ }
+
  // The same complete canonical polygon supplies contact, underpaint and clip.
  // Keep the pine/cave detail and deepen only the buried bank's broad stratum.
  body.children[0].d=pathString(local);vector.clips[bank?'lower-bank-clip':'east-cliff-clip']=[pathString(local)];
@@ -120,7 +129,7 @@ function stage5FoundationMaterial(l,b,terrain){
  return{...l,asset,honroTerrainMaterialClip:new Path2D(pathString(mass.vertices))};
 }
 function materialLandmarks(b){
- const stage5=b?.honroStage===5&&b.honroStage5FoundationRevision===1;
+ const stage5=b?.honroStage===5&&b.honroStage5FoundationRevision>=1;
  if(!active(b)||b.honroCustom||!stage5&&(b.honroStage<21||b.honroStage>30))return b.honroLandmarks||[];
  const source=b.honroLandmarks||[],terrain=render(b),old=materialViews.get(b);
  if(old?.source===source&&old.terrain===terrain&&old.version===b.sceneVersion)return old.landmarks;

@@ -71,7 +71,10 @@ export interface Terrain {
     broken?: boolean;
     route?: boolean;
 }
+export type WaterPolicy = {mode:'shallow'} | {mode:'lethal';submergeDepth?:number} | {mode:'recover';damageFraction:number;submergeDepth?:number;shores:Record<'left'|'right',{x:number;y:number;support:string}[]>};
 export interface Water {
+    id?: string;
+    policy?: WaterPolicy;
     bottom?: Vec[];
     x: number;
     y: number;
@@ -138,6 +141,11 @@ export interface AIMovePlan {
 }
 export interface Unit {
     equipmentIds?: string[];
+    /** Explicit species traits; a normal jump/knockback is never a water exemption. */
+    waterTraversal?: 'aquatic'|'flying';
+    waterWarnings?: string[];
+    waterEntrySides?: Record<string,'left'|'right'>;
+    waterRecovery?: {zoneId:string;side:'left'|'right';entryX:number;elapsed:number};
     summonDamageOrigin?: DamageOrigin;
     curseDamageOrigin?: DamageOrigin;
     /** Optional overrides and temporary shifts; absent fields use the species/role baseline. */

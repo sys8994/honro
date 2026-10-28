@@ -50,7 +50,17 @@ S.unitBody=function(c,u,...args){if(!u.honroObjectiveTarget)return body.call(thi
 const unit=S.unit;
 S.unit=function(c,u,...args){if(!u.honroObjectiveTarget)return unit.call(this,c,u,...args);if(u.dead)return;
  this.unitOutline?.(c,u);if(this.hitFlashVisible?.(u)??u.hurt>0)this.hitBody(c,u,0);else this.unitBody(c,u,0);
- const z=1/Math.max(.05,this.scale||1),width=92;c.save();c.translate(u.x,u.y-u.h-12*z);c.scale(z,z);
+ const z=1/Math.max(.05,this.scale||1),width=92;let labelX=u.x;const labelY=u.y-u.h-12*z;
+ // Keep Stage5's remote objective readable beside the real minimap dock at
+ // tactical zoom. Move only the label; the target and its collider stay fixed.
+ if(this.battle?.honroStage===5&&u.id==='cliff-cleat'){
+  const dock=G.document?.getElementById('minimap-dock'),canvas=this.canvas;
+  if(dock&&!dock.hidden&&dock.getBoundingClientRect&&canvas?.getBoundingClientRect){
+   const r=dock.getBoundingClientRect(),v=canvas.getBoundingClientRect(),px=(u.x-this.x)/z+v.width/2,py=(labelY-this.y)/z+v.height/2,left=r.left-v.left,top=r.top-v.top;
+   if(r.width>0&&px+58>left-8&&px-58<left+r.width&&py+10>top&&py-35<top+r.height)labelX-=Math.max(0,px+58-left+10)*z;
+  }
+ }
+ c.save();if(labelX!==u.x){c.strokeStyle='#d7c9a980';c.lineWidth=z;c.beginPath();c.moveTo(u.x,u.y-u.h);c.lineTo(labelX,labelY+10*z);c.stroke();}c.translate(labelX,labelY);c.scale(z,z);
  c.fillStyle='#102227';c.fillRect(-width/2-2,-2,width+4,10);c.fillStyle='#c76a62';c.fillRect(-width/2,0,width*Math.max(0,u.hp/u.maxHp),6);
  c.textAlign='center';c.font='600 11px sans-serif';c.lineWidth=3;c.strokeStyle='#102227';
  for(const [text,y]of [[u.name,-19],[Math.ceil(u.hp)+' / '+Math.ceil(u.maxHp),-6]]){c.strokeText(text,0,y,220);c.fillStyle='#f1ded0';c.fillText(text,0,y,220);}

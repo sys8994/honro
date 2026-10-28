@@ -6,8 +6,8 @@ const opened=shape([2798,1220],[[2770,1550,2870,1810,3080,1980],[3280,2130,3430,
 // Both the ribbon and projectile drag use these revision5 world polygons.
 // Legacy lake snapshots retain their original offset and curves.
 const dynamic={
- closed:shape([4210,875],[[4180,1250,4210,1920,4200,2470],[4180,2810,4140,2870,4010,2900],[4190,2935,4410,2935,4560,2900],[4380,2750,4380,2700,4390,2460],[4440,2040,4350,1860,4390,1180],[4400,1080,4410,970,4410,875]]),
- opened:shape([4210,875],[[4550,820,5350,840,5680,850],[5820,950,5860,1330,5800,1600],[5690,2070,5260,2460,4010,2900],[4190,2935,4410,2935,4560,2900],[5500,2570,5910,2080,6000,1650],[6070,1330,6040,1020,5880,900],[5550,850,4700,930,4410,875]])
+ closed:shape([5210,720],[[5210,760,5210,830,5210,875],[5180,1250,5210,1920,5200,2470],[5180,2810,5140,2870,5010,2900],[5190,2935,5410,2935,5560,2900],[5380,2750,5380,2700,5390,2460],[5440,2040,5350,1860,5390,1180],[5400,1080,5410,970,5410,875],[5410,830,5410,760,5410,720]]),
+ opened:shape([5210,720],[[5210,760,5210,830,5210,875],[5450,820,5550,840,5680,850],[5820,950,5860,1330,5800,1600],[5690,2070,5560,2460,5010,2900],[5190,2935,5410,2935,5560,2900],[5650,2570,5910,2080,6000,1650],[6070,1330,6040,1020,5880,900],[5750,850,5700,930,5410,875],[5410,830,5410,760,5410,720]])
 };
 const offset=b=>b.honroStage5DynamicRevision?0:b.honroStage5LakeRevision===1?900:0;
 function setOpen(b,open){if(b.honroStage!==5||b.honroStage5WaterfallRevision!==1||b.honroCustom)return;const t=G.HonroQuestTargets.records(b).find(t=>t.id==='waterfall-veil');if(!t)return;const changed=t.honroWaterOpen!==open||t.broken||!t.honroWaterFluidVertices;t.broken=false;if(!changed)return;const shapes=b.honroStage5DynamicRevision?dynamic:{closed,opened},fluid=G.HONRO_CORE.canonicalPolygon((open?shapes.opened:shapes.closed).map(p=>({x:p.x+offset(b),y:p.y}))),vertices=G.HONRO_CORE.waterfallBodyShape(fluid),xs=vertices.map(p=>p.x),ys=vertices.map(p=>p.y);Object.assign(t,{honroWaterFluidVertices:fluid,vertices,x:Math.min(...xs),y:Math.min(...ys),w:Math.max(...xs)-Math.min(...xs),h:Math.max(...ys)-Math.min(...ys),honroWaterOpen:open});b.sceneVersion++;}

@@ -371,8 +371,11 @@
             }
         }
         mount(b,{freshReport=false,reportScope}={}) { C.initializePlayerTurnOrder(b,this.profile,false); G.HonroAct3Void?.recover(b); this.stage=G.HonroObjectiveRevision?.contentFor(b,this.stage)||this.stage; G.HonroStageRules.sanitizeStageBattle(b); G.HonroEncounters.configure(b);G.HonroProgression.initialize(b,this.profile);C.applySpBalanceMigration(b);G.HonroClearReport.begin(b,{fresh:freshReport,scope:reportScope||G.HonroClearReport.scopeOf(this)});b.honroActiveLimit??=H.stages[(b.honroStage||1)-1].active;b.enemyLimit=b.honroActiveLimit;G.HonroStage19Farewell?.prepare(b);this.screen = 'battle'; this.contacts.clear(); this.acc = 0; this.engine = new C.Engine(b, ev => { if(this.engine?.b===b&&(ev.type==='change'||ev.type==='save'))G.HonroMukjongAudio?.observe(this);if(this.scene?._pausedBattleFrame)this.scene._pausedBattleFrame=null;this.scene?.event(ev); if (ev.type === 'sound')
-            {if(ev.skillAudio)this.audio?.skills?.event(ev.skillAudio);else if(ev.name==='mukjongKeeper')G.HonroMukjongAudio?.keeper(this);else this.audio?.play(ev.name);} if (ev.type === 'save')
-            this.dirty = true; }, false); const e = this.engine; G.HonroMukjongAudio?.attach(this,b,{fresh:freshReport}); G.HonroAllies.attach(this,e); G.HonroEncounters.attach(this,e); G.HonroAct2.attach(this,e); G.HonroAct3.attach(this,e); G.HonroSplitCampaign.attach(this,e); G.HonroStakeCrossing.attach(this,e); if (!this.training) {
+            {if(ev.skillAudio)this.audio?.skills?.event(ev.skillAudio);else if(ev.name==='mukjongKeeper')G.HonroMukjongAudio?.keeper(this);else this.audio?.play(ev.name);} if (ev.type === 'save') {
+            this.dirty = true;
+            // Water damage/recovery is one durable receipt, including a reload during the brief drift.
+            if(ev.name==='waterHazard'&&this.engine?.b===b&&!this.training&&!this.debugMode&&!this.done){G.HonroProgression.syncRoster(this.profile,b);this.profile.honroBattle=clone(b);this.persist();this.lastSave=performance.now();}
+            } }, false); const e = this.engine; G.HonroMukjongAudio?.attach(this,b,{fresh:freshReport}); G.HonroAllies.attach(this,e); G.HonroEncounters.attach(this,e); G.HonroAct2.attach(this,e); G.HonroAct3.attach(this,e); G.HonroSplitCampaign.attach(this,e); G.HonroStakeCrossing.attach(this,e); if (!this.training) {
             e.checkEnd = () => this.checkMission(e);
             const orig = e.hurt.bind(e);
             e.hurt = (u, amount, ...args) => {
