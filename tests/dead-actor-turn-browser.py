@@ -1,0 +1,21 @@
+"""Built Engine/Scene: actual M07 trajectory, moving enemy death and old-save recovery.
+Flat fixture only; no campaign map completion or forced phase/active/death state."""
+import json,gzip
+from playwright.sync_api import sync_playwright
+from browser_support import ROOT,serve_game,launch
+OUT=ROOT/'_local/reports/dead-actor-turn';OUT.mkdir(parents=True,exist_ok=True)
+SETUP=r'''()=>{
+ const a=HonroApp,C=HONRO_CORE;a.frame=()=>{};a.profile.settings.music=false;a.profile.settings.sound=false;a.updateAudio();a.trainingClass='mage';a.trainingSkill='M07';a.launch(1,true,'M07');a.dialogue=null;a.turnNotice=null;
+ window.deadTurnMount=(b)=>{a.engine=new C.Engine(b,ev=>a.scene.event(ev));a.training=false;a.stage=HONRO_CONTENT.stages[0];a.selected='M07';a.power=.3;Object.assign(a.scene,{manual:true,storyTween:null,goalFocus:null,cinematic:null,x:760,y:1380,scale:.58});a.updateHUD(true);};
+ window.deadTurnRender=()=>{a.updateHUD(true);a.scene.render(a.engine,1/60,'M07',.3,false,1/60,false);};
+ const b=C.createBattle(1,C.defaults(),'campaign');Object.assign(b,{width:3000,height:2000,terrain:[{id:'floor',x:0,y:1500,w:3000,h:500,mat:'rock',hp:99999,maxHp:99999}],fields:[],waters:[],drafts:[],zones:[],decor:[],enemyLimit:2});b.units=b.units.filter(u=>u.id===b.active);Object.assign(b.units[0],{x:400,y:1500,spawnX:400,spawnY:1500,vx:0,vy:0,ranks:{M07:1,M01:1},loadout:['M07'],attack:1,focus:1000,maxFocus:1000,armor:0});
+ for(const [i,x] of [1150,1600].entries())b.units.push(C.makeUnit('knight',1,x,1500,{id:`foe${i}`,role:'guard',name:i?'남은 적':'이동 중 적',hp:i?10000:1,maxHp:i?10000:1,armor:0,loadout:['S00'],awake:true,aggroUntil:99,maxMove:1000,moveLeft:1000}));
+ deadTurnMount(b);if(!a.engine.fire('M07',0,.3))throw Error('native cast failed');let ticks=0;while(!b.units[1].aiMove&&ticks++<1200)a.engine.tick(C.STEP);if(!b.units[1].aiMove)throw Error('no native movement');while(b.units[1].x>650&&ticks++<2400)a.engine.tick(C.STEP);if(b.units[1].dead)throw Error('missed pre-death frame');deadTurnRender();return{ticks,phase:b.phase,active:b.active,x:b.units[1].x,stake:b.stakes[0].x};
+}'''
+with serve_game() as base,sync_playwright() as p:
+ browser=launch(p);page=browser.new_page(viewport={'width':844,'height':390},is_mobile=True,has_touch=True);errors=[];missing=[];page.on('pageerror',lambda e:errors.append(str(e)));page.on('response',lambda r:missing.append(r.url) if r.status==404 else None)
+ page.goto(base+'/HONRO.html',wait_until='domcontentloaded');page.wait_for_function('window.HonroApp');page.evaluate("async()=>await HonroOptionalRuntime.load('training')");before=page.evaluate(SETUP);page.screenshot(path=str(OUT/'mobile-walking.png'))
+ after=page.evaluate('''()=>{const e=HonroApp.engine,b=e.b;let ticks=0;while(b.round===1&&ticks++<2400)e.tick(HONRO_CORE.STEP);deadTurnRender();return{ticks,round:b.round,side:b.side,phase:b.phase,active:b.active,kills:b.kills,dead:b.units[1].dead,staleMove:!!b.units[1].aiMove,remainingLastAct:b.units[2].lastAct};}''');assert after['round']==2 and after['phase']=='aim' and after['side']==0 and after['dead'] and not after['staleMove'] and after['kills']==1 and after['remainingLastAct']==1,after;page.screenshot(path=str(OUT/'mobile-player-turn.png'))
+ old=json.loads(gzip.decompress((ROOT/'tests/fixtures/m07-dead-moving-enemy-a8777dda.json.gz').read_bytes()));assert old['units'][1]['dead'] and old['units'][1]['aiMove']
+ restored=page.evaluate('''b=>{deadTurnMount(b);const e=HonroApp.engine;let ticks=0;while(b.round===1&&ticks++<2400)e.tick(HONRO_CORE.STEP);deadTurnRender();return{ticks,round:b.round,phase:b.phase,kills:b.kills,staleMove:!!b.units[1].aiMove};}''',old);assert restored['round']==2 and restored['phase']=='aim' and restored['kills']==1 and not restored['staleMove'];page.screenshot(path=str(OUT/'mobile-restored-player-turn.png'))
+ assert not errors,errors;assert not missing,missing;browser.close();(OUT/'browser.json').write_text(json.dumps({'before':before,'after':after,'restored':restored,'errors':errors,'missing':missing,'scope':'Built native Engine/Scene and actual M07 projectile/AI in flat campaign-mode fixture, plus actual a8777dda stalled snapshot. Not a whole authored campaign playthrough.'},ensure_ascii=False,indent=2)+'\n');print('PASS built mobile native M07 movement/death/player turn and stalled-save recovery',json.dumps(after),flush=True)
