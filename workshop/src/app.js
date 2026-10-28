@@ -52,7 +52,7 @@ function activeProject(){return previewProject||project}
 function stage(){const p=activeProject();return p.stages.find(s=>s.id===p.activeStageId)||p.stages[0]}
 function realStage(){return project.stages.find(s=>s.id===project.activeStageId)||project.stages[0]}
 function activeAsset(){return project.library.find(a=>a.id===selectedAssetId)||project.library[0]}
-function commit(label,fn,before=deep(project)){try{fn(project);project=HonroMaps.finalize(project)}catch(e){project=before;throw e}history.push({label,state:before});if(history.length>80)history.shift();future=[];previewProject=null;saveAutosave();renderAll();setStatus(label)}
+function commit(label,fn,before=deep(project)){try{fn(project);project=HonroProductionContract.governed(project,project.activeStageId)?HonroMaps.normalize(project):HonroMaps.finalize(project)}catch(e){project=before;throw e}history.push({label,state:before});if(history.length>80)history.shift();future=[];previewProject=null;saveAutosave();renderAll();setStatus(label)}
 function undo(){if(!history.length)return;future.push({label:'redo',state:deep(project)});project=history.pop().state;previewProject=null;saveAutosave();renderAll();toast('되돌렸습니다')}
 function redo(){if(!future.length)return;history.push({label:'undo',state:deep(project)});project=future.pop().state;previewProject=null;saveAutosave();renderAll();toast('다시 적용했습니다')}
 function saveAutosave(){if(project.settings.autosave)try{localStorage.setItem('honro-workshop-v3',JSON.stringify(project))}catch(e){}}

@@ -37,3 +37,12 @@ assert.throws(()=>runProbe(g,fixture,st.id,{id:'route',kind:'route',inputs:[{op:
 assert.equal(runProbe(g,fixture,st.id,{id:'objective',kind:'objective',inputs:[{op:'advance',frames:1}]}).result,'not-supported','Do not fake App objective verification with Engine-only fixtures');
 card.requiredProbes=[{id:'board',kind:'objective',claim:'실제 승선 완료만 성공'}];const idle=await runObjectiveProbe(p,id,{id:'board',kind:'objective',inputs:[{op:'skip-dialogue'},{op:'advance',frames:60}]});assert.equal(idle.result,'fail','Entering the map or idling cannot complete the boarding objective');
 console.log('Production contract: actual Stage31 fails; fake approvals cannot pass; edits expire reviews; no source mutation.');
+
+// An unrelated legacy stage cannot prevent opening/saving a governed draft.
+// Target-stage schema errors must still block production export.
+const draftNormalized=g.HonroMaps.normalize(P.begin(base,id));
+assert(draftNormalized.production.cards[id]);
+const duplicate=clone(draftNormalized);duplicate.stages.find(s=>s.id===id).units.push(clone(duplicate.stages.find(s=>s.id===id).units[0]));
+assert(P.audit(duplicate,id).issues.some(i=>i.text.includes('공통 맵 스키마')));
+const missingMetadata=clone(base);delete missingMetadata.stages.find(s=>s.id===id).metadata;
+assert(P.governed(missingMetadata,id),'Removing metadata cannot bypass Stage31 production checks');
