@@ -72,7 +72,7 @@ export function redrawDamage(e:Engine,p:Projectile,u:Unit,target:Unit,amount:num
 }
 export function recordRedesignDamage(e:Engine,p:Projectile|undefined,src:Unit,target:Unit,actual:number){
  if(e.b.cast?.shot===p?.shot&&e.b.cast?.owner===src.id&&enemy({side:src.side},target))e.b.cast.enemyDamage+=actual;
- if(!p||!newSkill(p)||p.skill!=='A06'||!enemy(p,target))return;
+ if(!p||!newSkill(p)||p.skill!=='A06'||!enemy(p,target)||src.dead||src.hp<=0)return;
  const r=rank(p);for(const [field,max,fraction,cap] of [['hp','maxHp',lerpRank(.05,.12,r),.15],['focus','maxFocus',lerpRank(.03,.07,r),.18]] as const){
   const boosted=field==='focus'&&gearBody(p)&&gearHas(p,'se_recover')&&p.equipment!.lowFocus;
   const key=`recover:${p.shot}:${field}`,used=e.b.shotDamage[key]||0,n=Math.min(actual*fraction*(boosted?2:1),src[max]*(boosted?.25:cap)-used,src[max]-src[field]);

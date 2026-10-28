@@ -83,8 +83,8 @@ export function gearEarthMove(e:Engine,u:Unit,before:Vec){const anchor=u.earthbi
 export function gearPreservesWood(_e:Engine,_t:Terrain,_owner:string,_p?:Partial<Projectile>){return false;}
 export function gearSpreadWeak(e:Engine,dead:Unit){
  const mark=dead.equipmentState?.weak;if(!mark||mark.used||mark.spread||mark.expires<e.b.round)return;
- mark.used=true;const owner=e.unit(mark.owner);if(!owner||owner.dead)return;
- const targets=e.b.units.filter(t=>!t.dead&&t.id!==dead.id&&t.side===1&&!t.boss&&!t.honroMidboss&&!t.honroObjectiveTarget&&!t.enthrall&&e.attackAllows(t,owner.id)&&Math.hypot(t.x-dead.x,t.y-dead.y)<=450).sort((a,b)=>Math.hypot(a.x-dead.x,a.y-dead.y)-Math.hypot(b.x-dead.x,b.y-dead.y)||a.id.localeCompare(b.id));
+ mark.used=true;const owner=e.unit(mark.owner);if(!owner)return;
+ const targets=e.b.units.filter(t=>!t.dead&&t.id!==dead.id&&t.side===1&&!t.honroObjectiveTarget&&!t.enthrall&&e.attackAllows(t,owner.id)&&Math.hypot(t.x-dead.x,t.y-dead.y)<=450).sort((a,b)=>Math.hypot(a.x-dead.x,a.y-dead.y)-Math.hypot(b.x-dead.x,b.y-dead.y)||a.id.localeCompare(b.id));
  const t=targets.find(t=>!e.projectileCollision({x:dead.x,y:dead.y-dead.h*.5},{x:t.x,y:t.y-t.h*.5},1,owner.id,[],false));if(!t)return;
  const turns=Math.max(1,Math.min(2,mark.expires-e.b.round+1));if(!(t.curseAttack||0))(t as any).honroWeakOwner=owner.id;if(!(t.curseArmor||0))(t as any).honroArmorOwner=owner.id;t.curseTurns=Math.max(t.curseTurns||0,turns);t.curseOwner=owner.id;t.curseAttack=Math.max(t.curseAttack||0,dead.curseAttack||0);t.curseArmor=Math.max(t.curseArmor||0,dead.curseArmor||0);gearState(t).weak={owner:owner.id,expires:e.b.round+turns-1,spread:true,used:true};e.fx('ring',t.x,t.y-t.h*.5,'#b9b9a0',40);
 }
