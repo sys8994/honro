@@ -1,0 +1,99 @@
+{
+  "stageId": "stage-33",
+  "geometrySha256": "df1db2a9a2623d4decdf0708580434112e9b7ed87f79b8685cb7074be6543dea",
+  "compiledSha256": "ec395ad92095cbd27368e7a9d3b6d921a7023b7e48b228fa404a165daad27020",
+  "protected": {
+    "terrains": [
+      "a4-33-land",
+      "a4-33-upper-west",
+      "a4-33-upper-east"
+    ],
+    "water": [
+      {
+        "id": "33-west",
+        "kind": "recover",
+        "x1": 900,
+        "x2": 2900,
+        "surface": 2135,
+        "entryLeft": [
+          0,
+          850
+        ],
+        "entryRight": [
+          2950,
+          3150
+        ]
+      },
+      {
+        "id": "33-east",
+        "kind": "recover",
+        "x1": 3100,
+        "x2": 5200,
+        "surface": 2135,
+        "entryLeft": [
+          2900,
+          3100
+        ],
+        "entryRight": [
+          5220,
+          6200
+        ]
+      }
+    ],
+    "tide": {
+      "warningRound": 2,
+      "highRound": 5,
+      "lowRound": 7,
+      "low": 2280,
+      "high": 2135
+    },
+    "actors": [
+      {
+        "id": "archer",
+        "x": 260,
+        "y": 2100
+      },
+      {
+        "id": "mage",
+        "x": 380,
+        "y": 2100
+      },
+      {
+        "id": "knight",
+        "x": 500,
+        "y": 2100
+      },
+      {
+        "id": "occultist",
+        "x": 620,
+        "y": 2100
+      },
+      {
+        "id": "a4-33-g0-0",
+        "x": 1690,
+        "y": 1945.2173913043478
+      },
+      {
+        "id": "a4-33-g0-1",
+        "x": 2140,
+        "y": 1941.8918918918919
+      },
+      {
+        "id": "a4-33-g1-0",
+        "x": 3690,
+        "y": 1914
+      },
+      {
+        "id": "a4-33-g1-1",
+        "x": 4520,
+        "y": 2253
+      },
+      {
+        "id": "a4-33-g1-2",
+        "x": 4860,
+        "y": 2188
+      }
+    ]
+  },
+  "scope": "Exact official source. BODY-only concept must not contain platforms, water, props or actors."
+}
