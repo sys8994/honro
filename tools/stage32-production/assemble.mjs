@@ -1,0 +1,9 @@
+/** Visual-only assembly: original official collision/gameplay fingerprints must match. */
+import assert from 'node:assert/strict';import{readFile,writeFile}from'node:fs/promises';import{createHash}from'node:crypto';import{runtime}from'../../game/tests/helpers.mjs';
+process.env.HONRO_ACT4_RELEASE='1';const g=await runtime({legacyMaps:false});const p=JSON.parse(await readFile('art/stage32-vector-production/skeleton-project.json')),s=p.stages[0],original=structuredClone(s),before=g.HonroMaps.compile(s,p).terrain;
+const body=JSON.parse(await readFile(process.argv[2]||'art/stage32-vector-production/body-asset.json'));body.reference.scaleRange=[1,1];body.reference.backgroundRange=[1,1];p.library.push(body);
+s.elements.push({id:'s32v:body',assetId:body.id,x:0,y:0,scale:1,rotation:0,snap:false,depthLayer:'L1',layer:'front'});
+s.design.vectorGround={version:1,baseColor:'#283344',visualDepth:'L1'};
+s.design.vectorProduction={version:1,status:'candidate-not-approved',source:'tools/stage32-production/README.md',preserve:'Official terrain/units/events/mission/IDs unchanged'};
+assert.deepEqual(g.HonroMaps.compile(s,p).terrain,before);for(const key of ['terrains','units','materials','events','encounters','initialState','objectives','markers'])assert.deepEqual(s[key],original[key]);assert.deepEqual(s.design.act4,original.design.act4);
+const out=process.argv[3]||'art/stage32-vector-production/candidate-project.json';await writeFile(out,JSON.stringify(p));await writeFile('art/stage32-vector-production/assembly-check.json',JSON.stringify({source:'shared/data/act4/world.json',staticCollisionUnchanged:true,gameplayFieldsUnchanged:true,originalElementIdsRetained:original.elements.every(v=>s.elements.some(e=>e.id===v.id&&JSON.stringify(e)===JSON.stringify(v))),projectSha256:createHash('sha256').update(JSON.stringify(p)).digest('hex'),scope:'Data/compile equality only. NOT visual or play approval.'},null,2));console.log(out);

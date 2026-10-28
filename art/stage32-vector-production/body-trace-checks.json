@@ -1,0 +1,21 @@
+{
+  "rawPaths": 11,
+  "cleanPaths": 9,
+  "rawBytes": 342817,
+  "cleanBytes": 106718,
+  "rawImages": 0,
+  "cleanImages": 0,
+  "sourceRawPathsIdentical": true,
+  "viewBox": "0 0 2172 724",
+  "cornerAlpha": 0,
+  "bottomRGBA": [
+    40,
+    51,
+    68,
+    255
+  ],
+  "trace": "12 colors Smooth Stack Remove background ON; speckles25 corners1 optimize0.2",
+  "cleanActions": "select-by-id:path1,path2;delete;select-clear;select-by-id:path3;object-set-attribute:style,fill:#283344",
+  "simplify": false,
+  "visual": "Source,raw,clean native pixels inspected. Rim/upper rock shapes unchanged by cleanup; deep fill uniform. Placement not tested."
+}
