@@ -1,4 +1,4 @@
-import {gearHas,gearState,gearCycle,gearMove,gearAlly,gearBody} from './equipmentCombat';
+import {gearHas,gearState,gearCycle,gearMove,gearAlly,gearBody,gearPass} from './equipmentCombat';
 import {equipmentParam} from './equipment';
 import type {DamageOrigin} from './damageVariance';
 import {passiveTuning} from './passiveBalance';
@@ -86,7 +86,7 @@ export function startWarriorCast(e:Engine,s:Skill,u:Unit){
   if(s.mode==='bladeScreen'){u.bladeScreen={round:e.b.round,rank:u.ranks[s.id]||1,hits:0,facing:u.facing};stroke(e,u,110);return;}
   const lifeCost=s.mode==='lifeSlash'?Math.floor(u.hp/3):0;
   if(lifeCost){const replaced=Math.floor(lifeCost/2),mp=replaced*.5;if(gearHas(p,'hw_life')&&u.focus>=mp){u.focus-=mp;u.hp-=lifeCost-replaced;}else u.hp-=lifeCost;}
-  u.meleeAction={equipment:p.equipment,attackSide:p.attackSide,damageRoll:p.damageRoll,skill:s.id,elapsed:0,index:0,damage:damage+(lifeCost*(1.08+.405*((u.ranks[s.id]||1)-1)/7)*equipmentParam(u,'hw_life','lifeCostDamageScale',1)),range:meleeRange(u,s,s.mode==='lifeSlash'?0:power),power,shot:e.b.shot,lifeCost,angle:-rad(u.angle),span:meleeSpan(u,s,power)};
+  u.meleeAction={equipment:p.equipment,attackSide:p.attackSide,damageRoll:p.damageRoll,skill:s.id,elapsed:0,index:0,damage:damage+(lifeCost*(1.08+.405*((u.ranks[s.id]||1)-1)/7)),range:meleeRange(u,s,s.mode==='lifeSlash'?0:power),power,shot:e.b.shot,lifeCost,angle:-rad(u.angle),span:meleeSpan(u,s,power)};
   if(power<.30&&s.mode!=='lifeSlash')u.martialGuard={round:e.b.round,reduction:.12*(1-power/.30)};
   return;
  }
@@ -134,7 +134,7 @@ export function tickWarrior(e:Engine,dt:number){
     const tactical=gearHas(guard,'hw_guard')&&gearState(u).counterCycle!==gearCycle(e.b),factor=guard.equipment?.skillDamage||1;
     for(const t of targets){strike(e,u,t,52*u.attack*(1.10+.20*((guard.rank||1)-1)/7)*factor,SKILLS.S08,e.b.shot,true,guard);if(tactical&&!t.dead&&!t.boss&&!t.honroMidboss&&!t.fixed)gearMove(e,t,Math.sign(t.x-u.x||u.facing)*100);}
     if(tactical){gearState(u).counterCycle=gearCycle(e.b);gearMove(e,u,-Math.sign(Math.cos(angle)||u.facing)*120);}
-    stroke(e,u,range,Math.cos(angle)<0?-1:1,'#dbe2dd',0,angle,span);} 
+    stroke(e,u,range,Math.cos(angle)<0?-1:1,'#dbe2dd',0,angle,span);}
   }
  }
 }
@@ -179,7 +179,7 @@ function land(e:Engine,p:Projectile,h?:Collision){
  }else if(p.mode==='warriorLeap'){
   const t=h?.unit&&foe(u,h.unit)?h.unit:e.b.units.filter(t=>foe(u,t)&&Math.hypot(t.x-p.x,t.y-t.h*.5-p.y)<p.blast+t.r).sort((a,b)=>Math.abs(a.x-p.x)-Math.abs(b.x-p.x))[0];
   if(t)e.hurt(t,p.damage,p.owner,true,p,p);stroke(e,u,95);
-  if(t&&gearHas(p,'hw_jump_cost')){const dx=-Math.sign(p.vx||u.facing)*180;if(!gearMove(e,u,dx)&&!e.grounded(u))gearState(u).landingRetreat=dx;}
+  if(t&&gearHas(p,'hw_jump_cost')){const dx=-Math.sign(p.vx||u.facing)*180;if(!gearMove(e,u,dx))gearState(u).landingRetreat=dx;}
  }
  if(s.id==='S13'){u.meleeFollow='landing';u.meleeFollowOrigin={attackSide:p.attackSide,damageRoll:p.damageRoll,round:e.b.round};}
  e.remove(p);
@@ -205,7 +205,7 @@ export function stepWarrior(e:Engine,p:Projectile,dt:number){
   if(!floor||Math.abs(floor.y-(a.y+p.radius))>10){e.remove(p);return true;}
   motion.x=a.x+dx;motion.y=floor.y-p.radius-1;motion.vy=0;p.equipment.groundLeft=Math.max(0,p.equipment.groundLeft-Math.abs(dx));
  }
-p.vx=motion.vx;p.vy=motion.vy;p.apexY=Math.min(p.apexY??p.y,motion.y);
+ p.vx=motion.vx;p.vy=motion.vy;p.apexY=Math.min(p.apexY??p.y,motion.y);
  const rush=SKILLS[p.skill].branch==='rush';
  const wall=rush?e.bodyFlightCollision(u,a,motion):e.collision(a,motion,p.radius,p.owner,[],false,[],true,!p.body);
  const end=wall||motion;
@@ -220,12 +220,12 @@ p.vx=motion.vx;p.vy=motion.vy;p.apexY=Math.min(p.apexY??p.y,motion.y);
   const targets=e.b.units.filter(t=>!t.dead&&e.attackAllows(t,p.owner,p)&&t.id!==u.id&&!p.hit.includes(t.id)&&(!rush||foe(u,t))).map(t=>({t,h:segRect(a,end,t.x-t.r,t.y-t.h,t.r*2,t.h,rush?35:p.radius)})).filter(v=>v.h).sort((a,b)=>a.h!.t-b.h!.t);
   for(const {t,h} of targets){
    if(!rush&&gearBody(p)&&t.side===u.side&&!t.summoned&&!t.enthrall){
-    if(gearHas(p,'co_friendly')&&!p.equipment!.passedAlly){p.equipment!.passedAlly=t.id;p.hit.push(t.id);continue;}
+    if(gearPass(e,t,p))continue;
     if(gearAlly(e,t,u,p)){e.remove(p);return true;}
    }p.hit.push(t.id);
    if(rush){if(p.mode==='warriorDive')continue;if(p.mode==='warriorLeap'){p.x=a.x+(end.x-a.x)*h!.t;p.y=a.y+(end.y-a.y)*h!.t;land(e,p,{...h!,x:p.x,y:p.y,unit:t});return true;}
     e.hurt(t,p.damage,p.owner,true,p,end);stroke(e,{...u,x:end.x,y:end.y+u.h*.5},70);
-    if(p.mode==='warriorDrive'&&!t.fixed&&!t.airborne&&!t.jumping&&e.surface(t.x,t.y-5,t.y+5))e.impulse(t,Math.sign(p.vx||u.facing)*300,0);
+    if(p.mode==='warriorDrive'&&!t.fixed&&!t.airborne&&!t.jumping&&e.surface(t.x,t.y-5,t.y+5))e.impulse(t,Math.sign(p.vx||u.facing)*300,0,p);
    }else {if(p.mode==='bladeBurst'){burstBlade(e,p,{x:a.x+(end.x-a.x)*h!.t,y:a.y+(end.y-a.y)*h!.t});return true;}bladeHit(e,p,t);if(p.mode!=='bladePierce'){e.remove(p);return true;}}
   }
  }

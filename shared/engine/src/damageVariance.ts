@@ -15,7 +15,7 @@ export const DAMAGE_SPREAD:Readonly<Record<string,number>>={
 export const DAMAGE_BUFFER_SIZE=1024;
 export interface DamageSequence {version:1;seed:number;index:number;}
 /** Optional snapshot for new casts. Legacy projectiles keep their stored behavior. */
-export interface EquipmentAttack {version:1;items:string[];airborne:boolean;jumped?:boolean;lowFocus:boolean;rootDamage:number;skillDamage:number;vector?:{form:number;qi:number;soul:number};bounced?:boolean;dropBonus?:number;finishUsed?:boolean;passedAlly?:string;pushMarked?:boolean;focusTarget?:string;travelX?:number;travelY?:number;travelMax?:number;returning?:boolean;groundLeft?:number;}
+export interface EquipmentAttack {version:1;items:string[];airborne:boolean;jumped?:boolean;lowFocus:boolean;rootDamage:number;skillDamage:number;vector?:{form:number;qi:number;soul:number};bounced?:boolean;dropBonus?:number;finishUsed?:boolean;passedAlly?:string;pushMarked?:boolean;focusTarget?:string;travelX?:number;travelY?:number;travelMax?:number;travelled?:number;returning?:boolean;groundLeft?:number;}
 export interface EquipmentUnitState {version:1;jumpCycle?:number;healCycle?:number;guardCycle?:number;anchorCycle?:number;counterCycle?:number;loanUsed?:boolean;regenHalf?:boolean;movePenalty?:boolean;landingRetreat?:number;echoUsed?:boolean;guardImpact?:{owner:string;shot:number;scale:number};wallSlow?:{owner:string;until:number};weak?:{owner:string;expires:number;spread:boolean;used:boolean};motion?:{points:{x:number;y:number}[];cursor:number;};}
 export interface DamageOrigin {equipment?:EquipmentAttack;damageRoll?:number;attackSide?:Side;friendlyFireApplied?:boolean;}
 const buffers=new WeakMap<DamageSequence,{chunk:number;values:Float64Array}>();

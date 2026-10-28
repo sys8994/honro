@@ -1,4 +1,4 @@
-import {gearCapture,gearHas,gearBody,gearCanPay,gearPay,gearTurn,gearRegen,gearGuard,gearImpulse,gearAlly,gearState,gearCycle,gearFrostSlow,gearStepMove,gearEarthMove,gearWallContact,gearPreservesWood,gearSpreadWeak,gearTravelSpent,gearReturn,gearLandingRetreat} from './equipmentCombat';
+import {gearCapture,gearHas,gearBody,gearCanPay,gearPay,gearTurn,gearRegen,gearGuard,gearImpulse,gearAlly,gearState,gearCycle,gearFrostSlow,gearStepMove,gearEarthMove,gearWallContact,gearPreservesWood,gearSpreadWeak,gearTravelSpent,gearReturn,gearLandingRetreat,gearPass} from './equipmentCombat';
 import {equipmentActor,equipmentParam,equipmentCast,equipmentManaCost,equipmentPrimary,equipmentSoulVector} from './equipment';
 import {playerRangeSpeed,initializePlayerRange,flightRangeSpent,boundRushMotion,playerRangeApplies,PLAYER_LANTERN_RANGE} from './playerRange';
 import {endPlayerFlight} from './playerRangeMechanics';
@@ -266,7 +266,7 @@ export class Engine {
         const air=(q:{x:number;y:number;vx:number;vy:number},step:number)=>advanceLinear(q.x,q.y,q.vx,q.vy,a.x,a.y,a.k,step);
         const water=!p.body&&!BODY.has(p.mode||'')?waterfallSheet(this.b):undefined;
         const motion=water?advanceWaterfall(p,dt,water,air):{...air(p,dt),waterEntered:false,waterEntryPoint:undefined};const result={...motion,...boundRushMotion(p,motion)},gear=p.equipment;
-        if(gear?.travelMax!==undefined){const remaining=Math.max(0,gear.travelMax-Math.hypot(p.x-gear.travelX!,p.y-gear.travelY!)),step=Math.hypot(result.x-p.x,result.y-p.y);if(step>remaining){result.x=p.x+(result.x-p.x)*remaining/step;result.y=p.y+(result.y-p.y)*remaining/step;}}
+        if(gear?.travelMax!==undefined){const remaining=Math.max(0,gear.travelMax-(gear.travelled||0)),step=Math.hypot(result.x-p.x,result.y-p.y);if(step>remaining){result.x=p.x+(result.x-p.x)*remaining/step;result.y=p.y+(result.y-p.y)*remaining/step;}}
         return result;
     }
     private waterEntry(p:Projectile,m:{waterEntered:boolean;waterEntryPoint?:Vec}){
@@ -601,7 +601,7 @@ export class Engine {
         if(u.platformDrop?.phase!=='fall'||!u.platformDrop.contacts.length)return this.contactSurface(x,min,max);
         return terrainSurface(this.collisionTerrain({x,y:0},{x,y:0},3),x,min,max,Infinity,(t,edge)=>!!this.dropEdges(u,t)?.includes(edge));
     }
-    jumpCost(u:Unit){return Math.max(25,75-passiveRank(u,'SP03')*5-equipmentParam(u,'hw_jump_cost','jumpCostFlatReduction',0));}
+    jumpCost(u:Unit){return Math.max(25,75-passiveRank(u,'SP03')*5);}
     jump(u = this.active) { if(this.noncombatWalk()&&u?.side===0)u.moveLeft=u.maxMove; if (!u || u.dead || u.eaterCapturedBy || u.summonKind==='eater' || u.meleeFollow==='ready' || u.fixed || u.airborne || u.moveLeft < this.jumpCost(u) || !this.grounded(u))
         return false; delete u.platformDrop;delete u.moveTarget;if(equipmentActor(u))gearState(u).jumpCycle=gearCycle(this.b); u.jumping = true; u.vy = -660*(1+passiveRank(u,'SP03')*.02)*((u.equipmentIds?.includes('itm_co_11')&&equipmentActor(u)?1.3:1)>1?Math.sqrt(.9):1); u.moveLeft = Math.max(0, u.moveLeft - this.jumpCost(u)); u.landing = 0; this.fx('spark', u.x, u.y, '#d7d0b8', 20); this.emit('sound', { name: 'jump' }); return true; }
     walk(u:Unit,direction:number,dt:number,requireSupport=false){if(u.eaterCapturedBy||u.summonKind==='eater')return false;if(u.meleeFollow==='ready'||u.platformDrop&&u.platformDrop.phase!=='land')return;if(this.noncombatWalk()&&u.side===0)u.moveLeft=u.maxMove;const result=walkTerrain(this,u,direction,dt*(1-Math.max(u.slowed?.factor||0,gearFrostSlow(this,u)))*(u.jumping&&(u.equipmentIds?.includes('itm_co_11')&&equipmentActor(u)?1.3:1)>1?1.3/Math.sqrt(.9):1),requireSupport);if(this.noncombatWalk()&&u.side===0)u.moveLeft=u.maxMove;return result;}
@@ -812,7 +812,6 @@ export class Engine {
         const critical=canCritical&&this.random()<crit!.chance;
         const criticalMultiplier=critical?crit!.multiplier:1;
         const primary=equipmentPrimary(rawSrc,p,damageSource),conditionBonuses:number[]=[];
-        if(primary){if(!critical)conditionBonuses.push(equipmentParam(rawSrc,'co_noncrit','noncriticalBonus',0));if(u.side===1&&((u.curseTurns||0)>0||u.earthbind&&u.earthbind.until>=this.b.round))conditionBonuses.push(equipmentParam(rawSrc,'co_cursed','conditionBonus',0));}
         if(src?.side===0 && direct && src.cls==='archer' && !p?.skill.startsWith('A'))conditionBonuses.push(.04*equippedRank(src,'AP02'));
         // Jucheon is applied at cast time, never on old or secondary on-hit hooks.
         if (p && !newSkill(p) && src && src.side === 0 && direct && (src.cls === 'archer' || p.body && src.cls === 'knight'))
@@ -837,7 +836,6 @@ export class Engine {
             armorWithoutSupport=armor = (source.x - u.x) * u.facing > 0 ? .40 : .05;
         if (u.boss && u.boss !== 5)
             armorWithoutSupport=armor = (this.b.round % 2 === 0 ? .06 : .29);
-        if(damageSource==='normal'&&equipmentActor(u)&&u.hp/u.maxHp<=.30){const add=equipmentParam(u,'hw_guard','armorAdd',0);armor=Math.min(.7,armor+add);armorWithoutSupport=Math.min(.7,armorWithoutSupport+add);}
         if(primary&&u.side===1&&!u.boss&&!(u as any).honroMidboss&&!(u as any).honroAct2Boss&&!(u as any).honroFinalBoss&&!u.honroObjectiveTarget){const keep=1-(gearHas(p||provenance,'co_armor')?.30:0);armor*=keep;armorWithoutSupport*=keep;}
         if (u.side === 1 && !u.honroObjectiveTarget && u.summonKind!=='eater' && ((globalThis as any).HonroQuestTargets?.records(this.b)||this.b.terrain).some((t:Terrain) => !t.broken && t.device === 'ward'))
             {armor = Math.max(armor, .32);armorWithoutSupport=Math.max(armorWithoutSupport,.32);}
@@ -858,7 +856,8 @@ export class Engine {
             *(u.arrivalGuard!==undefined?.90:1)
             *(u.martialGuard&&u.martialGuard.round>=this.b.round?1-u.martialGuard.reduction:1);
         let attack=damageSource==='normal'?(damageSkill&&SKILLS[damageSkill]?attackForSkill(SKILLS[damageSkill]):attackForHit(p,rawSrc,src,SKILLS)):undefined;
-        if(attack&&primary&&(p||provenance)?.equipment?.vector)attack=(p||provenance)!.equipment!.vector!;
+        // The captured vector is assigned once to the cast's damage, including its physical fragments. Never convert an echo, summon or persistent receipt.
+        if(attack&&equipmentActor(rawSrc)&&(p||provenance)?.equipment?.vector&&!((p||provenance) as any).echoSource&&!((p||provenance) as any).keeperReturned)attack=(p||provenance)!.equipment!.vector!;
         const existence=attack?existenceMultiplier(attack,u,rawSrc||src):1;
         const layers=calculateDamage({skillDamage:dmg/(preCondition*criticalMultiplier),conditionBonuses,criticalMultiplier,existenceMultiplier:existence,defenseMultiplier});
         dmg=damageSource==='eaterTransfer'?amount:layers.finalDamage;let contributionDamageLimit=Infinity;
@@ -1103,18 +1102,18 @@ export class Engine {
                 if (e.side === 1 && !e.dead && Math.hypot(e.x - p.x, e.y - e.h * .5 - impactY) < p.blast + e.r) {
                     if (['slam', 'quake', 'lift', 'vault'].includes(p.mode) || e.id === p.directId && Math.hypot(p.vx, p.vy) > 680)
                         this.stun(e,p.owner);
-                    this.impulse(e, Math.sign(e.x - p.x || u.facing) * (p.mode === 'quake' ? 340 : 150), -105);
+                    this.impulse(e, Math.sign(e.x - p.x || u.facing) * (p.mode === 'quake' ? 340 : 150), -105,p);
                 }
         }
         if(equippedRank(u,'SP01')){const rank=equippedRank(u,'SP01'),reach=p.blast+65+rank*25;for(const e of this.actors(1))if(Math.hypot(e.x-p.x,e.y-e.h*.5-impactY)<reach){this.impulse(e,Math.sign(p.x-e.x)*(100+rank*40),-90);}this.fx('ring',p.x,impactY,'#d6c4a6',reach);}
         if (p.mode === 'quake')
             for (const e of this.b.units)
                 if (e.id !== u.id && !e.dead && this.attackAllows(e,p.owner,p) && dist({ x: e.x, y: e.y - e.h * .5 }, { x: p.x, y: impactY }) < p.blast + 20)
-                    this.impulse(e, Math.sign(e.x - p.x || 1) * 260, -150);
+                    this.impulse(e, Math.sign(e.x - p.x || 1) * 260, -150,p);
         if (p.mode === 'lift')
             for (const e of this.b.units)
                 if (e.side !== u.side && !e.dead && this.attackAllows(e,p.owner,p) && Math.abs(e.x - p.x) < p.blast)
-                    this.impulse(e, Math.sign(e.x - p.x || 1) * 100, -330);
+                    this.impulse(e, Math.sign(e.x - p.x || 1) * 100, -330,p);
         if (p.mode === 'guard') {
             const shieldBefore=u.shield;u.shield += Math.round(44 * u.attack);shielded(this.b,u,u.id,shieldBefore);
             u.shieldUntil = this.b.teamEnds[1 - u.side] + 1;
@@ -1215,7 +1214,7 @@ export class Engine {
         const grounded=kind==='stalker'||kind==='warden'||kind==='eater';
         const summon=makeUnit('occultist',kind==='eater'?1:0,clamp(x,30,this.b.width-30),sy,{id:`summon-${this.b.nextId++}`,name:{stalker:'배회령',lantern:'등불귀',charger:'돌격귀',warden:'호혼령',host:'문지기귀',eater:'먹귀',echo:'반향령',earthbound:'지박령'}[kind],role:`summon-${kind}`,summoned:true,summonOwner:owner.id,summonKind:kind,summonRank:rank,summonExpires:this.b.round+dur-1,hp,maxHp:hp,r:base.r,h:base.h,attack:owner.attack*base.atk*atkScale,armor:kind==='eater'?0:kind==='warden'?.20:.07,focus:0,maxFocus:0,regen:0,loadout:[],fixed:floating,summonFloating:!grounded,acted:true,moveLeft:0,maxMove:grounded?SUMMON_TUNING[kind].move:0,walkSpeed:grounded?SUMMON_TUNING[kind].speed:0,ranks:{...owner.ranks},awake:true,xpBudget:0});
         if(kind==='echo'){
-            summon.summonExpires=this.b.round+ECHO_TURNS[clamp(rank,1,8)-1]-1+equipmentParam(owner,'so_echo','lifetimeRoundsAdd',0);
+            summon.summonExpires=this.b.round+ECHO_TURNS[clamp(rank,1,8)-1]-1;
             const echoes=this.b.units.filter(v=>!v.dead&&v.summonKind==='echo'&&v.summonOwner===owner.id);
             if(echoes.length>=ECHO_LIMIT[clamp(rank,1,8)-1])echoes.sort((a,c)=>(a.summonExpires||0)-(c.summonExpires||0))[0].dead=true;
         }
@@ -1369,7 +1368,7 @@ export class Engine {
             return;
         }
         if(h.unit&&gearBody(p)&&equipmentActor(u)&&equipmentActor(h.unit)&&h.unit.id!==u.id&&this.allegiance(h.unit)===this.allegiance(u)){
-            if(gearHas(p,'co_friendly')&&!p.equipment!.passedAlly){p.equipment!.passedAlly=h.unit.id;p.hit.push(h.unit.id);const n=Math.hypot(p.vx,p.vy)||1;p.x+=p.vx/n*2;p.y+=p.vy/n*2;return;}
+            if(gearPass(this,h.unit,p)){const n=Math.hypot(p.vx,p.vy)||1;p.x+=p.vx/n*2;p.y+=p.vy/n*2;return;}
             if(gearAlly(this,h.unit,u,p)){this.remove(p);return;}
         }
         if(gearReturn(this,p,h))return;
@@ -1648,7 +1647,12 @@ export class Engine {
             this.hurt(u,p.damage*factor,p.owner,true,p,at);p.hit.push(u.id);this.fx('burst',at.x,at.y,p.color,28);this.fx('text',u.x,u.y-u.h-10,'#d7b9ef',12,'투과');
         }
     }
-    stepProjectile(p:Projectile,dt:number,paced=false){return this.audioScope(p.owner,p.skill,p.shot,()=>this.stepSkillProjectile(p,dt,paced),!!p.autonomous);}
+    stepProjectile(p:Projectile,dt:number,paced=false){
+        const track=p.equipment?.travelMax!==undefined&&(paced||!p.mode.startsWith('honro')),start={x:p.x,y:p.y};
+        const result=this.audioScope(p.owner,p.skill,p.shot,()=>this.stepSkillProjectile(p,dt,paced),!!p.autonomous);
+        if(track&&p.equipment)p.equipment.travelled=(p.equipment.travelled||0)+Math.hypot(p.x-start.x,p.y-start.y);
+        return result;
+    }
     private stepSkillProjectile(p: Projectile, dt: number, paced=false) {
         // Old saves may still carry the former timed hatching on a flying stalker seed.
         if((p.skill==='O11'||p.skill==='O13'||p.skill==='O14')&&p.fuseAt!==undefined)p.fuseAt=undefined;

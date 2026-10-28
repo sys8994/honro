@@ -173,7 +173,8 @@ function validBattle(raw: unknown,legacyXp=false,oldXp=false): Battle {
         if(a.vector!==undefined&&!existenceVector(a.vector))return false;
         for(const k of ['jumped','bounced','finishUsed','pushMarked','returning'])if(a[k]!==undefined&&typeof a[k]!=='boolean')return false;
         for(const k of ['passedAlly','focusTarget'])if(a[k]!==undefined&&(!safe(a[k])||!ids.has(a[k])))return false;
-        for(const k of ['dropBonus','travelX','travelY','travelMax','groundLeft'])if(a[k]!==undefined&&(!finite(a[k])||Math.abs(a[k])>20000))return false;
+        for(const k of ['dropBonus','travelX','travelY','travelMax','travelled','groundLeft'])if(a[k]!==undefined&&(!finite(a[k])||Math.abs(a[k])>20000))return false;
+        if(a.travelled!==undefined&&(a.travelled<0||a.travelled>610))return false;
         if(a.travelMax!==undefined&&(!nums(a,['travelX','travelY'])||a.travelMax<0||a.travelMax>600)||a.groundLeft!==undefined&&(a.groundLeft<0||a.groundLeft>400))return false;
         return true;
     };
@@ -207,7 +208,7 @@ function validBattle(raw: unknown,legacyXp=false,oldXp=false): Battle {
             for(const k of ['jumpCycle','healCycle','guardCycle','anchorCycle','counterCycle'] as const)if(st[k]!==undefined&&(!Number.isSafeInteger(st[k])||st[k]!<0))return fail();
             for(const k of ['loanUsed','regenHalf','movePenalty','echoUsed'] as const)if(st[k]!==undefined&&typeof st[k]!=='boolean')return fail();
             if(st.landingRetreat!==undefined&&(!finite(st.landingRetreat)||Math.abs(st.landingRetreat)>180))return fail();
-            if(st.guardImpact&&(!ids.has(st.guardImpact.owner)||!Number.isSafeInteger(st.guardImpact.shot)||st.guardImpact.shot<0||st.guardImpact.scale!==.25))return fail();
+            if(st.guardImpact&&(!ids.has(st.guardImpact.owner)||!Number.isSafeInteger(st.guardImpact.shot)||st.guardImpact.shot<0||![0,.25].includes(st.guardImpact.scale)))return fail();
             if(st.wallSlow&&(!ids.has(st.wallSlow.owner)||!finite(st.wallSlow.until)))return fail();
             if(st.weak&&(!ids.has(st.weak.owner)||!finite(st.weak.expires)||typeof st.weak.spread!=='boolean'||typeof st.weak.used!=='boolean'))return fail();
             if(st.motion){const m=st.motion;if(!Array.isArray(m.points)||m.points.length<2||m.points.length>40||m.points.some(p=>!nums(p,['x','y'])||Math.abs(p.x)>20000||Math.abs(p.y)>20000)||!finite(m.cursor)||m.cursor<0||m.cursor>m.points.length-1)return fail();}
