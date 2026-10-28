@@ -8,7 +8,7 @@ function options(i){const base=i.basicOptions.map(o=>`<span>${esc(optionNames[o.
 function effectBrief(i){const e=C.EQUIPMENT_EFFECT_MAP[i.effectId];return e?e.benefit+' '+e.limit:'';}
 function compatible(p,cls){return p.equipment.ownedItemIds.filter(id=>!item(id).characterClass||item(id).characterClass===cls);}
 function selected(app){const id=app.equipmentSelected;return id&&compatible(app.profile,app.cls).includes(id)?id:null;}
-function lockedReason(app){if(E.canEquip(app))return '';if(G.HonroSplitCampaign?.locked(app.profile))return '동행이 합류한 휴식터에서 교환할 수 있습니다.';const b=app.engine?.b||app.profile.honroBattle;if(b&&!['won','lost'].includes(b.phase))return '전투를 마친 뒤 교환할 수 있습니다.';return '휴식터에서 장착할 수 있습니다.';}
+function lockedReason(app){return E.equipLockReason(app);}
 function slot(app,kind){const id=app.profile.equipment.equippedByClass[app.cls][kind],i=id&&item(id);return `<button class="equipment-worn ${app.equipmentFilter===kind?'active':''}" data-action="equipment-slot" data-id="${kind}" aria-label="${kind==='personal'?'전용':'공용'}: ${i?esc(i.name):'빈 칸'}"><span class="equipment-slot-picture">${i?icon(id):'<span aria-hidden="true">＋</span>'}</span><span><small>${kind==='personal'?'전용':'공용'}</small><strong>${i?esc(i.name):'비어 있음'}</strong></span></button>`;}
 function itemStyle(i){return `tier-${i.tier}${i.effectCategory==='unique'?' has-unique':''}`;}
 function seal(i){return `<span class="equipment-tier" aria-hidden="true">${['','Ⅰ','Ⅱ','Ⅲ','Ⅳ'][i.tier]}</span>${i.effectCategory==='unique'?'<span class="equipment-unique-seal" aria-hidden="true">異</span>':''}`;}

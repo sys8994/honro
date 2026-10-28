@@ -28,7 +28,7 @@ function fresh(p){p.equipment=empty();p.equipment.initialAutoEquip=true;p.equipm
 function debug(p){const equipped=clone(p.equipment.equippedByClass);p.equipment=empty();p.equipment.equippedByClass=equipped;p.equipment.debug=true;p.equipment.ownedItemIds=C.EQUIPMENT_ITEMS.map(i=>i.itemId);sync(p);return p;}
 function transaction(app,change){
  if(app.equipmentBusy||app.customMap||app.training||G.HONRO_EMBEDDED||app.profileStore?.locked)return false;
- app.equipmentBusy=true;try{const candidate=clone(app.profile),b=app.engine?.b;if(b&&!app.done){G.HonroProgression.syncRoster(candidate,b);candidate.honroBattle=clone(b);}
+ app.equipmentBusy=true;try{const candidate=clone(app.profile),b=app.engine?.b;if(b&&b.mode==='campaign'&&!b.honroCustom&&!app.done){G.HonroProgression.syncRoster(candidate,b);candidate.honroBattle=clone(b);}
  const changed=change(candidate);if(!changed)return false;sync(candidate);validate(candidate.equipment);
  if(!app.debugMode&&!app.profileStore.save(candidate)){app.equipmentSaveFailed=true;app.notify?.('장비 기록을 저장하지 못했습니다. 다시 시도해 주세요.');return false;}
  app.profile=candidate;if(!app.debugMode)app.normalProfile=candidate;if(app.equipmentSaveFailed){app.equipmentSaveFailed=false;app.notify?.('장비 기록을 저장했습니다.');}return true;
@@ -63,9 +63,23 @@ function capture(app,options={}){
 }
 function observe(app,options={}){if(app.debugMode||app.customMap||app.training||G.HONRO_EMBEDDED)return false;const b=app.engine?.b||options.battle;if(b?.honroCustom||b&&b.mode!=='campaign')return false;return transaction(app,p=>collect(p,b,options));}
 function choose(app,eventId,itemId){return transaction(app,p=>{const eq=p.equipment,e=events.get(eventId),r=eq.rewardLedger[eventId];if(!publicEvent(e)||!e.choiceGroup||r?.state!=='pending'||!e.itemIds.includes(itemId))return false;r.state='committed';r.selectedItemId=itemId;r.notified=false;eq.ownedItemIds.push(itemId);return true;});}
-function canEquip(app){const b=app.engine?.b||app.profile.honroBattle;return !app.training&&!app.customMap&&!G.HONRO_EMBEDDED&&['camp','rest'].includes(app.screen)&&(app.debugMode||!!G.HonroRestJourney?.state(app.profile).restStageId)&&!G.HonroSplitCampaign?.locked(app.profile)&&!(b&&!['won','lost'].includes(b.phase));}
+function equipLockReason(app){
+ if(app.training)return '허공터에서는 교환할 수 없습니다.';
+ if(app.customMap)return '사용자 맵에서는 교환할 수 없습니다.';
+ if(G.HONRO_EMBEDDED)return '이 화면에서는 교환할 수 없습니다.';
+ if(!['camp','rest'].includes(app.screen))return '휴식터에서 장착할 수 있습니다.';
+ if(app.profileStore?.locked)return '저장 기록을 복구한 뒤 장착할 수 있습니다.';
+ if(G.HonroSplitCampaign?.locked(app.profile))return '동행이 합류한 휴식터에서 교환할 수 있습니다.';
+ // Camp/rest is the real screen boundary. restStageId only records an explicit
+ // journey-book visit and is deliberately absent after ordinary resultContinue.
+ // Inspect both sources: a stale practice engine cannot hide a suspended campaign.
+ const battles=[app.engine?.b,app.profile.honroBattle];
+ if(battles.some(b=>b&&!b.honroCustom&&b.mode!=='practice'&&!['won','lost'].includes(b.phase)))return '전투를 마친 뒤 교환할 수 있습니다.';
+ return '';
+}
+function canEquip(app){return !equipLockReason(app);}
 function wearer(p,id){return classes.find(cls=>ids(p,cls).includes(id));}
 function equip(app,cls,itemId,transfer=false,slot){if(!canEquip(app)||!app.profile.recruited.includes(cls))return false;return transaction(app,p=>{const eq=p.equipment,item=itemId&&C.EQUIPMENT_MAP[itemId];slot=item?.slot||slot;if(!['personal','common'].includes(slot)||itemId&&(!item||!eq.ownedItemIds.includes(itemId)||item.characterClass&&item.characterClass!==cls))return false;const from=itemId&&wearer(p,itemId);if(from&&from!==cls&&!transfer)return false;if(eq.equippedByClass[cls][slot]===itemId)return false;if(from&&from!==cls)eq.equippedByClass[from][slot]=null;eq.equippedByClass[cls][slot]=itemId;return true;});}
 function notices(app){const out=[];for(const [eventId,r]of Object.entries(app.profile.equipment.rewardLedger))if(r.state==='committed'&&!r.notified)out.push({eventId,itemId:r.selectedItemId});out.splice(3);if(!out.length)return[];return transaction(app,p=>{for(const row of out)p.equipment.rewardLedger[row.eventId].notified=true;return true;})?out:[];}
-G.HonroEquipment={empty,validate,migrate,fresh,debug,ids,sync,grant,recruitFacts,collect,capture,transaction,observe,choose,canEquip,wearer,equip,notices,stepDone,publicEvent};
+G.HonroEquipment={empty,validate,migrate,fresh,debug,ids,sync,grant,recruitFacts,collect,capture,transaction,observe,choose,equipLockReason,canEquip,wearer,equip,notices,stepDone,publicEvent};
 })(globalThis);
