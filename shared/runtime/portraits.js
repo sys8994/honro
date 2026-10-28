@@ -98,8 +98,8 @@ function imageCrop(asset,canvas,purpose){
   // Keep the entire source width and head above a padded top; only the lower
   // body may extend behind the reading surface / viewport. Never fill-crop a hat.
   const face=asset.framing?.dialogue?.face||asset.head,aspect=canvas.width/canvas.height,pixelScale=asset.width/1024;
-  const height=Math.max(Math.min(face.height*5,asset.framing?.dialogue?.maxHeight||Infinity),(asset.width+64*pixelScale)/aspect),width=height*aspect;
-  return {x:(asset.width-width)/2,y:asset.framing?.dialogue?.top??-32*pixelScale,width,height};
+  const height=Math.max(asset.framing?.dialogue?.height??Math.min(face.height*5,asset.framing?.dialogue?.maxHeight||Infinity),(asset.width+64*pixelScale)/aspect),width=height*aspect;
+  return {x:(asset.framing?.dialogue?.centerX??asset.width/2)-width/2,y:asset.framing?.dialogue?.top??-32*pixelScale,width,height};
  }
  const region=asset.framing?.[purpose]||asset;
  const crop=cropFor(region.bust,region.head,canvas.width,canvas.height);
@@ -143,8 +143,11 @@ function blank(canvas,view){if(!view.blank){canvas.getContext('2d').clearRect(0,
 function paint(canvas,view){
  if(views.get(canvas)!==view)return;
  if(view.entry.state==='error'&&view.asset.baseAsset&&(!view.fallbackEntry||view.fallbackEntry.state==='evicted')){view.fallbackEntry=request(view.asset.baseAsset);view.fallbackEntry.waiters.set(canvas,view);if(view.fallbackEntry.state==='error')retry(view.fallbackEntry);}
- const exact=view.entry.state==='ready'&&view.entry.image,fallback=view.fallbackEntry?.state==='ready'&&view.fallbackEntry.image,entry=exact?view.entry:fallback?view.fallbackEntry:null,asset=exact?view.asset:fallback?view.asset.baseAsset:null;
+ const exact=!view.fallbackLocked&&view.entry.state==='ready'&&view.entry.image,fallback=view.fallbackEntry?.state==='ready'&&view.fallbackEntry.image,entry=exact?view.entry:fallback?view.fallbackEntry:null,asset=exact?view.asset:fallback?view.asset.baseAsset:null;
  if(entry){
+  // Once a failed variant has shown its base, keep that result for this view.
+  // A background retry must not change the expression halfway through a line.
+  if(!exact&&view.purpose==='dialogue')view.fallbackLocked=true;
   const crop=imageCrop(asset,canvas,view.purpose),key=[imageKey(asset),canvas.width,canvas.height,view.purpose,crop.x,crop.y,crop.width,crop.height].join('|');
   if(view.paintedKey!==key){const c=canvas.getContext('2d');c.save();c.setTransform(1,0,0,1,0,0);c.globalAlpha=1;c.globalCompositeOperation='source-over';c.clearRect(0,0,canvas.width,canvas.height);c.drawImage(entry.image,crop.x,crop.y,crop.width,crop.height,0,0,canvas.width,canvas.height);c.restore();counts.paints++;view.paintedKey=key;view.blank=false;}
   const region=asset.framing?.[view.purpose]||asset;view.info={source:'approved',state:'ready',identity:asset.id,expression:asset.expression,requestedExpression:view.asset.requestedExpression,fallbackReason:exact?view.asset.fallbackReason:'network-variant',framing:view.purpose,crop,head:region.head||asset.head,bounds:region.bust||asset.bust};state(canvas,'ready');if(view.purpose==='dialogue')dialogueEntry=entry;if(exact)view.fallbackEntry?.waiters.delete(canvas);
@@ -159,8 +162,8 @@ function draw(canvas,actor,cls=actor?.cls,options={}){
  if(asset?.npc&&typeof Image==='undefined')return null;
  if(!asset||typeof Image==='undefined'){old?.entry.waiters.delete(canvas);old?.fallbackEntry?.waiters.delete(canvas);views.delete(canvas);return drawVector(canvas,actor,cls);}
  const purpose=Object.hasOwn(framing,options.framing)?options.framing:'bust',crop=imageCrop(asset,canvas,purpose),key=[imageKey(asset),canvas.width,canvas.height,purpose,crop.x,crop.y,crop.width,crop.height].join('|');
- if(old?.key===key){old.asset=asset;old.info={...old.info,requestedExpression:asset.requestedExpression,fallbackReason:old.fallbackEntry?'network-variant':asset.fallbackReason};if(purpose==='dialogue')dialogueEntry=old.entry.state==='ready'?old.entry:old.fallbackEntry?.state==='ready'?old.fallbackEntry:old.entry;for(const entry of [old.entry,old.fallbackEntry])if(entry&&(entry.state==='loading'||entry.state==='error'&&(asset.npc||asset.neutral))){entry.waiters.set(canvas,old);if(entry.state==='error'&&options.reopen)retry(entry,true);}if(old.info.state==='ready')return old.info;if(old.entry.state==='ready'||old.entry.state==='error'&&!asset.npc&&!asset.neutral){old.actor=actor;paint(canvas,old);}return old.info;}
- old?.entry.waiters.delete(canvas);old?.fallbackEntry?.waiters.delete(canvas);const entry=request(asset),keep=old?.info.identity===asset.id&&old.info.source==='approved'&&old.paintedKey,view={key,entry,asset,actor,cls,purpose,blank:!keep,paintedKey:keep?old.paintedKey:null,info:{source:keep?'approved':'neutral',state:entry.state,identity:asset.id,expression:keep?old.info.expression:asset.expression,requestedExpression:asset.requestedExpression}};views.set(canvas,view);
+ if(old?.key===key&&!old.released){old.asset=asset;old.info={...old.info,requestedExpression:asset.requestedExpression,fallbackReason:old.fallbackEntry?'network-variant':asset.fallbackReason};if(purpose==='dialogue')dialogueEntry=old.fallbackLocked&&old.fallbackEntry?.state==='ready'?old.fallbackEntry:old.entry.state==='ready'?old.entry:old.fallbackEntry?.state==='ready'?old.fallbackEntry:old.entry;for(const entry of [old.entry,old.fallbackEntry])if(entry&&(entry.state==='loading'||entry.state==='error'&&(asset.npc||asset.neutral))){entry.waiters.set(canvas,old);if(entry.state==='error'&&options.reopen)retry(entry,true);}if(old.info.state==='ready')return old.info;if(old.entry.state==='ready'||old.entry.state==='error'&&!asset.npc&&!asset.neutral){old.actor=actor;paint(canvas,old);}return old.info;}
+ old?.entry.waiters.delete(canvas);old?.fallbackEntry?.waiters.delete(canvas);const entry=request(asset),keep=purpose!=='dialogue'&&old?.info.identity===asset.id&&old.info.source==='approved'&&old.paintedKey,view={key,entry,asset,actor,cls,purpose,blank:!keep,paintedKey:keep?old.paintedKey:null,info:{source:keep?'approved':'neutral',state:entry.state,identity:asset.id,expression:keep?old.info.expression:asset.expression,requestedExpression:asset.requestedExpression}};views.set(canvas,view);
  if(!keep)canvas.getContext('2d').clearRect(0,0,canvas.width,canvas.height);if(purpose==='dialogue')dialogueEntry=entry;
  if(entry.state!=='ready')entry.waiters.set(canvas,view);paint(canvas,view);if(entry.state==='error'&&(asset.npc||asset.neutral))retry(entry,options.reopen);trimImages();return view.info;
 }
@@ -177,7 +180,7 @@ function mount(host,actor,cls,options={}){
  const purpose=options.framing||'bust';if(canvas.dataset.portraitFraming!==purpose)canvas.dataset.portraitFraming=purpose;
  const reopen=canvas.parentNode!==host;if(reopen)host.appendChild(canvas);return draw(canvas,actor,cls,{...options,reopen});
 }
-function release(root){for(const canvas of root.querySelectorAll('canvas')){const view=views.get(canvas);if(!view)continue;for(const entry of [view.entry,view.fallbackEntry])if(entry){entry.waiters.delete(canvas);if(!liveWaiters(entry)){clearTimeout(entry.retryTimer);entry.retryTimer=null;}}}dialogueEntry=nextEntry=null;trimImages();}
+function release(root){for(const canvas of root.querySelectorAll('canvas')){const view=views.get(canvas);if(!view)continue;view.released=!!view.fallbackLocked;for(const entry of [view.entry,view.fallbackEntry])if(entry){entry.waiters.delete(canvas);if(!liveWaiters(entry)){clearTimeout(entry.retryTimer);entry.retryTimer=null;}}}dialogueEntry=nextEntry=null;trimImages();}
 G.addEventListener?.('resize',trimImages,{passive:true});
 G.HonroPortraits=Object.freeze({draw,mount,release,prepareNext,select,markup,framing,cropFor,storyActor,approved,stats:()=>({...counts,imageEntries:images.size,pending:[...images.values()].filter(v=>v.state==='loading').length,errors:[...images.values()].filter(v=>v.state==='error').length,vectorEntries:cache.size,waiters:[...images.values()].reduce((n,v)=>n+v.waiters.size,0),decodedRgbaBytes:readyBytes(),pendingRgbaBytes:[...images.values()].filter(v=>v.state==='loading').reduce((n,v)=>n+v.bytes,0),budgetBytes:budget(),protectedRgbaBytes:[...new Set([dialogueEntry,nextEntry])].filter(v=>v?.state==='ready').reduce((n,v)=>n+v.bytes,0)})});
 })(globalThis);

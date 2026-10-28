@@ -81,13 +81,13 @@ with serve_game()as base,sync_playwright()as pw:
  p.evaluate('''()=>{const a=HonroApp;HonroStory.start(a,[['설오','옛 저장 첫 줄',{rowId:'legacy-fixture-1'}],['설오','옛 저장 둘째 줄',{rowId:'legacy-fixture-2'}]],{title:'legacy fixture',index:1});HonroStory.save(a);}''');saved=p.evaluate('JSON.stringify(HonroApp.dialogue.lines)');p.reload();p.wait_for_function('window.HonroApp?.screen==="title"');p.evaluate('HonroApp.continue()');p.wait_for_function('HonroApp.dialogue?.index===1');assert p.evaluate('JSON.stringify(HonroApp.dialogue.lines)')==saved
  # Camp and training keep retained approved base canvases after variant churn.
  p.evaluate('''()=>{HonroStory.finish(HonroApp);HonroRestJourney.state(HonroApp.profile).restStageId=1;HonroApp.showRest();for(let i=0;HonroApp.dialogue&&i<30;i++)HonroStory.finish(HonroApp);HonroApp.showCamp();}''');p.wait_for_timeout(350);p.screenshot(path=str(OUT/'camp.jpg'),type='jpeg',quality=92);p.evaluate('HonroApp.close();HonroApp.startTraining()');p.wait_for_selector('.training-dialog');p.wait_for_function("[...document.querySelectorAll('.training-heroes canvas')].length===4&&[...document.querySelectorAll('.training-heroes canvas')].every(c=>c.dataset.portraitState==='ready')");p.screenshot(path=str(OUT/'training.jpg'),type='jpeg',quality=92);assert not errors,errors;c.close()
- # Slow change retains same-person base; a new speaker clears before readiness.
- c,p=openpage(b,base);held=[];otherHeld=[];p.route('**/portrait-seoro-emotion-anger.*.webp',lambda r:held.append(r));p.route('**/portrait-damheo-base.*.webp',lambda r:otherHeld.append(r));show(p,basecase);exact(p,'base');before=pixels(p);show(p,seoro,False);p.wait_for_timeout(180);assert pixels(p)==before and info(p)['state']=='loading';p.screenshot(path=str(OUT/'slow-same-person.jpg'),type='jpeg',quality=92)
+ # Slow changed expressions stay neutral; neither old expression nor speaker may flash.
+ c,p=openpage(b,base);held=[];otherHeld=[];p.route('**/portrait-seoro-emotion-anger.*.webp',lambda r:held.append(r));p.route('**/portrait-damheo-base.*.webp',lambda r:otherHeld.append(r));show(p,basecase);exact(p,'base');before=pixels(p);show(p,seoro,False);p.wait_for_timeout(180);assert pixels(p)!=before and info(p)['state']=='loading';assert p.evaluate('!document.getElementById("story-portrait-canvas").getContext("2d").getImageData(0,0,400,440).data.some((v,i)=>i%4===3&&v>0)');p.screenshot(path=str(OUT/'slow-same-person.jpg'),type='jpeg',quality=92)
  cleared=p.evaluate('''q=>{const a=HonroApp;HonroStory.start(a,[q.line,q.line],{index:0});const c=document.getElementById('story-portrait-canvas');return !c.getContext('2d').getImageData(0,0,c.width,c.height).data.some((v,i)=>i%4===3&&v>0);}''',damheo);assert cleared
  for r in otherHeld:r.continue_()
  exact(p,'base');other=pixels(p)
  for r in held:r.continue_()
- p.wait_for_timeout(350);assert pixels(p)==other;faults.append({'mode':'slow/rapid-switch','samePersonRetained':True,'differentPersonCleared':cleared,'lateImageDidNotOverwrite':True});c.close()
+ p.wait_for_timeout(350);assert pixels(p)==other;faults.append({'mode':'slow/rapid-switch','samePersonCleared':True,'differentPersonCleared':cleared,'lateImageDidNotOverwrite':True});c.close()
  for mode in ['503','404','base404','timeout']:
   c,p=openpage(b,base);hits=[];held=[];fail=True
   def route(r):
@@ -109,7 +109,10 @@ with serve_game()as base,sync_playwright()as pw:
    assert len(hits)==3,hits;check_repeat(repeat(p));p.screenshot(path=str(OUT/(mode+'-fallback.jpg')),type='jpeg',quality=92)
   fail=False
   for r in held:r.continue_()
-  if mode in ['404','base404']:p.evaluate('HonroStory.finish(HonroApp)');show(p,seoro)
+  if initial.get('expression')=='base':
+   p.wait_for_timeout(1000);assert info(p)['expression']=='base','retry changed an already displayed fallback'
+  p.evaluate('()=>{for(let i=0;HonroApp.dialogue&&i<40;i++)HonroStory.finish(HonroApp);}')
+  show(p,seoro)
   exact(p,'emotion.anger');check_repeat(repeat(p));faults.append({'mode':mode,'initial':initial,'recovered':info(p),'physicalVariantRequests':len(hits),'stats':p.evaluate('HonroPortraits.stats()')});c.close()
  b.close()
 (OUT/'browser.json').write_text(json.dumps({'head':subprocess.check_output(['git','rev-parse','HEAD'],text=True).strip(),'runtimeSha256':hashlib.sha256((ROOT/'shared/runtime/portraits.js').read_bytes()).hexdigest(),'rows':rows,'repeat120':stable,'oldSaveRestored':True,'faults':faults,'errors':errors,'limits':'Production App display/resume-row and network fixtures; no normal campaign completion/physical device claim.'},ensure_ascii=False,indent=2));print('PASS12 real variants/24 UI views, tags/fallbacks,old save,rest/camp/training,slow/503/404/base404/timeout/rapid/reopen,cache-byte/repeat120')
