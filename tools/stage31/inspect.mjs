@@ -13,8 +13,9 @@ class Image extends NativeImage{set src(v){super.src=typeof v==='string'&&v.star
 const g=vm.createContext({console,performance,structuredClone,document:{createElement:()=>canvas()},Image,Path2D,DOMMatrix,devicePixelRatio:1,matchMedia:()=>({matches:false}),navigator:{userAgent:'honro-stage-authoring-inspector'},setTimeout,clearTimeout});g.window=g;
 for(const p of await runtimeParts({vector:true,render:true}))vm.runInContext(p,g);
 vm.runInContext(await readFile('shared/runtime/act4-art.js','utf8'),g);
+const supplied=process.argv[3];if(supplied)g.HONRO_PROJECT=JSON.parse(await readFile(supplied,'utf8'));
 const records=[];
-for(const n of [3,30,31]){
+for(const n of supplied?[31]:[3,30,31]){
  const st=g.HONRO_PROJECT.stages.find(s=>s.metadata.stageId===n);
  const profile=g.HONRO_CORE.defaults();profile.recruited=['archer','mage','knight','occultist'];g.HonroEquipment.fresh(profile);
  const b=g.HonroMaps.createBattle(st,g.HONRO_PROJECT,profile);

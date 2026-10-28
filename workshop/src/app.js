@@ -183,6 +183,12 @@ function drawStageUI(ctx,c,st,view){drawEnvironmentGuides(ctx,c,st,view);const d
 function ensureRuntime(){
  if(editorRuntime)return editorRuntime;
  const st=stage(),p=activeProject(),profile=HonroMaps.profileFor(st);HonroEquipment.fresh(profile);const b=HonroMaps.createBattle(st,p,profile);
+ // Match the actual Act4 campaign mount appearance. This is not a new renderer;
+ // Workshop has no App.mount, so it must prepare its disposable battle too.
+ if(b.honroAct4Official===1&&st.design?.act4){
+  b.honroPreviewFar??={key:[31,35,36].includes(st.metadata.stageId)?'act4Dawn':'act4Sea'};
+  if(globalThis.HonroAct4ReviewArt&&st.design.act4.palette)HonroAct4ReviewArt.palettes[st.metadata.stageId]=deep(st.design.act4.palette);
+ }
  if(st.terrains.length&&b.units.length)HonroStageRules.sanitizeStageBattle(b);
  // Layer switches affect only this disposable preview; the authored map stays intact.
  const hidden=new Set([...(st.environment?.hiddenLayers||[]),...st.layers.filter(l=>!l.visible).map(l=>l.id)]);
@@ -363,7 +369,7 @@ function renderProductionPanel(){const st=realStage(),P=HonroProductionContract,
  <h3>실제 엔진 검증 항목</h3><label>검증 ID<input class="field" id="productionProbeId" placeholder="first-bank-low-shot"></label><label>종류<select class="field" id="productionProbeKind"><option value="route">실제 이동 경로</option><option value="shot">실제 발사·충돌</option><option value="enemy-action">적의 실효 행동</option><option value="objective">목표·승선 진행</option></select></label><label>검증할 사실<input class="field" id="productionProbeClaim" placeholder="낮은 사격은 둑에 막히고 고각은 적에게 닿는다"></label>${button('productionProbeAdd','필수 검증 항목 추가')}${button('productionProbeImport','실제 엔진 관측 파일 가져오기')}<input type="file" accept=".json" id="productionProbeFile" hidden><h3>화면과 관측</h3><label><input type="checkbox" id="productionGuides" ${productionShowGuides?'checked':''}> 충돌·동선·역할 표시</label><label>확인할 화면<select class="field" id="productionViewKind">${['overview','normal','close','min-zoom','mobile','left-edge','right-edge'].map(v=>`<option>${v}</option>`).join('')}</select></label>${button('productionView','현재 실제 카메라 기록')}${button('productionCapture','현재 화면·충돌 오버레이 저장')}
  <p>카메라 ${card.cameraViews.length}개 / 경로 ${card.routes.length}개 / 군집 ${card.encounters.length}개. 캡처 횟수는 품질 승인 수가 아닙니다.</p>
  <h3>직접 본 결과 기록</h3><label>검수 구분<select class="field" id="productionReviewKind">${P.reviewKinds.map(v=>`<option>${v}</option>`).join('')}</select></label><div id="productionCriteria"></div><label>실제로 본 문제·수정·남은 한계<textarea class="field" id="productionObservation"></textarea></label><label>판정<select class="field" id="productionVerdict"><option value="fail">미완료/불합격</option><option value="pass">직접 확인한 범위 통과</option></select></label>${button('productionReviewRecord','현재 소스와 캡처에 검수 기록 연결')}<p>체크 횟수가 아니라 필요한 실제 화면과 관측을 기록합니다.</p><h3>저장</h3>${button('productionDraft','초안 저장')}${button('productionExport','제작용 내보내기 검사')}`}
- <h3>실제 검사 결과</h3><p>${report.machinePass?'기계 조건 충족 · 미술/플레이 승인은 별도':'차단 '+report.issues.length+'건'} · 검수 미확인 ${report.missingReviews.length}건 · 플레이 미확인 ${report.missingProbes.length}건</p><ul>${report.issues.map(i=>`<li><strong>${i.rule}</strong> ${esc(i.text)} ${i.objectId?`(${esc(i.objectId)})`:''}</li>`).join('')}</ul><p>자동 품질 승인: 제공하지 않음</p></div>`;
+ <h3>실제 검사 결과</h3><p>${report.machinePass?'기계 조건 충족 · 미술/플레이 승인은 별도':'차단 '+report.issues.length+'건'} · 검수 미확인 ${report.missingReviews.length}건 · 선언한 관측 미확인 ${report.missingProbes.length}건</p><ul>${report.issues.map(i=>`<li><strong>${i.rule}</strong> ${esc(i.text)} ${i.objectId?`(${esc(i.objectId)})`:''}</li>`).join('')}</ul><p>자동 품질 승인: 제공하지 않음</p></div>`;
  const safely=fn=>()=>{try{fn();}catch(e){toast(e.message);}};
  if(!card){$('#productionBegin').onclick=safely(()=>commit('제작 계약 시작',p=>Object.assign(p,P.begin(p,st.id))));return;}
  $('#productionIntent').onchange=e=>editProduction('전투 질문',c=>c.intent=e.target.value);

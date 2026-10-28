@@ -46,3 +46,10 @@ const duplicate=clone(draftNormalized);duplicate.stages.find(s=>s.id===id).units
 assert(P.audit(duplicate,id).issues.some(i=>i.text.includes('공통 맵 스키마')));
 const missingMetadata=clone(base);delete missingMetadata.stages.find(s=>s.id===id).metadata;
 assert(P.governed(missingMetadata,id),'Removing metadata cannot bypass Stage31 production checks');
+
+const rockDraft=P.begin(base,id);rockDraft.production.cards[id].referenceStages=['stage-3'];
+const groundedRock=P.placeScenery(rockDraft,id,{id:'test-foot-rock',assetId:'mockup-granite-large',x:900,scale:.6,supportId:'a4-31-land'});
+const rock=groundedRock.stages.find(s=>s.id===id).elements.find(e=>e.id==='test-foot-rock'),rockAsset=groundedRock.library.find(a=>a.id===rock.assetId);
+const actualFoot=g.HonroGeometry.transformPoint(rockAsset.reference.foot,rockAsset,rock);
+assert(Math.abs(actualFoot.y-rock.productionSupport.y)<1e-8,'Visual foot, not asset origin, must touch the declared surface');
+assert.equal(actualFoot.x,900);
