@@ -1,0 +1,55 @@
+[
+  {
+    "id": "first-bank-low-shot",
+    "kind": "shot",
+    "actor": "archer",
+    "expect": {
+      "type": "blocked",
+      "target": "s31-west-hound",
+      "terrain": "s31-estuary-bank"
+    },
+    "inputs": [
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 180
+      },
+      {
+        "op": "fire",
+        "skill": "A01",
+        "angle": -10,
+        "power": 0.65
+      },
+      {
+        "op": "advance",
+        "frames": 300
+      }
+    ]
+  },
+  {
+    "id": "first-bank-high-shot",
+    "kind": "shot",
+    "actor": "archer",
+    "expect": {
+      "type": "hit",
+      "target": "s31-west-hound"
+    },
+    "inputs": [
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 180
+      },
+      {
+        "op": "fire",
+        "skill": "A01",
+        "angle": 5,
+        "power": 0.65
+      },
+      {
+        "op": "advance",
+        "frames": 300
+      }
+    ]
+  }
+]

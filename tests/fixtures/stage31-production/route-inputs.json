@@ -1,0 +1,1638 @@
+[
+  {
+    "id": "boardwalk-route",
+    "kind": "route",
+    "actor": "knight",
+    "checkpoints": [
+      {
+        "x": 1300,
+        "y": 1831,
+        "w": 250,
+        "h": 30,
+        "grounded": true
+      },
+      {
+        "x": 2140,
+        "y": 1853,
+        "w": 250,
+        "h": 14,
+        "grounded": true
+      },
+      {
+        "x": 2890,
+        "y": 1803,
+        "w": 200,
+        "h": 40,
+        "grounded": true
+      },
+      {
+        "x": 3500,
+        "y": 1763,
+        "w": 120,
+        "h": 25,
+        "grounded": true
+      }
+    ],
+    "inputs": [
+      {
+        "op": "select",
+        "actor": "knight"
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "jump"
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "defend"
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "select",
+        "actor": "knight"
+      },
+      {
+        "op": "defend"
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "select",
+        "actor": "knight"
+      },
+      {
+        "op": "defend"
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "select",
+        "actor": "knight"
+      },
+      {
+        "op": "defend"
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "select",
+        "actor": "knight"
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "jump"
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      }
+    ]
+  },
+  {
+    "id": "low-channel-route",
+    "kind": "route",
+    "actor": "knight",
+    "checkpoints": [
+      {
+        "x": 1450,
+        "y": 1873,
+        "w": 100,
+        "h": 80,
+        "grounded": true
+      },
+      {
+        "x": 2010,
+        "y": 2103,
+        "w": 200,
+        "h": 70,
+        "grounded": true
+      },
+      {
+        "x": 2400,
+        "y": 2113,
+        "w": 200,
+        "h": 55,
+        "grounded": true
+      },
+      {
+        "x": 3000,
+        "y": 1963,
+        "w": 150,
+        "h": 100,
+        "grounded": true
+      },
+      {
+        "x": 3500,
+        "y": 1763,
+        "w": 120,
+        "h": 40,
+        "grounded": true
+      }
+    ],
+    "inputs": [
+      {
+        "op": "select",
+        "actor": "knight"
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "drop"
+      },
+      {
+        "op": "advance",
+        "frames": 35
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "defend"
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "select",
+        "actor": "knight"
+      },
+      {
+        "op": "defend"
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "select",
+        "actor": "knight"
+      },
+      {
+        "op": "defend"
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "select",
+        "actor": "knight"
+      },
+      {
+        "op": "defend"
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "select",
+        "actor": "knight"
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      }
+    ]
+  }
+]

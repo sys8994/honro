@@ -1,0 +1,5906 @@
+[
+  {
+    "id": "s31-west-bank-action",
+    "kind": "enemy-action",
+    "expect": {
+      "groupId": "s31-west-bank"
+    },
+    "inputs": [
+      {
+        "op": "select",
+        "actor": "knight"
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "defend"
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "select",
+        "actor": "knight"
+      },
+      {
+        "op": "defend"
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "select",
+        "actor": "knight"
+      },
+      {
+        "op": "defend"
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "select",
+        "actor": "knight"
+      },
+      {
+        "op": "defend"
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "select",
+        "actor": "knight"
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "defend"
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "select",
+        "actor": "knight"
+      },
+      {
+        "op": "defend"
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "select",
+        "actor": "knight"
+      },
+      {
+        "op": "defend"
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "select",
+        "actor": "knight"
+      },
+      {
+        "op": "defend"
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "select",
+        "actor": "knight"
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      }
+    ]
+  },
+  {
+    "id": "s31-low-channel-action",
+    "kind": "enemy-action",
+    "expect": {
+      "groupId": "s31-low-channel"
+    },
+    "inputs": [
+      {
+        "op": "select",
+        "actor": "knight"
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "defend"
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "select",
+        "actor": "knight"
+      },
+      {
+        "op": "defend"
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "select",
+        "actor": "knight"
+      },
+      {
+        "op": "defend"
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "select",
+        "actor": "knight"
+      },
+      {
+        "op": "defend"
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "select",
+        "actor": "knight"
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "defend"
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "select",
+        "actor": "knight"
+      },
+      {
+        "op": "defend"
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "select",
+        "actor": "knight"
+      },
+      {
+        "op": "defend"
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "select",
+        "actor": "knight"
+      },
+      {
+        "op": "defend"
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "select",
+        "actor": "knight"
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      }
+    ]
+  },
+  {
+    "id": "s31-middle-rise-action",
+    "kind": "enemy-action",
+    "expect": {
+      "groupId": "s31-middle-rise"
+    },
+    "inputs": [
+      {
+        "op": "select",
+        "actor": "knight"
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "defend"
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "select",
+        "actor": "knight"
+      },
+      {
+        "op": "defend"
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "select",
+        "actor": "knight"
+      },
+      {
+        "op": "defend"
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "select",
+        "actor": "knight"
+      },
+      {
+        "op": "defend"
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "select",
+        "actor": "knight"
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "defend"
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "select",
+        "actor": "knight"
+      },
+      {
+        "op": "defend"
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "select",
+        "actor": "knight"
+      },
+      {
+        "op": "defend"
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "select",
+        "actor": "knight"
+      },
+      {
+        "op": "defend"
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "select",
+        "actor": "knight"
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      }
+    ]
+  },
+  {
+    "id": "s31-landing-action",
+    "kind": "enemy-action",
+    "expect": {
+      "groupId": "s31-landing"
+    },
+    "inputs": [
+      {
+        "op": "select",
+        "actor": "knight"
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "defend"
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "select",
+        "actor": "knight"
+      },
+      {
+        "op": "defend"
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "select",
+        "actor": "knight"
+      },
+      {
+        "op": "defend"
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "select",
+        "actor": "knight"
+      },
+      {
+        "op": "defend"
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "select",
+        "actor": "knight"
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "defend"
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "select",
+        "actor": "knight"
+      },
+      {
+        "op": "defend"
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "select",
+        "actor": "knight"
+      },
+      {
+        "op": "defend"
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "select",
+        "actor": "knight"
+      },
+      {
+        "op": "defend"
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "advance",
+        "frames": 30
+      },
+      {
+        "op": "select",
+        "actor": "knight"
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 12
+      },
+      {
+        "op": "defend"
+      },
+      {
+        "op": "advance",
+        "frames": 900
+      },
+      {
+        "op": "defend"
+      },
+      {
+        "op": "advance",
+        "frames": 900
+      },
+      {
+        "op": "defend"
+      },
+      {
+        "op": "advance",
+        "frames": 900
+      },
+      {
+        "op": "defend"
+      },
+      {
+        "op": "advance",
+        "frames": 900
+      },
+      {
+        "op": "defend"
+      },
+      {
+        "op": "advance",
+        "frames": 900
+      },
+      {
+        "op": "defend"
+      },
+      {
+        "op": "advance",
+        "frames": 900
+      },
+      {
+        "op": "defend"
+      },
+      {
+        "op": "advance",
+        "frames": 900
+      },
+      {
+        "op": "defend"
+      },
+      {
+        "op": "advance",
+        "frames": 900
+      }
+    ]
+  }
+]
