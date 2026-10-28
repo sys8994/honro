@@ -1,0 +1,50 @@
+{
+  "preserved": "unit IDs, encounters, central event geometry; event runtime unmodified",
+  "rows": [
+    {
+      "type": "route",
+      "from": 260,
+      "to": 6800,
+      "reached": 6801.985368473122,
+      "jumps": 6,
+      "scope": "actual Engine ordinary move/jump; replenished move budget; no combat win claim"
+    },
+    {
+      "type": "route",
+      "from": 1840,
+      "to": 2820,
+      "reached": 2820.881808962195,
+      "jumps": 0,
+      "scope": "actual Engine ordinary move/jump; replenished move budget; no combat win claim"
+    },
+    {
+      "type": "route",
+      "from": 2820,
+      "to": 3500,
+      "reached": 3502.129326797269,
+      "jumps": 2,
+      "scope": "actual Engine ordinary move/jump; replenished move budget; no combat win claim"
+    },
+    {
+      "type": "route",
+      "from": 3970,
+      "to": 5500,
+      "reached": 5501.226715392875,
+      "jumps": 2,
+      "scope": "actual Engine ordinary move/jump; replenished move budget; no combat win claim"
+    },
+    {
+      "type": "shot",
+      "x": 3040,
+      "blocked": true,
+      "hit": null,
+      "collision": "a4-35-thick-bamboo-11"
+    },
+    {
+      "type": "shot",
+      "x": 3350,
+      "blocked": false,
+      "hit": 75.25
+    }
+  ]
+}

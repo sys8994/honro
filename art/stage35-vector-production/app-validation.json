@@ -1,0 +1,982 @@
+{
+  "version": 1,
+  "runner": "honro-production-app-observation-v1",
+  "scope": "Prepared stage-entry profile; production App events; DOM/audio are doubles. Not a browser/campaign playthrough. No gate relabeling or automatic art approval.",
+  "fingerprint": "5ad03c15e5c34533907985fcd7f4dc3afade720efe6ebe31e1bc15dd86548566",
+  "runtimeSha256": "77f3968dbfe45fe2a8afc2f8d55c8fe61415346ce8bfce909f1568925279acf8",
+  "verifierSha256": "288b002adc92e3b791d6c75151b845cbfb9f26f7cb0a58b966dc614114d36e0a",
+  "success": true,
+  "frame": 30425,
+  "entryBuild": "campaign-balanced-v1",
+  "resume": [
+    {
+      "frame": 12584,
+      "inputIndex": 39,
+      "result": "pass",
+      "scope": "Actual stopBattle/persist/Continue; exact units, event state, round, active and phase preserved"
+    }
+  ],
+  "groups": [
+    {
+      "id": "a4-35-0",
+      "damage": [
+        {
+          "frame": 1940,
+          "target": "knight",
+          "owner": "a4-35-g0-1",
+          "amount": 49
+        },
+        {
+          "frame": 2184,
+          "target": "knight",
+          "owner": "a4-35-g0-0",
+          "amount": 78
+        },
+        {
+          "frame": 5954,
+          "target": "knight",
+          "owner": "a4-35-g0-1",
+          "amount": 54
+        },
+        {
+          "frame": 6210,
+          "target": "knight",
+          "owner": "a4-35-g0-0",
+          "amount": 77
+        }
+      ]
+    },
+    {
+      "id": "a4-35-1",
+      "damage": [
+        {
+          "frame": 2966,
+          "target": "knight",
+          "owner": "a4-35-g1-0",
+          "amount": 38
+        },
+        {
+          "frame": 3781,
+          "target": "knight",
+          "owner": "a4-35-g1-1",
+          "amount": 86
+        },
+        {
+          "frame": 6761,
+          "target": "knight",
+          "owner": "a4-35-g1-0",
+          "amount": 41
+        },
+        {
+          "frame": 7416,
+          "target": "knight",
+          "owner": "a4-35-g1-1",
+          "amount": 83
+        },
+        {
+          "frame": 9693,
+          "target": "knight",
+          "owner": "a4-35-g1-0",
+          "amount": 57
+        },
+        {
+          "frame": 10081,
+          "target": "knight",
+          "owner": "a4-35-g1-1",
+          "amount": 82
+        },
+        {
+          "frame": 12210,
+          "target": "knight",
+          "owner": "a4-35-g1-0",
+          "amount": 53
+        },
+        {
+          "frame": 12442,
+          "target": "knight",
+          "owner": "a4-35-g1-1",
+          "amount": 91
+        },
+        {
+          "frame": 15485,
+          "target": "mage",
+          "owner": "a4-35-g1-1",
+          "amount": 94
+        }
+      ]
+    },
+    {
+      "id": "a4-35-2",
+      "damage": [
+        {
+          "frame": 20191,
+          "target": "knight",
+          "owner": "a4-35-g2-0",
+          "amount": 44
+        },
+        {
+          "frame": 20477,
+          "target": "knight",
+          "owner": "a4-35-g2-1",
+          "amount": 93
+        },
+        {
+          "frame": 24325,
+          "target": "knight",
+          "owner": "a4-35-g2-1",
+          "amount": 80
+        }
+      ]
+    }
+  ],
+  "shots": [
+    {
+      "frame": 2,
+      "actor": "archer",
+      "x": 260,
+      "y": 1910,
+      "input": {
+        "op": "fire",
+        "skill": "A02",
+        "angle": 35,
+        "power": 0.65
+      },
+      "accepted": true
+    },
+    {
+      "frame": 377,
+      "actor": "mage",
+      "x": 380,
+      "y": 1910,
+      "input": {
+        "op": "fire",
+        "skill": "M03",
+        "angle": 33.452959130889994,
+        "power": 0.879297718627713
+      },
+      "accepted": true
+    },
+    {
+      "frame": 752,
+      "actor": "knight",
+      "x": 500,
+      "y": 1910,
+      "input": {
+        "op": "fire",
+        "skill": "S04",
+        "angle": 55,
+        "power": 1
+      },
+      "accepted": true
+    },
+    {
+      "frame": 1157,
+      "actor": "occultist",
+      "x": 620,
+      "y": 1910,
+      "input": {
+        "op": "fire",
+        "skill": "O06",
+        "angle": 75,
+        "power": 1
+      },
+      "accepted": true
+    },
+    {
+      "frame": 3902,
+      "actor": "archer",
+      "x": 260,
+      "y": 1910,
+      "input": {
+        "op": "fire",
+        "skill": "A02",
+        "angle": 55,
+        "power": 0.65
+      },
+      "accepted": true
+    },
+    {
+      "frame": 4427,
+      "actor": "mage",
+      "x": 380,
+      "y": 1910,
+      "input": {
+        "op": "fire",
+        "skill": "M02",
+        "angle": 75,
+        "power": 1
+      },
+      "accepted": true
+    },
+    {
+      "frame": 5372,
+      "actor": "knight",
+      "x": 1242.3660152494153,
+      "y": 1800,
+      "input": {
+        "op": "fire",
+        "skill": "S04",
+        "angle": 15,
+        "power": 0.65
+      },
+      "accepted": true
+    },
+    {
+      "frame": 5567,
+      "actor": "occultist",
+      "x": 620,
+      "y": 1910,
+      "input": {
+        "op": "fire",
+        "skill": "O06",
+        "angle": 21.07279931307135,
+        "power": 0.8062526214029481
+      },
+      "accepted": true
+    },
+    {
+      "frame": 7532,
+      "actor": "archer",
+      "x": 260,
+      "y": 1910,
+      "input": {
+        "op": "fire",
+        "skill": "A14",
+        "angle": 35,
+        "power": 0.65
+      },
+      "accepted": true
+    },
+    {
+      "frame": 7877,
+      "actor": "mage",
+      "x": 380,
+      "y": 1910,
+      "input": {
+        "op": "fire",
+        "skill": "M06",
+        "angle": 33.28106544895348,
+        "power": 0.9876960904984363
+      },
+      "accepted": true
+    },
+    {
+      "frame": 8372,
+      "actor": "knight",
+      "x": 1507.8484063108283,
+      "y": 1811.1172527226806,
+      "input": {
+        "op": "fire",
+        "skill": "S04",
+        "angle": 62.70385702591047,
+        "power": 0.9248664914924377
+      },
+      "accepted": true
+    },
+    {
+      "frame": 9059,
+      "actor": "occultist",
+      "x": 1037.4316578737205,
+      "y": 1735.246619642958,
+      "input": {
+        "op": "fire",
+        "skill": "O02",
+        "angle": -11.487879017234016,
+        "power": 0.7399847235174779
+      },
+      "accepted": true
+    },
+    {
+      "frame": 10214,
+      "actor": "archer",
+      "x": 260,
+      "y": 1910,
+      "input": {
+        "op": "fire",
+        "skill": "A02",
+        "angle": 43.4121662935815,
+        "power": 0.9761549454485259
+      },
+      "accepted": true
+    },
+    {
+      "frame": 10829,
+      "actor": "mage",
+      "x": 380,
+      "y": 1910,
+      "input": {
+        "op": "fire",
+        "skill": "M01",
+        "angle": 35,
+        "power": 1
+      },
+      "accepted": true
+    },
+    {
+      "frame": 11384,
+      "actor": "knight",
+      "x": 2076.851568815176,
+      "y": 1979.3244522442212,
+      "input": {
+        "op": "fire",
+        "skill": "S04",
+        "angle": 13.965375906502747,
+        "power": 0.7647239389596845
+      },
+      "accepted": true
+    },
+    {
+      "frame": 11639,
+      "actor": "occultist",
+      "x": 1037.4316578737205,
+      "y": 1735.246619642958,
+      "input": {
+        "op": "fire",
+        "skill": "O06",
+        "angle": 15,
+        "power": 1
+      },
+      "accepted": true
+    },
+    {
+      "frame": 12584,
+      "actor": "archer",
+      "x": 260,
+      "y": 1910,
+      "input": {
+        "op": "fire",
+        "skill": "A14",
+        "angle": 26.370336633786387,
+        "power": 0.9578509358161814
+      },
+      "accepted": true
+    },
+    {
+      "frame": 13385,
+      "actor": "mage",
+      "x": 1322.0852356943724,
+      "y": 1800,
+      "input": {
+        "op": "fire",
+        "skill": "M01",
+        "angle": 49.00115895229171,
+        "power": 0.9966152139359973
+      },
+      "accepted": true
+    },
+    {
+      "frame": 13970,
+      "actor": "knight",
+      "x": 2527.0578637490653,
+      "y": 2051.076314800502,
+      "input": {
+        "op": "fire",
+        "skill": "S04",
+        "angle": 55,
+        "power": 1
+      },
+      "accepted": true
+    },
+    {
+      "frame": 14549,
+      "actor": "occultist",
+      "x": 1535.9369736627696,
+      "y": 1813.559736840241,
+      "input": {
+        "op": "fire",
+        "skill": "O06",
+        "angle": 35,
+        "power": 1
+      },
+      "accepted": true
+    },
+    {
+      "frame": 15614,
+      "actor": "archer",
+      "x": 260,
+      "y": 1910,
+      "input": {
+        "op": "fire",
+        "skill": "A02",
+        "angle": 45.02245616221464,
+        "power": 0.9357593448490149
+      },
+      "accepted": true
+    },
+    {
+      "frame": 16593,
+      "actor": "mage",
+      "x": 2485.602099678139,
+      "y": 2049.753258500366,
+      "input": {
+        "op": "fire",
+        "skill": "M02",
+        "angle": 55,
+        "power": 1
+      },
+      "accepted": true
+    },
+    {
+      "frame": 18090,
+      "actor": "knight",
+      "x": 4582.590988303054,
+      "y": 1957.239430096547,
+      "input": {
+        "op": "fire",
+        "skill": "S04",
+        "angle": 55,
+        "power": 1
+      },
+      "accepted": true
+    },
+    {
+      "frame": 19315,
+      "actor": "occultist",
+      "x": 3488.8637852070287,
+      "y": 1817.9064656690955,
+      "input": {
+        "op": "fire",
+        "skill": "O06",
+        "angle": 43.13409065378331,
+        "power": 0.9848797445041695
+      },
+      "accepted": true
+    },
+    {
+      "frame": 21058,
+      "actor": "archer",
+      "x": 1719.4646069539363,
+      "y": 1829.5186614742554,
+      "input": {
+        "op": "fire",
+        "skill": "A14",
+        "angle": 41.965817382838786,
+        "power": 0.9968549662680176
+      },
+      "accepted": true
+    },
+    {
+      "frame": 22597,
+      "actor": "mage",
+      "x": 4365.304476816063,
+      "y": 1947.6921410986308,
+      "input": {
+        "op": "fire",
+        "skill": "M03",
+        "angle": 35,
+        "power": 1
+      },
+      "accepted": true
+    },
+    {
+      "frame": 23002,
+      "actor": "knight",
+      "x": 5393.917994805257,
+      "y": 1790,
+      "input": {
+        "op": "fire",
+        "skill": "S04",
+        "angle": 16.346562002015055,
+        "power": 0.8419070529399854
+      },
+      "accepted": true
+    },
+    {
+      "frame": 23583,
+      "actor": "occultist",
+      "x": 4575.181380394249,
+      "y": 1957.1532718650494,
+      "input": {
+        "op": "fire",
+        "skill": "O06",
+        "angle": 55.31670701195364,
+        "power": 0.9760893845140154
+      },
+      "accepted": true
+    },
+    {
+      "frame": 25006,
+      "actor": "archer",
+      "x": 3083.284351659293,
+      "y": 1856,
+      "input": {
+        "op": "fire",
+        "skill": "A02",
+        "angle": 43.099631183830994,
+        "power": 0.9775178758657697
+      },
+      "accepted": true
+    },
+    {
+      "frame": 25621,
+      "actor": "mage",
+      "x": 4365.304476816063,
+      "y": 1947.6921410986308,
+      "input": {
+        "op": "fire",
+        "skill": "M01",
+        "angle": 39.00984382105815,
+        "power": 0.9659904893531543
+      },
+      "accepted": true
+    },
+    {
+      "frame": 26146,
+      "actor": "knight",
+      "x": 5788.246556800965,
+      "y": 1790,
+      "input": {
+        "op": "fire",
+        "skill": "S01",
+        "angle": 9.676436689744163,
+        "power": 0.7265962939334641
+      },
+      "accepted": true
+    }
+  ],
+  "hurts": [
+    {
+      "frame": 259,
+      "target": "a4-35-g0-0",
+      "owner": "archer",
+      "amount": 546
+    },
+    {
+      "frame": 658,
+      "target": "a4-35-g0-1",
+      "owner": "mage",
+      "amount": 520
+    },
+    {
+      "frame": 1697,
+      "target": "a4-35-g0-0",
+      "owner": "occultist",
+      "amount": 303
+    },
+    {
+      "frame": 1940,
+      "target": "knight",
+      "owner": "a4-35-g0-1",
+      "amount": 49
+    },
+    {
+      "frame": 2184,
+      "target": "knight",
+      "owner": "a4-35-g0-0",
+      "amount": 78
+    },
+    {
+      "frame": 2966,
+      "target": "knight",
+      "owner": "a4-35-g1-0",
+      "amount": 38
+    },
+    {
+      "frame": 2966,
+      "target": "a4-35-g0-0",
+      "owner": "a4-35-g1-0",
+      "amount": 68
+    },
+    {
+      "frame": 3781,
+      "target": "knight",
+      "owner": "a4-35-g1-1",
+      "amount": 86
+    },
+    {
+      "frame": 4300,
+      "target": "a4-35-g0-1",
+      "owner": "archer",
+      "amount": 587
+    },
+    {
+      "frame": 5194,
+      "target": "a4-35-g0-0",
+      "owner": "mage",
+      "amount": 222
+    },
+    {
+      "frame": 5691,
+      "target": "a4-35-g0-0",
+      "owner": "occultist",
+      "amount": 296
+    },
+    {
+      "frame": 5954,
+      "target": "knight",
+      "owner": "a4-35-g0-1",
+      "amount": 54
+    },
+    {
+      "frame": 6210,
+      "target": "knight",
+      "owner": "a4-35-g0-0",
+      "amount": 77
+    },
+    {
+      "frame": 6761,
+      "target": "knight",
+      "owner": "a4-35-g1-0",
+      "amount": 41
+    },
+    {
+      "frame": 7416,
+      "target": "knight",
+      "owner": "a4-35-g1-1",
+      "amount": 83
+    },
+    {
+      "frame": 7784,
+      "target": "a4-35-g0-0",
+      "owner": "archer",
+      "amount": 124
+    },
+    {
+      "frame": 8192,
+      "target": "a4-35-g0-1",
+      "owner": "mage",
+      "amount": 358
+    },
+    {
+      "frame": 8194,
+      "target": "a4-35-g0-1",
+      "owner": "mage",
+      "amount": 81
+    },
+    {
+      "frame": 8194,
+      "target": "a4-35-g0-1",
+      "owner": "mage",
+      "amount": 13
+    },
+    {
+      "frame": 8751,
+      "target": "a4-35-g1-0",
+      "owner": "knight",
+      "amount": 221
+    },
+    {
+      "frame": 9238,
+      "target": "knight",
+      "owner": "occultist",
+      "amount": 24.90000000000009
+    },
+    {
+      "frame": 9246,
+      "target": "a4-35-g1-0",
+      "owner": "occultist",
+      "amount": 286
+    },
+    {
+      "frame": 9273,
+      "target": "a4-35-g1-0",
+      "owner": "occultist",
+      "amount": 100
+    },
+    {
+      "frame": 9693,
+      "target": "knight",
+      "owner": "a4-35-g1-0",
+      "amount": 57
+    },
+    {
+      "frame": 10081,
+      "target": "knight",
+      "owner": "a4-35-g1-1",
+      "amount": 82
+    },
+    {
+      "frame": 10680,
+      "target": "a4-35-g1-1",
+      "owner": "archer",
+      "amount": 607
+    },
+    {
+      "frame": 11235,
+      "target": "a4-35-g1-0",
+      "owner": "mage",
+      "amount": 187
+    },
+    {
+      "frame": 11518,
+      "target": "a4-35-g1-0",
+      "owner": "knight",
+      "amount": 129
+    },
+    {
+      "frame": 11895,
+      "target": "a4-35-g1-0",
+      "owner": "occultist",
+      "amount": 249
+    },
+    {
+      "frame": 12210,
+      "target": "knight",
+      "owner": "a4-35-g1-0",
+      "amount": 53
+    },
+    {
+      "frame": 12442,
+      "target": "knight",
+      "owner": "a4-35-g1-1",
+      "amount": 91
+    },
+    {
+      "frame": 12943,
+      "target": "a4-35-g1-0",
+      "owner": "archer",
+      "amount": 387
+    },
+    {
+      "frame": 13816,
+      "target": "a4-35-g1-1",
+      "owner": "mage",
+      "amount": 170
+    },
+    {
+      "frame": 14857,
+      "target": "a4-35-g1-1",
+      "owner": "occultist",
+      "amount": 242
+    },
+    {
+      "frame": 15485,
+      "target": "mage",
+      "owner": "a4-35-g1-1",
+      "amount": 94
+    },
+    {
+      "frame": 16108,
+      "target": "a4-35-g1-1",
+      "owner": "archer",
+      "amount": 540
+    },
+    {
+      "frame": 17360,
+      "target": "a4-35-g2-0",
+      "owner": "mage",
+      "amount": 194
+    },
+    {
+      "frame": 17400,
+      "target": "a4-35-g2-0",
+      "owner": "mage",
+      "amount": 74
+    },
+    {
+      "frame": 18373,
+      "target": "a4-35-g2-0",
+      "owner": "knight",
+      "amount": 328
+    },
+    {
+      "frame": 19701,
+      "target": "a4-35-g2-0",
+      "owner": "occultist",
+      "amount": 516
+    },
+    {
+      "frame": 20191,
+      "target": "knight",
+      "owner": "a4-35-g2-0",
+      "amount": 44
+    },
+    {
+      "frame": 20477,
+      "target": "knight",
+      "owner": "a4-35-g2-1",
+      "amount": 93
+    },
+    {
+      "frame": 21564,
+      "target": "a4-35-g2-0",
+      "owner": "archer",
+      "amount": 447
+    },
+    {
+      "frame": 22909,
+      "target": "a4-35-g2-1",
+      "owner": "mage",
+      "amount": 525
+    },
+    {
+      "frame": 24014,
+      "target": "a4-35-g2-1",
+      "owner": "occultist",
+      "amount": 233
+    },
+    {
+      "frame": 24325,
+      "target": "knight",
+      "owner": "a4-35-g2-1",
+      "amount": 80
+    },
+    {
+      "frame": 25509,
+      "target": "a4-35-g2-1",
+      "owner": "archer",
+      "amount": 561
+    },
+    {
+      "frame": 25982,
+      "target": "a4-35-g2-1",
+      "owner": "mage",
+      "amount": 222
+    },
+    {
+      "frame": 26250,
+      "target": "a4-35-g2-1",
+      "owner": "knight",
+      "amount": 18
+    }
+  ],
+  "final": {
+    "phase": "won",
+    "objective": {
+      "version": 1,
+      "clock": 253.5416666666004,
+      "events": {
+        "entry": {
+          "started": true,
+          "terminal": true,
+          "presented": [],
+          "retired": [
+            "A4.S35.ENTRY.01",
+            "A4.S35.ENTRY.02"
+          ]
+        }
+      },
+      "receipts": [],
+      "boat": {
+        "phase": "waiting",
+        "x": 500
+      },
+      "door": {
+        "phase": "standing",
+        "time": 0
+      },
+      "complete": true,
+      "reader": null,
+      "water": {
+        "dry": {
+          "archer": {
+            "x": 6556.646937355393,
+            "y": 1857.318411681639
+          },
+          "mage": {
+            "x": 6525.846063968187,
+            "y": 1856.6488274775693
+          },
+          "knight": {
+            "x": 6577.942201936241,
+            "y": 1857.7813522160052
+          },
+          "occultist": {
+            "x": 6523.774336748984,
+            "y": 1856.6037899293258
+          },
+          "a4-35-g0-0": {
+            "x": 1444.2887833210136,
+            "y": 1805.590328984436
+          },
+          "a4-35-g0-1": {
+            "x": 1932.4010835995377,
+            "y": 1894.3535785879633
+          },
+          "a4-35-g1-0": {
+            "x": 2963.947655482028,
+            "y": 1960
+          },
+          "a4-35-g1-1": {
+            "x": 3334.3743591137804,
+            "y": 1827.4660139631997
+          },
+          "a4-35-g2-0": {
+            "x": 4932.492687403593,
+            "y": 1734.8076923076924
+          },
+          "a4-35-g2-1": {
+            "x": 6240.221739207908,
+            "y": 1850.439603026259
+          }
+        },
+        "recoveries": []
+      },
+      "blockedAtBamboo": true,
+      "blockedAt": 208.38333333330814,
+      "flaskDelivery": null
+    },
+    "units": [
+      {
+        "id": "archer",
+        "x": 6556.646937355393,
+        "y": 1857.318411681639,
+        "hp": 1183,
+        "dead": false
+      },
+      {
+        "id": "mage",
+        "x": 6525.846063968187,
+        "y": 1856.6488274775693,
+        "hp": 1280,
+        "dead": false
+      },
+      {
+        "id": "knight",
+        "x": 6577.942201936241,
+        "y": 1857.7813522160052,
+        "hp": 1364.1,
+        "dead": false
+      },
+      {
+        "id": "occultist",
+        "x": 6523.774336748984,
+        "y": 1856.6037899293258,
+        "hp": 1483,
+        "dead": false
+      },
+      {
+        "id": "a4-35-g0-0",
+        "x": 1444.2887833210136,
+        "y": 1805.590328984436,
+        "hp": 0,
+        "dead": true
+      },
+      {
+        "id": "a4-35-g0-1",
+        "x": 1933.5194678793694,
+        "y": 1893.670383095993,
+        "hp": 0,
+        "dead": true
+      },
+      {
+        "id": "a4-35-g1-0",
+        "x": 2963.947655482028,
+        "y": 1960,
+        "hp": 0,
+        "dead": true
+      },
+      {
+        "id": "a4-35-g1-1",
+        "x": 3334.3743591137804,
+        "y": 1827.4660139631997,
+        "hp": 0,
+        "dead": true
+      },
+      {
+        "id": "a4-35-g2-0",
+        "x": 4932.492687403593,
+        "y": 1734.8076923076924,
+        "hp": 0,
+        "dead": true
+      },
+      {
+        "id": "a4-35-g2-1",
+        "x": 6240.221739207908,
+        "y": 1850.439603026259,
+        "hp": 0,
+        "dead": true
+      }
+    ]
+  }
+}
