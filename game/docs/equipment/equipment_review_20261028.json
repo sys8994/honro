@@ -1,16 +1,23 @@
 {
   "meta": {
     "date": "2026-10-28",
-    "baseSha": "ddc9577648a27a4795a928baddd4b8f61edc9c5b",
+    "baseSha": "33697b6f76578f051547205cfe61960894306c21",
     "count": 52,
-    "status": "52개 짧은 외형 설명은 구현됨. 이야기·설정성 보강은 미완료. 표시 분류는 적용했으며, 재매핑·새 기초 옵션·고유능력 교체는 제안만 남김.",
+    "status": "부모 확정 원고52개를 게임과 문서에 그대로 적용. 획득 근거와 새 설정을 구분하며, 5·6막의 실제 획득 사건·획득자·장소는 미정이다.",
     "definition": "특정 스킬/계열의 피해·범위·효율·지속 수치만 바꾸면 기초 보정. 조준·충돌·자원 교환·대상/행동 방식이 달라질 때 고유능력. T1부터 계열 기초 옵션 허용; 낮은 티어를 범용 능력치에만 가두지 않음.",
     "legacy": "v03 uniqueEffect/effectId는 기존 실행 연결명으로 보존. effectCategory가 현재 화면 분류의 기준. 기존26효과 중22개 수치 보정,4개 운용 차이로 재분류; 효과 공식은 변경하지 않음.",
     "copyCompletion": {
-      "implemented": "재료·구조·사용 흔적 중심의 짧은 외형 설명52개",
-      "incomplete": "이야기·설정성 보강",
-      "thisRevision": "문구 재창작 없이 행/상세 펼치기와 완료 범위 표기만 변경"
-    }
+      "implemented": "부모 확정 원고52개 정확 적용 및 검토 문서 동기화",
+      "incomplete": "5·6막의 실제 획득 사건·획득자·장소 확정은 별도 콘텐츠 제작 범위",
+      "thisRevision": "확정 문구만 적용. 새 NPC·퀘스트·화면상 아이템 객체·컷신을 추가하지 않고 기존 효과·조건·보상·저장을 유지한다."
+    },
+    "writingScope": "작은 사용 습관·이전 주인의 흔적은 이번 요청으로 창작한 설정이다. 코드가 이미 이 세부를 연출한다고 주장하지 않는다. 후반 아이템은 과거 용도만 쓰고 실제 획득자를 정하지 않는다.",
+    "reviewProcess": "부모 원고 검토와 내부 집중 검토. 확정 원고의 임의 재창작·문장 다듬기 없음.",
+    "acquisitionSources": [
+      "shared/runtime/equipment-state.js",
+      "shared/engine/src/equipmentData.ts",
+      "game/docs/act4/EQUIPMENT_FACT_HOOKS.md"
+    ]
   },
   "items": [
     {
@@ -32,7 +39,7 @@
       "effectId": null,
       "eventId": "eq_se_start",
       "iconPath": "shared/assets/item-icons/v1/itm_se_01.webp",
-      "lore": "매듭 사이에 짧은 깃 세 가닥을 끼웠다. 닳은 끈 끝은 새 실로 덧감았다.",
+      "lore": "설오가 오래도록 활에 매어 둔 깃매듭. 바람을 읽을 때면 화살보다 먼저 이 깃을 본다.",
       "effectCategory": "none",
       "classification": "기초 옵션만",
       "conceptAndIcon": "활 결속 / 기본시·절명",
@@ -48,7 +55,16 @@
         }
       ],
       "review": "현재 외형·개념과 연결 유지. 수치 보정은 고유능력으로 부르지 않는다. T1부터 해당 기본기/계열의 피해·범위·비용 보정을 기초 옵션으로 허용하는 안이며 아직 수치 적용 전이다.",
-      "implementation": "짧은 외형 설명·분류 표기만 적용. 이야기·설정성 보강은 미완료. 옵션/효과/획득/저장 수치는 유지."
+      "implementation": "부모 확정 원고 그대로 적용. 기존 분류·옵션·효과·획득 조건·보상 선택·저장 구조는 유지.",
+      "acquisitionEvidence": {
+        "status": "현재 런타임 획득 근거",
+        "eventId": "eq_se_start",
+        "condition": "설오 정규 합류 기록에 연결된 초기 장비. 새 회차의 전투 전 준비 규칙을 유지한다.",
+        "sources": [
+          "shared/runtime/equipment-state.js"
+        ]
+      },
+      "settingScope": "이번 요청으로 작성한 사용 습관·배경 설정. 별도 장면·인물·퀘스트를 구현했다는 뜻은 아니다."
     },
     {
       "itemId": "itm_se_02",
@@ -75,7 +91,7 @@
       "effectId": null,
       "eventId": "eq_se_ledger",
       "iconPath": "shared/assets/item-icons/v1/itm_se_02.webp",
-      "lore": "대나무 통에 가죽 띠를 둘렀다. 화살을 자주 뽑던 입구만 반들거린다.",
+      "lore": "나루를 오가던 사냥꾼들이 쓰던 화살통. 배에 오를 때도 활은 손에 들고, 화살은 등에 바짝 붙여 물에서 지켰다.",
       "effectCategory": "none",
       "classification": "기초 옵션만",
       "conceptAndIcon": "화살 보관 / 기본시·강궁",
@@ -91,7 +107,16 @@
         }
       ],
       "review": "현재 외형·개념과 연결 유지. 수치 보정은 고유능력으로 부르지 않는다. T1부터 해당 기본기/계열의 피해·범위·비용 보정을 기초 옵션으로 허용하는 안이며 아직 수치 적용 전이다.",
-      "implementation": "짧은 외형 설명·분류 표기만 적용. 이야기·설정성 보강은 미완료. 옵션/효과/획득/저장 수치는 유지."
+      "implementation": "부모 확정 원고 그대로 적용. 기존 분류·옵션·효과·획득 조건·보상 선택·저장 구조는 유지.",
+      "acquisitionEvidence": {
+        "status": "현재 런타임 획득 근거",
+        "eventId": "eq_se_ledger",
+        "condition": "3장 첫 클리어 기록으로 지급.",
+        "sources": [
+          "shared/runtime/equipment-state.js"
+        ]
+      },
+      "settingScope": "이번 요청으로 작성한 사용 습관·배경 설정. 별도 장면·인물·퀘스트를 구현했다는 뜻은 아니다."
     },
     {
       "itemId": "itm_se_03",
@@ -124,7 +149,7 @@
       "effectId": null,
       "eventId": "eq_se_t2_choice",
       "iconPath": "shared/assets/item-icons/v1/itm_se_03.webp",
-      "lore": "깃 모양 금속판 두 장이 끈에 포개져 있다. 가장자리의 녹을 손톱으로 긁어낸 흔적이 남았다.",
+      "lore": "돌아 나오는 길을 살피던 산사람의 활장식. 앞만 보며 걸으면 같은 바위 곁으로 돌아온다는 말이 전해진다.",
       "effectCategory": "none",
       "classification": "기초 옵션만",
       "conceptAndIcon": "깃 모양 금속 / 곡사",
@@ -140,7 +165,16 @@
         }
       ],
       "review": "현재 외형·개념과 연결 유지. 수치 보정은 고유능력으로 부르지 않는다. T1부터 해당 기본기/계열의 피해·범위·비용 보정을 기초 옵션으로 허용하는 안이며 아직 수치 적용 전이다.",
-      "implementation": "짧은 외형 설명·분류 표기만 적용. 이야기·설정성 보강은 미완료. 옵션/효과/획득/저장 수치는 유지."
+      "implementation": "부모 확정 원고 그대로 적용. 기존 분류·옵션·효과·획득 조건·보상 선택·저장 구조는 유지.",
+      "acquisitionEvidence": {
+        "status": "현재 런타임 획득 근거",
+        "eventId": "eq_se_t2_choice",
+        "condition": "12장 sign 완료에 연결된 2택1. 기존 필수 완료 기록의 누락 보상 재조정도 유지한다.",
+        "sources": [
+          "shared/runtime/equipment-state.js"
+        ]
+      },
+      "settingScope": "이번 요청으로 작성한 사용 습관·배경 설정. 별도 장면·인물·퀘스트를 구현했다는 뜻은 아니다."
     },
     {
       "itemId": "itm_se_04",
@@ -173,7 +207,7 @@
       "effectId": null,
       "eventId": "eq_se_t2_choice",
       "iconPath": "shared/assets/item-icons/v1/itm_se_04.webp",
-      "lore": "각진 통 밑에 두꺼운 가죽을 덧댔다. 바닥에 내려놓을 때마다 생긴 흠집이 겹쳐 있다.",
+      "lore": "바위 비탈에서 화살을 쏟지 않도록 아가리를 조인 화살통. 남은 화살을 세려면 잠시 멈춰 앉아야 한다.",
       "effectCategory": "none",
       "classification": "기초 옵션만",
       "conceptAndIcon": "보강 화살통 / 강궁",
@@ -189,7 +223,16 @@
         }
       ],
       "review": "현재 외형·개념과 연결 유지. 수치 보정은 고유능력으로 부르지 않는다. T1부터 해당 기본기/계열의 피해·범위·비용 보정을 기초 옵션으로 허용하는 안이며 아직 수치 적용 전이다.",
-      "implementation": "짧은 외형 설명·분류 표기만 적용. 이야기·설정성 보강은 미완료. 옵션/효과/획득/저장 수치는 유지."
+      "implementation": "부모 확정 원고 그대로 적용. 기존 분류·옵션·효과·획득 조건·보상 선택·저장 구조는 유지.",
+      "acquisitionEvidence": {
+        "status": "현재 런타임 획득 근거",
+        "eventId": "eq_se_t2_choice",
+        "condition": "12장 sign 완료에 연결된 2택1. 기존 필수 완료 기록의 누락 보상 재조정도 유지한다.",
+        "sources": [
+          "shared/runtime/equipment-state.js"
+        ]
+      },
+      "settingScope": "이번 요청으로 작성한 사용 습관·배경 설정. 별도 장면·인물·퀘스트를 구현했다는 뜻은 아니다."
     },
     {
       "itemId": "itm_se_05",
@@ -222,7 +265,7 @@
       "effectId": "se_drop",
       "eventId": "eq_se_t3a",
       "iconPath": "shared/assets/item-icons/v1/itm_se_05.webp",
-      "lore": "긴 깃과 작은 쇳조각을 함께 매달았다. 활을 기울이면 쇳조각이 깃대를 가볍게 두드린다.",
+      "lore": "고갯바람을 살피는 데 쓰던 장식이 관아 문서고에 들어와 있었다. 끈을 풀자 접혀 있던 깃이 다시 벌어졌다.",
       "effectCategory": "basic",
       "classification": "기초 옵션 + 수치 보정",
       "conceptAndIcon": "긴 깃 활 장식 / 곡사",
@@ -244,7 +287,16 @@
         }
       ],
       "review": "현재 외형·개념과 연결 유지. 수치 보정은 고유능력으로 부르지 않는다.",
-      "implementation": "짧은 외형 설명·분류 표기만 적용. 이야기·설정성 보강은 미완료. 옵션/효과/획득/저장 수치는 유지."
+      "implementation": "부모 확정 원고 그대로 적용. 기존 분류·옵션·효과·획득 조건·보상 선택·저장 구조는 유지.",
+      "acquisitionEvidence": {
+        "status": "현재 런타임 획득 근거",
+        "eventId": "eq_se_t3a",
+        "condition": "22장 문서 v4.record-bundle 완료에 연결. 기존 필수 완료 기록의 누락 보상 재조정도 유지한다.",
+        "sources": [
+          "shared/runtime/equipment-state.js"
+        ]
+      },
+      "settingScope": "이번 요청으로 작성한 사용 습관·배경 설정. 별도 장면·인물·퀘스트를 구현했다는 뜻은 아니다."
     },
     {
       "itemId": "itm_se_06",
@@ -277,7 +329,7 @@
       "effectId": "se_push",
       "eventId": "eq_se_t3b",
       "iconPath": "shared/assets/item-icons/v1/itm_se_06.webp",
-      "lore": "두 통을 짧은 끈으로 단단히 묶었다. 풀린 자리를 조여 맨 매듭이 유난히 굵다.",
+      "lore": "나루에서 건너온 화살통. 한쪽 통을 비워 젖은 화살을 따로 담게 했다. 다시 쏘기 전에 어느 쪽인지 손으로 짚어 확인한다.",
       "effectCategory": "basic",
       "classification": "기초 옵션 + 수치 보정",
       "conceptAndIcon": "이중 화살통 / 격퇴·연사",
@@ -299,7 +351,17 @@
         }
       ],
       "review": "현재 외형·개념과 연결 유지. 수치 보정은 고유능력으로 부르지 않는다.",
-      "implementation": "짧은 외형 설명·분류 표기만 적용. 이야기·설정성 보강은 미완료. 옵션/효과/획득/저장 수치는 유지."
+      "implementation": "부모 확정 원고 그대로 적용. 기존 분류·옵션·효과·획득 조건·보상 선택·저장 구조는 유지.",
+      "acquisitionEvidence": {
+        "status": "현재 런타임 획득 근거",
+        "eventId": "eq_se_t3b",
+        "condition": "정식31장 배 도착 뒤 살아 있는 동행 전원의 실제 갑판 접지 승선 사실으로 지급. 일반 출구 도달만으로는 불충분하다.",
+        "sources": [
+          "shared/runtime/equipment-state.js",
+          "game/docs/act4/EQUIPMENT_FACT_HOOKS.md"
+        ]
+      },
+      "settingScope": "이번 요청으로 작성한 사용 습관·배경 설정. 별도 장면·인물·퀘스트를 구현했다는 뜻은 아니다."
     },
     {
       "itemId": "itm_se_07",
@@ -338,7 +400,7 @@
       "effectId": "se_pierce",
       "eventId": "eq_se_t4_choice",
       "iconPath": "shared/assets/item-icons/v1/itm_se_07.webp",
-      "lore": "작은 옥고리 두 개를 쇠막대에 끼웠다. 맞닿는 곳마다 희끗한 마모 자국이 났다.",
+      "lore": "작은 구멍으로 먼 곳을 가늠하던 궁수의 장식. 오래 들여다보면 겨눈 것 곁의 움직임을 놓치기 쉬웠다고 한다.",
       "effectCategory": "basic",
       "classification": "기초 옵션 + 수치 보정",
       "conceptAndIcon": "고리 활 장식 / 관통",
@@ -360,7 +422,17 @@
         }
       ],
       "review": "현재 외형·개념과 연결 유지. 수치 보정은 고유능력으로 부르지 않는다.",
-      "implementation": "짧은 외형 설명·분류 표기만 적용. 이야기·설정성 보강은 미완료. 옵션/효과/획득/저장 수치는 유지."
+      "implementation": "부모 확정 원고 그대로 적용. 기존 분류·옵션·효과·획득 조건·보상 선택·저장 구조는 유지.",
+      "acquisitionEvidence": {
+        "status": "예약 비활성 · 실제 획득 사건 미정",
+        "eventId": "eq_se_t4_choice",
+        "reservedAct": 6,
+        "condition": "5·6막의 실제 획득 사건·획득자·장소는 아직 미정. 연결 예약 ID·막을 유지하며 실제 사건으로 확정하지 않는다.",
+        "sources": [
+          "shared/engine/src/equipmentData.ts"
+        ]
+      },
+      "settingScope": "과거 사용 용도에 한정한 창작 설정. 현재 획득자·장소·사건을 정하지 않는다."
     },
     {
       "itemId": "itm_se_08",
@@ -399,7 +471,7 @@
       "effectId": "se_recover",
       "eventId": "eq_se_t4_choice",
       "iconPath": "shared/assets/item-icons/v1/itm_se_08.webp",
-      "lore": "부드러운 가죽을 여러 겹 덧대 만든 화살통. 입구에는 해진 천 조각을 접어 둘렀다.",
+      "lore": "화살을 뽑는 소리를 줄이려 입구에 천을 댄 화살통. 주인은 빈 통을 메고 돌아올 때에도 그 천을 걷어내지 않았다.",
       "effectCategory": "basic",
       "classification": "기초 옵션 + 수치 보정",
       "conceptAndIcon": "천을 댄 화살통 / 회수",
@@ -422,7 +494,17 @@
         }
       ],
       "review": "현재 외형·개념과 연결 유지. 수치 보정은 고유능력으로 부르지 않는다.",
-      "implementation": "짧은 외형 설명·분류 표기만 적용. 이야기·설정성 보강은 미완료. 옵션/효과/획득/저장 수치는 유지."
+      "implementation": "부모 확정 원고 그대로 적용. 기존 분류·옵션·효과·획득 조건·보상 선택·저장 구조는 유지.",
+      "acquisitionEvidence": {
+        "status": "예약 비활성 · 실제 획득 사건 미정",
+        "eventId": "eq_se_t4_choice",
+        "reservedAct": 6,
+        "condition": "5·6막의 실제 획득 사건·획득자·장소는 아직 미정. 연결 예약 ID·막을 유지하며 실제 사건으로 확정하지 않는다.",
+        "sources": [
+          "shared/engine/src/equipmentData.ts"
+        ]
+      },
+      "settingScope": "과거 사용 용도에 한정한 창작 설정. 현재 획득자·장소·사건을 정하지 않는다."
     },
     {
       "itemId": "itm_da_01",
@@ -443,7 +525,7 @@
       "effectId": null,
       "eventId": "eq_da_join",
       "iconPath": "shared/assets/item-icons/v1/itm_da_01.webp",
-      "lore": "박 껍질을 말려 만든 작은 호리병. 목에 묶은 노끈에는 마른 풀잎이 끼어 있다.",
+      "lore": "담허가 길에서 물을 얻을 때마다 내미는 호리병. 술법에 쓸 것과 마실 것은 꼭 따로 담는다.",
       "effectCategory": "none",
       "classification": "기초 옵션만",
       "conceptAndIcon": "박 호리병 / 호리병술",
@@ -463,7 +545,16 @@
         }
       ],
       "review": "현재 외형·개념과 연결 유지. 수치 보정은 고유능력으로 부르지 않는다. T1부터 해당 기본기/계열의 피해·범위·비용 보정을 기초 옵션으로 허용하는 안이며 아직 수치 적용 전이다.",
-      "implementation": "짧은 외형 설명·분류 표기만 적용. 이야기·설정성 보강은 미완료. 옵션/효과/획득/저장 수치는 유지."
+      "implementation": "부모 확정 원고 그대로 적용. 기존 분류·옵션·효과·획득 조건·보상 선택·저장 구조는 유지.",
+      "acquisitionEvidence": {
+        "status": "현재 런타임 획득 근거",
+        "eventId": "eq_da_join",
+        "condition": "담허가 정규 동행으로 합류한 기록에 연결된 초기 장비.",
+        "sources": [
+          "shared/runtime/equipment-state.js"
+        ]
+      },
+      "settingScope": "이번 요청으로 작성한 사용 습관·배경 설정. 별도 장면·인물·퀘스트를 구현했다는 뜻은 아니다."
     },
     {
       "itemId": "itm_da_02",
@@ -490,7 +581,7 @@
       "effectId": null,
       "eventId": "eq_da_gate",
       "iconPath": "shared/assets/item-icons/v1/itm_da_02.webp",
-      "lore": "숯빛 패와 나무 구슬을 한데 묶었다. 지팡이에 닿던 뒷면은 검은 칠이 벗겨졌다.",
+      "lore": "문밖을 지키던 이들이 지팡이에 매던 숯칠 매듭. 밤새 문을 두드리는 소리가 나면, 손을 뻗기 전에 매듭부터 쥐었다.",
       "effectCategory": "none",
       "classification": "기초 옵션만",
       "conceptAndIcon": "지팡이 숯칠 매듭 / 기파·파문",
@@ -506,7 +597,16 @@
         }
       ],
       "review": "현재 외형·개념과 연결 유지. 수치 보정은 고유능력으로 부르지 않는다. T1부터 해당 기본기/계열의 피해·범위·비용 보정을 기초 옵션으로 허용하는 안이며 아직 수치 적용 전이다.",
-      "implementation": "짧은 외형 설명·분류 표기만 적용. 이야기·설정성 보강은 미완료. 옵션/효과/획득/저장 수치는 유지."
+      "implementation": "부모 확정 원고 그대로 적용. 기존 분류·옵션·효과·획득 조건·보상 선택·저장 구조는 유지.",
+      "acquisitionEvidence": {
+        "status": "현재 런타임 획득 근거",
+        "eventId": "eq_da_gate",
+        "condition": "4장 첫 클리어 기록으로 지급.",
+        "sources": [
+          "shared/runtime/equipment-state.js"
+        ]
+      },
+      "settingScope": "이번 요청으로 작성한 사용 습관·배경 설정. 별도 장면·인물·퀘스트를 구현했다는 뜻은 아니다."
     },
     {
       "itemId": "itm_da_03",
@@ -539,7 +639,7 @@
       "effectId": null,
       "eventId": "eq_da_t2_choice",
       "iconPath": "shared/assets/item-icons/v1/itm_da_03.webp",
-      "lore": "굽은 쇠장식을 지팡이에 거는 끈이 짧다. 손에 걸리지 않도록 술 끝을 가지런히 잘랐다.",
+      "lore": "잠운사에 남은 지팡이장식. 술법을 익히던 이는 같은 파문을 거듭 펼치며 끈의 길이를 조금씩 줄였다.",
       "effectCategory": "none",
       "classification": "기초 옵션만",
       "conceptAndIcon": "지팡이 쇠장식 / 기파·파문",
@@ -571,7 +671,16 @@
         }
       ],
       "review": "청뢰 지팡이장식: 현재는 범용 공격/기력 옵션뿐. 기파 M01 및 파문 계열의 단순 보정을 T2 기초 옵션으로 제안한다. 고유능력 포장은 하지 않는다. T1부터 해당 기본기/계열의 피해·범위·비용 보정을 기초 옵션으로 허용하는 안이며 아직 수치 적용 전이다.",
-      "implementation": "짧은 외형 설명·분류 표기만 적용. 이야기·설정성 보강은 미완료. 옵션/효과/획득/저장 수치는 유지."
+      "implementation": "부모 확정 원고 그대로 적용. 기존 분류·옵션·효과·획득 조건·보상 선택·저장 구조는 유지.",
+      "acquisitionEvidence": {
+        "status": "현재 런타임 획득 근거",
+        "eventId": "eq_da_t2_choice",
+        "condition": "16장 증언 16.testimony 완료에 연결된 2택1. 기존 필수 완료 기록의 누락 보상 재조정도 유지한다.",
+        "sources": [
+          "shared/runtime/equipment-state.js"
+        ]
+      },
+      "settingScope": "이번 요청으로 작성한 사용 습관·배경 설정. 별도 장면·인물·퀘스트를 구현했다는 뜻은 아니다."
     },
     {
       "itemId": "itm_da_04",
@@ -604,7 +713,7 @@
       "effectId": null,
       "eventId": "eq_da_t2_choice",
       "iconPath": "shared/assets/item-icons/v1/itm_da_04.webp",
-      "lore": "거친 끈으로 병의 몸통을 둘러 묶었다. 목 아래에는 물을 따르며 번진 자국이 남았다.",
+      "lore": "잠운사에서 물을 조금씩 나누어 따르던 병. 종 아래서 물을 청했다는 말을 듣고, 담허는 남은 물이 있는지 먼저 살폈다.",
       "effectCategory": "none",
       "classification": "기초 옵션만",
       "conceptAndIcon": "끈 두른 병 / 호리병술",
@@ -620,7 +729,16 @@
         }
       ],
       "review": "현재 외형·개념과 연결 유지. 수치 보정은 고유능력으로 부르지 않는다. T1부터 해당 기본기/계열의 피해·범위·비용 보정을 기초 옵션으로 허용하는 안이며 아직 수치 적용 전이다.",
-      "implementation": "짧은 외형 설명·분류 표기만 적용. 이야기·설정성 보강은 미완료. 옵션/효과/획득/저장 수치는 유지."
+      "implementation": "부모 확정 원고 그대로 적용. 기존 분류·옵션·효과·획득 조건·보상 선택·저장 구조는 유지.",
+      "acquisitionEvidence": {
+        "status": "현재 런타임 획득 근거",
+        "eventId": "eq_da_t2_choice",
+        "condition": "16장 증언 16.testimony 완료에 연결된 2택1. 기존 필수 완료 기록의 누락 보상 재조정도 유지한다.",
+        "sources": [
+          "shared/runtime/equipment-state.js"
+        ]
+      },
+      "settingScope": "이번 요청으로 작성한 사용 습관·배경 설정. 별도 장면·인물·퀘스트를 구현했다는 뜻은 아니다."
     },
     {
       "itemId": "itm_da_05",
@@ -653,7 +771,7 @@
       "effectId": "da_stake",
       "eventId": "eq_da_t3a",
       "iconPath": "shared/assets/item-icons/v1/itm_da_05.webp",
-      "lore": "작은 대통 여러 개를 붉은 끈으로 엮었다. 매듭 안쪽에는 오래 눌린 지팡이 자국이 있다.",
+      "lore": "옛 수문에서 진을 세우던 잔영을 본 뒤, 담허가 지팡이에 옮겨 단 매듭. 끈을 풀어 보려다 매인 순서를 잊지 않으려고 그대로 두었다.",
       "effectCategory": "basic",
       "classification": "기초 옵션 + 수치 보정",
       "conceptAndIcon": "지팡이 대통 매듭 / 기파·파문",
@@ -684,7 +802,16 @@
         }
       ],
       "review": "지팡이 매듭인데 파진목 M07 수명 보정. 기파·반탄파·삼재파 쪽으로 재매핑 제안. 현재 M07 효과는 이번에 바꾸지 않았다.",
-      "implementation": "짧은 외형 설명·분류 표기만 적용. 이야기·설정성 보강은 미완료. 옵션/효과/획득/저장 수치는 유지."
+      "implementation": "부모 확정 원고 그대로 적용. 기존 분류·옵션·효과·획득 조건·보상 선택·저장 구조는 유지.",
+      "acquisitionEvidence": {
+        "status": "현재 런타임 획득 근거",
+        "eventId": "eq_da_t3a",
+        "condition": "29장 진목 표식·잔영 관측 stage29-echo 완료에 연결. 과거 hyeonmuk-letter는 호환 키이며 실제 글 획득으로 서술하지 않는다. 기존 필수 완료 기록의 누락 보상 재조정도 유지한다.",
+        "sources": [
+          "shared/runtime/equipment-state.js"
+        ]
+      },
+      "settingScope": "이번 요청으로 작성한 사용 습관·배경 설정. 별도 장면·인물·퀘스트를 구현했다는 뜻은 아니다."
     },
     {
       "itemId": "itm_da_06",
@@ -717,7 +844,7 @@
       "effectId": "da_heal",
       "eventId": "eq_da_t3b",
       "iconPath": "shared/assets/item-icons/v1/itm_da_06.webp",
-      "lore": "옅은 유약을 바른 병에 그물처럼 끈을 둘렀다. 입구의 나무 마개는 손때가 짙다.",
+      "lore": "숲의 빈터를 지나 동행이 담허에게 건넨 병. 한 손으로 마개를 열 수 있어, 다른 손으로 누군가를 부축할 때에도 쓸 수 있다.",
       "effectCategory": "basic",
       "classification": "기초 옵션 + 수치 보정",
       "conceptAndIcon": "유약 병 / 호리병술",
@@ -755,7 +882,17 @@
         }
       ],
       "review": "맑은숨 호리병: M10 회생진목 HP +20%는 진법 수치 보정이며 외형과 불일치. 호리병술 M06/M02/M04/M13/M05의 기초 옵션 + 후보 U08로 교체 검토. 이번 게임에는 기존 M10을 기초 보정으로만 표기한다.",
-      "implementation": "짧은 외형 설명·분류 표기만 적용. 이야기·설정성 보강은 미완료. 옵션/효과/획득/저장 수치는 유지."
+      "implementation": "부모 확정 원고 그대로 적용. 기존 분류·옵션·효과·획득 조건·보상 선택·저장 구조는 유지.",
+      "acquisitionEvidence": {
+        "status": "현재 런타임 획득 근거",
+        "eventId": "eq_da_t3b",
+        "condition": "정식35장 셋째 빈터 뒤 안전 구간에서 기존 동행이 담허에게 병을 전달하고 수령 장면이 관측된 사실으로 지급. 전달자는 새 NPC가 아니다.",
+        "sources": [
+          "shared/runtime/equipment-state.js",
+          "game/docs/act4/EQUIPMENT_FACT_HOOKS.md"
+        ]
+      },
+      "settingScope": "이번 요청으로 작성한 사용 습관·배경 설정. 별도 장면·인물·퀘스트를 구현했다는 뜻은 아니다."
     },
     {
       "itemId": "itm_da_07",
@@ -794,7 +931,7 @@
       "effectId": "da_sky",
       "eventId": "eq_da_t4_choice",
       "iconPath": "shared/assets/item-icons/v1/itm_da_07.webp",
-      "lore": "검게 그을린 병의 굽이 두껍다. 어깨의 끈은 열에 삭아 여러 번 갈아 맸다.",
+      "lore": "벼락 술법을 익히던 이가 쓰던 호리병. 병을 쥐는 손보다 마개를 여는 손을 더 엄하게 가르쳤다고 한다.",
       "effectCategory": "basic",
       "classification": "기초 옵션 + 수치 보정",
       "conceptAndIcon": "그을린 병 / 화호·천뢰호",
@@ -821,7 +958,17 @@
         }
       ],
       "review": "현재 외형·개념과 연결 유지. 수치 보정은 고유능력으로 부르지 않는다.",
-      "implementation": "짧은 외형 설명·분류 표기만 적용. 이야기·설정성 보강은 미완료. 옵션/효과/획득/저장 수치는 유지."
+      "implementation": "부모 확정 원고 그대로 적용. 기존 분류·옵션·효과·획득 조건·보상 선택·저장 구조는 유지.",
+      "acquisitionEvidence": {
+        "status": "예약 비활성 · 실제 획득 사건 미정",
+        "eventId": "eq_da_t4_choice",
+        "reservedAct": 5,
+        "condition": "5·6막의 실제 획득 사건·획득자·장소는 아직 미정. 연결 예약 ID·막을 유지하며 실제 사건으로 확정하지 않는다.",
+        "sources": [
+          "shared/engine/src/equipmentData.ts"
+        ]
+      },
+      "settingScope": "과거 사용 용도에 한정한 창작 설정. 현재 획득자·장소·사건을 정하지 않는다."
     },
     {
       "itemId": "itm_da_08",
@@ -860,7 +1007,7 @@
       "effectId": "da_arc",
       "eventId": "eq_da_t4_choice",
       "iconPath": "shared/assets/item-icons/v1/itm_da_08.webp",
-      "lore": "푸른 고리에 방사형 홈을 팠다. 끈을 꿰는 홈 한쪽만 닳아 매끈하다.",
+      "lore": "지팡이 끝에 걸어 파문의 퍼짐을 가늠하던 고리. 원을 새긴 홈마다 손가락이 멎던 자리가 다르다.",
       "effectCategory": "basic",
       "classification": "기초 옵션 + 수치 보정",
       "conceptAndIcon": "원형 고리 / 원호파·동심파",
@@ -887,7 +1034,17 @@
         }
       ],
       "review": "현재 외형·개념과 연결 유지. 수치 보정은 고유능력으로 부르지 않는다.",
-      "implementation": "짧은 외형 설명·분류 표기만 적용. 이야기·설정성 보강은 미완료. 옵션/효과/획득/저장 수치는 유지."
+      "implementation": "부모 확정 원고 그대로 적용. 기존 분류·옵션·효과·획득 조건·보상 선택·저장 구조는 유지.",
+      "acquisitionEvidence": {
+        "status": "예약 비활성 · 실제 획득 사건 미정",
+        "eventId": "eq_da_t4_choice",
+        "reservedAct": 5,
+        "condition": "5·6막의 실제 획득 사건·획득자·장소는 아직 미정. 연결 예약 ID·막을 유지하며 실제 사건으로 확정하지 않는다.",
+        "sources": [
+          "shared/engine/src/equipmentData.ts"
+        ]
+      },
+      "settingScope": "과거 사용 용도에 한정한 창작 설정. 현재 획득자·장소·사건을 정하지 않는다."
     },
     {
       "itemId": "itm_hw_01",
@@ -908,7 +1065,7 @@
       "effectId": null,
       "eventId": "eq_hw_join",
       "iconPath": "shared/assets/item-icons/v1/itm_hw_01.webp",
-      "lore": "삼베를 길게 찢어 여러 겹 감았다. 풀린 올을 안으로 접어 넣은 자국이 보인다.",
+      "lore": "휘겸이 칼을 잡기 전에 감는 삼베. 다친 손목을 받치는 날에도 감는 순서는 바꾸지 않는다.",
       "effectCategory": "none",
       "classification": "기초 옵션만",
       "conceptAndIcon": "삼베 감개 / 근접 기본기",
@@ -924,7 +1081,16 @@
         }
       ],
       "review": "현재 외형·개념과 연결 유지. 수치 보정은 고유능력으로 부르지 않는다. T1부터 해당 기본기/계열의 피해·범위·비용 보정을 기초 옵션으로 허용하는 안이며 아직 수치 적용 전이다.",
-      "implementation": "짧은 외형 설명·분류 표기만 적용. 이야기·설정성 보강은 미완료. 옵션/효과/획득/저장 수치는 유지."
+      "implementation": "부모 확정 원고 그대로 적용. 기존 분류·옵션·효과·획득 조건·보상 선택·저장 구조는 유지.",
+      "acquisitionEvidence": {
+        "status": "현재 런타임 획득 근거",
+        "eventId": "eq_hw_join",
+        "condition": "휘겸이 정규 동행으로 합류한 기록에 연결된 초기 장비.",
+        "sources": [
+          "shared/runtime/equipment-state.js"
+        ]
+      },
+      "settingScope": "이번 요청으로 작성한 사용 습관·배경 설정. 별도 장면·인물·퀘스트를 구현했다는 뜻은 아니다."
     },
     {
       "itemId": "itm_hw_02",
@@ -951,7 +1117,7 @@
       "effectId": null,
       "eventId": "eq_hw_bier",
       "iconPath": "shared/assets/item-icons/v1/itm_hw_02.webp",
-      "lore": "오래된 가죽끈에 쇠고리가 달렸다. 칼자루와 맞닿던 안쪽이 검게 닳았다.",
+      "lore": "빈 상여가 돌아오던 길에 남은 칼끈. 칼은 보이지 않았고, 끈에는 급히 잘라낸 짧은 끝만 남았다.",
       "effectCategory": "none",
       "classification": "기초 옵션만",
       "conceptAndIcon": "칼끈 / 검기",
@@ -967,7 +1133,16 @@
         }
       ],
       "review": "현재 외형·개념과 연결 유지. 수치 보정은 고유능력으로 부르지 않는다. T1부터 해당 기본기/계열의 피해·범위·비용 보정을 기초 옵션으로 허용하는 안이며 아직 수치 적용 전이다.",
-      "implementation": "짧은 외형 설명·분류 표기만 적용. 이야기·설정성 보강은 미완료. 옵션/효과/획득/저장 수치는 유지."
+      "implementation": "부모 확정 원고 그대로 적용. 기존 분류·옵션·효과·획득 조건·보상 선택·저장 구조는 유지.",
+      "acquisitionEvidence": {
+        "status": "현재 런타임 획득 근거",
+        "eventId": "eq_hw_bier",
+        "condition": "8장 상여 관련 전투의 첫 클리어 기록으로 지급.",
+        "sources": [
+          "shared/runtime/equipment-state.js"
+        ]
+      },
+      "settingScope": "이번 요청으로 작성한 사용 습관·배경 설정. 별도 장면·인물·퀘스트를 구현했다는 뜻은 아니다."
     },
     {
       "itemId": "itm_hw_03",
@@ -1000,7 +1175,7 @@
       "effectId": null,
       "eventId": "eq_hw_t2_choice",
       "iconPath": "shared/assets/item-icons/v1/itm_hw_03.webp",
-      "lore": "가죽 위에 얇은 금속판을 덧댄 손목감개. 판의 모서리는 줄로 갈아 둥글렸다.",
+      "lore": "인양틀 곁에서 거둔 손목감개. 무거운 줄을 붙들던 손에도, 그 줄을 끊으려던 손에도 맞을 만한 크기다.",
       "effectCategory": "none",
       "classification": "기초 옵션만",
       "conceptAndIcon": "금속 손목대 / 근접 받아내기",
@@ -1016,7 +1191,16 @@
         }
       ],
       "review": "현재 외형·개념과 연결 유지. 수치 보정은 고유능력으로 부르지 않는다. T1부터 해당 기본기/계열의 피해·범위·비용 보정을 기초 옵션으로 허용하는 안이며 아직 수치 적용 전이다.",
-      "implementation": "짧은 외형 설명·분류 표기만 적용. 이야기·설정성 보강은 미완료. 옵션/효과/획득/저장 수치는 유지."
+      "implementation": "부모 확정 원고 그대로 적용. 기존 분류·옵션·효과·획득 조건·보상 선택·저장 구조는 유지.",
+      "acquisitionEvidence": {
+        "status": "현재 런타임 획득 근거",
+        "eventId": "eq_hw_t2_choice",
+        "condition": "17장 인양틀 17.hoist 완료에 연결된 2택1. 기존 필수 완료 기록의 누락 보상 재조정도 유지한다.",
+        "sources": [
+          "shared/runtime/equipment-state.js"
+        ]
+      },
+      "settingScope": "이번 요청으로 작성한 사용 습관·배경 설정. 별도 장면·인물·퀘스트를 구현했다는 뜻은 아니다."
     },
     {
       "itemId": "itm_hw_04",
@@ -1049,7 +1233,7 @@
       "effectId": null,
       "eventId": "eq_hw_t2_choice",
       "iconPath": "shared/assets/item-icons/v1/itm_hw_04.webp",
-      "lore": "넓적한 매듭을 지은 검집끈. 구멍 주위에 새 실로 기운 바늘땀이 촘촘하다.",
+      "lore": "인양 장치 곁에 남아 있던 검집끈. 칼을 뽑을 때 검집이 흔들리지 않도록 허리에 두 번 감게 되어 있다.",
       "effectCategory": "none",
       "classification": "기초 옵션만",
       "conceptAndIcon": "검집끈 / 견인·검기",
@@ -1065,7 +1249,16 @@
         }
       ],
       "review": "현재 외형·개념과 연결 유지. 수치 보정은 고유능력으로 부르지 않는다. T1부터 해당 기본기/계열의 피해·범위·비용 보정을 기초 옵션으로 허용하는 안이며 아직 수치 적용 전이다.",
-      "implementation": "짧은 외형 설명·분류 표기만 적용. 이야기·설정성 보강은 미완료. 옵션/효과/획득/저장 수치는 유지."
+      "implementation": "부모 확정 원고 그대로 적용. 기존 분류·옵션·효과·획득 조건·보상 선택·저장 구조는 유지.",
+      "acquisitionEvidence": {
+        "status": "현재 런타임 획득 근거",
+        "eventId": "eq_hw_t2_choice",
+        "condition": "17장 인양틀 17.hoist 완료에 연결된 2택1. 기존 필수 완료 기록의 누락 보상 재조정도 유지한다.",
+        "sources": [
+          "shared/runtime/equipment-state.js"
+        ]
+      },
+      "settingScope": "이번 요청으로 작성한 사용 습관·배경 설정. 별도 장면·인물·퀘스트를 구현했다는 뜻은 아니다."
     },
     {
       "itemId": "itm_hw_05",
@@ -1098,7 +1291,7 @@
       "effectId": "hw_jump_cost",
       "eventId": "eq_hw_t3a",
       "iconPath": "shared/assets/item-icons/v1/itm_hw_05.webp",
-      "lore": "가느다란 칼끈 끝을 작은 뼈 조각에 묶었다. 손가락이 걸리던 고리만 색이 옅다.",
+      "lore": "가문 문장이 남은 저택에서 거둔 칼끈. 휘겸은 집안에서 쓰던 매듭을 알아보았지만, 누구의 것인지는 말하지 못했다.",
       "effectCategory": "basic",
       "classification": "기초 옵션 + 수치 보정",
       "conceptAndIcon": "가벼운 칼끈 / 도약",
@@ -1121,7 +1314,16 @@
         }
       ],
       "review": "현재 외형·개념과 연결 유지. 수치 보정은 고유능력으로 부르지 않는다.",
-      "implementation": "짧은 외형 설명·분류 표기만 적용. 이야기·설정성 보강은 미완료. 옵션/효과/획득/저장 수치는 유지."
+      "implementation": "부모 확정 원고 그대로 적용. 기존 분류·옵션·효과·획득 조건·보상 선택·저장 구조는 유지.",
+      "acquisitionEvidence": {
+        "status": "현재 런타임 획득 근거",
+        "eventId": "eq_hw_t3a",
+        "condition": "24장 family-crest 완료에 연결. 기존 필수 완료 기록의 누락 보상 재조정도 유지한다.",
+        "sources": [
+          "shared/runtime/equipment-state.js"
+        ]
+      },
+      "settingScope": "이번 요청으로 작성한 사용 습관·배경 설정. 별도 장면·인물·퀘스트를 구현했다는 뜻은 아니다."
     },
     {
       "itemId": "itm_hw_06",
@@ -1154,7 +1356,7 @@
       "effectId": "hw_life",
       "eventId": "eq_hw_t3b",
       "iconPath": "shared/assets/item-icons/v1/itm_hw_06.webp",
-      "lore": "단단한 조각을 가죽에 꿰맨 손목감개. 안감에는 눌린 자리가 깊게 남았다.",
+      "lore": "외곽의 정예가 쓰러진 뒤 남은 손목감개. 끈을 풀자 눌려 있던 안감이 천천히 펴졌다. 안쪽까지 단단히 조여 썼다.",
       "effectCategory": "basic",
       "classification": "기초 옵션 + 수치 보정",
       "conceptAndIcon": "두꺼운 감개 / 사생참",
@@ -1176,7 +1378,17 @@
         }
       ],
       "review": "현재 외형·개념과 연결 유지. 수치 보정은 고유능력으로 부르지 않는다.",
-      "implementation": "짧은 외형 설명·분류 표기만 적용. 이야기·설정성 보강은 미완료. 옵션/효과/획득/저장 수치는 유지."
+      "implementation": "부모 확정 원고 그대로 적용. 기존 분류·옵션·효과·획득 조건·보상 선택·저장 구조는 유지.",
+      "acquisitionEvidence": {
+        "status": "현재 런타임 획득 근거",
+        "eventId": "eq_hw_t3b",
+        "condition": "정식36장 eq-hw-36 외곽 정예의 실제 생존→사망 경계 사실으로 지급.",
+        "sources": [
+          "shared/runtime/equipment-state.js",
+          "game/docs/act4/EQUIPMENT_FACT_HOOKS.md"
+        ]
+      },
+      "settingScope": "이번 요청으로 작성한 사용 습관·배경 설정. 별도 장면·인물·퀘스트를 구현했다는 뜻은 아니다."
     },
     {
       "itemId": "itm_hw_07",
@@ -1215,7 +1427,7 @@
       "effectId": "hw_guard",
       "eventId": "eq_hw_t4_choice",
       "iconPath": "shared/assets/item-icons/v1/itm_hw_07.webp",
-      "lore": "겹친 판을 질긴 끈으로 이어 붙였다. 손목을 굽히는 자리마다 가죽이 부드럽게 접힌다.",
+      "lore": "반격을 익히던 무사가 오래 쓴 감개. 안쪽에는 손목을 뒤로 젖히지 말라는 짧은 글이 남아 있다.",
       "effectCategory": "basic",
       "classification": "기초 옵션 + 수치 보정",
       "conceptAndIcon": "겹판 감개 / 응수세",
@@ -1239,7 +1451,17 @@
         }
       ],
       "review": "현재 외형·개념과 연결 유지. 수치 보정은 고유능력으로 부르지 않는다.",
-      "implementation": "짧은 외형 설명·분류 표기만 적용. 이야기·설정성 보강은 미완료. 옵션/효과/획득/저장 수치는 유지."
+      "implementation": "부모 확정 원고 그대로 적용. 기존 분류·옵션·효과·획득 조건·보상 선택·저장 구조는 유지.",
+      "acquisitionEvidence": {
+        "status": "예약 비활성 · 실제 획득 사건 미정",
+        "eventId": "eq_hw_t4_choice",
+        "reservedAct": 6,
+        "condition": "5·6막의 실제 획득 사건·획득자·장소는 아직 미정. 연결 예약 ID·막을 유지하며 실제 사건으로 확정하지 않는다.",
+        "sources": [
+          "shared/engine/src/equipmentData.ts"
+        ]
+      },
+      "settingScope": "과거 사용 용도에 한정한 창작 설정. 현재 획득자·장소·사건을 정하지 않는다."
     },
     {
       "itemId": "itm_hw_08",
@@ -1278,7 +1500,7 @@
       "effectId": "hw_blade",
       "eventId": "eq_hw_t4_choice",
       "iconPath": "shared/assets/item-icons/v1/itm_hw_08.webp",
-      "lore": "길고 납작한 검집끈에 쇠고리를 달았다. 끈을 줄여 쓴 접힌 자리가 여러 줄이다.",
+      "lore": "긴 검기를 다루던 이의 검집끈. 칼을 넣고도 한동안 손을 떼지 않는 버릇 때문에, 고리 한쪽만 깊이 닳았다.",
       "effectCategory": "basic",
       "classification": "기초 옵션 + 수치 보정",
       "conceptAndIcon": "긴 검집끈 / 회륜검기",
@@ -1309,7 +1531,17 @@
         }
       ],
       "review": "현재 외형·개념과 연결 유지. 수치 보정은 고유능력으로 부르지 않는다.",
-      "implementation": "짧은 외형 설명·분류 표기만 적용. 이야기·설정성 보강은 미완료. 옵션/효과/획득/저장 수치는 유지."
+      "implementation": "부모 확정 원고 그대로 적용. 기존 분류·옵션·효과·획득 조건·보상 선택·저장 구조는 유지.",
+      "acquisitionEvidence": {
+        "status": "예약 비활성 · 실제 획득 사건 미정",
+        "eventId": "eq_hw_t4_choice",
+        "reservedAct": 6,
+        "condition": "5·6막의 실제 획득 사건·획득자·장소는 아직 미정. 연결 예약 ID·막을 유지하며 실제 사건으로 확정하지 않는다.",
+        "sources": [
+          "shared/engine/src/equipmentData.ts"
+        ]
+      },
+      "settingScope": "과거 사용 용도에 한정한 창작 설정. 현재 획득자·장소·사건을 정하지 않는다."
     },
     {
       "itemId": "itm_so_01",
@@ -1330,7 +1562,7 @@
       "effectId": null,
       "eventId": "eq_so_join",
       "iconPath": "shared/assets/item-icons/v1/itm_so_01.webp",
-      "lore": "작은 놋방울 두 개를 검은 끈에 달았다. 갈라진 끈은 가는 실로 덧꼬았다.",
+      "lore": "소단이 늘 지니던 방울끈. 울리는 소리를 견디기 어려워하는 사람 곁에서는 방울을 손으로 감싸 쥔다.",
       "effectCategory": "none",
       "classification": "기초 옵션만",
       "conceptAndIcon": "놋방울 / 혼행",
@@ -1346,7 +1578,16 @@
         }
       ],
       "review": "현재 외형·개념과 연결 유지. 수치 보정은 고유능력으로 부르지 않는다. T1부터 해당 기본기/계열의 피해·범위·비용 보정을 기초 옵션으로 허용하는 안이며 아직 수치 적용 전이다.",
-      "implementation": "짧은 외형 설명·분류 표기만 적용. 이야기·설정성 보강은 미완료. 옵션/효과/획득/저장 수치는 유지."
+      "implementation": "부모 확정 원고 그대로 적용. 기존 분류·옵션·효과·획득 조건·보상 선택·저장 구조는 유지.",
+      "acquisitionEvidence": {
+        "status": "현재 런타임 획득 근거",
+        "eventId": "eq_so_join",
+        "condition": "소단이 정규 동행으로 합류한 기록에 연결된 초기 장비.",
+        "sources": [
+          "shared/runtime/equipment-state.js"
+        ]
+      },
+      "settingScope": "이번 요청으로 작성한 사용 습관·배경 설정. 별도 장면·인물·퀘스트를 구현했다는 뜻은 아니다."
     },
     {
       "itemId": "itm_so_02",
@@ -1373,7 +1614,7 @@
       "effectId": null,
       "eventId": "eq_so_resident",
       "iconPath": "shared/assets/item-icons/v1/itm_so_02.webp",
-      "lore": "무명 조각을 접어 묶은 매듭. 바깥 천에는 손으로 문질러 생긴 보풀이 일었다.",
+      "lore": "석문 앞에서 구한 석공이 건넨 매듭. 아들 길찬이 안쪽에 있다는 말을 하면서도, 매듭을 쥔 손은 쉽게 펴지지 않았다.",
       "effectCategory": "none",
       "classification": "기초 옵션만",
       "conceptAndIcon": "접은 무명 / 부적",
@@ -1389,7 +1630,16 @@
         }
       ],
       "review": "현재 외형·개념과 연결 유지. 수치 보정은 고유능력으로 부르지 않는다. T1부터 해당 기본기/계열의 피해·범위·비용 보정을 기초 옵션으로 허용하는 안이며 아직 수치 적용 전이다.",
-      "implementation": "짧은 외형 설명·분류 표기만 적용. 이야기·설정성 보강은 미완료. 옵션/효과/획득/저장 수치는 유지."
+      "implementation": "부모 확정 원고 그대로 적용. 기존 분류·옵션·효과·획득 조건·보상 선택·저장 구조는 유지.",
+      "acquisitionEvidence": {
+        "status": "현재 런타임 획득 근거",
+        "eventId": "eq_so_resident",
+        "condition": "13장 석공 구조 13.release 완료에 연결. 기존 필수 완료 기록의 누락 보상 재조정도 유지한다.",
+        "sources": [
+          "shared/runtime/equipment-state.js"
+        ]
+      },
+      "settingScope": "이번 요청으로 작성한 사용 습관·배경 설정. 별도 장면·인물·퀘스트를 구현했다는 뜻은 아니다."
     },
     {
       "itemId": "itm_so_03",
@@ -1422,7 +1672,7 @@
       "effectId": null,
       "eventId": "eq_so_t2_choice",
       "iconPath": "shared/assets/item-icons/v1/itm_so_03.webp",
-      "lore": "길이가 다른 끈 끝에 작은 방울을 달았다. 매듭이 풀리지 않도록 실을 한 번 더 돌렸다.",
+      "lore": "묵종 곁에 남아 있던 방울끈. 큰 종의 울림이 멎은 뒤에야 작은 방울 소리가 들렸다.",
       "effectCategory": "none",
       "classification": "기초 옵션만",
       "conceptAndIcon": "작은 방울 / 혼행·반향",
@@ -1438,7 +1688,16 @@
         }
       ],
       "review": "현재 외형·개념과 연결 유지. 수치 보정은 고유능력으로 부르지 않는다. T1부터 해당 기본기/계열의 피해·범위·비용 보정을 기초 옵션으로 허용하는 안이며 아직 수치 적용 전이다.",
-      "implementation": "짧은 외형 설명·분류 표기만 적용. 이야기·설정성 보강은 미완료. 옵션/효과/획득/저장 수치는 유지."
+      "implementation": "부모 확정 원고 그대로 적용. 기존 분류·옵션·효과·획득 조건·보상 선택·저장 구조는 유지.",
+      "acquisitionEvidence": {
+        "status": "현재 런타임 획득 근거",
+        "eventId": "eq_so_t2_choice",
+        "condition": "18장 종지기 18.keeper 완료에 연결된 2택1. 기존 필수 완료 기록의 누락 보상 재조정도 유지한다.",
+        "sources": [
+          "shared/runtime/equipment-state.js"
+        ]
+      },
+      "settingScope": "이번 요청으로 작성한 사용 습관·배경 설정. 별도 장면·인물·퀘스트를 구현했다는 뜻은 아니다."
     },
     {
       "itemId": "itm_so_04",
@@ -1471,7 +1730,7 @@
       "effectId": null,
       "eventId": "eq_so_t2_choice",
       "iconPath": "shared/assets/item-icons/v1/itm_so_04.webp",
-      "lore": "촘촘히 접은 천을 노끈으로 묶었다. 비에 젖었다 마른 천 끝이 뻣뻣하다.",
+      "lore": "종지기를 물리친 뒤 거둔 매듭. 물길을 건널 때 짐에 묶던 것으로 보인다. 이곳까지 온 길은 남아 있지 않다.",
       "effectCategory": "none",
       "classification": "기초 옵션만",
       "conceptAndIcon": "묶은 천 / 부적",
@@ -1487,7 +1746,16 @@
         }
       ],
       "review": "현재 외형·개념과 연결 유지. 수치 보정은 고유능력으로 부르지 않는다. T1부터 해당 기본기/계열의 피해·범위·비용 보정을 기초 옵션으로 허용하는 안이며 아직 수치 적용 전이다.",
-      "implementation": "짧은 외형 설명·분류 표기만 적용. 이야기·설정성 보강은 미완료. 옵션/효과/획득/저장 수치는 유지."
+      "implementation": "부모 확정 원고 그대로 적용. 기존 분류·옵션·효과·획득 조건·보상 선택·저장 구조는 유지.",
+      "acquisitionEvidence": {
+        "status": "현재 런타임 획득 근거",
+        "eventId": "eq_so_t2_choice",
+        "condition": "18장 종지기 18.keeper 완료에 연결된 2택1. 기존 필수 완료 기록의 누락 보상 재조정도 유지한다.",
+        "sources": [
+          "shared/runtime/equipment-state.js"
+        ]
+      },
+      "settingScope": "이번 요청으로 작성한 사용 습관·배경 설정. 별도 장면·인물·퀘스트를 구현했다는 뜻은 아니다."
     },
     {
       "itemId": "itm_so_05",
@@ -1520,7 +1788,7 @@
       "effectId": "so_echo",
       "eventId": "eq_so_t3a",
       "iconPath": "shared/assets/item-icons/v1/itm_so_05.webp",
-      "lore": "놋방울의 틈을 가는 철사로 손봤다. 손잡이 끈에는 기름 먹은 손때가 배었다.",
+      "lore": "종 아래 혼들을 보내고 챙긴 방울끈. 망치와 밥그릇이 놓인 자리에서 소단은 한 번만 흔들어 보고 거두었다.",
       "effectCategory": "basic",
       "classification": "기초 옵션 + 수치 보정",
       "conceptAndIcon": "큰 방울 / 반향·소환",
@@ -1547,7 +1815,16 @@
         }
       ],
       "review": "현재 외형·개념과 연결 유지. 수치 보정은 고유능력으로 부르지 않는다.",
-      "implementation": "짧은 외형 설명·분류 표기만 적용. 이야기·설정성 보강은 미완료. 옵션/효과/획득/저장 수치는 유지."
+      "implementation": "부모 확정 원고 그대로 적용. 기존 분류·옵션·효과·획득 조건·보상 선택·저장 구조는 유지.",
+      "acquisitionEvidence": {
+        "status": "현재 런타임 획득 근거",
+        "eventId": "eq_so_t3a",
+        "condition": "19장 old-soul 완료에 연결. 기존 필수 완료 기록의 누락 보상 재조정도 유지한다.",
+        "sources": [
+          "shared/runtime/equipment-state.js"
+        ]
+      },
+      "settingScope": "이번 요청으로 작성한 사용 습관·배경 설정. 별도 장면·인물·퀘스트를 구현했다는 뜻은 아니다."
     },
     {
       "itemId": "itm_so_06",
@@ -1580,7 +1857,7 @@
       "effectId": "so_weak",
       "eventId": "eq_so_t3b",
       "iconPath": "shared/assets/item-icons/v1/itm_so_06.webp",
-      "lore": "길게 접은 무명을 붉은 실로 묶었다. 접힌 곳마다 옅은 누런 자국이 남았다.",
+      "lore": "구조한 이들과 돌아온 뒤 남은 매듭. 서둘러 짐을 묶었다 풀어낸 자리마다, 서로 다른 손이 맨 매듭이 겹쳐 있다.",
       "effectCategory": "basic",
       "classification": "기초 옵션 + 수치 보정",
       "conceptAndIcon": "붉은 실 무명 / 쇠망부",
@@ -1602,7 +1879,17 @@
         }
       ],
       "review": "현재 외형·개념과 연결 유지. 수치 보정은 고유능력으로 부르지 않는다.",
-      "implementation": "짧은 외형 설명·분류 표기만 적용. 이야기·설정성 보강은 미완료. 옵션/효과/획득/저장 수치는 유지."
+      "implementation": "부모 확정 원고 그대로 적용. 기존 분류·옵션·효과·획득 조건·보상 선택·저장 구조는 유지.",
+      "acquisitionEvidence": {
+        "status": "현재 런타임 획득 근거",
+        "eventId": "eq_so_t3b",
+        "condition": "정식40장 구조대상 호송·결산 완료의 검증된 roster/rescued 사실으로 지급.",
+        "sources": [
+          "shared/runtime/equipment-state.js",
+          "game/docs/act4/EQUIPMENT_FACT_HOOKS.md"
+        ]
+      },
+      "settingScope": "이번 요청으로 작성한 사용 습관·배경 설정. 별도 장면·인물·퀘스트를 구현했다는 뜻은 아니다."
     },
     {
       "itemId": "itm_so_07",
@@ -1641,7 +1928,7 @@
       "effectId": "so_basic",
       "eventId": "eq_so_t4_choice",
       "iconPath": "shared/assets/item-icons/v1/itm_so_07.webp",
-      "lore": "얇은 놋방울 두 개의 크기가 조금 다르다. 흔들면 서로 부딪친 자리가 드러난다.",
+      "lore": "서로 다른 소리를 내는 두 방울. 혼을 부르던 이는 어느 쪽이 먼저 울리는지 듣고서야 다음 말을 꺼냈다.",
       "effectCategory": "basic",
       "classification": "기초 옵션 + 수치 보정",
       "conceptAndIcon": "한 쌍의 방울 / 혼령탄",
@@ -1664,7 +1951,17 @@
         }
       ],
       "review": "현재 외형·개념과 연결 유지. 수치 보정은 고유능력으로 부르지 않는다.",
-      "implementation": "짧은 외형 설명·분류 표기만 적용. 이야기·설정성 보강은 미완료. 옵션/효과/획득/저장 수치는 유지."
+      "implementation": "부모 확정 원고 그대로 적용. 기존 분류·옵션·효과·획득 조건·보상 선택·저장 구조는 유지.",
+      "acquisitionEvidence": {
+        "status": "예약 비활성 · 실제 획득 사건 미정",
+        "eventId": "eq_so_t4_choice",
+        "reservedAct": 6,
+        "condition": "5·6막의 실제 획득 사건·획득자·장소는 아직 미정. 연결 예약 ID·막을 유지하며 실제 사건으로 확정하지 않는다.",
+        "sources": [
+          "shared/engine/src/equipmentData.ts"
+        ]
+      },
+      "settingScope": "과거 사용 용도에 한정한 창작 설정. 현재 획득자·장소·사건을 정하지 않는다."
     },
     {
       "itemId": "itm_so_08",
@@ -1703,7 +2000,7 @@
       "effectId": "so_converge",
       "eventId": "eq_so_t4_choice",
       "iconPath": "shared/assets/item-icons/v1/itm_so_08.webp",
-      "lore": "작은 패를 검은 매듭에 끼웠다. 아래로 늘어진 술은 끝이 닳아 길이가 고르지 않다.",
+      "lore": "의식이 끝나면 마지막으로 푸는 매듭. 먼저 풀어 버린 제자는 남은 술을 하나하나 다시 묶어야 했다.",
       "effectCategory": "basic",
       "classification": "기초 옵션 + 수치 보정",
       "conceptAndIcon": "술 달린 패 / 귀결",
@@ -1726,7 +2023,17 @@
         }
       ],
       "review": "현재 외형·개념과 연결 유지. 수치 보정은 고유능력으로 부르지 않는다.",
-      "implementation": "짧은 외형 설명·분류 표기만 적용. 이야기·설정성 보강은 미완료. 옵션/효과/획득/저장 수치는 유지."
+      "implementation": "부모 확정 원고 그대로 적용. 기존 분류·옵션·효과·획득 조건·보상 선택·저장 구조는 유지.",
+      "acquisitionEvidence": {
+        "status": "예약 비활성 · 실제 획득 사건 미정",
+        "eventId": "eq_so_t4_choice",
+        "reservedAct": 6,
+        "condition": "5·6막의 실제 획득 사건·획득자·장소는 아직 미정. 연결 예약 ID·막을 유지하며 실제 사건으로 확정하지 않는다.",
+        "sources": [
+          "shared/engine/src/equipmentData.ts"
+        ]
+      },
+      "settingScope": "과거 사용 용도에 한정한 창작 설정. 현재 획득자·장소·사건을 정하지 않는다."
     },
     {
       "itemId": "itm_co_01",
@@ -1753,14 +2060,23 @@
       "effectId": null,
       "eventId": "eq_co_01",
       "iconPath": "shared/assets/item-icons/v1/itm_co_01.webp",
-      "lore": "접은 종이를 작은 천 주머니에 넣었다. 입구를 여닫던 끈만 새것으로 갈았다.",
+      "lore": "고갯길을 나서는 사람이 품에 넣던 장명부. 오래 살게 해 달라는 글 아래, 집에 돌아오는 날을 적을 자리가 비어 있다.",
       "effectCategory": "none",
       "classification": "기초 옵션만",
       "conceptAndIcon": "종이를 넣은 주머니 / 생존",
       "currentModifier": null,
       "proposedBasicTargets": [],
       "review": "공용 개념 유지. 특정 캐릭터·스킬 ID를 강제로 부여하지 않는다.",
-      "implementation": "짧은 외형 설명·분류 표기만 적용. 이야기·설정성 보강은 미완료. 옵션/효과/획득/저장 수치는 유지."
+      "implementation": "부모 확정 원고 그대로 적용. 기존 분류·옵션·효과·획득 조건·보상 선택·저장 구조는 유지.",
+      "acquisitionEvidence": {
+        "status": "현재 런타임 획득 근거",
+        "eventId": "eq_co_01",
+        "condition": "1장 첫 클리어 기록으로 지급.",
+        "sources": [
+          "shared/runtime/equipment-state.js"
+        ]
+      },
+      "settingScope": "이번 요청으로 작성한 사용 습관·배경 설정. 별도 장면·인물·퀘스트를 구현했다는 뜻은 아니다."
     },
     {
       "itemId": "itm_co_02",
@@ -1787,14 +2103,23 @@
       "effectId": null,
       "eventId": "eq_co_02",
       "iconPath": "shared/assets/item-icons/v1/itm_co_02.webp",
-      "lore": "묵직한 돌의 모서리를 손으로 갈았다. 손바닥에 오래 쥐던 면은 반질반질하다.",
+      "lore": "나루의 장부 곁에 놓였던 돌. 배를 기다리는 동안 손에 쥐고, 차례가 오면 다음 사람에게 넘겼다고 한다.",
       "effectCategory": "none",
       "classification": "기초 옵션만",
       "conceptAndIcon": "쥐는 돌 / 기력 관리",
       "currentModifier": null,
       "proposedBasicTargets": [],
       "review": "공용 개념 유지. 특정 캐릭터·스킬 ID를 강제로 부여하지 않는다.",
-      "implementation": "짧은 외형 설명·분류 표기만 적용. 이야기·설정성 보강은 미완료. 옵션/효과/획득/저장 수치는 유지."
+      "implementation": "부모 확정 원고 그대로 적용. 기존 분류·옵션·효과·획득 조건·보상 선택·저장 구조는 유지.",
+      "acquisitionEvidence": {
+        "status": "현재 런타임 획득 근거",
+        "eventId": "eq_co_02",
+        "condition": "3장 클리어 기록으로 지급. 장부 곁 돌의 사용 습관은 이번 설정 원고에 속한다.",
+        "sources": [
+          "shared/runtime/equipment-state.js"
+        ]
+      },
+      "settingScope": "이번 요청으로 작성한 사용 습관·배경 설정. 별도 장면·인물·퀘스트를 구현했다는 뜻은 아니다."
     },
     {
       "itemId": "itm_co_03",
@@ -1821,14 +2146,23 @@
       "effectId": null,
       "eventId": "eq_co_t1_choice",
       "iconPath": "shared/assets/item-icons/v1/itm_co_03.webp",
-      "lore": "마른 잎을 담던 주머니에서 희미한 풀 냄새가 난다. 바닥 솔기는 두 번 기웠다.",
+      "lore": "갇힌 사람들을 꺼낸 뒤 챙길 수 있었던 약주머니. 마른 잎은 얼마 남지 않았지만, 물에 적시면 아직 향이 난다.",
       "effectCategory": "none",
       "classification": "기초 옵션만",
       "conceptAndIcon": "약초 주머니 / 제한 회복",
       "currentModifier": null,
       "proposedBasicTargets": [],
       "review": "공용 개념 유지. 특정 캐릭터·스킬 ID를 강제로 부여하지 않는다.",
-      "implementation": "짧은 외형 설명·분류 표기만 적용. 이야기·설정성 보강은 미완료. 옵션/효과/획득/저장 수치는 유지."
+      "implementation": "부모 확정 원고 그대로 적용. 기존 분류·옵션·효과·획득 조건·보상 선택·저장 구조는 유지.",
+      "acquisitionEvidence": {
+        "status": "현재 런타임 획득 근거",
+        "eventId": "eq_co_t1_choice",
+        "condition": "7장 구조 목표를 마친 클리어 기록 뒤 3택1. 기존 선택 원장을 유지한다.",
+        "sources": [
+          "shared/runtime/equipment-state.js"
+        ]
+      },
+      "settingScope": "이번 요청으로 작성한 사용 습관·배경 설정. 별도 장면·인물·퀘스트를 구현했다는 뜻은 아니다."
     },
     {
       "itemId": "itm_co_04",
@@ -1855,14 +2189,23 @@
       "effectId": null,
       "eventId": "eq_co_t1_choice",
       "iconPath": "shared/assets/item-icons/v1/itm_co_04.webp",
-      "lore": "솔가지 두 토막을 끈으로 교차해 묶었다. 벗겨진 껍질 틈에 마른 송진이 남았다.",
+      "lore": "구조 현장에서 건져 낸 솔가지패. 산에 드는 이들이 짐에 매달던 것으로, 꺾인 끝을 버리지 않고 다시 묶었다.",
       "effectCategory": "none",
       "classification": "기초 옵션만",
       "conceptAndIcon": "묶은 솔가지 / 이동·조준",
       "currentModifier": null,
       "proposedBasicTargets": [],
       "review": "공용 개념 유지. 특정 캐릭터·스킬 ID를 강제로 부여하지 않는다.",
-      "implementation": "짧은 외형 설명·분류 표기만 적용. 이야기·설정성 보강은 미완료. 옵션/효과/획득/저장 수치는 유지."
+      "implementation": "부모 확정 원고 그대로 적용. 기존 분류·옵션·효과·획득 조건·보상 선택·저장 구조는 유지.",
+      "acquisitionEvidence": {
+        "status": "현재 런타임 획득 근거",
+        "eventId": "eq_co_t1_choice",
+        "condition": "7장 구조 목표를 마친 클리어 기록 뒤 3택1. 기존 선택 원장을 유지한다.",
+        "sources": [
+          "shared/runtime/equipment-state.js"
+        ]
+      },
+      "settingScope": "이번 요청으로 작성한 사용 습관·배경 설정. 별도 장면·인물·퀘스트를 구현했다는 뜻은 아니다."
     },
     {
       "itemId": "itm_co_05",
@@ -1889,14 +2232,23 @@
       "effectId": null,
       "eventId": "eq_co_t1_choice",
       "iconPath": "shared/assets/item-icons/v1/itm_co_05.webp",
-      "lore": "얇은 종이를 여러 번 눌러 접었다. 날개 끝에는 젖은 손으로 집은 자국이 있다.",
+      "lore": "사람들을 구하고 남은 물건들 사이의 종이학. 펼친 자리에 짧은 이름이 적혀 있다. 누구를 부르던 이름인지는 알 수 없다.",
       "effectCategory": "none",
       "classification": "기초 옵션만",
       "conceptAndIcon": "접은 종이 / 기력 효율",
       "currentModifier": null,
       "proposedBasicTargets": [],
       "review": "공용 개념 유지. 특정 캐릭터·스킬 ID를 강제로 부여하지 않는다.",
-      "implementation": "짧은 외형 설명·분류 표기만 적용. 이야기·설정성 보강은 미완료. 옵션/효과/획득/저장 수치는 유지."
+      "implementation": "부모 확정 원고 그대로 적용. 기존 분류·옵션·효과·획득 조건·보상 선택·저장 구조는 유지.",
+      "acquisitionEvidence": {
+        "status": "현재 런타임 획득 근거",
+        "eventId": "eq_co_t1_choice",
+        "condition": "7장 구조 목표를 마친 클리어 기록 뒤 3택1. 기존 선택 원장을 유지한다.",
+        "sources": [
+          "shared/runtime/equipment-state.js"
+        ]
+      },
+      "settingScope": "이번 요청으로 작성한 사용 습관·배경 설정. 별도 장면·인물·퀘스트를 구현했다는 뜻은 아니다."
     },
     {
       "itemId": "itm_co_06",
@@ -1929,14 +2281,23 @@
       "effectId": null,
       "eventId": "eq_co_06",
       "iconPath": "shared/assets/item-icons/v1/itm_co_06.webp",
-      "lore": "거친 돌패에 짧은 끈을 꿰었다. 끈 구멍만 작게 갈아 돌가루가 묻어나지 않는다.",
+      "lore": "돌을 다루던 이들이 지니던 호신패. 돌림진에서 달려들던 혼이 흩어진 자리에 남았다. 귀퉁이에 석분이 박혀 있다.",
       "effectCategory": "none",
       "classification": "기초 옵션만",
       "conceptAndIcon": "돌 호신패 / 방어",
       "currentModifier": null,
       "proposedBasicTargets": [],
       "review": "공용 개념 유지. 특정 캐릭터·스킬 ID를 강제로 부여하지 않는다.",
-      "implementation": "짧은 외형 설명·분류 표기만 적용. 이야기·설정성 보강은 미완료. 옵션/효과/획득/저장 수치는 유지."
+      "implementation": "부모 확정 원고 그대로 적용. 기존 분류·옵션·효과·획득 조건·보상 선택·저장 구조는 유지.",
+      "acquisitionEvidence": {
+        "status": "현재 런타임 획득 근거",
+        "eventId": "eq_co_06",
+        "condition": "정식12장 reviewed.12.gap의 실제로 허용된 원혼2명 파동에서 첫 제압을 기록했을 때 지급. 옛 유한 정예 태그 호환은 보존하며 클리어만으로 소급하지 않는다.",
+        "sources": [
+          "shared/runtime/equipment-state.js"
+        ]
+      },
+      "settingScope": "이번 요청으로 작성한 사용 습관·배경 설정. 별도 장면·인물·퀘스트를 구현했다는 뜻은 아니다."
     },
     {
       "itemId": "itm_co_07",
@@ -1969,14 +2330,23 @@
       "effectId": null,
       "eventId": "eq_co_07",
       "iconPath": "shared/assets/item-icons/v1/itm_co_07.webp",
-      "lore": "물빛이 도는 돌을 끈에 매달았다. 매듭 아래의 작은 구슬들은 서로 닿아 닳았다.",
+      "lore": "수문을 열고 살핀 자리에서 건진 구슬. 물때를 닦자 안쪽의 금이 드러났다. 오래 잠겨 있었어도 깨지지는 않았다.",
       "effectCategory": "none",
       "classification": "기초 옵션만",
       "conceptAndIcon": "물빛 돌 / 회복·재생",
       "currentModifier": null,
       "proposedBasicTargets": [],
       "review": "공용 개념 유지. 특정 캐릭터·스킬 ID를 강제로 부여하지 않는다.",
-      "implementation": "짧은 외형 설명·분류 표기만 적용. 이야기·설정성 보강은 미완료. 옵션/효과/획득/저장 수치는 유지."
+      "implementation": "부모 확정 원고 그대로 적용. 기존 분류·옵션·효과·획득 조건·보상 선택·저장 구조는 유지.",
+      "acquisitionEvidence": {
+        "status": "현재 런타임 획득 근거",
+        "eventId": "eq_co_07",
+        "condition": "15장 실제 수문 상호작용의 sluiceInteraction receipt로 지급. 단순 클리어 기록으로는 소급하지 않는다.",
+        "sources": [
+          "shared/runtime/equipment-state.js"
+        ]
+      },
+      "settingScope": "이번 요청으로 작성한 사용 습관·배경 설정. 별도 장면·인물·퀘스트를 구현했다는 뜻은 아니다."
     },
     {
       "itemId": "itm_co_08",
@@ -2009,14 +2379,23 @@
       "effectId": null,
       "eventId": "eq_co_t2_choice",
       "iconPath": "shared/assets/item-icons/v1/itm_co_08.webp",
-      "lore": "붉은 끈을 납작한 패에 여러 번 둘렀다. 뒷면에는 허리춤에 쓸린 흔적이 있다.",
+      "lore": "동굴을 빠져나온 이가 내민 호패. 끈은 새로 맸지만 패에 적힌 이름은 그대로 두었다.",
       "effectCategory": "none",
       "classification": "기초 옵션만",
       "conceptAndIcon": "붉은 실 패 / 몸 상태",
       "currentModifier": null,
       "proposedBasicTargets": [],
       "review": "공용 개념 유지. 특정 캐릭터·스킬 ID를 강제로 부여하지 않는다.",
-      "implementation": "짧은 외형 설명·분류 표기만 적용. 이야기·설정성 보강은 미완료. 옵션/효과/획득/저장 수치는 유지."
+      "implementation": "부모 확정 원고 그대로 적용. 기존 분류·옵션·효과·획득 조건·보상 선택·저장 구조는 유지.",
+      "acquisitionEvidence": {
+        "status": "현재 런타임 획득 근거",
+        "eventId": "eq_co_t2_choice",
+        "condition": "20장 호송 escape 완료에 연결된 3택1. 기존 필수 완료 기록의 누락 보상 재조정도 유지한다.",
+        "sources": [
+          "shared/runtime/equipment-state.js"
+        ]
+      },
+      "settingScope": "이번 요청으로 작성한 사용 습관·배경 설정. 별도 장면·인물·퀘스트를 구현했다는 뜻은 아니다."
     },
     {
       "itemId": "itm_co_09",
@@ -2049,14 +2428,23 @@
       "effectId": null,
       "eventId": "eq_co_t2_choice",
       "iconPath": "shared/assets/item-icons/v1/itm_co_09.webp",
-      "lore": "구불구불한 홈을 낸 청동 조각. 녹이 앉은 홈과 달리 테두리는 손때로 짙다.",
+      "lore": "밖으로 나온 생존자가 챙겨 온 청동 조각. 손에서 놓을 때까지도 엄지로 같은 홈을 문지르고 있었다.",
       "effectCategory": "none",
       "classification": "기초 옵션만",
       "conceptAndIcon": "청동 홈 / 공격 속성",
       "currentModifier": null,
       "proposedBasicTargets": [],
       "review": "공용 개념 유지. 특정 캐릭터·스킬 ID를 강제로 부여하지 않는다.",
-      "implementation": "짧은 외형 설명·분류 표기만 적용. 이야기·설정성 보강은 미완료. 옵션/효과/획득/저장 수치는 유지."
+      "implementation": "부모 확정 원고 그대로 적용. 기존 분류·옵션·효과·획득 조건·보상 선택·저장 구조는 유지.",
+      "acquisitionEvidence": {
+        "status": "현재 런타임 획득 근거",
+        "eventId": "eq_co_t2_choice",
+        "condition": "20장 호송 escape 완료에 연결된 3택1. 기존 필수 완료 기록의 누락 보상 재조정도 유지한다.",
+        "sources": [
+          "shared/runtime/equipment-state.js"
+        ]
+      },
+      "settingScope": "이번 요청으로 작성한 사용 습관·배경 설정. 별도 장면·인물·퀘스트를 구현했다는 뜻은 아니다."
     },
     {
       "itemId": "itm_co_10",
@@ -2089,14 +2477,23 @@
       "effectId": null,
       "eventId": "eq_co_t2_choice",
       "iconPath": "shared/assets/item-icons/v1/itm_co_10.webp",
-      "lore": "질긴 노끈에 해진 천을 덧댔다. 천의 접힌 틈에는 씻어도 빠지지 않는 흙먼지가 있다.",
+      "lore": "동굴 밖까지 걸어 나온 이가 건넨 발고리. 오래 묶어 둔 자리가 부어, 풀어낸 뒤에도 발목에 자국이 남았다.",
       "effectCategory": "none",
       "classification": "기초 옵션만",
       "conceptAndIcon": "천 발고리 / 발 디딤",
       "currentModifier": null,
       "proposedBasicTargets": [],
       "review": "공용 개념 유지. 특정 캐릭터·스킬 ID를 강제로 부여하지 않는다.",
-      "implementation": "짧은 외형 설명·분류 표기만 적용. 이야기·설정성 보강은 미완료. 옵션/효과/획득/저장 수치는 유지."
+      "implementation": "부모 확정 원고 그대로 적용. 기존 분류·옵션·효과·획득 조건·보상 선택·저장 구조는 유지.",
+      "acquisitionEvidence": {
+        "status": "현재 런타임 획득 근거",
+        "eventId": "eq_co_t2_choice",
+        "condition": "20장 호송 escape 완료에 연결된 3택1. 기존 필수 완료 기록의 누락 보상 재조정도 유지한다.",
+        "sources": [
+          "shared/runtime/equipment-state.js"
+        ]
+      },
+      "settingScope": "이번 요청으로 작성한 사용 습관·배경 설정. 별도 장면·인물·퀘스트를 구현했다는 뜻은 아니다."
     },
     {
       "itemId": "itm_co_11",
@@ -2129,7 +2526,7 @@
       "effectId": "co_jump",
       "eventId": "eq_co_11",
       "iconPath": "shared/assets/item-icons/v1/itm_co_11.webp",
-      "lore": "돌 두 개를 짧은 끈으로 이었다. 걸을 때 부딪치지 않도록 돌 사이에 매듭을 넣었다.",
+      "lore": "폐공방에서 구한 주민이 내준 돌매듭. 문밖으로 나오면서도 손에 꼭 쥐고 있던 물건이다.",
       "effectCategory": "basic",
       "classification": "기초 옵션 + 수치 보정",
       "conceptAndIcon": "돌 매듭 / 도약",
@@ -2147,7 +2544,16 @@
       },
       "proposedBasicTargets": [],
       "review": "공용 개념 유지. 특정 캐릭터·스킬 ID를 강제로 부여하지 않는다.",
-      "implementation": "짧은 외형 설명·분류 표기만 적용. 이야기·설정성 보강은 미완료. 옵션/효과/획득/저장 수치는 유지."
+      "implementation": "부모 확정 원고 그대로 적용. 기존 분류·옵션·효과·획득 조건·보상 선택·저장 구조는 유지.",
+      "acquisitionEvidence": {
+        "status": "현재 런타임 획득 근거",
+        "eventId": "eq_co_11",
+        "condition": "26장 artisan-resident 구조 완료에 연결. 기존 필수 완료 기록의 누락 보상 재조정도 유지한다.",
+        "sources": [
+          "shared/runtime/equipment-state.js"
+        ]
+      },
+      "settingScope": "이번 요청으로 작성한 사용 습관·배경 설정. 별도 장면·인물·퀘스트를 구현했다는 뜻은 아니다."
     },
     {
       "itemId": "itm_co_12",
@@ -2180,7 +2586,7 @@
       "effectId": "co_stable",
       "eventId": "eq_co_12",
       "iconPath": "shared/assets/item-icons/v1/itm_co_12.webp",
-      "lore": "무게를 재듯 길게 매단 돌추. 닳은 끈을 짧게 이어 맨 이음새가 목에 모여 있다.",
+      "lore": "나루의 갈대 곁 작은 둑에서 찾은 추. 물살에 떠내려가지 않도록 무언가를 묶어 두었던 듯, 끈 끝에는 큰 고리가 남아 있다.",
       "effectCategory": "unique",
       "classification": "기초 옵션 + 고유능력",
       "conceptAndIcon": "매단 추 / 안정",
@@ -2198,7 +2604,17 @@
       },
       "proposedBasicTargets": [],
       "review": "공용 개념 유지. 특정 캐릭터·스킬 ID를 강제로 부여하지 않는다.",
-      "implementation": "짧은 외형 설명·분류 표기만 적용. 이야기·설정성 보강은 미완료. 옵션/효과/획득/저장 수치는 유지."
+      "implementation": "부모 확정 원고 그대로 적용. 기존 분류·옵션·효과·획득 조건·보상 선택·저장 구조는 유지.",
+      "acquisitionEvidence": {
+        "status": "현재 런타임 획득 근거",
+        "eventId": "eq_co_12",
+        "condition": "정식31장 갈대 곁 작은 둑의 eq-co-31 실제 도달·접지 사실으로 지급.",
+        "sources": [
+          "shared/runtime/equipment-state.js",
+          "game/docs/act4/EQUIPMENT_FACT_HOOKS.md"
+        ]
+      },
+      "settingScope": "이번 요청으로 작성한 사용 습관·배경 설정. 별도 장면·인물·퀘스트를 구현했다는 뜻은 아니다."
     },
     {
       "itemId": "itm_co_13",
@@ -2231,7 +2647,7 @@
       "effectId": "co_wild",
       "eventId": "eq_co_t3_choice",
       "iconPath": "shared/assets/item-icons/v1/itm_co_13.webp",
-      "lore": "작은 쇠추의 한쪽 배가 불룩하다. 내려놓으면 곧게 서지 않고 옆으로 기운다.",
+      "lore": "숲의 깊은 빈터에 남은 요동추. 가만히 놓아도 한쪽으로 기운다. 무게를 고치려 깎은 자국이 여러 번 겹쳐 있다.",
       "effectCategory": "unique",
       "classification": "기초 옵션 + 고유능력",
       "conceptAndIcon": "기운 쇠추 / 위험 감수",
@@ -2251,7 +2667,17 @@
       },
       "proposedBasicTargets": [],
       "review": "공용 개념 유지. 특정 캐릭터·스킬 ID를 강제로 부여하지 않는다.",
-      "implementation": "짧은 외형 설명·분류 표기만 적용. 이야기·설정성 보강은 미완료. 옵션/효과/획득/저장 수치는 유지."
+      "implementation": "부모 확정 원고 그대로 적용. 기존 분류·옵션·효과·획득 조건·보상 선택·저장 구조는 유지.",
+      "acquisitionEvidence": {
+        "status": "현재 런타임 획득 근거",
+        "eventId": "eq_co_t3_choice",
+        "condition": "정식35장 셋째 빈터 위협 제거 뒤 rooted-third-clearing 뿌리 연결 둑 실제 접지 사실에 연결된 3택1.",
+        "sources": [
+          "shared/runtime/equipment-state.js",
+          "game/docs/act4/EQUIPMENT_FACT_HOOKS.md"
+        ]
+      },
+      "settingScope": "이번 요청으로 작성한 사용 습관·배경 설정. 별도 장면·인물·퀘스트를 구현했다는 뜻은 아니다."
     },
     {
       "itemId": "itm_co_14",
@@ -2284,7 +2710,7 @@
       "effectId": "co_costly",
       "eventId": "eq_co_t3_choice",
       "iconPath": "shared/assets/item-icons/v1/itm_co_14.webp",
-      "lore": "길쭉한 옥 조각에 나란한 홈을 팠다. 손으로 쥐는 부분의 홈만 얕아졌다.",
+      "lore": "셋째 빈터의 뿌리 곁에서 거둔 옥. 끈을 꿰는 홈 옆에 작은 눈금이 있어, 무언가를 조금씩 덜어 세던 물건처럼 보인다.",
       "effectCategory": "basic",
       "classification": "기초 옵션 + 수치 보정",
       "conceptAndIcon": "홈 난 옥 / 큰 기력 지출",
@@ -2302,7 +2728,17 @@
       },
       "proposedBasicTargets": [],
       "review": "공용 개념 유지. 특정 캐릭터·스킬 ID를 강제로 부여하지 않는다.",
-      "implementation": "짧은 외형 설명·분류 표기만 적용. 이야기·설정성 보강은 미완료. 옵션/효과/획득/저장 수치는 유지."
+      "implementation": "부모 확정 원고 그대로 적용. 기존 분류·옵션·효과·획득 조건·보상 선택·저장 구조는 유지.",
+      "acquisitionEvidence": {
+        "status": "현재 런타임 획득 근거",
+        "eventId": "eq_co_t3_choice",
+        "condition": "정식35장 셋째 빈터 위협 제거 뒤 rooted-third-clearing 뿌리 연결 둑 실제 접지 사실에 연결된 3택1.",
+        "sources": [
+          "shared/runtime/equipment-state.js",
+          "game/docs/act4/EQUIPMENT_FACT_HOOKS.md"
+        ]
+      },
+      "settingScope": "이번 요청으로 작성한 사용 습관·배경 설정. 별도 장면·인물·퀘스트를 구현했다는 뜻은 아니다."
     },
     {
       "itemId": "itm_co_15",
@@ -2335,7 +2771,7 @@
       "effectId": "co_cursed",
       "eventId": "eq_co_t3_choice",
       "iconPath": "shared/assets/item-icons/v1/itm_co_15.webp",
-      "lore": "먹 묻은 종이를 넣던 납작한 부적집. 덮개 안쪽에는 종이 가루가 붙어 있다.",
+      "lore": "깊은 빈터까지 가져왔다가 남겨진 부적집. 다 쓴 종이는 빼냈지만, 덮개 안쪽에는 마지막 한 장이 눌린 자국이 있다.",
       "effectCategory": "basic",
       "classification": "기초 옵션 + 수치 보정",
       "conceptAndIcon": "부적집 / 상태 활용",
@@ -2352,7 +2788,17 @@
       },
       "proposedBasicTargets": [],
       "review": "공용 개념 유지. 특정 캐릭터·스킬 ID를 강제로 부여하지 않는다.",
-      "implementation": "짧은 외형 설명·분류 표기만 적용. 이야기·설정성 보강은 미완료. 옵션/효과/획득/저장 수치는 유지."
+      "implementation": "부모 확정 원고 그대로 적용. 기존 분류·옵션·효과·획득 조건·보상 선택·저장 구조는 유지.",
+      "acquisitionEvidence": {
+        "status": "현재 런타임 획득 근거",
+        "eventId": "eq_co_t3_choice",
+        "condition": "정식35장 셋째 빈터 위협 제거 뒤 rooted-third-clearing 뿌리 연결 둑 실제 접지 사실에 연결된 3택1.",
+        "sources": [
+          "shared/runtime/equipment-state.js",
+          "game/docs/act4/EQUIPMENT_FACT_HOOKS.md"
+        ]
+      },
+      "settingScope": "이번 요청으로 작성한 사용 습관·배경 설정. 별도 장면·인물·퀘스트를 구현했다는 뜻은 아니다."
     },
     {
       "itemId": "itm_co_16",
@@ -2391,7 +2837,7 @@
       "effectId": "co_friendly",
       "eventId": "eq_co_16",
       "iconPath": "shared/assets/item-icons/v1/itm_co_16.webp",
-      "lore": "흰 천 조각을 접어 작은 돌에 감았다. 천을 여며 묶은 끝은 가늘게 해졌다.",
+      "lore": "동행의 옷에 맞춰 찢어 나누던 흰 천. 서로를 알아보려고 팔에 묶었고, 헤어질 때는 풀어 돌려주었다.",
       "effectCategory": "unique",
       "classification": "기초 옵션 + 고유능력",
       "conceptAndIcon": "흰 천 / 아군 오사격",
@@ -2408,7 +2854,17 @@
       },
       "proposedBasicTargets": [],
       "review": "공용 개념 유지. 특정 캐릭터·스킬 ID를 강제로 부여하지 않는다.",
-      "implementation": "짧은 외형 설명·분류 표기만 적용. 이야기·설정성 보강은 미완료. 옵션/효과/획득/저장 수치는 유지."
+      "implementation": "부모 확정 원고 그대로 적용. 기존 분류·옵션·효과·획득 조건·보상 선택·저장 구조는 유지.",
+      "acquisitionEvidence": {
+        "status": "예약 비활성 · 실제 획득 사건 미정",
+        "eventId": "eq_co_16",
+        "reservedAct": 5,
+        "condition": "5·6막의 실제 획득 사건·획득자·장소는 아직 미정. 연결 예약 ID·막을 유지하며 실제 사건으로 확정하지 않는다.",
+        "sources": [
+          "shared/engine/src/equipmentData.ts"
+        ]
+      },
+      "settingScope": "과거 사용 용도에 한정한 창작 설정. 현재 획득자·장소·사건을 정하지 않는다."
     },
     {
       "itemId": "itm_co_17",
@@ -2447,7 +2903,7 @@
       "effectId": "co_soul",
       "eventId": "eq_co_17",
       "iconPath": "shared/assets/item-icons/v1/itm_co_17.webp",
-      "lore": "거울 가장자리의 무늬가 닳아 희미하다. 뒷면 손잡이에는 새 끈을 꿰었다.",
+      "lore": "혼을 살피던 이가 쓰던 손거울. 살아 있는 사람에게도 먼저 이름을 물은 뒤에야 거울을 들었다고 한다.",
       "effectCategory": "unique",
       "classification": "기초 옵션 + 고유능력",
       "conceptAndIcon": "손거울 / 형·기·혼 전환",
@@ -2464,7 +2920,17 @@
       },
       "proposedBasicTargets": [],
       "review": "공용 개념 유지. 특정 캐릭터·스킬 ID를 강제로 부여하지 않는다.",
-      "implementation": "짧은 외형 설명·분류 표기만 적용. 이야기·설정성 보강은 미완료. 옵션/효과/획득/저장 수치는 유지."
+      "implementation": "부모 확정 원고 그대로 적용. 기존 분류·옵션·효과·획득 조건·보상 선택·저장 구조는 유지.",
+      "acquisitionEvidence": {
+        "status": "예약 비활성 · 실제 획득 사건 미정",
+        "eventId": "eq_co_17",
+        "reservedAct": 6,
+        "condition": "5·6막의 실제 획득 사건·획득자·장소는 아직 미정. 연결 예약 ID·막을 유지하며 실제 사건으로 확정하지 않는다.",
+        "sources": [
+          "shared/engine/src/equipmentData.ts"
+        ]
+      },
+      "settingScope": "과거 사용 용도에 한정한 창작 설정. 현재 획득자·장소·사건을 정하지 않는다."
     },
     {
       "itemId": "itm_co_18",
@@ -2503,7 +2969,7 @@
       "effectId": "co_low_mp",
       "eventId": "eq_co_t4_choice",
       "iconPath": "shared/assets/item-icons/v1/itm_co_18.webp",
-      "lore": "가운데가 빈 옥고리. 구멍 안쪽까지 매끈하게 갈아 끈이 잘 끊어지지 않는다.",
+      "lore": "긴 의식을 치를 때 손에 쥐던 옥고리. 주인은 물을 마실 때에만 내려놓았다고 한다.",
       "effectCategory": "basic",
       "classification": "기초 옵션 + 수치 보정",
       "conceptAndIcon": "빈 옥고리 / 기력 고갈",
@@ -2521,7 +2987,17 @@
       },
       "proposedBasicTargets": [],
       "review": "공용 개념 유지. 특정 캐릭터·스킬 ID를 강제로 부여하지 않는다.",
-      "implementation": "짧은 외형 설명·분류 표기만 적용. 이야기·설정성 보강은 미완료. 옵션/효과/획득/저장 수치는 유지."
+      "implementation": "부모 확정 원고 그대로 적용. 기존 분류·옵션·효과·획득 조건·보상 선택·저장 구조는 유지.",
+      "acquisitionEvidence": {
+        "status": "예약 비활성 · 실제 획득 사건 미정",
+        "eventId": "eq_co_t4_choice",
+        "reservedAct": 6,
+        "condition": "5·6막의 실제 획득 사건·획득자·장소는 아직 미정. 연결 예약 ID·막을 유지하며 실제 사건으로 확정하지 않는다.",
+        "sources": [
+          "shared/engine/src/equipmentData.ts"
+        ]
+      },
+      "settingScope": "과거 사용 용도에 한정한 창작 설정. 현재 획득자·장소·사건을 정하지 않는다."
     },
     {
       "itemId": "itm_co_19",
@@ -2560,7 +3036,7 @@
       "effectId": "co_noncrit",
       "eventId": "eq_co_t4_choice",
       "iconPath": "shared/assets/item-icons/v1/itm_co_19.webp",
-      "lore": "둔하게 닳은 동전의 네 귀가 둥글다. 구멍에 끼운 천 조각은 색을 잃었다.",
+      "lore": "몇 번이나 주인을 바꾼 동전. 돈으로 쓰기에는 너무 닳았지만, 길을 떠나는 사람에게 건네는 일은 끊기지 않았다.",
       "effectCategory": "basic",
       "classification": "기초 옵션 + 수치 보정",
       "conceptAndIcon": "닳은 동전 / 치명 포기",
@@ -2579,7 +3055,17 @@
       },
       "proposedBasicTargets": [],
       "review": "공용 개념 유지. 특정 캐릭터·스킬 ID를 강제로 부여하지 않는다.",
-      "implementation": "짧은 외형 설명·분류 표기만 적용. 이야기·설정성 보강은 미완료. 옵션/효과/획득/저장 수치는 유지."
+      "implementation": "부모 확정 원고 그대로 적용. 기존 분류·옵션·효과·획득 조건·보상 선택·저장 구조는 유지.",
+      "acquisitionEvidence": {
+        "status": "예약 비활성 · 실제 획득 사건 미정",
+        "eventId": "eq_co_t4_choice",
+        "reservedAct": 6,
+        "condition": "5·6막의 실제 획득 사건·획득자·장소는 아직 미정. 연결 예약 ID·막을 유지하며 실제 사건으로 확정하지 않는다.",
+        "sources": [
+          "shared/engine/src/equipmentData.ts"
+        ]
+      },
+      "settingScope": "과거 사용 용도에 한정한 창작 설정. 현재 획득자·장소·사건을 정하지 않는다."
     },
     {
       "itemId": "itm_co_20",
@@ -2618,7 +3104,7 @@
       "effectId": "co_armor",
       "eventId": "eq_co_t4_choice",
       "iconPath": "shared/assets/item-icons/v1/itm_co_20.webp",
-      "lore": "길고 좁은 쇠패에 짧은 끈을 달았다. 가장자리의 패인 곳을 망치로 펴 둔 흔적이 있다.",
+      "lore": "좁은 문을 지키던 이가 남긴 호패. 사람을 들일 때마다 패를 돌려 쥐는 버릇이 있어, 양면의 글자가 모두 흐려졌다.",
       "effectCategory": "basic",
       "classification": "기초 옵션 + 수치 보정",
       "conceptAndIcon": "좁은 쇠패 / 방어 틈",
@@ -2635,7 +3121,17 @@
       },
       "proposedBasicTargets": [],
       "review": "공용 개념 유지. 특정 캐릭터·스킬 ID를 강제로 부여하지 않는다.",
-      "implementation": "짧은 외형 설명·분류 표기만 적용. 이야기·설정성 보강은 미완료. 옵션/효과/획득/저장 수치는 유지."
+      "implementation": "부모 확정 원고 그대로 적용. 기존 분류·옵션·효과·획득 조건·보상 선택·저장 구조는 유지.",
+      "acquisitionEvidence": {
+        "status": "예약 비활성 · 실제 획득 사건 미정",
+        "eventId": "eq_co_t4_choice",
+        "reservedAct": 6,
+        "condition": "5·6막의 실제 획득 사건·획득자·장소는 아직 미정. 연결 예약 ID·막을 유지하며 실제 사건으로 확정하지 않는다.",
+        "sources": [
+          "shared/engine/src/equipmentData.ts"
+        ]
+      },
+      "settingScope": "과거 사용 용도에 한정한 창작 설정. 현재 획득자·장소·사건을 정하지 않는다."
     }
   ]
 }
