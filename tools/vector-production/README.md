@@ -222,3 +222,133 @@ separate from the zero raw→candidate SVG geometry error.
 Human review of contact/roots, actual world placement, frozen collision clipping,
 and gameplay camera remains required. The reports intentionally retain rejected
 tradeoffs rather than turning low mean error into automatic art approval.
+
+## Bounded structural partition fallback
+
+When no lossy candidate satisfies both quality and storage limits, geometric
+partitioning is a separate fallback. It is **not node reduction** and may increase
+serialized bytes and segment counts. Never split raw compound contours blindly.
+
+`partition-svg.py` changes only oversized opaque unstroked path elements; other
+paths, source transforms and layer order remain unchanged. The native `skia`
+backend uses `Path2D.op(Intersect)` against rectangles. Some traced compounds make
+Skia silently return the unchanged input; containment is checked and such results
+are rejected rather than represented as successful intersections.
+
+The optional offline `geos` backend requires Shapely in a **temporary production
+environment**, not the game or repository runtime dependencies:
+
+```sh
+python -m venv --system-site-packages /tmp/honro-vector-geometry-venv
+/tmp/honro-vector-geometry-venv/bin/pip install shapely
+/tmp/honro-vector-geometry-venv/bin/python tools/vector-production/partition-svg.py \
+  source.svg --output _local/reports/partition/candidate.svg \
+  --backend geos --flatten-tolerance .01
+python tools/vector-production/import-svg.py _local/reports/partition/candidate.svg \
+  --config asset-config.json --output _local/reports/partition/asset.json
+python tools/vector-production/compare-svg.py source.svg \
+  _local/reports/partition/candidate.svg --config optimization-config.json \
+  --output-dir _local/reports/partition
+```
+
+Add `--remove-reference-images` only when intentionally stripping source references.
+Every candidate starts from the immutable source; SHA and unchanged status are
+recorded. The fallback:
+
+1. Recursively splits Béziers until the control-point hull is within the declared
+   chord-distance tolerance; arcs use a conservative maximum-radius sagitta bound.
+2. Flattens in **local path coordinates**. Multiply tolerance by the complete
+   source→display affine operator norm, including ancestor transforms. For actual
+   Stage31-small `.01` local units corresponded to about `.030` maximum-display
+   pixels; Stage35-east `.02` to about `.0433` pixels. Numeric serialization is
+   12 significant digits; this is a bounded approximation, not exact Bézier output.
+3. Polygonizes intersections and classifies every resulting cell with the original
+   SVG nonzero winding number or evenodd parity. Thus holes and overlapping filled
+   contours are interpreted together, not independently painted.
+4. Intersects the resulting filled region with nonoverlapping tiles, emitting each
+   tile with its holes and explicit evenodd fill. Empty intersections are omitted.
+   The importer must still pass unchanged runtime budgets.
+5. Renders original/candidate at actual display scales and inspects seams and
+   protected features. Linearization can alter sub-tolerance topology; raster
+   metrics and required human inspection remain essential. Do not claim exact
+   topology of the original continuous curves merely because GEOS is robust.
+
+Actual fallback results (candidate status only): Stage31-small186nodes,
+normal/max RGB MAE `.00891/.00386` per255 and zero contact/alpha displacement;
+Stage35-east152nodes, RGB `.0191/.0110`, zero contact/alpha displacement.
+Both fit existing budgets without source-art removal or quality-limit changes.
+These larger structural candidates require runtime cost/scene review separately.
+
+Tests in the same temporary geometry environment:
+
+```sh
+/tmp/honro-vector-geometry-venv/bin/python tools/vector-production/test-flatten.py
+PYTHON_GEOMETRY=/tmp/honro-vector-geometry-venv/bin/python \
+  node tools/vector-production/test-partition.mjs
+```
+
+They check cubic/quadratic/arc sampled error, relative contours, nonzero/evenodd
+holes, overlapping contours, self-intersections and actual native rasterization.
+
+## Subpixel silhouette measurement and semantic diagnostics
+
+A binary boundary at1× moves in whole pixels; it cannot reliably distinguish a
+`.49px` movement from a tiny antialias threshold flip. Do not silently enlarge the
+`.5px` protection limit. Rerender explicitly important regions at higher resolution:
+
+```sh
+python tools/vector-production/measure-protected.py raw.svg candidate.svg \
+  --config optimization-config.json --output-dir _local/reports/protected \
+  --supersample 8
+```
+
+This requires explicit `protectedRects`, adds margin around them, rerenders the
+vector geometry (not a resized bitmap), measures alpha edges and divides distances
+back into display pixels. It reports sampling step `.125` normal pixel at8× and
+retains the same protection limit. It does **not** rewrite or erase the original
+failed report, nor automatically approve the art. Native 1×/max local RGB and
+changed-pixel tests are still needed; internal semantic details need explicit
+feature masks/local-contrast review, not alpha alone.
+
+A palette-level-set disappearance is not a literal anatomical/structural movement:
+the fore-reeds trial reported22–35px color-island displacement and1–1.414px binary
+alpha offset at1×, but rerendering the protected stems/heads at8× measured **zero
+alpha silhouette offset** at both358/520px display widths. The original diagnostic
+is retained; the semantic silhouette/local-RGB assessment is recorded separately.
+Eyes on a face cannot be protected by an outer alpha silhouette alone. Mark those
+features explicitly and inspect them visually; never treat all tiny traced color
+islands as equally important or all small details as removable noise.
+
+### Compact fallback, and preserve curves before flattening
+
+The first bounded partition can be larger than the original efficient cubic SVG.
+Do not confuse passing per-path limits with acceptable memory/transport cost.
+Use independent measured candidates and keep the full-fidelity fallback:
+
+- `quantize-svg.py --grid .01 --oversized-only` first expands relative/smooth
+  commands to absolute Bézier controls, then rounds only oversized paths. This
+  avoids cumulative relative-coordinate drift. Each control/endpoint moves at
+  most `grid/sqrt(2)` local units; Bézier interpolation has the same pointwise bound.
+  Arc parameter rounding is rejected because that bound would not apply.
+- If some paths still exceed storage limits, run GEOS only on those paths.
+  `--polygon-tolerance .05` uses GEOS topology-preserving polygon simplification;
+  `--coordinate-grid .01` shortens absolute line coordinates. These are additional
+  approximation components, recorded separately; sum the declared local allowances
+  before applying the complete display transform. Recheck **against original raw**,
+  not merely the previous candidate. Native raster and semantic-feature review
+  remain mandatory; larger limits are not silently accepted.
+- Original curves that already fit are retained. This can be substantially cheaper
+  than converting every color plane to a polyline.
+
+Measured hybrid results on the real trial inputs:
+
+| Asset | First partition | Curve-preserving hybrid | Fidelity evidence |
+|---|---|---|---|
+| Stage31 small BODY |186nodes /4.2MB|35nodes /865,009bytes|RGB MAE .0023/.0013; contact/alpha offset0 at2520/5760px|
+| Foreground reeds |128nodes /2.7MB|24nodes /712,789bytes|RGB .0858/.0557; protected8× silhouette offset0 at358/520px|
+
+The hybrid still has more *linear commands* than original cubic commands; report
+curve type, endpoints/controls and bytes separately instead of advertising raw
+node reduction that did not occur. Actual important-detail and scene acceptance
+is not granted by this table. `test-quantize.py` checks absolute cubic/S/quadratic/T
+control rounding against its declared bound.
