@@ -1,3 +1,4 @@
+import {gearHas,gearBody,gearAddFrost,gearFinish,gearState} from './equipmentCombat';
 import {equipmentParam,equipmentPrimary} from './equipment';
 import {keeperEchoVelocity} from './keeperRitual';
 import {cheonroeVisualSeed} from './lightningGeometry';
@@ -36,6 +37,7 @@ export function trajectoryMultiplier(p:Projectile,u:Unit,hit:Vec){
  const s=SKILLS[p.skill];if(!s?.redesigned||s.cls!=='archer'||p.secondary)return 1;
  const extra=passiveTuning(passiveRank(u,'AP04')).trajectory;
  if(s.branch==='distance')return 1+((s.id==='A99'?.60:.40)+extra+(p.preparedRank?lerpRank(.08,.22,p.preparedRank):0))*clamp(Math.abs(hit.x-(p.launchX??p.x))/1800,0,1);
+ if(p.equipment?.dropBonus!==undefined&&s.id==='A11')return p.equipment.dropBonus;
  if(s.branch==='drop')return 1+((s.id==='A15'?.55:s.id==='A13'?.35:.45)+extra+(s.id==='A11'?equipmentParam(u,'se_drop','dropCoefficientAdd',0):0))*clamp(Math.max(0,hit.y-(p.apexY??p.launchY??p.y))*(p.trajectoryDropScale||1)/900,0,1);
  if(s.branch==='speed')return 1+((s.id==='A08'?.35:.45)+extra)*clamp((Math.hypot(p.vx,p.vy)*(p.trajectorySpeedScale||1)-500)/650,0,1);
  return 1;
@@ -72,7 +74,8 @@ export function recordRedesignDamage(e:Engine,p:Projectile|undefined,src:Unit,ta
  if(e.b.cast?.shot===p?.shot&&e.b.cast?.owner===src.id&&enemy({side:src.side},target))e.b.cast.enemyDamage+=actual;
  if(!p||!newSkill(p)||p.skill!=='A06'||!enemy(p,target))return;
  const r=rank(p);for(const [field,max,fraction,cap] of [['hp','maxHp',lerpRank(.05,.12,r),.15],['focus','maxFocus',lerpRank(.03,.07,r),.18]] as const){
-  const key=`recover:${p.shot}:${field}`,used=e.b.shotDamage[key]||0,n=Math.min(actual*fraction*(field==='hp'?equipmentParam(src,'se_recover','hpRecoveryScale',1):1),src[max]*cap-used,src[max]-src[field]);
+  const boosted=field==='focus'&&gearBody(p)&&gearHas(p,'se_recover')&&p.equipment!.lowFocus;
+  const key=`recover:${p.shot}:${field}`,used=e.b.shotDamage[key]||0,n=Math.min(actual*fraction*(boosted?2:1),src[max]*(boosted?.25:cap)-used,src[max]-src[field]);
   src[field]+=Math.max(0,n);e.b.shotDamage[key]=used+Math.max(0,n);
  }
  e.emit('fx',{name:'inkLine',x:p.x,y:p.y,x2:src.x,y2:src.y-src.h*.5,color:'#bfc9c6',size:1});
@@ -196,10 +199,10 @@ function emitGeometry(e:Engine,g:SkillGeometry){
  // Serialize the exact hit shape as one event; renderer does no independent geometry reconstruction.
  e.emit('fx',{name:'skillGeometry',x:g.x,y:g.y,color:'#ced4cd',text:JSON.stringify(g),size:g.radius});
 }
-function strikeGeometry(e:Engine,p:Projectile,g:SkillGeometry,directTarget?:Unit){
+function strikeGeometry(e:Engine,p:Projectile,g:SkillGeometry,directTarget?:Unit,covered=false){
  emitGeometry(e,g);
  e.emit('sound',{name:'qiWave'});
- for(const u of e.b.units.filter(u=>!u.dead&&u.id!==p.owner)){const h=geometryHits(g,u);let amount=p.damage*Math.max(h.count,u.id===directTarget?.id?1:0);
+ for(const u of e.b.units.filter(u=>!u.dead&&u.id!==p.owner)){if(covered&&e.projectileCollision(g.impact||g,at(u),1,p.owner,[],false))continue;const h=geometryHits(g,u);let amount=p.damage*Math.max(h.count,u.id===directTarget?.id?1:0);
   if(g.kind==='triangle'&&!h.count&&h.interior)amount=p.damage*16/38;
   if(g.kind==='ring')amount*=Math.max(.28,220/Math.max(220,g.radius));
   if(g.kind==='bagua'&&h.center)amount+=p.damage*62/34;
@@ -208,7 +211,7 @@ function strikeGeometry(e:Engine,p:Projectile,g:SkillGeometry,directTarget?:Unit
 }
 function reflect(p:Projectile,h:Collision,restitution=.84){const dot=p.vx*h.n.x+p.vy*h.n.y;p.vx=(p.vx-2*dot*h.n.x)*restitution;p.vy=(p.vy-2*dot*h.n.y)*restitution;p.x=h.x+h.n.x*(p.radius+1);p.y=h.y+h.n.y*(p.radius+1);p.bounces++;}
 function spawnChild(e:Engine,p:Projectile,mode:string,vx:number,vy:number,damage:number,blast=0){
- const q:Projectile={...p,id:e.b.nextId++,mode,vx,vy,prevVy:vy,damage,blast,age:0,child:true,autonomous:true,secondary:true,apex:true,hit:[],trail:[],bounces:0,pierces:0,fuseAt:undefined,phaseMode:undefined,gravityScale:1,drag:.025,radius:3,maxAge:.5};e.b.projectiles.push(q);return q;
+ const q:Projectile={...p,equipment:p.equipment?structuredClone(p.equipment):undefined,id:e.b.nextId++,mode,vx,vy,prevVy:vy,damage,blast,age:0,child:true,autonomous:true,secondary:true,apex:true,hit:[],trail:[],bounces:0,pierces:0,fuseAt:undefined,phaseMode:undefined,gravityScale:1,drag:.025,radius:3,maxAge:.5};e.b.projectiles.push(q);return q;
 }
 function skyStrikePoint(e:Engine,point:Vec,owner:string):Vec{
  const start={x:point.x,y:Math.min(-170,point.y-600)};
@@ -218,12 +221,13 @@ function skyStrikePoint(e:Engine,point:Vec,owner:string):Vec{
 function gourdBurst(e:Engine,p:Projectile){
  const u=e.unit(p.owner)!;const s=SKILLS[p.skill],r=rank(p),secondary=(1+passiveTuning(passiveRank(u,'MP01')).gourdSecondary)*(1+(p.effectBoost||0)*.5);
  if(p.mode==='gourdSky'){
+  if(gearHas(p,'da_sky')&&gearBody(p)){const eligible=[...e.blastUnitTargets(p.x,p.y,p.blast,p.owner,false,p)].filter(({unit:t})=>e.guidanceTarget(u,t)).sort((a,b)=>a.distance-b.distance||a.unit.id.localeCompare(b.unit.id));p.equipment!.focusTarget=eligible[0]?.unit.id;}
   p.mode='skyWait';p.targetPoint={x:p.x,y:p.y};p.vx=p.vy=0;p.age=0;p.fuseAt=undefined;e.emit('fx',{name:'inkLine',x:p.x,y:p.y-220,x2:p.x,y2:p.y,color:'#a8bbc6',size:1});e.emit('sound',{name:'ceramic'});return;
  }
  e.blast(p.x,p.y,p.blast,p.damage,p.owner,false,p);
  if(p.mode==='gourdFire'||p.mode==='gourdIce'){
-  const ice=p.mode==='gourdIce',count=5+r;
-  for(let i=0;i<count;i++){const a=(i+.5)*Math.PI*2/count+(e.random()-.5)*.35;const q=spawnChild(e,p,ice?'frostChip':'fireChip',Math.cos(a)*330,Math.sin(a)*330,p.damage*(ice?.16:.18)*secondary,10);q.maxAge=.48;}
+  const ice=p.mode==='gourdIce',frost=ice&&gearHas(p,'da_heal')&&gearBody(p),count=5+r;if(frost)gearAddFrost(e,p);
+  for(let i=0;i<count;i++){const a=(i+.5)*Math.PI*2/count+(e.random()-.5)*.35;const q=spawnChild(e,p,ice?'frostChip':'fireChip',Math.cos(a)*330,Math.sin(a)*330,p.damage*(ice?.16:.18)*secondary*(frost?.75:1),10);q.maxAge=.48;}
   if(ice)for(const t of e.b.units.filter(t=>enemy(p,t)&&e.attackAllows(t,p.owner,p)&&Math.hypot(t.x-p.x,t.y-t.h*.5-p.y)<p.blast+t.r))t.slowed={factor:lerpRank(.20,.35,r),expires:e.b.round+1};
  }
  if(p.mode==='gourdThunder')for(const t of e.b.units.filter(t=>!t.dead&&e.attackAllows(t,p.owner,{...p,autonomous:true})&&Math.hypot(t.x-p.x,t.y-t.h*.5-p.y)<=260+10*(r-1))){
@@ -259,7 +263,8 @@ export function redesignImpact(e:Engine,p:Projectile,h:Collision){
  const s=SKILLS[p.skill],u=e.unit(p.owner)!,r=rank(p);p.x=h.x;p.y=h.y;
  if(p.secondary){if(h.unit){e.hurt(h.unit,p.damage,p.owner,false,p,h);if(p.mode==='frostChip'&&enemy(p,h.unit))h.unit.slowed={factor:lerpRank(.20,.35,r),expires:e.b.round+1};}e.remove(p);return true;}
  if(p.mode==='waveArc'){
-  strikeGeometry(e,p,skillGeometry(s,r,h.x,h.y,Math.atan2(p.vy,p.vx),u.lastPower,undefined,undefined,geometryBoost(u,s,p.effectBoost)),h.unit);e.remove(p);return true;
+  const reversed=!!h.terrain&&gearHas(p,'da_arc')&&gearBody(p),g=skillGeometry(s,r,h.x+(reversed?h.n.x*2:0),h.y+(reversed?h.n.y*2:0),Math.atan2(p.vy,p.vx)+(reversed?Math.PI:0),u.lastPower,undefined,undefined,geometryBoost(u,s,p.effectBoost));if(reversed)g.span*=1.2;
+  strikeGeometry(e,p,g,h.unit,reversed);e.remove(p);return true;
  }
  if(p.mode==='qiPulse'){
   e.blast(p.x,p.y,p.blast,p.damage,p.owner,false,p);e.emit('sound',{name:'qiWave'});e.remove(p);return true;
@@ -271,13 +276,13 @@ export function redesignImpact(e:Engine,p:Projectile,h:Collision){
  }
  if(p.mode==='waveBounce'&&p.reflectionVersion===1){
   if(h.terrain){
-   const count=waveReflectionPlan(r)[p.bounces];
+   const focused=gearHas(p,'da_stake')&&!p.secondary&&!p.echoSource,count=focused?(p.bounces<waveReflectionPlan(r).length+2?1:0):waveReflectionPlan(r)[p.bounces];
    if(!count){e.remove(p);return true;}
    const velocities=waveReflectionVelocities(p,h.n,count);
    // Retain launch age, credit, shot and owner: descendants share the original
    // 12-second lifetime and never reset their generation on a terrain corner.
    p.contacts=[...(p.contacts||[]),{x:h.x,y:h.y}];p.bounces++;
-   p.damage*=WAVE_REFLECTION_DECAY;p.x=h.x+h.n.x*(p.radius+1);p.y=h.y+h.n.y*(p.radius+1);
+   p.damage*=focused?.90:WAVE_REFLECTION_DECAY;p.x=h.x+h.n.x*(p.radius+1);p.y=h.y+h.n.y*(p.radius+1);
    p.child=true;p.autonomous=true;p.trail=[{x:p.x,y:p.y}];
    for(const [i,v] of velocities.entries()){
     const q=i===0?p:{...p,id:e.b.nextId++,hit:[...p.hit],contacts:[...p.contacts],trail:[{x:p.x,y:p.y}]};
@@ -299,19 +304,23 @@ export function redesignImpact(e:Engine,p:Projectile,h:Collision){
  if(h.unit){
   const target=h.unit,prior=p.outboundHits?.includes(target.id),factor=p.returning?.7*(prior?1.2:1):1;
   const before=target.hp;e.hurt(target,p.damage*factor,p.owner,true,p,h);p.hit.push(target.id);
-  if(p.mode==='push'){e.impulse(target,Math.sign(p.vx)*280*equipmentParam(u,'se_push','horizontalKnockbackScale',1),-130);target.shove={attackSide:e.attackSide(p.owner,p),friendlyFireApplied:e.friendlyFireMultiplier(target,p.owner,p)<1,autonomous:e.autonomousAttack(p.owner,p),owner:p.owner,damage:(before-target.hp)*.18,remaining:Math.round(lerpRank(2,5,r)),hit:[target.id],life:1.5};}
+  if(p.mode==='push'){if(gearHas(p,'se_push')&&gearBody(p)&&!p.equipment!.pushMarked&&enemy(p,target)){p.equipment!.pushMarked=true;gearState(target).wallSlow={owner:p.owner,until:e.b.round+1};}e.impulse(target,Math.sign(p.vx)*280,-130,p);target.shove={attackSide:e.attackSide(p.owner,p),friendlyFireApplied:e.friendlyFireMultiplier(target,p.owner,p)<1,autonomous:e.autonomousAttack(p.owner,p),owner:p.owner,damage:(before-target.hp)*.18,remaining:Math.round(lerpRank(2,5,r)),hit:[target.id],life:1.5};}
   if(p.mode==='pierce'&&p.pierces<[1,1,2,2,3,3,4,5][r-1]){p.pierces++;p.damage*=equipmentParam(u,'se_pierce','pierceRetain',.88);return true;}
+  if(p.mode==='pierce')gearFinish(e,p,target.id);
   if(p.mode==='return'&&p.hit.length<=1)return true;
   if(p.mode==='chainArrow'&&chainArrowHop(e,p,r))return true;
  }
- if(h.terrain){e.damageTerrain(h.terrain,p.damage*s.terrain,0,p.owner,p);
+ if(h.terrain){
+  if(p.skill==='A11'&&gearHas(p,'se_drop')&&gearBody(p)&&!p.equipment!.bounced&&h.n.y<-.35&&p.vy>0){const a=p.equipment!;a.dropBonus=trajectoryMultiplier(p,u,h);a.bounced=true;a.travelX=h.x;a.travelY=h.y+h.n.y*(p.radius+1);a.travelMax=600;p.x=a.travelX;p.y=a.travelY;p.vx=Math.sign(p.vx||u.facing)*Math.max(400,Math.abs(p.vx));p.vy=0;p.prevVy=0;p.gravityScale=0;p.damage*=.65;p.bounces++;e.fx('spark',p.x,p.y,p.color,24);return true;}
+  e.damageTerrain(h.terrain,p.damage*s.terrain,0,p.owner,p);
   e.emit('sound',{name:'arrowhit'});
   if(p.mode==='chainArrow'&&!p.chain){p.x+=h.n.x*(p.radius+2);p.y+=h.n.y*(p.radius+2);if(chainArrowHop(e,p,r))return true;}
   if(p.mode==='pierce'&&h.terrain.mat==='wood'&&h.terrain.w<=90&&p.pierces<[1,1,2,2,3,3,4,5][r-1]){p.pierces++;p.damage*=equipmentParam(u,'se_pierce','pierceRetain',.88);p.x+=Math.sign(p.vx)*(h.terrain.w+8);return true;}
  }
+ if(h.terrain&&p.mode==='pierce'&&p.pierces>=[1,1,2,2,3,3,4,5][r-1])gearFinish(e,p);
  if(p.mode==='breakArrow'){
-  for(const t of e.b.units.filter(t=>!t.dead&&e.attackAllows(t,p.owner,p)&&t.id!==h.unit?.id&&Math.hypot(t.x-p.x,t.y-t.h*.5-p.y)<70+t.r)){e.hurt(t,p.damage*.55,p.owner,false,p,h);e.impulse(t,Math.sign(t.x-p.x)*230,-110);}
-  if(h.unit)e.impulse(h.unit,Math.sign(p.vx)*280,-120);e.fx('spark',p.x,p.y,'#aca799',30);
+  for(const t of e.b.units.filter(t=>!t.dead&&e.attackAllows(t,p.owner,p)&&t.id!==h.unit?.id&&Math.hypot(t.x-p.x,t.y-t.h*.5-p.y)<70+t.r)){e.hurt(t,p.damage*.55,p.owner,false,p,h);e.impulse(t,Math.sign(t.x-p.x)*230,-110,p);}
+  if(h.unit)e.impulse(h.unit,Math.sign(p.vx)*280,-120,p);e.fx('spark',p.x,p.y,'#aca799',30);
  }
  if(p.mode==='ironFlower'){p.mode='ironEmitter';p.age=0;p.emissions=0;p.vx=p.vy=0;p.x+=h.n.x*9;p.y+=h.n.y*9;return true;}
  e.fx('spark',p.x,p.y,p.color,18);e.remove(p);return true;
@@ -331,7 +340,7 @@ export function redesignStep(e:Engine,p:Projectile,dt:number){
   if(p.age>=.35){const target=p.targetPoint!,end=skyStrikePoint(e,target,p.owner);
    // Keep the original strike center, eligibility and falloff. Snapshot before
    // any hurt/impulse can move, kill or remove a target; visual rays never attack.
-   const targets=[...e.blastUnitTargets(end.x,end.y,p.blast,p.owner,false,p)];
+   const targets=[...e.blastUnitTargets(end.x,end.y,p.blast,p.owner,false,p)].map(row=>({...row,equipmentScale:gearHas(p,'da_sky')&&gearBody(p)?(row.unit.id===p.equipment!.focusTarget?1.8:.6):1}));
    for(const {unit:t,head:fallbackHead} of targets){
     if(!enemy(p,t)||t.hp<=0)continue;
     const head:Vec=(globalThis as any).HonroMonsterVisual?.headPoint(t)??fallbackHead;
@@ -442,7 +451,7 @@ export interface SkillPrediction extends Prediction {time:number;geometry?:Skill
 function arrowPrediction(e:Engine,u:Unit,s:Skill,angle:number,power:number,representative=false,ignoreUnits=false):SkillPrediction{
  const b=structuredClone(e.b),Sim=e.constructor as new(b:Battle)=>Engine,sim=new Sim(b),actor=sim.unit(u.id)!;
  const wave=s.mode==='waveBounce',waveContacts:Vec[]=[],impact=sim.impact.bind(sim);
- if(wave)sim.impact=(p,h)=>{if(p.bounces>=1){p.x=h.x;p.y=h.y;sim.remove(p);}else{if(h.terrain)waveContacts.push({x:h.x,y:h.y});impact(p,h);}};
+ if(wave)sim.impact=(p,h)=>{if(p.bounces>=1&&!gearHas(p,'da_stake')){p.x=h.x;p.y=h.y;sim.remove(p);}else{if(h.terrain)waveContacts.push({x:h.x,y:h.y});impact(p,h);}};
  const collision=sim.collision.bind(sim);let contact:Collision|null=null,stepContact:Collision|null=null,terminalContact:Collision|null=null,capture=true;
  sim.collision=(a,z,r,owner,ignored,units=true,...rest)=>{const h=collision(a,z,r,owner,ignored,ignoreUnits?false:units,...rest);if(capture&&h){stepContact=h;if(h.unit&&!contact)contact=h;}return h;};
  b.active=actor.id;b.side=0;b.phase='aim';if(!(b as any).keeperRitual?.zone)b.mode='practice';b.projectiles=[];b.volley=undefined;
@@ -496,7 +505,7 @@ export function redesignPrediction(e:Engine,u:Unit,s:Skill,angle:number,power:nu
   if(i%3===0)points.push({x:p.x,y:p.y});if(p.y>e.b.height+100||p.x<0||p.x>e.b.width||p.y< -1700)break;
  }
  points.push({x:p.x,y:p.y});
- const geometry=arc||bagua||s.mode==='waveTriangle'?skillGeometry(s,r,p.x,p.y,arc?Math.atan2(p.vy,p.vx):-rad(angle),power,contacts,origin,geometryBoost(u,s)):undefined;
+ const reverse=arc&&terrainAtEnd&&!!u.equipmentIds?.includes('itm_da_08'),geometry=arc||bagua||s.mode==='waveTriangle'?skillGeometry(s,r,p.x+(reverse?(contact?.n.x||0)*2:0),p.y+(reverse?(contact?.n.y||0)*2:0),arc?Math.atan2(p.vy,p.vx)+(reverse?Math.PI:0):-rad(angle),power,contacts,origin,geometryBoost(u,s)):undefined;if(reverse&&geometry)geometry.span*=1.2;
  const secondaryPoint=s.id==='M05'?skyStrikePoint(e,{x:p.x,y:p.y},u.id):s.id==='M07'?{x:p.x,y:p.y-20}:undefined;
  const ranges=s.branch==='stake'?stakeRanges(e,{id:0,skill:s.id,owner:u.id,side:u.side,x:p.x,y:p.y,rank:r,damage:0,shot:0,effectBoost:jucheonBoost(u,s)}):undefined;
  return {x:p.x,y:p.y,unit:contact?.unit?.id,terrain:contact?.terrain?.id,terrainAtEnd,points,time,closest,contacts,apex,geometry,secondaryPoint,triggerRadius:ranges&&s.id!=='M09'?ranges.trigger:undefined,secondaryRadius:s.branch==='gourd'?(s.id==='M04'?260+10*(r-1):s.id==='M13'?240:e.effective(s,u).radius):ranges?.effect};

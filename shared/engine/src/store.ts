@@ -1,4 +1,4 @@
-import {validateEquipmentIds,equipmentActor} from './equipment';
+import {validateEquipmentIds,equipmentActor,EQUIPMENT_MAP} from './equipment';
 import {validateKeeperRitual} from './keeperRitual';
 import {normalizePlayerTurnOrder} from './turnOrder';
 import {poly} from './math';
@@ -167,7 +167,17 @@ function validBattle(raw: unknown,legacyXp=false,oldXp=false): Battle {
             return fail();
     }
     if(b.damageSequence){const d=b.damageSequence;if(d.version!==1||!Number.isInteger(d.seed)||d.seed<0||d.seed>0xffffffff||!Number.isSafeInteger(d.index)||d.index<0)return fail();}
-    const validOrigin=(o:any)=>!o||(o.damageRoll===undefined||finite(o.damageRoll)&&o.damageRoll>=.78&&o.damageRoll<=1.35)&&(o.attackSide===undefined||[0,1,2].includes(o.attackSide))&&(o.friendlyFireApplied===undefined||typeof o.friendlyFireApplied==='boolean');
+    const validGear=(a:any)=>{
+        if(a===undefined)return true;
+        if(!object(a)||a.version!==1||!Array.isArray(a.items)||a.items.length>2||a.items.some((id:any)=>!EQUIPMENT_MAP[id])||new Set(a.items.map((id:string)=>EQUIPMENT_MAP[id].slot)).size!==a.items.length||typeof a.airborne!=='boolean'||typeof a.lowFocus!=='boolean'||!finite(a.rootDamage)||a.rootDamage<0||a.rootDamage>1e8||!finite(a.skillDamage)||a.skillDamage<1||a.skillDamage>2)return false;
+        if(a.vector!==undefined&&!existenceVector(a.vector))return false;
+        for(const k of ['jumped','bounced','finishUsed','pushMarked','returning'])if(a[k]!==undefined&&typeof a[k]!=='boolean')return false;
+        for(const k of ['passedAlly','focusTarget'])if(a[k]!==undefined&&(!safe(a[k])||!ids.has(a[k])))return false;
+        for(const k of ['dropBonus','travelX','travelY','travelMax','groundLeft'])if(a[k]!==undefined&&(!finite(a[k])||Math.abs(a[k])>20000))return false;
+        if(a.travelMax!==undefined&&(!nums(a,['travelX','travelY'])||a.travelMax<0||a.travelMax>600)||a.groundLeft!==undefined&&(a.groundLeft<0||a.groundLeft>400))return false;
+        return true;
+    };
+    const validOrigin=(o:any)=>!o||validGear(o.equipment)&&(o.damageRoll===undefined||finite(o.damageRoll)&&o.damageRoll>=.78&&o.damageRoll<=1.35)&&(o.attackSide===undefined||[0,1,2].includes(o.attackSide))&&(o.friendlyFireApplied===undefined||typeof o.friendlyFireApplied==='boolean');
     const origins=[...b.projectiles,...b.zones,...(b.stakes||[]),...(b.occultTraps||[]),...(b.volley?[b.volley.template]:[]),...b.units.flatMap(u=>[u.meleeFollowOrigin,u.meleeAction,u.beastAction,u.martialGuard,u.shove,u.enthrall,u.earthbind,u.curseDamageOrigin,u.summonDamageOrigin])];
     if(!origins.every(validOrigin))return fail();
     if(b.skillRevision!==undefined&&b.skillRevision!==SKILL_REVISION)return fail();
@@ -192,6 +202,17 @@ function validBattle(raw: unknown,legacyXp=false,oldXp=false): Battle {
     for(const u of b.units){
         if(u.retreat!==undefined&&typeof u.retreat!=='boolean'||u.gateTurn!==undefined&&!safe(u.gateTurn))return fail();
         if(u.prepared&&(!nums(u.prepared,['rank','expires'])||!Number.isInteger(u.prepared.rank)||u.prepared.rank<1||u.prepared.rank>8))return fail();
+        if(u.equipmentState!==undefined){
+            const st=u.equipmentState;if(!object(st)||st.version!==1)return fail();
+            for(const k of ['jumpCycle','healCycle','guardCycle','anchorCycle','counterCycle'] as const)if(st[k]!==undefined&&(!Number.isSafeInteger(st[k])||st[k]!<0))return fail();
+            for(const k of ['loanUsed','regenHalf','movePenalty','echoUsed'] as const)if(st[k]!==undefined&&typeof st[k]!=='boolean')return fail();
+            if(st.landingRetreat!==undefined&&(!finite(st.landingRetreat)||Math.abs(st.landingRetreat)>180))return fail();
+            if(st.guardImpact&&(!ids.has(st.guardImpact.owner)||!Number.isSafeInteger(st.guardImpact.shot)||st.guardImpact.shot<0||st.guardImpact.scale!==.25))return fail();
+            if(st.wallSlow&&(!ids.has(st.wallSlow.owner)||!finite(st.wallSlow.until)))return fail();
+            if(st.weak&&(!ids.has(st.weak.owner)||!finite(st.weak.expires)||typeof st.weak.spread!=='boolean'||typeof st.weak.used!=='boolean'))return fail();
+            if(st.motion){const m=st.motion;if(!Array.isArray(m.points)||m.points.length<2||m.points.length>40||m.points.some(p=>!nums(p,['x','y'])||Math.abs(p.x)>20000||Math.abs(p.y)>20000)||!finite(m.cursor)||m.cursor<0||m.cursor>m.points.length-1)return fail();}
+        }
+        if(u.earthbind?.equipmentPull){const a=u.earthbind.equipmentPull;if(!nums(a,['x','y'])||typeof a.used!=='boolean')return fail();}
         if(u.slowed&&(!nums(u.slowed,['factor','expires'])||u.slowed.factor<0||u.slowed.factor>1))return fail();
         if(u.arrivalGuard!==undefined&&!finite(u.arrivalGuard))return fail();
         if(u.shove&&(!ids.has(u.shove.owner)||!nums(u.shove,['damage','remaining','life'])||!Array.isArray(u.shove.hit)||u.shove.hit.some(id=>!ids.has(id))))return fail();
@@ -224,7 +245,7 @@ function validBattle(raw: unknown,legacyXp=false,oldXp=false): Battle {
         if (q.emissions !== undefined && (!finite(q.emissions) || q.emissions < 0 || q.emissions > 100))
             return fail();
         if(q.wraithVersion!==undefined){if(q.wraithVersion!==1||q.skill!=='O05'||!['outbound','manifest','return'].includes(q.wraithState||'')||!Array.isArray(q.wraithPath)||q.wraithPath.length<1||q.wraithPath.length>256||q.wraithPath.some(v=>!nums(v,['x','y']))||!Array.isArray(q.wraithMarked)||q.wraithMarked.length>100||q.wraithMarked.some(id=>!ids.has(id))||!Number.isInteger(q.wraithCursor)||(q.wraithCursor??-2)< -1||(q.wraithCursor??-2)>=q.wraithPath.length||!finite(q.wraithPause)||(q.wraithPause??-1)<0||(q.wraithPause??-1)>1||q.wraithBurst!==undefined&&typeof q.wraithBurst!=='boolean')return fail();}
-        if(q.reflectionVersion!==undefined&&(q.reflectionVersion!==1||q.mode!=='waveBounce'||!Number.isInteger(q.bounces)||q.bounces<0||q.bounces>3))return fail();
+        if(q.reflectionVersion!==undefined&&(q.reflectionVersion!==1||q.mode!=='waveBounce'||!Number.isInteger(q.bounces)||q.bounces<0||q.bounces>(q.equipment?.items.includes('itm_da_05')?5:3)))return fail();
         if(q.targetId!==undefined&&(!safe(q.targetId)||!ids.has(q.targetId)))return fail();
         if(q.drag!==undefined&&(!finite(q.drag)||q.drag<0||q.drag>5)||q.gravityScale!==undefined&&(!finite(q.gravityScale)||Math.abs(q.gravityScale)>10)||q.skillRank!==undefined&&(!Number.isInteger(q.skillRank)||q.skillRank<1||q.skillRank>8))return fail();
         if(q.echoDelay!==undefined&&(!finite(q.echoDelay)||q.echoDelay<0||q.echoDelay>.3)||q.echoSource!==undefined&&!ids.has(q.echoSource)||q.soulBoost!==undefined&&typeof q.soulBoost!=='boolean')return fail();
@@ -246,7 +267,7 @@ function validBattle(raw: unknown,legacyXp=false,oldXp=false): Battle {
     for(const u of b.units){if(u.carriedBy!==undefined&&(!finite(u.carriedBy)||!b.projectiles.some(p=>p.id===u.carriedBy&&(p.mode==='charge'||p.mode==='cataclysmCharge'))))return fail();if(u.lastStandUsed!==undefined&&typeof u.lastStandUsed!=='boolean')return fail();}
     for(const p of b.projectiles){if(p.carry!==undefined&&(!Array.isArray(p.carry)||p.carry.length>60||p.carry.some(id=>!ids.has(id))))return fail();if(p.repeatIndex!==undefined&&(!finite(p.repeatIndex)||p.repeatIndex<0||p.repeatIndex>5))return fail();if(p.existenceAttack!==undefined&&!existenceVector(p.existenceAttack))return fail();}
     for (const z of b.zones)
-        if (!nums(z, ['id', 'x', 'y', 'radius', 'damage', 'expires']) || !['fire', 'frost', 'delay', 'bomb'].includes(z.kind) || !ids.has(z.owner))
+        if (z.equipmentFrost!==undefined&&(z.equipmentFrost!==true||z.kind!=='frost'||z.damage!==0||z.radius!==160)||!nums(z, ['id', 'x', 'y', 'radius', 'damage', 'expires']) || !['fire', 'frost', 'delay', 'bomb'].includes(z.kind) || !ids.has(z.owner))
             return fail();
     if(b.occultTraps&&(!Array.isArray(b.occultTraps)||b.occultTraps.length>64||b.occultTraps.some(t=>!nums(t,['id','x','y','rank','damage','expires'])||!ids.has(t.owner)||!['O06','O07','O08'].includes(t.skill))))return fail();
     if (!nums(b.items, ['heal', 'focus', 'cleanse', 'ward']) || b.events.some(t => !safe(t, 600)) || !object(b.lastShots) || !object(b.shotDamage) || !Array.isArray(b.teamEnds) || b.teamEnds.length !== 3 || b.teamEnds.some(n => !finite(n) || n < 0) || typeof b.rewardGranted !== 'boolean' || !safe(b.session, 120))

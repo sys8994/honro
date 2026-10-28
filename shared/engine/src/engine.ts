@@ -1,3 +1,4 @@
+import {gearCapture,gearHas,gearBody,gearCanPay,gearPay,gearTurn,gearRegen,gearGuard,gearImpulse,gearAlly,gearState,gearCycle,gearFrostSlow,gearStepMove,gearEarthMove,gearWallContact,gearPreservesWood,gearSpreadWeak,gearTravelSpent,gearReturn,gearLandingRetreat} from './equipmentCombat';
 import {equipmentActor,equipmentParam,equipmentCast,equipmentManaCost,equipmentPrimary,equipmentSoulVector} from './equipment';
 import {playerRangeSpeed,initializePlayerRange,flightRangeSpent,boundRushMotion,playerRangeApplies,PLAYER_LANTERN_RANGE} from './playerRange';
 import {endPlayerFlight} from './playerRangeMechanics';
@@ -108,9 +109,10 @@ export class Engine {
     heroesAlive() { return this.actors(0).filter(u => !u.summoned&&!u.enthrall); }
     creditUnit(u?:Unit){ if(u)ownerRegistered(this.b,u);const owner=u?.summonOwner||u?.enthrall?.owner;return owner?(this.unit(owner)||u):u; }
     unit(id: string) { return this.b.units.find(u => u.id === id); }
-    canAct() { return this.b.phase === 'aim' && this.b.side === 0 && !!this.active && !this.active.dead && !this.active.summoned && !this.active.enthrall && !this.active.acted && !this.active.airborne && (!this.active.platformDrop||this.active.platformDrop.phase==='land'); }
+    canAct() { return this.b.phase === 'aim' && this.b.side === 0 && !!this.active && !this.active.dead && !this.active.summoned && !this.active.enthrall && !this.active.acted && !this.active.equipmentState?.motion && !this.active.airborne && (!this.active.platformDrop||this.active.platformDrop.phase==='land'); }
     select(id: string) { const u = this.unit(id); if (this.b.phase !== 'aim' || (this.active?.retreat || this.active?.meleeFollow==='ready' || this.active?.platformDrop && this.active.platformDrop.phase!=='land') || !u || u.side !== 0 || u.summoned || u.enthrall || u.dead || u.acted)
         return false; this.b.active = id; this.emit('change'); return true; }
+    canAfford(s:Skill,u:Unit,power=u.lastPower){return gearCanPay(u,this.manaCost(s,u,power));}
     manaCost(s: Skill, u: Unit, power=u.lastPower) { const rank=s.ultimate||s.basic?1:(u.ranks[s.id] || 1),scale=u.side===0?MANA_COST_MULTIPLIER:1,charge=meleeSkill(s)&&!['counterStance','lifeSlash'].includes(s.mode)?.75+.25*clamp(power,0,1):1; return equipmentManaCost(u,s,passiveCost(u,s,s.cost*skillManaFactor(rank)*scale*charge)*(SUMMON_SKILLS.has(s.id)?1-(u.nextSummonDiscount||0):1)); }
     noncombatWalk(){const b=this.b as Battle&{honroStage?:number;honroCustom?:boolean};return b.honroStage===19&&!b.honroCustom&&b.mode==='campaign';}
     skillAllowed(s:Skill,u=this.active){return !this.noncombatWalk()&&!!u&&warriorAllowed(u,s);}
@@ -254,7 +256,7 @@ export class Engine {
     }
     acceleration(p:{x:number;y:number;wind:number;gravityScale?:number;vx?:number;vy?:number;drag?:number;skill?:string;mode?:string}){const a=this.forceSample(p);return{x:a.x-a.k*(p.vx||0),y:a.y-a.k*(p.vy||0)};}
     inWaterfall(p:{x:number;y:number}){return insideWater(waterfallSheet(this.b),p);}
-    advanceProjectile(p:{x:number;y:number;wind:number;vx:number;vy:number;gravityScale?:number;drag?:number;skill?:string;mode?:string;body?:boolean;flightRange?:Projectile['flightRange']},dt:number){
+    advanceProjectile(p:{x:number;y:number;wind:number;vx:number;vy:number;gravityScale?:number;drag?:number;skill?:string;mode?:string;body?:boolean;flightRange?:Projectile['flightRange'];equipment?:Projectile['equipment']},dt:number){
         // Story-local projectile forces share this path with every prediction.
         // They never enter body/environment physics or alter collision geometry.
         const a=this.forceSample(p),story=(globalThis as any).HonroBellAnomaly?.force(this.b,p);
@@ -263,7 +265,9 @@ export class Engine {
         if(revisionForce){a.x+=revisionForce.x;a.y+=revisionForce.y;}
         const air=(q:{x:number;y:number;vx:number;vy:number},step:number)=>advanceLinear(q.x,q.y,q.vx,q.vy,a.x,a.y,a.k,step);
         const water=!p.body&&!BODY.has(p.mode||'')?waterfallSheet(this.b):undefined;
-        const motion=water?advanceWaterfall(p,dt,water,air):{...air(p,dt),waterEntered:false,waterEntryPoint:undefined};return {...motion,...boundRushMotion(p,motion)};
+        const motion=water?advanceWaterfall(p,dt,water,air):{...air(p,dt),waterEntered:false,waterEntryPoint:undefined};const result={...motion,...boundRushMotion(p,motion)},gear=p.equipment;
+        if(gear?.travelMax!==undefined){const remaining=Math.max(0,gear.travelMax-Math.hypot(p.x-gear.travelX!,p.y-gear.travelY!)),step=Math.hypot(result.x-p.x,result.y-p.y);if(step>remaining){result.x=p.x+(result.x-p.x)*remaining/step;result.y=p.y+(result.y-p.y)*remaining/step;}}
+        return result;
     }
     private waterEntry(p:Projectile,m:{waterEntered:boolean;waterEntryPoint?:Vec}){
         if(m.waterEntered&&!p.waterfallTouched){p.waterfallTouched=true;const at=m.waterEntryPoint||p;this.fx('ring',at.x,at.y,'#c8e1d9',22);this.fx('spark',at.x,at.y,'#9fcbd0',16);}
@@ -516,12 +520,13 @@ export class Engine {
     private fireAction(skillId: string, angle: number, power: number, ai = false): boolean {
         if(this.noncombatWalk())return false;
         const b = this.b, u = this.active, s = SKILLS[skillId];
-        if (!u || u.dead || u.retreat || !s || !warriorAllowed(u,s) || s.enemyOnly&&u.side===0&&!ai || s.passive || (!ai && (!this.canAct() || !this.grounded(u))) || (!u.loadout.includes(skillId)&&!(skillId==='S00'&&u.meleeFollow==='ready')) || (s.ultimate && u.side===0 && this.b.mode!=='practice' && !ultimateUnlocked(this.b.heroes[u.cls],u.cls)) || this.cooldownLeft(u,skillId)>0 || u.focus < this.manaCost(s, u,power))
+        if (!u || u.dead || u.retreat || !s || !warriorAllowed(u,s) || s.enemyOnly&&u.side===0&&!ai || s.passive || (!ai && (!this.canAct() || !this.grounded(u))) || (!u.loadout.includes(skillId)&&!(skillId==='S00'&&u.meleeFollow==='ready')) || (s.ultimate && u.side===0 && this.b.mode!=='practice' && !ultimateUnlocked(this.b.heroes[u.cls],u.cls)) || this.cooldownLeft(u,skillId)>0 || !this.canAfford(s,u,power))
             return false;
         delete u.platformDrop;delete u.moveTarget;
         u.moving = 0;
         const e = this.effective(s, u);
-        const actualKiSpent=this.manaCost(s,u,power);u.focus-=actualKiSpent;
+        const gear=gearCapture(u,s,e.damage,this.grounded(u),gearCycle(b));
+        const actualKiSpent=this.manaCost(s,u,power);gearPay(u,actualKiSpent);
         u.cooldowns ??= {}; if(s.cooldown)u.cooldowns[skillId]=b.round+s.cooldown+1;
         u.angle = clamp(angle, AIM_MIN, AIM_MAX);
         u.lastPower = clamp(power, u.side===0&&!u.summoned?0:.08, 1);
@@ -538,7 +543,7 @@ export class Engine {
         if(beastKind(u))return startBeastCast(this,u,s,e.damage,targetFor(this,u),damageRoll);
         const origin = this.projectileOrigin(u, s, u.angle);
         const attackSide=this.allegiance(u);
-        const make = (a: number, damage = e.damage, child = false) => { const origin=this.projectileOrigin(u,s,a),v = this.velocity(u, s, a, u.lastPower); const p: Projectile = { damageRoll, attackSide, id: b.nextId++, skill: skillId, owner: u.id, side: u.side, x: origin.x, y: origin.y, vx: v.vx, vy: v.vy, prevVy: v.vy, age: 0, radius: BODY.has(s.mode) ? u.r : ARROWS.has(s.mode) ? 3 : s.mode === 'shieldthrow' ? 9 : 6, damage, blast: e.radius, wind: s.wind, mode: s.mode, color: s.color, bounces: 0, pierces: 0, apex: false, hit: [], phase: 0, body: BODY.has(s.mode), returnX: u.x, returnY: u.y, trail: [origin], child, rolled: 0, shot: b.shot, emissions: 0, fieldHits: [], amplification: 1, launchX:origin.x,launchY:origin.y, repeatIndex:0,carry:[], skillRank:s.ultimate?1:(u.ranks[s.id]||1),drag:dragFor(s), gravityScale:s.gravity??1, phaseMode:s.phase, fuseAt:s.fuse? s.fuse*(s.mode==='phaseWraith'?(.55+u.lastPower*1.05):1):undefined }; initializePlayerRange(p,u,s);if(s.id==='O05')initializeReturningWraith(p);projectileCredit(b,p,u);b.projectiles.push(p); return p; };
+        const make = (a: number, damage = e.damage, child = false) => { const origin=this.projectileOrigin(u,s,a),v = this.velocity(u, s, a, u.lastPower); const p: Projectile = { equipment:gear?structuredClone(gear):undefined, damageRoll, attackSide, id: b.nextId++, skill: skillId, owner: u.id, side: u.side, x: origin.x, y: origin.y, vx: v.vx, vy: v.vy, prevVy: v.vy, age: 0, radius: BODY.has(s.mode) ? u.r : ARROWS.has(s.mode) ? 3 : s.mode === 'shieldthrow' ? 9 : 6, damage, blast: e.radius, wind: s.wind, mode: s.mode, color: s.color, bounces: 0, pierces: 0, apex: false, hit: [], phase: 0, body: BODY.has(s.mode), returnX: u.x, returnY: u.y, trail: [origin], child, rolled: 0, shot: b.shot, emissions: 0, fieldHits: [], amplification: 1, launchX:origin.x,launchY:origin.y, repeatIndex:0,carry:[], skillRank:s.ultimate?1:(u.ranks[s.id]||1),drag:dragFor(s), gravityScale:s.gravity??1, phaseMode:s.phase, fuseAt:s.fuse? s.fuse*(s.mode==='phaseWraith'?(.55+u.lastPower*1.05):1):undefined }; initializePlayerRange(p,u,s);if(s.id==='O05')initializeReturningWraith(p);projectileCredit(b,p,u);b.projectiles.push(p); return p; };
         if (s.mode === 'triple') {
             const plan=multishotProfile(s,u.ranks[s.id]||1)!;
             for(const angle of volleyAngles(s,plan.rank,u.angle))make(angle,e.damage*plan.damageScale);
@@ -546,7 +551,7 @@ export class Engine {
         else if(s.mode==='twinCrescent'){const a=make(u.angle-4,e.damage,true),c=make(u.angle+4,e.damage,true);a.mode=c.mode='crescent';a.autonomous=c.autonomous=false;}
         else
             make(u.angle);
-        beginOccultCast(this,u,s,b.projectiles.filter(p=>p.owner===u.id&&p.shot===b.shot));
+        beginOccultCast(this,u,s,b.projectiles.filter(p=>p.owner===u.id&&p.shot===b.shot),actualKiSpent);
         const castBonus=beginPlayerCast(this,u,s,actualKiSpent);
         for(const p of b.projectiles.filter(p=>p.owner===u.id&&p.shot===b.shot)){p.effectBoost=castBonus.effectBoost;p.sizeBoost=s.martial&&s.branch==='blade'?1+passiveTuning(passiveRank(u,'SP01')).bladeGeometry:1;}
         initRedesignCast(this,s,u,actualKiSpent);startWarriorCast(this,s,u);
@@ -598,8 +603,8 @@ export class Engine {
     }
     jumpCost(u:Unit){return Math.max(25,75-passiveRank(u,'SP03')*5-equipmentParam(u,'hw_jump_cost','jumpCostFlatReduction',0));}
     jump(u = this.active) { if(this.noncombatWalk()&&u?.side===0)u.moveLeft=u.maxMove; if (!u || u.dead || u.eaterCapturedBy || u.summonKind==='eater' || u.meleeFollow==='ready' || u.fixed || u.airborne || u.moveLeft < this.jumpCost(u) || !this.grounded(u))
-        return false; delete u.platformDrop;delete u.moveTarget; u.jumping = true; u.vy = -660*(1+passiveRank(u,'SP03')*.02)*equipmentParam(u,'co_jump','jumpVelocityScale',1); u.moveLeft = Math.max(0, u.moveLeft - this.jumpCost(u)); u.landing = 0; this.fx('spark', u.x, u.y, '#d7d0b8', 20); this.emit('sound', { name: 'jump' }); return true; }
-    walk(u:Unit,direction:number,dt:number,requireSupport=false){if(u.eaterCapturedBy||u.summonKind==='eater')return false;if(u.meleeFollow==='ready'||u.platformDrop&&u.platformDrop.phase!=='land')return;if(this.noncombatWalk()&&u.side===0)u.moveLeft=u.maxMove;const result=walkTerrain(this,u,direction,dt*(1-(u.slowed?.factor||0)),requireSupport);if(this.noncombatWalk()&&u.side===0)u.moveLeft=u.maxMove;return result;}
+        return false; delete u.platformDrop;delete u.moveTarget;if(equipmentActor(u))gearState(u).jumpCycle=gearCycle(this.b); u.jumping = true; u.vy = -660*(1+passiveRank(u,'SP03')*.02)*((u.equipmentIds?.includes('itm_co_11')&&equipmentActor(u)?1.3:1)>1?Math.sqrt(.9):1); u.moveLeft = Math.max(0, u.moveLeft - this.jumpCost(u)); u.landing = 0; this.fx('spark', u.x, u.y, '#d7d0b8', 20); this.emit('sound', { name: 'jump' }); return true; }
+    walk(u:Unit,direction:number,dt:number,requireSupport=false){if(u.eaterCapturedBy||u.summonKind==='eater')return false;if(u.meleeFollow==='ready'||u.platformDrop&&u.platformDrop.phase!=='land')return;if(this.noncombatWalk()&&u.side===0)u.moveLeft=u.maxMove;const result=walkTerrain(this,u,direction,dt*(1-Math.max(u.slowed?.factor||0,gearFrostSlow(this,u)))*(u.jumping&&(u.equipmentIds?.includes('itm_co_11')&&equipmentActor(u)?1.3:1)>1?1.3/Math.sqrt(.9):1),requireSupport);if(this.noncombatWalk()&&u.side===0)u.moveLeft=u.maxMove;return result;}
     turnArrow(point?:Vec){return turnArrow(this,point);}
     useGate(){return useGate(this);}
     gateCandidate(){return gateCandidate(this);}
@@ -799,6 +804,7 @@ export class Engine {
         if (u.dead || amount <= 0 || (damageSource!=='eaterTransfer'&&!this.attackAllows(u,owner,p||provenance)))
             return;
         const rawSrc = this.unit(owner), src = this.creditUnit(rawSrc);
+        if(damageSource==='normal'&&direct&&rawSrc&&gearAlly(this,u,rawSrc,p||provenance||{}))return;
         const damageRoll=damageSource==='normal'?((p||provenance)?.damageRoll??1):1;
         let dmg = amount*damageRoll;if(p?.wraithBurst&&p.wraithMarked?.includes(u.id)&&this.guidanceTarget(rawSrc,u))dmg*=1.30;
         const canCritical=damageSource==='normal'&&!!src&&src.side!==1&&!rawSrc?.summoned&&(!!p||direct);
@@ -832,7 +838,7 @@ export class Engine {
         if (u.boss && u.boss !== 5)
             armorWithoutSupport=armor = (this.b.round % 2 === 0 ? .06 : .29);
         if(damageSource==='normal'&&equipmentActor(u)&&u.hp/u.maxHp<=.30){const add=equipmentParam(u,'hw_guard','armorAdd',0);armor=Math.min(.7,armor+add);armorWithoutSupport=Math.min(.7,armorWithoutSupport+add);}
-        if(primary&&u.side===1&&!u.boss&&!(u as any).honroMidboss&&!(u as any).honroAct2Boss&&!(u as any).honroFinalBoss&&!u.honroObjectiveTarget){const keep=1-equipmentParam(rawSrc,'co_armor','armorIgnoreFraction',0);armor*=keep;armorWithoutSupport*=keep;}
+        if(primary&&u.side===1&&!u.boss&&!(u as any).honroMidboss&&!(u as any).honroAct2Boss&&!(u as any).honroFinalBoss&&!u.honroObjectiveTarget){const keep=1-(gearHas(p||provenance,'co_armor')?.30:0);armor*=keep;armorWithoutSupport*=keep;}
         if (u.side === 1 && !u.honroObjectiveTarget && u.summonKind!=='eater' && ((globalThis as any).HonroQuestTargets?.records(this.b)||this.b.terrain).some((t:Terrain) => !t.broken && t.device === 'ward'))
             {armor = Math.max(armor, .32);armorWithoutSupport=Math.max(armorWithoutSupport,.32);}
         if (u.breaks > 0 && damageSource!=='eaterTransfer') {
@@ -852,7 +858,7 @@ export class Engine {
             *(u.arrivalGuard!==undefined?.90:1)
             *(u.martialGuard&&u.martialGuard.round>=this.b.round?1-u.martialGuard.reduction:1);
         let attack=damageSource==='normal'?(damageSkill&&SKILLS[damageSkill]?attackForSkill(SKILLS[damageSkill]):attackForHit(p,rawSrc,src,SKILLS)):undefined;
-        if(attack&&primary)attack=equipmentSoulVector(rawSrc!,attack);
+        if(attack&&primary&&(p||provenance)?.equipment?.vector)attack=(p||provenance)!.equipment!.vector!;
         const existence=attack?existenceMultiplier(attack,u,rawSrc||src):1;
         const layers=calculateDamage({skillDamage:dmg/(preCondition*criticalMultiplier),conditionBonuses,criticalMultiplier,existenceMultiplier:existence,defenseMultiplier});
         dmg=damageSource==='eaterTransfer'?amount:layers.finalDamage;let contributionDamageLimit=Infinity;
@@ -879,7 +885,8 @@ export class Engine {
         const absorbed = damageSource==='eaterTransfer'?0:Math.min(u.shield, dmg);
         u.shield -= absorbed;
         dmg -= absorbed;
-        if(primary&&u.side===0&&friendlyFire<1)dmg*=equipmentParam(rawSrc,'co_friendly','friendlyHpScale',1);
+        if(primary&&u.side===0&&friendlyFire<1&&gearHas(p||provenance,'co_friendly'))dmg*=.5;
+        if(damageSource==='normal')dmg=gearGuard(this,u,owner,p||provenance,dmg);
         if(u.side===0&&u.cls==='occultist'&&!u.summoned&&!u.enthrall&&passiveRank(u,'OP03')&&dmg>0){
             const near=this.actors(0).filter(v=>v.summoned&&v.summonOwner===u.id&&Math.hypot(v.x-u.x,v.y-u.y)<340).sort((a,c)=>Math.hypot(a.x-u.x,a.y-u.y)-Math.hypot(c.x-u.x,c.y-u.y))[0];
             if(near){const shared=Math.min(Math.round(dmg*passiveTuning(passiveRank(u,'OP03')).soulShare),Math.round(u.maxHp*passiveTuning(passiveRank(u,'OP03')).soulShareCap),near.hp);dmg-=shared;this.hurt(near,shared,owner,false,undefined,source,'salheun',damageSkill||p?.skill);}
@@ -931,7 +938,7 @@ export class Engine {
         }
         if(!dmg)endHit(this.b,u,contribution);
         if (u.hp <= 0&&!u.dead) {
-            delete u.salheun;u.dead = true;
+            delete u.salheun;u.dead = true;gearSpreadWeak(this,u);
             (globalThis as any).HonroClearReport?.death(this.b,u,owner,provenance?.skill||damageSkill||p?.skill,damageSource,p?.honroReportSource||provenance?.honroReportSource);
             u.airborne = false;
             u.vx = u.vy = 0;
@@ -951,11 +958,13 @@ export class Engine {
             if(u.dead||u.hp<=0)releaseEater(this,u,p||provenance,true);
         }
     }
-    impulse(u: Unit, vx: number, vy: number) { if (u.dead || u.eaterCapturedBy || u.summonFloating) return;
+    impulse(u: Unit, vx: number, vy: number,attack?:Partial<Projectile>) { if (u.dead || u.eaterCapturedBy || u.summonFloating) return;
+        ({vx,vy}=gearImpulse(this,u,vx,vy,attack));
         if(flyingEnemy(u)){knockbackFlyingEnemy(this,u,vx,vy);return;}
         if(u.fixed)return; delete u.platformDrop; delete u.moveTarget; const resist=1-knockbackResistance(passiveRank(u,'SP02'));  u.vx = clamp(u.vx + vx*resist, -480, 480); u.vy = Math.min(u.vy, vy*resist); if (vy < 0)
         u.jumping = false; }
     damageTerrain(t: Terrain, amount: number, depth = 0, owner = this.b.active, attack?:Partial<Projectile>) {
+        if(gearPreservesWood(this,t,owner,attack))return;
         // Automatic attacks cannot remove support, trigger barrels or alter water under allies.
         if(!(t as any).honroQuestTarget&&this.protectedAutomaticAttack(owner,attack))return;
         if (t.broken || t.indestructible || (!(t as any).honroQuestTarget && t.hp >= 9999) || depth > 8)
@@ -1024,11 +1033,11 @@ export class Engine {
                 if(this.b.terrain.some(t=>!t.broken&&(segmentProjectileTerrain({x,y},to,t.id===sheet?.id?sheet:t,0)||terrainRectIntersects(t.id===sheet?.id?sheet:t,x-.1,y-.1,.2,.2,0))))continue;
             }
             const d = Math.hypot(u.x - x, (u.y - u.h * .45) - y);
-            if (d < radius + u.r) yield {unit:u,distance:d,head:{x:u.x,y:u.y-u.h}};
+            if (d < radius + u.r) yield {unit:u,distance:d,head:{x:u.x,y:u.y-u.h},equipmentScale:1};
         }
     }
 
-    blast(x: number, y: number, r: number, damage: number, owner: string, body = false, p?: Projectile, depth = 0, provenance?:Partial<Projectile>, unitTargets?:Iterable<{unit:Unit;distance:number;head:Vec}>) {
+    blast(x: number, y: number, r: number, damage: number, owner: string, body = false, p?: Projectile, depth = 0, provenance?:Partial<Projectile>, unitTargets?:Iterable<{unit:Unit;distance:number;head:Vec;equipmentScale?:number}>) {
         if (depth > 8)
             return;
         const radius = Math.max(r, 1), s = p ? SKILLS[p.skill] : undefined;
@@ -1036,11 +1045,11 @@ export class Engine {
         else if(s?.redesigned&&['M06','M13'].includes(s.id))this.fx('fireBloom',x,y,'#eaaa65',radius);
         else {this.fx('burst', x, y, p?.color || '#edb16e', radius);this.fx('ring', x, y, p?.color || '#efc99b', radius);}
         if(!this.skillSound('burst',owner,p?.skill||provenance?.skill||this.audioContext?.skill,p?.shot??provenance?.shot))this.emit('sound', { name: radius > 105 ? 'boom' : 'hit', value: radius });
-        for (const {unit:u,distance:d} of unitTargets??this.blastUnitTargets(x,y,r,owner,body,p,provenance)) {
+        for (const {unit:u,distance:d,equipmentScale=1} of unitTargets??this.blastUnitTargets(x,y,r,owner,body,p,provenance)) {
             const factor = .42 + .58 * (1 - clamp(d / radius, 0, 1));
-            this.hurt(u, damage * factor, owner, p?.directId === u.id, p, { x, y },'normal',undefined,provenance);
+            this.hurt(u, damage * factor * equipmentScale, owner, p?.directId === u.id, p, { x, y },'normal',undefined,provenance);
             if (!u.dead && damage > 15)
-                this.impulse(u, Math.sign(u.x - x || 1) * (1 - d / (radius + u.r)) * 95, -45);
+                this.impulse(u, Math.sign(u.x - x || 1) * (1 - d / (radius + u.r)) * 95, -45,p||provenance);
         }
         for (const t of [...this.b.terrain]) {
             if (t.broken || t.hp >= 9999)
@@ -1131,6 +1140,7 @@ export class Engine {
         const duration=Math.max(1,Math.ceil(((kind==='weak'?WEAK_TURNS[clamp(rank,1,8)-1]:kind==='betray'?BETRAY_TURNS[clamp(rank,1,8)-1]:kind==='dot'?5:kind==='chain'?3:2)+bonus)*(trap?.45:1))),strength=trap?.5:1;
         target.curseOwner=owner.id;
         const provenance=target as any;if((kind==='weak'||kind==='bind')&&!(target.curseAttack||0))provenance.honroWeakOwner=owner.id;if(kind==='weak'&&!(target.curseArmor||0))provenance.honroArmorOwner=owner.id;if((kind==='dot'||kind==='chain')&&damage>=(target.curseDamage||0)){target.curseDamageOrigin={attackSide:this.attackSide(owner.id,attack),damageRoll:attack?.damageRoll};provenance.honroDotOwner=owner.id;provenance.honroDotSkill=attack?.skill;provenance.honroDotReport=attack?.honroReportSource||(globalThis as any).HonroClearReport?.origin(this.b,owner.id,attack?.skill);}
+        if(kind==='weak'&&attack?.skill==='O06'&&gearHas(attack,'so_weak')&&gearBody(attack))gearState(target).weak={owner:owner.id,expires:this.b.round+duration-1,spread:false,used:false};
         if(kind==='weak'){target.curseTurns=Math.max(target.curseTurns||0,duration);target.curseAttack=Math.max(target.curseAttack||0,(attack?.skill==='O06'?equipmentParam(owner,'so_weak','weakAttackReduction',.12):.12)*strength);target.curseArmor=Math.max(target.curseArmor||0,.13*strength);}
         if(kind==='betray'){target.curseTurns=Math.max(target.curseTurns||0,duration);target.betrayalUntil=Math.max(target.betrayalUntil||0,this.b.round+duration-1);}
         if(kind==='dot'||kind==='chain'){if(damage>=(target.curseDamage||0))target.curseAutonomous=this.autonomousAttack(owner.id,attack);target.curseTurns=Math.max(target.curseTurns||0,duration);target.curseDamage=Math.max(target.curseDamage||0,Math.round(damage));}
@@ -1336,7 +1346,7 @@ export class Engine {
         }
         if(p.mode==='curseEnthrall'){if(h?.unit)this.captureEnemy(h.unit,owner,p.skillRank||1,!!p.soulBoost,p.skill,p);this.remove(p);return true;}
         if(p.mode==='curseEarth'){
-            for(const t of this.b.units)if(!t.dead&&this.attackAllows(t,p.owner,p)&&Math.hypot(t.x-p.x,t.y-t.h*.5-p.y)<p.blast+t.r){if(t.side===1){(t as any).honroEarthSkill=p.skill;(t as any).honroEarthReport=p.honroReportSource;t.earthbind={attackSide:p.attackSide,damageRoll:p.damageRoll,owner:owner.id,until:this.b.round+2+Math.floor(((p.skillRank||1)-1)*4/7)+(p.soulBoost?1:0),damage:p.damage*.32,autonomous:this.autonomousAttack(p.owner,p)};t.curseOwner=owner.id;}this.hurt(t,p.damage,p.owner,false,p,p);}
+            for(const t of this.b.units)if(!t.dead&&this.attackAllows(t,p.owner,p)&&Math.hypot(t.x-p.x,t.y-t.h*.5-p.y)<p.blast+t.r){if(t.side===1){(t as any).honroEarthSkill=p.skill;(t as any).honroEarthReport=p.honroReportSource;t.earthbind={equipmentPull:gearHas(p,'so_converge')&&gearBody(p)?{x:t.x,y:t.y,used:false}:undefined,attackSide:p.attackSide,damageRoll:p.damageRoll,owner:owner.id,until:this.b.round+2+Math.floor(((p.skillRank||1)-1)*4/7)+(p.soulBoost?1:0),damage:p.damage*.32,autonomous:this.autonomousAttack(p.owner,p)};t.curseOwner=owner.id;}this.hurt(t,p.damage,p.owner,false,p,p);}
             this.fx('ring',p.x,p.y,'#b9ae91',p.blast);this.remove(p);return true;
         }
         if(p.mode==='curseDot'||p.mode==='curseChain'){
@@ -1358,6 +1368,11 @@ export class Engine {
             this.remove(p);
             return;
         }
+        if(h.unit&&gearBody(p)&&equipmentActor(u)&&equipmentActor(h.unit)&&h.unit.id!==u.id&&this.allegiance(h.unit)===this.allegiance(u)){
+            if(gearHas(p,'co_friendly')&&!p.equipment!.passedAlly){p.equipment!.passedAlly=h.unit.id;p.hit.push(h.unit.id);const n=Math.hypot(p.vx,p.vy)||1;p.x+=p.vx/n*2;p.y+=p.vy/n*2;return;}
+            if(gearAlly(this,h.unit,u,p)){this.remove(p);return;}
+        }
+        if(gearReturn(this,p,h))return;
         if(redesignImpact(this,p,h))return;
         if((CURSES.has(p.mode)||SUMMONS.has(p.mode))&&this.occultImpact(p,h))return;
         if(p.mode==='spiritConverge'){convergeAt(this,p);return;}
@@ -1546,9 +1561,9 @@ export class Engine {
                 this.hurt(target, p.damage, p.owner, true, p, h);
                 p.hit.push(target.id);
                 if (p.mode === 'push' || p.mode === 'shieldthrow')
-                    this.impulse(target, Math.sign(p.vx) * (p.mode === 'push' ? 280 : 140), -130);
+                    this.impulse(target, Math.sign(p.vx) * (p.mode === 'push' ? 280 : 140), -130,p);
                 if (p.mode === 'pull')
-                    this.impulse(target, Math.sign(u.x - target.x) * 250, -95);
+                    this.impulse(target, Math.sign(u.x - target.x) * 250, -95,p);
                 if (p.mode === 'bind')
                     {keeperBindingReplaced(target);target.bound = Math.max(target.bound, 1);}
                 if (p.mode === 'break') {
@@ -1644,6 +1659,7 @@ export class Engine {
             return;
         }
         if((p.echoDelay||0)>0){p.echoDelay=Math.max(0,p.echoDelay!-dt);if(!p.echoDelay){this.fx('spark',p.x,p.y,'#c5c9b8',20);if(!this.skillSound('launch',p.owner,p.skill,p.shot,undefined,true))this.emit('sound',{name:'spiritCast'});}return;}
+        if(gearTravelSpent(p)){this.remove(p);return;}
         p.age += dt;if(p.flightAge!==undefined)p.flightAge+=dt;
         if(p.wraithVersion!==1&&flightRangeSpent(p)&&endPlayerFlight(this,p))return;
         if(p.mode==='convergeSpirit'){stepConvergingSpirit(this,p,dt);return;}
@@ -1853,6 +1869,7 @@ export class Engine {
     } if(u.platformDrop?.phase==='fall'){u.platformDrop.phase='land';u.platformDrop.elapsed=0;u.platformDrop.contacts=[];} u.jumping = false; u.vy = 0; }
     stepUnits(dt: number) {
         for (const u of this.b.units) {
+            const gearBefore={x:u.x,y:u.y};if(gearStepMove(this,u,dt))continue;
             // A removed/captured/disabled actor must not leave the team waiting on a stale pull.
             if(u.aiMove?.lureStakeId!==undefined&&(u.dead||u.eaterCapturedBy||u.carriedBy!==undefined||!lureStakeFor(this,u))){delete u.aiMove;delete u.moveTarget;u.moving=0;}
             if(u.eaterCapturedBy)continue;
@@ -1887,7 +1904,7 @@ export class Engine {
                 if (this.counter % 12 === 0)
                     this.campCheck();
             }
-            this.integrateBody(u,dt);
+            this.integrateBody(u,dt);gearEarthMove(this,u,gearBefore);gearLandingRetreat(this,u);
 
         }
     }
@@ -1974,7 +1991,7 @@ export class Engine {
             let nx = clamp(ox + u.vx * dt, -100, this.b.width + 100), ny = oy + u.vy * dt;
             const bodyHit=this.sweepBody(u,{x:ox,y:oy},{x:nx,y:ny});
             if(bodyHit&&bodyHit.n.y>=-.01){
-                this.contactDamage(u,u.vx,u.vy,bodyHit.n,'wall',silent);
+                this.contactDamage(u,u.vx,u.vy,bodyHit.n,'wall',silent);if(!silent)gearWallContact(this,u,bodyHit.n);
                 nx=bodyHit.x+bodyHit.n.x*.05;ny=bodyHit.y+bodyHit.n.y*.05;
                 if(Math.abs(bodyHit.n.x)>.65)u.vx=0;
                 if(bodyHit.n.y>.3)u.vy=0;
@@ -2024,11 +2041,11 @@ export class Engine {
                 {if(silent)return false;this.recover(u);}
             return true;
     }
-    settleBusy() { return this.b.units.some(u => !u.dead && !u.eaterCapturedBy && !u.fixed && (u.airborne || u.jumping || u.platformDrop?.phase==='prepare' || Math.abs(u.vx) > 3 || Math.abs(u.vy) > 3)); }
+    settleBusy() { return this.b.units.some(u => !u.dead && !u.eaterCapturedBy && !u.fixed && (u.equipmentState?.motion || u.airborne || u.jumping || u.platformDrop?.phase==='prepare' || Math.abs(u.vx) > 3 || Math.abs(u.vy) > 3)); }
     applyZones(u: Unit) { for (const w of this.b.waters)
         if (w.kind === 'lava' && u.x > w.x && u.x < w.x + w.w && u.y >= w.y - 9 && u.y < w.y + w.depth + 20)
             this.hurt(u, Math.round(u.maxHp * .10), ''); for (const z of this.b.zones) {
-        if (!this.attackAllows(u,z.owner,z) || z.kind !== 'fire' && z.kind !== 'frost')
+        if (z.equipmentFrost || !this.attackAllows(u,z.owner,z) || z.kind !== 'fire' && z.kind !== 'frost')
             continue;
         if (Math.hypot(u.x - z.x, u.y - z.y) < z.radius + 15) {
             this.hurt(u,z.damage,z.owner,false,undefined,undefined,'normal',undefined,z);
@@ -2197,9 +2214,9 @@ export class Engine {
                 this.fx('text', u.x, u.y - u.h - 18, '#eed59b', 15, '기절 · 행동 불가');
             }
             delete u.moveTarget;delete u.aiMove;
-            u.moveLeft = u.bound > 0 ? u.maxMove * .45 : u.maxMove;
+            u.moveLeft = u.bound > 0 ? u.maxMove * .45 : u.maxMove;gearTurn(u);
             if (u.side !== 2)
-                u.focus = clamp(u.focus + u.regen, 0, u.maxFocus);
+                u.focus = clamp(u.focus + gearRegen(u,u.regen), 0, u.maxFocus);
         }
         if(b.mode==='practice'&&b.practiceCombat){b.cast=undefined;for(const u of b.units.filter(u=>u.side===0&&!u.summoned&&!u.dead)){u.focus=u.maxFocus;u.cooldowns={};delete u.retreat;}}
         b.zones = b.zones.filter(z => z.expires >= b.round);

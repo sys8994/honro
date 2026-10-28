@@ -522,7 +522,7 @@
             u.angle = 180 - clamp(this.displayAngle(u) + v, C.AIM_MIN || -85, 90); }
         canInput() { return !G.HonroAct3Void?.blocked(this) && !G.HonroBellAnomaly?.blocked(this) && this.engine && this.engine.canAct() && !this.modal.classList.contains('open') && !this.dialogue && !G.HonroStory.turnPaused(this) && !this.done; }
         beginCharge() { if(this.engine?.noncombatWalk())return false; if(this.charging||this.engine?.active?.retreat)return false; if(!this.modal.classList.contains('open')&&!this.dialogue&&(this.engine?.detonateIceGourd()||this.engine?.manualDive()||this.engine?.turnArrow(this.scene?.turnTarget))){this.updateHUD(true);return false;} if (!this.canInput() || !this.engine.grounded(this.engine.active))
-            return false; let u = this.engine.active, sk = S[this.selected]; if (!sk || sk.passive || !this.engine.skillAllowed(sk,u) || u.focus < this.engine.manaCost(sk, u,0) || this.engine.cooldownLeft(u, sk.id) > 0)
+            return false; let u = this.engine.active, sk = S[this.selected]; if (!sk || sk.passive || !this.engine.skillAllowed(sk,u) || !this.engine.canAfford(sk,u,0) || this.engine.cooldownLeft(u, sk.id) > 0)
             return false; this.charging = true; this.chargeAt = performance.now(); this.power = 0;this.audio?.skills?.startCharge(u,this.selected); return true; }
         chargePower(now=performance.now()) { return this.engine.chargePower(this.engine.active,S[this.selected],Math.max(0,now-this.chargeAt)/1000); }
         playbackSpeed() { return clamp(Number(this.engine.b.side===1?this.profile.settings.speed:this.profile.settings.playerSpeed)||1,1,4); }
@@ -670,14 +670,14 @@
         updateSkillButtons(u,ids){
             const root=$('combat-skills'),e=this.engine,unused=new Set(root.children);
             ids=Array.from({length:4},(_,i)=>ids[i]);
-            const states=ids.map(id=>{const s=S[id];return s?[id,s.name,s.color,e.cooldownLeft(u,id),e.manaCost(s,u),e.skillAllowed(s,u),u.focus<e.manaCost(s,u),id===this.selected]:[id];});
+            const states=ids.map(id=>{const s=S[id];return s?[id,s.name,s.color,e.cooldownLeft(u,id),e.manaCost(s,u),e.skillAllowed(s,u),!e.canAfford(s,u),id===this.selected]:[id];});
             const signature=JSON.stringify(states);if(root._skillSignature===signature&&root.children.length===4)return;root._skillSignature=signature;
             ids.forEach((id,i)=>{const s=S[id],key=s?.id||'empty-'+i;let button=[...root.children].find(n=>n.dataset.skillKey===key);
                 if(!button){button=document.createElement('button');button.dataset.skillKey=key;button.className='skill-button';if(s)button.innerHTML='<span class="key"></span><span class="mana-cost"></span>'+this.sig(id)+'<span class="skill-name"></span>';else button.textContent='—';}
                 unused.delete(button);if(root.children[i]!==button)root.insertBefore(button,root.children[i]||null);
                 if(!s){button.className='skill-button empty';button.disabled=true;return;}
                 const r=e.cooldownLeft(u,id),selected=id===this.selected,allowed=e.skillAllowed(s,u);
-                button.classList.toggle('selected',selected);button.classList.toggle('unaffordable',!!(u.focus<e.manaCost(s,u)||r));
+                button.classList.toggle('selected',selected);button.classList.toggle('unaffordable',!!(!e.canAfford(s,u)||r));
                 const attr=(name,value)=>{if(button.getAttribute(name)!==value)button.setAttribute(name,value);};
                 attr('data-action','combat-skill');attr('data-skill',id);attr('aria-label',s.name);attr('aria-pressed',String(selected));
                 if(button.disabled===allowed)button.disabled=!allowed;if(!allowed)attr('title','파진연격 · 검술만 가능');else if(button.hasAttribute('title'))button.removeAttribute('title');
@@ -712,7 +712,7 @@
             const wind=Math.max(-30,Math.min(30,b.wind)),fraction=Math.abs(wind)/30*50;
             setStyle($('wind-left'),'width',(wind<0?fraction:0)+'%');setStyle($('wind-right'),'width',(wind>0?fraction:0)+'%');setText($('wind-value'),`바람 ${Math.abs(Math.round(b.wind))}`);$('joystick').querySelector('.wind-gauge').setAttribute('aria-valuenow',String(b.wind));
             const steering=e.iceGourdReady()||b.phase==='flight'&&b.projectiles.some(p=>p.skill==='A09'&&!p.turned&&!p.followup||p.owner===u.id&&p.mode==='warriorDive'&&!p.dived);
-            $('fire').disabled=!steering&&(u.retreat||!e.skillAllowed(sk,u)||!this.canInput()||!e.grounded(e.active)||u.focus<e.manaCost(sk,u,0)||cd>0);setStyle($('fire'),'--power',Math.round(this.power*100)+'%');$('fire').classList.toggle('charging',this.charging);
+            $('fire').disabled=!steering&&(u.retreat||!e.skillAllowed(sk,u)||!this.canInput()||!e.grounded(e.active)||!e.canAfford(sk,u,0)||cd>0);setStyle($('fire'),'--power',Math.round(this.power*100)+'%');$('fire').classList.toggle('charging',this.charging);
             this.updateChargeDisplay();
             $('jump').disabled=u.meleeFollow==='ready'||!this.canInput()||!e.grounded(e.active)||e.active.moveLeft<e.jumpCost(e.active);$('joystick').style.opacity=this.canInput()?1:.4;const defend=document.querySelector('[data-action=defend]');if(defend)defend.disabled=!this.canInput()||!!u.platformDrop&&u.platformDrop.phase!=='land';const drop=$('drop');if(drop)drop.disabled=!this.canInput()||!e.canDrop(u);
             if(e.noncombatWalk()){setText($('move-left'),'이동');const mode=$('joystick').querySelector('.stick-mode');if(mode)setText(mode,'MOVE');$('joystick').setAttribute('aria-label','이동');}

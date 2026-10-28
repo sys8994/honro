@@ -1,4 +1,4 @@
-import type {DamageOrigin,DamageSequence} from './damageVariance';
+import type {DamageOrigin,DamageSequence,EquipmentUnitState} from './damageVariance';
 import type {PhysicsEnvironment,PhysicsPatch,PhysicsCue} from './physics';
 export type ClassId = 'mage' | 'archer' | 'knight' | 'occultist';
 export type Side = 0 | 1 | 2;
@@ -137,6 +137,7 @@ export interface AIMovePlan {
     intent:string;
 }
 export interface Unit {
+    equipmentState?:EquipmentUnitState;
     equipmentIds?: string[];
     summonDamageOrigin?: DamageOrigin;
     curseDamageOrigin?: DamageOrigin;
@@ -202,7 +203,7 @@ export interface Unit {
     soulDefenseBonus?: number;
     soulBonusUntil?: number;
     enthrall?: DamageOrigin & {owner:string;actions:number;captureRatio:number;originalMaxHp:number;originalAttack:number;originalArmor:number;power:number};
-    earthbind?: DamageOrigin & {autonomous?:boolean;owner:string;until:number;damage:number};
+    earthbind?: DamageOrigin & {autonomous?:boolean;owner:string;until:number;damage:number;equipmentPull?:{x:number;y:number;used:boolean}};
     nextSummonDiscount?: number;
     soulRemnants?: number;
     impactCooldown?: number;
@@ -384,6 +385,7 @@ export interface Projectile extends DamageOrigin {
     ultimateBurst?: boolean;
 }
 export interface Zone extends DamageOrigin {
+    equipmentFrost?:boolean;
     honroReportSource?: CombatReportSource;
     /** Original cast identity for reporting; absent in legacy zones. */
     skill?: string;

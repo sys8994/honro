@@ -1,3 +1,4 @@
+import {gearHas,gearState} from './equipmentCombat';
 import {initializeReturningWraith} from './returningWraith';
 import {passiveTuning} from './passiveBalance';
 import type {Engine} from './engine';
@@ -21,7 +22,7 @@ export function echoAim(e:Engine,origin:Unit,s:Skill,point:Vec,preferredPower:nu
  return {angle:clamp(angle,-85,265),power:clamp(preferredPower,.08,1)};
 }
 
-export function beginOccultCast(e:Engine,u:Unit,s:Skill,roots:Projectile[]){
+export function beginOccultCast(e:Engine,u:Unit,s:Skill,roots:Projectile[],paid=0){
  if(u.side!==0||u.summoned||!s.id.startsWith('O')||s.enemyOnly)return;
  const soul=SOUL_SKILLS.has(s.id),summon=SUMMON_SKILLS.has(s.id);
  const empowered=(u.soulRemnants||0)>=3;
@@ -33,9 +34,11 @@ export function beginOccultCast(e:Engine,u:Unit,s:Skill,roots:Projectile[]){
  const point={x:prediction.x,y:prediction.y};
  for(const p of roots){p.targetPoint={...point};if(prediction.unit)p.targetId=prediction.unit;}
  const echoes=e.b.units.filter(v=>!v.dead&&v.summonKind==='echo'&&v.summonOwner===u.id&&(v.summonExpires??0)>=e.b.round);
+ const extra=paid>0&&gearHas(roots[0],'so_echo')?echoes.find(v=>!v.equipmentState?.echoUsed&&(v.summonExpires!-e.b.round+1)>=2):undefined;
+ if(extra){gearState(extra).echoUsed=true;extra.summonExpires!--;}
  for(const [i,echo] of echoes.entries()){
   const rank=clamp(echo.summonRank||1,1,8),aim=echoAim(e,echo,s,point,u.lastPower),o=e.origin(echo,aim.angle),v=e.velocity(echo,s,aim.angle,aim.power);
-  for(const root of roots){const copy:Projectile={...root,id:e.b.nextId++,x:o.x,y:o.y,vx:v.vx,vy:v.vy,prevVy:v.vy,launchX:o.x,launchY:o.y,returnX:echo.x,returnY:echo.y,damage:root.damage*ECHO_POWER[rank-1],age:0,hit:[...root.hit,echo.id],trail:[o],child:false,echoUsed:true,echoSource:echo.id,autonomous:true,echoDelay:.075*(i+1),targetPoint:{...point},targetId:prediction.unit,shot:root.shot};// An echo is an independent launch at its own position, not a flight extension.
+  for(let repeat=0;repeat<(echo===extra?2:1);repeat++)for(const root of roots){const copy:Projectile={...root,equipment:root.equipment?structuredClone(root.equipment):undefined,id:e.b.nextId++,x:o.x,y:o.y,vx:v.vx,vy:v.vy,prevVy:v.vy,launchX:o.x,launchY:o.y,returnX:echo.x,returnY:echo.y,damage:root.damage*ECHO_POWER[rank-1],age:0,hit:[...root.hit,echo.id],trail:[o],child:false,echoUsed:true,echoSource:echo.id,autonomous:true,echoDelay:Math.min(.3,.075*(i+1+repeat)),targetPoint:{...point},targetId:prediction.unit,shot:root.shot};// An echo is an independent launch at its own position, not a flight extension.
    if(root.flightRange){copy.flightRange={...root.flightRange,x:echo.x,y:echo.y-echo.h*.63};copy.flightAge=0;}
    if(s.id==='O05')initializeReturningWraith(copy);e.b.projectiles.push(copy);}
  }
