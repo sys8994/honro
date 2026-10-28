@@ -167,7 +167,7 @@ function validBattle(raw: unknown,legacyXp=false,oldXp=false): Battle {
             return fail();
     }
     if(b.damageSequence){const d=b.damageSequence;if(d.version!==1||!Number.isInteger(d.seed)||d.seed<0||d.seed>0xffffffff||!Number.isSafeInteger(d.index)||d.index<0)return fail();}
-    const validOrigin=(o:any)=>!o||(o.damageRoll===undefined||finite(o.damageRoll)&&o.damageRoll>=.78&&o.damageRoll<=1.28)&&(o.attackSide===undefined||[0,1,2].includes(o.attackSide))&&(o.friendlyFireApplied===undefined||typeof o.friendlyFireApplied==='boolean');
+    const validOrigin=(o:any)=>!o||(o.damageRoll===undefined||finite(o.damageRoll)&&o.damageRoll>=.78&&o.damageRoll<=1.35)&&(o.attackSide===undefined||[0,1,2].includes(o.attackSide))&&(o.friendlyFireApplied===undefined||typeof o.friendlyFireApplied==='boolean');
     const origins=[...b.projectiles,...b.zones,...(b.stakes||[]),...(b.occultTraps||[]),...(b.volley?[b.volley.template]:[]),...b.units.flatMap(u=>[u.meleeFollowOrigin,u.meleeAction,u.beastAction,u.martialGuard,u.shove,u.enthrall,u.earthbind,u.curseDamageOrigin,u.summonDamageOrigin])];
     if(!origins.every(validOrigin))return fail();
     if(b.skillRevision!==undefined&&b.skillRevision!==SKILL_REVISION)return fail();

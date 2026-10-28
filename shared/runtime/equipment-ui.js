@@ -4,16 +4,8 @@ const pending=p=>Object.entries(p.equipment.rewardLedger).filter(([,r])=>r.state
 const name=cls=>H.hero[cls]?.name||'',item=id=>C.EQUIPMENT_MAP[id],pct=n=>Math.round(n*100),signed=n=>(n>0?'+':'')+Number(n.toFixed(2));
 function icon(id){const i=item(id);return `<img class="equipment-icon" src="${esc(G.HONRO_EQUIPMENT_ICONS?.[id]||i.iconPath)}" alt="" width="56" height="56">`;}
 const optionNames={hp:'체력',mp:'기력',attack:'공격',armor:'방어',move:'이동',regen:'기력 재생',crit:'치명 확률',critMult:'치명 배율',cost:'기력 소모'};
-function options(i){return i.basicOptions.map(o=>`<span>${esc(optionNames[o.key]||o.label)} <b>${o.key==='cost'?'−':'+'}${o.value}${esc(o.key==='regen'?'':o.unit)}</b></span>`).join('');}
-function effectBrief(i){const e=C.EQUIPMENT_EFFECT_MAP[i.effectId];if(!e)return '';const p=e.params,skill=e.targetSkills?.length===1?C.SKILLS[e.targetSkills[0]]?.name:'';
- const text={
- se_drop:()=>`${skill} 낙차 계수 +${p.dropCoefficientAdd.toFixed(2)}`,se_push:()=>`${skill} 밀어내기 +${pct(p.horizontalKnockbackScale-1)}%`,se_pierce:()=>`관통 후 피해 ${pct(p.pierceRetain)}% 유지`,se_recover:()=>`${skill} 체력 회복 +${pct(p.hpRecoveryScale-1)}%`,
- da_stake:()=>`${skill} 지속 +${p.lifetimeRoundsAdd}턴`,da_heal:()=>`${skill} 체력 회복 +${pct(p.hpHealScale-1)}%`,da_sky:()=>`${skill} 위력 +${pct(p.damageScale-1)}% · 범위 −${pct(1-p.radiusScale)}%`,da_arc:()=>`${skill} 두께 +${pct(p.geometryThicknessScale-1)}% · 위력 −${pct(1-p.damageScale)}%`,
- hw_jump_cost:()=>`도약 소모 이동력 −${p.jumpCostFlatReduction}`,hw_life:()=>`${skill} 체력 전환 피해 +${pct(p.lifeCostDamageScale-1)}%`,hw_guard:()=>`체력 ${pct(p.hpThreshold)}% 이하: 방어 +${pct(p.armorAdd)}%p`,hw_blade:()=>`공격 검기 소모 −${pct(p.manaDiscount)}% · 위력 −${pct(1-p.damageScale)}%`,
- so_echo:()=>`${skill} 지속 +${p.lifetimeRoundsAdd}턴`,so_weak:()=>`${skill} 공격 약화 ${pct(p.weakAttackReduction)}%`,so_basic:()=>`${skill} 범위 +${pct(p.radiusScale-1)}% · 위력 −${pct(1-p.damageScale)}%`,so_converge:()=>`${skill} 위력 +${pct(p.damageScale-1)}% · 소모 +${pct(p.manaSurcharge)}%`,
- co_jump:()=>`도약 높이 +${pct(p.jumpHeightScale-1)}%`,co_stable:()=>`피해 편차 절반`,co_wild:()=>`피해 ${pct(p.damageRollMin)}~${pct(p.damageRollMax)}% · 평균 +${pct(p.damageMean-1)}%`,co_costly:()=>`소모 ${p.nativeManaThreshold} 이상: 기력 −${pct(p.manaDiscount)}%`,co_cursed:()=>`저주·지박 대상 직접 피해 +${pct(p.conditionBonus)}%`,co_friendly:()=>`아군에게 주는 체력 피해 절반`,co_soul:()=>`형·기 ${pct(p.soulConversion)}%를 혼 피해로 전환`,co_low_mp:()=>`기력 ${pct(p.mpRatioThreshold)}% 이하: 소모 −${pct(p.manaDiscount)}%`,co_noncrit:()=>`비치명 피해 +${pct(p.noncriticalBonus)}% · 치명 배율 ${signed(p.criticalMultiplierAdd)}`,co_armor:()=>`일반 적 방어 ${pct(p.armorIgnoreFraction)}% 무시`
- };return text[i.effectId]?.()||e.summary;
-}
+function options(i){const base=i.basicOptions.map(o=>`<span>${esc(optionNames[o.key]||o.label)} <b>${o.key==='cost'?'−':'+'}${o.value}${esc(o.key==='regen'?'':o.unit)}</b></span>`).join(''),m=C.EQUIPMENT_SKILL_OPTIONS[i.itemId];return base+(m?`<span class="equipment-skill-option">${esc(m.skills.map(id=>C.SKILLS[id]?.name||id).join('·'))} <b>${m.damage?'피해 +'+pct(m.damage)+'%':'기력 −'+pct(m.cost)+'%'}</b></span>`:'');}
+function effectBrief(i){const e=C.EQUIPMENT_EFFECT_MAP[i.effectId];return e?e.benefit+' '+e.limit:'';}
 function compatible(p,cls){return p.equipment.ownedItemIds.filter(id=>!item(id).characterClass||item(id).characterClass===cls);}
 function selected(app){const id=app.equipmentSelected;return id&&compatible(app.profile,app.cls).includes(id)?id:null;}
 function lockedReason(app){if(E.canEquip(app))return '';if(G.HonroSplitCampaign?.locked(app.profile))return '동행이 합류한 휴식터에서 교환할 수 있습니다.';const b=app.engine?.b||app.profile.honroBattle;if(b&&!['won','lost'].includes(b.phase))return '전투를 마친 뒤 교환할 수 있습니다.';return '휴식터에서 장착할 수 있습니다.';}

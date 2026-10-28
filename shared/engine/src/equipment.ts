@@ -1,3 +1,5 @@
+import {EQUIPMENT_SKILL_OPTIONS} from './equipmentSkillOptions';
+export {EQUIPMENT_SKILL_OPTIONS};
 import type {ClassId,Unit,Skill,Projectile,ExistenceVector} from './types';
 import {EQUIPMENT_ITEMS,EQUIPMENT_EFFECTS,EQUIPMENT_EVENTS,EQUIPMENT_CHOICES,EQUIPMENT_DEFINITION_REVISION} from './equipmentData';
 export {EQUIPMENT_ITEMS,EQUIPMENT_EFFECTS,EQUIPMENT_EVENTS,EQUIPMENT_CHOICES,EQUIPMENT_DEFINITION_REVISION};
@@ -26,20 +28,13 @@ export function equipmentStats<T extends {hp:number;mp:number;attack:number;move
  const b=equipmentOptions(ids,cls);
  return {...base,hp:Math.round(base.hp*(1+(b.hp||0)/100)),mp:Math.round(base.mp*(1+(b.mp||0)/100)),attack:base.attack*(1+(b.attack||0)/100),move:Math.round(base.move*(1+(b.move||0)/100)),armor:Math.min(.7,base.armor+(b.armor||0)/100),critChance:Math.min(.75,base.critChance+(b.crit||0)/100),critMultiplier:Math.min(3.5,base.critMultiplier+(b.critMult||0)),regen:base.regen+(b.regen||0)};
 }
+export function equipmentSkillModifier(u:Unit,id:string){let damage=0,cost=0;if(equipmentActor(u))for(const key of u.equipmentIds||[]){const m=EQUIPMENT_SKILL_OPTIONS[key];if(m?.skills.includes(id)){damage+=m.damage;cost+=m.cost;}}return{damage,cost};}
 export function equipmentManaCost(u:Unit,s:Pick<Skill,'id'>,native:number){
  if(!native||!equipmentActor(u))return native;
- let discount=(equipmentOptions(u.equipmentIds,u.cls).cost||0)/100,surcharge=0;
- if(EQUIPMENT_EFFECT_MAP.hw_blade.targetSkills.includes(s.id))discount+=equipmentParam(u,'hw_blade','manaDiscount',0);
- if(native>=40)discount+=equipmentParam(u,'co_costly','manaDiscount',0);
- if(u.maxFocus>0&&u.focus/u.maxFocus<=.25)discount+=equipmentParam(u,'co_low_mp','manaDiscount',0);
- if(s.id==='O16')surcharge=equipmentParam(u,'so_converge','manaSurcharge',0);
- return native*(1-Math.min(.30,Math.max(0,discount)))*(1+surcharge);
+ const discount=(equipmentOptions(u.equipmentIds,u.cls).cost||0)/100+equipmentSkillModifier(u,s.id).cost;
+ return native*(1-Math.min(.30,Math.max(0,discount)));
 }
-export function equipmentCast(u:Unit,id:string){
- let damage=1,radius=1;
- if(equipmentActor(u))for(const key of ['da_sky','da_arc','hw_blade','so_basic','so_converge']){const effect=equipmentEffect(u,key);if(!effect?.targetSkills.includes(id))continue;const p=effect.params as unknown as Record<string,number>;damage*=p.damageScale||1;radius*=p.radiusScale||1;}
- return {damage,radius};
-}
+export function equipmentCast(u:Unit,id:string){return{damage:1+equipmentSkillModifier(u,id).damage,radius:1};}
 /** A concrete cast descriptor is required. DOT/zone/shove receipts are not casts.
  * Aimed twin-crescent roots use child for their legacy cap, not automation. */
 export function equipmentPrimary(u:Unit|undefined,origin:Partial<Projectile>|undefined,source='normal'){
@@ -52,6 +47,6 @@ export function equipmentSoulVector(u:Unit,attack:ExistenceVector):ExistenceVect
 }
 export function equipmentDamageRoll(u:Unit|undefined,spread:number,sample:number){
  if(!u||!equipmentActor(u)||!spread)return 1+sample*spread;
- if(equipmentEffect(u,'co_wild'))return 1.03+sample*.25;
+ if(equipmentEffect(u,'co_wild'))return 1.10+sample*.25;
  return 1+sample*spread*(equipmentEffect(u,'co_stable')?.5:1);
 }
