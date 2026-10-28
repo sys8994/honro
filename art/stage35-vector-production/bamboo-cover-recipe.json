@@ -1,0 +1,10 @@
+{
+  "concept": "bamboo-cover-concept.png",
+  "inkscapeSource": "bamboo-cover-source.svg",
+  "purePaths": "bamboo-cover-raw.svg",
+  "trace": {"method": "Inkscape native GUI Multicolor Colors", "scans": 8, "stack": true, "removeBackground": true, "simplification": "none"},
+  "conversion": "python tools/vector-production/import-svg.py art/stage35-vector-production/bamboo-cover-raw.svg --config art/stage35-vector-production/bamboo-cover-config.json --output art/stage35-vector-production/bamboo-cover-asset.json",
+  "runtimeNodes": 10,
+  "collisionContract": "Assembly copies exact original a4:thick-bamboo collision, keeps a4-35-thick-bamboo-11 and -12 instance IDs and their scale and position. Source art does not define collision.",
+  "review": "Pure source paths and runtime first-contact pixels inspected; final full stage approval remains pending. Separate common physical bamboo prop, not a terrain body trace."
+}
