@@ -20,10 +20,14 @@ for(const n of [35]){
  const profile=g.HONRO_CORE.defaults();profile.recruited=['archer','mage','knight','occultist'];g.HonroEquipment.fresh(profile);
  const b=g.HonroMaps.createBattle(st,g.HONRO_PROJECT,profile);
  if(n===35){b.honroPreviewFar={key:'act4Dawn',...(b.honroPreviewFar||{})};g.HonroAct4ReviewArt.palettes[35]=st.design.act4.palette;}
+ if(process.argv[4]){const state=JSON.parse(await readFile(process.argv[4],'utf8'));b.units=state.units;b.phase=state.phase;b.active=state.active;b.round=state.round;b.honroAct4PreviewState=state.objective;}
  const e=new g.HONRO_CORE.Engine(b,()=>{},true);
  const defaults=[{name:'whole',x:st.width/2,y:n===30?5100:1900,scale:1500/st.width,w:1600,h:850},
  {name:'first-contact',x:3200,y:n===30?5200:1900,scale:.53,w:1400,h:900},
- {name:'right-edge-mobile',x:st.width-550,y:n===30?5200:1900,scale:720/6800,w:720,h:1100}];
+ {name:'right-edge-mobile',x:st.width-550,y:1900,scale:.53,w:720,h:1100},
+ {name:'left-contact',x:900,y:1900,scale:.53,w:1400,h:900},
+ {name:'central-max',x:3200,y:1980,scale:1.1,w:1400,h:900},
+ {name:'right-domain-wide',x:st.width-550,y:1900,scale:720/6800,w:720,h:1100}];
  const custom=g.HONRO_PROJECT.production?.cards?.[st.id]?.cameraViews;const views=custom?.length?custom.map(v=>({name:v.id,x:v.x,y:v.y,scale:v.scale,w:v.width,h:v.height})):defaults;
  for(const v of views){const cv=canvas(v.w,v.h),s=new g.HonroScene(cv);Object.assign(s,{x:v.x,y:v.y,scale:v.scale,manual:true,time:2,editorView:true,skillPreview:true});
   s.render(e,0,'',.6,false,0);for(let tries=0;tries<60&&!g.HonroAuthoredFarArt.ready(n,b.honroPreviewFar);tries++)await new Promise(r=>setTimeout(r,50));s.render(e,0,'',.6,false,0);
@@ -36,4 +40,4 @@ for(const n of [35]){
  }
 }
 await writeFile(`${out}/manifest.json`,JSON.stringify(records,null,2));
-await writeFile(`${out}/index.html`,`<!doctype html><meta charset="utf-8"><title>기존 지형과 31장 대조</title><style>body{background:#122126;color:#eee;font:16px sans-serif}img{max-width:100%}section{margin:30px auto;max-width:1600px}summary{cursor:pointer}</style><h1>동일 공통 렌더러: 기존 3·30장 / 현재 31장</h1><p>노란 선은 실제 충돌면입니다. 이 화면은 자동 합격 판정이 아닙니다.</p>${records.map(r=>`<section><h2>${r.stage} · ${r.view.name}</h2><img src="${r.file}"><details><summary>충돌면과 적 위치</summary><img src="${r.stage}-${r.view.name}-collision.png"></details></section>`).join('')}`);
+await writeFile(`${out}/index.html`,`<!doctype html><meta charset="utf-8"><title>대숲의 옛길 실제 렌더 검수</title><style>body{background:#122126;color:#eee;font:16px sans-serif}img{max-width:100%}section{margin:30px auto;max-width:1600px}summary{cursor:pointer}</style><h1>Stage35: 동일 공통 렌더러 검수</h1><p>노란 선은 실제 충돌면입니다. 이 화면은 자동 합격 판정이 아닙니다.</p>${records.map(r=>`<section><h2>${r.stage} · ${r.view.name}</h2><img src="${r.file}"><details><summary>충돌면과 적 위치</summary><img src="${r.stage}-${r.view.name}-collision.png"></details></section>`).join('')}`);

@@ -1,12 +1,26 @@
 {
- "semanticLayer":"BODY only; bamboo, physical cover, rear bank and foreground remain separate assets",
- "skeleton":"ground-continuous-skeleton.png",
- "concept":"ground-continuous-concept.png",
- "source":"ground-continuous-source.svg",
- "raw":"ground-continuous-raw.svg",
- "clean":"ground-continuous-clean.svg",
- "trace":{"application":"Inkscape native GUI","method":"Multicolor Colors","scans":12,"smooth":false,"stack":true,"removeBackground":true,"speckles":25,"optimization":0.2},
- "cleanup":{"operation":"Inkscape select-by-id:path3;delete","reason":"Deep field near-identical color quantization noise; path3 #344652 over path4 #354852 produced 1,556,509 path characters and 1147 contours for <=3 RGB channel difference. Removing this layer is an intentional art simplification, not a lossless conversion claim. Upper silhouette and all remaining paths preserved.","bottomMeasurement":"All 198900 pixels in bottom 100 rows of clean export exactly RGB53,72,82 (#354852)."},
- "status":"Pure source layers inspected. Runtime optimization, world placement and production visual acceptance pending.",
- "rejectedAlternative":"Three separately generated BODY pieces produced large mismatched facets and rectangular joins. Preserve west-assembly screenshot as failure evidence."
+  "semanticLayer": "BODY only; bamboo, physical cover, rear bank and foreground remain separate assets",
+  "skeleton": "ground-continuous-skeleton.png",
+  "concept": "ground-continuous-concept.png",
+  "source": "ground-continuous-source.svg",
+  "raw": "ground-continuous-raw.svg",
+  "clean": "ground-continuous-clean.svg",
+  "trace": {
+    "application": "Inkscape native GUI",
+    "method": "Multicolor Colors",
+    "scans": 12,
+    "smooth": false,
+    "stack": true,
+    "removeBackground": true,
+    "speckles": 25,
+    "optimization": 0.2
+  },
+  "cleanup": {
+    "operation": "Inkscape select-by-id:path3;delete",
+    "reason": "Deep field near-identical color quantization noise; path3 #344652 over path4 #354852 produced 1,556,509 path characters and 1147 contours for <=3 RGB channel difference. Removing this layer is an intentional art simplification, not a lossless conversion claim. Upper silhouette and all remaining paths preserved.",
+    "bottomMeasurement": "All 198900 pixels in bottom 100 rows of clean export exactly RGB53,72,82 (#354852)."
+  },
+  "status": "Runtime final14node source in ground-continuous-final.svg; actual scene approval pending parent.",
+  "rejectedAlternative": "Three separately generated BODY pieces produced large mismatched facets and rectangular joins. Preserve west-assembly screenshot as failure evidence.",
+  "optimization": "Independent Inkscape .0002 on path7,path6,path5,path4,path2 from clean; first3planes unchanged. Path5 only .01 absolute control grid, <=.0277max-display-pixel bound."
 }

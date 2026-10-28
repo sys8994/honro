@@ -1,0 +1,105 @@
+{
+  "stage": 35,
+  "status": "Verified production candidate; parent official merge/browser/Pages release pending",
+  "projectFingerprint": "159c1c77594f05beda2c1bc6b02ba6e3d278eb0a7bad4001932d6eb4511826de",
+  "runtimeSha256": "88c89ed282a68c15894cabc247d8caa96f566c9822f32385be0530208f7f5dda",
+  "packageSha256": "8a0cd244555a43d286a6ab6d1de79132426c24fec655d606df2284f76baa443b",
+  "gameplay": {
+    "ordinaryInputSuccess": true,
+    "frames": 30425,
+    "entryBuild": "campaign-balanced-v1",
+    "actualAppResume": [
+      {
+        "frame": 12584,
+        "inputIndex": 39,
+        "result": "pass",
+        "scope": "Actual stopBattle/persist/Continue; exact units, event state, round, active and phase preserved"
+      }
+    ],
+    "encounterDamageCounts": [
+      {
+        "id": "a4-35-0",
+        "damageEvents": 4
+      },
+      {
+        "id": "a4-35-1",
+        "damageEvents": 9
+      },
+      {
+        "id": "a4-35-2",
+        "damageEvents": 3
+      }
+    ]
+  },
+  "assets": [
+    {
+      "id": "a4-production:bamboo-clump",
+      "nodes": 14,
+      "paths": 10,
+      "maxPathChars": 59508,
+      "embeddedBitmap": false
+    },
+    {
+      "id": "a4-production:bamboo-mist",
+      "nodes": 14,
+      "paths": 10,
+      "maxPathChars": 59508,
+      "embeddedBitmap": false
+    },
+    {
+      "id": "a4-production:thick-bamboo-cover",
+      "nodes": 10,
+      "paths": 7,
+      "maxPathChars": 54937,
+      "embeddedBitmap": false
+    },
+    {
+      "id": "a4-production:broken-stone-wall",
+      "nodes": 10,
+      "paths": 7,
+      "maxPathChars": 59027,
+      "embeddedBitmap": false
+    },
+    {
+      "id": "a4-production:bamboo-foreground",
+      "nodes": 14,
+      "paths": 10,
+      "maxPathChars": 59508,
+      "embeddedBitmap": false
+    },
+    {
+      "id": "s35v:body-continuous-domain-left",
+      "nodes": 86,
+      "paths": 55,
+      "maxPathChars": 59331,
+      "embeddedBitmap": false
+    },
+    {
+      "id": "s35v:body-continuous-domain-right",
+      "nodes": 86,
+      "paths": 55,
+      "maxPathChars": 59331,
+      "embeddedBitmap": false
+    },
+    {
+      "id": "s35v:rear-continuous",
+      "nodes": 15,
+      "paths": 11,
+      "maxPathChars": 59331,
+      "embeddedBitmap": false
+    },
+    {
+      "id": "s35v:body-continuous",
+      "nodes": 17,
+      "paths": 11,
+      "maxPathChars": 59331,
+      "embeddedBitmap": false
+    }
+  ],
+  "imageDirectories": [
+    "release-with-fore",
+    "release-without-fore",
+    "release-completed"
+  ],
+  "scope": "Native production shared renderer and actual App logic with DOM/audio doubles; not deviceFPS or browser release verification."
+}

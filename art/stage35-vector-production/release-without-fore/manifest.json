@@ -1,0 +1,110 @@
+[
+  {
+    "stage": 35,
+    "view": {
+      "name": "whole",
+      "x": 3600,
+      "y": 1900,
+      "scale": 0.20833333333333334,
+      "w": 1600,
+      "h": 850
+    },
+    "file": "35-whole.png",
+    "metrics": {
+      "medianMs": 14.000336000000061,
+      "p95Ms": 16.977773000000525,
+      "scope": "warm Native Canvas CPU timings, not browser or mobile hardware"
+    },
+    "scope": "Actual production Native Canvas, initial actors. Not browser play or quality approval."
+  },
+  {
+    "stage": 35,
+    "view": {
+      "name": "first-contact",
+      "x": 3200,
+      "y": 1900,
+      "scale": 0.53,
+      "w": 1400,
+      "h": 900
+    },
+    "file": "35-first-contact.png",
+    "metrics": {
+      "medianMs": 4.568076999999903,
+      "p95Ms": 8.17530699999952,
+      "scope": "warm Native Canvas CPU timings, not browser or mobile hardware"
+    },
+    "scope": "Actual production Native Canvas, initial actors. Not browser play or quality approval."
+  },
+  {
+    "stage": 35,
+    "view": {
+      "name": "right-edge-mobile",
+      "x": 6650,
+      "y": 1900,
+      "scale": 0.53,
+      "w": 720,
+      "h": 1100
+    },
+    "file": "35-right-edge-mobile.png",
+    "metrics": {
+      "medianMs": 1.8556659999994736,
+      "p95Ms": 2.0419999999994616,
+      "scope": "warm Native Canvas CPU timings, not browser or mobile hardware"
+    },
+    "scope": "Actual production Native Canvas, initial actors. Not browser play or quality approval."
+  },
+  {
+    "stage": 35,
+    "view": {
+      "name": "left-contact",
+      "x": 900,
+      "y": 1900,
+      "scale": 0.53,
+      "w": 1400,
+      "h": 900
+    },
+    "file": "35-left-contact.png",
+    "metrics": {
+      "medianMs": 7.1355899999998655,
+      "p95Ms": 8.558619000001272,
+      "scope": "warm Native Canvas CPU timings, not browser or mobile hardware"
+    },
+    "scope": "Actual production Native Canvas, initial actors. Not browser play or quality approval."
+  },
+  {
+    "stage": 35,
+    "view": {
+      "name": "central-max",
+      "x": 3200,
+      "y": 1980,
+      "scale": 1.1,
+      "w": 1400,
+      "h": 900
+    },
+    "file": "35-central-max.png",
+    "metrics": {
+      "medianMs": 4.355593999998746,
+      "p95Ms": 6.3794790000010835,
+      "scope": "warm Native Canvas CPU timings, not browser or mobile hardware"
+    },
+    "scope": "Actual production Native Canvas, initial actors. Not browser play or quality approval."
+  },
+  {
+    "stage": 35,
+    "view": {
+      "name": "right-domain-wide",
+      "x": 6650,
+      "y": 1900,
+      "scale": 0.10588235294117647,
+      "w": 720,
+      "h": 1100
+    },
+    "file": "35-right-domain-wide.png",
+    "metrics": {
+      "medianMs": 3.2758910000011383,
+      "p95Ms": 4.6408749999973224,
+      "scope": "warm Native Canvas CPU timings, not browser or mobile hardware"
+    },
+    "scope": "Actual production Native Canvas, initial actors. Not browser play or quality approval."
+  }
+]
