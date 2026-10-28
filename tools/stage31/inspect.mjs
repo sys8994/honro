@@ -19,13 +19,14 @@ for(const n of supplied?[31]:[3,30,31]){
  const st=g.HONRO_PROJECT.stages.find(s=>s.metadata.stageId===n);
  const profile=g.HONRO_CORE.defaults();profile.recruited=['archer','mage','knight','occultist'];g.HonroEquipment.fresh(profile);
  const b=g.HonroMaps.createBattle(st,g.HONRO_PROJECT,profile);
- if(n===31){b.honroPreviewFar={key:'act4Dawn'};g.HonroAct4ReviewArt.palettes[31]=st.design.act4.palette;}
+ if(n===31){b.honroPreviewFar={key:'act4Dawn',...(b.honroPreviewFar||{})};g.HonroAct4ReviewArt.palettes[31]=st.design.act4.palette;}
  const e=new g.HONRO_CORE.Engine(b,()=>{},true);
- const views=[{name:'whole',x:st.width/2,y:n===30?5100:1900,scale:1500/st.width,w:1600,h:850},
+ const defaults=[{name:'whole',x:st.width/2,y:n===30?5100:1900,scale:1500/st.width,w:1600,h:850},
  {name:'first-contact',x:n===30?2900:n===3?2400:1750,y:n===30?5200:1900,scale:.53,w:1400,h:900},
  {name:'right-edge-mobile',x:st.width-550,y:n===30?5200:1900,scale:720/6800,w:720,h:1100}];
+ const custom=g.HONRO_PROJECT.production?.cards?.[st.id]?.cameraViews;const views=custom?.length?custom.map(v=>({name:v.id,x:v.x,y:v.y,scale:v.scale,w:v.width,h:v.height})):defaults;
  for(const v of views){const cv=canvas(v.w,v.h),s=new g.HonroScene(cv);Object.assign(s,{x:v.x,y:v.y,scale:v.scale,manual:true,time:2,editorView:true,skillPreview:true});
-  s.render(e,0,'',.6,false,0);await new Promise(r=>setTimeout(r,150));s.render(e,0,'',.6,false,0);
+  s.render(e,0,'',.6,false,0);for(let tries=0;tries<60&&!g.HonroAuthoredFarArt.ready(n,b.honroPreviewFar);tries++)await new Promise(r=>setTimeout(r,50));s.render(e,0,'',.6,false,0);
   const file=`${n}-${v.name}.png`;await writeFile(`${out}/${file}`,cv.toBuffer('image/png'));
   const c=cv.getContext('2d');c.save();c.translate(v.w/2-v.x*v.scale,v.h/2-v.y*v.scale);c.scale(v.scale,v.scale);c.lineWidth=2/v.scale;
   c.strokeStyle='#ffde59';for(const t of b.terrain){const ps=g.HONRO_CORE.poly(t);c.beginPath();ps.forEach((p,i)=>i?c.lineTo(p.x,p.y):c.moveTo(p.x,p.y));c.closePath();c.stroke();}
