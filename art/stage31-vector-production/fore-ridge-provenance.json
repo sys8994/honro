@@ -1,0 +1,26 @@
+{
+  "status": "source and runtime candidate; final scene review pending",
+  "pipeline": "authored foreground skeleton -> generated concept -> actual Inkscape 8-color trace -> explicit vector cleanup -> current importer",
+  "semanticLayer": "FORE",
+  "reusableSeparateProps": [
+    "common-v:fore-reeds"
+  ],
+  "cleanup": {
+    "remove": [
+      "path1 low-contrast deep noise"
+    ],
+    "recolor": {
+      "path7": "#28454a",
+      "path6": "#28454a",
+      "path5": "#28454a"
+    },
+    "reason": "Remove raster-noise/deep gradient and bright white-matte boundary; preserve small upper roots and rock silhouette. This is reviewed art editing, not a claim of zero-error raw optimization."
+  },
+  "rawRetained": true,
+  "sourceHashes": {
+    "fore-ridge-skeleton.png": "d6e0e98554a935f59f8ce2a68eca45fedf15899feeeecc9f0bede23511cb4a5b",
+    "fore-ridge-concept.png": "e5c53ebcb008f0be77564fb9c461d121320b1f0f888b7f5535eea1be472738d5",
+    "fore-ridge-raw.svg": "4f5a26ad66bfb93cb86c75ec8a1680b85721118537313280ae026530a7b5d547",
+    "fore-ridge-clean.svg": "fcd337739dd5edaa9dd2a043195860242b4f2ed5b5d517f94f8992a60dce19ee"
+  }
+}
