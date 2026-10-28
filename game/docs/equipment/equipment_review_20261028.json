@@ -1,0 +1,2636 @@
+{
+  "meta": {
+    "date": "2026-10-28",
+    "baseSha": "ddc9577648a27a4795a928baddd4b8f61edc9c5b",
+    "count": 52,
+    "status": "설정 문구·표시 분류 적용 / 재매핑·새 기초 옵션·고유능력 교체는 제안만",
+    "definition": "특정 스킬/계열의 피해·범위·효율·지속 수치만 바꾸면 기초 보정. 조준·충돌·자원 교환·대상/행동 방식이 달라질 때 고유능력. T1부터 계열 기초 옵션 허용; 낮은 티어를 범용 능력치에만 가두지 않음.",
+    "legacy": "v03 uniqueEffect/effectId는 기존 실행 연결명으로 보존. effectCategory가 현재 화면 분류의 기준. 기존26효과 중22개 수치 보정,4개 운용 차이로 재분류; 효과 공식은 변경하지 않음."
+  },
+  "items": [
+    {
+      "itemId": "itm_se_01",
+      "name": "낡은 깃매듭",
+      "characterClass": "archer",
+      "slot": "personal",
+      "tier": 1,
+      "basicOptions": [
+        {
+          "key": "attack",
+          "label": "공격",
+          "value": 2,
+          "unit": "%"
+        }
+      ],
+      "releaseGate": "publicAct1to3",
+      "initialIncluded": true,
+      "effectId": null,
+      "eventId": "eq_se_start",
+      "iconPath": "shared/assets/item-icons/v1/itm_se_01.webp",
+      "lore": "매듭 사이에 짧은 깃 세 가닥을 끼웠다. 닳은 끈 끝은 새 실로 덧감았다.",
+      "effectCategory": "none",
+      "classification": "기초 옵션만",
+      "conceptAndIcon": "활 결속 / 기본시·절명",
+      "currentModifier": null,
+      "proposedBasicTargets": [
+        {
+          "id": "A01",
+          "name": "평사"
+        },
+        {
+          "id": "A14",
+          "name": "급소시"
+        }
+      ],
+      "review": "현재 외형·개념과 연결 유지. 수치 보정은 고유능력으로 부르지 않는다. T1부터 해당 기본기/계열의 피해·범위·비용 보정을 기초 옵션으로 허용하는 안이며 아직 수치 적용 전이다.",
+      "implementation": "lore/분류 표기만 적용. 옵션/효과/획득/저장 수치는 유지."
+    },
+    {
+      "itemId": "itm_se_02",
+      "name": "솔바람 화살통",
+      "characterClass": "archer",
+      "slot": "personal",
+      "tier": 1,
+      "basicOptions": [
+        {
+          "key": "hp",
+          "label": "최대 HP",
+          "value": 8,
+          "unit": "%"
+        },
+        {
+          "key": "move",
+          "label": "이동력",
+          "value": 3,
+          "unit": "%"
+        }
+      ],
+      "releaseGate": "publicAct1to3",
+      "initialIncluded": false,
+      "effectId": null,
+      "eventId": "eq_se_ledger",
+      "iconPath": "shared/assets/item-icons/v1/itm_se_02.webp",
+      "lore": "대나무 통에 가죽 띠를 둘렀다. 화살을 자주 뽑던 입구만 반들거린다.",
+      "effectCategory": "none",
+      "classification": "기초 옵션만",
+      "conceptAndIcon": "화살 보관 / 기본시·강궁",
+      "currentModifier": null,
+      "proposedBasicTargets": [
+        {
+          "id": "A01",
+          "name": "평사"
+        },
+        {
+          "id": "A04",
+          "name": "산개사"
+        }
+      ],
+      "review": "현재 외형·개념과 연결 유지. 수치 보정은 고유능력으로 부르지 않는다. T1부터 해당 기본기/계열의 피해·범위·비용 보정을 기초 옵션으로 허용하는 안이며 아직 수치 적용 전이다.",
+      "implementation": "lore/분류 표기만 적용. 옵션/효과/획득/저장 수치는 유지."
+    },
+    {
+      "itemId": "itm_se_03",
+      "name": "능선 깃장식",
+      "characterClass": "archer",
+      "slot": "personal",
+      "tier": 2,
+      "basicOptions": [
+        {
+          "key": "attack",
+          "label": "공격",
+          "value": 4,
+          "unit": "%"
+        },
+        {
+          "key": "mp",
+          "label": "최대 기력",
+          "value": 12,
+          "unit": "%"
+        },
+        {
+          "key": "cost",
+          "label": "기예 기력 비용 감소",
+          "value": 5,
+          "unit": "%"
+        }
+      ],
+      "releaseGate": "publicAct1to3",
+      "initialIncluded": false,
+      "effectId": null,
+      "eventId": "eq_se_t2_choice",
+      "iconPath": "shared/assets/item-icons/v1/itm_se_03.webp",
+      "lore": "깃 모양 금속판 두 장이 끈에 포개져 있다. 가장자리의 녹을 손톱으로 긁어낸 흔적이 남았다.",
+      "effectCategory": "none",
+      "classification": "기초 옵션만",
+      "conceptAndIcon": "깃 모양 금속 / 곡사",
+      "currentModifier": null,
+      "proposedBasicTargets": [
+        {
+          "id": "A11",
+          "name": "급락시"
+        },
+        {
+          "id": "A09",
+          "name": "전로시"
+        }
+      ],
+      "review": "현재 외형·개념과 연결 유지. 수치 보정은 고유능력으로 부르지 않는다. T1부터 해당 기본기/계열의 피해·범위·비용 보정을 기초 옵션으로 허용하는 안이며 아직 수치 적용 전이다.",
+      "implementation": "lore/분류 표기만 적용. 옵션/효과/획득/저장 수치는 유지."
+    },
+    {
+      "itemId": "itm_se_04",
+      "name": "바위턱 화살통",
+      "characterClass": "archer",
+      "slot": "personal",
+      "tier": 2,
+      "basicOptions": [
+        {
+          "key": "hp",
+          "label": "최대 HP",
+          "value": 12,
+          "unit": "%"
+        },
+        {
+          "key": "armor",
+          "label": "방어",
+          "value": 1.5,
+          "unit": "%p"
+        },
+        {
+          "key": "move",
+          "label": "이동력",
+          "value": 4,
+          "unit": "%"
+        }
+      ],
+      "releaseGate": "publicAct1to3",
+      "initialIncluded": false,
+      "effectId": null,
+      "eventId": "eq_se_t2_choice",
+      "iconPath": "shared/assets/item-icons/v1/itm_se_04.webp",
+      "lore": "각진 통 밑에 두꺼운 가죽을 덧댔다. 바닥에 내려놓을 때마다 생긴 흠집이 겹쳐 있다.",
+      "effectCategory": "none",
+      "classification": "기초 옵션만",
+      "conceptAndIcon": "보강 화살통 / 강궁",
+      "currentModifier": null,
+      "proposedBasicTargets": [
+        {
+          "id": "A05",
+          "name": "격퇴시"
+        },
+        {
+          "id": "A07",
+          "name": "쇄암시"
+        }
+      ],
+      "review": "현재 외형·개념과 연결 유지. 수치 보정은 고유능력으로 부르지 않는다. T1부터 해당 기본기/계열의 피해·범위·비용 보정을 기초 옵션으로 허용하는 안이며 아직 수치 적용 전이다.",
+      "implementation": "lore/분류 표기만 적용. 옵션/효과/획득/저장 수치는 유지."
+    },
+    {
+      "itemId": "itm_se_05",
+      "name": "고개깃 활장식",
+      "characterClass": "archer",
+      "slot": "personal",
+      "tier": 3,
+      "basicOptions": [
+        {
+          "key": "attack",
+          "label": "공격",
+          "value": 6,
+          "unit": "%"
+        },
+        {
+          "key": "mp",
+          "label": "최대 기력",
+          "value": 16,
+          "unit": "%"
+        },
+        {
+          "key": "crit",
+          "label": "치명 확률",
+          "value": 2,
+          "unit": "%p"
+        }
+      ],
+      "releaseGate": "publicAct1to3",
+      "initialIncluded": false,
+      "effectId": "se_drop",
+      "eventId": "eq_se_t3a",
+      "iconPath": "shared/assets/item-icons/v1/itm_se_05.webp",
+      "lore": "긴 깃과 작은 쇳조각을 함께 매달았다. 활을 기울이면 쇳조각이 깃대를 가볍게 두드린다.",
+      "effectCategory": "basic",
+      "classification": "기초 옵션 + 수치 보정",
+      "conceptAndIcon": "긴 깃 활 장식 / 곡사",
+      "currentModifier": {
+        "effectId": "se_drop",
+        "summary": "급락시의 낙차 계수에 +0.10. 낙차 0에서는 이득 없음.",
+        "targetSkills": [
+          "A11"
+        ],
+        "params": {
+          "dropCoefficientAdd": 0.1
+        },
+        "limits": "사거리·중력·최고점·기존 낙차 상한 불변. 파편/소환 제외."
+      },
+      "proposedBasicTargets": [
+        {
+          "id": "A11",
+          "name": "급락시"
+        }
+      ],
+      "review": "현재 외형·개념과 연결 유지. 수치 보정은 고유능력으로 부르지 않는다.",
+      "implementation": "lore/분류 표기만 적용. 옵션/효과/획득/저장 수치는 유지."
+    },
+    {
+      "itemId": "itm_se_06",
+      "name": "멎은줄 화살통",
+      "characterClass": "archer",
+      "slot": "personal",
+      "tier": 3,
+      "basicOptions": [
+        {
+          "key": "hp",
+          "label": "최대 HP",
+          "value": 16,
+          "unit": "%"
+        },
+        {
+          "key": "move",
+          "label": "이동력",
+          "value": 5,
+          "unit": "%"
+        },
+        {
+          "key": "armor",
+          "label": "방어",
+          "value": 2,
+          "unit": "%p"
+        }
+      ],
+      "releaseGate": "officialAct4",
+      "initialIncluded": false,
+      "effectId": "se_push",
+      "eventId": "eq_se_t3b",
+      "iconPath": "shared/assets/item-icons/v1/itm_se_06.webp",
+      "lore": "두 통을 짧은 끈으로 단단히 묶었다. 풀린 자리를 조여 맨 매듭이 유난히 굵다.",
+      "effectCategory": "basic",
+      "classification": "기초 옵션 + 수치 보정",
+      "conceptAndIcon": "이중 화살통 / 격퇴·연사",
+      "currentModifier": {
+        "effectId": "se_push",
+        "summary": "격퇴시의 첫 적 밀침 수평 성분 +20%.",
+        "targetSkills": [
+          "A05"
+        ],
+        "params": {
+          "horizontalKnockbackScale": 1.2
+        },
+        "limits": "수직 성분·후속 충돌 수·보스 면역 불변. 새 밀침/추가 피해 생성 없음."
+      },
+      "proposedBasicTargets": [
+        {
+          "id": "A05",
+          "name": "격퇴시"
+        }
+      ],
+      "review": "현재 외형·개념과 연결 유지. 수치 보정은 고유능력으로 부르지 않는다.",
+      "implementation": "lore/분류 표기만 적용. 옵션/효과/획득/저장 수치는 유지."
+    },
+    {
+      "itemId": "itm_se_07",
+      "name": "송곳눈 활장식",
+      "characterClass": "archer",
+      "slot": "personal",
+      "tier": 4,
+      "basicOptions": [
+        {
+          "key": "attack",
+          "label": "공격",
+          "value": 8,
+          "unit": "%"
+        },
+        {
+          "key": "crit",
+          "label": "치명 확률",
+          "value": 2.5,
+          "unit": "%p"
+        },
+        {
+          "key": "mp",
+          "label": "최대 기력",
+          "value": 20,
+          "unit": "%"
+        },
+        {
+          "key": "cost",
+          "label": "기예 기력 비용 감소",
+          "value": 9,
+          "unit": "%"
+        }
+      ],
+      "releaseGate": "officialAct6",
+      "initialIncluded": false,
+      "effectId": "se_pierce",
+      "eventId": "eq_se_t4_choice",
+      "iconPath": "shared/assets/item-icons/v1/itm_se_07.webp",
+      "lore": "작은 옥고리 두 개를 쇠막대에 끼웠다. 맞닿는 곳마다 희끗한 마모 자국이 났다.",
+      "effectCategory": "basic",
+      "classification": "기초 옵션 + 수치 보정",
+      "conceptAndIcon": "고리 활 장식 / 관통",
+      "currentModifier": {
+        "effectId": "se_pierce",
+        "summary": "관통시가 적·지원 목재를 지난 뒤 유지하는 피해 88%→94%.",
+        "targetSkills": [
+          "A02"
+        ],
+        "params": {
+          "pierceRetain": 0.94
+        },
+        "limits": "첫 적 피해·관통 수·목재 두께 제한·사거리 불변."
+      },
+      "proposedBasicTargets": [
+        {
+          "id": "A02",
+          "name": "관통시"
+        }
+      ],
+      "review": "현재 외형·개념과 연결 유지. 수치 보정은 고유능력으로 부르지 않는다.",
+      "implementation": "lore/분류 표기만 적용. 옵션/효과/획득/저장 수치는 유지."
+    },
+    {
+      "itemId": "itm_se_08",
+      "name": "잔숨 화살통",
+      "characterClass": "archer",
+      "slot": "personal",
+      "tier": 4,
+      "basicOptions": [
+        {
+          "key": "hp",
+          "label": "최대 HP",
+          "value": 20,
+          "unit": "%"
+        },
+        {
+          "key": "mp",
+          "label": "최대 기력",
+          "value": 20,
+          "unit": "%"
+        },
+        {
+          "key": "armor",
+          "label": "방어",
+          "value": 2.5,
+          "unit": "%p"
+        },
+        {
+          "key": "regen",
+          "label": "턴 기력 회복",
+          "value": 4,
+          "unit": "고정"
+        }
+      ],
+      "releaseGate": "officialAct6",
+      "initialIncluded": false,
+      "effectId": "se_recover",
+      "eventId": "eq_se_t4_choice",
+      "iconPath": "shared/assets/item-icons/v1/itm_se_08.webp",
+      "lore": "부드러운 가죽을 여러 겹 덧대 만든 화살통. 입구에는 해진 천 조각을 접어 둘렀다.",
+      "effectCategory": "basic",
+      "classification": "기초 옵션 + 수치 보정",
+      "conceptAndIcon": "천을 댄 화살통 / 회수",
+      "currentModifier": {
+        "effectId": "se_recover",
+        "summary": "회기시의 HP 회수율 +25%. 기존 한 사격 HP 15% 상한은 그대로.",
+        "targetSkills": [
+          "A06"
+        ],
+        "params": {
+          "hpRecoveryScale": 1.25,
+          "hpPerShotCap": 0.15
+        },
+        "limits": "MP 회수와 상한 불변. 기존 실제 적 HP 손실만 사용, 별도 흡수/지원 XP 사건 생성 없음."
+      },
+      "proposedBasicTargets": [
+        {
+          "id": "A06",
+          "name": "회기시"
+        }
+      ],
+      "review": "현재 외형·개념과 연결 유지. 수치 보정은 고유능력으로 부르지 않는다.",
+      "implementation": "lore/분류 표기만 적용. 옵션/효과/획득/저장 수치는 유지."
+    },
+    {
+      "itemId": "itm_da_01",
+      "name": "풀매듭 호리병",
+      "characterClass": "mage",
+      "slot": "personal",
+      "tier": 1,
+      "basicOptions": [
+        {
+          "key": "mp",
+          "label": "최대 기력",
+          "value": 8,
+          "unit": "%"
+        }
+      ],
+      "releaseGate": "publicAct1to3",
+      "initialIncluded": true,
+      "effectId": null,
+      "eventId": "eq_da_join",
+      "iconPath": "shared/assets/item-icons/v1/itm_da_01.webp",
+      "lore": "박 껍질을 말려 만든 작은 호리병. 목에 묶은 노끈에는 마른 풀잎이 끼어 있다.",
+      "effectCategory": "none",
+      "classification": "기초 옵션만",
+      "conceptAndIcon": "박 호리병 / 호리병술",
+      "currentModifier": null,
+      "proposedBasicTargets": [
+        {
+          "id": "M06",
+          "name": "화호"
+        },
+        {
+          "id": "M02",
+          "name": "빙호"
+        },
+        {
+          "id": "M04",
+          "name": "뇌호"
+        }
+      ],
+      "review": "현재 외형·개념과 연결 유지. 수치 보정은 고유능력으로 부르지 않는다. T1부터 해당 기본기/계열의 피해·범위·비용 보정을 기초 옵션으로 허용하는 안이며 아직 수치 적용 전이다.",
+      "implementation": "lore/분류 표기만 적용. 옵션/효과/획득/저장 수치는 유지."
+    },
+    {
+      "itemId": "itm_da_02",
+      "name": "숯칠 지팡이매듭",
+      "characterClass": "mage",
+      "slot": "personal",
+      "tier": 1,
+      "basicOptions": [
+        {
+          "key": "attack",
+          "label": "공격",
+          "value": 2,
+          "unit": "%"
+        },
+        {
+          "key": "mp",
+          "label": "최대 기력",
+          "value": 8,
+          "unit": "%"
+        }
+      ],
+      "releaseGate": "publicAct1to3",
+      "initialIncluded": false,
+      "effectId": null,
+      "eventId": "eq_da_gate",
+      "iconPath": "shared/assets/item-icons/v1/itm_da_02.webp",
+      "lore": "숯빛 패와 나무 구슬을 한데 묶었다. 지팡이에 닿던 뒷면은 검은 칠이 벗겨졌다.",
+      "effectCategory": "none",
+      "classification": "기초 옵션만",
+      "conceptAndIcon": "지팡이 숯칠 매듭 / 기파·파문",
+      "currentModifier": null,
+      "proposedBasicTargets": [
+        {
+          "id": "M01",
+          "name": "기파"
+        },
+        {
+          "id": "M03",
+          "name": "원호파"
+        }
+      ],
+      "review": "현재 외형·개념과 연결 유지. 수치 보정은 고유능력으로 부르지 않는다. T1부터 해당 기본기/계열의 피해·범위·비용 보정을 기초 옵션으로 허용하는 안이며 아직 수치 적용 전이다.",
+      "implementation": "lore/분류 표기만 적용. 옵션/효과/획득/저장 수치는 유지."
+    },
+    {
+      "itemId": "itm_da_03",
+      "name": "청뢰 지팡이장식",
+      "characterClass": "mage",
+      "slot": "personal",
+      "tier": 2,
+      "basicOptions": [
+        {
+          "key": "attack",
+          "label": "공격",
+          "value": 4,
+          "unit": "%"
+        },
+        {
+          "key": "mp",
+          "label": "최대 기력",
+          "value": 12,
+          "unit": "%"
+        },
+        {
+          "key": "cost",
+          "label": "기예 기력 비용 감소",
+          "value": 5,
+          "unit": "%"
+        }
+      ],
+      "releaseGate": "publicAct1to3",
+      "initialIncluded": false,
+      "effectId": null,
+      "eventId": "eq_da_t2_choice",
+      "iconPath": "shared/assets/item-icons/v1/itm_da_03.webp",
+      "lore": "굽은 쇠장식을 지팡이에 거는 끈이 짧다. 손에 걸리지 않도록 술 끝을 가지런히 잘랐다.",
+      "effectCategory": "none",
+      "classification": "기초 옵션만",
+      "conceptAndIcon": "지팡이 쇠장식 / 기파·파문",
+      "currentModifier": null,
+      "proposedBasicTargets": [
+        {
+          "id": "M01",
+          "name": "기파"
+        },
+        {
+          "id": "M03",
+          "name": "원호파"
+        },
+        {
+          "id": "M11",
+          "name": "반탄파"
+        },
+        {
+          "id": "M12",
+          "name": "삼재파"
+        },
+        {
+          "id": "M14",
+          "name": "동심파"
+        },
+        {
+          "id": "M15",
+          "name": "팔괘파"
+        }
+      ],
+      "review": "청뢰 지팡이장식: 현재는 범용 공격/기력 옵션뿐. 기파 M01 및 파문 계열의 단순 보정을 T2 기초 옵션으로 제안한다. 고유능력 포장은 하지 않는다. T1부터 해당 기본기/계열의 피해·범위·비용 보정을 기초 옵션으로 허용하는 안이며 아직 수치 적용 전이다.",
+      "implementation": "lore/분류 표기만 적용. 옵션/효과/획득/저장 수치는 유지."
+    },
+    {
+      "itemId": "itm_da_04",
+      "name": "절수 호리병",
+      "characterClass": "mage",
+      "slot": "personal",
+      "tier": 2,
+      "basicOptions": [
+        {
+          "key": "hp",
+          "label": "최대 HP",
+          "value": 12,
+          "unit": "%"
+        },
+        {
+          "key": "armor",
+          "label": "방어",
+          "value": 1.5,
+          "unit": "%p"
+        },
+        {
+          "key": "mp",
+          "label": "최대 기력",
+          "value": 12,
+          "unit": "%"
+        }
+      ],
+      "releaseGate": "publicAct1to3",
+      "initialIncluded": false,
+      "effectId": null,
+      "eventId": "eq_da_t2_choice",
+      "iconPath": "shared/assets/item-icons/v1/itm_da_04.webp",
+      "lore": "거친 끈으로 병의 몸통을 둘러 묶었다. 목 아래에는 물을 따르며 번진 자국이 남았다.",
+      "effectCategory": "none",
+      "classification": "기초 옵션만",
+      "conceptAndIcon": "끈 두른 병 / 호리병술",
+      "currentModifier": null,
+      "proposedBasicTargets": [
+        {
+          "id": "M02",
+          "name": "빙호"
+        },
+        {
+          "id": "M04",
+          "name": "뇌호"
+        }
+      ],
+      "review": "현재 외형·개념과 연결 유지. 수치 보정은 고유능력으로 부르지 않는다. T1부터 해당 기본기/계열의 피해·범위·비용 보정을 기초 옵션으로 허용하는 안이며 아직 수치 적용 전이다.",
+      "implementation": "lore/분류 표기만 적용. 옵션/효과/획득/저장 수치는 유지."
+    },
+    {
+      "itemId": "itm_da_05",
+      "name": "장정 지팡이매듭",
+      "characterClass": "mage",
+      "slot": "personal",
+      "tier": 3,
+      "basicOptions": [
+        {
+          "key": "mp",
+          "label": "최대 기력",
+          "value": 16,
+          "unit": "%"
+        },
+        {
+          "key": "cost",
+          "label": "기예 기력 비용 감소",
+          "value": 7,
+          "unit": "%"
+        },
+        {
+          "key": "armor",
+          "label": "방어",
+          "value": 2,
+          "unit": "%p"
+        }
+      ],
+      "releaseGate": "publicAct1to3",
+      "initialIncluded": false,
+      "effectId": "da_stake",
+      "eventId": "eq_da_t3a",
+      "iconPath": "shared/assets/item-icons/v1/itm_da_05.webp",
+      "lore": "작은 대통 여러 개를 붉은 끈으로 엮었다. 매듭 안쪽에는 오래 눌린 지팡이 자국이 있다.",
+      "effectCategory": "basic",
+      "classification": "기초 옵션 + 수치 보정",
+      "conceptAndIcon": "지팡이 대통 매듭 / 기파·파문",
+      "currentModifier": {
+        "effectId": "da_stake",
+        "summary": "파진목 유지 +1라운드.",
+        "targetSkills": [
+          "M07"
+        ],
+        "params": {
+          "lifetimeRoundsAdd": 1,
+          "maxLifetimeRounds": 10
+        },
+        "limits": "M09 축지·M10 회생진목 제외. 틱당 피해·대상별 턴당 1회·기존 설치 정책 불변."
+      },
+      "proposedBasicTargets": [
+        {
+          "id": "M01",
+          "name": "기파"
+        },
+        {
+          "id": "M11",
+          "name": "반탄파"
+        },
+        {
+          "id": "M12",
+          "name": "삼재파"
+        }
+      ],
+      "review": "지팡이 매듭인데 파진목 M07 수명 보정. 기파·반탄파·삼재파 쪽으로 재매핑 제안. 현재 M07 효과는 이번에 바꾸지 않았다.",
+      "implementation": "lore/분류 표기만 적용. 옵션/효과/획득/저장 수치는 유지."
+    },
+    {
+      "itemId": "itm_da_06",
+      "name": "맑은숨 호리병",
+      "characterClass": "mage",
+      "slot": "personal",
+      "tier": 3,
+      "basicOptions": [
+        {
+          "key": "hp",
+          "label": "최대 HP",
+          "value": 16,
+          "unit": "%"
+        },
+        {
+          "key": "mp",
+          "label": "최대 기력",
+          "value": 16,
+          "unit": "%"
+        },
+        {
+          "key": "regen",
+          "label": "턴 기력 회복",
+          "value": 3,
+          "unit": "고정"
+        }
+      ],
+      "releaseGate": "officialAct4",
+      "initialIncluded": false,
+      "effectId": "da_heal",
+      "eventId": "eq_da_t3b",
+      "iconPath": "shared/assets/item-icons/v1/itm_da_06.webp",
+      "lore": "옅은 유약을 바른 병에 그물처럼 끈을 둘렀다. 입구의 나무 마개는 손때가 짙다.",
+      "effectCategory": "basic",
+      "classification": "기초 옵션 + 수치 보정",
+      "conceptAndIcon": "유약 병 / 호리병술",
+      "currentModifier": {
+        "effectId": "da_heal",
+        "summary": "회생진목의 기존 HP 회복량 +20%.",
+        "targetSkills": [
+          "M10"
+        ],
+        "params": {
+          "hpHealScale": 1.2
+        },
+        "limits": "MP·이동 회복·범위·수명·아군별 턴당 1회 불변. 기존 치유 이벤트 한 번만 정산."
+      },
+      "proposedBasicTargets": [
+        {
+          "id": "M06",
+          "name": "화호"
+        },
+        {
+          "id": "M02",
+          "name": "빙호"
+        },
+        {
+          "id": "M04",
+          "name": "뇌호"
+        },
+        {
+          "id": "M13",
+          "name": "연폭호"
+        },
+        {
+          "id": "M05",
+          "name": "천뢰호"
+        }
+      ],
+      "review": "맑은숨 호리병: M10 회생진목 HP +20%는 진법 수치 보정이며 외형과 불일치. 호리병술 M06/M02/M04/M13/M05의 기초 옵션 + 후보 U08로 교체 검토. 이번 게임에는 기존 M10을 기초 보정으로만 표기한다.",
+      "implementation": "lore/분류 표기만 적용. 옵션/효과/획득/저장 수치는 유지."
+    },
+    {
+      "itemId": "itm_da_07",
+      "name": "좁은벼락 호리병",
+      "characterClass": "mage",
+      "slot": "personal",
+      "tier": 4,
+      "basicOptions": [
+        {
+          "key": "attack",
+          "label": "공격",
+          "value": 8,
+          "unit": "%"
+        },
+        {
+          "key": "mp",
+          "label": "최대 기력",
+          "value": 20,
+          "unit": "%"
+        },
+        {
+          "key": "cost",
+          "label": "기예 기력 비용 감소",
+          "value": 9,
+          "unit": "%"
+        },
+        {
+          "key": "armor",
+          "label": "방어",
+          "value": 2.5,
+          "unit": "%p"
+        }
+      ],
+      "releaseGate": "officialAct5",
+      "initialIncluded": false,
+      "effectId": "da_sky",
+      "eventId": "eq_da_t4_choice",
+      "iconPath": "shared/assets/item-icons/v1/itm_da_07.webp",
+      "lore": "검게 그을린 병의 굽이 두껍다. 어깨의 끈은 열에 삭아 여러 번 갈아 맸다.",
+      "effectCategory": "basic",
+      "classification": "기초 옵션 + 수치 보정",
+      "conceptAndIcon": "그을린 병 / 화호·천뢰호",
+      "currentModifier": {
+        "effectId": "da_sky",
+        "summary": "천뢰호 위력 +18%, 폭발 반경 -10%. 하늘 낙뢰 방식은 그대로.",
+        "targetSkills": [
+          "M05"
+        ],
+        "params": {
+          "damageScale": 1.18,
+          "radiusScale": 0.9
+        },
+        "limits": "기존 0.35초 대기·상부 차폐·표적별 판정·총 타격 수 불변."
+      },
+      "proposedBasicTargets": [
+        {
+          "id": "M05",
+          "name": "천뢰호"
+        },
+        {
+          "id": "M06",
+          "name": "화호"
+        }
+      ],
+      "review": "현재 외형·개념과 연결 유지. 수치 보정은 고유능력으로 부르지 않는다.",
+      "implementation": "lore/분류 표기만 적용. 옵션/효과/획득/저장 수치는 유지."
+    },
+    {
+      "itemId": "itm_da_08",
+      "name": "원륜 지팡이장식",
+      "characterClass": "mage",
+      "slot": "personal",
+      "tier": 4,
+      "basicOptions": [
+        {
+          "key": "hp",
+          "label": "최대 HP",
+          "value": 20,
+          "unit": "%"
+        },
+        {
+          "key": "mp",
+          "label": "최대 기력",
+          "value": 20,
+          "unit": "%"
+        },
+        {
+          "key": "armor",
+          "label": "방어",
+          "value": 2.5,
+          "unit": "%p"
+        },
+        {
+          "key": "regen",
+          "label": "턴 기력 회복",
+          "value": 4,
+          "unit": "고정"
+        }
+      ],
+      "releaseGate": "officialAct5",
+      "initialIncluded": false,
+      "effectId": "da_arc",
+      "eventId": "eq_da_t4_choice",
+      "iconPath": "shared/assets/item-icons/v1/itm_da_08.webp",
+      "lore": "푸른 고리에 방사형 홈을 팠다. 끈을 꿰는 홈 한쪽만 닳아 매끈하다.",
+      "effectCategory": "basic",
+      "classification": "기초 옵션 + 수치 보정",
+      "conceptAndIcon": "원형 고리 / 원호파·동심파",
+      "currentModifier": {
+        "effectId": "da_arc",
+        "summary": "원호파의 두께 +20%, 위력 -10%. 반경·각도는 그대로.",
+        "targetSkills": [
+          "M03"
+        ],
+        "params": {
+          "geometryThicknessScale": 1.2,
+          "damageScale": 0.9
+        },
+        "limits": "반경·각도·발사체 사거리·차폐·타격 수 불변."
+      },
+      "proposedBasicTargets": [
+        {
+          "id": "M03",
+          "name": "원호파"
+        },
+        {
+          "id": "M14",
+          "name": "동심파"
+        }
+      ],
+      "review": "현재 외형·개념과 연결 유지. 수치 보정은 고유능력으로 부르지 않는다.",
+      "implementation": "lore/분류 표기만 적용. 옵션/효과/획득/저장 수치는 유지."
+    },
+    {
+      "itemId": "itm_hw_01",
+      "name": "삼베 손목감개",
+      "characterClass": "knight",
+      "slot": "personal",
+      "tier": 1,
+      "basicOptions": [
+        {
+          "key": "hp",
+          "label": "최대 HP",
+          "value": 8,
+          "unit": "%"
+        }
+      ],
+      "releaseGate": "publicAct1to3",
+      "initialIncluded": true,
+      "effectId": null,
+      "eventId": "eq_hw_join",
+      "iconPath": "shared/assets/item-icons/v1/itm_hw_01.webp",
+      "lore": "삼베를 길게 찢어 여러 겹 감았다. 풀린 올을 안으로 접어 넣은 자국이 보인다.",
+      "effectCategory": "none",
+      "classification": "기초 옵션만",
+      "conceptAndIcon": "삼베 감개 / 근접 기본기",
+      "currentModifier": null,
+      "proposedBasicTargets": [
+        {
+          "id": "S00",
+          "name": "평참"
+        },
+        {
+          "id": "S03",
+          "name": "횡참"
+        }
+      ],
+      "review": "현재 외형·개념과 연결 유지. 수치 보정은 고유능력으로 부르지 않는다. T1부터 해당 기본기/계열의 피해·범위·비용 보정을 기초 옵션으로 허용하는 안이며 아직 수치 적용 전이다.",
+      "implementation": "lore/분류 표기만 적용. 옵션/효과/획득/저장 수치는 유지."
+    },
+    {
+      "itemId": "itm_hw_02",
+      "name": "낡은 칼끈",
+      "characterClass": "knight",
+      "slot": "personal",
+      "tier": 1,
+      "basicOptions": [
+        {
+          "key": "move",
+          "label": "이동력",
+          "value": 3,
+          "unit": "%"
+        },
+        {
+          "key": "armor",
+          "label": "방어",
+          "value": 1,
+          "unit": "%p"
+        }
+      ],
+      "releaseGate": "publicAct1to3",
+      "initialIncluded": false,
+      "effectId": null,
+      "eventId": "eq_hw_bier",
+      "iconPath": "shared/assets/item-icons/v1/itm_hw_02.webp",
+      "lore": "오래된 가죽끈에 쇠고리가 달렸다. 칼자루와 맞닿던 안쪽이 검게 닳았다.",
+      "effectCategory": "none",
+      "classification": "기초 옵션만",
+      "conceptAndIcon": "칼끈 / 검기",
+      "currentModifier": null,
+      "proposedBasicTargets": [
+        {
+          "id": "S09",
+          "name": "월영참"
+        },
+        {
+          "id": "S11",
+          "name": "관통참"
+        }
+      ],
+      "review": "현재 외형·개념과 연결 유지. 수치 보정은 고유능력으로 부르지 않는다. T1부터 해당 기본기/계열의 피해·범위·비용 보정을 기초 옵션으로 허용하는 안이며 아직 수치 적용 전이다.",
+      "implementation": "lore/분류 표기만 적용. 옵션/효과/획득/저장 수치는 유지."
+    },
+    {
+      "itemId": "itm_hw_03",
+      "name": "석결 손목감개",
+      "characterClass": "knight",
+      "slot": "personal",
+      "tier": 2,
+      "basicOptions": [
+        {
+          "key": "hp",
+          "label": "최대 HP",
+          "value": 12,
+          "unit": "%"
+        },
+        {
+          "key": "armor",
+          "label": "방어",
+          "value": 1.5,
+          "unit": "%p"
+        },
+        {
+          "key": "attack",
+          "label": "공격",
+          "value": 4,
+          "unit": "%"
+        }
+      ],
+      "releaseGate": "publicAct1to3",
+      "initialIncluded": false,
+      "effectId": null,
+      "eventId": "eq_hw_t2_choice",
+      "iconPath": "shared/assets/item-icons/v1/itm_hw_03.webp",
+      "lore": "가죽 위에 얇은 금속판을 덧댄 손목감개. 판의 모서리는 줄로 갈아 둥글렸다.",
+      "effectCategory": "none",
+      "classification": "기초 옵션만",
+      "conceptAndIcon": "금속 손목대 / 근접 받아내기",
+      "currentModifier": null,
+      "proposedBasicTargets": [
+        {
+          "id": "S08",
+          "name": "응수세"
+        },
+        {
+          "id": "S05",
+          "name": "회신참"
+        }
+      ],
+      "review": "현재 외형·개념과 연결 유지. 수치 보정은 고유능력으로 부르지 않는다. T1부터 해당 기본기/계열의 피해·범위·비용 보정을 기초 옵션으로 허용하는 안이며 아직 수치 적용 전이다.",
+      "implementation": "lore/분류 표기만 적용. 옵션/효과/획득/저장 수치는 유지."
+    },
+    {
+      "itemId": "itm_hw_04",
+      "name": "수문 검집끈",
+      "characterClass": "knight",
+      "slot": "personal",
+      "tier": 2,
+      "basicOptions": [
+        {
+          "key": "move",
+          "label": "이동력",
+          "value": 4,
+          "unit": "%"
+        },
+        {
+          "key": "mp",
+          "label": "최대 기력",
+          "value": 12,
+          "unit": "%"
+        },
+        {
+          "key": "cost",
+          "label": "기예 기력 비용 감소",
+          "value": 5,
+          "unit": "%"
+        }
+      ],
+      "releaseGate": "publicAct1to3",
+      "initialIncluded": false,
+      "effectId": null,
+      "eventId": "eq_hw_t2_choice",
+      "iconPath": "shared/assets/item-icons/v1/itm_hw_04.webp",
+      "lore": "넓적한 매듭을 지은 검집끈. 구멍 주위에 새 실로 기운 바늘땀이 촘촘하다.",
+      "effectCategory": "none",
+      "classification": "기초 옵션만",
+      "conceptAndIcon": "검집끈 / 견인·검기",
+      "currentModifier": null,
+      "proposedBasicTargets": [
+        {
+          "id": "S10",
+          "name": "견인참"
+        },
+        {
+          "id": "S11",
+          "name": "관통참"
+        }
+      ],
+      "review": "현재 외형·개념과 연결 유지. 수치 보정은 고유능력으로 부르지 않는다. T1부터 해당 기본기/계열의 피해·범위·비용 보정을 기초 옵션으로 허용하는 안이며 아직 수치 적용 전이다.",
+      "implementation": "lore/분류 표기만 적용. 옵션/효과/획득/저장 수치는 유지."
+    },
+    {
+      "itemId": "itm_hw_05",
+      "name": "가벼운 칼끈",
+      "characterClass": "knight",
+      "slot": "personal",
+      "tier": 3,
+      "basicOptions": [
+        {
+          "key": "move",
+          "label": "이동력",
+          "value": 5,
+          "unit": "%"
+        },
+        {
+          "key": "mp",
+          "label": "최대 기력",
+          "value": 16,
+          "unit": "%"
+        },
+        {
+          "key": "armor",
+          "label": "방어",
+          "value": 2,
+          "unit": "%p"
+        }
+      ],
+      "releaseGate": "publicAct1to3",
+      "initialIncluded": false,
+      "effectId": "hw_jump_cost",
+      "eventId": "eq_hw_t3a",
+      "iconPath": "shared/assets/item-icons/v1/itm_hw_05.webp",
+      "lore": "가느다란 칼끈 끝을 작은 뼈 조각에 묶었다. 손가락이 걸리던 고리만 색이 옅다.",
+      "effectCategory": "basic",
+      "classification": "기초 옵션 + 수치 보정",
+      "conceptAndIcon": "가벼운 칼끈 / 도약",
+      "currentModifier": {
+        "effectId": "hw_jump_cost",
+        "summary": "일반 점프의 이동력 비용 -20. 최소 비용 25.",
+        "targetSkills": [
+          "JUMP"
+        ],
+        "params": {
+          "jumpCostFlatReduction": 20,
+          "minJumpCost": 25
+        },
+        "limits": "추가 점프·돌격 거리·물/낙사 면제 없음. 기존 SP03과 합산 후 최저25."
+      },
+      "proposedBasicTargets": [
+        {
+          "id": "S01",
+          "name": "도약참"
+        }
+      ],
+      "review": "현재 외형·개념과 연결 유지. 수치 보정은 고유능력으로 부르지 않는다.",
+      "implementation": "lore/분류 표기만 적용. 옵션/효과/획득/저장 수치는 유지."
+    },
+    {
+      "itemId": "itm_hw_06",
+      "name": "침골 손목감개",
+      "characterClass": "knight",
+      "slot": "personal",
+      "tier": 3,
+      "basicOptions": [
+        {
+          "key": "hp",
+          "label": "최대 HP",
+          "value": 16,
+          "unit": "%"
+        },
+        {
+          "key": "attack",
+          "label": "공격",
+          "value": 6,
+          "unit": "%"
+        },
+        {
+          "key": "critMult",
+          "label": "치명 배율",
+          "value": 0.1,
+          "unit": "배 가산"
+        }
+      ],
+      "releaseGate": "officialAct4",
+      "initialIncluded": false,
+      "effectId": "hw_life",
+      "eventId": "eq_hw_t3b",
+      "iconPath": "shared/assets/item-icons/v1/itm_hw_06.webp",
+      "lore": "단단한 조각을 가죽에 꿰맨 손목감개. 안감에는 눌린 자리가 깊게 남았다.",
+      "effectCategory": "basic",
+      "classification": "기초 옵션 + 수치 보정",
+      "conceptAndIcon": "두꺼운 감개 / 사생참",
+      "currentModifier": {
+        "effectId": "hw_life",
+        "summary": "사생참의 실제 HP 소비분이 더하는 피해 +15%.",
+        "targetSkills": [
+          "S02"
+        ],
+        "params": {
+          "lifeCostDamageScale": 1.15
+        },
+        "limits": "HP 비용 floor(현재 HP/3)은 그대로 먼저 지불. 기본 피해·실제 비용·자해 보상은 복제하지 않음."
+      },
+      "proposedBasicTargets": [
+        {
+          "id": "S02",
+          "name": "사생참"
+        }
+      ],
+      "review": "현재 외형·개념과 연결 유지. 수치 보정은 고유능력으로 부르지 않는다.",
+      "implementation": "lore/분류 표기만 적용. 옵션/효과/획득/저장 수치는 유지."
+    },
+    {
+      "itemId": "itm_hw_07",
+      "name": "검세 손목감개",
+      "characterClass": "knight",
+      "slot": "personal",
+      "tier": 4,
+      "basicOptions": [
+        {
+          "key": "hp",
+          "label": "최대 HP",
+          "value": 20,
+          "unit": "%"
+        },
+        {
+          "key": "armor",
+          "label": "방어",
+          "value": 2.5,
+          "unit": "%p"
+        },
+        {
+          "key": "attack",
+          "label": "공격",
+          "value": 8,
+          "unit": "%"
+        },
+        {
+          "key": "crit",
+          "label": "치명 확률",
+          "value": 2.5,
+          "unit": "%p"
+        }
+      ],
+      "releaseGate": "officialAct6",
+      "initialIncluded": false,
+      "effectId": "hw_guard",
+      "eventId": "eq_hw_t4_choice",
+      "iconPath": "shared/assets/item-icons/v1/itm_hw_07.webp",
+      "lore": "겹친 판을 질긴 끈으로 이어 붙였다. 손목을 굽히는 자리마다 가죽이 부드럽게 접힌다.",
+      "effectCategory": "basic",
+      "classification": "기초 옵션 + 수치 보정",
+      "conceptAndIcon": "겹판 감개 / 응수세",
+      "currentModifier": {
+        "effectId": "hw_guard",
+        "summary": "피격 직전 HP가 30% 이하면 방어 +3%p.",
+        "targetSkills": [
+          "INCOMING_NORMAL"
+        ],
+        "params": {
+          "hpThreshold": 0.3,
+          "armorAdd": 0.03,
+          "armorCap": 0.7
+        },
+        "limits": "기존 방어70% 상한·보스/환경/추락 규칙 유지. 새 보호막·불굴·무적 없음."
+      },
+      "proposedBasicTargets": [
+        {
+          "id": "S08",
+          "name": "응수세"
+        }
+      ],
+      "review": "현재 외형·개념과 연결 유지. 수치 보정은 고유능력으로 부르지 않는다.",
+      "implementation": "lore/분류 표기만 적용. 옵션/효과/획득/저장 수치는 유지."
+    },
+    {
+      "itemId": "itm_hw_08",
+      "name": "먼칼 검집끈",
+      "characterClass": "knight",
+      "slot": "personal",
+      "tier": 4,
+      "basicOptions": [
+        {
+          "key": "mp",
+          "label": "최대 기력",
+          "value": 20,
+          "unit": "%"
+        },
+        {
+          "key": "cost",
+          "label": "기예 기력 비용 감소",
+          "value": 9,
+          "unit": "%"
+        },
+        {
+          "key": "move",
+          "label": "이동력",
+          "value": 6,
+          "unit": "%"
+        },
+        {
+          "key": "armor",
+          "label": "방어",
+          "value": 2.5,
+          "unit": "%p"
+        }
+      ],
+      "releaseGate": "officialAct6",
+      "initialIncluded": false,
+      "effectId": "hw_blade",
+      "eventId": "eq_hw_t4_choice",
+      "iconPath": "shared/assets/item-icons/v1/itm_hw_08.webp",
+      "lore": "길고 납작한 검집끈에 쇠고리를 달았다. 끈을 줄여 쓴 접힌 자리가 여러 줄이다.",
+      "effectCategory": "basic",
+      "classification": "기초 옵션 + 수치 보정",
+      "conceptAndIcon": "긴 검집끈 / 회륜검기",
+      "currentModifier": {
+        "effectId": "hw_blade",
+        "summary": "검기 계통의 기력 비용 -15%, 위력 -8%.",
+        "targetSkills": [
+          "S09",
+          "S10",
+          "S11",
+          "S14",
+          "S12"
+        ],
+        "params": {
+          "manaDiscount": 0.15,
+          "damageScale": 0.92
+        },
+        "limits": "사거리·검기 수·관통·후속 타격 원장 불변. 원래 무료가 되는 기예는 계속 무료."
+      },
+      "proposedBasicTargets": [
+        {
+          "id": "S12",
+          "name": "회륜검기"
+        },
+        {
+          "id": "S14",
+          "name": "파열참"
+        }
+      ],
+      "review": "현재 외형·개념과 연결 유지. 수치 보정은 고유능력으로 부르지 않는다.",
+      "implementation": "lore/분류 표기만 적용. 옵션/효과/획득/저장 수치는 유지."
+    },
+    {
+      "itemId": "itm_so_01",
+      "name": "해진 방울끈",
+      "characterClass": "occultist",
+      "slot": "personal",
+      "tier": 1,
+      "basicOptions": [
+        {
+          "key": "mp",
+          "label": "최대 기력",
+          "value": 8,
+          "unit": "%"
+        }
+      ],
+      "releaseGate": "publicAct1to3",
+      "initialIncluded": true,
+      "effectId": null,
+      "eventId": "eq_so_join",
+      "iconPath": "shared/assets/item-icons/v1/itm_so_01.webp",
+      "lore": "작은 놋방울 두 개를 검은 끈에 달았다. 갈라진 끈은 가는 실로 덧꼬았다.",
+      "effectCategory": "none",
+      "classification": "기초 옵션만",
+      "conceptAndIcon": "놋방울 / 혼행",
+      "currentModifier": null,
+      "proposedBasicTargets": [
+        {
+          "id": "O01",
+          "name": "혼령탄"
+        },
+        {
+          "id": "O02",
+          "name": "투과령"
+        }
+      ],
+      "review": "현재 외형·개념과 연결 유지. 수치 보정은 고유능력으로 부르지 않는다. T1부터 해당 기본기/계열의 피해·범위·비용 보정을 기초 옵션으로 허용하는 안이며 아직 수치 적용 전이다.",
+      "implementation": "lore/분류 표기만 적용. 옵션/효과/획득/저장 수치는 유지."
+    },
+    {
+      "itemId": "itm_so_02",
+      "name": "무명 매듭",
+      "characterClass": "occultist",
+      "slot": "personal",
+      "tier": 1,
+      "basicOptions": [
+        {
+          "key": "attack",
+          "label": "공격",
+          "value": 2,
+          "unit": "%"
+        },
+        {
+          "key": "armor",
+          "label": "방어",
+          "value": 1,
+          "unit": "%p"
+        }
+      ],
+      "releaseGate": "publicAct1to3",
+      "initialIncluded": false,
+      "effectId": null,
+      "eventId": "eq_so_resident",
+      "iconPath": "shared/assets/item-icons/v1/itm_so_02.webp",
+      "lore": "무명 조각을 접어 묶은 매듭. 바깥 천에는 손으로 문질러 생긴 보풀이 일었다.",
+      "effectCategory": "none",
+      "classification": "기초 옵션만",
+      "conceptAndIcon": "접은 무명 / 부적",
+      "currentModifier": null,
+      "proposedBasicTargets": [
+        {
+          "id": "O06",
+          "name": "쇠망부"
+        },
+        {
+          "id": "O08",
+          "name": "현형부"
+        }
+      ],
+      "review": "현재 외형·개념과 연결 유지. 수치 보정은 고유능력으로 부르지 않는다. T1부터 해당 기본기/계열의 피해·범위·비용 보정을 기초 옵션으로 허용하는 안이며 아직 수치 적용 전이다.",
+      "implementation": "lore/분류 표기만 적용. 옵션/효과/획득/저장 수치는 유지."
+    },
+    {
+      "itemId": "itm_so_03",
+      "name": "잔향 방울끈",
+      "characterClass": "occultist",
+      "slot": "personal",
+      "tier": 2,
+      "basicOptions": [
+        {
+          "key": "attack",
+          "label": "공격",
+          "value": 4,
+          "unit": "%"
+        },
+        {
+          "key": "mp",
+          "label": "최대 기력",
+          "value": 12,
+          "unit": "%"
+        },
+        {
+          "key": "cost",
+          "label": "기예 기력 비용 감소",
+          "value": 5,
+          "unit": "%"
+        }
+      ],
+      "releaseGate": "publicAct1to3",
+      "initialIncluded": false,
+      "effectId": null,
+      "eventId": "eq_so_t2_choice",
+      "iconPath": "shared/assets/item-icons/v1/itm_so_03.webp",
+      "lore": "길이가 다른 끈 끝에 작은 방울을 달았다. 매듭이 풀리지 않도록 실을 한 번 더 돌렸다.",
+      "effectCategory": "none",
+      "classification": "기초 옵션만",
+      "conceptAndIcon": "작은 방울 / 혼행·반향",
+      "currentModifier": null,
+      "proposedBasicTargets": [
+        {
+          "id": "O03",
+          "name": "역천령"
+        },
+        {
+          "id": "O05",
+          "name": "회귀망령"
+        }
+      ],
+      "review": "현재 외형·개념과 연결 유지. 수치 보정은 고유능력으로 부르지 않는다. T1부터 해당 기본기/계열의 피해·범위·비용 보정을 기초 옵션으로 허용하는 안이며 아직 수치 적용 전이다.",
+      "implementation": "lore/분류 표기만 적용. 옵션/효과/획득/저장 수치는 유지."
+    },
+    {
+      "itemId": "itm_so_04",
+      "name": "나루길 매듭",
+      "characterClass": "occultist",
+      "slot": "personal",
+      "tier": 2,
+      "basicOptions": [
+        {
+          "key": "hp",
+          "label": "최대 HP",
+          "value": 12,
+          "unit": "%"
+        },
+        {
+          "key": "armor",
+          "label": "방어",
+          "value": 1.5,
+          "unit": "%p"
+        },
+        {
+          "key": "move",
+          "label": "이동력",
+          "value": 4,
+          "unit": "%"
+        }
+      ],
+      "releaseGate": "publicAct1to3",
+      "initialIncluded": false,
+      "effectId": null,
+      "eventId": "eq_so_t2_choice",
+      "iconPath": "shared/assets/item-icons/v1/itm_so_04.webp",
+      "lore": "촘촘히 접은 천을 노끈으로 묶었다. 비에 젖었다 마른 천 끝이 뻣뻣하다.",
+      "effectCategory": "none",
+      "classification": "기초 옵션만",
+      "conceptAndIcon": "묶은 천 / 부적",
+      "currentModifier": null,
+      "proposedBasicTargets": [
+        {
+          "id": "O07",
+          "name": "증오부"
+        },
+        {
+          "id": "O10",
+          "name": "지박부"
+        }
+      ],
+      "review": "현재 외형·개념과 연결 유지. 수치 보정은 고유능력으로 부르지 않는다. T1부터 해당 기본기/계열의 피해·범위·비용 보정을 기초 옵션으로 허용하는 안이며 아직 수치 적용 전이다.",
+      "implementation": "lore/분류 표기만 적용. 옵션/효과/획득/저장 수치는 유지."
+    },
+    {
+      "itemId": "itm_so_05",
+      "name": "머문혼 방울끈",
+      "characterClass": "occultist",
+      "slot": "personal",
+      "tier": 3,
+      "basicOptions": [
+        {
+          "key": "mp",
+          "label": "최대 기력",
+          "value": 16,
+          "unit": "%"
+        },
+        {
+          "key": "cost",
+          "label": "기예 기력 비용 감소",
+          "value": 7,
+          "unit": "%"
+        },
+        {
+          "key": "regen",
+          "label": "턴 기력 회복",
+          "value": 3,
+          "unit": "고정"
+        }
+      ],
+      "releaseGate": "publicAct1to3",
+      "initialIncluded": false,
+      "effectId": "so_echo",
+      "eventId": "eq_so_t3a",
+      "iconPath": "shared/assets/item-icons/v1/itm_so_05.webp",
+      "lore": "놋방울의 틈을 가는 철사로 손봤다. 손잡이 끈에는 기름 먹은 손때가 배었다.",
+      "effectCategory": "basic",
+      "classification": "기초 옵션 + 수치 보정",
+      "conceptAndIcon": "큰 방울 / 반향·소환",
+      "currentModifier": {
+        "effectId": "so_echo",
+        "summary": "반향령 유지 +1라운드. 활성 수 상한은 기존 1~3개.",
+        "targetSkills": [
+          "O15"
+        ],
+        "params": {
+          "lifetimeRoundsAdd": 1,
+          "maxLifetimeRounds": 9
+        },
+        "limits": "ECHO_LIMIT·반향 위력·복제 발사 수·자연 소멸 보전/회수 규칙 불변. 재인계/재연장 없음."
+      },
+      "proposedBasicTargets": [
+        {
+          "id": "O15",
+          "name": "반향령"
+        },
+        {
+          "id": "O11",
+          "name": "배회령"
+        }
+      ],
+      "review": "현재 외형·개념과 연결 유지. 수치 보정은 고유능력으로 부르지 않는다.",
+      "implementation": "lore/분류 표기만 적용. 옵션/효과/획득/저장 수치는 유지."
+    },
+    {
+      "itemId": "itm_so_06",
+      "name": "여운 매듭",
+      "characterClass": "occultist",
+      "slot": "personal",
+      "tier": 3,
+      "basicOptions": [
+        {
+          "key": "hp",
+          "label": "최대 HP",
+          "value": 16,
+          "unit": "%"
+        },
+        {
+          "key": "mp",
+          "label": "최대 기력",
+          "value": 16,
+          "unit": "%"
+        },
+        {
+          "key": "armor",
+          "label": "방어",
+          "value": 2,
+          "unit": "%p"
+        }
+      ],
+      "releaseGate": "officialAct4",
+      "initialIncluded": false,
+      "effectId": "so_weak",
+      "eventId": "eq_so_t3b",
+      "iconPath": "shared/assets/item-icons/v1/itm_so_06.webp",
+      "lore": "길게 접은 무명을 붉은 실로 묶었다. 접힌 곳마다 옅은 누런 자국이 남았다.",
+      "effectCategory": "basic",
+      "classification": "기초 옵션 + 수치 보정",
+      "conceptAndIcon": "붉은 실 무명 / 쇠망부",
+      "currentModifier": {
+        "effectId": "so_weak",
+        "summary": "쇠망부의 공격 약화12%→15%. 방어 약화13%·지속은 그대로.",
+        "targetSkills": [
+          "O06"
+        ],
+        "params": {
+          "weakAttackReduction": 0.15
+        },
+        "limits": "다른 주박과 공유하는 curseTurns는 변경하지 않음. DOT·증오 지속 연장/추가 틱 없음. 기존 trap 강도·max 병합 유지."
+      },
+      "proposedBasicTargets": [
+        {
+          "id": "O06",
+          "name": "쇠망부"
+        }
+      ],
+      "review": "현재 외형·개념과 연결 유지. 수치 보정은 고유능력으로 부르지 않는다.",
+      "implementation": "lore/분류 표기만 적용. 옵션/효과/획득/저장 수치는 유지."
+    },
+    {
+      "itemId": "itm_so_07",
+      "name": "넓은울림 방울끈",
+      "characterClass": "occultist",
+      "slot": "personal",
+      "tier": 4,
+      "basicOptions": [
+        {
+          "key": "attack",
+          "label": "공격",
+          "value": 8,
+          "unit": "%"
+        },
+        {
+          "key": "mp",
+          "label": "최대 기력",
+          "value": 20,
+          "unit": "%"
+        },
+        {
+          "key": "cost",
+          "label": "기예 기력 비용 감소",
+          "value": 9,
+          "unit": "%"
+        },
+        {
+          "key": "armor",
+          "label": "방어",
+          "value": 2.5,
+          "unit": "%p"
+        }
+      ],
+      "releaseGate": "officialAct6",
+      "initialIncluded": false,
+      "effectId": "so_basic",
+      "eventId": "eq_so_t4_choice",
+      "iconPath": "shared/assets/item-icons/v1/itm_so_07.webp",
+      "lore": "얇은 놋방울 두 개의 크기가 조금 다르다. 흔들면 서로 부딪친 자리가 드러난다.",
+      "effectCategory": "basic",
+      "classification": "기초 옵션 + 수치 보정",
+      "conceptAndIcon": "한 쌍의 방울 / 혼령탄",
+      "currentModifier": {
+        "effectId": "so_basic",
+        "summary": "혼령탄 폭발 반경 +20%, 위력 -10%.",
+        "targetSkills": [
+          "O01"
+        ],
+        "params": {
+          "radiusScale": 1.2,
+          "damageScale": 0.9
+        },
+        "limits": "무료 평타 비용0 유지. 비행 시간·도달 거리·차폐·반사 규칙 불변."
+      },
+      "proposedBasicTargets": [
+        {
+          "id": "O01",
+          "name": "혼령탄"
+        }
+      ],
+      "review": "현재 외형·개념과 연결 유지. 수치 보정은 고유능력으로 부르지 않는다.",
+      "implementation": "lore/분류 표기만 적용. 옵션/효과/획득/저장 수치는 유지."
+    },
+    {
+      "itemId": "itm_so_08",
+      "name": "결끝 매듭",
+      "characterClass": "occultist",
+      "slot": "personal",
+      "tier": 4,
+      "basicOptions": [
+        {
+          "key": "hp",
+          "label": "최대 HP",
+          "value": 20,
+          "unit": "%"
+        },
+        {
+          "key": "mp",
+          "label": "최대 기력",
+          "value": 20,
+          "unit": "%"
+        },
+        {
+          "key": "regen",
+          "label": "턴 기력 회복",
+          "value": 4,
+          "unit": "고정"
+        },
+        {
+          "key": "crit",
+          "label": "치명 확률",
+          "value": 2.5,
+          "unit": "%p"
+        }
+      ],
+      "releaseGate": "officialAct6",
+      "initialIncluded": false,
+      "effectId": "so_converge",
+      "eventId": "eq_so_t4_choice",
+      "iconPath": "shared/assets/item-icons/v1/itm_so_08.webp",
+      "lore": "작은 패를 검은 매듭에 끼웠다. 아래로 늘어진 술은 끝이 닳아 길이가 고르지 않다.",
+      "effectCategory": "basic",
+      "classification": "기초 옵션 + 수치 보정",
+      "conceptAndIcon": "술 달린 패 / 귀결",
+      "currentModifier": {
+        "effectId": "so_converge",
+        "summary": "만혼귀결 위력 +15%, 기력 비용 +15%.",
+        "targetSkills": [
+          "O16"
+        ],
+        "params": {
+          "damageScale": 1.15,
+          "manaSurcharge": 0.15
+        },
+        "limits": "모이는 혼 수·대상당 타격/총량 상한·귀결점/벽 규칙은 그대로."
+      },
+      "proposedBasicTargets": [
+        {
+          "id": "O16",
+          "name": "만혼귀결"
+        }
+      ],
+      "review": "현재 외형·개념과 연결 유지. 수치 보정은 고유능력으로 부르지 않는다.",
+      "implementation": "lore/분류 표기만 적용. 옵션/효과/획득/저장 수치는 유지."
+    },
+    {
+      "itemId": "itm_co_01",
+      "name": "해진 장명부",
+      "characterClass": null,
+      "slot": "common",
+      "tier": 1,
+      "basicOptions": [
+        {
+          "key": "hp",
+          "label": "최대 HP",
+          "value": 8,
+          "unit": "%"
+        },
+        {
+          "key": "armor",
+          "label": "방어",
+          "value": 1,
+          "unit": "%p"
+        }
+      ],
+      "releaseGate": "publicAct1to3",
+      "initialIncluded": false,
+      "effectId": null,
+      "eventId": "eq_co_01",
+      "iconPath": "shared/assets/item-icons/v1/itm_co_01.webp",
+      "lore": "접은 종이를 작은 천 주머니에 넣었다. 입구를 여닫던 끈만 새것으로 갈았다.",
+      "effectCategory": "none",
+      "classification": "기초 옵션만",
+      "conceptAndIcon": "종이를 넣은 주머니 / 생존",
+      "currentModifier": null,
+      "proposedBasicTargets": [],
+      "review": "공용 개념 유지. 특정 캐릭터·스킬 ID를 강제로 부여하지 않는다.",
+      "implementation": "lore/분류 표기만 적용. 옵션/효과/획득/저장 수치는 유지."
+    },
+    {
+      "itemId": "itm_co_02",
+      "name": "숨돌림 옥돌",
+      "characterClass": null,
+      "slot": "common",
+      "tier": 1,
+      "basicOptions": [
+        {
+          "key": "mp",
+          "label": "최대 기력",
+          "value": 8,
+          "unit": "%"
+        },
+        {
+          "key": "regen",
+          "label": "턴 기력 회복",
+          "value": 1,
+          "unit": "고정"
+        }
+      ],
+      "releaseGate": "publicAct1to3",
+      "initialIncluded": false,
+      "effectId": null,
+      "eventId": "eq_co_02",
+      "iconPath": "shared/assets/item-icons/v1/itm_co_02.webp",
+      "lore": "묵직한 돌의 모서리를 손으로 갈았다. 손바닥에 오래 쥐던 면은 반질반질하다.",
+      "effectCategory": "none",
+      "classification": "기초 옵션만",
+      "conceptAndIcon": "쥐는 돌 / 기력 관리",
+      "currentModifier": null,
+      "proposedBasicTargets": [],
+      "review": "공용 개념 유지. 특정 캐릭터·스킬 ID를 강제로 부여하지 않는다.",
+      "implementation": "lore/분류 표기만 적용. 옵션/효과/획득/저장 수치는 유지."
+    },
+    {
+      "itemId": "itm_co_03",
+      "name": "약향 주머니",
+      "characterClass": null,
+      "slot": "common",
+      "tier": 1,
+      "basicOptions": [
+        {
+          "key": "hp",
+          "label": "최대 HP",
+          "value": 8,
+          "unit": "%"
+        },
+        {
+          "key": "mp",
+          "label": "최대 기력",
+          "value": 8,
+          "unit": "%"
+        }
+      ],
+      "releaseGate": "publicAct1to3",
+      "initialIncluded": false,
+      "effectId": null,
+      "eventId": "eq_co_t1_choice",
+      "iconPath": "shared/assets/item-icons/v1/itm_co_03.webp",
+      "lore": "마른 잎을 담던 주머니에서 희미한 풀 냄새가 난다. 바닥 솔기는 두 번 기웠다.",
+      "effectCategory": "none",
+      "classification": "기초 옵션만",
+      "conceptAndIcon": "약초 주머니 / 제한 회복",
+      "currentModifier": null,
+      "proposedBasicTargets": [],
+      "review": "공용 개념 유지. 특정 캐릭터·스킬 ID를 강제로 부여하지 않는다.",
+      "implementation": "lore/분류 표기만 적용. 옵션/효과/획득/저장 수치는 유지."
+    },
+    {
+      "itemId": "itm_co_04",
+      "name": "마른 솔가지패",
+      "characterClass": null,
+      "slot": "common",
+      "tier": 1,
+      "basicOptions": [
+        {
+          "key": "attack",
+          "label": "공격",
+          "value": 2,
+          "unit": "%"
+        },
+        {
+          "key": "move",
+          "label": "이동력",
+          "value": 3,
+          "unit": "%"
+        }
+      ],
+      "releaseGate": "publicAct1to3",
+      "initialIncluded": false,
+      "effectId": null,
+      "eventId": "eq_co_t1_choice",
+      "iconPath": "shared/assets/item-icons/v1/itm_co_04.webp",
+      "lore": "솔가지 두 토막을 끈으로 교차해 묶었다. 벗겨진 껍질 틈에 마른 송진이 남았다.",
+      "effectCategory": "none",
+      "classification": "기초 옵션만",
+      "conceptAndIcon": "묶은 솔가지 / 이동·조준",
+      "currentModifier": null,
+      "proposedBasicTargets": [],
+      "review": "공용 개념 유지. 특정 캐릭터·스킬 ID를 강제로 부여하지 않는다.",
+      "implementation": "lore/분류 표기만 적용. 옵션/효과/획득/저장 수치는 유지."
+    },
+    {
+      "itemId": "itm_co_05",
+      "name": "먹빛 종이학",
+      "characterClass": null,
+      "slot": "common",
+      "tier": 1,
+      "basicOptions": [
+        {
+          "key": "cost",
+          "label": "기예 기력 비용 감소",
+          "value": 3,
+          "unit": "%"
+        },
+        {
+          "key": "regen",
+          "label": "턴 기력 회복",
+          "value": 1,
+          "unit": "고정"
+        }
+      ],
+      "releaseGate": "publicAct1to3",
+      "initialIncluded": false,
+      "effectId": null,
+      "eventId": "eq_co_t1_choice",
+      "iconPath": "shared/assets/item-icons/v1/itm_co_05.webp",
+      "lore": "얇은 종이를 여러 번 눌러 접었다. 날개 끝에는 젖은 손으로 집은 자국이 있다.",
+      "effectCategory": "none",
+      "classification": "기초 옵션만",
+      "conceptAndIcon": "접은 종이 / 기력 효율",
+      "currentModifier": null,
+      "proposedBasicTargets": [],
+      "review": "공용 개념 유지. 특정 캐릭터·스킬 ID를 강제로 부여하지 않는다.",
+      "implementation": "lore/분류 표기만 적용. 옵션/효과/획득/저장 수치는 유지."
+    },
+    {
+      "itemId": "itm_co_06",
+      "name": "석수 호신패",
+      "characterClass": null,
+      "slot": "common",
+      "tier": 2,
+      "basicOptions": [
+        {
+          "key": "hp",
+          "label": "최대 HP",
+          "value": 12,
+          "unit": "%"
+        },
+        {
+          "key": "armor",
+          "label": "방어",
+          "value": 1.5,
+          "unit": "%p"
+        },
+        {
+          "key": "move",
+          "label": "이동력",
+          "value": 4,
+          "unit": "%"
+        }
+      ],
+      "releaseGate": "publicAct1to3",
+      "initialIncluded": false,
+      "effectId": null,
+      "eventId": "eq_co_06",
+      "iconPath": "shared/assets/item-icons/v1/itm_co_06.webp",
+      "lore": "거친 돌패에 짧은 끈을 꿰었다. 끈 구멍만 작게 갈아 돌가루가 묻어나지 않는다.",
+      "effectCategory": "none",
+      "classification": "기초 옵션만",
+      "conceptAndIcon": "돌 호신패 / 방어",
+      "currentModifier": null,
+      "proposedBasicTargets": [],
+      "review": "공용 개념 유지. 특정 캐릭터·스킬 ID를 강제로 부여하지 않는다.",
+      "implementation": "lore/분류 표기만 적용. 옵션/효과/획득/저장 수치는 유지."
+    },
+    {
+      "itemId": "itm_co_07",
+      "name": "맑은 샘 구슬",
+      "characterClass": null,
+      "slot": "common",
+      "tier": 2,
+      "basicOptions": [
+        {
+          "key": "mp",
+          "label": "최대 기력",
+          "value": 12,
+          "unit": "%"
+        },
+        {
+          "key": "cost",
+          "label": "기예 기력 비용 감소",
+          "value": 5,
+          "unit": "%"
+        },
+        {
+          "key": "regen",
+          "label": "턴 기력 회복",
+          "value": 2,
+          "unit": "고정"
+        }
+      ],
+      "releaseGate": "publicAct1to3",
+      "initialIncluded": false,
+      "effectId": null,
+      "eventId": "eq_co_07",
+      "iconPath": "shared/assets/item-icons/v1/itm_co_07.webp",
+      "lore": "물빛이 도는 돌을 끈에 매달았다. 매듭 아래의 작은 구슬들은 서로 닿아 닳았다.",
+      "effectCategory": "none",
+      "classification": "기초 옵션만",
+      "conceptAndIcon": "물빛 돌 / 회복·재생",
+      "currentModifier": null,
+      "proposedBasicTargets": [],
+      "review": "공용 개념 유지. 특정 캐릭터·스킬 ID를 강제로 부여하지 않는다.",
+      "implementation": "lore/분류 표기만 적용. 옵션/효과/획득/저장 수치는 유지."
+    },
+    {
+      "itemId": "itm_co_08",
+      "name": "붉은 실 호패",
+      "characterClass": null,
+      "slot": "common",
+      "tier": 2,
+      "basicOptions": [
+        {
+          "key": "attack",
+          "label": "공격",
+          "value": 4,
+          "unit": "%"
+        },
+        {
+          "key": "hp",
+          "label": "최대 HP",
+          "value": 12,
+          "unit": "%"
+        },
+        {
+          "key": "crit",
+          "label": "치명 확률",
+          "value": 1.5,
+          "unit": "%p"
+        }
+      ],
+      "releaseGate": "publicAct1to3",
+      "initialIncluded": false,
+      "effectId": null,
+      "eventId": "eq_co_t2_choice",
+      "iconPath": "shared/assets/item-icons/v1/itm_co_08.webp",
+      "lore": "붉은 끈을 납작한 패에 여러 번 둘렀다. 뒷면에는 허리춤에 쓸린 흔적이 있다.",
+      "effectCategory": "none",
+      "classification": "기초 옵션만",
+      "conceptAndIcon": "붉은 실 패 / 몸 상태",
+      "currentModifier": null,
+      "proposedBasicTargets": [],
+      "review": "공용 개념 유지. 특정 캐릭터·스킬 ID를 강제로 부여하지 않는다.",
+      "implementation": "lore/분류 표기만 적용. 옵션/효과/획득/저장 수치는 유지."
+    },
+    {
+      "itemId": "itm_co_09",
+      "name": "청동 뇌문",
+      "characterClass": null,
+      "slot": "common",
+      "tier": 2,
+      "basicOptions": [
+        {
+          "key": "attack",
+          "label": "공격",
+          "value": 4,
+          "unit": "%"
+        },
+        {
+          "key": "mp",
+          "label": "최대 기력",
+          "value": 12,
+          "unit": "%"
+        },
+        {
+          "key": "cost",
+          "label": "기예 기력 비용 감소",
+          "value": 5,
+          "unit": "%"
+        }
+      ],
+      "releaseGate": "publicAct1to3",
+      "initialIncluded": false,
+      "effectId": null,
+      "eventId": "eq_co_t2_choice",
+      "iconPath": "shared/assets/item-icons/v1/itm_co_09.webp",
+      "lore": "구불구불한 홈을 낸 청동 조각. 녹이 앉은 홈과 달리 테두리는 손때로 짙다.",
+      "effectCategory": "none",
+      "classification": "기초 옵션만",
+      "conceptAndIcon": "청동 홈 / 공격 속성",
+      "currentModifier": null,
+      "proposedBasicTargets": [],
+      "review": "공용 개념 유지. 특정 캐릭터·스킬 ID를 강제로 부여하지 않는다.",
+      "implementation": "lore/분류 표기만 적용. 옵션/효과/획득/저장 수치는 유지."
+    },
+    {
+      "itemId": "itm_co_10",
+      "name": "흙먼지 발고리",
+      "characterClass": null,
+      "slot": "common",
+      "tier": 2,
+      "basicOptions": [
+        {
+          "key": "move",
+          "label": "이동력",
+          "value": 4,
+          "unit": "%"
+        },
+        {
+          "key": "hp",
+          "label": "최대 HP",
+          "value": 12,
+          "unit": "%"
+        },
+        {
+          "key": "mp",
+          "label": "최대 기력",
+          "value": 12,
+          "unit": "%"
+        }
+      ],
+      "releaseGate": "publicAct1to3",
+      "initialIncluded": false,
+      "effectId": null,
+      "eventId": "eq_co_t2_choice",
+      "iconPath": "shared/assets/item-icons/v1/itm_co_10.webp",
+      "lore": "질긴 노끈에 해진 천을 덧댔다. 천의 접힌 틈에는 씻어도 빠지지 않는 흙먼지가 있다.",
+      "effectCategory": "none",
+      "classification": "기초 옵션만",
+      "conceptAndIcon": "천 발고리 / 발 디딤",
+      "currentModifier": null,
+      "proposedBasicTargets": [],
+      "review": "공용 개념 유지. 특정 캐릭터·스킬 ID를 강제로 부여하지 않는다.",
+      "implementation": "lore/분류 표기만 적용. 옵션/효과/획득/저장 수치는 유지."
+    },
+    {
+      "itemId": "itm_co_11",
+      "name": "고갯돌 매듭",
+      "characterClass": null,
+      "slot": "common",
+      "tier": 3,
+      "basicOptions": [
+        {
+          "key": "move",
+          "label": "이동력",
+          "value": 5,
+          "unit": "%"
+        },
+        {
+          "key": "hp",
+          "label": "최대 HP",
+          "value": 16,
+          "unit": "%"
+        },
+        {
+          "key": "armor",
+          "label": "방어",
+          "value": 2,
+          "unit": "%p"
+        }
+      ],
+      "releaseGate": "publicAct1to3",
+      "initialIncluded": false,
+      "effectId": "co_jump",
+      "eventId": "eq_co_11",
+      "iconPath": "shared/assets/item-icons/v1/itm_co_11.webp",
+      "lore": "돌 두 개를 짧은 끈으로 이었다. 걸을 때 부딪치지 않도록 돌 사이에 매듭을 넣었다.",
+      "effectCategory": "basic",
+      "classification": "기초 옵션 + 수치 보정",
+      "conceptAndIcon": "돌 매듭 / 도약",
+      "currentModifier": {
+        "effectId": "co_jump",
+        "summary": "일반 점프의 수직 최고점 약 +20%.",
+        "targetSkills": [
+          "JUMP"
+        ],
+        "params": {
+          "jumpHeightScale": 1.2,
+          "jumpVelocityScale": 1.0954451150103321
+        },
+        "limits": "일반 점프만. 수평 속도값·돌격 사거리 불변이나 체공 증가의 자연 수평 변화는 가능. 이동 예산·충돌·입수/낙사 판정 유지."
+      },
+      "proposedBasicTargets": [],
+      "review": "공용 개념 유지. 특정 캐릭터·스킬 ID를 강제로 부여하지 않는다.",
+      "implementation": "lore/분류 표기만 적용. 옵션/효과/획득/저장 수치는 유지."
+    },
+    {
+      "itemId": "itm_co_12",
+      "name": "고른돌 추",
+      "characterClass": null,
+      "slot": "common",
+      "tier": 3,
+      "basicOptions": [
+        {
+          "key": "attack",
+          "label": "공격",
+          "value": 6,
+          "unit": "%"
+        },
+        {
+          "key": "crit",
+          "label": "치명 확률",
+          "value": 2,
+          "unit": "%p"
+        },
+        {
+          "key": "mp",
+          "label": "최대 기력",
+          "value": 16,
+          "unit": "%"
+        }
+      ],
+      "releaseGate": "officialAct4",
+      "initialIncluded": false,
+      "effectId": "co_stable",
+      "eventId": "eq_co_12",
+      "iconPath": "shared/assets/item-icons/v1/itm_co_12.webp",
+      "lore": "무게를 재듯 길게 매단 돌추. 닳은 끈을 짧게 이어 맨 이음새가 목에 모여 있다.",
+      "effectCategory": "unique",
+      "classification": "기초 옵션 + 고유능력",
+      "conceptAndIcon": "매단 추 / 안정",
+      "currentModifier": {
+        "effectId": "co_stable",
+        "summary": "피해 편차 폭을 절반으로 줄인다. 평균과 치명타는 그대로.",
+        "targetSkills": [
+          "NORMAL_DAMAGING_CAST"
+        ],
+        "params": {
+          "damageMean": 1,
+          "nativeSpreadScale": 0.5
+        },
+        "limits": "기존 spread0인 기술은0 유지. 새 추첨·버프·원장 없음, 같은 시전의 모든 파생이 같은 roll 사용."
+      },
+      "proposedBasicTargets": [],
+      "review": "공용 개념 유지. 특정 캐릭터·스킬 ID를 강제로 부여하지 않는다.",
+      "implementation": "lore/분류 표기만 적용. 옵션/효과/획득/저장 수치는 유지."
+    },
+    {
+      "itemId": "itm_co_13",
+      "name": "요동추",
+      "characterClass": null,
+      "slot": "common",
+      "tier": 3,
+      "basicOptions": [
+        {
+          "key": "attack",
+          "label": "공격",
+          "value": 6,
+          "unit": "%"
+        },
+        {
+          "key": "mp",
+          "label": "최대 기력",
+          "value": 16,
+          "unit": "%"
+        },
+        {
+          "key": "armor",
+          "label": "방어",
+          "value": 2,
+          "unit": "%p"
+        }
+      ],
+      "releaseGate": "officialAct4",
+      "initialIncluded": false,
+      "effectId": "co_wild",
+      "eventId": "eq_co_t3_choice",
+      "iconPath": "shared/assets/item-icons/v1/itm_co_13.webp",
+      "lore": "작은 쇠추의 한쪽 배가 불룩하다. 내려놓으면 곧게 서지 않고 옆으로 기운다.",
+      "effectCategory": "unique",
+      "classification": "기초 옵션 + 고유능력",
+      "conceptAndIcon": "기운 쇠추 / 위험 감수",
+      "currentModifier": {
+        "effectId": "co_wild",
+        "summary": "정상 공격 피해 평균 +3%, 행동별 편차 ±25%로 변경.",
+        "targetSkills": [
+          "NORMAL_DAMAGING_CAST"
+        ],
+        "params": {
+          "damageMean": 1.03,
+          "damageSpread": 0.25,
+          "damageRollMin": 0.78,
+          "damageRollMax": 1.28
+        },
+        "limits": "비치명 방어 전 범위78~128%. 치명타는 기존대로 별도 적용. 기존 spread0·환경/추가 추첨 제외."
+      },
+      "proposedBasicTargets": [],
+      "review": "공용 개념 유지. 특정 캐릭터·스킬 ID를 강제로 부여하지 않는다.",
+      "implementation": "lore/분류 표기만 적용. 옵션/효과/획득/저장 수치는 유지."
+    },
+    {
+      "itemId": "itm_co_14",
+      "name": "절수옥",
+      "characterClass": null,
+      "slot": "common",
+      "tier": 3,
+      "basicOptions": [
+        {
+          "key": "mp",
+          "label": "최대 기력",
+          "value": 16,
+          "unit": "%"
+        },
+        {
+          "key": "cost",
+          "label": "기예 기력 비용 감소",
+          "value": 7,
+          "unit": "%"
+        },
+        {
+          "key": "regen",
+          "label": "턴 기력 회복",
+          "value": 3,
+          "unit": "고정"
+        }
+      ],
+      "releaseGate": "officialAct4",
+      "initialIncluded": false,
+      "effectId": "co_costly",
+      "eventId": "eq_co_t3_choice",
+      "iconPath": "shared/assets/item-icons/v1/itm_co_14.webp",
+      "lore": "길쭉한 옥 조각에 나란한 홈을 팠다. 손으로 쥐는 부분의 홈만 얕아졌다.",
+      "effectCategory": "basic",
+      "classification": "기초 옵션 + 수치 보정",
+      "conceptAndIcon": "홈 난 옥 / 큰 기력 지출",
+      "currentModifier": {
+        "effectId": "co_costly",
+        "summary": "장비 미적용 실제 비용이 40 이상인 기예의 기력 비용 -15%.",
+        "targetSkills": [
+          "PAID_SKILLS"
+        ],
+        "params": {
+          "nativeManaThreshold": 40,
+          "manaDiscount": 0.15
+        },
+        "limits": "원래 최종 비용0이면0. 장비발 총 감소30% 상한. 환급·추가 MP 회복 없음."
+      },
+      "proposedBasicTargets": [],
+      "review": "공용 개념 유지. 특정 캐릭터·스킬 ID를 강제로 부여하지 않는다.",
+      "implementation": "lore/분류 표기만 적용. 옵션/효과/획득/저장 수치는 유지."
+    },
+    {
+      "itemId": "itm_co_15",
+      "name": "묵향 부적집",
+      "characterClass": null,
+      "slot": "common",
+      "tier": 3,
+      "basicOptions": [
+        {
+          "key": "hp",
+          "label": "최대 HP",
+          "value": 16,
+          "unit": "%"
+        },
+        {
+          "key": "attack",
+          "label": "공격",
+          "value": 6,
+          "unit": "%"
+        },
+        {
+          "key": "critMult",
+          "label": "치명 배율",
+          "value": 0.1,
+          "unit": "배 가산"
+        }
+      ],
+      "releaseGate": "officialAct4",
+      "initialIncluded": false,
+      "effectId": "co_cursed",
+      "eventId": "eq_co_t3_choice",
+      "iconPath": "shared/assets/item-icons/v1/itm_co_15.webp",
+      "lore": "먹 묻은 종이를 넣던 납작한 부적집. 덮개 안쪽에는 종이 가루가 붙어 있다.",
+      "effectCategory": "basic",
+      "classification": "기초 옵션 + 수치 보정",
+      "conceptAndIcon": "부적집 / 상태 활용",
+      "currentModifier": {
+        "effectId": "co_cursed",
+        "summary": "저주/지박이 이미 남은 적에게 장착자 주공격 피해 +12%.",
+        "targetSkills": [
+          "NORMAL_HERO_CAST"
+        ],
+        "params": {
+          "conditionBonus": 0.12
+        },
+        "limits": "원래 저주·지박 표식만 읽음. 소환·섭혼·자율 후속·지속·환경 제외, 새 상태/기간/타격 없음."
+      },
+      "proposedBasicTargets": [],
+      "review": "공용 개념 유지. 특정 캐릭터·스킬 ID를 강제로 부여하지 않는다.",
+      "implementation": "lore/분류 표기만 적용. 옵션/효과/획득/저장 수치는 유지."
+    },
+    {
+      "itemId": "itm_co_16",
+      "name": "무구 백의",
+      "characterClass": null,
+      "slot": "common",
+      "tier": 4,
+      "basicOptions": [
+        {
+          "key": "hp",
+          "label": "최대 HP",
+          "value": 20,
+          "unit": "%"
+        },
+        {
+          "key": "armor",
+          "label": "방어",
+          "value": 2.5,
+          "unit": "%p"
+        },
+        {
+          "key": "move",
+          "label": "이동력",
+          "value": 6,
+          "unit": "%"
+        },
+        {
+          "key": "regen",
+          "label": "턴 기력 회복",
+          "value": 4,
+          "unit": "고정"
+        }
+      ],
+      "releaseGate": "officialAct5",
+      "initialIncluded": false,
+      "effectId": "co_friendly",
+      "eventId": "eq_co_16",
+      "iconPath": "shared/assets/item-icons/v1/itm_co_16.webp",
+      "lore": "흰 천 조각을 접어 작은 돌에 감았다. 천을 여며 묶은 끝은 가늘게 해졌다.",
+      "effectCategory": "unique",
+      "classification": "기초 옵션 + 고유능력",
+      "conceptAndIcon": "흰 천 / 아군 오사격",
+      "currentModifier": {
+        "effectId": "co_friendly",
+        "summary": "장착자 공격 본체의 아군 HP 피해를 추가로 50% 줄인다.",
+        "targetSkills": [
+          "NORMAL_HERO_PRIMARY"
+        ],
+        "params": {
+          "friendlyHpScale": 0.5
+        },
+        "limits": "탄환 통과·밀침·상태·지형 보호는 아님. 자율 후속·밀침 충돌·소환·지속 제외, 아군 적중 자원/XP 없음."
+      },
+      "proposedBasicTargets": [],
+      "review": "공용 개념 유지. 특정 캐릭터·스킬 ID를 강제로 부여하지 않는다.",
+      "implementation": "lore/분류 표기만 적용. 옵션/효과/획득/저장 수치는 유지."
+    },
+    {
+      "itemId": "itm_co_17",
+      "name": "온혼 거울",
+      "characterClass": null,
+      "slot": "common",
+      "tier": 4,
+      "basicOptions": [
+        {
+          "key": "attack",
+          "label": "공격",
+          "value": 8,
+          "unit": "%"
+        },
+        {
+          "key": "mp",
+          "label": "최대 기력",
+          "value": 20,
+          "unit": "%"
+        },
+        {
+          "key": "crit",
+          "label": "치명 확률",
+          "value": 2.5,
+          "unit": "%p"
+        },
+        {
+          "key": "armor",
+          "label": "방어",
+          "value": 2.5,
+          "unit": "%p"
+        }
+      ],
+      "releaseGate": "officialAct6",
+      "initialIncluded": false,
+      "effectId": "co_soul",
+      "eventId": "eq_co_17",
+      "iconPath": "shared/assets/item-icons/v1/itm_co_17.webp",
+      "lore": "거울 가장자리의 무늬가 닳아 희미하다. 뒷면 손잡이에는 새 끈을 꿰었다.",
+      "effectCategory": "unique",
+      "classification": "기초 옵션 + 고유능력",
+      "conceptAndIcon": "손거울 / 형·기·혼 전환",
+      "currentModifier": {
+        "effectId": "co_soul",
+        "summary": "정상 주공격의 형·기 몫 30%를 혼으로 옮긴다.",
+        "targetSkills": [
+          "NORMAL_HERO_CAST"
+        ],
+        "params": {
+          "soulConversion": 0.3
+        },
+        "limits": "총 비중1 보존. 전역 ATTACK_EXISTENCE 변경 금지. 원래 속성 반응/보스 기믹 유지, 소환/지속/반사 제외."
+      },
+      "proposedBasicTargets": [],
+      "review": "공용 개념 유지. 특정 캐릭터·스킬 ID를 강제로 부여하지 않는다.",
+      "implementation": "lore/분류 표기만 적용. 옵션/효과/획득/저장 수치는 유지."
+    },
+    {
+      "itemId": "itm_co_18",
+      "name": "빈샘옥",
+      "characterClass": null,
+      "slot": "common",
+      "tier": 4,
+      "basicOptions": [
+        {
+          "key": "mp",
+          "label": "최대 기력",
+          "value": 20,
+          "unit": "%"
+        },
+        {
+          "key": "cost",
+          "label": "기예 기력 비용 감소",
+          "value": 9,
+          "unit": "%"
+        },
+        {
+          "key": "hp",
+          "label": "최대 HP",
+          "value": 20,
+          "unit": "%"
+        },
+        {
+          "key": "regen",
+          "label": "턴 기력 회복",
+          "value": 4,
+          "unit": "고정"
+        }
+      ],
+      "releaseGate": "officialAct6",
+      "initialIncluded": false,
+      "effectId": "co_low_mp",
+      "eventId": "eq_co_t4_choice",
+      "iconPath": "shared/assets/item-icons/v1/itm_co_18.webp",
+      "lore": "가운데가 빈 옥고리. 구멍 안쪽까지 매끈하게 갈아 끈이 잘 끊어지지 않는다.",
+      "effectCategory": "basic",
+      "classification": "기초 옵션 + 수치 보정",
+      "conceptAndIcon": "빈 옥고리 / 기력 고갈",
+      "currentModifier": {
+        "effectId": "co_low_mp",
+        "summary": "시전 직전 기력이 최대치의25% 이하면 유료 기예 비용 -15%.",
+        "targetSkills": [
+          "PAID_SKILLS"
+        ],
+        "params": {
+          "mpRatioThreshold": 0.25,
+          "manaDiscount": 0.15
+        },
+        "limits": "원래 무료0 유지. 비용 차감 뒤 재평가/환급 없음. 장비 총 할인30% 상한."
+      },
+      "proposedBasicTargets": [],
+      "review": "공용 개념 유지. 특정 캐릭터·스킬 ID를 강제로 부여하지 않는다.",
+      "implementation": "lore/분류 표기만 적용. 옵션/효과/획득/저장 수치는 유지."
+    },
+    {
+      "itemId": "itm_co_19",
+      "name": "무딘 동전",
+      "characterClass": null,
+      "slot": "common",
+      "tier": 4,
+      "basicOptions": [
+        {
+          "key": "attack",
+          "label": "공격",
+          "value": 8,
+          "unit": "%"
+        },
+        {
+          "key": "hp",
+          "label": "최대 HP",
+          "value": 20,
+          "unit": "%"
+        },
+        {
+          "key": "mp",
+          "label": "최대 기력",
+          "value": 20,
+          "unit": "%"
+        },
+        {
+          "key": "armor",
+          "label": "방어",
+          "value": 2.5,
+          "unit": "%p"
+        }
+      ],
+      "releaseGate": "officialAct6",
+      "initialIncluded": false,
+      "effectId": "co_noncrit",
+      "eventId": "eq_co_t4_choice",
+      "iconPath": "shared/assets/item-icons/v1/itm_co_19.webp",
+      "lore": "둔하게 닳은 동전의 네 귀가 둥글다. 구멍에 끼운 천 조각은 색을 잃었다.",
+      "effectCategory": "basic",
+      "classification": "기초 옵션 + 수치 보정",
+      "conceptAndIcon": "닳은 동전 / 치명 포기",
+      "currentModifier": {
+        "effectId": "co_noncrit",
+        "summary": "비치명 주공격 피해 +12%, 치명 배율 -0.20배.",
+        "targetSkills": [
+          "NORMAL_HERO_CAST"
+        ],
+        "params": {
+          "noncriticalBonus": 0.12,
+          "criticalMultiplierAdd": -0.2,
+          "criticalMultiplierMin": 1
+        },
+        "limits": "치명 확률은 그대로, 최종 치명 배율1~3.5. 소환·지속·자율후속 제외. 새 추첨 없음."
+      },
+      "proposedBasicTargets": [],
+      "review": "공용 개념 유지. 특정 캐릭터·스킬 ID를 강제로 부여하지 않는다.",
+      "implementation": "lore/분류 표기만 적용. 옵션/효과/획득/저장 수치는 유지."
+    },
+    {
+      "itemId": "itm_co_20",
+      "name": "틈새 호패",
+      "characterClass": null,
+      "slot": "common",
+      "tier": 4,
+      "basicOptions": [
+        {
+          "key": "hp",
+          "label": "최대 HP",
+          "value": 20,
+          "unit": "%"
+        },
+        {
+          "key": "attack",
+          "label": "공격",
+          "value": 8,
+          "unit": "%"
+        },
+        {
+          "key": "move",
+          "label": "이동력",
+          "value": 6,
+          "unit": "%"
+        },
+        {
+          "key": "crit",
+          "label": "치명 확률",
+          "value": 2.5,
+          "unit": "%p"
+        }
+      ],
+      "releaseGate": "officialAct6",
+      "initialIncluded": false,
+      "effectId": "co_armor",
+      "eventId": "eq_co_t4_choice",
+      "iconPath": "shared/assets/item-icons/v1/itm_co_20.webp",
+      "lore": "길고 좁은 쇠패에 짧은 끈을 달았다. 가장자리의 패인 곳을 망치로 펴 둔 흔적이 있다.",
+      "effectCategory": "basic",
+      "classification": "기초 옵션 + 수치 보정",
+      "conceptAndIcon": "좁은 쇠패 / 방어 틈",
+      "currentModifier": {
+        "effectId": "co_armor",
+        "summary": "일반 적의 방어 수치30%를 무시한다.",
+        "targetSkills": [
+          "NORMAL_HERO_CAST"
+        ],
+        "params": {
+          "armorIgnoreFraction": 0.3
+        },
+        "limits": "boss/midboss/honroAct2Boss/honroFinalBoss/목표 객체 제외. ward의 최소방어 .32·속성 반응·방호·무적은 유지."
+      },
+      "proposedBasicTargets": [],
+      "review": "공용 개념 유지. 특정 캐릭터·스킬 ID를 강제로 부여하지 않는다.",
+      "implementation": "lore/분류 표기만 적용. 옵션/효과/획득/저장 수치는 유지."
+    }
+  ]
+}

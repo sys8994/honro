@@ -1,0 +1,498 @@
+{
+  "meta": {
+    "status": "기획 후보만. 게임 효과 교체/새 수치 미적용. 추천도 채택 확정이 아님.",
+    "count": 28,
+    "principle": "단순 스킬/계열 피해·범위·효율 보정은 기초 옵션이며 T1부터 허용. 고유능력은 조준/충돌/자원 교환/타격 방식의 선택이 달라져야 한다.",
+    "bounds": "모든 상한은 검토 시작점. 턴 순서·세이브·슬롯 재설계가 큰 안은 보류. 공용품은 공통 공격/이동/자원 개념으로 유지한다.",
+    "sources": [
+      "shared/engine/src/skillRedesignData.ts",
+      "shared/engine/src/occultData.ts",
+      "shared/engine/src/engine.ts",
+      "shared/engine/src/mageGeometry.ts",
+      "shared/engine/src/skillMechanics.ts",
+      "shared/engine/src/warriorMechanics.ts",
+      "shared/engine/src/occultMechanics.ts",
+      "shared/engine/src/equipment.ts",
+      "shared/engine/src/locomotion.ts",
+      "shared/engine/src/eaterMechanics.ts"
+    ]
+  },
+  "candidates": [
+    {
+      "candidateId": "U01",
+      "status": "추천",
+      "name": "급락 뒤 낮은 튀김",
+      "proposedItems": [
+        "itm_se_05"
+      ],
+      "skills": [
+        "A11"
+      ],
+      "classification": "고유능력 제안 · 미적용",
+      "effect": "급락시가 지형에 닿으면 낮은 수평 화살로 한 번만 튀긴다.",
+      "playChoice": "고지 낙하 사격으로 엄폐 뒤의 낮은 적을 노린다.",
+      "costAndCap": "튕김 피해는 원본의35% 이내, 낙차 보너스 재계산 없음. 적당1회, 목재 관통 추가 없음.",
+      "implementationHook": "engine.ts 지형 명중 분기 + projectile 1회 플래그",
+      "risk": "반사 무한루프·상부 천장·같은 적 재적중·재개 시 플래그 보존"
+    },
+    {
+      "candidateId": "U02",
+      "status": "후보",
+      "name": "막힌 관통의 끝",
+      "proposedItems": [
+        "itm_se_07"
+      ],
+      "skills": [
+        "A02"
+      ],
+      "classification": "고유능력 제안 · 미적용",
+      "effect": "관통 횟수를 모두 쓴 직후 남은 화살을 작은 원형 압력으로 바꾼다.",
+      "playChoice": "먼 적을 직접 겨누기보다 앞줄을 관통해 끝점을 고른다.",
+      "costAndCap": "추가탄 없음. 마지막 직격과 끝 압력의 합을 원래 한 번 피해 이내로 분할. 보스 중복 금지.",
+      "implementationHook": "engine.ts pierce 잔량 종료 + 기존 radial hit 판정 재사용",
+      "risk": "마지막 적과 주변 적의 이중 피해·사망 후 재발동·벽 너머 피해"
+    },
+    {
+      "candidateId": "U03",
+      "status": "추천",
+      "name": "마른 숨의 회수",
+      "proposedItems": [
+        "itm_se_08"
+      ],
+      "skills": [
+        "A06"
+      ],
+      "classification": "고유능력 제안 · 미적용",
+      "effect": "시전 직전 기력이25% 이하면 회기시의 HP 회수분을 포기하고 기력 회수로 돌린다.",
+      "playChoice": "부상 중에도 다음 기예를 이어 갈지, 체력 회수를 남길지 자원 상태로 갈린다.",
+      "costAndCap": "기존 기력18%/사격 상한 유지. 실제 적 피해만 원천, 과회복·사망자 제외.",
+      "implementationHook": "skillMechanics.ts recordRedesignDamage의 A06 회수 + cast 시점 상태 고정",
+      "risk": "다단 관통 합산·동일 사격 상한·회복 기여도 자기 회수 처리"
+    },
+    {
+      "candidateId": "U04",
+      "status": "후보",
+      "name": "벽에 걸린 격퇴",
+      "proposedItems": [
+        "itm_se_06"
+      ],
+      "skills": [
+        "A05"
+      ],
+      "classification": "고유능력 제안 · 미적용",
+      "effect": "격퇴된 첫 적이 가까운 벽에 막히면 추가 연쇄 충돌을 포기하고 짧은 감속을 건다.",
+      "playChoice": "적 뒤의 벽을 사격 자원으로 삼아 길목을 묶는다.",
+      "costAndCap": "감속1턴, 같은 사격1회. 보스에는 감속 면역 정책 유지. 추가 HP 피해 없음.",
+      "implementationHook": "engine.ts shove/terrain 접촉 + slowed 상태",
+      "risk": "벽·발판 구분·이미 감속된 적·밀침 정산 귀속"
+    },
+    {
+      "candidateId": "U05",
+      "status": "추천",
+      "name": "늦게 여는 화호",
+      "proposedItems": [
+        "itm_da_04"
+      ],
+      "skills": [
+        "M06"
+      ],
+      "classification": "고유능력 제안 · 미적용",
+      "effect": "화호가 첫 지형 접촉에 한 번 튄 뒤 재입력으로 열린다.",
+      "playChoice": "직선 착탄 대신 낮은 턱 뒤에서 불꽃을 펼친다.",
+      "costAndCap": "기존 파편 수/적당 상한 유지, 최대 수명 연장 없음. 첫 적 직격은 즉시 폭발.",
+      "implementationHook": "skillMechanics.ts redesignImpact/gourdBurst + 기존 M02 재입력/fuse 흐름",
+      "risk": "입력 지연·시간 초과 폭발·재접속 중 fuse·파편 중복"
+    },
+    {
+      "candidateId": "U06",
+      "status": "추천",
+      "name": "돌려 펴는 원호",
+      "proposedItems": [
+        "itm_da_08"
+      ],
+      "skills": [
+        "M03"
+      ],
+      "classification": "고유능력 제안 · 미적용",
+      "effect": "지형에 부딪힌 원호파의 부채꼴을 진행 방향 반대쪽으로 펼친다.",
+      "playChoice": "벽을 맞춰 뒤쫓는 적을 쓸어 담는 사선을 만든다.",
+      "costAndCap": "지형 접촉일 때만. 기존 반경/각도/총 타격 수 유지, 적 직격은 원래 방향.",
+      "implementationHook": "skillMechanics.ts redesignImpact/skillGeometry + mageGeometry.ts 원호 치수",
+      "risk": "방향 벡터·지형 밖 생성·같은 적 교차 중복·시연 일치"
+    },
+    {
+      "candidateId": "U07",
+      "status": "후보",
+      "name": "홀로 돌아오는 파문",
+      "proposedItems": [
+        "itm_da_05"
+      ],
+      "skills": [
+        "M11"
+      ],
+      "classification": "고유능력 제안 · 미적용",
+      "effect": "반탄파의 분열을 없애고 한 발의 반사 한도를 늘린다.",
+      "playChoice": "넓게 퍼뜨리는 대신 좁은 통로의 한 사선을 끝까지 이용한다.",
+      "costAndCap": "총 수명/이동거리 유지, 반사마다 기존 감쇠 유지. 반사2회 추가가 검토 시작점.",
+      "implementationHook": "skillMechanics.ts redesignImpact의 waveBounce 세대/분열 분기",
+      "risk": "분열 자탄 예외·벽 끼임·영구 반사·저장된 세대 호환"
+    },
+    {
+      "candidateId": "U08",
+      "status": "추천",
+      "name": "서리만 남기는 병",
+      "proposedItems": [
+        "itm_da_06"
+      ],
+      "skills": [
+        "M02"
+      ],
+      "classification": "고유능력 제안 · 미적용",
+      "effect": "빙호를 재입력으로 열면 파편을 포기하고 작은 서리 띠를 남긴다.",
+      "playChoice": "맑은숨 호리병을 진목 회복 보정에서 호리병의 봉인 개방·길목 제어로 옮긴다.",
+      "costAndCap": "직접 파편 피해 없음, 띠1개·1턴·적당 감속1회. 기존 감속 상한 유지.",
+      "implementationHook": "skillMechanics.ts detonateIceGourd/gourdBurst + fields 감속 영역",
+      "risk": "회생진목 M10과 완전 분리·비행 중 저장·감속 중첩·필드 소유자"
+    },
+    {
+      "candidateId": "U09",
+      "status": "후보",
+      "name": "한 점의 천뢰",
+      "proposedItems": [
+        "itm_da_07"
+      ],
+      "skills": [
+        "M05"
+      ],
+      "classification": "고유능력 제안 · 미적용",
+      "effect": "범위 내 각 적에게 나누던 낙뢰를 조준점 가까운 한 적에게만 모은다.",
+      "playChoice": "무리 청소를 버리고 특정 위협을 끊는다.",
+      "costAndCap": "최대2번, 합산 예산은 현행2대상분 이내. 다른 적 피해0, 상부 차폐 유지.",
+      "implementationHook": "skillMechanics.ts gourdBurst/gourdSky + lightningGeometry.ts 차폐",
+      "risk": "동률 대상 안정성·보스 다중 hit 상한·상부 지형·재로드 재선정 금지"
+    },
+    {
+      "candidateId": "U10",
+      "status": "추천",
+      "name": "낮게 흐르는 검기",
+      "proposedItems": [
+        "itm_hw_08"
+      ],
+      "skills": [
+        "S09"
+      ],
+      "classification": "고유능력 제안 · 미적용",
+      "effect": "월영참 본체가 첫 바닥 접촉에 소멸하지 않고 짧게 지면을 따라간다.",
+      "playChoice": "낮은 위치에서 전방을 훑되 공중 적 대응을 포기한다.",
+      "costAndCap": "원래 수명 안에서만, 큰 턱에서 종료. 현재 S09 단일 본체의 적당 hit 제한 유지. 레거시 twinCrescent는 대상에서 제외.",
+      "implementationHook": "warriorMechanics.ts stepWarrior/bladeMoon 접지 투영 + locomotion.ts 지면 질의",
+      "risk": "고정 쌍월 본체 예외·벼랑·자탄/섭혼 전파 금지·벽 통과"
+    },
+    {
+      "candidateId": "U11",
+      "status": "후보",
+      "name": "거리를 남긴 도약참",
+      "proposedItems": [
+        "itm_hw_05"
+      ],
+      "skills": [
+        "S01"
+      ],
+      "classification": "고유능력 제안 · 미적용",
+      "effect": "도약참의 타격 후 남은 이동력을 지불해 짧게 뒤로 착지한다.",
+      "playChoice": "적 안쪽에 머무는 대신 다음 사격선을 비운다.",
+      "costAndCap": "기력·HP 무료 회복 없음. 이동력 부족이면 원래 착지. 벽/벼랑 안전 경로만 허용.",
+      "implementationHook": "engine.ts warriorLeap 착지 + 기존 moveLeft/grounded",
+      "risk": "착지 중복·이동 부채·저장 후 공중 상태·호송 지형 우회"
+    },
+    {
+      "candidateId": "U12",
+      "status": "후보",
+      "name": "기력으로 잇는 사생",
+      "proposedItems": [
+        "itm_hw_06"
+      ],
+      "skills": [
+        "S02"
+      ],
+      "classification": "고유능력 제안 · 미적용",
+      "effect": "사생참의 HP 지출 일부를 기력으로 대신 치른다.",
+      "playChoice": "체력의 위험을 남겨 두면서 기예 연속 사용과 생존 사이를 고른다.",
+      "costAndCap": "필수 HP 지출 절반은 남김. 기력 부족 시 원래 규칙, HP1 미만 불가. 위력은 실제 지출 HP만 기준.",
+      "implementationHook": "engine.ts lifeSlash 비용 확정 + manaCost 지불 영수증",
+      "risk": "무료 피해 전환·동시 자원 부족·과거 snapshot·비용 기여도"
+    },
+    {
+      "candidateId": "U13",
+      "status": "추천",
+      "name": "물러서는 응수",
+      "proposedItems": [
+        "itm_hw_07"
+      ],
+      "skills": [
+        "S08"
+      ],
+      "classification": "고유능력 제안 · 미적용",
+      "effect": "응수의 첫 반격을 짧은 밀침과 후퇴로 바꾼다.",
+      "playChoice": "받아내고 근접 마무리할지, 다음 동행 사선을 열지 고른다.",
+      "costAndCap": "반격 피해 포기, 이동력 소모. 턴당1회·후퇴 거리 상한, 보스 밀침 면역 유지.",
+      "implementationHook": "engine.ts counterStance/normal hurt + walkTerrain",
+      "risk": "상호 반격 루프·후퇴 충돌·낙사·다단 피격 중복"
+    },
+    {
+      "candidateId": "U14",
+      "status": "보류",
+      "name": "베기를 멈춘 호위",
+      "proposedItems": [
+        "itm_hw_03"
+      ],
+      "skills": [
+        "S13"
+      ],
+      "classification": "고유능력 제안 · 미적용",
+      "effect": "파진연격의 후속 행동을 포기하면 가까운 동행1명에게 1회 방호를 넘긴다.",
+      "playChoice": "혼자 마무리하는 연격과 동행 보호를 바꾼다.",
+      "costAndCap": "후속 공격 완전 포기. 기존 ward cap 안에서1회, 소환물·사망자 제외.",
+      "implementationHook": "meleeFollow 완료/포기 입력 + ward 소유권 영수증",
+      "risk": "후속 입력 추가·행동 소비/저장 정합성. 턴 흐름 영향 때문에 기본 채택에서 제외"
+    },
+    {
+      "candidateId": "U15",
+      "status": "추천",
+      "name": "한 번 옮는 부적",
+      "proposedItems": [
+        "itm_so_06"
+      ],
+      "skills": [
+        "O06"
+      ],
+      "classification": "고유능력 제안 · 미적용",
+      "effect": "쇠망부가 붙은 적을 실제로 처치하면 가까운 한 적에게 남은 약화를 한 번만 옮긴다.",
+      "playChoice": "약한 적부터 처리해 뒤의 위협까지 묶는다.",
+      "costAndCap": "옮긴 약화1턴 상한, 재전염 금지. 방어 약화/공격 약화 수치 현행 유지.",
+      "implementationHook": "engine.ts 사망 확정 + curse 상태와 transmitted 표지",
+      "risk": "DOT 처치 귀속·원본 지속 연장 금지·재접속 전염·정예 면역"
+    },
+    {
+      "candidateId": "U16",
+      "status": "후보",
+      "name": "당겨 묶는 지박",
+      "proposedItems": [
+        "itm_so_04"
+      ],
+      "skills": [
+        "O10"
+      ],
+      "classification": "고유능력 제안 · 미적용",
+      "effect": "지박의 지속 피해를 포기하고 첫 이동 시 부착 지점으로 짧게 한 번 당긴다.",
+      "playChoice": "지속 화력 대신 적을 사선과 길목에 묶는다.",
+      "costAndCap": "벽 관통 없음,1회·거리 상한. 보스 제어 면역 유지, 추가 피해 없음.",
+      "implementationHook": "engine.ts earth tick/이동 + shove 상태",
+      "risk": "상태 지속 중 복원·DOT 보정 재적용·강제이동 지형"
+    },
+    {
+      "candidateId": "U17",
+      "status": "추천",
+      "name": "수명을 접는 방울",
+      "proposedItems": [
+        "itm_so_05"
+      ],
+      "skills": [
+        "O15"
+      ],
+      "classification": "고유능력 제안 · 미적용",
+      "effect": "가장 오래된 반향령 하나가 다음 유료 혼행을 두 번 따라 쏘고 남은 수명을 모두 소모해 사라진다.",
+      "playChoice": "오래 남기는 소환과 지금 한 번의 보조 사격을 교환한다.",
+      "costAndCap": "시전당 추가 모방1회 이내. 약화된 기존 반향 위력, 다른 반향·자탄 복제 금지. 소멸 개체는 활성 수에서 제외.",
+      "implementationHook": "occultMechanics.ts beginOccultCast의 root 복제/echoDelay + engine.ts summonExpires",
+      "risk": "무한 echo·소환 턴 순서·동일 사격 중 소멸·복제 탄 저장"
+    },
+    {
+      "candidateId": "U18",
+      "status": "추천",
+      "name": "머무는 등불",
+      "proposedItems": [
+        "itm_so_03"
+      ],
+      "skills": [
+        "O12"
+      ],
+      "classification": "고유능력 제안 · 미적용",
+      "effect": "등불귀를 배회 대신 소환 지점에 머무르게 한다.",
+      "playChoice": "따라오는 압박을 버리고 좁은 길목에 감시점을 놓는다.",
+      "costAndCap": "현재 공격/수명/개체 수 그대로, 지형 변화로 발판을 잃으면 원래 낙하.",
+      "implementationHook": "engine.ts summon turn의 lantern 목적지 선택만 분기",
+      "risk": "고정 위치 벽 충돌·주인 사망·탈락 발판·추적 대상 변경"
+    },
+    {
+      "candidateId": "U19",
+      "status": "보류",
+      "name": "삼키지 않는 먹귀",
+      "proposedItems": [
+        "itm_so_08"
+      ],
+      "skills": [
+        "O14"
+      ],
+      "classification": "고유능력 제안 · 미적용",
+      "effect": "포획 대상을 삼키는 대신 지정 지점에 내뱉어 배치한다.",
+      "playChoice": "처치 속도를 버리고 위험한 적의 자리를 바꾼다.",
+      "costAndCap": "포획 제한/보스 면역 그대로, 삼킴 피해 포기. 안전 경로·착지 거리 상한.",
+      "implementationHook": "eaterMechanics.ts 포획/해제 위치 + 입력",
+      "risk": "포획 상태/패배/저장 복원 위험이 커 기본 채택에서 제외"
+    },
+    {
+      "candidateId": "U20",
+      "status": "후보",
+      "name": "손을 비우는 혼행",
+      "proposedItems": [
+        "itm_so_07"
+      ],
+      "skills": [
+        "O01"
+      ],
+      "classification": "고유능력 제안 · 미적용",
+      "effect": "혼령탄이 적을 직접 맞히지 못하고 지형에 닿으면 약한 혼 파편 하나로 되돌아온다.",
+      "playChoice": "허공에 쏘는 이득 없이 벽을 이용한 돌아오는 사선을 고른다.",
+      "costAndCap": "본체 폭발 포기, 파편1개·총 위력 절반 이내. 재귀 반사·벽 투과 없음.",
+      "implementationHook": "engine.ts spiritBolt 지형 종료 + return projectile",
+      "risk": "원본/귀환 피해 중복·아군 오사격·혼 비율·최대 수명"
+    },
+    {
+      "candidateId": "U21",
+      "status": "추천",
+      "name": "낮은 고개넘기",
+      "proposedItems": [
+        "itm_co_11"
+      ],
+      "skills": [
+        "JUMP"
+      ],
+      "classification": "고유능력 제안 · 미적용",
+      "effect": "일반 도약을 낮고 앞이 긴 도약으로 바꾼다.",
+      "playChoice": "높은 발판 대신 짧은 틈을 빠르게 건너는 이동을 고른다.",
+      "costAndCap": "상승 높이 감소, 추가 수평 이동은 moveLeft에서 지불. 공중 재도약 없음.",
+      "implementationHook": "engine.ts jump 초기 속도/비용 + locomotion.ts 충돌",
+      "risk": "벼랑·저천장·이동력0·키보드/스틱 방향 일치"
+    },
+    {
+      "candidateId": "U22",
+      "status": "추천",
+      "name": "동행 사이로 난 사선",
+      "proposedItems": [
+        "itm_co_16"
+      ],
+      "skills": [
+        "NORMAL_HERO_PRIMARY"
+      ],
+      "classification": "고유능력 제안 · 미적용",
+      "effect": "본체가 처음 닿는 정규 동행1명을 HP 피해 없이 통과한다.",
+      "playChoice": "아군을 피하려고 각도를 버리지 않고 뒤의 적을 겨눈다.",
+      "costAndCap": "한 사격1명·1회. 동행 회복/방호/반격도 발동하지 않음. 소환물·자탄에는 미전파.",
+      "implementationHook": "engine.ts projectile 아군 충돌/primary 판정",
+      "risk": "동일 동행 재적중·근접 별도 정책·관통 예산·치유 기여도 파밍"
+    },
+    {
+      "candidateId": "U23",
+      "status": "후보",
+      "name": "높이에 따른 거울",
+      "proposedItems": [
+        "itm_co_17"
+      ],
+      "skills": [
+        "NORMAL_HERO_CAST"
+      ],
+      "classification": "고유능력 제안 · 미적용",
+      "effect": "지상 시전은 형 일부를 기로, 공중 시전은 기 일부를 혼으로 옮긴다.",
+      "playChoice": "어떤 높이에서 시전할지가 방어 반응 선택이 된다.",
+      "costAndCap": "총 공격 몫 보존, 전환 상한30%. 시전 때 고정하며 소환/지속 피해 제외.",
+      "implementationHook": "equipment.ts SoulVector 계열 helper + cast 영수증",
+      "risk": "점프/낙하 구분·다중 자탄 재변환·복원 후 비율 재결정 금지"
+    },
+    {
+      "candidateId": "U24",
+      "status": "후보",
+      "name": "다 쓰지 않는 옥",
+      "proposedItems": [
+        "itm_co_18"
+      ],
+      "skills": [
+        "INCOMING_NORMAL"
+      ],
+      "classification": "고유능력 제안 · 미적용",
+      "effect": "기력이 남아 있을 때 첫 적 본체 피격의 밀침을 줄이는 대신 기력을 소비한다.",
+      "playChoice": "다음 기예를 남길지 위험한 낙하를 막을지 준비 자원으로 갈린다.",
+      "costAndCap": "HP 피해 감소 없음. 자기 턴 주기1회·기력 최대치10% 소모, 기력 부족 시 발동 없음.",
+      "implementationHook": "engine.ts hurt/shove + 팀 턴 경계 소모 표지",
+      "risk": "다단 피격·환경 피해 배제·턴 재개/로드·기력 음수"
+    },
+    {
+      "candidateId": "U25",
+      "status": "후보",
+      "name": "한 모금 나누기",
+      "proposedItems": [
+        "itm_co_03"
+      ],
+      "skills": [
+        "NORMAL_HERO_PRIMARY"
+      ],
+      "classification": "고유능력 제안 · 미적용",
+      "effect": "동행에게 직접 닿은 첫 본체탄이 피해를 주는 대신 자신의 HP를 옮긴다.",
+      "playChoice": "공격 한 번과 자기 생존을 써서 실제로 다친 동행을 보조한다.",
+      "costAndCap": "전투당1회, 자기 HP5% 이내/받는 쪽 최대HP5% 이내. 사망자·자기 자신·소환물 제외.",
+      "implementationHook": "engine.ts primary 아군 hit + recordHeal(system) + 전투별 receipt",
+      "risk": "고의 오사격 회복 보상·재접속·재도전·가득 찬 체력에 소비 금지"
+    },
+    {
+      "candidateId": "U26",
+      "status": "후보",
+      "name": "마룻결을 남기는 패",
+      "proposedItems": [
+        "itm_co_06"
+      ],
+      "skills": [
+        "NORMAL_HERO_CAST"
+      ],
+      "classification": "고유능력 제안 · 미적용",
+      "effect": "장착자의 공격이 일반 엄폐용 목재를 부수지 않도록 지형 피해만0으로 만든다.",
+      "playChoice": "발판을 지키며 공격하는 대신 엄폐 파괴를 포기한다.",
+      "costAndCap": "적 피해/충돌/관통은 원래대로. 필수 기믹·진행용 파괴 대상은 제외하여 막힌 길을 만들지 않는다.",
+      "implementationHook": "engine.ts terrainDamage 귀속 + material/필수 기믹 식별",
+      "risk": "기믹용 목재·간접 폭발 귀속·소환 전파·파괴로만 열리는 길에서 교환 제한"
+    },
+    {
+      "candidateId": "U27",
+      "status": "보류",
+      "name": "빚으로 치르는 옥",
+      "proposedItems": [
+        "itm_co_14"
+      ],
+      "skills": [
+        "PAID_SKILLS"
+      ],
+      "classification": "고유능력 제안 · 미적용",
+      "effect": "기력이 부족한 기예의 부족분을 다음 턴 회복에서 먼저 갚는다.",
+      "playChoice": "이번 한 번을 얻고 다음 턴을 제약한다.",
+      "costAndCap": "기력 빚1회·최대20%, 추가 시전/치유 불가.",
+      "implementationHook": "manaCost + regen 정산 + snapshot 새 부채 필드",
+      "risk": "기력 회복·분할 복원·휴식터/로드 정합성 변화가 커 기본 채택에서 제외"
+    },
+    {
+      "candidateId": "U28",
+      "status": "보류",
+      "name": "한 발을 남긴 추",
+      "proposedItems": [
+        "itm_co_12"
+      ],
+      "skills": [
+        "INCOMING_NORMAL"
+      ],
+      "classification": "고유능력 제안 · 미적용",
+      "effect": "지상 밀침을 한 번 버티되 남은 이동력을 모두 잃는다.",
+      "playChoice": "위치를 지키는 대신 탈출 기회를 버린다.",
+      "costAndCap": "지상에서만1회, 환경 낙하는 방지하지 않음. HP 피해 그대로.",
+      "implementationHook": "engine.ts hurt/knockback + 다음 행동 moveLeft 처리",
+      "risk": "현재 턴/적 턴 이동 예산 의미가 달라 저장·턴 검수 범위가 커 보류"
+    }
+  ]
+}
