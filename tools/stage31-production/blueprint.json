@@ -1,0 +1,473 @@
+{
+  "version": 1,
+  "stageId": "stage-31",
+  "name": "강 끝의 갈대 — 레이어 벡터 제작",
+  "intent": "낮은 강둑의 갈대길과 짧은 상부 잔교를 선택하며 굴곡 뒤 사선을 바꾼다. 낮은 길은 연속 경사, 상부는 짧은 점프로 연결한다. 열린 나루를 확보한 뒤 네 동행이 승선한다.",
+  "references": [
+    "stage-3",
+    "stage-6",
+    "stage-30"
+  ],
+  "preserved": "기존 31장 도착·배 접근·승선 대사와 조건, 동행 4명, 선착장 및 배 도착 위치를 보존한다. 전멸만으로 종료하지 않는다.",
+  "bank": {
+    "id": "s31-estuary-bank",
+    "material": "earth",
+    "profile": [
+      [
+        0,
+        1720
+      ],
+      [
+        650,
+        1720
+      ],
+      [
+        1050,
+        1770
+      ],
+      [
+        1290,
+        1830
+      ],
+      [
+        1500,
+        1880
+      ],
+      [
+        1700,
+        1990
+      ],
+      [
+        1930,
+        2080
+      ],
+      [
+        2290,
+        2140
+      ],
+      [
+        2650,
+        2100
+      ],
+      [
+        2990,
+        2010
+      ],
+      [
+        3290,
+        1880
+      ],
+      [
+        3550,
+        1770
+      ],
+      [
+        3890,
+        1720
+      ],
+      [
+        4760,
+        1720
+      ],
+      [
+        5040,
+        1800
+      ],
+      [
+        5300,
+        1860
+      ],
+      [
+        6220,
+        1860
+      ],
+      [
+        6480,
+        2170
+      ],
+      [
+        6800,
+        2350
+      ],
+      [
+        7200,
+        2400
+      ]
+    ]
+  },
+  "walkways": [
+    {
+      "id": "s31-west-boardwalk",
+      "top": [
+        [
+          1290,
+          1830
+        ],
+        [
+          1700,
+          1850
+        ]
+      ],
+      "support": "s31-estuary-bank",
+      "posts": [
+        1380,
+        1630
+      ],
+      "joinGroundStart": true
+    },
+    {
+      "id": "s31-middle-remnant",
+      "top": [
+        [
+          1920,
+          1860
+        ],
+        [
+          2470,
+          1860
+        ]
+      ],
+      "support": "s31-estuary-bank",
+      "posts": [
+        1980,
+        2370
+      ]
+    },
+    {
+      "id": "s31-east-boardwalk",
+      "top": [
+        [
+          2690,
+          1840
+        ],
+        [
+          3040,
+          1805
+        ],
+        [
+          3550,
+          1770
+        ]
+      ],
+      "support": "s31-estuary-bank",
+      "posts": [
+        2750,
+        3010,
+        3370
+      ]
+    }
+  ],
+  "encounters": [
+    {
+      "id": "s31-west-bank",
+      "purpose": "첫 둑의 낮은 사격을 막고 잔교 또는 낮은 길로 이동하도록 압박한다.",
+      "targetZone": {
+        "x": 950,
+        "y": 1750,
+        "w": 1250,
+        "h": 350
+      },
+      "members": [
+        {
+          "id": "s31-west-hound",
+          "kind": "hound",
+          "x": 1420,
+          "supportId": "s31-west-boardwalk",
+          "role": "pursuer"
+        },
+        {
+          "id": "s31-west-guard",
+          "kind": "possessedGuard",
+          "x": 1650,
+          "supportId": "s31-west-boardwalk",
+          "role": "vanguard"
+        },
+        {
+          "id": "s31-west-archer",
+          "kind": "possessedArcher",
+          "x": 2090,
+          "supportId": "s31-middle-remnant",
+          "role": "overwatch"
+        }
+      ]
+    },
+    {
+      "id": "s31-low-channel",
+      "purpose": "잔교 아래의 우회로를 지킨다. 위쪽과 다른 사격선·엄폐를 이용하되 높은 길의 적과 몸이 겹치지 않는다.",
+      "targetZone": {
+        "x": 2200,
+        "y": 2060,
+        "w": 1100,
+        "h": 280
+      },
+      "members": [
+        {
+          "id": "s31-low-hound",
+          "kind": "hound",
+          "x": 2480,
+          "supportId": "s31-estuary-bank",
+          "role": "ambush"
+        },
+        {
+          "id": "s31-low-guard",
+          "kind": "possessedGuard",
+          "x": 2040,
+          "supportId": "s31-estuary-bank",
+          "role": "objective-guard"
+        },
+        {
+          "id": "s31-low-archer",
+          "kind": "possessedArcher",
+          "x": 2800,
+          "supportId": "s31-estuary-bank",
+          "role": "ranged-support"
+        }
+      ]
+    },
+    {
+      "id": "s31-middle-rise",
+      "purpose": "둘째 둑의 능선과 뒤사면을 나누어 지킨다. 같은 자리에서 전원 직사격하지 못하며 진입 각도를 바꿔야 한다.",
+      "targetZone": {
+        "x": 3500,
+        "y": 1670,
+        "w": 1250,
+        "h": 430
+      },
+      "members": [
+        {
+          "id": "s31-rise-hound",
+          "kind": "hound",
+          "x": 3510,
+          "supportId": "s31-estuary-bank",
+          "role": "pursuer"
+        },
+        {
+          "id": "s31-rise-guard",
+          "kind": "possessedGuard",
+          "x": 3890,
+          "supportId": "s31-estuary-bank",
+          "role": "vanguard"
+        },
+        {
+          "id": "s31-rise-kiln",
+          "kind": "kilnFiend",
+          "x": 4780,
+          "supportId": "s31-estuary-bank",
+          "role": "area-denial"
+        },
+        {
+          "id": "s31-rise-archer",
+          "kind": "possessedArcher",
+          "x": 4300,
+          "supportId": "s31-bank-roof",
+          "role": "ranged-support"
+        }
+      ]
+    },
+    {
+      "id": "s31-landing",
+      "purpose": "버려진 짐과 어막 뒤의 선착장 진입을 지킨다. 승선면 자체는 막지 않는다.",
+      "targetZone": {
+        "x": 5050,
+        "y": 1800,
+        "w": 1050,
+        "h": 400
+      },
+      "members": [
+        {
+          "id": "s31-landing-hound",
+          "kind": "hound",
+          "x": 5400,
+          "supportId": "s31-estuary-bank",
+          "role": "pursuer"
+        },
+        {
+          "id": "s31-landing-archer",
+          "kind": "possessedArcher",
+          "x": 5760,
+          "supportId": "s31-estuary-bank",
+          "role": "overwatch"
+        },
+        {
+          "id": "s31-landing-guard",
+          "kind": "possessedGuard",
+          "x": 6100,
+          "supportId": "s31-estuary-bank",
+          "role": "objective-guard"
+        }
+      ]
+    }
+  ],
+  "budget": {
+    "initial": 13,
+    "elites": 0,
+    "activeLimit": 6,
+    "finiteSpawnCount": 0,
+    "rationale": "6체/행동3의 기존 배치를 4개 목적 군집13체/행동6으로 재작성한다. 이동과 위치 선점을 시험하되 증원이나 보스 능력은 추가하지 않는다. 실제 교전 후 밀도와 역할을 재판정한다."
+  },
+  "scenery": [
+    {
+      "id": "s31-entry-pine",
+      "assetId": "act1-scene:rooted-pine",
+      "x": 180,
+      "scale": 0.66
+    },
+    {
+      "id": "s31-entry-sign",
+      "assetId": "stage30:ferry-old-funeral-sign",
+      "x": 850,
+      "scale": 0.55
+    },
+    {
+      "id": "s31-bank-house",
+      "assetId": "act1-scene:ferry-house",
+      "x": 4350,
+      "scale": 0.85
+    },
+    {
+      "id": "s31-abandoned-boat",
+      "assetId": "a4-art:abandoned-skiff",
+      "x": 2300,
+      "scale": 0.58
+    },
+    {
+      "id": "s31-ruined-court",
+      "assetId": "act1-scene:ruined-court",
+      "x": 5700,
+      "scale": 0.5
+    },
+    {
+      "id": "s31-landing-cargo",
+      "assetId": "stage30:ferry-quay-cargo",
+      "x": 6050,
+      "scale": 0.6
+    }
+  ],
+  "reeds": [
+    [
+      1770,
+      0.6
+    ],
+    [
+      2250,
+      0.8
+    ],
+    [
+      2450,
+      0.55
+    ],
+    [
+      3180,
+      0.75
+    ],
+    [
+      3280,
+      0.5
+    ],
+    [
+      5130,
+      0.65
+    ],
+    [
+      5980,
+      0.5
+    ]
+  ],
+  "palette": {
+    "top": "#788b8b",
+    "light": "#a1aaa0",
+    "body": "#536b73",
+    "seam": "#354e58",
+    "deep": "#203743"
+  },
+  "structures": [
+    {
+      "id": "s31-bank-roof",
+      "sceneryId": "s31-bank-house",
+      "assetId": "act1-scene:ferry-house",
+      "source": "one-connected-thatch-roof/#675f4d, increasing-x chain"
+    }
+  ],
+  "sourceStatus": "production-authoring-pending-review",
+  "harbor": {
+    "x1": 5300,
+    "x2": 6220,
+    "y": 1860,
+    "waterStart": 6238,
+    "surface": 1890
+  },
+  "cameraViews": [
+    {
+      "id": "overview",
+      "kind": "overview",
+      "x": 3600,
+      "y": 1900,
+      "scale": 0.20833333333333334,
+      "width": 1600,
+      "height": 850
+    },
+    {
+      "id": "west-play",
+      "kind": "normal",
+      "x": 1900,
+      "y": 1920,
+      "scale": 0.55,
+      "width": 1400,
+      "height": 900
+    },
+    {
+      "id": "east-play",
+      "kind": "normal",
+      "x": 4650,
+      "y": 1750,
+      "scale": 0.55,
+      "width": 1400,
+      "height": 900
+    },
+    {
+      "id": "ground-close",
+      "kind": "close",
+      "x": 4450,
+      "y": 1930,
+      "scale": 0.8,
+      "width": 1400,
+      "height": 900
+    },
+    {
+      "id": "mobile",
+      "kind": "mobile",
+      "x": 2600,
+      "y": 1900,
+      "scale": 0.22,
+      "width": 720,
+      "height": 1100
+    },
+    {
+      "id": "min-zoom",
+      "kind": "min-zoom",
+      "x": 3600,
+      "y": 1900,
+      "scale": 0.23529411764705882,
+      "width": 1600,
+      "height": 900
+    },
+    {
+      "id": "left-edge",
+      "kind": "left-edge",
+      "x": 0,
+      "y": 1750,
+      "scale": 0.28,
+      "width": 1400,
+      "height": 900
+    },
+    {
+      "id": "right-edge",
+      "kind": "right-edge",
+      "x": 7200,
+      "y": 1940,
+      "scale": 0.28,
+      "width": 1400,
+      "height": 900
+    }
+  ]
+}
