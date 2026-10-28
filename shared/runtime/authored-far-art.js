@@ -44,7 +44,7 @@ function layers(scene,w,h,b){
   for(const t of roofs)alpha=Math.max(alpha,smooth((scene.x-t.x+200)/700)*smooth((t.x+t.w-scene.x+200)/700)*smooth((scene.y-(t.y+t.h-600))/600));
   if(alpha>0)out.push({key:spec.enclosed,alpha});
  }
- return out.map(l=>{const canvas=request(l.key,l.mood)?.canvas;return{...l,canvas,frame:canvas&&E.act1BackdropFrame(scene,w,h,b,canvas.width,canvas.height)};});
+ return out.map(l=>{const canvas=request(l.key,l.mood)?.canvas;let frame=canvas&&E.act1BackdropFrame(scene,w,h,b,canvas.width,canvas.height);if(frame&&Number.isFinite(spec.frameZoom)){const z=Math.max(1,Math.min(1.5,spec.frameZoom)),ay=Math.max(0,Math.min(1,spec.frameAnchorY??.5)),dx=frame.w*(z-1),dy=frame.h*(z-1);frame={...frame,x:frame.x-dx*.5,y:frame.y-dy*ay,w:frame.w*z,h:frame.h*z};}return{...l,canvas,frame};});
 }
 const previous=S.background,landmark=S.landmark,cardAssets=new WeakMap();
 // Remove only opaque backing washes from non-colliding distance cards. Keep
