@@ -352,3 +352,57 @@ curve type, endpoints/controls and bytes separately instead of advertising raw
 node reduction that did not occur. Actual important-detail and scene acceptance
 is not granted by this table. `test-quantize.py` checks absolute cubic/S/quadratic/T
 control rounding against its declared bound.
+
+## Exact internal vector reuse (optional runtime extension)
+
+New assets may use `vector.symbols: {localId: node}` and
+`{tag:"use", symbol:"localId", ...groupStyleOrTransformOrClip}`. References are
+strictly internal IDs: no URLs, SVG hrefs, cycles, unused definitions, or hidden
+extra children/path data. Every expanded use wrapper **and** referenced node counts
+against the unchanged512-node/depth24 limits; each path remains≤60,000 characters.
+Group/use opacity other than1 remains unsupported. Definition styles are resolved
+under each reference's inherited context, so alpha, gradients, holes and affine
+clips retain ordinary group semantics.
+
+`prepare()` compiles each definition once. `pathCount` remains logical expanded
+paint count; `uniquePathCount` reports unique compiled geometric paths. This reduces
+serialized repeated geometry and retained Path2D memory, **not repeated draw calls**.
+There are no cross-asset or external references. Existing plain assets are unchanged.
+Ship symbol assets only together with the updated renderer; do not convert historical
+assets whose separate authoring/runtime code expects direct child shapes.
+
+```js
+import {deduplicateAsset} from './tools/vector-production/deduplicate-vector.mjs';
+const {asset, report} = deduplicateAsset(authoredNewAsset);
+```
+
+The helper replaces only exact repeated subtrees, leaves input immutable, validates
+before/after and declines changes that exceed expanded budgets or save no bytes.
+Project CLI use requires explicit IDs to avoid rewriting historical assets:
+
+```sh
+node tools/vector-production/deduplicate-vector.mjs input-project.json output.json \
+  --asset-ids s32v:body-domain-left,s32v:body-domain-right
+```
+
+Real Stage32 left/right extension vectors: each2.454MB→129KB (94.7% less); one
+BODY definition is shared20times. The plainBODY is unchanged. Native tests compare
+exact pixels before/after, not merely file size. Dedicated checks:
+`node tests/vector-symbols.mjs` and existing `node tests/vector-assets.mjs`.
+
+## Opt-in rectangular partition clip snapping
+
+`pixelSnapClip:true` is allowed only when `clipPath` names **one** finite,
+nondegenerate canonical rectangle `M x y H x2 V y2 H x Z`, with finalH=initialx.
+A terrain polygon, multi-path clip, foreign reference or arbitrary path cannot opt in.
+Only exact axis-aligned canvas transforms are snapped; rotation/shear uses ordinary
+clipping. The transformed rectangle edges round to device-pixel boundaries, moving
+only an artificial partition boundary by at most.5devicepixel. A cached unit rectangle
+avoids per-frame Path2D allocation and does not mutate the caller's current path.
+
+Mark only authored slice/exterior-mirror rectangles, **never the actual terrain mask**.
+Ancestor terrain clipping and actual source geometry remain untouched. This prevents
+stacked color planes from repeatedly antialiasing the same fractional clip edge.
+No-flag rendering remains unchanged. `node tests/vector-clip-seams.mjs` verifies
+fractional zoom.37/.53/.81/1.33 against an unsliced reference (zero fixed-pixel delta),
+reflections, rotation/shear fallback, strict rejection and zero warm allocations.
