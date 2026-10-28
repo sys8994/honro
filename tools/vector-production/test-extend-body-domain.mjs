@@ -1,0 +1,6 @@
+import assert from'node:assert/strict';import{extendBodyDomain}from'./extend-body-domain.mjs';
+const points=[{x:-100,y:20},{x:0,y:0},{x:100,y:10},{x:200,y:-10},{x:200,y:500},{x:-100,y:500}];
+const a={id:'test-body',params:{semanticLayer:'BODY'},collision:[],reference:{bounds:{x:0,y:0,w:100,h:500}},vector:{version:1,viewBox:[0,0,100,500],root:{tag:'g',children:[{tag:'path',d:'M0 0L100 10V500H0Z',fill:'#334551'}]}}};const before=JSON.stringify([a,points]);
+const q=extendBodyDomain(a,{terrainPoints:points,topPoints:points.slice(0,4),left:0,right:100,leftBreaks:[-100,0],rightBreaks:[100,200]});
+assert.equal(JSON.stringify([a,points]),before);assert.equal(q.extensions.length,2);for(const ext of q.extensions){assert.deepEqual(ext.collision,[]);assert(ext.vector.root.clipPath==='domain');const t=ext.vector.root.children[0].children[0].transform;const edge=ext.params.domainContinuation.edge;assert.equal(-edge+t[4],edge);assert(Math.abs(t[1]*edge+t[5])<1e-10);}
+assert.equal(q.body.vector.root.clipPath,'interior');assert.throws(()=>extendBodyDomain({...a,params:{}},{terrainPoints:points}),/BODY/);console.log('PASS domain appearance reflection joins, unchanged inputs, collision-free extension and exact domainclip');
