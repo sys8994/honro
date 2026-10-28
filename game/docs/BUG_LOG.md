@@ -5117,3 +5117,9 @@ commonReviewRevision의 첫 혼령 대기열은 생성 후 소단/sceneTarget가
 ### 2026-10-28 · 레이어 벡터 지형의 바탕색 및 원경 프레이밍
 
 벡터 BODY 아래 기존 절차적 암면/띠가 겹치고 바탕색의 깊이 보정이 달라 조각 경계가 드러났다. `design.vectorGround.version=1`을 명시한 장만 기존 실제 terrain-domain 형상에 단색 바탕을 적용한다. `visualDepth: L1`은 장식 BODY와 같은 색 변환을 한 번만 적용하며 기본은 gameplay 원색이다. 나무·oneWay·요소 충돌체는 제외한다. 원경의 선택 `frameZoom`/`frameAnchorY`는 기존 프레임을 확대·정렬하며 기본 프레임은 유지한다. 31/35/3 기본 장면 픽셀 일치, 바탕/BODY 색·형상, 제외 표면, 실제 이동, 디코딩 원경 프레이밍 14 native 검사 통과. 현재는 제작 도구용 연결이며 미술 승인·캠페인 반영·브라우저 배포 검수는 별도다.
+
+### 2026-10-28 · 명시적 FORE의 실제 전경 합성
+
+기존 `layer:front`는 정적 배경 묶음 안에서 동행보다 먼저 그려져 FORE 자산의 실제 전경 역할을 하지 못했다. 충돌·상호작용이 없는 `asset.params.semanticLayer:FORE`만 정적 landmark pass에서 제외하고, 동행 본체 뒤/발사체·HUD 앞에 별도 전경 pass로 합성한다. 살아 있는 동행·미수집 표식·목표 라벨은 매 프레임 clip hole로 보호하며, 서로 겹친 보호 영역이 전경을 다시 드러내지 않는다. 조준·턴 안내는 전경이 있을 때만 뒤로 옮겨 한 번만 그린다.
+
+전경 그림만 별도 viewport raster에 보관하고 동행 보호 영역은 cache 밖에서 적용한다. 슬롯은 6M pixels 상한이며 카메라/크기 변경 시 이전 buffer를 해제하고 전경이 사라지면 슬롯도 해제한다. 물리·schema·기존 충돌 자산 분류는 바꾸지 않았다. `tools/stage31-production/test-foreground.mjs`는 native 실제 renderer의 순서/반투명 안내 픽셀/동행·목표 보호/cache 수명, 모바일 DPR1.7 메모리 상한 및 FORE 없는 31·35·3장의 이전 renderer 대비 PNG byte 동일성을 확인한다. 색상 fixture는 합성 검증용이며 캠페인 완주·미술 승인·공개 배포 증거가 아니다.

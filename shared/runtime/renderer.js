@@ -77,7 +77,23 @@
         zoom(f, sx, sy, gesture=false) { G.HonroReinforcementCamera?.cancel(this,gesture);const a = this.world(sx, sy), r = this.canvas.getBoundingClientRect(),limits=G.HonroBounds.zoomLimits(r.width); this.scale = Math.max(limits.min, Math.min(limits.max, this.scale * f)); this.x = a.x - (sx - r.width / 2) / this.scale; this.y = a.y - (sy - r.height / 2) / this.scale; if(this.battle)G.HonroBounds.constrain(this,this.battle);this.manual = true; }
         _makeLayerCanvas(w,h){const cv=document.createElement('canvas');cv.width=Math.max(1,Math.ceil(w));cv.height=Math.max(1,Math.ceil(h));return cv;}
         _worldRasterScale(b,w){if(G.HonroTerrainDomain?.active(b))return Math.min(.68,Math.max(.05,2**(Math.floor(Math.log2(this.scale*1.25)*4)/4)));const mobile=w<900,maxPixels=mobile?3000000:6000000,desired=this.scale>.72?.68:this.scale>.38?.56:.42,cap=Math.sqrt(maxPixels/Math.max(1,b.width*b.height));return Math.max(.28,Math.min(desired,cap));}
-        _landmarkLayer(c,landmarks,layer){c.save();for(const l of landmarks){if((l.layer||'back')!==layer)continue;c.globalAlpha=l.opacity??1;if(l.honroTerrainMaterialClip){c.save();c.clip(l.honroTerrainMaterialClip);this.landmark?.(c,l);c.restore();}else this.landmark?.(c,l);}c.restore();}
+        _isForeground(l){return l.asset?.params?.semanticLayer==='FORE'&&!l.asset?.collision?.length&&!l.collisionIds?.length&&!l.honroElementCollision&&G.HonroVisualStyle?.classify(l,this.battle)!=='gameplay';}
+        _landmarkLayer(c,landmarks,layer){c.save();for(const l of landmarks){const foreground=this._isForeground(l);if(layer==='foreground'?!foreground:foreground||(l.layer||'back')!==layer)continue;c.globalAlpha=l.opacity??1;if(l.honroTerrainMaterialClip){c.save();c.clip(l.honroTerrainMaterialClip);this.landmark?.(c,l);c.restore();}else this.landmark?.(c,l);}c.restore();}
+        _drawForeground(c,b,w,h,landmarks){
+            // Cache only static paint. Live visibility holes are applied when
+            // compositing, so moving actors never invalidate or enter the cache.
+            const view=G.HonroBounds.viewport(this,w,h),z=Math.max(.01,this.scale),pad=6/z;
+            c.save();
+            const hole=(x,y,ww,hh)=>{if(![x,y,ww,hh].every(Number.isFinite))return;c.beginPath();c.rect(view.left-1,view.top-1,view.right-view.left+2,view.bottom-view.top+2);c.rect(x,y,ww,hh);c.clip('evenodd');};
+            // Intersect separate exclusion clips: overlapping actor holes must
+            // remain a union, not punch foreground back in via even/odd parity.
+            for(const u of b.units||[])if(!u.dead&&u.hp>0&&!u.eaterCapturedBy){const height=G.HonroPartyPresentationHeight?.(u)||u.h||66,half=Math.max(u.r*2||0,height*.9)+pad;hole(u.x-half,u.y-height*1.35-28/z,half*2,height*1.35+40/z);}
+            for(const m of b.honroMarkers||[])if(!m.collected)hole(m.x-70-pad,m.y-170-pad,140+pad*2,190+pad*2);
+            for(const t of this.terrainHealthTargets(b))hole(t.x-130/z,t.y-70/z,260/z,100/z);
+            const key=this._worldCacheKey(b,w)+':foreground:'+landmarks.map(l=>[l.id,l.asset?.id,l.x,l.y,l.scale,l.rotation,l.opacity].join(',')).join('|'),paint=cc=>this._landmarkLayer(cc,landmarks,'foreground');
+            if(!this._screenRaster(c,key,w,h,paint,'_screenForegroundCache'))paint(c);
+            c.restore();
+        }
         _landmarkVisible(l,view,padding=40){
             const bounds=l.asset?.bounds||l.asset?.reference?.bounds;
             if(bounds&&G.HonroGeometry){const ps=[[bounds.x,bounds.y],[bounds.x+bounds.w,bounds.y],[bounds.x,bounds.y+bounds.h],[bounds.x+bounds.w,bounds.y+bounds.h]].map(([x,y])=>G.HonroGeometry.transformPoint({x,y},l.asset,l));return Math.max(...ps.map(p=>p.x))+padding>=view.left&&Math.min(...ps.map(p=>p.x))-padding<=view.right&&Math.max(...ps.map(p=>p.y))+padding>=view.top&&Math.min(...ps.map(p=>p.y))-padding<=view.bottom;}
@@ -101,7 +117,7 @@
         // A second-level raster avoids resampling large static tiles/SVG scenery
         // on every idle/aim frame. Require two identical views before allocation:
         // camera motion and continuous zoom keep the existing live/tile path.
-        // Two slots, each capped at 6M pixels (24MB); replaced buffers release
+        // Background/world/optional foreground slots, each capped at 6M pixels (24MB); replaced buffers release
         // their backing stores immediately. Dynamic water, actors and FX stay live.
         _screenRaster(c,key,w,h,paint,slot,world=true){
             if(c.globalAlpha!==1||c.globalCompositeOperation!=='source-over')return false;
@@ -162,7 +178,7 @@
             while(q.tiles.size>limit)q.tiles.delete(q.tiles.keys().next().value);
             this._staticWorldCache={key,rs,bytes:q.tiles.size*(px+gutter*2)**2*4};
         }
-        renderCacheStats(){return{...this._cacheStats,screenWorldBytes:this._screenWorldCache?.bytes||0,screenBackgroundBytes:this._screenBackgroundCache?.bytes||0,worldBytes:this._staticWorldCache?.bytes||0,worldScale:this._staticWorldCache?.rs||0,backgroundBytes:this._backgroundCache?.bytes||0};}
+        renderCacheStats(){return{...this._cacheStats,screenWorldBytes:this._screenWorldCache?.bytes||0,screenBackgroundBytes:this._screenBackgroundCache?.bytes||0,screenForegroundBytes:this._screenForegroundCache?.bytes||0,worldBytes:this._staticWorldCache?.bytes||0,worldScale:this._staticWorldCache?.rs||0,backgroundBytes:this._backgroundCache?.bytes||0};}
         collisionTerrainOutline(c,b,w,h){
             if(this.viewOptions?.debugTerrainOutline!==true)return;
             const view=G.HonroBounds.viewport(this,w,h),pad=2/this.scale;
@@ -331,6 +347,9 @@
                     continue;
                 this.field(c, z.x, z.y, z.radius || z.r || 80, z.kind || 'flame');
             }
+            const foreground=(b.honroLandmarks||[]).filter(l=>this._isForeground(l)&&this._landmarkVisible(l,G.HonroBounds.viewport(this,w,h)));
+            if(!foreground.length&&this._screenForegroundCache){if(this._screenForegroundCache.canvas){this._screenForegroundCache.canvas.width=1;this._screenForegroundCache.canvas.height=1;}this._screenForegroundCache=null;}
+            const targetingGuides=()=>{
             if (!quietWalk && !quietOutro && !this.storyFrozen && u && b.phase === 'aim' && !u.summoned && selected && e.canAct?.()) {
                 try {
                     const repeat=u.cls==='archer'&&((u.ranks?.AP01||0)>0);
@@ -338,6 +357,8 @@
                 } catch { }
             }
             if(!quietOutro&&!this.storyFrozen&&b.phase==='flight')G.HONRO_CORE.drawTurnGuide(c,e,this.scale,this.turnTarget);
+            };
+            if(!foreground.length)targetingGuides();
             const visibleUnits=[];
             for (const v of b.units || []) {
                 if (v.dead || v.eaterCapturedBy || v.x < this.x - w / (2*this.scale) - Math.max(180,v.h*2) || v.x > this.x + w / (2*this.scale) + Math.max(180,v.h*2) || v.y < this.y-h/(2*this.scale)-Math.max(180,v.h*2) || v.y-v.h*2 > this.y+h/(2*this.scale)+180)
@@ -349,6 +370,7 @@
                 else this.unit(c, v, !this.skillPreview && v.id === b.active, charging && v.id === b.active ? power : 0);
                 if(!quietWalk&&!quietOutro&&(!G.HonroAct2||G.HonroAct2.visible(b,v)))G.HonroCombatStatus.draw(c,b,v,this.time,this.scale,!this.skillPreview&&v.id===b.active);
             }
+            if(foreground.length){this._drawForeground(c,b,w,h,foreground);targetingGuides();}
             G.HonroAct1StoryArt?.cartFront(this,e);
             if(!quietWalk&&!quietOutro&&!this.skillPreview){this.occludedUnitSilhouettes(c,b,visibleUnits,charging?power:0);this.tacticalUnitMarkers(c,b,visibleUnits);}
             if(!quietOutro){G.HonroStoryFraming?.highlight(this,e);
