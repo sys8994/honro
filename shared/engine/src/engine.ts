@@ -92,8 +92,19 @@ export class Engine {
     constructor(b: Battle, onEvent: (e: Event) => void = () => { }, fresh = false) { b.fields ??= []; b.physics ??= makePhysics(STAGES[b.stageId-1]?.physics); b.reviewDamage ??= {}; b.reviewLeft ??= 0; b.occultRevision ??= 1; this.b = b; migrateCampaignActionBudget(b); if(b.mode==='campaign'&&(b as any).honroStage&&!(b as any).honroCustom&&(b as any).honroMapOrigin!=='workshop')for(const u of b.units)migrateCampaignEnemyDamage(u); initializeKeeperRitual(b); if(b.phase!=='won'&&b.phase!=='lost')initializeDamageSequence(b); (globalThis as any).HonroQuestTargets?.migrate(b); ensureWaterfallBody(b); for(const u of b.units){migrateEnemySkills(u);migrateAirborneBalance(u);} this.onEvent = onEvent; restoreWarriorFollow(b); migrateEaters(this); this.applyPhysicsCues(); if (fresh) {
         this.refreshActivation();
         this.refreshIntents();
-    } }
+    } for(const u of b.units)this.clearDisabledActor(u); }
     get active() { return this.b.units.find(u => u.id === this.b.active); }
+    private unavailableActor(u?:Unit){return !u||u.dead||u.hp<=0||!!u.eaterCapturedBy;}
+    /** Death/capture can interrupt locomotion between AI planning and its next step.
+     * Also repair old snapshots without replaying damage, rewards or an action. */
+    private clearDisabledActor(u:Unit){
+        if(!this.unavailableActor(u))return false;
+        delete u.aiMove;delete u.moveTarget;delete u.platformDrop;delete u.meleeAction;delete u.beastAction;delete u.retreat;
+        clearWarriorFollow(u);u.moving=0;u.jumping=false;u.airborne=false;u.vx=u.vy=0;
+        if(u.equipmentState){delete u.equipmentState.motion;delete u.equipmentState.landingRetreat;}
+        return true;
+    }
+    private waitingEnemyMoves(){return this.b.units.some(u=>!this.unavailableActor(u)&&(u.aiMove?.waitingFlight||u.aiMove?.lureStakeId!==undefined));}
     get stage() { return STAGES[this.b.stageId - 1]; }
     onAttackStart?: (actorId: string) => void;
     private audioContext:SkillAudioSignal|null=null;
@@ -939,8 +950,7 @@ export class Engine {
         if (u.hp <= 0&&!u.dead) {
             delete u.salheun;u.dead = true;gearSpreadWeak(this,u);
             (globalThis as any).HonroClearReport?.death(this.b,u,owner,provenance?.skill||damageSkill||p?.skill,damageSource,p?.honroReportSource||provenance?.honroReportSource);
-            u.airborne = false;
-            u.vx = u.vy = 0;
+            this.clearDisabledActor(u);
             if(damageSource!=='eaterTransfer'){this.fx('burst', u.x, u.y - u.h * .4, u.side === 1 ? '#aaa8b9' : '#a8c5cc', 60);if(!(damageSource==='normal'&&this.audioContext&&/^[AS]\d/.test(this.audioContext.skill)))this.emit('sound', { name: 'down' });}
             if (u.side === 1 && !u.summoned && !u.honroObjectiveTarget) {
                 this.b.kills++;
@@ -1819,8 +1829,7 @@ export class Engine {
         this.fx('text', u.x, Math.min(this.b.height, u.y - u.h), '#efa797', 18, '−' + fall);
         if (u.hp === 0) {
             u.dead = true;
-            u.airborne = false;
-            u.vx = u.vy = 0;
+            this.clearDisabledActor(u);
             if (u.side === 1 && !u.summoned && !u.honroObjectiveTarget) {
                 this.b.kills++;
                 const contributor = Object.entries(u.damageBy).sort((a, b) => b[1] - a[1])[0];
@@ -1873,10 +1882,10 @@ export class Engine {
     } if(u.platformDrop?.phase==='fall'){u.platformDrop.phase='land';u.platformDrop.elapsed=0;u.platformDrop.contacts=[];} u.jumping = false; u.vy = 0; }
     stepUnits(dt: number) {
         for (const u of this.b.units) {
+            if(this.clearDisabledActor(u))continue;
             const gearBefore={x:u.x,y:u.y};if(gearStepMove(this,u,dt))continue;
-            // A removed/captured/disabled actor must not leave the team waiting on a stale pull.
-            if(u.aiMove?.lureStakeId!==undefined&&(u.dead||u.eaterCapturedBy||u.carriedBy!==undefined||!lureStakeFor(this,u))){delete u.aiMove;delete u.moveTarget;u.moving=0;}
-            if(u.eaterCapturedBy)continue;
+            // A lost lure or carried actor cannot retain its old pull plan.
+            if(u.aiMove?.lureStakeId!==undefined&&(u.carriedBy!==undefined||!lureStakeFor(this,u))){delete u.aiMove;delete u.moveTarget;u.moving=0;}
             u.eaterSwallow=Math.max(0,(u.eaterSwallow||0)-dt);
             u.hurt = Math.max(0, u.hurt - dt);
             u.anim = Math.max(0, u.anim - dt);
@@ -2108,10 +2117,14 @@ export class Engine {
     finishAction(reviewed=false) {
         if(this.noncombatWalk())return;
         const b = this.b, u = this.active;
-        if(u?.platformDrop&&u.platformDrop.phase!=='land')return;
-        if(finishWarrior(this))return;
-        if(u)arrowTurn(this,u);
-        if(finishRedesign(this,reviewed))return;
+        if(['won','lost','transition'].includes(b.phase))return;
+        const live=!this.unavailableActor(u);if(u)this.clearDisabledActor(u);
+        if(live){
+            if(u?.platformDrop&&u.platformDrop.phase!=='land')return;
+            if(finishWarrior(this))return;
+            arrowTurn(this,u!);
+            if(finishRedesign(this,reviewed))return;
+        }
         if(b.mode!=='practice'&&!reviewed){b.phase='review';b.reviewLeft=this.actionReviewSeconds();b.reviewFocus??=u?{x:u.x,y:u.y-u.h}:undefined;this.emit('change');this.emit('save');return;}
         keeperActionCompleted(this,u);
         if (u) {
@@ -2120,13 +2133,13 @@ export class Engine {
             u.acted = true;
             if (u.bound > 0)
                 u.bound--;
-            this.applyZones(u);
+            if(live)this.applyZones(u);
         }
         b.projectiles = []; b.volley=undefined;
         b.resolveAge = 0;
-        if (b.mode === 'practice'&&!b.practiceCombat) {if(u?.cls==='occultist'&&this.runSummonTurn(u.id)>0)return;this.resetPractice();return;}
+        if (b.mode === 'practice'&&!b.practiceCombat) {if(live&&u?.cls==='occultist'&&this.runSummonTurn(u.id)>0)return;this.resetPractice();return;}
         if (this.checkEnd())return;
-        if(b.side===0&&u?.cls==='occultist'&&this.runSummonTurn(u.id)>0)return;
+        if(live&&b.side===0&&u?.cls==='occultist'&&this.runSummonTurn(u.id)>0)return;
         this.advanceAfterAction();
     }
     private advanceAfterAction(){
@@ -2138,6 +2151,9 @@ export class Engine {
             b.active = pending[0].id; b.reviewDamage={}; b.reviewFocus=undefined;
                 b.phase = b.side === 0 ? 'aim' : 'enemy';
             b.turnAge = 0;
+        }
+        else if(b.side===1&&this.waitingEnemyMoves()){
+            b.active='';b.queue=[];b.phase='enemy';b.turnAge=0;
         }
         else {
             this.endTeam();
@@ -2186,7 +2202,7 @@ export class Engine {
                 u.acted = !b.queue.includes(u.id);
             planWaitingFlights(this);
             if (!enemies.length) {
-                if(b.units.some(u=>u.aiMove?.waitingFlight)){b.active='';b.phase='enemy';b.turnAge=0;this.emit('change');return;}
+                if(this.waitingEnemyMoves()){b.active='';b.phase='enemy';b.turnAge=0;this.emit('change');return;}
                 if(this.actors(1).some(u=>u.lureRound!==b.round&&lureStakeFor(this,u))){b.active='';b.phase='enemy';b.turnAge=0;this.emit('change');return;}
                 this.endTeam();
                 return;
@@ -2279,7 +2295,13 @@ export class Engine {
             u.intent = ENEMIES[u.role]?.intent || '대기';
     } }
     enemyAction(){
-        if(this.active?.aiMove||this.active?.moveTarget!==undefined||this.b.units.some(u=>u.aiMove?.lureStakeId!==undefined))return;
+        const b=this.b,u=this.active;
+        if((u||b.queue.length>0)&&(this.unavailableActor(u)||u?.summonKind==='eater')){
+            this.enemyPlanning=undefined;if(u)this.clearDisabledActor(u);
+            this.finishAction();
+            return;
+        }
+        if(u?.aiMove||u?.moveTarget!==undefined||b.units.some(v=>!this.unavailableActor(v)&&v.aiMove?.lureStakeId!==undefined))return;
         if(this.planningRemaining<=0)return;
         const key=this.planningKey();if(!this.enemyPlanning||this.enemyPlanning.key!==key)this.enemyPlanning={key,steps:this.enemyActionSteps()};
         const work=this.enemyPlanning;if(this.continuePlanning(work.steps)){this.enemyPlanning=undefined;return;}
@@ -2289,8 +2311,8 @@ export class Engine {
         const b=this.b;
         if(yield* planEnemyLuresSteps(this)){this.emit('change');this.emit('save');return;}
         const u=this.active;
-        if(!u&&b.queue.length===0){if(b.units.some(v=>v.aiMove?.waitingFlight))return;this.endTeam();return;}
-        if(!u||u.dead||u.eaterCapturedBy||u.summonKind==='eater'){this.finishAction();return;}
+        if(!u&&b.queue.length===0){if(this.waitingEnemyMoves())return;this.endTeam();return;}
+        if(!u||this.unavailableActor(u)||u.summonKind==='eater'){this.finishAction();return;}
         if(u.aiMove||u.moveTarget!==undefined)return;
         if(!this.heroesAlive().length){this.checkEnd();return;}
         let target=targetFor(this,u);
