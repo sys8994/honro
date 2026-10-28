@@ -297,13 +297,15 @@ function pointSegmentDistance(p,a,b){const dx=b.x-a.x,dy=b.y-a.y,n=dx*dx+dy*dy,t
 function resetPlay(from='start'){
  if(playFrame)stopPlay(false);
  const snapshot=deep(project),st=snapshot.stages.find(s=>s.id===snapshot.activeStageId);
+ // Play only this target; unrelated legacy drafts remain intact in the editor.
+ const playProject={...snapshot,activeStageId:st.id,stages:[st]};
  playSnapshot={stageView:deep(stageView),elementView:deep(elementView),selected:deep(selected),selectedNode,selectedShapeIndex,tool};
  const frame=document.createElement('iframe');frame.id='runtimeFrame';frame.title='HONRO 실제 게임 플레이테스트';frame.allow='autoplay; fullscreen';
  frame.src=new URL(HONRO_PLAYTEST_URL,document.baseURI).href;
  playFrame=frame;playState={from,stageId:st.id};
  playReady=new Promise((resolve,reject)=>{frame.onload=async()=>{try{
   await frame.contentWindow.HONRO_READY;
-  const app=frame.contentWindow.HonroApp;app.launchMap(snapshot,st.id,{from,unitId:selected?.type==='unit'?selected.id:null,camera:deep(stageView)});
+  const app=frame.contentWindow.HonroApp;app.launchMap(playProject,st.id,{from,unitId:selected?.type==='unit'?selected.id:null,camera:deep(stageView)});
   frame.contentWindow.focus();resolve(app);
  }catch(e){toast('Playtest: '+e.message);reject(e);}};});
  $('#runtimeHost').replaceChildren(frame);playReady.catch(()=>{});return playReady;
