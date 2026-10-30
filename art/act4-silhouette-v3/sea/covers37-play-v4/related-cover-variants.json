@@ -1,0 +1,102 @@
+[
+  {
+    "stageId": "stage-37",
+    "instanceId": "a4-37-prop-0",
+    "oldAssetId": "s32-density:stone-cover-natural",
+    "assetFile": "/workspace/scratch/fff510b4df37/honro-stage31-direct/art/act4-silhouette-v3/sea/covers37-play-v4/a4-37-prop-0-asset.json",
+    "newAssetId": "s37-silhouette:a4-37-prop-0-cover-v4",
+    "instanceUnchanged": true,
+    "sourceOuter": "path6",
+    "collisionVertices": 105,
+    "materialChange": "implicitwood\u2192explicitrock;indestructiblepreserved",
+    "supportSamples": [
+      {
+        "x": 1148.0,
+        "groundY": 3000.6253112727272
+      },
+      {
+        "x": 1400,
+        "groundY": 3004.4573524390244
+      },
+      {
+        "x": 1652.0,
+        "groundY": 3009.4700811219514
+      }
+    ]
+  },
+  {
+    "stageId": "stage-37",
+    "instanceId": "a4-37-prop-1",
+    "oldAssetId": "s32-density:stone-cover-natural",
+    "assetFile": "/workspace/scratch/fff510b4df37/honro-stage31-direct/art/act4-silhouette-v3/sea/covers37-play-v4/a4-37-prop-1-asset.json",
+    "newAssetId": "s37-silhouette:a4-37-prop-1-cover-v4",
+    "instanceUnchanged": true,
+    "sourceOuter": "path6",
+    "collisionVertices": 106,
+    "materialChange": "implicitwood\u2192explicitrock;indestructiblepreserved",
+    "supportSamples": [
+      {
+        "x": 2534.0,
+        "groundY": 2803.3957902222223
+      },
+      {
+        "x": 2750,
+        "groundY": 2807.812422857143
+      },
+      {
+        "x": 2966.0,
+        "groundY": 2800.3213579999997
+      }
+    ]
+  },
+  {
+    "stageId": "stage-37",
+    "instanceId": "a4-37-prop-2",
+    "oldAssetId": "s32-density:stone-cover-natural",
+    "assetFile": "/workspace/scratch/fff510b4df37/honro-stage31-direct/art/act4-silhouette-v3/sea/covers37-play-v4/a4-37-prop-2-asset.json",
+    "newAssetId": "s37-silhouette:a4-37-prop-2-cover-v4",
+    "instanceUnchanged": true,
+    "sourceOuter": "path6",
+    "collisionVertices": 102,
+    "materialChange": "implicitwood\u2192explicitrock;indestructiblepreserved",
+    "supportSamples": [
+      {
+        "x": 3530.0,
+        "groundY": 2492.5714295
+      },
+      {
+        "x": 3800,
+        "groundY": 2478.556692650602
+      },
+      {
+        "x": 4070.0,
+        "groundY": 2464.567993846154
+      }
+    ]
+  },
+  {
+    "stageId": "stage-37",
+    "instanceId": "a4-37-prop-3",
+    "oldAssetId": "s32-density:stone-cover-natural",
+    "assetFile": "/workspace/scratch/fff510b4df37/honro-stage31-direct/art/act4-silhouette-v3/sea/covers37-play-v4/a4-37-prop-3-asset.json",
+    "newAssetId": "s37-silhouette:a4-37-prop-3-cover-v4",
+    "instanceUnchanged": true,
+    "sourceOuter": "path6",
+    "collisionVertices": 107,
+    "materialChange": "implicitwood\u2192explicitrock;indestructiblepreserved",
+    "supportSamples": [
+      {
+        "x": 5266.0,
+        "groundY": 2279.0243013809522
+      },
+      {
+        "x": 5500,
+        "groundY": 2363.7797309523808
+      },
+      {
+        "x": 5734.0,
+        "groundY": 2411.6060464615384
+      }
+    ]
+  }
+]

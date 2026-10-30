@@ -1,0 +1,80 @@
+{
+  "scope": "Authored terrain inventory of coastal31/32/37/40, plus actual whole-frame inspection. Absence of designAssetId alone is not missing art; old schemas bind element instances/property sourceAssetId.",
+  "stage31": [
+    {
+      "terrain": "s31-estuary-bank",
+      "visual": "s31-silhouette:play-left/right-bank-v5 + far coverage",
+      "status": "native visual present"
+    },
+    {
+      "terrain": "s31-landing-dock",
+      "visual": "a4-31-dock-9 / a4:dock",
+      "binding": "terrain.properties.sourceAssetId=a4:dock",
+      "status": "existing protected boarding deck visual; foot1860 untouched"
+    },
+    {
+      "terrain": "s31-west-boardwalk",
+      "visual": "s31-silhouette:wood-route-v4-0",
+      "status": "native visual present"
+    },
+    {
+      "terrain": "s31-middle-remnant",
+      "visual": "s31-silhouette:wood-route-v4-1",
+      "status": "native visual present"
+    },
+    {
+      "terrain": "s31-east-boardwalk",
+      "visual": "s31-silhouette:wood-route-v4-2",
+      "status": "native visual present"
+    },
+    {
+      "terrain": "s31-bank-roof",
+      "visual": "s31-bank-house / act1-scene:ferry-house",
+      "binding": "terrain.properties.sourceAssetId and sourceOutline one-connected-thatch-roof/#675f4d",
+      "status": "existing house roof is actual visual; do not add duplicate roof platform art"
+    }
+  ],
+  "stage32": [
+    {
+      "terrain": "a4-32-land",
+      "visual": "s32-silhouette bank32 + domain variants",
+      "status": "native visual present"
+    },
+    {
+      "terrain": "a4-32-back-alley",
+      "visual": "s32-density:surface / s32-silhouette:wood-route-v3",
+      "binding": "asset.params panels explicitworldX/transform and collision text, no collisionSource field",
+      "status": "native visual present"
+    }
+  ],
+  "stage37": [
+    {
+      "terrain": "a4-37-land",
+      "visual": "s37-silhouette play-left/right bank + far coverage",
+      "status": "native visual present"
+    },
+    {
+      "terrain": "a4-37-haul-ramp",
+      "visual": "s37-silhouette:wood-route-v4-0",
+      "status": "native visual present; bury left source end with correct soil occlusion draw order"
+    },
+    {
+      "terrain": "a4-37-broken-wall",
+      "visual": "s37-silhouette:broken-wall-v5",
+      "status": "native skeleton-first visual present; topband max0.55world, current-runtime closeup reviewed"
+    }
+  ],
+  "stage40": [
+    {
+      "terrain": "a4-40-land",
+      "visual": "s40-silhouette play-left/right bank + far coverage",
+      "status": "native visual present"
+    },
+    {
+      "terrain": "a4-40-high-walk",
+      "visual": "s40-silhouette:wood-route-v4-0",
+      "status": "native visual present"
+    }
+  ],
+  "limitations": "Inventory is not gameplay PASS. Instantiated rockcover collisions are bound to their own nativecover assets. Invisible trigger/water/recovery volumes intentionally get no decorative solids. Stage40 actual boarding/returnboat and stage31 boarding remain separate QA."
+}

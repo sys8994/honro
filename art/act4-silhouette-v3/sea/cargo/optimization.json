@@ -1,0 +1,25 @@
+{
+  "removedShadingPlanes": [
+    {
+      "id": "path5",
+      "chars": 168774,
+      "reason": "#585e60 near-duplicate of underlying #5b6062; noisy gradient quantization plane, not silhouette or structural seams"
+    }
+  ],
+  "protected": "native outer silhouette and remaining full structural paths; no geometry simplification",
+  "nativeSHA256": "72bfa3160bbb760b5b3c96a5946af724f7e1a85344136f62eee4da6877cddc98",
+  "generatedSource": "exec-baeaf1ef-49ec-4c54-b8f3-3cd8a73874ac.png",
+  "transform": [
+    0.2006591985429055,
+    0,
+    0,
+    0.2302163871915384,
+    -188.60547038871104,
+    -167.48679579320083
+  ],
+  "quantization": {
+    "sourceDecimals": 3,
+    "maxControlPointErrorSourcePx": 0.000708,
+    "maxControlPointErrorLocalWorld": 0.000164
+  }
+}

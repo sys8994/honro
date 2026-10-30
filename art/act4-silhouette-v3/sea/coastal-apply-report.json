@@ -1,0 +1,87 @@
+[
+  {
+    "stage": 31,
+    "removed": [
+      "s31v:body-continuous-domain-left-instance",
+      "s31v:body-continuous-domain-right-instance",
+      "s31v:body-continuous-instance",
+      "s31-density:soil-contact-0",
+      "s31-density:soil-contact-3600"
+    ],
+    "palette": [
+      {
+        "from": "s31v:abandoned-skiff",
+        "to": "s31v:abandoned-skiff-s31-blue-dawn-v4",
+        "count": 12
+      },
+      {
+        "from": "s31-density:wood-boardwalks",
+        "to": "s31-density:wood-boardwalks-s31-blue-dawn-v4",
+        "count": 7
+      }
+    ]
+  },
+  {
+    "stage": 37,
+    "removed": [
+      "s37v:body-domain-left",
+      "s37v:body-domain-left-density-part-1",
+      "s37v:body-domain-right",
+      "s37v:body-domain-right-density-part-1",
+      "s37v:body",
+      "s37-density:soil-contact-0",
+      "s37-density:soil-contact-3600",
+      "s37-density:soil-contact-7200"
+    ],
+    "palette": [
+      {
+        "from": "a4-coast:pier-37-2070",
+        "to": "a4-coast:pier-37-2070-s37-blue-dawn-v4",
+        "count": 4
+      },
+      {
+        "from": "a4-coast:pier-37-2820",
+        "to": "a4-coast:pier-37-2820-s37-blue-dawn-v4",
+        "count": 4
+      },
+      {
+        "from": "s37-density:wood-0",
+        "to": "s37-density:wood-0-s37-blue-dawn-v4",
+        "count": 7
+      }
+    ]
+  },
+  {
+    "stage": 40,
+    "removed": [
+      "s40v:body",
+      "s40v:body-domain-left",
+      "s40v:body-domain-right",
+      "s40v:contact-surface",
+      "s40-density:soil-contact-0",
+      "s40-density:soil-contact-3600"
+    ],
+    "palette": [
+      {
+        "from": "s40v:workshop-ruin",
+        "to": "s40v:workshop-ruin-s40-blue-dawn-v4",
+        "count": 6
+      },
+      {
+        "from": "density-bg:coastal-house",
+        "to": "density-bg:coastal-house-s40-blue-dawn-v4",
+        "count": 15
+      },
+      {
+        "from": "s40v:abandoned-skiff",
+        "to": "s40v:abandoned-skiff-s40-blue-dawn-v4",
+        "count": 12
+      },
+      {
+        "from": "s40-density:wood-0",
+        "to": "s40-density:wood-0-s40-blue-dawn-v4",
+        "count": 7
+      }
+    ]
+  }
+]
