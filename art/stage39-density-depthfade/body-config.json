@@ -1,0 +1,48 @@
+{
+  "id": "s39-density:body-depthfade",
+  "name": "돌아오는 물 지반 저대비 시험",
+  "semanticLayer": "BODY",
+  "category": "rock",
+  "bounds": {
+    "x": -300,
+    "y": 1400,
+    "w": 9600,
+    "h": 3200
+  },
+  "anchor": {
+    "x": 0,
+    "y": 0
+  },
+  "foot": {
+    "x": 0,
+    "y": 1800
+  },
+  "transform": [
+    4.419889502762431,
+    0,
+    0,
+    4.419889502762431,
+    -300.0,
+    1400.0
+  ],
+  "bodyClip": [
+    "M0 1800H1200L1380 2000H1700L2000 2250 2500 2550 3400 2600 4100 2400 4500 2000H4900 5000 5800 6200L6600 1700H8000L8500 1650H9000L9500 1492.7734375 10000 1426.80296296296 10500 1483.01037037037 11000 1545.44 11500 1549.02606310014 12000 1452.45541838134 12500 1322.96296296296 13000 1242.85322359396 13500 1215.99650094766 14000 1143.28181950722 14500 1065.97463187054 15000 1030V28600H-6000V1540L-5500 1505.73844583759-5000 1432.11255285027-4500 1362.86047528794-4000 1343.47736625514-3500 1441.11111111111-3000 1598.93004115226-2500 1716.62551440329-2000 1756-1500 1867.48148148148-1000 1967.85185185185-500 1923.046875Z"
+  ],
+  "params": {
+    "semanticLayer": "BODY",
+    "sourceViewBox": [
+      0.0,
+      0.0,
+      2172.0,
+      724.0
+    ],
+    "removedReferenceImages": [],
+    "artRevision": 1,
+    "sourceConcept": "body-concept.png",
+    "sourceRaw": "body-raw.svg",
+    "sourceFit": "Native full-viewBox affine; original source physics authoritative",
+    "collisionSource": "official:a4-39-land",
+    "densityRevision": 2,
+    "artEdit": "Source-derived Inkscape union full silhouette plus original contact-protected forms fading with depth. Intentional art recomposition, not fidelity optimization."
+  }
+}

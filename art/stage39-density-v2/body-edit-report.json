@@ -1,0 +1,102 @@
+{
+  "source": "art/stage39-vector-production/body-contact-preserved.svg",
+  "sourceSHA256": "39acabc44a5cf085ed874b109431dd1dbc4eb11976c4623ae2bef52a6bb9b900",
+  "tool": "Inkscape 1.4 actual headless palette and contiguous draw-stack unions",
+  "paletteEdits": {
+    "path7,path6": "#394758",
+    "path5,path4": "#303e50"
+  },
+  "protectedPathsExact": {
+    "path11": true,
+    "path10": true,
+    "path9": true,
+    "path8": true
+  },
+  "unionTrials": [
+    {
+      "group": "path7,path6",
+      "before": {
+        "bytes": 221537,
+        "paths": 9,
+        "explicitCommandLetters": 4661,
+        "segments": 4654
+      },
+      "after": {
+        "bytes": 178168,
+        "paths": 8,
+        "explicitCommandLetters": 3578,
+        "segments": 3681
+      },
+      "accepted": true,
+      "strictImportPassed": true
+    },
+    {
+      "group": "path5,path4",
+      "before": {
+        "bytes": 178168,
+        "paths": 8,
+        "explicitCommandLetters": 3578,
+        "segments": 3681
+      },
+      "after": {
+        "bytes": 157347,
+        "paths": 7,
+        "explicitCommandLetters": 2720,
+        "segments": 2996
+      },
+      "accepted": false,
+      "strictImportPassed": false
+    }
+  ],
+  "stats": {
+    "existingFinal": {
+      "bytes": 221311,
+      "paths": 9,
+      "explicitCommandLetters": 4661,
+      "segments": 4654
+    },
+    "palette": {
+      "bytes": 221537,
+      "paths": 9,
+      "explicitCommandLetters": 4661,
+      "segments": 4654
+    },
+    "final": {
+      "bytes": 178168,
+      "paths": 8,
+      "explicitCommandLetters": 3578,
+      "segments": 3681
+    }
+  },
+  "runtimeBytes": {
+    "old": 216758,
+    "new": 176304
+  },
+  "limits": {
+    "expandedNodes": 512,
+    "depth": 24,
+    "pathCharacters": 60000
+  },
+  "visualApproval": "Normal/max direct source render crops inspected; protected upper paint/path geometry exact. Quieter deep facets but large original rock silhouettes retained. Full composed scene approval pending.",
+  "paletteToFinal": {
+    "normal": {
+      "width": 5088,
+      "worldZoom": 0.53,
+      "rgbMAE255": 0.0021865559239151932,
+      "rgbMax255": 39.0,
+      "alphaChangedPixels": 0,
+      "alphaMax255": 0.0,
+      "binarySilhouetteChangedPixelsAlpha128": 0
+    },
+    "max": {
+      "width": 10560,
+      "worldZoom": 1.1,
+      "rgbMAE255": 0.0011761525051652893,
+      "rgbMax255": 46.0,
+      "alphaChangedPixels": 0,
+      "alphaMax255": 0.0,
+      "binarySilhouetteChangedPixelsAlpha128": 0
+    }
+  },
+  "reviewCaveat": "Palette→union antialiasing differences are reported, not exact-pixel equivalence."
+}

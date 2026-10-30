@@ -1,0 +1,35 @@
+{
+  "stage": 39,
+  "scope": "Declared stairs/recovery/resident/objective/safe supports only. Not fullplay or visual approval.",
+  "projectRawSHA256": "1a4545e9fb16ba9befe385b5f51ebfff197f753e3919f7c3199e25dee27409e6",
+  "pass": true,
+  "rows": [
+    {
+      "range": [
+        1380,
+        1700
+      ],
+      "sampleCount": 33,
+      "maxErrorWorld": 0.0,
+      "sourceVerticesInsideRangeExact": true
+    },
+    {
+      "range": [
+        4500,
+        6200
+      ],
+      "sampleCount": 171,
+      "maxErrorWorld": 0.0,
+      "sourceVerticesInsideRangeExact": true
+    },
+    {
+      "range": [
+        6600,
+        8000
+      ],
+      "sampleCount": 141,
+      "maxErrorWorld": 0.0,
+      "sourceVerticesInsideRangeExact": true
+    }
+  ]
+}
