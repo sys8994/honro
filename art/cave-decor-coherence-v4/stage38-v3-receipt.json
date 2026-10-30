@@ -1,0 +1,23 @@
+{
+  "source": "stage38-candidate-v1.json",
+  "candidateSha256": "69137730c60777a839c06164748367df4379ac3d77aef54f9338ff9f51bec7dc",
+  "changes": [
+    {
+      "element": "s38v:body-east",
+      "oldAsset": "s38-density:body-east",
+      "newAsset": "s38-coherent-v4:s38v-body-east"
+    },
+    {
+      "element": "s38v:body-east-domain-right",
+      "oldAsset": "s38-density:body-east-domain-right",
+      "newAsset": "s38-coherent-v4:s38v-body-east-domain-right"
+    },
+    {
+      "element": "s38v:body-emergency-ledges",
+      "oldAsset": "s38-density:body-emergency-ledges",
+      "newAsset": "s38-coherent-v4:s38v-body-emergency-ledges"
+    }
+  ],
+  "scope": "Art-only native material depth/domain and BODY palette continuation; physical arrays unchanged",
+  "status": "pending actual frame review"
+}

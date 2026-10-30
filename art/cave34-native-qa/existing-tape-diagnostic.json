@@ -1,0 +1,848 @@
+{
+  "started": "2026-10-29T17:26:10Z",
+  "runtimeSha": "9278a691f97be21437b58fe67cdffa6a7e031da6666b2b34faa2e6f6829e0544",
+  "command": "node --expose-gc tools/stage34-production/verify-app-observations.mjs _local/reports/cave-decor-coherence-v4/stage34-candidate-v1.json tools/density-qa/tapes/stage34.json _local/reports/cave34-native-qa/existing-tape.json",
+  "files": {
+    "_local/reports/cave-decor-coherence-v4/stage34-candidate-v1.json": "43edff3b1b6fda17a02a93784dba488d5c3d175be269b7fcabc4eea4e6c61cf0",
+    "tools/density-qa/tapes/stage34.json": "2d658d8bdafa7250a6078a7a4802ed87335bb7ec43afaa7109f220d6a9ecc412",
+    "tools/stage34-production/verify-app-observations.mjs": "ffe7860dbf64f47c3e24d0053a2d02e641792faa09f20362afdf1f2fd198ce30",
+    "tools/stage34-production/app-adapter.mjs": "723b8cffb01a9f5832bdad5f32f9b22a2765a8dcb7f4f61ed7a236d51b9c405f"
+  },
+  "status": "INCOMPLETE existing old tape, not geometry failure or release PASS",
+  "exitCode": 1,
+  "frame": 17747,
+  "continue": [
+    {
+      "frame": 4847,
+      "inputIndex": 21,
+      "result": "pass",
+      "scope": "Actual stopBattle/persist/Continue; exact units, event state, round, active and phase preserved"
+    }
+  ],
+  "final": {
+    "phase": "flight",
+    "objective": {
+      "version": 1,
+      "clock": 147.8916666666965,
+      "events": {
+        "wrong_exit": {
+          "started": true,
+          "terminal": true,
+          "presented": [],
+          "retired": [
+            "A4.S34.DISLOCATION.01",
+            "A4.S34.DISLOCATION.02",
+            "A4.S34.DISLOCATION.03"
+          ]
+        }
+      },
+      "receipts": [],
+      "boat": {
+        "phase": "waiting",
+        "x": 500
+      },
+      "door": {
+        "phase": "standing",
+        "time": 0
+      },
+      "complete": false,
+      "visualDrawn": {},
+      "observed": {
+        "wrong-entry": 12.49999999999993,
+        "wrong-exit": 19.999999999999506
+      },
+      "water": {
+        "dry": {
+          "archer": {
+            "x": 3929.8143054819457,
+            "y": 3715.315911360516
+          },
+          "mage": {
+            "x": 3311.4376106069894,
+            "y": 4002.017059884448
+          },
+          "knight": {
+            "x": 3400.05,
+            "y": 3930.8049823800075
+          },
+          "occultist": {
+            "x": 4847.3477835237,
+            "y": 3351.273807960492
+          },
+          "a4-34-g0-0": {
+            "x": 1760,
+            "y": 4611.097589133524
+          },
+          "a4-34-g0-1": {
+            "x": 2905.3142802385437,
+            "y": 3368.0838080636117
+          },
+          "a4-34-g1-0": {
+            "x": 3910,
+            "y": 3718
+          },
+          "a4-34-g1-1": {
+            "x": 4327.821337942209,
+            "y": 3460.7870698258084
+          },
+          "a4-34-g2-0": {
+            "x": 5726.72241674896,
+            "y": 2933.5279172507794
+          },
+          "a4-34-g2-1": {
+            "x": 6138.9363320287,
+            "y": 2621.212199199754
+          }
+        },
+        "recoveries": []
+      },
+      "dislocation": {
+        "phase": "complete",
+        "at": 12.508333333333264,
+        "originalFixed": false
+      },
+      "reader": null
+    },
+    "units": [
+      {
+        "id": "archer",
+        "x": 3929.8143054819457,
+        "y": 3715.315911360516,
+        "hp": 1671,
+        "dead": false
+      },
+      {
+        "id": "mage",
+        "x": 3311.4376106069894,
+        "y": 4002.017059884448,
+        "hp": 1888,
+        "dead": false
+      },
+      {
+        "id": "knight",
+        "x": 3400.05,
+        "y": 3930.8049823800075,
+        "hp": 3786,
+        "dead": false
+      },
+      {
+        "id": "occultist",
+        "x": 4847.3477835237,
+        "y": 3351.273807960492,
+        "hp": 2187,
+        "dead": false
+      },
+      {
+        "id": "a4-34-g0-0",
+        "x": 1760,
+        "y": 4611.097589133524,
+        "hp": 0,
+        "dead": true
+      },
+      {
+        "id": "a4-34-g0-1",
+        "x": 2905.3142802385437,
+        "y": 3368.0838080636117,
+        "hp": 1308,
+        "dead": false
+      },
+      {
+        "id": "a4-34-g1-0",
+        "x": 3910,
+        "y": 3718,
+        "hp": 0,
+        "dead": true
+      },
+      {
+        "id": "a4-34-g1-1",
+        "x": 4327.821337942209,
+        "y": 3460.7870698258084,
+        "hp": 0,
+        "dead": true
+      },
+      {
+        "id": "a4-34-g2-0",
+        "x": 5726.72241674896,
+        "y": 2933.5279172507794,
+        "hp": 1559,
+        "dead": false
+      },
+      {
+        "id": "a4-34-g2-1",
+        "x": 6138.9363320287,
+        "y": 2621.212199199754,
+        "hp": 1559,
+        "dead": false
+      }
+    ]
+  },
+  "rejectedShots": [
+    {
+      "frame": 9977,
+      "actor": "occultist",
+      "x": 3790.1361029955415,
+      "y": 3739.116529448029,
+      "input": {
+        "op": "fire",
+        "skill": "A02",
+        "angle": 59.370758564635885,
+        "power": 0.9904621253641763
+      },
+      "accepted": false
+    },
+    {
+      "frame": 11012,
+      "actor": "occultist",
+      "x": 4874.379414792359,
+      "y": 3331.4776378064507,
+      "input": {
+        "op": "fire",
+        "skill": "M01",
+        "angle": 55,
+        "power": 1
+      },
+      "accepted": false
+    },
+    {
+      "frame": 12177,
+      "actor": "occultist",
+      "x": 4874.379414792359,
+      "y": 3331.4776378064507,
+      "input": {
+        "op": "fire",
+        "skill": "S04",
+        "angle": 55,
+        "power": 1
+      },
+      "accepted": false
+    },
+    {
+      "frame": 15177,
+      "actor": "archer",
+      "x": 2410.7045736084065,
+      "y": 4390.0054387792925,
+      "input": {
+        "op": "fire",
+        "skill": "S04",
+        "angle": 45.44925003758237,
+        "power": 0.9796781041058275
+      },
+      "accepted": false
+    },
+    {
+      "frame": 15972,
+      "actor": "archer",
+      "x": 3929.8143054819457,
+      "y": 3715.315911360516,
+      "input": {
+        "op": "fire",
+        "skill": "O02",
+        "angle": -59.00884296499616,
+        "power": 0.11350396559463062
+      },
+      "accepted": false
+    }
+  ],
+  "phaseTransitions": [
+    {
+      "frame": 1,
+      "phase": "aim",
+      "complete": false,
+      "enemies": 6
+    },
+    {
+      "frame": 30,
+      "phase": "aim",
+      "recoveries": 0,
+      "complete": false,
+      "enemies": 6
+    },
+    {
+      "frame": 32,
+      "phase": "flight",
+      "recoveries": 0,
+      "complete": false,
+      "enemies": 6
+    },
+    {
+      "frame": 266,
+      "phase": "review",
+      "recoveries": 0,
+      "complete": false,
+      "enemies": 6
+    },
+    {
+      "frame": 344,
+      "phase": "aim",
+      "recoveries": 0,
+      "complete": false,
+      "enemies": 6
+    },
+    {
+      "frame": 347,
+      "phase": "flight",
+      "recoveries": 0,
+      "complete": false,
+      "enemies": 6
+    },
+    {
+      "frame": 731,
+      "phase": "flight",
+      "recoveries": 0,
+      "complete": false,
+      "enemies": 5
+    },
+    {
+      "frame": 745,
+      "phase": "review",
+      "recoveries": 0,
+      "complete": false,
+      "enemies": 5
+    },
+    {
+      "frame": 823,
+      "phase": "aim",
+      "recoveries": 0,
+      "complete": false,
+      "enemies": 5
+    },
+    {
+      "frame": 1202,
+      "phase": "flight",
+      "recoveries": 0,
+      "complete": false,
+      "enemies": 5
+    },
+    {
+      "frame": 1255,
+      "phase": "flight",
+      "dislocation": "entering",
+      "recoveries": 0,
+      "complete": false,
+      "enemies": 5
+    },
+    {
+      "frame": 1323,
+      "phase": "flight",
+      "dislocation": "inside",
+      "recoveries": 0,
+      "complete": false,
+      "enemies": 5
+    },
+    {
+      "frame": 1466,
+      "phase": "review",
+      "dislocation": "inside",
+      "recoveries": 0,
+      "complete": false,
+      "enemies": 5
+    },
+    {
+      "frame": 1501,
+      "phase": "review",
+      "dislocation": "emerged",
+      "recoveries": 0,
+      "complete": false,
+      "enemies": 5
+    },
+    {
+      "frame": 1544,
+      "phase": "aim",
+      "dislocation": "emerged",
+      "recoveries": 0,
+      "complete": false,
+      "enemies": 5
+    },
+    {
+      "frame": 2027,
+      "phase": "flight",
+      "dislocation": "emerged",
+      "recoveries": 0,
+      "complete": false,
+      "enemies": 5
+    },
+    {
+      "frame": 2270,
+      "phase": "review",
+      "dislocation": "emerged",
+      "recoveries": 0,
+      "complete": false,
+      "enemies": 5
+    },
+    {
+      "frame": 2348,
+      "phase": "transition",
+      "dislocation": "emerged",
+      "recoveries": 0,
+      "complete": false,
+      "enemies": 5
+    },
+    {
+      "frame": 2368,
+      "phase": "enemy",
+      "dislocation": "emerged",
+      "recoveries": 0,
+      "complete": false,
+      "enemies": 5
+    },
+    {
+      "frame": 2369,
+      "phase": "review",
+      "dislocation": "emerged",
+      "recoveries": 0,
+      "complete": false,
+      "enemies": 5
+    },
+    {
+      "frame": 2401,
+      "phase": "review",
+      "dislocation": "complete",
+      "recoveries": 0,
+      "complete": false,
+      "enemies": 5
+    },
+    {
+      "frame": 2447,
+      "phase": "transition",
+      "dislocation": "complete",
+      "recoveries": 0,
+      "complete": false,
+      "enemies": 5
+    },
+    {
+      "frame": 2523,
+      "phase": "aim",
+      "dislocation": "complete",
+      "recoveries": 0,
+      "complete": false,
+      "enemies": 5
+    },
+    {
+      "frame": 3033,
+      "phase": "flight",
+      "dislocation": "complete",
+      "recoveries": 0,
+      "complete": false,
+      "enemies": 5
+    },
+    {
+      "frame": 3388,
+      "phase": "flight",
+      "dislocation": "complete",
+      "recoveries": 0,
+      "complete": false,
+      "enemies": 4
+    },
+    {
+      "frame": 3402,
+      "phase": "review",
+      "dislocation": "complete",
+      "recoveries": 0,
+      "complete": false,
+      "enemies": 4
+    },
+    {
+      "frame": 3480,
+      "phase": "aim",
+      "dislocation": "complete",
+      "recoveries": 0,
+      "complete": false,
+      "enemies": 4
+    },
+    {
+      "frame": 4338,
+      "phase": "review",
+      "dislocation": "complete",
+      "recoveries": 0,
+      "complete": false,
+      "enemies": 4
+    },
+    {
+      "frame": 4415,
+      "phase": "aim",
+      "dislocation": "complete",
+      "recoveries": 0,
+      "complete": false,
+      "enemies": 4
+    },
+    {
+      "frame": 5508,
+      "phase": "review",
+      "dislocation": "complete",
+      "recoveries": 0,
+      "complete": false,
+      "enemies": 4
+    },
+    {
+      "frame": 5585,
+      "phase": "aim",
+      "dislocation": "complete",
+      "recoveries": 0,
+      "complete": false,
+      "enemies": 4
+    },
+    {
+      "frame": 5598,
+      "phase": "flight",
+      "dislocation": "complete",
+      "recoveries": 0,
+      "complete": false,
+      "enemies": 4
+    },
+    {
+      "frame": 5896,
+      "phase": "review",
+      "dislocation": "complete",
+      "recoveries": 0,
+      "complete": false,
+      "enemies": 4
+    },
+    {
+      "frame": 5974,
+      "phase": "transition",
+      "dislocation": "complete",
+      "recoveries": 0,
+      "complete": false,
+      "enemies": 4
+    },
+    {
+      "frame": 5994,
+      "phase": "enemy",
+      "dislocation": "complete",
+      "recoveries": 0,
+      "complete": false,
+      "enemies": 4
+    },
+    {
+      "frame": 6209,
+      "phase": "flight",
+      "dislocation": "complete",
+      "recoveries": 0,
+      "complete": false,
+      "enemies": 4
+    },
+    {
+      "frame": 6341,
+      "phase": "review",
+      "dislocation": "complete",
+      "recoveries": 0,
+      "complete": false,
+      "enemies": 4
+    },
+    {
+      "frame": 6363,
+      "phase": "enemy",
+      "dislocation": "complete",
+      "recoveries": 0,
+      "complete": false,
+      "enemies": 4
+    },
+    {
+      "frame": 6364,
+      "phase": "flight",
+      "dislocation": "complete",
+      "recoveries": 0,
+      "complete": false,
+      "enemies": 4
+    },
+    {
+      "frame": 7155,
+      "phase": "review",
+      "dislocation": "complete",
+      "recoveries": 0,
+      "complete": false,
+      "enemies": 4
+    },
+    {
+      "frame": 7177,
+      "phase": "transition",
+      "dislocation": "complete",
+      "recoveries": 0,
+      "complete": false,
+      "enemies": 4
+    },
+    {
+      "frame": 7197,
+      "phase": "aim",
+      "dislocation": "complete",
+      "recoveries": 0,
+      "complete": false,
+      "enemies": 4
+    },
+    {
+      "frame": 7383,
+      "phase": "flight",
+      "dislocation": "complete",
+      "recoveries": 0,
+      "complete": false,
+      "enemies": 4
+    },
+    {
+      "frame": 7718,
+      "phase": "flight",
+      "dislocation": "complete",
+      "recoveries": 0,
+      "complete": false,
+      "enemies": 3
+    },
+    {
+      "frame": 7732,
+      "phase": "review",
+      "dislocation": "complete",
+      "recoveries": 0,
+      "complete": false,
+      "enemies": 3
+    },
+    {
+      "frame": 7810,
+      "phase": "aim",
+      "dislocation": "complete",
+      "recoveries": 0,
+      "complete": false,
+      "enemies": 3
+    },
+    {
+      "frame": 8658,
+      "phase": "review",
+      "dislocation": "complete",
+      "recoveries": 0,
+      "complete": false,
+      "enemies": 3
+    },
+    {
+      "frame": 8735,
+      "phase": "aim",
+      "dislocation": "complete",
+      "recoveries": 0,
+      "complete": false,
+      "enemies": 3
+    },
+    {
+      "frame": 8808,
+      "phase": "flight",
+      "dislocation": "complete",
+      "recoveries": 0,
+      "complete": false,
+      "enemies": 3
+    },
+    {
+      "frame": 9100,
+      "phase": "review",
+      "dislocation": "complete",
+      "recoveries": 0,
+      "complete": false,
+      "enemies": 3
+    },
+    {
+      "frame": 9178,
+      "phase": "aim",
+      "dislocation": "complete",
+      "recoveries": 0,
+      "complete": false,
+      "enemies": 3
+    },
+    {
+      "frame": 13063,
+      "phase": "flight",
+      "dislocation": "complete",
+      "recoveries": 0,
+      "complete": false,
+      "enemies": 3
+    },
+    {
+      "frame": 13103,
+      "phase": "review",
+      "dislocation": "complete",
+      "recoveries": 0,
+      "complete": false,
+      "enemies": 3
+    },
+    {
+      "frame": 13181,
+      "phase": "transition",
+      "dislocation": "complete",
+      "recoveries": 0,
+      "complete": false,
+      "enemies": 3
+    },
+    {
+      "frame": 13201,
+      "phase": "enemy",
+      "dislocation": "complete",
+      "recoveries": 0,
+      "complete": false,
+      "enemies": 3
+    },
+    {
+      "frame": 13309,
+      "phase": "flight",
+      "dislocation": "complete",
+      "recoveries": 0,
+      "complete": false,
+      "enemies": 3
+    },
+    {
+      "frame": 13564,
+      "phase": "review",
+      "dislocation": "complete",
+      "recoveries": 0,
+      "complete": false,
+      "enemies": 3
+    },
+    {
+      "frame": 13642,
+      "phase": "enemy",
+      "dislocation": "complete",
+      "recoveries": 0,
+      "complete": false,
+      "enemies": 3
+    },
+    {
+      "frame": 13791,
+      "phase": "flight",
+      "dislocation": "complete",
+      "recoveries": 0,
+      "complete": false,
+      "enemies": 3
+    },
+    {
+      "frame": 14307,
+      "phase": "review",
+      "dislocation": "complete",
+      "recoveries": 0,
+      "complete": false,
+      "enemies": 3
+    },
+    {
+      "frame": 14385,
+      "phase": "enemy",
+      "dislocation": "complete",
+      "recoveries": 0,
+      "complete": false,
+      "enemies": 3
+    },
+    {
+      "frame": 14593,
+      "phase": "flight",
+      "dislocation": "complete",
+      "recoveries": 0,
+      "complete": false,
+      "enemies": 3
+    },
+    {
+      "frame": 14810,
+      "phase": "review",
+      "dislocation": "complete",
+      "recoveries": 0,
+      "complete": false,
+      "enemies": 3
+    },
+    {
+      "frame": 14888,
+      "phase": "transition",
+      "dislocation": "complete",
+      "recoveries": 0,
+      "complete": false,
+      "enemies": 3
+    },
+    {
+      "frame": 14908,
+      "phase": "aim",
+      "dislocation": "complete",
+      "recoveries": 0,
+      "complete": false,
+      "enemies": 3
+    },
+    {
+      "frame": 16618,
+      "phase": "flight",
+      "dislocation": "complete",
+      "recoveries": 0,
+      "complete": false,
+      "enemies": 3
+    },
+    {
+      "frame": 16969,
+      "phase": "review",
+      "dislocation": "complete",
+      "recoveries": 0,
+      "complete": false,
+      "enemies": 3
+    },
+    {
+      "frame": 17047,
+      "phase": "aim",
+      "dislocation": "complete",
+      "recoveries": 0,
+      "complete": false,
+      "enemies": 3
+    },
+    {
+      "frame": 17053,
+      "phase": "review",
+      "dislocation": "complete",
+      "recoveries": 0,
+      "complete": false,
+      "enemies": 3
+    },
+    {
+      "frame": 17130,
+      "phase": "aim",
+      "dislocation": "complete",
+      "recoveries": 0,
+      "complete": false,
+      "enemies": 3
+    },
+    {
+      "frame": 17143,
+      "phase": "review",
+      "dislocation": "complete",
+      "recoveries": 0,
+      "complete": false,
+      "enemies": 3
+    },
+    {
+      "frame": 17220,
+      "phase": "aim",
+      "dislocation": "complete",
+      "recoveries": 0,
+      "complete": false,
+      "enemies": 3
+    },
+    {
+      "frame": 17233,
+      "phase": "review",
+      "dislocation": "complete",
+      "recoveries": 0,
+      "complete": false,
+      "enemies": 3
+    },
+    {
+      "frame": 17310,
+      "phase": "transition",
+      "dislocation": "complete",
+      "recoveries": 0,
+      "complete": false,
+      "enemies": 3
+    },
+    {
+      "frame": 17330,
+      "phase": "enemy",
+      "dislocation": "complete",
+      "recoveries": 0,
+      "complete": false,
+      "enemies": 3
+    },
+    {
+      "frame": 17436,
+      "phase": "flight",
+      "dislocation": "complete",
+      "recoveries": 0,
+      "complete": false,
+      "enemies": 3
+    }
+  ],
+  "fullReportSha256": "60db97798da7c1350e4bacbf3aa9163669479d8f25321acfe62468ec679801cb",
+  "logSha256": "617142d836ad0b9ca10e12fd558528d159e45ab15ac11801572609fee7904fdb",
+  "next": "Fresh ordinary adaptive input generation on same frozen candidate, followed by independent replay; no assertion changes"
+}

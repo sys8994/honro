@@ -1,0 +1,98 @@
+{
+  "source": "art/stage31-vector-production/body-small-optimized.svg",
+  "sourceRuntimeBytes": 865343,
+  "candidateRuntimeBytes": 719758,
+  "intentionalPalette": [
+    "#827d66",
+    "#53616b",
+    "#475760"
+  ],
+  "acceptedUnionGroups": [
+    [
+      "path15",
+      "path14"
+    ],
+    [
+      "path13",
+      "path12",
+      "path11",
+      "path10",
+      "path9",
+      "path8",
+      "path7"
+    ]
+  ],
+  "rejectedUnions": [
+    {
+      "group": [
+        "path6",
+        "path5",
+        "path4",
+        "path3",
+        "path2",
+        "path1-tile-0",
+        "path1-tile-1",
+        "path1-tile-2",
+        "path1-tile-3",
+        "path1-tile-4",
+        "path1-tile-5",
+        "path1-tile-6",
+        "path1-tile-7",
+        "path1-tile-8",
+        "path1-tile-9",
+        "path1-tile-10",
+        "path1-tile-11",
+        "path1-tile-12",
+        "path1-tile-13",
+        "path1-tile-14",
+        "path1-tile-15",
+        "path1-tile-16",
+        "path1-tile-17"
+      ],
+      "reason": "Preserve prepartitioned dark geometry; do not reunite safety partitions."
+    }
+  ],
+  "visualReview": "Direct normal and maximum projected source views inspected, with native asset validation. Muted broad rock planes retain source silhouettes. Palette quieting reduces distraction, but retains large original rock outlines; not a complete art redesign or scene approval. Integrated gameplay/camera/browser checks remain pending.",
+  "comparisons": {
+    "normal": {
+      "width": 3816,
+      "worldZoom": 0.53,
+      "meanRGBAError255": [
+        0.008082321374418206,
+        0.00514384979497119,
+        0.0016044658043590048,
+        0.0005847606239204673
+      ],
+      "maxRGBAError255": [
+        255.0,
+        255.0,
+        255.0,
+        66.0
+      ],
+      "fractionAbove16": 2.9501733844916472e-05
+    },
+    "max": {
+      "width": 7920,
+      "worldZoom": 1.1,
+      "meanRGBAError255": [
+        0.004224688534327819,
+        0.002678421070358021,
+        0.0007966524903475495,
+        0.001564944687860723
+      ],
+      "maxRGBAError255": [
+        255.0,
+        255.0,
+        255.0,
+        123.0
+      ],
+      "fractionAbove16": 3.972737376799214e-05
+    }
+  },
+  "runtimeNodes": 29,
+  "actualExpandedNodes": 29,
+  "maxRuntimePathCharacters": 59922,
+  "runtimeValidationErrors": 0,
+  "physics": "Original bounds, anchor, foot, transform and authoredBody clip retained. No production package edits; integrator must preserve domains/ownership and update deep substrate color.",
+  "fidelityCaveat": "RGBA means are diagnostics, not automatic art approval. Nonzero AA/alpha differences exist at contour edges; worst values and changed fractions retained above."
+}

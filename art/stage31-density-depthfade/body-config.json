@@ -1,0 +1,45 @@
+{
+  "id": "s31-density:body-depthfade",
+  "name": "하구 연속 지반",
+  "category": "rock",
+  "bounds": {
+    "x": 0,
+    "y": 1300,
+    "w": 7200,
+    "h": 3000
+  },
+  "anchor": {
+    "x": 0,
+    "y": 0
+  },
+  "foot": {
+    "x": 0,
+    "y": 1720
+  },
+  "transform": [
+    3.7075180226570548,
+    0,
+    0,
+    3.708281829419036,
+    0,
+    1300
+  ],
+  "bodyClip": [
+    "M0 1720H650L1050 1770 1290 1830 1500 1880 1700 1990 1930 2080 2290 2140 2650 2100 2990 2010 3290 1880 3550 1770 3890 1720H4760L5040 1800 5300 1860H6220L6480 2170 6800 2350 7200 2400V4800H0Z"
+  ],
+  "semanticLayer": "BODY",
+  "params": {
+    "semanticLayer": "BODY",
+    "sourceViewBox": [
+      0.0,
+      0.0,
+      1942.0,
+      809.0
+    ],
+    "removedReferenceImages": [],
+    "artRevision": 1,
+    "collisionSource": "s31-estuary-bank",
+    "densityEdit": "Intentional role-based palette redesign; original physical clip/transform retained. Boolean fidelity measured against recolored master.",
+    "artEdit": "Source-derived Inkscape union full silhouette plus original contact-protected forms fading with depth. Intentional art recomposition, not fidelity optimization."
+  }
+}
