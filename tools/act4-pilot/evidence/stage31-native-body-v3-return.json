@@ -1,0 +1,242 @@
+{
+  "world": {
+    "width": 7000,
+    "height": 4700
+  },
+  "priorApproachRegression": [
+    {
+      "cls": "archer",
+      "start": {
+        "x": 5000,
+        "y": 4145,
+        "hp": 995,
+        "valid": true
+      },
+      "end": {
+        "x": 4397.855181541081,
+        "y": 4159.480876083439,
+        "hp": 995
+      },
+      "inputJumps": 0,
+      "maxFrameYDelta": 1.9593296765751802,
+      "passed": true
+    },
+    {
+      "cls": "mage",
+      "start": {
+        "x": 5000,
+        "y": 4145,
+        "hp": 1062,
+        "valid": true
+      },
+      "end": {
+        "x": 4398.781659039776,
+        "y": 4159.312425629131,
+        "hp": 1062
+      },
+      "inputJumps": 0,
+      "maxFrameYDelta": 1.849416060571457,
+      "passed": true
+    },
+    {
+      "cls": "knight",
+      "start": {
+        "x": 5000,
+        "y": 4145,
+        "hp": 1618,
+        "valid": true
+      },
+      "end": {
+        "x": 4399.003029769529,
+        "y": 4159.27217640554,
+        "hp": 1618
+      },
+      "inputJumps": 0,
+      "maxFrameYDelta": 1.9354354122269797,
+      "passed": true
+    },
+    {
+      "cls": "occultist",
+      "start": {
+        "x": 5000,
+        "y": 4145,
+        "hp": 1216,
+        "valid": true
+      },
+      "end": {
+        "x": 4398.724266628317,
+        "y": 4159.322860613033,
+        "hp": 1216
+      },
+      "inputJumps": 0,
+      "maxFrameYDelta": 1.9163200007478736,
+      "passed": true
+    }
+  ],
+  "stageCanonicalSHA256": "4d84f5ba1f8e2ff123ef0c3f7942b12942709a8cc6b2f48651159720a2406f4d",
+  "scope": "All return-ramp cap intervals sampled with real exposedSurface/party-contact checks; each body starts once on valid shore x5000, walks to a source-derived launch beside the ramp entry, jumps onto the body-valid cap, walks up and drops back to shore. Explicit movement plan, not old-trajectory replay or exhaustive search. No pose/HP/budget injection after initial setup.",
+  "returnRamp": {
+    "parts": [
+      [
+        [
+          4520,
+          4080
+        ],
+        [
+          4600,
+          4010
+        ],
+        [
+          4680,
+          3920
+        ],
+        [
+          4760,
+          3860
+        ],
+        [
+          4840,
+          3760
+        ],
+        [
+          4920,
+          3690
+        ],
+        [
+          5000,
+          3600
+        ],
+        [
+          5120,
+          3500
+        ]
+      ]
+    ],
+    "totalLength": 837.7022860973291,
+    "keptLength": 837.7022860973356,
+    "samples": 1678,
+    "transitions": 0,
+    "samplingStepWorld": 0.5,
+    "boundaryLengthUncertaintyWorld": 0,
+    "limitation": "Midpoint samples can miss features narrower than the sample step; not exact swept/painted visibility proof."
+  },
+  "shoreApproaches": [
+    {
+      "cls": "archer",
+      "start": {
+        "x": 5000,
+        "y": 4145,
+        "hp": 995,
+        "valid": true
+      },
+      "launchX": 4450,
+      "landingX": 4560,
+      "landingPoseValid": true,
+      "approach": true,
+      "end": {
+        "x": 4979.490347778469,
+        "y": 4159.356756555071,
+        "hp": 995,
+        "moveLeft": 477.4439444806053
+      },
+      "inputJumps": 1,
+      "inputDrops": 1,
+      "reachedRamp": true,
+      "ascended": true,
+      "exitSupport": "pilot31-shore",
+      "passed": true
+    },
+    {
+      "cls": "mage",
+      "start": {
+        "x": 5000,
+        "y": 4145,
+        "hp": 1062,
+        "valid": true
+      },
+      "launchX": 4450,
+      "landingX": 4560,
+      "landingPoseValid": true,
+      "approach": true,
+      "end": {
+        "x": 4979.079612684138,
+        "y": 4159.644271121104,
+        "hp": 1062,
+        "moveLeft": 498.1383365124083
+      },
+      "inputJumps": 1,
+      "inputDrops": 1,
+      "reachedRamp": true,
+      "ascended": true,
+      "exitSupport": "pilot31-shore",
+      "passed": true
+    },
+    {
+      "cls": "knight",
+      "start": {
+        "x": 5000,
+        "y": 4145,
+        "hp": 1618,
+        "valid": true
+      },
+      "launchX": 4450,
+      "landingX": 4560,
+      "landingPoseValid": true,
+      "approach": true,
+      "end": {
+        "x": 4979.366259261238,
+        "y": 4159.4436185171335,
+        "hp": 1618,
+        "moveLeft": 587.665337817274
+      },
+      "inputJumps": 1,
+      "inputDrops": 1,
+      "reachedRamp": true,
+      "ascended": true,
+      "exitSupport": "pilot31-shore",
+      "passed": true
+    },
+    {
+      "cls": "occultist",
+      "start": {
+        "x": 5000,
+        "y": 4145,
+        "hp": 1216,
+        "valid": true
+      },
+      "launchX": 4450,
+      "landingX": 4560,
+      "landingPoseValid": true,
+      "approach": true,
+      "end": {
+        "x": 4979.281622066651,
+        "y": 4159.502864553344,
+        "hp": 1216,
+        "moveLeft": 530.2957173299193
+      },
+      "inputJumps": 1,
+      "inputDrops": 1,
+      "reachedRamp": true,
+      "ascended": true,
+      "exitSupport": "pilot31-shore",
+      "passed": true
+    }
+  ],
+  "identity": {
+    "stageRawSHA256": "31efc75ef96bb26cc2915b5c30a94208b2eb088f1c40d35932dfb425d739c857",
+    "stageCanonicalSHA256": "4d84f5ba1f8e2ff123ef0c3f7942b12942709a8cc6b2f48651159720a2406f4d",
+    "blueprintRawSHA256": "f0cccb8ca831930fbb12d1ab8a0d6b616c7507b8af80b9da178e949ed42e1125",
+    "canonicalization": "JSON.stringify(JSON.parse(raw))",
+    "scope": "Content identity only, not a validation receipt"
+  },
+  "invariants": {
+    "changedTerrainIDs": [
+      "pilot31-ridge-court"
+    ],
+    "unitsUnchanged": true,
+    "anchorsUnchanged": true,
+    "protectedTopsUnchanged": true
+  },
+  "invalidEarlierEvidence": "v2 return-root dynamic HP/recovery and initial v3 trials omitted candidate battlefield dimensions. Those dynamic conclusions are invalid. v2 static buried-cap finding and west/east probes remain valid (west/east explicitly bound dimensions).",
+  "limitations": "Local movement fixture only, no full combat/App pass. Other two BODYs unchanged, not re-run. Native y-preserving court transform owner source161c82bcff3c587bc77b36ea08030a5969fd38f48b39d3afb2d2d8689227918f."
+}
