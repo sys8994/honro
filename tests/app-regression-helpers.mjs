@@ -7,7 +7,7 @@ import {readFile,mkdir,writeFile} from 'node:fs/promises';
 import {createHash} from 'node:crypto';
 import {runtime} from '../game/tests/helpers.mjs';
 export const plain=x=>JSON.parse(JSON.stringify(x)),KEY='honro-first-act-profile-1';
-export async function appHarness({productionStory=false,preserveCancelInput=false,runtimeFactory=runtime}={}){
+export async function appHarness({productionStory=false,preserveCancelInput=false,runtimeFactory=runtime,officialRuntime=null}={}){
  const g=await runtimeFactory({legacyMaps:false,productionStory}),storage=new Map(),listeners=new Map(),nodes=new Map();let exported;
  function node(){const classes=new Set();return {innerHTML:'',dataset:{},children:[],hidden:false,isConnected:true,tagName:'BUTTON',style:{setProperty(){}},
  classList:{add:k=>classes.add(k),remove:k=>classes.delete(k),contains:k=>classes.has(k),toggle(k,v){v??=!classes.has(k);v?classes.add(k):classes.delete(k);}},
@@ -18,11 +18,20 @@ export async function appHarness({productionStory=false,preserveCancelInput=fals
  // Model-only DOM double; real camp reconciliation is checked in Chromium.
  g.HonroAudio=class{configure(){}play(){}update(){}};g.HonroScene=class{event(){}focusUnit(){}human(){}};g.HonroCampRenderer={captureFocus:()=>()=>{},patch(root,html){root.innerHTML=html;}};g.HonroUI={camp:()=>'<div id="armory"></div>',bottom:()=>'',portraits:()=>({})};g.HonroUnitInfo={tick(){}};g.HonroPortraits={draw(){}};
  g.HONRO_STORY_PORTRAITS=new Proxy({}, {get:()=>({src:'data:image/png;base64,',class:'archer'})});
- vm.runInContext(await readFile('game/vendor/ui/fa.js','utf8'),g);
- g.HONRO_JOURNEY_MAPS=JSON.parse(await readFile('shared/assets/journey-maps/v1/manifest.json','utf8'));
- for(const file of ['journey-images','journey-art','rest-journey','menu-ui','clear-report-ui','equipment-ui','story','training'])vm.runInContext(await readFile(`shared/runtime/${file}.js`,'utf8'),g);
- const source=await readFile('shared/runtime/main.js','utf8'),hook=/    const app=new App\(\),loader=G.HonroCampaignLoader[\s\S]*?(?=    G.HONRO_TOOLS)/;assert.equal((source.match(hook)||[]).length,1);
- vm.runInContext(source.replace(hook,'G.AppRegression={App,fresh};'),g);const {App,fresh}=g.AppRegression;
+ const hook=/    const app=new App\(\),loader=G.HonroCampaignLoader[\s\S]*?(?=    G.HONRO_TOOLS)/;
+ const transform=source=>{assert.equal((source.match(hook)||[]).length,1);return source.replace(hook,'G.AppRegression={App,fresh};');};
+ if(officialRuntime){
+  await officialRuntime.beforeMain(g,{nodes,listeners,storage});
+  // Presentation-only doubles, after all official modules have actually evaluated.
+  g.HonroAudio=class{configure(){}play(){}update(){}};g.HonroCampRenderer={captureFocus:()=>()=>{},patch(root,html){root.innerHTML=html;}};g.HonroUI={camp:()=>'<div id="armory"></div>',bottom:()=>'',portraits:()=>({})};g.HonroUnitInfo={tick(){}};g.HonroPortraits={draw(){}};
+  officialRuntime.main(g,transform);
+ }else{
+  vm.runInContext(await readFile('game/vendor/ui/fa.js','utf8'),g);
+  g.HONRO_JOURNEY_MAPS=JSON.parse(await readFile('shared/assets/journey-maps/v1/manifest.json','utf8'));
+  for(const file of ['journey-images','journey-art','rest-journey','menu-ui','clear-report-ui','equipment-ui','story','training'])vm.runInContext(await readFile(`shared/runtime/${file}.js`,'utf8'),g);
+  vm.runInContext(transform(await readFile('shared/runtime/main.js','utf8')),g);
+ }
+ const {App,fresh}=g.AppRegression;
  for(const name of ['inputs','updateHUD','updateAudio','updateChargeDisplay','cancelInput','drawPortraits'])if(name!=='cancelInput'||!preserveCancelInput)App.prototype[name]=function(){};
  App.prototype.notify=function(text){this.lastNotice=text;};
  const reload=()=>{listeners.clear();return new App();};

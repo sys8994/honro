@@ -241,3 +241,21 @@ slots, missing geometry, offscreen/hidden target exclusion and missing viewport.
 No heavy candidate run has yet exercised v3; the v2 calibration results above are
 not relabeled as v3 evidence. Full-round candidate execution awaits integrated
 art/roster readiness and the shared engine slot.
+
+### P01: official manifest omission invalidates calibration (v4)
+Cause: the v3 adapter's app:false registry plus a manual post-App module list
+omitted `act4-pilot-combat`. Candidate31 run
+`0ea94672-0d93-49ee-a061-f45dd7b7d6a6` was stopped at observed frame12240,
+exit130. Its original gzip and attempt remain in
+`_local/reports/candidate31-full-calibration/`; the attempt records explicit
+adapter-omission invalidation and remains an error denominator. Its legacy enemy
+HP/damage/activity are NOT evidence about the authored pilot roster tuning.
+Do not retry a manually assembled module list or retune HP from this run.
+Alternative: one app:true official registry, selected-stage asset closure,
+model/renderer/App/post-App evaluation in exact official order, every entry once,
+per-entry SHA256, required pilot API/fresh-budget/activation assertions before
+replay. Only main's automatic App creation is replaced by the documented harness
+hook; DOM/audio/HUD presentation doubles remain explicit, actual Scene retained.
+`tests/quantitative-playtest-manifest.mjs` covers missing/duplicate/unconsumed
+modules and future appended modules. Existing seven focused units pass. Native
+setup regression is pending; v4 is not yet gameplay or holdout acceptance.

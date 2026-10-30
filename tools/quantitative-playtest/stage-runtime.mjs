@@ -16,7 +16,7 @@ export function dependencyClosure(stage,library){
 }
 export async function stageRuntime(stage,expected){
  const memory=[memorySample('before-single-registry')];
- const entries=await runtimeEntries({vector:true,render:true,productionStory:true});memory.push(memorySample('after-single-registry'));
+ const entries=await runtimeEntries({vector:true,render:true,app:true,productionStory:true});memory.push(memorySample('after-single-registry'));
  const campaign=entries.find(x=>x.name==='campaign'),project=campaign.project,selected=project.stages.find(s=>s.metadata.stageId===stage);
  assert(selected,'Selected official stage exists');assert.equal(sha(selected),sha(expected.stages.find(s=>s.metadata.stageId===stage)),'Selected stage must match canonical Act4 source');
  const library=dependencyClosure(selected,project.library),expectedAssets=new Map(expected.library.map(a=>[a.id,a]));for(const a of library)if(expectedAssets.has(a.id))assert.equal(sha(a),sha(expectedAssets.get(a.id)),'Canonical Act4 asset shadowed: '+a.id);const identity={stage,canonicalStageSHA256:sha(selected),assets:library.map(a=>({id:a.id,sha256:sha(a)})),fullLibraryAssets:project.library.length,loadedLibraryAssets:library.length,mode:'source-registry selected chapter recursive dependency closure; no candidate override'};
@@ -25,8 +25,19 @@ export async function stageRuntime(stage,expected){
  const local={...base,library,stages:[selected],unitTemplates:project.stages.flatMap(s=>s.units.filter(u=>u.kind?.startsWith('boss:'))).filter((u,i,a)=>a.findIndex(v=>v.kind===u.kind)===i)};
  campaign.code='globalThis.HONRO_PROJECT='+authorProjectExpression(JSON.stringify(local))+';\n'+`{const selected=HONRO_PROJECT.stages[0];HONRO_PROJECT.stages=${JSON.stringify(catalog)}.map(s=>s.metadata.stageId===${stage}?selected:s);}`;
  delete campaign.project;
- const split=entries.findIndex(x=>x.name==='shared/runtime/party-rig.js');assert(split>0,'Source registry renderer boundary exists');
- const render=entries.splice(split);const stageRules=render.find(x=>x.name==='shared/runtime/stage-rules.js');assert(stageRules);entries.push(stageRules);
- let context;
- return {identity,memory,async runtimeFactory(){context=vm.createContext({console,performance,structuredClone});for(const part of entries){vm.runInContext(part.code,context);part.code='';}entries.length=0;memory.push(memorySample('after-model-vm'));return context;},loadRenderer(g){for(const part of render){if(part===stageRules)continue;vm.runInContext(part.code,g);part.code='';}render.length=0;memory.push(memorySample('after-renderer-vm'));}};
+ return officialModuleLoader(entries,identity,memory);
+}
+export function officialModuleLoader(entries,identity={},memory=[]){
+ const split=entries.findIndex(x=>x.name==='shared/runtime/party-rig.js'),main=entries.findIndex(x=>x.name==='shared/runtime/main.js');
+ assert(split>0&&main>split,'Official renderer/main boundaries required');
+ const manifest=entries.map(({name,code})=>({name,sha256:createHash('sha256').update(code).digest('hex')})),consumed=[];
+ assert.equal(new Set(manifest.map(x=>x.name)).size,manifest.length,'Duplicate official module');
+ assert(manifest.some(x=>x.name==='shared/runtime/act4-pilot-combat.js'),'Official pilot combat module missing');
+ identity.runtimeManifest=manifest;
+ const model=entries.slice(0,split),beforeMain=entries.slice(split,main),mainEntry=entries[main],afterMain=entries.slice(main+1);entries.length=0;
+ function consume(part,g,transform=x=>x){assert(!consumed.includes(part.name),'Duplicate consumption '+part.name);vm.runInContext(transform(part.code),g,{filename:part.name});consumed.push(part.name);part.code='';}
+ return {identity,memory,async runtimeFactory(){const context=vm.createContext({console,performance,structuredClone});for(const part of model)consume(part,context);model.length=0;memory.push(memorySample('after-model-vm'));return context;},
+ loadBeforeMain(g){for(const part of beforeMain)consume(part,g);beforeMain.length=0;memory.push(memorySample('after-renderer-app-vm'));},
+ loadMain(g,transform){consume(mainEntry,g,transform);},
+ loadAfterMain(g){for(const part of afterMain)consume(part,g);afterMain.length=0;assert.deepEqual(consumed,manifest.map(x=>x.name),'Every official module consumed once in production order');identity.runtimeConsumed=[...consumed];memory.push(memorySample('after-official-app-vm'));}};
 }

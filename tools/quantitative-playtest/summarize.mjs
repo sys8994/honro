@@ -7,7 +7,7 @@ import {summarize} from './stats.mjs';
 export async function readRun(file){
  if(file.endsWith('.attempt.json')){
   const attempt=JSON.parse(await readFile(file,'utf8'));
-  if(attempt.status!=='finalized')return {...attempt,outcome:'error',reason:'Started attempt without finalized summary; external termination or incomplete run',round:null};
+  if(attempt.status!=='finalized')return {...attempt,outcome:'error',reason:attempt.invalidation?.reason??'Started attempt without finalized summary; external termination or incomplete run',round:null};
   const result=JSON.parse(await readFile(join(dirname(file),attempt.summary),'utf8')),rows=result.groups.flatMap(g=>g.runs);
   if(rows.length!==1||rows[0].runId!==attempt.runId)throw Error('Attempt/summary identity mismatch: '+file);return rows[0];
  }
