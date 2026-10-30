@@ -1,0 +1,21 @@
+{
+  "stage": 38,
+  "role": "floor",
+  "file": "art/stage38-density-depthfade/floor-asset.json",
+  "baseColor": "#435661",
+  "ceiling": false,
+  "protectedBoundary": "floor top",
+  "requiredOuterTextureTransform": [
+    1,
+    0,
+    0,
+    1,
+    0,
+    0
+  ],
+  "runtimeBytes": 51586,
+  "nodes": 31,
+  "visualApproval": false,
+  "source": "art/stage38-density-v2/floor-unioned.svg",
+  "scope": "Intentional source-native palette and depth-composition change. No physics change. Cumulative24 solid masks, not gradients."
+}

@@ -1,0 +1,48 @@
+{
+  "id": "s38-density:floor-depthfade",
+  "name": "해식굴 floor BODY",
+  "semanticLayer": "BODY",
+  "category": "rock",
+  "bounds": {
+    "x": -400,
+    "y": 1800,
+    "w": 8000,
+    "h": 3500
+  },
+  "anchor": {
+    "x": 0,
+    "y": 0
+  },
+  "foot": {
+    "x": 0,
+    "y": 2800
+  },
+  "transform": [
+    4.219409282700422,
+    0,
+    0,
+    4.216867469879518,
+    -400,
+    1800
+  ],
+  "bodyClip": [
+    "M0 2800 L1800 2800 L2350 3050 L3300 3050 L3300 4400 L3300 28400 L-6000 28400 L-6000 2540 L-5500 2505.7384458375855 L-5000 2432.11255285027 L-4500 2362.860475287943 L-4000 2343.4773662551443 L-3500 2441.1111111111113 L-3000 2598.9300411522636 L-2500 2716.625514403292 L-2000 2756 L-1500 2867.4814814814813 L-1000 2967.8518518518517 L-500 2923.046875Z",
+    "M4300 2600 L5700 2600 L6200 2400 L7200 2400 L7700 2242.7734375 L8200 2176.8029629629627 L8700 2233.0103703703703 L9200 2295.44 L9700 2299.026063100137 L10200 2202.4554183813443 L10700 2072.962962962963 L11200 1992.8532235939642 L11700 1965.99650094766 L12200 1893.2818195072168 L12700 1815.9746318705352 L13200 1780 L13200 28400 L4300 28400 L4300 4400Z",
+    "M3200 3050 L3440 3230 L3670 3210 L3800 3140 L4060 2940 L4300 2790 L4550 2600 L4550 4400 L4550 28400 L3200 28400 L3200 4400Z"
+  ],
+  "scaleRange": [
+    1,
+    1
+  ],
+  "backgroundRange": [
+    1,
+    1
+  ],
+  "params": {
+    "artRevision": 1,
+    "sourceRaw": "floor-raw.svg",
+    "collisionAuthority": "official:a4-38-land,a4-38-east,a4-38-emergency-ledges",
+    "densityEdit": "Intentional role-based palette redesign; original physical clip/transform retained. Boolean fidelity measured against recolored master.",
+    "artEdit": "Native source-derived fine cumulative depth attenuation; cliff contact palette retained; both accessible floor and ceiling faces protected."
+  }
+}

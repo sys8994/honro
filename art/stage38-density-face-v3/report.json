@@ -1,0 +1,29 @@
+{
+  "stage": 38,
+  "file": "art/stage38-density-face-v3/floor-asset.json",
+  "newId": "s38-density:floor-face-v3",
+  "previousId": "s38-density:floor-depthfade",
+  "baseColor": "#435661",
+  "bytes": 51625,
+  "nodes": 31,
+  "maxPath": 22361,
+  "strictErrors": 0,
+  "geometryAndPhysicalMetadataExact": true,
+  "fillChanges": [
+    {
+      "node": 6,
+      "old": "#526471",
+      "new": "#4b5d69"
+    }
+  ],
+  "contactFillPreserved": "#60737c",
+  "roofUnchanged": true,
+  "visualReviewPending": false,
+  "visualReview": {
+    "scope": "38 floor-only source consistency correction; actual App party scene",
+    "before": "_local/reports/density-qa/final-v4/app-entry/38/party.png",
+    "after": "_local/reports/density-qa/final-v5/app-entry/38/party.png",
+    "sourceCommit": "b4f41e0",
+    "result": "Direct visual comparison: interior faces quieter; contact grit/edge remains readable; no new visible seams; roof unchanged. Final campaign approval remains root responsibility."
+  }
+}

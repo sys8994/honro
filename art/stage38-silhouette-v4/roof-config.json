@@ -1,0 +1,24 @@
+{
+  "id": "s38-silhouette-v4:roof-source",
+  "semanticLayer": "BODY",
+  "name": "\ud574\uc2dd\uad74 \ucc9c\uc7a5 \uc2e4\ub8e8\uc5e3 \uc6d0\ubcf8",
+  "category": "rock",
+  "bounds": {
+    "x": 0,
+    "y": 0,
+    "w": 1556,
+    "h": 1011
+  },
+  "anchor": {
+    "x": 0,
+    "y": 0
+  },
+  "foot": {
+    "x": 0,
+    "y": 680
+  },
+  "params": {
+    "sourceRaw": "roof-raw.svg",
+    "sourceConcept": "roof-concept.png"
+  }
+}

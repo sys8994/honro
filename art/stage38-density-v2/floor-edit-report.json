@@ -1,0 +1,72 @@
+{
+  "source": "art/stage38-vector-production/floor-raw.svg",
+  "sourceRuntimeBytes": 179785,
+  "candidateRuntimeBytes": 35772,
+  "intentionalPalette": [
+    "#7c8078",
+    "#526471",
+    "#435661"
+  ],
+  "acceptedUnionGroups": [
+    [
+      "path9",
+      "path8",
+      "path7"
+    ],
+    [
+      "path6",
+      "path5",
+      "path4"
+    ],
+    [
+      "path3",
+      "path2",
+      "path1"
+    ]
+  ],
+  "rejectedUnions": [],
+  "visualReview": "Direct normal and maximum projected source views inspected, with native asset validation. Muted broad rock planes retain source silhouettes. Palette quieting reduces distraction, but retains large original rock outlines; not a complete art redesign or scene approval. Integrated gameplay/camera/browser checks remain pending.",
+  "comparisons": {
+    "normal": {
+      "width": 4240,
+      "worldZoom": 0.53,
+      "meanRGBAError255": [
+        0.0022215049609629147,
+        0.0016337884271307743,
+        0.0012026268705270006,
+        0.001122316200390371
+      ],
+      "maxRGBAError255": [
+        255.0,
+        255.0,
+        255.0,
+        92.0
+      ],
+      "fractionAbove16": 3.901167046193884e-05
+    },
+    "max": {
+      "width": 8800,
+      "worldZoom": 1.1,
+      "meanRGBAError255": [
+        0.002186880487114132,
+        0.0017662902388369678,
+        0.001103529453412631,
+        0.002434213631643538
+      ],
+      "maxRGBAError255": [
+        255.0,
+        255.0,
+        255.0,
+        215.0
+      ],
+      "fractionAbove16": 3.9707825922779195e-05
+    }
+  },
+  "runtimeNodes": 7,
+  "actualExpandedNodes": 7,
+  "maxRuntimePathCharacters": 22361,
+  "runtimeValidationErrors": 0,
+  "physics": "Original bounds, anchor, foot, transform and authoredBody clip retained. No production package edits; integrator must preserve domains/ownership and update deep substrate color.",
+  "fidelityCaveat": "RGBA means are diagnostics, not automatic art approval. Nonzero AA/alpha differences exist at contour edges; worst values and changed fractions retained above.",
+  "sourceNote": "Production has no separate optimized SVG: existing final runtime imports floor/roof-raw directly, with no simplification. This is its current production geometry, not a return to a heavier discarded trace."
+}
