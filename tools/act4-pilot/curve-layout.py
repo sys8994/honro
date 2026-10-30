@@ -1,6 +1,6 @@
 """PCHIP functional collider authoring, not artwork generation."""
-import json,math,hashlib,pathlib
-root=pathlib.Path(__file__).resolve().parents[2];c=json.loads((root/'tools/act4-pilot/layouts/stage31-v2-controls.json').read_text());raw=(root/c['base']).read_bytes();assert hashlib.sha256(raw).hexdigest()==c['baseSHA256'];s=json.loads(raw)
+import json,math,hashlib,pathlib,sys
+root=pathlib.Path(__file__).resolve().parents[2];c=json.loads((root/(sys.argv[1] if len(sys.argv)>1 else 'tools/act4-pilot/layouts/stage31-v2-controls.json')).read_text());raw=(root/c['base']).read_bytes();assert hashlib.sha256(raw).hexdigest()==c['baseSHA256'];s=json.loads(raw)
 def curve(ps):
  x=[p[0] for p in ps];y=[p[1] for p in ps];h=[b-a for a,b in zip(x,x[1:])];d=[(b-a)/dx for a,b,dx in zip(y,y[1:],h)];m=[d[0]]
  for i in range(1,len(x)-1):
@@ -21,6 +21,7 @@ def at(id,x):
   if a[0]<=x<=b[0]:return a[1]+(b[1]-a[1])*(x-a[0])/(b[0]-a[0])
 for cover in s['covers']:
  support={'court-cover':'ridge-court','low-cover':'shore','lookout-cover':'lookout'}[cover['id']];cover['y']=max(at(support,cover['x']+i*cover['w']/10) for i in range(11))+2
-s['version']=2;s['status']='Independent curved-support revision; not physics/art accepted';s['spawn']={'x':260,'y':at('shore',260)};s['playerSupport']='shore';s['boarding']['startY']=s['spawn']['y']-90;s['geometryNotes']['curveAuthoring']=c;s['geometryNotes']['protectedFlats']=[{'id':'boarding-bank','x1':5940,'x2':6220,'y':3900},{'id':'boarding-dock','x1':6100,'x2':6270,'y':3900}];s['geometryNotes']['measuredReachableHeight']=None
-(root/'tools/act4-pilot/layouts/stage31-v2.json').write_text(json.dumps(s,indent=2))
-print(json.dumps({'out':'tools/act4-pilot/layouts/stage31-v2.json','maxSlopes':{f['id']:round(max(abs((b[1]-a[1])/(b[0]-a[0])) for a,b in zip(f['top'],f['top'][1:])),3) for f in s['surfaces']}}))
+s['version']=c['version'];s['status']='Independent curved-support revision; not physics/art accepted';s['spawn']={'x':260,'y':at('shore',260)};s['playerSupport']='shore';s['boarding']['startY']=s['spawn']['y']-90;s['geometryNotes']['curveAuthoring']=c;s['geometryNotes']['protectedFlats']=[{'id':'boarding-bank','x1':5940,'x2':6220,'y':3900},{'id':'boarding-dock','x1':6100,'x2':6270,'y':3900}];s['geometryNotes']['measuredReachableHeight']=None
+out=c.get('output','tools/act4-pilot/layouts/stage31-v2.json')
+(root/out).write_text(json.dumps(s,indent=2))
+print(json.dumps({'out':out,'maxSlopes':{f['id']:round(max(abs((b[1]-a[1])/(b[0]-a[0])) for a,b in zip(f['top'],f['top'][1:])),3) for f in s['surfaces']}}))
