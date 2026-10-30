@@ -1,0 +1,371 @@
+{
+  "candidateStageSHA256": "5dfb67a082b4321cdf12217668900a8b8b80ef21aa5371bdf52eb21848d6edff",
+  "sourceStageCanonicalSHA256": "820afd2767fbf275692ef80c02ed8da59424e86bba0aabc21b1a11d6a0f4552f",
+  "scope": "Fresh authored production factory + exact body/public-top support + posed activation. Art body boundary not inspected. No route traversal, native turn selection, line of fire or measured play acceptance.",
+  "initial": [],
+  "actors": [
+    {
+      "id": "pilot31-west-entry-1",
+      "validPose": true,
+      "support": "pilot31-west-step",
+      "expected": "pilot31-west-step",
+      "hp": 266,
+      "attack": 1,
+      "role": "guard"
+    },
+    {
+      "id": "pilot31-west-entry-2",
+      "validPose": true,
+      "support": "pilot31-west-step",
+      "expected": "pilot31-west-step",
+      "hp": 332,
+      "attack": 1,
+      "role": "close"
+    },
+    {
+      "id": "pilot31-west-entry-3",
+      "validPose": true,
+      "support": "pilot31-west-step",
+      "expected": "pilot31-west-step",
+      "hp": 372,
+      "attack": 1,
+      "role": "bow"
+    },
+    {
+      "id": "pilot31-west-entry-4",
+      "validPose": true,
+      "support": "pilot31-west-ledge",
+      "expected": "pilot31-west-ledge",
+      "hp": 266,
+      "attack": 1,
+      "role": "guard"
+    },
+    {
+      "id": "pilot31-west-entry-5",
+      "validPose": true,
+      "support": "pilot31-west-ledge",
+      "expected": "pilot31-west-ledge",
+      "hp": 372,
+      "attack": 1,
+      "role": "bow"
+    },
+    {
+      "id": "pilot31-west-entry-6",
+      "validPose": true,
+      "support": "pilot31-west-ledge",
+      "expected": "pilot31-west-ledge",
+      "hp": 297,
+      "attack": 1,
+      "role": "bind"
+    },
+    {
+      "id": "pilot31-west-entry-7",
+      "validPose": true,
+      "support": "pilot31-west-ledge",
+      "expected": "pilot31-west-ledge",
+      "hp": 293,
+      "attack": 1,
+      "role": "arc"
+    },
+    {
+      "id": "pilot31-west-entry-8",
+      "validPose": true,
+      "support": "pilot31-west-ledge",
+      "expected": "pilot31-west-ledge",
+      "hp": 372,
+      "attack": 1,
+      "role": "bow"
+    },
+    {
+      "id": "pilot31-west-crossfire-1",
+      "validPose": true,
+      "support": "pilot31-middle-west",
+      "expected": "pilot31-middle-west",
+      "hp": 372,
+      "attack": 1,
+      "role": "bow"
+    },
+    {
+      "id": "pilot31-west-crossfire-2",
+      "validPose": true,
+      "support": "pilot31-middle-west",
+      "expected": "pilot31-middle-west",
+      "hp": 297,
+      "attack": 1,
+      "role": "bind"
+    },
+    {
+      "id": "pilot31-west-crossfire-3",
+      "validPose": true,
+      "support": "pilot31-middle-west",
+      "expected": "pilot31-middle-west",
+      "hp": 332,
+      "attack": 1,
+      "role": "close"
+    },
+    {
+      "id": "pilot31-west-crossfire-4",
+      "validPose": true,
+      "support": "pilot31-broken-crossing",
+      "expected": "pilot31-broken-crossing",
+      "hp": 266,
+      "attack": 1,
+      "role": "guard"
+    },
+    {
+      "id": "pilot31-west-crossfire-5",
+      "validPose": true,
+      "support": "pilot31-broken-crossing",
+      "expected": "pilot31-broken-crossing",
+      "hp": 372,
+      "attack": 1,
+      "role": "bow"
+    },
+    {
+      "id": "pilot31-west-crossfire-6",
+      "validPose": true,
+      "support": "pilot31-broken-crossing",
+      "expected": "pilot31-broken-crossing",
+      "hp": 244,
+      "attack": 1,
+      "role": "arc"
+    },
+    {
+      "id": "pilot31-west-crossfire-7",
+      "validPose": true,
+      "support": "pilot31-broken-crossing",
+      "expected": "pilot31-broken-crossing",
+      "hp": 372,
+      "attack": 1,
+      "role": "bow"
+    },
+    {
+      "id": "pilot31-west-crossfire-8",
+      "validPose": true,
+      "support": "pilot31-broken-crossing",
+      "expected": "pilot31-broken-crossing",
+      "hp": 266,
+      "attack": 1,
+      "role": "guard"
+    },
+    {
+      "id": "pilot31-west-crossfire-9",
+      "validPose": true,
+      "support": "pilot31-broken-crossing",
+      "expected": "pilot31-broken-crossing",
+      "hp": 356,
+      "attack": 1,
+      "role": "bind"
+    },
+    {
+      "id": "pilot31-ridge-court-1",
+      "validPose": true,
+      "support": "pilot31-ridge-shoulder",
+      "expected": "pilot31-ridge-shoulder",
+      "hp": 372,
+      "attack": 1,
+      "role": "bow"
+    },
+    {
+      "id": "pilot31-ridge-court-2",
+      "validPose": true,
+      "support": "pilot31-ridge-shoulder",
+      "expected": "pilot31-ridge-shoulder",
+      "hp": 319,
+      "attack": 1,
+      "role": "guard"
+    },
+    {
+      "id": "pilot31-ridge-court-3",
+      "validPose": true,
+      "support": "pilot31-ridge-shoulder",
+      "expected": "pilot31-ridge-shoulder",
+      "hp": 297,
+      "attack": 1,
+      "role": "bind"
+    },
+    {
+      "id": "pilot31-ridge-court-4",
+      "validPose": true,
+      "support": "pilot31-ridge-court",
+      "expected": "pilot31-ridge-court",
+      "hp": 266,
+      "attack": 1,
+      "role": "guard"
+    },
+    {
+      "id": "pilot31-ridge-court-5",
+      "validPose": true,
+      "support": "pilot31-ridge-court",
+      "expected": "pilot31-ridge-court",
+      "hp": 332,
+      "attack": 1,
+      "role": "close"
+    },
+    {
+      "id": "pilot31-ridge-court-6",
+      "validPose": true,
+      "support": "pilot31-ridge-court",
+      "expected": "pilot31-ridge-court",
+      "hp": 372,
+      "attack": 1,
+      "role": "bow"
+    },
+    {
+      "id": "pilot31-ridge-court-7",
+      "validPose": true,
+      "support": "pilot31-ridge-court",
+      "expected": "pilot31-ridge-court",
+      "hp": 297,
+      "attack": 1,
+      "role": "bind"
+    },
+    {
+      "id": "pilot31-ridge-court-8",
+      "validPose": true,
+      "support": "pilot31-ridge-court",
+      "expected": "pilot31-ridge-court",
+      "hp": 1191,
+      "attack": 1,
+      "role": "midboss"
+    },
+    {
+      "id": "pilot31-ridge-court-9",
+      "validPose": true,
+      "support": "pilot31-ridge-shoulder",
+      "expected": "pilot31-ridge-shoulder",
+      "hp": 372,
+      "attack": 1,
+      "role": "bow"
+    },
+    {
+      "id": "pilot31-lookout-return-1",
+      "validPose": true,
+      "support": "pilot31-lookout",
+      "expected": "pilot31-lookout",
+      "hp": 266,
+      "attack": 1,
+      "role": "guard"
+    },
+    {
+      "id": "pilot31-lookout-return-2",
+      "validPose": true,
+      "support": "pilot31-lookout",
+      "expected": "pilot31-lookout",
+      "hp": 372,
+      "attack": 1,
+      "role": "bow"
+    },
+    {
+      "id": "pilot31-lookout-return-3",
+      "validPose": true,
+      "support": "pilot31-lookout",
+      "expected": "pilot31-lookout",
+      "hp": 244,
+      "attack": 1,
+      "role": "arc"
+    },
+    {
+      "id": "pilot31-lookout-return-4",
+      "validPose": true,
+      "support": "pilot31-lookout",
+      "expected": "pilot31-lookout",
+      "hp": 297,
+      "attack": 1,
+      "role": "bind"
+    },
+    {
+      "id": "pilot31-lookout-return-5",
+      "validPose": true,
+      "support": "pilot31-lookout",
+      "expected": "pilot31-lookout",
+      "hp": 446,
+      "attack": 1,
+      "role": "bow"
+    },
+    {
+      "id": "pilot31-lookout-return-6",
+      "validPose": true,
+      "support": "pilot31-east-overhang",
+      "expected": "pilot31-east-overhang",
+      "hp": 372,
+      "attack": 1,
+      "role": "bow"
+    },
+    {
+      "id": "pilot31-lookout-return-7",
+      "validPose": true,
+      "support": "pilot31-east-overhang",
+      "expected": "pilot31-east-overhang",
+      "hp": 332,
+      "attack": 1,
+      "role": "close"
+    },
+    {
+      "id": "pilot31-lookout-return-8",
+      "validPose": true,
+      "support": "pilot31-east-overhang",
+      "expected": "pilot31-east-overhang",
+      "hp": 266,
+      "attack": 1,
+      "role": "guard"
+    }
+  ],
+  "activation": [
+    {
+      "cell": "west-entry",
+      "eligible": [
+        "pilot31-west-entry-1",
+        "pilot31-west-entry-2",
+        "pilot31-west-entry-3",
+        "pilot31-west-entry-4",
+        "pilot31-west-entry-5",
+        "pilot31-west-entry-6",
+        "pilot31-west-entry-7",
+        "pilot31-west-entry-8"
+      ]
+    },
+    {
+      "cell": "west-crossfire",
+      "eligible": [
+        "pilot31-west-crossfire-1",
+        "pilot31-west-crossfire-2",
+        "pilot31-west-crossfire-3",
+        "pilot31-west-crossfire-4",
+        "pilot31-west-crossfire-5",
+        "pilot31-west-crossfire-6",
+        "pilot31-west-crossfire-7",
+        "pilot31-west-crossfire-8",
+        "pilot31-west-crossfire-9"
+      ]
+    },
+    {
+      "cell": "ridge-court",
+      "eligible": [
+        "pilot31-ridge-court-1",
+        "pilot31-ridge-court-2",
+        "pilot31-ridge-court-3",
+        "pilot31-ridge-court-4",
+        "pilot31-ridge-court-5",
+        "pilot31-ridge-court-6",
+        "pilot31-ridge-court-7",
+        "pilot31-ridge-court-8",
+        "pilot31-ridge-court-9"
+      ]
+    },
+    {
+      "cell": "lookout-return",
+      "eligible": [
+        "pilot31-lookout-return-1",
+        "pilot31-lookout-return-2",
+        "pilot31-lookout-return-3",
+        "pilot31-lookout-return-4",
+        "pilot31-lookout-return-5",
+        "pilot31-lookout-return-6",
+        "pilot31-lookout-return-7",
+        "pilot31-lookout-return-8"
+      ]
+    }
+  ],
+  "enemyLimit": 6
+}

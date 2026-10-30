@@ -1,0 +1,362 @@
+{
+  "version": 1,
+  "stage": 31,
+  "layoutSHA256": "e1c5974f3fad365e1a88e6d20eac0e732abcb6d73f373299945e257c12de6097",
+  "status": "Public top only: v4 R1 source-bound reanchor; art body boundary and full play acceptance pending",
+  "total": 34,
+  "elites": 4,
+  "midbosses": 1,
+  "enemyActionLimit": 6,
+  "roles": {
+    "guard": {
+      "kind": "possessedGuard",
+      "role": "guard",
+      "intent": "Front armor; flank or close with knight"
+    },
+    "bow": {
+      "kind": "possessedArcher",
+      "role": "bow",
+      "intent": "Direct lane; use rock cover or lower bypass"
+    },
+    "bind": {
+      "kind": "shade",
+      "role": "ice",
+      "intent": "Binding shot; spread and change shelf"
+    },
+    "arc": {
+      "kind": "warden",
+      "role": "guard",
+      "intent": "Native wood spike / wind; break oblique firing lane"
+    },
+    "close": {
+      "kind": "mourner",
+      "role": "leaper",
+      "intent": "Close-range approach; retreat or intercept"
+    },
+    "midboss": {
+      "kind": "warden",
+      "role": "guard",
+      "intent": "Directional armor -> locked warning -> physical relocation and exposed flank"
+    }
+  },
+  "pockets": [
+    {
+      "id": "west-fold",
+      "cells": [
+        "west-entry",
+        "west-crossfire"
+      ],
+      "total": 17,
+      "counterroutes": [
+        "ridge-assault",
+        "middle-flank"
+      ]
+    },
+    {
+      "id": "ridge-lookout",
+      "cells": [
+        "ridge-court",
+        "lookout-return"
+      ],
+      "total": 17,
+      "counterroutes": [
+        "court-cover flank then high shelf",
+        "lookout descent to approach rear exposed body"
+      ]
+    }
+  ],
+  "cells": [
+    {
+      "id": "west-entry",
+      "count": 8,
+      "supports": [
+        "west-step",
+        "west-ledge"
+      ],
+      "radius": 950,
+      "maxHeight": 650,
+      "placements": [
+        {
+          "id": "pilot31-west-entry-1",
+          "support": "west-step",
+          "x": 920,
+          "role": "guard",
+          "elite": false
+        },
+        {
+          "id": "pilot31-west-entry-2",
+          "support": "west-step",
+          "x": 1135,
+          "role": "close",
+          "elite": false
+        },
+        {
+          "id": "pilot31-west-entry-3",
+          "support": "west-step",
+          "x": 1330,
+          "role": "bow",
+          "elite": false
+        },
+        {
+          "id": "pilot31-west-entry-4",
+          "support": "west-ledge",
+          "x": 1535,
+          "role": "guard",
+          "elite": false
+        },
+        {
+          "id": "pilot31-west-entry-5",
+          "support": "west-ledge",
+          "x": 1725,
+          "role": "bow",
+          "elite": false
+        },
+        {
+          "id": "pilot31-west-entry-6",
+          "support": "west-ledge",
+          "x": 1885,
+          "role": "bind",
+          "elite": false
+        },
+        {
+          "id": "pilot31-west-entry-7",
+          "support": "west-ledge",
+          "x": 2110,
+          "role": "arc",
+          "elite": true
+        },
+        {
+          "id": "pilot31-west-entry-8",
+          "support": "west-ledge",
+          "x": 2270,
+          "role": "bow",
+          "elite": false
+        }
+      ]
+    },
+    {
+      "id": "west-crossfire",
+      "count": 9,
+      "supports": [
+        "middle-west",
+        "middle-east",
+        "middle-junction",
+        "broken-crossing"
+      ],
+      "radius": 850,
+      "maxHeight": 650,
+      "placements": [
+        {
+          "id": "pilot31-west-crossfire-1",
+          "support": "middle-west",
+          "x": 2530,
+          "role": "bow",
+          "elite": false
+        },
+        {
+          "id": "pilot31-west-crossfire-2",
+          "support": "middle-west",
+          "x": 2775,
+          "role": "bind",
+          "elite": false
+        },
+        {
+          "id": "pilot31-west-crossfire-3",
+          "support": "middle-west",
+          "x": 2990,
+          "role": "close",
+          "elite": false
+        },
+        {
+          "id": "pilot31-west-crossfire-4",
+          "support": "broken-crossing",
+          "x": 2320,
+          "role": "guard",
+          "elite": false
+        },
+        {
+          "id": "pilot31-west-crossfire-5",
+          "support": "broken-crossing",
+          "x": 2490,
+          "role": "bow",
+          "elite": false
+        },
+        {
+          "id": "pilot31-west-crossfire-6",
+          "support": "broken-crossing",
+          "x": 2695,
+          "role": "arc",
+          "elite": false
+        },
+        {
+          "id": "pilot31-west-crossfire-7",
+          "support": "broken-crossing",
+          "x": 2870,
+          "role": "bow",
+          "elite": false
+        },
+        {
+          "id": "pilot31-west-crossfire-8",
+          "support": "broken-crossing",
+          "x": 3010,
+          "role": "guard",
+          "elite": false
+        },
+        {
+          "id": "pilot31-west-crossfire-9",
+          "support": "broken-crossing",
+          "x": 3095,
+          "role": "bind",
+          "elite": true
+        }
+      ]
+    },
+    {
+      "id": "ridge-court",
+      "count": 9,
+      "supports": [
+        "ridge-shoulder",
+        "ridge-court"
+      ],
+      "radius": 760,
+      "maxHeight": 650,
+      "placements": [
+        {
+          "id": "pilot31-ridge-court-1",
+          "support": "ridge-shoulder",
+          "x": 3100,
+          "role": "bow",
+          "elite": false
+        },
+        {
+          "id": "pilot31-ridge-court-2",
+          "support": "ridge-shoulder",
+          "x": 3280,
+          "role": "guard",
+          "elite": true
+        },
+        {
+          "id": "pilot31-ridge-court-3",
+          "support": "ridge-shoulder",
+          "x": 3430,
+          "role": "bind",
+          "elite": false
+        },
+        {
+          "id": "pilot31-ridge-court-4",
+          "support": "ridge-court",
+          "x": 3650,
+          "role": "guard",
+          "elite": false
+        },
+        {
+          "id": "pilot31-ridge-court-5",
+          "support": "ridge-court",
+          "x": 3780,
+          "role": "close",
+          "elite": false
+        },
+        {
+          "id": "pilot31-ridge-court-6",
+          "support": "ridge-court",
+          "x": 3910,
+          "role": "bow",
+          "elite": false
+        },
+        {
+          "id": "pilot31-ridge-court-7",
+          "support": "ridge-court",
+          "x": 4170,
+          "role": "bind",
+          "elite": false
+        },
+        {
+          "id": "pilot31-ridge-court-8",
+          "support": "ridge-court",
+          "x": 4280,
+          "role": "midboss",
+          "elite": false
+        },
+        {
+          "id": "pilot31-ridge-court-9",
+          "support": "ridge-shoulder",
+          "x": 3190,
+          "role": "bow",
+          "elite": false
+        }
+      ]
+    },
+    {
+      "id": "lookout-return",
+      "count": 8,
+      "supports": [
+        "lookout",
+        "east-overhang",
+        "east-turn"
+      ],
+      "radius": 800,
+      "maxHeight": 650,
+      "placements": [
+        {
+          "id": "pilot31-lookout-return-1",
+          "support": "lookout",
+          "x": 4495,
+          "role": "guard",
+          "elite": false
+        },
+        {
+          "id": "pilot31-lookout-return-2",
+          "support": "lookout",
+          "x": 4665,
+          "role": "bow",
+          "elite": false
+        },
+        {
+          "id": "pilot31-lookout-return-3",
+          "support": "lookout",
+          "x": 4830,
+          "role": "arc",
+          "elite": false
+        },
+        {
+          "id": "pilot31-lookout-return-4",
+          "support": "lookout",
+          "x": 5070,
+          "role": "bind",
+          "elite": false
+        },
+        {
+          "id": "pilot31-lookout-return-5",
+          "support": "lookout",
+          "x": 5215,
+          "role": "bow",
+          "elite": true
+        },
+        {
+          "id": "pilot31-lookout-return-6",
+          "support": "east-overhang",
+          "x": 5160,
+          "role": "bow",
+          "elite": false
+        },
+        {
+          "id": "pilot31-lookout-return-7",
+          "support": "east-overhang",
+          "x": 5400,
+          "role": "close",
+          "elite": false
+        },
+        {
+          "id": "pilot31-lookout-return-8",
+          "support": "east-overhang",
+          "x": 5650,
+          "role": "guard",
+          "elite": false
+        }
+      ]
+    }
+  ],
+  "stageSHA256": "e863ce5e01c7896e161469f3c9846106267f6f8bba57a2db61d3a49c682a77ec",
+  "geometryVersion": "v4-R1",
+  "stageCanonicalSHA256": "820afd2767fbf275692ef80c02ed8da59424e86bba0aabc21b1a11d6a0f4552f"
+}
