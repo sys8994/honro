@@ -37,11 +37,11 @@
 
 모두1MB 미만이며 최종 c8b 통합 생성물의 실제 화면을 직접 확인했다.
 
-- [모바일 길게 누른 드래그 중](evidence/mobile-dragging.jpg)
-- [모바일 놓은 뒤 순서 저장](evidence/mobile-saved-cards.jpg)
-- [미합류 placeholder·이름 비노출](evidence/mobile-known-only.jpg)
-- [PC4열 카드와 키보드 대체 입력](evidence/desktop-cards.jpg)
-- [Continue 후 소비 행동 보존·담허 자동선택](evidence/continued-next-mage.jpg)
+- [모바일 길게 누른 드래그 중](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/camp-card-turn-order-20261023/evidence/mobile-dragging.jpg)
+- [모바일 놓은 뒤 순서 저장](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/camp-card-turn-order-20261023/evidence/mobile-saved-cards.jpg)
+- [미합류 placeholder·이름 비노출](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/camp-card-turn-order-20261023/evidence/mobile-known-only.jpg)
+- [PC4열 카드와 키보드 대체 입력](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/camp-card-turn-order-20261023/evidence/desktop-cards.jpg)
+- [Continue 후 소비 행동 보존·담허 자동선택](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/camp-card-turn-order-20261023/evidence/continued-next-mage.jpg)
 
 실제 짧은 입력 창 저장은 `tests/fixtures/camp-card-order-actual-window-20261023.json.gz`. 재현: `node tests/player-turn-order.mjs` 뒤 `python tools/testing/player-turn-order-browser.py`(Native가 준비 프로필 생성).
 

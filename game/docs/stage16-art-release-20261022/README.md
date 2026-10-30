@@ -25,8 +25,8 @@
 
 | 증거 | 실제 수행·직접 본 내용 |
 | --- | --- |
-| [fresh 중앙 UI](review/fresh-center.jpg) | 최종 entry의1180×757 실제 UI에서16장 입장→대화 넘기기→휠2회→중앙 팬. 승인된 불규칙 바닥/천장 재질과 어두운 후면 기단 지지, 앞 통로·배우의 구분을 직접 확인했다. debug 초기 경지1의 **미술 검사**이며 정상 전투 성장 조건으로 사용하지 않는다. |
-| [실제 R19 저장](review/actual-r19.jpg) | 이전 정상 입력으로 얻은 R19 종료 저장을 최종 HTML의 production Continue로 열었다. 전투 JSON 전체 exact·검수 render 순수성, JS/HTTP 오류0. (5650,4150,.4)의 명시적 고정 검수 카메라로 실제2생존/목표 완료 상태를 직접 확인했다. 배우나 저장 데이터를 사진용으로 교체하지 않았다. |
+| [fresh 중앙 UI](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/stage16-art-release-20261022/review/fresh-center.jpg) | 최종 entry의1180×757 실제 UI에서16장 입장→대화 넘기기→휠2회→중앙 팬. 승인된 불규칙 바닥/천장 재질과 어두운 후면 기단 지지, 앞 통로·배우의 구분을 직접 확인했다. debug 초기 경지1의 **미술 검사**이며 정상 전투 성장 조건으로 사용하지 않는다. |
+| [실제 R19 저장](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/stage16-art-release-20261022/review/actual-r19.jpg) | 이전 정상 입력으로 얻은 R19 종료 저장을 최종 HTML의 production Continue로 열었다. 전투 JSON 전체 exact·검수 render 순수성, JS/HTTP 오류0. (5650,4150,.4)의 명시적 고정 검수 카메라로 실제2생존/목표 완료 상태를 직접 확인했다. 배우나 저장 데이터를 사진용으로 교체하지 않았다. |
 
 두 JPG는 각각1MB 미만이다. **R19 snapshot은 옛 시각 payload(기존 terrainPlanes80개·기존 요소)도 exact로 유지한다.** 따라서 이 사진은 기존 저장/완료 상태 연결의 증거이며, 새 미술 적용의 증거는 별도 fresh 중앙 UI다. 시각 snapshot 이행을 새로 만들지 않았다. 두 캡처의 manifest는 최종 승인 생성물과 같은 SHA256이다.
 

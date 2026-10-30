@@ -4,7 +4,7 @@
 
 **결과: 정상 자원 입력 사례가 총 R19에 완료됐고, 보상 중복 방지·실제17장 진입·Continue가 통과했다. 다만 설오·담허가 쓰러져 2인 생존으로 끝났다.** 사람이 평균19턴에 끝낸다는 뜻이나 안정적인 난이도 통과 판정은 아니다. 이번 입력은 합법적인 구 v3 캠페인 성장 ledger 사례이며 신규 v4 기여도 캠페인의 평균 입장 성장은 미검증이다.
 
-[기계 결과·행동 기록](evidence.json) · [실제 R19 저장을 연 브라우저 JPG](review/actual-r19.jpg)
+[기계 결과·행동 기록](evidence.json) · [실제 R19 저장을 연 브라우저 JPG](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/stage16-current-pacing-20261022/review/actual-r19.jpg)
 
 ## 현행 필수 조건
 

@@ -12,11 +12,11 @@
 
 ## 실제 화면과 미술 확인
 
-[세로 앞6종](evidence/mobile-0.jpg) · [세로 뒤6종](evidence/mobile-1.jpg) · [가로1](evidence/landscape-0.jpg) · [가로2](evidence/landscape-1.jpg) · [가로3](evidence/landscape-2.jpg).
+[세로 앞6종](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/portrait-variants-20261023/evidence/mobile-0.jpg) · [세로 뒤6종](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/portrait-variants-20261023/evidence/mobile-1.jpg) · [가로1](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/portrait-variants-20261023/evidence/landscape-0.jpg) · [가로2](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/portrait-variants-20261023/evidence/landscape-1.jpg) · [가로3](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/portrait-variants-20261023/evidence/landscape-2.jpg).
 
 집중1은 승인 원본의 인물/복장/소품/설정, 집중2는 확대 세부·인코딩·alpha, 집중3은12종390×844/844×390 실제 App 화면24개다. 이미지별 framing을 사용하고 휘겸 base 확대 설정은0570과 exact로 보존했다. 소단의 매듭/빈손, 덕수 안도, 종지기의 시전/낮아진 손과 줄을 구별했다. 하반신은 기존 승인 배치대로 읽기 박스 뒤에서 가려진다. 원본 손/의복을 다시 그리거나 배경을 제거하지 않았다.
 
-최종 경계 확인에서 종지기2종의 양수 crop top이 위쪽 실제 머리 픽셀을 자르는 것을 발견했다. top=-8로 머리 여백을 확보하고 아래쪽 도달 범위를 유지하도록 framing만 수정했다. [전후 실제 화면](evidence/keeper-head-before-after.jpg), [수정 후 세로/가로4화면과 보호 head/전체 폭 검사](evidence/keeper-crop-final.json). PNG/WebP 이미지 바이트는 이 보정에서 바뀌지 않았다.
+최종 경계 확인에서 종지기2종의 양수 crop top이 위쪽 실제 머리 픽셀을 자르는 것을 발견했다. top=-8로 머리 여백을 확보하고 아래쪽 도달 범위를 유지하도록 framing만 수정했다. [전후 실제 화면](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/portrait-variants-20261023/evidence/keeper-head-before-after.jpg), [수정 후 세로/가로4화면과 보호 head/전체 폭 검사](evidence/keeper-crop-final.json). PNG/WebP 이미지 바이트는 이 보정에서 바뀌지 않았다.
 
 변형12종은768×1152/Q94/alpha100 WebP 합 **2,277,094bytes**다. PNG 원본은 불변이며 RGB는 손실 인코딩이므로 원본 픽셀 동일로 표현하지 않는다. [12종 원본/인코딩 SHA 및 정상768 resize 대비 alpha exact](evidence/alpha-final.json). 원본 아래 모서리 alpha가 높은 일부는 의복/활/몸이 이미지 끝까지 이어진 부분이다. 상단/양옆 투명 영역과 실제 UI에 별도 사각 배경이 없는 것을 확인했다.
 
@@ -34,7 +34,7 @@ release 후 pooled canvas의 loading primary/fallback waiter가 사라지는 버
 
 ready 및 실패 정착 후 같은 draw120회에서 추가 paint/clear/request/decode0. [실제 다음/이전10왕복](evidence/controls.json)도 같은 portrait canvas를 유지하고 요청/decode/paint 증가0이었다. 서로 다른 인물/장면을 순회할 때의 LRU 재decode와 구별한다. 모달 전체 DOM을 전혀 다시 만들지 않는다는 주장은 아니다.
 
-[모바일 허공터](evidence/training-mobile.jpg) · [모닥불](evidence/camp.jpg) · [변형404의 같은 인물base](evidence/404-fallback.jpg) · [base도 실패한 중립](evidence/base404-fallback.jpg).4주인공 dialogue/bust/icon12조합은 aa4와 RGBA exact였고 기본 원본/framing은0570과 exact다. [픽셀 검사](evidence/hero-final.txt).
+[모바일 허공터](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/portrait-variants-20261023/evidence/training-mobile.jpg) · [모닥불](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/portrait-variants-20261023/evidence/camp.jpg) · [변형404의 같은 인물base](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/portrait-variants-20261023/evidence/404-fallback.jpg) · [base도 실패한 중립](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/portrait-variants-20261023/evidence/base404-fallback.jpg).4주인공 dialogue/bust/icon12조합은 aa4와 RGBA exact였고 기본 원본/framing은0570과 exact다. [픽셀 검사](evidence/hero-final.txt).
 
 ## 대사/저장·빌드 보존
 

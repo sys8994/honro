@@ -1,6 +1,6 @@
 # 캐릭터 기준 1장 · 세 고유 구간 실제 화면
 
-[시작 정상](stage1-entry-normal.webp) · [첫 접합 정상](stage1-seam-entry-normal.webp) · [고목 정상](stage1-middle-normal.webp) · [둘째 접합/출구 정상](stage1-seam-exit-normal.webp) · [전체](stage1-three-overview.webp) · [모바일 현재 최대](stage1-three-mobile-normal.webp) · [모바일 최소](stage1-three-mobile-minimum.webp)
+[시작 정상](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/art-reviews/stage1-sections-20261019/stage1-entry-normal.webp) · [첫 접합 정상](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/art-reviews/stage1-sections-20261019/stage1-seam-entry-normal.webp) · [고목 정상](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/art-reviews/stage1-sections-20261019/stage1-middle-normal.webp) · [둘째 접합/출구 정상](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/art-reviews/stage1-sections-20261019/stage1-seam-exit-normal.webp) · [전체](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/art-reviews/stage1-sections-20261019/stage1-three-overview.webp) · [모바일 현재 최대](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/art-reviews/stage1-sections-20261019/stage1-three-mobile-normal.webp) · [모바일 최소](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/art-reviews/stage1-sections-20261019/stage1-three-mobile-minimum.webp)
 
 1774×887의 고유 시작/승인 중간/고유 출구를 각각1.23배로 배치한다. 전체6000×3000과 캐릭터 원본/물리는 그대로이며, 설오 실제 신체 H103.5world(정상.6에서62.1CSSpx)를 기준으로 맞췄다. 단일 원화를6000world로 늘렸던3.382배와 구분한다. 그림 전체 반복/반전/타일 채우기·새 모션·떠 있는 벡터 발판은 없다. 실제 접촉은 보이는 길/뿌리/큰 가지/돌 상부에 맞췄다.1장만revision4다.
 
@@ -13,7 +13,7 @@
 
 ## 짝 배치 교정
 
-부모 실제 검수에서 발견한 같은 높이의 새/개 두 마리 짝 배치를 좌표만 교정했다. [교정 중간 화면](roster-scatter-middle.webp) · [전체 배치](roster-scatter-overview.webp) · [국소 근거](roster-scatter.json). 위 최초 화면과 JSON은60fa9eb의 이력이며 이 절의 화면/좌표가 후속 교정이다.
+부모 실제 검수에서 발견한 같은 높이의 새/개 두 마리 짝 배치를 좌표만 교정했다. [교정 중간 화면](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/art-reviews/stage1-sections-20261019/roster-scatter-middle.webp) · [전체 배치](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/art-reviews/stage1-sections-20261019/roster-scatter-overview.webp) · [국소 근거](roster-scatter.json). 위 최초 화면과 JSON은60fa9eb의 이력이며 이 절의 화면/좌표가 후속 교정이다.
 
 공중 새는 x1328.4/y1981.3과 x3077.49/y1695.4568의 서로 다른 빈 공중 공간에 놓았다. 지상6마리는 x950/1830/3270/4080/4710/5490.78의 각기 다른 어깨와 상부 돌에 놓았다. 원본과 clone ID를 가까이 붙이는 기준을 없앴다. 초기8명·능력/HP·XP·행동상한2·지형/그림배율·목표·revision4는 유지한다. 기존 진행 중 전투는 저장 좌표를 유지하며 새 진입/재시도에만 새 배치가 적용된다.
 

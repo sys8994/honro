@@ -40,6 +40,6 @@
 
 6·20장은 기존 생성 번들의 실제 Chromium Scene으로 보존 화면을 확인했다. pageerror 0이었다. Native Canvas 캡처는 adapter의 `InvalidArg: Value is not undefined`로 실패해 Chromium으로 대체했다. 공통 미술의 보강 여부를 여기서 재판정하지 않는다. 20장 사격턱의 단순한 직사각 표시나 6장 근경 지지물의 표현은 현재 그림의 한계로 보이지만, 실제 이동 경로의 고립·높이 부족과는 구분해 공통 미술 담당 영역으로 남긴다.
 
-검사 로그는 `_local/reports/stages1-20-terrain/`에 있다. Git으로 보존한 두 화면은 [6장 교량 위·아래](../../review/stages1-20-terrain/stage6-bridge-levels-preserved.png), [20장 쉼터 사격턱](../../review/stages1-20-terrain/stage20-rest-overwatch-preserved.png)이다. 이번에 지형이 바뀌지 않아 전후가 서로 다른 화면을 만들지 않았다.
+검사 로그는 `_local/reports/stages1-20-terrain/`에 있다. Git으로 보존한 두 화면은 [6장 교량 위·아래](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/review/stages1-20-terrain/stage6-bridge-levels-preserved.png), [20장 쉼터 사격턱](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/review/stages1-20-terrain/stage20-rest-overwatch-preserved.png)이다. 이번에 지형이 바뀌지 않아 전후가 서로 다른 화면을 만들지 않았다.
 
 활성 맵·이벤트·대사·campaign map revision·저장 경계·공통 미술·21~30장·생성 번들은 변경하지 않는다. 문서와 보존 화면만 발행하므로 기존 정식 빌드를 다시 생성하지 않는다. 전체 verify·20장 플레이 순회·기예/전투 재검사는 실행하지 않았다. 미실행 영역의 재미·난이도·모든 우회길 접근성을 통과로 주장하지 않는다.

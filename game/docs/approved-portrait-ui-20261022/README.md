@@ -33,7 +33,7 @@ config의 `identityMaster/identityMasterSha256`는 승인 identity 기준, `sour
 
 최종 입력4종 합계7,661,632B→WebP3,866,070B, 모두1024×1536. crop/resize/filter/색보정 없이 기존 무손실 WebP 인코딩만 했다. [인코딩 보고서](../../../shared/assets/portraits/approved-v1/encoding.json), [출처 검증](evidence/source-provenance.json).
 
-clean PNG의 좌상·우상·상단 중앙·100,100 alpha0과1024×1536을 확인했다. 우하단은 의상이 닿는 alpha252 픽셀이며 임의로 지우지 않았다. 실제 배포 canvas의 양쪽 위 코너도 alpha0이다. **실제 대사창의 이전 설오 검정 모서리 잔류는 제거됐다.** [동일 UI의 이전/clean 사진](evidence/seoro-before-after-ui.jpg), [현재 전체 화면](evidence/desktop-seoro.jpg), [alpha 검사](evidence/seoro-alpha.json). 원본을 투명 원본이었다고 소급 설명하지 않는다.
+clean PNG의 좌상·우상·상단 중앙·100,100 alpha0과1024×1536을 확인했다. 우하단은 의상이 닿는 alpha252 픽셀이며 임의로 지우지 않았다. 실제 배포 canvas의 양쪽 위 코너도 alpha0이다. **실제 대사창의 이전 설오 검정 모서리 잔류는 제거됐다.** [동일 UI의 이전/clean 사진](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/approved-portrait-ui-20261022/evidence/seoro-before-after-ui.jpg), [현재 전체 화면](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/approved-portrait-ui-20261022/evidence/desktop-seoro.jpg), [alpha 검사](evidence/seoro-alpha.json). 원본을 투명 원본이었다고 소급 설명하지 않는다.
 
 ## 유지한 API·갱신 소유권
 
@@ -59,7 +59,7 @@ Chromium headless/desktop1280×800 및 mobile390×844 모사, 음악 off의 제�
 
 ## 현재 사진·자료와 충돌 경계
 
-[desktop 대화4종](evidence/desktop-dialogue-base4.jpg) · [mobile 대화4종](evidence/mobile-dialogue-base4.jpg) · [desktop HUD](evidence/desktop-hud.jpg) · [mobile HUD](evidence/mobile-hud.jpg) · [실패 폴백](evidence/mobile-failure.jpg). composite는 실제 screenshot을 크기 변경 없이 배열한 문서 자료이며 source 이미지를 편집하지 않는다.
+[desktop 대화4종](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/approved-portrait-ui-20261022/evidence/desktop-dialogue-base4.jpg) · [mobile 대화4종](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/approved-portrait-ui-20261022/evidence/mobile-dialogue-base4.jpg) · [desktop HUD](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/approved-portrait-ui-20261022/evidence/desktop-hud.jpg) · [mobile HUD](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/approved-portrait-ui-20261022/evidence/mobile-hud.jpg) · [실패 폴백](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/approved-portrait-ui-20261022/evidence/mobile-failure.jpg). composite는 실제 screenshot을 크기 변경 없이 배열한 문서 자료이며 source 이미지를 편집하지 않는다.
 
 [브라우저 결과](evidence/checks.json), [비동기 수명](evidence/lifetime.json), [repaint](evidence/repaint-after.json), [build](evidence/build.txt). 기본 연결 검수/검정 잔류의 옛 사진·문서는 [302 역사 기록](INITIAL_302.md)에 보존한다.
 

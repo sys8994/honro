@@ -57,7 +57,7 @@ speaker/storyFrame/goal의 우선순위는 소스에서 확인했다. 활성 필
 
 PC 수치 예: 발사 전 수동 사례는 camera.x=183.97에서 고정된 동안 실제 화살 x가930.2→1352.9로 이동했다. 연속 증원 사례는 새 발사 직후 manual=false였으나 종료 후 camera.x=183.97/manual=true로 복귀했고 실제 화살은 x=1367.2에 남았다. 대사 복귀 사례도 실제 화살 x=1437.2인 상태에서 같은 manual=true 복원이 확인됐다. 전체 원본 상태/시간/공격 수락 결과·focus 호출은 [browser.json](browser.json)에 있다. owner 표기는 production의 새 신호가 아니라 진단기가 현재 flag/우선순위로 분류한 값이다.
 
-[PC 수동 후 발사](evidence/desktop-pan-before-fire.png) · [PC 증원 종료가 새 공격을 덮음](evidence/desktop-insert-return-over-attack.png) · [모바일 수동 후 발사](evidence/mobile-pan-before-fire.png) · [모바일 증원 종료가 새 공격을 덮음](evidence/mobile-insert-return-over-attack.png)
+[PC 수동 후 발사](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/attack-camera-state-20261023/evidence/desktop-pan-before-fire.png) · [PC 증원 종료가 새 공격을 덮음](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/attack-camera-state-20261023/evidence/desktop-insert-return-over-attack.png) · [모바일 수동 후 발사](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/attack-camera-state-20261023/evidence/mobile-pan-before-fire.png) · [모바일 증원 종료가 새 공격을 덮음](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/attack-camera-state-20261023/evidence/mobile-insert-return-over-attack.png)
 
 ## 다음 단계 최소 수정안 — 아직 구현하지 않음
 

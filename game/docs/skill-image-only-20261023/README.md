@@ -6,7 +6,7 @@
 
 5987의 보존된 공개 entry에서 실제 이미지 응답을 지연시키자 설오 절명 트리의 급소시/관통시/회기시/정심/절명시가 옛 SVG로 나타났다. markup이 항상 SVG를 포함하고 ready 때만 숨기는 구조였으므로 loading/error는 벡터를 표시했다. 원래 로더에는 timeout이 없었고, 세 번 실패한 cache와 재관찰되지 않는 retained error 노드는 복구가 막힐 수 있었다. 전역 이미지 파일 소실로 단정하지 않는다.
 
-[실제 캠프 이전 벡터 / 지연 중 중립 / 완료 이미지](evidence/camp-before-placeholder-ready.jpg) · [이전 실행](evidence/before.json). 첨부 `1000047863.jpg`는 정상 Library 전송 도구가 `download failed`를 반환해 로컬 파일이 생기지 않았다. HTTP 원인은 도구가 노출하지 않았다. 픽셀을 열거나 우회하지 않고, 부모가 확인한 설명과 생산 UI로 재현했다.
+[실제 캠프 이전 벡터 / 지연 중 중립 / 완료 이미지](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/skill-image-only-20261023/evidence/camp-before-placeholder-ready.jpg) · [이전 실행](evidence/before.json). 첨부 `1000047863.jpg`는 정상 Library 전송 도구가 `download failed`를 반환해 로컬 파일이 생기지 않았다. HTTP 원인은 도구가 노출하지 않았다. 픽셀을 열거나 우회하지 않고, 부모가 확인한 설명과 생산 UI로 재현했다.
 
 ## 수정
 
@@ -27,7 +27,7 @@
 |404 → 재진입|99|84|5대상 각 자동3회 + 재진입1회|
 |timeout → late success|84|84|A14 동일1요청의 늦은 완료|
 
-최종 cache84/targets0이다. camp 20회 갱신·HUD 12회 실제 클릭에서 이미지 노드가 유지되고 추가 request/decode/srcWrites는 0이었다. 이는 브라우저 전체 paint/GPU/FPS 계측이 아니다. [5조건 50표본](evidence/after.json) · [timeout 중립](evidence/timeout-placeholder.jpg) · [404 중립](evidence/404-placeholder.jpg) · [84원본/이름·효과 보존](evidence/native.txt).
+최종 cache84/targets0이다. camp 20회 갱신·HUD 12회 실제 클릭에서 이미지 노드가 유지되고 추가 request/decode/srcWrites는 0이었다. 이는 브라우저 전체 paint/GPU/FPS 계측이 아니다. [5조건 50표본](evidence/after.json) · [timeout 중립](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/skill-image-only-20261023/evidence/timeout-placeholder.jpg) · [404 중립](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/skill-image-only-20261023/evidence/404-placeholder.jpg) · [84원본/이름·효과 보존](evidence/native.txt).
 
 전체 fault matrix의 raw HEAD는5987+이 단위 작업 소스/빌드다. [실행 소스 해시](evidence/executed-source-sha256.json)가 최종 소스와 exact임을 확인했다. 최종977eac64에서는 별도로 실제 10소비 경로/반복 입력과 공통 Game·embedded·Workshop 연결을 확인했다. [최종 UI](evidence/final-smoke.json) · [공통 연결](evidence/web-final.txt) · [retention](evidence/retention-final.txt). 원래 SVG를 합격으로 보던 5개 browser 도구의 기대도 중립 계약으로 바꿨으나, 그 도구들의 무관한 전체 시나리오는 실행하지 않았다. 초기 probe의 준비 변수 참조·보류 route 종료 문제는 검사 도구에서 바로잡았다.
 

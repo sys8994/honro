@@ -49,7 +49,7 @@ normal·seed19388·4인, 각29SP를 실제 C.train/능력치 수련으로29 사�
 - 관련 격리 이동은 담허 entry-suppression1건과 설오 settled-inner-east-shortcut의 초기/settled2건, 총3건 통과했다. 전체27경로 검사는 아니다. 초기 위치 준비/적 제거/이동도 충전이 있는 기하 fixture다.
 - 실제 warning·누출혼 후·R22·R29 저장4개는 **whole-battle Continue/re-export exact**, 접지 배우 몸체 유효·고정구 동기화 통과. R22/R29 production 브라우저 Continue 전체 exact·렌더 순수성·JS/HTTP 오류0. 보존된 live audit 로그는 R12–28의 외부 쓰기0/엔진 recovery0이며, 첫 구간도 guard는 있었으나 로그가 직렬화되기 전 어댑터 오류가 났다.
 
-직접 연 [실제 R22 하강 후·누출혼 E 직전](review/actual-r22-lowered-before-leak.jpg), [실제 R29 시작](review/actual-r29-stop.jpg)은 각각1MB 미만이다. 카메라만 명시적 검수 위치이며 배우를 옮기지 않았다. [R12](../../../tests/fixtures/stage18-current-r12-20261022.json.gz)·[R22](../../../tests/fixtures/stage18-current-post-descent-r22-20261022.json.gz)·[R29](../../../tests/fixtures/stage18-current-stop-r29-20261022.json.gz) 실제 저장을 보존했다.
+직접 연 [실제 R22 하강 후·누출혼 E 직전](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/stage18-current-pacing-20261022/review/actual-r22-lowered-before-leak.jpg), [실제 R29 시작](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/stage18-current-pacing-20261022/review/actual-r29-stop.jpg)은 각각1MB 미만이다. 카메라만 명시적 검수 위치이며 배우를 옮기지 않았다. [R12](../../../tests/fixtures/stage18-current-r12-20261022.json.gz)·[R22](../../../tests/fixtures/stage18-current-post-descent-r22-20261022.json.gz)·[R29](../../../tests/fixtures/stage18-current-stop-r29-20261022.json.gz) 실제 저장을 보존했다.
 
 ## 다음 최소 조치·미실행
 

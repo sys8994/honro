@@ -3435,5 +3435,25 @@
     "game/docs/stage10-world-outro-ending-replay/evidence/final/pixel-comparison.json",
     "game/docs/stage10-world-outro-ending-replay/evidence/final/pixel-review.json"
   ],
-  "policy": "Exact duplicate bytes only; original historical metadata remains unchanged. Canonical targets are retained. Original files remain available at the pinned sourceSnapshot."
+  "policy": "Exact duplicate bytes only; original historical metadata remains unchanged. Canonical targets are retained. Original files remain available at the pinned sourceSnapshot.",
+  "subsequentArchive": {
+    "manifest": "../asset-archive-20261030/historical-art-review-images.json",
+    "sourceSnapshot": "569e11123b2e077ef1f37aeaf92f44d131df73e5",
+    "note": "Canonical art-review PNG paths listed in archive manifest now resolve in immutable history, not local working tree."
+  },
+  "subsequentDatedReviewArchive": {
+    "manifest": "../asset-archive-20261030/historical-dated-review-images.json",
+    "sourceSnapshot": "569e11123b2e077ef1f37aeaf92f44d131df73e5",
+    "note": "Canonical dated-review image paths listed in archive manifest now resolve in immutable history, not local working tree."
+  },
+  "subsequentStageReviewArchive": {
+    "manifest": "../asset-archive-20261030/historical-stage-review-images.json",
+    "sourceSnapshot": "569e11123b2e077ef1f37aeaf92f44d131df73e5",
+    "note": "Canonical dated-review image paths listed in archive manifest now resolve in immutable history, not local working tree."
+  },
+  "subsequentOtherDocsArchive": {
+    "manifest": "../asset-archive-20261030/historical-other-doc-images.json",
+    "sourceSnapshot": "569e11123b2e077ef1f37aeaf92f44d131df73e5",
+    "note": "Canonical dated-review image paths listed in archive manifest now resolve in immutable history, not local working tree."
+  }
 }

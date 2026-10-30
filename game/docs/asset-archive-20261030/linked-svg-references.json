@@ -1,0 +1,910 @@
+{
+  "operation": "Replace only matching embedded image data URI with relative href to identical tracked PNG; leave vector XML and all other bytes unchanged",
+  "files": [
+    {
+      "path": "art/act4-silhouette-v3/sea/bank31/ground-source.svg",
+      "targetPNG": "art/act4-silhouette-v3/sea/bank31/ground-concept.png",
+      "relativeHref": "ground-concept.png",
+      "decodedSHA256": "8de61b9d2a82b325ed218e517b3d9ca43cd7740410973ed7ec7829f55e06588d",
+      "originalSvgSHA256": "63dd8e1a02e7f875b084656bca61888a275b918bfbdf88e208ef2ad64ee5ec1d",
+      "linkedSvgSHA256": "6e70383cfd2ef46b15a4df9ef361072c8f53e3d61ffcc3165d7528952f00bbb3",
+      "originalBytes": 2150286,
+      "linkedBytes": 540010,
+      "savedBytes": 1610276
+    },
+    {
+      "path": "art/act4-silhouette-v3/sea/bank32/ground-right-source.svg",
+      "targetPNG": "art/act4-silhouette-v3/sea/bank32/ground-right-concept.png",
+      "relativeHref": "ground-right-concept.png",
+      "decodedSHA256": "c21f8c11e6f8fcd48972fc90ab3c1cd6854726ecf871e2007c27b2d7f5430e65",
+      "originalSvgSHA256": "d3b2b98e5e771958f55dd3b0a665e71ac65a7aa19b6644d1ff9bbf573f8d4008",
+      "linkedSvgSHA256": "87df062ea9f7781c3d0ec6a4bed4b028401e4cb81da168cf8b2bd003ed4dfb8f",
+      "originalBytes": 1866646,
+      "linkedBytes": 485628,
+      "savedBytes": 1381018
+    },
+    {
+      "path": "art/act4-silhouette-v3/sea/bank32/ground-source.svg",
+      "targetPNG": "art/act4-silhouette-v3/sea/bank32/ground-concept.png",
+      "relativeHref": "ground-concept.png",
+      "decodedSHA256": "23602fa82ffaca834c258ea2e687f77736eed028ee09c61748181aa5d92123db",
+      "originalSvgSHA256": "77ba26d153702028061097379eef7ff5b5f6482854d8f2fb78a320545c385999",
+      "linkedSvgSHA256": "227bd4f7ba9769a18cc3f6b137811db313f19cba72fbb022a73e23d3561b48a8",
+      "originalBytes": 1563855,
+      "linkedBytes": 155923,
+      "savedBytes": 1407932
+    },
+    {
+      "path": "art/act4-silhouette-v3/sea/bank37/ground37-source.svg",
+      "targetPNG": "art/act4-silhouette-v3/sea/bank37/ground-concept.png",
+      "relativeHref": "ground-concept.png",
+      "decodedSHA256": "22df0cda0eaa8a49d92550dc7feff38e1b5f6ce6a9103945de7e361fdc005c6f",
+      "originalSvgSHA256": "bdaf7f0580abec2e00dd6affb18b4484130c71a59e64fda24b2b749b0b32d15a",
+      "linkedSvgSHA256": "de715973073c7a3c6812c9d30bfd4b20ffff7e1b0c979ee26916fc431bba7b76",
+      "originalBytes": 1712729,
+      "linkedBytes": 179125,
+      "savedBytes": 1533604
+    },
+    {
+      "path": "art/act4-silhouette-v3/sea/bank40/ground40-source.svg",
+      "targetPNG": "art/act4-silhouette-v3/sea/bank40/ground-concept.png",
+      "relativeHref": "ground-concept.png",
+      "decodedSHA256": "2bda6c465e8d19ddb2074ffa053f654784d7ed4315b9e98029335e50db56255e",
+      "originalSvgSHA256": "ddac3e831a789c38c5bd2d1e28b10c3a01b246f0dcab8fac205b33029d7d1928",
+      "linkedSvgSHA256": "2345c1bcae2a485e6ab9af9c65c9baaf6f40582be36c5b1f4a1511c4c544248a",
+      "originalBytes": 1950309,
+      "linkedBytes": 370109,
+      "savedBytes": 1580200
+    },
+    {
+      "path": "art/act4-silhouette-v3/sea/wood31/wood31-source.svg",
+      "targetPNG": "art/act4-silhouette-v3/sea/wood31/concept.png",
+      "relativeHref": "concept.png",
+      "decodedSHA256": "6ab9ffe368783935cd33946c3e691a290730e57a620770f8dd91f6af83e44e2d",
+      "originalSvgSHA256": "684b548279926774f471f8438d86591d83430d104a35b4f903e8e6ed7cfee12e",
+      "linkedSvgSHA256": "36331fdc415c8919aedcca43090d8162fff85e0b2e6c49566afe53c192120ab1",
+      "originalBytes": 460172,
+      "linkedBytes": 104425,
+      "savedBytes": 355747
+    },
+    {
+      "path": "art/act4-silhouette-v3/sea/wood32/wood-source.svg",
+      "targetPNG": "art/act4-silhouette-v3/sea/wood32/concept.png",
+      "relativeHref": "concept.png",
+      "decodedSHA256": "f981ea0b16f990d25f93fc4b37b32eb922724d4d26cf66e0039b648048f47889",
+      "originalSvgSHA256": "32f04aea481d7a35e2f719f47e310446195ff07368b5dcabac980e9291d3b267",
+      "linkedSvgSHA256": "1ca8a7ce8f54814b277fb1aaaf01beceeec386ecaff80e5aaf9cd5a91fb14fc7",
+      "originalBytes": 808569,
+      "linkedBytes": 187510,
+      "savedBytes": 621059
+    },
+    {
+      "path": "art/act4-silhouette-v3/sea/wood37/wood37-source.svg",
+      "targetPNG": "art/act4-silhouette-v3/sea/wood37/concept.png",
+      "relativeHref": "concept.png",
+      "decodedSHA256": "a416f37d4a29635467917b7c038a8c03db034149baa16edb1660bdc77d8478f1",
+      "originalSvgSHA256": "da20bc172147250a6e6447ea072b3c0db3c141207f029999574ed4765003cb21",
+      "linkedSvgSHA256": "99130950ed4e4a03ca3f8aa10e36996d8b3a68efc32cc265697aaedd38898667",
+      "originalBytes": 695333,
+      "linkedBytes": 174850,
+      "savedBytes": 520483
+    },
+    {
+      "path": "art/act4-silhouette-v3/sea/wood40/wood40-source.svg",
+      "targetPNG": "art/act4-silhouette-v3/sea/wood40/concept.png",
+      "relativeHref": "concept.png",
+      "decodedSHA256": "3930b1b6f317475aa549dc8fc7d4e80982dbf3b5ccb5156e7132d22853c03249",
+      "originalSvgSHA256": "ab386f3b7bbf49f64e4caa59a75e26baeb3a4dea568676295109291fe8718e2d",
+      "linkedSvgSHA256": "e73fabb035289726a6cbe850de202f59d848e74b1425a13fcf9d019d588c9729",
+      "originalBytes": 706042,
+      "linkedBytes": 154763,
+      "savedBytes": 551279
+    },
+    {
+      "path": "art/stage31-vector-production/body-small-source.svg",
+      "targetPNG": "art/stage31-vector-production/body-small-concept.png",
+      "relativeHref": "body-small-concept.png",
+      "decodedSHA256": "a4b58260bccd99c8e370c2470c8394fd352e0c7e8abcbd1be6069b8f3a209bb6",
+      "originalSvgSHA256": "73c10e9cea799236de9389d6e2001d8653df7608c13fdcb880bf28ea88974977",
+      "linkedSvgSHA256": "d10a21a59e9fc71dc04426c3bd95cef40dbfbb65f226d995fb1b2ce85fa75ba7",
+      "originalBytes": 2538437,
+      "linkedBytes": 689521,
+      "savedBytes": 1848916
+    },
+    {
+      "path": "art/stage31-vector-production/fore-ridge-source.svg",
+      "targetPNG": "art/stage31-vector-production/fore-ridge-concept.png",
+      "relativeHref": "fore-ridge-concept.png",
+      "decodedSHA256": "e5c53ebcb008f0be77564fb9c461d121320b1f0f888b7f5535eea1be472738d5",
+      "originalSvgSHA256": "1debd4c176e7146267f59e04e921bcc6fbd31a42dfd363a28de4eea03a59691e",
+      "linkedSvgSHA256": "d59433aeb544eb04e018a39ac8733c6e95c53e6419b6c3a0ed5273115851d07b",
+      "originalBytes": 1968060,
+      "linkedBytes": 412976,
+      "savedBytes": 1555084
+    },
+    {
+      "path": "art/stage32-vector-production/body-source.svg",
+      "targetPNG": "art/stage32-vector-production/body-concept.png",
+      "relativeHref": "body-concept.png",
+      "decodedSHA256": "540c72da211179dd98c3620aba4cc60ba210f8a5f333fbbab2dad2a2de05684e",
+      "originalSvgSHA256": "a78d863bd77ec2be3e4fe501c8377afb62c5dc237efc7ce414ecc491fa0e5b0e",
+      "linkedSvgSHA256": "64428cf4564d4a47d680b7eff2f37bb167da770bf8ce21db0b6c5b6199ab4533",
+      "originalBytes": 2043542,
+      "linkedBytes": 342972,
+      "savedBytes": 1700570
+    },
+    {
+      "path": "art/stage33-bank-silhouette-v1/bank-source.svg",
+      "targetPNG": "art/stage33-bank-silhouette-v1/concept.png",
+      "relativeHref": "concept.png",
+      "decodedSHA256": "3a59ff53807e330d9bda910cacec6f98437c2586612c942faf92fdcc4b6c0836",
+      "originalSvgSHA256": "08916e9f9f2c5549a1af00e53bacb9b329b7d8a1c1945ea08ed21f9f537c5f3e",
+      "linkedSvgSHA256": "5f7c9866af5fea1e581e6f975d5030f63ec18077adf4889c4bb2e0ae01fd6605",
+      "originalBytes": 588794,
+      "linkedBytes": 17163,
+      "savedBytes": 571631
+    },
+    {
+      "path": "art/stage33-bank-silhouette-v2/bank-source.svg",
+      "targetPNG": "art/stage33-bank-silhouette-v2/concept.png",
+      "relativeHref": "concept.png",
+      "decodedSHA256": "f21064d6604bdd5a011eb00d1d6b59ab663b257b1ed4692138a5a8ba3abd6598",
+      "originalSvgSHA256": "1a944ae031a6576d1eb1f391a7e3544782fa92698e5351e9ae917893c5cdc5a6",
+      "linkedSvgSHA256": "b3aba9772069c22ac9582da9d2b7e383e4064f3847267a1357535f506fd88838",
+      "originalBytes": 1237122,
+      "linkedBytes": 14011,
+      "savedBytes": 1223111
+    },
+    {
+      "path": "art/stage33-causeway-silhouette-v3/causeway-source.svg",
+      "targetPNG": "art/stage33-causeway-silhouette-v3/concept.png",
+      "relativeHref": "concept.png",
+      "decodedSHA256": "a1daffff231dc4c25d44814e48276346e59547d9df35719ee19f795199134e30",
+      "originalSvgSHA256": "fe6f7059c41b29dfe3e1a94dbd585f70901ecccf02f727001ecfa95664fe7c6b",
+      "linkedSvgSHA256": "0d2c10a3df4876850209b764b0ce6397f527f207998c6c88ec810c54891229fd",
+      "originalBytes": 746544,
+      "linkedBytes": 109213,
+      "savedBytes": 637331
+    },
+    {
+      "path": "art/stage33-causeway-silhouette-v4/causeway-source.svg",
+      "targetPNG": "art/stage33-causeway-silhouette-v4/concept.png",
+      "relativeHref": "concept.png",
+      "decodedSHA256": "91bc3be85478ef92f3bfdd5e4b6f16163ca8d868ee7dce42fb4d3eef51ea485e",
+      "originalSvgSHA256": "77a6fa907f9d03f08deecc5b9c61419a3cc5d5b57fde5586292261abc0751f80",
+      "linkedSvgSHA256": "47a571a068833b65d02d58e8f3ca858c494988e2e166762ec82446b94871a5d7",
+      "originalBytes": 464715,
+      "linkedBytes": 32836,
+      "savedBytes": 431879
+    },
+    {
+      "path": "art/stage33-causeway-silhouette-v5/causeway-source.svg",
+      "targetPNG": "art/stage33-causeway-silhouette-v5/concept.png",
+      "relativeHref": "concept.png",
+      "decodedSHA256": "502fa82e746a2a25059da607fdc7fc6aa799421fdb53c2531f4d5c93b3ebc3f6",
+      "originalSvgSHA256": "0df86888cd7d1b5672cd4502792cbd63ea4cbf0987860086cd34091eaef321a8",
+      "linkedSvgSHA256": "0813f264a3a5d1dc1e1c66dacbd5f1cd9b69ffb47e674c1b9242b5b05722cb0b",
+      "originalBytes": 582930,
+      "linkedBytes": 76019,
+      "savedBytes": 506911
+    },
+    {
+      "path": "art/stage33-vector-production/body-input.svg",
+      "targetPNG": "art/stage33-vector-production/body-concept-opaque.png",
+      "relativeHref": "body-concept-opaque.png",
+      "decodedSHA256": "b8c960a46bf619c75873ddf84b87283f151540985a76cfdfd4e6f3cc06d3b31f",
+      "originalSvgSHA256": "1be51c0e3d84eda80a987866bbcc935d637673424c0569d586d6dcb87affaf6a",
+      "linkedSvgSHA256": "1960a7e85c49a532f65660ae3ebb83a547c5b6f6affd7ab8185df2f596940b3e",
+      "originalBytes": 1708513,
+      "linkedBytes": 230,
+      "savedBytes": 1708283
+    },
+    {
+      "path": "art/stage33-vector-production/body-source.svg",
+      "targetPNG": "art/stage33-vector-production/body-concept-opaque.png",
+      "relativeHref": "body-concept-opaque.png",
+      "decodedSHA256": "b8c960a46bf619c75873ddf84b87283f151540985a76cfdfd4e6f3cc06d3b31f",
+      "originalSvgSHA256": "eafe14e2e6d1a76526c21a6fc91397607d5e9453546c10f5700c27ae67454ad6",
+      "linkedSvgSHA256": "15ccab445aefcf17c613dbe98f2a005dad12269b8fa693f811418aa0d7839fe9",
+      "originalBytes": 2085434,
+      "linkedBytes": 377151,
+      "savedBytes": 1708283
+    },
+    {
+      "path": "art/stage33-vector-production/stone-pier-input.svg",
+      "targetPNG": "art/stage33-vector-production/stone-pier-trace-input.png",
+      "relativeHref": "stone-pier-trace-input.png",
+      "decodedSHA256": "d8943cd2d2939815889ffec8aba2556fd88d74978f9d74cfa671d5c818b04469",
+      "originalSvgSHA256": "cb7fb0e8ebd3609a58b0e45085724ee8a9b1ea52c88bc29258897b7745ba74e0",
+      "linkedSvgSHA256": "5c408e04c9e360ed8ceb15e38b602e55eadc8c6bf46d9dc209f5e5a745e88662",
+      "originalBytes": 828845,
+      "linkedBytes": 233,
+      "savedBytes": 828612
+    },
+    {
+      "path": "art/stage33-vector-production/stone-pier-source.svg",
+      "targetPNG": "art/stage33-vector-production/stone-pier-trace-input.png",
+      "relativeHref": "stone-pier-trace-input.png",
+      "decodedSHA256": "d8943cd2d2939815889ffec8aba2556fd88d74978f9d74cfa671d5c818b04469",
+      "originalSvgSHA256": "b7f329d1b241c2eb0647dd0b57ce1adca405a060267c71ebab70d32c4b8fde8e",
+      "linkedSvgSHA256": "b0672a104d289da04ff1752662ed866671f06a0991f8ac72ee75586bdfb93055",
+      "originalBytes": 1107280,
+      "linkedBytes": 278668,
+      "savedBytes": 828612
+    },
+    {
+      "path": "art/stage33-vector-production/surface-input.svg",
+      "targetPNG": "art/stage33-vector-production/surface-concept.png",
+      "relativeHref": "surface-concept.png",
+      "decodedSHA256": "811b31a2b3712cf4b069a03b6e566bdf68673f601acf626ef45b92f9fc7894f7",
+      "originalSvgSHA256": "ded55845eee4e4a7c19ea7fae33881723db8553e9d414f43afde62d142e2ef25",
+      "linkedSvgSHA256": "e24c9d86551a90569d76d5635d4992e9f7d6b18a362884644fcbd36c5eb23eee",
+      "originalBytes": 1250725,
+      "linkedBytes": 226,
+      "savedBytes": 1250499
+    },
+    {
+      "path": "art/stage33-vector-production/surface-source.svg",
+      "targetPNG": "art/stage33-vector-production/surface-concept.png",
+      "relativeHref": "surface-concept.png",
+      "decodedSHA256": "811b31a2b3712cf4b069a03b6e566bdf68673f601acf626ef45b92f9fc7894f7",
+      "originalSvgSHA256": "64b17d4a4239ec3ce697f68afe1b6295889f7f7d39e44d39afb7f6da1a6ce36e",
+      "linkedSvgSHA256": "3a71cb2184bb06615e204347c7c29a7b231f70298c1dc0b3bacf551b3f79dbbf",
+      "originalBytes": 1320337,
+      "linkedBytes": 69838,
+      "savedBytes": 1250499
+    },
+    {
+      "path": "art/stage34-floor-silhouette-v4/floor34-source.svg",
+      "targetPNG": "art/stage34-floor-silhouette-v4/concept.png",
+      "relativeHref": "concept.png",
+      "decodedSHA256": "9abd31223a9915d85a3067466b7277ffc2d596ade8cd80adef0049596bf497fc",
+      "originalSvgSHA256": "c8d0d88f5f69401abbb723ce45b374b02986b3e3239a169637d5e8388e3b7cab",
+      "linkedSvgSHA256": "a7033745cb8720a8fd5f04d24783f2928325e2dcd82ad3ddcfabddc06cd09409",
+      "originalBytes": 1262436,
+      "linkedBytes": 34205,
+      "savedBytes": 1228231
+    },
+    {
+      "path": "art/stage34-floor-silhouette-v4/source.svg",
+      "targetPNG": "art/stage34-floor-silhouette-v4/concept.png",
+      "relativeHref": "concept.png",
+      "decodedSHA256": "9abd31223a9915d85a3067466b7277ffc2d596ade8cd80adef0049596bf497fc",
+      "originalSvgSHA256": "0bbda61b62416354e41fb625c34907379b016e17e7c22e05471f4b82c0143f32",
+      "linkedSvgSHA256": "ce419ebb4e3d3ec17712cc853314064a0fe4a78e29cf3faa469570183da5cd7c",
+      "originalBytes": 1228428,
+      "linkedBytes": 197,
+      "savedBytes": 1228231
+    },
+    {
+      "path": "art/stage34-silhouette-v4/roof34-source.svg",
+      "targetPNG": "art/stage34-silhouette-v4/concept.png",
+      "relativeHref": "concept.png",
+      "decodedSHA256": "4a2c78ea766baed62aa52b7296e5b9c622c9993d3b57ac6be8e28c363df54cce",
+      "originalSvgSHA256": "d809610538942ea1046bd726cbda8684ece45a33f19b4f7e531b95e5709d9439",
+      "linkedSvgSHA256": "4142ed6751b41c80ecc85c4814b624d874c72ebab7ed9943afb67c4c621871ad",
+      "originalBytes": 1026168,
+      "linkedBytes": 45261,
+      "savedBytes": 980907
+    },
+    {
+      "path": "art/stage34-silhouette-v4/source.svg",
+      "targetPNG": "art/stage34-silhouette-v4/concept.png",
+      "relativeHref": "concept.png",
+      "decodedSHA256": "4a2c78ea766baed62aa52b7296e5b9c622c9993d3b57ac6be8e28c363df54cce",
+      "originalSvgSHA256": "58763b2ac25eb4e50f101d37bbee8310167075ffbc55fd520c6659f701fc8fdf",
+      "linkedSvgSHA256": "904a9d7294c00181f4a8572435d5cf0ad19b12213d769b2b9c9e313ba8dce281",
+      "originalBytes": 981104,
+      "linkedBytes": 197,
+      "savedBytes": 980907
+    },
+    {
+      "path": "art/stage34-vector-production/body-input.svg",
+      "targetPNG": "art/stage34-vector-production/body-concept.png",
+      "relativeHref": "body-concept.png",
+      "decodedSHA256": "16e0b25c4ddf1895aae7baf9bef66a1a5a87b4667fc55e156cd7c68cb4f0c6f4",
+      "originalSvgSHA256": "130bfaeb55ef8ac7dc9a1d993f985191fef9b0af011dfe3e96019d220c01598f",
+      "linkedSvgSHA256": "b90b7532d08a538b3cfb97abaab90e09e8309ce83894493b3fad249bd754bc19",
+      "originalBytes": 1581056,
+      "linkedBytes": 226,
+      "savedBytes": 1580830
+    },
+    {
+      "path": "art/stage34-vector-production/body-source.svg",
+      "targetPNG": "art/stage34-vector-production/body-concept.png",
+      "relativeHref": "body-concept.png",
+      "decodedSHA256": "16e0b25c4ddf1895aae7baf9bef66a1a5a87b4667fc55e156cd7c68cb4f0c6f4",
+      "originalSvgSHA256": "1a3b5648787e5b5a4c20befb8e9437a5ae8e94ce6ba8d8531c9306bbb7a8c582",
+      "linkedSvgSHA256": "a0286cc12bb3d46e34887cbe845b3849b77f6414f87ca19bc5e0aa960739f9c8",
+      "originalBytes": 1743128,
+      "linkedBytes": 162298,
+      "savedBytes": 1580830
+    },
+    {
+      "path": "art/stage34-vector-production/body-v2-input.svg",
+      "targetPNG": "art/stage34-vector-production/body-v2-concept.png",
+      "relativeHref": "body-v2-concept.png",
+      "decodedSHA256": "21fb33902d5b98e45608746d0b142391734dfd08f40132dc2a52819ae6b5bfab",
+      "originalSvgSHA256": "6bd548a7652f8a65fd9e3fbefd041efbb38ee6e36c7a4b5ef4106bf8e4736d47",
+      "linkedSvgSHA256": "dd70babd0742b20c07f24f1a3ca8d73d56ca752b0b3bedf3059fb9311d0af900",
+      "originalBytes": 1606444,
+      "linkedBytes": 229,
+      "savedBytes": 1606215
+    },
+    {
+      "path": "art/stage34-vector-production/body-v2-source.svg",
+      "targetPNG": "art/stage34-vector-production/body-v2-concept.png",
+      "relativeHref": "body-v2-concept.png",
+      "decodedSHA256": "21fb33902d5b98e45608746d0b142391734dfd08f40132dc2a52819ae6b5bfab",
+      "originalSvgSHA256": "45c73c99d8ffebd4b9dfa491af6a656141e0ea6ee5906049874ec62a5a75d8d9",
+      "linkedSvgSHA256": "38163e2ddb1117aebe61ac30b3be403cee6e5703431ffb737360d72953bd8e07",
+      "originalBytes": 1792460,
+      "linkedBytes": 186245,
+      "savedBytes": 1606215
+    },
+    {
+      "path": "art/stage34-vector-production/overhang-input.svg",
+      "targetPNG": "art/stage34-vector-production/overhang-concept.png",
+      "relativeHref": "overhang-concept.png",
+      "decodedSHA256": "5d42f51c6ccbead30948208065a3cc2db08fbd792182943d8c7d0a4e0e3aaf99",
+      "originalSvgSHA256": "1049e68b44671ffb2e6df4df5e85ca3c9d6aab5a9dbb5ae9a749cb89d769fd95",
+      "linkedSvgSHA256": "2d65c7a86a56c3c4cdcd99b40a15303be209f0b836c8ed35ef917a31f9d9a9e7",
+      "originalBytes": 1443085,
+      "linkedBytes": 227,
+      "savedBytes": 1442858
+    },
+    {
+      "path": "art/stage34-vector-production/overhang-source.svg",
+      "targetPNG": "art/stage34-vector-production/overhang-concept.png",
+      "relativeHref": "overhang-concept.png",
+      "decodedSHA256": "5d42f51c6ccbead30948208065a3cc2db08fbd792182943d8c7d0a4e0e3aaf99",
+      "originalSvgSHA256": "efc10ee6cb988d52e93b2ba409c758a16658bf5b32ffda91b1e1716511feb9b4",
+      "linkedSvgSHA256": "489983ddcc15a4175c9c1270acdb142806eb46166796d81736c00ac36dd34025",
+      "originalBytes": 1702476,
+      "linkedBytes": 259618,
+      "savedBytes": 1442858
+    },
+    {
+      "path": "art/stage35-bank-silhouette-v4/play-east-source.svg",
+      "targetPNG": "art/stage35-bank-silhouette-v4/play-east-concept-v2.png",
+      "relativeHref": "play-east-concept-v2.png",
+      "decodedSHA256": "0ce4c0daeb2fdda897e29c5ddab0095fcd8940816113567852bf61111d7c7305",
+      "originalSvgSHA256": "2303c5c672504cd2695ff50256b0b83d9304c746fcd83f8105201634a8b1178a",
+      "linkedSvgSHA256": "9cde71b277e93f16a6f1c7378d8b19b53bdeb23631f926430c70832c31209f5c",
+      "originalBytes": 1608072,
+      "linkedBytes": 42234,
+      "savedBytes": 1565838
+    },
+    {
+      "path": "art/stage35-bank-silhouette-v4/play-west-source.svg",
+      "targetPNG": "art/stage35-bank-silhouette-v4/play-west-concept-v2.png",
+      "relativeHref": "play-west-concept-v2.png",
+      "decodedSHA256": "4084c6fc2670e39ac5acfb70d433bba90b534bbdd644d85e0429a2cda9322b26",
+      "originalSvgSHA256": "8a4a41085c51f47e5a41006b39798b86fce0099d67edf189c1d9f51fa42b9be6",
+      "linkedSvgSHA256": "8356f7669680c6f5912e632760484d0df8b5d80f75b9bda9b2a160a1657560e3",
+      "originalBytes": 2543519,
+      "linkedBytes": 966853,
+      "savedBytes": 1576666
+    },
+    {
+      "path": "art/stage35-vector-production/bamboo-cover-source.svg",
+      "targetPNG": "art/stage35-vector-production/bamboo-cover-concept.png",
+      "relativeHref": "bamboo-cover-concept.png",
+      "decodedSHA256": "7c2fe9dbc4b455ea91de0fa8e561a5ccb7eb2b3820c0492b20e06de4934327dc",
+      "originalSvgSHA256": "14a2e730409434636bee97b12cd6709db3a794a1a952c7b15f47fc2a5659eeda",
+      "linkedSvgSHA256": "d896873febf7db31ebaa155c6e224fdee1c055f192d77294b3cfab841830685a",
+      "originalBytes": 1768843,
+      "linkedBytes": 252341,
+      "savedBytes": 1516502
+    },
+    {
+      "path": "art/stage35-vector-production/ground-continuous-source.svg",
+      "targetPNG": "art/stage35-vector-production/ground-continuous-concept.png",
+      "relativeHref": "ground-continuous-concept.png",
+      "decodedSHA256": "a686a2a3b65d2504ca197fe303de72acde5d07629df65d2440c676ab5f8819ac",
+      "originalSvgSHA256": "64dad38310bca8c218edc81faa407b8a23fca2b76f924d420d641f8edce060ba",
+      "linkedSvgSHA256": "20c9507e39e14638180e524596fd8feff5591728f008b7a9a6d2ec999177b84c",
+      "originalBytes": 3733929,
+      "linkedBytes": 2102236,
+      "savedBytes": 1631693
+    },
+    {
+      "path": "art/stage35-vector-production/old-wall-source.svg",
+      "targetPNG": "art/stage35-vector-production/old-wall-concept.png",
+      "relativeHref": "old-wall-concept.png",
+      "decodedSHA256": "f5e424f402e11ef62ee454037ddb4a9cad1c50c3aa3518087985d18036a032c9",
+      "originalSvgSHA256": "b77118b84ed5c299f2c904174a9f1d97a04c548f148efada9868b8f9441cbe07",
+      "linkedSvgSHA256": "ed049253dee2304e71cf863a0c82d147c5d31a038f872c45baa67d496454e5c1",
+      "originalBytes": 2049025,
+      "linkedBytes": 458263,
+      "savedBytes": 1590762
+    },
+    {
+      "path": "art/stage36-vector-production/door-source.svg",
+      "targetPNG": "art/stage36-vector-production/door-concept.png",
+      "relativeHref": "door-concept.png",
+      "decodedSHA256": "19154be14b877d58dd0fd8b4d136e53af4b4d6d76e077540da5da3f18860b14a",
+      "originalSvgSHA256": "b14dc4cecaa75f52ff4013b41e9d9a27f4a74e5c309cdb4a7f9ab7eaabaa79c8",
+      "linkedSvgSHA256": "74760c09b9559041e706de25a12eefafa6c15c751a29a7bc6661a74cf6affcdd",
+      "originalBytes": 1970633,
+      "linkedBytes": 344519,
+      "savedBytes": 1626114
+    },
+    {
+      "path": "art/stage36-vector-production/foundation-source.svg",
+      "targetPNG": "art/stage36-vector-production/foundation-concept.png",
+      "relativeHref": "foundation-concept.png",
+      "decodedSHA256": "36e2dd02023f38c685fe2fe13921dd2b80a17c30d6516daed6a415cae4052901",
+      "originalSvgSHA256": "c774437f80636639b37a713fc652d385fc217fde78f13991297d3f3a2c0c8321",
+      "linkedSvgSHA256": "dc6798bdf0ae16c3636726977edf97e6a892e26c37b066ce2387c947428375c0",
+      "originalBytes": 2015388,
+      "linkedBytes": 434568,
+      "savedBytes": 1580820
+    },
+    {
+      "path": "art/stage36-vector-production/frame-source.svg",
+      "targetPNG": "art/stage36-vector-production/frame-concept.png",
+      "relativeHref": "frame-concept.png",
+      "decodedSHA256": "89c8c8114ab1b762789f1584c0da9bf531789bb4d08c69454e682a298e6a2bf4",
+      "originalSvgSHA256": "47823246e7fde4b42db9c3edd397cce90668b0640806e3a9cc60e55cfe5e57ca",
+      "linkedSvgSHA256": "25dadac9ac73911d46b3e944dc407275fdb648f498e9640e47a86c3f177cb3e2",
+      "originalBytes": 2503127,
+      "linkedBytes": 696866,
+      "savedBytes": 1806261
+    },
+    {
+      "path": "art/stage36-vector-production/ground-continuous-source.svg",
+      "targetPNG": "art/stage36-vector-production/ground-continuous-concept.png",
+      "relativeHref": "ground-continuous-concept.png",
+      "decodedSHA256": "46035ccee7e204b38b45698a0dcedc849812db287f3c527d38bbfecb1ac51187",
+      "originalSvgSHA256": "a5370e754fd2d9a8ce29e73a72dd1f3876a0e841890a8e5f99b272b5981806ba",
+      "linkedSvgSHA256": "f22c145ee0d045f9964dc09035407a71363a286c62c3debd21050b86ae5a4b43",
+      "originalBytes": 1776600,
+      "linkedBytes": 185491,
+      "savedBytes": 1591109
+    },
+    {
+      "path": "art/stage36-vector-production/home-source.svg",
+      "targetPNG": "art/stage36-vector-production/home-concept.png",
+      "relativeHref": "home-concept.png",
+      "decodedSHA256": "9c2324747224590fee268042c705a8cc76b115cc3001027d9901427833e5fca9",
+      "originalSvgSHA256": "c28d4c5e3cb2375d180350fac7558f5a0ea26a80f98d9cf41bd56b546bf48853",
+      "linkedSvgSHA256": "04cb995a6770fb1417fdf7985cf692462935b51d6691fcecf3560caa1f68fddf",
+      "originalBytes": 3395257,
+      "linkedBytes": 1377879,
+      "savedBytes": 2017378
+    },
+    {
+      "path": "art/stage37-signal-density/winch-source.svg",
+      "targetPNG": "art/stage37-signal-density/winch-concept.png",
+      "relativeHref": "winch-concept.png",
+      "decodedSHA256": "cfe5e40c4dc15eadc73011395cb1458fb38195ade08d4862299b41ea9945ae56",
+      "originalSvgSHA256": "b80184008232cfe283369f816332be510d7c9a7fa131c8df59c4935944e2127a",
+      "linkedSvgSHA256": "6e819115270856f3231010998a8d028040833ba817fef131b98c9be8c1a25bb4",
+      "originalBytes": 1699296,
+      "linkedBytes": 386531,
+      "savedBytes": 1312765
+    },
+    {
+      "path": "art/stage37-vector-production/body-input.svg",
+      "targetPNG": "art/stage37-vector-production/body-trace-input.png",
+      "relativeHref": "body-trace-input.png",
+      "decodedSHA256": "e1076bada4a920fae68dbd6591a02af4119ed92c61ecc5cbeea89fe2ec167d20",
+      "originalSvgSHA256": "8f66cdf1e145bbde971c7c7cb5bce9e53245fc1616be030dc3fd380f25576cd7",
+      "linkedSvgSHA256": "2a349c2e80fdbc6c7e7db12ef5fcfdca3b1689d1bee0aad54b4b3ebaab98331e",
+      "originalBytes": 1068805,
+      "linkedBytes": 227,
+      "savedBytes": 1068578
+    },
+    {
+      "path": "art/stage37-vector-production/body-source.svg",
+      "targetPNG": "art/stage37-vector-production/body-trace-input.png",
+      "relativeHref": "body-trace-input.png",
+      "decodedSHA256": "e1076bada4a920fae68dbd6591a02af4119ed92c61ecc5cbeea89fe2ec167d20",
+      "originalSvgSHA256": "f8c0c4b9146b0831e0ba2e941b4473d61e20ae372d8e1872b2495835734b24f8",
+      "linkedSvgSHA256": "251cff64964d1662897d58c75f7d90b063b53b18f2a2d9ed6c5c5477849dd491",
+      "originalBytes": 1519534,
+      "linkedBytes": 450956,
+      "savedBytes": 1068578
+    },
+    {
+      "path": "art/stage37-vector-production/signal-outcrop-input.svg",
+      "targetPNG": "art/stage37-vector-production/signal-outcrop-trace-input.png",
+      "relativeHref": "signal-outcrop-trace-input.png",
+      "decodedSHA256": "dcbd6d577dedf24b042734a30242869df539535b92456f730f6d1609c020b884",
+      "originalSvgSHA256": "12bcabcc36fc7d3e84223b7a7306ca2f3b5766bc430b997415ac8ed6fe5c9df1",
+      "linkedSvgSHA256": "21e66797cbecb009d7f94c0f9d509a6578a34ab561ff60c9936402f7d7e9c07e",
+      "originalBytes": 1403956,
+      "linkedBytes": 240,
+      "savedBytes": 1403716
+    },
+    {
+      "path": "art/stage37-vector-production/signal-outcrop-source.svg",
+      "targetPNG": "art/stage37-vector-production/signal-outcrop-trace-input.png",
+      "relativeHref": "signal-outcrop-trace-input.png",
+      "decodedSHA256": "dcbd6d577dedf24b042734a30242869df539535b92456f730f6d1609c020b884",
+      "originalSvgSHA256": "6ef4b6a39999768e9ced9dcc9aaceb7e8511d72c0199e168735a7e0092e6fb76",
+      "linkedSvgSHA256": "d7df4dfced4835101f161823d37255adac69272d2b0c0baf59ce4f9fbcd896e4",
+      "originalBytes": 1856068,
+      "linkedBytes": 452352,
+      "savedBytes": 1403716
+    },
+    {
+      "path": "art/stage38-floor-silhouette-v4/source.svg",
+      "targetPNG": "art/stage38-floor-silhouette-v4/concept.png",
+      "relativeHref": "concept.png",
+      "decodedSHA256": "0a567b6e923e31ee35be39dc0457c8d9e53e3b39f7ab61d47135bfb533ff2ee1",
+      "originalSvgSHA256": "e6ac5b26eb44f14bed6ff119a2e2723957bef54534d7e984a59cbd49b8b26955",
+      "linkedSvgSHA256": "c7be604704dc4ad45455cf559acc46f33cee9c59e597efffa50c953486d339e0",
+      "originalBytes": 1288237,
+      "linkedBytes": 22414,
+      "savedBytes": 1265823
+    },
+    {
+      "path": "art/stage38-vector-production/floor-input.svg",
+      "targetPNG": "art/stage38-vector-production/floor-concept.png",
+      "relativeHref": "floor-concept.png",
+      "decodedSHA256": "65ace039a64793c573121220640868e643a3bbd5ce2bff998d8b74b7f91cd34d",
+      "originalSvgSHA256": "ce14f3d45b183b549579a3e98dc346ef5b077df6031f1ce888268dffd406f211",
+      "linkedSvgSHA256": "b6155725f4a07c8b2c1de39c3990772e0e9c8e08ba9039ce984e646fcb1fd3e5",
+      "originalBytes": 1640997,
+      "linkedBytes": 224,
+      "savedBytes": 1640773
+    },
+    {
+      "path": "art/stage38-vector-production/floor-source.svg",
+      "targetPNG": "art/stage38-vector-production/floor-concept.png",
+      "relativeHref": "floor-concept.png",
+      "decodedSHA256": "65ace039a64793c573121220640868e643a3bbd5ce2bff998d8b74b7f91cd34d",
+      "originalSvgSHA256": "2b911aaecb69020d82550fc97a756598219727635f1baa964b052ede3a3c18ab",
+      "linkedSvgSHA256": "a1bd857eecb83e19e9a38e5ab180b002355c36c3d2b0ebcce296bf4d255e0852",
+      "originalBytes": 1793984,
+      "linkedBytes": 153211,
+      "savedBytes": 1640773
+    },
+    {
+      "path": "art/stage38-vector-production/roof-input.svg",
+      "targetPNG": "art/stage38-vector-production/roof-concept.png",
+      "relativeHref": "roof-concept.png",
+      "decodedSHA256": "2f67ca6764bb64ec00eda072ce0bac20d8ef2dbb2b024046549bdb96dfba7850",
+      "originalSvgSHA256": "64d87cdd98ee6620adebc5de71a46dccea58ebca5a04b42154a265296706d873",
+      "linkedSvgSHA256": "33044de9df761f036fbd1dfe45933a3555f8d581e591e8a502c5a12ac09b56db",
+      "originalBytes": 1605352,
+      "linkedBytes": 226,
+      "savedBytes": 1605126
+    },
+    {
+      "path": "art/stage38-vector-production/roof-source.svg",
+      "targetPNG": "art/stage38-vector-production/roof-concept.png",
+      "relativeHref": "roof-concept.png",
+      "decodedSHA256": "2f67ca6764bb64ec00eda072ce0bac20d8ef2dbb2b024046549bdb96dfba7850",
+      "originalSvgSHA256": "19a2b91bed76fddfccbf76c1151fbb1c351e0cfdc038017c161ef497d7357e53",
+      "linkedSvgSHA256": "af4824ac24dc69b6ca4a01cb21a2137d6ba7252dd6bd4d30f9c41b7b1339f9f4",
+      "originalBytes": 1716643,
+      "linkedBytes": 111517,
+      "savedBytes": 1605126
+    },
+    {
+      "path": "art/stage39-bank-silhouette-v4/play-east-source.svg",
+      "targetPNG": "art/stage39-bank-silhouette-v4/play-east-concept-v2.png",
+      "relativeHref": "play-east-concept-v2.png",
+      "decodedSHA256": "bad3a04283a1c82737857235841771ede96595cee948369e8a6c9b679a11976a",
+      "originalSvgSHA256": "90b470082fb3733f3ab5ac433e56bddc5bae91c6cd831bc6de8b18b46f923ca8",
+      "linkedSvgSHA256": "6083557dd3f80b329e4b010982c312248ecf14bc6bb87e1a001b10afdf937c58",
+      "originalBytes": 1601610,
+      "linkedBytes": 51328,
+      "savedBytes": 1550282
+    },
+    {
+      "path": "art/stage39-bank-silhouette-v4/play-west-source.svg",
+      "targetPNG": "art/stage39-bank-silhouette-v4/play-west-concept-v2.png",
+      "relativeHref": "play-west-concept-v2.png",
+      "decodedSHA256": "b92e14d06b6658804dd65a48db1029c624fa54adf81fc7471012d1d01363f1a4",
+      "originalSvgSHA256": "72dd2b9a7b504bd2b601282ea744f805b8c734cffa91c4a7232ab754971f189f",
+      "linkedSvgSHA256": "2456857d74142836df0cbab5019644c96ff472d0ab8f56fa8933dfe4491329e0",
+      "originalBytes": 1624985,
+      "linkedBytes": 49047,
+      "savedBytes": 1575938
+    },
+    {
+      "path": "art/stage39-upper-ledge-v4/ledge-source.svg",
+      "targetPNG": "art/stage39-upper-ledge-v4/concept.png",
+      "relativeHref": "concept.png",
+      "decodedSHA256": "0992bad95daade3dc604ecd519d3743156601ba0d59f8684ce6f8234a9b5ea64",
+      "originalSvgSHA256": "411acafaea21f7d202dfddeecab6f4e87742cee525ddf91f5dc32e19034fb2df",
+      "linkedSvgSHA256": "ad291db98fc8ffe97f262c7423d34eee4c1aad51c0c1e8b34ce26f87ec2bf108",
+      "originalBytes": 533711,
+      "linkedBytes": 86436,
+      "savedBytes": 447275
+    },
+    {
+      "path": "art/stage39-vector-production/body-input.svg",
+      "targetPNG": "art/stage39-vector-production/body-concept.png",
+      "relativeHref": "body-concept.png",
+      "decodedSHA256": "bfb5d2b153ca32cebb1eb6ca16f2da385b8e96ad1d1eeb686a7238c0aa0e5d07",
+      "originalSvgSHA256": "6ba730de5a1e626e62ea071c6ac0964a9177724adeeec778136b74608b1af643",
+      "linkedSvgSHA256": "012d45ae2fc52f4cb3272872f3c5540ab1e9d93cefcf4907c62c035916a5a019",
+      "originalBytes": 1654889,
+      "linkedBytes": 223,
+      "savedBytes": 1654666
+    },
+    {
+      "path": "art/stage39-vector-production/body-source.svg",
+      "targetPNG": "art/stage39-vector-production/body-concept.png",
+      "relativeHref": "body-concept.png",
+      "decodedSHA256": "bfb5d2b153ca32cebb1eb6ca16f2da385b8e96ad1d1eeb686a7238c0aa0e5d07",
+      "originalSvgSHA256": "b8dc03ee3c5e26dd87c4d053e65b54ade60eaccf492d0d789de8287ad1dcaee9",
+      "linkedSvgSHA256": "6d971b9e3e2356d07572a6204a807df019b5aaa496c744a3e83a53574d97e453",
+      "originalBytes": 2595649,
+      "linkedBytes": 940983,
+      "savedBytes": 1654666
+    },
+    {
+      "path": "art/stage39-vector-production/wreck-input.svg",
+      "targetPNG": "art/stage39-vector-production/wreck-trace-input.png",
+      "relativeHref": "wreck-trace-input.png",
+      "decodedSHA256": "576f62ee0526912fd738b1c5952a2a8ea0a90b373b0363313efbb37328b2d773",
+      "originalSvgSHA256": "35e2f3350309e537e71ea4df6b3f898a72ed9beb949e12b03491d4453a651cba",
+      "linkedSvgSHA256": "4cdcf3da556b11fecfcd6cfda8406bfd5500cdad9c94ce1247d5397161ab68d0",
+      "originalBytes": 1192473,
+      "linkedBytes": 228,
+      "savedBytes": 1192245
+    },
+    {
+      "path": "art/stage39-vector-production/wreck-source.svg",
+      "targetPNG": "art/stage39-vector-production/wreck-trace-input.png",
+      "relativeHref": "wreck-trace-input.png",
+      "decodedSHA256": "576f62ee0526912fd738b1c5952a2a8ea0a90b373b0363313efbb37328b2d773",
+      "originalSvgSHA256": "e8097d8f9ac19cbe72c2d97e7c4a0ab301805e3f3251d710d09389b05f317611",
+      "linkedSvgSHA256": "6242d97179dcf1bb045ebebc98ec3075108fbbbd158c4e057c22c751e9c7683a",
+      "originalBytes": 1990865,
+      "linkedBytes": 798620,
+      "savedBytes": 1192245
+    },
+    {
+      "path": "art/stage40-vector-production/boat-input.svg",
+      "targetPNG": "art/stage40-vector-production/boat-concept.png",
+      "relativeHref": "boat-concept.png",
+      "decodedSHA256": "3f1753565031802c7d77e7340f919f1fbb9078a2e9f880172cb8d7b70d72249e",
+      "originalSvgSHA256": "df64d7abbcf6c6504f284731ede45fd828eb1cf3ffc6a88a9c4e1aa406da7f4f",
+      "linkedSvgSHA256": "f5ce95b3ef69c1f824a56c03b072120458a0526ea679d0af59ac53a6db1256d9",
+      "originalBytes": 1317973,
+      "linkedBytes": 223,
+      "savedBytes": 1317750
+    },
+    {
+      "path": "art/stage40-vector-production/boat-source.svg",
+      "targetPNG": "art/stage40-vector-production/boat-concept.png",
+      "relativeHref": "boat-concept.png",
+      "decodedSHA256": "3f1753565031802c7d77e7340f919f1fbb9078a2e9f880172cb8d7b70d72249e",
+      "originalSvgSHA256": "7f213de11dfa362a9c0c191c04ee826a3f6f7874591746b43b7fc1ecb481da91",
+      "linkedSvgSHA256": "38d0672b5f41afe545ee3fe342f94e0607b01ec3090a0abe22f2782a6007e8df",
+      "originalBytes": 1438521,
+      "linkedBytes": 120771,
+      "savedBytes": 1317750
+    },
+    {
+      "path": "art/stage40-vector-production/body-input.svg",
+      "targetPNG": "art/stage40-vector-production/body-concept.png",
+      "relativeHref": "body-concept.png",
+      "decodedSHA256": "994551a4ab39041be7f1137ccd1a0c77a98b751a31d94716c798072c8c172763",
+      "originalSvgSHA256": "fbdc257cfd6e965b0a8ddbb350d0de983c425afb84aa2cb77e584671dc596bdf",
+      "linkedSvgSHA256": "b44ed1caa08f8b48f5cb57319295764dccf2663463378a21e5b00482e4acad86",
+      "originalBytes": 1665849,
+      "linkedBytes": 223,
+      "savedBytes": 1665626
+    },
+    {
+      "path": "art/stage40-vector-production/body-source.svg",
+      "targetPNG": "art/stage40-vector-production/body-concept.png",
+      "relativeHref": "body-concept.png",
+      "decodedSHA256": "994551a4ab39041be7f1137ccd1a0c77a98b751a31d94716c798072c8c172763",
+      "originalSvgSHA256": "e2faec0d1c6c531daf60af3d655899a3f9fd32e08b6f4d5236e58e1e575626ae",
+      "linkedSvgSHA256": "34935f0ad928d24db73e8a24c59c35f42b4ce2fbffdf3c2cb7ef1751917d7398",
+      "originalBytes": 1843245,
+      "linkedBytes": 177619,
+      "savedBytes": 1665626
+    },
+    {
+      "path": "art/stage40-vector-production/coastal-shed-input.svg",
+      "targetPNG": "art/stage40-vector-production/coastal-shed-concept.png",
+      "relativeHref": "coastal-shed-concept.png",
+      "decodedSHA256": "1f0879f74e650e812db873acd0b4f0e6173b1254e58c130fd74bd7c24d2040cb",
+      "originalSvgSHA256": "fcfd49abc8a1cb794dd634c1989d38b5f1539a54931de70fe7e20b55612968ed",
+      "linkedSvgSHA256": "452d731941eb5b517d1eedc9cd5cd8e11f3023ed5063468b2844ccb93a213573",
+      "originalBytes": 2031073,
+      "linkedBytes": 231,
+      "savedBytes": 2030842
+    },
+    {
+      "path": "art/stage40-vector-production/coastal-shed-source.svg",
+      "targetPNG": "art/stage40-vector-production/coastal-shed-concept.png",
+      "relativeHref": "coastal-shed-concept.png",
+      "decodedSHA256": "1f0879f74e650e812db873acd0b4f0e6173b1254e58c130fd74bd7c24d2040cb",
+      "originalSvgSHA256": "72c9bb24af38054a7bcd27c3d2dae23d6926fbac1bae9a564b23dc4d00e82434",
+      "linkedSvgSHA256": "609732cce7b1bd7c0d13c9756ce193fa01a69780b26c7076555e91a73680c2f2",
+      "originalBytes": 2663874,
+      "linkedBytes": 633032,
+      "savedBytes": 2030842
+    },
+    {
+      "path": "art/stage40-vector-production/surface-input.svg",
+      "targetPNG": "art/stage40-vector-production/surface-concept.png",
+      "relativeHref": "surface-concept.png",
+      "decodedSHA256": "7b8b2ec509c654ddd3f91d318611a154abf87851084edc3e70ba132cb33f9890",
+      "originalSvgSHA256": "48823ec7b74419298765d94209be1ad1d0c5f8de7ad7064bb1ff3bd734d9c817",
+      "linkedSvgSHA256": "f988e16ff2cf8171fd74aad2443133d85e00278807adca1af337adf88e7eefc5",
+      "originalBytes": 1310329,
+      "linkedBytes": 226,
+      "savedBytes": 1310103
+    },
+    {
+      "path": "art/stage40-vector-production/surface-source.svg",
+      "targetPNG": "art/stage40-vector-production/surface-concept.png",
+      "relativeHref": "surface-concept.png",
+      "decodedSHA256": "7b8b2ec509c654ddd3f91d318611a154abf87851084edc3e70ba132cb33f9890",
+      "originalSvgSHA256": "341ed0c61e86d1b2637afcdd22ce6332622556e8f672580b1d9c0591334e334f",
+      "linkedSvgSHA256": "352f0178bf6c3ab6426d1d97303720ed72c2c4b3b72ede51fb16608fa8055700",
+      "originalBytes": 1417082,
+      "linkedBytes": 106979,
+      "savedBytes": 1310103
+    },
+    {
+      "path": "art/stage40-vector-production/timber-brace-input.svg",
+      "targetPNG": "art/stage40-vector-production/timber-brace-concept.png",
+      "relativeHref": "timber-brace-concept.png",
+      "decodedSHA256": "8781a315eeb3b8e0d7b9b029a60953379d6fb9fddeb59f68a416f8fb49054222",
+      "originalSvgSHA256": "627bf3e10ce57bfa6bd48960c1e1594c8321a895fe8d56b788d5b8417068ebbc",
+      "linkedSvgSHA256": "4b53803ebd201161f796ad8d2d82ddff4d5af283a5e2f5ef70a7b506e84e9abf",
+      "originalBytes": 1400329,
+      "linkedBytes": 231,
+      "savedBytes": 1400098
+    },
+    {
+      "path": "art/stage40-vector-production/timber-brace-source.svg",
+      "targetPNG": "art/stage40-vector-production/timber-brace-concept.png",
+      "relativeHref": "timber-brace-concept.png",
+      "decodedSHA256": "8781a315eeb3b8e0d7b9b029a60953379d6fb9fddeb59f68a416f8fb49054222",
+      "originalSvgSHA256": "8cfdebea34455726af427880b2dbd392c9ee800caa5d4642d5bc51cbb8fd91de",
+      "linkedSvgSHA256": "c4f4ba9e313ef66069caf6cb8da9446b6c8b9dddce6323acf4cb0798984dead0",
+      "originalBytes": 1590728,
+      "linkedBytes": 190630,
+      "savedBytes": 1400098
+    },
+    {
+      "path": "art/vector-common-production/abandoned-skiff-input.svg",
+      "targetPNG": "art/vector-common-production/abandoned-skiff-concept.png",
+      "relativeHref": "abandoned-skiff-concept.png",
+      "decodedSHA256": "9c489ab6d0fc06fd1b55eca355713e83960339039eb7ff266dac4c00d3b6edb9",
+      "originalSvgSHA256": "ed362319b65c55f9cb3d6900bd2729c67dbc978cd8870bf14bcb57cbb373b3ea",
+      "linkedSvgSHA256": "972292ad169d0bd13e6ffd5441a67ceebee0eff88b263a1be63b7397a1ebf012",
+      "originalBytes": 1526065,
+      "linkedBytes": 234,
+      "savedBytes": 1525831
+    },
+    {
+      "path": "art/vector-common-production/abandoned-skiff-source.svg",
+      "targetPNG": "art/vector-common-production/abandoned-skiff-concept.png",
+      "relativeHref": "abandoned-skiff-concept.png",
+      "decodedSHA256": "9c489ab6d0fc06fd1b55eca355713e83960339039eb7ff266dac4c00d3b6edb9",
+      "originalSvgSHA256": "186a4eb3a9444299b4e4564d72ec82140c84964a7c9258b90d2d8a5ee45813a5",
+      "linkedSvgSHA256": "8309518a339fd4385edb0fea3945d9dedbb509a8aaddaf735868ec5cc958d555",
+      "originalBytes": 1901636,
+      "linkedBytes": 375805,
+      "savedBytes": 1525831
+    },
+    {
+      "path": "art/vector-common-production/coastal-boulder-input.svg",
+      "targetPNG": "art/vector-common-production/coastal-boulder-concept.png",
+      "relativeHref": "coastal-boulder-concept.png",
+      "decodedSHA256": "6a64b5488612c65523bd1d807a72a8c9b8e4572050799a74e1f64c857b17a29a",
+      "originalSvgSHA256": "26f2bda14d565d07da0ab42b46528b148d651d701a2a3890770af7136c754176",
+      "linkedSvgSHA256": "3c2b2ea84723766520008340382dfc1f2d8930eeb8738af3d15b3392a8a6b3e4",
+      "originalBytes": 1546753,
+      "linkedBytes": 234,
+      "savedBytes": 1546519
+    },
+    {
+      "path": "art/vector-common-production/coastal-boulder-source.svg",
+      "targetPNG": "art/vector-common-production/coastal-boulder-concept.png",
+      "relativeHref": "coastal-boulder-concept.png",
+      "decodedSHA256": "6a64b5488612c65523bd1d807a72a8c9b8e4572050799a74e1f64c857b17a29a",
+      "originalSvgSHA256": "7b6d2fb6a00a248dd929075373c2e5b2590b18d787b48fe4cc2227ba35732ec4",
+      "linkedSvgSHA256": "c5e0a3361e4441b185b4403a3576070bd51c1125eea65bb4a4fd33607a4140c5",
+      "originalBytes": 1744610,
+      "linkedBytes": 198091,
+      "savedBytes": 1546519
+    },
+    {
+      "path": "art/vector-common-production/cracked-sea-rock-input.svg",
+      "targetPNG": "art/vector-common-production/cracked-sea-rock-concept.png",
+      "relativeHref": "cracked-sea-rock-concept.png",
+      "decodedSHA256": "f71b107dad920b018c5d7c7cddefdc4a6d49ad08dfe904cb21492e42d5f73a23",
+      "originalSvgSHA256": "ac888eb38bab34d0d41af0ab5964c7d35cf41d6599e98a67916c6536352e003d",
+      "linkedSvgSHA256": "d0c69725f0d8268bb7d2f97fc04170dba9885a568db7a8097cb3433e8a964b76",
+      "originalBytes": 1308990,
+      "linkedBytes": 244,
+      "savedBytes": 1308746
+    },
+    {
+      "path": "art/vector-common-production/fore-reeds-source.svg",
+      "targetPNG": "art/vector-common-production/fore-reeds-concept.png",
+      "relativeHref": "fore-reeds-concept.png",
+      "decodedSHA256": "c2231acb540e7af9af3edca1fd2861c9221a3e17cd119e8c87a60bd7ca2e7a9e",
+      "originalSvgSHA256": "38a0c063559a3173309238bc932821a0e14d271c302aee3db9e3c03023eeeeaa",
+      "linkedSvgSHA256": "11081468d5ae106b276c5afb4be9d193ea54f4cfe6c5878c469b00ac2f4a657a",
+      "originalBytes": 1553814,
+      "linkedBytes": 645730,
+      "savedBytes": 908084
+    },
+    {
+      "path": "art/vector-common-production/near-bank-source.svg",
+      "targetPNG": "art/vector-common-production/near-bank-concept.png",
+      "relativeHref": "near-bank-concept.png",
+      "decodedSHA256": "f8d6652f5ab36600c8f9924afcbbbd7cfc7299813ce03ee40a35c68886680c7c",
+      "originalSvgSHA256": "c80879c6b905438aafa25eb04fc9f96365da03440a13258b99e87269afe8532f",
+      "linkedSvgSHA256": "5edc8a281927932bec9649950f214515b94e2758b1af183b83ebacd4927786be",
+      "originalBytes": 2096909,
+      "linkedBytes": 504492,
+      "savedBytes": 1592417
+    }
+  ],
+  "savedBytes": 104478120,
+  "unmatchedEmbeddedImagesKept": 11,
+  "excludedHashReferencedSources": [
+    "art/act4-silhouette-v3/sea/bank31/play-left/bank31-play-left-source.svg",
+    "art/act4-silhouette-v3/sea/bank31/play-right/bank31-play-right-source.svg",
+    "art/act4-silhouette-v3/sea/bank37/play-left/bank37-play-left-source.svg",
+    "art/act4-silhouette-v3/sea/bank37/play-right/bank37-play-right-source.svg",
+    "art/act4-silhouette-v3/sea/bank40/play-left/bank40-play-left-source.svg",
+    "art/act4-silhouette-v3/sea/bank40/play-right/bank40-play-right-source.svg",
+    "art/act4-silhouette-v3/sea/cargo/cargo-source.svg",
+    "art/act4-silhouette-v3/sea/stone-ramp-cover-source.svg",
+    "art/act4-silhouette-v3/sea/wall37/wall37-source.svg",
+    "art/stage36-bank-silhouette-v4/play-east-source.svg",
+    "art/stage36-bank-silhouette-v4/play-west-source.svg",
+    "art/vector-common-production/cracked-sea-rock-source.svg"
+  ],
+  "note": "Conservatively excludes every source SVG whose raw SHA occurs in existing provenance/optimization/source-to-runtime metadata, whether gate consumed or historical. No old proof restamped.",
+  "verification": {
+    "allNonHrefXMLBytesExact": true,
+    "allLinkedPNGBytesExact": true,
+    "allRelativeHrefsResolve": true,
+    "representativeInkscapeRenders": [
+      {
+        "path": "art/act4-silhouette-v3/sea/bank31/ground-source.svg",
+        "size": [
+          2172,
+          724
+        ],
+        "rgbaPixelIdentical": true
+      },
+      {
+        "path": "art/stage36-vector-production/home-source.svg",
+        "size": [
+          1835,
+          857
+        ],
+        "rgbaPixelIdentical": true
+      },
+      {
+        "path": "art/stage38-vector-production/roof-source.svg",
+        "size": [
+          1555,
+          1011
+        ],
+        "rgbaPixelIdentical": true
+      },
+      {
+        "path": "art/stage40-vector-production/timber-brace-source.svg",
+        "size": [
+          905,
+          1738
+        ],
+        "rgbaPixelIdentical": true
+      }
+    ],
+    "guiInspection": "Unavailable: no DISPLAY or Xvfb. Actual Inkscape CLI loaded and rendered listed samples without missing-link errors.",
+    "characters": "No character SVGs were among the 77 changed sources."
+  }
+}

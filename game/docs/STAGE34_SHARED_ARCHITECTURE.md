@@ -51,7 +51,7 @@
 
 [확인 기록](../../review/stage34-shared-architecture/checks.json) · [입력 보존/접근 기록](../../review/stage34-shared-architecture/access.json)
 
-- [3장 창고·장부 마루](../../review/stage34-shared-architecture/stage03-warehouse.png)
-- [3장 잔교](../../review/stage34-shared-architecture/stage03-wharf.png) · [넓은 시야](../../review/stage34-shared-architecture/stage03-wide.png)
-- [4장 피란문·방어 대상](../../review/stage34-shared-architecture/stage04-gate.png)
-- [4장 감시루·탄 회랑](../../review/stage34-shared-architecture/stage04-watch.png) · [넓은 시야](../../review/stage34-shared-architecture/stage04-wide.png)
+- [3장 창고·장부 마루](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/review/stage34-shared-architecture/stage03-warehouse.png)
+- [3장 잔교](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/review/stage34-shared-architecture/stage03-wharf.png) · [넓은 시야](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/review/stage34-shared-architecture/stage03-wide.png)
+- [4장 피란문·방어 대상](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/review/stage34-shared-architecture/stage04-gate.png)
+- [4장 감시루·탄 회랑](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/review/stage34-shared-architecture/stage04-watch.png) · [넓은 시야](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/review/stage34-shared-architecture/stage04-wide.png)

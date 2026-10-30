@@ -13,11 +13,11 @@
 
 ## 집중 검수와 최종 화면
 
-1. [안전한 후일담 첫 줄](review-1-safe-outro.png), [마지막 줄](review-1-safe-outro-last.png): 실제 정상21턴 종료 snapshot에서 다시 연 후일담이다. 기존 공통4인 그림,현장 적 없는 화면,부모 확정 현재 시점 문구. 회상 장면을 추가하지 않았다.
-2. [정상21턴 저장의 PC 출구](review-2-exit-camera.png): 실제 도착 가능한 지지면,우선순위 출구 표식/카메라,미니맵을 확인했다.
-3. [동일 저장의 모바일 출구](review-3-mobile-exit.png), [320px 폭3막 텍스트](review-30-cut1.png): 작은 화면 목표와 줄바꿈,키보드/터치 guard/reduced motion을 확인했다.
+1. [안전한 후일담 첫 줄](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/stage-review/act-endings/evidence/review-1-safe-outro.png), [마지막 줄](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/stage-review/act-endings/evidence/review-1-safe-outro-last.png): 실제 정상21턴 종료 snapshot에서 다시 연 후일담이다. 기존 공통4인 그림,현장 적 없는 화면,부모 확정 현재 시점 문구. 회상 장면을 추가하지 않았다.
+2. [정상21턴 저장의 PC 출구](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/stage-review/act-endings/evidence/review-2-exit-camera.png): 실제 도착 가능한 지지면,우선순위 출구 표식/카메라,미니맵을 확인했다.
+3. [동일 저장의 모바일 출구](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/stage-review/act-endings/evidence/review-3-mobile-exit.png), [320px 폭3막 텍스트](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/stage-review/act-endings/evidence/review-30-cut1.png): 작은 화면 목표와 줄바꿈,키보드/터치 guard/reduced motion을 확인했다.
 
-최종 흐름은 [브라우저 결과](browser-summary.json)와 [1막 첫 컷](review-10-cut1.png), [2막 첫 컷](review-20-cut1.png), [4막 준비중 제목](review-30-next-title.png)에서 확인한다. `python tests/act-endings-browser.py`로 각 막4컷→제목→휴식터,2컷 새로고침 재개,보상·가입·장비/성장 동일,완료 막 접속 시 미재생,초기 이미지 preload 없음,진입 클릭 관통/중복 pointer-click 방지를 검사했다. 엔딩 흐름 검사에서 전투 완료 상태는 명시적 fixture이며 실제 전투 증거는 위 원본 trace다. 첫/마지막 후일담 최종 PNG는 `python tests/capture-act-ending-outro.py`로 보존된 실제21턴 종료 snapshot에서 재생했다. 전체 전투/보상을 다시 실행하지 않았다.
+최종 흐름은 [브라우저 결과](browser-summary.json)와 [1막 첫 컷](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/stage-review/act-endings/evidence/review-10-cut1.png), [2막 첫 컷](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/stage-review/act-endings/evidence/review-20-cut1.png), [4막 준비중 제목](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/stage-review/act-endings/evidence/review-30-next-title.png)에서 확인한다. `python tests/act-endings-browser.py`로 각 막4컷→제목→휴식터,2컷 새로고침 재개,보상·가입·장비/성장 동일,완료 막 접속 시 미재생,초기 이미지 preload 없음,진입 클릭 관통/중복 pointer-click 방지를 검사했다. 엔딩 흐름 검사에서 전투 완료 상태는 명시적 fixture이며 실제 전투 증거는 위 원본 trace다. 첫/마지막 후일담 최종 PNG는 `python tests/capture-act-ending-outro.py`로 보존된 실제21턴 종료 snapshot에서 재생했다. 전체 전투/보상을 다시 실행하지 않았다.
 
 **이 PNG들은 최종 코드의 실제 Chromium 화면 원본이다. 엔딩 이미지가 없는 안전 fallback 화면이며,제공 이미지의 미술/픽셀/대비 합격 증거가 아니다.** 최종 런타임/문구/컨트롤러 해시는 [final-source-hashes.json](final-source-hashes.json)에 있다.
 

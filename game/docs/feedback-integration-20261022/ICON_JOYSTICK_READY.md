@@ -11,7 +11,7 @@
 - 실제 Chromium 154.0.8037.57: trusted CDP touch → 실제 PointerEvent/포인터 캡처/생산 frame 경로. 320×740, 360×800, 390×844, 844×390에서 총 371개 판정 통과. 상하·좌우 19/20/21° 드래그, 섹터 이탈 즉시 이동/재진입 정지, 초기 수평 의도, 취소·발사 멀티터치·키보드 포함. [결과](evidence/icon-joystick/drag/sector-results.json), [로그](evidence/icon-joystick/browser.txt).
 - 실제 통합 빌드에서 30회 클릭 + 30회 갱신: 버튼/아이콘 identity 4/4 유지, 노드 추가/제거 0, SVG 재노출 0, src 변경/decode/resource 추가 0. 장착 순서·기력 부족·스킬 잠금·검사용 cooldown·모닥불 재사용·오류 폴백/재시도 통과. 기준 master는 노드 추가/제거 각 240, identity 소실. [결과](evidence/icon-joystick/icon-results.json).
 - `node game/tests/regressions.mjs`는 Stage 8 `bier-knot-0: 2520,3750.4`에서 실패. 기준 master detached worktree에서 동일 실패를 재현했다. 테스트를 수정·삭제하지 않았다. [통합](evidence/icon-joystick/regressions.txt), [기준](evidence/icon-joystick/regressions-baseline.txt).
-- 기존 지도 이미지·설정 전체화면 위치/체크박스·사각 아이콘 CSS와 원본은 변경하지 않았다. 최종 [HUD 390×844 JPG](evidence/icon-joystick/hud-390x844.jpg)를 직접 열어 사각 테두리·기예 4칸·조작부를 확인했다. 드래그 JPG도 같은 최종 빌드의 실제 렌더러 캡처이며 모두 1MB 미만이다.
+- 기존 지도 이미지·설정 전체화면 위치/체크박스·사각 아이콘 CSS와 원본은 변경하지 않았다. 최종 [HUD 390×844 JPG](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/feedback-integration-20261022/evidence/icon-joystick/hud-390x844.jpg)를 직접 열어 사각 테두리·기예 4칸·조작부를 확인했다. 드래그 JPG도 같은 최종 빌드의 실제 렌더러 캡처이며 모두 1MB 미만이다.
 
 ## 한계
 

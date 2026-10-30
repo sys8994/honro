@@ -49,7 +49,7 @@ pointerup/cancel/lost capture, blur, pause, 동행 교체, 방어/엔진 행동 
 
 | 수직 시작 | 밖으로 수평 이동 | 다시 안쪽 조준 | 수평 시작 후 19° 진입 |
 | --- | --- | --- | --- |
-| [01](evidence/01-vertical-start.jpg) | [02](evidence/02-outside-horizontal-movement.jpg) | [03](evidence/03-reentered-aim-only.jpg) | [04](evidence/04-horizontal-start-inside-sector.jpg) |
+| [01](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/joystick-aim-sector-release/evidence/01-vertical-start.jpg) | [02](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/joystick-aim-sector-release/evidence/02-outside-horizontal-movement.jpg) | [03](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/joystick-aim-sector-release/evidence/03-reentered-aim-only.jpg) | [04](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/joystick-aim-sector-release/evidence/04-horizontal-start-inside-sector.jpg) |
 
 02→03에서 이동력은 같은 1917/1964 표시이고 라벨은 `MOVE-AIM`→`조준`으로 바뀐다. 정지 사진만으로 이동을 증명하지 않고 위 전후 수치 및 이벤트 기록과 함께 판정했다.
 

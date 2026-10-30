@@ -6,9 +6,9 @@
 
 ## 먼저 볼 실제 화면
 
-- [전체 조망](screens/overview.jpg) — [거절된 이전 후보의 같은 카메라](../act2-ceiling-20261023/screens/overview.jpg)
-- [상층 전투 공간](screens/upper-wide-battle.jpg) — 새로 확보한 높이까지 보이는 정상 전술 줌0.32. 카메라만 이동했으며 배우 좌표는 수정하지 않았다.
-- [세로 실제 최소 줌](screens/portrait-max-zoom.jpg) — [거절된 이전 후보의 같은 카메라](../act2-ceiling-20261023/screens/portrait-max-zoom.jpg)
+- [전체 조망](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/stage14-ceiling-topology-20261023/screens/overview.jpg) — [거절된 이전 후보의 같은 카메라](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/act2-ceiling-20261023/screens/overview.jpg)
+- [상층 전투 공간](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/stage14-ceiling-topology-20261023/screens/upper-wide-battle.jpg) — 새로 확보한 높이까지 보이는 정상 전술 줌0.32. 카메라만 이동했으며 배우 좌표는 수정하지 않았다.
+- [세로 실제 최소 줌](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/stage14-ceiling-topology-20261023/screens/portrait-max-zoom.jpg) — [거절된 이전 후보의 같은 카메라](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/act2-ceiling-20261023/screens/portrait-max-zoom.jpg)
 
 모든 JPG는1MB 미만이다. 실제 공통 빌드의 production UI이며 레벨13 입장 준비 fixture/카메라 검사다. 정상 전투 완주를 뜻하지 않는다. 전체/상층 전투/세로 최소줌/점프/Continue 사진은 최신a3c 통합 빌드에서 재확인했다. 나머지 근접·모바일 상세는 같은 토폴로지/미술의 통합 전1e0b7d11 검수다. 형상과 UI 미술이 그대로임을 소스로 대조하고, 생성물과 canonical 소스 일치를 검사했다.
 
@@ -32,7 +32,7 @@
 - 큰 공동: x2500/y2300에서 설오 A01 **수직90°/100%** 실제 발사, 최고점 y196.35까지 오른 뒤 원래 바닥에 닿아 종료했다. 해당 지점 천장은 y156이어서 이 고각을 차단하지 않는다. 같은 지점의15°/30% 저각도 원래 바닥까지 진행한다.
 - 국소 암반 목: x2980/y2300에서 A01 **60°/90%**는 x3425.72/y1574.60의 실제 천장에 닿는다. 합법 C.train 레벨13 담허 M11 **60°/100%**는 x3436.56/y1642.05에서 실제 반사하고 바닥에 다음 접촉 후 종료한다. 예측/실제 종점 일치. 처음 한 번 합법 지지점에 준비한 단독 배우 물리 fixture이고, 적HP/공격력/자원 보정이나 실제 적 강제 처치는 없다.
 - 인공 돌발판: 네 직업 실제 점프→y6535 착지/HP exact/이동도75 사용/추가1초 안정 유지. 실제 합법 M09 설치→설오 정상 이동→E 축지 착지도 유지된다. 해당35px 발판의 아래/위/옆 투사체 차단과 일반 one-way 다리의 기존 정책을 함께 확인했다.
-- 브라우저: [전체 배우 유지한 점프 전](screens/platform-before-jump.jpg)→[실제 착지](screens/platform-after-jump.jpg), [새로고침→Continue](screens/continue.jpg)를 직접 확인했다. 점프는 준비 시나리오에서 시작하며 이후 Engine.jump/tick만 사용한다. 실제 export→페이지 reload→Continue 전투 전체 exact. 사용자R9 원본이나 정상 전투로 그곳까지 도달한 증거와 구분한다.
+- 브라우저: [전체 배우 유지한 점프 전](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/stage14-ceiling-topology-20261023/screens/platform-before-jump.jpg)→[실제 착지](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/stage14-ceiling-topology-20261023/screens/platform-after-jump.jpg), [새로고침→Continue](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/stage14-ceiling-topology-20261023/screens/continue.jpg)를 직접 확인했다. 점프는 준비 시나리오에서 시작하며 이후 Engine.jump/tick만 사용한다. 실제 export→페이지 reload→Continue 전투 전체 exact. 사용자R9 원본이나 정상 전투로 그곳까지 도달한 증거와 구분한다.
 - 공통 Game/Workshop/직접 Playtest 빌드와 타입 검사 통과. 최신a3c UI/스킬 이미지/O05/카드 드래그/카메라/18장 및 피해/저장 변경 모듈 byte exact, 실제18장 R10 승리 저장의 배우/지형/목표/성장·보상 사실 보존.18/19 천장 높이 불변.
 - 성공23발행 그래프/566고유 파일 및934의13장 두JSON hash/길이 보존. 이번 후보를 성공 발행으로 등록하지 않았다.
 
@@ -43,8 +43,8 @@
 ## 집중 화면 검수와 별도 종합
 
 1. 큰 형태: 새 전체/상층/최소줌을 직접 열어 이전 후보의 바닥 평행 윤곽과 비교했다. 내부 첫 보완의 뾰족한V자 끝은 넓고 비대칭인 면으로 보완한 뒤 위3사진을 공개했다.
-2. 디테일/가독성: [암반 목 접근](screens/neck-battle.jpg)과 [높은 동쪽 홈](screens/east-vault.jpg)을 직접 열어 큰 면과 공간의 연결·기존 집/비행 배우 여유를 확인했다. 암반을 바닥에서 일정 거리로 추적하지 않았다.
-3. 모바일/상태: [세로 상층](screens/portrait-upper.jpg), 세로 최소줌·가로 화면과 실제 점프/Continue를 직접 확인했다. 새 천장으로 통로/목표가 매몰되지 않았다.
+2. 디테일/가독성: [암반 목 접근](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/stage14-ceiling-topology-20261023/screens/neck-battle.jpg)과 [높은 동쪽 홈](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/stage14-ceiling-topology-20261023/screens/east-vault.jpg)을 직접 열어 큰 면과 공간의 연결·기존 집/비행 배우 여유를 확인했다. 암반을 바닥에서 일정 거리로 추적하지 않았다.
+3. 모바일/상태: [세로 상층](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/stage14-ceiling-topology-20261023/screens/portrait-upper.jpg), 세로 최소줌·가로 화면과 실제 점프/Continue를 직접 확인했다. 새 천장으로 통로/목표가 매몰되지 않았다.
 4. 별도 종합: 최종 전체·최소줌에서 넓은 상층과 중앙/하부 공동을 다시 직접 보고, collision/render projection 일치·기존 자유공간 침투 없음·실제 발사와68경로/저장 결과를 함께 대조했다. 이는 내부 후보 검수이며 사용자 미술 승인이나 배포 승인이 아니다.
 
 ## 저장 적용과 미실행

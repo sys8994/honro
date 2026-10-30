@@ -29,9 +29,9 @@ SOP 단계1·3~6의 지형/배치/편성/목표/대사는 변경하지 않는다
 
 전달 사진은 실제 생산 Chromium의 고정 카메라 신규 전투 표본이다.1440×900, 전체4100/3450/.17, 입구1760/3200/.5, 석문4820/3800/.45. 합법 장 진입 성장 예산/기본 동행, 시작 구조 목표와 배우 좌표는 그대로다. 시간10/정지 포즈이며 일반 전투 완주·실기기·성능 표본은 아니다. 각 JPG1MB 미만.
 
-- [전체 연결](review/candidate1-overview.jpg)
-- [입구·석공 접근](review/candidate1-entry.jpg)
-- [석문·낮은 회랑](review/candidate1-gate.jpg)
+- [전체 연결](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/stage-review/stage13-vector-art-20261022/review/candidate1-overview.jpg)
+- [입구·석공 접근](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/stage-review/stage13-vector-art-20261022/review/candidate1-entry.jpg)
+- [석문·낮은 회랑](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/stage-review/stage13-vector-art-20261022/review/candidate1-gate.jpg)
 
 `node tests/stage13-vector-art.mjs` 통과: master934fcabd 대비 보호된13장 데이터/다른29장/공통 원본 동일, 저작 재현·멱등, 비충돌 변형4종, 재질 draw의 battle 불변/Canvas 상태 보존/정적 Path2D 재사용/sceneVersion 무효화 확인. 기능 숫자를 미술 합격으로 쓰지 않는다. 집중3회와 별도 최종, 구조 접근/문 통과는 후보1 기록 시점 미완료였으며 아래 교정 후보2에서 따로 수행했다. 자동 보고/기타 사진은 `_local/reports/stage13-vector-art/`에 둔다.
 
@@ -41,7 +41,7 @@ SOP 단계1·3~6의 지형/배치/편성/목표/대사는 변경하지 않는다
 
 첫 후보 `cb725fff`의 빌드에서는 기존 `applyCavernTransitionLayers`가 전이용 면17개를 다시 추가하고 장면 재저작이 장식 참조 일부를 되돌렸다. 따라서 후보1의 큰 독립 절리/옛 도구 사진은 최종 근거에서 제외한다. `shared/build.mjs`의 기존 저작 체인 끝에서 `stoneFinish.revision===1`인13장에만 같은 opt-in 저작을 재적용한다. 전역 renderer/main을 변경하지 않으며 공통 geometry/route 저작은 그대로 실행한다. 실제 생산 자료의45면/전용 장식 참조를 검사에 추가했다.
 
-교정 후 직접 연 같은 카메라 사진: [전체](review/candidate2-overview.jpg), [석공 접근](review/candidate2-entry.jpg), [석문·회랑](review/candidate2-gate.jpg). 후보1의 붙은 블록/짙은 절리는 제거됐고 연결된 모암면과 짧은 접합이 보인다. 여전히 부모의 실제 픽셀 판단 전이다.
+교정 후 직접 연 같은 카메라 사진: [전체](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/stage-review/stage13-vector-art-20261022/review/candidate2-overview.jpg), [석공 접근](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/stage-review/stage13-vector-art-20261022/review/candidate2-entry.jpg), [석문·회랑](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/stage-review/stage13-vector-art-20261022/review/candidate2-gate.jpg). 후보1의 붙은 블록/짙은 절리는 제거됐고 연결된 모암면과 짧은 접합이 보인다. 여전히 부모의 실제 픽셀 판단 전이다.
 
 공통 연결 영향 경계: `HONRO_STAGE13_BASELINE=/workspace/honro-stage13-baseline node tests/stage13-vector-art.mjs`로 master934fcabd 원본 작업트리의 실제 runtimeParts와 대조했다. 빌드 후 보호13장/다른29장/기존 Library가 동일하고11장 중앙7290/7080/.43·피난처10350/8470/.8의 비어 있지 않은 재질 PNG가 각각 일치했다. 이는 짧은 연결 보존 검사이며 전체11장 재검수/새 성능 주장이 아니다.
 
@@ -58,7 +58,7 @@ SOP 단계1·3~6의 지형/배치/편성/목표/대사는 변경하지 않는다
 | 집중3 모바일·배율·상태 | candidate2-focus3 mobile-gate/mobile-mason/max-gate와 candidate2-opened gate/inner/mobile-gate: 세로 라벨/통로, 최대1.65에서 문틀과 경계, 실제 개방 후 장애물 소거/출구 안내를 확인 |390×844 Chromium viewport이며 실기기 아님. 개방 snapshot은 전투 격리 fixture |
 | 별도 최종 종합 | final overview/gate/mobile-mason을 별도 실행 후 직접 다시 열어 깊이·접합·목표 가독성/장식 가림을 함께 확인. 생산45면/옛 transition0/전용 변형4종, pageerror/HTTP실패0 | 정상 장기 전투·실기기·전체 장 미술·성능 채택을 뜻하지 않음 |
 
-최종 선택 JPG: [전체](review/final-overview.jpg), [일반 석문](review/final-gate.jpg), [모바일 석공](review/final-mobile-mason.jpg), [모바일 석문](review/final-mobile-gate.jpg), [개방 상태 — 격리 상호작용 표본](review/opened-gate.jpg). 후보2의 입구 일반 사진은 위 링크를 유지한다. 각1MB 미만이며 자동 나머지 화면/원자료는 `_local/reports/stage13-vector-art/`에만 있다.
+최종 선택 JPG: [전체](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/stage-review/stage13-vector-art-20261022/review/final-overview.jpg), [일반 석문](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/stage-review/stage13-vector-art-20261022/review/final-gate.jpg), [모바일 석공](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/stage-review/stage13-vector-art-20261022/review/final-mobile-mason.jpg), [모바일 석문](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/stage-review/stage13-vector-art-20261022/review/final-mobile-gate.jpg), [개방 상태 — 격리 상호작용 표본](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/stage-review/stage13-vector-art-20261022/review/opened-gate.jpg). 후보2의 입구 일반 사진은 위 링크를 유지한다. 각1MB 미만이며 자동 나머지 화면/원자료는 `_local/reports/stage13-vector-art/`에만 있다.
 
 실제 실행: 공통 `npm run build` 성공(현재 그래프351파일); `node tests/web-split.mjs` 성공(생성hash/바이트·생산 데이터 재조립·Game/embedded 진입·저장 보호·Workshop 연결). 이는 다른30장 전투/미술 순회를 한 것이 아니다. 보존/순수성 검사와 짧은 접근 검사는 위 범위만 통과했다. 새 FPS·첫 준비 시간·동적 성능 주장은 하지 않는다. 원경의 valleyFar→cave-entrance/interior는 기존 카메라/천장 깊이 혼합을 그대로 사용하며 목표 진행으로 전환 trigger를 만들지 않았다.
 
@@ -75,7 +75,7 @@ SOP의 변경 범위 내부 검수 기록을 마쳤으나 기능 숫자로 미�
 - 석문: 기존 개구부를 남기고, 문설주2~3개의 두꺼운 석재와 엇갈린 상인방3덩어리가 뒤의 모암/천장에 물리도록 전용 기존 에셋을 보완했다. 장식 테두리를 늘리는 대신 하중을 받는 어깨와 상인방 아래 접촉 그림자를 둔다.
 - 석공/문 기초: 공통 `stage12:quarry-carrier-rubble`을 기존 바닥에 지지하는 비충돌 후면 장식2묶음으로 재사용했다. NPC2445의 구조 라벨/몸체와 문 앞 사격·통로를 가리지 않는다. 새 collider/발판은 없다.
 
-이번에 직접 연 대표 화면은 정확히 같은3구도다: [전체](review/shape3-overview.jpg), [석문 일반 거리](review/shape3-gate.jpg), [모바일 석공](review/shape3-mobile-mason.jpg). 실제 픽셀에서 하단이 큰 밝은4면으로만 읽히던 상태와 천장의 큰 삼각형이 중간 층/겹침으로 나뉘었고, 문틀의 외측 석재가 천장까지 이어지는 것을 확인했다. 문설주/상인방이 최종적으로 충분한 중량과 일체감으로 읽히는지, 중간 면이 반복적인 타일 인상 없이 읽히는지는 부모의 종합 미술 판단을 받는다. 면 개수나 기능 검사로 합격시키지 않는다.
+이번에 직접 연 대표 화면은 정확히 같은3구도다: [전체](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/stage-review/stage13-vector-art-20261022/review/shape3-overview.jpg), [석문 일반 거리](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/stage-review/stage13-vector-art-20261022/review/shape3-gate.jpg), [모바일 석공](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/stage-review/stage13-vector-art-20261022/review/shape3-mobile-mason.jpg). 실제 픽셀에서 하단이 큰 밝은4면으로만 읽히던 상태와 천장의 큰 삼각형이 중간 층/겹침으로 나뉘었고, 문틀의 외측 석재가 천장까지 이어지는 것을 확인했다. 문설주/상인방이 최종적으로 충분한 중량과 일체감으로 읽히는지, 중간 면이 반복적인 타일 인상 없이 읽히는지는 부모의 종합 미술 판단을 받는다. 면 개수나 기능 검사로 합격시키지 않는다.
 
 최소 관련 검사: `npm run build`, `node tests/stage13-vector-art.mjs`, 위 Chromium3구도(오류/HTTP실패0). 기존 보호 게임 데이터/원본 Library/다른29장 자료 동일, 새 잔석은 비충돌 후면 장식만, prepare 재사용/Canvas 상태/전투 불변·캐시 draw Path2D 새 생성0 확인. 공유 renderer/main/원경/실루엣/오디오/이야기·대사·문구 모듈을 바꾸지 않았으므로11장 재검수·전투 완주·기존 전체 검사를 반복하지 않았다. 이전 접근/문 개방 기록은 이전 실행 그대로이며 이번 재실행으로 주장하지 않는다. 성능/FPS 개선 주장은 없다.
 
@@ -98,9 +98,9 @@ shape3 화면 입력: campaign SHA256 `04ea9f65102bd4c2ed4aaa861a024182ff520c5ed
 | 구분 | 실제 카메라/사진 | 직접 확인한 내용 |
 |---|---|---|
 | 집중1 전체 |4100/3450/.17,1440×900 | 왼쪽 아래의 하나의 큰 삼각 면 대신 상부·중간·깊은 층리가 이어짐. 천장도 석문 주변에서 끝나던 중간 형태가 위/오른쪽까지 연결됨. 큰 명암 방향은 보존 |
-| 집중2 중간 거리 | 서쪽1750/4070/.3, 천장6350/2500/.3,1440×900 | [왼쪽 전경](review/shape4-west-middle.jpg)·[상부 천장](review/shape4-vault-middle.jpg)의 중간 파단/되접힘과 공유 경계·음영. 표면 밑에 별도 삼각 바탕이 노출되던 문제 제거 |
-| 집중3 근경/세로 | 서쪽1700/3950/.6, 천장6500/2400/.55,1440×900; 서쪽2100/3700/.45,390×844 | [전경 근접](review/shape4-west-near.jpg)·[천장 근접](review/shape4-vault-near.jpg)의 선택적 돌턱·깊은 틈/중간 분할과 [모바일](review/shape4-west-mobile.jpg)의 석공 라벨/보행면 가독성을 직접 확인 |
-| 별도 최종 종합 | 동일 소스로 다른 실행의 overview/gate/west-mobile | [최종 whole overview](review/shape4-overview.jpg)를 다시 열고, 문틀 일반 거리와 세로 화면까지 함께 확인. 보존된 석문/행동 공간과 두 암체의 연결을 대조 |
+| 집중2 중간 거리 | 서쪽1750/4070/.3, 천장6350/2500/.3,1440×900 | [왼쪽 전경](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/stage-review/stage13-vector-art-20261022/review/shape4-west-middle.jpg)·[상부 천장](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/stage-review/stage13-vector-art-20261022/review/shape4-vault-middle.jpg)의 중간 파단/되접힘과 공유 경계·음영. 표면 밑에 별도 삼각 바탕이 노출되던 문제 제거 |
+| 집중3 근경/세로 | 서쪽1700/3950/.6, 천장6500/2400/.55,1440×900; 서쪽2100/3700/.45,390×844 | [전경 근접](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/stage-review/stage13-vector-art-20261022/review/shape4-west-near.jpg)·[천장 근접](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/stage-review/stage13-vector-art-20261022/review/shape4-vault-near.jpg)의 선택적 돌턱·깊은 틈/중간 분할과 [모바일](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/stage-review/stage13-vector-art-20261022/review/shape4-west-mobile.jpg)의 석공 라벨/보행면 가독성을 직접 확인 |
+| 별도 최종 종합 | 동일 소스로 다른 실행의 overview/gate/west-mobile | [최종 whole overview](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/stage-review/stage13-vector-art-20261022/review/shape4-overview.jpg)를 다시 열고, 문틀 일반 거리와 세로 화면까지 함께 확인. 보존된 석문/행동 공간과 두 암체의 연결을 대조 |
 
 위6개 선택 JPG는 각1MB 미만이다. 전체/중간/근경에서 빈 대형 면만 남던 상태를 수정했지만, 모든 넓은 면을 같은 폭으로 잘게 채우지는 않았다. 큰 모암 덩어리와 저대비 여백도 남긴다. 중간 형태의 자연스러운 암반 조직/최종 깊이감은 부모의 실제 픽셀 종합 판단 대상이며, 자동 검사·면 개수·검수 횟수를 미술 합격 근거로 쓰지 않는다.
 
@@ -125,7 +125,7 @@ shape3 화면 입력: campaign SHA256 `04ea9f65102bd4c2ed4aaa861a024182ff520c5ed
 
 `tools/testing/stage13-left-edge-capture.py`는 신규 격리 브라우저에서 설정→기록·관리→검수 모드→여정첩2막13장→휴식터→진입→대화 넘기기를 실제 클릭한다. 기본뷰와610,320에서 wheel down757을2회, 실제 pointer drag의 왼쪽/아래 팬을 촬영한다. 이 네 화면에는 카메라 좌표·배율을 대입하지 않는다. 마지막 전체 맵만 별도1440×900/4100,3450,.17의 고정 비교다.
 
-[수정 전 실제 UI 줌아웃](review/left-edge-before-wheel.jpg)에서 재질 시작은 화면 **x435.56**, 설오 x577.86, 석공 x946.61로 부모 구도를 재현했다. scene은389.986/2736.045/.173529이고, 역투영한 재질 시작점은 **world x=-500**이다. world x=0의 투영은 화면x522.33으로 서로 다르다. 실제 canonical 바닥 polygon과 renderer clip은 **x=-6000**까지 이어지며 mother-rock-base도 그 전체를 채운다. 원인은 clip/월드 끝이 아니라, 서쪽 상세 저작 면이 x=-500 부근에서 끝나 바깥쪽은 기본 단색만 남은 것이다. 이전 overview의 왼쪽 view가 약-135라서 이 경계가 화면 밖에 있었음을 확인했다.
+[수정 전 실제 UI 줌아웃](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/stage-review/stage13-vector-art-20261022/review/left-edge-before-wheel.jpg)에서 재질 시작은 화면 **x435.56**, 설오 x577.86, 석공 x946.61로 부모 구도를 재현했다. scene은389.986/2736.045/.173529이고, 역투영한 재질 시작점은 **world x=-500**이다. world x=0의 투영은 화면x522.33으로 서로 다르다. 실제 canonical 바닥 polygon과 renderer clip은 **x=-6000**까지 이어지며 mother-rock-base도 그 전체를 채운다. 원인은 clip/월드 끝이 아니라, 서쪽 상세 저작 면이 x=-500 부근에서 끝나 바깥쪽은 기본 단색만 남은 것이다. 이전 overview의 왼쪽 view가 약-135라서 이 경계가 화면 밖에 있었음을 확인했다.
 
 ### 최소 수정
 
@@ -135,9 +135,9 @@ shape3 화면 입력: campaign SHA256 `04ea9f65102bd4c2ed4aaa861a024182ff520c5ed
 
 ### 실제 수정 후 화면과 보존 검사
 
-- [같은 UI wheel 줌아웃](review/left-edge-after-wheel.jpg): 원래 x435 부근의 수직 면 시작이 없어지고 왼쪽 층리가 이어짐. 입력은 수정 전과 같고 카메라 자유도도 같다. 프레임 타이밍에 따른 camera.x 차이는0.82world, 옛 경계의 투영은435.42다.
-- [실제 왼쪽 팬 한계](review/left-edge-after-pan.jpg)와 [왼쪽 아래 팬](review/left-edge-after-lower.jpg): 원래 focus.x=-320 제약, 보이는 왼쪽 extent=-3720에서도 갑작스러운 수직 시작 없이 연결됨. 지형은 더 왼쪽-6000까지 작성돼 있다.
-- [기본 진입뷰](review/left-edge-entry-default.jpg)와 [전체 맵](review/left-edge-overview.jpg): 보행면/배우/목표·문틀·천장과 원경 보존을 직접 확인했다. 앞선 고정 구도만 재촬영해 해결로 판정하지 않았다.
+- [같은 UI wheel 줌아웃](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/stage-review/stage13-vector-art-20261022/review/left-edge-after-wheel.jpg): 원래 x435 부근의 수직 면 시작이 없어지고 왼쪽 층리가 이어짐. 입력은 수정 전과 같고 카메라 자유도도 같다. 프레임 타이밍에 따른 camera.x 차이는0.82world, 옛 경계의 투영은435.42다.
+- [실제 왼쪽 팬 한계](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/stage-review/stage13-vector-art-20261022/review/left-edge-after-pan.jpg)와 [왼쪽 아래 팬](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/stage-review/stage13-vector-art-20261022/review/left-edge-after-lower.jpg): 원래 focus.x=-320 제약, 보이는 왼쪽 extent=-3720에서도 갑작스러운 수직 시작 없이 연결됨. 지형은 더 왼쪽-6000까지 작성돼 있다.
+- [기본 진입뷰](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/stage-review/stage13-vector-art-20261022/review/left-edge-entry-default.jpg)와 [전체 맵](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/stage-review/stage13-vector-art-20261022/review/left-edge-overview.jpg): 보행면/배우/목표·문틀·천장과 원경 보존을 직접 확인했다. 앞선 고정 구도만 재촬영해 해결로 판정하지 않았다.
 
 `npm run build` 및 `node tests/stage13-vector-art.mjs` 통과. 승인161면 원본/순서 동일, 기존 캠페인의 terrainPlanes/planeCount 외 전부 동일, x≤-400 외곽만20면 추가, -5700..-600의130개 실제 바닥 아래 표본에서 상세 재질 coverage를 확인했다. 동일 표본의 대표 world -1000/+600은 배포본에 상세 재질이 없었음을 함께 검사한다. 재현 도구의 수정 전후4개 UI 화면에서 모든 동행/주민의 좌표·HP 및 resident 목표도 같았다.
 

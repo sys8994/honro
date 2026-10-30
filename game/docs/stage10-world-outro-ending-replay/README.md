@@ -94,7 +94,7 @@
 
 집중 검수 1·2·3 뒤 최종 소스에서 별도 캡처했다. JPG 원본 **30장**을 직접 열어 실제 맵 첫/마지막 대사, 혼잡 출구, 세 막의 긴 3번째 문구와 다음 막 제목, 가로/세로 gallery, 세 막의 여정첩 복귀를 확인했다. [원본 경로와 SHA-256 및 검수 기록](evidence/final/pixel-review.json). 첫 클리어/재클리어의 18개 화면 쌍은 픽셀이 전부 동일하다([수치 대조](evidence/final/pixel-comparison.json)).
 
-대표 화면: [10장 세로 맵 대사](evidence/final/map/map-outro-first-390x844.jpg), [가로 맵 대사](evidence/final/map/map-outro-first-844x390.jpg), [작은 다시보기 버튼](evidence/final/endings/journal-return-act1-390x844.jpg), [30장 end 선택 복귀](evidence/final/endings/journal-return-act3-844x390.jpg).
+대표 화면: [10장 세로 맵 대사](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/stage10-world-outro-ending-replay/evidence/final/map/map-outro-first-390x844.jpg), [가로 맵 대사](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/stage10-world-outro-ending-replay/evidence/final/map/map-outro-first-844x390.jpg), [작은 다시보기 버튼](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/stage10-world-outro-ending-replay/evidence/final/endings/journal-return-act1-390x844.jpg), [30장 end 선택 복귀](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/stage10-world-outro-ending-replay/evidence/final/endings/journal-return-act3-844x390.jpg).
 
 [통합 대조](evidence/final/integration.json): 최신 master는 이 브랜치의 조상이다. `skill-images.js`, 엔진 `icons.ts`, 조이스틱의 `main.ts`/`math.ts`는 최신 master와 바이트 동일하다. `main.js` 차이는 저장 대화/결과 대화 준비 호출 2개와 `act-ending-replay` 행동 1개, 총 3개 hunk뿐이다. 통계/XP 정산 본문과 아이콘·조이스틱 구현을 덮어쓰지 않았다. 게임 그림/캠페인 지형 변경도 없다.
 

@@ -2,7 +2,7 @@
 
 **통합 코드·검사 SHA:** `a8b2d10798770b381391b9cdbbaee6e5eb1f92dc`. 현재 entry `web/entries/game.80058be2c7d5a3e3.js`. 승인 shape2와 새 구조 목표의 로컬 통합 검수 완료, 부모 최종 확인·master/Pages 반영 대기.
 
-[통합 상층](review/stage14-integrated-upper.jpg) · [통합 중층](review/stage14-integrated-middle.jpg) · [통합 모바일](review/stage14-integrated-mobile.jpg)
+[통합 상층](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/stage-review/stage14-art-current-release-20261022/review/stage14-integrated-upper.jpg) · [통합 중층](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/stage-review/stage14-art-current-release-20261022/review/stage14-integrated-middle.jpg) · [통합 모바일](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/stage-review/stage14-art-current-release-20261022/review/stage14-integrated-mobile.jpg)
 
 
 기준 `6cbda400009206180d28c61e5fc14a0b6246809a`, 브랜치 `integration/stage14-art-current-release-20261022`. 부모가 직접 승인한 `a70efcdd818ebf87ca1eb4826d901cb3771cd1c3`의 shape2 저작/자료를 가져오고, 최신 campaign의 시각 필드와 기존 후벽 Library 한 개만 재적용한다. 미술 형태·게임플레이·대사 변경은 없다. master/Pages는 부모 최종 확인 뒤 반영한다.
@@ -46,13 +46,13 @@
 
 실제 기본뷰·휠2회 상층 최소줌·중층 팬·모바일 자동 기본뷰·좌/우 끝 팬의 여섯 장을 **직접 열었다**. 목표 라벨은 새 상층 주민을 가리키고, 승인 shape2 파단면/비대칭 후벽·배우/탄도·보행선 및 외곽 연속성이 유지된다. 미술 형태를 새로 바꾸지 않았다. 구 저장 Continue/대사 cursor의 실제 두 사진도 직접 열었다. 모든 선택 JPG는1MB 미만이다.
 
-- [기본 입장·새 첫 목표](review/stage14-integrated-entry.jpg)
-- [상층 줌아웃·새 구조 목표](review/stage14-integrated-upper.jpg)
-- [중층 팬·승인 재질](review/stage14-integrated-middle.jpg)
-- [실제 모바일 기본뷰](review/stage14-integrated-mobile.jpg)
-- [좌측 끝 팬](review/stage14-integrated-left-pan.jpg), [우측 끝 팬](review/stage14-integrated-right-pan.jpg)
-- [구 clear-middle R20 Continue의 새 중층 목표](review/stage14-integrated-continue-middle.jpg)
-- [저장 대사2/3쪽 cursor](review/stage14-integrated-dialogue-cursor.jpg)
+- [기본 입장·새 첫 목표](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/stage-review/stage14-art-current-release-20261022/review/stage14-integrated-entry.jpg)
+- [상층 줌아웃·새 구조 목표](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/stage-review/stage14-art-current-release-20261022/review/stage14-integrated-upper.jpg)
+- [중층 팬·승인 재질](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/stage-review/stage14-art-current-release-20261022/review/stage14-integrated-middle.jpg)
+- [실제 모바일 기본뷰](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/stage-review/stage14-art-current-release-20261022/review/stage14-integrated-mobile.jpg)
+- [좌측 끝 팬](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/stage-review/stage14-art-current-release-20261022/review/stage14-integrated-left-pan.jpg), [우측 끝 팬](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/stage-review/stage14-art-current-release-20261022/review/stage14-integrated-right-pan.jpg)
+- [구 clear-middle R20 Continue의 새 중층 목표](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/stage-review/stage14-art-current-release-20261022/review/stage14-integrated-continue-middle.jpg)
+- [저장 대사2/3쪽 cursor](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/stage-review/stage14-art-current-release-20261022/review/stage14-integrated-dialogue-cursor.jpg)
 
 현재 목표 순서 `family-upper → family-mid → family-lower → bridge → hold-refuge → clear-village`를 보존한다.3주민 조건,4라운드 보호·유한6, 마지막 국소1050/600, 보상·저장 이행·원문/guide를 새로 편집하지 않았다. 큰 주층리/중앙 후벽 여백 등 부모 승인 때 기록한 미술 한계도 그대로다.
 

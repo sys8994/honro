@@ -40,8 +40,8 @@ fresh18은 실제 UI 설정→디버그 여정첩→18장 휴식터→입장→�
 
 선택 사진은 모두 직접 이미지 뷰어로 열었고 각 1MB 미만이다.
 
-- [새 미술 실제 중앙](review/fresh-center.jpg), [종 하부](review/fresh-under-bell.jpg), [전체](review/fresh-overview.jpg), [모바일 중앙](review/fresh-mobile-center.jpg).
-- [실제 R22 / 옛 저장 미술](review/actual-r22-old-art.jpg), [실제 R29 / 옛 저장 미술](review/actual-r29-old-art.jpg). 이 두 장을 새 미술 적용 화면으로 부르지 않는다.
+- [새 미술 실제 중앙](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/stage18-art-integration-20261022/review/fresh-center.jpg), [종 하부](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/stage18-art-integration-20261022/review/fresh-under-bell.jpg), [전체](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/stage18-art-integration-20261022/review/fresh-overview.jpg), [모바일 중앙](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/stage18-art-integration-20261022/review/fresh-mobile-center.jpg).
+- [실제 R22 / 옛 저장 미술](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/stage18-art-integration-20261022/review/actual-r22-old-art.jpg), [실제 R29 / 옛 저장 미술](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/stage18-art-integration-20261022/review/actual-r29-old-art.jpg). 이 두 장을 새 미술 적용 화면으로 부르지 않는다.
 
 승인된 저대비 중간 파단과 큰 종/기존 발판 구도는 그대로다. 깊은 바닥과 일부 가까운 면의 큰 여백도 승인 당시 한계를 유지한다. FPS/ms 개선은 측정·주장하지 않는다. 이번 검사는 승인 미술의 통합 보존 확인이며 새 미술 개편이나 정상 전투 완주 판정이 아니다.
 

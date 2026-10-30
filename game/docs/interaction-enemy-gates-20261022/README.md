@@ -27,10 +27,10 @@
 
 세 집중 표본은 준비한 저장 상태의 실제 조작이며 각 장 전투 완주가 아니다. 전수 목록은 predicate/계약 조사이지30장 완주가 아니다. 실제 사용자 저장 JSON은 없으며, 앞선 구조 사실·선택 영웅 위치를 준비한 fixture를 사용했다. 수정 자체가 적 처치·좌표·완료 플래그를 덮는 해결책은 아니다. 초기 browser harness의 reload마다 fixture를 덮던 설정은 최초1회 설치로 고쳤으며, 최종 성공은 실제 저장과 재개 대화를 사용했다.
 
-- [수정 전 모바일 /424c 기준](review/before-mobile-gate.jpg)
-- [최종 열림·저장 재개 모바일](review/after-mobile-opened-resume.jpg)
-- [최종 열림·저장 재개 가로](review/after-landscape-opened-resume.jpg)
-- [최종16장 실제 이동 후 증언·기록실 목표](review/focus-contact-stage16.jpg)
+- [수정 전 모바일 /424c 기준](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/interaction-enemy-gates-20261022/review/before-mobile-gate.jpg)
+- [최종 열림·저장 재개 모바일](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/interaction-enemy-gates-20261022/review/after-mobile-opened-resume.jpg)
+- [최종 열림·저장 재개 가로](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/interaction-enemy-gates-20261022/review/after-landscape-opened-resume.jpg)
+- [최종16장 실제 이동 후 증언·기록실 목표](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/interaction-enemy-gates-20261022/review/focus-contact-stage16.jpg)
 
 ## 통합·발행 보호
 

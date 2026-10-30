@@ -1,6 +1,6 @@
 # 17장 작업 소품 · 사람 기준 표시 배율
 
-[작업대·목재·기름등과 캐릭터 실제 화면](worksite-props.webp) · [국소 확인 근거](checks.json)
+[작업대·목재·기름등과 캐릭터 실제 화면](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/art-reviews/stage17-prop-scale-20261019/worksite-props.webp) · [국소 확인 근거](checks.json)
 
 시각 전용7개 소품에만 기존 authored scale×.55를 적용한다. art.props 원래 배율은 그대로이며 최종 placeOn에 표시 배율을 넘긴다. 재실행해도 누적 축소되지 않고 바닥 support의 x/y와 원본 벡터 모양/디테일을 보존한다.3개 등불의 조명 x/y도 최종 표시 배율로 계산한다. 호이스트/구조물·발판/충돌·거대 묵종·캐릭터·지도/사거리·퀘스트/ID와 전투revision은 바꾸지 않는다.
 

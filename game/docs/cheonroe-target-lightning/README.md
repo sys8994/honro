@@ -98,10 +98,10 @@ AGENTS.md, 루트 README, BUGFIX_CONTEXT, BUG_LOG의 관련 맥락과 기존 빌
 
 | 화면 | 발사 직후 | 착탄 대기 | 실제 낙뢰 프레임 | 효과 종료 후 |
 | --- | --- | --- | --- | --- |
-| 1440×960, 적10 | [전](evidence/desktop-10-before.jpg) | [대기](evidence/desktop-10-wait.jpg) | [10줄기](evidence/desktop-10-lightning.jpg) | [후](evidence/desktop-10-after.jpg) |
-| 360×800 세로, 적10 | [전](evidence/mobile-10-before.jpg) | [대기](evidence/mobile-10-wait.jpg) | [10줄기](evidence/mobile-10-lightning.jpg) | [후](evidence/mobile-10-after.jpg) |
+| 1440×960, 적10 | [전](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/cheonroe-target-lightning/evidence/desktop-10-before.jpg) | [대기](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/cheonroe-target-lightning/evidence/desktop-10-wait.jpg) | [10줄기](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/cheonroe-target-lightning/evidence/desktop-10-lightning.jpg) | [후](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/cheonroe-target-lightning/evidence/desktop-10-after.jpg) |
+| 360×800 세로, 적10 | [전](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/cheonroe-target-lightning/evidence/mobile-10-before.jpg) | [대기](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/cheonroe-target-lightning/evidence/mobile-10-wait.jpg) | [10줄기](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/cheonroe-target-lightning/evidence/mobile-10-lightning.jpg) | [후](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/cheonroe-target-lightning/evidence/mobile-10-after.jpg) |
 
-천장 사례: [천장 아래의 실제 낙뢰](evidence/desktop-ceiling-lightning.jpg).
+천장 사례: [천장 아래의 실제 낙뢰](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/cheonroe-target-lightning/evidence/desktop-ceiling-lightning.jpg).
 JPG 9개의 파일 크기는 각각 28,024–160,493 bytes로 모두 1MB 미만이다.
 
 검수자가 원본 수치도 볼 수 있게 [엔진 결과](evidence/engine-results.json)와 [브라우저 결과](evidence/browser-results.json)를 함께 커밋했다. 브라우저 결과에는 시나리오별 타깃 HP, 줄기 시작/끝 월드 좌표, 실제 보존 줄기 수, 화면 밖 줄기 수, 발사 각도/힘, 예외 목록이 들어 있다. 축약된 성공 문구만 제공하지 않는다.

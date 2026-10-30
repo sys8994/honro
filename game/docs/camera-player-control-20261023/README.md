@@ -11,7 +11,7 @@
 | PC 미니맵 → 오른쪽 | 323.02 | 0 | -936.36 (화면 밖) |
 | 모바일 미니맵 → 오른쪽 | 337.85 | 0 | -1167.96 (화면 밖) |
 
-[수정 전 원본 측정](before.json). PC [수정 전](evidence/before-desktop-move.png) → [수정 후](evidence/after-desktop-move.png), 모바일 [수정 전](evidence/before-mobile-move.png) → [수정 후](evidence/after-mobile-move.png). 수정 후에는 실제 캐릭터 body가 viewport 안에 있고 카메라 좌표도 이동하는 것을 검사·이미지로 확인한다.
+[수정 전 원본 측정](before.json). PC [수정 전](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/camera-player-control-20261023/evidence/before-desktop-move.png) → [수정 후](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/camera-player-control-20261023/evidence/after-desktop-move.png), 모바일 [수정 전](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/camera-player-control-20261023/evidence/before-mobile-move.png) → [수정 후](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/camera-player-control-20261023/evidence/after-mobile-move.png). 수정 후에는 실제 캐릭터 body가 viewport 안에 있고 카메라 좌표도 이동하는 것을 검사·이미지로 확인한다.
 
 ## 최소 수정과 유지할 경계
 

@@ -35,12 +35,12 @@ factory는 생성 직후 방향을 기억하고 record/stageOverrides 적용 후
 
 모두720×1560,각1MB 미만. 별도 이미지 생성이나 포즈 합성 없이 실제 브라우저 screenshot이다.
 
-- 재현: [수정 전12장 충전](evidence/before-stage12-charge.jpg), [수정 후12장 첫 배치](evidence/after-stage12-entry.jpg).
-- 설오: [왼쪽 충전](evidence/after-p-archer-charge-left.jpg), [오른쪽 충전](evidence/after-p-archer-charge-right.jpg).
-- 담허: [왼쪽](evidence/after-p-mage-charge-left.jpg), [오른쪽](evidence/after-p-mage-charge-right.jpg).
-- 휘겸: [왼쪽](evidence/after-p-knight-charge-left.jpg), [오른쪽](evidence/after-p-knight-charge-right.jpg).
-- 소단: [왼쪽](evidence/after-p-occultist-charge-left.jpg), [오른쪽](evidence/after-p-occultist-charge-right.jpg).
-- 1장 factory4명 fixture: [왼쪽](evidence/after-stage1-allfour-left.jpg), [오른쪽](evidence/after-stage1-allfour-right.jpg).
+- 재현: [수정 전12장 충전](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/spawn-facing-aim-20261022/evidence/before-stage12-charge.jpg), [수정 후12장 첫 배치](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/spawn-facing-aim-20261022/evidence/after-stage12-entry.jpg).
+- 설오: [왼쪽 충전](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/spawn-facing-aim-20261022/evidence/after-p-archer-charge-left.jpg), [오른쪽 충전](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/spawn-facing-aim-20261022/evidence/after-p-archer-charge-right.jpg).
+- 담허: [왼쪽](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/spawn-facing-aim-20261022/evidence/after-p-mage-charge-left.jpg), [오른쪽](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/spawn-facing-aim-20261022/evidence/after-p-mage-charge-right.jpg).
+- 휘겸: [왼쪽](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/spawn-facing-aim-20261022/evidence/after-p-knight-charge-left.jpg), [오른쪽](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/spawn-facing-aim-20261022/evidence/after-p-knight-charge-right.jpg).
+- 소단: [왼쪽](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/spawn-facing-aim-20261022/evidence/after-p-occultist-charge-left.jpg), [오른쪽](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/spawn-facing-aim-20261022/evidence/after-p-occultist-charge-right.jpg).
+- 1장 factory4명 fixture: [왼쪽](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/spawn-facing-aim-20261022/evidence/after-stage1-allfour-left.jpg), [오른쪽](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/spawn-facing-aim-20261022/evidence/after-stage1-allfour-right.jpg).
 
 ## 한계와 인계
 

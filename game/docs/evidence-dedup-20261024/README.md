@@ -7,3 +7,15 @@
 `historicalRecords`의 과거 JSON 경로·시간·hash는 당시 캡처의 사실이므로 그대로 보존한다. 지금 같은 파일이 다시 생성되었거나 검사가 재실행된 것으로 해석하지 않는다. 삭제된 이름이나 디렉터리 패턴은 위 경로 대응표 또는 고정 역사 트리로 조회한다.
 
 이 작업은 현재 체크아웃의 중복 파일을 줄이는 문서 정리다. Git 과거 객체를 삭제하거나 게임의 초기 로딩·프레임 성능을 개선하는 변경은 아니다.
+
+
+2026-10-30 추가 보관: `game/docs/art-review/`의 canonical PNG는 [후속 보관 목록](../asset-archive-20261030/historical-art-review-images.json)의 고정 원격 원본으로 옮겼다. 기존 dedup 기록의 경로·hash는 변경하지 않았고 Markdown/HTML 이미지 링크는 원격 원본을 가리킨다.
+
+
+2026-10-30 추가 보관: 날짜별 과거 검수의 canonical 이미지는 [후속 보관 목록](../asset-archive-20261030/historical-dated-review-images.json)의 고정 원격 원본으로 옮겼다. 기존 dedup 기록의 경로·hash는 변경하지 않았고 Markdown/HTML 이미지 링크는 원격 원본을 가리킨다.
+
+
+2026-10-30 추가 보관: 날짜별 과거 검수의 canonical 이미지는 [후속 보관 목록](../asset-archive-20261030/historical-stage-review-images.json)의 고정 원격 원본으로 옮겼다. 기존 dedup 기록의 경로·hash는 변경하지 않았고 Markdown/HTML 이미지 링크는 원격 원본을 가리킨다.
+
+
+2026-10-30 추가 보관: 날짜별 과거 검수의 canonical 이미지는 [후속 보관 목록](../asset-archive-20261030/historical-other-doc-images.json)의 고정 원격 원본으로 옮겼다. 기존 dedup 기록의 경로·hash는 변경하지 않았고 Markdown/HTML 이미지 링크는 원격 원본을 가리킨다.

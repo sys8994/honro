@@ -66,12 +66,12 @@ R21 동행: 설오419/790, 담허526/855, 휘겸1025/1382, 소단984/999HP. 주�
 
 아래4장을 직접 열어 현재 목표, 구 저장의 목표 연결, 대사 cursor, 실제 측정 종료 위치를 확인했다. 모두1MB 미만, 로컬 공통 빌드의 실제 브라우저 캡처이며 Pages가 아니다.
 
-- [새 첫 목표](fresh-family-upper-390x844.jpg)
-- [구 clear-middle R20 Continue](round20-middle-continue-390x844.jpg)
-- [기존 주민 대사2쪽](round20-dialogue-page2-390x844.jpg)
-- [실제 정상 입력 R21 종료 상태](measured-r21-bridge-390x844.jpg)
+- [새 첫 목표](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/stage14-rescue-gates-20261022/fresh-family-upper-390x844.jpg)
+- [구 clear-middle R20 Continue](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/stage14-rescue-gates-20261022/round20-middle-continue-390x844.jpg)
+- [기존 주민 대사2쪽](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/stage14-rescue-gates-20261022/round20-dialogue-page2-390x844.jpg)
+- [실제 정상 입력 R21 종료 상태](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/stage14-rescue-gates-20261022/measured-r21-bridge-390x844.jpg)
 
-![실제 R21 종료 화면](measured-r21-bridge-390x844.jpg)
+![실제 R21 종료 화면](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/stage14-rescue-gates-20261022/measured-r21-bridge-390x844.jpg)
 
 빌드 전에 `tests/fixtures/published-web-history-20261022.json`에 부모가 확인한1f1b267/Pages39815535010/2026-10-22T16:46:17Z 성공을 추가하고 retain-published-web의 실제7일 이력을 등록했다. 그래프 중복 제거 후 보호6그래프이며, 이전 최신 활성 그래프와 보호된 전체 immutable437파일의 존재/길이/SHA256이 빌드 뒤 exact다. 삭제/변조0, 후보를 성공 발행으로 등록하지 않았다.
 

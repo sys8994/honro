@@ -118,8 +118,8 @@ Library `libfile_e3a121a494488191bf0c635647a0c1f4`/`1000047778.jpg`의 prepare_m
 
 원시 출력은 `_local/reports/stage05-diagnosis/`, 이번 검토 보존본은 [evidence](evidence/)다. 재실행에는 TypeScript5.8.3/sharp 및 Chromium/Playwright가 필요하다. 증거 JSON은 저장 fixture와 관측 결과이며 게임 저장 원본을 바꾼 파일이 아니다.
 
-![실제 fresh R1 모바일 가로 화면](evidence/turn1-landscape.png)
+![실제 fresh R1 모바일 가로 화면](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/stage-review/stage05-diagnosis/evidence/turn1-landscape.png)
 
-![설오가 전망대에서 사격한 뒤 적 턴 결과](evidence/archer-over-after-enemy.png)
+![설오가 전망대에서 사격한 뒤 적 턴 결과](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/stage-review/stage05-diagnosis/evidence/archer-over-after-enemy.png)
 
-![브라우저에서 실제 명중한 주박목](evidence/objective-real-hit.png)
+![브라우저에서 실제 명중한 주박목](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/stage-review/stage05-diagnosis/evidence/objective-real-hit.png)

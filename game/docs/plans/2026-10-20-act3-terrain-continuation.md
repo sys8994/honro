@@ -44,7 +44,7 @@ underside·지하 점검교·출구·맵 규모는 유지한다. 위에 있던 �
 
 동일한 현재 공통 Native Scene·카메라 `(5200,2200,0.6)`로 전후를 캡처하고 이미지와 렌더의 전투 상태 불변을 확인했다. 새 받침과 지지 사수의 높이 변화가 보이며 하층은 동일하다.
 
-- [변경 전](../../../review/act3-terrain-continuation/stage-29-before.png)
-- [변경 후](../../../review/act3-terrain-continuation/stage-29-after.png)
+- [변경 전](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/review/act3-terrain-continuation/stage-29-before.png)
+- [변경 후](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/review/act3-terrain-continuation/stage-29-after.png)
 
 필요한 빌드·브라우저 기본 실행 및 원격/Pages 결과는 [결과 기록](../../../review/act3-terrain-continuation/README.md)에 남긴다. 정상 전투 완주·나머지 9장 재플레이·전체 verify·전 장 미술 검수는 미실행이다. 1–20장 배치 후보는 기존 별도 기록을 유지하며 이번 지형 작업에서 수정하지 않았다. AI·미술 registry/renderer·쉼터·로더는 변경하지 않았다.

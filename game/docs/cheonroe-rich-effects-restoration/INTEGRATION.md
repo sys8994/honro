@@ -58,14 +58,14 @@ Chromium154.0.8037.57, DPR1의 실제 production App/Engine/Scene 캡처다. **8
 
 | 실제 최종 화면 | JPG |
 |---|---|
-| 390×844 복원1대상 | [열기](integration-evidence/final-390x844-1-controlled-arena.jpg) |
-| 390×844 복원10대상 | [열기](integration-evidence/final-390x844-10-controlled-arena.jpg) |
-| 1280×900 복원10대상 | [열기](integration-evidence/final-1280x900-10-controlled-arena.jpg) |
-| 390×844 휴식터 | [열기](integration-evidence/final-390x844-flow-rest.jpg) |
-| 390×844 여정첩/막gate/CTA | [열기](integration-evidence/final-390x844-flow-journal.jpg) |
-| 390×844 실제 새 전투 진입 | [열기](integration-evidence/final-390x844-flow-battle.jpg) |
-| 390×844 휴식터 복귀 확인 | [열기](integration-evidence/final-390x844-flow-confirmation.jpg) |
-| 390×844 3막 엔딩 | [열기](integration-evidence/final-390x844-act3-ending.jpg) |
+| 390×844 복원1대상 | [열기](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/cheonroe-rich-effects-restoration/integration-evidence/final-390x844-1-controlled-arena.jpg) |
+| 390×844 복원10대상 | [열기](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/cheonroe-rich-effects-restoration/integration-evidence/final-390x844-10-controlled-arena.jpg) |
+| 1280×900 복원10대상 | [열기](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/cheonroe-rich-effects-restoration/integration-evidence/final-1280x900-10-controlled-arena.jpg) |
+| 390×844 휴식터 | [열기](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/cheonroe-rich-effects-restoration/integration-evidence/final-390x844-flow-rest.jpg) |
+| 390×844 여정첩/막gate/CTA | [열기](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/cheonroe-rich-effects-restoration/integration-evidence/final-390x844-flow-journal.jpg) |
+| 390×844 실제 새 전투 진입 | [열기](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/cheonroe-rich-effects-restoration/integration-evidence/final-390x844-flow-battle.jpg) |
+| 390×844 휴식터 복귀 확인 | [열기](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/cheonroe-rich-effects-restoration/integration-evidence/final-390x844-flow-confirmation.jpg) |
+| 390×844 3막 엔딩 | [열기](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/cheonroe-rich-effects-restoration/integration-evidence/final-390x844-act3-ending.jpg) |
 
 VFX는 승인 때 사용한 **기존 controlled arena harness**의 동일 SETUP/CONFIG/STRIKE·카메라/scale/38world 간격을 재사용했다. 화면에도 arena라고 표기한다. 실제 캠페인 전투나 정상 발사 완주 캡처로 가장하지 않는다. 원본/축소 module route override는 없다. 이동은 기존 rest-hub setup의 진행 fixture에서 **실제 public UI 버튼**으로 휴식터→여정첩→휴식터→전투→확인/취소/승인을 수행했다. 엔딩은 기존 terminal battle fixture다. 모바일 크기의 실제 Chromium 검증이며 물리 모바일 기기를 뜻하지 않는다.
 

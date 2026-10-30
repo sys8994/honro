@@ -10,7 +10,7 @@
 
 Native 경로와 rAF/AI 예산·입력 발행 간격이 달라 라운드별 상태/승리 타이밍이 Native 기록과 일치한다고 주장하지 않는다. 시작 저장은 동일하고 이후는 실제 생산 루프로 자연 진행했다. 교착/수십 턴 반복 없이 16라운드에서 정책을 종료했다.
 
-[전체 raw(gzip)](evidence/continuous/continuous.json.gz), [실제 실행 정책](evidence/continuous/adapted-policy.js), [최종 저장](evidence/continuous/final-profile.json.gz), [실제 마지막 화면](evidence/continuous/live-final.jpg). 원본/어댑터 SHA256과 실행 manifest SHA256은 raw meta에 있다.
+[전체 raw(gzip)](evidence/continuous/continuous.json.gz), [실제 실행 정책](evidence/continuous/adapted-policy.js), [최종 저장](evidence/continuous/final-profile.json.gz), [실제 마지막 화면](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/battle-runtime-performance-20261022/evidence/continuous/live-final.jpg). 원본/어댑터 SHA256과 실행 manifest SHA256은 raw meta에 있다.
 
 자동 정책의 bestShot/predict/경로 선택은 사람이 입력하는 시간에 해당하는 추가 도구 CPU 부하다. tick 사이8ms 초과 정책 구간을 별도 태그했다. 긴 정책 longtask를 게임 자체의 렉으로 귀속하지 않는다. frame은 실제 App.frame만 감싼 포함 비용, rAF는 실제 콜백 간격이다. 계측 배열과 정책 그래프도 heap을 사용하므로 live/fresh heap 차이 전부를 게임 누수로 해석하지 않는다.
 
@@ -53,7 +53,7 @@ live 마지막 AIM frame 4.1 / 14.9 / 42.9, fresh warm150프레임 4.6 / 16.1 / 
 
 수정 `b8487309`: 현재 b.units에 객체 자체가 없는 항목만 지우는 표시 참조 정리1줄과 주석2줄이다. live 유닛의 pause/resume/새 피격/hurt 종료/객체 복원 동작은 기존대로다. 피해·능력치·적·미술·FX 규칙은 바꾸지 않았다. 메모리 참조 소유권 버그이며 사용자 렉 원인이나 체감 최적화라고 부르지 않는다.
 
-[수정 전12개 참조](evidence/settled-hits/before.json), [수정 후0개](evidence/settled-hits/after.json), [실제 Chromium Canvas 검사](evidence/settled-hits/browser.json), [실제 화면](evidence/settled-hits/fixed-display.jpg). Canvas 검사는 같은 실제 Scene에서 구/신 표시 함수만 바꿔 고아 참조 유무를 비교했고 RGBA 채널 차이0, battle state 변경0이었다.
+[수정 전12개 참조](evidence/settled-hits/before.json), [수정 후0개](evidence/settled-hits/after.json), [실제 Chromium Canvas 검사](evidence/settled-hits/browser.json), [실제 화면](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/battle-runtime-performance-20261022/evidence/settled-hits/fixed-display.jpg). Canvas 검사는 같은 실제 Scene에서 구/신 표시 함수만 바꿔 고아 참조 유무를 비교했고 RGBA 채널 차이0, battle state 변경0이었다.
 
 ```bash
 node tests/settled-hit-summon-lifecycle.mjs

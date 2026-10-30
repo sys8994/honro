@@ -45,15 +45,15 @@ after의 연속 증원 사례는 바뀐 수동 계약을 정확히 구분한다.
 
 원본 시간순 PNG:
 
-- PC [실제 공격](evidence/desktop-flow-00-attack.png) → [직접 수동](evidence/desktop-flow-01-manual.png) → [다음 공격 자동](evidence/desktop-flow-02-next-attack.png)
-- 모바일 [실제 공격](evidence/mobile-flow-00-attack.png) → [직접 수동](evidence/mobile-flow-01-manual.png) → [다음 공격 자동](evidence/mobile-flow-02-next-attack.png)
+- PC [실제 공격](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/attack-camera-fix-20261023/evidence/desktop-flow-00-attack.png) → [직접 수동](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/attack-camera-fix-20261023/evidence/desktop-flow-01-manual.png) → [다음 공격 자동](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/attack-camera-fix-20261023/evidence/desktop-flow-02-next-attack.png)
+- 모바일 [실제 공격](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/attack-camera-fix-20261023/evidence/mobile-flow-00-attack.png) → [직접 수동](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/attack-camera-fix-20261023/evidence/mobile-flow-01-manual.png) → [다음 공격 자동](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/attack-camera-fix-20261023/evidence/mobile-flow-02-next-attack.png)
 
 ## 일반 게임 루프의 추가 확인
 
 `python tools/testing/attack-camera-live.py`는 **평지/HP/좌표/턴/clock/Engine/프레임 대체 없이** 실제 일반1장을 PC와 모바일에서 확인한다. 새 표준 프로필, enemy speed4/player speed1 설정과 실제 대사 버튼을 사용했다. 첫 실제 발사 → 직접 wheel/touch pan → 자연2라운드의 다음 아군 차례에서 실제 발사 → 자동 복귀가 양쪽에서 통과했다. 첫 적군은 이동/방어만 했으므로 그것을 다음 공격으로 잘못 셌던 초기 테스트 전제를 고쳤다. 적군 이동/방어만으로 직접 수동이 풀리지 않고 **다음 실제 발사**에서 풀린 결과다. 두 번의 발사까지만 확인하며 정상1장 완료를 주장하지 않는다. 실제 AI 공격은 별도36사례의 production planner fixture에서 확인했다. [실제 일반 진행 측정](browser-live.json).
 
-- 일반 PC [첫 공격](evidence/live-desktop-00-player-attack.png) → [직접 수동](evidence/live-desktop-01-manual.png) → [자연 다음 차례의 새 공격](evidence/live-desktop-02-natural-next-attack.png)
-- 일반 모바일 [첫 공격](evidence/live-mobile-00-player-attack.png) → [직접 수동](evidence/live-mobile-01-manual.png) → [자연 다음 차례의 새 공격](evidence/live-mobile-02-natural-next-attack.png)
+- 일반 PC [첫 공격](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/attack-camera-fix-20261023/evidence/live-desktop-00-player-attack.png) → [직접 수동](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/attack-camera-fix-20261023/evidence/live-desktop-01-manual.png) → [자연 다음 차례의 새 공격](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/attack-camera-fix-20261023/evidence/live-desktop-02-natural-next-attack.png)
+- 일반 모바일 [첫 공격](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/attack-camera-fix-20261023/evidence/live-mobile-00-player-attack.png) → [직접 수동](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/attack-camera-fix-20261023/evidence/live-mobile-01-manual.png) → [자연 다음 차례의 새 공격](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/attack-camera-fix-20261023/evidence/live-mobile-02-natural-next-attack.png)
 
 ## a3 피해·오사격 통합과 보존
 
@@ -90,7 +90,7 @@ after의 연속 증원 사례는 바뀐 수동 계약을 정확히 구분한다.
 
 c238의 `campaign.json`, stage14 author recipe, map revision module은 바이트 동일하다. 승인된 높은 공동/천장과 `oneWay`·`projectileSolid`·revision14:1을 그대로 보존했고, 거절된 c6 단독 버전은 가져오지 않았다. UI84974의 `campUI.ts`/`training.js`도 바이트 동일하며 계산·저장 로직을 추가 변경하지 않았다. 이 통합에서 source 충돌은 없었고 HTML/manifest만 공통 소스로 다시 빌드했다.
 
-- `python tests/visible-skill-damage-variance-browser.py`: 최종 번들에서 PC1280×900·모바일390×844 실제 캠프/수련/전투 수련 클릭 DOM **30건** 통과. 기본기·사용기·비기 5/10/15% 표시, 치유 무표시, overflow/읽기 상태·선택 보존, pageerror0. [측정](visible-ui-checks.json), [PC 실제 DOM](evidence/ui-1280-camp-A01.dom.json)·[PNG](evidence/ui-1280-camp-A01.png), [모바일 실제 DOM](evidence/ui-390-camp-A14.dom.json)·[PNG](evidence/ui-390-camp-A14.png).
+- `python tests/visible-skill-damage-variance-browser.py`: 최종 번들에서 PC1280×900·모바일390×844 실제 캠프/수련/전투 수련 클릭 DOM **30건** 통과. 기본기·사용기·비기 5/10/15% 표시, 치유 무표시, overflow/읽기 상태·선택 보존, pageerror0. [측정](visible-ui-checks.json), [PC 실제 DOM](evidence/ui-1280-camp-A01.dom.json)·[PNG](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/attack-camera-fix-20261023/evidence/ui-1280-camp-A01.png), [모바일 실제 DOM](evidence/ui-390-camp-A14.dom.json)·[PNG](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/attack-camera-fix-20261023/evidence/ui-390-camp-A14.png).
 - `node tests/stage14-ceiling-topology.mjs`와 `node tests/stage14-ceiling-boundaries.mjs`: 승인 형상/17경로·배우·목표·충돌 투영, 저각·고각·반사 및 geometry 저장 경계 통과.
 - `python tests/stage14-ceiling-browser-boundaries.py`: 최종 번들의 실제 reload/Continue wholeBattle exact와 준비된 full-roster 점프 착지 통과. [측정과 실행 시점 소스/번들 구분](stage14-browser-boundaries.json). 사용자 R9 재현이나 14장 전투 완주 증거는 아니다.
 - UI 통합 후 `python tests/combat-damage-browser.py`도 다시 실행해 localStorage/Continue의 roll/index/진영·자원·보상, 30% 오사격, SVG fallback 없음, Workshop/pageerror0을 확인했다.

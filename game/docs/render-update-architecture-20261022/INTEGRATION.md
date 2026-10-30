@@ -21,7 +21,7 @@
 
 짧은 동일 조건 pause 확인은 정상 camp의84 icon 준비/생산 Story의 실제 시작 배너 종료 뒤 동일 카메라로120 frame만 수행했다. frame p50/p95/max **0.2/1.3/14.4ms**, rAF p50/p95/max **16.7/33.4/66.6ms**, longtask 0개. tracked tree clean, compiled manifest 일치. 3회 긴 성능 표본은 재실행하지 않았다.
 
-[통합 browser 결과](integration-evidence/browser-summary.json), [source 보존](integration-evidence/preservation.json), [실제 참조/Canvas 검사](integration-evidence/settled-browser.json), [pause 경계](integration-evidence/paused-boundaries.json), [HUD·저장·픽셀](integration-evidence/hud-save-pixels.json), [짧은 pause raw](integration-evidence/short-pause.json), [최종 pause JPG](integration-evidence/final-paused-desktop.jpg). 원래 사용자 점증 렉 미해결 및 정상 전투의 남은 큰 실루엣/궤적 비용은 이전 결론 그대로다.
+[통합 browser 결과](integration-evidence/browser-summary.json), [source 보존](integration-evidence/preservation.json), [실제 참조/Canvas 검사](integration-evidence/settled-browser.json), [pause 경계](integration-evidence/paused-boundaries.json), [HUD·저장·픽셀](integration-evidence/hud-save-pixels.json), [짧은 pause raw](integration-evidence/short-pause.json), [최종 pause JPG](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/render-update-architecture-20261022/integration-evidence/final-paused-desktop.jpg). 원래 사용자 점증 렉 미해결 및 정상 전투의 남은 큰 실루엣/궤적 비용은 이전 결론 그대로다.
 
 원격 master/Pages는 변경하지 않았다. 권한 거부·우회·결과 불명 작업 없음.
 

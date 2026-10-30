@@ -18,7 +18,7 @@ The final predecessor already returned Cancel/X/Escape to pause. The origin chec
 
 ## Actual pixels inspected
 
-[Portrait sound](evidence/phase0/sound-390.jpg), [short-landscape sound](evidence/phase0/sound-844.jpg), [portrait pause](evidence/phase0/pause-390.jpg), [short-landscape pause](evidence/phase0/pause-844.jpg). Direct Chromium JPGs under1MB; no composites or generated images. Viewed portrait sound and landscape pause, then the independently scrolling short-landscape sound screen: visual marks remain24px, focus/close/fullscreen are readable and within the viewport. The landscape sound image intentionally shows the lower scroll position after keyboard checks.
+[Portrait sound](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/stage-clear-report/evidence/phase0/sound-390.jpg), [short-landscape sound](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/stage-clear-report/evidence/phase0/sound-844.jpg), [portrait pause](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/stage-clear-report/evidence/phase0/pause-390.jpg), [short-landscape pause](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/stage-clear-report/evidence/phase0/pause-844.jpg). Direct Chromium JPGs under1MB; no composites or generated images. Viewed portrait sound and landscape pause, then the independently scrolling short-landscape sound screen: visual marks remain24px, focus/close/fullscreen are readable and within the viewport. The landscape sound image intentionally shows the lower scroll position after keyboard checks.
 
 ## Limits and earlier failures
 

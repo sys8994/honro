@@ -39,10 +39,10 @@ UI 실행은 이전 장 완료/성장을 준비한 fixture이며18장 전체 전
 
 ## 실제 화면/저장
 
-- [모바일 순서 편집](evidence/mobile-editor.jpg)
-- [미합류 인물 비노출](evidence/mobile-known-only.jpg)
-- [새 전투 소단 자동선택](evidence/fresh-selected-sodan.jpg)
-- [이어하기 후 소비 행동 보존·담허 자동선택](evidence/continued-next-mage.jpg)
+- [모바일 순서 편집](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/player-turn-order-20261023/evidence/mobile-editor.jpg)
+- [미합류 인물 비노출](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/player-turn-order-20261023/evidence/mobile-known-only.jpg)
+- [새 전투 소단 자동선택](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/player-turn-order-20261023/evidence/fresh-selected-sodan.jpg)
+- [이어하기 후 소비 행동 보존·담허 자동선택](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/player-turn-order-20261023/evidence/continued-next-mage.jpg)
 
 사진은 각각1MB 미만. 실제 짧은 행동 창의 마지막 저장은 `tests/fixtures/player-turn-order-actual-window-20261023.json.gz`. 완주/보상 저장이 아니라 R1에 소단·설오가 방어하고 담허가 다음 선택된 상태다.
 

@@ -4,7 +4,7 @@
 
 **최종 정상 입력 사례는 R29 완료, 설오 전투불능/나머지3인 생존이다. 단일 정산→실제18장 진입·성장 보존·Continue가 통과했다.** 한편 고립 기하는32/36 PASS이며 선택 우회 `east-upper-return`의 지정 점프는4클래스 모두 실패했다. 완료 사실로 이 실패를 지우지 않았다.
 
-[상세 증거·행동 기록](evidence.json) · [전체 native 결과 gzip](native-result.json.gz) · [실제 R29 저장 브라우저 JPG](review/actual-r29.jpg)
+[상세 증거·행동 기록](evidence.json) · [전체 native 결과 gzip](native-result.json.gz) · [실제 R29 저장 브라우저 JPG](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/stage17-current-pacing-20261022/review/actual-r29.jpg)
 
 ## 활성 factory와 조건
 

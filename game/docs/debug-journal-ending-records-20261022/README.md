@@ -9,7 +9,7 @@
 3. **10 / 20 / 30번 핀**을 선택한다. 하단의 **기록 → 막 엔딩 미리보기**를 누른다. 클리어 기록이나 보고서는 필요하지 않다.
 4. 화면 터치 또는 Enter/Space로 계속 본다. 완료, 우측 위 **여정첩으로 돌아가기**, Escape, 브라우저/모바일 뒤로는 같은 여정첩으로 돌아온다. 원래 막·선택·확대·스크롤·DOM과 펼쳐 둔 기록 메뉴까지 보존한다.
 
-**2막 20장 위치:** 지도 위쪽 왼편의 **20 ‘하늘로 난 출구’** 핀이다. 1막에서 디버그를 켠 미클리어 프로필로 상단 2막 → 지도 맞춤 → 20번 핀을 세로/가로 모두 실제 클릭해 확인했다. [세로 화면](../act2-pacing-release-20261022/evidence/final-records-20-390x844.jpg), [가로 화면](final-records-20-844x390.jpg). 지도 그림·핀 배치·지형은 이번에 변경하지 않았다.
+**2막 20장 위치:** 지도 위쪽 왼편의 **20 ‘하늘로 난 출구’** 핀이다. 1막에서 디버그를 켠 미클리어 프로필로 상단 2막 → 지도 맞춤 → 20번 핀을 세로/가로 모두 실제 클릭해 확인했다. [세로 화면](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/act2-pacing-release-20261022/evidence/final-records-20-390x844.jpg), [가로 화면](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/debug-journal-ending-records-20261022/final-records-20-844x390.jpg). 지도 그림·핀 배치·지형은 이번에 변경하지 않았다.
 
 설정의 기존 **막 엔딩 미리보기 → 1막/2막/3막**도 유지된다. 설정에서 연 엔딩은 설정으로, 여정첩에서 연 엔딩은 여정첩으로 돌아온다.
 
@@ -39,13 +39,13 @@
 
 | 화면 | 세로390×844 | 가로844×390 |
 |---|---|---|
-| 10장 기록 메뉴 | [세로](../act2-pacing-release-20261022/evidence/final-records-10-390x844.jpg) | [가로](final-records-10-844x390.jpg) |
-| 1막 엔딩 | [세로](../act2-pacing-release-20261022/evidence/final-ending-10-390x844.jpg) | [가로](final-ending-10-844x390.jpg) |
-| 20장 기록 메뉴 | [세로](../act2-pacing-release-20261022/evidence/final-records-20-390x844.jpg) | [가로](final-records-20-844x390.jpg) |
-| 2막 엔딩 | [세로](../act2-pacing-release-20261022/evidence/final-ending-20-390x844.jpg) | [가로](final-ending-20-844x390.jpg) |
-| 30장 기록 메뉴 | [세로](final-records-30-390x844.jpg) | [가로](../act2-pacing-release-20261022/evidence/final-records-30-844x390.jpg) |
-| 3막 엔딩 | [세로](final-ending-30-390x844.jpg) | [가로](../act2-pacing-release-20261022/evidence/final-ending-30-844x390.jpg) |
-| 30장 원래 메뉴 복귀 | [세로](final-records-30-390x844.jpg) | [가로](../act2-pacing-release-20261022/evidence/final-records-30-844x390.jpg) |
+| 10장 기록 메뉴 | [세로](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/act2-pacing-release-20261022/evidence/final-records-10-390x844.jpg) | [가로](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/debug-journal-ending-records-20261022/final-records-10-844x390.jpg) |
+| 1막 엔딩 | [세로](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/act2-pacing-release-20261022/evidence/final-ending-10-390x844.jpg) | [가로](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/debug-journal-ending-records-20261022/final-ending-10-844x390.jpg) |
+| 20장 기록 메뉴 | [세로](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/act2-pacing-release-20261022/evidence/final-records-20-390x844.jpg) | [가로](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/debug-journal-ending-records-20261022/final-records-20-844x390.jpg) |
+| 2막 엔딩 | [세로](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/act2-pacing-release-20261022/evidence/final-ending-20-390x844.jpg) | [가로](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/debug-journal-ending-records-20261022/final-ending-20-844x390.jpg) |
+| 30장 기록 메뉴 | [세로](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/debug-journal-ending-records-20261022/final-records-30-390x844.jpg) | [가로](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/act2-pacing-release-20261022/evidence/final-records-30-844x390.jpg) |
+| 3막 엔딩 | [세로](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/debug-journal-ending-records-20261022/final-ending-30-390x844.jpg) | [가로](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/act2-pacing-release-20261022/evidence/final-ending-30-844x390.jpg) |
+| 30장 원래 메뉴 복귀 | [세로](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/debug-journal-ending-records-20261022/final-records-30-390x844.jpg) | [가로](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/act2-pacing-release-20261022/evidence/final-records-30-844x390.jpg) |
 
 ## 재현/제한
 

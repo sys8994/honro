@@ -98,3 +98,25 @@ Game/Workshop 빌드 목록을 바꾸지 않기 위해 별도 빌드로 둔다. 
 ## 캐릭터 개편 반영
 
 [개편 기록](CHARACTER_REDESIGN.md)에 따라 우선13·권장33 전체를 실제 그림으로 교체했다. 호환11분기는 현행 몬스터/소환 벡터와 모션을 공유하고 `sharedVisual` 및 원본 경로를 표시한다. 이름 별칭·정예·소환·목표의 사용처 수집과 72행 계약은 유지한다. 새 판정의 이전 분류는 각 `previousVerdict`와 동결 baseline에서 확인한다. 공식 이미지 직접 열람 차단과 공개 배포 검수는 로컬 미술 통과와 구별한다.
+
+## 카탈로그 전용 데이터 경량화 (2026-10-30)
+
+목록·사용처·소스 근거는 먼저 **전체 공통 런타임**에서 수집한다. 배포 HTML만
+캐릭터 렌더러가 사용하지 않는 배경/장비 이미지 데이터 5개를 빈 객체로 바꾸고,
+캠페인은 미리 저작 완료된 장별 `metadata.stageId`, `width`, `height`만 보존한다.
+게임/Workshop 원본 데이터나 렌더러·리그 코드는 바꾸지 않는다. 외부 이미지에
+의존하도록 옮긴 것이 아니므로 독립 HTML의 오프라인 성질도 유지된다.
+
+`sourceSha256`는 전체 원본 런타임, `catalogRuntimeSha256`는 배포용 선택 결과의
+해시다. 선택 규칙은 `tools/character-catalog/runtime-selection.mjs`에 있으며,
+알려진 데이터 등록이 없거나 중복되면 빌드를 중단한다.
+
+- `node tests/character-catalog-template.mjs`: 문자열 치환/스크립트 닫기 회귀 검사.
+- `node tests/character-catalog-runtime-selection.mjs`: 데이터 선택·원본 보존 검사.
+- 빌드 후 `node --max-old-space-size=768 tests/character-catalog-payload-parity.mjs`:
+  72개 전 항목의 Scene/clip·정의된 동작·3개 위상에서 전체/경량 런타임의
+  RGBA 해시가 정확히 같아야 한다. 제거 데이터 및 제외한 캠페인 필드 접근은
+  예외로 차단해 숨은 의존성을 검출한다. 캔버스 2개만 재사용한다.
+
+위 검사는 그림 동일성 증거이며 실제 게임 플레이 완료 검사가 아니다.
+검사 결과는 `_local/reports/character-catalog/`에만 기록한다.

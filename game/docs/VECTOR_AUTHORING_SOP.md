@@ -114,7 +114,7 @@
 - 장식: 앞/뒤/상태 변형, 접지·크기·가림·재사용 변형을 확인한다.
 - 기존 SOP의 서로 다른 3회 미술 검수와 최종 종합 검수는 유지한다. 변경과 무관한 전수 검사는 추가하지 않는다.
 
-## 8. 다음 적용 실험 (계획, 아직 미구현)
+## 8. 최초 적용 실험의 설계 (역사 기록; 실제 확대는 10절)
 
 1. 4막의 지면/암반/갈대/목재 4종으로 작은 스타일 기준판을 만든다.
 2. 실제 엔진에서 한 교전 구간 스켈레톤과 두 경로의 의미를 확정한다.
@@ -134,3 +134,56 @@
 - **Don’t Starve**: Klei 개발자 인터뷰는 대부분의 아트를 Flash에서 만들고 자체 애니메이션 형식으로 export했다고 설명한다. 최종 렌더링이 벡터라는 근거로 확대하지 않는다. 부품 이름·원점·레이어·export 계약의 중요성을 참고한다. [개발자 인터뷰](https://www.gamedeveloper.com/design/road-to-the-igf-klei-entertainment-s-i-don-t-starve-i-).
 - **Inkscape**: 컬러 추적은 색별 객체를 만들며 100% 복제가 아니고 이후 편집이 복잡해질 수 있다. [추적 안내](https://inkscape-manuals.readthedocs.io/en/latest/tracing-an-image.html). Simplify는 오차 허용치 안에서 곡선을 근사하는 절충이다. [공식 코드 설명](https://inkscape.gitlab.io/inkscape/doxygen/classPath.html).
 - **도구 설계 참고**: [Unity SpriteShape Controller](https://docs.unity3d.com/Packages/com.unity.2d.spriteshape@10.0/manual/SSController.html)의 spline/렌더/충돌 구분, [Godot Polygon2D](https://docs.godotengine.org/en/stable/classes/class_polygon2d.html)와 [CollisionPolygon2D](https://docs.godotengine.org/en/stable/classes/class_collisionpolygon2d.html)의 분리. 출시 게임 사례가 아니라 편집 구조의 참고다. 이번 계획은 엔진 이전을 요구하지 않는다.
+
+## 10. 실제 제작에서 확인한 연결·최적화 규칙 — 2026-10-29
+
+사용자의 4막 전체 제작 지시에 따라 31·35의 검증된 제작 요소를 다른 장에 확장한다. 장별 공식 형상·기믹을 읽고 개별 완성도를 검수한다는 원칙은 유지한다. 한 장의 대형 SVG를 다른 장 전체에 그대로 덮는 방식으로 확대하지 않는다.
+
+- **구조 보존과 미술 편집을 구분한다.** 추적의 미세 그라데이션 노이즈를 실제 Inkscape에서 지우거나 팔레트를 정리할 때 raw를 보존하고 편집 path ID/사유를 기록한다. 이것을 raw 대비 무손실 자동 최적화라고 부르지 않는다.
+- **곡선을 먼저 살린다.** 선택 path의 독립 Simplify와 절대 좌표 정밀도 조절을 우선한다. 그래도 한도를 넘는 compound만 화면 오차보다 충분히 작은 허용치로 평탄화한다. 구멍·자기 교차·nonzero/evenodd winding을 보존해 Boolean 분할하고 최종 픽셀을 다시 측정한다. 전체 곡선을 무조건 다각형으로 바꿔 노드를 늘리지 않는다.
+- **측정 해상도를 오차 단위와 맞춘다.** 0.5 화면 픽셀 상한을 1× 이진 윤곽만으로 판정하면 양자화에 따른 1픽셀 점프가 생긴다. 지정 중요 영역은 8× 등 충분한 해상도로 재측정한다. 사라진 색 양자화 섬과 실제 눈·줄기·접촉선의 이동을 구분하며, 최초 실패 보고서를 없애거나 상한을 몰래 높이지 않는다.
+- **내부 재사용은 표현 중복만 줄인다.** `vector.symbols`와 내부 `use`는 동일 형상 저장/컴파일 중복을 줄인다. 참조 확장 후 512노드·깊이24·경로60000자 한도는 그대로 적용한다. 외부 참조·순환·누락된 정의는 금지한다. 반복 그리기 비용까지 줄었다고 주장하지 않는다.
+- **분할 사각형의 이음선은 알파 합성을 검사한다.** 직사각형 partition에만 검증된 `pixelSnapClip`을 사용할 수 있다. 실제 지형 마스크는 그대로 유지한다. 일반/최대/최소 줌에서 틈·밝은 선·겹친 색을 직접 확인한다.
+- **FORE는 실제 전면 합성이다.** 기존 `front`는 배우보다 먼저 그려지므로 이름만 바꾸어 근경이라고 하지 않는다. 비충돌 `semanticLayer: FORE`를 배우를 그린 다음 합성하는 별도 전면 pass에 넣되 배우·목표 가독성을 보호하고 조준선/탄/필수 UI는 위에 유지한다. 모바일 버퍼 한도와 카메라 이동 시 해제를 검증한다.
+- **근경도 뿌리를 둔다.** 갈대·대나무의 뿌리가 절벽 중간에 붙인 스티커처럼 보이거나, 바위 밑판이 공중에서 일자로 잘리면 반려한다. 필요한 경우 별도의 시안→Inkscape 근경 흙둑을 만들고 공통 식생을 그 면에 접지한다. 모든 장에 근경을 강제로 넣지는 않는다.
+- **충돌 동일성만으로 가독성을 승인하지 않는다.** 담장 미술이 실제 collider보다 낮으면 보이지 않는 벽이 된다. 실제 접촉 상단/하단을 맞추고 서기·낮은 사격을 확인한다. 원래 배치 자체가 공중에 떠 있으면 승인된 범위의 위치 교정으로 명시하고 영향받는 플레이를 재검증한다.
+- **검수 화면은 실제 실행 설정과 같아야 한다.** 검사기만 원경·기후·카메라를 몰래 교체하지 않는다. Act4 실제 준비 과정과 이미지 decode 완료를 반영한다. Native Scene, 실제 Chromium UI, 공개 Pages 확인을 각각 구분한다. 모바일 에뮬레이션을 실기기 성능으로 말하지 않는다.
+
+
+## 11. 재사용·저장·최종 증거의 제작 규칙
+
+- **시안의 전체 캔버스가 아니라 실제 그림 경계로 맞춘다.** 투명 여백을 포함한 fit은 배·바위 크기와 발밑을 틀리게 만든다. 실제 ink bounds, foot, pivot, deck/socket을 기록한다. 같은 배라도31장 갑판은 local−50,40장은 local−60이므로 그림만 보정하고 사건의 원래 ID·물리 위치·접촉선은 보존한다.
+- **공통 정의를 전역 덮어쓰지 않는다.** 장별 교체는 scoped asset ID 또는 명시적인 그림 선택자를 사용한다.36장 문 교체가32장의 `a4:door`를 바꾸지 않아야 한다. 같은 의미·크기 계약의 부품은 정의 하나를 여러 인스턴스에서 재사용한다. 기존 나쁜 배치를 그대로 유지해 뜬 기단·지붕 위 배·목표를 가리는 바위를 만들지 않는다. 비충돌 장식의 접지 교정과 물리 재설계를 구분해 기록한다.
+- **저장 데이터에 정적 벡터를 중복 복사하지 않는다.** 공식 캠페인의 원본과 완전히 같은 자산만 ID+서명 참조로 저장하며, 수정된 자산·사용자 맵은 보존한다. 실제 지연 로딩이 끝난 뒤 서명을 검사하고 전체 참조가 맞을 때만 원자적으로 복원한다. 실패하면 원본 저장을 유지하고 알린다. 장 진입·Continue·스키마 이행·한도 초과를 직접 확인한다. 명시적5MiB 테스트와 실제 브라우저 저장 검증은 구분한다.
+- **안전 한도 통과와 가벼움을 혼동하지 않는다.** 확장 노드·경로 한도 외에 최종 막 전체 JSON/gzip 전송량, 고유 경로, 중복 정의와 첫 로딩을 별도로 기록한다. 정확한 내부 재사용으로 저장량이60% 줄어도 막 전체 전송이 수MB 이상일 수 있다. 더 작은 시안·동일 부품 공유·장별 로딩을 검토하며, 실제 모바일 확인 없이 성능 합격을 붙이지 않는다.
+- **증거는 검수한 버전에 묶는다.** 지형·자산·검사기·런타임 해시를 구분한다. 미술만 바꾼 뒤 예전 완주 결과의 해시를 새 것으로 고쳐 적지 않는다. 변경 관련 충돌 동일성과 새 화면 검수를 추가하고 기존 완주 기록의 범위를 명시한다.31·35처럼 승인 범위의 재설계 후보는 공식 맵과 달라진 모든 지형/접지 변경을 목록화하고 제작 스켈레톤·실제 입력 검사와 연결한다.
+- **중간 파일과 출시 상태를 분리한다.** raw/편집/최적화 원본 및 재조립 도구를 저장하되, 후보 패키지를 만드는 스크립트가 자동으로 미술·브라우저·배포 합격을 생성해서는 안 된다. 로컬 커밋, 원격 반영, master 반영, Pages 실행 확인은 각각 실제 결과로 보고한다.
+
+## 12. 화면 역할별 밀도 우선 — 2026-10-29 수정
+
+사용자가 지적한 배경 과밀·플레이 요소 단순화 불균형을 수정한다. 개별 원본 충실도와 안전 한도만으로 미술을 승인하지 않는다. `game/docs/VISUAL_DENSITY_STANDARD.md`의 역할별 시각 밀도·대비·표시 크기·재저작 순서를 적용한다. 기존 4막 후보는 재검수 대상이다. 배경을 조용하게 만들면서 실제 접촉면/발판 구조/상호작용을 더 선명하게 하고, 같은 카메라의 전체 화면으로 비교한다.
+
+
+### 2026-10-29 보완: 실제 인스턴스·카메라 경계 검수
+- 자산 정의만 검사하지 않는다. 실제 스테이지 인스턴스·배경 배치·전체 자산을 함께 public `HonroMaps.validate`로 검사하고, 브라우저의 정상 importer 진입까지 확인한다. Native Canvas의 compile 성공은 public importer 통과가 아니다.
+- 추적 자산의 임시 `scaleRange:[1,1]`를 실제 배치 배율과 혼동하지 않는다. 최종 선언은 기존 의도 범위와 실제 저작된 배율만 포함한다. 범위 수정 전후 벡터·충돌·인스턴스가 동일함을 기록하고 검증기를 느슨하게 하지 않는다.
+- 고해상도 플레이 지형과 저해상도 외곽 연장이 만나는 곳은 실루엣뿐 아니라 내부 색면 깊이도 이어져야 한다. BODY 역할·실제 terrain 연결이 같더라도 경계 수직 색면 절단은 발생할 수 있다. 최소 줌과 양쪽 카메라 끝의 실제 화면을 본다.
+- 모든 장의 최종 source freeze 후 사용하지 않는 런타임 정의만 참조 폐쇄 검사로 제거한다. 실제 단계·동적 상태·runtime literal/computed selector를 보수적으로 보존하며 시안·raw trace·기각한 실험 소스는 삭제하지 않는다. 원시/gzip 용량, 저장 path 명령 수, use 전개 후 path/node 수를 별도로 기록한다. 이를 FPS나 미술 합격으로 표현하지 않는다.
+- 실제 지리 교체는 캠페인 map revision 계약을 갱신한다. 이전 전투 스냅샷은 같은 장 입구로 되돌리되 성장·SP·장착·완료 기록·이미 저장된 퀘스트 사실은 보존한다. 실제 기존 migration의 Continue와 사용자 안내를 확인한 뒤 최종 런타임 해시를 고정한다.
+
+### Act4 map-revision3 save preservation
+
+Before an obsolete official Act4 battle is migrated and its primary browser save can be overwritten, ProfileStore preserves the exact original raw profile text under immutable `honro-first-act-profile-1-act4-before-map-revision-3-` archive keys. Exact-byte equality deduplicates; a differing occupied key is retained and a separate key is used. Read-back verification is mandatory. Read, quota or verification failures retain the primary original and lock normal progression/persist behind the existing recovery UI; retry must actually verify the archive. Starting a download is never proof of successful file storage or an unlock condition.
+
+Settings → 기록·관리 lists each local archive with stage/map revision and offers exact-original JSON export. Metadata is escaped as untrusted display text. This is local storage only, not cloud backup: browser data deletion can remove every archive, quota can block migration, and older static asset references may require the corresponding old build. There is no automatic deletion or old-battle restoration into new geometry. The revised chapter restarts at its entrance; existing earned-growth/equipment/completed-chapter/fact preservation semantics remain unchanged.
+
+### Walk-only escort contours
+
+Pinning route endpoints is not sufficient. Every source-derived designated walking corridor must pass the actual intended actor's locomotion envelope along the entire route—not just hero jump/shot tests, endpoint support checks, or visual error metrics. Stage39 exposed sub-body-scale traced spikes between protected anchors: a live r22/h92 resident stopped because the actual walker rejects grades above1.35. Its local correction uses measured safety margin1.10, not a universal art slope rule. Preserve large-scale natural contour and protected event anchors; fit the native vector's surface and interior layers to the corrected gameplay skeleton and check any grounded decoration. Record such changes as intentional gameplay shape corrections, never lossless optimization. Regress old failure, single route probe at its real step size, ordinary fixed-step convoy walking with real clearance/waiting, then require genuine full objective completion and direct visual review.
+
+
+## 원본 SVG의 중복 참조 이미지 보관
+
+시안 PNG가 이미 같은 자산 폴더에 있는 경우, native Inkscape SVG는 동일 PNG의 상대 경로 `href`를 사용해 내부 base64 중복을 피한다. 시안 PNG를 제거하거나 경로를 임의 변경하지 않는다. 공유·이동·백업은 **SVG 하나가 아니라 연결된 시안 PNG를 포함한 자산 폴더 전체**로 한다. 단독 SVG 제출이 필요한 경우 전달용 복사본에만 이미지를 다시 포함하고 원본 폴더는 유지한다. 기존 정확한 source-file SHA를 기록한 검수 증거는 소급 변경하지 않으며, 해당 원본은 별도 검토 없이 변환하지 않는다.
+
+2026-10-30 변환은 [파일별 이전/이후 SHA 및 PNG 연결 목록](asset-archive-20261030/linked-svg-references.json)을 따른다. 이미지 href 외 XML·path·좌표·레이어·속성은 바꾸지 않았고, 시안의 decoded bytes와 현재 PNG가 동일함을 검증했다. runtime에 이미지 참조를 삽입하는 변경이 아니다.

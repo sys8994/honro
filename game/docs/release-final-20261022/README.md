@@ -25,7 +25,7 @@
 
 ## 추가 수정 범위
 
-원본 [세로 결함 화면](../stage10-world-outro-ending-replay/evidence/final/map/map-outro-first-390x844.jpg)과 가로 JPG를 직접 열어 확인했고, 선행 완료 소스에도 목표/전투 표시가 남아 있었다.
+원본 [세로 결함 화면](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/stage10-world-outro-ending-replay/evidence/final/map/map-outro-first-390x844.jpg)과 가로 JPG를 직접 열어 확인했고, 선행 완료 소스에도 목표/전투 표시가 남아 있었다.
 
 `HonroSodanWithdrawal.worldOutroDialogue(app)`는 다음 조건을 모두 만족할 때만 참이다: 정식 10장, `phase=won`, `worldOutro=2`, battle 화면, `after=outcome`, 현재 대사의 camera ID가 `10:safe-exit`. 일반 staging 메타데이터가 붙은 대사도 포함하며 다른 장·전투·도착 대사·27장 검은 공간에는 적용하지 않는다.
 
@@ -76,11 +76,11 @@
 
 보관한 **235개 실제 JPG 모두 1MB 미만**, 최대 **252,644바이트**다. [전체 파일/바이트/크기/SHA](evidence/screenshots.json). 54개 원본을 직접 열었으며, 종합 27장 세 화면비의 5컷 전부와 10장 세 화면비의 첫/중간/마지막 전부를 포함한다. [직접 연 파일과 판단](evidence/pixel-review.json). 일부 27장 JPG는 DPR 2이며 표의 viewport는 CSS px다. 이미지 생성·합성·보정은 하지 않았다.
 
-- 10장 실제 맵: [첫 390×844](evidence/holistic-map/map-outro-first-390x844.jpg), [중간 360×800](evidence/holistic-map/map-outro-middle-360x800.jpg), [마지막 844×390](evidence/holistic-map/map-outro-last-844x390.jpg).
-- 혼잡 출구 fixture: [세로](evidence/holistic-crowd-corrected/crowded-safe-map-390x844.jpg), [가로 재개](evidence/holistic-crowd-corrected/crowded-safe-resume-844x390.jpg).
-- 27장 긴 문장: [360×800](evidence/holistic-void/final/360x800-cut4.jpg), [844×390](evidence/holistic-void/final/844x390-cut4.jpg).
-- 보고서/지도: [실제 XP·경지 상승](evidence/focus3-report-map/focus1-summary-390x844.jpg), [가로 고정 다음 동작](evidence/holistic-report-map/holistic-summary-bottom-844x390.jpg), [작은 기록 메뉴](evidence/holistic-report-map/focus2-record-menu-390x844.jpg), [확대 9/10 라벨과 곡선](evidence/focus3-report-map/focus2-map-zoom-390x844.jpg).
-- 독립 엔딩: [1막 세로](evidence/holistic-report-map/focus3-gallery-act1-390x844.jpg), [2막 가로](evidence/holistic-report-map/focus3-gallery-act2-844x390.jpg), [3막 작은 세로](evidence/holistic-report-map/focus3-gallery-act3-360x800.jpg), [원 여정첩 복귀](evidence/holistic-report-map/holistic-journal-return-360x800.jpg).
+- 10장 실제 맵: [첫 390×844](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/release-final-20261022/evidence/holistic-map/map-outro-first-390x844.jpg), [중간 360×800](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/release-final-20261022/evidence/holistic-map/map-outro-middle-360x800.jpg), [마지막 844×390](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/release-final-20261022/evidence/holistic-map/map-outro-last-844x390.jpg).
+- 혼잡 출구 fixture: [세로](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/release-final-20261022/evidence/holistic-crowd-corrected/crowded-safe-map-390x844.jpg), [가로 재개](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/release-final-20261022/evidence/holistic-crowd-corrected/crowded-safe-resume-844x390.jpg).
+- 27장 긴 문장: [360×800](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/release-final-20261022/evidence/holistic-void/final/360x800-cut4.jpg), [844×390](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/release-final-20261022/evidence/holistic-void/final/844x390-cut4.jpg).
+- 보고서/지도: [실제 XP·경지 상승](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/release-final-20261022/evidence/focus3-report-map/focus1-summary-390x844.jpg), [가로 고정 다음 동작](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/release-final-20261022/evidence/holistic-report-map/holistic-summary-bottom-844x390.jpg), [작은 기록 메뉴](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/release-final-20261022/evidence/holistic-report-map/focus2-record-menu-390x844.jpg), [확대 9/10 라벨과 곡선](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/release-final-20261022/evidence/focus3-report-map/focus2-map-zoom-390x844.jpg).
+- 독립 엔딩: [1막 세로](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/release-final-20261022/evidence/holistic-report-map/focus3-gallery-act1-390x844.jpg), [2막 가로](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/release-final-20261022/evidence/holistic-report-map/focus3-gallery-act2-844x390.jpg), [3막 작은 세로](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/release-final-20261022/evidence/holistic-report-map/focus3-gallery-act3-360x800.jpg), [원 여정첩 복귀](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/release-final-20261022/evidence/holistic-report-map/holistic-journal-return-360x800.jpg).
 
 **미실행:** 전체 30장 정상 완주, 10장 앞선 6턴 전투의 새 완주, 20/30장 정상 전투 완주, 전체 `verify`, 실물 모바일/Safari, OS 백그라운드 수명주기, 장시간 성능, 공개 Pages 검증. 자동 검사나 viewport 에뮬레이션을 이 항목의 통과로 부르지 않는다.
 

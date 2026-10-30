@@ -30,6 +30,6 @@ node tests/camp-skill-ux.mjs
 - 장착 순서 교체 identity 유지, 실제 버튼 선택 aria-pressed 확인, 기력 부족 표시와 skillAllowed 잠금 확인. 현행 재설계 스킬은 cooldown이 null이므로 **A99 cooldown=2 검사 전용 fixture**로 기존 cooldown 표시 계약을 확인했다. 게임 밸런스는 수정하지 않았다.
 - 네트워크 A01 abort→벡터 오류 폴백→요청 차단 해제→명시 retry→ready 복구 확인. 모닥불 rank/stat 갱신 때 아이콘/기예 버튼 identity 유지.
 - 기존 84개 manifest/스킬 수치·이름·플래그·원본 SHA 검사 통과. camp-persistence 11사례, camp-skill-ux 장착/해제/교체/저장/전투 계약 통과. build/typecheck 통과.
-- 실제 [수정 HUD JPG](evidence/icon-fixed.jpg), [기준 HUD JPG](evidence/icon-baseline.jpg)를 직접 열어 amber 사각 아이콘과 작은 오버레이/여백을 확인했다. 각 1MB 미만.
+- 실제 [수정 HUD JPG](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/icon-cache-journey-navigation/evidence/icon-fixed.jpg), [기준 HUD JPG](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/icon-cache-journey-navigation/evidence/icon-baseline.jpg)를 직접 열어 amber 사각 아이콘과 작은 오버레이/여백을 확인했다. 각 1MB 미만.
 
 검사는 허공터와 프로필 fixture이며 전체 정상 캠페인/실물 모바일 검수가 아니다. 최초 미준비 이미지 로딩과 실제 오류에는 기존 벡터가 의도적으로 표시된다. 준비 완료 후 반복 선택의 SVG 재노출과 구별한다. 페이지 종료 이후 디코딩 메모리 보존을 주장하지 않는다. 별도 feat/stage-clear-report 및 fix/joystick-aim-sector-release와 최종 master 통합/빌드 검증이 필요하다.

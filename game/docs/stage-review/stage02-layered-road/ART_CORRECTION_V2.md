@@ -4,8 +4,8 @@
 
 | 같은 카메라 | 이전 | 교정 후 |
 |---|---|---|
-| 전체 x2150/y1650/실제 최소 줌0.2117647/1440×900 | [이전 전체](correction-v2/before/stage02-overview.png) | [교정 전체](correction-v2/final/stage02-overview.png) |
-| 도로 시작 x700/y2780/줌0.65/1440×900 | [이전 도로](correction-v2/before/stage02-road-start.png) | [교정 도로](correction-v2/final/stage02-road-start.png) |
+| 전체 x2150/y1650/실제 최소 줌0.2117647/1440×900 | [이전 전체](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/stage-review/stage02-layered-road/correction-v2/before/stage02-overview.png) | [교정 전체](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/stage-review/stage02-layered-road/correction-v2/final/stage02-overview.png) |
+| 도로 시작 x700/y2780/줌0.65/1440×900 | [이전 도로](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/stage-review/stage02-layered-road/correction-v2/before/stage02-road-start.png) | [교정 도로](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/stage-review/stage02-layered-road/correction-v2/final/stage02-road-start.png) |
 
 좌표/줌 metadata가 같은지 검사하고 원본 파일을 그대로 보존했다. 이미지 생성·편집·합성은 하지 않았다.
 

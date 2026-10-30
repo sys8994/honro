@@ -1,0 +1,102 @@
+{
+  "sourceSnapshot": "569e11123b2e077ef1f37aeaf92f44d131df73e5",
+  "remoteCommitVerified": true,
+  "remoteTree": "07ecb51f79ee0109a487885715bf8690adb733a4",
+  "reason": "Historical generated trace outputs, not active test/profile fixtures. Source data retained in immutable remote history.",
+  "removedBytes": 63171882,
+  "files": [
+    {
+      "path": "game/docs/stage-review/stage02-road-strategy/evidence/combat/combat.json",
+      "bytes": 17066776,
+      "sha256": "195fc61e406166df8acf770e0ef558bf300106f8d7bf63b40262550cb2d45b9a",
+      "suffix": ".json",
+      "externalExactRefs": [],
+      "externalDirectoryRefs": [
+        {
+          "target": "game/docs/stage-review/stage02-road-strategy/evidence/combat",
+          "sources": [
+            "tests/stage2-layered-save.mjs"
+          ]
+        }
+      ],
+      "archiveUrl": "https://github.com/sys8994/honro/blob/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/stage-review/stage02-road-strategy/evidence/combat/combat.json"
+    },
+    {
+      "path": "game/docs/stage-review/stage08-bier/evidence/old-navigator-stopped.json",
+      "bytes": 12316141,
+      "sha256": "9a818ce86e1334a68826df9da51911f955e75a59afc98a422992681148d954d4",
+      "suffix": ".json",
+      "externalExactRefs": [],
+      "externalDirectoryRefs": [],
+      "archiveUrl": "https://github.com/sys8994/honro/blob/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/stage-review/stage08-bier/evidence/old-navigator-stopped.json"
+    },
+    {
+      "path": "game/docs/stage-review/stage08-bier/evidence/objectives-policy-failed.json",
+      "bytes": 4489707,
+      "sha256": "5caa4733b59d0eb31b8ba01ccda59380923939566df2fb0447d13a7e4734f3a5",
+      "suffix": ".json",
+      "externalExactRefs": [],
+      "externalDirectoryRefs": [],
+      "archiveUrl": "https://github.com/sys8994/honro/blob/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/stage-review/stage08-bier/evidence/objectives-policy-failed.json"
+    },
+    {
+      "path": "game/docs/stage-review/stage08-bier/evidence/clean-policy-failed.json",
+      "bytes": 2819709,
+      "sha256": "f0a53c82db52a366098f32db193765f86d1fe7fa03c2fe174589c072092d61e0",
+      "suffix": ".json",
+      "externalExactRefs": [],
+      "externalDirectoryRefs": [],
+      "archiveUrl": "https://github.com/sys8994/honro/blob/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/stage-review/stage08-bier/evidence/clean-policy-failed.json"
+    },
+    {
+      "path": "game/docs/stage-review/stage08-bier/evidence/regional-policy-failed.json",
+      "bytes": 2721167,
+      "sha256": "06468bf5371a9782c6830c5bd70c903aed90ce861b65587e12aa6d547a5fcba1",
+      "suffix": ".json",
+      "externalExactRefs": [],
+      "externalDirectoryRefs": [],
+      "archiveUrl": "https://github.com/sys8994/honro/blob/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/stage-review/stage08-bier/evidence/regional-policy-failed.json"
+    },
+    {
+      "path": "game/docs/stage-review/stage08-bier/evidence/normal-result.json",
+      "bytes": 3521537,
+      "sha256": "9855392551fc2b2792dab4016d025ee7e31e9403219fa12b77529644e9e9a3e5",
+      "suffix": ".json",
+      "externalExactRefs": [],
+      "externalDirectoryRefs": [],
+      "archiveUrl": "https://github.com/sys8994/honro/blob/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/stage-review/stage08-bier/evidence/normal-result.json"
+    },
+    {
+      "path": "review/stage22/normal-input-roof/trace.json",
+      "bytes": 10550072,
+      "sha256": "1443424029734274a413403d8e3f01eb3dc8e6d405b2561f0d5c1bfd35778872",
+      "suffix": ".json",
+      "externalExactRefs": [],
+      "externalDirectoryRefs": [
+        {
+          "target": "review/stage22",
+          "sources": [
+            "tests/stage22-place-capture.mjs"
+          ]
+        }
+      ],
+      "archiveUrl": "https://github.com/sys8994/honro/blob/569e11123b2e077ef1f37aeaf92f44d131df73e5/review/stage22/normal-input-roof/trace.json"
+    },
+    {
+      "path": "review/stage22/normal-input-before-roof/trace.json",
+      "bytes": 9686773,
+      "sha256": "ff296a835242679cc8aa2e28d35be8f4740d606f392934c2e7d539e124324389",
+      "suffix": ".json",
+      "externalExactRefs": [],
+      "externalDirectoryRefs": [
+        {
+          "target": "review/stage22",
+          "sources": [
+            "tests/stage22-place-capture.mjs"
+          ]
+        }
+      ],
+      "archiveUrl": "https://github.com/sys8994/honro/blob/569e11123b2e077ef1f37aeaf92f44d131df73e5/review/stage22/normal-input-before-roof/trace.json"
+    }
+  ]
+}

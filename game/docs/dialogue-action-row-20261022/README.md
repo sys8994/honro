@@ -14,7 +14,7 @@
 
 전체 UI 검수32위치(390×844/844×390, 기본4인·긴 담허/문탁/서술/text-only, 스크롤0/50/100%)에서 겹침0·활성 버튼 rect/hit-test/이전·넘기기·다음 touch 통과. 열린 대사의3회 회전/resize도 같은 panel을 유지했다. 짧은4인 창·본문·버튼 rect는424c와 유지(1.1px 허용오차). guide의 background는 기존 rgb(13,32,36)다. DOMRange의 글자 rect를 실제 본문 clip과 교차해 검사하며, 숨겨진 조각을 그대로 겹침으로 세던 초기 probe 오류는 보정했다.
 
-[짧은 대사 전후](evidence/mobile-row-short.jpg) · [투명 CSS만 적용했을 때/최종 긴 대사](evidence/mobile-row-long.jpg) · [가로 긴 대사](evidence/landscape-row-long.jpg) · [text-only 중간](evidence/text-only-middle.jpg). 원래 사용자 첨부를 열었다고 주장하지 않는다. 생산13장 UI/기존 문구의 fixture다.
+[짧은 대사 전후](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/dialogue-action-row-20261022/evidence/mobile-row-short.jpg) · [투명 CSS만 적용했을 때/최종 긴 대사](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/dialogue-action-row-20261022/evidence/mobile-row-long.jpg) · [가로 긴 대사](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/dialogue-action-row-20261022/evidence/landscape-row-long.jpg) · [text-only 중간](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/dialogue-action-row-20261022/evidence/text-only-middle.jpg). 원래 사용자 첨부를 열었다고 주장하지 않는다. 생산13장 UI/기존 문구의 fixture다.
 
 ## 누락 원인과 현재 소비 경로
 
@@ -32,11 +32,11 @@
 
 camp adapter는 detached template의1px 투명 marker를 공통 host로 바꾼 뒤 표시한다. 큰 벡터 canvas/toDataURL 생성이나 화면별 이미지 cache를 만들지 않는다. 안정된 app/modal owner의 이름 있는 slot에 canvas를 보관한다. 원본 PNG/clean 설오/배포WebP·화풍·기존 box 크기·스킬 아이콘/게임플레이는 바꾸지 않았다.
 
-[허공터 모바일 전후](evidence/mobile-training.jpg) · [가로 전후](evidence/landscape-training.jpg) · [모닥불 능력치 전후](evidence/mobile-camp.jpg) · [현재 인물](evidence/mobile-current.jpg). 가로 카드 이름의 기존 세로 줄바꿈도 전후 같으며 이 작업에서 레이아웃을 재설계하지 않았다. 비교 JPG는 실제 screenshot을 리사이즈 없이 나란히 놓은 자료다.
+[허공터 모바일 전후](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/dialogue-action-row-20261022/evidence/mobile-training.jpg) · [가로 전후](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/dialogue-action-row-20261022/evidence/landscape-training.jpg) · [모닥불 능력치 전후](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/dialogue-action-row-20261022/evidence/mobile-camp.jpg) · [현재 인물](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/dialogue-action-row-20261022/evidence/mobile-current.jpg). 가로 카드 이름의 기존 세로 줄바꿈도 전후 같으며 이 작업에서 레이아웃을 재설계하지 않았다. 비교 JPG는 실제 screenshot을 리사이즈 없이 나란히 놓은 자료다.
 
 ## 검사와 보존
 
-전체 소비 경로12항목 통과: cold4카드 loading/벡터 flash0, 모바일/가로 카드·현재 인물·모닥불5개 초상, 같은 크기,12회 개폐 같은 canvas/추가 paints·request·decode0, 모든 경로4request/4decode/4entries 공유. 강제 Hwigyeom 요청 실패도12개폐 후 vector build/fallback paint/request/decode 증가0이다. [실패 시 정상 fallback](evidence/training-error-fallback.jpg).
+전체 소비 경로12항목 통과: cold4카드 loading/벡터 flash0, 모바일/가로 카드·현재 인물·모닥불5개 초상, 같은 크기,12회 개폐 같은 canvas/추가 paints·request·decode0, 모든 경로4request/4decode/4entries 공유. 강제 Hwigyeom 요청 실패도12개폐 후 vector build/fallback paint/request/decode 증가0이다. [실패 시 정상 fallback](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/dialogue-action-row-20261022/evidence/training-error-fallback.jpg).
 
 별도 ready/abort/8초timeout 정착 후 같은 draw120회의 target clearRect/drawImage0, resize 때1회 통과. common Game/Workshop/직접 Playtest build·syntax·native NPC identity·web-split·retention 검사 통과. 처음 probe가 toolbar의 기예 icon img를 옛 인물 img로 셌던 부분을 구분했다. 새 승인 초상4개와 기예 icon은 별개이며 icon 자체를 교체하지 않았다.
 

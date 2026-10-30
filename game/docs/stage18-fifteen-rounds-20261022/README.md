@@ -48,11 +48,11 @@ normal / seed19388 / 4동행 / 장착4슬롯 / 실제 `C.train` / 능력치 수�
 
 모두1MB 미만. 카메라·frame scheduling만 검사 목적으로 고정했다. 시작의 in-memory 기록은 첫 export 이전이라 Continue가 빈 `encounterDensity.existingWarnings={}` 하나를 추가한다. 그 외 전투 내용은 같고, R3/R8/R10 실제 export 저장은 whole-battle exact다.
 
-- [시작: 억제진과 고정구](screenshots/entry.jpg)
-- [R3: 하강 안전 경고](screenshots/lowering-warning.jpg)
-- [모바일 R8: 다음 목표/종지기 방향](screenshots/mobile-next-action.jpg)
-- [실제 R10 완료 대사](screenshots/actual-outro.jpg)
-- [실제 단일 정산·10턴·전투불능0](screenshots/actual-result.jpg)
-- [19장 진입](screenshots/actual-next-stage.jpg)
+- [시작: 억제진과 고정구](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/stage18-fifteen-rounds-20261022/screenshots/entry.jpg)
+- [R3: 하강 안전 경고](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/stage18-fifteen-rounds-20261022/screenshots/lowering-warning.jpg)
+- [모바일 R8: 다음 목표/종지기 방향](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/stage18-fifteen-rounds-20261022/screenshots/mobile-next-action.jpg)
+- [실제 R10 완료 대사](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/stage18-fifteen-rounds-20261022/screenshots/actual-outro.jpg)
+- [실제 단일 정산·10턴·전투불능0](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/stage18-fifteen-rounds-20261022/screenshots/actual-result.jpg)
+- [19장 진입](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/stage18-fifteen-rounds-20261022/screenshots/actual-next-stage.jpg)
 
 저장 비교는 [saved-contracts.json](saved-contracts.json), UI 흐름은 [outcome-browser.json](outcome-browser.json), 공개 보존은 [public-preservation.json](public-preservation.json). 입력 시뮬레이션 사례 하나로 모든 성장·난이도·의도적 대기·수동 오조작을15턴 이내라고 보장하지 않는다. 중단된 묵종 미술 a3b473 및 후속 후보는 포함하지 않았다. 부모가 새 SVG 시안에 사용자 승인을 받기 전 새 종을 넣지 않으며 현재 공개 미술·종 물리/기계를 유지한다.

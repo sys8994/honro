@@ -17,8 +17,8 @@
 
 [대표 trace](representative-trace.json)에 상/하 양쪽 19/20/21도, aimOnly의 큰 방향 전환/중앙 통과, 45도 시작 후 x=.15/y=.98 미세 이동+상향 조준, 수직 복귀를 추렸다. aimOnly는 이동 호출 0, 월드 x/y/이동도 유지이며 raw 노브만 변했다. ±.61 방향 전환에서 sin(angle) 높낮이가 보존됐다. 21도 및 45도 이후 미세 입력은 실제 이동과 예산 소비가 발생했다. 전체 255개 판정도 통과했다. 원본 전체 trace는 `_local/reports/joystick-master/browser/input-trace.json`에 보존한다.
 
-- [390×844 CSS px 원본 PNG](../evidence/mobile-390-aim-only.png)
-- [844×390 CSS px 원본 PNG](../evidence/mobile-844-aim-only.png)
+- [390×844 CSS px 원본 PNG](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/stage-review/joystick-intent/evidence/mobile-390-aim-only.png)
+- [844×390 CSS px 원본 PNG](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/stage-review/joystick-intent/evidence/mobile-844-aim-only.png)
 - [소스/생성 문서 SHA-256](build-provenance.json)
 
 PNG는 실제 로컬 Chromium/DPR2 캡처다. 조준 라벨과 raw 노브가 보이고 이동도는 1964/1964다. 기존 7 CSS px 라벨은 작은 보조 표기이며 노브/버튼을 가리지 않고 pointer-events:none이다. 실폰에서 손가락에 가려지는 상태와 가독성은 미검증이다.

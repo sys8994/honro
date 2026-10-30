@@ -2,7 +2,7 @@
 
 기준 master `1f1b267c2d23bc5975af5841c560e4413291330b`, 작업 브랜치 `art/stage14-vector-finish-20261022`. 같은 지형 미술 세션을 재사용한다. 이전 소스 `a6d47a5271012d5657d33fe8637b3f55385812f3`는 부모의 실제 픽셀 검수에서 보류됐다. 현재는 그 후보의 상·중층 중간 형태와 후벽 구성만 추가 교정한다. 아래 이전 내부 검수 기록은 부모 최종 승인 근거가 아니다. master/Pages는 변경하지 않았다. 아래 첫 구현/교정 중 기록은 중간 상태 이력이다.
 
-**최신 교정 후보:** 소스·검사 `2e3557530def8cd468da1dfdc1e71d1960dd2e1e`. [upper](review/stage14-shape2-upper.jpg) · [middle](review/stage14-shape2-middle.jpg) · [overview](review/stage14-shape2-overview.jpg) · [실제 모바일 기본뷰](review/stage14-shape2-mobile-default.jpg). 부모 최종 미술 판단 대기, master/Pages 미변경. 최신 교정 결과는 문서 마지막의 shape2 항목이다.
+**최신 교정 후보:** 소스·검사 `2e3557530def8cd468da1dfdc1e71d1960dd2e1e`. [upper](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/stage-review/stage14-vector-finish-20261022/review/stage14-shape2-upper.jpg) · [middle](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/stage-review/stage14-vector-finish-20261022/review/stage14-shape2-middle.jpg) · [overview](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/stage-review/stage14-vector-finish-20261022/review/stage14-shape2-overview.jpg) · [실제 모바일 기본뷰](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/stage-review/stage14-vector-finish-20261022/review/stage14-shape2-mobile-default.jpg). 부모 최종 미술 판단 대기, master/Pages 미변경. 최신 교정 결과는 문서 마지막의 shape2 항목이다.
 
 
 ## 설계·보존 카드
@@ -18,7 +18,7 @@
 
 부모의 `stage14-before-overview.png`, `stage14-before-middle.png`는 지원 materialize 경로를 사용했으나 두 파일 모두 `library file transfer failed: download failed`, 실제 로컬 파일 존재 false다. 임의 URL/우회 인증/부모 로컬 경로를 사용하지 않았다. 원본 PNG 픽셀 확인을 주장하지 않는다.
 
-대신 동일1f1b267 생성물의 실제 UI에서 설정→검수 모드→여정첩2막14장→휴식터→진입→대화 넘기기를 클릭하고1180×757의 휠/중층 팬을 직접 촬영·열었다. [기준 상층 줌아웃](review/before-upper.jpg), [기준 중층 팬](review/before-middle.jpg). 실제 UI에서 거대 단색 회색 전경과 몇 개의 큰 윤곽형 암편, 후면의 단일 판 같은 면을 확인했다. 전체 세로 구조도 별도 고정 카메라에서 직접 보았다. 자동 원자료는 `_local/reports/stage14-vector-finish/baseline/`에만 둔다.
+대신 동일1f1b267 생성물의 실제 UI에서 설정→검수 모드→여정첩2막14장→휴식터→진입→대화 넘기기를 클릭하고1180×757의 휠/중층 팬을 직접 촬영·열었다. [기준 상층 줌아웃](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/stage-review/stage14-vector-finish-20261022/review/before-upper.jpg), [기준 중층 팬](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/stage-review/stage14-vector-finish-20261022/review/before-middle.jpg). 실제 UI에서 거대 단색 회색 전경과 몇 개의 큰 윤곽형 암편, 후면의 단일 판 같은 면을 확인했다. 전체 세로 구조도 별도 고정 카메라에서 직접 보았다. 자동 원자료는 `_local/reports/stage14-vector-finish/baseline/`에만 둔다.
 
 ## 공개 그래프 보존 선행 조건
 
@@ -61,11 +61,11 @@
 
 선택 사진만 Git에 보존한다. 아래 최종9장 각각39,690~90,771B로1MB 미만이며 대량 자동 캡처는 Git에 넣지 않았다.
 
-- 실제 UI 상층: [변경 전](review/before-upper.jpg) → [최종 상층](review/stage14-final-upper.jpg)
-- 실제 UI 중층 팬: [변경 전](review/before-middle.jpg) → [최종 중층](review/stage14-final-middle.jpg)
-- [전체 연결](review/stage14-final-overview.jpg), [기본 입장/아군·탄도](review/stage14-final-entry.jpg)
-- [가족 집터](review/stage14-final-family.jpg), [다리](review/stage14-final-bridge.jpg), [세로 모바일](review/stage14-final-mobile.jpg)
-- [최종 좌측 끝 팬](review/stage14-final-left-pan.jpg), [최종 우측 끝 팬](review/stage14-final-right-pan.jpg)
+- 실제 UI 상층: [변경 전](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/stage-review/stage14-vector-finish-20261022/review/before-upper.jpg) → [최종 상층](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/stage-review/stage14-vector-finish-20261022/review/stage14-final-upper.jpg)
+- 실제 UI 중층 팬: [변경 전](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/stage-review/stage14-vector-finish-20261022/review/before-middle.jpg) → [최종 중층](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/stage-review/stage14-vector-finish-20261022/review/stage14-final-middle.jpg)
+- [전체 연결](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/stage-review/stage14-vector-finish-20261022/review/stage14-final-overview.jpg), [기본 입장/아군·탄도](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/stage-review/stage14-vector-finish-20261022/review/stage14-final-entry.jpg)
+- [가족 집터](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/stage-review/stage14-vector-finish-20261022/review/stage14-final-family.jpg), [다리](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/stage-review/stage14-vector-finish-20261022/review/stage14-final-bridge.jpg), [세로 모바일](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/stage-review/stage14-vector-finish-20261022/review/stage14-final-mobile.jpg)
+- [최종 좌측 끝 팬](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/stage-review/stage14-vector-finish-20261022/review/stage14-final-left-pan.jpg), [최종 우측 끝 팬](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/stage-review/stage14-vector-finish-20261022/review/stage14-final-right-pan.jpg)
 
 전달용 상층·중층·모바일3장을 Library 지원 일괄 저장 경로로 시도했으나 `hosted apps tools/list request failed: network`로 시작 단계에서 실패했다. 새 Library 파일/ID 생성 없음, 저장 성공으로 보고하지 않으며 재시도·우회하지 않았다. 위 Git의 선택 사진은 정상 보존된다. 참조 PNG의 다운로드 실패와 전달 JPG의 저장 실패는 서로 다른 작업이다.
 
@@ -108,9 +108,9 @@
 
 전달 JPG7장 모두38,058~91,612B로1MB 미만이다. 이전 후보 사진을 덮지 않고 다음 선택 사진만 추가했다.
 
-- [교정 상층](review/stage14-shape2-upper.jpg), [교정 중층](review/stage14-shape2-middle.jpg), [교정 전체](review/stage14-shape2-overview.jpg)
-- [상층 앞면 근접](review/stage14-shape2-upper-near.jpg), [실제 모바일 기본뷰](review/stage14-shape2-mobile-default.jpg)
-- [교정 좌측 끝](review/stage14-shape2-left-pan.jpg), [교정 우측 끝](review/stage14-shape2-right-pan.jpg)
+- [교정 상층](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/stage-review/stage14-vector-finish-20261022/review/stage14-shape2-upper.jpg), [교정 중층](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/stage-review/stage14-vector-finish-20261022/review/stage14-shape2-middle.jpg), [교정 전체](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/stage-review/stage14-vector-finish-20261022/review/stage14-shape2-overview.jpg)
+- [상층 앞면 근접](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/stage-review/stage14-vector-finish-20261022/review/stage14-shape2-upper-near.jpg), [실제 모바일 기본뷰](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/stage-review/stage14-vector-finish-20261022/review/stage14-shape2-mobile-default.jpg)
+- [교정 좌측 끝](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/stage-review/stage14-vector-finish-20261022/review/stage14-shape2-left-pan.jpg), [교정 우측 끝](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/stage-review/stage14-vector-finish-20261022/review/stage14-shape2-right-pan.jpg)
 
 `npm run build`와 `node tests/stage14-vector-finish.mjs` 통과(`/tmp/stage14-shape2-{build,check}.log`, `_local/.../preservation.json`). 이전 후보 대비 상층 외의14장 재질/집 접촉/목교 plane 전체가 같은 것도 추가 확인했다. 기준1f1b267의 전체 게임플레이/17경로/충돌/배우/NPC/목표/대사·타29장·다른 Library 및 전역 렌더 bytes 동등을 계속 유지한다. 현재 생성물의 후벽/재질과 canonical 데이터 동등, 저작 재현·멱등성, 정적 prepare 재사용/반복 draw 새Path2D0/렌더 battle 순수성/Canvas 상태/sceneVersion 무효화가 통과했다. 이것은 draw 비용0·성능 개선이나 미술 최종 승인 근거가 아니다.
 

@@ -29,10 +29,10 @@
 
 | 직접 연 최종 JPG | 조건 |
 | --- | --- |
-| [새 미술 중앙](review/fresh-center.jpg) | fresh 디버그 UI 입장→실제 휠/중앙 팬,1180×757 |
-| [새 미술 모바일](review/fresh-mobile.jpg) | fresh 디버그 UI,390×844 실제 휠/중앙 팬; 실기기 아님 |
-| [실제 R17 저장](review/actual-r17-continue.jpg) | 기존 R17 won snapshot 복원·명시적 검수 카메라; 옛 미술/route 유지 |
-| [실제 완료 흐름](review/actual-r17-completion-dialogue.jpg) | 복원 후 일반 outcome의 보호/기록/완료 대사 흐름; 상태 강제완료 없음 |
+| [새 미술 중앙](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/stage17-art-route-release-20261022/review/fresh-center.jpg) | fresh 디버그 UI 입장→실제 휠/중앙 팬,1180×757 |
+| [새 미술 모바일](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/stage17-art-route-release-20261022/review/fresh-mobile.jpg) | fresh 디버그 UI,390×844 실제 휠/중앙 팬; 실기기 아님 |
+| [실제 R17 저장](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/stage17-art-route-release-20261022/review/actual-r17-continue.jpg) | 기존 R17 won snapshot 복원·명시적 검수 카메라; 옛 미술/route 유지 |
+| [실제 완료 흐름](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/stage17-art-route-release-20261022/review/actual-r17-completion-dialogue.jpg) | 복원 후 일반 outcome의 보호/기록/완료 대사 흐름; 상태 강제완료 없음 |
 
 사진은 모두16c9aee4 생성물이며 각각1MB 미만이다. 중앙의 인양기/목재 연결·앞길/뒤 암면 구분과 모바일의 기존 목표/HUD·바닥 재질을 직접 확인했다. 실제R17에서는 담허 전투불능·설오347HP 등 저장 상태를 유지한다.
 

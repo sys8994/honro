@@ -27,11 +27,11 @@
 
 | 인물 |390×844 모바일|844×390 가로|
 |---|---|---|
-|설오|[비교](evidence/mobile-seoro.jpg)|[비교](evidence/landscape-seoro.jpg)|
-|담허|[비교](evidence/mobile-damheo.jpg)|[비교](evidence/landscape-damheo.jpg)|
-|휘겸|[비교](evidence/mobile-hwigyeom.jpg)|[비교](evidence/landscape-hwigyeom.jpg)|
-|소단|[비교](evidence/mobile-sodan.jpg)|[비교](evidence/landscape-sodan.jpg)|
+|설오|[비교](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/dialogue-portrait-zoomout-20261022/evidence/mobile-seoro.jpg)|[비교](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/dialogue-portrait-zoomout-20261022/evidence/landscape-seoro.jpg)|
+|담허|[비교](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/dialogue-portrait-zoomout-20261022/evidence/mobile-damheo.jpg)|[비교](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/dialogue-portrait-zoomout-20261022/evidence/landscape-damheo.jpg)|
+|휘겸|[비교](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/dialogue-portrait-zoomout-20261022/evidence/mobile-hwigyeom.jpg)|[비교](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/dialogue-portrait-zoomout-20261022/evidence/landscape-hwigyeom.jpg)|
+|소단|[비교](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/dialogue-portrait-zoomout-20261022/evidence/mobile-sodan.jpg)|[비교](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/dialogue-portrait-zoomout-20261022/evidence/landscape-sodan.jpg)|
 
-[긴 대사 스크롤 끝](evidence/special-설오.jpg) · [주민 vector](evidence/special-주민.jpg) · [text-only 스크롤 끝](<evidence/special-새 주민.jpg>).
+[긴 대사 스크롤 끝](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/dialogue-portrait-zoomout-20261022/evidence/special-설오.jpg) · [주민 vector](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/dialogue-portrait-zoomout-20261022/evidence/special-주민.jpg) · [text-only 스크롤 끝](<evidence/special-새 주민.jpg>).
 
 Chromium headless의 touch/viewport 모사, 음악 off. 물리 Android/Safari·전체 캠페인·성능 개선·18장 수정 검사는 하지 않았다. 이미지 재생성/편집·원격 차단·권한 거부는 없다. 새 충돌 경계는 portraits.js imageCrop 한 곳이며 단계/원고/다른 세션 코드를 가져오지 않았다.

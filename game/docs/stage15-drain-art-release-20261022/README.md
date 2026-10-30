@@ -57,8 +57,8 @@ native 미술 검사의 옛 `stage15-drain-render-fixture`는 강제 활성 clon
 
 소수6장, 각각1MB 미만. 중앙/모바일은 실제 UI 팬, 전체와 배수 구간은 명시한 고정 검수 카메라다. 배수 전·후·Continue를 직접 열어 물선 하강/발판 경계/두 minecart의 접촉과 Continue 후 같은 배치를 확인했다.
 
-- [중앙](review/center.jpg) · [전체](review/overview.jpg) · [모바일](review/mobile.jpg)
-- [수문 직전](review/drain-before.jpg) → [실제 배수 후](review/drain-after.jpg) → [실제 export·Continue 후](review/drain-continue.jpg)
+- [중앙](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/stage15-drain-art-release-20261022/review/center.jpg) · [전체](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/stage15-drain-art-release-20261022/review/overview.jpg) · [모바일](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/stage15-drain-art-release-20261022/review/mobile.jpg)
+- [수문 직전](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/stage15-drain-art-release-20261022/review/drain-before.jpg) → [실제 배수 후](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/stage15-drain-art-release-20261022/review/drain-after.jpg) → [실제 export·Continue 후](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/stage15-drain-art-release-20261022/review/drain-continue.jpg)
 
 ## 발행 파일 보존과 남은 제한
 

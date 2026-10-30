@@ -44,10 +44,10 @@
 
 | 검수 | 확인 결과 | 증거 |
 | --- | --- | --- |
-| 집중 1: 속도·입력 | 첫 대사 전체 즉시 표시, 진입 약 1.4초, 실제 모바일 탭 1회당 1컷, compatibility click·100회 연속 click·더블클릭·키 반복 방지, Enter/Space, 버튼 전파 차단, 설정/포커스 순환 | [입력 요약](evidence/input/summary.json), [모바일 첫 컷](evidence/input/mobile-immediate-line.jpg) |
-| 집중 2: 모든 컷 반응형 | 4개 화면비 × 5컷의 실제 Canvas alpha 픽셀과 DOM 문장 box/줄 box를 대조. 모두 겹침 0px². 긴 4컷에서 세로↔가로 회전 후에도 원래 복귀 snapshot 유지 | [컷별 수치](evidence/layout/summary.json), [360 세로 긴 대사](evidence/layout/360x800-cut4.jpg), [844 가로 긴 대사](evidence/layout/844x390-cut4.jpg) |
-| 집중 3: 복귀·저장 | FALLING/DARKENING/VOID/RETURNING 각 실제 reload → READY/안전 위치. 전환 3단계의 보이는 스킵 → 정확한 원상 복원, 100회 추가 skip 무동작, 완료 후 reload → RESOLVED/복귀 대화 3줄. hidden-document 정지 및 기존 자동 일시정지 복귀 | [상태 요약](evidence/state/summary.json), [암전 중 스킵 후 재개](evidence/final/skip-darkening-reloaded-return.jpg) |
-| 별도 종합 | 동일 실행 소스에서 위 흐름을 다시 결합하고 실제 Workshop Playtest iframe, BGM 원 스트림/재생 위치/사용자 음소거 유지까지 확인 | [종합 요약](evidence/final/summary.json), [Workshop](evidence/final/workshop-void.jpg) |
+| 집중 1: 속도·입력 | 첫 대사 전체 즉시 표시, 진입 약 1.4초, 실제 모바일 탭 1회당 1컷, compatibility click·100회 연속 click·더블클릭·키 반복 방지, Enter/Space, 버튼 전파 차단, 설정/포커스 순환 | [입력 요약](evidence/input/summary.json), [모바일 첫 컷](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/act3-void-dialogue-pacing/evidence/input/mobile-immediate-line.jpg) |
+| 집중 2: 모든 컷 반응형 | 4개 화면비 × 5컷의 실제 Canvas alpha 픽셀과 DOM 문장 box/줄 box를 대조. 모두 겹침 0px². 긴 4컷에서 세로↔가로 회전 후에도 원래 복귀 snapshot 유지 | [컷별 수치](evidence/layout/summary.json), [360 세로 긴 대사](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/act3-void-dialogue-pacing/evidence/layout/360x800-cut4.jpg), [844 가로 긴 대사](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/act3-void-dialogue-pacing/evidence/layout/844x390-cut4.jpg) |
+| 집중 3: 복귀·저장 | FALLING/DARKENING/VOID/RETURNING 각 실제 reload → READY/안전 위치. 전환 3단계의 보이는 스킵 → 정확한 원상 복원, 100회 추가 skip 무동작, 완료 후 reload → RESOLVED/복귀 대화 3줄. hidden-document 정지 및 기존 자동 일시정지 복귀 | [상태 요약](evidence/state/summary.json), [암전 중 스킵 후 재개](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/act3-void-dialogue-pacing/evidence/final/skip-darkening-reloaded-return.jpg) |
+| 별도 종합 | 동일 실행 소스에서 위 흐름을 다시 결합하고 실제 Workshop Playtest iframe, BGM 원 스트림/재생 위치/사용자 음소거 유지까지 확인 | [종합 요약](evidence/final/summary.json), [Workshop](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/act3-void-dialogue-pacing/evidence/final/workshop-void.jpg) |
 
 보관한 실제 Chromium JPG는 총 59개이며 최대 파일 크기는 84,954바이트로 모두 1MB 미만이다.
 

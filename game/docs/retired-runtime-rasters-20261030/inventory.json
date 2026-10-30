@@ -1,0 +1,36 @@
+{
+  "files": [
+    {
+      "path": "shared/assets/environment/act1-far-master.png",
+      "bytes": 1547455,
+      "sha256": "b83c0f0f60cbec1a94c0de36f66ad2b228265509dc493ab1a739f4418fc1d4bc",
+      "gitBlob": "e66900b2966405e3fa1d1b95aba9cdb9991e37fa",
+      "sourceCommit": "9fe3513693a155c134171dcae372636b1e314025",
+      "historicalUrl": "https://github.com/sys8994/honro/blob/9fe3513693a155c134171dcae372636b1e314025/shared/assets/environment/act1-far-master.png",
+      "restore": "git show 9fe3513693a155c134171dcae372636b1e314025:shared/assets/environment/act1-far-master.png > shared/assets/environment/act1-far-master.png",
+      "reason": "Historical Act1 raster replaced by retained vector build inputs"
+    },
+    {
+      "path": "shared/assets/environment/act1-far.webp",
+      "bytes": 68636,
+      "sha256": "07cd067d3c5c7b6b245c0c19172439b581c7075ffa7c7e1e3ea2607c02005b56",
+      "gitBlob": "dc279691b9b878002ee4a81d28b085584564c132",
+      "sourceCommit": "9fe3513693a155c134171dcae372636b1e314025",
+      "historicalUrl": "https://github.com/sys8994/honro/blob/9fe3513693a155c134171dcae372636b1e314025/shared/assets/environment/act1-far.webp",
+      "restore": "git show 9fe3513693a155c134171dcae372636b1e314025:shared/assets/environment/act1-far.webp > shared/assets/environment/act1-far.webp",
+      "reason": "Historical Act1 raster replaced by retained vector build inputs"
+    },
+    {
+      "path": "shared/assets/environment/stage21/far.webp",
+      "bytes": 88974,
+      "sha256": "229e09a1c984bb1c9719060aaedd952dcf4be4d3d74d24c06d89488ed0ba5118",
+      "gitBlob": "a92ac62e7c1c48d6f475d588dd881747d7fee941",
+      "sourceCommit": "9fe3513693a155c134171dcae372636b1e314025",
+      "historicalUrl": "https://github.com/sys8994/honro/blob/9fe3513693a155c134171dcae372636b1e314025/shared/assets/environment/stage21/far.webp",
+      "restore": "git show 9fe3513693a155c134171dcae372636b1e314025:shared/assets/environment/stage21/far.webp > shared/assets/environment/stage21/far.webp",
+      "reason": "Retired Stage21 provider; active campaign townSky uses quiet-layered/far.webp"
+    }
+  ],
+  "removedWorkingTreeBytes": 1705065,
+  "note": "Retirement from working tree only. Git history remains; no history rewrite. Original authoring inputs for active assets are preserved."
+}

@@ -1,3 +1,34 @@
+## 2026-10-30 · 배포용 JSON의 손실 없는 조각 전송
+
+- 원인: 소스 world를 분할해도 정식 빌드가 합친 campaign library가38,386,615bytes여서 저장소 연결 도구의16MiB 요청 한도를 넘었다.
+- 변경: 4MiB 초과 배포 JSON은 원본 바이트 조각과 해시 descriptor로 출력한다. 공통 웹 로더는 조각을 순차 요청하고 바이트 수·지원 브라우저의 SHA-256을 검사한 뒤 한 번만 JSON으로 해석한다. 기존 단일 JSON도 그대로 지원한다. 게임 데이터·미술·충돌·저장 규칙은 변경하지 않는다.
+- 보존: 기존7일 보존 정책에 따라 Oct22의3개 graph는 만료되고, 남은 실제 배포66개 graph의 기록·해시 파일은 그대로 유지한다. 전송 한도를 넘는 미배포 중간 빌드 graph만 임시 보존 목록에서 제외하며, 원본은 이전 Git/복구 백업에 남는다.
+- 확인: 원본 library와 조각 결합 결과의 바이트·SHA 일치, UTF-8 문자 중간 분할, 순차 요청·캐시·실패 재시도·기존 JSON·실제 배포 graph 보존 검사 및 정상 빌드 통과. 전체 web-split 앱 하네스 검사는 복구 환경에서 exit137로 중단되어 통과로 기록하지 않았다. 실제 브라우저 로딩 검사는 별도 증빙한다.
+
+## 2026-10-29 · 4막 원본의 손실 없는 분할 저장
+
+- 원인: 27.9MB world.json이 저장소 연결 도구의16MiB 요청 한도를 넘었다.
+- 변경: 원본 UTF-8 바이트를 최대2MiB 조각과 SHA-256 manifest로 저장하고, 설치/공식 빌드에서 기존 world.json으로 검증 복원한다. 기존 미저장 편집은 덮어쓰지 않고 오류를 낸다.
+- 보존: 그래픽·지형·물리·게임 실행 데이터와 Stage31 검수 게이트는 동일하다. 분할 전후 byte equality, 깨진/누락된 조각 및 경로 탈출 음성 검사를 추가했다. 브라우저 카메라 검수는 여전히 별도 미완료다.
+
+## 2026-10-28 · Stage39 포격 뒤 구조 주민 겹침 정체
+
+- 재현: 실제 일반 입력으로 포격을 맞은 주민0/1이 x5059.90/5091.61(반경22)에 겹쳤다. 그물/닻 완료, 다른 두 주민 도착 후에도62라운드까지 정체했다. `moveNpc`가 겹침을 줄이는 정상 보행마저 `separated(...,12)`로 되돌렸다.
+- 변경: Stage39 구조 주민끼리만 기존 겹침을 엄격히 줄이는 실제 `Engine.walk`의 지지된 보행 결과를 허용한다. 신규 겹침·다른 배우·벽·공중 상태는 여전히 차단하며 순간이동·추가 이동량·HP·완료 조건은 바꾸지 않는다.
+- 확인: `tools/stage39-production/verify-resident-separation.mjs` 실제 Engine의 재현 좌표/악화·신규겹침·다른배우·벽·공중 음성 사례 통과. 기존 정체 입력 그대로 재생하면 네 주민 모두 실제 안전 지면에 도착한다(원래 입력에 마지막 E가 없어 이 재생은 승리 주장 아님). 별도 새 일반 입력 정책은 보스 생존 상태에서36730프레임/33라운드에 구출·탈출 승리했다. 원본 App 저장/Continue도 별도 재생에서 보존됐다. 브라우저 플레이/미술 승인과 구분한다.
+
+## 2026-10-28 · Stage39 폐선 BODY 자산 선택 훅
+
+- 원인: 폐선 보스는 프로젝트 라이브러리가 아니라 폐쇄된 기본 자산만 그려 실제 벡터 제작물을 동일 동적 보스에 연결할 수 없었다.
+- 변경: 명시된 `design.vectorWreckAssetId`가 현재 프로젝트의 벡터 자산을 가리키면 그 자산만 사용한다. 미지정/누락은 기존 폐선으로 복귀한다. 보스 위치·흔들림·사망 숨김·충돌·공격·구출 조건은 변경하지 않는다. Stage39 제작 패키지만 별도 opt-in한다.
+- 확인: `node tools/stage39-production/verify-wreck-hook.mjs` 실제 unitBody dispatch와 공통 벡터 렌더의 미지정/누락/동일 벡터 픽셀 동등성, 일반 유닛 위임, 사망 숨김, 위치/회전/크기 및 유닛 상태 불변 통과. 새 미술의 배치/판독성은 별도 실제 Stage39 화면 검수 대상이며 자동 미술 승인이 아니다.
+
+## 2026-10-28 · 선택형 벡터 수면의 오른쪽 표시 연속성
+
+- 원인: Stage31 수면 표시가 기존 물리 구역의 오른쪽 끝 7200에서 직사각형으로 끊겼다.
+- 변경: `design.vectorWaterContinuation` version 1/right/zoneId가 명시된 water-pool만 기존 world terrain의 오른쪽 상부 체인을 따라 표시용 복제 구역을 만든다. 원본 material, conductive waters, recovery zones, 지형·이동 물리는 변경하지 않는다. 표시 캐시는 sceneVersion/world terrain 교체로 무효화하며 기존 25/27 표시 캐시와 구분한다.
+- 확인: `tests/vector-water-continuation.mjs`의 기본 실제 compiler fixture 및 Stage31 release-candidate 입력에서 opt-in/미지정 identity, native 수면 오른쪽 픽셀, 기존 픽셀 일치, 캐시 무효화, battle/material/waters 불변, 실제 Engine 적분 결과 일치를 확인했다. `tests/water-reflection-opt-in.mjs` 기존 수면 픽셀 회귀도 통과했다. Stage31 오른쪽 실제 화면은 제작 담당자가 검수했다. 전체 캠페인·브라우저 배포 검증은 발행 담당자의 최종 빌드에서 별도 확인한다.
+
 ## 2026-10-28 · 대화 초상 이전 표정 순간 노출과 담허 구도 정렬
 
 - 원인: 같은 인물의 표정 키가 바뀌어도 기존 canvas 픽셀을 로딩 동안 유지했고, 실패 시 base를 표시한 뒤 재시도 성공으로 한 행 안에서 다시 교체했다. 담허의 유사 구도 감정 변형은 근사 face box 기반 crop 때문에 기본형과 배율·위치가 달랐다.
@@ -5123,3 +5154,50 @@ commonReviewRevision의 첫 혼령 대기열은 생성 후 소단/sceneTarget가
 기존 `layer:front`는 정적 배경 묶음 안에서 동행보다 먼저 그려져 FORE 자산의 실제 전경 역할을 하지 못했다. 충돌·상호작용이 없는 `asset.params.semanticLayer:FORE`만 정적 landmark pass에서 제외하고, 동행 본체 뒤/발사체·HUD 앞에 별도 전경 pass로 합성한다. 살아 있는 동행·미수집 표식·목표 라벨은 매 프레임 clip hole로 보호하며, 서로 겹친 보호 영역이 전경을 다시 드러내지 않는다. 조준·턴 안내는 전경이 있을 때만 뒤로 옮겨 한 번만 그린다.
 
 전경 그림만 별도 viewport raster에 보관하고 동행 보호 영역은 cache 밖에서 적용한다. 슬롯은 6M pixels 상한이며 카메라/크기 변경 시 이전 buffer를 해제하고 전경이 사라지면 슬롯도 해제한다. 물리·schema·기존 충돌 자산 분류는 바꾸지 않았다. `tools/stage31-production/test-foreground.mjs`는 native 실제 renderer의 순서/반투명 안내 픽셀/동행·목표 보호/cache 수명, 모바일 DPR1.7 메모리 상한 및 FORE 없는 31·35·3장의 이전 renderer 대비 PNG byte 동일성을 확인한다. 색상 fixture는 합성 검증용이며 캠페인 완주·미술 승인·공개 배포 증거가 아니다.
+
+### 2026-10-28 · 공식37–40장 적 생성 시 구형36장 테이블 접근 수정
+
+공식37장 스켈레톤을 실제 compiler→Native battle로 만들 때 `world.js`의 `createEnemy`가 `C.STAGES[36]`의 undefined를 core `makeEnemy`에 넘겨 `stage.id`에서 중단됐다. 공식 콘텐츠는40장까지 있지만 core의 역사적 생성 테이블은36장이다. 기존 항목은 그대로 사용하고, 항목이 없을 때만 실제 현재 콘텐츠 descriptor `st`를 전달한다. `makeEnemy`가 읽는 stage 필드는 id뿐이므로37–40장의 진행/강도 계산은 원래 장 번호를 유지하며 하위 장 clamp나 임의 전투 예산을 만들지 않는다.
+
+`node tests/act4-enemy-stage-descriptor.mjs` 통과:31–36장 기존/수정 factory의 일반궁수·경비·warden 결과 동일, 공식37/38/39/40장 전체 compiler/battle 적 생성(6/4/5/3명)과 일반 추가 생성 성공, 실제 장 descriptor 사용 및 유한 HP/공격력 확인. 이 검사는 해당 런타임 중단 수정 검증이며 미술 승인·캠페인 완주·배포 증거는 아니다.
+
+### 2026-10-29 · 4막 벡터 정적 자산의 전투 저장 중복 제거
+
+새 31장 전투 스냅샷이 honroLandmarks/honroElements에 같은 정적 벡터를 반복 저장해 약1,144만 문자였다. 공식4막·campaign의 두 목록에서 현재 배포 library와 내용이 정확히 같은 자산만 ID/서명 참조로 저장한다. 변경된 자산·Workshop·이전 막·물리/배우/사건 상태는 그대로 둔다. Continue의 실제 장 lazy load와 map revision 검사 이후 원자적으로 복원하며, 누락/불일치는 기존 저장을 덮거나 전투를 임의 폐기하지 않는다. 실제 profile-store/App Continue의 명시5MiB UTF16 저장 fixture에서 기존 구현 실패를 재현했고 새 기록은74,393문자(148,786바이트)로 통과했다. 정적 자산과 동적 전체 스냅샷 일치, cold title→자료 로딩→Continue, 실패 원본 보존, schema1–5 이전 모듈 대비 migration/저장 byte 일치를 확인했다. 실제 브라우저 quota 측정이 아니며 로컬 Chromium은 socket 권한/실행 환경 제약으로 기동하지 못했다. 공개 브라우저 검수는 별도다.
+
+### 2026-10-29 · 4막 벡터 개편 전투 revision
+
+4막 전체 벡터 제작분의 최종 배포를 위해 공식4막 전투 revision을2로 올린다. 기존 revision1 전투 스냅샷은 원래 장 입구에서 재시작하고 성장/SP/장착/완료 기록을 보존하는 기존 CampaignMapRevision 경로를 사용한다. 전체4막 최종 배포 전에는 기존 공개 캠페인과 이 후보를 혼합 승인하지 않는다. 후보/preview는 기존 공개 저장을 덮지 않아야 한다.
+
+
+## 2026-10-28 — Opt-in inward shallow-water display shore
+- Stage33 east conductive channel started with a64world-unit vertical painted slab atx3550, despite unchanged gameplay water bounds.
+- `vectorWaterInsetTaper` now returns a cached display-only clip: upper painted edge starts2units above original floor, rises inward over48units to the original horizontal waterline; original bottom stays grounded. No external wet extension, new terrain, contact/conductivity/recovery/tide mutation. Default rendering is unchanged.
+- `tests/vector-water-inset-taper.mjs`: native edge/grounded pixels, no-opt-in and invalid-option identity, original material/battle immutability, Engine parity,25/27/31 unaffected. Existing continuation regression remains required. This technical check does not approve art.
+
+### 2026-10-28 Stage40 opt-in moving ferry vector paint
+- Cause: the return boat's event-owned painter used only its legacy polygon asset, so a separate static vector could not follow sailing without duplicating the boat.
+- Change: `vectorReturnBoatAssetId` optionally selects a noncolliding vector asset for that paint call only. Original `a4:boat` event identity, movement, live deck, passengers and fallback remain unchanged.
+- Check: `node --expose-gc tools/stage40-production/test-boat-hook.mjs` passed native full-scene no-opt-in PNG parity for 40/31 against d5259d9 and exact boat/passenger painter/deck contact fixtures at x=3100/3880/4660. These pose fixtures are renderer-only, not mission evidence; final authored hull calibration and actual sailing/Continue are separate checks.
+
+### 2026-10-28 · Stage36 opt-in fallen-door perspective
+
+The new traced door kept the old 2D rotation but appeared as a tall horizontal crate across the ground line. `act4-events.js` now accepts only the authored door's `act4DoorForeshortening` opt-in: world-Y scale smoothly reaches .25 after the existing rotation, about the unchanged original ground pivot. No ID/position/collision/timing/sound/receipt/mechanics change. Native regression proves no-option/invalid-option/standing/non36 pixel parity, unchanged pivot/context/state, and the intended thin fallen silhouette. The same actual Stage36 App tape remains18,052frames, with identical final units/events and actual Continue restoring static/dynamic art; falling/fallen images were inspected. Public browser verification remains separate.
+
+### 2026-10-28 — Stage36 door paint isolated from shared library identity
+- Integration found the Stage36 package replaced shared `a4:door`, which would silently alter Stage32. Export `s36v:door` and select it solely in the existing Stage36 painter via `design.vectorDoorAssetId`; read perspective options from selected paint.
+- Original door element/asset identity, placement, collision, discovery, animation time and receipts remain unchanged. No compiler override.
+- Native default/Stage32 pixel parity and Stage36 selected-art parity pass. Exact official contracts and ordinary App completion/Continue pass; resolved selected paint is included in Continue comparison. Parent owns final merged browser/public verification.
+
+### 2026-10-29 · Stage31 opt-in arrival ferry paint
+- Stage31's event-owned arrival boat can select a noncolliding vector through `design.vectorArrivalBoatAssetId` for its existing paint call only. Missing, nonvector and colliding selections fall back. Other stages ignore this option; original `a4:boat` identity, event movement, scale, deck and boarding conditions stay unchanged.
+- Native regression compares default31/40 full-scene PNG bytes against e6d6b07, invalid-option fallback, actual traced ferry at three renderer-only poses, unchanged battle/asset data and context. Scoped31 paint translates the shared40 hull +10 localY so its deck meets the original31 dock contact at1860; anchor/foot remain0. These isolated pose images are not ordinary arrival/boarding or browser evidence.
+
+### 2026-10-29 · Stage40 recovery policy had no visible inlet water
+- Cause: the return inlet has an existing recovery policy at y2050 but no material water zone. Removing obsolete rear scenery exposed empty blue background below the ferry; hull calibration alone could not supply a water surface.
+- Change: optional Stage40 `vectorReturnWater` derives a cached display-only polygon from the unchanged policy and original land boundary. Existing environment pool rendering paints a muted fill and surface before the ferry. No physical/material/conductive zone, recovery policy, deck or passenger change.
+- Check: original non-opt-in31/40 pixels identical; missing/invalid flags yield no water. Exact shoreline intersections, cache invalidation, terrain/policies/surface-zones immutability and normal/mobile native views checked. Final browser/deployment QA remains separate.
+
+### 2026-10-29 · 4막 환경 배치 벡터의 저장 중복 누락
+
+통합 실제 App 진입 검사에서35장/36장 저장이 명시5MiB UTF16 제한을 초과했다. 기존 두 그림 목록은 정상 압축됐지만 compiler가 `honroEnvironment.placements`에 복제한 정적 벡터가 각각11,263,998/8,210,898바이트 남아 있었다. 동일한 canonical 완전일치·서명 참조 방식을 이 세 번째 목록에도 적용한다. 환경 메타데이터와 수정된 자산은 그대로 보존하고, 세 목록 전체를 검증한 뒤 원자적으로 복원한다. 실제35/36 App 저장·빈 library의 cold title·지연 Continue 검사는101,042/69,814바이트로 통과했고 전체 스냅샷·환경·동적 사건 상태가 동일했다.31장 기존 회귀와 추가 환경 자산 비변이/수정 보존/후반 실패 원자성 검사도 통과했다. DOM/저장 한도/로더 대역이며 실제 브라우저 quota 측정은 아니다.

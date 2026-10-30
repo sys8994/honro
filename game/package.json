@@ -20,7 +20,8 @@
     "test:rc20": "node tests/rc20-map-audit.mjs && python -X utf8 tests/rc20-browser.py && python -X utf8 tests/rc17-performance.py",
     "test:rc21": "node tests/rc20-map-audit.mjs && npm run test:rc21:browser",
     "test:rc21:browser": "python -X utf8 tests/rc20-browser.py && python -X utf8 tests/rc21-performance.py",
-    "test:verification-plan": "node --test tests/verification-plan.mjs"
+    "test:verification-plan": "node --test tests/verification-plan.mjs",
+    "postinstall": "node ../tools/act4-source/world-source.mjs materialize"
   },
   "devDependencies": {
     "typescript": "5.8.3"

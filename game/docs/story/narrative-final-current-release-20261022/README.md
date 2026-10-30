@@ -21,11 +21,11 @@ V0/split-v1/waterworks-v2, 저장 snapshot/queue, baked12/14, Workshop 사용자
 
 390×844의 아래 사진 3장, 최신 초상/안전 퇴장/공허 사진 2장을 직접 열었다. 모두 1MB 미만이며 [소스/생성물/이미지 해시](SOURCE_AND_EVIDENCE.json)에 크기와 SHA-256을 기록했다.
 
-- [11장 새 도착1행](../../../../review/narrative-final-current-release-20261022/stage11-arrival-390x844.jpg)
-- [11장 구조 도입 · UI1/5](../../../../review/narrative-final-current-release-20261022/stage11-entry-390x844.jpg)
-- [11장 20턴 저장 대화1/2](../../../../review/narrative-final-current-release-20261022/stage11-round20-Continue-390x844.jpg)
-- [10장 실제 안전 퇴장 · UI1/16](../../../../review/narrative-final-current-release-20261022/stage10-safe-outro-390x844.jpg)
-- [27장 무명 화자 · 긴 넷째 줄](../../../../review/narrative-final-current-release-20261022/stage27-void-390x844.jpg)
+- [11장 새 도착1행](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/review/narrative-final-current-release-20261022/stage11-arrival-390x844.jpg)
+- [11장 구조 도입 · UI1/5](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/review/narrative-final-current-release-20261022/stage11-entry-390x844.jpg)
+- [11장 20턴 저장 대화1/2](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/review/narrative-final-current-release-20261022/stage11-round20-Continue-390x844.jpg)
+- [10장 실제 안전 퇴장 · UI1/16](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/review/narrative-final-current-release-20261022/stage10-safe-outro-390x844.jpg)
+- [27장 무명 화자 · 긴 넷째 줄](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/review/narrative-final-current-release-20261022/stage27-void-390x844.jpg)
 
 ## 선별 검사
 

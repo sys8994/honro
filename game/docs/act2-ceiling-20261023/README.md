@@ -35,12 +35,12 @@
 
 | 검수 화면 | 실제 JPG |
 |---|---|
-| 넓은 전체 조망 | [overview](screens/overview.jpg) |
-| 모바일 실제 최소 줌(390/6800) | [portrait-max-zoom](screens/portrait-max-zoom.jpg) |
-| 상층 전투 줌 / 중층 공동 | [upper-battle](screens/upper-battle.jpg), [middle-battle](screens/middle-battle.jpg) |
-| 모바일 세로 / 가로 | [portrait](screens/portrait.jpg), [landscape](screens/landscape.jpg) |
-| 준비된 하부 마당의 실제 점프 전→착지 | [before](screens/platform-before-jump.jpg), [after](screens/platform-after-jump.jpg) |
-| 실제 새로고침→Continue | [continue](screens/continue.jpg) |
+| 넓은 전체 조망 | [overview](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/act2-ceiling-20261023/screens/overview.jpg) |
+| 모바일 실제 최소 줌(390/6800) | [portrait-max-zoom](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/act2-ceiling-20261023/screens/portrait-max-zoom.jpg) |
+| 상층 전투 줌 / 중층 공동 | [upper-battle](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/act2-ceiling-20261023/screens/upper-battle.jpg), [middle-battle](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/act2-ceiling-20261023/screens/middle-battle.jpg) |
+| 모바일 세로 / 가로 | [portrait](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/act2-ceiling-20261023/screens/portrait.jpg), [landscape](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/act2-ceiling-20261023/screens/landscape.jpg) |
+| 준비된 하부 마당의 실제 점프 전→착지 | [before](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/act2-ceiling-20261023/screens/platform-before-jump.jpg), [after](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/act2-ceiling-20261023/screens/platform-after-jump.jpg) |
+| 실제 새로고침→Continue | [continue](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/act2-ceiling-20261023/screens/continue.jpg) |
 
 모든 JPG는1MB 미만이다. 신선한 일반 입장 레벨13 준비 profile과 카메라 이동으로 촬영했다. 일반 화면용 배우 위치는 수정하지 않았다. 점프 전후만 별도의 **처음 한 번 지지면에 휘겸을 배치한 full-roster 물리 fixture**이며, 이후 Engine.jump/tick만 사용했다. 사용자 R9 저장이나 정상 전투로 이곳까지 도달한 장면이라고 주장하지 않는다.
 

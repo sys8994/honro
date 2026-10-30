@@ -2,7 +2,7 @@
 
 기준 공개 master d55b6c6876a79ce041bf7473ba43b50a10389543, 브랜치 art/stage15-vector-finish-20261022. 같은 지형 미술 세션을 재사용한다. 최종 소스·검사 `bd69ca49d39b19573d02adf310442eb33f196a23`의3회 집중 및 별도 종합 검수를 마치고 부모 미술 판단을 기다린다. 아래 중간 기록은 각 발견/교정 이력이며 배수 접촉 결함은 별도다.
 
-[최종 중앙](review/stage15-final-center.jpg) · [최종 전체](review/stage15-final-overview.jpg) · [최종 모바일](review/stage15-final-mobile.jpg). master/Pages는 변경하지 않았다.
+[최종 중앙](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/stage-review/stage15-vector-finish-20261022/review/stage15-final-center.jpg) · [최종 전체](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/stage-review/stage15-vector-finish-20261022/review/stage15-final-overview.jpg) · [최종 모바일](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/stage-review/stage15-vector-finish-20261022/review/stage15-final-mobile.jpg). master/Pages는 변경하지 않았다.
 
 
 ## SOP 설계·보존 카드
@@ -17,7 +17,7 @@
 
 부모 Library libfile_c6cd145ff30081918cbe7b2dd0c94aeb의 stage15-before-center.png를 지원 prepare/materialize helper로 한 번 시도했으나 `library file transfer failed: download failed`. 소비 실행환경의 실제 경로 `_local/reports/stage15-vector-finish/reference/stage15-before-center.png` 존재 false를 확인했다. 원본을 봤다고 주장하지 않으며 임의 URL/우회 인증·부모 로컬 경로를 사용하지 않았다.
 
-대신 같은 d55 생성물 entry80058be2c7d5a3e3의 실제 UI로15장 입장→대화 넘기기→휠2회→가로 중앙 팬을 직접 촬영하고 [기준 중앙](review/before-center.jpg)과 [기준 전체](review/before-overview.jpg)를 직접 열었다. 가운데 비대칭 아치는 보존할 특징이며, 바닥/천장의 거대 저밀도 면과 몇 개의 스탬프 같은 면이 지배하는 것을 확인했다. 자동 원자료는_local/reports/stage15-vector-finish/baseline에만 둔다.
+대신 같은 d55 생성물 entry80058be2c7d5a3e3의 실제 UI로15장 입장→대화 넘기기→휠2회→가로 중앙 팬을 직접 촬영하고 [기준 중앙](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/stage-review/stage15-vector-finish-20261022/review/before-center.jpg)과 [기준 전체](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/stage-review/stage15-vector-finish-20261022/review/before-overview.jpg)를 직접 열었다. 가운데 비대칭 아치는 보존할 특징이며, 바닥/천장의 거대 저밀도 면과 몇 개의 스탬프 같은 면이 지배하는 것을 확인했다. 자동 원자료는_local/reports/stage15-vector-finish/baseline에만 둔다.
 
 빌드 전에 실제 성공 d55/Pages39828457605/2026-10-22T18:08:34Z를 등록했다. 공개 그래프 SHA256 c864a87b28e8f88476e2339229e3c58cdaa9ecaa2a8c29eeed118e3c3d7f57d9, 원본/현재 immutable 검증 성공·복원0. 최근7일 전체+최소2개 및 별도 중간2세대를 유지한다. 구934 chapter13 두 리소스의 hash/길이도 관련 검사에 포함하며 후보를 발행 성공으로 넣지 않는다.
 
@@ -56,11 +56,11 @@
 
 ## 전후·최종 선택 JPG
 
-[기준 중앙](review/before-center.jpg) → [최종 중앙](review/stage15-final-center.jpg), [기준 전체](review/before-overview.jpg) → [최종 전체](review/stage15-final-overview.jpg).
+[기준 중앙](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/stage-review/stage15-vector-finish-20261022/review/before-center.jpg) → [최종 중앙](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/stage-review/stage15-vector-finish-20261022/review/stage15-final-center.jpg), [기준 전체](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/stage-review/stage15-vector-finish-20261022/review/before-overview.jpg) → [최종 전체](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/stage-review/stage15-vector-finish-20261022/review/stage15-final-overview.jpg).
 
-- [모바일 최소줌 중앙](review/stage15-final-mobile.jpg), [모바일 기본 입장/배우·탄도](review/stage15-final-mobile-entry.jpg)
-- [물가 배수 전](review/stage15-final-water-before.jpg), [배수 후 시각 fixture](review/stage15-final-water-after-fixture.jpg)
-- [최종 모바일 왼쪽 끝](review/stage15-final-mobile-left.jpg), [오른쪽 끝](review/stage15-final-mobile-right.jpg), [아래 팬](review/stage15-final-mobile-lower.jpg)
+- [모바일 최소줌 중앙](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/stage-review/stage15-vector-finish-20261022/review/stage15-final-mobile.jpg), [모바일 기본 입장/배우·탄도](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/stage-review/stage15-vector-finish-20261022/review/stage15-final-mobile-entry.jpg)
+- [물가 배수 전](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/stage-review/stage15-vector-finish-20261022/review/stage15-final-water-before.jpg), [배수 후 시각 fixture](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/stage-review/stage15-vector-finish-20261022/review/stage15-final-water-after-fixture.jpg)
+- [최종 모바일 왼쪽 끝](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/stage-review/stage15-vector-finish-20261022/review/stage15-final-mobile-left.jpg), [오른쪽 끝](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/stage-review/stage15-vector-finish-20261022/review/stage15-final-mobile-right.jpg), [아래 팬](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/stage-review/stage15-vector-finish-20261022/review/stage15-final-mobile-lower.jpg)
 
 최종9장 각각1MB 미만이다. 모든 자동 캡처/검사 JSON은 `_local/reports/stage15-vector-finish/`에만 두며 Git에는 이 선택 사진과 기존 기준2장만 보존한다. Library 기준 PNG의 지원 전송은 앞에 기록한 download failed/파일 존재 false 상태이며 d55 실제 UI 대체 기준을 사용했다. 원본 PNG를 직접 봤다고 보고하지 않는다.
 

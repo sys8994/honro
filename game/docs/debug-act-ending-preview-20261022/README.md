@@ -38,11 +38,11 @@
 
 | 화면 | 모바일 세로 390×844 | 모바일 가로 844×390 |
 |---|---|---|
-| 디버그 설정 | [세로](final-debug-act1-390x844.jpg) | [가로](final-debug-act1-844x390.jpg) |
-| 1막 | [세로](final-act1-390x844.jpg) | [가로](final-act1-844x390.jpg) |
-| 2막 | [세로](final-act2-390x844.jpg) | [가로](final-act2-844x390.jpg) |
-| 3막 | [세로](final-act3-390x844.jpg) | [가로](final-act3-844x390.jpg) |
-| 종료 후 같은 설정 | [세로](final-return-390x844.jpg) | [가로](final-return-844x390.jpg) |
+| 디버그 설정 | [세로](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/debug-act-ending-preview-20261022/final-debug-act1-390x844.jpg) | [가로](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/debug-act-ending-preview-20261022/final-debug-act1-844x390.jpg) |
+| 1막 | [세로](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/debug-act-ending-preview-20261022/final-act1-390x844.jpg) | [가로](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/debug-act-ending-preview-20261022/final-act1-844x390.jpg) |
+| 2막 | [세로](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/debug-act-ending-preview-20261022/final-act2-390x844.jpg) | [가로](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/debug-act-ending-preview-20261022/final-act2-844x390.jpg) |
+| 3막 | [세로](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/debug-act-ending-preview-20261022/final-act3-390x844.jpg) | [가로](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/debug-act-ending-preview-20261022/final-act3-844x390.jpg) |
+| 종료 후 같은 설정 | [세로](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/debug-act-ending-preview-20261022/final-return-390x844.jpg) | [가로](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/debug-act-ending-preview-20261022/final-return-844x390.jpg) |
 
 ## 재현과 제한
 

@@ -28,10 +28,10 @@
 
 [15초 연속 캡처 MP4](evidence/actual-fall.mp4)는120Hz 고정 STEP 실행을0.25초 간격으로 촬영해4fps로 묶었다. 실시간 입력 녹화가 아니라 **실제 Engine의 순차 프레임**이다. 촬영 카메라는 망령을 따라가며 전투 좌표/HP/기력/목표는 발사 뒤 변경하지 않았다. JPG는 각각1MB 미만이다.
 
-- [발사](evidence/launch.jpg)
-- [기존3.4초 제한을 넘긴 공중 낙하](evidence/after-old-limit.jpg)
-- [8초에 계속 낙하](evidence/falling.jpg)
-- [실제 바닥 접촉·망령 출현](evidence/terrain-contact.jpg)
+- [발사](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/returning-wraith-fall-20261022/evidence/launch.jpg)
+- [기존3.4초 제한을 넘긴 공중 낙하](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/returning-wraith-fall-20261022/evidence/after-old-limit.jpg)
+- [8초에 계속 낙하](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/returning-wraith-fall-20261022/evidence/falling.jpg)
+- [실제 바닥 접촉·망령 출현](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/returning-wraith-fall-20261022/evidence/terrain-contact.jpg)
 
 캠페인 JSON은a0b6b514와 byte exact다. 기존 실제 공개13그래프489파일과 구934 chapter13 JSON2개를 hash/길이로 보존했다. 이번 a0b6b514의 Pages 성공은 이 작업에 전달되지 않았으므로 성공 발행으로 새 등록하지 않았다. 삭제된6개는 기존 활성/중간/실제 공개 보호 집합 밖의 미발행 중간 파일이다. [보존 결과](preservation.json).
 

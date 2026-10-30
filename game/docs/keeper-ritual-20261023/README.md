@@ -18,10 +18,10 @@
 
 ## 집중 검수와 경계
 
-1. 실제 PC 유닛/법구/캐스팅·봉음/방향 예고를 픽셀 확인: [시전](evidence/first-cast.jpg), [봉음](evidence/seal-active.jpg), [결박](evidence/binding-active.jpg). 준비한 위치/적 큐/패턴에서 production enemyAction→tick→select/defend를 실행한 fixture이며 정상 전투 도달 증거가 아니다.
-2. 실제 R10 저장의 production 브라우저 Continue whole-battle exact, 보고서 final이 있는 마지막 명령 cursor의 반복 Continue exact. 손은 명령까지 약해진 잡기 상태, outro에서 포박·바닥 법구 확인: [마지막 명령](evidence/actual-last-command.jpg), [포박](evidence/actual-bound-outro.jpg).
-3. 모바일390×844/844×390에서 머리·손/법구·대사·다음 버튼을 직접 확인: [세로](evidence/actual-mobile-portrait.jpg), [가로](evidence/actual-mobile-landscape.jpg). 현재 사진의 초상은 게임톤 교체 전 승인 원본이다.
-4. 별도 종합: 실제 R10 브라우저 완료대사 전부→[정산](evidence/actual-result.jpg)→19장 진입/성장 exact/중복정산 방지. render60회 battle exact/새 Path2D 할당0. 일반 카메라/배치/지형·대사 framing을 변경하지 않았다.
+1. 실제 PC 유닛/법구/캐스팅·봉음/방향 예고를 픽셀 확인: [시전](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/keeper-ritual-20261023/evidence/first-cast.jpg), [봉음](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/keeper-ritual-20261023/evidence/seal-active.jpg), [결박](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/keeper-ritual-20261023/evidence/binding-active.jpg). 준비한 위치/적 큐/패턴에서 production enemyAction→tick→select/defend를 실행한 fixture이며 정상 전투 도달 증거가 아니다.
+2. 실제 R10 저장의 production 브라우저 Continue whole-battle exact, 보고서 final이 있는 마지막 명령 cursor의 반복 Continue exact. 손은 명령까지 약해진 잡기 상태, outro에서 포박·바닥 법구 확인: [마지막 명령](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/keeper-ritual-20261023/evidence/actual-last-command.jpg), [포박](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/keeper-ritual-20261023/evidence/actual-bound-outro.jpg).
+3. 모바일390×844/844×390에서 머리·손/법구·대사·다음 버튼을 직접 확인: [세로](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/keeper-ritual-20261023/evidence/actual-mobile-portrait.jpg), [가로](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/keeper-ritual-20261023/evidence/actual-mobile-landscape.jpg). 현재 사진의 초상은 게임톤 교체 전 승인 원본이다.
+4. 별도 종합: 실제 R10 브라우저 완료대사 전부→[정산](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/keeper-ritual-20261023/evidence/actual-result.jpg)→19장 진입/성장 exact/중복정산 방지. render60회 battle exact/새 Path2D 할당0. 일반 카메라/배치/지형·대사 framing을 변경하지 않았다.
 
 검사 통과: typecheck/build; keeper-ritual narrative/mechanics/app/preservation/browser; NPC row/dynamic 구조 매핑; S13 defend-lock 및 실제 App Continue/export/import; projectile friendly-fire 관련 회귀. 현재 캠페인 전체 JSON은379와 exact이며17장 소형 법구는 비충돌 렌더만 추가했다. 기존 5개 R12/R22/R29/R45/R54 저장의 몸체/자원/턴/RNG/대사/성장/완료 사실 및 반복 Continue 보존.
 

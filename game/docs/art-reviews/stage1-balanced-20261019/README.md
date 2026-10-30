@@ -1,6 +1,6 @@
 # 승인 balanced 산림 · 1장 실제 화면
 
-[정상 배율](stage1-normal.webp) · [전체 구도](stage1-overview.webp) · [모바일 최소 줌](stage1-mobile-minimum.webp)
+[정상 배율](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/art-reviews/stage1-balanced-20261019/stage1-normal.webp) · [전체 구도](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/art-reviews/stage1-balanced-20261019/stage1-overview.webp) · [모바일 최소 줌](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/art-reviews/stage1-balanced-20261019/stage1-mobile-minimum.webp)
 
 승인 PNG를 원본 그대로 보존하고 보이는 픽셀 차이0의 lossless WebP로 배포한다.1774×887을 uniform6000/1774배,6000×3000world로 사용한다. 근경 추가 brightness/filter 없음; 독립 quietFar .68·물/날씨·로딩 그룹화·전술 줌/팬·캐릭터 원본 유지. 그림의 실제 흙길/뿌리/돌/상부 둑에 접촉을 맞췄으며 새 그림·타일 반복·떠 있는 회색 발판/지형 texture clip은 없다. 외곽은 비충돌이며 깊은 면의 감쇠는 최하단 보행면 아래에서 시작한다.
 

@@ -6,7 +6,7 @@ manifest SHA-256 `0823b029c38ed39878c6adff6de85f0ba335c5cad46824ae5d59c425715fa2
 
 ## 재현과 최소 수정
 
-390×844에서 초상 없는 `.dialogue-scene.text-only-scene`은 한 열이지만 기존 모바일 규칙이 `.story-copy`를 display:contents로 바꾸고 본문을 grid-column2에 놓았다. 생긴 implicit2열은337px, 명시1열은0px이었다. 버튼 행이 `1/-1`로 명시1열만 차지해 width0, 다음 버튼 x=-11.27…28이 됐다. overflow/터치 문제를 실제 DOM과 [이전 UI](npc-evidence/before-390x844.jpg), [좌표](npc-evidence/before-layout.json)로 재현했다. 이 전 사진은 round1의 동일 생산 문구 fixture이며 사용자 첨부나 같은18턴 저장의 pixel A/B가 아니다.
+390×844에서 초상 없는 `.dialogue-scene.text-only-scene`은 한 열이지만 기존 모바일 규칙이 `.story-copy`를 display:contents로 바꾸고 본문을 grid-column2에 놓았다. 생긴 implicit2열은337px, 명시1열은0px이었다. 버튼 행이 `1/-1`로 명시1열만 차지해 width0, 다음 버튼 x=-11.27…28이 됐다. overflow/터치 문제를 실제 DOM과 [이전 UI](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/approved-portrait-ui-20261022/npc-evidence/before-390x844.jpg), [좌표](npc-evidence/before-layout.json)로 재현했다. 이 전 사진은 round1의 동일 생산 문구 fixture이며 사용자 첨부나 같은18턴 저장의 pixel A/B가 아니다.
 
 2열/display:contents 규칙을 초상이 있는 창에만 적용한다. 초상 없는 화자는 기존 flex 본문을 한 열 안에 유지한다. 긴 본문에서는 기존 창의 버튼 행에 bottom sticky를 적용해 본문 스크롤 중에도 버튼을 남긴다. 안내문은 넓은 화면에서 본문 옆에 버튼이 있으므로 top 경계도 지정한다. 전체 대화창을 재설계하지 않았다. 실제 주민 대화390×844의 버튼 행은337px, 다음 x325.73…365, height44px로 모두 창 안에 있다.
 
@@ -24,9 +24,9 @@ manifest SHA-256 `0823b029c38ed39878c6adff6de85f0ba335c5cad46824ae5d59c425715fa2
 
 ## 실제 UI 사진
 
-- [신고된 주민 ·390×844](npc-evidence/resident-390x844.jpg), [720×1560](npc-evidence/resident-720x1560.jpg), [360×780](npc-evidence/resident-360x780.jpg), [가로](npc-evidence/resident-landscape.jpg)
-- [초상 없는 긴 본문 스크롤 끝](npc-evidence/text-only-long.jpg)
-- 최종 CSS의 clean 설오 [mobile](npc-evidence/final-mobile-seoro.jpg), [desktop](npc-evidence/final-desktop-seoro.jpg). 기본 승인 원본/부모 clean PNG를 편집하지 않았다.
+- [신고된 주민 ·390×844](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/approved-portrait-ui-20261022/npc-evidence/resident-390x844.jpg), [720×1560](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/approved-portrait-ui-20261022/npc-evidence/resident-720x1560.jpg), [360×780](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/approved-portrait-ui-20261022/npc-evidence/resident-360x780.jpg), [가로](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/approved-portrait-ui-20261022/npc-evidence/resident-landscape.jpg)
+- [초상 없는 긴 본문 스크롤 끝](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/approved-portrait-ui-20261022/npc-evidence/text-only-long.jpg)
+- 최종 CSS의 clean 설오 [mobile](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/approved-portrait-ui-20261022/npc-evidence/final-mobile-seoro.jpg), [desktop](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/approved-portrait-ui-20261022/npc-evidence/final-desktop-seoro.jpg). 기본 승인 원본/부모 clean PNG를 편집하지 않았다.
 
 직접 사진을 열어 NPC가 시민 벡터이고 진행 버튼이 읽기창 안에 있는지, 가로 창과 clean 설오 모서리를 확인했다. 사진은 실제 Chromium 캡처이며 신규 미술이 아니다.
 

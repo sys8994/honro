@@ -14,7 +14,7 @@
 2. [범위와 공급 방법](README.md): 4 기본기 + 60 사용 기예 + 20 상시 기예. current ultimate 0, capstone 비기 12. 과거 data.ts 이름/효과와 CLASSES.order를 현 노출 목록으로 오해하지 않는다.
 3. 원본 manifest: `shared/assets/skill-icons/v1/manifest.json`. 84개 ID 모두 대기 상태다. 부모 원본 경로는 `shared/assets/skill-icons/v1/{ID}.webp`.
 4. [검사 상태](evidence/validation.json), [모바일 57개 확인](evidence/browser-checks.json), [잠금/수련점 추가 2개](evidence/disabled-checks.json), [이미지 파일 크기](evidence/screenshots.json).
-5. 실제 화면: [360px HUD](evidence/hud-360.png), [가로 HUD](evidence/hud-844.png), [360px 상세](evidence/modal-360.png), [상시 상세](evidence/passive-390.png), [장착 목록](evidence/slot-library-390.png), [긴 제목/수련점 소진](evidence/sp-exhausted-long-title-360.png). 모두 실제 원본 PNG이며 파일당 1MB 미만이다.
+5. 실제 화면: [360px HUD](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/skill-icons-v1/evidence/hud-360.png), [가로 HUD](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/skill-icons-v1/evidence/hud-844.png), [360px 상세](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/skill-icons-v1/evidence/modal-360.png), [상시 상세](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/skill-icons-v1/evidence/passive-390.png), [장착 목록](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/skill-icons-v1/evidence/slot-library-390.png), [긴 제목/수련점 소진](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/game/docs/skill-icons-v1/evidence/sp-exhausted-long-title-360.png). 모두 실제 원본 PNG이며 파일당 1MB 미만이다.
 
 ## 대기 상태와 후속 행동
 
