@@ -13,7 +13,13 @@
     "speckles": 25
   },
   "cleanup": "Inkscape .0003 inner paths; raw exterior path7 restored unchanged.",
-  "collision": "Exact original a4:old-wall collision copied in assembly. Instance IDs/positions/scales unchanged.",
+  "collision": "Exact original a4:old-wall collision shapes and instance IDs/scales retained. Two Stage35 placements explicitly corrected to x1100/x4600, as recorded in stage35-skeleton design.act4.production.wallPlacementCorrections; movement/shot/App replay rerun.",
   "fidelity": "vector-fidelity.json includes 1x sampling diagnostic and8x resolution, no threshold waiver",
-  "reusable": "Common isolated masonry prop; no stageground or background fused into it."
+  "reusable": "Common isolated masonry prop; no stageground or background fused into it.",
+  "physicalFit": {
+    "source": "tools/stage35-production/fit-wall.mjs",
+    "backing": "exact original collision silhouette",
+    "texture": "Y scaled1.5 around original foot, clipped inside original collider",
+    "reason": "Generated source shoulders recessed below physical contact; correction changes appearance, not collision."
+  }
 }

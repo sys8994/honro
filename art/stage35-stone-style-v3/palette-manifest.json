@@ -1,0 +1,592 @@
+{
+  "replacements": {
+    "a4-art:fallen-bamboo": "a4-art:fallen-bamboo-blue-dawn-v3",
+    "s35v:rear-continuous": "s35v:rear-continuous-blue-dawn-v3",
+    "a4-production:bamboo-clump": "a4-production:bamboo-clump-blue-dawn-v3",
+    "a4-production:thick-bamboo-cover": "a4-production:thick-bamboo-cover-blue-dawn-v3",
+    "s35-density:body-depthfade": "s35-density:body-depthfade-blue-dawn-v3",
+    "a4-production:bamboo-foreground": "a4-production:bamboo-foreground-blue-dawn-v3",
+    "s35-density:body-depthfade-domain-left": "s35-density:body-depthfade-domain-left-blue-dawn-v3",
+    "s35-density:body-depthfade-domain-right": "s35-density:body-depthfade-domain-right-blue-dawn-v3",
+    "s35-density:central-stone-treads": "s35-density:central-stone-treads-blue-dawn-v3",
+    "density-play:stone-steps-left": "s35-silhouette:quiet-stone-steps"
+  },
+  "design": {
+    "act4": {
+      "revision": 2,
+      "chapter": 35,
+      "combatBudgetStage": 35,
+      "release": true,
+      "water": "visual/shallow only; recover/lethal pending separate verified implementation",
+      "dialogue": "reviewed seeds not yet bound",
+      "palette": {
+        "top": "#60788b",
+        "light": "#8a9ca7",
+        "body": "#304759",
+        "seam": "#263c4e",
+        "deep": "#243a4b"
+      },
+      "production": {
+        "revision": 1,
+        "source": "tools/stage35-production/skeleton.mjs",
+        "centralShotContract": "x3040 blocked; x3350 clear; a4-35-g1-1 unchanged",
+        "clearings": [
+          [
+            920,
+            1840
+          ],
+          [
+            3160,
+            3900
+          ],
+          [
+            5340,
+            5790
+          ]
+        ],
+        "ditch": [
+          1840,
+          2820
+        ],
+        "exit": 6500,
+        "wallPlacementCorrections": [
+          {
+            "id": "a4-35-old-wall-13",
+            "before": {
+              "x": 900,
+              "y": 1800
+            },
+            "after": {
+              "x": 1100,
+              "y": 1800
+            },
+            "reason": "Existing collider floated over step/slope; same physical shape moved to grounded clearing."
+          },
+          {
+            "id": "a4-art-35-extra-1",
+            "before": {
+              "x": 4140,
+              "y": 1881.0204081632653
+            },
+            "after": {
+              "x": 4600,
+              "y": 1959.639534883721
+            },
+            "reason": "Existing collider floated over step/slope; same physical shape moved to grounded clearing."
+          }
+        ]
+      }
+    },
+    "vectorGround": {
+      "version": 1,
+      "baseColor": "#243a4b",
+      "visualDepth": "L1"
+    },
+    "production": {
+      "artStatus": "continuous BODY visual review; no automatic approval"
+    }
+  },
+  "environment": {
+    "version": 4,
+    "preset": "forest",
+    "atmosphere": {
+      "preset": "valley",
+      "overrides": {
+        "skyTop": "#344c62",
+        "skyBottom": "#6c879d",
+        "ambientTint": "#6a859a",
+        "hazeColor": "#4c687e",
+        "farFogColor": "#5a7489",
+        "nearFogColor": "#49687b",
+        "shadowTint": "#263e53",
+        "keyLightColor": "#98acba",
+        "lightStrength": 0.04,
+        "mistStrength": 0.25,
+        "hazeStrength": 0.85,
+        "waterBaseColor": "#294a5d",
+        "waterHighlightColor": "#6d8ba0"
+      }
+    },
+    "zones": [
+      {
+        "id": "landscape",
+        "from": 0,
+        "to": 3100,
+        "blend": 232.5,
+        "atmosphere": {
+          "mistStrength": 0.3
+        }
+      }
+    ],
+    "groups": [
+      {
+        "id": "landscape-L4",
+        "depthLayer": "L4",
+        "verticalMode": "WORLD",
+        "zoneId": "landscape",
+        "x": 0,
+        "y": 1736
+      },
+      {
+        "id": "a4-35-rear",
+        "depthLayer": "L3",
+        "verticalMode": "WORLD",
+        "zoneId": "landscape",
+        "x": 0,
+        "y": 2040
+      }
+    ],
+    "surfaces": [
+      {
+        "id": "landscape-L4-support",
+        "groupId": "landscape-L4",
+        "kind": "ink-mountain",
+        "points": [
+          {
+            "x": -18713,
+            "y": -242
+          },
+          {
+            "x": -18013,
+            "y": -232
+          },
+          {
+            "x": -17313,
+            "y": -226
+          },
+          {
+            "x": -16613,
+            "y": -228
+          },
+          {
+            "x": -15913,
+            "y": -235
+          },
+          {
+            "x": -15213,
+            "y": -247
+          },
+          {
+            "x": -14513,
+            "y": -260
+          },
+          {
+            "x": -13813,
+            "y": -270
+          },
+          {
+            "x": -13113,
+            "y": -274
+          },
+          {
+            "x": -12413,
+            "y": -272
+          },
+          {
+            "x": -11713,
+            "y": -263
+          },
+          {
+            "x": -11013,
+            "y": -251
+          },
+          {
+            "x": -10313,
+            "y": -238
+          },
+          {
+            "x": -9613,
+            "y": -229
+          },
+          {
+            "x": -8913,
+            "y": -226
+          },
+          {
+            "x": -8213,
+            "y": -230
+          },
+          {
+            "x": -7513,
+            "y": -240
+          },
+          {
+            "x": -6813,
+            "y": -257
+          },
+          {
+            "x": -6113,
+            "y": -282
+          },
+          {
+            "x": -5413,
+            "y": -322
+          },
+          {
+            "x": -4713,
+            "y": -388
+          },
+          {
+            "x": -4013,
+            "y": -493
+          },
+          {
+            "x": -3313,
+            "y": -637
+          },
+          {
+            "x": -2613,
+            "y": -802
+          },
+          {
+            "x": -1913,
+            "y": -961
+          },
+          {
+            "x": -1213,
+            "y": -1102
+          },
+          {
+            "x": -513,
+            "y": -1244
+          },
+          {
+            "x": 187,
+            "y": -1409
+          },
+          {
+            "x": 887,
+            "y": -1572
+          },
+          {
+            "x": 1587,
+            "y": -1660
+          },
+          {
+            "x": 2287,
+            "y": -1632
+          },
+          {
+            "x": 2987,
+            "y": -1543
+          },
+          {
+            "x": 3687,
+            "y": -1496
+          },
+          {
+            "x": 4387,
+            "y": -1516
+          },
+          {
+            "x": 5087,
+            "y": -1512
+          },
+          {
+            "x": 5787,
+            "y": -1404
+          },
+          {
+            "x": 6487,
+            "y": -1224
+          },
+          {
+            "x": 7187,
+            "y": -1063
+          },
+          {
+            "x": 7887,
+            "y": -959
+          },
+          {
+            "x": 8587,
+            "y": -877
+          },
+          {
+            "x": 9287,
+            "y": -776
+          },
+          {
+            "x": 9987,
+            "y": -651
+          },
+          {
+            "x": 10687,
+            "y": -524
+          },
+          {
+            "x": 11387,
+            "y": -418
+          },
+          {
+            "x": 12087,
+            "y": -343
+          },
+          {
+            "x": 12787,
+            "y": -294
+          },
+          {
+            "x": 13487,
+            "y": -263
+          },
+          {
+            "x": 14187,
+            "y": -242
+          },
+          {
+            "x": 14887,
+            "y": -230
+          },
+          {
+            "x": 15587,
+            "y": -226
+          },
+          {
+            "x": 16287,
+            "y": -229
+          },
+          {
+            "x": 16987,
+            "y": -239
+          },
+          {
+            "x": 17687,
+            "y": -251
+          },
+          {
+            "x": 18387,
+            "y": -263
+          },
+          {
+            "x": 19087,
+            "y": -272
+          },
+          {
+            "x": 19787,
+            "y": -274
+          },
+          {
+            "x": 20487,
+            "y": -269
+          },
+          {
+            "x": 21187,
+            "y": -259
+          },
+          {
+            "x": 21887,
+            "y": -247
+          },
+          {
+            "x": 22587,
+            "y": -235
+          },
+          {
+            "x": 23287,
+            "y": -228
+          },
+          {
+            "x": 23987,
+            "y": -226
+          },
+          {
+            "x": 24687,
+            "y": -232
+          },
+          {
+            "x": 25387,
+            "y": -243
+          },
+          {
+            "x": 26087,
+            "y": -255
+          }
+        ],
+        "bottom": 23028
+      },
+      {
+        "id": "a4-35-rear-support",
+        "groupId": "a4-35-rear",
+        "kind": "rear-ground",
+        "points": [
+          {
+            "x": -16000,
+            "y": 0
+          },
+          {
+            "x": -6500,
+            "y": -90
+          },
+          {
+            "x": 0,
+            "y": -20
+          },
+          {
+            "x": 1900,
+            "y": 70
+          },
+          {
+            "x": 4200,
+            "y": -60
+          },
+          {
+            "x": 7500,
+            "y": 0
+          },
+          {
+            "x": 18000,
+            "y": -100
+          }
+        ],
+        "bottom": 29000
+      }
+    ],
+    "placements": [
+      {
+        "id": "a4-far--7000",
+        "assetId": "a4-production:bamboo-mist",
+        "depthLayer": "L3",
+        "groupId": "a4-35-rear",
+        "supportId": "a4-35-rear-support",
+        "x": -7000,
+        "y": 0,
+        "scale": 0.63,
+        "rotation": 0
+      },
+      {
+        "id": "a4-far--4900",
+        "assetId": "a4-production:bamboo-mist",
+        "depthLayer": "L3",
+        "groupId": "a4-35-rear",
+        "supportId": "a4-35-rear-support",
+        "x": -4900,
+        "y": 0,
+        "scale": 0.8064,
+        "rotation": 0
+      },
+      {
+        "id": "a4-far--3400",
+        "assetId": "a4-production:bamboo-mist",
+        "depthLayer": "L3",
+        "groupId": "a4-35-rear",
+        "supportId": "a4-35-rear-support",
+        "x": -3400,
+        "y": 0,
+        "scale": 0.6804,
+        "rotation": 0
+      },
+      {
+        "id": "a4-far--1800",
+        "assetId": "a4-production:bamboo-mist",
+        "depthLayer": "L3",
+        "groupId": "a4-35-rear",
+        "supportId": "a4-35-rear-support",
+        "x": -1800,
+        "y": 0,
+        "scale": 0.756,
+        "rotation": 0
+      },
+      {
+        "id": "a4-far--500",
+        "assetId": "a4-production:bamboo-mist",
+        "depthLayer": "L3",
+        "groupId": "a4-35-rear",
+        "supportId": "a4-35-rear-support",
+        "x": -500,
+        "y": 0,
+        "scale": 0.63,
+        "rotation": 0
+      },
+      {
+        "id": "a4-far-900",
+        "assetId": "a4-production:bamboo-mist",
+        "depthLayer": "L3",
+        "groupId": "a4-35-rear",
+        "supportId": "a4-35-rear-support",
+        "x": 900,
+        "y": 0,
+        "scale": 0.8064,
+        "rotation": 0
+      },
+      {
+        "id": "a4-far-2300",
+        "assetId": "a4-production:bamboo-mist",
+        "depthLayer": "L3",
+        "groupId": "a4-35-rear",
+        "supportId": "a4-35-rear-support",
+        "x": 2300,
+        "y": 0,
+        "scale": 0.6048,
+        "rotation": 0
+      },
+      {
+        "id": "a4-far-3700",
+        "assetId": "a4-production:bamboo-mist",
+        "depthLayer": "L3",
+        "groupId": "a4-35-rear",
+        "supportId": "a4-35-rear-support",
+        "x": 3700,
+        "y": 0,
+        "scale": 0.7308,
+        "rotation": 0
+      },
+      {
+        "id": "a4-far-5200",
+        "assetId": "a4-production:bamboo-mist",
+        "depthLayer": "L3",
+        "groupId": "a4-35-rear",
+        "supportId": "a4-35-rear-support",
+        "x": 5200,
+        "y": 0,
+        "scale": 0.6804,
+        "rotation": 0
+      },
+      {
+        "id": "a4-far-6600",
+        "assetId": "a4-production:bamboo-mist",
+        "depthLayer": "L3",
+        "groupId": "a4-35-rear",
+        "supportId": "a4-35-rear-support",
+        "x": 6600,
+        "y": 0,
+        "scale": 0.756,
+        "rotation": 0
+      },
+      {
+        "id": "a4-far-8300",
+        "assetId": "a4-production:bamboo-mist",
+        "depthLayer": "L3",
+        "groupId": "a4-35-rear",
+        "supportId": "a4-35-rear-support",
+        "x": 8300,
+        "y": 0,
+        "scale": 0.6048,
+        "rotation": 0
+      },
+      {
+        "id": "a4-far-10200",
+        "assetId": "a4-production:bamboo-mist",
+        "depthLayer": "L3",
+        "groupId": "a4-35-rear",
+        "supportId": "a4-35-rear-support",
+        "x": 10200,
+        "y": 0,
+        "scale": 0.7055999999999999,
+        "rotation": 0
+      },
+      {
+        "id": "a4-far-12500",
+        "assetId": "a4-production:bamboo-mist",
+        "depthLayer": "L3",
+        "groupId": "a4-35-rear",
+        "supportId": "a4-35-rear-support",
+        "x": 12500,
+        "y": 0,
+        "scale": 0.8064,
+        "rotation": 0
+      }
+    ]
+  },
+  "visualApproval": false
+}

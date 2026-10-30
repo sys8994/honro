@@ -1,17 +1,17 @@
 {
   "stage": 35,
   "status": "Verified production candidate; parent official merge/browser/Pages release pending",
-  "projectFingerprint": "159c1c77594f05beda2c1bc6b02ba6e3d278eb0a7bad4001932d6eb4511826de",
-  "runtimeSha256": "88c89ed282a68c15894cabc247d8caa96f566c9822f32385be0530208f7f5dda",
-  "packageSha256": "8a0cd244555a43d286a6ab6d1de79132426c24fec655d606df2284f76baa443b",
+  "projectFingerprint": "71b9034f3d1671743038c6b4e114c3deab85acaa863c9cb73cf2ff1153e61f84",
+  "runtimeSha256": "e0c58fa2f8912bdfdf5b28c628f52d14d76f698ca077521e9f9926e69dd810db",
+  "packageSha256": "8fe90d6a6836a08db2f22bd4452ad69a70b045273ed37b1125f1cd620e14592a",
   "gameplay": {
     "ordinaryInputSuccess": true,
-    "frames": 30425,
+    "frames": 27497,
     "entryBuild": "campaign-balanced-v1",
     "actualAppResume": [
       {
-        "frame": 12584,
-        "inputIndex": 39,
+        "frame": 12063,
+        "inputIndex": 48,
         "result": "pass",
         "scope": "Actual stopBattle/persist/Continue; exact units, event state, round, active and phase preserved"
       }
@@ -19,15 +19,15 @@
     "encounterDamageCounts": [
       {
         "id": "a4-35-0",
-        "damageEvents": 4
+        "damageEvents": 2
       },
       {
         "id": "a4-35-1",
-        "damageEvents": 9
+        "damageEvents": 7
       },
       {
         "id": "a4-35-2",
-        "damageEvents": 3
+        "damageEvents": 5
       }
     ]
   },
@@ -55,8 +55,8 @@
     },
     {
       "id": "a4-production:broken-stone-wall",
-      "nodes": 10,
-      "paths": 7,
+      "nodes": 14,
+      "paths": 8,
       "maxPathChars": 59027,
       "embeddedBitmap": false
     },
@@ -101,5 +101,69 @@
     "release-without-fore",
     "release-completed"
   ],
-  "scope": "Native production shared renderer and actual App logic with DOM/audio doubles; not deviceFPS or browser release verification."
+  "scope": "Native production shared renderer and actual App logic with DOM/audio doubles; not deviceFPS or browser release verification.",
+  "wallPlacementCorrection": [
+    {
+      "id": "a4-35-old-wall-13",
+      "before": {
+        "x": 900,
+        "y": 1800
+      },
+      "after": {
+        "x": 1100,
+        "y": 1800
+      },
+      "reason": "Existing collider floated over step/slope; same physical shape moved to grounded clearing."
+    },
+    {
+      "id": "a4-art-35-extra-1",
+      "before": {
+        "x": 4140,
+        "y": 1881.0204081632653
+      },
+      "after": {
+        "x": 4600,
+        "y": 1959.639534883721
+      },
+      "reason": "Existing collider floated over step/slope; same physical shape moved to grounded clearing."
+    }
+  ],
+  "symbolStorage": [
+    {
+      "id": "s35v:body-continuous-domain-left",
+      "beforeBytes": 1696734,
+      "afterBytes": 341491,
+      "symbols": 1,
+      "uses": 5,
+      "applied": true,
+      "savedBytes": 1355243
+    },
+    {
+      "id": "s35v:body-continuous-domain-right",
+      "beforeBytes": 1696735,
+      "afterBytes": 341492,
+      "symbols": 1,
+      "uses": 5,
+      "applied": true,
+      "savedBytes": 1355243
+    },
+    {
+      "id": "s35v:rear-continuous",
+      "beforeBytes": 340841,
+      "afterBytes": 340841,
+      "symbols": 0,
+      "uses": 0,
+      "applied": false,
+      "reason": "No serialized saving"
+    },
+    {
+      "id": "s35v:body-continuous",
+      "beforeBytes": 340823,
+      "afterBytes": 340823,
+      "symbols": 0,
+      "uses": 0,
+      "applied": false,
+      "reason": "No serialized saving"
+    }
+  ]
 }
