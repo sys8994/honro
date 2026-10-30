@@ -14,7 +14,11 @@ function installActivation(e){const b=e.b,defs=b.honroEncounterDensityActivation
  const update=write=>{const eligible=new Set(),mem=memory(b),heroes=e.heroesAlive();for(const [cell,spec]of Object.entries(defs)){
   const units=e.alive(1).filter(u=>u.honroDensityCell===cell);if(!units.length)continue;
   const hit=units.some(u=>u.aggroUntil>0&&u.aggroUntil>=b.round),approached=heroes.some(h=>{const support=e.contactSurface(h.x,h.y-8,h.y+10)?.t.id,access=(spec.supports||[]).includes(support)||(spec.extra||[]).some(a=>a.support===support&&h.x>=(a.minX??-Infinity)&&h.x<=(a.maxX??Infinity));return access&&units.some(u=>Math.abs(h.y-u.y)<(spec.maxHeight??650)&&Math.hypot(h.x-u.x,h.y-u.y)<spec.radius);});
-  if(hit||approached)eligible.add(cell);if(write){if(hit||approached)mem.alert[cell]=true;for(const u of units)u.awake=!!mem.alert[cell];}
+  // Explicit one-round pursuit receipt. Read-only eligibility checks never renew
+  // it; native hit aggro retains its own three-round duration without extension.
+  if(write&&approached&&spec.engagementRounds===1)(mem.engagedUntil??={})[cell]=b.round+1;
+  const engaged=spec.engagementRounds===1&&Number.isFinite(mem.engagedUntil?.[cell])&&b.round<=mem.engagedUntil[cell];
+  if(hit||approached||engaged)eligible.add(cell);if(write){if(hit||approached||engaged)mem.alert[cell]=true;for(const u of units)u.awake=!!mem.alert[cell];}
  }e.honroDensityEligible=eligible;};
  e.refreshActivation=function(){refresh();update(true);};e.combatEnemies=function(){update(false);return combat().filter(u=>!u.honroDensityCell||!defs[u.honroDensityCell]||e.honroDensityEligible.has(u.honroDensityCell));};
  // Mounting a save reconstructs only the cache; its current queue/awake flags
