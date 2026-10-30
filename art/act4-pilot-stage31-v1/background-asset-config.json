@@ -1,0 +1,48 @@
+{
+  "id": "stage31:background-native-v1",
+  "name": "Stage31 native traced coastal background",
+  "semanticLayer": "REAR",
+  "category": "rock",
+  "bounds": {
+    "x": 0,
+    "y": 0,
+    "w": 7000,
+    "h": 4700
+  },
+  "anchor": {
+    "x": 0,
+    "y": 0
+  },
+  "foot": {
+    "x": 0,
+    "y": 4700
+  },
+  "transform": [
+    4.578155657292348,
+    0,
+    0,
+    4.567541302235179,
+    0,
+    0
+  ],
+  "scaleRange": [
+    1,
+    1
+  ],
+  "backgroundRange": [
+    1,
+    1
+  ],
+  "params": {
+    "artRole": "far-background",
+    "functionalCollision": false,
+    "sourceViewBox": [
+      0,
+      0,
+      1529,
+      1029
+    ],
+    "placement": "world-aligned full stage, no parallax yet",
+    "candidateOnly": true
+  }
+}

@@ -1,0 +1,102 @@
+{
+  "sourceSHA256": "ce4f2147b116214e693dc80eee385e9c9c6a1d045fefc1a01c6286c2dad7305a",
+  "scope": "background only",
+  "flattenSourceUnits": 0.1,
+  "simplifySourceUnits": 0.22,
+  "antiSeamOverlapSourceUnits": 0.16,
+  "coordinateDecimalPlaces": 2,
+  "dropComponentOrHoleBelowSourceArea": 50,
+  "opaqueBacking": "source PNG RGB opaque; use revised sky/water palette to close unstacked AA seams",
+  "paletteRevision": "Intentional art direction, separate from geometry optimization fidelity: blue HLS lightness and saturation each scaled 0.80; warm dawn explicitly mapped to muted gray-lavender.",
+  "layers": [
+    {
+      "id": "path9",
+      "sourcePalette": "#c9a39c",
+      "revisedPalette": "#9b99ac",
+      "droppedSmallComponents": 5,
+      "filledSmallHoles": 4,
+      "changedSmallAreaSourcePx2": 37.54540601313857,
+      "mainExteriorDenseSampleHausdorffSourceUnits": 0.2194684415151128,
+      "outputPaths": 1,
+      "outputPathChars": 5251
+    },
+    {
+      "id": "path8",
+      "sourcePalette": "#4d86d1",
+      "revisedPalette": "#3c6ba8",
+      "droppedSmallComponents": 14,
+      "filledSmallHoles": 3,
+      "changedSmallAreaSourcePx2": 152.08187411955527,
+      "mainExteriorDenseSampleHausdorffSourceUnits": 0.2472830774850101,
+      "outputPaths": 1,
+      "outputPathChars": 7524
+    },
+    {
+      "id": "path7",
+      "sourcePalette": "#5376b2",
+      "revisedPalette": "#496088",
+      "droppedSmallComponents": 31,
+      "filledSmallHoles": 8,
+      "changedSmallAreaSourcePx2": 139.020844852601,
+      "mainExteriorDenseSampleHausdorffSourceUnits": 0.29204123035953417,
+      "outputPaths": 1,
+      "outputPathChars": 9215
+    },
+    {
+      "id": "path6",
+      "sourcePalette": "#2e69b4",
+      "revisedPalette": "#305585",
+      "droppedSmallComponents": 84,
+      "filledSmallHoles": 10,
+      "changedSmallAreaSourcePx2": 367.6202189721052,
+      "mainExteriorDenseSampleHausdorffSourceUnits": 0.23282623039745365,
+      "outputPaths": 1,
+      "outputPathChars": 21908
+    },
+    {
+      "id": "path5",
+      "sourcePalette": "#235093",
+      "revisedPalette": "#25426d",
+      "droppedSmallComponents": 191,
+      "filledSmallHoles": 128,
+      "changedSmallAreaSourcePx2": 1986.6982065040672,
+      "mainExteriorDenseSampleHausdorffSourceUnits": 0.22110437221330922,
+      "outputPaths": 1,
+      "outputPathChars": 31496
+    },
+    {
+      "id": "path4",
+      "sourcePalette": "#1d4685",
+      "revisedPalette": "#203a62",
+      "droppedSmallComponents": 393,
+      "filledSmallHoles": 182,
+      "changedSmallAreaSourcePx2": 4605.450633562106,
+      "mainExteriorDenseSampleHausdorffSourceUnits": 0.23455796986140875,
+      "outputPaths": 3,
+      "outputPathChars": 51554
+    },
+    {
+      "id": "path3",
+      "sourcePalette": "#1b427d",
+      "revisedPalette": "#1d365c",
+      "droppedSmallComponents": 310,
+      "filledSmallHoles": 147,
+      "changedSmallAreaSourcePx2": 3428.855003900082,
+      "mainExteriorDenseSampleHausdorffSourceUnits": 0.3110755333760772,
+      "outputPaths": 2,
+      "outputPathChars": 35832
+    },
+    {
+      "id": "path2",
+      "sourcePalette": "#193d76",
+      "revisedPalette": "#1b3257",
+      "droppedSmallComponents": 34,
+      "filledSmallHoles": 64,
+      "changedSmallAreaSourcePx2": 440.38767347820163,
+      "mainExteriorDenseSampleHausdorffSourceUnits": 0.21982659665320148,
+      "outputPaths": 1,
+      "outputPathChars": 9366
+    }
+  ],
+  "visualApproval": "NOT REVIEWED"
+}
