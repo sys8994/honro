@@ -348,5 +348,22 @@ locomotion continuously without pose/HP/move-budget reset. Initial follower
 oscillation spent extra movement and failed the detour; preserved at
 `_local/reports/navigation-v5/first-follower-failure.json`. Fractional ordinary
 stick near endpoints fixes the discrepancy without changing movement physics.
-Actual31 App input sanity is still pending; this is not full-play acceptance.
+Actual31 App input sanity is verified by the follow-up below; this is not full-play acceptance.
 Aim25-candidate preview, ±6-degree/±.07 power errors and prepared cohort stay fixed.
+
+P07 actual31 input sanity verified (NOT full-play acceptance): v5 source commit
+17b59f0b2 has identical shared/game runtime/config/vendor to root8e2cea7c2.
+Run `6941d498-b92c-4e07-9d94-391c8b1f4589`, source hash
+`42992ec9f56cc846be83b96a56de7cb5a4c79f808b68930fc57803d2e3ea9a37`,
+advance/seed11/600frames/180wall: intentional frame-budget timeout at R1.
+Actual App knight jump shore→west-step was accepted and landed on changed support
+with objective progress (effective jump proxy1); horizontal integral330.674242.
+A01/M01/S00 fired, first enemy died, hero HP loss0. Drop was not exercised here.
+The new passive hit provenance and production critical feedback were emitted.
+Readbacks600 ×5184000bytes; RSS frames240/360/480/600 approximately716/719/732/734MB.
+Artifacts: `_local/reports/v5-candidate31-input-sanity/` (gzip+attempt+summary).
+Only the synthetic fixtures establish generic drop/detour/rejection behavior;
+this actual run establishes a short real movement/jump/combat path, not all31,
+20R,34/39,clearRate,fun,art or deployed-browser acceptance. Controller/preset/error
+distribution stayed unchanged during the run; future source changes require a
+new controller hash and independently retained calibration/holdout records.
