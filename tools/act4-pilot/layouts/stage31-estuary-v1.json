@@ -1,0 +1,578 @@
+{
+  "version": "estuary-geography-v1",
+  "status": "GRAYBOX FOR GEOGRAPHY/STRUCTURE REVIEW; NO ENGINE OR ART PASS",
+  "width": 7000,
+  "height": 1800,
+  "intent": "Original source104\u2013145: low alluvial banks, two reed pockets, continuous open boat approach. No vertical/jump/platform quotas. Natural broad contour and authored straight metrics remain unmeasured, not waived.",
+  "sourceBasis": [
+    "game/docs/act4/honro-act4-terrain-art-spec-v0.2.md:104-145",
+    "game/docs/GEOGRAPHY_FIRST_PRODUCTION.md"
+  ],
+  "activePlayBounds": {
+    "x": 0,
+    "y": 905,
+    "w": 6860,
+    "h": 370,
+    "status": "authored support range only; reachable measurement pending"
+  },
+  "spawn": {
+    "x": 260,
+    "y": 1150
+  },
+  "playerSupport": "arrival-bank",
+  "surfaces": [
+    {
+      "id": "arrival-bank",
+      "kind": "ground",
+      "material": "soil",
+      "top": [
+        [
+          0,
+          1160
+        ],
+        [
+          260,
+          1150
+        ],
+        [
+          520,
+          1140
+        ],
+        [
+          740,
+          1122
+        ],
+        [
+          900,
+          1100
+        ]
+      ],
+      "bottom": [
+        [
+          900,
+          1800
+        ],
+        [
+          0,
+          1800
+        ]
+      ],
+      "role": "Low riverbank continuously attached to inland soil; safe arrival"
+    },
+    {
+      "id": "first-reed-bank",
+      "kind": "ground",
+      "material": "soil",
+      "top": [
+        [
+          900,
+          1100
+        ],
+        [
+          1030,
+          1082
+        ],
+        [
+          1160,
+          1020
+        ],
+        [
+          1300,
+          965
+        ],
+        [
+          1450,
+          940
+        ],
+        [
+          1570,
+          955
+        ],
+        [
+          1690,
+          990
+        ],
+        [
+          1830,
+          1045
+        ],
+        [
+          1980,
+          1058
+        ],
+        [
+          2120,
+          1035
+        ],
+        [
+          2270,
+          1050
+        ],
+        [
+          2440,
+          1105
+        ],
+        [
+          2590,
+          1140
+        ]
+      ],
+      "bottom": [
+        [
+          2590,
+          1800
+        ],
+        [
+          900,
+          1800
+        ]
+      ],
+      "role": "First asymmetric deposited reed bank; broad exposed shoulder then lower sheltered pocket"
+    },
+    {
+      "id": "watercourse-margin",
+      "kind": "ground",
+      "material": "soil",
+      "top": [
+        [
+          2590,
+          1140
+        ],
+        [
+          2780,
+          1160
+        ],
+        [
+          2900,
+          1165
+        ],
+        [
+          2990,
+          1180
+        ],
+        [
+          3070,
+          1230
+        ],
+        [
+          3150,
+          1270
+        ],
+        [
+          3240,
+          1275
+        ],
+        [
+          3330,
+          1230
+        ],
+        [
+          3410,
+          1180
+        ],
+        [
+          3540,
+          1165
+        ],
+        [
+          3720,
+          1150
+        ],
+        [
+          3900,
+          1115
+        ]
+      ],
+      "bottom": [
+        [
+          3900,
+          1800
+        ],
+        [
+          2590,
+          1800
+        ]
+      ],
+      "role": "Continuous walkable mud margin; small drainage groove, not a chasm"
+    },
+    {
+      "id": "drain-plank",
+      "kind": "platform",
+      "material": "wood",
+      "top": [
+        [
+          2990,
+          1170
+        ],
+        [
+          3410,
+          1170
+        ]
+      ],
+      "thickness": 14,
+      "role": "Single short maintenance board over shallow drain; both ends fixed into banks; lower mud passage remains real"
+    },
+    {
+      "id": "second-reed-bank",
+      "kind": "ground",
+      "material": "soil",
+      "top": [
+        [
+          3900,
+          1115
+        ],
+        [
+          4050,
+          1090
+        ],
+        [
+          4190,
+          1040
+        ],
+        [
+          4300,
+          1010
+        ],
+        [
+          4430,
+          1015
+        ],
+        [
+          4550,
+          1050
+        ],
+        [
+          4680,
+          1035
+        ],
+        [
+          4800,
+          980
+        ],
+        [
+          4900,
+          915
+        ],
+        [
+          5020,
+          905
+        ],
+        [
+          5140,
+          925
+        ],
+        [
+          5270,
+          980
+        ],
+        [
+          5400,
+          1020
+        ],
+        [
+          5520,
+          1045
+        ],
+        [
+          5680,
+          1080
+        ],
+        [
+          5810,
+          1110
+        ],
+        [
+          5950,
+          1120
+        ],
+        [
+          6110,
+          1120
+        ]
+      ],
+      "bottom": [
+        [
+          6110,
+          1800
+        ],
+        [
+          3900,
+          1800
+        ]
+      ],
+      "role": "Second broader bank with lower entry hollow and eastern observation shoulder; rooted soil, no underpass"
+    },
+    {
+      "id": "landing-bank",
+      "kind": "ground",
+      "material": "soil",
+      "top": [
+        [
+          6110,
+          1120
+        ],
+        [
+          6210,
+          1130
+        ],
+        [
+          6290,
+          1160
+        ],
+        [
+          6340,
+          1220
+        ],
+        [
+          6370,
+          1340
+        ]
+      ],
+      "bottom": [
+        [
+          6370,
+          1800
+        ],
+        [
+          6110,
+          1800
+        ]
+      ],
+      "role": "Bank ends at navigable river channel; shore root visible, not a wall pillar"
+    },
+    {
+      "id": "landing-jetty",
+      "kind": "platform",
+      "material": "wood",
+      "top": [
+        [
+          6100,
+          1115
+        ],
+        [
+          6430,
+          1115
+        ]
+      ],
+      "thickness": 18,
+      "role": "Short actual landing jetty anchored on shore and two visible piles; only final water-edge structure"
+    }
+  ],
+  "covers": [],
+  "boarding": {
+    "dockX": 6570,
+    "deckX": 6410,
+    "deckY": 1115,
+    "deckW": 450,
+    "boardX1": 6435,
+    "boardX2": 6835,
+    "approachX": 6880,
+    "approachY": 1165,
+    "boatY": 1165,
+    "arcY": 1500,
+    "startX": 450,
+    "startY": 1080,
+    "tourViews": [
+      {
+        "key": "boat",
+        "x": 6400,
+        "y": 1030,
+        "scale": 0.64,
+        "point": {
+          "x": 6850,
+          "y": 1165
+        }
+      },
+      {
+        "key": "dock",
+        "x": 6100,
+        "y": 1030,
+        "scale": 0.56,
+        "point": {
+          "x": 6430,
+          "y": 1115
+        }
+      },
+      {
+        "key": "threat",
+        "x": 1550,
+        "y": 1000,
+        "scale": 0.55,
+        "point": {
+          "x": 1450,
+          "y": 940
+        }
+      }
+    ]
+  },
+  "act4": {
+    "waterPolicies": [
+      {
+        "id": "31-dock-water",
+        "kind": "recover",
+        "x1": 6370,
+        "x2": 7000,
+        "surface": 1195,
+        "entryLeft": [
+          6110,
+          6300
+        ],
+        "entryRight": [
+          6110,
+          6300
+        ]
+      }
+    ]
+  },
+  "routes": [
+    {
+      "id": "main-bank-walk",
+      "supports": [
+        "arrival-bank",
+        "first-reed-bank",
+        "watercourse-margin",
+        "second-reed-bank",
+        "landing-bank",
+        "landing-jetty"
+      ]
+    },
+    {
+      "id": "drain-maintenance-choice",
+      "supports": [
+        "watercourse-margin",
+        "drain-plank",
+        "watercourse-margin"
+      ],
+      "note": "Only local bypass; not an invented full-stage parallel path"
+    }
+  ],
+  "enemyAnchors": [
+    {
+      "id": "first-forward-screen",
+      "support": "first-reed-bank",
+      "x": 1430,
+      "roles": [
+        "screen",
+        "ranged"
+      ]
+    },
+    {
+      "id": "first-reverse-pocket",
+      "support": "first-reed-bank",
+      "x": 2170,
+      "roles": [
+        "ranged",
+        "disrupt"
+      ]
+    },
+    {
+      "id": "second-entry-screen",
+      "support": "second-reed-bank",
+      "x": 4350,
+      "roles": [
+        "screen",
+        "ranged"
+      ]
+    },
+    {
+      "id": "second-shoulder-mini",
+      "support": "second-reed-bank",
+      "x": 5050,
+      "roles": [
+        "miniboss",
+        "ranged"
+      ]
+    }
+  ],
+  "encounterZones": [
+    {
+      "id": "first-reed-pocket",
+      "bounds": [
+        900,
+        830,
+        2500,
+        1200
+      ],
+      "unitCount": 17,
+      "warning": "Activation requires actual spatial proximity/zone, NEVER any shared bank support alone"
+    },
+    {
+      "id": "second-reed-pocket",
+      "bounds": [
+        4000,
+        800,
+        5850,
+        1220
+      ],
+      "unitCount": 17,
+      "warning": "Separate activation despite connected ground; original total34/miniboss preserved by combat owner"
+    }
+  ],
+  "structuralAttachments": [
+    {
+      "id": "drain-plank-west",
+      "x": 2990,
+      "y": 1170,
+      "foundationY": 1180,
+      "type": "bank socket"
+    },
+    {
+      "id": "drain-plank-east",
+      "x": 3410,
+      "y": 1170,
+      "foundationY": 1180,
+      "type": "bank socket"
+    },
+    {
+      "id": "jetty-landward",
+      "x": 6120,
+      "y": 1115,
+      "foundationY": 1121,
+      "type": "bank socket"
+    },
+    {
+      "id": "jetty-pile1",
+      "x": 6270,
+      "y": 1115,
+      "foundationY": 1340,
+      "type": "bed-founded pile; visual/support structure, not extra walk platform"
+    },
+    {
+      "id": "jetty-pile2",
+      "x": 6400,
+      "y": 1115,
+      "foundationY": 1450,
+      "type": "bed-founded pile; visual/support structure, not extra walk platform"
+    }
+  ],
+  "cameraViews": [
+    {
+      "id": "first-bank",
+      "x": 1600,
+      "y": 1000,
+      "w": 1900,
+      "h": 1050
+    },
+    {
+      "id": "drain-choice",
+      "x": 3200,
+      "y": 1100,
+      "w": 1700,
+      "h": 1000
+    },
+    {
+      "id": "second-bank",
+      "x": 4880,
+      "y": 1000,
+      "w": 1900,
+      "h": 1050
+    },
+    {
+      "id": "landing",
+      "x": 6200,
+      "y": 1080,
+      "w": 1600,
+      "h": 1000
+    }
+  ]
+}
