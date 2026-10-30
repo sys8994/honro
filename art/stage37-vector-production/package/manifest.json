@@ -1,0 +1,62 @@
+{
+  "stage": 37,
+  "status": "candidate-not-art-approved",
+  "staticCollisionUnchanged": true,
+  "originalElementIdsRetained": true,
+  "visualChanges": {
+    "naturalRockIds": [
+      "a4-coast-37-art-6",
+      "a4-coast-37-art-7",
+      "a4-coast-37-art-8",
+      "a4-coast-37-art-9"
+    ],
+    "removedDecorativeRearGroup": "a4-coast-37-rear",
+    "wallAssetId": "s37v:old-wall",
+    "signalScenicAssetId": "s37v:signal-outcrop",
+    "far": {
+      "key": "act4Sea"
+    },
+    "footingInkWidth": 450,
+    "regroundedDecorativeX": {
+      "a4-coast-37-art-6": [
+        2200,
+        2510
+      ],
+      "a4-coast-37-art-9": [
+        5480,
+        5700
+      ]
+    }
+  },
+  "assets": [
+    "s37v:body-domain-left",
+    "s37v:body-domain-right",
+    "s37v:body",
+    "s37v:old-wall",
+    "s37v:signal-outcrop",
+    "s37v:haul-footing"
+  ],
+  "dependencies": [
+    "shared/map/vector-art.js (internal symbols + pixelSnapClip)",
+    "tools/vector-production/deduplicate-vector.mjs",
+    "tools/vector-production/extend-body-domain.mjs",
+    "art/stage35-vector-production/old-wall-asset.json",
+    "art/stage37-vector-production/signal-outcrop-asset.json",
+    "art/stage33-vector-production/coastal-boulder-asset.json"
+  ],
+  "notes": "Body source includes exact physical clipping; common wall backing reuses original collider. Requires coupled internal-symbol/pixelSnapClip renderer from8f3b6a8. Whole/normal/mobile/maximum/domain pixels reviewed; not user art approval.",
+  "sources": {
+    "body-concept.png": "23db9cfb3098babf96e178b7eb993d36ba684da284b17d2aec303837af647953",
+    "body-raw.svg": "d5197457956da7bcd36d8d9039bc446fc31f77c98b5abe9b9c4cfed9004abc4d",
+    "body-clean.svg": "57fbf754ac07d629ef2e753da74c56819ff242cd8609a83c67e854fd1647adf1",
+    "signal-outcrop-concept.png": "51e3ae39bf0ce60a3a865c3b22e9465eec50c339bf7863e70007ebccdf79eb64",
+    "signal-outcrop-raw.svg": "424fcb17d09c4926316d93b0a306c5b8b7bae73eee3df5c4a60fbef59d101013",
+    "signal-outcrop-final.svg": "72eb1c3e54258f2473366e0e7d1faa9964b92520c98eff6484f65b345fc0508c"
+  },
+  "review": {
+    "status": "candidate-requires-source-bound-visual-review",
+    "latestReview": "cosmetic-review.json",
+    "priorActualAppEvidence": "app-evidence.json retains original replay fingerprint; not rerun for decorative-only changes",
+    "limitations": "Native renderer/DOM/audio doubles, not browser or device approval."
+  }
+}

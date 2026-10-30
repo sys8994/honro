@@ -1,0 +1,30 @@
+{
+  "status": "direct native visual review of decorative follow-up; final browser/integrated review remains",
+  "projectSha256": "66afda930e79e7083f916dcbc1b9290222f0b76b957892ab0169c4c0d4dad9fb",
+  "stageSha256": "79c4e1296e4d59a48fcfbe5f8a5a2d7d26869546808cfadad21c1070beaee98d",
+  "librarySha256": "24c17011d0fcb9e135a1b948f7bb5b869da0f74fedcdee11aaacba34b2d7a954",
+  "sourceReuse": "art/stage33-vector-production/coastal-boulder-asset.json",
+  "sourceSha256": "957a1ae819ae4af24cc4ae427dc0b01d65d09877b039a782804db5a867048f1e",
+  "geometryCheck": "assembler asserts exact compiled terrain plus unchanged terrain/units/events/materials/encounters/initial gameplay state",
+  "findings": [
+    "Four old flat triangular footings now use measured Inkscape rock ink at450 nominal width.",
+    "Two old platform-corner instances move along unchanged flat platforms so entire visible feet have support.",
+    "Original winches, physical walls, signal/fire/gesture and all gameplay fields remain."
+  ],
+  "directlyInspectedViews": [
+    {
+      "file": "_local/reports/stage37-production/natural-props-grounded/37-first-walls.png",
+      "sha256": "87a22e4cf3f94d0d098046a992a3e99995ddb193da8c19d17bbac6e9ad14aad3"
+    },
+    {
+      "file": "_local/reports/stage37-production/natural-props-grounded/37-whole.png",
+      "sha256": "a06bbabcfaea39d19116f64641fa48b78f02af9d0ca17e2a72e3eaff4d372eef"
+    }
+  ],
+  "priorAppReplayProjectSha256": "aafbfe0a6b3ab2c63f01c4ed7758080c0328dcaa095b4b8051f947ce3477b4f9",
+  "limits": [
+    "Native Canvas only; no browser/HUD/device certification.",
+    "Earlier actual App replay was not rerun for this decorative-only delta and retains its original source fingerprint.",
+    "Affine reuse of existing actual Inkscape artwork, not newly traced imagery or error-bounded simplification."
+  ]
+}

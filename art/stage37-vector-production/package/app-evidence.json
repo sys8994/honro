@@ -1,0 +1,464 @@
+{
+  "desktop": {
+    "scope": "Prepared stage-entry profile; production App events; Native Canvas Scene initializes authored far art, then renders every60 physics ticks after combat until actual signal/gesture receipts complete; raster caches explicitly disposed for bounded native-harness memory; DOM/audio are doubles, story text parsed from real rendered HTML. Not a browser/campaign playthrough. No gate relabeling or automatic art approval.",
+    "fingerprint": "aafbfe0a6b3ab2c63f01c4ed7758080c0328dcaa095b4b8051f947ce3477b4f9",
+    "runtimeSha256": "e53ef7cedfd02863678d5ec4d59f5701df94ef2d997c3fc2b5d27b60a38118e8",
+    "verifierSha256": "733edb4312cc4b1fd3845ac68e71200754cac76fc5d28cda56c77621323212d3",
+    "success": true,
+    "frame": 33271,
+    "resume": [
+      {
+        "frame": 12735,
+        "inputIndex": 50,
+        "result": "pass",
+        "scope": "Actual stopBattle/persist/Continue; exact units, event state, round, active and phase preserved"
+      }
+    ],
+    "signalEvidence": {
+      "frame": 29880,
+      "clock": 248.99999999993787,
+      "signalExposure": 0.6,
+      "signal": 248.99999999993787,
+      "gesture": 248.99999999993787,
+      "camera": {
+        "x": 7402.3962873821265,
+        "y": 2016,
+        "scale": 0.94,
+        "width": 1440,
+        "height": 900
+      },
+      "party": [
+        {
+          "id": "archer",
+          "x": 7232.3962873821265,
+          "y": 2200
+        },
+        {
+          "id": "mage",
+          "x": 3824.2323273025386,
+          "y": 2279.7542667790476
+        },
+        {
+          "id": "knight",
+          "x": 5609.187547543525,
+          "y": 2120
+        },
+        {
+          "id": "occultist",
+          "x": 3778.0655565298516,
+          "y": 2305.8035232249463
+        }
+      ]
+    },
+    "awayEvidence": {
+      "frame": 28921,
+      "renderedSeconds": 0.8,
+      "signalExposure": 0,
+      "camera": {
+        "x": 500,
+        "y": 3100,
+        "scale": 0.94
+      },
+      "scope": "Negative camera-visibility probe at an ordinary-input reached state; no actor/mission state injection; camera restored before positive replay."
+    },
+    "wallContacts": [
+      {
+        "id": "a4-37-prop-0:collision:0",
+        "impacts": [],
+        "standing": [
+          {
+            "frame": 1935,
+            "id": "knight",
+            "x": 1760.28869276879,
+            "y": 3000,
+            "hp": 2217,
+            "grounded": true
+          },
+          {
+            "frame": 1950,
+            "id": "knight",
+            "x": 1760.28869276879,
+            "y": 3000,
+            "hp": 2217,
+            "grounded": true
+          },
+          {
+            "frame": 1965,
+            "id": "knight",
+            "x": 1760.28869276879,
+            "y": 3000,
+            "hp": 2217,
+            "grounded": true
+          },
+          {
+            "frame": 1980,
+            "id": "knight",
+            "x": 1760.28869276879,
+            "y": 3000,
+            "hp": 2217,
+            "grounded": true
+          },
+          {
+            "frame": 1995,
+            "id": "knight",
+            "x": 1760.28869276879,
+            "y": 3000,
+            "hp": 2217,
+            "grounded": true
+          },
+          {
+            "frame": 2010,
+            "id": "knight",
+            "x": 1760.28869276879,
+            "y": 3000,
+            "hp": 2217,
+            "grounded": true
+          },
+          {
+            "frame": 2025,
+            "id": "knight",
+            "x": 1760.28869276879,
+            "y": 3000,
+            "hp": 2217,
+            "grounded": true
+          },
+          {
+            "frame": 2040,
+            "id": "knight",
+            "x": 1760.28869276879,
+            "y": 3000,
+            "hp": 2217,
+            "grounded": true
+          }
+        ]
+      },
+      {
+        "id": "a4-37-prop-1:collision:0",
+        "impacts": [],
+        "standing": []
+      },
+      {
+        "id": "a4-37-prop-2:collision:0",
+        "impacts": [],
+        "standing": [
+          {
+            "frame": 22155,
+            "id": "occultist",
+            "x": 3778.0655565298516,
+            "y": 2305.8035232249463,
+            "hp": 1483,
+            "grounded": true
+          },
+          {
+            "frame": 22170,
+            "id": "occultist",
+            "x": 3778.0655565298516,
+            "y": 2305.8035232249463,
+            "hp": 1483,
+            "grounded": true
+          },
+          {
+            "frame": 22185,
+            "id": "occultist",
+            "x": 3778.0655565298516,
+            "y": 2305.8035232249463,
+            "hp": 1483,
+            "grounded": true
+          },
+          {
+            "frame": 22200,
+            "id": "occultist",
+            "x": 3778.0655565298516,
+            "y": 2305.8035232249463,
+            "hp": 1483,
+            "grounded": true
+          },
+          {
+            "frame": 22215,
+            "id": "occultist",
+            "x": 3778.0655565298516,
+            "y": 2305.8035232249463,
+            "hp": 1483,
+            "grounded": true
+          },
+          {
+            "frame": 22230,
+            "id": "occultist",
+            "x": 3778.0655565298516,
+            "y": 2305.8035232249463,
+            "hp": 1483,
+            "grounded": true
+          },
+          {
+            "frame": 22245,
+            "id": "occultist",
+            "x": 3778.0655565298516,
+            "y": 2305.8035232249463,
+            "hp": 1483,
+            "grounded": true
+          },
+          {
+            "frame": 22260,
+            "id": "occultist",
+            "x": 3778.0655565298516,
+            "y": 2305.8035232249463,
+            "hp": 1483,
+            "grounded": true
+          }
+        ]
+      },
+      {
+        "id": "a4-37-prop-3:collision:0",
+        "impacts": [],
+        "standing": []
+      }
+    ],
+    "shots": 33,
+    "signalEvent": {
+      "started": true,
+      "terminal": true,
+      "presented": [
+        "A4.S37.SIGNAL.01",
+        "A4.S37.SIGNAL.02",
+        "A4.S37.SIGNAL.03",
+        "A4.S37.SIGNAL.04"
+      ],
+      "retired": []
+    },
+    "fullReport": {
+      "path": "_local/reports/stage37-production/final-desktop-app.json",
+      "sha256": "1fec61eca51cad3061451980a4e170d543d7fc3cd28a24b66faad4dd5f82d523"
+    }
+  },
+  "mobile": {
+    "scope": "Prepared stage-entry profile; production App events; Native Canvas Scene initializes authored far art, then renders every60 physics ticks after combat until actual signal/gesture receipts complete; raster caches explicitly disposed for bounded native-harness memory; DOM/audio are doubles, story text parsed from real rendered HTML. Not a browser/campaign playthrough. No gate relabeling or automatic art approval.",
+    "fingerprint": "aafbfe0a6b3ab2c63f01c4ed7758080c0328dcaa095b4b8051f947ce3477b4f9",
+    "runtimeSha256": "8aeb75c6eea83233cf86d18f4b76c44777596fc0c61bd17f3c1799c628420dab",
+    "verifierSha256": "733edb4312cc4b1fd3845ac68e71200754cac76fc5d28cda56c77621323212d3",
+    "success": true,
+    "frame": 33445,
+    "resume": [
+      {
+        "frame": 12735,
+        "inputIndex": 50,
+        "result": "pass",
+        "scope": "Actual stopBattle/persist/Continue; exact units, event state, round, active and phase preserved"
+      }
+    ],
+    "signalEvidence": {
+      "frame": 30060,
+      "clock": 250.4999999999365,
+      "signalExposure": 0.6,
+      "signal": 250.4999999999365,
+      "gesture": 250.4999999999365,
+      "camera": {
+        "x": 7514.012141040679,
+        "y": 2016,
+        "scale": 0.82,
+        "width": 390,
+        "height": 844
+      },
+      "party": [
+        {
+          "id": "archer",
+          "x": 7423.646287382143,
+          "y": 2200
+        },
+        {
+          "id": "mage",
+          "x": 3824.2323273025386,
+          "y": 2279.7542667790476
+        },
+        {
+          "id": "knight",
+          "x": 5609.187547543525,
+          "y": 2120
+        },
+        {
+          "id": "occultist",
+          "x": 3778.0655565298516,
+          "y": 2305.8035232249463
+        }
+      ]
+    },
+    "awayEvidence": {
+      "frame": 28921,
+      "renderedSeconds": 0.8,
+      "signalExposure": 0,
+      "camera": {
+        "x": 500,
+        "y": 3100,
+        "scale": 0.82
+      },
+      "scope": "Negative camera-visibility probe at an ordinary-input reached state; no actor/mission state injection; camera restored before positive replay."
+    },
+    "wallContacts": [
+      {
+        "id": "a4-37-prop-0:collision:0",
+        "impacts": [],
+        "standing": [
+          {
+            "frame": 1935,
+            "id": "knight",
+            "x": 1760.28869276879,
+            "y": 3000,
+            "hp": 2217,
+            "grounded": true
+          },
+          {
+            "frame": 1950,
+            "id": "knight",
+            "x": 1760.28869276879,
+            "y": 3000,
+            "hp": 2217,
+            "grounded": true
+          },
+          {
+            "frame": 1965,
+            "id": "knight",
+            "x": 1760.28869276879,
+            "y": 3000,
+            "hp": 2217,
+            "grounded": true
+          },
+          {
+            "frame": 1980,
+            "id": "knight",
+            "x": 1760.28869276879,
+            "y": 3000,
+            "hp": 2217,
+            "grounded": true
+          },
+          {
+            "frame": 1995,
+            "id": "knight",
+            "x": 1760.28869276879,
+            "y": 3000,
+            "hp": 2217,
+            "grounded": true
+          },
+          {
+            "frame": 2010,
+            "id": "knight",
+            "x": 1760.28869276879,
+            "y": 3000,
+            "hp": 2217,
+            "grounded": true
+          },
+          {
+            "frame": 2025,
+            "id": "knight",
+            "x": 1760.28869276879,
+            "y": 3000,
+            "hp": 2217,
+            "grounded": true
+          },
+          {
+            "frame": 2040,
+            "id": "knight",
+            "x": 1760.28869276879,
+            "y": 3000,
+            "hp": 2217,
+            "grounded": true
+          }
+        ]
+      },
+      {
+        "id": "a4-37-prop-1:collision:0",
+        "impacts": [],
+        "standing": []
+      },
+      {
+        "id": "a4-37-prop-2:collision:0",
+        "impacts": [],
+        "standing": [
+          {
+            "frame": 22155,
+            "id": "occultist",
+            "x": 3778.0655565298516,
+            "y": 2305.8035232249463,
+            "hp": 1483,
+            "grounded": true
+          },
+          {
+            "frame": 22170,
+            "id": "occultist",
+            "x": 3778.0655565298516,
+            "y": 2305.8035232249463,
+            "hp": 1483,
+            "grounded": true
+          },
+          {
+            "frame": 22185,
+            "id": "occultist",
+            "x": 3778.0655565298516,
+            "y": 2305.8035232249463,
+            "hp": 1483,
+            "grounded": true
+          },
+          {
+            "frame": 22200,
+            "id": "occultist",
+            "x": 3778.0655565298516,
+            "y": 2305.8035232249463,
+            "hp": 1483,
+            "grounded": true
+          },
+          {
+            "frame": 22215,
+            "id": "occultist",
+            "x": 3778.0655565298516,
+            "y": 2305.8035232249463,
+            "hp": 1483,
+            "grounded": true
+          },
+          {
+            "frame": 22230,
+            "id": "occultist",
+            "x": 3778.0655565298516,
+            "y": 2305.8035232249463,
+            "hp": 1483,
+            "grounded": true
+          },
+          {
+            "frame": 22245,
+            "id": "occultist",
+            "x": 3778.0655565298516,
+            "y": 2305.8035232249463,
+            "hp": 1483,
+            "grounded": true
+          },
+          {
+            "frame": 22260,
+            "id": "occultist",
+            "x": 3778.0655565298516,
+            "y": 2305.8035232249463,
+            "hp": 1483,
+            "grounded": true
+          }
+        ]
+      },
+      {
+        "id": "a4-37-prop-3:collision:0",
+        "impacts": [],
+        "standing": []
+      }
+    ],
+    "shots": 33,
+    "signalEvent": {
+      "started": true,
+      "terminal": true,
+      "presented": [
+        "A4.S37.SIGNAL.01",
+        "A4.S37.SIGNAL.02",
+        "A4.S37.SIGNAL.03",
+        "A4.S37.SIGNAL.04"
+      ],
+      "retired": []
+    },
+    "fullReport": {
+      "path": "_local/reports/stage37-production/final-mobile-app.json",
+      "sha256": "07178050e3c836150cb65c9f261ef680852ec836c04a8db2e10152b7b4f444c1"
+    }
+  }
+}

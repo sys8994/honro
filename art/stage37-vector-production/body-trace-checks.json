@@ -1,0 +1,54 @@
+{
+  "tool": "Inkscape 1.4 actual GUI trace",
+  "colors": 12,
+  "smooth": true,
+  "stack": true,
+  "removeBackground": true,
+  "speckles": 25,
+  "corners": 1,
+  "optimize": 0.2,
+  "sourcePreparation": "Original RGBA composited on white at native1915x821; no crop/rescale",
+  "simplifyApplied": false,
+  "sourceRawPathsEqual": true,
+  "cleanup": "Actual Inkscape CLI delete only path1 deep low contrast noise, set path2 fill #283344. Deliberate art cleanup, not bounded optimizer claim.",
+  "otherPathsIdentical": true,
+  "visualReview": "Original/raw/clean native pixels inspected; cap and stones intact, deep field uniform.",
+  "raw": {
+    "bytes": 450797,
+    "paths": 11,
+    "images": 0,
+    "viewBox": "0 0 1915 821",
+    "sha256": "d5197457956da7bcd36d8d9039bc446fc31f77c98b5abe9b9c4cfed9004abc4d",
+    "alphaBBox": [
+      0,
+      78,
+      1915,
+      821
+    ],
+    "bottomPixel": [
+      38,
+      49,
+      65,
+      255
+    ]
+  },
+  "clean": {
+    "bytes": 149979,
+    "paths": 10,
+    "images": 0,
+    "viewBox": "0 0 1915 821",
+    "sha256": "57fbf754ac07d629ef2e753da74c56819ff242cd8609a83c67e854fd1647adf1",
+    "alphaBBox": [
+      0,
+      78,
+      1915,
+      821
+    ],
+    "bottomPixel": [
+      40,
+      51,
+      68,
+      255
+    ]
+  }
+}

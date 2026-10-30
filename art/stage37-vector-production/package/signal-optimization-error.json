@@ -1,0 +1,165 @@
+{
+  "raw": "art/stage37-vector-production/signal-outcrop-raw.svg",
+  "candidate": "art/stage37-vector-production/signal-outcrop-final.svg",
+  "rawStats": {
+    "sourceBytes": 451677,
+    "paths": 11,
+    "commands": 10277,
+    "segments": 9856,
+    "endpointNodesUpperBound": 10277,
+    "explicitCommandLetters": 2092,
+    "subpaths": 421,
+    "pathChars": 450338,
+    "maxPathChars": 70222
+  },
+  "candidateStats": {
+    "sourceBytes": 425743,
+    "paths": 11,
+    "commands": 10277,
+    "segments": 9856,
+    "endpointNodesUpperBound": 10277,
+    "explicitCommandLetters": 7983,
+    "subpaths": 421,
+    "pathChars": 424336,
+    "maxPathChars": 63956
+  },
+  "visualApproval": "NOT REVIEWED",
+  "config": {
+    "width": 424,
+    "scales": [
+      1,
+      2.0754716981132075
+    ],
+    "protectionMode": "silhouette-feature",
+    "protectedRects": [
+      [
+        140,
+        190,
+        140,
+        28
+      ],
+      [
+        306,
+        16,
+        40,
+        40
+      ]
+    ],
+    "limits": {
+      "rgbMAE255": 2,
+      "silhouettePx": 1.5,
+      "protectedPx": 0.5,
+      "protectedRgbMAE255": 1,
+      "protectedChangedPixelFraction": 0.05
+    },
+    "scope": "Native424px normal and880px maximum; exact shelf/peak alpha protected, no internal palette-island displacement claim.",
+    "sourcePalette": [
+      [
+        28,
+        36,
+        50
+      ],
+      [
+        36,
+        44,
+        57
+      ],
+      [
+        44,
+        55,
+        71
+      ],
+      [
+        57,
+        69,
+        87
+      ],
+      [
+        72,
+        85,
+        102
+      ],
+      [
+        85,
+        85,
+        57
+      ],
+      [
+        87,
+        100,
+        115
+      ],
+      [
+        109,
+        120,
+        132
+      ],
+      [
+        121,
+        132,
+        141
+      ],
+      [
+        135,
+        132,
+        87
+      ],
+      [
+        141,
+        148,
+        154
+      ]
+    ]
+  },
+  "errors": {
+    "1": {
+      "rgbMAE255": 0.0047575607895851135,
+      "rgbP99_255": 0.0,
+      "alphaMAE255": 0.0,
+      "changedPixelFraction": 0.0,
+      "silhouetteMaxOffsetPx": 0.0,
+      "protectedChangedPixelFraction": 0.0,
+      "protectedRgbMAE255": 0.006565341260284185,
+      "protectedSilhouetteMaxOffsetPx": 0.0,
+      "pass": true
+    },
+    "2.0754716981132075": {
+      "rgbMAE255": 0.0033439286053180695,
+      "rgbP99_255": 0.0,
+      "alphaMAE255": 0.0,
+      "changedPixelFraction": 0.0,
+      "silhouetteMaxOffsetPx": 0.0,
+      "protectedChangedPixelFraction": 0.0,
+      "protectedRgbMAE255": 0.005511292722076178,
+      "protectedSilhouetteMaxOffsetPx": 0.0,
+      "pass": true
+    }
+  },
+  "timings": {
+    "raw-1": {
+      "width": 424,
+      "height": 594,
+      "decodeMs": 20.626057000000003,
+      "drawMs": 0.5927329999999529
+    },
+    "candidate-1": {
+      "width": 424,
+      "height": 594,
+      "decodeMs": 19.165085000000033,
+      "drawMs": 0.5358889999999974
+    },
+    "raw-2.0754716981132075": {
+      "width": 880,
+      "height": 1232,
+      "decodeMs": 30.735078999999985,
+      "drawMs": 2.032083
+    },
+    "candidate-2.0754716981132075": {
+      "width": 880,
+      "height": 1232,
+      "decodeMs": 28.728117999999995,
+      "drawMs": 1.918124999999975
+    }
+  },
+  "qualityPass": true
+}
