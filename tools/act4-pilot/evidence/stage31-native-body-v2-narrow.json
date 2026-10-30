@@ -1,0 +1,413 @@
+{
+  "stageCanonicalSHA256": "0f6afa266dea154aa16707851a141c1912f4e45a16f3416614efc8fcffe1a61d",
+  "stageRawSHA256": "6d5c8948929ff85771ef25acfa5b19c02900f025094215a744ca12f66c1ce0c4",
+  "nativeBodySources": [
+    {
+      "id": "west-ledge",
+      "nativeBoundaryRawSHA256": "41b0e93029277bed1cf004ae4203c2ee4957e930be9541ff46dd3969c131a889",
+      "nativePaintSourceSHA256": "92d4d544a56f1e895462cbbd5a8227925e735ab2cd08cd8b7ef46c9f0f333cc7",
+      "endpointNativeMismatchWorld": [
+        0.00894949951180024,
+        0.026437086760324746
+      ],
+      "bodyVertices": 303,
+      "flattenErrorBoundWorld": 0.12,
+      "simplificationErrorBoundWorld": 0.1,
+      "topPreserved": true,
+      "bodyShapePolicy": "Use the original entire lower native arc, not a rectangle cut to old trajectory. No extra walk edges are intentionally added; incidental upward edges require inventory."
+    },
+    {
+      "id": "ridge-court",
+      "nativeBoundaryRawSHA256": "7763b1f8df648462aa660d06847625dd867087f5b4561735e1d8ed5f80486dd4",
+      "nativePaintSourceSHA256": "769f7bd515f55485811183f248f670db6c45985eeea6ae9d97ed84da62e678dd",
+      "endpointNativeMismatchWorld": [
+        0.010733490823895409,
+        0.00885331783001675
+      ],
+      "bodyVertices": 432,
+      "flattenErrorBoundWorld": 0.12,
+      "simplificationErrorBoundWorld": 0.1,
+      "topPreserved": true,
+      "bodyShapePolicy": "Use the original entire lower native arc, not a rectangle cut to old trajectory. No extra walk edges are intentionally added; incidental upward edges require inventory."
+    },
+    {
+      "id": "east-overhang",
+      "nativeBoundaryRawSHA256": "69b6983c5e03f44eb11e0d0fc99f634a384cfa1fefe56a28964c6d29e5f72c32",
+      "nativePaintSourceSHA256": "dadec51abb18cabf4b139cfab6f9b17b130639c3034ff4ea09944082ecc8cff1",
+      "endpointNativeMismatchWorld": [
+        0.0038348127282006317,
+        0.02959999999984575
+      ],
+      "bodyVertices": 491,
+      "flattenErrorBoundWorld": 0.12,
+      "simplificationErrorBoundWorld": 0.1,
+      "topPreserved": true,
+      "bodyShapePolicy": "Use the original entire lower native arc, not a rectangle cut to old trajectory. No extra walk edges are intentionally added; incidental upward edges require inventory."
+    }
+  ],
+  "scope": "Local setup once per trial at west-step/east-low, actual movement/jump/drop only thereafter; enemies absent and dialogue/render omitted. Alternative legal inputs tested, no old-trajectory replay obligation. Not a whole combat/art acceptance.",
+  "spawnChecks": [
+    {
+      "cls": "archer",
+      "x": 260,
+      "y": 4005.6666666666665,
+      "valid": true
+    },
+    {
+      "cls": "mage",
+      "x": 380,
+      "y": 4003.4,
+      "valid": true
+    },
+    {
+      "cls": "knight",
+      "x": 500,
+      "y": 4001,
+      "valid": true
+    },
+    {
+      "cls": "occultist",
+      "x": 620,
+      "y": 4003.5,
+      "valid": true
+    }
+  ],
+  "west": [
+    {
+      "cls": "archer",
+      "passed": true,
+      "launchX": 1350,
+      "inputJumps": 1,
+      "inputDrops": 0,
+      "end": {
+        "x": 1500,
+        "y": 3310,
+        "hp": 995,
+        "moveLeft": 899.3198077848685
+      },
+      "sampledTravelWorld": 1004.1443273691613,
+      "sampling": "6frame trajectory, not exact total arc length"
+    },
+    {
+      "cls": "mage",
+      "passed": true,
+      "launchX": 1350,
+      "inputJumps": 1,
+      "inputDrops": 0,
+      "end": {
+        "x": 1500,
+        "y": 3310,
+        "hp": 1062,
+        "moveLeft": 918.989932500717
+      },
+      "sampledTravelWorld": 1003.1715039099766,
+      "sampling": "6frame trajectory, not exact total arc length"
+    },
+    {
+      "cls": "knight",
+      "passed": true,
+      "launchX": 1350,
+      "inputJumps": 1,
+      "inputDrops": 0,
+      "end": {
+        "x": 1500,
+        "y": 3310,
+        "hp": 1618,
+        "moveLeft": 1009.2192034790321
+      },
+      "sampledTravelWorld": 1002.6007189291428,
+      "sampling": "6frame trajectory, not exact total arc length"
+    },
+    {
+      "cls": "occultist",
+      "passed": true,
+      "launchX": 1350,
+      "inputJumps": 1,
+      "inputDrops": 0,
+      "end": {
+        "x": 1500,
+        "y": 3310,
+        "hp": 1216,
+        "moveLeft": 949.1261928371371
+      },
+      "sampledTravelWorld": 1004.2099805315631,
+      "sampling": "6frame trajectory, not exact total arc length"
+    }
+  ],
+  "east": [
+    {
+      "cls": "archer",
+      "passed": true,
+      "start": {
+        "x": 6245,
+        "y": 3555.714285714286,
+        "hp": 995,
+        "valid": true
+      },
+      "target": 6335,
+      "end": {
+        "x": 6333.783172054024,
+        "y": 3900,
+        "hp": 995
+      },
+      "inputJumps": 0,
+      "inputDrops": 1,
+      "sampledTravelWorld": 461.5213820191426,
+      "sampling": "6frame trajectory, not exact total arc length"
+    },
+    {
+      "cls": "mage",
+      "passed": true,
+      "start": {
+        "x": 6295,
+        "y": 3529.75,
+        "hp": 1062,
+        "valid": true
+      },
+      "target": 6405,
+      "end": {
+        "x": 6404.696504377988,
+        "y": 3900,
+        "hp": 1062
+      },
+      "inputJumps": 0,
+      "inputDrops": 1,
+      "sampledTravelWorld": 478.2687638568717,
+      "sampling": "6frame trajectory, not exact total arc length"
+    },
+    {
+      "cls": "knight",
+      "passed": true,
+      "start": {
+        "x": 6345,
+        "y": 3527.25,
+        "hp": 1618,
+        "valid": true
+      },
+      "target": 6475,
+      "end": {
+        "x": 6474.051354634918,
+        "y": 3900,
+        "hp": 1618
+      },
+      "inputJumps": 0,
+      "inputDrops": 1,
+      "sampledTravelWorld": 547.4519220152001,
+      "sampling": "6frame trajectory, not exact total arc length"
+    },
+    {
+      "cls": "occultist",
+      "passed": true,
+      "start": {
+        "x": 6395,
+        "y": 3522.0833333333335,
+        "hp": 1216,
+        "valid": true
+      },
+      "target": 6545,
+      "end": {
+        "x": 6544.8607816156955,
+        "y": 3900,
+        "hp": 1216
+      },
+      "inputJumps": 0,
+      "inputDrops": 1,
+      "sampledTravelWorld": 569.5540340990873,
+      "sampling": "6frame trajectory, not exact total arc length"
+    }
+  ],
+  "boat": {
+    "targets": [
+      6335,
+      6405,
+      6475,
+      6545
+    ],
+    "eligible": true,
+    "completeBefore": false,
+    "explicit": true,
+    "complete": true
+  },
+  "centerRootFailure": {
+    "stageCanonicalSHA256": "0f6afa266dea154aa16707851a141c1912f4e45a16f3416614efc8fcffe1a61d",
+    "status": "LOCAL ACCESS FAILURE: normal-input approach triggered Engine recovery/HP loss, not a legal successful climb",
+    "buriedReturnRampX": [
+      4520,
+      4797.665369649805
+    ],
+    "remainingExposedReturnRampX": [
+      4797.665369649805,
+      5120
+    ],
+    "localArtReviewRegionWorld": {
+      "left": 4400,
+      "right": 4850,
+      "top": 3600,
+      "bottom": 4250
+    },
+    "trials": [
+      {
+        "cls": "archer",
+        "start": {
+          "x": 5000,
+          "y": 4145,
+          "hp": 995,
+          "valid": true
+        },
+        "end": {
+          "x": 4397.259451945982,
+          "y": 2118.9629354362883,
+          "hp": 597,
+          "moveLeft": 1107.91666666667
+        },
+        "inputJumps": 1,
+        "reachedRamp": false,
+        "largeVerticalDiscontinuities": [
+          {
+            "before": {
+              "x": 4560.342496081181,
+              "y": 4180.205497648709,
+              "grounded": true,
+              "support": "pilot31-shore"
+            },
+            "after": {
+              "x": 4553.786897554182,
+              "y": 2104.7606685793226,
+              "grounded": true,
+              "support": "pilot31-ridge-court"
+            }
+          }
+        ]
+      },
+      {
+        "cls": "mage",
+        "start": {
+          "x": 5000,
+          "y": 4145,
+          "hp": 1062,
+          "valid": true
+        },
+        "end": {
+          "x": 4398.919310937264,
+          "y": 2118.725812723248,
+          "hp": 636,
+          "moveLeft": 1130.200000000021
+        },
+        "inputJumps": 1,
+        "reachedRamp": false,
+        "largeVerticalDiscontinuities": [
+          {
+            "before": {
+              "x": 4561.392924915181,
+              "y": 4180.835754949108,
+              "grounded": true,
+              "support": "pilot31-shore"
+            },
+            "after": {
+              "x": 4561.432199571048,
+              "y": 3651.4552026499778,
+              "grounded": true,
+              "support": "pilot31-ridge-court"
+            }
+          },
+          {
+            "before": {
+              "x": 4561.432199571048,
+              "y": 3651.4552026499778,
+              "grounded": true,
+              "support": "pilot31-ridge-court"
+            },
+            "after": {
+              "x": 4545.014004501005,
+              "y": 2096.7230358062106,
+              "grounded": true,
+              "support": "pilot31-ridge-court"
+            }
+          }
+        ]
+      },
+      {
+        "cls": "knight",
+        "start": {
+          "x": 5000,
+          "y": 4145,
+          "hp": 1618,
+          "valid": true
+        },
+        "end": {
+          "x": 4398.6361803173395,
+          "y": 2118.7662599546657,
+          "hp": 970,
+          "moveLeft": 1219.3749999999807
+        },
+        "inputJumps": 1,
+        "reachedRamp": false,
+        "largeVerticalDiscontinuities": [
+          {
+            "before": {
+              "x": 4562.486228395439,
+              "y": 4181.491737037263,
+              "grounded": true,
+              "support": "pilot31-shore"
+            },
+            "after": {
+              "x": 4559.708391644316,
+              "y": 3652.5262613687737,
+              "grounded": true,
+              "support": "pilot31-ridge-court"
+            }
+          },
+          {
+            "before": {
+              "x": 4559.708391644316,
+              "y": 3652.5262613687737,
+              "grounded": true,
+              "support": "pilot31-ridge-court"
+            },
+            "after": {
+              "x": 4543.206522301542,
+              "y": 2095.052839925388,
+              "grounded": true,
+              "support": "pilot31-ridge-court"
+            }
+          }
+        ]
+      },
+      {
+        "cls": "occultist",
+        "start": {
+          "x": 5000,
+          "y": 4145,
+          "hp": 1216,
+          "valid": true
+        },
+        "end": {
+          "x": 4397.717359079719,
+          "y": 2118.897520131469,
+          "hp": 728,
+          "moveLeft": 1159.3250000000028
+        },
+        "inputJumps": 1,
+        "reachedRamp": false,
+        "largeVerticalDiscontinuities": [
+          {
+            "before": {
+              "x": 4560.814117190311,
+              "y": 4180.488470314186,
+              "grounded": true,
+              "support": "pilot31-shore"
+            },
+            "after": {
+              "x": 4546.209328655544,
+              "y": 2097.8275697705017,
+              "grounded": true,
+              "support": "pilot31-ridge-court"
+            }
+          }
+        ]
+      }
+    ],
+    "boundary": "Does not prove every imaginable route impossible; rejects this normal lower-shore access and buried-cap candidate. No geometry or art was rect-cut."
+  },
+  "overallStatus": "NOT ACCEPTED: west/east local routes pass but center-root lower approach fails and buries return-ramp. No whole art/combat pass."
+}
