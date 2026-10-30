@@ -1,0 +1,337 @@
+{
+  "version": 1,
+  "stage": 31,
+  "total": 34,
+  "elites": 4,
+  "midbosses": 1,
+  "enemyActionLimit": 6,
+  "roles": {
+    "guard": {
+      "kind": "possessedGuard",
+      "role": "guard",
+      "intent": "Front armor; flank or close with knight"
+    },
+    "bow": {
+      "kind": "possessedArcher",
+      "role": "bow",
+      "intent": "Direct lane; use rock cover or lower bypass"
+    },
+    "bind": {
+      "kind": "shade",
+      "role": "ice",
+      "intent": "Binding shot; spread and change shelf"
+    },
+    "arc": {
+      "kind": "warden",
+      "role": "guard",
+      "intent": "Native wood spike / wind; break oblique firing lane"
+    },
+    "close": {
+      "kind": "mourner",
+      "role": "leaper",
+      "intent": "Close-range approach; retreat or intercept"
+    },
+    "midboss": {
+      "kind": "warden",
+      "role": "guard",
+      "intent": "Directional armor -> locked warning -> physical relocation and exposed flank"
+    }
+  },
+  "layoutSHA256": "8affa6da3df4a5a048ca716c9f1c74672878d4f3081bc04e28e5b39c3d51efea",
+  "stageSHA256": "40daa0d367d049c1550a9b8e966f0465fb02d923e0a0c5b06d0aae1eaf5e9ddc",
+  "stageCanonicalSHA256": "8165dfbcee349625c63f4eda8447fdeea55817e3f4c0ec1063346c245d131f4a",
+  "status": "Low estuary source-bound placement proposal; split-party eligible counts and full play acceptance pending",
+  "geometryVersion": "estuary-geography-v2",
+  "relocation": {
+    "support": "second-reed-bank",
+    "x": 5180
+  },
+  "pockets": [
+    {
+      "id": "first-bank",
+      "intent": "Close screen on exposed shoulder; gutter blocks low direct fire; rear bank offers guarded ranged choice"
+    },
+    {
+      "id": "second-bank",
+      "intent": "Ranged shoulder with close flank pressure on approach; midboss has native lateral exposure corridor"
+    }
+  ],
+  "cells": [
+    {
+      "id": "first-shoulder",
+      "count": 8,
+      "supports": [],
+      "extra": [
+        {
+          "support": "pilot31-first-reed-bank",
+          "minX": 830,
+          "maxX": 1739
+        }
+      ],
+      "radius": 600,
+      "maxHeight": 350,
+      "placements": [
+        {
+          "id": "pilot31-first-shoulder-1",
+          "support": "first-reed-bank",
+          "x": 1045,
+          "role": "close"
+        },
+        {
+          "id": "pilot31-first-shoulder-2",
+          "support": "first-reed-bank",
+          "x": 1110,
+          "role": "guard"
+        },
+        {
+          "id": "pilot31-first-shoulder-3",
+          "support": "first-reed-bank",
+          "x": 1175,
+          "role": "close"
+        },
+        {
+          "id": "pilot31-first-shoulder-4",
+          "support": "first-reed-bank",
+          "x": 1240,
+          "role": "bow"
+        },
+        {
+          "id": "pilot31-first-shoulder-5",
+          "support": "first-reed-bank",
+          "x": 1305,
+          "role": "guard"
+        },
+        {
+          "id": "pilot31-first-shoulder-6",
+          "support": "first-reed-bank",
+          "x": 1370,
+          "role": "bind"
+        },
+        {
+          "id": "pilot31-first-shoulder-7",
+          "support": "first-reed-bank",
+          "x": 1435,
+          "role": "bow"
+        },
+        {
+          "id": "pilot31-first-shoulder-8",
+          "support": "first-reed-bank",
+          "x": 1500,
+          "role": "arc",
+          "elite": true
+        }
+      ],
+      "engagementRounds": 1
+    },
+    {
+      "id": "first-reverse",
+      "count": 9,
+      "supports": [],
+      "extra": [
+        {
+          "support": "pilot31-first-reed-bank",
+          "minX": 1740,
+          "maxX": 2850
+        }
+      ],
+      "radius": 650,
+      "maxHeight": 350,
+      "placements": [
+        {
+          "id": "pilot31-first-reverse-1",
+          "support": "first-reed-bank",
+          "x": 1840,
+          "role": "close"
+        },
+        {
+          "id": "pilot31-first-reverse-2",
+          "support": "first-reed-bank",
+          "x": 1920,
+          "role": "guard"
+        },
+        {
+          "id": "pilot31-first-reverse-3",
+          "support": "first-reed-bank",
+          "x": 2000,
+          "role": "bow"
+        },
+        {
+          "id": "pilot31-first-reverse-4",
+          "support": "first-reed-bank",
+          "x": 2080,
+          "role": "arc"
+        },
+        {
+          "id": "pilot31-first-reverse-5",
+          "support": "first-reed-bank",
+          "x": 2160,
+          "role": "bow"
+        },
+        {
+          "id": "pilot31-first-reverse-6",
+          "support": "first-reed-bank",
+          "x": 2240,
+          "role": "guard"
+        },
+        {
+          "id": "pilot31-first-reverse-7",
+          "support": "first-reed-bank",
+          "x": 2320,
+          "role": "bind",
+          "elite": true
+        },
+        {
+          "id": "pilot31-first-reverse-8",
+          "support": "first-reed-bank",
+          "x": 2400,
+          "role": "bow"
+        },
+        {
+          "id": "pilot31-first-reverse-9",
+          "support": "first-reed-bank",
+          "x": 2480,
+          "role": "close"
+        }
+      ],
+      "engagementRounds": 1
+    },
+    {
+      "id": "second-approach",
+      "count": 8,
+      "supports": [],
+      "extra": [
+        {
+          "support": "pilot31-second-reed-bank",
+          "minX": 3700,
+          "maxX": 4779
+        }
+      ],
+      "radius": 650,
+      "maxHeight": 350,
+      "placements": [
+        {
+          "id": "pilot31-second-approach-1",
+          "support": "second-reed-bank",
+          "x": 4030,
+          "role": "close"
+        },
+        {
+          "id": "pilot31-second-approach-2",
+          "support": "second-reed-bank",
+          "x": 4120,
+          "role": "bow"
+        },
+        {
+          "id": "pilot31-second-approach-3",
+          "support": "second-reed-bank",
+          "x": 4210,
+          "role": "guard"
+        },
+        {
+          "id": "pilot31-second-approach-4",
+          "support": "second-reed-bank",
+          "x": 4300,
+          "role": "bind"
+        },
+        {
+          "id": "pilot31-second-approach-5",
+          "support": "second-reed-bank",
+          "x": 4390,
+          "role": "guard",
+          "elite": true
+        },
+        {
+          "id": "pilot31-second-approach-6",
+          "support": "second-reed-bank",
+          "x": 4480,
+          "role": "bow"
+        },
+        {
+          "id": "pilot31-second-approach-7",
+          "support": "second-reed-bank",
+          "x": 4570,
+          "role": "arc"
+        },
+        {
+          "id": "pilot31-second-approach-8",
+          "support": "second-reed-bank",
+          "x": 4660,
+          "role": "close"
+        }
+      ],
+      "engagementRounds": 1
+    },
+    {
+      "id": "second-shoulder",
+      "count": 9,
+      "supports": [],
+      "extra": [
+        {
+          "support": "pilot31-second-reed-bank",
+          "minX": 4780,
+          "maxX": 6100
+        }
+      ],
+      "radius": 700,
+      "maxHeight": 350,
+      "placements": [
+        {
+          "id": "pilot31-second-shoulder-1",
+          "support": "second-reed-bank",
+          "x": 4800,
+          "role": "bow"
+        },
+        {
+          "id": "pilot31-second-shoulder-2",
+          "support": "second-reed-bank",
+          "x": 4890,
+          "role": "bind"
+        },
+        {
+          "id": "pilot31-second-shoulder-3",
+          "support": "second-reed-bank",
+          "x": 4980,
+          "role": "guard"
+        },
+        {
+          "id": "pilot31-second-shoulder-4",
+          "support": "second-reed-bank",
+          "x": 5070,
+          "role": "midboss"
+        },
+        {
+          "id": "pilot31-second-shoulder-5",
+          "support": "second-reed-bank",
+          "x": 5280,
+          "role": "arc"
+        },
+        {
+          "id": "pilot31-second-shoulder-6",
+          "support": "second-reed-bank",
+          "x": 5370,
+          "role": "close"
+        },
+        {
+          "id": "pilot31-second-shoulder-7",
+          "support": "second-reed-bank",
+          "x": 5460,
+          "role": "bow",
+          "elite": true
+        },
+        {
+          "id": "pilot31-second-shoulder-8",
+          "support": "second-reed-bank",
+          "x": 5550,
+          "role": "bind"
+        },
+        {
+          "id": "pilot31-second-shoulder-9",
+          "support": "second-reed-bank",
+          "x": 5650,
+          "role": "guard"
+        }
+      ],
+      "engagementRounds": 1
+    }
+  ]
+}
