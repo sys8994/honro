@@ -1,0 +1,42 @@
+{
+  "id": "act4:prop-v2:reeds",
+  "name": "reeds",
+  "semanticLayer": "FORE",
+  "category": "prop",
+  "bounds": {
+    "x": 0,
+    "y": 0,
+    "w": 200,
+    "h": 167.60016408867511
+  },
+  "anchor": {
+    "x": 0,
+    "y": 0
+  },
+  "foot": {
+    "x": 100.0,
+    "y": 167.60016408867511
+  },
+  "transform": [
+    0.3553302740027129,
+    0,
+    0,
+    0.3553302740027129,
+    -329.04101707218393,
+    -30.31879853083597
+  ],
+  "scaleRange": [
+    1,
+    1
+  ],
+  "backgroundRange": [
+    1,
+    1
+  ],
+  "params": {
+    "candidateOnly": true,
+    "functionalCollision": false,
+    "provisionalDimensions": true,
+    "placementReview": "PENDING"
+  }
+}

@@ -1,0 +1,42 @@
+{
+  "id": "act4:prop-v2:marker",
+  "name": "marker",
+  "semanticLayer": "FORE",
+  "category": "prop",
+  "bounds": {
+    "x": 0,
+    "y": 0,
+    "w": 190,
+    "h": 145.7409019230746
+  },
+  "anchor": {
+    "x": 0,
+    "y": 0
+  },
+  "foot": {
+    "x": 95.0,
+    "y": 145.7409019230746
+  },
+  "transform": [
+    0.3755853137378156,
+    0,
+    0,
+    0.3755853137378156,
+    -359.1057286846864,
+    -220.802603432071
+  ],
+  "scaleRange": [
+    1,
+    1
+  ],
+  "backgroundRange": [
+    1,
+    1
+  ],
+  "params": {
+    "candidateOnly": true,
+    "functionalCollision": false,
+    "provisionalDimensions": true,
+    "placementReview": "PENDING"
+  }
+}

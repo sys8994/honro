@@ -1,0 +1,71 @@
+{
+  "nativeUnionBounds": [
+    59.450767517089844,
+    46.24067687988281,
+    899,
+    579.9261474609375
+  ],
+  "layers": [
+    {
+      "color": "#959d6c",
+      "removed": 0,
+      "filled": 0,
+      "maxExteriorDistance": 0.21889102019595436,
+      "paths": 1
+    },
+    {
+      "color": "#616c82",
+      "removed": 1,
+      "filled": 0,
+      "maxExteriorDistance": 0.17253484742935676,
+      "paths": 1
+    },
+    {
+      "color": "#5e6c58",
+      "removed": 0,
+      "filled": 0,
+      "maxExteriorDistance": 0.14971188636434743,
+      "paths": 1
+    },
+    {
+      "color": "#354c63",
+      "removed": 0,
+      "filled": 0,
+      "maxExteriorDistance": 0.19306754187051106,
+      "paths": 1
+    },
+    {
+      "color": "#223655",
+      "removed": 1,
+      "filled": 0,
+      "maxExteriorDistance": 0.17253484742935676,
+      "paths": 1
+    },
+    {
+      "color": "#1a3047",
+      "removed": 0,
+      "filled": 0,
+      "maxExteriorDistance": 0.1983407587341653,
+      "paths": 1
+    },
+    {
+      "color": "#132138",
+      "removed": 1,
+      "filled": 0,
+      "maxExteriorDistance": 0.2169844234127602,
+      "paths": 1
+    }
+  ],
+  "flatten": 0.1,
+  "simplify": 0.15,
+  "minimumComponentOrHoleArea": 1,
+  "paletteRevision": null,
+  "underfill": "native union, no expansion; holes under 50 source px\u00b2 filled",
+  "artApproval": "PENDING",
+  "underfillMetrics": {
+    "removed": 0,
+    "filled": 322,
+    "maxExteriorDistance": 0.17253069418922104,
+    "paths": 2
+  }
+}

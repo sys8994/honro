@@ -1,0 +1,42 @@
+{
+  "id": "act4:prop-v2:pine",
+  "name": "pine",
+  "semanticLayer": "REAR",
+  "category": "prop",
+  "bounds": {
+    "x": 0,
+    "y": 0,
+    "w": 440,
+    "h": 280.4597502380598
+  },
+  "anchor": {
+    "x": 0,
+    "y": 0
+  },
+  "foot": {
+    "x": 220.0,
+    "y": 280.4597502380598
+  },
+  "transform": [
+    0.5216055958048829,
+    0,
+    0,
+    0.5216055958048829,
+    -29.96664182019946,
+    -23.07618462274258
+  ],
+  "scaleRange": [
+    1,
+    1
+  ],
+  "backgroundRange": [
+    1,
+    1
+  ],
+  "params": {
+    "candidateOnly": true,
+    "functionalCollision": false,
+    "provisionalDimensions": true,
+    "placementReview": "PENDING"
+  }
+}

@@ -1,0 +1,42 @@
+{
+  "id": "act4:prop-v2:rocks",
+  "name": "rocks",
+  "semanticLayer": "REAR",
+  "category": "prop",
+  "bounds": {
+    "x": 0,
+    "y": 0,
+    "w": 360,
+    "h": 157.07683526362925
+  },
+  "anchor": {
+    "x": 0,
+    "y": 0
+  },
+  "foot": {
+    "x": 180.0,
+    "y": 157.07683526362925
+  },
+  "transform": [
+    0.4119940628085079,
+    0,
+    0,
+    0.4119940628085079,
+    -22.27808576805239,
+    -253.18953808691228
+  ],
+  "scaleRange": [
+    1,
+    1
+  ],
+  "backgroundRange": [
+    1,
+    1
+  ],
+  "params": {
+    "candidateOnly": true,
+    "functionalCollision": false,
+    "provisionalDimensions": true,
+    "placementReview": "PENDING"
+  }
+}

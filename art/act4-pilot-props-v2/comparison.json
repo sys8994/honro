@@ -1,0 +1,98 @@
+{
+  "pine": {
+    "sourcePNGvsNative": {
+      "meanAbsAlpha255": 4.2257460732984296,
+      "meanAbsPremultipliedRGB255": 1.833931201450912,
+      "binaryAlphaDisagreementPixels": 2462
+    },
+    "renderPixels": [
+      600,
+      382
+    ],
+    "meanAbsAlpha255": 2.141326352530541,
+    "meanAbsPremultipliedRGB255": 0.3390736007026429,
+    "binaryAlphaDisagreementPixels": 1416,
+    "nativeHoles": {
+      "count": 354,
+      "pixels": 1241,
+      "largestPixels": 155
+    },
+    "optimizedHoles": {
+      "count": 34,
+      "pixels": 700,
+      "largestPixels": 146
+    }
+  },
+  "reeds": {
+    "sourcePNGvsNative": {
+      "meanAbsAlpha255": 4.806823188405797,
+      "meanAbsPremultipliedRGB255": 2.535773636449749,
+      "binaryAlphaDisagreementPixels": 4825
+    },
+    "renderPixels": [
+      600,
+      575
+    ],
+    "meanAbsAlpha255": 1.7010840579710145,
+    "meanAbsPremultipliedRGB255": 0.30571447570332483,
+    "binaryAlphaDisagreementPixels": 1732,
+    "nativeHoles": {
+      "count": 557,
+      "pixels": 4989,
+      "largestPixels": 3840
+    },
+    "optimizedHoles": {
+      "count": 305,
+      "pixels": 4212,
+      "largestPixels": 3731
+    }
+  },
+  "rocks": {
+    "sourcePNGvsNative": {
+      "meanAbsAlpha255": 4.2139517078916375,
+      "meanAbsPremultipliedRGB255": 2.704914370616719,
+      "binaryAlphaDisagreementPixels": 1340
+    },
+    "renderPixels": [
+      600,
+      283
+    ],
+    "meanAbsAlpha255": 2.3648233215547703,
+    "meanAbsPremultipliedRGB255": 0.39254258373942436,
+    "binaryAlphaDisagreementPixels": 861,
+    "nativeHoles": {
+      "count": 374,
+      "pixels": 1410,
+      "largestPixels": 559
+    },
+    "optimizedHoles": {
+      "count": 58,
+      "pixels": 878,
+      "largestPixels": 532
+    }
+  },
+  "marker": {
+    "sourcePNGvsNative": {
+      "meanAbsAlpha255": 5.234866962305987,
+      "meanAbsPremultipliedRGB255": 2.707537966948297,
+      "binaryAlphaDisagreementPixels": 4057
+    },
+    "renderPixels": [
+      600,
+      451
+    ],
+    "meanAbsAlpha255": 2.2634626755358465,
+    "meanAbsPremultipliedRGB255": 0.3716748981928322,
+    "binaryAlphaDisagreementPixels": 1740,
+    "nativeHoles": {
+      "count": 454,
+      "pixels": 1373,
+      "largestPixels": 93
+    },
+    "optimizedHoles": {
+      "count": 234,
+      "pixels": 530,
+      "largestPixels": 18
+    }
+  }
+}
