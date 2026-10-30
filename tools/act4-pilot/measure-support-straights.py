@@ -85,11 +85,14 @@ def main(n,source=None,folder=None):
     rows.append(row)
     if w==1280 and zoom=='normal-policy':
      (folder/f'straights-{view["id"]}.svg').write_text(f'<svg xmlns="http://www.w3.org/2000/svg" width="{w}" height="{h}"><rect width="100%" height="100%" fill="#f7f8fa"/>'+''.join(svg)+f'<text x="20" y="30" font-size="18">Stage {n} / {view["id"]} / red ≥80CSSpx / diagnostic only</text></svg>')
- report=dict(stage=n,blueprintSHA256=hashlib.sha256(raw).hexdigest(),criteriaFile=str(REF),criteriaSHA256=hashlib.sha256(REF.read_bytes()).hexdigest(),definition='1 CSS px arc resample; open RDP epsilon3; deterministic maximal contiguous runs with max chord distance<=2CSSpx and cumulative absolute direction change<=10deg; length sensitivity40/80/160CSSpx.',normalization='Runtime bounds min=max(viewportWidth/6800,3.75/66), max1.65; diagnostic normal0.7 is renderer constructor scale, not a claimed observed gameplay camera. Centers predeclared in blueprint cameraViews. No full-world fit.',status='FUNCTIONAL_SUPPORT_DIAGNOSTIC; final visible art gate BLOCKED (painted masks/runtime camera observations absent). NO PASS CLAIM.',thresholds=dict(targetExclusive=.2,hardMaxExclusive=.3),rows=rows)
+ report=dict(stage=n,blueprintSource=str(source),blueprintSHA256=hashlib.sha256(raw).hexdigest(),criteriaFile=str(REF),criteriaSHA256=hashlib.sha256(REF.read_bytes()).hexdigest(),definition='1 CSS px arc resample; open RDP epsilon3; deterministic maximal contiguous runs with max chord distance<=2CSSpx and cumulative absolute direction change<=10deg; length sensitivity40/80/160CSSpx.',normalization='Runtime bounds min=max(viewportWidth/6800,3.75/66), max1.65; diagnostic normal0.7 is renderer constructor scale, not a claimed observed gameplay camera. Centers predeclared in blueprint cameraViews. No full-world fit.',status='FUNCTIONAL_SUPPORT_DIAGNOSTIC; final visible art gate BLOCKED (painted masks/runtime camera observations absent). NO PASS CLAIM.',thresholds=dict(targetExclusive=.2,hardMaxExclusive=.3),rows=rows)
  path=folder/'support-straights.json';path.write_text(json.dumps(report,indent=2))
  brief=[]
  for zoom in ['minimum','normal-policy','maximum']:
   rr=[r for r in rows if r['zoomName']==zoom and r['ratios'][80] is not None];brief.append(dict(zoom=zoom,minRatio=min(r['ratios'][80] for r in rr),maxRatio=max(r['ratios'][80] for r in rr),atOrAboveHardMax=sum(r['ratios'][80]>=.3 for r in rr),samples=len(rr)))
  print(json.dumps(dict(stage=n,summary=brief,report=str(path))))
 if __name__=='__main__':
- for n in [31,34,39]:main(n)
+ import argparse
+ p=argparse.ArgumentParser();p.add_argument('--stage',type=int,choices=[31,34,39]);p.add_argument('--source');p.add_argument('--out');a=p.parse_args()
+ if (a.source or a.out) and not a.stage:p.error('--source/--out require --stage')
+ for n in ([a.stage] if a.stage else [31,34,39]):main(n,a.source,a.out)
