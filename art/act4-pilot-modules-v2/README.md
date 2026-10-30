@@ -134,3 +134,16 @@ descending/overhang). Reusing the old sourceTop is not valid final contact proof
 After stacked extraction run `python tools/act4-pilot-native/refine-stacked-contact.py`;
 the assembler now uses these source-specific profiles and records their SHA.
 The earlier rejected v4 screenshots remain unchanged as failure evidence.
+
+## A07 — thick rock art is incompatible with upward-passable one-way supports
+
+Root rejected the thick opaque rock bodies on one-way ledges after matched Engine
+trajectory diagnosis. Approved top, route and oneWay physics remain unchanged.
+Replacement procedure: independent shallow timber deck/ramp native source, open
+space beneath broad boards, thin braces toward the rear. Stage-specific rock
+bodies are only for actual solids; do not force a use for the four common rocks.
+A thin one-direction board crossing is visually different from a torso moving
+through a deep opaque boulder. The diagnostic samples must report geometric
+intersection, not blindly reject every nonzero board crossing or falsely waive a
+thick body because the renderer draws the actor in front. Root visual review of
+normal motion remains required in addition to numeric intersection reports.
