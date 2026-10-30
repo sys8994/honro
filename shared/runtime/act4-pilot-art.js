@@ -20,7 +20,7 @@ function validateStage(stage,library){
 const S=G.HonroScene?.prototype;
 if(S){
  const terrain=S.terrain;S.terrain=function(c,t,...args){if(covered(t,this.battle))return;return terrain.call(this,c,t,...args);};
- const foreground=S._isForeground;S._isForeground=function(l){return native(l,this.battle)?false:foreground.call(this,l);};
+ const foreground=S._isForeground;S._isForeground=function(l){return native(l,this.battle)?l.nativeArtLayer==='front':foreground.call(this,l);};
  const landmark=S.landmark;S.landmark=function(c,l,...args){
   const b=this.battle;
   if(config(b)&&this._nativeArtBackground&&l.id==='a4-31-boat-10'&&l.asset?.id==='a4:boat'){this._nativeArtDeferredBoat={...l};return;}
