@@ -1,0 +1,8 @@
+// Check native-vs-warped per-palette fill occupancy on inverse-mapped sample grid.
+import {readFileSync} from 'node:fs';import {createCanvas,Path2D} from '@napi-rs/canvas';
+const [sf,cf,of]=process.argv.slice(2);const source=JSON.parse(readFileSync(sf)),config=JSON.parse(readFileSync(cf)),output=JSON.parse(readFileSync(of)),ctx=createCanvas(1,1).getContext('2d');
+function collect(n,style={},out=[]){if(n.transform)throw Error('test fixture expects identity group transforms');const s={...style,...n};if(n.tag==='path'&&s.fill!=='none')out.push({fill:s.fill,rule:s.fillRule||'nonzero',p:new Path2D(n.d)});for(const c of n.children||[])collect(c,s,out);return out;}
+const src=collect(source.vector.root),dst=collect(output.vector.root),sp=config.sourceTop,tp=config.targetTop,s0=sp[0][0],s1=sp.at(-1)[0],t0=tp[0][0],t1=tp.at(-1)[0],a=(t1-t0)/(s1-s0),b=t0-a*s0,depth=config.depthScale;
+function at(p,x){let i=1;while(i<p.length-1&&x>p[i][0])i++;const [x0,y0]=p[i-1],[x1,y1]=p[i];return y0+(y1-y0)*(x-x0)/(x1-x0);}
+const colors=[...new Set(src.map(p=>p.fill))];let mismatches=0,samples=0;const examples=[];for(let i=0;i<64;i++)for(let j=0;j<64;j++){const sx=s0+(i+.37)/64*(s1-s0),sy=source.bounds.y+(j+.41)/64*source.bounds.h,tx=a*sx+b,ty=at(tp,tx)+depth*(sy-at(sp,sx));for(const color of colors){const hit=(arr,x,y)=>arr.some(o=>o.fill===color&&ctx.isPointInPath(o.p,x,y,o.rule));const u=hit(src,sx,sy),v=hit(dst,tx,ty);samples++;if(u!==v){mismatches++;if(examples.length<5)examples.push({sx,sy,color,u,v});}}}
+console.log(JSON.stringify({samples,mismatches,examples}));if(mismatches)process.exitCode=1;
