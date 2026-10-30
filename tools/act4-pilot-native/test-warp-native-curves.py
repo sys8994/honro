@@ -12,7 +12,7 @@ for p,t0,t1 in zip(parts,knots,knots[1:]):
  for t in (0,.25,.5,.75,1):assert abs(p.point(t)-s.point(t0+(t1-t0)*t))<1e-8
 assert all(abs(a.end-b.start)<1e-8 for a,b in zip(parts,parts[1:]));assert abs(parts[0].start-s.start)<1e-9 and abs(parts[-1].end-s.end)<1e-9
 # A closing cubic is not replaceable with a straight Z edge.
-fixture={'id':'fixture','collision':[],'bounds':{'x':0,'y':0,'w':10,'h':10},'anchor':{'x':0,'y':0},'reference':{},'params':{},'vector':{'version':1,'root':{'tag':'g','children':[{'tag':'path','fill':'#000000','stroke':'none','fillRule':'nonzero','d':'M0 0 L10 0 L10 10 C9 5 3 1 0 0 Z'}]}}}
+fixture={'id':'fixture','collision':[],'bounds':{'x':0,'y':0,'w':10,'h':10},'anchor':{'x':0,'y':0},'reference':{},'params':{},'vector':{'version':1,'root':{'tag':'g','children':[{'tag':'path','fill':'#000000','stroke':'none','fillRule':'nonzero','d':'M0 0 L0 0 C0 0 0 0 0 0 L10 0 L10 10 C9 5 3 1 0 0 Z'}]}}}
 fc={'id':'fixture-warped','sourceTop':[[0,0],[10,0]],'targetTop':[[0,0],[10,0]],'depthScale':1}
 fa,_=w.run(fixture,fc);fd=fa['vector']['root']['children'][0]['d'];curve=[v for v in parse_path(fd) if isinstance(v,CubicBezier)];assert len(curve)==1 and abs(curve[0].point(.5)-(5.75+3.5j))<.001,fd
 root=P.parents[1]; fixture_path=root/'_local/reports/stage31-body-v1-fit/east-overhang-fit.json'

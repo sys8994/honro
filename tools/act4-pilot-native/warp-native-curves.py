@@ -57,6 +57,12 @@ def compact_d(d):
  if any(abs(float(m[0])-round(float(m[0]),3))>1e-9 for m in re.finditer(imp.NUMBER,d)):raise ValueError('compact_d requires pre-quantized .001-grid numbers')
  return compact_rel(d)
 def rnd(z):return complex(round(z.real,3),round(z.imag,3))
+def degenerate(s):
+ # Only zero-length line or Bezier with every control coincident is removable.
+ points=[s.start,s.end]
+ if isinstance(s,QuadraticBezier):points.append(s.control)
+ if isinstance(s,CubicBezier):points.extend((s.control1,s.control2))
+ return all(p==points[0] for p in points[1:])
 def quantseg(s):
  if isinstance(s,Line):return Line(rnd(s.start),rnd(s.end))
  if isinstance(s,QuadraticBezier):return QuadraticBezier(rnd(s.start),rnd(s.control),rnd(s.end))
@@ -114,7 +120,8 @@ def run(source,config):
    if closed:
     if abs(out[-1].end-out[0].start)>1e-5:raise ValueError('mapping discontinuity at closure')
     out[-1].end=out[0].start
-   out=[quantseg(v) for v in out]
+   out=[v for v in map(quantseg,out) if not degenerate(v)]
+   if not out:continue
    for i in range(1,len(out)):out[i].start=out[i-1].end
    if closed:out[-1].end=out[0].start
    q=SVGPath(*out);outbounds.append(q.bbox());serial=SVGPath(*list(q)[:-1]) if closed and isinstance(q[-1],Line) else q;d=compact_rel(serial.d(useSandT=True,use_closed_attrib=False,rel=True));d='M'+d[1:] if d.startswith('m') else d;d+=('Z' if closed else '');
