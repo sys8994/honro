@@ -1,5 +1,8 @@
-# Keep source and review evidence in Git; omit only these diagnostic trees from Pages.
+# Keep source and review evidence in Git; omit authoring originals and diagnostic trees from Pages.
 exclude:
+  - art/**
+  - tests/**
+  - game/tests/**
   - game/docs/stage-review/**
   - game/docs/art-review/**
   - review/**

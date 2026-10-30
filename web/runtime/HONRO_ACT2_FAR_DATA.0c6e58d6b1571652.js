@@ -1,0 +1,1 @@
+import{loadData,loadProject}from"./load-data.281437c4288b1469.js";globalThis.HONRO_ACT2_FAR_DATA=await loadData("web/data/HONRO_ACT2_FAR_DATA.ed9317af7cbbefdd.json",[["clouded"],["dawn"],["stage11-ravine"],["stage11-ravine-readable"]],{svgSources:false});

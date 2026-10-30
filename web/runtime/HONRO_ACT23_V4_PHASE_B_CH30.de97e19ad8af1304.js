@@ -1,0 +1,1 @@
+import{loadData,loadProject}from"./load-data.8ebe1e3bddb2579f.js";globalThis.HONRO_ACT23_V4_PHASE_B_CH30=await loadData("web/data/HONRO_ACT23_V4_PHASE_B_CH30.a17fcf0a2f50e2d4.json",[],{svgSources:false});
