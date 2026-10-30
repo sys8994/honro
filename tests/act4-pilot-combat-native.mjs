@@ -2,7 +2,7 @@
  * Not browser visibility, free play, completion, balance acceptance or fun proof. */
 import assert from 'node:assert/strict';import vm from 'node:vm';import {readFile,mkdir,writeFile} from 'node:fs/promises';import {runtime} from '../game/tests/helpers.mjs';
 process.env.HONRO_ACT4_RELEASE='1';const g=await runtime({legacyMaps:false}),C=g.HONRO_CORE;
-vm.runInContext(await readFile('shared/runtime/act4-pilot-combat.js','utf8'),g);const P=g.HonroAct4PilotCombat;
+g.HONRO_ACT4_PILOT_COMBAT_REFERENCE=JSON.parse(await readFile('shared/data/act4/pilot-combat-reference.json','utf8'));vm.runInContext(await readFile('shared/runtime/act4-pilot-combat.js','utf8'),g);const P=g.HonroAct4PilotCombat;
 const p=C.defaults(),st=g.HONRO_CONTENT.stages.find(s=>s.id===31);p.settings.difficulty='normal';
 const b=C.createBattle(1,p,'practice',{party:['archer'],distance:900});Object.assign(b,{honroAct4Preview:31,honroAct4Official:1,honroCustom:false,difficulty:'normal',phase:'enemy',side:1,round:2,terrain:[{id:'test-floor',x:0,y:600,w:2500,h:200,mat:'stone',hp:9999,maxHp:9999,indestructible:true}],waters:[],zones:[],fields:[],projectiles:[],teamEnds:[1,0]});
 const record=P.decorate({id:'pilot-mid',kind:'possessedGuard',team:'enemy',x:600,y:600},31,{honroPilotCombatBudget:true,honroPilotRelocation:{x:780,y:600},r:26,h:106});

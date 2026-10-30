@@ -1,0 +1,1646 @@
+{
+  "kind": "actual-App-created-cohort-preflight",
+  "sourceCommit": "cb3e11c5b715da658e3d1224fa6791004c3570fc",
+  "controllerHash": "69f0b50cec3d5d2119bf562f88e452d63498c5ea2d972df1d01967ec12de1257",
+  "stage": 31,
+  "entryBuild": "campaign-balanced-v1",
+  "scope": "Linked Act4 actual App entry. Prepared independent profile through stage-1 markers and declared plan entry level; no actual preceding play or earned contribution history claimed. Native Canvas Scene with accumulated unpaused presentation time between sparse paints. DOM/audio/scheduling fixtures; ordinary-input ticks with actual Scene rendering, not continuous camera-history evidence. No actor/event injection. Native evidence only, not browser or automatic gameplay approval.",
+  "officialIdentity": {
+    "stage": 31,
+    "canonicalStageSHA256": "49aafff4e8ef5973bcca9ba7bfcb02b924709a6b5aaa532beec246d306c0ebee",
+    "assets": [
+      {
+        "id": "a4:dock",
+        "sha256": "73a5577626a0694cfbed30aa3982f45688c161dbb76e8f5721e4e9844e2399df"
+      },
+      {
+        "id": "a4:boat",
+        "sha256": "687bc5deb121bf478b46ac7e9406d6a18b5309db111d777a430c7b39a530596c"
+      },
+      {
+        "id": "s31v:arrival-ferry",
+        "sha256": "1b33566e6d8831d3a418f0954d4a347cb78c2f34d7e5fb65e844333b082b5ae1"
+      }
+    ],
+    "fullLibraryAssets": 1090,
+    "loadedLibraryAssets": 3,
+    "mode": "source-registry selected chapter recursive dependency closure; no candidate override",
+    "runtimeConsumed": [
+      "shared/runtime/fullscreen-input.js",
+      "shared/runtime/title-markup.js",
+      "HONRO_BGM_TRACKS",
+      "HONRO_BGM_METADATA",
+      "HONRO_SKILL_ICON_MANIFEST",
+      "engine/core",
+      "HONRO_EQUIPMENT_ICONS",
+      "shared/environment-vector-kit",
+      "HONRO_BALANCE",
+      "HONRO_NARRATIVE_V0",
+      "HONRO_SPLIT_V1",
+      "HONRO_OPEN_STRUCTURES",
+      "HONRO_WATERWORKS_V2",
+      "HONRO_NARRATIVE_CATALOGUE",
+      "HONRO_NARRATIVE_COMPAT",
+      "HONRO_STAGE_CONTRACTS",
+      "HONRO_ACT4_RELEASE",
+      "HONRO_ACT4_CONTENT",
+      "HONRO_ACT4_REVIEWED",
+      "HONRO_ACT23_V4_PHASE_A",
+      "HONRO_ACT23_V4_PHASE_B_CH11",
+      "HONRO_ACT23_V4_REVIEWED",
+      "HONRO_ACT23_V4_PHASE_B_STAGES",
+      "HONRO_ACT23_V4_REVIEWED_CHAPTERS",
+      "HONRO_ACT23_V4_REVIEWED_COMMON",
+      "HONRO_ACT23_V4_PHASE_B_CH21",
+      "HONRO_ACT23_V4_REVIEWED_CH21",
+      "HONRO_ACT23_V4_PHASE_B_CH22",
+      "HONRO_ACT23_V4_REVIEWED_CH22",
+      "HONRO_ACT23_V4_PHASE_B_CH23",
+      "HONRO_ACT23_V4_REVIEWED_CH23",
+      "HONRO_ACT23_V4_PHASE_B_CH24",
+      "HONRO_ACT23_V4_REVIEWED_CH24",
+      "HONRO_ACT23_V4_PHASE_B_CH25",
+      "HONRO_ACT23_V4_REVIEWED_CH25",
+      "HONRO_ACT23_V4_PHASE_B_CH26",
+      "HONRO_ACT23_V4_REVIEWED_CH26",
+      "HONRO_ACT23_V4_PHASE_B_CH27",
+      "HONRO_ACT23_V4_REVIEWED_CH27",
+      "HONRO_ACT23_V4_PHASE_B_CH28",
+      "HONRO_ACT23_V4_REVIEWED_CH28",
+      "HONRO_ACT23_V4_PHASE_B_CH29",
+      "HONRO_ACT23_V4_REVIEWED_CH29",
+      "HONRO_ACT23_V4_PHASE_B_CH30",
+      "HONRO_ACT23_V4_REVIEWED_CH30",
+      "HONRO_PORTRAIT_VARIANTS",
+      "shared/runtime/action-prompts.js",
+      "shared/runtime/narrative-catalogue.js",
+      "shared/runtime/content.js",
+      "shared/runtime/story-content-v0.js",
+      "shared/runtime/story-content-v1.js",
+      "shared/runtime/story-content.js",
+      "shared/runtime/terrain-space.js",
+      "shared/runtime/map-engine.js",
+      "shared/runtime/battlefield-layouts.js",
+      "shared/runtime/clear-report.js",
+      "shared/runtime/split-campaign.js",
+      "shared/runtime/campaign-map-revision.js",
+      "shared/runtime/stake-crossing.js",
+      "shared/runtime/contribution-xp.js",
+      "shared/runtime/progression.js",
+      "shared/runtime/equipment-state.js",
+      "shared/runtime/profile-store.js",
+      "shared/runtime/encounters.js",
+      "shared/runtime/world.js",
+      "shared/runtime/act1-roster.js",
+      "shared/runtime/difficulty.js",
+      "shared/runtime/allies.js",
+      "shared/runtime/sodan-withdrawal.js",
+      "shared/runtime/mission.js",
+      "shared/runtime/objectives.js",
+      "shared/runtime/objective-contributions.js",
+      "shared/runtime/combat-status.js",
+      "shared/runtime/authored.js",
+      "shared/runtime/act2-content.js",
+      "shared/runtime/act2.js",
+      "shared/runtime/stage11-ravine-encounters.js",
+      "shared/runtime/stage17-worksite.js",
+      "shared/runtime/stage16-temple.js",
+      "shared/runtime/act3-content.js",
+      "shared/runtime/act3-encounters.js",
+      "shared/runtime/act3-objectives.js",
+      "shared/runtime/objective-revision.js",
+      "shared/runtime/stage18-bell.js",
+      "shared/runtime/stage30-ferry.js",
+      "shared/runtime/stage12-quarry.js",
+      "shared/runtime/stage23-escort.js",
+      "shared/runtime/objective-guidance.js",
+      "shared/runtime/journey-content.js",
+      "shared/runtime/act3-journey.js",
+      "shared/runtime/story-staging.js",
+      "shared/runtime/story-direction.js",
+      "shared/runtime/story-framing.js",
+      "shared/runtime/stage8-bier.js",
+      "shared/runtime/encounter-density.js",
+      "shared/runtime/stage14-vertical.js",
+      "shared/runtime/stage22-vertical.js",
+      "shared/runtime/route-branches.js",
+      "shared/runtime/narrative-revision.js",
+      "shared/runtime/stage11-trace-exit.js",
+      "shared/runtime/stage2-airborne.js",
+      "shared/runtime/stage5-waterfall-geometry.js",
+      "shared/runtime/stage5-waterfall.js",
+      "shared/runtime/stage5-positioning.js",
+      "shared/runtime/quest-targets.js",
+      "shared/runtime/story-canon-v1.js",
+      "shared/runtime/bell-anomaly.js",
+      "shared/runtime/act3-void.js",
+      "shared/runtime/evidence-quests.js",
+      "shared/runtime/stage2-layered-road.js",
+      "shared/runtime/act2-pacing.js",
+      "shared/runtime/player-turn-order.js",
+      "shared/runtime/stage11-quest-simplification.js",
+      "shared/runtime/stage14-rescue-gates.js",
+      "shared/runtime/stage15-drain-contact.js",
+      "shared/runtime/stage18-short-quest.js",
+      "shared/runtime/keeper-ritual.js",
+      "shared/runtime/stage19-farewell.js",
+      "shared/runtime/act23-v4.js",
+      "shared/runtime/act23-v4-act2.js",
+      "shared/runtime/act23-v4-act2-scenes.js",
+      "shared/runtime/act23-v4-stage18.js",
+      "shared/runtime/act23-v4-act3.js",
+      "shared/runtime/act23-v4-city.js",
+      "shared/runtime/act23-v4-stage29.js",
+      "shared/runtime/act23-v4-stage30.js",
+      "shared/runtime/act23-v4-ch11-scenes.js",
+      "shared/runtime/act23-v4-reviewed.js",
+      "shared/runtime/act23-v4-reviewed-chapters.js",
+      "shared/runtime/act23-v4-reviewed12.js",
+      "shared/runtime/act23-v4-reviewed13.js",
+      "shared/runtime/act23-v4-reviewed14.js",
+      "shared/runtime/act23-v4-reviewed15.js",
+      "shared/runtime/act23-v4-reviewed16.js",
+      "shared/runtime/act23-v4-reviewed17.js",
+      "shared/runtime/act23-v4-reviewed18.js",
+      "shared/runtime/act23-v4-reviewed19.js",
+      "shared/runtime/act23-v4-reviewed20.js",
+      "shared/runtime/act23-v4-reviewed-common.js",
+      "shared/runtime/act23-v4-ch21-scenes.js",
+      "shared/runtime/act23-v4-ch21-reviewed.js",
+      "shared/runtime/act23-v4-ch22-reviewed.js",
+      "shared/runtime/act3-v4-reviewed-core.js",
+      "shared/runtime/act23-v4-ch23-reviewed.js",
+      "shared/runtime/act23-v4-ch24-reviewed.js",
+      "shared/runtime/act3-v4-reviewed-waterworks.js",
+      "shared/runtime/act23-v4-ch25-reviewed.js",
+      "shared/runtime/act23-v4-ch27-reviewed.js",
+      "shared/runtime/act23-v4-ch26-reviewed.js",
+      "shared/runtime/act23-v4-ch28-reviewed.js",
+      "shared/runtime/act23-v4-ch29-reviewed-spear.js",
+      "shared/runtime/act23-v4-ch29-reviewed.js",
+      "shared/runtime/act23-v4-ch30-reviewed.js",
+      "shared/runtime/act4-content.js",
+      "shared/runtime/camera.js",
+      "shared/runtime/attack-camera.js",
+      "shared/runtime/reinforcement-camera.js",
+      "shared/map/bounds.js",
+      "shared/map/environment.js",
+      "shared/map/geometry.js",
+      "shared/map/terrain-domain.js",
+      "shared/map/stage7-reentry.js",
+      "shared/map/platform-passages.js",
+      "shared/map/open-structures.js",
+      "shared/map/projectile-targets.js",
+      "shared/map/visual-style.js",
+      "shared/map/vector-art.js",
+      "shared/map/space-layout.js",
+      "shared/map/schema.js",
+      "shared/map/units.js",
+      "shared/map/compiler.js",
+      "shared/map/commands.js",
+      "shared/map/production-contract.js",
+      "campaign",
+      "shared/runtime/party-rig.js",
+      "shared/assets/party/party.runtime.js",
+      "shared/assets/rebuild-game-adapter.mjs",
+      "HONRO_FAREWELL_SPIRITS",
+      "HONRO_ACT1_FAR_DATA",
+      "HONRO_ACT2_FAR_DATA",
+      "HONRO_REST_BACKDROPS",
+      "HONRO_AUTHORED_FAR",
+      "shared/assets/monsters/monsters.runtime.js",
+      "shared/assets/actors/actors.runtime.js",
+      "shared/runtime/renderer.js",
+      "shared/runtime/art-dark.js",
+      "shared/runtime/terrain-skirt.js",
+      "shared/runtime/environment-art.js",
+      "shared/runtime/map-art-polish.js",
+      "shared/runtime/monster-vector.js",
+      "shared/runtime/actor-vector.js",
+      "shared/runtime/act23-v4-ch21-art.js",
+      "shared/runtime/elements.js",
+      "shared/runtime/environment-renderer.js",
+      "shared/runtime/cave-enclosure.js",
+      "shared/runtime/act2-spatial-art.js",
+      "shared/runtime/stage11-landscape-art.js",
+      "shared/runtime/keeper-ritual-art.js",
+      "shared/runtime/act2-art.js",
+      "shared/runtime/act3-art.js",
+      "shared/runtime/act1-spatial-art.js",
+      "shared/runtime/terrain-readability.js",
+      "shared/runtime/geology-art.js",
+      "shared/runtime/geology-rear-support.js",
+      "shared/runtime/stage2-layered-road-art.js",
+      "shared/runtime/stage18-bell-art.js",
+      "shared/runtime/stage30-ferry-art.js",
+      "shared/runtime/stage12-quarry-art.js",
+      "shared/runtime/stage23-escort-art.js",
+      "shared/runtime/stage8-bier-art.js",
+      "shared/runtime/object-damage.js",
+      "shared/runtime/combat-feedback.js",
+      "shared/runtime/story-act1-art.js",
+      "shared/runtime/stage5-waterfall-art.js",
+      "shared/runtime/stage5-positioning-art.js",
+      "shared/runtime/story-act23-art.js",
+      "shared/runtime/narrative-art.js",
+      "shared/runtime/stage19-farewell-art.js",
+      "shared/runtime/quest-target-art.js",
+      "shared/runtime/act3-v4-reviewed-actors.js",
+      "shared/runtime/story-anomaly-art.js",
+      "shared/runtime/visual-hierarchy.js",
+      "shared/runtime/authored-far-art.js",
+      "HONRO_SKILL_AUDIO",
+      "HONRO_MUKJONG_AUDIO",
+      "HONRO_JOURNEY_MAPS",
+      "shared/runtime/tooltips.js",
+      "game/vendor/ui/fa.js",
+      "shared/runtime/skill-images.js",
+      "shared/runtime/camp-renderer.js",
+      "shared/runtime/campaign-entry.js",
+      "shared/runtime/portraits.js",
+      "shared/runtime/npc-portraits.js",
+      "shared/runtime/ui-bridge.js",
+      "shared/runtime/stage-rules.js",
+      "shared/runtime/music-titles.js",
+      "shared/runtime/audio.js",
+      "shared/runtime/mukjong-audio.js",
+      "shared/runtime/story.js",
+      "shared/runtime/story-barks.js",
+      "shared/runtime/act23-v4-field-talk.js",
+      "shared/runtime/act3-v4-reviewed-documents.js",
+      "shared/runtime/mukjong-pitch-dialogue.js",
+      "shared/runtime/act-endings-content.js",
+      "shared/runtime/act-endings.js",
+      "shared/runtime/interactions.js",
+      "shared/runtime/unit-info.js",
+      "shared/runtime/training.js",
+      "shared/runtime/skill-preview.js",
+      "shared/runtime/journey-art.js",
+      "shared/runtime/journey-images.js",
+      "shared/runtime/rest-journey.js",
+      "shared/runtime/menu-ui.js",
+      "shared/runtime/clear-report-ui.js",
+      "shared/runtime/equipment-ui.js",
+      "shared/runtime/main.js",
+      "HONRO_ACT4_PREVIEW_SEEDS",
+      "shared/runtime/act4-art.js",
+      "shared/runtime/act4-maps.js",
+      "shared/runtime/act4-coast-maps.js",
+      "shared/runtime/act4-coast-art.js",
+      "shared/runtime/act4-events.js",
+      "shared/runtime/act4-coast-events.js",
+      "shared/runtime/act4-pilot-combat.js",
+      "shared/runtime/act4-campaign.js"
+    ],
+    "worldTransport": {
+      "sha256": "7912fc65bdef668a55766ae90d4e3e24383413baac8f742a966bf8a5a4822687",
+      "bytes": 32090685
+    }
+  },
+  "mode": "campaign",
+  "difficulty": "normal",
+  "training": false,
+  "customMap": false,
+  "honroCustom": false,
+  "units": [
+    {
+      "id": "archer",
+      "cls": "archer",
+      "side": 0,
+      "h": 92,
+      "r": 22,
+      "role": "archer",
+      "armor": 0.272,
+      "attack": 6.4866899999999985,
+      "ranks": {
+        "A01": 1,
+        "A14": 3,
+        "A02": 3,
+        "A05": 3
+      },
+      "equipmentIds": [
+        "itm_se_01"
+      ],
+      "hp": 1085,
+      "maxHp": 1085,
+      "focus": 245,
+      "maxFocus": 245,
+      "level": 22,
+      "loadout": [
+        "A01",
+        "A14",
+        "A02",
+        "A05"
+      ]
+    },
+    {
+      "id": "mage",
+      "cls": "mage",
+      "side": 0,
+      "h": 92,
+      "r": 22,
+      "role": "mage",
+      "armor": 0.258,
+      "attack": 6.1936,
+      "ranks": {
+        "M01": 1,
+        "M06": 3,
+        "M02": 3,
+        "M03": 3
+      },
+      "equipmentIds": [
+        "itm_da_01"
+      ],
+      "hp": 1174,
+      "maxHp": 1174,
+      "focus": 367,
+      "maxFocus": 367,
+      "level": 22,
+      "loadout": [
+        "M01",
+        "M06",
+        "M02",
+        "M03"
+      ]
+    },
+    {
+      "id": "knight",
+      "cls": "knight",
+      "side": 0,
+      "h": 92,
+      "r": 22,
+      "role": "knight",
+      "armor": 0.433,
+      "attack": 6.027699999999999,
+      "ranks": {
+        "S00": 1,
+        "S01": 3,
+        "S06": 3,
+        "S04": 3
+      },
+      "equipmentIds": [
+        "itm_hw_01"
+      ],
+      "hp": 2036,
+      "maxHp": 2036,
+      "focus": 277,
+      "maxFocus": 277,
+      "level": 22,
+      "loadout": [
+        "S00",
+        "S01",
+        "S06",
+        "S04"
+      ]
+    },
+    {
+      "id": "occultist",
+      "cls": "occultist",
+      "side": 0,
+      "h": 92,
+      "r": 22,
+      "role": "occultist",
+      "armor": 0.30800000000000005,
+      "attack": 6.552000000000001,
+      "ranks": {
+        "O01": 1,
+        "O06": 4,
+        "O02": 3,
+        "O03": 3
+      },
+      "equipmentIds": [
+        "itm_so_01"
+      ],
+      "hp": 1362,
+      "maxHp": 1362,
+      "focus": 432,
+      "maxFocus": 432,
+      "level": 22,
+      "loadout": [
+        "O01",
+        "O02",
+        "O03",
+        "O06"
+      ]
+    },
+    {
+      "id": "pilot31-west-entry-1",
+      "cls": "knight",
+      "side": 1,
+      "h": 96,
+      "r": 22,
+      "role": "guard",
+      "armor": 0.15,
+      "attack": 6.767958715295998,
+      "existenceDefense": {
+        "form": 1,
+        "qi": 1,
+        "soul": 0.88
+      },
+      "ranks": {
+        "LS09": 4
+      },
+      "hp": 750,
+      "maxHp": 750,
+      "focus": 198,
+      "maxFocus": 198,
+      "level": 22,
+      "loadout": [
+        "LS09"
+      ],
+      "honroPilotRole": "guard",
+      "honroVariant": "possessedGuard",
+      "honroType": "human",
+      "honroPilotBudgetBasis": {
+        "version": 1,
+        "status": "unmeasured-reference-start",
+        "referenceHp": 995,
+        "referenceShot": 587.9894903231999,
+        "hits": 1.5,
+        "fraction": 0.26
+      }
+    },
+    {
+      "id": "pilot31-west-entry-2",
+      "cls": "knight",
+      "side": 1,
+      "h": 96,
+      "r": 22,
+      "role": "leaper",
+      "armor": 0.04,
+      "attack": 5.3107383333385565,
+      "ranks": {
+        "HMO01": 4,
+        "HMO02": 4
+      },
+      "hp": 847,
+      "maxHp": 847,
+      "focus": 198,
+      "maxFocus": 198,
+      "level": 22,
+      "loadout": [
+        "HMO01",
+        "HMO02"
+      ],
+      "honroPilotRole": "close",
+      "honroVariant": "mourner",
+      "honroType": "mourner",
+      "honroPilotBudgetBasis": {
+        "version": 1,
+        "status": "unmeasured-reference-start",
+        "referenceHp": 995,
+        "referenceShot": 587.9894903231999,
+        "hits": 1.5,
+        "fraction": 0.26
+      }
+    },
+    {
+      "id": "pilot31-west-entry-3",
+      "cls": "archer",
+      "side": 1,
+      "h": 96,
+      "r": 22,
+      "role": "bow",
+      "armor": 0.04,
+      "attack": 5.131158520785575,
+      "existenceDefense": {
+        "form": 1,
+        "qi": 1,
+        "soul": 0.88
+      },
+      "ranks": {
+        "LA01": 4
+      },
+      "hp": 847,
+      "maxHp": 847,
+      "focus": 198,
+      "maxFocus": 198,
+      "level": 22,
+      "loadout": [
+        "LA01"
+      ],
+      "honroPilotRole": "bow",
+      "honroVariant": "possessedArcher",
+      "honroType": "human",
+      "honroPilotBudgetBasis": {
+        "version": 1,
+        "status": "unmeasured-reference-start",
+        "referenceHp": 995,
+        "referenceShot": 587.9894903231999,
+        "hits": 1.5,
+        "fraction": 0.26
+      }
+    },
+    {
+      "id": "pilot31-west-entry-4",
+      "cls": "knight",
+      "side": 1,
+      "h": 96,
+      "r": 22,
+      "role": "guard",
+      "armor": 0.15,
+      "attack": 6.767958715295998,
+      "existenceDefense": {
+        "form": 1,
+        "qi": 1,
+        "soul": 0.88
+      },
+      "ranks": {
+        "LS09": 4
+      },
+      "hp": 750,
+      "maxHp": 750,
+      "focus": 198,
+      "maxFocus": 198,
+      "level": 22,
+      "loadout": [
+        "LS09"
+      ],
+      "honroPilotRole": "guard",
+      "honroVariant": "possessedGuard",
+      "honroType": "human",
+      "honroPilotBudgetBasis": {
+        "version": 1,
+        "status": "unmeasured-reference-start",
+        "referenceHp": 995,
+        "referenceShot": 587.9894903231999,
+        "hits": 1.5,
+        "fraction": 0.26
+      }
+    },
+    {
+      "id": "pilot31-west-entry-5",
+      "cls": "archer",
+      "side": 1,
+      "h": 96,
+      "r": 22,
+      "role": "bow",
+      "armor": 0.04,
+      "attack": 5.131158520785575,
+      "existenceDefense": {
+        "form": 1,
+        "qi": 1,
+        "soul": 0.88
+      },
+      "ranks": {
+        "LA01": 4
+      },
+      "hp": 847,
+      "maxHp": 847,
+      "focus": 198,
+      "maxFocus": 198,
+      "level": 22,
+      "loadout": [
+        "LA01"
+      ],
+      "honroPilotRole": "bow",
+      "honroVariant": "possessedArcher",
+      "honroType": "human",
+      "honroPilotBudgetBasis": {
+        "version": 1,
+        "status": "unmeasured-reference-start",
+        "referenceHp": 995,
+        "referenceShot": 587.9894903231999,
+        "hits": 1.5,
+        "fraction": 0.26
+      }
+    },
+    {
+      "id": "pilot31-west-entry-6",
+      "cls": "occultist",
+      "side": 1,
+      "h": 96,
+      "r": 22,
+      "role": "ice",
+      "armor": 0.04,
+      "attack": 5.918656694482242,
+      "ranks": {
+        "HSH01": 4,
+        "HSH02": 4
+      },
+      "hp": 847,
+      "maxHp": 847,
+      "focus": 198,
+      "maxFocus": 198,
+      "level": 22,
+      "loadout": [
+        "HSH01",
+        "HSH02"
+      ],
+      "honroPilotRole": "bind",
+      "honroVariant": "shade",
+      "honroType": "shade",
+      "honroPilotBudgetBasis": {
+        "version": 1,
+        "status": "unmeasured-reference-start",
+        "referenceHp": 995,
+        "referenceShot": 587.9894903231999,
+        "hits": 1.5,
+        "fraction": 0.26
+      }
+    },
+    {
+      "id": "pilot31-west-entry-7",
+      "cls": "knight",
+      "side": 1,
+      "h": 104,
+      "r": 24,
+      "role": "guard",
+      "armor": 0.04,
+      "attack": 5.652828945961321,
+      "ranks": {
+        "HWD01": 4,
+        "HWD02": 4
+      },
+      "hp": 1016,
+      "maxHp": 1016,
+      "focus": 198,
+      "maxFocus": 198,
+      "level": 22,
+      "loadout": [
+        "HWD01",
+        "HWD02"
+      ],
+      "honroPilotRole": "arc",
+      "honroVariant": "warden",
+      "honroType": "warden",
+      "honroPilotBudgetBasis": {
+        "version": 1,
+        "status": "unmeasured-reference-start",
+        "referenceHp": 995,
+        "referenceShot": 587.9894903231999,
+        "hits": 1.8,
+        "fraction": 0.28
+      }
+    },
+    {
+      "id": "pilot31-west-entry-8",
+      "cls": "archer",
+      "side": 1,
+      "h": 96,
+      "r": 22,
+      "role": "bow",
+      "armor": 0.04,
+      "attack": 5.131158520785575,
+      "existenceDefense": {
+        "form": 1,
+        "qi": 1,
+        "soul": 0.88
+      },
+      "ranks": {
+        "LA01": 4
+      },
+      "hp": 847,
+      "maxHp": 847,
+      "focus": 198,
+      "maxFocus": 198,
+      "level": 22,
+      "loadout": [
+        "LA01"
+      ],
+      "honroPilotRole": "bow",
+      "honroVariant": "possessedArcher",
+      "honroType": "human",
+      "honroPilotBudgetBasis": {
+        "version": 1,
+        "status": "unmeasured-reference-start",
+        "referenceHp": 995,
+        "referenceShot": 587.9894903231999,
+        "hits": 1.5,
+        "fraction": 0.26
+      }
+    },
+    {
+      "id": "pilot31-west-crossfire-1",
+      "cls": "archer",
+      "side": 1,
+      "h": 96,
+      "r": 22,
+      "role": "bow",
+      "armor": 0.04,
+      "attack": 5.131158520785575,
+      "existenceDefense": {
+        "form": 1,
+        "qi": 1,
+        "soul": 0.88
+      },
+      "ranks": {
+        "LA01": 4
+      },
+      "hp": 847,
+      "maxHp": 847,
+      "focus": 198,
+      "maxFocus": 198,
+      "level": 22,
+      "loadout": [
+        "LA01"
+      ],
+      "honroPilotRole": "bow",
+      "honroVariant": "possessedArcher",
+      "honroType": "human",
+      "honroPilotBudgetBasis": {
+        "version": 1,
+        "status": "unmeasured-reference-start",
+        "referenceHp": 995,
+        "referenceShot": 587.9894903231999,
+        "hits": 1.5,
+        "fraction": 0.26
+      }
+    },
+    {
+      "id": "pilot31-west-crossfire-2",
+      "cls": "occultist",
+      "side": 1,
+      "h": 96,
+      "r": 22,
+      "role": "ice",
+      "armor": 0.04,
+      "attack": 5.918656694482242,
+      "ranks": {
+        "HSH01": 4,
+        "HSH02": 4
+      },
+      "hp": 847,
+      "maxHp": 847,
+      "focus": 198,
+      "maxFocus": 198,
+      "level": 22,
+      "loadout": [
+        "HSH01",
+        "HSH02"
+      ],
+      "honroPilotRole": "bind",
+      "honroVariant": "shade",
+      "honroType": "shade",
+      "honroPilotBudgetBasis": {
+        "version": 1,
+        "status": "unmeasured-reference-start",
+        "referenceHp": 995,
+        "referenceShot": 587.9894903231999,
+        "hits": 1.5,
+        "fraction": 0.26
+      }
+    },
+    {
+      "id": "pilot31-west-crossfire-3",
+      "cls": "knight",
+      "side": 1,
+      "h": 96,
+      "r": 22,
+      "role": "leaper",
+      "armor": 0.04,
+      "attack": 5.3107383333385565,
+      "ranks": {
+        "HMO01": 4,
+        "HMO02": 4
+      },
+      "hp": 847,
+      "maxHp": 847,
+      "focus": 198,
+      "maxFocus": 198,
+      "level": 22,
+      "loadout": [
+        "HMO01",
+        "HMO02"
+      ],
+      "honroPilotRole": "close",
+      "honroVariant": "mourner",
+      "honroType": "mourner",
+      "honroPilotBudgetBasis": {
+        "version": 1,
+        "status": "unmeasured-reference-start",
+        "referenceHp": 995,
+        "referenceShot": 587.9894903231999,
+        "hits": 1.5,
+        "fraction": 0.26
+      }
+    },
+    {
+      "id": "pilot31-west-crossfire-4",
+      "cls": "knight",
+      "side": 1,
+      "h": 96,
+      "r": 22,
+      "role": "guard",
+      "armor": 0.15,
+      "attack": 6.767958715295998,
+      "existenceDefense": {
+        "form": 1,
+        "qi": 1,
+        "soul": 0.88
+      },
+      "ranks": {
+        "LS09": 4
+      },
+      "hp": 750,
+      "maxHp": 750,
+      "focus": 198,
+      "maxFocus": 198,
+      "level": 22,
+      "loadout": [
+        "LS09"
+      ],
+      "honroPilotRole": "guard",
+      "honroVariant": "possessedGuard",
+      "honroType": "human",
+      "honroPilotBudgetBasis": {
+        "version": 1,
+        "status": "unmeasured-reference-start",
+        "referenceHp": 995,
+        "referenceShot": 587.9894903231999,
+        "hits": 1.5,
+        "fraction": 0.26
+      }
+    },
+    {
+      "id": "pilot31-west-crossfire-5",
+      "cls": "archer",
+      "side": 1,
+      "h": 96,
+      "r": 22,
+      "role": "bow",
+      "armor": 0.04,
+      "attack": 5.131158520785575,
+      "existenceDefense": {
+        "form": 1,
+        "qi": 1,
+        "soul": 0.88
+      },
+      "ranks": {
+        "LA01": 4
+      },
+      "hp": 847,
+      "maxHp": 847,
+      "focus": 198,
+      "maxFocus": 198,
+      "level": 22,
+      "loadout": [
+        "LA01"
+      ],
+      "honroPilotRole": "bow",
+      "honroVariant": "possessedArcher",
+      "honroType": "human",
+      "honroPilotBudgetBasis": {
+        "version": 1,
+        "status": "unmeasured-reference-start",
+        "referenceHp": 995,
+        "referenceShot": 587.9894903231999,
+        "hits": 1.5,
+        "fraction": 0.26
+      }
+    },
+    {
+      "id": "pilot31-west-crossfire-6",
+      "cls": "knight",
+      "side": 1,
+      "h": 96,
+      "r": 22,
+      "role": "guard",
+      "armor": 0.04,
+      "attack": 5.249055449821227,
+      "ranks": {
+        "HWD01": 4,
+        "HWD02": 4
+      },
+      "hp": 847,
+      "maxHp": 847,
+      "focus": 198,
+      "maxFocus": 198,
+      "level": 22,
+      "loadout": [
+        "HWD01",
+        "HWD02"
+      ],
+      "honroPilotRole": "arc",
+      "honroVariant": "warden",
+      "honroType": "warden",
+      "honroPilotBudgetBasis": {
+        "version": 1,
+        "status": "unmeasured-reference-start",
+        "referenceHp": 995,
+        "referenceShot": 587.9894903231999,
+        "hits": 1.5,
+        "fraction": 0.26
+      }
+    },
+    {
+      "id": "pilot31-west-crossfire-7",
+      "cls": "archer",
+      "side": 1,
+      "h": 96,
+      "r": 22,
+      "role": "bow",
+      "armor": 0.04,
+      "attack": 5.131158520785575,
+      "existenceDefense": {
+        "form": 1,
+        "qi": 1,
+        "soul": 0.88
+      },
+      "ranks": {
+        "LA01": 4
+      },
+      "hp": 847,
+      "maxHp": 847,
+      "focus": 198,
+      "maxFocus": 198,
+      "level": 22,
+      "loadout": [
+        "LA01"
+      ],
+      "honroPilotRole": "bow",
+      "honroVariant": "possessedArcher",
+      "honroType": "human",
+      "honroPilotBudgetBasis": {
+        "version": 1,
+        "status": "unmeasured-reference-start",
+        "referenceHp": 995,
+        "referenceShot": 587.9894903231999,
+        "hits": 1.5,
+        "fraction": 0.26
+      }
+    },
+    {
+      "id": "pilot31-west-crossfire-8",
+      "cls": "knight",
+      "side": 1,
+      "h": 96,
+      "r": 22,
+      "role": "guard",
+      "armor": 0.15,
+      "attack": 6.767958715295998,
+      "existenceDefense": {
+        "form": 1,
+        "qi": 1,
+        "soul": 0.88
+      },
+      "ranks": {
+        "LS09": 4
+      },
+      "hp": 750,
+      "maxHp": 750,
+      "focus": 198,
+      "maxFocus": 198,
+      "level": 22,
+      "loadout": [
+        "LS09"
+      ],
+      "honroPilotRole": "guard",
+      "honroVariant": "possessedGuard",
+      "honroType": "human",
+      "honroPilotBudgetBasis": {
+        "version": 1,
+        "status": "unmeasured-reference-start",
+        "referenceHp": 995,
+        "referenceShot": 587.9894903231999,
+        "hits": 1.5,
+        "fraction": 0.26
+      }
+    },
+    {
+      "id": "pilot31-west-crossfire-9",
+      "cls": "occultist",
+      "side": 1,
+      "h": 104,
+      "r": 24,
+      "role": "ice",
+      "armor": 0.04,
+      "attack": 6.373937978673185,
+      "ranks": {
+        "HSH01": 4,
+        "HSH02": 4
+      },
+      "hp": 1016,
+      "maxHp": 1016,
+      "focus": 198,
+      "maxFocus": 198,
+      "level": 22,
+      "loadout": [
+        "HSH01",
+        "HSH02"
+      ],
+      "honroPilotRole": "bind",
+      "honroVariant": "shade",
+      "honroType": "shade",
+      "honroPilotBudgetBasis": {
+        "version": 1,
+        "status": "unmeasured-reference-start",
+        "referenceHp": 995,
+        "referenceShot": 587.9894903231999,
+        "hits": 1.8,
+        "fraction": 0.28
+      }
+    },
+    {
+      "id": "pilot31-ridge-court-1",
+      "cls": "archer",
+      "side": 1,
+      "h": 96,
+      "r": 22,
+      "role": "bow",
+      "armor": 0.04,
+      "attack": 5.131158520785575,
+      "existenceDefense": {
+        "form": 1,
+        "qi": 1,
+        "soul": 0.88
+      },
+      "ranks": {
+        "LA01": 4
+      },
+      "hp": 847,
+      "maxHp": 847,
+      "focus": 198,
+      "maxFocus": 198,
+      "level": 22,
+      "loadout": [
+        "LA01"
+      ],
+      "honroPilotRole": "bow",
+      "honroVariant": "possessedArcher",
+      "honroType": "human",
+      "honroPilotBudgetBasis": {
+        "version": 1,
+        "status": "unmeasured-reference-start",
+        "referenceHp": 995,
+        "referenceShot": 587.9894903231999,
+        "hits": 1.5,
+        "fraction": 0.26
+      }
+    },
+    {
+      "id": "pilot31-ridge-court-2",
+      "cls": "knight",
+      "side": 1,
+      "h": 104,
+      "r": 24,
+      "role": "guard",
+      "armor": 0.15,
+      "attack": 7.288570924164922,
+      "existenceDefense": {
+        "form": 1,
+        "qi": 1,
+        "soul": 0.88
+      },
+      "ranks": {
+        "LS09": 4
+      },
+      "hp": 900,
+      "maxHp": 900,
+      "focus": 198,
+      "maxFocus": 198,
+      "level": 22,
+      "loadout": [
+        "LS09"
+      ],
+      "honroPilotRole": "guard",
+      "honroVariant": "possessedGuard",
+      "honroType": "human",
+      "honroPilotBudgetBasis": {
+        "version": 1,
+        "status": "unmeasured-reference-start",
+        "referenceHp": 995,
+        "referenceShot": 587.9894903231999,
+        "hits": 1.8,
+        "fraction": 0.28
+      }
+    },
+    {
+      "id": "pilot31-ridge-court-3",
+      "cls": "occultist",
+      "side": 1,
+      "h": 96,
+      "r": 22,
+      "role": "ice",
+      "armor": 0.04,
+      "attack": 5.918656694482242,
+      "ranks": {
+        "HSH01": 4,
+        "HSH02": 4
+      },
+      "hp": 847,
+      "maxHp": 847,
+      "focus": 198,
+      "maxFocus": 198,
+      "level": 22,
+      "loadout": [
+        "HSH01",
+        "HSH02"
+      ],
+      "honroPilotRole": "bind",
+      "honroVariant": "shade",
+      "honroType": "shade",
+      "honroPilotBudgetBasis": {
+        "version": 1,
+        "status": "unmeasured-reference-start",
+        "referenceHp": 995,
+        "referenceShot": 587.9894903231999,
+        "hits": 1.5,
+        "fraction": 0.26
+      }
+    },
+    {
+      "id": "pilot31-ridge-court-4",
+      "cls": "knight",
+      "side": 1,
+      "h": 96,
+      "r": 22,
+      "role": "guard",
+      "armor": 0.15,
+      "attack": 6.767958715295998,
+      "existenceDefense": {
+        "form": 1,
+        "qi": 1,
+        "soul": 0.88
+      },
+      "ranks": {
+        "LS09": 4
+      },
+      "hp": 750,
+      "maxHp": 750,
+      "focus": 198,
+      "maxFocus": 198,
+      "level": 22,
+      "loadout": [
+        "LS09"
+      ],
+      "honroPilotRole": "guard",
+      "honroVariant": "possessedGuard",
+      "honroType": "human",
+      "honroPilotBudgetBasis": {
+        "version": 1,
+        "status": "unmeasured-reference-start",
+        "referenceHp": 995,
+        "referenceShot": 587.9894903231999,
+        "hits": 1.5,
+        "fraction": 0.26
+      }
+    },
+    {
+      "id": "pilot31-ridge-court-5",
+      "cls": "knight",
+      "side": 1,
+      "h": 96,
+      "r": 22,
+      "role": "leaper",
+      "armor": 0.04,
+      "attack": 5.3107383333385565,
+      "ranks": {
+        "HMO01": 4,
+        "HMO02": 4
+      },
+      "hp": 847,
+      "maxHp": 847,
+      "focus": 198,
+      "maxFocus": 198,
+      "level": 22,
+      "loadout": [
+        "HMO01",
+        "HMO02"
+      ],
+      "honroPilotRole": "close",
+      "honroVariant": "mourner",
+      "honroType": "mourner",
+      "honroPilotBudgetBasis": {
+        "version": 1,
+        "status": "unmeasured-reference-start",
+        "referenceHp": 995,
+        "referenceShot": 587.9894903231999,
+        "hits": 1.5,
+        "fraction": 0.26
+      }
+    },
+    {
+      "id": "pilot31-ridge-court-6",
+      "cls": "archer",
+      "side": 1,
+      "h": 96,
+      "r": 22,
+      "role": "bow",
+      "armor": 0.04,
+      "attack": 5.131158520785575,
+      "existenceDefense": {
+        "form": 1,
+        "qi": 1,
+        "soul": 0.88
+      },
+      "ranks": {
+        "LA01": 4
+      },
+      "hp": 847,
+      "maxHp": 847,
+      "focus": 198,
+      "maxFocus": 198,
+      "level": 22,
+      "loadout": [
+        "LA01"
+      ],
+      "honroPilotRole": "bow",
+      "honroVariant": "possessedArcher",
+      "honroType": "human",
+      "honroPilotBudgetBasis": {
+        "version": 1,
+        "status": "unmeasured-reference-start",
+        "referenceHp": 995,
+        "referenceShot": 587.9894903231999,
+        "hits": 1.5,
+        "fraction": 0.26
+      }
+    },
+    {
+      "id": "pilot31-ridge-court-7",
+      "cls": "occultist",
+      "side": 1,
+      "h": 96,
+      "r": 22,
+      "role": "ice",
+      "armor": 0.04,
+      "attack": 5.918656694482242,
+      "ranks": {
+        "HSH01": 4,
+        "HSH02": 4
+      },
+      "hp": 847,
+      "maxHp": 847,
+      "focus": 198,
+      "maxFocus": 198,
+      "level": 22,
+      "loadout": [
+        "HSH01",
+        "HSH02"
+      ],
+      "honroPilotRole": "bind",
+      "honroVariant": "shade",
+      "honroType": "shade",
+      "honroPilotBudgetBasis": {
+        "version": 1,
+        "status": "unmeasured-reference-start",
+        "referenceHp": 995,
+        "referenceShot": 587.9894903231999,
+        "hits": 1.5,
+        "fraction": 0.26
+      }
+    },
+    {
+      "id": "pilot31-ridge-court-8",
+      "cls": "knight",
+      "side": 1,
+      "h": 106,
+      "r": 26,
+      "role": "guard",
+      "armor": 0.15,
+      "attack": 5.46952659757725,
+      "ranks": {
+        "HWD01": 4,
+        "HWD02": 4
+      },
+      "hp": 2999,
+      "maxHp": 2999,
+      "focus": 198,
+      "maxFocus": 198,
+      "level": 22,
+      "loadout": [
+        "HWD01",
+        "HWD02"
+      ],
+      "honroPilotRole": "midboss",
+      "honroVariant": "warden",
+      "honroType": "warden",
+      "honroPilotMidboss": "levee",
+      "honroMidboss": true,
+      "boss": 0,
+      "honroPilotBudgetBasis": {
+        "version": 1,
+        "status": "unmeasured-reference-start",
+        "referenceHp": 995,
+        "referenceShot": 587.9894903231999,
+        "hits": 6,
+        "fraction": 0.3
+      }
+    },
+    {
+      "id": "pilot31-ridge-court-9",
+      "cls": "archer",
+      "side": 1,
+      "h": 96,
+      "r": 22,
+      "role": "bow",
+      "armor": 0.04,
+      "attack": 5.131158520785575,
+      "existenceDefense": {
+        "form": 1,
+        "qi": 1,
+        "soul": 0.88
+      },
+      "ranks": {
+        "LA01": 4
+      },
+      "hp": 847,
+      "maxHp": 847,
+      "focus": 198,
+      "maxFocus": 198,
+      "level": 22,
+      "loadout": [
+        "LA01"
+      ],
+      "honroPilotRole": "bow",
+      "honroVariant": "possessedArcher",
+      "honroType": "human",
+      "honroPilotBudgetBasis": {
+        "version": 1,
+        "status": "unmeasured-reference-start",
+        "referenceHp": 995,
+        "referenceShot": 587.9894903231999,
+        "hits": 1.5,
+        "fraction": 0.26
+      }
+    },
+    {
+      "id": "pilot31-lookout-return-1",
+      "cls": "knight",
+      "side": 1,
+      "h": 96,
+      "r": 22,
+      "role": "guard",
+      "armor": 0.15,
+      "attack": 6.767958715295998,
+      "existenceDefense": {
+        "form": 1,
+        "qi": 1,
+        "soul": 0.88
+      },
+      "ranks": {
+        "LS09": 4
+      },
+      "hp": 750,
+      "maxHp": 750,
+      "focus": 198,
+      "maxFocus": 198,
+      "level": 22,
+      "loadout": [
+        "LS09"
+      ],
+      "honroPilotRole": "guard",
+      "honroVariant": "possessedGuard",
+      "honroType": "human",
+      "honroPilotBudgetBasis": {
+        "version": 1,
+        "status": "unmeasured-reference-start",
+        "referenceHp": 995,
+        "referenceShot": 587.9894903231999,
+        "hits": 1.5,
+        "fraction": 0.26
+      }
+    },
+    {
+      "id": "pilot31-lookout-return-2",
+      "cls": "archer",
+      "side": 1,
+      "h": 96,
+      "r": 22,
+      "role": "bow",
+      "armor": 0.04,
+      "attack": 5.131158520785575,
+      "existenceDefense": {
+        "form": 1,
+        "qi": 1,
+        "soul": 0.88
+      },
+      "ranks": {
+        "LA01": 4
+      },
+      "hp": 847,
+      "maxHp": 847,
+      "focus": 198,
+      "maxFocus": 198,
+      "level": 22,
+      "loadout": [
+        "LA01"
+      ],
+      "honroPilotRole": "bow",
+      "honroVariant": "possessedArcher",
+      "honroType": "human",
+      "honroPilotBudgetBasis": {
+        "version": 1,
+        "status": "unmeasured-reference-start",
+        "referenceHp": 995,
+        "referenceShot": 587.9894903231999,
+        "hits": 1.5,
+        "fraction": 0.26
+      }
+    },
+    {
+      "id": "pilot31-lookout-return-3",
+      "cls": "knight",
+      "side": 1,
+      "h": 96,
+      "r": 22,
+      "role": "guard",
+      "armor": 0.04,
+      "attack": 5.249055449821227,
+      "ranks": {
+        "HWD01": 4,
+        "HWD02": 4
+      },
+      "hp": 847,
+      "maxHp": 847,
+      "focus": 198,
+      "maxFocus": 198,
+      "level": 22,
+      "loadout": [
+        "HWD01",
+        "HWD02"
+      ],
+      "honroPilotRole": "arc",
+      "honroVariant": "warden",
+      "honroType": "warden",
+      "honroPilotBudgetBasis": {
+        "version": 1,
+        "status": "unmeasured-reference-start",
+        "referenceHp": 995,
+        "referenceShot": 587.9894903231999,
+        "hits": 1.5,
+        "fraction": 0.26
+      }
+    },
+    {
+      "id": "pilot31-lookout-return-4",
+      "cls": "occultist",
+      "side": 1,
+      "h": 96,
+      "r": 22,
+      "role": "ice",
+      "armor": 0.04,
+      "attack": 5.918656694482242,
+      "ranks": {
+        "HSH01": 4,
+        "HSH02": 4
+      },
+      "hp": 847,
+      "maxHp": 847,
+      "focus": 198,
+      "maxFocus": 198,
+      "level": 22,
+      "loadout": [
+        "HSH01",
+        "HSH02"
+      ],
+      "honroPilotRole": "bind",
+      "honroVariant": "shade",
+      "honroType": "shade",
+      "honroPilotBudgetBasis": {
+        "version": 1,
+        "status": "unmeasured-reference-start",
+        "referenceHp": 995,
+        "referenceShot": 587.9894903231999,
+        "hits": 1.5,
+        "fraction": 0.26
+      }
+    },
+    {
+      "id": "pilot31-lookout-return-5",
+      "cls": "archer",
+      "side": 1,
+      "h": 104,
+      "r": 24,
+      "role": "bow",
+      "armor": 0.04,
+      "attack": 5.525863022384467,
+      "existenceDefense": {
+        "form": 1,
+        "qi": 1,
+        "soul": 0.88
+      },
+      "ranks": {
+        "LA01": 4
+      },
+      "hp": 1016,
+      "maxHp": 1016,
+      "focus": 198,
+      "maxFocus": 198,
+      "level": 22,
+      "loadout": [
+        "LA01"
+      ],
+      "honroPilotRole": "bow",
+      "honroVariant": "possessedArcher",
+      "honroType": "human",
+      "honroPilotBudgetBasis": {
+        "version": 1,
+        "status": "unmeasured-reference-start",
+        "referenceHp": 995,
+        "referenceShot": 587.9894903231999,
+        "hits": 1.8,
+        "fraction": 0.28
+      }
+    },
+    {
+      "id": "pilot31-lookout-return-6",
+      "cls": "archer",
+      "side": 1,
+      "h": 96,
+      "r": 22,
+      "role": "bow",
+      "armor": 0.04,
+      "attack": 5.131158520785575,
+      "existenceDefense": {
+        "form": 1,
+        "qi": 1,
+        "soul": 0.88
+      },
+      "ranks": {
+        "LA01": 4
+      },
+      "hp": 847,
+      "maxHp": 847,
+      "focus": 198,
+      "maxFocus": 198,
+      "level": 22,
+      "loadout": [
+        "LA01"
+      ],
+      "honroPilotRole": "bow",
+      "honroVariant": "possessedArcher",
+      "honroType": "human",
+      "honroPilotBudgetBasis": {
+        "version": 1,
+        "status": "unmeasured-reference-start",
+        "referenceHp": 995,
+        "referenceShot": 587.9894903231999,
+        "hits": 1.5,
+        "fraction": 0.26
+      }
+    },
+    {
+      "id": "pilot31-lookout-return-7",
+      "cls": "knight",
+      "side": 1,
+      "h": 96,
+      "r": 22,
+      "role": "leaper",
+      "armor": 0.04,
+      "attack": 5.3107383333385565,
+      "ranks": {
+        "HMO01": 4,
+        "HMO02": 4
+      },
+      "hp": 847,
+      "maxHp": 847,
+      "focus": 198,
+      "maxFocus": 198,
+      "level": 22,
+      "loadout": [
+        "HMO01",
+        "HMO02"
+      ],
+      "honroPilotRole": "close",
+      "honroVariant": "mourner",
+      "honroType": "mourner",
+      "honroPilotBudgetBasis": {
+        "version": 1,
+        "status": "unmeasured-reference-start",
+        "referenceHp": 995,
+        "referenceShot": 587.9894903231999,
+        "hits": 1.5,
+        "fraction": 0.26
+      }
+    },
+    {
+      "id": "pilot31-lookout-return-8",
+      "cls": "knight",
+      "side": 1,
+      "h": 96,
+      "r": 22,
+      "role": "guard",
+      "armor": 0.15,
+      "attack": 6.767958715295998,
+      "existenceDefense": {
+        "form": 1,
+        "qi": 1,
+        "soul": 0.88
+      },
+      "ranks": {
+        "LS09": 4
+      },
+      "hp": 750,
+      "maxHp": 750,
+      "focus": 198,
+      "maxFocus": 198,
+      "level": 22,
+      "loadout": [
+        "LS09"
+      ],
+      "honroPilotRole": "guard",
+      "honroVariant": "possessedGuard",
+      "honroType": "human",
+      "honroPilotBudgetBasis": {
+        "version": 1,
+        "status": "unmeasured-reference-start",
+        "referenceHp": 995,
+        "referenceShot": 587.9894903231999,
+        "hits": 1.5,
+        "fraction": 0.26
+      }
+    }
+  ]
+}

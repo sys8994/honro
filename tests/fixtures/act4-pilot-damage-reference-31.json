@@ -1,0 +1,3762 @@
+{
+  "damage": {
+    "version": 2,
+    "stage": 31,
+    "preflight": {
+      "kind": "actual-App-parity-before-isolated-contact",
+      "sha256": "a5b037e17e536c197ca87d3dd9072b64a2d169384eb2f7705de9515b80893031",
+      "sourceCommit": "cb3e11c5b715da658e3d1224fa6791004c3570fc",
+      "mode": "campaign",
+      "difficulty": "normal",
+      "training": false,
+      "checked": [
+        {
+          "id": "archer",
+          "fields": [
+            "h",
+            "r",
+            "role",
+            "armor",
+            "attack",
+            "ranks",
+            "equipmentIds",
+            "maxHp",
+            "level"
+          ]
+        },
+        {
+          "id": "mage",
+          "fields": [
+            "h",
+            "r",
+            "role",
+            "armor",
+            "attack",
+            "ranks",
+            "equipmentIds",
+            "maxHp",
+            "level"
+          ]
+        },
+        {
+          "id": "knight",
+          "fields": [
+            "h",
+            "r",
+            "role",
+            "armor",
+            "attack",
+            "ranks",
+            "equipmentIds",
+            "maxHp",
+            "level"
+          ]
+        },
+        {
+          "id": "occultist",
+          "fields": [
+            "h",
+            "r",
+            "role",
+            "armor",
+            "attack",
+            "ranks",
+            "equipmentIds",
+            "maxHp",
+            "level"
+          ]
+        },
+        {
+          "id": "pilot31-west-entry-1",
+          "fields": [
+            "h",
+            "r",
+            "role",
+            "armor",
+            "ranks",
+            "existenceDefense",
+            "honroVariant",
+            "honroType"
+          ]
+        },
+        {
+          "id": "pilot31-west-entry-2",
+          "fields": [
+            "h",
+            "r",
+            "role",
+            "armor",
+            "ranks",
+            "existenceDefense",
+            "honroVariant",
+            "honroType"
+          ]
+        },
+        {
+          "id": "pilot31-west-entry-3",
+          "fields": [
+            "h",
+            "r",
+            "role",
+            "armor",
+            "ranks",
+            "existenceDefense",
+            "honroVariant",
+            "honroType"
+          ]
+        },
+        {
+          "id": "pilot31-west-entry-4",
+          "fields": [
+            "h",
+            "r",
+            "role",
+            "armor",
+            "ranks",
+            "existenceDefense",
+            "honroVariant",
+            "honroType"
+          ]
+        },
+        {
+          "id": "pilot31-west-entry-5",
+          "fields": [
+            "h",
+            "r",
+            "role",
+            "armor",
+            "ranks",
+            "existenceDefense",
+            "honroVariant",
+            "honroType"
+          ]
+        },
+        {
+          "id": "pilot31-west-entry-6",
+          "fields": [
+            "h",
+            "r",
+            "role",
+            "armor",
+            "ranks",
+            "existenceDefense",
+            "honroVariant",
+            "honroType"
+          ]
+        },
+        {
+          "id": "pilot31-west-entry-7",
+          "fields": [
+            "h",
+            "r",
+            "role",
+            "armor",
+            "ranks",
+            "existenceDefense",
+            "honroVariant",
+            "honroType"
+          ]
+        },
+        {
+          "id": "pilot31-west-entry-8",
+          "fields": [
+            "h",
+            "r",
+            "role",
+            "armor",
+            "ranks",
+            "existenceDefense",
+            "honroVariant",
+            "honroType"
+          ]
+        },
+        {
+          "id": "pilot31-west-crossfire-1",
+          "fields": [
+            "h",
+            "r",
+            "role",
+            "armor",
+            "ranks",
+            "existenceDefense",
+            "honroVariant",
+            "honroType"
+          ]
+        },
+        {
+          "id": "pilot31-west-crossfire-2",
+          "fields": [
+            "h",
+            "r",
+            "role",
+            "armor",
+            "ranks",
+            "existenceDefense",
+            "honroVariant",
+            "honroType"
+          ]
+        },
+        {
+          "id": "pilot31-west-crossfire-3",
+          "fields": [
+            "h",
+            "r",
+            "role",
+            "armor",
+            "ranks",
+            "existenceDefense",
+            "honroVariant",
+            "honroType"
+          ]
+        },
+        {
+          "id": "pilot31-west-crossfire-4",
+          "fields": [
+            "h",
+            "r",
+            "role",
+            "armor",
+            "ranks",
+            "existenceDefense",
+            "honroVariant",
+            "honroType"
+          ]
+        },
+        {
+          "id": "pilot31-west-crossfire-5",
+          "fields": [
+            "h",
+            "r",
+            "role",
+            "armor",
+            "ranks",
+            "existenceDefense",
+            "honroVariant",
+            "honroType"
+          ]
+        },
+        {
+          "id": "pilot31-west-crossfire-6",
+          "fields": [
+            "h",
+            "r",
+            "role",
+            "armor",
+            "ranks",
+            "existenceDefense",
+            "honroVariant",
+            "honroType"
+          ]
+        },
+        {
+          "id": "pilot31-west-crossfire-7",
+          "fields": [
+            "h",
+            "r",
+            "role",
+            "armor",
+            "ranks",
+            "existenceDefense",
+            "honroVariant",
+            "honroType"
+          ]
+        },
+        {
+          "id": "pilot31-west-crossfire-8",
+          "fields": [
+            "h",
+            "r",
+            "role",
+            "armor",
+            "ranks",
+            "existenceDefense",
+            "honroVariant",
+            "honroType"
+          ]
+        },
+        {
+          "id": "pilot31-west-crossfire-9",
+          "fields": [
+            "h",
+            "r",
+            "role",
+            "armor",
+            "ranks",
+            "existenceDefense",
+            "honroVariant",
+            "honroType"
+          ]
+        },
+        {
+          "id": "pilot31-ridge-court-1",
+          "fields": [
+            "h",
+            "r",
+            "role",
+            "armor",
+            "ranks",
+            "existenceDefense",
+            "honroVariant",
+            "honroType"
+          ]
+        },
+        {
+          "id": "pilot31-ridge-court-2",
+          "fields": [
+            "h",
+            "r",
+            "role",
+            "armor",
+            "ranks",
+            "existenceDefense",
+            "honroVariant",
+            "honroType"
+          ]
+        },
+        {
+          "id": "pilot31-ridge-court-3",
+          "fields": [
+            "h",
+            "r",
+            "role",
+            "armor",
+            "ranks",
+            "existenceDefense",
+            "honroVariant",
+            "honroType"
+          ]
+        },
+        {
+          "id": "pilot31-ridge-court-4",
+          "fields": [
+            "h",
+            "r",
+            "role",
+            "armor",
+            "ranks",
+            "existenceDefense",
+            "honroVariant",
+            "honroType"
+          ]
+        },
+        {
+          "id": "pilot31-ridge-court-5",
+          "fields": [
+            "h",
+            "r",
+            "role",
+            "armor",
+            "ranks",
+            "existenceDefense",
+            "honroVariant",
+            "honroType"
+          ]
+        },
+        {
+          "id": "pilot31-ridge-court-6",
+          "fields": [
+            "h",
+            "r",
+            "role",
+            "armor",
+            "ranks",
+            "existenceDefense",
+            "honroVariant",
+            "honroType"
+          ]
+        },
+        {
+          "id": "pilot31-ridge-court-7",
+          "fields": [
+            "h",
+            "r",
+            "role",
+            "armor",
+            "ranks",
+            "existenceDefense",
+            "honroVariant",
+            "honroType"
+          ]
+        },
+        {
+          "id": "pilot31-ridge-court-8",
+          "fields": [
+            "h",
+            "r",
+            "role",
+            "armor",
+            "ranks",
+            "existenceDefense",
+            "honroVariant",
+            "honroType"
+          ]
+        },
+        {
+          "id": "pilot31-ridge-court-9",
+          "fields": [
+            "h",
+            "r",
+            "role",
+            "armor",
+            "ranks",
+            "existenceDefense",
+            "honroVariant",
+            "honroType"
+          ]
+        },
+        {
+          "id": "pilot31-lookout-return-1",
+          "fields": [
+            "h",
+            "r",
+            "role",
+            "armor",
+            "ranks",
+            "existenceDefense",
+            "honroVariant",
+            "honroType"
+          ]
+        },
+        {
+          "id": "pilot31-lookout-return-2",
+          "fields": [
+            "h",
+            "r",
+            "role",
+            "armor",
+            "ranks",
+            "existenceDefense",
+            "honroVariant",
+            "honroType"
+          ]
+        },
+        {
+          "id": "pilot31-lookout-return-3",
+          "fields": [
+            "h",
+            "r",
+            "role",
+            "armor",
+            "ranks",
+            "existenceDefense",
+            "honroVariant",
+            "honroType"
+          ]
+        },
+        {
+          "id": "pilot31-lookout-return-4",
+          "fields": [
+            "h",
+            "r",
+            "role",
+            "armor",
+            "ranks",
+            "existenceDefense",
+            "honroVariant",
+            "honroType"
+          ]
+        },
+        {
+          "id": "pilot31-lookout-return-5",
+          "fields": [
+            "h",
+            "r",
+            "role",
+            "armor",
+            "ranks",
+            "existenceDefense",
+            "honroVariant",
+            "honroType"
+          ]
+        },
+        {
+          "id": "pilot31-lookout-return-6",
+          "fields": [
+            "h",
+            "r",
+            "role",
+            "armor",
+            "ranks",
+            "existenceDefense",
+            "honroVariant",
+            "honroType"
+          ]
+        },
+        {
+          "id": "pilot31-lookout-return-7",
+          "fields": [
+            "h",
+            "r",
+            "role",
+            "armor",
+            "ranks",
+            "existenceDefense",
+            "honroVariant",
+            "honroType"
+          ]
+        },
+        {
+          "id": "pilot31-lookout-return-8",
+          "fields": [
+            "h",
+            "r",
+            "role",
+            "armor",
+            "ranks",
+            "existenceDefense",
+            "honroVariant",
+            "honroType"
+          ]
+        }
+      ],
+      "fixtureMode": "practice",
+      "excluded": [
+        "turn lifecycle",
+        "revival",
+        "victory",
+        "accuracy",
+        "play acceptance"
+      ],
+      "note": "No Engine.tick is invoked by contact matrix; native projectile/melee integration only. Enemy HP/attack are intentional calibration variables, not copied from obsolete v1 budget."
+    },
+    "reference": "declared-normal-entry-six-stat-starter-v1",
+    "scope": "Fixed plan entry level; six legal stat investments; starter personal equipment; three legal attempts per declared chosen skill. Basic skills remain rank1. No profile outcome adaptation. Mean noncritical single-target cast, native collision/impact/armor/existence; analytic successful-contact flight, not player accuracy or play evidence.",
+    "profile": {
+      "mage": {
+        "xp": 158091,
+        "ranks": {
+          "M01": 1,
+          "M06": 3,
+          "M02": 3,
+          "M03": 3
+        },
+        "statTraining": 6,
+        "kills": 0,
+        "damage": 0,
+        "skillRevision": 1,
+        "martialRevision": 1,
+        "equipmentIds": [
+          "itm_da_01"
+        ]
+      },
+      "archer": {
+        "xp": 158091,
+        "ranks": {
+          "A01": 1,
+          "A14": 3,
+          "A02": 3,
+          "A05": 3
+        },
+        "statTraining": 6,
+        "kills": 0,
+        "damage": 0,
+        "skillRevision": 1,
+        "martialRevision": 1,
+        "equipmentIds": [
+          "itm_se_01"
+        ]
+      },
+      "knight": {
+        "xp": 158091,
+        "ranks": {
+          "S00": 1,
+          "S01": 3,
+          "S06": 3,
+          "S04": 3
+        },
+        "statTraining": 6,
+        "kills": 0,
+        "damage": 0,
+        "skillRevision": 1,
+        "martialRevision": 1,
+        "equipmentIds": [
+          "itm_hw_01"
+        ]
+      },
+      "occultist": {
+        "xp": 158091,
+        "ranks": {
+          "O01": 1,
+          "O06": 4,
+          "O02": 3,
+          "O03": 3
+        },
+        "statTraining": 6,
+        "kills": 0,
+        "damage": 0,
+        "skillRevision": 1,
+        "martialRevision": 1,
+        "occultRevision": 1,
+        "equipmentIds": [
+          "itm_so_01"
+        ]
+      }
+    },
+    "hashes": {
+      "shared/engine/src/engine.ts": "dde628474a97a4b380b9e7d518329e3d315a4f6bd23085481811b768ca51f28b",
+      "shared/engine/src/data.ts": "337d96d72bdf81d54f98283ca6b7d57399ff7059af4074de2ead7345db97b06c",
+      "shared/engine/src/progression.ts": "d9da3e3cdc36e2c798dc662019fa3bf1642da05c02ad2ff7624a474d2cd111b7",
+      "shared/engine/src/existence.ts": "ff6d1a78e8fda0dcdc6d0aafdb66dad934407ef4d4f80e8a7e114e8981520d15",
+      "shared/engine/src/skillMechanics.ts": "4bc17931e2ee7445952a0ccbf1676b8f6fcf0ad97b33186f8077445ecc38a3a7",
+      "shared/engine/src/skillRedesignData.ts": "a499482be7a1d45f159bf565fa2e26f823a075447d244502f96540c5df9e97ff",
+      "shared/engine/src/warriorMechanics.ts": "5c5d37acb99ae02bc3ffafd3566de0fbe9633423cdac3a00186a0c82e3460e2d",
+      "shared/engine/src/warriorData.ts": "07c6917ebfd5004d5fda90ff0f5030f0aa88ecf0a6b2528a700d16a7bfe96a0a",
+      "shared/engine/src/occultData.ts": "a7984df73d1451a04dcd8bc57abedd66c32292f21b27620b740a5defe62f438c",
+      "shared/engine/src/equipment.ts": "bdea8b5b62d475268e375011ee13c53cd220874a38cda20ec1f2715fc4ea165c",
+      "shared/runtime/progression.js": "d0a3da6460c6a6f9cbc9160bdd4d46b24ccc0e8021855e3ab3fe597dee9e5c74"
+    },
+    "legacyReference": {
+      "critChance": 0.122,
+      "critMultiplier": 2.065,
+      "level": 22,
+      "hp": 995,
+      "mp": 222,
+      "attack": 5.529999999999999,
+      "armor": 0.248,
+      "move": 1856,
+      "speed": 410,
+      "regen": 26,
+      "shot": 587.9894903231999
+    },
+    "rows": [
+      {
+        "stage": 31,
+        "role": "guard",
+        "kind": "possessedGuard",
+        "direction": "front",
+        "cls": "archer",
+        "skill": "A01",
+        "power": 0.5,
+        "rank": 1,
+        "attack": 6.4866899999999985,
+        "heroMaxHp": 1085,
+        "effectiveDamage": 295.6633301999999,
+        "perTargetCastDamage": 177,
+        "actorBody": {
+          "r": 22,
+          "h": 92
+        },
+        "targetBody": {
+          "r": 22,
+          "h": 96
+        },
+        "uniqueTargets": 1,
+        "critical": false,
+        "damageRoll": 1,
+        "frames": 61,
+        "hits": [
+          {
+            "owner": "archer",
+            "skill": "A01",
+            "cast": 1,
+            "direct": true,
+            "inputDamage": 295.6633301999999,
+            "hpDamage": 177,
+            "shieldDamage": 0,
+            "source": {
+              "x": 925,
+              "y": 545.7743522358365
+            },
+            "facing": -1
+          }
+        ]
+      },
+      {
+        "stage": 31,
+        "role": "guard",
+        "kind": "possessedGuard",
+        "direction": "front",
+        "cls": "mage",
+        "skill": "M01",
+        "power": 0.5,
+        "rank": 1,
+        "attack": 6.1936,
+        "heroMaxHp": 1174,
+        "effectiveDamage": 298.1846784,
+        "perTargetCastDamage": 133,
+        "actorBody": {
+          "r": 22,
+          "h": 92
+        },
+        "targetBody": {
+          "r": 22,
+          "h": 96
+        },
+        "uniqueTargets": 1,
+        "critical": false,
+        "damageRoll": 1,
+        "frames": 61,
+        "hits": [
+          {
+            "owner": "mage",
+            "skill": "M01",
+            "cast": 1,
+            "direct": true,
+            "inputDamage": 220.83685163350242,
+            "hpDamage": 133,
+            "shieldDamage": 0,
+            "source": {
+              "x": 922,
+              "y": 544.9305295065758
+            },
+            "facing": -1
+          }
+        ]
+      },
+      {
+        "stage": 31,
+        "role": "guard",
+        "kind": "possessedGuard",
+        "direction": "front",
+        "cls": "knight",
+        "skill": "S00",
+        "power": 0.5,
+        "rank": 1,
+        "attack": 6.027699999999999,
+        "heroMaxHp": 2036,
+        "effectiveDamage": 332.24682399999995,
+        "perTargetCastDamage": 222,
+        "actorBody": {
+          "r": 22,
+          "h": 92
+        },
+        "targetBody": {
+          "r": 22,
+          "h": 96
+        },
+        "uniqueTargets": 1,
+        "critical": false,
+        "damageRoll": 1,
+        "frames": 30,
+        "hits": [
+          {
+            "owner": "knight",
+            "skill": "S00",
+            "cast": 1,
+            "direct": true,
+            "inputDamage": 370.45520875999995,
+            "hpDamage": 222,
+            "shieldDamage": 0,
+            "source": {
+              "x": 600,
+              "y": 554
+            },
+            "facing": -1
+          }
+        ]
+      },
+      {
+        "stage": 31,
+        "role": "guard",
+        "kind": "possessedGuard",
+        "direction": "front",
+        "cls": "occultist",
+        "skill": "O01",
+        "power": 0.5,
+        "rank": 1,
+        "attack": 6.552000000000001,
+        "heroMaxHp": 1362,
+        "effectiveDamage": 236.52539580144816,
+        "perTargetCastDamage": 84,
+        "actorBody": {
+          "r": 22,
+          "h": 92
+        },
+        "targetBody": {
+          "r": 22,
+          "h": 96
+        },
+        "uniqueTargets": 1,
+        "critical": false,
+        "damageRoll": 1,
+        "frames": 61,
+        "hits": [
+          {
+            "owner": "occultist",
+            "skill": "O01",
+            "cast": 1,
+            "direct": true,
+            "inputDamage": 156.31548894476143,
+            "hpDamage": 84,
+            "shieldDamage": 0,
+            "source": {
+              "x": 922,
+              "y": 548.395090253293
+            },
+            "facing": -1
+          }
+        ]
+      },
+      {
+        "stage": 31,
+        "role": "guard",
+        "kind": "possessedGuard",
+        "direction": "rear",
+        "cls": "archer",
+        "skill": "A01",
+        "power": 0.5,
+        "rank": 1,
+        "attack": 6.4866899999999985,
+        "heroMaxHp": 1085,
+        "effectiveDamage": 295.6633301999999,
+        "perTargetCastDamage": 281,
+        "actorBody": {
+          "r": 22,
+          "h": 92
+        },
+        "targetBody": {
+          "r": 22,
+          "h": 96
+        },
+        "uniqueTargets": 1,
+        "critical": false,
+        "damageRoll": 1,
+        "frames": 61,
+        "hits": [
+          {
+            "owner": "archer",
+            "skill": "A01",
+            "cast": 1,
+            "direct": true,
+            "inputDamage": 295.6633301999999,
+            "hpDamage": 281,
+            "shieldDamage": 0,
+            "source": {
+              "x": 925,
+              "y": 545.7743522358365
+            },
+            "facing": 1
+          }
+        ]
+      },
+      {
+        "stage": 31,
+        "role": "guard",
+        "kind": "possessedGuard",
+        "direction": "rear",
+        "cls": "mage",
+        "skill": "M01",
+        "power": 0.5,
+        "rank": 1,
+        "attack": 6.1936,
+        "heroMaxHp": 1174,
+        "effectiveDamage": 298.1846784,
+        "perTargetCastDamage": 210,
+        "actorBody": {
+          "r": 22,
+          "h": 92
+        },
+        "targetBody": {
+          "r": 22,
+          "h": 96
+        },
+        "uniqueTargets": 1,
+        "critical": false,
+        "damageRoll": 1,
+        "frames": 61,
+        "hits": [
+          {
+            "owner": "mage",
+            "skill": "M01",
+            "cast": 1,
+            "direct": true,
+            "inputDamage": 220.83685163350242,
+            "hpDamage": 210,
+            "shieldDamage": 0,
+            "source": {
+              "x": 922,
+              "y": 544.9305295065758
+            },
+            "facing": 1
+          }
+        ]
+      },
+      {
+        "stage": 31,
+        "role": "guard",
+        "kind": "possessedGuard",
+        "direction": "rear",
+        "cls": "knight",
+        "skill": "S00",
+        "power": 0.5,
+        "rank": 1,
+        "attack": 6.027699999999999,
+        "heroMaxHp": 2036,
+        "effectiveDamage": 332.24682399999995,
+        "perTargetCastDamage": 352,
+        "actorBody": {
+          "r": 22,
+          "h": 92
+        },
+        "targetBody": {
+          "r": 22,
+          "h": 96
+        },
+        "uniqueTargets": 1,
+        "critical": false,
+        "damageRoll": 1,
+        "frames": 30,
+        "hits": [
+          {
+            "owner": "knight",
+            "skill": "S00",
+            "cast": 1,
+            "direct": true,
+            "inputDamage": 370.45520875999995,
+            "hpDamage": 352,
+            "shieldDamage": 0,
+            "source": {
+              "x": 600,
+              "y": 554
+            },
+            "facing": 1
+          }
+        ]
+      },
+      {
+        "stage": 31,
+        "role": "guard",
+        "kind": "possessedGuard",
+        "direction": "rear",
+        "cls": "occultist",
+        "skill": "O01",
+        "power": 0.5,
+        "rank": 1,
+        "attack": 6.552000000000001,
+        "heroMaxHp": 1362,
+        "effectiveDamage": 236.52539580144816,
+        "perTargetCastDamage": 134,
+        "actorBody": {
+          "r": 22,
+          "h": 92
+        },
+        "targetBody": {
+          "r": 22,
+          "h": 96
+        },
+        "uniqueTargets": 1,
+        "critical": false,
+        "damageRoll": 1,
+        "frames": 61,
+        "hits": [
+          {
+            "owner": "occultist",
+            "skill": "O01",
+            "cast": 1,
+            "direct": true,
+            "inputDamage": 156.31548894476143,
+            "hpDamage": 134,
+            "shieldDamage": 0,
+            "source": {
+              "x": 922,
+              "y": 548.395090253293
+            },
+            "facing": 1
+          }
+        ]
+      },
+      {
+        "stage": 31,
+        "role": "bow",
+        "kind": "possessedArcher",
+        "direction": "front",
+        "cls": "archer",
+        "skill": "A01",
+        "power": 0.5,
+        "rank": 1,
+        "attack": 6.4866899999999985,
+        "heroMaxHp": 1085,
+        "effectiveDamage": 295.6633301999999,
+        "perTargetCastDamage": 284,
+        "actorBody": {
+          "r": 22,
+          "h": 92
+        },
+        "targetBody": {
+          "r": 22,
+          "h": 96
+        },
+        "uniqueTargets": 1,
+        "critical": false,
+        "damageRoll": 1,
+        "frames": 61,
+        "hits": [
+          {
+            "owner": "archer",
+            "skill": "A01",
+            "cast": 1,
+            "direct": true,
+            "inputDamage": 295.6633301999999,
+            "hpDamage": 284,
+            "shieldDamage": 0,
+            "source": {
+              "x": 925,
+              "y": 545.7743522358365
+            },
+            "facing": -1
+          }
+        ]
+      },
+      {
+        "stage": 31,
+        "role": "bow",
+        "kind": "possessedArcher",
+        "direction": "front",
+        "cls": "mage",
+        "skill": "M01",
+        "power": 0.5,
+        "rank": 1,
+        "attack": 6.1936,
+        "heroMaxHp": 1174,
+        "effectiveDamage": 298.1846784,
+        "perTargetCastDamage": 212,
+        "actorBody": {
+          "r": 22,
+          "h": 92
+        },
+        "targetBody": {
+          "r": 22,
+          "h": 96
+        },
+        "uniqueTargets": 1,
+        "critical": false,
+        "damageRoll": 1,
+        "frames": 61,
+        "hits": [
+          {
+            "owner": "mage",
+            "skill": "M01",
+            "cast": 1,
+            "direct": true,
+            "inputDamage": 220.83685163350242,
+            "hpDamage": 212,
+            "shieldDamage": 0,
+            "source": {
+              "x": 922,
+              "y": 544.9305295065758
+            },
+            "facing": -1
+          }
+        ]
+      },
+      {
+        "stage": 31,
+        "role": "bow",
+        "kind": "possessedArcher",
+        "direction": "front",
+        "cls": "knight",
+        "skill": "S00",
+        "power": 0.5,
+        "rank": 1,
+        "attack": 6.027699999999999,
+        "heroMaxHp": 2036,
+        "effectiveDamage": 332.24682399999995,
+        "perTargetCastDamage": 356,
+        "actorBody": {
+          "r": 22,
+          "h": 92
+        },
+        "targetBody": {
+          "r": 22,
+          "h": 96
+        },
+        "uniqueTargets": 1,
+        "critical": false,
+        "damageRoll": 1,
+        "frames": 30,
+        "hits": [
+          {
+            "owner": "knight",
+            "skill": "S00",
+            "cast": 1,
+            "direct": true,
+            "inputDamage": 370.45520875999995,
+            "hpDamage": 356,
+            "shieldDamage": 0,
+            "source": {
+              "x": 600,
+              "y": 554
+            },
+            "facing": -1
+          }
+        ]
+      },
+      {
+        "stage": 31,
+        "role": "bow",
+        "kind": "possessedArcher",
+        "direction": "front",
+        "cls": "occultist",
+        "skill": "O01",
+        "power": 0.5,
+        "rank": 1,
+        "attack": 6.552000000000001,
+        "heroMaxHp": 1362,
+        "effectiveDamage": 236.52539580144816,
+        "perTargetCastDamage": 135,
+        "actorBody": {
+          "r": 22,
+          "h": 92
+        },
+        "targetBody": {
+          "r": 22,
+          "h": 96
+        },
+        "uniqueTargets": 1,
+        "critical": false,
+        "damageRoll": 1,
+        "frames": 61,
+        "hits": [
+          {
+            "owner": "occultist",
+            "skill": "O01",
+            "cast": 1,
+            "direct": true,
+            "inputDamage": 156.31548894476143,
+            "hpDamage": 135,
+            "shieldDamage": 0,
+            "source": {
+              "x": 922,
+              "y": 548.395090253293
+            },
+            "facing": -1
+          }
+        ]
+      },
+      {
+        "stage": 31,
+        "role": "bow",
+        "kind": "possessedArcher",
+        "direction": "rear",
+        "cls": "archer",
+        "skill": "A01",
+        "power": 0.5,
+        "rank": 1,
+        "attack": 6.4866899999999985,
+        "heroMaxHp": 1085,
+        "effectiveDamage": 295.6633301999999,
+        "perTargetCastDamage": 284,
+        "actorBody": {
+          "r": 22,
+          "h": 92
+        },
+        "targetBody": {
+          "r": 22,
+          "h": 96
+        },
+        "uniqueTargets": 1,
+        "critical": false,
+        "damageRoll": 1,
+        "frames": 61,
+        "hits": [
+          {
+            "owner": "archer",
+            "skill": "A01",
+            "cast": 1,
+            "direct": true,
+            "inputDamage": 295.6633301999999,
+            "hpDamage": 284,
+            "shieldDamage": 0,
+            "source": {
+              "x": 925,
+              "y": 545.7743522358365
+            },
+            "facing": 1
+          }
+        ]
+      },
+      {
+        "stage": 31,
+        "role": "bow",
+        "kind": "possessedArcher",
+        "direction": "rear",
+        "cls": "mage",
+        "skill": "M01",
+        "power": 0.5,
+        "rank": 1,
+        "attack": 6.1936,
+        "heroMaxHp": 1174,
+        "effectiveDamage": 298.1846784,
+        "perTargetCastDamage": 212,
+        "actorBody": {
+          "r": 22,
+          "h": 92
+        },
+        "targetBody": {
+          "r": 22,
+          "h": 96
+        },
+        "uniqueTargets": 1,
+        "critical": false,
+        "damageRoll": 1,
+        "frames": 61,
+        "hits": [
+          {
+            "owner": "mage",
+            "skill": "M01",
+            "cast": 1,
+            "direct": true,
+            "inputDamage": 220.83685163350242,
+            "hpDamage": 212,
+            "shieldDamage": 0,
+            "source": {
+              "x": 922,
+              "y": 544.9305295065758
+            },
+            "facing": 1
+          }
+        ]
+      },
+      {
+        "stage": 31,
+        "role": "bow",
+        "kind": "possessedArcher",
+        "direction": "rear",
+        "cls": "knight",
+        "skill": "S00",
+        "power": 0.5,
+        "rank": 1,
+        "attack": 6.027699999999999,
+        "heroMaxHp": 2036,
+        "effectiveDamage": 332.24682399999995,
+        "perTargetCastDamage": 356,
+        "actorBody": {
+          "r": 22,
+          "h": 92
+        },
+        "targetBody": {
+          "r": 22,
+          "h": 96
+        },
+        "uniqueTargets": 1,
+        "critical": false,
+        "damageRoll": 1,
+        "frames": 30,
+        "hits": [
+          {
+            "owner": "knight",
+            "skill": "S00",
+            "cast": 1,
+            "direct": true,
+            "inputDamage": 370.45520875999995,
+            "hpDamage": 356,
+            "shieldDamage": 0,
+            "source": {
+              "x": 600,
+              "y": 554
+            },
+            "facing": 1
+          }
+        ]
+      },
+      {
+        "stage": 31,
+        "role": "bow",
+        "kind": "possessedArcher",
+        "direction": "rear",
+        "cls": "occultist",
+        "skill": "O01",
+        "power": 0.5,
+        "rank": 1,
+        "attack": 6.552000000000001,
+        "heroMaxHp": 1362,
+        "effectiveDamage": 236.52539580144816,
+        "perTargetCastDamage": 135,
+        "actorBody": {
+          "r": 22,
+          "h": 92
+        },
+        "targetBody": {
+          "r": 22,
+          "h": 96
+        },
+        "uniqueTargets": 1,
+        "critical": false,
+        "damageRoll": 1,
+        "frames": 61,
+        "hits": [
+          {
+            "owner": "occultist",
+            "skill": "O01",
+            "cast": 1,
+            "direct": true,
+            "inputDamage": 156.31548894476143,
+            "hpDamage": 135,
+            "shieldDamage": 0,
+            "source": {
+              "x": 922,
+              "y": 548.395090253293
+            },
+            "facing": 1
+          }
+        ]
+      },
+      {
+        "stage": 31,
+        "role": "bind",
+        "kind": "shade",
+        "direction": "front",
+        "cls": "archer",
+        "skill": "A01",
+        "power": 0.5,
+        "rank": 1,
+        "attack": 6.4866899999999985,
+        "heroMaxHp": 1085,
+        "effectiveDamage": 295.6633301999999,
+        "perTargetCastDamage": 77,
+        "actorBody": {
+          "r": 22,
+          "h": 92
+        },
+        "targetBody": {
+          "r": 22,
+          "h": 96
+        },
+        "uniqueTargets": 1,
+        "critical": false,
+        "damageRoll": 1,
+        "frames": 61,
+        "hits": [
+          {
+            "owner": "archer",
+            "skill": "A01",
+            "cast": 1,
+            "direct": true,
+            "inputDamage": 295.6633301999999,
+            "hpDamage": 77,
+            "shieldDamage": 0,
+            "source": {
+              "x": 925,
+              "y": 545.7743522358365
+            },
+            "facing": -1
+          }
+        ]
+      },
+      {
+        "stage": 31,
+        "role": "bind",
+        "kind": "shade",
+        "direction": "front",
+        "cls": "mage",
+        "skill": "M01",
+        "power": 0.5,
+        "rank": 1,
+        "attack": 6.1936,
+        "heroMaxHp": 1174,
+        "effectiveDamage": 298.1846784,
+        "perTargetCastDamage": 209,
+        "actorBody": {
+          "r": 22,
+          "h": 92
+        },
+        "targetBody": {
+          "r": 22,
+          "h": 96
+        },
+        "uniqueTargets": 1,
+        "critical": false,
+        "damageRoll": 1,
+        "frames": 61,
+        "hits": [
+          {
+            "owner": "mage",
+            "skill": "M01",
+            "cast": 1,
+            "direct": true,
+            "inputDamage": 220.83685163350242,
+            "hpDamage": 209,
+            "shieldDamage": 0,
+            "source": {
+              "x": 922,
+              "y": 544.9305295065758
+            },
+            "facing": -1
+          }
+        ]
+      },
+      {
+        "stage": 31,
+        "role": "bind",
+        "kind": "shade",
+        "direction": "front",
+        "cls": "knight",
+        "skill": "S00",
+        "power": 0.5,
+        "rank": 1,
+        "attack": 6.027699999999999,
+        "heroMaxHp": 2036,
+        "effectiveDamage": 332.24682399999995,
+        "perTargetCastDamage": 97,
+        "actorBody": {
+          "r": 22,
+          "h": 92
+        },
+        "targetBody": {
+          "r": 22,
+          "h": 96
+        },
+        "uniqueTargets": 1,
+        "critical": false,
+        "damageRoll": 1,
+        "frames": 30,
+        "hits": [
+          {
+            "owner": "knight",
+            "skill": "S00",
+            "cast": 1,
+            "direct": true,
+            "inputDamage": 370.45520875999995,
+            "hpDamage": 97,
+            "shieldDamage": 0,
+            "source": {
+              "x": 600,
+              "y": 554
+            },
+            "facing": -1
+          }
+        ]
+      },
+      {
+        "stage": 31,
+        "role": "bind",
+        "kind": "shade",
+        "direction": "front",
+        "cls": "occultist",
+        "skill": "O01",
+        "power": 0.5,
+        "rank": 1,
+        "attack": 6.552000000000001,
+        "heroMaxHp": 1362,
+        "effectiveDamage": 236.52539580144816,
+        "perTargetCastDamage": 187,
+        "actorBody": {
+          "r": 22,
+          "h": 92
+        },
+        "targetBody": {
+          "r": 22,
+          "h": 96
+        },
+        "uniqueTargets": 1,
+        "critical": false,
+        "damageRoll": 1,
+        "frames": 61,
+        "hits": [
+          {
+            "owner": "occultist",
+            "skill": "O01",
+            "cast": 1,
+            "direct": true,
+            "inputDamage": 156.31548894476143,
+            "hpDamage": 187,
+            "shieldDamage": 0,
+            "source": {
+              "x": 922,
+              "y": 548.395090253293
+            },
+            "facing": -1
+          }
+        ]
+      },
+      {
+        "stage": 31,
+        "role": "bind",
+        "kind": "shade",
+        "direction": "rear",
+        "cls": "archer",
+        "skill": "A01",
+        "power": 0.5,
+        "rank": 1,
+        "attack": 6.4866899999999985,
+        "heroMaxHp": 1085,
+        "effectiveDamage": 295.6633301999999,
+        "perTargetCastDamage": 77,
+        "actorBody": {
+          "r": 22,
+          "h": 92
+        },
+        "targetBody": {
+          "r": 22,
+          "h": 96
+        },
+        "uniqueTargets": 1,
+        "critical": false,
+        "damageRoll": 1,
+        "frames": 61,
+        "hits": [
+          {
+            "owner": "archer",
+            "skill": "A01",
+            "cast": 1,
+            "direct": true,
+            "inputDamage": 295.6633301999999,
+            "hpDamage": 77,
+            "shieldDamage": 0,
+            "source": {
+              "x": 925,
+              "y": 545.7743522358365
+            },
+            "facing": 1
+          }
+        ]
+      },
+      {
+        "stage": 31,
+        "role": "bind",
+        "kind": "shade",
+        "direction": "rear",
+        "cls": "mage",
+        "skill": "M01",
+        "power": 0.5,
+        "rank": 1,
+        "attack": 6.1936,
+        "heroMaxHp": 1174,
+        "effectiveDamage": 298.1846784,
+        "perTargetCastDamage": 209,
+        "actorBody": {
+          "r": 22,
+          "h": 92
+        },
+        "targetBody": {
+          "r": 22,
+          "h": 96
+        },
+        "uniqueTargets": 1,
+        "critical": false,
+        "damageRoll": 1,
+        "frames": 61,
+        "hits": [
+          {
+            "owner": "mage",
+            "skill": "M01",
+            "cast": 1,
+            "direct": true,
+            "inputDamage": 220.83685163350242,
+            "hpDamage": 209,
+            "shieldDamage": 0,
+            "source": {
+              "x": 922,
+              "y": 544.9305295065758
+            },
+            "facing": 1
+          }
+        ]
+      },
+      {
+        "stage": 31,
+        "role": "bind",
+        "kind": "shade",
+        "direction": "rear",
+        "cls": "knight",
+        "skill": "S00",
+        "power": 0.5,
+        "rank": 1,
+        "attack": 6.027699999999999,
+        "heroMaxHp": 2036,
+        "effectiveDamage": 332.24682399999995,
+        "perTargetCastDamage": 97,
+        "actorBody": {
+          "r": 22,
+          "h": 92
+        },
+        "targetBody": {
+          "r": 22,
+          "h": 96
+        },
+        "uniqueTargets": 1,
+        "critical": false,
+        "damageRoll": 1,
+        "frames": 30,
+        "hits": [
+          {
+            "owner": "knight",
+            "skill": "S00",
+            "cast": 1,
+            "direct": true,
+            "inputDamage": 370.45520875999995,
+            "hpDamage": 97,
+            "shieldDamage": 0,
+            "source": {
+              "x": 600,
+              "y": 554
+            },
+            "facing": 1
+          }
+        ]
+      },
+      {
+        "stage": 31,
+        "role": "bind",
+        "kind": "shade",
+        "direction": "rear",
+        "cls": "occultist",
+        "skill": "O01",
+        "power": 0.5,
+        "rank": 1,
+        "attack": 6.552000000000001,
+        "heroMaxHp": 1362,
+        "effectiveDamage": 236.52539580144816,
+        "perTargetCastDamage": 187,
+        "actorBody": {
+          "r": 22,
+          "h": 92
+        },
+        "targetBody": {
+          "r": 22,
+          "h": 96
+        },
+        "uniqueTargets": 1,
+        "critical": false,
+        "damageRoll": 1,
+        "frames": 61,
+        "hits": [
+          {
+            "owner": "occultist",
+            "skill": "O01",
+            "cast": 1,
+            "direct": true,
+            "inputDamage": 156.31548894476143,
+            "hpDamage": 187,
+            "shieldDamage": 0,
+            "source": {
+              "x": 922,
+              "y": 548.395090253293
+            },
+            "facing": 1
+          }
+        ]
+      },
+      {
+        "stage": 31,
+        "role": "arc",
+        "kind": "warden",
+        "direction": "front",
+        "cls": "archer",
+        "skill": "A01",
+        "power": 0.5,
+        "rank": 1,
+        "attack": 6.4866899999999985,
+        "heroMaxHp": 1085,
+        "effectiveDamage": 295.6633301999999,
+        "perTargetCastDamage": 147,
+        "actorBody": {
+          "r": 22,
+          "h": 92
+        },
+        "targetBody": {
+          "r": 22,
+          "h": 96
+        },
+        "uniqueTargets": 1,
+        "critical": false,
+        "damageRoll": 1,
+        "frames": 61,
+        "hits": [
+          {
+            "owner": "archer",
+            "skill": "A01",
+            "cast": 1,
+            "direct": true,
+            "inputDamage": 295.6633301999999,
+            "hpDamage": 147,
+            "shieldDamage": 0,
+            "source": {
+              "x": 925,
+              "y": 545.7743522358365
+            },
+            "facing": -1
+          }
+        ]
+      },
+      {
+        "stage": 31,
+        "role": "arc",
+        "kind": "warden",
+        "direction": "front",
+        "cls": "mage",
+        "skill": "M01",
+        "power": 0.5,
+        "rank": 1,
+        "attack": 6.1936,
+        "heroMaxHp": 1174,
+        "effectiveDamage": 298.1846784,
+        "perTargetCastDamage": 140,
+        "actorBody": {
+          "r": 22,
+          "h": 92
+        },
+        "targetBody": {
+          "r": 22,
+          "h": 96
+        },
+        "uniqueTargets": 1,
+        "critical": false,
+        "damageRoll": 1,
+        "frames": 61,
+        "hits": [
+          {
+            "owner": "mage",
+            "skill": "M01",
+            "cast": 1,
+            "direct": true,
+            "inputDamage": 220.83685163350242,
+            "hpDamage": 140,
+            "shieldDamage": 0,
+            "source": {
+              "x": 922,
+              "y": 544.9305295065758
+            },
+            "facing": -1
+          }
+        ]
+      },
+      {
+        "stage": 31,
+        "role": "arc",
+        "kind": "warden",
+        "direction": "front",
+        "cls": "knight",
+        "skill": "S00",
+        "power": 0.5,
+        "rank": 1,
+        "attack": 6.027699999999999,
+        "heroMaxHp": 2036,
+        "effectiveDamage": 332.24682399999995,
+        "perTargetCastDamage": 185,
+        "actorBody": {
+          "r": 22,
+          "h": 92
+        },
+        "targetBody": {
+          "r": 22,
+          "h": 96
+        },
+        "uniqueTargets": 1,
+        "critical": false,
+        "damageRoll": 1,
+        "frames": 30,
+        "hits": [
+          {
+            "owner": "knight",
+            "skill": "S00",
+            "cast": 1,
+            "direct": true,
+            "inputDamage": 370.45520875999995,
+            "hpDamage": 185,
+            "shieldDamage": 0,
+            "source": {
+              "x": 600,
+              "y": 554
+            },
+            "facing": -1
+          }
+        ]
+      },
+      {
+        "stage": 31,
+        "role": "arc",
+        "kind": "warden",
+        "direction": "front",
+        "cls": "occultist",
+        "skill": "O01",
+        "power": 0.5,
+        "rank": 1,
+        "attack": 6.552000000000001,
+        "heroMaxHp": 1362,
+        "effectiveDamage": 236.52539580144816,
+        "perTargetCastDamage": 111,
+        "actorBody": {
+          "r": 22,
+          "h": 92
+        },
+        "targetBody": {
+          "r": 22,
+          "h": 96
+        },
+        "uniqueTargets": 1,
+        "critical": false,
+        "damageRoll": 1,
+        "frames": 61,
+        "hits": [
+          {
+            "owner": "occultist",
+            "skill": "O01",
+            "cast": 1,
+            "direct": true,
+            "inputDamage": 156.31548894476143,
+            "hpDamage": 111,
+            "shieldDamage": 0,
+            "source": {
+              "x": 922,
+              "y": 548.395090253293
+            },
+            "facing": -1
+          }
+        ]
+      },
+      {
+        "stage": 31,
+        "role": "arc",
+        "kind": "warden",
+        "direction": "rear",
+        "cls": "archer",
+        "skill": "A01",
+        "power": 0.5,
+        "rank": 1,
+        "attack": 6.4866899999999985,
+        "heroMaxHp": 1085,
+        "effectiveDamage": 295.6633301999999,
+        "perTargetCastDamage": 233,
+        "actorBody": {
+          "r": 22,
+          "h": 92
+        },
+        "targetBody": {
+          "r": 22,
+          "h": 96
+        },
+        "uniqueTargets": 1,
+        "critical": false,
+        "damageRoll": 1,
+        "frames": 61,
+        "hits": [
+          {
+            "owner": "archer",
+            "skill": "A01",
+            "cast": 1,
+            "direct": true,
+            "inputDamage": 295.6633301999999,
+            "hpDamage": 233,
+            "shieldDamage": 0,
+            "source": {
+              "x": 925,
+              "y": 545.7743522358365
+            },
+            "facing": 1
+          }
+        ]
+      },
+      {
+        "stage": 31,
+        "role": "arc",
+        "kind": "warden",
+        "direction": "rear",
+        "cls": "mage",
+        "skill": "M01",
+        "power": 0.5,
+        "rank": 1,
+        "attack": 6.1936,
+        "heroMaxHp": 1174,
+        "effectiveDamage": 298.1846784,
+        "perTargetCastDamage": 222,
+        "actorBody": {
+          "r": 22,
+          "h": 92
+        },
+        "targetBody": {
+          "r": 22,
+          "h": 96
+        },
+        "uniqueTargets": 1,
+        "critical": false,
+        "damageRoll": 1,
+        "frames": 61,
+        "hits": [
+          {
+            "owner": "mage",
+            "skill": "M01",
+            "cast": 1,
+            "direct": true,
+            "inputDamage": 220.83685163350242,
+            "hpDamage": 222,
+            "shieldDamage": 0,
+            "source": {
+              "x": 922,
+              "y": 544.9305295065758
+            },
+            "facing": 1
+          }
+        ]
+      },
+      {
+        "stage": 31,
+        "role": "arc",
+        "kind": "warden",
+        "direction": "rear",
+        "cls": "knight",
+        "skill": "S00",
+        "power": 0.5,
+        "rank": 1,
+        "attack": 6.027699999999999,
+        "heroMaxHp": 2036,
+        "effectiveDamage": 332.24682399999995,
+        "perTargetCastDamage": 292,
+        "actorBody": {
+          "r": 22,
+          "h": 92
+        },
+        "targetBody": {
+          "r": 22,
+          "h": 96
+        },
+        "uniqueTargets": 1,
+        "critical": false,
+        "damageRoll": 1,
+        "frames": 30,
+        "hits": [
+          {
+            "owner": "knight",
+            "skill": "S00",
+            "cast": 1,
+            "direct": true,
+            "inputDamage": 370.45520875999995,
+            "hpDamage": 292,
+            "shieldDamage": 0,
+            "source": {
+              "x": 600,
+              "y": 554
+            },
+            "facing": 1
+          }
+        ]
+      },
+      {
+        "stage": 31,
+        "role": "arc",
+        "kind": "warden",
+        "direction": "rear",
+        "cls": "occultist",
+        "skill": "O01",
+        "power": 0.5,
+        "rank": 1,
+        "attack": 6.552000000000001,
+        "heroMaxHp": 1362,
+        "effectiveDamage": 236.52539580144816,
+        "perTargetCastDamage": 175,
+        "actorBody": {
+          "r": 22,
+          "h": 92
+        },
+        "targetBody": {
+          "r": 22,
+          "h": 96
+        },
+        "uniqueTargets": 1,
+        "critical": false,
+        "damageRoll": 1,
+        "frames": 61,
+        "hits": [
+          {
+            "owner": "occultist",
+            "skill": "O01",
+            "cast": 1,
+            "direct": true,
+            "inputDamage": 156.31548894476143,
+            "hpDamage": 175,
+            "shieldDamage": 0,
+            "source": {
+              "x": 922,
+              "y": 548.395090253293
+            },
+            "facing": 1
+          }
+        ]
+      },
+      {
+        "stage": 31,
+        "role": "close",
+        "kind": "mourner",
+        "direction": "front",
+        "cls": "archer",
+        "skill": "A01",
+        "power": 0.5,
+        "rank": 1,
+        "attack": 6.4866899999999985,
+        "heroMaxHp": 1085,
+        "effectiveDamage": 295.6633301999999,
+        "perTargetCastDamage": 224,
+        "actorBody": {
+          "r": 22,
+          "h": 92
+        },
+        "targetBody": {
+          "r": 22,
+          "h": 96
+        },
+        "uniqueTargets": 1,
+        "critical": false,
+        "damageRoll": 1,
+        "frames": 61,
+        "hits": [
+          {
+            "owner": "archer",
+            "skill": "A01",
+            "cast": 1,
+            "direct": true,
+            "inputDamage": 295.6633301999999,
+            "hpDamage": 224,
+            "shieldDamage": 0,
+            "source": {
+              "x": 925,
+              "y": 545.7743522358365
+            },
+            "facing": -1
+          }
+        ]
+      },
+      {
+        "stage": 31,
+        "role": "close",
+        "kind": "mourner",
+        "direction": "front",
+        "cls": "mage",
+        "skill": "M01",
+        "power": 0.5,
+        "rank": 1,
+        "attack": 6.1936,
+        "heroMaxHp": 1174,
+        "effectiveDamage": 298.1846784,
+        "perTargetCastDamage": 218,
+        "actorBody": {
+          "r": 22,
+          "h": 92
+        },
+        "targetBody": {
+          "r": 22,
+          "h": 96
+        },
+        "uniqueTargets": 1,
+        "critical": false,
+        "damageRoll": 1,
+        "frames": 61,
+        "hits": [
+          {
+            "owner": "mage",
+            "skill": "M01",
+            "cast": 1,
+            "direct": true,
+            "inputDamage": 220.83685163350242,
+            "hpDamage": 218,
+            "shieldDamage": 0,
+            "source": {
+              "x": 922,
+              "y": 544.9305295065758
+            },
+            "facing": -1
+          }
+        ]
+      },
+      {
+        "stage": 31,
+        "role": "close",
+        "kind": "mourner",
+        "direction": "front",
+        "cls": "knight",
+        "skill": "S00",
+        "power": 0.5,
+        "rank": 1,
+        "attack": 6.027699999999999,
+        "heroMaxHp": 2036,
+        "effectiveDamage": 332.24682399999995,
+        "perTargetCastDamage": 281,
+        "actorBody": {
+          "r": 22,
+          "h": 92
+        },
+        "targetBody": {
+          "r": 22,
+          "h": 96
+        },
+        "uniqueTargets": 1,
+        "critical": false,
+        "damageRoll": 1,
+        "frames": 30,
+        "hits": [
+          {
+            "owner": "knight",
+            "skill": "S00",
+            "cast": 1,
+            "direct": true,
+            "inputDamage": 370.45520875999995,
+            "hpDamage": 281,
+            "shieldDamage": 0,
+            "source": {
+              "x": 600,
+              "y": 554
+            },
+            "facing": -1
+          }
+        ]
+      },
+      {
+        "stage": 31,
+        "role": "close",
+        "kind": "mourner",
+        "direction": "front",
+        "cls": "occultist",
+        "skill": "O01",
+        "power": 0.5,
+        "rank": 1,
+        "attack": 6.552000000000001,
+        "heroMaxHp": 1362,
+        "effectiveDamage": 236.52539580144816,
+        "perTargetCastDamage": 183,
+        "actorBody": {
+          "r": 22,
+          "h": 92
+        },
+        "targetBody": {
+          "r": 22,
+          "h": 96
+        },
+        "uniqueTargets": 1,
+        "critical": false,
+        "damageRoll": 1,
+        "frames": 61,
+        "hits": [
+          {
+            "owner": "occultist",
+            "skill": "O01",
+            "cast": 1,
+            "direct": true,
+            "inputDamage": 156.31548894476143,
+            "hpDamage": 183,
+            "shieldDamage": 0,
+            "source": {
+              "x": 922,
+              "y": 548.395090253293
+            },
+            "facing": -1
+          }
+        ]
+      },
+      {
+        "stage": 31,
+        "role": "close",
+        "kind": "mourner",
+        "direction": "rear",
+        "cls": "archer",
+        "skill": "A01",
+        "power": 0.5,
+        "rank": 1,
+        "attack": 6.4866899999999985,
+        "heroMaxHp": 1085,
+        "effectiveDamage": 295.6633301999999,
+        "perTargetCastDamage": 224,
+        "actorBody": {
+          "r": 22,
+          "h": 92
+        },
+        "targetBody": {
+          "r": 22,
+          "h": 96
+        },
+        "uniqueTargets": 1,
+        "critical": false,
+        "damageRoll": 1,
+        "frames": 61,
+        "hits": [
+          {
+            "owner": "archer",
+            "skill": "A01",
+            "cast": 1,
+            "direct": true,
+            "inputDamage": 295.6633301999999,
+            "hpDamage": 224,
+            "shieldDamage": 0,
+            "source": {
+              "x": 925,
+              "y": 545.7743522358365
+            },
+            "facing": 1
+          }
+        ]
+      },
+      {
+        "stage": 31,
+        "role": "close",
+        "kind": "mourner",
+        "direction": "rear",
+        "cls": "mage",
+        "skill": "M01",
+        "power": 0.5,
+        "rank": 1,
+        "attack": 6.1936,
+        "heroMaxHp": 1174,
+        "effectiveDamage": 298.1846784,
+        "perTargetCastDamage": 218,
+        "actorBody": {
+          "r": 22,
+          "h": 92
+        },
+        "targetBody": {
+          "r": 22,
+          "h": 96
+        },
+        "uniqueTargets": 1,
+        "critical": false,
+        "damageRoll": 1,
+        "frames": 61,
+        "hits": [
+          {
+            "owner": "mage",
+            "skill": "M01",
+            "cast": 1,
+            "direct": true,
+            "inputDamage": 220.83685163350242,
+            "hpDamage": 218,
+            "shieldDamage": 0,
+            "source": {
+              "x": 922,
+              "y": 544.9305295065758
+            },
+            "facing": 1
+          }
+        ]
+      },
+      {
+        "stage": 31,
+        "role": "close",
+        "kind": "mourner",
+        "direction": "rear",
+        "cls": "knight",
+        "skill": "S00",
+        "power": 0.5,
+        "rank": 1,
+        "attack": 6.027699999999999,
+        "heroMaxHp": 2036,
+        "effectiveDamage": 332.24682399999995,
+        "perTargetCastDamage": 281,
+        "actorBody": {
+          "r": 22,
+          "h": 92
+        },
+        "targetBody": {
+          "r": 22,
+          "h": 96
+        },
+        "uniqueTargets": 1,
+        "critical": false,
+        "damageRoll": 1,
+        "frames": 30,
+        "hits": [
+          {
+            "owner": "knight",
+            "skill": "S00",
+            "cast": 1,
+            "direct": true,
+            "inputDamage": 370.45520875999995,
+            "hpDamage": 281,
+            "shieldDamage": 0,
+            "source": {
+              "x": 600,
+              "y": 554
+            },
+            "facing": 1
+          }
+        ]
+      },
+      {
+        "stage": 31,
+        "role": "close",
+        "kind": "mourner",
+        "direction": "rear",
+        "cls": "occultist",
+        "skill": "O01",
+        "power": 0.5,
+        "rank": 1,
+        "attack": 6.552000000000001,
+        "heroMaxHp": 1362,
+        "effectiveDamage": 236.52539580144816,
+        "perTargetCastDamage": 183,
+        "actorBody": {
+          "r": 22,
+          "h": 92
+        },
+        "targetBody": {
+          "r": 22,
+          "h": 96
+        },
+        "uniqueTargets": 1,
+        "critical": false,
+        "damageRoll": 1,
+        "frames": 61,
+        "hits": [
+          {
+            "owner": "occultist",
+            "skill": "O01",
+            "cast": 1,
+            "direct": true,
+            "inputDamage": 156.31548894476143,
+            "hpDamage": 183,
+            "shieldDamage": 0,
+            "source": {
+              "x": 922,
+              "y": 548.395090253293
+            },
+            "facing": 1
+          }
+        ]
+      },
+      {
+        "stage": 31,
+        "role": "midGuard",
+        "kind": "warden",
+        "direction": "front",
+        "cls": "archer",
+        "skill": "A01",
+        "power": 0.5,
+        "rank": 1,
+        "attack": 6.4866899999999985,
+        "heroMaxHp": 1085,
+        "effectiveDamage": 295.6633301999999,
+        "perTargetCastDamage": 147,
+        "actorBody": {
+          "r": 22,
+          "h": 92
+        },
+        "targetBody": {
+          "r": 26,
+          "h": 106
+        },
+        "uniqueTargets": 1,
+        "critical": false,
+        "damageRoll": 1,
+        "frames": 60,
+        "hits": [
+          {
+            "owner": "archer",
+            "skill": "A01",
+            "cast": 1,
+            "direct": true,
+            "inputDamage": 295.6633301999999,
+            "hpDamage": 147,
+            "shieldDamage": 0,
+            "source": {
+              "x": 921,
+              "y": 540.2924689341941
+            },
+            "facing": -1
+          }
+        ]
+      },
+      {
+        "stage": 31,
+        "role": "midGuard",
+        "kind": "warden",
+        "direction": "front",
+        "cls": "mage",
+        "skill": "M01",
+        "power": 0.5,
+        "rank": 1,
+        "attack": 6.1936,
+        "heroMaxHp": 1174,
+        "effectiveDamage": 298.1846784,
+        "perTargetCastDamage": 134,
+        "actorBody": {
+          "r": 22,
+          "h": 92
+        },
+        "targetBody": {
+          "r": 26,
+          "h": 106
+        },
+        "uniqueTargets": 1,
+        "critical": false,
+        "damageRoll": 1,
+        "frames": 60,
+        "hits": [
+          {
+            "owner": "mage",
+            "skill": "M01",
+            "cast": 1,
+            "direct": true,
+            "inputDamage": 210.52266435788607,
+            "hpDamage": 134,
+            "shieldDamage": 0,
+            "source": {
+              "x": 918,
+              "y": 539.4940038290914
+            },
+            "facing": -1
+          }
+        ]
+      },
+      {
+        "stage": 31,
+        "role": "midGuard",
+        "kind": "warden",
+        "direction": "front",
+        "cls": "knight",
+        "skill": "S00",
+        "power": 0.5,
+        "rank": 1,
+        "attack": 6.027699999999999,
+        "heroMaxHp": 2036,
+        "effectiveDamage": 332.24682399999995,
+        "perTargetCastDamage": 185,
+        "actorBody": {
+          "r": 22,
+          "h": 92
+        },
+        "targetBody": {
+          "r": 26,
+          "h": 106
+        },
+        "uniqueTargets": 1,
+        "critical": false,
+        "damageRoll": 1,
+        "frames": 30,
+        "hits": [
+          {
+            "owner": "knight",
+            "skill": "S00",
+            "cast": 1,
+            "direct": true,
+            "inputDamage": 370.45520875999995,
+            "hpDamage": 185,
+            "shieldDamage": 0,
+            "source": {
+              "x": 600,
+              "y": 554
+            },
+            "facing": -1
+          }
+        ]
+      },
+      {
+        "stage": 31,
+        "role": "midGuard",
+        "kind": "warden",
+        "direction": "front",
+        "cls": "occultist",
+        "skill": "O01",
+        "power": 0.5,
+        "rank": 1,
+        "attack": 6.552000000000001,
+        "heroMaxHp": 1362,
+        "effectiveDamage": 236.52539580144816,
+        "perTargetCastDamage": 103,
+        "actorBody": {
+          "r": 22,
+          "h": 92
+        },
+        "targetBody": {
+          "r": 26,
+          "h": 106
+        },
+        "uniqueTargets": 1,
+        "critical": false,
+        "damageRoll": 1,
+        "frames": 60,
+        "hits": [
+          {
+            "owner": "occultist",
+            "skill": "O01",
+            "cast": 1,
+            "direct": true,
+            "inputDamage": 145.39147495518475,
+            "hpDamage": 103,
+            "shieldDamage": 0,
+            "source": {
+              "x": 918,
+              "y": 543.39566445465
+            },
+            "facing": -1
+          }
+        ]
+      },
+      {
+        "stage": 31,
+        "role": "midGuard",
+        "kind": "warden",
+        "direction": "rear",
+        "cls": "archer",
+        "skill": "A01",
+        "power": 0.5,
+        "rank": 1,
+        "attack": 6.4866899999999985,
+        "heroMaxHp": 1085,
+        "effectiveDamage": 295.6633301999999,
+        "perTargetCastDamage": 233,
+        "actorBody": {
+          "r": 22,
+          "h": 92
+        },
+        "targetBody": {
+          "r": 26,
+          "h": 106
+        },
+        "uniqueTargets": 1,
+        "critical": false,
+        "damageRoll": 1,
+        "frames": 60,
+        "hits": [
+          {
+            "owner": "archer",
+            "skill": "A01",
+            "cast": 1,
+            "direct": true,
+            "inputDamage": 295.6633301999999,
+            "hpDamage": 233,
+            "shieldDamage": 0,
+            "source": {
+              "x": 921,
+              "y": 540.2924689341941
+            },
+            "facing": 1
+          }
+        ]
+      },
+      {
+        "stage": 31,
+        "role": "midGuard",
+        "kind": "warden",
+        "direction": "rear",
+        "cls": "mage",
+        "skill": "M01",
+        "power": 0.5,
+        "rank": 1,
+        "attack": 6.1936,
+        "heroMaxHp": 1174,
+        "effectiveDamage": 298.1846784,
+        "perTargetCastDamage": 212,
+        "actorBody": {
+          "r": 22,
+          "h": 92
+        },
+        "targetBody": {
+          "r": 26,
+          "h": 106
+        },
+        "uniqueTargets": 1,
+        "critical": false,
+        "damageRoll": 1,
+        "frames": 60,
+        "hits": [
+          {
+            "owner": "mage",
+            "skill": "M01",
+            "cast": 1,
+            "direct": true,
+            "inputDamage": 210.52266435788607,
+            "hpDamage": 212,
+            "shieldDamage": 0,
+            "source": {
+              "x": 918,
+              "y": 539.4940038290914
+            },
+            "facing": 1
+          }
+        ]
+      },
+      {
+        "stage": 31,
+        "role": "midGuard",
+        "kind": "warden",
+        "direction": "rear",
+        "cls": "knight",
+        "skill": "S00",
+        "power": 0.5,
+        "rank": 1,
+        "attack": 6.027699999999999,
+        "heroMaxHp": 2036,
+        "effectiveDamage": 332.24682399999995,
+        "perTargetCastDamage": 292,
+        "actorBody": {
+          "r": 22,
+          "h": 92
+        },
+        "targetBody": {
+          "r": 26,
+          "h": 106
+        },
+        "uniqueTargets": 1,
+        "critical": false,
+        "damageRoll": 1,
+        "frames": 30,
+        "hits": [
+          {
+            "owner": "knight",
+            "skill": "S00",
+            "cast": 1,
+            "direct": true,
+            "inputDamage": 370.45520875999995,
+            "hpDamage": 292,
+            "shieldDamage": 0,
+            "source": {
+              "x": 600,
+              "y": 554
+            },
+            "facing": 1
+          }
+        ]
+      },
+      {
+        "stage": 31,
+        "role": "midGuard",
+        "kind": "warden",
+        "direction": "rear",
+        "cls": "occultist",
+        "skill": "O01",
+        "power": 0.5,
+        "rank": 1,
+        "attack": 6.552000000000001,
+        "heroMaxHp": 1362,
+        "effectiveDamage": 236.52539580144816,
+        "perTargetCastDamage": 163,
+        "actorBody": {
+          "r": 22,
+          "h": 92
+        },
+        "targetBody": {
+          "r": 26,
+          "h": 106
+        },
+        "uniqueTargets": 1,
+        "critical": false,
+        "damageRoll": 1,
+        "frames": 60,
+        "hits": [
+          {
+            "owner": "occultist",
+            "skill": "O01",
+            "cast": 1,
+            "direct": true,
+            "inputDamage": 145.39147495518475,
+            "hpDamage": 163,
+            "shieldDamage": 0,
+            "source": {
+              "x": 918,
+              "y": 543.39566445465
+            },
+            "facing": 1
+          }
+        ]
+      },
+      {
+        "stage": 31,
+        "role": "midExposed",
+        "kind": "warden",
+        "direction": "front",
+        "cls": "archer",
+        "skill": "A01",
+        "power": 0.5,
+        "rank": 1,
+        "attack": 6.4866899999999985,
+        "heroMaxHp": 1085,
+        "effectiveDamage": 295.6633301999999,
+        "perTargetCastDamage": 233,
+        "actorBody": {
+          "r": 22,
+          "h": 92
+        },
+        "targetBody": {
+          "r": 26,
+          "h": 106
+        },
+        "uniqueTargets": 1,
+        "critical": false,
+        "damageRoll": 1,
+        "frames": 60,
+        "hits": [
+          {
+            "owner": "archer",
+            "skill": "A01",
+            "cast": 1,
+            "direct": true,
+            "inputDamage": 295.6633301999999,
+            "hpDamage": 233,
+            "shieldDamage": 0,
+            "source": {
+              "x": 921,
+              "y": 540.2924689341941
+            },
+            "facing": -1
+          }
+        ]
+      },
+      {
+        "stage": 31,
+        "role": "midExposed",
+        "kind": "warden",
+        "direction": "front",
+        "cls": "mage",
+        "skill": "M01",
+        "power": 0.5,
+        "rank": 1,
+        "attack": 6.1936,
+        "heroMaxHp": 1174,
+        "effectiveDamage": 298.1846784,
+        "perTargetCastDamage": 212,
+        "actorBody": {
+          "r": 22,
+          "h": 92
+        },
+        "targetBody": {
+          "r": 26,
+          "h": 106
+        },
+        "uniqueTargets": 1,
+        "critical": false,
+        "damageRoll": 1,
+        "frames": 60,
+        "hits": [
+          {
+            "owner": "mage",
+            "skill": "M01",
+            "cast": 1,
+            "direct": true,
+            "inputDamage": 210.52266435788607,
+            "hpDamage": 212,
+            "shieldDamage": 0,
+            "source": {
+              "x": 918,
+              "y": 539.4940038290914
+            },
+            "facing": -1
+          }
+        ]
+      },
+      {
+        "stage": 31,
+        "role": "midExposed",
+        "kind": "warden",
+        "direction": "front",
+        "cls": "knight",
+        "skill": "S00",
+        "power": 0.5,
+        "rank": 1,
+        "attack": 6.027699999999999,
+        "heroMaxHp": 2036,
+        "effectiveDamage": 332.24682399999995,
+        "perTargetCastDamage": 292,
+        "actorBody": {
+          "r": 22,
+          "h": 92
+        },
+        "targetBody": {
+          "r": 26,
+          "h": 106
+        },
+        "uniqueTargets": 1,
+        "critical": false,
+        "damageRoll": 1,
+        "frames": 30,
+        "hits": [
+          {
+            "owner": "knight",
+            "skill": "S00",
+            "cast": 1,
+            "direct": true,
+            "inputDamage": 370.45520875999995,
+            "hpDamage": 292,
+            "shieldDamage": 0,
+            "source": {
+              "x": 600,
+              "y": 554
+            },
+            "facing": -1
+          }
+        ]
+      },
+      {
+        "stage": 31,
+        "role": "midExposed",
+        "kind": "warden",
+        "direction": "front",
+        "cls": "occultist",
+        "skill": "O01",
+        "power": 0.5,
+        "rank": 1,
+        "attack": 6.552000000000001,
+        "heroMaxHp": 1362,
+        "effectiveDamage": 236.52539580144816,
+        "perTargetCastDamage": 163,
+        "actorBody": {
+          "r": 22,
+          "h": 92
+        },
+        "targetBody": {
+          "r": 26,
+          "h": 106
+        },
+        "uniqueTargets": 1,
+        "critical": false,
+        "damageRoll": 1,
+        "frames": 60,
+        "hits": [
+          {
+            "owner": "occultist",
+            "skill": "O01",
+            "cast": 1,
+            "direct": true,
+            "inputDamage": 145.39147495518475,
+            "hpDamage": 163,
+            "shieldDamage": 0,
+            "source": {
+              "x": 918,
+              "y": 543.39566445465
+            },
+            "facing": -1
+          }
+        ]
+      },
+      {
+        "stage": 31,
+        "role": "midExposed",
+        "kind": "warden",
+        "direction": "rear",
+        "cls": "archer",
+        "skill": "A01",
+        "power": 0.5,
+        "rank": 1,
+        "attack": 6.4866899999999985,
+        "heroMaxHp": 1085,
+        "effectiveDamage": 295.6633301999999,
+        "perTargetCastDamage": 233,
+        "actorBody": {
+          "r": 22,
+          "h": 92
+        },
+        "targetBody": {
+          "r": 26,
+          "h": 106
+        },
+        "uniqueTargets": 1,
+        "critical": false,
+        "damageRoll": 1,
+        "frames": 60,
+        "hits": [
+          {
+            "owner": "archer",
+            "skill": "A01",
+            "cast": 1,
+            "direct": true,
+            "inputDamage": 295.6633301999999,
+            "hpDamage": 233,
+            "shieldDamage": 0,
+            "source": {
+              "x": 921,
+              "y": 540.2924689341941
+            },
+            "facing": 1
+          }
+        ]
+      },
+      {
+        "stage": 31,
+        "role": "midExposed",
+        "kind": "warden",
+        "direction": "rear",
+        "cls": "mage",
+        "skill": "M01",
+        "power": 0.5,
+        "rank": 1,
+        "attack": 6.1936,
+        "heroMaxHp": 1174,
+        "effectiveDamage": 298.1846784,
+        "perTargetCastDamage": 212,
+        "actorBody": {
+          "r": 22,
+          "h": 92
+        },
+        "targetBody": {
+          "r": 26,
+          "h": 106
+        },
+        "uniqueTargets": 1,
+        "critical": false,
+        "damageRoll": 1,
+        "frames": 60,
+        "hits": [
+          {
+            "owner": "mage",
+            "skill": "M01",
+            "cast": 1,
+            "direct": true,
+            "inputDamage": 210.52266435788607,
+            "hpDamage": 212,
+            "shieldDamage": 0,
+            "source": {
+              "x": 918,
+              "y": 539.4940038290914
+            },
+            "facing": 1
+          }
+        ]
+      },
+      {
+        "stage": 31,
+        "role": "midExposed",
+        "kind": "warden",
+        "direction": "rear",
+        "cls": "knight",
+        "skill": "S00",
+        "power": 0.5,
+        "rank": 1,
+        "attack": 6.027699999999999,
+        "heroMaxHp": 2036,
+        "effectiveDamage": 332.24682399999995,
+        "perTargetCastDamage": 292,
+        "actorBody": {
+          "r": 22,
+          "h": 92
+        },
+        "targetBody": {
+          "r": 26,
+          "h": 106
+        },
+        "uniqueTargets": 1,
+        "critical": false,
+        "damageRoll": 1,
+        "frames": 30,
+        "hits": [
+          {
+            "owner": "knight",
+            "skill": "S00",
+            "cast": 1,
+            "direct": true,
+            "inputDamage": 370.45520875999995,
+            "hpDamage": 292,
+            "shieldDamage": 0,
+            "source": {
+              "x": 600,
+              "y": 554
+            },
+            "facing": 1
+          }
+        ]
+      },
+      {
+        "stage": 31,
+        "role": "midExposed",
+        "kind": "warden",
+        "direction": "rear",
+        "cls": "occultist",
+        "skill": "O01",
+        "power": 0.5,
+        "rank": 1,
+        "attack": 6.552000000000001,
+        "heroMaxHp": 1362,
+        "effectiveDamage": 236.52539580144816,
+        "perTargetCastDamage": 163,
+        "actorBody": {
+          "r": 22,
+          "h": 92
+        },
+        "targetBody": {
+          "r": 26,
+          "h": 106
+        },
+        "uniqueTargets": 1,
+        "critical": false,
+        "damageRoll": 1,
+        "frames": 60,
+        "hits": [
+          {
+            "owner": "occultist",
+            "skill": "O01",
+            "cast": 1,
+            "direct": true,
+            "inputDamage": 145.39147495518475,
+            "hpDamage": 163,
+            "shieldDamage": 0,
+            "source": {
+              "x": 918,
+              "y": 543.39566445465
+            },
+            "facing": 1
+          }
+        ]
+      }
+    ]
+  },
+  "incoming": {
+    "version": 2,
+    "stage": 31,
+    "preflight": {
+      "kind": "actual-App-parity-before-isolated-contact",
+      "sha256": "a5b037e17e536c197ca87d3dd9072b64a2d169384eb2f7705de9515b80893031",
+      "sourceCommit": "cb3e11c5b715da658e3d1224fa6791004c3570fc",
+      "mode": "campaign",
+      "difficulty": "normal",
+      "training": false,
+      "checked": [
+        {
+          "id": "archer",
+          "fields": [
+            "h",
+            "r",
+            "role",
+            "armor",
+            "attack",
+            "ranks",
+            "equipmentIds",
+            "maxHp",
+            "level"
+          ]
+        },
+        {
+          "id": "mage",
+          "fields": [
+            "h",
+            "r",
+            "role",
+            "armor",
+            "attack",
+            "ranks",
+            "equipmentIds",
+            "maxHp",
+            "level"
+          ]
+        },
+        {
+          "id": "knight",
+          "fields": [
+            "h",
+            "r",
+            "role",
+            "armor",
+            "attack",
+            "ranks",
+            "equipmentIds",
+            "maxHp",
+            "level"
+          ]
+        },
+        {
+          "id": "occultist",
+          "fields": [
+            "h",
+            "r",
+            "role",
+            "armor",
+            "attack",
+            "ranks",
+            "equipmentIds",
+            "maxHp",
+            "level"
+          ]
+        },
+        {
+          "id": "pilot31-west-entry-1",
+          "fields": [
+            "h",
+            "r",
+            "role",
+            "armor",
+            "ranks",
+            "existenceDefense",
+            "honroVariant",
+            "honroType"
+          ]
+        },
+        {
+          "id": "pilot31-west-entry-2",
+          "fields": [
+            "h",
+            "r",
+            "role",
+            "armor",
+            "ranks",
+            "existenceDefense",
+            "honroVariant",
+            "honroType"
+          ]
+        },
+        {
+          "id": "pilot31-west-entry-3",
+          "fields": [
+            "h",
+            "r",
+            "role",
+            "armor",
+            "ranks",
+            "existenceDefense",
+            "honroVariant",
+            "honroType"
+          ]
+        },
+        {
+          "id": "pilot31-west-entry-4",
+          "fields": [
+            "h",
+            "r",
+            "role",
+            "armor",
+            "ranks",
+            "existenceDefense",
+            "honroVariant",
+            "honroType"
+          ]
+        },
+        {
+          "id": "pilot31-west-entry-5",
+          "fields": [
+            "h",
+            "r",
+            "role",
+            "armor",
+            "ranks",
+            "existenceDefense",
+            "honroVariant",
+            "honroType"
+          ]
+        },
+        {
+          "id": "pilot31-west-entry-6",
+          "fields": [
+            "h",
+            "r",
+            "role",
+            "armor",
+            "ranks",
+            "existenceDefense",
+            "honroVariant",
+            "honroType"
+          ]
+        },
+        {
+          "id": "pilot31-west-entry-7",
+          "fields": [
+            "h",
+            "r",
+            "role",
+            "armor",
+            "ranks",
+            "existenceDefense",
+            "honroVariant",
+            "honroType"
+          ]
+        },
+        {
+          "id": "pilot31-west-entry-8",
+          "fields": [
+            "h",
+            "r",
+            "role",
+            "armor",
+            "ranks",
+            "existenceDefense",
+            "honroVariant",
+            "honroType"
+          ]
+        },
+        {
+          "id": "pilot31-west-crossfire-1",
+          "fields": [
+            "h",
+            "r",
+            "role",
+            "armor",
+            "ranks",
+            "existenceDefense",
+            "honroVariant",
+            "honroType"
+          ]
+        },
+        {
+          "id": "pilot31-west-crossfire-2",
+          "fields": [
+            "h",
+            "r",
+            "role",
+            "armor",
+            "ranks",
+            "existenceDefense",
+            "honroVariant",
+            "honroType"
+          ]
+        },
+        {
+          "id": "pilot31-west-crossfire-3",
+          "fields": [
+            "h",
+            "r",
+            "role",
+            "armor",
+            "ranks",
+            "existenceDefense",
+            "honroVariant",
+            "honroType"
+          ]
+        },
+        {
+          "id": "pilot31-west-crossfire-4",
+          "fields": [
+            "h",
+            "r",
+            "role",
+            "armor",
+            "ranks",
+            "existenceDefense",
+            "honroVariant",
+            "honroType"
+          ]
+        },
+        {
+          "id": "pilot31-west-crossfire-5",
+          "fields": [
+            "h",
+            "r",
+            "role",
+            "armor",
+            "ranks",
+            "existenceDefense",
+            "honroVariant",
+            "honroType"
+          ]
+        },
+        {
+          "id": "pilot31-west-crossfire-6",
+          "fields": [
+            "h",
+            "r",
+            "role",
+            "armor",
+            "ranks",
+            "existenceDefense",
+            "honroVariant",
+            "honroType"
+          ]
+        },
+        {
+          "id": "pilot31-west-crossfire-7",
+          "fields": [
+            "h",
+            "r",
+            "role",
+            "armor",
+            "ranks",
+            "existenceDefense",
+            "honroVariant",
+            "honroType"
+          ]
+        },
+        {
+          "id": "pilot31-west-crossfire-8",
+          "fields": [
+            "h",
+            "r",
+            "role",
+            "armor",
+            "ranks",
+            "existenceDefense",
+            "honroVariant",
+            "honroType"
+          ]
+        },
+        {
+          "id": "pilot31-west-crossfire-9",
+          "fields": [
+            "h",
+            "r",
+            "role",
+            "armor",
+            "ranks",
+            "existenceDefense",
+            "honroVariant",
+            "honroType"
+          ]
+        },
+        {
+          "id": "pilot31-ridge-court-1",
+          "fields": [
+            "h",
+            "r",
+            "role",
+            "armor",
+            "ranks",
+            "existenceDefense",
+            "honroVariant",
+            "honroType"
+          ]
+        },
+        {
+          "id": "pilot31-ridge-court-2",
+          "fields": [
+            "h",
+            "r",
+            "role",
+            "armor",
+            "ranks",
+            "existenceDefense",
+            "honroVariant",
+            "honroType"
+          ]
+        },
+        {
+          "id": "pilot31-ridge-court-3",
+          "fields": [
+            "h",
+            "r",
+            "role",
+            "armor",
+            "ranks",
+            "existenceDefense",
+            "honroVariant",
+            "honroType"
+          ]
+        },
+        {
+          "id": "pilot31-ridge-court-4",
+          "fields": [
+            "h",
+            "r",
+            "role",
+            "armor",
+            "ranks",
+            "existenceDefense",
+            "honroVariant",
+            "honroType"
+          ]
+        },
+        {
+          "id": "pilot31-ridge-court-5",
+          "fields": [
+            "h",
+            "r",
+            "role",
+            "armor",
+            "ranks",
+            "existenceDefense",
+            "honroVariant",
+            "honroType"
+          ]
+        },
+        {
+          "id": "pilot31-ridge-court-6",
+          "fields": [
+            "h",
+            "r",
+            "role",
+            "armor",
+            "ranks",
+            "existenceDefense",
+            "honroVariant",
+            "honroType"
+          ]
+        },
+        {
+          "id": "pilot31-ridge-court-7",
+          "fields": [
+            "h",
+            "r",
+            "role",
+            "armor",
+            "ranks",
+            "existenceDefense",
+            "honroVariant",
+            "honroType"
+          ]
+        },
+        {
+          "id": "pilot31-ridge-court-8",
+          "fields": [
+            "h",
+            "r",
+            "role",
+            "armor",
+            "ranks",
+            "existenceDefense",
+            "honroVariant",
+            "honroType"
+          ]
+        },
+        {
+          "id": "pilot31-ridge-court-9",
+          "fields": [
+            "h",
+            "r",
+            "role",
+            "armor",
+            "ranks",
+            "existenceDefense",
+            "honroVariant",
+            "honroType"
+          ]
+        },
+        {
+          "id": "pilot31-lookout-return-1",
+          "fields": [
+            "h",
+            "r",
+            "role",
+            "armor",
+            "ranks",
+            "existenceDefense",
+            "honroVariant",
+            "honroType"
+          ]
+        },
+        {
+          "id": "pilot31-lookout-return-2",
+          "fields": [
+            "h",
+            "r",
+            "role",
+            "armor",
+            "ranks",
+            "existenceDefense",
+            "honroVariant",
+            "honroType"
+          ]
+        },
+        {
+          "id": "pilot31-lookout-return-3",
+          "fields": [
+            "h",
+            "r",
+            "role",
+            "armor",
+            "ranks",
+            "existenceDefense",
+            "honroVariant",
+            "honroType"
+          ]
+        },
+        {
+          "id": "pilot31-lookout-return-4",
+          "fields": [
+            "h",
+            "r",
+            "role",
+            "armor",
+            "ranks",
+            "existenceDefense",
+            "honroVariant",
+            "honroType"
+          ]
+        },
+        {
+          "id": "pilot31-lookout-return-5",
+          "fields": [
+            "h",
+            "r",
+            "role",
+            "armor",
+            "ranks",
+            "existenceDefense",
+            "honroVariant",
+            "honroType"
+          ]
+        },
+        {
+          "id": "pilot31-lookout-return-6",
+          "fields": [
+            "h",
+            "r",
+            "role",
+            "armor",
+            "ranks",
+            "existenceDefense",
+            "honroVariant",
+            "honroType"
+          ]
+        },
+        {
+          "id": "pilot31-lookout-return-7",
+          "fields": [
+            "h",
+            "r",
+            "role",
+            "armor",
+            "ranks",
+            "existenceDefense",
+            "honroVariant",
+            "honroType"
+          ]
+        },
+        {
+          "id": "pilot31-lookout-return-8",
+          "fields": [
+            "h",
+            "r",
+            "role",
+            "armor",
+            "ranks",
+            "existenceDefense",
+            "honroVariant",
+            "honroType"
+          ]
+        }
+      ],
+      "fixtureMode": "practice",
+      "excluded": [
+        "turn lifecycle",
+        "revival",
+        "victory",
+        "accuracy",
+        "play acceptance"
+      ],
+      "note": "No Engine.tick is invoked by contact matrix; native projectile/melee integration only. Enemy HP/attack are intentional calibration variables, not copied from obsolete v1 budget."
+    },
+    "reference": "declared-normal-entry-six-stat-starter-v1",
+    "scope": "Native enemy per-skill successful contact against fixed reference archer mitigation; attack10 to reduce integer rounding, no defense bypass, no live party scaling. Other hero classes deliberately retain distinct HP/armor.",
+    "rows": [
+      {
+        "stage": 31,
+        "role": "guard",
+        "skill": "LS09",
+        "attack": 10,
+        "referenceHp": 1085,
+        "referenceArmor": 0.272,
+        "perTargetCastDamage": 230,
+        "damagePerAttackUnit": 23,
+        "actorBody": {
+          "r": 22,
+          "h": 96
+        },
+        "targetBody": {
+          "r": 22,
+          "h": 92
+        },
+        "uniqueTargets": 1,
+        "critical": false,
+        "damageRoll": 1,
+        "hits": [
+          {
+            "skill": "LS09",
+            "cast": 1,
+            "direct": true,
+            "hpDamage": 230
+          }
+        ]
+      },
+      {
+        "stage": 31,
+        "role": "bow",
+        "skill": "LA01",
+        "attack": 10,
+        "referenceHp": 1085,
+        "referenceArmor": 0.272,
+        "perTargetCastDamage": 488,
+        "damagePerAttackUnit": 48.8,
+        "actorBody": {
+          "r": 22,
+          "h": 96
+        },
+        "targetBody": {
+          "r": 22,
+          "h": 92
+        },
+        "uniqueTargets": 1,
+        "critical": false,
+        "damageRoll": 1,
+        "hits": [
+          {
+            "skill": "LA01",
+            "cast": 1,
+            "direct": true,
+            "hpDamage": 488
+          }
+        ]
+      },
+      {
+        "stage": 31,
+        "role": "bind",
+        "skill": "HSH01",
+        "attack": 10,
+        "referenceHp": 1085,
+        "referenceArmor": 0.272,
+        "perTargetCastDamage": 158,
+        "damagePerAttackUnit": 15.8,
+        "actorBody": {
+          "r": 22,
+          "h": 96
+        },
+        "targetBody": {
+          "r": 22,
+          "h": 92
+        },
+        "uniqueTargets": 1,
+        "critical": false,
+        "damageRoll": 1,
+        "hits": [
+          {
+            "skill": "HSH01",
+            "cast": 1,
+            "direct": true,
+            "hpDamage": 158
+          }
+        ]
+      },
+      {
+        "stage": 31,
+        "role": "bind",
+        "skill": "HSH02",
+        "attack": 10,
+        "referenceHp": 1085,
+        "referenceArmor": 0.272,
+        "perTargetCastDamage": 303,
+        "damagePerAttackUnit": 30.3,
+        "actorBody": {
+          "r": 22,
+          "h": 96
+        },
+        "targetBody": {
+          "r": 22,
+          "h": 92
+        },
+        "uniqueTargets": 1,
+        "critical": false,
+        "damageRoll": 1,
+        "hits": [
+          {
+            "skill": "HSH02",
+            "cast": 1,
+            "direct": true,
+            "hpDamage": 303
+          }
+        ]
+      },
+      {
+        "stage": 31,
+        "role": "arc",
+        "skill": "HWD01",
+        "attack": 10,
+        "referenceHp": 1085,
+        "referenceArmor": 0.272,
+        "perTargetCastDamage": 257,
+        "damagePerAttackUnit": 25.7,
+        "actorBody": {
+          "r": 22,
+          "h": 96
+        },
+        "targetBody": {
+          "r": 22,
+          "h": 92
+        },
+        "uniqueTargets": 1,
+        "critical": false,
+        "damageRoll": 1,
+        "hits": [
+          {
+            "skill": "HWD01",
+            "cast": 1,
+            "direct": true,
+            "hpDamage": 257
+          }
+        ]
+      },
+      {
+        "stage": 31,
+        "role": "arc",
+        "skill": "HWD02",
+        "attack": 10,
+        "referenceHp": 1085,
+        "referenceArmor": 0.272,
+        "perTargetCastDamage": 354,
+        "damagePerAttackUnit": 35.4,
+        "actorBody": {
+          "r": 22,
+          "h": 96
+        },
+        "targetBody": {
+          "r": 22,
+          "h": 92
+        },
+        "uniqueTargets": 1,
+        "critical": false,
+        "damageRoll": 1,
+        "hits": [
+          {
+            "skill": "HWD02",
+            "cast": 1,
+            "direct": true,
+            "hpDamage": 354
+          }
+        ]
+      },
+      {
+        "stage": 31,
+        "role": "close",
+        "skill": "HMO01",
+        "attack": 10,
+        "referenceHp": 1085,
+        "referenceArmor": 0.272,
+        "perTargetCastDamage": 311,
+        "damagePerAttackUnit": 31.1,
+        "actorBody": {
+          "r": 22,
+          "h": 96
+        },
+        "targetBody": {
+          "r": 22,
+          "h": 92
+        },
+        "uniqueTargets": 1,
+        "critical": false,
+        "damageRoll": 1,
+        "hits": [
+          {
+            "skill": "HMO01",
+            "cast": 1,
+            "direct": true,
+            "hpDamage": 311
+          }
+        ]
+      },
+      {
+        "stage": 31,
+        "role": "close",
+        "skill": "HMO02",
+        "attack": 10,
+        "referenceHp": 1085,
+        "referenceArmor": 0.272,
+        "perTargetCastDamage": 345,
+        "damagePerAttackUnit": 34.5,
+        "actorBody": {
+          "r": 22,
+          "h": 96
+        },
+        "targetBody": {
+          "r": 22,
+          "h": 92
+        },
+        "uniqueTargets": 1,
+        "critical": false,
+        "damageRoll": 1,
+        "hits": [
+          {
+            "skill": "HMO02",
+            "cast": 1,
+            "direct": true,
+            "hpDamage": 345
+          }
+        ]
+      },
+      {
+        "stage": 31,
+        "role": "midboss",
+        "skill": "HWD01",
+        "attack": 10,
+        "referenceHp": 1085,
+        "referenceArmor": 0.272,
+        "perTargetCastDamage": 291,
+        "damagePerAttackUnit": 29.1,
+        "actorBody": {
+          "r": 26,
+          "h": 106
+        },
+        "targetBody": {
+          "r": 22,
+          "h": 92
+        },
+        "uniqueTargets": 1,
+        "critical": false,
+        "damageRoll": 1,
+        "hits": [
+          {
+            "skill": "HWD01",
+            "cast": 1,
+            "direct": true,
+            "hpDamage": 291
+          }
+        ]
+      }
+    ]
+  }
+}
