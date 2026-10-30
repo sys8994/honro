@@ -1,3 +1,4 @@
+import {readPinnedFixtureBytes} from './pinned-fixture-bytes.mjs';
 import {applyAct3RuntimeManifest} from './act3-environment-final-history.mjs';
 import {applyPickupRuntimeManifest} from './evidence-pickup-p0-history.mjs';
 import {applyFieldRuntimeManifest} from './field-story-integration-history.mjs';
@@ -16,7 +17,7 @@ import assert from 'node:assert/strict';
 import {readFileSync,readdirSync} from 'node:fs';
 import {createHash} from 'node:crypto';
 export const runtimeContractHash=v=>createHash('sha256').update(typeof v==='string'||Buffer.isBuffer(v)?v:JSON.stringify(v)).digest('hex');
-const bytes=readFileSync(new URL('./fixtures/runtime-contracts/current-manifest.json',import.meta.url));
+const bytes=readPinnedFixtureBytes(new URL('./fixtures/runtime-contracts/current-manifest.json',import.meta.url));
 assert.equal(runtimeContractHash(bytes),'476d746f8ddcab4e12b75769ccd7fc6c6dd2a8c60f7453a41b1c218f1832c141','Reviewed current runtime provenance manifest');
 const freeze=v=>{if(v&&typeof v==='object'){Object.values(v).forEach(freeze);Object.freeze(v);}return v;};
 export const priorAct3RuntimeManifest=freeze(applyPickupRuntimeManifest(applyFieldRuntimeManifest(applyEaterSodanManifest(applyHoistRuntimeManifest(applyLakeRuntimeManifest(applyTempleRuntimeManifest(applyEvidenceRuntimeManifest(applyMaterialRuntimeManifest(applyDocumentRuntimeManifest(applyBodyRuntimeManifest(applyCharacterArtRuntimeManifest(applyStoryRuntimeManifest(JSON.parse(bytes))))))))))))));

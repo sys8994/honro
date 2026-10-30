@@ -20,10 +20,33 @@ function arena(id,wall='rock',width=35){
   {id:'far-wall',x:1280,y:1650,w:50,h:250,mat:'rock',hp:99999,maxHp:99999,indestructible:true}
  ]});b.sceneVersion++;return{b,e,u};
 }
-check('Stage 1 near-hill muzzle is outside rock and the actual A01/A02 shots stop exactly on the predicted face',()=>{
+// Unit-positioned case on current authored Stage1 geometry, not a normal-input
+// playthrough. The old x3215 forest-floor location is now open air at muzzle
+// height. Select solely by geometric preconditions, never by prediction results.
+function embeddedStage1Muzzle(){
+ const q=battlefield(g,1),{b,e}=q,u=e.active,angle=12;
+ const blocker=b.terrain.find(t=>t.id==='forest-boulder-a:collision:0');
+ assert(blocker&&!blocker.oneWay&&!blocker.broken,'authored Stage1 solid boulder fixture missing');
+ const rawOffset=e.origin({...u,x:0,y:0},angle).x;
+ for(let x=blocker.x-rawOffset;x<blocker.x;x+=1){
+  const support=e.surface(x);if(!support)continue;
+  Object.assign(u,{x,y:support.y,angle});const raw=e.origin(u,angle);
+  if(!C.terrainContains(blocker,raw.x,raw.y)||!C.validTerrainContactPose(b.terrain,u))continue;
+  const shoulder={x:u.x,y:u.y-u.h*.63};
+  assert(!b.terrain.some(t=>C.terrainContains(t,shoulder.x,shoulder.y)),'fixture shoulder must start outside all solids');
+  assert(C.terrainContains(blocker,raw.x,raw.y),'fixture raw muzzle must genuinely embed in the authored rock');
+  assert(C.validTerrainContactPose(b.terrain,u),'fixture actor must have a valid supported pose');
+  return{...q,u,blocker,raw,angle};
+ }
+ assert.fail('current Stage1 boulder provides no valid embedded-muzzle standing pose; review fixture geometry');
+}
+check('Unit-positioned Stage1 authored-boulder muzzle is outside rock and actual A01/A02 shots stop exactly on the predicted face',()=>{
  const rows=[];
- for(const id of ['A01','A02']){const {b,e}=battlefield(g,1),u=e.active;Object.assign(u,{x:3215,y:e.surface(3215).y,angle:12});const raw=e.origin(u,12);assert(b.terrain.some(t=>C.terrainContains(t,raw.x,raw.y)),'fixture no longer reproduces embedded muzzle');
-  const {pr,samples}=trace(e,id,12,.18);assert.equal(pr.terrain,'forest-floor');assert(pr.points.length<=3);assert(samples.every(p=>!b.terrain.some(t=>C.terrainContains(t,p.x,p.y))));rows.push({id,endpoint:[pr.x,pr.y],samples:samples.length});
+ for(const id of ['A01','A02']){const {b,e,u,blocker,raw,angle}=embeddedStage1Muzzle();
+  const corrected=e.projectileOrigin(u,C.SKILLS[id],angle);
+  assert(!b.terrain.some(t=>C.terrainContains(t,corrected.x,corrected.y)),'corrected muzzle must be outside all solids');
+  assert(Math.hypot(corrected.x-raw.x,corrected.y-raw.y)>.01,'embedded muzzle must actually be corrected');
+  const {pr,samples}=trace(e,id,angle,.18);assert.equal(pr.terrain,blocker.id);assert(pr.points.length<=3);assert(samples.every(p=>!b.terrain.some(t=>C.terrainContains(t,p.x,p.y))));rows.push({id,fixture:'unit-positioned current authored Stage1 boulder; not normal-input playthrough',actor:{x:u.x,y:u.y},raw,corrected,blocker:blocker.id,endpoint:[pr.x,pr.y],samples:samples.length});
  }return rows;
 });
 check('Ordinary arrow and qi stop at nearby solids, while A02 crosses only thin wood and still stops at rock',()=>{

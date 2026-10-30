@@ -1,3 +1,4 @@
+import {readPinnedFixtureBytes} from './pinned-fixture-bytes.mjs';
 /** Production Stage 11 echo lifecycle in declared objective/pose fixtures.
  * All 53 initial enemies remain present. Only Sodan is moved to the supported
  * ritual court in the basic fixture; the other heroes retain their start poses.
@@ -318,7 +319,7 @@ for (const [phase, source] of sources.entries()) for (const terminal of ['won', 
 
 // Legacy snapshots neither gain exact members nor have their battlefield
 // rewritten. The saved metadata itself chooses the old runtime branch.
-const frozen = JSON.parse(await readFile('tests/fixtures/stage11-ravine-draft-save.json', 'utf8'));
+const frozen = JSON.parse(readPinnedFixtureBytes('tests/fixtures/stage11-ravine-draft-save.json'));
 for (const name of ['initial', 'partial']) {
   const b = plain(frozen[name]), expected = plain(b), e = new C.Engine(b, () => {}, false);
   const app = {engine:e, stage:g.HONRO_CONTENT.stages[10], profile:plain(frozen.profile), training:false,

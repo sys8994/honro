@@ -1,0 +1,13 @@
+import assert from 'node:assert/strict';
+import vm from 'node:vm';
+import {catalogRuntime,catalogImageGlobals,catalogProject} from '../tools/character-catalog/runtime-selection.mjs';
+const project={stages:[{metadata:{stageId:7,secret:'omit'},width:987,height:654,terrain:['omit']}],library:['omit']};
+const entries=[...catalogImageGlobals.map(global=>({name:global,global,code:'globalThis.'+global+'={huge:"omit"};'})),{name:'campaign',code:'throw Error("full authoring expression must not be deployed");'},{name:'actual-renderer',code:'globalThis.rendererSource="unchanged";'}];
+const before=JSON.stringify({entries,project}),runtime=catalogRuntime(entries,project),g=vm.createContext({});vm.runInContext(runtime,g);
+assert.deepEqual(JSON.parse(JSON.stringify(g.HONRO_PROJECT)),catalogProject(project));
+assert.equal(g.rendererSource,'unchanged');for(const name of catalogImageGlobals)assert.equal(Object.keys(g[name]).length,0);
+assert.equal(JSON.stringify({entries,project}),before,'Full inventory sources not mutated');
+assert(runtime.endsWith(entries.at(-1).code),'Renderer code byte-exact');
+assert.throws(()=>catalogRuntime(entries.slice(1),project));assert.throws(()=>catalogRuntime([...entries,entries[0]],project));
+assert.throws(()=>catalogRuntime(entries,{stages:[{metadata:{stageId:7},width:null,height:1}]}));
+console.log('Catalog runtime selection guards, exact dimension projection and untouched source passed.');

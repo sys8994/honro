@@ -1,0 +1,15 @@
+import assert from 'node:assert/strict';
+import vm from 'node:vm';
+import {readFileSync} from 'node:fs';
+import {renderCatalogTemplate,escapeScript} from '../tools/character-catalog/template.mjs';
+const template=readFileSync(new URL('../tools/character-catalog/template.html',import.meta.url),'utf8');
+const tricky="dollars: $' $& $$ $` and </ScRiPt>";
+const sections={STYLE:'.test::after {content: '+JSON.stringify(tricky.replace('</ScRiPt>','safe'))+'}',RUNTIME:'globalThis.literal='+JSON.stringify(tricky)+';',DATA:'globalThis.data='+JSON.stringify(tricky)+';',ADAPTER:'globalThis.adapter='+JSON.stringify(tricky)+';',APP:'globalThis.app='+JSON.stringify(tricky)+';'};
+const html=renderCatalogTemplate(template,sections);
+for(const[key,value]of Object.entries(sections))assert(html.includes(key==='STYLE'?value:escapeScript(value)),key+' inserted literally');
+const context=vm.createContext({});for(const match of html.matchAll(/<script[^>]*>([\s\S]*?)<\/script>/gi))vm.runInContext(match[1],context);
+for(const key of ['literal','data','adapter','app'])assert.equal(context[key],tricky);
+assert.throws(()=>renderCatalogTemplate(template,{}));
+assert.throws(()=>renderCatalogTemplate(template+'/* CATALOG_MISSING */',sections));
+assert.throws(()=>renderCatalogTemplate(template+'<body></body>',sections));
+console.log('Catalog template literal replacement and script-escape regression passed.');

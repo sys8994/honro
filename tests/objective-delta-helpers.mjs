@@ -1,6 +1,7 @@
+import {readPinnedFixtureBytes} from './pinned-fixture-bytes.mjs';
 import {beforeDialogueClarity} from './dialogue-clarity-history-helpers.mjs';
 import {readFileSync} from 'node:fs';
-const delta=JSON.parse(readFileSync(new URL('./fixtures/objective-revision-delta.json',import.meta.url),'utf8'));
+const delta=JSON.parse(readPinnedFixtureBytes(new URL('./fixtures/objective-revision-delta.json',import.meta.url)));
 const clone=x=>x===undefined?undefined:JSON.parse(JSON.stringify(x)),equal=(a,b)=>JSON.stringify(a)===JSON.stringify(b);
 const semantic=v=>v&&typeof v==='object'&&!Array.isArray(v)?Object.fromEntries(Object.entries(v).filter(([k])=>!['x','y','label','points','detail','fireSite'].includes(k))):v;
 // Reverse only changed leaves of this approved revision, preserving independent

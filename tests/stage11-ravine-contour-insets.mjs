@@ -1,6 +1,7 @@
+import {readPinnedFixtureBytes} from './pinned-fixture-bytes.mjs';
 /** Collision shape refinement may only remove non-walking convex corners. */
 import assert from 'node:assert/strict';import{readFile,writeFile,mkdir}from'node:fs/promises';import{createRavineTerrains,applyStage11Ravine}from'../tools/map-forge/stage11-ravine.mjs';import{runtime}from'../game/tests/helpers.mjs';
-const fixture=JSON.parse(await readFile('tests/fixtures/stage11-ravine-draft-save.json','utf8')),g=await runtime({legacyMaps:false}),prior=fixture.initial.terrain.filter(t=>t.honroRavine),current=createRavineTerrains(),rows=[];
+const fixture=JSON.parse(readPinnedFixtureBytes('tests/fixtures/stage11-ravine-draft-save.json')),g=await runtime({legacyMaps:false}),prior=fixture.initial.terrain.filter(t=>t.honroRavine),current=createRavineTerrains(),rows=[];
 const points=t=>t.vertices||t.points,area=ps=>Math.abs(ps.reduce((s,p,i)=>{const q=ps[(i+1)%ps.length];return s+p.x*q.y-q.x*p.y;},0)/2);
 const inside=(p,ps)=>{let hit=false;for(let i=0,j=ps.length-1;i<ps.length;j=i++){const a=ps[j],b=ps[i],cross=(b.x-a.x)*(p.y-a.y)-(b.y-a.y)*(p.x-a.x);if(Math.abs(cross)<1e-6*Math.max(1,Math.hypot(b.x-a.x,b.y-a.y))&&p.x>=Math.min(a.x,b.x)-1e-6&&p.x<=Math.max(a.x,b.x)+1e-6&&p.y>=Math.min(a.y,b.y)-1e-6&&p.y<=Math.max(a.y,b.y)+1e-6)return true;if((a.y>p.y)!==(b.y>p.y)&&p.x<(b.x-a.x)*(p.y-a.y)/(b.y-a.y)+a.x)hit=!hit;}return hit;};
 for(const t of current){if(t.id==='rv-ritual-root-socket')continue;const old=prior.find(q=>q.id===t.id);assert(old,t.id);const topCount=t.properties.honroWalkEdges.length+1,ps=points(old);assert.deepEqual(t.properties.honroWalkEdges,old.honroWalkEdges);assert.deepEqual(t.points.slice(0,topCount),ps.slice(0,topCount),t.id+' walked contour is unchanged');

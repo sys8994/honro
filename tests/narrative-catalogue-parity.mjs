@@ -1,3 +1,4 @@
+import {readPinnedFixtureBytes} from './pinned-fixture-bytes.mjs';
 import assert from 'node:assert/strict';
 import {readFile,writeFile,mkdir} from 'node:fs/promises';
 import {runtime,battlefield} from '../game/tests/helpers.mjs';
@@ -18,6 +19,6 @@ for(let id=1;id<=30;id++){
 await mkdir('_local/reports/narrative-voice-v2',{recursive:true});await writeFile('_local/reports/narrative-voice-v2/parity.json',JSON.stringify({issues},null,2));
 console.log('parity differences',issues.map(q=>q.id+'/'+q.field).join(', ')||'none');assert.equal(issues.length,0);
 console.log(mechanicsOnly?'PASS 30 stage contracts match baseline plus explicit approved Stage11 quest delta (copy checked separately)':'PASS 30 effective current payloads and non-narrative stage contracts are identical; only persistent row identities/directions were added');
-const oldCases=JSON.parse(await readFile('tests/fixtures/narrative-legacy-resolver-v1.json','utf8'));
+const oldCases=JSON.parse(readPinnedFixtureBytes('tests/fixtures/narrative-legacy-resolver-v1.json'));
 for(const {id,mode,b,expected}of oldCases){const saved={...plain(b),honroStage:id,honroState:{},honroCustom:false};const before=JSON.stringify(saved);const result=g.HonroObjectiveRevision.contentFor(saved,g.HONRO_CONTENT.stages[id-1]);assert.deepEqual(normalize(plain(result)),normalize(expected),'legacy '+id+'/'+mode);assert.equal(JSON.stringify(saved),before,'resolver is read-only');}
 console.log('PASS 40 old V0/revision1/stored/split-v1/waterworks-v2 resolver cases; saved data untouched');

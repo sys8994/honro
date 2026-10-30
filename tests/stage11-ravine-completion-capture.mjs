@@ -1,7 +1,8 @@
+import {pinnedFixtureExists} from './pinned-fixture-bytes.mjs';
 /** Freeze one reviewed completion revision above the immutable 4b draft. */
-import assert from 'node:assert/strict';import{readFile,writeFile,access}from'node:fs/promises';import{execFileSync}from'node:child_process';import{createHash}from'node:crypto';import{runtime,battlefield}from'../game/tests/helpers.mjs';import{semanticContent,unitContract,plain}from'./act2-spatial-contract-helpers.mjs';
+import assert from 'node:assert/strict';import{readFile,writeFile}from'node:fs/promises';import{execFileSync}from'node:child_process';import{createHash}from'node:crypto';import{runtime,battlefield}from'../game/tests/helpers.mjs';import{semanticContent,unitContract,plain}from'./act2-spatial-contract-helpers.mjs';
 assert.equal(process.env.HONRO_CAPTURE_APPROVED_RAVINE_COMPLETION,'1','Explicit reviewed completion capture required');
-const file='tests/fixtures/stage11-ravine-completion-delta.json';try{await access(file);throw Error('Refusing to overwrite a frozen completion revision');}catch(e){if(e.code!=='ENOENT')throw e;}
+const file='tests/fixtures/stage11-ravine-completion-delta.json';assert(!pinnedFixtureExists(file),'Refusing to overwrite a frozen completion revision');
 const base='4b061b878b820b85facb1164c46aaf6b9b37f656',readBase=p=>JSON.parse(execFileSync('git',['show',base+':'+p],{encoding:'utf8',maxBuffer:32*1024*1024})),hash=v=>createHash('sha256').update(JSON.stringify(v)).digest('hex');
 const before=readBase('shared/data/campaign.json'),after=JSON.parse(await readFile('shared/data/campaign.json','utf8')),g=await runtime({legacyMaps:false}),q=battlefield(g,11),first=JSON.parse(await readFile('tests/fixtures/stage11-ravine-history-delta.json','utf8')),a=after.stages[10],b=before.stages[10];
 assert.equal(a.initialState.honroStage11CompletionRevision,1);assert.equal(hash(g.HONRO_PROJECT),hash(after),'Runtime and canonical must match before freezing');assert.equal(a.id,b.id);

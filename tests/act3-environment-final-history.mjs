@@ -1,6 +1,7 @@
 /** Exact outer approval layer. Missing final pin is an error, never a bypass.
  * Inverses are historical evidence only; live gameplay retains current identity. */
 import assert from 'node:assert/strict';
+import {readPinnedFixtureBytes} from './pinned-fixture-bytes.mjs';
 import {readFileSync,writeFileSync,mkdtempSync,cpSync,symlinkSync,rmSync,mkdirSync,readdirSync} from 'node:fs';
 import path from 'node:path';
 import {fileURLToPath,pathToFileURL} from 'node:url';
@@ -12,13 +13,13 @@ let cached;
 export function act3FinalDelta(){
  if(cached)return cached;
  assert.match(ACT3_FINAL_FIXTURE_SHA256,/^[a-f0-9]{64}$/,'Final ten-stage approval is not pinned');
- const bytes=readFileSync(new URL('./fixtures/act3-environment-final-v2-delta.json',import.meta.url));
+ const bytes=readPinnedFixtureBytes(new URL('./fixtures/act3-environment-final-v2-delta.json',import.meta.url));
  assert.equal(hash(bytes),ACT3_FINAL_FIXTURE_SHA256,'Immutable reviewed final environment delta');
  const d=JSON.parse(bytes);assert.equal(d.baseCommit,'d7c1f8457dd33decda5481c7c3b57d8505f6f157');
  assert.deepEqual(Object.keys(d.stageCommits).map(Number),[21,22,23,24,25,26,27,28,29,30]);
  for(const sha of Object.values(d.stageCommits))assert.match(sha,/^[a-f0-9]{40}$/);
  assert.equal(d.kind,'act3-environment-final');
- if(d.supersedes){assert.equal(d.supersedes.file,'tests/fixtures/act3-environment-final-delta.json');assert.equal(d.supersedes.sha256,'c6fdc749d16aa3d46642c036e466506b4602961d9d2fbb2e03b895f119aee671');const bytes=readFileSync(new URL('../'+d.supersedes.file,import.meta.url));assert.equal(hash(bytes),d.supersedes.sha256,'Original interim approval remains immutable');const original=JSON.parse(bytes);assert.deepEqual(d.campaign.beforeManifest,original.campaign.beforeManifest);assert.deepEqual(d.runtime.beforeManifest,original.runtime.beforeManifest);}
+ if(d.supersedes){assert.equal(d.supersedes.file,'tests/fixtures/act3-environment-final-delta.json');assert.equal(d.supersedes.sha256,'c6fdc749d16aa3d46642c036e466506b4602961d9d2fbb2e03b895f119aee671');const bytes=readPinnedFixtureBytes(new URL('../'+d.supersedes.file,import.meta.url));assert.equal(hash(bytes),d.supersedes.sha256,'Original interim approval remains immutable');const original=JSON.parse(bytes);assert.deepEqual(d.campaign.beforeManifest,original.campaign.beforeManifest);assert.deepEqual(d.runtime.beforeManifest,original.runtime.beforeManifest);}
 
  for(const view of Object.values(d.campaign.views))for(const row of view.stages)assert(row.stageId>=21&&row.stageId<=30);
  assert.deepEqual(d.runtime.beforeManifest.modelFiles,d.runtime.afterManifest.modelFiles,'No model registration change');

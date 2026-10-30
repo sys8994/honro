@@ -2,10 +2,15 @@
 import assert from 'node:assert/strict';
 import {readFile,mkdir,writeFile} from 'node:fs/promises';
 import {createHash} from 'node:crypto';
+import {unpackJson} from '../shared/json-pool.mjs';
 import {runtimeEntries} from '../shared/build.mjs';
 import {appHarness} from './app-regression-helpers.mjs';
 
-const read=p=>readFile(p,'utf8'),json=async p=>JSON.parse(await read(p));
+const read=p=>readFile(p,'utf8'),json=async p=>{
+ const value=JSON.parse(await read(p));if(value?.$honroJsonParts!==1)return value;
+ const chunks=[];for(const part of value.parts){const bytes=await readFile(part.path);assert.equal(bytes.length,part.bytes);assert.equal(digest(bytes),part.sha256);chunks.push(bytes);}
+ const bytes=Buffer.concat(chunks);assert.equal(bytes.length,value.bytes);assert.equal(digest(bytes),value.sha256);return JSON.parse(bytes);
+};
 const manifest=await json('web/manifest.json');
 const digest=bytes=>createHash('sha256').update(bytes).digest('hex');
 for(const record of manifest.files){
@@ -15,7 +20,13 @@ for(const record of manifest.files){
  assert(record.path.includes(record.sha256.slice(0,16)),record.path);
 }
 const projectFiles=await json(manifest.project);
-const [base,library,stages]=await Promise.all([json(projectFiles.base),json(projectFiles.library),Promise.all(projectFiles.stages.map(json))]);
+async function campaignLibrary(p){
+ if(p.library)return json(p.library);
+ const records=[[p.shared,p.assetEncodings.shared],...p.stageLibraries.map((f,i)=>[f,p.assetEncodings.stageLibraries[i]]),[p.editorExtras,p.assetEncodings.editorExtras]],assets=new Map();
+ for(const [file,encoding]of records){const value=await json(file);for(const asset of encoding==='json-pool-v1'?unpackJson(value):value)assets.set(asset.id,asset);}
+ return p.libraryOrder.map(id=>assets.get(id));
+}
+const [base,library,stages]=await Promise.all([json(projectFiles.base),campaignLibrary(projectFiles),Promise.all(projectFiles.stages.map(json))]);
 const reconstructed={...base,library,stages};
 const native=await runtimeEntries({vector:false,render:false});
 assert.deepEqual(reconstructed,JSON.parse(JSON.stringify(native.find(e=>e.project).project)),'External chapters/library must reproduce the exact native campaign input');

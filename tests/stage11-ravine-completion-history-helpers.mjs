@@ -1,7 +1,8 @@
+import {readPinnedFixtureBytes} from './pinned-fixture-bytes.mjs';
 /** Exact completion -> immutable reviewed draft; never skip a changed category. */
 import {beforeCurrentStage17Worksite,beforeStage17WorksiteLibrary} from './stage17-worksite-history-helpers.mjs';
 import assert from 'node:assert/strict';import{readFileSync}from'node:fs';import{createHash}from'node:crypto';
-export const completionDelta=JSON.parse(readFileSync(new URL('./fixtures/stage11-ravine-completion-delta.json',import.meta.url),'utf8'));
+export const completionDelta=JSON.parse(readPinnedFixtureBytes(new URL('./fixtures/stage11-ravine-completion-delta.json',import.meta.url)));
 const clone=v=>JSON.parse(JSON.stringify(v));export const completionHash=v=>createHash('sha256').update(JSON.stringify(v)).digest('hex');
 const same=(a,b)=>JSON.stringify(a)===JSON.stringify(b);
 export function beforeRavineCompletionLibrary(library,{required=false}={}){
