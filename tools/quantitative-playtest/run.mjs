@@ -11,6 +11,7 @@ import {controllerHash,checkFreeze,CONTROLLER_FILES} from './freeze.mjs';
 import {CONTRACT,foesFor,movementGoal,previewAim,selectSkill,engagementDistance} from './policy.mjs';
 import {EnemyActivity,acceptedDrop,hitObservation} from './activity.mjs';
 import {adapter} from './adapter.mjs';
+import {RouteFollower} from './navigation.mjs';
 import {rng,summarize} from './stats.mjs';
 const [stageText='31',policy='advance',seedText='1',out='_local/reports/quantitative-playtest',frameText='600',wallText='60']=process.argv.slice(2);
 const stage=Number(stageText),seed=Number(seedText),maxFrames=Number(frameText),maxWallSeconds=Number(wallText);
@@ -20,7 +21,7 @@ await mkdir(out,{recursive:true});const runId=randomUUID(),raw=createGzip();cons
 const hash=createHash('sha256'),files=execFileSync('git',['ls-files','shared','game/config','game/src','game/engine','game/vendor','tools/quantitative-playtest','tools/stage31/app-adapter.mjs','tests/app-regression-helpers.mjs','tests/stage18-bell-fullplay-helper.mjs','game/tests/helpers.mjs'],{encoding:'utf8'}).trim().split('\n').filter(Boolean);
 // Untracked new controller files are included too, before the first commit.
 for(const file of new Set([...files,...CONTROLLER_FILES,'tools/quantitative-playtest/run.mjs','tools/quantitative-playtest/adapter.mjs','tools/quantitative-playtest/stats.mjs','tools/quantitative-playtest/policy.mjs','tools/quantitative-playtest/act4-adapter.mjs']))hash.update(file+'\0').update(await readFile(file));
-const sourceHash=hash.digest('hex'),random=rng(seed),started=performance.now();let cancelled=false;process.on('SIGTERM',()=>{cancelled=true;});process.on('SIGINT',()=>{cancelled=true;});let frame=0,simSeconds=0,outcome='timeout',reason='frame budget',a,b,e,g,charge=null,decision=null;
+const sourceHash=hash.digest('hex'),random=rng(seed),started=performance.now();let cancelled=false;process.on('SIGTERM',()=>{cancelled=true;});process.on('SIGINT',()=>{cancelled=true;});let frame=0,simSeconds=0,outcome='timeout',reason='frame budget',a,b,e,g,navigator,lastNavigation=null,charge=null,decision=null;
 await writeFile(`${out}/${runId}.attempt.json`,JSON.stringify({runId,stage,policy,seed,sourceHash,maxFrames,maxWallSeconds,status:'started-not-finalized',note:'If no summary exists, process termination is an error/incomplete attempt, never a completed gameplay run.'},null,2));
 const metrics={dropAttempts:0,dropAccepted:0,effectiveDrops:0,byHero:{},jumpAttempts:0,jumpAccepted:0,landings:0,elevatedSupportLandings:0,horizontalDistance:0,ascent:0,descent:0,totalUniqueEnemies:0,maxLivingEnemies:0,maxAwakeEnemies:0,maxActingEnemiesPerRound:0,engagedEnemyIds:[],enemyFirstDamageRound:{},enemyDeathRound:{},observedNetHeroHpLoss:0,observedNetHeroShieldLoss:0,focusSpent:0,focusRecovered:0,visitedSupports:[],altitudeMin:null,altitudeMax:null};
 const engagedEnemies=new Set(),seenTransitions=new Set(),seenEnemies=new Set(),supports=new Set(),previous=new Map(),jumps=new Map(),enemyPositions=new Map(),activity=new EnemyActivity();
@@ -41,20 +42,20 @@ async function observe(){
   }
   if(s)supports.add(s);metrics.altitudeMin=metrics.altitudeMin===null?u.y:Math.min(metrics.altitudeMin,u.y);metrics.altitudeMax=metrics.altitudeMax===null?u.y:Math.max(metrics.altitudeMax,u.y);previous.set(u.id,v);
  }
- if(frame%CONTRACT.snapshotFrames===0){const memory={frame,...process.memoryUsage()};process.stderr.write(JSON.stringify({frameMemory:memory})+'\n');await emit('memory',memory);await emit('snapshot',{decision,navigation:e.active?{actor:e.active.id,canInput:a.app.canInput(),canAct:e.canAct(),grounded:e.grounded(e.active),support:support(e.active),moveLeft:e.active.moveLeft,jumpCost:e.jumpCost(e.active),platformDrop:e.active.platformDrop??null,distanceToSelectedGoal:decision?.destination?Math.hypot(e.active.x-decision.destination.x,e.active.y-decision.destination.y):null}:null,residents:b.units.filter(u=>u.honroAct4Resident).map(u=>({id:u.id,x:u.x,y:u.y,hp:u.hp,dead:u.dead,grounded:e.grounded(u)})),objective:b.honroAct4PreviewState,phase:b.phase,active:b.active,keys:[...a.app.keys],stick:{...a.app.stick},charging:a.app.charging,selected:a.app.selected,angle:e.active?.angle,simSeconds,heroes:[...previous.values()],enemies:enemies.filter(alive).map(u=>({id:u.id,x:u.x,y:u.y,awake:!!u.awake})),items:b.items});await flush();}
+ if(frame%CONTRACT.snapshotFrames===0){const memory={frame,...process.memoryUsage()};process.stderr.write(JSON.stringify({frameMemory:memory})+'\n');await emit('memory',memory);await emit('snapshot',{decision,routeIntention:lastNavigation,navigation:e.active?{actor:e.active.id,canInput:a.app.canInput(),canAct:e.canAct(),grounded:e.grounded(e.active),support:support(e.active),moveLeft:e.active.moveLeft,jumpCost:e.jumpCost(e.active),platformDrop:e.active.platformDrop??null,distanceToSelectedGoal:decision?.destination?Math.hypot(e.active.x-decision.destination.x,e.active.y-decision.destination.y):null}:null,residents:b.units.filter(u=>u.honroAct4Resident).map(u=>({id:u.id,x:u.x,y:u.y,hp:u.hp,dead:u.dead,grounded:e.grounded(u)})),objective:b.honroAct4PreviewState,phase:b.phase,active:b.active,keys:[...a.app.keys],stick:{...a.app.stick},charging:a.app.charging,selected:a.app.selected,angle:e.active?.angle,simSeconds,heroes:[...previous.values()],enemies:enemies.filter(alive).map(u=>({id:u.id,x:u.x,y:u.y,awake:!!u.awake})),items:b.items});await flush();}
 }
 async function input(type,fn,detail={}){const value=fn();await emit('input',{op:type,...detail,returned:value??null});return value;}
 try{
  const freeze=process.env.HONRO_HOLDOUT_MANIFEST?await checkFreeze(process.env.HONRO_HOLDOUT_MANIFEST,{stage,policy,seed,maxFrames,maxWallSeconds}):null;
  await emit('run-start',{stage,policy,seed,sourceHash,sourceCommit:execFileSync('git',['rev-parse','HEAD'],{encoding:'utf8'}).trim(),maxFrames,maxWallSeconds,controllerContract:CONTRACT,controllerHash:await controllerHash(),evaluation:freeze?{kind:'frozen-holdout',manifest:freeze}:{kind:'mechanics-calibration'},seedContract:'Policy RNG only; production battle seed untouched. Same seed repeated is not independent evidence.'});
- a=await adapter(stage);({g}=a);e=a.app.engine;b=e.b;
+ a=await adapter(stage);({g}=a);e=a.app.engine;b=e.b;navigator=new RouteFollower(g.HONRO_CORE);
  await emit('entry',{entryBuild:a.entryBuild,training:a.training,scope:a.scope,profile:Object.fromEntries(['revision','heroes','party','recruited','loadouts','equipment','settings','lastStage','cleared'].map(k=>[k,a.app.profile[k]])),officialIdentity:a.officialIdentity,setupMemory:a.setupMemory,battleSeed:b.seed,map:{width:b.width,height:b.height,aspectRatio:b.width/b.height,playBounds:b.honroPlayBounds??b.playBounds??{left:0,top:0,right:b.width,bottom:b.height}},initial:{phase:b.phase,round:b.round,side:b.side,units:b.units.map(u=>({id:u.id,cls:u.cls,side:u.side,x:u.x,y:u.y,hp:u.hp,maxHp:u.maxHp,focus:u.focus,loadout:u.loadout,level:u.level,attack:u.attack,armor:u.armor,ranks:u.ranks,equipment:u.equipment,facing:u.facing,honroPilotBudgetBasis:u.honroPilotBudgetBasis})),objective:b.honroAct4PreviewState}});await flush();
  // Passive wrappers preserve exact calls/return values. No prediction, cloned combat or live state writes.
  const tick=e.tick.bind(e);e.tick=(dt,...rest)=>{const result=tick(dt,...rest);simSeconds+=dt;return result;};
  const pending=[];
  const originalEmit=e.emit.bind(e);e.emit=(type,value,...rest)=>{if(type==='fx'&&Number.isFinite(value?.damage)&&value.targetId)pending.push({method:'damage-feedback',round:b.round,targetId:value.targetId,attackId:value.attackId,damage:value.damage,critical:value.critical});return originalEmit(type,value,...rest);};
  for(const method of ['drop','hurt','fire','enemyAction','finishAction','newRound']){const original=e[method].bind(e);e[method]=(...args)=>{const u=method==='hurt'?args[0]:e.active,before=u&&{id:u.id,side:u.side,x:u.x,y:u.y,hp:u.hp,shield:u.shield,focus:u.focus},round=b.round,hit=method==='hurt'?hitObservation(e,args):null; if(method==='enemyAction')activity.begin(u,round,b.units);if(method==='finishAction'&&activity.finish(u,round,b.units))pending.push({method:'enemy-activity',round,actor:u.id,kind:'observed-support-change'});const result=original(...args);if(method!=='enemyAction')pending.push({method,round,before,after:u&&{hp:u.hp,shield:u.shield,focus:u.focus},skill:method==='fire'?args[0]:null,angle:method==='fire'?args[1]:null,power:method==='fire'?args[2]:null,damage:method==='hurt'?args[1]:null,hit,owner:method==='hurt'?args[2]:null,accepted:typeof result==='boolean'?result:null});if(method==='hurt'&&u?.side===1&&before.hp>u.hp){const owner=e.unit(args[2]);if(owner?.side===0){engagedEnemies.add(u.id);metrics.enemyFirstDamageRound[u.id]??=round;}if(u.hp<=0)metrics.enemyDeathRound[u.id]??=round;}if(method==='fire'&&result===true&&activity.executed(u,round,'fire'))pending.push({method:'enemy-activity',round,actor:u.id,kind:'fire'});return result;};}
- await observe();let decisionAt=0,lastX=null,stuck=0;
+ await observe();let decisionAt=0;
  while(frame<maxFrames){
   if(cancelled){outcome='cancelled';reason='SIGINT/SIGTERM observation stop';break;}
   if(performance.now()-started>maxWallSeconds*1000){reason='wall execution budget';break;}
@@ -80,12 +81,17 @@ try{
     if(q?.stabilizing?.actor===u.id||q?.releasing?.actor===u.id){a.tick();frame++;while(pending.length)await emit('engine-event',pending.shift());await recordInput();await observe();continue;}
     const id=selectSkill(e,u,g.HONRO_CORE.SKILLS,policy),desired=engagementDistance(policy,u,g.HONRO_CORE.SKILLS[id]);
     const move=u.moveLeft>20&&(dist>desired||!target||destination.kind==='high-route'||stage===39&&destination.kind!=='enemy');
-    if(move&&Math.abs(goal-u.x)>20){
-     app.keys.add(goal>u.x?'ArrowRight':'ArrowLeft');stuck=lastX!==null&&Math.abs(u.x-lastX)<.1?stuck+1:0;lastX=u.x;
-     if(e.canDrop()&&destination.y>u.y+u.h&&Math.abs(goal-u.x)<350){const from={x:u.x,y:u.y,support:support(u),kind:'drop',goal:destination},before=u.platformDrop;metrics.dropAttempts++;await input('drop',()=>app.drop(),{actor:u.id,from});if(acceptedDrop(before,u.platformDrop)){metrics.dropAccepted++;jumps.set(u.id,from);}}
-     else if(e.grounded(u)&&(stuck>=12||destination.y<u.y-u.h&&Math.abs(goal-u.x)<300)){
-      const from={x:u.x,y:u.y,support:support(u),kind:'jump',goal:destination},before=u.moveLeft;metrics.jumpAttempts++;await input('jump',()=>app.jump(),{actor:u.id,from});if(u.moveLeft<before){metrics.jumpAccepted++;jumps.set(u.id,from);}stuck=0;
-     }
+    if(move||!e.grounded(u)){
+     const intent=navigator.intention(e,u,destination,{range:destination.kind==='enemy'?desired*.85:24,approach:destination.kind!=='enemy'});lastNavigation={actor:u.id,kind:intent.kind,reason:intent.reason,step:intent.step,approachOnly:intent.approachOnly,plan:intent.plan?{status:intent.plan.status,cost:intent.plan.cost,visited:intent.plan.visited,nodes:intent.plan.nodes}:null};
+     if(intent.kind==='blocked'){outcome='error';reason='Controller navigation blocked: '+intent.reason;await emit('controller-blocked',lastNavigation);break;}
+     if(['walk','air-control','jump'].includes(intent.kind))app.stick.x=intent.direction||0;
+     if(intent.kind==='jump'||intent.kind==='drop'){
+      const from={x:u.x,y:u.y,support:support(u),kind:intent.kind,goal:destination},beforeMove=u.moveLeft,beforeDrop=u.platformDrop;
+      if(intent.kind==='jump')metrics.jumpAttempts++;else metrics.dropAttempts++;
+      await input(intent.kind,()=>intent.kind==='jump'?app.jump():app.drop(),{actor:u.id,from,checkedLeg:intent.step});
+      const accepted=intent.kind==='jump'?u.moveLeft<beforeMove:acceptedDrop(beforeDrop,u.platformDrop);
+      if(accepted){if(intent.kind==='jump')metrics.jumpAccepted++;else metrics.dropAccepted++;jumps.set(u.id,from);navigator.accepted(u.id);}
+     }else if(intent.kind==='end-turn'||intent.kind==='arrived'){await input('defend',()=>app.defend(),{navigationReason:intent.kind,approachOnly:intent.approachOnly});decisionAt=frame+30;}
     }else if(target){
 
      if(id){const face=target.x>=u.x?1:-1;if(u.facing!==face){app.keys.add(face>0?'ArrowRight':'ArrowLeft');}

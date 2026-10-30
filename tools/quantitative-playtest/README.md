@@ -323,3 +323,30 @@ A stale v1 saved body cannot pass merely because the v2 module API exists. The
 manifest unit covers stale version, mismatched reference and live coefficient
 mismatch. Actual v2 App setup will be checked with the selected canonical source;
 this unit alone is not a damage-matrix or gameplay result.
+
+### P07: no pathfinding can masquerade as difficulty (v5)
+Cause: v4's x-only steering/stuck-jump heuristic has no multi-support connectivity,
+so a valid indirect route may be reported as difficult gameplay. Do not repeat a
+long v4 run or simplify candidate geometry to accommodate it. v4 long replay is
+cancelled before starting; its old failures remain unchanged.
+Alternative: derive generic support samples from public terrain polygons, check
+walk/jump/drop/walk-off edges with actual Engine locomotion, and choose a route
+to the currently observed objective/enemy. A separate physics-only host contains
+only public terrain/physics and a whitelisted copy of the current actor's body
+and movement traits. It has no enemies, projectiles, battle clone, RNG, damage
+forecast, authored stage route or stored successful trajectory. Combat/world
+methods throw if called. Live App uses stick/jump/drop/defend inputs only.
+The planner checks collision clearance and conservatively rejects falls over550
+units from apex. It plans normal maxMove legs, but live execution ends the turn
+when a leg exceeds remaining move budget; it never refills that budget. A future
+objective lacking a physical support permits an explicitly marked approach-only
+route, never a reachability/clear claim. Synthetic impossible goals fail closed.
+Regression: `tests/quantitative-playtest-navigation.mjs` checks climb, one-way
+drop, gap crossing, opposite-direction detour then three rises, and impossible
+height; input world/actor are unchanged. A reactive follower drives actual
+locomotion continuously without pose/HP/move-budget reset. Initial follower
+oscillation spent extra movement and failed the detour; preserved at
+`_local/reports/navigation-v5/first-follower-failure.json`. Fractional ordinary
+stick near endpoints fixes the discrepancy without changing movement physics.
+Actual31 App input sanity is still pending; this is not full-play acceptance.
+Aim25-candidate preview, ±6-degree/±.07 power errors and prepared cohort stay fixed.
