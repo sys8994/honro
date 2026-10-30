@@ -1,0 +1,17 @@
+{
+  "status": "owner-approved local revision; final art and gameplay review pending",
+  "input": "_local/reports/stage31-body-v2-exact/ridge-court.json",
+  "inputSHA256": "769f7bd515f55485811183f248f670db6c45985eeea6ae9d97ed84da62e678dd",
+  "operation": "x' = x - 0.55 min(max(x-4200,0),max(y-3600,0)); y'=y",
+  "coordinateGridWorld": 0.001,
+  "cutLines": ["x=4200", "y=3600", "x-y=600"],
+  "maxHorizontalMovementSampledWorld": 228.5532633663,
+  "guardMappingMaxSampledErrorWorldBeforeRounding": 4.6e-12,
+  "perColorInverseMapSamples": 28672,
+  "perColorSampleMismatches": 0,
+  "validatorErrors": 0,
+  "nodes": 10,
+  "maxPathChars": 56104,
+  "newBoundsX": [3502.638, 4691.621],
+  "note": "Bounds right edge remains 4691.621, not 4470, because protected upper geometry is unchanged. Sample checks do not prove the full curve or gameplay clearance. No collision changed."
+}
