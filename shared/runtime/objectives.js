@@ -68,7 +68,7 @@ function failure(b,st){
  if(needsRitual&&!b.units.some(u=>u.side===0&&u.cls==='mage'&&!u.summoned&&!u.enthrall&&!u.dead&&u.hp>0))return G.HonroStage5Waterfall?.active(b)?'담허가 쓰러져 낙수를 비틀 수 없다. 이 장을 다시 시작하자.':'담허가 쓰러져 받이진을 이어갈 수 없다. 이 장을 다시 시작하자.';
  return null;
 }
-function state(b,st){const result=rawState(b,st),guided=G.HonroObjectiveGuide?.enhance(b,st,result)||result,crossing=G.HonroStakeCrossing?.current(b);if(crossing&&guided.currentObjectiveId===crossing.markerId)guided.currentInstruction=G.HonroStakeCrossing.instruction(b)||guided.currentInstruction;return guided;}
+function state(b,st){if(G.HonroAct4Content?.active(b))return G.HonroAct4Content.objectiveState(b);const result=rawState(b,st),guided=G.HonroObjectiveGuide?.enhance(b,st,result)||result,crossing=G.HonroStakeCrossing?.current(b);if(crossing&&guided.currentObjectiveId===crossing.markerId)guided.currentInstruction=G.HonroStakeCrossing.instruction(b)||guided.currentInstruction;return guided;}
 const briefings={
  1:[],
  2:[['설오','행렬이 저 아래 길을 통과할 때까지 높은 놈부터 끊겠습니다.',{focus:'objective'}]],
