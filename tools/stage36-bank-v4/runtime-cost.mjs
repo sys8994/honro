@@ -1,0 +1,5 @@
+/** Renderer-free expanded tree audit, matching runtime symbol accounting. */
+import fs from 'node:fs';import vm from 'node:vm';import {createHash} from 'node:crypto';
+const file=process.argv[2],bytes=fs.readFileSync(file),p=JSON.parse(bytes),g={};vm.createContext(g);vm.runInContext(fs.readFileSync('shared/map/vector-art.js','utf8'),g);
+const assets=[],errors=[];for(const a of p.library.filter(a=>a.id.startsWith('s36-silhouette:'))){const v=a.vector,walk=n=>1+(n.tag==='use'?walk(v.symbols[n.symbol]):(n.children||[]).reduce((s,c)=>s+walk(c),0));errors.push(...g.HonroVectorArt.validate(v).map(e=>a.id+': '+e));assets.push({asset:a.id,expandedRuntimeNodes:walk(v.root),storedSourceNodes:v.nodeCount,clipCount:Object.keys(v.clips||{}).length,bytes:Buffer.byteLength(JSON.stringify(a))});}
+const result={candidateSHA256:createHash('sha256').update(bytes).digest('hex'),assets,runtimeNodeBudgetPerAsset:512,strictValidatorErrors:errors};fs.writeFileSync('art/stage36-bank-silhouette-v4/runtime-cost.json',JSON.stringify(result,null,2));console.log(JSON.stringify(result,null,2));if(errors.length||assets.some(a=>a.expandedRuntimeNodes>512))process.exitCode=1;

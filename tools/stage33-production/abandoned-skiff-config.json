@@ -1,0 +1,39 @@
+{
+  "id": "s33v:abandoned-skiff",
+  "name": "abandoned-skiff",
+  "semanticLayer": "REAR",
+  "category": "architecture",
+  "bounds": {
+    "x": -440,
+    "y": -205.6102305475504,
+    "w": 900,
+    "h": 205.6102305475504
+  },
+  "anchor": {
+    "x": 0,
+    "y": 0
+  },
+  "foot": {
+    "x": 0,
+    "y": 0
+  },
+  "transform": [
+    0.4322766570605187,
+    0,
+    0,
+    0.4322766570605187,
+    -461.1815561959654,
+    -261.3739193083573
+  ],
+  "params": {
+    "sourceAssetId": "a4-art:abandoned-skiff",
+    "artRole": "noncolliding grounded scenic prop",
+    "fit": "uniform scale by actual Inkscape ink bounds width, actual lower ink edge at original foot y0; full source viewBox retained",
+    "inkBounds": [
+      49,
+      129,
+      2082,
+      475.645
+    ]
+  }
+}

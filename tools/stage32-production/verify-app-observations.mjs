@@ -1,6 +1,7 @@
 /** Replays ordinary input tape on the real App. No geometry, actor/resource or
  * event-state overrides. Additional observations are NOT exported gate passes. */
 import assert from 'node:assert/strict';
+import{writeFileSync}from'node:fs';
 import {readFile,writeFile,mkdir} from 'node:fs/promises';
 import {createHash} from 'node:crypto';
 import {createAppAdapter} from './app-adapter.mjs';
@@ -10,7 +11,8 @@ const p=JSON.parse(await readFile(file,'utf8')),tape=JSON.parse(await readFile(t
 let frame=0,index=0,resumed=false;const hurts=[],impacts=[],shots=[],trace=[],resume=[],transitions=[];let lastState='';
 function hook(){const e=app.engine,hurt=e.hurt.bind(e),impact=e.impact.bind(e);e.hurt=(u,...args)=>{const before=u.hp+u.shield,r=hurt(u,...args),amount=before-u.hp-u.shield;if(amount>0)hurts.push({frame,target:u.id,owner:args[1],amount});return r;};e.impact=(q,h)=>{impacts.push({frame,owner:q.owner,skill:q.skill,terrain:h.terrain?.id,unit:h.unit?.id,x:q.x,y:q.y});return impact(q,h);};}
 hook();
-function tick(){a.tick();frame++;const b=app.engine.b,q=b.honroAct4PreviewState,state=JSON.stringify({phase:b.phase,door:q?.shelterDoor?.phase,reunion:!!q?.reunionObserved,safeSeven:!!q?.safeSeven,complete:q?.complete,enemies:b.units.filter(u=>u.side===1&&!u.dead&&u.hp>0).length});if(state!==lastState){transitions.push({frame,...JSON.parse(state)});lastState=state;}if(frame%15===0)trace.push({frame,round:b.round,active:b.active,units:b.units.filter(u=>u.side===0).map(u=>({id:u.id,x:u.x,y:u.y,hp:u.hp,grounded:app.engine.grounded(u)}))});}
+await mkdir(out.substring(0,out.lastIndexOf('/')),{recursive:true});
+function tick(){a.tick();frame++;if(frame===6810){const scene=app.scene,view={x:scene.x,y:scene.y,scale:scene.scale,manual:scene.manual};Object.assign(scene,{x:2390,y:1800,scale:1.1,manual:true});scene.render(app.engine,0,'',.6,false,0);writeFileSync(out.replace(/\.json$/, '-wall-standing.png'),scene.canvas.toBuffer('image/png'));Object.assign(scene,view);}const b=app.engine.b,q=b.honroAct4PreviewState,state=JSON.stringify({phase:b.phase,door:q?.shelterDoor?.phase,reunion:!!q?.reunionObserved,safeSeven:!!q?.safeSeven,complete:q?.complete,enemies:b.units.filter(u=>u.side===1&&!u.dead&&u.hp>0).length});if(state!==lastState){transitions.push({frame,...JSON.parse(state)});lastState=state;}if(frame%15===0)trace.push({frame,round:b.round,active:b.active,units:b.units.filter(u=>u.side===0).map(u=>({id:u.id,x:u.x,y:u.y,hp:u.hp,grounded:app.engine.grounded(u)}))});}
 for(const input of tape.inputs){
  const e=app.engine,b=e.b;
  if(!resumed&&frame>12000&&app.canInput()&&!app.dialogue&&!b.projectiles.length){
@@ -23,5 +25,6 @@ for(const input of tape.inputs){
  index++;
 }
 const card=p.stages.find(s=>s.metadata.stageId===32),groups=card.encounters.map(group=>({id:group.id,damage:hurts.filter(h=>group.unitIds.includes(h.owner)&&['archer','mage','knight','occultist'].includes(h.target))}));
-const result={version:1,runner:'honro-production-app-observation-v1',scope:a.scope+' No gate relabeling or automatic art approval.',fingerprint:createHash('sha256').update(JSON.stringify(p)).digest('hex'),runtimeSha256:await runtimeDigest(),verifierSha256:createHash('sha256').update(await readFile(import.meta.filename)).digest('hex'),success:a.success(),frame,entryBuild:tape.entryBuild,resume,groups,transitions,shots,hurts,impacts,trace,final:a.state()};
+const wall=app.engine.b.terrain.find(t=>t.id==='a4-32-prop-4:collision:0');const wallContact={impacts:impacts.filter(q=>q.terrain===wall.id),standing:trace.flatMap(q=>q.units.filter(u=>u.grounded&&Math.abs(u.y-g.HONRO_CORE.topAt(wall,u.x,NaN))<1).map(u=>({frame:q.frame,...u}))).slice(0,8)};assert(wallContact.impacts.length>0&&wallContact.standing.length>0,'Ordinary tape must exercise wall impact and standing contact');
+const result={version:1,runner:'honro-production-app-observation-v1',scope:a.scope+' No gate relabeling or automatic art approval.',fingerprint:createHash('sha256').update(JSON.stringify(p)).digest('hex'),runtimeSha256:await runtimeDigest(),verifierSha256:createHash('sha256').update(await readFile(import.meta.filename)).digest('hex'),success:a.success(),wallContact,frame,entryBuild:tape.entryBuild,resume,groups,transitions,shots,hurts,impacts,trace,final:a.state()};
 await mkdir(out.substring(0,out.lastIndexOf('/')),{recursive:true});await writeFile(out,JSON.stringify(result,null,2));console.log(JSON.stringify({success:result.success,frame,resume,groups:groups.map(g=>({id:g.id,damageEvents:g.damage.length})),transitions}));assert(result.success&&resumed);assert.equal(result.final.objective.safeSeven.ids.length,7);assert(result.final.objective.safeSeven.reportIds.includes('A4.S32.MISSING.01'));await writeFile(out.replace(/\.json$/,'.png'),app.scene.canvas.toBuffer('image/png'));

@@ -1,0 +1,39 @@
+{
+  "id": "s33v:stone-pier",
+  "name": "Natural coastal rear support",
+  "semanticLayer": "REAR",
+  "category": "architecture",
+  "bounds": {
+    "x": -82.43327061353405,
+    "y": -300,
+    "w": 164.8665412270681,
+    "h": 300
+  },
+  "anchor": {
+    "x": 0,
+    "y": 0
+  },
+  "foot": {
+    "x": 0,
+    "y": 0
+  },
+  "transform": [
+    0.2015993548820644,
+    0,
+    0,
+    0.2015993548820644,
+    -96.79399905920302,
+    -321.71890329950946
+  ],
+  "params": {
+    "artRole": "noncolliding rear terrain support; not firing cover",
+    "inkBounds": [
+      71.234,
+      107.733,
+      817.793,
+      1488.1
+    ],
+    "fit": "uniform actual ink height300; original peak/base anchors in stone-pier-anchor-contract.json",
+    "source": "stone-pier-raw.svg"
+  }
+}

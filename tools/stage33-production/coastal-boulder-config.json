@@ -1,0 +1,39 @@
+{
+  "id": "s33v:coastal-boulder",
+  "name": "coastal-boulder",
+  "semanticLayer": "REAR",
+  "category": "rock",
+  "bounds": {
+    "x": -119,
+    "y": -98.88537549407116,
+    "w": 236,
+    "h": 98.88537549407116
+  },
+  "anchor": {
+    "x": 0,
+    "y": 0
+  },
+  "foot": {
+    "x": 0,
+    "y": 0
+  },
+  "transform": [
+    0.15810276679841898,
+    0,
+    0,
+    0.15810276679841898,
+    -130.69974703557313,
+    -124.35588932806326
+  ],
+  "params": {
+    "sourceAssetId": "env:rock",
+    "artRole": "noncolliding grounded scenic prop",
+    "fit": "uniform scale by actual Inkscape ink bounds width, actual lower ink edge at original foot y0; full source viewBox retained",
+    "inkBounds": [
+      74.0009,
+      161.101,
+      1492.7,
+      625.45
+    ]
+  }
+}

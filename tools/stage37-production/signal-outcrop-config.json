@@ -1,0 +1,39 @@
+{
+  "id": "s37v:signal-outcrop",
+  "name": "\uacf6\uc758 \uc2e0\ud638 \ubc14\uc704 \u00b7 \uc6d0\ud615 \uc575\ucee4 \ubcf4\uc874",
+  "semanticLayer": "REAR",
+  "category": "rock",
+  "bounds": {
+    "x": -400,
+    "y": -800,
+    "w": 800,
+    "h": 1120
+  },
+  "anchor": {
+    "x": 0,
+    "y": 0
+  },
+  "foot": {
+    "x": 0,
+    "y": 0
+  },
+  "transform": [
+    0.7547169811320755,
+    0,
+    0,
+    0.7547169811320755,
+    -400,
+    -800
+  ],
+  "params": {
+    "artRevision": 1,
+    "artRole": "scenic signal outcrop; noncolliding, not a new playable ledge",
+    "protectedLedge": {
+      "x1": -120,
+      "x2": 100,
+      "y": -420
+    },
+    "sourceAssetId": "a4-coast:signal-outcrop",
+    "lineage": "official silhouette stencil \u2192 built-in signal-outcrop-concept.png \u2192 actual Inkscape trace"
+  }
+}

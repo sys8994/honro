@@ -1,11 +1,12 @@
 import {runtime} from '../../game/tests/helpers.mjs';
-import {writeFile,mkdir} from 'node:fs/promises';
+import {readFile,writeFile,mkdir} from 'node:fs/promises';
 import {createCanvas} from '@napi-rs/canvas';
 process.env.HONRO_ACT4_RELEASE='1';
 const g=await runtime({legacyMaps:false}),clone=x=>JSON.parse(JSON.stringify(x));
-const p=clone(g.HONRO_PROJECT),s=p.stages.find(s=>s.metadata.stageId===35);
+const p=clone(g.HONRO_PROJECT),pinned=await readFile('art/stage35-vector-production/stage35-skeleton.json','utf8').then(JSON.parse).catch(()=>null),usePinned=pinned&&!process.argv.includes('--reauthor');
+const s=usePinned?pinned:p.stages.find(s=>s.metadata.stageId===35);
 if(!s)throw Error('Official Stage35 missing');
-const original=clone(s),t=s.terrains[0];
+if(!usePinned){const original=clone(s),t=s.terrains[0];
 // Gameplay authoring only. Central shot pocket x2820–3900 remains exact.
 for(const q of t.points){if(q.x===1840)q.y=1840;if(q.x===2180)q.y=2040;if(q.x===2650)q.y=2055;if(q.x===4390)q.y=1955;if(q.x===4820)q.y=1960;if(q.x===5340)q.y=1790;if(q.x===5790)q.y=1790;if(q.x===6220)q.y=1850;}
 s.elements=s.elements.filter(e=>e.assetId!=='a4:empty-house');
@@ -13,9 +14,14 @@ const terrain=s.terrains.map(t=>g.HonroGeometry.terrain(t,s.height));
 const floor=x=>g.HonroMapEngine.surfaceY(terrain,x).y;
 for(const u of s.units)u.y=floor(u.x);
 for(const e of s.elements)e.y=floor(e.x);
+// Explicit parent-approved gameplay placement correction: original wall shapes
+// straddled stairs/slopes and floated. Same IDs/colliders, grounded clearings.
+const wallPlacementCorrections=[];
+for(const[id,x]of[['a4-35-old-wall-13',1100],['a4-art-35-extra-1',4600]]){const e=s.elements.find(e=>e.id===id),before={x:e.x,y:e.y};e.x=x;const collider=p.library.find(a=>a.id===e.assetId).collision.flat();const foot=collider.filter(q=>q.y===0);e.y=Math.max(...foot.map(q=>floor(e.x+q.x*e.scale)));wallPlacementCorrections.push({id,before,after:{x:e.x,y:e.y},reason:'Existing collider floated over step/slope; same physical shape moved to grounded clearing.'});}
 s.design.act4.revision=2;
 s.design.act4.production={revision:1,source:'tools/stage35-production/skeleton.mjs',centralShotContract:'x3040 blocked; x3350 clear; a4-35-g1-1 unchanged',clearings:[[920,1840],[3160,3900],[5340,5790]],ditch:[1840,2820],exit:6500};
-s.initialState.honroAct4Design=clone(s.design.act4);
+s.design.act4.production.wallPlacementCorrections=wallPlacementCorrections;
+s.initialState.honroAct4Design=clone(s.design.act4);}
 p.stages=[s];p.activeStageId=s.id;
 await mkdir('art/stage35-vector-production',{recursive:true});
 await writeFile('art/stage35-vector-production/skeleton-project.json',JSON.stringify(p));

@@ -1,0 +1,70 @@
+{
+  "status": "normal-production-build-pass-official-browser-pending",
+  "worldSha256": "801df923ce89d8747f337f0b71e2ae38c604a8efbd6250d56e885b931af9f1b5",
+  "projectSha256": "f16efd5cd4d4b4fdc6a7b7103015df2fafa95e026ce2682a318e09513954c300",
+  "runtimeSha256": "7652daac71dc2c7c6ea02b438ce10105a26e1ac008b36258ad08e2835ee14fd9",
+  "stage31TransitivePayloadSha256": "007335c21f222c6adf34d9c47a7b6f8c298b5b682cb12910bb320c6d9d69c9d3",
+  "fingerprint": "draft-v1-3ab0decd-2688127",
+  "stages": [
+    "stage-3",
+    "stage-6",
+    "stage-30",
+    "stage-31"
+  ],
+  "assetCount": 68,
+  "machinePass": true,
+  "missingReviews": [],
+  "missingProbes": [],
+  "reviewCriteria": {
+    "structure-and-routes": {
+      "S1": "전체 지형과 맵 바깥이 같은 지질로 연결되는가?",
+      "S2": "선언한 주경로·대안·퇴로가 실제 다른 이동·사격 선택을 만드는가?",
+      "S3": "그림 속 길/높이가 아니라 실제 충돌과 동선으로 구현됐는가?",
+      "S4": "기존 참조 장의 실제 화면·구현과 비교했는가?"
+    },
+    "art-and-readability": {
+      "A1": "기존 게임의 미술 체계와 해당 장소의 색감이 이어지는가?",
+      "A2": "큰 단색 면·반복 장식으로 대신하지 않고 지형·구조물 접지가 보이는가?",
+      "A3": "동행·적·목표·조준선이 실제 플레이 거리에서 구분되는가?",
+      "A4": "장식과 여백이 장소를 설명하며 전술 지형을 가리거나 오인시키지 않는가?"
+    },
+    "camera-and-state": {
+      "C1": "실제 첫 시점과 일반 이동 시점에서 길과 위협을 판단할 수 있는가?",
+      "C2": "최대 축소와 좌우 끝에서 절단·공백·부유가 없는가?",
+      "C3": "모바일 세로/가로 화면에서 조작과 대상이 가려지지 않는가?",
+      "C4": "이동·배·물·기믹 상태 변화 뒤에도 그림과 충돌이 일치하는가?"
+    },
+    "final-integration": {
+      "F1": "정상 이동·발사·상호작용으로 해당 장의 목표까지 진행했는가?",
+      "F2": "각 교전군이 문서상의 이름뿐 아니라 실제 지형에서 역할을 수행했는가?",
+      "F3": "검수한 최종 소스·에셋·관측 파일이 내보낼 내용과 같은가?",
+      "F4": "실패·미확인·부분 구현을 숨기거나 전체 합격으로 확대하지 않았는가?"
+    }
+  },
+  "reviewViews": {
+    "structure-and-routes": [
+      "overview"
+    ],
+    "art-and-readability": [
+      "normal",
+      "close"
+    ],
+    "camera-and-state": [
+      "min-zoom",
+      "mobile",
+      "left-edge",
+      "right-edge"
+    ],
+    "final-integration": [
+      "normal"
+    ]
+  },
+  "reviewerPolicy": "Record actual assistant reviewer /root and evidence scope. No user or human approval is claimed or required by this schema. Pending evidence is not a pass.",
+  "identityPolicy": "Separate production package metadata only. Frozen world/project bytes remain unchanged. Card participates in contract fingerprint; reviews and probeResults do not. Transitive payload SHA and runtime SHA supplement the direct-asset contract fingerprint.",
+  "previousRuntimeSha256": "71748ef5f9ddc261c1af1b9e04b9fc675c5d666b138e90b3ab5fd2215d1b5d33",
+  "renderSourceEquivalence": "tools/stage31/evidence/silhouette-final-7174/7174-to-7652-render-source-equivalence.json",
+  "historicalWorldSha256": "1e7939fe0f9fd6cd8be0202807f0db74f7ed7958a212d480aa73d3e7ce72f0d4",
+  "historicalProjectSha256": "7956c4ea8a2dde9afc583ecac1d9908a67203eb9397859fdff613850e6cbdd93",
+  "remaining": "Actual official-source browser smoke; remote publication separately blocked.",
+  "buildReceipt": "tools/stage31/evidence/silhouette-final-7652/normal-production-build.json"
+}

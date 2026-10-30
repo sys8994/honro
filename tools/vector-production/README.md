@@ -406,3 +406,36 @@ stacked color planes from repeatedly antialiasing the same fractional clip edge.
 No-flag rendering remains unchanged. `node tests/vector-clip-seams.mjs` verifies
 fractional zoom.37/.53/.81/1.33 against an unsliced reference (zero fixed-pixel delta),
 reflections, rotation/shear fallback, strict rejection and zero warm allocations.
+
+## Relative-depth contact reuse (isolated authoring helper)
+
+`warp-contact-depth.mjs` maps a previously authored contact asset onto another
+terrain profile without inventing decorative paths. X scale stays1, alternate
+tiles may mirror, and Y preserves `artY - sourceTop(x)` below the destination
+surface. Partitions split at both profiles' knots; a shared internal symbol
+avoids repeating path bytes. Only vertical rectangular slice clips pixel-snap;
+the actual terrain band never snaps. Runtime expanded-node/depth/path budgets
+are validated, not bypassed. Too many slope partitions must be split into
+smaller source-cluster assets rather than increasing budgets.
+
+```
+node tools/vector-production/test-warp-contact-depth.mjs
+node tools/vector-production/warp-contact-depth.mjs \
+  art/stage36-density-v2/contact-clusters-blended-asset.json \
+  art/vector-gameplay-density-v2/source32-test-config.json \
+  art/vector-gameplay-density-v2/source32-test-asset.json
+```
+
+Stage32 test is only the original lower ground0..6600, depth80; upper timber
+route is separate. The source36 brown/gray palette is **not** approved for32's
+olive/tan contact over blue rock. Inspect actual same-camera slopes, tile joins,
+material transitions, normal/mobile and repetition before accepting reuse.
+
+Optional `depthScale` defaults to1. A thin-soil variant can use `.5` with a
+40-world-unit target `depth`, keeping X scale/spacing, actual top and physics
+unchanged: `targetY = targetTop(x') + .5 * (sourceY - sourceTop(x))`.
+This is an intentional **art-proportion variant**, not a claim of raw visual
+error preservation. Source path data stays shared/unchanged; transform shear
+accounts for source and target slopes before scaling depth. Thin grooves may
+become subpixel at normal/mobile zoom, so inspect material integration and
+small-feature survival; mathematics/budget passes are not art approval.

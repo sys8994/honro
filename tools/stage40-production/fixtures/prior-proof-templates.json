@@ -1,0 +1,124 @@
+{
+  "scope": "Actual independent 32 and39 facts used as templates for explicitly prepared prior preconditions. Not a linked32→40 playthrough. Campaign IDs are rebound only before Stage40 launch; no current-stage facts injected.",
+  "sources": [
+    {
+      "path": "art/stage32-vector-production/package/app-check.json",
+      "sha256": "57200d9e59ff370d3fc53b2dab18b212e1129d222f6571448fa24d7c7d236071"
+    },
+    {
+      "path": "_local/reports/stage39-production/final-boss-alive-won-profile.json",
+      "sha256": "76d58c32e9415a59a212d860ccfb0a65c986df46f18026d09e0f5f2a3728526b"
+    }
+  ],
+  "safeSeven": {
+    "ids": [
+      "shelter-person-0",
+      "shelter-person-1",
+      "shelter-person-2",
+      "shelter-person-3",
+      "shelter-person-4",
+      "shelter-person-5",
+      "shelter-person-6"
+    ],
+    "sourceRun": "honro-map-stage-32-1793207118452",
+    "reportIds": [
+      "A4.S32.MISSING.01",
+      "A4.S32.MISSING.02",
+      "A4.S32.MISSING.03",
+      "A4.S32.MISSING.04"
+    ],
+    "reunionIds": [
+      "A4.S32.REUNION.01",
+      "A4.S32.REUNION.02",
+      "A4.S32.REUNION.03",
+      "A4.S32.REUNION.04"
+    ],
+    "reunionObserved": {
+      "sourceRun": "honro-map-stage-32-1793207118452",
+      "npc": "a4-shelter-speaker",
+      "hero": "archer",
+      "seenAt": 195.49999999998653,
+      "positions": [
+        {
+          "id": "archer",
+          "x": 4600.962610822499,
+          "y": 2010
+        },
+        {
+          "id": "a4-shelter-speaker",
+          "x": 4779.499999999976,
+          "y": 2010
+        }
+      ]
+    },
+    "campaignRunId": "eq-mvsd7vv3-pqwkpk17"
+  },
+  "completed39": {
+    "stage": 39,
+    "sourceRun": "honro-map-stage-39-1793211325929",
+    "campaignRunId": "eq-mvsfq2c1-fnt0wnmj",
+    "success": true,
+    "residents": [
+      {
+        "id": "a4-rescue-0",
+        "hp": 993,
+        "dead": false
+      },
+      {
+        "id": "a4-rescue-1",
+        "hp": 1326,
+        "dead": false
+      },
+      {
+        "id": "a4-rescue-2",
+        "hp": 1450,
+        "dead": false
+      },
+      {
+        "id": "a4-rescue-3",
+        "hp": 1450,
+        "dead": false
+      }
+    ],
+    "rows": [
+      "A4.S39.TIDE.01"
+    ]
+  },
+  "rescued": {
+    "ids": [
+      "a4-rescue-0",
+      "a4-rescue-1",
+      "a4-rescue-2",
+      "a4-rescue-3"
+    ],
+    "sourceRun": "honro-map-stage-39-1793211325929",
+    "campaignRunId": "eq-mvsfq2c1-fnt0wnmj",
+    "stage": 39,
+    "success": true,
+    "residents": [
+      {
+        "id": "a4-rescue-0",
+        "hp": 993,
+        "dead": false
+      },
+      {
+        "id": "a4-rescue-1",
+        "hp": 1326,
+        "dead": false
+      },
+      {
+        "id": "a4-rescue-2",
+        "hp": 1450,
+        "dead": false
+      },
+      {
+        "id": "a4-rescue-3",
+        "hp": 1450,
+        "dead": false
+      }
+    ],
+    "rows": [
+      "A4.S39.TIDE.01"
+    ]
+  }
+}

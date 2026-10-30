@@ -19,7 +19,9 @@ for(const n of [32]){
  const st=g.HONRO_PROJECT.stages.find(s=>s.metadata.stageId===n);
  const profile=g.HONRO_CORE.defaults();profile.recruited=['archer','mage','knight','occultist'];g.HonroEquipment.fresh(profile);
  const b=g.HonroMaps.createBattle(st,g.HONRO_PROJECT,profile);
- if(n===32){b.honroPreviewFar={key:'act4Sea',...(b.honroPreviewFar||{})};g.HonroAct4ReviewArt.palettes[32]=st.design.act4.palette;}
+ // Mirror original App prepare() rather than introducing a diagnostic far image.
+ b.honroStage=n;g.HonroAct4Content.prepare(b,profile);
+ if(n===32)g.HonroAct4ReviewArt.palettes[32]=st.design.act4.palette;
  const e=new g.HONRO_CORE.Engine(b,()=>{},true);
  const defaults=[{name:'whole',x:st.width/2,y:n===30?5100:1900,scale:1500/st.width,w:1600,h:850},
  {name:'first-contact',x:1950,y:n===30?5200:1900,scale:.53,w:1400,h:900},

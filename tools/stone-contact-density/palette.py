@@ -1,0 +1,7 @@
+import json,os,subprocess,xml.etree.ElementTree as E
+from pathlib import Path
+out=Path('art/stone-contact-density-v2');src=Path('art/stage36-density-v2/contact-clusters-blended.svg');r=E.parse(src).getroot();mapping={'path8':'#455863','path7':'#667a84','path6':'#687b83','path5':'#60737c','path4':'#596d77','path3':'#50636e','path2':'#465b66'};actions=[]
+for k,v in mapping.items():actions.extend(['select-clear','select-by-id:'+k,'object-set-attribute:style,fill:'+v])
+env={**os.environ,'INKSCAPE_PROFILE_DIR':'/tmp/honro-stone-contact-profile','XDG_CACHE_HOME':'/tmp/honro-stone-contact-cache'}
+subprocess.run(['inkscape',str(src),'--export-type=svg','--export-filename='+str(out/'contact-stone.svg'),'--actions='+';'.join(actions)+';export-do'],env=env,check=True,capture_output=True)
+c=json.loads(Path('art/stage36-density-v2/contact-clusters-config.json').read_text());c['id']='density-play:stone-contact-source';c['name']='절벽 접촉면 석재 군집';c['params']['artEdit']='Intentional stone palette variant in Inkscape; source geometry retained.';(out/'contact-config.json').write_text(json.dumps(c,indent=2));(out/'palette-edit.json').write_text(json.dumps({'source':str(src),'mapping':mapping,'intentionalArtRedesign':True},indent=2));subprocess.run(['python3','tools/vector-production/import-svg.py',str(out/'contact-stone.svg'),'--config',str(out/'contact-config.json'),'--output',str(out/'contact-source-asset.json')],check=True)

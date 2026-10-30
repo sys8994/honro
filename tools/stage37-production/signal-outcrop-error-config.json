@@ -1,0 +1,30 @@
+{
+  "width": 424,
+  "scales": [
+    1,
+    2.0754716981132075
+  ],
+  "protectionMode": "silhouette-feature",
+  "protectedRects": [
+    [
+      140,
+      190,
+      140,
+      28
+    ],
+    [
+      306,
+      16,
+      40,
+      40
+    ]
+  ],
+  "limits": {
+    "rgbMAE255": 2,
+    "silhouettePx": 1.5,
+    "protectedPx": 0.5,
+    "protectedRgbMAE255": 1,
+    "protectedChangedPixelFraction": 0.05
+  },
+  "scope": "Native424px normal and880px maximum; exact shelf/peak alpha protected, no internal palette-island displacement claim."
+}

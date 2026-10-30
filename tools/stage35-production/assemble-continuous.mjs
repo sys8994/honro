@@ -2,8 +2,10 @@
  * Does not derive or mutate terrain collision. */
 import{readFile,writeFile}from'node:fs/promises';
 import{extendBodyDomain}from'../vector-production/extend-body-domain.mjs';
+import{deduplicateAsset}from'../vector-production/deduplicate-vector.mjs';
 const clone=x=>JSON.parse(JSON.stringify(x));
 const p=JSON.parse(await readFile('art/stage35-vector-production/skeleton-project.json','utf8')),s=p.stages[0];
+const commonIds=['a4-production:bamboo-clump','a4-production:bamboo-mist','a4-production:thick-bamboo-cover','a4-production:broken-stone-wall','a4-production:bamboo-foreground'];p.library=p.library.filter(a=>!commonIds.includes(a.id)&&!a.id.startsWith('s35v:'));
 const bamboo=JSON.parse(await readFile('art/stage35-vector-production/bamboo-clump-asset.json','utf8'));bamboo.reference.scaleRange=[.1,4];bamboo.reference.backgroundRange=[.1,4];p.library.push(bamboo);
 for(const e of s.elements.filter(e=>e.assetId.includes('bamboo-background'))){e.assetId=bamboo.id;e.scale*=.58;}
 const far=clone(bamboo);far.id='a4-production:bamboo-mist';far.params.semanticLayer='REAR';
@@ -39,8 +41,9 @@ const foreIndex=s.elements.findIndex(e=>e.id.startsWith('s35v:fore-'));
 s.elements.splice(foreIndex<0?s.elements.length:foreIndex,0,{id:body.id,assetId:body.id,x:0,y:0,scale:1,depthLayer:'L1',layer:'front'});
 s.design.vectorGround={version:1,baseColor:process.env.S35_BASE_COLOR||'#354852',visualDepth:'L1'};
 s.design.production??={};s.design.production.artStatus='continuous BODY visual review; no automatic approval';
-const originalIds=new Set(JSON.parse(await readFile('art/stage35-vector-production/skeleton-project.json','utf8')).library.map(a=>a.id));
-const library=p.library.filter(a=>!originalIds.has(a.id));for(const a of library){let nodes=0,paths=0,maxPath=0;const walk=n=>{nodes++;if(n.tag==='path'){paths++;maxPath=Math.max(maxPath,n.d.length);}for(const c of n.children||[])walk(c);};if(a.vector)walk(a.vector.root);a.params={...a.params,optimizedVector:{nodes,paths,maxPathChars:maxPath,embeddedBitmap:false}};}
+const deduplication=[];p.library=p.library.map(a=>{if(!a.id.startsWith('s35v:'))return a;const result=deduplicateAsset(a);deduplication.push({id:a.id,...result.report});return result.asset;});
+await writeFile('art/stage35-vector-production/symbol-storage-validation.json',JSON.stringify(deduplication,null,2));
+const library=p.library.filter(a=>commonIds.includes(a.id)||a.id.startsWith('s35v:'));for(const a of library){let nodes=0,paths=0,maxPath=0;const walk=n=>{if(n.tag==='use'){walk(a.vector.symbols[n.symbol]);return;}nodes++;if(n.tag==='path'){paths++;maxPath=Math.max(maxPath,n.d.length);}for(const c of n.children||[])walk(c);};if(a.vector)walk(a.vector.root);a.params={...a.params,optimizedVector:{nodes,paths,maxPathChars:maxPath,embeddedBitmap:false}};}
 await writeFile('art/stage35-vector-production/stage35-production-package.json',JSON.stringify({version:1,status:'verified production candidate; parent release review pending',stage:s,library,authoring:'tools/stage35-production/assemble-continuous.mjs',scope:'Stage-specific ground plus reusable bamboo/cover/wall; original terrain and gameplay event contracts retained'}));
 await writeFile('art/stage35-vector-production/continuous-project.json',JSON.stringify(p));
 const without=clone(p);without.stages[0].elements=without.stages[0].elements.filter(e=>!e.id.startsWith('s35v:fore-'));

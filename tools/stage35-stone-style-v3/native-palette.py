@@ -1,0 +1,10 @@
+"""Native palette/mass consolidation, no step contour or collision edits."""
+import json,copy,subprocess,os,xml.etree.ElementTree as E
+from pathlib import Path
+D=Path('art/stage35-stone-style-v3');source=Path('art/vector-gameplay-density-v2/stone-steps-final.svg');r=E.parse(source).getroot();palette={'#9fa492':'#60788b','#8b9178':'#4c6378','#7b836f':'#465e72','#4c5953':'#3b5266','#424a3c':'#2b4155','#384747':'#2b4155','#2c3a3a':'#2b4155'};actions=[]
+for e in r.iter():
+ if e.tag.endswith('path'):
+  old=e.get('style').split('fill:')[1].split(';')[0];actions.append(f"select-clear;select-by-id:{e.get('id')};object-set-property:fill,{palette[old]}")
+subprocess.run(['inkscape',str(source),'--export-plain-svg','--export-type=svg',f'--export-filename={D/"stairs-native.svg"}',f'--actions={";".join(actions)}'],env={**os.environ,'INKSCAPE_PROFILE_DIR':'/tmp/honro35style','XDG_CACHE_HOME':'/tmp/honro35stylecache'},check=True)
+cfg=json.loads(Path('art/vector-gameplay-density-v2/stone-steps-config.json').read_text());cfg['id']='s35-silhouette:quiet-stone-steps';(D/'config.json').write_text(json.dumps(cfg));subprocess.run(['python','tools/vector-production/import-svg.py',str(D/'stairs-native.svg'),'--config',str(D/'config.json'),'--output',str(D/'imported-asset.json')],check=True)
+p=json.loads(Path('_local/reports/sea-silhouette-v3/project.json').read_text());old=next(a for a in p['library'] if a['id']=='density-play:stone-steps-left');new=json.loads((D/'imported-asset.json').read_text());a=copy.deepcopy(old);a['id']=new['id'];a['vector']['root']['children'][0]['children'][0]=new['vector']['root'];a['params']['nativeStyleEdit']={'palette':palette,'geometryPreserved':True,'quietInterior':'Three dark texture classes consolidated to one mass color; cap/riser silhouette preserved','visualApproval':False};(D/'asset.json').write_text(json.dumps(a,separators=(',',':')));(D/'integration.json').write_text(json.dumps({'stage':35,'replacement':{'density-play:stone-steps-left':a['id']},'assetFile':str(D/'asset.json'),'physics':'unchanged; exact original wrappers and clips retained','visualApproval':False},indent=2));print('35 source style candidate ready')

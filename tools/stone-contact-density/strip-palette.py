@@ -1,0 +1,6 @@
+import os,json,subprocess
+from pathlib import Path
+out=Path('art/stone-contact-density-v2');env={**os.environ,'INKSCAPE_PROFILE_DIR':'/tmp/honro-stone-contact-profile','XDG_CACHE_HOME':'/tmp/honro-stone-contact-cache'};reports=[]
+for n,part,key,old,new in [(34,'body','path11','#847d62','#60737c'),(34,'overhang','path11','#847d62','#60737c'),(38,'floor','path9','#7c8078','#60737c'),(38,'roof','path9','#7c8078','#60737c')]:
+ src=Path(f'art/stage{n}-density-v2/{part}-unioned.svg');svg=out/f'stage{n}-{part}-strip.svg';config=json.loads(Path(f'art/stage{n}-density-v2/{part}-config.json').read_text());config['id']=f's{n}-density:{part}-stone-strip';cfg=out/f'stage{n}-{part}-strip-config.json';cfg.write_text(json.dumps(config,indent=2));subprocess.run(['inkscape',str(src),'--export-type=svg','--export-filename='+str(svg),'--actions=select-clear;select-by-id:'+key+';object-set-attribute:style,fill:'+new+';export-do'],env=env,check=True,capture_output=True);asset=out/f'stage{n}-{part}-strip-asset.json';subprocess.run(['python3','tools/vector-production/import-svg.py',str(svg),'--config',str(cfg),'--output',str(asset)],check=True);reports.append({'stage':n,'role':part,'source':str(src),'file':str(asset),'oldColor':old,'newColor':new,'intentionalSourcePaletteChange':True})
+(out/'strip-integration.json').write_text(json.dumps(reports,indent=2))

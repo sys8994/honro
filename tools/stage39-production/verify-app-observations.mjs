@@ -1,0 +1,33 @@
+/** Replays ordinary input tape on the real App. No geometry, actor/resource or
+ * event-state overrides. Additional observations are NOT exported gate passes. */
+import assert from 'node:assert/strict';
+import {writeFileSync,mkdirSync} from 'node:fs';
+import {readFile,writeFile,mkdir} from 'node:fs/promises';
+import {createHash} from 'node:crypto';
+import {createAppAdapter} from './app-adapter.mjs';
+import {runtimeDigest} from '../stage31/probes.mjs';
+const [file,tapeFile,out]=process.argv.slice(2);if(!out)throw Error('draft tape output required');
+const p=JSON.parse(await readFile(file,'utf8')),tape=JSON.parse(await readFile(tapeFile,'utf8'))[0],a=await createAppAdapter(p,'stage-39',{entryBuild:tape.entryBuild}),{g,app}=a;
+const shotDir=out.replace(/\.json$/,'-shots');mkdirSync(shotDir,{recursive:true});const observedImages=new Set(),recoveryChecks=[];
+let frame=0,index=0,resumed=false;const hurts=[],impacts=[],shots=[],trace=[],resume=[],transitions=[];let lastState='';
+function hook(){const e=app.engine,hurt=e.hurt.bind(e),impact=e.impact.bind(e);e.hurt=(u,...args)=>{const before=u.hp+u.shield,r=hurt(u,...args),amount=before-u.hp-u.shield;if(amount>0)hurts.push({frame,target:u.id,owner:args[1],amount});return r;};e.impact=(q,h)=>{impacts.push({frame,owner:q.owner,skill:q.skill,terrain:h.terrain?.id,unit:h.unit?.id,x:q.x,y:q.y});return impact(q,h);};}
+hook();
+function tick(){const before=app.engine.b.units.map(u=>({id:u.id,focus:u.focus,maxHp:u.maxHp})),count=app.engine.b.honroAct4PreviewState?.water?.recoveries?.length||0;a.tick();frame++;const b=app.engine.b,q=b.honroAct4PreviewState,state=JSON.stringify({phase:b.phase,tide:q?.tide?.phase,netOpen:!!q?.netOpen,exitStable:!!q?.exitStable,rescued:q?.rescued?.ids.length||0,recoveries:q?.water?.recoveries?.length,complete:q?.complete,enemies:b.units.filter(u=>u.side===1&&!u.dead&&u.hp>0).length});for(const r of (q?.water?.recoveries||[]).slice(count)){const u=b.units.find(u=>u.id===r.unit),v=before.find(u=>u.id===r.unit),z=b.honroAct4Design.waterPolicies.find(z=>z.id===r.zone),span=z['entry'+r.side];const check={frame,...r,expectedLoss:Math.ceil(v.maxHp*.25),focusBefore:v.focus,focusAfter:u.focus,acted:u.acted,moveLeft:u.moveLeft,sameDeclaredBank:r.landing.x>=span[0]&&r.landing.x<=span[1]};assert.equal(check.hpLoss,check.expectedLoss);check.focusNotSpent=u.focus>=v.focus;check.actionSpent=u.acted&&u.moveLeft===0;check.newRoundMayRefresh=b.round!==r.round;assert(check.focusNotSpent&&check.sameDeclaredBank);assert(check.actionSpent||check.newRoundMayRefresh);recoveryChecks.push(check);}if(frame%300===0&&!observedImages.has((q?.rescued?'rescued':q?.exitStable?'stable':q?.netOpen?'net-open':q?.tide?.phase||'initial'))){observedImages.add((q?.rescued?'rescued':q?.exitStable?'stable':q?.netOpen?'net-open':q?.tide?.phase||'initial'));writeFileSync(shotDir+'/'+frame+'-'+((q?.rescued?'rescued':q?.exitStable?'stable':q?.netOpen?'net-open':q?.tide?.phase||'initial'))+'.png',app.scene.canvas.toBuffer('image/png'));}if(state!==lastState){transitions.push({frame,...JSON.parse(state)});lastState=state;}if(frame%30===0)trace.push({frame,round:b.round,active:b.active,units:b.units.filter(u=>u.side===0).map(u=>({id:u.id,x:u.x,y:u.y,hp:u.hp,grounded:app.engine.grounded(u)}))});}
+for(const input of tape.inputs){
+ if(a.success())break;
+ const e=app.engine,b=e.b;
+ if(!resumed&&frame>4500&&app.canInput()&&!app.dialogue&&!b.projectiles.length){
+  const before=JSON.parse(JSON.stringify({units:b.units,objective:b.honroAct4PreviewState,round:b.round,active:b.active,phase:b.phase}));app.stopBattle();assert(app.profile.honroBattle);app.continue();app.close();assert(app.engine,'Actual App Continue must restore engine');const z=app.engine.b,after=JSON.parse(JSON.stringify({units:z.units,objective:z.honroAct4PreviewState,round:z.round,active:z.active,phase:z.phase}));assert.deepEqual(after,before);resume.push({frame,inputIndex:index,result:'pass',scope:'Actual stopBattle/persist/Continue; exact units, event state, round, active and phase preserved'});resumed=true;hook();
+ }
+ const engine=app.engine;
+ if(input.op==='advance'){for(let i=0;i<input.frames;i++)tick();}
+ else if(input.op==='skip-dialogue')a.skip();else if(input.op==='close-modal')app.close();else if(input.op==='interact')a.interact();
+ else if(app.canInput()){if(input.op==='select')app.selectHero(input.actor);else if(input.op==='move'){for(let i=0;i<input.frames;i++){if(app.canInput())engine.move(input.direction,g.HONRO_CORE.STEP);tick();}}else if(input.op==='jump')engine.jump();else if(input.op==='drop')app.drop();else if(input.op==='defend')app.defend();else if(input.op==='fire'){const u=engine.active,pose={x:u.x,y:u.y};shots.push({frame,actor:u.id,...pose,input,accepted:!!engine.fire(input.skill,input.angle,input.power)});}}
+ index++;
+}
+// The normal frame loop presents outcome after mission wins; call the original
+// App outcome here so earned completion/resident provenance is actually saved.
+if(a.success())app.outcome();
+const groups=[0,1].map(id=>({id:'a4-39-g'+id,damage:hurts.filter(h=>h.owner?.startsWith('a4-39-g'+id)&&['archer','mage','knight','occultist'].includes(h.target))}));
+const result={version:1,runner:'honro-production-app-observation-v1',scope:a.scope+' No gate relabeling or automatic art approval.',projectSha256:createHash('sha256').update(await readFile(file)).digest('hex'),runtimeSha256:await runtimeDigest(),verifierSha256:createHash('sha256').update(await readFile(import.meta.filename)).digest('hex'),success:a.success(),frame,entryBuild:tape.entryBuild,resume,recoveryChecks,groups,transitions,shots,hurts,impacts,trace,profileProof:app.profile.honroAct4,campaignProof:g.HonroAct4TerrainPreview.campaignProof,final:a.state()};
+await mkdir(out.substring(0,out.lastIndexOf('/')),{recursive:true});await writeFile(out,JSON.stringify(result,null,2));if(result.success)await writeFile(out.replace(/\.json$/,'-won-profile.json'),JSON.stringify(app.profile,null,2));console.log(JSON.stringify({success:result.success,frame,resume,groups:groups.map(g=>({id:g.id,damageEvents:g.damage.length})),transitions}));assert(result.success&&resumed);
