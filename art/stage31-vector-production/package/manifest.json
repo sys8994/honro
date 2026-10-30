@@ -1,0 +1,95 @@
+{
+  "stage": 31,
+  "status": "native-candidate-browser-release-review-pending",
+  "stageSha256": "c08e71b4b6eb02349ef0f50558fb2b207e014443c07980958bd346c707ad113e",
+  "librarySha256": "12f70f8a58d2907623938c52cd70d9d9541cb8af8722020919eeaa24294687d3",
+  "projectFingerprintScope": "Full input contains baseline other stages; package contains only Stage31 and referenced library assets.",
+  "collisionScope": "Intentional Stage31 redesign from tools/stage31-production/blueprint.json. Not physical parity with old official Stage31.",
+  "assets": [
+    {
+      "id": "act1-scene:ferry-house",
+      "bytes": 8294
+    },
+    {
+      "id": "act1-scene:rooted-pine",
+      "bytes": 5141
+    },
+    {
+      "id": "stage30:ferry-old-funeral-sign",
+      "bytes": 2514
+    },
+    {
+      "id": "stage30:ferry-quay-cargo",
+      "bytes": 2338
+    },
+    {
+      "id": "a4:dock",
+      "bytes": 828
+    },
+    {
+      "id": "a4:boat",
+      "bytes": 764
+    },
+    {
+      "id": "s31:timber-structure",
+      "bytes": 6215
+    },
+    {
+      "id": "s31:shore-material",
+      "bytes": 2489
+    },
+    {
+      "id": "s31v:landing-ruin",
+      "bytes": 376563
+    },
+    {
+      "id": "s31v:abandoned-skiff",
+      "bytes": 436923
+    },
+    {
+      "id": "s31v:arrival-ferry",
+      "bytes": 138356
+    },
+    {
+      "id": "s31v:bank-reed",
+      "bytes": 220932
+    },
+    {
+      "id": "s31v:body-continuous-domain-left",
+      "bytes": 867605
+    },
+    {
+      "id": "s31v:body-continuous-domain-right",
+      "bytes": 867617
+    },
+    {
+      "id": "s31v:body-continuous",
+      "bytes": 866225
+    },
+    {
+      "id": "common-v:fore-reeds",
+      "bytes": 712696
+    },
+    {
+      "id": "s31v:fore-ridge-left",
+      "bytes": 57101
+    },
+    {
+      "id": "s31v:fore-ridge-right",
+      "bytes": 57097
+    },
+    {
+      "id": "s31v:fore-ridge",
+      "bytes": 56926
+    }
+  ],
+  "source": "_local/reports/stage31-production/release-candidate/stage31.draft.honro-map.json",
+  "authoring": "Gameplay skeleton → image concepts → actual Inkscape raw → bounded optimization → BODY/REAR/FORE assembly.",
+  "remaining": [
+    "Actual browser HUD/touch review",
+    "Remote publication and existing Pages verification"
+  ],
+  "reviewPolicy": "No automatic art approval, fabricated camera/mobile gate pass, or replacement of browser QA by native Canvas.",
+  "nativeInputSummary": "native-input-summary.json",
+  "evidenceBoundary": "Full actual App replay binds final Stage31 landing ruin/ferry candidate and runtime before environmental-art save codec7f43a78. Subsequent codec has focused Stage31 regression and separate all-stage entry/Continue validation; this old runtime hash is intentionally not relabeled."
+}

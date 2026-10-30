@@ -1,0 +1,61 @@
+{
+  "source": "art/stage32-vector-production/body-clean.svg",
+  "sourceSHA256": "96e0a2d85ab80cf7abfc457685159d70b3ea055bafa5a3c09af870c61baead86",
+  "tool": "Inkscape 1.4 headless separate profile",
+  "scope": "Deep rock only. path11,path10,path9,path8,path7 unchanged contact/topsoil; blue coastal identity retained.",
+  "changes": {
+    "path6,path5": "#3a4452",
+    "path4": "#303c4a",
+    "path3": "#283344 unchanged"
+  },
+  "oldToNew": "Intentional material-aware palette redesign, not fidelity claim.",
+  "union": "Actual Inkscape path-union path6+path5 only. No noncontiguous groups or source-raw restoration.",
+  "stats": {
+    "existingFinal": {
+      "bytes": 106718,
+      "paths": 9,
+      "explicitCommandLetters": 583,
+      "segments": 2361
+    },
+    "newPalette": {
+      "bytes": 105961,
+      "paths": 9,
+      "explicitCommandLetters": 583,
+      "segments": 2361
+    },
+    "union": {
+      "bytes": 94145,
+      "paths": 8,
+      "explicitCommandLetters": 604,
+      "segments": 2073
+    }
+  },
+  "runtimeBytes": {
+    "old": 123707,
+    "new": 108806
+  },
+  "visualReview": "Direct normal/max render crops inspected: topsoil retained; blue rock facets quieter; not full scene approval.",
+  "limits": {
+    "expandedNodes": 512,
+    "depth": 24,
+    "pathCharacters": 60000
+  },
+  "paletteToUnion": {
+    "normal": {
+      "width": 3816,
+      "worldZoom": 0.53,
+      "rgbMAE255": 0.004033689112157132,
+      "rgbMax255": 39.0,
+      "alphaChangedPixels": 0,
+      "alphaMax255": 0.0
+    },
+    "max": {
+      "width": 7920,
+      "worldZoom": 1.1,
+      "rgbMAE255": 0.0027407120446893175,
+      "rgbMax255": 42.0,
+      "alphaChangedPixels": 0,
+      "alphaMax255": 0.0
+    }
+  }
+}

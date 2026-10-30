@@ -1,0 +1,46 @@
+{
+  "id": "s32-density:body",
+  "name": "빈 포구 저대비 지반 BODY",
+  "semanticLayer": "BODY",
+  "category": "rock",
+  "bounds": {
+    "x": -300,
+    "y": 1500,
+    "w": 7200,
+    "h": 2400
+  },
+  "anchor": {
+    "x": 0,
+    "y": 0
+  },
+  "foot": {
+    "x": 0,
+    "y": 1900
+  },
+  "transform": [
+    3.314917127071823,
+    0,
+    0,
+    3.314917127071823,
+    -300,
+    1500
+  ],
+  "bodyClip": [
+    "M0 1900L700 1910 1150 2010H1650L2100 1930 2550 2000 3200 2010H3800 5700L6100 1900H6600L7100 1742.7734375 7600 1676.80296296296 8100 1733.01037037037 8600 1795.44 9100 1799.02606310014 9600 1702.45541838134 10100 1572.96296296296 10600 1492.85322359396 11100 1465.99650094766 11600 1393.28181950722 12100 1315.97463187054 12600 1280V27200H-6000V1635.71428572312L-5500 1601.45273159864-5000 1527.82683881217-4500 1458.57476231324-4000 1439.19165891056-3500 1536.82543357514-3000 1694.64452143768-2500 1812.34083027248-2000 1851.71973985915-1500 1963.22464411148-1000 2063.71902610905-500 2019.57062758359Z"
+  ],
+  "params": {
+    "semanticLayer": "BODY",
+    "sourceViewBox": [
+      0.0,
+      0.0,
+      2172.0,
+      724.0
+    ],
+    "removedReferenceImages": [],
+    "artRevision": 1,
+    "collisionSource": "a4-32-land",
+    "lineage": "body-concept.png → actual Inkscape12 trace → body-clean.svg",
+    "densityRevision": 2,
+    "artEdit": "Material-scoped Inkscape recolor of deep blue rock faces only. Five topsoil/contact palette paths unchanged. New palette master; not fidelity to old art."
+  }
+}

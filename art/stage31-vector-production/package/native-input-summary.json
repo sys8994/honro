@@ -1,0 +1,37 @@
+{
+  "scope": "Prepared stage-entry profile; production App events; DOM/audio are doubles. Not a browser/campaign playthrough. No gate relabeling or automatic art approval.",
+  "success": true,
+  "frame": 42960,
+  "fingerprint": "draft-v1-620c72f7-4574062",
+  "runtimeSha256": "abb66edaea783e1c62bbc4be6f0ecc74f8ca896098beff3e6cf825a5c8be29b9",
+  "verifierSha256": "ddb3603edfe3486ae79a33968b3f3522e5f59fd471d5557a2d59927d558a00e2",
+  "resume": [
+    {
+      "frame": 12258,
+      "inputIndex": 32,
+      "result": "pass",
+      "scope": "Actual stopBattle/persist/Continue; exact units, event state, round, active and phase preserved"
+    }
+  ],
+  "groups": [
+    {
+      "id": "s31-west-bank",
+      "damageEvents": 5
+    },
+    {
+      "id": "s31-low-channel",
+      "damageEvents": 9
+    },
+    {
+      "id": "s31-middle-rise",
+      "damageEvents": 12
+    },
+    {
+      "id": "s31-landing",
+      "damageEvents": 2
+    }
+  ],
+  "source": "_local/reports/stage31-production/final-frozen-app.json",
+  "browserVerified": false,
+  "bindingNote": "Full actual App replay binds final Stage31 landing ruin/ferry candidate and runtime before environmental-art save codec7f43a78. Subsequent codec has focused Stage31 regression and separate all-stage entry/Continue validation; this old runtime hash is intentionally not relabeled."
+}
