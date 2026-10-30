@@ -1,0 +1,34 @@
+{
+  "id": "s39v:wreck",
+  "name": "살아있는 폐선",
+  "semanticLayer": "INTERACT",
+  "category": "architecture",
+  "bounds": {
+    "x": -650,
+    "y": -390,
+    "w": 1300,
+    "h": 480
+  },
+  "anchor": {
+    "x": 0,
+    "y": 0
+  },
+  "foot": {
+    "x": 0,
+    "y": 0
+  },
+  "transform": [
+    0.5985267034990792,
+    0,
+    0,
+    0.6629834254143646,
+    -650.0,
+    -390.0
+  ],
+  "params": {
+    "artRevision": 1,
+    "sourceConcept": "wreck-concept.png",
+    "sourceRaw": "wreck-raw.svg",
+    "sourceFit": "Native full-viewBox affine; original source physics authoritative"
+  }
+}

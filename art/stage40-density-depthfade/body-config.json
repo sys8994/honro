@@ -1,0 +1,45 @@
+{
+  "id": "s40-density:body-depthfade",
+  "name": "돌아가는 배 body 저대비 시험",
+  "semanticLayer": "BODY",
+  "category": "rock",
+  "bounds": {
+    "x": -400,
+    "y": 1200,
+    "w": 7000,
+    "h": 3200
+  },
+  "anchor": {
+    "x": 0,
+    "y": 0
+  },
+  "foot": {
+    "x": 0,
+    "y": 0
+  },
+  "transform": [
+    3.7756202804746493,
+    0,
+    0,
+    3.7735849056603774,
+    -400,
+    1200
+  ],
+  "bodyClip": [
+    "M0 1920H900L1350 1860H1900L2450 1950H2850L3020 2420H4200L4700 2250 4950 1950 5100 1780 5600 1710H6200L6700 1552.7734375 7200 1486.80296296296 7700 1543.01037037037 8200 1605.44 8700 1609.02606310014 9200 1512.45541838134 9700 1382.96296296296 10200 1302.85322359396 10700 1275.99650094766 11200 1203.28181950722 11700 1125.97463187054 12200 1090V27200H-6000V1660L-5500 1625.73844583759-5000 1552.11255285027-4500 1482.86047528794-4000 1463.47736625514-3500 1561.11111111111-3000 1718.93004115226-2500 1836.62551440329-2000 1876-1500 1987.48148148148-1000 2087.85185185185-500 2043.046875Z"
+  ],
+  "params": {
+    "semanticLayer": "BODY",
+    "sourceViewBox": [
+      0.0,
+      0.0,
+      1854.0,
+      848.0
+    ],
+    "removedReferenceImages": [],
+    "sourceRaw": "body-raw.svg",
+    "collisionAuthority": "unchanged official40",
+    "densityRevision": 2,
+    "artEdit": "Source-derived Inkscape union full silhouette plus original contact-protected forms fading with depth. Intentional art recomposition, not fidelity optimization."
+  }
+}
