@@ -82,7 +82,7 @@ for N in ascending plateau descending overhang; do
  python tools/vector-production/quantize-svg.py "$D/stacked-raw.svg" --output "$D/stacked-optimized.svg" --grid .01
  python tools/vector-production/import-svg.py "$D/stacked-optimized.svg" --config "$D/stacked-asset-config.json" --output "$D/stacked-asset.json"
 done
-node tools/act4-pilot-native/assemble-stage31-candidate.mjs PATH/TO/skeleton-v4/blueprint.json _local/reports/stage31-full-native-v4
+node tools/act4-pilot-native/assemble-stage31-candidate.mjs PATH/TO/skeleton-v4/blueprint.json _local/reports/stage31-full-native-v4 --allow-rejected-stretch-diagnostic
 ```
 
 Full v4 composition uses matching R1 stage SHA
@@ -101,3 +101,15 @@ approved upper facets, and complete Engine/boarding revalidation. Do not extract
 final collision from this rejected stretched appearance. Large intermediate
 project/assets/PNG output stays local. Background source-unit errors must be
 converted through actual L6/parallax/zoom before any final CSS claim.
+
+## A06 — root rejected whole candidate (2026-10-30)
+
+Root directly reviewed full and normal-west previews: long vertical stretching,
+thick moss caps, and icicle bodies are rejected. Cause: common shallow modules
+were incorrectly used as stage-specific tall solids. Do not repair this candidate
+with further warp, flat fill, hidden collision, or threshold relaxation. Root will
+author three independent native stage-specific bodies with aspect ratios matching
+the actual v4 bodies; only near-natural fit is allowed. Common modules remain
+shallow one-way ledges. The assembler refuses this rejected method unless the
+explicit diagnostic-only flag is supplied. Body art review must precede separate
+non-walkable collider extraction and full Engine/boarding revalidation.
