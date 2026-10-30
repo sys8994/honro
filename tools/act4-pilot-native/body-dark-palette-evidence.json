@@ -1,0 +1,23 @@
+{
+  "input": "_local/reports/stage31-complete-native-v1/art-package.json",
+  "sourceSHA256": "2e7505b0ba5387c865c2fbc9f1bf4601f67df57d454f1dd293aed40b73848948",
+  "outputSHA256": "e01da059736fbf4ee97f858c0ea110fb5be76d1bf894409f998e816f40661af8",
+  "records": [
+    {
+      "id": "stage31:native:west-ledge",
+      "changedPaintNodes": 1,
+      "geometrySHA256": "ab77371d20a01b870af1cbccb1d62ad2761255e20136d911f3fc954f12758bda"
+    },
+    {
+      "id": "stage31:native:ridge-court",
+      "changedPaintNodes": 2,
+      "geometrySHA256": "9616e561b047c39f33c5695aed52be71fcc412995b78d9208fe6b2da1f7d03fb"
+    },
+    {
+      "id": "stage31:native:east-overhang",
+      "changedPaintNodes": 1,
+      "geometrySHA256": "edb77acf46f2fb27f67faa93d9e575cf45d536d0ad279ea0e85dcdf9b50e85b3"
+    }
+  ],
+  "coordinatesAndCollisionUnchanged": true
+}
