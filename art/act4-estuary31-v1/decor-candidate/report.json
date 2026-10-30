@@ -1,0 +1,16 @@
+{
+  "sourcePackageSHA256": "c3283e102952bf72100e5dca4c7a84b971c65314f9c00af9804254e14ab0675f",
+  "placements": 13,
+  "props": 9,
+  "piles": 2,
+  "actorsChanged": false,
+  "collisionChanged": false,
+  "sourceGeometryArtUnchanged": true,
+  "backgroundIncluded": false,
+  "rootReviewRequired": [
+    "Jetty pile/board visual logic and actual waterbed context",
+    "Sparse props feet/rays and hero visibility",
+    "Native board top vs actual foot pixels"
+  ],
+  "note": "No palms/pines, floating walkway chain, invented rock BODY, or vector background"
+}

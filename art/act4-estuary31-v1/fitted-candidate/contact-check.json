@@ -1,0 +1,15 @@
+{
+  "samples": 1618,
+  "method": "Exact painted-boundary Bezier polynomial x intersections; profile interpolant; discrete samples not supremum proof",
+  "maxWorldError": 0.1138219392287283,
+  "maxCSSNormal07": 0.0796753574601098,
+  "maxCSSMax165": 0.18780619972740167,
+  "worstSample": [
+    0.1138219392287283,
+    900.0000000000002,
+    1100.1138219392292,
+    1100.0000000000005
+  ],
+  "protectedThresholdCSS": 0.5,
+  "sampledPass": true
+}
