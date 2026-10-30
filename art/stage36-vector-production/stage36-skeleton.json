@@ -1,0 +1,936 @@
+{
+  "id": "stage-36",
+  "name": "36 · 쇠가 없는 마을",
+  "width": 7200,
+  "height": 3100,
+  "backdrop": "forest",
+  "metadata": {
+    "stageId": 36,
+    "campaign": true,
+    "act4Stage": 36
+  },
+  "terrains": [
+    {
+      "id": "a4-36-land",
+      "type": "solid",
+      "baseMaterial": "rock",
+      "breakable": false,
+      "oneWay": false,
+      "points": [
+        {
+          "x": 0,
+          "y": 1800
+        },
+        {
+          "x": 650,
+          "y": 1810
+        },
+        {
+          "x": 1120,
+          "y": 1910
+        },
+        {
+          "x": 1800,
+          "y": 1970
+        },
+        {
+          "x": 2450,
+          "y": 2020
+        },
+        {
+          "x": 3090,
+          "y": 2040
+        },
+        {
+          "x": 4200,
+          "y": 2040
+        },
+        {
+          "x": 4930,
+          "y": 2010
+        },
+        {
+          "x": 5550,
+          "y": 1930
+        },
+        {
+          "x": 6300,
+          "y": 1830
+        },
+        {
+          "x": 7200,
+          "y": 1800
+        },
+        {
+          "x": 7700,
+          "y": 1634.6621935283756
+        },
+        {
+          "x": 8200,
+          "y": 1567.1597028964354
+        },
+        {
+          "x": 8700,
+          "y": 1623.077749840361
+        },
+        {
+          "x": 9200,
+          "y": 1685.4527263380135
+        },
+        {
+          "x": 9700,
+          "y": 1689.0284667949013
+        },
+        {
+          "x": 10200,
+          "y": 1592.455872380642
+        },
+        {
+          "x": 10700,
+          "y": 1462.963048712354
+        },
+        {
+          "x": 11200,
+          "y": 1382.853239789932
+        },
+        {
+          "x": 11700,
+          "y": 1355.9965040066832
+        },
+        {
+          "x": 12200,
+          "y": 1283.2818200849918
+        },
+        {
+          "x": 12700,
+          "y": 1205.9746319796627
+        },
+        {
+          "x": 13200,
+          "y": 1170.0000000206114
+        },
+        {
+          "x": 13200,
+          "y": 27100
+        },
+        {
+          "x": -6000,
+          "y": 27100
+        },
+        {
+          "x": -6000,
+          "y": 1535.3846153941283
+        },
+        {
+          "x": -5500,
+          "y": 1501.1230612725676
+        },
+        {
+          "x": -5000,
+          "y": 1427.4971685015503
+        },
+        {
+          "x": -4500,
+          "y": 1358.245092084415
+        },
+        {
+          "x": -4000,
+          "y": 1338.8619891148214
+        },
+        {
+          "x": -3500,
+          "y": 1436.4957660723685
+        },
+        {
+          "x": -3000,
+          "y": 1594.3148660750162
+        },
+        {
+          "x": -2500,
+          "y": 1712.011239185491
+        },
+        {
+          "x": -2000,
+          "y": 1751.3904890790832
+        },
+        {
+          "x": -1500,
+          "y": 1862.8971950830157
+        },
+        {
+          "x": -1000,
+          "y": 1963.4011164365315
+        },
+        {
+          "x": -500,
+          "y": 1919.3032239361733
+        }
+      ],
+      "playProjection": {
+        "bounds": {
+          "left": 0,
+          "top": 0,
+          "right": 7200,
+          "bottom": 3100
+        },
+        "start": {
+          "x": 0,
+          "y": 1800
+        }
+      }
+    }
+  ],
+  "materials": [],
+  "elements": [
+    {
+      "id": "a4-36-house-1520",
+      "assetId": "a4-art:bare-doorframe",
+      "x": 1520,
+      "y": 1945.2941176470588,
+      "scale": 0.7,
+      "snap": false,
+      "rotation": 0,
+      "depthLayer": "L1",
+      "layer": "back"
+    },
+    {
+      "id": "a4-36-house-2570",
+      "assetId": "a4-art:home-ruin",
+      "x": 2570,
+      "y": 2023.75,
+      "scale": 1,
+      "snap": false,
+      "rotation": 0,
+      "depthLayer": "L1",
+      "layer": "back"
+    },
+    {
+      "id": "a4-36-house-4550",
+      "assetId": "a4-art:charred-frame",
+      "x": 4550,
+      "y": 2025.6164383561643,
+      "scale": 0.9,
+      "snap": false,
+      "rotation": 0,
+      "depthLayer": "L1",
+      "layer": "back"
+    },
+    {
+      "id": "a4-36-house-5740",
+      "assetId": "a4-art:charred-frame",
+      "x": 5740,
+      "y": 1904.6666666666667,
+      "scale": 0.7,
+      "snap": false,
+      "rotation": 0,
+      "depthLayer": "L1",
+      "layer": "back"
+    },
+    {
+      "id": "a4-36-door-4",
+      "assetId": "a4:door",
+      "x": 2460,
+      "y": 2013.8461538461538,
+      "scale": 1,
+      "snap": false,
+      "rotation": 0,
+      "depthLayer": "L1",
+      "layer": "prop"
+    },
+    {
+      "id": "a4-art-36-extra-0",
+      "assetId": "a4-art:rubble-wall",
+      "x": 1870,
+      "y": 1975.3846153846155,
+      "scale": 1,
+      "rotation": 0,
+      "snap": false,
+      "depthLayer": "L1",
+      "layer": "back"
+    },
+    {
+      "id": "a4-art-36-extra-1",
+      "assetId": "a4-art:rubble-wall",
+      "x": 5260,
+      "y": 1967.4193548387098,
+      "scale": 0.75,
+      "rotation": 0,
+      "snap": false,
+      "depthLayer": "L1",
+      "layer": "back"
+    },
+    {
+      "id": "a4-art-36-extra-2",
+      "assetId": "a4-art:fallen-bamboo",
+      "x": 5540,
+      "y": 1931.2903225806451,
+      "scale": 0.4,
+      "rotation": 0,
+      "snap": false,
+      "depthLayer": "L1",
+      "layer": "back"
+    },
+    {
+      "id": "a4-art-36-extra-3",
+      "assetId": "a4-art:empty-foundation",
+      "x": 3540,
+      "y": 2040,
+      "scale": 0.8,
+      "rotation": 0,
+      "snap": false,
+      "depthLayer": "L1",
+      "layer": "back"
+    }
+  ],
+  "units": [
+    {
+      "id": "archer",
+      "kind": "archer",
+      "team": "player",
+      "x": 260,
+      "y": 1804,
+      "facing": 1
+    },
+    {
+      "id": "mage",
+      "kind": "mage",
+      "team": "player",
+      "x": 380,
+      "y": 1805.8461538461538,
+      "facing": 1
+    },
+    {
+      "id": "knight",
+      "kind": "knight",
+      "team": "player",
+      "x": 500,
+      "y": 1807.6923076923076,
+      "facing": 1
+    },
+    {
+      "id": "occultist",
+      "kind": "occultist",
+      "team": "player",
+      "x": 620,
+      "y": 1809.5384615384614,
+      "facing": 1
+    },
+    {
+      "id": "a4-36-g0-0",
+      "kind": "warden",
+      "team": "enemy",
+      "x": 1220,
+      "y": 1918.8235294117646,
+      "facing": 1,
+      "encounterGroup": "a4-36-0",
+      "stageOverrides": {
+        "elite": true,
+        "group": 100,
+        "awake": false,
+        "aggroUntil": 0,
+        "honroAct4RewardTag": "eq-hw-36"
+      }
+    },
+    {
+      "id": "a4-36-g0-1",
+      "kind": "hound",
+      "team": "enemy",
+      "x": 1450,
+      "y": 1939.1176470588234,
+      "facing": 1,
+      "encounterGroup": "a4-36-0",
+      "stageOverrides": {
+        "elite": false,
+        "group": 100,
+        "awake": false,
+        "aggroUntil": 0
+      }
+    }
+  ],
+  "events": [],
+  "encounters": [
+    {
+      "id": "a4-36-0",
+      "key": "a4-36-0",
+      "unitIds": [
+        "a4-36-g0-0",
+        "a4-36-g0-1"
+      ],
+      "behavior": "guard"
+    }
+  ],
+  "objectives": [],
+  "markers": [],
+  "layers": [
+    {
+      "id": "far",
+      "name": "far",
+      "visible": true,
+      "locked": false
+    },
+    {
+      "id": "mid",
+      "name": "mid",
+      "visible": true,
+      "locked": false
+    },
+    {
+      "id": "back",
+      "name": "back",
+      "visible": true,
+      "locked": false
+    },
+    {
+      "id": "structural-back",
+      "name": "structural-back",
+      "visible": true,
+      "locked": false
+    },
+    {
+      "id": "terrain",
+      "name": "terrain",
+      "visible": true,
+      "locked": false
+    },
+    {
+      "id": "interactive",
+      "name": "interactive",
+      "visible": true,
+      "locked": false
+    },
+    {
+      "id": "prop",
+      "name": "prop",
+      "visible": true,
+      "locked": false
+    },
+    {
+      "id": "units",
+      "name": "units",
+      "visible": true,
+      "locked": false
+    },
+    {
+      "id": "events",
+      "name": "events",
+      "visible": true,
+      "locked": false
+    },
+    {
+      "id": "front",
+      "name": "front",
+      "visible": true,
+      "locked": false
+    },
+    {
+      "id": "L2",
+      "name": "L2",
+      "visible": true,
+      "locked": false
+    },
+    {
+      "id": "L3",
+      "name": "L3",
+      "visible": true,
+      "locked": false
+    },
+    {
+      "id": "L4",
+      "name": "L4",
+      "visible": true,
+      "locked": false
+    },
+    {
+      "id": "L5",
+      "name": "L5",
+      "visible": true,
+      "locked": false
+    }
+  ],
+  "meta": {
+    "notes": "",
+    "seed": 12031
+  },
+  "initialState": {
+    "honroActiveLimit": 3,
+    "honroAct4Preview": 36,
+    "honroAct4ArtRevision": 2,
+    "honroAct4Official": 1,
+    "honroAct4Design": {
+      "revision": 1,
+      "chapter": 36,
+      "combatBudgetStage": 36,
+      "release": true,
+      "water": "visual/shallow only; recover/lethal pending separate verified implementation",
+      "dialogue": "reviewed seeds not yet bound",
+      "palette": {
+        "top": "#85857a",
+        "light": "#a29b88",
+        "body": "#69685c",
+        "seam": "#494e44",
+        "deep": "#2d3935"
+      },
+      "requiredHeroes": [
+        "knight"
+      ]
+    },
+    "honroNarrativeRevision": 1,
+    "honroStoryCanonRevision": 1,
+    "honroNarrativeCatalogueRevision": 1
+  },
+  "environment": {
+    "version": 4,
+    "preset": "forest",
+    "atmosphere": {
+      "preset": "valley",
+      "overrides": {
+        "skyTop": "#809ba9",
+        "skyBottom": "#b3cbd3",
+        "ambientTint": "#8a8b80",
+        "hazeColor": "#9eb7bf",
+        "farFogColor": "#b4c8cd",
+        "nearFogColor": "#9eb7b8",
+        "shadowTint": "#304751",
+        "keyLightColor": "#b5cbd2",
+        "lightStrength": 0.02,
+        "mistStrength": 0.29
+      }
+    },
+    "zones": [
+      {
+        "id": "landscape",
+        "from": 0,
+        "to": 3100,
+        "blend": 232.5,
+        "atmosphere": {
+          "mistStrength": 0.3
+        }
+      }
+    ],
+    "groups": [
+      {
+        "id": "landscape-L4",
+        "depthLayer": "L4",
+        "verticalMode": "WORLD",
+        "zoneId": "landscape",
+        "x": 0,
+        "y": 1736
+      },
+      {
+        "id": "a4-36-rear",
+        "depthLayer": "L3",
+        "verticalMode": "WORLD",
+        "zoneId": "landscape",
+        "x": 0,
+        "y": 2040
+      }
+    ],
+    "surfaces": [
+      {
+        "id": "landscape-L4-support",
+        "groupId": "landscape-L4",
+        "kind": "ink-mountain",
+        "points": [
+          {
+            "x": -18713,
+            "y": -242
+          },
+          {
+            "x": -18013,
+            "y": -232
+          },
+          {
+            "x": -17313,
+            "y": -226
+          },
+          {
+            "x": -16613,
+            "y": -228
+          },
+          {
+            "x": -15913,
+            "y": -235
+          },
+          {
+            "x": -15213,
+            "y": -247
+          },
+          {
+            "x": -14513,
+            "y": -260
+          },
+          {
+            "x": -13813,
+            "y": -270
+          },
+          {
+            "x": -13113,
+            "y": -274
+          },
+          {
+            "x": -12413,
+            "y": -272
+          },
+          {
+            "x": -11713,
+            "y": -263
+          },
+          {
+            "x": -11013,
+            "y": -251
+          },
+          {
+            "x": -10313,
+            "y": -238
+          },
+          {
+            "x": -9613,
+            "y": -229
+          },
+          {
+            "x": -8913,
+            "y": -226
+          },
+          {
+            "x": -8213,
+            "y": -230
+          },
+          {
+            "x": -7513,
+            "y": -240
+          },
+          {
+            "x": -6813,
+            "y": -257
+          },
+          {
+            "x": -6113,
+            "y": -282
+          },
+          {
+            "x": -5413,
+            "y": -322
+          },
+          {
+            "x": -4713,
+            "y": -388
+          },
+          {
+            "x": -4013,
+            "y": -493
+          },
+          {
+            "x": -3313,
+            "y": -637
+          },
+          {
+            "x": -2613,
+            "y": -802
+          },
+          {
+            "x": -1913,
+            "y": -961
+          },
+          {
+            "x": -1213,
+            "y": -1102
+          },
+          {
+            "x": -513,
+            "y": -1244
+          },
+          {
+            "x": 187,
+            "y": -1409
+          },
+          {
+            "x": 887,
+            "y": -1572
+          },
+          {
+            "x": 1587,
+            "y": -1660
+          },
+          {
+            "x": 2287,
+            "y": -1632
+          },
+          {
+            "x": 2987,
+            "y": -1543
+          },
+          {
+            "x": 3687,
+            "y": -1496
+          },
+          {
+            "x": 4387,
+            "y": -1516
+          },
+          {
+            "x": 5087,
+            "y": -1512
+          },
+          {
+            "x": 5787,
+            "y": -1404
+          },
+          {
+            "x": 6487,
+            "y": -1224
+          },
+          {
+            "x": 7187,
+            "y": -1063
+          },
+          {
+            "x": 7887,
+            "y": -959
+          },
+          {
+            "x": 8587,
+            "y": -877
+          },
+          {
+            "x": 9287,
+            "y": -776
+          },
+          {
+            "x": 9987,
+            "y": -651
+          },
+          {
+            "x": 10687,
+            "y": -524
+          },
+          {
+            "x": 11387,
+            "y": -418
+          },
+          {
+            "x": 12087,
+            "y": -343
+          },
+          {
+            "x": 12787,
+            "y": -294
+          },
+          {
+            "x": 13487,
+            "y": -263
+          },
+          {
+            "x": 14187,
+            "y": -242
+          },
+          {
+            "x": 14887,
+            "y": -230
+          },
+          {
+            "x": 15587,
+            "y": -226
+          },
+          {
+            "x": 16287,
+            "y": -229
+          },
+          {
+            "x": 16987,
+            "y": -239
+          },
+          {
+            "x": 17687,
+            "y": -251
+          },
+          {
+            "x": 18387,
+            "y": -263
+          },
+          {
+            "x": 19087,
+            "y": -272
+          },
+          {
+            "x": 19787,
+            "y": -274
+          },
+          {
+            "x": 20487,
+            "y": -269
+          },
+          {
+            "x": 21187,
+            "y": -259
+          },
+          {
+            "x": 21887,
+            "y": -247
+          },
+          {
+            "x": 22587,
+            "y": -235
+          },
+          {
+            "x": 23287,
+            "y": -228
+          },
+          {
+            "x": 23987,
+            "y": -226
+          },
+          {
+            "x": 24687,
+            "y": -232
+          },
+          {
+            "x": 25387,
+            "y": -243
+          },
+          {
+            "x": 26087,
+            "y": -255
+          }
+        ],
+        "bottom": 23028
+      },
+      {
+        "id": "a4-36-rear-support",
+        "groupId": "a4-36-rear",
+        "kind": "rear-ground",
+        "points": [
+          {
+            "x": -16000,
+            "y": 0
+          },
+          {
+            "x": -6500,
+            "y": -90
+          },
+          {
+            "x": 0,
+            "y": -20
+          },
+          {
+            "x": 1900,
+            "y": 70
+          },
+          {
+            "x": 4200,
+            "y": -60
+          },
+          {
+            "x": 7500,
+            "y": 0
+          },
+          {
+            "x": 18000,
+            "y": -100
+          }
+        ],
+        "bottom": 29000
+      }
+    ],
+    "placements": [
+      {
+        "id": "a4-far--4500",
+        "assetId": "a4-art:home-ruin",
+        "depthLayer": "L3",
+        "groupId": "a4-36-rear",
+        "supportId": "a4-36-rear-support",
+        "x": -4500,
+        "y": 0,
+        "scale": 0.78,
+        "rotation": 0
+      },
+      {
+        "id": "a4-far--1200",
+        "assetId": "a4-art:home-ruin",
+        "depthLayer": "L3",
+        "groupId": "a4-36-rear",
+        "supportId": "a4-36-rear-support",
+        "x": -1200,
+        "y": 0,
+        "scale": 0.7020000000000001,
+        "rotation": 0
+      },
+      {
+        "id": "a4-far-1600",
+        "assetId": "a4-art:home-ruin",
+        "depthLayer": "L3",
+        "groupId": "a4-36-rear",
+        "supportId": "a4-36-rear-support",
+        "x": 1600,
+        "y": 0,
+        "scale": 0.8580000000000001,
+        "rotation": 0
+      },
+      {
+        "id": "a4-far-5400",
+        "assetId": "a4-art:home-ruin",
+        "depthLayer": "L3",
+        "groupId": "a4-36-rear",
+        "supportId": "a4-36-rear-support",
+        "x": 5400,
+        "y": 0,
+        "scale": 0.7020000000000001,
+        "rotation": 0
+      },
+      {
+        "id": "a4-far-8500",
+        "assetId": "a4-art:home-ruin",
+        "depthLayer": "L3",
+        "groupId": "a4-36-rear",
+        "supportId": "a4-36-rear-support",
+        "x": 8500,
+        "y": 0,
+        "scale": 0.8580000000000001,
+        "rotation": 0
+      },
+      {
+        "id": "a4-far-12000",
+        "assetId": "a4-art:home-ruin",
+        "depthLayer": "L3",
+        "groupId": "a4-36-rear",
+        "supportId": "a4-36-rear-support",
+        "x": 12000,
+        "y": 0,
+        "scale": 0.7020000000000001,
+        "rotation": 0
+      }
+    ]
+  },
+  "design": {
+    "act4": {
+      "revision": 1,
+      "chapter": 36,
+      "combatBudgetStage": 36,
+      "release": true,
+      "water": "visual/shallow only; recover/lethal pending separate verified implementation",
+      "dialogue": "reviewed seeds not yet bound",
+      "palette": {
+        "top": "#85857a",
+        "light": "#a29b88",
+        "body": "#69685c",
+        "seam": "#494e44",
+        "deep": "#2d3935"
+      },
+      "requiredHeroes": [
+        "knight"
+      ]
+    }
+  },
+  "playBounds": {
+    "left": 0,
+    "top": 0,
+    "right": 7200,
+    "bottom": 3100
+  },
+  "terrainBounds": {
+    "left": -6000,
+    "top": -24000,
+    "right": 13200,
+    "bottom": 27100
+  },
+  "terrainDomainVersion": 1
+}

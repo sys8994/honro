@@ -1,0 +1,23 @@
+{
+  "stage": 37,
+  "sourceIssue": "Thinbrownarc visible beforefinefade in candidate-native/37-mobile, causedbysoilbacking overblueface. Notnewfadeartifact.",
+  "repair": "Nativepath8 geometryintersection withdepth>=100, placedaftersourcepath6 andbeforepath5/shadow4/base2. Originaltopstack preserved.",
+  "rejected": [
+    "union8+5 atoldlowerstack exposedlargegoldfaces",
+    "movingfullunionabovegold removedmuchoforiginaltopsoil; rejectedbroadscope"
+  ],
+  "validation": {
+    "contactWorldDepth": [
+      3,
+      90
+    ],
+    "contactPixels": 133967,
+    "maxContactRGBA": 0,
+    "alpha128ChangedPixels": 0,
+    "changedRGBPixels": 6567,
+    "width": 3600
+  },
+  "evidence": "_local/reports/deep-body-v3/37-localized/native",
+  "rootDecision": "Acceptedsource direction; finalintegratedQA pending",
+  "asset": "art/stage37-density-seam-v3/body-asset.json"
+}

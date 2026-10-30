@@ -1,0 +1,14 @@
+{
+  "assetFile": "art/stage37-signal-density/winch-asset.json",
+  "assetId": "s37-density:haul-winch",
+  "stage": 37,
+  "replaceAssetId": "a4-coast:haul-winch",
+  "instances": [
+    "a4-coast-37-art-10",
+    "a4-coast-37-art-11"
+  ],
+  "preserve": "All instance transforms and IDs, stage design, signal flame, physics. Replace ONLY these stage37 instances, not global asset.",
+  "compiledPhysicsPreserved": true,
+  "gameplayFieldsPreserved": true,
+  "visualApproval": false
+}

@@ -1,0 +1,306 @@
+{
+  "scope": "Native Inkscape source paths and semantic feature review; not automatic art approval",
+  "ground": {
+    "method": "Raw12-color geometry imported without simplification",
+    "nodes": 15
+  },
+  "home": {
+    "method": "Independent native .0003 simplify, restore raw path15 outer silhouette and raw path1 darkest doorway; .01 absolute-control grid only oversized paths9/8/7/6/5",
+    "runtimeNodes": 19,
+    "pixelDiagnostic": {
+      "1": {
+        "rgbMAE255": 0.4154977798461914,
+        "rgbP99_255": 7.000014781951904,
+        "alphaMAE255": 0.05861490219831467,
+        "changedPixelFraction": 0.0017298381731271175,
+        "silhouetteMaxOffsetPx": 1.0,
+        "protectedChangedPixelFraction": 0.001867460758088124,
+        "protectedRgbMAE255": 0.4636528491973877,
+        "protectedSilhouetteMaxOffsetPx": 1.0,
+        "protectedColorEdgeMaxOffsetPx": 37.21558813185679,
+        "pass": false
+      },
+      "2.0741885625966": {
+        "rgbMAE255": 0.3775068521499634,
+        "rgbP99_255": 7.999999523162842,
+        "alphaMAE255": 0.00649724155664444,
+        "changedPixelFraction": 0.002896246170228443,
+        "silhouetteMaxOffsetPx": 1.0,
+        "protectedChangedPixelFraction": 0.0032192842981371337,
+        "protectedRgbMAE255": 0.4275427460670471,
+        "protectedSilhouetteMaxOffsetPx": 1.0,
+        "protectedColorEdgeMaxOffsetPx": 76.05918747922567,
+        "pass": false
+      }
+    },
+    "supersampledContact": {
+      "raw": "art/stage36-vector-production/home-raw.svg",
+      "candidate": "_local/reports/vector-optimization/stage36-home-local/quantized.svg",
+      "metric": "protected alpha silhouette; no palette-island displacement claim",
+      "supersample": 8,
+      "normalPixelSamplingStep": 0.125,
+      "visualApproval": "NOT REVIEWED",
+      "regions": [
+        [
+          183.34604904632153,
+          98.72479564032697,
+          193.92370572207085,
+          169.2425068119891
+        ],
+        [
+          7.051771117166212,
+          232.70844686648502,
+          631.133514986376,
+          52.88828337874659
+        ]
+      ],
+      "errors": {
+        "1": {
+          "samples": [
+            {
+              "region": 0,
+              "protectedSilhouetteMaxOffsetPx": 0.0,
+              "supersampledPixelOffset": 0.0,
+              "protectedRgbMAE255": 0.2465992569923401,
+              "protectedChangedPixelFraction": 0.006024130808064935
+            },
+            {
+              "region": 1,
+              "protectedSilhouetteMaxOffsetPx": 0.125,
+              "supersampledPixelOffset": 1.0,
+              "protectedRgbMAE255": 0.6122145056724548,
+              "protectedChangedPixelFraction": 0.01979606944145951
+            }
+          ],
+          "protectedSilhouetteMaxOffsetPx": 0.125,
+          "limitPx": 0.5,
+          "silhouettePass": true
+        },
+        "2.0741885625966": {
+          "samples": [
+            {
+              "region": 0,
+              "protectedSilhouetteMaxOffsetPx": 0.0,
+              "supersampledPixelOffset": 0.0,
+              "protectedRgbMAE255": 0.24671372771263123,
+              "protectedChangedPixelFraction": 0.008295718215511227
+            },
+            {
+              "region": 1,
+              "protectedSilhouetteMaxOffsetPx": 0.0,
+              "supersampledPixelOffset": 0.0,
+              "protectedRgbMAE255": 0.6177834272384644,
+              "protectedChangedPixelFraction": 0.025080655387418826
+            }
+          ],
+          "protectedSilhouetteMaxOffsetPx": 0.0,
+          "limitPx": 1.0370942812983,
+          "silhouettePass": true
+        }
+      },
+      "silhouettePass": true
+    },
+    "review": "Side-by-side enlarged doorway/feet inspected. Empty doorway, sockets and stone support preserved. Original generic palette-island correspondence diagnostic remains failed (tiny tonal fragments are not stable feature identities); acceptance is scoped to unchanged critical raw paths, protected alpha displacement and local RGB error, not an all-color-island preservation claim."
+  },
+  "door": {
+    "method": "Independent .0003 simplify with raw paths7/1 restored; .01 absolute-control grid onlypath4",
+    "runtimeNodes": 10,
+    "comparison": {
+      "1": {
+        "rgbMAE255": 0.220222607254982,
+        "rgbP99_255": 4.7656049728393555,
+        "alphaMAE255": 0.12657885253429413,
+        "changedPixelFraction": 0.001119770670966586,
+        "silhouetteMaxOffsetPx": 0.0,
+        "protectedChangedPixelFraction": 0.0035587188612099642,
+        "protectedRgbMAE255": 0.5670861601829529,
+        "protectedSilhouetteMaxOffsetPx": 0.0,
+        "pass": true
+      },
+      "2.0737704918032787": {
+        "rgbMAE255": 0.15664055943489075,
+        "rgbP99_255": 2.999999761581421,
+        "alphaMAE255": 0.08117328584194183,
+        "changedPixelFraction": 0.0009569377990430622,
+        "silhouetteMaxOffsetPx": 1.0,
+        "protectedChangedPixelFraction": 0.0032212885154061623,
+        "protectedRgbMAE255": 0.4447964131832123,
+        "protectedSilhouetteMaxOffsetPx": 1.0,
+        "pass": true
+      }
+    },
+    "review": "Standing, falling-mid and fallen images from ordinary App replay inspected; actual native animation and original pivot retained."
+  },
+  "frame": {
+    "method": "Independent .0003 native simplify; raw path9 silhouette restored; no grid change was needed",
+    "runtimeNodes": 12,
+    "pixelDiagnostic": {
+      "1": {
+        "rgbMAE255": 0.2679216265678406,
+        "rgbP99_255": 5.999999523162842,
+        "alphaMAE255": 0.07080113142728806,
+        "changedPixelFraction": 0.0014272784237276334,
+        "silhouetteMaxOffsetPx": 1.0,
+        "protectedChangedPixelFraction": 0.0017987750490575014,
+        "protectedRgbMAE255": 0.34093737602233887,
+        "protectedSilhouetteMaxOffsetPx": 1.0,
+        "pass": false
+      },
+      "2.0754716981132075": {
+        "rgbMAE255": 0.22497008740901947,
+        "rgbP99_255": 5.999999523162842,
+        "alphaMAE255": 0.006494085304439068,
+        "changedPixelFraction": 0.0016488413547237077,
+        "silhouetteMaxOffsetPx": 1.0,
+        "protectedChangedPixelFraction": 0.0020722570562590253,
+        "protectedRgbMAE255": 0.2851628363132477,
+        "protectedSilhouetteMaxOffsetPx": 1.0,
+        "pass": true
+      }
+    },
+    "supersampledContact": {
+      "raw": "art/stage36-vector-production/frame-raw.svg",
+      "candidate": "_local/reports/vector-optimization/stage36-frame/final.svg",
+      "metric": "protected alpha silhouette; no palette-island displacement claim",
+      "supersample": 8,
+      "normalPixelSamplingStep": 0.125,
+      "visualApproval": "NOT REVIEWED",
+      "regions": [
+        [
+          4.9609984399375975,
+          188.5179407176287,
+          620.1248049921996,
+          62.8393135725429
+        ],
+        [
+          38.03432137285491,
+          13.229329173166926,
+          545.7098283931357,
+          178.5959438377535
+        ]
+      ],
+      "errors": {
+        "1": {
+          "samples": [
+            {
+              "region": 0,
+              "protectedSilhouetteMaxOffsetPx": 0.125,
+              "supersampledPixelOffset": 1.0,
+              "protectedRgbMAE255": 0.5358352065086365,
+              "protectedChangedPixelFraction": 0.016553771505215833
+            },
+            {
+              "region": 1,
+              "protectedSilhouetteMaxOffsetPx": 0.0,
+              "supersampledPixelOffset": 0.0,
+              "protectedRgbMAE255": 0.17089051008224487,
+              "protectedChangedPixelFraction": 0.003752836586037473
+            }
+          ],
+          "protectedSilhouetteMaxOffsetPx": 0.125,
+          "limitPx": 0.5,
+          "silhouettePass": true
+        },
+        "2.0754716981132075": {
+          "samples": [
+            {
+              "region": 0,
+              "protectedSilhouetteMaxOffsetPx": 0.2795084971874737,
+              "supersampledPixelOffset": 2.23606797749979,
+              "protectedRgbMAE255": 0.5394385457038879,
+              "protectedChangedPixelFraction": 0.021778094799028248
+            },
+            {
+              "region": 1,
+              "protectedSilhouetteMaxOffsetPx": 0.125,
+              "supersampledPixelOffset": 1.0,
+              "protectedRgbMAE255": 0.17053104937076569,
+              "protectedChangedPixelFraction": 0.005467512729151329
+            }
+          ],
+          "protectedSilhouetteMaxOffsetPx": 0.2795084971874737,
+          "limitPx": 1.0377358490566038,
+          "silhouettePass": true
+        }
+      },
+      "silhouettePass": true
+    },
+    "review": "Actual shared world review confirms open gaps and grounded stone feet; no collision added. Visual-only frames rotate to existing local terrain slope."
+  },
+  "foundation": {
+    "method": "Raw native10-color trace; only path7 absolute B\u00e9zier controls quantized to .01source grid, bound\u2264.007071source units; no simplification",
+    "runtimeNodes": 17,
+    "pixelDiagnostic": {
+      "1": {
+        "rgbMAE255": 0.0006680688820779324,
+        "rgbP99_255": 0.0,
+        "alphaMAE255": 0.0003559985780157149,
+        "changedPixelFraction": 0.0,
+        "silhouetteMaxOffsetPx": 1.0,
+        "protectedChangedPixelFraction": 0.0,
+        "protectedRgbMAE255": 0.0025805907789617777,
+        "protectedSilhouetteMaxOffsetPx": 1.0,
+        "pass": false
+      },
+      "2.0754716981132075": {
+        "rgbMAE255": 0.000309132068650797,
+        "rgbP99_255": 0.0,
+        "alphaMAE255": 2.2038566385162994e-05,
+        "changedPixelFraction": 0.0,
+        "silhouetteMaxOffsetPx": 0.0,
+        "protectedChangedPixelFraction": 0.0,
+        "protectedRgbMAE255": 0.0011973298387601972,
+        "protectedSilhouetteMaxOffsetPx": 0.0,
+        "pass": true
+      }
+    },
+    "supersampledContact": {
+      "raw": "art/stage36-vector-production/foundation-raw.svg",
+      "candidate": "_local/reports/vector-optimization/stage36-foundation/final.svg",
+      "metric": "protected alpha silhouette; no palette-island displacement claim",
+      "supersample": 8,
+      "normalPixelSamplingStep": 0.125,
+      "visualApproval": "NOT REVIEWED",
+      "regions": [
+        [
+          13.09989701338826,
+          98.24922760041194,
+          605.870236869207,
+          72.04943357363543
+        ]
+      ],
+      "errors": {
+        "1": {
+          "samples": [
+            {
+              "region": 0,
+              "protectedSilhouetteMaxOffsetPx": 0.0,
+              "supersampledPixelOffset": 0.0,
+              "protectedRgbMAE255": 0.001377695705741644,
+              "protectedChangedPixelFraction": 0.0
+            }
+          ],
+          "protectedSilhouetteMaxOffsetPx": 0.0,
+          "limitPx": 0.5,
+          "silhouettePass": true
+        },
+        "2.0754716981132075": {
+          "samples": [
+            {
+              "region": 0,
+              "protectedSilhouetteMaxOffsetPx": 0.0,
+              "supersampledPixelOffset": 0.0,
+              "protectedRgbMAE255": 0.001322784461081028,
+              "protectedChangedPixelFraction": 0.0
+            }
+          ],
+          "protectedSilhouetteMaxOffsetPx": 0.0,
+          "limitPx": 1.0377358490566038,
+          "silhouettePass": true
+        }
+      },
+      "silhouettePass": true
+    },
+    "review": "Empty hearth, sparse stones and low footprint inspected at normal/max in actual shared scene."
+  }
+}

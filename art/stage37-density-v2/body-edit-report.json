@@ -1,0 +1,86 @@
+{
+  "source": "art/stage37-vector-production/body-clean.svg",
+  "sourceSHA256": "57fbf754ac07d629ef2e753da74c56819ff242cd8609a83c67e854fd1647adf1",
+  "tool": "Inkscape 1.4 actual headless palette and contiguous draw-stack unions",
+  "paletteEdits": {
+    "path8,path5": "#3b4653",
+    "path4,path3": "#303b48"
+  },
+  "protectedPathsExact": {
+    "path11": true,
+    "path10": true,
+    "path9": true,
+    "path7": true,
+    "path6": true
+  },
+  "unionTrials": [
+    {
+      "group": "path4,path3",
+      "before": {
+        "bytes": 149222,
+        "paths": 10,
+        "explicitCommandLetters": 1383,
+        "segments": 3388
+      },
+      "after": {
+        "bytes": 123561,
+        "paths": 9,
+        "explicitCommandLetters": 1459,
+        "segments": 2711
+      },
+      "accepted": true,
+      "strictImportPassed": true
+    }
+  ],
+  "stats": {
+    "existingFinal": {
+      "bytes": 149979,
+      "paths": 10,
+      "explicitCommandLetters": 1383,
+      "segments": 3388
+    },
+    "palette": {
+      "bytes": 149222,
+      "paths": 10,
+      "explicitCommandLetters": 1383,
+      "segments": 3388
+    },
+    "final": {
+      "bytes": 123561,
+      "paths": 9,
+      "explicitCommandLetters": 1459,
+      "segments": 2711
+    }
+  },
+  "runtimeBytes": {
+    "old": 171241,
+    "new": 137280
+  },
+  "limits": {
+    "expandedNodes": 512,
+    "depth": 24,
+    "pathCharacters": 60000
+  },
+  "visualApproval": "Normal/max direct source render crops inspected; protected upper paint/path geometry exact. Quieter deep facets but large original rock silhouettes retained. Full composed scene approval pending.",
+  "paletteToFinal": {
+    "normal": {
+      "width": 4452,
+      "worldZoom": 0.53,
+      "rgbMAE255": 0.0019262565320463856,
+      "rgbMax255": 15.0,
+      "alphaChangedPixels": 0,
+      "alphaMax255": 0.0,
+      "binarySilhouetteChangedPixelsAlpha128": 0
+    },
+    "max": {
+      "width": 9240,
+      "worldZoom": 1.1,
+      "rgbMAE255": 0.0010492817233539273,
+      "rgbMax255": 14.0,
+      "alphaChangedPixels": 1808,
+      "alphaMax255": 21.0,
+      "binarySilhouetteChangedPixelsAlpha128": 0
+    }
+  },
+  "reviewCaveat": "Palette→union antialiasing differences are reported, not exact-pixel equivalence."
+}

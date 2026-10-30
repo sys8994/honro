@@ -1,0 +1,67 @@
+{
+  "width": 280,
+  "scales": [
+    1,
+    2.0754716981132075
+  ],
+  "protectionMode": "contact",
+  "protectedRects": [
+    [
+      95,
+      32,
+      80,
+      55
+    ],
+    [
+      225,
+      0,
+      55,
+      65
+    ],
+    [
+      72,
+      76,
+      100,
+      45
+    ]
+  ],
+  "reviewRects": [
+    [
+      0,
+      0,
+      280,
+      131
+    ]
+  ],
+  "asset": {
+    "id": "s37-density:haul-winch",
+    "name": "\ud574\uc548 \ubaa9\uc81c \uad8c\uc591\uae30",
+    "semanticLayer": "PROP",
+    "category": "architecture",
+    "bounds": {
+      "x": -300,
+      "y": -240,
+      "w": 600,
+      "h": 280
+    },
+    "anchor": {
+      "x": 0,
+      "y": 0
+    },
+    "foot": {
+      "x": 0,
+      "y": 0
+    },
+    "transform": [
+      0.3193612774451098,
+      0,
+      0,
+      0.3193612774451098,
+      -296.88447105788424,
+      -253.25349301397205
+    ],
+    "params": {
+      "sourceRole": "Non-interactive background boat-hauling windlass. Drum, six broad rope wraps, crank and timber trestles."
+    }
+  }
+}
