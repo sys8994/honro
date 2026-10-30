@@ -1,0 +1,44 @@
+{
+  "ssimDefinition": "RGB mean, Gaussian 11x11 sigma1.5 population covariance; valid interior",
+  "results": [
+    {
+      "quality": 90,
+      "bytes": 130830,
+      "sha256": "1ba81aae5bebeebd46cc094be2519797d67ef49a887d7aade45cb61b39878fff",
+      "width": 2173,
+      "height": 724,
+      "mae": 1.3491112676163768,
+      "p95": 4.0,
+      "p99": 7.0,
+      "max": 36,
+      "psnr": 42.0262192450306,
+      "ssimRGB": 0.9744769333519151
+    },
+    {
+      "quality": 85,
+      "bytes": 88986,
+      "sha256": "6c31341210f73962baa5fd508f2384e34afaa954cedfb609202134d39a197d9b",
+      "width": 2173,
+      "height": 724,
+      "mae": 1.6454380268810507,
+      "p95": 5.0,
+      "p99": 9.0,
+      "max": 40,
+      "psnr": 40.379809160231304,
+      "ssimRGB": 0.9643832490075357
+    },
+    {
+      "quality": 80,
+      "bytes": 69156,
+      "sha256": "4521666c0263760d32d7255874910c8336b00fecf4f65dfd3bc3154a60f0a6e7",
+      "width": 2173,
+      "height": 724,
+      "mae": 1.8418299590063554,
+      "p95": 6.0,
+      "p99": 10.0,
+      "max": 42,
+      "psnr": 39.357392110623195,
+      "ssimRGB": 0.9570400972243045
+    }
+  ]
+}

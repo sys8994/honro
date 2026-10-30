@@ -3,12 +3,21 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs/promises';
 import vm from 'node:vm';
 import sharp from 'sharp';
+import {createHash} from 'node:crypto';
 import {createCanvas,Image,loadImage} from '@napi-rs/canvas';
 const read=p=>fs.readFile(new URL('../'+p,import.meta.url));
 const code=String(await read('shared/runtime/authored-far-art.js'));
 const manifest=JSON.parse(await read('shared/assets/environment/campaign-far/manifest.json'));
 const source=await read('art/act4-estuary-far-v1/source.png'),webp=await read('shared/assets/environment/campaign-far/'+manifest.images.act4Estuary);
-assert.deepEqual(await sharp(webp).ensureAlpha().raw().toBuffer(),await sharp(source).ensureAlpha().raw().toBuffer(),'format optimization preserves every source pixel');
+const evidence=JSON.parse(await read('art/act4-estuary-far-v1/optimization.json'));
+const hash=b=>createHash('sha256').update(b).digest('hex');
+assert.equal(hash(source),evidence.source.sha256,'unaltered original raster');
+assert.equal(hash(webp),evidence.runtime.sha256,'visually accepted q90 candidate');
+const originalPixels=await sharp(source).removeAlpha().raw().toBuffer(),runtimePixels=await sharp(webp).removeAlpha().raw().toBuffer();
+assert.equal(runtimePixels.length,originalPixels.length);const metadata=await sharp(webp).metadata();assert.equal(metadata.width,2173);assert.equal(metadata.height,724);
+const errors=Array.from(runtimePixels,(v,i)=>Math.abs(v-originalPixels[i])).sort((a,b)=>a-b);
+assert(errors.reduce((a,b)=>a+b,0)/errors.length<=evidence.regressionLimits.mae,'accepted compression MAE regression limit');
+assert(errors[Math.ceil(errors.length*.99)-1]<=evidence.regressionLimits.p99);assert(errors.at(-1)<=evidence.regressionLimits.max);
 const requestCode=code.slice(code.indexOf('function request('),code.indexOf('function layers('));
 const g=vm.createContext({Image,document:{createElement:()=>createCanvas(1,1)},manifest:{images:{act4Estuary:webp,act4Dawn:webp,act4Sea:webp,forest:webp}},cache:new Map(),MAX:3});
 vm.runInContext(requestCode+';globalThis.requestForTest=request;',g);
@@ -16,7 +25,7 @@ const item=g.requestForTest('act4Estuary','blue-sea-mist-day-v1');
 assert.equal(item,g.requestForTest('act4Estuary'),'obsolete mood cannot fork or recolor the source');
 async function decoded(item){for(let i=0;i<200&&!item.canvas;i++)await new Promise(r=>setTimeout(r,5));assert(item.canvas,'image decoded');return item.canvas;}
 const cv=await decoded(item),expected=createCanvas(cv.width,cv.height);
-expected.getContext('2d').drawImage(await loadImage(await sharp(source).png().toBuffer()),0,0,cv.width,cv.height);
+expected.getContext('2d').drawImage(await loadImage(webp),0,0,cv.width,cv.height);
 assert.equal(cv.width,2048,'existing decode width cap');assert.equal(cv.height,682);
 assert.deepEqual(Buffer.from(cv.getContext('2d').getImageData(0,0,cv.width,cv.height).data),Buffer.from(expected.getContext('2d').getImageData(0,0,cv.width,cv.height).data),'authored palette receives no filter, recolor or wash');
 for(const key of ['act4Dawn','act4Sea','forest'])await decoded(g.requestForTest(key));
@@ -45,4 +54,4 @@ for(const stage of [31,32,35,40]){
 }
 for(const q of [{version:2,coveredTerrainIds:[]},{version:1}])assert.equal(api.frames(scene,800,600,{...native,honroMap:{nativeArt:q}})[0].key,'act4Sea');
 assert.equal(api.keyFor(31),manifest.stages[31]?.key||null,'campaign stage default unchanged');
-console.log('PASS: original raster pixels, authored palette, opt-in isolation, parallax, decode readiness, LRU and no world mutation (not App GUI acceptance)');
+console.log('PASS: original hash, accepted compression error, authored palette, opt-in isolation, parallax, decode readiness, LRU and no world mutation (not App GUI acceptance)');
