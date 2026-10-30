@@ -1,0 +1,142 @@
+{
+  "stageId": "stage-39",
+  "geometrySha256": "befb60226a0ad29590fc54a3934ceb85de0225f6b1861c2a78db12a08968ff6b",
+  "compiledSha256": "a2fe187d582eb2ea68f3563139754b0c2b9db888addfda56519727e148b74e5e",
+  "protected": {
+    "terrains": [
+      "a4-39-land",
+      "a4-39-west-upper",
+      "a4-39-east-upper"
+    ],
+    "water": [
+      {
+        "id": "39-wreck-water",
+        "kind": "recover",
+        "x1": 1700,
+        "x2": 4450,
+        "surface": 2050,
+        "entryLeft": [
+          1380,
+          1700
+        ],
+        "entryRight": [
+          4500,
+          4900
+        ]
+      },
+      {
+        "id": "39-open-channel",
+        "kind": "lethal",
+        "x1": 8250,
+        "x2": 9000,
+        "surface": 3400
+      }
+    ],
+    "rescue": {
+      "ids": [
+        "a4-rescue-0",
+        "a4-rescue-1",
+        "a4-rescue-2",
+        "a4-rescue-3"
+      ],
+      "safeX": [
+        6900,
+        7050,
+        7200,
+        7350
+      ],
+      "safeY": 1700,
+      "anchor": {
+        "x": 6130,
+        "y": 2000
+      },
+      "net": {
+        "x": 5470,
+        "y": 2000
+      },
+      "exit": 8500,
+      "bossRequired": false,
+      "safeZone": {
+        "x1": 6600,
+        "x2": 8000,
+        "y1": 1600,
+        "y2": 1760
+      }
+    },
+    "tide": {
+      "warningRound": 2,
+      "highRound": 5,
+      "lowRound": 7,
+      "low": 2610,
+      "high": 2050
+    },
+    "actors": [
+      {
+        "id": "archer",
+        "x": 260,
+        "y": 1800
+      },
+      {
+        "id": "mage",
+        "x": 380,
+        "y": 1800
+      },
+      {
+        "id": "knight",
+        "x": 500,
+        "y": 1800
+      },
+      {
+        "id": "occultist",
+        "x": 620,
+        "y": 1800
+      },
+      {
+        "id": "a4-39-g0-0",
+        "x": 2170,
+        "y": 1824.2
+      },
+      {
+        "id": "a4-39-g0-1",
+        "x": 2540,
+        "y": 1820
+      },
+      {
+        "id": "a4-39-g1-0",
+        "x": 2690,
+        "y": 1370
+      },
+      {
+        "id": "a4-39-g1-1",
+        "x": 5550,
+        "y": 1270
+      },
+      {
+        "id": "a4-rescue-0",
+        "x": 4920,
+        "y": 2000
+      },
+      {
+        "id": "a4-rescue-1",
+        "x": 5050,
+        "y": 2000
+      },
+      {
+        "id": "a4-rescue-2",
+        "x": 5180,
+        "y": 2000
+      },
+      {
+        "id": "a4-rescue-3",
+        "x": 5310,
+        "y": 2000
+      },
+      {
+        "id": "a4-wreck",
+        "x": 3500,
+        "y": 2571.4285714285716
+      }
+    ]
+  },
+  "scope": "Exact official geometry. Separate tidal basin BODY; concepts exclude water, props, platforms, actors and event marks."
+}

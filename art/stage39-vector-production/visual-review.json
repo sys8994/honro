@@ -1,0 +1,35 @@
+{
+  "scope": "Producer direct Native pixel review, not automatic/user art approval",
+  "views": [
+    "39-body-max.png",
+    "39-high-ground-mobile.png",
+    "39-left-edge-wide.png",
+    "39-rescue-work.png",
+    "39-right-edge-wide.png",
+    "39-west-bank.png",
+    "39-whole.png",
+    "39-wreck.png",
+    "high-tide-basin.png",
+    "high-tide-mobile.png",
+    "normal-net-open.png"
+  ],
+  "findings": [
+    "Natural continuous basin body and uniform deep fill",
+    "Original one-way underpass clearance and work shelf retained",
+    "Focal wreck cannon/windows and alpha holes legible at normal and portrait scales",
+    "Existing dynamic high tide separate from body; source water shading retained",
+    "Wide left/right domain has no empty edges",
+    "Older sparse net/support/footing props retained, parent common-prop update separate"
+  ],
+  "sourceChecks": [
+    "body-selected-comparison.json",
+    "wreck-selected-comparison.json",
+    "max-source-crop-checks.json"
+  ],
+  "maxZoom": 1.1,
+  "renderTimings": "Two warm Native CPU draws, not statistical p95 or browser/mobile hardware",
+  "remaining": [
+    "No browser/HUD/Pages inspection by producer",
+    "No user art approval"
+  ]
+}

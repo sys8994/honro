@@ -1,0 +1,59 @@
+{
+  "source": "art/stage39-vector-production/wreck-quantized.svg",
+  "sourceSha256": "4994cf3848ec757c6923811e3a2868e50268af803ff12bdfd3dcc78f6d82313d",
+  "visualApproval": "NOT REVIEWED",
+  "flattenToleranceSourceUnits": 0.01,
+  "backend": "geos",
+  "polygonToleranceSourceUnits": 0.02,
+  "coordinateGridSourceUnits": 0.01,
+  "declaredLocalApproximationBudget": 0.03707106781186548,
+  "partitions": [
+    {
+      "id": "path7",
+      "tiles": 6,
+      "maxPathChars": 39454,
+      "bounds": [
+        33.2470150452,
+        61.0793012695,
+        2138.28619727,
+        678.842628174
+      ]
+    },
+    {
+      "id": "path6",
+      "tiles": 10,
+      "maxPathChars": 35231,
+      "bounds": [
+        33.473315918,
+        62.0,
+        2137.98907773,
+        677.841515625
+      ]
+    },
+    {
+      "id": "path5",
+      "tiles": 10,
+      "maxPathChars": 29640,
+      "bounds": [
+        34.069017334,
+        64.697601593,
+        2138.319,
+        677.753463623
+      ]
+    },
+    {
+      "id": "path4",
+      "tiles": 10,
+      "maxPathChars": 30608,
+      "bounds": [
+        34.0464146118,
+        82.010880127,
+        2137.152875,
+        677.703625
+      ]
+    }
+  ],
+  "output": "art/stage39-vector-production/wreck-bounded.svg",
+  "outputBytes": 1357295,
+  "rawUnchanged": true
+}

@@ -1,0 +1,146 @@
+[
+  {
+    "stage": 39,
+    "view": {
+      "name": "whole",
+      "x": 4500,
+      "y": 2300,
+      "scale": 0.16,
+      "w": 1600,
+      "h": 1000
+    },
+    "file": "39-whole.png",
+    "metrics": {
+      "medianMs": 12.812409999999545,
+      "p95Ms": 13.942047999999886,
+      "scope": "two warm Native Canvas CPU samples (not a percentile), not browser or mobile hardware"
+    },
+    "scope": "Actual production Native Canvas, initial actors. Not browser play or quality approval."
+  },
+  {
+    "stage": 39,
+    "view": {
+      "name": "west-bank",
+      "x": 1500,
+      "y": 1870,
+      "scale": 0.53,
+      "w": 1400,
+      "h": 900
+    },
+    "file": "39-west-bank.png",
+    "metrics": {
+      "medianMs": 9.44612700000016,
+      "p95Ms": 10.383820999999443,
+      "scope": "two warm Native Canvas CPU samples (not a percentile), not browser or mobile hardware"
+    },
+    "scope": "Actual production Native Canvas, initial actors. Not browser play or quality approval."
+  },
+  {
+    "stage": 39,
+    "view": {
+      "name": "wreck",
+      "x": 3500,
+      "y": 2250,
+      "scale": 0.8,
+      "w": 1400,
+      "h": 900
+    },
+    "file": "39-wreck.png",
+    "metrics": {
+      "medianMs": 4.199942000000192,
+      "p95Ms": 4.266370000000279,
+      "scope": "two warm Native Canvas CPU samples (not a percentile), not browser or mobile hardware"
+    },
+    "scope": "Actual production Native Canvas, initial actors. Not browser play or quality approval."
+  },
+  {
+    "stage": 39,
+    "view": {
+      "name": "rescue-work",
+      "x": 5700,
+      "y": 1900,
+      "scale": 0.75,
+      "w": 1400,
+      "h": 900
+    },
+    "file": "39-rescue-work.png",
+    "metrics": {
+      "medianMs": 6.434198000000833,
+      "p95Ms": 6.807557000000088,
+      "scope": "two warm Native Canvas CPU samples (not a percentile), not browser or mobile hardware"
+    },
+    "scope": "Actual production Native Canvas, initial actors. Not browser play or quality approval."
+  },
+  {
+    "stage": 39,
+    "view": {
+      "name": "high-ground-mobile",
+      "x": 6900,
+      "y": 1700,
+      "scale": 0.53,
+      "w": 720,
+      "h": 1100
+    },
+    "file": "39-high-ground-mobile.png",
+    "metrics": {
+      "medianMs": 3.301196999998865,
+      "p95Ms": 3.6187360000003537,
+      "scope": "two warm Native Canvas CPU samples (not a percentile), not browser or mobile hardware"
+    },
+    "scope": "Actual production Native Canvas, initial actors. Not browser play or quality approval."
+  },
+  {
+    "stage": 39,
+    "view": {
+      "name": "body-max",
+      "x": 3900,
+      "y": 2650,
+      "scale": 1.1,
+      "w": 1400,
+      "h": 900
+    },
+    "file": "39-body-max.png",
+    "metrics": {
+      "medianMs": 3.2781029999987368,
+      "p95Ms": 3.4014360000001034,
+      "scope": "two warm Native Canvas CPU samples (not a percentile), not browser or mobile hardware"
+    },
+    "scope": "Actual production Native Canvas, initial actors. Not browser play or quality approval."
+  },
+  {
+    "stage": 39,
+    "view": {
+      "name": "left-edge-wide",
+      "x": 200,
+      "y": 2400,
+      "scale": 0.10588235294117647,
+      "w": 720,
+      "h": 1100
+    },
+    "file": "39-left-edge-wide.png",
+    "metrics": {
+      "medianMs": 5.835313999999926,
+      "p95Ms": 6.155656000000818,
+      "scope": "two warm Native Canvas CPU samples (not a percentile), not browser or mobile hardware"
+    },
+    "scope": "Actual production Native Canvas, initial actors. Not browser play or quality approval."
+  },
+  {
+    "stage": 39,
+    "view": {
+      "name": "right-edge-wide",
+      "x": 8750,
+      "y": 2200,
+      "scale": 0.10588235294117647,
+      "w": 720,
+      "h": 1100
+    },
+    "file": "39-right-edge-wide.png",
+    "metrics": {
+      "medianMs": 1.9900149999994028,
+      "p95Ms": 2.221270000000004,
+      "scope": "two warm Native Canvas CPU samples (not a percentile), not browser or mobile hardware"
+    },
+    "scope": "Actual production Native Canvas, initial actors. Not browser play or quality approval."
+  }
+]
