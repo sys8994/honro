@@ -1,0 +1,18 @@
+{
+  "stage": 35,
+  "assetFile": "art/vector-stone-modules/central-stairs-asset.json",
+  "element": {
+    "id": "s35-density:central-stone-treads",
+    "assetId": "s35-density:central-stone-treads",
+    "x": 0,
+    "y": 0,
+    "scale": 1,
+    "rotation": 0,
+    "snap": false,
+    "depthLayer": "L1",
+    "layer": "front",
+    "visualRole": "scenery"
+  },
+  "order": "Append after BODY and left step surface, before normal actors (scenery).",
+  "physics": "No terrain or gameplay changes; exact physical clip embedded."
+}

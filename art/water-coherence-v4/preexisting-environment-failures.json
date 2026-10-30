@@ -1,0 +1,39 @@
+{
+  "parentCommit": "8f7a4fa88382d2e9e4d1b6d5948b62134c91e38d",
+  "method": "git archive exact parent test files + shared/map + shared/data/campaign.json into isolated folder; all extracted files chmod a-w; no current shared writes",
+  "commands": [
+    "git archive af1cbc3^ tests/environment-depth.mjs tests/environment-composition.mjs shared/map shared/data/campaign.json | tar -x -C _local/reports/water-coherence-v4/pre-water-parent",
+    "node _local/reports/water-coherence-v4/pre-water-parent/tests/environment-depth.mjs",
+    "node _local/reports/water-coherence-v4/pre-water-parent/tests/environment-composition.mjs"
+  ],
+  "exitCodes": {
+    "environment-depth": 1,
+    "environment-composition": 1
+  },
+  "result": "Same preexisting validation failures:2 errors, stage13 finish rubble mason/threshold outside stage12 quarry carrier rubble scale range",
+  "sha256": {
+    "tests/environment-depth.mjs": "2acdccf329f5959af3b0951bd8c642c78947c7ad1e908dc029f85a50daca3ebf",
+    "tests/environment-composition.mjs": "63a0404419562a1aafdddbfb04896f7b262a9acbb915c80e98b8a28178cfcfe4",
+    "shared/map/commands.js": "28d29bb43a3aeb23166f0151d2fdd8b3dd916db02c63ed9fac320e2fd7a8b658",
+    "shared/map/schema.js": "67c2e3810a90dd85ce8e4d8972f175db44051ef0ac4e08a88cc50245789018ad",
+    "shared/map/terrain-domain.js": "623edc284c3f488a7f804f0953b5e445f93926bbbb4fea758f9f287af2831f1b",
+    "shared/map/vector-art.js": "2af414017fa2fea95c30332cf695cbb7d740d3cc6610f7cf073abef2faebca9e",
+    "shared/map/compiler.js": "8a22cb3cc14a2e1f26d3901f392520568991004a79596b4a168b7253d1637e10",
+    "shared/map/environment.js": "1045e3600bcb284884c6d2848b5e5b615032a515b6d22a2348974af779c5ad4d",
+    "shared/map/stage7-reentry.js": "7f4250a3d5585a59ca2083708fccf2adf68f9a36228a708a10ad91e3db0304a1",
+    "shared/map/space-layout.js": "8fd724221d6e31308aadce10e41fc96ad55aa717ff3ec28116e7a175153f9e16",
+    "shared/map/production-contract.js": "41627d1b82cbdf821da6fef6f0f8473dfc9b4b384959fd89b57f3f807dee7efd",
+    "shared/map/projectile-targets.js": "56da042d35c89b7c6cdcac1942290f6f59f18640a49f43800fd95817def94895",
+    "shared/map/visual-style.js": "a11578232411122ec3cf824587d0737937586eacd8339547633a855b3b138b04",
+    "shared/map/open-structures.js": "995df813bdde6b8404a6b083edf29a998764bdac6efc1548ed491be4a53a5936",
+    "shared/map/bounds.js": "823bdb282be142b95b731c71053b500038219abe2415d031062fa994f1f50170",
+    "shared/map/units.js": "aac20b04375a6a31b50f9acb30e291dbe4906331ce8734e271167b0d8b7862c4",
+    "shared/map/geometry.js": "42f8157a668b7d92b07c211a741030b18cffef762310438078b442aaa71b76d1",
+    "shared/map/platform-passages.js": "d8f168c6d985bc4d33b881455c08b47dd07fffca139516f8ef17cd38e32c9cca",
+    "shared/data/campaign.json": "54b1e47abe6b7c4d05fd1bf5eefb7702d127d1b37335411147d8590df4413f47"
+  },
+  "normalizedOutputIdentical": {
+    "environment-depth": true,
+    "environment-composition": true
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "scope": "ACTUAL applied shared runtime; ordinary tape11400high, no paint override; pool wrapper logs options and delegates unmodified",
+  "runtimeSha": "9278a691f97be21437b58fe67cdffa6a7e031da6666b2b34faa2e6f6829e0544",
+  "projectSha": "27f3eb88fb0d927d2ed1b2d4341126c61c07ef6e51911b60716435fed506f222",
+  "tapeSha": "dc81b3a97f12cb96780ad28076074b71983aa905ba03aac1ed8eeab7ac88c28d",
+  "physicalDataUnchanged": true,
+  "calls": [
+    {
+      "id": "a4-33-west-channel",
+      "options": {
+        "style": "coastal-dawn",
+        "wetFilm": true
+      }
+    },
+    {
+      "id": "a4-live-33-west-932",
+      "options": {
+        "style": "coastal-dawn",
+        "wetFilm": false
+      }
+    }
+  ],
+  "frame": 11400
+}

@@ -1,0 +1,43 @@
+{
+  "source": "stone-steps-cleaned-master.svg; native Inkscape BooleanIntersection per color component",
+  "placements": [
+    {
+      "x": 2910,
+      "y": 1960,
+      "w": 80,
+      "source": "density-play:stone-tread-cap"
+    },
+    {
+      "x": 2990,
+      "y": 1908,
+      "w": 80,
+      "source": "density-play:stone-tread-block"
+    },
+    {
+      "x": 3070,
+      "y": 1856,
+      "w": 90,
+      "source": "density-play:stone-tread-block-b"
+    }
+  ],
+  "compiledPhysicsPreserved": true,
+  "validationErrors": [],
+  "storedNodes": 40,
+  "maxStoredPathChars": 15784,
+  "bytes": 121962,
+  "visualApproval": false,
+  "changes": "Source-derived individual stone treads; x scale .8/.9, y scale 1. No whole staircase distortion. No new geometry except clipping boundaries.",
+  "expandedNodes": 40,
+  "maxExpandedDepth": 5,
+  "maxExpandedPathChars": 15784,
+  "manualInspection": {
+    "normal": true,
+    "detail": true,
+    "mobile": true,
+    "assessment": "Readable cap and52world risers. First dark rectangles rejected; lower planes recolored to terrain, two distinct source blocks avoid repeated marks. This is local candidate visual inspection, not final campaign/browser approval."
+  },
+  "rejected": [
+    "unblended dark rectangular crop",
+    "overblended almost-invisible planes"
+  ]
+}

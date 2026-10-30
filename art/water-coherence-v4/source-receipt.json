@@ -1,0 +1,25 @@
+{
+  "source": "shared/runtime/environment-art.js",
+  "sourceSha256": "29a12578c121012e76b59b7fde85c69d570db63a45193000f35617eb7e0464b6",
+  "candidateSha256": "9373ab7c8ed7b1c2c1adeed36747815617f98859cb458c1957568d3df394530c",
+  "scope": "render-only coastal pool/wetfilm; no shared runtime mutation yet",
+  "status": "pending instrumented and actual visual review",
+  "files": {
+    "environment-art.js": {
+      "sourceSha256": "29a12578c121012e76b59b7fde85c69d570db63a45193000f35617eb7e0464b6",
+      "candidateSha256": "9373ab7c8ed7b1c2c1adeed36747815617f98859cb458c1957568d3df394530c"
+    },
+    "environment-renderer.js": {
+      "sourceSha256": "3c9d49c5302b656b0b0af91ec457d5e3975578f48d106d776bb139bfc82517bb",
+      "candidateSha256": "370d07203f875799ff2b7fe76e8e48a1f55679fc0a5087396c479f9cb0d7fbe2"
+    },
+    "act4-coast-events.js": {
+      "sourceSha256": "1db8f426f0e09091038830fc050439952f9e982f3e7ca059f1a2b9bda0543401",
+      "candidateSha256": "7cb9285fb6e90ff6367e108d8468b81c225f7e4b5a6995c3033a9762373d8b2d"
+    },
+    "art-dark.js": {
+      "sourceSha256": "2c15b7532e15436b463453a55a8e976a8d85d3ceca1a599667e6d27995b82e2d",
+      "candidateSha256": "d7dff531defcd580c65725be677adcf14bf3be284abaaf25f9aeed7e254b88ca"
+    }
+  }
+}

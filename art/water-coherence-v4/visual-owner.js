@@ -1,0 +1,1 @@
+Scene.prototype.waterVisualOwner=function(b,z){return b.honroStage>=31&&b.honroStage<=40&&b.honroCanonical===true&&b.honroAct4Design&&z?.points?.length&&['water-pool','shallow-water'].includes(z.kind)?'coastal-live':null;};

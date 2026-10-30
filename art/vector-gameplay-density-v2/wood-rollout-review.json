@@ -1,0 +1,65 @@
+{
+  "metrics": [
+    {
+      "stage": 31,
+      "id": "s31-density:wood-boardwalks",
+      "expandedNodes": 60,
+      "maxDepth": 10,
+      "maxPath": 42034,
+      "bytes": 125956,
+      "normalVisibleSourceThickness": 12.72
+    },
+    {
+      "stage": 37,
+      "id": "s37-density:wood-0",
+      "expandedNodes": 57,
+      "maxDepth": 9,
+      "maxPath": 42034,
+      "bytes": 125469,
+      "normalVisibleSourceThickness": 24.380000000000003
+    },
+    {
+      "stage": 39,
+      "id": "s39-density:wood-0",
+      "expandedNodes": 85,
+      "maxDepth": 9,
+      "maxPath": 42034,
+      "bytes": 126088,
+      "normalVisibleSourceThickness": 24.380000000000003
+    },
+    {
+      "stage": 40,
+      "id": "s40-density:wood-0",
+      "expandedNodes": 71,
+      "maxDepth": 9,
+      "maxPath": 42034,
+      "bytes": 125797,
+      "normalVisibleSourceThickness": 24.380000000000003
+    }
+  ],
+  "stage31DeduplicationParity": [
+    {
+      "view": "route1-normal",
+      "exactPngParity": true,
+      "sha256": "3991d8b37b7778e4e9252cfb65140c078a25d7f7a1340d4a19e3e64dd2891770"
+    },
+    {
+      "view": "route1-detail",
+      "exactPngParity": true,
+      "sha256": "207b3c9399de8466898cae1e80a9bf2a13ee16b841eba5e84e041da5f3812887"
+    }
+  ],
+  "inspection": {
+    "scope": "Directly viewed actual production Scene Native Canvas captures. Not browser/App regression or final art approval.",
+    "observations": [
+      "31: 24world-thick boardwalk caps retain narrow top highlight and two readable joints; existing supports remain.",
+      "37: cap46world remains above original dark structural lower46world half. Existing huge background signal/rock details still need separate art work.",
+      "39: repeated crops follow actual bends with no horizontal stretch; east rock route intentionally unchanged.",
+      "40: replaces s40v:surface at original instance, otherwise old surface obscures new detail. Existing boat/piles unchanged."
+    ],
+    "rejected": [
+      "Initial40 insertion beforeBODY was hidden by old s40v:surface; replaced original instead."
+    ],
+    "visualApproval": false
+  }
+}

@@ -1,0 +1,15 @@
+--- shared/runtime/environment-renderer.js
++++ shared/runtime/environment-renderer.js
+@@ -153,10 +153,11 @@
+  const [lx,ly]=a.keyLightDirection;if(env.skyVisible!==false){if(['valley','bridge'].includes(st.backdrop))A.glow(c,w*lx,h*(ly+.17),w*.19,h*.46,a.keyLightColor,a.lightStrength*.18);else A.shaft(c,w*lx,h*ly,w*.23,h*.80,a.keyLightColor,a.lightStrength,time);}
+  this.environmentStats={groups:active,visibleAssets:visible,cachedPaths:data.paths,backgroundAnimatedPrimitives:animated,animatedPrimitives:animated,...A.stats()};
+ };
++Scene.prototype.waterVisualOwner=function(b,z){return b.honroStage>=31&&b.honroStage<=40&&b.honroCanonical===true&&b.honroAct4Design&&z?.points?.length&&['water-pool','shallow-water'].includes(z.kind)?'coastal-live':null;};
+ Scene.prototype.liveWater=function(c,b){const st={backdrop:b.honroBackdrop,environment:ensureBattle(b)},a=E.atmosphereAt(st,this.y),time=A.time(this),halfW=this.canvas.clientWidth/this.scale/2,halfH=this.canvas.clientHeight/this.scale/2;
+  const visible=(x,y,w,h)=>x+w>this.x-halfW&&x<this.x+halfW&&y+h>this.y-halfH&&y<this.y+halfH;
+  let pools=0,falls=0;
+- for(const z of b.honroSurfaceZones||[])if(['water-pool','shallow-water'].includes(z.kind)&&z.points?.length){const paint=G.HonroTerrainDomain?.materialWaterZone(b,z)||z,q=A.poolData(z),view=A.poolData(paint);if(!visible(view.left,view.top,view.right-view.left,view.bottom-view.top))continue;A.pool(c,paint,a,time);pools++;
++ for(const z of b.honroSurfaceZones||[])if(['water-pool','shallow-water'].includes(z.kind)&&z.points?.length){const paint=G.HonroTerrainDomain?.materialWaterZone(b,z)||z,q=A.poolData(z),view=A.poolData(paint);if(!visible(view.left,view.top,view.right-view.left,view.bottom-view.top))continue;A.pool(c,paint,a,time,b.honroStage>=31&&b.honroStage<=40?{style:"coastal-dawn",wetFilm:G.HONRO_PROJECT?.stages?.find(s=>s.id===b.honroAuthoredId)?.materials?.some(m=>m.id===z.id&&m.kind==="shallow-water")}:undefined);pools++;
+   const key=b.session+':'+z.id;if(!this._waterContacts||this._waterContactSession!==b.session){this._waterContacts=new Map();this._waterRipples=[];this._waterContactSession=b.session;}
+   for(const u of b.units||[]){if(u.dead)continue;const id=key+':'+u.id,touch=u.x>=q.left&&u.x<=q.right&&u.y>=q.top-3&&u.y<q.top+85;if(this._waterContacts.get(id)===false&&touch)this._waterRipples.push({x:u.x,y:q.top,born:time});this._waterContacts.set(id,touch);}
+  }

@@ -1,0 +1,31 @@
+{
+  "id": "density-play:stone-tread-block",
+  "name": "\ub3cc\uacc4\ub2e8 \uc7ac\uc0ac\uc6a9 tread-block",
+  "semanticLayer": "SURFACE",
+  "category": "rock",
+  "bounds": {
+    "x": 660,
+    "y": 1872,
+    "w": 100,
+    "h": 52
+  },
+  "anchor": {
+    "x": 0,
+    "y": 0
+  },
+  "foot": {
+    "x": 0,
+    "y": 0
+  },
+  "transform": [
+    0.2423542989036353,
+    0,
+    0,
+    0.24255788313120177,
+    520,
+    1770
+  ],
+  "params": {
+    "sourceRole": "Original3risers; worncaps andbroadstoneplanes; terrainclip separate"
+  }
+}

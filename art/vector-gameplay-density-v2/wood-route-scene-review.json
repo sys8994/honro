@@ -1,0 +1,72 @@
+{
+  "stage": 32,
+  "changes": [
+    {
+      "source": "art/vector-gameplay-density-v2/wood-platform-asset.json",
+      "asset": "density-play:wood-platform-route",
+      "physicalTerrain": "a4-32-back-alley",
+      "physicalClip": "M1200 2010 L1660 1760 L2300 1760 L2600 2000 L2600 2046 L2300 1806 L1660 1806 L1200 2056Z",
+      "pilotClip": "full route: three exact segment clips",
+      "wholeRoute": true,
+      "deduplication": {
+        "beforeBytes": 371597,
+        "afterBytes": 124732,
+        "symbols": 1,
+        "uses": 3,
+        "applied": true,
+        "savedBytes": 246865
+      }
+    }
+  ],
+  "views": [
+    {
+      "id": "normal",
+      "x": 1980,
+      "y": 1800,
+      "scale": 0.53,
+      "width": 1440,
+      "height": 900
+    },
+    {
+      "id": "detail",
+      "x": 1980,
+      "y": 1800,
+      "scale": 1.1,
+      "width": 1440,
+      "height": 900
+    },
+    {
+      "id": "mobile",
+      "x": 1980,
+      "y": 1800,
+      "scale": 0.53,
+      "width": 720,
+      "height": 1100
+    },
+    {
+      "id": "whole",
+      "x": 3300,
+      "y": 1900,
+      "scale": 0.22727272727272727,
+      "width": 1600,
+      "height": 850
+    }
+  ],
+  "compiledPhysicsPreserved": true,
+  "gameplayFieldsPreserved": true,
+  "visualApproval": false,
+  "status": "isolated full-route material candidate; background/BODY reauthoring still pending",
+  "evidence": "_local/reports/stage32-density-v2/wood-route-native",
+  "manualReview": [
+    "normal/detail/mobile directly inspected after final draw-order fix",
+    "two bend joins continuous, world X density unchanged",
+    "left enemy feet remain on the same contact surface",
+    "buried endpoint tips now occluded by existing BODY; no invented physical support"
+  ],
+  "limitations": [
+    "Native Scene, not App input replay or browser",
+    "Old detailed buildings/wall/BODY remain active",
+    "No endcap artwork; lower endpoints buried naturally"
+  ],
+  "assetSha256": "56e7d9ef09a95ec6c6685b28c898443e743d50147835fd956a26bdd96a839bdf"
+}

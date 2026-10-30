@@ -1,0 +1,55 @@
+{
+  "status": "isolated candidate tests passed; root visual review pending; not shared runtime applied",
+  "screenshots": {
+    "water-pool-before.png": {
+      "sha256": "35289f4f8a547296bcc68aff9da99aa304f1b83926c1de37600cac29dc69bce4",
+      "bytes": 5887
+    },
+    "frozen-static-before.png": {
+      "sha256": "96754bde114d083165373ca2aa49f7340c10d1047127e06c433cbca38f80aea6",
+      "bytes": 1876
+    },
+    "water-pool-after.png": {
+      "sha256": "4630ad28c0edb693ff9f30163b9a0112889217ddc656dbc40bb4810810383d5c",
+      "bytes": 6567
+    },
+    "shallow-water-before.png": {
+      "sha256": "35289f4f8a547296bcc68aff9da99aa304f1b83926c1de37600cac29dc69bce4",
+      "bytes": 5887
+    },
+    "33-high-after.png": {
+      "sha256": "2bda40092640533b0b56984d2a23d3a5e4d07eb676e98496c730052cdb6b29c4",
+      "bytes": 455051
+    },
+    "shallow-water-after.png": {
+      "sha256": "e5cdbf7e374890698b7ac0f16c65cb653a12ae0bda2c868d21b7d97cc530bd53",
+      "bytes": 3282
+    },
+    "40-pool-after.png": {
+      "sha256": "c585fec100e237af0f87f4966c1b25c0ef742a67eb20d5ca506e1baf587d6874",
+      "bytes": 511848
+    },
+    "40-pool-before.png": {
+      "sha256": "b85def0decfdc73b16a4a8ff256740e1b14a08cf46a5356bc40e6b5d6977d5d6",
+      "bytes": 510176
+    },
+    "compiled-wet-film.png": {
+      "sha256": "9bb5dcca59955fcaff5c75c96f650800785648080ec4f776c36672254c998c8c",
+      "bytes": 4393
+    },
+    "33-high-before.png": {
+      "sha256": "b92393314afd04519dcf8e2925c1c9859cd611fce3793ad49ebf34f2e7ca9def",
+      "bytes": 457711
+    },
+    "frozen-static-after.png": {
+      "sha256": "7b347b2b9a30d218875ed11ac1c8f226e007f7b54d18b7088768dbef67330468",
+      "bytes": 378
+    }
+  },
+  "actualRuntime": "00b3f8b72c707db7b49e5c99d7b56397834b07a2261ef727b1b4639c1c046c3e",
+  "rejectedDiagnostics": [
+    "water-coherence-v4-first-diagnostic",
+    "water-coherence-v4-second-diagnostic"
+  ],
+  "scope": "pool+wet film paint, cached duplicate removal, physical data unchanged; default Scene paint and ice terrain fixture checked"
+}

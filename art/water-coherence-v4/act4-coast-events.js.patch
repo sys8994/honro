@@ -1,0 +1,11 @@
+--- shared/runtime/act4-coast-events.js
++++ shared/runtime/act4-coast-events.js
+@@ -201,7 +201,7 @@
+  }emit();returnWaterViews.set(b,{terrain,key,zones});return zones;
+ }
+ function paintReturnWater(scene,c,b){const zones=returnWaterZones(b);if(!zones.length)return;const art=G.HonroEnvironmentArt,env=G.HonroEnvironmentRenderer.ensureBattle(b),atmosphere=G.HonroEnvironment.atmosphereAt({backdrop:b.honroBackdrop,environment:env},scene.y);
+- c.save();c.globalAlpha*=.86;for(const zone of zones)art.pool(c,zone,atmosphere,art.time(scene));c.restore();
++ c.save();c.globalAlpha*=.86;for(const zone of zones)art.pool(c,zone,atmosphere,art.time(scene),{style:"coastal-dawn"});c.restore();
+ }
+ const live=G.HonroScene.prototype.liveWater;G.HonroScene.prototype.liveWater=function(c,b){const out=live?.call(this,c,b);if(!active(b))return out;const q=memory(b),n=b.honroAct4Preview,app=G.HonroApp,e=app.engine;q.visualDrawn??={};
+  if(n===37){const {x,y}=b.honroAct4Design.signal;if(inView(app,{x,y:y-70})){const npc={...residents(b)[0],id:'a4-signal-silhouette',name:'',cls:'knight',honroType:'civilian',honroCivilian:true,hp:1,dead:false,side:2,r:19,h:88,x,y,facing:-1,honroScenePose:{kind:'point',time:.18+.22*(1+Math.sin(this.time*3))*.5}};c.save();c.globalAlpha*=.72;this.unitBody(c,npc,0);c.restore();q.visualDrawn.gesture=q.clock;}}

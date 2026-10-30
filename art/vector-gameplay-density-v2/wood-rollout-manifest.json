@@ -1,0 +1,336 @@
+{
+  "source": "wood-platform-asset.json",
+  "method": "Horizontal 1:1 cropping and shear. Vertical compression only for routes thinner than46world. Geometry unchanged. No thatch/stone repaint.",
+  "stages": [
+    {
+      "stage": 31,
+      "compiledPhysicsPreserved": true,
+      "visualApproval": false,
+      "routes": [
+        {
+          "terrainIds": [
+            "s31-west-boardwalk",
+            "s31-middle-remnant",
+            "s31-east-boardwalk"
+          ],
+          "assetId": "s31-density:wood-boardwalks",
+          "file": "art/vector-gameplay-density-v2/wood-stage31-boardwalks-asset.json",
+          "instance": {
+            "id": "s31-density:wood-boardwalks",
+            "assetId": "s31-density:wood-boardwalks",
+            "x": 0,
+            "y": 0,
+            "scale": 1,
+            "rotation": 0,
+            "snap": false,
+            "depthLayer": "L1",
+            "layer": "front",
+            "visualRole": "scenery"
+          },
+          "replacement": null,
+          "placement": "before first BODY element",
+          "parts": [
+            {
+              "x": 1290,
+              "right": 1700,
+              "y": 1830,
+              "yr": 1850,
+              "depth": 24,
+              "horizontalScale": 1,
+              "verticalScale": 0.5217391304347826
+            },
+            {
+              "x": 1920,
+              "right": 2470,
+              "y": 1860,
+              "yr": 1860,
+              "depth": 24,
+              "horizontalScale": 1,
+              "verticalScale": 0.5217391304347826
+            },
+            {
+              "x": 2690,
+              "right": 3040,
+              "y": 1840,
+              "yr": 1805,
+              "depth": 24,
+              "horizontalScale": 1,
+              "verticalScale": 0.5217391304347826
+            },
+            {
+              "x": 3040,
+              "right": 3550,
+              "y": 1805,
+              "yr": 1770,
+              "depth": 24,
+              "horizontalScale": 1,
+              "verticalScale": 0.5217391304347826
+            }
+          ],
+          "thickness": 24,
+          "depth": 24,
+          "deduplication": {
+            "beforeBytes": 495755,
+            "afterBytes": 125371,
+            "symbols": 1,
+            "uses": 4,
+            "applied": true,
+            "savedBytes": 370384
+          }
+        }
+      ]
+    },
+    {
+      "stage": 37,
+      "compiledPhysicsPreserved": true,
+      "visualApproval": false,
+      "routes": [
+        {
+          "terrainId": "a4-37-haul-ramp",
+          "assetId": "s37-density:wood-0",
+          "file": "art/vector-gameplay-density-v2/wood-stage37-route0-asset.json",
+          "instance": {
+            "id": "s37-density:wood-0",
+            "assetId": "s37-density:wood-0",
+            "x": 0,
+            "y": 0,
+            "scale": 1,
+            "rotation": 0,
+            "snap": false,
+            "depthLayer": "L1",
+            "layer": "front",
+            "visualRole": "scenery"
+          },
+          "replacement": null,
+          "placement": "before first BODY element; preserve other ordering",
+          "parts": [
+            {
+              "x": 1800,
+              "right": 2200,
+              "y": 3000,
+              "yr": 2620,
+              "depth": 46,
+              "horizontalScale": 1,
+              "verticalScale": 1
+            },
+            {
+              "x": 2200,
+              "right": 2840,
+              "y": 2620,
+              "yr": 2620,
+              "depth": 46,
+              "horizontalScale": 1,
+              "verticalScale": 1
+            },
+            {
+              "x": 2840,
+              "right": 3000,
+              "y": 2620,
+              "yr": 2620,
+              "depth": 46,
+              "horizontalScale": 1,
+              "verticalScale": 1
+            },
+            {
+              "x": 3000,
+              "right": 3400,
+              "y": 2620,
+              "yr": 2500,
+              "depth": 46,
+              "horizontalScale": 1,
+              "verticalScale": 1
+            }
+          ],
+          "thickness": 92,
+          "depth": 46,
+          "deduplication": {
+            "beforeBytes": 495283,
+            "afterBytes": 124899,
+            "symbols": 1,
+            "uses": 4,
+            "applied": true,
+            "savedBytes": 370384
+          }
+        }
+      ]
+    },
+    {
+      "stage": 39,
+      "compiledPhysicsPreserved": true,
+      "visualApproval": false,
+      "routes": [
+        {
+          "terrainId": "a4-39-west-upper",
+          "assetId": "s39-density:wood-0",
+          "file": "art/vector-gameplay-density-v2/wood-stage39-route0-asset.json",
+          "instance": {
+            "id": "s39-density:wood-0",
+            "assetId": "s39-density:wood-0",
+            "x": 0,
+            "y": 0,
+            "scale": 1,
+            "rotation": 0,
+            "snap": false,
+            "depthLayer": "L1",
+            "layer": "front",
+            "visualRole": "scenery"
+          },
+          "replacement": null,
+          "placement": "before first BODY element; preserve other ordering",
+          "parts": [
+            {
+              "x": 1450,
+              "right": 2090,
+              "y": 1925,
+              "yr": 1835.4,
+              "depth": 46,
+              "horizontalScale": 1,
+              "verticalScale": 1
+            },
+            {
+              "x": 2090,
+              "right": 2200,
+              "y": 1835.4,
+              "yr": 1820,
+              "depth": 46,
+              "horizontalScale": 1,
+              "verticalScale": 1
+            },
+            {
+              "x": 2200,
+              "right": 2840,
+              "y": 1820,
+              "yr": 1820,
+              "depth": 46,
+              "horizontalScale": 1,
+              "verticalScale": 1
+            },
+            {
+              "x": 2840,
+              "right": 3400,
+              "y": 1820,
+              "yr": 1820,
+              "depth": 46,
+              "horizontalScale": 1,
+              "verticalScale": 1
+            },
+            {
+              "x": 3400,
+              "right": 4000,
+              "y": 1820,
+              "yr": 1870,
+              "depth": 46,
+              "horizontalScale": 1,
+              "verticalScale": 1
+            },
+            {
+              "x": 4000,
+              "right": 4600,
+              "y": 1870,
+              "yr": 1790,
+              "depth": 46,
+              "horizontalScale": 1,
+              "verticalScale": 1
+            }
+          ],
+          "thickness": 48,
+          "depth": 46,
+          "deduplication": {
+            "beforeBytes": 742938,
+            "afterBytes": 125516,
+            "symbols": 1,
+            "uses": 6,
+            "applied": true,
+            "savedBytes": 617422
+          }
+        }
+      ]
+    },
+    {
+      "stage": 40,
+      "compiledPhysicsPreserved": true,
+      "visualApproval": false,
+      "routes": [
+        {
+          "terrainId": "a4-40-high-walk",
+          "assetId": "s40-density:wood-0",
+          "file": "art/vector-gameplay-density-v2/wood-stage40-route0-asset.json",
+          "instance": {
+            "id": "s40-density:wood-0",
+            "assetId": "s40-density:wood-0",
+            "x": 0,
+            "y": 0,
+            "scale": 1,
+            "rotation": 0,
+            "snap": false,
+            "depthLayer": "L1",
+            "layer": "front",
+            "visualRole": "scenery"
+          },
+          "replacement": {
+            "instanceId": "s40v:surface",
+            "previousAssetId": "s40v:surface"
+          },
+          "placement": "before first BODY element; preserve other ordering",
+          "parts": [
+            {
+              "x": 2810,
+              "right": 3100,
+              "y": 1790,
+              "yr": 1720,
+              "depth": 46,
+              "horizontalScale": 1,
+              "verticalScale": 1
+            },
+            {
+              "x": 3100,
+              "right": 3740,
+              "y": 1720,
+              "yr": 1720,
+              "depth": 46,
+              "horizontalScale": 1,
+              "verticalScale": 1
+            },
+            {
+              "x": 3740,
+              "right": 4200,
+              "y": 1720,
+              "yr": 1720,
+              "depth": 46,
+              "horizontalScale": 1,
+              "verticalScale": 1
+            },
+            {
+              "x": 4200,
+              "right": 4650,
+              "y": 1720,
+              "yr": 1780,
+              "depth": 46,
+              "horizontalScale": 1,
+              "verticalScale": 1
+            },
+            {
+              "x": 4650,
+              "right": 5100,
+              "y": 1780,
+              "yr": 1780,
+              "depth": 46,
+              "horizontalScale": 1,
+              "verticalScale": 1
+            }
+          ],
+          "thickness": 55,
+          "depth": 46,
+          "deduplication": {
+            "beforeBytes": 619130,
+            "afterBytes": 125227,
+            "symbols": 1,
+            "uses": 5,
+            "applied": true,
+            "savedBytes": 493903
+          }
+        }
+      ]
+    }
+  ]
+}
