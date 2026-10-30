@@ -1,0 +1,42 @@
+{
+  "kind": "ART ONLY - ROOT MERGES VERIFIED GAMEPLAY SOURCES",
+  "status": "RELEASE BLOCKED",
+  "stageId": "stage-31",
+  "backgroundAssetId": "stage31:background-native-v1",
+  "renderOrder": [
+    "background",
+    "structure",
+    "body",
+    "rear",
+    "front"
+  ],
+  "collisionAuthorship": "none; use separately reviewed geometry revision",
+  "gameplayDataIncluded": false,
+  "requiredRosterReference": {
+    "path": "../honro-pilot-combat/_local/reports/act4-pilot/stage31/roster-v4/stage.json",
+    "normalizedStageSHA256": "5dfb67a082b4321cdf12217668900a8b8b80ef21aa5371bdf52eb21848d6edff",
+    "enemies": 34,
+    "mergeFields": [
+      "units",
+      "encounters",
+      "initialState",
+      "design.pilotRoster"
+    ],
+    "owner": "root"
+  },
+  "boat": {
+    "dynamicAssetId": "a4:boat",
+    "originalElementId": "a4-31-boat-10",
+    "paintOverrideId": "s31v:arrival-ferry",
+    "previewPose": "docked only; preserve actual event state machine"
+  },
+  "artChecks": {
+    "librarySHA256": "fcdf27275154d8fb84f7de2ae59d0020047101cc615fde186a26ca7cc7a09ef4",
+    "placementsSHA256": "d1593eaeddbce9448af2b1440298648b0e6f1bb1bc709d2d111d764eaf259f5d"
+  },
+  "rejectedPackages": [
+    "4fbdfca866984b3020f30725468eaba51364bdde04feb9f3cfacda80d7c1d7d8 (geometry-only units4)",
+    "381163b4f76b66d27767a10c9de21149a13d7c6fcc92712f63a9d1b291335128 (unverified old canonical actor poses)"
+  ],
+  "artPackageSHA256": "2e7505b0ba5387c865c2fbc9f1bf4601f67df57d454f1dd293aed40b73848948"
+}

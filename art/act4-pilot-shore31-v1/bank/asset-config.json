@@ -1,0 +1,34 @@
+{
+  "id": "act4:shore31-v1:bank",
+  "name": "bank",
+  "semanticLayer": "REAR",
+  "category": "rock",
+  "bounds": {
+    "x": 16.191360671957405,
+    "y": 266.8936,
+    "w": 2138.071939328043,
+    "h": 210.83205041148875
+  },
+  "anchor": {
+    "x": 0,
+    "y": 0
+  },
+  "foot": {
+    "x": 1085.2273303359789,
+    "y": 477.72565041148874
+  },
+  "scaleRange": [
+    1,
+    1
+  ],
+  "backgroundRange": [
+    1,
+    1
+  ],
+  "params": {
+    "nativeSourceFile": "shore-traced.svg",
+    "sourceSHA256": "7c94120bedf8eab8be2e7bdb1d32e1517847d0f676d2d467f6a83f8e3f71a842",
+    "candidateOnly": true,
+    "semanticRole": "continuous stage-specific natural shore; bottom outside camera separate from visible contact"
+  }
+}

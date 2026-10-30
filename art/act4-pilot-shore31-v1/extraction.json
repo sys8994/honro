@@ -1,0 +1,31 @@
+{
+  "idPrefix": "act4:shore31-v1:",
+  "nativeSource": "shore-traced.svg",
+  "objects": {
+    "bank": {
+      "role": "continuous stage-specific natural shore; bottom outside camera separate from visible contact",
+      "region": [
+        [
+          -10,
+          -10
+        ],
+        [
+          2200,
+          -10
+        ],
+        [
+          2200,
+          750
+        ],
+        [
+          -10,
+          750
+        ]
+      ],
+      "proposedContactDomainSourceX": [
+        25,
+        2135
+      ]
+    }
+  }
+}
