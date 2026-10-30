@@ -1,0 +1,1478 @@
+{
+ "version": 5,
+ "stage": 31,
+ "width": 7000,
+ "height": 4700,
+ "intent": "Estuary landing among three split rocks: preserved varied ascent/crossfire layout; every walkway now has a structural reason (scree banks, river-landing timber scaffold, rope bridge, lookout deck, stair tower).",
+ "activePlayBounds": {
+  "left": 180,
+  "top": 1610,
+  "right": 6980,
+  "bottom": 4250
+ },
+ "surfaces": [
+  {
+   "id": "shore",
+   "kind": "ground",
+   "top": [
+    [
+     0.0,
+     4000.0
+    ],
+    [
+     108.33,
+     4000.0
+    ],
+    [
+     216.67,
+     4000.0
+    ],
+    [
+     325.0,
+     4000.0
+    ],
+    [
+     433.33,
+     4000.0
+    ],
+    [
+     541.67,
+     4000.0
+    ],
+    [
+     650.0,
+     4000.0
+    ],
+    [
+     750.0,
+     4012.5
+    ],
+    [
+     850.0,
+     4040.0
+    ],
+    [
+     950.0,
+     4067.5
+    ],
+    [
+     1050.0,
+     4080.0
+    ],
+    [
+     1150.0,
+     4091.11
+    ],
+    [
+     1250.0,
+     4118.89
+    ],
+    [
+     1350.0,
+     4155.0
+    ],
+    [
+     1450.0,
+     4191.11
+    ],
+    [
+     1550.0,
+     4218.89
+    ],
+    [
+     1650.0,
+     4230.0
+    ],
+    [
+     1750.0,
+     4231.11
+    ],
+    [
+     1850.0,
+     4233.97
+    ],
+    [
+     1950.0,
+     4237.87
+    ],
+    [
+     2050.0,
+     4242.13
+    ],
+    [
+     2150.0,
+     4246.03
+    ],
+    [
+     2250.0,
+     4248.89
+    ],
+    [
+     2350.0,
+     4250.0
+    ],
+    [
+     2457.14,
+     4247.78
+    ],
+    [
+     2564.29,
+     4242.07
+    ],
+    [
+     2671.43,
+     4234.26
+    ],
+    [
+     2778.57,
+     4225.74
+    ],
+    [
+     2885.71,
+     4217.93
+    ],
+    [
+     2992.86,
+     4212.22
+    ],
+    [
+     3100.0,
+     4210.0
+    ],
+    [
+     3200.0,
+     4208.71
+    ],
+    [
+     3300.0,
+     4205.31
+    ],
+    [
+     3400.0,
+     4200.51
+    ],
+    [
+     3500.0,
+     4195.0
+    ],
+    [
+     3600.0,
+     4189.49
+    ],
+    [
+     3700.0,
+     4184.69
+    ],
+    [
+     3800.0,
+     4181.29
+    ],
+    [
+     3900.0,
+     4180.0
+    ],
+    [
+     4005.0,
+     4177.76
+    ],
+    [
+     4110.0,
+     4171.68
+    ],
+    [
+     4215.0,
+     4162.72
+    ],
+    [
+     4320.0,
+     4151.84
+    ],
+    [
+     4425.0,
+     4140.0
+    ],
+    [
+     4530.0,
+     4128.16
+    ],
+    [
+     4635.0,
+     4117.28
+    ],
+    [
+     4740.0,
+     4108.32
+    ],
+    [
+     4845.0,
+     4102.24
+    ],
+    [
+     4950.0,
+     4100.0
+    ],
+    [
+     5058.33,
+     4085.19
+    ],
+    [
+     5166.67,
+     4048.15
+    ],
+    [
+     5275.0,
+     4000.0
+    ],
+    [
+     5383.33,
+     3951.85
+    ],
+    [
+     5491.67,
+     3914.81
+    ],
+    [
+     5600.0,
+     3900.0
+    ],
+    [
+     5703.33,
+     3900.0
+    ],
+    [
+     5806.67,
+     3900.0
+    ],
+    [
+     5910.0,
+     3900.0
+    ],
+    [
+     6013.33,
+     3900.0
+    ],
+    [
+     6116.67,
+     3900.0
+    ],
+    [
+     6220.0,
+     3900.0
+    ],
+    [
+     6325.0,
+     4045.0
+    ],
+    [
+     6430.0,
+     4190.0
+    ],
+    [
+     6525.0,
+     4194.44
+    ],
+    [
+     6620.0,
+     4205.56
+    ],
+    [
+     6715.0,
+     4220.0
+    ],
+    [
+     6810.0,
+     4234.44
+    ],
+    [
+     6905.0,
+     4245.56
+    ],
+    [
+     7000,
+     4250
+    ]
+   ],
+   "role": "lower return / recovery"
+  },
+  {
+   "id": "west-step",
+   "top": [
+    [
+     560,
+     4000
+    ],
+    [
+     630,
+     3960
+    ],
+    [
+     700.0,
+     3850.0
+    ],
+    [
+     765.0,
+     3835.0
+    ],
+    [
+     830.0,
+     3820.0
+    ],
+    [
+     895.0,
+     3805.0
+    ],
+    [
+     960.0,
+     3790.0
+    ],
+    [
+     1036.67,
+     3743.33
+    ],
+    [
+     1113.33,
+     3696.67
+    ],
+    [
+     1190.0,
+     3650.0
+    ],
+    [
+     1260.0,
+     3600.0
+    ],
+    [
+     1330.0,
+     3550.0
+    ],
+    [
+     1400,
+     3500
+    ]
+   ],
+   "role": "wide ascent and first flank (scree bank against west rock)",
+   "kind": "overhang",
+   "bottom": [
+    [
+     1440,
+     3560
+    ],
+    [
+     1560,
+     4236
+    ],
+    [
+     560,
+     4236
+    ]
+   ]
+  },
+  {
+   "id": "west-ledge",
+   "top": [
+    [
+     1460.0,
+     3330.0
+    ],
+    [
+     1537.5,
+     3312.5
+    ],
+    [
+     1615.0,
+     3295.0
+    ],
+    [
+     1692.5,
+     3277.5
+    ],
+    [
+     1770.0,
+     3260.0
+    ],
+    [
+     1832.5,
+     3250.0
+    ],
+    [
+     1895.0,
+     3240.0
+    ],
+    [
+     1957.5,
+     3230.0
+    ],
+    [
+     2020.0,
+     3220.0
+    ],
+    [
+     2100.0,
+     3210.0
+    ],
+    [
+     2180.0,
+     3200.0
+    ],
+    [
+     2260.0,
+     3190.0
+    ],
+    [
+     2340,
+     3180
+    ]
+   ],
+   "role": "covered counterfire terrace",
+   "kind": "overhang",
+   "thickness": 210,
+   "bottom": [
+    [
+     2460,
+     3420
+    ],
+    [
+     2310,
+     3680
+    ],
+    [
+     2110,
+     3650
+    ],
+    [
+     2050,
+     3890
+    ],
+    [
+     2190,
+     4235
+    ],
+    [
+     1680,
+     4230
+    ],
+    [
+     1780,
+     3900
+    ],
+    [
+     1690,
+     3570
+    ],
+    [
+     1460,
+     3500
+    ]
+   ]
+  },
+  {
+   "id": "broken-crossing",
+   "top": [
+    [
+     2210.0,
+     3000.0
+    ],
+    [
+     2282.5,
+     2982.5
+    ],
+    [
+     2355.0,
+     2965.0
+    ],
+    [
+     2427.5,
+     2947.5
+    ],
+    [
+     2500.0,
+     2930.0
+    ],
+    [
+     2570.0,
+     2902.5
+    ],
+    [
+     2640.0,
+     2875.0
+    ],
+    [
+     2710.0,
+     2847.5
+    ],
+    [
+     2780.0,
+     2820.0
+    ],
+    [
+     2852.0,
+     2792.0
+    ],
+    [
+     2924.0,
+     2764.0
+    ],
+    [
+     2996.0,
+     2736.0
+    ],
+    [
+     3068.0,
+     2708.0
+    ],
+    [
+     3140,
+     2680
+    ]
+   ],
+   "role": "crossing with lower retreat",
+   "material": "wood"
+  },
+  {
+   "id": "ridge-shoulder",
+   "top": [
+    [
+     3000.0,
+     2520.0
+    ],
+    [
+     3062.5,
+     2500.0
+    ],
+    [
+     3125.0,
+     2480.0
+    ],
+    [
+     3187.5,
+     2460.0
+    ],
+    [
+     3250.0,
+     2440.0
+    ],
+    [
+     3330.0,
+     2403.33
+    ],
+    [
+     3410.0,
+     2366.67
+    ],
+    [
+     3490,
+     2330
+    ]
+   ],
+   "role": "oblique support fire",
+   "material": "wood"
+  },
+  {
+   "id": "ridge-court",
+   "top": [
+    [
+     3570.0,
+     2160.0
+    ],
+    [
+     3642.5,
+     2145.0
+    ],
+    [
+     3715.0,
+     2130.0
+    ],
+    [
+     3787.5,
+     2115.0
+    ],
+    [
+     3860.0,
+     2100.0
+    ],
+    [
+     3940.0,
+     2087.5
+    ],
+    [
+     4020.0,
+     2075.0
+    ],
+    [
+     4100.0,
+     2062.5
+    ],
+    [
+     4180.0,
+     2050.0
+    ],
+    [
+     4246.0,
+     2054.0
+    ],
+    [
+     4312.0,
+     2058.0
+    ],
+    [
+     4378.0,
+     2062.0
+    ],
+    [
+     4444.0,
+     2066.0
+    ],
+    [
+     4510,
+     2070
+    ]
+   ],
+   "role": "miniboss flank and recovery",
+   "kind": "overhang",
+   "thickness": 210,
+   "bottom": [
+    [
+     4650,
+     2390
+    ],
+    [
+     4490,
+     2590
+    ],
+    [
+     4310,
+     2580
+    ],
+    [
+     4210,
+     3090
+    ],
+    [
+     4420,
+     4180
+    ],
+    [
+     3970,
+     4180
+    ],
+    [
+     4060,
+     3400
+    ],
+    [
+     3930,
+     2850
+    ],
+    [
+     3650,
+     2650
+    ],
+    [
+     3460,
+     2370
+    ]
+   ]
+  },
+  {
+   "id": "lookout",
+   "top": [
+    [
+     4390.0,
+     1920.0
+    ],
+    [
+     4457.5,
+     1892.5
+    ],
+    [
+     4525.0,
+     1865.0
+    ],
+    [
+     4592.5,
+     1837.5
+    ],
+    [
+     4660.0,
+     1810.0
+    ],
+    [
+     4725.0,
+     1795.0
+    ],
+    [
+     4790.0,
+     1780.0
+    ],
+    [
+     4855.0,
+     1765.0
+    ],
+    [
+     4920.0,
+     1750.0
+    ],
+    [
+     4994.0,
+     1766.0
+    ],
+    [
+     5068.0,
+     1782.0
+    ],
+    [
+     5142.0,
+     1798.0
+    ],
+    [
+     5216.0,
+     1814.0
+    ],
+    [
+     5290,
+     1830
+    ]
+   ],
+   "role": "mandatory high engagement / arc sightline",
+   "material": "wood"
+  },
+  {
+   "id": "east-overhang",
+   "top": [
+    [
+     4980.0,
+     2260.0
+    ],
+    [
+     5067.5,
+     2245.94
+    ],
+    [
+     5155.0,
+     2215.0
+    ],
+    [
+     5242.5,
+     2184.06
+    ],
+    [
+     5330.0,
+     2170.0
+    ],
+    [
+     5436.67,
+     2180.37
+    ],
+    [
+     5543.33,
+     2199.63
+    ],
+    [
+     5650.0,
+     2210.0
+    ],
+    [
+     5740.0,
+     2231.88
+    ],
+    [
+     5830.0,
+     2280.0
+    ],
+    [
+     5920.0,
+     2328.12
+    ],
+    [
+     6010,
+     2350
+    ],
+    [
+     6090,
+     2398.44
+    ],
+    [
+     6170,
+     2446.87
+    ],
+    [
+     6250,
+     2495.31
+    ],
+    [
+     6330,
+     2543.74
+    ],
+    [
+     6410,
+     2592.18
+    ],
+    [
+     6500,
+     2646.67
+    ]
+   ],
+   "role": "overlapping descent choice",
+   "kind": "overhang",
+   "thickness": 210,
+   "bottom": [
+    [
+     6170,
+     2530
+    ],
+    [
+     6040,
+     2750
+    ],
+    [
+     5860,
+     2780
+    ],
+    [
+     5770,
+     3220
+    ],
+    [
+     6010,
+     3900
+    ],
+    [
+     5470,
+     3950
+    ],
+    [
+     5580,
+     3380
+    ],
+    [
+     5430,
+     2840
+    ],
+    [
+     5100,
+     2580
+    ],
+    [
+     4910,
+     2420
+    ]
+   ]
+  },
+  {
+   "id": "east-turn",
+   "top": [
+    [
+     6500,
+     2646.67
+    ],
+    [
+     6750,
+     2670
+    ],
+    [
+     6980,
+     2740
+    ]
+   ],
+   "role": "return above boat",
+   "material": "wood"
+  },
+  {
+   "id": "east-middle",
+   "top": [
+    [
+     6250,
+     3140
+    ],
+    [
+     6480,
+     3070
+    ],
+    [
+     6700,
+     3090
+    ],
+    [
+     6900,
+     3170
+    ]
+   ],
+   "role": "drop recovery and flank",
+   "material": "wood"
+  },
+  {
+   "id": "east-low",
+   "top": [
+    [
+     6220,
+     3570
+    ],
+    [
+     6450,
+     3500
+    ],
+    [
+     6650,
+     3520
+    ],
+    [
+     6830,
+     3600
+    ]
+   ],
+   "role": "last return / dry boarding apron",
+   "material": "wood"
+  },
+  {
+   "id": "middle-west",
+   "top": [
+    [
+     2410.0,
+     3410.0
+    ],
+    [
+     2482.5,
+     3430.0
+    ],
+    [
+     2555.0,
+     3450.0
+    ],
+    [
+     2627.5,
+     3470.0
+    ],
+    [
+     2700.0,
+     3490.0
+    ],
+    [
+     2770.0,
+     3498.33
+    ],
+    [
+     2840.0,
+     3506.67
+    ],
+    [
+     2910.0,
+     3515.0
+    ],
+    [
+     2980.0,
+     3523.33
+    ],
+    [
+     3050.0,
+     3531.67
+    ],
+    [
+     3120,
+     3540
+    ]
+   ],
+   "role": "middle bypass rejoins ascent",
+   "material": "wood"
+  },
+  {
+   "id": "middle-east",
+   "top": [
+    [
+     3150.0,
+     3400.0
+    ],
+    [
+     3220.0,
+     3394.0
+    ],
+    [
+     3290.0,
+     3388.0
+    ],
+    [
+     3360.0,
+     3382.0
+    ],
+    [
+     3430.0,
+     3376.0
+    ],
+    [
+     3500.0,
+     3370.0
+    ],
+    [
+     3574.0,
+     3380.0
+    ],
+    [
+     3648.0,
+     3390.0
+    ],
+    [
+     3722.0,
+     3400.0
+    ],
+    [
+     3796.0,
+     3410.0
+    ],
+    [
+     3870,
+     3420
+    ],
+    [
+     3960,
+     3424
+    ],
+    [
+     4050,
+     3428
+    ]
+   ],
+   "role": "sloping crossfire bridge",
+   "material": "wood"
+  },
+  {
+   "id": "return-ramp",
+   "top": [
+    [
+     4520.0,
+     4080.0
+    ],
+    [
+     4593.33,
+     4010.0
+    ],
+    [
+     4666.67,
+     3940.0
+    ],
+    [
+     4740.0,
+     3870.0
+    ],
+    [
+     4810.0,
+     3810.0
+    ],
+    [
+     4880.0,
+     3750.0
+    ],
+    [
+     4950.0,
+     3690.0
+    ],
+    [
+     5006.67,
+     3626.67
+    ],
+    [
+     5063.33,
+     3563.33
+    ],
+    [
+     5120,
+     3500
+    ]
+   ],
+   "role": "short return route (rockfall scree)",
+   "kind": "overhang",
+   "bottom": [
+    [
+     5150,
+     3530
+    ],
+    [
+     5260,
+     4140
+    ],
+    [
+     4500,
+     4160
+    ]
+   ]
+  },
+  {
+   "id": "middle-junction",
+   "top": [
+    [
+     2800.0,
+     3005.0
+    ],
+    [
+     2875.0,
+     3025.0
+    ],
+    [
+     2950.0,
+     3045.0
+    ],
+    [
+     3025.0,
+     3065.0
+    ],
+    [
+     3100.0,
+     3085.0
+    ],
+    [
+     3175.0,
+     3112.5
+    ],
+    [
+     3250.0,
+     3140.0
+    ],
+    [
+     3325.0,
+     3167.5
+    ],
+    [
+     3400.0,
+     3195.0
+    ],
+    [
+     3462.5,
+     3207.5
+    ],
+    [
+     3525.0,
+     3220.0
+    ],
+    [
+     3587.5,
+     3232.5
+    ],
+    [
+     3650,
+     3245
+    ]
+   ],
+   "role": "middle bypass reconnects to ridge shoulder",
+   "material": "wood"
+  },
+  {
+   "id": "scaffold-low",
+   "top": [
+    [
+     2880,
+     4045
+    ],
+    [
+     2970,
+     4040
+    ],
+    [
+     3060,
+     4045
+    ]
+   ],
+   "material": "wood",
+   "role": "scaffold landing: pit recovery"
+  },
+  {
+   "id": "scaffold-mid",
+   "top": [
+    [
+     2640,
+     3862
+    ],
+    [
+     2730,
+     3858
+    ],
+    [
+     2820,
+     3862
+    ]
+   ],
+   "material": "wood",
+   "role": "scaffold landing: pit recovery"
+  },
+  {
+   "id": "scaffold-high",
+   "top": [
+    [
+     2880,
+     3682
+    ],
+    [
+     2970,
+     3678
+    ],
+    [
+     3060,
+     3682
+    ]
+   ],
+   "material": "wood",
+   "role": "scaffold landing: pit recovery"
+  },
+  {
+   "id": "boarding-dock",
+   "top": [
+    [
+     6100,
+     3900
+    ],
+    [
+     6270,
+     3900
+    ]
+   ],
+   "material": "wood",
+   "role": "original docking footprint / continuous event deck seam"
+  }
+ ],
+ "covers": [
+  {
+   "id": "court-cover",
+   "x": 4020,
+   "y": 2060.94,
+   "w": 90,
+   "h": 150
+  },
+  {
+   "id": "low-cover",
+   "x": 3460,
+   "y": 4191.14,
+   "w": 110,
+   "h": 170
+  },
+  {
+   "id": "lookout-cover",
+   "x": 4900,
+   "y": 1754.62,
+   "w": 100,
+   "h": 140
+  }
+ ],
+ "routes": [
+  {
+   "id": "ridge-assault",
+   "supports": [
+    "shore",
+    "west-step",
+    "west-ledge",
+    "broken-crossing",
+    "ridge-shoulder",
+    "ridge-court",
+    "lookout",
+    "east-overhang",
+    "east-turn",
+    "east-middle",
+    "east-low",
+    "boarding-dock"
+   ]
+  },
+  {
+   "id": "middle-flank",
+   "supports": [
+    "west-ledge",
+    "middle-west",
+    "middle-east",
+    "middle-junction",
+    "broken-crossing",
+    "ridge-shoulder",
+    "ridge-court",
+    "lookout"
+   ]
+  },
+  {
+   "id": "pit-recovery",
+   "supports": [
+    "shore",
+    "scaffold-low",
+    "scaffold-mid",
+    "scaffold-high",
+    "middle-west"
+   ]
+  }
+ ],
+ "enemyAnchors": [
+  {
+   "id": "west-screen",
+   "support": "west-step",
+   "x": 1210,
+   "roles": [
+    "screen",
+    "ranged"
+   ]
+  },
+  {
+   "id": "crossfire-low",
+   "support": "middle-west",
+   "x": 2790,
+   "roles": [
+    "ranged",
+    "disrupt"
+   ]
+  },
+  {
+   "id": "ridge-pincer",
+   "support": "ridge-shoulder",
+   "x": 3360,
+   "roles": [
+    "screen",
+    "ranged"
+   ]
+  },
+  {
+   "id": "court-mini",
+   "support": "ridge-court",
+   "x": 4280,
+   "roles": [
+    "miniboss",
+    "screen"
+   ]
+  },
+  {
+   "id": "lookout-guard",
+   "support": "lookout",
+   "x": 5150,
+   "roles": [
+    "ranged",
+    "disrupt"
+   ]
+  },
+  {
+   "id": "east-return",
+   "support": "east-turn",
+   "x": 6520,
+   "roles": [
+    "screen",
+    "ranged"
+   ]
+  }
+ ],
+ "boarding": {
+  "dockX": 6470,
+  "deckX": 6260,
+  "deckY": 3900,
+  "deckW": 450,
+  "boardX1": 6285,
+  "boardX2": 6685,
+  "approachX": 5900,
+  "approachY": 3775,
+  "boatY": 3950,
+  "arcY": 2050,
+  "tourViews": [
+   {
+    "key": "boat",
+    "x": 550,
+    "y": 3800,
+    "scale": 0.64,
+    "point": {
+     "x": 500,
+     "y": 3775
+    }
+   },
+   {
+    "key": "dock",
+    "x": 6150,
+    "y": 3800,
+    "scale": 0.56,
+    "point": {
+     "x": 6150,
+     "y": 3900
+    }
+   },
+   {
+    "key": "threat",
+    "x": 1510,
+    "y": 3500,
+    "scale": 0.55,
+    "point": {
+     "x": 1390,
+     "y": 3570
+    }
+   }
+  ],
+  "startX": 450,
+  "startY": 3910
+ },
+ "cameraViews": [
+  {
+   "id": "west-ascent",
+   "x": 1750,
+   "y": 3300,
+   "w": 2800,
+   "h": 1900
+  },
+  {
+   "id": "ridge-overlap",
+   "x": 4480,
+   "y": 2400,
+   "w": 2800,
+   "h": 1900
+  },
+  {
+   "id": "boarding-return",
+   "x": 5650,
+   "y": 3500,
+   "w": 2600,
+   "h": 1800
+  }
+ ],
+ "status": "v5 structural-support draft (Claude); physics re-probe required; no art/combat acceptance",
+ "geometryNotes": {
+  "registeredWorldHeight": 4700,
+  "authoredActiveHeight": 2640,
+  "measuredReachableHeight": null,
+  "protectedFlats": [
+   {
+    "id": "spawn",
+    "x1": 0,
+    "x2": 650,
+    "y": 4000
+   },
+   {
+    "id": "boarding-apron",
+    "x1": 5600,
+    "x2": 6220,
+    "y": 3900
+   },
+   {
+    "id": "boarding-dock",
+    "x1": 6100,
+    "x2": 6270,
+    "y": 3900
+   }
+  ],
+  "massRule": "Solid rooted polygons have large undercuts; remaining one-way shelves are bridge/outcrop support surfaces, not final art.",
+  "mandatoryRouteElevation": 2500,
+  "optionalCoverTop": 1610,
+  "jumpEnvelope": {
+   "engineJumpVy": 660,
+   "jumpingGravity": 1000,
+   "idealApex": 217.8,
+   "conservativeRise": 190,
+   "status": "engine microprobes pending revised ramps"
+  }
+ },
+ "connections": [
+  {
+   "fromSupport": "east-overhang",
+   "toSupport": "east-turn",
+   "mode": "walk"
+  }
+ ],
+ "supportRationale": {
+  "west-step": "solid scree/earth bank leaning on west rock",
+  "west-ledge": "west rock mass (solid)",
+  "middle-west": "lower cargo bridge: west end socketed in west rock flank; posts x≈2790/3130 on shore stone footings",
+  "middle-east": "lower cargo bridge: posts x≈3130/3460(boulder footing)/3800; east end socketed into middle rock stem",
+  "scaffold-low/mid/high": "landings bolted to the same scaffold posts (x≈2790/3130); recovery from shore pit",
+  "middle-junction": "mid deck on ledgers of scaffold posts x≈2790/3130/3460/3640",
+  "broken-crossing": "rope-and-plank bridge: west bridgehead trestle on west rock top, hangs from tall posts x≈2790/3130",
+  "ridge-shoulder": "timber gallery: east end socketed into middle rock edge, west end on tall post x≈3130 and knee braces into rock",
+  "ridge-court": "middle rock mass (solid)",
+  "lookout": "lookout deck (망대) on posts rooted on middle rock top (x≈4420-4500) and east rock top (x≈5240)",
+  "east-overhang": "east rock mass (solid)",
+  "east-turn/east-middle/east-low": "stair-tower landings: four posts from shore x≈6260-6950, horizontal ties socketed into east rock flank",
+  "return-ramp": "solid rockfall scree at foot of east rock",
+  "boarding-dock": "dock deck on piles"
+ }
+}
