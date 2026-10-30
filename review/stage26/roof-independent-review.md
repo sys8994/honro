@@ -18,9 +18,9 @@
 
 ## 직접 읽은 증거 SHA256
 
-- [roof-desktop-knight-workshop.png](roof-desktop-knight-workshop.png): `1b4543ced8262a0940757fa7fee397f2d78c7337c175c26a34cc44823fb1ad54`
-- [roof-mobile-knight-workshop.png](roof-mobile-knight-workshop.png): `d8604db95abc64d7fa708c4f42d2e60ae4f9d855fc7870a38686a4b6a2a742bd`
-- [roof-desktop-occultist-refuge.png](roof-desktop-occultist-refuge.png): `902ff9783ac98f912310863c57440f68ec860551de6d914ec3e724113c0293f5`
-- [roof-mobile-occultist-refuge.png](roof-mobile-occultist-refuge.png): `341eaac2c31528ad8f025001cf05ca9b9ff889ca6adc601a0494b414688301c8`
+- [roof-desktop-knight-workshop.png](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/review/stage26/roof-desktop-knight-workshop.png): `1b4543ced8262a0940757fa7fee397f2d78c7337c175c26a34cc44823fb1ad54`
+- [roof-mobile-knight-workshop.png](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/review/stage26/roof-mobile-knight-workshop.png): `d8604db95abc64d7fa708c4f42d2e60ae4f9d855fc7870a38686a4b6a2a742bd`
+- [roof-desktop-occultist-refuge.png](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/review/stage26/roof-desktop-occultist-refuge.png): `902ff9783ac98f912310863c57440f68ec860551de6d914ec3e724113c0293f5`
+- [roof-mobile-occultist-refuge.png](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/review/stage26/roof-mobile-occultist-refuge.png): `341eaac2c31528ad8f025001cf05ca9b9ff889ca6adc601a0494b414688301c8`
 - [roof-browser.json](roof-browser.json): `f3b93e981a7fc1e7f1978f1d78adfec59617fe624cc8559a82dafcf8d5ab758f`
 - [roof-routes.json](roof-routes.json): `5018e3669d1791212104c401786b51fecd862c6b13663d92ec8080373488fd14`

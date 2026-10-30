@@ -8,12 +8,12 @@
 
 실제 Chromium PC 1440×900, 모바일 390×844에서 두 장소만 확인했다. 원경 WebP decode·독립 pan·21장 건축 가시성·기존 모닥불/진입 버튼·pageerror0을 확인했다. 시작 시 이 원경 요청은 0개이고 장소를 연 뒤 해당 그림만 요청된다. 나머지 28곳은 데이터 매핑만 확인했다.
 
-[21장 PC](pc.png) · [21장 모바일](mobile.png) · [25장 PC](cave-pc.png) · [25장 모바일](cave-mobile.png) · [최소 확인 결과](render.json)
+[21장 PC](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/review/rest-shared-vector/pc.png) · [21장 모바일](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/review/rest-shared-vector/mobile.png) · [25장 PC](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/review/rest-shared-vector/cave-pc.png) · [25장 모바일](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/review/rest-shared-vector/cave-mobile.png) · [최소 확인 결과](render.json)
 
-![21장 PC](pc.png)
+![21장 PC](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/review/rest-shared-vector/pc.png)
 
-![21장 모바일](mobile.png)
+![21장 모바일](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/review/rest-shared-vector/mobile.png)
 
-![25장 PC](cave-pc.png)
+![25장 PC](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/review/rest-shared-vector/cave-pc.png)
 
-![25장 모바일](cave-mobile.png)
+![25장 모바일](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/review/rest-shared-vector/cave-mobile.png)

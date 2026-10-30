@@ -4,7 +4,7 @@
 
 | 변경 전 | 변경 후 |
 |---|---|
-| ![전](stage-29-before.png) | ![후](stage-29-after.png) |
+| ![전](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/review/act3-terrain-continuation/stage-29-before.png) | ![후](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/review/act3-terrain-continuation/stage-29-after.png) |
 
 같은 현재 production Native Scene, 카메라 x5200/y2200/scale0.6. 정상 플레이 화면이나 미술 전면 개편 판정이 아닌 지형 비교 캡처다. 기존 상층 polygon 윗면에 높이95 정비 받침을 만들고 그 위 사수 한 체의 발 Y를 맞췄다. 하층과 두 출구·목표/이벤트/대사·27명/정예7·전력/XP·유한 증원은 보존했다.
 

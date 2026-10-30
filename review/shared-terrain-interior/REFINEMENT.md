@@ -4,8 +4,8 @@
 
 | 화면 | 수정 전 | 집중 보완 |
 |---|---|---|
-| 3장 광역 (2100,1450,0.24) | [이전](after-stage03-wide.png) | [현재](refined-stage03-wide.png) |
-| 18장 정상 (1200,6200,0.5) | [이전](after-stage18-normal.png) | [현재](refined-stage18-normal.png) |
+| 3장 광역 (2100,1450,0.24) | [이전](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/review/shared-terrain-interior/after-stage03-wide.png) | [현재](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/review/shared-terrain-interior/refined-stage03-wide.png) |
+| 18장 정상 (1200,6200,0.5) | [이전](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/review/shared-terrain-interior/after-stage18-normal.png) | [현재](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/review/shared-terrain-interior/refined-stage18-normal.png) |
 
 - 깊은 전경에 별도로 두던 어깨 배치를 제거했다. 흙은 실제 상향 노출면에서만 시작하며 도메인 외곽/하단은 미술의 근거로 쓰지 않는다.
 - 3장의 동일한 큰 둔덕 6개를 서로 다른 주 퇴적면/보조 침식면 2개로 바꿨다. 지표에 상단을 물리고 내려오는 곡면과 둥근 끝단으로 이어져 하단의 독립 덩어리와 반복 쐐기를 없앴다. 넓은 흙 여백은 남겼다.

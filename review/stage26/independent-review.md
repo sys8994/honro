@@ -22,13 +22,13 @@
 
 ## 직접 확인한 PNG SHA-256
 
-- [before-desktop-overview.png](before-desktop-overview.png): `f9c7e75a76a627004835a776986d73d176f92b8604ed09cf75ec70c440295b1e`
-- [after-desktop-overview.png](after-desktop-overview.png): `1d2f3c7abaa4d4433afcb17557446eb87224cd1b5faf973d929eb131eeefd03e`
-- [after-desktop-workshop.png](after-desktop-workshop.png): `f4b3bf436368f79b2a1ea772df3d9934ec0feaa572860530f2a566eccc2a476c`
-- [after-mobile-workshop.png](after-mobile-workshop.png): `3be7e78915a0aa258028f0105e8bcc1bb501b2a5688ec4f97394f0a9e5e1d033`
-- [after-desktop-record-room.png](after-desktop-record-room.png): `dddf10ba023085f4182658dcdb2527e330b5dddd17d9542aad98dd9a160c04b3`
-- [after-desktop-refuge.png](after-desktop-refuge.png): `c353fe7406276aea934745918951ecfa8c0c7015617ffe4237584ac08c411d67`
-- [before-mobile-record-room.png](before-mobile-record-room.png): `2a46494918f9d7a43aa99c8054eadc3c08d1fdad955af5a41acf0bf5b5ccfc25`
-- [after-mobile-record-room.png](after-mobile-record-room.png): `e5aea1a4c44cadc55bf3f60def6f5bac3db7dd0306855aa312148f6e138a5911`
+- [before-desktop-overview.png](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/review/stage26/before-desktop-overview.png): `f9c7e75a76a627004835a776986d73d176f92b8604ed09cf75ec70c440295b1e`
+- [after-desktop-overview.png](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/review/stage26/after-desktop-overview.png): `1d2f3c7abaa4d4433afcb17557446eb87224cd1b5faf973d929eb131eeefd03e`
+- [after-desktop-workshop.png](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/review/stage26/after-desktop-workshop.png): `f4b3bf436368f79b2a1ea772df3d9934ec0feaa572860530f2a566eccc2a476c`
+- [after-mobile-workshop.png](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/review/stage26/after-mobile-workshop.png): `3be7e78915a0aa258028f0105e8bcc1bb501b2a5688ec4f97394f0a9e5e1d033`
+- [after-desktop-record-room.png](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/review/stage26/after-desktop-record-room.png): `dddf10ba023085f4182658dcdb2527e330b5dddd17d9542aad98dd9a160c04b3`
+- [after-desktop-refuge.png](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/review/stage26/after-desktop-refuge.png): `c353fe7406276aea934745918951ecfa8c0c7015617ffe4237584ac08c411d67`
+- [before-mobile-record-room.png](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/review/stage26/before-mobile-record-room.png): `2a46494918f9d7a43aa99c8054eadc3c08d1fdad955af5a41acf0bf5b5ccfc25`
+- [after-mobile-record-room.png](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/review/stage26/after-mobile-record-room.png): `e5aea1a4c44cadc55bf3f60def6f5bac3db7dd0306855aa312148f6e138a5911`
 
 생성기 SHA-256: `07c1394d19915cad6c84ec16fa9365425da27fe2076d3c2f5ac048e42c55175e`

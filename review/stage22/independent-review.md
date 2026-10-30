@@ -28,10 +28,10 @@
 
 ## 직접 확인한 이미지 SHA-256
 
-- [before/after-overview.png](before/after-overview.png): `84c0613a7633019ea804954980c4c00085449134c5e5933c656082d6fb5dd06f`
-- [after/after-overview.png](after/after-overview.png): `8cbf6e2dc6abbd6fe3196e07aac82ea52c695afac34652f394ddb8e6620b0c3d`
-- [after/after-register-ascent.png](after/after-register-ascent.png): `9807b51678b30b509a7cd7fc19c99f68aee498e57d11561bf06b9098ea166d5a`
-- [browser/after-desktop-west-court.png](browser/after-desktop-west-court.png): `c5de45e54d0ef754311e5058ff34f718f3767f4273c1211c4dfa160a5abd7a7a`
-- [browser/after-mobile-west-court.png](browser/after-mobile-west-court.png): `2e9bc3b33b6c1283bd6d13c106a09a8a968963d50e6df6d8a287c3d2a3680e80`
+- [before/after-overview.png](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/review/stage22/before/after-overview.png): `84c0613a7633019ea804954980c4c00085449134c5e5933c656082d6fb5dd06f`
+- [after/after-overview.png](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/review/stage22/after/after-overview.png): `8cbf6e2dc6abbd6fe3196e07aac82ea52c695afac34652f394ddb8e6620b0c3d`
+- [after/after-register-ascent.png](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/review/stage22/after/after-register-ascent.png): `9807b51678b30b509a7cd7fc19c99f68aee498e57d11561bf06b9098ea166d5a`
+- [browser/after-desktop-west-court.png](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/review/stage22/browser/after-desktop-west-court.png): `c5de45e54d0ef754311e5058ff34f718f3767f4273c1211c4dfa160a5abd7a7a`
+- [browser/after-mobile-west-court.png](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/review/stage22/browser/after-mobile-west-court.png): `2e9bc3b33b6c1283bd6d13c106a09a8a968963d50e6df6d8a287c3d2a3680e80`
 
 검사 지형 소스 SHA-256: `642ad2e47b963b9ceb85cdec63fc31efe9c9237c15d8e4e29236298983be22c1`

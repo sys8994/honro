@@ -110,3 +110,10 @@ actions의 support에서 archive 지붕을 사용한 정상 전투 행동은 찾
 - `result.json`: `e26d282e0f4a545190d634653ca0d40668cf2b7699dfb0a33c714161959f2248`
 - `trace.json`: `1443424029734274a413403d8e3f01eb3dc8e6d405b2561f0d5c1bfd35778872`
 - `provenance.json`: `1f43958bcd5cb5e08f3e0a8114fa1edecca348132c88a22e5d0377bad1de229e`
+
+
+## 원본 추적 보관 위치 · 2026-10-30
+
+위 검수 당시의 대형 trace 두 개는 작업 트리에서 제외했으며 결과·해시·검수 한계는 변경하지 않았다. [전체 보관 목록](../../game/docs/asset-archive-20261030/historical-traces.json) 및 아래 고정 원본을 사용한다.
+- [review/stage22/normal-input-roof/trace.json](https://github.com/sys8994/honro/blob/569e11123b2e077ef1f37aeaf92f44d131df73e5/review/stage22/normal-input-roof/trace.json)
+- [review/stage22/normal-input-before-roof/trace.json](https://github.com/sys8994/honro/blob/569e11123b2e077ef1f37aeaf92f44d131df73e5/review/stage22/normal-input-before-roof/trace.json)

@@ -8,8 +8,8 @@
 
 | 구간/카메라 | 전 | 후 |
 |---|---|---|
-| 3장 잔교~오른쪽 창고, (2100,1450,0.24) | [기준](before-stage03-wide.png) | [개선](after-stage03-wide.png) |
-| 18장 시작점 아래, (1200,6200,0.5) | [기준](before-stage18-normal.png) | [개선](after-stage18-normal.png) |
+| 3장 잔교~오른쪽 창고, (2100,1450,0.24) | [기준](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/review/terrain-depth-volumes/before-stage03-wide.png) | [개선](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/review/terrain-depth-volumes/after-stage03-wide.png) |
+| 18장 시작점 아래, (1200,6200,0.5) | [기준](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/review/terrain-depth-volumes/before-stage18-normal.png) | [개선](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/review/terrain-depth-volumes/after-stage18-normal.png) |
 
 ## 개선 범위
 

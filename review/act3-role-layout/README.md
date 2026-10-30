@@ -6,17 +6,17 @@
 
 | 장 | 초기/정예 | 결과 캡처 | 보존한 주요 길 |
 |---|---:|---|---|
-|21|26/5|[성문·장터](stage-21.png)|장터·관아 one-way 지붕 순환|
-|22|30/7|[수직 기록고](stage-22.png)|하층→상층 기록 연결|
-|23|40/10|[호송 관창](stage-23.png)|운반자 지상 호송·창고 지붕|
-|24|26/6|[종택·사당](stage-24.png)|정원 회랑·사당 담장 접근|
-|25|15/3|[수문 정비실](stage-25.png)|다섯 축지 발사창·전망 복귀|
-|26|18/4|[지상 작업장](stage-26.png)|지상/작업다락 선택|
-|27|15/3|[검은 집하장](stage-27.png)|네 축지 연결·설오 추락 씬|
-|28|20/5|[관아 마당](stage-28.png)|양쪽 처마·분할 합류|
-|29|27/7|[수문 퇴로](stage-29.png)|상층/하층 탈출 선택|
-|30|40/10|[나루 방어](stage-30.png)|여울/고지·배 내려앉기·전원 집결|
+|21|26/5|[성문·장터](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/review/act3-role-layout/stage-21.png)|장터·관아 one-way 지붕 순환|
+|22|30/7|[수직 기록고](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/review/act3-role-layout/stage-22.png)|하층→상층 기록 연결|
+|23|40/10|[호송 관창](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/review/act3-role-layout/stage-23.png)|운반자 지상 호송·창고 지붕|
+|24|26/6|[종택·사당](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/review/act3-role-layout/stage-24.png)|정원 회랑·사당 담장 접근|
+|25|15/3|[수문 정비실](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/review/act3-role-layout/stage-25.png)|다섯 축지 발사창·전망 복귀|
+|26|18/4|[지상 작업장](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/review/act3-role-layout/stage-26.png)|지상/작업다락 선택|
+|27|15/3|[검은 집하장](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/review/act3-role-layout/stage-27.png)|네 축지 연결·설오 추락 씬|
+|28|20/5|[관아 마당](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/review/act3-role-layout/stage-28.png)|양쪽 처마·분할 합류|
+|29|27/7|[수문 퇴로](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/review/act3-role-layout/stage-29.png)|상층/하층 탈출 선택|
+|30|40/10|[나루 방어](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/review/act3-role-layout/stage-30.png)|여울/고지·배 내려앉기·전원 집결|
 
-최종 Chromium 대표 실행은 [21장](stage-21-browser.png)과 [27장](stage-27-browser.png)만 확인했다. 준비 프로필의 캠페인 진입, 짧은 실제 엔진 보행/기본 점프, 저작 적 좌표 적용과 초기 몸/비행 여유가 범위다. 정상 자원 플레이·장 완료·추락 씬 재생·전 장 브라우저 검증은 실행하지 않았다. 상세 근거: [Native 캡처](captures.json), [대표 실행](browser.json).
+최종 Chromium 대표 실행은 [21장](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/review/act3-role-layout/stage-21-browser.png)과 [27장](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/review/act3-role-layout/stage-27-browser.png)만 확인했다. 준비 프로필의 캠페인 진입, 짧은 실제 엔진 보행/기본 점프, 저작 적 좌표 적용과 초기 몸/비행 여유가 범위다. 정상 자원 플레이·장 완료·추락 씬 재생·전 장 브라우저 검증은 실행하지 않았다. 상세 근거: [Native 캡처](captures.json), [대표 실행](browser.json).
 
 30장은 현행 활성 데이터에 별도 호송 NPC가 없으며 나루 방어 뒤 생존 동행 전원 집결을 유지한다. 23장 운반자 호송 및 25/26/27장의 두 동행·출구 도착 조건은 그대로다. [설계 카드](../shared-vector-campaign/stage-cards.json)와 [변경/보존 근거](../../game/docs/plans/2026-10-20-act3-role-layout.md)를 함께 참고한다.

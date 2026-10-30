@@ -21,11 +21,11 @@
 
 ## 직접 확인한 PNG SHA-256
 
-- [before-desktop-overview.png](before-desktop-overview.png): `be21341c04987d3044b4bf36e72c0e84bb53427be727a7b142c018eea2f83d07`
-- [after-desktop-overview.png](after-desktop-overview.png): `5af8bf4ac5d28725e207d29488c0b8b980df40b981b7a31f3f44bfba7418cdd0`
-- [after-desktop-shrine.png](after-desktop-shrine.png): `9f6ddae6a3266f95db24d5211f0f9bcabbc7f7fe937dae1721db30fc55a9c322`
-- [after-desktop-two-entries.png](after-desktop-two-entries.png): `829eb79b59d124af9cd1c1a0e2b7377b220e2c77d350d82d341e4429f678414d`
-- [after-mobile-two-entries.png](after-mobile-two-entries.png): `59697cd44432c7b8e33d5a3dfb342e1f674aee4fdd1944f0ae3980049020440e`
-- [after-mobile-rear-garden.png](after-mobile-rear-garden.png): `bfdc710f874da521845212f995d43cc191b318e03ed5de2585fa6e6ae698398c`
+- [before-desktop-overview.png](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/review/stage24/before-desktop-overview.png): `be21341c04987d3044b4bf36e72c0e84bb53427be727a7b142c018eea2f83d07`
+- [after-desktop-overview.png](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/review/stage24/after-desktop-overview.png): `5af8bf4ac5d28725e207d29488c0b8b980df40b981b7a31f3f44bfba7418cdd0`
+- [after-desktop-shrine.png](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/review/stage24/after-desktop-shrine.png): `9f6ddae6a3266f95db24d5211f0f9bcabbc7f7fe937dae1721db30fc55a9c322`
+- [after-desktop-two-entries.png](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/review/stage24/after-desktop-two-entries.png): `829eb79b59d124af9cd1c1a0e2b7377b220e2c77d350d82d341e4429f678414d`
+- [after-mobile-two-entries.png](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/review/stage24/after-mobile-two-entries.png): `59697cd44432c7b8e33d5a3dfb342e1f674aee4fdd1944f0ae3980049020440e`
+- [after-mobile-rear-garden.png](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/review/stage24/after-mobile-rear-garden.png): `bfdc710f874da521845212f995d43cc191b318e03ed5de2585fa6e6ae698398c`
 
 생성기 SHA-256: `31a4f5f49de16a0fefd848fd5181fc4f5475461ae96486873407abe73e81ba11`

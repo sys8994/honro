@@ -4,8 +4,8 @@
 
 | 동일 카메라 | 이전 | 장소별 군집 |
 |---|---|---|
-| 3장 광역 (2100,1450,0.24) | [이전](refined-stage03-wide.png) | [현재](clustered-stage03-wide.png) |
-| 18장 정상 (1200,6200,0.5) | [이전](refined-stage18-normal.png) | [현재](clustered-stage18-normal.png) |
+| 3장 광역 (2100,1450,0.24) | [이전](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/review/shared-terrain-interior/refined-stage03-wide.png) | [현재](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/review/shared-terrain-interior/clustered-stage03-wide.png) |
+| 18장 정상 (1200,6200,0.5) | [이전](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/review/shared-terrain-interior/refined-stage18-normal.png) | [현재](https://raw.githubusercontent.com/sys8994/honro/569e11123b2e077ef1f37aeaf92f44d131df73e5/review/shared-terrain-interior/clustered-stage18-normal.png) |
 
 ## 구현
 
