@@ -5,7 +5,9 @@ if(G.HonroAct4PilotArt)return;
 const layers=Object.freeze({background:'back',structure:'structural-back',body:'mid',rear:'prop',front:'front'});
 function config(b){const q=b?.honroMap?.nativeArt;return b?.honroStage===31&&q?.version===1&&Array.isArray(q.coveredTerrainIds)?q:null;}
 function native(l,b){return !!(config(b)&&Object.hasOwn(layers,l?.nativeArtLayer)&&l.layer===layers[l.nativeArtLayer]&&l.kind==='canonical-element'&&l.asset?.vector&&!l.asset.collision?.length&&!l.collisionIds?.length&&!l.honroElementCollision);}
-function covered(t,b){const q=config(b);return !!(q&&q.coveredTerrainIds.includes(t.id)&&!t.honroElementCollision&&b.terrain?.some(v=>v.id===t.id&&!v.broken)&&(b.honroLandmarks||[]).some(l=>native(l,b)&&l.nativeArtLayer==='body'&&l.nativeTerrainId===t.id&&(l.opacity??1)===1));}
+function terrainIds(l){return Array.isArray(l?.nativeTerrainIds)?l.nativeTerrainIds:(l?.nativeTerrainId?[l.nativeTerrainId]:[]);}
+function bodyLive(l,b){const ids=terrainIds(l);return ids.length>0&&new Set(ids).size===ids.length&&ids.every(id=>typeof id==='string'&&b.terrain?.some(t=>t.id===id&&!t.broken));}
+function covered(t,b){const q=config(b);return !!(q&&q.coveredTerrainIds.includes(t.id)&&!t.honroElementCollision&&(b.honroLandmarks||[]).some(l=>native(l,b)&&l.nativeArtLayer==='body'&&bodyLive(l,b)&&terrainIds(l).includes(t.id)&&(l.opacity??1)===1));}
 // Composer-side fail-fast contract; runtime still retains fallback if a BODY
 // asset is absent in an older/incomplete saved battle.
 function validateStage(stage,library){
@@ -14,7 +16,8 @@ function validateStage(stage,library){
  for(const l of stage.elements||[]){if(!l.nativeArtLayer)continue;const a=library.find(a=>a.id===l.assetId);
   if(!Object.hasOwn(layers,l.nativeArtLayer)||l.layer!==layers[l.nativeArtLayer]||!a?.vector||a.collision?.length||a.interactionType)throw Error('Invalid native art element '+l.id);
  }
- for(const id of q.coveredTerrainIds){if(!stage.terrains.some(t=>t.id===id)||(stage.elements||[]).filter(l=>l.nativeArtLayer==='body'&&l.nativeTerrainId===id&&(l.opacity??1)===1).length!==1)throw Error('Missing native BODY for '+id);}
+ for(const id of q.coveredTerrainIds){if(!stage.terrains.some(t=>t.id===id)||(stage.elements||[]).filter(l=>l.nativeArtLayer==='body'&&terrainIds(l).includes(id)&&(l.opacity??1)===1).length!==1)throw Error('Missing native BODY for '+id);}
+ for(const l of stage.elements||[]){if(l.nativeArtLayer!=='body')continue;const ids=terrainIds(l);if(!ids.length||new Set(ids).size!==ids.length||ids.some(id=>typeof id!=='string'||!q.coveredTerrainIds.includes(id)||!stage.terrains.some(t=>t.id===id)))throw Error('Invalid native BODY coverage '+l.id);}
  return true;
 }
 const S=G.HonroScene?.prototype;
@@ -25,7 +28,7 @@ if(S){
   const b=this.battle;
   if(config(b)&&this._nativeArtBackground&&l.id==='a4-31-boat-10'&&l.asset?.id==='a4:boat'){this._nativeArtDeferredBoat={...l};return;}
   if(native(l,b)){
-   if(l.nativeArtLayer==='body'&&l.nativeTerrainId&&b.terrain?.find(t=>t.id===l.nativeTerrainId)?.broken)return;
+   if(l.nativeArtLayer==='body'&&!bodyLive(l,b))return;
    if(G.HonroVectorArt?.draw(G.HonroVisualStyle?.raw(c)||c,l.asset,l))return;
   }
   // Paint the existing event-controlled boat pose exactly once, without making

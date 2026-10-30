@@ -39,6 +39,16 @@ scene.background(styled,1,1,b);b.honroAct4PreviewDynamic=[];scene.background(sty
 b.honroAct4PreviewDynamic=[boat];g.HONRO_PROJECT.library=[];scene.background(styled,1,1,b);calls.length=0;scene.liveWater(styled,b);assert.deepEqual(calls,[['water'],['fallback',boat.id]],'missing paint asset retains original boat fallback');
 const stage={metadata:{stageId:31},design:b.honroMap,terrains:b.terrain,elements:marks.map(l=>({...l,assetId:l.asset.id}))},library=marks.map(l=>l.asset);
 assert(A.validateStage(stage,library));assert.throws(()=>A.validateStage(stage,[]),/Invalid native art element/);assert.throws(()=>A.validateStage({...stage,terrains:[]},library),/Missing native BODY/);
+// One continuous authored bank may cover several terrain domains without duplicate painting.
+const continuous={...body,nativeTerrainId:undefined,nativeTerrainIds:['solid','cover-unverified']};
+const cb={...b,honroMap:{nativeArt:{...b.honroMap.nativeArt,coveredTerrainIds:['solid','cover-unverified']}},honroLandmarks:[continuous]};
+scene.battle=cb;calls.length=0;for(const t of cb.terrain)scene.terrain(styled,t);scene.landmark(styled,continuous);
+assert.deepEqual(calls,[['vector','body','body',true]],'one continuous native body, no repeated draws or fallback seams');
+const cs={...stage,design:cb.honroMap,elements:[{...continuous,assetId:body.asset.id}]};assert(A.validateStage(cs,library));
+assert.throws(()=>A.validateStage({...cs,elements:[{...cs.elements[0],nativeTerrainIds:['solid','solid']}]},library));
+const broken={...cb,terrain:cb.terrain.map(t=>t.id==='solid'?{...t,broken:true}:t)};
+assert(!A.covered(broken.terrain[1],broken),'partial loss restores all continuous-body fallback');
+scene.battle=broken;calls.length=0;scene.landmark(styled,continuous);assert.equal(calls.length,0,'continuous native paint cannot conceal broken terrain');
 scene.battle={...b,honroStage:32};calls.length=0;scene.terrain(styled,b.terrain[0]);scene.landmark(styled,body);assert.deepEqual(calls,[['terrain','solid'],['fallback','body']]);
 const renderer=await read('shared/runtime/renderer.js');
 const actorsAt=renderer.indexOf('else this.unit(c, v,'),foregroundAt=renderer.indexOf('this._drawForeground(c,b,w,h,foreground)');
