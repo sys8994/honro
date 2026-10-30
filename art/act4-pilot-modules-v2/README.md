@@ -113,3 +113,15 @@ the actual v4 bodies; only near-natural fit is allowed. Common modules remain
 shallow one-way ledges. The assembler refuses this rejected method unless the
 explicit diagnostic-only flag is supplied. Body art review must precede separate
 non-walkable collider extraction and full Engine/boarding revalidation.
+
+### One-way ledge motion-art regression
+
+`check-native-route-occlusion.mjs PROJECT ROUTE OUTPUT` rejects mismatched stage
+SHA and samples actual filled native geometry against the four real Engine body
+routes. These 6-frame trajectory samples are diagnostic, not an exact continuous
+sweep. Even unstretched shallow ledges show 71–100% torso sample intersection
+while ascending through one-way supports. Drawing the player in front would not
+solve the appearance of passing through solid rock. Preserve physics and request
+an open/appropriately thin support design for these corridors; no automatic
+clipping, invisible rock wall, or physical support expansion is allowed.
+`route-occlusion-summary.json` records this rejected-candidate evidence.

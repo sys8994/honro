@@ -1,0 +1,714 @@
+{
+  "status": "DIAGNOSTIC: not a continuous exact swept-body proof",
+  "stageSHA256": "820afd2767fbf275692ef80c02ed8da59424e86bba0aabc21b1a11d6a0f4552f",
+  "projectSHA256": "fd8dbfb782a85be1c8ec34e7e26226e0a8a349c0e7254fcb009fa82b8edbbe0a",
+  "method": "45 torso samples inside actor x\u00b118 and y-10..y-86, actual path fill union. Engine body h92/r22. Trajectory every6frames may miss intersections. Grounded foot/slope contacts excluded only by 10world foot margin. Any large fraction requires visual review; never erase native body or alter colliders automatically.",
+  "routeCount": 4,
+  "rows": [
+    {
+      "routeId": "ridge-assault",
+      "cls": "archer",
+      "assetId": "stage31:native:west-step",
+      "hitSamples": 28,
+      "maxTorsoFraction": 0.8444444444444444,
+      "first": {
+        "sample": 23,
+        "x": 733.3287390985626,
+        "y": 4022.0804619366018,
+        "grounded": true,
+        "support": "pilot31-shore",
+        "torsoSampleFraction": 0.022222222222222223
+      },
+      "worst": {
+        "sample": 26,
+        "x": 735,
+        "y": 3935.064533950605,
+        "grounded": false,
+        "torsoSampleFraction": 0.8444444444444444
+      }
+    },
+    {
+      "routeId": "ridge-assault",
+      "cls": "archer",
+      "assetId": "stage31:native:broken-crossing",
+      "hitSamples": 21,
+      "maxTorsoFraction": 0.8666666666666667,
+      "first": {
+        "sample": 135,
+        "x": 2244.9944903251876,
+        "y": 3176.119878679554,
+        "grounded": false,
+        "torsoSampleFraction": 0.08888888888888889
+      },
+      "worst": {
+        "sample": 138,
+        "x": 2244.9944903251876,
+        "y": 3091.62554706593,
+        "grounded": false,
+        "torsoSampleFraction": 0.8666666666666667
+      }
+    },
+    {
+      "routeId": "ridge-assault",
+      "cls": "archer",
+      "assetId": "stage31:native:ridge-shoulder",
+      "hitSamples": 22,
+      "maxTorsoFraction": 1,
+      "first": {
+        "sample": 197,
+        "x": 3060.488789955637,
+        "y": 2696.5648354259088,
+        "grounded": true,
+        "support": "pilot31-broken-crossing",
+        "torsoSampleFraction": 0.08888888888888889
+      },
+      "worst": {
+        "sample": 202,
+        "x": 3114.006386234624,
+        "y": 2615.7752031088185,
+        "grounded": false,
+        "torsoSampleFraction": 1
+      }
+    },
+    {
+      "routeId": "ridge-assault",
+      "cls": "archer",
+      "assetId": "stage31:native:lookout",
+      "hitSamples": 28,
+      "maxTorsoFraction": 1,
+      "first": {
+        "sample": 315,
+        "x": 4427.187505893809,
+        "y": 2114.687499158027,
+        "grounded": true,
+        "support": "pilot31-ridge-court",
+        "torsoSampleFraction": 0.06666666666666667
+      },
+      "worst": {
+        "sample": 318,
+        "x": 4482.354527718677,
+        "y": 2092.1163778250584,
+        "grounded": true,
+        "support": "pilot31-ridge-court",
+        "torsoSampleFraction": 1
+      }
+    },
+    {
+      "routeId": "ridge-assault",
+      "cls": "archer",
+      "assetId": "stage31:native:east-overhang",
+      "hitSamples": 37,
+      "maxTorsoFraction": 1,
+      "first": {
+        "sample": 411,
+        "x": 5276.371354022616,
+        "y": 2182.419097318256,
+        "grounded": true,
+        "support": "pilot31-east-overhang",
+        "torsoSampleFraction": 0.022222222222222223
+      },
+      "worst": {
+        "sample": 547,
+        "x": 6364.4332003851905,
+        "y": 3086.17408884609,
+        "grounded": true,
+        "support": "pilot31-east-middle",
+        "torsoSampleFraction": 1
+      }
+    },
+    {
+      "routeId": "ridge-assault",
+      "cls": "archer",
+      "assetId": "stage31:native:east-turn",
+      "hitSamples": 15,
+      "maxTorsoFraction": 0.8,
+      "first": {
+        "sample": 492,
+        "x": 6738.240620056147,
+        "y": 2660.960542549129,
+        "grounded": true,
+        "support": "pilot31-east-turn",
+        "torsoSampleFraction": 0.022222222222222223
+      },
+      "worst": {
+        "sample": 511,
+        "x": 6864.785871884019,
+        "y": 2816.523524373188,
+        "grounded": false,
+        "torsoSampleFraction": 0.8
+      }
+    },
+    {
+      "routeId": "ridge-assault",
+      "cls": "archer",
+      "assetId": "stage31:native:east-middle",
+      "hitSamples": 23,
+      "maxTorsoFraction": 0.8444444444444444,
+      "first": {
+        "sample": 523,
+        "x": 6825.447267606495,
+        "y": 3131.8699964794655,
+        "grounded": true,
+        "support": "pilot31-east-middle",
+        "torsoSampleFraction": 0.022222222222222223
+      },
+      "worst": {
+        "sample": 563,
+        "x": 6275.494585263694,
+        "y": 3208.3839637804663,
+        "grounded": false,
+        "torsoSampleFraction": 0.8444444444444444
+      }
+    },
+    {
+      "routeId": "ridge-assault",
+      "cls": "archer",
+      "assetId": "stage31:native:east-low",
+      "hitSamples": 16,
+      "maxTorsoFraction": 0.6888888888888889,
+      "first": {
+        "sample": 574,
+        "x": 6260.662098252399,
+        "y": 3546.7645152843434,
+        "grounded": true,
+        "support": "pilot31-east-low",
+        "torsoSampleFraction": 0.022222222222222223
+      },
+      "worst": {
+        "sample": 586,
+        "x": 6245.829611241104,
+        "y": 3639.558301718215,
+        "grounded": false,
+        "torsoSampleFraction": 0.6888888888888889
+      }
+    },
+    {
+      "routeId": "ridge-assault",
+      "cls": "mage",
+      "assetId": "stage31:native:west-step",
+      "hitSamples": 28,
+      "maxTorsoFraction": 0.7111111111111111,
+      "first": {
+        "sample": 24,
+        "x": 726.1191005387228,
+        "y": 4019.2723313510105,
+        "grounded": true,
+        "support": "pilot31-shore",
+        "torsoSampleFraction": 0.022222222222222223
+      },
+      "worst": {
+        "sample": 27,
+        "x": 734.6137068637992,
+        "y": 3948.794492880876,
+        "grounded": false,
+        "torsoSampleFraction": 0.7111111111111111
+      }
+    },
+    {
+      "routeId": "ridge-assault",
+      "cls": "mage",
+      "assetId": "stage31:native:broken-crossing",
+      "hitSamples": 21,
+      "maxTorsoFraction": 0.8222222222222222,
+      "first": {
+        "sample": 141,
+        "x": 2245,
+        "y": 3165.705850997869,
+        "grounded": false,
+        "torsoSampleFraction": 0.13333333333333333
+      },
+      "worst": {
+        "sample": 144,
+        "x": 2245,
+        "y": 3083.732485396924,
+        "grounded": false,
+        "torsoSampleFraction": 0.8222222222222222
+      }
+    },
+    {
+      "routeId": "ridge-assault",
+      "cls": "mage",
+      "assetId": "stage31:native:ridge-shoulder",
+      "hitSamples": 24,
+      "maxTorsoFraction": 0.9777777777777777,
+      "first": {
+        "sample": 205,
+        "x": 3054.1227032847496,
+        "y": 2697.8911034823436,
+        "grounded": true,
+        "support": "pilot31-broken-crossing",
+        "torsoSampleFraction": 0.044444444444444446
+      },
+      "worst": {
+        "sample": 210,
+        "x": 3114.1097285041706,
+        "y": 2629.520586808811,
+        "grounded": false,
+        "torsoSampleFraction": 0.9777777777777777
+      }
+    },
+    {
+      "routeId": "ridge-assault",
+      "cls": "mage",
+      "assetId": "stage31:native:lookout",
+      "hitSamples": 26,
+      "maxTorsoFraction": 1,
+      "first": {
+        "sample": 325,
+        "x": 4434.474193044223,
+        "y": 2113.6465438508253,
+        "grounded": true,
+        "support": "pilot31-ridge-court",
+        "torsoSampleFraction": 0.17777777777777778
+      },
+      "worst": {
+        "sample": 328,
+        "x": 4484.491529557645,
+        "y": 2090.406776353884,
+        "grounded": true,
+        "support": "pilot31-ridge-court",
+        "torsoSampleFraction": 1
+      }
+    },
+    {
+      "routeId": "ridge-assault",
+      "cls": "mage",
+      "assetId": "stage31:native:east-overhang",
+      "hitSamples": 42,
+      "maxTorsoFraction": 1,
+      "first": {
+        "sample": 422,
+        "x": 5273.050086597717,
+        "y": 2184.6332756015217,
+        "grounded": true,
+        "support": "pilot31-east-overhang",
+        "torsoSampleFraction": 0.022222222222222223
+      },
+      "worst": {
+        "sample": 565,
+        "x": 6365.72871252329,
+        "y": 3086.030143052968,
+        "grounded": true,
+        "support": "pilot31-east-middle",
+        "torsoSampleFraction": 1
+      }
+    },
+    {
+      "routeId": "ridge-assault",
+      "cls": "mage",
+      "assetId": "stage31:native:east-turn",
+      "hitSamples": 14,
+      "maxTorsoFraction": 0.8888888888888888,
+      "first": {
+        "sample": 508,
+        "x": 6738.06187481049,
+        "y": 2660.8041404591786,
+        "grounded": true,
+        "support": "pilot31-east-turn",
+        "torsoSampleFraction": 0.022222222222222223
+      },
+      "worst": {
+        "sample": 527,
+        "x": 6864.997688279147,
+        "y": 2805.7341690764797,
+        "grounded": false,
+        "torsoSampleFraction": 0.8888888888888888
+      }
+    },
+    {
+      "routeId": "ridge-assault",
+      "cls": "mage",
+      "assetId": "stage31:native:east-middle",
+      "hitSamples": 23,
+      "maxTorsoFraction": 0.8888888888888888,
+      "first": {
+        "sample": 539,
+        "x": 6836.152411369396,
+        "y": 3138.076205684698,
+        "grounded": true,
+        "support": "pilot31-east-middle",
+        "torsoSampleFraction": 0.022222222222222223
+      },
+      "worst": {
+        "sample": 582,
+        "x": 6275.705707480161,
+        "y": 3222.5126448397227,
+        "grounded": false,
+        "torsoSampleFraction": 0.8888888888888888
+      }
+    },
+    {
+      "routeId": "ridge-assault",
+      "cls": "mage",
+      "assetId": "stage31:native:east-low",
+      "hitSamples": 17,
+      "maxTorsoFraction": 0.6444444444444445,
+      "first": {
+        "sample": 592,
+        "x": 6267.305455080107,
+        "y": 3542.968311382796,
+        "grounded": true,
+        "support": "pilot31-east-low",
+        "torsoSampleFraction": 0.022222222222222223
+      },
+      "worst": {
+        "sample": 605,
+        "x": 6245.3563846644565,
+        "y": 3650.4206908829537,
+        "grounded": false,
+        "torsoSampleFraction": 0.6444444444444445
+      }
+    },
+    {
+      "routeId": "ridge-assault",
+      "cls": "knight",
+      "assetId": "stage31:native:west-step",
+      "hitSamples": 27,
+      "maxTorsoFraction": 0.8,
+      "first": {
+        "sample": 23,
+        "x": 727.6135689737708,
+        "y": 4019.552544182582,
+        "grounded": true,
+        "support": "pilot31-shore",
+        "torsoSampleFraction": 0.022222222222222223
+      },
+      "worst": {
+        "sample": 26,
+        "x": 735,
+        "y": 3943.9024588867837,
+        "grounded": false,
+        "torsoSampleFraction": 0.8
+      }
+    },
+    {
+      "routeId": "ridge-assault",
+      "cls": "knight",
+      "assetId": "stage31:native:broken-crossing",
+      "hitSamples": 21,
+      "maxTorsoFraction": 0.8666666666666667,
+      "first": {
+        "sample": 136,
+        "x": 2244.481406526861,
+        "y": 3181.5169387424908,
+        "grounded": false,
+        "torsoSampleFraction": 0.044444444444444446
+      },
+      "worst": {
+        "sample": 139,
+        "x": 2244.481406526861,
+        "y": 3095.7618877474924,
+        "grounded": false,
+        "torsoSampleFraction": 0.8666666666666667
+      }
+    },
+    {
+      "routeId": "ridge-assault",
+      "cls": "knight",
+      "assetId": "stage31:native:ridge-shoulder",
+      "hitSamples": 21,
+      "maxTorsoFraction": 1,
+      "first": {
+        "sample": 198,
+        "x": 3045.3644230520804,
+        "y": 2699.715745197483,
+        "grounded": true,
+        "support": "pilot31-broken-crossing",
+        "torsoSampleFraction": 0.022222222222222223
+      },
+      "worst": {
+        "sample": 204,
+        "x": 3114.7496603009827,
+        "y": 2611.171413528297,
+        "grounded": false,
+        "torsoSampleFraction": 1
+      }
+    },
+    {
+      "routeId": "ridge-assault",
+      "cls": "knight",
+      "assetId": "stage31:native:lookout",
+      "hitSamples": 16,
+      "maxTorsoFraction": 0.7111111111111111,
+      "first": {
+        "sample": 342,
+        "x": 4567.838060573595,
+        "y": 1895.2122597541736,
+        "grounded": true,
+        "support": "pilot31-lookout",
+        "torsoSampleFraction": 0.022222222222222223
+      },
+      "worst": {
+        "sample": 402,
+        "x": 5265,
+        "y": 1908.4254508062445,
+        "grounded": false,
+        "torsoSampleFraction": 0.7111111111111111
+      }
+    },
+    {
+      "routeId": "ridge-assault",
+      "cls": "knight",
+      "assetId": "stage31:native:east-overhang",
+      "hitSamples": 40,
+      "maxTorsoFraction": 1,
+      "first": {
+        "sample": 411,
+        "x": 5265,
+        "y": 2190,
+        "grounded": true,
+        "support": "pilot31-east-overhang",
+        "torsoSampleFraction": 0.022222222222222223
+      },
+      "worst": {
+        "sample": 548,
+        "x": 6382.666793603377,
+        "y": 3084.148134044069,
+        "grounded": true,
+        "support": "pilot31-east-middle",
+        "torsoSampleFraction": 1
+      }
+    },
+    {
+      "routeId": "ridge-assault",
+      "cls": "knight",
+      "assetId": "stage31:native:east-turn",
+      "hitSamples": 14,
+      "maxTorsoFraction": 0.7777777777777778,
+      "first": {
+        "sample": 494,
+        "x": 6743.526170991915,
+        "y": 2665.5853996179258,
+        "grounded": true,
+        "support": "pilot31-east-turn",
+        "torsoSampleFraction": 0.022222222222222223
+      },
+      "worst": {
+        "sample": 512,
+        "x": 6863.269043523724,
+        "y": 2802.1939451849894,
+        "grounded": false,
+        "torsoSampleFraction": 0.7777777777777778
+      }
+    },
+    {
+      "routeId": "ridge-assault",
+      "cls": "knight",
+      "assetId": "stage31:native:east-middle",
+      "hitSamples": 24,
+      "maxTorsoFraction": 0.8444444444444444,
+      "first": {
+        "sample": 524,
+        "x": 6836.100817597102,
+        "y": 3138.050408798551,
+        "grounded": true,
+        "support": "pilot31-east-middle",
+        "torsoSampleFraction": 0.022222222222222223
+      },
+      "worst": {
+        "sample": 566,
+        "x": 6275.3995194260815,
+        "y": 3230.248278269631,
+        "grounded": false,
+        "torsoSampleFraction": 0.8444444444444444
+      }
+    },
+    {
+      "routeId": "ridge-assault",
+      "cls": "knight",
+      "assetId": "stage31:native:east-low",
+      "hitSamples": 16,
+      "maxTorsoFraction": 0.6888888888888889,
+      "first": {
+        "sample": 576,
+        "x": 6260.747916402733,
+        "y": 3546.7154763412955,
+        "grounded": true,
+        "support": "pilot31-east-low",
+        "torsoSampleFraction": 0.022222222222222223
+      },
+      "worst": {
+        "sample": 588,
+        "x": 6246.096313379384,
+        "y": 3639.405900496341,
+        "grounded": false,
+        "torsoSampleFraction": 0.6888888888888889
+      }
+    },
+    {
+      "routeId": "ridge-assault",
+      "cls": "occultist",
+      "assetId": "stage31:native:west-step",
+      "hitSamples": 28,
+      "maxTorsoFraction": 0.7555555555555555,
+      "first": {
+        "sample": 24,
+        "x": 734.6815601462145,
+        "y": 4012.136362158224,
+        "grounded": false,
+        "torsoSampleFraction": 0.1111111111111111
+      },
+      "worst": {
+        "sample": 27,
+        "x": 734.6815601462145,
+        "y": 3927.6420305446,
+        "grounded": false,
+        "torsoSampleFraction": 0.7555555555555555
+      }
+    },
+    {
+      "routeId": "ridge-assault",
+      "cls": "occultist",
+      "assetId": "stage31:native:broken-crossing",
+      "hitSamples": 21,
+      "maxTorsoFraction": 0.8666666666666667,
+      "first": {
+        "sample": 137,
+        "x": 2244.0464248659655,
+        "y": 3176.18882889477,
+        "grounded": false,
+        "torsoSampleFraction": 0.06666666666666667
+      },
+      "worst": {
+        "sample": 140,
+        "x": 2244.0464248659655,
+        "y": 3091.6944972811457,
+        "grounded": false,
+        "torsoSampleFraction": 0.8666666666666667
+      }
+    },
+    {
+      "routeId": "ridge-assault",
+      "cls": "occultist",
+      "assetId": "stage31:native:ridge-shoulder",
+      "hitSamples": 22,
+      "maxTorsoFraction": 1,
+      "first": {
+        "sample": 200,
+        "x": 3059.5542654653764,
+        "y": 2696.7595280280466,
+        "grounded": true,
+        "support": "pilot31-broken-crossing",
+        "torsoSampleFraction": 0.08888888888888889
+      },
+      "worst": {
+        "sample": 205,
+        "x": 3114.934778034169,
+        "y": 2620.1007382804873,
+        "grounded": false,
+        "torsoSampleFraction": 1
+      }
+    },
+    {
+      "routeId": "ridge-assault",
+      "cls": "occultist",
+      "assetId": "stage31:native:lookout",
+      "hitSamples": 34,
+      "maxTorsoFraction": 1,
+      "first": {
+        "sample": 309,
+        "x": 4396.583183397582,
+        "y": 1937.1192275046153,
+        "grounded": false,
+        "torsoSampleFraction": 0.06666666666666667
+      },
+      "worst": {
+        "sample": 318,
+        "x": 4484.278167243658,
+        "y": 2079.787853271914,
+        "grounded": false,
+        "torsoSampleFraction": 1
+      }
+    },
+    {
+      "routeId": "ridge-assault",
+      "cls": "occultist",
+      "assetId": "stage31:native:east-overhang",
+      "hitSamples": 39,
+      "maxTorsoFraction": 1,
+      "first": {
+        "sample": 411,
+        "x": 5276.121738934315,
+        "y": 2182.5855073771236,
+        "grounded": true,
+        "support": "pilot31-east-overhang",
+        "torsoSampleFraction": 0.022222222222222223
+      },
+      "worst": {
+        "sample": 549,
+        "x": 6373.049149788012,
+        "y": 3085.2167611346654,
+        "grounded": true,
+        "support": "pilot31-east-middle",
+        "torsoSampleFraction": 1
+      }
+    },
+    {
+      "routeId": "ridge-assault",
+      "cls": "occultist",
+      "assetId": "stage31:native:east-turn",
+      "hitSamples": 14,
+      "maxTorsoFraction": 0.7777777777777778,
+      "first": {
+        "sample": 494,
+        "x": 6743.3993459894755,
+        "y": 2665.474427740791,
+        "grounded": true,
+        "support": "pilot31-east-turn",
+        "torsoSampleFraction": 0.022222222222222223
+      },
+      "worst": {
+        "sample": 512,
+        "x": 6864.996632736915,
+        "y": 2798.879843203376,
+        "grounded": false,
+        "torsoSampleFraction": 0.7777777777777778
+      }
+    },
+    {
+      "routeId": "ridge-assault",
+      "cls": "occultist",
+      "assetId": "stage31:native:east-middle",
+      "hitSamples": 23,
+      "maxTorsoFraction": 0.9111111111111111,
+      "first": {
+        "sample": 524,
+        "x": 6841.085612497514,
+        "y": 3140.542806248757,
+        "grounded": true,
+        "support": "pilot31-east-middle",
+        "torsoSampleFraction": 0.022222222222222223
+      },
+      "worst": {
+        "sample": 566,
+        "x": 6276.05097270432,
+        "y": 3218.6281956081575,
+        "grounded": false,
+        "torsoSampleFraction": 0.9111111111111111
+      }
+    },
+    {
+      "routeId": "ridge-assault",
+      "cls": "occultist",
+      "assetId": "stage31:native:east-low",
+      "hitSamples": 17,
+      "maxTorsoFraction": 0.7111111111111111,
+      "first": {
+        "sample": 576,
+        "x": 6270.248214371121,
+        "y": 3541.2867346450735,
+        "grounded": true,
+        "support": "pilot31-east-low",
+        "torsoSampleFraction": 0.022222222222222223
+      },
+      "worst": {
+        "sample": 589,
+        "x": 6245.268412572534,
+        "y": 3646.8712966697476,
+        "grounded": false,
+        "torsoSampleFraction": 0.7111111111111111
+      }
+    }
+  ],
+  "candidateDisposition": "Root rejected full native candidate. This is regression evidence, not final collision/art data."
+}
