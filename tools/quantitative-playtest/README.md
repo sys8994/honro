@@ -477,3 +477,11 @@ prove action-count/HP-percent targets because those fields were absent. Its
 original trace/denominator is unchanged. Unit tests cover multi-hit cross-round
 casts, exact capped HP loss, critical context and missing-data rejection. Full
 criteria/clearRate acceptance is still not implemented or claimed by this ledger.
+
+P09 defensive reader regression: a terminal record/summary cannot override the
+registered purpose/source/controller/cohort/budget/seed. A mismatch remains an
+error in the ORIGINAL registered cohort, with its terminal claim retained for
+audit. Corrupt/missing raw logs or final summaries are likewise retained as
+technical errors via the attempt record, rather than aborting the entire cohort
+aggregate or accepting an unauditable clear. Tests exercise attempted post-run
+sanity→holdout promotion and a corrupt gzip beside a nominal clear summary.
