@@ -47,3 +47,11 @@ export function assertFreshPilotBudget(unit,reference){
  assert(basis.status&&['referenceHp','referenceShot','hits','fraction'].every(k=>Number.isFinite(basis[k])&&basis[k]>0),'Finite positive fresh budget basis required');
  if(version===2){assert.equal(basis.referenceId,reference.referenceId,'Fixed reference identity required');assert(basis.role&&Number.isFinite(basis.normalHp)&&basis.normalHp>0,'Calibrated role/normalHp required');assert(basis.skillAttack&&Object.values(basis.skillAttack).length&&Object.values(basis.skillAttack).every(n=>Number.isFinite(n)&&n>0),'Finite per-skill attack coefficients required');assert.deepEqual(JSON.parse(JSON.stringify(unit.honroPilotSkillAttack)),JSON.parse(JSON.stringify(basis.skillAttack)),'Live per-skill coefficients must match basis');}
 }
+
+/** Fail before rendering/input if authored bounds were lost during App assembly. */
+export function assertAuthoredWorldBounds(battle,stage){
+ for(const key of ['width','height']){
+  assert(Number.isFinite(stage?.[key])&&stage[key]>0,'Canonical stage '+key+' must be positive');
+  assert.equal(battle?.[key],stage[key],'Actual App battle '+key+' must match canonical authored world');
+ }
+}

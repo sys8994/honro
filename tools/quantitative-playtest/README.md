@@ -485,3 +485,14 @@ audit. Corrupt/missing raw logs or final summaries are likewise retained as
 technical errors via the attempt record, rather than aborting the entire cohort
 aggregate or accepting an unauditable clear. Tests exercise attempted post-run
 sanity→holdout promotion and a corrupt gzip beside a nominal clear summary.
+
+
+### F21 defense: authored world bounds at actual App entry
+A separate geometry fixture omitted authored width/height and produced invalid
+recovery/HP-loss evidence. Do not retry or tune terrain from that misassembled
+world. This adapter uses production App.launch rather than manually createBattle,
+but now also asserts actual battle width/height against the canonical selected
+stage before the first renderer call or gameplay input. No dimensions are patched
+into a live battle. The manifest unit rejects missing/default/mismatched bounds
+and accepts exact authored dimensions. This is a fail-closed setup guard, not a
+new actual-App or terrain pass; next canonical App probe remains pending.

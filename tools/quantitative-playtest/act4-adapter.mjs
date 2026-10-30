@@ -1,5 +1,5 @@
 import assert from'node:assert/strict';
-import {stageRuntime,memorySample,assertFreshPilotBudget} from './stage-runtime.mjs';
+import {stageRuntime,memorySample,assertFreshPilotBudget,assertAuthoredWorldBounds} from './stage-runtime.mjs';
 /** Production App objective adapter. DOM/audio/frame scheduling are doubles;
  * actual movement, combat, Story transitions and Act4 events are not replaced. */
 import {createCanvas,Image as NativeImage,Path2D,DOMMatrix} from '@napi-rs/canvas';
@@ -17,6 +17,7 @@ export async function createAppAdapter(project,stageId,{entryBuild='campaign-bal
  }p.settings.debugMode=false;p.settings.difficulty='normal';if(savedStorage)for(const[k,v]of Object.entries(savedStorage))h.storage.set(k,v);const app=savedStorage?h.reload():h.load(p);g.HonroApp=app;const query=app.root.querySelector.bind(app.root);app.root.querySelector=selector=>{const n=query(selector);if(n&&!n.getBoundingClientRect)n.getBoundingClientRect=()=>({left:0,top:0,right:0,bottom:0,width:0,height:0});return n;};
  prepared.loadAfterMain(g);
  if(savedStorage){if(!app.profile.honroBattle)throw Error('Cold boundary requires actual next-stage battle save');app.continue();}else app.launch(n);app.close();prepared.memory.push(memorySample('after-launch'));if(app.engine?.b.honroStage!==n)throw Error('Production App did not launch the declared stage.');
+ assertAuthoredWorldBounds(app.engine.b,project.stages.find(s=>s.id===stageId));
  // Load the stage-authored far image before replay; no inspector-only far override.
  app.scene.render(app.engine,0,'',.6,false,0);for(let i=0;i<60&&!g.HonroAuthoredFarArt.ready(n,app.engine.b.honroPreviewFar);i++)await new Promise(r=>setTimeout(r,50));
 

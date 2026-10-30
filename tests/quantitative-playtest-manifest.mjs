@@ -1,5 +1,5 @@
 import assert from 'node:assert/strict';
-import {officialModuleLoader,assertFreshPilotBudget} from '../tools/quantitative-playtest/stage-runtime.mjs';
+import {officialModuleLoader,assertFreshPilotBudget,assertAuthoredWorldBounds} from '../tools/quantitative-playtest/stage-runtime.mjs';
 const names=['model','shared/runtime/party-rig.js','app-new-module','shared/runtime/main.js','shared/runtime/act4-pilot-combat.js','future-production-module'];
 const fixture=()=>names.map((name,i)=>({name,code:i?'order.push('+i+');':'globalThis.order=[0];'}));
 const identity={},loader=officialModuleLoader(fixture(),identity),g=await loader.runtimeFactory();
@@ -14,3 +14,9 @@ console.log('PASS exact registry order/hash, future modules, missing/duplicate/i
 const reference={version:2,referenceId:'fixed-test'},basis={version:2,status:'native-calibrated',referenceId:'fixed-test',role:'guard',normalHp:266,referenceHp:1085,referenceShot:177,hits:1.5,fraction:.26,skillAttack:{LS09:12}},unit={honroPilotBudgetBasis:basis,honroPilotSkillAttack:{LS09:12}};
 assertFreshPilotBudget(unit,reference);assert.throws(()=>assertFreshPilotBudget({...unit,honroPilotBudgetBasis:{...basis,version:1}},reference),/version/);assert.throws(()=>assertFreshPilotBudget({...unit,honroPilotSkillAttack:{LS09:13}},reference),/coefficients/);assert.throws(()=>assertFreshPilotBudget({...unit,honroPilotBudgetBasis:{...basis,referenceId:'different'}},reference),/identity/);
 console.log('PASS fresh v2 reference identity and skill coefficient sentinels; stale v1 rejected');
+
+const bounds={width:7000,height:4700};
+assertAuthoredWorldBounds({...bounds},bounds);
+for(const bad of [{},{width:2400,height:4700},{width:7000,height:1520},{width:7000,height:NaN}])assert.throws(()=>assertAuthoredWorldBounds(bad,bounds),/canonical authored world/);
+assert.throws(()=>assertAuthoredWorldBounds(bounds,{width:7000}),/must be positive/);
+console.log('PASS exact authored world bounds; missing/default/mismatched dimensions rejected before input');
