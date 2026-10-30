@@ -1,0 +1,196 @@
+{
+  "status": "historical pre-cosmetic-review native observations; see cosmetic-review.json for current source",
+  "sources": [
+    {
+      "file": "floor-raw.svg",
+      "sha256": "4c3b6e9bcd656b6b8056787582678ead03bc3aa89c370eea660b2249c32a6d63"
+    },
+    {
+      "file": "roof-raw.svg",
+      "sha256": "cdbcf63c6d843399951689c840e262a23ae6165b2fd3a8e0d971f2549d8902ea"
+    },
+    {
+      "file": "floor-asset.json",
+      "sha256": "3bcef85b8e635390ee7a3da4cdb3e22b9b9d5195b9e8190f8bde3115a87025d3"
+    },
+    {
+      "file": "roof-asset.json",
+      "sha256": "855e11a891d852feb91a56a927d542070bdb6623a73cd8c0d2a25cfcd1819dda"
+    }
+  ],
+  "reviews": [
+    {
+      "pass": "structure",
+      "finding": "Separate exact ceiling/west/east/emergency BODY, continuous real emergency route; no invented void/bridge, no water/actors baked in."
+    },
+    {
+      "pass": "contact/detail",
+      "finding": "Actual collision overlay/headroom preserved. Overlapping floor faces assigned nonoverlapping pixel-snapped appearance ownership over unchanged original solid union. Narrow18-unit source-palette contact rim keeps clipped emergency ascent legible."
+    },
+    {
+      "pass": "camera/state/mobile",
+      "finding": "Whole, normal, maximum/emergency, right/left domain and mobile views inspected. Actual mobile vista shows4residents; entry/wrong-return probe and active hero/aim guide remain visible. Deep fill continues without a rectangular bottom cutoff."
+    }
+  ],
+  "views": [
+    {
+      "stage": 38,
+      "view": {
+        "name": "whole",
+        "x": 3600,
+        "y": 2300,
+        "scale": 0.20833333333333334,
+        "w": 1600,
+        "h": 1000
+      },
+      "file": "38-whole.png",
+      "metrics": {
+        "medianMs": 14.814460000000508,
+        "p95Ms": 19.637626000000637,
+        "scope": "5 warm Native Canvas CPU samples, not browser or mobile hardware"
+      },
+      "scope": "Actual production Native Canvas, initial actors. Not browser play or quality approval.",
+      "pngSha256": "04fc250c199ad0418a721a8a7b51ce9deef6e365a10f825e98729f883339d250"
+    },
+    {
+      "stage": 38,
+      "view": {
+        "name": "initial-contact",
+        "x": 1100,
+        "y": 2650,
+        "scale": 0.53,
+        "w": 1400,
+        "h": 900
+      },
+      "file": "38-initial-contact.png",
+      "metrics": {
+        "medianMs": 4.488608999999997,
+        "p95Ms": 9.515876999999819,
+        "scope": "5 warm Native Canvas CPU samples, not browser or mobile hardware"
+      },
+      "scope": "Actual production Native Canvas, initial actors. Not browser play or quality approval.",
+      "pngSha256": "886c09d805493fea6733585a50faf5407f751cf023bfc713e60ce12d4effa533"
+    },
+    {
+      "stage": 38,
+      "view": {
+        "name": "entry-roof",
+        "x": 2900,
+        "y": 2650,
+        "scale": 0.53,
+        "w": 1400,
+        "h": 900
+      },
+      "file": "38-entry-roof.png",
+      "metrics": {
+        "medianMs": 2.225185000000238,
+        "p95Ms": 2.481235999999626,
+        "scope": "5 warm Native Canvas CPU samples, not browser or mobile hardware"
+      },
+      "scope": "Actual production Native Canvas, initial actors. Not browser play or quality approval.",
+      "pngSha256": "77d4302d02c9b9ad2546f1d649b2fef8fb5ae982094c10a7775744e86397531d"
+    },
+    {
+      "stage": 38,
+      "view": {
+        "name": "emergency-max",
+        "x": 3800,
+        "y": 3050,
+        "scale": 1.1,
+        "w": 1400,
+        "h": 900
+      },
+      "file": "38-emergency-max.png",
+      "metrics": {
+        "medianMs": 2.845086999999694,
+        "p95Ms": 3.117290999999568,
+        "scope": "5 warm Native Canvas CPU samples, not browser or mobile hardware"
+      },
+      "scope": "Actual production Native Canvas, initial actors. Not browser play or quality approval.",
+      "pngSha256": "2401eac9baa3b7e81aac781d50198751bf1ed3a43c994a56f2fa512ce363f1aa"
+    },
+    {
+      "stage": 38,
+      "view": {
+        "name": "emergency-mobile",
+        "x": 3800,
+        "y": 3050,
+        "scale": 0.53,
+        "w": 720,
+        "h": 1100
+      },
+      "file": "38-emergency-mobile.png",
+      "metrics": {
+        "medianMs": 1.152991999999358,
+        "p95Ms": 2.024518000000171,
+        "scope": "5 warm Native Canvas CPU samples, not browser or mobile hardware"
+      },
+      "scope": "Actual production Native Canvas, initial actors. Not browser play or quality approval.",
+      "pngSha256": "ab39a9a9f127946191819825b2578ab58acf07b1d9824b6275bb1729c129d2a4"
+    },
+    {
+      "stage": 38,
+      "view": {
+        "name": "resident-bank",
+        "x": 5100,
+        "y": 2550,
+        "scale": 0.53,
+        "w": 1400,
+        "h": 900
+      },
+      "file": "38-resident-bank.png",
+      "metrics": {
+        "medianMs": 7.43519600000036,
+        "p95Ms": 9.487004000000525,
+        "scope": "5 warm Native Canvas CPU samples, not browser or mobile hardware"
+      },
+      "scope": "Actual production Native Canvas, initial actors. Not browser play or quality approval.",
+      "pngSha256": "c7768c52a9d42d0a12c6a60b7bfeb72ff7ebd9cc9ac8dc779e4911c1f3ac7800"
+    },
+    {
+      "stage": 38,
+      "view": {
+        "name": "right-domain",
+        "x": 6800,
+        "y": 2500,
+        "scale": 0.10588235294117647,
+        "w": 720,
+        "h": 1100
+      },
+      "file": "38-right-domain.png",
+      "metrics": {
+        "medianMs": 4.3358919999991485,
+        "p95Ms": 5.931070999999065,
+        "scope": "5 warm Native Canvas CPU samples, not browser or mobile hardware"
+      },
+      "scope": "Actual production Native Canvas, initial actors. Not browser play or quality approval.",
+      "pngSha256": "d6c0a70c4c11116a5d8fa807ea23403507b655abe6f4f25ca29a1642775ba40b"
+    },
+    {
+      "stage": 38,
+      "view": {
+        "name": "left-ceiling-domain",
+        "x": 300,
+        "y": 1950,
+        "scale": 0.10588235294117647,
+        "w": 720,
+        "h": 1100
+      },
+      "file": "38-left-ceiling-domain.png",
+      "metrics": {
+        "medianMs": 6.070396999999502,
+        "p95Ms": 6.312995000000228,
+        "scope": "5 warm Native Canvas CPU samples, not browser or mobile hardware"
+      },
+      "scope": "Actual production Native Canvas, initial actors. Not browser play or quality approval.",
+      "pngSha256": "fae2f9b14be9942b5c19bd572e732847cbfab645bb91ce605e6ac2bb9056cd6f"
+    }
+  ],
+  "limitations": [
+    "Some raw trace midplane quantization patches remain",
+    "Legacy noncolliding rear cavern-wall/rocks/crack/footings retained; no new FORE spikes placed across headroom/probe",
+    "Extreme domain reflections can look symmetric",
+    "Sparse native snapshots are not continuous browser camera/HUD proof; parent final release review required"
+  ],
+  "latestVisualFollowup": "cosmetic-review.json"
+}

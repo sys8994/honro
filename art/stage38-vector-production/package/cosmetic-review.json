@@ -1,0 +1,34 @@
+{
+  "status": "direct native visual review of decorative follow-up; final browser/integrated review remains",
+  "projectSha256": "47b585ddf988b689a5bec07cbca0d95ec4b7e30ba4876215ca8f5ecb7e46cb99",
+  "stageSha256": "8c215af2755d8a8c26a4528ea083b18d7a9febb894396d5c3144e26797803277",
+  "librarySha256": "e43831570272f6b95494e80649e0c73594e2ca635ec2158fc66fbb71831c1612",
+  "sourceReuse": "art/stage33-vector-production/coastal-boulder-asset.json",
+  "sourceSha256": "957a1ae819ae4af24cc4ae427dc0b01d65d09877b039a782804db5a867048f1e",
+  "geometryCheck": "assembler asserts exact compiled terrain plus unchanged terrain/units/events/materials/encounters/initial gameplay state",
+  "findings": [
+    "Six decorative rocks/footings reuse measured common Inkscape rock ink; support tangent rotation retains original anchor positions.",
+    "Removed only old nonphysical cavern-wall scenery; unchanged finite ceiling and continuous emergency route remain visible.",
+    "Connection crack cues and distant L3 angular ridge remain intentionally visible; not a claim of complete prop redesign."
+  ],
+  "directlyInspectedViews": [
+    {
+      "file": "_local/reports/stage38-production/natural-props/38-entry-roof.png",
+      "sha256": "aa2bdf5a7cfe27cc1ac98809fc025f8fa4bb818eeef9f5de5f9590de1ac74c34"
+    },
+    {
+      "file": "_local/reports/stage38-production/natural-props/38-whole.png",
+      "sha256": "d4a283527c648777814d54beecaf9942f0e251b460d84b0eeb24532bbf673da4"
+    },
+    {
+      "file": "_local/reports/stage38-production/natural-props/38-emergency-mobile.png",
+      "sha256": "23910e86075059e29236e489d011a0c0760b6411fa9d8657d1fa3bb958bb1375"
+    }
+  ],
+  "priorAppReplayProjectSha256": "4e095323e5fa895b97a6317350fc65990b037e73acbf84c6abc3bfec8583ab8f",
+  "limits": [
+    "Native Canvas only; no browser/HUD/device certification.",
+    "Earlier actual App replay was not rerun for this decorative-only delta and retains its original source fingerprint.",
+    "Affine reuse of existing actual Inkscape artwork, not newly traced imagery or error-bounded simplification."
+  ]
+}

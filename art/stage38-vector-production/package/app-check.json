@@ -1,0 +1,2148 @@
+{
+  "normal": {
+    "scope": "Prepared earned-SP stage-entry profile; real App/Engine/Native Canvas events and sparse actual scene rendering every300 simulation frames (bounded snapshot evidence, not continuous rendered play); DOM/audio/storage scheduling are doubles, not browser or chapters1–37 playthrough. Phase-specific actual Continue, no forcing.",
+    "projectSha256": "4e095323e5fa895b97a6317350fc65990b037e73acbf84c6abc3bfec8583ab8f",
+    "runtimeSha256": "e53ef7cedfd02863678d5ec4d59f5701df94ef2d997c3fc2b5d27b60a38118e8",
+    "verifierSha256": "176705e0bea640ed4dbacf65dccdbf78bcfcae65130d9404206d983e1ba7ffe5",
+    "success": true,
+    "frames": 16096,
+    "shots": 14,
+    "resume": [
+      {
+        "phase": "vista",
+        "frame": 4895,
+        "input": 20,
+        "pass": true,
+        "scope": "Actual stopBattle/persist/Continue exact units/objective/round/phase/active"
+      },
+      {
+        "phase": "entry",
+        "frame": 5749,
+        "input": 26,
+        "pass": true,
+        "scope": "Actual stopBattle/persist/Continue exact units/objective/round/phase/active"
+      },
+      {
+        "phase": "wrong-exit",
+        "frame": 6001,
+        "input": 26,
+        "pass": true,
+        "scope": "Actual stopBattle/persist/Continue exact units/objective/round/phase/active"
+      },
+      {
+        "phase": "anchoring",
+        "frame": 6740,
+        "input": 30,
+        "pass": true,
+        "scope": "Actual stopBattle/persist/Continue exact units/objective/round/phase/active"
+      },
+      {
+        "phase": "connected",
+        "frame": 7071,
+        "input": 34,
+        "pass": true,
+        "scope": "Actual stopBattle/persist/Continue exact units/objective/round/phase/active"
+      }
+    ],
+    "interactions": [
+      {
+        "frame": 5749,
+        "accepted": true,
+        "before": {
+          "id": "mage",
+          "x": 2989.1370848101847,
+          "y": 3050,
+          "focus": 701
+        },
+        "after": {
+          "id": "mage",
+          "x": 2989.1370848101847,
+          "y": 3050,
+          "focus": 701
+        },
+        "connection": false
+      },
+      {
+        "frame": 6409,
+        "accepted": true,
+        "before": {
+          "id": "mage",
+          "x": 2989.1370848101847,
+          "y": 3050,
+          "focus": 701
+        },
+        "after": {
+          "id": "mage",
+          "x": 2989.1370848101847,
+          "y": 3050,
+          "focus": 701
+        },
+        "connection": false
+      },
+      {
+        "frame": 6740,
+        "accepted": true,
+        "before": {
+          "id": "mage",
+          "x": 2989.1370848101847,
+          "y": 3050,
+          "focus": 701
+        },
+        "after": {
+          "id": "mage",
+          "x": 2989.1370848101847,
+          "y": 3050,
+          "focus": 701
+        },
+        "connection": false
+      },
+      {
+        "frame": 13710,
+        "accepted": true,
+        "before": {
+          "id": "archer",
+          "x": 2975.4925713566436,
+          "y": 3050,
+          "focus": 391
+        },
+        "after": {
+          "id": "archer",
+          "x": 4520,
+          "y": 2600,
+          "focus": 391
+        },
+        "connection": true
+      },
+      {
+        "frame": 16091,
+        "accepted": true,
+        "before": {
+          "id": "occultist",
+          "x": 6437.471561668359,
+          "y": 2400,
+          "focus": 784
+        },
+        "after": {
+          "id": "occultist",
+          "x": 6437.471561668359,
+          "y": 2400,
+          "focus": 784
+        },
+        "connection": true
+      }
+    ],
+    "observed": {
+      "rescue-voices": 42.49999999999823,
+      "probe-entry": 49.999999999997804,
+      "probe-wrong": 52.49999999999766,
+      "anchor-action": 54.99999999999752
+    },
+    "pursuitSeen": true,
+    "vista": {
+      "active": false,
+      "index": 3,
+      "elapsed": 0
+    },
+    "connection": {
+      "destination": {
+        "x": 4520,
+        "y": 2600
+      },
+      "sourceRun": "honro-map-stage-38-1793210214071",
+      "stageOnly": true,
+      "mpSpent": 0
+    },
+    "completionProof": {
+      "exit": {
+        "x": 6700,
+        "y": 2400
+      },
+      "connection": {
+        "destination": {
+          "x": 4520,
+          "y": 2600
+        },
+        "sourceRun": "honro-map-stage-38-1793210214071",
+        "stageOnly": true,
+        "mpSpent": 0
+      }
+    },
+    "finalUnits": [
+      {
+        "id": "archer",
+        "x": 6457.958198757492,
+        "y": 2400,
+        "hp": 1671,
+        "dead": false
+      },
+      {
+        "id": "mage",
+        "x": 6484.0930184576455,
+        "y": 2400,
+        "hp": 1850.8,
+        "dead": false
+      },
+      {
+        "id": "knight",
+        "x": 6494.722704248547,
+        "y": 2400,
+        "hp": 3586.3,
+        "dead": false
+      },
+      {
+        "id": "occultist",
+        "x": 6437.471561668359,
+        "y": 2400,
+        "hp": 2251,
+        "dead": false
+      },
+      {
+        "id": "a4-38-g0-0",
+        "x": 1402.7098271300808,
+        "y": 2800,
+        "hp": 0,
+        "dead": true
+      },
+      {
+        "id": "a4-38-g0-1",
+        "x": 1719.5,
+        "y": 2350,
+        "hp": 0,
+        "dead": true
+      },
+      {
+        "id": "a4-38-pursuer-0",
+        "x": 5570.9072351859195,
+        "y": 2600,
+        "hp": 0,
+        "dead": true
+      },
+      {
+        "id": "a4-38-pursuer-1",
+        "x": 5870.485276153117,
+        "y": 2531.805889538753,
+        "hp": 0,
+        "dead": true
+      },
+      {
+        "id": "a4-rescue-0",
+        "x": 4720,
+        "y": 2600,
+        "hp": 1450,
+        "dead": false
+      },
+      {
+        "id": "a4-rescue-1",
+        "x": 4890,
+        "y": 2600,
+        "hp": 1450,
+        "dead": false
+      },
+      {
+        "id": "a4-rescue-2",
+        "x": 5060,
+        "y": 2600,
+        "hp": 1450,
+        "dead": false
+      },
+      {
+        "id": "a4-rescue-3",
+        "x": 5230,
+        "y": 2600,
+        "hp": 1450,
+        "dead": false
+      }
+    ],
+    "dialogueEvents": {
+      "voice": {
+        "started": true,
+        "terminal": true,
+        "presented": [],
+        "retired": [
+          "A4.S38.VOICE.01",
+          "A4.S38.VOICE.02",
+          "A4.S38.VOICE.03"
+        ]
+      },
+      "anchor": {
+        "started": true,
+        "terminal": true,
+        "presented": [],
+        "retired": [
+          "A4.S38.ANCHOR.01"
+        ]
+      },
+      "connected": {
+        "started": true,
+        "terminal": true,
+        "presented": [],
+        "retired": [
+          "A4.S38.CONNECTED.01"
+        ]
+      }
+    }
+  },
+  "physicalAlternative": {
+    "scope": "Prepared earned-SP stage-entry profile; real App/Engine/Native Canvas events and sparse actual scene rendering every300 simulation frames (bounded snapshot evidence, not continuous rendered play); DOM/audio/storage scheduling are doubles, not browser or chapters1–37 playthrough. Phase-specific actual Continue, no forcing.",
+    "projectSha256": "4e095323e5fa895b97a6317350fc65990b037e73acbf84c6abc3bfec8583ab8f",
+    "runtimeSha256": "e53ef7cedfd02863678d5ec4d59f5701df94ef2d997c3fc2b5d27b60a38118e8",
+    "verifierSha256": "176705e0bea640ed4dbacf65dccdbf78bcfcae65130d9404206d983e1ba7ffe5",
+    "success": true,
+    "frames": 14206,
+    "shots": 11,
+    "resume": [
+      {
+        "phase": "vista",
+        "frame": 3453,
+        "input": 16,
+        "pass": true,
+        "scope": "Actual stopBattle/persist/Continue exact units/objective/round/phase/active"
+      },
+      {
+        "phase": "physical-route",
+        "frame": 4434,
+        "input": 20,
+        "pass": true,
+        "scope": "Actual stopBattle/persist/Continue exact units/objective/round/phase/active"
+      }
+    ],
+    "interactions": [
+      {
+        "frame": 14201,
+        "accepted": true,
+        "before": {
+          "id": "occultist",
+          "x": 6424.1299209942335,
+          "y": 2400,
+          "focus": 788
+        },
+        "after": {
+          "id": "occultist",
+          "x": 6424.1299209942335,
+          "y": 2400,
+          "focus": 788
+        },
+        "connection": false
+      }
+    ],
+    "observed": {
+      "rescue-voices": 29.999999999998938
+    },
+    "pursuitSeen": true,
+    "vista": {
+      "active": false,
+      "index": 3,
+      "elapsed": 0
+    },
+    "completionProof": {
+      "exit": {
+        "x": 6700,
+        "y": 2400
+      },
+      "connection": {
+        "physicalRoute": true
+      }
+    },
+    "finalUnits": [
+      {
+        "id": "archer",
+        "x": 6486.810052569758,
+        "y": 2400,
+        "hp": 1671,
+        "dead": false
+      },
+      {
+        "id": "mage",
+        "x": 6484.0930184576455,
+        "y": 2400,
+        "hp": 1888,
+        "dead": false
+      },
+      {
+        "id": "knight",
+        "x": 6458.940901654736,
+        "y": 2400,
+        "hp": 3786,
+        "dead": false
+      },
+      {
+        "id": "occultist",
+        "x": 6424.1299209942335,
+        "y": 2400,
+        "hp": 2251,
+        "dead": false
+      },
+      {
+        "id": "a4-38-g0-0",
+        "x": 1261.2217459080418,
+        "y": 2800,
+        "hp": 0,
+        "dead": true
+      },
+      {
+        "id": "a4-38-g0-1",
+        "x": 1719.5,
+        "y": 2350,
+        "hp": 0,
+        "dead": true
+      },
+      {
+        "id": "a4-38-pursuer-0",
+        "x": 5609.573901852591,
+        "y": 2600,
+        "hp": 0,
+        "dead": true
+      },
+      {
+        "id": "a4-38-pursuer-1",
+        "x": 5609.570506498088,
+        "y": 2600,
+        "hp": 0,
+        "dead": true
+      },
+      {
+        "id": "a4-rescue-0",
+        "x": 4720,
+        "y": 2600,
+        "hp": 1450,
+        "dead": false
+      },
+      {
+        "id": "a4-rescue-1",
+        "x": 4890,
+        "y": 2600,
+        "hp": 1450,
+        "dead": false
+      },
+      {
+        "id": "a4-rescue-2",
+        "x": 5060,
+        "y": 2600,
+        "hp": 1450,
+        "dead": false
+      },
+      {
+        "id": "a4-rescue-3",
+        "x": 5230,
+        "y": 2600,
+        "hp": 1450,
+        "dead": false
+      }
+    ],
+    "dialogueEvents": {
+      "voice": {
+        "started": true,
+        "terminal": true,
+        "presented": [],
+        "retired": [
+          "A4.S38.VOICE.01",
+          "A4.S38.VOICE.02",
+          "A4.S38.VOICE.03"
+        ]
+      }
+    },
+    "roofImpacts": [
+      {
+        "frame": 109,
+        "owner": "archer",
+        "skill": "A01",
+        "terrain": "a4-38-cavern-roof",
+        "x": 315.9558227832243,
+        "y": 2169.5667715369464
+      }
+    ],
+    "groundedNonmageRouteSamples": [
+      {
+        "frame": 4440,
+        "id": "occultist",
+        "x": 3629.0440287564315,
+        "y": 3213.5613888037888,
+        "hp": 2251,
+        "focus": 788,
+        "grounded": true
+      },
+      {
+        "frame": 4470,
+        "id": "occultist",
+        "x": 3629.0440287564315,
+        "y": 3213.5613888037888,
+        "hp": 2251,
+        "focus": 788,
+        "grounded": true
+      },
+      {
+        "frame": 4500,
+        "id": "occultist",
+        "x": 3629.0440287564315,
+        "y": 3213.5613888037888,
+        "hp": 2251,
+        "focus": 788,
+        "grounded": true
+      },
+      {
+        "frame": 4530,
+        "id": "occultist",
+        "x": 3629.0440287564315,
+        "y": 3213.5613888037888,
+        "hp": 2251,
+        "focus": 788,
+        "grounded": true
+      },
+      {
+        "frame": 4560,
+        "id": "occultist",
+        "x": 3629.0440287564315,
+        "y": 3213.5613888037888,
+        "hp": 2251,
+        "focus": 788,
+        "grounded": true
+      },
+      {
+        "frame": 4590,
+        "id": "occultist",
+        "x": 3629.0440287564315,
+        "y": 3213.5613888037888,
+        "hp": 2251,
+        "focus": 788,
+        "grounded": true
+      },
+      {
+        "frame": 4620,
+        "id": "occultist",
+        "x": 3629.0440287564315,
+        "y": 3213.5613888037888,
+        "hp": 2251,
+        "focus": 788,
+        "grounded": true
+      },
+      {
+        "frame": 4650,
+        "id": "occultist",
+        "x": 3629.0440287564315,
+        "y": 3213.5613888037888,
+        "hp": 2251,
+        "focus": 788,
+        "grounded": true
+      },
+      {
+        "frame": 4680,
+        "id": "occultist",
+        "x": 3629.0440287564315,
+        "y": 3213.5613888037888,
+        "hp": 2251,
+        "focus": 788,
+        "grounded": true
+      },
+      {
+        "frame": 4710,
+        "id": "occultist",
+        "x": 3629.0440287564315,
+        "y": 3213.5613888037888,
+        "hp": 2251,
+        "focus": 788,
+        "grounded": true
+      },
+      {
+        "frame": 4740,
+        "id": "occultist",
+        "x": 3629.0440287564315,
+        "y": 3213.5613888037888,
+        "hp": 2251,
+        "focus": 788,
+        "grounded": true
+      },
+      {
+        "frame": 4770,
+        "id": "occultist",
+        "x": 3629.0440287564315,
+        "y": 3213.5613888037888,
+        "hp": 2251,
+        "focus": 788,
+        "grounded": true
+      },
+      {
+        "frame": 4800,
+        "id": "occultist",
+        "x": 3629.0440287564315,
+        "y": 3213.5613888037888,
+        "hp": 2251,
+        "focus": 788,
+        "grounded": true
+      },
+      {
+        "frame": 4830,
+        "id": "occultist",
+        "x": 3629.0440287564315,
+        "y": 3213.5613888037888,
+        "hp": 2251,
+        "focus": 788,
+        "grounded": true
+      },
+      {
+        "frame": 4860,
+        "id": "occultist",
+        "x": 3629.0440287564315,
+        "y": 3213.5613888037888,
+        "hp": 2251,
+        "focus": 788,
+        "grounded": true
+      },
+      {
+        "frame": 4890,
+        "id": "occultist",
+        "x": 3629.0440287564315,
+        "y": 3213.5613888037888,
+        "hp": 2251,
+        "focus": 788,
+        "grounded": true
+      },
+      {
+        "frame": 4920,
+        "id": "occultist",
+        "x": 3629.0440287564315,
+        "y": 3213.5613888037888,
+        "hp": 2251,
+        "focus": 788,
+        "grounded": true
+      },
+      {
+        "frame": 4950,
+        "id": "occultist",
+        "x": 3629.0440287564315,
+        "y": 3213.5613888037888,
+        "hp": 2251,
+        "focus": 788,
+        "grounded": true
+      },
+      {
+        "frame": 4980,
+        "id": "occultist",
+        "x": 3629.0440287564315,
+        "y": 3213.5613888037888,
+        "hp": 2251,
+        "focus": 788,
+        "grounded": true
+      },
+      {
+        "frame": 5010,
+        "id": "occultist",
+        "x": 3629.0440287564315,
+        "y": 3213.5613888037888,
+        "hp": 2251,
+        "focus": 788,
+        "grounded": true
+      },
+      {
+        "frame": 5040,
+        "id": "occultist",
+        "x": 3629.0440287564315,
+        "y": 3213.5613888037888,
+        "hp": 2251,
+        "focus": 788,
+        "grounded": true
+      },
+      {
+        "frame": 5070,
+        "id": "occultist",
+        "x": 3629.0440287564315,
+        "y": 3213.5613888037888,
+        "hp": 2251,
+        "focus": 788,
+        "grounded": true
+      },
+      {
+        "frame": 5100,
+        "id": "occultist",
+        "x": 3629.0440287564315,
+        "y": 3213.5613888037888,
+        "hp": 2251,
+        "focus": 788,
+        "grounded": true
+      },
+      {
+        "frame": 5130,
+        "id": "occultist",
+        "x": 3629.0440287564315,
+        "y": 3213.5613888037888,
+        "hp": 2251,
+        "focus": 788,
+        "grounded": true
+      },
+      {
+        "frame": 5160,
+        "id": "occultist",
+        "x": 3629.0440287564315,
+        "y": 3213.5613888037888,
+        "hp": 2251,
+        "focus": 788,
+        "grounded": true
+      },
+      {
+        "frame": 5190,
+        "id": "occultist",
+        "x": 3629.0440287564315,
+        "y": 3213.5613888037888,
+        "hp": 2251,
+        "focus": 788,
+        "grounded": true
+      },
+      {
+        "frame": 5220,
+        "id": "occultist",
+        "x": 3629.0440287564315,
+        "y": 3213.5613888037888,
+        "hp": 2251,
+        "focus": 788,
+        "grounded": true
+      },
+      {
+        "frame": 5250,
+        "id": "occultist",
+        "x": 3629.0440287564315,
+        "y": 3213.5613888037888,
+        "hp": 2251,
+        "focus": 788,
+        "grounded": true
+      },
+      {
+        "frame": 5280,
+        "id": "occultist",
+        "x": 3629.0440287564315,
+        "y": 3213.5613888037888,
+        "hp": 2251,
+        "focus": 788,
+        "grounded": true
+      },
+      {
+        "frame": 5310,
+        "id": "occultist",
+        "x": 3629.0440287564315,
+        "y": 3213.5613888037888,
+        "hp": 2251,
+        "focus": 788,
+        "grounded": true
+      },
+      {
+        "frame": 5340,
+        "id": "occultist",
+        "x": 3629.0440287564315,
+        "y": 3213.5613888037888,
+        "hp": 2251,
+        "focus": 788,
+        "grounded": true
+      },
+      {
+        "frame": 5370,
+        "id": "occultist",
+        "x": 3629.0440287564315,
+        "y": 3213.5613888037888,
+        "hp": 2251,
+        "focus": 788,
+        "grounded": true
+      },
+      {
+        "frame": 5400,
+        "id": "occultist",
+        "x": 3629.0440287564315,
+        "y": 3213.5613888037888,
+        "hp": 2251,
+        "focus": 788,
+        "grounded": true
+      },
+      {
+        "frame": 5430,
+        "id": "occultist",
+        "x": 3629.0440287564315,
+        "y": 3213.5613888037888,
+        "hp": 2251,
+        "focus": 788,
+        "grounded": true
+      },
+      {
+        "frame": 5460,
+        "id": "occultist",
+        "x": 3629.0440287564315,
+        "y": 3213.5613888037888,
+        "hp": 2251,
+        "focus": 788,
+        "grounded": true
+      },
+      {
+        "frame": 5490,
+        "id": "occultist",
+        "x": 3629.0440287564315,
+        "y": 3213.5613888037888,
+        "hp": 2251,
+        "focus": 788,
+        "grounded": true
+      },
+      {
+        "frame": 5520,
+        "id": "occultist",
+        "x": 3629.0440287564315,
+        "y": 3213.5613888037888,
+        "hp": 2251,
+        "focus": 788,
+        "grounded": true
+      },
+      {
+        "frame": 5550,
+        "id": "occultist",
+        "x": 3629.0440287564315,
+        "y": 3213.5613888037888,
+        "hp": 2251,
+        "focus": 788,
+        "grounded": true
+      },
+      {
+        "frame": 5580,
+        "id": "occultist",
+        "x": 3629.0440287564315,
+        "y": 3213.5613888037888,
+        "hp": 2251,
+        "focus": 788,
+        "grounded": true
+      },
+      {
+        "frame": 5610,
+        "id": "occultist",
+        "x": 3629.0440287564315,
+        "y": 3213.5613888037888,
+        "hp": 2251,
+        "focus": 788,
+        "grounded": true
+      },
+      {
+        "frame": 5640,
+        "id": "occultist",
+        "x": 3629.0440287564315,
+        "y": 3213.5613888037888,
+        "hp": 2251,
+        "focus": 788,
+        "grounded": true
+      },
+      {
+        "frame": 5670,
+        "id": "occultist",
+        "x": 3629.0440287564315,
+        "y": 3213.5613888037888,
+        "hp": 2251,
+        "focus": 788,
+        "grounded": true
+      },
+      {
+        "frame": 5700,
+        "id": "occultist",
+        "x": 3629.0440287564315,
+        "y": 3213.5613888037888,
+        "hp": 2251,
+        "focus": 788,
+        "grounded": true
+      },
+      {
+        "frame": 5730,
+        "id": "occultist",
+        "x": 3629.0440287564315,
+        "y": 3213.5613888037888,
+        "hp": 2251,
+        "focus": 788,
+        "grounded": true
+      },
+      {
+        "frame": 5760,
+        "id": "occultist",
+        "x": 3629.0440287564315,
+        "y": 3213.5613888037888,
+        "hp": 2251,
+        "focus": 788,
+        "grounded": true
+      },
+      {
+        "frame": 5790,
+        "id": "occultist",
+        "x": 3629.0440287564315,
+        "y": 3213.5613888037888,
+        "hp": 2251,
+        "focus": 788,
+        "grounded": true
+      },
+      {
+        "frame": 5820,
+        "id": "occultist",
+        "x": 3629.0440287564315,
+        "y": 3213.5613888037888,
+        "hp": 2251,
+        "focus": 788,
+        "grounded": true
+      },
+      {
+        "frame": 5850,
+        "id": "occultist",
+        "x": 3629.0440287564315,
+        "y": 3213.5613888037888,
+        "hp": 2251,
+        "focus": 788,
+        "grounded": true
+      },
+      {
+        "frame": 5880,
+        "id": "occultist",
+        "x": 3629.0440287564315,
+        "y": 3213.5613888037888,
+        "hp": 2251,
+        "focus": 788,
+        "grounded": true
+      },
+      {
+        "frame": 5910,
+        "id": "occultist",
+        "x": 3629.0440287564315,
+        "y": 3213.5613888037888,
+        "hp": 2251,
+        "focus": 788,
+        "grounded": true
+      },
+      {
+        "frame": 5940,
+        "id": "occultist",
+        "x": 3629.0440287564315,
+        "y": 3213.5613888037888,
+        "hp": 2251,
+        "focus": 788,
+        "grounded": true
+      },
+      {
+        "frame": 5970,
+        "id": "occultist",
+        "x": 3629.0440287564315,
+        "y": 3213.5613888037888,
+        "hp": 2251,
+        "focus": 788,
+        "grounded": true
+      },
+      {
+        "frame": 6000,
+        "id": "occultist",
+        "x": 3629.0440287564315,
+        "y": 3213.5613888037888,
+        "hp": 2251,
+        "focus": 788,
+        "grounded": true
+      },
+      {
+        "frame": 6030,
+        "id": "occultist",
+        "x": 3629.0440287564315,
+        "y": 3213.5613888037888,
+        "hp": 2251,
+        "focus": 788,
+        "grounded": true
+      },
+      {
+        "frame": 6060,
+        "id": "occultist",
+        "x": 3629.0440287564315,
+        "y": 3213.5613888037888,
+        "hp": 2251,
+        "focus": 788,
+        "grounded": true
+      },
+      {
+        "frame": 6090,
+        "id": "occultist",
+        "x": 3629.0440287564315,
+        "y": 3213.5613888037888,
+        "hp": 2251,
+        "focus": 788,
+        "grounded": true
+      },
+      {
+        "frame": 6120,
+        "id": "occultist",
+        "x": 3629.0440287564315,
+        "y": 3213.5613888037888,
+        "hp": 2251,
+        "focus": 788,
+        "grounded": true
+      },
+      {
+        "frame": 6150,
+        "id": "occultist",
+        "x": 3629.0440287564315,
+        "y": 3213.5613888037888,
+        "hp": 2251,
+        "focus": 788,
+        "grounded": true
+      },
+      {
+        "frame": 6180,
+        "id": "occultist",
+        "x": 3629.0440287564315,
+        "y": 3213.5613888037888,
+        "hp": 2251,
+        "focus": 788,
+        "grounded": true
+      },
+      {
+        "frame": 6210,
+        "id": "occultist",
+        "x": 3629.0440287564315,
+        "y": 3213.5613888037888,
+        "hp": 2251,
+        "focus": 788,
+        "grounded": true
+      },
+      {
+        "frame": 6240,
+        "id": "occultist",
+        "x": 3629.0440287564315,
+        "y": 3213.5613888037888,
+        "hp": 2251,
+        "focus": 788,
+        "grounded": true
+      },
+      {
+        "frame": 6270,
+        "id": "occultist",
+        "x": 3629.0440287564315,
+        "y": 3213.5613888037888,
+        "hp": 2251,
+        "focus": 788,
+        "grounded": true
+      },
+      {
+        "frame": 6300,
+        "id": "occultist",
+        "x": 3629.0440287564315,
+        "y": 3213.5613888037888,
+        "hp": 2251,
+        "focus": 788,
+        "grounded": true
+      },
+      {
+        "frame": 6330,
+        "id": "occultist",
+        "x": 3629.0440287564315,
+        "y": 3213.5613888037888,
+        "hp": 2251,
+        "focus": 788,
+        "grounded": true
+      },
+      {
+        "frame": 6360,
+        "id": "occultist",
+        "x": 3629.0440287564315,
+        "y": 3213.5613888037888,
+        "hp": 2251,
+        "focus": 788,
+        "grounded": true
+      },
+      {
+        "frame": 6390,
+        "id": "occultist",
+        "x": 3629.0440287564315,
+        "y": 3213.5613888037888,
+        "hp": 2251,
+        "focus": 788,
+        "grounded": true
+      },
+      {
+        "frame": 6420,
+        "id": "occultist",
+        "x": 3629.0440287564315,
+        "y": 3213.5613888037888,
+        "hp": 2251,
+        "focus": 788,
+        "grounded": true
+      },
+      {
+        "frame": 6450,
+        "id": "occultist",
+        "x": 3629.0440287564315,
+        "y": 3213.5613888037888,
+        "hp": 2251,
+        "focus": 788,
+        "grounded": true
+      },
+      {
+        "frame": 6480,
+        "id": "occultist",
+        "x": 3629.0440287564315,
+        "y": 3213.5613888037888,
+        "hp": 2251,
+        "focus": 788,
+        "grounded": true
+      },
+      {
+        "frame": 6510,
+        "id": "occultist",
+        "x": 3629.0440287564315,
+        "y": 3213.5613888037888,
+        "hp": 2251,
+        "focus": 788,
+        "grounded": true
+      },
+      {
+        "frame": 6540,
+        "id": "occultist",
+        "x": 3629.0440287564315,
+        "y": 3213.5613888037888,
+        "hp": 2251,
+        "focus": 788,
+        "grounded": true
+      },
+      {
+        "frame": 6570,
+        "id": "occultist",
+        "x": 3629.0440287564315,
+        "y": 3213.5613888037888,
+        "hp": 2251,
+        "focus": 788,
+        "grounded": true
+      },
+      {
+        "frame": 6600,
+        "id": "occultist",
+        "x": 3629.0440287564315,
+        "y": 3213.5613888037888,
+        "hp": 2251,
+        "focus": 788,
+        "grounded": true
+      },
+      {
+        "frame": 6630,
+        "id": "occultist",
+        "x": 3629.0440287564315,
+        "y": 3213.5613888037888,
+        "hp": 2251,
+        "focus": 788,
+        "grounded": true
+      },
+      {
+        "frame": 6660,
+        "id": "occultist",
+        "x": 3629.0440287564315,
+        "y": 3213.5613888037888,
+        "hp": 2251,
+        "focus": 788,
+        "grounded": true
+      },
+      {
+        "frame": 6690,
+        "id": "occultist",
+        "x": 3629.0440287564315,
+        "y": 3213.5613888037888,
+        "hp": 2251,
+        "focus": 788,
+        "grounded": true
+      },
+      {
+        "frame": 6720,
+        "id": "occultist",
+        "x": 3629.0440287564315,
+        "y": 3213.5613888037888,
+        "hp": 2251,
+        "focus": 788,
+        "grounded": true
+      },
+      {
+        "frame": 6750,
+        "id": "occultist",
+        "x": 3629.0440287564315,
+        "y": 3213.5613888037888,
+        "hp": 2251,
+        "focus": 788,
+        "grounded": true
+      },
+      {
+        "frame": 6780,
+        "id": "occultist",
+        "x": 3629.0440287564315,
+        "y": 3213.5613888037888,
+        "hp": 2251,
+        "focus": 788,
+        "grounded": true
+      },
+      {
+        "frame": 6810,
+        "id": "occultist",
+        "x": 3629.0440287564315,
+        "y": 3213.5613888037888,
+        "hp": 2251,
+        "focus": 788,
+        "grounded": true
+      },
+      {
+        "frame": 6840,
+        "id": "occultist",
+        "x": 3629.0440287564315,
+        "y": 3213.5613888037888,
+        "hp": 2251,
+        "focus": 788,
+        "grounded": true
+      },
+      {
+        "frame": 6870,
+        "id": "occultist",
+        "x": 3629.0440287564315,
+        "y": 3213.5613888037888,
+        "hp": 2251,
+        "focus": 788,
+        "grounded": true
+      },
+      {
+        "frame": 6900,
+        "id": "occultist",
+        "x": 3629.0440287564315,
+        "y": 3213.5613888037888,
+        "hp": 2251,
+        "focus": 788,
+        "grounded": true
+      },
+      {
+        "frame": 6930,
+        "id": "occultist",
+        "x": 3629.0440287564315,
+        "y": 3213.5613888037888,
+        "hp": 2251,
+        "focus": 788,
+        "grounded": true
+      },
+      {
+        "frame": 6960,
+        "id": "occultist",
+        "x": 3629.0440287564315,
+        "y": 3213.5613888037888,
+        "hp": 2251,
+        "focus": 788,
+        "grounded": true
+      },
+      {
+        "frame": 6990,
+        "id": "occultist",
+        "x": 3629.0440287564315,
+        "y": 3213.5613888037888,
+        "hp": 2251,
+        "focus": 788,
+        "grounded": true
+      },
+      {
+        "frame": 7020,
+        "id": "occultist",
+        "x": 3629.0440287564315,
+        "y": 3213.5613888037888,
+        "hp": 2251,
+        "focus": 788,
+        "grounded": true
+      },
+      {
+        "frame": 7050,
+        "id": "occultist",
+        "x": 3629.0440287564315,
+        "y": 3213.5613888037888,
+        "hp": 2251,
+        "focus": 788,
+        "grounded": true
+      },
+      {
+        "frame": 7080,
+        "id": "occultist",
+        "x": 3629.0440287564315,
+        "y": 3213.5613888037888,
+        "hp": 2251,
+        "focus": 788,
+        "grounded": true
+      },
+      {
+        "frame": 7110,
+        "id": "occultist",
+        "x": 3629.0440287564315,
+        "y": 3213.5613888037888,
+        "hp": 2251,
+        "focus": 788,
+        "grounded": true
+      },
+      {
+        "frame": 7140,
+        "id": "occultist",
+        "x": 3629.0440287564315,
+        "y": 3213.5613888037888,
+        "hp": 2251,
+        "focus": 788,
+        "grounded": true
+      },
+      {
+        "frame": 7170,
+        "id": "occultist",
+        "x": 3629.0440287564315,
+        "y": 3213.5613888037888,
+        "hp": 2251,
+        "focus": 788,
+        "grounded": true
+      },
+      {
+        "frame": 7200,
+        "id": "occultist",
+        "x": 3629.0440287564315,
+        "y": 3213.5613888037888,
+        "hp": 2251,
+        "focus": 788,
+        "grounded": true
+      },
+      {
+        "frame": 7230,
+        "id": "occultist",
+        "x": 3629.0440287564315,
+        "y": 3213.5613888037888,
+        "hp": 2251,
+        "focus": 788,
+        "grounded": true
+      },
+      {
+        "frame": 7260,
+        "id": "occultist",
+        "x": 3629.0440287564315,
+        "y": 3213.5613888037888,
+        "hp": 2251,
+        "focus": 788,
+        "grounded": true
+      },
+      {
+        "frame": 7290,
+        "id": "occultist",
+        "x": 3629.0440287564315,
+        "y": 3213.5613888037888,
+        "hp": 2251,
+        "focus": 788,
+        "grounded": true
+      },
+      {
+        "frame": 7320,
+        "id": "occultist",
+        "x": 3629.0440287564315,
+        "y": 3213.5613888037888,
+        "hp": 2251,
+        "focus": 788,
+        "grounded": true
+      },
+      {
+        "frame": 7350,
+        "id": "occultist",
+        "x": 3629.0440287564315,
+        "y": 3213.5613888037888,
+        "hp": 2251,
+        "focus": 788,
+        "grounded": true
+      },
+      {
+        "frame": 7380,
+        "id": "occultist",
+        "x": 3629.0440287564315,
+        "y": 3213.5613888037888,
+        "hp": 2251,
+        "focus": 788,
+        "grounded": true
+      },
+      {
+        "frame": 7410,
+        "id": "occultist",
+        "x": 3629.0440287564315,
+        "y": 3213.5613888037888,
+        "hp": 2251,
+        "focus": 788,
+        "grounded": true
+      },
+      {
+        "frame": 7440,
+        "id": "occultist",
+        "x": 3629.0440287564315,
+        "y": 3213.5613888037888,
+        "hp": 2251,
+        "focus": 788,
+        "grounded": true
+      },
+      {
+        "frame": 7470,
+        "id": "occultist",
+        "x": 3629.0440287564315,
+        "y": 3213.5613888037888,
+        "hp": 2251,
+        "focus": 788,
+        "grounded": true
+      },
+      {
+        "frame": 7500,
+        "id": "occultist",
+        "x": 3629.0440287564315,
+        "y": 3213.5613888037888,
+        "hp": 2251,
+        "focus": 788,
+        "grounded": true
+      },
+      {
+        "frame": 7530,
+        "id": "occultist",
+        "x": 3629.0440287564315,
+        "y": 3213.5613888037888,
+        "hp": 2251,
+        "focus": 788,
+        "grounded": true
+      },
+      {
+        "frame": 7560,
+        "id": "occultist",
+        "x": 3629.0440287564315,
+        "y": 3213.5613888037888,
+        "hp": 2251,
+        "focus": 788,
+        "grounded": true
+      },
+      {
+        "frame": 7590,
+        "id": "knight",
+        "x": 3751.042854698616,
+        "y": 3166.3615397776684,
+        "hp": 3732,
+        "focus": 443,
+        "grounded": true
+      },
+      {
+        "frame": 7590,
+        "id": "occultist",
+        "x": 3629.0440287564315,
+        "y": 3213.5613888037888,
+        "hp": 2251,
+        "focus": 788,
+        "grounded": true
+      },
+      {
+        "frame": 7620,
+        "id": "knight",
+        "x": 3839.187811760383,
+        "y": 3109.85552941509,
+        "hp": 3732,
+        "focus": 443,
+        "grounded": true
+      },
+      {
+        "frame": 7620,
+        "id": "occultist",
+        "x": 3629.0440287564315,
+        "y": 3213.5613888037888,
+        "hp": 2251,
+        "focus": 788,
+        "grounded": true
+      },
+      {
+        "frame": 7650,
+        "id": "knight",
+        "x": 3922.4133306163667,
+        "y": 3045.835899525872,
+        "hp": 3732,
+        "focus": 443,
+        "grounded": true
+      },
+      {
+        "frame": 7650,
+        "id": "occultist",
+        "x": 3629.0440287564315,
+        "y": 3213.5613888037888,
+        "hp": 2251,
+        "focus": 788,
+        "grounded": true
+      },
+      {
+        "frame": 7680,
+        "id": "knight",
+        "x": 4005.6388494723506,
+        "y": 2981.8162696366535,
+        "hp": 3732,
+        "focus": 443,
+        "grounded": true
+      },
+      {
+        "frame": 7680,
+        "id": "occultist",
+        "x": 3629.0440287564315,
+        "y": 3213.5613888037888,
+        "hp": 2251,
+        "focus": 788,
+        "grounded": true
+      },
+      {
+        "frame": 7710,
+        "id": "knight",
+        "x": 4090.8808914757356,
+        "y": 2920.6994428276653,
+        "hp": 3732,
+        "focus": 443,
+        "grounded": true
+      },
+      {
+        "frame": 7710,
+        "id": "occultist",
+        "x": 3629.0440287564315,
+        "y": 3213.5613888037888,
+        "hp": 2251,
+        "focus": 788,
+        "grounded": true
+      },
+      {
+        "frame": 7740,
+        "id": "knight",
+        "x": 4179.920713396276,
+        "y": 2865.049554127327,
+        "hp": 3732,
+        "focus": 443,
+        "grounded": true
+      },
+      {
+        "frame": 7740,
+        "id": "occultist",
+        "x": 3629.0440287564315,
+        "y": 3213.5613888037888,
+        "hp": 2251,
+        "focus": 788,
+        "grounded": true
+      },
+      {
+        "frame": 7770,
+        "id": "occultist",
+        "x": 3629.0440287564315,
+        "y": 3213.5613888037888,
+        "hp": 2251,
+        "focus": 788,
+        "grounded": true
+      },
+      {
+        "frame": 7800,
+        "id": "occultist",
+        "x": 3629.0440287564315,
+        "y": 3213.5613888037888,
+        "hp": 2251,
+        "focus": 788,
+        "grounded": true
+      },
+      {
+        "frame": 7830,
+        "id": "occultist",
+        "x": 3629.0440287564315,
+        "y": 3213.5613888037888,
+        "hp": 2251,
+        "focus": 788,
+        "grounded": true
+      },
+      {
+        "frame": 7860,
+        "id": "occultist",
+        "x": 3629.0440287564315,
+        "y": 3213.5613888037888,
+        "hp": 2251,
+        "focus": 788,
+        "grounded": true
+      },
+      {
+        "frame": 7890,
+        "id": "occultist",
+        "x": 3629.0440287564315,
+        "y": 3213.5613888037888,
+        "hp": 2251,
+        "focus": 788,
+        "grounded": true
+      },
+      {
+        "frame": 7920,
+        "id": "occultist",
+        "x": 3629.0440287564315,
+        "y": 3213.5613888037888,
+        "hp": 2251,
+        "focus": 788,
+        "grounded": true
+      },
+      {
+        "frame": 7950,
+        "id": "occultist",
+        "x": 3629.0440287564315,
+        "y": 3213.5613888037888,
+        "hp": 2251,
+        "focus": 788,
+        "grounded": true
+      },
+      {
+        "frame": 7980,
+        "id": "occultist",
+        "x": 3629.0440287564315,
+        "y": 3213.5613888037888,
+        "hp": 2251,
+        "focus": 788,
+        "grounded": true
+      },
+      {
+        "frame": 8010,
+        "id": "occultist",
+        "x": 3629.0440287564315,
+        "y": 3213.5613888037888,
+        "hp": 2251,
+        "focus": 788,
+        "grounded": true
+      },
+      {
+        "frame": 8040,
+        "id": "occultist",
+        "x": 3629.0440287564315,
+        "y": 3213.5613888037888,
+        "hp": 2251,
+        "focus": 788,
+        "grounded": true
+      },
+      {
+        "frame": 8070,
+        "id": "occultist",
+        "x": 3629.0440287564315,
+        "y": 3213.5613888037888,
+        "hp": 2251,
+        "focus": 788,
+        "grounded": true
+      },
+      {
+        "frame": 8100,
+        "id": "occultist",
+        "x": 3629.0440287564315,
+        "y": 3213.5613888037888,
+        "hp": 2251,
+        "focus": 788,
+        "grounded": true
+      },
+      {
+        "frame": 8130,
+        "id": "occultist",
+        "x": 3629.0440287564315,
+        "y": 3213.5613888037888,
+        "hp": 2251,
+        "focus": 788,
+        "grounded": true
+      },
+      {
+        "frame": 8160,
+        "id": "occultist",
+        "x": 3629.0440287564315,
+        "y": 3213.5613888037888,
+        "hp": 2251,
+        "focus": 788,
+        "grounded": true
+      },
+      {
+        "frame": 8190,
+        "id": "occultist",
+        "x": 3629.0440287564315,
+        "y": 3213.5613888037888,
+        "hp": 2251,
+        "focus": 788,
+        "grounded": true
+      },
+      {
+        "frame": 8220,
+        "id": "occultist",
+        "x": 3629.0440287564315,
+        "y": 3213.5613888037888,
+        "hp": 2251,
+        "focus": 788,
+        "grounded": true
+      },
+      {
+        "frame": 8250,
+        "id": "occultist",
+        "x": 3629.0440287564315,
+        "y": 3213.5613888037888,
+        "hp": 2251,
+        "focus": 788,
+        "grounded": true
+      },
+      {
+        "frame": 8280,
+        "id": "occultist",
+        "x": 3629.0440287564315,
+        "y": 3213.5613888037888,
+        "hp": 2251,
+        "focus": 788,
+        "grounded": true
+      },
+      {
+        "frame": 8310,
+        "id": "occultist",
+        "x": 3629.0440287564315,
+        "y": 3213.5613888037888,
+        "hp": 2251,
+        "focus": 788,
+        "grounded": true
+      },
+      {
+        "frame": 8340,
+        "id": "occultist",
+        "x": 3632.4976627955098,
+        "y": 3213.2610728003906,
+        "hp": 2251,
+        "focus": 788,
+        "grounded": true
+      },
+      {
+        "frame": 8370,
+        "id": "occultist",
+        "x": 3728.4813336735797,
+        "y": 3178.510051098842,
+        "hp": 2251,
+        "focus": 788,
+        "grounded": true
+      },
+      {
+        "frame": 8400,
+        "id": "occultist",
+        "x": 3818.2231081604823,
+        "y": 3125.982224491937,
+        "hp": 2251,
+        "focus": 788,
+        "grounded": true
+      },
+      {
+        "frame": 8430,
+        "id": "occultist",
+        "x": 3900.6560030273567,
+        "y": 3062.5723053635716,
+        "hp": 2251,
+        "focus": 788,
+        "grounded": true
+      },
+      {
+        "frame": 8460,
+        "id": "occultist",
+        "x": 3983.088897894231,
+        "y": 2999.1623862352067,
+        "hp": 2251,
+        "focus": 788,
+        "grounded": true
+      },
+      {
+        "frame": 8490,
+        "id": "occultist",
+        "x": 4065.907556370802,
+        "y": 2936.3077772682486,
+        "hp": 2251,
+        "focus": 788,
+        "grounded": true
+      },
+      {
+        "frame": 8520,
+        "id": "occultist",
+        "x": 4154.099379987328,
+        "y": 2881.18788750792,
+        "hp": 2251,
+        "focus": 788,
+        "grounded": true
+      },
+      {
+        "frame": 8550,
+        "id": "occultist",
+        "x": 4242.291203603853,
+        "y": 2826.0679977475916,
+        "hp": 2251,
+        "focus": 788,
+        "grounded": true
+      },
+      {
+        "frame": 10680,
+        "id": "archer",
+        "x": 3776.3742815166693,
+        "y": 3152.7215407217936,
+        "hp": 1671,
+        "focus": 391,
+        "grounded": true
+      },
+      {
+        "frame": 10710,
+        "id": "archer",
+        "x": 3863.079581832194,
+        "y": 3091.477244744466,
+        "hp": 1671,
+        "focus": 391,
+        "grounded": true
+      },
+      {
+        "frame": 10740,
+        "id": "archer",
+        "x": 3947.295880674551,
+        "y": 3026.6954764041916,
+        "hp": 1671,
+        "focus": 391,
+        "grounded": true
+      },
+      {
+        "frame": 10770,
+        "id": "archer",
+        "x": 4031.512179516908,
+        "y": 2961.913708063917,
+        "hp": 1671,
+        "focus": 391,
+        "grounded": true
+      },
+      {
+        "frame": 10800,
+        "id": "archer",
+        "x": 4119.621782564047,
+        "y": 2902.7363858974704,
+        "hp": 1671,
+        "focus": 391,
+        "grounded": true
+      },
+      {
+        "frame": 10830,
+        "id": "archer",
+        "x": 4209.7216023645815,
+        "y": 2846.4239985221366,
+        "hp": 1671,
+        "focus": 391,
+        "grounded": true
+      }
+    ]
+  },
+  "mobile": {
+    "viewport": [
+      720,
+      1100
+    ],
+    "scope": "Prepared earned-SP stage-entry profile; real App/Engine/Native Canvas events and sparse actual scene rendering every300 simulation frames (bounded snapshot evidence, not continuous rendered play); DOM/audio/storage scheduling are doubles, not browser or chapters1–37 playthrough. Phase-specific actual Continue, no forcing.",
+    "projectSha256": "4e095323e5fa895b97a6317350fc65990b037e73acbf84c6abc3bfec8583ab8f",
+    "runtimeSha256": "e53ef7cedfd02863678d5ec4d59f5701df94ef2d997c3fc2b5d27b60a38118e8",
+    "verifierSha256": "176705e0bea640ed4dbacf65dccdbf78bcfcae65130d9404206d983e1ba7ffe5",
+    "success": true,
+    "frames": 16096,
+    "shots": 14,
+    "resume": [
+      {
+        "phase": "vista",
+        "frame": 4895,
+        "input": 20,
+        "pass": true,
+        "scope": "Actual stopBattle/persist/Continue exact units/objective/round/phase/active"
+      },
+      {
+        "phase": "entry",
+        "frame": 5749,
+        "input": 26,
+        "pass": true,
+        "scope": "Actual stopBattle/persist/Continue exact units/objective/round/phase/active"
+      },
+      {
+        "phase": "wrong-exit",
+        "frame": 6001,
+        "input": 26,
+        "pass": true,
+        "scope": "Actual stopBattle/persist/Continue exact units/objective/round/phase/active"
+      },
+      {
+        "phase": "anchoring",
+        "frame": 6740,
+        "input": 30,
+        "pass": true,
+        "scope": "Actual stopBattle/persist/Continue exact units/objective/round/phase/active"
+      },
+      {
+        "phase": "connected",
+        "frame": 7071,
+        "input": 34,
+        "pass": true,
+        "scope": "Actual stopBattle/persist/Continue exact units/objective/round/phase/active"
+      }
+    ],
+    "interactions": [
+      {
+        "frame": 5749,
+        "accepted": true,
+        "before": {
+          "id": "mage",
+          "x": 2989.1370848101847,
+          "y": 3050,
+          "focus": 701
+        },
+        "after": {
+          "id": "mage",
+          "x": 2989.1370848101847,
+          "y": 3050,
+          "focus": 701
+        },
+        "connection": false
+      },
+      {
+        "frame": 6409,
+        "accepted": true,
+        "before": {
+          "id": "mage",
+          "x": 2989.1370848101847,
+          "y": 3050,
+          "focus": 701
+        },
+        "after": {
+          "id": "mage",
+          "x": 2989.1370848101847,
+          "y": 3050,
+          "focus": 701
+        },
+        "connection": false
+      },
+      {
+        "frame": 6740,
+        "accepted": true,
+        "before": {
+          "id": "mage",
+          "x": 2989.1370848101847,
+          "y": 3050,
+          "focus": 701
+        },
+        "after": {
+          "id": "mage",
+          "x": 2989.1370848101847,
+          "y": 3050,
+          "focus": 701
+        },
+        "connection": false
+      },
+      {
+        "frame": 13710,
+        "accepted": true,
+        "before": {
+          "id": "archer",
+          "x": 2975.4925713566436,
+          "y": 3050,
+          "focus": 391
+        },
+        "after": {
+          "id": "archer",
+          "x": 4520,
+          "y": 2600,
+          "focus": 391
+        },
+        "connection": true
+      },
+      {
+        "frame": 16091,
+        "accepted": true,
+        "before": {
+          "id": "occultist",
+          "x": 6437.471561668359,
+          "y": 2400,
+          "focus": 784
+        },
+        "after": {
+          "id": "occultist",
+          "x": 6437.471561668359,
+          "y": 2400,
+          "focus": 784
+        },
+        "connection": true
+      }
+    ],
+    "observed": {
+      "rescue-voices": 42.49999999999823,
+      "probe-entry": 49.999999999997804,
+      "probe-wrong": 52.49999999999766,
+      "anchor-action": 54.99999999999752
+    },
+    "pursuitSeen": true,
+    "vista": {
+      "active": false,
+      "index": 3,
+      "elapsed": 0
+    },
+    "connection": {
+      "destination": {
+        "x": 4520,
+        "y": 2600
+      },
+      "sourceRun": "honro-map-stage-38-1793210256558",
+      "stageOnly": true,
+      "mpSpent": 0
+    },
+    "completionProof": {
+      "exit": {
+        "x": 6700,
+        "y": 2400
+      },
+      "connection": {
+        "destination": {
+          "x": 4520,
+          "y": 2600
+        },
+        "sourceRun": "honro-map-stage-38-1793210256558",
+        "stageOnly": true,
+        "mpSpent": 0
+      }
+    },
+    "finalUnits": [
+      {
+        "id": "archer",
+        "x": 6457.958198757492,
+        "y": 2400,
+        "hp": 1671,
+        "dead": false
+      },
+      {
+        "id": "mage",
+        "x": 6484.0930184576455,
+        "y": 2400,
+        "hp": 1850.8,
+        "dead": false
+      },
+      {
+        "id": "knight",
+        "x": 6494.722704248547,
+        "y": 2400,
+        "hp": 3586.3,
+        "dead": false
+      },
+      {
+        "id": "occultist",
+        "x": 6437.471561668359,
+        "y": 2400,
+        "hp": 2251,
+        "dead": false
+      },
+      {
+        "id": "a4-38-g0-0",
+        "x": 1402.7098271300808,
+        "y": 2800,
+        "hp": 0,
+        "dead": true
+      },
+      {
+        "id": "a4-38-g0-1",
+        "x": 1719.5,
+        "y": 2350,
+        "hp": 0,
+        "dead": true
+      },
+      {
+        "id": "a4-38-pursuer-0",
+        "x": 5570.9072351859195,
+        "y": 2600,
+        "hp": 0,
+        "dead": true
+      },
+      {
+        "id": "a4-38-pursuer-1",
+        "x": 5870.485276153117,
+        "y": 2531.805889538753,
+        "hp": 0,
+        "dead": true
+      },
+      {
+        "id": "a4-rescue-0",
+        "x": 4720,
+        "y": 2600,
+        "hp": 1450,
+        "dead": false
+      },
+      {
+        "id": "a4-rescue-1",
+        "x": 4890,
+        "y": 2600,
+        "hp": 1450,
+        "dead": false
+      },
+      {
+        "id": "a4-rescue-2",
+        "x": 5060,
+        "y": 2600,
+        "hp": 1450,
+        "dead": false
+      },
+      {
+        "id": "a4-rescue-3",
+        "x": 5230,
+        "y": 2600,
+        "hp": 1450,
+        "dead": false
+      }
+    ],
+    "dialogueEvents": {
+      "voice": {
+        "started": true,
+        "terminal": true,
+        "presented": [],
+        "retired": [
+          "A4.S38.VOICE.01",
+          "A4.S38.VOICE.02",
+          "A4.S38.VOICE.03"
+        ]
+      },
+      "anchor": {
+        "started": true,
+        "terminal": true,
+        "presented": [],
+        "retired": [
+          "A4.S38.ANCHOR.01"
+        ]
+      },
+      "connected": {
+        "started": true,
+        "terminal": true,
+        "presented": [],
+        "retired": [
+          "A4.S38.CONNECTED.01"
+        ]
+      }
+    }
+  },
+  "occupiedDestination": {
+    "scope": "Synthetic occupied connection-destination fixture after ordinary input prefix, not campaign victory/natural occupancy evidence",
+    "projectSha256": "4e095323e5fa895b97a6317350fc65990b037e73acbf84c6abc3bfec8583ab8f",
+    "frame": 6865,
+    "pass": true,
+    "bank": [
+      4300,
+      4740
+    ],
+    "before": {
+      "x": 2989.1370848101847,
+      "y": 3050,
+      "hp": 1888,
+      "focus": 701
+    },
+    "after": {
+      "x": 2989.1370848101847,
+      "y": 3050,
+      "hp": 1888,
+      "focus": 701,
+      "anchorAction": {
+        "actor": "mage",
+        "elapsed": 1.0416666666666654
+      },
+      "connected": false
+    }
+  },
+  "escapeVista": {
+    "scope": "Ordinary input prefix then actual Escape event handler; no state forcing",
+    "projectSha256": "4e095323e5fa895b97a6317350fc65990b037e73acbf84c6abc3bfec8583ab8f",
+    "frame": 4895,
+    "pass": true,
+    "after": {
+      "vista": {
+        "active": false,
+        "index": 0,
+        "elapsed": 0
+      },
+      "vistaDone": true,
+      "manual": false,
+      "camera": {
+        "x": 2801.5370848101898,
+        "y": 2960
+      },
+      "active": "mage"
+    }
+  },
+  "limits": [
+    "Prepared earned-SP stage entry, not preceding campaign chapters",
+    "Actual native snapshots every300 simulation ticks, DOM/audio/storage scheduling doubles",
+    "Dialogue rows skipped/retired, not falsely counted as presented",
+    "Occupied-destination occupants are explicitly synthetic boundary-fixture actors, never part of normal clears",
+    "No browser/mobile hardware/HUD or deployment approval inferred"
+  ]
+}

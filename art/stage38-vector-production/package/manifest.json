@@ -1,0 +1,29 @@
+{
+  "stageId": "stage-38",
+  "status": "candidate-not-approved",
+  "projectSha256": "4948059f713f23ef6d124350f0198808866777d4743d91493312c3c74bc69bcf",
+  "source": "shared/data/act4/world.json",
+  "staticCollisionUnchanged": true,
+  "gameplayFieldsUnchanged": true,
+  "visualChanges": {
+    "naturalRockIds": [
+      "a4-38-prop-0",
+      "a4-38-prop-1",
+      "a4-coast-38-art-5",
+      "a4-coast-38-art-6",
+      "a4-coast-38-art-7",
+      "a4-coast-38-art-8",
+      "a4-coast-38-art-3",
+      "a4-coast-38-art-4"
+    ],
+    "removedNoncollidingElement": "a4-coast-38-art-2",
+    "preservedConnectionCracks": true,
+    "protectedNaturalCrackIds": [
+      "a4-coast-38-art-3",
+      "a4-coast-38-art-4"
+    ]
+  },
+  "notes": "Distinct exact west/east/emergency/ceiling BODY; runtime resident/probe/connection untouched. Source-bound native visual/App evidence is generated separately; parent browser/release review remains.",
+  "functionalCrackSource": "art/vector-common-production/cracked-sea-rock-optimization.json",
+  "functionalCrackReview": "art/stage38-vector-production/crack-review/review.json"
+}
