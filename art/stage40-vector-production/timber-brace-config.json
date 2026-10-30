@@ -1,0 +1,50 @@
+{
+  "id": "s40v:timber-brace",
+  "name": "\uadc0\ud658 \ud3ec\uad6c timber-brace",
+  "semanticLayer": "REAR",
+  "category": "architecture",
+  "bounds": {
+    "x": -190,
+    "y": -710,
+    "w": 380,
+    "h": 730
+  },
+  "anchor": {
+    "x": 0,
+    "y": 0
+  },
+  "foot": {
+    "x": 0,
+    "y": 0
+  },
+  "transform": [
+    0.41794306085015503,
+    0,
+    0,
+    0.41794306085015503,
+    -189.54616387135357,
+    -715.8512028519021
+  ],
+  "scaleRange": [
+    0.1,
+    4
+  ],
+  "backgroundRange": [
+    0.1,
+    4
+  ],
+  "params": {
+    "sourceRaw": "timber-brace-raw.svg",
+    "scope": "Render-only original40 footprint and foot; no collision",
+    "inkFit": {
+      "sourceInk": [
+        274.169,
+        14,
+        358.705,
+        1698.796
+      ],
+      "height": 710,
+      "rule": "Uniform source ink height; actual bottom foot0, horizontal center0, no whitespace fit"
+    }
+  }
+}

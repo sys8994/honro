@@ -1,0 +1,27 @@
+{
+  "physicalAssetSilhouetteAlphaExact430px": false,
+  "validationErrors": 0,
+  "nodes": 17,
+  "maxRuntimePathChars": 49474,
+  "sourcePaths": 5,
+  "paletteColors": 4,
+  "visualReview": {
+    "inspected": [
+      "32normal",
+      "32detail",
+      "32mobile",
+      "35normal",
+      "35detail",
+      "35mobile"
+    ],
+    "findings": "Main stones and broken top readable; fewer bright moss flecks and internal face transitions. Keeps actual cover geometry; does not repair original texture distortion due physical clip. Camera/physics unchanged. No whole-stage art approval."
+  },
+  "optimization": "Intentional art redesign from existing optimized source. Geometry simplification not further applied because already inside runtime limits. Removing tiny interior components is redesign, not fidelity pass.",
+  "alphaMaxAAChange430px": 13,
+  "alphaDifferentPixels430px": 158,
+  "alpha128SilhouetteEqual430px": false,
+  "alphaNote": "Paint overlap at antialiased clipped boundary changes alpha; physical backing/clip path exact unchanged. Not exact RGBA parity.",
+  "normal8xAlpha128ContourHausdorffCSSpx": 0.125,
+  "normal8xContourLimitCSSpx": 0.5,
+  "normal8xContourPass": true
+}

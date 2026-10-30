@@ -1,0 +1,130 @@
+{
+  "source": "density-play:stone-contact-source",
+  "target": "s38-density:stone-west-floor",
+  "segments": [
+    {
+      "tile": 0,
+      "lo": 0,
+      "hi": 200,
+      "mirror": false,
+      "transform": [
+        1,
+        -0.04411764705882376,
+        0,
+        0.5,
+        -1600,
+        1894.411764705883
+      ]
+    },
+    {
+      "tile": 0,
+      "lo": 200,
+      "hi": 850,
+      "mirror": false,
+      "transform": [
+        1,
+        -0.038461538461538464,
+        0,
+        0.5,
+        -1600,
+        1884.2307692307693
+      ]
+    },
+    {
+      "tile": 0,
+      "lo": 850,
+      "hi": 1490,
+      "mirror": false,
+      "transform": [
+        1,
+        -0.015625,
+        0,
+        0.5,
+        -1600,
+        1828.28125
+      ]
+    },
+    {
+      "tile": 0,
+      "lo": 1490,
+      "hi": 1800,
+      "mirror": false,
+      "transform": [
+        1,
+        0,
+        0,
+        0.5,
+        -1600,
+        1780
+      ]
+    },
+    {
+      "tile": 1,
+      "lo": 1800,
+      "hi": 2110,
+      "mirror": true,
+      "transform": [
+        -1,
+        -0.45454545454545453,
+        0,
+        0.5,
+        5200,
+        3325.454545454546
+      ]
+    },
+    {
+      "tile": 1,
+      "lo": 2110,
+      "hi": 2350,
+      "mirror": true,
+      "transform": [
+        -1,
+        -0.47017045454545453,
+        0,
+        0.5,
+        5200,
+        3373.735795454546
+      ]
+    },
+    {
+      "tile": 1,
+      "lo": 2350,
+      "hi": 2750,
+      "mirror": true,
+      "transform": [
+        -1,
+        -0.015625,
+        0,
+        0.5,
+        5200,
+        2078.28125
+      ]
+    },
+    {
+      "tile": 1,
+      "lo": 2750,
+      "hi": 3300,
+      "mirror": true,
+      "transform": [
+        -1,
+        -0.038461538461538464,
+        0,
+        0.5,
+        5200,
+        2134.2307692307695
+      ]
+    }
+  ],
+  "expandedNodes": 113,
+  "maxDepth": 8,
+  "maxPathChars": 35212,
+  "symbolCount": 1,
+  "bytes": 194227,
+  "sourceBytes": 191676,
+  "sourcePathDataUnchanged": true,
+  "depthScale": 0.5,
+  "artProportionVariant": true,
+  "collision": [],
+  "visualApproval": false,
+  "scope": "Exact affine relative-depth mapping; original source paths shared, original physics unchanged. depthScale != 1 is intentional art proportion change, not raw-fidelity optimization. Palette/repetition/seam review required."
+}

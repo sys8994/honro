@@ -1,0 +1,38 @@
+[
+  {
+    "stage": 34,
+    "role": "body",
+    "source": "art/stage34-density-v2/body-unioned.svg",
+    "file": "art/stone-contact-density-v2/stage34-body-strip-asset.json",
+    "oldColor": "#847d62",
+    "newColor": "#60737c",
+    "intentionalSourcePaletteChange": true
+  },
+  {
+    "stage": 34,
+    "role": "overhang",
+    "source": "art/stage34-density-v2/overhang-unioned.svg",
+    "file": "art/stone-contact-density-v2/stage34-overhang-strip-asset.json",
+    "oldColor": "#847d62",
+    "newColor": "#60737c",
+    "intentionalSourcePaletteChange": true
+  },
+  {
+    "stage": 38,
+    "role": "floor",
+    "source": "art/stage38-density-v2/floor-unioned.svg",
+    "file": "art/stone-contact-density-v2/stage38-floor-strip-asset.json",
+    "oldColor": "#7c8078",
+    "newColor": "#60737c",
+    "intentionalSourcePaletteChange": true
+  },
+  {
+    "stage": 38,
+    "role": "roof",
+    "source": "art/stage38-density-v2/roof-unioned.svg",
+    "file": "art/stone-contact-density-v2/stage38-roof-strip-asset.json",
+    "oldColor": "#7c8078",
+    "newColor": "#60737c",
+    "intentionalSourcePaletteChange": true
+  }
+]

@@ -1,0 +1,10 @@
+{
+  "sourceArt": "Existing approved36 imagegen/nativeInkscape clusters, recolored in nativeInkscape to stone; no invented decorative paths.",
+  "sourceStripArt": "Existing34/38 nativeInkscape BODY source border recolored to #60737c; no geometry changes.",
+  "selected": ["34-floor", "38-west-floor", "38-east-floor", "38-ledges"],
+  "rejected": ["34-underside", "38-underside"],
+  "reason": "Inverted mapping is technically correct but upside-down pebble clusters form a repeated necklace rather than believable rock. Keep original ceiling stone planes, recolor the broad yellow/gray strip, do not deploy the underside clusters.",
+  "validation": "Runtime budget validator0 and compiled terrain deep equality for bothstage candidates.34 floor421expanded nodes beforeouterphysicalclip, maxPath35212. Every asset has own config/report.",
+  "visualReview": "Native production Scene normal/detail frames inspected.34 actor-scaled frame and38 floor/ceiling frame inspected. Source strip matching improves ribbon artifact; sparse floor clusters add material reading. Root final review and browser gameplay remain separate.",
+  "important": "Newpalette/proportion is intentional art redesign, not a lossless optimization claim. Source paths preserved; clip exactphysical ground. Upside-down rejected assets kept for reproducible failure evidence, not promotion. Integrator should only install selection=candidate and regenerate BODYdomains from newstrip sources.34 artificial topcap color should change #c8a960 to #71838b."
+}

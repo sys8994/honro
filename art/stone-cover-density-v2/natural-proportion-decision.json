@@ -1,0 +1,68 @@
+{
+  "decision": "Select uniform.495 natural-proportion crop for32/35/37 scopedwallpaint",
+  "selectedTransform": [
+    0.495,
+    0,
+    0,
+    0.495,
+    -439.065,
+    -306.9
+  ],
+  "previousTotalTransform": [
+    0.24,
+    0,
+    0,
+    0.495,
+    -212.88,
+    -306.9
+  ],
+  "sourceRelativeAspectBefore": 2.0625,
+  "sourceRelativeAspectAfter": 1,
+  "rejected": [
+    {
+      "transform": [
+        0.33,
+        0,
+        0,
+        0.33,
+        -292.71,
+        -204.6
+      ],
+      "reason": "Naturalproportions but toptexture didnotcoverbrokenphysicaltop; flatbackingtriangles visible",
+      "views": "_local/reports/stone-cover-natural/35/views/"
+    }
+  ],
+  "checks": [
+    {
+      "stage": 32,
+      "pathGeometryExact": true,
+      "physicalBackingClipBoundsMaterialExact": true,
+      "compiledPhysicsDeepEqual": true,
+      "runtimeBytes": 193512
+    },
+    {
+      "stage": 35,
+      "pathGeometryExact": true,
+      "physicalBackingClipBoundsMaterialExact": true,
+      "compiledPhysicsDeepEqual": true,
+      "runtimeBytes": 193530
+    },
+    {
+      "stage": 37,
+      "pathGeometryExact": true,
+      "physicalBackingClipBoundsMaterialExact": true,
+      "compiledPhysicsDeepEqual": true,
+      "runtimeBytes": 193512
+    }
+  ],
+  "nodes": 17,
+  "maxPathChars": 49474,
+  "newGeometryOrRepeatedSource": false,
+  "visualInspection": [
+    "35normaldetailportrait larger-crop-views",
+    "32normal",
+    "37detail"
+  ],
+  "findings": "Originalstoneaspect restored; largeconnectedstonefaces insteadofthinverticalpebbles. No repetitions/seams, physicaltopcontinuesunchanged. Finalart remains stylizedcrop inside existing walloutline; not newphysics or exactappearance-preserving optimization.",
+  "browserQA": false
+}

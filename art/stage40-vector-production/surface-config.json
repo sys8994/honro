@@ -1,0 +1,40 @@
+{
+  "id": "s40v:surface",
+  "name": "돌아가는 배 surface",
+  "semanticLayer": "SURFACE",
+  "category": "architecture",
+  "bounds": {
+    "x": 2700,
+    "y": 1450,
+    "w": 2500,
+    "h": 800
+  },
+  "anchor": {
+    "x": 0,
+    "y": 0
+  },
+  "foot": {
+    "x": 0,
+    "y": 0
+  },
+  "transform": [
+    1.1510128913443831,
+    0,
+    0,
+    1.1049723756906078,
+    2700,
+    1450
+  ],
+  "scaleRange": [
+    1,
+    1
+  ],
+  "backgroundRange": [
+    1,
+    1
+  ],
+  "params": {
+    "sourceRaw": "surface-raw.svg",
+    "collisionAuthority": "unchanged official40"
+  }
+}

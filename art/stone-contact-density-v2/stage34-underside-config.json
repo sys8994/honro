@@ -1,0 +1,53 @@
+{
+  "config": {
+    "id": "s34-density:stone-underside",
+    "sourceTop": [
+      {
+        "x": 1600,
+        "y": 1952.3529411764705
+      },
+      {
+        "x": 1800,
+        "y": 1970
+      },
+      {
+        "x": 2450,
+        "y": 2020
+      },
+      {
+        "x": 3090,
+        "y": 2040
+      },
+      {
+        "x": 3400,
+        "y": 2040
+      }
+    ],
+    "targetTop": [
+      {
+        "x": 0,
+        "y": -4000
+      },
+      {
+        "x": 2250,
+        "y": -3700
+      },
+      {
+        "x": 3150,
+        "y": -3600
+      },
+      {
+        "x": 3400,
+        "y": -3500
+      }
+    ],
+    "start": 0,
+    "end": 3400,
+    "depth": 40,
+    "depthScale": 0.5,
+    "alternateMirror": true
+  },
+  "inverse": true,
+  "physicalTerrain": "a4-34-natural-overhang",
+  "physical": "M0 3000 L1250 2440 L1800 2570 L2650 3300 L3400 3500 L3150 3600 L2250 3700 L0 4000Z"
+}

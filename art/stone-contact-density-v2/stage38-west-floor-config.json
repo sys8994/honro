@@ -1,0 +1,53 @@
+{
+  "config": {
+    "id": "s38-density:stone-west-floor",
+    "sourceTop": [
+      {
+        "x": 1600,
+        "y": 1952.3529411764705
+      },
+      {
+        "x": 1800,
+        "y": 1970
+      },
+      {
+        "x": 2450,
+        "y": 2020
+      },
+      {
+        "x": 3090,
+        "y": 2040
+      },
+      {
+        "x": 3400,
+        "y": 2040
+      }
+    ],
+    "targetTop": [
+      {
+        "x": 0,
+        "y": 2800
+      },
+      {
+        "x": 1800,
+        "y": 2800
+      },
+      {
+        "x": 2350,
+        "y": 3050
+      },
+      {
+        "x": 3300,
+        "y": 3050
+      }
+    ],
+    "start": 0,
+    "end": 3300,
+    "depth": 40,
+    "depthScale": 0.5,
+    "alternateMirror": true
+  },
+  "inverse": false,
+  "physicalTerrain": "a4-38-land",
+  "physical": "M0 2800 L1800 2800 L2350 3050 L3300 3050 L3300 4400 L0 4400Z"
+}

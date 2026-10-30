@@ -1,0 +1,130 @@
+{
+  "replacements": [
+    {
+      "stage": 32,
+      "oldAsset": "s32v:old-wall",
+      "newAsset": "s32-density:stone-cover-natural",
+      "file": "art/stone-cover-density-v2/stage32-natural-asset.json",
+      "instances": [
+        "a4-32-prop-4"
+      ],
+      "oldBytes": 268947,
+      "newBytes": 193512,
+      "compiledPhysicsPreserved": true,
+      "materialUnchanged": true,
+      "previousDensityAsset": "s32-density:stone-cover",
+      "uniformSourceProportion": true
+    },
+    {
+      "stage": 35,
+      "oldAsset": "a4-production:broken-stone-wall",
+      "newAsset": "s35-density:stone-cover-natural",
+      "file": "art/stone-cover-density-v2/stage35-natural-asset.json",
+      "instances": [
+        "a4-35-old-wall-13",
+        "a4-art-35-extra-1"
+      ],
+      "oldBytes": 268983,
+      "newBytes": 193530,
+      "compiledPhysicsPreserved": true,
+      "materialUnchanged": true,
+      "previousDensityAsset": "s35-density:stone-cover",
+      "uniformSourceProportion": true
+    },
+    {
+      "stage": 37,
+      "oldAsset": "s37v:old-wall",
+      "newAsset": "s37-density:stone-cover-natural",
+      "file": "art/stone-cover-density-v2/stage37-natural-asset.json",
+      "instances": [
+        "a4-37-prop-0",
+        "a4-37-prop-1",
+        "a4-37-prop-2",
+        "a4-37-prop-3"
+      ],
+      "oldBytes": 268947,
+      "newBytes": 193512,
+      "compiledPhysicsPreserved": true,
+      "materialUnchanged": true,
+      "exactSourceVectorMatch": true,
+      "previousDensityAsset": "s37-density:stone-cover",
+      "uniformSourceProportion": true
+    }
+  ],
+  "visualApproval": false,
+  "sourceReuseAudit": [
+    {
+      "stage": 31,
+      "matchingAssets": [],
+      "matchingInstances": []
+    },
+    {
+      "stage": 32,
+      "matchingAssets": [
+        "s32v:old-wall"
+      ],
+      "matchingInstances": [
+        "a4-32-prop-4"
+      ]
+    },
+    {
+      "stage": 33,
+      "matchingAssets": [],
+      "matchingInstances": []
+    },
+    {
+      "stage": 34,
+      "matchingAssets": [],
+      "matchingInstances": []
+    },
+    {
+      "stage": 35,
+      "matchingAssets": [
+        "a4-production:broken-stone-wall"
+      ],
+      "matchingInstances": [
+        "a4-35-old-wall-13",
+        "a4-art-35-extra-1"
+      ]
+    },
+    {
+      "stage": 36,
+      "matchingAssets": [],
+      "matchingInstances": []
+    },
+    {
+      "stage": 37,
+      "matchingAssets": [
+        "s37v:old-wall"
+      ],
+      "matchingInstances": [
+        "a4-37-prop-0",
+        "a4-37-prop-1",
+        "a4-37-prop-2",
+        "a4-37-prop-3"
+      ]
+    },
+    {
+      "stage": 38,
+      "matchingAssets": [],
+      "matchingInstances": []
+    },
+    {
+      "stage": 39,
+      "matchingAssets": [],
+      "matchingInstances": []
+    },
+    {
+      "stage": 40,
+      "matchingAssets": [],
+      "matchingInstances": []
+    }
+  ],
+  "proportionCaveat": {
+    "sourceXScale": 0.24,
+    "sourceYScale": 0.495,
+    "relativeVerticalStretch": 2.0625,
+    "reason": "Earlier physicalContactFit uses nonuniform import and textureVerticalScale1.5. Stones appear taller than original concept. Preserved intentionally in this role-density pass to avoid changing existing contact fit; separate source redesign/remap required, not collision edit.",
+    "resolvedBy": "Natural-proportion uniform.495 source crop within unchanged physicalwall; no repeated geometry or extra nodes."
+  }
+}

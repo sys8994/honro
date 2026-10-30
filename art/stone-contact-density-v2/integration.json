@@ -1,0 +1,131 @@
+{
+  "visualApproval": false,
+  "assets": [
+    {
+      "stage": 34,
+      "assetFile": "art/stone-contact-density-v2/stage34-floor-asset.json",
+      "element": {
+        "id": "s34-density:stone-floor",
+        "assetId": "s34-density:stone-floor",
+        "x": 0,
+        "y": 0,
+        "scale": 1,
+        "rotation": 0,
+        "snap": false,
+        "depthLayer": "L1",
+        "layer": "front",
+        "visualRole": "scenery"
+      },
+      "order": "Append after BODY, actor-independent scenery",
+      "inverse": false,
+      "physicalTerrain": "a4-34-land",
+      "selection": "candidate",
+      "reason": "Source-derived sparse contact material; normal/detail local visual inspection passed direction only. Final scene approval remains root."
+    },
+    {
+      "stage": 34,
+      "assetFile": "art/stone-contact-density-v2/stage34-underside-asset.json",
+      "element": {
+        "id": "s34-density:stone-underside",
+        "assetId": "s34-density:stone-underside",
+        "x": 0,
+        "y": 0,
+        "scale": 1,
+        "rotation": 0,
+        "snap": false,
+        "depthLayer": "L1",
+        "layer": "front",
+        "visualRole": "scenery"
+      },
+      "order": "Append after BODY, actor-independent scenery",
+      "inverse": true,
+      "physicalTerrain": "a4-34-natural-overhang",
+      "selection": "rejected",
+      "reason": "Repeated upside-down pebble clusters read as a necklace, not a carved ceiling; retain original stone-plane ceiling with muted strip."
+    },
+    {
+      "stage": 38,
+      "assetFile": "art/stone-contact-density-v2/stage38-west-floor-asset.json",
+      "element": {
+        "id": "s38-density:stone-west-floor",
+        "assetId": "s38-density:stone-west-floor",
+        "x": 0,
+        "y": 0,
+        "scale": 1,
+        "rotation": 0,
+        "snap": false,
+        "depthLayer": "L1",
+        "layer": "front",
+        "visualRole": "scenery"
+      },
+      "order": "Append after BODY, actor-independent scenery",
+      "inverse": false,
+      "physicalTerrain": "a4-38-land",
+      "selection": "candidate",
+      "reason": "Source-derived sparse contact material; normal/detail local visual inspection passed direction only. Final scene approval remains root."
+    },
+    {
+      "stage": 38,
+      "assetFile": "art/stone-contact-density-v2/stage38-east-floor-asset.json",
+      "element": {
+        "id": "s38-density:stone-east-floor",
+        "assetId": "s38-density:stone-east-floor",
+        "x": 0,
+        "y": 0,
+        "scale": 1,
+        "rotation": 0,
+        "snap": false,
+        "depthLayer": "L1",
+        "layer": "front",
+        "visualRole": "scenery"
+      },
+      "order": "Append after BODY, actor-independent scenery",
+      "inverse": false,
+      "physicalTerrain": "a4-38-east",
+      "selection": "candidate",
+      "reason": "Source-derived sparse contact material; normal/detail local visual inspection passed direction only. Final scene approval remains root."
+    },
+    {
+      "stage": 38,
+      "assetFile": "art/stone-contact-density-v2/stage38-ledges-asset.json",
+      "element": {
+        "id": "s38-density:stone-ledges",
+        "assetId": "s38-density:stone-ledges",
+        "x": 0,
+        "y": 0,
+        "scale": 1,
+        "rotation": 0,
+        "snap": false,
+        "depthLayer": "L1",
+        "layer": "front",
+        "visualRole": "scenery"
+      },
+      "order": "Append after BODY, actor-independent scenery",
+      "inverse": false,
+      "physicalTerrain": "a4-38-emergency-ledges",
+      "selection": "candidate",
+      "reason": "Source-derived sparse contact material; normal/detail local visual inspection passed direction only. Final scene approval remains root."
+    },
+    {
+      "stage": 38,
+      "assetFile": "art/stone-contact-density-v2/stage38-underside-asset.json",
+      "element": {
+        "id": "s38-density:stone-underside",
+        "assetId": "s38-density:stone-underside",
+        "x": 0,
+        "y": 0,
+        "scale": 1,
+        "rotation": 0,
+        "snap": false,
+        "depthLayer": "L1",
+        "layer": "front",
+        "visualRole": "scenery"
+      },
+      "order": "Append after BODY, actor-independent scenery",
+      "inverse": true,
+      "physicalTerrain": "a4-38-cavern-roof",
+      "selection": "rejected",
+      "reason": "Repeated upside-down pebble clusters read as a necklace, not a carved ceiling; retain original stone-plane ceiling with muted strip."
+    }
+  ]
+}
