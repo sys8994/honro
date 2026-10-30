@@ -1,0 +1,82 @@
+{
+  "asset": {
+    "id": "common:cracked-sea-rock",
+    "name": "해안 수직 균열 바위",
+    "category": "architecture",
+    "semanticLayer": "REAR",
+    "bounds": {
+      "x": -240,
+      "y": -370,
+      "w": 480,
+      "h": 405
+    },
+    "anchor": {
+      "x": 0,
+      "y": 0
+    },
+    "foot": {
+      "x": 0,
+      "y": 0
+    },
+    "transform": [
+      0.3589098227712382,
+      0,
+      0,
+      0.3589098227712382,
+      -251.3341405018377,
+      -363.9345602900355
+    ],
+    "scaleRange": [
+      0.1,
+      4
+    ],
+    "backgroundRange": [
+      0.1,
+      4
+    ],
+    "params": {
+      "sourceRaw": "cracked-sea-rock-raw.svg",
+      "scope": "Shared natural fissure landmark; no collision; original gameplay IDs and positions preserved",
+      "inkFit": {
+        "sourceInk": [
+          39.938,
+          128,
+          1320.666,
+          886
+        ],
+        "width": 474,
+        "rule": "Uniform ink fit, bottomfoot0 and centerx0; preserved original480x405 placement bounds"
+      }
+    }
+  },
+  "width": 200,
+  "scales": [
+    1,
+    2
+  ],
+  "protectedRects": [
+    [
+      88,
+      29,
+      43,
+      116
+    ]
+  ],
+  "reviewRects": [
+    [
+      88,
+      29,
+      43,
+      116
+    ]
+  ],
+  "protectionMode": "silhouette-feature",
+  "semanticProtection": {
+    "immutablePaths": [
+      "path11",
+      "path1",
+      "path2"
+    ],
+    "meaning": "Two darkest topmost fills define visible deep fissure; preserve their exact d, fill, order and transform. Other palette-island displacement is not an actual fissure movement measurement. All raw broad-feature rejection reports retained. Original first outer silhouette path also unchanged."
+  }
+}

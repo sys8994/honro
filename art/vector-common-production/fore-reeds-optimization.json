@@ -1,0 +1,315 @@
+{
+  "raw": "art/vector-common-production/fore-reeds-raw.svg",
+  "candidate": "_local/reports/vector-optimization/fore-reeds-hybrid/candidate.svg",
+  "rawStats": {
+    "sourceBytes": 645105,
+    "paths": 9,
+    "commands": 14714,
+    "segments": 13805,
+    "endpointNodesUpperBound": 14714,
+    "explicitCommandLetters": 3898,
+    "subpaths": 909,
+    "pathChars": 643872,
+    "maxPathChars": 109978
+  },
+  "candidateStats": {
+    "sourceBytes": 705234,
+    "paths": 19,
+    "commands": 34761,
+    "segments": 33830,
+    "endpointNodesUpperBound": 34761,
+    "explicitCommandLetters": 32216,
+    "subpaths": 931,
+    "pathChars": 703176,
+    "maxPathChars": 66363
+  },
+  "visualApproval": "NOT REVIEWED",
+  "config": {
+    "width": 358,
+    "scales": [
+      1,
+      1.452513966480447
+    ],
+    "protectionMode": "feature",
+    "protectedRects": [
+      [
+        110,
+        0,
+        175,
+        280
+      ]
+    ],
+    "reviewRects": [
+      [
+        100,
+        0,
+        185,
+        358
+      ]
+    ],
+    "asset": {
+      "id": "common-v:fore-reeds",
+      "name": "\uadfc\uacbd \uac08\ub300\uc640 \ubfcc\ub9ac",
+      "semanticLayer": "FORE",
+      "category": "plant",
+      "bounds": {
+        "x": 0,
+        "y": 0,
+        "w": 650,
+        "h": 650
+      },
+      "anchor": {
+        "x": 0,
+        "y": 0
+      },
+      "foot": {
+        "x": 325,
+        "y": 570
+      },
+      "transform": [
+        0.518341307814992,
+        0,
+        0,
+        0.518341307814992,
+        0,
+        0
+      ],
+      "scaleRange": [
+        0.6,
+        1.5
+      ],
+      "params": {
+        "artRevision": 1,
+        "artRole": "noncolliding foreground reeds"
+      }
+    },
+    "sourcePalette": [
+      [
+        27,
+        47,
+        47
+      ],
+      [
+        39,
+        56,
+        54
+      ],
+      [
+        52,
+        74,
+        71
+      ],
+      [
+        74,
+        88,
+        74
+      ],
+      [
+        84,
+        79,
+        56
+      ],
+      [
+        85,
+        99,
+        78
+      ],
+      [
+        136,
+        119,
+        78
+      ],
+      [
+        148,
+        135,
+        103
+      ],
+      [
+        164,
+        166,
+        157
+      ]
+    ]
+  },
+  "errors": {
+    "1": {
+      "rgbMAE255": 0.08584562689065933,
+      "rgbP99_255": 2.2744970321655273,
+      "alphaMAE255": 0.045925531536340714,
+      "changedPixelFraction": 0.0005305702069223807,
+      "silhouetteMaxOffsetPx": 1.0,
+      "protectedChangedPixelFraction": 0.0011224489795918367,
+      "protectedRgbMAE255": 0.16518260538578033,
+      "protectedSilhouetteMaxOffsetPx": 1.0,
+      "protectedColorEdgeMaxOffsetPx": 89.26925562588724,
+      "pass": false
+    },
+    "1.452513966480447": {
+      "rgbMAE255": 0.0557493157684803,
+      "rgbP99_255": 1.8509794473648071,
+      "alphaMAE255": 0.020769231021404266,
+      "changedPixelFraction": 0.0001886094674556213,
+      "silhouetteMaxOffsetPx": 1.0,
+      "protectedChangedPixelFraction": 0.0004062759968271779,
+      "protectedRgbMAE255": 0.10808228701353073,
+      "protectedSilhouetteMaxOffsetPx": 1.0,
+      "protectedColorEdgeMaxOffsetPx": 41.10960958218893,
+      "pass": false
+    }
+  },
+  "timings": {
+    "raw-1": {
+      "width": 358,
+      "height": 358,
+      "decodeMs": 24.22635600000001,
+      "drawMs": 0.3387700000000109
+    },
+    "candidate-1": {
+      "width": 358,
+      "height": 358,
+      "decodeMs": 22.989126999999996,
+      "drawMs": 0.32721300000002884
+    },
+    "raw-1.452513966480447": {
+      "width": 520,
+      "height": 520,
+      "decodeMs": 26.885857999999985,
+      "drawMs": 0.6354369999999676
+    },
+    "candidate-1.452513966480447": {
+      "width": 520,
+      "height": 520,
+      "decodeMs": 31.153579000000036,
+      "drawMs": 0.6495780000000195
+    }
+  },
+  "qualityPass": false,
+  "status": "error-bounded runtime candidate; final scene review separate",
+  "sourceSha256": "cf5c66efb812b0046cd921b14486264c548b4b9ec7d8b3b3328678d03b792779",
+  "semanticAssessment": {
+    "semanticFeature": "Explicit protected reeds stems/head alpha silhouette plus unchanged local RGB/changed-pixel limits",
+    "priorPaletteDiagnostic": {
+      "1": {
+        "rgbMAE255": 0.08584562689065933,
+        "rgbP99_255": 2.2744970321655273,
+        "alphaMAE255": 0.045925531536340714,
+        "changedPixelFraction": 0.0005305702069223807,
+        "silhouetteMaxOffsetPx": 1.0,
+        "protectedChangedPixelFraction": 0.0011224489795918367,
+        "protectedRgbMAE255": 0.16518260538578033,
+        "protectedSilhouetteMaxOffsetPx": 1.0,
+        "protectedColorEdgeMaxOffsetPx": 89.26925562588724,
+        "pass": false
+      },
+      "1.452513966480447": {
+        "rgbMAE255": 0.0557493157684803,
+        "rgbP99_255": 1.8509794473648071,
+        "alphaMAE255": 0.020769231021404266,
+        "changedPixelFraction": 0.0001886094674556213,
+        "silhouetteMaxOffsetPx": 1.0,
+        "protectedChangedPixelFraction": 0.0004062759968271779,
+        "protectedRgbMAE255": 0.10808228701353073,
+        "protectedSilhouetteMaxOffsetPx": 1.0,
+        "protectedColorEdgeMaxOffsetPx": 41.10960958218893,
+        "pass": false
+      }
+    },
+    "supersampledSilhouette": {
+      "raw": "art/vector-common-production/fore-reeds-raw.svg",
+      "candidate": "_local/reports/vector-optimization/fore-reeds-hybrid/candidate.svg",
+      "metric": "protected alpha silhouette; no palette-island displacement claim",
+      "supersample": 8,
+      "normalPixelSamplingStep": 0.125,
+      "visualApproval": "NOT REVIEWED",
+      "regions": [
+        [
+          110,
+          0,
+          175,
+          280
+        ]
+      ],
+      "errors": {
+        "1": {
+          "samples": [
+            {
+              "region": 0,
+              "protectedSilhouetteMaxOffsetPx": 0.0,
+              "supersampledPixelOffset": 0.0,
+              "protectedRgbMAE255": 0.02475745975971222,
+              "protectedChangedPixelFraction": 1.0522959183673469e-05
+            }
+          ],
+          "protectedSilhouetteMaxOffsetPx": 0.0,
+          "limitPx": 0.5,
+          "silhouettePass": true
+        },
+        "1.452513966480447": {
+          "samples": [
+            {
+              "region": 0,
+              "protectedSilhouetteMaxOffsetPx": 0.0,
+              "supersampledPixelOffset": 0.0,
+              "protectedRgbMAE255": 0.02042130008339882,
+              "protectedChangedPixelFraction": 2.5080696385176643e-05
+            }
+          ],
+          "protectedSilhouetteMaxOffsetPx": 0.0,
+          "limitPx": 0.7262569832402235,
+          "silhouettePass": true
+        }
+      },
+      "silhouettePass": true
+    },
+    "visualApproval": "NOT REVIEWED",
+    "limitsUnchanged": true,
+    "qualityPass": true
+  },
+  "supersampledSilhouette": {
+    "raw": "art/vector-common-production/fore-reeds-raw.svg",
+    "candidate": "_local/reports/vector-optimization/fore-reeds-hybrid/candidate.svg",
+    "metric": "protected alpha silhouette; no palette-island displacement claim",
+    "supersample": 8,
+    "normalPixelSamplingStep": 0.125,
+    "visualApproval": "NOT REVIEWED",
+    "regions": [
+      [
+        110,
+        0,
+        175,
+        280
+      ]
+    ],
+    "errors": {
+      "1": {
+        "samples": [
+          {
+            "region": 0,
+            "protectedSilhouetteMaxOffsetPx": 0.0,
+            "supersampledPixelOffset": 0.0,
+            "protectedRgbMAE255": 0.02475745975971222,
+            "protectedChangedPixelFraction": 1.0522959183673469e-05
+          }
+        ],
+        "protectedSilhouetteMaxOffsetPx": 0.0,
+        "limitPx": 0.5,
+        "silhouettePass": true
+      },
+      "1.452513966480447": {
+        "samples": [
+          {
+            "region": 0,
+            "protectedSilhouetteMaxOffsetPx": 0.0,
+            "supersampledPixelOffset": 0.0,
+            "protectedRgbMAE255": 0.02042130008339882,
+            "protectedChangedPixelFraction": 2.5080696385176643e-05
+          }
+        ],
+        "protectedSilhouetteMaxOffsetPx": 0.0,
+        "limitPx": 0.7262569832402235,
+        "silhouettePass": true
+      }
+    },
+    "silhouettePass": true
+  }
+}
