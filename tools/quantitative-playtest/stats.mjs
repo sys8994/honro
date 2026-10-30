@@ -1,10 +1,10 @@
 /** Pure aggregation: failures and limits remain observations, never fabricated clears. */
-export const OUTCOMES=['clear','defeat','timeout','error','cancelled','round-limit'];
+export const OUTCOMES=['clear','defeat','timeout','error','cancelled','round-limit','policy-failure'];
 export function summarize(rows,thresholds=null){
  const groups={};
  for(const r of rows){if(!OUTCOMES.includes(r.outcome))throw Error('Unknown outcome');const key=JSON.stringify([r.sourceHash,r.controllerHash??'unknown-controller',r.stage,r.policy,r.evaluation?.kind??'unclassified-purpose',r.cohortIdentity?.id??'unclassified-cohort',r.maxFrames??'unknown-frame-budget',r.maxWallSeconds??'unknown-wall-budget']);(groups[key]??=[]).push(r);}
  const technicalErrors=rows.filter(r=>['error','cancelled'].includes(r.outcome)),qualityBlockers=technicalErrors.filter(r=>(r.evaluation?.kind==='frozen-holdout'||r.requestedEvaluation?.kind==='frozen-holdout')).map(r=>({runId:r.runId,reason:'Technical error inside requested holdout; approval blocked'}));
- return {schema:'honro-quantitative-summary/v2',allAttempts:rows.length,technicalErrors:technicalErrors.length,normalPolicyFailures:rows.filter(r=>['defeat','timeout','round-limit'].includes(r.outcome)).length,unclassifiedAttempts:rows.filter(r=>!r.protocolRecorded||!r.cohortIdentity?.id).length,qualityBlockers,groups:Object.entries(groups).map(([key,rs])=>{
+ return {schema:'honro-quantitative-summary/v2',allAttempts:rows.length,technicalErrors:technicalErrors.length,normalPolicyFailures:rows.filter(r=>['defeat','timeout','round-limit','policy-failure'].includes(r.outcome)).length,unclassifiedAttempts:rows.filter(r=>!r.protocolRecorded||!r.cohortIdentity?.id).length,qualityBlockers,groups:Object.entries(groups).map(([key,rs])=>{
   const counts=Object.fromEntries(OUTCOMES.map(k=>[k,rs.filter(r=>r.outcome===k).length]));
   const rounds=rs.filter(r=>r.outcome==='clear').map(r=>r.round).sort((a,b)=>a-b),n=rounds.length;
   const normal=rs.length-counts.error-counts.cancelled;

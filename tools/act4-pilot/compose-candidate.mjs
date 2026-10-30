@@ -3,7 +3,7 @@ import {readFile,writeFile,mkdir} from 'node:fs/promises';
 import {createHash} from 'node:crypto';
 import assert from 'node:assert/strict';
 import vm from 'node:vm';
-const [geometryFile,rosterFile,artFile,out='_local/reports/act4-pilot/stage31/composed']=process.argv.slice(2);
+const [geometryFile,rosterFile,artFile,out='_local/reports/act4-pilot/stage31/composed',baseProjectFile]=process.argv.slice(2);
 assert(geometryFile&&rosterFile&&artFile,'geometry stage, verified roster stage and art-only package are required');
 const sha=x=>createHash('sha256').update(typeof x==='string'?x:JSON.stringify(x)).digest('hex');
 const inputs=await Promise.all([geometryFile,rosterFile,artFile].map(async path=>{const bytes=await readFile(path,'utf8');return {path,bytesSha256:sha(bytes),value:JSON.parse(bytes)};}));
@@ -16,7 +16,7 @@ assert.deepEqual(geo.design.act4,roster.design.act4,'Original Act4 objective/boa
 assert.deepEqual(geo.units.filter(u=>u.team!=='enemy'),roster.units.filter(u=>u.team!=='enemy'),'Original party/NPC poses');
 const stage=structuredClone(roster);
 for(const key of ['terrains','materials','anchors','width','height','playBounds','terrainBounds','terrainDomainVersion'])if(geo[key]!==undefined)stage[key]=structuredClone(geo[key]);
-const library=structuredClone(art.library),layers={background:'back',structure:'structural-back',body:'mid',rear:'prop',front:'front'};
+const library=structuredClone(art.library);let baseReference=null;if(baseProjectFile){const bytes=await readFile(baseProjectFile,'utf8'),base=JSON.parse(bytes);baseReference={path:baseProjectFile,bytesSha256:sha(bytes)};for(const id of ['a4:boat','a4:dock']){if(!library.some(a=>a.id===id)){const a=base.library.find(a=>a.id===id);if(a)library.push(structuredClone(a));}}}const layers={background:'back',structure:'structural-back',body:'mid',rear:'prop',front:'front'};
 const boatIds=new Set(['a4-31-boat-10','a4-31-dock-9']);
 const elements=art.placements.filter(e=>!boatIds.has(e.id)).map(e=>{
  assert(layers[e.layer],'Known art layer '+e.layer);
@@ -36,4 +36,4 @@ assert.deepEqual(stage.units,roster.units);assert.deepEqual(stage.encounters,ros
 const project={version:6,activeStageId:stage.id,stages:[stage],library};
 await mkdir(out,{recursive:true});
 await writeFile(out+'/project.json',JSON.stringify(project));await writeFile(out+'/stage.json',JSON.stringify(stage));await writeFile(out+'/library.json',JSON.stringify(library));
-const receipt={status:'UNAPPROVED LOCAL QA - RELEASE BLOCKED',inputs:inputs.map(({path,bytesSha256,value})=>({path,bytesSha256,normalizedSha256:sha(value)})),stageSha256:sha(stage),librarySha256:sha(library),projectSha256:sha(project),enemyCount:34,nativePaintedTerrains:stage.design.nativeArt.coveredTerrainIds,uncoveredTerrains:stage.terrains.filter(t=>!stage.design.nativeArt.coveredTerrainIds.includes(t.id)).map(t=>t.id),boatOriginalPosePreserved:true,actorGameplayExact:true};await writeFile(out+'/receipt.json',JSON.stringify(receipt,null,2));console.log(JSON.stringify(receipt));
+const receipt={baseReference,status:'UNAPPROVED LOCAL QA - RELEASE BLOCKED',inputs:inputs.map(({path,bytesSha256,value})=>({path,bytesSha256,normalizedSha256:sha(value)})),stageSha256:sha(stage),librarySha256:sha(library),projectSha256:sha(project),enemyCount:34,nativePaintedTerrains:stage.design.nativeArt.coveredTerrainIds,uncoveredTerrains:stage.terrains.filter(t=>!stage.design.nativeArt.coveredTerrainIds.includes(t.id)).map(t=>t.id),boatOriginalPosePreserved:true,actorGameplayExact:true};await writeFile(out+'/receipt.json',JSON.stringify(receipt,null,2));console.log(JSON.stringify(receipt));

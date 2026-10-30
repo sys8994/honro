@@ -1,5 +1,5 @@
 /** State-reactive input policy. No battle clones, damage forecasts or saved route tapes. */
-export const CONTRACT=Object.freeze({version:'pilot-controller-v6-public-objective-exploration-calibration',status:'calibration-not-holdout',navigation:'public support graph; physics-only body locomotion checks; no combat clone, hidden actor or authored path tape',policies:['ranged-hold','advance','high-route','gimmick','companions'],angleErrorDegrees:6,powerError:.07,maxCombatRounds:20,snapshotFrames:120,preview:'ordinary Engine.predict points only; 25 fixed aim candidates per action',entry:'plan(stage).entryLevel, six legal stat investments, three legal training attempts per chosen skill, default starter equipment; no earned-history claim'});
+export const CONTRACT=Object.freeze({version:'pilot-controller-v9-caster-impact-safety-calibration',status:'calibration-not-holdout',navigation:'public support graph; physics-only body locomotion checks; no combat clone, hidden actor or authored path tape',policies:['ranged-hold','advance','high-route','gimmick','companions'],angleErrorDegrees:6,powerError:.07,maxCombatRounds:20,snapshotFrames:120,preview:'ordinary Engine.predict only; 25 fixed candidates plus one perturbed preview per legal skill, at most four skills; one shared error draw, one current pre-release safety preview, no refinement',entry:'plan(stage).entryLevel, six legal stat investments, three legal training attempts per chosen skill, default starter equipment; no earned-history claim'});
 export function objective(b,u,stage,publicState={}){
  if(publicState.requiresThreatSearch)return {x:u.x,y:u.y,kind:"search-threats",remainingThreats:publicState.remainingThreats,source:"public-objective-instruction"};
  const q=b.honroAct4PreviewState||{},cfg=b.honroAct4Design||{};
@@ -30,15 +30,16 @@ export function previewAim(e,u,skill,target,random){
  for(const angle of [-10,15,35,55,75])for(const power of [.25,.42,.59,.76,.93]){
   const global=u.facing>=0?angle:180-angle,p=e.predict(u,skill,global,power);
   const score=Math.min(...[...(p.points||[]),p].map(v=>Math.hypot(v.x-target.x,v.y-(target.y-target.h*.5))));
-  if(score<best.score)best={score,angle,power};
+  if(score<best.score)best={score,angle,power,prediction:p};
  }
- return {angle:Math.max(-85,Math.min(90,best.angle+(random()-.5)*12)),power:Math.max(.15,Math.min(.98,best.power+(random()-.5)*.14)),previewDistance:best.score};
+ return {angle:Math.max(-85,Math.min(90,best.angle+(random()-.5)*12)),power:Math.max(.15,Math.min(.98,best.power+(random()-.5)*.14)),previewDistance:best.score,baseAngle:best.angle,basePower:best.power,baseEndpoint:{x:best.prediction?.x,y:best.prediction?.y,unit:best.prediction?.unit,terrain:best.prediction?.terrain}};
 }
-export function selectSkill(e,u,skills,policy){
+export function legalSkillOrder(e,u,skills,policy){
  let order=policy==='companions'&&u.cls!=='archer'?[...u.loadout].reverse():[...u.loadout];
  if(policy==='ranged-hold'&&u.cls==='knight')order=['S06',...order.filter(id=>id!=='S06')].filter(id=>u.loadout.includes(id));
- return order.find(id=>{const s=skills[id];return s&&!s.passive&&e.skillAllowed(s,u)&&e.canAfford(s,u,0)&&e.cooldownLeft(u,id)<=0;});
+ return order.filter(id=>{const s=skills[id];return s&&!s.passive&&e.skillAllowed(s,u)&&e.canAfford(s,u,0)&&e.cooldownLeft(u,id)<=0;});
 }
+export function selectSkill(e,u,skills,policy){return legalSkillOrder(e,u,skills,policy)[0];}
 export function engagementDistance(policy,u,skill){
  if(skill?.mode==='melee')return Math.max(70,skill.radius*.8);
  return policy==='ranged-hold'?1800:policy==='companions'&&u.cls==='knight'?250:800;

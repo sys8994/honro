@@ -496,3 +496,162 @@ stage before the first renderer call or gameplay input. No dimensions are patche
 into a live battle. The manifest unit rejects missing/default/mismatched bounds
 and accepts exact authored dimensions. This is a fail-closed setup guard, not a
 new actual-App or terrain pass; next canonical App probe remains pending.
+
+### P10: skill-choice intent was not official UI input
+The v6 runner assigned `app.selected` directly, bypassing the production
+`combat-skill` handler's per-actor remembered selection and charge cancellation.
+The historical harness also doubled `updateHUD`, so previous native runs did not
+establish that nonbasic selection survives the real HUD. Do not claim prior
+companions/ranged-hold nonbasic diversity as verified, or retry their long runs
+with this bypass. The v6 advance R7 defeat remains a valid basic-first baseline;
+its documented20 shots were all basics, not proof of five strategic styles.
+
+V7 dispatches the actual existing `combat-skill` click handler, checks selected
+and remembered IDs, and checks the selected actor/skill before release. It never
+assigns `app.selected`. A focused fixture executes the actual production HUD
+method and inspects pressed skill state and actual accepted nonbasic fire IDs.
+The ordinary renderer/DOM distinction remains: this is not browser interaction
+or strategic competence proof. No aim distribution, loadout/profile, HP, enemy
+or geometry tuning accompanies this functional fix.
+
+| Policy | v6 intended difference (nonbasic UI persistence unverified) | v7 behavioral scope |
+|---|---|---|
+| ranged-hold |1800wu ranged threshold; knight prefers S06|Same decision rules, official selection input|
+| advance |800wu ranged threshold, first affordable ready skill|Same; basics remain preferred|
+| high-route |advance + nearby higher terrain center in forward direction|Same; no cover/line-of-fire scoring|
+| gimmick |advance + eligible marker; stage39 event priorities|Same; little stage31 combat differentiation|
+| companions |nonarcher reversed loadout, knight ranged threshold250|Same intended priorities, official selection input|
+
+All use nearest actually visible foe and the same25 ordinary preview candidates.
+None currently implements tactical evasion, explicit cover choice, coordinated
+crossfire or party turn-order planning. High-route is a positional heuristic,
+not proof that height improves the shot. A generic support navigator/explorer
+provides route execution, not missing tactical intelligence. Passing the v7
+skill-input regression only establishes input capability, not these absent
+strategies or full candidate clearance. Any tactical policy improvement requires
+a separate version and predeclared evaluation; old defeats remain preserved.
+
+P10 regression evidence: `tests/quantitative-playtest-skill-input.mjs` passed for
+A02/M03/S06/O06, with four independent fresh authored stage11 entries in one
+runtime. It checks real HUD `aria-pressed`, remembered selection, charge-time
+persistence and the actual Engine.fire return/skill called by App.releaseCharge.
+Fixture development failures are retained under `_local/reports/v7-skill-input/`:
+missing training prerequisites, stage5's two-person authored roster, insufficient
+DOM style/containment/portrait plumbing, and a story-paused sequential fixture.
+The replacement explicitly trains legal prerequisites, uses the actual four-person
+stage11 roster and fresh independent entries rather than refilling live actors.
+DOM support implements the required interfaces; the production HUD is not replaced
+in this regression. These fixture failures are not candidate gameplay losses.
+
+Official import diagnostic: `check-profile-import.mjs profile.json output.json`
+uses an isolated in-memory App, dispatches the actual file-import change handler,
+asserts a replaced profile/title, and calls production continue. It does not touch
+browser/public localStorage. The exported3dfa72e5… profile passed official import
+with success notice, lastStage/honroBattle31, restored7000×1800 world and unchanged
+four initial HP values. Browser chooser/event delivery remains a separate root
+GUI check; do not rewrite valid profile progress to mask an untriggered import.
+
+### P11 / v8: visible shot safety before difficulty inference
+The v6 advance baseline fired20 basics, dealt enemy HP loss with12, and died inR7.
+It is not evidence of human-player difficulty: it lacked normal visible-ally
+shot avoidance, alternate-skill evaluation and basic repositioning. Retain its
+complete failure and do not weaken enemies/gear/map to compensate for controls.
+
+V8 keeps the cohort, ±6° angle/±.07 power error and25 fixed ordinary preview grid.
+For each of at most4 legal equipped skills, it reviews that fixed grid's selected
+trajectory plus one uncertainty-applied current preview. The **same two error
+draws** apply to all alternatives; there is no reroll, local aim refinement,
+future damage simulation, enemy clone or hidden actor lookup. It chooses the
+first publicly safe option in the policy's existing order, not highest future
+DPS. Before release it reviews one actual current charge-power preview again.
+Visible-ally contact/path/impact proximity and trajectories short of the visible
+target are declined. Current visible bodies/public terrain only; unknown collision
+unit IDs are not exposed in decision logs. A conservative body/path check can
+also decline harmless phase-through skills, a known competence limit.
+
+If all options are unsafe, normal support navigation attempts a generic180wu
+approach or moves past a nearby visible ally. Insufficient movement/unreachable
+reposition uses the ordinary defense input. Three own turns with unsafe shots
+and less than60wu observed relocation terminate `policy-failure`, not an infinite
+defense loop, fabricated clear, or omitted attempt. That outcome remains in the
+normal policy-failure and all-attempt denominators. A different target or changing
+public situation can still make a shot safe; no stage-coordinate tape is used.
+
+| Policy | v7 | v8 addition (common safety floor) |
+|---|---|---|
+| ranged-hold |1800wu, S06-first knight|Reject unsafe preview; try legal alternatives, reposition/defend|
+| advance |800wu, basic-first|Same safety floor; no longer fire known obstructed basics blindly|
+| high-route |Nearby forward elevated point|Same safety floor; still no tactical cover utility scoring|
+| gimmick |Marker/39 event priority|Same safety floor; objective and optional-boss contracts unchanged|
+| companions |Reverse nonarcher equipped order|Same safety floor; not coordinated party-turn planning|
+
+`shot-review` logs base grid angle/power/distance, applied errors, selected current
+preview path and per-skill rejection reason; `release-review` logs actual current
+charge angle/power/path. Official selection, fire shot ID and raw hurt provenance
+remain linked by actor and timeline. This enables diagnosis of coarse-grid error,
+charge discrepancy and visible interception without inventing counterfactual hits.
+No full v8 candidate run has been performed. Synthetic tactics regression covers
+visible ally contact/path, terrain stop, alternative choice/shared error draws,
+ordinary movement/defense fallback and bounded stagnation. Existing P10 real-App
+skill input regression must remain passing; browser and full route competence are
+separate. Root reviews this version before a new registered calibration.
+
+P11 baseline causal evidence (combat analysis `e4a1c659f`): of the8 allied casts
+with no enemy HP loss,3 provably hit only allies: O01→knight R1 HP25.5 and R3
+shield21.3, A01→occultist R2 HP61.5. The other5 have no hurt/feedback event;
+without terrain-impact/end-of-flight telemetry they cannot be labeled terrain
+occlusion, range expiration or aim error. Preserve that unknown category. The
+v8 public-preview prevention addresses the confirmed unsafe-input class, not a
+claim that all8 misses or the entire defeat have a single established cause.
+
+V8 pre-run review correction: unsafe streaks must not accumulate across successful
+attacks. Only an actual accepted allied Engine.fire clears that actor's streak;
+selecting a skill or merely predicting a safe shot does not. A regression checks
+unsafe observations inR1/R6/R10 separated by real-action acceptance markers.
+The random error sampler is unchanged, but rejecting visibly unsafe previews
+necessarily conditions the set of executed shots; v8 does not claim its realized
+accuracy distribution equals v6. It is a separate controller evaluation, not a
+retrospective repair or comparable independent clear-rate sample.
+V8 pre-run release correction: if actual charge-power preview becomes unsafe,
+its cancellation uses the same movement-budget/visible-target fallback and
+stagnation tracking as a rejected selected preview. With insufficient movement
+(or target no longer visible), it performs ordinary defense rather than charging
+again in place with another error draw. This prevents an unbounded same-turn
+cancel/retry loop caused by charge-frame quantization. Regression explicitly
+checks exhausted-movement and no-longer-visible-target fallbacks.
+V8 pre-run arrival correction: a legal reposition can finish on a sloping support
+whose y differs from the requested generic goal. `arrived` with at least25wu
+actual relocation clears the goal and reviews the shot from the reached support;
+it does not automatically discard the action by defending. Budget `end-turn` or
+an approach-only arrival without actual progress remains defense/stagnation.
+A synthetic slope/approach-only/no-progress regression covers this distinction.
+
+### P12: caster excluded from explosive safety
+The fixed v8 run confirmed O01 self-splash twice (21+21.3HP), while other-ally
+friendly fire was0. Excluding the caster from the outgoing path is necessary to
+avoid rejecting its own muzzle, but applying that exclusion to impact-area
+safety is not justified. Do not treat this run as full safe-input certification
+or tune enemy/party strength to hide the defect. The next distinct controller
+revision must test caster-near-impact separately from launch-path clearance,
+using current public skill/trajectory geometry only. The frozen v8 run and its
+uncalibrated aim model remain unchanged; correction/regression is pending.
+
+### Optional final Scene capture
+Set `HONRO_CAPTURE_FINAL_FRAME=1` before a newly registered run to save the final
+already-rendered actual NativeCanvas Scene as `<runId>.final-scene.png`, with a
+create-only receipt containing exact source/controller/run/frame/round/phase and
+PNG/pixel hashes. No extra render/tick or reconstructed overlay is used. Capture
+failures remain explicit, never replaced with mock art. This is Scene pixels,
+not the HTML HUD/modal or browser GUI. The old v6/v8 runs had no capture option;
+a later image cannot be represented as their screenshot. A small actual-canvas
+unit verifies pixel invariance and exact receipt/output behavior without a game
+Engine process. Actual candidate screenshot remains pending a new bounded run.
+
+P12 correction is isolated as **v9-caster-impact-safety-calibration**. The caster
+remains excluded from the outgoing muzzle/path test but is included in impact
+proximity for non-martial, non-melee radius skills. No hero/enemy stats or angle
+sampler changes. The focused regression rejects O01-like near-self impact,
+accepts distant impact and does not falsely prohibit martial contact at the
+caster. This remains conservative for harmless radius/support skills and does
+not certify every delayed/secondary blast. V9 has no actual candidate run yet;
+v8's two self-splash events and defeat are retained, never relabeled fixed.

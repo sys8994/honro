@@ -1,3 +1,5 @@
+import {captureNativeFrame} from './frame-capture.mjs';
+import {chooseObservedShot,reviewTrajectory,observedReposition,unsafeAction,repositionArrival,SafetyProgress} from './tactics.mjs';
 /** Bounded state-reactive production App input experiments, not an optimal solver. */
 import {mkdir,writeFile,readFile} from 'node:fs/promises';
 import {execFileSync} from 'node:child_process';
@@ -8,7 +10,7 @@ import {createGzip,constants as zlibConstants} from 'node:zlib';
 import {once} from 'node:events';
 import {pipeline} from 'node:stream/promises';
 import {controllerHash,checkFreeze,sourceIdentityHash} from './freeze.mjs';
-import {CONTRACT,foesFor,movementGoal,previewAim,selectSkill,engagementDistance} from './policy.mjs';
+import {CONTRACT,foesFor,movementGoal,previewAim,selectSkill,legalSkillOrder,engagementDistance} from './policy.mjs';
 import {EnemyActivity,acceptedDrop,hitObservation} from './activity.mjs';
 import {adapter} from './adapter.mjs';
 import {RouteFollower} from './navigation.mjs';
@@ -22,7 +24,7 @@ const stage=Number(stageText),seed=Number(seedText),maxFrames=Number(frameText),
 const policies=['ranged-hold','advance','high-route','gimmick','companions'];
 if(![5,31,34,39].includes(stage)||!policies.includes(policy)||!Number.isInteger(seed)||!Number.isInteger(maxFrames)||maxFrames<1||!Number.isFinite(maxWallSeconds)||maxWallSeconds<=0)throw Error('Usage: run.mjs 31|34|39|5 ranged-hold|advance|high-route|gimmick|companions seed output frames wallSeconds');
 await mkdir(out,{recursive:true});const runId=randomUUID(),raw=createGzip();const rawDone=pipeline(raw,createWriteStream(`${out}/${runId}.jsonl.gz`,{flags:'wx'}));
-const sourceHash=await sourceIdentityHash(),random=rng(seed),started=performance.now();let cancelled=false;process.on('SIGTERM',()=>{cancelled=true;});process.on('SIGINT',()=>{cancelled=true;});let frame=0,simSeconds=0,outcome='timeout',reason='frame budget',a,b,e,g,navigator,explorer,controllerIdentity=null,cohortIdentity=null,protocolRecorded=false,evaluation={kind:purpose,validated:false},publicState=null,lastNavigation=null,charge=null,decision=null;
+const sourceHash=await sourceIdentityHash(),random=rng(seed),started=performance.now();let cancelled=false;process.on('SIGTERM',()=>{cancelled=true;});process.on('SIGINT',()=>{cancelled=true;});let frame=0,simSeconds=0,outcome='timeout',reason='frame budget',a,b,e,g,navigator,explorer,controllerIdentity=null,cohortIdentity=null,protocolRecorded=false,evaluation={kind:purpose,validated:false},publicState=null,lastNavigation=null,charge=null,decision=null,tacticalMove=null;const safetyProgress=new SafetyProgress();
 await writeFile(`${out}/${runId}.attempt.json`,JSON.stringify({runId,stage,policy,seed,sourceHash,maxFrames,maxWallSeconds,evaluation,status:'started-not-finalized',note:'If no summary exists, process termination is an error/incomplete attempt, never a completed gameplay run.'},null,2));
 const metrics={movementAudit:movementAudit(),effectiveJumps:0,intentionalWalkOffs:0,dropAttempts:0,dropAccepted:0,effectiveDrops:0,byHero:{},jumpAttempts:0,jumpAccepted:0,landings:0,elevatedSupportLandings:0,horizontalDistance:0,ascent:0,descent:0,totalUniqueEnemies:0,maxLivingEnemies:0,maxAwakeEnemies:0,maxActingEnemiesPerRound:0,engagedEnemyIds:[],enemyFirstDamageRound:{},enemyDeathRound:{},observedNetHeroHpLoss:0,observedNetHeroShieldLoss:0,focusSpent:0,focusRecovered:0,visitedSupports:[],altitudeMin:null,altitudeMax:null};
 const engagedEnemies=new Set(),seenTransitions=new Set(),seenEffectiveTransitions=new Set(),seenEnemies=new Set(),supports=new Set(),previous=new Map(),jumps=new Map(),enemyPositions=new Map(),activity=new EnemyActivity();
@@ -31,6 +33,7 @@ const flush=()=>new Promise((resolve,reject)=>raw.flush(zlibConstants.Z_SYNC_FLU
 let lastInput=null;
 async function recordInput(){const value=JSON.stringify({keys:[...a.app.keys],stick:{...a.app.stick},charging:a.app.charging,selected:a.app.selected,actor:e.active?.id});if(value!==lastInput){await emit('input-state',JSON.parse(value));lastInput=value;}}
 const alive=u=>!u.dead&&u.hp>0;
+const visibleAlliesIn=(battle,view)=>battle.units.filter(v=>v.side===0&&alive(v)&&v.x+(v.r||20)>=view.left&&v.x-(v.r||20)<=view.right&&v.y>=view.top&&v.y-(v.h||80)<=view.bottom);
 function supportFace(u){const t=e.surface(u.x,u.y-3,u.y+3)?.t;if(!t)return null;const f=g.HONRO_CORE.terrainSurfaces(t,u.x).find(f=>Math.abs(f.y-u.y)<3);return f?t.id+':edge:'+f.edge:null;}
 function support(u){if(!e.grounded(u))return null;return e.surface(u.x,u.y-3,u.y+3)?.t?.id??null;}
 async function observe(){
@@ -74,7 +77,7 @@ try{
  const tick=e.tick.bind(e);e.tick=(dt,...rest)=>{const result=tick(dt,...rest);simSeconds+=dt;return result;};
  const pending=[];
  const originalEmit=e.emit.bind(e);e.emit=(type,value,...rest)=>{if(type==='fx'&&Number.isFinite(value?.damage)&&value.targetId)pending.push({method:'damage-feedback',round:b.round,targetId:value.targetId,attackId:value.attackId,damage:value.damage,critical:value.critical});return originalEmit(type,value,...rest);};
- for(const method of ['drop','hurt','fire','enemyAction','finishAction','newRound']){const original=e[method].bind(e);e[method]=(...args)=>{const u=method==='hurt'?args[0]:e.active,before=u&&{id:u.id,side:u.side,allegiance:e.allegiance(u),x:u.x,y:u.y,hp:u.hp,maxHp:u.maxHp,shield:u.shield,focus:u.focus},round=b.round,hit=method==='hurt'?hitObservation(e,args):null; if(method==='enemyAction')activity.begin(u,round,b.units);if(method==='finishAction'&&activity.finish(u,round,b.units))pending.push({method:'enemy-activity',round,actor:u.id,kind:'observed-support-change'});const result=original(...args);if(method!=='enemyAction')pending.push({method,round,before,after:u&&{hp:u.hp,shield:u.shield,focus:u.focus},skill:method==='fire'?args[0]:null,shot:method==='fire'?b.shot:hit?.shot??null,angle:method==='fire'?args[1]:null,power:method==='fire'?args[2]:null,damage:method==='hurt'?args[1]:null,hit,owner:method==='hurt'?args[2]:null,accepted:typeof result==='boolean'?result:null});if(method==='hurt'&&u?.side===1&&before.hp>u.hp){const owner=e.unit(args[2]);if(owner?.side===0){engagedEnemies.add(u.id);metrics.enemyFirstDamageRound[u.id]??=round;}if(u.hp<=0)metrics.enemyDeathRound[u.id]??=round;}if(method==='fire'&&result===true&&activity.executed(u,round,'fire'))pending.push({method:'enemy-activity',round,actor:u.id,kind:'fire'});return result;};}
+ for(const method of ['drop','hurt','fire','enemyAction','finishAction','newRound']){const original=e[method].bind(e);e[method]=(...args)=>{const u=method==='hurt'?args[0]:e.active,before=u&&{id:u.id,side:u.side,allegiance:e.allegiance(u),x:u.x,y:u.y,hp:u.hp,maxHp:u.maxHp,shield:u.shield,focus:u.focus},round=b.round,hit=method==='hurt'?hitObservation(e,args):null; if(method==='enemyAction')activity.begin(u,round,b.units);if(method==='finishAction'&&activity.finish(u,round,b.units))pending.push({method:'enemy-activity',round,actor:u.id,kind:'observed-support-change'});const result=original(...args);if(method!=='enemyAction')pending.push({method,round,before,after:u&&{hp:u.hp,shield:u.shield,focus:u.focus},skill:method==='fire'?args[0]:null,shot:method==='fire'?b.shot:hit?.shot??null,angle:method==='fire'?args[1]:null,power:method==='fire'?args[2]:null,damage:method==='hurt'?args[1]:null,hit,owner:method==='hurt'?args[2]:null,accepted:typeof result==='boolean'?result:null});if(method==='hurt'&&u?.side===1&&before.hp>u.hp){const owner=e.unit(args[2]);if(owner?.side===0){engagedEnemies.add(u.id);metrics.enemyFirstDamageRound[u.id]??=round;}if(u.hp<=0)metrics.enemyDeathRound[u.id]??=round;}if(method==='fire'&&result===true&&u?.side===0)safetyProgress.acceptedAction(u.id);if(method==='fire'&&result===true&&activity.executed(u,round,'fire'))pending.push({method:'enemy-activity',round,actor:u.id,kind:'fire'});return result;};}
  await observe();let decisionAt=0;
  while(frame<maxFrames){
   if(cancelled){outcome='cancelled';reason='SIGINT/SIGTERM observation stop';break;}
@@ -87,7 +90,20 @@ try{
   if(app.dialogue){await input('dialogue-next',()=>g.HonroStory.next(app));}
   else if(b.honroAct4PreviewState?.arrivalTour?.active){await input('skip-tour',()=>a.skip());}
   else if(app.modal.classList.contains('open')&&!app.done){await input('close-modal',()=>app.close());}
-  else if(charge){if(!app.charging)charge=null;else if(a.now()>=charge.until){await input('release-charge',()=>app.releaseCharge());charge=null;decisionAt=frame+30;}}
+  else if(charge){if(!app.charging)charge=null;else if(a.now()>=charge.until){
+   if(app.selected!==charge.skill||e.active?.id!==charge.actor)throw Error('Selected skill/actor changed during charge');
+   const view=g.HonroBounds.viewport(app.scene,app.scene.canvas.clientWidth,app.scene.canvas.clientHeight),target=foesFor(b,u,stage,view,v=>g.HonroAct2?.visible?.(b,v)!==false).find(v=>v.id===charge.targetId),allies=visibleAlliesIn(b,view),power=app.chargePower(),prediction=e.predict(u,g.HONRO_CORE.SKILLS[charge.skill],u.angle,power),review=target?reviewTrajectory(prediction,u,target,allies,g.HONRO_CORE.SKILLS[charge.skill]):{safe:false,reason:'target-not-currently-visible'};
+   await emit('release-review',{actor:u.id,skill:charge.skill,targetId:target?.id??null,angle:u.angle,power,endpoint:{x:prediction.x,y:prediction.y,terrain:prediction.terrain},trajectory:prediction.points||[],review});
+   if(review.safe)await input('release-charge',()=>app.releaseCharge());
+   else{
+    await input('cancel-unsafe-charge',()=>a.selectSkill(charge.skill),{reason:review.reason});
+    if(safetyProgress.decline(u,b.round)){outcome='policy-failure';reason='Safety deadlock: three own turns without reposition progress';break;}
+    const fallback=unsafeAction(u,target,allies);
+    if(fallback.kind==='move')tacticalMove={actor:u.id,target:target.id,from:{x:u.x,y:u.y},goal:fallback.goal};
+    else{tacticalMove=null;await input('defend',()=>app.defend(),{navigationReason:'unsafe-release-'+fallback.reason,safetyStagnation:safetyProgress.state(u.id)});}
+   }
+   charge=null;decisionAt=frame+1;
+  }}
   else if(app.canInput()&&u?.side===0){
    const view=g.HonroBounds.viewport(app.scene,app.scene.canvas.clientWidth,app.scene.canvas.clientHeight),foes=foesFor(b,u,stage,view,v=>g.HonroAct2?.visible?.(b,v)!==false);
    publicState=publicObjective(g.HonroObjectives.state(b,app.stage).currentInstruction);explorer.observe(b,u,view,foes);
@@ -96,15 +112,15 @@ try{
    else if(marker&&(policy==='gimmick'||!foes.length)){await input('interact',()=>g.HonroInteractions.use(app,marker),{marker:marker.id});decisionAt=frame+15;}
    else if(frame>=decisionAt){
     const target=foes[0],dist=target?Math.hypot(target.x-u.x,target.y-u.y):Infinity;
-    const destination=!target&&publicState.requiresThreatSearch?explorer.choose(b,u,publicState,{grounded:e.grounded(u)}):movementGoal(b,u,target,stage,policy,publicState),goal=destination.x;decision={actor:u.id,targetId:target?.id??null,destination,view,visibleEnemyIds:foes.map(v=>v.id)};
+    let destination=!target&&publicState.requiresThreatSearch?explorer.choose(b,u,publicState,{grounded:e.grounded(u)}):movementGoal(b,u,target,stage,policy,publicState);if(tacticalMove?.actor===u.id){if(tacticalMove.target!==target?.id||Math.hypot(u.x-tacticalMove.goal.x,u.y-tacticalMove.goal.y)<25)tacticalMove=null;else destination=tacticalMove.goal;}const goal=destination.x;decision={actor:u.id,targetId:target?.id??null,destination,view,visibleEnemyIds:foes.map(v=>v.id)};
     if(['objective-unavailable','exploration-exhausted','search-threats'].includes(destination.kind)){outcome='error';reason='Controller blocked: '+destination.reason;break;}
     const q=b.honroAct4PreviewState;
     if(q?.stabilizing?.actor===u.id||q?.releasing?.actor===u.id){a.tick();frame++;while(pending.length)await emit('engine-event',pending.shift());await recordInput();await observe();continue;}
     const id=selectSkill(e,u,g.HONRO_CORE.SKILLS,policy),desired=engagementDistance(policy,u,g.HONRO_CORE.SKILLS[id]);
-    const move=u.moveLeft>20&&(dist>desired||!target||destination.kind==='high-route'||stage===39&&destination.kind!=='enemy');
+    const move=u.moveLeft>20&&(dist>desired||!target||['high-route','reposition'].includes(destination.kind)||stage===39&&destination.kind!=='enemy');
     if(move||!e.grounded(u)){
      const intent=navigator.intention(e,u,destination,{range:destination.kind==='enemy'?desired*.85:24,approach:!['enemy','explore'].includes(destination.kind)});lastNavigation={actor:u.id,kind:intent.kind,reason:intent.reason,step:intent.step,approachOnly:intent.approachOnly,plan:intent.plan?{status:intent.plan.status,cost:intent.plan.cost,visited:intent.plan.visited,nodes:intent.plan.nodes}:null};
-     if(intent.kind==='blocked'){outcome='error';reason='Controller navigation blocked: '+intent.reason;await emit('controller-blocked',lastNavigation);break;}
+     if(intent.kind==='blocked'&&destination.kind==='reposition'){const exhausted=safetyProgress.decline(u,b.round);await input('defend',()=>app.defend(),{navigationReason:'unsafe-shot-reposition-unreachable',safetyStagnation:safetyProgress.state(u.id)});tacticalMove=null;if(exhausted){outcome='policy-failure';reason='Safety deadlock: three own turns without reposition progress';break;}decisionAt=frame+30;}else if(intent.kind==='blocked'){outcome='error';reason='Controller navigation blocked: '+intent.reason;await emit('controller-blocked',lastNavigation);break;}
      if(['walk','air-control','jump'].includes(intent.kind))app.stick.x=intent.direction||0;
      if(intent.kind==='jump'||intent.kind==='drop'){
       const from={x:u.x,y:u.y,support:support(u),supportFace:supportFace(u),kind:intent.kind,goal:intent.step.to,routeLeg:intent.step},beforeMove=u.moveLeft,beforeDrop=u.platformDrop;
@@ -112,12 +128,29 @@ try{
       await input(intent.kind,()=>intent.kind==='jump'?app.jump():app.drop(),{actor:u.id,from,checkedLeg:intent.step});
       const accepted=intent.kind==='jump'?u.moveLeft<beforeMove:acceptedDrop(beforeDrop,u.platformDrop);
       if(accepted){if(intent.kind==='jump')metrics.jumpAccepted++;else metrics.dropAccepted++;jumps.set(u.id,from);navigator.accepted(u.id);}
-     }else if(intent.kind==='end-turn'||intent.kind==='arrived'){await input('defend',()=>app.defend(),{navigationReason:intent.kind,approachOnly:intent.approachOnly});decisionAt=frame+30;}
+     }else if(intent.kind==='end-turn'||intent.kind==='arrived'){
+      const resumed=destination.kind==='reposition'&&repositionArrival(tacticalMove,u,intent)==='review-shot';
+      if(destination.kind==='reposition'){tacticalMove=null;if(!resumed&&safetyProgress.decline(u,b.round)){outcome='policy-failure';reason='Safety deadlock: three own turns without reposition progress';break;}}
+      if(resumed){await emit('reposition-arrived',{actor:u.id,x:u.x,y:u.y,approachOnly:intent.approachOnly});decisionAt=frame+1;}
+      else{await input('defend',()=>app.defend(),{navigationReason:intent.kind,approachOnly:intent.approachOnly});decisionAt=frame+30;}
+     }
     }else if(target){
 
      if(id){const face=target.x>=u.x?1:-1;if(u.facing!==face){app.keys.add(face>0?'ArrowRight':'ArrowLeft');}
-      else{const {angle,power}=previewAim(e,u,g.HONRO_CORE.SKILLS[id],target,random);await input('aim',()=>app.adjustAngle(u,angle-app.displayAngle(u)),{actor:u.id,target:{id:target.id,x:target.x,y:target.y},displayAngle:angle});app.selected=id;
-       if(await input('begin-charge',()=>app.beginCharge(),{actor:u.id,skill:id,position:{x:u.x,y:u.y},intendedPower:power})){charge={until:a.now()+e.chargeDuration(u,g.HONRO_CORE.SKILLS[id])*power*1000};}else{await input('defend',()=>app.defend());decisionAt=frame+30;}
+      else{
+       const visibleAllies=visibleAlliesIn(b,view);
+       const shot=chooseObservedShot(e,u,g.HONRO_CORE.SKILLS,legalSkillOrder(e,u,g.HONRO_CORE.SKILLS,policy),target,visibleAllies,random);
+       await emit('shot-review',{actor:u.id,target:{id:target.id,x:target.x,y:target.y},visibleAllies:visibleAllies.map(v=>({id:v.id,x:v.x,y:v.y,h:v.h,r:v.r})),...shot});
+       if(!shot.skill){
+        const exhausted=safetyProgress.decline(u,b.round);
+        if(exhausted){outcome='policy-failure';reason='Safety deadlock: three own turns without reposition progress';break;}
+        const fallback=unsafeAction(u,target,visibleAllies);if(fallback.kind==='move'){tacticalMove={actor:u.id,target:target.id,from:{x:u.x,y:u.y},goal:fallback.goal};decisionAt=frame+1;}
+        else{await input('defend',()=>app.defend(),{navigationReason:'unsafe-shot-insufficient-movement',safetyStagnation:safetyProgress.state(u.id)});decisionAt=frame+30;}
+       }else{
+        const {angle,power,skill}=shot;await input('select-combat-skill',()=>a.selectSkill(skill),{actor:u.id,skill});
+        await input('aim',()=>app.adjustAngle(u,angle-app.displayAngle(u)),{actor:u.id,target:{id:target.id,x:target.x,y:target.y},displayAngle:angle});
+        if(await input('begin-charge',()=>app.beginCharge(),{actor:u.id,skill,position:{x:u.x,y:u.y},intendedPower:power})){charge={actor:u.id,skill,targetId:target.id,until:a.now()+e.chargeDuration(u,g.HONRO_CORE.SKILLS[skill])*power*1000};}else{await input('defend',()=>app.defend());decisionAt=frame+30;}
+       }
       }
      }else{await input('defend',()=>app.defend());decisionAt=frame+30;}
     }else{await input('defend',()=>app.defend());decisionAt=frame+30;}
@@ -128,7 +161,8 @@ try{
  if(b.round>CONTRACT.maxCombatRounds){outcome='round-limit';reason='combat round 20 exceeded';}else if(a.success()){outcome='clear';reason='production objective won';}else if(b.phase==='lost'){outcome='defeat';reason=b.winnerReason||'production lost';}
 }catch(error){outcome='error';reason=error.stack||String(error);await emit('error',{reason});}
 finally{
- Object.assign(metrics,activity.summary());metrics.engagedEnemyIds=[...engagedEnemies];metrics.visitedSupports=[...supports];const row={runId,stage,policy,seed,sourceHash,controllerHash:controllerIdentity,evaluation,cohortIdentity,protocolRecorded,maxFrames,maxWallSeconds,outcome,reason,round:b?.round??null,frames:frame,simulationSeconds:simSeconds,virtualAppSeconds:frame/60,wallExecutionSeconds:(performance.now()-started)/1000,humanPlaySeconds:null,finalProcessMemory:process.memoryUsage(),presentationEvidence:a?.presentationEvidence?.(),finalObjective:b?.honroAct4PreviewState??null,metrics,limitations:['Actual NativeCanvas production Scene for Act4; DOM/audio/scheduling doubles, not browser proof.','Declared production-plan entry preset, not earned prior campaign playthrough.','Reactive heuristic policy, not human difficulty or optimal solve.','Elevated support landing is a proxy; authored floor labels are not available.','Per-frame HP loss is net; raw hurt events retain exact before/after for event-level damage.']};
+ let finalFrameCapture=null;if(process.env.HONRO_CAPTURE_FINAL_FRAME==='1'&&a?.app.scene?.canvas){try{finalFrameCapture=await captureNativeFrame(a.app.scene.canvas,`${out}/${runId}.final-scene.png`,{runId,sourceHash,controllerHash:controllerIdentity,frame,round:b?.round,phase:b?.phase,evaluation,outcome,cohortIdentity});}catch(error){finalFrameCapture={error:String(error),scope:'Frame evidence unavailable; no substitute image'};}}
+ Object.assign(metrics,activity.summary());metrics.engagedEnemyIds=[...engagedEnemies];metrics.visitedSupports=[...supports];const row={runId,stage,policy,seed,sourceHash,controllerHash:controllerIdentity,evaluation,cohortIdentity,protocolRecorded,maxFrames,maxWallSeconds,outcome,reason,round:b?.round??null,frames:frame,simulationSeconds:simSeconds,virtualAppSeconds:frame/60,wallExecutionSeconds:(performance.now()-started)/1000,humanPlaySeconds:null,finalProcessMemory:process.memoryUsage(),finalFrameCapture,presentationEvidence:a?.presentationEvidence?.(),finalObjective:b?.honroAct4PreviewState??null,metrics,limitations:['Actual NativeCanvas production Scene for Act4; DOM/audio/scheduling doubles, not browser proof.','Declared production-plan entry preset, not earned prior campaign playthrough.','Reactive heuristic policy, not human difficulty or optimal solve.','Elevated support landing is a proxy; authored floor labels are not available.','Per-frame HP loss is net; raw hurt events retain exact before/after for event-level damage.']};
  await emit('run-end',row);raw.end();await rawDone;await writeFile(`${out}/${runId}.summary.json`,JSON.stringify(summarize([row]),null,2));await writeFile(`${out}/${runId}.attempt.json`,JSON.stringify({runId,stage,policy,seed,sourceHash,controllerHash:controllerIdentity,evaluation,cohortIdentity,protocolRecorded,maxFrames,maxWallSeconds,status:'finalized',outcome,summary:`${runId}.summary.json`},null,2));console.log(JSON.stringify(row));
  if(outcome==='error')process.exitCode=2;
 }

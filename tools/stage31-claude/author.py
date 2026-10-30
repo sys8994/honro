@@ -12,7 +12,7 @@ Outputs
   art/act4-stage31-claude-v1/preview.svg          same + far raster + scale figures (review only)
   tools/act4-pilot/layouts/stage31-v6-claude.json  layout with art-matched solid outlines
 """
-import json, math, copy
+import json, math, copy, re
 from pathlib import Path
 from shapely.geometry import Polygon, LineString, MultiPolygon
 from shapely.ops import unary_union
@@ -141,7 +141,8 @@ def undulate(top, seed, amp=1.0, keep=()):
                 w = min(w, max(0.0, min(abs(x - a), abs(x - b)) / 120))
             y += w * amp * (11*math.sin(x/157 + seed) + 6*math.sin(x/71 + 2.3*seed) + 3*math.sin(x/37 + seed*5))
         out.append((round(x, 2), round(y, 2)))
-    return out
+    # Collision cost scales with vertices: keep relief within 3 world units.
+    return rdp(out, 4.0)
 
 TOPS = {
     'shore': undulate(S['shore']['top'], 0.4, keep=[(-1, 680), (5560, 6240)]),
@@ -217,11 +218,13 @@ v6 = copy.deepcopy(L)
 for s in v6['surfaces']:
     if s['id'] in TOPS:
         s['top'] = [list(p) for p in TOPS[s['id']]]
+    else:  # timber decks are straight runs: drop collinear points (shape unchanged)
+        s['top'] = [list(p) for p in rdp([tuple(p) for p in s['top']], 0.5)]
     if s['id'] in LOWER:
         poly, _ = outline(s['id'])
         n_top = len(TOPS[s['id']])
         lower = poly[n_top:]
-        s['bottom'] = [[round(x, 1), round(y, 1)] for x, y in rdp(lower, 2.5)]
+        s['bottom'] = [[round(x, 1), round(y, 1)] for x, y in rdp(lower, 6.0)]
         s['artOutline'] = 'art/act4-stage31-claude-v1 (identical authored outline)'
 v6['version'] = 6
 v6['status'] = 'v6 Claude art-matched collision draft; physics re-probe required; not art/combat accepted'
@@ -232,8 +235,20 @@ json.dump(v6, open(DST, 'w'), ensure_ascii=False, indent=1)
 # ---------------------------------------------------------------- painting helpers
 layers = {k: [] for k in ['REAR', 'STRUCT', 'BODY', 'SURFACE', 'FORE']}
 
+MOD = [None]   # current semantic module (rock mass, deck, cover); None = spatial chunk
+modules = {}   # (layer, module) -> [svg path elements], insertion-ordered
+
+def module(name):
+    MOD[0] = name
+
 def add(layer, d, fill, extra=''):
-    layers[layer].append('<path d="%s" fill="%s"%s/>' % (d, fill, extra))
+    el = '<path d="%s" fill="%s"%s/>' % (d, fill, extra)
+    layers[layer].append(el)
+    m = MOD[0]
+    if m is None or layer in ('STRUCT', 'REAR', 'FORE'):
+        xs = [float(v) for v in re.findall(r'-?\d+(?:\.\d+)?', d)][0::2]
+        m = 'x%d' % (int((sum(xs) / len(xs) + 2000) // 900))
+    modules.setdefault((layer, m), []).append(el)
 
 def clip_paint(layer, base, poly_pts, fill):
     g = base.intersection(Polygon(poly_pts).buffer(0))
@@ -248,6 +263,7 @@ def band_below(top, thick_fn):
 
 # ---------------------------------------------------------------- BODY: rock masses
 def paint_rock(sid, lights, mids, darks, band=(16, 30)):
+    module(sid)
     body = SHAPES[sid]
     add('BODY', shapely_d(body), ROCK_MID)
     for poly in mids:
@@ -377,10 +393,12 @@ paint_rock('east-overhang',
     darks=[[(4932, 2320), (5000, 2320), (5200, 2340), (5400, 2300), (5480, 2500), (5580, 2800), (5560, 3200), (5600, 3600), (5560, 3970), (5330, 3990), (5344, 3880), (5394, 3640), (5436, 3400), (5440, 3280), (5400, 3030), (5316, 2820), (5184, 2650), (5020, 2510), (4964, 2440)],
            [(5760, 2400), (5860, 2440), (5880, 2700), (5830, 3100), (5880, 3500), (5830, 3930), (5750, 3950), (5790, 3500), (5740, 3100), (5790, 2700)]])
 # A wet, faintly lit plane inside the east sea cave keeps it from reading as a hole.
+module('east-overhang')
 clip_paint('BODY', SHAPES['east-overhang'], [(5240, 2440), (5420, 2400), (5500, 2640), (5470, 2900), (5380, 2700), (5290, 2560)], ROCK_MID)
 
 # Scree bank and rockfall: rubble rather than monolith, so planes read as blocks.
 def paint_rubble(sid, blocks_light, blocks_dark, band=(12, 22)):
+    module(sid)
     body = SHAPES[sid]
     add('BODY', shapely_d(body), ROCK_MIDL)
     for poly in blocks_light:
@@ -407,6 +425,7 @@ paint_rubble('return-ramp',
                  [(4780, 4060), (4900, 3960), (5000, 3830), (5100, 4180), (4700, 4180), (4700, 4140)]])
 
 # Shore mud bank with low sediment strata.
+module('shore')
 shore = SHAPES['shore']
 add('BODY', shapely_d(shore), MUD)
 for y0, amp, col in [(4380, 30, MUD_DARK), (4620, 40, ROCK_DARK), (4900, 50, ROCK_DARK)]:
@@ -467,6 +486,7 @@ def socket(x, y, side):
     add('STRUCT', poly_d([(x - 14*side, y - 14), (x + 10*side, y - 10), (x + 10*side, y + 12), (x - 14*side, y + 14)]), ROCK_DARK)
 
 def deck(sid, t=26, x_from=None, x_to=None, planks=True):
+    module(sid)
     top = [tuple(p) for p in S[sid]['top']]
     if x_from is not None or x_to is not None:
         a = x_from if x_from is not None else top[0][0]
@@ -580,9 +600,11 @@ for sid in ['middle-west', 'middle-east', 'scaffold-low', 'scaffold-mid', 'scaff
     deck(sid, x_from=a, x_to=b)
 # Beam-end mortises cut into the rock face where decks enter it.
 for x, sid, side in [(2426, 'middle-west', -1), (3974, 'middle-east', 1), (3484, 'ridge-shoulder', 1)]:
+    module(sid)
     y = deck_y(sid, x)
     add('SURFACE', poly_d([(x - 4*side, y - 6), (x + 16*side, y - 2), (x + 16*side, y + 32), (x - 4*side, y + 30)]), ROCK_DARK)
 # Rope bridge deck: slatted planks with gaps, hung from handrails.
+module('broken-crossing')
 bc = [tuple(p) for p in S['broken-crossing']['top']]
 x = bc[0][0]
 while x < bc[-1][0] - 10:
@@ -602,11 +624,13 @@ for a, b in zip(rail_tops, rail_tops[1:]):
 # ---------------------------------------------------------------- covers (solid colliders)
 # court-cover: stacked-stone cairn; low-cover: boulder the scaffold post stands on;
 # lookout-cover: boarded shield wall on the lookout deck.
+module('court-cover')
 cc = next(c for c in L['covers'] if c['id'] == 'court-cover')
 x0, y1 = cc['x'], cc['y']; x1, y0 = x0 + cc['w'], y1 - cc['h']
 for i, (a, b, col) in enumerate([(0, 52, ROCK_MIDL), (46, 96, ROCK_LIGHT), (92, 150, ROCK_MIDL)]):
     inset = 6 + i * 10
     add('BODY', seg_d(catmull([(x0 + inset - 8, y1 - a), (x0 + inset - 4, y1 - b + 8), (x0 + cc['w']/2, y1 - b - 4), (x1 - inset + 4, y1 - b + 8), (x1 - inset + 8, y1 - a)], tension=0.6)) + ' Z', col)
+module('low-cover')
 lc = next(c for c in L['covers'] if c['id'] == 'low-cover')
 x0, y1 = lc['x'], lc['y']; y0 = y1 - lc['h']; x1 = x0 + lc['w']
 # Squat mooring stone (계선석) of the old landing: dressed block, waisted neck, rope.
@@ -618,6 +642,7 @@ for k in range(3):
     add('BODY', poly_d([(x0 + 10, yy), (x1 - 10, yy - 2), (x1 - 10, yy + 5), (x0 + 10, yy + 7)]), ROPE)
 add('BODY', 'M%s %s Q%s %s %s %s L%s %s Q%s %s %s %s Z' % tuple(f(v) for v in (x1 - 12, y0 + 40, x1 + 40, y0 + 60, x1 + 60, y1 + 4, x1 + 54, y1 + 6, x1 + 34, y0 + 66, x1 - 12, y0 + 48)), ROPE)
 
+module('lookout-cover')
 oc = next(c for c in L['covers'] if c['id'] == 'lookout-cover')
 x0, y1 = oc['x'], oc['y']; y0 = y1 - oc['h']
 add('SURFACE', poly_d([(x0, y0 + 10), (x0 + oc['w'], y0), (x0 + oc['w'], y1), (x0, y1)]), WOOD)
@@ -686,6 +711,42 @@ OUT.mkdir(parents=True, exist_ok=True)
 for k in order:
     one = '<g id="%s">%s</g>' % (k, ''.join(layers[k]))
     (OUT / ('layer-%s.svg' % k.lower())).write_text('<svg xmlns="http://www.w3.org/2000/svg" width="10400" height="5000" viewBox="-1600 1200 10400 5000">%s</svg>' % one)
+
+# Spatial modules for the engine: BODY/SURFACE per collider (rock mass, deck,
+# cover), STRUCT/REAR/FORE per 900-unit column, so live passes draw only what
+# is on screen and each painted collider has exactly one owner.
+mdir = OUT / 'modules'
+mdir.mkdir(exist_ok=True)
+for old in mdir.glob('*.svg'):
+    old.unlink()
+manifest = []
+def merge_fills(els):
+    # One compound path per fill, in first-appearance order. Draw calls drop
+    # sharply; overlap order only changes between same-material timber parts.
+    groups = {}
+    for e in els:
+        d = e.split('d="')[1].split('"')[0]
+        fill = e.split('fill="')[1].split('"')[0]
+        groups.setdefault(fill, []).append(d)
+    return ['<path d="%s" fill="%s"/>' % (' '.join(ds), fill) for fill, ds in groups.items()]
+
+for (layer, m), els in modules.items():
+    if layer != 'BODY':
+        els = merge_fills(els)
+    if layer in ('BODY', 'SURFACE') and m.startswith('x'):
+        raise SystemExit('unowned %s paint in %s' % (layer, m))
+    nums = [float(v) for e in els for v in re.findall(r'-?\d+(?:\.\d+)?', e.split('d="')[1].split('"')[0])]
+    xs, ys = nums[0::2], nums[1::2]
+    box = [math.floor(min(xs)) - 4, math.floor(min(ys)) - 4, math.ceil(max(xs)) + 4, math.ceil(max(ys)) + 4]
+    name = '%s-%s' % (layer.lower(), m)
+    (mdir / (name + '.svg')).write_text('<svg xmlns="http://www.w3.org/2000/svg" width="%d" height="%d" viewBox="%d %d %d %d">%s</svg>' % (
+        box[2] - box[0], box[3] - box[1], box[0], box[1], box[2] - box[0], box[3] - box[1], ''.join(els)))
+    terrain = None
+    if layer in ('BODY', 'SURFACE'):
+        terrain = 'pilot31-' + m
+    manifest.append({'name': name, 'layer': layer, 'module': m, 'bounds': box, 'paths': len(els), 'terrain': terrain})
+print('module paths', sum(r['paths'] for r in manifest))
+(OUT / 'modules.json').write_text(json.dumps(manifest, indent=1))
 
 far = (ROOT / 'shared/assets/environment/campaign-far/act4-estuary.webp').resolve()
 sky = ('<defs><linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2b3d6b"/>'

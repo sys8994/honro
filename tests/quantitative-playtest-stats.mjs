@@ -18,3 +18,4 @@ const technical={...full,runId:'failed-holdout',outcome:'error',cohortIdentity:{
 console.log('PASS predeclared cohort identity separation, complete attempt totals and holdout technical-error approval block');
 
 assert.equal(summarize([{...technical,evaluation:{kind:'unclassified-missing-start'},requestedEvaluation:{kind:'frozen-holdout'}}]).qualityBlockers.length,1);
+const deadlock=summarize([{...full,outcome:'policy-failure'}]);assert.equal(deadlock.normalPolicyFailures,1);assert.equal(deadlock.technicalErrors,0);assert.equal(deadlock.groups[0].clearRateAll,0);assert.equal(deadlock.groups[0].counts['policy-failure'],1);

@@ -1145,6 +1145,7 @@
                     if(request===this.profileImportSequence&&this.replaceProfile(this.profileStore.importText(text)))this.notify('기록을 불러왔어.');
                 }
                 catch (err) {
+                    console.warn('[HONRO profile import]',err?.name||'Error',err?.message||'Unknown import error');
                     this.notify(this.debugMode?'디버그 모드를 끈 뒤 기록을 가져오세요.':'기록 파일을 읽지 못했습니다. 현재 기록은 유지됩니다.');
                 }
                 el.value = '';

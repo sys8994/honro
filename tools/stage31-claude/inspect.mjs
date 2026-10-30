@@ -7,7 +7,7 @@ import {createCanvas,Image as NativeImage,Path2D,DOMMatrix,GlobalFonts} from '@n
 import {runtimeParts} from '../../shared/build.mjs';
 process.env.HONRO_ACT4_RELEASE='1';
 const arg=k=>process.argv.find(a=>a.startsWith(`--${k}=`))?.slice(k.length+3);
-const tag=arg('tag')||'v1',geo=arg('stage')||'_local/reports/act4-pilot/stage31/v6/stage.json',assets=arg('assets')||'_local/reports/stage31-claude/assets';
+const tag=arg('tag')||'v1',geo=arg('stage')||'_local/reports/act4-pilot/stage31/v6/stage.json',assets=arg('assets')||'_local/reports/stage31-claude/modules';
 const out=`_local/reports/stage31-claude/${tag}`;await mkdir(out,{recursive:true});
 try{GlobalFonts.registerFromPath('/usr/share/fonts/opentype/noto/NotoSansCJK-Regular.ttc','sans-serif');}catch{}
 function canvas(w=300,h=150){const c=createCanvas(w,h);Object.defineProperties(c,{clientWidth:{get:()=>c.width},clientHeight:{get:()=>c.height}});c.getBoundingClientRect=()=>({left:0,top:0,width:c.width,height:c.height});return c;}
@@ -20,15 +20,14 @@ for(const name of ['act4-art','act4-maps','act4-coast-maps','act4-coast-art','ac
 
 // ---- compose: geometry stage + art layers (no collision/actor/event change)
 const stage=JSON.parse(await readFile(geo,'utf8'));
-const layer={struct:'structure',body:'body',surface:'body',rear:'rear',front:'front',fore:'front'};
-const passOf={background:'back',structure:'structural-back',body:'mid',rear:'prop',front:'front'};
-const library=[];
-for(const k of ['struct','body','surface','rear','fore'])library.push(JSON.parse(await readFile(`${assets}/${k}.asset.json`,'utf8')));
-const solid=stage.terrains.filter(t=>!t.oneWay).map(t=>t.id),decks=stage.terrains.filter(t=>t.oneWay&&t.id!=='pilot31-boarding-dock').map(t=>t.id);
-const elements=library.map(a=>{const k=a.id.split(':')[1],n=layer[k];const e={id:`s31c-${k}`,assetId:a.id,x:0,y:0,scale:1,rotation:0,snap:false,depthLayer:'L1',nativeArtLayer:n,layer:passOf[n]};
- if(k==='body')e.nativeTerrainIds=solid;if(k==='surface')e.nativeTerrainIds=decks;return e;});
+// Module assets: BODY/SURFACE own exactly one collider each (mid pass); STRUCT
+// behind (structural-back), REAR reeds (prop), FORE after actors (front).
+const index=JSON.parse(await readFile(`${assets}/index.json`,'utf8')),passOf={structure:'structural-back',body:'mid',rear:'prop',front:'front'},nativeOf={STRUCT:'structure',BODY:'body',SURFACE:'body',REAR:'rear',FORE:'front'};
+const library=[];for(const r of index)library.push(JSON.parse(await readFile(r.asset,'utf8')));
+const elements=index.map(r=>{const n=nativeOf[r.layer],e={id:'s31c-'+r.name,assetId:r.assetId,x:0,y:0,scale:1,rotation:0,snap:false,depthLayer:'L1',nativeArtLayer:n,layer:passOf[n]};if(r.terrain){if(!stage.terrains.some(t=>t.id===r.terrain))throw Error('Unknown collider '+r.terrain);e.nativeTerrainIds=[r.terrain];}return e;});
+const owned=elements.flatMap(e=>e.nativeTerrainIds||[]);
 stage.elements=[...elements,...stage.elements];
-stage.design.nativeArt={version:1,coveredTerrainIds:[...solid,...decks],preservePalette:true,author:'claude-direct-vector',status:'candidate; not accepted'};
+stage.design.nativeArt={version:1,coveredTerrainIds:owned,preservePalette:true,author:'claude-direct-vector',status:'candidate; not accepted'};
 const P=g.HONRO_PROJECT;P.library=[...P.library.filter(a=>!a.id.startsWith('s31c:')),...library];
 P.stages=P.stages.map(s=>s.metadata?.stageId===31?stage:s);
 if(g.HonroAct4PilotArt?.validateStage)g.HonroAct4PilotArt.validateStage(stage,P.library);
@@ -45,6 +44,15 @@ const views=JSON.parse(arg('views')||'null')||[
  {name:'ridge-lookout-play',x:4700,y:2250,scale:.55,w:1440,h:900},
  {name:'east-boarding-play',x:6000,y:3300,scale:.55,w:1440,h:900},
  {name:'mobile-min',x:3500,y:3000,scale:g.HonroBounds.zoomLimits(390).min,w:390,h:844}];
+if(process.argv.includes('--perf')){
+ const V=g.HonroVectorArt,od=V.draw;let calls={},ms={};V.draw=function(c,a,l){const t=performance.now();const r=od.apply(this,arguments);calls[a.id]=(calls[a.id]||0)+1;ms[a.id]=(ms[a.id]||0)+performance.now()-t;return r;};
+ globalThis.__dump=()=>{console.log(JSON.stringify(calls),JSON.stringify(Object.fromEntries(Object.entries(ms).map(([k,v])=>[k,+v.toFixed(0)]))));calls={};ms={};};
+ for(const strip of [false,'front','rear','surface','struct','body']){
+  if(strip)b.honroLandmarks=(b.honroLandmarks||[]).filter(l=>l.id!=='s31c-'+(strip==='front'?'fore':strip));
+  const cv=canvas(1800,720),s=new g.HonroScene(cv);Object.assign(s,{x:1500,y:3600,scale:.55,manual:true,time:2});
+  for(let i=0;i<3;i++)s.render(e,0,'',.6,false,0);await new Promise(r=>setTimeout(r,200));
+  __dump();const t0=performance.now();for(let i=0;i<20;i++){s.x+=(process.argv.includes("--static")?0:3);s.render(e,0,'',.6,false,0);}__dump();console.log('minus',strip,'ms/frame',((performance.now()-t0)/20).toFixed(1),JSON.stringify(s._cacheStats));
+ }process.exit(0);}
 const records=[];
 for(const v of views){const cv=canvas(v.w,v.h),s=new g.HonroScene(cv);Object.assign(s,{x:v.x,y:v.y,scale:v.scale,manual:true,time:2,editorView:false});
  for(let i=0;i<3;i++){s.render(e,0,'',.6,false,0);await new Promise(r=>setTimeout(r,120));}
