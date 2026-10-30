@@ -11,6 +11,7 @@ from pathlib import Path
 KIND = {'guard': 'possessedGuard', 'bow': 'possessedArcher', 'bind': 'shade', 'arc': 'warden',
         'close': 'mourner', 'hound': 'hound', 'lantern': 'lantern', 'midboss': 'warden'}
 MIDBOSS = {34: ('shelf', '턱포격체'), 39: ('net', '그물봉쇄체')}
+NAMES = {33: '갯길 수위 사수', 35: '대군락 측격 지휘체', 37: '옹벽 관문 전위', 38: '해식굴 입구 견제체'}
 
 def interp(top, x):
     for (x0, y0), (x1, y1) in zip(top, top[1:]):
@@ -69,7 +70,8 @@ def place(n, skel, cells, active_limit=6, relocation=None):
                 so.update({'name': name, 'honroPilotMidboss': key, 'honroMidboss': True, 'role': 'guard', 'boss': 0,
                            'honroPilotRelocation': {'x': rx, 'y': round(interp(sup[rs]['top'], rx), 2)}})
             elif mid:
-                rec['name'] = '수문 정예'
+                rec['name'] = NAMES.get(n, '정예 지휘체')
+                so['name'] = rec['name']
                 so.update({'honroMidboss': True, 'elite': True})
             units.append(rec)
             ids.append(uid)
