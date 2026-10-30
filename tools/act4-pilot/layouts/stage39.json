@@ -1,0 +1,426 @@
+{
+  "version": 1,
+  "stage": 39,
+  "width": 8600,
+  "height": 6000,
+  "intent": "A low wreck basin lies beneath an ascending rescue approach. The party opens seven wide elevated positions before reaching the four original residents; residents then walk the uninterrupted gentle high refuge bank. Wreck boss remains optional.",
+  "activePlayBounds": {
+    "left": 180,
+    "top": 1230,
+    "right": 8200,
+    "bottom": 4700
+  },
+  "spawn": {
+    "x": 260,
+    "y": 4700
+  },
+  "surfaces": [
+    {
+      "id": "shore",
+      "top": [
+        [
+          0,
+          4700
+        ],
+        [
+          800,
+          4700
+        ],
+        [
+          1450,
+          5200
+        ],
+        [
+          4400,
+          5200
+        ],
+        [
+          4900,
+          2000
+        ],
+        [
+          5500,
+          2000
+        ],
+        [
+          6150,
+          2000
+        ],
+        [
+          6600,
+          1700
+        ],
+        [
+          8000,
+          1700
+        ],
+        [
+          8300,
+          1650
+        ],
+        [
+          8600,
+          1650
+        ]
+      ],
+      "role": "low basin plus continuous real NPC refuge ramp",
+      "kind": "ground",
+      "thickness": 170
+    },
+    {
+      "id": "outer-breakwater",
+      "top": [
+        [
+          700,
+          4300
+        ],
+        [
+          1330,
+          4300
+        ],
+        [
+          1570,
+          4210
+        ]
+      ],
+      "role": "entry flank"
+    },
+    {
+      "id": "broken-wharf",
+      "top": [
+        [
+          1440,
+          3900
+        ],
+        [
+          2140,
+          3900
+        ]
+      ],
+      "role": "shelter above barrage",
+      "kind": "overhang",
+      "thickness": 170
+    },
+    {
+      "id": "wreck-lookout",
+      "top": [
+        [
+          2030,
+          3480
+        ],
+        [
+          2690,
+          3480
+        ],
+        [
+          2980,
+          3360
+        ]
+      ],
+      "role": "optional wreck sightline"
+    },
+    {
+      "id": "rescue-rise",
+      "top": [
+        [
+          2780,
+          3060
+        ],
+        [
+          3480,
+          3060
+        ]
+      ],
+      "role": "main rise under crossfire"
+    },
+    {
+      "id": "net-overlook",
+      "top": [
+        [
+          3350,
+          2660
+        ],
+        [
+          4050,
+          2660
+        ]
+      ],
+      "role": "upper pincer",
+      "kind": "overhang",
+      "thickness": 170
+    },
+    {
+      "id": "last-crossing",
+      "top": [
+        [
+          3910,
+          2240
+        ],
+        [
+          4570,
+          2240
+        ]
+      ],
+      "role": "rejoin before residents"
+    },
+    {
+      "id": "rescue-balcony",
+      "top": [
+        [
+          4410,
+          1830
+        ],
+        [
+          5220,
+          1830
+        ]
+      ],
+      "role": "cover above net; does not carry residents"
+    },
+    {
+      "id": "basin-left",
+      "top": [
+        [
+          1900,
+          4640
+        ],
+        [
+          2700,
+          4640
+        ]
+      ],
+      "role": "optional low flank"
+    },
+    {
+      "id": "basin-right",
+      "top": [
+        [
+          3100,
+          4260
+        ],
+        [
+          3990,
+          4260
+        ]
+      ],
+      "role": "wreck recovery"
+    },
+    {
+      "id": "return-crossing",
+      "top": [
+        [
+          3290,
+          3750
+        ],
+        [
+          4160,
+          3750
+        ]
+      ],
+      "role": "low branch rejoins rescue rise"
+    },
+    {
+      "id": "net-cover",
+      "top": [
+        [
+          5350,
+          1600
+        ],
+        [
+          6080,
+          1600
+        ]
+      ],
+      "role": "party-only optional overhead cover"
+    },
+    {
+      "id": "refuge-overwatch",
+      "top": [
+        [
+          6250,
+          1230
+        ],
+        [
+          6950,
+          1230
+        ]
+      ],
+      "role": "optional party overwatch; not required elevation"
+    }
+  ],
+  "covers": [
+    {
+      "id": "wreck-baffle",
+      "x": 2410,
+      "y": 3480,
+      "w": 100,
+      "h": 155
+    },
+    {
+      "id": "rise-baffle",
+      "x": 3110,
+      "y": 3060,
+      "w": 100,
+      "h": 150
+    }
+  ],
+  "routes": [
+    {
+      "id": "rescue-main",
+      "supports": [
+        "shore",
+        "outer-breakwater",
+        "broken-wharf",
+        "wreck-lookout",
+        "rescue-rise",
+        "net-overlook",
+        "last-crossing",
+        "rescue-balcony",
+        "shore"
+      ]
+    },
+    {
+      "id": "wreck-optional",
+      "supports": [
+        "shore",
+        "basin-left",
+        "basin-right",
+        "return-crossing",
+        "rescue-rise"
+      ]
+    },
+    {
+      "id": "overwatch",
+      "supports": [
+        "rescue-balcony",
+        "net-cover",
+        "refuge-overwatch",
+        "shore"
+      ]
+    }
+  ],
+  "enemyAnchors": [
+    {
+      "id": "entry-screen",
+      "support": "outer-breakwater",
+      "x": 1130,
+      "roles": [
+        "screen",
+        "ranged"
+      ]
+    },
+    {
+      "id": "wreck-ranged",
+      "support": "wreck-lookout",
+      "x": 2670,
+      "roles": [
+        "ranged",
+        "disrupt"
+      ]
+    },
+    {
+      "id": "wreck-optional",
+      "support": "basin-right",
+      "x": 3600,
+      "roles": [
+        "boss-optional"
+      ]
+    },
+    {
+      "id": "rescue-mini",
+      "support": "rescue-rise",
+      "x": 3350,
+      "roles": [
+        "miniboss",
+        "screen"
+      ]
+    },
+    {
+      "id": "net-pincer",
+      "support": "net-overlook",
+      "x": 3780,
+      "roles": [
+        "ranged",
+        "disrupt"
+      ]
+    },
+    {
+      "id": "last-screen",
+      "support": "last-crossing",
+      "x": 4430,
+      "roles": [
+        "screen"
+      ]
+    }
+  ],
+  "act4": {
+    "exit": {
+      "x": 8500,
+      "y": 1650
+    },
+    "waterPolicies": [
+      {
+        "id": "39-wreck-water",
+        "kind": "recover",
+        "x1": 1450,
+        "x2": 4400,
+        "surface": 4900,
+        "entryLeft": [
+          100,
+          700
+        ],
+        "entryRight": [
+          4900,
+          5300
+        ]
+      }
+    ],
+    "enemyExclusion": [
+      {
+        "id": "resident-work-zone",
+        "x1": 4800,
+        "x2": 6200,
+        "y1": 1850,
+        "y2": 2110
+      },
+      {
+        "id": "rescue-high-ground",
+        "x1": 6600,
+        "x2": 8000,
+        "y1": 1580,
+        "y2": 1790
+      }
+    ],
+    "tide": {
+      "warningRound": 2,
+      "highRound": 5,
+      "lowRound": 7,
+      "low": 5160,
+      "high": 4900
+    }
+  },
+  "cameraViews": [
+    {
+      "id": "wreck-branch",
+      "x": 2360,
+      "y": 4100,
+      "w": 3200,
+      "h": 2300
+    },
+    {
+      "id": "net-approach",
+      "x": 4640,
+      "y": 2500,
+      "w": 3200,
+      "h": 2300
+    },
+    {
+      "id": "rescue-refuge",
+      "x": 6570,
+      "y": 1700,
+      "w": 3200,
+      "h": 2300
+    }
+  ],
+  "status": "geometry draft; no physics or art acceptance"
+}

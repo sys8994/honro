@@ -1,0 +1,136 @@
+{
+  "version": 1,
+  "generatedAt": "2026-10-30T07:08:33.526Z",
+  "sourceCommit": "57d01145182f4498bb0696fe4235bbc0ba6ffbdb",
+  "runtimeSha256": "b53278a693a3f4e9effb76dc6d9b25478abbf60de2bb9b402e45944a746e3baf",
+  "worldSha256": "801df923ce89d8747f337f0b71e2ae38c604a8efbd6250d56e885b931af9f1b5",
+  "stage31TransitivePayloadSha256": "007335c21f222c6adf34d9c47a7b6f8c298b5b682cb12910bb320c6d9d69c9d3",
+  "runner": "tools/stage31-production/verify-gates.mjs",
+  "command": "node tools/stage31-production/verify-gates.mjs tools/stage31/production-package.json _local/reports/act4-hud-probes-b532",
+  "inputs": [
+    {
+      "path": "tests/fixtures/stage31-production/route-inputs.json",
+      "sha256": "69772b4812bdca4e4e8e8ba9accff851007ddb50eadb9bca8727e5104ee2ecf8"
+    },
+    {
+      "path": "tests/fixtures/stage31-production/shot-inputs.json",
+      "sha256": "21d7d1d0905e9f83e41f1a534845c0fde0c4d515d6dd1eed5f34e209ddc7dfb8"
+    },
+    {
+      "path": "tests/fixtures/stage31-production/enemy-inputs.json",
+      "sha256": "f0364b9349f24f45af1569b4b271fbe6d81ab8e121c06f18d8bfa1502e10cda3"
+    },
+    {
+      "path": "tests/fixtures/stage31-production/objective-inputs.json",
+      "sha256": "d99c88408ed47d27bbb0f0b5109cae8a9fcee257c4dece35845c4e7d1d5606bd"
+    }
+  ],
+  "rawResultsSha256": "e151ff9e663b869e2da813af0667a7a75bf244259a65f5dda1621ed129e5e8d2",
+  "compressedResultsSha256": "2c4ee210f52a07b51ec97f1a21c6140347d22a1f84992e0dcaddb0bba4cd28ea",
+  "rawBytes": 3350498,
+  "compressedBytes": 54035,
+  "totalTicks": 91244,
+  "results": [
+    {
+      "id": "boardwalk-route",
+      "kind": "route",
+      "frames": 3354,
+      "result": "pass",
+      "fingerprint": "draft-v1-3ab0decd-2688127",
+      "exactGameplayObservationsEqualTo7652": true
+    },
+    {
+      "id": "low-channel-route",
+      "kind": "route",
+      "frames": 3737,
+      "result": "pass",
+      "fingerprint": "draft-v1-3ab0decd-2688127",
+      "exactGameplayObservationsEqualTo7652": true
+    },
+    {
+      "id": "first-bank-low-shot",
+      "kind": "shot",
+      "frames": 480,
+      "result": "pass",
+      "fingerprint": "draft-v1-3ab0decd-2688127",
+      "exactGameplayObservationsEqualTo7652": true
+    },
+    {
+      "id": "first-bank-high-shot",
+      "kind": "shot",
+      "frames": 480,
+      "result": "pass",
+      "fingerprint": "draft-v1-3ab0decd-2688127",
+      "exactGameplayObservationsEqualTo7652": true
+    },
+    {
+      "id": "s31-west-bank-action",
+      "kind": "enemy-action",
+      "frames": 6852,
+      "result": "pass",
+      "fingerprint": "draft-v1-3ab0decd-2688127",
+      "exactGameplayObservationsEqualTo7652": true
+    },
+    {
+      "id": "s31-low-channel-action",
+      "kind": "enemy-action",
+      "frames": 6852,
+      "result": "pass",
+      "fingerprint": "draft-v1-3ab0decd-2688127",
+      "exactGameplayObservationsEqualTo7652": true
+    },
+    {
+      "id": "s31-middle-rise-action",
+      "kind": "enemy-action",
+      "frames": 6852,
+      "result": "pass",
+      "fingerprint": "draft-v1-3ab0decd-2688127",
+      "exactGameplayObservationsEqualTo7652": true
+    },
+    {
+      "id": "s31-landing-action",
+      "kind": "enemy-action",
+      "frames": 14052,
+      "result": "pass",
+      "fingerprint": "draft-v1-3ab0decd-2688127",
+      "exactGameplayObservationsEqualTo7652": true
+    },
+    {
+      "id": "boarding",
+      "kind": "objective",
+      "frames": 48585,
+      "result": "pass",
+      "fingerprint": "draft-v1-3ab0decd-2688127",
+      "exactGameplayObservationsEqualTo7652": true
+    }
+  ],
+  "preservation": "All nine freshly executed results, including every observation, are deeply identical to historical7652 after excluding runtimeSha256. Authored world bytes unchanged. This equivalence follows actual execution, not relabelling old results.",
+  "scope": "Engine/App deterministic regression only. Prepared Stage31 entry and prerecorded finite inputs. No new art approval, browser/UI validation, difficulty or fun acceptance. Historical image/review records retain their original runtime and date.",
+  "uiReview": "Pending root browser/mobile inspection",
+  "localBuild": {
+    "status": "PASS",
+    "currentGraphFiles": 732,
+    "unchangedDataGraphicsFonts": true,
+    "deletedExpiredFiles": 118,
+    "deletedStillRequired": 0,
+    "gameEntry": "web/entries/game.9c2eb6708fa36e27.js",
+    "workshopEntry": "web/entries/workshop.aabe9a80e3e0398d.js",
+    "playtest": "web/entries/game.8bc03bfdd0069ad7.html?embedded=1",
+    "scope": "Local manifest bytes/hashes and unchanged data/art graph, not browser execution"
+  },
+  "focusedRegression": {
+    "command": "node tests/act4-objective-guidance.mjs",
+    "status": "PASS",
+    "includes": "31–40 HUD/help/checkMission and saved-copy state; actual31 boat-observer alternation;35/36/40 explicit-interaction requirement under declared contact/position fixtures; no browser or player-experience claim"
+  },
+  "retentionRegression": {
+    "command": "node tests/web-build-retention.mjs",
+    "status": "PASS",
+    "expiredPublishedDates": [
+      "2026-10-23T05:14:52Z",
+      "2026-10-23T05:26:09Z",
+      "2026-10-23T06:28:52Z"
+    ],
+    "retainedPublishedGraphs": 44
+  }
+}

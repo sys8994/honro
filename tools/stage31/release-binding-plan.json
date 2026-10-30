@@ -1,8 +1,8 @@
 {
-  "status": "normal-production-build-pass-official-browser-pending",
+  "status": "hud-fix-fresh-probes-and-normal-production-build-pass-browser-pending",
   "worldSha256": "801df923ce89d8747f337f0b71e2ae38c604a8efbd6250d56e885b931af9f1b5",
   "projectSha256": "f16efd5cd4d4b4fdc6a7b7103015df2fafa95e026ce2682a318e09513954c300",
-  "runtimeSha256": "7652daac71dc2c7c6ea02b438ce10105a26e1ac008b36258ad08e2835ee14fd9",
+  "runtimeSha256": "b53278a693a3f4e9effb76dc6d9b25478abbf60de2bb9b402e45944a746e3baf",
   "stage31TransitivePayloadSha256": "007335c21f222c6adf34d9c47a7b6f8c298b5b682cb12910bb320c6d9d69c9d3",
   "fingerprint": "draft-v1-3ab0decd-2688127",
   "stages": [
@@ -61,10 +61,15 @@
   },
   "reviewerPolicy": "Record actual assistant reviewer /root and evidence scope. No user or human approval is claimed or required by this schema. Pending evidence is not a pass.",
   "identityPolicy": "Separate production package metadata only. Frozen world/project bytes remain unchanged. Card participates in contract fingerprint; reviews and probeResults do not. Transitive payload SHA and runtime SHA supplement the direct-asset contract fingerprint.",
-  "previousRuntimeSha256": "71748ef5f9ddc261c1af1b9e04b9fc675c5d666b138e90b3ab5fd2215d1b5d33",
+  "previousRuntimeSha256": "7652daac71dc2c7c6ea02b438ce10105a26e1ac008b36258ad08e2835ee14fd9",
   "renderSourceEquivalence": "tools/stage31/evidence/silhouette-final-7174/7174-to-7652-render-source-equivalence.json",
   "historicalWorldSha256": "1e7939fe0f9fd6cd8be0202807f0db74f7ed7958a212d480aa73d3e7ce72f0d4",
   "historicalProjectSha256": "7956c4ea8a2dde9afc583ecac1d9908a67203eb9397859fdff613850e6cbdd93",
   "remaining": "Actual official-source browser smoke; remote publication separately blocked.",
-  "buildReceipt": "tools/stage31/evidence/silhouette-final-7652/normal-production-build.json"
+  "buildReceipt": "tools/stage31/evidence/silhouette-final-7652/normal-production-build.json",
+  "hudFix": {
+    "sourceCommit": "57d01145182f4498bb0696fe4235bbc0ba6ffbdb",
+    "evidence": "tools/stage31/evidence/act4-hud-b532/summary.json",
+    "scope": "Fresh actual Engine/App regression. Existing art reviews remain historical; no new UI, browser, gameplay-fun or publication approval."
+  }
 }

@@ -1,0 +1,475 @@
+{
+  "version": 1,
+  "stage": 34,
+  "width": 6100,
+  "height": 8000,
+  "intent": "Folded coastal ascent: west approach climbs into a broad central traverse, doubles back beneath an overhang, then branches around the summit. The optional wrong exit remains optional.",
+  "activePlayBounds": {
+    "left": 180,
+    "top": 1900,
+    "right": 5800,
+    "bottom": 7350
+  },
+  "spawn": {
+    "x": 260,
+    "y": 7350
+  },
+  "surfaces": [
+    {
+      "id": "shore",
+      "top": [
+        [
+          0,
+          7350
+        ],
+        [
+          800,
+          7350
+        ],
+        [
+          1400,
+          7660
+        ],
+        [
+          6100,
+          7660
+        ]
+      ],
+      "role": "entry and low recovery",
+      "kind": "ground",
+      "thickness": 170
+    },
+    {
+      "id": "wet-shoulder",
+      "top": [
+        [
+          720,
+          6920
+        ],
+        [
+          1200,
+          6920
+        ],
+        [
+          1680,
+          6790
+        ]
+      ],
+      "role": "first climb"
+    },
+    {
+      "id": "west-court",
+      "top": [
+        [
+          1540,
+          6490
+        ],
+        [
+          2080,
+          6490
+        ],
+        [
+          2460,
+          6550
+        ]
+      ],
+      "role": "screen / wide recovery",
+      "kind": "overhang",
+      "thickness": 170
+    },
+    {
+      "id": "sea-window",
+      "top": [
+        [
+          2270,
+          6070
+        ],
+        [
+          2940,
+          6070
+        ],
+        [
+          3230,
+          5900
+        ]
+      ],
+      "role": "lateral firing window"
+    },
+    {
+      "id": "middle-court",
+      "top": [
+        [
+          3070,
+          5600
+        ],
+        [
+          3820,
+          5600
+        ],
+        [
+          4130,
+          5700
+        ]
+      ],
+      "role": "first broad crossover"
+    },
+    {
+      "id": "east-buttress",
+      "top": [
+        [
+          3970,
+          5140
+        ],
+        [
+          4760,
+          5140
+        ]
+      ],
+      "role": "east flank / mini"
+    },
+    {
+      "id": "east-turn",
+      "top": [
+        [
+          4650,
+          4680
+        ],
+        [
+          5520,
+          4680
+        ]
+      ],
+      "role": "turning platform",
+      "kind": "overhang",
+      "thickness": 170
+    },
+    {
+      "id": "backfold",
+      "top": [
+        [
+          3930,
+          4220
+        ],
+        [
+          4730,
+          4220
+        ]
+      ],
+      "role": "return left above ascent"
+    },
+    {
+      "id": "upper-court",
+      "top": [
+        [
+          3100,
+          3780
+        ],
+        [
+          3540,
+          3670
+        ],
+        [
+          4080,
+          3780
+        ]
+      ],
+      "role": "rest and dual sightline"
+    },
+    {
+      "id": "west-balcony",
+      "top": [
+        [
+          2280,
+          3290
+        ],
+        [
+          3180,
+          3290
+        ]
+      ],
+      "role": "left return",
+      "kind": "overhang",
+      "thickness": 170
+    },
+    {
+      "id": "summit-approach",
+      "top": [
+        [
+          3050,
+          2830
+        ],
+        [
+          3640,
+          2830
+        ],
+        [
+          3960,
+          2720
+        ]
+      ],
+      "role": "rejoin above center"
+    },
+    {
+      "id": "summit-flank",
+      "top": [
+        [
+          3830,
+          2370
+        ],
+        [
+          4620,
+          2370
+        ]
+      ],
+      "role": "upper ranged flank"
+    },
+    {
+      "id": "exit-court",
+      "top": [
+        [
+          4480,
+          1900
+        ],
+        [
+          5900,
+          1900
+        ]
+      ],
+      "role": "actual high exit"
+    },
+    {
+      "id": "inner-shortcut",
+      "top": [
+        [
+          2730,
+          5150
+        ],
+        [
+          3460,
+          5150
+        ]
+      ],
+      "role": "inside ascent branch"
+    },
+    {
+      "id": "inner-roof",
+      "top": [
+        [
+          3060,
+          4680
+        ],
+        [
+          3830,
+          4680
+        ]
+      ],
+      "role": "crossback underneath upper court"
+    },
+    {
+      "id": "west-pocket",
+      "top": [
+        [
+          1780,
+          4250
+        ],
+        [
+          2570,
+          4250
+        ]
+      ],
+      "role": "optional wrong-exit destination"
+    },
+    {
+      "id": "west-link",
+      "top": [
+        [
+          2210,
+          3770
+        ],
+        [
+          3000,
+          3770
+        ]
+      ],
+      "role": "optional branch returns to high balcony"
+    }
+  ],
+  "covers": [
+    {
+      "id": "middle-baffle",
+      "x": 3550,
+      "y": 5600,
+      "w": 100,
+      "h": 150
+    },
+    {
+      "id": "summit-baffle",
+      "x": 4180,
+      "y": 2370,
+      "w": 110,
+      "h": 150
+    }
+  ],
+  "routes": [
+    {
+      "id": "east-main",
+      "supports": [
+        "shore",
+        "wet-shoulder",
+        "west-court",
+        "sea-window",
+        "middle-court",
+        "east-buttress",
+        "east-turn",
+        "backfold",
+        "upper-court",
+        "west-balcony",
+        "summit-approach",
+        "summit-flank",
+        "exit-court"
+      ]
+    },
+    {
+      "id": "inner-fold",
+      "supports": [
+        "middle-court",
+        "inner-shortcut",
+        "inner-roof",
+        "upper-court",
+        "west-balcony"
+      ]
+    },
+    {
+      "id": "optional-west",
+      "supports": [
+        "west-pocket",
+        "west-link",
+        "west-balcony"
+      ]
+    }
+  ],
+  "enemyAnchors": [
+    {
+      "id": "shore-screen",
+      "support": "wet-shoulder",
+      "x": 1100,
+      "roles": [
+        "screen",
+        "ranged"
+      ]
+    },
+    {
+      "id": "window",
+      "support": "sea-window",
+      "x": 2790,
+      "roles": [
+        "ranged",
+        "disrupt"
+      ]
+    },
+    {
+      "id": "lower-mini",
+      "support": "east-buttress",
+      "x": 4450,
+      "roles": [
+        "miniboss",
+        "screen"
+      ]
+    },
+    {
+      "id": "inner-pincer",
+      "support": "inner-shortcut",
+      "x": 3200,
+      "roles": [
+        "ranged",
+        "disrupt"
+      ]
+    },
+    {
+      "id": "high-screen",
+      "support": "upper-court",
+      "x": 3750,
+      "roles": [
+        "screen",
+        "ranged"
+      ]
+    },
+    {
+      "id": "west-guard",
+      "support": "west-balcony",
+      "x": 2670,
+      "roles": [
+        "screen",
+        "disrupt"
+      ]
+    },
+    {
+      "id": "summit",
+      "support": "summit-flank",
+      "x": 4490,
+      "roles": [
+        "miniboss",
+        "ranged"
+      ]
+    }
+  ],
+  "act4": {
+    "exit": {
+      "x": 5650,
+      "y": 1900
+    },
+    "wrongExit": {
+      "actor": "a4-34-g0-1",
+      "entrance": {
+        "x": 2500,
+        "y": 6070
+      },
+      "exit": {
+        "x": 2100,
+        "y": 4250
+      },
+      "optional": true
+    },
+    "waterPolicies": [
+      {
+        "id": "34-shore",
+        "kind": "recover",
+        "x1": 0,
+        "x2": 1400,
+        "surface": 7500,
+        "entryLeft": [
+          100,
+          700
+        ],
+        "entryRight": [
+          100,
+          700
+        ]
+      }
+    ]
+  },
+  "cameraViews": [
+    {
+      "id": "lower-ascent",
+      "x": 2270,
+      "y": 6500,
+      "w": 3100,
+      "h": 2200
+    },
+    {
+      "id": "folded-middle",
+      "x": 3890,
+      "y": 4550,
+      "w": 3100,
+      "h": 2200
+    },
+    {
+      "id": "summit",
+      "x": 3940,
+      "y": 2600,
+      "w": 3100,
+      "h": 2200
+    }
+  ],
+  "status": "geometry draft; no physics or art acceptance"
+}

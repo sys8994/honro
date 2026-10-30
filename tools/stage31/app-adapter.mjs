@@ -3,11 +3,11 @@
 import vm from 'node:vm';
 import {readFile} from 'node:fs/promises';
 import {appHarness,plain} from '../../tests/app-regression-helpers.mjs';
-export async function createAppAdapter(project,stageId,{entryBuild='unspent'}={}){
- process.env.HONRO_ACT4_RELEASE='1';const h=await appHarness({productionStory:true}),g=h.g,n=project.stages.find(s=>s.id===stageId)?.metadata?.stageId;
+export async function createAppAdapter(project,stageId,{entryBuild='unspent',preserveCancelInput=false,useRuntimeProject=false}={}){
+ process.env.HONRO_ACT4_RELEASE='1';const h=await appHarness({productionStory:true,preserveCancelInput}),g=h.g,n=project.stages.find(s=>s.id===stageId)?.metadata?.stageId;
  if(n!==31)throw Error('Objective adapter currently supports Stage31 only; other stages remain unverified.');
  let now=0;g.performance={now:()=>now};
- g.HONRO_PROJECT=plain(project);g.HonroScene.prototype.landmark=function(){};g.HonroScene.prototype.background=function(){};g.HonroScene.prototype.render=function(){};g.HonroScene.prototype.size=function(){return{w:1440,h:900,d:1};};
+ if(!useRuntimeProject)g.HONRO_PROJECT=plain(project);g.HonroScene.prototype.landmark=function(){};g.HonroScene.prototype.background=function(){};g.HonroScene.prototype.render=function(){};g.HonroScene.prototype.size=function(){return{w:1440,h:900,d:1};};
  g.HonroScene.prototype.storyRelease=function(camera){Object.assign(this,camera);};g.HonroScene.prototype.minimap=function(){};
  g.HONRO_APP_READY=Promise.resolve();g.HONRO_ACT4_PREVIEW_SEEDS=JSON.parse(await readFile('shared/data/act4/reviewed.json','utf8'));
  const p=h.profileThrough(30);p.lastStage=31;for(const cls of p.recruited)p.heroes[cls].xp=g.HonroProgression.xpAt(g.HonroProgression.plan(31).entryLevel);const training=[];if(entryBuild!=='unspent'&&!['campaign-balanced-v1','campaign-spent-v1'].includes(entryBuild))throw Error('Unknown earned-SP entry build');

@@ -1,0 +1,30 @@
+{
+  "version": 1,
+  "status": "authoring-proposal-not-play-acceptance",
+  "applyPolicy": "Root integration only; resolve every anchor against finalized terrain. No canonical world writes by this file.",
+  "budgetBasis": "Fresh record stageOverrides.honroPilotCombatBudget=true uses existing growth referenceStats. Normal 1.5 effective basic shots, 26% reference hero HP per representative attack; midboss 6 effective basic shots, 30% reference HP. Armor/existence/skill/friendly-fire and actual policies require measured tuning.",
+  "stages": {
+    "31": {
+      "totalIncludingMidboss": 34,
+      "midboss": {"count": 1, "key": "levee", "name": "둑틈봉쇄체", "anchor": "court-mini", "requiredByExistingElimination": true, "relocationHint": {"x":4430,"y":2065}, "body": {"r":26,"h":106}, "assetPolicy":"existing ground guard; no new SVG"},
+      "groups": [{"anchorRole":"entry-low","guard":2,"ranged":3},{"anchorRole":"first-rise","guard":3,"ranged":3},{"anchorRole":"ridge-approach","guard":3,"ranged":4},{"anchorRole":"court","guard":3,"ranged":3,"midboss":1},{"anchorRole":"last-bank","guard":4,"ranged":5}],
+      "maximumThreatsTarget":10,"enemyActionBudget":6
+    },
+    "34": {
+      "totalIncludingMidboss":36,
+      "midboss":{"count":1,"key":"shelf","name":"턱포격체","anchor":"pending-final-terrain","requiredKill":false,"body":{"r":25,"h":104}},
+      "optionalPursuitVanguard":{"count":1,"includedInTotal":true,"newKillGate":false},
+      "roleTotals":{"guard":14,"ranged":20,"midboss":1,"pursuitVanguard":1},
+      "maximumThreatsTarget":10,"enemyActionBudget":6
+    },
+    "39": {
+      "totalIncludingMidboss":36,
+      "midboss":{"count":1,"key":"net","name":"그물봉쇄체","anchor":"pending-final-terrain","requiredKill":false,"distinctFrom":"a4-wreck","body":{"r":24,"h":102}},
+      "optionalRearGuard":{"count":1,"includedInTotal":true,"newKillGate":false},
+      "roleTotals":{"guard":14,"ranged":19,"midboss":1,"rearGuard":1,"existingWreck":1},
+      "maximumThreatsTarget":10,"enemyActionBudget":6,
+      "preserve":["four resident rescue","safe upper exit","optional wreck kill","existing proof and victory rules"],
+      "safety":"Cancel locked ballistic attack if sampled arc or splash envelope approaches live resident; never retarget immediately. No new compulsory damage to residents."
+    }
+  }
+}
