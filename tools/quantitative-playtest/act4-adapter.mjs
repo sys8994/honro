@@ -1,5 +1,5 @@
 import assert from'node:assert/strict';
-import {stageRuntime,memorySample} from './stage-runtime.mjs';
+import {stageRuntime,memorySample,assertFreshPilotBudget} from './stage-runtime.mjs';
 /** Production App objective adapter. DOM/audio/frame scheduling are doubles;
  * actual movement, combat, Story transitions and Act4 events are not replaced. */
 import {createCanvas,Image as NativeImage,Path2D,DOMMatrix} from '@napi-rs/canvas';
@@ -22,7 +22,7 @@ export async function createAppAdapter(project,stageId,{entryBuild='campaign-bal
 
  assert(g.HonroAct4PilotCombat?.attach&&g.HonroAct4PilotCombat?.tuneFresh,'Pilot combat production API required');
  const expectedRevision=project.stages.find(s=>s.id===stageId)?.initialState?.honroPilotRosterRevision;if(expectedRevision===1)assert.equal(app.engine.b.honroPilotRosterRevision,1,'Authored roster marker preserved');
- if(app.engine.b.honroPilotRosterRevision===1){assert(app.engine.b.honroPilotActivationReady&&app.engine.honroDensityActivationAttached,'Pilot activation hooks required');for(const u of app.engine.b.units.filter(u=>u.honroPilotCombatBudget)){const basis=u.honroPilotBudgetBasis;assert.equal(basis?.version,1,'Fresh pilot budget hook required');assert(basis.status&&['referenceHp','referenceShot','hits','fraction'].every(k=>Number.isFinite(basis[k])),'Finite fresh budget basis required');}}
+ if(app.engine.b.honroPilotRosterRevision===1){assert(app.engine.b.honroPilotActivationReady&&app.engine.honroDensityActivationAttached,'Pilot activation hooks required');for(const u of app.engine.b.units.filter(u=>u.honroPilotCombatBudget)){assertFreshPilotBudget(u,g.HONRO_ACT4_PILOT_COMBAT_REFERENCE);}}
  assert(g.HonroAct4Content.active(app.engine.b),'Official Act4 campaign marker required');
  assert(!app.customMap&&!app.debugMode&&!app.training&&!app.engine.b.honroCustom,'Linked run must remain official campaign, never custom/imported/training/debug');
  return {g,app,officialIdentity,setupMemory:prepared.memory,training,entryBuild,storage:h.storage,finishDialogue:()=>h.finish(app),

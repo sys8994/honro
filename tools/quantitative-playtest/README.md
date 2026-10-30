@@ -316,3 +316,10 @@ battle or changing pose/HP. Verified stage31 output:
 HP1085/1174/2036/1362). Missing requested body fields remain absent; do not invent
 an existenceDefense value where production uses derived existence logic. This
 artifact is for calibration identity comparison, not a gameplay result.
+
+P01/P06 sentinel update: a loaded v2 reference now requires fresh actor v2 basis,
+matching fixed referenceId, positive role/normalHp and all per-skill coefficients.
+A stale v1 saved body cannot pass merely because the v2 module API exists. The
+manifest unit covers stale version, mismatched reference and live coefficient
+mismatch. Actual v2 App setup will be checked with the selected canonical source;
+this unit alone is not a damage-matrix or gameplay result.

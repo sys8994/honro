@@ -41,3 +41,9 @@ export function officialModuleLoader(entries,identity={},memory=[]){
  loadMain(g,transform){consume(mainEntry,g,transform);},
  loadAfterMain(g){for(const part of afterMain)consume(part,g);afterMain.length=0;assert.deepEqual(consumed,manifest.map(x=>x.name),'Every official module consumed once in production order');identity.runtimeConsumed=[...consumed];memory.push(memorySample('after-official-app-vm'));}};
 }
+export function assertFreshPilotBudget(unit,reference){
+ const basis=unit.honroPilotBudgetBasis,version=reference?.version??1;
+ assert([1,2].includes(version),'Unsupported pilot reference schema');assert.equal(basis?.version,version,'Fresh pilot budget must match loaded reference version');
+ assert(basis.status&&['referenceHp','referenceShot','hits','fraction'].every(k=>Number.isFinite(basis[k])&&basis[k]>0),'Finite positive fresh budget basis required');
+ if(version===2){assert.equal(basis.referenceId,reference.referenceId,'Fixed reference identity required');assert(basis.role&&Number.isFinite(basis.normalHp)&&basis.normalHp>0,'Calibrated role/normalHp required');assert(basis.skillAttack&&Object.values(basis.skillAttack).length&&Object.values(basis.skillAttack).every(n=>Number.isFinite(n)&&n>0),'Finite per-skill attack coefficients required');assert.deepEqual(JSON.parse(JSON.stringify(unit.honroPilotSkillAttack)),JSON.parse(JSON.stringify(basis.skillAttack)),'Live per-skill coefficients must match basis');}
+}
