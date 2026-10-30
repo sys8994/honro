@@ -1,0 +1,1672 @@
+{
+  "version": 2,
+  "stage": 34,
+  "width": 6100,
+  "height": 8000,
+  "intent": "Outer exposed coastal fold and west sheltered climb interlock through a central drop/ambush pocket and separate-height upper court entries. Solid natural shelves from inception; no cloned tactical bays, story gates or metric-padding mandatory drops.",
+  "activePlayBounds": {
+    "left": 180,
+    "top": 1850,
+    "right": 5900,
+    "bottom": 7720
+  },
+  "spawn": {
+    "x": 260,
+    "y": 7350
+  },
+  "surfaces": [
+    {
+      "id": "shore",
+      "top": [
+        [
+          0.0,
+          7350.0
+        ],
+        [
+          81.25,
+          7350.0
+        ],
+        [
+          162.5,
+          7350.0
+        ],
+        [
+          243.75,
+          7350.0
+        ],
+        [
+          325.0,
+          7350.0
+        ],
+        [
+          406.25,
+          7350.0
+        ],
+        [
+          487.5,
+          7350.0
+        ],
+        [
+          568.75,
+          7350.0
+        ],
+        [
+          650.0,
+          7350.0
+        ],
+        [
+          740.0,
+          7382.0
+        ],
+        [
+          830.0,
+          7414.0
+        ],
+        [
+          920.0,
+          7446.0
+        ],
+        [
+          1010.0,
+          7478.0
+        ],
+        [
+          1100.0,
+          7510.0
+        ],
+        [
+          1187.5,
+          7536.25
+        ],
+        [
+          1275.0,
+          7562.5
+        ],
+        [
+          1362.5,
+          7588.75
+        ],
+        [
+          1450.0,
+          7615.0
+        ],
+        [
+          1537.5,
+          7641.25
+        ],
+        [
+          1625.0,
+          7667.5
+        ],
+        [
+          1712.5,
+          7693.75
+        ],
+        [
+          1800.0,
+          7720.0
+        ],
+        [
+          1889.47,
+          7718.95
+        ],
+        [
+          1978.95,
+          7717.89
+        ],
+        [
+          2068.42,
+          7716.84
+        ],
+        [
+          2157.89,
+          7715.79
+        ],
+        [
+          2247.37,
+          7714.74
+        ],
+        [
+          2336.84,
+          7713.68
+        ],
+        [
+          2426.32,
+          7712.63
+        ],
+        [
+          2515.79,
+          7711.58
+        ],
+        [
+          2605.26,
+          7710.53
+        ],
+        [
+          2694.74,
+          7709.47
+        ],
+        [
+          2784.21,
+          7708.42
+        ],
+        [
+          2873.68,
+          7707.37
+        ],
+        [
+          2963.16,
+          7706.32
+        ],
+        [
+          3052.63,
+          7705.26
+        ],
+        [
+          3142.11,
+          7704.21
+        ],
+        [
+          3231.58,
+          7703.16
+        ],
+        [
+          3321.05,
+          7702.11
+        ],
+        [
+          3410.53,
+          7701.05
+        ],
+        [
+          3500.0,
+          7700.0
+        ],
+        [
+          3588.24,
+          7692.94
+        ],
+        [
+          3676.47,
+          7685.88
+        ],
+        [
+          3764.71,
+          7678.82
+        ],
+        [
+          3852.94,
+          7671.76
+        ],
+        [
+          3941.18,
+          7664.71
+        ],
+        [
+          4029.41,
+          7657.65
+        ],
+        [
+          4117.65,
+          7650.59
+        ],
+        [
+          4205.88,
+          7643.53
+        ],
+        [
+          4294.12,
+          7636.47
+        ],
+        [
+          4382.35,
+          7629.41
+        ],
+        [
+          4470.59,
+          7622.35
+        ],
+        [
+          4558.82,
+          7615.29
+        ],
+        [
+          4647.06,
+          7608.24
+        ],
+        [
+          4735.29,
+          7601.18
+        ],
+        [
+          4823.53,
+          7594.12
+        ],
+        [
+          4911.76,
+          7587.06
+        ],
+        [
+          5000.0,
+          7580.0
+        ],
+        [
+          5084.62,
+          7586.15
+        ],
+        [
+          5169.23,
+          7592.31
+        ],
+        [
+          5253.85,
+          7598.46
+        ],
+        [
+          5338.46,
+          7604.62
+        ],
+        [
+          5423.08,
+          7610.77
+        ],
+        [
+          5507.69,
+          7616.92
+        ],
+        [
+          5592.31,
+          7623.08
+        ],
+        [
+          5676.92,
+          7629.23
+        ],
+        [
+          5761.54,
+          7635.38
+        ],
+        [
+          5846.15,
+          7641.54
+        ],
+        [
+          5930.77,
+          7647.69
+        ],
+        [
+          6015.38,
+          7653.85
+        ],
+        [
+          6100,
+          7660
+        ]
+      ],
+      "role": "entry and low recovery",
+      "kind": "ground",
+      "thickness": 110
+    },
+    {
+      "id": "wet-shoulder",
+      "top": [
+        [
+          700,
+          7190
+        ],
+        [
+          820,
+          7175
+        ],
+        [
+          910,
+          7120
+        ],
+        [
+          1040,
+          7120
+        ],
+        [
+          1150,
+          7050
+        ],
+        [
+          1250,
+          7025
+        ],
+        [
+          1370,
+          6960
+        ],
+        [
+          1490,
+          6960
+        ],
+        [
+          1570,
+          6910
+        ],
+        [
+          1650,
+          6900
+        ]
+      ],
+      "role": "first natural climb",
+      "kind": "overhang",
+      "thickness": 65
+    },
+    {
+      "id": "west-court",
+      "top": [
+        [
+          1710,
+          6740
+        ],
+        [
+          1810,
+          6720
+        ],
+        [
+          1900,
+          6640
+        ],
+        [
+          2010,
+          6615
+        ],
+        [
+          2110,
+          6540
+        ],
+        [
+          2230,
+          6540
+        ],
+        [
+          2320,
+          6480
+        ],
+        [
+          2420,
+          6460
+        ],
+        [
+          2500,
+          6440
+        ]
+      ],
+      "role": "wide western battle ledge",
+      "kind": "overhang",
+      "thickness": 65
+    },
+    {
+      "id": "sea-window",
+      "top": [
+        [
+          2560,
+          6280
+        ],
+        [
+          2670,
+          6280
+        ],
+        [
+          2760,
+          6230
+        ],
+        [
+          2860,
+          6220
+        ],
+        [
+          2970,
+          6120
+        ],
+        [
+          3070,
+          6090
+        ],
+        [
+          3190,
+          6090
+        ],
+        [
+          3280,
+          6030
+        ],
+        [
+          3370,
+          6020
+        ],
+        [
+          3450,
+          5980
+        ]
+      ],
+      "role": "open firing traverse",
+      "kind": "overhang",
+      "thickness": 65
+    },
+    {
+      "id": "middle-court",
+      "top": [
+        [
+          3510,
+          5820
+        ],
+        [
+          3630,
+          5780
+        ],
+        [
+          3740,
+          5780
+        ],
+        [
+          3840,
+          5690
+        ],
+        [
+          3950,
+          5670
+        ],
+        [
+          4050,
+          5590
+        ],
+        [
+          4170,
+          5580
+        ],
+        [
+          4270,
+          5530
+        ],
+        [
+          4400,
+          5520
+        ]
+      ],
+      "role": "long lower traverse",
+      "kind": "overhang",
+      "thickness": 65
+    },
+    {
+      "id": "east-buttress",
+      "top": [
+        [
+          4460,
+          5360
+        ],
+        [
+          4560,
+          5360
+        ],
+        [
+          4680,
+          5300
+        ],
+        [
+          4770,
+          5300
+        ],
+        [
+          4870,
+          5230
+        ],
+        [
+          5000,
+          5200
+        ],
+        [
+          5110,
+          5120
+        ],
+        [
+          5230,
+          5120
+        ],
+        [
+          5320,
+          5080
+        ],
+        [
+          5400,
+          5060
+        ]
+      ],
+      "role": "right cliff approach",
+      "kind": "overhang",
+      "thickness": 65
+    },
+    {
+      "id": "east-turn",
+      "top": [
+        [
+          4420,
+          4580
+        ],
+        [
+          4510,
+          4590
+        ],
+        [
+          4590,
+          4650
+        ],
+        [
+          4710,
+          4650
+        ],
+        [
+          4810,
+          4720
+        ],
+        [
+          4910,
+          4740
+        ],
+        [
+          5010,
+          4810
+        ],
+        [
+          5130,
+          4820
+        ],
+        [
+          5230,
+          4870
+        ],
+        [
+          5320,
+          4900
+        ]
+      ],
+      "role": "upper return folds left above the approach",
+      "kind": "overhang",
+      "thickness": 65
+    },
+    {
+      "id": "backfold",
+      "top": [
+        [
+          3440,
+          4100
+        ],
+        [
+          3550,
+          4120
+        ],
+        [
+          3660,
+          4200
+        ],
+        [
+          3780,
+          4200
+        ],
+        [
+          3880,
+          4280
+        ],
+        [
+          3980,
+          4295
+        ],
+        [
+          4070,
+          4360
+        ],
+        [
+          4220,
+          4360
+        ],
+        [
+          4360,
+          4420
+        ]
+      ],
+      "role": "leftward return corridor",
+      "kind": "overhang",
+      "thickness": 65
+    },
+    {
+      "id": "upper-court",
+      "top": [
+        [
+          2460,
+          3640
+        ],
+        [
+          2590,
+          3640
+        ],
+        [
+          2690,
+          3690
+        ],
+        [
+          2790,
+          3680
+        ],
+        [
+          2880,
+          3760
+        ],
+        [
+          2990,
+          3780
+        ],
+        [
+          3110,
+          3850
+        ],
+        [
+          3250,
+          3860
+        ],
+        [
+          3380,
+          3940
+        ]
+      ],
+      "role": "upper crossfire corridor",
+      "kind": "overhang",
+      "thickness": 65
+    },
+    {
+      "id": "west-balcony",
+      "top": [
+        [
+          1530,
+          3180
+        ],
+        [
+          1630,
+          3190
+        ],
+        [
+          1720,
+          3240
+        ],
+        [
+          1840,
+          3240
+        ],
+        [
+          1940,
+          3310
+        ],
+        [
+          2050,
+          3340
+        ],
+        [
+          2150,
+          3400
+        ],
+        [
+          2260,
+          3400
+        ],
+        [
+          2400,
+          3480
+        ]
+      ],
+      "role": "western overlook",
+      "kind": "overhang",
+      "thickness": 65
+    },
+    {
+      "id": "summit-approach",
+      "top": [
+        [
+          1610,
+          3020
+        ],
+        [
+          1710,
+          3020
+        ],
+        [
+          1810,
+          2960
+        ],
+        [
+          1940,
+          2930
+        ],
+        [
+          2040,
+          2880
+        ],
+        [
+          2150,
+          2880
+        ],
+        [
+          2260,
+          2800
+        ],
+        [
+          2370,
+          2790
+        ],
+        [
+          2520,
+          2750
+        ]
+      ],
+      "role": "final eastward ascent",
+      "kind": "overhang",
+      "thickness": 65
+    },
+    {
+      "id": "summit-flank",
+      "top": [
+        [
+          2580,
+          2590
+        ],
+        [
+          2710,
+          2580
+        ],
+        [
+          2810,
+          2520
+        ],
+        [
+          2920,
+          2520
+        ],
+        [
+          3030,
+          2460
+        ],
+        [
+          3150,
+          2440
+        ],
+        [
+          3260,
+          2370
+        ],
+        [
+          3400,
+          2370
+        ],
+        [
+          3550,
+          2340
+        ]
+      ],
+      "role": "summit flank",
+      "kind": "overhang",
+      "thickness": 65
+    },
+    {
+      "id": "exit-approach",
+      "top": [
+        [
+          3610,
+          2180
+        ],
+        [
+          3750,
+          2170
+        ],
+        [
+          3870,
+          2100
+        ],
+        [
+          3980,
+          2085
+        ],
+        [
+          4080,
+          2020
+        ],
+        [
+          4210,
+          2020
+        ],
+        [
+          4330,
+          1950
+        ],
+        [
+          4460,
+          1930
+        ],
+        [
+          4580,
+          1900
+        ],
+        [
+          4700,
+          1900
+        ]
+      ],
+      "role": "continuous route to actual high exit",
+      "kind": "overhang",
+      "thickness": 65
+    },
+    {
+      "id": "exit-court",
+      "top": [
+        [
+          4700,
+          1900
+        ],
+        [
+          4840,
+          1880
+        ],
+        [
+          4980,
+          1890
+        ],
+        [
+          5110,
+          1840
+        ],
+        [
+          5270,
+          1850
+        ],
+        [
+          5420,
+          1810
+        ],
+        [
+          5560,
+          1835
+        ],
+        [
+          5710,
+          1820
+        ],
+        [
+          5880,
+          1860
+        ],
+        [
+          6000,
+          1830
+        ],
+        [
+          6100,
+          1850
+        ]
+      ],
+      "role": "right-attached upper cliff roof and exit",
+      "kind": "overhang",
+      "thickness": 65,
+      "bottom": [
+        [
+          6100,
+          8000
+        ],
+        [
+          5760,
+          8000
+        ],
+        [
+          5760,
+          2860
+        ],
+        [
+          5420,
+          2570
+        ],
+        [
+          4930,
+          2470
+        ],
+        [
+          4670,
+          2210
+        ]
+      ]
+    },
+    {
+      "id": "inner-shortcut",
+      "top": [
+        [
+          2750,
+          5500
+        ],
+        [
+          2840,
+          5510
+        ],
+        [
+          2930,
+          5590
+        ],
+        [
+          3040,
+          5600
+        ],
+        [
+          3150,
+          5680
+        ],
+        [
+          3270,
+          5710
+        ],
+        [
+          3400,
+          5820
+        ]
+      ],
+      "role": "alternate inner switchback",
+      "kind": "overhang",
+      "thickness": 65
+    },
+    {
+      "id": "inner-roof",
+      "top": [
+        [
+          2680,
+          5340
+        ],
+        [
+          2790,
+          5310
+        ],
+        [
+          2880,
+          5250
+        ],
+        [
+          3000,
+          5240
+        ],
+        [
+          3110,
+          5160
+        ],
+        [
+          3220,
+          5140
+        ],
+        [
+          3330,
+          5070
+        ],
+        [
+          3450,
+          5000
+        ]
+      ],
+      "role": "inner ramp below returning main route",
+      "kind": "overhang",
+      "thickness": 65
+    },
+    {
+      "id": "inner-link",
+      "top": [
+        [
+          3520,
+          4840
+        ],
+        [
+          3610,
+          4840
+        ],
+        [
+          3700,
+          4790
+        ],
+        [
+          3810,
+          4770
+        ],
+        [
+          3920,
+          4680
+        ],
+        [
+          4030,
+          4670
+        ],
+        [
+          4130,
+          4610
+        ],
+        [
+          4200,
+          4580
+        ]
+      ],
+      "role": "inner route rejoins return",
+      "kind": "overhang",
+      "thickness": 65
+    },
+    {
+      "id": "cliff-shoulder",
+      "top": [
+        [
+          5400.0,
+          5060.0
+        ],
+        [
+          5476.0,
+          5020.0
+        ],
+        [
+          5552.0,
+          4980.0
+        ],
+        [
+          5628.0,
+          4940.0
+        ],
+        [
+          5704.0,
+          4900.0
+        ],
+        [
+          5780.0,
+          4860.0
+        ],
+        [
+          5860.0,
+          4820.0
+        ],
+        [
+          5940.0,
+          4780.0
+        ],
+        [
+          6020.0,
+          4740.0
+        ],
+        [
+          6100,
+          4700
+        ]
+      ],
+      "role": "broad solid side cliff supporting the eastern traverse",
+      "kind": "overhang",
+      "thickness": 65,
+      "bottom": [
+        [
+          6100,
+          8000
+        ],
+        [
+          5740,
+          8000
+        ],
+        [
+          5740,
+          6080
+        ],
+        [
+          5510,
+          5690
+        ],
+        [
+          5200,
+          5520
+        ]
+      ]
+    },
+    {
+      "id": "cave-return",
+      "kind": "overhang",
+      "top": [
+        [
+          1050,
+          6280
+        ],
+        [
+          1140,
+          6290
+        ],
+        [
+          1230,
+          6350
+        ],
+        [
+          1340,
+          6370
+        ],
+        [
+          1450,
+          6460
+        ],
+        [
+          1570,
+          6490
+        ],
+        [
+          1650,
+          6580
+        ]
+      ],
+      "thickness": 65,
+      "role": "West reverse ascent; exit from lower court into sheltered cave mouth"
+    },
+    {
+      "id": "cave-shelf",
+      "kind": "overhang",
+      "top": [
+        [
+          1120,
+          6120
+        ],
+        [
+          1230,
+          6110
+        ],
+        [
+          1330,
+          6040
+        ],
+        [
+          1430,
+          6030
+        ],
+        [
+          1550,
+          5920
+        ],
+        [
+          1650,
+          5900
+        ],
+        [
+          1750,
+          5820
+        ]
+      ],
+      "thickness": 65,
+      "role": "Broad west cave fighting shelf with a rear stand-off bench"
+    },
+    {
+      "id": "central-shoulder",
+      "kind": "overhang",
+      "top": [
+        [
+          1810,
+          5660
+        ],
+        [
+          1920,
+          5650
+        ],
+        [
+          2020,
+          5580
+        ],
+        [
+          2130,
+          5580
+        ],
+        [
+          2230,
+          5480
+        ],
+        [
+          2350,
+          5450
+        ],
+        [
+          2440,
+          5390
+        ],
+        [
+          2520,
+          5380
+        ]
+      ],
+      "thickness": 65,
+      "role": "Central elevated flank; can drop into crossing pocket rather than remain on exposed ridge"
+    },
+    {
+      "id": "chimney-turn",
+      "kind": "overhang",
+      "top": [
+        [
+          1750,
+          4900
+        ],
+        [
+          1860,
+          4910
+        ],
+        [
+          1950,
+          4960
+        ],
+        [
+          2060,
+          4980
+        ],
+        [
+          2160,
+          5060
+        ],
+        [
+          2260,
+          5080
+        ],
+        [
+          2350,
+          5200
+        ]
+      ],
+      "thickness": 65,
+      "role": "Narrow reverse ascent above crossing pocket, not a repeated full-width staircase"
+    },
+    {
+      "id": "western-overlook",
+      "kind": "overhang",
+      "top": [
+        [
+          1090,
+          4440
+        ],
+        [
+          1190,
+          4440
+        ],
+        [
+          1280,
+          4510
+        ],
+        [
+          1390,
+          4525
+        ],
+        [
+          1480,
+          4610
+        ],
+        [
+          1590,
+          4630
+        ],
+        [
+          1690,
+          4740
+        ]
+      ],
+      "thickness": 65,
+      "role": "West protected sightline to central climb; lower retreat remains reachable"
+    },
+    {
+      "id": "sheltered-rise",
+      "kind": "overhang",
+      "top": [
+        [
+          1120,
+          4280
+        ],
+        [
+          1240,
+          4260
+        ],
+        [
+          1350,
+          4180
+        ],
+        [
+          1450,
+          4180
+        ],
+        [
+          1560,
+          4090
+        ],
+        [
+          1640,
+          4060
+        ],
+        [
+          1720,
+          3980
+        ]
+      ],
+      "thickness": 65,
+      "role": "Cave upper return climbing right"
+    },
+    {
+      "id": "upper-return",
+      "kind": "overhang",
+      "top": [
+        [
+          1780,
+          3820
+        ],
+        [
+          1890,
+          3820
+        ],
+        [
+          1990,
+          3760
+        ],
+        [
+          2110,
+          3750
+        ],
+        [
+          2210,
+          3690
+        ],
+        [
+          2340,
+          3680
+        ],
+        [
+          2460,
+          3640
+        ]
+      ],
+      "thickness": 65,
+      "role": "Left entry to upper court; converges at a different height and side than outer route"
+    },
+    {
+      "id": "crossing-pocket",
+      "kind": "overhang",
+      "top": [
+        [
+          2440,
+          5810
+        ],
+        [
+          2530,
+          5800
+        ],
+        [
+          2600,
+          5740
+        ],
+        [
+          2690,
+          5740
+        ],
+        [
+          2800,
+          5710
+        ]
+      ],
+      "thickness": 65,
+      "role": "Actual underpass/drop pocket: retreat, ambush and cross-route rejoin"
+    },
+    {
+      "id": "sea-crossing",
+      "kind": "overhang",
+      "top": [
+        [
+          2820,
+          6110
+        ],
+        [
+          2910,
+          6080
+        ],
+        [
+          2970,
+          6030
+        ],
+        [
+          3040,
+          5970
+        ],
+        [
+          3130,
+          5880
+        ]
+      ],
+      "thickness": 65,
+      "role": "Short side climb linking lower sea-window into the central sheltered route"
+    }
+  ],
+  "covers": [
+    {
+      "id": "lower-cave-cover",
+      "x": 1390,
+      "y": 6036.0,
+      "w": 80,
+      "h": 115
+    },
+    {
+      "id": "crossing-cover",
+      "x": 2500,
+      "y": 5805.333333333333,
+      "w": 75,
+      "h": 105
+    },
+    {
+      "id": "upper-court-cover",
+      "x": 2810,
+      "y": 3764.7272727272725,
+      "w": 85,
+      "h": 115
+    }
+  ],
+  "routes": [
+    {
+      "id": "coastal-fold",
+      "supports": [
+        "shore",
+        "wet-shoulder",
+        "west-court",
+        "sea-window",
+        "middle-court",
+        "east-buttress",
+        "east-turn",
+        "backfold",
+        "upper-court",
+        "west-balcony",
+        "summit-approach",
+        "summit-flank",
+        "exit-approach",
+        "exit-court"
+      ]
+    },
+    {
+      "id": "sheltered-climb",
+      "supports": [
+        "shore",
+        "wet-shoulder",
+        "west-court",
+        "cave-return",
+        "cave-shelf",
+        "central-shoulder",
+        "chimney-turn",
+        "western-overlook",
+        "sheltered-rise",
+        "upper-return",
+        "upper-court",
+        "west-balcony",
+        "summit-approach",
+        "summit-flank",
+        "exit-approach",
+        "exit-court"
+      ]
+    },
+    {
+      "id": "crossing-flank",
+      "supports": [
+        "sea-window",
+        "sea-crossing",
+        "crossing-pocket",
+        "inner-shortcut",
+        "inner-roof",
+        "inner-link",
+        "backfold",
+        "upper-court"
+      ]
+    }
+  ],
+  "enemyAnchors": [
+    {
+      "id": "shore-screen",
+      "support": "wet-shoulder",
+      "x": 1200,
+      "roles": [
+        "screen",
+        "ranged"
+      ]
+    },
+    {
+      "id": "window",
+      "support": "sea-window",
+      "x": 2900,
+      "roles": [
+        "ranged",
+        "disrupt"
+      ]
+    },
+    {
+      "id": "lower-mini",
+      "support": "east-buttress",
+      "x": 4880,
+      "roles": [
+        "miniboss",
+        "screen"
+      ]
+    },
+    {
+      "id": "inner-pincer",
+      "support": "inner-roof",
+      "x": 3160,
+      "roles": [
+        "ranged",
+        "disrupt"
+      ]
+    },
+    {
+      "id": "high-screen",
+      "support": "backfold",
+      "x": 3860,
+      "roles": [
+        "screen",
+        "ranged"
+      ]
+    },
+    {
+      "id": "west-guard",
+      "support": "west-balcony",
+      "x": 1890,
+      "roles": [
+        "screen",
+        "disrupt"
+      ]
+    },
+    {
+      "id": "summit",
+      "support": "summit-flank",
+      "x": 3050,
+      "roles": [
+        "miniboss",
+        "ranged"
+      ]
+    }
+  ],
+  "act4": {
+    "exit": {
+      "x": 5650,
+      "y": 1900
+    },
+    "wrongExit": {
+      "actor": "a4-34-g0-1",
+      "entrance": {
+        "x": 2800,
+        "y": 6212.31
+      },
+      "exit": {
+        "x": 3090,
+        "y": 5171
+      },
+      "optional": true
+    },
+    "waterPolicies": [
+      {
+        "id": "34-shore",
+        "kind": "recover",
+        "x1": 0,
+        "x2": 1400,
+        "surface": 7500,
+        "entryLeft": [
+          100,
+          700
+        ],
+        "entryRight": [
+          100,
+          700
+        ]
+      }
+    ]
+  },
+  "cameraViews": [
+    {
+      "id": "lower-traverse",
+      "x": 2750,
+      "y": 6350,
+      "w": 3400,
+      "h": 2200
+    },
+    {
+      "id": "fold-and-cliff",
+      "x": 4330,
+      "y": 4600,
+      "w": 3400,
+      "h": 2400
+    },
+    {
+      "id": "upper-return",
+      "x": 3120,
+      "y": 2850,
+      "w": 3400,
+      "h": 2400
+    }
+  ],
+  "status": "Independent strategic-space rework; visual and solid-physics validation pending",
+  "connections": [
+    {
+      "fromSupport": "upper-return",
+      "toSupport": "upper-court",
+      "mode": "walk"
+    },
+    {
+      "fromSupport": "sea-crossing",
+      "toSupport": "crossing-pocket",
+      "mode": "jump"
+    }
+  ],
+  "geometryNotes": {
+    "registeredWorldHeight": 8000,
+    "authoredActiveHeight": 5870,
+    "mandatoryRouteElevation": 5450,
+    "measuredReachableHeight": null,
+    "jumpEnvelope": {
+      "engineJumpVy": 660,
+      "jumpingGravity": 1000,
+      "idealApex": 217.8,
+      "conservativeRise": 190
+    },
+    "massRule": "Two asymmetric side-attached cliff polygons, no repeated mushroom roots. Blue ramps define protected support surfaces, not mandatory painted outlines.",
+    "tacticalDropPolicy": "Five local cover/counterfire bays permit a real supported descent and a walk-only rejoin. They do not add kill gates, new strategic-route count or mandatory detours. Normal party combat must establish meaningful usage; 18\u201328 drop acceptance is not claimed from their existence.",
+    "v2": "Previous linear zigzag preserved as one outer choice, no longer the only climb; large left/right vertical alternatives overlap in three tactical regions. All new natural shelf collision is solid; authored top may need safe entry revision after actual Engine."
+  },
+  "tacticalBays": [
+    {
+      "id": "crossing-pocket",
+      "fromSupport": "central-shoulder",
+      "rejoinSupport": "inner-shortcut",
+      "role": "Drop to cover then climb into alternate route; optional tactical flank"
+    }
+  ]
+}
