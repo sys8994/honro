@@ -207,5 +207,12 @@
     "normal App combat/party/event/render receipt calibration",
     "20% contour target improvement only if visual quality preserved",
     "34/39 terrain redesign not complete"
-  ]
+  ],
+  "identity": {
+    "stageRawSHA256": "e863ce5e01c7896e161469f3c9846106267f6f8bba57a2db61d3a49c682a77ec",
+    "stageCanonicalSHA256": "820afd2767fbf275692ef80c02ed8da59424e86bba0aabc21b1a11d6a0f4552f",
+    "blueprintRawSHA256": "e1c5974f3fad365e1a88e6d20eac0e732abcb6d73f373299945e257c12de6097",
+    "canonicalization": "JSON.stringify(JSON.parse(raw))",
+    "scope": "Content identity only, not a validation receipt"
+  }
 }

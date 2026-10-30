@@ -96,3 +96,8 @@ Root visually approved the one-support facet study for local validation. Actual 
 - Cause: boarding fixture initialized first bodyx5970/y3900 based only on shore top, but east solid mass overlaps that shore region. Invalid setup fell/recovered and lostHP; this is not a valid route trial.
 - Forbidden retry: ignoring setup validity, accepting the resulting complete flag despite HP loss, or moving the body during traversal.
 - Replacement: bank setup6040/6090/6140/6190 is validated for all4 h92/r22 bodies before simulation; invalid fixture now aborts immediately. Real event creates deck6260/3900/450; real move/integrate walks each body aboard,HP0. Three aboard remains ineligible, four grounded allows probe without completing, explicit interaction alone completes. Dialogues/DOM receipts omitted and no enemies initially: local post-combat fixture, not App combat victory.
+
+## F15 — raw file hash and normalized stage hash are different identities
+- Cause: stage.json is pretty-printed while physics receipts hash JSON.stringify(parsedStage). Treating the normalized820afd… as a raw byte hash triggered a correct combat-owner identity question.
+- Forbidden retry: assuming a hash mismatch is harmless without recomputing both, or relabeling either value as the other.
+- Replacement/evidence: builder emits identity.json with raw stage, normalized stage, raw blueprint and exact canonicalization. Current R1 raw e863ce5e01c7896e161469f3c9846106267f6f8bba57a2db61d3a49c682a77ec; normalized820afd2767fbf275692ef80c02ed8da59424e86bba0aabc21b1a11d6a0f4552f. This metadata change does not alter candidate geometry.
