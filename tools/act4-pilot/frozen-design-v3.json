@@ -31,7 +31,7 @@
         {
           "key": "space",
           "label": "공간 전개",
-          "rule": "수직/복합 유형·유효 점프/아래점프·필수 고도 활용. 유형에 따라 필요한 항목만 필수."
+          "rule": "지리·서사에 맞는 고저차와 실제 위치/사선/우회 선택을 필수 검수한다. 점프/drop/높이/발판 수는 참고이며 할당량 통과조건으로 강제하지 않는다."
         },
         {
           "key": "objective_art",
@@ -44,10 +44,11 @@
         "전체 적 예산·역할/패턴의 단순 개수",
         "사람 플레이 분·자원 사용·회복 선택",
         "정밀 곡률·에지 밀도·노드/경로 밀도",
-        "세부 비용·콜드 로딩 진단"
+        "세부 비용·콜드 로딩 진단",
+        "점프·아래점프 횟수, 높이 차·수직 이동 비율·발판 수 (장소와 실제 전략 우선)"
       ],
       "referenceRule": "참고 지표만 어긋났다고 자동 반려하지 않는다. 원인 분석과 조정에 사용한다. 특정 장의 핵심 기획을 증명하는 항목은 사전에 해당 장 필수로 지정할 수 있다. 진행 불가·충돌·보호요소 소실 등 실제 결함을 참고로 내려 숨기지 않는다.",
-      "precedence": "v3 필수/참고 분류가 v2 개별 지표의 과거 필수 표기보다 우선한다. 실제 결함은 참고로 숨기지 않는다."
+      "precedence": "2026-10-30 사용자 지리 우선/수직 수치 완화 피드백이 과거 필수 수직 수치보다 우선한다. 실제 진행/충돌/전술/미술 결함은 참고로 숨기지 않는다."
     },
     "artRequired": {
       "naturalStraightTarget": "<20%",
@@ -1186,5 +1187,30 @@
     "cameraCropRatios": "reference warnings; visual review remains required",
     "originalResultsRetained": true,
     "stagePlayTargetsUnchanged": true
+  },
+  "userFeedbackAmendment": {
+    "revision": "2026-10-30-geography-first",
+    "document": "game/docs/GEOGRAPHY_FIRST_PRODUCTION.md",
+    "verticalNumericTargets": "reference-only, never quotas",
+    "supersededSpatialKeys": [
+      "jumps",
+      "drops",
+      "platforms",
+      "height",
+      "aspect",
+      "verticalSpanRatio",
+      "verticalTravelRatio",
+      "requiredElevationSpan"
+    ],
+    "required": "story/geography plausibility, visible structural support, meaningful tactical position choices, actual play and visual review",
+    "farBackground": "original raster image pipeline, not vectorized",
+    "unchanged": [
+      "20R maximum",
+      "combat/difficulty/encounter objectives",
+      "original victory rules",
+      "measured cohort and error accounting"
+    ],
+    "oldStage31PillarLayout": "rejected for geographic/structural mismatch",
+    "originalDataRetained": true
   }
 }
