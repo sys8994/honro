@@ -1,0 +1,32 @@
+{
+  "width": 600,
+  "scales": [
+    2,
+    4
+  ],
+  "protectedRects": [
+    [
+      164.3835616438356,
+      41.0958904109589,
+      106.84931506849314,
+      53.42465753424657
+    ]
+  ],
+  "reviewRects": [
+    [
+      164.3835616438356,
+      41.0958904109589,
+      106.84931506849314,
+      53.42465753424657
+    ]
+  ],
+  "limits": {
+    "rgbMAE255": 2,
+    "silhouettePx": 1.5,
+    "protectedRgbMAE255": 1,
+    "protectedPx": 0.5
+  },
+  "protectionMode": "feature",
+  "scaleDeclaration": "600 CSS px wide individual asset; 2 and 4 are supersampling factors, not gameplay zoom. Actual placement pending.",
+  "protectionRationale": "Major pine trunk junction / main reed head ROI. Entire exterior separately protected by silhouette gate; tiny internal texture is not a designated feature."
+}

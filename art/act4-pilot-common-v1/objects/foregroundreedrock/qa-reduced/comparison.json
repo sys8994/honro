@@ -1,0 +1,149 @@
+{
+  "raw": "art/act4-pilot-common-v1/objects/foregroundreedrock/raw.svg",
+  "candidate": "art/act4-pilot-common-v1/objects/foregroundreedrock/reduced.svg",
+  "rawStats": {
+    "sourceBytes": 537478,
+    "paths": 7,
+    "commands": 10424,
+    "segments": 9493,
+    "endpointNodesUpperBound": 10424,
+    "explicitCommandLetters": 4099,
+    "subpaths": 931,
+    "pathChars": 537027,
+    "maxPathChars": 114360
+  },
+  "candidateStats": {
+    "sourceBytes": 194755,
+    "paths": 7,
+    "commands": 16546,
+    "segments": 15613,
+    "endpointNodesUpperBound": 16546,
+    "explicitCommandLetters": 16548,
+    "subpaths": 933,
+    "pathChars": 194164,
+    "maxPathChars": 42542
+  },
+  "visualApproval": "NOT REVIEWED",
+  "config": {
+    "width": 600,
+    "scales": [
+      2,
+      4
+    ],
+    "protectedRects": [
+      [
+        424.317617866005,
+        59.55334987593052,
+        59.55334987593052,
+        74.44168734491315
+      ]
+    ],
+    "reviewRects": [
+      [
+        424.317617866005,
+        59.55334987593052,
+        59.55334987593052,
+        74.44168734491315
+      ]
+    ],
+    "limits": {
+      "rgbMAE255": 2,
+      "silhouettePx": 1.5,
+      "protectedRgbMAE255": 1,
+      "protectedPx": 0.5
+    },
+    "protectionMode": "feature",
+    "scaleDeclaration": "600 CSS px wide individual asset; 2 and 4 are supersampling factors, not gameplay zoom. Actual placement pending.",
+    "protectionRationale": "Major pine trunk junction / main reed head ROI. Entire exterior separately protected by silhouette gate; tiny internal texture is not a designated feature.",
+    "sourcePalette": [
+      [
+        19,
+        38,
+        51
+      ],
+      [
+        27,
+        52,
+        70
+      ],
+      [
+        48,
+        76,
+        89
+      ],
+      [
+        84,
+        102,
+        102
+      ],
+      [
+        117,
+        134,
+        124
+      ],
+      [
+        120,
+        138,
+        131
+      ],
+      [
+        155,
+        159,
+        153
+      ]
+    ]
+  },
+  "errors": {
+    "2": {
+      "rgbMAE255": 0.515002429485321,
+      "rgbP99_255": 11.999999046325684,
+      "alphaMAE255": 0.365468829870224,
+      "changedPixelFraction": 0.007683571051241416,
+      "silhouetteMaxOffsetPx": 8.246211251235321,
+      "protectedChangedPixelFraction": 0.019513845806779086,
+      "protectedRgbMAE255": 0.929331362247467,
+      "protectedSilhouetteMaxOffsetPx": 1.0,
+      "protectedColorEdgeMaxOffsetPx": 14.142135623730951,
+      "pass": false
+    },
+    "4": {
+      "rgbMAE255": 0.5111775994300842,
+      "rgbP99_255": 12.999999046325684,
+      "alphaMAE255": 0.3535609543323517,
+      "changedPixelFraction": 0.009226049089469517,
+      "silhouetteMaxOffsetPx": 3.0,
+      "protectedChangedPixelFraction": 0.01739890587107326,
+      "protectedRgbMAE255": 0.8678886890411377,
+      "protectedSilhouetteMaxOffsetPx": 1.4142135623730951,
+      "protectedColorEdgeMaxOffsetPx": 9.486832980505138,
+      "pass": false
+    }
+  },
+  "timings": {
+    "raw-2": {
+      "width": 1200,
+      "height": 631,
+      "decodeMs": 18.229124999999954,
+      "drawMs": 1.090201000000036
+    },
+    "candidate-2": {
+      "width": 1200,
+      "height": 631,
+      "decodeMs": 13.73049199999997,
+      "drawMs": 1.5016539999999736
+    },
+    "raw-4": {
+      "width": 2400,
+      "height": 1263,
+      "decodeMs": 30.318993000000034,
+      "drawMs": 4.882293000000004
+    },
+    "candidate-4": {
+      "width": 2400,
+      "height": 1263,
+      "decodeMs": 26.097391000000016,
+      "drawMs": 4.187021000000016
+    }
+  },
+  "qualityPass": false
+}

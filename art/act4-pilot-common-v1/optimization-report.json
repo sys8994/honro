@@ -1,0 +1,108 @@
+{
+  "status": "REJECTED CANDIDATE - NOT FOR PRODUCTION",
+  "actualGamePlacementVerified": false,
+  "visualApproval": "PENDING ROOT REVIEW",
+  "sourceSHA256": "2c1511a4e5654f75f0398193310734a9d714e671e0f5c443a3b633af2fd88e9b",
+  "assets": {
+    "cliffpine": {
+      "rawSvgBytes": 521538,
+      "reducedSvgBytes": 191427,
+      "runtimeBytes": 189368,
+      "rawExpandedCommands": 10568,
+      "reducedExpandedCommands": 17150,
+      "runtimeNodes": 10,
+      "runtimeMaxPathChars": 38680,
+      "runtimeMaxDepth": 3,
+      "qualityPass": false,
+      "cssErrors": {
+        "2": {
+          "silhouette": 1.0,
+          "protectedSilhouette": 0.5,
+          "protectedColorEdge": 17.67766952966369,
+          "protectedRgbMAE255": 1.6739593744277954
+        },
+        "4": {
+          "silhouette": 0.5590169943749475,
+          "protectedSilhouette": 0.25,
+          "protectedColorEdge": 9.82980162566875,
+          "protectedRgbMAE255": 1.611375331878662
+        }
+      }
+    },
+    "foregroundreedrock": {
+      "rawSvgBytes": 537478,
+      "reducedSvgBytes": 194755,
+      "runtimeBytes": 193574,
+      "rawExpandedCommands": 10424,
+      "reducedExpandedCommands": 16546,
+      "runtimeNodes": 9,
+      "runtimeMaxPathChars": 41877,
+      "runtimeMaxDepth": 3,
+      "qualityPass": false,
+      "cssErrors": {
+        "2": {
+          "silhouette": 4.123105625617661,
+          "protectedSilhouette": 0.5,
+          "protectedColorEdge": 7.0710678118654755,
+          "protectedRgbMAE255": 0.929331362247467
+        },
+        "4": {
+          "silhouette": 0.75,
+          "protectedSilhouette": 0.3535533905932738,
+          "protectedColorEdge": 2.3717082451262845,
+          "protectedRgbMAE255": 0.8678886890411377
+        }
+      }
+    },
+    "overhangpine": {
+      "rawSvgBytes": 516204,
+      "reducedSvgBytes": 195375,
+      "runtimeBytes": 193318,
+      "rawExpandedCommands": 9915,
+      "reducedExpandedCommands": 16192,
+      "runtimeNodes": 11,
+      "runtimeMaxPathChars": 31584,
+      "runtimeMaxDepth": 3,
+      "qualityPass": false,
+      "cssErrors": {
+        "2": {
+          "silhouette": 0.5,
+          "protectedSilhouette": 0.5,
+          "protectedColorEdge": 10.295630140987,
+          "protectedRgbMAE255": 1.3988184928894043
+        },
+        "4": {
+          "silhouette": 0.5,
+          "protectedSilhouette": 0.5,
+          "protectedColorEdge": 7.403546447480424,
+          "protectedRgbMAE255": 1.4394021034240723
+        }
+      }
+    },
+    "reedsteps": {
+      "rawSvgBytes": 636673,
+      "reducedSvgBytes": 229319,
+      "runtimeBytes": 226558,
+      "rawExpandedCommands": 13187,
+      "reducedExpandedCommands": 20808,
+      "runtimeNodes": 11,
+      "runtimeMaxPathChars": 43622,
+      "runtimeMaxDepth": 3,
+      "qualityPass": false,
+      "cssErrors": {
+        "2": {
+          "silhouette": 1.118033988749895,
+          "protectedSilhouette": 1.118033988749895,
+          "protectedColorEdge": 6.363961030678928,
+          "protectedRgbMAE255": 1.9636318683624268
+        },
+        "4": {
+          "silhouette": 0.5590169943749475,
+          "protectedSilhouette": 0.3535533905932738,
+          "protectedColorEdge": 3.7165171868296265,
+          "protectedRgbMAE255": 1.7793571949005127
+        }
+      }
+    }
+  }
+}
