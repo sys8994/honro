@@ -269,3 +269,16 @@ through a passive wrapper. `quantitative-playtest-activity.mjs` covers accepted,
 repeated, rejected, falling, and contactless transitions. This unit checks the
 observer, not an end-to-end candidate drop route; effective landing still requires
 actual changed support/progress and is measured during real subsequent frames.
+
+P01 native follow-up: complete module loading exposed missing DOM presentation
+capabilities (`MutationObserver`, matchMedia change listeners). Do not remove
+those production modules to hide setup errors. The harness now supplies those
+explicit DOM doubles; native Scene is unchanged. One wrong-cwd patch command
+accidentally retried the unchanged failure; this extra attempt is also retained.
+All four probe attempts are under `_local/reports/v4-manifest-probe/`: three
+frame0 setup errors and one frame1 timeout, never four clears. Final run
+`1f2002fb-f0a0-4a38-a437-7a25f205bea3`, source
+`468c395ab1aa919a9a9a731590a4fac8ee64978416b2d433c95edff6a1b56698`,
+passed complete-manifest and live pilot sentinels, found34 enemies/0 awake and
+consumed one actual5184000-byte readback. RSS after launch915MB/final945MB.
+This is setup regression evidence, not long-run memory or gameplay acceptance.

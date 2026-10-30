@@ -36,7 +36,7 @@ export async function createAppAdapter(project,stageId,{entryBuild='campaign-bal
 function installNative(g,nodes){
  const nativeCanvas=()=>{const c=createCanvas(1440,900);Object.defineProperties(c,{clientWidth:{get:()=>c.width},clientHeight:{get:()=>c.height}});c.getBoundingClientRect=()=>({left:0,top:0,width:c.width,height:c.height});c.checkVisibility=()=>true;c.closest=()=>null;return c;};
  class Image extends NativeImage{set src(v){super.src=typeof v==='string'&&v.startsWith('data:')?Buffer.from(v.split(',')[1],'base64'):v;}get src(){return super.src;}}
- Object.assign(g,{Image,Path2D,DOMMatrix,devicePixelRatio:1,matchMedia:()=>({matches:false}),navigator:{userAgent:'stage31-native-app'}});
+ Object.assign(g,{Image,Path2D,DOMMatrix,devicePixelRatio:1,matchMedia:()=>({matches:false,addEventListener(){},removeEventListener(){}}),navigator:{userAgent:'stage31-native-app'}});
  const create=g.document.createElement,get=g.document.getElementById;
  g.document.createElement=tag=>tag==='canvas'?nativeCanvas():create(tag);
  g.document.createTextNode=text=>({textContent:text});
