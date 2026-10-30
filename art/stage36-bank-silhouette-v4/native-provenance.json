@@ -1,0 +1,50 @@
+{
+  "west": {
+    "source": "play-west-source.svg",
+    "sha256": "6b787520eed3ab99541c912f520ec0cce7297d67dc4672c43532d277ee921b97",
+    "paths": 5,
+    "nativeApplication": "Inkscape actual desktop Trace Bitmap",
+    "settings": {
+      "mode": "Multicolor Colors",
+      "scans": 6,
+      "smooth": true,
+      "stack": true,
+      "removeBackground": true,
+      "speckles": 2,
+      "smoothCorners": 1,
+      "optimize": 0.2
+    },
+    "dateUTC": "2026-10-29T16:57:30Z",
+    "concept": "play-west-concept-v2.png",
+    "prompt": "play-west-prompt-v2.txt",
+    "sourceDimensions": [
+      1774,
+      887
+    ],
+    "actor92SourcePx": 34.001666666666665
+  },
+  "east": {
+    "source": "play-east-source.svg",
+    "sha256": "91468cb2c6d6a4be1eac408e0df584158bab546e50d31a95755b744653b61202",
+    "paths": 5,
+    "nativeApplication": "Inkscape actual desktop Trace Bitmap",
+    "settings": {
+      "mode": "Multicolor Colors",
+      "scans": 6,
+      "smooth": true,
+      "stack": true,
+      "removeBackground": true,
+      "speckles": 2,
+      "smoothCorners": 1,
+      "optimize": 0.2
+    },
+    "dateUTC": "2026-10-29T16:57:30Z",
+    "concept": "play-east-concept-v2.png",
+    "prompt": "play-east-prompt-v2.txt",
+    "sourceDimensions": [
+      1774,
+      887
+    ],
+    "actor92SourcePx": 34.001666666666665
+  }
+}
