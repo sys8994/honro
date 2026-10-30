@@ -36,3 +36,25 @@ scale, source anchor correctness and final playable/camera views still require
 visual/engine QA. The report never marks art approved.
 
 Run focused mathematical tests: `node tools/act4-pilot-native/test-fit-module.mjs`.
+
+## Explicit decorative overhang and baked output
+
+`decorativeOverhangMaxSourceUnits` permits a bounded native exterior beyond the
+reviewed support endpoints. Only the *art mapping* is linearly extrapolated there;
+`targetTop` remains exactly the reviewed physical support and collision remains
+empty. The report distinguishes support from extended decorative art. This must
+not turn a decorative end into a false walkable support.
+
+`bakeGeometry: true` applies native path affine transforms and Boolean clipping
+offline, unions each source paint's slices, and serializes at .0001 world-unit grid.
+It partitions only when needed to stay below 58,000 characters. This avoids
+expanding a 50–60-point source profile into >512 repeated symbol nodes. Baked
+geometry is explicitly **not unchanged source path strings**; the original source
+file is unchanged and this is a deliberate contact deformation, not a fidelity
+optimization. Focused actual Canvas fixtures compare baked/symbol pixels.
+
+Failure prevention: fine contact anchors with repeated symbols may exceed the
+fixed node budget. Do not loosen the anchor error or raise engine limits merely
+to fit. Use measured offline baking, then validate/render the actual output.
+Physics/straight-line design acceptance remains independent; do not approve a
+fit to a failed long-straight terrain layout.
