@@ -1,0 +1,10 @@
+{
+  "status": "Single-support technical silhouette study; not integrated or physics tested",
+  "supportId": "west-ledge",
+  "baseline": "tools/act4-pilot/layouts/stage31-v3.json",
+  "intent": "Broken west rock shoulder: receiving incline, sloping landing bench, fractured steep shoulder, broad tactical bench, offset high lip, shallow crown and descending departure tongue. Facet lengths follow these roles, not the 80 CSS threshold.",
+  "top": [[1460,3330],[1520,3300],[1620,3295],[1670,3245],[1750,3220],[1880,3220],[1920,3190],[2000,3195],[2050,3170],[2180,3160],[2230,3188],[2340,3180]],
+  "protected": {"entryEndpoint":[1460,3330],"exitEndpoint":[2340,3180],"departureToBrokenCrossingX":2245},
+  "actor": {"h":92,"r":22,"source":"shared/map/units.js compile hero body; matched actual stage31 Engine probe h=92"},
+  "camera": {"viewportCSS":[1280,720],"center":[1900,3200],"scale":0.7,"DPR":1,"status":"declared normal-policy technical camera, not observed App camera"}
+}

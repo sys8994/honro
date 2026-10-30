@@ -3,12 +3,12 @@
   "stage": 39,
   "width": 8600,
   "height": 6000,
-  "intent": "A low wreck basin lies beneath an ascending rescue approach. The party opens seven wide elevated positions before reaching the four original residents; residents then walk the uninterrupted gentle high refuge bank. Wreck boss remains optional.",
+  "intent": "Composite rescue coast: a high forward route and lower counterfire descent around the optional wreck rejoin a continuous inhabited cliff. Party-only high net/refuge cover protects four residents walking the original gentle escape ramp. The wreck remains optional.",
   "activePlayBounds": {
     "left": 180,
-    "top": 1230,
-    "right": 8200,
-    "bottom": 4700
+    "top": 1410,
+    "right": 8500,
+    "bottom": 4780
   },
   "spawn": {
     "x": 260,
@@ -19,27 +19,271 @@
       "id": "shore",
       "top": [
         [
-          0,
-          4700
+          0.0,
+          4700.0
         ],
         [
-          800,
-          4700
+          81.25,
+          4700.0
         ],
         [
-          1450,
-          5200
+          162.5,
+          4700.0
         ],
         [
-          4400,
-          5200
+          243.75,
+          4700.0
         ],
         [
-          4900,
-          2000
+          325.0,
+          4700.0
+        ],
+        [
+          406.25,
+          4700.0
+        ],
+        [
+          487.5,
+          4700.0
+        ],
+        [
+          568.75,
+          4700.0
+        ],
+        [
+          650.0,
+          4700.0
+        ],
+        [
+          740.0,
+          4750.0
+        ],
+        [
+          830.0,
+          4800.0
+        ],
+        [
+          920.0,
+          4850.0
+        ],
+        [
+          1010.0,
+          4900.0
+        ],
+        [
+          1100.0,
+          4950.0
+        ],
+        [
+          1187.5,
+          5012.5
+        ],
+        [
+          1275.0,
+          5075.0
+        ],
+        [
+          1362.5,
+          5137.5
+        ],
+        [
+          1450.0,
+          5200.0
+        ],
+        [
+          1539.58,
+          5197.5
+        ],
+        [
+          1629.17,
+          5195.0
+        ],
+        [
+          1718.75,
+          5192.5
+        ],
+        [
+          1808.33,
+          5190.0
+        ],
+        [
+          1897.92,
+          5187.5
+        ],
+        [
+          1987.5,
+          5185.0
+        ],
+        [
+          2077.08,
+          5182.5
+        ],
+        [
+          2166.67,
+          5180.0
+        ],
+        [
+          2256.25,
+          5177.5
+        ],
+        [
+          2345.83,
+          5175.0
+        ],
+        [
+          2435.42,
+          5172.5
+        ],
+        [
+          2525.0,
+          5170.0
+        ],
+        [
+          2614.58,
+          5167.5
+        ],
+        [
+          2704.17,
+          5165.0
+        ],
+        [
+          2793.75,
+          5162.5
+        ],
+        [
+          2883.33,
+          5160.0
+        ],
+        [
+          2972.92,
+          5157.5
+        ],
+        [
+          3062.5,
+          5155.0
+        ],
+        [
+          3152.08,
+          5152.5
+        ],
+        [
+          3241.67,
+          5150.0
+        ],
+        [
+          3331.25,
+          5147.5
+        ],
+        [
+          3420.83,
+          5145.0
+        ],
+        [
+          3510.42,
+          5142.5
+        ],
+        [
+          3600.0,
+          5140.0
+        ],
+        [
+          3687.5,
+          5147.5
+        ],
+        [
+          3775.0,
+          5155.0
+        ],
+        [
+          3862.5,
+          5162.5
+        ],
+        [
+          3950.0,
+          5170.0
+        ],
+        [
+          4037.5,
+          5177.5
+        ],
+        [
+          4125.0,
+          5185.0
+        ],
+        [
+          4212.5,
+          5192.5
+        ],
+        [
+          4300.0,
+          5200.0
+        ],
+        [
+          4390.0,
+          4820.0
+        ],
+        [
+          4480.0,
+          4440.0
+        ],
+        [
+          4570.0,
+          4060.0
+        ],
+        [
+          4660.0,
+          3680.0
+        ],
+        [
+          4750.0,
+          3300.0
+        ],
+        [
+          4825.0,
+          2650.0
+        ],
+        [
+          4900.0,
+          2000.0
+        ],
+        [
+          4985.71,
+          2000.0
+        ],
+        [
+          5071.43,
+          2000.0
+        ],
+        [
+          5157.14,
+          2000.0
+        ],
+        [
+          5242.86,
+          2000.0
+        ],
+        [
+          5328.57,
+          2000.0
+        ],
+        [
+          5414.29,
+          2000.0
         ],
         [
           5500,
+          2000
+        ],
+        [
+          5700,
+          2060
+        ],
+        [
+          5910,
+          2020
+        ],
+        [
+          6100,
           2000
         ],
         [
@@ -51,11 +295,27 @@
           1700
         ],
         [
+          6800,
+          1725
+        ],
+        [
+          6870,
+          1700
+        ],
+        [
+          7400,
+          1700
+        ],
+        [
+          7700,
+          1730
+        ],
+        [
           8000,
           1700
         ],
         [
-          8300,
+          8500,
           1650
         ],
         [
@@ -63,210 +323,551 @@
           1650
         ]
       ],
-      "role": "low basin plus continuous real NPC refuge ramp",
+      "role": "low wreck basin merges into one broad inhabited eastern cliff",
       "kind": "ground",
-      "thickness": 170
+      "thickness": 100
     },
     {
       "id": "outer-breakwater",
       "top": [
         [
-          700,
-          4300
+          700.0,
+          4540.0
         ],
         [
-          1330,
-          4300
+          790.0,
+          4510.0
         ],
         [
-          1570,
-          4210
+          880.0,
+          4480.0
+        ],
+        [
+          970.0,
+          4450.0
+        ],
+        [
+          1052.5,
+          4412.5
+        ],
+        [
+          1135.0,
+          4375.0
+        ],
+        [
+          1217.5,
+          4337.5
+        ],
+        [
+          1300,
+          4300
         ]
       ],
-      "role": "entry flank"
+      "role": "rising breakwater"
     },
     {
       "id": "broken-wharf",
       "top": [
         [
-          1440,
-          3900
+          1360.0,
+          4140.0
         ],
         [
-          2140,
+          1430.0,
+          4120.0
+        ],
+        [
+          1500.0,
+          4100.0
+        ],
+        [
+          1570.0,
+          4080.0
+        ],
+        [
+          1640.0,
+          4060.0
+        ],
+        [
+          1720.0,
+          4020.0
+        ],
+        [
+          1800.0,
+          3980.0
+        ],
+        [
+          1880.0,
+          3940.0
+        ],
+        [
+          1960,
           3900
         ]
       ],
-      "role": "shelter above barrage",
+      "role": "supported wharf crown",
       "kind": "overhang",
-      "thickness": 170
+      "thickness": 100,
+      "bottom": [
+        [
+          2030,
+          4160
+        ],
+        [
+          1840,
+          4350
+        ],
+        [
+          1750,
+          4700
+        ],
+        [
+          1950,
+          5170
+        ],
+        [
+          1240,
+          5060
+        ],
+        [
+          1390,
+          4570
+        ],
+        [
+          1320,
+          4320
+        ]
+      ]
     },
     {
       "id": "wreck-lookout",
       "top": [
         [
-          2030,
-          3480
+          2020.0,
+          3740.0
         ],
         [
-          2690,
-          3480
+          2090.0,
+          3717.5
         ],
         [
-          2980,
-          3360
+          2160.0,
+          3695.0
+        ],
+        [
+          2230.0,
+          3672.5
+        ],
+        [
+          2300.0,
+          3650.0
+        ],
+        [
+          2380.0,
+          3612.5
+        ],
+        [
+          2460.0,
+          3575.0
+        ],
+        [
+          2540.0,
+          3537.5
+        ],
+        [
+          2620,
+          3500
         ]
       ],
-      "role": "optional wreck sightline"
+      "role": "fork: high rescue advance or lower wreck counterfire"
     },
     {
       "id": "rescue-rise",
       "top": [
         [
-          2780,
-          3060
+          2680.0,
+          3340.0
         ],
         [
-          3480,
-          3060
+          2770.0,
+          3306.67
+        ],
+        [
+          2860.0,
+          3273.33
+        ],
+        [
+          2950.0,
+          3240.0
+        ],
+        [
+          3032.5,
+          3205.0
+        ],
+        [
+          3115.0,
+          3170.0
+        ],
+        [
+          3197.5,
+          3135.0
+        ],
+        [
+          3280,
+          3100
         ]
       ],
-      "role": "main rise under crossfire"
+      "role": "upper approach"
     },
     {
       "id": "net-overlook",
       "top": [
         [
-          3350,
-          2660
+          3340.0,
+          2940.0
         ],
         [
-          4050,
-          2660
+          3412.5,
+          2917.5
+        ],
+        [
+          3485.0,
+          2895.0
+        ],
+        [
+          3557.5,
+          2872.5
+        ],
+        [
+          3630.0,
+          2850.0
+        ],
+        [
+          3707.5,
+          2812.5
+        ],
+        [
+          3785.0,
+          2775.0
+        ],
+        [
+          3862.5,
+          2737.5
+        ],
+        [
+          3940,
+          2700
         ]
       ],
-      "role": "upper pincer",
-      "kind": "overhang",
-      "thickness": 170
+      "role": "miniboss flank before resident cliff"
     },
     {
       "id": "last-crossing",
       "top": [
         [
-          3910,
-          2240
+          4000.0,
+          2540.0
         ],
         [
-          4570,
-          2240
+          4072.5,
+          2517.5
+        ],
+        [
+          4145.0,
+          2495.0
+        ],
+        [
+          4217.5,
+          2472.5
+        ],
+        [
+          4290.0,
+          2450.0
+        ],
+        [
+          4367.5,
+          2412.5
+        ],
+        [
+          4445.0,
+          2375.0
+        ],
+        [
+          4522.5,
+          2337.5
+        ],
+        [
+          4600,
+          2300
         ]
       ],
-      "role": "rejoin before residents"
+      "role": "final exposed crossing"
     },
     {
       "id": "rescue-balcony",
       "top": [
         [
-          4410,
-          1830
+          4660.0,
+          2140.0
         ],
         [
-          5220,
-          1830
+          4740.0,
+          2093.33
+        ],
+        [
+          4820.0,
+          2046.67
+        ],
+        [
+          4900,
+          2000
         ]
       ],
-      "role": "cover above net; does not carry residents"
+      "role": "short connected rock lip to original residents"
     },
     {
       "id": "basin-left",
       "top": [
         [
-          1900,
-          4640
+          2490.0,
+          3880.0
         ],
         [
-          2700,
-          4640
+          2563.33,
+          3900.0
+        ],
+        [
+          2636.67,
+          3920.0
+        ],
+        [
+          2710.0,
+          3940.0
+        ],
+        [
+          2790.0,
+          3976.67
+        ],
+        [
+          2870.0,
+          4013.33
+        ],
+        [
+          2950,
+          4050
         ]
       ],
-      "role": "optional low flank"
+      "role": "lower sheltered barrage flank"
     },
     {
       "id": "basin-right",
       "top": [
         [
-          3100,
-          4260
+          3000.0,
+          4360.0
         ],
         [
-          3990,
-          4260
+          3090.0,
+          4376.67
+        ],
+        [
+          3180.0,
+          4393.33
+        ],
+        [
+          3270.0,
+          4410.0
+        ],
+        [
+          3340.0,
+          4427.5
+        ],
+        [
+          3410.0,
+          4445.0
+        ],
+        [
+          3480.0,
+          4462.5
+        ],
+        [
+          3550,
+          4480
         ]
       ],
-      "role": "wreck recovery"
+      "role": "second descent and recovery"
+    },
+    {
+      "id": "wreck-court",
+      "top": [
+        [
+          3400,
+          4780
+        ],
+        [
+          3600,
+          4780
+        ],
+        [
+          3890,
+          4740
+        ],
+        [
+          4200,
+          4700
+        ]
+      ],
+      "role": "optional wreck engagement; no added kill condition"
+    },
+    {
+      "id": "return-ramp",
+      "top": [
+        [
+          2400,
+          3900
+        ],
+        [
+          2500,
+          3900
+        ],
+        [
+          2800,
+          4150
+        ],
+        [
+          3100,
+          4460
+        ],
+        [
+          3400,
+          4780
+        ]
+      ],
+      "role": "walkable escape from wreck court"
     },
     {
       "id": "return-crossing",
       "top": [
         [
-          3290,
-          3750
+          2480,
+          3740
         ],
         [
-          4160,
-          3750
+          2580,
+          3740
+        ],
+        [
+          3000,
+          3300
+        ],
+        [
+          3500,
+          3000
         ]
       ],
-      "role": "low branch rejoins rescue rise"
+      "role": "upper escape doubles back into rescue rise"
     },
     {
       "id": "net-cover",
       "top": [
         [
-          5350,
-          1600
+          5350.0,
+          1840.0
         ],
         [
-          6080,
-          1600
+          5422.5,
+          1832.5
+        ],
+        [
+          5495.0,
+          1825.0
+        ],
+        [
+          5567.5,
+          1817.5
+        ],
+        [
+          5640.0,
+          1810.0
+        ],
+        [
+          5722.0,
+          1798.0
+        ],
+        [
+          5804.0,
+          1786.0
+        ],
+        [
+          5886.0,
+          1774.0
+        ],
+        [
+          5968.0,
+          1762.0
+        ],
+        [
+          6050,
+          1750
         ]
       ],
-      "role": "party-only optional overhead cover"
+      "role": "party-only net overwatch, original residents remain below"
     },
     {
       "id": "refuge-overwatch",
       "top": [
         [
-          6250,
-          1230
+          6110.0,
+          1590.0
         ],
         [
-          6950,
-          1230
+          6186.0,
+          1574.0
+        ],
+        [
+          6262.0,
+          1558.0
+        ],
+        [
+          6338.0,
+          1542.0
+        ],
+        [
+          6414.0,
+          1526.0
+        ],
+        [
+          6490.0,
+          1510.0
+        ],
+        [
+          6572.0,
+          1490.0
+        ],
+        [
+          6654.0,
+          1470.0
+        ],
+        [
+          6736.0,
+          1450.0
+        ],
+        [
+          6818.0,
+          1430.0
+        ],
+        [
+          6900,
+          1410
         ]
       ],
-      "role": "optional party overwatch; not required elevation"
+      "role": "party protection of actual walking evacuees"
     }
   ],
-  "covers": [
-    {
-      "id": "wreck-baffle",
-      "x": 2410,
-      "y": 3480,
-      "w": 100,
-      "h": 155
-    },
-    {
-      "id": "rise-baffle",
-      "x": 3110,
-      "y": 3060,
-      "w": 100,
-      "h": 150
-    }
-  ],
+  "covers": [],
   "routes": [
     {
-      "id": "rescue-main",
+      "id": "high-rescue",
       "supports": [
         "shore",
         "outer-breakwater",
@@ -276,23 +877,28 @@
         "net-overlook",
         "last-crossing",
         "rescue-balcony",
+        "shore",
+        "net-cover",
+        "refuge-overwatch",
         "shore"
       ]
     },
     {
-      "id": "wreck-optional",
+      "id": "wreck-counterfire",
       "supports": [
         "shore",
+        "outer-breakwater",
+        "broken-wharf",
+        "wreck-lookout",
         "basin-left",
         "basin-right",
+        "wreck-court",
+        "return-ramp",
         "return-crossing",
-        "rescue-rise"
-      ]
-    },
-    {
-      "id": "overwatch",
-      "supports": [
+        "net-overlook",
+        "last-crossing",
         "rescue-balcony",
+        "shore",
         "net-cover",
         "refuge-overwatch",
         "shore"
@@ -303,7 +909,7 @@
     {
       "id": "entry-screen",
       "support": "outer-breakwater",
-      "x": 1130,
+      "x": 1070,
       "roles": [
         "screen",
         "ranged"
@@ -312,7 +918,7 @@
     {
       "id": "wreck-ranged",
       "support": "wreck-lookout",
-      "x": 2670,
+      "x": 2360,
       "roles": [
         "ranged",
         "disrupt"
@@ -320,36 +926,37 @@
     },
     {
       "id": "wreck-optional",
-      "support": "basin-right",
-      "x": 3600,
+      "support": "wreck-court",
+      "x": 3900,
       "roles": [
         "boss-optional"
       ]
     },
     {
-      "id": "rescue-mini",
-      "support": "rescue-rise",
-      "x": 3350,
-      "roles": [
-        "miniboss",
-        "screen"
-      ]
-    },
-    {
-      "id": "net-pincer",
-      "support": "net-overlook",
-      "x": 3780,
+      "id": "basin-pressure",
+      "support": "basin-right",
+      "x": 3230,
       "roles": [
         "ranged",
         "disrupt"
       ]
     },
     {
+      "id": "rescue-mini",
+      "support": "net-overlook",
+      "x": 3630,
+      "roles": [
+        "miniboss",
+        "screen"
+      ]
+    },
+    {
       "id": "last-screen",
       "support": "last-crossing",
-      "x": 4430,
+      "x": 4300,
       "roles": [
-        "screen"
+        "screen",
+        "ranged"
       ]
     }
   ],
@@ -401,26 +1008,77 @@
   },
   "cameraViews": [
     {
-      "id": "wreck-branch",
-      "x": 2360,
-      "y": 4100,
-      "w": 3200,
-      "h": 2300
+      "id": "upper-rescue-approach",
+      "x": 2700,
+      "y": 3450,
+      "w": 3400,
+      "h": 2400
     },
     {
-      "id": "net-approach",
-      "x": 4640,
-      "y": 2500,
-      "w": 3200,
-      "h": 2300
+      "id": "wreck-counterfire",
+      "x": 3550,
+      "y": 4200,
+      "w": 3000,
+      "h": 2200
     },
     {
-      "id": "rescue-refuge",
-      "x": 6570,
-      "y": 1700,
-      "w": 3200,
-      "h": 2300
+      "id": "actual-resident-escape",
+      "x": 6600,
+      "y": 1850,
+      "w": 3600,
+      "h": 2200
     }
   ],
-  "status": "geometry draft; no physics or art acceptance"
+  "status": "geometry draft; no physics or art acceptance",
+  "connections": [
+    {
+      "fromSupport": "rescue-balcony",
+      "toSupport": "shore",
+      "mode": "walk"
+    },
+    {
+      "fromSupport": "wreck-court",
+      "toSupport": "return-ramp",
+      "mode": "walk"
+    },
+    {
+      "fromSupport": "basin-left",
+      "toSupport": "basin-right",
+      "mode": "walk-off"
+    }
+  ],
+  "geometryNotes": {
+    "registeredWorldHeight": 6000,
+    "authoredActiveHeight": 3370,
+    "mandatoryRouteElevation": 3050,
+    "measuredReachableHeight": null,
+    "jumpEnvelope": {
+      "engineJumpVy": 660,
+      "jumpingGravity": 1000,
+      "idealApex": 217.8,
+      "conservativeRise": 190
+    },
+    "massRule": "One wide eastern coastal cliff and a single finite western wharf root, not a row of repeated pillars.",
+    "rescueContract": "Original four resident IDs at x4920/5050/5180/5310 y2000. Original net5470/2000, anchor6130/2000 and safeX6900..7350/safeY1700 unchanged. Continuous shore slope supports their real walk; no teleport rescue.",
+    "protectedFlats": [
+      {
+        "id": "original-four-residents-and-net",
+        "x1": 4900,
+        "x2": 5500,
+        "y": 2000
+      },
+      {
+        "id": "anchor-work-pad",
+        "x1": 6100,
+        "x2": 6150,
+        "y": 2000
+      },
+      {
+        "id": "four-original-safe-slots",
+        "x1": 6870,
+        "x2": 7400,
+        "y": 1700
+      }
+    ]
+  }
 }

@@ -1,0 +1,211 @@
+{
+  "stageSHA256": "820afd2767fbf275692ef80c02ed8da59424e86bba0aabc21b1a11d6a0f4552f",
+  "visualReview": "Root approved v4 silhouette for full Engine testing; not final native art approval",
+  "geometry": {
+    "stageSHA256": "820afd2767fbf275692ef80c02ed8da59424e86bba0aabc21b1a11d6a0f4552f",
+    "scope": "Geometry only; no art/combat/App acceptance",
+    "edgeBodyChecks": {
+      "passed": 60,
+      "total": 60
+    },
+    "continuousBodyChecks": {
+      "passed": 4,
+      "total": 4
+    },
+    "routes": [
+      {
+        "routeId": "ridge-assault",
+        "cls": "archer",
+        "rounds": 6,
+        "inputJumps": 8,
+        "inputDrops": 4,
+        "groundedBounds": {
+          "left": 260,
+          "right": 6861.7299123147695,
+          "top": 1745.5673391603661,
+          "bottom": 4022.0804619366018
+        },
+        "hpLoss": 0,
+        "passed": true
+      },
+      {
+        "routeId": "ridge-assault",
+        "cls": "mage",
+        "rounds": 6,
+        "inputJumps": 8,
+        "inputDrops": 4,
+        "groundedBounds": {
+          "left": 260,
+          "right": 6853.459577515247,
+          "top": 1745.679372173043,
+          "bottom": 4019.2723313510105
+        },
+        "hpLoss": 0,
+        "passed": true
+      },
+      {
+        "routeId": "ridge-assault",
+        "cls": "knight",
+        "rounds": 6,
+        "inputJumps": 8,
+        "inputDrops": 4,
+        "groundedBounds": {
+          "left": 260,
+          "right": 6854.21296821485,
+          "top": 1745.6480991156477,
+          "bottom": 4019.552544182582
+        },
+        "hpLoss": 0,
+        "passed": true
+      },
+      {
+        "routeId": "ridge-assault",
+        "cls": "occultist",
+        "rounds": 6,
+        "inputJumps": 8,
+        "inputDrops": 4,
+        "groundedBounds": {
+          "left": 260,
+          "right": 6864.996632736915,
+          "top": 1745.3876463610607,
+          "bottom": 4018.6971994993814
+        },
+        "hpLoss": 0,
+        "passed": true
+      }
+    ],
+    "remaining": [
+      "effective movement classification in normal party combat",
+      "enemy/staging integration",
+      "App boarding with authored coordinates",
+      "art acceptance",
+      "Pages deployment"
+    ]
+  },
+  "boarding": {
+    "scope": "Post-combat dock fixture: four production body poses initialized once on the bank, enemies absent, dialogue/DOM receipts omitted. Real event observe creates boat deck; real Engine move/body integration carries each hero aboard; real interact predicate checks completion. Not a normal combat clear or App/render acceptance.",
+    "starts": [
+      {
+        "id": "archer",
+        "x": 6040,
+        "y": 3900,
+        "h": 92,
+        "r": 22,
+        "hp": 995,
+        "validPose": true
+      },
+      {
+        "id": "mage",
+        "x": 6090,
+        "y": 3900,
+        "h": 92,
+        "r": 22,
+        "hp": 1062,
+        "validPose": true
+      },
+      {
+        "id": "knight",
+        "x": 6140,
+        "y": 3900,
+        "h": 92,
+        "r": 22,
+        "hp": 1618,
+        "validPose": true
+      },
+      {
+        "id": "occultist",
+        "x": 6190,
+        "y": 3900,
+        "h": 92,
+        "r": 22,
+        "hp": 1216,
+        "validPose": true
+      }
+    ],
+    "observeFrames": 1990,
+    "boatDeck": {
+      "id": "a4-boat-deck",
+      "x": 6260,
+      "y": 3900,
+      "w": 450,
+      "h": 24,
+      "mat": "wood",
+      "indestructible": true,
+      "oneWay": true,
+      "hp": 9999,
+      "maxHp": 9999
+    },
+    "beforeAllBoarded": false,
+    "afterAllBoarded": true,
+    "completedWithoutInteraction": false,
+    "explicitInteraction": true,
+    "complete": true,
+    "passed": true
+  },
+  "boardingBodyEnds": [
+    {
+      "cls": "archer",
+      "end": {
+        "x": 6320,
+        "y": 3900,
+        "hp": 995
+      },
+      "grounded": true,
+      "supportId": "a4-boat-deck",
+      "probeEligible": false
+    },
+    {
+      "cls": "mage",
+      "end": {
+        "x": 6409.275000000036,
+        "y": 3900,
+        "hp": 1062
+      },
+      "grounded": true,
+      "supportId": "a4-boat-deck",
+      "probeEligible": false
+    },
+    {
+      "cls": "knight",
+      "end": {
+        "x": 6500,
+        "y": 3900,
+        "hp": 1618
+      },
+      "grounded": true,
+      "supportId": "a4-boat-deck",
+      "probeEligible": false
+    },
+    {
+      "cls": "occultist",
+      "end": {
+        "x": 6590,
+        "y": 3900,
+        "hp": 1216
+      },
+      "grounded": true,
+      "supportId": "a4-boat-deck",
+      "probeEligible": true
+    }
+  ],
+  "metricV31": {
+    "definitionVersion": "v3.1-root-authorized-whole-stage-unique-supports",
+    "sourceSHA256": "e1c5974f3fad365e1a88e6d20eac0e732abcb6d73f373299945e257c12de6097",
+    "lengthReferenceCSS": 13873.275448068021,
+    "straightReferenceCSS": {
+      "40": 13659.317675677286,
+      "80": 3738.105047848086,
+      "160": 580.9990366134291
+    },
+    "ratio80": 0.269446466470083,
+    "targetMet": false,
+    "hardCapMet": true
+  },
+  "pending": [
+    "Final native artwork and collision overlay",
+    "34-enemy roster actual support posing by combat owner",
+    "normal App combat/party/event/render receipt calibration",
+    "20% contour target improvement only if visual quality preserved",
+    "34/39 terrain redesign not complete"
+  ]
+}

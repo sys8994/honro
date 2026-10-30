@@ -1,0 +1,62 @@
+{
+  "authority": "Root explicitly changed mandatory denominator to unique whole-stage natural top length at fixed normal reference0.7; old v3 projected camera reports retained separately.",
+  "scope": "Collider top metric, not full artwork/physics acceptance. No natural flat exclusions.",
+  "records": [
+    {
+      "candidate": "v1",
+      "sourceSHA256": "99b4e3872258fd40af135dbeed2762263d2ff93a78291f2b5c94f62736b8cee4",
+      "definitionVersion": "v3.1-root-authorized-whole-stage-unique-supports",
+      "lengthReferenceCSS": 13251.961267106983,
+      "straightReferenceCSS": {
+        "40": 13251.961267106983,
+        "80": 12637.053003819326,
+        "160": 10757.796318249586
+      },
+      "ratio80": 0.9535986975140098,
+      "targetMet": false,
+      "hardCapMet": false
+    },
+    {
+      "candidate": "v3",
+      "sourceSHA256": "84099369ec00cce8abade62925e27d42b06582978112bbae35927f7dc52c4b9c",
+      "definitionVersion": "v3.1-root-authorized-whole-stage-unique-supports",
+      "lengthReferenceCSS": 13331.662188150049,
+      "straightReferenceCSS": {
+        "40": 12976.762123259166,
+        "80": 11799.362880773811,
+        "160": 5933.205697228821
+      },
+      "ratio80": 0.8850631462340658,
+      "targetMet": false,
+      "hardCapMet": false
+    },
+    {
+      "candidate": "v3-plus-single-facet",
+      "sourceSHA256": "11467d7c94f6d72d400b405387bf4e54ff40974db7247e564d2f6a789f7c7e29",
+      "definitionVersion": "v3.1-root-authorized-whole-stage-unique-supports",
+      "lengthReferenceCSS": 13353.78193471235,
+      "straightReferenceCSS": {
+        "40": 12924.00651747299,
+        "80": 11420.731109533317,
+        "160": 5581.33319301023
+      },
+      "ratio80": 0.8552431936787748,
+      "targetMet": false,
+      "hardCapMet": false
+    },
+    {
+      "candidate": "v4",
+      "sourceSHA256": "14d4c8f58b755fd3def3ca4d0fbf3f05fee64282ea674fef6de6bd6fc1f054e4",
+      "definitionVersion": "v3.1-root-authorized-whole-stage-unique-supports",
+      "lengthReferenceCSS": 13875.138647239784,
+      "straightReferenceCSS": {
+        "40": 13765.000489103151,
+        "80": 3738.105047848086,
+        "160": 580.9990366134291
+      },
+      "ratio80": 0.26941028431393127,
+      "targetMet": false,
+      "hardCapMet": true
+    }
+  ]
+}

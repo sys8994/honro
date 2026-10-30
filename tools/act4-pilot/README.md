@@ -34,10 +34,23 @@ projectile gravity 320. Its ideal unskilled apex is 217.8 world units. Stage 31
 therefore uses broad walkable climbing contours between conservative jump seams;
 no engine or player-size change is permitted to make tall steps pass.
 
-Stage 34 and 39 layouts remain **unverified early drafts**. Their original large
-rise seams exceed the real jump envelope and must be reauthored before artwork
-or integration. Stage 31 is the active pilot until its full acceptance is complete.
+Stage 34 has real-Engine edge and continuous upper-court reachability evidence,
+but its direct ascent has no drops; meaningful tactical descent usage and the
+final exit approach remain acceptance gaps. Stage 39 has been reauthored for the
+real jump envelope and retains original resident/net/safe coordinates; its exact
+new geometry is awaiting Engine and four-resident movement checks. Neither is
+ready for artwork freeze or release merely from these source files.
 
 World height, authored support extent and measured grounded trajectory are separate.
 The blueprint's `geometryNotes` preserves these distinctions; blank sky and the
 solid below-ground mass do not count as reached playable height.
+
+## Visual authoring contract
+
+Gray masks are functional solid volumes, **not a prescribed painted silhouette**.
+The artist should replace repetitive narrow-waisted appearances with asymmetric
+folded coastal rock and arched supports. `visual-constraints.json` separates
+protected walking tops, cover colliders and objective seams from that freedom.
+Keep actor headroom and verified travel pockets open; don't expose invisible
+blocking volumes or paint false usable ledges. The final visual/collision overlay
+must be checked at gameplay scale. Technical PNG review is not that art approval.

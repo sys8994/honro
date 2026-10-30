@@ -1,0 +1,118 @@
+{
+  "stageSHA256": "ea9d04eae54b6d1cd784d0c00ca4e5e2bf4325ff28b4089478a6401ace70e3b7",
+  "scope": "Single support actual Engine fixture; per-edge poses and per-direction initial pose are explicit setup, no normal route/combat/art claim.",
+  "visualStatus": "Root approved this one support to proceed to local physics/metric, not final art or game acceptance",
+  "metricStatus": "FAIL: normal mobile43.36% and maximum projected samples remain >=30%; desktop27.65% below hardcap but above20% target; frozen criterion unchanged",
+  "edges": {
+    "passed": 12,
+    "total": 12
+  },
+  "walkChecks": {
+    "passed": 8,
+    "total": 8,
+    "actorH": 92,
+    "actorR": 22,
+    "hpLosses": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ]
+  },
+  "originalMetric": [
+    {
+      "viewportCSS": [
+        1280,
+        720
+      ],
+      "zoom": "minimum",
+      "ratio80": 0.0,
+      "sampleStatus": "MEASURED"
+    },
+    {
+      "viewportCSS": [
+        1280,
+        720
+      ],
+      "zoom": "normal-policy",
+      "ratio80": 0.2764717699707224,
+      "sampleStatus": "MEASURED"
+    },
+    {
+      "viewportCSS": [
+        1280,
+        720
+      ],
+      "zoom": "maximum",
+      "ratio80": 0.9890087512915154,
+      "sampleStatus": "MEASURED"
+    },
+    {
+      "viewportCSS": [
+        390,
+        844
+      ],
+      "zoom": "minimum",
+      "ratio80": 0.0,
+      "sampleStatus": "SHORT_CONTOUR"
+    },
+    {
+      "viewportCSS": [
+        390,
+        844
+      ],
+      "zoom": "normal-policy",
+      "ratio80": 0.4335623279818023,
+      "sampleStatus": "MEASURED"
+    },
+    {
+      "viewportCSS": [
+        390,
+        844
+      ],
+      "zoom": "maximum",
+      "ratio80": 0.9166057469369819,
+      "sampleStatus": "MEASURED"
+    }
+  ],
+  "fixedPhysicalWindow": [
+    {
+      "viewport": [
+        1280,
+        720
+      ],
+      "ratios": [
+        0.2764717699707225,
+        0.2764717699707225,
+        0.2764717699707223
+      ],
+      "maxDelta": 1.6653345369377348e-16
+    },
+    {
+      "viewport": [
+        390,
+        844
+      ],
+      "ratios": [
+        0.4335623279818023,
+        0.4335623279818023,
+        0.4335623279818023
+      ],
+      "maxDelta": 0.0
+    }
+  ],
+  "inputs": {
+    "tools/act4-pilot/layouts/stage31-west-ledge-facet-study.json": "e73974cf3d04aa1d7e587a985f956e6083bd84a23d930de6e999701a75769af9",
+    "tools/act4-pilot/build-facet-candidate.mjs": "ba3ea211fb0b874dc94535f0dfc07d368d32816b29c4b1d20af4a608aa76340f",
+    "tools/act4-pilot/probe-skeleton.mjs": "e7a8fd8c5559c82da9b40bc16c667f43e8554254732365b40daa56e8a9b530f6"
+  },
+  "reproduce": [
+    "python tools/act4-pilot/curve-layout.py tools/act4-pilot/layouts/stage31-v3-controls.json",
+    "node tools/act4-pilot/build-facet-candidate.mjs",
+    "node tools/act4-pilot/probe-skeleton.mjs 31 --dir=_local/reports/act4-pilot/stage31/west-ledge-facet-candidate --support=west-ledge"
+  ]
+}
