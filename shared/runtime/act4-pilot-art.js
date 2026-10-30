@@ -23,7 +23,7 @@ if(S){
  const foreground=S._isForeground;S._isForeground=function(l){return native(l,this.battle)?false:foreground.call(this,l);};
  const landmark=S.landmark;S.landmark=function(c,l,...args){
   const b=this.battle;
-  if(config(b)&&this._nativeArtBackground&&l.id==='a4-31-boat-10'&&l.asset?.id==='a4:boat')return;
+  if(config(b)&&this._nativeArtBackground&&l.id==='a4-31-boat-10'&&l.asset?.id==='a4:boat'){this._nativeArtDeferredBoat={...l};return;}
   if(native(l,b)){
    if(l.nativeArtLayer==='body'&&l.nativeTerrainId&&b.terrain?.find(t=>t.id===l.nativeTerrainId)?.broken)return;
    if(G.HonroVectorArt?.draw(G.HonroVisualStyle?.raw(c)||c,l.asset,l))return;
@@ -38,8 +38,8 @@ if(S){
  };
  // Existing boat event renders in background(), before opaque native scenery.
  // Defer only that existing instance to the world-space live-water pass.
- const background=S.background;S.background=function(c,w,h,b,...args){const prior=this._nativeArtBackground;this._nativeArtBackground=!!config(b);try{return background?.call(this,c,w,h,b,...args);}finally{this._nativeArtBackground=prior;}};
- const water=S.liveWater;S.liveWater=function(c,b,...args){const out=water?.call(this,c,b,...args);if(config(b)){const boat=b.honroAct4PreviewDynamic?.find(l=>l.id==='a4-31-boat-10'&&l.asset?.id==='a4:boat');if(boat)this.landmark(c,boat);}return out;};
+ const background=S.background;S.background=function(c,w,h,b,...args){const prior=this._nativeArtBackground;this._nativeArtDeferredBoat=null;this._nativeArtBackground=!!config(b);try{return background?.call(this,c,w,h,b,...args);}finally{this._nativeArtBackground=prior;}};
+ const water=S.liveWater;S.liveWater=function(c,b,...args){const out=water?.call(this,c,b,...args);const boat=this._nativeArtDeferredBoat;this._nativeArtDeferredBoat=null;if(config(b)&&boat)this.landmark(c,boat);return out;};
  const tone=S.environmentTone;S.environmentTone=function(c,w,h,b,...args){if(config(b)?.preservePalette===true)return;return tone?.call(this,c,w,h,b,...args);};
  const cacheKey=S._worldCacheKey;S._worldCacheKey=function(b,...args){const q=config(b);return cacheKey.call(this,b,...args)+(q?':native-art-1:'+JSON.stringify(q):'');};
 }
