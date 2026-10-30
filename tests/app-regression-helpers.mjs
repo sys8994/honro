@@ -7,8 +7,8 @@ import {readFile,mkdir,writeFile} from 'node:fs/promises';
 import {createHash} from 'node:crypto';
 import {runtime} from '../game/tests/helpers.mjs';
 export const plain=x=>JSON.parse(JSON.stringify(x)),KEY='honro-first-act-profile-1';
-export async function appHarness({productionStory=false}={}){
- const g=await runtime({legacyMaps:false,productionStory}),storage=new Map(),listeners=new Map(),nodes=new Map();let exported;
+export async function appHarness({productionStory=false,preserveCancelInput=false,runtimeFactory=runtime}={}){
+ const g=await runtimeFactory({legacyMaps:false,productionStory}),storage=new Map(),listeners=new Map(),nodes=new Map();let exported;
  function node(){const classes=new Set();return {innerHTML:'',dataset:{},children:[],hidden:false,isConnected:true,tagName:'BUTTON',style:{setProperty(){}},
  classList:{add:k=>classes.add(k),remove:k=>classes.delete(k),contains:k=>classes.has(k),toggle(k,v){v??=!classes.has(k);v?classes.add(k):classes.delete(k);}},
  querySelector(selector){if(selector==='.training-dialog'&&!this.innerHTML.includes('dialog training-dialog'))return null;return node();},querySelectorAll(){return[];},remove(){},append(){},appendChild(){},insertAdjacentHTML(){},getClientRects(){return[{}];},setAttribute(){},removeAttribute(){},matches(){return true;},focus(){g.document.activeElement=this;},click(){},getContext(){return {translate(){},scale(){},save(){},restore(){},clearRect(){}};},toDataURL(){return'';}};}
@@ -23,7 +23,7 @@ export async function appHarness({productionStory=false}={}){
  for(const file of ['journey-images','journey-art','rest-journey','menu-ui','clear-report-ui','equipment-ui','story','training'])vm.runInContext(await readFile(`shared/runtime/${file}.js`,'utf8'),g);
  const source=await readFile('shared/runtime/main.js','utf8'),hook=/    const app=new App\(\),loader=G.HonroCampaignLoader[\s\S]*?(?=    G.HONRO_TOOLS)/;assert.equal((source.match(hook)||[]).length,1);
  vm.runInContext(source.replace(hook,'G.AppRegression={App,fresh};'),g);const {App,fresh}=g.AppRegression;
- for(const name of ['inputs','updateHUD','updateAudio','updateChargeDisplay','cancelInput','drawPortraits'])App.prototype[name]=function(){};
+ for(const name of ['inputs','updateHUD','updateAudio','updateChargeDisplay','cancelInput','drawPortraits'])if(name!=='cancelInput'||!preserveCancelInput)App.prototype[name]=function(){};
  App.prototype.notify=function(text){this.lastNotice=text;};
  const reload=()=>{listeners.clear();return new App();};
  const click=(action,extra={})=>{const el={dataset:{action,...extra},disabled:false};for(const fn of listeners.get('click')||[])fn({target:{closest:()=>el}});};
