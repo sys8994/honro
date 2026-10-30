@@ -1,0 +1,50 @@
+{
+  "id": "density-bg:coastal-house",
+  "name": "포구 집 저밀도 배경",
+  "semanticLayer": "REAR",
+  "category": "architecture",
+  "bounds": {
+    "x": -460,
+    "y": -460,
+    "w": 920,
+    "h": 500
+  },
+  "anchor": {
+    "x": 0,
+    "y": 0
+  },
+  "foot": {
+    "x": 0,
+    "y": 0
+  },
+  "transform": [
+    0.5404484547286302,
+    0,
+    0,
+    0.5404484547286302,
+    -458.30731543978993,
+    -478.7632894512685
+  ],
+  "scaleRange": [
+    0.1,
+    4
+  ],
+  "backgroundRange": [
+    0.1,
+    4
+  ],
+  "params": {
+    "sourceRaw": "coastal-house-raw.svg",
+    "scope": "Render-only original40 footprint and foot; no collision",
+    "inkFit": {
+      "sourceInk": [
+        11.298,
+        34.718,
+        1673.43,
+        851.145
+      ],
+      "height": 460,
+      "rule": "Uniform source ink height; actual bottom foot0, horizontal center0, no whitespace fit"
+    }
+  }
+}

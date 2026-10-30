@@ -1,0 +1,340 @@
+{
+  "source": "density-play:soil32-source",
+  "target": "s32-density:soil-contact",
+  "segments": [
+    {
+      "tile": 0,
+      "lo": 0,
+      "hi": 200,
+      "mirror": false,
+      "transform": [
+        1,
+        -0.029831932773109478,
+        0,
+        0.5,
+        -1600,
+        971.5546218487399
+      ]
+    },
+    {
+      "tile": 0,
+      "lo": 200,
+      "hi": 700,
+      "mirror": false,
+      "transform": [
+        1,
+        -0.02417582417582418,
+        0,
+        0.5,
+        -1600,
+        961.3736263736264
+      ]
+    },
+    {
+      "tile": 0,
+      "lo": 700,
+      "hi": 850,
+      "mirror": false,
+      "transform": [
+        1,
+        0.18376068376068375,
+        0,
+        0.5,
+        -1600,
+        483.11965811965797
+      ]
+    },
+    {
+      "tile": 0,
+      "lo": 850,
+      "hi": 1150,
+      "mirror": false,
+      "transform": [
+        1,
+        0.2065972222222222,
+        0,
+        0.5,
+        -1600,
+        427.1701388888887
+      ]
+    },
+    {
+      "tile": 0,
+      "lo": 1150,
+      "hi": 1490,
+      "mirror": false,
+      "transform": [
+        1,
+        -0.015625,
+        0,
+        0.5,
+        -1600,
+        1038.28125
+      ]
+    },
+    {
+      "tile": 0,
+      "lo": 1490,
+      "hi": 1650,
+      "mirror": false,
+      "transform": [
+        1,
+        0,
+        0,
+        0.5,
+        -1600,
+        990
+      ]
+    },
+    {
+      "tile": 0,
+      "lo": 1650,
+      "hi": 1800,
+      "mirror": false,
+      "transform": [
+        1,
+        -0.17777777777777778,
+        0,
+        0.5,
+        -1600,
+        1567.7777777777778
+      ]
+    },
+    {
+      "tile": 1,
+      "lo": 1800,
+      "hi": 2100,
+      "mirror": true,
+      "transform": [
+        -1,
+        0.17777777777777778,
+        0,
+        0.5,
+        5200,
+        358.88888888888914
+      ]
+    },
+    {
+      "tile": 1,
+      "lo": 2100,
+      "hi": 2110,
+      "mirror": true,
+      "transform": [
+        -1,
+        -0.15555555555555556,
+        0,
+        0.5,
+        5200,
+        1392.2222222222222
+      ]
+    },
+    {
+      "tile": 1,
+      "lo": 2110,
+      "hi": 2550,
+      "mirror": true,
+      "transform": [
+        -1,
+        -0.17118055555555556,
+        0,
+        0.5,
+        5200,
+        1440.5034722222222
+      ]
+    },
+    {
+      "tile": 1,
+      "lo": 2550,
+      "hi": 2750,
+      "mirror": true,
+      "transform": [
+        -1,
+        -0.031009615384615385,
+        0,
+        0.5,
+        5200,
+        1069.0504807692307
+      ]
+    },
+    {
+      "tile": 1,
+      "lo": 2750,
+      "hi": 3200,
+      "mirror": true,
+      "transform": [
+        -1,
+        -0.05384615384615385,
+        0,
+        0.5,
+        5200,
+        1125
+      ]
+    },
+    {
+      "tile": 1,
+      "lo": 3200,
+      "hi": 3400,
+      "mirror": true,
+      "transform": [
+        -1,
+        -0.038461538461538464,
+        0,
+        0.5,
+        5200,
+        1094.2307692307693
+      ]
+    },
+    {
+      "tile": 1,
+      "lo": 3400,
+      "hi": 3600,
+      "mirror": true,
+      "transform": [
+        -1,
+        -0.04411764705882376,
+        0,
+        0.5,
+        5200,
+        1104.411764705883
+      ]
+    },
+    {
+      "tile": 2,
+      "lo": 3600,
+      "hi": 3800,
+      "mirror": false,
+      "transform": [
+        1,
+        -0.04411764705882376,
+        0,
+        0.5,
+        2000,
+        1104.411764705883
+      ]
+    },
+    {
+      "tile": 2,
+      "lo": 3800,
+      "hi": 4450,
+      "mirror": false,
+      "transform": [
+        1,
+        -0.038461538461538464,
+        0,
+        0.5,
+        2000,
+        1094.2307692307693
+      ]
+    },
+    {
+      "tile": 2,
+      "lo": 4450,
+      "hi": 5090,
+      "mirror": false,
+      "transform": [
+        1,
+        -0.015625,
+        0,
+        0.5,
+        2000,
+        1038.28125
+      ]
+    },
+    {
+      "tile": 2,
+      "lo": 5090,
+      "hi": 5400,
+      "mirror": false,
+      "transform": [
+        1,
+        0,
+        0,
+        0.5,
+        2000,
+        990
+      ]
+    },
+    {
+      "tile": 3,
+      "lo": 5400,
+      "hi": 5700,
+      "mirror": true,
+      "transform": [
+        -1,
+        0,
+        0,
+        0.5,
+        8800,
+        990
+      ]
+    },
+    {
+      "tile": 3,
+      "lo": 5700,
+      "hi": 5710,
+      "mirror": true,
+      "transform": [
+        -1,
+        0.275,
+        0,
+        0.5,
+        8800,
+        137.5
+      ]
+    },
+    {
+      "tile": 3,
+      "lo": 5710,
+      "hi": 6100,
+      "mirror": true,
+      "transform": [
+        -1,
+        0.259375,
+        0,
+        0.5,
+        8800,
+        185.78125
+      ]
+    },
+    {
+      "tile": 3,
+      "lo": 6100,
+      "hi": 6350,
+      "mirror": true,
+      "transform": [
+        -1,
+        -0.015625,
+        0,
+        0.5,
+        8800,
+        928.28125
+      ]
+    },
+    {
+      "tile": 3,
+      "lo": 6350,
+      "hi": 6600,
+      "mirror": true,
+      "transform": [
+        -1,
+        -0.038461538461538464,
+        0,
+        0.5,
+        8800,
+        984.2307692307693
+      ]
+    }
+  ],
+  "expandedNodes": 323,
+  "maxDepth": 8,
+  "maxPathChars": 35212,
+  "symbolCount": 1,
+  "bytes": 198307,
+  "sourceBytes": 191706,
+  "sourcePathDataUnchanged": true,
+  "depthScale": 0.5,
+  "artProportionVariant": true,
+  "collision": [],
+  "visualApproval": false,
+  "scope": "Exact affine relative-depth mapping; original source paths shared, original physics unchanged. depthScale != 1 is intentional art proportion change, not raw-fidelity optimization. Palette/repetition/seam review required."
+}
