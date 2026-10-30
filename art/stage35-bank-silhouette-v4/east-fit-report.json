@@ -1,0 +1,36 @@
+{
+  "vertices": 97,
+  "source": "play-east-master.svg",
+  "join": [
+    {
+      "path": "path5",
+      "joinDepthAdjustmentWorld": 0.0,
+      "localBlendWidth": 400
+    },
+    {
+      "path": "path4",
+      "joinDepthAdjustmentWorld": 0.5449033019090344,
+      "localBlendWidth": 400
+    },
+    {
+      "path": "path3",
+      "joinDepthAdjustmentWorld": 8.06931580395375,
+      "localBlendWidth": 400
+    },
+    {
+      "path": "path2",
+      "joinDepthAdjustmentWorld": 21.764794947458892,
+      "localBlendWidth": 400
+    },
+    {
+      "path": "path1",
+      "joinDepthAdjustmentWorld": 19.34895011797762,
+      "localBlendWidth": 400
+    }
+  ],
+  "physicalJoin": [
+    4000,
+    1839.59184
+  ],
+  "status": "actualfullstage reviewpending"
+}

@@ -1,0 +1,75 @@
+{
+  "stage": 34,
+  "status": "native-reviewed-publisher-review-pending",
+  "projectSha256": "139935264700b6804ec8f48918db4fdab145333ba55f2636b8d386a1b1a2aebd",
+  "geometrySha256": "7110d274704f3cb04026c6d74f3dea4fac8e8670503aea6b76889d39b6e7abe0",
+  "compiledSha256": "7d853921190e4302f15a32818a91e48c08f3e2c4818ca619e0d25bdbab6cbd69",
+  "staticCollisionUnchanged": true,
+  "originalGameplayAndElementIdsRetained": true,
+  "visualScope": "Separate cliff BODYv2 and overhang BODY; original props/one-way/dynamic water/crack IDs retained; original act4Sea supplied by production preparation; five noncolliding original env:rock appearances replaced with common traced s34v:coastal-boulder; original IDs, uniform scales and support feet preserved; four noncolliding haul-footing appearances also replaced with uniformly width-fitted traced boulder, aligned to original exact roof/land support",
+  "assets": [
+    {
+      "id": "s34v:contact",
+      "bytes": 2381
+    },
+    {
+      "id": "s34v:body",
+      "bytes": 179774
+    },
+    {
+      "id": "s34v:body-domain-left",
+      "bytes": 190522
+    },
+    {
+      "id": "s34v:body-domain-right",
+      "bytes": 190524
+    },
+    {
+      "id": "s34v:overhang",
+      "bytes": 258008
+    },
+    {
+      "id": "s34v:coastal-boulder",
+      "bytes": 231594
+    },
+    {
+      "id": "s34v:haul-footing",
+      "bytes": 231823
+    },
+    {
+      "id": "s34v:crack",
+      "bytes": 451239
+    }
+  ],
+  "source": "tools/stage34-production/README.md",
+  "normalInput": {
+    "success": true,
+    "frame": 20333,
+    "resume": [
+      {
+        "frame": 4847,
+        "inputIndex": 21,
+        "result": "pass",
+        "scope": "Actual stopBattle/persist/Continue; exact units, event state, round, active and phase preserved"
+      }
+    ],
+    "testedProjectSha256": "65a0622d66a7e8155e0809dae6bf3e7f41929779d798a395aeb40d24c7901653",
+    "scopeNote": "Previous candidate real App proof retained. Latest decorative-only four-footing substitution separately has exact gameplay/compiled-collision assertions and direct actual Scene review; full tape not relabeled as rerun."
+  },
+  "reviewDirectory": "art/stage34-vector-production/remnant-review",
+  "dependencies": [
+    "shared/map/vector-art.js internal symbols + strict pixelSnapClip",
+    "shared/runtime/act4-art.js opt-in vectorGround",
+    "shared runtime save-size fix61e66f0 and current Act4 release rev2"
+  ],
+  "publication": "Parent owns remote/master/Pages; no runtime/world/generated build edits by Stage34 producer",
+  "propTraceParity": "prop-parity-check.json",
+  "functionalCrackPolish": {
+    "asset": "s34v:crack",
+    "source": "art/vector-common-production/cracked-sea-rock-optimization.json",
+    "preserved": "Original element/event IDs,x,y,scale, interactions and collision",
+    "pose": "Rigid original support tangent about unchanged foot",
+    "reviewDirectory": "art/stage34-vector-production/crack-review",
+    "scope": "Actual Native Scene and exact gameplay/collider assertions; earlier full App receipts retain original testedProjectSha256"
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "scope": "Exact same ordinary App tape before/after scenic prop substitution; only sourceRun/campaignRunId normalized, not game state",
+  "beforeProjectSha256": "2b12e5491ad4146863e2873571cc5a74ff30d3e4ac1a639061376f90d35e3d69",
+  "afterProjectSha256": "65a0622d66a7e8155e0809dae6bf3e7f41929779d798a395aeb40d24c7901653",
+  "identicalFields": [
+    "success",
+    "frame",
+    "resume",
+    "recoveryChecks",
+    "groups",
+    "transitions",
+    "shots",
+    "hurts",
+    "impacts",
+    "trace",
+    "final"
+  ],
+  "frame": 20333,
+  "success": true,
+  "saveContinueIdentical": true,
+  "traceSha256": "9796708e3c10720e4975bbfef4aa17e33112ea38609842badcbf60286099f9a8",
+  "originalColliderEquality": "Asserted independently by assemble.mjs",
+  "artApproval": "Separate direct Native normal/mobile/overhang inspection; not automatic approval"
+}

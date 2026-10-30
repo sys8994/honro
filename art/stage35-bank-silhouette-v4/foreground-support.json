@@ -1,0 +1,24 @@
+{
+  "source": "existing native source-derived a4-35-land contour",
+  "sourceVertices": 259,
+  "affine": {
+    "verticalScale": 0.15,
+    "shear": -0.018677248793922824,
+    "translateY": 3755.8303700034203
+  },
+  "sourceTerrainSHA256": "a10f5c21511ddce020fda8f46b0af89d26c7a676023d54d1024424509a972127",
+  "feet": [
+    {
+      "x": 2070,
+      "rootY": 4050,
+      "groundY": 4015
+    },
+    {
+      "x": 4310,
+      "rootY": 4000,
+      "groundY": 3965
+    }
+  ],
+  "physicalFieldsUnchanged": true,
+  "status": "actual visual inspection pending"
+}

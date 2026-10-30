@@ -1,0 +1,101 @@
+{
+  "stageId": "stage-34",
+  "geometrySha256": "7110d274704f3cb04026c6d74f3dea4fac8e8670503aea6b76889d39b6e7abe0",
+  "compiledSha256": "7d853921190e4302f15a32818a91e48c08f3e2c4818ca619e0d25bdbab6cbd69",
+  "protected": {
+    "terrains": [
+      "a4-34-land",
+      "a4-34-natural-overhang",
+      "a4-34-return-cut"
+    ],
+    "water": [
+      {
+        "id": "34-shore",
+        "kind": "recover",
+        "x1": 0,
+        "x2": 1050,
+        "surface": 5350,
+        "entryLeft": [
+          0,
+          700
+        ],
+        "entryRight": [
+          1000,
+          1500
+        ]
+      },
+      {
+        "id": "34-open-sea",
+        "kind": "lethal",
+        "x1": 7100,
+        "x2": 7600,
+        "surface": 5800
+      }
+    ],
+    "wrongExit": {
+      "actor": "a4-34-g0-1",
+      "entrance": {
+        "x": 2520,
+        "y": 4329
+      },
+      "exit": {
+        "x": 3100,
+        "y": 3420
+      },
+      "optional": true
+    },
+    "actors": [
+      {
+        "id": "archer",
+        "x": 260,
+        "y": 5100
+      },
+      {
+        "id": "mage",
+        "x": 380,
+        "y": 5100
+      },
+      {
+        "id": "knight",
+        "x": 500,
+        "y": 5100
+      },
+      {
+        "id": "occultist",
+        "x": 620,
+        "y": 5100
+      },
+      {
+        "id": "a4-34-g0-0",
+        "x": 1760,
+        "y": 4619.428571428572
+      },
+      {
+        "id": "a4-34-g0-1",
+        "x": 2350,
+        "y": 4424
+      },
+      {
+        "id": "a4-34-g1-0",
+        "x": 3910,
+        "y": 3718
+      },
+      {
+        "id": "a4-34-g1-1",
+        "x": 4820,
+        "y": 3353.75
+      },
+      {
+        "id": "a4-34-g2-0",
+        "x": 6130,
+        "y": 2649
+      },
+      {
+        "id": "a4-34-g2-1",
+        "x": 6630,
+        "y": 2539.8
+      }
+    ]
+  },
+  "scope": "Exact official geometry. Separate BODY land and overhang; concepts exclude water, props, platforms, actors and event marks."
+}
