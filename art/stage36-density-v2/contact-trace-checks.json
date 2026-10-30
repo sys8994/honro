@@ -1,0 +1,27 @@
+{
+  "trace": {
+    "tool": "Inkscape1.4 native GUI",
+    "mode": "Colors",
+    "scans": 8,
+    "smooth": true,
+    "stack": true,
+    "removeBackground": true,
+    "speckles": 2,
+    "smoothCorners": 1,
+    "optimize": 0.2
+  },
+  "sourceSize": [
+    2172,
+    724
+  ],
+  "mapping": "Whole source canvas mapped to immutable world guide [1600,1850,1800,600]; no ink-fit crop",
+  "selected": "simplify-0.0001",
+  "commandsRaw": 4571,
+  "commandsFinal": 3322,
+  "runtimeNodes": 11,
+  "rawSha256": "a2ed84238244a63968d8b2833930544f4950e4b5d469ed621ab877225e5fa33d",
+  "review": "Normal runtime render inspected: continuous narrow contact strip, medium-scale earth planes and stone shapes. Whole-screen integration remains separate.",
+  "protectedGate": "Initial1x .5px gate fails due integer1px sample; 8x full band remeasurement .125normalpx passes unchanged .5px limit. Stronger .0003 candidate rejected for .625px. Retain reports.",
+  "collision": "Unchanged; integrator clips to original authored terrain.",
+  "integrationReview": "REJECTED: actual scene shows rectangular ribbon/hard end cuts; replace concept or authored blending before acceptance. Optimization preservation pass is not artwork acceptance."
+}

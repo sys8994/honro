@@ -1,0 +1,31 @@
+{
+  "id": "s36-density:contact-clusters",
+  "name": "36장 분리형 흙·돌 접촉군",
+  "semanticLayer": "SURFACE",
+  "category": "ground",
+  "bounds": {
+    "x": 1600,
+    "y": 1850,
+    "w": 1800,
+    "h": 600
+  },
+  "anchor": {
+    "x": 0,
+    "y": 0
+  },
+  "foot": {
+    "x": 0,
+    "y": 0
+  },
+  "transform": [
+    0.8287292817679558,
+    0,
+    0,
+    0.8287292817679558,
+    1600,
+    1850
+  ],
+  "params": {
+    "sourceRole": "Discontinuous transparent soil and pebble clusters; no continuous basebar"
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "candidateSHA256": "eec76ca1aaa36fd374a4d18c8e04c88a03ebe2033db0db31bcb1092f91d713c6",
+  "assets": [
+    {
+      "asset": "s36-silhouette:west-native-v4",
+      "expandedRuntimeNodes": 444,
+      "clipCount": 42,
+      "bytes": 62534
+    },
+    {
+      "asset": "s36-silhouette:east-native-v4",
+      "expandedRuntimeNodes": 268,
+      "clipCount": 26,
+      "bytes": 41799
+    },
+    {
+      "asset": "s36-silhouette:west-technical-domain-v4",
+      "expandedRuntimeNodes": 125,
+      "clipCount": 13,
+      "bytes": 54664
+    },
+    {
+      "asset": "s36-silhouette:east-technical-domain-v4",
+      "expandedRuntimeNodes": 125,
+      "clipCount": 13,
+      "bytes": 38474
+    }
+  ],
+  "runtimeNodeBudgetPerAsset": 512,
+  "strictValidatorErrors": []
+}

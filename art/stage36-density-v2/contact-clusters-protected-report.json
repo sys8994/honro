@@ -1,0 +1,107 @@
+{
+  "raw": "art/stage36-density-v2/contact-clusters-raw.svg",
+  "candidate": "_local/reports/stage36-density-v2/contact-clusters/simplify-0.0001.svg",
+  "metric": "protected alpha silhouette; no palette-island displacement claim",
+  "supersample": 8,
+  "normalPixelSamplingStep": 0.125,
+  "visualApproval": "NOT REVIEWED",
+  "regions": [
+    [
+      30,
+      57,
+      55,
+      55
+    ],
+    [
+      180,
+      70,
+      65,
+      55
+    ],
+    [
+      750,
+      100,
+      70,
+      55
+    ],
+    [
+      0,
+      45,
+      990,
+      80
+    ]
+  ],
+  "errors": {
+    "1": {
+      "samples": [
+        {
+          "region": 0,
+          "protectedSilhouetteMaxOffsetPx": 0.25,
+          "supersampledPixelOffset": 2.0,
+          "protectedRgbMAE255": 0.473336786031723,
+          "protectedChangedPixelFraction": 0.007159090909090909
+        },
+        {
+          "region": 1,
+          "protectedSilhouetteMaxOffsetPx": 0.25,
+          "supersampledPixelOffset": 2.0,
+          "protectedRgbMAE255": 0.43802574276924133,
+          "protectedChangedPixelFraction": 0.0071984265734265735
+        },
+        {
+          "region": 2,
+          "protectedSilhouetteMaxOffsetPx": 0.25,
+          "supersampledPixelOffset": 2.0,
+          "protectedRgbMAE255": 0.3929171860218048,
+          "protectedChangedPixelFraction": 0.006781655844155844
+        },
+        {
+          "region": 3,
+          "protectedSilhouetteMaxOffsetPx": 0.2795084971874737,
+          "supersampledPixelOffset": 2.23606797749979,
+          "protectedRgbMAE255": 0.18428218364715576,
+          "protectedChangedPixelFraction": 0.0029819681186868687
+        }
+      ],
+      "protectedSilhouetteMaxOffsetPx": 0.2795084971874737,
+      "limitPx": 0.5,
+      "silhouettePass": true
+    },
+    "2": {
+      "samples": [
+        {
+          "region": 0,
+          "protectedSilhouetteMaxOffsetPx": 0.375,
+          "supersampledPixelOffset": 3.0,
+          "protectedRgbMAE255": 0.4235844016075134,
+          "protectedChangedPixelFraction": 0.006346849173553719
+        },
+        {
+          "region": 1,
+          "protectedSilhouetteMaxOffsetPx": 0.375,
+          "supersampledPixelOffset": 3.0,
+          "protectedRgbMAE255": 0.3971664607524872,
+          "protectedChangedPixelFraction": 0.006186625874125874
+        },
+        {
+          "region": 2,
+          "protectedSilhouetteMaxOffsetPx": 0.45069390943299864,
+          "supersampledPixelOffset": 3.605551275463989,
+          "protectedRgbMAE255": 0.3466797173023224,
+          "protectedChangedPixelFraction": 0.005537743506493506
+        },
+        {
+          "region": 3,
+          "protectedSilhouetteMaxOffsetPx": 0.673145600891813,
+          "supersampledPixelOffset": 5.385164807134504,
+          "protectedRgbMAE255": 0.1682443916797638,
+          "protectedChangedPixelFraction": 0.0025950422190656568
+        }
+      ],
+      "protectedSilhouetteMaxOffsetPx": 0.673145600891813,
+      "limitPx": 1.0,
+      "silhouettePass": true
+    }
+  },
+  "silhouettePass": true
+}

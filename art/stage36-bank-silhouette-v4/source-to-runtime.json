@@ -1,0 +1,61 @@
+{
+  "stage": 36,
+  "pipeline": "gameplay skeleton \u2192 imagegen v2 concepts \u2192 actual Inkscape 6-color trace \u2192 bounded optimization (raw retained) \u2192 source-derived contact/courtyard preservation \u2192 dawn palette \u2192 actual App QA",
+  "usedSources": [
+    {
+      "region": "west",
+      "files": [
+        {
+          "file": "play-west-concept-v2.png",
+          "sha256": "f6732b76de7e8d2e7aa8b1524e839c07fd7b33a3763284cbaab36e607a649406"
+        },
+        {
+          "file": "play-west-source.svg",
+          "sha256": "6b787520eed3ab99541c912f520ec0cce7297d67dc4672c43532d277ee921b97"
+        },
+        {
+          "file": "play-west-master.svg",
+          "sha256": "9e68715fed4e4daca1a9cb8b87bf0ce0669e640ae1beb05a68eca6b8b8f94c60"
+        },
+        {
+          "file": "play-west-registered.svg",
+          "sha256": "3d49fc0688e236998079a8fef4f6aaf00afa0036f2e84c8ac4bf3eacc69e71d9"
+        }
+      ]
+    },
+    {
+      "region": "east",
+      "files": [
+        {
+          "file": "play-east-concept-v2.png",
+          "sha256": "2339c91afcd77de59e1f29e102aa59ea9109b72439809e8d285128400e0ce420"
+        },
+        {
+          "file": "play-east-source.svg",
+          "sha256": "91468cb2c6d6a4be1eac408e0df584158bab546e50d31a95755b744653b61202"
+        },
+        {
+          "file": "play-east-master.svg",
+          "sha256": "ceb190c7bf586c2d94118ed419fa3e3af3f231d31ed2d8de6f7078a3ad08bb92"
+        },
+        {
+          "file": "play-east-registered.svg",
+          "sha256": "0c068d29a0bf4cbc9e4b7765ce003e8ee612c256104790ad5c71b75a6a4ac388"
+        }
+      ]
+    }
+  ],
+  "notUsed": [
+    "domain-base-concept.png (low-resolution technical trial)",
+    "play-west-concept-v1.png (rejected contour)",
+    "play-east-concept-v1.png (rejected contour)"
+  ],
+  "preservedFunctionalAnchors": [
+    "home courtyard x1970\u20133190",
+    "house a4-36-house-2570 transform",
+    "functional a4-36-door-4 transform/identity/foreshortening"
+  ],
+  "selectedCandidateSHA256": "eec76ca1aaa36fd374a4d18c8e04c88a03ebe2033db0db31bcb1092f91d713c6",
+  "runtimeSHA256": "9278a691f97be21437b58fe67cdffa6a7e031da6666b2b34faa2e6f6829e0544",
+  "approval": "pending ordinary gameplay and final visual review"
+}

@@ -1,0 +1,61 @@
+{
+  "operation": "native inner-face seam registration, not simplification",
+  "joinWorld": 3600,
+  "transitionWorld": 650,
+  "targetLayerDepthsWorld": [
+    0.0,
+    5.603493391631181,
+    21.563724075235022,
+    44.31847975056125,
+    141.28535139259293
+  ],
+  "outerContourUnchanged": true,
+  "sides": {
+    "west": {
+      "sourceLayerDepthsWorld": [
+        0.0,
+        5.905538484703079,
+        35.40795821341989,
+        45.12986598506856,
+        95.60842011993786
+      ],
+      "innerLayerOffsetsWorld": [
+        -0.3020450930718983,
+        -13.844234138184866,
+        -0.8113862345073101,
+        45.67693127265506
+      ],
+      "intactDetailReposition": [
+        {
+          "layer": 2,
+          "sourceBounds": [
+            1612.5,
+            1633.617354586136,
+            299.1720189406508,
+            302.9020389351369
+          ],
+          "translateXSource": -22.450687919469146,
+          "reason": "retain intact native highlight/hole instead of cropping it at seam"
+        }
+      ],
+      "sourceOuterUnchanged": true
+    },
+    "east": {
+      "sourceLayerDepthsWorld": [
+        0.0,
+        5.301448298559282,
+        7.719489937050159,
+        43.507093516053935,
+        186.962282665248
+      ],
+      "innerLayerOffsetsWorld": [
+        0.3020450930718992,
+        13.844234138184861,
+        0.8113862345073173,
+        -45.67693127265508
+      ],
+      "intactDetailReposition": [],
+      "sourceOuterUnchanged": true
+    }
+  }
+}

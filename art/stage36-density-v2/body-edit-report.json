@@ -1,0 +1,82 @@
+{
+  "scope": "Intentional old palette\u21923-tone art redesign. Only NEW palette\u2192Inkscape union fidelity measured here. Not auto art approval.",
+  "width": 4200,
+  "imageSize": [
+    4200,
+    1668
+  ],
+  "meanRGBAError255": [
+    0.0052772068059837845,
+    0.004372359255452781,
+    0.002815176430284344,
+    0.006247145141030033
+  ],
+  "maxRGBAError255": [
+    170,
+    170,
+    170,
+    192
+  ],
+  "exactRGBA": false,
+  "sourcePaths": 11,
+  "resultPaths": 3,
+  "originalPalette": [
+    "#a69f95",
+    "#8e8475",
+    "#86796a",
+    "#70706b",
+    "#716e68",
+    "#6d6c68",
+    "#6e665c",
+    "#5b6467",
+    "#51585a",
+    "#404b51",
+    "#35424a"
+  ],
+  "newPalette": [
+    "#807b6c",
+    "#726f64",
+    "#666a62"
+  ],
+  "actions": "Actual Inkscape object-set-property then contiguous path-union, source raw unchanged",
+  "physics": "Config retains original exact terrain body clip",
+  "changedFractionOver16": 0.00011348064405618362,
+  "alphaBoundaryHausdorffPixels": 1.0,
+  "protectedContactBandWidthPixels": 12,
+  "protectedMeanRGBAError255": [
+    0.05617388131186425,
+    0.04908087396797883,
+    0.03179309401085618,
+    0.0
+  ],
+  "protectedMaxRGBAError255": [
+    12,
+    10,
+    7,
+    0
+  ],
+  "protectedChangedFractionOver16": 0.0,
+  "interpretation": "Small alpha/AA differences retained; exact-pixel claim rejected. Actual physical contact clip unchanged; protected contact pixels measured separately.",
+  "maxZoom": {
+    "width": 8600,
+    "approxWorldZoom": 1.1025641025641026,
+    "meanRGBAError255": [
+      0.002959057240891019,
+      0.002460650291378465,
+      0.0016546960949839333,
+      0.0007944147922226458
+    ],
+    "protectedMeanRGBAError255": [
+      0.03381353833564822,
+      0.029350646554044596,
+      0.01900362845483812,
+      0.0
+    ],
+    "protectedAlphaRange": [
+      0,
+      0
+    ]
+  },
+  "runtimeBytes": 55417,
+  "originalRuntimeBytes": 216770
+}

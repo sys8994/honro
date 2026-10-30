@@ -1,0 +1,100 @@
+{
+  "width": 990,
+  "scales": [
+    1,
+    2
+  ],
+  "protectionMode": "contact",
+  "protectedPolylines": [
+    {
+      "points": [
+        [
+          0.0,
+          56.294117647058776
+        ],
+        [
+          110.00000000000001,
+          66.0
+        ],
+        [
+          467.50000000000006,
+          93.50000000000001
+        ],
+        [
+          819.5000000000001,
+          104.50000000000001
+        ],
+        [
+          990.0000000000001,
+          104.50000000000001
+        ]
+      ],
+      "width": 14
+    }
+  ],
+  "protectedRects": [
+    [
+      30,
+      57,
+      55,
+      55
+    ],
+    [
+      180,
+      70,
+      65,
+      55
+    ],
+    [
+      750,
+      100,
+      70,
+      55
+    ],
+    [
+      0,
+      45,
+      990,
+      80
+    ]
+  ],
+  "reviewRects": [
+    [
+      0,
+      40,
+      990,
+      120
+    ]
+  ],
+  "asset": {
+    "id": "s36-density:contact-clusters",
+    "name": "36\uc7a5 \ubd84\ub9ac\ud615 \ud759\u00b7\ub3cc \uc811\ucd09\uad70",
+    "semanticLayer": "SURFACE",
+    "category": "ground",
+    "bounds": {
+      "x": 1600,
+      "y": 1850,
+      "w": 1800,
+      "h": 600
+    },
+    "anchor": {
+      "x": 0,
+      "y": 0
+    },
+    "foot": {
+      "x": 0,
+      "y": 0
+    },
+    "transform": [
+      0.8287292817679558,
+      0,
+      0,
+      0.8287292817679558,
+      1600,
+      1850
+    ],
+    "params": {
+      "sourceRole": "Discontinuous transparent soil and pebble clusters; no continuous basebar"
+    }
+  }
+}

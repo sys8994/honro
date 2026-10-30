@@ -1,0 +1,48 @@
+{
+  "sourceByteSHA256": "eec76ca1aaa36fd374a4d18c8e04c88a03ebe2033db0db31bcb1092f91d713c6",
+  "functionalFieldsByteEquivalent": {
+    "units": true,
+    "events": true,
+    "encounters": true,
+    "objectives": true,
+    "markers": true,
+    "initialState": true,
+    "playBounds": true,
+    "terrainBounds": true
+  },
+  "protectedCourtyardWorld": [
+    1970,
+    3190
+  ],
+  "courtyardMaxSupportDeltaWorld": 3.076923121625441e-06,
+  "serializationToleranceWorld": 1e-05,
+  "protectedInstanceTransformParity": {
+    "a4-36-house-2570": {
+      "x": true,
+      "y": true,
+      "scale": true,
+      "rotation": true,
+      "snap": true,
+      "layer": true,
+      "depthLayer": true
+    },
+    "a4-36-door-4": {
+      "x": true,
+      "y": true,
+      "scale": true,
+      "rotation": true,
+      "snap": true,
+      "layer": true,
+      "depthLayer": true
+    }
+  },
+  "doorMechanicalAssetId": "a4:door",
+  "doorVectorGeometryUnchanged": true,
+  "doorForeshorteningUnchanged": true,
+  "terrainDomain": [
+    -6000,
+    13200,
+    27100
+  ],
+  "ordinaryDoorLifecycle": "not proved by static test; actual input replay required"
+}

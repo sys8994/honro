@@ -1,0 +1,28 @@
+{
+  "trace": {
+    "tool": "Inkscape1.4 native GUI",
+    "mode": "Colors",
+    "scans": 8,
+    "smooth": true,
+    "stack": true,
+    "removeBackground": true,
+    "speckles": 2,
+    "smoothCorners": 1,
+    "optimize": 0.2
+  },
+  "sourceSize": [
+    2172,
+    724
+  ],
+  "rawSha256": "9e3b39bb8c77398411b75939f0361d67df44a40221c455a1c886f0e9d12c6bdd",
+  "selected": "simplify-0.0001",
+  "commandsRaw": 4811,
+  "commandsFinal": 3700,
+  "runtimeNodes": 11,
+  "protected": "8x measurement passes0.279508normalpx<=0.5; original1x report fails integer boundary1px; both retained.",
+  "mapping": "Same2172x724canvas mappedto immutable [1600,1850,1800,600] worldguide; nofitcrop",
+  "artReview": "Rawcluster integration fixed ribbon but creamoutermatte halo rejected. NativeInkscape recolored path8 ONLY from#a6a19a to#807b6c matching quietBODY. No path geometry change. Runtime standalone viewed; scene review pending.",
+  "preferredAsset": "contact-clusters-blended-asset.json",
+  "recolorIntent": "Intentionalartcleanup, NOT raw-fidelity optimization; new blendedraw stored separately for errorcomparison",
+  "sourceRetained": "All originalconcept/source/raw/failedhalo candidates retained. No renderer limit change. No collision change."
+}
