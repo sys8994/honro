@@ -1,0 +1,197 @@
+[
+ {
+  "name": "struct-x3",
+  "layer": "STRUCT",
+  "module": "x3",
+  "bounds": [
+   -1604,
+   1907,
+   3304,
+   3074
+  ],
+  "paths": 2,
+  "terrain": null
+ },
+ {
+  "name": "struct-x7",
+  "layer": "STRUCT",
+  "module": "x7",
+  "bounds": [
+   4556,
+   2211,
+   5016,
+   2613
+  ],
+  "paths": 3,
+  "terrain": null
+ },
+ {
+  "name": "body-cave-roof",
+  "layer": "BODY",
+  "module": "cave-roof",
+  "bounds": [
+   -1604,
+   556,
+   3306,
+   2864
+  ],
+  "paths": 7,
+  "terrain": "pilot38-cave-roof"
+ },
+ {
+  "name": "body-ledges",
+  "layer": "BODY",
+  "module": "ledges",
+  "bounds": [
+   3196,
+   2784,
+   4324,
+   4404
+  ],
+  "paths": 7,
+  "terrain": "pilot38-ledges"
+ },
+ {
+  "name": "body-mound-west",
+  "layer": "BODY",
+  "module": "mound-west",
+  "bounds": [
+   806,
+   2631,
+   1344,
+   2884
+  ],
+  "paths": 7,
+  "terrain": "pilot38-mound-west"
+ },
+ {
+  "name": "body-mound-east",
+  "layer": "BODY",
+  "module": "mound-east",
+  "bounds": [
+   1806,
+   2730,
+   2314,
+   3114
+  ],
+  "paths": 7,
+  "terrain": "pilot38-mound-east"
+ },
+ {
+  "name": "body-east-bluff",
+  "layer": "BODY",
+  "module": "east-bluff",
+  "bounds": [
+   4996,
+   1899,
+   7200,
+   2444
+  ],
+  "paths": 6,
+  "terrain": "pilot38-east-bluff"
+ },
+ {
+  "name": "body-shore",
+  "layer": "BODY",
+  "module": "shore",
+  "bounds": [
+   -1604,
+   2775,
+   3304,
+   4404
+  ],
+  "paths": 6,
+  "terrain": "pilot38-shore"
+ },
+ {
+  "name": "body-east",
+  "layer": "BODY",
+  "module": "east",
+  "bounds": [
+   4296,
+   2376,
+   8804,
+   4404
+  ],
+  "paths": 6,
+  "terrain": "pilot38-east"
+ },
+ {
+  "name": "body-cave-rock",
+  "layer": "BODY",
+  "module": "cave-rock",
+  "bounds": [
+   1552,
+   2671,
+   1678,
+   2805
+  ],
+  "paths": 2,
+  "terrain": "pilot38-cave-rock"
+ },
+ {
+  "name": "body-bluff-boulder",
+  "layer": "BODY",
+  "module": "bluff-boulder",
+  "bounds": [
+   6092,
+   1886,
+   6208,
+   2020
+  ],
+  "paths": 2,
+  "terrain": "pilot38-bluff-boulder"
+ },
+ {
+  "name": "surface-bluff-stairs",
+  "layer": "SURFACE",
+  "module": "bluff-stairs",
+  "bounds": [
+   4556,
+   2156,
+   5014,
+   2628
+  ],
+  "paths": 4,
+  "terrain": "pilot38-bluff-stairs"
+ },
+ {
+  "name": "rear-x9",
+  "layer": "REAR",
+  "module": "x9",
+  "bounds": [
+   6476,
+   1758,
+   6724,
+   1972
+  ],
+  "paths": 3,
+  "terrain": null
+ },
+ {
+  "name": "fore-x7",
+  "layer": "FORE",
+  "module": "x7",
+  "bounds": [
+   4372,
+   2541,
+   4422,
+   2630
+  ],
+  "paths": 2,
+  "terrain": null
+ },
+ {
+  "name": "fore-x8",
+  "layer": "FORE",
+  "module": "x8",
+  "bounds": [
+   5972,
+   1940,
+   6022,
+   2029
+  ],
+  "paths": 2,
+  "terrain": null
+ }
+]

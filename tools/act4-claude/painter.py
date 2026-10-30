@@ -452,6 +452,20 @@ class Painter:
             y = base - h * yy
             self.add(layer, poly_d([(x - wd, y + 18), (x - wd * .4, y - 14), (x + wd * .5, y - 18), (x + wd, y + 14), (x, y + 26)]), '#24423f' if k % 2 else '#1d3735')
 
+    def backwall(self, pts, seed=0):
+        """Cave back wall behind actors (no collision): dark planes with a few
+        dim facets so an enclosed space reads as interior, not floating rock."""
+        rng = random.Random(seed)
+        g = Polygon(pts).buffer(0)
+        self.add('STRUCT', shapely_d(g), '#0c172b')
+        minx, miny, maxx, maxy = g.bounds
+        shards = []
+        for _ in range(int(g.area / 180000) + 2):
+            x0, y0 = rng.uniform(minx, maxx), rng.uniform(miny, maxy)
+            w, h = rng.uniform(160, 380), rng.uniform(200, 520)
+            shards.append(Polygon([(x0, y0), (x0 + w, y0 + h * .1), (x0 + w * .5, y0 + h)]).buffer(0))
+        self.clip('STRUCT', g, unary_union(shards), '#13213a')
+
     # ------------------------------------------------------------ output
     def layout(self, base):
         L = copy.deepcopy(base)
@@ -465,6 +479,8 @@ class Painter:
         L['surfaces'] = surfaces
         L['covers'] = [{k: c[k] for k in ('id', 'x', 'y', 'w', 'h')} for c in self.covers]
         L['width'], L['height'] = self.W, self.H
+        if 'spawn' in L:  # party starts exactly on the real ground, never inside it
+            L['spawn']['y'] = round(self.ground_below(L['spawn']['x'], L['spawn']['y'] - 150) - 0.5, 2)
         return L
 
     def build(self, out_art, out_layout, base_layout, far_preview=None):
