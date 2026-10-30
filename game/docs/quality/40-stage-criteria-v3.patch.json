@@ -1,0 +1,4540 @@
+{
+  "schema": "honro-criteria-jsonpatch-v1",
+  "baseFile": "40-stage-criteria-v2.json",
+  "baseSha256": "afb7cc40f77a64ce63420e7b7bdfec4ffd9c9286b83683c25b896f807f6b8f92",
+  "targetCanonicalSha256": "2bf6fa68a3383f3d52c6b94710a6e70e8e17395fd42433f3eb6804c7d7127b73",
+  "targetReportSha256": "e2183e74492a4cb61338f8a691a51f23e7af2205fb9148ae6f6b2c138311aa54",
+  "purpose": "v3 필수/참고 구분 및 전체20R상한.원자료 중복보존 대신 검증 가능한 변경만 저장.",
+  "operations": [
+    {
+      "op": "remove",
+      "path": "/artMetrics"
+    },
+    {
+      "op": "replace",
+      "path": "/version",
+      "value": "v3"
+    },
+    {
+      "op": "replace",
+      "path": "/sourceMetadata/act3-4/scope",
+      "value": "1–4막 40장 사전 설계 목표 v3. 전체 라운드20 이하. 실측 전."
+    },
+    {
+      "op": "replace",
+      "path": "/sourceMetadata/act3-4/version",
+      "value": "v3"
+    },
+    {
+      "op": "replace",
+      "path": "/macro/version",
+      "value": "v3"
+    },
+    {
+      "op": "add",
+      "path": "/macro/acts/0/roundsHardMax",
+      "value": 20
+    },
+    {
+      "op": "add",
+      "path": "/macro/acts/1/roundsHardMax",
+      "value": 20
+    },
+    {
+      "op": "add",
+      "path": "/macro/acts/2/roundsHardMax",
+      "value": 20
+    },
+    {
+      "op": "add",
+      "path": "/macro/acts/3/roundsHardMax",
+      "value": 20
+    },
+    {
+      "op": "add",
+      "path": "/macro/acts/4/roundsHardMax",
+      "value": 20
+    },
+    {
+      "op": "add",
+      "path": "/macro/acts/5/roundsHardMax",
+      "value": 20
+    },
+    {
+      "op": "replace",
+      "path": "/macro/definitions/miniboss",
+      "value": "정예와 별도 등급. 파티 집중 공략2–3R,고유행동·읽을 수 있는 예고·대응법을 갖춘 강화 개체.2개체 조합전 총3–5R목표.주요보스와 중복 집계하지 않는다."
+    },
+    {
+      "op": "add",
+      "path": "/macro/definitions/normalKillActions",
+      "value": "일반 적은 현재 정상 성장 파티의 유효 공격1–2회 목표. 정예·중간보스·주요보스·비살상목표는 별도다."
+    },
+    {
+      "op": "replace",
+      "path": "/macro/checks/0/id",
+      "value": "ROUND_CAP_20"
+    },
+    {
+      "op": "replace",
+      "path": "/macro/checks/0/rule",
+      "value": "1–40 모든 장의 클리어R 목표 상한≤20. 실제 일반/숙련 정상진행 시험의20R 초과는0건이어야한다. 강제게임오버신설이나20R에서로그잘라합격하는것금지."
+    },
+    {
+      "op": "replace",
+      "path": "/macro/checks/1/id",
+      "value": "ACT4_PRESSURE"
+    },
+    {
+      "op": "replace",
+      "path": "/macro/checks/1/rule",
+      "value": "일반전과 전체 전투장 두 집계 모두에서 4막의 클리어율 목표 중심 평균은 3막보다 최소5%p 낮아야 한다. 단순 비전투19는 전투 집계에서 제외하고 모든 제외 목록을 표시한다."
+    },
+    {
+      "op": "replace",
+      "path": "/macro/checks/2/id",
+      "value": "ACT4_ENEMY_ACTIONS"
+    },
+    {
+      "op": "replace",
+      "path": "/macro/checks/2/rule",
+      "value": "4막 일반전의 실제 행동 적 목표 중심 중앙값이 3막보다 최소1 높아야 한다. 전체 전투장 평균도 후퇴하지 않는다."
+    },
+    {
+      "op": "replace",
+      "path": "/macro/checks/3/id",
+      "value": "ACT4_DAMAGE"
+    },
+    {
+      "op": "replace",
+      "path": "/macro/checks/3/rule",
+      "value": "4막 일반전 적 유효 공격 피해율 목표 중심 중앙값은 3막보다 최소3%p 높아야 한다. 전체 전투장 평균도 후퇴하지 않는다."
+    },
+    {
+      "op": "replace",
+      "path": "/macro/checks/4/id",
+      "value": "ACT4_DURATION"
+    },
+    {
+      "op": "replace",
+      "path": "/macro/checks/4/rule",
+      "value": "4막 전체 전투장 클리어R 목표 중심 평균과 중앙값이 3막보다 높아야 한다. 단, 난도를 맞추려고 빈 이동·대기·HP 소모만 늘리지 않는다."
+    },
+    {
+      "op": "replace",
+      "path": "/macro/checks/5/id",
+      "value": "MINIBOSS_RISE"
+    },
+    {
+      "op": "replace",
+      "path": "/macro/checks/5/rule",
+      "value": "각 막의 중간보스 등장 장 수와 총 개체 수가 표의 목표를 충족하고 이전 막보다 증가해야 한다. 필수·선택 처치는 따로 표시한다."
+    },
+    {
+      "op": "replace",
+      "path": "/macro/checks/6/id",
+      "value": "VERTICAL_MIX"
+    },
+    {
+      "op": "replace",
+      "path": "/macro/checks/6/rule",
+      "value": "각 막의 수직형·복합형 수가 목표를 충족해야 한다. 수직형은 verticalSpanRatio≥0.55 및 verticalTravelRatio≥0.65, 복합형은 각각≥0.35를 목표로 한다. 이름만으로 통과하지 않는다."
+    },
+    {
+      "op": "add",
+      "path": "/macro/essentialCriteria",
+      "value": [
+        {
+          "key": "rounds",
+          "label": "분량",
+          "rule": "장별 목표범위·전체20R 상한. 정상진행 검증 초과0건."
+        },
+        {
+          "key": "difficulty",
+          "label": "난도",
+          "rule": "일반정책 클리어율·실제 행동 적·유효 피해율 목표와 막별 상승."
+        },
+        {
+          "key": "encounters",
+          "label": "적 구성",
+          "rule": "필수경로 실제 교전 수와 중간보스 등장/개체 목표. 주요보스는 분리하며 고유 패턴·예고·대응이 있어야 한다."
+        },
+        {
+          "key": "space",
+          "label": "공간 전개",
+          "rule": "수직/복합 유형·유효 점프/아래점프·필수 고도 활용. 유형에 따라 필요한 항목만 필수."
+        },
+        {
+          "key": "objective_art",
+          "label": "목표와 화면",
+          "rule": "원래 완료조건·진행 정상, 실제 이미지 승인, 자연윤곽<20% 목표/<30% 상한, 의미 소실·불량 연결0건."
+        }
+      ]
+    },
+    {
+      "op": "add",
+      "path": "/macro/referenceCriteria",
+      "value": [
+        "일반전 맵 크기·종횡비·발판 수",
+        "전체 적 예산·역할/패턴의 단순 개수",
+        "사람 플레이 분·자원 사용·회복 선택",
+        "정밀 곡률·에지 밀도·노드/경로 밀도",
+        "세부 비용·콜드 로딩 진단"
+      ]
+    },
+    {
+      "op": "add",
+      "path": "/macro/referenceRule",
+      "value": "참고 지표만 어긋났다고 자동 반려하지 않는다. 원인 분석과 조정에 사용한다. 특정 장의 핵심 기획을 증명하는 항목은 사전에 해당 장 필수로 지정할 수 있다. 진행 불가·충돌·보호요소 소실 등 실제 결함을 참고로 내려 숨기지 않는다."
+    },
+    {
+      "op": "add",
+      "path": "/macro/roundChanges",
+      "value": [
+        {
+          "id": 1,
+          "oldRounds": [
+            5,
+            7
+          ],
+          "newRounds": [
+            4,
+            6
+          ]
+        },
+        {
+          "id": 2,
+          "oldRounds": [
+            7,
+            10
+          ],
+          "newRounds": [
+            5,
+            7
+          ]
+        },
+        {
+          "id": 3,
+          "oldRounds": [
+            8,
+            11
+          ],
+          "newRounds": [
+            6,
+            8
+          ]
+        },
+        {
+          "id": 4,
+          "oldRounds": [
+            8,
+            10
+          ],
+          "newRounds": [
+            7,
+            9
+          ]
+        },
+        {
+          "id": 5,
+          "oldRounds": [
+            9,
+            12
+          ],
+          "newRounds": [
+            7,
+            10
+          ]
+        },
+        {
+          "id": 6,
+          "oldRounds": [
+            9,
+            13
+          ],
+          "newRounds": [
+            8,
+            11
+          ]
+        },
+        {
+          "id": 7,
+          "oldRounds": [
+            10,
+            14
+          ],
+          "newRounds": [
+            9,
+            12
+          ]
+        },
+        {
+          "id": 8,
+          "oldRounds": [
+            13,
+            17
+          ],
+          "newRounds": [
+            11,
+            14
+          ]
+        },
+        {
+          "id": 9,
+          "oldRounds": [
+            9,
+            12
+          ],
+          "newRounds": [
+            7,
+            9
+          ]
+        },
+        {
+          "id": 10,
+          "oldRounds": [
+            14,
+            18
+          ],
+          "newRounds": [
+            12,
+            16
+          ]
+        },
+        {
+          "id": 11,
+          "oldRounds": [
+            11,
+            15
+          ],
+          "newRounds": [
+            10,
+            13
+          ]
+        },
+        {
+          "id": 12,
+          "oldRounds": [
+            11,
+            15
+          ],
+          "newRounds": [
+            10,
+            13
+          ]
+        },
+        {
+          "id": 13,
+          "oldRounds": [
+            12,
+            16
+          ],
+          "newRounds": [
+            10,
+            14
+          ]
+        },
+        {
+          "id": 14,
+          "oldRounds": [
+            11,
+            15
+          ],
+          "newRounds": [
+            9,
+            12
+          ]
+        },
+        {
+          "id": 15,
+          "oldRounds": [
+            12,
+            16
+          ],
+          "newRounds": [
+            10,
+            14
+          ]
+        },
+        {
+          "id": 16,
+          "oldRounds": [
+            12,
+            16
+          ],
+          "newRounds": [
+            11,
+            14
+          ]
+        },
+        {
+          "id": 17,
+          "oldRounds": [
+            14,
+            18
+          ],
+          "newRounds": [
+            12,
+            16
+          ]
+        },
+        {
+          "id": 18,
+          "oldRounds": [
+            17,
+            23
+          ],
+          "newRounds": [
+            15,
+            19
+          ]
+        },
+        {
+          "id": 19,
+          "oldRounds": [
+            0,
+            0
+          ],
+          "newRounds": [
+            0,
+            0
+          ]
+        },
+        {
+          "id": 20,
+          "oldRounds": [
+            13,
+            18
+          ],
+          "newRounds": [
+            11,
+            15
+          ]
+        },
+        {
+          "id": 21,
+          "oldRounds": [
+            14,
+            18
+          ],
+          "newRounds": [
+            11,
+            14
+          ]
+        },
+        {
+          "id": 22,
+          "oldRounds": [
+            16,
+            21
+          ],
+          "newRounds": [
+            12,
+            16
+          ]
+        },
+        {
+          "id": 23,
+          "oldRounds": [
+            18,
+            23
+          ],
+          "newRounds": [
+            13,
+            17
+          ]
+        },
+        {
+          "id": 24,
+          "oldRounds": [
+            14,
+            18
+          ],
+          "newRounds": [
+            11,
+            14
+          ]
+        },
+        {
+          "id": 25,
+          "oldRounds": [
+            16,
+            21
+          ],
+          "newRounds": [
+            12,
+            16
+          ]
+        },
+        {
+          "id": 26,
+          "oldRounds": [
+            15,
+            20
+          ],
+          "newRounds": [
+            11,
+            15
+          ]
+        },
+        {
+          "id": 27,
+          "oldRounds": [
+            17,
+            22
+          ],
+          "newRounds": [
+            13,
+            17
+          ]
+        },
+        {
+          "id": 28,
+          "oldRounds": [
+            19,
+            24
+          ],
+          "newRounds": [
+            14,
+            18
+          ]
+        },
+        {
+          "id": 29,
+          "oldRounds": [
+            23,
+            29
+          ],
+          "newRounds": [
+            16,
+            20
+          ]
+        },
+        {
+          "id": 30,
+          "oldRounds": [
+            22,
+            28
+          ],
+          "newRounds": [
+            15,
+            19
+          ]
+        },
+        {
+          "id": 31,
+          "oldRounds": [
+            20,
+            26
+          ],
+          "newRounds": [
+            15,
+            18
+          ]
+        },
+        {
+          "id": 32,
+          "oldRounds": [
+            11,
+            15
+          ],
+          "newRounds": [
+            10,
+            13
+          ]
+        },
+        {
+          "id": 33,
+          "oldRounds": [
+            21,
+            27
+          ],
+          "newRounds": [
+            16,
+            19
+          ]
+        },
+        {
+          "id": 34,
+          "oldRounds": [
+            23,
+            29
+          ],
+          "newRounds": [
+            17,
+            20
+          ]
+        },
+        {
+          "id": 35,
+          "oldRounds": [
+            21,
+            27
+          ],
+          "newRounds": [
+            16,
+            19
+          ]
+        },
+        {
+          "id": 36,
+          "oldRounds": [
+            7,
+            11
+          ],
+          "newRounds": [
+            7,
+            10
+          ]
+        },
+        {
+          "id": 37,
+          "oldRounds": [
+            24,
+            30
+          ],
+          "newRounds": [
+            17,
+            20
+          ]
+        },
+        {
+          "id": 38,
+          "oldRounds": [
+            23,
+            29
+          ],
+          "newRounds": [
+            17,
+            20
+          ]
+        },
+        {
+          "id": 39,
+          "oldRounds": [
+            26,
+            32
+          ],
+          "newRounds": [
+            18,
+            20
+          ]
+        },
+        {
+          "id": 40,
+          "oldRounds": [
+            6,
+            10
+          ],
+          "newRounds": [
+            8,
+            11
+          ]
+        }
+      ]
+    },
+    {
+      "op": "add",
+      "path": "/macro/classificationPriority",
+      "value": "v3의 필수/참고 구분을 적용한다. 이전 v2의 모든 측정값 필수 문구는 측정법 보존용 이력이며 v3 분류보다 우선하지 않는다."
+    },
+    {
+      "op": "add",
+      "path": "/macro/artClassification",
+      "value": {
+        "essential": [
+          "최종 실제 크기 이미지 승인",
+          "자연 윤곽 직선 기본<20%/절대<30%",
+          "필수 보호요소 소실0·의미 연결 불량0",
+          "원본 대비 외곽1.5px/보호0.5px 등 보존 오차",
+          "현행 엔진 구조·안전 한도"
+        ],
+        "reference": [
+          "정밀 곡률·노드·경로 밀도",
+          "대비가중 에지 밀도와 상세 색 분포",
+          "비용 진단과 최적화 후보 비교"
+        ],
+        "rule": "참고 수치는 이미지 검수의 원인 분석에 사용한다. 실제 가독성·스타일·구성·진행 결함을 참고 항목이라고 면책하지 않는다. 해당 장 핵심 기준판의 필수 항목은 사전에 명시한다."
+      }
+    },
+    {
+      "op": "replace",
+      "path": "/stages/0/design/rounds/0",
+      "value": 4
+    },
+    {
+      "op": "replace",
+      "path": "/stages/0/design/rounds/1",
+      "value": 6
+    },
+    {
+      "op": "replace",
+      "path": "/stages/0/design/minutes/0",
+      "value": 5
+    },
+    {
+      "op": "replace",
+      "path": "/stages/0/design/minutes/1",
+      "value": 9
+    },
+    {
+      "op": "add",
+      "path": "/stages/0/design/roundBudget",
+      "value": {
+        "target": [
+          4,
+          6
+        ],
+        "hardMax": 20,
+        "scope": "전투·이동·필수기믹·대기를 포함한 전체 라운드",
+        "validation": "등록된 일반·숙련 정상 진행 시험에서 20R 초과 0건. 초과는 별도 분량 실패로 기록하며 성공률에 숨기지 않는다. 악의적 무행동 시험은 분리한다.",
+        "notGameplayTimeout": "20R 강제 게임오버를 신설하는 규칙이 아니다."
+      }
+    },
+    {
+      "op": "add",
+      "path": "/stages/0/design/pacingChanges",
+      "value": [
+        "기존 스토리와 완료조건은 유지한다. 20R 안에 안 들어오면 전투/동선/기믹 배치를 다시 설계한다.",
+        "일반 적은 유효 공격 1–2회로 처리하고, 난도는 피해·협공·패턴·위치 선택으로 만든다.",
+        "연속되는 전투와 목적 행동을 같은 이동 구간에 묶고 빈 이동·예약 파동 대기를 줄인다.",
+        "수직 이동의 선택과 큰 형태는 유지하되 발판 간격·합류 지점·왕복거리를 압축한다."
+      ]
+    },
+    {
+      "op": "add",
+      "path": "/stages/0/proposedChanges/-",
+      "value": "v3 분량 상한20R: 일반 적 처치행동·중간보스 공략 길이·이동/기믹 대기를 줄이고, 공격 압력과 수직·복합 전개는 유지한다."
+    },
+    {
+      "op": "replace",
+      "path": "/stages/1/design/rounds/0",
+      "value": 5
+    },
+    {
+      "op": "replace",
+      "path": "/stages/1/design/rounds/1",
+      "value": 7
+    },
+    {
+      "op": "replace",
+      "path": "/stages/1/design/minutes/0",
+      "value": 5
+    },
+    {
+      "op": "replace",
+      "path": "/stages/1/design/minutes/1",
+      "value": 10
+    },
+    {
+      "op": "add",
+      "path": "/stages/1/design/roundBudget",
+      "value": {
+        "target": [
+          5,
+          7
+        ],
+        "hardMax": 20,
+        "scope": "전투·이동·필수기믹·대기를 포함한 전체 라운드",
+        "validation": "등록된 일반·숙련 정상 진행 시험에서 20R 초과 0건. 초과는 별도 분량 실패로 기록하며 성공률에 숨기지 않는다. 악의적 무행동 시험은 분리한다.",
+        "notGameplayTimeout": "20R 강제 게임오버를 신설하는 규칙이 아니다."
+      }
+    },
+    {
+      "op": "add",
+      "path": "/stages/1/design/pacingChanges",
+      "value": [
+        "기존 스토리와 완료조건은 유지한다. 20R 안에 안 들어오면 전투/동선/기믹 배치를 다시 설계한다.",
+        "일반 적은 유효 공격 1–2회로 처리하고, 난도는 피해·협공·패턴·위치 선택으로 만든다.",
+        "연속되는 전투와 목적 행동을 같은 이동 구간에 묶고 빈 이동·예약 파동 대기를 줄인다.",
+        "수직 이동의 선택과 큰 형태는 유지하되 발판 간격·합류 지점·왕복거리를 압축한다."
+      ]
+    },
+    {
+      "op": "replace",
+      "path": "/stages/1/specialMetrics/3/target",
+      "value": "유효 점프12~18회 × 기본 이동비용75 = 900~1350 이동예산 + 실제 걷기; 5–7R 내 검증"
+    },
+    {
+      "op": "add",
+      "path": "/stages/1/proposedChanges/-",
+      "value": "v3 분량 상한20R: 일반 적 처치행동·중간보스 공략 길이·이동/기믹 대기를 줄이고, 공격 압력과 수직·복합 전개는 유지한다."
+    },
+    {
+      "op": "replace",
+      "path": "/stages/2/design/rounds/0",
+      "value": 6
+    },
+    {
+      "op": "replace",
+      "path": "/stages/2/design/rounds/1",
+      "value": 8
+    },
+    {
+      "op": "replace",
+      "path": "/stages/2/design/minutes/0",
+      "value": 6
+    },
+    {
+      "op": "replace",
+      "path": "/stages/2/design/minutes/1",
+      "value": 11
+    },
+    {
+      "op": "add",
+      "path": "/stages/2/design/miniboss/encounterRounds",
+      "value": [
+        2,
+        3
+      ]
+    },
+    {
+      "op": "add",
+      "path": "/stages/2/design/miniboss/durationRule",
+      "value": "정예와 다른 고유 패턴·예고·대응은 유지한다. 일반 적보다 강한 집중공략 2–3R로 설계하고, 두 개체전은 겹쳐 진행해 총3–5R를 목표로 한다. HP만 늘려 장기전으로 만들지 않는다."
+    },
+    {
+      "op": "add",
+      "path": "/stages/2/design/roundBudget",
+      "value": {
+        "target": [
+          6,
+          8
+        ],
+        "hardMax": 20,
+        "scope": "전투·이동·필수기믹·대기를 포함한 전체 라운드",
+        "validation": "등록된 일반·숙련 정상 진행 시험에서 20R 초과 0건. 초과는 별도 분량 실패로 기록하며 성공률에 숨기지 않는다. 악의적 무행동 시험은 분리한다.",
+        "notGameplayTimeout": "20R 강제 게임오버를 신설하는 규칙이 아니다."
+      }
+    },
+    {
+      "op": "add",
+      "path": "/stages/2/design/pacingChanges",
+      "value": [
+        "기존 스토리와 완료조건은 유지한다. 20R 안에 안 들어오면 전투/동선/기믹 배치를 다시 설계한다.",
+        "일반 적은 유효 공격 1–2회로 처리하고, 난도는 피해·협공·패턴·위치 선택으로 만든다.",
+        "연속되는 전투와 목적 행동을 같은 이동 구간에 묶고 빈 이동·예약 파동 대기를 줄인다.",
+        "수직 이동의 선택과 큰 형태는 유지하되 발판 간격·합류 지점·왕복거리를 압축한다."
+      ]
+    },
+    {
+      "op": "add",
+      "path": "/stages/2/proposedChanges/-",
+      "value": "v3 분량 상한20R: 일반 적 처치행동·중간보스 공략 길이·이동/기믹 대기를 줄이고, 공격 압력과 수직·복합 전개는 유지한다."
+    },
+    {
+      "op": "replace",
+      "path": "/stages/3/design/rounds/0",
+      "value": 7
+    },
+    {
+      "op": "replace",
+      "path": "/stages/3/design/rounds/1",
+      "value": 9
+    },
+    {
+      "op": "replace",
+      "path": "/stages/3/design/minutes/0",
+      "value": 8
+    },
+    {
+      "op": "replace",
+      "path": "/stages/3/design/minutes/1",
+      "value": 13
+    },
+    {
+      "op": "add",
+      "path": "/stages/3/design/roundBudget",
+      "value": {
+        "target": [
+          7,
+          9
+        ],
+        "hardMax": 20,
+        "scope": "전투·이동·필수기믹·대기를 포함한 전체 라운드",
+        "validation": "등록된 일반·숙련 정상 진행 시험에서 20R 초과 0건. 초과는 별도 분량 실패로 기록하며 성공률에 숨기지 않는다. 악의적 무행동 시험은 분리한다.",
+        "notGameplayTimeout": "20R 강제 게임오버를 신설하는 규칙이 아니다."
+      }
+    },
+    {
+      "op": "add",
+      "path": "/stages/3/design/pacingChanges",
+      "value": [
+        "기존 스토리와 완료조건은 유지한다. 20R 안에 안 들어오면 전투/동선/기믹 배치를 다시 설계한다.",
+        "일반 적은 유효 공격 1–2회로 처리하고, 난도는 피해·협공·패턴·위치 선택으로 만든다.",
+        "연속되는 전투와 목적 행동을 같은 이동 구간에 묶고 빈 이동·예약 파동 대기를 줄인다.",
+        "수직 이동의 선택과 큰 형태는 유지하되 발판 간격·합류 지점·왕복거리를 압축한다."
+      ]
+    },
+    {
+      "op": "add",
+      "path": "/stages/3/proposedChanges/-",
+      "value": "v3 분량 상한20R: 일반 적 처치행동·중간보스 공략 길이·이동/기믹 대기를 줄이고, 공격 압력과 수직·복합 전개는 유지한다."
+    },
+    {
+      "op": "replace",
+      "path": "/stages/4/design/rounds/0",
+      "value": 7
+    },
+    {
+      "op": "replace",
+      "path": "/stages/4/design/rounds/1",
+      "value": 10
+    },
+    {
+      "op": "replace",
+      "path": "/stages/4/design/minutes/0",
+      "value": 9
+    },
+    {
+      "op": "replace",
+      "path": "/stages/4/design/minutes/1",
+      "value": 15
+    },
+    {
+      "op": "add",
+      "path": "/stages/4/design/roundBudget",
+      "value": {
+        "target": [
+          7,
+          10
+        ],
+        "hardMax": 20,
+        "scope": "전투·이동·필수기믹·대기를 포함한 전체 라운드",
+        "validation": "등록된 일반·숙련 정상 진행 시험에서 20R 초과 0건. 초과는 별도 분량 실패로 기록하며 성공률에 숨기지 않는다. 악의적 무행동 시험은 분리한다.",
+        "notGameplayTimeout": "20R 강제 게임오버를 신설하는 규칙이 아니다."
+      }
+    },
+    {
+      "op": "add",
+      "path": "/stages/4/design/pacingChanges",
+      "value": [
+        "기존 스토리와 완료조건은 유지한다. 20R 안에 안 들어오면 전투/동선/기믹 배치를 다시 설계한다.",
+        "일반 적은 유효 공격 1–2회로 처리하고, 난도는 피해·협공·패턴·위치 선택으로 만든다.",
+        "연속되는 전투와 목적 행동을 같은 이동 구간에 묶고 빈 이동·예약 파동 대기를 줄인다.",
+        "수직 이동의 선택과 큰 형태는 유지하되 발판 간격·합류 지점·왕복거리를 압축한다."
+      ]
+    },
+    {
+      "op": "add",
+      "path": "/stages/4/proposedChanges/-",
+      "value": "v3 분량 상한20R: 일반 적 처치행동·중간보스 공략 길이·이동/기믹 대기를 줄이고, 공격 압력과 수직·복합 전개는 유지한다."
+    },
+    {
+      "op": "replace",
+      "path": "/stages/5/design/rounds/0",
+      "value": 8
+    },
+    {
+      "op": "replace",
+      "path": "/stages/5/design/rounds/1",
+      "value": 11
+    },
+    {
+      "op": "replace",
+      "path": "/stages/5/design/minutes/0",
+      "value": 11
+    },
+    {
+      "op": "replace",
+      "path": "/stages/5/design/minutes/1",
+      "value": 17
+    },
+    {
+      "op": "add",
+      "path": "/stages/5/design/miniboss/encounterRounds",
+      "value": [
+        2,
+        3
+      ]
+    },
+    {
+      "op": "add",
+      "path": "/stages/5/design/miniboss/durationRule",
+      "value": "정예와 다른 고유 패턴·예고·대응은 유지한다. 일반 적보다 강한 집중공략 2–3R로 설계하고, 두 개체전은 겹쳐 진행해 총3–5R를 목표로 한다. HP만 늘려 장기전으로 만들지 않는다."
+    },
+    {
+      "op": "add",
+      "path": "/stages/5/design/roundBudget",
+      "value": {
+        "target": [
+          8,
+          11
+        ],
+        "hardMax": 20,
+        "scope": "전투·이동·필수기믹·대기를 포함한 전체 라운드",
+        "validation": "등록된 일반·숙련 정상 진행 시험에서 20R 초과 0건. 초과는 별도 분량 실패로 기록하며 성공률에 숨기지 않는다. 악의적 무행동 시험은 분리한다.",
+        "notGameplayTimeout": "20R 강제 게임오버를 신설하는 규칙이 아니다."
+      }
+    },
+    {
+      "op": "add",
+      "path": "/stages/5/design/pacingChanges",
+      "value": [
+        "기존 스토리와 완료조건은 유지한다. 20R 안에 안 들어오면 전투/동선/기믹 배치를 다시 설계한다.",
+        "일반 적은 유효 공격 1–2회로 처리하고, 난도는 피해·협공·패턴·위치 선택으로 만든다.",
+        "연속되는 전투와 목적 행동을 같은 이동 구간에 묶고 빈 이동·예약 파동 대기를 줄인다.",
+        "수직 이동의 선택과 큰 형태는 유지하되 발판 간격·합류 지점·왕복거리를 압축한다."
+      ]
+    },
+    {
+      "op": "add",
+      "path": "/stages/5/proposedChanges/-",
+      "value": "v3 분량 상한20R: 일반 적 처치행동·중간보스 공략 길이·이동/기믹 대기를 줄이고, 공격 압력과 수직·복합 전개는 유지한다."
+    },
+    {
+      "op": "replace",
+      "path": "/stages/6/design/rounds/0",
+      "value": 9
+    },
+    {
+      "op": "replace",
+      "path": "/stages/6/design/rounds/1",
+      "value": 12
+    },
+    {
+      "op": "replace",
+      "path": "/stages/6/design/minutes/0",
+      "value": 12
+    },
+    {
+      "op": "replace",
+      "path": "/stages/6/design/minutes/1",
+      "value": 19
+    },
+    {
+      "op": "add",
+      "path": "/stages/6/design/roundBudget",
+      "value": {
+        "target": [
+          9,
+          12
+        ],
+        "hardMax": 20,
+        "scope": "전투·이동·필수기믹·대기를 포함한 전체 라운드",
+        "validation": "등록된 일반·숙련 정상 진행 시험에서 20R 초과 0건. 초과는 별도 분량 실패로 기록하며 성공률에 숨기지 않는다. 악의적 무행동 시험은 분리한다.",
+        "notGameplayTimeout": "20R 강제 게임오버를 신설하는 규칙이 아니다."
+      }
+    },
+    {
+      "op": "add",
+      "path": "/stages/6/design/pacingChanges",
+      "value": [
+        "기존 스토리와 완료조건은 유지한다. 20R 안에 안 들어오면 전투/동선/기믹 배치를 다시 설계한다.",
+        "일반 적은 유효 공격 1–2회로 처리하고, 난도는 피해·협공·패턴·위치 선택으로 만든다.",
+        "연속되는 전투와 목적 행동을 같은 이동 구간에 묶고 빈 이동·예약 파동 대기를 줄인다.",
+        "수직 이동의 선택과 큰 형태는 유지하되 발판 간격·합류 지점·왕복거리를 압축한다."
+      ]
+    },
+    {
+      "op": "add",
+      "path": "/stages/6/proposedChanges/-",
+      "value": "v3 분량 상한20R: 일반 적 처치행동·중간보스 공략 길이·이동/기믹 대기를 줄이고, 공격 압력과 수직·복합 전개는 유지한다."
+    },
+    {
+      "op": "replace",
+      "path": "/stages/7/design/rounds/0",
+      "value": 11
+    },
+    {
+      "op": "replace",
+      "path": "/stages/7/design/rounds/1",
+      "value": 14
+    },
+    {
+      "op": "replace",
+      "path": "/stages/7/design/minutes/0",
+      "value": 15
+    },
+    {
+      "op": "replace",
+      "path": "/stages/7/design/minutes/1",
+      "value": 21
+    },
+    {
+      "op": "add",
+      "path": "/stages/7/design/roundBudget",
+      "value": {
+        "target": [
+          11,
+          14
+        ],
+        "hardMax": 20,
+        "scope": "전투·이동·필수기믹·대기를 포함한 전체 라운드",
+        "validation": "등록된 일반·숙련 정상 진행 시험에서 20R 초과 0건. 초과는 별도 분량 실패로 기록하며 성공률에 숨기지 않는다. 악의적 무행동 시험은 분리한다.",
+        "notGameplayTimeout": "20R 강제 게임오버를 신설하는 규칙이 아니다."
+      }
+    },
+    {
+      "op": "add",
+      "path": "/stages/7/design/pacingChanges",
+      "value": [
+        "기존 스토리와 완료조건은 유지한다. 20R 안에 안 들어오면 전투/동선/기믹 배치를 다시 설계한다.",
+        "일반 적은 유효 공격 1–2회로 처리하고, 난도는 피해·협공·패턴·위치 선택으로 만든다.",
+        "연속되는 전투와 목적 행동을 같은 이동 구간에 묶고 빈 이동·예약 파동 대기를 줄인다.",
+        "수직 이동의 선택과 큰 형태는 유지하되 발판 간격·합류 지점·왕복거리를 압축한다."
+      ]
+    },
+    {
+      "op": "add",
+      "path": "/stages/7/proposedChanges/-",
+      "value": "v3 분량 상한20R: 일반 적 처치행동·중간보스 공략 길이·이동/기믹 대기를 줄이고, 공격 압력과 수직·복합 전개는 유지한다."
+    },
+    {
+      "op": "replace",
+      "path": "/stages/8/design/rounds/0",
+      "value": 7
+    },
+    {
+      "op": "replace",
+      "path": "/stages/8/design/rounds/1",
+      "value": 9
+    },
+    {
+      "op": "replace",
+      "path": "/stages/8/design/minutes/0",
+      "value": 9
+    },
+    {
+      "op": "replace",
+      "path": "/stages/8/design/minutes/1",
+      "value": 13
+    },
+    {
+      "op": "add",
+      "path": "/stages/8/design/roundBudget",
+      "value": {
+        "target": [
+          7,
+          9
+        ],
+        "hardMax": 20,
+        "scope": "전투·이동·필수기믹·대기를 포함한 전체 라운드",
+        "validation": "등록된 일반·숙련 정상 진행 시험에서 20R 초과 0건. 초과는 별도 분량 실패로 기록하며 성공률에 숨기지 않는다. 악의적 무행동 시험은 분리한다.",
+        "notGameplayTimeout": "20R 강제 게임오버를 신설하는 규칙이 아니다."
+      }
+    },
+    {
+      "op": "add",
+      "path": "/stages/8/design/pacingChanges",
+      "value": [
+        "기존 스토리와 완료조건은 유지한다. 20R 안에 안 들어오면 전투/동선/기믹 배치를 다시 설계한다.",
+        "일반 적은 유효 공격 1–2회로 처리하고, 난도는 피해·협공·패턴·위치 선택으로 만든다.",
+        "연속되는 전투와 목적 행동을 같은 이동 구간에 묶고 빈 이동·예약 파동 대기를 줄인다.",
+        "수직 이동의 선택과 큰 형태는 유지하되 발판 간격·합류 지점·왕복거리를 압축한다."
+      ]
+    },
+    {
+      "op": "add",
+      "path": "/stages/8/proposedChanges/-",
+      "value": "v3 분량 상한20R: 일반 적 처치행동·중간보스 공략 길이·이동/기믹 대기를 줄이고, 공격 압력과 수직·복합 전개는 유지한다."
+    },
+    {
+      "op": "replace",
+      "path": "/stages/9/design/rounds/0",
+      "value": 12
+    },
+    {
+      "op": "replace",
+      "path": "/stages/9/design/rounds/1",
+      "value": 16
+    },
+    {
+      "op": "replace",
+      "path": "/stages/9/design/minutes/0",
+      "value": 17
+    },
+    {
+      "op": "replace",
+      "path": "/stages/9/design/minutes/1",
+      "value": 25
+    },
+    {
+      "op": "add",
+      "path": "/stages/9/design/roundBudget",
+      "value": {
+        "target": [
+          12,
+          16
+        ],
+        "hardMax": 20,
+        "scope": "전투·이동·필수기믹·대기를 포함한 전체 라운드",
+        "validation": "등록된 일반·숙련 정상 진행 시험에서 20R 초과 0건. 초과는 별도 분량 실패로 기록하며 성공률에 숨기지 않는다. 악의적 무행동 시험은 분리한다.",
+        "notGameplayTimeout": "20R 강제 게임오버를 신설하는 규칙이 아니다."
+      }
+    },
+    {
+      "op": "add",
+      "path": "/stages/9/design/pacingChanges",
+      "value": [
+        "기존 스토리와 완료조건은 유지한다. 20R 안에 안 들어오면 전투/동선/기믹 배치를 다시 설계한다.",
+        "일반 적은 유효 공격 1–2회로 처리하고, 난도는 피해·협공·패턴·위치 선택으로 만든다.",
+        "연속되는 전투와 목적 행동을 같은 이동 구간에 묶고 빈 이동·예약 파동 대기를 줄인다.",
+        "수직 이동의 선택과 큰 형태는 유지하되 발판 간격·합류 지점·왕복거리를 압축한다.",
+        "현행 필수6R 보호는 보존하고 그 전 주박해제·이후 철수를 예산 안에서 구성한다."
+      ]
+    },
+    {
+      "op": "add",
+      "path": "/stages/9/proposedChanges/-",
+      "value": "v3 분량 상한20R: 일반 적 처치행동·중간보스 공략 길이·이동/기믹 대기를 줄이고, 공격 압력과 수직·복합 전개는 유지한다."
+    },
+    {
+      "op": "replace",
+      "path": "/stages/10/design/rounds/0",
+      "value": 10
+    },
+    {
+      "op": "replace",
+      "path": "/stages/10/design/rounds/1",
+      "value": 13
+    },
+    {
+      "op": "replace",
+      "path": "/stages/10/design/minutes/0",
+      "value": 14
+    },
+    {
+      "op": "replace",
+      "path": "/stages/10/design/minutes/1",
+      "value": 21
+    },
+    {
+      "op": "replace",
+      "path": "/stages/10/design/normalKillActions/1",
+      "value": 2
+    },
+    {
+      "op": "add",
+      "path": "/stages/10/design/miniboss/encounterRounds",
+      "value": [
+        2,
+        3
+      ]
+    },
+    {
+      "op": "add",
+      "path": "/stages/10/design/miniboss/durationRule",
+      "value": "정예와 다른 고유 패턴·예고·대응은 유지한다. 일반 적보다 강한 집중공략 2–3R로 설계하고, 두 개체전은 겹쳐 진행해 총3–5R를 목표로 한다. HP만 늘려 장기전으로 만들지 않는다."
+    },
+    {
+      "op": "add",
+      "path": "/stages/10/design/roundBudget",
+      "value": {
+        "target": [
+          10,
+          13
+        ],
+        "hardMax": 20,
+        "scope": "전투·이동·필수기믹·대기를 포함한 전체 라운드",
+        "validation": "등록된 일반·숙련 정상 진행 시험에서 20R 초과 0건. 초과는 별도 분량 실패로 기록하며 성공률에 숨기지 않는다. 악의적 무행동 시험은 분리한다.",
+        "notGameplayTimeout": "20R 강제 게임오버를 신설하는 규칙이 아니다."
+      }
+    },
+    {
+      "op": "add",
+      "path": "/stages/10/design/pacingChanges",
+      "value": [
+        "기존 스토리와 완료조건은 유지한다. 20R 안에 안 들어오면 전투/동선/기믹 배치를 다시 설계한다.",
+        "일반 적은 유효 공격 1–2회로 처리하고, 난도는 피해·협공·패턴·위치 선택으로 만든다.",
+        "연속되는 전투와 목적 행동을 같은 이동 구간에 묶고 빈 이동·예약 파동 대기를 줄인다.",
+        "수직 이동의 선택과 큰 형태는 유지하되 발판 간격·합류 지점·왕복거리를 압축한다."
+      ]
+    },
+    {
+      "op": "add",
+      "path": "/stages/10/proposedChanges/-",
+      "value": "v3 분량 상한20R: 일반 적 처치행동·중간보스 공략 길이·이동/기믹 대기를 줄이고, 공격 압력과 수직·복합 전개는 유지한다."
+    },
+    {
+      "op": "replace",
+      "path": "/stages/11/design/rounds/0",
+      "value": 10
+    },
+    {
+      "op": "replace",
+      "path": "/stages/11/design/rounds/1",
+      "value": 13
+    },
+    {
+      "op": "replace",
+      "path": "/stages/11/design/minutes/0",
+      "value": 14
+    },
+    {
+      "op": "replace",
+      "path": "/stages/11/design/minutes/1",
+      "value": 21
+    },
+    {
+      "op": "replace",
+      "path": "/stages/11/design/normalKillActions/1",
+      "value": 2
+    },
+    {
+      "op": "add",
+      "path": "/stages/11/design/roundBudget",
+      "value": {
+        "target": [
+          10,
+          13
+        ],
+        "hardMax": 20,
+        "scope": "전투·이동·필수기믹·대기를 포함한 전체 라운드",
+        "validation": "등록된 일반·숙련 정상 진행 시험에서 20R 초과 0건. 초과는 별도 분량 실패로 기록하며 성공률에 숨기지 않는다. 악의적 무행동 시험은 분리한다.",
+        "notGameplayTimeout": "20R 강제 게임오버를 신설하는 규칙이 아니다."
+      }
+    },
+    {
+      "op": "add",
+      "path": "/stages/11/design/pacingChanges",
+      "value": [
+        "기존 스토리와 완료조건은 유지한다. 20R 안에 안 들어오면 전투/동선/기믹 배치를 다시 설계한다.",
+        "일반 적은 유효 공격 1–2회로 처리하고, 난도는 피해·협공·패턴·위치 선택으로 만든다.",
+        "연속되는 전투와 목적 행동을 같은 이동 구간에 묶고 빈 이동·예약 파동 대기를 줄인다.",
+        "수직 이동의 선택과 큰 형태는 유지하되 발판 간격·합류 지점·왕복거리를 압축한다."
+      ]
+    },
+    {
+      "op": "add",
+      "path": "/stages/11/proposedChanges/-",
+      "value": "v3 분량 상한20R: 일반 적 처치행동·중간보스 공략 길이·이동/기믹 대기를 줄이고, 공격 압력과 수직·복합 전개는 유지한다."
+    },
+    {
+      "op": "replace",
+      "path": "/stages/12/design/rounds/0",
+      "value": 10
+    },
+    {
+      "op": "replace",
+      "path": "/stages/12/design/rounds/1",
+      "value": 14
+    },
+    {
+      "op": "replace",
+      "path": "/stages/12/design/minutes/0",
+      "value": 14
+    },
+    {
+      "op": "replace",
+      "path": "/stages/12/design/minutes/1",
+      "value": 22
+    },
+    {
+      "op": "replace",
+      "path": "/stages/12/design/normalKillActions/1",
+      "value": 2
+    },
+    {
+      "op": "add",
+      "path": "/stages/12/design/miniboss/encounterRounds",
+      "value": [
+        2,
+        3
+      ]
+    },
+    {
+      "op": "add",
+      "path": "/stages/12/design/miniboss/durationRule",
+      "value": "정예와 다른 고유 패턴·예고·대응은 유지한다. 일반 적보다 강한 집중공략 2–3R로 설계하고, 두 개체전은 겹쳐 진행해 총3–5R를 목표로 한다. HP만 늘려 장기전으로 만들지 않는다."
+    },
+    {
+      "op": "add",
+      "path": "/stages/12/design/roundBudget",
+      "value": {
+        "target": [
+          10,
+          14
+        ],
+        "hardMax": 20,
+        "scope": "전투·이동·필수기믹·대기를 포함한 전체 라운드",
+        "validation": "등록된 일반·숙련 정상 진행 시험에서 20R 초과 0건. 초과는 별도 분량 실패로 기록하며 성공률에 숨기지 않는다. 악의적 무행동 시험은 분리한다.",
+        "notGameplayTimeout": "20R 강제 게임오버를 신설하는 규칙이 아니다."
+      }
+    },
+    {
+      "op": "add",
+      "path": "/stages/12/design/pacingChanges",
+      "value": [
+        "기존 스토리와 완료조건은 유지한다. 20R 안에 안 들어오면 전투/동선/기믹 배치를 다시 설계한다.",
+        "일반 적은 유효 공격 1–2회로 처리하고, 난도는 피해·협공·패턴·위치 선택으로 만든다.",
+        "연속되는 전투와 목적 행동을 같은 이동 구간에 묶고 빈 이동·예약 파동 대기를 줄인다.",
+        "수직 이동의 선택과 큰 형태는 유지하되 발판 간격·합류 지점·왕복거리를 압축한다."
+      ]
+    },
+    {
+      "op": "add",
+      "path": "/stages/12/proposedChanges/-",
+      "value": "v3 분량 상한20R: 일반 적 처치행동·중간보스 공략 길이·이동/기믹 대기를 줄이고, 공격 압력과 수직·복합 전개는 유지한다."
+    },
+    {
+      "op": "replace",
+      "path": "/stages/13/design/rounds/0",
+      "value": 9
+    },
+    {
+      "op": "replace",
+      "path": "/stages/13/design/rounds/1",
+      "value": 12
+    },
+    {
+      "op": "replace",
+      "path": "/stages/13/design/minutes/0",
+      "value": 11
+    },
+    {
+      "op": "replace",
+      "path": "/stages/13/design/minutes/1",
+      "value": 17
+    },
+    {
+      "op": "replace",
+      "path": "/stages/13/design/normalKillActions/1",
+      "value": 2
+    },
+    {
+      "op": "add",
+      "path": "/stages/13/design/roundBudget",
+      "value": {
+        "target": [
+          9,
+          12
+        ],
+        "hardMax": 20,
+        "scope": "전투·이동·필수기믹·대기를 포함한 전체 라운드",
+        "validation": "등록된 일반·숙련 정상 진행 시험에서 20R 초과 0건. 초과는 별도 분량 실패로 기록하며 성공률에 숨기지 않는다. 악의적 무행동 시험은 분리한다.",
+        "notGameplayTimeout": "20R 강제 게임오버를 신설하는 규칙이 아니다."
+      }
+    },
+    {
+      "op": "add",
+      "path": "/stages/13/design/pacingChanges",
+      "value": [
+        "기존 스토리와 완료조건은 유지한다. 20R 안에 안 들어오면 전투/동선/기믹 배치를 다시 설계한다.",
+        "일반 적은 유효 공격 1–2회로 처리하고, 난도는 피해·협공·패턴·위치 선택으로 만든다.",
+        "연속되는 전투와 목적 행동을 같은 이동 구간에 묶고 빈 이동·예약 파동 대기를 줄인다.",
+        "수직 이동의 선택과 큰 형태는 유지하되 발판 간격·합류 지점·왕복거리를 압축한다."
+      ]
+    },
+    {
+      "op": "add",
+      "path": "/stages/13/proposedChanges/-",
+      "value": "v3 분량 상한20R: 일반 적 처치행동·중간보스 공략 길이·이동/기믹 대기를 줄이고, 공격 압력과 수직·복합 전개는 유지한다."
+    },
+    {
+      "op": "replace",
+      "path": "/stages/14/design/rounds/0",
+      "value": 10
+    },
+    {
+      "op": "replace",
+      "path": "/stages/14/design/rounds/1",
+      "value": 14
+    },
+    {
+      "op": "replace",
+      "path": "/stages/14/design/minutes/0",
+      "value": 14
+    },
+    {
+      "op": "replace",
+      "path": "/stages/14/design/minutes/1",
+      "value": 21
+    },
+    {
+      "op": "replace",
+      "path": "/stages/14/design/normalKillActions/1",
+      "value": 2
+    },
+    {
+      "op": "add",
+      "path": "/stages/14/design/miniboss/encounterRounds",
+      "value": [
+        2,
+        3
+      ]
+    },
+    {
+      "op": "add",
+      "path": "/stages/14/design/miniboss/durationRule",
+      "value": "정예와 다른 고유 패턴·예고·대응은 유지한다. 일반 적보다 강한 집중공략 2–3R로 설계하고, 두 개체전은 겹쳐 진행해 총3–5R를 목표로 한다. HP만 늘려 장기전으로 만들지 않는다."
+    },
+    {
+      "op": "add",
+      "path": "/stages/14/design/roundBudget",
+      "value": {
+        "target": [
+          10,
+          14
+        ],
+        "hardMax": 20,
+        "scope": "전투·이동·필수기믹·대기를 포함한 전체 라운드",
+        "validation": "등록된 일반·숙련 정상 진행 시험에서 20R 초과 0건. 초과는 별도 분량 실패로 기록하며 성공률에 숨기지 않는다. 악의적 무행동 시험은 분리한다.",
+        "notGameplayTimeout": "20R 강제 게임오버를 신설하는 규칙이 아니다."
+      }
+    },
+    {
+      "op": "add",
+      "path": "/stages/14/design/pacingChanges",
+      "value": [
+        "기존 스토리와 완료조건은 유지한다. 20R 안에 안 들어오면 전투/동선/기믹 배치를 다시 설계한다.",
+        "일반 적은 유효 공격 1–2회로 처리하고, 난도는 피해·협공·패턴·위치 선택으로 만든다.",
+        "연속되는 전투와 목적 행동을 같은 이동 구간에 묶고 빈 이동·예약 파동 대기를 줄인다.",
+        "수직 이동의 선택과 큰 형태는 유지하되 발판 간격·합류 지점·왕복거리를 압축한다."
+      ]
+    },
+    {
+      "op": "add",
+      "path": "/stages/14/proposedChanges/-",
+      "value": "v3 분량 상한20R: 일반 적 처치행동·중간보스 공략 길이·이동/기믹 대기를 줄이고, 공격 압력과 수직·복합 전개는 유지한다."
+    },
+    {
+      "op": "replace",
+      "path": "/stages/15/design/rounds/0",
+      "value": 11
+    },
+    {
+      "op": "replace",
+      "path": "/stages/15/design/rounds/1",
+      "value": 14
+    },
+    {
+      "op": "replace",
+      "path": "/stages/15/design/minutes/0",
+      "value": 17
+    },
+    {
+      "op": "replace",
+      "path": "/stages/15/design/minutes/1",
+      "value": 25
+    },
+    {
+      "op": "replace",
+      "path": "/stages/15/design/normalKillActions/1",
+      "value": 2
+    },
+    {
+      "op": "add",
+      "path": "/stages/15/design/roundBudget",
+      "value": {
+        "target": [
+          11,
+          14
+        ],
+        "hardMax": 20,
+        "scope": "전투·이동·필수기믹·대기를 포함한 전체 라운드",
+        "validation": "등록된 일반·숙련 정상 진행 시험에서 20R 초과 0건. 초과는 별도 분량 실패로 기록하며 성공률에 숨기지 않는다. 악의적 무행동 시험은 분리한다.",
+        "notGameplayTimeout": "20R 강제 게임오버를 신설하는 규칙이 아니다."
+      }
+    },
+    {
+      "op": "add",
+      "path": "/stages/15/design/pacingChanges",
+      "value": [
+        "기존 스토리와 완료조건은 유지한다. 20R 안에 안 들어오면 전투/동선/기믹 배치를 다시 설계한다.",
+        "일반 적은 유효 공격 1–2회로 처리하고, 난도는 피해·협공·패턴·위치 선택으로 만든다.",
+        "연속되는 전투와 목적 행동을 같은 이동 구간에 묶고 빈 이동·예약 파동 대기를 줄인다.",
+        "수직 이동의 선택과 큰 형태는 유지하되 발판 간격·합류 지점·왕복거리를 압축한다."
+      ]
+    },
+    {
+      "op": "add",
+      "path": "/stages/15/proposedChanges/-",
+      "value": "v3 분량 상한20R: 일반 적 처치행동·중간보스 공략 길이·이동/기믹 대기를 줄이고, 공격 압력과 수직·복합 전개는 유지한다."
+    },
+    {
+      "op": "replace",
+      "path": "/stages/16/design/rounds/0",
+      "value": 12
+    },
+    {
+      "op": "replace",
+      "path": "/stages/16/design/rounds/1",
+      "value": 16
+    },
+    {
+      "op": "replace",
+      "path": "/stages/16/design/minutes/0",
+      "value": 17
+    },
+    {
+      "op": "replace",
+      "path": "/stages/16/design/minutes/1",
+      "value": 26
+    },
+    {
+      "op": "replace",
+      "path": "/stages/16/design/normalKillActions/1",
+      "value": 2
+    },
+    {
+      "op": "add",
+      "path": "/stages/16/design/miniboss/encounterRounds",
+      "value": [
+        3,
+        5
+      ]
+    },
+    {
+      "op": "add",
+      "path": "/stages/16/design/miniboss/durationRule",
+      "value": "정예와 다른 고유 패턴·예고·대응은 유지한다. 일반 적보다 강한 집중공략 2–3R로 설계하고, 두 개체전은 겹쳐 진행해 총3–5R를 목표로 한다. HP만 늘려 장기전으로 만들지 않는다."
+    },
+    {
+      "op": "add",
+      "path": "/stages/16/design/roundBudget",
+      "value": {
+        "target": [
+          12,
+          16
+        ],
+        "hardMax": 20,
+        "scope": "전투·이동·필수기믹·대기를 포함한 전체 라운드",
+        "validation": "등록된 일반·숙련 정상 진행 시험에서 20R 초과 0건. 초과는 별도 분량 실패로 기록하며 성공률에 숨기지 않는다. 악의적 무행동 시험은 분리한다.",
+        "notGameplayTimeout": "20R 강제 게임오버를 신설하는 규칙이 아니다."
+      }
+    },
+    {
+      "op": "add",
+      "path": "/stages/16/design/pacingChanges",
+      "value": [
+        "기존 스토리와 완료조건은 유지한다. 20R 안에 안 들어오면 전투/동선/기믹 배치를 다시 설계한다.",
+        "일반 적은 유효 공격 1–2회로 처리하고, 난도는 피해·협공·패턴·위치 선택으로 만든다.",
+        "연속되는 전투와 목적 행동을 같은 이동 구간에 묶고 빈 이동·예약 파동 대기를 줄인다.",
+        "수직 이동의 선택과 큰 형태는 유지하되 발판 간격·합류 지점·왕복거리를 압축한다."
+      ]
+    },
+    {
+      "op": "add",
+      "path": "/stages/16/proposedChanges/-",
+      "value": "v3 분량 상한20R: 일반 적 처치행동·중간보스 공략 길이·이동/기믹 대기를 줄이고, 공격 압력과 수직·복합 전개는 유지한다."
+    },
+    {
+      "op": "replace",
+      "path": "/stages/17/design/rounds/0",
+      "value": 15
+    },
+    {
+      "op": "replace",
+      "path": "/stages/17/design/rounds/1",
+      "value": 19
+    },
+    {
+      "op": "replace",
+      "path": "/stages/17/design/minutes/0",
+      "value": 21
+    },
+    {
+      "op": "replace",
+      "path": "/stages/17/design/minutes/1",
+      "value": 30
+    },
+    {
+      "op": "replace",
+      "path": "/stages/17/design/normalKillActions/1",
+      "value": 2
+    },
+    {
+      "op": "add",
+      "path": "/stages/17/design/roundBudget",
+      "value": {
+        "target": [
+          15,
+          19
+        ],
+        "hardMax": 20,
+        "scope": "전투·이동·필수기믹·대기를 포함한 전체 라운드",
+        "validation": "등록된 일반·숙련 정상 진행 시험에서 20R 초과 0건. 초과는 별도 분량 실패로 기록하며 성공률에 숨기지 않는다. 악의적 무행동 시험은 분리한다.",
+        "notGameplayTimeout": "20R 강제 게임오버를 신설하는 규칙이 아니다."
+      }
+    },
+    {
+      "op": "add",
+      "path": "/stages/17/design/pacingChanges",
+      "value": [
+        "기존 스토리와 완료조건은 유지한다. 20R 안에 안 들어오면 전투/동선/기믹 배치를 다시 설계한다.",
+        "일반 적은 유효 공격 1–2회로 처리하고, 난도는 피해·협공·패턴·위치 선택으로 만든다.",
+        "연속되는 전투와 목적 행동을 같은 이동 구간에 묶고 빈 이동·예약 파동 대기를 줄인다.",
+        "수직 이동의 선택과 큰 형태는 유지하되 발판 간격·합류 지점·왕복거리를 압축한다.",
+        "보스/구조/장치 단계를 불필요하게 순차 대기시키지 않고 가능한 구간은 병행한다. 기존 필수 사건은 생략하지 않는다."
+      ]
+    },
+    {
+      "op": "add",
+      "path": "/stages/17/proposedChanges/-",
+      "value": "v3 분량 상한20R: 일반 적 처치행동·중간보스 공략 길이·이동/기믹 대기를 줄이고, 공격 압력과 수직·복합 전개는 유지한다."
+    },
+    {
+      "op": "add",
+      "path": "/stages/18/design/roundBudget",
+      "value": {
+        "target": [
+          0,
+          0
+        ],
+        "hardMax": 20,
+        "scope": "전투·이동·필수기믹·대기를 포함한 전체 라운드",
+        "validation": "등록된 일반·숙련 정상 진행 시험에서 20R 초과 0건. 초과는 별도 분량 실패로 기록하며 성공률에 숨기지 않는다. 악의적 무행동 시험은 분리한다.",
+        "notGameplayTimeout": "20R 강제 게임오버를 신설하는 규칙이 아니다."
+      }
+    },
+    {
+      "op": "add",
+      "path": "/stages/18/design/pacingChanges",
+      "value": [
+        "비전투·기예 금지·소단 단독 진행과 원래 사건 순서를 보존한다. 전체 전투R는0이다."
+      ]
+    },
+    {
+      "op": "add",
+      "path": "/stages/18/proposedChanges/-",
+      "value": "v3 분량 상한20R: 일반 적 처치행동·중간보스 공략 길이·이동/기믹 대기를 줄이고, 공격 압력과 수직·복합 전개는 유지한다."
+    },
+    {
+      "op": "replace",
+      "path": "/stages/19/design/rounds/0",
+      "value": 11
+    },
+    {
+      "op": "replace",
+      "path": "/stages/19/design/rounds/1",
+      "value": 15
+    },
+    {
+      "op": "replace",
+      "path": "/stages/19/design/minutes/0",
+      "value": 17
+    },
+    {
+      "op": "replace",
+      "path": "/stages/19/design/minutes/1",
+      "value": 26
+    },
+    {
+      "op": "replace",
+      "path": "/stages/19/design/normalKillActions/1",
+      "value": 2
+    },
+    {
+      "op": "add",
+      "path": "/stages/19/design/roundBudget",
+      "value": {
+        "target": [
+          11,
+          15
+        ],
+        "hardMax": 20,
+        "scope": "전투·이동·필수기믹·대기를 포함한 전체 라운드",
+        "validation": "등록된 일반·숙련 정상 진행 시험에서 20R 초과 0건. 초과는 별도 분량 실패로 기록하며 성공률에 숨기지 않는다. 악의적 무행동 시험은 분리한다.",
+        "notGameplayTimeout": "20R 강제 게임오버를 신설하는 규칙이 아니다."
+      }
+    },
+    {
+      "op": "add",
+      "path": "/stages/19/design/pacingChanges",
+      "value": [
+        "기존 스토리와 완료조건은 유지한다. 20R 안에 안 들어오면 전투/동선/기믹 배치를 다시 설계한다.",
+        "일반 적은 유효 공격 1–2회로 처리하고, 난도는 피해·협공·패턴·위치 선택으로 만든다.",
+        "연속되는 전투와 목적 행동을 같은 이동 구간에 묶고 빈 이동·예약 파동 대기를 줄인다.",
+        "수직 이동의 선택과 큰 형태는 유지하되 발판 간격·합류 지점·왕복거리를 압축한다."
+      ]
+    },
+    {
+      "op": "add",
+      "path": "/stages/19/proposedChanges/-",
+      "value": "v3 분량 상한20R: 일반 적 처치행동·중간보스 공략 길이·이동/기믹 대기를 줄이고, 공격 압력과 수직·복합 전개는 유지한다."
+    },
+    {
+      "op": "replace",
+      "path": "/stages/20/design/rounds/0",
+      "value": 11
+    },
+    {
+      "op": "replace",
+      "path": "/stages/20/design/rounds/1",
+      "value": 14
+    },
+    {
+      "op": "replace",
+      "path": "/stages/20/design/minutes/0",
+      "value": 13
+    },
+    {
+      "op": "replace",
+      "path": "/stages/20/design/minutes/1",
+      "value": 19
+    },
+    {
+      "op": "replace",
+      "path": "/stages/20/design/normalKillActions/1",
+      "value": 2
+    },
+    {
+      "op": "replace",
+      "path": "/stages/20/design/miniboss/killRounds/1",
+      "value": 3
+    },
+    {
+      "op": "add",
+      "path": "/stages/20/design/miniboss/encounterRounds",
+      "value": [
+        2,
+        3
+      ]
+    },
+    {
+      "op": "add",
+      "path": "/stages/20/design/miniboss/durationRule",
+      "value": "정예와 다른 고유 패턴·예고·대응은 유지한다. 일반 적보다 강한 집중공략 2–3R로 설계하고, 두 개체전은 겹쳐 진행해 총3–5R를 목표로 한다. HP만 늘려 장기전으로 만들지 않는다."
+    },
+    {
+      "op": "add",
+      "path": "/stages/20/design/roundBudget",
+      "value": {
+        "target": [
+          11,
+          14
+        ],
+        "hardMax": 20,
+        "scope": "전투·이동·필수기믹·대기를 포함한 전체 라운드",
+        "validation": "등록된 일반·숙련 정상 진행 시험에서 20R 초과 0건. 초과는 별도 분량 실패로 기록하며 성공률에 숨기지 않는다. 악의적 무행동 시험은 분리한다.",
+        "notGameplayTimeout": "20R 강제 게임오버를 신설하는 규칙이 아니다."
+      }
+    },
+    {
+      "op": "add",
+      "path": "/stages/20/design/pacingChanges",
+      "value": [
+        "기존 스토리와 완료조건은 유지한다. 20R 안에 안 들어오면 전투/동선/기믹 배치를 다시 설계한다.",
+        "일반 적은 유효 공격 1–2회로 처리하고, 난도는 피해·협공·패턴·위치 선택으로 만든다.",
+        "연속되는 전투와 목적 행동을 같은 이동 구간에 묶고 빈 이동·예약 파동 대기를 줄인다.",
+        "수직 이동의 선택과 큰 형태는 유지하되 발판 간격·합류 지점·왕복거리를 압축한다."
+      ]
+    },
+    {
+      "op": "replace",
+      "path": "/stages/20/varianceReason",
+      "value": "v2 성문 전면의 복합 둑/문턱 구조: 전체11–14R, 실제적행동4–5, 유효공격피해율18–26%, 중간보스1–1체. 단순HP상승/빈대기가아니라상하이동·패턴대응·기존목표의동시압력으로성장한파티에대응한다."
+    },
+    {
+      "op": "add",
+      "path": "/stages/20/proposedChanges/-",
+      "value": "v3 분량 상한20R: 일반 적 처치행동·중간보스 공략 길이·이동/기믹 대기를 줄이고, 공격 압력과 수직·복합 전개는 유지한다."
+    },
+    {
+      "op": "replace",
+      "path": "/stages/21/design/rounds/0",
+      "value": 12
+    },
+    {
+      "op": "replace",
+      "path": "/stages/21/design/rounds/1",
+      "value": 16
+    },
+    {
+      "op": "replace",
+      "path": "/stages/21/design/minutes/0",
+      "value": 15
+    },
+    {
+      "op": "replace",
+      "path": "/stages/21/design/minutes/1",
+      "value": 22
+    },
+    {
+      "op": "replace",
+      "path": "/stages/21/design/normalKillActions/1",
+      "value": 2
+    },
+    {
+      "op": "replace",
+      "path": "/stages/21/design/miniboss/killRounds/1",
+      "value": 3
+    },
+    {
+      "op": "add",
+      "path": "/stages/21/design/miniboss/encounterRounds",
+      "value": [
+        2,
+        3
+      ]
+    },
+    {
+      "op": "add",
+      "path": "/stages/21/design/miniboss/durationRule",
+      "value": "정예와 다른 고유 패턴·예고·대응은 유지한다. 일반 적보다 강한 집중공략 2–3R로 설계하고, 두 개체전은 겹쳐 진행해 총3–5R를 목표로 한다. HP만 늘려 장기전으로 만들지 않는다."
+    },
+    {
+      "op": "add",
+      "path": "/stages/21/design/roundBudget",
+      "value": {
+        "target": [
+          12,
+          16
+        ],
+        "hardMax": 20,
+        "scope": "전투·이동·필수기믹·대기를 포함한 전체 라운드",
+        "validation": "등록된 일반·숙련 정상 진행 시험에서 20R 초과 0건. 초과는 별도 분량 실패로 기록하며 성공률에 숨기지 않는다. 악의적 무행동 시험은 분리한다.",
+        "notGameplayTimeout": "20R 강제 게임오버를 신설하는 규칙이 아니다."
+      }
+    },
+    {
+      "op": "add",
+      "path": "/stages/21/design/pacingChanges",
+      "value": [
+        "기존 스토리와 완료조건은 유지한다. 20R 안에 안 들어오면 전투/동선/기믹 배치를 다시 설계한다.",
+        "일반 적은 유효 공격 1–2회로 처리하고, 난도는 피해·협공·패턴·위치 선택으로 만든다.",
+        "연속되는 전투와 목적 행동을 같은 이동 구간에 묶고 빈 이동·예약 파동 대기를 줄인다.",
+        "수직 이동의 선택과 큰 형태는 유지하되 발판 간격·합류 지점·왕복거리를 압축한다."
+      ]
+    },
+    {
+      "op": "replace",
+      "path": "/stages/21/varianceReason",
+      "value": "v2 수직 문서고의 층간 교전: 전체12–16R, 실제적행동4–6, 유효공격피해율18–26%, 중간보스1–1체. 단순HP상승/빈대기가아니라상하이동·패턴대응·기존목표의동시압력으로성장한파티에대응한다."
+    },
+    {
+      "op": "add",
+      "path": "/stages/21/proposedChanges/-",
+      "value": "v3 분량 상한20R: 일반 적 처치행동·중간보스 공략 길이·이동/기믹 대기를 줄이고, 공격 압력과 수직·복합 전개는 유지한다."
+    },
+    {
+      "op": "replace",
+      "path": "/stages/22/design/rounds/0",
+      "value": 13
+    },
+    {
+      "op": "replace",
+      "path": "/stages/22/design/rounds/1",
+      "value": 17
+    },
+    {
+      "op": "replace",
+      "path": "/stages/22/design/minutes/0",
+      "value": 16
+    },
+    {
+      "op": "replace",
+      "path": "/stages/22/design/minutes/1",
+      "value": 24
+    },
+    {
+      "op": "replace",
+      "path": "/stages/22/design/normalKillActions/1",
+      "value": 2
+    },
+    {
+      "op": "replace",
+      "path": "/stages/22/design/miniboss/killRounds/1",
+      "value": 3
+    },
+    {
+      "op": "add",
+      "path": "/stages/22/design/miniboss/encounterRounds",
+      "value": [
+        3,
+        5
+      ]
+    },
+    {
+      "op": "add",
+      "path": "/stages/22/design/miniboss/durationRule",
+      "value": "정예와 다른 고유 패턴·예고·대응은 유지한다. 일반 적보다 강한 집중공략 2–3R로 설계하고, 두 개체전은 겹쳐 진행해 총3–5R를 목표로 한다. HP만 늘려 장기전으로 만들지 않는다."
+    },
+    {
+      "op": "add",
+      "path": "/stages/22/design/roundBudget",
+      "value": {
+        "target": [
+          13,
+          17
+        ],
+        "hardMax": 20,
+        "scope": "전투·이동·필수기믹·대기를 포함한 전체 라운드",
+        "validation": "등록된 일반·숙련 정상 진행 시험에서 20R 초과 0건. 초과는 별도 분량 실패로 기록하며 성공률에 숨기지 않는다. 악의적 무행동 시험은 분리한다.",
+        "notGameplayTimeout": "20R 강제 게임오버를 신설하는 규칙이 아니다."
+      }
+    },
+    {
+      "op": "add",
+      "path": "/stages/22/design/pacingChanges",
+      "value": [
+        "기존 스토리와 완료조건은 유지한다. 20R 안에 안 들어오면 전투/동선/기믹 배치를 다시 설계한다.",
+        "일반 적은 유효 공격 1–2회로 처리하고, 난도는 피해·협공·패턴·위치 선택으로 만든다.",
+        "연속되는 전투와 목적 행동을 같은 이동 구간에 묶고 빈 이동·예약 파동 대기를 줄인다.",
+        "수직 이동의 선택과 큰 형태는 유지하되 발판 간격·합류 지점·왕복거리를 압축한다."
+      ]
+    },
+    {
+      "op": "replace",
+      "path": "/stages/22/varianceReason",
+      "value": "v2 다층 하역장 호송망: 전체13–17R, 실제적행동4–6, 유효공격피해율18–26%, 중간보스1–2체. 단순HP상승/빈대기가아니라상하이동·패턴대응·기존목표의동시압력으로성장한파티에대응한다."
+    },
+    {
+      "op": "add",
+      "path": "/stages/22/proposedChanges/-",
+      "value": "v3 분량 상한20R: 일반 적 처치행동·중간보스 공략 길이·이동/기믹 대기를 줄이고, 공격 압력과 수직·복합 전개는 유지한다."
+    },
+    {
+      "op": "replace",
+      "path": "/stages/23/design/rounds/0",
+      "value": 11
+    },
+    {
+      "op": "replace",
+      "path": "/stages/23/design/rounds/1",
+      "value": 14
+    },
+    {
+      "op": "replace",
+      "path": "/stages/23/design/minutes/0",
+      "value": 13
+    },
+    {
+      "op": "replace",
+      "path": "/stages/23/design/minutes/1",
+      "value": 20
+    },
+    {
+      "op": "replace",
+      "path": "/stages/23/design/normalKillActions/1",
+      "value": 2
+    },
+    {
+      "op": "add",
+      "path": "/stages/23/design/roundBudget",
+      "value": {
+        "target": [
+          11,
+          14
+        ],
+        "hardMax": 20,
+        "scope": "전투·이동·필수기믹·대기를 포함한 전체 라운드",
+        "validation": "등록된 일반·숙련 정상 진행 시험에서 20R 초과 0건. 초과는 별도 분량 실패로 기록하며 성공률에 숨기지 않는다. 악의적 무행동 시험은 분리한다.",
+        "notGameplayTimeout": "20R 강제 게임오버를 신설하는 규칙이 아니다."
+      }
+    },
+    {
+      "op": "add",
+      "path": "/stages/23/design/pacingChanges",
+      "value": [
+        "기존 스토리와 완료조건은 유지한다. 20R 안에 안 들어오면 전투/동선/기믹 배치를 다시 설계한다.",
+        "일반 적은 유효 공격 1–2회로 처리하고, 난도는 피해·협공·패턴·위치 선택으로 만든다.",
+        "연속되는 전투와 목적 행동을 같은 이동 구간에 묶고 빈 이동·예약 파동 대기를 줄인다.",
+        "수직 이동의 선택과 큰 형태는 유지하되 발판 간격·합류 지점·왕복거리를 압축한다."
+      ]
+    },
+    {
+      "op": "replace",
+      "path": "/stages/23/varianceReason",
+      "value": "v2 상하로 갈라지는 저택·사당 출입로: 전체11–14R, 실제적행동4–5, 유효공격피해율18–26%, 중간보스0–0체. 단순HP상승/빈대기가아니라상하이동·패턴대응·기존목표의동시압력으로성장한파티에대응한다."
+    },
+    {
+      "op": "add",
+      "path": "/stages/23/proposedChanges/-",
+      "value": "v3 분량 상한20R: 일반 적 처치행동·중간보스 공략 길이·이동/기믹 대기를 줄이고, 공격 압력과 수직·복합 전개는 유지한다."
+    },
+    {
+      "op": "replace",
+      "path": "/stages/24/design/rounds/0",
+      "value": 12
+    },
+    {
+      "op": "replace",
+      "path": "/stages/24/design/rounds/1",
+      "value": 16
+    },
+    {
+      "op": "replace",
+      "path": "/stages/24/design/minutes/0",
+      "value": 14
+    },
+    {
+      "op": "replace",
+      "path": "/stages/24/design/minutes/1",
+      "value": 22
+    },
+    {
+      "op": "replace",
+      "path": "/stages/24/design/normalKillActions/1",
+      "value": 2
+    },
+    {
+      "op": "add",
+      "path": "/stages/24/design/roundBudget",
+      "value": {
+        "target": [
+          12,
+          16
+        ],
+        "hardMax": 20,
+        "scope": "전투·이동·필수기믹·대기를 포함한 전체 라운드",
+        "validation": "등록된 일반·숙련 정상 진행 시험에서 20R 초과 0건. 초과는 별도 분량 실패로 기록하며 성공률에 숨기지 않는다. 악의적 무행동 시험은 분리한다.",
+        "notGameplayTimeout": "20R 강제 게임오버를 신설하는 규칙이 아니다."
+      }
+    },
+    {
+      "op": "add",
+      "path": "/stages/24/design/pacingChanges",
+      "value": [
+        "기존 스토리와 완료조건은 유지한다. 20R 안에 안 들어오면 전투/동선/기믹 배치를 다시 설계한다.",
+        "일반 적은 유효 공격 1–2회로 처리하고, 난도는 피해·협공·패턴·위치 선택으로 만든다.",
+        "연속되는 전투와 목적 행동을 같은 이동 구간에 묶고 빈 이동·예약 파동 대기를 줄인다.",
+        "수직 이동의 선택과 큰 형태는 유지하되 발판 간격·합류 지점·왕복거리를 압축한다."
+      ]
+    },
+    {
+      "op": "replace",
+      "path": "/stages/24/varianceReason",
+      "value": "v2 수직 분절 수로와 5개 진목 도착점: 전체12–16R, 실제적행동3–4, 유효공격피해율18–24%, 중간보스0–0체. 단순HP상승/빈대기가아니라상하이동·패턴대응·기존목표의동시압력으로성장한파티에대응한다. 기존2인파티와누적자원에맞춰4인적행동량을강제하지않는예외다."
+    },
+    {
+      "op": "add",
+      "path": "/stages/24/proposedChanges/-",
+      "value": "v3 분량 상한20R: 일반 적 처치행동·중간보스 공략 길이·이동/기믹 대기를 줄이고, 공격 압력과 수직·복합 전개는 유지한다."
+    },
+    {
+      "op": "replace",
+      "path": "/stages/25/design/rounds/0",
+      "value": 11
+    },
+    {
+      "op": "replace",
+      "path": "/stages/25/design/rounds/1",
+      "value": 15
+    },
+    {
+      "op": "replace",
+      "path": "/stages/25/design/minutes/0",
+      "value": 13
+    },
+    {
+      "op": "replace",
+      "path": "/stages/25/design/minutes/1",
+      "value": 19
+    },
+    {
+      "op": "replace",
+      "path": "/stages/25/design/normalKillActions/1",
+      "value": 2
+    },
+    {
+      "op": "add",
+      "path": "/stages/25/design/roundBudget",
+      "value": {
+        "target": [
+          11,
+          15
+        ],
+        "hardMax": 20,
+        "scope": "전투·이동·필수기믹·대기를 포함한 전체 라운드",
+        "validation": "등록된 일반·숙련 정상 진행 시험에서 20R 초과 0건. 초과는 별도 분량 실패로 기록하며 성공률에 숨기지 않는다. 악의적 무행동 시험은 분리한다.",
+        "notGameplayTimeout": "20R 강제 게임오버를 신설하는 규칙이 아니다."
+      }
+    },
+    {
+      "op": "add",
+      "path": "/stages/25/design/pacingChanges",
+      "value": [
+        "기존 스토리와 완료조건은 유지한다. 20R 안에 안 들어오면 전투/동선/기믹 배치를 다시 설계한다.",
+        "일반 적은 유효 공격 1–2회로 처리하고, 난도는 피해·협공·패턴·위치 선택으로 만든다.",
+        "연속되는 전투와 목적 행동을 같은 이동 구간에 묶고 빈 이동·예약 파동 대기를 줄인다.",
+        "수직 이동의 선택과 큰 형태는 유지하되 발판 간격·합류 지점·왕복거리를 압축한다."
+      ]
+    },
+    {
+      "op": "replace",
+      "path": "/stages/25/varianceReason",
+      "value": "v2 짧은 공방 수평 구조구역: 전체11–15R, 실제적행동3–4, 유효공격피해율18–24%, 중간보스0–0체. 단순HP상승/빈대기가아니라상하이동·패턴대응·기존목표의동시압력으로성장한파티에대응한다. 기존2인파티와누적자원에맞춰4인적행동량을강제하지않는예외다."
+    },
+    {
+      "op": "add",
+      "path": "/stages/25/proposedChanges/-",
+      "value": "v3 분량 상한20R: 일반 적 처치행동·중간보스 공략 길이·이동/기믹 대기를 줄이고, 공격 압력과 수직·복합 전개는 유지한다."
+    },
+    {
+      "op": "replace",
+      "path": "/stages/26/design/rounds/0",
+      "value": 13
+    },
+    {
+      "op": "replace",
+      "path": "/stages/26/design/rounds/1",
+      "value": 17
+    },
+    {
+      "op": "replace",
+      "path": "/stages/26/design/minutes/0",
+      "value": 15
+    },
+    {
+      "op": "replace",
+      "path": "/stages/26/design/minutes/1",
+      "value": 23
+    },
+    {
+      "op": "replace",
+      "path": "/stages/26/design/normalKillActions/1",
+      "value": 2
+    },
+    {
+      "op": "add",
+      "path": "/stages/26/design/roundBudget",
+      "value": {
+        "target": [
+          13,
+          17
+        ],
+        "hardMax": 20,
+        "scope": "전투·이동·필수기믹·대기를 포함한 전체 라운드",
+        "validation": "등록된 일반·숙련 정상 진행 시험에서 20R 초과 0건. 초과는 별도 분량 실패로 기록하며 성공률에 숨기지 않는다. 악의적 무행동 시험은 분리한다.",
+        "notGameplayTimeout": "20R 강제 게임오버를 신설하는 규칙이 아니다."
+      }
+    },
+    {
+      "op": "add",
+      "path": "/stages/26/design/pacingChanges",
+      "value": [
+        "기존 스토리와 완료조건은 유지한다. 20R 안에 안 들어오면 전투/동선/기믹 배치를 다시 설계한다.",
+        "일반 적은 유효 공격 1–2회로 처리하고, 난도는 피해·협공·패턴·위치 선택으로 만든다.",
+        "연속되는 전투와 목적 행동을 같은 이동 구간에 묶고 빈 이동·예약 파동 대기를 줄인다.",
+        "수직 이동의 선택과 큰 형태는 유지하되 발판 간격·합류 지점·왕복거리를 압축한다."
+      ]
+    },
+    {
+      "op": "replace",
+      "path": "/stages/26/varianceReason",
+      "value": "v2 수직 심부 집하장과 4개 진목 도착점: 전체13–17R, 실제적행동3–4, 유효공격피해율18–24%, 중간보스0–0체. 단순HP상승/빈대기가아니라상하이동·패턴대응·기존목표의동시압력으로성장한파티에대응한다. 기존2인파티와누적자원에맞춰4인적행동량을강제하지않는예외다."
+    },
+    {
+      "op": "add",
+      "path": "/stages/26/proposedChanges/-",
+      "value": "v3 분량 상한20R: 일반 적 처치행동·중간보스 공략 길이·이동/기믹 대기를 줄이고, 공격 압력과 수직·복합 전개는 유지한다."
+    },
+    {
+      "op": "replace",
+      "path": "/stages/27/design/rounds/0",
+      "value": 14
+    },
+    {
+      "op": "replace",
+      "path": "/stages/27/design/rounds/1",
+      "value": 18
+    },
+    {
+      "op": "replace",
+      "path": "/stages/27/design/minutes/0",
+      "value": 17
+    },
+    {
+      "op": "replace",
+      "path": "/stages/27/design/minutes/1",
+      "value": 25
+    },
+    {
+      "op": "replace",
+      "path": "/stages/27/design/normalKillActions/1",
+      "value": 2
+    },
+    {
+      "op": "replace",
+      "path": "/stages/27/design/miniboss/killRounds/1",
+      "value": 3
+    },
+    {
+      "op": "add",
+      "path": "/stages/27/design/miniboss/encounterRounds",
+      "value": [
+        2,
+        3
+      ]
+    },
+    {
+      "op": "add",
+      "path": "/stages/27/design/miniboss/durationRule",
+      "value": "정예와 다른 고유 패턴·예고·대응은 유지한다. 일반 적보다 강한 집중공략 2–3R로 설계하고, 두 개체전은 겹쳐 진행해 총3–5R를 목표로 한다. HP만 늘려 장기전으로 만들지 않는다."
+    },
+    {
+      "op": "add",
+      "path": "/stages/27/design/roundBudget",
+      "value": {
+        "target": [
+          14,
+          18
+        ],
+        "hardMax": 20,
+        "scope": "전투·이동·필수기믹·대기를 포함한 전체 라운드",
+        "validation": "등록된 일반·숙련 정상 진행 시험에서 20R 초과 0건. 초과는 별도 분량 실패로 기록하며 성공률에 숨기지 않는다. 악의적 무행동 시험은 분리한다.",
+        "notGameplayTimeout": "20R 강제 게임오버를 신설하는 규칙이 아니다."
+      }
+    },
+    {
+      "op": "add",
+      "path": "/stages/27/design/pacingChanges",
+      "value": [
+        "기존 스토리와 완료조건은 유지한다. 20R 안에 안 들어오면 전투/동선/기믹 배치를 다시 설계한다.",
+        "일반 적은 유효 공격 1–2회로 처리하고, 난도는 피해·협공·패턴·위치 선택으로 만든다.",
+        "연속되는 전투와 목적 행동을 같은 이동 구간에 묶고 빈 이동·예약 파동 대기를 줄인다.",
+        "수직 이동의 선택과 큰 형태는 유지하되 발판 간격·합류 지점·왕복거리를 압축한다."
+      ]
+    },
+    {
+      "op": "replace",
+      "path": "/stages/27/varianceReason",
+      "value": "v2 양쪽 상하 출입로가 모이는 협동 구역: 전체14–18R, 실제적행동4–6, 유효공격피해율18–26%, 중간보스1–1체. 단순HP상승/빈대기가아니라상하이동·패턴대응·기존목표의동시압력으로성장한파티에대응한다."
+    },
+    {
+      "op": "add",
+      "path": "/stages/27/proposedChanges/-",
+      "value": "v3 분량 상한20R: 일반 적 처치행동·중간보스 공략 길이·이동/기믹 대기를 줄이고, 공격 압력과 수직·복합 전개는 유지한다."
+    },
+    {
+      "op": "replace",
+      "path": "/stages/28/design/rounds/0",
+      "value": 16
+    },
+    {
+      "op": "replace",
+      "path": "/stages/28/design/rounds/1",
+      "value": 20
+    },
+    {
+      "op": "replace",
+      "path": "/stages/28/design/minutes/0",
+      "value": 19
+    },
+    {
+      "op": "replace",
+      "path": "/stages/28/design/minutes/1",
+      "value": 27
+    },
+    {
+      "op": "replace",
+      "path": "/stages/28/design/normalKillActions/1",
+      "value": 2
+    },
+    {
+      "op": "add",
+      "path": "/stages/28/design/roundBudget",
+      "value": {
+        "target": [
+          16,
+          20
+        ],
+        "hardMax": 20,
+        "scope": "전투·이동·필수기믹·대기를 포함한 전체 라운드",
+        "validation": "등록된 일반·숙련 정상 진행 시험에서 20R 초과 0건. 초과는 별도 분량 실패로 기록하며 성공률에 숨기지 않는다. 악의적 무행동 시험은 분리한다.",
+        "notGameplayTimeout": "20R 강제 게임오버를 신설하는 규칙이 아니다."
+      }
+    },
+    {
+      "op": "add",
+      "path": "/stages/28/design/pacingChanges",
+      "value": [
+        "기존 스토리와 완료조건은 유지한다. 20R 안에 안 들어오면 전투/동선/기믹 배치를 다시 설계한다.",
+        "일반 적은 유효 공격 1–2회로 처리하고, 난도는 피해·협공·패턴·위치 선택으로 만든다.",
+        "연속되는 전투와 목적 행동을 같은 이동 구간에 묶고 빈 이동·예약 파동 대기를 줄인다.",
+        "수직 이동의 선택과 큰 형태는 유지하되 발판 간격·합류 지점·왕복거리를 압축한다.",
+        "보스/구조/장치 단계를 불필요하게 순차 대기시키지 않고 가능한 구간은 병행한다. 기존 필수 사건은 생략하지 않는다."
+      ]
+    },
+    {
+      "op": "replace",
+      "path": "/stages/28/varianceReason",
+      "value": "v2 수직 수문 내외부 보스장: 전체16–20R, 실제적행동5–6, 유효공격피해율18–26%, 중간보스0–0체. 단순HP상승/빈대기가아니라상하이동·패턴대응·기존목표의동시압력으로성장한파티에대응한다."
+    },
+    {
+      "op": "add",
+      "path": "/stages/28/proposedChanges/-",
+      "value": "v3 분량 상한20R: 일반 적 처치행동·중간보스 공략 길이·이동/기믹 대기를 줄이고, 공격 압력과 수직·복합 전개는 유지한다."
+    },
+    {
+      "op": "replace",
+      "path": "/stages/29/design/rounds/0",
+      "value": 15
+    },
+    {
+      "op": "replace",
+      "path": "/stages/29/design/rounds/1",
+      "value": 19
+    },
+    {
+      "op": "replace",
+      "path": "/stages/29/design/minutes/0",
+      "value": 18
+    },
+    {
+      "op": "replace",
+      "path": "/stages/29/design/minutes/1",
+      "value": 26
+    },
+    {
+      "op": "replace",
+      "path": "/stages/29/design/normalKillActions/1",
+      "value": 2
+    },
+    {
+      "op": "replace",
+      "path": "/stages/29/design/miniboss/killRounds/1",
+      "value": 3
+    },
+    {
+      "op": "add",
+      "path": "/stages/29/design/miniboss/encounterRounds",
+      "value": [
+        3,
+        5
+      ]
+    },
+    {
+      "op": "add",
+      "path": "/stages/29/design/miniboss/durationRule",
+      "value": "정예와 다른 고유 패턴·예고·대응은 유지한다. 일반 적보다 강한 집중공략 2–3R로 설계하고, 두 개체전은 겹쳐 진행해 총3–5R를 목표로 한다. HP만 늘려 장기전으로 만들지 않는다."
+    },
+    {
+      "op": "add",
+      "path": "/stages/29/design/roundBudget",
+      "value": {
+        "target": [
+          15,
+          19
+        ],
+        "hardMax": 20,
+        "scope": "전투·이동·필수기믹·대기를 포함한 전체 라운드",
+        "validation": "등록된 일반·숙련 정상 진행 시험에서 20R 초과 0건. 초과는 별도 분량 실패로 기록하며 성공률에 숨기지 않는다. 악의적 무행동 시험은 분리한다.",
+        "notGameplayTimeout": "20R 강제 게임오버를 신설하는 규칙이 아니다."
+      }
+    },
+    {
+      "op": "add",
+      "path": "/stages/29/design/pacingChanges",
+      "value": [
+        "기존 스토리와 완료조건은 유지한다. 20R 안에 안 들어오면 전투/동선/기믹 배치를 다시 설계한다.",
+        "일반 적은 유효 공격 1–2회로 처리하고, 난도는 피해·협공·패턴·위치 선택으로 만든다.",
+        "연속되는 전투와 목적 행동을 같은 이동 구간에 묶고 빈 이동·예약 파동 대기를 줄인다.",
+        "수직 이동의 선택과 큰 형태는 유지하되 발판 간격·합류 지점·왕복거리를 압축한다."
+      ]
+    },
+    {
+      "op": "replace",
+      "path": "/stages/29/varianceReason",
+      "value": "v2 큰 나루와 높은 옛길의 복합 호송: 전체15–19R, 실제적행동4–6, 유효공격피해율18–26%, 중간보스1–2체. 단순HP상승/빈대기가아니라상하이동·패턴대응·기존목표의동시압력으로성장한파티에대응한다."
+    },
+    {
+      "op": "add",
+      "path": "/stages/29/proposedChanges/-",
+      "value": "v3 분량 상한20R: 일반 적 처치행동·중간보스 공략 길이·이동/기믹 대기를 줄이고, 공격 압력과 수직·복합 전개는 유지한다."
+    },
+    {
+      "op": "replace",
+      "path": "/stages/30/design/rounds/0",
+      "value": 15
+    },
+    {
+      "op": "replace",
+      "path": "/stages/30/design/rounds/1",
+      "value": 18
+    },
+    {
+      "op": "replace",
+      "path": "/stages/30/design/minutes/0",
+      "value": 17
+    },
+    {
+      "op": "replace",
+      "path": "/stages/30/design/minutes/1",
+      "value": 24
+    },
+    {
+      "op": "replace",
+      "path": "/stages/30/design/normalKillActions/0",
+      "value": 1
+    },
+    {
+      "op": "replace",
+      "path": "/stages/30/design/normalKillActions/1",
+      "value": 2
+    },
+    {
+      "op": "replace",
+      "path": "/stages/30/design/miniboss/killRounds/0",
+      "value": 2
+    },
+    {
+      "op": "replace",
+      "path": "/stages/30/design/miniboss/killRounds/1",
+      "value": 3
+    },
+    {
+      "op": "add",
+      "path": "/stages/30/design/miniboss/encounterRounds",
+      "value": [
+        2,
+        3
+      ]
+    },
+    {
+      "op": "add",
+      "path": "/stages/30/design/miniboss/durationRule",
+      "value": "정예와 다른 고유 패턴·예고·대응은 유지한다. 일반 적보다 강한 집중공략 2–3R로 설계하고, 두 개체전은 겹쳐 진행해 총3–5R를 목표로 한다. HP만 늘려 장기전으로 만들지 않는다."
+    },
+    {
+      "op": "add",
+      "path": "/stages/30/design/roundBudget",
+      "value": {
+        "target": [
+          15,
+          18
+        ],
+        "hardMax": 20,
+        "scope": "전투·이동·필수기믹·대기를 포함한 전체 라운드",
+        "validation": "등록된 일반·숙련 정상 진행 시험에서 20R 초과 0건. 초과는 별도 분량 실패로 기록하며 성공률에 숨기지 않는다. 악의적 무행동 시험은 분리한다.",
+        "notGameplayTimeout": "20R 강제 게임오버를 신설하는 규칙이 아니다."
+      }
+    },
+    {
+      "op": "add",
+      "path": "/stages/30/design/pacingChanges",
+      "value": [
+        "기존 스토리와 완료조건은 유지한다. 20R 안에 안 들어오면 전투/동선/기믹 배치를 다시 설계한다.",
+        "일반 적은 유효 공격 1–2회로 처리하고, 난도는 피해·협공·패턴·위치 선택으로 만든다.",
+        "연속되는 전투와 목적 행동을 같은 이동 구간에 묶고 빈 이동·예약 파동 대기를 줄인다.",
+        "수직 이동의 선택과 큰 형태는 유지하되 발판 간격·합류 지점·왕복거리를 압축한다."
+      ]
+    },
+    {
+      "op": "replace",
+      "path": "/stages/30/varianceReason",
+      "value": "v2 넓은 하구 둑의 상하 복합 통과: 전체15–18R, 실제적행동5–7, 유효공격피해율22–30%, 중간보스1–1체. 단순HP상승/빈대기가아니라상하이동·패턴대응·기존목표의동시압력으로성장한파티에대응한다."
+    },
+    {
+      "op": "add",
+      "path": "/stages/30/proposedChanges/-",
+      "value": "v3 분량 상한20R: 일반 적 처치행동·중간보스 공략 길이·이동/기믹 대기를 줄이고, 공격 압력과 수직·복합 전개는 유지한다."
+    },
+    {
+      "op": "replace",
+      "path": "/stages/31/design/rounds/0",
+      "value": 10
+    },
+    {
+      "op": "replace",
+      "path": "/stages/31/design/rounds/1",
+      "value": 13
+    },
+    {
+      "op": "replace",
+      "path": "/stages/31/design/minutes/0",
+      "value": 13
+    },
+    {
+      "op": "replace",
+      "path": "/stages/31/design/minutes/1",
+      "value": 20
+    },
+    {
+      "op": "replace",
+      "path": "/stages/31/design/normalKillActions/1",
+      "value": 2
+    },
+    {
+      "op": "add",
+      "path": "/stages/31/design/roundBudget",
+      "value": {
+        "target": [
+          10,
+          13
+        ],
+        "hardMax": 20,
+        "scope": "전투·이동·필수기믹·대기를 포함한 전체 라운드",
+        "validation": "등록된 일반·숙련 정상 진행 시험에서 20R 초과 0건. 초과는 별도 분량 실패로 기록하며 성공률에 숨기지 않는다. 악의적 무행동 시험은 분리한다.",
+        "notGameplayTimeout": "20R 강제 게임오버를 신설하는 규칙이 아니다."
+      }
+    },
+    {
+      "op": "add",
+      "path": "/stages/31/design/pacingChanges",
+      "value": [
+        "기존 스토리와 완료조건은 유지한다. 20R 안에 안 들어오면 전투/동선/기믹 배치를 다시 설계한다.",
+        "일반 적은 유효 공격 1–2회로 처리하고, 난도는 피해·협공·패턴·위치 선택으로 만든다.",
+        "연속되는 전투와 목적 행동을 같은 이동 구간에 묶고 빈 이동·예약 파동 대기를 줄인다.",
+        "수직 이동의 선택과 큰 형태는 유지하되 발판 간격·합류 지점·왕복거리를 압축한다."
+      ]
+    },
+    {
+      "op": "replace",
+      "path": "/stages/31/varianceReason",
+      "value": "v2 재회 마당 중심의 수평 포구: 전체10–13R, 실제적행동3–5, 유효공격피해율20–26%, 중간보스0–0체. 단순HP상승/빈대기가아니라상하이동·패턴대응·기존목표의동시압력으로성장한파티에대응한다. 재회/정적/짧은귀환의서사완화예외이며전투로길이를채우거나새보스를추가하지않는다."
+    },
+    {
+      "op": "add",
+      "path": "/stages/31/proposedChanges/-",
+      "value": "v3 분량 상한20R: 일반 적 처치행동·중간보스 공략 길이·이동/기믹 대기를 줄이고, 공격 압력과 수직·복합 전개는 유지한다."
+    },
+    {
+      "op": "replace",
+      "path": "/stages/32/design/rounds/0",
+      "value": 16
+    },
+    {
+      "op": "replace",
+      "path": "/stages/32/design/rounds/1",
+      "value": 19
+    },
+    {
+      "op": "replace",
+      "path": "/stages/32/design/minutes/0",
+      "value": 18
+    },
+    {
+      "op": "replace",
+      "path": "/stages/32/design/minutes/1",
+      "value": 26
+    },
+    {
+      "op": "replace",
+      "path": "/stages/32/design/normalKillActions/0",
+      "value": 1
+    },
+    {
+      "op": "replace",
+      "path": "/stages/32/design/normalKillActions/1",
+      "value": 2
+    },
+    {
+      "op": "replace",
+      "path": "/stages/32/design/miniboss/killRounds/0",
+      "value": 2
+    },
+    {
+      "op": "replace",
+      "path": "/stages/32/design/miniboss/killRounds/1",
+      "value": 3
+    },
+    {
+      "op": "add",
+      "path": "/stages/32/design/miniboss/encounterRounds",
+      "value": [
+        2,
+        3
+      ]
+    },
+    {
+      "op": "add",
+      "path": "/stages/32/design/miniboss/durationRule",
+      "value": "정예와 다른 고유 패턴·예고·대응은 유지한다. 일반 적보다 강한 집중공략 2–3R로 설계하고, 두 개체전은 겹쳐 진행해 총3–5R를 목표로 한다. HP만 늘려 장기전으로 만들지 않는다."
+    },
+    {
+      "op": "add",
+      "path": "/stages/32/design/roundBudget",
+      "value": {
+        "target": [
+          16,
+          19
+        ],
+        "hardMax": 20,
+        "scope": "전투·이동·필수기믹·대기를 포함한 전체 라운드",
+        "validation": "등록된 일반·숙련 정상 진행 시험에서 20R 초과 0건. 초과는 별도 분량 실패로 기록하며 성공률에 숨기지 않는다. 악의적 무행동 시험은 분리한다.",
+        "notGameplayTimeout": "20R 강제 게임오버를 신설하는 규칙이 아니다."
+      }
+    },
+    {
+      "op": "add",
+      "path": "/stages/32/design/pacingChanges",
+      "value": [
+        "기존 스토리와 완료조건은 유지한다. 20R 안에 안 들어오면 전투/동선/기믹 배치를 다시 설계한다.",
+        "일반 적은 유효 공격 1–2회로 처리하고, 난도는 피해·협공·패턴·위치 선택으로 만든다.",
+        "연속되는 전투와 목적 행동을 같은 이동 구간에 묶고 빈 이동·예약 파동 대기를 줄인다.",
+        "수직 이동의 선택과 큰 형태는 유지하되 발판 간격·합류 지점·왕복거리를 압축한다."
+      ]
+    },
+    {
+      "op": "replace",
+      "path": "/stages/32/varianceReason",
+      "value": "v2 갯길과 높은 바위의 복합 우회: 전체16–19R, 실제적행동5–7, 유효공격피해율22–30%, 중간보스1–1체. 단순HP상승/빈대기가아니라상하이동·패턴대응·기존목표의동시압력으로성장한파티에대응한다."
+    },
+    {
+      "op": "add",
+      "path": "/stages/32/proposedChanges/-",
+      "value": "v3 분량 상한20R: 일반 적 처치행동·중간보스 공략 길이·이동/기믹 대기를 줄이고, 공격 압력과 수직·복합 전개는 유지한다."
+    },
+    {
+      "op": "replace",
+      "path": "/stages/33/design/rounds/0",
+      "value": 17
+    },
+    {
+      "op": "replace",
+      "path": "/stages/33/design/rounds/1",
+      "value": 20
+    },
+    {
+      "op": "replace",
+      "path": "/stages/33/design/minutes/0",
+      "value": 19
+    },
+    {
+      "op": "replace",
+      "path": "/stages/33/design/minutes/1",
+      "value": 28
+    },
+    {
+      "op": "replace",
+      "path": "/stages/33/design/normalKillActions/0",
+      "value": 1
+    },
+    {
+      "op": "replace",
+      "path": "/stages/33/design/normalKillActions/1",
+      "value": 2
+    },
+    {
+      "op": "replace",
+      "path": "/stages/33/design/miniboss/killRounds/0",
+      "value": 2
+    },
+    {
+      "op": "replace",
+      "path": "/stages/33/design/miniboss/killRounds/1",
+      "value": 3
+    },
+    {
+      "op": "add",
+      "path": "/stages/33/design/miniboss/encounterRounds",
+      "value": [
+        3,
+        5
+      ]
+    },
+    {
+      "op": "add",
+      "path": "/stages/33/design/miniboss/durationRule",
+      "value": "정예와 다른 고유 패턴·예고·대응은 유지한다. 일반 적보다 강한 집중공략 2–3R로 설계하고, 두 개체전은 겹쳐 진행해 총3–5R를 목표로 한다. HP만 늘려 장기전으로 만들지 않는다."
+    },
+    {
+      "op": "add",
+      "path": "/stages/33/design/roundBudget",
+      "value": {
+        "target": [
+          17,
+          20
+        ],
+        "hardMax": 20,
+        "scope": "전투·이동·필수기믹·대기를 포함한 전체 라운드",
+        "validation": "등록된 일반·숙련 정상 진행 시험에서 20R 초과 0건. 초과는 별도 분량 실패로 기록하며 성공률에 숨기지 않는다. 악의적 무행동 시험은 분리한다.",
+        "notGameplayTimeout": "20R 강제 게임오버를 신설하는 규칙이 아니다."
+      }
+    },
+    {
+      "op": "add",
+      "path": "/stages/33/design/pacingChanges",
+      "value": [
+        "기존 스토리와 완료조건은 유지한다. 20R 안에 안 들어오면 전투/동선/기믹 배치를 다시 설계한다.",
+        "일반 적은 유효 공격 1–2회로 처리하고, 난도는 피해·협공·패턴·위치 선택으로 만든다.",
+        "연속되는 전투와 목적 행동을 같은 이동 구간에 묶고 빈 이동·예약 파동 대기를 줄인다.",
+        "수직 이동의 선택과 큰 형태는 유지하되 발판 간격·합류 지점·왕복거리를 압축한다."
+      ]
+    },
+    {
+      "op": "replace",
+      "path": "/stages/33/varianceReason",
+      "value": "v2 깊은 자연 절벽의 수직 내외부: 전체17–20R, 실제적행동5–7, 유효공격피해율22–30%, 중간보스1–2체. 단순HP상승/빈대기가아니라상하이동·패턴대응·기존목표의동시압력으로성장한파티에대응한다."
+    },
+    {
+      "op": "add",
+      "path": "/stages/33/proposedChanges/-",
+      "value": "v3 분량 상한20R: 일반 적 처치행동·중간보스 공략 길이·이동/기믹 대기를 줄이고, 공격 압력과 수직·복합 전개는 유지한다."
+    },
+    {
+      "op": "replace",
+      "path": "/stages/34/design/rounds/0",
+      "value": 16
+    },
+    {
+      "op": "replace",
+      "path": "/stages/34/design/rounds/1",
+      "value": 19
+    },
+    {
+      "op": "replace",
+      "path": "/stages/34/design/minutes/0",
+      "value": 18
+    },
+    {
+      "op": "replace",
+      "path": "/stages/34/design/minutes/1",
+      "value": 26
+    },
+    {
+      "op": "replace",
+      "path": "/stages/34/design/normalKillActions/0",
+      "value": 1
+    },
+    {
+      "op": "replace",
+      "path": "/stages/34/design/normalKillActions/1",
+      "value": 2
+    },
+    {
+      "op": "replace",
+      "path": "/stages/34/design/miniboss/killRounds/0",
+      "value": 2
+    },
+    {
+      "op": "replace",
+      "path": "/stages/34/design/miniboss/killRounds/1",
+      "value": 3
+    },
+    {
+      "op": "add",
+      "path": "/stages/34/design/miniboss/encounterRounds",
+      "value": [
+        2,
+        3
+      ]
+    },
+    {
+      "op": "add",
+      "path": "/stages/34/design/miniboss/durationRule",
+      "value": "정예와 다른 고유 패턴·예고·대응은 유지한다. 일반 적보다 강한 집중공략 2–3R로 설계하고, 두 개체전은 겹쳐 진행해 총3–5R를 목표로 한다. HP만 늘려 장기전으로 만들지 않는다."
+    },
+    {
+      "op": "add",
+      "path": "/stages/34/design/roundBudget",
+      "value": {
+        "target": [
+          16,
+          19
+        ],
+        "hardMax": 20,
+        "scope": "전투·이동·필수기믹·대기를 포함한 전체 라운드",
+        "validation": "등록된 일반·숙련 정상 진행 시험에서 20R 초과 0건. 초과는 별도 분량 실패로 기록하며 성공률에 숨기지 않는다. 악의적 무행동 시험은 분리한다.",
+        "notGameplayTimeout": "20R 강제 게임오버를 신설하는 규칙이 아니다."
+      }
+    },
+    {
+      "op": "add",
+      "path": "/stages/34/design/pacingChanges",
+      "value": [
+        "기존 스토리와 완료조건은 유지한다. 20R 안에 안 들어오면 전투/동선/기믹 배치를 다시 설계한다.",
+        "일반 적은 유효 공격 1–2회로 처리하고, 난도는 피해·협공·패턴·위치 선택으로 만든다.",
+        "연속되는 전투와 목적 행동을 같은 이동 구간에 묶고 빈 이동·예약 파동 대기를 줄인다.",
+        "수직 이동의 선택과 큰 형태는 유지하되 발판 간격·합류 지점·왕복거리를 압축한다."
+      ]
+    },
+    {
+      "op": "replace",
+      "path": "/stages/34/varianceReason",
+      "value": "v2 비탈 대숲의 수직 3빈터: 전체16–19R, 실제적행동5–7, 유효공격피해율22–30%, 중간보스1–1체. 단순HP상승/빈대기가아니라상하이동·패턴대응·기존목표의동시압력으로성장한파티에대응한다."
+    },
+    {
+      "op": "add",
+      "path": "/stages/34/proposedChanges/-",
+      "value": "v3 분량 상한20R: 일반 적 처치행동·중간보스 공략 길이·이동/기믹 대기를 줄이고, 공격 압력과 수직·복합 전개는 유지한다."
+    },
+    {
+      "op": "replace",
+      "path": "/stages/35/design/rounds/1",
+      "value": 10
+    },
+    {
+      "op": "replace",
+      "path": "/stages/35/design/minutes/0",
+      "value": 9
+    },
+    {
+      "op": "add",
+      "path": "/stages/35/design/roundBudget",
+      "value": {
+        "target": [
+          7,
+          10
+        ],
+        "hardMax": 20,
+        "scope": "전투·이동·필수기믹·대기를 포함한 전체 라운드",
+        "validation": "등록된 일반·숙련 정상 진행 시험에서 20R 초과 0건. 초과는 별도 분량 실패로 기록하며 성공률에 숨기지 않는다. 악의적 무행동 시험은 분리한다.",
+        "notGameplayTimeout": "20R 강제 게임오버를 신설하는 규칙이 아니다."
+      }
+    },
+    {
+      "op": "add",
+      "path": "/stages/35/design/pacingChanges",
+      "value": [
+        "기존 스토리와 완료조건은 유지한다. 20R 안에 안 들어오면 전투/동선/기믹 배치를 다시 설계한다.",
+        "일반 적은 유효 공격 1–2회로 처리하고, 난도는 피해·협공·패턴·위치 선택으로 만든다.",
+        "연속되는 전투와 목적 행동을 같은 이동 구간에 묶고 빈 이동·예약 파동 대기를 줄인다.",
+        "수직 이동의 선택과 큰 형태는 유지하되 발판 간격·합류 지점·왕복거리를 압축한다."
+      ]
+    },
+    {
+      "op": "replace",
+      "path": "/stages/35/specialMetrics/3/reason",
+      "value": "7–10R 전체 이동/사건과 전투시간을 구별한다."
+    },
+    {
+      "op": "replace",
+      "path": "/stages/35/varianceReason",
+      "value": "v2 정적을 지키는 낮은 폐촌 분지: 전체7–10R, 실제적행동1–2, 유효공격피해율14–20%, 중간보스0–0체. 단순HP상승/빈대기가아니라상하이동·패턴대응·기존목표의동시압력으로성장한파티에대응한다. 재회/정적/짧은귀환의서사완화예외이며전투로길이를채우거나새보스를추가하지않는다."
+    },
+    {
+      "op": "add",
+      "path": "/stages/35/proposedChanges/-",
+      "value": "v3 분량 상한20R: 일반 적 처치행동·중간보스 공략 길이·이동/기믹 대기를 줄이고, 공격 압력과 수직·복합 전개는 유지한다."
+    },
+    {
+      "op": "replace",
+      "path": "/stages/36/design/rounds/0",
+      "value": 17
+    },
+    {
+      "op": "replace",
+      "path": "/stages/36/design/rounds/1",
+      "value": 20
+    },
+    {
+      "op": "replace",
+      "path": "/stages/36/design/minutes/0",
+      "value": 19
+    },
+    {
+      "op": "replace",
+      "path": "/stages/36/design/minutes/1",
+      "value": 28
+    },
+    {
+      "op": "replace",
+      "path": "/stages/36/design/normalKillActions/0",
+      "value": 1
+    },
+    {
+      "op": "replace",
+      "path": "/stages/36/design/normalKillActions/1",
+      "value": 2
+    },
+    {
+      "op": "replace",
+      "path": "/stages/36/design/miniboss/killRounds/0",
+      "value": 2
+    },
+    {
+      "op": "replace",
+      "path": "/stages/36/design/miniboss/killRounds/1",
+      "value": 3
+    },
+    {
+      "op": "add",
+      "path": "/stages/36/design/miniboss/encounterRounds",
+      "value": [
+        3,
+        5
+      ]
+    },
+    {
+      "op": "add",
+      "path": "/stages/36/design/miniboss/durationRule",
+      "value": "정예와 다른 고유 패턴·예고·대응은 유지한다. 일반 적보다 강한 집중공략 2–3R로 설계하고, 두 개체전은 겹쳐 진행해 총3–5R를 목표로 한다. HP만 늘려 장기전으로 만들지 않는다."
+    },
+    {
+      "op": "add",
+      "path": "/stages/36/design/roundBudget",
+      "value": {
+        "target": [
+          17,
+          20
+        ],
+        "hardMax": 20,
+        "scope": "전투·이동·필수기믹·대기를 포함한 전체 라운드",
+        "validation": "등록된 일반·숙련 정상 진행 시험에서 20R 초과 0건. 초과는 별도 분량 실패로 기록하며 성공률에 숨기지 않는다. 악의적 무행동 시험은 분리한다.",
+        "notGameplayTimeout": "20R 강제 게임오버를 신설하는 규칙이 아니다."
+      }
+    },
+    {
+      "op": "add",
+      "path": "/stages/36/design/pacingChanges",
+      "value": [
+        "기존 스토리와 완료조건은 유지한다. 20R 안에 안 들어오면 전투/동선/기믹 배치를 다시 설계한다.",
+        "일반 적은 유효 공격 1–2회로 처리하고, 난도는 피해·협공·패턴·위치 선택으로 만든다.",
+        "연속되는 전투와 목적 행동을 같은 이동 구간에 묶고 빈 이동·예약 파동 대기를 줄인다.",
+        "수직 이동의 선택과 큰 형태는 유지하되 발판 간격·합류 지점·왕복거리를 압축한다."
+      ]
+    },
+    {
+      "op": "replace",
+      "path": "/stages/36/varianceReason",
+      "value": "v2 옹벽 운송길의 수직 경사망: 전체17–20R, 실제적행동5–7, 유효공격피해율22–30%, 중간보스2–2체. 단순HP상승/빈대기가아니라상하이동·패턴대응·기존목표의동시압력으로성장한파티에대응한다."
+    },
+    {
+      "op": "add",
+      "path": "/stages/36/proposedChanges/-",
+      "value": "v3 분량 상한20R: 일반 적 처치행동·중간보스 공략 길이·이동/기믹 대기를 줄이고, 공격 압력과 수직·복합 전개는 유지한다."
+    },
+    {
+      "op": "replace",
+      "path": "/stages/37/design/rounds/0",
+      "value": 17
+    },
+    {
+      "op": "replace",
+      "path": "/stages/37/design/rounds/1",
+      "value": 20
+    },
+    {
+      "op": "replace",
+      "path": "/stages/37/design/minutes/0",
+      "value": 19
+    },
+    {
+      "op": "replace",
+      "path": "/stages/37/design/minutes/1",
+      "value": 28
+    },
+    {
+      "op": "replace",
+      "path": "/stages/37/design/normalKillActions/0",
+      "value": 1
+    },
+    {
+      "op": "replace",
+      "path": "/stages/37/design/normalKillActions/1",
+      "value": 2
+    },
+    {
+      "op": "replace",
+      "path": "/stages/37/design/miniboss/killRounds/0",
+      "value": 2
+    },
+    {
+      "op": "replace",
+      "path": "/stages/37/design/miniboss/killRounds/1",
+      "value": 3
+    },
+    {
+      "op": "add",
+      "path": "/stages/37/design/miniboss/encounterRounds",
+      "value": [
+        3,
+        5
+      ]
+    },
+    {
+      "op": "add",
+      "path": "/stages/37/design/miniboss/durationRule",
+      "value": "정예와 다른 고유 패턴·예고·대응은 유지한다. 일반 적보다 강한 집중공략 2–3R로 설계하고, 두 개체전은 겹쳐 진행해 총3–5R를 목표로 한다. HP만 늘려 장기전으로 만들지 않는다."
+    },
+    {
+      "op": "add",
+      "path": "/stages/37/design/roundBudget",
+      "value": {
+        "target": [
+          17,
+          20
+        ],
+        "hardMax": 20,
+        "scope": "전투·이동·필수기믹·대기를 포함한 전체 라운드",
+        "validation": "등록된 일반·숙련 정상 진행 시험에서 20R 초과 0건. 초과는 별도 분량 실패로 기록하며 성공률에 숨기지 않는다. 악의적 무행동 시험은 분리한다.",
+        "notGameplayTimeout": "20R 강제 게임오버를 신설하는 규칙이 아니다."
+      }
+    },
+    {
+      "op": "add",
+      "path": "/stages/37/design/pacingChanges",
+      "value": [
+        "기존 스토리와 완료조건은 유지한다. 20R 안에 안 들어오면 전투/동선/기믹 배치를 다시 설계한다.",
+        "일반 적은 유효 공격 1–2회로 처리하고, 난도는 피해·협공·패턴·위치 선택으로 만든다.",
+        "연속되는 전투와 목적 행동을 같은 이동 구간에 묶고 빈 이동·예약 파동 대기를 줄인다.",
+        "수직 이동의 선택과 큰 형태는 유지하되 발판 간격·합류 지점·왕복거리를 압축한다."
+      ]
+    },
+    {
+      "op": "replace",
+      "path": "/stages/37/varianceReason",
+      "value": "v2 상하로 어긋난 수직 해식굴: 전체17–20R, 실제적행동5–7, 유효공격피해율22–30%, 중간보스2–2체. 단순HP상승/빈대기가아니라상하이동·패턴대응·기존목표의동시압력으로성장한파티에대응한다."
+    },
+    {
+      "op": "add",
+      "path": "/stages/37/proposedChanges/-",
+      "value": "v3 분량 상한20R: 일반 적 처치행동·중간보스 공략 길이·이동/기믹 대기를 줄이고, 공격 압력과 수직·복합 전개는 유지한다."
+    },
+    {
+      "op": "replace",
+      "path": "/stages/38/design/rounds/0",
+      "value": 18
+    },
+    {
+      "op": "replace",
+      "path": "/stages/38/design/rounds/1",
+      "value": 20
+    },
+    {
+      "op": "replace",
+      "path": "/stages/38/design/minutes/0",
+      "value": 20
+    },
+    {
+      "op": "replace",
+      "path": "/stages/38/design/minutes/1",
+      "value": 29
+    },
+    {
+      "op": "replace",
+      "path": "/stages/38/design/normalKillActions/0",
+      "value": 1
+    },
+    {
+      "op": "replace",
+      "path": "/stages/38/design/normalKillActions/1",
+      "value": 2
+    },
+    {
+      "op": "replace",
+      "path": "/stages/38/design/miniboss/killRounds/0",
+      "value": 2
+    },
+    {
+      "op": "replace",
+      "path": "/stages/38/design/miniboss/killRounds/1",
+      "value": 3
+    },
+    {
+      "op": "add",
+      "path": "/stages/38/design/miniboss/encounterRounds",
+      "value": [
+        3,
+        5
+      ]
+    },
+    {
+      "op": "add",
+      "path": "/stages/38/design/miniboss/durationRule",
+      "value": "정예와 다른 고유 패턴·예고·대응은 유지한다. 일반 적보다 강한 집중공략 2–3R로 설계하고, 두 개체전은 겹쳐 진행해 총3–5R를 목표로 한다. HP만 늘려 장기전으로 만들지 않는다."
+    },
+    {
+      "op": "add",
+      "path": "/stages/38/design/roundBudget",
+      "value": {
+        "target": [
+          18,
+          20
+        ],
+        "hardMax": 20,
+        "scope": "전투·이동·필수기믹·대기를 포함한 전체 라운드",
+        "validation": "등록된 일반·숙련 정상 진행 시험에서 20R 초과 0건. 초과는 별도 분량 실패로 기록하며 성공률에 숨기지 않는다. 악의적 무행동 시험은 분리한다.",
+        "notGameplayTimeout": "20R 강제 게임오버를 신설하는 규칙이 아니다."
+      }
+    },
+    {
+      "op": "add",
+      "path": "/stages/38/design/pacingChanges",
+      "value": [
+        "기존 스토리와 완료조건은 유지한다. 20R 안에 안 들어오면 전투/동선/기믹 배치를 다시 설계한다.",
+        "일반 적은 유효 공격 1–2회로 처리하고, 난도는 피해·협공·패턴·위치 선택으로 만든다.",
+        "연속되는 전투와 목적 행동을 같은 이동 구간에 묶고 빈 이동·예약 파동 대기를 줄인다.",
+        "수직 이동의 선택과 큰 형태는 유지하되 발판 간격·합류 지점·왕복거리를 압축한다.",
+        "보스/구조/장치 단계를 불필요하게 순차 대기시키지 않고 가능한 구간은 병행한다. 기존 필수 사건은 생략하지 않는다."
+      ]
+    },
+    {
+      "op": "replace",
+      "path": "/stages/38/varianceReason",
+      "value": "v2 폐선 분지와 높은 피난로의 복합 구조전: 전체18–20R, 실제적행동5–7, 유효공격피해율22–30%, 중간보스1–2체. 단순HP상승/빈대기가아니라상하이동·패턴대응·기존목표의동시압력으로성장한파티에대응한다. 구조경로60–70%와선택폐선처치경로45–65%를분리한다.4명구조가필수이며폐선처치강제는없다."
+    },
+    {
+      "op": "add",
+      "path": "/stages/38/proposedChanges/-",
+      "value": "v3 분량 상한20R: 일반 적 처치행동·중간보스 공략 길이·이동/기믹 대기를 줄이고, 공격 압력과 수직·복합 전개는 유지한다."
+    },
+    {
+      "op": "replace",
+      "path": "/stages/39/design/rounds/0",
+      "value": 8
+    },
+    {
+      "op": "replace",
+      "path": "/stages/39/design/rounds/1",
+      "value": 11
+    },
+    {
+      "op": "replace",
+      "path": "/stages/39/design/minutes/0",
+      "value": 11
+    },
+    {
+      "op": "replace",
+      "path": "/stages/39/design/minutes/1",
+      "value": 19
+    },
+    {
+      "op": "replace",
+      "path": "/stages/39/design/normalKillActions/1",
+      "value": 2
+    },
+    {
+      "op": "add",
+      "path": "/stages/39/design/roundBudget",
+      "value": {
+        "target": [
+          8,
+          11
+        ],
+        "hardMax": 20,
+        "scope": "전투·이동·필수기믹·대기를 포함한 전체 라운드",
+        "validation": "등록된 일반·숙련 정상 진행 시험에서 20R 초과 0건. 초과는 별도 분량 실패로 기록하며 성공률에 숨기지 않는다. 악의적 무행동 시험은 분리한다.",
+        "notGameplayTimeout": "20R 강제 게임오버를 신설하는 규칙이 아니다."
+      }
+    },
+    {
+      "op": "add",
+      "path": "/stages/39/design/pacingChanges",
+      "value": [
+        "기존 스토리와 완료조건은 유지한다. 20R 안에 안 들어오면 전투/동선/기믹 배치를 다시 설계한다.",
+        "일반 적은 유효 공격 1–2회로 처리하고, 난도는 피해·협공·패턴·위치 선택으로 만든다.",
+        "연속되는 전투와 목적 행동을 같은 이동 구간에 묶고 빈 이동·예약 파동 대기를 줄인다.",
+        "수직 이동의 선택과 큰 형태는 유지하되 발판 간격·합류 지점·왕복거리를 압축한다."
+      ]
+    },
+    {
+      "op": "replace",
+      "path": "/stages/39/varianceReason",
+      "value": "v2 짧은 배/고지 병렬 귀환: 전체8–11R, 실제적행동3–4, 유효공격피해율20–26%, 중간보스0–0체. 단순HP상승/빈대기가아니라상하이동·패턴대응·기존목표의동시압력으로성장한파티에대응한다. 재회/정적/짧은귀환의서사완화예외이며전투로길이를채우거나새보스를추가하지않는다."
+    },
+    {
+      "op": "add",
+      "path": "/stages/39/proposedChanges/-",
+      "value": "v3 분량 상한20R: 일반 적 처치행동·중간보스 공략 길이·이동/기믹 대기를 줄이고, 공격 압력과 수직·복합 전개는 유지한다."
+    },
+    {
+      "op": "add",
+      "path": "/criteriaClassification",
+      "value": {
+        "essential": [
+          {
+            "key": "rounds",
+            "label": "분량",
+            "rule": "장별 목표범위·전체20R 상한. 정상진행 검증 초과0건."
+          },
+          {
+            "key": "difficulty",
+            "label": "난도",
+            "rule": "일반정책 클리어율·실제 행동 적·유효 피해율 목표와 막별 상승."
+          },
+          {
+            "key": "encounters",
+            "label": "적 구성",
+            "rule": "필수경로 실제 교전 수와 중간보스 등장/개체 목표. 주요보스는 분리하며 고유 패턴·예고·대응이 있어야 한다."
+          },
+          {
+            "key": "space",
+            "label": "공간 전개",
+            "rule": "수직/복합 유형·유효 점프/아래점프·필수 고도 활용. 유형에 따라 필요한 항목만 필수."
+          },
+          {
+            "key": "objective_art",
+            "label": "목표와 화면",
+            "rule": "원래 완료조건·진행 정상, 실제 이미지 승인, 자연윤곽<20% 목표/<30% 상한, 의미 소실·불량 연결0건."
+          }
+        ],
+        "reference": [
+          "일반전 맵 크기·종횡비·발판 수",
+          "전체 적 예산·역할/패턴의 단순 개수",
+          "사람 플레이 분·자원 사용·회복 선택",
+          "정밀 곡률·에지 밀도·노드/경로 밀도",
+          "세부 비용·콜드 로딩 진단"
+        ],
+        "referenceRule": "참고 지표만 어긋났다고 자동 반려하지 않는다. 원인 분석과 조정에 사용한다. 특정 장의 핵심 기획을 증명하는 항목은 사전에 해당 장 필수로 지정할 수 있다. 진행 불가·충돌·보호요소 소실 등 실제 결함을 참고로 내려 숨기지 않는다.",
+        "precedence": "v3 필수/참고 분류가 v2 개별 지표의 과거 필수 표기보다 우선한다. 실제 결함은 참고로 숨기지 않는다."
+      }
+    },
+    {
+      "op": "add",
+      "path": "/artMeasurementReferenceV2",
+      "value": {
+        "schema": "honro.art-criteria.proposal.v2",
+        "status": "DESIGN_V2_NOT_MEASURED",
+        "date": "2026-10-30",
+        "scope": "40장 제작 필수 기준 v1. 수치는 실측 검증된 미학 법칙이 아니라 사전에 선언하는 프로젝트 설계 목표다. 적용 지표 미달/미측정/기준판 미등록은 BLOCKED이며 통과 아님. 저장소 코드·에셋 변경/렌더/플레이 테스트 없음.",
+        "normalization": {
+          "viewports_css": [
+            [
+              1280,
+              720
+            ],
+            [
+              390,
+              844
+            ]
+          ],
+          "views": [
+            "normal",
+            "minimum zoom",
+            "maximum zoom"
+          ],
+          "required_metadata": [
+            "asset/stage/revision/hash",
+            "profile keys",
+            "semantic layer masks",
+            "camera/world-to-CSS matrix",
+            "viewport CSS",
+            "DPR",
+            "zoom",
+            "crop",
+            "time/weather/animation state",
+            "reference revision",
+            "renderer/version",
+            "edge parameters",
+            "ROI masks"
+          ],
+          "rules": [
+            "실제 게임 카메라를 재현한 시안 보드 사용; 그림 전체를 1280x720에 임의 fit하지 않음",
+            "CSS pixels로 길이/오차 정규화; DPR·supersample은 측정 해상도이며 결과는 나눠 환산",
+            "로컬 벡터 오차→CSS 상한은 source error * affine 최대 singular value * zoom; nonlinear warp는 최대 Jacobian 또는 직접 화면 측정",
+            "viewport 경계·clip 경계는 authored contour에서 제외; 가림 뒤 geometry는 가시 품질과 실행 비용을 분리",
+            "각 viewport/zoom/layer/feature별 결과 유지; 평균 합격으로 모바일 실패를 덮지 않음"
+          ]
+        },
+        "profiles": {
+          "terrain_organic_rock": {
+            "applies_to": [
+              "BODY",
+              "SURFACE",
+              "REAR rock"
+            ],
+            "focus": "큰 암반 덩어리+중간 침식 굴곡; 내부 균열로 윤곽 대체 금지",
+            "required_targets_v2": {
+              "arc_chord_required_band": [
+                1.05,
+                1.35
+              ],
+              "fine_noise_excess_max": 0.12,
+              "straight_run_ratio_target_exclusive": 0.2,
+              "straight_run_ratio_hard_max_exclusive": 0.3
+            }
+          },
+          "terrain_cave": {
+            "applies_to": [
+              "cave roof",
+              "cave floor",
+              "doorway"
+            ],
+            "focus": "천장/바닥 분리, 큰 공동·돌출·종유석의 의미와 빈 통로 보호",
+            "exceptions": "깊은 공동의 L/chord 상한 예외는 anchor와 근거 기록",
+            "required_targets_v2": {
+              "arc_chord_required_band": [
+                1.05,
+                1.35
+              ],
+              "fine_noise_excess_max": 0.12,
+              "straight_run_ratio_target_exclusive": 0.2,
+              "straight_run_ratio_hard_max_exclusive": 0.3
+            }
+          },
+          "terrain_timber": {
+            "applies_to": [
+              "bridge",
+              "pier",
+              "building",
+              "wreck"
+            ],
+            "focus": "직선 보·기둥 정상; 끝단 파손/접합/지지 구조와 반복 리듬 검토",
+            "required_targets_v1": {
+              "arc_chord_near_one_is_valid": true,
+              "straight_run_ratio_expected_example_not_gate": [
+                0.5,
+                0.95
+              ]
+            }
+          },
+          "terrain_bamboo": {
+            "applies_to": [
+              "bamboo trunks",
+              "bamboo leaves"
+            ],
+            "focus": "줄기와 잎 분리; 직선 줄기 정상, 잎 군집 실루엣/여백으로 리듬 판정",
+            "required_targets_v1": {
+              "approved_reference_required_relative_band": [
+                0.75,
+                1.25
+              ],
+              "universal_absolute_complexity_target": "INAPPLICABLE_BY_MATERIAL",
+              "approved_material_reference_required": true
+            }
+          },
+          "terrain_water": {
+            "applies_to": [
+              "water surface",
+              "waterfall",
+              "reflection FX"
+            ],
+            "focus": "수평 수면 정상; 폭포/수면/물보라 분리, 시간 위상 고정; 정적 벡터에 미세 반사 과밀 금지",
+            "required_targets_v1": {
+              "arc_chord_near_one_is_valid": true,
+              "universal_absolute_complexity_target": "INAPPLICABLE_BY_MATERIAL",
+              "approved_material_reference_required": true
+            }
+          },
+          "background_low_density": {
+            "applies_to": [
+              "FAR",
+              "MID when needed"
+            ],
+            "focus": "큰 산세/안개/여백 우선; 플레이 윤곽보다 대비 낮게",
+            "required_targets_v1": {
+              "weighted_edge_density_ratio_to_play_body_max": 0.5
+            }
+          },
+          "character_protected_features": {
+            "applies_to": [
+              "eyes",
+              "eyebrows",
+              "nose",
+              "mouth",
+              "hands",
+              "weapon strings",
+              "joints"
+            ],
+            "focus": "보호 feature 개별 ID/마스크·원본 불변·표정/실루엣 직접 검수",
+            "required_targets_v1": {
+              "protected_Hausdorff_css_px_max": 0.5,
+              "feature_loss_allowed": 0
+            }
+          }
+        },
+        "metrics": [
+          {
+            "id": "silhouette_multiscale",
+            "name": "큰/중간/미세 윤곽 분리",
+            "unit": "유효 굴곡 수 / 윤곽 호길이 1000 CSS px",
+            "denominator": "클립 경계와 인위적 닫힘 선을 제외한 실제 가시 윤곽 길이",
+            "method": "동일 CSS 좌표로 평탄화 후 1px 호길이 재표본화. epsilon=8/3/1 CSS px의 독립 approxPolyDP 곡선을 비교하고 각 스케일에서 15도 이상 방향전환, 12px 이상 간격의 코너/극값을 집계. 닫힌 윤곽의 임의 시작점은 결과 불변화. 중간 굴곡은 3px에서 살아남는 것, 큰 굴곡은 8px에서 살아남는 것. epsilon은 윤곽 길이 비율이 아닌 화면 px로 고정.",
+            "threshold": "등록된 재질 기준판 대비 큰/중간 유효 굴곡 밀도 각각 0.75~1.25배 필수 v1. 기준판 값 0이면 사전 절대 목표 필수. 지정한 봉우리·골·오버행은 존재 필수. 기준판/목표 미등록은 BLOCKED.",
+            "rationale": "작은 톱니를 늘려 큰 형태 부족을 숨기는 것을 방지. 수치대역은 연구 표준이 아닌 필수 v1 설계 목표.",
+            "exceptions": "물의 수평선·목재 직선은 낮아도 정상. 실제 짧은 윤곽은 count와 길이를 함께 보고 표본부족 처리.",
+            "failure": "코너 개수가 많아도 의미 없는 반복이면 실패. 개수만으로 미술 품질 판정 금지.",
+            "gate": "REQUIRED_WHEN_APPLICABLE"
+          },
+          {
+            "id": "straight_run_ratio",
+            "name": "긴 직선 비율",
+            "unit": "0..1",
+            "denominator": "3px 간소화 후 전체 실제 가시 윤곽 호길이",
+            "method": "3px 윤곽에서 시작점/끝점 chord까지 최대 거리≤2px이고 누적 방향편차≤10도인 최대 연속 구간을 결정적으로 병합. 길이≥80 CSS px인 구간의 합/전체 길이. 40/80/160px 민감도도 함께 기록. 남는 직선도 동일 높이로 길게 이어지지 않도록 경사·단차·고도 변화와 앞뒤 윤곽 전환을 사전 설계하고 이미지로 검사한다.",
+            "threshold": "자연 암석·동굴은 기본 목표 <0.20, 절대 상한 <0.30. 0.20 이상 재작업, 0.30 이상 탈락. 목재·수면은 재질별 별도 기준이며 자연 지형 상면 전체 제외는 금지.",
+            "rationale": "길고 무미한 판형 윤곽 탐지. 임계값은 프로젝트 v1 설계 목표(검증된 보편 미학 법칙 아님).",
+            "exceptions": "의도된 보행면·수면·직선 석축을 태그로 분리; 제외 비율과 이유를 공개한다.",
+            "failure": "직선을 잘게 쪼개거나 아주 작은 노이즈를 넣어도 합쳐서 계산. 낮을수록 좋다는 점수 아님.",
+            "gate": "REQUIRED_WHEN_APPLICABLE"
+          },
+          {
+            "id": "curvature_extrema",
+            "name": "정규화 곡률 및 유효 극값",
+            "unit": "절대 회전각 rad / 1000 CSS px; 극값 개 / 1000 CSS px",
+            "denominator": "각 스케일의 가시 윤곽 호길이",
+            "method": "3px/8px 윤곽에서 sum(abs(wrapped tangent angle change))/L*1000. x/y 극값을 각각 세되 prominence≥해당 epsilon의 2배, 호길이 separation≥12px. 회전각 분포·최댓값·상위구간 지도와 함께 기록.",
+            "threshold": "3px/8px 스케일의 절대회전 밀도 및 x/y 유효 극값 밀도 각각 등록 기준판의 0.75~1.25배 필수 v1. 기준값 0/작은 표본이면 제작 전 절대 범위 또는 재질상 비적용 선언 필수. 기준판 부재는 BLOCKED.",
+            "rationale": "큰/중간 형태의 리듬을 보고 고주파 노이즈 과잉을 분리.",
+            "exceptions": "물결은 시간 위상별, 대나무는 줄기/잎 따로, 동굴은 천장/바닥 따로.",
+            "failure": "닫힌 곡선의 signed 총곡률은 대체로 2π여서 복잡도 지표로 쓰지 않음. abs 회전량도 톱니로 부풀릴 수 있어 multiscale과 결합.",
+            "gate": "REQUIRED_WHEN_APPLICABLE"
+          },
+          {
+            "id": "arc_chord_noise",
+            "name": "구간 길이/현 비율과 미세노이즈",
+            "unit": "무차원",
+            "denominator": "미리 고정한 의미 구간의 양 끝 거리; 별도로 L(epsilon=3px)",
+            "method": "윤곽을 의미 anchor 구간으로 나누어 L(3px)/chord 산출; 닫힌 전체 윤곽은 금지. chord<20px 또는 L<40px는 N/A. 미세노이즈 초과량=(L1-L3)/L3를 병기한다.",
+            "threshold": "자연암석·동굴의 사전 고정 anchor 구간 L3/chord=1.05~1.35, 미세노이즈 초과량≤0.12 필수 v1. 깊은 U형 공동·뿌리는 제작 전 별도 목표 명시. 목재·수평 수면의 1.00은 정상이며 자연암석 범위 비적용.",
+            "rationale": "하나의 길이 지표를 올리려 잔물결을 만드는 행위를 막음.",
+            "exceptions": "깊은 U형 동굴·나무뿌리는 높은 비율 정당; anchor 변경은 새 버전으로 기록.",
+            "failure": "끝점이 가까우면 폭발. 전체 폐곡선의 chord=0이나 인위적 분할 조작 금지.",
+            "gate": "REQUIRED_WHEN_APPLICABLE"
+          },
+          {
+            "id": "layer_edge_density",
+            "name": "플레이 지형 내부와 배경의 선 밀도",
+            "unit": "에지 CSS px / 10000 마스크 CSS px²; 대비가중 에지도 별도",
+            "denominator": "레이어별 실제 가시 면적; 전체 viewport 면적값도 병기",
+            "method": "BODY 내부, SURFACE 경계, REAR, FORE, FAR를 분리 출력. 색을 고정 sRGB→선형 luminance 변환, sigma=1 CSS px, 같은 Canny 임계 0.04/0.10(명도0..1)을 모든 후보에 적용하는 초기 프로토콜. 외곽 3px 띠는 내부에서 제외. 1px skeleton edge 길이/면적. 각 에지의 양쪽 3px 명도 차이를 가중치로 한 밀도도 기록. 타일별 p90과 전체 중앙값.",
+            "threshold": "FAR 대비가중 밀도≤플레이 BODY 내부의 0.5배, 필수 경로 주변 REAR/FORE 대비가중 밀도≤등록 기준판의 1.20배 필수 v1. BODY≈0 또는 표본부족이면 제작 전 절대 밀도 상한 필수; 미확정은 BLOCKED. 레이어가 실제 없는 경우만 N/A.",
+            "rationale": "윤곽 부족을 내부 균열과 배경 과밀로 대체하는 오류를 검출. FAR 저밀도 원칙의 운영화.",
+            "exceptions": "빗줄기·안개·일시 FX는 별도 시계열 pass, 수면 반사도 별도. 어두운 물체는 낮은 밀도로 통과할 수 있어 대비/가독성 검수 병행.",
+            "failure": "경계값을 살짝 낮추거나 흐리게 해 수치를 낮출 수 있음. fixed thresholds 및 보조 민감도(0.5x/2x), 실제 색 화면 검수 필수.",
+            "gate": "REQUIRED_WHEN_APPLICABLE"
+          },
+          {
+            "id": "protected_geometry",
+            "name": "중요 영역 윤곽·틈·구멍 보존",
+            "unit": "Hausdorff 최대 CSS px; IoU 0..1; 구성요소/구멍 수",
+            "denominator": "의미별 고정 마스크의 합집합 면적(IoU); 경계점 집합(Hausdorff)",
+            "method": "눈/코/입·발판끝·출입구·접지·socket별 raw path ID 또는 semantic mask를 등록. 같은 transform/카메라에서 raw/후보 경계를 supersample 4~8배로 측정해 CSS px로 환산. 양방향 Hausdorff, 각 feature의 IoU, 연결요소/구멍/선 연속성 검사. mask 가장자리 잘림은 guard band를 주고 ROI 내부 source point끼리 동일 feature로 대응.",
+            "threshold": "일반 외곽 Hausdorff≤1.5 CSS px, 보호 feature≤0.5px 필수 v1. 보호 면적≥100px²의 IoU≥0.98 필수. 작은 눈·입·선은 raw path 불변 우선+feature별≤0.5px(더 엄격한 0.25px 별도 가능)+소실 0. 작은 feature에 면적 IoU 공통 하한 비적용. 구멍·통로·연결 의미 변경 hard fail.",
+            "rationale": "전체 알파는 얼굴 내부 손실을 못 찾음. 작은 중요 형상을 전체 평균에서 분리.",
+            "exceptions": "의도된 디자인 수정은 원본 재승인 경로, 최적화 예외로 통과시키지 않음. 둘 다 빈 마스크는 pass가 아니라 잘못된 보호 정의/N/A.",
+            "failure": "Hausdorff는 작은 이상점에 민감; p95 병기하되 max를 대체하지 않음. IoU는 얇은 선에 과민하고 큰 면적의 작은 손실에 둔감.",
+            "gate": "REQUIRED_WHEN_APPLICABLE"
+          },
+          {
+            "id": "render_difference",
+            "name": "국소 색/알파와 구조 차이",
+            "unit": "RGB MAE 0..255; 변화 픽셀 비율; SSIM",
+            "denominator": "전체 및 각 보호 ROI의 고정 픽셀 수",
+            "method": "raw/후보 premultiplied RGBA를 검정/흰색 배경에 합성해 채널별 큰 절대차를 취함. MAE, p99, max채널차>16인 픽셀 비율, alpha 차이. SSIM은 같은 crop에서 data_range=1, channel_axis 설정을 명시, 보조 진단만.",
+            "threshold": "RGB MAE≤2/255; 각 보호 ROI MAE≤1/255 및 max채널차>16 픽셀비율≤0.05 필수 v1. SSIM은 진단 전용으로 필수 합격 점수 없음; 보호 feature 의미 확인 필수.",
+            "rationale": "기존 optimizer와 비교 가능하게 하되 얼굴/작은 문양의 평균 희석 방지.",
+            "exceptions": "너무 작은 ROI는 SSIM win_size 미충족으로 N/A; 크기 확대해 통과로 만들지 않음. 색 재디자인은 별도 기준판 비교.",
+            "failure": "전체 SSIM/MAE가 좋아도 눈 하나가 사라질 수 있음. 자동 visualApproved 금지.",
+            "gate": "REQUIRED_WHEN_APPLICABLE"
+          },
+          {
+            "id": "vector_density_cost",
+            "name": "벡터 기하·전송·렌더 비용",
+            "unit": "path/subpath/명령/anchor/control point 수 / 가시 1 Mpixel; bytes; ms; MiB",
+            "denominator": "CSS viewport 또는 레이어 실제 가시면적(Mpixel), 둘 다 기록",
+            "method": "원본 고유 geometry와 use 확장 인스턴스 비용을 분리. 노드라는 단어 대신 DOM nodes/앵커/제어점/명령을 명시. gzip/비압축 bytes, cold parse/first draw, warm p50/p95 frame, cache bytes 기록. 화면밖 geometry 비용은 별도; clip되어도 처리한 geometry는 비용에 포함.",
+            "threshold": "shared/map/vector-art.js 현행 validator 필수: use 확장 포함 tree nodes≤512, depth≤24, path d≤60000 chars, symbols≤512, clip별 path 수1~32 및 각≤60000 chars. 노드/bytes 미학 하한 없음. 제작 시 inventory 필수; 연결 전 목표 기기/부품 비용 예산 등록 및 실제 p95 통과 필수. 미확정은 BLOCKED, 비용 검사 전 제작 숫자만으로 런타임 합격 금지. 제품 v1의 추가 프레임 목표는 runtimePerformanceBudget을 따른다. 기준 기기 미등록은 수치 목표 부재가 아닌 실측 미완료로 처리한다.",
+            "rationale": "48 compound paths라도 내부 명령 수가 많을 수 있음. bytes/노드 감소는 동일 화면 품질을 유지할 때만 성과.",
+            "exceptions": "캐시 재사용으로 geometry와 warm frame 비용 관계가 달라짐. 성능 측정은 구현 단계에서만, 현재 보고서에서는 미실행.",
+            "failure": "단순 path수나 gzip만으로 빠르다/미술 좋다 판정 금지.",
+            "gate": "REQUIRED_WHEN_APPLICABLE"
+          },
+          {
+            "id": "palette_depth",
+            "name": "막별 색채와 깊이",
+            "unit": "명도/채도 분포 및 기준판 대비 차이; 수치 승인대기",
+            "denominator": "의미 레이어별 가시 픽셀",
+            "method": "채택 기준판과 같은 시간·날씨에서 지형/배경 명도·채도 분위수, 큰 색면 면적, 전경-원경 대비 기록. 최신 사용자 지정 4막 목표는 blue-dawn(블루톤의 새벽녘). 기존 SOP의 낮 밝기가 남는 푸른 안개는 historical/current, 새 목표는 proposal-v1로 구분하며 혼용 금지.",
+            "threshold": "blue-dawn 포함 막별 기준판과 명도·채도 허용 범위 제작 전 등록 필수. 기준판/허용 범위 미등록은 BLOCKED_TARGET_REQUIRED. 등록 범위 밖은 FAIL; 날씨 상태별 목표 별도 선언.",
+            "rationale": "윤곽/밀도가 좋아도 잘못된 시간·색조면 실패.",
+            "exceptions": "조명/날씨 상태는 별도 프로파일.",
+            "failure": "전체 평균색은 국소 과채도와 낮밤 혼동을 숨김.",
+            "gate": "REQUIRED_WHEN_APPLICABLE"
+          }
+        ],
+        "gates": [
+          {
+            "id": "A_concept",
+            "stage": "시안",
+            "required": [
+              "스켈레톤/보호 접촉선·여백 고정",
+              "실제 카메라 크기 2종",
+              "실루엣 단색판 및 레이어 분리",
+              "silhouette_multiscale",
+              "straight_run_ratio",
+              "curvature_extrema",
+              "arc_chord_noise",
+              "layer_edge_density",
+              "palette_depth"
+            ],
+            "pass_rule": "모든 적용 수치 v1 목표와 의미 있는 큰/중간 조형·배경 저밀도 직접검수 동시 통과 필수. 기준판·범위 미등록 또는 수치 미달이면 BLOCKED. 시안 불합격을 노드 증가로 해결하지 않음.",
+            "status": "BLOCKED_NOT_MEASURED"
+          },
+          {
+            "id": "B_native_raw",
+            "stage": "실제 Inkscape native/raw",
+            "required": [
+              "시안→raw 오차 별도 기록",
+              "Inkscape 도구/설정 이력",
+              "raw immutable hash",
+              "semantic path IDs/protected masks",
+              "protected_geometry",
+              "render_difference",
+              "vector_density_cost inventory"
+            ],
+            "pass_rule": "자동 trace 후 실제 편집/정리 증빙, 중요 feature와 구멍/접합 직접 검수. Inkscape 열기만 한 코드 좌표 그림은 불인정.",
+            "status": "BLOCKED_NOT_MEASURED"
+          },
+          {
+            "id": "C_optimized",
+            "stage": "raw→오차제한 후보",
+            "required": [
+              "모든 후보 동일 raw에서 독립 생성",
+              "보호 feature 단위 오차",
+              "최소/일반/최대 줌 비교",
+              "후보별 bytes/명령/노드 비용표",
+              "raw unchanged",
+              "native/optimized 차영상"
+            ],
+            "pass_rule": "기존 엔진 한도와 모든 보호 오차 동시 충족 후보만 candidate. 없으면 분리/시안 재설계, 허용 오차 무한 증가는 금지.",
+            "status": "BLOCKED_NOT_MEASURED"
+          },
+          {
+            "id": "D_visual_signoff",
+            "stage": "제작 승인 및 최종 연결 검수",
+            "required": [
+              "원본·후보 실제 크기와 중요 부분 확대 직접 검수",
+              "눈·코·입·실루엣·접촉선·출구·부품 연결 의미 확인",
+              "검수한 hash/camera/state/reviewer",
+              "최종 native→runtime import 차이 및 비용은 연결 때 별도 확인"
+            ],
+            "pass_rule": "모든 적용 필수 수치와 직접검수 동시 통과 필요. 자동 visualApproved 금지. 검수 hash/실제 evidence 필수. runtime 연결 예산 미확정/미측정이면 연결 승인 BLOCKED.",
+            "status": "BLOCKED_NOT_MEASURED"
+          }
+        ],
+        "calibration": "40장 전역 설계 단계에서 재질별 승인 기준판과 실패판을 등록하고 v1 목표를 사전 고정한다. 이후 제작·실측에서 반드시 통과해야 한다. 현재 제안 수치는 보편 미학 법칙/검증된 최적값이 아니다. 목표 미달은 재설계 우선. 범위 변경은 전역 검토·버전 변경·독립 재평가가 필요하며 측정 후 편의상 완화 금지. 미측정/기준판 부재/필수 범위 미확정은 BLOCKED; 진짜 재질상 비적용만 사전 N/A. 디테일 수 가산점·미술 총점 없음.",
+        "existing_evidence": [
+          {
+            "path": "game/docs/VECTOR_AUTHORING_SOP.md",
+            "finding": "큰 실루엣→중간 형태→2–4 명암면, raw 보존/보호영역/화면오차/시각검수 의무 이미 존재"
+          },
+          {
+            "path": "tools/vector-production/optimize-svg.py:25-74",
+            "finding": "기존 stats와 화면 오차 검사; provisional 기본값을 계승하되 CSS/world 변환과 feature 의미를 명시해야 함"
+          },
+          {
+            "path": "tools/vector-production/error-units.mjs",
+            "finding": "affine 최대 singular value와 zoom으로 CSS 오차 상한 계산 존재; nonlinear 한계 명시"
+          },
+          {
+            "path": "art/stage36-vector-production/vector-fidelity.json",
+            "finding": "palette-island 진단 실패와 protected alpha 대체 검증 범위가 명시됨; 외곽 합격을 모든 내부색면 보존으로 일반화 금지"
+          },
+          {
+            "path": "shared/map/vector-art.js:6-12",
+            "finding": "현행 validator tree/use-expanded 512, depth24, path chars60000, symbols512, clips1..32 확인; 신규 한도 증설하지 않음"
+          }
+        ],
+        "sources": [
+          {
+            "url": "https://docs.opencv.org/4.13.0/d3/dc0/group__imgproc__shape.html",
+            "supports": "approxPolyDP epsilon 기반 곡선 근사, arcLength, contour area API 정의. 여기의 미학 임계값을 뒷받침하지 않음"
+          },
+          {
+            "url": "https://scikit-image.org/docs/stable/api/skimage.metrics.html",
+            "supports": "Hausdorff와 structural_similarity 정의/파라미터. 미학 합격선 아님"
+          }
+        ],
+        "acceptance_policy": {
+          "mandatory": true,
+          "missing_measurement": "BLOCKED_NOT_MEASURED",
+          "missing_reference": "BLOCKED_REFERENCE_REQUIRED",
+          "unset_required_threshold": "BLOCKED_TARGET_REQUIRED",
+          "failure": "BLOCKED_REDESIGN_REQUIRED",
+          "exception_policy": "재질/의도별 비적용 또는 대체 목표를 제작·측정 전에 카드에 선언하고 근거·ROI·검토자·기준 버전을 기록. 측정 후 묵인/목표 낮추기 금지. 사후 목표 변경은 전역 설계 재검토 및 새 버전 독립 재평가.",
+          "N_A": "재질상 실제 비적용임이 사전 선언된 항목만 N/A; 누락·미측정·미확정을 N/A로 처리 금지",
+          "overall": "모든 applicable 필수 수치와 직접 시각검수 동시 통과. 수치 총점으로 상쇄 금지."
+        },
+        "runtime_budget_registration": {
+          "stage": "D 이전 필수",
+          "existing_validator_source": "shared/map/vector-art.js:6-12",
+          "performance_target": "현재 수치 미등록: BLOCKED_TARGET_REQUIRED. 실제 대상 기기의 model/OS/browser/DPR/해상도/전원상태/동일 장면/캐시 cold-warm 조건을 먼저 선언한 뒤 비용 목표 승인. 60fps desktop/30fps mobile 같은 목표는 선택 가능하나 본 모듈이 측정 없이 확정하지 않음.",
+          "note": "설계 목표 등록, 실측, 통과를 구분. runtime 성능값 미확정은 시안 형태 수치의 합격을 무효화하지 않지만 최종 통합 합격을 차단."
+        },
+        "runtimePerformanceBudget": {
+          "status": "DESIGN_TARGET_V1_NOT_MEASURED",
+          "desktop": {
+            "viewportCSS": [
+              1280,
+              720
+            ],
+            "warmFrameP95MsMax": 16.7
+          },
+          "mobile": {
+            "viewportCSS": [
+              390,
+              844
+            ],
+            "warmFrameP95MsMax": 33.3
+          },
+          "conditions": [
+            "기준 기기 모델·OS·브라우저 버전·DPR·카메라 줌·날씨·애니메이션 상태를 시험 전에 등록한다.",
+            "전체 게임 프레임과 벡터 draw 비용을 분리 보고하고 cold 초기 파싱/첫 렌더와 warm 프레임을 섞지 않는다.",
+            "기기 미등록 또는 실제 화면 미측정이면 BLOCKED다. 헤드리스 실행시간이나 도구 대기시간을 프레임 비용으로 대체하지 않는다."
+          ],
+          "rationale": "60fps 데스크톱·30fps 모바일을 위한 제품 목표 제안이며 해당 장의 실측 성능 또는 보편적 미학 기준이 아니다."
+        },
+        "supersedes": "v1 자연지형 긴 직선 45% 상한 폐기",
+        "compositionPolicy": "기본은 풍부하게 구성한다. 꼭 필요한 시야·조준·동선 외 불필요한 공백은 큰 지형·발판·게임 요소·근경·장식으로 구성한다. 미완성 공백을 사후 의미 있는 여백이라고 면책하지 않는다. 노드·장식 수나 채움률만으로 합격하지 않는다.",
+        "antiOverfit": [
+          "시안 실루엣·명암·컬러, native, 최적화, 실제 연결 화면의 단계별 스크린샷을 직접 확인한다.",
+          "숫자를 숨기고 기준판/후보를 비교하는 독립 이미지 검수에서 조형·스타일·구성·공백을 평가한다.",
+          "제작 중 튜닝에 쓰지 않은 카메라 위치와 줌·기기 화면으로 검사한다.",
+          "평평한 상면+과밀 하부, 톱니 노이즈, 미세 장식 살포, 과도한 제외 마스크 같은 조작판이 탈락하는지 검수 자체를 시험한다."
+        ],
+        "currentPlanFile": "art-acceptance-plan-v2.md"
+      }
+    },
+    {
+      "op": "add",
+      "path": "/artRequiredV3",
+      "value": {
+        "naturalStraightTarget": "<20%",
+        "naturalStraightHardLimit": "<30%",
+        "visibleGapAllowed": 0,
+        "protectedFeatureLossAllowed": 0,
+        "visualApprovalRequired": true,
+        "classification": {
+          "essential": [
+            "최종 실제 크기 이미지 승인",
+            "자연 윤곽 직선 기본<20%/절대<30%",
+            "필수 보호요소 소실0·의미 연결 불량0",
+            "원본 대비 외곽1.5px/보호0.5px 등 보존 오차",
+            "현행 엔진 구조·안전 한도"
+          ],
+          "reference": [
+            "정밀 곡률·노드·경로 밀도",
+            "대비가중 에지 밀도와 상세 색 분포",
+            "비용 진단과 최적화 후보 비교"
+          ],
+          "rule": "참고 수치는 이미지 검수의 원인 분석에 사용한다. 실제 가독성·스타일·구성·진행 결함을 참고 항목이라고 면책하지 않는다. 해당 장 핵심 기준판의 필수 항목은 사전에 명시한다."
+        },
+        "classificationPriority": "v3의 필수/참고 구분을 적용한다. 이전 v2의 모든 측정값 필수 문구는 측정법 보존용 이력이며 v3 분류보다 우선하지 않는다."
+      }
+    },
+    {
+      "op": "replace",
+      "path": "/artAcceptancePlanMarkdown",
+      "value": "# 혼로 미술 검수 v3\n\n**필수는 승인 조건, 참고는 원인 분석과 조정용이다.** 기본은 풍부하고 일관된 화면이며 노드·폴리곤·장식 수로 품질을 판정하지 않는다. 아래 수치는 설계 목표이고 실측 전이다.\n\n| 대상 | 필수 | 참고 |\n|---|---|---|\n| 자연 지형 | 긴 직선 기본 **20% 미만**, 절대 **30% 미만**. 직선에도 경사·단차·고저 변화. 상면·천장·하부 각각 확인 | 다중스케일 굴곡·곡률·길이비. 톱니로 수치만 높였는지 진단 |\n| 화면 구성·스타일 | 불필요한 공백을 큰 지형·게임 요소·근경·장식으로 구성. 일관된 윤곽·명암·색감의 실제 이미지 승인 | 형태 anchor·영역 커버리지·공백 면적/폭·명암면·색 분포 비교 |\n| 시안 재현 | 주요 형태와 눈·입·접점·출입구 등 의미 보존, 주요 윤곽 최대 오차 **2 CSS px 이하** | 큰 형상 IoU 0.98, 색·에지 차이. 질감의 픽셀 복제는 요구하지 않음 |\n| 최적화 보존 | 불변 raw 대비 외곽 **1.5px 이하**, 보호 부위 **0.5px 이하**, 중요한 요소 소실 **0개** | RGB MAE·IoU·SSIM. 전체 평균이 좋아도 의미 손실은 탈락 |\n| 부품 연결 | 접합 틈·콜라이더 접촉 오차 **0.5px 이하**, 보이는 틈·겹침·색 단절 **0건** | 동일 재질 이음의 OKLab L 차 0.03, 속성·법선·카메라 소수점 위치 진단 |\n| 런타임 | 현행 엔진 안전한도 tree **512**, depth **24**, path d **60,000자** 이내. 실제 화면·조작 정상 | PC 16.7ms/모바일33.3ms p95 목표, 파싱·첫 렌더·warm 프레임·메모리·bytes |\n\n참고값 하나가 범위를 벗어났다는 이유만으로 자동 반려하지 않는다. 다만 실제 가독성·진행·의미 보존·프레임 정지 같은 결함을 참고 항목이라며 통과시킬 수 없다. 특정 장의 핵심인 참고 지표는 제작 전에 해당 장 필수로 지정할 수 있다.\n\n## 수치 과적합 방지\n\n1. **단계별 화면:** 시안 실루엣·명암·컬러 → Inkscape → 최적화 → 실제 게임을 찍어 확인한다.\n2. **숫자 숨긴 비교:** 숫자를 보지 않고 기준판과 후보의 자연스러움·풍부한 구성·스타일을 독립 평가한다.\n3. **다른 시점:** 튜닝에 쓰지 않은 카메라·줌·화면 크기로 다시 본다.\n4. **검수도 시험:** 톱니 윤곽, 잔장식 살포, 과밀 하부로 평평한 천장 숨기기, 제외 마스크 늘리기 등이 실제로 탈락하는지 확인한다.\n\n꼭 필요한 시야·조준·동선만 사전에 범위를 지정한다. 미완성 공백을 나중에 의미 있는 여백으로 면책하지 않는다. 같은 품질의 합격 후보 중 비용이 낮은 안을 채택하고, 최적화 때문에 형태·인상이 무너지면 탈락시킨다.\n\n**PASS:** 적용 필수 전부 통과 + 실제 크기 이미지 승인. **FAIL:** 필수 미달·의미 파손. **미완료:** 필수 미측정·근거 없음. 참고 경고를 해결하려 디테일·노드 수를 무작정 늘리지 않는다.\n\n근거: [Valve 미술 가이드](https://help.steampowered.com/en/faqs/view/0688-7692-4D5A-1935), [OpenAI 지표 공략 사례](https://openai.com/index/faulty-reward-functions/), [DeepMind specification gaming](https://deepmind.google/blog/specification-gaming-the-flip-side-of-ai-ingenuity/), [OpenCV 윤곽 측정](https://docs.opencv.org/4.13.0/dd/d49/tutorial_py_contour_features.html). 수치 임계값은 이 자료의 보편 권장값이 아니라 혼로용 설계값이다.\n"
+    },
+    {
+      "op": "replace",
+      "path": "/definitions/0",
+      "value": "필수는 분량·난도·적 구성·공간 전개·목표와 화면의 다섯 그룹이다. 한 필수 조건의 실패를 다른 지표로 상쇄하지 않는다. 보스의 고유 행동·예고·대응은 필수지만 역할·패턴의 정확한 개수는 참고다."
+    },
+    {
+      "op": "replace",
+      "path": "/definitions/1",
+      "value": "1턴(R)은 아군+적 cycle이며 전투·이동·필수 기믹·대기를 모두 포함한다. 모든 장 목표 상한은20턴이다. 등록 일반·숙련 정상 진행에서20턴 초과0건을 확인하며 초과 로그를 버리지 않는다. 강제 게임오버나20턴 로그 절단을 신설하는 규칙은 아니다."
+    },
+    {
+      "op": "replace",
+      "path": "/definitions/2",
+      "value": "기준은 원정 난이도와 정상 진입 파티·합법 성장·장비·기예다. 클리어율은 등록된 일반 정책의 유한 시험군 비율이고 사람 승률이 아니다. 성공런 중앙값·평균과 실패·timeout을 분리하며 동일seed 복제를 독립 표본으로 늘리지 않는다."
+    },
+    {
+      "op": "replace",
+      "path": "/definitions/3",
+      "value": "필수 경로의 실제 교전 수와 중간보스 편성은 모두 필수다. 중간보스는 정예·주요보스와 별도다. 필수 처치 수는 기존 승리조건만 따른다. 수직/복합은 유효 점프·아래점프와 실제 고도 활용을 확인한다. 필수 고도비의 분모는 사전등록한 활용 높이이며 통과하려고 줄이지 않는다."
+    },
+    {
+      "op": "replace",
+      "path": "/definitions/4",
+      "value": "미술 필수는 자연윤곽 긴 직선 기본<20%·절대<30%, 눈에 보이는 틈0·보호 형상 소실0과 최종 시각 승인이다. 구45% 기준은 폐기한다. 원본 대비 외곽1.5px/보호0.5px 보존 오차와 현행 엔진 안전 한도도 필수다. 정밀 곡률·노드/에지 밀도·세부 비용은 참고 진단이며 그림의 품질을 개수 점수로 대신하지 않는다."
+    },
+    {
+      "op": "replace",
+      "path": "/definitions/5",
+      "value": "참고는 맵 크기·종횡비·발판 수, 전체 적 예산·역할/패턴 수, 일반 적 처치 행동, 시간·자원·회복 선택, 정밀 미술·비용 진단 등이다. 수직형 종횡비처럼 해당 장의 핵심 기획을 증명하는 항목은 사전 선언하면 필수로 승격할 수 있다. 참고 수치만 어긋났다고 자동 반려하지 않되 진행 불가·충돌·보호요소 소실을 참고로 숨기지 않는다."
+    },
+    {
+      "op": "replace",
+      "path": "/designAudit/version",
+      "value": "v3"
+    },
+    {
+      "op": "replace",
+      "path": "/designAudit/status",
+      "value": "필수 설계 수치 조건 충족 · 진행/시각 실측 전"
+    },
+    {
+      "op": "replace",
+      "path": "/designAudit/scopeNote",
+      "value": "전체 전투 집계는 비전투 19장만 제외하며 서사 완화 장도 포함한다. 일반전은 주요보스·19장·분할 25–27장·완화 9/32/36/40장을 제외한다. 중간보스 장은 일반전에 포함한다. 일반전 제외: 1막 8,9,10 / 2막 18,19 / 3막 25,26,27,29 / 4막 32,36,39,40. 대응창 N/A: 36장. 현재 목표의 구간 중심을 집계한 제안 트렌드 검사이며 성공런 실측 통계가 아니다. 역할·패턴·동시과제의 단순 수 증가 검사는 참고 진단이며 단독 반려 기준이 아니다. 턴수는 중앙값 목표 외에 등록 일반·숙련 정상 진행의 20턴 초과 0건을 별도로 확인한다."
+    },
+    {
+      "op": "replace",
+      "path": "/designAudit/stats/1/allCombat/rounds/mean",
+      "value": 8.9
+    },
+    {
+      "op": "replace",
+      "path": "/designAudit/stats/1/allCombat/rounds/median",
+      "value": 8.25
+    },
+    {
+      "op": "replace",
+      "path": "/designAudit/stats/1/normal/rounds/mean",
+      "value": 7.786
+    },
+    {
+      "op": "replace",
+      "path": "/designAudit/stats/1/normal/rounds/median",
+      "value": 8.0
+    },
+    {
+      "op": "replace",
+      "path": "/designAudit/stats/2/allCombat/rounds/mean",
+      "value": 12.667
+    },
+    {
+      "op": "replace",
+      "path": "/designAudit/stats/2/allCombat/rounds/median",
+      "value": 12.0
+    },
+    {
+      "op": "replace",
+      "path": "/designAudit/stats/2/normal/rounds/mean",
+      "value": 12.125
+    },
+    {
+      "op": "replace",
+      "path": "/designAudit/stats/2/normal/rounds/median",
+      "value": 12.0
+    },
+    {
+      "op": "replace",
+      "path": "/designAudit/stats/3/allCombat/rounds/mean",
+      "value": 14.7
+    },
+    {
+      "op": "replace",
+      "path": "/designAudit/stats/3/allCombat/rounds/median",
+      "value": 14.5
+    },
+    {
+      "op": "replace",
+      "path": "/designAudit/stats/3/normal/rounds/mean",
+      "value": 14.5
+    },
+    {
+      "op": "replace",
+      "path": "/designAudit/stats/3/normal/rounds/median",
+      "value": 14.5
+    },
+    {
+      "op": "replace",
+      "path": "/designAudit/stats/4/allCombat/rounds/mean",
+      "value": 15.55
+    },
+    {
+      "op": "replace",
+      "path": "/designAudit/stats/4/allCombat/rounds/median",
+      "value": 17.5
+    },
+    {
+      "op": "replace",
+      "path": "/designAudit/stats/4/normal/rounds/mean",
+      "value": 17.833
+    },
+    {
+      "op": "replace",
+      "path": "/designAudit/stats/4/normal/rounds/median",
+      "value": 18.0
+    },
+    {
+      "op": "replace",
+      "path": "/designAudit/checks/0/id",
+      "value": "ROUND_CAP_20"
+    },
+    {
+      "op": "replace",
+      "path": "/designAudit/checks/0/label",
+      "value": "모든 장 전체 턴 목표 상한"
+    },
+    {
+      "op": "replace",
+      "path": "/designAudit/checks/0/value",
+      "value": "40장 모두 ≤20턴"
+    },
+    {
+      "op": "add",
+      "path": "/designAudit/checks/0/priority",
+      "value": "required"
+    },
+    {
+      "op": "replace",
+      "path": "/designAudit/checks/1/id",
+      "value": "clear_normal"
+    },
+    {
+      "op": "replace",
+      "path": "/designAudit/checks/1/label",
+      "value": "3→4막 일반전 성공률 중심 평균"
+    },
+    {
+      "op": "replace",
+      "path": "/designAudit/checks/1/value",
+      "value": "78.75 → 66.667 (-12.08)"
+    },
+    {
+      "op": "add",
+      "path": "/designAudit/checks/1/priority",
+      "value": "required"
+    },
+    {
+      "op": "replace",
+      "path": "/designAudit/checks/2/id",
+      "value": "clear_all"
+    },
+    {
+      "op": "replace",
+      "path": "/designAudit/checks/2/label",
+      "value": "3→4막 전체 전투 성공률 중심 평균"
+    },
+    {
+      "op": "replace",
+      "path": "/designAudit/checks/2/value",
+      "value": "77.25 → 72.0 (-5.25)"
+    },
+    {
+      "op": "add",
+      "path": "/designAudit/checks/2/priority",
+      "value": "required"
+    },
+    {
+      "op": "replace",
+      "path": "/designAudit/checks/3/id",
+      "value": "actions_normal"
+    },
+    {
+      "op": "replace",
+      "path": "/designAudit/checks/3/label",
+      "value": "3→4막 일반전 행동 적 중심 중앙값"
+    },
+    {
+      "op": "replace",
+      "path": "/designAudit/checks/3/value",
+      "value": "5.0 → 6.0 (+1.00)"
+    },
+    {
+      "op": "add",
+      "path": "/designAudit/checks/3/priority",
+      "value": "required"
+    },
+    {
+      "op": "replace",
+      "path": "/designAudit/checks/4/id",
+      "value": "actions_all"
+    },
+    {
+      "op": "replace",
+      "path": "/designAudit/checks/4/label",
+      "value": "3→4막 전체 전투 행동 적 중심 평균"
+    },
+    {
+      "op": "replace",
+      "path": "/designAudit/checks/4/value",
+      "value": "4.5 → 5.1 (+0.60)"
+    },
+    {
+      "op": "add",
+      "path": "/designAudit/checks/4/priority",
+      "value": "required"
+    },
+    {
+      "op": "replace",
+      "path": "/designAudit/checks/5/id",
+      "value": "damage_normal"
+    },
+    {
+      "op": "replace",
+      "path": "/designAudit/checks/5/label",
+      "value": "3→4막 일반전 피해 %HP 중심 중앙값"
+    },
+    {
+      "op": "replace",
+      "path": "/designAudit/checks/5/value",
+      "value": "22.0 → 26.0 (+4.00)"
+    },
+    {
+      "op": "add",
+      "path": "/designAudit/checks/5/priority",
+      "value": "required"
+    },
+    {
+      "op": "replace",
+      "path": "/designAudit/checks/6/id",
+      "value": "damage_all"
+    },
+    {
+      "op": "replace",
+      "path": "/designAudit/checks/6/label",
+      "value": "3→4막 전체 전투 피해 %HP 중심 평균"
+    },
+    {
+      "op": "replace",
+      "path": "/designAudit/checks/6/value",
+      "value": "21.7 → 24.5 (+2.80)"
+    },
+    {
+      "op": "add",
+      "path": "/designAudit/checks/6/priority",
+      "value": "required"
+    },
+    {
+      "op": "replace",
+      "path": "/designAudit/checks/7/id",
+      "value": "rounds_all_mean"
+    },
+    {
+      "op": "replace",
+      "path": "/designAudit/checks/7/label",
+      "value": "3→4막 전체 전투 R 중심 평균"
+    },
+    {
+      "op": "replace",
+      "path": "/designAudit/checks/7/value",
+      "value": "14.7 → 15.55 (+0.85)"
+    },
+    {
+      "op": "add",
+      "path": "/designAudit/checks/7/priority",
+      "value": "required"
+    },
+    {
+      "op": "replace",
+      "path": "/designAudit/checks/8/id",
+      "value": "rounds_all_median"
+    },
+    {
+      "op": "replace",
+      "path": "/designAudit/checks/8/label",
+      "value": "3→4막 전체 전투 R 중심 중앙값"
+    },
+    {
+      "op": "replace",
+      "path": "/designAudit/checks/8/value",
+      "value": "14.5 → 17.5 (+3.00)"
+    },
+    {
+      "op": "add",
+      "path": "/designAudit/checks/8/priority",
+      "value": "required"
+    },
+    {
+      "op": "replace",
+      "path": "/designAudit/checks/9/id",
+      "value": "mini_act1"
+    },
+    {
+      "op": "replace",
+      "path": "/designAudit/checks/9/label",
+      "value": "1막 중간보스 등장/개체"
+    },
+    {
+      "op": "replace",
+      "path": "/designAudit/checks/9/value",
+      "value": "2–2장 / 2–2개"
+    },
+    {
+      "op": "add",
+      "path": "/designAudit/checks/9/priority",
+      "value": "required"
+    },
+    {
+      "op": "replace",
+      "path": "/designAudit/checks/10/id",
+      "value": "vert_act1"
+    },
+    {
+      "op": "replace",
+      "path": "/designAudit/checks/10/label",
+      "value": "1막 수직/복합과 활용 비율"
+    },
+    {
+      "op": "replace",
+      "path": "/designAudit/checks/10/value",
+      "value": "3/4장 · 비율 재검토 없음"
+    },
+    {
+      "op": "add",
+      "path": "/designAudit/checks/10/priority",
+      "value": "required"
+    },
+    {
+      "op": "replace",
+      "path": "/designAudit/checks/11/id",
+      "value": "mini_act2"
+    },
+    {
+      "op": "replace",
+      "path": "/designAudit/checks/11/label",
+      "value": "2막 중간보스 등장/개체"
+    },
+    {
+      "op": "replace",
+      "path": "/designAudit/checks/11/value",
+      "value": "4–4장 / 4–5개"
+    },
+    {
+      "op": "add",
+      "path": "/designAudit/checks/11/priority",
+      "value": "required"
+    },
+    {
+      "op": "replace",
+      "path": "/designAudit/checks/12/id",
+      "value": "vert_act2"
+    },
+    {
+      "op": "replace",
+      "path": "/designAudit/checks/12/label",
+      "value": "2막 수직/복합과 활용 비율"
+    },
+    {
+      "op": "replace",
+      "path": "/designAudit/checks/12/value",
+      "value": "4/4장 · 비율 재검토 없음"
+    },
+    {
+      "op": "add",
+      "path": "/designAudit/checks/12/priority",
+      "value": "required"
+    },
+    {
+      "op": "replace",
+      "path": "/designAudit/checks/13/id",
+      "value": "mini_act3"
+    },
+    {
+      "op": "replace",
+      "path": "/designAudit/checks/13/label",
+      "value": "3막 중간보스 등장/개체"
+    },
+    {
+      "op": "replace",
+      "path": "/designAudit/checks/13/value",
+      "value": "5–5장 / 5–7개"
+    },
+    {
+      "op": "add",
+      "path": "/designAudit/checks/13/priority",
+      "value": "required"
+    },
+    {
+      "op": "replace",
+      "path": "/designAudit/checks/14/id",
+      "value": "vert_act3"
+    },
+    {
+      "op": "replace",
+      "path": "/designAudit/checks/14/label",
+      "value": "3막 수직/복합과 활용 비율"
+    },
+    {
+      "op": "replace",
+      "path": "/designAudit/checks/14/value",
+      "value": "4/5장 · 비율 재검토 없음"
+    },
+    {
+      "op": "add",
+      "path": "/designAudit/checks/14/priority",
+      "value": "required"
+    },
+    {
+      "op": "replace",
+      "path": "/designAudit/checks/15/id",
+      "value": "mini_act4"
+    },
+    {
+      "op": "replace",
+      "path": "/designAudit/checks/15/label",
+      "value": "4막 중간보스 등장/개체"
+    },
+    {
+      "op": "replace",
+      "path": "/designAudit/checks/15/value",
+      "value": "7–7장 / 9–11개"
+    },
+    {
+      "op": "add",
+      "path": "/designAudit/checks/15/priority",
+      "value": "required"
+    },
+    {
+      "op": "replace",
+      "path": "/designAudit/checks/16/id",
+      "value": "vert_act4"
+    },
+    {
+      "op": "replace",
+      "path": "/designAudit/checks/16/label",
+      "value": "4막 수직/복합과 활용 비율"
+    },
+    {
+      "op": "replace",
+      "path": "/designAudit/checks/16/value",
+      "value": "4/4장 · 비율 재검토 없음"
+    },
+    {
+      "op": "add",
+      "path": "/designAudit/checks/16/priority",
+      "value": "required"
+    },
+    {
+      "op": "replace",
+      "path": "/designAudit/checks/17/id",
+      "value": "mini_rise2"
+    },
+    {
+      "op": "replace",
+      "path": "/designAudit/checks/17/label",
+      "value": "1→2막 중간보스 증가"
+    },
+    {
+      "op": "replace",
+      "path": "/designAudit/checks/17/value",
+      "value": "등장 2→4 / 개체 2→4.5"
+    },
+    {
+      "op": "add",
+      "path": "/designAudit/checks/17/priority",
+      "value": "required"
+    },
+    {
+      "op": "replace",
+      "path": "/designAudit/checks/18/id",
+      "value": "mini_rise3"
+    },
+    {
+      "op": "replace",
+      "path": "/designAudit/checks/18/label",
+      "value": "2→3막 중간보스 증가"
+    },
+    {
+      "op": "replace",
+      "path": "/designAudit/checks/18/value",
+      "value": "등장 4→5 / 개체 4.5→6"
+    },
+    {
+      "op": "add",
+      "path": "/designAudit/checks/18/priority",
+      "value": "required"
+    },
+    {
+      "op": "replace",
+      "path": "/designAudit/checks/19/id",
+      "value": "mini_rise4"
+    },
+    {
+      "op": "replace",
+      "path": "/designAudit/checks/19/label",
+      "value": "3→4막 중간보스 증가"
+    },
+    {
+      "op": "replace",
+      "path": "/designAudit/checks/19/value",
+      "value": "등장 5→7 / 개체 6→10"
+    },
+    {
+      "op": "add",
+      "path": "/designAudit/checks/19/priority",
+      "value": "required"
+    },
+    {
+      "op": "replace",
+      "path": "/designAudit/checks/20/id",
+      "value": "mini_6act_plan"
+    },
+    {
+      "op": "replace",
+      "path": "/designAudit/checks/20/label",
+      "value": "1→6막 중간보스 계획 중심값"
+    },
+    {
+      "op": "replace",
+      "path": "/designAudit/checks/20/value",
+      "value": "등장 2→4→5→7→8.5→9.5 / 개체 2→4.5→6→10→13.5→18 (5·6막 향후안)"
+    },
+    {
+      "op": "add",
+      "path": "/designAudit/checks/20/priority",
+      "value": "required"
+    },
+    {
+      "op": "replace",
+      "path": "/designAudit/checks/21/id",
+      "value": "growth_roles"
+    },
+    {
+      "op": "replace",
+      "path": "/designAudit/checks/21/label",
+      "value": "1→4막 일반전 역할 중심 평균"
+    },
+    {
+      "op": "replace",
+      "path": "/designAudit/checks/21/value",
+      "value": "3.786 → 4.75 → 5.0 → 6.0"
+    },
+    {
+      "op": "add",
+      "path": "/designAudit/checks/21/priority",
+      "value": "reference"
+    },
+    {
+      "op": "replace",
+      "path": "/designAudit/checks/22/id",
+      "value": "growth_patterns"
+    },
+    {
+      "op": "replace",
+      "path": "/designAudit/checks/22/label",
+      "value": "1→4막 일반전 패턴 중심 평균"
+    },
+    {
+      "op": "replace",
+      "path": "/designAudit/checks/22/value",
+      "value": "4.0 → 6.0 → 7.25 → 9.25"
+    },
+    {
+      "op": "add",
+      "path": "/designAudit/checks/22/priority",
+      "value": "reference"
+    },
+    {
+      "op": "add",
+      "path": "/designAudit/checks/-",
+      "value": {
+        "id": "growth_objectivePressure.simultaneousDemands",
+        "label": "1→4막 일반전 동시 과제 중심 평균",
+        "value": "2.071 → 2.5 → 2.583 → 3.5",
+        "pass": true,
+        "priority": "reference"
+      }
+    },
+    {
+      "op": "add",
+      "path": "/designAudit/checks/-",
+      "value": {
+        "id": "MINIBOSS_BEHAVIOR_EXISTENCE",
+        "label": "중간보스 고유행동·예고·대응 서술",
+        "value": "모든 편성 장에 존재",
+        "pass": true,
+        "priority": "required"
+      }
+    },
+    {
+      "op": "add",
+      "path": "/designAudit/checks/-",
+      "value": {
+        "id": "REQUIRED_ENGAGEMENTS_REGISTERED",
+        "label": "필수경로 실제 교전 수 목표",
+        "value": "40장 모두 등록",
+        "pass": true,
+        "priority": "required"
+      }
+    },
+    {
+      "op": "replace",
+      "path": "/designAudit/display/0/label",
+      "value": "필수 1 · 분량"
+    },
+    {
+      "op": "replace",
+      "path": "/designAudit/display/0/value",
+      "value": "40장 모두 ≤20턴 · 강제 패배 타이머 아님"
+    },
+    {
+      "op": "replace",
+      "path": "/designAudit/display/0/status",
+      "value": "설계 조건 충족 · 실측 전"
+    },
+    {
+      "op": "replace",
+      "path": "/designAudit/display/1/label",
+      "value": "필수 2 · 난도"
+    },
+    {
+      "op": "replace",
+      "path": "/designAudit/display/1/value",
+      "value": "일반 정책 성공률·행동 적·유효 피해의 3→4막 비교"
+    },
+    {
+      "op": "replace",
+      "path": "/designAudit/display/1/status",
+      "value": "설계 조건 충족 · 실측 전"
+    },
+    {
+      "op": "replace",
+      "path": "/designAudit/display/2/label",
+      "value": "필수 3 · 적 구성"
+    },
+    {
+      "op": "replace",
+      "path": "/designAudit/display/2/value",
+      "value": "필수 경로 실제 교전 수 · 중간보스 등장/개체 · 고유행동/예고/대응"
+    },
+    {
+      "op": "replace",
+      "path": "/designAudit/display/2/status",
+      "value": "설계 조건 충족 · 실측 전"
+    },
+    {
+      "op": "replace",
+      "path": "/designAudit/display/3/label",
+      "value": "필수 4 · 공간 전개"
+    },
+    {
+      "op": "replace",
+      "path": "/designAudit/display/3/value",
+      "value": "수직/복합 배치 · 유효 이동 · 필수 고도 활용"
+    },
+    {
+      "op": "replace",
+      "path": "/designAudit/display/3/status",
+      "value": "설계 조건 충족 · 실측 전"
+    },
+    {
+      "op": "replace",
+      "path": "/designAudit/display/4/label",
+      "value": "필수 5 · 목표와 화면"
+    },
+    {
+      "op": "replace",
+      "path": "/designAudit/display/4/value",
+      "value": "원래 완료조건 정상 진행 · 보호 손실/불량 연결 0 · 시각 승인"
+    },
+    {
+      "op": "replace",
+      "path": "/designAudit/display/4/status",
+      "value": "실제 진행·시각 검수 전"
+    },
+    {
+      "op": "remove",
+      "path": "/designAudit/display/23"
+    },
+    {
+      "op": "remove",
+      "path": "/designAudit/display/22"
+    },
+    {
+      "op": "remove",
+      "path": "/designAudit/display/21"
+    },
+    {
+      "op": "remove",
+      "path": "/designAudit/display/20"
+    },
+    {
+      "op": "remove",
+      "path": "/designAudit/display/19"
+    },
+    {
+      "op": "remove",
+      "path": "/designAudit/display/18"
+    },
+    {
+      "op": "remove",
+      "path": "/designAudit/display/17"
+    },
+    {
+      "op": "remove",
+      "path": "/designAudit/display/16"
+    },
+    {
+      "op": "remove",
+      "path": "/designAudit/display/15"
+    },
+    {
+      "op": "remove",
+      "path": "/designAudit/display/14"
+    },
+    {
+      "op": "remove",
+      "path": "/designAudit/display/13"
+    },
+    {
+      "op": "remove",
+      "path": "/designAudit/display/12"
+    },
+    {
+      "op": "remove",
+      "path": "/designAudit/display/11"
+    },
+    {
+      "op": "remove",
+      "path": "/designAudit/display/10"
+    },
+    {
+      "op": "remove",
+      "path": "/designAudit/display/9"
+    },
+    {
+      "op": "remove",
+      "path": "/designAudit/display/8"
+    },
+    {
+      "op": "remove",
+      "path": "/designAudit/display/7"
+    },
+    {
+      "op": "remove",
+      "path": "/designAudit/display/6"
+    },
+    {
+      "op": "remove",
+      "path": "/designAudit/display/5"
+    },
+    {
+      "op": "add",
+      "path": "/designAudit/criteriaSource",
+      "value": "macro-v3 essentialCriteria/referenceCriteria"
+    },
+    {
+      "op": "add",
+      "path": "/designAudit/referenceDiagnostics",
+      "value": [
+        {
+          "id": "growth_roles",
+          "label": "1→4막 일반전 역할 중심 평균",
+          "value": "3.786 → 4.75 → 5.0 → 6.0",
+          "pass": true,
+          "priority": "reference"
+        },
+        {
+          "id": "growth_patterns",
+          "label": "1→4막 일반전 패턴 중심 평균",
+          "value": "4.0 → 6.0 → 7.25 → 9.25",
+          "pass": true,
+          "priority": "reference"
+        },
+        {
+          "id": "growth_objectivePressure.simultaneousDemands",
+          "label": "1→4막 일반전 동시 과제 중심 평균",
+          "value": "2.071 → 2.5 → 2.583 → 3.5",
+          "pass": true,
+          "priority": "reference"
+        }
+      ]
+    },
+    {
+      "op": "add",
+      "path": "/designAudit/essentialCriteria",
+      "value": [
+        {
+          "key": "rounds",
+          "label": "분량",
+          "rule": "장별 목표범위·전체20R 상한. 정상진행 검증 초과0건."
+        },
+        {
+          "key": "difficulty",
+          "label": "난도",
+          "rule": "일반정책 클리어율·실제 행동 적·유효 피해율 목표와 막별 상승."
+        },
+        {
+          "key": "encounters",
+          "label": "적 구성",
+          "rule": "필수경로 실제 교전 수와 중간보스 등장/개체 목표. 주요보스는 분리하며 고유 패턴·예고·대응이 있어야 한다."
+        },
+        {
+          "key": "space",
+          "label": "공간 전개",
+          "rule": "수직/복합 유형·유효 점프/아래점프·필수 고도 활용. 유형에 따라 필요한 항목만 필수."
+        },
+        {
+          "key": "objective_art",
+          "label": "목표와 화면",
+          "rule": "원래 완료조건·진행 정상, 실제 이미지 승인, 자연윤곽<20% 목표/<30% 상한, 의미 소실·불량 연결0건."
+        }
+      ]
+    },
+    {
+      "op": "add",
+      "path": "/designAudit/referenceCriteria",
+      "value": [
+        "일반전 맵 크기·종횡비·발판 수",
+        "전체 적 예산·역할/패턴의 단순 개수",
+        "사람 플레이 분·자원 사용·회복 선택",
+        "정밀 곡률·에지 밀도·노드/경로 밀도",
+        "세부 비용·콜드 로딩 진단"
+      ]
+    },
+    {
+      "op": "add",
+      "path": "/designAudit/roundCapViolations",
+      "value": []
+    },
+    {
+      "op": "add",
+      "path": "/designAudit/roundBudgetMissing",
+      "value": []
+    }
+  ]
+}
