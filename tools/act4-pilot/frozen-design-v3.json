@@ -1175,5 +1175,16 @@
         "중간보스 variant는 기존장소/적역할에 맞춘전술제안이며 새로운인명/종족/서사사건확정이아니다. 기존필수처치집합과slot mapping은후보원본에서확인한다."
       ]
     }
-  ]
+  ],
+  "measurementAmendment": {
+    "revision": "art-v3.1",
+    "document": "game/docs/ART_MEASUREMENT_V3_1.md",
+    "straightTargetExclusive": 0.2,
+    "straightHardMaxExclusive": 0.3,
+    "referenceCssPerWorld": 0.7,
+    "scope": "unique natural contours per stage, length-weighted; separate walk/roof/body",
+    "cameraCropRatios": "reference warnings; visual review remains required",
+    "originalResultsRetained": true,
+    "stagePlayTargetsUnchanged": true
+  }
 }
