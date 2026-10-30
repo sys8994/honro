@@ -1,0 +1,125 @@
+{
+  "allUniqueWalkSurfacesIncludingTimber": {
+    "lengthReferenceCSS": 4982.949307217875,
+    "straightReferenceCSS": {
+      "40": 4909.064047115014,
+      "80": 4252.346672721474,
+      "160": 1105.9627338044747
+    },
+    "ratio80": 0.853379476801397,
+    "supportIds": [
+      "arrival-bank",
+      "first-reed-bank",
+      "watercourse-margin",
+      "second-reed-bank",
+      "landing-bank",
+      "landing-jetty"
+    ]
+  },
+  "materialGroups": {
+    "natural": {
+      "lengthReferenceCSS": 4751.949307217875,
+      "straightReferenceCSS": {
+        "40": 4678.064047115014,
+        "80": 4021.3466727214736,
+        "160": 874.9627338044747
+      },
+      "ratio80": 0.8462520142235803,
+      "supportIds": [
+        "arrival-bank",
+        "first-reed-bank",
+        "watercourse-margin",
+        "second-reed-bank",
+        "landing-bank"
+      ]
+    },
+    "timber": {
+      "lengthReferenceCSS": 231.0,
+      "straightReferenceCSS": {
+        "40": 231.0,
+        "80": 231.0,
+        "160": 231.0
+      },
+      "ratio80": 1.0,
+      "supportIds": [
+        "landing-jetty"
+      ]
+    }
+  },
+  "definitionVersion": "v3.1-root-authorized-whole-stage-unique-supports",
+  "source": "tools/act4-pilot/layouts/stage31-estuary-v1.json",
+  "sourceSHA256": "7feff64102204056552e1a949519e2577c4441481e229287fdfe46c1e5e57b5c",
+  "status": "TOP-CONTOUR MEASUREMENT ONLY; final image/art/play acceptance separate",
+  "referenceScale": 0.7,
+  "scope": "Each authored natural support id counted exactly once over its entire fixed physical top. No viewport clipping or repeated camera denominator. No natural-flat exclusions. Timber material excluded only as frozen material exception.",
+  "thresholds": {
+    "targetExclusive": 0.2,
+    "hardMaxExclusive": 0.3
+  },
+  "lengthReferenceCSS": 4751.949307217875,
+  "straightReferenceCSS": {
+    "40": 4678.064047115014,
+    "80": 4021.3466727214736,
+    "160": 874.9627338044747
+  },
+  "ratio80": 0.8462520142235803,
+  "targetMet": false,
+  "hardCapMet": false,
+  "rows": [
+    {
+      "id": "arrival-bank",
+      "material": "natural",
+      "lengthReferenceCSS": 631.836940428314,
+      "straightReferenceCSS": {
+        "40": 631.836940428314,
+        "80": 631.836940428314,
+        "160": 363.99999999999994
+      },
+      "ratio80": 1.0
+    },
+    {
+      "id": "first-reed-bank",
+      "material": "natural",
+      "lengthReferenceCSS": 1288.9606090255468,
+      "straightReferenceCSS": {
+        "40": 1215.0753489226856,
+        "80": 1086.2147796282427,
+        "160": 0
+      },
+      "ratio80": 0.8427059539464283
+    },
+    {
+      "id": "watercourse-margin",
+      "material": "natural",
+      "lengthReferenceCSS": 955.989760337015,
+      "straightReferenceCSS": {
+        "40": 955.989760337015,
+        "80": 693.0822962788121,
+        "160": 217.97297793465998
+      },
+      "ratio80": 0.7249892467828106
+    },
+    {
+      "id": "second-reed-bank",
+      "material": "natural",
+      "lengthReferenceCSS": 1603.79703990143,
+      "straightReferenceCSS": {
+        "40": 1603.79703990143,
+        "80": 1523.7985349517185,
+        "160": 292.98975586981487
+      },
+      "ratio80": 0.9501193087657599
+    },
+    {
+      "id": "landing-bank",
+      "material": "natural",
+      "lengthReferenceCSS": 271.3649575255691,
+      "straightReferenceCSS": {
+        "40": 271.3649575255691,
+        "80": 86.41412143438643,
+        "160": 0
+      },
+      "ratio80": 0.31844244821568074
+    }
+  ]
+}
