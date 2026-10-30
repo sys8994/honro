@@ -188,7 +188,7 @@ export async function runtimeEntries({vector=true,render=true,app=false,producti
       // Metadata only: native/full consumers retain the same scripts and order.
       if(name==='training'||name==='skill-preview')parts.at(-1).optional=name;
     }
-    if(act4Enabled){data('HONRO_ACT4_PREVIEW_SEEDS',JSON.parse(await read('shared/data/act4/reviewed.json')));for(const name of ['act4-art','act4-maps','act4-coast-maps','act4-coast-art','act4-events','act4-coast-events','act4-campaign'])await file(`shared/runtime/${name}.js`);}
+    if(act4Enabled){data('HONRO_ACT4_PREVIEW_SEEDS',JSON.parse(await read('shared/data/act4/reviewed.json')));for(const name of ['act4-art','act4-maps','act4-coast-maps','act4-coast-art','act4-events','act4-coast-events','act4-pilot-combat','act4-campaign'])await file(`shared/runtime/${name}.js`);}
   }else await file('shared/runtime/stage-rules.js');
   return parts;
 }
