@@ -121,6 +121,7 @@
             this.journeySelection=null;this.journeyLayer=null;this.journeyAct=null;this.storageWarned=false;
             this.audio?.configure(this.profile.settings);this.showTitle();return true;
         }
+        exportMapArchive(key){const archive=this.profileStore.archive(key);if(!archive.ok){this.notify('개편 전 원본을 읽지 못했습니다. 저장소 권한을 확인해 주세요.');return false;}this.downloadProfile(archive.text,'혼로_지형개편전_원본_');this.notify('다운로드를 시작했습니다. 파일이 저장됐는지 직접 확인해 주세요.');return true;}
         exportOriginal(){const original=this.profileStore.original();if(!original.ok){this.notify('원본을 읽지 못해 내보낼 수 없습니다. 다시 읽기를 시도해 주세요.');return false;}this.downloadProfile(original.text,'혼로_원본_');return true;}
         downloadProfile(text,prefix='혼로_기록_'){const blob=new Blob([text],{type:'application/json'}),url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download=prefix+new Date().toISOString().slice(0,10)+'.json';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);}
         notify(text) { let n = $('notice'); n.textContent = text; n.hidden = false; clearTimeout(this.noti); this.noti = setTimeout(() => n.hidden = true, 3200); }
@@ -406,9 +407,10 @@
             if(target&&G.HonroCampaignEntry?.defer(this,target,()=>this.continue()))return;
             G.HonroCampaignMapRevision.discard(this.profile);
             const restart=this.profile.honroMapRestart;
-            if(restart){this.engine=null;this.persist();this.launch(restart);this.notify('지형이 개편되어 현재 장 입구에서 다시 시작합니다. 성장과 장착은 유지됩니다.');return;}
+            if(restart){this.engine=null;this.persist();this.launch(restart);this.notify('지형이 개편되어 현재 장 입구에서 다시 시작합니다. 성장과 장착은 유지됩니다.'+(restart>=31&&restart<=40&&this.profileStore.archives().items?.length?' 개편 전 원본은 설정의 기록·관리에서 내보낼 수 있습니다.':''));return;}
             if(!this.profile.honroBattle){this.showRest();return;}
             const b=clone(this.profile.honroBattle);
+            if(!G.HonroProfileStore.restoreBattleArt(b)){this.notify('저장된 장의 그림 자료를 불러오지 못했습니다. 새로고침 후 다시 이어주세요.');return;}
             this.stageId=b.honroStage||1;
             this.stage=G.HonroSplitCampaign.content(this.profile,this.stageId)||H.stages[this.stageId-1];
             this.training=false;this.mount(b);
@@ -654,7 +656,7 @@
             const stablePause=this.modalKind==='pause-dialog'&&this.modal.classList.contains('open')&&!this.dialogue&&!this.preview&&!this.training&&!this.customMap&&!this.done&&
                 !G.HonroReinforcementCamera?.active(scene)&&!scene.storyFrame&&!scene.storyTween&&!scene.storyFrozen&&!scene.goalFocus&&!scene.editorView&&!scene.skillPreview&&
                 !(scene.focusUntil>now)&&!(scene.speakerUntil>now)&&dt===0&&effectDt===0&&paused&&
-                G.HonroAuthoredFarArt?.ready(e.b.honroStage)&&document.fonts?.status==='loaded'&&!scene.ctx.isContextLost?.();
+                G.HonroAuthoredFarArt?.ready(e.b.honroStage,e.b.honroPreviewFar)&&document.fonts?.status==='loaded'&&!scene.ctx.isContextLost?.();
             const paint=()=>scene.render(e,dt,this.selected,this.power,this.charging,effectDt,paused);
             if(!stablePause){scene._pausedBattleFrame=null;return paint();}
             if(!scene._pauseContextListener){scene._pauseContextListener=true;for(const name of ['contextlost','contextrestored'])canvas.addEventListener(name,()=>{scene._pausedBattleFrame=null;});}
@@ -1034,6 +1036,7 @@
                 case 'profile-recovery':this.recoverProfile();break;
                 case 'profile-retry': {const result=this.profileStore.retry();if(result.ok)G.HonroMenuUI.confirm(this,'recover');else{this.recoverProfile();this.notify(G.HonroMenuUI.profileFailure(result.reason));}break;}
                 case 'profile-original':this.exportOriginal();break;
+                case 'profile-map-archive':this.exportMapArchive(id);break;
                 case 'settings-page':this.settings(id);break;
                 case 'settings-back':G.HonroMenuUI.back(this);break;
                 case 'settings-help':this.battleHelp(true);break;

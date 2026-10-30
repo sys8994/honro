@@ -1,6 +1,8 @@
+import {materializeWorld} from '../tools/act4-source/world-source.mjs';
 import {packJson,unpackJson} from './json-pool.mjs';
 import {readFile,mkdir,unlink} from 'node:fs/promises';
 import {createHash} from 'node:crypto';
+import {gzipSync} from 'node:zlib';
 import path from 'node:path';
 import vm from 'node:vm';
 import assert from 'node:assert/strict';
@@ -9,6 +11,7 @@ import {writeGenerated} from './write-generated.mjs';
 import sharp from 'sharp';
 import {minify} from 'terser';
 import {planWebAssetRetention,selectPublishedGenerations,publishedRetention} from './web-retention.mjs';
+import {emitJsonParts,webJsonPartBytes} from './web-json-parts.mjs';
 
 const read=async p=>(await readFile(path.join(root,p),'utf8')).replace(/\r\n/g,'\n');
 const hash=body=>createHash('sha256').update(body).digest('hex');
@@ -33,14 +36,37 @@ export function orderedScriptSource(entries,loader){
 
 export {planWebAssetRetention} from './web-retention.mjs';
 
+// Reuse the established lossless JSON pool only when both stored bytes and
+// gzip transfer size materially improve. No coordinates or asset fields change.
+export function assetPacket(value){
+  const plain=JSON.stringify(value),packed=packJson(value),pooled=JSON.stringify(packed);
+  const rawBytes=Buffer.byteLength(plain),pooledBytes=Buffer.byteLength(pooled);
+  if(rawBytes-pooledBytes>=1024&&pooledBytes<=rawBytes*.95&&gzipSync(pooled).length<=gzipSync(plain).length*.98)return {value:packed,encoding:'json-pool-v1'};
+  return {value,encoding:'json'};
+}
+
+
+// Binary aliases share one immutable file. Cache the in-flight emission too:
+// externalization traverses siblings concurrently. Never merge JS module identity.
+export function reuseBinaryEmissions(emit){
+  const binaries=new Map();
+  return (folder,name,extension,body)=>{
+    if(!['graphics','fonts'].includes(folder)||!Buffer.isBuffer(body))return emit(folder,name,extension,body);
+    const key=folder+'|'+extension+'|'+hash(body);
+    if(!binaries.has(key))binaries.set(key,Promise.resolve().then(()=>emit(folder,name,extension,body)));
+    return binaries.get(key);
+  };
+}
+
 // Generated files are immutable by content. Stable HTML names remain the public entrypoints.
 export async function buildWeb({vector=true,destination=path.join(root,'HONRO.html')}={}) {
+  await materializeWorld();
   let previous;try{previous=JSON.parse(await read('web/manifest.json'));}catch(e){if(e.code!=='ENOENT')throw e;}
   const retentionNow=Date.now(),publishedGenerations=selectPublishedGenerations(previous?.publishedGenerations,{now:retentionNow});
   // A build must fail before cleanup if a retained original is unavailable or changed.
   for(const g of publishedGenerations)for(const file of g.files){const bytes=await readFile(path.join(root,file.path));if(bytes.length!==file.bytes||hash(bytes)!==file.sha256)throw Error('Retained immutable asset mismatch: '+file.path);}
   const files=new Map();
-  async function emit(folder,name,extension,body){
+  async function emitUnique(folder,name,extension,body){
     // Strip comments/whitespace only. Keep names, statements and patch order;
     // do not fold expressions, mangle properties or move execution boundaries.
     if(extension==='js'&&(folder==='runtime'||folder==='entries')){
@@ -61,7 +87,8 @@ export async function buildWeb({vector=true,destination=path.join(root,'HONRO.ht
     }
     return file;
   }
-  const json=(name,value)=>emit('data',name,'json',JSON.stringify(value)+'\n');
+  const emit=reuseBinaryEmissions(emitUnique);
+  const json=(name,value)=>emitJsonParts(name,value,emit);
   function assetPaths(value){const paths=[],at=[];const visit=node=>{if(!node||typeof node!=='object')return;if(node.$honroAsset){paths.push([...at]);return;}for(const key in node)if(node[key]&&typeof node[key]==='object'){at.push(Array.isArray(node)?Number(key):key);visit(node[key]);at.pop();}};visit(value);return paths;}
   async function externalize(value,name){
     if(typeof value==='string'){
@@ -157,8 +184,13 @@ export async function buildWeb({vector=true,destination=path.join(root,'HONRO.ht
       }
       const needed=stages.map(stage=>dependencies(stage)),shared=new Set(externalLibrary.filter(asset=>needed.filter(ids=>ids.has(asset.id)).length>=2).map(asset=>asset.id));
       const sharedAssets=externalLibrary.filter(asset=>shared.has(asset.id));
-      const manifest={base:await json('campaign-base',base),library:await json('campaign-library',externalLibrary),stages:[],unitTemplates:stages.flatMap(stage=>stage.units.filter(unit=>unit.kind?.startsWith('boss:'))).filter((unit,index,all)=>all.findIndex(other=>other.kind===unit.kind)===index),catalog:stages.map(stage=>({id:stage.id,name:stage.name,width:stage.width,height:stage.height,backdrop:stage.backdrop,metadata:stage.metadata,playerRoster:stage.units.filter(u=>u.team==='player').map(u=>u.kind),pending:true})),shared:await json('campaign-shared',sharedAssets),stageLibraries:[],assetPaths:{base:assetPaths(base),library:assetPaths(externalLibrary),stages:[],shared:assetPaths(sharedAssets),stageLibraries:[]}};
-      for(let n=0;n<stages.length;n++){const stage=await externalize(stages[n],`chapter-${n+1}`);manifest.stages.push(await json('chapter-'+String(n+1).padStart(2,'0'),stage));manifest.assetPaths.stages.push(assetPaths(stage));const assets=externalLibrary.filter(asset=>needed[n].has(asset.id)&&!shared.has(asset.id));manifest.stageLibraries.push(await json('chapter-'+String(n+1).padStart(2,'0')+'-assets',assets));manifest.assetPaths.stageLibraries.push(assetPaths(assets));}
+      const used=new Set(needed.flatMap(ids=>[...ids])),editorExtras=externalLibrary.filter(asset=>!used.has(asset.id));
+      const sharedPacket=assetPacket(sharedAssets),extrasPacket=assetPacket(editorExtras);
+      // Full Workshop reuses the exact chapter bundles instead of shipping a
+      // second complete library. Keep unused editor assets and canonical order.
+      const manifest={base:await json('campaign-base',base),libraryOrder:externalLibrary.map(asset=>asset.id),editorExtras:await json('campaign-editor-extras',extrasPacket.value),stages:[],unitTemplates:stages.flatMap(stage=>stage.units.filter(unit=>unit.kind?.startsWith('boss:'))).filter((unit,index,all)=>all.findIndex(other=>other.kind===unit.kind)===index),catalog:stages.map(stage=>({id:stage.id,name:stage.name,width:stage.width,height:stage.height,backdrop:stage.backdrop,metadata:stage.metadata,playerRoster:stage.units.filter(u=>u.team==='player').map(u=>u.kind),pending:true})),shared:await json('campaign-shared',sharedPacket.value),stageLibraries:[],assetEncodings:{shared:sharedPacket.encoding,stageLibraries:[],editorExtras:extrasPacket.encoding},assetPaths:{base:assetPaths(base),stages:[],shared:assetPaths(sharedAssets),stageLibraries:[],editorExtras:assetPaths(editorExtras)}};
+      assert.equal(new Set(manifest.libraryOrder).size,externalLibrary.length,'Campaign asset IDs must be unique');
+      for(let n=0;n<stages.length;n++){const stage=await externalize(stages[n],`chapter-${n+1}`);manifest.stages.push(await json('chapter-'+String(n+1).padStart(2,'0'),stage));manifest.assetPaths.stages.push(assetPaths(stage));const assets=externalLibrary.filter(asset=>needed[n].has(asset.id)&&!shared.has(asset.id)),packet=assetPacket(assets);manifest.stageLibraries.push(await json('chapter-'+String(n+1).padStart(2,'0')+'-assets',packet.value));manifest.assetPaths.stageLibraries.push(assetPaths(assets));manifest.assetEncodings.stageLibraries.push(packet.encoding);}
       projectManifest=await json('campaign',manifest);
       file=await emit('runtime','campaign','js',`import {loadCampaign} from ${quote('./'+path.posix.basename(loader))};\nglobalThis.HONRO_PROJECT=await loadCampaign(${quote(projectManifest)},[${projectAuthors.join(',')}],{full:globalThis.HONRO_PROJECT_MODE==='full'||globalThis.HONRO_EMBEDDED});\n`);
     }else if(entry.global){
@@ -242,7 +274,11 @@ catch(error){if(globalThis.HonroStartup)globalThis.HonroStartup.failed(error);el
   await writeGenerated(path.join(root,'HONRO_WORKSHOP.html'),workshopHtml);
   await writeGenerated(path.join(root,'workshop/HONRO_MAP_WORKSHOP.html'),'<!doctype html><meta charset="utf-8"><meta http-equiv="refresh" content="0;url=../HONRO_WORKSHOP.html"><a href="../HONRO_WORKSHOP.html">HONRO Workshop</a>');
   const currentFiles=[...files.values()].sort((a,b)=>a.path.localeCompare(b.path));
-  const {previousFiles,previousGenerations,obsoleteFiles}=planWebAssetRetention(previous,currentFiles,{now:retentionNow});
+  // Superseded, never-published full-library copies are not useful rollback
+  // graphs now that the editor assembles the exact existing chapter bundles.
+  // The retention helper independently protects every attested publication.
+  const retireIntermediatePaths=[...(previous?.files||[]),...(previous?.previousFiles||[])].filter(file=>/^web\/data\/campaign-library(?:[.-])/.test(file.path)).map(file=>file.path);
+  const {previousFiles,previousGenerations,obsoleteFiles}=planWebAssetRetention(previous,currentFiles,{now:retentionNow,maxIntermediateFileBytes:webJsonPartBytes,retireIntermediatePaths});
   const manifest={version:1,game:'HONRO.html',workshop:'HONRO_WORKSHOP.html',playtest:gameDocument+'?embedded=1',project:projectManifest,gameEntry,workshopEntry,common,gameOnly,optionalModules,styles,workshopStyle,files:currentFiles,previousFiles,previousGenerations,publishedRetention,publishedGenerations};
   await writeGenerated(path.join(root,'web/manifest.json'),JSON.stringify(manifest,null,2)+'\n');
   for(const file of obsoleteFiles)try{await unlink(path.join(root,file.path));}catch(e){if(e.code!=='ENOENT')throw e;}

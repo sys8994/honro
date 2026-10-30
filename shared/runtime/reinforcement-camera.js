@@ -33,7 +33,14 @@ function update(scene,e,w,h,now=performance.now()){
  G.HonroAttackCamera?.update(scene,e);
  const added=[],present=new Set();for(const u of b.units){if(!s.seen.has(u.id)&&enemy(u))added.push(u.id);present.add(u.id);}s.seen=present;
  if(scene.editorView||scene.skillPreview||b.mode==='practice'){s.shot=null;return false;}
- if(G.HonroAttackCamera?.blocksFocus(scene)){s.shot=null;scene.manual=true;return true;}
+ if(G.HonroAttackCamera?.blocksFocus(scene)){s.shot=null;scene.manual=true;
+  // Manual ownership skips the renderer's normal follow/clamp branch. Keep
+  // the same authored focus bounds without stealing pan or story framing.
+  // A dialogue return cannot advance while manual ownership skips follow.
+  // Discard only that released return, never an active authored story shot.
+  if(!scene.storyFrame&&!scene.storyFrozen&&scene.storyTween?.kind==='static'&&scene.storyTween.released===true)scene.storyTween=null;
+  if(!scene.storyFrame&&!scene.storyTween)G.HonroBounds?.constrain(scene,b);
+  return true;}
  if(added.length){
   const old=s.shot,merge=old&&old.phase!=='return'&&now-old.started<450;
   s.shot={ids:merge?[...new Set([...old.ids,...added])]:added,original:old?.original||s.lastView||view(scene),from:view(scene),started:now,phase:'show'};

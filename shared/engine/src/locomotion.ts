@@ -2,6 +2,9 @@ import {groundFlightClear} from './enemyAI';
 import type {Terrain,Unit,Vec} from './types';
 import {clamp,poly,topAt,terrainSurfaces,terrainSlopeAt,terrainRectIntersects,terrainContains,segmentTerrain,segmentPlatformSurface,segRect,AIM_MIN,AIM_MAX} from './math';
 
+// The live swept foot is a point; only head/torso probes have lateral radius.
+const BODY_FOOT_RADIUS=0;
+
 /** Continuous translation of the locomotion body, expressed in FOOT coordinates.
  * Feet own upward contacts; narrow head/torso probes own walls and ceilings.
  * Swept spine/vertex contacts also catch thin solids BETWEEN those probes.
@@ -15,12 +18,12 @@ export function sweepBodyTerrain(terrain:Terrain[],u:Unit,a:Vec,b:Vec,skipFace?:
   const footA={x:a.x,y:a.y-.05},footB={x:b.x,y:b.y-.05};
   const skipped=skipFace?.(t);
   if(t.oneWay){
-   const h=segmentPlatformSurface(footA,footB,t,0);
+   const h=segmentPlatformSurface(footA,footB,t,BODY_FOOT_RADIUS);
    if(h&&!skipped?.length)take(t,h);
    else if(h&&skipped?.length){const q=segmentTerrain(footA,footB,t,0,skipped);if(q&&q.n.y<-.01)take(t,q);}
    continue;
   }
-  take(t,segmentTerrain(footA,footB,t));
+  take(t,segmentTerrain(footA,footB,t,BODY_FOOT_RADIUS));
   for(const offset of [u.h*.5,u.h-7]){
    const h=segmentTerrain({x:a.x,y:a.y-offset},{x:b.x,y:b.y-offset},t,r);
    if(h&&h.n.y>=-.01)take(t,h);
@@ -66,7 +69,7 @@ export function validTerrainContactPose(terrain:Terrain[],u:Unit):boolean{
     if(edges.size)allowed.set(t,edges);
   }
   if(!allowed.size)return false;
-  const radius=Math.min(6,Math.max(2,u.r-2)),probes=[{y:u.y-5,r:2},{y:u.y-u.h*.5,r:radius},{y:u.y-u.h*.52,r:radius},{y:u.y-u.h+7,r:radius}];
+  const radius=Math.min(6,Math.max(2,u.r-2)),probes=[{y:u.y-5,r:BODY_FOOT_RADIUS},{y:u.y-u.h*.5,r:radius},{y:u.y-u.h*.52,r:radius},{y:u.y-u.h+7,r:radius}];
   for(const t of terrain){
     if(t.broken||t.oneWay)continue;
     // Foot penetration, a covered torso, or a head inside a roof is not contact.

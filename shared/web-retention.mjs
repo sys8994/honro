@@ -39,14 +39,18 @@ export function intermediateGenerations(generations,currentFiles,published){
     const key=files.map(f=>f.path).sort().join('\n');if(seen.has(key))return false;seen.add(key);return true;
   }).slice(0,2);
 }
-export function planWebAssetRetention(previous,currentFiles,{now=Date.now()}={}){
+export function planWebAssetRetention(previous,currentFiles,{now=Date.now(),maxIntermediateFileBytes=Infinity,retireIntermediatePaths=[]}={}){
   const current=new Set(currentFiles.map(f=>f.path)),last=previous?.files||[],older=previous?.previousFiles||[];
   const unchanged=last.length===current.size&&last.every(f=>current.has(f.path));
   const oldPublishedPaths=new Set((previous?.publishedGenerations||[]).flatMap(g=>g.files).map(f=>f.path));
   const legacyBuildFiles=older.filter(f=>!oldPublishedPaths.has(f.path));
   const generations=previous?.previousGenerations||(legacyBuildFiles.length?[legacyBuildFiles]:[]);
   const published=selectPublishedGenerations(previous?.publishedGenerations,{now});
-  const previousGenerations=intermediateGenerations(unchanged||!last.length?generations:[last,...generations],currentFiles,[...(previous?.publishedGenerations||[]),...published]);
+  // Never prune an attested published graph for transport size. Unpublished
+  // intermediate graphs are optional rollback conveniences, not deployed URLs.
+  const retired=new Set(retireIntermediatePaths);
+  const intermediateCandidates=(unchanged||!last.length?generations:[last,...generations]).filter(graph=>!graph.some(file=>(file.bytes>maxIntermediateFileBytes||retired.has(file.path))&&!oldPublishedPaths.has(file.path)));
+  const previousGenerations=intermediateGenerations(intermediateCandidates,currentFiles,[...(previous?.publishedGenerations||[]),...published]);
   const previousFiles=[...new Map([...previousGenerations.flat(),...published.flatMap(g=>g.files)].filter(f=>safeWebAsset(f)&&!current.has(f.path)).map(f=>[f.path,f])).values()];
   const retained=new Set(previousFiles.map(f=>f.path));
   const obsoleteFiles=[...new Map([...last,...older,...generations.flat(),...(previous?.publishedGenerations||[]).flatMap(g=>g.files)].filter(f=>safeWebAsset(f)&&!current.has(f.path)&&!retained.has(f.path)).map(f=>[f.path,f])).values()];
