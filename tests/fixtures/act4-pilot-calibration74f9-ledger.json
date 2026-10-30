@@ -1,0 +1,2486 @@
+{
+  "runId": "74f9a0ef-7ab5-4185-bb42-97e556e9da20",
+  "sourceHash": "8be24c35b00faaeda0327ad7363df00c6a5807f8d2dd8611b9180ee29318261e",
+  "controllerHash": "791629b04f1ede6692bf1dc36716080c2659f53d066def3f2e98b45cf266bbec",
+  "rawSHA256": "65e656aec1366a528e366e4b79578c2dddb1a8794d7bbb469ac5d8282fbabba4",
+  "ledgerSHA256": "8917da70f08444c428fd3eee19a469ba967bbe5e0faa0c4d2658abf331d1d0b3",
+  "scope": "Recorded per-target/cast outcomes only; no rerun, tuning, trajectory reconstruction, counterfactual miss reason or population win-rate inference. Fire-to-hit target distances use explicit fire origin and hit location. HP loss can be clipped by remaining HP/shield. No terrain impact/end-of-flight telemetry is present.",
+  "outcome": "defeat",
+  "round": 7,
+  "frame": 6989,
+  "stats": {
+    "0": {
+      "casts": 20,
+      "opponentHpDamageCasts": 12,
+      "noRecordedHitCasts": 5,
+      "friendlyOnlyHitCasts": 3
+    },
+    "1": {
+      "casts": 28,
+      "opponentHpDamageCasts": 25,
+      "noRecordedHitCasts": 2,
+      "friendlyOnlyHitCasts": 0
+    }
+  },
+  "incomingByRoundAndHero": [
+    {
+      "round": 1,
+      "target": "knight",
+      "hpLoss": 695,
+      "shieldLoss": 0,
+      "casts": 4
+    },
+    {
+      "round": 1,
+      "target": "mage",
+      "hpLoss": 226,
+      "shieldLoss": 0,
+      "casts": 1
+    },
+    {
+      "round": 2,
+      "target": "knight",
+      "hpLoss": 1006,
+      "shieldLoss": 0,
+      "casts": 5
+    },
+    {
+      "round": 2,
+      "target": "archer",
+      "hpLoss": 274,
+      "shieldLoss": 0,
+      "casts": 1
+    },
+    {
+      "round": 3,
+      "target": "knight",
+      "hpLoss": 390.5,
+      "shieldLoss": 222.7,
+      "casts": 3
+    },
+    {
+      "round": 3,
+      "target": "occultist",
+      "hpLoss": 179,
+      "shieldLoss": 0,
+      "casts": 1
+    },
+    {
+      "round": 4,
+      "target": "occultist",
+      "hpLoss": 742,
+      "shieldLoss": 0,
+      "casts": 3
+    },
+    {
+      "round": 5,
+      "target": "occultist",
+      "hpLoss": 379.5,
+      "shieldLoss": 0,
+      "casts": 2
+    },
+    {
+      "round": 5,
+      "target": "archer",
+      "hpLoss": 158,
+      "shieldLoss": 0,
+      "casts": 1
+    },
+    {
+      "round": 5,
+      "target": "mage",
+      "hpLoss": 512,
+      "shieldLoss": 0,
+      "casts": 2
+    },
+    {
+      "round": 6,
+      "target": "mage",
+      "hpLoss": 436,
+      "shieldLoss": 0,
+      "casts": 2
+    },
+    {
+      "round": 6,
+      "target": "archer",
+      "hpLoss": 476,
+      "shieldLoss": 0,
+      "casts": 2
+    },
+    {
+      "round": 7,
+      "target": "archer",
+      "hpLoss": 177,
+      "shieldLoss": 0,
+      "casts": 1
+    }
+  ],
+  "damagedEnemies": {
+    "pilot31-first-shoulder-1": [
+      {
+        "owner": "archer",
+        "round": 1,
+        "skill": "A01",
+        "hpLoss": 230,
+        "remainingHp": 102
+      },
+      {
+        "owner": "mage",
+        "round": 1,
+        "skill": "M01",
+        "hpLoss": 102,
+        "remainingHp": 0
+      }
+    ],
+    "pilot31-first-shoulder-2": [
+      {
+        "owner": "knight",
+        "round": 1,
+        "skill": "S00",
+        "hpLoss": 207,
+        "remainingHp": 59
+      },
+      {
+        "owner": "mage",
+        "round": 3,
+        "skill": "M01",
+        "hpLoss": 59,
+        "remainingHp": 0
+      }
+    ],
+    "pilot31-first-shoulder-4": [
+      {
+        "owner": "mage",
+        "round": 2,
+        "skill": "M01",
+        "hpLoss": 164,
+        "remainingHp": 208
+      },
+      {
+        "owner": "occultist",
+        "round": 2,
+        "skill": "O01",
+        "hpLoss": 115,
+        "remainingHp": 93
+      },
+      {
+        "owner": "archer",
+        "round": 3,
+        "skill": "A01",
+        "hpLoss": 93,
+        "remainingHp": 0
+      }
+    ],
+    "pilot31-first-shoulder-3": [
+      {
+        "owner": "knight",
+        "round": 2,
+        "skill": "S00",
+        "hpLoss": 258,
+        "remainingHp": 74
+      },
+      {
+        "owner": "pilot31-first-shoulder-3",
+        "round": 2,
+        "skill": "HMO01",
+        "hpLoss": 74,
+        "remainingHp": 0
+      }
+    ],
+    "pilot31-first-shoulder-5": [
+      {
+        "owner": "mage",
+        "round": 3,
+        "skill": "M01",
+        "hpLoss": 126,
+        "remainingHp": 140
+      }
+    ],
+    "pilot31-first-shoulder-8": [
+      {
+        "owner": "occultist",
+        "round": 4,
+        "skill": "O01",
+        "hpLoss": 101,
+        "remainingHp": 192
+      },
+      {
+        "owner": "occultist",
+        "round": 5,
+        "skill": "O01",
+        "hpLoss": 75,
+        "remainingHp": 117
+      },
+      {
+        "owner": "archer",
+        "round": 7,
+        "skill": "A01",
+        "hpLoss": 117,
+        "remainingHp": 0
+      }
+    ],
+    "pilot31-first-shoulder-7": [
+      {
+        "owner": "mage",
+        "round": 6,
+        "skill": "M01",
+        "hpLoss": 175,
+        "remainingHp": 197
+      }
+    ]
+  },
+  "casts": [
+    {
+      "owner": "archer",
+      "side": 0,
+      "round": 1,
+      "shot": 1,
+      "skill": "A01",
+      "fireFrame": 83,
+      "fireOrigin": {
+        "id": "archer",
+        "side": 0,
+        "allegiance": 0,
+        "x": 260,
+        "y": 1150,
+        "hp": 1085,
+        "maxHp": 1085,
+        "shield": 0,
+        "focus": 245
+      },
+      "angle": 31.88397259451449,
+      "power": 0.565705844605239,
+      "targets": [
+        {
+          "id": "pilot31-first-shoulder-1",
+          "side": 1,
+          "hpLoss": 230,
+          "shieldLoss": 0,
+          "hpLossPercent": 69.27710843373494,
+          "maxHp": 332,
+          "contexts": [
+            {
+              "direct": true,
+              "facing": -1,
+              "role": "leaper",
+              "guardArmorBranch": null,
+              "fireOriginToHitTargetDistance": 788.5893104726414,
+              "distanceScope": "Fire origin to target location at hit, not launch-time separation or projectile path length"
+            }
+          ]
+        }
+      ],
+      "feedback": [
+        {
+          "targetId": "pilot31-first-shoulder-1",
+          "round": 1,
+          "damage": 230,
+          "critical": false
+        }
+      ]
+    },
+    {
+      "owner": "mage",
+      "side": 0,
+      "round": 1,
+      "shot": 2,
+      "skill": "M01",
+      "fireFrame": 238,
+      "fireOrigin": {
+        "id": "mage",
+        "side": 0,
+        "allegiance": 0,
+        "x": 380,
+        "y": 1145.3846153846155,
+        "hp": 1174,
+        "maxHp": 1174,
+        "shield": 0,
+        "focus": 367
+      },
+      "angle": 33.21589706838131,
+      "power": 0.5311740984774579,
+      "targets": [
+        {
+          "id": "pilot31-first-shoulder-1",
+          "side": 1,
+          "hpLoss": 102,
+          "shieldLoss": 0,
+          "hpLossPercent": 30.72289156626506,
+          "maxHp": 332,
+          "contexts": [
+            {
+              "direct": false,
+              "facing": -1,
+              "role": "leaper",
+              "guardArmorBranch": null,
+              "fireOriginToHitTargetDistance": 668.7306442479012,
+              "distanceScope": "Fire origin to target location at hit, not launch-time separation or projectile path length"
+            }
+          ]
+        }
+      ],
+      "feedback": [
+        {
+          "targetId": "pilot31-first-shoulder-1",
+          "round": 1,
+          "damage": 120,
+          "critical": false
+        }
+      ]
+    },
+    {
+      "owner": "knight",
+      "side": 0,
+      "round": 1,
+      "shot": 3,
+      "skill": "S00",
+      "fireFrame": 417,
+      "fireOrigin": {
+        "id": "knight",
+        "side": 0,
+        "allegiance": 0,
+        "x": 1003.0263391545546,
+        "y": 1085.7348145786002,
+        "hp": 2036,
+        "maxHp": 2036,
+        "shield": 0,
+        "focus": 277
+      },
+      "angle": -7.417525524273515,
+      "power": 0.307171089779791,
+      "targets": [
+        {
+          "id": "pilot31-first-shoulder-2",
+          "side": 1,
+          "hpLoss": 207,
+          "shieldLoss": 0,
+          "hpLossPercent": 77.81954887218045,
+          "maxHp": 266,
+          "contexts": [
+            {
+              "direct": true,
+              "facing": -1,
+              "role": "guard",
+              "guardArmorBranch": 0.4,
+              "fireOriginToHitTargetDistance": 114.88265322769301,
+              "distanceScope": "Fire origin to target location at hit, not launch-time separation or projectile path length"
+            }
+          ]
+        }
+      ],
+      "feedback": [
+        {
+          "targetId": "pilot31-first-shoulder-2",
+          "round": 1,
+          "damage": 207,
+          "critical": false
+        }
+      ]
+    },
+    {
+      "owner": "occultist",
+      "side": 0,
+      "round": 1,
+      "shot": 4,
+      "skill": "O01",
+      "fireFrame": 502,
+      "fireOrigin": {
+        "id": "occultist",
+        "side": 0,
+        "allegiance": 0,
+        "x": 620,
+        "y": 1131.8181818181818,
+        "hp": 1362,
+        "maxHp": 1362,
+        "shield": 0,
+        "focus": 432
+      },
+      "angle": 10.021599423140287,
+      "power": 0.4602811376266786,
+      "targets": [
+        {
+          "id": "knight",
+          "side": 0,
+          "hpLoss": 25.5,
+          "shieldLoss": 0,
+          "hpLossPercent": 1.2524557956777995,
+          "maxHp": 2036,
+          "contexts": [
+            {
+              "direct": true,
+              "facing": 1,
+              "role": "knight",
+              "guardArmorBranch": null,
+              "fireOriginToHitTargetDistance": 385.7886120951188,
+              "distanceScope": "Fire origin to target location at hit, not launch-time separation or projectile path length"
+            }
+          ]
+        }
+      ],
+      "feedback": [
+        {
+          "targetId": "knight",
+          "round": 1,
+          "damage": 25.5,
+          "critical": false
+        }
+      ]
+    },
+    {
+      "owner": "pilot31-first-shoulder-2",
+      "side": 1,
+      "round": 1,
+      "shot": 5,
+      "skill": "LS09",
+      "fireFrame": 664,
+      "fireOrigin": {
+        "id": "pilot31-first-shoulder-2",
+        "side": 1,
+        "allegiance": 1,
+        "x": 1601.438797657039,
+        "y": 1006.7585304697143,
+        "hp": 59,
+        "maxHp": 266,
+        "shield": 0,
+        "focus": 198
+      },
+      "angle": 104,
+      "power": 0.5700000000000001,
+      "targets": [
+        {
+          "id": "knight",
+          "side": 0,
+          "hpLoss": 159,
+          "shieldLoss": 0,
+          "hpLossPercent": 7.80943025540275,
+          "maxHp": 2036,
+          "contexts": [
+            {
+              "direct": true,
+              "facing": 1,
+              "role": "knight",
+              "guardArmorBranch": null,
+              "fireOriginToHitTargetDistance": 590.6388557124193,
+              "distanceScope": "Fire origin to target location at hit, not launch-time separation or projectile path length"
+            }
+          ]
+        }
+      ],
+      "feedback": [
+        {
+          "targetId": "knight",
+          "round": 1,
+          "damage": 159,
+          "critical": false
+        }
+      ]
+    },
+    {
+      "owner": "pilot31-first-shoulder-3",
+      "side": 1,
+      "round": 1,
+      "shot": 6,
+      "skill": "HMO01",
+      "fireFrame": 872,
+      "fireOrigin": {
+        "id": "pilot31-first-shoulder-3",
+        "side": 1,
+        "allegiance": 1,
+        "x": 1093.8385570935995,
+        "y": 1051.553918924591,
+        "hp": 332,
+        "maxHp": 332,
+        "shield": 0,
+        "focus": 198
+      },
+      "angle": 170.15031833574176,
+      "power": 0.2411870969743468,
+      "targets": [
+        {
+          "id": "mage",
+          "side": 0,
+          "hpLoss": 226,
+          "shieldLoss": 0,
+          "hpLossPercent": 19.250425894378193,
+          "maxHp": 1174,
+          "contexts": [
+            {
+              "direct": true,
+              "facing": 1,
+              "role": "mage",
+              "guardArmorBranch": null,
+              "fireOriginToHitTargetDistance": 719.9789477419777,
+              "distanceScope": "Fire origin to target location at hit, not launch-time separation or projectile path length"
+            }
+          ]
+        }
+      ],
+      "feedback": [
+        {
+          "targetId": "mage",
+          "round": 1,
+          "damage": 226,
+          "critical": false
+        }
+      ]
+    },
+    {
+      "owner": "pilot31-first-shoulder-4",
+      "side": 1,
+      "round": 1,
+      "shot": 7,
+      "skill": "LA01",
+      "fireFrame": 1033,
+      "fireOrigin": {
+        "id": "pilot31-first-shoulder-4",
+        "side": 1,
+        "allegiance": 1,
+        "x": 747.9011411331334,
+        "y": 1120.913593094194,
+        "hp": 372,
+        "maxHp": 372,
+        "shield": 0,
+        "focus": 198
+      },
+      "angle": 7.708461819380339,
+      "power": 0.60026970734839,
+      "targets": [
+        {
+          "id": "knight",
+          "side": 0,
+          "hpLoss": 227,
+          "shieldLoss": 0,
+          "hpLossPercent": 11.149312377210217,
+          "maxHp": 2036,
+          "contexts": [
+            {
+              "direct": true,
+              "facing": 1,
+              "role": "knight",
+              "guardArmorBranch": null,
+              "fireOriginToHitTargetDistance": 268.48413666063846,
+              "distanceScope": "Fire origin to target location at hit, not launch-time separation or projectile path length"
+            }
+          ]
+        }
+      ],
+      "feedback": [
+        {
+          "targetId": "knight",
+          "round": 1,
+          "damage": 227,
+          "critical": false
+        }
+      ]
+    },
+    {
+      "owner": "pilot31-first-shoulder-5",
+      "side": 1,
+      "round": 1,
+      "shot": 8,
+      "skill": "LS09",
+      "fireFrame": 1174,
+      "fireOrigin": {
+        "id": "pilot31-first-shoulder-5",
+        "side": 1,
+        "allegiance": 1,
+        "x": 1549.362106107097,
+        "y": 952.8724212214194,
+        "hp": 266,
+        "maxHp": 266,
+        "shield": 0,
+        "focus": 198
+      },
+      "angle": 98.09522455744445,
+      "power": 0.9369962900164537,
+      "targets": [
+        {
+          "id": "knight",
+          "side": 0,
+          "hpLoss": 155,
+          "shieldLoss": 0,
+          "hpLossPercent": 7.6129666011787815,
+          "maxHp": 2036,
+          "contexts": [
+            {
+              "direct": false,
+              "facing": 1,
+              "role": "knight",
+              "guardArmorBranch": null,
+              "fireOriginToHitTargetDistance": 551.3708616073143,
+              "distanceScope": "Fire origin to target location at hit, not launch-time separation or projectile path length"
+            }
+          ]
+        }
+      ],
+      "feedback": [
+        {
+          "targetId": "knight",
+          "round": 1,
+          "damage": 155,
+          "critical": false
+        }
+      ]
+    },
+    {
+      "owner": "pilot31-first-shoulder-6",
+      "side": 1,
+      "round": 1,
+      "shot": 9,
+      "skill": "HSH02",
+      "fireFrame": 1484,
+      "fireOrigin": {
+        "id": "pilot31-first-shoulder-6",
+        "side": 1,
+        "allegiance": 1,
+        "x": 1702.9294706788282,
+        "y": 1116.2929470678828,
+        "hp": 297,
+        "maxHp": 297,
+        "shield": 0,
+        "focus": 198
+      },
+      "angle": 110,
+      "power": 0.43,
+      "targets": [
+        {
+          "id": "knight",
+          "side": 0,
+          "hpLoss": 154,
+          "shieldLoss": 0,
+          "hpLossPercent": 7.56385068762279,
+          "maxHp": 2036,
+          "contexts": [
+            {
+              "direct": true,
+              "facing": 1,
+              "role": "knight",
+              "guardArmorBranch": null,
+              "fireOriginToHitTargetDistance": 689.7919434768987,
+              "distanceScope": "Fire origin to target location at hit, not launch-time separation or projectile path length"
+            }
+          ]
+        }
+      ],
+      "feedback": [
+        {
+          "targetId": "knight",
+          "round": 1,
+          "damage": 154,
+          "critical": false
+        }
+      ]
+    },
+    {
+      "owner": "archer",
+      "side": 0,
+      "round": 2,
+      "shot": 10,
+      "skill": "A01",
+      "fireFrame": 1820,
+      "fireOrigin": {
+        "id": "archer",
+        "side": 0,
+        "allegiance": 0,
+        "x": 260,
+        "y": 1150,
+        "hp": 1085,
+        "maxHp": 1085,
+        "shield": 0,
+        "focus": 245
+      },
+      "angle": 30.243734838441014,
+      "power": 0.3857085304126909,
+      "targets": [
+        {
+          "id": "occultist",
+          "side": 0,
+          "hpLoss": 61.5,
+          "shieldLoss": 0,
+          "hpLossPercent": 4.515418502202643,
+          "maxHp": 1362,
+          "contexts": [
+            {
+              "direct": true,
+              "facing": 1,
+              "role": "occultist",
+              "guardArmorBranch": null,
+              "fireOriginToHitTargetDistance": 360.4588444086186,
+              "distanceScope": "Fire origin to target location at hit, not launch-time separation or projectile path length"
+            }
+          ]
+        }
+      ],
+      "feedback": [
+        {
+          "targetId": "occultist",
+          "round": 2,
+          "damage": 61.5,
+          "critical": false
+        }
+      ]
+    },
+    {
+      "owner": "mage",
+      "side": 0,
+      "round": 2,
+      "shot": 11,
+      "skill": "M01",
+      "fireFrame": 1930,
+      "fireOrigin": {
+        "id": "mage",
+        "side": 0,
+        "allegiance": 0,
+        "x": 368.9332776461444,
+        "y": 1145.8102585520714,
+        "hp": 948,
+        "maxHp": 1174,
+        "shield": 0,
+        "focus": 367
+      },
+      "angle": 38.452491499483585,
+      "power": 0.391391440983422,
+      "targets": [
+        {
+          "id": "pilot31-first-shoulder-4",
+          "side": 1,
+          "hpLoss": 164,
+          "shieldLoss": 0,
+          "hpLossPercent": 44.086021505376344,
+          "maxHp": 372,
+          "contexts": [
+            {
+              "direct": true,
+              "facing": 1,
+              "role": "bow",
+              "guardArmorBranch": null,
+              "fireOriginToHitTargetDistance": 379.7847884089285,
+              "distanceScope": "Fire origin to target location at hit, not launch-time separation or projectile path length"
+            }
+          ]
+        }
+      ],
+      "feedback": [
+        {
+          "targetId": "pilot31-first-shoulder-4",
+          "round": 2,
+          "damage": 164,
+          "critical": false
+        }
+      ]
+    },
+    {
+      "owner": "knight",
+      "side": 0,
+      "round": 2,
+      "shot": 12,
+      "skill": "S00",
+      "fireFrame": 2046,
+      "fireOrigin": {
+        "id": "knight",
+        "side": 0,
+        "allegiance": 0,
+        "x": 1021.8777905540667,
+        "y": 1083.1246136155908,
+        "hp": 1315.5,
+        "maxHp": 2036,
+        "shield": 0,
+        "focus": 277
+      },
+      "angle": -11.688369097188115,
+      "power": 0.23489553924333115,
+      "targets": [
+        {
+          "id": "pilot31-first-shoulder-3",
+          "side": 1,
+          "hpLoss": 258,
+          "shieldLoss": 0,
+          "hpLossPercent": 77.71084337349397,
+          "maxHp": 332,
+          "contexts": [
+            {
+              "direct": true,
+              "facing": -1,
+              "role": "leaper",
+              "guardArmorBranch": null,
+              "fireOriginToHitTargetDistance": 78.58155435106558,
+              "distanceScope": "Fire origin to target location at hit, not launch-time separation or projectile path length"
+            }
+          ]
+        }
+      ],
+      "feedback": [
+        {
+          "targetId": "pilot31-first-shoulder-3",
+          "round": 2,
+          "damage": 258,
+          "critical": false
+        }
+      ]
+    },
+    {
+      "owner": "occultist",
+      "side": 0,
+      "round": 2,
+      "shot": 13,
+      "skill": "O01",
+      "fireFrame": 2178,
+      "fireOrigin": {
+        "id": "occultist",
+        "side": 0,
+        "allegiance": 0,
+        "x": 620,
+        "y": 1131.8181818181818,
+        "hp": 1300.5,
+        "maxHp": 1362,
+        "shield": 0,
+        "focus": 432
+      },
+      "angle": -9.779887434095144,
+      "power": 0.9519450800913946,
+      "targets": [
+        {
+          "id": "pilot31-first-shoulder-4",
+          "side": 1,
+          "hpLoss": 115,
+          "shieldLoss": 0,
+          "hpLossPercent": 30.913978494623656,
+          "maxHp": 372,
+          "contexts": [
+            {
+              "direct": true,
+              "facing": 1,
+              "role": "bow",
+              "guardArmorBranch": null,
+              "fireOriginToHitTargetDistance": 138.07511161109176,
+              "distanceScope": "Fire origin to target location at hit, not launch-time separation or projectile path length"
+            }
+          ]
+        }
+      ],
+      "feedback": [
+        {
+          "targetId": "pilot31-first-shoulder-4",
+          "round": 2,
+          "damage": 115,
+          "critical": false
+        }
+      ]
+    },
+    {
+      "owner": "pilot31-first-shoulder-3",
+      "side": 1,
+      "round": 2,
+      "shot": 14,
+      "skill": "HMO01",
+      "fireFrame": 2233,
+      "fireOrigin": {
+        "id": "pilot31-first-shoulder-3",
+        "side": 1,
+        "allegiance": 1,
+        "x": 1093.8385570935995,
+        "y": 1051.553918924591,
+        "hp": 74,
+        "maxHp": 332,
+        "shield": 0,
+        "focus": 198
+      },
+      "angle": 214.73416531445415,
+      "power": 0.4195717160494117,
+      "targets": [
+        {
+          "id": "knight",
+          "side": 0,
+          "hpLoss": 206,
+          "shieldLoss": 0,
+          "hpLossPercent": 10.11787819253438,
+          "maxHp": 2036,
+          "contexts": [
+            {
+              "direct": true,
+              "facing": 1,
+              "role": "knight",
+              "guardArmorBranch": null,
+              "fireOriginToHitTargetDistance": 78.58155435106558,
+              "distanceScope": "Fire origin to target location at hit, not launch-time separation or projectile path length"
+            }
+          ]
+        },
+        {
+          "id": "pilot31-first-shoulder-3",
+          "side": 1,
+          "hpLoss": 74,
+          "shieldLoss": 0,
+          "hpLossPercent": 22.289156626506024,
+          "maxHp": 332,
+          "contexts": [
+            {
+              "direct": false,
+              "facing": -1,
+              "role": "leaper",
+              "guardArmorBranch": null,
+              "fireOriginToHitTargetDistance": 0.0,
+              "distanceScope": "Fire origin to target location at hit, not launch-time separation or projectile path length"
+            }
+          ]
+        }
+      ],
+      "feedback": [
+        {
+          "targetId": "knight",
+          "round": 2,
+          "damage": 206,
+          "critical": false
+        },
+        {
+          "targetId": "pilot31-first-shoulder-3",
+          "round": 2,
+          "damage": 425,
+          "critical": false
+        }
+      ]
+    },
+    {
+      "owner": "pilot31-first-shoulder-2",
+      "side": 1,
+      "round": 2,
+      "shot": 15,
+      "skill": "LS09",
+      "fireFrame": 2338,
+      "fireOrigin": {
+        "id": "pilot31-first-shoulder-2",
+        "side": 1,
+        "allegiance": 1,
+        "x": 1396.022130990366,
+        "y": 948.9963115016056,
+        "hp": 59,
+        "maxHp": 266,
+        "shield": 0,
+        "focus": 198
+      },
+      "angle": 193.66185567408223,
+      "power": 0.7179535336174584,
+      "targets": [
+        {
+          "id": "knight",
+          "side": 0,
+          "hpLoss": 184,
+          "shieldLoss": 0,
+          "hpLossPercent": 9.037328094302554,
+          "maxHp": 2036,
+          "contexts": [
+            {
+              "direct": true,
+              "facing": 1,
+              "role": "knight",
+              "guardArmorBranch": null,
+              "fireOriginToHitTargetDistance": 425.65613737042287,
+              "distanceScope": "Fire origin to target location at hit, not launch-time separation or projectile path length"
+            }
+          ]
+        }
+      ],
+      "feedback": [
+        {
+          "targetId": "knight",
+          "round": 2,
+          "damage": 184,
+          "critical": false
+        }
+      ]
+    },
+    {
+      "owner": "pilot31-first-shoulder-4",
+      "side": 1,
+      "round": 2,
+      "shot": 16,
+      "skill": "LA01",
+      "fireFrame": 2472,
+      "fireOrigin": {
+        "id": "pilot31-first-shoulder-4",
+        "side": 1,
+        "allegiance": 1,
+        "x": 277.524565596676,
+        "y": 1149.3259782462817,
+        "hp": 93,
+        "maxHp": 372,
+        "shield": 0,
+        "focus": 198
+      },
+      "angle": 171.71796806086786,
+      "power": 0.2514893592710141,
+      "targets": [
+        {
+          "id": "archer",
+          "side": 0,
+          "hpLoss": 274,
+          "shieldLoss": 0,
+          "hpLossPercent": 25.253456221198157,
+          "maxHp": 1085,
+          "contexts": [
+            {
+              "direct": true,
+              "facing": 1,
+              "role": "archer",
+              "guardArmorBranch": null,
+              "fireOriginToHitTargetDistance": 17.537522763397487,
+              "distanceScope": "Fire origin to target location at hit, not launch-time separation or projectile path length"
+            }
+          ]
+        }
+      ],
+      "feedback": [
+        {
+          "targetId": "archer",
+          "round": 2,
+          "damage": 274,
+          "critical": false
+        }
+      ]
+    },
+    {
+      "owner": "pilot31-first-shoulder-5",
+      "side": 1,
+      "round": 2,
+      "shot": 17,
+      "skill": "LS09",
+      "fireFrame": 2532,
+      "fireOrigin": {
+        "id": "pilot31-first-shoulder-5",
+        "side": 1,
+        "allegiance": 1,
+        "x": 1346.3624861347496,
+        "y": 957.2729189775417,
+        "hp": 266,
+        "maxHp": 266,
+        "shield": 0,
+        "focus": 198
+      },
+      "angle": 195.99781072829006,
+      "power": 0.7010592036012259,
+      "targets": [
+        {
+          "id": "knight",
+          "side": 0,
+          "hpLoss": 199,
+          "shieldLoss": 0,
+          "hpLossPercent": 9.774066797642437,
+          "maxHp": 2036,
+          "contexts": [
+            {
+              "direct": true,
+              "facing": 1,
+              "role": "knight",
+              "guardArmorBranch": null,
+              "fireOriginToHitTargetDistance": 385.98814786143913,
+              "distanceScope": "Fire origin to target location at hit, not launch-time separation or projectile path length"
+            }
+          ]
+        }
+      ],
+      "feedback": [
+        {
+          "targetId": "knight",
+          "round": 2,
+          "damage": 199,
+          "critical": false
+        }
+      ]
+    },
+    {
+      "owner": "pilot31-first-shoulder-7",
+      "side": 1,
+      "round": 2,
+      "shot": 18,
+      "skill": "LA01",
+      "fireFrame": 2640,
+      "fireOrigin": {
+        "id": "pilot31-first-shoulder-7",
+        "side": 1,
+        "allegiance": 1,
+        "x": 1563.6212567955308,
+        "y": 959.5265709944135,
+        "hp": 372,
+        "maxHp": 372,
+        "shield": 0,
+        "focus": 198
+      },
+      "angle": 110,
+      "power": 0.5,
+      "targets": [
+        {
+          "id": "knight",
+          "side": 0,
+          "hpLoss": 218,
+          "shieldLoss": 0,
+          "hpLossPercent": 10.707269155206287,
+          "maxHp": 2036,
+          "contexts": [
+            {
+              "direct": true,
+              "facing": 1,
+              "role": "knight",
+              "guardArmorBranch": null,
+              "fireOriginToHitTargetDistance": 605.6512584552942,
+              "distanceScope": "Fire origin to target location at hit, not launch-time separation or projectile path length"
+            }
+          ]
+        }
+      ],
+      "feedback": [
+        {
+          "targetId": "knight",
+          "round": 2,
+          "damage": 218,
+          "critical": false
+        }
+      ]
+    },
+    {
+      "owner": "pilot31-first-shoulder-8",
+      "side": 1,
+      "round": 2,
+      "shot": 19,
+      "skill": "HWD01",
+      "fireFrame": 2880,
+      "fireOrigin": {
+        "id": "pilot31-first-shoulder-8",
+        "side": 1,
+        "allegiance": 1,
+        "x": 1168.8345041407308,
+        "y": 1016.5293019447129,
+        "hp": 293,
+        "maxHp": 293,
+        "shield": 0,
+        "focus": 198
+      },
+      "angle": 196.9407481517478,
+      "power": 0.6258407803276445,
+      "targets": [
+        {
+          "id": "knight",
+          "side": 0,
+          "hpLoss": 199,
+          "shieldLoss": 0,
+          "hpLossPercent": 9.774066797642437,
+          "maxHp": 2036,
+          "contexts": [
+            {
+              "direct": true,
+              "facing": 1,
+              "role": "knight",
+              "guardArmorBranch": null,
+              "fireOriginToHitTargetDistance": 209.9213982904599,
+              "distanceScope": "Fire origin to target location at hit, not launch-time separation or projectile path length"
+            }
+          ]
+        }
+      ],
+      "feedback": [
+        {
+          "targetId": "knight",
+          "round": 2,
+          "damage": 199,
+          "critical": false
+        }
+      ]
+    },
+    {
+      "owner": "archer",
+      "side": 0,
+      "round": 3,
+      "shot": 20,
+      "skill": "A01",
+      "fireFrame": 2981,
+      "fireOrigin": {
+        "id": "archer",
+        "side": 0,
+        "allegiance": 0,
+        "x": 260,
+        "y": 1150,
+        "hp": 811,
+        "maxHp": 1085,
+        "shield": 0,
+        "focus": 245
+      },
+      "angle": -11.290849393233657,
+      "power": 0.24856771959923538,
+      "targets": [
+        {
+          "id": "pilot31-first-shoulder-4",
+          "side": 1,
+          "hpLoss": 93,
+          "shieldLoss": 0,
+          "hpLossPercent": 25,
+          "maxHp": 372,
+          "contexts": [
+            {
+              "direct": true,
+              "facing": -1,
+              "role": "bow",
+              "guardArmorBranch": null,
+              "fireOriginToHitTargetDistance": 17.537522763397487,
+              "distanceScope": "Fire origin to target location at hit, not launch-time separation or projectile path length"
+            }
+          ]
+        }
+      ],
+      "feedback": [
+        {
+          "targetId": "pilot31-first-shoulder-4",
+          "round": 3,
+          "damage": 279,
+          "critical": false
+        }
+      ]
+    },
+    {
+      "owner": "mage",
+      "side": 0,
+      "round": 3,
+      "shot": 21,
+      "skill": "M01",
+      "fireFrame": 3098,
+      "fireOrigin": {
+        "id": "mage",
+        "side": 0,
+        "allegiance": 0,
+        "x": 417.272536968934,
+        "y": 1143.9510562704256,
+        "hp": 948,
+        "maxHp": 1174,
+        "shield": 0,
+        "focus": 367
+      },
+      "angle": 37.02133819460869,
+      "power": 0.7548263504678634,
+      "targets": [
+        {
+          "id": "pilot31-first-shoulder-2",
+          "side": 1,
+          "hpLoss": 59,
+          "shieldLoss": 0,
+          "hpLossPercent": 22.18045112781955,
+          "maxHp": 266,
+          "contexts": [
+            {
+              "direct": false,
+              "facing": -1,
+              "role": "guard",
+              "guardArmorBranch": 0.4,
+              "fireOriginToHitTargetDistance": 997.9770139161491,
+              "distanceScope": "Fire origin to target location at hit, not launch-time separation or projectile path length"
+            }
+          ]
+        },
+        {
+          "id": "pilot31-first-shoulder-5",
+          "side": 1,
+          "hpLoss": 126,
+          "shieldLoss": 0,
+          "hpLossPercent": 47.36842105263158,
+          "maxHp": 266,
+          "contexts": [
+            {
+              "direct": true,
+              "facing": -1,
+              "role": "guard",
+              "guardArmorBranch": 0.4,
+              "fireOriginToHitTargetDistance": 947.6586202763517,
+              "distanceScope": "Fire origin to target location at hit, not launch-time separation or projectile path length"
+            }
+          ]
+        }
+      ],
+      "feedback": [
+        {
+          "targetId": "pilot31-first-shoulder-2",
+          "round": 3,
+          "damage": 71,
+          "critical": false
+        },
+        {
+          "targetId": "pilot31-first-shoulder-5",
+          "round": 3,
+          "damage": 126,
+          "critical": false
+        }
+      ]
+    },
+    {
+      "owner": "occultist",
+      "side": 0,
+      "round": 3,
+      "shot": 22,
+      "skill": "O01",
+      "fireFrame": 3319,
+      "fireOrigin": {
+        "id": "occultist",
+        "side": 0,
+        "allegiance": 0,
+        "x": 620,
+        "y": 1131.8181818181818,
+        "hp": 1300.5,
+        "maxHp": 1362,
+        "shield": 0,
+        "focus": 432
+      },
+      "angle": 10.521742215380073,
+      "power": 0.6276560967635569,
+      "targets": [
+        {
+          "id": "knight",
+          "side": 0,
+          "hpLoss": 0,
+          "shieldLoss": 21.30000000000001,
+          "hpLossPercent": 0,
+          "maxHp": 2036,
+          "contexts": [
+            {
+              "direct": true,
+              "facing": 1,
+              "role": "knight",
+              "guardArmorBranch": null,
+              "fireOriginToHitTargetDistance": 439.0909654022347,
+              "distanceScope": "Fire origin to target location at hit, not launch-time separation or projectile path length"
+            }
+          ]
+        }
+      ],
+      "feedback": []
+    },
+    {
+      "owner": "pilot31-first-shoulder-8",
+      "side": 1,
+      "round": 3,
+      "shot": 23,
+      "skill": "HWD01",
+      "fireFrame": 3399,
+      "fireOrigin": {
+        "id": "pilot31-first-shoulder-8",
+        "side": 1,
+        "allegiance": 1,
+        "x": 1168.8345041407308,
+        "y": 1016.5293019447129,
+        "hp": 293,
+        "maxHp": 293,
+        "shield": 0,
+        "focus": 198
+      },
+      "angle": 209.22958346834224,
+      "power": 0.5315279653649474,
+      "targets": [
+        {
+          "id": "knight",
+          "side": 0,
+          "hpLoss": 0,
+          "shieldLoss": 204,
+          "hpLossPercent": 0,
+          "maxHp": 2036,
+          "contexts": [
+            {
+              "direct": true,
+              "facing": 1,
+              "role": "knight",
+              "guardArmorBranch": null,
+              "fireOriginToHitTargetDistance": 115.41677551218083,
+              "distanceScope": "Fire origin to target location at hit, not launch-time separation or projectile path length"
+            }
+          ]
+        }
+      ],
+      "feedback": []
+    },
+    {
+      "owner": "pilot31-first-shoulder-5",
+      "side": 1,
+      "round": 3,
+      "shot": 24,
+      "skill": "LS09",
+      "fireFrame": 3436,
+      "fireOrigin": {
+        "id": "pilot31-first-shoulder-5",
+        "side": 1,
+        "allegiance": 1,
+        "x": 1360.9762144266758,
+        "y": 954.837297595554,
+        "hp": 140,
+        "maxHp": 266,
+        "shield": 0,
+        "focus": 198
+      },
+      "angle": 156.98517307045404,
+      "power": 0.24433456268371082,
+      "targets": [
+        {
+          "id": "occultist",
+          "side": 0,
+          "hpLoss": 179,
+          "shieldLoss": 0,
+          "hpLossPercent": 13.1424375917768,
+          "maxHp": 1362,
+          "contexts": [
+            {
+              "direct": true,
+              "facing": 1,
+              "role": "occultist",
+              "guardArmorBranch": null,
+              "fireOriginToHitTargetDistance": 761.8188654308256,
+              "distanceScope": "Fire origin to target location at hit, not launch-time separation or projectile path length"
+            }
+          ]
+        }
+      ],
+      "feedback": [
+        {
+          "targetId": "occultist",
+          "round": 3,
+          "damage": 179,
+          "critical": false
+        }
+      ]
+    },
+    {
+      "owner": "pilot31-first-shoulder-6",
+      "side": 1,
+      "round": 3,
+      "shot": 25,
+      "skill": "HSH01",
+      "fireFrame": 3543,
+      "fireOrigin": {
+        "id": "pilot31-first-shoulder-6",
+        "side": 1,
+        "allegiance": 1,
+        "x": 1702.9294706788282,
+        "y": 1116.2929470678828,
+        "hp": 297,
+        "maxHp": 297,
+        "shield": 0,
+        "focus": 198
+      },
+      "angle": 175.99861949355022,
+      "power": 0.9829777218536203,
+      "targets": [
+        {
+          "id": "knight",
+          "side": 0,
+          "hpLoss": 200.3,
+          "shieldLoss": 18.69999999999999,
+          "hpLossPercent": 9.837917485265226,
+          "maxHp": 2036,
+          "contexts": [
+            {
+              "direct": true,
+              "facing": 1,
+              "role": "knight",
+              "guardArmorBranch": null,
+              "fireOriginToHitTargetDistance": 652.7168904895839,
+              "distanceScope": "Fire origin to target location at hit, not launch-time separation or projectile path length"
+            }
+          ]
+        }
+      ],
+      "feedback": [
+        {
+          "targetId": "knight",
+          "round": 3,
+          "damage": 200.3,
+          "critical": false
+        }
+      ]
+    },
+    {
+      "owner": "pilot31-first-shoulder-7",
+      "side": 1,
+      "round": 3,
+      "shot": 26,
+      "skill": "LA01",
+      "fireFrame": 3651,
+      "fireOrigin": {
+        "id": "pilot31-first-shoulder-7",
+        "side": 1,
+        "allegiance": 1,
+        "x": 1738.3145875399123,
+        "y": 1119.8314587539912,
+        "hp": 372,
+        "maxHp": 372,
+        "shield": 0,
+        "focus": 198
+      },
+      "angle": 93.62970812164713,
+      "power": 0.9391079832811373,
+      "targets": [
+        {
+          "id": "knight",
+          "side": 0,
+          "hpLoss": 190.2,
+          "shieldLoss": 0,
+          "hpLossPercent": 9.341846758349705,
+          "maxHp": 2036,
+          "contexts": [
+            {
+              "direct": true,
+              "facing": 1,
+              "role": "knight",
+              "guardArmorBranch": null,
+              "fireOriginToHitTargetDistance": 701.837721566811,
+              "distanceScope": "Fire origin to target location at hit, not launch-time separation or projectile path length"
+            }
+          ]
+        }
+      ],
+      "feedback": [
+        {
+          "targetId": "knight",
+          "round": 3,
+          "damage": 228,
+          "critical": false
+        }
+      ]
+    },
+    {
+      "owner": "archer",
+      "side": 0,
+      "round": 4,
+      "shot": 27,
+      "skill": "A01",
+      "fireFrame": 4031,
+      "fireOrigin": {
+        "id": "archer",
+        "side": 0,
+        "allegiance": 0,
+        "x": 382.90912447965206,
+        "y": 1145.272725981552,
+        "hp": 811,
+        "maxHp": 1085,
+        "shield": 0,
+        "focus": 245
+      },
+      "angle": 78.27446424588561,
+      "power": 0.7028466554188344,
+      "targets": [],
+      "feedback": []
+    },
+    {
+      "owner": "mage",
+      "side": 0,
+      "round": 4,
+      "shot": 28,
+      "skill": "M01",
+      "fireFrame": 4279,
+      "fireOrigin": {
+        "id": "mage",
+        "side": 0,
+        "allegiance": 0,
+        "x": 417.272536968934,
+        "y": 1143.9510562704256,
+        "hp": 948,
+        "maxHp": 1174,
+        "shield": 0,
+        "focus": 367
+      },
+      "angle": 52.645507680252194,
+      "power": 0.5404929423105579,
+      "targets": [],
+      "feedback": []
+    },
+    {
+      "owner": "occultist",
+      "side": 0,
+      "round": 4,
+      "shot": 29,
+      "skill": "O01",
+      "fireFrame": 4451,
+      "fireOrigin": {
+        "id": "occultist",
+        "side": 0,
+        "allegiance": 0,
+        "x": 617.4265195281015,
+        "y": 1132.0287393113372,
+        "hp": 1121.5,
+        "maxHp": 1362,
+        "shield": 0,
+        "focus": 432
+      },
+      "angle": 15.913884602487087,
+      "power": 0.5335076822492563,
+      "targets": [
+        {
+          "id": "pilot31-first-shoulder-8",
+          "side": 1,
+          "hpLoss": 101,
+          "shieldLoss": 0,
+          "hpLossPercent": 34.47098976109215,
+          "maxHp": 293,
+          "contexts": [
+            {
+              "direct": true,
+              "facing": -1,
+              "role": "guard",
+              "guardArmorBranch": 0.4,
+              "fireOriginToHitTargetDistance": 563.374551720761,
+              "distanceScope": "Fire origin to target location at hit, not launch-time separation or projectile path length"
+            }
+          ]
+        }
+      ],
+      "feedback": [
+        {
+          "targetId": "pilot31-first-shoulder-8",
+          "round": 4,
+          "damage": 101,
+          "critical": false
+        }
+      ]
+    },
+    {
+      "owner": "pilot31-first-shoulder-8",
+      "side": 1,
+      "round": 4,
+      "shot": 30,
+      "skill": "HWD01",
+      "fireFrame": 4581,
+      "fireOrigin": {
+        "id": "pilot31-first-shoulder-8",
+        "side": 1,
+        "allegiance": 1,
+        "x": 978.9416252376183,
+        "y": 1089.0696211209452,
+        "hp": 192,
+        "maxHp": 293,
+        "shield": 0,
+        "focus": 198
+      },
+      "angle": 181.0093128405192,
+      "power": 0.7234316025054793,
+      "targets": [
+        {
+          "id": "occultist",
+          "side": 0,
+          "hpLoss": 305,
+          "shieldLoss": 0,
+          "hpLossPercent": 22.3935389133627,
+          "maxHp": 1362,
+          "contexts": [
+            {
+              "direct": true,
+              "facing": 1,
+              "role": "occultist",
+              "guardArmorBranch": null,
+              "fireOriginToHitTargetDistance": 364.05859074036306,
+              "distanceScope": "Fire origin to target location at hit, not launch-time separation or projectile path length"
+            }
+          ]
+        }
+      ],
+      "feedback": [
+        {
+          "targetId": "occultist",
+          "round": 4,
+          "damage": 305,
+          "critical": false
+        }
+      ]
+    },
+    {
+      "owner": "pilot31-first-shoulder-5",
+      "side": 1,
+      "round": 4,
+      "shot": 31,
+      "skill": "LS09",
+      "fireFrame": 4638,
+      "fireOrigin": {
+        "id": "pilot31-first-shoulder-5",
+        "side": 1,
+        "allegiance": 1,
+        "x": 1360.9762144266758,
+        "y": 954.837297595554,
+        "hp": 140,
+        "maxHp": 266,
+        "shield": 0,
+        "focus": 198
+      },
+      "angle": 180.23490876607823,
+      "power": 0.7558712315361633,
+      "targets": [
+        {
+          "id": "occultist",
+          "side": 0,
+          "hpLoss": 187,
+          "shieldLoss": 0,
+          "hpLossPercent": 13.729809104258443,
+          "maxHp": 1362,
+          "contexts": [
+            {
+              "direct": true,
+              "facing": 1,
+              "role": "occultist",
+              "guardArmorBranch": null,
+              "fireOriginToHitTargetDistance": 775.2386298492671,
+              "distanceScope": "Fire origin to target location at hit, not launch-time separation or projectile path length"
+            }
+          ]
+        }
+      ],
+      "feedback": [
+        {
+          "targetId": "occultist",
+          "round": 4,
+          "damage": 187,
+          "critical": false
+        }
+      ]
+    },
+    {
+      "owner": "pilot31-first-shoulder-6",
+      "side": 1,
+      "round": 4,
+      "shot": 32,
+      "skill": "HSH01",
+      "fireFrame": 4754,
+      "fireOrigin": {
+        "id": "pilot31-first-shoulder-6",
+        "side": 1,
+        "allegiance": 1,
+        "x": 1497.5128040121551,
+        "y": 943.9594003343462,
+        "hp": 297,
+        "maxHp": 297,
+        "shield": 0,
+        "focus": 198
+      },
+      "angle": 162.27402221014734,
+      "power": 0.15755057436097022,
+      "targets": [],
+      "feedback": []
+    },
+    {
+      "owner": "pilot31-first-shoulder-7",
+      "side": 1,
+      "round": 4,
+      "shot": 33,
+      "skill": "LA01",
+      "fireFrame": 4892,
+      "fireOrigin": {
+        "id": "pilot31-first-shoulder-7",
+        "side": 1,
+        "allegiance": 1,
+        "x": 1405.506248310241,
+        "y": 947.4156252816265,
+        "hp": 372,
+        "maxHp": 372,
+        "shield": 0,
+        "focus": 198
+      },
+      "angle": 131.08044821594376,
+      "power": 0.252622963009635,
+      "targets": [
+        {
+          "id": "occultist",
+          "side": 0,
+          "hpLoss": 250,
+          "shieldLoss": 0,
+          "hpLossPercent": 18.355359765051396,
+          "maxHp": 1362,
+          "contexts": [
+            {
+              "direct": true,
+              "facing": 1,
+              "role": "occultist",
+              "guardArmorBranch": null,
+              "fireOriginToHitTargetDistance": 823.3440657546224,
+              "distanceScope": "Fire origin to target location at hit, not launch-time separation or projectile path length"
+            }
+          ]
+        }
+      ],
+      "feedback": [
+        {
+          "targetId": "occultist",
+          "round": 4,
+          "damage": 250,
+          "critical": false
+        }
+      ]
+    },
+    {
+      "owner": "archer",
+      "side": 0,
+      "round": 5,
+      "shot": 34,
+      "skill": "A01",
+      "fireFrame": 5151,
+      "fireOrigin": {
+        "id": "archer",
+        "side": 0,
+        "allegiance": 0,
+        "x": 382.90912447965206,
+        "y": 1145.272725981552,
+        "hp": 811,
+        "maxHp": 1085,
+        "shield": 0,
+        "focus": 245
+      },
+      "angle": 73.33773974888027,
+      "power": 0.8228448648805867,
+      "targets": [],
+      "feedback": []
+    },
+    {
+      "owner": "mage",
+      "side": 0,
+      "round": 5,
+      "shot": 35,
+      "skill": "M01",
+      "fireFrame": 5424,
+      "fireOrigin": {
+        "id": "mage",
+        "side": 0,
+        "allegiance": 0,
+        "x": 417.272536968934,
+        "y": 1143.9510562704256,
+        "hp": 948,
+        "maxHp": 1174,
+        "shield": 0,
+        "focus": 367
+      },
+      "angle": 38.68086265400052,
+      "power": 0.6243625368070238,
+      "targets": [],
+      "feedback": []
+    },
+    {
+      "owner": "occultist",
+      "side": 0,
+      "round": 5,
+      "shot": 36,
+      "skill": "O01",
+      "fireFrame": 5548,
+      "fireOrigin": {
+        "id": "occultist",
+        "side": 0,
+        "allegiance": 0,
+        "x": 603.3914566471886,
+        "y": 1133.1770626379573,
+        "hp": 379.5,
+        "maxHp": 1362,
+        "shield": 0,
+        "focus": 432
+      },
+      "angle": 20.607302824035287,
+      "power": 0.18829682902914927,
+      "targets": [
+        {
+          "id": "pilot31-first-shoulder-8",
+          "side": 1,
+          "hpLoss": 75,
+          "shieldLoss": 0,
+          "hpLossPercent": 25.59726962457338,
+          "maxHp": 293,
+          "contexts": [
+            {
+              "direct": false,
+              "facing": -1,
+              "role": "guard",
+              "guardArmorBranch": 0.4,
+              "fireOriginToHitTargetDistance": 378.13145270590326,
+              "distanceScope": "Fire origin to target location at hit, not launch-time separation or projectile path length"
+            }
+          ]
+        }
+      ],
+      "feedback": [
+        {
+          "targetId": "pilot31-first-shoulder-8",
+          "round": 5,
+          "damage": 75,
+          "critical": false
+        }
+      ]
+    },
+    {
+      "owner": "pilot31-first-shoulder-8",
+      "side": 1,
+      "round": 5,
+      "shot": 37,
+      "skill": "HWD01",
+      "fireFrame": 5682,
+      "fireOrigin": {
+        "id": "pilot31-first-shoulder-8",
+        "side": 1,
+        "allegiance": 1,
+        "x": 981.4838570281818,
+        "y": 1088.717619796098,
+        "hp": 117,
+        "maxHp": 293,
+        "shield": 0,
+        "focus": 198
+      },
+      "angle": 180.20221858775167,
+      "power": 0.7025413464841411,
+      "targets": [
+        {
+          "id": "occultist",
+          "side": 0,
+          "hpLoss": 308,
+          "shieldLoss": 0,
+          "hpLossPercent": 22.61380323054332,
+          "maxHp": 1362,
+          "contexts": [
+            {
+              "direct": true,
+              "facing": 1,
+              "role": "occultist",
+              "guardArmorBranch": null,
+              "fireOriginToHitTargetDistance": 380.6973933239756,
+              "distanceScope": "Fire origin to target location at hit, not launch-time separation or projectile path length"
+            }
+          ]
+        }
+      ],
+      "feedback": [
+        {
+          "targetId": "occultist",
+          "round": 5,
+          "damage": 308,
+          "critical": false
+        }
+      ]
+    },
+    {
+      "owner": "pilot31-first-shoulder-5",
+      "side": 1,
+      "round": 5,
+      "shot": 38,
+      "skill": "LS09",
+      "fireFrame": 5751,
+      "fireOrigin": {
+        "id": "pilot31-first-shoulder-5",
+        "side": 1,
+        "allegiance": 1,
+        "x": 1278.8104854942103,
+        "y": 973.3244521272745,
+        "hp": 140,
+        "maxHp": 266,
+        "shield": 0,
+        "focus": 198
+      },
+      "angle": 184.50329297992286,
+      "power": 0.7281143074368863,
+      "targets": [
+        {
+          "id": "occultist",
+          "side": 0,
+          "hpLoss": 71.5,
+          "shieldLoss": 0,
+          "hpLossPercent": 5.249632892804699,
+          "maxHp": 1362,
+          "contexts": [
+            {
+              "direct": true,
+              "facing": 1,
+              "role": "occultist",
+              "guardArmorBranch": null,
+              "fireOriginToHitTargetDistance": 705.0445755533601,
+              "distanceScope": "Fire origin to target location at hit, not launch-time separation or projectile path length"
+            }
+          ]
+        }
+      ],
+      "feedback": [
+        {
+          "targetId": "occultist",
+          "round": 5,
+          "damage": 255,
+          "critical": false
+        }
+      ]
+    },
+    {
+      "owner": "pilot31-first-shoulder-6",
+      "side": 1,
+      "round": 5,
+      "shot": 39,
+      "skill": "HSH02",
+      "fireFrame": 5865,
+      "fireOrigin": {
+        "id": "pilot31-first-shoulder-6",
+        "side": 1,
+        "allegiance": 1,
+        "x": 1166.511518606938,
+        "y": 1017.4419034044173,
+        "hp": 297,
+        "maxHp": 297,
+        "shield": 0,
+        "focus": 198
+      },
+      "angle": 181.27480878767477,
+      "power": 0.7576309166416317,
+      "targets": [
+        {
+          "id": "archer",
+          "side": 0,
+          "hpLoss": 158,
+          "shieldLoss": 0,
+          "hpLossPercent": 14.56221198156682,
+          "maxHp": 1085,
+          "contexts": [
+            {
+              "direct": false,
+              "facing": 1,
+              "role": "archer",
+              "guardArmorBranch": null,
+              "fireOriginToHitTargetDistance": 793.9605980669073,
+              "distanceScope": "Fire origin to target location at hit, not launch-time separation or projectile path length"
+            }
+          ]
+        },
+        {
+          "id": "mage",
+          "side": 0,
+          "hpLoss": 240,
+          "shieldLoss": 0,
+          "hpLossPercent": 20.442930153321978,
+          "maxHp": 1174,
+          "contexts": [
+            {
+              "direct": true,
+              "facing": 1,
+              "role": "mage",
+              "guardArmorBranch": null,
+              "fireOriginToHitTargetDistance": 759.8444691940767,
+              "distanceScope": "Fire origin to target location at hit, not launch-time separation or projectile path length"
+            }
+          ]
+        }
+      ],
+      "feedback": [
+        {
+          "targetId": "archer",
+          "round": 5,
+          "damage": 158,
+          "critical": false
+        },
+        {
+          "targetId": "mage",
+          "round": 5,
+          "damage": 240,
+          "critical": false
+        }
+      ]
+    },
+    {
+      "owner": "pilot31-first-shoulder-7",
+      "side": 1,
+      "round": 5,
+      "shot": 40,
+      "skill": "LA01",
+      "fireFrame": 6007,
+      "fireOrigin": {
+        "id": "pilot31-first-shoulder-7",
+        "side": 1,
+        "allegiance": 1,
+        "x": 912.9389038205815,
+        "y": 1098.2084594709963,
+        "hp": 372,
+        "maxHp": 372,
+        "shield": 0,
+        "focus": 198
+      },
+      "angle": 178.99335670133237,
+      "power": 0.7042475776103313,
+      "targets": [
+        {
+          "id": "mage",
+          "side": 0,
+          "hpLoss": 272,
+          "shieldLoss": 0,
+          "hpLossPercent": 23.168654173764907,
+          "maxHp": 1174,
+          "contexts": [
+            {
+              "direct": true,
+              "facing": 1,
+              "role": "mage",
+              "guardArmorBranch": null,
+              "fireOriginToHitTargetDistance": 509.46845470959175,
+              "distanceScope": "Fire origin to target location at hit, not launch-time separation or projectile path length"
+            }
+          ]
+        }
+      ],
+      "feedback": [
+        {
+          "targetId": "mage",
+          "round": 5,
+          "damage": 272,
+          "critical": false
+        }
+      ]
+    },
+    {
+      "owner": "archer",
+      "side": 0,
+      "round": 6,
+      "shot": 41,
+      "skill": "A01",
+      "fireFrame": 6157,
+      "fireOrigin": {
+        "id": "archer",
+        "side": 0,
+        "allegiance": 0,
+        "x": 378.10976096697567,
+        "y": 1145.4573168858856,
+        "hp": 653,
+        "maxHp": 1085,
+        "shield": 0,
+        "focus": 245
+      },
+      "angle": 73.34789653122425,
+      "power": 0.6342762500121188,
+      "targets": [],
+      "feedback": []
+    },
+    {
+      "owner": "mage",
+      "side": 0,
+      "round": 6,
+      "shot": 42,
+      "skill": "M01",
+      "fireFrame": 6404,
+      "fireOrigin": {
+        "id": "mage",
+        "side": 0,
+        "allegiance": 0,
+        "x": 405.56888365399124,
+        "y": 1144.4011967825388,
+        "hp": 436,
+        "maxHp": 1174,
+        "shield": 0,
+        "focus": 367
+      },
+      "angle": 9.382357573136687,
+      "power": 0.726869818969371,
+      "targets": [
+        {
+          "id": "pilot31-first-shoulder-7",
+          "side": 1,
+          "hpLoss": 175,
+          "shieldLoss": 0,
+          "hpLossPercent": 47.043010752688176,
+          "maxHp": 372,
+          "contexts": [
+            {
+              "direct": true,
+              "facing": -1,
+              "role": "bow",
+              "guardArmorBranch": null,
+              "fireOriginToHitTargetDistance": 509.46845470959175,
+              "distanceScope": "Fire origin to target location at hit, not launch-time separation or projectile path length"
+            }
+          ]
+        }
+      ],
+      "feedback": [
+        {
+          "targetId": "pilot31-first-shoulder-7",
+          "round": 6,
+          "damage": 175,
+          "critical": false
+        }
+      ]
+    },
+    {
+      "owner": "pilot31-first-shoulder-7",
+      "side": 1,
+      "round": 6,
+      "shot": 43,
+      "skill": "LA01",
+      "fireFrame": 6495,
+      "fireOrigin": {
+        "id": "pilot31-first-shoulder-7",
+        "side": 1,
+        "allegiance": 1,
+        "x": 842.5426944514926,
+        "y": 1107.9003795129197,
+        "hp": 197,
+        "maxHp": 372,
+        "shield": 0,
+        "focus": 198
+      },
+      "angle": 182.01756616575986,
+      "power": 0.6994801662023401,
+      "targets": [
+        {
+          "id": "mage",
+          "side": 0,
+          "hpLoss": 270,
+          "shieldLoss": 0,
+          "hpLossPercent": 22.998296422487222,
+          "maxHp": 1174,
+          "contexts": [
+            {
+              "direct": true,
+              "facing": 1,
+              "role": "mage",
+              "guardArmorBranch": null,
+              "fireOriginToHitTargetDistance": 438.49563393976985,
+              "distanceScope": "Fire origin to target location at hit, not launch-time separation or projectile path length"
+            }
+          ]
+        }
+      ],
+      "feedback": [
+        {
+          "targetId": "mage",
+          "round": 6,
+          "damage": 270,
+          "critical": false
+        }
+      ]
+    },
+    {
+      "owner": "pilot31-first-shoulder-5",
+      "side": 1,
+      "round": 6,
+      "shot": 44,
+      "skill": "LS09",
+      "fireFrame": 6576,
+      "fireOrigin": {
+        "id": "pilot31-first-shoulder-5",
+        "side": 1,
+        "allegiance": 1,
+        "x": 1076.7198226362657,
+        "y": 1059.7182384350117,
+        "hp": 140,
+        "maxHp": 266,
+        "shield": 0,
+        "focus": 198
+      },
+      "angle": 156.67124428191622,
+      "power": 0.2972944598717699,
+      "targets": [
+        {
+          "id": "archer",
+          "side": 0,
+          "hpLoss": 175,
+          "shieldLoss": 0,
+          "hpLossPercent": 16.129032258064516,
+          "maxHp": 1085,
+          "contexts": [
+            {
+              "direct": false,
+              "facing": 1,
+              "role": "archer",
+              "guardArmorBranch": null,
+              "fireOriginToHitTargetDistance": 703.8516944919393,
+              "distanceScope": "Fire origin to target location at hit, not launch-time separation or projectile path length"
+            }
+          ]
+        },
+        {
+          "id": "mage",
+          "side": 0,
+          "hpLoss": 166,
+          "shieldLoss": 0,
+          "hpLossPercent": 14.139693356047701,
+          "maxHp": 1174,
+          "contexts": [
+            {
+              "direct": true,
+              "facing": 1,
+              "role": "mage",
+              "guardArmorBranch": null,
+              "fireOriginToHitTargetDistance": 676.4723100994436,
+              "distanceScope": "Fire origin to target location at hit, not launch-time separation or projectile path length"
+            }
+          ]
+        }
+      ],
+      "feedback": [
+        {
+          "targetId": "archer",
+          "round": 6,
+          "damage": 175,
+          "critical": false
+        },
+        {
+          "targetId": "mage",
+          "round": 6,
+          "damage": 249,
+          "critical": false
+        }
+      ]
+    },
+    {
+      "owner": "pilot31-first-shoulder-6",
+      "side": 1,
+      "round": 6,
+      "shot": 45,
+      "skill": "HSH01",
+      "fireFrame": 6679,
+      "fireOrigin": {
+        "id": "pilot31-first-shoulder-6",
+        "side": 1,
+        "allegiance": 1,
+        "x": 1166.511518606938,
+        "y": 1017.4419034044173,
+        "hp": 297,
+        "maxHp": 297,
+        "shield": 0,
+        "focus": 198
+      },
+      "angle": 176.71344961575227,
+      "power": 0.40638457446455273,
+      "targets": [],
+      "feedback": []
+    },
+    {
+      "owner": "pilot31-first-shoulder-8",
+      "side": 1,
+      "round": 6,
+      "shot": 46,
+      "skill": "HWD01",
+      "fireFrame": 6782,
+      "fireOrigin": {
+        "id": "pilot31-first-shoulder-8",
+        "side": 1,
+        "allegiance": 1,
+        "x": 648.1568839005558,
+        "y": 1129.5144367717728,
+        "hp": 117,
+        "maxHp": 293,
+        "shield": 0,
+        "focus": 198
+      },
+      "angle": 179.5017705474639,
+      "power": 0.6756241997929555,
+      "targets": [
+        {
+          "id": "archer",
+          "side": 0,
+          "hpLoss": 301,
+          "shieldLoss": 0,
+          "hpLossPercent": 27.741935483870968,
+          "maxHp": 1085,
+          "contexts": [
+            {
+              "direct": true,
+              "facing": 1,
+              "role": "archer",
+              "guardArmorBranch": null,
+              "fireOriginToHitTargetDistance": 273.06201997318095,
+              "distanceScope": "Fire origin to target location at hit, not launch-time separation or projectile path length"
+            }
+          ]
+        }
+      ],
+      "feedback": [
+        {
+          "targetId": "archer",
+          "round": 6,
+          "damage": 301,
+          "critical": false
+        }
+      ]
+    },
+    {
+      "owner": "archer",
+      "side": 0,
+      "round": 7,
+      "shot": 47,
+      "skill": "A01",
+      "fireFrame": 6902,
+      "fireOrigin": {
+        "id": "archer",
+        "side": 0,
+        "allegiance": 0,
+        "x": 365.58643205077516,
+        "y": 1145.9389833826624,
+        "hp": 177,
+        "maxHp": 1085,
+        "shield": 0,
+        "focus": 245
+      },
+      "angle": 19.314178090542555,
+      "power": 0.3771372297369356,
+      "targets": [
+        {
+          "id": "pilot31-first-shoulder-8",
+          "side": 1,
+          "hpLoss": 117,
+          "shieldLoss": 0,
+          "hpLossPercent": 39.93174061433447,
+          "maxHp": 293,
+          "contexts": [
+            {
+              "direct": true,
+              "facing": -1,
+              "role": "guard",
+              "guardArmorBranch": 0.4,
+              "fireOriginToHitTargetDistance": 283.04739177382027,
+              "distanceScope": "Fire origin to target location at hit, not launch-time separation or projectile path length"
+            }
+          ]
+        }
+      ],
+      "feedback": [
+        {
+          "targetId": "pilot31-first-shoulder-8",
+          "round": 7,
+          "damage": 147,
+          "critical": false
+        }
+      ]
+    },
+    {
+      "owner": "pilot31-first-shoulder-7",
+      "side": 1,
+      "round": 7,
+      "shot": 48,
+      "skill": "LA01",
+      "fireFrame": 6967,
+      "fireOrigin": {
+        "id": "pilot31-first-shoulder-7",
+        "side": 1,
+        "allegiance": 1,
+        "x": 842.5426944514926,
+        "y": 1107.9003795129197,
+        "hp": 197,
+        "maxHp": 372,
+        "shield": 0,
+        "focus": 198
+      },
+      "angle": 179.3160008861837,
+      "power": 0.6676756705517486,
+      "targets": [
+        {
+          "id": "archer",
+          "side": 0,
+          "hpLoss": 177,
+          "shieldLoss": 0,
+          "hpLossPercent": 16.31336405529954,
+          "maxHp": 1085,
+          "contexts": [
+            {
+              "direct": true,
+              "facing": 1,
+              "role": "archer",
+              "guardArmorBranch": null,
+              "fireOriginToHitTargetDistance": 478.4707009082387,
+              "distanceScope": "Fire origin to target location at hit, not launch-time separation or projectile path length"
+            }
+          ]
+        }
+      ],
+      "feedback": [
+        {
+          "targetId": "archer",
+          "round": 7,
+          "damage": 276,
+          "critical": false
+        }
+      ]
+    }
+  ]
+}
