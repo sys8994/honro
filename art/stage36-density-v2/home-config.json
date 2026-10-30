@@ -1,0 +1,35 @@
+{
+  "id": "s36-density:home",
+  "name": "철물 없는 빈집 — 배경 저밀도",
+  "semanticLayer": "REAR",
+  "category": "architecture",
+  "bounds": {
+    "x": -600,
+    "y": -500,
+    "w": 1220,
+    "h": 570
+  },
+  "anchor": {
+    "x": 0,
+    "y": 0
+  },
+  "foot": {
+    "x": 0,
+    "y": 0
+  },
+  "transform": [
+    0.6652126499454744,
+    0,
+    0,
+    0.6643356643356644,
+    -600,
+    -500
+  ],
+  "params": {
+    "sourceRole": "Intentional low-detail background redesign; dynamic door separate",
+    "doorSocket": {
+      "x": -110,
+      "y": -10
+    }
+  }
+}

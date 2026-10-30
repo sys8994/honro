@@ -1,0 +1,65 @@
+{
+  "width": 671,
+  "scales": [
+    1,
+    2
+  ],
+  "protectionMode": "contact",
+  "protectedRects": [
+    [
+      190,
+      130,
+      195,
+      158
+    ],
+    [
+      8,
+      280,
+      655,
+      20
+    ]
+  ],
+  "reviewRects": [
+    [
+      190,
+      125,
+      200,
+      175
+    ]
+  ],
+  "asset": {
+    "id": "s36-density:home",
+    "name": "\ucca0\ubb3c \uc5c6\ub294 \ube48\uc9d1 \u2014 \ubc30\uacbd \uc800\ubc00\ub3c4",
+    "semanticLayer": "REAR",
+    "category": "architecture",
+    "bounds": {
+      "x": -600,
+      "y": -500,
+      "w": 1220,
+      "h": 570
+    },
+    "anchor": {
+      "x": 0,
+      "y": 0
+    },
+    "foot": {
+      "x": 0,
+      "y": 0
+    },
+    "transform": [
+      0.6652126499454744,
+      0,
+      0,
+      0.6643356643356644,
+      -600,
+      -500
+    ],
+    "params": {
+      "sourceRole": "Intentional low-detail background redesign; dynamic door separate",
+      "doorSocket": {
+        "x": -110,
+        "y": -10
+      }
+    }
+  }
+}

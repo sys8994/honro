@@ -1,0 +1,30 @@
+{
+  "source": "home-source.svg",
+  "raw": "home-raw.svg",
+  "final": "home-final.svg",
+  "intent": "Intentional new low-detail REAR design, not bounded preservation of old detailed house",
+  "trace": {
+    "tool": "Inkscape 1.4 native GUI Trace Bitmap",
+    "mode": "Colors",
+    "scans": 16,
+    "smooth": true,
+    "stack": true,
+    "removeBackground": true,
+    "speckles": 2,
+    "smoothCorners": 1,
+    "optimize": 0.2
+  },
+  "rejectedTrial": "10 scans merged slate and wood; retained home-source-10.svg",
+  "selection": "simplify-0.0003",
+  "rawSha256": "6f613641ce6bca69c1cd31619a0e8075494aa7611ed67d43de603a0116c2489c",
+  "normalWidth": 671,
+  "maxWidth": 1342,
+  "commandsRaw": 13427,
+  "commandsFinal": 6787,
+  "runtimeNodes": 19,
+  "boundsPreserved": true,
+  "doorSocketPreserved": true,
+  "review": "Normal runtime render inspected; large doorway, foot and Korean roof silhouette retained; no image elements. Screen integration pending.",
+  "protectedGate": "Initial 1x boundary reports 1px and fails .5px; 8x ROI remeasurement passes .353553px normal, without threshold changes. Both reports retained.",
+  "limitsNote": "Background visual hierarchy is redesigned at source. Optimization values compare only this new raw to final."
+}
