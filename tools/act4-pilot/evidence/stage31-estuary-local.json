@@ -1,0 +1,327 @@
+{
+  "stageCanonicalSHA256": "8165dfbcee349625c63f4eda8447fdeea55817e3f4c0ec1063346c245d131f4a",
+  "world": {
+    "width": 7000,
+    "height": 1800
+  },
+  "scope": "Fresh per-case body setup only, no intermediate pose/HP/budget injection. No roster, DOM receipts, full App or water-recovery acceptance.",
+  "movement": [
+    {
+      "cls": "archer",
+      "mode": "gutter-walk-return",
+      "startValid": true,
+      "reached": true,
+      "returned": true,
+      "jumps": 0,
+      "hpLost": 0,
+      "end": {
+        "x": 1400.037400919196,
+        "y": 948.3270998468007
+      },
+      "passed": true
+    },
+    {
+      "cls": "archer",
+      "mode": "upper-leap",
+      "startValid": true,
+      "reached": true,
+      "returned": true,
+      "jumps": 1,
+      "hpLost": 0,
+      "end": {
+        "x": 1840,
+        "y": 1040
+      },
+      "passed": true
+    },
+    {
+      "cls": "mage",
+      "mode": "gutter-walk-return",
+      "startValid": true,
+      "reached": true,
+      "returned": true,
+      "jumps": 0,
+      "hpLost": 0,
+      "end": {
+        "x": 1400.0361655645713,
+        "y": 948.3273057392381
+      },
+      "passed": true
+    },
+    {
+      "cls": "mage",
+      "mode": "upper-leap",
+      "startValid": true,
+      "reached": true,
+      "returned": true,
+      "jumps": 1,
+      "hpLost": 0,
+      "end": {
+        "x": 1840,
+        "y": 1040
+      },
+      "passed": true
+    },
+    {
+      "cls": "knight",
+      "mode": "gutter-walk-return",
+      "startValid": true,
+      "reached": true,
+      "returned": true,
+      "jumps": 0,
+      "hpLost": 0,
+      "end": {
+        "x": 1400.207839042628,
+        "y": 948.2986934928954
+      },
+      "passed": true
+    },
+    {
+      "cls": "knight",
+      "mode": "upper-leap",
+      "startValid": true,
+      "reached": true,
+      "returned": true,
+      "jumps": 1,
+      "hpLost": 0,
+      "end": {
+        "x": 1840,
+        "y": 1040
+      },
+      "passed": true
+    },
+    {
+      "cls": "occultist",
+      "mode": "gutter-walk-return",
+      "startValid": true,
+      "reached": true,
+      "returned": true,
+      "jumps": 0,
+      "hpLost": 0,
+      "end": {
+        "x": 1400.8038630997873,
+        "y": 948.1993561500354
+      },
+      "passed": true
+    },
+    {
+      "cls": "occultist",
+      "mode": "upper-leap",
+      "startValid": true,
+      "reached": true,
+      "returned": true,
+      "jumps": 1,
+      "hpLost": 0,
+      "end": {
+        "x": 1840,
+        "y": 1040
+      },
+      "passed": true
+    }
+  ],
+  "seams": [
+    {
+      "cls": "archer",
+      "left": "arrival-bank",
+      "right": "first-reed-bank",
+      "passed": true
+    },
+    {
+      "cls": "mage",
+      "left": "arrival-bank",
+      "right": "first-reed-bank",
+      "passed": true
+    },
+    {
+      "cls": "knight",
+      "left": "arrival-bank",
+      "right": "first-reed-bank",
+      "passed": true
+    },
+    {
+      "cls": "occultist",
+      "left": "arrival-bank",
+      "right": "first-reed-bank",
+      "passed": true
+    },
+    {
+      "cls": "archer",
+      "left": "first-reed-bank",
+      "right": "watercourse-margin",
+      "passed": true
+    },
+    {
+      "cls": "mage",
+      "left": "first-reed-bank",
+      "right": "watercourse-margin",
+      "passed": true
+    },
+    {
+      "cls": "knight",
+      "left": "first-reed-bank",
+      "right": "watercourse-margin",
+      "passed": true
+    },
+    {
+      "cls": "occultist",
+      "left": "first-reed-bank",
+      "right": "watercourse-margin",
+      "passed": true
+    },
+    {
+      "cls": "archer",
+      "left": "watercourse-margin",
+      "right": "second-reed-bank",
+      "passed": true
+    },
+    {
+      "cls": "mage",
+      "left": "watercourse-margin",
+      "right": "second-reed-bank",
+      "passed": true
+    },
+    {
+      "cls": "knight",
+      "left": "watercourse-margin",
+      "right": "second-reed-bank",
+      "passed": true
+    },
+    {
+      "cls": "occultist",
+      "left": "watercourse-margin",
+      "right": "second-reed-bank",
+      "passed": true
+    },
+    {
+      "cls": "archer",
+      "left": "second-reed-bank",
+      "right": "landing-bank",
+      "passed": true
+    },
+    {
+      "cls": "mage",
+      "left": "second-reed-bank",
+      "right": "landing-bank",
+      "passed": true
+    },
+    {
+      "cls": "knight",
+      "left": "second-reed-bank",
+      "right": "landing-bank",
+      "passed": true
+    },
+    {
+      "cls": "occultist",
+      "left": "second-reed-bank",
+      "right": "landing-bank",
+      "passed": true
+    }
+  ],
+  "directLines": {
+    "low": {
+      "from": {
+        "x": 2130,
+        "y": 990
+      },
+      "to": {
+        "x": 1740,
+        "y": 1074
+      },
+      "blocked": true,
+      "hit": {
+        "x": 1882.092591689501,
+        "y": 1043.3954417899536,
+        "terrain": "pilot31-first-reed-bank"
+      }
+    },
+    "high": {
+      "from": {
+        "x": 2130,
+        "y": 990
+      },
+      "to": {
+        "x": 1450,
+        "y": 894
+      },
+      "blocked": false,
+      "hit": null
+    },
+    "scope": "Actual Engine projectile terrain collision on straight torso-to-torso segments; not a fired/gravity projectile damage test."
+  },
+  "boarding": {
+    "starts": [
+      {
+        "cls": "archer",
+        "x": 6140,
+        "y": 1115,
+        "valid": true,
+        "hp": 995
+      },
+      {
+        "cls": "mage",
+        "x": 6200,
+        "y": 1115,
+        "valid": true,
+        "hp": 1062
+      },
+      {
+        "cls": "knight",
+        "x": 6260,
+        "y": 1115,
+        "valid": true,
+        "hp": 1618
+      },
+      {
+        "cls": "occultist",
+        "x": 6320,
+        "y": 1115,
+        "valid": true,
+        "hp": 1216
+      }
+    ],
+    "frames": 2024,
+    "early": false,
+    "walks": [
+      {
+        "cls": "archer",
+        "reached": true,
+        "hpLost": 0,
+        "support": "a4-boat-deck",
+        "eligible": false
+      },
+      {
+        "cls": "mage",
+        "reached": true,
+        "hpLost": 0,
+        "support": "a4-boat-deck",
+        "eligible": false
+      },
+      {
+        "cls": "knight",
+        "reached": true,
+        "hpLost": 0,
+        "support": "a4-boat-deck",
+        "eligible": false
+      },
+      {
+        "cls": "occultist",
+        "reached": true,
+        "hpLost": 0,
+        "support": "a4-boat-deck",
+        "eligible": true
+      }
+    ],
+    "beforeExplicit": false,
+    "eligible": true,
+    "explicit": true,
+    "complete": true,
+    "passed": true
+  },
+  "identity": {
+    "stageRawSHA256": "40daa0d367d049c1550a9b8e966f0465fb02d923e0a0c5b06d0aae1eaf5e9ddc",
+    "stageCanonicalSHA256": "8165dfbcee349625c63f4eda8447fdeea55817e3f4c0ec1063346c245d131f4a",
+    "blueprintRawSHA256": "8affa6da3df4a5a048ca716c9f1c74672878d4f3081bc04e28e5b39c3d51efea",
+    "canonicalization": "JSON.stringify(JSON.parse(raw))",
+    "scope": "Content identity only, not a validation receipt"
+  }
+}
