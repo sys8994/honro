@@ -1,0 +1,11 @@
+{
+  "scope": "Synthetic isolated actual Engine movement regression from normal-tape artillery positions; not a gameplay pass",
+  "existingRescueOverlapSeparatesByWalking": true,
+  "rearCannotDeepenOverlap": true,
+  "unrelatedActorStillBlocks": true,
+  "newResidentOverlapStillBlocks": true,
+  "solidWallStillBlocks": true,
+  "airborneStillBlocked": true,
+  "stepBoundedByWalkSpeed": true,
+  "noRescueFlags": true
+}

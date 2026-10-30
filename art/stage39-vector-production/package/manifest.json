@@ -1,0 +1,109 @@
+{
+  "stage": 39,
+  "status": "native-reviewed-publisher-review-pending",
+  "projectSha256": "76840316e5be4a7193689ec96eab49f2f3b02db97899fedd0f8a3cea704f9d23",
+  "geometrySha256": "befb60226a0ad29590fc54a3934ceb85de0225f6b1861c2a78db12a08968ff6b",
+  "staticCollisionUnchanged": true,
+  "originalGameplayAndElementIdsRetained": true,
+  "assets": [
+    {
+      "id": "s39v:contact",
+      "bytes": 2209
+    },
+    {
+      "id": "s39v:body",
+      "bytes": 217600
+    },
+    {
+      "id": "s39v:body-domain-left",
+      "bytes": 225287
+    },
+    {
+      "id": "s39v:body-domain-right",
+      "bytes": 224951
+    },
+    {
+      "id": "s39v:wreck",
+      "bytes": 1338506
+    },
+    {
+      "id": "s39v:timber-1750",
+      "bytes": 219347
+    },
+    {
+      "id": "s39v:timber-2440",
+      "bytes": 219313
+    },
+    {
+      "id": "s39v:timber-3840",
+      "bytes": 219341
+    },
+    {
+      "id": "s39v:timber-4400",
+      "bytes": 219346
+    },
+    {
+      "id": "s39v:timber-4900",
+      "bytes": 219312
+    },
+    {
+      "id": "s39v:timber-5700",
+      "bytes": 219316
+    },
+    {
+      "id": "s39v:haul-footing",
+      "bytes": 231615
+    },
+    {
+      "id": "s39v:crack",
+      "bytes": 451239
+    }
+  ],
+  "reviewDirectory": "art/stage39-vector-production/remnant-review",
+  "normalInput": {
+    "success": true,
+    "frame": 36725,
+    "bossAlive": true,
+    "residentsSafe": 4,
+    "resume": [
+      {
+        "frame": 5612,
+        "inputIndex": 21,
+        "result": "pass",
+        "scope": "Actual stopBattle/persist/Continue; exact units, event state, round, active and phase preserved"
+      }
+    ],
+    "earlyBossKill": {
+      "success": true,
+      "frame": 36515,
+      "rescueStillRequired": true
+    },
+    "pendingActionSaveAndCancel": [
+      "net",
+      "anchor"
+    ],
+    "testedProjectSha256": "66c0fed66937fe48c64d051feabd3f8c2191f02f4fe352b9161548e1de06a3a8",
+    "scopeNote": "Prior candidate real App proof retained. Latest decorative six-pier/four-rock substitution separately has exact gameplay and compiled collision assertions plus direct actual Scene review; no new full replay/browser claim."
+  },
+  "dependencies": [
+    "4baa4d2 explicit dynamic wreck visual hook",
+    "d5259d9 ordinary NPC de-overlap correction",
+    "shared vector renderer symbols/pixelSnapClip; budgets unchanged"
+  ],
+  "publication": "Parent owns remote/master/Pages; source package only",
+  "decorativePolish": {
+    "timberSource": "art/stage40-vector-production/timber-brace-source.svg",
+    "rockSource": "art/vector-common-production/coastal-boulder-source.svg",
+    "sixPiers": "Keep original feet, set top to original visible top(-reference.bounds.y minus10); preserve source width, scale height only",
+    "fourFootings": "360-unit natural rock ink width, original foot/instance scale, exact terrain/platform tangent",
+    "protected": "Original net/crack landmark identities and pixels unchanged; half-size rock leaves fissure recognizable"
+  },
+  "functionalCrackPolish": {
+    "asset": "s39v:crack",
+    "source": "art/vector-common-production/cracked-sea-rock-optimization.json",
+    "preserved": "Original element/event IDs,x,y,scale, interactions and collision",
+    "pose": "Original upright pose on flat supported bank",
+    "reviewDirectory": "art/stage39-vector-production/crack-review",
+    "scope": "Actual Native Scene and exact gameplay/collider assertions; earlier full App receipts retain original testedProjectSha256"
+  }
+}

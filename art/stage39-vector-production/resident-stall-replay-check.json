@@ -1,0 +1,53 @@
+{
+  "projectSha256": "177d9939f3af7ce14955e37f9f88419a6d29bcd273c97970e2d1145354cef4d8",
+  "runtimeSha256": "8d0a1530a3294ae0bc3dc9399173e414f0a2c25a70313cab65ea5ab7e57215a8",
+  "verifierSha256": "6c9a85e7cfe7d271382e20242e3967a0af362ad277b24fa40739e8c589138aff",
+  "frame": 48845,
+  "resume": [
+    {
+      "frame": 5612,
+      "inputIndex": 21,
+      "result": "pass",
+      "scope": "Actual stopBattle/persist/Continue; exact units, event state, round, active and phase preserved"
+    }
+  ],
+  "scope": "Exact previously stalled normal-input tape replay, no success claim: original tape contains no final E because rescue was blocked",
+  "allFourSafe": true,
+  "residents": [
+    {
+      "id": "a4-rescue-0",
+      "x": 6887.126954385766,
+      "y": 1700,
+      "hp": 993,
+      "dead": false
+    },
+    {
+      "id": "a4-rescue-1",
+      "x": 7036.6642986361985,
+      "y": 1700,
+      "hp": 1326,
+      "dead": false
+    },
+    {
+      "id": "a4-rescue-2",
+      "x": 7186.937500000073,
+      "y": 1700,
+      "hp": 1450,
+      "dead": false
+    },
+    {
+      "id": "a4-rescue-3",
+      "x": 7336.6875000001155,
+      "y": 1700,
+      "hp": 1450,
+      "dead": false
+    }
+  ],
+  "boss": {
+    "id": "a4-wreck",
+    "x": 3500,
+    "y": 2571.4285714285716,
+    "hp": 7581,
+    "dead": false
+  }
+}
