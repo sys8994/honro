@@ -367,3 +367,25 @@ this actual run establishes a short real movement/jump/combat path, not all31,
 20R,34/39,clearRate,fun,art or deployed-browser acceptance. Controller/preset/error
 distribution stayed unchanged during the run; future source changes require a
 new controller hash and independently retained calibration/holdout records.
+
+### Isolated GUI prepared-entry export (generation deferred to final integration)
+After final geometry/art integration, run once:
+
+```sh
+node tools/quantitative-playtest/preflight.mjs 31 \
+  _local/reports/final31-app-cohort.json \
+  --export-profile _local/reports/SYNTHETIC-prepared-stage31-entry.json
+```
+
+The adapter invokes actual `App.export()` / `App.downloadProfile()` and captures
+the normal application/json Blob. It does not construct an alternative save
+format. Guards require normal/debug-off/training-off/custom-off, R1 and zero
+shots. The separate `.receipt.json` records exact profile SHA/source/preset and
+states that stages1–30 were NOT played: prior-clear prerequisite markers and
+normal-growth allocations are a declared synthetic review fixture. Do not add
+provenance fields to the actual imported game profile.
+Use only the existing “기록·관리 → JSON 기록 가져오기” UI in an isolated localhost
+preview; never overwrite public/user records. The export fixture owns only an
+in-memory localStorage map. Root performs the actual mouse/keyboard GUI review.
+Option syntax and adapter source checks pass; final export/import is intentionally
+not executed yet, to avoid regenerating a stale pre-art candidate.
