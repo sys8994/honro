@@ -1,0 +1,417 @@
+{
+  "success": true,
+  "frame": 36725,
+  "scope": "Prepared earned-SP stage-entry profile; real App/Engine/Native Canvas events and sparse actual scene rendering every300 simulation frames (bounded snapshot evidence, not continuous rendered play); DOM/audio/storage scheduling are doubles, not browser or chapters1\u201338 playthrough. No gate relabeling or automatic art approval.",
+  "projectSha256": "66c0fed66937fe48c64d051feabd3f8c2191f02f4fe352b9161548e1de06a3a8",
+  "runtimeSha256": "ded4213faa541c60f977cd4090ee6f4b90db1261070413fb8ccd3e4496d5fb9f",
+  "verifierSha256": "e0fc4a1ad552a5e5a6359635c14be4173c0c96ce2f472a9659dce15576b511d9",
+  "resume": [
+    {
+      "frame": 5612,
+      "inputIndex": 21,
+      "result": "pass",
+      "scope": "Actual stopBattle/persist/Continue; exact units, event state, round, active and phase preserved"
+    }
+  ],
+  "recoveryChecks": [
+    {
+      "frame": 12559,
+      "unit": "mage",
+      "zone": "39-wreck-water",
+      "side": "Left",
+      "entry": {
+        "x": 1747.9723975555053,
+        "y": 2039.9769979629211
+      },
+      "landing": {
+        "x": 1678,
+        "y": 2000
+      },
+      "hpLoss": 472,
+      "round": 5,
+      "shot": 24,
+      "expectedLoss": 472,
+      "focusBefore": 701,
+      "focusAfter": 701,
+      "acted": true,
+      "moveLeft": 0,
+      "sameDeclaredBank": true,
+      "focusNotSpent": true,
+      "actionSpent": true,
+      "newRoundMayRefresh": false
+    },
+    {
+      "frame": 12559,
+      "unit": "occultist",
+      "zone": "39-wreck-water",
+      "side": "Left",
+      "entry": {
+        "x": 1745.7706818531742,
+        "y": 2038.1422348776453
+      },
+      "landing": {
+        "x": 1618,
+        "y": 2000
+      },
+      "hpLoss": 563,
+      "round": 5,
+      "shot": 24,
+      "expectedLoss": 563,
+      "focusBefore": 788,
+      "focusAfter": 788,
+      "acted": true,
+      "moveLeft": 0,
+      "sameDeclaredBank": true,
+      "focusNotSpent": true,
+      "actionSpent": true,
+      "newRoundMayRefresh": false
+    },
+    {
+      "frame": 12981,
+      "unit": "archer",
+      "zone": "39-wreck-water",
+      "side": "Left",
+      "entry": {
+        "x": 1745.490989728105,
+        "y": 2037.9091581067541
+      },
+      "landing": {
+        "x": 1558,
+        "y": 2000
+      },
+      "hpLoss": 418,
+      "round": 5,
+      "shot": 24,
+      "expectedLoss": 418,
+      "focusBefore": 391,
+      "focusAfter": 391,
+      "acted": true,
+      "moveLeft": 0,
+      "sameDeclaredBank": true,
+      "focusNotSpent": true,
+      "actionSpent": true,
+      "newRoundMayRefresh": false
+    },
+    {
+      "frame": 14015,
+      "unit": "archer",
+      "zone": "39-wreck-water",
+      "side": "Left",
+      "entry": {
+        "x": 1746.7408725105204,
+        "y": 2038.9507270921004
+      },
+      "landing": {
+        "x": 1558,
+        "y": 2000
+      },
+      "hpLoss": 418,
+      "round": 6,
+      "shot": 27,
+      "expectedLoss": 418,
+      "focusBefore": 391,
+      "focusAfter": 391,
+      "acted": true,
+      "moveLeft": 0,
+      "sameDeclaredBank": true,
+      "focusNotSpent": true,
+      "actionSpent": true,
+      "newRoundMayRefresh": false
+    },
+    {
+      "frame": 14062,
+      "unit": "mage",
+      "zone": "39-wreck-water",
+      "side": "Left",
+      "entry": {
+        "x": 1747.7737431597193,
+        "y": 2039.8114526330994
+      },
+      "landing": {
+        "x": 1678,
+        "y": 2000
+      },
+      "hpLoss": 472,
+      "round": 6,
+      "shot": 27,
+      "expectedLoss": 472,
+      "focusBefore": 701,
+      "focusAfter": 701,
+      "acted": true,
+      "moveLeft": 0,
+      "sameDeclaredBank": true,
+      "focusNotSpent": true,
+      "actionSpent": true,
+      "newRoundMayRefresh": false
+    },
+    {
+      "frame": 14884,
+      "unit": "occultist",
+      "zone": "39-wreck-water",
+      "side": "Left",
+      "entry": {
+        "x": 1746.4738407442746,
+        "y": 2038.7282006202288
+      },
+      "landing": {
+        "x": 1618,
+        "y": 2000
+      },
+      "hpLoss": 563,
+      "round": 6,
+      "shot": 28,
+      "expectedLoss": 563,
+      "focusBefore": 788,
+      "focusAfter": 788,
+      "acted": true,
+      "moveLeft": 0,
+      "sameDeclaredBank": true,
+      "focusNotSpent": true,
+      "actionSpent": true,
+      "newRoundMayRefresh": false
+    }
+  ],
+  "profileProof": {
+    "version": 1,
+    "runId": "eq-mvsfq2c1-fnt0wnmj",
+    "completed": {
+      "39": {
+        "stage": 39,
+        "sourceRun": "honro-map-stage-39-1793211325929",
+        "campaignRunId": "eq-mvsfq2c1-fnt0wnmj",
+        "success": true,
+        "residents": [
+          {
+            "id": "a4-rescue-0",
+            "hp": 993,
+            "dead": false
+          },
+          {
+            "id": "a4-rescue-1",
+            "hp": 1326,
+            "dead": false
+          },
+          {
+            "id": "a4-rescue-2",
+            "hp": 1450,
+            "dead": false
+          },
+          {
+            "id": "a4-rescue-3",
+            "hp": 1450,
+            "dead": false
+          }
+        ],
+        "rows": [
+          "A4.S39.TIDE.01"
+        ]
+      }
+    },
+    "factEvents": {},
+    "rescued": {
+      "ids": [
+        "a4-rescue-0",
+        "a4-rescue-1",
+        "a4-rescue-2",
+        "a4-rescue-3"
+      ],
+      "sourceRun": "honro-map-stage-39-1793211325929",
+      "campaignRunId": "eq-mvsfq2c1-fnt0wnmj",
+      "stage": 39,
+      "success": true,
+      "residents": [
+        {
+          "id": "a4-rescue-0",
+          "hp": 993,
+          "dead": false
+        },
+        {
+          "id": "a4-rescue-1",
+          "hp": 1326,
+          "dead": false
+        },
+        {
+          "id": "a4-rescue-2",
+          "hp": 1450,
+          "dead": false
+        },
+        {
+          "id": "a4-rescue-3",
+          "hp": 1450,
+          "dead": false
+        }
+      ],
+      "rows": [
+        "A4.S39.TIDE.01"
+      ]
+    }
+  },
+  "completionProof": {
+    "exitStable": {
+      "sourceRun": "honro-map-stage-39-1793211325929",
+      "actor": "mage",
+      "once": true
+    },
+    "rescued": {
+      "ids": [
+        "a4-rescue-0",
+        "a4-rescue-1",
+        "a4-rescue-2",
+        "a4-rescue-3"
+      ],
+      "sourceRun": "honro-map-stage-39-1793211325929",
+      "campaignRunId": "eq-mvsfq2c1-fnt0wnmj"
+    },
+    "bossAlive": true
+  },
+  "residents": [
+    {
+      "id": "a4-rescue-0",
+      "x": 6887.126954385766,
+      "y": 1700,
+      "hp": 993,
+      "dead": false
+    },
+    {
+      "id": "a4-rescue-1",
+      "x": 7036.6642986361985,
+      "y": 1700,
+      "hp": 1326,
+      "dead": false
+    },
+    {
+      "id": "a4-rescue-2",
+      "x": 7186.937500000073,
+      "y": 1700,
+      "hp": 1450,
+      "dead": false
+    },
+    {
+      "id": "a4-rescue-3",
+      "x": 7336.6875000001155,
+      "y": 1700,
+      "hp": 1450,
+      "dead": false
+    }
+  ],
+  "artillery": {
+    "count": 9,
+    "allWarningsSeen": true,
+    "actualImpacts": [
+      {
+        "frame": 5456,
+        "owner": "a4-wreck",
+        "skill": "HWD01",
+        "unit": "knight",
+        "x": 2325.3364726729737,
+        "y": 1728.3700762769906
+      },
+      {
+        "frame": 11846,
+        "owner": "a4-wreck",
+        "skill": "HWD01",
+        "unit": "a4-rescue-0",
+        "x": 4887.501392134644,
+        "y": 1950.3516739395452
+      },
+      {
+        "frame": 13407,
+        "owner": "a4-wreck",
+        "skill": "HWD01",
+        "terrain": "a4-39-land",
+        "x": 370.55021308029063,
+        "y": 1792.7655379745324
+      },
+      {
+        "frame": 15422,
+        "owner": "a4-wreck",
+        "skill": "HWD01",
+        "unit": "a4-rescue-0",
+        "x": 4887.501392134644,
+        "y": 1950.3516739395452
+      },
+      {
+        "frame": 19444,
+        "owner": "a4-wreck",
+        "skill": "HWD01",
+        "terrain": "a4-39-land",
+        "x": 1391.4398597821705,
+        "y": 1992.680418260908
+      },
+      {
+        "frame": 21619,
+        "owner": "a4-wreck",
+        "skill": "HWD01",
+        "unit": "a4-rescue-0",
+        "x": 4997.9966588767575,
+        "y": 1965.0226492117495
+      },
+      {
+        "frame": 23679,
+        "owner": "a4-wreck",
+        "skill": "HWD01",
+        "terrain": "a4-39-land",
+        "x": 6980.923916987913,
+        "y": 1692.257224656333
+      },
+      {
+        "frame": 25113,
+        "owner": "a4-wreck",
+        "skill": "HWD01",
+        "unit": "a4-rescue-0",
+        "x": 5338.560140217829,
+        "y": 1975.2304194604756
+      },
+      {
+        "frame": 27371,
+        "owner": "a4-wreck",
+        "skill": "HWD01",
+        "unit": "mage",
+        "x": 8282.922137970843,
+        "y": 1607.2615838792674
+      }
+    ]
+  },
+  "events": {
+    "boss": {
+      "started": true,
+      "terminal": true,
+      "presented": [],
+      "retired": [
+        "A4.S39.BOSS.01",
+        "A4.S39.BOSS.02"
+      ]
+    },
+    "tide_warning": {
+      "started": true,
+      "terminal": true,
+      "presented": [
+        "A4.S39.TIDE.01"
+      ],
+      "retired": []
+    },
+    "stabilize": {
+      "started": true,
+      "terminal": true,
+      "presented": [],
+      "retired": [
+        "A4.S39.STABILIZE.01"
+      ]
+    },
+    "souls_freed": {
+      "started": true,
+      "terminal": true,
+      "presented": [],
+      "retired": [
+        "A4.S39.RELEASE.01"
+      ]
+    }
+  },
+  "optionalHand": null,
+  "remaining": [
+    "Actual browser/HUD/Pages verification owned by publisher",
+    "Intentional resident casualty failure not exercised",
+    "Right-bank recovery and lethal exit-channel branch not exercised",
+    "Optional hand encounter not triggered"
+  ]
+}

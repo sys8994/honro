@@ -1,0 +1,52 @@
+{
+  "scope": "Real normal input prefix to high tide, camera-only Native inspection; no pose/time/water overrides and not a full mission",
+  "frame": 12572,
+  "inputIndex": 43,
+  "tide": {
+    "phase": "high",
+    "surface": 2050,
+    "warningRound": 2,
+    "highRound": 5,
+    "lowRound": 7,
+    "warned": true,
+    "warningAtRound": 2,
+    "opportunities": {
+      "2": [
+        "archer",
+        "mage",
+        "knight",
+        "occultist"
+      ],
+      "3": [
+        "archer",
+        "mage",
+        "knight",
+        "occultist"
+      ],
+      "4": [
+        "archer",
+        "mage",
+        "knight",
+        "occultist"
+      ]
+    }
+  },
+  "views": [
+    {
+      "name": "high-tide-basin",
+      "w": 1440,
+      "h": 900,
+      "x": 3300,
+      "y": 2250,
+      "scale": 0.53
+    },
+    {
+      "name": "high-tide-mobile",
+      "w": 720,
+      "h": 1100,
+      "x": 3400,
+      "y": 2200,
+      "scale": 0.38
+    }
+  ]
+}

@@ -1,0 +1,66 @@
+{
+  "success": true,
+  "frame": 36515,
+  "scope": "Prepared earned-SP stage-entry profile; real App/Engine/Native Canvas events and sparse actual scene rendering every300 simulation frames (bounded snapshot evidence, not continuous rendered play); DOM/audio/storage scheduling are doubles, not browser or chapters1\u201338 playthrough. No gate relabeling or automatic art approval.",
+  "projectSha256": "66c0fed66937fe48c64d051feabd3f8c2191f02f4fe352b9161548e1de06a3a8",
+  "runtimeSha256": "ded4213faa541c60f977cd4090ee6f4b90db1261070413fb8ccd3e4496d5fb9f",
+  "verifierSha256": "e0fc4a1ad552a5e5a6359635c14be4173c0c96ce2f472a9659dce15576b511d9",
+  "resume": [
+    {
+      "frame": 5612,
+      "inputIndex": 21,
+      "result": "pass",
+      "scope": "Actual stopBattle/persist/Continue; exact units, event state, round, active and phase preserved"
+    }
+  ],
+  "completionProof": {
+    "exitStable": {
+      "sourceRun": "honro-map-stage-39-1793211521375",
+      "actor": "mage",
+      "once": true
+    },
+    "rescued": {
+      "ids": [
+        "a4-rescue-0",
+        "a4-rescue-1",
+        "a4-rescue-2",
+        "a4-rescue-3"
+      ],
+      "sourceRun": "honro-map-stage-39-1793211521375",
+      "campaignRunId": "eq-mvsfu94w-hdhewqlk"
+    },
+    "bossAlive": false
+  },
+  "residents": [
+    {
+      "id": "a4-rescue-0",
+      "x": 6887.083333333502,
+      "y": 1700,
+      "hp": 1450,
+      "dead": false
+    },
+    {
+      "id": "a4-rescue-1",
+      "x": 7036.8333333334995,
+      "y": 1700,
+      "hp": 1450,
+      "dead": false
+    },
+    {
+      "id": "a4-rescue-2",
+      "x": 7186.937500000073,
+      "y": 1700,
+      "hp": 1450,
+      "dead": false
+    },
+    {
+      "id": "a4-rescue-3",
+      "x": 7336.6875000001155,
+      "y": 1700,
+      "hp": 1450,
+      "dead": false
+    }
+  ],
+  "bossDefeatedBeforeRescue": true,
+  "noRescueCompletionOnBossDeath": true
+}

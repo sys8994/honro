@@ -1,0 +1,101 @@
+{
+  "scope": "Source raw versus selected runtime geometry at actual max inspection scale1.1 using real Native SVG pixels, bounded crops. Not art approval.",
+  "checks": [
+    {
+      "asset": "body",
+      "worldCrop": [
+        400,
+        1550,
+        1400,
+        900
+      ],
+      "worldZoom": 1.1,
+      "qualityPass": true,
+      "errors": {
+        "1": {
+          "rgbMAE255": 0.2566872239112854,
+          "rgbP99_255": 4.999999523162842,
+          "alphaMAE255": 0.0,
+          "changedPixelFraction": 0.0,
+          "silhouetteMaxOffsetPx": 0.0,
+          "protectedChangedPixelFraction": 0.0,
+          "protectedRgbMAE255": 0.0,
+          "protectedSilhouetteMaxOffsetPx": 0.0,
+          "pass": true
+        }
+      }
+    },
+    {
+      "asset": "body",
+      "worldCrop": [
+        2600,
+        2200,
+        1400,
+        900
+      ],
+      "worldZoom": 1.1,
+      "qualityPass": true,
+      "errors": {
+        "1": {
+          "rgbMAE255": 0.2730816900730133,
+          "rgbP99_255": 5.000014781951904,
+          "alphaMAE255": 0.0,
+          "changedPixelFraction": 2.4268660632296997e-05,
+          "silhouetteMaxOffsetPx": 0.0,
+          "protectedChangedPixelFraction": 0.0,
+          "protectedRgbMAE255": 0.0,
+          "protectedSilhouetteMaxOffsetPx": 0.0,
+          "pass": true
+        }
+      }
+    },
+    {
+      "asset": "body",
+      "worldCrop": [
+        6000,
+        1450,
+        1400,
+        900
+      ],
+      "worldZoom": 1.1,
+      "qualityPass": true,
+      "errors": {
+        "1": {
+          "rgbMAE255": 0.1969716101884842,
+          "rgbP99_255": 4.999999523162842,
+          "alphaMAE255": 0.0,
+          "changedPixelFraction": 3.279548734094189e-05,
+          "silhouetteMaxOffsetPx": 0.0,
+          "protectedChangedPixelFraction": 0.0,
+          "protectedRgbMAE255": 0.0,
+          "protectedSilhouetteMaxOffsetPx": 0.0,
+          "pass": true
+        }
+      }
+    },
+    {
+      "asset": "wreck",
+      "worldCrop": [
+        -700,
+        -450,
+        1400,
+        900
+      ],
+      "worldZoom": 1.1,
+      "qualityPass": true,
+      "errors": {
+        "1": {
+          "rgbMAE255": 0.035036928951740265,
+          "rgbP99_255": 1.000015139579773,
+          "alphaMAE255": 1.3118193237460218e-05,
+          "changedPixelFraction": 7.870916961826052e-06,
+          "silhouetteMaxOffsetPx": 0.0,
+          "protectedChangedPixelFraction": 7.870916961826052e-06,
+          "protectedRgbMAE255": 0.035036928951740265,
+          "protectedSilhouetteMaxOffsetPx": 0.0,
+          "pass": true
+        }
+      }
+    }
+  ]
+}
