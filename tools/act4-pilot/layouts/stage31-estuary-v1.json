@@ -1,5 +1,5 @@
 {
-  "version": "estuary-geography-v1",
+  "version": "estuary-geography-v2",
   "status": "GRAYBOX FOR GEOGRAPHY/STRUCTURE REVIEW; NO ENGINE OR ART PASS",
   "width": 7000,
   "height": 1800,
@@ -85,16 +85,36 @@
           940
         ],
         [
-          1570,
+          1510,
+          945
+        ],
+        [
+          1560,
           955
         ],
         [
-          1690,
-          990
+          1600,
+          1005
         ],
         [
-          1830,
-          1045
+          1645,
+          1060
+        ],
+        [
+          1690,
+          1115
+        ],
+        [
+          1740,
+          1120
+        ],
+        [
+          1790,
+          1065
+        ],
+        [
+          1840,
+          1040
         ],
         [
           1980,
@@ -127,7 +147,7 @@
           1800
         ]
       ],
-      "role": "First asymmetric deposited reed bank; broad exposed shoulder then lower sheltered pocket"
+      "role": "First alluvial bank with open erosion gutter: exposed shoulder jump across versus fully open lower walk-in/out, no invented timber bridge"
     },
     {
       "id": "watercourse-margin",
@@ -194,23 +214,6 @@
         ]
       ],
       "role": "Continuous walkable mud margin; small drainage groove, not a chasm"
-    },
-    {
-      "id": "drain-plank",
-      "kind": "platform",
-      "material": "wood",
-      "top": [
-        [
-          2990,
-          1170
-        ],
-        [
-          3410,
-          1170
-        ]
-      ],
-      "thickness": 14,
-      "role": "Single short maintenance board over shallow drain; both ends fixed into banks; lower mud passage remains real"
     },
     {
       "id": "second-reed-bank",
@@ -437,13 +440,39 @@
       ]
     },
     {
-      "id": "drain-maintenance-choice",
+      "id": "first-gutter-local-choice",
       "supports": [
-        "watercourse-margin",
-        "drain-plank",
-        "watercourse-margin"
+        "first-reed-bank"
       ],
-      "note": "Only local bypass; not an invented full-stage parallel path"
+      "choice": {
+        "exposedShortcut": {
+          "launch": [
+            1560,
+            955
+          ],
+          "landing": [
+            1820,
+            1050
+          ],
+          "unverified": true
+        },
+        "coveredApproach": {
+          "entry": [
+            1560,
+            955
+          ],
+          "bed": [
+            1740,
+            1120
+          ],
+          "exit": [
+            1840,
+            1040
+          ],
+          "openToSky": true
+        }
+      },
+      "note": "Same real continuous soil: leap across erosion gutter or walk down/up to break low direct fire. No subterranean fake path, timber, or assigned jump target."
     }
   ],
   "enemyAnchors": [
@@ -494,7 +523,22 @@
         1200
       ],
       "unitCount": 17,
-      "warning": "Activation requires actual spatial proximity/zone, NEVER any shared bank support alone"
+      "warning": "Activation requires actual spatial proximity/zone, NEVER any shared bank support alone",
+      "tactics": {
+        "nearScreen": [
+          1490,
+          944
+        ],
+        "gutterFoot": [
+          1740,
+          1120
+        ],
+        "backRanged": [
+          2130,
+          1036
+        ],
+        "note": "Role positions proposed only; no enemy body overlap or attack feasibility claim"
+      }
     },
     {
       "id": "second-reed-pocket",
@@ -509,20 +553,6 @@
     }
   ],
   "structuralAttachments": [
-    {
-      "id": "drain-plank-west",
-      "x": 2990,
-      "y": 1170,
-      "foundationY": 1180,
-      "type": "bank socket"
-    },
-    {
-      "id": "drain-plank-east",
-      "x": 3410,
-      "y": 1170,
-      "foundationY": 1180,
-      "type": "bank socket"
-    },
     {
       "id": "jetty-landward",
       "x": 6120,
@@ -574,5 +604,10 @@
       "w": 1600,
       "h": 1000
     }
+  ],
+  "designDecisions": [
+    "Delete weak central board: no tactical reason and no body headroom.",
+    "No bridge added to first pocket: a solid-bank-anchored 2D bridge would close the supposed underpass; open erosion gutter makes a physically honest local choice.",
+    "Low local route is open sky; no one-way surface hides torso or creates fake access."
   ]
 }
