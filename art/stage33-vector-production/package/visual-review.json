@@ -1,0 +1,173 @@
+{
+  "status": "reviewed candidate; parent release review still required",
+  "sourceHashes": [
+    {
+      "file": "body-raw.svg",
+      "sha256": "0abf4ff04718ba70cae721149afbe835b301c6644be41fcbcd2285246b778490"
+    },
+    {
+      "file": "body-runtime.svg",
+      "sha256": "9a54bd59d91ae0a53eaafd5012721d32a49f312e0c5362a289f75b3fe1c97306"
+    },
+    {
+      "file": "surface-raw.svg",
+      "sha256": "a59d022c509876079bd0a58660661416b37823b84275f7ef13691cfe19e93f20"
+    },
+    {
+      "file": "body-asset.json",
+      "sha256": "76fd2d6f6200de0472dbc0fe32a96c2114a8585912c58bd88e1614963a038977"
+    },
+    {
+      "file": "surface-asset.json",
+      "sha256": "570ac482b151ddae80ad5f794777aaae261d1d6fc5772875d7de2f7dc53e4ee4"
+    },
+    {
+      "file": "coastal-boulder-asset.json",
+      "sha256": "957a1ae819ae4af24cc4ae427dc0b01d65d09877b039a782804db5a867048f1e"
+    },
+    {
+      "file": "abandoned-skiff-asset.json",
+      "sha256": "750a049c39763198f40da5fc667a2c5105ac97583327711b7bc4edcbc42556c5"
+    },
+    {
+      "file": "stone-pier-asset.json",
+      "sha256": "7be0c840dd566ba0d98fbe298fd16533a228988df78d907ffdbb80cb246ffdcf"
+    }
+  ],
+  "reviews": [
+    {
+      "pass": "structure",
+      "finding": "Distinct two tidal basins, refuge spans and central gap retained. No water/actors baked into BODY."
+    },
+    {
+      "pass": "contacts and detail",
+      "finding": "SURFACE fitted28 world units downward then clipped to actual compiled one-way polygons. Actual contact/water/underpass and actor markers visible. Tan quantization flecks remain from raw trace."
+    },
+    {
+      "pass": "camera/mobile/state",
+      "finding": "Whole, normal, maximum, mobile-right and far-right domain inspected. Deep flat field has no rectangular cutoff; sparse true FORE reeds stay at banks. Actual high-tide screenshot retains guides/actors."
+    }
+  ],
+  "views": [
+    {
+      "stage": 33,
+      "view": {
+        "name": "whole",
+        "x": 3800,
+        "y": 1900,
+        "scale": 0.19736842105263158,
+        "w": 1600,
+        "h": 850
+      },
+      "file": "33-whole.png",
+      "metrics": {
+        "medianMs": 14.283360999999786,
+        "p95Ms": 16.098277999999482,
+        "scope": "warm Native Canvas CPU timings, not browser or mobile hardware"
+      },
+      "scope": "Actual production Native Canvas, initial actors. Not browser play or quality approval.",
+      "pngSha256": "cba60d8c9f5ba0fdc595adad10b5c1fbe5d6b3d1f47d6949312f57742f90c0b5"
+    },
+    {
+      "stage": 33,
+      "view": {
+        "name": "first-contact",
+        "x": 2200,
+        "y": 2130,
+        "scale": 0.53,
+        "w": 1400,
+        "h": 900
+      },
+      "file": "33-first-contact.png",
+      "metrics": {
+        "medianMs": 6.535335000000487,
+        "p95Ms": 7.18187399999988,
+        "scope": "warm Native Canvas CPU timings, not browser or mobile hardware"
+      },
+      "scope": "Actual production Native Canvas, initial actors. Not browser play or quality approval.",
+      "pngSha256": "e4b50a6fa2af00de78632a051a56975187b2e1384a0f2786aa2ba8b8685a6090"
+    },
+    {
+      "stage": 33,
+      "view": {
+        "name": "right-edge-mobile",
+        "x": 7050,
+        "y": 1900,
+        "scale": 0.53,
+        "w": 720,
+        "h": 1100
+      },
+      "file": "33-right-edge-mobile.png",
+      "metrics": {
+        "medianMs": 1.3341889999992418,
+        "p95Ms": 1.5705649999999878,
+        "scope": "warm Native Canvas CPU timings, not browser or mobile hardware"
+      },
+      "scope": "Actual production Native Canvas, initial actors. Not browser play or quality approval.",
+      "pngSha256": "4b5a547c7ba88d42120a6304ece99d51931ac97fe4fd8e736cdb8eadee77814d"
+    },
+    {
+      "stage": 33,
+      "view": {
+        "name": "left-contact",
+        "x": 650,
+        "y": 2100,
+        "scale": 0.53,
+        "w": 1400,
+        "h": 900
+      },
+      "file": "33-left-contact.png",
+      "metrics": {
+        "medianMs": 5.078595999999379,
+        "p95Ms": 12.078331999999136,
+        "scope": "warm Native Canvas CPU timings, not browser or mobile hardware"
+      },
+      "scope": "Actual production Native Canvas, initial actors. Not browser play or quality approval.",
+      "pngSha256": "6a2230433e850a053c595390ec0501d297a645a7bb7cb8065b5f2ad74c317b6b"
+    },
+    {
+      "stage": 33,
+      "view": {
+        "name": "central-max",
+        "x": 3950,
+        "y": 2050,
+        "scale": 1.1,
+        "w": 1400,
+        "h": 900
+      },
+      "file": "33-central-max.png",
+      "metrics": {
+        "medianMs": 5.188717999999426,
+        "p95Ms": 5.635583999999653,
+        "scope": "warm Native Canvas CPU timings, not browser or mobile hardware"
+      },
+      "scope": "Actual production Native Canvas, initial actors. Not browser play or quality approval.",
+      "pngSha256": "98e51287c542620a0a427aac36ab64f102faa35cbca1fc74756016defa320732"
+    },
+    {
+      "stage": 33,
+      "view": {
+        "name": "right-domain-wide",
+        "x": 7050,
+        "y": 1900,
+        "scale": 0.10588235294117647,
+        "w": 720,
+        "h": 1100
+      },
+      "file": "33-right-domain-wide.png",
+      "metrics": {
+        "medianMs": 2.6860339999984717,
+        "p95Ms": 3.526386999999886,
+        "scope": "warm Native Canvas CPU timings, not browser or mobile hardware"
+      },
+      "scope": "Actual production Native Canvas, initial actors. Not browser play or quality approval.",
+      "pngSha256": "3e17fac88de92ad1f209096a015c09ab6d6e07bb282edb01251f9b1e5eb6a362"
+    }
+  ],
+  "knownLimits": [
+    "Optional inward48world upper-edge water taper is a display convention, not a new physical shoreline; conductivity/tide bounds remain exact",
+    "Reflected outer-domain rock pattern is perceptibly symmetric at extreme zoom-out",
+    "Scenic skiffs/rocks and four rear stone piers now use actual traces; all remain noncolliding. Fine gray trace fringes/midtone patches remain in source",
+    "Browser/mobile hardware and final publisher approval are separate"
+  ]
+}

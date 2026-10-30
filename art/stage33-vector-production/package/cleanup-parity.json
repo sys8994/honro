@@ -1,0 +1,20 @@
+{
+  "scope": "Actual ordinary-input App replay before/after scoped prop and inland-water display cleanup, not artwork approval",
+  "checks": {
+    "trace": true,
+    "transitions": true,
+    "shots": true,
+    "recoveryChecks": true,
+    "finalUnits": true,
+    "objective": true
+  },
+  "beforeProject": "d49c7ffdaad849682e0a6db143821d1569f27c306edd11993982ca99262b3958",
+  "afterProject": "eef32c414c96bc77a3284bac0a0b229b6d4598a00b698805aebedb38ef4d79e3",
+  "beforeReport": "_local/reports/stage33-production/final-current-replay.json",
+  "afterReport": "_local/reports/stage33-production/shoreline-final-replay.json",
+  "frames": 20476,
+  "sourceHashes": {
+    "coastal-boulder": "070d756e27f7a5292ac7a151d78903455dc2f538b88d4ded50f6fcee9c7c46eb",
+    "abandoned-skiff": "35fbb62fcf6cf4dedbab29afd29b31fe33938ad6c5563f40f5e9c51203dc18be"
+  }
+}

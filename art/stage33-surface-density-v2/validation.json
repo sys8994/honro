@@ -1,0 +1,27 @@
+{
+  "assets": [
+    {
+      "expandedNodes": 401,
+      "maxDepth": 6,
+      "maxPath": 15784,
+      "asset": "s33-density:refuge-west"
+    },
+    {
+      "expandedNodes": 401,
+      "maxDepth": 6,
+      "maxPath": 15784,
+      "asset": "s33-density:refuge-east"
+    }
+  ],
+  "compiledPhysicsPreserved": true,
+  "totalRuntimeBytes": 215611,
+  "originalRuntimeBytes": 81022,
+  "sourceGeometry": "Native Inkscape Boolean extracted trimmed100x52 modules; no xstretch, no addedabovecontactgeometry",
+  "reviewScope": "Actual production Scene normal/mobile/detail. No browser/device performance claim. Explicit material redesign, not rawreference fidelity pass.",
+  "buriedEndpointFix": {
+    "insertBeforeElementId": "s33v:body-contact-underpaint",
+    "reason": "Original surface ordering painted buried diagonal ends over terrain. Exactsame route geometry now behind BODY.",
+    "inspected": "_local/reports/stage33-surface-density-v2/buried-ends-views/33-normal.png",
+    "outcome": "Buried ends naturally covered. No diagonalstone triangles on topoflowerground."
+  }
+}

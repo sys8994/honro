@@ -1,0 +1,120 @@
+{
+  "source": "art/stage33-vector-production/body-runtime.svg",
+  "sourceSHA256": "9a54bd59d91ae0a53eaafd5012721d32a49f312e0c5362a289f75b3fe1c97306",
+  "tool": "Inkscape 1.4 actual headless palette and contiguous draw-stack unions",
+  "paletteEdits": {
+    "path9": "#4c6070",
+    "path8,path7,path6": "#80704a",
+    "path5,path4": "#3c5261",
+    "path3": "#746443",
+    "path2,path1": "#2d4350"
+  },
+  "protectedPathsExact": {
+    "path11": true,
+    "path10": true
+  },
+  "unionTrials": [
+    {
+      "group": "path8,path7,path6",
+      "before": {
+        "bytes": 301397,
+        "paths": 11,
+        "explicitCommandLetters": 2721,
+        "segments": 6509
+      },
+      "after": {
+        "bytes": 300751,
+        "paths": 9,
+        "explicitCommandLetters": 3580,
+        "segments": 6184
+      },
+      "accepted": false,
+      "strictImportPassed": false
+    },
+    {
+      "group": "path5,path4",
+      "before": {
+        "bytes": 301397,
+        "paths": 11,
+        "explicitCommandLetters": 2721,
+        "segments": 6509
+      },
+      "after": {
+        "bytes": 290198,
+        "paths": 10,
+        "explicitCommandLetters": 2249,
+        "segments": 5923
+      },
+      "accepted": true,
+      "strictImportPassed": true
+    },
+    {
+      "group": "path2,path1",
+      "before": {
+        "bytes": 290198,
+        "paths": 10,
+        "explicitCommandLetters": 2249,
+        "segments": 5923
+      },
+      "after": {
+        "bytes": 250989,
+        "paths": 9,
+        "explicitCommandLetters": 2537,
+        "segments": 4970
+      },
+      "accepted": true,
+      "strictImportPassed": true
+    }
+  ],
+  "stats": {
+    "existingFinal": {
+      "bytes": 301717,
+      "paths": 11,
+      "explicitCommandLetters": 2721,
+      "segments": 6509
+    },
+    "palette": {
+      "bytes": 301397,
+      "paths": 11,
+      "explicitCommandLetters": 2721,
+      "segments": 6509
+    },
+    "final": {
+      "bytes": 250989,
+      "paths": 9,
+      "explicitCommandLetters": 2537,
+      "segments": 4970
+    }
+  },
+  "runtimeBytes": {
+    "old": 334610,
+    "new": 272086
+  },
+  "limits": {
+    "expandedNodes": 512,
+    "depth": 24,
+    "pathCharacters": 60000
+  },
+  "visualApproval": "Normal/max direct source render crops inspected; protected upper paint/path geometry exact. Quieter deep facets but large original rock silhouettes retained. Full composed scene approval pending.",
+  "paletteToFinal": {
+    "normal": {
+      "width": 4452,
+      "worldZoom": 0.53,
+      "rgbMAE255": 0.018840962277874244,
+      "rgbMax255": 59.0,
+      "alphaChangedPixels": 0,
+      "alphaMax255": 0.0,
+      "binarySilhouetteChangedPixelsAlpha128": 0
+    },
+    "max": {
+      "width": 9240,
+      "worldZoom": 1.1,
+      "rgbMAE255": 0.01435737698403326,
+      "rgbMax255": 71.0,
+      "alphaChangedPixels": 448,
+      "alphaMax255": 1.0,
+      "binarySilhouetteChangedPixelsAlpha128": 0
+    }
+  },
+  "reviewCaveat": "33 retains ochre interior chips belonging to protected topsoil paths; should be evaluated in composed scene, not automatically approved."
+}

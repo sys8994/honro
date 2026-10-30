@@ -1,0 +1,28 @@
+{
+  "tool": "Inkscape1.4 CLI actual path-simplify once",
+  "threshold": 0.0002,
+  "selected": [
+    "path4",
+    "path8"
+  ],
+  "changedPaths": [
+    "path8",
+    "path4"
+  ],
+  "unselectedPathsExactlyEqual": true,
+  "rawSha256": "0abf4ff04718ba70cae721149afbe835b301c6644be41fcbcd2285246b778490",
+  "candidateSha256": "14a64ef1baa2b84a757f35f2425af6b408103a7a4d675b8ba16750ede1b0ea0e",
+  "pathLengths": {
+    "path8": {
+      "raw": 54506,
+      "candidate": 31242
+    },
+    "path4": {
+      "raw": 104670,
+      "candidate": 59079
+    }
+  },
+  "actions": "select-by-id:path4,path8;path-simplify",
+  "approval": "candidate only; producer must measure protected normal/max errors",
+  "visual": "Native candidate PNG inspected; overall rim/planes retained; local simplification needs producer error test."
+}

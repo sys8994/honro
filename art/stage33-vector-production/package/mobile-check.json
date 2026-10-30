@@ -1,0 +1,28 @@
+{
+  "viewport": [
+    720,
+    1100
+  ],
+  "projectSha256": "aab61e0074b4ac23f569acefd11fb4e08679902ef322cfb53e2078e8c5ae8dea",
+  "runtimeSha256": "ded4213faa541c60f977cd4090ee6f4b90db1261070413fb8ccd3e4496d5fb9f",
+  "success": true,
+  "frame": 20476,
+  "resume": [
+    {
+      "frame": 11233,
+      "inputIndex": 44,
+      "result": "pass",
+      "scope": "Actual stopBattle/persist/Continue; exact units, event state, round, active and phase preserved"
+    }
+  ],
+  "observed": {
+    "upper-route": 17.49999999999965,
+    "water-rising": 27.49999999999908
+  },
+  "receipts": [
+    "A4.S33.TIDE.01",
+    "A4.S33.TIDE.02"
+  ],
+  "scope": "Actual App with native720x1100 canvas, sparse snapshots every300 ticks, real inView receipts. High tide image directly inspected; HUD/DOM/browser input and continuous camera behavior are not verified here.",
+  "limitation": "Early rising snapshot can leave active archer outside the sparse snapshot viewport; no continuous-browser camera pass inferred."
+}

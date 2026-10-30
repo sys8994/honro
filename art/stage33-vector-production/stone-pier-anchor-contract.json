@@ -1,0 +1,52 @@
+{
+  "scope": "Noncolliding rear support visual only; original peak/base anchors preserved, reduced width, no firing cover",
+  "normalizedInkHeight": 300,
+  "sources": [
+    {
+      "instance": "a4-coast-33-art-11",
+      "sourceAsset": "a4-coast:pier-33-1450",
+      "x": 1450,
+      "topWorld": 1975,
+      "footWorld": 2265,
+      "buriedBottomWorld": 2274,
+      "height": 290,
+      "collision": []
+    },
+    {
+      "instance": "a4-coast-33-art-12",
+      "sourceAsset": "a4-coast:pier-33-2430",
+      "x": 2430,
+      "topWorld": 1960,
+      "footWorld": 2255,
+      "buriedBottomWorld": 2264,
+      "height": 295,
+      "collision": []
+    },
+    {
+      "instance": "a4-coast-33-art-13",
+      "sourceAsset": "a4-coast:pier-33-3600",
+      "x": 3600,
+      "topWorld": 1936.086956521739,
+      "footWorld": 2280,
+      "buriedBottomWorld": 2289,
+      "height": 343.913043478261,
+      "collision": []
+    },
+    {
+      "instance": "a4-coast-33-art-14",
+      "sourceAsset": "a4-coast:pier-33-4690",
+      "x": 4690,
+      "topWorld": 1928.0,
+      "footWorld": 2221.8333333333335,
+      "buriedBottomWorld": 2230.8333333333335,
+      "height": 293.8333333333335,
+      "collision": []
+    }
+  ],
+  "generation": {
+    "tool": "built-in image_gen",
+    "source": "exec-af2793b7-95b1-4e96-8d47-bf68477cda04.png",
+    "styleReference": "art/vector-common-production/coastal-boulder-raw.png",
+    "prompt": "One isolated narrow upright coastal natural stone support pier, quieter low-contrast slate-gray flat vector faces, broad vertical cracks, modest broken crown, flat broad foot, mostly vertical sides and narrower waist, not triangular, no masonry, no scene/actors/water/ground, transparent background. About190wide\u00d7340tall. Reference for palette/style only."
+  }
+}

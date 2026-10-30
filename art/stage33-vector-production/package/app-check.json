@@ -1,0 +1,526 @@
+{
+  "scope": "Prepared earned-SP stage-entry profile; real App/Engine/Native Canvas events and sparse actual scene rendering every300 simulation frames (bounded snapshot evidence, not continuous rendered play); DOM/audio/storage scheduling are doubles, not browser or chapters1–32 playthrough. No gate relabeling or automatic art approval.",
+  "projectSha256": "aab61e0074b4ac23f569acefd11fb4e08679902ef322cfb53e2078e8c5ae8dea",
+  "runtimeSha256": "ded4213faa541c60f977cd4090ee6f4b90db1261070413fb8ccd3e4496d5fb9f",
+  "verifierSha256": "982212e546348868f1665f1219502590fd7e4310817e796f3be6d7098709641a",
+  "success": true,
+  "frames": 20476,
+  "shots": 20,
+  "resume": [
+    {
+      "frame": 11233,
+      "inputIndex": 44,
+      "result": "pass",
+      "scope": "Actual stopBattle/persist/Continue; exact units, event state, round, active and phase preserved"
+    }
+  ],
+  "groups": [
+    {
+      "id": "a4-33-g0",
+      "actualDamageEvents": 2
+    },
+    {
+      "id": "a4-33-g1",
+      "actualDamageEvents": 7
+    }
+  ],
+  "route": {
+    "lowShots": [
+      {
+        "frame": 6454,
+        "actor": "knight",
+        "x": 3902.933264283314,
+        "y": 2310.2933264283315,
+        "input": {
+          "op": "fire",
+          "skill": "S04",
+          "angle": 28.13100911093928,
+          "power": 0.9951822303718029
+        },
+        "accepted": true
+      },
+      {
+        "frame": 10139,
+        "actor": "knight",
+        "x": 4533.020843587286,
+        "y": 2250.6128453423307,
+        "input": {
+          "op": "fire",
+          "skill": "S04",
+          "angle": 25.570079054603692,
+          "power": 0.8268130923783993
+        },
+        "accepted": true
+      }
+    ],
+    "upperShots": [
+      {
+        "frame": 3475,
+        "actor": "knight",
+        "x": 1513.7368269615963,
+        "y": 1963.8460552817207,
+        "input": {
+          "op": "fire",
+          "skill": "S04",
+          "angle": 25.47710528437751,
+          "power": 0.8515608019629375
+        },
+        "accepted": true
+      },
+      {
+        "frame": 7383,
+        "actor": "occultist",
+        "x": 2773.9119224218844,
+        "y": 1977.378315053353,
+        "input": {
+          "op": "fire",
+          "skill": "O02",
+          "angle": -1.9126057896418553,
+          "power": 0.9986010235799253
+        },
+        "accepted": true
+      },
+      {
+        "frame": 9554,
+        "actor": "mage",
+        "x": 3337.226286575083,
+        "y": 2056.901456863098,
+        "input": {
+          "op": "fire",
+          "skill": "M03",
+          "angle": 55,
+          "power": 1
+        },
+        "accepted": true
+      },
+      {
+        "frame": 10334,
+        "actor": "occultist",
+        "x": 2773.9119224218844,
+        "y": 1977.378315053353,
+        "input": {
+          "op": "fire",
+          "skill": "O02",
+          "angle": -2.626728522867984,
+          "power": 0.9736557310398996
+        },
+        "accepted": true
+      },
+      {
+        "frame": 11391,
+        "actor": "mage",
+        "x": 3425.1105229638774,
+        "y": 2027.3336401927595,
+        "input": {
+          "op": "fire",
+          "skill": "M03",
+          "angle": 55,
+          "power": 1
+        },
+        "accepted": true
+      },
+      {
+        "frame": 11976,
+        "actor": "occultist",
+        "x": 2773.9119224218844,
+        "y": 1977.378315053353,
+        "input": {
+          "op": "fire",
+          "skill": "O02",
+          "angle": -2.4281962093729628,
+          "power": 0.9824670017289467
+        },
+        "accepted": true
+      },
+      {
+        "frame": 13707,
+        "actor": "mage",
+        "x": 3633.9073767534037,
+        "y": 1918.3961512590938,
+        "input": {
+          "op": "fire",
+          "skill": "M02",
+          "angle": 4.5937740010341095,
+          "power": 0.985654128019427
+        },
+        "accepted": true
+      },
+      {
+        "frame": 14930,
+        "actor": "knight",
+        "x": 4057.2714195390413,
+        "y": 1920.8443893680283,
+        "input": {
+          "op": "fire",
+          "skill": "S04",
+          "angle": 55,
+          "power": 1
+        },
+        "accepted": true
+      },
+      {
+        "frame": 15451,
+        "actor": "occultist",
+        "x": 2945.070054727497,
+        "y": 2063.935427676477,
+        "input": {
+          "op": "fire",
+          "skill": "O02",
+          "angle": 0.5925479217434474,
+          "power": 0.9732741289254098
+        },
+        "accepted": true
+      }
+    ],
+    "westUpperFrames": 164,
+    "eastUpperFrames": 197
+  },
+  "recoveryChecks": [
+    {
+      "frame": 11009,
+      "unit": "knight",
+      "zone": "33-east",
+      "side": "Left",
+      "entry": {
+        "x": 3902.933264283314,
+        "y": 1935.2933264283315
+      },
+      "landing": {
+        "x": 3044,
+        "y": 2114.96
+      },
+      "hpLoss": 896,
+      "round": 5,
+      "shot": 20,
+      "expectedLoss": 896,
+      "focusBefore": 397,
+      "focusAfter": 423,
+      "acted": true,
+      "moveLeft": 0,
+      "sameDeclaredBank": true,
+      "focusNotSpent": true,
+      "actionSpent": true,
+      "newRoundMayRefresh": false
+    },
+    {
+      "frame": 11336,
+      "unit": "archer",
+      "zone": "33-east",
+      "side": "Left",
+      "entry": {
+        "x": 4044.0658050509287,
+        "y": 1923.202534812334
+      },
+      "landing": {
+        "x": 2984,
+        "y": 2104.8
+      },
+      "hpLoss": 399,
+      "round": 5,
+      "shot": 20,
+      "expectedLoss": 399,
+      "focusBefore": 373,
+      "focusAfter": 373,
+      "acted": true,
+      "moveLeft": 0,
+      "sameDeclaredBank": true,
+      "focusNotSpent": true,
+      "actionSpent": true,
+      "newRoundMayRefresh": false
+    },
+    {
+      "frame": 13599,
+      "unit": "archer",
+      "zone": "33-east",
+      "side": "Right",
+      "entry": {
+        "x": 4296.770995967896,
+        "y": 1900.4329681199838
+      },
+      "landing": {
+        "x": 5260,
+        "y": 2110.4
+      },
+      "hpLoss": 399,
+      "round": 6,
+      "shot": 24,
+      "expectedLoss": 399,
+      "focusBefore": 373,
+      "focusAfter": 373,
+      "acted": true,
+      "moveLeft": 0,
+      "sameDeclaredBank": true,
+      "focusNotSpent": true,
+      "actionSpent": true,
+      "newRoundMayRefresh": false
+    }
+  ],
+  "objective": {
+    "version": 1,
+    "clock": 170.63333333334248,
+    "events": {
+      "tide_warning": {
+        "started": true,
+        "terminal": true,
+        "presented": [
+          "A4.S33.TIDE.01",
+          "A4.S33.TIDE.02"
+        ],
+        "retired": []
+      }
+    },
+    "receipts": [
+      "A4.S33.TIDE.01",
+      "A4.S33.TIDE.02"
+    ],
+    "boat": {
+      "phase": "waiting",
+      "x": 500
+    },
+    "door": {
+      "phase": "standing",
+      "time": 0
+    },
+    "complete": true,
+    "visualDrawn": {},
+    "observed": {
+      "upper-route": 10.000000000000073,
+      "water-rising": 29.999999999998938
+    },
+    "tide": {
+      "phase": "low",
+      "surface": 2280,
+      "warningRound": 2,
+      "highRound": 5,
+      "lowRound": 7,
+      "warned": true,
+      "warningAtRound": 2,
+      "opportunities": {
+        "2": [
+          "archer",
+          "mage",
+          "knight",
+          "occultist"
+        ],
+        "3": [
+          "archer",
+          "mage",
+          "knight",
+          "occultist"
+        ],
+        "4": [
+          "archer",
+          "mage",
+          "knight",
+          "occultist"
+        ]
+      },
+      "finished": true
+    },
+    "waterVisualLevel": 2280,
+    "water": {
+      "dry": {
+        "archer": {
+          "x": 6905.662011657491,
+          "y": 1930
+        },
+        "mage": {
+          "x": 6891.245322563465,
+          "y": 1930
+        },
+        "knight": {
+          "x": 6893.065937863537,
+          "y": 1930
+        },
+        "occultist": {
+          "x": 6815.918076472356,
+          "y": 1930
+        },
+        "a4-33-g0-0": {
+          "x": 1967.3294419183972,
+          "y": 1960.5589792520652
+        },
+        "a4-33-g0-1": {
+          "x": 2140,
+          "y": 1941.8918918918919
+        },
+        "a4-33-g1-0": {
+          "x": 3690,
+          "y": 1914
+        }
+      },
+      "recoveries": [
+        {
+          "unit": "knight",
+          "zone": "33-east",
+          "side": "Left",
+          "entry": {
+            "x": 3902.933264283314,
+            "y": 1935.2933264283315
+          },
+          "landing": {
+            "x": 3044,
+            "y": 2114.96
+          },
+          "hpLoss": 896,
+          "round": 5,
+          "shot": 20
+        },
+        {
+          "unit": "archer",
+          "zone": "33-east",
+          "side": "Left",
+          "entry": {
+            "x": 4044.0658050509287,
+            "y": 1923.202534812334
+          },
+          "landing": {
+            "x": 2984,
+            "y": 2104.8
+          },
+          "hpLoss": 399,
+          "round": 5,
+          "shot": 20
+        },
+        {
+          "unit": "archer",
+          "zone": "33-east",
+          "side": "Right",
+          "entry": {
+            "x": 4296.770995967896,
+            "y": 1900.4329681199838
+          },
+          "landing": {
+            "x": 5260,
+            "y": 2110.4
+          },
+          "hpLoss": 399,
+          "round": 6,
+          "shot": 24
+        }
+      ]
+    },
+    "bark": null,
+    "completionProof": {
+      "exit": {
+        "x": 7100,
+        "y": 1930
+      },
+      "connection": {
+        "physicalRoute": true
+      }
+    }
+  },
+  "finalUnits": [
+    {
+      "id": "archer",
+      "x": 6905.662011657491,
+      "y": 1930,
+      "hp": 923,
+      "dead": false
+    },
+    {
+      "id": "mage",
+      "x": 6891.245322563465,
+      "y": 1930,
+      "hp": 1717.6,
+      "dead": false
+    },
+    {
+      "id": "knight",
+      "x": 6893.065937863537,
+      "y": 1930,
+      "hp": 2854.1,
+      "dead": false
+    },
+    {
+      "id": "occultist",
+      "x": 6815.918076472356,
+      "y": 1930,
+      "hp": 2138,
+      "dead": false
+    },
+    {
+      "id": "a4-33-g0-0",
+      "x": 1967.3294419183972,
+      "y": 1960.5589792520652,
+      "hp": 0,
+      "dead": true
+    },
+    {
+      "id": "a4-33-g0-1",
+      "x": 2140,
+      "y": 1941.8918918918919,
+      "hp": 0,
+      "dead": true
+    },
+    {
+      "id": "a4-33-g1-0",
+      "x": 3690,
+      "y": 1914,
+      "hp": 0,
+      "dead": true
+    },
+    {
+      "id": "a4-33-g1-1",
+      "x": 4760.040825791961,
+      "y": 2207.9918348416077,
+      "hp": 0,
+      "dead": true
+    },
+    {
+      "id": "a4-33-g1-2",
+      "x": 4955.28203626333,
+      "y": 2168.943592747334,
+      "hp": 0,
+      "dead": true
+    }
+  ],
+  "occupiedBankFixture": {
+    "scope": "Synthetic occupied-bank boundary fixture after ordinary input prefix, not campaign victory or natural occupancy evidence",
+    "projectSha256": "aab61e0074b4ac23f569acefd11fb4e08679902ef322cfb53e2078e8c5ae8dea",
+    "frame": 11009,
+    "pass": true,
+    "bank": [
+      2900,
+      3100
+    ],
+    "before": {
+      "x": 4890.884993828588,
+      "y": 2181.8230012342824,
+      "hp": 3369.1,
+      "focus": 397
+    },
+    "after": {
+      "x": 4890.884993828588,
+      "y": 2181.8230012342824,
+      "hp": 3369.1,
+      "focus": 423,
+      "pending": true,
+      "recovering": {
+        "zone": "33-east",
+        "entry": {
+          "x": 3902.933264283314,
+          "y": 1935.2933264283315
+        },
+        "side": "Left",
+        "damage": 896,
+        "damaged": false,
+        "surface": 2135,
+        "probeWait": 0.1
+      },
+      "acted": true,
+      "moveLeft": 0
+    }
+  },
+  "sourceReports": [
+    "pier-final-replay.json",
+    "pier-final-occupied-bank.json"
+  ],
+  "limits": [
+    "Prepared earned-SP entry, not chapters1–32 playthrough",
+    "Sparse actual native snapshots every300 physics frames; not continuous browser/hardware evidence",
+    "Synthetic bank occupants exist only in explicitly separate boundary fixture",
+    "No user art approval or deployment claim"
+  ]
+}

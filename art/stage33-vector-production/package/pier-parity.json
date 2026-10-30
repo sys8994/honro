@@ -1,0 +1,16 @@
+{
+  "scope": "Actual ordinary-input App replay before/after four noncolliding rear pier visual swaps; not art approval",
+  "checks": {
+    "trace": true,
+    "transitions": true,
+    "shots": true,
+    "recoveryChecks": true,
+    "finalUnits": true,
+    "objective": true
+  },
+  "beforeProject": "eef32c414c96bc77a3284bac0a0b229b6d4598a00b698805aebedb38ef4d79e3",
+  "afterProject": "aab61e0074b4ac23f569acefd11fb4e08679902ef322cfb53e2078e8c5ae8dea",
+  "beforeReport": "_local/reports/stage33-production/shoreline-final-replay.json",
+  "afterReport": "_local/reports/stage33-production/pier-final-replay.json",
+  "frames": 20476
+}

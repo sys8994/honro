@@ -1,0 +1,94 @@
+{
+  "stageId": "stage-33",
+  "status": "candidate-not-user-approved",
+  "projectSha256": "aab61e0074b4ac23f569acefd11fb4e08679902ef322cfb53e2078e8c5ae8dea",
+  "geometryUnchanged": true,
+  "source": "shared/data/act4/world.json",
+  "dependencies": [
+    "shared/runtime/vector.js internal symbols and pixelSnapClip",
+    "tools/vector-production/extend-body-domain.mjs",
+    "art/vector-common-production/reed-cluster-asset.json",
+    "art/vector-common-production/coastal-boulder-raw.svg",
+    "art/vector-common-production/abandoned-skiff-raw.svg",
+    "shared/map/terrain-domain.js opt-in grounded inward water taper8fe1db7",
+    "art/stage33-vector-production/stone-pier-raw.svg"
+  ],
+  "preserved": "All official collision, units, tide/water policies, events and mission conditions",
+  "scenicFit": [
+    {
+      "id": "a4-33-prop-2",
+      "support": "a4-33-upper-west",
+      "rotation": -0.3430239404207034,
+      "burial": 6,
+      "originalY": 2063.5714285714284,
+      "newY": 2069.5714285714284
+    },
+    {
+      "id": "a4-33-prop-3",
+      "support": "a4-33-upper-west",
+      "rotation": 0.16514867741462683,
+      "burial": 6,
+      "originalY": 1965,
+      "newY": 1971
+    },
+    {
+      "id": "a4-33-prop-4",
+      "support": "a4-33-upper-east",
+      "rotation": -0.4808872801953358,
+      "burial": 6,
+      "originalY": 1977.8260869565217,
+      "newY": 1983.8260869565217
+    },
+    {
+      "id": "a4-33-prop-5",
+      "support": "a4-33-land",
+      "rotation": -0.19739555984988078,
+      "burial": 6,
+      "originalY": 2170,
+      "newY": 2176
+    },
+    {
+      "id": "a4-33-prop-6",
+      "support": "a4-33-land",
+      "rotation": 0,
+      "burial": 6,
+      "originalY": 2040,
+      "newY": 2046
+    }
+  ],
+  "pierFit": [
+    {
+      "id": "a4-coast-33-art-11",
+      "sourceAsset": "a4-coast:pier-33-1450",
+      "topWorld": 1975,
+      "bottomWorld": 2274,
+      "scale": 0.9966666666666667,
+      "role": "noncolliding rear support, not firing cover"
+    },
+    {
+      "id": "a4-coast-33-art-12",
+      "sourceAsset": "a4-coast:pier-33-2430",
+      "topWorld": 1960,
+      "bottomWorld": 2264,
+      "scale": 1.0133333333333334,
+      "role": "noncolliding rear support, not firing cover"
+    },
+    {
+      "id": "a4-coast-33-art-13",
+      "sourceAsset": "a4-coast:pier-33-3600",
+      "topWorld": 1936.086956521739,
+      "bottomWorld": 2289,
+      "scale": 1.1763768115942033,
+      "role": "noncolliding rear support, not firing cover"
+    },
+    {
+      "id": "a4-coast-33-art-14",
+      "sourceAsset": "a4-coast:pier-33-4690",
+      "topWorld": 1928,
+      "bottomWorld": 2230.8333333333335,
+      "scale": 1.009444444444445,
+      "role": "noncolliding rear support, not firing cover"
+    }
+  ],
+  "notes": "Scoped portable visual assets. No browser/device or deployment claim."
+}

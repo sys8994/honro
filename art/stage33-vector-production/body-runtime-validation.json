@@ -1,0 +1,13 @@
+{
+ "status":"numerical checks passed; integrated art review pending",
+ "lineage":"immutable 12-color actual Inkscape raw -> independent selected path4/path8 one-pass Inkscape .0002 -> path4-only absolute .01 coordinate grid -> bounded importer",
+ "source":"body-raw.svg",
+ "runtime":"body-runtime.svg",
+ "imported":"body-asset.json",
+ "nodes":15,
+ "normal":{"renderWidth":1400,"rgbMAE255":0.0432497039437294,"protectedChangedPixelFraction":0,"silhouetteMaxOffsetPx":0},
+ "max":{"renderWidth":2940,"rgbMAE255":0.03256292641162872,"protectedChangedPixelFraction":0,"silhouetteMaxOffsetPx":0},
+ "pixelReview":"Side-by-side normal/max contact crops preserve tan rim, major slate facets and transparent exterior. Tiny interior tan quantization freckles remain from raw trace, not concealed by numerical approval.",
+ "deepFlatField":{"sourceRowFractions":[0.82,0.85,0.9,0.95,0.98],"interiorColor":"#283e4a","opaque":true,"sampledInteriorWidth":1932},
+ "scope":"No collision or gameplay changes; no final visual approval. Regenerate reports with body-optimize.json."
+}
