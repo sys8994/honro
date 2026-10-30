@@ -1,0 +1,384 @@
+{
+  "status": "bounded-official31-natural-camera-deck-visual-pass-not-browser-performance",
+  "success": true,
+  "frame": 48585,
+  "worldSHA256": "801df923ce89d8747f337f0b71e2ae38c604a8efbd6250d56e885b931af9f1b5",
+  "runtimeSHA256": "7652daac71dc2c7c6ea02b438ce10105a26e1ac008b36258ad08e2835ee14fd9",
+  "tapeSHA256": "452f483a1a8ceab9791b3f8cd2af248a94c0e21df1e3a1cc26310da23539e400",
+  "renderWindows": [
+    [
+      43690,
+      43810
+    ],
+    [
+      48400,
+      48585
+    ]
+  ],
+  "scope": "Official default-build actual App ordinary-input tape, real Scene rendered continuously only within explicit renderWindows; all other ticks are unrendered ordinary mechanics with elapsed presentation time consumed at the next paint. Camera history across gap is NOT verified. Natural camera without pose override within observed windows. Native Canvas only; DOM/audio/scheduler fixtures, no browser HUD, no mobile performance or automatic C1/C4 signoff. No midrun Continue in this visual replay.",
+  "resultPath": "_local/reports/act4-linked-7652/31/current-targeted-late/result.json",
+  "resultSHA256": "2eccde6e9c27238f55c3731cd308c0e4150639f33fe94fbfb892cf7b6fc358a4",
+  "pictures": [
+    {
+      "path": "_local/reports/act4-linked-7652/31/current-targeted-late/frame-48400.png",
+      "sha256": "1b6ce23b5cbb00cfc6202c2e987ba71b7fca2683cffe8b06747f871a1eb75b05",
+      "name": "frame-48400",
+      "frame": 48400,
+      "camera": {
+        "x": 6264.7004933174485,
+        "y": 1674.6846952784942,
+        "scale": 0.9371040999846305,
+        "manual": false,
+        "storyTween": false,
+        "storyFrame": false,
+        "width": 1440,
+        "height": 900
+      },
+      "phase": "aim",
+      "active": "occultist",
+      "threats": [],
+      "boat": {
+        "phase": "docked",
+        "x": 6470
+      },
+      "paintBoat": {
+        "x": 6470,
+        "y": 1910,
+        "scale": 1,
+        "assetId": "s31v:arrival-ferry"
+      },
+      "deck": {
+        "id": "a4-boat-deck",
+        "x": 6260,
+        "y": 1860,
+        "w": 450,
+        "h": 24,
+        "mat": "wood",
+        "indestructible": true,
+        "oneWay": true,
+        "hp": 9999,
+        "maxHp": 9999
+      },
+      "water": [],
+      "party": [
+        {
+          "id": "archer",
+          "x": 6467.921538548037,
+          "y": 1860,
+          "grounded": true
+        },
+        {
+          "id": "mage",
+          "x": 6448.478846841393,
+          "y": 1860,
+          "grounded": true
+        },
+        {
+          "id": "knight",
+          "x": 6484.11435596526,
+          "y": 1860,
+          "grounded": true
+        },
+        {
+          "id": "occultist",
+          "x": 6094.7004933174485,
+          "y": 1858.6846952784942,
+          "grounded": true
+        }
+      ]
+    },
+    {
+      "path": "_local/reports/act4-linked-7652/31/current-targeted-late/frame-48492.png",
+      "sha256": "614d5d05025c542c572f51dc50a4bf6f9a2be044c3b38e46a61c54fab0fd91fd",
+      "name": "frame-48492",
+      "frame": 48492,
+      "camera": {
+        "x": 6483.471004436017,
+        "y": 1509.832736811038,
+        "scale": 0.9371040999846305,
+        "manual": false,
+        "storyTween": false,
+        "storyFrame": false,
+        "width": 1440,
+        "height": 900
+      },
+      "phase": "aim",
+      "active": "occultist",
+      "threats": [],
+      "boat": {
+        "phase": "docked",
+        "x": 6470
+      },
+      "paintBoat": {
+        "x": 6470,
+        "y": 1910,
+        "scale": 1,
+        "assetId": "s31v:arrival-ferry"
+      },
+      "deck": {
+        "id": "a4-boat-deck",
+        "x": 6260,
+        "y": 1860,
+        "w": 450,
+        "h": 24,
+        "mat": "wood",
+        "indestructible": true,
+        "oneWay": true,
+        "hp": 9999,
+        "maxHp": 9999
+      },
+      "water": [],
+      "party": [
+        {
+          "id": "archer",
+          "x": 6467.921538548037,
+          "y": 1860,
+          "grounded": true
+        },
+        {
+          "id": "mage",
+          "x": 6448.478846841393,
+          "y": 1860,
+          "grounded": true
+        },
+        {
+          "id": "knight",
+          "x": 6484.11435596526,
+          "y": 1860,
+          "grounded": true
+        },
+        {
+          "id": "occultist",
+          "x": 6402.130512869924,
+          "y": 1646.3415901618228,
+          "grounded": false
+        }
+      ]
+    },
+    {
+      "path": "_local/reports/act4-linked-7652/31/current-targeted-late/before-interact-48580.png",
+      "sha256": "93f00d63d737ebb0a4bc2768ca419724f5f6be543151ab4efa89f41e02c60a32",
+      "name": "before-interact-48580",
+      "frame": 48580,
+      "camera": {
+        "x": 6484.025057303371,
+        "y": 1594.6069584169575,
+        "scale": 0.9371040999846305,
+        "manual": false,
+        "storyTween": false,
+        "storyFrame": false,
+        "width": 1440,
+        "height": 900
+      },
+      "phase": "aim",
+      "active": "occultist",
+      "threats": [],
+      "boat": {
+        "phase": "docked",
+        "x": 6470
+      },
+      "paintBoat": {
+        "x": 6470,
+        "y": 1910,
+        "scale": 1,
+        "assetId": "s31v:arrival-ferry"
+      },
+      "deck": {
+        "id": "a4-boat-deck",
+        "x": 6260,
+        "y": 1860,
+        "w": 450,
+        "h": 24,
+        "mat": "wood",
+        "indestructible": true,
+        "oneWay": true,
+        "hp": 9999,
+        "maxHp": 9999
+      },
+      "water": [],
+      "party": [
+        {
+          "id": "archer",
+          "x": 6467.921538548037,
+          "y": 1860,
+          "grounded": true
+        },
+        {
+          "id": "mage",
+          "x": 6448.478846841393,
+          "y": 1860,
+          "grounded": true
+        },
+        {
+          "id": "knight",
+          "x": 6484.11435596526,
+          "y": 1860,
+          "grounded": true
+        },
+        {
+          "id": "occultist",
+          "x": 6455.597179536584,
+          "y": 1860,
+          "grounded": true
+        }
+      ]
+    },
+    {
+      "path": "_local/reports/act4-linked-7652/31/current-targeted-late/boat-boarded.png",
+      "sha256": "73802970a25aec2a6209b892076f1de543e7c0de96b0dc69bdd6d135cee15668",
+      "name": "boat-boarded",
+      "frame": 48581,
+      "camera": {
+        "x": 6483.0300815815335,
+        "y": 1597.455714872364,
+        "scale": 0.9371040999846305,
+        "manual": false,
+        "storyTween": false,
+        "storyFrame": false,
+        "width": 1440,
+        "height": 900
+      },
+      "phase": "won",
+      "active": "occultist",
+      "threats": [],
+      "boat": {
+        "phase": "boarded",
+        "x": 6470
+      },
+      "paintBoat": {
+        "x": 6470,
+        "y": 1910,
+        "scale": 1,
+        "assetId": "s31v:arrival-ferry"
+      },
+      "deck": {
+        "id": "a4-boat-deck",
+        "x": 6260,
+        "y": 1860,
+        "w": 450,
+        "h": 24,
+        "mat": "wood",
+        "indestructible": true,
+        "oneWay": true,
+        "hp": 9999,
+        "maxHp": 9999
+      },
+      "water": [],
+      "party": [
+        {
+          "id": "archer",
+          "x": 6467.921538548037,
+          "y": 1860,
+          "grounded": true
+        },
+        {
+          "id": "mage",
+          "x": 6448.478846841393,
+          "y": 1860,
+          "grounded": true
+        },
+        {
+          "id": "knight",
+          "x": 6484.11435596526,
+          "y": 1860,
+          "grounded": true
+        },
+        {
+          "id": "occultist",
+          "x": 6455.597179536584,
+          "y": 1860,
+          "grounded": true
+        }
+      ]
+    },
+    {
+      "path": "_local/reports/act4-linked-7652/31/current-targeted-late/final.png",
+      "sha256": "31a4849bdbdaba2713ffd31d3dcc9d7711af265cf6d1f97665e1b618c721af67",
+      "name": "final",
+      "frame": 48585,
+      "camera": {
+        "x": 6479.38644354907,
+        "y": 1607.8879667739263,
+        "scale": 0.9371040999846305,
+        "manual": false,
+        "storyTween": false,
+        "storyFrame": false,
+        "width": 1440,
+        "height": 900
+      },
+      "phase": "won",
+      "active": "occultist",
+      "threats": [],
+      "boat": {
+        "phase": "boarded",
+        "x": 6470
+      },
+      "paintBoat": {
+        "x": 6470,
+        "y": 1910,
+        "scale": 1,
+        "assetId": "s31v:arrival-ferry"
+      },
+      "deck": {
+        "id": "a4-boat-deck",
+        "x": 6260,
+        "y": 1860,
+        "w": 450,
+        "h": 24,
+        "mat": "wood",
+        "indestructible": true,
+        "oneWay": true,
+        "hp": 9999,
+        "maxHp": 9999
+      },
+      "water": [],
+      "party": [
+        {
+          "id": "archer",
+          "x": 6467.921538548037,
+          "y": 1860,
+          "grounded": true
+        },
+        {
+          "id": "mage",
+          "x": 6448.478846841393,
+          "y": 1860,
+          "grounded": true
+        },
+        {
+          "id": "knight",
+          "x": 6484.11435596526,
+          "y": 1860,
+          "grounded": true
+        },
+        {
+          "id": "occultist",
+          "x": 6455.597179536584,
+          "y": 1860,
+          "grounded": true
+        }
+      ]
+    }
+  ],
+  "review": {
+    "reviewer": "assistant /root/verify_final_boat_views",
+    "userApproval": false,
+    "viewed": [
+      "final",
+      "frame-43750"
+    ],
+    "finding": "Final four party feet align with actual boat deck at dock; deck and adjacent bank meet above coherent water, no giant boat or blank sea. Only bounded late-window Native inspection, not browser/UI or full camera history."
+  },
+  "retainedFailures": [
+    {
+      "path": "_local/reports/act4-linked-7652/31/current-natural/process.log",
+      "sha256": "cc6605cda2432a16f0def56f1582a279598082e6cc02014046584eeab846eb76",
+      "meaning": "Earlier longer-render diagnostic stopped at 2GiB guard, not gameplay defeat."
+    },
+    {
+      "path": "_local/reports/act4-linked-7652/31/current-targeted-late/preflight-full-project-rejected/process.log",
+      "sha256": "89b2ff3e57b771bee5bafadb4ac67811299a1a5358a06a128dc65d6577c7aa76",
+      "meaning": "First targeted attempt supplied full project instead of canonical Act4-only world and was rejected before playback; identity guard unchanged."
+    }
+  ]
+}
