@@ -14,6 +14,7 @@ from painter import Painter, ROOT
 
 N, W, H = 37, 6200, 7400
 p = Painter(N, W, H, seed=37)
+p.depth = (2600, 7000)
 
 # Valley floor at the foot of the cut face (start).
 p.solid('shore', [(0, 7010), (450, 6990), (1300, 6960), (2600, 6930), (3900, 6940), (5200, 6960), (6200, 6990)],
@@ -48,9 +49,24 @@ p.deck('gap-plank-3', [(2250, 4810), (2850, 4770)], role='planks over the collap
 H1 = p.stair_tower('hoist-1', 3000, 3650, 6750, 5800, start='west', role='hoist scaffold through the broken wall (R1->R2)')
 H2 = p.stair_tower('hoist-2', 2300, 2800, 5740, 4800, start='west', role='hoist scaffold through the broken wall (R2->R3)')
 
+# Headland around the cut face (behind, no collision): the mountain spills
+# down to the sea on both sides and a broken crest rises behind the pass, so
+# the map reads as part of a headland, not a block standing in the water.
+from shapely.geometry import Polygon as _P
+for i, pts in enumerate([
+        [(240, 2700), (-200, 3100), (-500, 3700), (-650, 4500), (-1000, 5300), (-1150, 6200), (-1500, 7000), (240, 7000)],
+        [(5950, 3150), (6400, 3350), (6700, 3900), (6900, 4700), (7300, 5600), (7500, 6400), (7700, 7000), (5950, 7000)],
+        [(-100, 2900), (200, 2450), (600, 2300), (900, 2050), (1300, 2150), (1700, 1900), (2200, 2050), (2700, 1850),
+         (3200, 2000), (3700, 1780), (4200, 1950), (4700, 1880), (5200, 2100), (5600, 2050), (6000, 2400), (6400, 2900), (6400, 3200), (-100, 3200)]]):
+    p.facet_rock('STRUCT', _P(pts).buffer(0), 377 + i, cell=360, tones=('#152946', '#1c3357', '#25406a', '#2f4e7b'), crack='#0d182e', grass=True)
 # Lit cut face behind the roads (the mountainside the road is cut into).
 p.backwall([(0, 2750), (900, 2950), (2000, 2820), (3000, 2700), (4200, 2760), (5200, 2840), (5800, 3150), (6200, 3100),
             (6200, 7000), (0, 7000)], seed=37, fid='cut-face', lit=True)
+# Depth: each upper ramp recedes; its retaining wall drops to the ramp below
+# (behind actors), so the switchbacks read as stacked terraces, not slabs.
+for i, (u, l) in enumerate([('road-2', 'road-1'), ('road-2w', 'road-1'), ('r2-crag', 'road-1'), ('road-3w', 'road-2w'), ('road-3w', 'r2-crag'),
+                            ('road-3', 'road-2'), ('road-3', 'road-2w'), ('road-4', 'road-3'), ('road-4', 'road-3w'), ('pass', 'road-4')]):
+    p.retaining(u, l, seed=370 + i)
 
 for c in [('crate-r2', 4200, 5915, 90, 110), ('crate-r4', 3300, 3620, 90, 110), ('pass-rock', 3600, 2583, 110, 130), ('knee-rock', 4200, 4549, 100, 120)]:
     p.cover(c[0], c[1], c[2], c[3], c[4], kind='crate' if 'crate' in c[0] else 'boulder')

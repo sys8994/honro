@@ -1,15 +1,184 @@
 [
  {
-  "name": "struct-x6",
+  "name": "struct-d01",
   "layer": "STRUCT",
-  "module": "x6",
+  "module": "d01",
+  "bounds": [
+   -1504,
+   2696,
+   244,
+   7004
+  ],
+  "paths": 24,
+  "terrain": null
+ },
+ {
+  "name": "struct-d02",
+  "layer": "STRUCT",
+  "module": "d02",
+  "bounds": [
+   5946,
+   3146,
+   7704,
+   7004
+  ],
+  "paths": 24,
+  "terrain": null
+ },
+ {
+  "name": "struct-d03",
+  "layer": "STRUCT",
+  "module": "d03",
+  "bounds": [
+   -104,
+   1776,
+   6404,
+   3204
+  ],
+  "paths": 11,
+  "terrain": null
+ },
+ {
+  "name": "struct-d04",
+  "layer": "STRUCT",
+  "module": "d04",
   "bounds": [
    -4,
    2696,
    6204,
    7004
   ],
-  "paths": 6,
+  "paths": 20,
+  "terrain": null
+ },
+ {
+  "name": "struct-d05",
+  "layer": "STRUCT",
+  "module": "d05",
+  "bounds": [
+   3646,
+   5836,
+   4404,
+   6715
+  ],
+  "paths": 11,
+  "terrain": null
+ },
+ {
+  "name": "struct-d06",
+  "layer": "STRUCT",
+  "module": "d06",
+  "bounds": [
+   1896,
+   5716,
+   3004,
+   6852
+  ],
+  "paths": 13,
+  "terrain": null
+ },
+ {
+  "name": "struct-d07",
+  "layer": "STRUCT",
+  "module": "d07",
+  "bounds": [
+   1196,
+   5496,
+   1904,
+   6920
+  ],
+  "paths": 12,
+  "terrain": null
+ },
+ {
+  "name": "struct-d08",
+  "layer": "STRUCT",
+  "module": "d08",
+  "bounds": [
+   1896,
+   4826,
+   2254,
+   5730
+  ],
+  "paths": 12,
+  "terrain": null
+ },
+ {
+  "name": "struct-d09",
+  "layer": "STRUCT",
+  "module": "d09",
+  "bounds": [
+   1196,
+   4856,
+   1904,
+   5708
+  ],
+  "paths": 12,
+  "terrain": null
+ },
+ {
+  "name": "struct-d10",
+  "layer": "STRUCT",
+  "module": "d10",
+  "bounds": [
+   3646,
+   4526,
+   4454,
+   5968
+  ],
+  "paths": 15,
+  "terrain": null
+ },
+ {
+  "name": "struct-d11",
+  "layer": "STRUCT",
+  "module": "d11",
+  "bounds": [
+   2846,
+   4764,
+   3004,
+   5778
+  ],
+  "paths": 9,
+  "terrain": null
+ },
+ {
+  "name": "struct-d12",
+  "layer": "STRUCT",
+  "module": "d12",
+  "bounds": [
+   2846,
+   3606,
+   4924,
+   4778
+  ],
+  "paths": 14,
+  "terrain": null
+ },
+ {
+  "name": "struct-d13",
+  "layer": "STRUCT",
+  "module": "d13",
+  "bounds": [
+   1196,
+   3477,
+   2254,
+   4908
+  ],
+  "paths": 15,
+  "terrain": null
+ },
+ {
+  "name": "struct-d14",
+  "layer": "STRUCT",
+  "module": "d14",
+  "bounds": [
+   896,
+   2598,
+   4954,
+   3808
+  ],
+  "paths": 14,
   "terrain": null
  },
  {
@@ -22,7 +191,7 @@
    5211,
    6978
   ],
-  "paths": 5,
+  "paths": 12,
   "terrain": null
  },
  {
@@ -35,7 +204,7 @@
    666,
    6981
   ],
-  "paths": 5,
+  "paths": 9,
   "terrain": null
  },
  {
@@ -48,7 +217,7 @@
    1218,
    6953
   ],
-  "paths": 5,
+  "paths": 10,
   "terrain": null
  },
  {
@@ -61,7 +230,7 @@
    5778,
    4426
   ],
-  "paths": 3,
+  "paths": 6,
   "terrain": null
  },
  {
@@ -74,7 +243,20 @@
    3433,
    6781
   ],
-  "paths": 3,
+  "paths": 9,
+  "terrain": null
+ },
+ {
+  "name": "struct-x6",
+  "layer": "STRUCT",
+  "module": "x6",
+  "bounds": [
+   3389,
+   5825,
+   3656,
+   6744
+  ],
+  "paths": 6,
   "terrain": null
  },
  {
@@ -87,7 +269,7 @@
    2560,
    5737
   ],
-  "paths": 3,
+  "paths": 6,
   "terrain": null
  },
  {
@@ -100,7 +282,7 @@
    236,
    7004
   ],
-  "paths": 6,
+  "paths": 7,
   "terrain": "pilot37-west-rock"
  },
  {
@@ -126,7 +308,7 @@
    4474,
    6998
   ],
-  "paths": 10,
+  "paths": 7,
   "terrain": "pilot37-road-1"
  },
  {
@@ -139,7 +321,7 @@
    4454,
    6354
   ],
-  "paths": 10,
+  "paths": 7,
   "terrain": "pilot37-road-2"
  },
  {
@@ -152,7 +334,7 @@
    3004,
    6040
   ],
-  "paths": 10,
+  "paths": 7,
   "terrain": "pilot37-road-2w"
  },
  {
@@ -178,7 +360,7 @@
    2254,
    5234
   ],
-  "paths": 10,
+  "paths": 7,
   "terrain": "pilot37-road-3w"
  },
  {
@@ -191,7 +373,7 @@
    4924,
    5074
   ],
-  "paths": 10,
+  "paths": 7,
   "terrain": "pilot37-road-3"
  },
  {
@@ -204,7 +386,7 @@
    4954,
    4132
   ],
-  "paths": 9,
+  "paths": 7,
   "terrain": "pilot37-road-4"
  },
  {
@@ -507,16 +689,55 @@
   "terrain": "pilot37-crate-r4"
  },
  {
+  "name": "rear-x6",
+  "layer": "REAR",
+  "module": "x6",
+  "bounds": [
+   2898,
+   4383,
+   4822,
+   5930
+  ],
+  "paths": 4,
+  "terrain": null
+ },
+ {
   "name": "rear-x4",
   "layer": "REAR",
   "module": "x4",
   "bounds": [
-   2176,
+   1248,
    2442,
-   2424,
-   2665
+   2752,
+   5761
   ],
-  "paths": 3,
+  "paths": 6,
+  "terrain": null
+ },
+ {
+  "name": "rear-x3",
+  "layer": "REAR",
+  "module": "x3",
+  "bounds": [
+   1463,
+   4798,
+   1628,
+   4883
+  ],
+  "paths": 2,
+  "terrain": null
+ },
+ {
+  "name": "rear-x5",
+  "layer": "REAR",
+  "module": "x5",
+  "bounds": [
+   948,
+   3370,
+   4986,
+   3805
+  ],
+  "paths": 4,
   "terrain": null
  },
  {

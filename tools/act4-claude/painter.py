@@ -31,6 +31,16 @@ ROPE, REED, REED_DARK, STONE = '#b0a68f', '#7e8a7a', '#5a6662', '#2d4670'
 BAMBOO, BAMBOO_DARK, BAMBOO_LIGHT = '#5f7a6a', '#3c5250', '#86a08a'
 LIGHT_DIR = (0.62, -0.78)
 
+HAZE = (0x74, 0x92, 0xc0)
+
+NEAR = (0x0a, 0x13, 0x26)
+
+def mix(c, a):
+    """a > 0: toward the haze (far); a < 0: toward deep shadow (near)."""
+    v = [int(c[i:i + 2], 16) for i in (1, 3, 5)]
+    tgt = HAZE if a >= 0 else NEAR
+    return '#%02x%02x%02x' % tuple(int(round(x + (h - x) * abs(a))) for x, h in zip(v, tgt))
+
 def f(v):
     return str(int(round(v)))
 
@@ -131,6 +141,7 @@ class Painter:
         self.errors = []
         self.art_features = []
         self._lit_wall = False
+        self.depth = None   # (y_far, y_near): higher terraces recede into haze
 
     # ------------------------------------------------------------ declarations
     def undulate(self, top, seed, amp=1.0, keep=()):
@@ -169,6 +180,19 @@ class Painter:
         self.covers.append(dict(id=cid, x=x, y=y, w=w, h=h, kind=kind))
 
     # ------------------------------------------------------------ geometry queries
+    def recede(self, y):
+        """0 near .. 1 far, quantised to 5 steps (few distinct fills)."""
+        if not self.depth:
+            return 0.0
+        y0, y1 = self.depth
+        return round(max(0.0, min(1.0, (y1 - y) / (y1 - y0))) * 4) / 4
+
+    def hz(self, c, y):
+        if not self.depth:
+            return c
+        r = self.recede(y)
+        return mix(c, .52 * r - .22 * (1 - r))
+
     def ground_below(self, x, y_from, include_decks=False):
         best = None
         line = LineString([(x, y_from + 1), (x, self.H + 4000)])
@@ -197,10 +221,14 @@ class Painter:
     def add(self, layer, d, fill):
         if not d:
             return
+        if getattr(self, '_hz_y', None) is not None and fill.startswith('#'):
+            fill = self.hz(fill, self._hz_y)
         el = (d, fill)
         self.layers[layer].append(el)
         m = self.mod
-        if m is None or layer in ('STRUCT', 'REAR', 'FORE'):
+        if layer == 'STRUCT' and getattr(self, '_grp', None):
+            m = self._grp   # depth-ordered fill: its own module, in paint order
+        elif m is None or layer in ('STRUCT', 'REAR', 'FORE'):
             xs = [float(v) for v in re.findall(r'-?\d+(?:\.\d+)?', d)][0::2]
             m = 'x%d' % int((sum(xs) / len(xs) + 2000) // 900)
         self.modules.setdefault((layer, m), []).append(el)
@@ -278,6 +306,11 @@ class Painter:
         th = lambda x: lo + (hi - lo) * (0.5 + 0.5 * math.sin(x / 140 + len(s['id'])))
         def band(fn):
             return [(x, y - 3) for x, y in top] + [(x, y + fn(x)) for x, y in reversed(top)]
+        if s['kind'] == 'terrace':   # worn hauling road: pale packed-earth path
+            self.clip('BODY', poly, band(lambda x: th(x) + 30), '#6f6a5c')
+            self.clip('BODY', poly, band(lambda x: th(x) + 22), '#b3a98c')
+            self.clip('BODY', poly, band(lambda x: 7 + 5 * math.sin(x / 57)), SAGE)
+            return
         self.clip('BODY', poly, band(lambda x: th(x) + 10), SAGE_SHADOW)
         self.clip('BODY', poly, band(th), SAGE)
         self.clip('BODY', poly, band(lambda x: 5), SAGE_LIP)
@@ -307,12 +340,11 @@ class Painter:
         # Earth (ground) last: it covers the buried feet of rock standing on it.
         for s in sorted(self.solids.values(), key=lambda s: s['kind'] == 'earth'):
             self.module(s['id'])
-            if s['kind'] == 'terrace':   # rock mass with a masonry retaining band under the road
-                self.shade_rock(s)
-                top = s['walk']
-                band = Polygon([(x, y) for x, y in top] + [(x, y + 150) for x, y in reversed(top)]).buffer(0).intersection(s['poly'])
-                sub = dict(s, poly=band, kind='masonry')
-                self._masonry(sub['poly'])
+            b = s['poly'].bounds
+            self._hz_y = None if s['kind'] == 'terrace' else min((b[1] + b[3]) / 2, sum(y for _, y in s['walk']) / len(s['walk']) + 300)
+            if s['kind'] == 'terrace':   # road shelf = top of its retaining wall: all coursed stone
+                s['band'] = (10, 16)
+                self._masonry_into('BODY', s['poly'], y_ref=sum(y for _, y in s['walk']) / len(s['walk']))
             elif s['kind'] == 'masonry':   # dressed retaining wall (옹벽): coursed blocks
                 poly = s['poly']
                 self.add('BODY', shapely_d(poly), '#2a4168')
@@ -340,7 +372,9 @@ class Painter:
                     self.clip('BODY', poly, strip + [(maxx + 80, maxy + 100), (minx, maxy + 100)], col)
             else:
                 self.shade_rock(s)
+            self._hz_y = sum(y for _, y in s['walk']) / len(s['walk'])
             self.surface_band(s)
+            self._hz_y = None
 
     # ------------------------------------------------------------ timber
     stone_posts = False
@@ -421,6 +455,7 @@ class Painter:
     def paint_decks(self):
         for d in self.decks.values():
             self.module(d['id'])
+            self._hz_y = sum(y for _, y in d['top']) / len(d['top'])
             self.stone_posts = d['kind'] == 'stone'
             self.support_deck(d)
             self.stone_posts = False
@@ -469,6 +504,7 @@ class Painter:
 
     # ------------------------------------------------------------ covers and dressing
     def paint_covers(self):
+        self._hz_y = None
         for c in self.covers:
             self.module(c['id'])
             x0, y1, w, h = c['x'], c['y'], c['w'], c['h']
@@ -552,7 +588,168 @@ class Painter:
             side = 'east' if side == 'west' else 'west'
         return ids
 
-    def backwall(self, pts, seed=0, fid=None, lit=False):
+    def retaining(self, *a, **k):
+        if getattr(self, '_grp', None):
+            return self._retaining(*a, **k)
+        self._seq = getattr(self, '_seq', 0) + 1
+        self._grp = 'd%02d' % self._seq
+        try:
+            return self._retaining(*a, **k)
+        finally:
+            self._grp = None
+
+    def _retaining(self, upper, lower, seed=0):
+        """Depth fill (behind actors, no collision): the upper road recedes on a
+        coursed retaining wall of uneven height, founded on faceted bedrock that
+        runs down to the lower road, so switchbacks read as stacked terraces."""
+        U, Lw = self.solids[upper]['walk'], (self.solids.get(lower) or self.decks[lower])
+        Lw = Lw.get('walk') or Lw['top']
+        x0, x1 = max(U[0][0], Lw[0][0]), min(U[-1][0], Lw[-1][0])
+        if x1 - x0 < 60:
+            return
+        rng = random.Random(seed)
+        xs = [x0 + (x1 - x0) * i / 24 for i in range(25)]
+        wall = Polygon([(x, interp(U, x) + 20) for x in xs] + [(x, interp(Lw, x) + 4) for x in reversed(xs)]).buffer(0)
+        # wall band: stepped heights (each stretch built at its own depth)
+        top, x = [], x0
+        while x < x1:
+            w, h = rng.uniform(380, 900), rng.uniform(200, 460)
+            # never shallower than the road shelf's own belly (hides its underside)
+            sp = self.solids[upper]['poly']
+            for q in (x, x + w / 2, min(x + w, x1)):
+                cut = sp.intersection(LineString([(q, -1e5), (q, 1e5)]))
+                if not cut.is_empty:
+                    h = max(h, cut.bounds[3] - interp(U, min(max(q, U[0][0]), U[-1][0])) + 50)
+            top += [(x, interp(U, min(x, x1)) + h), (min(x + w, x1), interp(U, min(x + w, x1)) + h)]
+            x += w
+        band = Polygon([(x, interp(U, x)) for x in xs] + list(reversed(top))).buffer(0).intersection(wall)
+        rock = wall.difference(band)
+        yr = sum(y for _, y in U) / len(U)
+        self.facet_rock('STRUCT', rock, seed, cell=300 * (1 - .4 * self.recede(yr)), grass=True)
+        self._masonry_into('STRUCT', band, seed, y_ref=yr)
+        if self.solids[upper]['kind'] == 'terrace' and not self.solids[upper].get('_rail'):
+            self.solids[upper]['_rail'] = True
+            posts, rails = [], []
+            xa, xb = U[0][0] + 60, U[-1][0] - 60
+            px = [xa + i * 260 for i in range(int((xb - xa) // 260) + 1)]
+            for q in px:
+                yq = interp(U, q) + 4
+                posts.append(Polygon([(q - 8, yq), (q + 8, yq), (q + 8, yq - 74), (q - 8, yq - 74)]))
+            for q0, q1 in zip(px, px[1:]):
+                if rng.random() < .8:   # some rails are gone
+                    y0, y1 = interp(U, q0) - 58, interp(U, q1) - 58
+                    rails.append(Polygon([(q0, y0), (q1, y1), (q1, y1 + 9), (q0, y0 + 9)]))
+            # shrubs grown out of the wall top along the road edge
+            dark_s, lit_s = [], []
+            q = xa + rng.uniform(100, 400)
+            while q < xb:
+                yq, r0 = interp(U, q) + 6, rng.uniform(40, 75)
+                blob = unary_union([Point(q + dx * r0, yq - dy * r0).buffer(r0 * sc, 6) for dx, dy, sc in ((-.8, .2, .7), (0, .55, .9), (.8, .25, .75))]).intersection(Polygon([(q - 300, yq - 400), (q + 300, yq - 400), (q + 300, yq + 2), (q - 300, yq + 2)]))
+                dark_s.append(blob); lit_s.append(blob.intersection(Point(q - r0 * .5, yq - r0 * 1.5).buffer(r0 * 1.2, 6)))
+                q += rng.uniform(500, 1100)
+            self.add('REAR', shapely_d(unary_union(dark_s)), SAGE_SHADOW)
+            self.add('REAR', shapely_d(unary_union(lit_s)), SAGE)
+            self.add('REAR', shapely_d(unary_union(rails)), WOOD)
+            self.add('REAR', shapely_d(unary_union(posts)), WOOD_DARK)
+        # dark seam where the wall sits on the rock
+        self.clip('STRUCT', wall, band.buffer(12).difference(band.buffer(-0.5)).intersection(rock.buffer(14)), '#14233f')
+
+    def facet_rock(self, *a, **k):
+        if getattr(self, '_grp', None):
+            return self._facet_rock(*a, **k)
+        self._seq = getattr(self, '_seq', 0) + 1
+        self._grp = 'd%02d' % self._seq
+        try:
+            return self._facet_rock(*a, **k)
+        finally:
+            self._grp = None
+
+    def _facet_rock(self, layer, g, seed=0, cell=420, tones=('#1f3860', '#2b4872', '#3d5f8f', '#4d70a0'), crack='#13223e', stretch=None, grass=False):
+        """Jointed cliff rock: upright columns broken into stacked blocks with
+        slanted tops; every block has a lit left plane, a mid face, a dark
+        right flank and a pale ledge cap. Cracks are the gaps between blocks.
+        One compound path per tone."""
+        if g.is_empty or g.area < 2000:
+            return
+        rng = random.Random(seed * 7 + 1)
+        dark, mid, lit, cap = tones
+        minx, miny, maxx, maxy = g.bounds
+        groups = {}
+        G = lambda c, yy: groups.setdefault(self.hz(c, yy), [])
+        x = minx - rng.uniform(0, cell * .6)
+        while x < maxx:
+            w = rng.uniform(.6, 1.35) * cell
+            tops, y = [], miny - rng.uniform(0, cell * 1.5)
+            while y < maxy + cell:
+                a, c = y + rng.uniform(-.25, .25) * w, y + rng.uniform(-.25, .25) * w
+                tops.append([(x, a), (x + w * rng.uniform(.3, .6), min(a, c) - rng.uniform(.05, .3) * w), (x + w, c)])
+                y += rng.uniform(1.4, 3.2) * cell
+            for t0, t1 in zip(tops, tops[1:]):
+                blk = Polygon(t0 + list(reversed(t1))).buffer(-8, join_style=2)
+                if blk.is_empty:
+                    continue
+                (l, py), (r, ry) = t0[1], t0[2]
+                yb = max(t1[0][1], t1[2][1])
+                k = rng.uniform(.25, .5)
+                yc = (py + yb) / 2
+                G(mid, yc).append(blk)
+                G(lit, yc).append(blk.intersection(Polygon([(x - 50, t0[0][1] - 400), (l, py - 50), (l + w * .05, py + 80), (x + w * k, yb + 50), (x - 50, yb + 50)])))
+                G(dark, yc).append(blk.intersection(Polygon([(x + w * rng.uniform(.72, .85), py), (x + w + 50, ry - 200), (x + w + 50, yb + 50), (x + w * rng.uniform(.6, .8), yb + 50)])))
+                capb = Polygon([(x - 20, t0[0][1] - 300), (l, py - 300), (r + 20, ry - 300), (r + 20, ry + 34), (l, py + 30), (x - 20, t0[0][1] + 34)])
+                G(cap, yc).append(blk.intersection(capb))
+                if grass and rng.random() < .45:
+                    G(SAGE, yc).append(blk.intersection(Polygon([(x - 20, t0[0][1] - 300), (l, py - 300), (l, py + 22), (x - 20, t0[0][1] + 26)])))
+            x += w
+        self.add(layer, shapely_d(g), self.hz(crack, (miny + maxy) / 2))
+        for t, gs in groups.items():
+            gg = unary_union([q for q in gs if not q.is_empty]).intersection(g)
+            if not gg.is_empty:
+                self.add(layer, shapely_d(gg, simplify=3), t)
+
+    def _masonry_into(self, layer, poly, seed=0, y_ref=None):
+        """Coursed rubble: uneven course heights, staggered blocks of mixed
+        width, three stone tones; the base fill shows as mortar."""
+        if poly.is_empty or poly.area < 2000:
+            return
+        # world-anchored course grid: a road shelf (BODY) and the retaining
+        # wall behind it (STRUCT) share joints, so the seam disappears
+        yr = poly.bounds[1] if y_ref is None else y_ref
+        sc = 1 - .4 * self.recede(yr)   # far courses are smaller
+        self.add(layer, shapely_d(poly), self.hz('#16253f', yr))
+        minx, miny, maxx, maxy = poly.bounds
+        tones = tuple(self.hz(c, yr) for c in ('#2a4168', '#33507b', '#3f5f8c'))
+        groups = [[] for _ in tones]
+        y, row = -2000.0 * sc, 0
+        while y < maxy:
+            rr = random.Random(row * 7919 + self.n)
+            hgt = rr.uniform(90, 150) * sc
+            if y + hgt > miny:
+                x = (-3000 - rr.uniform(0, 120)) * sc
+                while x < maxx:
+                    w = rr.uniform(150, 340) * sc
+                    j = [rr.uniform(0, 6) * sc for _ in range(4)]
+                    t = min(2, int(rr.random() ** 1.6 * 3))
+                    if x + w > minx:
+                        groups[t].append(Polygon([(x + 5 + j[0], y + 5), (x + w - 5, y + 5 + j[1]), (x + w - 5 - j[2], y + hgt - 4), (x + 5, y + hgt - 4 - j[3])]))
+                    x += w
+            y += hgt
+            row += 1
+        for t, gs in zip(tones, groups):
+            gg = unary_union(gs).intersection(poly.buffer(-4))
+            if not gg.is_empty:
+                self.add(layer, shapely_d(gg, simplify=1), t)
+
+    def backwall(self, *a, **k):
+        if getattr(self, '_grp', None):
+            return self._backwall(*a, **k)
+        self._seq = getattr(self, '_seq', 0) + 1
+        self._grp = 'd%02d' % self._seq
+        try:
+            return self._backwall(*a, **k)
+        finally:
+            self._grp = None
+
+    def _backwall(self, pts, seed=0, fid=None, lit=False):
         self._lit_wall = lit
         if fid:
             self.art_features.append(fid)
@@ -560,17 +757,8 @@ class Painter:
         dim facets so an enclosed space reads as interior, not floating rock."""
         rng = random.Random(seed)
         g = Polygon(pts).buffer(0)
-        if self._lit_wall:   # open-air cut face: lit rock behind the roads
-            self.add('STRUCT', shapely_d(g), '#1d3358')
-            minx, miny, maxx, maxy = g.bounds
-            lit, mid = [], []
-            for _ in range(int(g.area / 420000) + 4):
-                x0, y0 = rng.uniform(minx, maxx), rng.uniform(miny, maxy)
-                w, h = rng.uniform(420, 900), rng.uniform(600, 1400)
-                tri = Polygon([(x0, y0), (x0 + w, y0 + h * rng.uniform(0, .15)), (x0 + w * rng.uniform(.35, .65), y0 + h)]).buffer(0)
-                (lit if rng.random() < .35 else mid).append(tri)
-            self.clip('STRUCT', g, unary_union(mid), '#28456f')
-            self.clip('STRUCT', g, unary_union(lit), '#33527c')
+        if self._lit_wall:   # open-air cut face: jointed bedrock behind the roads
+            self.facet_rock('STRUCT', g, seed, cell=380, tones=('#132541', '#192f52', '#213b62', '#2a4870'), crack='#0c172b')
             return
         self.add('STRUCT', shapely_d(g), '#0c172b')
         minx, miny, maxx, maxy = g.bounds
