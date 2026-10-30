@@ -1,0 +1,44 @@
+{
+  "status": "REJECTED AS MODULAR PRODUCTION SOURCE; no runtime integration",
+  "sourceFiles": {
+    "concept-flat.png": {
+      "sha256": "af19fe9aaecdd66250f78e36302e1441f9ac14643004df5dabec4be504a5ff6c",
+      "bytes": 1568075
+    },
+    "play-layer.png": {
+      "sha256": "c890afeb3e0e9318ae1a94695ae3fee6a07d120b011cdcb1b05bcd9d9158ff33",
+      "bytes": 869151
+    },
+    "play-traced.svg": {
+      "sha256": "cb5e7a8903d293834cb8d08fae3d41c8a0e4fd44229f9a38a04da2b66ca16ab5",
+      "bytes": 1201624
+    }
+  },
+  "nativeProcessReportedByRoot": {
+    "application": "Inkscape",
+    "scans": 12,
+    "mode": "Colors (UI setting needs review because brown trace is later overpainted)",
+    "stack": true,
+    "removeBackground": true,
+    "speckle": 2,
+    "smooth": 1,
+    "optimize": 0.2
+  },
+  "imageFreeRawMetrics": {
+    "bytes": 1200358,
+    "paths": 11,
+    "expandedCommands": 29383,
+    "segments": 27944,
+    "subpaths": 1439,
+    "maxPathChars": 144336
+  },
+  "findings": [
+    "Original linked image must be removed before vector QA.",
+    "Broad native contours connect shore, columns, bridges, trees and dock: rectangle-based modules produce severed pillars and dock fragments.",
+    "Native brown path16 is largely covered by succeeding green path15; warm bridge semantic color is lost before optimization.",
+    "Hairline yellow-green exterior fringe present in native raw.",
+    "Whole layer cannot be deployed or called a clean module source. Root will generate separated modules."
+  ],
+  "actualGameFitOrPlayQA": false,
+  "derivativeFiles": "Local diagnostics only, excluded from preservation; no final optimized assets claimed"
+}
