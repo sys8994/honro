@@ -1,10 +1,10 @@
 {
   "sourceSHA256": "ce4f2147b116214e693dc80eee385e9c9c6a1d045fefc1a01c6286c2dad7305a",
   "scope": "background only",
-  "flattenSourceUnits": 0.1,
-  "simplifySourceUnits": 0.22,
-  "antiSeamOverlapSourceUnits": 0.16,
-  "coordinateDecimalPlaces": 2,
+  "flattenSourceUnits": 0.04,
+  "simplifySourceUnits": 0.08,
+  "antiSeamOverlapSourceUnits": 0.05,
+  "coordinateDecimalPlaces": 3,
   "dropComponentOrHoleBelowSourceArea": 50,
   "opaqueBacking": "source PNG RGB opaque; use revised sky/water palette to close unstacked AA seams",
   "paletteRevision": "Intentional art direction, separate from geometry optimization fidelity: blue HLS lightness and saturation each scaled 0.80; warm dawn explicitly mapped to muted gray-lavender.",
@@ -15,10 +15,10 @@
       "revisedPalette": "#9b99ac",
       "droppedSmallComponents": 5,
       "filledSmallHoles": 4,
-      "changedSmallAreaSourcePx2": 37.54540601313857,
-      "mainExteriorDenseSampleHausdorffSourceUnits": 0.2194684415151128,
+      "changedSmallAreaSourcePx2": 38.711602074755554,
+      "mainExteriorDenseSampleHausdorffSourceUnits": 0.07965872875095843,
       "outputPaths": 1,
-      "outputPathChars": 5251
+      "outputPathChars": 11268
     },
     {
       "id": "path8",
@@ -26,10 +26,10 @@
       "revisedPalette": "#3c6ba8",
       "droppedSmallComponents": 14,
       "filledSmallHoles": 3,
-      "changedSmallAreaSourcePx2": 152.08187411955527,
-      "mainExteriorDenseSampleHausdorffSourceUnits": 0.2472830774850101,
+      "changedSmallAreaSourcePx2": 154.76265745724754,
+      "mainExteriorDenseSampleHausdorffSourceUnits": 0.10252224959727158,
       "outputPaths": 1,
-      "outputPathChars": 7524
+      "outputPathChars": 15282
     },
     {
       "id": "path7",
@@ -37,10 +37,10 @@
       "revisedPalette": "#496088",
       "droppedSmallComponents": 31,
       "filledSmallHoles": 8,
-      "changedSmallAreaSourcePx2": 139.020844852601,
-      "mainExteriorDenseSampleHausdorffSourceUnits": 0.29204123035953417,
+      "changedSmallAreaSourcePx2": 144.42842747446213,
+      "mainExteriorDenseSampleHausdorffSourceUnits": 0.0866605011715598,
       "outputPaths": 1,
-      "outputPathChars": 9215
+      "outputPathChars": 20276
     },
     {
       "id": "path6",
@@ -48,10 +48,10 @@
       "revisedPalette": "#305585",
       "droppedSmallComponents": 84,
       "filledSmallHoles": 10,
-      "changedSmallAreaSourcePx2": 367.6202189721052,
-      "mainExteriorDenseSampleHausdorffSourceUnits": 0.23282623039745365,
-      "outputPaths": 1,
-      "outputPathChars": 21908
+      "changedSmallAreaSourcePx2": 384.1689772156118,
+      "mainExteriorDenseSampleHausdorffSourceUnits": 0.07999406333318329,
+      "outputPaths": 2,
+      "outputPathChars": 45643
     },
     {
       "id": "path5",
@@ -59,10 +59,10 @@
       "revisedPalette": "#25426d",
       "droppedSmallComponents": 191,
       "filledSmallHoles": 128,
-      "changedSmallAreaSourcePx2": 1986.6982065040672,
-      "mainExteriorDenseSampleHausdorffSourceUnits": 0.22110437221330922,
-      "outputPaths": 1,
-      "outputPathChars": 31496
+      "changedSmallAreaSourcePx2": 2030.8961474770285,
+      "mainExteriorDenseSampleHausdorffSourceUnits": 0.07998687297639877,
+      "outputPaths": 3,
+      "outputPathChars": 69942
     },
     {
       "id": "path4",
@@ -70,10 +70,10 @@
       "revisedPalette": "#203a62",
       "droppedSmallComponents": 393,
       "filledSmallHoles": 182,
-      "changedSmallAreaSourcePx2": 4605.450633562106,
-      "mainExteriorDenseSampleHausdorffSourceUnits": 0.23455796986140875,
-      "outputPaths": 3,
-      "outputPathChars": 51554
+      "changedSmallAreaSourcePx2": 4680.982506162362,
+      "mainExteriorDenseSampleHausdorffSourceUnits": 0.10328763614347511,
+      "outputPaths": 5,
+      "outputPathChars": 115008
     },
     {
       "id": "path3",
@@ -81,10 +81,10 @@
       "revisedPalette": "#1d365c",
       "droppedSmallComponents": 310,
       "filledSmallHoles": 147,
-      "changedSmallAreaSourcePx2": 3428.855003900082,
-      "mainExteriorDenseSampleHausdorffSourceUnits": 0.3110755333760772,
-      "outputPaths": 2,
-      "outputPathChars": 35832
+      "changedSmallAreaSourcePx2": 3484.6286100745756,
+      "mainExteriorDenseSampleHausdorffSourceUnits": 0.09559634887663919,
+      "outputPaths": 3,
+      "outputPathChars": 79270
     },
     {
       "id": "path2",
@@ -92,11 +92,27 @@
       "revisedPalette": "#1b3257",
       "droppedSmallComponents": 34,
       "filledSmallHoles": 64,
-      "changedSmallAreaSourcePx2": 440.38767347820163,
-      "mainExteriorDenseSampleHausdorffSourceUnits": 0.21982659665320148,
+      "changedSmallAreaSourcePx2": 454.49895897855873,
+      "mainExteriorDenseSampleHausdorffSourceUnits": 0.0796395670366053,
       "outputPaths": 1,
-      "outputPathChars": 9366
+      "outputPathChars": 20383
     }
   ],
-  "visualApproval": "NOT REVIEWED"
+  "visualApproval": "NOT REVIEWED",
+  "plainCameraExteriorEvidence": {
+    "sourceToWorldScaleXY": [
+      4.578155657292348,
+      4.567541302235179
+    ],
+    "zoomNormal": 0.7,
+    "zoomMaximum": 1.65,
+    "maxSampledFlattenedExteriorDistanceSource": 0.10328763614347511,
+    "flattenToleranceSource": 0.04,
+    "maxCoordinateRoundingSourceEuclidean": 0.0007071067811865476,
+    "sameColorStrokeReachSource": 0.05,
+    "combinedConservativeEstimateSource": 0.19399474292466168,
+    "estimatedCSSPxNormal": 0.6216966908638601,
+    "estimatedCSSPxMaximum": 1.465427914179099,
+    "status": "measured/sampled estimate; excludes intentional small-area deletion, filled holes, and palette revision; no L6 runtime integration verified"
+  }
 }

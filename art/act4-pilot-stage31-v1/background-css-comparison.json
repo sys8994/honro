@@ -1,0 +1,25 @@
+{
+  "contract": "diagnostic plain camera, not verified environment placement",
+  "centerSource": [
+    1100,
+    340
+  ],
+  "crop": [
+    1400,
+    900
+  ],
+  "comparisons": [
+    {
+      "zoom": 0.7,
+      "meanAbsRGB255": 0.16110343915343917,
+      "changedPixels": 32365,
+      "comparison": "/tmp/bg-source-palette-0.7.png"
+    },
+    {
+      "zoom": 1.65,
+      "meanAbsRGB255": 0.20073333333333335,
+      "changedPixels": 25693,
+      "comparison": "/tmp/bg-source-palette-1.65.png"
+    }
+  ]
+}

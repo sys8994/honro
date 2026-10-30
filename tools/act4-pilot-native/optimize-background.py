@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 """Background-only semantic cleanup of native trace; not a foreground optimizer."""
-import sys,json,xml.etree.ElementTree as E,importlib.util,hashlib,colorsys
+import sys,json,xml.etree.ElementTree as E,importlib.util,hashlib,colorsys,os
 from pathlib import Path
 import numpy as np
-from shapely.geometry import LineString,Polygon
+from shapely.geometry import LineString,Polygon,box
 from shapely.ops import unary_union,polygonize
 from shapely import hausdorff_distance
 from svgpathtools import parse_path
@@ -15,17 +15,19 @@ def revised(c):
  rgb=[int(c[i:i+2],16)/255 for i in (1,3,5)]
  h,l,s=colorsys.rgb_to_hls(*rgb)
  return '#'+''.join(f'{round(v*255):02x}' for v in colorsys.hls_to_rgb(h,l*.8,s*.8))
+source_palette=os.getenv('BG_SOURCE_PALETTE')=='1'
+if source_palette: revised=lambda c:c
 out=E.Element('{'+S+'}svg',viewBox=root.get('viewBox'));w,h=map(float,root.get('viewBox').split()[2:]);E.SubElement(out,'{'+S+'}path',id='opaque-source-backing',fill=revised('#2e69b4'),d=f'M0 0H{w}V{h}H0Z')
-report={'sourceSHA256':hashlib.sha256(src.read_bytes()).hexdigest(),'scope':'background only','flattenSourceUnits':.10,'simplifySourceUnits':.22,'antiSeamOverlapSourceUnits':.16,'coordinateDecimalPlaces':2,'dropComponentOrHoleBelowSourceArea':50,'opaqueBacking':'source PNG RGB opaque; use revised sky/water palette to close unstacked AA seams','paletteRevision':'Intentional art direction, separate from geometry optimization fidelity: blue HLS lightness and saturation each scaled 0.80; warm dawn explicitly mapped to muted gray-lavender.','layers':[],'visualApproval':'NOT REVIEWED'}
+report={'sourceSHA256':hashlib.sha256(src.read_bytes()).hexdigest(),'scope':'background only','flattenSourceUnits':.04,'simplifySourceUnits':.08,'antiSeamOverlapSourceUnits':.05,'coordinateDecimalPlaces':3,'dropComponentOrHoleBelowSourceArea':50,'opaqueBacking':'source PNG RGB opaque; use revised sky/water palette to close unstacked AA seams','paletteRevision':'Intentional art direction, separate from geometry optimization fidelity: blue HLS lightness and saturation each scaled 0.80; warm dawn explicitly mapped to muted gray-lavender.','layers':[],'visualApproval':'NOT REVIEWED'}
 def polys(g):
  if g.geom_type=='Polygon':yield g
  elif hasattr(g,'geoms'):
   for q in g.geoms:yield from polys(q)
 def pathtext(p):
- return ''.join('M'+'L'.join(f'{x:.2f},{y:.2f}' for x,y in list(r.coords)[:-1])+'Z' for r in [p.exterior,*p.interiors])
+ return ''.join('M'+'L'.join(f'{x:.3f},{y:.3f}' for x,y in list(r.coords)[:-1])+'Z' for r in [p.exterior,*p.interiors])
 for e in root.iter():
  if e.tag.split('}')[-1]!='path':continue
- ps=parse_path(flatten(e.get('d'),.10)).continuous_subpaths();rings=[]
+ ps=parse_path(flatten(e.get('d'),.04)).continuous_subpaths();rings=[]
  for p in ps:
   r=[(p[0].start.real,p[0].start.imag)]+[(s.end.real,s.end.imag) for s in p]
   if r[0]!=r[-1]:r.append(r[0])
@@ -41,17 +43,30 @@ for e in root.iter():
   for ring in p.interiors:
    if Polygon(ring).area<50:filled+=1;removedArea+=Polygon(ring).area
    else:holes.append(ring.coords)
-  clean=Polygon(p.exterior.coords,holes).simplify(.22,preserve_topology=True)
+  clean=Polygon(p.exterior.coords,holes).simplify(.08,preserve_topology=True)
   maxerr=max(maxerr,float(hausdorff_distance(p.exterior,clean.exterior,densify=.1)));result.extend(polys(clean))
- # Every disconnected polygon keeps its own holes. Group into modest paths only.
- chunks=[];current=''
- for p in result:
+ # Intersect oversized geometry with adjacent half-planes; no intended area loss.
+ def split(p):
   d=pathtext(p)
+  if len(d)<=35000:yield d;return
+  x0,y0,x1,y1=p.bounds
+  if x1-x0>=y1-y0:
+   m=(x0+x1)/2; boxes=[box(x0-1,y0-1,m,y1+1),box(m,y0-1,x1+1,y1+1)]
+  else:
+   m=(y0+y1)/2; boxes=[box(x0-1,y0-1,x1+1,m),box(x0-1,m,x1+1,y1+1)]
+  for b in boxes:
+   for q in polys(p.intersection(b)):yield from split(q)
+ chunks=[];current=''
+ for d in (d for p in result for d in split(p)):
   if len(current)+len(d)>35000 and current:chunks.append(current);current=''
   current+=d
  if current:chunks.append(current)
  color=e.get('style').split(':')[1]; newcolor=revised(color)
- for i,d in enumerate(chunks):E.SubElement(out,'{'+S+'}path',id=e.get('id')+'-'+str(i),style='fill:'+newcolor+';fill-rule:evenodd;stroke:'+newcolor+';stroke-width:0.32;stroke-linejoin:round',d=d)
+ for i,d in enumerate(chunks):E.SubElement(out,'{'+S+'}path',id=e.get('id')+'-'+str(i),style='fill:'+newcolor+';fill-rule:evenodd;stroke:'+newcolor+';stroke-width:0.10;stroke-linejoin:round',d=d)
  report['layers'].append({'id':e.get('id'),'sourcePalette':color,'revisedPalette':newcolor,'droppedSmallComponents':deleted,'filledSmallHoles':filled,'changedSmallAreaSourcePx2':removedArea,'mainExteriorDenseSampleHausdorffSourceUnits':maxerr,'outputPaths':len(chunks),'outputPathChars':sum(map(len,chunks))})
  print(e.get('id'),sum(map(len,chunks)),deleted,filled,flush=True)
-E.ElementTree(out).write(P/'background-optimized.svg',encoding='utf-8',xml_declaration=True);(P/'background-optimization.json').write_text(json.dumps(report,indent=2)+'\n')
+E.ElementTree(out).write('/tmp/background-source-palette.svg' if source_palette else P/'background-optimized.svg',encoding='utf-8',xml_declaration=True)
+if not source_palette:
+ m=max(l['mainExteriorDenseSampleHausdorffSourceUnits'] for l in report['layers']);v=m+.04+(2**.5)*.0005+.05
+ report['plainCameraExteriorEvidence']={'sourceToWorldScaleXY':[7000/1529,4700/1029],'zoomNormal':.7,'zoomMaximum':1.65,'maxSampledFlattenedExteriorDistanceSource':m,'flattenToleranceSource':.04,'maxCoordinateRoundingSourceEuclidean':(2**.5)*.0005,'sameColorStrokeReachSource':.05,'combinedConservativeEstimateSource':v,'estimatedCSSPxNormal':v*7000/1529*.7,'estimatedCSSPxMaximum':v*7000/1529*1.65,'status':'measured/sampled estimate; excludes intentional small-area deletion, filled holes, and palette revision; no L6 runtime integration verified'}
+ (P/'background-optimization.json').write_text(json.dumps(report,indent=2)+'\n')
