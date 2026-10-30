@@ -9,7 +9,7 @@
 - 금지: 수동 목록만 믿고 장기 시험을 실행하거나, 이 실행의 피해량에 맞춰 밸런스를 수정하지 않는다.
 - 절차: 공식 모듈 목록을 공유하고 순서·누락·파일 해시를 검사한다. 실행 직후 실제 모듈 API, 신선한 적의 예산 태그, 활성화 훅을 확인한 뒤 장기 실행한다.
 - 실패 처리: 해당 실행은 어댑터 오류로 중단·보존한다. 성공률의 성공 표본으로 쓰지 않고 오류 분모에 남긴다. 수정판은 버전과 해시를 바꿔 새로 실행한다.
-- 현재: 누락 확인 및 원본 실행 중단 완료. 실행기 회귀 검사 수정 중.
+- 재검증: `tests/quantitative-playtest-manifest.mjs`의 누락·중복·향후 모듈·순서 회귀 통과. 실제 NativeCanvas 초기화에서 전체 manifest 및 pilot API/신규 예산/활성화 sentinel 통과(run `1f2002fb-f0a0-4a38-a437-7a25f205bea3`). 1frame 초기화 증거이며 전체 플레이 합격은 아니다.
 
 ### P02. 투사체 중력을 점프 중력으로 오인
 - 발견: world gravity 320으로 발판을 설계했으나 실제 점프 중력은 1000, 기본 도약 높이는 약218 world units였다.
@@ -24,7 +24,7 @@
 ### P04. 입력·집계가 실제 행동과 다름
 - 발견: 적 planner 재시도를 행동 수로 중복 계산, 근접기가 사거리 밖에서 공격, 정상 drop의 준비 상태를 미수락으로 판단, gzip/강제종료 로그 누락.
 - 절차: 실제 accepted fire/movement/support 변화와 입력 반환·상태 전이를 기록한다. 선택한 합법 기예의 실제 사거리로 접근한다. gzip·잘린 로그·외부종료를 모두 집계한다.
-- 증거: `tests/quantitative-playtest-activity.mjs`, `tests/quantitative-playtest-policy.mjs`, `tests/quantitative-playtest-log-reader.mjs`. drop 준비 상태 회귀 수정 중.
+- 증거: `tests/quantitative-playtest-activity.mjs`, `tests/quantitative-playtest-policy.mjs`, `tests/quantitative-playtest-log-reader.mjs`. drop 준비 상태·실제 반환값 회귀도 통과했다. 전체 경로의 유효 아래점프 실측은 별도다.
 
 ### P05. 지형 이동 후 옛 목표 좌표가 남음
 - 발견: 갑판/카메라/정책이 서로 다른 옛 y1860을 사용했다.
