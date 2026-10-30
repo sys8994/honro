@@ -1,0 +1,36 @@
+{
+  "sources": [
+    {
+      "source": "art/act4-silhouette-v3/sea/bank32/ground-master.svg",
+      "largestConnectedSubpaths": [
+        "path5",
+        "path4",
+        "path3",
+        "path2"
+      ],
+      "worldRange": [
+        0,
+        3800
+      ],
+      "depthScale": 1.4,
+      "slices": 24
+    },
+    {
+      "source": "art/stage33-bank-silhouette-v4/connected-soil/right-material-joined.svg",
+      "largestConnectedSubpaths": [
+        "path5",
+        "path4",
+        "path3",
+        "path2"
+      ],
+      "worldRange": [
+        3800,
+        7600
+      ],
+      "depthScale": 1.4,
+      "slices": 24
+    }
+  ],
+  "physicalGeometryExact": true,
+  "rejected": "detached eyebrow fragments removed"
+}

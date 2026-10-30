@@ -1,0 +1,179 @@
+{
+  "source": "art/stage33-bank-silhouette-v2/bank-raw.svg",
+  "originalSha256": "6a36e14e9feed2c1c2765374760825bac51d6fc47195b4c835a0570c966bcbc3",
+  "rawSha256": "7879758df24dada41a17b79df88b5fdf32b151d3c57f0ac8aed007e8565d90b7",
+  "removedReferenceImages": [],
+  "width": 2048,
+  "scales": [
+    1,
+    3.8
+  ],
+  "limits": {
+    "rgbMAE255": 2,
+    "silhouettePx": 1,
+    "protectedRgbMAE255": 1,
+    "protectedPx": 0.5,
+    "protectedChangedPixelFraction": 0.05
+  },
+  "protectedRects": [],
+  "protectedMask": null,
+  "provisional": true,
+  "visualApproval": "NOT REVIEWED \u2014 candidate only; human inspection mandatory",
+  "protectionMode": "feature",
+  "protectedPolylines": [],
+  "baseline": {
+    "sourceBytes": 13116,
+    "paths": 4,
+    "commands": 270,
+    "segments": 266,
+    "endpointNodesUpperBound": 270,
+    "explicitCommandLetters": 34,
+    "subpaths": 4,
+    "pathChars": 12522,
+    "maxPathChars": 4187,
+    "render": {
+      "1": {
+        "width": 2048,
+        "height": 683,
+        "decodeMs": 3.6318689999999947,
+        "drawMs": 2.0586150000000316
+      },
+      "3.8": {
+        "width": 7782,
+        "height": 2595,
+        "decodeMs": 27.51086399999997,
+        "drawMs": 52.24713800000001
+      }
+    }
+  },
+  "candidates": [
+    {
+      "candidate": "raw",
+      "sourceBytes": 13116,
+      "paths": 4,
+      "commands": 270,
+      "segments": 266,
+      "endpointNodesUpperBound": 270,
+      "explicitCommandLetters": 34,
+      "subpaths": 4,
+      "pathChars": 12522,
+      "maxPathChars": 4187,
+      "errors": {
+        "1": {
+          "rgbMAE255": 0.0,
+          "rgbP99_255": 0.0,
+          "alphaMAE255": 0.0,
+          "changedPixelFraction": 0.0,
+          "silhouetteMaxOffsetPx": 0.0,
+          "pass": true
+        },
+        "3.8": {
+          "rgbMAE255": 0.0,
+          "rgbP99_255": 0.0,
+          "alphaMAE255": 0.0,
+          "changedPixelFraction": 0.0,
+          "silhouetteMaxOffsetPx": 0.0,
+          "pass": true
+        }
+      },
+      "render": {
+        "1": {
+          "width": 2048,
+          "height": 683,
+          "decodeMs": 4.020944999999983,
+          "drawMs": 2.135891000000015
+        },
+        "3.8": {
+          "width": 7782,
+          "height": 2595,
+          "decodeMs": 34.59603500000003,
+          "drawMs": 47.20889399999999
+        }
+      },
+      "budgetPass": true,
+      "nodes": 7,
+      "normalizedMaxPathChars": 4885,
+      "normalizedPaths": 4,
+      "importSeconds": 0.01193135399989842,
+      "qualityPass": true,
+      "feasible": true
+    },
+    {
+      "candidate": "simplify-0.0001",
+      "sourceBytes": 12390,
+      "paths": 4,
+      "commands": 239,
+      "segments": 235,
+      "endpointNodesUpperBound": 239,
+      "explicitCommandLetters": 12,
+      "subpaths": 4,
+      "pathChars": 11817,
+      "maxPathChars": 3367,
+      "errors": {
+        "1": {
+          "rgbMAE255": 0.054129742085933685,
+          "rgbP99_255": 0.0,
+          "alphaMAE255": 0.06369175016880035,
+          "changedPixelFraction": 0.0010173121797218156,
+          "silhouetteMaxOffsetPx": 1.0,
+          "pass": true
+        },
+        "3.8": {
+          "rgbMAE255": 0.01938188076019287,
+          "rgbP99_255": 0.0,
+          "alphaMAE255": 0.02212313562631607,
+          "changedPixelFraction": 0.0004162562783836421,
+          "silhouetteMaxOffsetPx": 1.4142135623730951,
+          "pass": true
+        }
+      },
+      "render": {
+        "1": {
+          "width": 2048,
+          "height": 683,
+          "decodeMs": 5.305916000000025,
+          "drawMs": 2.3134469999999965
+        },
+        "3.8": {
+          "width": 7782,
+          "height": 2595,
+          "decodeMs": 35.45402300000001,
+          "drawMs": 55.72314199999994
+        }
+      },
+      "budgetPass": true,
+      "nodes": 7,
+      "normalizedMaxPathChars": 3985,
+      "normalizedPaths": 4,
+      "importSeconds": 0.01022572100009711,
+      "qualityPass": true,
+      "feasible": true
+    }
+  ],
+  "sourcePalette": [
+    [
+      25,
+      45,
+      59
+    ],
+    [
+      40,
+      61,
+      78
+    ],
+    [
+      53,
+      77,
+      100
+    ],
+    [
+      120,
+      134,
+      146
+    ]
+  ],
+  "chosen": "raw",
+  "selectionReason": "Raw native source already7nodes/4paths and ~13KB; preserve contact exactly. Larger comparison search terminated137 after first measured feasible simplification; do not imply complete optimization search.",
+  "searchCompleted": false,
+  "rawUnchanged": true
+}
