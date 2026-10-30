@@ -5,22 +5,32 @@
       "meanAbsPremultipliedRGB255": 1.833931201450912,
       "binaryAlphaDisagreementPixels": 2462
     },
+    "nativeVsOptimizedSemanticROI": {
+      "bounds": [
+        100,
+        20,
+        520,
+        220
+      ],
+      "meanAbsAlpha255": 3.787297619047619,
+      "binaryAlphaDisagreementPixels": 995
+    },
     "renderPixels": [
       600,
       382
     ],
-    "meanAbsAlpha255": 2.141326352530541,
-    "meanAbsPremultipliedRGB255": 0.3390736007026429,
-    "binaryAlphaDisagreementPixels": 1416,
+    "meanAbsAlpha255": 2.7456413612565447,
+    "meanAbsPremultipliedRGB255": 0.5730740056348309,
+    "binaryAlphaDisagreementPixels": 1959,
     "nativeHoles": {
       "count": 354,
       "pixels": 1241,
       "largestPixels": 155
     },
     "optimizedHoles": {
-      "count": 34,
-      "pixels": 700,
-      "largestPixels": 146
+      "count": 17,
+      "pixels": 637,
+      "largestPixels": 138
     }
   },
   "reeds": {
@@ -29,22 +39,32 @@
       "meanAbsPremultipliedRGB255": 2.535773636449749,
       "binaryAlphaDisagreementPixels": 4825
     },
+    "nativeVsOptimizedSemanticROI": {
+      "bounds": [
+        100,
+        70,
+        560,
+        300
+      ],
+      "meanAbsAlpha255": 2.0061625708884687,
+      "binaryAlphaDisagreementPixels": 648
+    },
     "renderPixels": [
       600,
       575
     ],
-    "meanAbsAlpha255": 1.7010840579710145,
-    "meanAbsPremultipliedRGB255": 0.30571447570332483,
-    "binaryAlphaDisagreementPixels": 1732,
+    "meanAbsAlpha255": 2.4772057971014494,
+    "meanAbsPremultipliedRGB255": 0.5309257705787629,
+    "binaryAlphaDisagreementPixels": 2882,
     "nativeHoles": {
       "count": 557,
       "pixels": 4989,
       "largestPixels": 3840
     },
     "optimizedHoles": {
-      "count": 305,
-      "pixels": 4212,
-      "largestPixels": 3731
+      "count": 136,
+      "pixels": 3853,
+      "largestPixels": 3664
     }
   },
   "rocks": {
@@ -53,22 +73,32 @@
       "meanAbsPremultipliedRGB255": 2.704914370616719,
       "binaryAlphaDisagreementPixels": 1340
     },
+    "nativeVsOptimizedSemanticROI": {
+      "bounds": [
+        100,
+        140,
+        540,
+        275
+      ],
+      "meanAbsAlpha255": 5.321363636363636,
+      "binaryAlphaDisagreementPixels": 756
+    },
     "renderPixels": [
       600,
       283
     ],
-    "meanAbsAlpha255": 2.3648233215547703,
-    "meanAbsPremultipliedRGB255": 0.39254258373942436,
-    "binaryAlphaDisagreementPixels": 861,
+    "meanAbsAlpha255": 2.7585335689045936,
+    "meanAbsPremultipliedRGB255": 0.5686364581168156,
+    "binaryAlphaDisagreementPixels": 1133,
     "nativeHoles": {
       "count": 374,
       "pixels": 1410,
       "largestPixels": 559
     },
     "optimizedHoles": {
-      "count": 58,
-      "pixels": 878,
-      "largestPixels": 532
+      "count": 21,
+      "pixels": 791,
+      "largestPixels": 515
     }
   },
   "marker": {
@@ -77,22 +107,32 @@
       "meanAbsPremultipliedRGB255": 2.707537966948297,
       "binaryAlphaDisagreementPixels": 4057
     },
+    "nativeVsOptimizedSemanticROI": {
+      "bounds": [
+        160,
+        40,
+        440,
+        320
+      ],
+      "meanAbsAlpha255": 5.437831632653062,
+      "binaryAlphaDisagreementPixels": 1400
+    },
     "renderPixels": [
       600,
       451
     ],
-    "meanAbsAlpha255": 2.2634626755358465,
-    "meanAbsPremultipliedRGB255": 0.3716748981928322,
-    "binaryAlphaDisagreementPixels": 1740,
+    "meanAbsAlpha255": 3.139937176644494,
+    "meanAbsPremultipliedRGB255": 0.6487184277012111,
+    "binaryAlphaDisagreementPixels": 2788,
     "nativeHoles": {
       "count": 454,
       "pixels": 1373,
       "largestPixels": 93
     },
     "optimizedHoles": {
-      "count": 234,
-      "pixels": 530,
-      "largestPixels": 18
+      "count": 136,
+      "pixels": 250,
+      "largestPixels": 7
     }
   }
 }

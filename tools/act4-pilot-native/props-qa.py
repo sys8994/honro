@@ -15,7 +15,10 @@ for n in ['pine','reeds','rocks','marker']:
  source=np.array(Image.open(P/'concept.png').convert('RGBA').crop((x,y,x+w0,y+h0)).resize((a.shape[1],a.shape[0]),Image.Resampling.LANCZOS))
  sa=source[:,:,3];sp=source[:,:,:3].astype(float)*sa[:,:,None]/255
  source_diff={'meanAbsAlpha255':float(np.abs(sa.astype(float)-aa).mean()),'meanAbsPremultipliedRGB255':float(np.abs(sp-pa).mean()),'binaryAlphaDisagreementPixels':int(np.count_nonzero((sa>=128)!=(aa>=128)))}
- out[n]={'sourcePNGvsNative':source_diff,'renderPixels':[int(a.shape[1]),int(a.shape[0])],'meanAbsAlpha255':float(np.abs(aa.astype(float)-bb).mean()),'meanAbsPremultipliedRGB255':float(np.abs(pa-pb).mean()),'binaryAlphaDisagreementPixels':int(np.count_nonzero((aa>=128)!=(bb>=128))),'nativeHoles':holes(aa),'optimizedHoles':holes(bb)}
+ roi={'pine':(100,20,520,220),'reeds':(100,70,560,300),'rocks':(100,140,540,275),'marker':(160,40,440,320)}[n]
+ x0,y0,x1,y1=roi;ar=aa[y0:y1,x0:x1];br=bb[y0:y1,x0:x1]
+ roi_metrics={'bounds':roi,'meanAbsAlpha255':float(np.abs(ar.astype(float)-br).mean()),'binaryAlphaDisagreementPixels':int(np.count_nonzero((ar>=128)!=(br>=128)))}
+ out[n]={'sourcePNGvsNative':source_diff,'nativeVsOptimizedSemanticROI':roi_metrics,'renderPixels':[int(a.shape[1]),int(a.shape[0])],'meanAbsAlpha255':float(np.abs(aa.astype(float)-bb).mean()),'meanAbsPremultipliedRGB255':float(np.abs(pa-pb).mean()),'binaryAlphaDisagreementPixels':int(np.count_nonzero((aa>=128)!=(bb>=128))),'nativeHoles':holes(aa),'optimizedHoles':holes(bb)}
  # Composite on checkerboard; both use the exact same viewport.
  h,w=aa.shape; im=Image.new('RGB',(2*w,h+25));d=ImageDraw.Draw(im)
  for ox in (0,w):

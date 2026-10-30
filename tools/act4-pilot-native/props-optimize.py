@@ -56,12 +56,12 @@ def emit(out,geom,fill,label,small=1,hole_small=None):
   if len(cur)+len(d)>55000 and cur:chunks.append(cur);cur=''
   cur+=d
  if cur:chunks.append(cur)
- for i,d in enumerate(chunks):E.SubElement(out,'{'+S+'}path',id=label+'-'+str(i),style='fill:'+fill+';fill-rule:evenodd',d=d)
+ for i,d in enumerate(chunks):E.SubElement(out,'{'+S+'}path',id=label+'-'+str(i),style='fill:'+fill+';fill-rule:evenodd;stroke:'+fill+';stroke-width:0.2;stroke-linejoin:round',d=d)
  return dict(removed=removed,filled=filled,maxExteriorDistance=maxerr,paths=len(chunks))
 for name in ['pine','reeds','rocks','marker']:
  d=P/name; raw=E.parse(d/'raw.svg').getroot();out=E.Element(raw.tag,raw.attrib)
  subprocess.run(['node',str(H/'act4-pilot-native/props-union.mjs'),str(d/'raw.svg'),'/tmp/props-'+name+'-union.json'],check=True)
- u=json.load(open('/tmp/props-'+name+'-union.json')); report={'nativeUnionBounds':u['bounds'],'layers':[],'flatten':.1,'simplify':.15,'minimumComponentOrHoleArea':1,'paletteRevision':None,'underfill':'native union, no expansion; holes under 50 source px² filled','artApproval':'PENDING'}
+ u=json.load(open('/tmp/props-'+name+'-union.json')); report={'nativeUnionBounds':u['bounds'],'layers':[],'flatten':.1,'simplify':.15,'minimumComponentOrHoleArea':1,'paletteRevision':None,'sameFillStrokeSourceWidth':0.2,'underfill':'native union, no expansion; holes under 50 source px² filled','artApproval':'PENDING'}
  report['underfillMetrics']=emit(out,geometry(u['d'],True),'#132138','underfill',1,50)
  for e in raw:
   color=e.get('style').split(':')[1]; report['layers'].append({'color':color,**emit(out,geometry(e.get('d')),color,e.get('id'),1)})
