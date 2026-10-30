@@ -293,3 +293,19 @@ RNG, invoke damage, or synthesize critical classifications. The activity unit
 checks provenance snapshots and absence of inferred criticals. End-to-end hit
 logging will be checked on the next authorized calibration; this change does not
 retroactively fill missing old data.
+
+
+### Controller competence boundary before full-round v4 calibration
+v4 does NOT implement general multi-layer pathfinding. It steers toward the
+current observed enemy/objective x, jumps after12 near-stationary decisions or
+nearby upward goals, and only attempts drop near a downward goal. High-route is
+a nearest forward upper-platform heuristic, not a connectivity/clearance graph.
+It may fail on an easy but indirect route, or end a turn after airborne charge
+rejection. These are controller limitations, not evidence to simplify geometry
+or label the candidate too difficult. Full-round snapshots now preserve active
+support, grounded/input/action state, move budget, jump cost, drop state and
+distance to the selected current goal so these cases can be separated.
+Before holdout, a new version should choose routes from public terrain/supports
+and current actor physics, with generic support connectivity/clearance checks;
+no per-stage victory coordinate tape, hidden enemies or future combat oracle.
+Do not copy authored geometry probe success trajectories into the controller.
