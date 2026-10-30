@@ -76,3 +76,6 @@ Root visually approved the v3 support silhouette to proceed to physics, NOT whol
 
 ### F11 seam-controller correction (static)
 Use an interior movement target (35 world inset, bounded by support width) for explicit walk transitions instead of the microprobe's first-contact coordinate. This removes the mismatch between first-contact arrival and1px movement deadband without changing any body pose/collider/budget. Jump/drop destinations are untouched. Pure target regression passes; actual Engine rerun still pending and previous3/4 evidence remains preserved.
+
+### F11 single-facet measured result
+Root visually approved the one-support facet study for local validation. Actual Engine incoming/outgoing12/12 and per-body bidirectional walk8/8 pass with h92/r22, no HP loss; setup pose only, no mid-route edits. Candidate SHAea9d04eae54b6d1cd784d0c00ca4e5e2bf4325ff28b4089478a6401ace70e3b7. Original metric normal desktop27.65% / mobile43.36%; maximum91.66–98.90%; minimum0% is low-scale diagnostic only. Fixed-physical-window results27.65%/43.36% invariant across zoom. The mobile hardcap and desktop target remain failed. Do not add corners solely to reduce them. Compact reproducible receipt is evidence/stage31-west-ledge-facet-study.json; full ignored artifacts remain in west-ledge-facet-candidate.

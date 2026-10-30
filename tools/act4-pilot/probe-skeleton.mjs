@@ -9,9 +9,10 @@ const g=await runtime({legacyMaps:false}),C=g.HONRO_CORE,profile=C.defaults();g.
 const compiled=g.HonroMaps.compile(stage,{...g.HONRO_PROJECT,stages:[stage]});b.terrain=compiled.terrain;b.width=stage.width;b.height=stage.height;b.projectiles=[];b.units=[];b.phase='aim';b.side=0;e.checkEnd=()=>false;
 const stageSHA256=createHash('sha256').update(JSON.stringify(stage)).digest('hex');
 const rows=[],links=[...new Map([...spec.routes.flatMap(r=>r.supports.slice(1).map((z,i)=>[[r.supports[i],z].join('>'),[r.supports[i],z]])),...(spec.tacticalBays||[]).flatMap(b=>[[b.fromSupport+'>'+b.id,[b.fromSupport,b.id]],[b.id+'>'+b.rejoinSupport,[b.id,b.rejoinSupport]]])]).values()];
+const selectedSupport=process.argv.find(a=>a.startsWith('--support='))?.slice(10),probeLinks=selectedSupport?links.filter(([from,to])=>from===selectedSupport||to===selectedSupport):links;
 const support=id=>b.terrain.find(t=>t.id===`pilot${n}-${id}`),floor=(id,x)=>C.terrainSurfaces(support(id),x).filter(q=>Math.abs(q.slope)<=1.35).sort((a,z)=>a.y-z.y)[0]?.y;
 if(process.argv.includes('--continuous-only')){const saved=JSON.parse(await readFile(dir+'/kinematics.json'));if(saved.stageSHA256!==stageSHA256)throw Error('Prior link probes do not match this exact geometry');rows.push(...saved.rows);}
-for(const [from,to]of (process.argv.includes('--continuous-only')?[]:links)){const a=spec.surfaces.find(s=>s.id===from),z=spec.surfaces.find(s=>s.id===to),ax1=a.top[0][0]+25,ax2=a.top.at(-1)[0]-25,zx1=z.top[0][0]+35,zx2=z.top.at(-1)[0]-35,clamp=(v,l,h)=>Math.max(l,Math.min(h,v));
+for(const [from,to]of (process.argv.includes('--continuous-only')?[]:probeLinks)){const a=spec.surfaces.find(s=>s.id===from),z=spec.surfaces.find(s=>s.id===to),ax1=a.top[0][0]+25,ax2=a.top.at(-1)[0]-25,zx1=z.top[0][0]+35,zx2=z.top.at(-1)[0]-35,clamp=(v,l,h)=>Math.max(l,Math.min(h,v));
  const starts=[clamp(zx1-170,ax1,ax2),clamp(zx2+170,ax1,ax2),clamp((zx1+zx2)/2,ax1,ax2),ax1,ax2,clamp(zx1,ax1,ax2),clamp(zx2,ax1,ax2)],targets=[zx1,zx2,(zx1+zx2)/2,clamp(ax1,zx1,zx2),clamp(ax2,zx1,zx2),clamp((ax1+ax2)/2,zx1,zx2),clamp(ax1-100,zx1,zx2),clamp(ax2+100,zx1,zx2)],pairs=[];
  for(const x of starts)for(const tx of targets){const y=floor(from,x),ty=floor(to,tx);if(y!==undefined&&ty!==undefined&&!(spec.connections?.find(c=>c.fromSupport===from&&c.toSupport===to)?.mode==='drop'&&ty-y<120)&&y-ty<215&&Math.abs(tx-x)<950)pairs.push({x,y,tx,ty,cost:Math.hypot(tx-x,ty-y)});}pairs.sort((a,z)=>a.cost-z.cost);
  for(const template of original){let success=null,attempts=[];
@@ -26,6 +27,25 @@ for(const [from,to]of (process.argv.includes('--continuous-only')?[]:links)){con
 }
 await writeFile(dir+'/kinematics.json',JSON.stringify({stageSHA256,scope:'Actual Engine jump/walk/body/contact on authored geometry. Each edge starts from a declared valid support pose. No route continuity, combat, GUI or aggregate movement-count claim.',rows},null,2));
 console.log(JSON.stringify({passed:rows.filter(x=>x.passed).length,total:rows.length}));
+
+// Focused support traversal starts once per body/direction. No intermediate pose edits.
+if(selectedSupport){
+ const f=spec.surfaces.find(f=>f.id===selectedSupport),walks=[];
+ for(const template of original)for(const direction of [1,-1]){
+  const x=direction===1?f.top[0][0]+35:f.top.at(-1)[0]-35,target=direction===1?f.top.at(-1)[0]-35:f.top[0][0]+35;
+  const u=structuredClone(template);Object.assign(u,{x,y:floor(selectedSupport,x),vx:0,vy:0,jumping:false,airborne:false,acted:false});delete u.platformDrop;b.units=[u];b.active=u.id;b.phase='aim';b.side=0;
+  const before={x:u.x,y:u.y,h:u.h,r:u.r,hp:u.hp,moveLeft:u.moveLeft},validStart=C.validTerrainContactPose(b.terrain,u),trail=[];let frames=0;
+  for(;validStart&&frames<1000;frames++){
+   e.move(Math.sign(target-u.x)*Math.min(1,Math.abs(target-u.x)/(u.walkSpeed*C.STEP)),C.STEP);e.integrateBody(u,C.STEP);
+   if(frames%6===0)trail.push({x:u.x,y:u.y,grounded:e.grounded(u)});
+   if(Math.abs(target-u.x)<2&&e.grounded(u))break;
+  }
+  const supportId=e.contactSurface(u.x,u.y-.2,u.y+.2)?.t?.id;
+  walks.push({cls:u.cls,direction,validStart,before,target,frames,end:{x:u.x,y:u.y,hp:u.hp,moveLeft:u.moveLeft},supportId,passed:validStart&&Math.abs(target-u.x)<2&&e.grounded(u)&&supportId===`pilot${n}-${selectedSupport}`&&u.hp===before.hp,trail});
+ }
+ const result={stageSHA256,scope:'Single support actual Engine fixture; per-edge poses and per-direction initial pose are explicit setup, no normal route/combat/art claim.',support:selectedSupport,edges:{passed:rows.filter(r=>r.passed).length,total:rows.length},walks};
+ await writeFile(dir+'/focused-support.json',JSON.stringify(result,null,2));console.log(JSON.stringify({...result,walks:walks.map(({trail,...r})=>r)}));process.exit(0);
+}
 
 // Separate continuous geometry route: fresh entrance once per production body,
 // actual finishAction/tick round replenishment, no intermediate pose/budget edits.
