@@ -39,19 +39,6 @@
   "terrain": null
  },
  {
-  "name": "body-shore",
-  "layer": "BODY",
-  "module": "shore",
-  "bounds": [
-   -1604,
-   7336,
-   7804,
-   8304
-  ],
-  "paths": 6,
-  "terrain": "pilot34-shore"
- },
- {
   "name": "body-west-cliff",
   "layer": "BODY",
   "module": "west-cliff",
@@ -102,6 +89,19 @@
   ],
   "paths": 7,
   "terrain": "pilot34-east-cliff"
+ },
+ {
+  "name": "body-shore",
+  "layer": "BODY",
+  "module": "shore",
+  "bounds": [
+   -1604,
+   7336,
+   7804,
+   8304
+  ],
+  "paths": 6,
+  "terrain": "pilot34-shore"
  },
  {
   "name": "body-terrace-boulder",

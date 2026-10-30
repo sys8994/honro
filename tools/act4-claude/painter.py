@@ -276,7 +276,8 @@ class Painter:
         self.clip('BODY', poly, band(lambda x: 5), SAGE_LIP)
 
     def paint_solids(self):
-        for s in self.solids.values():
+        # Earth (ground) last: it covers the buried feet of rock standing on it.
+        for s in sorted(self.solids.values(), key=lambda s: s['kind'] == 'earth'):
             self.module(s['id'])
             if s['kind'] == 'earth':
                 poly = s['poly']

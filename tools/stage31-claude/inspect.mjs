@@ -24,7 +24,7 @@ const stage=JSON.parse(await readFile(geo,'utf8'));
 // behind (structural-back), REAR reeds (prop), FORE after actors (front).
 const index=JSON.parse(await readFile(`${assets}/index.json`,'utf8')),passOf={structure:'structural-back',body:'mid',rear:'prop',front:'front'},nativeOf={STRUCT:'structure',BODY:'body',SURFACE:'body',REAR:'rear',FORE:'front'};
 const library=[];for(const r of index)library.push(JSON.parse(await readFile(r.asset,'utf8')));
-const elements=index.map(r=>{const n=nativeOf[r.layer],e={id:`s${N}c-`+r.name,assetId:r.assetId,x:0,y:0,scale:1,rotation:0,snap:false,depthLayer:'L1',nativeArtLayer:n,layer:passOf[n]};if(r.terrain){if(!stage.terrains.some(t=>t.id===r.terrain))throw Error('Unknown collider '+r.terrain);e.nativeTerrainIds=[r.terrain];}return e;});
+const elements=index.filter(r=>!r.libraryOnly).map(r=>{const n=nativeOf[r.layer],e={id:`s${N}c-`+r.name,assetId:r.assetId,x:0,y:0,scale:1,rotation:0,snap:false,depthLayer:'L1',nativeArtLayer:n,layer:passOf[n]};if(r.terrain){if(!stage.terrains.some(t=>t.id===r.terrain))throw Error('Unknown collider '+r.terrain);e.nativeTerrainIds=[r.terrain];}return e;});
 const owned=elements.flatMap(e=>e.nativeTerrainIds||[]);
 stage.elements=[...elements,...stage.elements];
 stage.design.nativeArt={version:1,coveredTerrainIds:owned,...(arg('far')?{far:arg('far')}:{}),preservePalette:true,author:'claude-direct-vector',status:'candidate; not accepted'};
