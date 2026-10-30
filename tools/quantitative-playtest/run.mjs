@@ -12,6 +12,7 @@ import {CONTRACT,foesFor,movementGoal,previewAim,selectSkill,engagementDistance}
 import {EnemyActivity,acceptedDrop,hitObservation} from './activity.mjs';
 import {adapter} from './adapter.mjs';
 import {RouteFollower} from './navigation.mjs';
+import {PublicExplorer,publicObjective} from './exploration.mjs';
 import {rng,summarize} from './stats.mjs';
 const [stageText='31',policy='advance',seedText='1',out='_local/reports/quantitative-playtest',frameText='600',wallText='60']=process.argv.slice(2);
 const stage=Number(stageText),seed=Number(seedText),maxFrames=Number(frameText),maxWallSeconds=Number(wallText);
@@ -21,7 +22,7 @@ await mkdir(out,{recursive:true});const runId=randomUUID(),raw=createGzip();cons
 const hash=createHash('sha256'),files=execFileSync('git',['ls-files','shared','game/config','game/src','game/engine','game/vendor','tools/quantitative-playtest','tools/stage31/app-adapter.mjs','tests/app-regression-helpers.mjs','tests/stage18-bell-fullplay-helper.mjs','game/tests/helpers.mjs'],{encoding:'utf8'}).trim().split('\n').filter(Boolean);
 // Untracked new controller files are included too, before the first commit.
 for(const file of new Set([...files,...CONTROLLER_FILES,'tools/quantitative-playtest/run.mjs','tools/quantitative-playtest/adapter.mjs','tools/quantitative-playtest/stats.mjs','tools/quantitative-playtest/policy.mjs','tools/quantitative-playtest/act4-adapter.mjs']))hash.update(file+'\0').update(await readFile(file));
-const sourceHash=hash.digest('hex'),random=rng(seed),started=performance.now();let cancelled=false;process.on('SIGTERM',()=>{cancelled=true;});process.on('SIGINT',()=>{cancelled=true;});let frame=0,simSeconds=0,outcome='timeout',reason='frame budget',a,b,e,g,navigator,lastNavigation=null,charge=null,decision=null;
+const sourceHash=hash.digest('hex'),random=rng(seed),started=performance.now();let cancelled=false;process.on('SIGTERM',()=>{cancelled=true;});process.on('SIGINT',()=>{cancelled=true;});let frame=0,simSeconds=0,outcome='timeout',reason='frame budget',a,b,e,g,navigator,explorer,publicState=null,lastNavigation=null,charge=null,decision=null;
 await writeFile(`${out}/${runId}.attempt.json`,JSON.stringify({runId,stage,policy,seed,sourceHash,maxFrames,maxWallSeconds,status:'started-not-finalized',note:'If no summary exists, process termination is an error/incomplete attempt, never a completed gameplay run.'},null,2));
 const metrics={dropAttempts:0,dropAccepted:0,effectiveDrops:0,byHero:{},jumpAttempts:0,jumpAccepted:0,landings:0,elevatedSupportLandings:0,horizontalDistance:0,ascent:0,descent:0,totalUniqueEnemies:0,maxLivingEnemies:0,maxAwakeEnemies:0,maxActingEnemiesPerRound:0,engagedEnemyIds:[],enemyFirstDamageRound:{},enemyDeathRound:{},observedNetHeroHpLoss:0,observedNetHeroShieldLoss:0,focusSpent:0,focusRecovered:0,visitedSupports:[],altitudeMin:null,altitudeMax:null};
 const engagedEnemies=new Set(),seenTransitions=new Set(),seenEnemies=new Set(),supports=new Set(),previous=new Map(),jumps=new Map(),enemyPositions=new Map(),activity=new EnemyActivity();
@@ -42,13 +43,13 @@ async function observe(){
   }
   if(s)supports.add(s);metrics.altitudeMin=metrics.altitudeMin===null?u.y:Math.min(metrics.altitudeMin,u.y);metrics.altitudeMax=metrics.altitudeMax===null?u.y:Math.max(metrics.altitudeMax,u.y);previous.set(u.id,v);
  }
- if(frame%CONTRACT.snapshotFrames===0){const memory={frame,...process.memoryUsage()};process.stderr.write(JSON.stringify({frameMemory:memory})+'\n');await emit('memory',memory);await emit('snapshot',{decision,routeIntention:lastNavigation,navigation:e.active?{actor:e.active.id,canInput:a.app.canInput(),canAct:e.canAct(),grounded:e.grounded(e.active),support:support(e.active),moveLeft:e.active.moveLeft,jumpCost:e.jumpCost(e.active),platformDrop:e.active.platformDrop??null,distanceToSelectedGoal:decision?.destination?Math.hypot(e.active.x-decision.destination.x,e.active.y-decision.destination.y):null}:null,residents:b.units.filter(u=>u.honroAct4Resident).map(u=>({id:u.id,x:u.x,y:u.y,hp:u.hp,dead:u.dead,grounded:e.grounded(u)})),objective:b.honroAct4PreviewState,phase:b.phase,active:b.active,keys:[...a.app.keys],stick:{...a.app.stick},charging:a.app.charging,selected:a.app.selected,angle:e.active?.angle,simSeconds,heroes:[...previous.values()],enemies:enemies.filter(alive).map(u=>({id:u.id,x:u.x,y:u.y,awake:!!u.awake})),items:b.items});await flush();}
+ if(frame%CONTRACT.snapshotFrames===0){const memory={frame,...process.memoryUsage()};process.stderr.write(JSON.stringify({frameMemory:memory})+'\n');await emit('memory',memory);await emit('snapshot',{decision,publicObjective:publicState,exploration:explorer?.summary(),routeIntention:lastNavigation,navigation:e.active?{actor:e.active.id,canInput:a.app.canInput(),canAct:e.canAct(),grounded:e.grounded(e.active),support:support(e.active),moveLeft:e.active.moveLeft,jumpCost:e.jumpCost(e.active),platformDrop:e.active.platformDrop??null,distanceToSelectedGoal:decision?.destination?Math.hypot(e.active.x-decision.destination.x,e.active.y-decision.destination.y):null}:null,residents:b.units.filter(u=>u.honroAct4Resident).map(u=>({id:u.id,x:u.x,y:u.y,hp:u.hp,dead:u.dead,grounded:e.grounded(u)})),objective:b.honroAct4PreviewState,phase:b.phase,active:b.active,keys:[...a.app.keys],stick:{...a.app.stick},charging:a.app.charging,selected:a.app.selected,angle:e.active?.angle,simSeconds,heroes:[...previous.values()],enemies:enemies.filter(alive).map(u=>({id:u.id,x:u.x,y:u.y,awake:!!u.awake})),items:b.items});await flush();}
 }
 async function input(type,fn,detail={}){const value=fn();await emit('input',{op:type,...detail,returned:value??null});return value;}
 try{
  const freeze=process.env.HONRO_HOLDOUT_MANIFEST?await checkFreeze(process.env.HONRO_HOLDOUT_MANIFEST,{stage,policy,seed,maxFrames,maxWallSeconds}):null;
  await emit('run-start',{stage,policy,seed,sourceHash,sourceCommit:execFileSync('git',['rev-parse','HEAD'],{encoding:'utf8'}).trim(),maxFrames,maxWallSeconds,controllerContract:CONTRACT,controllerHash:await controllerHash(),evaluation:freeze?{kind:'frozen-holdout',manifest:freeze}:{kind:'mechanics-calibration'},seedContract:'Policy RNG only; production battle seed untouched. Same seed repeated is not independent evidence.'});
- a=await adapter(stage);({g}=a);e=a.app.engine;b=e.b;navigator=new RouteFollower(g.HONRO_CORE);
+ a=await adapter(stage);({g}=a);e=a.app.engine;b=e.b;navigator=new RouteFollower(g.HONRO_CORE);explorer=new PublicExplorer(g.HONRO_CORE);
  await emit('entry',{entryBuild:a.entryBuild,training:a.training,scope:a.scope,profile:Object.fromEntries(['revision','heroes','party','recruited','loadouts','equipment','settings','lastStage','cleared'].map(k=>[k,a.app.profile[k]])),officialIdentity:a.officialIdentity,setupMemory:a.setupMemory,battleSeed:b.seed,map:{width:b.width,height:b.height,aspectRatio:b.width/b.height,playBounds:b.honroPlayBounds??b.playBounds??{left:0,top:0,right:b.width,bottom:b.height}},initial:{phase:b.phase,round:b.round,side:b.side,units:b.units.map(u=>({id:u.id,cls:u.cls,side:u.side,x:u.x,y:u.y,hp:u.hp,maxHp:u.maxHp,focus:u.focus,loadout:u.loadout,level:u.level,attack:u.attack,armor:u.armor,ranks:u.ranks,equipment:u.equipment,facing:u.facing,honroPilotBudgetBasis:u.honroPilotBudgetBasis})),objective:b.honroAct4PreviewState}});await flush();
  // Passive wrappers preserve exact calls/return values. No prediction, cloned combat or live state writes.
  const tick=e.tick.bind(e);e.tick=(dt,...rest)=>{const result=tick(dt,...rest);simSeconds+=dt;return result;};
@@ -70,19 +71,20 @@ try{
   else if(charge){if(!app.charging)charge=null;else if(a.now()>=charge.until){await input('release-charge',()=>app.releaseCharge());charge=null;decisionAt=frame+30;}}
   else if(app.canInput()&&u?.side===0){
    const view=g.HonroBounds.viewport(app.scene,app.scene.canvas.clientWidth,app.scene.canvas.clientHeight),foes=foesFor(b,u,stage,view,v=>g.HonroAct2?.visible?.(b,v)!==false);
+   publicState=publicObjective(g.HonroObjectives.state(b,app.stage).currentInstruction);explorer.observe(b,u,view,foes);
    const marker=b.honroMarkers?.find(m=>g.HonroInteractions?.eligibility(app,m)?.ok);
    if(stage>=31&&g.HonroAct4TerrainPreview.interact(app,true)){await input('interact',()=>a.interact());decisionAt=frame+15;}
    else if(marker&&(policy==='gimmick'||!foes.length)){await input('interact',()=>g.HonroInteractions.use(app,marker),{marker:marker.id});decisionAt=frame+15;}
    else if(frame>=decisionAt){
     const target=foes[0],dist=target?Math.hypot(target.x-u.x,target.y-u.y):Infinity;
-    const destination=movementGoal(b,u,target,stage,policy),goal=destination.x;decision={actor:u.id,targetId:target?.id??null,destination,view,visibleEnemyIds:foes.map(v=>v.id)};
-    if(destination.kind==='objective-unavailable'){outcome='error';reason='Controller blocked: '+destination.reason;break;}
+    const destination=!target&&publicState.requiresThreatSearch?explorer.choose(b,u,publicState,{grounded:e.grounded(u)}):movementGoal(b,u,target,stage,policy,publicState),goal=destination.x;decision={actor:u.id,targetId:target?.id??null,destination,view,visibleEnemyIds:foes.map(v=>v.id)};
+    if(['objective-unavailable','exploration-exhausted','search-threats'].includes(destination.kind)){outcome='error';reason='Controller blocked: '+destination.reason;break;}
     const q=b.honroAct4PreviewState;
     if(q?.stabilizing?.actor===u.id||q?.releasing?.actor===u.id){a.tick();frame++;while(pending.length)await emit('engine-event',pending.shift());await recordInput();await observe();continue;}
     const id=selectSkill(e,u,g.HONRO_CORE.SKILLS,policy),desired=engagementDistance(policy,u,g.HONRO_CORE.SKILLS[id]);
     const move=u.moveLeft>20&&(dist>desired||!target||destination.kind==='high-route'||stage===39&&destination.kind!=='enemy');
     if(move||!e.grounded(u)){
-     const intent=navigator.intention(e,u,destination,{range:destination.kind==='enemy'?desired*.85:24,approach:destination.kind!=='enemy'});lastNavigation={actor:u.id,kind:intent.kind,reason:intent.reason,step:intent.step,approachOnly:intent.approachOnly,plan:intent.plan?{status:intent.plan.status,cost:intent.plan.cost,visited:intent.plan.visited,nodes:intent.plan.nodes}:null};
+     const intent=navigator.intention(e,u,destination,{range:destination.kind==='enemy'?desired*.85:24,approach:!['enemy','explore'].includes(destination.kind)});lastNavigation={actor:u.id,kind:intent.kind,reason:intent.reason,step:intent.step,approachOnly:intent.approachOnly,plan:intent.plan?{status:intent.plan.status,cost:intent.plan.cost,visited:intent.plan.visited,nodes:intent.plan.nodes}:null};
      if(intent.kind==='blocked'){outcome='error';reason='Controller navigation blocked: '+intent.reason;await emit('controller-blocked',lastNavigation);break;}
      if(['walk','air-control','jump'].includes(intent.kind))app.stick.x=intent.direction||0;
      if(intent.kind==='jump'||intent.kind==='drop'){

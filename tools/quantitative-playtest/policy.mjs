@@ -1,6 +1,7 @@
 /** State-reactive input policy. No battle clones, damage forecasts or saved route tapes. */
-export const CONTRACT=Object.freeze({version:'pilot-controller-v5-support-navigation-calibration',status:'calibration-not-holdout',navigation:'public support graph; physics-only body locomotion checks; no combat clone, hidden actor or authored path tape',policies:['ranged-hold','advance','high-route','gimmick','companions'],angleErrorDegrees:6,powerError:.07,maxCombatRounds:20,snapshotFrames:120,preview:'ordinary Engine.predict points only; 25 fixed aim candidates per action',entry:'plan(stage).entryLevel, six legal stat investments, three legal training attempts per chosen skill, default starter equipment; no earned-history claim'});
-export function objective(b,u,stage){
+export const CONTRACT=Object.freeze({version:'pilot-controller-v6-public-objective-exploration-calibration',status:'calibration-not-holdout',navigation:'public support graph; physics-only body locomotion checks; no combat clone, hidden actor or authored path tape',policies:['ranged-hold','advance','high-route','gimmick','companions'],angleErrorDegrees:6,powerError:.07,maxCombatRounds:20,snapshotFrames:120,preview:'ordinary Engine.predict points only; 25 fixed aim candidates per action',entry:'plan(stage).entryLevel, six legal stat investments, three legal training attempts per chosen skill, default starter equipment; no earned-history claim'});
+export function objective(b,u,stage,publicState={}){
+ if(publicState.requiresThreatSearch)return {x:u.x,y:u.y,kind:"search-threats",remainingThreats:publicState.remainingThreats,source:"public-objective-instruction"};
  const q=b.honroAct4PreviewState||{},cfg=b.honroAct4Design||{};
  if(stage===39){const r=cfg.rescue;if(r){if(!q.exitStable)return {...r.anchor,kind:'stabilize'};if(!q.netOpen)return {...r.net,kind:'release-net'};return {x:r.exit-100,y:r.net.y,kind:'rescue-exit'};}}
  if(stage===31){
@@ -18,8 +19,8 @@ export function foesFor(b,u,stage,view,isVisible=()=>true){
  if(!view||![view.left,view.right,view.top,view.bottom].every(Number.isFinite))return [];
  return b.units.filter(v=>v.side===1&&!v.dead&&v.hp>0&&!v.eaterCapturedBy&&!v.honroObjectiveTarget&&!v.hidden&&isVisible(v)&&!(stage===39&&v.id==='a4-wreck')&&v.x+(v.r||20)>=view.left&&v.x-(v.r||20)<=view.right&&v.y>=view.top&&v.y-(v.h||80)<=view.bottom).sort((a,c)=>Math.hypot(a.x-u.x,a.y-u.y)-Math.hypot(c.x-u.x,c.y-u.y));
 }
-export function movementGoal(b,u,target,stage,policy){
- const goal=objective(b,u,stage),priority=stage===39&&(policy==='gimmick'||!target||Math.abs(target.x-u.x)>650);
+export function movementGoal(b,u,target,stage,policy,publicState={}){
+ const goal=objective(b,u,stage,publicState),priority=stage===39&&(policy==='gimmick'||!target||Math.abs(target.x-u.x)>650);
  let p=target&&!priority?{x:target.x,y:target.y,kind:'enemy'}:goal;
  if(policy==='high-route'&&target){const dir=Math.sign(p.x-u.x);const t=b.terrain.filter(t=>!t.broken&&t.w&&Math.sign(t.x+t.w/2-u.x)===dir&&Math.abs(t.x+t.w/2-u.x)<500&&t.y<u.y-50&&t.y>u.y-260).sort((a,c)=>Math.abs(a.x+a.w/2-u.x)-Math.abs(c.x+c.w/2-u.x))[0];if(t)p={x:t.x+t.w/2,y:t.y,kind:'high-route'};}
  return p;

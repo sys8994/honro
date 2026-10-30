@@ -389,3 +389,29 @@ preview; never overwrite public/user records. The export fixture owns only an
 in-memory localStorage map. Root performs the actual mouse/keyboard GUI review.
 Option syntax and adapter source checks pass; final export/import is intentionally
 not executed yet, to avoid regenerating a stale pre-art candidate.
+
+### P08: boarding coordinates before the public kill-all objective is satisfied
+Cause: v5 resolved31 to the dock from the start. On a layered map it could take
+the lower shortcut and never discover upper threats. Do not run a long v5 cohort
+with that known objective mismatch, or read hidden enemy coordinates to fix it.
+The production HUD already publishes “주변 위협을 제압하세요 · 남은 적 N명”
+(`HonroAct4Content.objectiveState`); its target-coordinate lists are empty.
+v6 consumes only that public instruction/count. With no currently visible foe
+and positive published count, it selects an unvisited, locomotion-reachable
+public support viewpoint instead of the dock. Exploration memory is formed from
+actual viewports, nearby visited supports with public-solid line clearance, and
+only passed-in visible enemy observations. Continuing an upper branch is favored
+over immediate descent, avoiding synthetic up/down oscillation. There is no
+stage-specific support order or stored route. Positive count with exhausted
+reachable viewpoints is a controller error, never mission completion. Once the
+published instruction changes to boarding, ordinary authored dock logic resumes.
+Regression: `tests/quantitative-playtest-exploration.mjs` invokes the production
+HUD function with hidden x/y getters that throw, and poisons world.units access
+inside exploration. In a lower-dock/upper-threat synthetic map, two real jumps
+reach x750/y280 before the moving camera first sees the unknown threat. The first
+sensor fixture was too vertically permissive; its log is retained separately,
+and the stronger fixture requires an elevated viewpoint and at least two jumps.
+All pose/HP/movement budgets remain unchanged after synthetic entry. The tests
+also cover public count parsing, no premature dock goal and exhausted search.
+Actual v6 candidate exploration and full clear remain unverified. v5 input sanity
+is retained, not relabeled as v6 proof. Aim/preset/uncertainty are unchanged.
