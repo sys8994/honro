@@ -1,0 +1,79 @@
+{
+  "scope": "Actual App entry complete terrain including instantiated element colliders; no renderer or movement. Exact physical-holder equality only.",
+  "stage": 38,
+  "runtimeSHA256": "264b42d9b85f63847877ad839c67365a9b63b06b34a27cf9c84d53d9307ece2e",
+  "before": {
+    "projectSHA256": "bb9de8498476cbc16e9725ca366c00b2cf14b197be24ab922be0734344c4a08a",
+    "terrainSHA256": "e3d87236a0d2cb51ee1491a71aa7f4372bbcafce18dc72008bf9b1d6f4fd7b5f",
+    "colliders": [
+      {
+        "id": "a4-38-land",
+        "mat": "rock",
+        "vertices": 79,
+        "oneWay": false,
+        "indestructible": true
+      },
+      {
+        "id": "a4-38-east",
+        "mat": "rock",
+        "vertices": 6,
+        "oneWay": false,
+        "indestructible": true
+      },
+      {
+        "id": "a4-38-cavern-roof",
+        "mat": "rock",
+        "vertices": 174,
+        "oneWay": false,
+        "indestructible": true
+      },
+      {
+        "id": "a4-38-emergency-ledges",
+        "mat": "rock",
+        "vertices": 9,
+        "oneWay": false,
+        "indestructible": true
+      }
+    ]
+  },
+  "after": {
+    "projectSHA256": "cdd46af844968be93af5edb71a3f7855d7a841d38c2a1045d6816aab8f614cda",
+    "terrainSHA256": "e3d87236a0d2cb51ee1491a71aa7f4372bbcafce18dc72008bf9b1d6f4fd7b5f",
+    "colliders": [
+      {
+        "id": "a4-38-land",
+        "mat": "rock",
+        "vertices": 79,
+        "oneWay": false,
+        "indestructible": true
+      },
+      {
+        "id": "a4-38-east",
+        "mat": "rock",
+        "vertices": 6,
+        "oneWay": false,
+        "indestructible": true
+      },
+      {
+        "id": "a4-38-cavern-roof",
+        "mat": "rock",
+        "vertices": 174,
+        "oneWay": false,
+        "indestructible": true
+      },
+      {
+        "id": "a4-38-emergency-ledges",
+        "mat": "rock",
+        "vertices": 9,
+        "oneWay": false,
+        "indestructible": true
+      }
+    ]
+  },
+  "sourceStillCurrent": {
+    "before": true,
+    "after": true
+  },
+  "exact": true,
+  "changed": []
+}

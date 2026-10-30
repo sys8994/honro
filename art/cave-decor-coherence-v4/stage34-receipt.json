@@ -1,0 +1,160 @@
+{
+  "source": "_local/reports/cave34-silhouette-v4/authored-candidate-v2.json",
+  "output": "_local/reports/cave-decor-coherence-v4/stage34-candidate-v1.json",
+  "sha256": "43edff3b1b6fda17a02a93784dba488d5c3d175be269b7fcabc4eea4e6c61cf0",
+  "removedNoncollidingL3Ridge": [
+    {
+      "id": "a4-coast-34-rear--1700",
+      "assetId": "a4-coast:ridge",
+      "depthLayer": "L3",
+      "groupId": "a4-coast-34-rear",
+      "supportId": "a4-coast-34-rear-support",
+      "x": -1700,
+      "y": 0,
+      "scale": 1.4,
+      "rotation": 0
+    },
+    {
+      "id": "a4-coast-34-rear-9700",
+      "assetId": "a4-coast:ridge",
+      "depthLayer": "L3",
+      "groupId": "a4-coast-34-rear",
+      "supportId": "a4-coast-34-rear-support",
+      "x": 9700,
+      "y": 0,
+      "scale": 0.8,
+      "rotation": 0
+    }
+  ],
+  "removedUnusedDecorGroups": [
+    "a4-coast-34-rear"
+  ],
+  "paletteMaps": {
+    "rock": {
+      "#909aa3": "#53697b",
+      "#79858e": "#53697b",
+      "#6f7a84": "#465c6f",
+      "#626d77": "#465c6f",
+      "#5c6771": "#465c6f",
+      "#4e5a63": "#394f62",
+      "#485259": "#394f62",
+      "#3a4349": "#2d4356",
+      "#363e42": "#2d4356"
+    },
+    "crack": {
+      "#aeb2b5": "#53697b",
+      "#949ca2": "#53697b",
+      "#889099": "#465c6f",
+      "#77828e": "#465c6f",
+      "#6b7685": "#465c6f",
+      "#576475": "#394f62",
+      "#495768": "#394f62",
+      "#364455": "#2b4052",
+      "#2c3848": "#2b4052",
+      "#212c3a": "#1c2d3e",
+      "#1b2533": "#1c2d3e"
+    }
+  },
+  "changes": [
+    {
+      "element": "a4-34-prop-1",
+      "oldAsset": "s34v:coastal-boulder",
+      "newAsset": "s34-coherent-v4:s34v-coastal-boulder"
+    },
+    {
+      "element": "a4-34-prop-2",
+      "oldAsset": "s34v:coastal-boulder",
+      "newAsset": "s34-coherent-v4:s34v-coastal-boulder"
+    },
+    {
+      "element": "a4-34-prop-3",
+      "oldAsset": "s34v:coastal-boulder",
+      "newAsset": "s34-coherent-v4:s34v-coastal-boulder"
+    },
+    {
+      "element": "a4-34-prop-4",
+      "oldAsset": "s34v:coastal-boulder",
+      "newAsset": "s34-coherent-v4:s34v-coastal-boulder"
+    },
+    {
+      "element": "a4-34-prop-5",
+      "oldAsset": "s34v:coastal-boulder",
+      "newAsset": "s34-coherent-v4:s34v-coastal-boulder"
+    },
+    {
+      "element": "a4-coast-34-art-6",
+      "oldAsset": "s34v:haul-footing",
+      "newAsset": "s34-coherent-v4:s34v-haul-footing"
+    },
+    {
+      "element": "a4-coast-34-art-7",
+      "oldAsset": "s34v:haul-footing",
+      "newAsset": "s34-coherent-v4:s34v-haul-footing"
+    },
+    {
+      "element": "a4-coast-34-art-8",
+      "oldAsset": "s34v:haul-footing",
+      "newAsset": "s34-coherent-v4:s34v-haul-footing"
+    },
+    {
+      "element": "a4-coast-34-art-9",
+      "oldAsset": "s34v:haul-footing",
+      "newAsset": "s34-coherent-v4:s34v-haul-footing"
+    },
+    {
+      "element": "a4-coast-34-art-10",
+      "oldAsset": "s34v:crack",
+      "newAsset": "s34-coherent-v4:s34v-crack"
+    },
+    {
+      "element": "a4-coast-34-art-11",
+      "oldAsset": "s34v:crack",
+      "newAsset": "s34-coherent-v4:s34v-crack"
+    },
+    {
+      "element": "a4-34-prop-1",
+      "decorFootBefore": 5100,
+      "decorFootAfter": 5100,
+      "reason": "noncolliding prop grounded to new authored floor"
+    },
+    {
+      "element": "a4-34-prop-2",
+      "decorFootBefore": 4539.5,
+      "decorFootAfter": 4541.045015565575,
+      "reason": "noncolliding prop grounded to new authored floor"
+    },
+    {
+      "element": "a4-34-prop-3",
+      "decorFootBefore": 3863.1111111111113,
+      "decorFootAfter": 3856.044264184518,
+      "reason": "noncolliding prop grounded to new authored floor"
+    },
+    {
+      "element": "a4-34-prop-4",
+      "decorFootBefore": 3012.222222222222,
+      "decorFootAfter": 3012.5090199436236,
+      "reason": "noncolliding prop grounded to new authored floor"
+    },
+    {
+      "element": "a4-34-prop-5",
+      "decorFootBefore": 2558,
+      "decorFootAfter": 2588.7697440908346,
+      "reason": "noncolliding prop grounded to new authored floor"
+    },
+    {
+      "element": "a4-coast-34-art-8",
+      "decorFootBefore": 3391.25,
+      "decorFootAfter": 3402.7181852970016,
+      "reason": "noncolliding prop grounded to new authored floor"
+    },
+    {
+      "element": "a4-coast-34-art-9",
+      "decorFootBefore": 2796,
+      "decorFootAfter": 2789.536399432646,
+      "reason": "noncolliding prop grounded to new authored floor"
+    }
+  ],
+  "compiledTerrainIdentical": true,
+  "gameplayFieldsIdentical": true,
+  "status": "pending actual visual review; not final release"
+}

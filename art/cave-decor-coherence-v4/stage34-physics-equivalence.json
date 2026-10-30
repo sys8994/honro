@@ -1,0 +1,65 @@
+{
+  "scope": "Actual App entry complete terrain including instantiated element colliders; no renderer or movement. Exact physical-holder equality only.",
+  "stage": 34,
+  "runtimeSHA256": "264b42d9b85f63847877ad839c67365a9b63b06b34a27cf9c84d53d9307ece2e",
+  "before": {
+    "projectSHA256": "b309d57ddcefc1f26781515e9b4206ba1242b37611b08b03c1e9e5f119fd059c",
+    "terrainSHA256": "ca47f9c4c6ae3dd10fe4ed151af7cb27613770521322f9362276684adcd3ab11",
+    "colliders": [
+      {
+        "id": "a4-34-land",
+        "mat": "rock",
+        "vertices": 148,
+        "oneWay": false,
+        "indestructible": true
+      },
+      {
+        "id": "a4-34-natural-overhang",
+        "mat": "rock",
+        "vertices": 167,
+        "oneWay": false,
+        "indestructible": true
+      },
+      {
+        "id": "a4-34-return-cut",
+        "mat": "rock",
+        "vertices": 4,
+        "oneWay": true,
+        "indestructible": true
+      }
+    ]
+  },
+  "after": {
+    "projectSHA256": "43edff3b1b6fda17a02a93784dba488d5c3d175be269b7fcabc4eea4e6c61cf0",
+    "terrainSHA256": "ca47f9c4c6ae3dd10fe4ed151af7cb27613770521322f9362276684adcd3ab11",
+    "colliders": [
+      {
+        "id": "a4-34-land",
+        "mat": "rock",
+        "vertices": 148,
+        "oneWay": false,
+        "indestructible": true
+      },
+      {
+        "id": "a4-34-natural-overhang",
+        "mat": "rock",
+        "vertices": 167,
+        "oneWay": false,
+        "indestructible": true
+      },
+      {
+        "id": "a4-34-return-cut",
+        "mat": "rock",
+        "vertices": 4,
+        "oneWay": true,
+        "indestructible": true
+      }
+    ]
+  },
+  "sourceStillCurrent": {
+    "before": true,
+    "after": true
+  },
+  "exact": true,
+  "changed": []
+}

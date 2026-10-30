@@ -1,0 +1,43 @@
+{
+  "stage": 37,
+  "x": 1352,
+  "y": 2380,
+  "w": 2496,
+  "h": 832,
+  "pixelWidth": 2172,
+  "pixelHeight": 724,
+  "terrains": [
+    {
+      "id": "a4-37-haul-ramp",
+      "type": "platform",
+      "baseMaterial": "wood",
+      "oneWay": true,
+      "breakable": false,
+      "control": [
+        {
+          "x": 1800,
+          "y": 3000
+        },
+        {
+          "x": 2200,
+          "y": 2620
+        },
+        {
+          "x": 3000,
+          "y": 2620
+        },
+        {
+          "x": 3400,
+          "y": 2500
+        }
+      ],
+      "thickness": 92,
+      "detail": {
+        "interpolation": "linear",
+        "roughness": 0,
+        "spacing": 40,
+        "optimizeEpsilon": 0
+      }
+    }
+  ]
+}

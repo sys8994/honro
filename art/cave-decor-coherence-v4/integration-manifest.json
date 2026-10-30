@@ -1,0 +1,57 @@
+{
+  "status": "art direction frozen; gameplay QA separate",
+  "stages": [
+    {
+      "stageId": "stage-34",
+      "candidateSha256": "43edff3b1b6fda17a02a93784dba488d5c3d175be269b7fcabc4eea4e6c61cf0",
+      "stageFile": "art/cave-decor-coherence-v4/stage34-integration-stage.json",
+      "stageSha256": "a04549117960469178ba40b324bef7d3276d76107c00f38fb1929659ae61973c",
+      "assetFile": "art/cave-decor-coherence-v4/stage34-integration-assets.json",
+      "assetFileSha256": "7d309f4c83d0d5d7131908327650451c93c37432c9f863244d4ab2f8201a7a31",
+      "assetIds": [
+        "s34-authored-v4:roof",
+        "s34-authored-v4:floor",
+        "s34-authored-v4:roof-domain-left",
+        "s34-authored-v4:floor-domain-left",
+        "s34-authored-v4:floor-domain-right",
+        "s34-authored-v4:domain-contact",
+        "s34-coherent-v4:s34v-coastal-boulder",
+        "s34-coherent-v4:s34v-haul-footing",
+        "s34-coherent-v4:s34v-crack"
+      ],
+      "preserveAllOtherLibraryIds": true,
+      "metadataRepairs": []
+    },
+    {
+      "stageId": "stage-38",
+      "candidateSha256": "69137730c60777a839c06164748367df4379ac3d77aef54f9338ff9f51bec7dc",
+      "stageFile": "art/cave-decor-coherence-v4/stage38-integration-stage.json",
+      "stageSha256": "0ab723fceb88377770eeaa9f05347d4b8b7d58cc3a3da7bdf4bd79baf35fc4c3",
+      "assetFile": "art/cave-decor-coherence-v4/stage38-integration-assets.json",
+      "assetFileSha256": "4e67cb925a2543dc971e0a6db04a754ef144cd3021df1f1e8eabf08d954077f5",
+      "assetIds": [
+        "s38-floor-v4:unmodified-contact",
+        "s38-coherent-v4:s38v-coastal-boulder",
+        "s38-coherent-v4:s34v-crack",
+        "s38-coherent-v4:s37v-haul-footing",
+        "s38-coherent-v4:preserved-west-contact",
+        "s38-coherent-v4:s38v-body-east",
+        "s38-coherent-v4:s38v-body-east-domain-right",
+        "s38-coherent-v4:s38v-body-emergency-ledges",
+        "s38-coherent-v4:west-depth",
+        "s38-coherent-v4:west-depth-domain-left",
+        "s38-coherent-v4:roof",
+        "s38-coherent-v4:roof-domain-left"
+      ],
+      "preserveAllOtherLibraryIds": true,
+      "metadataRepairs": [
+        {
+          "assetId": "s38v:contact-surface",
+          "field": "reference.heightM",
+          "value": 83.33333333333333,
+          "reason": "canonical schema metadata, preserve existing vector and otherfields"
+        }
+      ]
+    }
+  ]
+}

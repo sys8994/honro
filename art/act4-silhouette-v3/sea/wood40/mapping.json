@@ -1,0 +1,47 @@
+{
+  "stage": 40,
+  "x": 2710,
+  "y": 1600,
+  "w": 2490,
+  "h": 830,
+  "pixelWidth": 2172,
+  "pixelHeight": 724,
+  "terrains": [
+    {
+      "id": "a4-40-high-walk",
+      "type": "platform",
+      "baseMaterial": "wood",
+      "oneWay": true,
+      "breakable": false,
+      "control": [
+        {
+          "x": 2810,
+          "y": 1790
+        },
+        {
+          "x": 3100,
+          "y": 1720
+        },
+        {
+          "x": 4200,
+          "y": 1720
+        },
+        {
+          "x": 4650,
+          "y": 1780
+        },
+        {
+          "x": 5100,
+          "y": 1780
+        }
+      ],
+      "thickness": 55,
+      "detail": {
+        "interpolation": "linear",
+        "roughness": 0,
+        "spacing": 40,
+        "optimizeEpsilon": 0
+      }
+    }
+  ]
+}

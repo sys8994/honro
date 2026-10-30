@@ -1,0 +1,112 @@
+{
+  "source": "_local/reports/cave-floor-silhouette-v4/candidate-v4.json",
+  "output": "_local/reports/cave-decor-coherence-v4/stage38-candidate-v1.json",
+  "sha256": "8be95b08d2a35b6cfc6e8c4b09b2f6b7cec1c60bd33ffec6e9ebac79f8173422",
+  "removedNoncollidingL3Ridge": [
+    {
+      "id": "a4-coast-38-rear-650",
+      "assetId": "a4-coast:ridge",
+      "depthLayer": "L3",
+      "groupId": "a4-coast-38-rear",
+      "supportId": "a4-coast-38-rear-support",
+      "x": 650,
+      "y": 0,
+      "scale": 1.2,
+      "rotation": 0
+    },
+    {
+      "id": "a4-coast-38-rear-6300",
+      "assetId": "a4-coast:ridge",
+      "depthLayer": "L3",
+      "groupId": "a4-coast-38-rear",
+      "supportId": "a4-coast-38-rear-support",
+      "x": 6300,
+      "y": 0,
+      "scale": 0.7,
+      "rotation": 0
+    }
+  ],
+  "removedUnusedDecorGroups": [
+    "a4-coast-38-rear"
+  ],
+  "paletteMaps": {
+    "rock": {
+      "#909aa3": "#53697b",
+      "#79858e": "#53697b",
+      "#6f7a84": "#465c6f",
+      "#626d77": "#465c6f",
+      "#5c6771": "#465c6f",
+      "#4e5a63": "#394f62",
+      "#485259": "#394f62",
+      "#3a4349": "#2d4356",
+      "#363e42": "#2d4356"
+    },
+    "crack": {
+      "#aeb2b5": "#53697b",
+      "#949ca2": "#53697b",
+      "#889099": "#465c6f",
+      "#77828e": "#465c6f",
+      "#6b7685": "#465c6f",
+      "#576475": "#394f62",
+      "#495768": "#394f62",
+      "#364455": "#2b4052",
+      "#2c3848": "#2b4052",
+      "#212c3a": "#1c2d3e",
+      "#1b2533": "#1c2d3e"
+    }
+  },
+  "changes": [
+    {
+      "element": "a4-38-prop-0",
+      "oldAsset": "s38v:coastal-boulder",
+      "newAsset": "s38-coherent-v4:s38v-coastal-boulder"
+    },
+    {
+      "element": "a4-38-prop-1",
+      "oldAsset": "s38v:coastal-boulder",
+      "newAsset": "s38-coherent-v4:s38v-coastal-boulder"
+    },
+    {
+      "element": "a4-coast-38-art-3",
+      "oldAsset": "s34v:crack",
+      "newAsset": "s38-coherent-v4:s34v-crack"
+    },
+    {
+      "element": "a4-coast-38-art-4",
+      "oldAsset": "s34v:crack",
+      "newAsset": "s38-coherent-v4:s34v-crack"
+    },
+    {
+      "element": "a4-coast-38-art-5",
+      "oldAsset": "s37v:haul-footing",
+      "newAsset": "s38-coherent-v4:s37v-haul-footing"
+    },
+    {
+      "element": "a4-coast-38-art-6",
+      "oldAsset": "s37v:haul-footing",
+      "newAsset": "s38-coherent-v4:s37v-haul-footing"
+    },
+    {
+      "element": "a4-coast-38-art-7",
+      "oldAsset": "s37v:haul-footing",
+      "newAsset": "s38-coherent-v4:s37v-haul-footing"
+    },
+    {
+      "element": "a4-coast-38-art-8",
+      "oldAsset": "s37v:haul-footing",
+      "newAsset": "s38-coherent-v4:s37v-haul-footing"
+    },
+    {
+      "element": "s38-density:stone-west-floor",
+      "oldAsset": "s38-density:stone-west-floor",
+      "newAsset": "s38-coherent-v4:preserved-west-contact",
+      "removedObsoleteRange": [
+        0,
+        2350
+      ]
+    }
+  ],
+  "compiledTerrainIdentical": true,
+  "gameplayFieldsIdentical": true,
+  "status": "pending actual visual review; not final release"
+}
