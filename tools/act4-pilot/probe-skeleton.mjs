@@ -1,6 +1,7 @@
 /** Physics-only support-link microprobes, NOT a normal route/combat run. */
 import {readFile,writeFile} from 'node:fs/promises';
 import {createHash} from 'node:crypto';
+import {transitionAim} from './probe-target.mjs';
 import {runtime,battlefield} from '../../game/tests/helpers.mjs';
 process.env.HONRO_ACT4_RELEASE='1';
 const n=Number(process.argv[2]||31),dir=process.argv.find(a=>a.startsWith('--dir='))?.slice(6)||`_local/reports/act4-pilot/stage${n}/skeleton`,stage=JSON.parse(await readFile(dir+'/stage.json')),spec=JSON.parse(await readFile(dir+'/blueprint.json'));
@@ -40,7 +41,7 @@ for(const route of spec.routes.filter(r=>r.supports[0]==='shore'))for(const temp
   if(!r||!walkTo(r.before.x)){steps.push({from,to,passed:false,reason:'launch approach blocked',x:u.x,y:u.y,vx:u.vx,vy:u.vy,jumping:u.jumping,airborne:u.airborne,moveLeft:u.moveLeft,phase:b.phase,side:b.side,acted:u.acted,active:b.active,grounded:e.grounded(u),targetX:r?.before.x});break;}
   if(u.moveLeft<700&&!renew()){steps.push({from,to,passed:false,reason:'turn transition failed'});break;}
   const before={x:u.x,y:u.y,hp:u.hp,moveLeft:u.moveLeft},launched=r.action==='drop'?e.drop(u):['walk-off','walk'].includes(r.action)?true:e.jump(u);if(launched){if(r.action==='drop'||r.action==='walk-off')drops++;else if(r.action==='jump')jumps++;}
-  for(let frame=0;launched&&frame<720;frame++){const tx=r.end.x;if(Math.abs(tx-u.x)>1)e.move(Math.sign(tx-u.x)*Math.min(1,Math.abs(tx-u.x)/(u.walkSpeed*C.STEP)),C.STEP);advance();if(frame>2&&e.grounded(u)&&(!['walk-off','walk'].includes(r.action)||e.contactSurface(u.x,u.y-.2,u.y+.2)?.t?.id!==`pilot${n}-${from}`))break;}
+  for(let frame=0;launched&&frame<720;frame++){const tx=transitionAim(spec.surfaces.find(f=>f.id===to),r.action,r.end.x);if(Math.abs(tx-u.x)>1)e.move(Math.sign(tx-u.x)*Math.min(1,Math.abs(tx-u.x)/(u.walkSpeed*C.STEP)),C.STEP);advance();if(frame>2&&e.grounded(u)&&(!['walk-off','walk'].includes(r.action)||e.contactSurface(u.x,u.y-.2,u.y+.2)?.t?.id!==`pilot${n}-${from}`))break;}
   const supportId=e.contactSurface(u.x,u.y-.2,u.y+.2)?.t?.id,passed=launched&&supportId===`pilot${n}-${to}`;steps.push({from,to,before,end:{x:u.x,y:u.y,hp:u.hp,moveLeft:u.moveLeft},support:supportId,passed});if(!passed)break;
  }
  const routeConnected=steps.length===route.supports.length-1&&steps.every(s=>s.passed);const objectiveApproach=n===31?null:routeConnected&&walkTo(spec.act4.exit.x);
