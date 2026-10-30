@@ -1,0 +1,102 @@
+{
+  "identity": {
+    "stageRawSHA256": "feef53189959dc9ace11356648493f799f63a29d3ccca82d82b523560053c420",
+    "stageCanonicalSHA256": "b59348de5bc04bcf6ce0b1506343580fc60633d43fd09deba7465a42fda1c30a",
+    "blueprintRawSHA256": "1c48358d6f53529951bc763c18f3d0982a6be73ba6af31bee8b5845f6fa07714",
+    "canonicalization": "JSON.stringify(JSON.parse(raw))",
+    "scope": "Content identity only, not a validation receipt"
+  },
+  "transition": {
+    "scope": "Static exact terrain geometry/player pose equality excluding baseMaterial; not a new Engine run",
+    "changed": [
+      "west-step",
+      "broken-crossing",
+      "ridge-shoulder",
+      "lookout",
+      "east-turn",
+      "east-middle",
+      "east-low",
+      "middle-west",
+      "middle-east",
+      "return-ramp",
+      "middle-junction"
+    ],
+    "topAndBottomAndWalkFlagsAndCoversUnchanged": true,
+    "partyPosesUnchanged": true,
+    "reason": "Actual upward one-way traversal must not be painted as deep solid rock. This is not a metric exception or geometry change."
+  },
+  "metric": {
+    "definitionVersion": "v3.1-root-authorized-whole-stage-unique-supports",
+    "ratio80": 0.3736841467896838,
+    "targetMet": false,
+    "hardCapMet": false,
+    "allUniqueWalkSurfacesIncludingTimber": {
+      "lengthReferenceCSS": 13992.275448068021,
+      "straightReferenceCSS": {
+        "40": 13778.317675677286,
+        "80": 3857.105047848086,
+        "160": 580.9990366134291
+      },
+      "ratio80": 0.2756595996243523,
+      "supportIds": [
+        "shore",
+        "west-step",
+        "west-ledge",
+        "broken-crossing",
+        "ridge-shoulder",
+        "ridge-court",
+        "lookout",
+        "east-overhang",
+        "east-turn",
+        "east-middle",
+        "east-low",
+        "middle-west",
+        "middle-east",
+        "return-ramp",
+        "middle-junction",
+        "boarding-dock"
+      ]
+    },
+    "materialGroups": {
+      "natural": {
+        "lengthReferenceCSS": 7891.948373977223,
+        "straightReferenceCSS": {
+          "40": 7817.073021628746,
+          "80": 2949.095994637911,
+          "160": 580.9990366134291
+        },
+        "ratio80": 0.3736841467896838,
+        "supportIds": [
+          "shore",
+          "west-ledge",
+          "ridge-court",
+          "east-overhang"
+        ]
+      },
+      "timber": {
+        "lengthReferenceCSS": 6100.327074090797,
+        "straightReferenceCSS": {
+          "40": 5961.24465404854,
+          "80": 908.0090532101749,
+          "160": 0
+        },
+        "ratio80": 0.14884596222170696,
+        "supportIds": [
+          "west-step",
+          "broken-crossing",
+          "ridge-shoulder",
+          "lookout",
+          "east-turn",
+          "east-middle",
+          "east-low",
+          "middle-west",
+          "middle-east",
+          "return-ramp",
+          "middle-junction",
+          "boarding-dock"
+        ]
+      }
+    }
+  },
+  "status": "Natural-only37.368% exceeds30% cap. All authored walk support tops27.566%, timber14.885%. Static geometry equivalent to R1; no new Engine run or final art acceptance."
+}
