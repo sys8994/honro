@@ -309,3 +309,10 @@ Before holdout, a new version should choose routes from public terrain/supports
 and current actor physics, with generic support connectivity/clearance checks;
 no per-stage victory coordinate tape, hidden enemies or future combat oracle.
 Do not copy authored geometry probe success trajectories into the controller.
+
+`preflight.mjs` exports actual App-created body/profile identity without advancing
+battle or changing pose/HP. Verified stage31 output:
+`_local/reports/actual-app-cohort-preflight.json` (38 bodies, actual normal campaign,
+HP1085/1174/2036/1362). Missing requested body fields remain absent; do not invent
+an existenceDefense value where production uses derived existence logic. This
+artifact is for calibration identity comparison, not a gameplay result.
