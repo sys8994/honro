@@ -1,0 +1,327 @@
+{
+  "candidateByteSHA256": "eec76ca1aaa36fd374a4d18c8e04c88a03ebe2033db0db31bcb1092f91d713c6",
+  "manifest": {
+    "stage": 36,
+    "projectSHA256": "80825062c28f22d5a0808a2c5f8fa74d784a9d23a1a9cd44e972df55b7cd5307",
+    "runtimeSHA256": "9278a691f97be21437b58fe67cdffa6a7e031da6666b2b34faa2e6f6829e0544",
+    "entryBuild": "campaign-balanced-v1",
+    "preparedPriorProof": null,
+    "sceneScope": "Prepared stage-entry profile; production App events; DOM/audio are doubles. Not a browser/campaign playthrough.",
+    "scope": "Actual App launch with current shared source runtime; no VM renderer override.  no actor or event state injected. Fixed inspection camera only. Native Canvas image, DOM/HUD/audio fixtures, no browser/mobile FPS or art approval.",
+    "frames": [
+      {
+        "file": "west-normal.png",
+        "requested": {
+          "id": "west-normal",
+          "x": 800,
+          "y": 1850,
+          "scale": 0.53,
+          "width": 1440,
+          "height": 900
+        },
+        "actual": {
+          "x": 800,
+          "y": 1850,
+          "scale": 0.53,
+          "width": 1440,
+          "height": 900
+        }
+      },
+      {
+        "file": "house-normal.png",
+        "requested": {
+          "id": "house-normal",
+          "x": 2570,
+          "y": 1900,
+          "scale": 0.53,
+          "width": 1440,
+          "height": 900
+        },
+        "actual": {
+          "x": 2570,
+          "y": 1900,
+          "scale": 0.53,
+          "width": 1440,
+          "height": 900
+        }
+      },
+      {
+        "file": "house-detail.png",
+        "requested": {
+          "id": "house-detail",
+          "x": 2570,
+          "y": 1900,
+          "scale": 1.1,
+          "width": 1440,
+          "height": 900
+        },
+        "actual": {
+          "x": 2570,
+          "y": 1900,
+          "scale": 1.1,
+          "width": 1440,
+          "height": 900
+        }
+      },
+      {
+        "file": "house-mobile.png",
+        "requested": {
+          "id": "house-mobile",
+          "x": 2570,
+          "y": 1900,
+          "scale": 0.53,
+          "width": 720,
+          "height": 1100
+        },
+        "actual": {
+          "x": 2570,
+          "y": 1900,
+          "scale": 0.53,
+          "width": 720,
+          "height": 1100
+        }
+      },
+      {
+        "file": "east-normal.png",
+        "requested": {
+          "id": "east-normal",
+          "x": 5700,
+          "y": 1900,
+          "scale": 0.53,
+          "width": 1440,
+          "height": 900
+        },
+        "actual": {
+          "x": 5700,
+          "y": 1900,
+          "scale": 0.53,
+          "width": 1440,
+          "height": 900
+        }
+      },
+      {
+        "file": "whole.png",
+        "requested": {
+          "id": "whole",
+          "x": 3600,
+          "y": 1900,
+          "scale": 0.20833333333333334,
+          "width": 1600,
+          "height": 850
+        },
+        "actual": {
+          "x": 3600,
+          "y": 1900,
+          "scale": 0.20833333333333334,
+          "width": 1600,
+          "height": 850
+        }
+      }
+    ]
+  },
+  "scope": "Actual App native Canvas fixed inspection cameras, DOM/audio doubles; not browser performance or wholecampaign QA",
+  "visualReview": "West/east/house/whole/portrait direction coherent; x3600 vertical base AA stitch removed; no gameplay clearance claim",
+  "images": [
+    {
+      "file": "_local/reports/stage36-bank-v4/base-clip-actual/36/east-normal.png",
+      "sha256": "7a63b752709de99deb20541fbca8dd74d2e5918f3965929753c3e0eac79f2858"
+    },
+    {
+      "file": "_local/reports/stage36-bank-v4/base-clip-actual/36/house-detail.png",
+      "sha256": "ed73ba97475a5324712be7d3462b065f254a4f7185a9280417e10b830f7241f6"
+    },
+    {
+      "file": "_local/reports/stage36-bank-v4/base-clip-actual/36/house-mobile.png",
+      "sha256": "6b58db771e1250b157f953aecca69b6ccd1b451b4e5f504ce4aeadfedfcaf296"
+    },
+    {
+      "file": "_local/reports/stage36-bank-v4/base-clip-actual/36/house-normal.png",
+      "sha256": "e4a69c39a06b4243b72c430d754e6e2f6d2eeaa9b32d8498f7c0d5cdf52ac125"
+    },
+    {
+      "file": "_local/reports/stage36-bank-v4/base-clip-actual/36/west-normal.png",
+      "sha256": "281b39563847c706277018ea5eb2b8d4204ff491b2601695c91ca9d2a8fe784b"
+    },
+    {
+      "file": "_local/reports/stage36-bank-v4/base-clip-actual/36/whole.png",
+      "sha256": "9d4c8d43d90f9b1a45d89a1f98805bba17cc04153f1e268bedbe4d78c1f2c907"
+    }
+  ],
+  "joinPixelSamples": [
+    {
+      "y": 530,
+      "rgbaAtX1264to1267": [
+        [
+          84,
+          111,
+          130,
+          255
+        ],
+        [
+          84,
+          111,
+          130,
+          255
+        ],
+        [
+          84,
+          111,
+          130,
+          255
+        ],
+        [
+          84,
+          111,
+          130,
+          255
+        ]
+      ]
+    },
+    {
+      "y": 540,
+      "rgbaAtX1264to1267": [
+        [
+          75,
+          102,
+          122,
+          255
+        ],
+        [
+          75,
+          102,
+          122,
+          255
+        ],
+        [
+          75,
+          102,
+          122,
+          255
+        ],
+        [
+          75,
+          102,
+          122,
+          255
+        ]
+      ]
+    },
+    {
+      "y": 550,
+      "rgbaAtX1264to1267": [
+        [
+          48,
+          73,
+          91,
+          255
+        ],
+        [
+          48,
+          73,
+          91,
+          255
+        ],
+        [
+          48,
+          73,
+          91,
+          255
+        ],
+        [
+          48,
+          73,
+          91,
+          255
+        ]
+      ]
+    },
+    {
+      "y": 560,
+      "rgbaAtX1264to1267": [
+        [
+          48,
+          73,
+          91,
+          255
+        ],
+        [
+          48,
+          73,
+          91,
+          255
+        ],
+        [
+          48,
+          73,
+          91,
+          255
+        ],
+        [
+          48,
+          73,
+          91,
+          255
+        ]
+      ]
+    },
+    {
+      "y": 575,
+      "rgbaAtX1264to1267": [
+        [
+          48,
+          73,
+          91,
+          255
+        ],
+        [
+          48,
+          73,
+          91,
+          255
+        ],
+        [
+          48,
+          73,
+          91,
+          255
+        ],
+        [
+          48,
+          73,
+          91,
+          255
+        ]
+      ]
+    },
+    {
+      "y": 590,
+      "rgbaAtX1264to1267": [
+        [
+          48,
+          73,
+          91,
+          255
+        ],
+        [
+          48,
+          73,
+          91,
+          255
+        ],
+        [
+          48,
+          73,
+          91,
+          255
+        ],
+        [
+          48,
+          73,
+          91,
+          255
+        ]
+      ]
+    }
+  ],
+  "doorLifecycle": "pending ordinary inputs + independent replay"
+}

@@ -1,0 +1,20 @@
+[
+  {
+    "stage": 35,
+    "view": {
+      "name": "wall-standing",
+      "x": 1100,
+      "y": 1750,
+      "scale": 1.1,
+      "w": 900,
+      "h": 600
+    },
+    "file": "35-wall-standing.png",
+    "metrics": {
+      "medianMs": 4.802225000000362,
+      "p95Ms": 7.838054000000739,
+      "scope": "warm Native Canvas CPU timings, not browser or mobile hardware"
+    },
+    "scope": "Actual production Native Canvas, initial actors. Not browser play or quality approval."
+  }
+]

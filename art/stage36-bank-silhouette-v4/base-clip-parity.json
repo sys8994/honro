@@ -1,0 +1,10 @@
+{
+  "before": "5cd7a2b5",
+  "after": "eec76ca1",
+  "stageExact": true,
+  "onlyChangedAssets": [
+    "s36-silhouette:west-native-v4",
+    "s36-silhouette:east-native-v4"
+  ],
+  "change": "paint-tree base closure and pixel-snapped ownership, no contour/collider changes"
+}

@@ -1,0 +1,1356 @@
+{
+  "id": "stage-35",
+  "name": "35 · 대숲의 옛길",
+  "width": 7200,
+  "height": 3100,
+  "backdrop": "forest",
+  "metadata": {
+    "stageId": 35,
+    "campaign": true,
+    "act4Stage": 35
+  },
+  "terrains": [
+    {
+      "id": "a4-35-land",
+      "type": "solid",
+      "baseMaterial": "rock",
+      "breakable": false,
+      "oneWay": false,
+      "points": [
+        {
+          "x": 0,
+          "y": 1910
+        },
+        {
+          "x": 540,
+          "y": 1910
+        },
+        {
+          "x": 660,
+          "y": 1910
+        },
+        {
+          "x": 660,
+          "y": 1872
+        },
+        {
+          "x": 760,
+          "y": 1872
+        },
+        {
+          "x": 760,
+          "y": 1836
+        },
+        {
+          "x": 860,
+          "y": 1836
+        },
+        {
+          "x": 860,
+          "y": 1800
+        },
+        {
+          "x": 920,
+          "y": 1800
+        },
+        {
+          "x": 1380,
+          "y": 1800
+        },
+        {
+          "x": 1840,
+          "y": 1840
+        },
+        {
+          "x": 2180,
+          "y": 2040
+        },
+        {
+          "x": 2650,
+          "y": 2055
+        },
+        {
+          "x": 2820,
+          "y": 2030
+        },
+        {
+          "x": 2910,
+          "y": 1960
+        },
+        {
+          "x": 2990,
+          "y": 1960
+        },
+        {
+          "x": 2990,
+          "y": 1908
+        },
+        {
+          "x": 3070,
+          "y": 1908
+        },
+        {
+          "x": 3070,
+          "y": 1856
+        },
+        {
+          "x": 3160,
+          "y": 1856
+        },
+        {
+          "x": 3380,
+          "y": 1820
+        },
+        {
+          "x": 3900,
+          "y": 1810
+        },
+        {
+          "x": 4390,
+          "y": 1955
+        },
+        {
+          "x": 4820,
+          "y": 1960
+        },
+        {
+          "x": 5340,
+          "y": 1790
+        },
+        {
+          "x": 5790,
+          "y": 1790
+        },
+        {
+          "x": 6220,
+          "y": 1850
+        },
+        {
+          "x": 6680,
+          "y": 1860
+        },
+        {
+          "x": 7200,
+          "y": 1800
+        },
+        {
+          "x": 7700,
+          "y": 1614.6960545213003
+        },
+        {
+          "x": 8200,
+          "y": 1543.4224473480601
+        },
+        {
+          "x": 8700,
+          "y": 1598.628222381877
+        },
+        {
+          "x": 9200,
+          "y": 1660.8686680931232
+        },
+        {
+          "x": 9700,
+          "y": 1664.4189989666286
+        },
+        {
+          "x": 10200,
+          "y": 1567.8416053019898
+        },
+        {
+          "x": 10700,
+          "y": 1438.3478751723935
+        },
+        {
+          "x": 11200,
+          "y": 1358.2378950415455
+        },
+        {
+          "x": 11700,
+          "y": 1331.381126921202
+        },
+        {
+          "x": 12200,
+          "y": 1258.666436891822
+        },
+        {
+          "x": 12700,
+          "y": 1181.3592476329
+        },
+        {
+          "x": 13200,
+          "y": 1145.384615455963
+        },
+        {
+          "x": 13200,
+          "y": 27100
+        },
+        {
+          "x": -6000,
+          "y": 27100
+        },
+        {
+          "x": -6000,
+          "y": 1650
+        },
+        {
+          "x": -5500,
+          "y": 1615.7384458375857
+        },
+        {
+          "x": -5000,
+          "y": 1542.1125528502698
+        },
+        {
+          "x": -4500,
+          "y": 1472.8604752879428
+        },
+        {
+          "x": -4000,
+          "y": 1453.477366255144
+        },
+        {
+          "x": -3500,
+          "y": 1551.111111111111
+        },
+        {
+          "x": -3000,
+          "y": 1708.9300411522634
+        },
+        {
+          "x": -2500,
+          "y": 1826.625514403292
+        },
+        {
+          "x": -2000,
+          "y": 1866
+        },
+        {
+          "x": -1500,
+          "y": 1977.4814814814815
+        },
+        {
+          "x": -1000,
+          "y": 2077.8518518518517
+        },
+        {
+          "x": -500,
+          "y": 2033.046875
+        }
+      ],
+      "playProjection": {
+        "bounds": {
+          "left": 0,
+          "top": 0,
+          "right": 7200,
+          "bottom": 3100
+        },
+        "start": {
+          "x": 0,
+          "y": 1910
+        }
+      }
+    }
+  ],
+  "materials": [],
+  "elements": [
+    {
+      "id": "a4-35-bamboo-0",
+      "assetId": "a4-art:bamboo-background",
+      "x": 50,
+      "y": 1910,
+      "scale": 1.105,
+      "snap": false,
+      "rotation": 0,
+      "depthLayer": "L1",
+      "layer": "back"
+    },
+    {
+      "id": "a4-35-bamboo-1",
+      "assetId": "a4-art:bamboo-background-lean",
+      "x": 500,
+      "y": 1910,
+      "scale": 0.935,
+      "snap": false,
+      "rotation": 0,
+      "depthLayer": "L1",
+      "layer": "back"
+    },
+    {
+      "id": "a4-35-bamboo-2",
+      "assetId": "a4-art:bamboo-background",
+      "x": 1770,
+      "y": 1833.9130434782608,
+      "scale": 1.02,
+      "snap": false,
+      "rotation": 0,
+      "depthLayer": "L1",
+      "layer": "back"
+    },
+    {
+      "id": "a4-35-bamboo-3",
+      "assetId": "a4-art:bamboo-background-lean",
+      "x": 2000,
+      "y": 1934.1176470588234,
+      "scale": 0.765,
+      "snap": false,
+      "rotation": 0,
+      "depthLayer": "L1",
+      "layer": "back"
+    },
+    {
+      "id": "a4-35-bamboo-4",
+      "assetId": "a4-art:bamboo-background",
+      "x": 2700,
+      "y": 2047.6470588235295,
+      "scale": 1.19,
+      "snap": false,
+      "rotation": 0,
+      "depthLayer": "L1",
+      "layer": "back"
+    },
+    {
+      "id": "a4-35-bamboo-5",
+      "assetId": "a4-art:bamboo-background-lean",
+      "x": 3500,
+      "y": 1817.6923076923076,
+      "scale": 0.935,
+      "snap": false,
+      "rotation": 0,
+      "depthLayer": "L1",
+      "layer": "back"
+    },
+    {
+      "id": "a4-35-bamboo-6",
+      "assetId": "a4-art:bamboo-background",
+      "x": 4000,
+      "y": 1839.591836734694,
+      "scale": 1.105,
+      "snap": false,
+      "rotation": 0,
+      "depthLayer": "L1",
+      "layer": "back"
+    },
+    {
+      "id": "a4-35-bamboo-7",
+      "assetId": "a4-art:bamboo-background-lean",
+      "x": 4500,
+      "y": 1956.2790697674418,
+      "scale": 0.935,
+      "snap": false,
+      "rotation": 0,
+      "depthLayer": "L1",
+      "layer": "back"
+    },
+    {
+      "id": "a4-35-bamboo-8",
+      "assetId": "a4-art:bamboo-background",
+      "x": 5900,
+      "y": 1805.3488372093022,
+      "scale": 1.19,
+      "snap": false,
+      "rotation": 0,
+      "depthLayer": "L1",
+      "layer": "back"
+    },
+    {
+      "id": "a4-35-bamboo-9",
+      "assetId": "a4-art:bamboo-background-lean",
+      "x": 6520,
+      "y": 1856.5217391304348,
+      "scale": 1.02,
+      "snap": false,
+      "rotation": 0,
+      "depthLayer": "L1",
+      "layer": "back"
+    },
+    {
+      "id": "a4-35-bamboo-10",
+      "assetId": "a4-art:bamboo-background",
+      "x": 7040,
+      "y": 1818.4615384615386,
+      "scale": 1.275,
+      "snap": false,
+      "rotation": 0,
+      "depthLayer": "L1",
+      "layer": "back"
+    },
+    {
+      "id": "a4-35-thick-bamboo-11",
+      "assetId": "a4:thick-bamboo",
+      "x": 3125,
+      "y": 1856,
+      "scale": 0.35,
+      "snap": false,
+      "rotation": 0,
+      "depthLayer": "L1",
+      "layer": "back"
+    },
+    {
+      "id": "a4-35-thick-bamboo-12",
+      "assetId": "a4:thick-bamboo",
+      "x": 4920,
+      "y": 1927.3076923076924,
+      "scale": 0.35,
+      "snap": false,
+      "rotation": 0,
+      "depthLayer": "L1",
+      "layer": "back"
+    },
+    {
+      "id": "a4-35-old-wall-13",
+      "assetId": "a4:old-wall",
+      "x": 1100,
+      "y": 1800,
+      "scale": 0.8,
+      "snap": false,
+      "rotation": 0,
+      "depthLayer": "L1",
+      "layer": "back"
+    },
+    {
+      "id": "a4-art-35-extra-0",
+      "assetId": "a4-art:fallen-bamboo",
+      "x": 2280,
+      "y": 2043.1914893617022,
+      "scale": 0.65,
+      "rotation": 0,
+      "snap": false,
+      "depthLayer": "L1",
+      "layer": "back"
+    },
+    {
+      "id": "a4-art-35-extra-1",
+      "assetId": "a4:old-wall",
+      "x": 4600,
+      "y": 1959.639534883721,
+      "scale": 1.05,
+      "rotation": 0,
+      "snap": false,
+      "depthLayer": "L1",
+      "layer": "back"
+    },
+    {
+      "id": "a4-art-35-extra-2",
+      "assetId": "a4-art:rubble-wall",
+      "x": 4280,
+      "y": 1922.4489795918366,
+      "scale": 0.4,
+      "rotation": 0,
+      "snap": false,
+      "depthLayer": "L1",
+      "layer": "back"
+    },
+    {
+      "id": "a4-art-35-extra-3",
+      "assetId": "a4-art:rubble-wall",
+      "x": 3990,
+      "y": 1836.6326530612246,
+      "scale": 0.16,
+      "rotation": 0,
+      "snap": false,
+      "depthLayer": "L1",
+      "layer": "back"
+    }
+  ],
+  "units": [
+    {
+      "id": "archer",
+      "kind": "archer",
+      "team": "player",
+      "x": 260,
+      "y": 1910,
+      "facing": 1
+    },
+    {
+      "id": "mage",
+      "kind": "mage",
+      "team": "player",
+      "x": 380,
+      "y": 1910,
+      "facing": 1
+    },
+    {
+      "id": "knight",
+      "kind": "knight",
+      "team": "player",
+      "x": 500,
+      "y": 1910,
+      "facing": 1
+    },
+    {
+      "id": "occultist",
+      "kind": "occultist",
+      "team": "player",
+      "x": 620,
+      "y": 1910,
+      "facing": 1
+    },
+    {
+      "id": "a4-35-g0-0",
+      "kind": "hound",
+      "team": "enemy",
+      "x": 1460,
+      "y": 1806.9565217391305,
+      "facing": 1,
+      "encounterGroup": "a4-35-0",
+      "stageOverrides": {
+        "elite": false,
+        "group": 100,
+        "awake": false,
+        "aggroUntil": 0
+      }
+    },
+    {
+      "id": "a4-35-g0-1",
+      "kind": "possessedGuard",
+      "team": "enemy",
+      "x": 1730,
+      "y": 1830.4347826086957,
+      "facing": 1,
+      "encounterGroup": "a4-35-0",
+      "stageOverrides": {
+        "elite": false,
+        "group": 100,
+        "awake": false,
+        "aggroUntil": 0
+      }
+    },
+    {
+      "id": "a4-35-g1-0",
+      "kind": "possessedGuard",
+      "team": "enemy",
+      "x": 2830,
+      "y": 2022.2222222222222,
+      "facing": 1,
+      "encounterGroup": "a4-35-1",
+      "stageOverrides": {
+        "elite": false,
+        "group": 101,
+        "awake": false,
+        "aggroUntil": 0
+      }
+    },
+    {
+      "id": "a4-35-g1-1",
+      "kind": "possessedArcher",
+      "team": "enemy",
+      "x": 3490,
+      "y": 1817.8846153846155,
+      "facing": 1,
+      "encounterGroup": "a4-35-1",
+      "stageOverrides": {
+        "elite": false,
+        "group": 101,
+        "awake": false,
+        "aggroUntil": 0
+      }
+    },
+    {
+      "id": "a4-35-g2-0",
+      "kind": "possessedGuard",
+      "team": "enemy",
+      "x": 5360,
+      "y": 1790,
+      "facing": 1,
+      "encounterGroup": "a4-35-2",
+      "stageOverrides": {
+        "elite": false,
+        "group": 102,
+        "awake": false,
+        "aggroUntil": 0
+      }
+    },
+    {
+      "id": "a4-35-g2-1",
+      "kind": "possessedArcher",
+      "team": "enemy",
+      "x": 5690,
+      "y": 1790,
+      "facing": 1,
+      "encounterGroup": "a4-35-2",
+      "stageOverrides": {
+        "elite": false,
+        "group": 102,
+        "awake": false,
+        "aggroUntil": 0
+      }
+    }
+  ],
+  "events": [],
+  "encounters": [
+    {
+      "id": "a4-35-0",
+      "key": "a4-35-0",
+      "unitIds": [
+        "a4-35-g0-0",
+        "a4-35-g0-1"
+      ],
+      "behavior": "guard"
+    },
+    {
+      "id": "a4-35-1",
+      "key": "a4-35-1",
+      "unitIds": [
+        "a4-35-g1-0",
+        "a4-35-g1-1"
+      ],
+      "behavior": "guard"
+    },
+    {
+      "id": "a4-35-2",
+      "key": "a4-35-2",
+      "unitIds": [
+        "a4-35-g2-0",
+        "a4-35-g2-1"
+      ],
+      "behavior": "guard"
+    }
+  ],
+  "objectives": [],
+  "markers": [],
+  "layers": [
+    {
+      "id": "far",
+      "name": "far",
+      "visible": true,
+      "locked": false
+    },
+    {
+      "id": "mid",
+      "name": "mid",
+      "visible": true,
+      "locked": false
+    },
+    {
+      "id": "back",
+      "name": "back",
+      "visible": true,
+      "locked": false
+    },
+    {
+      "id": "structural-back",
+      "name": "structural-back",
+      "visible": true,
+      "locked": false
+    },
+    {
+      "id": "terrain",
+      "name": "terrain",
+      "visible": true,
+      "locked": false
+    },
+    {
+      "id": "interactive",
+      "name": "interactive",
+      "visible": true,
+      "locked": false
+    },
+    {
+      "id": "prop",
+      "name": "prop",
+      "visible": true,
+      "locked": false
+    },
+    {
+      "id": "units",
+      "name": "units",
+      "visible": true,
+      "locked": false
+    },
+    {
+      "id": "events",
+      "name": "events",
+      "visible": true,
+      "locked": false
+    },
+    {
+      "id": "front",
+      "name": "front",
+      "visible": true,
+      "locked": false
+    },
+    {
+      "id": "L2",
+      "name": "L2",
+      "visible": true,
+      "locked": false
+    },
+    {
+      "id": "L3",
+      "name": "L3",
+      "visible": true,
+      "locked": false
+    },
+    {
+      "id": "L4",
+      "name": "L4",
+      "visible": true,
+      "locked": false
+    },
+    {
+      "id": "L5",
+      "name": "L5",
+      "visible": true,
+      "locked": false
+    }
+  ],
+  "meta": {
+    "notes": "",
+    "seed": 12031
+  },
+  "initialState": {
+    "honroActiveLimit": 3,
+    "honroAct4Preview": 35,
+    "honroAct4ArtRevision": 2,
+    "honroAct4Official": 1,
+    "honroAct4Design": {
+      "revision": 2,
+      "chapter": 35,
+      "combatBudgetStage": 35,
+      "release": true,
+      "water": "visual/shallow only; recover/lethal pending separate verified implementation",
+      "dialogue": "reviewed seeds not yet bound",
+      "palette": {
+        "top": "#788c80",
+        "light": "#98a58e",
+        "body": "#4b6460",
+        "seam": "#314c43",
+        "deep": "#253c3b"
+      },
+      "production": {
+        "revision": 1,
+        "source": "tools/stage35-production/skeleton.mjs",
+        "centralShotContract": "x3040 blocked; x3350 clear; a4-35-g1-1 unchanged",
+        "clearings": [
+          [
+            920,
+            1840
+          ],
+          [
+            3160,
+            3900
+          ],
+          [
+            5340,
+            5790
+          ]
+        ],
+        "ditch": [
+          1840,
+          2820
+        ],
+        "exit": 6500,
+        "wallPlacementCorrections": [
+          {
+            "id": "a4-35-old-wall-13",
+            "before": {
+              "x": 900,
+              "y": 1800
+            },
+            "after": {
+              "x": 1100,
+              "y": 1800
+            },
+            "reason": "Existing collider floated over step/slope; same physical shape moved to grounded clearing."
+          },
+          {
+            "id": "a4-art-35-extra-1",
+            "before": {
+              "x": 4140,
+              "y": 1881.0204081632653
+            },
+            "after": {
+              "x": 4600,
+              "y": 1959.639534883721
+            },
+            "reason": "Existing collider floated over step/slope; same physical shape moved to grounded clearing."
+          }
+        ]
+      }
+    },
+    "honroNarrativeRevision": 1,
+    "honroStoryCanonRevision": 1,
+    "honroNarrativeCatalogueRevision": 1
+  },
+  "environment": {
+    "version": 4,
+    "preset": "forest",
+    "atmosphere": {
+      "preset": "valley",
+      "overrides": {
+        "skyTop": "#809ba9",
+        "skyBottom": "#b3cbd3",
+        "ambientTint": "#809c9e",
+        "hazeColor": "#9eb7bf",
+        "farFogColor": "#bac8c5",
+        "nearFogColor": "#9eb7b8",
+        "shadowTint": "#304751",
+        "keyLightColor": "#b5cbd2",
+        "lightStrength": 0.02,
+        "mistStrength": 0.29,
+        "hazeStrength": 0.85
+      }
+    },
+    "zones": [
+      {
+        "id": "landscape",
+        "from": 0,
+        "to": 3100,
+        "blend": 232.5,
+        "atmosphere": {
+          "mistStrength": 0.3
+        }
+      }
+    ],
+    "groups": [
+      {
+        "id": "landscape-L4",
+        "depthLayer": "L4",
+        "verticalMode": "WORLD",
+        "zoneId": "landscape",
+        "x": 0,
+        "y": 1736
+      },
+      {
+        "id": "a4-35-rear",
+        "depthLayer": "L3",
+        "verticalMode": "WORLD",
+        "zoneId": "landscape",
+        "x": 0,
+        "y": 2040
+      }
+    ],
+    "surfaces": [
+      {
+        "id": "landscape-L4-support",
+        "groupId": "landscape-L4",
+        "kind": "ink-mountain",
+        "points": [
+          {
+            "x": -18713,
+            "y": -242
+          },
+          {
+            "x": -18013,
+            "y": -232
+          },
+          {
+            "x": -17313,
+            "y": -226
+          },
+          {
+            "x": -16613,
+            "y": -228
+          },
+          {
+            "x": -15913,
+            "y": -235
+          },
+          {
+            "x": -15213,
+            "y": -247
+          },
+          {
+            "x": -14513,
+            "y": -260
+          },
+          {
+            "x": -13813,
+            "y": -270
+          },
+          {
+            "x": -13113,
+            "y": -274
+          },
+          {
+            "x": -12413,
+            "y": -272
+          },
+          {
+            "x": -11713,
+            "y": -263
+          },
+          {
+            "x": -11013,
+            "y": -251
+          },
+          {
+            "x": -10313,
+            "y": -238
+          },
+          {
+            "x": -9613,
+            "y": -229
+          },
+          {
+            "x": -8913,
+            "y": -226
+          },
+          {
+            "x": -8213,
+            "y": -230
+          },
+          {
+            "x": -7513,
+            "y": -240
+          },
+          {
+            "x": -6813,
+            "y": -257
+          },
+          {
+            "x": -6113,
+            "y": -282
+          },
+          {
+            "x": -5413,
+            "y": -322
+          },
+          {
+            "x": -4713,
+            "y": -388
+          },
+          {
+            "x": -4013,
+            "y": -493
+          },
+          {
+            "x": -3313,
+            "y": -637
+          },
+          {
+            "x": -2613,
+            "y": -802
+          },
+          {
+            "x": -1913,
+            "y": -961
+          },
+          {
+            "x": -1213,
+            "y": -1102
+          },
+          {
+            "x": -513,
+            "y": -1244
+          },
+          {
+            "x": 187,
+            "y": -1409
+          },
+          {
+            "x": 887,
+            "y": -1572
+          },
+          {
+            "x": 1587,
+            "y": -1660
+          },
+          {
+            "x": 2287,
+            "y": -1632
+          },
+          {
+            "x": 2987,
+            "y": -1543
+          },
+          {
+            "x": 3687,
+            "y": -1496
+          },
+          {
+            "x": 4387,
+            "y": -1516
+          },
+          {
+            "x": 5087,
+            "y": -1512
+          },
+          {
+            "x": 5787,
+            "y": -1404
+          },
+          {
+            "x": 6487,
+            "y": -1224
+          },
+          {
+            "x": 7187,
+            "y": -1063
+          },
+          {
+            "x": 7887,
+            "y": -959
+          },
+          {
+            "x": 8587,
+            "y": -877
+          },
+          {
+            "x": 9287,
+            "y": -776
+          },
+          {
+            "x": 9987,
+            "y": -651
+          },
+          {
+            "x": 10687,
+            "y": -524
+          },
+          {
+            "x": 11387,
+            "y": -418
+          },
+          {
+            "x": 12087,
+            "y": -343
+          },
+          {
+            "x": 12787,
+            "y": -294
+          },
+          {
+            "x": 13487,
+            "y": -263
+          },
+          {
+            "x": 14187,
+            "y": -242
+          },
+          {
+            "x": 14887,
+            "y": -230
+          },
+          {
+            "x": 15587,
+            "y": -226
+          },
+          {
+            "x": 16287,
+            "y": -229
+          },
+          {
+            "x": 16987,
+            "y": -239
+          },
+          {
+            "x": 17687,
+            "y": -251
+          },
+          {
+            "x": 18387,
+            "y": -263
+          },
+          {
+            "x": 19087,
+            "y": -272
+          },
+          {
+            "x": 19787,
+            "y": -274
+          },
+          {
+            "x": 20487,
+            "y": -269
+          },
+          {
+            "x": 21187,
+            "y": -259
+          },
+          {
+            "x": 21887,
+            "y": -247
+          },
+          {
+            "x": 22587,
+            "y": -235
+          },
+          {
+            "x": 23287,
+            "y": -228
+          },
+          {
+            "x": 23987,
+            "y": -226
+          },
+          {
+            "x": 24687,
+            "y": -232
+          },
+          {
+            "x": 25387,
+            "y": -243
+          },
+          {
+            "x": 26087,
+            "y": -255
+          }
+        ],
+        "bottom": 23028
+      },
+      {
+        "id": "a4-35-rear-support",
+        "groupId": "a4-35-rear",
+        "kind": "rear-ground",
+        "points": [
+          {
+            "x": -16000,
+            "y": 0
+          },
+          {
+            "x": -6500,
+            "y": -90
+          },
+          {
+            "x": 0,
+            "y": -20
+          },
+          {
+            "x": 1900,
+            "y": 70
+          },
+          {
+            "x": 4200,
+            "y": -60
+          },
+          {
+            "x": 7500,
+            "y": 0
+          },
+          {
+            "x": 18000,
+            "y": -100
+          }
+        ],
+        "bottom": 29000
+      }
+    ],
+    "placements": [
+      {
+        "id": "a4-far--7000",
+        "assetId": "a4:bamboo",
+        "depthLayer": "L3",
+        "groupId": "a4-35-rear",
+        "supportId": "a4-35-rear-support",
+        "x": -7000,
+        "y": 0,
+        "scale": 1.05,
+        "rotation": 0
+      },
+      {
+        "id": "a4-far--4900",
+        "assetId": "a4:bamboo",
+        "depthLayer": "L3",
+        "groupId": "a4-35-rear",
+        "supportId": "a4-35-rear-support",
+        "x": -4900,
+        "y": 0,
+        "scale": 1.344,
+        "rotation": 0
+      },
+      {
+        "id": "a4-far--3400",
+        "assetId": "a4:bamboo",
+        "depthLayer": "L3",
+        "groupId": "a4-35-rear",
+        "supportId": "a4-35-rear-support",
+        "x": -3400,
+        "y": 0,
+        "scale": 1.1340000000000001,
+        "rotation": 0
+      },
+      {
+        "id": "a4-far--1800",
+        "assetId": "a4-art:bamboo-lean",
+        "depthLayer": "L3",
+        "groupId": "a4-35-rear",
+        "supportId": "a4-35-rear-support",
+        "x": -1800,
+        "y": 0,
+        "scale": 1.26,
+        "rotation": 0
+      },
+      {
+        "id": "a4-far--500",
+        "assetId": "a4:bamboo",
+        "depthLayer": "L3",
+        "groupId": "a4-35-rear",
+        "supportId": "a4-35-rear-support",
+        "x": -500,
+        "y": 0,
+        "scale": 1.05,
+        "rotation": 0
+      },
+      {
+        "id": "a4-far-900",
+        "assetId": "a4-art:bamboo-lean",
+        "depthLayer": "L3",
+        "groupId": "a4-35-rear",
+        "supportId": "a4-35-rear-support",
+        "x": 900,
+        "y": 0,
+        "scale": 1.344,
+        "rotation": 0
+      },
+      {
+        "id": "a4-far-2300",
+        "assetId": "a4:bamboo",
+        "depthLayer": "L3",
+        "groupId": "a4-35-rear",
+        "supportId": "a4-35-rear-support",
+        "x": 2300,
+        "y": 0,
+        "scale": 1.008,
+        "rotation": 0
+      },
+      {
+        "id": "a4-far-3700",
+        "assetId": "a4:bamboo",
+        "depthLayer": "L3",
+        "groupId": "a4-35-rear",
+        "supportId": "a4-35-rear-support",
+        "x": 3700,
+        "y": 0,
+        "scale": 1.218,
+        "rotation": 0
+      },
+      {
+        "id": "a4-far-5200",
+        "assetId": "a4:bamboo",
+        "depthLayer": "L3",
+        "groupId": "a4-35-rear",
+        "supportId": "a4-35-rear-support",
+        "x": 5200,
+        "y": 0,
+        "scale": 1.1340000000000001,
+        "rotation": 0
+      },
+      {
+        "id": "a4-far-6600",
+        "assetId": "a4-art:bamboo-lean",
+        "depthLayer": "L3",
+        "groupId": "a4-35-rear",
+        "supportId": "a4-35-rear-support",
+        "x": 6600,
+        "y": 0,
+        "scale": 1.26,
+        "rotation": 0
+      },
+      {
+        "id": "a4-far-8300",
+        "assetId": "a4:bamboo",
+        "depthLayer": "L3",
+        "groupId": "a4-35-rear",
+        "supportId": "a4-35-rear-support",
+        "x": 8300,
+        "y": 0,
+        "scale": 1.008,
+        "rotation": 0
+      },
+      {
+        "id": "a4-far-10200",
+        "assetId": "a4-art:bamboo-lean",
+        "depthLayer": "L3",
+        "groupId": "a4-35-rear",
+        "supportId": "a4-35-rear-support",
+        "x": 10200,
+        "y": 0,
+        "scale": 1.176,
+        "rotation": 0
+      },
+      {
+        "id": "a4-far-12500",
+        "assetId": "a4:bamboo",
+        "depthLayer": "L3",
+        "groupId": "a4-35-rear",
+        "supportId": "a4-35-rear-support",
+        "x": 12500,
+        "y": 0,
+        "scale": 1.344,
+        "rotation": 0
+      }
+    ]
+  },
+  "design": {
+    "act4": {
+      "revision": 2,
+      "chapter": 35,
+      "combatBudgetStage": 35,
+      "release": true,
+      "water": "visual/shallow only; recover/lethal pending separate verified implementation",
+      "dialogue": "reviewed seeds not yet bound",
+      "palette": {
+        "top": "#788c80",
+        "light": "#98a58e",
+        "body": "#4b6460",
+        "seam": "#314c43",
+        "deep": "#253c3b"
+      },
+      "production": {
+        "revision": 1,
+        "source": "tools/stage35-production/skeleton.mjs",
+        "centralShotContract": "x3040 blocked; x3350 clear; a4-35-g1-1 unchanged",
+        "clearings": [
+          [
+            920,
+            1840
+          ],
+          [
+            3160,
+            3900
+          ],
+          [
+            5340,
+            5790
+          ]
+        ],
+        "ditch": [
+          1840,
+          2820
+        ],
+        "exit": 6500,
+        "wallPlacementCorrections": [
+          {
+            "id": "a4-35-old-wall-13",
+            "before": {
+              "x": 900,
+              "y": 1800
+            },
+            "after": {
+              "x": 1100,
+              "y": 1800
+            },
+            "reason": "Existing collider floated over step/slope; same physical shape moved to grounded clearing."
+          },
+          {
+            "id": "a4-art-35-extra-1",
+            "before": {
+              "x": 4140,
+              "y": 1881.0204081632653
+            },
+            "after": {
+              "x": 4600,
+              "y": 1959.639534883721
+            },
+            "reason": "Existing collider floated over step/slope; same physical shape moved to grounded clearing."
+          }
+        ]
+      }
+    }
+  },
+  "playBounds": {
+    "left": 0,
+    "top": 0,
+    "right": 7200,
+    "bottom": 3100
+  },
+  "terrainBounds": {
+    "left": -6000,
+    "top": -24000,
+    "right": 13200,
+    "bottom": 27100
+  },
+  "terrainDomainVersion": 1
+}

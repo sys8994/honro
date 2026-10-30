@@ -1,0 +1,70 @@
+{
+  "candidateSHA256": "eec76ca1aaa36fd374a4d18c8e04c88a03ebe2033db0db31bcb1092f91d713c6",
+  "protectedCourtyard": [
+    1970,
+    3190
+  ],
+  "protectedHomeDoorInstances": [
+    "a4-36-house-2570",
+    "a4-36-door-4"
+  ],
+  "doorEventAssetIdentity": "a4:door",
+  "functionalFieldsParity": true,
+  "explicitGeometryRevision": true,
+  "regions": [
+    {
+      "side": "west",
+      "sourceWorldPerPixel": 2.705749718151071,
+      "actor92SourcePx": 34.001666666666665,
+      "vertices": 98,
+      "minDeviationWorld": -40.53949168397571,
+      "maxDeviationWorld": 38.52649285879079,
+      "maxSlope": 1.0446260293117575,
+      "nativeFlattenErrorSourcePx": 0.15,
+      "outlineSimplificationWorldPx": 0.6
+    },
+    {
+      "side": "east",
+      "sourceWorldPerPixel": 2.705749718151071,
+      "actor92SourcePx": 34.001666666666665,
+      "vertices": 133,
+      "minDeviationWorld": -19.355510817687673,
+      "maxDeviationWorld": 60.224581161515744,
+      "maxSlope": 2.6089428671646524,
+      "nativeFlattenErrorSourcePx": 0.15,
+      "outlineSimplificationWorldPx": 0.6
+    }
+  ],
+  "decorativeFootAdjustments": [
+    {
+      "id": "a4-36-house-1520",
+      "dy": 0.038868967196322046
+    },
+    {
+      "id": "a4-36-house-4550",
+      "dy": 39.21384310536246
+    },
+    {
+      "id": "a4-36-house-5740",
+      "dy": -0.8866415473976303
+    },
+    {
+      "id": "a4-art-36-extra-0",
+      "dy": 0.0
+    },
+    {
+      "id": "a4-art-36-extra-1",
+      "dy": 46.19354392636342
+    },
+    {
+      "id": "a4-art-36-extra-2",
+      "dy": 1.3358097345460465
+    },
+    {
+      "id": "a4-art-36-extra-3",
+      "dy": 22.675254336475973
+    }
+  ],
+  "visualApproval": false,
+  "doorLifecycleQA": "pending"
+}

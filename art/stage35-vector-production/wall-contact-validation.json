@@ -1,0 +1,80 @@
+{
+  "scope": "Controlled real gravity/landing and real low-shot collision. Rendered contact must still be inspected.",
+  "standing": [
+    {
+      "x": 1070,
+      "y": 1714.4,
+      "grounded": true
+    },
+    {
+      "x": 1130,
+      "y": 1700.7529411764706,
+      "grounded": true
+    },
+    {
+      "x": 1200,
+      "y": 1724.2666666666667,
+      "grounded": true
+    },
+    {
+      "x": 4500,
+      "y": 1831.1228682170542,
+      "grounded": true
+    },
+    {
+      "x": 4600,
+      "y": 1830.489534883721,
+      "grounded": true
+    },
+    {
+      "x": 4700,
+      "y": 1850.774829001368,
+      "grounded": true
+    }
+  ],
+  "footprintSupport": [
+    {
+      "id": "a4-35-old-wall-13",
+      "x": 956,
+      "baseY": 1800,
+      "groundY": 1800,
+      "burial": 0
+    },
+    {
+      "id": "a4-35-old-wall-13",
+      "x": 1244,
+      "baseY": 1800,
+      "groundY": 1800,
+      "burial": 0
+    },
+    {
+      "id": "a4-art-35-extra-1",
+      "x": 4411,
+      "baseY": 1959.639534883721,
+      "groundY": 1955.2441860465117,
+      "burial": 4.395348837209212
+    },
+    {
+      "id": "a4-art-35-extra-1",
+      "x": 4789,
+      "baseY": 1959.639534883721,
+      "groundY": 1959.639534883721,
+      "burial": 0
+    }
+  ],
+  "shot": {
+    "from": {
+      "x": 900,
+      "y": 1800
+    },
+    "aim": {
+      "angle": 5,
+      "power": 0.2
+    },
+    "impact": {
+      "x": 955.7693439621279,
+      "y": 1738.0600501184758,
+      "terrain": "a4-35-old-wall-13"
+    }
+  }
+}
