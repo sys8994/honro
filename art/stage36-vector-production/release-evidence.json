@@ -1,0 +1,118 @@
+{
+  "stage": 36,
+  "status": "Native source and actual App verified candidate; parent browser/official release review pending",
+  "projectFingerprint": "a0ec5845ecdebcc8e2a351a93b71c5f75121d3c5e379d16efb5c39a005fcdcc4",
+  "runtimeSha256": "7f74e2da4f5b97b1f30826151c95ec320ae58c48860790ce8f9d0afeb3c6cb76",
+  "verifierSha256": "fbefb6df57759b53598518a43a9a137b44ee51e849107a1e2e340532b13e1cff",
+  "packageSha256": "8062cbca3aa36c92053f78c9fd0d1141a00ee2a2e493a5a11bd965299af01ad1",
+  "mechanics": "Exact original terrain, actors, encounters, collision and dynamic door placement checked by contract-validation.json",
+  "gameplay": {
+    "success": true,
+    "frames": 18052,
+    "shots": 16,
+    "entryBuild": "campaign-balanced-v1",
+    "resume": [
+      {
+        "frame": 12011,
+        "inputIndex": 484,
+        "result": "pass",
+        "scope": "Actual stopBattle/persist/Continue; exact units, event state, round, active, phase and resolved static/dynamic art preserved"
+      }
+    ],
+    "receipts": [
+      "A4.S36.ENTRY.01",
+      "A4.S36.DOOR.01",
+      "A4.S36.DOOR.02",
+      "A4.S36.EXIT.01",
+      "A4.S36.EXIT.02"
+    ],
+    "door": {
+      "phase": "fallen",
+      "time": 1,
+      "soundAt": 62.3749999999971,
+      "renderedAt": 62.499999999997094
+    },
+    "allLivingPartyExited": true
+  },
+  "assets": [
+    {
+      "id": "s36v:rear-soil",
+      "nodes": 1,
+      "paths": 1,
+      "maxPathChars": 1458,
+      "embeddedBitmap": false
+    },
+    {
+      "id": "s36v:body-continuous",
+      "nodes": 18,
+      "paths": 12,
+      "maxPathChars": 46818,
+      "embeddedBitmap": false
+    },
+    {
+      "id": "s36v:body-continuous-domain-left",
+      "nodes": 91,
+      "paths": 60,
+      "maxPathChars": 46818,
+      "embeddedBitmap": false
+    },
+    {
+      "id": "s36v:body-continuous-domain-right",
+      "nodes": 91,
+      "paths": 60,
+      "maxPathChars": 46818,
+      "embeddedBitmap": false
+    },
+    {
+      "id": "a4-production:ironless-home",
+      "nodes": 19,
+      "paths": 16,
+      "maxPathChars": 59977,
+      "embeddedBitmap": false
+    },
+    {
+      "id": "a4-production:ironless-frame",
+      "nodes": 12,
+      "paths": 9,
+      "maxPathChars": 50021,
+      "embeddedBitmap": false
+    },
+    {
+      "id": "s36v:door",
+      "nodes": 10,
+      "paths": 7,
+      "maxPathChars": 53298,
+      "embeddedBitmap": false
+    },
+    {
+      "id": "a4-production:ironless-foundation",
+      "nodes": 17,
+      "paths": 14,
+      "maxPathChars": 59119,
+      "embeddedBitmap": false
+    }
+  ],
+  "sourceReview": [
+    "Full layout: asymmetric village basin and empty central court",
+    "Detail/contact: house door socket, empty hearth, slope-grounded roofless frames",
+    "Camera/state: whole, normal, max, portrait, domain and real door fall/completed App"
+  ],
+  "scope": "Production Native Canvas plus actual App/Engine/Story; DOM/audio/scheduling are doubles. Not browser screenshots or deviceFPS; final parent release review required.",
+  "doorPoseCorrection": {
+    "mode": "asset.params.act4DoorForeshortening version1 fallenScaleY.25",
+    "pivot": "unchanged original world(l.x,l.y), applied after original rotation",
+    "defaultPixelParity": true,
+    "sourceInstanceAndEventStateUnchanged": true,
+    "ordinaryReplayFinalUnitsAndEventsIdenticalToPrior": true,
+    "evidence": "door-foreshortening-validation.json and app-states/"
+  },
+  "sharedDoorIsolation": {
+    "eventAssetId": "a4:door",
+    "paintAssetId": "s36v:door",
+    "selector": "stage.design.vectorDoorAssetId",
+    "stage32DefaultPixelParity": true,
+    "selectedPaintMatchesPriorApprovedPixels": true,
+    "ordinaryReplayFinalUnitsAndEventsIdenticalToPrior": true,
+    "evidence": "door-foreshortening-validation.json; actual replay isolated-door-app.json"
+  }
+}
