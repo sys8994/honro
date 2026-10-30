@@ -436,3 +436,26 @@ movement must remain visible. No historical run is retroactively reclassified.
 script/gate/knockback exclusion, episode transfer and genuine walk-off detection.
 The hurt observer also retains actual target maxHp and owner side for future
 per-attack damage percentages, instead of assuming initial maxHp stayed constant.
+
+### P09: mixed sanity/holdout denominators and missing protocol provenance
+Cause: old grouping used only source/stage/policy and terminal rows omitted
+purpose/budgets, allowing a short sanity timeout to mix with a full holdout.
+Do not relabel a completed sanity as holdout, drop errors, or choose only good
+results. Every attempt remains retained. Before adapter/engine setup, the runner
+now writes purpose, frame/wall budgets, controller/source hashes and a stable
+cohort identity to both the attempt registration and run-start record. The same
+identity is copied to terminal records. Set `HONRO_EVALUATION_PURPOSE` before
+execution to `input-sanity`, `full-calibration`, `memory-probe`, `setup-probe`, or
+`mechanics-calibration` (default). Only a validated preexisting holdout manifest
+selects `frozen-holdout`; v2 manifests also bind exact candidate source hash.
+Groups are isolated by all recorded protocol fields/cohort ID. Legacy logs may
+recover only metadata that actually exists in their run-start, never inferred
+purpose. Without a start registration, preserve the attempt as unclassified and
+retain its original terminal claim separately. All-attempt, technical-error,
+normal policy-failure, unclassified and repeated-seed counts are disclosed.
+`clearRateNormal` is diagnostic only; technical errors in a requested holdout
+block approval and cannot be removed from its preregistered denominator.
+Regressions: stats/log-reader/freeze units cover mixed budgets/purposes/cohorts,
+source/controller drift, partial gzip, absent starts, duplicate/repeated seeds
+and requested-holdout technical errors. Old attempts are not promoted into new
+cohorts. Full design-target evaluation remains explicitly blocked/unimplemented.

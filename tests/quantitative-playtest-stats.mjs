@@ -9,3 +9,12 @@ const a=rng(19),b=rng(19);assert.deepEqual(Array.from({length:10},a),Array.from(
 assert.throws(()=>summarize([row('unknown',1)]));console.log('PASS quantitative statistics denominators, censoring, source isolation, seeded policy RNG');
 
 const limited=summarize([row('round-limit',21)]).groups[0];assert.equal(limited.clearRateAll,0);assert.equal(limited.clearRounds.n,0);assert.equal(limited.counts['round-limit'],1);
+
+const full={...row('clear',15),controllerHash:'v6',evaluation:{kind:'frozen-holdout'},maxFrames:60000,maxWallSeconds:1800,seed:1},sanity={...full,outcome:'timeout',evaluation:{kind:'mechanics-calibration'},maxFrames:600,maxWallSeconds:180};
+assert.equal(summarize([full,sanity]).groups.length,2);assert.equal(summarize([full,{...full,maxFrames:600}]).groups.length,2);assert.equal(summarize([full,{...full,controllerHash:'different'}]).groups.length,2);assert.equal(summarize([full,full]).groups[0].repeatedSeedAttempts,1);
+console.log('PASS purpose/budget/controller cohort separation and repeated-seed disclosure; no attempt discarded');
+
+const technical={...full,runId:'failed-holdout',outcome:'error',cohortIdentity:{id:'registered'},protocolRecorded:true},split=summarize([technical,{...technical,outcome:'clear',cohortIdentity:{id:'other-protocol'}}]);assert.equal(split.groups.length,2);assert.equal(split.allAttempts,2);assert.equal(split.technicalErrors,1);assert.equal(split.qualityBlockers.length,1);assert.equal(split.gate.status,'blocked');
+console.log('PASS predeclared cohort identity separation, complete attempt totals and holdout technical-error approval block');
+
+assert.equal(summarize([{...technical,evaluation:{kind:'unclassified-missing-start'},requestedEvaluation:{kind:'frozen-holdout'}}]).qualityBlockers.length,1);
