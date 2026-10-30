@@ -13,3 +13,7 @@
 
 ## 생성 요청 요지
 Side-view low alluvial estuary bank, two asymmetric reed banks, open erosion gutter in first bank, shallow central drainage, only one supported final timber jetty. Flat navy/slate broad planes and restrained sage rim. Original raster atmospheric blue dawn far landscape. No floating platforms, tall pillars, arches, HUD or characters.
+
+## 실제 Inkscape 추적
+terrain-source.png를 GUI Link import, Multicolor Colors 8 scans, Stack ON, Remove background ON, Smooth OFF, Speckles 2, Smooth corners 1.00, Optimize 0.200으로 추적. terrain-traced.svg 454179 bytes, 7 paths. PNG 링크 원본 포함 저작파일이며 엔진 경량 결과는 별도 생성한다.
+입력칸에 8을 append하여 88로 첫 실행한 오류는 Undo 후 Ctrl+A 교체로 8을 화면 확인하여 재실행했다. 88 결과는 최종 SVG에 포함되지 않음(7 path 확인). 큰 복합 경로 352093자 등이 있어 형상 보존 최적화와 실제 크기 검수가 필수다.
