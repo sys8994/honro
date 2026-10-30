@@ -1,0 +1,15 @@
+{
+  "scope": "Explicit renderer fixture only; residents positioned solely to inspect deck/hull/water. Prior actual ordinary-input results remain bound to their original project hash.",
+  "beforeProjectSha256": "80cd1dc4a0a28f723955a5ba16e2902b7a7be327718714959362f38db7172d76",
+  "finalProjectSha256": "ef9529cca962f5f769611a196ada0d2364c7c28bd8b110f6e8be4eb1da45b9a8",
+  "onlyAssetChanged": "s40v:boat",
+  "baseFileUnchanged": true,
+  "deckWorldY": 1950,
+  "waterWorldY": 2050,
+  "rawHullBottomWorldY": 2019.375,
+  "finalHullBottomWorldY": 2061,
+  "submergedWorldUnits": 11,
+  "physicsStagesOtherAssetsIdentical": true,
+  "paintDoesNotMutateData": true,
+  "pass": true
+}

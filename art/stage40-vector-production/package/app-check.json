@@ -1,0 +1,2763 @@
+{
+  "finalRenderOnlyCalibration": {
+    "scope": "Explicit renderer fixture only; residents positioned solely to inspect deck/hull/water. Prior actual ordinary-input results remain bound to their original project hash.",
+    "beforeProjectSha256": "80cd1dc4a0a28f723955a5ba16e2902b7a7be327718714959362f38db7172d76",
+    "finalProjectSha256": "ef9529cca962f5f769611a196ada0d2364c7c28bd8b110f6e8be4eb1da45b9a8",
+    "onlyAssetChanged": "s40v:boat",
+    "baseFileUnchanged": true,
+    "deckWorldY": 1950,
+    "waterWorldY": 2050,
+    "rawHullBottomWorldY": 2019.375,
+    "finalHullBottomWorldY": 2061,
+    "submergedWorldUnits": 11,
+    "physicsStagesOtherAssetsIdentical": true,
+    "paintDoesNotMutateData": true,
+    "pass": true
+  },
+  "finalVisualWater": {
+    "scope": "Explicit renderer fixture only; residents positioned solely to inspect deck/hull/water. Prior actual ordinary-input results remain bound to their original project hash.",
+    "beforeProjectSha256": "ef9529cca962f5f769611a196ada0d2364c7c28bd8b110f6e8be4eb1da45b9a8",
+    "finalProjectSha256": "4363ce4eec81ace3dacc2ce00e97e3185f16c82aa7c01770100545b8f5156e52",
+    "onlyStageFieldChanged": "design.vectorReturnWater",
+    "waterPolygon": {
+      "id": "visual-40-return-inlet-0",
+      "kind": "water-pool",
+      "surface": [
+        [
+          2890,
+          2050
+        ],
+        [
+          4866.666666666667,
+          2050
+        ]
+      ],
+      "bottom": [
+        [
+          2890,
+          2060.5882352941176
+        ],
+        [
+          3020,
+          2420
+        ],
+        [
+          4200,
+          2420
+        ],
+        [
+          4700,
+          2250
+        ],
+        [
+          4866.666666666667,
+          2050
+        ]
+      ],
+      "points": [
+        [
+          2890,
+          2050
+        ],
+        [
+          4866.666666666667,
+          2050
+        ],
+        [
+          4866.666666666667,
+          2050
+        ],
+        [
+          4700,
+          2250
+        ],
+        [
+          4200,
+          2420
+        ],
+        [
+          3020,
+          2420
+        ],
+        [
+          2890,
+          2060.5882352941176
+        ]
+      ],
+      "honroCarvedBasin": true
+    },
+    "baseFileUnchanged": true,
+    "deckWorldY": 1950,
+    "waterWorldY": 2050,
+    "rawHullBottomWorldY": 2019.375,
+    "finalHullBottomWorldY": 2061,
+    "submergedWorldUnits": 11,
+    "physicsStagesOtherAssetsIdentical": true,
+    "paintDoesNotMutateData": true,
+    "pass": true
+  },
+  "normal": {
+    "projectSha256": "80cd1dc4a0a28f723955a5ba16e2902b7a7be327718714959362f38db7172d76",
+    "runtimeSha256": "064e4b3840fd7398d1d8042d439c88d97a609a215c6249eed84519fb6c43f7a5",
+    "verifierSha256": "471772894218f9c77a8825bf12b87eba4854617d60c4d1c6e80806768e146cae",
+    "scope": "Prepared earned-SP stage-entry profile; real App/Engine/Native Canvas events and sparse actual scene rendering every300 simulation frames (bounded snapshot evidence, not continuous rendered play); DOM/audio/storage scheduling are doubles, not browser or chapters1–39 playthrough. Prior32/39 are explicitly prepared from independent actual templates, not linked historical campaign. Dialogue skipped, not presented. No current-stage/pose/HP/resource forcing.",
+    "preparedProof": "valid",
+    "success": true,
+    "proofValid": true,
+    "frames": 16829,
+    "shots": 10,
+    "resume": [
+      {
+        "frame": 14337,
+        "boatX": 3650.5,
+        "passengers": {
+          "a4-rescue-0": -70.00000062863546,
+          "a4-rescue-1": 20.469539497670667
+        },
+        "pass": true,
+        "scope": "Actual App stopBattle/persist/Continue; exact units/terrain/objective/round/active/phase"
+      }
+    ],
+    "transitions": [
+      {
+        "frame": 7911,
+        "phase": "aim",
+        "escort": "boarding",
+        "complete": false
+      },
+      {
+        "frame": 8012,
+        "phase": "review",
+        "escort": "boarding",
+        "complete": false
+      },
+      {
+        "frame": 8089,
+        "phase": "aim",
+        "escort": "boarding",
+        "complete": false
+      },
+      {
+        "frame": 8102,
+        "phase": "review",
+        "escort": "boarding",
+        "complete": false
+      },
+      {
+        "frame": 8179,
+        "phase": "aim",
+        "escort": "boarding",
+        "complete": false
+      },
+      {
+        "frame": 8192,
+        "phase": "review",
+        "escort": "boarding",
+        "complete": false
+      },
+      {
+        "frame": 8269,
+        "phase": "aim",
+        "escort": "boarding",
+        "complete": false
+      },
+      {
+        "frame": 8282,
+        "phase": "review",
+        "escort": "boarding",
+        "complete": false
+      },
+      {
+        "frame": 8359,
+        "phase": "transition",
+        "escort": "boarding",
+        "complete": false
+      },
+      {
+        "frame": 8447,
+        "phase": "aim",
+        "escort": "boarding",
+        "complete": false
+      },
+      {
+        "frame": 9253,
+        "phase": "review",
+        "escort": "boarding",
+        "complete": false
+      },
+      {
+        "frame": 9330,
+        "phase": "aim",
+        "escort": "boarding",
+        "complete": false
+      },
+      {
+        "frame": 9343,
+        "phase": "review",
+        "escort": "boarding",
+        "complete": false
+      },
+      {
+        "frame": 9420,
+        "phase": "aim",
+        "escort": "boarding",
+        "complete": false
+      },
+      {
+        "frame": 9433,
+        "phase": "review",
+        "escort": "boarding",
+        "complete": false
+      },
+      {
+        "frame": 9510,
+        "phase": "aim",
+        "escort": "boarding",
+        "complete": false
+      },
+      {
+        "frame": 9523,
+        "phase": "review",
+        "escort": "boarding",
+        "complete": false
+      },
+      {
+        "frame": 9600,
+        "phase": "transition",
+        "escort": "boarding",
+        "complete": false
+      },
+      {
+        "frame": 9640,
+        "phase": "aim",
+        "escort": "boarding",
+        "complete": false
+      },
+      {
+        "frame": 10650,
+        "phase": "review",
+        "escort": "boarding",
+        "complete": false
+      },
+      {
+        "frame": 10727,
+        "phase": "aim",
+        "escort": "boarding",
+        "complete": false
+      },
+      {
+        "frame": 10740,
+        "phase": "review",
+        "escort": "boarding",
+        "complete": false
+      },
+      {
+        "frame": 10817,
+        "phase": "aim",
+        "escort": "boarding",
+        "complete": false
+      },
+      {
+        "frame": 10830,
+        "phase": "review",
+        "escort": "boarding",
+        "complete": false
+      },
+      {
+        "frame": 10907,
+        "phase": "aim",
+        "escort": "boarding",
+        "complete": false
+      },
+      {
+        "frame": 10920,
+        "phase": "review",
+        "escort": "boarding",
+        "complete": false
+      },
+      {
+        "frame": 10997,
+        "phase": "transition",
+        "escort": "boarding",
+        "complete": false
+      },
+      {
+        "frame": 11037,
+        "phase": "aim",
+        "escort": "boarding",
+        "complete": false
+      },
+      {
+        "frame": 11886,
+        "phase": "review",
+        "escort": "boarding",
+        "complete": false
+      },
+      {
+        "frame": 11963,
+        "phase": "aim",
+        "escort": "boarding",
+        "complete": false
+      },
+      {
+        "frame": 11976,
+        "phase": "review",
+        "escort": "boarding",
+        "complete": false
+      },
+      {
+        "frame": 12053,
+        "phase": "aim",
+        "escort": "boarding",
+        "complete": false
+      },
+      {
+        "frame": 12066,
+        "phase": "review",
+        "escort": "boarding",
+        "complete": false
+      },
+      {
+        "frame": 12143,
+        "phase": "aim",
+        "escort": "boarding",
+        "complete": false
+      },
+      {
+        "frame": 12156,
+        "phase": "review",
+        "escort": "boarding",
+        "complete": false
+      },
+      {
+        "frame": 12233,
+        "phase": "transition",
+        "escort": "boarding",
+        "complete": false
+      },
+      {
+        "frame": 12273,
+        "phase": "aim",
+        "escort": "boarding",
+        "complete": false
+      },
+      {
+        "frame": 13427,
+        "phase": "review",
+        "escort": "boarding",
+        "complete": false
+      },
+      {
+        "frame": 13504,
+        "phase": "aim",
+        "escort": "boarding",
+        "complete": false
+      },
+      {
+        "frame": 13517,
+        "phase": "review",
+        "escort": "boarding",
+        "complete": false
+      },
+      {
+        "frame": 13594,
+        "phase": "aim",
+        "escort": "boarding",
+        "complete": false
+      },
+      {
+        "frame": 13607,
+        "phase": "review",
+        "escort": "boarding",
+        "complete": false
+      },
+      {
+        "frame": 13684,
+        "phase": "aim",
+        "escort": "boarding",
+        "complete": false
+      },
+      {
+        "frame": 13697,
+        "phase": "review",
+        "escort": "boarding",
+        "complete": false
+      },
+      {
+        "frame": 13774,
+        "phase": "transition",
+        "escort": "boarding",
+        "complete": false
+      },
+      {
+        "frame": 13814,
+        "phase": "aim",
+        "escort": "boarding",
+        "complete": false
+      },
+      {
+        "frame": 13971,
+        "phase": "aim",
+        "escort": "sailing",
+        "complete": false
+      },
+      {
+        "frame": 14968,
+        "phase": "review",
+        "escort": "sailing",
+        "complete": false
+      },
+      {
+        "frame": 15045,
+        "phase": "aim",
+        "escort": "sailing",
+        "complete": false
+      },
+      {
+        "frame": 15058,
+        "phase": "review",
+        "escort": "sailing",
+        "complete": false
+      },
+      {
+        "frame": 15135,
+        "phase": "aim",
+        "escort": "sailing",
+        "complete": false
+      },
+      {
+        "frame": 15148,
+        "phase": "review",
+        "escort": "sailing",
+        "complete": false
+      },
+      {
+        "frame": 15225,
+        "phase": "aim",
+        "escort": "sailing",
+        "complete": false
+      },
+      {
+        "frame": 15238,
+        "phase": "review",
+        "escort": "sailing",
+        "complete": false
+      },
+      {
+        "frame": 15315,
+        "phase": "transition",
+        "escort": "sailing",
+        "complete": false
+      },
+      {
+        "frame": 15355,
+        "phase": "aim",
+        "escort": "sailing",
+        "complete": false
+      },
+      {
+        "frame": 15358,
+        "phase": "aim",
+        "escort": "landed",
+        "complete": false
+      },
+      {
+        "frame": 16396,
+        "phase": "aim",
+        "escort": "safe",
+        "complete": false
+      },
+      {
+        "frame": 16523,
+        "phase": "aim",
+        "escort": "safe",
+        "roster": {
+          "total": 13,
+          "living": 11,
+          "priorDeaths": 2
+        },
+        "complete": false
+      },
+      {
+        "frame": 16825,
+        "phase": "won",
+        "escort": "safe",
+        "roster": {
+          "total": 13,
+          "living": 11,
+          "priorDeaths": 2
+        },
+        "complete": true
+      }
+    ],
+    "observed": {
+      "return-high": 5.000000000000038,
+      "return-boat": 64.9999999999978,
+      "return-ridge": 77.50000000000774,
+      "safe-return": 137.50000000003928,
+      "small-dislocation": 140.000000000037
+    },
+    "events": {
+      "boarding": {
+        "started": true,
+        "terminal": true,
+        "presented": [],
+        "retired": [
+          "A4.S40.BOARD.01",
+          "A4.S40.BOARD.02"
+        ]
+      },
+      "reunion": {
+        "started": true,
+        "terminal": true,
+        "presented": [],
+        "retired": [
+          "A4.S40.REUNION.01",
+          "A4.S40.REUNION.02"
+        ]
+      },
+      "thirteen": {
+        "started": true,
+        "terminal": true,
+        "presented": [],
+        "retired": [
+          "A4.S40.THIRTEEN.01",
+          "A4.S40.THIRTEEN.02",
+          "A4.S40.THIRTEEN.03"
+        ]
+      },
+      "next": {
+        "started": true,
+        "terminal": true,
+        "presented": [],
+        "retired": [
+          "A4.S40.NEXT.01",
+          "A4.S40.NEXT.02",
+          "A4.S40.NEXT.03",
+          "A4.S40.NEXT.04"
+        ]
+      }
+    },
+    "roster": {
+      "total": 13,
+      "living": 11,
+      "priorDeaths": 2
+    },
+    "rescued": {
+      "ids": [
+        "a4-rescue-0",
+        "a4-rescue-1",
+        "a4-rescue-2",
+        "a4-rescue-3"
+      ],
+      "sourceRun": "honro-map-stage-40-1793213736463"
+    },
+    "units": [
+      {
+        "id": "archer",
+        "x": 6034.202863526019,
+        "y": 1710,
+        "hp": 1671,
+        "dead": false
+      },
+      {
+        "id": "mage",
+        "x": 6006.008149931777,
+        "y": 1710,
+        "hp": 1888,
+        "dead": false
+      },
+      {
+        "id": "knight",
+        "x": 6035.941258974541,
+        "y": 1710,
+        "hp": 3786,
+        "dead": false
+      },
+      {
+        "id": "occultist",
+        "x": 6021.8716395099955,
+        "y": 1710,
+        "hp": 2251,
+        "dead": false
+      },
+      {
+        "id": "a4-40-g0-0",
+        "x": 1196.768271986548,
+        "y": 1880.4308970684604,
+        "hp": 0,
+        "dead": true
+      },
+      {
+        "id": "a4-40-g0-1",
+        "x": 1982.421528228103,
+        "y": 1873.4871591645986,
+        "hp": 0,
+        "dead": true
+      },
+      {
+        "id": "a4-40-g0-2",
+        "x": 2137.512886940373,
+        "y": 1348.5454545454454,
+        "hp": 0,
+        "dead": true
+      },
+      {
+        "id": "a4-rescue-0",
+        "x": 5430.320419942589,
+        "y": 1733.7551412080375,
+        "hp": 924,
+        "dead": false
+      },
+      {
+        "id": "a4-rescue-1",
+        "x": 5516.662822132762,
+        "y": 1721.6672049014132,
+        "hp": 1257,
+        "dead": false
+      },
+      {
+        "id": "a4-rescue-2",
+        "x": 5669.999999325708,
+        "y": 1710,
+        "hp": 1381,
+        "dead": false
+      },
+      {
+        "id": "a4-rescue-3",
+        "x": 5754.999995059494,
+        "y": 1710,
+        "hp": 1381,
+        "dead": false
+      }
+    ],
+    "completed40": {
+      "stage": 40,
+      "sourceRun": "honro-map-stage-40-1793213736463",
+      "campaignRunId": "eq-mvsh5qaw-wr13g05i",
+      "success": true,
+      "residents": [
+        {
+          "id": "a4-rescue-0",
+          "hp": 924,
+          "dead": false
+        },
+        {
+          "id": "a4-rescue-1",
+          "hp": 1257,
+          "dead": false
+        },
+        {
+          "id": "a4-rescue-2",
+          "hp": 1381,
+          "dead": false
+        },
+        {
+          "id": "a4-rescue-3",
+          "hp": 1381,
+          "dead": false
+        }
+      ],
+      "rows": []
+    }
+  },
+  "mobile": {
+    "viewport": [
+      720,
+      1100
+    ],
+    "ordinaryFraming": "One .5 zoom-out at safe landing plus ordinary idle/Escape/E; narrow default view otherwise misses the return marker after party walks beyond residents.",
+    "projectSha256": "80cd1dc4a0a28f723955a5ba16e2902b7a7be327718714959362f38db7172d76",
+    "runtimeSha256": "064e4b3840fd7398d1d8042d439c88d97a609a215c6249eed84519fb6c43f7a5",
+    "verifierSha256": "471772894218f9c77a8825bf12b87eba4854617d60c4d1c6e80806768e146cae",
+    "scope": "Prepared earned-SP stage-entry profile; real App/Engine/Native Canvas events and sparse actual scene rendering every300 simulation frames (bounded snapshot evidence, not continuous rendered play); DOM/audio/storage scheduling are doubles, not browser or chapters1–39 playthrough. Prior32/39 are explicitly prepared from independent actual templates, not linked historical campaign. Dialogue skipped, not presented. No current-stage/pose/HP/resource forcing.",
+    "preparedProof": "valid",
+    "success": true,
+    "proofValid": true,
+    "frames": 17086,
+    "shots": 10,
+    "resume": [
+      {
+        "frame": 14284,
+        "boatX": 3650.5,
+        "passengers": {
+          "a4-rescue-0": -70.00000062863546,
+          "a4-rescue-1": 20.469539497670667
+        },
+        "pass": true,
+        "scope": "Actual App stopBattle/persist/Continue; exact units/terrain/objective/round/active/phase"
+      }
+    ],
+    "transitions": [
+      {
+        "frame": 10501,
+        "phase": "aim",
+        "escort": "boarding",
+        "complete": false
+      },
+      {
+        "frame": 10567,
+        "phase": "review",
+        "escort": "boarding",
+        "complete": false
+      },
+      {
+        "frame": 10644,
+        "phase": "aim",
+        "escort": "boarding",
+        "complete": false
+      },
+      {
+        "frame": 10657,
+        "phase": "review",
+        "escort": "boarding",
+        "complete": false
+      },
+      {
+        "frame": 10734,
+        "phase": "aim",
+        "escort": "boarding",
+        "complete": false
+      },
+      {
+        "frame": 10747,
+        "phase": "review",
+        "escort": "boarding",
+        "complete": false
+      },
+      {
+        "frame": 10824,
+        "phase": "aim",
+        "escort": "boarding",
+        "complete": false
+      },
+      {
+        "frame": 10837,
+        "phase": "review",
+        "escort": "boarding",
+        "complete": false
+      },
+      {
+        "frame": 10914,
+        "phase": "transition",
+        "escort": "boarding",
+        "complete": false
+      },
+      {
+        "frame": 10965,
+        "phase": "aim",
+        "escort": "boarding",
+        "complete": false
+      },
+      {
+        "frame": 11833,
+        "phase": "review",
+        "escort": "boarding",
+        "complete": false
+      },
+      {
+        "frame": 11910,
+        "phase": "aim",
+        "escort": "boarding",
+        "complete": false
+      },
+      {
+        "frame": 11923,
+        "phase": "review",
+        "escort": "boarding",
+        "complete": false
+      },
+      {
+        "frame": 12000,
+        "phase": "aim",
+        "escort": "boarding",
+        "complete": false
+      },
+      {
+        "frame": 12013,
+        "phase": "review",
+        "escort": "boarding",
+        "complete": false
+      },
+      {
+        "frame": 12090,
+        "phase": "aim",
+        "escort": "boarding",
+        "complete": false
+      },
+      {
+        "frame": 12103,
+        "phase": "review",
+        "escort": "boarding",
+        "complete": false
+      },
+      {
+        "frame": 12180,
+        "phase": "transition",
+        "escort": "boarding",
+        "complete": false
+      },
+      {
+        "frame": 12220,
+        "phase": "aim",
+        "escort": "boarding",
+        "complete": false
+      },
+      {
+        "frame": 13374,
+        "phase": "review",
+        "escort": "boarding",
+        "complete": false
+      },
+      {
+        "frame": 13451,
+        "phase": "aim",
+        "escort": "boarding",
+        "complete": false
+      },
+      {
+        "frame": 13464,
+        "phase": "review",
+        "escort": "boarding",
+        "complete": false
+      },
+      {
+        "frame": 13541,
+        "phase": "aim",
+        "escort": "boarding",
+        "complete": false
+      },
+      {
+        "frame": 13554,
+        "phase": "review",
+        "escort": "boarding",
+        "complete": false
+      },
+      {
+        "frame": 13631,
+        "phase": "aim",
+        "escort": "boarding",
+        "complete": false
+      },
+      {
+        "frame": 13644,
+        "phase": "review",
+        "escort": "boarding",
+        "complete": false
+      },
+      {
+        "frame": 13721,
+        "phase": "transition",
+        "escort": "boarding",
+        "complete": false
+      },
+      {
+        "frame": 13761,
+        "phase": "aim",
+        "escort": "boarding",
+        "complete": false
+      },
+      {
+        "frame": 13918,
+        "phase": "aim",
+        "escort": "sailing",
+        "complete": false
+      },
+      {
+        "frame": 14915,
+        "phase": "review",
+        "escort": "sailing",
+        "complete": false
+      },
+      {
+        "frame": 14992,
+        "phase": "aim",
+        "escort": "sailing",
+        "complete": false
+      },
+      {
+        "frame": 15005,
+        "phase": "review",
+        "escort": "sailing",
+        "complete": false
+      },
+      {
+        "frame": 15082,
+        "phase": "aim",
+        "escort": "sailing",
+        "complete": false
+      },
+      {
+        "frame": 15095,
+        "phase": "review",
+        "escort": "sailing",
+        "complete": false
+      },
+      {
+        "frame": 15172,
+        "phase": "aim",
+        "escort": "sailing",
+        "complete": false
+      },
+      {
+        "frame": 15185,
+        "phase": "review",
+        "escort": "sailing",
+        "complete": false
+      },
+      {
+        "frame": 15262,
+        "phase": "transition",
+        "escort": "sailing",
+        "complete": false
+      },
+      {
+        "frame": 15302,
+        "phase": "aim",
+        "escort": "sailing",
+        "complete": false
+      },
+      {
+        "frame": 15305,
+        "phase": "aim",
+        "escort": "landed",
+        "complete": false
+      },
+      {
+        "frame": 16343,
+        "phase": "aim",
+        "escort": "safe",
+        "complete": false
+      },
+      {
+        "frame": 16680,
+        "phase": "aim",
+        "escort": "safe",
+        "roster": {
+          "total": 13,
+          "living": 11,
+          "priorDeaths": 2
+        },
+        "complete": false
+      },
+      {
+        "frame": 16947,
+        "phase": "won",
+        "escort": "safe",
+        "roster": {
+          "total": 13,
+          "living": 11,
+          "priorDeaths": 2
+        },
+        "complete": true
+      }
+    ],
+    "observed": {
+      "return-boat": 87.5000000000157,
+      "return-high": 87.5000000000157,
+      "return-ridge": 102.50000000002764,
+      "safe-return": 137.50000000003928,
+      "small-dislocation": 140.000000000037
+    },
+    "events": {
+      "boarding": {
+        "started": true,
+        "terminal": true,
+        "presented": [],
+        "retired": [
+          "A4.S40.BOARD.01",
+          "A4.S40.BOARD.02"
+        ]
+      },
+      "reunion": {
+        "started": true,
+        "terminal": true,
+        "presented": [],
+        "retired": [
+          "A4.S40.REUNION.01",
+          "A4.S40.REUNION.02"
+        ]
+      },
+      "thirteen": {
+        "started": true,
+        "terminal": true,
+        "presented": [],
+        "retired": [
+          "A4.S40.THIRTEEN.01",
+          "A4.S40.THIRTEEN.02",
+          "A4.S40.THIRTEEN.03"
+        ]
+      },
+      "next": {
+        "started": true,
+        "terminal": true,
+        "presented": [],
+        "retired": [
+          "A4.S40.NEXT.01",
+          "A4.S40.NEXT.02",
+          "A4.S40.NEXT.03",
+          "A4.S40.NEXT.04"
+        ]
+      }
+    },
+    "roster": {
+      "total": 13,
+      "living": 11,
+      "priorDeaths": 2
+    },
+    "rescued": {
+      "ids": [
+        "a4-rescue-0",
+        "a4-rescue-1",
+        "a4-rescue-2",
+        "a4-rescue-3"
+      ],
+      "sourceRun": "honro-map-stage-40-1793213890858"
+    },
+    "units": [
+      {
+        "id": "archer",
+        "x": 6000.904064798697,
+        "y": 1710,
+        "hp": 1671,
+        "dead": false
+      },
+      {
+        "id": "mage",
+        "x": 6006.008149931777,
+        "y": 1710,
+        "hp": 1888,
+        "dead": false
+      },
+      {
+        "id": "knight",
+        "x": 6035.941258974541,
+        "y": 1710,
+        "hp": 3786,
+        "dead": false
+      },
+      {
+        "id": "occultist",
+        "x": 6021.8716395099955,
+        "y": 1710,
+        "hp": 2251,
+        "dead": false
+      },
+      {
+        "id": "a4-40-g0-0",
+        "x": 1196.768271986548,
+        "y": 1880.4308970684604,
+        "hp": 0,
+        "dead": true
+      },
+      {
+        "id": "a4-40-g0-1",
+        "x": 1982.421528228103,
+        "y": 1873.4871591645986,
+        "hp": 0,
+        "dead": true
+      },
+      {
+        "id": "a4-40-g0-2",
+        "x": 2137.512886940373,
+        "y": 1348.5454545454454,
+        "hp": 0,
+        "dead": true
+      },
+      {
+        "id": "a4-rescue-0",
+        "x": 5430.320419942589,
+        "y": 1733.7551412080375,
+        "hp": 924,
+        "dead": false
+      },
+      {
+        "id": "a4-rescue-1",
+        "x": 5516.662822132762,
+        "y": 1721.6672049014132,
+        "hp": 1257,
+        "dead": false
+      },
+      {
+        "id": "a4-rescue-2",
+        "x": 5669.999999325708,
+        "y": 1710,
+        "hp": 1381,
+        "dead": false
+      },
+      {
+        "id": "a4-rescue-3",
+        "x": 5754.999995059494,
+        "y": 1710,
+        "hp": 1381,
+        "dead": false
+      }
+    ],
+    "completed40": {
+      "stage": 40,
+      "sourceRun": "honro-map-stage-40-1793213890858",
+      "campaignRunId": "eq-mvsh91fi-zzonds8k",
+      "success": true,
+      "residents": [
+        {
+          "id": "a4-rescue-0",
+          "hp": 924,
+          "dead": false
+        },
+        {
+          "id": "a4-rescue-1",
+          "hp": 1257,
+          "dead": false
+        },
+        {
+          "id": "a4-rescue-2",
+          "hp": 1381,
+          "dead": false
+        },
+        {
+          "id": "a4-rescue-3",
+          "hp": 1381,
+          "dead": false
+        }
+      ],
+      "rows": []
+    }
+  },
+  "negativeMissing": {
+    "projectSha256": "80cd1dc4a0a28f723955a5ba16e2902b7a7be327718714959362f38db7172d76",
+    "runtimeSha256": "064e4b3840fd7398d1d8042d439c88d97a609a215c6249eed84519fb6c43f7a5",
+    "verifierSha256": "471772894218f9c77a8825bf12b87eba4854617d60c4d1c6e80806768e146cae",
+    "scope": "Prepared earned-SP stage-entry profile; real App/Engine/Native Canvas events and sparse actual scene rendering every300 simulation frames (bounded snapshot evidence, not continuous rendered play); DOM/audio/storage scheduling are doubles, not browser or chapters1–39 playthrough. Prior32/39 are explicitly prepared from independent actual templates, not linked historical campaign. Dialogue skipped, not presented. No current-stage/pose/HP/resource forcing.",
+    "preparedProof": "missing",
+    "success": false,
+    "proofValid": false,
+    "frames": 16829,
+    "shots": 10,
+    "resume": [],
+    "transitions": [
+      {
+        "frame": 7911,
+        "phase": "aim",
+        "escort": "boarding",
+        "complete": false
+      },
+      {
+        "frame": 8012,
+        "phase": "review",
+        "escort": "boarding",
+        "complete": false
+      },
+      {
+        "frame": 8089,
+        "phase": "aim",
+        "escort": "boarding",
+        "complete": false
+      },
+      {
+        "frame": 8102,
+        "phase": "review",
+        "escort": "boarding",
+        "complete": false
+      },
+      {
+        "frame": 8179,
+        "phase": "aim",
+        "escort": "boarding",
+        "complete": false
+      },
+      {
+        "frame": 8192,
+        "phase": "review",
+        "escort": "boarding",
+        "complete": false
+      },
+      {
+        "frame": 8269,
+        "phase": "aim",
+        "escort": "boarding",
+        "complete": false
+      },
+      {
+        "frame": 8282,
+        "phase": "review",
+        "escort": "boarding",
+        "complete": false
+      },
+      {
+        "frame": 8359,
+        "phase": "transition",
+        "escort": "boarding",
+        "complete": false
+      },
+      {
+        "frame": 8447,
+        "phase": "aim",
+        "escort": "boarding",
+        "complete": false
+      },
+      {
+        "frame": 9253,
+        "phase": "review",
+        "escort": "boarding",
+        "complete": false
+      },
+      {
+        "frame": 9330,
+        "phase": "aim",
+        "escort": "boarding",
+        "complete": false
+      },
+      {
+        "frame": 9343,
+        "phase": "review",
+        "escort": "boarding",
+        "complete": false
+      },
+      {
+        "frame": 9420,
+        "phase": "aim",
+        "escort": "boarding",
+        "complete": false
+      },
+      {
+        "frame": 9433,
+        "phase": "review",
+        "escort": "boarding",
+        "complete": false
+      },
+      {
+        "frame": 9510,
+        "phase": "aim",
+        "escort": "boarding",
+        "complete": false
+      },
+      {
+        "frame": 9523,
+        "phase": "review",
+        "escort": "boarding",
+        "complete": false
+      },
+      {
+        "frame": 9600,
+        "phase": "transition",
+        "escort": "boarding",
+        "complete": false
+      },
+      {
+        "frame": 9640,
+        "phase": "aim",
+        "escort": "boarding",
+        "complete": false
+      },
+      {
+        "frame": 10650,
+        "phase": "review",
+        "escort": "boarding",
+        "complete": false
+      },
+      {
+        "frame": 10727,
+        "phase": "aim",
+        "escort": "boarding",
+        "complete": false
+      },
+      {
+        "frame": 10740,
+        "phase": "review",
+        "escort": "boarding",
+        "complete": false
+      },
+      {
+        "frame": 10817,
+        "phase": "aim",
+        "escort": "boarding",
+        "complete": false
+      },
+      {
+        "frame": 10830,
+        "phase": "review",
+        "escort": "boarding",
+        "complete": false
+      },
+      {
+        "frame": 10907,
+        "phase": "aim",
+        "escort": "boarding",
+        "complete": false
+      },
+      {
+        "frame": 10920,
+        "phase": "review",
+        "escort": "boarding",
+        "complete": false
+      },
+      {
+        "frame": 10997,
+        "phase": "transition",
+        "escort": "boarding",
+        "complete": false
+      },
+      {
+        "frame": 11037,
+        "phase": "aim",
+        "escort": "boarding",
+        "complete": false
+      },
+      {
+        "frame": 11886,
+        "phase": "review",
+        "escort": "boarding",
+        "complete": false
+      },
+      {
+        "frame": 11963,
+        "phase": "aim",
+        "escort": "boarding",
+        "complete": false
+      },
+      {
+        "frame": 11976,
+        "phase": "review",
+        "escort": "boarding",
+        "complete": false
+      },
+      {
+        "frame": 12053,
+        "phase": "aim",
+        "escort": "boarding",
+        "complete": false
+      },
+      {
+        "frame": 12066,
+        "phase": "review",
+        "escort": "boarding",
+        "complete": false
+      },
+      {
+        "frame": 12143,
+        "phase": "aim",
+        "escort": "boarding",
+        "complete": false
+      },
+      {
+        "frame": 12156,
+        "phase": "review",
+        "escort": "boarding",
+        "complete": false
+      },
+      {
+        "frame": 12233,
+        "phase": "transition",
+        "escort": "boarding",
+        "complete": false
+      },
+      {
+        "frame": 12273,
+        "phase": "aim",
+        "escort": "boarding",
+        "complete": false
+      },
+      {
+        "frame": 13427,
+        "phase": "review",
+        "escort": "boarding",
+        "complete": false
+      },
+      {
+        "frame": 13504,
+        "phase": "aim",
+        "escort": "boarding",
+        "complete": false
+      },
+      {
+        "frame": 13517,
+        "phase": "review",
+        "escort": "boarding",
+        "complete": false
+      },
+      {
+        "frame": 13594,
+        "phase": "aim",
+        "escort": "boarding",
+        "complete": false
+      },
+      {
+        "frame": 13607,
+        "phase": "review",
+        "escort": "boarding",
+        "complete": false
+      },
+      {
+        "frame": 13684,
+        "phase": "aim",
+        "escort": "boarding",
+        "complete": false
+      },
+      {
+        "frame": 13697,
+        "phase": "review",
+        "escort": "boarding",
+        "complete": false
+      },
+      {
+        "frame": 13774,
+        "phase": "transition",
+        "escort": "boarding",
+        "complete": false
+      },
+      {
+        "frame": 13814,
+        "phase": "aim",
+        "escort": "boarding",
+        "complete": false
+      },
+      {
+        "frame": 13971,
+        "phase": "aim",
+        "escort": "sailing",
+        "complete": false
+      },
+      {
+        "frame": 14968,
+        "phase": "review",
+        "escort": "sailing",
+        "complete": false
+      },
+      {
+        "frame": 15045,
+        "phase": "aim",
+        "escort": "sailing",
+        "complete": false
+      },
+      {
+        "frame": 15058,
+        "phase": "review",
+        "escort": "sailing",
+        "complete": false
+      },
+      {
+        "frame": 15135,
+        "phase": "aim",
+        "escort": "sailing",
+        "complete": false
+      },
+      {
+        "frame": 15148,
+        "phase": "review",
+        "escort": "sailing",
+        "complete": false
+      },
+      {
+        "frame": 15225,
+        "phase": "aim",
+        "escort": "sailing",
+        "complete": false
+      },
+      {
+        "frame": 15238,
+        "phase": "review",
+        "escort": "sailing",
+        "complete": false
+      },
+      {
+        "frame": 15315,
+        "phase": "transition",
+        "escort": "sailing",
+        "complete": false
+      },
+      {
+        "frame": 15355,
+        "phase": "aim",
+        "escort": "sailing",
+        "complete": false
+      },
+      {
+        "frame": 15358,
+        "phase": "aim",
+        "escort": "landed",
+        "complete": false
+      },
+      {
+        "frame": 16396,
+        "phase": "aim",
+        "escort": "safe",
+        "complete": false
+      }
+    ],
+    "observed": {
+      "return-high": 5.000000000000038,
+      "return-boat": 64.9999999999978,
+      "return-ridge": 77.50000000000774,
+      "safe-return": 137.50000000003928
+    },
+    "events": {
+      "boarding": {
+        "started": true,
+        "terminal": true,
+        "presented": [],
+        "retired": [
+          "A4.S40.BOARD.01",
+          "A4.S40.BOARD.02"
+        ]
+      },
+      "reunion": {
+        "started": true,
+        "terminal": true,
+        "presented": [],
+        "retired": [
+          "A4.S40.REUNION.01",
+          "A4.S40.REUNION.02"
+        ]
+      }
+    },
+    "rescued": {
+      "ids": [
+        "a4-rescue-0",
+        "a4-rescue-1",
+        "a4-rescue-2",
+        "a4-rescue-3"
+      ],
+      "sourceRun": "honro-map-stage-40-1793213928224"
+    },
+    "units": [
+      {
+        "id": "archer",
+        "x": 6034.202863526019,
+        "y": 1710,
+        "hp": 1671,
+        "dead": false
+      },
+      {
+        "id": "mage",
+        "x": 6006.008149931777,
+        "y": 1710,
+        "hp": 1888,
+        "dead": false
+      },
+      {
+        "id": "knight",
+        "x": 6035.941258974541,
+        "y": 1710,
+        "hp": 3786,
+        "dead": false
+      },
+      {
+        "id": "occultist",
+        "x": 6021.8716395099955,
+        "y": 1710,
+        "hp": 2251,
+        "dead": false
+      },
+      {
+        "id": "a4-40-g0-0",
+        "x": 1196.768271986548,
+        "y": 1880.4308970684604,
+        "hp": 0,
+        "dead": true
+      },
+      {
+        "id": "a4-40-g0-1",
+        "x": 1982.421528228103,
+        "y": 1873.4871591645986,
+        "hp": 0,
+        "dead": true
+      },
+      {
+        "id": "a4-40-g0-2",
+        "x": 2137.512886940373,
+        "y": 1348.5454545454454,
+        "hp": 0,
+        "dead": true
+      },
+      {
+        "id": "a4-rescue-0",
+        "x": 5430.320419942589,
+        "y": 1733.7551412080375,
+        "hp": 1381,
+        "dead": false
+      },
+      {
+        "id": "a4-rescue-1",
+        "x": 5516.662822132762,
+        "y": 1721.6672049014132,
+        "hp": 1381,
+        "dead": false
+      },
+      {
+        "id": "a4-rescue-2",
+        "x": 5669.999999325708,
+        "y": 1710,
+        "hp": 1381,
+        "dead": false
+      },
+      {
+        "id": "a4-rescue-3",
+        "x": 5754.999995059494,
+        "y": 1710,
+        "hp": 1381,
+        "dead": false
+      }
+    ]
+  },
+  "negativeMismatchedSource": {
+    "projectSha256": "80cd1dc4a0a28f723955a5ba16e2902b7a7be327718714959362f38db7172d76",
+    "runtimeSha256": "064e4b3840fd7398d1d8042d439c88d97a609a215c6249eed84519fb6c43f7a5",
+    "verifierSha256": "471772894218f9c77a8825bf12b87eba4854617d60c4d1c6e80806768e146cae",
+    "scope": "Prepared earned-SP stage-entry profile; real App/Engine/Native Canvas events and sparse actual scene rendering every300 simulation frames (bounded snapshot evidence, not continuous rendered play); DOM/audio/storage scheduling are doubles, not browser or chapters1–39 playthrough. Prior32/39 are explicitly prepared from independent actual templates, not linked historical campaign. Dialogue skipped, not presented. No current-stage/pose/HP/resource forcing.",
+    "preparedProof": "mismatched-source",
+    "success": false,
+    "proofValid": false,
+    "frames": 16829,
+    "shots": 10,
+    "resume": [],
+    "transitions": [
+      {
+        "frame": 7911,
+        "phase": "aim",
+        "escort": "boarding",
+        "complete": false
+      },
+      {
+        "frame": 8012,
+        "phase": "review",
+        "escort": "boarding",
+        "complete": false
+      },
+      {
+        "frame": 8089,
+        "phase": "aim",
+        "escort": "boarding",
+        "complete": false
+      },
+      {
+        "frame": 8102,
+        "phase": "review",
+        "escort": "boarding",
+        "complete": false
+      },
+      {
+        "frame": 8179,
+        "phase": "aim",
+        "escort": "boarding",
+        "complete": false
+      },
+      {
+        "frame": 8192,
+        "phase": "review",
+        "escort": "boarding",
+        "complete": false
+      },
+      {
+        "frame": 8269,
+        "phase": "aim",
+        "escort": "boarding",
+        "complete": false
+      },
+      {
+        "frame": 8282,
+        "phase": "review",
+        "escort": "boarding",
+        "complete": false
+      },
+      {
+        "frame": 8359,
+        "phase": "transition",
+        "escort": "boarding",
+        "complete": false
+      },
+      {
+        "frame": 8447,
+        "phase": "aim",
+        "escort": "boarding",
+        "complete": false
+      },
+      {
+        "frame": 9253,
+        "phase": "review",
+        "escort": "boarding",
+        "complete": false
+      },
+      {
+        "frame": 9330,
+        "phase": "aim",
+        "escort": "boarding",
+        "complete": false
+      },
+      {
+        "frame": 9343,
+        "phase": "review",
+        "escort": "boarding",
+        "complete": false
+      },
+      {
+        "frame": 9420,
+        "phase": "aim",
+        "escort": "boarding",
+        "complete": false
+      },
+      {
+        "frame": 9433,
+        "phase": "review",
+        "escort": "boarding",
+        "complete": false
+      },
+      {
+        "frame": 9510,
+        "phase": "aim",
+        "escort": "boarding",
+        "complete": false
+      },
+      {
+        "frame": 9523,
+        "phase": "review",
+        "escort": "boarding",
+        "complete": false
+      },
+      {
+        "frame": 9600,
+        "phase": "transition",
+        "escort": "boarding",
+        "complete": false
+      },
+      {
+        "frame": 9640,
+        "phase": "aim",
+        "escort": "boarding",
+        "complete": false
+      },
+      {
+        "frame": 10650,
+        "phase": "review",
+        "escort": "boarding",
+        "complete": false
+      },
+      {
+        "frame": 10727,
+        "phase": "aim",
+        "escort": "boarding",
+        "complete": false
+      },
+      {
+        "frame": 10740,
+        "phase": "review",
+        "escort": "boarding",
+        "complete": false
+      },
+      {
+        "frame": 10817,
+        "phase": "aim",
+        "escort": "boarding",
+        "complete": false
+      },
+      {
+        "frame": 10830,
+        "phase": "review",
+        "escort": "boarding",
+        "complete": false
+      },
+      {
+        "frame": 10907,
+        "phase": "aim",
+        "escort": "boarding",
+        "complete": false
+      },
+      {
+        "frame": 10920,
+        "phase": "review",
+        "escort": "boarding",
+        "complete": false
+      },
+      {
+        "frame": 10997,
+        "phase": "transition",
+        "escort": "boarding",
+        "complete": false
+      },
+      {
+        "frame": 11037,
+        "phase": "aim",
+        "escort": "boarding",
+        "complete": false
+      },
+      {
+        "frame": 11886,
+        "phase": "review",
+        "escort": "boarding",
+        "complete": false
+      },
+      {
+        "frame": 11963,
+        "phase": "aim",
+        "escort": "boarding",
+        "complete": false
+      },
+      {
+        "frame": 11976,
+        "phase": "review",
+        "escort": "boarding",
+        "complete": false
+      },
+      {
+        "frame": 12053,
+        "phase": "aim",
+        "escort": "boarding",
+        "complete": false
+      },
+      {
+        "frame": 12066,
+        "phase": "review",
+        "escort": "boarding",
+        "complete": false
+      },
+      {
+        "frame": 12143,
+        "phase": "aim",
+        "escort": "boarding",
+        "complete": false
+      },
+      {
+        "frame": 12156,
+        "phase": "review",
+        "escort": "boarding",
+        "complete": false
+      },
+      {
+        "frame": 12233,
+        "phase": "transition",
+        "escort": "boarding",
+        "complete": false
+      },
+      {
+        "frame": 12273,
+        "phase": "aim",
+        "escort": "boarding",
+        "complete": false
+      },
+      {
+        "frame": 13427,
+        "phase": "review",
+        "escort": "boarding",
+        "complete": false
+      },
+      {
+        "frame": 13504,
+        "phase": "aim",
+        "escort": "boarding",
+        "complete": false
+      },
+      {
+        "frame": 13517,
+        "phase": "review",
+        "escort": "boarding",
+        "complete": false
+      },
+      {
+        "frame": 13594,
+        "phase": "aim",
+        "escort": "boarding",
+        "complete": false
+      },
+      {
+        "frame": 13607,
+        "phase": "review",
+        "escort": "boarding",
+        "complete": false
+      },
+      {
+        "frame": 13684,
+        "phase": "aim",
+        "escort": "boarding",
+        "complete": false
+      },
+      {
+        "frame": 13697,
+        "phase": "review",
+        "escort": "boarding",
+        "complete": false
+      },
+      {
+        "frame": 13774,
+        "phase": "transition",
+        "escort": "boarding",
+        "complete": false
+      },
+      {
+        "frame": 13814,
+        "phase": "aim",
+        "escort": "boarding",
+        "complete": false
+      },
+      {
+        "frame": 13971,
+        "phase": "aim",
+        "escort": "sailing",
+        "complete": false
+      },
+      {
+        "frame": 14968,
+        "phase": "review",
+        "escort": "sailing",
+        "complete": false
+      },
+      {
+        "frame": 15045,
+        "phase": "aim",
+        "escort": "sailing",
+        "complete": false
+      },
+      {
+        "frame": 15058,
+        "phase": "review",
+        "escort": "sailing",
+        "complete": false
+      },
+      {
+        "frame": 15135,
+        "phase": "aim",
+        "escort": "sailing",
+        "complete": false
+      },
+      {
+        "frame": 15148,
+        "phase": "review",
+        "escort": "sailing",
+        "complete": false
+      },
+      {
+        "frame": 15225,
+        "phase": "aim",
+        "escort": "sailing",
+        "complete": false
+      },
+      {
+        "frame": 15238,
+        "phase": "review",
+        "escort": "sailing",
+        "complete": false
+      },
+      {
+        "frame": 15315,
+        "phase": "transition",
+        "escort": "sailing",
+        "complete": false
+      },
+      {
+        "frame": 15355,
+        "phase": "aim",
+        "escort": "sailing",
+        "complete": false
+      },
+      {
+        "frame": 15358,
+        "phase": "aim",
+        "escort": "landed",
+        "complete": false
+      },
+      {
+        "frame": 16396,
+        "phase": "aim",
+        "escort": "safe",
+        "complete": false
+      }
+    ],
+    "observed": {
+      "return-high": 5.000000000000038,
+      "return-boat": 64.9999999999978,
+      "return-ridge": 77.50000000000774,
+      "safe-return": 137.50000000003928
+    },
+    "events": {
+      "boarding": {
+        "started": true,
+        "terminal": true,
+        "presented": [],
+        "retired": [
+          "A4.S40.BOARD.01",
+          "A4.S40.BOARD.02"
+        ]
+      },
+      "reunion": {
+        "started": true,
+        "terminal": true,
+        "presented": [],
+        "retired": [
+          "A4.S40.REUNION.01",
+          "A4.S40.REUNION.02"
+        ]
+      }
+    },
+    "rescued": {
+      "ids": [
+        "a4-rescue-0",
+        "a4-rescue-1",
+        "a4-rescue-2",
+        "a4-rescue-3"
+      ],
+      "sourceRun": "honro-map-stage-40-1793213845061"
+    },
+    "units": [
+      {
+        "id": "archer",
+        "x": 6034.202863526019,
+        "y": 1710,
+        "hp": 1671,
+        "dead": false
+      },
+      {
+        "id": "mage",
+        "x": 6006.008149931777,
+        "y": 1710,
+        "hp": 1888,
+        "dead": false
+      },
+      {
+        "id": "knight",
+        "x": 6035.941258974541,
+        "y": 1710,
+        "hp": 3786,
+        "dead": false
+      },
+      {
+        "id": "occultist",
+        "x": 6021.8716395099955,
+        "y": 1710,
+        "hp": 2251,
+        "dead": false
+      },
+      {
+        "id": "a4-40-g0-0",
+        "x": 1196.768271986548,
+        "y": 1880.4308970684604,
+        "hp": 0,
+        "dead": true
+      },
+      {
+        "id": "a4-40-g0-1",
+        "x": 1982.421528228103,
+        "y": 1873.4871591645986,
+        "hp": 0,
+        "dead": true
+      },
+      {
+        "id": "a4-40-g0-2",
+        "x": 2137.512886940373,
+        "y": 1348.5454545454454,
+        "hp": 0,
+        "dead": true
+      },
+      {
+        "id": "a4-rescue-0",
+        "x": 5430.320419942589,
+        "y": 1733.7551412080375,
+        "hp": 924,
+        "dead": false
+      },
+      {
+        "id": "a4-rescue-1",
+        "x": 5516.662822132762,
+        "y": 1721.6672049014132,
+        "hp": 1257,
+        "dead": false
+      },
+      {
+        "id": "a4-rescue-2",
+        "x": 5669.999999325708,
+        "y": 1710,
+        "hp": 1381,
+        "dead": false
+      },
+      {
+        "id": "a4-rescue-3",
+        "x": 5754.999995059494,
+        "y": 1710,
+        "hp": 1381,
+        "dead": false
+      }
+    ]
+  },
+  "actualTwoRoutes": [
+    {
+      "frame": 13980,
+      "boatX": 3115,
+      "boatIds": [
+        "a4-rescue-0",
+        "a4-rescue-1"
+      ],
+      "highIds": [
+        "a4-rescue-2",
+        "a4-rescue-3"
+      ]
+    },
+    {
+      "frame": 14010,
+      "boatX": 3160,
+      "boatIds": [
+        "a4-rescue-0",
+        "a4-rescue-1"
+      ],
+      "highIds": [
+        "a4-rescue-2",
+        "a4-rescue-3"
+      ]
+    },
+    {
+      "frame": 14040,
+      "boatX": 3205,
+      "boatIds": [
+        "a4-rescue-0",
+        "a4-rescue-1"
+      ],
+      "highIds": [
+        "a4-rescue-2",
+        "a4-rescue-3"
+      ]
+    },
+    {
+      "frame": 14070,
+      "boatX": 3250,
+      "boatIds": [
+        "a4-rescue-0",
+        "a4-rescue-1"
+      ],
+      "highIds": [
+        "a4-rescue-2",
+        "a4-rescue-3"
+      ]
+    },
+    {
+      "frame": 14100,
+      "boatX": 3295,
+      "boatIds": [
+        "a4-rescue-0",
+        "a4-rescue-1"
+      ],
+      "highIds": [
+        "a4-rescue-2",
+        "a4-rescue-3"
+      ]
+    },
+    {
+      "frame": 14130,
+      "boatX": 3340,
+      "boatIds": [
+        "a4-rescue-0",
+        "a4-rescue-1"
+      ],
+      "highIds": [
+        "a4-rescue-2",
+        "a4-rescue-3"
+      ]
+    },
+    {
+      "frame": 14160,
+      "boatX": 3385,
+      "boatIds": [
+        "a4-rescue-0",
+        "a4-rescue-1"
+      ],
+      "highIds": [
+        "a4-rescue-2",
+        "a4-rescue-3"
+      ]
+    },
+    {
+      "frame": 14190,
+      "boatX": 3430,
+      "boatIds": [
+        "a4-rescue-0",
+        "a4-rescue-1"
+      ],
+      "highIds": [
+        "a4-rescue-2",
+        "a4-rescue-3"
+      ]
+    },
+    {
+      "frame": 14220,
+      "boatX": 3475,
+      "boatIds": [
+        "a4-rescue-0",
+        "a4-rescue-1"
+      ],
+      "highIds": [
+        "a4-rescue-2",
+        "a4-rescue-3"
+      ]
+    },
+    {
+      "frame": 14250,
+      "boatX": 3520,
+      "boatIds": [
+        "a4-rescue-0",
+        "a4-rescue-1"
+      ],
+      "highIds": [
+        "a4-rescue-2",
+        "a4-rescue-3"
+      ]
+    },
+    {
+      "frame": 14280,
+      "boatX": 3565,
+      "boatIds": [
+        "a4-rescue-0",
+        "a4-rescue-1"
+      ],
+      "highIds": [
+        "a4-rescue-2",
+        "a4-rescue-3"
+      ]
+    },
+    {
+      "frame": 14310,
+      "boatX": 3610,
+      "boatIds": [
+        "a4-rescue-0",
+        "a4-rescue-1"
+      ],
+      "highIds": [
+        "a4-rescue-2",
+        "a4-rescue-3"
+      ]
+    },
+    {
+      "frame": 14340,
+      "boatX": 3655,
+      "boatIds": [
+        "a4-rescue-0",
+        "a4-rescue-1"
+      ],
+      "highIds": [
+        "a4-rescue-2",
+        "a4-rescue-3"
+      ]
+    },
+    {
+      "frame": 14370,
+      "boatX": 3700,
+      "boatIds": [
+        "a4-rescue-0",
+        "a4-rescue-1"
+      ],
+      "highIds": [
+        "a4-rescue-2",
+        "a4-rescue-3"
+      ]
+    },
+    {
+      "frame": 14400,
+      "boatX": 3745,
+      "boatIds": [
+        "a4-rescue-0",
+        "a4-rescue-1"
+      ],
+      "highIds": [
+        "a4-rescue-2",
+        "a4-rescue-3"
+      ]
+    },
+    {
+      "frame": 14430,
+      "boatX": 3790,
+      "boatIds": [
+        "a4-rescue-0",
+        "a4-rescue-1"
+      ],
+      "highIds": [
+        "a4-rescue-2",
+        "a4-rescue-3"
+      ]
+    },
+    {
+      "frame": 14460,
+      "boatX": 3835,
+      "boatIds": [
+        "a4-rescue-0",
+        "a4-rescue-1"
+      ],
+      "highIds": [
+        "a4-rescue-2",
+        "a4-rescue-3"
+      ]
+    },
+    {
+      "frame": 14490,
+      "boatX": 3880,
+      "boatIds": [
+        "a4-rescue-0",
+        "a4-rescue-1"
+      ],
+      "highIds": [
+        "a4-rescue-2",
+        "a4-rescue-3"
+      ]
+    },
+    {
+      "frame": 14520,
+      "boatX": 3925,
+      "boatIds": [
+        "a4-rescue-0",
+        "a4-rescue-1"
+      ],
+      "highIds": [
+        "a4-rescue-2",
+        "a4-rescue-3"
+      ]
+    },
+    {
+      "frame": 14550,
+      "boatX": 3970,
+      "boatIds": [
+        "a4-rescue-0",
+        "a4-rescue-1"
+      ],
+      "highIds": [
+        "a4-rescue-2",
+        "a4-rescue-3"
+      ]
+    },
+    {
+      "frame": 14580,
+      "boatX": 4015,
+      "boatIds": [
+        "a4-rescue-0",
+        "a4-rescue-1"
+      ],
+      "highIds": [
+        "a4-rescue-2",
+        "a4-rescue-3"
+      ]
+    },
+    {
+      "frame": 14610,
+      "boatX": 4060,
+      "boatIds": [
+        "a4-rescue-0",
+        "a4-rescue-1"
+      ],
+      "highIds": [
+        "a4-rescue-2",
+        "a4-rescue-3"
+      ]
+    },
+    {
+      "frame": 14640,
+      "boatX": 4105,
+      "boatIds": [
+        "a4-rescue-0",
+        "a4-rescue-1"
+      ],
+      "highIds": [
+        "a4-rescue-2",
+        "a4-rescue-3"
+      ]
+    },
+    {
+      "frame": 14670,
+      "boatX": 4150,
+      "boatIds": [
+        "a4-rescue-0",
+        "a4-rescue-1"
+      ],
+      "highIds": [
+        "a4-rescue-2",
+        "a4-rescue-3"
+      ]
+    },
+    {
+      "frame": 14700,
+      "boatX": 4195,
+      "boatIds": [
+        "a4-rescue-0",
+        "a4-rescue-1"
+      ],
+      "highIds": [
+        "a4-rescue-2",
+        "a4-rescue-3"
+      ]
+    },
+    {
+      "frame": 14730,
+      "boatX": 4240,
+      "boatIds": [
+        "a4-rescue-0",
+        "a4-rescue-1"
+      ],
+      "highIds": [
+        "a4-rescue-2",
+        "a4-rescue-3"
+      ]
+    },
+    {
+      "frame": 14760,
+      "boatX": 4285,
+      "boatIds": [
+        "a4-rescue-0",
+        "a4-rescue-1"
+      ],
+      "highIds": [
+        "a4-rescue-2",
+        "a4-rescue-3"
+      ]
+    },
+    {
+      "frame": 14790,
+      "boatX": 4330,
+      "boatIds": [
+        "a4-rescue-0",
+        "a4-rescue-1"
+      ],
+      "highIds": [
+        "a4-rescue-2",
+        "a4-rescue-3"
+      ]
+    },
+    {
+      "frame": 14820,
+      "boatX": 4375,
+      "boatIds": [
+        "a4-rescue-0",
+        "a4-rescue-1"
+      ],
+      "highIds": [
+        "a4-rescue-2",
+        "a4-rescue-3"
+      ]
+    },
+    {
+      "frame": 14850,
+      "boatX": 4420,
+      "boatIds": [
+        "a4-rescue-0",
+        "a4-rescue-1"
+      ],
+      "highIds": [
+        "a4-rescue-2",
+        "a4-rescue-3"
+      ]
+    },
+    {
+      "frame": 14880,
+      "boatX": 4465,
+      "boatIds": [
+        "a4-rescue-0",
+        "a4-rescue-1"
+      ],
+      "highIds": [
+        "a4-rescue-2",
+        "a4-rescue-3"
+      ]
+    },
+    {
+      "frame": 14910,
+      "boatX": 4510,
+      "boatIds": [
+        "a4-rescue-0",
+        "a4-rescue-1"
+      ],
+      "highIds": [
+        "a4-rescue-2",
+        "a4-rescue-3"
+      ]
+    },
+    {
+      "frame": 14940,
+      "boatX": 4555,
+      "boatIds": [
+        "a4-rescue-0",
+        "a4-rescue-1"
+      ],
+      "highIds": [
+        "a4-rescue-2",
+        "a4-rescue-3"
+      ]
+    },
+    {
+      "frame": 14970,
+      "boatX": 4595.5,
+      "boatIds": [
+        "a4-rescue-0",
+        "a4-rescue-1"
+      ],
+      "highIds": [
+        "a4-rescue-2",
+        "a4-rescue-3"
+      ]
+    },
+    {
+      "frame": 15000,
+      "boatX": 4595.5,
+      "boatIds": [
+        "a4-rescue-0",
+        "a4-rescue-1"
+      ],
+      "highIds": [
+        "a4-rescue-2",
+        "a4-rescue-3"
+      ]
+    },
+    {
+      "frame": 15030,
+      "boatX": 4595.5,
+      "boatIds": [
+        "a4-rescue-0",
+        "a4-rescue-1"
+      ],
+      "highIds": [
+        "a4-rescue-2",
+        "a4-rescue-3"
+      ]
+    },
+    {
+      "frame": 15060,
+      "boatX": 4615,
+      "boatIds": [
+        "a4-rescue-0",
+        "a4-rescue-1"
+      ],
+      "highIds": [
+        "a4-rescue-2",
+        "a4-rescue-3"
+      ]
+    },
+    {
+      "frame": 15090,
+      "boatX": 4615,
+      "boatIds": [
+        "a4-rescue-0",
+        "a4-rescue-1"
+      ],
+      "highIds": [
+        "a4-rescue-2",
+        "a4-rescue-3"
+      ]
+    },
+    {
+      "frame": 15120,
+      "boatX": 4615,
+      "boatIds": [
+        "a4-rescue-0",
+        "a4-rescue-1"
+      ],
+      "highIds": [
+        "a4-rescue-2",
+        "a4-rescue-3"
+      ]
+    },
+    {
+      "frame": 15150,
+      "boatX": 4634.5,
+      "boatIds": [
+        "a4-rescue-0",
+        "a4-rescue-1"
+      ],
+      "highIds": [
+        "a4-rescue-2",
+        "a4-rescue-3"
+      ]
+    },
+    {
+      "frame": 15180,
+      "boatX": 4634.5,
+      "boatIds": [
+        "a4-rescue-0",
+        "a4-rescue-1"
+      ],
+      "highIds": [
+        "a4-rescue-2",
+        "a4-rescue-3"
+      ]
+    },
+    {
+      "frame": 15210,
+      "boatX": 4634.5,
+      "boatIds": [
+        "a4-rescue-0",
+        "a4-rescue-1"
+      ],
+      "highIds": [
+        "a4-rescue-2",
+        "a4-rescue-3"
+      ]
+    },
+    {
+      "frame": 15240,
+      "boatX": 4654,
+      "boatIds": [
+        "a4-rescue-0",
+        "a4-rescue-1"
+      ],
+      "highIds": [
+        "a4-rescue-2",
+        "a4-rescue-3"
+      ]
+    },
+    {
+      "frame": 15270,
+      "boatX": 4654,
+      "boatIds": [
+        "a4-rescue-0",
+        "a4-rescue-1"
+      ],
+      "highIds": [
+        "a4-rescue-2",
+        "a4-rescue-3"
+      ]
+    },
+    {
+      "frame": 15300,
+      "boatX": 4654,
+      "boatIds": [
+        "a4-rescue-0",
+        "a4-rescue-1"
+      ],
+      "highIds": [
+        "a4-rescue-2",
+        "a4-rescue-3"
+      ]
+    },
+    {
+      "frame": 15330,
+      "boatX": 4654,
+      "boatIds": [
+        "a4-rescue-0",
+        "a4-rescue-1"
+      ],
+      "highIds": [
+        "a4-rescue-2",
+        "a4-rescue-3"
+      ]
+    }
+  ],
+  "priorPreparation": {
+    "scope": "Actual independent 32 and39 facts used as templates for explicitly prepared prior preconditions. Not a linked32→40 playthrough. Campaign IDs are rebound only before Stage40 launch; no current-stage facts injected.",
+    "sources": [
+      {
+        "path": "art/stage32-vector-production/package/app-check.json",
+        "sha256": "57200d9e59ff370d3fc53b2dab18b212e1129d222f6571448fa24d7c7d236071"
+      },
+      {
+        "path": "_local/reports/stage39-production/final-boss-alive-won-profile.json",
+        "sha256": "76d58c32e9415a59a212d860ccfb0a65c986df46f18026d09e0f5f2a3728526b"
+      }
+    ],
+    "safeSeven": {
+      "ids": [
+        "shelter-person-0",
+        "shelter-person-1",
+        "shelter-person-2",
+        "shelter-person-3",
+        "shelter-person-4",
+        "shelter-person-5",
+        "shelter-person-6"
+      ],
+      "sourceRun": "honro-map-stage-32-1793207118452",
+      "reportIds": [
+        "A4.S32.MISSING.01",
+        "A4.S32.MISSING.02",
+        "A4.S32.MISSING.03",
+        "A4.S32.MISSING.04"
+      ],
+      "reunionIds": [
+        "A4.S32.REUNION.01",
+        "A4.S32.REUNION.02",
+        "A4.S32.REUNION.03",
+        "A4.S32.REUNION.04"
+      ],
+      "reunionObserved": {
+        "sourceRun": "honro-map-stage-32-1793207118452",
+        "npc": "a4-shelter-speaker",
+        "hero": "archer",
+        "seenAt": 195.49999999998653,
+        "positions": [
+          {
+            "id": "archer",
+            "x": 4600.962610822499,
+            "y": 2010
+          },
+          {
+            "id": "a4-shelter-speaker",
+            "x": 4779.499999999976,
+            "y": 2010
+          }
+        ]
+      },
+      "campaignRunId": "eq-mvsd7vv3-pqwkpk17"
+    },
+    "completed39": {
+      "stage": 39,
+      "sourceRun": "honro-map-stage-39-1793211325929",
+      "campaignRunId": "eq-mvsfq2c1-fnt0wnmj",
+      "success": true,
+      "residents": [
+        {
+          "id": "a4-rescue-0",
+          "hp": 993,
+          "dead": false
+        },
+        {
+          "id": "a4-rescue-1",
+          "hp": 1326,
+          "dead": false
+        },
+        {
+          "id": "a4-rescue-2",
+          "hp": 1450,
+          "dead": false
+        },
+        {
+          "id": "a4-rescue-3",
+          "hp": 1450,
+          "dead": false
+        }
+      ],
+      "rows": [
+        "A4.S39.TIDE.01"
+      ]
+    },
+    "rescued": {
+      "ids": [
+        "a4-rescue-0",
+        "a4-rescue-1",
+        "a4-rescue-2",
+        "a4-rescue-3"
+      ],
+      "sourceRun": "honro-map-stage-39-1793211325929",
+      "campaignRunId": "eq-mvsfq2c1-fnt0wnmj",
+      "stage": 39,
+      "success": true,
+      "residents": [
+        {
+          "id": "a4-rescue-0",
+          "hp": 993,
+          "dead": false
+        },
+        {
+          "id": "a4-rescue-1",
+          "hp": 1326,
+          "dead": false
+        },
+        {
+          "id": "a4-rescue-2",
+          "hp": 1450,
+          "dead": false
+        },
+        {
+          "id": "a4-rescue-3",
+          "hp": 1450,
+          "dead": false
+        }
+      ],
+      "rows": [
+        "A4.S39.TIDE.01"
+      ]
+    }
+  },
+  "limitations": [
+    "Independently earned32/39 fact templates rebound to one prepared Stage40 entry run; NOT a linked32→40 historical playthrough",
+    "No current-stage completion, receipt, HP/resource or actor-position forcing",
+    "DOM/audio/storage scheduling doubles and native sparse300tick snapshots; not continuous rendered browser/mobile hardware testing",
+    "Dialogue rows skipped/retired, not claimed presented",
+    "Extra sailing views use a separate Scene on actual mid-run engine state; receipt wrapper rejects that Scene, no artificial actor fixture"
+  ]
+}

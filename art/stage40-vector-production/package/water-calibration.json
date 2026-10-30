@@ -1,0 +1,82 @@
+{
+  "scope": "Explicit renderer fixture only; residents positioned solely to inspect deck/hull/water. Prior actual ordinary-input results remain bound to their original project hash.",
+  "beforeProjectSha256": "ef9529cca962f5f769611a196ada0d2364c7c28bd8b110f6e8be4eb1da45b9a8",
+  "finalProjectSha256": "4363ce4eec81ace3dacc2ce00e97e3185f16c82aa7c01770100545b8f5156e52",
+  "onlyStageFieldChanged": "design.vectorReturnWater",
+  "waterPolygon": {
+    "id": "visual-40-return-inlet-0",
+    "kind": "water-pool",
+    "surface": [
+      [
+        2890,
+        2050
+      ],
+      [
+        4866.666666666667,
+        2050
+      ]
+    ],
+    "bottom": [
+      [
+        2890,
+        2060.5882352941176
+      ],
+      [
+        3020,
+        2420
+      ],
+      [
+        4200,
+        2420
+      ],
+      [
+        4700,
+        2250
+      ],
+      [
+        4866.666666666667,
+        2050
+      ]
+    ],
+    "points": [
+      [
+        2890,
+        2050
+      ],
+      [
+        4866.666666666667,
+        2050
+      ],
+      [
+        4866.666666666667,
+        2050
+      ],
+      [
+        4700,
+        2250
+      ],
+      [
+        4200,
+        2420
+      ],
+      [
+        3020,
+        2420
+      ],
+      [
+        2890,
+        2060.5882352941176
+      ]
+    ],
+    "honroCarvedBasin": true
+  },
+  "baseFileUnchanged": true,
+  "deckWorldY": 1950,
+  "waterWorldY": 2050,
+  "rawHullBottomWorldY": 2019.375,
+  "finalHullBottomWorldY": 2061,
+  "submergedWorldUnits": 11,
+  "physicsStagesOtherAssetsIdentical": true,
+  "paintDoesNotMutateData": true,
+  "pass": true
+}
