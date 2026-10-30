@@ -1,0 +1,65 @@
+{
+  "scope": "Native actual vector painter + production door wrapper; explicit renderer fixtures, not gameplay completion",
+  "checks": [
+    {
+      "case": "no opt-in",
+      "time": 0,
+      "pixelParity": true
+    },
+    {
+      "case": "no opt-in",
+      "time": 0.25,
+      "pixelParity": true
+    },
+    {
+      "case": "no opt-in",
+      "time": 0.5,
+      "pixelParity": true
+    },
+    {
+      "case": "no opt-in",
+      "time": 0.75,
+      "pixelParity": true
+    },
+    {
+      "case": "no opt-in",
+      "time": 1,
+      "pixelParity": true
+    },
+    {
+      "case": "Stage32 legacy door with Stage36 art in library",
+      "pixelParity": true
+    },
+    {
+      "case": "Selected Stage36 art matches prior approved paint",
+      "pixelParity": true
+    },
+    {
+      "case": "Original shared door without opt-in",
+      "pixelParity": true
+    }
+  ],
+  "invalidOptionParity": true,
+  "standingOptInParity": true,
+  "non36Parity": true,
+  "contextRestored": true,
+  "sourceInstanceAndEventStateUnchanged": true,
+  "pivot": {
+    "x": 220,
+    "y": 370
+  },
+  "legacyBounds": {
+    "x": 218,
+    "y": 281,
+    "w": 284,
+    "h": 154
+  },
+  "fallenBounds": {
+    "x": 218,
+    "y": 347,
+    "w": 284,
+    "h": 40
+  },
+  "scaleY": 0.25,
+  "ratio": 0.2597402597402597
+}

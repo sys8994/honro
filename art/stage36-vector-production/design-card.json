@@ -1,0 +1,21 @@
+{
+  "stage": 36,
+  "name": "\uc1e0\uac00 \uc5c6\ub294 \ub9c8\uc744",
+  "scope": "Visual production, official geometry/encounters/story retained",
+  "invariants": [
+    "All official terrain points and element instance IDs",
+    "Two entrance enemies, empty central yard",
+    "a4-36-door-4 instance and a4:door asset ID, native falling/render receipt hooks",
+    "A4.S36.DOOR.01 and A4.S36.DOOR.02 receipts, leave and all-living-party exit",
+    "Existing save/Continue contracts"
+  ],
+  "layers": {
+    "BODY": "Ash-earth shallow basin, small stones, continuous exact terrain clip; no cliff enlargement",
+    "REAR": "Ruined humble home and roofless timber frames; footprint supported by actual terrain",
+    "INTERACT": "Independent ironless door leaf, same pivot and native animation",
+    "FORE": "Sparse cropped broken timbers at lower edges only after readability review"
+  },
+  "style": "Natural clean flat illustrative shapes; gray-brown ash and wood in bluish overcast daylight; no sea; broad quiet courtyard",
+  "sourceWorkflow": "Official skeleton -> generated semantic concept -> actual Inkscape trace -> measured source-preserving optimization -> shared renderer and actual App",
+  "status": "Production candidate assembled and native/source/App verified; parent release review pending"
+}

@@ -1,0 +1,44 @@
+{
+  "terrainEquality": true,
+  "unitEquality": true,
+  "encounterEquality": true,
+  "originalInstanceIds": true,
+  "doorIdentityPlacement": true,
+  "collisionEquality": true,
+  "compiledPhysicsEquality": true,
+  "validation": [
+    {
+      "id": "s36v:rear-soil",
+      "errors": []
+    },
+    {
+      "id": "s36v:body-continuous",
+      "errors": []
+    },
+    {
+      "id": "s36v:body-continuous-domain-left",
+      "errors": []
+    },
+    {
+      "id": "s36v:body-continuous-domain-right",
+      "errors": []
+    },
+    {
+      "id": "a4-production:ironless-home",
+      "errors": []
+    },
+    {
+      "id": "a4-production:ironless-frame",
+      "errors": []
+    },
+    {
+      "id": "s36v:door",
+      "errors": []
+    },
+    {
+      "id": "a4-production:ironless-foundation",
+      "errors": []
+    }
+  ],
+  "scope": "Visual-only authoring; new visual placement/rotation is limited to noncolliding roofless frames following existing ground slope."
+}

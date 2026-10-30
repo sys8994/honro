@@ -1,0 +1,1848 @@
+{
+  "version": 1,
+  "runner": "honro-production-app-observation-v1",
+  "scope": "Prepared stage-entry profile; production App events; DOM/audio are doubles. Not a browser/campaign playthrough. No gate relabeling or automatic art approval.",
+  "fingerprint": "a47c3b1d3b276410d437e10c7da4d0cb8342ba35b3e9423362b5fbe05960c76f",
+  "runtimeSha256": "ded4213faa541c60f977cd4090ee6f4b90db1261070413fb8ccd3e4496d5fb9f",
+  "verifierSha256": "9ff18339f6cf92d23d8f420a7f872e7fcf1c8a2cc42eea4bf3c7f93e5c696aea",
+  "success": true,
+  "renders": [
+    {
+      "frame": 7380,
+      "phase": "falling",
+      "camera": {
+        "x": 2391.7276058032116,
+        "y": 1818.4405850617854,
+        "scale": 0.6
+      }
+    },
+    {
+      "frame": 7410,
+      "phase": "falling",
+      "camera": {
+        "x": 2308.969873284595,
+        "y": 1909.1515287141997,
+        "scale": 0.6
+      }
+    },
+    {
+      "frame": 7440,
+      "phase": "falling",
+      "camera": {
+        "x": 2308.969873284595,
+        "y": 1909.1515287141997,
+        "scale": 0.6
+      }
+    },
+    {
+      "frame": 7470,
+      "phase": "falling",
+      "camera": {
+        "x": 2308.969873284595,
+        "y": 1909.1515287141997,
+        "scale": 0.6
+      }
+    },
+    {
+      "frame": 7500,
+      "phase": "fallen",
+      "renderedAt": 62.499999999997094,
+      "camera": {
+        "x": 2308.969873284595,
+        "y": 1909.1515287141997,
+        "scale": 0.6
+      }
+    }
+  ],
+  "frame": 18052,
+  "entryBuild": "campaign-balanced-v1",
+  "resume": [
+    {
+      "frame": 12011,
+      "inputIndex": 484,
+      "result": "pass",
+      "scope": "Actual stopBattle/persist/Continue; exact units, event state, round, active, phase and resolved static/dynamic art preserved"
+    }
+  ],
+  "groups": [
+    {
+      "id": "a4-36-0",
+      "damage": [
+        {
+          "frame": 1663,
+          "target": "knight",
+          "owner": "a4-36-g0-0",
+          "amount": 48
+        },
+        {
+          "frame": 2029,
+          "target": "knight",
+          "owner": "a4-36-g0-1",
+          "amount": 92
+        },
+        {
+          "frame": 3862,
+          "target": "knight",
+          "owner": "a4-36-g0-0",
+          "amount": 47
+        },
+        {
+          "frame": 5540,
+          "target": "knight",
+          "owner": "a4-36-g0-0",
+          "amount": 41
+        }
+      ]
+    }
+  ],
+  "transitions": [
+    {
+      "frame": 1,
+      "phase": "aim",
+      "boat": "waiting",
+      "complete": false,
+      "enemies": 2
+    },
+    {
+      "frame": 35,
+      "phase": "flight",
+      "boat": "waiting",
+      "complete": false,
+      "enemies": 2
+    },
+    {
+      "frame": 623,
+      "phase": "review",
+      "boat": "waiting",
+      "complete": false,
+      "enemies": 2
+    },
+    {
+      "frame": 701,
+      "phase": "aim",
+      "boat": "waiting",
+      "complete": false,
+      "enemies": 2
+    },
+    {
+      "frame": 710,
+      "phase": "flight",
+      "boat": "waiting",
+      "complete": false,
+      "enemies": 2
+    },
+    {
+      "frame": 961,
+      "phase": "review",
+      "boat": "waiting",
+      "complete": false,
+      "enemies": 2
+    },
+    {
+      "frame": 1039,
+      "phase": "aim",
+      "boat": "waiting",
+      "complete": false,
+      "enemies": 2
+    },
+    {
+      "frame": 1055,
+      "phase": "flight",
+      "boat": "waiting",
+      "complete": false,
+      "enemies": 2
+    },
+    {
+      "frame": 1242,
+      "phase": "review",
+      "boat": "waiting",
+      "complete": false,
+      "enemies": 2
+    },
+    {
+      "frame": 1320,
+      "phase": "aim",
+      "boat": "waiting",
+      "complete": false,
+      "enemies": 2
+    },
+    {
+      "frame": 1340,
+      "phase": "flight",
+      "boat": "waiting",
+      "complete": false,
+      "enemies": 2
+    },
+    {
+      "frame": 1465,
+      "phase": "review",
+      "boat": "waiting",
+      "complete": false,
+      "enemies": 2
+    },
+    {
+      "frame": 1543,
+      "phase": "transition",
+      "boat": "waiting",
+      "complete": false,
+      "enemies": 2
+    },
+    {
+      "frame": 1563,
+      "phase": "enemy",
+      "boat": "waiting",
+      "complete": false,
+      "enemies": 2
+    },
+    {
+      "frame": 1649,
+      "phase": "flight",
+      "boat": "waiting",
+      "complete": false,
+      "enemies": 2
+    },
+    {
+      "frame": 1717,
+      "phase": "review",
+      "boat": "waiting",
+      "complete": false,
+      "enemies": 2
+    },
+    {
+      "frame": 1795,
+      "phase": "enemy",
+      "boat": "waiting",
+      "complete": false,
+      "enemies": 2
+    },
+    {
+      "frame": 1979,
+      "phase": "flight",
+      "boat": "waiting",
+      "complete": false,
+      "enemies": 2
+    },
+    {
+      "frame": 2121,
+      "phase": "review",
+      "boat": "waiting",
+      "complete": false,
+      "enemies": 2
+    },
+    {
+      "frame": 2199,
+      "phase": "transition",
+      "boat": "waiting",
+      "complete": false,
+      "enemies": 2
+    },
+    {
+      "frame": 2219,
+      "phase": "aim",
+      "boat": "waiting",
+      "complete": false,
+      "enemies": 2
+    },
+    {
+      "frame": 2225,
+      "phase": "flight",
+      "boat": "waiting",
+      "complete": false,
+      "enemies": 2
+    },
+    {
+      "frame": 2751,
+      "phase": "review",
+      "boat": "waiting",
+      "complete": false,
+      "enemies": 2
+    },
+    {
+      "frame": 2829,
+      "phase": "aim",
+      "boat": "waiting",
+      "complete": false,
+      "enemies": 2
+    },
+    {
+      "frame": 2840,
+      "phase": "flight",
+      "boat": "waiting",
+      "complete": false,
+      "enemies": 2
+    },
+    {
+      "frame": 3179,
+      "phase": "review",
+      "boat": "waiting",
+      "complete": false,
+      "enemies": 2
+    },
+    {
+      "frame": 3257,
+      "phase": "aim",
+      "boat": "waiting",
+      "complete": false,
+      "enemies": 2
+    },
+    {
+      "frame": 3275,
+      "phase": "flight",
+      "boat": "waiting",
+      "complete": false,
+      "enemies": 2
+    },
+    {
+      "frame": 3394,
+      "phase": "review",
+      "boat": "waiting",
+      "complete": false,
+      "enemies": 2
+    },
+    {
+      "frame": 3472,
+      "phase": "aim",
+      "boat": "waiting",
+      "complete": false,
+      "enemies": 2
+    },
+    {
+      "frame": 3500,
+      "phase": "flight",
+      "boat": "waiting",
+      "complete": false,
+      "enemies": 2
+    },
+    {
+      "frame": 3658,
+      "phase": "flight",
+      "boat": "waiting",
+      "complete": false,
+      "enemies": 1
+    },
+    {
+      "frame": 3711,
+      "phase": "review",
+      "boat": "waiting",
+      "complete": false,
+      "enemies": 1
+    },
+    {
+      "frame": 3789,
+      "phase": "transition",
+      "boat": "waiting",
+      "complete": false,
+      "enemies": 1
+    },
+    {
+      "frame": 3809,
+      "phase": "enemy",
+      "boat": "waiting",
+      "complete": false,
+      "enemies": 1
+    },
+    {
+      "frame": 3845,
+      "phase": "flight",
+      "boat": "waiting",
+      "complete": false,
+      "enemies": 1
+    },
+    {
+      "frame": 3918,
+      "phase": "review",
+      "boat": "waiting",
+      "complete": false,
+      "enemies": 1
+    },
+    {
+      "frame": 3996,
+      "phase": "transition",
+      "boat": "waiting",
+      "complete": false,
+      "enemies": 1
+    },
+    {
+      "frame": 4016,
+      "phase": "aim",
+      "boat": "waiting",
+      "complete": false,
+      "enemies": 1
+    },
+    {
+      "frame": 4025,
+      "phase": "flight",
+      "boat": "waiting",
+      "complete": false,
+      "enemies": 1
+    },
+    {
+      "frame": 4488,
+      "phase": "review",
+      "boat": "waiting",
+      "complete": false,
+      "enemies": 1
+    },
+    {
+      "frame": 4566,
+      "phase": "aim",
+      "boat": "waiting",
+      "complete": false,
+      "enemies": 1
+    },
+    {
+      "frame": 4580,
+      "phase": "flight",
+      "boat": "waiting",
+      "complete": false,
+      "enemies": 1
+    },
+    {
+      "frame": 4805,
+      "phase": "review",
+      "boat": "waiting",
+      "complete": false,
+      "enemies": 1
+    },
+    {
+      "frame": 4883,
+      "phase": "aim",
+      "boat": "waiting",
+      "complete": false,
+      "enemies": 1
+    },
+    {
+      "frame": 4895,
+      "phase": "flight",
+      "boat": "waiting",
+      "complete": false,
+      "enemies": 1
+    },
+    {
+      "frame": 4987,
+      "phase": "review",
+      "boat": "waiting",
+      "complete": false,
+      "enemies": 1
+    },
+    {
+      "frame": 5065,
+      "phase": "aim",
+      "boat": "waiting",
+      "complete": false,
+      "enemies": 1
+    },
+    {
+      "frame": 5090,
+      "phase": "flight",
+      "boat": "waiting",
+      "complete": false,
+      "enemies": 1
+    },
+    {
+      "frame": 5342,
+      "phase": "review",
+      "boat": "waiting",
+      "complete": false,
+      "enemies": 1
+    },
+    {
+      "frame": 5420,
+      "phase": "transition",
+      "boat": "waiting",
+      "complete": false,
+      "enemies": 1
+    },
+    {
+      "frame": 5440,
+      "phase": "enemy",
+      "boat": "waiting",
+      "complete": false,
+      "enemies": 1
+    },
+    {
+      "frame": 5526,
+      "phase": "flight",
+      "boat": "waiting",
+      "complete": false,
+      "enemies": 1
+    },
+    {
+      "frame": 5594,
+      "phase": "review",
+      "boat": "waiting",
+      "complete": false,
+      "enemies": 1
+    },
+    {
+      "frame": 5672,
+      "phase": "transition",
+      "boat": "waiting",
+      "complete": false,
+      "enemies": 1
+    },
+    {
+      "frame": 5692,
+      "phase": "aim",
+      "boat": "waiting",
+      "complete": false,
+      "enemies": 1
+    },
+    {
+      "frame": 5705,
+      "phase": "flight",
+      "boat": "waiting",
+      "complete": false,
+      "enemies": 1
+    },
+    {
+      "frame": 6228,
+      "phase": "review",
+      "boat": "waiting",
+      "complete": false,
+      "enemies": 1
+    },
+    {
+      "frame": 6306,
+      "phase": "aim",
+      "boat": "waiting",
+      "complete": false,
+      "enemies": 1
+    },
+    {
+      "frame": 6320,
+      "phase": "flight",
+      "boat": "waiting",
+      "complete": false,
+      "enemies": 1
+    },
+    {
+      "frame": 6504,
+      "phase": "review",
+      "boat": "waiting",
+      "complete": false,
+      "enemies": 1
+    },
+    {
+      "frame": 6582,
+      "phase": "aim",
+      "boat": "waiting",
+      "complete": false,
+      "enemies": 1
+    },
+    {
+      "frame": 6605,
+      "phase": "flight",
+      "boat": "waiting",
+      "complete": false,
+      "enemies": 1
+    },
+    {
+      "frame": 6694,
+      "phase": "review",
+      "boat": "waiting",
+      "complete": false,
+      "enemies": 1
+    },
+    {
+      "frame": 6772,
+      "phase": "aim",
+      "boat": "waiting",
+      "complete": false,
+      "enemies": 1
+    },
+    {
+      "frame": 6800,
+      "phase": "flight",
+      "boat": "waiting",
+      "complete": false,
+      "enemies": 1
+    },
+    {
+      "frame": 6915,
+      "phase": "flight",
+      "boat": "waiting",
+      "complete": false,
+      "enemies": 0
+    },
+    {
+      "frame": 6929,
+      "phase": "review",
+      "boat": "waiting",
+      "complete": false,
+      "enemies": 0
+    },
+    {
+      "frame": 7007,
+      "phase": "transition",
+      "boat": "waiting",
+      "complete": false,
+      "enemies": 0
+    },
+    {
+      "frame": 7047,
+      "phase": "aim",
+      "boat": "waiting",
+      "complete": false,
+      "enemies": 0
+    },
+    {
+      "frame": 8350,
+      "phase": "review",
+      "boat": "waiting",
+      "complete": false,
+      "enemies": 0
+    },
+    {
+      "frame": 8427,
+      "phase": "aim",
+      "boat": "waiting",
+      "complete": false,
+      "enemies": 0
+    },
+    {
+      "frame": 8440,
+      "phase": "review",
+      "boat": "waiting",
+      "complete": false,
+      "enemies": 0
+    },
+    {
+      "frame": 8517,
+      "phase": "aim",
+      "boat": "waiting",
+      "complete": false,
+      "enemies": 0
+    },
+    {
+      "frame": 8530,
+      "phase": "review",
+      "boat": "waiting",
+      "complete": false,
+      "enemies": 0
+    },
+    {
+      "frame": 8607,
+      "phase": "aim",
+      "boat": "waiting",
+      "complete": false,
+      "enemies": 0
+    },
+    {
+      "frame": 8620,
+      "phase": "review",
+      "boat": "waiting",
+      "complete": false,
+      "enemies": 0
+    },
+    {
+      "frame": 8697,
+      "phase": "transition",
+      "boat": "waiting",
+      "complete": false,
+      "enemies": 0
+    },
+    {
+      "frame": 8737,
+      "phase": "aim",
+      "boat": "waiting",
+      "complete": false,
+      "enemies": 0
+    },
+    {
+      "frame": 9316,
+      "phase": "review",
+      "boat": "waiting",
+      "complete": false,
+      "enemies": 0
+    },
+    {
+      "frame": 9393,
+      "phase": "aim",
+      "boat": "waiting",
+      "complete": false,
+      "enemies": 0
+    },
+    {
+      "frame": 9406,
+      "phase": "review",
+      "boat": "waiting",
+      "complete": false,
+      "enemies": 0
+    },
+    {
+      "frame": 9483,
+      "phase": "aim",
+      "boat": "waiting",
+      "complete": false,
+      "enemies": 0
+    },
+    {
+      "frame": 9496,
+      "phase": "review",
+      "boat": "waiting",
+      "complete": false,
+      "enemies": 0
+    },
+    {
+      "frame": 9573,
+      "phase": "aim",
+      "boat": "waiting",
+      "complete": false,
+      "enemies": 0
+    },
+    {
+      "frame": 9586,
+      "phase": "review",
+      "boat": "waiting",
+      "complete": false,
+      "enemies": 0
+    },
+    {
+      "frame": 9663,
+      "phase": "transition",
+      "boat": "waiting",
+      "complete": false,
+      "enemies": 0
+    },
+    {
+      "frame": 9703,
+      "phase": "aim",
+      "boat": "waiting",
+      "complete": false,
+      "enemies": 0
+    },
+    {
+      "frame": 10290,
+      "phase": "review",
+      "boat": "waiting",
+      "complete": false,
+      "enemies": 0
+    },
+    {
+      "frame": 10367,
+      "phase": "aim",
+      "boat": "waiting",
+      "complete": false,
+      "enemies": 0
+    },
+    {
+      "frame": 10380,
+      "phase": "review",
+      "boat": "waiting",
+      "complete": false,
+      "enemies": 0
+    },
+    {
+      "frame": 10457,
+      "phase": "aim",
+      "boat": "waiting",
+      "complete": false,
+      "enemies": 0
+    },
+    {
+      "frame": 10470,
+      "phase": "review",
+      "boat": "waiting",
+      "complete": false,
+      "enemies": 0
+    },
+    {
+      "frame": 10547,
+      "phase": "aim",
+      "boat": "waiting",
+      "complete": false,
+      "enemies": 0
+    },
+    {
+      "frame": 10560,
+      "phase": "review",
+      "boat": "waiting",
+      "complete": false,
+      "enemies": 0
+    },
+    {
+      "frame": 10637,
+      "phase": "transition",
+      "boat": "waiting",
+      "complete": false,
+      "enemies": 0
+    },
+    {
+      "frame": 10739,
+      "phase": "aim",
+      "boat": "waiting",
+      "complete": false,
+      "enemies": 0
+    },
+    {
+      "frame": 11424,
+      "phase": "review",
+      "boat": "waiting",
+      "complete": false,
+      "enemies": 0
+    },
+    {
+      "frame": 11501,
+      "phase": "aim",
+      "boat": "waiting",
+      "complete": false,
+      "enemies": 0
+    },
+    {
+      "frame": 11514,
+      "phase": "review",
+      "boat": "waiting",
+      "complete": false,
+      "enemies": 0
+    },
+    {
+      "frame": 11591,
+      "phase": "aim",
+      "boat": "waiting",
+      "complete": false,
+      "enemies": 0
+    },
+    {
+      "frame": 11604,
+      "phase": "review",
+      "boat": "waiting",
+      "complete": false,
+      "enemies": 0
+    },
+    {
+      "frame": 11681,
+      "phase": "aim",
+      "boat": "waiting",
+      "complete": false,
+      "enemies": 0
+    },
+    {
+      "frame": 11694,
+      "phase": "review",
+      "boat": "waiting",
+      "complete": false,
+      "enemies": 0
+    },
+    {
+      "frame": 11771,
+      "phase": "transition",
+      "boat": "waiting",
+      "complete": false,
+      "enemies": 0
+    },
+    {
+      "frame": 11811,
+      "phase": "aim",
+      "boat": "waiting",
+      "complete": false,
+      "enemies": 0
+    },
+    {
+      "frame": 12426,
+      "phase": "review",
+      "boat": "waiting",
+      "complete": false,
+      "enemies": 0
+    },
+    {
+      "frame": 12503,
+      "phase": "aim",
+      "boat": "waiting",
+      "complete": false,
+      "enemies": 0
+    },
+    {
+      "frame": 12516,
+      "phase": "review",
+      "boat": "waiting",
+      "complete": false,
+      "enemies": 0
+    },
+    {
+      "frame": 12593,
+      "phase": "aim",
+      "boat": "waiting",
+      "complete": false,
+      "enemies": 0
+    },
+    {
+      "frame": 12606,
+      "phase": "review",
+      "boat": "waiting",
+      "complete": false,
+      "enemies": 0
+    },
+    {
+      "frame": 12683,
+      "phase": "aim",
+      "boat": "waiting",
+      "complete": false,
+      "enemies": 0
+    },
+    {
+      "frame": 12696,
+      "phase": "review",
+      "boat": "waiting",
+      "complete": false,
+      "enemies": 0
+    },
+    {
+      "frame": 12773,
+      "phase": "transition",
+      "boat": "waiting",
+      "complete": false,
+      "enemies": 0
+    },
+    {
+      "frame": 12813,
+      "phase": "aim",
+      "boat": "waiting",
+      "complete": false,
+      "enemies": 0
+    },
+    {
+      "frame": 13410,
+      "phase": "review",
+      "boat": "waiting",
+      "complete": false,
+      "enemies": 0
+    },
+    {
+      "frame": 13487,
+      "phase": "aim",
+      "boat": "waiting",
+      "complete": false,
+      "enemies": 0
+    },
+    {
+      "frame": 13500,
+      "phase": "review",
+      "boat": "waiting",
+      "complete": false,
+      "enemies": 0
+    },
+    {
+      "frame": 13577,
+      "phase": "aim",
+      "boat": "waiting",
+      "complete": false,
+      "enemies": 0
+    },
+    {
+      "frame": 13590,
+      "phase": "review",
+      "boat": "waiting",
+      "complete": false,
+      "enemies": 0
+    },
+    {
+      "frame": 13667,
+      "phase": "aim",
+      "boat": "waiting",
+      "complete": false,
+      "enemies": 0
+    },
+    {
+      "frame": 13680,
+      "phase": "review",
+      "boat": "waiting",
+      "complete": false,
+      "enemies": 0
+    },
+    {
+      "frame": 13757,
+      "phase": "transition",
+      "boat": "waiting",
+      "complete": false,
+      "enemies": 0
+    },
+    {
+      "frame": 13823,
+      "phase": "aim",
+      "boat": "waiting",
+      "complete": false,
+      "enemies": 0
+    },
+    {
+      "frame": 14514,
+      "phase": "review",
+      "boat": "waiting",
+      "complete": false,
+      "enemies": 0
+    },
+    {
+      "frame": 14591,
+      "phase": "aim",
+      "boat": "waiting",
+      "complete": false,
+      "enemies": 0
+    },
+    {
+      "frame": 14604,
+      "phase": "review",
+      "boat": "waiting",
+      "complete": false,
+      "enemies": 0
+    },
+    {
+      "frame": 14681,
+      "phase": "aim",
+      "boat": "waiting",
+      "complete": false,
+      "enemies": 0
+    },
+    {
+      "frame": 14694,
+      "phase": "review",
+      "boat": "waiting",
+      "complete": false,
+      "enemies": 0
+    },
+    {
+      "frame": 14771,
+      "phase": "aim",
+      "boat": "waiting",
+      "complete": false,
+      "enemies": 0
+    },
+    {
+      "frame": 14784,
+      "phase": "review",
+      "boat": "waiting",
+      "complete": false,
+      "enemies": 0
+    },
+    {
+      "frame": 14861,
+      "phase": "transition",
+      "boat": "waiting",
+      "complete": false,
+      "enemies": 0
+    },
+    {
+      "frame": 14901,
+      "phase": "aim",
+      "boat": "waiting",
+      "complete": false,
+      "enemies": 0
+    },
+    {
+      "frame": 16092,
+      "phase": "review",
+      "boat": "waiting",
+      "complete": false,
+      "enemies": 0
+    },
+    {
+      "frame": 16169,
+      "phase": "aim",
+      "boat": "waiting",
+      "complete": false,
+      "enemies": 0
+    },
+    {
+      "frame": 16182,
+      "phase": "review",
+      "boat": "waiting",
+      "complete": false,
+      "enemies": 0
+    },
+    {
+      "frame": 16259,
+      "phase": "aim",
+      "boat": "waiting",
+      "complete": false,
+      "enemies": 0
+    },
+    {
+      "frame": 16272,
+      "phase": "review",
+      "boat": "waiting",
+      "complete": false,
+      "enemies": 0
+    },
+    {
+      "frame": 16349,
+      "phase": "aim",
+      "boat": "waiting",
+      "complete": false,
+      "enemies": 0
+    },
+    {
+      "frame": 16362,
+      "phase": "review",
+      "boat": "waiting",
+      "complete": false,
+      "enemies": 0
+    },
+    {
+      "frame": 16439,
+      "phase": "transition",
+      "boat": "waiting",
+      "complete": false,
+      "enemies": 0
+    },
+    {
+      "frame": 16479,
+      "phase": "aim",
+      "boat": "waiting",
+      "complete": false,
+      "enemies": 0
+    },
+    {
+      "frame": 17094,
+      "phase": "review",
+      "boat": "waiting",
+      "complete": false,
+      "enemies": 0
+    },
+    {
+      "frame": 17171,
+      "phase": "aim",
+      "boat": "waiting",
+      "complete": false,
+      "enemies": 0
+    },
+    {
+      "frame": 17184,
+      "phase": "review",
+      "boat": "waiting",
+      "complete": false,
+      "enemies": 0
+    },
+    {
+      "frame": 17261,
+      "phase": "aim",
+      "boat": "waiting",
+      "complete": false,
+      "enemies": 0
+    },
+    {
+      "frame": 17274,
+      "phase": "review",
+      "boat": "waiting",
+      "complete": false,
+      "enemies": 0
+    },
+    {
+      "frame": 17351,
+      "phase": "aim",
+      "boat": "waiting",
+      "complete": false,
+      "enemies": 0
+    },
+    {
+      "frame": 17364,
+      "phase": "review",
+      "boat": "waiting",
+      "complete": false,
+      "enemies": 0
+    },
+    {
+      "frame": 17441,
+      "phase": "transition",
+      "boat": "waiting",
+      "complete": false,
+      "enemies": 0
+    },
+    {
+      "frame": 17481,
+      "phase": "aim",
+      "boat": "waiting",
+      "complete": false,
+      "enemies": 0
+    },
+    {
+      "frame": 18048,
+      "phase": "won",
+      "boat": "waiting",
+      "complete": true,
+      "enemies": 0
+    }
+  ],
+  "shots": [
+    {
+      "frame": 34,
+      "actor": "archer",
+      "x": 260,
+      "y": 1804,
+      "input": {
+        "op": "fire",
+        "skill": "A05",
+        "angle": 55,
+        "power": 0.65
+      },
+      "accepted": true
+    },
+    {
+      "frame": 709,
+      "actor": "mage",
+      "x": 380,
+      "y": 1805.8461538461538,
+      "input": {
+        "op": "fire",
+        "skill": "M03",
+        "angle": 35,
+        "power": 0.65
+      },
+      "accepted": true
+    },
+    {
+      "frame": 1054,
+      "actor": "knight",
+      "x": 500,
+      "y": 1807.6923076923076,
+      "input": {
+        "op": "fire",
+        "skill": "S04",
+        "angle": 15,
+        "power": 1
+      },
+      "accepted": true
+    },
+    {
+      "frame": 1339,
+      "actor": "occultist",
+      "x": 620,
+      "y": 1809.5384615384614,
+      "input": {
+        "op": "fire",
+        "skill": "O06",
+        "angle": 3.011934067539503,
+        "power": 0.7252877531320717
+      },
+      "accepted": true
+    },
+    {
+      "frame": 2224,
+      "actor": "archer",
+      "x": 260,
+      "y": 1804,
+      "input": {
+        "op": "fire",
+        "skill": "A02",
+        "angle": 75,
+        "power": 0.65
+      },
+      "accepted": true
+    },
+    {
+      "frame": 2839,
+      "actor": "mage",
+      "x": 380,
+      "y": 1805.8461538461538,
+      "input": {
+        "op": "fire",
+        "skill": "M06",
+        "angle": 35,
+        "power": 0.65
+      },
+      "accepted": true
+    },
+    {
+      "frame": 3274,
+      "actor": "knight",
+      "x": 1240.8157308852672,
+      "y": 1920.6602115487,
+      "input": {
+        "op": "fire",
+        "skill": "S04",
+        "angle": 15,
+        "power": 0.65
+      },
+      "accepted": true
+    },
+    {
+      "frame": 3499,
+      "actor": "occultist",
+      "x": 620,
+      "y": 1809.5384615384614,
+      "input": {
+        "op": "fire",
+        "skill": "O02",
+        "angle": -8.102356388508877,
+        "power": 0.5001068920900006
+      },
+      "accepted": true
+    },
+    {
+      "frame": 4024,
+      "actor": "archer",
+      "x": 260,
+      "y": 1804,
+      "input": {
+        "op": "fire",
+        "skill": "A02",
+        "angle": 55,
+        "power": 0.65
+      },
+      "accepted": true
+    },
+    {
+      "frame": 4579,
+      "actor": "mage",
+      "x": 380,
+      "y": 1805.8461538461538,
+      "input": {
+        "op": "fire",
+        "skill": "M03",
+        "angle": 18.327846365408753,
+        "power": 0.7005249992673049
+      },
+      "accepted": true
+    },
+    {
+      "frame": 4894,
+      "actor": "knight",
+      "x": 1568.8108353606442,
+      "y": 1949.6009560612333,
+      "input": {
+        "op": "fire",
+        "skill": "S04",
+        "angle": 161.9809988784821,
+        "power": 0.6789289610967242
+      },
+      "accepted": true
+    },
+    {
+      "frame": 5089,
+      "actor": "occultist",
+      "x": 620,
+      "y": 1809.5384615384614,
+      "input": {
+        "op": "fire",
+        "skill": "O06",
+        "angle": 35,
+        "power": 0.65
+      },
+      "accepted": true
+    },
+    {
+      "frame": 5704,
+      "actor": "archer",
+      "x": 260,
+      "y": 1804,
+      "input": {
+        "op": "fire",
+        "skill": "A02",
+        "angle": 75,
+        "power": 0.65
+      },
+      "accepted": true
+    },
+    {
+      "frame": 6319,
+      "actor": "mage",
+      "x": 380,
+      "y": 1805.8461538461538,
+      "input": {
+        "op": "fire",
+        "skill": "M03",
+        "angle": 15,
+        "power": 0.65
+      },
+      "accepted": true
+    },
+    {
+      "frame": 6604,
+      "actor": "knight",
+      "x": 1336.2267928442388,
+      "y": 1929.0788346627269,
+      "input": {
+        "op": "fire",
+        "skill": "S04",
+        "angle": 162.63326806602552,
+        "power": 0.6663817728399011
+      },
+      "accepted": true
+    },
+    {
+      "frame": 6799,
+      "actor": "occultist",
+      "x": 620,
+      "y": 1809.5384615384614,
+      "input": {
+        "op": "fire",
+        "skill": "O06",
+        "angle": 15,
+        "power": 0.65
+      },
+      "accepted": true
+    }
+  ],
+  "hurts": [
+    {
+      "frame": 438,
+      "target": "a4-36-g0-1",
+      "owner": "archer",
+      "amount": 356
+    },
+    {
+      "frame": 946,
+      "target": "a4-36-g0-0",
+      "owner": "mage",
+      "amount": 537
+    },
+    {
+      "frame": 1227,
+      "target": "a4-36-g0-0",
+      "owner": "knight",
+      "amount": 154
+    },
+    {
+      "frame": 1450,
+      "target": "a4-36-g0-0",
+      "owner": "occultist",
+      "amount": 323
+    },
+    {
+      "frame": 1663,
+      "target": "knight",
+      "owner": "a4-36-g0-0",
+      "amount": 48
+    },
+    {
+      "frame": 2029,
+      "target": "knight",
+      "owner": "a4-36-g0-1",
+      "amount": 92
+    },
+    {
+      "frame": 2723,
+      "target": "a4-36-g0-1",
+      "owner": "archer",
+      "amount": 531
+    },
+    {
+      "frame": 3106,
+      "target": "a4-36-g0-0",
+      "owner": "mage",
+      "amount": 271
+    },
+    {
+      "frame": 3106,
+      "target": "a4-36-g0-1",
+      "owner": "mage",
+      "amount": 324
+    },
+    {
+      "frame": 3108,
+      "target": "a4-36-g0-0",
+      "owner": "mage",
+      "amount": 114
+    },
+    {
+      "frame": 3108,
+      "target": "a4-36-g0-0",
+      "owner": "mage",
+      "amount": 62
+    },
+    {
+      "frame": 3124,
+      "target": "a4-36-g0-1",
+      "owner": "mage",
+      "amount": 99
+    },
+    {
+      "frame": 3125,
+      "target": "a4-36-g0-1",
+      "owner": "mage",
+      "amount": 99
+    },
+    {
+      "frame": 3657,
+      "target": "a4-36-g0-1",
+      "owner": "occultist",
+      "amount": 150
+    },
+    {
+      "frame": 3673,
+      "target": "a4-36-g0-0",
+      "owner": "occultist",
+      "amount": 77
+    },
+    {
+      "frame": 3862,
+      "target": "knight",
+      "owner": "a4-36-g0-0",
+      "amount": 47
+    },
+    {
+      "frame": 4442,
+      "target": "a4-36-g0-0",
+      "owner": "archer",
+      "amount": 303
+    },
+    {
+      "frame": 4972,
+      "target": "a4-36-g0-0",
+      "owner": "knight",
+      "amount": 247
+    },
+    {
+      "frame": 5327,
+      "target": "a4-36-g0-0",
+      "owner": "occultist",
+      "amount": 184
+    },
+    {
+      "frame": 5540,
+      "target": "knight",
+      "owner": "a4-36-g0-0",
+      "amount": 41
+    },
+    {
+      "frame": 6209,
+      "target": "a4-36-g0-0",
+      "owner": "archer",
+      "amount": 449
+    },
+    {
+      "frame": 6489,
+      "target": "a4-36-g0-0",
+      "owner": "mage",
+      "amount": 565
+    },
+    {
+      "frame": 6679,
+      "target": "a4-36-g0-0",
+      "owner": "knight",
+      "amount": 417
+    },
+    {
+      "frame": 6914,
+      "target": "a4-36-g0-0",
+      "owner": "occultist",
+      "amount": 163
+    }
+  ],
+  "impacts": [
+    {
+      "frame": 438,
+      "owner": "archer",
+      "skill": "A05",
+      "unit": "a4-36-g0-1",
+      "x": 1414.4242320371752,
+      "y": 1843.6025852543355
+    },
+    {
+      "frame": 946,
+      "owner": "mage",
+      "skill": "M03",
+      "unit": "a4-36-g0-0",
+      "x": 1197.3839899060288,
+      "y": 1766.1419600038837
+    },
+    {
+      "frame": 1450,
+      "owner": "occultist",
+      "skill": "O06",
+      "unit": "a4-36-g0-0",
+      "x": 1177.8013512339126,
+      "y": 1856.0171687472714
+    },
+    {
+      "frame": 1663,
+      "owner": "a4-36-g0-0",
+      "skill": "HWD01",
+      "unit": "knight",
+      "x": 1280.6781611871356,
+      "y": 1871.0077978003208
+    },
+    {
+      "frame": 2723,
+      "owner": "archer",
+      "skill": "A02",
+      "unit": "a4-36-g0-1",
+      "x": 1275.7704302660438,
+      "y": 1845.0887963603527
+    },
+    {
+      "frame": 2736,
+      "owner": "archer",
+      "skill": "A02",
+      "terrain": "a4-36-land",
+      "x": 1308.892610827987,
+      "y": 1919.8234844017632
+    },
+    {
+      "frame": 3106,
+      "owner": "mage",
+      "skill": "M06",
+      "unit": "a4-36-g0-0",
+      "x": 1381.6177128558957,
+      "y": 1857.0549611314182
+    },
+    {
+      "frame": 3108,
+      "owner": "mage",
+      "skill": "M06",
+      "unit": "a4-36-g0-0",
+      "x": 1386.6784215318896,
+      "y": 1860.6660441905924
+    },
+    {
+      "frame": 3108,
+      "owner": "mage",
+      "skill": "M06",
+      "unit": "a4-36-g0-0",
+      "x": 1386.684879657154,
+      "y": 1858.2326980078174
+    },
+    {
+      "frame": 3110,
+      "owner": "mage",
+      "skill": "M06",
+      "unit": "a4-36-g0-0",
+      "x": 1388.3684758407924,
+      "y": 1852.399485510177
+    },
+    {
+      "frame": 3111,
+      "owner": "mage",
+      "skill": "M06",
+      "unit": "a4-36-g0-0",
+      "x": 1389.1565543172708,
+      "y": 1869.4428614645853
+    },
+    {
+      "frame": 3124,
+      "owner": "mage",
+      "skill": "M06",
+      "unit": "a4-36-g0-1",
+      "x": 1343.3005494429415,
+      "y": 1840.9487754408553
+    },
+    {
+      "frame": 3125,
+      "owner": "mage",
+      "skill": "M06",
+      "unit": "a4-36-g0-1",
+      "x": 1342.3145800451075,
+      "y": 1888.4652320273365
+    },
+    {
+      "frame": 3131,
+      "owner": "mage",
+      "skill": "M06",
+      "terrain": "a4-36-land",
+      "x": 1359.835209534866,
+      "y": 1926.6470251782412
+    },
+    {
+      "frame": 3862,
+      "owner": "a4-36-g0-0",
+      "skill": "HWD01",
+      "unit": "knight",
+      "x": 1526.7980475039976,
+      "y": 1894.2583912438338
+    },
+    {
+      "frame": 4442,
+      "owner": "archer",
+      "skill": "A02",
+      "unit": "a4-36-g0-0",
+      "x": 1384.50278851365,
+      "y": 1781.7354936948802
+    },
+    {
+      "frame": 4473,
+      "owner": "archer",
+      "skill": "A02",
+      "terrain": "a4-36-land",
+      "x": 1446.3204197129846,
+      "y": 1933.3913939980678
+    },
+    {
+      "frame": 4790,
+      "owner": "mage",
+      "skill": "M03",
+      "terrain": "a4-36-land",
+      "x": 1258.5819684442522,
+      "y": 1914.5945048010537
+    },
+    {
+      "frame": 5327,
+      "owner": "occultist",
+      "skill": "O06",
+      "unit": "a4-36-g0-0",
+      "x": 1394.986572179529,
+      "y": 1778.2212069483696
+    },
+    {
+      "frame": 5540,
+      "owner": "a4-36-g0-0",
+      "skill": "HWD01",
+      "unit": "knight",
+      "x": 1299.2647001090877,
+      "y": 1867.7743961769904
+    },
+    {
+      "frame": 6209,
+      "owner": "archer",
+      "skill": "A02",
+      "unit": "a4-36-g0-0",
+      "x": 1119.8612499981557,
+      "y": 1879.5055730043678
+    },
+    {
+      "frame": 6213,
+      "owner": "archer",
+      "skill": "A02",
+      "terrain": "a4-36-land",
+      "x": 1127.3404930205,
+      "y": 1902.341354437958
+    },
+    {
+      "frame": 6489,
+      "owner": "mage",
+      "skill": "M03",
+      "unit": "a4-36-g0-0",
+      "x": 1118.4193356431372,
+      "y": 1863.868649365081
+    },
+    {
+      "frame": 6914,
+      "owner": "occultist",
+      "skill": "O06",
+      "unit": "a4-36-g0-0",
+      "x": 1130.8414524873726,
+      "y": 1760.24689041813
+    }
+  ],
+  "final": {
+    "phase": "won",
+    "objective": {
+      "version": 1,
+      "clock": 150.43333333336085,
+      "events": {
+        "door_falls": {
+          "started": true,
+          "terminal": true,
+          "presented": [
+            "A4.S36.DOOR.01",
+            "A4.S36.DOOR.02"
+          ],
+          "retired": []
+        },
+        "arrival": {
+          "started": true,
+          "terminal": true,
+          "presented": [
+            "A4.S36.ENTRY.01"
+          ],
+          "retired": []
+        },
+        "leave": {
+          "started": true,
+          "terminal": true,
+          "presented": [
+            "A4.S36.EXIT.01",
+            "A4.S36.EXIT.02"
+          ],
+          "retired": []
+        }
+      },
+      "receipts": [
+        "A4.S36.ENTRY.01",
+        "A4.S36.DOOR.01",
+        "A4.S36.DOOR.02",
+        "A4.S36.EXIT.01",
+        "A4.S36.EXIT.02"
+      ],
+      "boat": {
+        "phase": "waiting",
+        "x": 500
+      },
+      "door": {
+        "phase": "fallen",
+        "time": 1,
+        "soundAt": 62.3749999999971,
+        "renderedAt": 62.499999999997094
+      },
+      "complete": true,
+      "visualDrawn": {},
+      "observed": {},
+      "water": {
+        "dry": {
+          "archer": {
+            "x": 6541.155287199987,
+            "y": 1821.961490426667
+          },
+          "mage": {
+            "x": 6560.5588795007,
+            "y": 1821.3147040166434
+          },
+          "knight": {
+            "x": 6577.229461929211,
+            "y": 1820.759017935693
+          },
+          "occultist": {
+            "x": 6579.979892179317,
+            "y": 1820.667336927356
+          },
+          "a4-36-g0-0": {
+            "x": 1156.6013225432823,
+            "y": 1913.2295284597014
+          },
+          "a4-36-g0-1": {
+            "x": 1303.3154281498498,
+            "y": 1926.1748907191045
+          }
+        },
+        "recoveries": []
+      },
+      "quietAt": 58.72499999999731,
+      "quietCleanup": {
+        "actors": [],
+        "sources": []
+      },
+      "reader": null
+    },
+    "units": [
+      {
+        "id": "archer",
+        "x": 6541.155287199987,
+        "y": 1821.961490426667,
+        "hp": 1183,
+        "dead": false
+      },
+      {
+        "id": "mage",
+        "x": 6560.5588795007,
+        "y": 1821.3147040166434,
+        "hp": 1280,
+        "dead": false
+      },
+      {
+        "id": "knight",
+        "x": 6577.229461929211,
+        "y": 1820.759017935693,
+        "hp": 2217,
+        "dead": false
+      },
+      {
+        "id": "occultist",
+        "x": 6579.979892179317,
+        "y": 1820.667336927356,
+        "hp": 1483,
+        "dead": false
+      },
+      {
+        "id": "a4-36-g0-0",
+        "x": 1156.6013225432823,
+        "y": 1913.2295284597014,
+        "hp": 0,
+        "dead": true
+      },
+      {
+        "id": "a4-36-g0-1",
+        "x": 1303.3154281498498,
+        "y": 1926.1748907191045,
+        "hp": 0,
+        "dead": true
+      }
+    ]
+  }
+}

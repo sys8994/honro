@@ -1,0 +1,61 @@
+{
+  "method": "built-in image_gen with inspected official skeleton and accepted concept-v2 style reference",
+  "concepts": [
+    {
+      "file": "ground-continuous-concept.png",
+      "role": "Single semantic BODY only; ash-earth small stones, immutable shallow basin",
+      "sourceSkeleton": "ground-continuous-skeleton.png",
+      "worldBox": [
+        -300,
+        1300,
+        7800,
+        3100
+      ]
+    },
+    {
+      "file": "home-concept.png",
+      "role": "Reusable ruined Korean home without door leaf; empty iron hinge sockets, open interior",
+      "sourceSkeleton": "home-skeleton.png",
+      "sourceWorldBox": [
+        -600,
+        -500,
+        1220,
+        570
+      ]
+    },
+    {
+      "file": "door-concept.png",
+      "role": "Separate dynamic ironless wooden door, same original rectangular footprint and pivot",
+      "sourceSkeleton": "door-skeleton.png",
+      "targetBounds": [
+        -80,
+        -280,
+        145,
+        280
+      ]
+    },
+    {
+      "file": "frame-concept.png",
+      "role": "Common independent roofless timber frame",
+      "sourceSkeleton": "frame-skeleton.png",
+      "sourceWorldBox": [
+        -590,
+        -440,
+        1200,
+        510
+      ]
+    },
+    {
+      "file": "foundation-concept.png",
+      "role": "Common low empty-hearth/stone foundation",
+      "sourceSkeleton": "foundation-skeleton.png",
+      "sourceWorldBox": [
+        -600,
+        -220,
+        1200,
+        500
+      ],
+      "finalFootAlignment": "Observed generatedbase y510maps toworld0; no collision inferred"
+    }
+  ]
+}
