@@ -1,15 +1,16 @@
 #!/usr/bin/env python3
-"""Stage 37 roster: crag shooters, ramp and under-ramp pockets, wall-gate vanguard on the broken wall, cape gunners."""
+"""Stage 37 v2 roster: ramp shooters on the diagonals, close guards at the wall foot,
+gate vanguard on the third ramp knee, pass gunners; scaffold landings stay contested."""
 import sys
 from pathlib import Path
 sys.path.insert(0, str(Path(__file__).parent))
 from roster import place
 place(37, '_local/reports/act4-pilot/stage37/claude', {
-    'a': [('shore', 500, 'hound', 0), ('shore', 700, 'guard', 0), ('shore', 850, 'close', 0), ('west-crag', 1420, 'bow', 0), ('west-crag', 1520, 'bow', 0), ('west-crag', 1620, 'guard', 1)],
-    'b': [('haul-ramp', 2300, 'bow', 0), ('haul-ramp', 2450, 'guard', 0), ('haul-ramp', 2620, 'close', 0), ('haul-ramp', 3100, 'bind', 0), ('haul-ramp', 3250, 'bow', 0),
-          ('shore', 2350, 'hound', 0), ('shore', 2600, 'close', 0), ('shore', 2950, 'guard', 0)],
-    'c': [('shore', 3500, 'bind', 0), ('shore', 3600, 'bow', 0), ('shore', 3800, 'guard', 0), ('shore', 4100, 'arc', 1), ('shore', 4300, 'bow', 0), ('shore', 4500, 'close', 0), ('shore', 4700, 'hound', 0)],
-    'd': [('broken-wall', 5350, 'midboss', 0), ('broken-wall', 5500, 'bow', 0), ('broken-wall', 5800, 'guard', 0), ('broken-wall', 5950, 'bow', 0),
-          ('shore', 5300, 'hound', 0), ('shore', 5600, 'close', 0), ('shore', 6050, 'guard', 0)],
-    'e': [('upper-cape', 6600, 'bow', 0), ('upper-cape', 6750, 'guard', 1), ('upper-cape', 6900, 'bow', 0)],
-    'f': [('shore', 7200, 'guard', 1), ('shore', 7450, 'lantern', 0), ('shore', 7650, 'bow', 0)]}, active_limit=6)
+    'a': [('road-1', 1500, 'hound', 0), ('road-1', 1640, 'guard', 0), ('road-1', 2900, 'close', 0), ('road-1', 3900, 'bow', 0)],
+    'b': [('road-2', 3800, 'bow', 0), ('road-2', 4400, 'guard', 1), ('road-2w', 2500, 'bind', 0), ('road-2w', 2100, 'bow', 0), ('r2-crag', 1450, 'close', 0)],
+    'c': [('road-3w', 1500, 'bow', 0), ('road-3w', 1900, 'guard', 0), ('road-3', 3100, 'close', 0), ('road-3', 3500, 'bow', 0),
+          ('road-3', 4000, 'midboss', 0), ('road-3', 4600, 'arc', 1), ('road-3', 4800, 'bow', 0)],
+    'd': [('road-4', 4500, 'bow', 0), ('road-4', 4200, 'guard', 0), ('road-4', 3200, 'bind', 0), ('road-4', 2900, 'close', 0), ('road-4', 1900, 'bow', 0), ('road-4', 1500, 'guard', 1)],
+    'e': [('pass', 1300, 'bow', 0), ('pass', 2300, 'guard', 0), ('pass', 2800, 'arc', 0), ('pass', 3900, 'bow', 0), ('pass', 4300, 'lantern', 0),
+          ('pass', 5000, 'guard', 1), ('pass', 5300, 'bow', 0), ('pass', 5600, 'close', 0)],
+}, active_limit=6)

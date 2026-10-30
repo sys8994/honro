@@ -1,0 +1,64 @@
+{
+ "_doc": "Design cards fixed BEFORE geometry (2026-10-31, user: decide aspect from the plan first). Ranges from planning/HONRO_40_STAGE_CRITERIA_v3 + act4 terrain spec v0.2. supports = 발판(walkable surfaces), bands = 높이대 (300u bins of walk levels), span = 필수 고도폭 over the main route, features = plan phrase -> surfaces that realise it.",
+ "37": {
+  "type": "vertical",
+  "W": 6200,
+  "H": 7400,
+  "Wr": [
+   5800,
+   6600
+  ],
+  "Hr": [
+   7000,
+   7900
+  ],
+  "aspect": [
+   0.734,
+   0.943
+  ],
+  "supports": [
+   24,
+   30
+  ],
+  "bands": [
+   6,
+   7
+  ],
+  "span": [
+   4400,
+   5200
+  ],
+  "routes": 2,
+  "features": {
+   "산허리 절개면": [
+    "cut-face"
+   ],
+   "인공 운송 경사로 사선(주동선)": [
+    "road-1",
+    "road-2",
+    "road-3",
+    "road-4",
+    "pass"
+   ],
+   "불규칙한 옹벽 높이": [
+    "road-2",
+    "road-4"
+   ],
+   "무너진 옹벽 아래 측면 접근(대안)": [
+    "hoist-1a",
+    "hoist-2a",
+    "gap-plank-2",
+    "gap-plank-3"
+   ],
+   "버려진 목재 운반 구조": [
+    "turn-1a",
+    "turn-2a",
+    "turn-3a",
+    "turn-4a"
+   ],
+   "굽은 고개와 신호 시야/실제 접근": [
+    "pass"
+   ]
+  }
+ }
+}

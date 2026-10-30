@@ -129,6 +129,8 @@ class Painter:
         self.solids, self.decks, self.covers = {}, {}, []
         self.mod, self.modules, self.layers = None, {}, {k: [] for k in ['REAR', 'STRUCT', 'BODY', 'SURFACE', 'FORE']}
         self.errors = []
+        self.art_features = []
+        self._lit_wall = False
 
     # ------------------------------------------------------------ declarations
     def undulate(self, top, seed, amp=1.0, keep=()):
@@ -146,7 +148,8 @@ class Painter:
         return rdp(out, 4.0)
 
     def solid(self, sid, top, lower, kind='rock', amp=1.0, keep=(), role='', band=(16, 30), extend=None):
-        """kind: rock | earth (mud/soil strata) | scree (rubble blocks)."""
+        """kind: rock | earth (mud/soil strata) | masonry."""
+        assert top[0][0] < top[-1][0], 'walk line must run west -> east: ' + sid
         walk = self.undulate([tuple(p) for p in top], len(sid) * 1.7, amp, keep)
         corners = {i + 1 for i, p in enumerate(lower) if len(p) > 2}
         chain = [walk[-1]] + [tuple(p[:2]) for p in lower] + [walk[0]]
@@ -263,10 +266,14 @@ class Painter:
         if lights or lit:
             self.clip('BODY', poly, unary_union(lights + lit), ROCK_LIGHT)
         if darks or deep:
-            self.clip('BODY', poly, unary_union(darks + deep), ROCK_DARK)
+            # Shelves cut into a lit face: undersides take the face's shade so the
+            # road reads as carved into the wall, not a slab in front of it.
+            self.clip('BODY', poly, unary_union(darks + deep), '#1d3358' if s.get('carved') else ROCK_DARK)
 
     def surface_band(self, s):
         top, poly = s['walk'], s['poly'].buffer(2)
+        if len(top) < 2:
+            return
         lo, hi = s['band']
         th = lambda x: lo + (hi - lo) * (0.5 + 0.5 * math.sin(x / 140 + len(s['id'])))
         def band(fn):
@@ -275,11 +282,56 @@ class Painter:
         self.clip('BODY', poly, band(th), SAGE)
         self.clip('BODY', poly, band(lambda x: 5), SAGE_LIP)
 
+    def _masonry(self, poly):
+        if poly.is_empty:
+            return
+        self.add('BODY', shapely_d(poly), '#2a4168')
+        minx, miny, maxx, maxy = poly.bounds
+        joints, lit = [], []
+        y, row = miny + 30, 0
+        while y < maxy:
+            joints.append(Polygon([(minx, y), (maxx, y), (maxx, y + 5), (minx, y + 5)]))
+            x = minx + (row % 2) * 55
+            while x < maxx:
+                joints.append(Polygon([(x, y - 62), (x + 5, y - 62), (x + 5, y), (x, y)]))
+                if (int(x) * 7 + row * 13) % 5 == 0:
+                    lit.append(Polygon([(x + 8, y - 58), (x + 100, y - 58), (x + 100, y - 4), (x + 8, y - 4)]))
+                x += 110 + (int(x * 13 + row * 7) % 40)
+            y += 66
+            row += 1
+        if lit:
+            self.clip('BODY', poly, unary_union(lit), '#35537e')
+        self.clip('BODY', poly, unary_union(joints), '#14233f')
+
     def paint_solids(self):
         # Earth (ground) last: it covers the buried feet of rock standing on it.
         for s in sorted(self.solids.values(), key=lambda s: s['kind'] == 'earth'):
             self.module(s['id'])
-            if s['kind'] == 'earth':
+            if s['kind'] == 'terrace':   # rock mass with a masonry retaining band under the road
+                self.shade_rock(s)
+                top = s['walk']
+                band = Polygon([(x, y) for x, y in top] + [(x, y + 150) for x, y in reversed(top)]).buffer(0).intersection(s['poly'])
+                sub = dict(s, poly=band, kind='masonry')
+                self._masonry(sub['poly'])
+            elif s['kind'] == 'masonry':   # dressed retaining wall (옹벽): coursed blocks
+                poly = s['poly']
+                self.add('BODY', shapely_d(poly), '#2a4168')
+                minx, miny, maxx, maxy = poly.bounds
+                joints, lit = [], []
+                y, row = miny + 30, 0
+                while y < maxy:
+                    joints.append(Polygon([(minx, y), (maxx, y), (maxx, y + 5), (minx, y + 5)]))
+                    x = minx + (row % 2) * 55
+                    while x < maxx:
+                        joints.append(Polygon([(x, y - 62), (x + 5, y - 62), (x + 5, y), (x, y)]))
+                        if (int(x) * 7 + row * 13) % 5 == 0:
+                            lit.append(Polygon([(x + 8, y - 58), (x + 100, y - 58), (x + 100, y - 4), (x + 8, y - 4)]))
+                        x += 110 + (int(x * 13 + row * 7) % 40)
+                    y += 66
+                    row += 1
+                self.clip('BODY', poly, unary_union(lit), '#35537e')
+                self.clip('BODY', poly, unary_union(joints), '#14233f')
+            elif s['kind'] == 'earth':
                 poly = s['poly']
                 self.add('BODY', shapely_d(poly), MUD)
                 minx, miny, maxx, maxy = poly.bounds
@@ -324,7 +376,7 @@ class Painter:
                 self.socket(x, y)
                 continue
             g = self.ground_below(x, y + 20)
-            if g is not None and g - y <= 1500:
+            if g is not None and g - y <= 1800:
                 self.post(x, y + 26, g, w=24 if g - y > 600 else 20)
                 posts.append((x, y, g))
                 continue
@@ -469,11 +521,57 @@ class Painter:
             y = base - h * yy
             self.add(layer, poly_d([(x - wd, y + 18), (x - wd * .4, y - 14), (x + wd * .5, y - 18), (x + wd, y + 14), (x, y + 26)]), '#24423f' if k % 2 else '#1d3735')
 
-    def backwall(self, pts, seed=0):
+    def shelf(self, sid, top, thick=300, kind='masonry', role='', amp=0, taper=0.55):
+        """Road shelf: walk line + underside parallel to it (irregular depth)."""
+        th = list(thick) if isinstance(thick, (list, tuple)) else [thick] * len(top)
+        if top[0][0] > top[-1][0]:     # walk lines are authored in either direction
+            top, th = list(reversed(top)), list(reversed(th))
+        top = [tuple(p) for p in top]
+        lower = [(x, y + t) for (x, y), t in zip(reversed(top), reversed(th))]
+        lower[0] = (lower[0][0], top[-1][1] + th[-1] * taper, 'c')
+        lower[-1] = (lower[-1][0], top[0][1] + th[0] * taper, 'c')
+        self.solid(sid, top, lower, kind=kind, role=role, amp=amp)
+        self.solids[sid]['carved'] = True
+
+    def stair_tower(self, prefix, x0, x1, y_bottom, y_top, start='west', end=None, role='switchback stair tower'):
+        """Zigzag timber flights between x0..x1 rising y_bottom -> y_top; `end`
+        forces the side where the last flight arrives (next road starts there)."""
+        width = x1 - x0
+        k = max(1, math.ceil((y_bottom - y_top) / (0.5 * width)))
+        if end and ((k % 2 == 1) != (start != end)):
+            k += 1
+        r = (y_bottom - y_top) / k
+        ids, side = [], start
+        for i in range(k):
+            yb, yt = y_bottom - i * r, y_bottom - (i + 1) * r
+            pts = [(x0, yb), (x1, yt)] if side == 'west' else [(x1, yb), (x0, yt)]
+            pts.sort()
+            fid = '%s%s' % (prefix, 'abcdefghij'[i])
+            self.deck(fid, pts, kind='stairs', role=role)
+            ids.append(fid)
+            side = 'east' if side == 'west' else 'west'
+        return ids
+
+    def backwall(self, pts, seed=0, fid=None, lit=False):
+        self._lit_wall = lit
+        if fid:
+            self.art_features.append(fid)
         """Cave back wall behind actors (no collision): dark planes with a few
         dim facets so an enclosed space reads as interior, not floating rock."""
         rng = random.Random(seed)
         g = Polygon(pts).buffer(0)
+        if self._lit_wall:   # open-air cut face: lit rock behind the roads
+            self.add('STRUCT', shapely_d(g), '#1d3358')
+            minx, miny, maxx, maxy = g.bounds
+            lit, mid = [], []
+            for _ in range(int(g.area / 420000) + 4):
+                x0, y0 = rng.uniform(minx, maxx), rng.uniform(miny, maxy)
+                w, h = rng.uniform(420, 900), rng.uniform(600, 1400)
+                tri = Polygon([(x0, y0), (x0 + w, y0 + h * rng.uniform(0, .15)), (x0 + w * rng.uniform(.35, .65), y0 + h)]).buffer(0)
+                (lit if rng.random() < .35 else mid).append(tri)
+            self.clip('STRUCT', g, unary_union(mid), '#28456f')
+            self.clip('STRUCT', g, unary_union(lit), '#33527c')
+            return
         self.add('STRUCT', shapely_d(g), '#0c172b')
         minx, miny, maxx, maxy = g.bounds
         shards = []
@@ -496,6 +594,7 @@ class Painter:
         L['surfaces'] = surfaces
         L['covers'] = [{k: c[k] for k in ('id', 'x', 'y', 'w', 'h')} for c in self.covers]
         L['width'], L['height'] = self.W, self.H
+        L['artFeatures'] = list(self.art_features)
         if 'spawn' in L:  # party starts exactly on the real ground, never inside it
             L['spawn']['y'] = round(self.ground_below(L['spawn']['x'], L['spawn']['y'] - 150) - 0.5, 2)
         return L

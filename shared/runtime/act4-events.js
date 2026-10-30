@@ -1,4 +1,6 @@
 (function(G){'use strict';
+// Per-stage event coordinates; authored stages may relocate them (design.act4.coords). Defaults = original layout.
+const K=(b,k,d)=>{const v=b?.honroAct4Design?.coords?.[k];return Number.isFinite(v)?v:d;};
 // Isolated review adapter: the seed JSON is the only source of user-facing
 // prose. Receipt IDs are observations; terminal cursors never imply observation.
 const P=G.HonroAct4TerrainPreview,C=G.HONRO_CORE;if(P.attachEvents)return;
@@ -50,18 +52,18 @@ function observe(app,dt){const b=app.engine?.b;if(!(b?.honroCustom||b?.honroAct4
   if(party(b).some(u=>u.x>6500)&&inView(app,{x:6980,y:1800}))play(app,'edge');
  }
  if(n===36){
-  if(quiet(b)&&party(b).some(u=>u.cls==='knight'&&u.x>1800)&&inView(app,{x:3000,y:2040}))play(app,'arrival');
+  if(quiet(b)&&party(b).some(u=>u.cls==='knight'&&u.x>K(b,'arrivalX',1800))&&inView(app,{x:K(b,'arrivalViewX',3000),y:K(b,'arrivalViewY',2040)}))play(app,'arrival');
   if(q.door.phase==='falling'&&!app.dialogue){q.door.time=Math.min(1,q.door.time+dt);if(q.door.time===1){q.door.phase='fallen';app.audio?.play('break');q.door.soundAt=q.clock;}}
   if(q.door.renderedAt!==undefined&&q.door.soundAt!==undefined&&q.clock-Math.max(q.door.renderedAt,q.door.soundAt)>2&&quiet(b))play(app,'door_falls');
   const door=event(q,'door_falls'),all=seed(36,'door_falls').lines.map(l=>l[0]);
-  if(door.terminal&&all.every(id=>door.presented.includes(id))&&q.clock-(q.door.renderedAt??q.clock)>5&&party(b).some(u=>u.x>6100)&&quiet(b))play(app,'leave');
+  if(door.terminal&&all.every(id=>door.presented.includes(id))&&q.clock-(q.door.renderedAt??q.clock)>5&&party(b).some(u=>u.x>K(b,'leaveX',6100))&&quiet(b))play(app,'leave');
  }
 }
 function interact(app=G.HonroApp,probe=false){const b=app.engine?.b;if(!(b?.honroCustom||b?.honroAct4Official===1)||!b.honroAct4Preview||app.dialogue)return false;const q=memory(b),n=b.honroAct4Preview,u=app.engine.active;if(b.side!==0||b.phase!=='aim'||u?.side!==0||u.acted||!alive(u)||!app.engine.grounded(u))return false;
  if(n===31&&q.boat.phase==='docked'&&quiet(b)&&party(b).every(u=>u.x>boarding(b).boardX1&&u.x<boarding(b).boardX2&&Math.abs(u.y-boarding(b).deckY)<5&&app.engine.grounded(u))){if(probe)return true;q.boat.phase='boarded';q.complete=true;return true;}
- if(n===36&&u.cls==='knight'&&quiet(b)&&Math.abs(u.x-2370)<220&&q.door.phase==='standing'){if(probe)return true;q.door.phase='falling';q.door.time=0;return true;}
- if(n===35&&quiet(b)&&party(b).every(u=>u.x>6500)){if(probe)return true;q.complete=true;return true;}
- if(n===36&&quiet(b)&&q.door.phase==='fallen'&&q.events.leave?.terminal&&['A4.S36.DOOR.01','A4.S36.DOOR.02'].every(id=>q.receipts.includes(id))&&party(b).every(u=>u.x>6500)){if(probe)return true;q.complete=true;return true;}
+ if(n===36&&u.cls==='knight'&&quiet(b)&&Math.abs(u.x-K(b,'doorPushX',2370))<220&&q.door.phase==='standing'){if(probe)return true;q.door.phase='falling';q.door.time=0;return true;}
+ if(n===35&&quiet(b)&&party(b).every(u=>u.x>K(b,'completeX',6500))){if(probe)return true;q.complete=true;return true;}
+ if(n===36&&quiet(b)&&q.door.phase==='fallen'&&q.events.leave?.terminal&&['A4.S36.DOOR.01','A4.S36.DOOR.02'].every(id=>q.receipts.includes(id))&&party(b).every(u=>u.x>K(b,'completeX',6500))){if(probe)return true;q.complete=true;return true;}
  if(n===36&&u.cls==='knight'&&quiet(b)&&Math.abs(u.x-2370)<220&&q.door.phase==='fallen'&&q.events.door_falls?.terminal&&!['A4.S36.DOOR.01','A4.S36.DOOR.02'].every(id=>q.receipts.includes(id))){if(probe)return true;const d=event(q,'door_falls');d.started=d.terminal=false;return play(app,'door_falls');}
  return false;
 }
