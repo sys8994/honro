@@ -1,0 +1,10 @@
+import{readFile,writeFile}from'node:fs/promises';import{createHash}from'node:crypto';
+const p=JSON.parse(await readFile('_local/reports/sea-silhouette-v3/coastal31-play-v2.json')),s=p.stages.find(s=>s.id==='stage-31'),D='art/act4-silhouette-v3/sea';
+s.elements=s.elements.filter(e=>e.id!=='s31-density:wood-boardwalks');
+for(const a of JSON.parse(await readFile(D+'/wood31/assets.json'))){p.library.push(a);s.elements.push({id:a.id,assetId:a.id,x:0,y:0,scale:1,rotation:0,snap:false,depthLayer:'L1',layer:'front',visualRole:'scenery'});}
+const maps={
+'common-v:fore-reeds':{'#a4a69d':'#3d5960','#948767':'#38565e','#88774e':'#34515a','#55634e':'#2e4b54','#544f38':'#29464f','#4a584a':'#27434d','#344a47':'#233f48','#273836':'#1c3741','#1b2f2f':'#17313b'},
+'s31v:bank-reed':{'#a6a897':'#7e9192','#aa9e71':'#768b89','#7a836f':'#607c7b','#857a54':'#5c7776','#676d4a':'#536f70','#4b5947':'#3b575c','#3b4c43':'#2e4852'},
+'stage30:ferry-old-funeral-sign':{'#304b50':'#304b50','#695f43':'#56686b','#2d3e34':'#293e43','#a39365':'#8a9285','#6f7256':'#637575','#253e3b':'#253e43','#b0aa7c':'#9ba491','#303f34':'#303f44','#aaa995':'#949e96','#d2c9aa':'#b7bfad'}};
+for(const [id,map]of Object.entries(maps)){let a=p.library.find(a=>a.id===id);if(!a)throw Error(id);const b=JSON.parse(JSON.stringify(a));b.id=id+'-s31-depth-palette-v4';const walk=o=>{if(!o||typeof o!=='object')return;for(const k in o){if(typeof o[k]==='string'&&map[o[k].toLowerCase()])o[k]=map[o[k].toLowerCase()];else walk(o[k]);}};walk(b.vector);b.params={...b.params,paletteRevision:{sourceId:id,role:id.includes('fore')?'foreground dark blue teal, preserved blade silhouette':id.includes('reed')?'play contact muted lighter reeds':'interactive sign restrained warm accent'}};p.library.push(b);for(const e of s.elements)if(e.assetId===id)e.assetId=b.id;}
+const out='_local/reports/sea-silhouette-v3/coastal31-bank-wood-palette-v3.json',raw=JSON.stringify(p);await writeFile(out,raw);await writeFile(D+'/bank31/role-palette.json',JSON.stringify(maps,null,2));console.log(out,createHash('sha256').update(raw).digest('hex'));

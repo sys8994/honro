@@ -1,0 +1,7 @@
+# Gameplay-resolution coastal bank, 2026-10-29
+The previous full-domain image spent too few pixels on gameplay (actor about10sourcepixels). It is retained only for distant opaque continuation, not accepted as playable art.
+Two native Inkscape 8-color source traces cover[-1200,3600] and[3600,8400], about42sourcepixels per92-world actor. Macro drift is corrected against route anchors while native intermediate outline is retained. Export-only vertical2px caps are excluded. Source-authored soil contours produce collision, RDP0.75world. Tiny interior closed contours below4sourcepx² removed; protected outer contour untouched.
+Three new wood visual pieces are independently generated from actual route skeleton then native8-color traced. Per-segment affine fitting keeps original physical wood routes. Contact top deviation is below0.8world. Protected landing dock, boat, roof andboarding geometry are untouched.
+Foreground reeds receive dark blue-teal scoped colors; play contact reeds remain lighter muted cool colors; interactive sign retains restrained contrast. Blade shapes/positions remain unchanged.
+Candidate60108035 is not release PASS: actual-runtime visual inspection and full new31 gameplay/boarding/camera contracts remain pending. Old stage31 receipts cannot certify new soil collision.
+Reproduction: bank31/play-skeletons.mjs, prepare-play.py, join-play.py, ../fit-play31.py, apply-play.mjs, ../prepare-wood.py, ../fit-wood.py, apply-wood-palette.mjs. See each image prompt and provenance.
