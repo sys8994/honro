@@ -64,7 +64,7 @@ for(const route of spec.routes.filter(r=>r.supports[0]==='shore'))for(const temp
   for(let frame=0;launched&&frame<720;frame++){const tx=transitionAim(spec.surfaces.find(f=>f.id===to),r.action,r.end.x);if(Math.abs(tx-u.x)>1)e.move(Math.sign(tx-u.x)*Math.min(1,Math.abs(tx-u.x)/(u.walkSpeed*C.STEP)),C.STEP);advance();if(frame>2&&e.grounded(u)&&(!['walk-off','walk'].includes(r.action)||e.contactSurface(u.x,u.y-.2,u.y+.2)?.t?.id!==`pilot${n}-${from}`))break;}
   const supportId=e.contactSurface(u.x,u.y-.2,u.y+.2)?.t?.id,passed=launched&&supportId===`pilot${n}-${to}`;steps.push({from,to,before,end:{x:u.x,y:u.y,hp:u.hp,moveLeft:u.moveLeft},support:supportId,passed});if(!passed)break;
  }
- const routeConnected=steps.length===route.supports.length-1&&steps.every(s=>s.passed);const objectiveApproach=n===31?null:routeConnected&&walkTo(spec.act4.exit.x);
+ const routeConnected=steps.length===route.supports.length-1&&steps.every(s=>s.passed);const objectiveApproach=n===31||!spec.act4?.exit?null:routeConnected&&walkTo(spec.act4.exit.x);
  continuous.push({routeId:route.id,objectiveApproach,cls:u.cls,start,end:{x:u.x,y:u.y,hp:u.hp},rounds:b.round,turnFinishes,jumps,drops,inputCountsNotYetEffectiveClassification:true,trajectory,groundedBounds:trajectory.filter(p=>p.grounded).reduce((a,p)=>({left:Math.min(a.left,p.x),right:Math.max(a.right,p.x),top:Math.min(a.top,p.y),bottom:Math.max(a.bottom,p.y)}),{left:start.x,right:start.x,top:start.y,bottom:start.y}),steps,passed:steps.length===route.supports.length-1&&steps.every(s=>s.passed)&&objectiveApproach!==false});
  console.log('CONTINUOUS '+JSON.stringify({...continuous.at(-1),trajectory:undefined}));
 }

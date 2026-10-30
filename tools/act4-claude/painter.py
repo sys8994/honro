@@ -291,9 +291,14 @@ class Painter:
             self.surface_band(s)
 
     # ------------------------------------------------------------ timber
+    stone_posts = False
+
     def post(self, x, y_top, y_bot, w=22, footing=True):
-        self.add('STRUCT', poly_d([(x - w / 2, y_top), (x + w / 2, y_top), (x + w / 2, y_bot), (x - w / 2, y_bot)]), WOOD_DARK)
-        self.add('STRUCT', poly_d([(x + w / 2 - 7, y_top), (x + w / 2, y_top), (x + w / 2, y_bot), (x + w / 2 - 7, y_bot)]), WOOD)
+        dark, lit = (ROCK_MID, ROCK_MIDL) if self.stone_posts else (WOOD_DARK, WOOD)
+        if self.stone_posts:
+            w = 48
+        self.add('STRUCT', poly_d([(x - w / 2, y_top), (x + w / 2, y_top), (x + w / 2, y_bot), (x - w / 2, y_bot)]), dark)
+        self.add('STRUCT', poly_d([(x + w / 2 - 9, y_top), (x + w / 2, y_top), (x + w / 2, y_bot), (x + w / 2 - 9, y_bot)]), lit)
         if footing:
             self.add('STRUCT', poly_d([(x - 30, y_bot + 6), (x - 22, y_bot - 12), (x + 6, y_bot - 18), (x + 28, y_bot - 8), (x + 32, y_bot + 6)]), STONE)
 
@@ -364,7 +369,9 @@ class Painter:
     def paint_decks(self):
         for d in self.decks.values():
             self.module(d['id'])
+            self.stone_posts = d['kind'] == 'stone'
             self.support_deck(d)
+            self.stone_posts = False
             top, t = d['top'], 26
             if d['kind'] == 'rope':
                 x = top[0][0]
@@ -380,6 +387,16 @@ class Painter:
                 self.add('SURFACE', poly_d(pts + [(x, y + 5) for x, y in reversed(pts)]), ROPE)
                 for x, y in pts[2:-2:3]:
                     self.add('SURFACE', poly_d([(x - 1.5, y), (x + 1.5, y), (x + 1.5, interp(top, x)), (x - 1.5, interp(top, x))]), ROPE)
+                continue
+            if d['kind'] == 'stone':  # broken retaining-wall top: dressed blocks
+                t = 60
+                self.add('SURFACE', poly_d(list(top) + [(x, y + t) for x, y in reversed(top)]), ROCK_MIDL)
+                self.add('SURFACE', poly_d(list(top) + [(x, y + 8) for x, y in reversed(top)]), ROCK_LIGHT)
+                x = top[0][0] + 90
+                while x < top[-1][0] - 40:
+                    y = interp(top, x)
+                    self.add('SURFACE', poly_d([(x - 2, y + 8), (x + 2, y + 8), (x + 2, y + t), (x - 2, y + t)]), ROCK_DARK)
+                    x += 110 + (int(x) * 31 % 30)
                 continue
             face = list(top) + [(x, y + t) for x, y in reversed(top)]
             self.add('SURFACE', poly_d(face), WOOD)
@@ -531,3 +548,44 @@ class Painter:
         prev.write_text('<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="%d" height="%d" viewBox="%d %d %d %d"><rect x="%d" y="%d" width="%d" height="%d" fill="#3d4f78"/>%s%s</svg>' % (self.W + 1600, self.H - ym + 600, xm, ym, self.W + 1600, self.H - ym + 600, xm, ym, self.W + 1600, self.H - ym + 600, far, layers))
         verts = sum(len(s['walk']) + len(s['lower']) for s in self.solids.values()) + sum(len(d['top']) * 2 for d in self.decks.values()) + 4 * len(self.covers)
         print(json.dumps({'stage': self.n, 'modules': len(manifest), 'paths': total, 'colliderVertices': verts}))
+
+
+# ---------------------------------------------------------------- canonical helpers
+TERRAIN_ART = re.compile(r'silhouette|domain|underpaint|native|s3[0-9]-floor|coherent|authored|contact|body|rear-continuous|exact-ground|play-left|play-right|wood-route|bank32|far-le')
+
+ORIGIN_COMMIT = '56f58bca'   # pre-redesign source (handoff branch head)
+_ORIGIN = None
+
+def canonical(n):
+    """Original Act4 stage n before this redesign (git source, not the
+    working world that already holds redesigned stages)."""
+    global _ORIGIN
+    if _ORIGIN is None:
+        import subprocess
+        cache = ROOT / '_local/reports/act4-claude/origin-world.json'
+        if not cache.exists():
+            show = lambda path: subprocess.run(['git', 'show', '%s:%s' % (ORIGIN_COMMIT, path)], cwd=ROOT, capture_output=True, check=True).stdout
+            m = json.loads(show('shared/data/act4/world.parts/manifest.json'))
+            cache.parent.mkdir(parents=True, exist_ok=True)
+            cache.write_bytes(b''.join(show('shared/data/act4/world.parts/' + q['file']) for q in m['parts']))
+        _ORIGIN = json.loads(cache.read_text())
+    world = _ORIGIN
+    return next(s for s in world['stages'] if s['metadata']['stageId'] == n)
+
+def canonical_top(n, tid=None, x0=0, x1=None):
+    """Exact upper boundary of the main canonical ground polygon (elements,
+    doors, boats and residents stand on these points)."""
+    s = canonical(n)
+    t = next(t for t in s['terrains'] if (tid and t['id'] == tid) or (not tid and t['id'].endswith('-land')))
+    x1 = s['width'] if x1 is None else x1
+    best = {}
+    for q in t['points']:
+        if x0 <= q['x'] <= x1:
+            k = round(q['x'], 1)
+            if k not in best or q['y'] < best[k]:
+                best[k] = q['y']
+    pts = sorted(best.items())
+    return rdp([(x, round(y, 2)) for x, y in pts], 0.75)
+
+def keep_elements(n):
+    return sorted({e['assetId'] for e in canonical(n)['elements'] if not TERRAIN_ART.search(e['assetId'])})

@@ -1,0 +1,106 @@
+[
+ {
+  "name": "body-west-terrace",
+  "layer": "BODY",
+  "module": "west-terrace",
+  "bounds": [
+   626,
+   1699,
+   1174,
+   1954
+  ],
+  "paths": 7,
+  "terrain": "pilot36-west-terrace"
+ },
+ {
+  "name": "body-east-ridge",
+  "layer": "BODY",
+  "module": "east-ridge",
+  "bounds": [
+   6306,
+   1678,
+   6914,
+   1904
+  ],
+  "paths": 7,
+  "terrain": "pilot36-east-ridge"
+ },
+ {
+  "name": "body-shore",
+  "layer": "BODY",
+  "module": "shore",
+  "bounds": [
+   -1604,
+   1762,
+   8804,
+   3104
+  ],
+  "paths": 6,
+  "terrain": "pilot36-shore"
+ },
+ {
+  "name": "body-wall-1",
+  "layer": "BODY",
+  "module": "wall-1",
+  "bounds": [
+   1992,
+   1911,
+   2148,
+   1995
+  ],
+  "paths": 2,
+  "terrain": "pilot36-wall-1"
+ },
+ {
+  "name": "body-wall-2",
+  "layer": "BODY",
+  "module": "wall-2",
+  "bounds": [
+   4092,
+   1962,
+   4248,
+   2046
+  ],
+  "paths": 2,
+  "terrain": "pilot36-wall-2"
+ },
+ {
+  "name": "rear-x2",
+  "layer": "REAR",
+  "module": "x2",
+  "bounds": [
+   142,
+   1364,
+   432,
+   1794
+  ],
+  "paths": 3,
+  "terrain": null
+ },
+ {
+  "name": "rear-x8",
+  "layer": "REAR",
+  "module": "x8",
+  "bounds": [
+   5442,
+   1502,
+   5732,
+   1932
+  ],
+  "paths": 3,
+  "terrain": null
+ },
+ {
+  "name": "rear-x9",
+  "layer": "REAR",
+  "module": "x9",
+  "bounds": [
+   6496,
+   1481,
+   6744,
+   1695
+  ],
+  "paths": 3,
+  "terrain": null
+ }
+]

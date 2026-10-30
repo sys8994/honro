@@ -1,0 +1,171 @@
+[
+ {
+  "name": "struct-x3",
+  "layer": "STRUCT",
+  "module": "x3",
+  "bounds": [
+   1196,
+   1870,
+   1534,
+   2039
+  ],
+  "paths": 3,
+  "terrain": null
+ },
+ {
+  "name": "struct-x4",
+  "layer": "STRUCT",
+  "module": "x4",
+  "bounds": [
+   1492,
+   1782,
+   2579,
+   2020
+  ],
+  "paths": 3,
+  "terrain": null
+ },
+ {
+  "name": "struct-x5",
+  "layer": "STRUCT",
+  "module": "x5",
+  "bounds": [
+   2536,
+   1980,
+   2606,
+   2012
+  ],
+  "paths": 3,
+  "terrain": null
+ },
+ {
+  "name": "struct-x6",
+  "layer": "STRUCT",
+  "module": "x6",
+  "bounds": [
+   3556,
+   1862,
+   3886,
+   2023
+  ],
+  "paths": 3,
+  "terrain": null
+ },
+ {
+  "name": "body-exit-bluff",
+  "layer": "BODY",
+  "module": "exit-bluff",
+  "bounds": [
+   6246,
+   1697,
+   6602,
+   1994
+  ],
+  "paths": 7,
+  "terrain": "pilot32-exit-bluff"
+ },
+ {
+  "name": "body-shore",
+  "layer": "BODY",
+  "module": "shore",
+  "bounds": [
+   -1604,
+   1876,
+   8204,
+   3204
+  ],
+  "paths": 6,
+  "terrain": "pilot32-shore"
+ },
+ {
+  "name": "body-yard-wall",
+  "layer": "BODY",
+  "module": "yard-wall",
+  "bounds": [
+   4292,
+   1936,
+   4428,
+   2020
+  ],
+  "paths": 2,
+  "terrain": "pilot32-yard-wall"
+ },
+ {
+  "name": "surface-back-alley",
+  "layer": "SURFACE",
+  "module": "back-alley",
+  "bounds": [
+   1196,
+   1756,
+   2604,
+   2040
+  ],
+  "paths": 4,
+  "terrain": "pilot32-back-alley"
+ },
+ {
+  "name": "surface-net-loft",
+  "layer": "SURFACE",
+  "module": "net-loft",
+  "bounds": [
+   3556,
+   1836,
+   3884,
+   1870
+  ],
+  "paths": 4,
+  "terrain": "pilot32-net-loft"
+ },
+ {
+  "name": "rear-x9",
+  "layer": "REAR",
+  "module": "x9",
+  "bounds": [
+   6356,
+   1507,
+   6604,
+   1711
+  ],
+  "paths": 3,
+  "terrain": null
+ },
+ {
+  "name": "fore-x2",
+  "layer": "FORE",
+  "module": "x2",
+  "bounds": [
+   122,
+   1828,
+   172,
+   1917
+  ],
+  "paths": 2,
+  "terrain": null
+ },
+ {
+  "name": "fore-x5",
+  "layer": "FORE",
+  "module": "x5",
+  "bounds": [
+   2672,
+   1922,
+   2722,
+   2011
+  ],
+  "paths": 2,
+  "terrain": null
+ },
+ {
+  "name": "fore-x8",
+  "layer": "FORE",
+  "module": "x8",
+  "bounds": [
+   5472,
+   1956,
+   5522,
+   2044
+  ],
+  "paths": 2,
+  "terrain": null
+ }
+]
