@@ -33,7 +33,7 @@ function objectiveState(b){
  const row={id:'act4-'+n,text,done:complete,current:!complete&&!failed};
  return{complete,objectiveReady:complete,minimumRound:1,settleRounds:0,summary:text,currentInstruction:text,currentObjectiveId:row.id,targets:[],allTargets:[],checklist:[row],visibleChecklist:[row],failureText:failed?text:'',completionText:complete?text:''};
 }
-G.HonroAct4Content={enabled,active,state,prepare,objectiveState,revision:3};if(!enabled)return;
+G.HonroAct4Content={enabled,active,state,prepare,objectiveState,revision:4};if(!enabled)return;
 for(const st of G.HONRO_ACT4_CONTENT)if(!G.HONRO_CONTENT.stages.some(s=>s.id===st.id))G.HONRO_CONTENT.stages.push(copy(st));
 G.HONRO_CONTENT.acts.push({id:4,name:'끊긴 옛길',first:31,last:40});G.HONRO_CONTENT.nextAct={id:5,available:false,requires:[40]};
 // Use the existing future Act4 level plan; its terminal plateau is unchanged.

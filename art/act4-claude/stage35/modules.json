@@ -1,0 +1,184 @@
+[
+ {
+  "name": "struct-x4",
+  "layer": "STRUCT",
+  "module": "x4",
+  "bounds": [
+   2111,
+   1895,
+   2579,
+   2070
+  ],
+  "paths": 3,
+  "terrain": null
+ },
+ {
+  "name": "struct-x5",
+  "layer": "STRUCT",
+  "module": "x5",
+  "bounds": [
+   2541,
+   1908,
+   2826,
+   2069
+  ],
+  "paths": 3,
+  "terrain": null
+ },
+ {
+  "name": "body-west-rise",
+  "layer": "BODY",
+  "module": "west-rise",
+  "bounds": [
+   546,
+   1648,
+   1114,
+   1964
+  ],
+  "paths": 7,
+  "terrain": "pilot35-west-rise"
+ },
+ {
+  "name": "body-east-shelf",
+  "layer": "BODY",
+  "module": "east-shelf",
+  "bounds": [
+   4166,
+   1731,
+   4814,
+   1984
+  ],
+  "paths": 6,
+  "terrain": "pilot35-east-shelf"
+ },
+ {
+  "name": "body-shore",
+  "layer": "BODY",
+  "module": "shore",
+  "bounds": [
+   -1604,
+   1776,
+   8804,
+   3104
+  ],
+  "paths": 6,
+  "terrain": "pilot35-shore"
+ },
+ {
+  "name": "surface-ditch-bridge",
+  "layer": "SURFACE",
+  "module": "ditch-bridge",
+  "bounds": [
+   1896,
+   1866,
+   2824,
+   1930
+  ],
+  "paths": 5,
+  "terrain": "pilot35-ditch-bridge"
+ },
+ {
+  "name": "rear-x2",
+  "layer": "REAR",
+  "module": "x2",
+  "bounds": [
+   -21,
+   1365,
+   300,
+   1891
+  ],
+  "paths": 3,
+  "terrain": null
+ },
+ {
+  "name": "rear-x3",
+  "layer": "REAR",
+  "module": "x3",
+  "bounds": [
+   1129,
+   1266,
+   1450,
+   1792
+  ],
+  "paths": 3,
+  "terrain": null
+ },
+ {
+  "name": "rear-x4",
+  "layer": "REAR",
+  "module": "x4",
+  "bounds": [
+   2329,
+   1567,
+   2557,
+   2065
+  ],
+  "paths": 3,
+  "terrain": null
+ },
+ {
+  "name": "rear-x5",
+  "layer": "REAR",
+  "module": "x5",
+  "bounds": [
+   2462,
+   1413,
+   3427,
+   2065
+  ],
+  "paths": 3,
+  "terrain": null
+ },
+ {
+  "name": "rear-x6",
+  "layer": "REAR",
+  "module": "x6",
+  "bounds": [
+   3369,
+   1301,
+   3650,
+   1827
+  ],
+  "paths": 3,
+  "terrain": null
+ },
+ {
+  "name": "rear-x7",
+  "layer": "REAR",
+  "module": "x7",
+  "bounds": [
+   4829,
+   1373,
+   5150,
+   1899
+  ],
+  "paths": 3,
+  "terrain": null
+ },
+ {
+  "name": "rear-x8",
+  "layer": "REAR",
+  "module": "x8",
+  "bounds": [
+   5829,
+   1302,
+   6150,
+   1828
+  ],
+  "paths": 3,
+  "terrain": null
+ },
+ {
+  "name": "rear-x9",
+  "layer": "REAR",
+  "module": "x9",
+  "bounds": [
+   6729,
+   1330,
+   7050,
+   1856
+  ],
+  "paths": 3,
+  "terrain": null
+ }
+]

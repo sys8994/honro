@@ -29,9 +29,9 @@ assert(scene._worldCacheKey(b).startsWith('existing:native-art-1:'));
 const key=scene._worldCacheKey(b);b.honroMap.nativeArt.coveredTerrainIds=[];assert.notEqual(scene._worldCacheKey(b),key);assert(!A.covered(b.terrain[0],b));b.honroMap.nativeArt.coveredTerrainIds=['solid'];
 const body=marks.find(l=>l.nativeArtLayer==='body');for(const mutation of [{asset:null},{opacity:.5},{layer:'back'},{collisionIds:['bad']},{nativeTerrainId:'missing'}]){const copy={...b,honroLandmarks:marks.map(l=>l===body?{...l,...mutation}:l)};assert(!A.covered(b.terrain[0],copy));}
 assert(!A.covered({id:'missing'},b));assert(!A.covered(b.terrain[0],{...b,terrain:[]}));
-for(const stage of [1,30,32,40])assert(!A.config({...b,honroStage:stage}));
+for(const stage of [1,30,41])assert(!A.config({...b,honroStage:stage}));for(const stage of [32,40])assert(A.config({...b,honroStage:stage}),"Act4 31-40 native art opt-in");
 assert(!A.config({...b,honroMap:{}}));
-calls.length=0;scene.environmentTone(styled,1,1,b);assert.equal(calls.length,0);scene.environmentTone(styled,1,1,{...b,honroStage:32});assert.deepEqual(calls,[['tone']]);
+calls.length=0;scene.environmentTone(styled,1,1,b);assert.equal(calls.length,0);scene.environmentTone(styled,1,1,{...b,honroStage:30});assert.deepEqual(calls,[['tone']]);
 const boat={id:'a4-31-boat-10',asset:{id:'a4:boat'},x:6470,y:3950};g.HONRO_PROJECT={library:[asset('s31v:arrival-ferry')]};b.honroMap.vectorArrivalBoatAssetId='s31v:arrival-ferry';calls.length=0;scene.landmark(styled,boat);assert.deepEqual(calls,[['vector',boat.id,'s31v:arrival-ferry',true]]);assert.equal(boat.asset.id,'a4:boat');
 b.honroAct4PreviewDynamic=[boat];calls.length=0;scene.background(styled,1,1,b);assert.deepEqual(calls,[],'opaque native background cannot bury event boat');scene.liveWater(styled,b);assert.deepEqual(calls,[['water'],['vector',boat.id,'s31v:arrival-ferry',true]],'same live pose painted once after native world');
 calls.length=0;scene.liveWater(styled,b);assert.deepEqual(calls,[['water']],'deferred boat consumed only once');
@@ -49,7 +49,7 @@ assert.throws(()=>A.validateStage({...cs,elements:[{...cs.elements[0],nativeTerr
 const broken={...cb,terrain:cb.terrain.map(t=>t.id==='solid'?{...t,broken:true}:t)};
 assert(!A.covered(broken.terrain[1],broken),'partial loss restores all continuous-body fallback');
 scene.battle=broken;calls.length=0;scene.landmark(styled,continuous);assert.equal(calls.length,0,'continuous native paint cannot conceal broken terrain');
-scene.battle={...b,honroStage:32};calls.length=0;scene.terrain(styled,b.terrain[0]);scene.landmark(styled,body);assert.deepEqual(calls,[['terrain','solid'],['fallback','body']]);
+scene.battle={...b,honroStage:30};calls.length=0;scene.terrain(styled,b.terrain[0]);scene.landmark(styled,body);assert.deepEqual(calls,[['terrain','solid'],['fallback','body']]);
 const renderer=await read('shared/runtime/renderer.js');
 const actorsAt=renderer.indexOf('else this.unit(c, v,'),foregroundAt=renderer.indexOf('this._drawForeground(c,b,w,h,foreground)');
 assert(actorsAt>0&&foregroundAt>actorsAt,'existing foreground compositing stays after actors');

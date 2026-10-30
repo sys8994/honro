@@ -1,0 +1,171 @@
+[
+ {
+  "name": "struct-x4",
+  "layer": "STRUCT",
+  "module": "x4",
+  "bounds": [
+   2053,
+   2642,
+   2604,
+   2883
+  ],
+  "paths": 3,
+  "terrain": null
+ },
+ {
+  "name": "struct-x5",
+  "layer": "STRUCT",
+  "module": "x5",
+  "bounds": [
+   2566,
+   2608,
+   3149,
+   2818
+  ],
+  "paths": 3,
+  "terrain": null
+ },
+ {
+  "name": "struct-x8",
+  "layer": "STRUCT",
+  "module": "x8",
+  "bounds": [
+   5376,
+   2142,
+   6006,
+   2436
+  ],
+  "paths": 4,
+  "terrain": null
+ },
+ {
+  "name": "body-west-crag",
+  "layer": "BODY",
+  "module": "west-crag",
+  "bounds": [
+   1136,
+   2762,
+   1754,
+   3084
+  ],
+  "paths": 6,
+  "terrain": "pilot37-west-crag"
+ },
+ {
+  "name": "body-upper-cape",
+  "layer": "BODY",
+  "module": "upper-cape",
+  "bounds": [
+   6406,
+   2018,
+   7064,
+   2394
+  ],
+  "paths": 7,
+  "terrain": "pilot37-upper-cape"
+ },
+ {
+  "name": "body-shore",
+  "layer": "BODY",
+  "module": "shore",
+  "bounds": [
+   -1604,
+   2176,
+   9404,
+   4304
+  ],
+  "paths": 6,
+  "terrain": "pilot37-shore"
+ },
+ {
+  "name": "surface-haul-ramp",
+  "layer": "SURFACE",
+  "module": "haul-ramp",
+  "bounds": [
+   1796,
+   2495,
+   3404,
+   3030
+  ],
+  "paths": 5,
+  "terrain": "pilot37-haul-ramp"
+ },
+ {
+  "name": "surface-broken-wall",
+  "layer": "SURFACE",
+  "module": "broken-wall",
+  "bounds": [
+   5096,
+   2116,
+   6004,
+   2284
+  ],
+  "paths": 3,
+  "terrain": "pilot37-broken-wall"
+ },
+ {
+  "name": "rear-x9",
+  "layer": "REAR",
+  "module": "x9",
+  "bounds": [
+   6596,
+   1799,
+   6844,
+   2032
+  ],
+  "paths": 3,
+  "terrain": null
+ },
+ {
+  "name": "fore-x2",
+  "layer": "FORE",
+  "module": "x2",
+  "bounds": [
+   272,
+   3114,
+   322,
+   3203
+  ],
+  "paths": 2,
+  "terrain": null
+ },
+ {
+  "name": "fore-x6",
+  "layer": "FORE",
+  "module": "x6",
+  "bounds": [
+   4272,
+   2299,
+   4302,
+   2385
+  ],
+  "paths": 2,
+  "terrain": null
+ },
+ {
+  "name": "fore-x7",
+  "layer": "FORE",
+  "module": "x7",
+  "bounds": [
+   4293,
+   2296,
+   4322,
+   2385
+  ],
+  "paths": 2,
+  "terrain": null
+ },
+ {
+  "name": "fore-x10",
+  "layer": "FORE",
+  "module": "x10",
+  "bounds": [
+   7572,
+   2129,
+   7622,
+   2218
+  ],
+  "paths": 2,
+  "terrain": null
+ }
+]

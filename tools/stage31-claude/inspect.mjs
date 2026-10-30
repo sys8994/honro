@@ -36,7 +36,7 @@ await writeFile(`${out}/stage${N}-composed.json`,JSON.stringify(stage));
 
 // ---- render views on the production Scene
 const profile=g.HONRO_CORE.defaults();profile.recruited=['archer','mage','knight','occultist'];g.HonroEquipment.fresh(profile);
-const b=g.HonroMaps.createBattle(stage,P,profile),e=new g.HONRO_CORE.Engine(b,()=>{},true);g.HonroApp={engine:e,profile};
+const b=g.HonroMaps.createBattle(stage,P,profile),e=new g.HONRO_CORE.Engine(b,()=>{},true);g.HonroApp={engine:e,profile,modal:{classList:{contains:()=>true}}};
 const views=JSON.parse(arg('views')||'null')||[
  {name:'whole',x:3500,y:3000,scale:1600/7400,w:1600,h:900},
  {name:'west-play',x:1500,y:3600,scale:.6,w:1440,h:900},
@@ -54,7 +54,7 @@ if(process.argv.includes('--perf')){
   __dump();const t0=performance.now();for(let i=0;i<20;i++){s.x+=(process.argv.includes("--static")?0:3);s.render(e,0,'',.6,false,0);}__dump();console.log('minus',strip,'ms/frame',((performance.now()-t0)/20).toFixed(1),JSON.stringify(s._cacheStats));
  }process.exit(0);}
 const records=[];
-for(const v of views){const cv=canvas(v.w,v.h),s=new g.HonroScene(cv);Object.assign(s,{x:v.x,y:v.y,scale:v.scale,manual:true,time:2,editorView:false});
+for(const v of views){const cv=canvas(v.w,v.h),s=new g.HonroScene(cv);Object.assign(s,{x:v.x,y:v.y,scale:v.scale,manual:true,time:2,editorView:false});g.HonroApp.scene=s;
  for(let i=0;i<3;i++){s.render(e,0,'',.6,false,0);await new Promise(r=>setTimeout(r,120));}
  await writeFile(`${out}/${v.name}.png`,cv.toBuffer('image/png'));
  const c=cv.getContext('2d');c.save();c.translate(v.w/2-v.x*v.scale,v.h/2-v.y*v.scale);c.scale(v.scale,v.scale);c.lineWidth=2/v.scale;
