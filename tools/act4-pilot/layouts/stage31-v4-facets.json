@@ -2,7 +2,7 @@
   "version": 4,
   "baseline": "tools/act4-pilot/layouts/stage31-v3.json",
   "status": "Role-specific asymmetric facets candidate, visual/whole-stage physics pending",
-  "notes": "Each contour is authored separately. The inherited approved west ledge alone is copied exactly. Entry and boat bank are deliberately broad; no natural-flat exclusion. No profile is repeated across supports. Return ramp remains a steep continuous flank because physical rise consumes available run.",
+  "notes": "Each contour is authored separately. The inherited approved west ledge alone is copied exactly. Entry and boat bank are deliberately broad; no natural-flat exclusion. No profile is repeated across supports. Return ramp remains a steep continuous flank because physical rise consumes available run. R1 west-step departure: move the steep climb before the final35px launch margin; original endpoint unchanged, launch rise reduced from217.5 to195world.",
   "profiles": {
     "shore": [
       [
@@ -304,8 +304,12 @@
         3580
       ],
       [
+        1320,
+        3550
+      ],
+      [
         1350,
-        3560
+        3515
       ],
       [
         1400,
