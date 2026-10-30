@@ -13,6 +13,7 @@ import {EnemyActivity,acceptedDrop,hitObservation} from './activity.mjs';
 import {adapter} from './adapter.mjs';
 import {RouteFollower} from './navigation.mjs';
 import {PublicExplorer,publicObjective} from './exploration.mjs';
+import {movementAudit,auditFrame,closeEpisode,walkOffStart} from './movement-audit.mjs';
 import {rng,summarize} from './stats.mjs';
 const [stageText='31',policy='advance',seedText='1',out='_local/reports/quantitative-playtest',frameText='600',wallText='60']=process.argv.slice(2);
 const stage=Number(stageText),seed=Number(seedText),maxFrames=Number(frameText),maxWallSeconds=Number(wallText);
@@ -24,22 +25,37 @@ const hash=createHash('sha256'),files=execFileSync('git',['ls-files','shared','g
 for(const file of new Set([...files,...CONTROLLER_FILES,'tools/quantitative-playtest/run.mjs','tools/quantitative-playtest/adapter.mjs','tools/quantitative-playtest/stats.mjs','tools/quantitative-playtest/policy.mjs','tools/quantitative-playtest/act4-adapter.mjs']))hash.update(file+'\0').update(await readFile(file));
 const sourceHash=hash.digest('hex'),random=rng(seed),started=performance.now();let cancelled=false;process.on('SIGTERM',()=>{cancelled=true;});process.on('SIGINT',()=>{cancelled=true;});let frame=0,simSeconds=0,outcome='timeout',reason='frame budget',a,b,e,g,navigator,explorer,publicState=null,lastNavigation=null,charge=null,decision=null;
 await writeFile(`${out}/${runId}.attempt.json`,JSON.stringify({runId,stage,policy,seed,sourceHash,maxFrames,maxWallSeconds,status:'started-not-finalized',note:'If no summary exists, process termination is an error/incomplete attempt, never a completed gameplay run.'},null,2));
-const metrics={dropAttempts:0,dropAccepted:0,effectiveDrops:0,byHero:{},jumpAttempts:0,jumpAccepted:0,landings:0,elevatedSupportLandings:0,horizontalDistance:0,ascent:0,descent:0,totalUniqueEnemies:0,maxLivingEnemies:0,maxAwakeEnemies:0,maxActingEnemiesPerRound:0,engagedEnemyIds:[],enemyFirstDamageRound:{},enemyDeathRound:{},observedNetHeroHpLoss:0,observedNetHeroShieldLoss:0,focusSpent:0,focusRecovered:0,visitedSupports:[],altitudeMin:null,altitudeMax:null};
-const engagedEnemies=new Set(),seenTransitions=new Set(),seenEnemies=new Set(),supports=new Set(),previous=new Map(),jumps=new Map(),enemyPositions=new Map(),activity=new EnemyActivity();
+const metrics={movementAudit:movementAudit(),effectiveJumps:0,intentionalWalkOffs:0,dropAttempts:0,dropAccepted:0,effectiveDrops:0,byHero:{},jumpAttempts:0,jumpAccepted:0,landings:0,elevatedSupportLandings:0,horizontalDistance:0,ascent:0,descent:0,totalUniqueEnemies:0,maxLivingEnemies:0,maxAwakeEnemies:0,maxActingEnemiesPerRound:0,engagedEnemyIds:[],enemyFirstDamageRound:{},enemyDeathRound:{},observedNetHeroHpLoss:0,observedNetHeroShieldLoss:0,focusSpent:0,focusRecovered:0,visitedSupports:[],altitudeMin:null,altitudeMax:null};
+const engagedEnemies=new Set(),seenTransitions=new Set(),seenEffectiveTransitions=new Set(),seenEnemies=new Set(),supports=new Set(),previous=new Map(),jumps=new Map(),enemyPositions=new Map(),activity=new EnemyActivity();
 const emit=async(type,data={})=>{if(!raw.write(JSON.stringify({runId,frame,round:b?.round??null,type,...data})+'\n'))await once(raw,'drain');};
 const flush=()=>new Promise((resolve,reject)=>raw.flush(zlibConstants.Z_SYNC_FLUSH,e=>e?reject(e):resolve()));
 let lastInput=null;
 async function recordInput(){const value=JSON.stringify({keys:[...a.app.keys],stick:{...a.app.stick},charging:a.app.charging,selected:a.app.selected,actor:e.active?.id});if(value!==lastInput){await emit('input-state',JSON.parse(value));lastInput=value;}}
 const alive=u=>!u.dead&&u.hp>0;
+function supportFace(u){const t=e.surface(u.x,u.y-3,u.y+3)?.t;if(!t)return null;const f=g.HONRO_CORE.terrainSurfaces(t,u.x).find(f=>Math.abs(f.y-u.y)<3);return f?t.id+':edge:'+f.edge:null;}
 function support(u){if(!e.grounded(u))return null;return e.surface(u.x,u.y-3,u.y+3)?.t?.id??null;}
 async function observe(){
  const enemies=b.units.filter(u=>u.side===1&&!u.honroObjectiveTarget);for(const u of enemies)seenEnemies.add(u.id);
  for(const u of enemies){const p=enemyPositions.get(u.id),moving=!!(u.aiMove||u.moveTarget!==undefined);if(p&&alive(u)&&(moving||p.moving)&&Math.hypot(u.x-p.x,u.y-p.y)>.01&&activity.executed(u,b.round,'movement'))await emit('enemy-activity',{actor:u.id,kind:'movement'});enemyPositions.set(u.id,{x:u.x,y:u.y,moving});}
  metrics.totalUniqueEnemies=seenEnemies.size;metrics.maxLivingEnemies=Math.max(metrics.maxLivingEnemies,enemies.filter(alive).length);metrics.maxAwakeEnemies=Math.max(metrics.maxAwakeEnemies,enemies.filter(u=>alive(u)&&u.awake).length);
  for(const u of b.units.filter(u=>u.side===0&&!u.summoned&&u.id===u.cls&&['archer','mage','knight','occultist'].includes(u.cls))){
-  const s=support(u),p=previous.get(u.id),v={id:u.id,x:u.x,y:u.y,hp:u.hp,shield:u.shield||0,focus:u.focus,moveLeft:u.moveLeft,support:s,grounded:e.grounded(u)};
+  const s=support(u),p=previous.get(u.id),v={id:u.id,x:u.x,y:u.y,hp:u.hp,shield:u.shield||0,focus:u.focus,moveLeft:u.moveLeft,support:s,supportFace:supportFace(u),grounded:e.grounded(u),airborne:!!u.airborne,specialMotion:!!u.equipmentState?.motion,gateTurn:u.gateTurn??null,recovering:!!(u.honroAct4Recovering||u.honroAct4RecoverPending),recoveries:b.honroAct4PreviewState?.water?.recoveries?.filter(r=>r.unit===u.id).length??0};
   if(p){metrics.horizontalDistance+=Math.abs(u.x-p.x);metrics.ascent+=Math.max(0,p.y-u.y);metrics.descent+=Math.max(0,u.y-p.y);metrics.observedNetHeroHpLoss+=Math.max(0,p.hp-u.hp);metrics.observedNetHeroShieldLoss+=Math.max(0,p.shield-v.shield);metrics.focusSpent+=Math.max(0,p.focus-u.focus);metrics.focusRecovered+=Math.max(0,u.focus-p.focus);
-   if(!p.grounded&&v.grounded){metrics.landings++;const j=jumps.get(u.id);if(j&&s&&j.support&&s!==j.support&&Math.abs(u.y-j.y)>=u.h&&Math.hypot(j.x-j.goal.x,j.y-j.goal.y)-Math.hypot(u.x-j.goal.x,u.y-j.goal.y)>u.r&&!seenTransitions.has(u.id+':'+j.support+':'+s)){seenTransitions.add(u.id+':'+j.support+':'+s);const h=metrics.byHero[u.id]??={jump:0,drop:0};if(j.kind==='drop'){metrics.effectiveDrops++;h.drop++;}else{metrics.elevatedSupportLandings++;h.jump++;}}await emit('landing',{actor:u.id,fromJump:j??null,to:v,layerId:null});jumps.delete(u.id);}
+   const fall=walkOffStart(p,v,lastNavigation,u.id,jumps.has(u.id));if(fall){jumps.set(u.id,fall);metrics.intentionalWalkOffs++;await emit('intentional-walk-off',{actor:u.id,from:fall});}
+   const episode=jumps.get(u.id),leg=lastNavigation?.actor===u.id?lastNavigation.step:null,commanded=!!(e.active?.id===u.id&&(a.app.stick.x||a.app.keys.has('ArrowLeft')||a.app.keys.has('ArrowRight'))&&leg&&Math.hypot(p.x-leg.to.x,p.y-leg.to.y)>Math.hypot(v.x-leg.to.x,v.y-leg.to.y));
+   auditFrame(metrics.movementAudit,p,v,{episode,commandedProgress:commanded});
+   if(!p.grounded&&v.grounded){
+    metrics.landings++;const j=jumps.get(u.id);let qualified=null;
+    const progress=j&&Math.hypot(j.x-j.goal.x,j.y-j.goal.y)-Math.hypot(u.x-j.goal.x,u.y-j.goal.y)>u.r,key=j&&u.id+':'+(j.supportFace||j.support)+':'+v.supportFace;
+    if(j&&v.supportFace&&(j.supportFace||j.support)!==v.supportFace&&progress&&!j.invalidMovement&&!seenEffectiveTransitions.has(key)){
+     if((j.kind==='drop'||j.kind==='walk-off')&&u.y-j.y>=u.h)qualified='drop';
+     else if(j.kind==='jump'&&j.routeLeg?.kind==='jump')qualified='jump';
+     if(qualified){seenEffectiveTransitions.add(key);const h=metrics.byHero[u.id]??={jump:0,drop:0};if(qualified==='drop'){metrics.effectiveDrops++;h.drop++;}else{metrics.effectiveJumps++;h.effectiveJump=(h.effectiveJump||0)+1;}}
+    }
+    if(j&&j.kind==='jump'&&s&&j.support&&s!==j.support&&Math.abs(u.y-j.y)>=u.h&&progress&&!seenTransitions.has(u.id+':'+j.support+':'+s)&&!j.invalidMovement){seenTransitions.add(u.id+':'+j.support+':'+s);metrics.elevatedSupportLandings++;const h=metrics.byHero[u.id]??={jump:0,drop:0};h.jump++;}
+    closeEpisode(metrics.movementAudit,j,qualified);await emit('landing',{actor:u.id,fromJump:j??null,to:v,effectiveKind:qualified,layerId:null});jumps.delete(u.id);
+   }
+
   }
   if(s)supports.add(s);metrics.altitudeMin=metrics.altitudeMin===null?u.y:Math.min(metrics.altitudeMin,u.y);metrics.altitudeMax=metrics.altitudeMax===null?u.y:Math.max(metrics.altitudeMax,u.y);previous.set(u.id,v);
  }
@@ -55,7 +71,7 @@ try{
  const tick=e.tick.bind(e);e.tick=(dt,...rest)=>{const result=tick(dt,...rest);simSeconds+=dt;return result;};
  const pending=[];
  const originalEmit=e.emit.bind(e);e.emit=(type,value,...rest)=>{if(type==='fx'&&Number.isFinite(value?.damage)&&value.targetId)pending.push({method:'damage-feedback',round:b.round,targetId:value.targetId,attackId:value.attackId,damage:value.damage,critical:value.critical});return originalEmit(type,value,...rest);};
- for(const method of ['drop','hurt','fire','enemyAction','finishAction','newRound']){const original=e[method].bind(e);e[method]=(...args)=>{const u=method==='hurt'?args[0]:e.active,before=u&&{id:u.id,side:u.side,x:u.x,y:u.y,hp:u.hp,shield:u.shield,focus:u.focus},round=b.round,hit=method==='hurt'?hitObservation(e,args):null; if(method==='enemyAction')activity.begin(u,round,b.units);if(method==='finishAction'&&activity.finish(u,round,b.units))pending.push({method:'enemy-activity',round,actor:u.id,kind:'observed-support-change'});const result=original(...args);if(method!=='enemyAction')pending.push({method,round,before,after:u&&{hp:u.hp,shield:u.shield,focus:u.focus},skill:method==='fire'?args[0]:null,angle:method==='fire'?args[1]:null,power:method==='fire'?args[2]:null,damage:method==='hurt'?args[1]:null,hit,owner:method==='hurt'?args[2]:null,accepted:typeof result==='boolean'?result:null});if(method==='hurt'&&u?.side===1&&before.hp>u.hp){const owner=e.unit(args[2]);if(owner?.side===0){engagedEnemies.add(u.id);metrics.enemyFirstDamageRound[u.id]??=round;}if(u.hp<=0)metrics.enemyDeathRound[u.id]??=round;}if(method==='fire'&&result===true&&activity.executed(u,round,'fire'))pending.push({method:'enemy-activity',round,actor:u.id,kind:'fire'});return result;};}
+ for(const method of ['drop','hurt','fire','enemyAction','finishAction','newRound']){const original=e[method].bind(e);e[method]=(...args)=>{const u=method==='hurt'?args[0]:e.active,before=u&&{id:u.id,side:u.side,x:u.x,y:u.y,hp:u.hp,maxHp:u.maxHp,shield:u.shield,focus:u.focus},round=b.round,hit=method==='hurt'?hitObservation(e,args):null; if(method==='enemyAction')activity.begin(u,round,b.units);if(method==='finishAction'&&activity.finish(u,round,b.units))pending.push({method:'enemy-activity',round,actor:u.id,kind:'observed-support-change'});const result=original(...args);if(method!=='enemyAction')pending.push({method,round,before,after:u&&{hp:u.hp,shield:u.shield,focus:u.focus},skill:method==='fire'?args[0]:null,angle:method==='fire'?args[1]:null,power:method==='fire'?args[2]:null,damage:method==='hurt'?args[1]:null,hit,owner:method==='hurt'?args[2]:null,accepted:typeof result==='boolean'?result:null});if(method==='hurt'&&u?.side===1&&before.hp>u.hp){const owner=e.unit(args[2]);if(owner?.side===0){engagedEnemies.add(u.id);metrics.enemyFirstDamageRound[u.id]??=round;}if(u.hp<=0)metrics.enemyDeathRound[u.id]??=round;}if(method==='fire'&&result===true&&activity.executed(u,round,'fire'))pending.push({method:'enemy-activity',round,actor:u.id,kind:'fire'});return result;};}
  await observe();let decisionAt=0;
  while(frame<maxFrames){
   if(cancelled){outcome='cancelled';reason='SIGINT/SIGTERM observation stop';break;}
@@ -88,7 +104,7 @@ try{
      if(intent.kind==='blocked'){outcome='error';reason='Controller navigation blocked: '+intent.reason;await emit('controller-blocked',lastNavigation);break;}
      if(['walk','air-control','jump'].includes(intent.kind))app.stick.x=intent.direction||0;
      if(intent.kind==='jump'||intent.kind==='drop'){
-      const from={x:u.x,y:u.y,support:support(u),kind:intent.kind,goal:destination},beforeMove=u.moveLeft,beforeDrop=u.platformDrop;
+      const from={x:u.x,y:u.y,support:support(u),supportFace:supportFace(u),kind:intent.kind,goal:intent.step.to,routeLeg:intent.step},beforeMove=u.moveLeft,beforeDrop=u.platformDrop;
       if(intent.kind==='jump')metrics.jumpAttempts++;else metrics.dropAttempts++;
       await input(intent.kind,()=>intent.kind==='jump'?app.jump():app.drop(),{actor:u.id,from,checkedLeg:intent.step});
       const accepted=intent.kind==='jump'?u.moveLeft<beforeMove:acceptedDrop(beforeDrop,u.platformDrop);

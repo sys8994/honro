@@ -1,0 +1,11 @@
+import assert from 'node:assert/strict';
+import {movementAudit,auditFrame,closeEpisode,walkOffStart} from '../tools/quantitative-playtest/movement-audit.mjs';
+const state=(x,y,grounded=true)=>({x,y,grounded,gateTurn:null,recoveries:0,airborne:false,specialMotion:false,recovering:false});
+const a=movementAudit(),p=state(0,0),q=state(10,0);assert.equal(auditFrame(a,p,q,{commandedProgress:true}),'normalGround');
+const episode={};assert.equal(auditFrame(a,q,state(15,-10,false),{episode}),'pendingEpisode');auditFrame(a,state(15,-10,false),state(20,0),{episode});closeEpisode(a,episode,'jump');assert.deepEqual(a.categories.qualifiedJump,{dx:10,dy:20,frames:2});assert.deepEqual(a.categories.pendingEpisode,{dx:0,dy:0,frames:0});
+const invalid={};auditFrame(a,state(20,0),state(25,-10,false),{episode:invalid});assert.equal(auditFrame(a,state(25,-10,false),{...state(1025,390),recoveries:1},{episode:invalid}),'scriptedOrGate');closeEpisode(a,invalid,'jump');assert.equal(a.categories.qualifiedJump.dx,10);assert.equal(a.categories.unclassified.dx,5);
+assert.equal(auditFrame(a,state(0,0),{...state(200,100),gateTurn:'1:0'},{commandedProgress:true}),'scriptedOrGate');assert.equal(auditFrame(a,state(0,0),{...state(30,20,false),airborne:true},{commandedProgress:true}),'involuntaryOrSkill');
+const sum=Object.values(a.categories).reduce((v,x)=>({dx:v.dx+x.dx,dy:v.dy+x.dy}),{dx:0,dy:0});assert.deepEqual(sum,{dx:1255,dy:550});
+const intent={actor:'knight',step:{kind:'walk-off',to:{x:100,y:300}}},from={...state(50,100),support:'ledge',supportFace:'ledge:edge:0'},to=state(52,101,false);
+assert.equal(walkOffStart(from,to,intent,'knight',false).kind,'walk-off');assert.equal(walkOffStart(from,to,intent,'archer',false),null);assert.equal(walkOffStart(from,to,intent,'knight',true),null);assert.equal(walkOffStart(from,state(52,100),intent,'knight',false),null);
+console.log('PASS raw-distance conservation, qualified episodes, gate/recovery/knockback exclusions, intentional walk-off observation');

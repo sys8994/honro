@@ -415,3 +415,24 @@ All pose/HP/movement budgets remain unchanged after synthetic entry. The tests
 also cover public count parsing, no premature dock goal and exhausted search.
 Actual v6 candidate exploration and full clear remain unverified. v5 input sanity
 is retained, not relabeled as v6 proof. Aim/preset/uncertainty are unchanged.
+
+P04 movement provenance follow-up: raw horizontal/ascent/descent integrals remain
+unchanged and include every observed hero foot displacement. They are NOT the
+criteria's effective physical-distance ratio. A separate conservative audit now
+partitions every frame into commanded grounded route progress, pending/qualified
+jump/drop episodes, scripted recovery/gate transitions, involuntary/skill motion,
+or unclassified movement. Category distances conserve the raw integral. Unknown
+movement is not silently credited. Public recovery receipts and gate-turn changes
+exclude same-frame script transfers even if transient flags already disappeared.
+Normal `walk-off` legs now open an observed fall episode when support is actually
+lost; they were missing from the old App.drop-only ledger. Successful descending
+support transitions contribute to effectiveDrops. New effectiveJumps additionally
+covers checked necessary gap crossings; the old elevatedSupportLandings proxy is
+retained separately. Per-actor support-face pairs/progress prevent repeated idle
+jumps from earning credit. These remain conservative route-qualified measures,
+not a substitute for semantic/manual target review; pending or unclassified
+movement must remain visible. No historical run is retroactively reclassified.
+`quantitative-playtest-movement-audit.mjs` verifies exact raw-distance conservation,
+script/gate/knockback exclusion, episode transfer and genuine walk-off detection.
+The hurt observer also retains actual target maxHp and owner side for future
+per-attack damage percentages, instead of assuming initial maxHp stayed constant.
