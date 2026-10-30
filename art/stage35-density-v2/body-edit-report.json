@@ -1,0 +1,62 @@
+{
+  "scope": "Intentional palette redesign of existing optimized final. Fidelity measured only recolored master to Boolean union.",
+  "source": "art/stage35-vector-production/ground-continuous-final.svg",
+  "newPalette": [
+    "#667366",
+    "#53656a",
+    "#46595e"
+  ],
+  "rejected": "Union of paths5,4,2,1 produced inseparable154091-character contour; rejected, originals retained with common fill.",
+  "physics": "Original bounds, transform, foot, bodyClip unchanged.",
+  "views": {
+    "normal": {
+      "width": 4134,
+      "meanRGBAError255": [
+        0.0034099741486039834,
+        0.002812598887335173,
+        0.0013865588061805283,
+        0.0014718560383074437
+      ],
+      "maxRGBAError255": [
+        128,
+        142,
+        128,
+        171
+      ],
+      "fractionAbove16": 3.1231456322808336e-05
+    },
+    "max": {
+      "width": 8580,
+      "meanRGBAError255": [
+        0.0017595374109458616,
+        0.0014530119723781697,
+        0.0007332944832944833,
+        0.0008428338093831051
+      ],
+      "maxRGBAError255": [
+        255,
+        255,
+        255,
+        255
+      ],
+      "fractionAbove16": 1.1490856561279096e-05
+    }
+  },
+  "sourceRuntimeBytes": 340392,
+  "candidateRuntimeBytes": 197666,
+  "visualReview": "Direct normal .53x-world and maximum1.1x-world source crops inspected: broad low-contrast blue-green rock masses, subdued olive upper soil plane; no new false treads. Integrated gameplay contact readability remains integrator gate.",
+  "runtimeNodes": 10,
+  "acceptedUnionGroups": [
+    [
+      "path11",
+      "path10"
+    ],
+    [
+      "path9",
+      "path8",
+      "path7",
+      "path6"
+    ]
+  ],
+  "finalArtDecision": "REJECTED by direct integrated normal review: large two-tone cellular/cowhide patches remain despite safe optimization and quieter contrast. Preserved as failed candidate; superseded experimentally by body-edge variant."
+}

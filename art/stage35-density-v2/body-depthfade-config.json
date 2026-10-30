@@ -1,0 +1,36 @@
+{
+  "id": "s35-density:body-depthfade",
+  "name": "대숲 지반 접지 근처 암면·조용한 심부",
+  "semanticLayer": "BODY",
+  "category": "rock",
+  "bounds": {
+    "x": -300,
+    "y": 865.876,
+    "w": 7800,
+    "h": 3100
+  },
+  "anchor": {
+    "x": 0,
+    "y": 0
+  },
+  "foot": {
+    "x": 0,
+    "y": 1910
+  },
+  "transform": [
+    3.9215686274509802,
+    0,
+    0,
+    3.9240506329113924,
+    -300,
+    868.3544303797469
+  ],
+  "bodyClip": [
+    "M0 1910 L540 1910 L660 1910 L660 1872 L760 1872 L760 1836 L860 1836 L860 1800 L920 1800 L1380 1800 L1840 1840 L2180 2040 L2650 2055 L2820 2030 L2910 1960 L2990 1960 L2990 1908 L3070 1908 L3070 1856 L3160 1856 L3380 1820 L3900 1810 L4390 1955 L4820 1960 L5340 1790 L5790 1790 L6220 1850 L6680 1860 L7200 1800 L7700 1614.6960545213003 L8200 1543.4224473480601 L8700 1598.628222381877 L9200 1660.8686680931232 L9700 1664.4189989666286 L10200 1567.8416053019898 L10700 1438.3478751723935 L11200 1358.2378950415455 L11700 1331.381126921202 L12200 1258.666436891822 L12700 1181.3592476329 L13200 1145.384615455963 L13200 27100 L-6000 27100 L-6000 1650 L-5500 1615.7384458375857 L-5000 1542.1125528502698 L-4500 1472.8604752879428 L-4000 1453.477366255144 L-3500 1551.111111111111 L-3000 1708.9300411522634 L-2500 1826.625514403292 L-2000 1866 L-1500 1977.4814814814815 L-1000 2077.8518518518517 L-500 2033.046875Z"
+  ],
+  "params": {
+    "collisionSource": "authored stage terrain unchanged",
+    "sourceAlignment": "source upper mask shifted; affine110sourcepx offset upward; exact BODY collisionclip",
+    "densityEdit": "Intentional composition: original silhouette retained as quiet deep mass; original optimized facets Boolean intersected with actual collision-top depth intervals0-120/120-260/260-420world. Palette fades toward base. Prior full-depth camo rejected."
+  }
+}

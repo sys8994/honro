@@ -1,0 +1,74 @@
+[
+  {
+    "sampleColumn": 1770,
+    "inwardColumns": [
+      1770,
+      1769,
+      1768,
+      1767
+    ],
+    "depthSource": 0.0,
+    "neighborDepthsSource": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "maximumJumpWorld": 24,
+    "observedJumpWorld": 0.0,
+    "pass": true
+  },
+  {
+    "sampleColumn": 1770,
+    "inwardColumns": [
+      1770,
+      1769,
+      1768,
+      1767
+    ],
+    "depthSource": 2.5906735368015887,
+    "neighborDepthsSource": [
+      2.622633457699351,
+      2.632104872692807,
+      2.639660554953238
+    ],
+    "maximumJumpWorld": 24,
+    "observedJumpWorld": 0.05178916986402271,
+    "pass": true
+  },
+  {
+    "sampleColumn": 1770,
+    "inwardColumns": [
+      1770,
+      1769,
+      1768,
+      1767
+    ],
+    "depthSource": 9.04691999715888,
+    "neighborDepthsSource": [
+      9.1585754284486,
+      9.247742353834013,
+      9.334993546486388
+    ],
+    "maximumJumpWorld": 24,
+    "observedJumpWorld": 0.25102794584391575,
+    "pass": true
+  },
+  {
+    "sampleColumn": 1770,
+    "inwardColumns": [
+      1770,
+      1769,
+      1768,
+      1767
+    ],
+    "depthSource": 64.22273891867978,
+    "neighborDepthsSource": [
+      64.35677590781773,
+      64.4683243910514,
+      64.57795714155205
+    ],
+    "maximumJumpWorld": 24,
+    "observedJumpWorld": 0.3069818404645197,
+    "pass": true
+  }
+]

@@ -1,0 +1,53 @@
+{
+  "scope": "Intentional source-derived art recomposition, not fidelity optimization. Prior three-color full-depth camo rejected as final art.",
+  "base": "#46595e",
+  "geometrySource": "ground-continuous-final.svg",
+  "depthBandAuthority": "Original bodyClip top vertices sorted by x, preserving vertical step pairs; inverse original affine.",
+  "depthBandsWorld": [
+    0,
+    120,
+    260,
+    420
+  ],
+  "operation": "Actual Inkscape path-intersection for each source color path with each derived depth band; full-depth source base retained.",
+  "gradient": "Not supported by importer; low-contrast solid stepped decay used.",
+  "visualApproval": "Comparison only; no rollout or final art approval",
+  "purpose": "Single420world middle-ground comparison:135world candidate felt abruptly blank below; no rollout.",
+  "paletteByDepth": [
+    {
+      "range": [
+        0,
+        120
+      ],
+      "soil": "#5d6b61",
+      "facet": "#516267"
+    },
+    {
+      "range": [
+        120,
+        260
+      ],
+      "soil": "#526260",
+      "facet": "#4c5e63"
+    },
+    {
+      "range": [
+        260,
+        420
+      ],
+      "soil": "#495c5f",
+      "facet": "#485b60"
+    }
+  ],
+  "runtimeBytes": 312239,
+  "runtimeNodes": 31,
+  "runtimeValidationErrors": 0,
+  "maxPathCharacters": 24030,
+  "physicsContractExact": true,
+  "sourceProjectionReview": "Direct .5world native asset crop inspected; rock shapes extend more gradually below contact than135world candidate. Last band contrast is1\u20133RGB from deep base. Integrated normal/mobile judgment pending.",
+  "integratedViews": [
+    "_local/reports/stage35-density-v2/stone-depthfade-native/35-normal.png",
+    "_local/reports/stage35-density-v2/stone-depthfade-native/35-mobile.png"
+  ],
+  "integratedReview": "Direct normal/mobile inspected. Less abrupt transition to quiet deep plane than135world variant; geology hint decays over~223CSSpx at.53zoom. Original rounded cell shapes reappear within upper region, albeit subdued, so this comparison does not claim to solve source-shape character. Stone/actors remain visually stronger. Final selection pending root."
+}

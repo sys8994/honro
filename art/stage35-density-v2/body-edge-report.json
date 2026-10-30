@@ -1,0 +1,55 @@
+{
+  "scope": "Intentional source-derived art recomposition, not fidelity optimization. Prior three-color full-depth camo rejected as final art.",
+  "base": "#46595e",
+  "geometrySource": "ground-continuous-final.svg",
+  "depthBandAuthority": "Original bodyClip top vertices sorted by x, preserving vertical step pairs; inverse original affine.",
+  "depthBandsWorld": [
+    0,
+    45,
+    90,
+    135
+  ],
+  "operation": "Actual Inkscape path-intersection for each source color path with each derived depth band; full-depth source base retained.",
+  "gradient": "Not supported by importer; low-contrast solid stepped decay used.",
+  "visualApproval": "Awaiting root integrated-scene judgment; no cross-stage rollout",
+  "runtimeBytes": 184410,
+  "runtimeNodes": 31,
+  "runtimeValidationErrors": 0,
+  "originalSilhouetteSource": "Original optimized path11 full terrain silhouette, repainted deep base; physics clip unchanged.",
+  "paletteByDepth": [
+    {
+      "worldDepth": [
+        0,
+        45
+      ],
+      "soil": "#5d6b61",
+      "facets": "#516267",
+      "dark": "#46595e"
+    },
+    {
+      "worldDepth": [
+        45,
+        90
+      ],
+      "soil": "#53645f",
+      "facets": "#4d5f64",
+      "dark": "#46595e"
+    },
+    {
+      "worldDepth": [
+        90,
+        135
+      ],
+      "soil": "#4b5e5e",
+      "facets": "#495c61",
+      "dark": "#46595e"
+    }
+  ],
+  "booleanActions": "For bi=0..2,pi=0..8: select-clear;select-by-id:edge-b{bi}-{pi},edge-b{bi}-{pi}-mask;path-intersection. Input retains exact source paths and masks for audit.",
+  "sourceProjectionReview": "Direct native asset render at3900px width (.5world) inspected: full-depth cellular shapes absent; fragments limited near actual contact, deep plane quiet. No final scene art approval inferred.",
+  "integratedNormalReview": {
+    "image": "_local/reports/stage35-density-v2/stone-edgebody-native/35-normal.png",
+    "decision": "Candidate improves hierarchy, not final art approval",
+    "observed": "Full-depth cowhide absent. Stone steps and actors visually lead. Existing facets remain near contact and decay into uniform deep mass; no arbitrary rectangular side ends. Large quiet lower plane remains an artistic composition choice for root review."
+  }
+}
