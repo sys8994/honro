@@ -1,0 +1,125 @@
+{
+  "scope": "Source raw versus selected runtime geometry at actual max inspection scale1.1 using real Native SVG pixels, bounded crops. Not art approval.",
+  "checks": [
+    {
+      "asset": "body",
+      "worldCrop": [
+        100,
+        4500,
+        1400,
+        900
+      ],
+      "worldZoom": 1.1,
+      "qualityPass": true,
+      "errors": {
+        "1": {
+          "rgbMAE255": 0.0011579093988984823,
+          "rgbP99_255": 0.0,
+          "alphaMAE255": 0.0005890069296583533,
+          "changedPixelFraction": 8.526826708644891e-06,
+          "silhouetteMaxOffsetPx": 1.0,
+          "protectedChangedPixelFraction": 0.0,
+          "protectedRgbMAE255": 4.430040280567482e-05,
+          "protectedSilhouetteMaxOffsetPx": 0.0,
+          "pass": true
+        }
+      }
+    },
+    {
+      "asset": "body",
+      "worldCrop": [
+        3000,
+        3400,
+        1400,
+        900
+      ],
+      "worldZoom": 1.1,
+      "qualityPass": true,
+      "errors": {
+        "1": {
+          "rgbMAE255": 0.0016909298719838262,
+          "rgbP99_255": 0.0,
+          "alphaMAE255": 0.00045061000855639577,
+          "changedPixelFraction": 7.215007215007215e-06,
+          "silhouetteMaxOffsetPx": 1.0,
+          "protectedChangedPixelFraction": 0.00012347203358439315,
+          "protectedRgbMAE255": 0.008334399200975895,
+          "protectedSilhouetteMaxOffsetPx": 0.0,
+          "pass": true
+        }
+      }
+    },
+    {
+      "asset": "body",
+      "worldCrop": [
+        6500,
+        1900,
+        1400,
+        900
+      ],
+      "worldZoom": 1.1,
+      "qualityPass": true,
+      "errors": {
+        "1": {
+          "rgbMAE255": 0.0009098182199522853,
+          "rgbP99_255": 0.0,
+          "alphaMAE255": 9.445100295124575e-05,
+          "changedPixelFraction": 1.967729240456513e-06,
+          "silhouetteMaxOffsetPx": 1.0,
+          "protectedChangedPixelFraction": 0.0,
+          "protectedRgbMAE255": 2.0989440599805675e-05,
+          "protectedSilhouetteMaxOffsetPx": 0.0,
+          "pass": true
+        }
+      }
+    },
+    {
+      "asset": "overhang",
+      "worldCrop": [
+        0,
+        2900,
+        1400,
+        900
+      ],
+      "worldZoom": 1.1,
+      "qualityPass": true,
+      "errors": {
+        "1": {
+          "rgbMAE255": 0.0008859191439114511,
+          "rgbP99_255": 0.0,
+          "alphaMAE255": 0.0,
+          "changedPixelFraction": 0.0,
+          "silhouetteMaxOffsetPx": 0.0,
+          "protectedChangedPixelFraction": 0.0,
+          "protectedRgbMAE255": 0.00011981969146290794,
+          "protectedSilhouetteMaxOffsetPx": 0.0,
+          "pass": true
+        }
+      }
+    },
+    {
+      "asset": "overhang",
+      "worldCrop": [
+        2400,
+        3000,
+        1400,
+        900
+      ],
+      "worldZoom": 1.1,
+      "qualityPass": true,
+      "errors": {
+        "1": {
+          "rgbMAE255": 0.0028587887063622475,
+          "rgbP99_255": 0.0,
+          "alphaMAE255": 0.0011491539189592004,
+          "changedPixelFraction": 3.935458480913026e-05,
+          "silhouetteMaxOffsetPx": 1.0,
+          "protectedChangedPixelFraction": 0.0,
+          "protectedRgbMAE255": 0.0033313718158751726,
+          "protectedSilhouetteMaxOffsetPx": 0.0,
+          "pass": true
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,80 @@
+{
+  "sourceAsset": "art/stage33-vector-production/coastal-boulder-asset.json",
+  "sourceSha256": "957a1ae819ae4af24cc4ae427dc0b01d65d09877b039a782804db5a867048f1e",
+  "rawLineage": "art/vector-common-production/coastal-boulder-source.svg",
+  "scopedAsset": "s34v:coastal-boulder",
+  "noCollision": true,
+  "aspectPreserved": true,
+  "anchor": {
+    "x": 0,
+    "y": 0
+  },
+  "foot": {
+    "x": 0,
+    "y": 0
+  },
+  "instances": [
+    {
+      "id": "a4-34-prop-1",
+      "assetId": "s34v:coastal-boulder",
+      "x": 600,
+      "y": 5100,
+      "scale": 1.3,
+      "rotation": 0,
+      "snap": false,
+      "depthLayer": "L1",
+      "layer": "back"
+    },
+    {
+      "id": "a4-34-prop-2",
+      "assetId": "s34v:coastal-boulder",
+      "x": 1910,
+      "y": 4539.5,
+      "scale": 1.1,
+      "rotation": -0.17324566645236494,
+      "snap": false,
+      "depthLayer": "L1",
+      "layer": "back"
+    },
+    {
+      "id": "a4-34-prop-3",
+      "assetId": "s34v:coastal-boulder",
+      "x": 3490,
+      "y": 3863.1111111111113,
+      "scale": 1.25,
+      "rotation": -0.647047193220323,
+      "snap": false,
+      "depthLayer": "L1",
+      "layer": "back"
+    },
+    {
+      "id": "a4-34-prop-4",
+      "assetId": "s34v:coastal-boulder",
+      "x": 5300,
+      "y": 3012.222222222222,
+      "scale": 0.9,
+      "rotation": -0.15431877592611903,
+      "snap": false,
+      "depthLayer": "L1",
+      "layer": "back"
+    },
+    {
+      "id": "a4-34-prop-5",
+      "assetId": "s34v:coastal-boulder",
+      "x": 6500,
+      "y": 2558,
+      "scale": 1.2,
+      "rotation": -0.13909594148207133,
+      "snap": false,
+      "depthLayer": "L1",
+      "layer": "back"
+    }
+  ],
+  "alignment": "Same x/y/scale; rigid angle atan2(original supporting land segment dy,dx), no stretch or new support",
+  "directViews": [
+    "boulder-review/34-first-contact.png",
+    "boulder-review/34-overhang.png",
+    "boulder-review/34-summit-mobile.png"
+  ],
+  "review": "Grounded normal/mobile/underpass contacts inspected; dead pine small and retained, no new authoring"
+}

@@ -1,0 +1,515 @@
+{
+  "version": 1,
+  "success": true,
+  "frame": 20333,
+  "scope": "Prepared earned-SP stage-entry profile; real App/Engine/Native Canvas events and sparse actual scene rendering every300 simulation frames (bounded snapshot evidence, not continuous rendered play); DOM/audio/storage scheduling are doubles, not browser or chapters1\u201333 playthrough. No gate relabeling or automatic art approval.",
+  "projectSha256": "65a0622d66a7e8155e0809dae6bf3e7f41929779d798a395aeb40d24c7901653",
+  "runtimeSha256": "ded4213faa541c60f977cd4090ee6f4b90db1261070413fb8ccd3e4496d5fb9f",
+  "verifierSha256": "ffe7860dbf64f47c3e24d0053a2d02e641792faa09f20362afdf1f2fd198ce30",
+  "resume": [
+    {
+      "frame": 4847,
+      "inputIndex": 21,
+      "result": "pass",
+      "scope": "Actual stopBattle/persist/Continue; exact units, event state, round, active and phase preserved"
+    }
+  ],
+  "groups": [
+    {
+      "id": "a4-34-g0",
+      "damageEvents": 1
+    },
+    {
+      "id": "a4-34-g1",
+      "damageEvents": 1
+    },
+    {
+      "id": "a4-34-g2",
+      "damageEvents": 3
+    }
+  ],
+  "eventReceipts": {
+    "wrong_exit": {
+      "started": true,
+      "terminal": true,
+      "presented": [],
+      "retired": [
+        "A4.S34.DISLOCATION.01",
+        "A4.S34.DISLOCATION.02",
+        "A4.S34.DISLOCATION.03"
+      ]
+    }
+  },
+  "observed": {
+    "wrong-entry": 12.49999999999993,
+    "wrong-exit": 19.999999999999506
+  },
+  "final": {
+    "phase": "won",
+    "objective": {
+      "version": 1,
+      "clock": 169.4416666666769,
+      "events": {
+        "wrong_exit": {
+          "started": true,
+          "terminal": true,
+          "presented": [],
+          "retired": [
+            "A4.S34.DISLOCATION.01",
+            "A4.S34.DISLOCATION.02",
+            "A4.S34.DISLOCATION.03"
+          ]
+        }
+      },
+      "receipts": [],
+      "boat": {
+        "phase": "waiting",
+        "x": 500
+      },
+      "door": {
+        "phase": "standing",
+        "time": 0
+      },
+      "complete": true,
+      "visualDrawn": {},
+      "observed": {
+        "wrong-entry": 12.49999999999993,
+        "wrong-exit": 19.999999999999506
+      },
+      "water": {
+        "dry": {
+          "archer": {
+            "x": 7246.6806017568015,
+            "y": 2200
+          },
+          "mage": {
+            "x": 7248.04467897276,
+            "y": 2200
+          },
+          "knight": {
+            "x": 7246.6646766770145,
+            "y": 2200
+          },
+          "occultist": {
+            "x": 6916.200709065459,
+            "y": 2387.3075320167973
+          },
+          "a4-34-g0-0": {
+            "x": 1760,
+            "y": 4619.428571428572
+          },
+          "a4-34-g0-1": {
+            "x": 3114.9504718429225,
+            "y": 3423.986792491446
+          },
+          "a4-34-g1-0": {
+            "x": 3910,
+            "y": 3718
+          },
+          "a4-34-g1-1": {
+            "x": 4327.934966445108,
+            "y": 3481.3766890365946
+          },
+          "a4-34-g2-0": {
+            "x": 6466.555316955982,
+            "y": 2562.6822556261627
+          },
+          "a4-34-g2-1": {
+            "x": 6137.95198238917,
+            "y": 2643.433612327581
+          }
+        },
+        "recoveries": []
+      },
+      "dislocation": {
+        "phase": "complete",
+        "at": 12.508333333333264,
+        "originalFixed": false
+      },
+      "reader": null,
+      "completionProof": {
+        "exit": {
+          "x": 7200,
+          "y": 2200
+        },
+        "connection": {
+          "physicalRoute": true
+        }
+      }
+    },
+    "units": [
+      {
+        "id": "archer",
+        "x": 7246.6806017568015,
+        "y": 2200,
+        "hp": 1671,
+        "dead": false
+      },
+      {
+        "id": "mage",
+        "x": 7248.04467897276,
+        "y": 2200,
+        "hp": 1888,
+        "dead": false
+      },
+      {
+        "id": "knight",
+        "x": 7246.6646766770145,
+        "y": 2200,
+        "hp": 3786,
+        "dead": false
+      },
+      {
+        "id": "occultist",
+        "x": 6916.200709065459,
+        "y": 2387.3075320167973,
+        "hp": 2251,
+        "dead": false
+      },
+      {
+        "id": "a4-34-g0-0",
+        "x": 1760,
+        "y": 4619.428571428572,
+        "hp": 0,
+        "dead": true
+      },
+      {
+        "id": "a4-34-g0-1",
+        "x": 3114.9504718429225,
+        "y": 3423.986792491446,
+        "hp": 0,
+        "dead": true
+      },
+      {
+        "id": "a4-34-g1-0",
+        "x": 3910,
+        "y": 3718,
+        "hp": 0,
+        "dead": true
+      },
+      {
+        "id": "a4-34-g1-1",
+        "x": 4327.934966445108,
+        "y": 3481.3766890365946,
+        "hp": 0,
+        "dead": true
+      },
+      {
+        "id": "a4-34-g2-0",
+        "x": 6466.555316955982,
+        "y": 2562.6822556261627,
+        "hp": 0,
+        "dead": true
+      },
+      {
+        "id": "a4-34-g2-1",
+        "x": 6137.95198238917,
+        "y": 2643.433612327581,
+        "hp": 0,
+        "dead": true
+      }
+    ]
+  },
+  "sourceContract": {
+    "stageId": "stage-34",
+    "geometrySha256": "7110d274704f3cb04026c6d74f3dea4fac8e8670503aea6b76889d39b6e7abe0",
+    "compiledSha256": "7d853921190e4302f15a32818a91e48c08f3e2c4818ca619e0d25bdbab6cbd69",
+    "protected": {
+      "terrains": [
+        "a4-34-land",
+        "a4-34-natural-overhang",
+        "a4-34-return-cut"
+      ],
+      "water": [
+        {
+          "id": "34-shore",
+          "kind": "recover",
+          "x1": 0,
+          "x2": 1050,
+          "surface": 5350,
+          "entryLeft": [
+            0,
+            700
+          ],
+          "entryRight": [
+            1000,
+            1500
+          ]
+        },
+        {
+          "id": "34-open-sea",
+          "kind": "lethal",
+          "x1": 7100,
+          "x2": 7600,
+          "surface": 5800
+        }
+      ],
+      "wrongExit": {
+        "actor": "a4-34-g0-1",
+        "entrance": {
+          "x": 2520,
+          "y": 4329
+        },
+        "exit": {
+          "x": 3100,
+          "y": 3420
+        },
+        "optional": true
+      },
+      "actors": [
+        {
+          "id": "archer",
+          "x": 260,
+          "y": 5100
+        },
+        {
+          "id": "mage",
+          "x": 380,
+          "y": 5100
+        },
+        {
+          "id": "knight",
+          "x": 500,
+          "y": 5100
+        },
+        {
+          "id": "occultist",
+          "x": 620,
+          "y": 5100
+        },
+        {
+          "id": "a4-34-g0-0",
+          "x": 1760,
+          "y": 4619.428571428572
+        },
+        {
+          "id": "a4-34-g0-1",
+          "x": 2350,
+          "y": 4424
+        },
+        {
+          "id": "a4-34-g1-0",
+          "x": 3910,
+          "y": 3718
+        },
+        {
+          "id": "a4-34-g1-1",
+          "x": 4820,
+          "y": 3353.75
+        },
+        {
+          "id": "a4-34-g2-0",
+          "x": 6130,
+          "y": 2649
+        },
+        {
+          "id": "a4-34-g2-1",
+          "x": 6630,
+          "y": 2539.8
+        }
+      ]
+    },
+    "scope": "Exact official geometry. Separate BODY land and overhang; concepts exclude water, props, platforms, actors and event marks."
+  },
+  "geometryCheck": {
+    "staticCollisionUnchanged": true,
+    "gameplayFieldsUnchanged": true,
+    "originalElementIdsRetained": true,
+    "projectSha256": "aed550a8c11ffac0e1d908f0dafa4121e3e4c4a12272f7b4f7f715d0372feec7",
+    "scope": "Data/compile equality only; not visual or play approval."
+  },
+  "roofInput": {
+    "scope": "Ordinary recorded input prefix then one deliberately roof-blocked legal shot; no actor/resource/event forcing. Separate branch, not full-mission completion.",
+    "frames": 4420,
+    "poses": {
+      "id": "mage",
+      "x": 2959.7255346850015,
+      "y": 4158.054893062999
+    },
+    "selected": {
+      "skill": "M01",
+      "angle": 70,
+      "power": 1
+    },
+    "predictions": [
+      {
+        "skill": "M01",
+        "angle": 55,
+        "power": 1,
+        "terrain": "a4-34-land",
+        "x": 4342.618457666141,
+        "y": 3464.3765923383116
+      },
+      {
+        "skill": "M01",
+        "angle": 70,
+        "power": 1,
+        "terrain": "a4-34-natural-overhang",
+        "x": 3180.1440652006286,
+        "y": 3594.4045716883097
+      },
+      {
+        "skill": "M01",
+        "angle": 85,
+        "power": 1,
+        "terrain": "a4-34-natural-overhang",
+        "x": 3013.2109585368426,
+        "y": 3621.23570581022
+      },
+      {
+        "skill": "M01",
+        "angle": 100,
+        "power": 1,
+        "terrain": "a4-34-natural-overhang",
+        "x": 2875.4390929996084,
+        "y": 3636.543690869913
+      },
+      {
+        "skill": "M01",
+        "angle": 115,
+        "power": 1,
+        "terrain": "a4-34-natural-overhang",
+        "x": 2730.764942667137,
+        "y": 3652.6185964624096
+      },
+      {
+        "skill": "M06",
+        "angle": 55,
+        "power": 1,
+        "terrain": "a4-34-land",
+        "x": 4224.181256656043,
+        "y": 3543.3347263450432
+      },
+      {
+        "skill": "M06",
+        "angle": 70,
+        "power": 1,
+        "terrain": "a4-34-natural-overhang",
+        "x": 3189.6580392403503,
+        "y": 3590.598982072421
+      },
+      {
+        "skill": "M06",
+        "angle": 85,
+        "power": 1,
+        "terrain": "a4-34-natural-overhang",
+        "x": 3015.338501545961,
+        "y": 3620.9993121425405
+      },
+      {
+        "skill": "M06",
+        "angle": 100,
+        "power": 1,
+        "terrain": "a4-34-natural-overhang",
+        "x": 2874.9917291331426,
+        "y": 3636.593397966187
+      },
+      {
+        "skill": "M06",
+        "angle": 115,
+        "power": 1,
+        "terrain": "a4-34-natural-overhang",
+        "x": 2727.133231340844,
+        "y": 3653.022119943109
+      },
+      {
+        "skill": "M02",
+        "angle": 55,
+        "power": 1,
+        "terrain": "a4-34-land",
+        "x": 4151.883099343226,
+        "y": 3555.6673361715916
+      },
+      {
+        "skill": "M02",
+        "angle": 70,
+        "power": 1,
+        "terrain": "a4-34-land",
+        "x": 2776.9566735007984,
+        "y": 4165.168096866194
+      },
+      {
+        "skill": "M02",
+        "angle": 85,
+        "power": 1,
+        "terrain": "a4-34-land",
+        "x": 2326.9465291112765,
+        "y": 4417.082773694976
+      },
+      {
+        "skill": "M02",
+        "angle": 100,
+        "power": 1,
+        "terrain": "a4-34-land",
+        "x": 2356.729651019495,
+        "y": 4401.7065442410785
+      },
+      {
+        "skill": "M02",
+        "angle": 115,
+        "power": 1,
+        "terrain": "a4-34-land",
+        "x": 1401.0454921312264,
+        "y": 4818.652850618638
+      },
+      {
+        "skill": "M03",
+        "angle": 55,
+        "power": 1,
+        "terrain": "a4-34-land",
+        "x": 4224.181256656043,
+        "y": 3543.3347263450432
+      },
+      {
+        "skill": "M03",
+        "angle": 70,
+        "power": 1,
+        "terrain": "a4-34-natural-overhang",
+        "x": 3189.6580392403503,
+        "y": 3590.598982072421
+      },
+      {
+        "skill": "M03",
+        "angle": 85,
+        "power": 1,
+        "terrain": "a4-34-natural-overhang",
+        "x": 3015.338501545961,
+        "y": 3620.9993121425405
+      },
+      {
+        "skill": "M03",
+        "angle": 100,
+        "power": 1,
+        "terrain": "a4-34-natural-overhang",
+        "x": 2874.9917291331426,
+        "y": 3636.593397966187
+      },
+      {
+        "skill": "M03",
+        "angle": 115,
+        "power": 1,
+        "terrain": "a4-34-natural-overhang",
+        "x": 2727.133231340844,
+        "y": 3653.022119943109
+      }
+    ],
+    "impacts": [
+      {
+        "skill": "M01",
+        "owner": "mage",
+        "terrain": "a4-34-natural-overhang",
+        "x": 3178.985252122813,
+        "y": 3596.490258436376
+      }
+    ],
+    "roofBlocked": true
+  },
+  "remaining": [
+    "browser hardware/HUD and Pages deployment verification owned by publisher",
+    "shore recovery/lethal sea focused branch not run",
+    "early optional actor kill branch not run",
+    "intentional return-cut landing branch not run"
+  ],
+  "artScope": "Direct native visual review; not user art approval or automated art approval",
+  "propPolish": "Five original noncolliding env:rock instances use common traced coastal boulder, same instance IDs, x/y/uniform scales; rigid rotation follows exact original land support tangent; exact normal tape state parity verified"
+}
