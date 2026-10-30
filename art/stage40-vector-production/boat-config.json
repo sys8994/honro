@@ -1,0 +1,41 @@
+{
+  "id": "s40v:boat",
+  "name": "돌아가는 배 boat",
+  "semanticLayer": "INTERACT",
+  "category": "architecture",
+  "bounds": {
+    "x": -260,
+    "y": -88,
+    "w": 540,
+    "h": 100
+  },
+  "anchor": {
+    "x": 0,
+    "y": 0
+  },
+  "foot": {
+    "x": 0,
+    "y": 0
+  },
+  "transform": [
+    0.3050847457627119,
+    0,
+    0,
+    0.3125,
+    -311.18644067796606,
+    -149.6875
+  ],
+  "scaleRange": [
+    0.1,
+    4
+  ],
+  "backgroundRange": [
+    0.1,
+    4
+  ],
+  "params": {
+    "sourceRaw": "boat-raw.svg",
+    "collisionAuthority": "unchanged official40",
+    "normalization": "Original a4:boat bounds/anchor/foot; traced straight deck x430..1610,y287 maps exactly local(-180,-60)..(180,-60)."
+  }
+}

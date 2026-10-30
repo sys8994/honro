@@ -1,0 +1,70 @@
+{
+  "source": "art/stage40-vector-production/coastal-shed-raw.svg",
+  "sourceSha256": "7bd5e1110ddb306ef823c92ffb03c53176f85c374e955419a74db80e014fc4c9",
+  "visualApproval": "NOT REVIEWED",
+  "flattenToleranceSourceUnits": 0.05,
+  "backend": "geos",
+  "polygonToleranceSourceUnits": 0.05,
+  "coordinateGridSourceUnits": 0.01,
+  "declaredLocalApproximationBudget": 0.10707106781186548,
+  "partitions": [
+    {
+      "id": "path7",
+      "tiles": 4,
+      "maxPathChars": 29298,
+      "bounds": [
+        9.0,
+        29.0445490918,
+        1687.18983787,
+        891.83068
+      ]
+    },
+    {
+      "id": "path6",
+      "tiles": 6,
+      "maxPathChars": 37097,
+      "bounds": [
+        9.0,
+        29.0445490918,
+        1687.18983787,
+        891.83065
+      ]
+    },
+    {
+      "id": "path5",
+      "tiles": 6,
+      "maxPathChars": 32902,
+      "bounds": [
+        8.8614702,
+        44.6273674219,
+        1686.91961631,
+        890.92782
+      ]
+    },
+    {
+      "id": "path4",
+      "tiles": 6,
+      "maxPathChars": 35002,
+      "bounds": [
+        8.8614702,
+        44.6273674219,
+        1686.91961631,
+        890.92782
+      ]
+    },
+    {
+      "id": "path3",
+      "tiles": 6,
+      "maxPathChars": 37159,
+      "bounds": [
+        11.013658,
+        46.7126247319,
+        1685.84130347,
+        890.786423906
+      ]
+    }
+  ],
+  "output": "art/stage40-vector-production/coastal-shed-final.svg",
+  "outputBytes": 869481,
+  "rawUnchanged": true
+}

@@ -1,0 +1,42 @@
+{
+  "width": 1000,
+  "scales": [
+    0.5,
+    1
+  ],
+  "protectedRects": [
+    [
+      270,
+      290,
+      185,
+      205
+    ],
+    [
+      550,
+      250,
+      235,
+      200
+    ]
+  ],
+  "reviewRects": [
+    [
+      270,
+      290,
+      185,
+      205
+    ],
+    [
+      550,
+      250,
+      235,
+      200
+    ]
+  ],
+  "limits": {
+    "rgbMAE255": 2,
+    "silhouettePx": 1.5,
+    "protectedRgbMAE255": 1,
+    "protectedPx": 0.5,
+    "protectedChangedPixelFraction": 0.05
+  }
+}

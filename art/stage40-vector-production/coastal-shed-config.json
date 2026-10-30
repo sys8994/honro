@@ -1,0 +1,50 @@
+{
+  "id": "s40v:coastal-shed",
+  "name": "\uadc0\ud658 \ud3ec\uad6c coastal-shed",
+  "semanticLayer": "REAR",
+  "category": "architecture",
+  "bounds": {
+    "x": -460,
+    "y": -460,
+    "w": 920,
+    "h": 500
+  },
+  "anchor": {
+    "x": 0,
+    "y": 0
+  },
+  "foot": {
+    "x": 0,
+    "y": 0
+  },
+  "transform": [
+    0.5306288182204094,
+    0,
+    0,
+    0.5306288182204094,
+    -449.73020985216226,
+    -473.9587216921061
+  ],
+  "scaleRange": [
+    0.1,
+    4
+  ],
+  "backgroundRange": [
+    0.1,
+    4
+  ],
+  "params": {
+    "sourceRaw": "coastal-shed-raw.svg",
+    "scope": "Render-only original40 footprint and foot; no collision",
+    "inkFit": {
+      "sourceInk": [
+        6,
+        26.306,
+        1683.084,
+        866.896
+      ],
+      "height": 460,
+      "rule": "Uniform source ink height; actual bottom foot0, horizontal center0, no whitespace fit"
+    }
+  }
+}

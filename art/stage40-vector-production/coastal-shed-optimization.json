@@ -1,0 +1,262 @@
+{
+  "selection": "coastal-shed-final.svg",
+  "method": "Actual Inkscape12color trace; no Simplify accepted. GEOS preserves winding and holes, partitions only oversized paths; curves adaptively flattened .05source, topology preserving polygon .05, grid .01. Conservative local budget .107071source or .06295 at1000px width.",
+  "runtimeNodes": 39,
+  "sourceBytes": 632432,
+  "finalBytes": 869481,
+  "rawSha256": "7bd5e1110ddb306ef823c92ffb03c53176f85c374e955419a74db80e014fc4c9",
+  "finalSha256": "1106a04073a81f1897998abcd11fd156b7cf05d5103b8881706b9430c2f0cef1",
+  "diagnostic": {
+    "raw": "art/stage40-vector-production/coastal-shed-raw.svg",
+    "candidate": "art/stage40-vector-production/coastal-shed-final.svg",
+    "rawStats": {
+      "sourceBytes": 632364,
+      "paths": 11,
+      "commands": 15402,
+      "segments": 14538,
+      "endpointNodesUpperBound": 15402,
+      "explicitCommandLetters": 4867,
+      "subpaths": 864,
+      "pathChars": 631027,
+      "maxPathChars": 98432
+    },
+    "candidateStats": {
+      "sourceBytes": 869481,
+      "paths": 34,
+      "commands": 53556,
+      "segments": 52676,
+      "endpointNodesUpperBound": 53556,
+      "explicitCommandLetters": 50370,
+      "subpaths": 880,
+      "pathChars": 866294,
+      "maxPathChars": 56922
+    },
+    "visualApproval": "NOT REVIEWED",
+    "config": {
+      "width": 1000,
+      "scales": [
+        0.5,
+        1
+      ],
+      "protectedRects": [
+        [
+          270,
+          290,
+          185,
+          205
+        ],
+        [
+          550,
+          250,
+          235,
+          200
+        ]
+      ],
+      "reviewRects": [
+        [
+          270,
+          290,
+          185,
+          205
+        ],
+        [
+          550,
+          250,
+          235,
+          200
+        ]
+      ],
+      "limits": {
+        "rgbMAE255": 2,
+        "silhouettePx": 1.5,
+        "protectedRgbMAE255": 1,
+        "protectedPx": 0.5,
+        "protectedChangedPixelFraction": 0.05
+      },
+      "sourcePalette": [
+        [
+          39,
+          40,
+          40
+        ],
+        [
+          50,
+          60,
+          68
+        ],
+        [
+          57,
+          67,
+          75
+        ],
+        [
+          68,
+          59,
+          50
+        ],
+        [
+          80,
+          69,
+          58
+        ],
+        [
+          81,
+          81,
+          79
+        ],
+        [
+          104,
+          87,
+          73
+        ],
+        [
+          111,
+          122,
+          129
+        ],
+        [
+          132,
+          114,
+          95
+        ],
+        [
+          141,
+          133,
+          117
+        ],
+        [
+          165,
+          156,
+          140
+        ]
+      ]
+    },
+    "errors": {
+      "0.5": {
+        "rgbMAE255": 0.23263496160507202,
+        "rgbP99_255": 5.000014781951904,
+        "alphaMAE255": 0.01463970448821783,
+        "changedPixelFraction": 0.0011470588235294118,
+        "silhouetteMaxOffsetPx": 1.0,
+        "protectedChangedPixelFraction": 0.001973776963203158,
+        "protectedRgbMAE255": 0.22875499725341797,
+        "protectedSilhouetteMaxOffsetPx": 0.0,
+        "protectedColorEdgeMaxOffsetPx": 21.2602916254693,
+        "pass": false
+      },
+      "1": {
+        "rgbMAE255": 0.14196279644966125,
+        "rgbP99_255": 3.999999761581421,
+        "alphaMAE255": 0.0006801470299251378,
+        "changedPixelFraction": 0.000505514705882353,
+        "silhouetteMaxOffsetPx": 0.0,
+        "protectedChangedPixelFraction": 0.0,
+        "protectedRgbMAE255": 0.128792405128479,
+        "protectedSilhouetteMaxOffsetPx": 0.0,
+        "protectedColorEdgeMaxOffsetPx": 28.0,
+        "pass": false
+      }
+    },
+    "timings": {
+      "raw-0.5": {
+        "width": 500,
+        "height": 272,
+        "decodeMs": 25.969663000000025,
+        "drawMs": 0.29732799999999315
+      },
+      "candidate-0.5": {
+        "width": 500,
+        "height": 272,
+        "decodeMs": 28.71334999999999,
+        "drawMs": 0.4720360000000028
+      },
+      "raw-1": {
+        "width": 1000,
+        "height": 544,
+        "decodeMs": 37.15844599999997,
+        "drawMs": 4.4785759999999755
+      },
+      "candidate-1": {
+        "width": 1000,
+        "height": 544,
+        "decodeMs": 42.17593400000004,
+        "drawMs": 0.8816999999999666
+      }
+    },
+    "qualityPass": false
+  },
+  "protected": {
+    "raw": "art/stage40-vector-production/coastal-shed-raw.svg",
+    "candidate": "art/stage40-vector-production/coastal-shed-final.svg",
+    "metric": "protected alpha silhouette; no palette-island displacement claim",
+    "supersample": 8,
+    "normalPixelSamplingStep": 0.125,
+    "visualApproval": "NOT REVIEWED",
+    "regions": [
+      [
+        270,
+        290,
+        185,
+        205
+      ],
+      [
+        550,
+        250,
+        235,
+        200
+      ]
+    ],
+    "errors": {
+      "0.5": {
+        "samples": [
+          {
+            "region": 0,
+            "protectedSilhouetteMaxOffsetPx": 0.0,
+            "supersampledPixelOffset": 0.0,
+            "protectedRgbMAE255": 0.04968973249197006,
+            "protectedChangedPixelFraction": 0.0
+          },
+          {
+            "region": 1,
+            "protectedSilhouetteMaxOffsetPx": 0.0,
+            "supersampledPixelOffset": 0.0,
+            "protectedRgbMAE255": 0.05046778544783592,
+            "protectedChangedPixelFraction": 0.0
+          }
+        ],
+        "protectedSilhouetteMaxOffsetPx": 0.0,
+        "limitPx": 0.25,
+        "silhouettePass": true
+      },
+      "1": {
+        "samples": [
+          {
+            "region": 0,
+            "protectedSilhouetteMaxOffsetPx": 0.0,
+            "supersampledPixelOffset": 0.0,
+            "protectedRgbMAE255": 0.03822764381766319,
+            "protectedChangedPixelFraction": 3.048780487804878e-05
+          },
+          {
+            "region": 1,
+            "protectedSilhouetteMaxOffsetPx": 0.0,
+            "supersampledPixelOffset": 0.0,
+            "protectedRgbMAE255": 0.03964891657233238,
+            "protectedChangedPixelFraction": 1.7287234042553193e-05
+          }
+        ],
+        "protectedSilhouetteMaxOffsetPx": 0.0,
+        "limitPx": 0.5,
+        "silhouettePass": true
+      }
+    },
+    "silhouettePass": true
+  },
+  "review": "Direct native raw/final window slats, open doorway, posts, steps and roof inspected. Every window bar retained, doorway not closed, no invented fill. Color-island binary edge metric NOT passed: antialias palette specks yield21\u201328px apparent nearest edge; cannot call aggregate auto-pass. Protected supersampled silhouette0, RGB<.051, changedfraction<.000031, geometric localbudget<.063normalpx. Final parent composition/browser review remains.",
+  "rejected": [
+    "Simplify .001 visibly/raster more lossy",
+    "Simplify .0003+.1grid fits16nodes but max contour deviation2.17source, rejected protected bound",
+    "Pure .01grid and .1grid fail60000char path budget",
+    "Fine partition .01/.0052.2MB unnecessary versus .05/.05 withinprotected budget"
+  ]
+}
