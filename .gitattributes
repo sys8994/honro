@@ -5,3 +5,7 @@
 *.zip binary
 # Byte-exact art references: keep their original mixed line endings for SHA-256 validation.
 tests/fixtures/actor-*-baseline.js -text
+
+# Literal chunks must concatenate byte-for-byte on Windows and Linux.
+shared/data/act4/world.parts/*.jsonpart -text
+shared/data/act4/world.parts/manifest.json text eol=lf
