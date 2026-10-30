@@ -67,3 +67,9 @@ These notes are fixture/geometry evidence, never spatial-art acceptance.
 
 ### F10 v3 review boundary and unchanged metric results
 Root visually approved the v3 support silhouette to proceed to physics, NOT whole art/game acceptance. Frozen metric remains failed: minimum9.75–51.59% (3/6>=30%), normal63.66–88.70% (6/6), maximum83.13–95.51% (2/2 nonempty). Fixed physical-window auxiliary [82.45,86.48,83.38,72.32,63.66,88.70]% is invariant over zoom to3.33e-16. Thus projection scale is not the only issue: the current maximal low-direction-change-run definition also classifies long parts of these broad natural curves as straight. Preserve this disagreement explicitly; no criterion exemption or acceptance was granted and no ripple may be reintroduced to manipulate it.
+
+## F11 — body-scale annotation must come from actual compiled players
+- Cause: auxiliary zoom report annotated66 world as actor height, but66 is a camera calibration reference; actual compiled stage31 party bodies and `shared/map/units.js` are h92,r22.
+- Forbidden retry: presenting the camera calibration constant as a real actor size or changing player dimensions to make a contour look larger.
+- Replacement/evidence: corrected annotation to92 world /64.4 reference CSS and80px=1.2422 actual body heights. All fixed-window ratios unchanged: their calculation uses normal scale0.7, not the annotation. Single west-ledge facet study shows44×92world collision proxies at0.7 and preserves original support endpoints. Root-requested visual-first study only, not integrated or Engine tested.
+- v3 Engine outcome preserved:60/60 edges,3/4 continuous; archer stops atx6499.735 just before the6500 seam while replaying a fixture landing point with1px deadband. Other3 reach dock. This suggests a fixture-controller target issue, not a proved terrain block; geometry remains unchanged and the failed route is not relabeled pass.
