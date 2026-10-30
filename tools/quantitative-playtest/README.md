@@ -258,7 +258,8 @@ replay. Only main's automatic App creation is replaced by the documented harness
 hook; DOM/audio/HUD presentation doubles remain explicit, actual Scene retained.
 `tests/quantitative-playtest-manifest.mjs` covers missing/duplicate/unconsumed
 modules and future appended modules. Existing seven focused units pass. Native
-setup regression is pending; v4 is not yet gameplay or holdout acceptance.
+setup and full-manifest regression are verified by the follow-up below; v4 is
+not gameplay or holdout acceptance.
 
 ### P04: grounded free-drop acceptance
 Cause: the previous observer looked for moveLeft reduction or immediate airborne
@@ -282,3 +283,13 @@ frame0 setup errors and one frame1 timeout, never four clears. Final run
 passed complete-manifest and live pilot sentinels, found34 enemies/0 awake and
 consumed one actual5184000-byte readback. RSS after launch915MB/final945MB.
 This is setup regression evidence, not long-run memory or gameplay acceptance.
+
+Damage interpretation follow-up: old logs retained raw hurt before/after but did
+not retain direct/skill-rank/source/guard context or exact critical feedback.
+Do not infer per-cast totals or criticals from those old records. New logs retain
+initial hero attack/armor/ranks/equipment, passive hurt provenance and production
+`fx` damage-feedback with attackId/targetId/critical. The observer does not roll
+RNG, invoke damage, or synthesize critical classifications. The activity unit
+checks provenance snapshots and absence of inferred criticals. End-to-end hit
+logging will be checked on the next authorized calibration; this change does not
+retroactively fill missing old data.

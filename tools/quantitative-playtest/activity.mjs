@@ -9,3 +9,9 @@ export class EnemyActivity {
 }
 /** Drop is free and initially grounded: acceptance is the new production prepare state. */
 export function acceptedDrop(previous,current){return !previous&&current?.phase==='prepare'&&current.elapsed===0&&Number.isFinite(current.originY)&&Array.isArray(current.contacts)&&current.contacts.length>0;}
+
+/** Passive provenance only. Critical is recorded separately from production damage-feedback. */
+export function hitObservation(e,args){
+ const [u,,ownerId,direct=false,p,source,damageSource='normal',damageSkill,provenance]=args,origin=p||provenance,owner=e.unit(ownerId);
+ return {direct,skill:origin?.skill||damageSkill||null,skillRank:origin?.skillRank??null,shot:origin?.shot??e.b.shot,damageSource,damageRoll:origin?.damageRoll??1,source:source?{x:source.x,y:source.y}:null,target:{facing:u.facing,armor:u.armor,defending:u.defending,martialGuard:u.martialGuard?{...u.martialGuard}:null,breaks:u.breaks,existence:u.existence},ownerState:owner?{id:owner.id,x:owner.x,y:owner.y,attack:owner.attack,ranks:{...owner.ranks}}:null};
+}
