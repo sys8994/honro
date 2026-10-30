@@ -459,3 +459,21 @@ Regressions: stats/log-reader/freeze units cover mixed budgets/purposes/cohorts,
 source/controller drift, partial gzip, absent starts, duplicate/repeated seeds
 and requested-holdout technical errors. Old attempts are not promoted into new
 cohorts. Full design-target evaluation remains explicitly blocked/unimplemented.
+
+### Offline observed combat-action ledger
+`analyze-combat.mjs run.jsonl.gz report.json` reads compact events only. It groups
+an original attack by owner + globally recorded shot, not by pellet/tick or impact
+round: a persistent cast crossing rounds remains one action. It keeps per-target
+actual HP/shield loss, current maxHp, direction/guard/rank context and production
+critical feedback; nominal overkill is not actual HP loss. Normal/mid/major boss
+classification is separate where entry metadata establishes it. Fire time and
+impact rounds are retained separately. No solver, engine tick, HP mutation or
+combat forecast is involved.
+Missing explicit shot provenance, actual allegiance, changing/missing maxHp or
+unknown class remain warnings/null metrics, not inferred from initial stats or
+legacy scalar budgets. New passive logger fields supply these on future runs.
+The old v5 sanity yields2 observed shot groups and1 kill, but cannot retrospectively
+prove action-count/HP-percent targets because those fields were absent. Its
+original trace/denominator is unchanged. Unit tests cover multi-hit cross-round
+casts, exact capped HP loss, critical context and missing-data rejection. Full
+criteria/clearRate acceptance is still not implemented or claimed by this ledger.
