@@ -1,0 +1,31 @@
+{
+  "trace": {
+    "tool": "Inkscape1.4 native GUI",
+    "mode": "Colors",
+    "scans": 12,
+    "smooth": true,
+    "stack": true,
+    "removeBackground": true,
+    "speckles": 2,
+    "smoothCorners": 1,
+    "optimize": 0.2
+  },
+  "sourceSize": [
+    1024,
+    1536
+  ],
+  "rawSha256": "d458ed6971d6712ed9a01541c5b90afa0dc1ee4ad49531cd24053e43d98a957d",
+  "selection": "NativeBoolean partition of overbudget path8 into3 opaque tiles; no simplification candidate accepted",
+  "commandsRaw": 9238,
+  "runtimeNodes": 17,
+  "limits": "No renderer budget increase. Lossy simplify candidates failed protected palette-edge gate.",
+  "pixelComparison": {
+    "normalMaxRGBA255": 4,
+    "maxZoomMaxRGBA255": 2,
+    "pixelsOver16": 0,
+    "silhouetteOffset": 0
+  },
+  "review": "Normal runtime image inspected. Four broad planks, three long seams and two missing-hardware sockets remain. Standing/fallen whole-screen review belongs to integration.",
+  "numericCaveat": "Strict palette-edge gate still flags tiny antialias palette membership changes at distances4px/18.439px, despite every rendered channel differing by <=4/255. Failed comparison retained; not claimed all-gates pass.",
+  "mapping": "Exact old visible ink extent matched from Inkscape query-all; bounds/anchor/foot and dynamic foreshortening preserved. See door-config.json inkFit."
+}

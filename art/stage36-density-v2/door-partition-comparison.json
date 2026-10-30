@@ -1,0 +1,239 @@
+{
+  "raw": "art/stage36-density-v2/door-raw.svg",
+  "candidate": "art/stage36-density-v2/door-final.svg",
+  "rawStats": {
+    "sourceBytes": 383159,
+    "paths": 11,
+    "commands": 9238,
+    "segments": 8672,
+    "endpointNodesUpperBound": 9238,
+    "explicitCommandLetters": 2975,
+    "subpaths": 566,
+    "pathChars": 381750,
+    "maxPathChars": 68104
+  },
+  "candidateStats": {
+    "sourceBytes": 396303,
+    "paths": 13,
+    "commands": 9217,
+    "segments": 8651,
+    "endpointNodesUpperBound": 9217,
+    "explicitCommandLetters": 4172,
+    "subpaths": 566,
+    "pathChars": 394715,
+    "maxPathChars": 49093
+  },
+  "visualApproval": "NOT REVIEWED",
+  "config": {
+    "width": 125,
+    "scales": [
+      1,
+      2
+    ],
+    "protectedRects": [
+      [
+        21,
+        17,
+        21,
+        19
+      ],
+      [
+        21,
+        124,
+        21,
+        19
+      ],
+      [
+        36,
+        4,
+        8,
+        174
+      ],
+      [
+        58,
+        4,
+        8,
+        174
+      ],
+      [
+        81,
+        4,
+        8,
+        174
+      ]
+    ],
+    "reviewRects": [
+      [
+        20,
+        10,
+        85,
+        175
+      ]
+    ],
+    "asset": {
+      "id": "s36-density:door",
+      "name": "\ucca0\ubb3c \ube60\uc9c4 \ubb38\uc9dd \u2014 \uad6c\uc870 \uc120\uba85\ud654",
+      "semanticLayer": "INTERACT",
+      "category": "architecture",
+      "bounds": {
+        "x": -80,
+        "y": -280,
+        "w": 145,
+        "h": 280
+      },
+      "anchor": {
+        "x": 0,
+        "y": 0
+      },
+      "foot": {
+        "x": 0,
+        "y": 0
+      },
+      "transform": [
+        0.2189070707097495,
+        0,
+        0,
+        0.19751516473710923,
+        -119.979580719523,
+        -287.6684608583415
+      ],
+      "params": {
+        "sourceRole": "Independent dynamic leaf; original event assetID/pivot retained",
+        "act4DoorForeshortening": {
+          "x": 1,
+          "y": 0.25
+        },
+        "inkFit": {
+          "oldSourceInk": [
+            189.343,
+            68,
+            646.689,
+            1394.66
+          ],
+          "newSourceInk": [
+            181.959,
+            37.807,
+            663.088,
+            1419.302
+          ],
+          "targetInk": [
+            -80.14746904024769,
+            -280.20100502512565,
+            145.15465170278637,
+            280.3336683417086
+          ]
+        }
+      }
+    },
+    "sourcePalette": [
+      [
+        16,
+        15,
+        14
+      ],
+      [
+        56,
+        44,
+        36
+      ],
+      [
+        74,
+        54,
+        39
+      ],
+      [
+        104,
+        85,
+        71
+      ],
+      [
+        105,
+        77,
+        54
+      ],
+      [
+        118,
+        90,
+        70
+      ],
+      [
+        134,
+        102,
+        75
+      ],
+      [
+        152,
+        116,
+        82
+      ],
+      [
+        164,
+        124,
+        83
+      ],
+      [
+        176,
+        132,
+        87
+      ],
+      [
+        197,
+        152,
+        101
+      ]
+    ]
+  },
+  "errors": {
+    "1": {
+      "rgbMAE255": 0.005408101249486208,
+      "rgbP99_255": 0.0,
+      "alphaMAE255": 4.2553190723992884e-05,
+      "changedPixelFraction": 0.0,
+      "silhouetteMaxOffsetPx": 0.0,
+      "protectedChangedPixelFraction": 0.0,
+      "protectedRgbMAE255": 0.024441663175821304,
+      "protectedSilhouetteMaxOffsetPx": 0.0,
+      "protectedColorEdgeMaxOffsetPx": 4.0,
+      "pass": false
+    },
+    "2": {
+      "rgbMAE255": 0.002415137132629752,
+      "rgbP99_255": 0.0,
+      "alphaMAE255": 0.00018133330740965903,
+      "changedPixelFraction": 0.0,
+      "silhouetteMaxOffsetPx": 0.0,
+      "protectedChangedPixelFraction": 0.0,
+      "protectedRgbMAE255": 0.008754352107644081,
+      "protectedSilhouetteMaxOffsetPx": 0.0,
+      "protectedColorEdgeMaxOffsetPx": 18.439088914585774,
+      "pass": false
+    }
+  },
+  "timings": {
+    "raw-1": {
+      "width": 125,
+      "height": 188,
+      "decodeMs": 19.44379200000003,
+      "drawMs": 0.21764899999999443
+    },
+    "candidate-1": {
+      "width": 125,
+      "height": 188,
+      "decodeMs": 13.996899999999982,
+      "drawMs": 0.08954499999998689
+    },
+    "raw-2": {
+      "width": 250,
+      "height": 375,
+      "decodeMs": 17.331537000000026,
+      "drawMs": 0.5443219999999656
+    },
+    "candidate-2": {
+      "width": 250,
+      "height": 375,
+      "decodeMs": 12.400058999999999,
+      "drawMs": 0.18909600000000637
+    }
+  },
+  "qualityPass": false
+}

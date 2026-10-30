@@ -1,0 +1,100 @@
+{
+  "scope": "Stage36-only intentional art edit; not old-to-new fidelity preservation. New palette to union and safety partition tested separately.",
+  "source": "art/stage36-vector-production/foundation-raw.svg",
+  "sourceSha256": "241d50c2274fbddea759c9d9627f441c659b43d2c5fe63f153e13eeacc0c35a0",
+  "original": {
+    "paths": 9,
+    "pathCharacters": 432713,
+    "maxPathCharacters": 66098,
+    "colors": [
+      "fill:#333232",
+      "fill:#4f4e51",
+      "fill:#6f6d6d",
+      "fill:#7a7d81",
+      "fill:#7d8287",
+      "fill:#8c7863",
+      "fill:#97846d",
+      "fill:#9c958c",
+      "fill:#ad9271"
+    ]
+  },
+  "palette": {
+    "paths": 9,
+    "pathCharacters": 432713,
+    "maxPathCharacters": 66098,
+    "colors": [
+      "fill:#515652",
+      "fill:#626763",
+      "fill:#777d7c",
+      "fill:#8b8578",
+      "fill:#948673"
+    ]
+  },
+  "union": {
+    "paths": 7,
+    "pathCharacters": 389682,
+    "maxPathCharacters": 114510,
+    "colors": [
+      "fill:#515652",
+      "fill:#626763",
+      "fill:#777d7c",
+      "fill:#8b8578",
+      "fill:#948673"
+    ]
+  },
+  "final": {
+    "paths": 10,
+    "pathCharacters": 390928,
+    "maxPathCharacters": 66098,
+    "colors": [
+      "fill:#515652",
+      "fill:#626763",
+      "fill:#777d7c",
+      "fill:#777d7c;fill-rule:evenodd",
+      "fill:#8b8578",
+      "fill:#948673"
+    ]
+  },
+  "process": "Actual Inkscape 1.4 object-set-property:fill then path-union on contiguous same-fill paths only; partition-svg.py skia exact-curve tile backend, no simplification/flatten tolerance.",
+  "boundsAndPhysics": "Original config bounds/transform/foot/anchor retained; noncolliding REAR. New ID s36-density:foundation leaves Stage31 source untouched.",
+  "runtimeValidationErrors": 0,
+  "runtimeBytes": 428176,
+  "visualReview": "Viewed runtime asset at width1000 and 500px palette/final comparison. Major beams, open-frame transparency, individual larger stones/hearth retained; subdued wood warm / stone cool separation. Scene integration pending.",
+  "comparison": {
+    "0.5": {
+      "rgbMAE255": 0.05141659826040268,
+      "rgbP99_255": 1.0588359832763672,
+      "alphaMAE255": 0.035480767488479614,
+      "changedPixelFraction": 0.00014423076923076924,
+      "silhouetteMaxOffsetPx": 1.0,
+      "protectedChangedPixelFraction": 0.00014423076923076924,
+      "protectedRgbMAE255": 0.05141659826040268,
+      "protectedSilhouetteMaxOffsetPx": 1.0,
+      "pass": false
+    },
+    "1": {
+      "rgbMAE255": 0.022114645689725876,
+      "rgbP99_255": 0.9999999403953552,
+      "alphaMAE255": 0.006112709175795317,
+      "changedPixelFraction": 5.755395683453237e-05,
+      "silhouetteMaxOffsetPx": 1.0,
+      "protectedChangedPixelFraction": 5.755395683453237e-05,
+      "protectedRgbMAE255": 0.022114645689725876,
+      "protectedSilhouetteMaxOffsetPx": 1.0,
+      "pass": true
+    },
+    "2": {
+      "rgbMAE255": 0.010344987735152245,
+      "rgbP99_255": 0.0,
+      "alphaMAE255": 0.00011704680946422741,
+      "changedPixelFraction": 6.002400960384153e-07,
+      "silhouetteMaxOffsetPx": 0.0,
+      "protectedChangedPixelFraction": 6.002400960384153e-07,
+      "protectedRgbMAE255": 0.010344987735152245,
+      "protectedSilhouetteMaxOffsetPx": 0.0,
+      "pass": true
+    }
+  },
+  "qualityGate": "1x/2x pass. 0.5x fails 0.75px scaled silhouette threshold at 1 raster pixel; no gate changed. Root review required.",
+  "limitation": "This removes color boundaries and lowers contrast; it is not broad geometric simplification or scene-level completion."
+}

@@ -1,0 +1,104 @@
+{
+  "scope": "Stage36-only intentional art edit; not old-to-new fidelity preservation. New palette to union and safety partition tested separately.",
+  "source": "art/stage36-vector-production/frame-final.svg",
+  "sourceSha256": "3307384847a9e02570360403532265f6bdf06d9f9ababaeffa7f2ff10655cf2a",
+  "original": {
+    "paths": 9,
+    "pathCharacters": 323722,
+    "maxPathCharacters": 43564,
+    "colors": [
+      "fill:#323132",
+      "fill:#3a3d43",
+      "fill:#3d4148",
+      "fill:#443c37",
+      "fill:#4d4b4b",
+      "fill:#4e443c",
+      "fill:#685849",
+      "fill:#867460",
+      "fill:#988873"
+    ]
+  },
+  "palette": {
+    "paths": 9,
+    "pathCharacters": 323722,
+    "maxPathCharacters": 43564,
+    "colors": [
+      "fill:#53534e",
+      "fill:#555d60",
+      "fill:#666a68",
+      "fill:#6d6558",
+      "fill:#807562"
+    ]
+  },
+  "union": {
+    "paths": 8,
+    "pathCharacters": 306897,
+    "maxPathCharacters": 43564,
+    "colors": [
+      "fill:#53534e",
+      "fill:#555d60",
+      "fill:#666a68",
+      "fill:#6d6558",
+      "fill:#807562"
+    ]
+  },
+  "final": {
+    "paths": 8,
+    "pathCharacters": 306897,
+    "maxPathCharacters": 43564,
+    "colors": [
+      "fill:#53534e",
+      "fill:#555d60",
+      "fill:#666a68",
+      "fill:#6d6558",
+      "fill:#807562"
+    ]
+  },
+  "process": "Actual Inkscape1.4 palette edit on already bounded frame-final.svg, then cost-gated contiguous same-fill union path9+path8 only. Dark path4+3 and path2+1 unions rejected because intersections increase geometry. No source raw restoration. No partition needed at final geometry.",
+  "boundsAndPhysics": "Original config bounds/transform/foot/anchor retained; noncolliding REAR. New ID s36-density:frame leaves Stage31 source untouched.",
+  "runtimeValidationErrors": 0,
+  "runtimeBytes": 350917,
+  "visualReview": "Re-viewed actual runtime width1000 after final-source rebasing. Beam structure, open-frame holes, foot stones retained; no physics change. Scene review by root pending.",
+  "comparison": {
+    "0.5": {
+      "rgbMAE255": 0.11913663893938065,
+      "rgbP99_255": 4.968628406524658,
+      "alphaMAE255": 0.21024413406848907,
+      "changedPixelFraction": 0.0016619718309859154,
+      "silhouetteMaxOffsetPx": 1.0,
+      "protectedChangedPixelFraction": 0.0016619718309859154,
+      "protectedRgbMAE255": 0.11913663893938065,
+      "protectedSilhouetteMaxOffsetPx": 1.0,
+      "pass": false
+    },
+    "1": {
+      "rgbMAE255": 0.013965822756290436,
+      "rgbP99_255": 0.0,
+      "alphaMAE255": 0.024037646129727364,
+      "changedPixelFraction": 9.176470588235295e-05,
+      "silhouetteMaxOffsetPx": 1.0,
+      "protectedChangedPixelFraction": 9.176470588235295e-05,
+      "protectedRgbMAE255": 0.013965822756290436,
+      "protectedSilhouetteMaxOffsetPx": 1.0,
+      "pass": true
+    },
+    "2": {
+      "rgbMAE255": 0.0012346956646069884,
+      "rgbP99_255": 0.0,
+      "alphaMAE255": 0.002041127998381853,
+      "changedPixelFraction": 1.1750881316098707e-05,
+      "silhouetteMaxOffsetPx": 1.0,
+      "protectedChangedPixelFraction": 1.1750881316098707e-05,
+      "protectedRgbMAE255": 0.0012346956646069884,
+      "protectedSilhouetteMaxOffsetPx": 1.0,
+      "pass": true
+    }
+  },
+  "qualityGate": "1x/2x pass. 0.5x fails 0.75px scaled silhouette threshold at 1 raster pixel; no gate changed. Root review required.",
+  "limitation": "This removes color boundaries and lowers contrast; it is not broad geometric simplification or scene-level completion.",
+  "originalRuntimeBytes": 376530,
+  "rejectedVariants": [
+    "Raw-based 704117B cost regression; see frame-quiet-rejected-raw-cost-report.json",
+    "Final-based all-pair union446211B cost regression; intersection geometry inflation."
+  ]
+}

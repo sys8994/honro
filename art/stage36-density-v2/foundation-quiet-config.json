@@ -1,0 +1,33 @@
+{
+  "id": "s36-density:foundation",
+  "name": "빈 솥자리와 집터 (저밀도)",
+  "semanticLayer": "REAR",
+  "category": "architecture",
+  "bounds": {
+    "x": -600,
+    "y": -145,
+    "w": 1200,
+    "h": 210
+  },
+  "anchor": {
+    "x": 0,
+    "y": 0
+  },
+  "foot": {
+    "x": 0,
+    "y": 0
+  },
+  "transform": [
+    0.6179196704428425,
+    0,
+    0,
+    0.6179196704428425,
+    -600,
+    -315.1390319258497
+  ],
+  "params": {
+    "sourceRole": "Independent empty hearth and stone foundation; noncolliding",
+    "densityRevision": 2,
+    "artEdit": "Intentional semantic palette regrouping; actual Inkscape same-fill contiguous unions; source geometry/physics unchanged."
+  }
+}

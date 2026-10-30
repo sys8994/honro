@@ -1,0 +1,26 @@
+{
+  "source": "art/stage36-density-v2/foundation-quiet-unioned.svg",
+  "sourceSha256": "6d0db1ad464b105152235d0a8d5cebce69c1e43b4c339bf8e29fcc56f7ee7c4a",
+  "visualApproval": "NOT REVIEWED",
+  "flattenToleranceSourceUnits": 0,
+  "backend": "skia",
+  "polygonToleranceSourceUnits": 0,
+  "coordinateGridSourceUnits": 0,
+  "declaredLocalApproximationBudget": 0.0,
+  "partitions": [
+    {
+      "id": "path6",
+      "tiles": 4,
+      "maxPathChars": 31389,
+      "bounds": [
+        60.6447868347168,
+        313.4583740234375,
+        1879.830810546875,
+        510.2781677246094
+      ]
+    }
+  ],
+  "output": "art/stage36-density-v2/foundation-quiet-final.svg",
+  "outputBytes": 392316,
+  "rawUnchanged": true
+}

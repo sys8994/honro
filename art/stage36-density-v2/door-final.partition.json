@@ -1,0 +1,26 @@
+{
+  "source": "art/stage36-density-v2/door-raw.svg",
+  "sourceSha256": "d458ed6971d6712ed9a01541c5b90afa0dc1ee4ad49531cd24053e43d98a957d",
+  "visualApproval": "NOT REVIEWED",
+  "flattenToleranceSourceUnits": 0,
+  "backend": "skia",
+  "polygonToleranceSourceUnits": 0,
+  "coordinateGridSourceUnits": 0,
+  "declaredLocalApproximationBudget": 0.0,
+  "partitions": [
+    {
+      "id": "path8",
+      "tiles": 3,
+      "maxPathChars": 34168,
+      "bounds": [
+        182.9493408203125,
+        40.015193939208984,
+        843.6322631835938,
+        1456.0001220703125
+      ]
+    }
+  ],
+  "output": "art/stage36-density-v2/door-final.svg",
+  "outputBytes": 396303,
+  "rawUnchanged": true
+}

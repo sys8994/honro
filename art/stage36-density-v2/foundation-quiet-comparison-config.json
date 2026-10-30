@@ -1,0 +1,24 @@
+{
+  "width": 1000,
+  "scales": [
+    0.5,
+    1,
+    2
+  ],
+  "protectionMode": "contact",
+  "protectedRects": [
+    [
+      0,
+      0,
+      1000,
+      1000
+    ]
+  ],
+  "limits": {
+    "rgbMAE255": 1,
+    "silhouettePx": 1.5,
+    "protectedRgbMAE255": 1,
+    "protectedPx": 1.5,
+    "protectedChangedPixelFraction": 0.01
+  }
+}

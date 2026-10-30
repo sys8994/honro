@@ -1,0 +1,55 @@
+{
+  "id": "s36-density:door",
+  "name": "철물 빠진 문짝 — 구조 선명화",
+  "semanticLayer": "INTERACT",
+  "category": "architecture",
+  "bounds": {
+    "x": -80,
+    "y": -280,
+    "w": 145,
+    "h": 280
+  },
+  "anchor": {
+    "x": 0,
+    "y": 0
+  },
+  "foot": {
+    "x": 0,
+    "y": 0
+  },
+  "transform": [
+    0.2189070707097495,
+    0,
+    0,
+    0.19751516473710923,
+    -119.979580719523,
+    -287.6684608583415
+  ],
+  "params": {
+    "sourceRole": "Independent dynamic leaf; original event assetID/pivot retained",
+    "act4DoorForeshortening": {
+      "version": 1,
+      "fallenScaleY": 0.25
+    },
+    "inkFit": {
+      "oldSourceInk": [
+        189.343,
+        68,
+        646.689,
+        1394.66
+      ],
+      "newSourceInk": [
+        181.959,
+        37.807,
+        663.088,
+        1419.302
+      ],
+      "targetInk": [
+        -80.14746904024769,
+        -280.20100502512565,
+        145.15465170278637,
+        280.3336683417086
+      ]
+    }
+  }
+}
