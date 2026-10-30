@@ -22,7 +22,7 @@ const elements=art.placements.filter(e=>!boatIds.has(e.id)).map(e=>{
  assert(layers[e.layer],'Known art layer '+e.layer);
  const p={...structuredClone(e),nativeArtLayer:e.layer,layer:layers[e.layer],depthLayer:'L1',snap:false};
  if(e.layer==='body'){
-  assert(e.assetId.startsWith('stage31:native:'),'Explicit native terrain binding');const ids=e.nativeTerrainIds||(e.nativeTerrainId?[e.nativeTerrainId]:['pilot31-'+e.assetId.slice('stage31:native:'.length)]);assert(ids.length&&new Set(ids).size===ids.length);for(const id of ids)assert(stage.terrains.some(t=>t.id===id));p.nativeTerrainIds=[...ids];delete p.nativeTerrainId;
+  assert(e.nativeTerrainIds||e.nativeTerrainId,'Explicit native terrain IDs required; asset names are not geometry');const ids=e.nativeTerrainIds||[e.nativeTerrainId];assert(ids.length&&new Set(ids).size===ids.length);for(const id of ids)assert(stage.terrains.some(t=>t.id===id));p.nativeTerrainIds=[...ids];delete p.nativeTerrainId;
  }
  return p;
 });
