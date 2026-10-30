@@ -1,0 +1,25 @@
+{
+  "stage": 32,
+  "assetId": "s32-density:stone-cover-natural",
+  "instanceId": "a4-32-prop-4",
+  "foot": [
+    2390,
+    1832
+  ],
+  "support": {
+    "terrain": "a4-32-back-alley",
+    "segment": [
+      [
+        2300,
+        1760
+      ],
+      [
+        2600,
+        2000
+      ]
+    ],
+    "atFoot": 1832
+  },
+  "visualProblem": "Eight-point original collider masks dense old-wall source; horizontally flat art base intersects a slope only at center, silhouette forms two simple roof-like peaks; perceived as distantfloatingrock despite L1 gameplaycover.",
+  "collisionChanged": false
+}

@@ -1,0 +1,80 @@
+{
+  "stageId": "stage-32",
+  "replacements": {
+    "a4-coast:pier-32-1520": "a4-coast:pier-32-1520-blue-dawn-v3",
+    "a4-coast:pier-32-2370": "a4-coast:pier-32-2370-blue-dawn-v3",
+    "density-bg:coastal-house-32": "density-bg:coastal-house-32-blue-dawn-v3",
+    "s32-density:body-depthfade-domain-left-part-0": "s32-density:body-depthfade-domain-left-part-0-blue-dawn-v3",
+    "s32-density:body-depthfade-domain-left-part-1": "s32-density:body-depthfade-domain-left-part-1-blue-dawn-v3",
+    "s32-density:body-depthfade-domain-right-part-0": "s32-density:body-depthfade-domain-right-part-0-blue-dawn-v3",
+    "s32-density:body-depthfade-domain-right-part-1": "s32-density:body-depthfade-domain-right-part-1-blue-dawn-v3",
+    "density-play:wood-platform-route": "density-play:wood-platform-route-blue-dawn-v3",
+    "s32-density:body-depthfade": "s32-density:body-depthfade-blue-dawn-v3",
+    "s32-density:soil-contact": "s32-density:soil-contact-blue-dawn-v3"
+  },
+  "design": {
+    "act4": {
+      "revision": 2,
+      "chapter": 32,
+      "combatBudgetStage": 32,
+      "release": true,
+      "exit": {
+        "x": 6200,
+        "y": 1900
+      },
+      "waterPolicies": [],
+      "safeShelter": 7,
+      "rescueCount": 0,
+      "requiredHeroes": [
+        "archer"
+      ],
+      "shelter": {
+        "x": 4784,
+        "y": 2010,
+        "count": 7,
+        "manifest": [
+          "shelter-person-0",
+          "shelter-person-1",
+          "shelter-person-2",
+          "shelter-person-3",
+          "shelter-person-4",
+          "shelter-person-5",
+          "shelter-person-6"
+        ]
+      },
+      "palette": {
+        "top": "#607887",
+        "light": "#8a9ca7",
+        "body": "#334856",
+        "seam": "#263c4e",
+        "deep": "#192e40"
+      }
+    },
+    "vectorGround": {
+      "version": 1,
+      "baseColor": "#233443",
+      "visualDepth": "gameplay"
+    },
+    "vectorProduction": {
+      "version": 1,
+      "status": "candidate-not-approved",
+      "source": "tools/stage32-production/README.md",
+      "preserve": "Official terrain/units/events/mission/IDs unchanged"
+    }
+  },
+  "environmentOverrides": {
+    "skyTop": "#344c62",
+    "skyBottom": "#6c879d",
+    "ambientTint": "#6a859a",
+    "hazeColor": "#4c687e",
+    "farFogColor": "#5a7489",
+    "nearFogColor": "#49687b",
+    "shadowTint": "#263e53",
+    "keyLightColor": "#98acba",
+    "lightStrength": 0.04,
+    "mistStrength": 0.25,
+    "waterBaseColor": "#294a5d",
+    "waterHighlightColor": "#6d8ba0"
+  },
+  "scope": "Palette-only changes to selected non-character artwork; geometry and collision unchanged relative compact-cover candidate."
+}

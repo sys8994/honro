@@ -1,0 +1,34 @@
+{
+  "replacements": {
+    "s32v:abandoned-skiff": "s32v:abandoned-skiff-s32-blue-dawn-v3",
+    "s32v:rubble-foundation": "s32v:rubble-foundation-s32-blue-dawn-v3",
+    "a4-coast:drying-frame": "a4-coast:drying-frame-s32-blue-dawn-v3"
+  },
+  "placements": [
+    {
+      "id": "a4-coast-32-art-7",
+      "beforeY": 1909,
+      "afterY": 1922.30332,
+      "reason": "noncolliding keel below maximum physical ground across hull footprint; upward bows remain exposed"
+    },
+    {
+      "id": "a4-coast-32-art-8",
+      "beforeY": 2010,
+      "afterY": 2019.39449,
+      "reason": "noncolliding keel below maximum physical ground across hull footprint; upward bows remain exposed"
+    },
+    {
+      "id": "a4-coast-32-art-9",
+      "beforeY": 2010,
+      "afterY": 2017.54198,
+      "reason": "noncolliding keel below maximum physical ground across hull footprint; upward bows remain exposed"
+    },
+    {
+      "id": "a4-coast-32-art-10",
+      "beforeY": 2010,
+      "afterY": 2038.71601,
+      "reason": "noncolliding keel below maximum physical ground across hull footprint; upward bows remain exposed"
+    }
+  ],
+  "scope": "Noncolliding scenic palette and skiff contact only; door interaction art untouched"
+}

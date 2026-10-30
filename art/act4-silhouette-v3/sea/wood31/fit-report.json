@@ -1,0 +1,39 @@
+[
+  {
+    "terrainId": "s31-west-boardwalk",
+    "assetId": "s31-silhouette:wood-route-v4-0",
+    "sourceKnees": [
+      90,
+      460
+    ],
+    "verticalScale": 0.4229109117964018,
+    "minVisualTopDeviationWorld": -0.7695772620911612,
+    "maxVisualTopDeviationWorld": -0.04852678598967941,
+    "collisionUnchanged": true
+  },
+  {
+    "terrainId": "s31-middle-remnant",
+    "assetId": "s31-silhouette:wood-route-v4-1",
+    "sourceKnees": [
+      648,
+      1264
+    ],
+    "verticalScale": 0.36505452373380876,
+    "minVisualTopDeviationWorld": -0.5165110365883265,
+    "maxVisualTopDeviationWorld": -0.024957741918797183,
+    "collisionUnchanged": true
+  },
+  {
+    "terrainId": "s31-east-boardwalk",
+    "assetId": "s31-silhouette:wood-route-v4-2",
+    "sourceKnees": [
+      1316,
+      1556,
+      2081
+    ],
+    "verticalScale": 0.40900591297849676,
+    "minVisualTopDeviationWorld": -0.6071812366742506,
+    "maxVisualTopDeviationWorld": 0.006638997555455717,
+    "collisionUnchanged": true
+  }
+]

@@ -1,0 +1,152 @@
+[
+  {
+    "stageId": "stage-35",
+    "instanceId": "a4-35-old-wall-13",
+    "oldAssetId": "s35-density:stone-cover-natural",
+    "assetFile": "/workspace/scratch/fff510b4df37/honro-stage31-direct/art/act4-silhouette-v3/sea/a4-35-old-wall-13-asset.json",
+    "newAssetId": "s35-silhouette:a4-35-old-wall-13-cover-v3",
+    "instanceUnchanged": true,
+    "sourceOuter": "path6",
+    "collisionVertices": 102,
+    "materialChange": "implicitwood\u2192explicitrock;indestructiblepreserved",
+    "supportSamples": [
+      {
+        "x": 956.0,
+        "groundY": 1800.0
+      },
+      {
+        "x": 1100,
+        "groundY": 1800.0
+      },
+      {
+        "x": 1244.0,
+        "groundY": 1800.0
+      }
+    ]
+  },
+  {
+    "stageId": "stage-35",
+    "instanceId": "a4-art-35-extra-1",
+    "oldAssetId": "s35-density:stone-cover-natural",
+    "assetFile": "/workspace/scratch/fff510b4df37/honro-stage31-direct/art/act4-silhouette-v3/sea/a4-art-35-extra-1-asset.json",
+    "newAssetId": "s35-silhouette:a4-art-35-extra-1-cover-v3",
+    "instanceUnchanged": true,
+    "sourceOuter": "path6",
+    "collisionVertices": 102,
+    "materialChange": "implicitwood\u2192explicitrock;indestructiblepreserved",
+    "supportSamples": [
+      {
+        "x": 4411.0,
+        "groundY": 1955.2441860465117
+      },
+      {
+        "x": 4600,
+        "groundY": 1957.4418604651162
+      },
+      {
+        "x": 4789.0,
+        "groundY": 1959.639534883721
+      }
+    ]
+  },
+  {
+    "stageId": "stage-37",
+    "instanceId": "a4-37-prop-0",
+    "oldAssetId": "s32-density:stone-cover-natural",
+    "assetFile": "/workspace/scratch/fff510b4df37/honro-stage31-direct/art/act4-silhouette-v3/sea/a4-37-prop-0-asset.json",
+    "newAssetId": "s37-silhouette:a4-37-prop-0-cover-v3",
+    "instanceUnchanged": true,
+    "sourceOuter": "path6",
+    "collisionVertices": 102,
+    "materialChange": "implicitwood\u2192explicitrock;indestructiblepreserved",
+    "supportSamples": [
+      {
+        "x": 1148.0,
+        "groundY": 3000.0
+      },
+      {
+        "x": 1400,
+        "groundY": 3000.0
+      },
+      {
+        "x": 1652.0,
+        "groundY": 3000.0
+      }
+    ]
+  },
+  {
+    "stageId": "stage-37",
+    "instanceId": "a4-37-prop-1",
+    "oldAssetId": "s32-density:stone-cover-natural",
+    "assetFile": "/workspace/scratch/fff510b4df37/honro-stage31-direct/art/act4-silhouette-v3/sea/a4-37-prop-1-asset.json",
+    "newAssetId": "s37-silhouette:a4-37-prop-1-cover-v3",
+    "instanceUnchanged": true,
+    "sourceOuter": "path6",
+    "collisionVertices": 102,
+    "materialChange": "implicitwood\u2192explicitrock;indestructiblepreserved",
+    "supportSamples": [
+      {
+        "x": 2534.0,
+        "groundY": 2793.3142857142857
+      },
+      {
+        "x": 2750,
+        "groundY": 2787.1428571428573
+      },
+      {
+        "x": 2966.0,
+        "groundY": 2780.9714285714285
+      }
+    ]
+  },
+  {
+    "stageId": "stage-37",
+    "instanceId": "a4-37-prop-2",
+    "oldAssetId": "s32-density:stone-cover-natural",
+    "assetFile": "/workspace/scratch/fff510b4df37/honro-stage31-direct/art/act4-silhouette-v3/sea/a4-37-prop-2-asset.json",
+    "newAssetId": "s37-silhouette:a4-37-prop-2-cover-v3",
+    "instanceUnchanged": true,
+    "sourceOuter": "path6",
+    "collisionVertices": 102,
+    "materialChange": "implicitwood\u2192explicitrock;indestructiblepreserved",
+    "supportSamples": [
+      {
+        "x": 3530.0,
+        "groundY": 2492.5714285714284
+      },
+      {
+        "x": 3800,
+        "groundY": 2477.1428571428573
+      },
+      {
+        "x": 4070.0,
+        "groundY": 2461.714285714286
+      }
+    ]
+  },
+  {
+    "stageId": "stage-37",
+    "instanceId": "a4-37-prop-3",
+    "oldAssetId": "s32-density:stone-cover-natural",
+    "assetFile": "/workspace/scratch/fff510b4df37/honro-stage31-direct/art/act4-silhouette-v3/sea/a4-37-prop-3-asset.json",
+    "newAssetId": "s37-silhouette:a4-37-prop-3-cover-v3",
+    "instanceUnchanged": true,
+    "sourceOuter": "path6",
+    "collisionVertices": 104,
+    "materialChange": "implicitwood\u2192explicitrock;indestructiblepreserved",
+    "supportSamples": [
+      {
+        "x": 5266.0,
+        "groundY": 2279.76
+      },
+      {
+        "x": 5500,
+        "groundY": 2364.0
+      },
+      {
+        "x": 5734.0,
+        "groundY": 2408.9333333333334
+      }
+    ]
+  }
+]
