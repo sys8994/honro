@@ -1,0 +1,79 @@
+{
+  "file": "_local/reports/sea-silhouette-v3/stage37-edge-registered-0c1dbb45.json",
+  "sha256": "0c1dbb4569d9464eeecd3bdc9898f9dd928901fa4c68ae1c3568c4c5e27f16d7",
+  "input": "stage37-review-09915a90.json",
+  "stage": 37,
+  "scope": "off-play technical soil continuation only; all physical terrain, authored play vectors and gameplay fields unchanged; visual verification pending",
+  "edges": [
+    {
+      "side": "left",
+      "asset": "s37-silhouette:far-left-registered-v1",
+      "nativeSourceAsset": "s37-silhouette:play-left-bank-v5-0",
+      "edgeWorldX": -1200,
+      "sourceSampleX": 2.01,
+      "layers": [
+        {
+          "fill": "#667984",
+          "sourceY": 458.22814795802407,
+          "depthWorld": 0
+        },
+        {
+          "fill": "#536874",
+          "sourceY": 459.57673243666125,
+          "depthWorld": 2.9802971903584057
+        },
+        {
+          "fill": "#435864",
+          "sourceY": 460.2536868980047,
+          "depthWorld": 4.476329149128412
+        },
+        {
+          "fill": "#344754",
+          "sourceY": 491.39186335884415,
+          "depthWorld": 73.28997878634273
+        },
+        {
+          "fill": "#233443",
+          "sourceY": 532.3159077398782,
+          "depthWorld": 163.72985587150083
+        }
+      ],
+      "outerPhysicalContourUnchanged": true
+    },
+    {
+      "side": "right",
+      "asset": "s37-silhouette:far-right-registered-v1",
+      "nativeSourceAsset": "s37-silhouette:play-right-bank-v5-0",
+      "edgeWorldX": 9000,
+      "sourceSampleX": 2169.99,
+      "layers": [
+        {
+          "fill": "#667984",
+          "sourceY": 140.77381090909086,
+          "depthWorld": 0
+        },
+        {
+          "fill": "#536874",
+          "sourceY": 142.13532648648646,
+          "depthWorld": 3.3849834797128366
+        },
+        {
+          "fill": "#435864",
+          "sourceY": 142.45085363064607,
+          "depthWorld": 4.169443230385882
+        },
+        {
+          "fill": "#344754",
+          "sourceY": 208.01048695652173,
+          "depthWorld": 167.16300674775633
+        },
+        {
+          "fill": "#233443",
+          "sourceY": 266.5036212210211,
+          "depthWorld": 312.58792618988184
+        }
+      ],
+      "outerPhysicalContourUnchanged": true
+    }
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "tool": "built-in imagegen",
+  "source": "/workspace/scratch/fff510b4df37/generated_images/exec-fda50851-abb0-4038-aaf1-7e331155a2ca.png",
+  "style": "bank31/play-left/concept.png",
+  "skeleton": "skeleton.png",
+  "scope": "Gameplay-resolution generated concept -> native trace -> restrained interior cleanup -> route fitting; actual play QA is separate",
+  "nativeTrace": {
+    "application": "Inkscape",
+    "method": "native GUI multicolor Colors8",
+    "smooth": true,
+    "stack": true,
+    "removeBackground": true,
+    "speckles": 2,
+    "corners": 1,
+    "optimize": 0.2,
+    "file": "bank37-play-left-source.svg",
+    "sha256": "0c667d1eb10e61662cee13a7cb596a24935b93303200b2f1000d7285148b5600",
+    "worker": "cave delegated native GUI lease"
+  }
+}
