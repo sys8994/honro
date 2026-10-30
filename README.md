@@ -50,6 +50,8 @@ Pages는 파일명의 대소문자를 구분합니다. [GitHub 공식 안내](ht
 
 ## 개발과 검증
 
+4막 원본은 [손실 없는 분할 저장 규칙](game/docs/ACT4_SOURCE_PARTS.md)을 따릅니다. `npm ci`가 작업용 `world.json`을 복원합니다. 설치 스크립트를 끈 경우 `npm run act4:source:materialize`를 먼저 실행하고, 의도한 지형 수정 후에는 `npm run act4:source:pack`으로 분할 원본을 갱신합니다.
+
 Node.js 20 이상과 Python 3.10 이상을 사용합니다. Native Canvas 캡처/오프라인 미술 검사는 루트에 고정된 `@napi-rs/canvas` 개발 의존성을 사용합니다. 게임 HTML을 여는 데에는 Node 의존성이 필요하지 않습니다. Windows PowerShell에서는 실행 정책 충돌을 피하려면 `npm.cmd`를 사용합니다.
 
 ```powershell
