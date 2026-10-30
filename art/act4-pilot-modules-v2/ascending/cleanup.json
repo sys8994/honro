@@ -1,0 +1,44 @@
+{
+  "paletteRevision": {
+    "#365480": "#35537e",
+    "#34527b": "#35537e",
+    "#12213a": "#112038",
+    "#101d35": "#112038"
+  },
+  "maxNativePaletteChannelChange": 3,
+  "minorContourAreaThresholdSourcePx2": 5,
+  "exteriorUnderfill": "unchanged largest native union exterior; no expansion",
+  "layers": [
+    {
+      "fill": "#96a86e",
+      "removedMinorContours": 7,
+      "removedAbsoluteArea": 16.82458156017465,
+      "retainedContours": 2
+    },
+    {
+      "fill": "#738873",
+      "removedMinorContours": 44,
+      "removedAbsoluteArea": 94.40882928004706,
+      "retainedContours": 2
+    },
+    {
+      "fill": "#35537e",
+      "removedMinorContours": 157,
+      "removedAbsoluteArea": 66.49852079302997,
+      "retainedContours": 8
+    },
+    {
+      "fill": "#142a4b",
+      "removedMinorContours": 26,
+      "removedAbsoluteArea": 60.50872843236455,
+      "retainedContours": 7
+    },
+    {
+      "fill": "#112038",
+      "removedMinorContours": 37,
+      "removedAbsoluteArea": 17.58533177334586,
+      "retainedContours": 6
+    }
+  ],
+  "status": "CANDIDATE ROOT VISUAL REVIEW REQUIRED"
+}

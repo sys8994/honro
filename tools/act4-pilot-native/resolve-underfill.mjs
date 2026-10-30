@@ -1,0 +1,3 @@
+// Resolve positively wound native contour union, eliminating only internal seam holes.
+import {readFileSync,writeFileSync} from 'node:fs';import {Path2D,FillType} from '@napi-rs/canvas';
+const[file]=process.argv.slice(2);let text=readFileSync(file,'utf8');text=text.replace(/<path\b[^>]*id="native-exterior-underfill"[^>]*>/g,tag=>tag.replace(/\bd="([^"]*)"/,(_,d)=>{const p=new Path2D(d);p.setFillType(FillType.Winding);const q=p.simplify();const s=q.toSVGString().replace(/[-+]?(?:\d*\.\d+|\d+\.?\d*)(?:[eE][-+]?\d+)?/g,n=>String(Math.round(+n*100)/100));console.log(file,d.length,'->',s.length);return `d="${s}"`;}));writeFileSync(file,text);

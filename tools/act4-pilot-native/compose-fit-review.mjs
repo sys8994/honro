@@ -1,0 +1,10 @@
+// Static actual vector renderer review only. Not game-play or terrain acceptance.
+import {readFileSync,writeFileSync} from 'node:fs';import vm from 'node:vm';import {createCanvas,Path2D} from '@napi-rs/canvas';
+const dir=process.argv[2]||'_local/reports/native-fit-stage31-v2',g=vm.createContext({Path2D});vm.runInContext(readFileSync('shared/map/vector-art.js','utf8'),g);const bp=JSON.parse(readFileSync(dir+'/target-blueprint.json')),bg=JSON.parse(readFileSync('art/act4-pilot-stage31-v1/background-asset.json')),ids=['west-step','broken-crossing','middle-west','ridge-court'],assets=ids.map(id=>JSON.parse(readFileSync(dir+'/'+id+'.json')));
+for(const a of[bg,...assets]){const errors=Array.from(g.HonroVectorArt.validate(a.vector));if(errors.length)throw Error(JSON.stringify(errors));}
+for(const v of[{name:'full',w:1400,h:940,x:3500,y:2350,scale:.2},{name:'normal-west',w:1400,h:900,x:1800,y:3350,scale:.7},{name:'normal-ridge',w:1400,h:900,x:4000,y:2400,scale:.7}]){
+ const can=createCanvas(v.w,v.h),c=can.getContext('2d');c.translate(v.w/2-v.x*v.scale,v.h/2-v.y*v.scale);c.scale(v.scale,v.scale);for(const a of[bg,...assets])g.HonroVectorArt.draw(c,a,{x:0,y:0});
+ for(const s of bp.surfaces){c.beginPath();for(const [i,p]of s.top.entries())i?c.lineTo(...p):c.moveTo(...p);c.strokeStyle=ids.includes(s.id)?'#ffe7a0':'#a5c6cf80';c.lineWidth=(ids.includes(s.id)?1:.6)/v.scale;c.setLineDash(ids.includes(s.id)?[]:[5/v.scale,5/v.scale]);c.stroke();}c.setLineDash([]);
+ c.resetTransform();c.fillStyle='#102130df';c.fillRect(0,0,v.w,48);c.fillStyle='#ffffff';c.font='16px sans-serif';c.fillText('UNAPPROVED TARGET DRAFT | 4 native module fit samples + background | physics / straight gate NOT certified',12,21);c.font='13px sans-serif';c.fillText('Other surfaces are guide lines only. No source boat, gameplay characters or final art acceptance. Scale '+v.scale+' CSS/world.',12,40);writeFileSync(dir+'/'+v.name+'.png',can.toBuffer('image/png'));
+}
+console.log('Static actual-renderer composition written to '+dir);

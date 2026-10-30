@@ -1,0 +1,33 @@
+{
+  "id": "act4:module-v2:plateau",
+  "name": "plateau",
+  "semanticLayer": "REAR",
+  "category": "rock",
+  "bounds": {
+    "x": 819.1235376512215,
+    "y": 111.11209621221384,
+    "w": 693.9873204500817,
+    "h": 344.90825982613416
+  },
+  "anchor": {
+    "x": 0,
+    "y": 0
+  },
+  "foot": {
+    "x": 819.1235376512215,
+    "y": 175
+  },
+  "scaleRange": [
+    1,
+    1
+  ],
+  "backgroundRange": [
+    1,
+    1
+  ],
+  "params": {
+    "candidateOnly": true,
+    "artRevision": 2,
+    "sourceTopApproval": "PENDING ROOT REVIEW"
+  }
+}

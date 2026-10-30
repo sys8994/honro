@@ -1,0 +1,33 @@
+{
+  "id": "act4:module-v2:overhang",
+  "name": "overhang",
+  "semanticLayer": "REAR",
+  "category": "rock",
+  "bounds": {
+    "x": 939.02794901419,
+    "y": 561.2855034146049,
+    "w": 557.97205098581,
+    "h": 378.7112797214263
+  },
+  "anchor": {
+    "x": 0,
+    "y": 0
+  },
+  "foot": {
+    "x": 939.02794901419,
+    "y": 593
+  },
+  "scaleRange": [
+    1,
+    1
+  ],
+  "backgroundRange": [
+    1,
+    1
+  ],
+  "params": {
+    "candidateOnly": true,
+    "artRevision": 2,
+    "sourceTopApproval": "PENDING ROOT REVIEW"
+  }
+}

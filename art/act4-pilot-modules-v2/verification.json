@@ -1,0 +1,1105 @@
+{
+  "status": "CANDIDATE; root fullmap/camera acceptance pending",
+  "sourceNativeSHA256": "af57e99bb74743d7faefb16961c10011636b080243e5cbf14092ae36ad6159da",
+  "qaCssWidth": 1000,
+  "alphaMetricCaveat": "Raw unstacked microchannels connect interior AA seams to the outside. Largest alpha component boundary distances mix repaired seams with exterior, so large values are NOT a passed external-silhouette metric. Root visual/camera review and exact native-outline provenance remain mandatory.",
+  "intentionalArtChanges": [
+    "near-duplicate palette pairs merged (max channel delta3)",
+    "sub5sourcepx2 minor contours removed",
+    "native main exterior opaque underfill, no expanded outside backing"
+  ],
+  "assets": {
+    "ascending": {
+      "runtimeBytes": 56795,
+      "nodes": 8,
+      "maxDepth": 2,
+      "maxPathChars": 23443,
+      "expandedSegments": 1512,
+      "errors": {
+        "1": {
+          "rasterAlphaBoundaryOffsetCssPxIncludingSeamTopologyChanges": 5.0990195135927845,
+          "rgbMAE255IncludingIntentionalPaletteAndSeamRepair": 1.7574311605049142,
+          "rawAlphaHolePixels": 2711,
+          "runtimeAlphaHolePixels": 187
+        },
+        "2": {
+          "rasterAlphaBoundaryOffsetCssPxIncludingSeamTopologyChanges": 31.531730050855124,
+          "rgbMAE255IncludingIntentionalPaletteAndSeamRepair": 1.5343624413760415,
+          "rawAlphaHolePixels": 10737,
+          "runtimeAlphaHolePixels": 1010
+        }
+      },
+      "timings": {
+        "raw-1": {
+          "width": 1000,
+          "height": 524,
+          "decodeMs": 7.546051000000034,
+          "drawMs": 1.2230500000000006
+        },
+        "runtime-1": {
+          "width": 1000,
+          "height": 524,
+          "firstDrawMs": 1.858596000000034,
+          "warmDrawMs": 0.2162349999999833,
+          "validationErrors": 0
+        },
+        "raw-2": {
+          "width": 2000,
+          "height": 1048,
+          "decodeMs": 11.259367999999995,
+          "drawMs": 2.694554000000039
+        },
+        "runtime-2": {
+          "width": 2000,
+          "height": 1048,
+          "firstDrawMs": 1.8455769999999916,
+          "warmDrawMs": 0.32506899999998495,
+          "validationErrors": 0
+        }
+      },
+      "contact": {
+        "status": "ROOT APPROVED CONVENTION; geometry-refined candidate, final placement not approved",
+        "nativeContactPaint": "path8 moss cap; upper envelope of largest cap contour",
+        "sourceTop": [
+          [
+            45.116001,
+            366.86078
+          ],
+          [
+            45.1228513977,
+            366.248995435
+          ],
+          [
+            45.237732916,
+            365.644133164
+          ],
+          [
+            45.4710217302,
+            365.039083452
+          ],
+          [
+            46.3343259475,
+            363.799982759
+          ],
+          [
+            46.9850937012,
+            363.151712305
+          ],
+          [
+            49.9383736458,
+            361.006703677
+          ],
+          [
+            54.6110182969,
+            358.412094688
+          ],
+          [
+            76.850387375,
+            348.083085937
+          ],
+          [
+            107.39066,
+            334.5939
+          ],
+          [
+            118.24363375,
+            331.3881
+          ],
+          [
+            156.885484453,
+            321.102541699
+          ],
+          [
+            169.532053125,
+            317.154870469
+          ],
+          [
+            174.98282,
+            315.01755
+          ],
+          [
+            204.262441582,
+            301.653793027
+          ],
+          [
+            219.32203875,
+            295.15989875
+          ],
+          [
+            234.019342324,
+            289.623285254
+          ],
+          [
+            275.31687627,
+            275.119314785
+          ],
+          [
+            290.501165137,
+            269.579870059
+          ],
+          [
+            310.0,
+            261.98366
+          ],
+          [
+            325.535826563,
+            255.56711875
+          ],
+          [
+            337.54976,
+            250.103985
+          ],
+          [
+            342.821020898,
+            247.445435781
+          ],
+          [
+            353.062139258,
+            241.705352344
+          ],
+          [
+            369.646307031,
+            231.804478125
+          ],
+          [
+            381.02433875,
+            226.13813
+          ],
+          [
+            396.390201094,
+            219.696656875
+          ],
+          [
+            444.009881055,
+            201.165671777
+          ],
+          [
+            461.354052812,
+            193.436565469
+          ],
+          [
+            479.195703125,
+            184.298065
+          ],
+          [
+            493.315234375,
+            177.64170125
+          ],
+          [
+            524.277179492,
+            165.454688887
+          ],
+          [
+            548.056669063,
+            155.489637344
+          ],
+          [
+            555.527072437,
+            152.059496941
+          ],
+          [
+            574.7798025,
+            141.71141125
+          ],
+          [
+            605.78084041,
+            126.08191748
+          ],
+          [
+            615.314585608,
+            121.653932839
+          ],
+          [
+            621.213484636,
+            119.257249768
+          ],
+          [
+            627.484822122,
+            117.044415193
+          ],
+          [
+            638.973869219,
+            113.581635156
+          ],
+          [
+            690.494364023,
+            99.5267753535
+          ],
+          [
+            697.16301,
+            98.175146125
+          ],
+          [
+            702.094132188,
+            97.7897694844
+          ],
+          [
+            710.925160122,
+            97.7029673694
+          ],
+          [
+            721.969990273,
+            98.4938908496
+          ],
+          [
+            727.382058052,
+            99.4469469065
+          ],
+          [
+            731.562120312,
+            100.697093047
+          ],
+          [
+            734.247636597,
+            102.193776767
+          ],
+          [
+            734.76531,
+            102.73872
+          ],
+          [
+            735.260308594,
+            103.685807031
+          ]
+        ],
+        "sourceBounds": [
+          45.10636901855469,
+          97.6811752319336,
+          735.8779907226562,
+          459.5498352050781
+        ],
+        "sampledVerticalErrorSourceUnits": 0.14843005869758485,
+        "nativeCurveFlattenBoundSourceUnits": 0.03,
+        "underfill": "All native union rings resolved with positive winding to fill internal seam holes; coordinates .01sourcegrid; no rectangular or expanded exterior backing.",
+        "underfillRemovedInteriorContours": 282,
+        "decorativeOverhangMaxSourceUnits": 0,
+        "supportEndSourceX": 735.260308594,
+        "sourceProfilePoints": 50
+      }
+    },
+    "plateau": {
+      "runtimeBytes": 75358,
+      "nodes": 8,
+      "maxDepth": 2,
+      "maxPathChars": 27660,
+      "expandedSegments": 1933,
+      "errors": {
+        "1": {
+          "rasterAlphaBoundaryOffsetCssPxIncludingSeamTopologyChanges": 10.816653826391969,
+          "rgbMAE255IncludingIntentionalPaletteAndSeamRepair": 2.181776659959758,
+          "rawAlphaHolePixels": 2799,
+          "runtimeAlphaHolePixels": 367
+        },
+        "2": {
+          "rasterAlphaBoundaryOffsetCssPxIncludingSeamTopologyChanges": 41.430664971733194,
+          "rgbMAE255IncludingIntentionalPaletteAndSeamRepair": 1.8921593311503004,
+          "rawAlphaHolePixels": 10029,
+          "runtimeAlphaHolePixels": 671
+        }
+      },
+      "timings": {
+        "raw-1": {
+          "width": 1000,
+          "height": 497,
+          "decodeMs": 8.456141000000002,
+          "drawMs": 1.075778000000014
+        },
+        "runtime-1": {
+          "width": 1000,
+          "height": 497,
+          "firstDrawMs": 2.002272000000005,
+          "warmDrawMs": 0.20219399999996313,
+          "validationErrors": 0
+        },
+        "raw-2": {
+          "width": 2000,
+          "height": 994,
+          "decodeMs": 14.792249999999967,
+          "drawMs": 3.947648000000015
+        },
+        "runtime-2": {
+          "width": 2000,
+          "height": 994,
+          "firstDrawMs": 1.9694820000000277,
+          "warmDrawMs": 0.2847789999999577,
+          "validationErrors": 0
+        }
+      },
+      "contact": {
+        "status": "ROOT APPROVED CONVENTION; geometry-refined candidate, final placement not approved",
+        "nativeContactPaint": "path8 moss cap; upper envelope of largest cap contour",
+        "sourceTop": [
+          [
+            819.13618,
+            177.28896
+          ],
+          [
+            819.140252991,
+            176.49369321
+          ],
+          [
+            819.285988457,
+            175.731293809
+          ],
+          [
+            819.427213522,
+            175.354581159
+          ],
+          [
+            820.197440781,
+            174.204767969
+          ],
+          [
+            821.060654622,
+            173.390476931
+          ],
+          [
+            825.86522875,
+            170.44250375
+          ],
+          [
+            831.401540254,
+            167.805448574
+          ],
+          [
+            849.828937949,
+            160.016200098
+          ],
+          [
+            871.622538262,
+            151.190640859
+          ],
+          [
+            883.334729629,
+            146.779570703
+          ],
+          [
+            890.501757439,
+            144.688236748
+          ],
+          [
+            898.519980156,
+            143.021513125
+          ],
+          [
+            933.463836406,
+            137.388592031
+          ],
+          [
+            955.153624941,
+            133.598579004
+          ],
+          [
+            1011.48004597,
+            122.017454019
+          ],
+          [
+            1046.73225994,
+            115.35869689
+          ],
+          [
+            1059.97141624,
+            113.277986704
+          ],
+          [
+            1070.91704031,
+            111.930536167
+          ],
+          [
+            1080.04245833,
+            111.241955825
+          ],
+          [
+            1091.3531,
+            111.28174
+          ],
+          [
+            1098.93519043,
+            112.14334252
+          ],
+          [
+            1104.23302676,
+            113.321812949
+          ],
+          [
+            1130.78178594,
+            121.46491375
+          ],
+          [
+            1137.83567285,
+            123.250254531
+          ],
+          [
+            1144.9403875,
+            124.684645
+          ],
+          [
+            1152.67755371,
+            125.870777969
+          ],
+          [
+            1161.62879531,
+            126.91134625
+          ],
+          [
+            1212.61774255,
+            131.336420181
+          ],
+          [
+            1223.2366125,
+            133.0191475
+          ],
+          [
+            1229.67754199,
+            134.609243008
+          ],
+          [
+            1240.44136775,
+            138.12832936
+          ],
+          [
+            1271.93962031,
+            149.644053906
+          ],
+          [
+            1289.68236946,
+            155.171455139
+          ],
+          [
+            1306.40118184,
+            159.153121387
+          ],
+          [
+            1337.36942722,
+            165.020811326
+          ],
+          [
+            1344.8045375,
+            167.18346125
+          ],
+          [
+            1348.09611777,
+            168.887436387
+          ],
+          [
+            1350.73394531,
+            171.075275781
+          ],
+          [
+            1353.29948457,
+            173.981920098
+          ],
+          [
+            1358.71908594,
+            180.589527656
+          ],
+          [
+            1362.15260527,
+            184.01099877
+          ],
+          [
+            1363.98880957,
+            185.444522871
+          ],
+          [
+            1366.91107832,
+            186.58763043
+          ],
+          [
+            1374.17362402,
+            188.533030664
+          ],
+          [
+            1385.99250879,
+            191.187301836
+          ],
+          [
+            1444.56702246,
+            203.15907459
+          ],
+          [
+            1462.54524844,
+            207.646852344
+          ],
+          [
+            1482.63444512,
+            214.061697852
+          ],
+          [
+            1497.38797129,
+            219.504944805
+          ],
+          [
+            1505.69070486,
+            223.067901235
+          ],
+          [
+            1509.64306125,
+            225.077884136
+          ],
+          [
+            1512.16281746,
+            226.722218481
+          ],
+          [
+            1512.84090957,
+            227.387609023
+          ],
+          [
+            1513.10737854,
+            227.937997319
+          ]
+        ],
+        "sourceBounds": [
+          819.12353515625,
+          111.11209106445312,
+          1513.11083984375,
+          456.0203552246094
+        ],
+        "sampledVerticalErrorSourceUnits": 0.14747850830028142,
+        "nativeCurveFlattenBoundSourceUnits": 0.03,
+        "underfill": "All native union rings resolved with positive winding to fill internal seam holes; coordinates .01sourcegrid; no rectangular or expanded exterior backing.",
+        "underfillRemovedInteriorContours": 302,
+        "decorativeOverhangMaxSourceUnits": 0,
+        "supportEndSourceX": 1513.10737854,
+        "sourceProfilePoints": 55
+      }
+    },
+    "descending": {
+      "runtimeBytes": 82774,
+      "nodes": 7,
+      "maxDepth": 2,
+      "maxPathChars": 30933,
+      "expandedSegments": 2210,
+      "errors": {
+        "1": {
+          "rasterAlphaBoundaryOffsetCssPxIncludingSeamTopologyChanges": 27.892651361962706,
+          "rgbMAE255IncludingIntentionalPaletteAndSeamRepair": 1.6662734725289434,
+          "rawAlphaHolePixels": 2517,
+          "runtimeAlphaHolePixels": 195
+        },
+        "2": {
+          "rasterAlphaBoundaryOffsetCssPxIncludingSeamTopologyChanges": 19.90602923739438,
+          "rgbMAE255IncludingIntentionalPaletteAndSeamRepair": 1.4402978086993405,
+          "rawAlphaHolePixels": 10282,
+          "runtimeAlphaHolePixels": 825
+        }
+      },
+      "timings": {
+        "raw-1": {
+          "width": 1000,
+          "height": 586,
+          "decodeMs": 15.450138999999979,
+          "drawMs": 0.7822559999999612
+        },
+        "runtime-1": {
+          "width": 1000,
+          "height": 586,
+          "firstDrawMs": 2.1779660000000263,
+          "warmDrawMs": 0.22720199999997703,
+          "validationErrors": 0
+        },
+        "raw-2": {
+          "width": 2000,
+          "height": 1171,
+          "decodeMs": 14.532709000000011,
+          "drawMs": 4.319006000000002
+        },
+        "runtime-2": {
+          "width": 2000,
+          "height": 1171,
+          "firstDrawMs": 2.0626229999999737,
+          "warmDrawMs": 0.28042199999993045,
+          "validationErrors": 0
+        }
+      },
+      "contact": {
+        "status": "ROOT APPROVED CONVENTION; geometry-refined candidate, final placement not approved",
+        "nativeContactPaint": "path8 moss cap; upper envelope of largest cap contour",
+        "sourceTop": [
+          [
+            66.570605125,
+            556.31367875
+          ],
+          [
+            66.7277801455,
+            555.833085166
+          ],
+          [
+            67.1618330703,
+            555.335927891
+          ],
+          [
+            68.86474425,
+            554.2899275
+          ],
+          [
+            73.5217679092,
+            552.584231943
+          ],
+          [
+            80.7270095391,
+            550.702533828
+          ],
+          [
+            93.8771630625,
+            548.053668281
+          ],
+          [
+            100.1811365,
+            547.24356625
+          ],
+          [
+            107.009563187,
+            546.805188594
+          ],
+          [
+            131.5,
+            546.5
+          ],
+          [
+            154.0392505,
+            557.031578826
+          ],
+          [
+            160.837304941,
+            559.648850918
+          ],
+          [
+            165.20941875,
+            560.94435125
+          ],
+          [
+            175.078705781,
+            562.847698594
+          ],
+          [
+            199.403557969,
+            565.673269062
+          ],
+          [
+            209.11954125,
+            567.4219725
+          ],
+          [
+            227.450623301,
+            572.180955586
+          ],
+          [
+            242.505477363,
+            576.606550723
+          ],
+          [
+            250.340553684,
+            579.163988635
+          ],
+          [
+            256.18319625,
+            581.46821625
+          ],
+          [
+            259.29457916,
+            583.008915332
+          ],
+          [
+            262.005229219,
+            584.654906094
+          ],
+          [
+            265.744024314,
+            587.511915027
+          ],
+          [
+            275.46601355,
+            595.922382883
+          ],
+          [
+            279.308835,
+            598.61381625
+          ],
+          [
+            281.920737305,
+            600.045708066
+          ],
+          [
+            284.889252188,
+            601.380291719
+          ],
+          [
+            300.057377969,
+            607.218954063
+          ],
+          [
+            309.05431625,
+            611.17908
+          ],
+          [
+            319.120313906,
+            615.909815938
+          ],
+          [
+            342.337386563,
+            627.482640469
+          ],
+          [
+            353.4806075,
+            632.55210875
+          ],
+          [
+            359.209198945,
+            634.919080137
+          ],
+          [
+            372.637469961,
+            640.024833535
+          ],
+          [
+            395.945429629,
+            648.366025234
+          ],
+          [
+            431.71023625,
+            660.676195
+          ],
+          [
+            450.343018594,
+            666.619344375
+          ],
+          [
+            481.836296563,
+            675.679107187
+          ],
+          [
+            492.1917875,
+            679.0233475
+          ],
+          [
+            501.951384688,
+            682.904614062
+          ],
+          [
+            521.838861602,
+            691.780844941
+          ],
+          [
+            534.003582617,
+            696.925048418
+          ],
+          [
+            546.371068945,
+            701.601067676
+          ],
+          [
+            576.055673828,
+            711.584828711
+          ],
+          [
+            585.380255859,
+            714.971151445
+          ],
+          [
+            599.179171875,
+            720.755601562
+          ],
+          [
+            619.544871719,
+            730.295722813
+          ],
+          [
+            630.94134375,
+            735.17672
+          ],
+          [
+            643.649706406,
+            740.218472187
+          ],
+          [
+            676.219079375,
+            752.276732344
+          ],
+          [
+            682.719058984,
+            754.904473613
+          ],
+          [
+            688.32522,
+            757.45622125
+          ],
+          [
+            693.671978516,
+            760.24108248
+          ],
+          [
+            699.393750625,
+            763.568164531
+          ],
+          [
+            719.48125,
+            776.17809125
+          ],
+          [
+            724.9125,
+            779.3939275
+          ],
+          [
+            749.231684277,
+            792.484498145
+          ],
+          [
+            758.0,
+            797.5120582550489
+          ]
+        ],
+        "sourceBounds": [
+          65.19356536865234,
+          546.5,
+          768.8785400390625,
+          958.679931640625
+        ],
+        "sampledVerticalErrorSourceUnits": 0.14622587752046456,
+        "nativeCurveFlattenBoundSourceUnits": 0.03,
+        "underfill": "All native union rings resolved with positive winding to fill internal seam holes; coordinates .01sourcegrid; no rectangular or expanded exterior backing.",
+        "underfillRemovedInteriorContours": 284,
+        "decorativeOverhangMaxSourceUnits": 20,
+        "supportEndSourceX": 758.0,
+        "sourceProfilePoints": 58
+      }
+    },
+    "overhang": {
+      "runtimeBytes": 70666,
+      "nodes": 8,
+      "maxDepth": 2,
+      "maxPathChars": 24408,
+      "expandedSegments": 1788,
+      "errors": {
+        "1": {
+          "rasterAlphaBoundaryOffsetCssPxIncludingSeamTopologyChanges": 41.0,
+          "rgbMAE255IncludingIntentionalPaletteAndSeamRepair": 1.7757231280140922,
+          "rawAlphaHolePixels": 3109,
+          "runtimeAlphaHolePixels": 370
+        },
+        "2": {
+          "rasterAlphaBoundaryOffsetCssPxIncludingSeamTopologyChanges": 14.508618128546908,
+          "rgbMAE255IncludingIntentionalPaletteAndSeamRepair": 1.5971451519836624,
+          "rawAlphaHolePixels": 13094,
+          "runtimeAlphaHolePixels": 1102
+        }
+      },
+      "timings": {
+        "raw-1": {
+          "width": 1000,
+          "height": 679,
+          "decodeMs": 6.942511999999965,
+          "drawMs": 1.6119950000000358
+        },
+        "runtime-1": {
+          "width": 1000,
+          "height": 679,
+          "firstDrawMs": 1.9350100000000339,
+          "warmDrawMs": 0.19738699999999199,
+          "validationErrors": 0
+        },
+        "raw-2": {
+          "width": 2000,
+          "height": 1357,
+          "decodeMs": 14.215572000000009,
+          "drawMs": 4.292777000000001
+        },
+        "runtime-2": {
+          "width": 2000,
+          "height": 1357,
+          "firstDrawMs": 2.8560659999999984,
+          "warmDrawMs": 0.28073200000005727,
+          "validationErrors": 0
+        }
+      },
+      "contact": {
+        "status": "ROOT APPROVED CONVENTION; geometry-refined candidate, final placement not approved",
+        "nativeContactPaint": "path8 moss cap; upper envelope of largest cap contour",
+        "sourceTop": [
+          [
+            939.027960196,
+            592.582679555
+          ],
+          [
+            939.50581041,
+            592.054547246
+          ],
+          [
+            940.237352656,
+            591.643168594
+          ],
+          [
+            945.679995469,
+            589.366858281
+          ],
+          [
+            962.600859844,
+            583.9860375
+          ],
+          [
+            974.44854625,
+            580.9565475
+          ],
+          [
+            986.153119531,
+            578.71965375
+          ],
+          [
+            1036.224775,
+            572.42121875
+          ],
+          [
+            1089.75840078,
+            564.719285703
+          ],
+          [
+            1108.72251172,
+            562.333909609
+          ],
+          [
+            1116.339275,
+            561.680885
+          ],
+          [
+            1126.71397314,
+            561.289270303
+          ],
+          [
+            1133.59445029,
+            561.375208682
+          ],
+          [
+            1145.0,
+            561.94761
+          ],
+          [
+            1161.95354763,
+            563.240391533
+          ],
+          [
+            1177.13881543,
+            564.815494453
+          ],
+          [
+            1186.3766625,
+            566.036445
+          ],
+          [
+            1199.05000525,
+            568.145248799
+          ],
+          [
+            1214.04337585,
+            571.518975088
+          ],
+          [
+            1238.85938118,
+            578.373281221
+          ],
+          [
+            1250.80441589,
+            581.371496357
+          ],
+          [
+            1261.52104612,
+            583.729714697
+          ],
+          [
+            1271.5297613,
+            585.542192021
+          ],
+          [
+            1281.3510509,
+            586.903184111
+          ],
+          [
+            1291.50540437,
+            587.906946748
+          ],
+          [
+            1322.83709531,
+            589.772487969
+          ],
+          [
+            1337.0982625,
+            591.20034375
+          ],
+          [
+            1356.81029844,
+            593.904787656
+          ],
+          [
+            1387.5,
+            598.55807
+          ],
+          [
+            1424.22607031,
+            604.322706719
+          ],
+          [
+            1441.95990652,
+            607.417000168
+          ],
+          [
+            1450.66244934,
+            609.215169402
+          ],
+          [
+            1457.83451697,
+            611.001088967
+          ],
+          [
+            1464.30371213,
+            612.945762966
+          ],
+          [
+            1474.5,
+            616.53451
+          ],
+          [
+            1484.97344062,
+            620.5652875
+          ],
+          [
+            1491.934725,
+            623.6845825
+          ],
+          [
+            1494.22949414,
+            624.969554922
+          ],
+          [
+            1495.80364687,
+            626.10721375
+          ],
+          [
+            1496.70965742,
+            627.124411328
+          ],
+          [
+            1496.92850757,
+            627.596228506
+          ],
+          [
+            1497.0,
+            628.048
+          ]
+        ],
+        "sourceBounds": [
+          939.0279541015625,
+          561.2855224609375,
+          1497,
+          939.9967651367188
+        ],
+        "sampledVerticalErrorSourceUnits": 0.1395701585537381,
+        "nativeCurveFlattenBoundSourceUnits": 0.03,
+        "underfill": "All native union rings resolved with positive winding to fill internal seam holes; coordinates .01sourcegrid; no rectangular or expanded exterior backing.",
+        "underfillRemovedInteriorContours": 242,
+        "decorativeOverhangMaxSourceUnits": 0,
+        "supportEndSourceX": 1497.0,
+        "sourceProfilePoints": 42
+      }
+    }
+  }
+}
