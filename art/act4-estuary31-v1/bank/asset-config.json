@@ -1,0 +1,33 @@
+{
+  "id": "act4:estuary31-v1:bank",
+  "name": "Estuary continuous deposited bank",
+  "semanticLayer": "REAR",
+  "category": "rock",
+  "bounds": {
+    "x": 0,
+    "y": 0,
+    "w": 2171,
+    "h": 724
+  },
+  "anchor": {
+    "x": 0,
+    "y": 0
+  },
+  "foot": {
+    "x": 1085.2273303359789,
+    "y": 477.72565041148874
+  },
+  "scaleRange": [
+    1,
+    1
+  ],
+  "backgroundRange": [
+    1,
+    1
+  ],
+  "params": {
+    "candidateOnly": true,
+    "nativeSourceFile": "terrain-traced.svg",
+    "paletteRevision": "owner approved two near-color pair merges"
+  }
+}

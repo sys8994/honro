@@ -1,0 +1,31 @@
+{
+  "idPrefix": "act4:estuary31-v1:",
+  "nativeSource": "terrain-traced.svg",
+  "objects": {
+    "bank": {
+      "role": "continuous deposited soil; source natural top pending macro-anchor fit and physics review",
+      "region": [
+        [
+          -2,
+          -2
+        ],
+        [
+          2175,
+          -2
+        ],
+        [
+          2175,
+          728
+        ],
+        [
+          -2,
+          728
+        ]
+      ],
+      "proposedContactDomainSourceX": [
+        12,
+        2160
+      ]
+    }
+  }
+}
