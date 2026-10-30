@@ -1,0 +1,38 @@
+// Focused renderer contracts, not pixel/art/gameplay acceptance.
+import assert from 'node:assert/strict';
+import fs from 'node:fs/promises';
+import vm from 'node:vm';
+const read=p=>fs.readFile(new URL('../'+p,import.meta.url),'utf8');
+const calls=[],raw={save(){},restore(){}},styled={save(){},restore(){}};
+const g=vm.createContext({console,HONRO_CONTENT:{},HonroVisualStyle:{raw:()=>raw,classify:()=> 'scenery'},HonroVectorArt:{draw(c,a,l){calls.push(['vector',l.id,a.id,c===raw]);return true;}}});
+vm.runInContext(await read('shared/runtime/renderer.js'),g);
+const S=g.HonroScene.prototype,layer=S._landmarkLayer;
+S.terrain=(c,t)=>calls.push(['terrain',t.id]);S.landmark=(c,l)=>calls.push(['fallback',l.id]);S.environmentTone=()=>calls.push(['tone']);S._worldCacheKey=()=> 'existing';
+S.background=function(c,w,h,b){for(const l of b.honroAct4PreviewDynamic||[])this.landmark(c,l);};S.liveWater=()=>calls.push(['water']);
+vm.runInContext(await read('shared/runtime/act4-pilot-art.js'),g);
+const A=g.HonroAct4PilotArt,asset=id=>({id,vector:{},collision:[],params:{semanticLayer:'FORE'}});
+const marks=Object.keys(A.layers).map(nativeArtLayer=>({id:nativeArtLayer,kind:'canonical-element',nativeArtLayer,layer:A.layers[nativeArtLayer],asset:asset(nativeArtLayer),collisionIds:[],...(nativeArtLayer==='body'?{nativeTerrainId:'solid'}:{})}));
+const b={honroStage:31,sceneVersion:1,honroMap:{nativeArt:{version:1,coveredTerrainIds:['solid'],preservePalette:true}},terrain:[{id:'solid'},{id:'cover-unverified'}],honroLandmarks:marks,units:[{hp:10}],honroEvents:[{id:'event'}]};
+const scene=Object.create(S);scene.battle=b;
+const before=JSON.stringify(b);
+assert.equal(S._landmarkLayer,layer,'existing shared cache/direct layer loop untouched');
+for(const pass of ['back','structural-back'])scene._landmarkLayer(styled,marks,pass);
+for(const t of b.terrain)scene.terrain(styled,t);
+for(const pass of ['mid','prop','front','foreground'])scene._landmarkLayer(styled,marks,pass);
+assert.deepEqual(calls.map(c=>c[1]),['background','structure','cover-unverified','body','rear','front']);
+assert(calls.filter(c=>c[0]==='vector').every(c=>c[3]),'native colors use raw context');
+assert.equal(JSON.stringify(b),before,'no actor/terrain/event/instance mutations');
+assert(scene._worldCacheKey(b).startsWith('existing:native-art-1:'));
+const key=scene._worldCacheKey(b);b.honroMap.nativeArt.coveredTerrainIds=[];assert.notEqual(scene._worldCacheKey(b),key);assert(!A.covered(b.terrain[0],b));b.honroMap.nativeArt.coveredTerrainIds=['solid'];
+const body=marks.find(l=>l.nativeArtLayer==='body');for(const mutation of [{asset:null},{opacity:.5},{layer:'back'},{collisionIds:['bad']},{nativeTerrainId:'missing'}]){const copy={...b,honroLandmarks:marks.map(l=>l===body?{...l,...mutation}:l)};assert(!A.covered(b.terrain[0],copy));}
+assert(!A.covered({id:'missing'},b));assert(!A.covered(b.terrain[0],{...b,terrain:[]}));
+for(const stage of [1,30,32,40])assert(!A.config({...b,honroStage:stage}));
+assert(!A.config({...b,honroMap:{}}));
+calls.length=0;scene.environmentTone(styled,1,1,b);assert.equal(calls.length,0);scene.environmentTone(styled,1,1,{...b,honroStage:32});assert.deepEqual(calls,[['tone']]);
+const boat={id:'a4-31-boat-10',asset:{id:'a4:boat'},x:6470,y:3950};g.HONRO_PROJECT={library:[asset('s31v:arrival-ferry')]};b.honroMap.vectorArrivalBoatAssetId='s31v:arrival-ferry';calls.length=0;scene.landmark(styled,boat);assert.deepEqual(calls,[['vector',boat.id,'s31v:arrival-ferry',true]]);assert.equal(boat.asset.id,'a4:boat');
+b.honroAct4PreviewDynamic=[boat];calls.length=0;scene.background(styled,1,1,b);assert.deepEqual(calls,[],'opaque native background cannot bury event boat');scene.liveWater(styled,b);assert.deepEqual(calls,[['water'],['vector',boat.id,'s31v:arrival-ferry',true]],'same live pose painted once after native world');
+const stage={metadata:{stageId:31},design:b.honroMap,terrains:b.terrain,elements:marks.map(l=>({...l,assetId:l.asset.id}))},library=marks.map(l=>l.asset);
+assert(A.validateStage(stage,library));assert.throws(()=>A.validateStage(stage,[]),/Invalid native art element/);assert.throws(()=>A.validateStage({...stage,terrains:[]},library),/Missing native BODY/);
+scene.battle={...b,honroStage:32};calls.length=0;scene.terrain(styled,b.terrain[0]);scene.landmark(styled,body);assert.deepEqual(calls,[['terrain','solid'],['fallback','body']]);
+const build=await read('shared/build.mjs');assert(build.includes("'act4-campaign','act4-pilot-art'"),'manifest loads art hooks after event hooks');
+console.log('PASS native art opt-in, existing layer order/cache contracts, raw palette/tone, live boat, nonmutation and fail-safe fallback. Pixel/GUI acceptance remains separate.');
