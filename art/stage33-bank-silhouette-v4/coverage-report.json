@@ -1,0 +1,39 @@
+{
+  "projectSHA256": "e553371459c22c5b00864604bec149af3801df3280d6a8831cff42450cf76e67",
+  "stage": 33,
+  "scope": "Source-only BODY alpha, actual compiled physical solid. Full actual terrain X extent and camera-visible depth; no engine base fill. Not a whole-stage art/gameplay approval.",
+  "worldBounds": {
+    "minX": 0,
+    "maxX": 7600,
+    "minY": 1824.97534,
+    "maxY": 4324.97534
+  },
+  "pixelScale": 0.2,
+  "edgeExclusionWorld": 5,
+  "selected": [
+    {
+      "instance": "s33-silhouette:composite-bank-v4",
+      "assetId": "s33-silhouette:composite-bank-v4"
+    },
+    {
+      "instance": "s33-silhouette:domain-left-far",
+      "assetId": "s33-silhouette:domain-left-far"
+    },
+    {
+      "instance": "s33-silhouette:domain-left-near",
+      "assetId": "s33-silhouette:domain-left-near"
+    },
+    {
+      "instance": "s33-silhouette:domain-right-near",
+      "assetId": "s33-silhouette:domain-right-near"
+    },
+    {
+      "instance": "s33-silhouette:domain-right-far",
+      "assetId": "s33-silhouette:domain-right-far"
+    }
+  ],
+  "tested": 379587,
+  "uncovered": 0,
+  "first": [],
+  "pass": true
+}

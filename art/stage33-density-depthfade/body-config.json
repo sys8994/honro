@@ -1,0 +1,47 @@
+{
+  "id": "s33-density:body-depthfade",
+  "name": "갯길 퇴적암과 실트 지면 BODY 저대비 시험",
+  "semanticLayer": "BODY",
+  "category": "rock",
+  "bounds": {
+    "x": -400,
+    "y": 1450,
+    "w": 8400,
+    "h": 3500
+  },
+  "anchor": {
+    "x": 0,
+    "y": 0
+  },
+  "foot": {
+    "x": 0,
+    "y": 2100
+  },
+  "transform": [
+    4.3254376930998975,
+    0,
+    0,
+    4.326328800988875,
+    -400,
+    1450
+  ],
+  "bodyClip": [
+    "M0 2100H800L1200 2240 1800 2300 2500 2250 3000 2100 3500 2270 4100 2330 4700 2220 5200 2120 5700 2040H6200L6600 1930H7600L8100 1772.7734375 8600 1706.80296296296 9100 1763.01037037037 9600 1825.44 10100 1829.02606310014 10600 1732.45541838134 11100 1602.96296296296 11600 1522.85322359396 12100 1495.99650094766 12600 1423.28181950722 13100 1345.97463187054 13600 1310V27400H-6000V1840L-5500 1805.73844583759-5000 1732.11255285027-4500 1662.86047528794-4000 1643.47736625514-3500 1741.11111111111-3000 1898.93004115226-2500 2016.62551440329-2000 2056-1500 2167.48148148148-1000 2267.85185185185-500 2223.046875Z"
+  ],
+  "params": {
+    "semanticLayer": "BODY",
+    "sourceViewBox": [
+      0.0,
+      0.0,
+      1942.0,
+      809.0
+    ],
+    "removedReferenceImages": [],
+    "artRevision": 1,
+    "collisionSource": "official:a4-33-land",
+    "sourceConcept": "body-concept-opaque.png",
+    "sourceRaw": "body-raw.svg",
+    "densityRevision": 2,
+    "artEdit": "Source-derived Inkscape union full silhouette plus original contact-protected forms fading with depth. Intentional art recomposition, not fidelity optimization."
+  }
+}

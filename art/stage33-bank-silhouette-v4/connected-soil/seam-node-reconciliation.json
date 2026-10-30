@@ -1,0 +1,32 @@
+{
+  "scope": "native source material nodes only; outer path7 and collider untouched",
+  "changes": [
+    {
+      "path": "path5",
+      "sourceEdgeDeltaY": -21.608422928767908,
+      "worldDepthDelta": -30.25179210027507,
+      "transitionWorld": 400
+    },
+    {
+      "path": "path4",
+      "sourceEdgeDeltaY": -13.904150209353702,
+      "worldDepthDelta": -19.46581029309518,
+      "transitionWorld": 400
+    },
+    {
+      "path": "path3",
+      "sourceEdgeDeltaY": -73.77620065346753,
+      "worldDepthDelta": -103.28668091485453,
+      "transitionWorld": 400
+    },
+    {
+      "path": "path2",
+      "sourceEdgeDeltaY": -98.00764500451908,
+      "worldDepthDelta": -137.2107030063267,
+      "transitionWorld": 400
+    }
+  ],
+  "sourceFlattenTolerance": 0.1,
+  "physicalTopUnchanged": true,
+  "visualReviewPending": true
+}

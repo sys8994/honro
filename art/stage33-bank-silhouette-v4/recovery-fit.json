@@ -1,0 +1,38 @@
+{
+  "scope": "Static source contour fit; not actual high-tide/recovery proof",
+  "rows": [
+    {
+      "range": [
+        2950,
+        3150
+      ],
+      "minY": 2085.21509,
+      "maxY": 2092.97805,
+      "minimumThresholdMargin": 32.02194999999983
+    },
+    {
+      "range": [
+        2900,
+        3100
+      ],
+      "minY": 2085.282101111111,
+      "maxY": 2092.97805,
+      "minimumThresholdMargin": 32.02194999999983
+    },
+    {
+      "range": [
+        2870,
+        3180
+      ],
+      "minY": 2085.21509,
+      "maxY": 2102.7689270588235,
+      "minimumThresholdMargin": 22.231072941176535
+    }
+  ],
+  "liftWorld": 42,
+  "endpointsUnchanged": {
+    "1800": 2300,
+    "4100": 2330
+  },
+  "rawSHA256": "11a3a95011e09d7dfbe30b0c8f59cec97a3a9c569b33457834d364dc2c93219d"
+}

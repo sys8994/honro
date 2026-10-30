@@ -1,0 +1,287 @@
+{
+  "source": "art/stage33-causeway-silhouette-v5/causeway-raw.svg",
+  "originalSha256": "9daba57b52b8c847aaf3e017dcddec36353cd7b9bcfa59cc81481d1333831318",
+  "rawSha256": "f9615da1c0c2f718342739a266eb15b956e5344bdb85d482baca6b5fb953aaf2",
+  "removedReferenceImages": [],
+  "width": 2048,
+  "scales": [
+    1,
+    1.77
+  ],
+  "limits": {
+    "rgbMAE255": 2,
+    "silhouettePx": 1,
+    "protectedRgbMAE255": 1,
+    "protectedPx": 0.5,
+    "protectedChangedPixelFraction": 0.05
+  },
+  "protectedRects": [],
+  "protectedMask": null,
+  "provisional": true,
+  "visualApproval": "NOT REVIEWED \u2014 candidate only; human inspection mandatory",
+  "protectionMode": "feature",
+  "protectedPolylines": [],
+  "baseline": {
+    "sourceBytes": 75103,
+    "paths": 5,
+    "commands": 1722,
+    "segments": 1634,
+    "endpointNodesUpperBound": 1722,
+    "explicitCommandLetters": 397,
+    "subpaths": 88,
+    "pathChars": 74455,
+    "maxPathChars": 24974,
+    "render": {
+      "1": {
+        "width": 2048,
+        "height": 683,
+        "decodeMs": 6.196303999999998,
+        "drawMs": 4.4551270000000045
+      },
+      "1.77": {
+        "width": 3625,
+        "height": 1209,
+        "decodeMs": 12.522445000000005,
+        "drawMs": 7.922358999999972
+      }
+    }
+  },
+  "candidates": [
+    {
+      "candidate": "raw",
+      "sourceBytes": 75103,
+      "paths": 5,
+      "commands": 1722,
+      "segments": 1634,
+      "endpointNodesUpperBound": 1722,
+      "explicitCommandLetters": 397,
+      "subpaths": 88,
+      "pathChars": 74455,
+      "maxPathChars": 24974,
+      "errors": {
+        "1": {
+          "rgbMAE255": 0.0,
+          "rgbP99_255": 0.0,
+          "alphaMAE255": 0.0,
+          "changedPixelFraction": 0.0,
+          "silhouetteMaxOffsetPx": 0.0,
+          "pass": true
+        },
+        "1.77": {
+          "rgbMAE255": 0.0,
+          "rgbP99_255": 0.0,
+          "alphaMAE255": 0.0,
+          "changedPixelFraction": 0.0,
+          "silhouetteMaxOffsetPx": 0.0,
+          "pass": true
+        }
+      },
+      "render": {
+        "1": {
+          "width": 2048,
+          "height": 683,
+          "decodeMs": 5.9785269999999855,
+          "drawMs": 4.638552000000004
+        },
+        "1.77": {
+          "width": 3625,
+          "height": 1209,
+          "decodeMs": 13.13200999999998,
+          "drawMs": 14.744343000000015
+        }
+      },
+      "budgetPass": true,
+      "nodes": 8,
+      "normalizedMaxPathChars": 34174,
+      "normalizedPaths": 5,
+      "importSeconds": 0.053628829999979644,
+      "qualityPass": true,
+      "feasible": true
+    },
+    {
+      "candidate": "simplify-0.0002",
+      "sourceBytes": 47715,
+      "paths": 5,
+      "commands": 1020,
+      "segments": 932,
+      "endpointNodesUpperBound": 1020,
+      "explicitCommandLetters": 276,
+      "subpaths": 88,
+      "pathChars": 47071,
+      "maxPathChars": 14477,
+      "errors": {
+        "1": {
+          "rgbMAE255": 0.08020871877670288,
+          "rgbP99_255": 1.9999998807907104,
+          "alphaMAE255": 0.08566512167453766,
+          "changedPixelFraction": 0.0013969276171303074,
+          "silhouetteMaxOffsetPx": 1.0,
+          "pass": true
+        },
+        "1.77": {
+          "rgbMAE255": 0.061309851706027985,
+          "rgbP99_255": 0.9999999403953552,
+          "alphaMAE255": 0.061932746320962906,
+          "changedPixelFraction": 0.0009884487036878583,
+          "silhouetteMaxOffsetPx": 1.4142135623730951,
+          "pass": true
+        }
+      },
+      "render": {
+        "1": {
+          "width": 2048,
+          "height": 683,
+          "decodeMs": 4.925464000000034,
+          "drawMs": 2.308990999999992
+        },
+        "1.77": {
+          "width": 3625,
+          "height": 1209,
+          "decodeMs": 11.482111000000032,
+          "drawMs": 7.918011999999976
+        }
+      },
+      "budgetPass": true,
+      "nodes": 8,
+      "normalizedMaxPathChars": 17098,
+      "normalizedPaths": 5,
+      "importSeconds": 0.033834954000667494,
+      "qualityPass": true,
+      "feasible": true,
+      "simplifySeconds": 3.3089135370000804
+    },
+    {
+      "candidate": "simplify-0.0005",
+      "sourceBytes": 30471,
+      "paths": 5,
+      "commands": 665,
+      "segments": 577,
+      "endpointNodesUpperBound": 665,
+      "explicitCommandLetters": 273,
+      "subpaths": 88,
+      "pathChars": 29827,
+      "maxPathChars": 8811,
+      "errors": {
+        "1": {
+          "rgbMAE255": 0.13907375931739807,
+          "rgbP99_255": 3.1627564430236816,
+          "alphaMAE255": 0.11900050193071365,
+          "changedPixelFraction": 0.0020789485724743775,
+          "silhouetteMaxOffsetPx": 2.23606797749979,
+          "pass": false
+        },
+        "1.77": {
+          "rgbMAE255": 0.1304864138364792,
+          "rgbP99_255": 2.0,
+          "alphaMAE255": 0.10906408727169037,
+          "changedPixelFraction": 0.001932859872793132,
+          "silhouetteMaxOffsetPx": 4.123105625617661,
+          "pass": false
+        }
+      },
+      "render": {
+        "1": {
+          "width": 2048,
+          "height": 683,
+          "decodeMs": 6.161132000000009,
+          "drawMs": 2.860170000000039
+        },
+        "1.77": {
+          "width": 3625,
+          "height": 1209,
+          "decodeMs": 10.663710999999978,
+          "drawMs": 8.747619000000043
+        }
+      },
+      "budgetPass": true,
+      "nodes": 8,
+      "normalizedMaxPathChars": 10127,
+      "normalizedPaths": 5,
+      "importSeconds": 0.018716978000156814,
+      "qualityPass": false,
+      "feasible": false,
+      "simplifySeconds": 2.924976708000031
+    },
+    {
+      "candidate": "precision-5",
+      "sourceBytes": 68177,
+      "paths": 5,
+      "commands": 1743,
+      "segments": 1655,
+      "endpointNodesUpperBound": 1743,
+      "explicitCommandLetters": 397,
+      "subpaths": 88,
+      "pathChars": 67529,
+      "maxPathChars": 22771,
+      "errors": {
+        "1": {
+          "rgbMAE255": 0.0055175237357616425,
+          "rgbP99_255": 0.0,
+          "alphaMAE255": 0.007330652792006731,
+          "changedPixelFraction": 9.579749267935579e-05,
+          "silhouetteMaxOffsetPx": 1.0,
+          "pass": true
+        },
+        "1.77": {
+          "rgbMAE255": 0.0029742680490016937,
+          "rgbP99_255": 0.0,
+          "alphaMAE255": 0.0029240467119961977,
+          "changedPixelFraction": 3.0118935569436127e-05,
+          "silhouetteMaxOffsetPx": 1.0,
+          "pass": true
+        }
+      },
+      "render": {
+        "1": {
+          "width": 2048,
+          "height": 683,
+          "decodeMs": 6.52628100000004,
+          "drawMs": 2.2347489999999652
+        },
+        "1.77": {
+          "width": 3625,
+          "height": 1209,
+          "decodeMs": 12.052558000000033,
+          "drawMs": 8.123109999999997
+        }
+      },
+      "budgetPass": true,
+      "nodes": 8,
+      "normalizedMaxPathChars": 33820,
+      "normalizedPaths": 5,
+      "importSeconds": 0.046711566999874776,
+      "qualityPass": true,
+      "feasible": true
+    }
+  ],
+  "sourcePalette": [
+    [
+      30,
+      45,
+      59
+    ],
+    [
+      39,
+      56,
+      72
+    ],
+    [
+      52,
+      70,
+      87
+    ],
+    [
+      78,
+      99,
+      120
+    ],
+    [
+      91,
+      111,
+      132
+    ]
+  ],
+  "chosen": "simplify-0.0002",
+  "reviewCandidate": "simplify-0.0002",
+  "rawUnchanged": true
+}

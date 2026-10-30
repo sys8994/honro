@@ -1,0 +1,251 @@
+{
+  "stage": 33,
+  "asset": "art/stage33-density-depthfade/body-asset.json",
+  "baseColor": "#2d4350",
+  "source": "art/stage33-density-v2/body-final.svg",
+  "nativeOperations": [
+    "path-union",
+    "path-intersection"
+  ],
+  "bandsWorld": [
+    125.0,
+    150.0,
+    175.0,
+    200.0,
+    225.0,
+    250.0,
+    275.0,
+    300.0,
+    325.0,
+    350.0,
+    375.0,
+    400.0,
+    425.0,
+    450.0,
+    475.0,
+    500.0,
+    525.0,
+    550.0,
+    575.0,
+    600.0,
+    625.0,
+    650.0,
+    675.0,
+    700.0
+  ],
+  "protectedContactDepthWorld": 100,
+  "originalPaintOrderPreserved": true,
+  "palette": [
+    {
+      "range": [
+        125.0,
+        40000
+      ],
+      "fill": "#2d4350",
+      "opacity": 0.004277569313094809
+    },
+    {
+      "range": [
+        150.0,
+        40000
+      ],
+      "fill": "#2d4350",
+      "opacity": 0.012814331734566633
+    },
+    {
+      "range": [
+        175.0,
+        40000
+      ],
+      "fill": "#2d4350",
+      "opacity": 0.021387528062108647
+    },
+    {
+      "range": [
+        200.0,
+        40000
+      ],
+      "fill": "#2d4350",
+      "opacity": 0.030071596349553982
+    },
+    {
+      "range": [
+        225.0,
+        40000
+      ],
+      "fill": "#2d4350",
+      "opacity": 0.038944841450614325
+    },
+    {
+      "range": [
+        250.0,
+        40000
+      ],
+      "fill": "#2d4350",
+      "opacity": 0.04809234029178065
+    },
+    {
+      "range": [
+        275.0,
+        40000
+      ],
+      "fill": "#2d4350",
+      "opacity": 0.05760937350941261
+    },
+    {
+      "range": [
+        300.0,
+        40000
+      ],
+      "fill": "#2d4350",
+      "opacity": 0.06760569158830261
+    },
+    {
+      "range": [
+        325.0,
+        40000
+      ],
+      "fill": "#2d4350",
+      "opacity": 0.07821104508994019
+    },
+    {
+      "range": [
+        350.0,
+        40000
+      ],
+      "fill": "#2d4350",
+      "opacity": 0.08958260753200621
+    },
+    {
+      "range": [
+        375.0,
+        40000
+      ],
+      "fill": "#2d4350",
+      "opacity": 0.10191524618379175
+    },
+    {
+      "range": [
+        400.0,
+        40000
+      ],
+      "fill": "#2d4350",
+      "opacity": 0.11545614167835686
+    },
+    {
+      "range": [
+        425.0,
+        40000
+      ],
+      "fill": "#2d4350",
+      "opacity": 0.13052619222005168
+    },
+    {
+      "range": [
+        450.0,
+        40000
+      ],
+      "fill": "#2d4350",
+      "opacity": 0.14755229166712092
+    },
+    {
+      "range": [
+        475.0,
+        40000
+      ],
+      "fill": "#2d4350",
+      "opacity": 0.16711760663049133
+    },
+    {
+      "range": [
+        500.0,
+        40000
+      ],
+      "fill": "#2d4350",
+      "opacity": 0.19004279778911234
+    },
+    {
+      "range": [
+        525.0,
+        40000
+      ],
+      "fill": "#2d4350",
+      "opacity": 0.21752285801744167
+    },
+    {
+      "range": [
+        550.0,
+        40000
+      ],
+      "fill": "#2d4350",
+      "opacity": 0.2513692653785378
+    },
+    {
+      "range": [
+        575.0,
+        40000
+      ],
+      "fill": "#2d4350",
+      "opacity": 0.2944641718032367
+    },
+    {
+      "range": [
+        600.0,
+        40000
+      ],
+      "fill": "#2d4350",
+      "opacity": 0.35167306161940076
+    },
+    {
+      "range": [
+        625.0,
+        40000
+      ],
+      "fill": "#2d4350",
+      "opacity": 0.4318290956724537
+    },
+    {
+      "range": [
+        650.0,
+        40000
+      ],
+      "fill": "#2d4350",
+      "opacity": 0.5523651544049683
+    },
+    {
+      "range": [
+        675.0,
+        40000
+      ],
+      "fill": "#2d4350",
+      "opacity": 0.7489260136205499
+    },
+    {
+      "range": [
+        700.0,
+        40000
+      ],
+      "fill": "#2d4350",
+      "opacity": 1.0
+    }
+  ],
+  "runtimeBytes": 296129,
+  "nodes": 37,
+  "method": "Original draw stack retained once;24 cumulative native masks ease contrast to base across100\u2013700world. Fine cosine-weighted solid opacity steps cap adjacent total-opacity delta at.0653. Not a gradient.",
+  "visualApproval": false,
+  "hiddenGeometryTrim": "Native Boolean intersection at702world; fullyopaque base starts700world. Compare against body-untrimmed.svg.",
+  "scope": "Intentional art recomposition. Physical clip, transform, bounds, anchors unchanged. Not a bounded-fidelity claim to prior art.",
+  "trimValidation": {
+    "width": 3600,
+    "meanRGBA": 0.00043935185185185185,
+    "maxRGBA": 143,
+    "pixelsRGBAbove16": 4,
+    "alpha128DifferentPixels": 4,
+    "bytesUntrimmed": 296129,
+    "bytesTrimmed": 205329
+  },
+  "trimDecision": {
+    "selected": false,
+    "reason": "Retain exact untrimmed source. Trim either increased cost or introduced sparse raster differences; not worth silently accepting."
+  }
+}
