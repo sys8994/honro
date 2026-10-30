@@ -259,3 +259,13 @@ hook; DOM/audio/HUD presentation doubles remain explicit, actual Scene retained.
 `tests/quantitative-playtest-manifest.mjs` covers missing/duplicate/unconsumed
 modules and future appended modules. Existing seven focused units pass. Native
 setup regression is pending; v4 is not yet gameplay or holdout acceptance.
+
+### P04: grounded free-drop acceptance
+Cause: the previous observer looked for moveLeft reduction or immediate airborne
+state, but production drop is free and enters a grounded `platformDrop.prepare`
+first. Do not reuse that predicate. The observer now requires a new prepare state
+with actual contacts/originY and records the real `Engine.drop` boolean return
+through a passive wrapper. `quantitative-playtest-activity.mjs` covers accepted,
+repeated, rejected, falling, and contactless transitions. This unit checks the
+observer, not an end-to-end candidate drop route; effective landing still requires
+actual changed support/progress and is measured during real subsequent frames.

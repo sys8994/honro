@@ -7,3 +7,5 @@ export class EnemyActivity {
  finish(u,round,units){const start=this.starts.get(round+':'+u?.id);if(u?.side!==1||!start)return false;const support=start.some(p=>{const v=units.find(v=>v.id===p.id);return v&&(v.hp>p.hp||(v.shield||0)>p.shield);});return support&&this.executed(u,round,'observed-support-change');}
  summary(){const max=m=>Math.max(0,...[...m.values()].map(x=>x.size));return {maxEnemyPlanningParticipantsPerRound:max(this.planning),maxActingEnemiesPerRound:max(this.actual),enemyActivityByRound:[...this.actual].map(([round,actors])=>({round,actors:[...actors].map(([id,kinds])=>({id,kinds:[...kinds]}))}))};}
 }
+/** Drop is free and initially grounded: acceptance is the new production prepare state. */
+export function acceptedDrop(previous,current){return !previous&&current?.phase==='prepare'&&current.elapsed===0&&Number.isFinite(current.originY)&&Array.isArray(current.contacts)&&current.contacts.length>0;}
