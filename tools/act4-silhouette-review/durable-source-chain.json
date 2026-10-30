@@ -1,0 +1,56 @@
+{
+  "fullTrackedDelta": {
+    "path": "/workspace/scratch/fff510b4df37/act4-art-backup-20261029/honro-tracked-delta-fe74-ea69d698.zip",
+    "sha256": "c260589deae5869bb87b6be77c3e0c4f64cd82db8deca2fcf4926fa6ce52ac74",
+    "bytes": 26697696,
+    "HEAD": "ea69d6984c6e4f4092637c7ce8e2dffce632c004",
+    "tree": "c0e79540203d66645b8b8dca0f11f6cb7933e411",
+    "base": "fe74d7fbbd0ea3722b02a97b67bdfe2f8b80cdb9",
+    "changedPaths": 364,
+    "deletions": 0,
+    "libraryFileId": "libfile_a9ca30e92e7881918d0db3eabcad8661"
+  },
+  "transportDelta": {
+    "path": "/workspace/scratch/fff510b4df37/act4-art-backup-20261029/honro-transport-delta-19d7-fe74.zip",
+    "sha256": "35624f47b2c4f60656b1d32c01e476bf1448935c7ce588b4e4039ce608f791b2",
+    "bytes": 12264309,
+    "base": "19d7b9838792f6f1dcf1cec8f1c511c31e21ff24",
+    "baseTree": "8cec9267108c4f78f4fc890c84279e3e1a99b32f",
+    "HEAD": "fe74d7fbbd0ea3722b02a97b67bdfe2f8b80cdb9",
+    "tree": "7f6057cefeae8b54dd6734314f5394871eaf3e9b",
+    "changedPaths": 27,
+    "deletions": 1,
+    "archiveBlobSHAAndTemporaryIndexExactTreeReplay": true,
+    "libraryFileId": "libfile_ba7ee633d5508191baf2f9ff80ed6b21"
+  },
+  "chainVerification": {
+    "steps": [
+      {
+        "archive": "honro-transport-delta-19d7-fe74.zip",
+        "beforeTree": "8cec9267108c4f78f4fc890c84279e3e1a99b32f",
+        "afterTree": "7f6057cefeae8b54dd6734314f5394871eaf3e9b",
+        "pass": true
+      },
+      {
+        "archive": "honro-tracked-delta-fe74-ea69d698.zip",
+        "beforeTree": "7f6057cefeae8b54dd6734314f5394871eaf3e9b",
+        "afterTree": "c0e79540203d66645b8b8dca0f11f6cb7933e411",
+        "pass": true
+      }
+    ],
+    "pass": true
+  },
+  "scope": "Frozen Git objects only; uncommitted art excluded. No user attachment. Apply transport then full delta on durable old8cec base.",
+  "postEa69Delta": {
+    "base": "ea69d6984c6e4f4092637c7ce8e2dffce632c004",
+    "HEAD": "773cdae68bc26cd909f73b414dea7c516b2bb6eb",
+    "tree": "b096c7b728be3a96bf229d67ba7344474ab3cade",
+    "sha256": "405410ee6b5b317b1fe590fc1bf927b7e1b9fc2178f25ec0af2c5802ce382b7e",
+    "bytes": 46669052,
+    "libraryFileId": "libfile_b7e1d69b3cd88191b1d37b6d1d5d2ccd",
+    "changedPaths": 446,
+    "deletions": 0,
+    "exactTreeReplay": true,
+    "excludes": "later commits and all uncommitted work"
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "scope": "Test-only stale Stage1 muzzle fixture repair. Current authored geometry, unit-positioned actor, not a normal-input playthrough.",
+  "runtimeSHA256": "00b3f8b72c707db7b49e5c99d7b56397834b07a2261ef727b1b4639c1c046c3e",
+  "oldFailureEvidence": [
+    "receipts/integrated-contracts.txt",
+    "receipts/baseline-aim-contract.txt"
+  ],
+  "reason": "Hardcoded x3215 no longer embeds the raw muzzle in current forest-floor; geometric setup precondition fails with both old and indexed math. Existing authored boulder still reproduces genuine embedded muzzle from valid standing pose.",
+  "selection": "Fixed authored boulder ID; actor position selected only from raw muzzle containment and valid supported pose, never corrected origin/prediction/live shot success.",
+  "addedSelfChecks": [
+    "authored solid boulder exists",
+    "shoulder outside every solid",
+    "raw muzzle inside specified boulder",
+    "valid supported actor pose",
+    "corrected muzzle outside every solid",
+    "correction moves raw muzzle"
+  ],
+  "preservedAssertions": "All six original groups execute; endpoint/live parity, prediction nonmutation, immediate guide length, all samples outside, material penetration, explicit phase policy, bounce/terminal metadata, follow-up volleys, unobstructed/tangent/escape behavior retained. First expected blocker now names actual authored boulder instead of nonexistent forest-floor hillside collision.",
+  "integrated": "all 6 groups pass",
+  "originalMath": "all 6 groups pass via2process-only module substitutions",
+  "outputsByteIdentical": true,
+  "outputSHA256": "7d43aeb509235f62bc7b12f6351db1e84ddb9818d96a750987001c6d65ddf9c4"
+}

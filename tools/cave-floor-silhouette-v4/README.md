@@ -1,0 +1,8 @@
+# Floor follow-on (work in progress)
+
+Root requested stage38 and34 floor silhouettes as well as ceiling. The new floor concept is purpose-authored through imagegen with shallow walkable erosion and low interior contrast; actual Inkscape trace is pending the shared GUI lease.
+
+38 protected floor semantics from independent QA: west connection3180,3050; return2980,3050; destination4520,2600. West recovery2350–3270 and east4300–4800 at water3330 must stay useful. Westland/ledge overlap3200–3300 must be exact, no exposed seam. Residents4720/4890/5060/5230 at2600 need support. This prototype will preserve the full west recovery plateau2350–3300 and entire east floor; reshape west entry plateau/ramp only. Slope must remain≤1.35 and changed floor needs sweep/jump and grounded pose validation. Ceiling candidate-v5 is independently frozen and must not be overwritten.
+
+## Completed candidate checkpoints (2026-10-29)
+The initial pending trace note above is superseded. Stage38 floor completed actual native5scan→4path tracing, bounded0.0003 optimization, root-requested20% internal-shadow contrast reduction, real source-derived westfloor geometry, and protected recovery+east-floor invariants. Current immutable candidate-v4 adds canonical contact reference.heightM only to v3; art/terrain unchanged. SHA bb9de8498476cbc16e9725ca366c00b2cf14b197be24ab922be0734344c4a08a. Independent QA reports actualApp ordinary route+Continue phases pass on terrain-identical v3. This does not approve the remaining whole-stage props/sky, which the integrator owns. Stage34 follows separate skeleton-native sources in tools/cave34-silhouette-v4.

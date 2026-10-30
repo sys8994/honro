@@ -1,0 +1,141 @@
+{
+  "checks": [
+    {
+      "name": "Unit-positioned Stage1 authored-boulder muzzle is outside rock and actual A01/A02 shots stop exactly on the predicted face",
+      "detail": [
+        {
+          "id": "A01",
+          "fixture": "unit-positioned current authored Stage1 boulder; not normal-input playthrough",
+          "actor": {
+            "x": 727.2528007691802,
+            "y": 1521.6033156507442
+          },
+          "raw": {
+            "x": 768.335,
+            "y": 1454.9110246363982
+          },
+          "corrected": {
+            "x": 765.0649163974241,
+            "y": 1455.6026258489217
+          },
+          "blocker": "forest-boulder-a:collision:0",
+          "endpoint": [
+            765.1139929961298,
+            1455.5925975978203
+          ],
+          "samples": 2
+        },
+        {
+          "id": "A02",
+          "fixture": "unit-positioned current authored Stage1 boulder; not normal-input playthrough",
+          "actor": {
+            "x": 727.2528007691802,
+            "y": 1521.6033156507442
+          },
+          "raw": {
+            "x": 768.335,
+            "y": 1454.9110246363982
+          },
+          "corrected": {
+            "x": 765.0649163974241,
+            "y": 1455.6026258489217
+          },
+          "blocker": "forest-boulder-a:collision:0",
+          "endpoint": [
+            765.1139880137124,
+            1455.5925625906393
+          ],
+          "samples": 2
+        }
+      ]
+    },
+    {
+      "name": "Ordinary arrow and qi stop at nearby solids, while A02 crosses only thin wood and still stops at rock",
+      "detail": [
+        {
+          "id": "A01",
+          "mat": "wood",
+          "width": 35,
+          "hit": "near-wall",
+          "x": 1022
+        },
+        {
+          "id": "M01",
+          "mat": "rock",
+          "width": 35,
+          "hit": "near-wall",
+          "x": 1019
+        },
+        {
+          "id": "A02",
+          "mat": "wood",
+          "width": 35,
+          "hit": "far-wall",
+          "x": 1277
+        },
+        {
+          "id": "A02",
+          "mat": "wood",
+          "width": 120,
+          "hit": "near-wall",
+          "x": 1022
+        },
+        {
+          "id": "A02",
+          "mat": "rock",
+          "width": 35,
+          "hit": "near-wall",
+          "x": 1022
+        }
+      ]
+    },
+    {
+      "name": "Explicit terrain/all phasing preserves its original muzzle and the live path through the same rock",
+      "detail": [
+        {
+          "id": "O02",
+          "phase": "all",
+          "endpoint": [
+            2403.678993419937,
+            1943.1004229177229
+          ]
+        },
+        {
+          "id": "O04",
+          "phase": "terrain",
+          "endpoint": [
+            3066.1788973447574,
+            1935.100566958006
+          ]
+        }
+      ]
+    },
+    {
+      "name": "A timed ice-gourd endpoint retains distinct bounce and terminal contact metadata",
+      "detail": {
+        "detonation": [
+          698.6081144750068,
+          1830.60770078725
+        ],
+        "lastBounce": [
+          709.2456690879269,
+          1894
+        ],
+        "contacts": 3
+      }
+    },
+    {
+      "name": "Scheduled follow-up volleys use the same non-embedded muzzle and collide normally",
+      "detail": {
+        "repeatEndpoint": [
+          1022,
+          1841.78367827992
+        ]
+      }
+    },
+    {
+      "name": "Launch correction does not change an unobstructed origin or polygon tangent/escape movement collision",
+      "detail": true
+    }
+  ]
+}

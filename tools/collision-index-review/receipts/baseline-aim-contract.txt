@@ -1,0 +1,18 @@
+isolated baseline math replacements: 2
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: fixture no longer reproduces embedded muzzle
+    at file:///workspace/scratch/fff510b4df37/honro-stage31-direct/tests/aim-launch-collision.mjs:25:153
+    at check (file:///workspace/scratch/fff510b4df37/honro-stage31-direct/tests/aim-launch-collision.mjs:5:38)
+    at file:///workspace/scratch/fff510b4df37/honro-stage31-direct/tests/aim-launch-collision.mjs:23:1 {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: false,
+  expected: true,
+  operator: '==',
+  diff: 'simple'
+}
+
+Node.js v24.22.1

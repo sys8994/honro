@@ -1,0 +1,65 @@
+{
+  "status": "isolated candidate assembly plan; no production approval",
+  "stages": [
+    {
+      "stage": 31,
+      "kind": "scoped",
+      "file": "art/act4-silhouette-v3/sea/integration/stage31-edge-16241604.json",
+      "gate": "Scoped art direction accepted internally; final combined visual/gameplay/campaign/release gates separate"
+    },
+    {
+      "stage": 32,
+      "kind": "scoped",
+      "file": "art/act4-silhouette-v3/sea/integration/stage32-a6abf25d.json",
+      "gate": "Scoped art direction accepted internally; final combined visual/gameplay/campaign/release gates separate"
+    },
+    {
+      "stage": 33,
+      "kind": "scoped",
+      "file": "art/stage33-bank-silhouette-v4/connected-soil/scoped-integration-delta.json",
+      "gate": "Scoped art direction accepted internally; final combined visual/gameplay/campaign/release gates separate"
+    },
+    {
+      "stage": 34,
+      "kind": "cave",
+      "manifest": "art/cave-decor-coherence-v4/integration-manifest.json",
+      "gate": "Scoped art direction accepted internally; final combined visual/gameplay/campaign/release gates separate"
+    },
+    {
+      "stage": 35,
+      "kind": "scoped",
+      "file": "art/stage35-bank-silhouette-v4/integration-delta.json",
+      "gate": "Scoped art direction accepted internally; final combined visual/gameplay/campaign/release gates separate"
+    },
+    {
+      "stage": 36,
+      "kind": "scoped",
+      "file": "art/stage36-bank-silhouette-v4/integration-delta.json",
+      "gate": "Scoped art direction accepted internally; final combined visual/gameplay/campaign/release gates separate"
+    },
+    {
+      "stage": 37,
+      "kind": "scoped",
+      "file": "art/act4-silhouette-v3/sea/integration/stage37-quiet-d90e8614.json",
+      "gate": "Scoped art direction accepted internally; final combined visual/gameplay/campaign/release gates separate"
+    },
+    {
+      "stage": 38,
+      "kind": "cave",
+      "manifest": "art/cave-decor-coherence-v4/integration-manifest.json",
+      "gate": "Scoped art direction accepted internally; final combined visual/gameplay/campaign/release gates separate"
+    },
+    {
+      "stage": 39,
+      "kind": "scoped",
+      "file": "art/stage39-escort-grade-v1/integration-delta.json",
+      "gate": "Assistant local art and actual NPC walker/convoy accepted; full39 actual retry/outcome pending, prior38 linked boundary preserved."
+    },
+    {
+      "stage": 40,
+      "kind": "scoped",
+      "file": "art/act4-silhouette-v3/sea/integration/stage40-edge-f0eb4bc7.json",
+      "gate": "Scoped art direction accepted internally; final combined visual/gameplay/campaign/release gates separate"
+    }
+  ]
+}

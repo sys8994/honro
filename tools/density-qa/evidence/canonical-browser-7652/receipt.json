@@ -1,0 +1,139 @@
+{
+  "success": true,
+  "scope": "Actual normal npm run build HONRO.html browser smoke. Official Journey UI replay of31 from exact earned31–40 terminal profile, not custom launchMap, debug, actor/event injection or full browser campaign replay. Separate observation/setup wrapper only; production HTML/modules unchanged. Native browser Storage on fresh dedicated local4185 origin, no real user origin accessed.",
+  "runtimeSHA256": "7652daac71dc2c7c6ea02b438ce10105a26e1ac008b36258ad08e2835ee14fd9",
+  "worldSHA256": "801df923ce89d8747f337f0b71e2ae38c604a8efbd6250d56e885b931af9f1b5",
+  "htmlSHA256": "e1ef07900eb5645cae5cd3c8154ba0e008f6f5b2b81cface5bbe4ed9b90400c9",
+  "normalBuildReceipt": {
+    "path": "tools/stage31/evidence/silhouette-final-7652/normal-production-build.json",
+    "sha256": "32214aaa470743fa03f65704cca21b515e99766ad9dd7248bf8871b6ae352609"
+  },
+  "checks": {
+    "exactTerminalAct4ProofPreserved": true,
+    "all31To40ClearsPreserved": true,
+    "terminalHasNoUnfinishedBattle": true,
+    "actualFinalRestShows13Known11Alive2Dead": true,
+    "normalJourneySelect31AndLaunch": true,
+    "ordinaryDirectionMovement": {
+      "before": {
+        "id": "archer",
+        "side": 0,
+        "x": 260,
+        "y": 1720.724628041237,
+        "hp": 1573,
+        "dead": false
+      },
+      "after": {
+        "id": "archer",
+        "side": 0,
+        "x": 298.9582660867371,
+        "y": 1720.6522427795846,
+        "hp": 1573,
+        "dead": false
+      }
+    },
+    "ordinaryJump": {
+      "before": {
+        "id": "archer",
+        "side": 0,
+        "x": 298.9582660867371,
+        "y": 1720.6522427795846,
+        "hp": 1573,
+        "dead": false
+      },
+      "after": {
+        "id": "archer",
+        "side": 0,
+        "x": 298.9582660867371,
+        "y": 1578.4438556997425,
+        "hp": 1573,
+        "dead": false
+      }
+    },
+    "automaticCameraAfterMovement": true,
+    "browserColdContinueReturnsSavedTurnCheckpoint": true
+  },
+  "limits": [
+    "Pause opens menu and cancels input but does not persist mid-motion (shared/runtime/main.js pause). Browserreload resumed saved turn entry x260, not unsaved x299/airborne. This is NOT exact mid-motion Continue proof; linked Native suite separately covers explicit persist/Continue.",
+    "43 observed warning/error logs were browser extension metadata messages; zero observed game-origin warning/error logs and no App error/crash. This is not a claim that all possible errors or device conditions were covered.",
+    "No mobile GPU/RSS/FPS proof, no remote master or GitHub Pages publication.",
+    "Local server via native desktop Python3 because sandbox/repl localhost namespaces were isolated; failed server connections are environment failures, not game failures."
+  ],
+  "artifacts": [
+    {
+      "path": "tools/density-qa/evidence/canonical-browser-7652/index.html",
+      "sha256": "6d885160d7dadfa0b734c6ea3c08c3ffefc3ce7490c7907ae06d11ceb7241b49",
+      "bytes": 2373
+    },
+    {
+      "path": "tools/density-qa/evidence/canonical-browser-7652/inputs.json",
+      "sha256": "883ac8fc5fdf030c8a8dc8317d86c330542bc42dbdeb544d5230d2d1b3d85295",
+      "bytes": 515
+    },
+    {
+      "path": "tools/density-qa/evidence/canonical-browser-7652/cold-title.json",
+      "sha256": "991fa5dac596f898c79948e33c862c9d201d9cf9f7fea531388810682157f56b",
+      "bytes": 9669
+    },
+    {
+      "path": "tools/density-qa/evidence/canonical-browser-7652/terminal-rest.json",
+      "sha256": "5e6f05747c0a8d8e2545cabccfa63d59daf429bf0b5d076e9d068ffe007b04b3",
+      "bytes": 9668
+    },
+    {
+      "path": "tools/density-qa/evidence/canonical-browser-7652/terminal-rest.jpg",
+      "sha256": "34ae083279f6ebf649d3e8ba9d285acdfaa09c6864610cfadffc8afeb8f236bd",
+      "bytes": 70176
+    },
+    {
+      "path": "tools/density-qa/evidence/canonical-browser-7652/initial-title.jpg",
+      "sha256": "04c3fddd265173227ef9d6002fc3c51398a339efa588d88ea5fa287bfb14ef05",
+      "bytes": 94930
+    },
+    {
+      "path": "tools/density-qa/evidence/canonical-browser-7652/31-entry.json",
+      "sha256": "9b26f7ab0898eb53e9a821f1df8be167ebf55999f4b3f0e92afa4c5cacd25fe7",
+      "bytes": 12601
+    },
+    {
+      "path": "tools/density-qa/evidence/canonical-browser-7652/31-entry.jpg",
+      "sha256": "5a5f15cb7ebd9a91a9cfed9c4b075ae7669d347f65e5e6e11954873b5c339242",
+      "bytes": 66773
+    },
+    {
+      "path": "tools/density-qa/evidence/canonical-browser-7652/31-movement.json",
+      "sha256": "7d0b5f56e81347330c4b9ffe787ca06794b02cb7661bdcaa161df0ffa1d9c3bd",
+      "bytes": 12646
+    },
+    {
+      "path": "tools/density-qa/evidence/canonical-browser-7652/31-movement.jpg",
+      "sha256": "ec2cb62b4509d0a049230a62ef2b3c5146e179e26ab3ac67d91b837dda87829d",
+      "bytes": 68111
+    },
+    {
+      "path": "tools/density-qa/evidence/canonical-browser-7652/31-paused.json",
+      "sha256": "8a390b875a3e47fda024883ea3f8afa8872845a6ec8210a6996af62c293b4802",
+      "bytes": 12656
+    },
+    {
+      "path": "tools/density-qa/evidence/canonical-browser-7652/31-paused.jpg",
+      "sha256": "ca47a4e5ec31e7e1f045864d6f101acecec00a486bc67a356f0f822518c7504e",
+      "bytes": 46420
+    },
+    {
+      "path": "tools/density-qa/evidence/canonical-browser-7652/31-reloaded-continue.json",
+      "sha256": "56ed23764cd85d966e55a6054decde6f70c5ab2958226d3867cbbc6afd65e75c",
+      "bytes": 12499
+    },
+    {
+      "path": "tools/density-qa/evidence/canonical-browser-7652/31-reloaded-continue.jpg",
+      "sha256": "3171bfb296ebdcf9ab982ca1b6b5dcb2f7ce0122669a23ceeb603b1f4ea81e1e",
+      "bytes": 68790
+    },
+    {
+      "path": "tools/density-qa/evidence/canonical-browser-7652/browser-logs.json",
+      "sha256": "7483f095a4e51ca892e612f96da25fa70a10f9848e3c462e7a5dc92043a1f88c",
+      "bytes": 10150
+    }
+  ]
+}

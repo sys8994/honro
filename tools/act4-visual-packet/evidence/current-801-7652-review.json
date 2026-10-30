@@ -1,0 +1,468 @@
+{
+  "scope": "Actual App Native Canvas fixed-camera production visual review, not browser controls or linked campaign proof. Images freshly captured from same current runtime/project.",
+  "sourceBinding": {
+    "worldSHA256": "801df923ce89d8747f337f0b71e2ae38c604a8efbd6250d56e885b931af9f1b5",
+    "projectRawSHA256": "f16efd5cd4d4b4fdc6a7b7103015df2fafa95e026ce2682a318e09513954c300",
+    "projectNormalizedSHA256": "7e00a9a05de35860e67dc4dbde3a6cf5d96966bb29d29c022d2f70ef6242a2d4",
+    "runtimeSHA256": "7652daac71dc2c7c6ea02b438ce10105a26e1ac008b36258ad08e2835ee14fd9",
+    "hashScope": "Adapter manifest projectSHA256 hashes JSON.stringify(parsed project); exact file bytes have separate raw hash. Both retained, not substituted."
+  },
+  "batch": {
+    "startedUTC": "2026-10-29T20:43:21.858179+00:00",
+    "projectRawSHA256": "f16efd5cd4d4b4fdc6a7b7103015df2fafa95e026ce2682a318e09513954c300",
+    "projectSHA256": "7e00a9a05de35860e67dc4dbde3a6cf5d96966bb29d29c022d2f70ef6242a2d4",
+    "camerasSHA256": "5058998cefc05ce17a82a32c1c5885cb79e8e1f15dd88593b7b4f89da161e3a6",
+    "stages": [
+      {
+        "stage": 31,
+        "peakRSS": 1607319552,
+        "manifestSHA256": "ebe9778f698be031201fecad04ff0685e4fd0570788fe1b0b391fa9b70685044"
+      },
+      {
+        "stage": 32,
+        "peakRSS": 1588051968,
+        "manifestSHA256": "fecbcdfe610d128aab18195309f210879bb4fa89986c4a683f9cc53872862605"
+      },
+      {
+        "stage": 33,
+        "peakRSS": null,
+        "memoryGuard": "Process completed while RSS read observed exit race; no guard trip.",
+        "manifestSHA256": "d93ce09ee82a4ef1f288ea9b90d44a0863c238a6c3d7f201a0bd7de12181835b"
+      },
+      {
+        "stage": 34,
+        "peakRSS": 1703579648,
+        "manifestSHA256": "ae653f6f6b6f18d47c93a992bd2cefac02158fa7dbb8b0883709d69803a05275"
+      },
+      {
+        "stage": 35,
+        "peakRSS": 1733545984,
+        "manifestSHA256": "ac01b75c9dcb82d0b4588e1018f8579aa58cd18ce37edc16c231b0a322796cd4"
+      },
+      {
+        "stage": 36,
+        "peakRSS": 1694441472,
+        "manifestSHA256": "b7bdf7c89abe0a28345bab276ae77e403182c7d026b1b92faf6fa885789fdf7e"
+      },
+      {
+        "stage": 37,
+        "peakRSS": 1594245120,
+        "manifestSHA256": "f1e97150e98e76d3a18852e1fba422dba7a4fe3d9e745df84724316a0a672880"
+      },
+      {
+        "stage": 38,
+        "peakRSS": 1426345984,
+        "manifestSHA256": "602d9d21c389e3e25a464bf274d98b247c67642cf6e38674dc2f050fb8814aa0"
+      },
+      {
+        "stage": 39,
+        "peakRSS": 1695756288,
+        "manifestSHA256": "5affe21a8e91f68d8b20d237bcf29a8a7172bf4e78565cf3edb4ff963f9389bc"
+      },
+      {
+        "stage": 40,
+        "peakRSS": 1673764864,
+        "manifestSHA256": "d2e7c0f75a2d061d4c138847fb84585114690973ce3b2fcb9b09ec2c7159ca62"
+      }
+    ],
+    "finishedUTC": "2026-10-29T20:46:51.623625+00:00",
+    "sourceUnchanged": true
+  },
+  "pdf": {
+    "path": "output/pdf/act4-review/honro-act4-terrain-visual-review.pdf",
+    "sha256": "cde45a9e204eb213abdcbfe355c7e2bc036721652f3ea89984ae4e0331100fbd",
+    "bytes": 1180244,
+    "pages": 11,
+    "visualInspection": "Rendered all11 pages using pdftoppm at100dpi; inspected pages1–11 via contact sheets and individualpage5. No clipping, overlap, missing glyphs or broken image found. Existing v2 retained unchanged in output/pdf/act4-review/history/library-v2."
+  },
+  "frames": [
+    {
+      "stage": 31,
+      "path": "_local/reports/act4-visual-packet/current-801-7652/31/normal.png",
+      "sha256": "b5a35ac6c14be93d442616088081f297975825c2d435bd9194e91174c908279f",
+      "capture": {
+        "stage": 31,
+        "projectSHA256": "7e00a9a05de35860e67dc4dbde3a6cf5d96966bb29d29c022d2f70ef6242a2d4",
+        "runtimeSHA256": "7652daac71dc2c7c6ea02b438ce10105a26e1ac008b36258ad08e2835ee14fd9",
+        "externalCameraSHA256": "5058998cefc05ce17a82a32c1c5885cb79e8e1f15dd88593b7b4f89da161e3a6",
+        "entryBuild": "campaign-spent-v1",
+        "preparedPriorProof": null,
+        "sceneScope": "Actual App launch for stage31/35 with Native Canvas Scene. DOM/audio/scheduling fixtures; optional ordinary-input tick with real Scene rendering. No actor/event injection. Native evidence only, not browser or automatic gameplay approval.",
+        "scope": "Actual App launch with current shared source runtime; no VM renderer override.  no actor or event state injected. Fixed inspection camera only. Native Canvas image, DOM/HUD/audio fixtures, no browser/mobile FPS or art approval.",
+        "frames": [
+          {
+            "file": "normal.png",
+            "requested": {
+              "id": "normal",
+              "x": 1900,
+              "y": 1920,
+              "scale": 0.53,
+              "width": 1440,
+              "height": 900
+            },
+            "actual": {
+              "x": 1900,
+              "y": 1920,
+              "scale": 0.53,
+              "width": 1440,
+              "height": 900
+            }
+          }
+        ]
+      }
+    },
+    {
+      "stage": 32,
+      "path": "_local/reports/act4-visual-packet/current-801-7652/32/normal.png",
+      "sha256": "9e773f70e71775c0a8b665aac665e7e25c165c1cd533adb2841fc2bab891f4a7",
+      "capture": {
+        "stage": 32,
+        "projectSHA256": "7e00a9a05de35860e67dc4dbde3a6cf5d96966bb29d29c022d2f70ef6242a2d4",
+        "runtimeSHA256": "7652daac71dc2c7c6ea02b438ce10105a26e1ac008b36258ad08e2835ee14fd9",
+        "externalCameraSHA256": "5058998cefc05ce17a82a32c1c5885cb79e8e1f15dd88593b7b4f89da161e3a6",
+        "entryBuild": "campaign-balanced-v1",
+        "preparedPriorProof": null,
+        "sceneScope": "Prepared stage-entry profile; production App events; Native Canvas Scene initializes authored far art, then renders every60 physics ticks after combat until safeSeven receipts complete; raster caches explicitly disposed for bounded native-harness memory; DOM/audio are doubles, story text parsed from real rendered HTML. Not a browser/campaign playthrough.",
+        "scope": "Actual App launch with current shared source runtime; no VM renderer override.  no actor or event state injected. Fixed inspection camera only. Native Canvas image, DOM/HUD/audio fixtures, no browser/mobile FPS or art approval.",
+        "frames": [
+          {
+            "file": "normal.png",
+            "requested": {
+              "id": "normal",
+              "x": 1980,
+              "y": 1800,
+              "scale": 0.53,
+              "width": 1440,
+              "height": 900
+            },
+            "actual": {
+              "x": 1980,
+              "y": 1800,
+              "scale": 0.53,
+              "width": 1440,
+              "height": 900
+            }
+          }
+        ]
+      }
+    },
+    {
+      "stage": 33,
+      "path": "_local/reports/act4-visual-packet/current-801-7652/33/normal.png",
+      "sha256": "c53864c3f3a2e29ab7e88d283e54dfdaf7dec9203df6e92c4f0026d2a4c8d6b3",
+      "capture": {
+        "stage": 33,
+        "projectSHA256": "7e00a9a05de35860e67dc4dbde3a6cf5d96966bb29d29c022d2f70ef6242a2d4",
+        "runtimeSHA256": "7652daac71dc2c7c6ea02b438ce10105a26e1ac008b36258ad08e2835ee14fd9",
+        "externalCameraSHA256": "5058998cefc05ce17a82a32c1c5885cb79e8e1f15dd88593b7b4f89da161e3a6",
+        "entryBuild": "campaign-spent-v1",
+        "preparedPriorProof": null,
+        "sceneScope": "Prepared earned-SP stage-entry profile; real App/Engine/Native Canvas events and sparse actual scene rendering every300 simulation frames (bounded snapshot evidence, not continuous rendered play); DOM/audio/storage scheduling are doubles, not browser or chapters1–32 playthrough.",
+        "scope": "Actual App launch with current shared source runtime; no VM renderer override.  no actor or event state injected. Fixed inspection camera only. Native Canvas image, DOM/HUD/audio fixtures, no browser/mobile FPS or art approval.",
+        "frames": [
+          {
+            "file": "normal.png",
+            "requested": {
+              "id": "normal",
+              "x": 2900,
+              "y": 1900,
+              "scale": 0.53,
+              "width": 1440,
+              "height": 900
+            },
+            "actual": {
+              "x": 2900,
+              "y": 1900,
+              "scale": 0.53,
+              "width": 1440,
+              "height": 900
+            }
+          }
+        ]
+      }
+    },
+    {
+      "stage": 34,
+      "path": "_local/reports/act4-visual-packet/current-801-7652/34/normal.png",
+      "sha256": "e02daa90dca2bbf2af456fac42992751e073c0f264b463f77a6adb7be74d9c10",
+      "capture": {
+        "stage": 34,
+        "projectSHA256": "7e00a9a05de35860e67dc4dbde3a6cf5d96966bb29d29c022d2f70ef6242a2d4",
+        "runtimeSHA256": "7652daac71dc2c7c6ea02b438ce10105a26e1ac008b36258ad08e2835ee14fd9",
+        "externalCameraSHA256": "5058998cefc05ce17a82a32c1c5885cb79e8e1f15dd88593b7b4f89da161e3a6",
+        "entryBuild": "campaign-spent-v1",
+        "preparedPriorProof": null,
+        "sceneScope": "Prepared earned-SP stage-entry profile; real App/Engine/Native Canvas events and sparse actual scene rendering every300 simulation frames (bounded snapshot evidence, not continuous rendered play); DOM/audio/storage scheduling are doubles, not browser or chapters1–33 playthrough.",
+        "scope": "Actual App launch with current shared source runtime; no VM renderer override.  no actor or event state injected. Fixed inspection camera only. Native Canvas image, DOM/HUD/audio fixtures, no browser/mobile FPS or art approval.",
+        "frames": [
+          {
+            "file": "normal.png",
+            "requested": {
+              "id": "normal",
+              "x": 1800,
+              "y": 3900,
+              "scale": 0.53,
+              "width": 1440,
+              "height": 900
+            },
+            "actual": {
+              "x": 1800,
+              "y": 3900,
+              "scale": 0.53,
+              "width": 1440,
+              "height": 900
+            }
+          }
+        ]
+      }
+    },
+    {
+      "stage": 35,
+      "path": "_local/reports/act4-visual-packet/current-801-7652/35/normal.png",
+      "sha256": "39705fb951c67801d354a81c48176468d8450ef8ebadd1e7a70c28849f96e5c8",
+      "capture": {
+        "stage": 35,
+        "projectSHA256": "7e00a9a05de35860e67dc4dbde3a6cf5d96966bb29d29c022d2f70ef6242a2d4",
+        "runtimeSHA256": "7652daac71dc2c7c6ea02b438ce10105a26e1ac008b36258ad08e2835ee14fd9",
+        "externalCameraSHA256": "5058998cefc05ce17a82a32c1c5885cb79e8e1f15dd88593b7b4f89da161e3a6",
+        "entryBuild": "campaign-balanced-v1",
+        "preparedPriorProof": null,
+        "sceneScope": "Actual App launch for stage31/35 with Native Canvas Scene. DOM/audio/scheduling fixtures; optional ordinary-input tick with real Scene rendering. No actor/event injection. Native evidence only, not browser or automatic gameplay approval.",
+        "scope": "Actual App launch with current shared source runtime; no VM renderer override.  no actor or event state injected. Fixed inspection camera only. Native Canvas image, DOM/HUD/audio fixtures, no browser/mobile FPS or art approval.",
+        "frames": [
+          {
+            "file": "normal.png",
+            "requested": {
+              "id": "normal",
+              "x": 1100,
+              "y": 1840,
+              "scale": 0.53,
+              "width": 1440,
+              "height": 900
+            },
+            "actual": {
+              "x": 1100,
+              "y": 1840,
+              "scale": 0.53,
+              "width": 1440,
+              "height": 900
+            }
+          }
+        ]
+      }
+    },
+    {
+      "stage": 36,
+      "path": "_local/reports/act4-visual-packet/current-801-7652/36/house-normal.png",
+      "sha256": "e4a69c39a06b4243b72c430d754e6e2f6d2eeaa9b32d8498f7c0d5cdf52ac125",
+      "capture": {
+        "stage": 36,
+        "projectSHA256": "7e00a9a05de35860e67dc4dbde3a6cf5d96966bb29d29c022d2f70ef6242a2d4",
+        "runtimeSHA256": "7652daac71dc2c7c6ea02b438ce10105a26e1ac008b36258ad08e2835ee14fd9",
+        "externalCameraSHA256": "5058998cefc05ce17a82a32c1c5885cb79e8e1f15dd88593b7b4f89da161e3a6",
+        "entryBuild": "campaign-balanced-v1",
+        "preparedPriorProof": null,
+        "sceneScope": "Prepared stage-entry profile; production App events; DOM/audio are doubles. Not a browser/campaign playthrough.",
+        "scope": "Actual App launch with current shared source runtime; no VM renderer override.  no actor or event state injected. Fixed inspection camera only. Native Canvas image, DOM/HUD/audio fixtures, no browser/mobile FPS or art approval.",
+        "frames": [
+          {
+            "file": "house-normal.png",
+            "requested": {
+              "id": "house-normal",
+              "x": 2570,
+              "y": 1900,
+              "scale": 0.53,
+              "width": 1440,
+              "height": 900
+            },
+            "actual": {
+              "x": 2570,
+              "y": 1900,
+              "scale": 0.53,
+              "width": 1440,
+              "height": 900
+            }
+          }
+        ]
+      }
+    },
+    {
+      "stage": 37,
+      "path": "_local/reports/act4-visual-packet/current-801-7652/37/normal.png",
+      "sha256": "f7c1c5105936ccc336465b0ed45db16fc3313835957d9923db2916b0ad9119c2",
+      "capture": {
+        "stage": 37,
+        "projectSHA256": "7e00a9a05de35860e67dc4dbde3a6cf5d96966bb29d29c022d2f70ef6242a2d4",
+        "runtimeSHA256": "7652daac71dc2c7c6ea02b438ce10105a26e1ac008b36258ad08e2835ee14fd9",
+        "externalCameraSHA256": "5058998cefc05ce17a82a32c1c5885cb79e8e1f15dd88593b7b4f89da161e3a6",
+        "entryBuild": "campaign-balanced-v1",
+        "preparedPriorProof": null,
+        "sceneScope": "Prepared stage-entry profile; production App events; Native Canvas Scene initializes authored far art, then renders every60 physics ticks after combat until actual signal/gesture receipts complete; raster caches explicitly disposed for bounded native-harness memory; DOM/audio are doubles, story text parsed from real rendered HTML. Not a browser/campaign playthrough.",
+        "scope": "Actual App launch with current shared source runtime; no VM renderer override.  no actor or event state injected. Fixed inspection camera only. Native Canvas image, DOM/HUD/audio fixtures, no browser/mobile FPS or art approval.",
+        "frames": [
+          {
+            "file": "normal.png",
+            "requested": {
+              "id": "normal",
+              "x": 1700,
+              "y": 2950,
+              "scale": 0.53,
+              "width": 1440,
+              "height": 900
+            },
+            "actual": {
+              "x": 1700,
+              "y": 2950,
+              "scale": 0.53,
+              "width": 1440,
+              "height": 900
+            }
+          }
+        ]
+      }
+    },
+    {
+      "stage": 38,
+      "path": "_local/reports/act4-visual-packet/current-801-7652/38/normal.png",
+      "sha256": "207e7d9caed24960ca5bfd995fd2e63050a760833eb7935dd92e9872ed41abea",
+      "capture": {
+        "stage": 38,
+        "projectSHA256": "7e00a9a05de35860e67dc4dbde3a6cf5d96966bb29d29c022d2f70ef6242a2d4",
+        "runtimeSHA256": "7652daac71dc2c7c6ea02b438ce10105a26e1ac008b36258ad08e2835ee14fd9",
+        "externalCameraSHA256": "5058998cefc05ce17a82a32c1c5885cb79e8e1f15dd88593b7b4f89da161e3a6",
+        "entryBuild": "campaign-spent-v1",
+        "preparedPriorProof": null,
+        "sceneScope": "Prepared earned-SP stage-entry profile; real App/Engine/Native Canvas events and sparse actual scene rendering every300 simulation frames (bounded snapshot evidence, not continuous rendered play); DOM/audio/storage scheduling are doubles, not browser or chapters1–37 playthrough.",
+        "scope": "Actual App launch with current shared source runtime; no VM renderer override.  no actor or event state injected. Fixed inspection camera only. Native Canvas image, DOM/HUD/audio fixtures, no browser/mobile FPS or art approval.",
+        "frames": [
+          {
+            "file": "normal.png",
+            "requested": {
+              "id": "normal",
+              "x": 1800,
+              "y": 2400,
+              "scale": 0.53,
+              "width": 1440,
+              "height": 900
+            },
+            "actual": {
+              "x": 1800,
+              "y": 2400,
+              "scale": 0.53,
+              "width": 1440,
+              "height": 900
+            }
+          }
+        ]
+      }
+    },
+    {
+      "stage": 39,
+      "path": "_local/reports/act4-visual-packet/current-801-7652/39/rescue.png",
+      "sha256": "ef09a53ca52c0deda6f66413ac52c803a44e4593acc7f47c07244d632704f19a",
+      "capture": {
+        "stage": 39,
+        "projectSHA256": "7e00a9a05de35860e67dc4dbde3a6cf5d96966bb29d29c022d2f70ef6242a2d4",
+        "runtimeSHA256": "7652daac71dc2c7c6ea02b438ce10105a26e1ac008b36258ad08e2835ee14fd9",
+        "externalCameraSHA256": "5058998cefc05ce17a82a32c1c5885cb79e8e1f15dd88593b7b4f89da161e3a6",
+        "entryBuild": "campaign-spent-v1",
+        "preparedPriorProof": null,
+        "sceneScope": "Prepared earned-SP stage-entry profile; real App/Engine/Native Canvas events and sparse actual scene rendering every300 simulation frames (bounded snapshot evidence, not continuous rendered play); DOM/audio/storage scheduling are doubles, not browser or chapters1–38 playthrough.",
+        "scope": "Actual App launch with current shared source runtime; no VM renderer override.  no actor or event state injected. Fixed inspection camera only. Native Canvas image, DOM/HUD/audio fixtures, no browser/mobile FPS or art approval.",
+        "frames": [
+          {
+            "file": "rescue.png",
+            "requested": {
+              "id": "rescue",
+              "x": 5700,
+              "y": 1850,
+              "scale": 0.5,
+              "width": 1440,
+              "height": 900
+            },
+            "actual": {
+              "x": 5700,
+              "y": 1850,
+              "scale": 0.5,
+              "width": 1440,
+              "height": 900
+            }
+          }
+        ]
+      }
+    },
+    {
+      "stage": 40,
+      "path": "_local/reports/act4-visual-packet/current-801-7652/40/normal.png",
+      "sha256": "21c4ae940b2de4acca093d31af7e0fbb3bd62fef721bded0a9ba358002927b34",
+      "capture": {
+        "stage": 40,
+        "projectSHA256": "7e00a9a05de35860e67dc4dbde3a6cf5d96966bb29d29c022d2f70ef6242a2d4",
+        "runtimeSHA256": "7652daac71dc2c7c6ea02b438ce10105a26e1ac008b36258ad08e2835ee14fd9",
+        "externalCameraSHA256": "5058998cefc05ce17a82a32c1c5885cb79e8e1f15dd88593b7b4f89da161e3a6",
+        "entryBuild": "campaign-spent-v1",
+        "preparedPriorProof": "valid explicit fixture, not linked campaign",
+        "sceneScope": "Prepared earned-SP stage-entry profile; real App/Engine/Native Canvas events and sparse actual scene rendering every300 simulation frames (bounded snapshot evidence, not continuous rendered play); DOM/audio/storage scheduling are doubles, not browser or chapters1–39 playthrough.",
+        "scope": "Actual App launch with current shared source runtime; no VM renderer override.  no actor or event state injected. Fixed inspection camera only. Native Canvas image, DOM/HUD/audio fixtures, no browser/mobile FPS or art approval.",
+        "frames": [
+          {
+            "file": "normal.png",
+            "requested": {
+              "id": "normal",
+              "x": 4200,
+              "y": 1900,
+              "scale": 0.53,
+              "width": 1440,
+              "height": 900
+            },
+            "actual": {
+              "x": 4200,
+              "y": 1900,
+              "scale": 0.53,
+              "width": 1440,
+              "height": 900
+            }
+          }
+        ]
+      }
+    }
+  ],
+  "conceptCount": 30,
+  "allConceptHashesVerified": true,
+  "stage33CausewaySource": "art/stage33-causeway-silhouette-v5/concept.png",
+  "reproduce": "For n=31..40, node --expose-gc tools/act4-silhouette-review/capture-current-runtime.mjs PROJECT OUTPUT n \"\" tools/act4-visual-packet/final-review-cameras.json; separate sequential processes.",
+  "additionalOverview": {
+    "path": "_local/reports/act4-visual-packet/current31-overview/31/overview.png",
+    "sha256": "bd9fe920f217a00f1486302c640f4060d07e19b80a32f528cf7d843efc5c4196",
+    "capture": {
+      "stage": 31,
+      "projectSHA256": "7e00a9a05de35860e67dc4dbde3a6cf5d96966bb29d29c022d2f70ef6242a2d4",
+      "runtimeSHA256": "7652daac71dc2c7c6ea02b438ce10105a26e1ac008b36258ad08e2835ee14fd9",
+      "externalCameraSHA256": "5cb52772310678a2846b248011306006c393a0984d23ae7e6eeac400f3c93844",
+      "entryBuild": "campaign-spent-v1",
+      "preparedPriorProof": null,
+      "sceneScope": "Actual App launch for stage31/35 with Native Canvas Scene. DOM/audio/scheduling fixtures; optional ordinary-input tick with real Scene rendering. No actor/event injection. Native evidence only, not browser or automatic gameplay approval.",
+      "scope": "Actual App launch with current shared source runtime; no VM renderer override.  no actor or event state injected. Fixed inspection camera only. Native Canvas image, DOM/HUD/audio fixtures, no browser/mobile FPS or art approval.",
+      "frames": [
+        {
+          "file": "overview.png",
+          "requested": {
+            "id": "overview",
+            "x": 3600,
+            "y": 1900,
+            "scale": 0.20833333333333334,
+            "width": 1600,
+            "height": 850
+          },
+          "actual": {
+            "x": 3600,
+            "y": 1900,
+            "scale": 0.20833333333333334,
+            "width": 1600,
+            "height": 850
+          }
+        }
+      ]
+    }
+  }
+}

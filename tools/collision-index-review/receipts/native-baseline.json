@@ -1,0 +1,500 @@
+{
+  "scope": "Actual App balanced entry +30 ordinary skip/gravity ticks; fixed9 measured A01 predictions after3warmups;120 fixedApp ticks. Native initialization excluded. No simulation/actor overrides, no FPS or human-difficulty claim.",
+  "initialState": {
+    "phase": "aim",
+    "objective": {
+      "version": 1,
+      "clock": 0.24999999999999997,
+      "events": {},
+      "receipts": [],
+      "boat": {
+        "phase": "waiting",
+        "x": 500
+      },
+      "door": {
+        "phase": "standing",
+        "time": 0
+      },
+      "complete": false,
+      "visualDrawn": {},
+      "observed": {},
+      "tide": {
+        "phase": "low",
+        "surface": 2280,
+        "warningRound": 2,
+        "highRound": 5,
+        "lowRound": 7
+      },
+      "waterVisualLevel": 2280,
+      "water": {
+        "dry": {
+          "archer": {
+            "x": 260,
+            "y": 2100
+          },
+          "mage": {
+            "x": 380,
+            "y": 2100
+          },
+          "knight": {
+            "x": 500,
+            "y": 2100
+          },
+          "occultist": {
+            "x": 620,
+            "y": 2100
+          },
+          "a4-33-g0-0": {
+            "x": 1690,
+            "y": 1945.2173913043478
+          },
+          "a4-33-g0-1": {
+            "x": 2140,
+            "y": 1941.8918918918919
+          },
+          "a4-33-g1-0": {
+            "x": 3690,
+            "y": 1914
+          }
+        },
+        "recoveries": []
+      }
+    },
+    "units": [
+      {
+        "id": "archer",
+        "x": 260,
+        "y": 2100,
+        "hp": 1150,
+        "dead": false
+      },
+      {
+        "id": "mage",
+        "x": 380,
+        "y": 2100,
+        "hp": 1244,
+        "dead": false
+      },
+      {
+        "id": "knight",
+        "x": 500,
+        "y": 2100,
+        "hp": 2157,
+        "dead": false
+      },
+      {
+        "id": "occultist",
+        "x": 620,
+        "y": 2100,
+        "hp": 1443,
+        "dead": false
+      },
+      {
+        "id": "a4-33-g0-0",
+        "x": 1690,
+        "y": 1945.2173913043478,
+        "hp": 1512,
+        "dead": false
+      },
+      {
+        "id": "a4-33-g0-1",
+        "x": 2140,
+        "y": 1941.8918918918919,
+        "hp": 1512,
+        "dead": false
+      },
+      {
+        "id": "a4-33-g1-0",
+        "x": 3690,
+        "y": 1914,
+        "hp": 1512,
+        "dead": false
+      },
+      {
+        "id": "a4-33-g1-1",
+        "x": 4520,
+        "y": 2253,
+        "hp": 2420,
+        "dead": false
+      },
+      {
+        "id": "a4-33-g1-2",
+        "x": 4860,
+        "y": 2188,
+        "hp": 1512,
+        "dead": false
+      }
+    ]
+  },
+  "initialActor": {
+    "id": "archer",
+    "name": "설오",
+    "role": "archer",
+    "cls": "archer",
+    "side": 0,
+    "x": 260,
+    "y": 2100,
+    "vx": 0,
+    "vy": 0,
+    "hp": 1150,
+    "maxHp": 1150,
+    "r": 22,
+    "h": 92,
+    "focus": 259,
+    "maxFocus": 259,
+    "regen": 27,
+    "level": 24,
+    "attack": 6.908969999999999,
+    "armor": 0.28800000000000003,
+    "shield": 0,
+    "bound": 0,
+    "mark": 0,
+    "breaks": 0,
+    "acted": false,
+    "moveLeft": 2073,
+    "maxMove": 2073,
+    "walkSpeed": 420,
+    "angle": 44,
+    "lastPower": 0.55,
+    "loadout": [
+      "A01",
+      "A14",
+      "A02",
+      "A05"
+    ],
+    "tune": 0.5,
+    "facing": 1,
+    "hurt": 0,
+    "anim": 0,
+    "airborne": false,
+    "fixed": false,
+    "spawnX": 260,
+    "spawnY": 2100,
+    "intent": "",
+    "dead": false,
+    "ranks": {
+      "A01": 1,
+      "A14": 3,
+      "A02": 3,
+      "A05": 3
+    },
+    "group": 0,
+    "awake": true,
+    "lastAct": 0,
+    "aggroUntil": 0,
+    "xpBudget": 0,
+    "xpGranted": 0,
+    "killRewarded": false,
+    "damageBy": {},
+    "honroAlly": false,
+    "honroCivilian": false,
+    "critChance": 0.15,
+    "critMultiplier": 2.2449999999999997,
+    "equipmentIds": [
+      "itm_se_01"
+    ],
+    "cooldowns": {},
+    "eaterSwallow": 0,
+    "moving": 0,
+    "landing": 0,
+    "impactCooldown": 0,
+    "salheunFlash": 0
+  },
+  "finalState": {
+    "phase": "aim",
+    "objective": {
+      "version": 1,
+      "clock": 1.249999999999998,
+      "events": {},
+      "receipts": [],
+      "boat": {
+        "phase": "waiting",
+        "x": 500
+      },
+      "door": {
+        "phase": "standing",
+        "time": 0
+      },
+      "complete": false,
+      "visualDrawn": {},
+      "observed": {},
+      "tide": {
+        "phase": "low",
+        "surface": 2280,
+        "warningRound": 2,
+        "highRound": 5,
+        "lowRound": 7
+      },
+      "waterVisualLevel": 2280,
+      "water": {
+        "dry": {
+          "archer": {
+            "x": 260,
+            "y": 2100
+          },
+          "mage": {
+            "x": 380,
+            "y": 2100
+          },
+          "knight": {
+            "x": 500,
+            "y": 2100
+          },
+          "occultist": {
+            "x": 620,
+            "y": 2100
+          },
+          "a4-33-g0-0": {
+            "x": 1690,
+            "y": 1945.2173913043478
+          },
+          "a4-33-g0-1": {
+            "x": 2140,
+            "y": 1941.8918918918919
+          },
+          "a4-33-g1-0": {
+            "x": 3690,
+            "y": 1914
+          }
+        },
+        "recoveries": []
+      }
+    },
+    "units": [
+      {
+        "id": "archer",
+        "x": 260,
+        "y": 2100,
+        "hp": 1150,
+        "dead": false
+      },
+      {
+        "id": "mage",
+        "x": 380,
+        "y": 2100,
+        "hp": 1244,
+        "dead": false
+      },
+      {
+        "id": "knight",
+        "x": 500,
+        "y": 2100,
+        "hp": 2157,
+        "dead": false
+      },
+      {
+        "id": "occultist",
+        "x": 620,
+        "y": 2100,
+        "hp": 1443,
+        "dead": false
+      },
+      {
+        "id": "a4-33-g0-0",
+        "x": 1690,
+        "y": 1945.2173913043478,
+        "hp": 1512,
+        "dead": false
+      },
+      {
+        "id": "a4-33-g0-1",
+        "x": 2140,
+        "y": 1941.8918918918919,
+        "hp": 1512,
+        "dead": false
+      },
+      {
+        "id": "a4-33-g1-0",
+        "x": 3690,
+        "y": 1914,
+        "hp": 1512,
+        "dead": false
+      },
+      {
+        "id": "a4-33-g1-1",
+        "x": 4520,
+        "y": 2253,
+        "hp": 2420,
+        "dead": false
+      },
+      {
+        "id": "a4-33-g1-2",
+        "x": 4860,
+        "y": 2188,
+        "hp": 1512,
+        "dead": false
+      }
+    ]
+  },
+  "candidateMathSHA256": null,
+  "projectSHA256": "f6d7946fb666fb5f7116da3b8f5c87a2d1f030ab5a67379cbc485a5b0c42fa74",
+  "runtimeSHA256": "264b42d9b85f63847877ad839c67365a9b63b06b34a27cf9c84d53d9307ece2e",
+  "actor": {
+    "id": "archer",
+    "x": 260,
+    "y": 2100
+  },
+  "terrain": [
+    {
+      "id": "a4-33-land",
+      "vertices": 16
+    },
+    {
+      "id": "a4-33-upper-west",
+      "vertices": 16
+    },
+    {
+      "id": "a4-33-upper-east",
+      "vertices": 16
+    }
+  ],
+  "rows": [
+    {
+      "predictionDigest": "49ba7cf1acd220632baeb9b353e943930afc2c6086fc7c5436c942ee32779c9d",
+      "pass": 0,
+      "angle": 35,
+      "power": 0.65,
+      "ms": 23.4606789999998,
+      "warmup": true,
+      "hit": {
+        "x": 1297.2067989041977,
+        "y": 1998.6932191161284
+      }
+    },
+    {
+      "predictionDigest": "35dafc8e107e8c4af6eecdd3d7ad1bd8fc4530c4e1f02f9a7846ac9806216ed7",
+      "pass": 0,
+      "angle": 55,
+      "power": 0.65,
+      "ms": 12.876517000000604,
+      "warmup": true,
+      "hit": {
+        "x": 1288.3763375650155,
+        "y": 2000.2385498504852
+      }
+    },
+    {
+      "predictionDigest": "159b96ffa4bccfa6e85ea3e80e1e36425cbfc89dda9d46f61ebf7563a1bc3b75",
+      "pass": 0,
+      "angle": 75,
+      "power": 0.65,
+      "ms": 13.688522000000376,
+      "warmup": true,
+      "hit": {
+        "x": 826.0220876308263,
+        "y": 2105.9292876557265
+      }
+    },
+    {
+      "predictionDigest": "49ba7cf1acd220632baeb9b353e943930afc2c6086fc7c5436c942ee32779c9d",
+      "pass": 1,
+      "angle": 35,
+      "power": 0.65,
+      "ms": 21.284316999997827,
+      "warmup": false,
+      "hit": {
+        "x": 1297.2067989041977,
+        "y": 1998.6932191161284
+      }
+    },
+    {
+      "predictionDigest": "35dafc8e107e8c4af6eecdd3d7ad1bd8fc4530c4e1f02f9a7846ac9806216ed7",
+      "pass": 1,
+      "angle": 55,
+      "power": 0.65,
+      "ms": 12.438077000002522,
+      "warmup": false,
+      "hit": {
+        "x": 1288.3763375650155,
+        "y": 2000.2385498504852
+      }
+    },
+    {
+      "predictionDigest": "159b96ffa4bccfa6e85ea3e80e1e36425cbfc89dda9d46f61ebf7563a1bc3b75",
+      "pass": 1,
+      "angle": 75,
+      "power": 0.65,
+      "ms": 24.24727200000052,
+      "warmup": false,
+      "hit": {
+        "x": 826.0220876308263,
+        "y": 2105.9292876557265
+      }
+    },
+    {
+      "predictionDigest": "49ba7cf1acd220632baeb9b353e943930afc2c6086fc7c5436c942ee32779c9d",
+      "pass": 2,
+      "angle": 35,
+      "power": 0.65,
+      "ms": 10.685122999999294,
+      "warmup": false,
+      "hit": {
+        "x": 1297.2067989041977,
+        "y": 1998.6932191161284
+      }
+    },
+    {
+      "predictionDigest": "35dafc8e107e8c4af6eecdd3d7ad1bd8fc4530c4e1f02f9a7846ac9806216ed7",
+      "pass": 2,
+      "angle": 55,
+      "power": 0.65,
+      "ms": 11.027086999998573,
+      "warmup": false,
+      "hit": {
+        "x": 1288.3763375650155,
+        "y": 2000.2385498504852
+      }
+    },
+    {
+      "predictionDigest": "159b96ffa4bccfa6e85ea3e80e1e36425cbfc89dda9d46f61ebf7563a1bc3b75",
+      "pass": 2,
+      "angle": 75,
+      "power": 0.65,
+      "ms": 12.245549000002939,
+      "warmup": false,
+      "hit": {
+        "x": 826.0220876308263,
+        "y": 2105.9292876557265
+      }
+    },
+    {
+      "predictionDigest": "49ba7cf1acd220632baeb9b353e943930afc2c6086fc7c5436c942ee32779c9d",
+      "pass": 3,
+      "angle": 35,
+      "power": 0.65,
+      "ms": 10.672253000000637,
+      "warmup": false,
+      "hit": {
+        "x": 1297.2067989041977,
+        "y": 1998.6932191161284
+      }
+    },
+    {
+      "predictionDigest": "35dafc8e107e8c4af6eecdd3d7ad1bd8fc4530c4e1f02f9a7846ac9806216ed7",
+      "pass": 3,
+      "angle": 55,
+      "power": 0.65,
+      "ms": 14.476893999999447,
+      "warmup": false,
+      "hit": {
+        "x": 1288.3763375650155,
+        "y": 2000.2385498504852
+      }
+    },
+    {
+      "predictionDigest": "159b96ffa4bccfa6e85ea3e80e1e36425cbfc89dda9d46f61ebf7563a1bc3b75",
+      "pass": 3,
+      "angle": 75,
+      "power": 0.65,
+      "ms": 8.50555600000007,
+      "warmup": false,
+      "hit": {
+        "x": 826.0220876308263,
+        "y": 2105.9292876557265
+      }
+    }
+  ],
+  "medianPredictionMs": 12.245549000002939,
+  "simulationTicks": 120,
+  "simulationMs": 20.440857999998116
+}

@@ -1,0 +1,13 @@
+{
+  "status": "PASS",
+  "runtimeSHA256": "7652daac71dc2c7c6ea02b438ce10105a26e1ac008b36258ad08e2835ee14fd9",
+  "checks": [
+    "Current revision3 Continue preserves full saved battle exactly",
+    "Revision2 snapshot discarded, same stage31 restarted with visible migration notice; profile progression/equipment/SP/Act4 proof untouched",
+    "Battle-owned paid XP recovered once; repeated discard is a no-op",
+    "Current non-Act4 snapshots unchanged",
+    "All Act4 chapters invalidate old revision; custom/Workshop excluded"
+  ],
+  "loss": "Only obsolete in-battle positions, projectiles, turn/enemy/objective progress reset at the same chapter entrance. Earned growth, SP/loadouts, equipment, completed chapters and already-persisted Act4 facts remain.",
+  "scope": "Actual App Continue and existing migration with DOM/Canvas/storage doubles and explicit old-save fixtures. Not browser or linked campaign proof."
+}

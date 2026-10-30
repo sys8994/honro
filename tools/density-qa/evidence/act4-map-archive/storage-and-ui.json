@@ -1,0 +1,20 @@
+{
+  "status": "PASS",
+  "runtimeSHA256": "7652daac71dc2c7c6ea02b438ce10105a26e1ac008b36258ad08e2835ee14fd9",
+  "checks": [
+    "Exact whitespace/bytes preserved before primary overwrite; migration semantics unchanged",
+    "Archive survives reload and identical original deduplicates without writes",
+    "Different existing archive/hash collision retained; separate immutable key allocated without lock",
+    "Archive read/write/readback failure retains primary and exact export; retry only succeeds after durable verification",
+    "Primary write failure retains both original and verified archive",
+    "Current revision3, nonAct4 and custom paths do not create archive",
+    "Imported old revision raw bytes preserved without reserialization",
+    "Actual App archive export emits exact raw bytes; records list escapes untrusted stage/revision metadata and does not equate download with saved file",
+    "Actual App failure locks normal Continue, exposes original export, and download never unlocks or replaces the save"
+  ],
+  "limitations": [
+    "Immutable local archives are enumerated by revision prefix; no automatic pruning or deletion.",
+    "Browser data deletion loses local archive; file export is offered but initiating download is not confirmation.",
+    "Archived old map/asset refs may require prior compatible build; no automatic old-battle restoration."
+  ]
+}

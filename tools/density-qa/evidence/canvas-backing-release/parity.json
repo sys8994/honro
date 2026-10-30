@@ -1,0 +1,705 @@
+{
+  "passed": true,
+  "baselineRef": "569e11123b2e077ef1f37aeaf92f44d131df73e5",
+  "beforeSha256": "bbddb8918cea267c1021e9764cf7de9231215f4ab7eedaa0981fe83d446fcbd5",
+  "afterSha256": "55f98d7464950fd6b0457916082d502bcb6a8cc03f57c449fc3791ce7f42f1ac",
+  "reports": [
+    {
+      "view": {
+        "w": 960,
+        "h": 540,
+        "z": 0.53
+      },
+      "pixelExactFrames": 26,
+      "old": {
+        "view": {
+          "w": 960,
+          "h": 540,
+          "z": 0.53
+        },
+        "frames": [
+          {
+            "label": "pan-0",
+            "pixels": "6f4dc8b38eee21e8df6b862a703126ee34a9c7c35471ef5f7048a52fab3f4220",
+            "tileCount": 6,
+            "worldBuilds": 1
+          },
+          {
+            "label": "pan-1",
+            "pixels": "2e9235379954e9ace6e5884df5a4d0cb967e956c9d27824d9441e32c629d0e1b",
+            "tileCount": 10,
+            "worldBuilds": 1
+          },
+          {
+            "label": "pan-2",
+            "pixels": "7268046a0750c594f4e8e7df58eca7d613d915330a8da75ea01670eea26c78f0",
+            "tileCount": 14,
+            "worldBuilds": 1
+          },
+          {
+            "label": "pan-3",
+            "pixels": "8f21b1a7c0182de1c6c065eeb41324fda73aea9149ee4990f741026b37dce33c",
+            "tileCount": 18,
+            "worldBuilds": 1
+          },
+          {
+            "label": "pan-4",
+            "pixels": "44040d16808bc94c59314734e241e6f112d9fe8bc0bd5beb07b8b0f6cbd251bc",
+            "tileCount": 22,
+            "worldBuilds": 1
+          },
+          {
+            "label": "pan-5",
+            "pixels": "9f4ef6dda590c8058639ff0bcd8f2022d9df6cf1087d49b964ac3ec6f792e596",
+            "tileCount": 24,
+            "worldBuilds": 1
+          },
+          {
+            "label": "pan-6",
+            "pixels": "2bf2ec65ce77a3edcf37c4f96488607472fea2a77200d36821c6be321feeff07",
+            "tileCount": 24,
+            "worldBuilds": 1
+          },
+          {
+            "label": "pan-7",
+            "pixels": "dc72040c7902da1b05bb6a7b0ea6fdca14fa78033331963616f60319bc351b2d",
+            "tileCount": 24,
+            "worldBuilds": 1
+          },
+          {
+            "label": "pan-8",
+            "pixels": "25017ca96e9d616491c34f8c58be3f69ec239618b00ab48fbb550c2d2475ac1d",
+            "tileCount": 24,
+            "worldBuilds": 1
+          },
+          {
+            "label": "pan-9",
+            "pixels": "472fb91e1212aa0f2566e5f3dc8127280436feeb3337b38c397db1e10c911508",
+            "tileCount": 24,
+            "worldBuilds": 1
+          },
+          {
+            "label": "pan-10",
+            "pixels": "575a31284c700c659fec1aca30652550257d986b992bcadbfa294fcdf1589e6f",
+            "tileCount": 24,
+            "worldBuilds": 1
+          },
+          {
+            "label": "pan-11",
+            "pixels": "633bd19ccf66480203f03fad928740ec8983edaa2cb888c43852c832bd56b637",
+            "tileCount": 24,
+            "worldBuilds": 1
+          },
+          {
+            "label": "pan-12",
+            "pixels": "565df96e240c325e31dfc9739e1f71ef58ec943979cab0ec2c44ffa68bdebc97",
+            "tileCount": 24,
+            "worldBuilds": 1
+          },
+          {
+            "label": "pan-13",
+            "pixels": "a162755f2ab8b8cfcadf303bbe7c26eb26feff1789fa6dd07731a12b198ab711",
+            "tileCount": 24,
+            "worldBuilds": 1
+          },
+          {
+            "label": "return",
+            "pixels": "6f4dc8b38eee21e8df6b862a703126ee34a9c7c35471ef5f7048a52fab3f4220",
+            "tileCount": 24,
+            "worldBuilds": 1
+          },
+          {
+            "label": "zoom-0.22",
+            "pixels": "a6d77959d82a584bfbf1ebdccf675de41279e8554c767ff0f42460d475bb8a1c",
+            "tileCount": 6,
+            "worldBuilds": 2
+          },
+          {
+            "label": "zoom-0.41",
+            "pixels": "759384abdbd8b1d3ba7936ad3e2b6a8f912735310e2e9a21872f85f24227592e",
+            "tileCount": 6,
+            "worldBuilds": 3
+          },
+          {
+            "label": "zoom-0.68",
+            "pixels": "843a40bb340cd54b96944a5e82ee4490dd4a905f14deba9f6c9fb036714d2b3f",
+            "tileCount": 4,
+            "worldBuilds": 4
+          },
+          {
+            "label": "zoom-0.31",
+            "pixels": "8c3332751aef2f25b1e230156f920063938fff0042c06b031978b5a73d5f1070",
+            "tileCount": 9,
+            "worldBuilds": 5
+          },
+          {
+            "label": "scene-reset",
+            "pixels": "7beb5dfeb844a9f64f470975640444aa5ed04b3825f8c43bc48d7add2a3492db",
+            "tileCount": 6,
+            "worldBuilds": 6
+          },
+          {
+            "label": "settle-build",
+            "pixels": "7beb5dfeb844a9f64f470975640444aa5ed04b3825f8c43bc48d7add2a3492db",
+            "tileCount": 6,
+            "worldBuilds": 6
+          },
+          {
+            "label": "settle-hit",
+            "pixels": "7beb5dfeb844a9f64f470975640444aa5ed04b3825f8c43bc48d7add2a3492db",
+            "tileCount": 6,
+            "worldBuilds": 6
+          },
+          {
+            "label": "domain-to-static",
+            "pixels": "30dec9823b7f21939ffe6e28d3f3613a929f96bd280f7d0dd51c5a10132af0d9",
+            "tileCount": 6,
+            "worldBuilds": 7
+          },
+          {
+            "label": "static-hit",
+            "pixels": "30dec9823b7f21939ffe6e28d3f3613a929f96bd280f7d0dd51c5a10132af0d9",
+            "tileCount": 6,
+            "worldBuilds": 7
+          },
+          {
+            "label": "static-rebuild",
+            "pixels": "30dec9823b7f21939ffe6e28d3f3613a929f96bd280f7d0dd51c5a10132af0d9",
+            "tileCount": 6,
+            "worldBuilds": 8
+          },
+          {
+            "label": "static-to-domain",
+            "pixels": "7beb5dfeb844a9f64f470975640444aa5ed04b3825f8c43bc48d7add2a3492db",
+            "tileCount": 6,
+            "worldBuilds": 9
+          }
+        ],
+        "allocated": 100,
+        "released": 1,
+        "retainedBytes": 106026252,
+        "peakTileCount": 24
+      },
+      "current": {
+        "view": {
+          "w": 960,
+          "h": 540,
+          "z": 0.53
+        },
+        "frames": [
+          {
+            "label": "pan-0",
+            "pixels": "6f4dc8b38eee21e8df6b862a703126ee34a9c7c35471ef5f7048a52fab3f4220",
+            "tileCount": 6,
+            "worldBuilds": 1
+          },
+          {
+            "label": "pan-1",
+            "pixels": "2e9235379954e9ace6e5884df5a4d0cb967e956c9d27824d9441e32c629d0e1b",
+            "tileCount": 10,
+            "worldBuilds": 1
+          },
+          {
+            "label": "pan-2",
+            "pixels": "7268046a0750c594f4e8e7df58eca7d613d915330a8da75ea01670eea26c78f0",
+            "tileCount": 14,
+            "worldBuilds": 1
+          },
+          {
+            "label": "pan-3",
+            "pixels": "8f21b1a7c0182de1c6c065eeb41324fda73aea9149ee4990f741026b37dce33c",
+            "tileCount": 18,
+            "worldBuilds": 1
+          },
+          {
+            "label": "pan-4",
+            "pixels": "44040d16808bc94c59314734e241e6f112d9fe8bc0bd5beb07b8b0f6cbd251bc",
+            "tileCount": 22,
+            "worldBuilds": 1
+          },
+          {
+            "label": "pan-5",
+            "pixels": "9f4ef6dda590c8058639ff0bcd8f2022d9df6cf1087d49b964ac3ec6f792e596",
+            "tileCount": 24,
+            "worldBuilds": 1
+          },
+          {
+            "label": "pan-6",
+            "pixels": "2bf2ec65ce77a3edcf37c4f96488607472fea2a77200d36821c6be321feeff07",
+            "tileCount": 24,
+            "worldBuilds": 1
+          },
+          {
+            "label": "pan-7",
+            "pixels": "dc72040c7902da1b05bb6a7b0ea6fdca14fa78033331963616f60319bc351b2d",
+            "tileCount": 24,
+            "worldBuilds": 1
+          },
+          {
+            "label": "pan-8",
+            "pixels": "25017ca96e9d616491c34f8c58be3f69ec239618b00ab48fbb550c2d2475ac1d",
+            "tileCount": 24,
+            "worldBuilds": 1
+          },
+          {
+            "label": "pan-9",
+            "pixels": "472fb91e1212aa0f2566e5f3dc8127280436feeb3337b38c397db1e10c911508",
+            "tileCount": 24,
+            "worldBuilds": 1
+          },
+          {
+            "label": "pan-10",
+            "pixels": "575a31284c700c659fec1aca30652550257d986b992bcadbfa294fcdf1589e6f",
+            "tileCount": 24,
+            "worldBuilds": 1
+          },
+          {
+            "label": "pan-11",
+            "pixels": "633bd19ccf66480203f03fad928740ec8983edaa2cb888c43852c832bd56b637",
+            "tileCount": 24,
+            "worldBuilds": 1
+          },
+          {
+            "label": "pan-12",
+            "pixels": "565df96e240c325e31dfc9739e1f71ef58ec943979cab0ec2c44ffa68bdebc97",
+            "tileCount": 24,
+            "worldBuilds": 1
+          },
+          {
+            "label": "pan-13",
+            "pixels": "a162755f2ab8b8cfcadf303bbe7c26eb26feff1789fa6dd07731a12b198ab711",
+            "tileCount": 24,
+            "worldBuilds": 1
+          },
+          {
+            "label": "return",
+            "pixels": "6f4dc8b38eee21e8df6b862a703126ee34a9c7c35471ef5f7048a52fab3f4220",
+            "tileCount": 24,
+            "worldBuilds": 1
+          },
+          {
+            "label": "zoom-0.22",
+            "pixels": "a6d77959d82a584bfbf1ebdccf675de41279e8554c767ff0f42460d475bb8a1c",
+            "tileCount": 6,
+            "worldBuilds": 2
+          },
+          {
+            "label": "zoom-0.41",
+            "pixels": "759384abdbd8b1d3ba7936ad3e2b6a8f912735310e2e9a21872f85f24227592e",
+            "tileCount": 6,
+            "worldBuilds": 3
+          },
+          {
+            "label": "zoom-0.68",
+            "pixels": "843a40bb340cd54b96944a5e82ee4490dd4a905f14deba9f6c9fb036714d2b3f",
+            "tileCount": 4,
+            "worldBuilds": 4
+          },
+          {
+            "label": "zoom-0.31",
+            "pixels": "8c3332751aef2f25b1e230156f920063938fff0042c06b031978b5a73d5f1070",
+            "tileCount": 9,
+            "worldBuilds": 5
+          },
+          {
+            "label": "scene-reset",
+            "pixels": "7beb5dfeb844a9f64f470975640444aa5ed04b3825f8c43bc48d7add2a3492db",
+            "tileCount": 6,
+            "worldBuilds": 6
+          },
+          {
+            "label": "settle-build",
+            "pixels": "7beb5dfeb844a9f64f470975640444aa5ed04b3825f8c43bc48d7add2a3492db",
+            "tileCount": 6,
+            "worldBuilds": 6
+          },
+          {
+            "label": "settle-hit",
+            "pixels": "7beb5dfeb844a9f64f470975640444aa5ed04b3825f8c43bc48d7add2a3492db",
+            "tileCount": 6,
+            "worldBuilds": 6
+          },
+          {
+            "label": "domain-to-static",
+            "pixels": "30dec9823b7f21939ffe6e28d3f3613a929f96bd280f7d0dd51c5a10132af0d9",
+            "tileCount": 0,
+            "worldBuilds": 7
+          },
+          {
+            "label": "static-hit",
+            "pixels": "30dec9823b7f21939ffe6e28d3f3613a929f96bd280f7d0dd51c5a10132af0d9",
+            "tileCount": 0,
+            "worldBuilds": 7
+          },
+          {
+            "label": "static-rebuild",
+            "pixels": "30dec9823b7f21939ffe6e28d3f3613a929f96bd280f7d0dd51c5a10132af0d9",
+            "tileCount": 0,
+            "worldBuilds": 8
+          },
+          {
+            "label": "static-to-domain",
+            "pixels": "7beb5dfeb844a9f64f470975640444aa5ed04b3825f8c43bc48d7add2a3492db",
+            "tileCount": 6,
+            "worldBuilds": 9
+          }
+        ],
+        "allocated": 100,
+        "released": 94,
+        "retainedBytes": 6390520,
+        "peakTileCount": 24
+      }
+    },
+    {
+      "view": {
+        "w": 390,
+        "h": 844,
+        "z": 0.31
+      },
+      "pixelExactFrames": 26,
+      "old": {
+        "view": {
+          "w": 390,
+          "h": 844,
+          "z": 0.31
+        },
+        "frames": [
+          {
+            "label": "pan-0",
+            "pixels": "632ab326346c916e1e9a8edea403cea05a2429eeeff21c05a41daccca6cbe4f8",
+            "tileCount": 6,
+            "worldBuilds": 1
+          },
+          {
+            "label": "pan-1",
+            "pixels": "f76a06da5377d090d27c681ac537d9a5e18a37214a8f7f79611b642c60c0acd8",
+            "tileCount": 9,
+            "worldBuilds": 1
+          },
+          {
+            "label": "pan-2",
+            "pixels": "ed24217b87130ebd289619d21b51c9646546ccbbb9518a8ef9414e3ae10c65fe",
+            "tileCount": 12,
+            "worldBuilds": 1
+          },
+          {
+            "label": "pan-3",
+            "pixels": "205dca4e2f9457d6ee259fda5daf7308ed104f4c1398b421fc42063f1e9ad4a0",
+            "tileCount": 12,
+            "worldBuilds": 1
+          },
+          {
+            "label": "pan-4",
+            "pixels": "4a21b4701f33ec666aef64f5ded3bd65fb8024ac333999faf9b827d0ad29e251",
+            "tileCount": 12,
+            "worldBuilds": 1
+          },
+          {
+            "label": "pan-5",
+            "pixels": "b69406dadc54682982a876125774d34df8abebdc3cb9a39ea62fe28276f0b509",
+            "tileCount": 12,
+            "worldBuilds": 1
+          },
+          {
+            "label": "pan-6",
+            "pixels": "d25545e99c1db5c4a08181509b40f06b07d91079dc67c231b66bd5b9490ca36c",
+            "tileCount": 12,
+            "worldBuilds": 1
+          },
+          {
+            "label": "pan-7",
+            "pixels": "ace04455aad9196b6b1cecfd0e714c1eb813808c6edabef64307bc5f10f46085",
+            "tileCount": 12,
+            "worldBuilds": 1
+          },
+          {
+            "label": "pan-8",
+            "pixels": "b189b8dca81734c7c1039a4eb47d7ab03c43c578af89733605d7053227741462",
+            "tileCount": 12,
+            "worldBuilds": 1
+          },
+          {
+            "label": "pan-9",
+            "pixels": "8179f90a6caaf3503a520354611e9a0ac5a2354ffd7bee63b464cd2831563e85",
+            "tileCount": 12,
+            "worldBuilds": 1
+          },
+          {
+            "label": "pan-10",
+            "pixels": "be21c67b32806a7d98f053f4e5ba3607966a94d228bce2f9d4e601a0e23ac6f0",
+            "tileCount": 12,
+            "worldBuilds": 1
+          },
+          {
+            "label": "pan-11",
+            "pixels": "6f4f87e149f4fd3801fc9dcd6447cee9e67797afb8efe9a2f446d8f0b965cee4",
+            "tileCount": 12,
+            "worldBuilds": 1
+          },
+          {
+            "label": "pan-12",
+            "pixels": "0234bbd88f88d086c432c0c315efd1c72156d1a0bc61437d6b1f7b6436cbc19b",
+            "tileCount": 12,
+            "worldBuilds": 1
+          },
+          {
+            "label": "pan-13",
+            "pixels": "08b9b687e01c7bf1609f3de4f646b24db1a3908d2099dcc93881bb1d23147299",
+            "tileCount": 12,
+            "worldBuilds": 1
+          },
+          {
+            "label": "return",
+            "pixels": "632ab326346c916e1e9a8edea403cea05a2429eeeff21c05a41daccca6cbe4f8",
+            "tileCount": 12,
+            "worldBuilds": 1
+          },
+          {
+            "label": "zoom-0.22",
+            "pixels": "e6097daac42898af65a7d5245542c69c73c9d62b1e3e07b4b92d6333005c45b0",
+            "tileCount": 6,
+            "worldBuilds": 2
+          },
+          {
+            "label": "zoom-0.41",
+            "pixels": "61a822b6f16239d6c4ed997df5d8d5c93d714b8a6edc5c6e3da03bc38327966d",
+            "tileCount": 6,
+            "worldBuilds": 3
+          },
+          {
+            "label": "zoom-0.68",
+            "pixels": "eff7825044674e794fb8d4a0df2fca2a809c15b92a69f00e2461c456290e9305",
+            "tileCount": 4,
+            "worldBuilds": 4
+          },
+          {
+            "label": "zoom-0.31",
+            "pixels": "e571626d67c75d0a2450015fca5c3a51278638e1fe5b274c8806de530ff8b371",
+            "tileCount": 6,
+            "worldBuilds": 5
+          },
+          {
+            "label": "scene-reset",
+            "pixels": "e571626d67c75d0a2450015fca5c3a51278638e1fe5b274c8806de530ff8b371",
+            "tileCount": 6,
+            "worldBuilds": 6
+          },
+          {
+            "label": "settle-build",
+            "pixels": "e571626d67c75d0a2450015fca5c3a51278638e1fe5b274c8806de530ff8b371",
+            "tileCount": 6,
+            "worldBuilds": 6
+          },
+          {
+            "label": "settle-hit",
+            "pixels": "e571626d67c75d0a2450015fca5c3a51278638e1fe5b274c8806de530ff8b371",
+            "tileCount": 6,
+            "worldBuilds": 6
+          },
+          {
+            "label": "domain-to-static",
+            "pixels": "fd3ac0f1670bc1dbdb2a196ba7c64884705afa72b238140af3a1350ffe8fe33e",
+            "tileCount": 6,
+            "worldBuilds": 7
+          },
+          {
+            "label": "static-hit",
+            "pixels": "fd3ac0f1670bc1dbdb2a196ba7c64884705afa72b238140af3a1350ffe8fe33e",
+            "tileCount": 6,
+            "worldBuilds": 7
+          },
+          {
+            "label": "static-rebuild",
+            "pixels": "fd3ac0f1670bc1dbdb2a196ba7c64884705afa72b238140af3a1350ffe8fe33e",
+            "tileCount": 6,
+            "worldBuilds": 8
+          },
+          {
+            "label": "static-to-domain",
+            "pixels": "e571626d67c75d0a2450015fca5c3a51278638e1fe5b274c8806de530ff8b371",
+            "tileCount": 6,
+            "worldBuilds": 9
+          }
+        ],
+        "allocated": 94,
+        "released": 1,
+        "retainedBytes": 99636108,
+        "peakTileCount": 12
+      },
+      "current": {
+        "view": {
+          "w": 390,
+          "h": 844,
+          "z": 0.31
+        },
+        "frames": [
+          {
+            "label": "pan-0",
+            "pixels": "632ab326346c916e1e9a8edea403cea05a2429eeeff21c05a41daccca6cbe4f8",
+            "tileCount": 6,
+            "worldBuilds": 1
+          },
+          {
+            "label": "pan-1",
+            "pixels": "f76a06da5377d090d27c681ac537d9a5e18a37214a8f7f79611b642c60c0acd8",
+            "tileCount": 9,
+            "worldBuilds": 1
+          },
+          {
+            "label": "pan-2",
+            "pixels": "ed24217b87130ebd289619d21b51c9646546ccbbb9518a8ef9414e3ae10c65fe",
+            "tileCount": 12,
+            "worldBuilds": 1
+          },
+          {
+            "label": "pan-3",
+            "pixels": "205dca4e2f9457d6ee259fda5daf7308ed104f4c1398b421fc42063f1e9ad4a0",
+            "tileCount": 12,
+            "worldBuilds": 1
+          },
+          {
+            "label": "pan-4",
+            "pixels": "4a21b4701f33ec666aef64f5ded3bd65fb8024ac333999faf9b827d0ad29e251",
+            "tileCount": 12,
+            "worldBuilds": 1
+          },
+          {
+            "label": "pan-5",
+            "pixels": "b69406dadc54682982a876125774d34df8abebdc3cb9a39ea62fe28276f0b509",
+            "tileCount": 12,
+            "worldBuilds": 1
+          },
+          {
+            "label": "pan-6",
+            "pixels": "d25545e99c1db5c4a08181509b40f06b07d91079dc67c231b66bd5b9490ca36c",
+            "tileCount": 12,
+            "worldBuilds": 1
+          },
+          {
+            "label": "pan-7",
+            "pixels": "ace04455aad9196b6b1cecfd0e714c1eb813808c6edabef64307bc5f10f46085",
+            "tileCount": 12,
+            "worldBuilds": 1
+          },
+          {
+            "label": "pan-8",
+            "pixels": "b189b8dca81734c7c1039a4eb47d7ab03c43c578af89733605d7053227741462",
+            "tileCount": 12,
+            "worldBuilds": 1
+          },
+          {
+            "label": "pan-9",
+            "pixels": "8179f90a6caaf3503a520354611e9a0ac5a2354ffd7bee63b464cd2831563e85",
+            "tileCount": 12,
+            "worldBuilds": 1
+          },
+          {
+            "label": "pan-10",
+            "pixels": "be21c67b32806a7d98f053f4e5ba3607966a94d228bce2f9d4e601a0e23ac6f0",
+            "tileCount": 12,
+            "worldBuilds": 1
+          },
+          {
+            "label": "pan-11",
+            "pixels": "6f4f87e149f4fd3801fc9dcd6447cee9e67797afb8efe9a2f446d8f0b965cee4",
+            "tileCount": 12,
+            "worldBuilds": 1
+          },
+          {
+            "label": "pan-12",
+            "pixels": "0234bbd88f88d086c432c0c315efd1c72156d1a0bc61437d6b1f7b6436cbc19b",
+            "tileCount": 12,
+            "worldBuilds": 1
+          },
+          {
+            "label": "pan-13",
+            "pixels": "08b9b687e01c7bf1609f3de4f646b24db1a3908d2099dcc93881bb1d23147299",
+            "tileCount": 12,
+            "worldBuilds": 1
+          },
+          {
+            "label": "return",
+            "pixels": "632ab326346c916e1e9a8edea403cea05a2429eeeff21c05a41daccca6cbe4f8",
+            "tileCount": 12,
+            "worldBuilds": 1
+          },
+          {
+            "label": "zoom-0.22",
+            "pixels": "e6097daac42898af65a7d5245542c69c73c9d62b1e3e07b4b92d6333005c45b0",
+            "tileCount": 6,
+            "worldBuilds": 2
+          },
+          {
+            "label": "zoom-0.41",
+            "pixels": "61a822b6f16239d6c4ed997df5d8d5c93d714b8a6edc5c6e3da03bc38327966d",
+            "tileCount": 6,
+            "worldBuilds": 3
+          },
+          {
+            "label": "zoom-0.68",
+            "pixels": "eff7825044674e794fb8d4a0df2fca2a809c15b92a69f00e2461c456290e9305",
+            "tileCount": 4,
+            "worldBuilds": 4
+          },
+          {
+            "label": "zoom-0.31",
+            "pixels": "e571626d67c75d0a2450015fca5c3a51278638e1fe5b274c8806de530ff8b371",
+            "tileCount": 6,
+            "worldBuilds": 5
+          },
+          {
+            "label": "scene-reset",
+            "pixels": "e571626d67c75d0a2450015fca5c3a51278638e1fe5b274c8806de530ff8b371",
+            "tileCount": 6,
+            "worldBuilds": 6
+          },
+          {
+            "label": "settle-build",
+            "pixels": "e571626d67c75d0a2450015fca5c3a51278638e1fe5b274c8806de530ff8b371",
+            "tileCount": 6,
+            "worldBuilds": 6
+          },
+          {
+            "label": "settle-hit",
+            "pixels": "e571626d67c75d0a2450015fca5c3a51278638e1fe5b274c8806de530ff8b371",
+            "tileCount": 6,
+            "worldBuilds": 6
+          },
+          {
+            "label": "domain-to-static",
+            "pixels": "fd3ac0f1670bc1dbdb2a196ba7c64884705afa72b238140af3a1350ffe8fe33e",
+            "tileCount": 0,
+            "worldBuilds": 7
+          },
+          {
+            "label": "static-hit",
+            "pixels": "fd3ac0f1670bc1dbdb2a196ba7c64884705afa72b238140af3a1350ffe8fe33e",
+            "tileCount": 0,
+            "worldBuilds": 7
+          },
+          {
+            "label": "static-rebuild",
+            "pixels": "fd3ac0f1670bc1dbdb2a196ba7c64884705afa72b238140af3a1350ffe8fe33e",
+            "tileCount": 0,
+            "worldBuilds": 8
+          },
+          {
+            "label": "static-to-domain",
+            "pixels": "e571626d67c75d0a2450015fca5c3a51278638e1fe5b274c8806de530ff8b371",
+            "tileCount": 6,
+            "worldBuilds": 9
+          }
+        ],
+        "allocated": 94,
+        "released": 88,
+        "retainedBytes": 6390496,
+        "peakTileCount": 12
+      }
+    }
+  ],
+  "limits": [
+    "Synthetic geometry exercises production cache methods in Native Canvas, not campaign gameplay, browser GPU memory, or mobile frame rate.",
+    "Retained backing bytes include deliberately retained test references to retired canvases; they are ownership/release evidence, not process RSS.",
+    "No claim that this resolves the stage35 exit137 event."
+  ]
+}

@@ -1,0 +1,381 @@
+{
+  "at": "2026-10-29T20:54:01.577Z",
+  "url": "http://127.0.0.1:4185/HONRO.html",
+  "app": true,
+  "screen": "title",
+  "stageId": 40,
+  "custom": false,
+  "debug": false,
+  "training": false,
+  "lastError": "",
+  "crash": false,
+  "dialogue": false,
+  "modal": "",
+  "profile": {
+    "lastStage": 40,
+    "clearedAct4": [
+      "31",
+      "32",
+      "33",
+      "34",
+      "35",
+      "36",
+      "37",
+      "38",
+      "39",
+      "40"
+    ],
+    "hasBattle": false,
+    "act4": {
+      "version": 1,
+      "runId": "eq-mvty68sj-tlxd355a",
+      "completed": {
+        "31": {
+          "stage": 31,
+          "sourceRun": "honro-map-stage-31-1793302780071",
+          "campaignRunId": "eq-mvty68sj-tlxd355a",
+          "success": true,
+          "residents": [],
+          "rows": [
+            "A4.S31.BOAT.01",
+            "A4.S31.BOARD.01"
+          ]
+        },
+        "32": {
+          "stage": 32,
+          "sourceRun": "honro-map-stage-32-1793302827439",
+          "campaignRunId": "eq-mvty68sj-tlxd355a",
+          "success": true,
+          "residents": [
+            {
+              "id": "a4-shelter-speaker",
+              "hp": 1450,
+              "dead": false
+            }
+          ],
+          "rows": [
+            "A4.S32.REUNION.01",
+            "A4.S32.MISSING.01"
+          ]
+        },
+        "33": {
+          "stage": 33,
+          "sourceRun": "honro-map-stage-33-1793302878460",
+          "campaignRunId": "eq-mvty68sj-tlxd355a",
+          "success": true,
+          "residents": [],
+          "rows": [
+            "A4.S33.TIDE.01",
+            "A4.S33.TIDE.02"
+          ]
+        },
+        "34": {
+          "stage": 34,
+          "sourceRun": "honro-map-stage-34-1793302939975",
+          "campaignRunId": "eq-mvty68sj-tlxd355a",
+          "success": true,
+          "residents": [],
+          "rows": [
+            "A4.S34.DISLOCATION.01"
+          ]
+        },
+        "35": {
+          "stage": 35,
+          "sourceRun": "honro-map-stage-35-1793303087482",
+          "campaignRunId": "eq-mvty68sj-tlxd355a",
+          "success": true,
+          "residents": [],
+          "rows": [
+            "A4.S35.EXIT.01"
+          ]
+        },
+        "36": {
+          "stage": 36,
+          "sourceRun": "honro-map-stage-36-1793303326733",
+          "campaignRunId": "eq-mvty68sj-tlxd355a",
+          "success": true,
+          "residents": [],
+          "rows": [
+            "A4.S36.ENTRY.01",
+            "A4.S36.DOOR.01",
+            "A4.S36.DOOR.02",
+            "A4.S36.EXIT.01",
+            "A4.S36.EXIT.02"
+          ]
+        },
+        "37": {
+          "stage": 37,
+          "sourceRun": "honro-map-stage-37-1793303431708",
+          "campaignRunId": "eq-mvty68sj-tlxd355a",
+          "success": true,
+          "residents": [],
+          "rows": [
+            "A4.S37.SIGNAL.01"
+          ]
+        },
+        "38": {
+          "stage": 38,
+          "sourceRun": "honro-map-stage-38-1793303821034",
+          "campaignRunId": "eq-mvty68sj-tlxd355a",
+          "success": true,
+          "residents": [
+            {
+              "id": "a4-rescue-0",
+              "hp": 1450,
+              "dead": false
+            },
+            {
+              "id": "a4-rescue-1",
+              "hp": 1450,
+              "dead": false
+            },
+            {
+              "id": "a4-rescue-2",
+              "hp": 1450,
+              "dead": false
+            },
+            {
+              "id": "a4-rescue-3",
+              "hp": 1387.9,
+              "dead": false
+            }
+          ],
+          "rows": [
+            "A4.S38.VOICE.01",
+            "A4.S38.ANCHOR.01",
+            "A4.S38.CONNECTED.01"
+          ]
+        },
+        "39": {
+          "stage": 39,
+          "sourceRun": "honro-map-stage-39-1793304969261",
+          "campaignRunId": "eq-mvty68sj-tlxd355a",
+          "success": true,
+          "residents": [
+            {
+              "id": "a4-rescue-0",
+              "hp": 1117,
+              "dead": false
+            },
+            {
+              "id": "a4-rescue-1",
+              "hp": 1326,
+              "dead": false
+            },
+            {
+              "id": "a4-rescue-2",
+              "hp": 1450,
+              "dead": false
+            },
+            {
+              "id": "a4-rescue-3",
+              "hp": 1387.9,
+              "dead": false
+            }
+          ],
+          "rows": [
+            "A4.S39.BOSS.01",
+            "A4.S39.STABILIZE.01",
+            "A4.S39.RELEASE.01"
+          ]
+        },
+        "40": {
+          "stage": 40,
+          "sourceRun": "honro-map-stage-40-1793305198821",
+          "campaignRunId": "eq-mvty68sj-tlxd355a",
+          "success": true,
+          "residents": [
+            {
+              "id": "a4-rescue-0",
+              "hp": 1117,
+              "dead": false
+            },
+            {
+              "id": "a4-rescue-1",
+              "hp": 1326,
+              "dead": false
+            },
+            {
+              "id": "a4-rescue-2",
+              "hp": 1450,
+              "dead": false
+            },
+            {
+              "id": "a4-rescue-3",
+              "hp": 1387.9,
+              "dead": false
+            }
+          ],
+          "rows": [
+            "A4.S40.BOARD.01",
+            "A4.S40.REUNION.01",
+            "A4.S40.THIRTEEN.01",
+            "A4.S40.NEXT.01"
+          ]
+        }
+      },
+      "factEvents": {
+        "eq_se_t3b": {
+          "eventId": "eq_se_t3b",
+          "stage": 31,
+          "sourceRun": "honro-map-stage-31-1793302780071",
+          "campaignRunId": "eq-mvty68sj-tlxd355a",
+          "officialAct4": true,
+          "proof": {
+            "boarded": true,
+            "party": [
+              "archer",
+              "mage",
+              "knight",
+              "occultist"
+            ]
+          }
+        },
+        "eq_co_t3_choice": {
+          "eventId": "eq_co_t3_choice",
+          "stage": 35,
+          "sourceRun": "honro-map-stage-35-1793303087482",
+          "campaignRunId": "eq-mvty68sj-tlxd355a",
+          "officialAct4": true,
+          "proof": {
+            "tag": "rooted-third-clearing",
+            "reached": true
+          }
+        },
+        "eq_hw_t3b": {
+          "eventId": "eq_hw_t3b",
+          "stage": 36,
+          "sourceRun": "honro-map-stage-36-1793303326733",
+          "campaignRunId": "eq-mvty68sj-tlxd355a",
+          "officialAct4": true,
+          "proof": {
+            "target": "a4-36-g0-0",
+            "elite": true
+          }
+        },
+        "eq_so_t3b": {
+          "eventId": "eq_so_t3b",
+          "stage": 40,
+          "sourceRun": "honro-map-stage-40-1793305198821",
+          "campaignRunId": "eq-mvty68sj-tlxd355a",
+          "officialAct4": true,
+          "proof": {
+            "roster": {
+              "total": 13,
+              "living": 11,
+              "priorDeaths": 2
+            },
+            "rescued": {
+              "ids": [
+                "a4-rescue-0",
+                "a4-rescue-1",
+                "a4-rescue-2",
+                "a4-rescue-3"
+              ],
+              "sourceRun": "honro-map-stage-40-1793305198821"
+            }
+          }
+        }
+      },
+      "safeSeven": {
+        "ids": [
+          "shelter-person-0",
+          "shelter-person-1",
+          "shelter-person-2",
+          "shelter-person-3",
+          "shelter-person-4",
+          "shelter-person-5",
+          "shelter-person-6"
+        ],
+        "sourceRun": "honro-map-stage-32-1793302827439",
+        "reportIds": [
+          "A4.S32.MISSING.01"
+        ],
+        "reunionIds": [
+          "A4.S32.REUNION.01"
+        ],
+        "reunionObserved": {
+          "sourceRun": "honro-map-stage-32-1793302827439",
+          "npc": "a4-shelter-speaker",
+          "hero": "archer",
+          "seenAt": 115.00833333337093,
+          "positions": [
+            {
+              "id": "archer",
+              "x": 4587.753703945974,
+              "y": 2014.73755443995
+            },
+            {
+              "id": "a4-shelter-speaker",
+              "x": 4779.56439978659,
+              "y": 2010.8476090930183
+            }
+          ]
+        },
+        "campaignRunId": "eq-mvty68sj-tlxd355a",
+        "stage": 32,
+        "success": true,
+        "residents": [
+          {
+            "id": "a4-shelter-speaker",
+            "hp": 1450,
+            "dead": false
+          }
+        ],
+        "rows": [
+          "A4.S32.REUNION.01",
+          "A4.S32.MISSING.01"
+        ]
+      },
+      "rescued": {
+        "ids": [
+          "a4-rescue-0",
+          "a4-rescue-1",
+          "a4-rescue-2",
+          "a4-rescue-3"
+        ],
+        "sourceRun": "honro-map-stage-39-1793304969261",
+        "campaignRunId": "eq-mvty68sj-tlxd355a",
+        "stage": 39,
+        "success": true,
+        "residents": [
+          {
+            "id": "a4-rescue-0",
+            "hp": 1117,
+            "dead": false
+          },
+          {
+            "id": "a4-rescue-1",
+            "hp": 1326,
+            "dead": false
+          },
+          {
+            "id": "a4-rescue-2",
+            "hp": 1450,
+            "dead": false
+          },
+          {
+            "id": "a4-rescue-3",
+            "hp": 1387.9,
+            "dead": false
+          }
+        ],
+        "rows": [
+          "A4.S39.BOSS.01",
+          "A4.S39.STABILIZE.01",
+          "A4.S39.RELEASE.01"
+        ]
+      }
+    }
+  },
+  "camera": null,
+  "storage": {
+    "bytes": 55418
+  },
+  "loadedResources": [
+    "http://127.0.0.1:4185/favicon.ico",
+    "http://127.0.0.1:4185/_local/reports/canonical-browser-7652/terminal-storage.json",
+    "http://127.0.0.1:4185/HONRO.html",
+    "http://127.0.0.1:4185/favicon.ico"
+  ]
+}

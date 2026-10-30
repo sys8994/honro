@@ -1,0 +1,889 @@
+{
+  "scope": "Act4 new owned assets only; exact old reference guard; no runtime validator change",
+  "repairs": [
+    {
+      "assetId": "s34-coherent-v4:s34v-coastal-boulder",
+      "before": {
+        "bounds": {
+          "x": -119,
+          "y": -98.88537549407116,
+          "w": 236,
+          "h": 98.88537549407116
+        },
+        "foot": {
+          "x": 0,
+          "y": 0
+        },
+        "heightM": 1.6480895915678526,
+        "scaleRange": [
+          1,
+          1
+        ],
+        "backgroundRange": [
+          1,
+          1
+        ]
+      },
+      "after": {
+        "bounds": {
+          "x": -119,
+          "y": -98.88537549407116,
+          "w": 236,
+          "h": 98.88537549407116
+        },
+        "foot": {
+          "x": 0,
+          "y": 0
+        },
+        "heightM": 1.6480895915678526,
+        "scaleRange": [
+          0.9,
+          1.3
+        ],
+        "backgroundRange": [
+          1,
+          1
+        ]
+      },
+      "instances": [
+        {
+          "stage": "stage-34",
+          "instance": "a4-34-prop-1",
+          "type": "battlefield",
+          "scale": 1.3
+        },
+        {
+          "stage": "stage-34",
+          "instance": "a4-34-prop-2",
+          "type": "battlefield",
+          "scale": 1.1
+        },
+        {
+          "stage": "stage-34",
+          "instance": "a4-34-prop-3",
+          "type": "battlefield",
+          "scale": 1.25
+        },
+        {
+          "stage": "stage-34",
+          "instance": "a4-34-prop-4",
+          "type": "battlefield",
+          "scale": 0.9
+        },
+        {
+          "stage": "stage-34",
+          "instance": "a4-34-prop-5",
+          "type": "battlefield",
+          "scale": 1.2
+        }
+      ],
+      "vectorSHA256": "2b4bf3255ade2f1edf947c92cc55d1430ed03e990874ee730b5221d1eb8a6995",
+      "reason": "Declared reference ranges omitted retained actual source instance scales. No instance, vector, collision, foot or physical size change."
+    },
+    {
+      "assetId": "s34-coherent-v4:s34v-haul-footing",
+      "before": {
+        "bounds": {
+          "x": -362.0423728813559,
+          "y": -300.8461847658605,
+          "w": 718,
+          "h": 300.8461847658605
+        },
+        "foot": {
+          "x": 0,
+          "y": 0
+        },
+        "heightM": 5.014103079431009,
+        "scaleRange": [
+          1,
+          1
+        ],
+        "backgroundRange": [
+          1,
+          1
+        ]
+      },
+      "after": {
+        "bounds": {
+          "x": -362.0423728813559,
+          "y": -300.8461847658605,
+          "w": 718,
+          "h": 300.8461847658605
+        },
+        "foot": {
+          "x": 0,
+          "y": 0
+        },
+        "heightM": 5.014103079431009,
+        "scaleRange": [
+          0.65,
+          1
+        ],
+        "backgroundRange": [
+          1,
+          1
+        ]
+      },
+      "instances": [
+        {
+          "stage": "stage-34",
+          "instance": "a4-coast-34-art-6",
+          "type": "battlefield",
+          "scale": 0.7
+        },
+        {
+          "stage": "stage-34",
+          "instance": "a4-coast-34-art-7",
+          "type": "battlefield",
+          "scale": 0.75
+        },
+        {
+          "stage": "stage-34",
+          "instance": "a4-coast-34-art-8",
+          "type": "battlefield",
+          "scale": 0.9
+        },
+        {
+          "stage": "stage-34",
+          "instance": "a4-coast-34-art-9",
+          "type": "battlefield",
+          "scale": 0.65
+        }
+      ],
+      "vectorSHA256": "052c657e0bdfdd12c5571e1772d4f773c509649edcb689e0d2043016d58418e1",
+      "reason": "Declared reference ranges omitted retained actual source instance scales. No instance, vector, collision, foot or physical size change."
+    },
+    {
+      "assetId": "s35-silhouette:a4-35-old-wall-13-cover-v3",
+      "before": {
+        "bounds": {
+          "x": -180,
+          "y": -132.8518378488642,
+          "w": 360,
+          "h": 138.31818789877252
+        },
+        "foot": {
+          "x": 0,
+          "y": 1.5
+        },
+        "heightM": 12.066666666666666,
+        "scaleRange": [
+          1,
+          1
+        ],
+        "backgroundRange": [
+          1,
+          1
+        ]
+      },
+      "after": {
+        "bounds": {
+          "x": -180,
+          "y": -132.8518378488642,
+          "w": 360,
+          "h": 138.31818789877252
+        },
+        "foot": {
+          "x": 0,
+          "y": 1.5
+        },
+        "heightM": 12.066666666666666,
+        "scaleRange": [
+          0.8,
+          1
+        ],
+        "backgroundRange": [
+          1,
+          1
+        ]
+      },
+      "instances": [
+        {
+          "stage": "stage-35",
+          "instance": "a4-35-old-wall-13",
+          "type": "battlefield",
+          "scale": 0.8
+        }
+      ],
+      "vectorSHA256": "7c3b8c8d567b783e4ccbedacacacc598c9347eddc62457780e26602c0c3f3255",
+      "reason": "Declared reference ranges omitted retained actual source instance scales. No instance, vector, collision, foot or physical size change."
+    },
+    {
+      "assetId": "s35-silhouette:a4-art-35-extra-1-cover-v3",
+      "before": {
+        "bounds": {
+          "x": -180,
+          "y": -135.94797861962826,
+          "w": 360,
+          "h": 139.86894526809638
+        },
+        "foot": {
+          "x": 0,
+          "y": -0.5930232558140189
+        },
+        "heightM": 12.066666666666666,
+        "scaleRange": [
+          1,
+          1
+        ],
+        "backgroundRange": [
+          1,
+          1
+        ]
+      },
+      "after": {
+        "bounds": {
+          "x": -180,
+          "y": -135.94797861962826,
+          "w": 360,
+          "h": 139.86894526809638
+        },
+        "foot": {
+          "x": 0,
+          "y": -0.5930232558140189
+        },
+        "heightM": 12.066666666666666,
+        "scaleRange": [
+          1,
+          1.05
+        ],
+        "backgroundRange": [
+          1,
+          1
+        ]
+      },
+      "instances": [
+        {
+          "stage": "stage-35",
+          "instance": "a4-art-35-extra-1",
+          "type": "battlefield",
+          "scale": 1.05
+        }
+      ],
+      "vectorSHA256": "b66677b2fbc5db85b8b46f121686fa34dd81c9297db4259579a5a9164ea847ab",
+      "reason": "Declared reference ranges omitted retained actual source instance scales. No instance, vector, collision, foot or physical size change."
+    },
+    {
+      "assetId": "s36-density:frame-dawn-v4",
+      "before": {
+        "bounds": {
+          "x": -590,
+          "y": -440,
+          "w": 1200,
+          "h": 510
+        },
+        "foot": {
+          "x": 0,
+          "y": 0
+        },
+        "heightM": 8.5,
+        "scaleRange": [
+          1,
+          1
+        ],
+        "backgroundRange": [
+          1,
+          1
+        ]
+      },
+      "after": {
+        "bounds": {
+          "x": -590,
+          "y": -440,
+          "w": 1200,
+          "h": 510
+        },
+        "foot": {
+          "x": 0,
+          "y": 0
+        },
+        "heightM": 8.5,
+        "scaleRange": [
+          0.7,
+          1
+        ],
+        "backgroundRange": [
+          1,
+          1
+        ]
+      },
+      "instances": [
+        {
+          "stage": "stage-36",
+          "instance": "a4-36-house-1520",
+          "type": "battlefield",
+          "scale": 0.7
+        },
+        {
+          "stage": "stage-36",
+          "instance": "a4-36-house-4550",
+          "type": "battlefield",
+          "scale": 0.9
+        },
+        {
+          "stage": "stage-36",
+          "instance": "a4-36-house-5740",
+          "type": "battlefield",
+          "scale": 0.7
+        }
+      ],
+      "vectorSHA256": "c7d48063c388fe797d45011a7a0c8dab6ccaffb0fedc9ca480e93beb97e2e89d",
+      "reason": "Declared reference ranges omitted retained actual source instance scales. No instance, vector, collision, foot or physical size change."
+    },
+    {
+      "assetId": "s36-density:home-dawn-v4",
+      "before": {
+        "bounds": {
+          "x": -600,
+          "y": -500,
+          "w": 1220,
+          "h": 570
+        },
+        "foot": {
+          "x": 0,
+          "y": 0
+        },
+        "heightM": 9.5,
+        "scaleRange": [
+          1,
+          1
+        ],
+        "backgroundRange": [
+          1,
+          1
+        ]
+      },
+      "after": {
+        "bounds": {
+          "x": -600,
+          "y": -500,
+          "w": 1220,
+          "h": 570
+        },
+        "foot": {
+          "x": 0,
+          "y": 0
+        },
+        "heightM": 9.5,
+        "scaleRange": [
+          0.7020000000000001,
+          1
+        ],
+        "backgroundRange": [
+          0.7020000000000001,
+          1
+        ]
+      },
+      "instances": [
+        {
+          "stage": "stage-36",
+          "instance": "a4-36-house-2570",
+          "type": "battlefield",
+          "scale": 1
+        },
+        {
+          "stage": "stage-36",
+          "instance": "a4-far--4500",
+          "type": "background",
+          "scale": 0.78
+        },
+        {
+          "stage": "stage-36",
+          "instance": "a4-far--1200",
+          "type": "background",
+          "scale": 0.7020000000000001
+        },
+        {
+          "stage": "stage-36",
+          "instance": "a4-far-1600",
+          "type": "background",
+          "scale": 0.8580000000000001
+        },
+        {
+          "stage": "stage-36",
+          "instance": "a4-far-5400",
+          "type": "background",
+          "scale": 0.7020000000000001
+        },
+        {
+          "stage": "stage-36",
+          "instance": "a4-far-8500",
+          "type": "background",
+          "scale": 0.8580000000000001
+        },
+        {
+          "stage": "stage-36",
+          "instance": "a4-far-12000",
+          "type": "background",
+          "scale": 0.7020000000000001
+        }
+      ],
+      "vectorSHA256": "9cf1c9f343bc1192a52338ebdbb113904026a8fe7baa0cc183fa9bb217dcfd3e",
+      "reason": "Declared reference ranges omitted retained actual source instance scales. No instance, vector, collision, foot or physical size change."
+    },
+    {
+      "assetId": "s36-density:foundation-dawn-v4",
+      "before": {
+        "bounds": {
+          "x": -600,
+          "y": -145,
+          "w": 1200,
+          "h": 210
+        },
+        "foot": {
+          "x": 0,
+          "y": 0
+        },
+        "heightM": 3.5,
+        "scaleRange": [
+          1,
+          1
+        ],
+        "backgroundRange": [
+          1,
+          1
+        ]
+      },
+      "after": {
+        "bounds": {
+          "x": -600,
+          "y": -145,
+          "w": 1200,
+          "h": 210
+        },
+        "foot": {
+          "x": 0,
+          "y": 0
+        },
+        "heightM": 3.5,
+        "scaleRange": [
+          0.41250000000000003,
+          1
+        ],
+        "backgroundRange": [
+          1,
+          1
+        ]
+      },
+      "instances": [
+        {
+          "stage": "stage-36",
+          "instance": "a4-art-36-extra-0",
+          "type": "battlefield",
+          "scale": 0.55
+        },
+        {
+          "stage": "stage-36",
+          "instance": "a4-art-36-extra-1",
+          "type": "battlefield",
+          "scale": 0.41250000000000003
+        },
+        {
+          "stage": "stage-36",
+          "instance": "a4-art-36-extra-3",
+          "type": "battlefield",
+          "scale": 0.8
+        }
+      ],
+      "vectorSHA256": "f0a524e1309228bb76e17ac706b7b82c5735c2017247b937612c785ef1d681fe",
+      "reason": "Declared reference ranges omitted retained actual source instance scales. No instance, vector, collision, foot or physical size change."
+    },
+    {
+      "assetId": "s37-silhouette:a4-37-prop-0-cover-v4",
+      "before": {
+        "bounds": {
+          "x": -180,
+          "y": -131.18411173657285,
+          "w": 360,
+          "h": 141.84490898426017
+        },
+        "foot": {
+          "x": 0,
+          "y": 4.683823170731687
+        },
+        "heightM": 12.066666666666666,
+        "scaleRange": [
+          1,
+          1
+        ],
+        "backgroundRange": [
+          1,
+          1
+        ]
+      },
+      "after": {
+        "bounds": {
+          "x": -180,
+          "y": -131.18411173657285,
+          "w": 360,
+          "h": 141.84490898426017
+        },
+        "foot": {
+          "x": 0,
+          "y": 4.683823170731687
+        },
+        "heightM": 12.066666666666666,
+        "scaleRange": [
+          1,
+          1.4
+        ],
+        "backgroundRange": [
+          1,
+          1
+        ]
+      },
+      "instances": [
+        {
+          "stage": "stage-37",
+          "instance": "a4-37-prop-0",
+          "type": "battlefield",
+          "scale": 1.4
+        }
+      ],
+      "vectorSHA256": "b1078297bfdab1cea4b3e11a179b8e430659e97e41cd82f6ab067ef42e286ffe",
+      "reason": "Declared reference ranges omitted retained actual source instance scales. No instance, vector, collision, foot or physical size change."
+    },
+    {
+      "assetId": "s37-silhouette:a4-37-prop-1-cover-v4",
+      "before": {
+        "bounds": {
+          "x": -180,
+          "y": -117.98586837159932,
+          "w": 360,
+          "h": 137.85122141649546
+        },
+        "foot": {
+          "x": 0,
+          "y": 18.72463809523788
+        },
+        "heightM": 12.066666666666666,
+        "scaleRange": [
+          1,
+          1
+        ],
+        "backgroundRange": [
+          1,
+          1
+        ]
+      },
+      "after": {
+        "bounds": {
+          "x": -180,
+          "y": -117.98586837159932,
+          "w": 360,
+          "h": 137.85122141649546
+        },
+        "foot": {
+          "x": 0,
+          "y": 18.72463809523788
+        },
+        "heightM": 12.066666666666666,
+        "scaleRange": [
+          1,
+          1.2
+        ],
+        "backgroundRange": [
+          1,
+          1
+        ]
+      },
+      "instances": [
+        {
+          "stage": "stage-37",
+          "instance": "a4-37-prop-1",
+          "type": "battlefield",
+          "scale": 1.2
+        }
+      ],
+      "vectorSHA256": "86145f4d5ff0e8b4bf8064a5b311b809d071b781b23e6c622b6c9750554896ba",
+      "reason": "Declared reference ranges omitted retained actual source instance scales. No instance, vector, collision, foot or physical size change."
+    },
+    {
+      "assetId": "s37-silhouette:a4-37-prop-2-cover-v4",
+      "before": {
+        "bounds": {
+          "x": -180,
+          "y": -127.58951871329421,
+          "w": 360,
+          "h": 143.18124710790812
+        },
+        "foot": {
+          "x": 0,
+          "y": 2.4425570051632044
+        },
+        "heightM": 12.066666666666666,
+        "scaleRange": [
+          1,
+          1
+        ],
+        "backgroundRange": [
+          1,
+          1
+        ]
+      },
+      "after": {
+        "bounds": {
+          "x": -180,
+          "y": -127.58951871329421,
+          "w": 360,
+          "h": 143.18124710790812
+        },
+        "foot": {
+          "x": 0,
+          "y": 2.4425570051632044
+        },
+        "heightM": 12.066666666666666,
+        "scaleRange": [
+          1,
+          1.5
+        ],
+        "backgroundRange": [
+          1,
+          1
+        ]
+      },
+      "instances": [
+        {
+          "stage": "stage-37",
+          "instance": "a4-37-prop-2",
+          "type": "battlefield",
+          "scale": 1.5
+        }
+      ],
+      "vectorSHA256": "ab3e3e4335c9ffa387f5070ffe9a3955eade5e0d9560b067ce370fd4faa59112",
+      "reason": "Declared reference ranges omitted retained actual source instance scales. No instance, vector, collision, foot or physical size change."
+    },
+    {
+      "assetId": "s37-silhouette:a4-37-prop-3-cover-v4",
+      "before": {
+        "bounds": {
+          "x": -180,
+          "y": -164.42855959598623,
+          "w": 360,
+          "h": 204.82565154412882
+        },
+        "foot": {
+          "x": 0,
+          "y": 1.330562271062123
+        },
+        "heightM": 12.066666666666666,
+        "scaleRange": [
+          1,
+          1
+        ],
+        "backgroundRange": [
+          1,
+          1
+        ]
+      },
+      "after": {
+        "bounds": {
+          "x": -180,
+          "y": -164.42855959598623,
+          "w": 360,
+          "h": 204.82565154412882
+        },
+        "foot": {
+          "x": 0,
+          "y": 1.330562271062123
+        },
+        "heightM": 12.066666666666666,
+        "scaleRange": [
+          1,
+          1.3
+        ],
+        "backgroundRange": [
+          1,
+          1
+        ]
+      },
+      "instances": [
+        {
+          "stage": "stage-37",
+          "instance": "a4-37-prop-3",
+          "type": "battlefield",
+          "scale": 1.3
+        }
+      ],
+      "vectorSHA256": "16ac2007669cbf2f46ef26b9107b1161399f91d43b69d90a66240457e48383f8",
+      "reason": "Declared reference ranges omitted retained actual source instance scales. No instance, vector, collision, foot or physical size change."
+    },
+    {
+      "assetId": "s37-density:haul-winch-quiet-dawn-v4",
+      "before": {
+        "bounds": {
+          "x": -300,
+          "y": -240,
+          "w": 600,
+          "h": 280
+        },
+        "foot": {
+          "x": 0,
+          "y": 0
+        },
+        "heightM": 4.666666666666667,
+        "scaleRange": [
+          1,
+          1
+        ],
+        "backgroundRange": [
+          1,
+          1
+        ]
+      },
+      "after": {
+        "bounds": {
+          "x": -300,
+          "y": -240,
+          "w": 600,
+          "h": 280
+        },
+        "foot": {
+          "x": 0,
+          "y": 0
+        },
+        "heightM": 4.666666666666667,
+        "scaleRange": [
+          0.65,
+          1
+        ],
+        "backgroundRange": [
+          1,
+          1
+        ]
+      },
+      "instances": [
+        {
+          "stage": "stage-37",
+          "instance": "a4-coast-37-art-10",
+          "type": "battlefield",
+          "scale": 0.9
+        },
+        {
+          "stage": "stage-37",
+          "instance": "a4-coast-37-art-11",
+          "type": "battlefield",
+          "scale": 0.65
+        }
+      ],
+      "vectorSHA256": "0da8412419e621bffd7563e8d8575837a3e5beab99fd26dcde337860368dd1ff",
+      "reason": "Declared reference ranges omitted retained actual source instance scales. No instance, vector, collision, foot or physical size change."
+    },
+    {
+      "assetId": "s39v:haul-footing-dawn-v4",
+      "before": {
+        "bounds": {
+          "x": -181.52542372881356,
+          "y": -150.84209821129497,
+          "w": 360,
+          "h": 150.84209821129497
+        },
+        "foot": {
+          "x": 0,
+          "y": 0
+        },
+        "heightM": 2.5140349701882494,
+        "scaleRange": [
+          1,
+          1
+        ],
+        "backgroundRange": [
+          1,
+          1
+        ]
+      },
+      "after": {
+        "bounds": {
+          "x": -181.52542372881356,
+          "y": -150.84209821129497,
+          "w": 360,
+          "h": 150.84209821129497
+        },
+        "foot": {
+          "x": 0,
+          "y": 0
+        },
+        "heightM": 2.5140349701882494,
+        "scaleRange": [
+          0.6,
+          1
+        ],
+        "backgroundRange": [
+          1,
+          1
+        ]
+      },
+      "instances": [
+        {
+          "stage": "stage-39",
+          "instance": "a4-coast-39-art-3",
+          "type": "battlefield",
+          "scale": 0.9
+        },
+        {
+          "stage": "stage-39",
+          "instance": "a4-coast-39-art-5",
+          "type": "battlefield",
+          "scale": 0.6
+        }
+      ],
+      "vectorSHA256": "f19da6a025ce0129c6faf3ef3df843f1293a984e2fcd89af55f0837419d75005",
+      "reason": "Declared reference ranges omitted retained actual source instance scales. No instance, vector, collision, foot or physical size change."
+    },
+    {
+      "assetId": "s39-coherent-v4:a4-coast-39-art-4",
+      "before": {
+        "bounds": {
+          "x": -181.52542372881356,
+          "y": -150.84209821129497,
+          "w": 360,
+          "h": 150.84209821129497
+        },
+        "foot": {
+          "x": 0,
+          "y": 0
+        },
+        "heightM": 2.5140349701882494,
+        "scaleRange": [
+          1,
+          1
+        ],
+        "backgroundRange": [
+          1,
+          1
+        ]
+      },
+      "after": {
+        "bounds": {
+          "x": -181.52542372881356,
+          "y": -150.84209821129497,
+          "w": 360,
+          "h": 150.84209821129497
+        },
+        "foot": {
+          "x": 0,
+          "y": 0
+        },
+        "heightM": 2.5140349701882494,
+        "scaleRange": [
+          0.8,
+          1
+        ],
+        "backgroundRange": [
+          1,
+          1
+        ]
+      },
+      "instances": [
+        {
+          "stage": "stage-39",
+          "instance": "a4-coast-39-art-4",
+          "type": "battlefield",
+          "scale": 0.8
+        }
+      ],
+      "vectorSHA256": "9b375660711cfe58618f5f993c6a56f248166bd89ff438c563ca6f63bf6b9521",
+      "reason": "Declared reference ranges omitted retained actual source instance scales. No instance, vector, collision, foot or physical size change."
+    }
+  ]
+}

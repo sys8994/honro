@@ -1,0 +1,379 @@
+{
+  "scope": "Warmed repeated Native fixed120tick windows after120warmup ticks; actual App no actor/physics overrides. Sparse rendering disabled during windows; initial render retained. Not FPS. Counters enabled only after measured windows.",
+  "runtimeSHA256": "264b42d9b85f63847877ad839c67365a9b63b06b34a27cf9c84d53d9307ece2e",
+  "initialState": {
+    "phase": "aim",
+    "objective": {
+      "version": 1,
+      "clock": 0.24999999999999997,
+      "events": {},
+      "receipts": [],
+      "boat": {
+        "phase": "waiting",
+        "x": 500
+      },
+      "door": {
+        "phase": "standing",
+        "time": 0
+      },
+      "complete": false,
+      "visualDrawn": {},
+      "observed": {},
+      "tide": {
+        "phase": "low",
+        "surface": 2280,
+        "warningRound": 2,
+        "highRound": 5,
+        "lowRound": 7
+      },
+      "waterVisualLevel": 2280,
+      "water": {
+        "dry": {
+          "archer": {
+            "x": 260,
+            "y": 2100.0728556
+          },
+          "mage": {
+            "x": 380,
+            "y": 2113.1845200000002
+          },
+          "knight": {
+            "x": 500,
+            "y": 2110.31659
+          },
+          "occultist": {
+            "x": 620,
+            "y": 2102.2166152
+          },
+          "a4-33-g0-0": {
+            "x": 1690,
+            "y": 1936.806127928112
+          },
+          "a4-33-g0-1": {
+            "x": 2140,
+            "y": 1936.1316590995327
+          },
+          "a4-33-g1-0": {
+            "x": 3690,
+            "y": 1954.1612409959064
+          }
+        },
+        "recoveries": []
+      }
+    },
+    "units": [
+      {
+        "id": "archer",
+        "x": 260,
+        "y": 2100.0728556,
+        "hp": 1150,
+        "dead": false
+      },
+      {
+        "id": "mage",
+        "x": 380,
+        "y": 2113.1845200000002,
+        "hp": 1244,
+        "dead": false
+      },
+      {
+        "id": "knight",
+        "x": 500,
+        "y": 2110.31659,
+        "hp": 2157,
+        "dead": false
+      },
+      {
+        "id": "occultist",
+        "x": 620,
+        "y": 2102.2166152,
+        "hp": 1443,
+        "dead": false
+      },
+      {
+        "id": "a4-33-g0-0",
+        "x": 1690,
+        "y": 1936.806127928112,
+        "hp": 1512,
+        "dead": false
+      },
+      {
+        "id": "a4-33-g0-1",
+        "x": 2140,
+        "y": 1936.1316590995327,
+        "hp": 1512,
+        "dead": false
+      },
+      {
+        "id": "a4-33-g1-0",
+        "x": 3690,
+        "y": 1954.1612409959064,
+        "hp": 1512,
+        "dead": false
+      },
+      {
+        "id": "a4-33-g1-1",
+        "x": 4520,
+        "y": 2280.589689574468,
+        "hp": 2420,
+        "dead": false
+      },
+      {
+        "id": "a4-33-g1-2",
+        "x": 4860,
+        "y": 2214.8304529126212,
+        "hp": 1512,
+        "dead": false
+      }
+    ]
+  },
+  "rows": [
+    {
+      "pass": 0,
+      "angle": 35,
+      "ms": 45.05206300000282,
+      "warmup": true,
+      "digest": "1997a606edd94e64769d07a73dccda295db261564df501675e3e8292913cb3bc"
+    },
+    {
+      "pass": 0,
+      "angle": 55,
+      "ms": 26.520716999999422,
+      "warmup": true,
+      "digest": "a59d1dea7f40336e987fe42cd07291dbe99eb727dd015180097939b6892d1544"
+    },
+    {
+      "pass": 0,
+      "angle": 75,
+      "ms": 32.92038700000194,
+      "warmup": true,
+      "digest": "1347c8108406d8e71fa1c9b5b5dec12ed84a056afe945de370430917f016debd"
+    },
+    {
+      "pass": 1,
+      "angle": 35,
+      "ms": 41.73843200000192,
+      "warmup": false,
+      "digest": "1997a606edd94e64769d07a73dccda295db261564df501675e3e8292913cb3bc"
+    },
+    {
+      "pass": 1,
+      "angle": 55,
+      "ms": 38.93073199999708,
+      "warmup": false,
+      "digest": "a59d1dea7f40336e987fe42cd07291dbe99eb727dd015180097939b6892d1544"
+    },
+    {
+      "pass": 1,
+      "angle": 75,
+      "ms": 33.3127170000007,
+      "warmup": false,
+      "digest": "1347c8108406d8e71fa1c9b5b5dec12ed84a056afe945de370430917f016debd"
+    },
+    {
+      "pass": 2,
+      "angle": 35,
+      "ms": 31.011396999998396,
+      "warmup": false,
+      "digest": "1997a606edd94e64769d07a73dccda295db261564df501675e3e8292913cb3bc"
+    },
+    {
+      "pass": 2,
+      "angle": 55,
+      "ms": 19.645872000000963,
+      "warmup": false,
+      "digest": "a59d1dea7f40336e987fe42cd07291dbe99eb727dd015180097939b6892d1544"
+    },
+    {
+      "pass": 2,
+      "angle": 75,
+      "ms": 29.572865999998612,
+      "warmup": false,
+      "digest": "1347c8108406d8e71fa1c9b5b5dec12ed84a056afe945de370430917f016debd"
+    },
+    {
+      "pass": 3,
+      "angle": 35,
+      "ms": 31.23308199999883,
+      "warmup": false,
+      "digest": "1997a606edd94e64769d07a73dccda295db261564df501675e3e8292913cb3bc"
+    },
+    {
+      "pass": 3,
+      "angle": 55,
+      "ms": 29.66885999999795,
+      "warmup": false,
+      "digest": "a59d1dea7f40336e987fe42cd07291dbe99eb727dd015180097939b6892d1544"
+    },
+    {
+      "pass": 3,
+      "angle": 75,
+      "ms": 34.731800000001385,
+      "warmup": false,
+      "digest": "1347c8108406d8e71fa1c9b5b5dec12ed84a056afe945de370430917f016debd"
+    }
+  ],
+  "windows": [
+    {
+      "pass": 0,
+      "ms": 163.6869880000013,
+      "state": "45279c2418897c09c8b2ee4cd633997014fd54da2cda7dec3dad081b01b6746f"
+    },
+    {
+      "pass": 1,
+      "ms": 128.74722100000145,
+      "state": "048193fa898299c17f74ce163c044b3fe0def2cfb3b344e083386ab97d6288a3"
+    },
+    {
+      "pass": 2,
+      "ms": 155.59325700000045,
+      "state": "5d4de9ec352eb34a352ee35416a62b8f2138e864d3c05740f50cc8d16b022c6e"
+    },
+    {
+      "pass": 3,
+      "ms": 109.18123700000069,
+      "state": "addd2f276d6be396787396a6054e90c16eb4074f0c14ed117d690131e7919eca"
+    },
+    {
+      "pass": 4,
+      "ms": 116.59959900000104,
+      "state": "3357361f9a1dc35e57084a5c72d6caaa4e1e7fd0d882ca4249e9a18bd160e64c"
+    }
+  ],
+  "medianTickMs": 128.74722100000145,
+  "tickCounts": {},
+  "predictionCounts": {
+    "segmentTerrain:288:20plus": 9,
+    "segmentTerrain:288:under20": 20,
+    "segmentTerrain:288:under5": 153,
+    "segmentPlatformSurface:142:under5": 51
+  },
+  "finalState": {
+    "phase": "aim",
+    "objective": {
+      "version": 1,
+      "clock": 7.25000000000015,
+      "events": {},
+      "receipts": [],
+      "boat": {
+        "phase": "waiting",
+        "x": 500
+      },
+      "door": {
+        "phase": "standing",
+        "time": 0
+      },
+      "complete": false,
+      "visualDrawn": {},
+      "observed": {},
+      "tide": {
+        "phase": "low",
+        "surface": 2280,
+        "warningRound": 2,
+        "highRound": 5,
+        "lowRound": 7
+      },
+      "waterVisualLevel": 2280,
+      "water": {
+        "dry": {
+          "archer": {
+            "x": 260,
+            "y": 2100.0728556
+          },
+          "mage": {
+            "x": 380,
+            "y": 2113.1845200000002
+          },
+          "knight": {
+            "x": 500,
+            "y": 2110.31659
+          },
+          "occultist": {
+            "x": 620,
+            "y": 2102.2166152
+          },
+          "a4-33-g0-0": {
+            "x": 1690,
+            "y": 1936.806127928112
+          },
+          "a4-33-g0-1": {
+            "x": 2140,
+            "y": 1936.1316590995327
+          },
+          "a4-33-g1-0": {
+            "x": 3690,
+            "y": 1954.1612409959064
+          }
+        },
+        "recoveries": []
+      }
+    },
+    "units": [
+      {
+        "id": "archer",
+        "x": 260,
+        "y": 2100.0728556,
+        "hp": 1150,
+        "dead": false
+      },
+      {
+        "id": "mage",
+        "x": 380,
+        "y": 2113.1845200000002,
+        "hp": 1244,
+        "dead": false
+      },
+      {
+        "id": "knight",
+        "x": 500,
+        "y": 2110.31659,
+        "hp": 2157,
+        "dead": false
+      },
+      {
+        "id": "occultist",
+        "x": 620,
+        "y": 2102.2166152,
+        "hp": 1443,
+        "dead": false
+      },
+      {
+        "id": "a4-33-g0-0",
+        "x": 1690,
+        "y": 1936.806127928112,
+        "hp": 1512,
+        "dead": false
+      },
+      {
+        "id": "a4-33-g0-1",
+        "x": 2140,
+        "y": 1936.1316590995327,
+        "hp": 1512,
+        "dead": false
+      },
+      {
+        "id": "a4-33-g1-0",
+        "x": 3690,
+        "y": 1954.1612409959064,
+        "hp": 1512,
+        "dead": false
+      },
+      {
+        "id": "a4-33-g1-1",
+        "x": 4520,
+        "y": 2280.589689574468,
+        "hp": 2420,
+        "dead": false
+      },
+      {
+        "id": "a4-33-g1-2",
+        "x": 4860,
+        "y": 2214.8304529126212,
+        "hp": 1512,
+        "dead": false
+      }
+    ]
+  },
+  "candidateMathJSONSHA256": null,
+  "digestNote": "Original diagnostic harness hashed JSON-encoded source text; raw source SHA256 is in warmed-comparison.json. Harness corrected for future runs."
+}

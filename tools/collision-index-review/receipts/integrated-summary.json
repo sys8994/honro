@@ -1,0 +1,28 @@
+{
+  "scope": "Final integrated source, fixed9 measured predictions after3warmups and120App ticks; counterfactual old math via process-only override. Not FPS. No geometry/planner/actor overrides.",
+  "runtimeSHA256": "00b3f8b72c707db7b49e5c99d7b56397834b07a2261ef727b1b4639c1c046c3e",
+  "mathSHA256": "b4396325d8f43e7e8125fbc973ea43665e758547ac53310c110d2f48ebe657d0",
+  "exactParity": true,
+  "oldMath": {
+    "predictionMs": 27.77048400000058,
+    "ticksMs": 151.49727600000006
+  },
+  "integrated": {
+    "predictionMs": 12.77781800000048,
+    "ticksMs": 127.63620800000172
+  },
+  "predictionGainPercent": 53.98777349361209,
+  "tests": {
+    "authoredExact": 49218,
+    "orderedTies": 1500,
+    "mutable": 1821,
+    "degenerate": 52920,
+    "typecheck": "pass",
+    "projectilePlatformGroups": 6,
+    "oneWayPhysicsConditions": 140,
+    "productionSlopeRushes": 88,
+    "bodySweepCases": 184,
+    "aimLaunch": "preexisting Stage1 fixture failure reproduced with original math; later assertions not run",
+    "productionBuild": "blocked as required: art-and-readability, camera-and-state, final-integration"
+  }
+}

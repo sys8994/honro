@@ -1,0 +1,86 @@
+[
+  {
+    "stage": 34,
+    "role": "body",
+    "file": "art/stage34-density-depthfade/body-asset.json",
+    "baseColor": "#455863",
+    "ceiling": false,
+    "protectedBoundary": "floor top",
+    "requiredOuterTextureTransform": [
+      1,
+      0,
+      0,
+      1,
+      0,
+      0
+    ],
+    "runtimeBytes": 57720,
+    "nodes": 31,
+    "visualApproval": false,
+    "source": "art/stage34-density-v2/body-unioned.svg",
+    "scope": "Intentional source-native palette and depth-composition change. No physics change. Cumulative24 solid masks, not gradients."
+  },
+  {
+    "stage": 34,
+    "role": "overhang",
+    "file": "art/stage34-density-depthfade/overhang-asset.json",
+    "baseColor": "#455863",
+    "ceiling": true,
+    "protectedBoundary": "both upper and underside",
+    "requiredOuterTextureTransform": [
+      1.02,
+      0,
+      0,
+      1.15,
+      24,
+      -495
+    ],
+    "runtimeBytes": 73958,
+    "nodes": 30,
+    "visualApproval": false,
+    "source": "art/stage34-density-v2/overhang-unioned.svg",
+    "scope": "Intentional source-native palette and depth-composition change. No physics change. Cumulative24 solid masks, not gradients."
+  },
+  {
+    "stage": 38,
+    "role": "floor",
+    "file": "art/stage38-density-depthfade/floor-asset.json",
+    "baseColor": "#435661",
+    "ceiling": false,
+    "protectedBoundary": "floor top",
+    "requiredOuterTextureTransform": [
+      1,
+      0,
+      0,
+      1,
+      0,
+      0
+    ],
+    "runtimeBytes": 51586,
+    "nodes": 31,
+    "visualApproval": false,
+    "source": "art/stage38-density-v2/floor-unioned.svg",
+    "scope": "Intentional source-native palette and depth-composition change. No physics change. Cumulative24 solid masks, not gradients."
+  },
+  {
+    "stage": 38,
+    "role": "roof",
+    "file": "art/stage38-density-depthfade/roof-asset.json",
+    "baseColor": "#435661",
+    "ceiling": true,
+    "protectedBoundary": "both upper and underside",
+    "requiredOuterTextureTransform": [
+      1,
+      0,
+      0,
+      1,
+      0,
+      0
+    ],
+    "runtimeBytes": 43605,
+    "nodes": 31,
+    "visualApproval": false,
+    "source": "art/stage38-density-v2/roof-unioned.svg",
+    "scope": "Intentional source-native palette and depth-composition change. No physics change. Cumulative24 solid masks, not gradients."
+  }
+]

@@ -1,0 +1,143 @@
+{
+  "purpose": "External fixed inspection cameras; not game/project data. Existing reviewed camera positions, no actor or event mutation.",
+  "stages": {
+    "stage-31": {
+      "views": [
+        {
+          "id": "normal",
+          "x": 1900,
+          "y": 1920,
+          "scale": 0.53,
+          "width": 1440,
+          "height": 900
+        }
+      ],
+      "cameraOrigin": "_local/reports/sea-silhouette-v3/coastal31-final360294/31/manifest.json",
+      "cameraOriginSHA256": "7daca4fd6438b78eb8e601b7081ec1495e40991dd2d58f548ccbd8e4542fb12e"
+    },
+    "stage-32": {
+      "views": [
+        {
+          "id": "normal",
+          "x": 1980,
+          "y": 1800,
+          "scale": 0.53,
+          "width": 1440,
+          "height": 900
+        }
+      ],
+      "cameraOrigin": "Previously reviewed stage32 cover camera; external fixed view"
+    },
+    "stage-33": {
+      "views": [
+        {
+          "id": "normal",
+          "x": 2900,
+          "y": 1900,
+          "scale": 0.53,
+          "width": 1440,
+          "height": 900
+        }
+      ],
+      "cameraOrigin": "_local/reports/act4-silhouette33/connected-soil-joined-actual/33/manifest.json",
+      "cameraOriginSHA256": "713ae4db8aca1acde9d9ed11fc101e72c1657b87773de072583fba4a522aef4c"
+    },
+    "stage-34": {
+      "views": [
+        {
+          "id": "normal",
+          "x": 1800,
+          "y": 3900,
+          "scale": 0.53,
+          "width": 1440,
+          "height": 900
+        }
+      ],
+      "cameraOrigin": "_local/reports/stage34-production/coherent-v4-after1/manifest.json",
+      "cameraOriginSHA256": "bdef49b9ef1d58817e71fbfd6a47c4890be078f2ce6ca40323575651f588402f"
+    },
+    "stage-35": {
+      "views": [
+        {
+          "id": "normal",
+          "x": 1100,
+          "y": 1840,
+          "scale": 0.53,
+          "width": 1440,
+          "height": 900
+        }
+      ],
+      "cameraOrigin": "_local/reports/stage35-bank-v4/foreground-supported-actual/35/manifest.json",
+      "cameraOriginSHA256": "8532a2e36b95e04e56c9bf1461f425e546eaf504d1453f0171d0f31e6782d932"
+    },
+    "stage-36": {
+      "views": [
+        {
+          "id": "house-normal",
+          "x": 2570,
+          "y": 1900,
+          "scale": 0.53,
+          "width": 1440,
+          "height": 900
+        }
+      ],
+      "cameraOrigin": "_local/reports/stage36-bank-v4/base-clip-actual/36/manifest.json",
+      "cameraOriginSHA256": "bb8e100b072484e7c949d28ad856b8d868fcae31cfb3d10226b573e953e3342d"
+    },
+    "stage-37": {
+      "views": [
+        {
+          "id": "normal",
+          "x": 1700,
+          "y": 2950,
+          "scale": 0.53,
+          "width": 1440,
+          "height": 900
+        }
+      ],
+      "cameraOrigin": "_local/reports/sea-silhouette-v3/coastal37-wall-final-v5/37/manifest.json",
+      "cameraOriginSHA256": "0325991528f65030f2a1b5d4bcb20a730e5fcd5908b7cf9be069fcbfca62a6e1"
+    },
+    "stage-38": {
+      "views": [
+        {
+          "id": "normal",
+          "x": 1800,
+          "y": 2400,
+          "scale": 0.53,
+          "width": 1440,
+          "height": 900
+        }
+      ],
+      "cameraOrigin": "_local/reports/stage38-production/coherent-v4-after3/manifest.json",
+      "cameraOriginSHA256": "b5b15b86016a1ac05d7b9cf272fefc79bedd7b20b6b770bae53d2d8242b023bc"
+    },
+    "stage-39": {
+      "views": [
+        {
+          "id": "rescue",
+          "x": 5700,
+          "y": 1850,
+          "scale": 0.5,
+          "width": 1440,
+          "height": 900
+        }
+      ],
+      "cameraOrigin": "Final review composition adjustment: center residents, ledge and right bank"
+    },
+    "stage-40": {
+      "views": [
+        {
+          "id": "normal",
+          "x": 4200,
+          "y": 1900,
+          "scale": 0.53,
+          "width": 1440,
+          "height": 900
+        }
+      ],
+      "cameraOrigin": "_local/reports/sea-silhouette-v3/coastal40-final-v4/40/manifest.json",
+      "cameraOriginSHA256": "85e73c5953cb63935fce675631192b8d1cdb235763f6f51c74a54e5364c5d30c"
+    }
+  }
+}

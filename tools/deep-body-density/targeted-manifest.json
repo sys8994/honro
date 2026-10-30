@@ -1,0 +1,44 @@
+[
+  {
+    "stage": 33,
+    "file": "art/stage33-density-cap-v3/body-asset.json",
+    "baseColor": "#2d4350",
+    "newId": "s33-density:body-target-v3",
+    "previousId": "s33-density:body-depthfade",
+    "bytes": 176706,
+    "nodes": 35,
+    "maxPath": 58623,
+    "strictErrors": 0,
+    "physicalMetadataExact": true,
+    "rootAcceptedDirection": true,
+    "finalIntegratedReviewPending": true
+  },
+  {
+    "stage": 34,
+    "file": "art/stage34-density-face-v3/body-asset.json",
+    "baseColor": "#455863",
+    "newId": "s34-density:body-target-v3",
+    "previousId": "s34-density:body-depthfade",
+    "bytes": 57731,
+    "nodes": 31,
+    "maxPath": 30846,
+    "strictErrors": 0,
+    "physicalMetadataExact": true,
+    "rootAcceptedDirection": true,
+    "finalIntegratedReviewPending": true
+  },
+  {
+    "stage": 37,
+    "file": "art/stage37-density-seam-v3/body-asset.json",
+    "baseColor": "#283344",
+    "newId": "s37-density:body-seam-v3",
+    "previousId": "s37-density:body-depthfade",
+    "bytes": 151937,
+    "nodes": 38,
+    "maxPath": 36036,
+    "strictErrors": 0,
+    "physicalMetadataExact": true,
+    "rootAcceptedDirection": true,
+    "finalIntegratedReviewPending": true
+  }
+]

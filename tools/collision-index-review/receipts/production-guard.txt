@@ -1,0 +1,22 @@
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> build
+> node tools/stage31/check-release.mjs && node workshop/build.mjs
+
+evalmachine.<anonymous>:76
+function assertExport(project,id){const r=releaseStatus(project,id);if(!r.exportAllowed)throw Error('제작용 내보내기 차단: '+[...r.issues.map(v=>v.rule+' '+v.text),...r.missingReviews.map(v=>'실제 검수 미확인/만료: '+v),...r.missingProbes.map(v=>'엔진 관측 미확인/만료: '+v)].join('\n'));return r;}
+                                                                                              ^
+
+Error: 제작용 내보내기 차단: 실제 검수 미확인/만료: art-and-readability
+실제 검수 미확인/만료: camera-and-state
+실제 검수 미확인/만료: final-integration
+    at Object.assertExport (evalmachine.<anonymous>:76:95)
+    at checkRelease (file:///workspace/scratch/fff510b4df37/honro-stage31-direct/tools/stage31/check-release.mjs:63:164)
+    at async file:///workspace/scratch/fff510b4df37/honro-stage31-direct/tools/stage31/check-release.mjs:68:84
+
+Node.js v24.22.1
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.1
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.1
+npm notice To update run: npm install -g npm@12.2.1
+npm notice

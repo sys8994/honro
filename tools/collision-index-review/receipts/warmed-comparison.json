@@ -1,0 +1,36 @@
+{
+  "scope": "Five paired warmed120tick windows; exact all-window state/initial/final/full-prediction/callmix parity. Native timing only, not FPS. Steady tick counter interval follows measured windows.",
+  "runtimeSHA256": "264b42d9b85f63847877ad839c67365a9b63b06b34a27cf9c84d53d9307ece2e",
+  "candidateMathSHA256": "3e0112f5b86030b53b20ef626d1865031d10bb378b06e62ecd6655344e8b03d1",
+  "parity": true,
+  "current": {
+    "predictionMedianMs": 31.23308199999883,
+    "tickMedianMs": 128.74722100000145,
+    "tickWindowsMs": [
+      163.6869880000013,
+      128.74722100000145,
+      155.59325700000045,
+      109.18123700000069,
+      116.59959900000104
+    ]
+  },
+  "optimized": {
+    "predictionMedianMs": 11.857454000000871,
+    "tickMedianMs": 124.6320650000016,
+    "tickWindowsMs": [
+      124.6320650000016,
+      128.62015000000247,
+      154.97354500000074,
+      123.43524600000092,
+      123.60930700000245
+    ]
+  },
+  "tickCalls": {},
+  "predictionCalls": {
+    "segmentTerrain:288:20plus": 9,
+    "segmentTerrain:288:under20": 20,
+    "segmentTerrain:288:under5": 153,
+    "segmentPlatformSurface:142:under5": 51
+  },
+  "conclusion": "Prediction improvement replicates (~62%). Ordinary tick distributions overlap, so single initial21.7% regression is not replicated; no broad simulation speed claim. Steady ticks invoke neither optimized routine. No short-query fallback warranted: most predicted projectile queries are under5px."
+}

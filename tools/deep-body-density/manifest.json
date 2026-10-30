@@ -1,0 +1,1508 @@
+[
+  {
+    "stage": 31,
+    "asset": "art/stage31-density-depthfade/body-asset.json",
+    "baseColor": "#475760",
+    "source": "art/stage31-density-v2/body-unioned.svg",
+    "nativeOperations": [
+      "path-union",
+      "path-intersection"
+    ],
+    "bandsWorld": [
+      125.0,
+      150.0,
+      175.0,
+      200.0,
+      225.0,
+      250.0,
+      275.0,
+      300.0,
+      325.0,
+      350.0,
+      375.0,
+      400.0,
+      425.0,
+      450.0,
+      475.0,
+      500.0,
+      525.0,
+      550.0,
+      575.0,
+      600.0,
+      625.0,
+      650.0,
+      675.0,
+      700.0
+    ],
+    "protectedContactDepthWorld": 100,
+    "originalPaintOrderPreserved": true,
+    "palette": [
+      {
+        "range": [
+          125.0,
+          40000
+        ],
+        "fill": "#475760",
+        "opacity": 0.004277569313094809
+      },
+      {
+        "range": [
+          150.0,
+          40000
+        ],
+        "fill": "#475760",
+        "opacity": 0.012814331734566633
+      },
+      {
+        "range": [
+          175.0,
+          40000
+        ],
+        "fill": "#475760",
+        "opacity": 0.021387528062108647
+      },
+      {
+        "range": [
+          200.0,
+          40000
+        ],
+        "fill": "#475760",
+        "opacity": 0.030071596349553982
+      },
+      {
+        "range": [
+          225.0,
+          40000
+        ],
+        "fill": "#475760",
+        "opacity": 0.038944841450614325
+      },
+      {
+        "range": [
+          250.0,
+          40000
+        ],
+        "fill": "#475760",
+        "opacity": 0.04809234029178065
+      },
+      {
+        "range": [
+          275.0,
+          40000
+        ],
+        "fill": "#475760",
+        "opacity": 0.05760937350941261
+      },
+      {
+        "range": [
+          300.0,
+          40000
+        ],
+        "fill": "#475760",
+        "opacity": 0.06760569158830261
+      },
+      {
+        "range": [
+          325.0,
+          40000
+        ],
+        "fill": "#475760",
+        "opacity": 0.07821104508994019
+      },
+      {
+        "range": [
+          350.0,
+          40000
+        ],
+        "fill": "#475760",
+        "opacity": 0.08958260753200621
+      },
+      {
+        "range": [
+          375.0,
+          40000
+        ],
+        "fill": "#475760",
+        "opacity": 0.10191524618379175
+      },
+      {
+        "range": [
+          400.0,
+          40000
+        ],
+        "fill": "#475760",
+        "opacity": 0.11545614167835686
+      },
+      {
+        "range": [
+          425.0,
+          40000
+        ],
+        "fill": "#475760",
+        "opacity": 0.13052619222005168
+      },
+      {
+        "range": [
+          450.0,
+          40000
+        ],
+        "fill": "#475760",
+        "opacity": 0.14755229166712092
+      },
+      {
+        "range": [
+          475.0,
+          40000
+        ],
+        "fill": "#475760",
+        "opacity": 0.16711760663049133
+      },
+      {
+        "range": [
+          500.0,
+          40000
+        ],
+        "fill": "#475760",
+        "opacity": 0.19004279778911234
+      },
+      {
+        "range": [
+          525.0,
+          40000
+        ],
+        "fill": "#475760",
+        "opacity": 0.21752285801744167
+      },
+      {
+        "range": [
+          550.0,
+          40000
+        ],
+        "fill": "#475760",
+        "opacity": 0.2513692653785378
+      },
+      {
+        "range": [
+          575.0,
+          40000
+        ],
+        "fill": "#475760",
+        "opacity": 0.2944641718032367
+      },
+      {
+        "range": [
+          600.0,
+          40000
+        ],
+        "fill": "#475760",
+        "opacity": 0.35167306161940076
+      },
+      {
+        "range": [
+          625.0,
+          40000
+        ],
+        "fill": "#475760",
+        "opacity": 0.4318290956724537
+      },
+      {
+        "range": [
+          650.0,
+          40000
+        ],
+        "fill": "#475760",
+        "opacity": 0.5523651544049683
+      },
+      {
+        "range": [
+          675.0,
+          40000
+        ],
+        "fill": "#475760",
+        "opacity": 0.7489260136205499
+      },
+      {
+        "range": [
+          700.0,
+          40000
+        ],
+        "fill": "#475760",
+        "opacity": 1.0
+      }
+    ],
+    "runtimeBytes": 221938,
+    "nodes": 34,
+    "method": "Original draw stack retained once;24 cumulative native masks ease contrast to base across100\u2013700world. Fine cosine-weighted solid opacity steps cap adjacent total-opacity delta at.0653. Not a gradient.",
+    "visualApproval": false,
+    "hiddenGeometryTrim": "Native Boolean intersection at702world; fullyopaque base starts700world. Compare against body-untrimmed.svg.",
+    "scope": "Intentional art recomposition. Physical clip, transform, bounds, anchors unchanged. Not a bounded-fidelity claim to prior art.",
+    "trimValidation": {
+      "width": 3600,
+      "meanRGBA": 0.00018791666666666666,
+      "maxRGBA": 13,
+      "pixelsRGBAbove16": 0,
+      "alpha128DifferentPixels": 0,
+      "bytesUntrimmed": 738745,
+      "bytesTrimmed": 221938
+    },
+    "trimDecision": {
+      "selected": true,
+      "reason": "Meaningful70% byte reduction;3600px comparison alpha128 exact, noRGBerrorabove16."
+    }
+  },
+  {
+    "stage": 32,
+    "asset": "art/stage32-density-depthfade/body-asset.json",
+    "baseColor": "#283344",
+    "source": "art/stage32-density-v2/body-unioned.svg",
+    "nativeOperations": [
+      "path-union",
+      "path-intersection"
+    ],
+    "bandsWorld": [
+      125.0,
+      150.0,
+      175.0,
+      200.0,
+      225.0,
+      250.0,
+      275.0,
+      300.0,
+      325.0,
+      350.0,
+      375.0,
+      400.0,
+      425.0,
+      450.0,
+      475.0,
+      500.0,
+      525.0,
+      550.0,
+      575.0,
+      600.0,
+      625.0,
+      650.0,
+      675.0,
+      700.0
+    ],
+    "protectedContactDepthWorld": 100,
+    "originalPaintOrderPreserved": true,
+    "palette": [
+      {
+        "range": [
+          125.0,
+          40000
+        ],
+        "fill": "#283344",
+        "opacity": 0.004277569313094809
+      },
+      {
+        "range": [
+          150.0,
+          40000
+        ],
+        "fill": "#283344",
+        "opacity": 0.012814331734566633
+      },
+      {
+        "range": [
+          175.0,
+          40000
+        ],
+        "fill": "#283344",
+        "opacity": 0.021387528062108647
+      },
+      {
+        "range": [
+          200.0,
+          40000
+        ],
+        "fill": "#283344",
+        "opacity": 0.030071596349553982
+      },
+      {
+        "range": [
+          225.0,
+          40000
+        ],
+        "fill": "#283344",
+        "opacity": 0.038944841450614325
+      },
+      {
+        "range": [
+          250.0,
+          40000
+        ],
+        "fill": "#283344",
+        "opacity": 0.04809234029178065
+      },
+      {
+        "range": [
+          275.0,
+          40000
+        ],
+        "fill": "#283344",
+        "opacity": 0.05760937350941261
+      },
+      {
+        "range": [
+          300.0,
+          40000
+        ],
+        "fill": "#283344",
+        "opacity": 0.06760569158830261
+      },
+      {
+        "range": [
+          325.0,
+          40000
+        ],
+        "fill": "#283344",
+        "opacity": 0.07821104508994019
+      },
+      {
+        "range": [
+          350.0,
+          40000
+        ],
+        "fill": "#283344",
+        "opacity": 0.08958260753200621
+      },
+      {
+        "range": [
+          375.0,
+          40000
+        ],
+        "fill": "#283344",
+        "opacity": 0.10191524618379175
+      },
+      {
+        "range": [
+          400.0,
+          40000
+        ],
+        "fill": "#283344",
+        "opacity": 0.11545614167835686
+      },
+      {
+        "range": [
+          425.0,
+          40000
+        ],
+        "fill": "#283344",
+        "opacity": 0.13052619222005168
+      },
+      {
+        "range": [
+          450.0,
+          40000
+        ],
+        "fill": "#283344",
+        "opacity": 0.14755229166712092
+      },
+      {
+        "range": [
+          475.0,
+          40000
+        ],
+        "fill": "#283344",
+        "opacity": 0.16711760663049133
+      },
+      {
+        "range": [
+          500.0,
+          40000
+        ],
+        "fill": "#283344",
+        "opacity": 0.19004279778911234
+      },
+      {
+        "range": [
+          525.0,
+          40000
+        ],
+        "fill": "#283344",
+        "opacity": 0.21752285801744167
+      },
+      {
+        "range": [
+          550.0,
+          40000
+        ],
+        "fill": "#283344",
+        "opacity": 0.2513692653785378
+      },
+      {
+        "range": [
+          575.0,
+          40000
+        ],
+        "fill": "#283344",
+        "opacity": 0.2944641718032367
+      },
+      {
+        "range": [
+          600.0,
+          40000
+        ],
+        "fill": "#283344",
+        "opacity": 0.35167306161940076
+      },
+      {
+        "range": [
+          625.0,
+          40000
+        ],
+        "fill": "#283344",
+        "opacity": 0.4318290956724537
+      },
+      {
+        "range": [
+          650.0,
+          40000
+        ],
+        "fill": "#283344",
+        "opacity": 0.5523651544049683
+      },
+      {
+        "range": [
+          675.0,
+          40000
+        ],
+        "fill": "#283344",
+        "opacity": 0.7489260136205499
+      },
+      {
+        "range": [
+          700.0,
+          40000
+        ],
+        "fill": "#283344",
+        "opacity": 1.0
+      }
+    ],
+    "runtimeBytes": 121968,
+    "nodes": 36,
+    "method": "Original draw stack retained once;24 cumulative native masks ease contrast to base across100\u2013700world. Fine cosine-weighted solid opacity steps cap adjacent total-opacity delta at.0653. Not a gradient.",
+    "visualApproval": false,
+    "hiddenGeometryTrim": "Native Boolean intersection at702world; fullyopaque base starts700world. Compare against body-untrimmed.svg.",
+    "scope": "Intentional art recomposition. Physical clip, transform, bounds, anchors unchanged. Not a bounded-fidelity claim to prior art.",
+    "trimValidation": {
+      "width": 3600,
+      "meanRGBA": 0.00032939814814814816,
+      "maxRGBA": 7,
+      "pixelsRGBAbove16": 0,
+      "alpha128DifferentPixels": 0,
+      "bytesUntrimmed": 121968,
+      "bytesTrimmed": 122500
+    },
+    "trimDecision": {
+      "selected": false,
+      "reason": "Retain exact untrimmed source. Trim either increased cost or introduced sparse raster differences; not worth silently accepting."
+    }
+  },
+  {
+    "stage": 33,
+    "asset": "art/stage33-density-depthfade/body-asset.json",
+    "baseColor": "#2d4350",
+    "source": "art/stage33-density-v2/body-final.svg",
+    "nativeOperations": [
+      "path-union",
+      "path-intersection"
+    ],
+    "bandsWorld": [
+      125.0,
+      150.0,
+      175.0,
+      200.0,
+      225.0,
+      250.0,
+      275.0,
+      300.0,
+      325.0,
+      350.0,
+      375.0,
+      400.0,
+      425.0,
+      450.0,
+      475.0,
+      500.0,
+      525.0,
+      550.0,
+      575.0,
+      600.0,
+      625.0,
+      650.0,
+      675.0,
+      700.0
+    ],
+    "protectedContactDepthWorld": 100,
+    "originalPaintOrderPreserved": true,
+    "palette": [
+      {
+        "range": [
+          125.0,
+          40000
+        ],
+        "fill": "#2d4350",
+        "opacity": 0.004277569313094809
+      },
+      {
+        "range": [
+          150.0,
+          40000
+        ],
+        "fill": "#2d4350",
+        "opacity": 0.012814331734566633
+      },
+      {
+        "range": [
+          175.0,
+          40000
+        ],
+        "fill": "#2d4350",
+        "opacity": 0.021387528062108647
+      },
+      {
+        "range": [
+          200.0,
+          40000
+        ],
+        "fill": "#2d4350",
+        "opacity": 0.030071596349553982
+      },
+      {
+        "range": [
+          225.0,
+          40000
+        ],
+        "fill": "#2d4350",
+        "opacity": 0.038944841450614325
+      },
+      {
+        "range": [
+          250.0,
+          40000
+        ],
+        "fill": "#2d4350",
+        "opacity": 0.04809234029178065
+      },
+      {
+        "range": [
+          275.0,
+          40000
+        ],
+        "fill": "#2d4350",
+        "opacity": 0.05760937350941261
+      },
+      {
+        "range": [
+          300.0,
+          40000
+        ],
+        "fill": "#2d4350",
+        "opacity": 0.06760569158830261
+      },
+      {
+        "range": [
+          325.0,
+          40000
+        ],
+        "fill": "#2d4350",
+        "opacity": 0.07821104508994019
+      },
+      {
+        "range": [
+          350.0,
+          40000
+        ],
+        "fill": "#2d4350",
+        "opacity": 0.08958260753200621
+      },
+      {
+        "range": [
+          375.0,
+          40000
+        ],
+        "fill": "#2d4350",
+        "opacity": 0.10191524618379175
+      },
+      {
+        "range": [
+          400.0,
+          40000
+        ],
+        "fill": "#2d4350",
+        "opacity": 0.11545614167835686
+      },
+      {
+        "range": [
+          425.0,
+          40000
+        ],
+        "fill": "#2d4350",
+        "opacity": 0.13052619222005168
+      },
+      {
+        "range": [
+          450.0,
+          40000
+        ],
+        "fill": "#2d4350",
+        "opacity": 0.14755229166712092
+      },
+      {
+        "range": [
+          475.0,
+          40000
+        ],
+        "fill": "#2d4350",
+        "opacity": 0.16711760663049133
+      },
+      {
+        "range": [
+          500.0,
+          40000
+        ],
+        "fill": "#2d4350",
+        "opacity": 0.19004279778911234
+      },
+      {
+        "range": [
+          525.0,
+          40000
+        ],
+        "fill": "#2d4350",
+        "opacity": 0.21752285801744167
+      },
+      {
+        "range": [
+          550.0,
+          40000
+        ],
+        "fill": "#2d4350",
+        "opacity": 0.2513692653785378
+      },
+      {
+        "range": [
+          575.0,
+          40000
+        ],
+        "fill": "#2d4350",
+        "opacity": 0.2944641718032367
+      },
+      {
+        "range": [
+          600.0,
+          40000
+        ],
+        "fill": "#2d4350",
+        "opacity": 0.35167306161940076
+      },
+      {
+        "range": [
+          625.0,
+          40000
+        ],
+        "fill": "#2d4350",
+        "opacity": 0.4318290956724537
+      },
+      {
+        "range": [
+          650.0,
+          40000
+        ],
+        "fill": "#2d4350",
+        "opacity": 0.5523651544049683
+      },
+      {
+        "range": [
+          675.0,
+          40000
+        ],
+        "fill": "#2d4350",
+        "opacity": 0.7489260136205499
+      },
+      {
+        "range": [
+          700.0,
+          40000
+        ],
+        "fill": "#2d4350",
+        "opacity": 1.0
+      }
+    ],
+    "runtimeBytes": 296129,
+    "nodes": 37,
+    "method": "Original draw stack retained once;24 cumulative native masks ease contrast to base across100\u2013700world. Fine cosine-weighted solid opacity steps cap adjacent total-opacity delta at.0653. Not a gradient.",
+    "visualApproval": false,
+    "hiddenGeometryTrim": "Native Boolean intersection at702world; fullyopaque base starts700world. Compare against body-untrimmed.svg.",
+    "scope": "Intentional art recomposition. Physical clip, transform, bounds, anchors unchanged. Not a bounded-fidelity claim to prior art.",
+    "trimValidation": {
+      "width": 3600,
+      "meanRGBA": 0.00043935185185185185,
+      "maxRGBA": 143,
+      "pixelsRGBAbove16": 4,
+      "alpha128DifferentPixels": 4,
+      "bytesUntrimmed": 296129,
+      "bytesTrimmed": 205329
+    },
+    "trimDecision": {
+      "selected": false,
+      "reason": "Retain exact untrimmed source. Trim either increased cost or introduced sparse raster differences; not worth silently accepting."
+    }
+  },
+  {
+    "stage": 37,
+    "asset": "art/stage37-density-depthfade/body-asset.json",
+    "baseColor": "#283344",
+    "source": "art/stage37-density-v2/body-final.svg",
+    "nativeOperations": [
+      "path-union",
+      "path-intersection"
+    ],
+    "bandsWorld": [
+      125.0,
+      150.0,
+      175.0,
+      200.0,
+      225.0,
+      250.0,
+      275.0,
+      300.0,
+      325.0,
+      350.0,
+      375.0,
+      400.0,
+      425.0,
+      450.0,
+      475.0,
+      500.0,
+      525.0,
+      550.0,
+      575.0,
+      600.0,
+      625.0,
+      650.0,
+      675.0,
+      700.0
+    ],
+    "protectedContactDepthWorld": 100,
+    "originalPaintOrderPreserved": true,
+    "palette": [
+      {
+        "range": [
+          125.0,
+          40000
+        ],
+        "fill": "#283344",
+        "opacity": 0.004277569313094809
+      },
+      {
+        "range": [
+          150.0,
+          40000
+        ],
+        "fill": "#283344",
+        "opacity": 0.012814331734566633
+      },
+      {
+        "range": [
+          175.0,
+          40000
+        ],
+        "fill": "#283344",
+        "opacity": 0.021387528062108647
+      },
+      {
+        "range": [
+          200.0,
+          40000
+        ],
+        "fill": "#283344",
+        "opacity": 0.030071596349553982
+      },
+      {
+        "range": [
+          225.0,
+          40000
+        ],
+        "fill": "#283344",
+        "opacity": 0.038944841450614325
+      },
+      {
+        "range": [
+          250.0,
+          40000
+        ],
+        "fill": "#283344",
+        "opacity": 0.04809234029178065
+      },
+      {
+        "range": [
+          275.0,
+          40000
+        ],
+        "fill": "#283344",
+        "opacity": 0.05760937350941261
+      },
+      {
+        "range": [
+          300.0,
+          40000
+        ],
+        "fill": "#283344",
+        "opacity": 0.06760569158830261
+      },
+      {
+        "range": [
+          325.0,
+          40000
+        ],
+        "fill": "#283344",
+        "opacity": 0.07821104508994019
+      },
+      {
+        "range": [
+          350.0,
+          40000
+        ],
+        "fill": "#283344",
+        "opacity": 0.08958260753200621
+      },
+      {
+        "range": [
+          375.0,
+          40000
+        ],
+        "fill": "#283344",
+        "opacity": 0.10191524618379175
+      },
+      {
+        "range": [
+          400.0,
+          40000
+        ],
+        "fill": "#283344",
+        "opacity": 0.11545614167835686
+      },
+      {
+        "range": [
+          425.0,
+          40000
+        ],
+        "fill": "#283344",
+        "opacity": 0.13052619222005168
+      },
+      {
+        "range": [
+          450.0,
+          40000
+        ],
+        "fill": "#283344",
+        "opacity": 0.14755229166712092
+      },
+      {
+        "range": [
+          475.0,
+          40000
+        ],
+        "fill": "#283344",
+        "opacity": 0.16711760663049133
+      },
+      {
+        "range": [
+          500.0,
+          40000
+        ],
+        "fill": "#283344",
+        "opacity": 0.19004279778911234
+      },
+      {
+        "range": [
+          525.0,
+          40000
+        ],
+        "fill": "#283344",
+        "opacity": 0.21752285801744167
+      },
+      {
+        "range": [
+          550.0,
+          40000
+        ],
+        "fill": "#283344",
+        "opacity": 0.2513692653785378
+      },
+      {
+        "range": [
+          575.0,
+          40000
+        ],
+        "fill": "#283344",
+        "opacity": 0.2944641718032367
+      },
+      {
+        "range": [
+          600.0,
+          40000
+        ],
+        "fill": "#283344",
+        "opacity": 0.35167306161940076
+      },
+      {
+        "range": [
+          625.0,
+          40000
+        ],
+        "fill": "#283344",
+        "opacity": 0.4318290956724537
+      },
+      {
+        "range": [
+          650.0,
+          40000
+        ],
+        "fill": "#283344",
+        "opacity": 0.5523651544049683
+      },
+      {
+        "range": [
+          675.0,
+          40000
+        ],
+        "fill": "#283344",
+        "opacity": 0.7489260136205499
+      },
+      {
+        "range": [
+          700.0,
+          40000
+        ],
+        "fill": "#283344",
+        "opacity": 1.0
+      }
+    ],
+    "runtimeBytes": 151391,
+    "nodes": 37,
+    "method": "Original draw stack retained once;24 cumulative native masks ease contrast to base across100\u2013700world. Fine cosine-weighted solid opacity steps cap adjacent total-opacity delta at.0653. Not a gradient.",
+    "visualApproval": false,
+    "hiddenGeometryTrim": "Native Boolean intersection at702world; fullyopaque base starts700world. Compare against body-untrimmed.svg.",
+    "scope": "Intentional art recomposition. Physical clip, transform, bounds, anchors unchanged. Not a bounded-fidelity claim to prior art.",
+    "trimValidation": {
+      "width": 3600,
+      "meanRGBA": 0.0006529938071577735,
+      "maxRGBA": 170,
+      "pixelsRGBAbove16": 17,
+      "alpha128DifferentPixels": 1,
+      "bytesUntrimmed": 151391,
+      "bytesTrimmed": 159301
+    },
+    "trimDecision": {
+      "selected": false,
+      "reason": "Retain exact untrimmed source. Trim either increased cost or introduced sparse raster differences; not worth silently accepting."
+    }
+  },
+  {
+    "stage": 39,
+    "asset": "art/stage39-density-depthfade/body-asset.json",
+    "baseColor": "#2a3647",
+    "source": "art/stage39-density-v2/body-final.svg",
+    "nativeOperations": [
+      "path-union",
+      "path-intersection"
+    ],
+    "bandsWorld": [
+      125.0,
+      150.0,
+      175.0,
+      200.0,
+      225.0,
+      250.0,
+      275.0,
+      300.0,
+      325.0,
+      350.0,
+      375.0,
+      400.0,
+      425.0,
+      450.0,
+      475.0,
+      500.0,
+      525.0,
+      550.0,
+      575.0,
+      600.0,
+      625.0,
+      650.0,
+      675.0,
+      700.0
+    ],
+    "protectedContactDepthWorld": 100,
+    "originalPaintOrderPreserved": true,
+    "palette": [
+      {
+        "range": [
+          125.0,
+          40000
+        ],
+        "fill": "#2a3647",
+        "opacity": 0.004277569313094809
+      },
+      {
+        "range": [
+          150.0,
+          40000
+        ],
+        "fill": "#2a3647",
+        "opacity": 0.012814331734566633
+      },
+      {
+        "range": [
+          175.0,
+          40000
+        ],
+        "fill": "#2a3647",
+        "opacity": 0.021387528062108647
+      },
+      {
+        "range": [
+          200.0,
+          40000
+        ],
+        "fill": "#2a3647",
+        "opacity": 0.030071596349553982
+      },
+      {
+        "range": [
+          225.0,
+          40000
+        ],
+        "fill": "#2a3647",
+        "opacity": 0.038944841450614325
+      },
+      {
+        "range": [
+          250.0,
+          40000
+        ],
+        "fill": "#2a3647",
+        "opacity": 0.04809234029178065
+      },
+      {
+        "range": [
+          275.0,
+          40000
+        ],
+        "fill": "#2a3647",
+        "opacity": 0.05760937350941261
+      },
+      {
+        "range": [
+          300.0,
+          40000
+        ],
+        "fill": "#2a3647",
+        "opacity": 0.06760569158830261
+      },
+      {
+        "range": [
+          325.0,
+          40000
+        ],
+        "fill": "#2a3647",
+        "opacity": 0.07821104508994019
+      },
+      {
+        "range": [
+          350.0,
+          40000
+        ],
+        "fill": "#2a3647",
+        "opacity": 0.08958260753200621
+      },
+      {
+        "range": [
+          375.0,
+          40000
+        ],
+        "fill": "#2a3647",
+        "opacity": 0.10191524618379175
+      },
+      {
+        "range": [
+          400.0,
+          40000
+        ],
+        "fill": "#2a3647",
+        "opacity": 0.11545614167835686
+      },
+      {
+        "range": [
+          425.0,
+          40000
+        ],
+        "fill": "#2a3647",
+        "opacity": 0.13052619222005168
+      },
+      {
+        "range": [
+          450.0,
+          40000
+        ],
+        "fill": "#2a3647",
+        "opacity": 0.14755229166712092
+      },
+      {
+        "range": [
+          475.0,
+          40000
+        ],
+        "fill": "#2a3647",
+        "opacity": 0.16711760663049133
+      },
+      {
+        "range": [
+          500.0,
+          40000
+        ],
+        "fill": "#2a3647",
+        "opacity": 0.19004279778911234
+      },
+      {
+        "range": [
+          525.0,
+          40000
+        ],
+        "fill": "#2a3647",
+        "opacity": 0.21752285801744167
+      },
+      {
+        "range": [
+          550.0,
+          40000
+        ],
+        "fill": "#2a3647",
+        "opacity": 0.2513692653785378
+      },
+      {
+        "range": [
+          575.0,
+          40000
+        ],
+        "fill": "#2a3647",
+        "opacity": 0.2944641718032367
+      },
+      {
+        "range": [
+          600.0,
+          40000
+        ],
+        "fill": "#2a3647",
+        "opacity": 0.35167306161940076
+      },
+      {
+        "range": [
+          625.0,
+          40000
+        ],
+        "fill": "#2a3647",
+        "opacity": 0.4318290956724537
+      },
+      {
+        "range": [
+          650.0,
+          40000
+        ],
+        "fill": "#2a3647",
+        "opacity": 0.5523651544049683
+      },
+      {
+        "range": [
+          675.0,
+          40000
+        ],
+        "fill": "#2a3647",
+        "opacity": 0.7489260136205499
+      },
+      {
+        "range": [
+          700.0,
+          40000
+        ],
+        "fill": "#2a3647",
+        "opacity": 1.0
+      }
+    ],
+    "runtimeBytes": 199715,
+    "nodes": 36,
+    "method": "Original draw stack retained once;24 cumulative native masks ease contrast to base across100\u2013700world. Fine cosine-weighted solid opacity steps cap adjacent total-opacity delta at.0653. Not a gradient.",
+    "visualApproval": false,
+    "hiddenGeometryTrim": "Native Boolean intersection at702world; fullyopaque base starts700world. Compare against body-untrimmed.svg.",
+    "scope": "Intentional art recomposition. Physical clip, transform, bounds, anchors unchanged. Not a bounded-fidelity claim to prior art.",
+    "trimValidation": {
+      "width": 3600,
+      "meanRGBA": 0.0004433449074074074,
+      "maxRGBA": 26,
+      "pixelsRGBAbove16": 10,
+      "alpha128DifferentPixels": 0,
+      "bytesUntrimmed": 199715,
+      "bytesTrimmed": 193351
+    },
+    "trimDecision": {
+      "selected": false,
+      "reason": "Retain exact untrimmed source. Trim either increased cost or introduced sparse raster differences; not worth silently accepting."
+    }
+  },
+  {
+    "stage": 40,
+    "asset": "art/stage40-density-depthfade/body-asset.json",
+    "baseColor": "#283a4a",
+    "source": "art/stage40-density-v2/body-final.svg",
+    "nativeOperations": [
+      "path-union",
+      "path-intersection"
+    ],
+    "bandsWorld": [
+      125.0,
+      150.0,
+      175.0,
+      200.0,
+      225.0,
+      250.0,
+      275.0,
+      300.0,
+      325.0,
+      350.0,
+      375.0,
+      400.0,
+      425.0,
+      450.0,
+      475.0,
+      500.0,
+      525.0,
+      550.0,
+      575.0,
+      600.0,
+      625.0,
+      650.0,
+      675.0,
+      700.0
+    ],
+    "protectedContactDepthWorld": 100,
+    "originalPaintOrderPreserved": true,
+    "palette": [
+      {
+        "range": [
+          125.0,
+          40000
+        ],
+        "fill": "#283a4a",
+        "opacity": 0.004277569313094809
+      },
+      {
+        "range": [
+          150.0,
+          40000
+        ],
+        "fill": "#283a4a",
+        "opacity": 0.012814331734566633
+      },
+      {
+        "range": [
+          175.0,
+          40000
+        ],
+        "fill": "#283a4a",
+        "opacity": 0.021387528062108647
+      },
+      {
+        "range": [
+          200.0,
+          40000
+        ],
+        "fill": "#283a4a",
+        "opacity": 0.030071596349553982
+      },
+      {
+        "range": [
+          225.0,
+          40000
+        ],
+        "fill": "#283a4a",
+        "opacity": 0.038944841450614325
+      },
+      {
+        "range": [
+          250.0,
+          40000
+        ],
+        "fill": "#283a4a",
+        "opacity": 0.04809234029178065
+      },
+      {
+        "range": [
+          275.0,
+          40000
+        ],
+        "fill": "#283a4a",
+        "opacity": 0.05760937350941261
+      },
+      {
+        "range": [
+          300.0,
+          40000
+        ],
+        "fill": "#283a4a",
+        "opacity": 0.06760569158830261
+      },
+      {
+        "range": [
+          325.0,
+          40000
+        ],
+        "fill": "#283a4a",
+        "opacity": 0.07821104508994019
+      },
+      {
+        "range": [
+          350.0,
+          40000
+        ],
+        "fill": "#283a4a",
+        "opacity": 0.08958260753200621
+      },
+      {
+        "range": [
+          375.0,
+          40000
+        ],
+        "fill": "#283a4a",
+        "opacity": 0.10191524618379175
+      },
+      {
+        "range": [
+          400.0,
+          40000
+        ],
+        "fill": "#283a4a",
+        "opacity": 0.11545614167835686
+      },
+      {
+        "range": [
+          425.0,
+          40000
+        ],
+        "fill": "#283a4a",
+        "opacity": 0.13052619222005168
+      },
+      {
+        "range": [
+          450.0,
+          40000
+        ],
+        "fill": "#283a4a",
+        "opacity": 0.14755229166712092
+      },
+      {
+        "range": [
+          475.0,
+          40000
+        ],
+        "fill": "#283a4a",
+        "opacity": 0.16711760663049133
+      },
+      {
+        "range": [
+          500.0,
+          40000
+        ],
+        "fill": "#283a4a",
+        "opacity": 0.19004279778911234
+      },
+      {
+        "range": [
+          525.0,
+          40000
+        ],
+        "fill": "#283a4a",
+        "opacity": 0.21752285801744167
+      },
+      {
+        "range": [
+          550.0,
+          40000
+        ],
+        "fill": "#283a4a",
+        "opacity": 0.2513692653785378
+      },
+      {
+        "range": [
+          575.0,
+          40000
+        ],
+        "fill": "#283a4a",
+        "opacity": 0.2944641718032367
+      },
+      {
+        "range": [
+          600.0,
+          40000
+        ],
+        "fill": "#283a4a",
+        "opacity": 0.35167306161940076
+      },
+      {
+        "range": [
+          625.0,
+          40000
+        ],
+        "fill": "#283a4a",
+        "opacity": 0.4318290956724537
+      },
+      {
+        "range": [
+          650.0,
+          40000
+        ],
+        "fill": "#283a4a",
+        "opacity": 0.5523651544049683
+      },
+      {
+        "range": [
+          675.0,
+          40000
+        ],
+        "fill": "#283a4a",
+        "opacity": 0.7489260136205499
+      },
+      {
+        "range": [
+          700.0,
+          40000
+        ],
+        "fill": "#283a4a",
+        "opacity": 1.0
+      }
+    ],
+    "runtimeBytes": 149622,
+    "nodes": 36,
+    "method": "Original draw stack retained once;24 cumulative native masks ease contrast to base across100\u2013700world. Fine cosine-weighted solid opacity steps cap adjacent total-opacity delta at.0653. Not a gradient.",
+    "visualApproval": false,
+    "hiddenGeometryTrim": "Native Boolean intersection at702world; fullyopaque base starts700world. Compare against body-untrimmed.svg.",
+    "scope": "Intentional art recomposition. Physical clip, transform, bounds, anchors unchanged. Not a bounded-fidelity claim to prior art.",
+    "trimValidation": {
+      "width": 3600,
+      "meanRGBA": 0.0017495696638315107,
+      "maxRGBA": 223,
+      "pixelsRGBAbove16": 209,
+      "alpha128DifferentPixels": 16,
+      "bytesUntrimmed": 149622,
+      "bytesTrimmed": 134965
+    },
+    "trimDecision": {
+      "selected": false,
+      "reason": "Retain exact untrimmed source. Trim either increased cost or introduced sparse raster differences; not worth silently accepting."
+    }
+  }
+]

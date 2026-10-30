@@ -1,0 +1,288 @@
+{
+  "success": true,
+  "scope": "Actual official31\u201340 linked ordinary-input campaign with real outcomes/Next, exact cold saved-state carry and genuine midstageContinue. Explicit39-only source repair via actualRetry; previousworld receipts unchanged. Not a single-worldhash uninterrupted run, browser/HUD/continuouscamera/balance/art approval.",
+  "runtimeSHA256": "7652daac71dc2c7c6ea02b438ce10105a26e1ac008b36258ad08e2835ee14fd9",
+  "initialEntryBuild": "campaign-spent-v1",
+  "finalWorldSHA256": "801df923ce89d8747f337f0b71e2ae38c604a8efbd6250d56e885b931af9f1b5",
+  "sourceTransitionEvidence": "tools/density-qa/evidence/final-linked-7652/stage39-source-transition.json",
+  "sameCampaignRunId": "eq-mvty68sj-tlxd355a",
+  "allCompletedSameRun": true,
+  "totalOrdinaryTicks": 233267,
+  "maxStorageUTF16Bytes": 251528,
+  "terminalColdReload": {
+    "success": true,
+    "scope": "Cold official App reload of actual40 terminal storage; exact complete Act4 proof and31\u201340 clears preserved, no active unfinished battle. Not browser/UI or art approval.",
+    "identity": {
+      "worldPath": "shared/data/act4/world.json",
+      "worldSHA256": "801df923ce89d8747f337f0b71e2ae38c604a8efbd6250d56e885b931af9f1b5",
+      "manifestPath": "shared/data/act4/world.parts/manifest.json",
+      "manifestSHA256": "268605120a84dff630108b33a3a6db05d9b060f8852cc6178f7e875d2ad3a30d",
+      "partCount": 16,
+      "runtimeMetadataAdditions": [
+        {
+          "stage": "stage-34",
+          "path": "initialState.honroNarrativeRevision",
+          "value": 1
+        },
+        {
+          "stage": "stage-34",
+          "path": "initialState.honroStoryCanonRevision",
+          "value": 1
+        },
+        {
+          "stage": "stage-34",
+          "path": "initialState.honroNarrativeCatalogueRevision",
+          "value": 1
+        },
+        {
+          "stage": "stage-38",
+          "path": "initialState.honroNarrativeRevision",
+          "value": 1
+        },
+        {
+          "stage": "stage-38",
+          "path": "initialState.honroStoryCanonRevision",
+          "value": 1
+        },
+        {
+          "stage": "stage-38",
+          "path": "initialState.honroNarrativeCatalogueRevision",
+          "value": 1
+        }
+      ],
+      "defaultBuiltProjectSHA256": "fcea8aaf29aff74933cfa31c47746d327e4bd9a6b2ce198eea90585cd6af87f3",
+      "stages": [
+        {
+          "id": "stage-31",
+          "sourceSHA256": "bb111c130c0c9571173f753a1a305ce63b1185c3c5c110940483eb2b672fcf3e",
+          "loadedSHA256": "bb111c130c0c9571173f753a1a305ce63b1185c3c5c110940483eb2b672fcf3e"
+        },
+        {
+          "id": "stage-32",
+          "sourceSHA256": "858b6e0256d5adb1cccd5fdd2c34e2d4670a4c2702b0c2e7075946c7cca27723",
+          "loadedSHA256": "858b6e0256d5adb1cccd5fdd2c34e2d4670a4c2702b0c2e7075946c7cca27723"
+        },
+        {
+          "id": "stage-33",
+          "sourceSHA256": "ff0660ee66aedd6b0ee8978689ea654abb365620afa6dfa4fe819cc96f8817fe",
+          "loadedSHA256": "ff0660ee66aedd6b0ee8978689ea654abb365620afa6dfa4fe819cc96f8817fe"
+        },
+        {
+          "id": "stage-34",
+          "sourceSHA256": "bc49ec5ca1781fa20f5f71046c8c4a11af1adecb48f896d7a997eed96dcfb3af",
+          "loadedSHA256": "38d8a6a6c9c631857854cc66204f45a4cfa994f08d5a4164e3cbb05c045bcb36"
+        },
+        {
+          "id": "stage-35",
+          "sourceSHA256": "2bbcc83f16566e23b1d921c805dbbcf5ab99ec1c4a680ea1b3a26d422fab3a62",
+          "loadedSHA256": "2bbcc83f16566e23b1d921c805dbbcf5ab99ec1c4a680ea1b3a26d422fab3a62"
+        },
+        {
+          "id": "stage-36",
+          "sourceSHA256": "8e6bd094e8d09a328ccc714724e329b8a329b1000826002bd058cc80dd228933",
+          "loadedSHA256": "8e6bd094e8d09a328ccc714724e329b8a329b1000826002bd058cc80dd228933"
+        },
+        {
+          "id": "stage-37",
+          "sourceSHA256": "27a2c48c9006691f1f5a1726640d32060be3c964c697f77b97303e44b25eb96a",
+          "loadedSHA256": "27a2c48c9006691f1f5a1726640d32060be3c964c697f77b97303e44b25eb96a"
+        },
+        {
+          "id": "stage-38",
+          "sourceSHA256": "c1c97eed455c1c1aa46de2906544fb77e012d612683b9b47b5838562b2a14fcf",
+          "loadedSHA256": "0fd51aac08b4da2d48cebb06a4e9cbef102d6d3cd4d9516a7f41d4fb36419b70"
+        },
+        {
+          "id": "stage-39",
+          "sourceSHA256": "8695dbcd724d4dd70cfe4dea619427de21b259e2f7cb6881894ade3a0d6b66f1",
+          "loadedSHA256": "8695dbcd724d4dd70cfe4dea619427de21b259e2f7cb6881894ade3a0d6b66f1"
+        },
+        {
+          "id": "stage-40",
+          "sourceSHA256": "59ce3ae2cfe71932aed3c7816fb6d7acd1e4a532db16ab1b91cd6ba3a9819424",
+          "loadedSHA256": "59ce3ae2cfe71932aed3c7816fb6d7acd1e4a532db16ab1b91cd6ba3a9819424"
+        }
+      ],
+      "assetCount": 225,
+      "entryPath": "Actual App.launch/continue on default runtimeParts campaign, no HONRO_PROJECT substitution, launchMap, importedDraft, customMap or debug mode",
+      "limit": "Native default-build source/transport identity, not browser HTTP-loader or UI proof"
+    },
+    "runtimeSHA256": "7652daac71dc2c7c6ea02b438ce10105a26e1ac008b36258ad08e2835ee14fd9",
+    "boundarySHA256": "f59a8d1418f7c189bbb2afa10a9ee834b8a34b40a43f14f128ba3793df1709d9",
+    "proofRunId": "eq-mvty68sj-tlxd355a"
+  },
+  "stages": [
+    {
+      "stage": 31,
+      "frame": 48585,
+      "worldSHA256": "1e7939fe0f9fd6cd8be0202807f0db74f7ed7958a212d480aa73d3e7ce72f0d4",
+      "boundaryPath": "_local/reports/act4-linked-7652/31/boundary.json",
+      "boundarySHA256": "ce86d92db1b527847f86b9b0399398210de3e48a8cf8123451a9ab252bce4b80",
+      "midContinue": [
+        {
+          "kind": "ordinary-midstage",
+          "frame": 4788,
+          "pass": true,
+          "scope": "Actual stopBattle/persist/Continue, exact gameplay and resolved visual-state equality"
+        }
+      ],
+      "utf16Bytes": 144570
+    },
+    {
+      "stage": 32,
+      "frame": 20163,
+      "worldSHA256": "1e7939fe0f9fd6cd8be0202807f0db74f7ed7958a212d480aa73d3e7ce72f0d4",
+      "boundaryPath": "_local/reports/act4-linked-7652/32/boundary.json",
+      "boundarySHA256": "830570bb1651b64733cfd96496412d64d5d2f488a4fa9de90cd38bdf0bbdb903",
+      "midContinue": [
+        {
+          "kind": "ordinary-midstage",
+          "frame": 5172,
+          "pass": true,
+          "scope": "Actual stopBattle/persist/Continue, exact gameplay and resolved visual-state equality"
+        }
+      ],
+      "utf16Bytes": 227056
+    },
+    {
+      "stage": 33,
+      "frame": 19805,
+      "worldSHA256": "1e7939fe0f9fd6cd8be0202807f0db74f7ed7958a212d480aa73d3e7ce72f0d4",
+      "boundaryPath": "_local/reports/act4-linked-7652/33/boundary.json",
+      "boundarySHA256": "bad21378d3a4b6904bd573c948cb451b072b6112a0fcbd8f9b24cec0e0db6763",
+      "midContinue": [
+        {
+          "kind": "ordinary-midstage",
+          "frame": 5843,
+          "pass": true,
+          "scope": "Actual stopBattle/persist/Continue, exact gameplay and resolved visual-state equality"
+        }
+      ],
+      "utf16Bytes": 186594
+    },
+    {
+      "stage": 34,
+      "frame": 20710,
+      "worldSHA256": "1e7939fe0f9fd6cd8be0202807f0db74f7ed7958a212d480aa73d3e7ce72f0d4",
+      "boundaryPath": "_local/reports/act4-linked-7652/34/replay/boundary.json",
+      "boundarySHA256": "2e4def3aa771bc91cb8800ab7894dca58521b290e702fee5a4ff53692f518aa9",
+      "midContinue": [
+        {
+          "kind": "ordinary-midstage",
+          "frame": 4607,
+          "pass": true,
+          "scope": "Actual stopBattle/persist/Continue, exact gameplay and resolved visual-state equality"
+        }
+      ],
+      "utf16Bytes": 207942
+    },
+    {
+      "stage": 35,
+      "frame": 21085,
+      "worldSHA256": "1e7939fe0f9fd6cd8be0202807f0db74f7ed7958a212d480aa73d3e7ce72f0d4",
+      "boundaryPath": "_local/reports/act4-linked-7652/35/replay/boundary.json",
+      "boundarySHA256": "486afc1ce5e7c30de439fe3d44072a704a3ed9b3dee215acd7b51adeafe6a7d7",
+      "midContinue": [
+        {
+          "kind": "ordinary-midstage",
+          "frame": 4874,
+          "pass": true,
+          "scope": "Actual stopBattle/persist/Continue, exact gameplay and resolved visual-state equality"
+        }
+      ],
+      "utf16Bytes": 172568
+    },
+    {
+      "stage": 36,
+      "frame": 13921,
+      "worldSHA256": "1e7939fe0f9fd6cd8be0202807f0db74f7ed7958a212d480aa73d3e7ce72f0d4",
+      "boundaryPath": "_local/reports/act4-linked-7652/36/replay/boundary.json",
+      "boundarySHA256": "81dca6e7fa86bc376fd38aee42fb8d20d10ca97d56ae82be13a8363462a28d3a",
+      "midContinue": [
+        {
+          "kind": "fallen-door",
+          "frame": 3901,
+          "pass": true,
+          "scope": "Actual stopBattle/persist/Continue, exact gameplay and resolved visual-state equality"
+        },
+        {
+          "kind": "ordinary-midstage",
+          "frame": 4501,
+          "pass": true,
+          "scope": "Actual stopBattle/persist/Continue, exact gameplay and resolved visual-state equality"
+        }
+      ],
+      "utf16Bytes": 222444
+    },
+    {
+      "stage": 37,
+      "frame": 25565,
+      "worldSHA256": "1e7939fe0f9fd6cd8be0202807f0db74f7ed7958a212d480aa73d3e7ce72f0d4",
+      "boundaryPath": "_local/reports/act4-linked-7652/37/replay/boundary.json",
+      "boundarySHA256": "637531b3f564be82fc259fd7d775129bd0b36ae52b3a9cfa754c49a2c52b4fde",
+      "midContinue": [
+        {
+          "kind": "ordinary-midstage",
+          "frame": 4599,
+          "pass": true,
+          "scope": "Actual stopBattle/persist/Continue, exact gameplay and resolved visual-state equality"
+        }
+      ],
+      "utf16Bytes": 228510
+    },
+    {
+      "stage": 38,
+      "frame": 15269,
+      "worldSHA256": "1e7939fe0f9fd6cd8be0202807f0db74f7ed7958a212d480aa73d3e7ce72f0d4",
+      "boundaryPath": "_local/reports/act4-linked-7652/38/replay/boundary.json",
+      "boundarySHA256": "fdade16b0396866e671f5d0b05c36e1bcd77ed7de1b25ad1859d4c8d3c6b187a",
+      "midContinue": [
+        {
+          "kind": "ordinary-midstage",
+          "frame": 4501,
+          "pass": true,
+          "scope": "Actual stopBattle/persist/Continue, exact gameplay and resolved visual-state equality"
+        }
+      ],
+      "utf16Bytes": 251528
+    },
+    {
+      "stage": 39,
+      "frame": 29799,
+      "worldSHA256": "801df923ce89d8747f337f0b71e2ae38c604a8efbd6250d56e885b931af9f1b5",
+      "boundaryPath": "_local/reports/act4-linked-7652/39/replay-repaired/boundary.json",
+      "boundarySHA256": "a5bd85b15af1a31fbc800e866514ed1f6b239392ebe021b504c0db270b670090",
+      "midContinue": [
+        {
+          "kind": "ordinary-midstage",
+          "frame": 4501,
+          "pass": true,
+          "scope": "Actual stopBattle/persist/Continue, exact gameplay and resolved visual-state equality"
+        }
+      ],
+      "utf16Bytes": 222898
+    },
+    {
+      "stage": 40,
+      "frame": 18365,
+      "worldSHA256": "801df923ce89d8747f337f0b71e2ae38c604a8efbd6250d56e885b931af9f1b5",
+      "boundaryPath": "_local/reports/act4-linked-7652/40/replay-ending/boundary.json",
+      "boundarySHA256": "f59a8d1418f7c189bbb2afa10a9ee834b8a34b40a43f14f128ba3793df1709d9",
+      "midContinue": [
+        {
+          "kind": "sailing",
+          "frame": 14195,
+          "pass": true,
+          "scope": "Actual stopBattle/persist/Continue, exact gameplay and resolved visual-state equality"
+        }
+      ],
+      "utf16Bytes": 110886
+    }
+  ],
+  "knownFailedAttemptsPreserved": [
+    "stage39-escort-obstruction.json",
+    "_local/reports/act4-linked-7652/40/replay/pre-outcome.json"
+  ],
+  "endingSuffix": "_local/reports/act4-linked-7652/40/ending-suffix-receipt.json",
+  "visualLimit": "Natural-follow40 sailing frames do not center theboat; do not claim C4 deck/water visualapproval from them."
+}

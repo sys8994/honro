@@ -1,0 +1,16 @@
+{
+  "exactBytes": true,
+  "utf8Bytes": 72819,
+  "sha256": "a7ab8d9ba595f13b939840b17ea1407c40a9e10dc6f483d6093ec34a84a217a8",
+  "nativeStorage": true,
+  "namespaceOnly": true,
+  "primaryMigrationVerified": true,
+  "archiveSurvivesReload": true,
+  "noWritesOnReload": true,
+  "runtimeSHA256": "7652daac71dc2c7c6ea02b438ce10105a26e1ac008b36258ad08e2835ee14fd9",
+  "limits": [
+    "Key namespace adapter delegates to real browser Storage. No actual game key read or written.",
+    "Successful bounded72.8KB roundtrip, not maximum capacity or phone performance proof.",
+    "Historical-default build, official canonical smoke remains separate."
+  ]
+}

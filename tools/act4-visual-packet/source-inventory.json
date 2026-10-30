@@ -1,0 +1,252 @@
+[
+  {
+    "stage": 31,
+    "name": "강 끝의 갈대",
+    "change": "기복이 있는 강둑 윤곽과 목재 발판을 분리하고 내부 지층을 정돈했습니다.",
+    "concepts": [
+      {
+        "label": "좌측 지형",
+        "path": "art/act4-silhouette-v3/sea/bank31/play-left/concept.png",
+        "sha256": "e8c701d9cd19e28957cf992bee55dbeadc8669cc640e019db5930bfe3eab09e6",
+        "bytes": 1067123
+      },
+      {
+        "label": "목재 발판",
+        "path": "art/act4-silhouette-v3/sea/wood31/concept.png",
+        "sha256": "6ab9ffe368783935cd33946c3e691a290730e57a620770f8dd91f6af83e44e2d",
+        "bytes": 266800
+      },
+      {
+        "label": "우측 지형",
+        "path": "art/act4-silhouette-v3/sea/bank31/play-right/concept.png",
+        "sha256": "a09f53a3ae8808bfb704d846506bd99fde4e7d4365e1e12c767849d11b44ddd3",
+        "bytes": 901217
+      },
+      {
+        "label": "부두 짐",
+        "path": "art/act4-silhouette-v3/sea/cargo/concept.png",
+        "sha256": "5ee571e1feccead60047d1b1ce8bc514ce36a46b24f6267e45e1d51ded8a2f99",
+        "bytes": 1281362
+      }
+    ]
+  },
+  {
+    "stage": 32,
+    "name": "빈 포구",
+    "change": "경사면의 모호한 바위 형상을 낮고 분명한 엄폐물로 교체했습니다.",
+    "concepts": [
+      {
+        "label": "지형",
+        "path": "art/act4-silhouette-v3/sea/bank32/ground-concept.png",
+        "sha256": "23602fa82ffaca834c258ea2e687f77736eed028ee09c61748181aa5d92123db",
+        "bytes": 1055946
+      },
+      {
+        "label": "바위 엄폐물",
+        "path": "art/act4-silhouette-v3/sea/stone-ramp-cover-concept.png",
+        "sha256": "89ffe564ebf6887c2bdc026e62ec2c6bc9238b5cd52f188815886abadef3434f",
+        "bytes": 637683
+      },
+      {
+        "label": "우측 지형",
+        "path": "art/act4-silhouette-v3/sea/bank32/ground-right-concept.png",
+        "sha256": "c21f8c11e6f8fcd48972fc90ab3c1cd6854726ecf871e2007c27b2d7f5430e65",
+        "bytes": 1035764
+      },
+      {
+        "label": "목재 발판",
+        "path": "art/act4-silhouette-v3/sea/wood32/concept.png",
+        "sha256": "f981ea0b16f990d25f93fc4b37b32eb922724d4d26cf66e0039b648048f47889",
+        "bytes": 465784
+      }
+    ]
+  },
+  {
+    "stage": 33,
+    "name": "물 빠진 갯길",
+    "change": "돌길은 구조가 읽히게 다듬고 지형 내부는 연결된 지층으로 정리했습니다.",
+    "concepts": [
+      {
+        "label": "중앙 지형 윤곽",
+        "path": "art/stage33-bank-silhouette-v1/concept.png",
+        "sha256": "3a59ff53807e330d9bda910cacec6f98437c2586612c942faf92fdcc4b6c0836",
+        "bytes": 428715
+      },
+      {
+        "label": "석조 갯길",
+        "path": "art/stage33-causeway-silhouette-v5/concept.png",
+        "sha256": "502fa82e746a2a25059da607fdc7fc6aa799421fdb53c2531f4d5c93b3ebc3f6",
+        "bytes": 380174
+      },
+      {
+        "label": "양측 지형 윤곽",
+        "path": "art/stage33-bank-silhouette-v2/concept.png",
+        "sha256": "f21064d6604bdd5a011eb00d1d6b59ab663b257b1ed4692138a5a8ba3abd6598",
+        "bytes": 917324
+      },
+      {
+        "label": "내부 지층 재사용",
+        "path": "art/act4-silhouette-v3/sea/bank32/ground-concept.png",
+        "sha256": "23602fa82ffaca834c258ea2e687f77736eed028ee09c61748181aa5d92123db",
+        "bytes": 1055946
+      }
+    ]
+  },
+  {
+    "stage": 34,
+    "name": "파도에 깎인 절벽",
+    "change": "천장 아래쪽과 상승 지형의 윤곽을 시안에서 가져왔습니다.",
+    "concepts": [
+      {
+        "label": "절벽 위쪽 돌출부",
+        "path": "art/stage34-silhouette-v4/concept.png",
+        "sha256": "4a2c78ea766baed62aa52b7296e5b9c622c9993d3b57ac6be8e28c363df54cce",
+        "bytes": 735670
+      },
+      {
+        "label": "상승 지형",
+        "path": "art/stage34-floor-silhouette-v4/concept.png",
+        "sha256": "9abd31223a9915d85a3067466b7277ffc2d596ade8cd80adef0049596bf497fc",
+        "bytes": 921163
+      }
+    ]
+  },
+  {
+    "stage": 35,
+    "name": "대숲의 옛길",
+    "change": "계단과 자연 지형을 연결하고 근경 대나무 뿌리에 바닥을 붙였습니다.",
+    "concepts": [
+      {
+        "label": "서쪽 지형",
+        "path": "art/stage35-bank-silhouette-v4/play-west-concept-v2.png",
+        "sha256": "4084c6fc2670e39ac5acfb70d433bba90b534bbdd644d85e0429a2cda9322b26",
+        "bytes": 1182500
+      },
+      {
+        "label": "동쪽 지형",
+        "path": "art/stage35-bank-silhouette-v4/play-east-concept-v2.png",
+        "sha256": "0ce4c0daeb2fdda897e29c5ddab0095fcd8940816113567852bf61111d7c7305",
+        "bytes": 1174379
+      }
+    ]
+  },
+  {
+    "stage": 36,
+    "name": "쇠가 없는 마을",
+    "change": "집 앞 기능 구간을 유지하면서 주변 지형의 윤곽과 지층을 연결했습니다.",
+    "concepts": [
+      {
+        "label": "서쪽 지형",
+        "path": "art/stage36-bank-silhouette-v4/play-west-concept-v2.png",
+        "sha256": "f6732b76de7e8d2e7aa8b1524e839c07fd7b33a3763284cbaab36e607a649406",
+        "bytes": 1168249
+      },
+      {
+        "label": "동쪽 지형",
+        "path": "art/stage36-bank-silhouette-v4/play-east-concept-v2.png",
+        "sha256": "2339c91afcd77de59e1f29e102aa59ea9109b72439809e8d285128400e0ce420",
+        "bytes": 1168162
+      }
+    ]
+  },
+  {
+    "stage": 37,
+    "name": "곶의 뒤편",
+    "change": "큰 바위와 목재 경사로의 구조를 살리고 장식의 밝기와 밀도를 낮췄습니다.",
+    "concepts": [
+      {
+        "label": "좌측 지형",
+        "path": "art/act4-silhouette-v3/sea/bank37/play-left/concept.png",
+        "sha256": "68cc07284cc1689cf5df9c7e3ad573acc40f6c6e39454bdba0af82be86fa3d6b",
+        "bytes": 839413
+      },
+      {
+        "label": "목재 발판",
+        "path": "art/act4-silhouette-v3/sea/wood37/concept.png",
+        "sha256": "a416f37d4a29635467917b7c038a8c03db034149baa16edb1660bdc77d8478f1",
+        "bytes": 390353
+      },
+      {
+        "label": "우측 지형",
+        "path": "art/act4-silhouette-v3/sea/bank37/play-right/concept.png",
+        "sha256": "ec061125d41eb22d10e01129846f1066971a244e7ded41964f2717ef0db6295a",
+        "bytes": 996372
+      },
+      {
+        "label": "부서진 돌벽",
+        "path": "art/act4-silhouette-v3/sea/wall37/concept.png",
+        "sha256": "ee267ed4eeca5738064b742473d06d149338799d0596a38d6a8ed186fe5a9f18",
+        "bytes": 603144
+      }
+    ]
+  },
+  {
+    "stage": 38,
+    "name": "어긋난 해식굴",
+    "change": "천장 굴곡과 바닥의 변화를 살리고 동굴 내부의 잔무늬는 줄였습니다.",
+    "concepts": [
+      {
+        "label": "동굴 천장",
+        "path": "art/stage38-silhouette-v4/roof-concept-shallow.png",
+        "sha256": "bcf4eb4b8e7803491b212ad37e24b2a295788071c1095eb5abb767186ac33483",
+        "bytes": 794356
+      },
+      {
+        "label": "서쪽 바닥",
+        "path": "art/stage38-floor-silhouette-v4/concept.png",
+        "sha256": "0a567b6e923e31ee35be39dc0457c8d9e53e3b39f7ab61d47135bfb533ff2ee1",
+        "bytes": 949359
+      }
+    ]
+  },
+  {
+    "stage": 39,
+    "name": "돌아오는 물",
+    "change": "상부 돌 발판과 뒤쪽 바위를 정리하고, 호위 인물이 걸어갈 경사로를 완만하게 보정했습니다.",
+    "concepts": [
+      {
+        "label": "서쪽 지형",
+        "path": "art/stage39-bank-silhouette-v4/play-west-concept-v2.png",
+        "sha256": "b92e14d06b6658804dd65a48db1029c624fa54adf81fc7471012d1d01363f1a4",
+        "bytes": 1181955
+      },
+      {
+        "label": "상부 돌 발판",
+        "path": "art/stage39-upper-ledge-v4/concept.png",
+        "sha256": "0992bad95daade3dc604ecd519d3743156601ba0d59f8684ce6f8234a9b5ea64",
+        "bytes": 335448
+      },
+      {
+        "label": "동쪽 지형",
+        "path": "art/stage39-bank-silhouette-v4/play-east-concept-v2.png",
+        "sha256": "bad3a04283a1c82737857235841771ede96595cee948369e8a6c9b679a11976a",
+        "bytes": 1162711
+      }
+    ]
+  },
+  {
+    "stage": 40,
+    "name": "돌아가는 배",
+    "change": "수로 지형과 목재 다리를 분리하고 내부 지층을 조용하게 정리했습니다.",
+    "concepts": [
+      {
+        "label": "좌측 지형",
+        "path": "art/act4-silhouette-v3/sea/bank40/play-left/concept.png",
+        "sha256": "0b8152aad6843b1e0dfe1ce825bff4e978020ac3425c85e11342fc81940133d4",
+        "bytes": 889422
+      },
+      {
+        "label": "목재 발판",
+        "path": "art/act4-silhouette-v3/sea/wood40/concept.png",
+        "sha256": "3930b1b6f317475aa549dc8fc7d4e80982dbf3b5ccb5156e7132d22853c03249",
+        "bytes": 413449
+      },
+      {
+        "label": "우측 지형",
+        "path": "art/act4-silhouette-v3/sea/bank40/play-right/concept.png",
+        "sha256": "c34e150940e06927f2c8f5cb4a47e24aa8a68ab259569d6741d2b1ba513dc596",
+        "bytes": 773909
+      }
+    ]
+  }
+]

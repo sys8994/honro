@@ -1,0 +1,25 @@
+{
+  "at": "2026-10-29T19:46:36.806100+00:00",
+  "runtimeSHA256": "7652daac71dc2c7c6ea02b438ce10105a26e1ac008b36258ad08e2835ee14fd9",
+  "runtimeCommit": "2eb667222205447d78483a3cebac8adbbab7c85d",
+  "build": "logs/runtime7652-build.log",
+  "testFixture": "dist/archive-test.html",
+  "storage": "Map double installed before App bootstrap; native localStorage never touched",
+  "profile": "Synthetic full launch31 initial profile made by existing appHarness; revision field deliberately changed to2; not gameplay qualification",
+  "checks": {
+    "archiveBeforePrimaryOverwrite": true,
+    "archiveDownloadExactBytes": true,
+    "quotaFailureLocks": true,
+    "quotaFailurePrimaryExact": true,
+    "quotaFailureOriginalDownloadExactBytes": true,
+    "downloadDoesNotUnlock": true
+  },
+  "rawUTF8Bytes": 12687604,
+  "rawSHA256": "ceb830bcbaa303321112ce09a6de463f8e7ff5ec5bab0a38f0c9d860466740f4",
+  "limits": [
+    "Isolated historical-default normal build, not canonical production build.",
+    "Map storage double proves UI/code response to injected failure, not real localStorage quota capacity.",
+    "Prior inherited Error9 tabs had unknown active build; no attribution to7652.",
+    "Official canonical production browser smoke remains pending release gates."
+  ]
+}

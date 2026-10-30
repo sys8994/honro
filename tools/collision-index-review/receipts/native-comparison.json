@@ -1,0 +1,139 @@
+{
+  "scope": "Native fixed workload, not browser FPS. One triplet, startup excluded. All current/candidate initial actor/state, final state and 12 full prediction digests match exactly.",
+  "runtimeSHA256": "264b42d9b85f63847877ad839c67365a9b63b06b34a27cf9c84d53d9307ece2e",
+  "candidateMathSHA256": "3e0112f5b86030b53b20ef626d1865031d10bb378b06e62ecd6655344e8b03d1",
+  "parity": true,
+  "results": [
+    {
+      "name": "baseline",
+      "medianPredictionMs": 12.245549000002939,
+      "simulationMs": 20.440857999998116,
+      "predictions": [
+        {
+          "angle": 35,
+          "ms": 21.284316999997827
+        },
+        {
+          "angle": 55,
+          "ms": 12.438077000002522
+        },
+        {
+          "angle": 75,
+          "ms": 24.24727200000052
+        },
+        {
+          "angle": 35,
+          "ms": 10.685122999999294
+        },
+        {
+          "angle": 55,
+          "ms": 11.027086999998573
+        },
+        {
+          "angle": 75,
+          "ms": 12.245549000002939
+        },
+        {
+          "angle": 35,
+          "ms": 10.672253000000637
+        },
+        {
+          "angle": 55,
+          "ms": 14.476893999999447
+        },
+        {
+          "angle": 75,
+          "ms": 8.50555600000007
+        }
+      ]
+    },
+    {
+      "name": "current",
+      "medianPredictionMs": 31.111414000000877,
+      "simulationMs": 140.76504100000056,
+      "predictions": [
+        {
+          "angle": 35,
+          "ms": 29.034958000000188
+        },
+        {
+          "angle": 55,
+          "ms": 31.960069999999178
+        },
+        {
+          "angle": 75,
+          "ms": 31.111414000000877
+        },
+        {
+          "angle": 35,
+          "ms": 40.05405299999984
+        },
+        {
+          "angle": 55,
+          "ms": 28.233502999999473
+        },
+        {
+          "angle": 75,
+          "ms": 37.941883999999845
+        },
+        {
+          "angle": 35,
+          "ms": 31.203773999999612
+        },
+        {
+          "angle": 55,
+          "ms": 22.19774999999936
+        },
+        {
+          "angle": 75,
+          "ms": 24.327721999999994
+        }
+      ]
+    },
+    {
+      "name": "optimized",
+      "medianPredictionMs": 12.22999499999969,
+      "simulationMs": 171.37708200000088,
+      "predictions": [
+        {
+          "angle": 35,
+          "ms": 12.69945099999859
+        },
+        {
+          "angle": 55,
+          "ms": 19.93447699999888
+        },
+        {
+          "angle": 75,
+          "ms": 13.015346000000136
+        },
+        {
+          "angle": 35,
+          "ms": 12.22999499999969
+        },
+        {
+          "angle": 55,
+          "ms": 11.35018300000047
+        },
+        {
+          "angle": 75,
+          "ms": 21.040399999999863
+        },
+        {
+          "angle": 35,
+          "ms": 10.835981000000174
+        },
+        {
+          "angle": 55,
+          "ms": 10.79598900000019
+        },
+        {
+          "angle": 75,
+          "ms": 11.772478000000774
+        }
+      ]
+    }
+  ],
+  "predictionImprovementPercent": 60.68968449971659,
+  "simulationChangePercent": 21.746905895477408
+}

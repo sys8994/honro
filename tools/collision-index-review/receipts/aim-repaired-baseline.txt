@@ -1,0 +1,7 @@
+PASS Unit-positioned Stage1 authored-boulder muzzle is outside rock and actual A01/A02 shots stop exactly on the predicted face
+PASS Ordinary arrow and qi stop at nearby solids, while A02 crosses only thin wood and still stops at rock
+PASS Explicit terrain/all phasing preserves its original muzzle and the live path through the same rock
+PASS A timed ice-gourd endpoint retains distinct bounce and terminal contact metadata
+PASS Scheduled follow-up volleys use the same non-embedded muzzle and collide normally
+PASS Launch correction does not change an unobstructed origin or polygon tangent/escape movement collision
+isolated baseline math replacements: 2

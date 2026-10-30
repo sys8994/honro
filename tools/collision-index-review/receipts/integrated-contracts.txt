@@ -1,0 +1,25 @@
+PASS Swept top-only entry handles slabs, side/corner, slopes, overlap and first of multiple layers
+PASS Actual upward flight clears the slab, reaches apex and matches arrow, qi, stake and summon guides
+PASS Reflected waves share guide/live top contacts and still reflect from solid sides and ceilings
+PASS Ground installations keep the actual first valid top when an ignored slab is close overhead
+PASS Spread, emitted fragments and split arrows use the same rule; authored phasing remains
+PASS Muzzle, homing acquisition, saved flight and body/generic checks remain independently consistent
+PASS 6 projectile-platform behaviour groups
+PASS 140 one-way/cave/impulse/wall/fall physics conditions
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: fixture no longer reproduces embedded muzzle
+    at file:///workspace/scratch/fff510b4df37/honro-stage31-direct/tests/aim-launch-collision.mjs:25:153
+    at check (file:///workspace/scratch/fff510b4df37/honro-stage31-direct/tests/aim-launch-collision.mjs:5:38)
+    at file:///workspace/scratch/fff510b4df37/honro-stage31-direct/tests/aim-launch-collision.mjs:23:1 {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: false,
+  expected: true,
+  operator: '==',
+  diff: 'simple'
+}
+
+Node.js v24.22.1

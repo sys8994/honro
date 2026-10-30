@@ -1,0 +1,54 @@
+{
+  "scope": "Focused pure math small-polygon microbenchmark; native lease pending. Includes exact stage30 ferry authored quad, translated in place like runtime; not a stage30 App playthrough.",
+  "mutableChecks": 1821,
+  "results": [
+    {
+      "vertices": 0,
+      "fn": "segmentTerrain",
+      "median": {
+        "baseline": 2.6914960000000008,
+        "candidate": 2.4786569999999983
+      }
+    },
+    {
+      "vertices": 0,
+      "fn": "segmentProjectileTerrain",
+      "median": {
+        "baseline": 4.696760000000012,
+        "candidate": 5.7057279999999935
+      }
+    },
+    {
+      "vertices": 0,
+      "fn": "segmentPlatformSurface",
+      "median": {
+        "baseline": 4.914607999999987,
+        "candidate": 4.859314999999981
+      }
+    },
+    {
+      "vertices": 4,
+      "fn": "segmentTerrain",
+      "median": {
+        "baseline": 5.606297999999981,
+        "candidate": 5.651657
+      }
+    },
+    {
+      "vertices": 4,
+      "fn": "segmentProjectileTerrain",
+      "median": {
+        "baseline": 5.549549000000013,
+        "candidate": 4.289157999999986
+      }
+    },
+    {
+      "vertices": 4,
+      "fn": "segmentPlatformSurface",
+      "median": {
+        "baseline": 4.1868690000000015,
+        "candidate": 4.370029000000045
+      }
+    }
+  ]
+}
