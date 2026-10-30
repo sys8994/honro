@@ -20,7 +20,7 @@ await mkdir(out,{recursive:true});const runId=randomUUID(),raw=createGzip();cons
 const hash=createHash('sha256'),files=execFileSync('git',['ls-files','shared','game/config','game/src','game/engine','game/vendor','tools/quantitative-playtest','tools/stage31/app-adapter.mjs','tests/app-regression-helpers.mjs','tests/stage18-bell-fullplay-helper.mjs','game/tests/helpers.mjs'],{encoding:'utf8'}).trim().split('\n').filter(Boolean);
 // Untracked new controller files are included too, before the first commit.
 for(const file of new Set([...files,...CONTROLLER_FILES,'tools/quantitative-playtest/run.mjs','tools/quantitative-playtest/adapter.mjs','tools/quantitative-playtest/stats.mjs','tools/quantitative-playtest/policy.mjs','tools/quantitative-playtest/act4-adapter.mjs']))hash.update(file+'\0').update(await readFile(file));
-const sourceHash=hash.digest('hex'),random=rng(seed),started=performance.now();let cancelled=false;process.on('SIGTERM',()=>{cancelled=true;});process.on('SIGINT',()=>{cancelled=true;});let frame=0,simSeconds=0,outcome='timeout',reason='frame budget',a,b,e,g,charge=null;
+const sourceHash=hash.digest('hex'),random=rng(seed),started=performance.now();let cancelled=false;process.on('SIGTERM',()=>{cancelled=true;});process.on('SIGINT',()=>{cancelled=true;});let frame=0,simSeconds=0,outcome='timeout',reason='frame budget',a,b,e,g,charge=null,decision=null;
 await writeFile(`${out}/${runId}.attempt.json`,JSON.stringify({runId,stage,policy,seed,sourceHash,maxFrames,maxWallSeconds,status:'started-not-finalized',note:'If no summary exists, process termination is an error/incomplete attempt, never a completed gameplay run.'},null,2));
 const metrics={dropAttempts:0,dropAccepted:0,effectiveDrops:0,byHero:{},jumpAttempts:0,jumpAccepted:0,landings:0,elevatedSupportLandings:0,horizontalDistance:0,ascent:0,descent:0,totalUniqueEnemies:0,maxLivingEnemies:0,maxAwakeEnemies:0,maxActingEnemiesPerRound:0,engagedEnemyIds:[],enemyFirstDamageRound:{},enemyDeathRound:{},observedNetHeroHpLoss:0,observedNetHeroShieldLoss:0,focusSpent:0,focusRecovered:0,visitedSupports:[],altitudeMin:null,altitudeMax:null};
 const engagedEnemies=new Set(),seenTransitions=new Set(),seenEnemies=new Set(),supports=new Set(),previous=new Map(),jumps=new Map(),enemyPositions=new Map(),activity=new EnemyActivity();
@@ -41,7 +41,7 @@ async function observe(){
   }
   if(s)supports.add(s);metrics.altitudeMin=metrics.altitudeMin===null?u.y:Math.min(metrics.altitudeMin,u.y);metrics.altitudeMax=metrics.altitudeMax===null?u.y:Math.max(metrics.altitudeMax,u.y);previous.set(u.id,v);
  }
- if(frame%CONTRACT.snapshotFrames===0){const memory={frame,...process.memoryUsage()};process.stderr.write(JSON.stringify({frameMemory:memory})+'\n');await emit('memory',memory);await emit('snapshot',{residents:b.units.filter(u=>u.honroAct4Resident).map(u=>({id:u.id,x:u.x,y:u.y,hp:u.hp,dead:u.dead,grounded:e.grounded(u)})),objective:b.honroAct4PreviewState,phase:b.phase,active:b.active,keys:[...a.app.keys],stick:{...a.app.stick},charging:a.app.charging,selected:a.app.selected,angle:e.active?.angle,simSeconds,heroes:[...previous.values()],enemies:enemies.filter(alive).map(u=>({id:u.id,x:u.x,y:u.y,awake:!!u.awake})),items:b.items});await flush();}
+ if(frame%CONTRACT.snapshotFrames===0){const memory={frame,...process.memoryUsage()};process.stderr.write(JSON.stringify({frameMemory:memory})+'\n');await emit('memory',memory);await emit('snapshot',{decision,residents:b.units.filter(u=>u.honroAct4Resident).map(u=>({id:u.id,x:u.x,y:u.y,hp:u.hp,dead:u.dead,grounded:e.grounded(u)})),objective:b.honroAct4PreviewState,phase:b.phase,active:b.active,keys:[...a.app.keys],stick:{...a.app.stick},charging:a.app.charging,selected:a.app.selected,angle:e.active?.angle,simSeconds,heroes:[...previous.values()],enemies:enemies.filter(alive).map(u=>({id:u.id,x:u.x,y:u.y,awake:!!u.awake})),items:b.items});await flush();}
 }
 async function input(type,fn,detail={}){const value=fn();await emit('input',{op:type,...detail,returned:value??null});return value;}
 try{
@@ -72,7 +72,7 @@ try{
    else if(marker&&(policy==='gimmick'||!foes.length)){await input('interact',()=>g.HonroInteractions.use(app,marker),{marker:marker.id});decisionAt=frame+15;}
    else if(frame>=decisionAt){
     const target=foes[0],dist=target?Math.hypot(target.x-u.x,target.y-u.y):Infinity;
-    const destination=movementGoal(b,u,target,stage,policy),goal=destination.x;
+    const destination=movementGoal(b,u,target,stage,policy),goal=destination.x;decision={actor:u.id,targetId:target?.id??null,destination,view,visibleEnemyIds:foes.map(v=>v.id)};
     if(destination.kind==='objective-unavailable'){outcome='error';reason='Controller blocked: '+destination.reason;break;}
     const q=b.honroAct4PreviewState;
     if(q?.stabilizing?.actor===u.id||q?.releasing?.actor===u.id){a.tick();frame++;while(pending.length)await emit('engine-event',pending.shift());await recordInput();await observe();continue;}
@@ -87,7 +87,7 @@ try{
     }else if(target){
 
      if(id){const face=target.x>=u.x?1:-1;if(u.facing!==face){app.keys.add(face>0?'ArrowRight':'ArrowLeft');}
-      else{const {angle,power}=previewAim(e,u,g.HONRO_CORE.SKILLS[id],target,random);await input('aim',()=>app.adjustAngle(u,angle-app.displayAngle(u)),{actor:u.id,displayAngle:angle});app.selected=id;
+      else{const {angle,power}=previewAim(e,u,g.HONRO_CORE.SKILLS[id],target,random);await input('aim',()=>app.adjustAngle(u,angle-app.displayAngle(u)),{actor:u.id,target:{id:target.id,x:target.x,y:target.y},displayAngle:angle});app.selected=id;
        if(await input('begin-charge',()=>app.beginCharge(),{actor:u.id,skill:id,position:{x:u.x,y:u.y},intendedPower:power})){charge={until:a.now()+e.chargeDuration(u,g.HONRO_CORE.SKILLS[id])*power*1000};}else{await input('defend',()=>app.defend());decisionAt=frame+30;}
       }
      }else{await input('defend',()=>app.defend());decisionAt=frame+30;}
