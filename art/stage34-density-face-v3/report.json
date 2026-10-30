@@ -1,0 +1,27 @@
+{
+  "stage": 34,
+  "asset": "art/stage34-density-face-v3/body-asset.json",
+  "description": "Intentional native palette edit: interiorface526572\u21924c5e6b, approximatelyhalfcontrast toward455863. Contact60737c unchanged; priorfinefade retained.",
+  "sourceFreeze": "14df270",
+  "physicalMetadataUnchanged": true,
+  "visualApproval": false,
+  "validation": {
+    "sourceGeometryExact": true,
+    "allPhysicalMetadataExact": true,
+    "fillChanges": [
+      {
+        "node": 5,
+        "old": "#526572",
+        "new": "#4c5e6b"
+      }
+    ],
+    "nodes": 31,
+    "bytes": 57731
+  },
+  "viewsInspected": [
+    "normal",
+    "mobile"
+  ],
+  "evidence": "_local/reports/deep-body-v3/34/native",
+  "rootDecision": "Contrast direction accepted; final integrated QA pending"
+}

@@ -1,0 +1,14 @@
+# Stage34 overhang silhouette follow-on — work in progress
+
+`roof-world-asset.json`, `stage-roof-candidate.json`, `roof-contour.json`, `roof-delta.json` are a **rejected art experiment**, retained for analysis only. They reuse the stage38 trace at shallow amplitude: actual lowercollision32→141source vertices, carve≤116.898world, upper support and optional wrong-exit route unchanged. Actual production render showed unnaturally compressed horizontal interior bands. Do not integrate this candidate as final.
+
+`concept.png` is the subsequent stage34-specific generated design. Its edit target `skeleton.png`/`.svg` is the actual gameplay overhang polygon x0..3400, mapped into1840×1024; upper path and thin tip are preserved in the instruction while lower edge is eroded. `prompt.txt` records the complete built-in imagegen request and style reference stage38 concept. Output1680×936 differs from scaffold dimensions; calibrate source/world transforms explicitly rather than assuming equalpixels. `source.svg` embeds this PNG and **does not yet contain a completed native trace**. Shared desktop processes crashed before tracing; data is backed up durably.
+
+Next: native Inkscape trace, bounded optimization, derive real lower collider from the source, protect upper support and right tip, actual nativeScene/browser/play QA. No code-drawn decorative substitute, fake collision pass, or final-release approval.
+
+## Stage-specific native trace resumed — 15:35 UTC
+`roof34-source.svg` now contains actual native Inkscape 5-color tracing (4 paths; Smooth/Stack/Remove-background enabled). This supersedes the historical pending status above. `raw.svg`, `palette.svg`, `final.svg` and `source-asset.json` derive only from this new concept, not the rejected38-reuse experiment. Automatic simplification0.0001 failed the conservative geometric error bound; native path geometry is retained, with quiet4-role palette. Runtime source6nodes,4paths is within unchanged safety limits.
+
+`authored-roof-contour.json`/`authored-world-asset.json` are the NEW candidate, lower carve≤296.44world,191sourcevertices. Original upper support and3150..3400 tip are unchanged. `authored-delta.json` includes both floor and roof actual compiled collision vertices. `authored-stage-candidate.json` is not visually/play approved. Candidate project SHA253695d151afaa21e498d4dfea485658f469440c98d4a048b06f6b7c2beee2f5, `_local/reports/cave34-silhouette-v4/authored-candidate-v1.json`.
+
+v2 adds reflected native material continuation into the existing left domain. All future source skeletons must include actual terrain minX/maxX and deep camera-visible bounds. Nominal-width source edges are not final production boundaries. Candidate v2 SHA b309d57ddcefc1f26781515e9b4206ba1242b37611b08b03c1e9e5f119fd059c, terrain-identical to v1; visual pending.

@@ -1,0 +1,21 @@
+{
+  "stage": 34,
+  "role": "body",
+  "file": "art/stage34-density-depthfade/body-asset.json",
+  "baseColor": "#455863",
+  "ceiling": false,
+  "protectedBoundary": "floor top",
+  "requiredOuterTextureTransform": [
+    1,
+    0,
+    0,
+    1,
+    0,
+    0
+  ],
+  "runtimeBytes": 57720,
+  "nodes": 31,
+  "visualApproval": false,
+  "source": "art/stage34-density-v2/body-unioned.svg",
+  "scope": "Intentional source-native palette and depth-composition change. No physics change. Cumulative24 solid masks, not gradients."
+}

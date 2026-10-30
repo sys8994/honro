@@ -1,0 +1,228 @@
+{
+  "version": 1,
+  "source": "official-project.json",
+  "success": true,
+  "frame": 20333,
+  "scope": "Prepared earned-SP stage-entry profile; real App/Engine/Native Canvas events and sparse actual scene rendering every300 simulation frames (bounded snapshot evidence, not continuous rendered play); DOM/audio/storage scheduling are doubles, not browser or chapters1–33 playthrough. No gate relabeling or automatic art approval.",
+  "projectSha256": "0968d804aaf852c39ac2685c3ff5dcc22192991d27dd7f75ee8d78cdba3d71c4",
+  "runtimeSha256": "e0c58fa2f8912bdfdf5b28c628f52d14d76f698ca077521e9f9926e69dd810db",
+  "verifierSha256": "ffe7860dbf64f47c3e24d0053a2d02e641792faa09f20362afdf1f2fd198ce30",
+  "inputSha256": "2d658d8bdafa7250a6078a7a4802ed87335bb7ec43afaa7109f220d6a9ecc412",
+  "resume": [
+    {
+      "frame": 4847,
+      "inputIndex": 21,
+      "result": "pass",
+      "scope": "Actual stopBattle/persist/Continue; exact units, event state, round, active and phase preserved"
+    }
+  ],
+  "groups": [
+    {
+      "id": "a4-34-g0",
+      "damageEvents": 1
+    },
+    {
+      "id": "a4-34-g1",
+      "damageEvents": 1
+    },
+    {
+      "id": "a4-34-g2",
+      "damageEvents": 3
+    }
+  ],
+  "eventReceipts": {
+    "wrong_exit": {
+      "started": true,
+      "terminal": true,
+      "presented": [],
+      "retired": [
+        "A4.S34.DISLOCATION.01",
+        "A4.S34.DISLOCATION.02",
+        "A4.S34.DISLOCATION.03"
+      ]
+    }
+  },
+  "observed": {
+    "wrong-entry": 12.49999999999993,
+    "wrong-exit": 19.999999999999506
+  },
+  "dislocation": {
+    "phase": "complete",
+    "at": 12.508333333333264,
+    "originalFixed": false
+  },
+  "final": {
+    "phase": "won",
+    "objective": {
+      "version": 1,
+      "clock": 169.4416666666769,
+      "events": {
+        "wrong_exit": {
+          "started": true,
+          "terminal": true,
+          "presented": [],
+          "retired": [
+            "A4.S34.DISLOCATION.01",
+            "A4.S34.DISLOCATION.02",
+            "A4.S34.DISLOCATION.03"
+          ]
+        }
+      },
+      "receipts": [],
+      "boat": {
+        "phase": "waiting",
+        "x": 500
+      },
+      "door": {
+        "phase": "standing",
+        "time": 0
+      },
+      "complete": true,
+      "visualDrawn": {},
+      "observed": {
+        "wrong-entry": 12.49999999999993,
+        "wrong-exit": 19.999999999999506
+      },
+      "water": {
+        "dry": {
+          "archer": {
+            "x": 7246.6806017568015,
+            "y": 2200
+          },
+          "mage": {
+            "x": 7248.04467897276,
+            "y": 2200
+          },
+          "knight": {
+            "x": 7246.6646766770145,
+            "y": 2200
+          },
+          "occultist": {
+            "x": 6916.200709065459,
+            "y": 2387.3075320167973
+          },
+          "a4-34-g0-0": {
+            "x": 1760,
+            "y": 4619.428571428572
+          },
+          "a4-34-g0-1": {
+            "x": 3114.9504718429225,
+            "y": 3423.986792491446
+          },
+          "a4-34-g1-0": {
+            "x": 3910,
+            "y": 3718
+          },
+          "a4-34-g1-1": {
+            "x": 4327.934966445108,
+            "y": 3481.3766890365946
+          },
+          "a4-34-g2-0": {
+            "x": 6466.555316955982,
+            "y": 2562.6822556261627
+          },
+          "a4-34-g2-1": {
+            "x": 6137.95198238917,
+            "y": 2643.433612327581
+          }
+        },
+        "recoveries": []
+      },
+      "dislocation": {
+        "phase": "complete",
+        "at": 12.508333333333264,
+        "originalFixed": false
+      },
+      "reader": null,
+      "completionProof": {
+        "exit": {
+          "x": 7200,
+          "y": 2200
+        },
+        "connection": {
+          "physicalRoute": true
+        }
+      }
+    },
+    "units": [
+      {
+        "id": "archer",
+        "x": 7246.6806017568015,
+        "y": 2200,
+        "hp": 1671,
+        "dead": false
+      },
+      {
+        "id": "mage",
+        "x": 7248.04467897276,
+        "y": 2200,
+        "hp": 1888,
+        "dead": false
+      },
+      {
+        "id": "knight",
+        "x": 7246.6646766770145,
+        "y": 2200,
+        "hp": 3786,
+        "dead": false
+      },
+      {
+        "id": "occultist",
+        "x": 6916.200709065459,
+        "y": 2387.3075320167973,
+        "hp": 2251,
+        "dead": false
+      },
+      {
+        "id": "a4-34-g0-0",
+        "x": 1760,
+        "y": 4619.428571428572,
+        "hp": 0,
+        "dead": true
+      },
+      {
+        "id": "a4-34-g0-1",
+        "x": 3114.9504718429225,
+        "y": 3423.986792491446,
+        "hp": 0,
+        "dead": true
+      },
+      {
+        "id": "a4-34-g1-0",
+        "x": 3910,
+        "y": 3718,
+        "hp": 0,
+        "dead": true
+      },
+      {
+        "id": "a4-34-g1-1",
+        "x": 4327.934966445108,
+        "y": 3481.3766890365946,
+        "hp": 0,
+        "dead": true
+      },
+      {
+        "id": "a4-34-g2-0",
+        "x": 6466.555316955982,
+        "y": 2562.6822556261627,
+        "hp": 0,
+        "dead": true
+      },
+      {
+        "id": "a4-34-g2-1",
+        "x": 6137.95198238917,
+        "y": 2643.433612327581,
+        "hp": 0,
+        "dead": true
+      }
+    ]
+  },
+  "untested": [
+    "shore recovery/lethal sea input boundary",
+    "early optional actor kill variant",
+    "roof blocking controlled shot comparison",
+    "intentional return-cut drop landing"
+  ],
+  "evidence": "Full observation/impact/trace file in _local/reports/stage34-production/baseline-replay.json",
+  "artApproval": false
+}

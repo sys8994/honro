@@ -1,0 +1,41 @@
+{
+  "id": "s33v:refuge-surfaces",
+  "name": "\uac2f\uae38 \uc0c1\ubd80 \ud53c\ub09c \ubc14\uc704\uae38 SURFACE",
+  "semanticLayer": "SURFACE",
+  "category": "rock",
+  "bounds": {
+    "x": 700,
+    "y": 1200,
+    "w": 4800,
+    "h": 2000
+  },
+  "anchor": {
+    "x": 0,
+    "y": 0
+  },
+  "foot": {
+    "x": 900,
+    "y": 2135
+  },
+  "transform": [
+    2.47167868177137,
+    0,
+    0,
+    2.4721878862793574,
+    700,
+    1200
+  ],
+  "scaleRange": [
+    1,
+    1
+  ],
+  "backgroundRange": [
+    1,
+    1
+  ],
+  "params": {
+    "artRevision": 1,
+    "sourceRaw": "surface-raw.svg",
+    "collisionSource": "official one-way refuge profiles; art only"
+  }
+}

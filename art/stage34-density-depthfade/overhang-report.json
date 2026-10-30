@@ -1,0 +1,21 @@
+{
+  "stage": 34,
+  "role": "overhang",
+  "file": "art/stage34-density-depthfade/overhang-asset.json",
+  "baseColor": "#455863",
+  "ceiling": true,
+  "protectedBoundary": "both upper and underside",
+  "requiredOuterTextureTransform": [
+    1.02,
+    0,
+    0,
+    1.15,
+    24,
+    -495
+  ],
+  "runtimeBytes": 73958,
+  "nodes": 30,
+  "visualApproval": false,
+  "source": "art/stage34-density-v2/overhang-unioned.svg",
+  "scope": "Intentional source-native palette and depth-composition change. No physics change. Cumulative24 solid masks, not gradients."
+}

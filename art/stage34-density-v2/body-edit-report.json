@@ -1,0 +1,73 @@
+{
+  "source": "art/stage34-vector-production/body-runtime.svg",
+  "sourceRuntimeBytes": 177978,
+  "candidateRuntimeBytes": 41985,
+  "intentionalPalette": [
+    "#847d62",
+    "#526572",
+    "#455863"
+  ],
+  "acceptedUnionGroups": [
+    [
+      "path11",
+      "path10",
+      "path9",
+      "path8"
+    ],
+    [
+      "path7",
+      "path6",
+      "path5",
+      "path4"
+    ],
+    [
+      "path3",
+      "path2",
+      "path1"
+    ]
+  ],
+  "rejectedUnions": [],
+  "visualReview": "Direct normal and maximum projected source views inspected, with native asset validation. Muted broad rock planes retain source silhouettes. Palette quieting reduces distraction, but retains large original rock outlines; not a complete art redesign or scene approval. Integrated gameplay/camera/browser checks remain pending.",
+  "comparisons": {
+    "normal": {
+      "width": 4452,
+      "worldZoom": 0.53,
+      "meanRGBAError255": [
+        0.006555777348319178,
+        0.004974595747875512,
+        0.005011073493120993,
+        6.470637382756591e-05
+      ],
+      "maxRGBAError255": [
+        255.0,
+        255.0,
+        255.0,
+        12.0
+      ],
+      "fractionAbove16": 3.6326385306703672e-06
+    },
+    "max": {
+      "width": 9240,
+      "worldZoom": 1.1,
+      "meanRGBAError255": [
+        0.0033918030021926125,
+        0.0026095252150446957,
+        0.0026014083319278124,
+        0.0002786796536796537
+      ],
+      "maxRGBAError255": [
+        255.0,
+        255.0,
+        255.0,
+        70.0
+      ],
+      "fractionAbove16": 7.414122673862934e-06
+    }
+  },
+  "runtimeNodes": 7,
+  "actualExpandedNodes": 7,
+  "maxRuntimePathCharacters": 30846,
+  "runtimeValidationErrors": 0,
+  "physics": "Original bounds, anchor, foot, transform and authoredBody clip retained. No production package edits; integrator must preserve domains/ownership and update deep substrate color.",
+  "fidelityCaveat": "RGBA means are diagnostics, not automatic art approval. Nonzero AA/alpha differences exist at contour edges; worst values and changed fractions retained above."
+}
