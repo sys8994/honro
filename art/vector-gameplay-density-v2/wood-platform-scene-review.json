@@ -1,0 +1,198 @@
+{
+  "status": "isolated flat-segment candidate; not scene-wide art approval",
+  "asset": "art/vector-gameplay-density-v2/wood-platform-asset.json",
+  "sha256": "56e7d9ef09a95ec6c6685b28c898443e743d50147835fd956a26bdd96a839bdf",
+  "toolCommit": "81d1ac1",
+  "sourceStage": "art/stage32-vector-production/package/stage.json",
+  "evidence": "_local/reports/stage32-density-v2/wood-final-native",
+  "checked": [
+    "Same post-render camera normal/detail/mobile/whole captured",
+    "Optimized detail and mobile directly inspected",
+    "Two board joints and top bevel remain readable",
+    "46world physical thickness remains exact, no artwork outside polygon/pilot extent",
+    "Compiled original collision array deep-equal; original stage/package untouched"
+  ],
+  "limitations": [
+    "Only flat interior span1660..2300 updated; untouched dark ramps cause a conspicuous material transition",
+    "Existing detailed roofs/walls and high-contrast BODY remain baseline; no scene-wide density approval",
+    "Native Canvas production Scene with initial actors, not App input replay or browser/mobile hardware",
+    "Actual world physical silhouette is unchanged; no claim of natural new terrain contour"
+  ],
+  "mapping": {
+    "bounds": [
+      1660,
+      1760,
+      640,
+      46
+    ],
+    "actorHWorld": 92,
+    "normalCSSScale": 0.53,
+    "actorHCSS": 48.76
+  },
+  "images": [
+    {
+      "file": "32-normal.png",
+      "requested": {
+        "id": "normal",
+        "x": 1980,
+        "y": 1800,
+        "scale": 0.53,
+        "width": 1440,
+        "height": 900
+      },
+      "actualCamera": {
+        "x": 1980,
+        "y": 1800,
+        "scale": 0.53,
+        "width": 1440,
+        "height": 900
+      },
+      "actorHeights": [
+        {
+          "id": "archer",
+          "world": 92,
+          "css": 48.760000000000005
+        },
+        {
+          "id": "mage",
+          "world": 92,
+          "css": 48.760000000000005
+        },
+        {
+          "id": "knight",
+          "world": 92,
+          "css": 48.760000000000005
+        },
+        {
+          "id": "occultist",
+          "world": 92,
+          "css": 48.760000000000005
+        }
+      ],
+      "scope": "Production compiler + Scene Native Canvas, initial actors; not App events, browser, device performance or art approval."
+    },
+    {
+      "file": "32-detail.png",
+      "requested": {
+        "id": "detail",
+        "x": 1980,
+        "y": 1800,
+        "scale": 1.1,
+        "width": 1440,
+        "height": 900
+      },
+      "actualCamera": {
+        "x": 1980,
+        "y": 1800,
+        "scale": 1.1,
+        "width": 1440,
+        "height": 900
+      },
+      "actorHeights": [
+        {
+          "id": "archer",
+          "world": 92,
+          "css": 101.2
+        },
+        {
+          "id": "mage",
+          "world": 92,
+          "css": 101.2
+        },
+        {
+          "id": "knight",
+          "world": 92,
+          "css": 101.2
+        },
+        {
+          "id": "occultist",
+          "world": 92,
+          "css": 101.2
+        }
+      ],
+      "scope": "Production compiler + Scene Native Canvas, initial actors; not App events, browser, device performance or art approval."
+    },
+    {
+      "file": "32-mobile.png",
+      "requested": {
+        "id": "mobile",
+        "x": 1980,
+        "y": 1800,
+        "scale": 0.53,
+        "width": 720,
+        "height": 1100
+      },
+      "actualCamera": {
+        "x": 1980,
+        "y": 1800,
+        "scale": 0.53,
+        "width": 720,
+        "height": 1100
+      },
+      "actorHeights": [
+        {
+          "id": "archer",
+          "world": 92,
+          "css": 48.760000000000005
+        },
+        {
+          "id": "mage",
+          "world": 92,
+          "css": 48.760000000000005
+        },
+        {
+          "id": "knight",
+          "world": 92,
+          "css": 48.760000000000005
+        },
+        {
+          "id": "occultist",
+          "world": 92,
+          "css": 48.760000000000005
+        }
+      ],
+      "scope": "Production compiler + Scene Native Canvas, initial actors; not App events, browser, device performance or art approval."
+    },
+    {
+      "file": "32-whole.png",
+      "requested": {
+        "id": "whole",
+        "x": 3300,
+        "y": 1900,
+        "scale": 0.22727272727272727,
+        "width": 1600,
+        "height": 850
+      },
+      "actualCamera": {
+        "x": 3300,
+        "y": 1900,
+        "scale": 0.22727272727272727,
+        "width": 1600,
+        "height": 850
+      },
+      "actorHeights": [
+        {
+          "id": "archer",
+          "world": 92,
+          "css": 20.90909090909091
+        },
+        {
+          "id": "mage",
+          "world": 92,
+          "css": 20.90909090909091
+        },
+        {
+          "id": "knight",
+          "world": 92,
+          "css": 20.90909090909091
+        },
+        {
+          "id": "occultist",
+          "world": 92,
+          "css": 20.90909090909091
+        }
+      ],
+      "scope": "Production compiler + Scene Native Canvas, initial actors; not App events, browser, device performance or art approval."
+    }
+  ]
+}

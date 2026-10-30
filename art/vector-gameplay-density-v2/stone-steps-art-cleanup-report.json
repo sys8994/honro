@@ -1,0 +1,174 @@
+{
+  "intent": "Remove 11 visibly detached lower decorative stones across all native split color components; retain main steps and caps. Intentional art cleanup, not raw-fidelity optimization.",
+  "rectanglesSource": [
+    [
+      608.153,
+      812.007,
+      38.7972,
+      43.9477
+    ],
+    [
+      742.507,
+      785.187,
+      19.3353,
+      21.3332
+    ],
+    [
+      683.941,
+      742.466,
+      54.9358,
+      55.3743
+    ],
+    [
+      1213.32,
+      724.195,
+      20.8906,
+      22.8015
+    ],
+    [
+      885.043,
+      720.178,
+      66.5167,
+      64.6885
+    ],
+    [
+      130.959,
+      702.112,
+      38.702,
+      41.9038
+    ],
+    [
+      1219.42,
+      690.123,
+      21.2578,
+      22.7858
+    ],
+    [
+      969.12,
+      681.097,
+      30.7614,
+      30.8597
+    ],
+    [
+      1545.37,
+      602.136,
+      37.7028,
+      38.7725
+    ],
+    [
+      1601.02,
+      601.086,
+      27.8085,
+      29.2659
+    ],
+    [
+      1652.89,
+      489.023,
+      30.0774,
+      33.989
+    ]
+  ],
+  "deletedNativeIds": [
+    "path18",
+    "path17",
+    "path16",
+    "path15",
+    "path14",
+    "path13",
+    "path12",
+    "path11",
+    "path10",
+    "path9",
+    "path1",
+    "path29",
+    "path28",
+    "path27",
+    "path26",
+    "path25",
+    "path24",
+    "path23",
+    "path22",
+    "path21",
+    "path20",
+    "path7",
+    "path40",
+    "path39",
+    "path38",
+    "path37",
+    "path36",
+    "path35",
+    "path34",
+    "path33",
+    "path32",
+    "path31",
+    "path6",
+    "path51",
+    "path50",
+    "path49",
+    "path48",
+    "path47",
+    "path46",
+    "path45",
+    "path44",
+    "path43",
+    "path42",
+    "path5",
+    "path70",
+    "path68",
+    "path67",
+    "path62",
+    "path61",
+    "path59",
+    "path58",
+    "path56",
+    "path55",
+    "path54",
+    "path53",
+    "path4",
+    "path89",
+    "path87",
+    "path86",
+    "path82",
+    "path81",
+    "path80",
+    "path79",
+    "path77",
+    "path76",
+    "path74",
+    "path72",
+    "path3",
+    "path100",
+    "path98",
+    "path97",
+    "path96",
+    "path95",
+    "path94",
+    "path93",
+    "path92",
+    "path2"
+  ],
+  "nativeTool": "Inkscape GUI Inset on selected path8 once, then native CLI path-split and delete by observed component bounds",
+  "brightBaseBeforeBounds": [
+    29.445,
+    118.5,
+    1691.85,
+    739.466
+  ],
+  "brightBaseAfterBounds": [
+    31.4591,
+    120.49,
+    1687.76,
+    735.465
+  ],
+  "insetApproxSourcePx": 2,
+  "originalRaw": "stone-steps-raw.svg",
+  "newArtMaster": "stone-steps-cleaned-master.svg",
+  "semantics": "Broad tread wear retained; only 11 detached lower decorative pebbles removed. Not a claim of error-bounded fidelity from original raw to new master.",
+  "provisionalRuntime": "stone-steps-cleaned-provisional-asset.json",
+  "visualApproval": "Standalone 462px inspected; integration review pending.",
+  "failedTrials": [
+    "stone-steps-provisional-asset.json: lower light fringe and floating pebbles",
+    "stone-steps-blended-provisional-asset.json: global base darkening did not resolve geometry, not selected",
+    "stone-steps-inset-provisional-asset.json: improved fringe but floating pebbles remain"
+  ]
+}

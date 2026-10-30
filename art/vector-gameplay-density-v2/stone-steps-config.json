@@ -1,0 +1,31 @@
+{
+  "id": "density-play:stone-steps-left",
+  "name": "35장 마모된 석계단 표면",
+  "semanticLayer": "SURFACE",
+  "category": "rock",
+  "bounds": {
+    "x": 520,
+    "y": 1770,
+    "w": 420,
+    "h": 220
+  },
+  "anchor": {
+    "x": 0,
+    "y": 0
+  },
+  "foot": {
+    "x": 0,
+    "y": 0
+  },
+  "transform": [
+    0.2423542989036353,
+    0,
+    0,
+    0.24255788313120177,
+    520,
+    1770
+  ],
+  "params": {
+    "sourceRole": "Original3risers; worncaps andbroadstoneplanes; terrainclip separate"
+  }
+}

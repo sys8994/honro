@@ -1,0 +1,66 @@
+{
+  "status": "Final sample candidates for root visual decision, not campaign/package replacement",
+  "stage32": {
+    "project": "_local/reports/stage32-density-v2/final-four-role/candidate-project.json",
+    "evidence": "_local/reports/stage32-density-v2/final-four-role-native",
+    "changes": [
+      "bounded wood full route with xscale1 and cropped slope segments",
+      "bounded quiet coastal-house32 matching original footprint",
+      "quiet BODY/domain continuations",
+      "ochre lowercontact at40world depth matching original soil palette"
+    ],
+    "directlyInspected": [
+      "normal",
+      "detail",
+      "mobile",
+      "whole",
+      "ground-right"
+    ],
+    "findings": [
+      "Earlier gray cutout problem no longer present; normal/mobile contact sits inside soil layer",
+      "No obvious seam on right flat-to-slope transition",
+      "Wood joints and bright upper wear remain readable with quieter houses"
+    ],
+    "remaining": [
+      "old-wall still has dense stone pattern",
+      "Deep BODY retains large repeated rock masses",
+      "At detail zoom contact has repeated outline-like details; not total art approval"
+    ]
+  },
+  "stage35": {
+    "project": "_local/reports/stage35-density-v2/depthfade/candidate-project.json",
+    "evidence": "_local/reports/stage35-density-v2/stone-depthfade-native",
+    "alternative135Project": "_local/reports/stage35-density-v2/final-edgebody/candidate-project.json",
+    "alternative135Evidence": "_local/reports/stage35-density-v2/stone-final-edgebody-native",
+    "changes": [
+      "bounded cleaned stone step contact; eleven detached lower stones removed",
+      "Original shallow facets fade through120/260/420world bands into quiet deep base"
+    ],
+    "directlyInspected": [
+      "normal",
+      "mobile"
+    ],
+    "findings": [
+      "420world alternative retains depth near contact without high-contrast full-depth cowhide",
+      "135world option quieter but has larger empty lower area",
+      "Final cleaned uppercaps/riser readable, tiny floating pebbles removed"
+    ],
+    "remaining": [
+      "Upper old wall remains dense",
+      "Only first step set reauthored, not entire35",
+      "Embedded irregular stone lower boundary remains a manual art decision"
+    ]
+  },
+  "rejected": [
+    "32 source36-palette lower contact: gray-brown/light rims clash with olive soil",
+    "35 full-depth quietBODY: reduced colors still read as cowhide/continent map",
+    "35 initial step trace: pale external halo and floating pebble sticker effect",
+    "32fullwood front-after-BODY exposed buried ramp tips: fixed order before BODY"
+  ],
+  "proof": [
+    "Compiled terrain arrays remain deep-equal for every assembled candidate",
+    "Actual post-render camera asserted for all4views",
+    "Source stage packages and runtime untouched"
+  ],
+  "scope": "Native production compiler+Scene with initial actors; not App-input/browser/device evidence"
+}

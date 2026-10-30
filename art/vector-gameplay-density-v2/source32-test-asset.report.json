@@ -1,0 +1,338 @@
+{
+  "source": "s36-density:contact-clusters",
+  "target": "density-play:stage32-lower-contact-test",
+  "segments": [
+    {
+      "tile": 0,
+      "lo": 0,
+      "hi": 200,
+      "mirror": false,
+      "transform": [
+        1,
+        -0.07394957983193323,
+        0,
+        1,
+        -1600,
+        65.96638655462266
+      ]
+    },
+    {
+      "tile": 0,
+      "lo": 200,
+      "hi": 700,
+      "mirror": false,
+      "transform": [
+        1,
+        -0.06263736263736264,
+        0,
+        1,
+        -1600,
+        45.60439560439568
+      ]
+    },
+    {
+      "tile": 0,
+      "lo": 700,
+      "hi": 850,
+      "mirror": false,
+      "transform": [
+        1,
+        0.14529914529914528,
+        0,
+        1,
+        -1600,
+        -432.64957264957275
+      ]
+    },
+    {
+      "tile": 0,
+      "lo": 850,
+      "hi": 1150,
+      "mirror": false,
+      "transform": [
+        1,
+        0.1909722222222222,
+        0,
+        1,
+        -1600,
+        -544.5486111111113
+      ]
+    },
+    {
+      "tile": 0,
+      "lo": 1150,
+      "hi": 1490,
+      "mirror": false,
+      "transform": [
+        1,
+        -0.03125,
+        0,
+        1,
+        -1600,
+        66.5625
+      ]
+    },
+    {
+      "tile": 0,
+      "lo": 1490,
+      "hi": 1650,
+      "mirror": false,
+      "transform": [
+        1,
+        0,
+        0,
+        1,
+        -1600,
+        -30
+      ]
+    },
+    {
+      "tile": 0,
+      "lo": 1650,
+      "hi": 1800,
+      "mirror": false,
+      "transform": [
+        1,
+        -0.17777777777777778,
+        0,
+        1,
+        -1600,
+        547.7777777777778
+      ]
+    },
+    {
+      "tile": 1,
+      "lo": 1800,
+      "hi": 2100,
+      "mirror": true,
+      "transform": [
+        -1,
+        0.17777777777777778,
+        0,
+        1,
+        5200,
+        -661.1111111111109
+      ]
+    },
+    {
+      "tile": 1,
+      "lo": 2100,
+      "hi": 2110,
+      "mirror": true,
+      "transform": [
+        -1,
+        -0.15555555555555556,
+        0,
+        1,
+        5200,
+        372.2222222222222
+      ]
+    },
+    {
+      "tile": 1,
+      "lo": 2110,
+      "hi": 2550,
+      "mirror": true,
+      "transform": [
+        -1,
+        -0.18680555555555556,
+        0,
+        1,
+        5200,
+        468.7847222222222
+      ]
+    },
+    {
+      "tile": 1,
+      "lo": 2550,
+      "hi": 2750,
+      "mirror": true,
+      "transform": [
+        -1,
+        -0.046634615384615385,
+        0,
+        1,
+        5200,
+        97.33173076923072
+      ]
+    },
+    {
+      "tile": 1,
+      "lo": 2750,
+      "hi": 3200,
+      "mirror": true,
+      "transform": [
+        -1,
+        -0.09230769230769231,
+        0,
+        1,
+        5200,
+        209.23076923076928
+      ]
+    },
+    {
+      "tile": 1,
+      "lo": 3200,
+      "hi": 3400,
+      "mirror": true,
+      "transform": [
+        -1,
+        -0.07692307692307693,
+        0,
+        1,
+        5200,
+        178.46153846153857
+      ]
+    },
+    {
+      "tile": 1,
+      "lo": 3400,
+      "hi": 3600,
+      "mirror": true,
+      "transform": [
+        -1,
+        -0.08823529411764752,
+        0,
+        1,
+        5200,
+        198.82352941176555
+      ]
+    },
+    {
+      "tile": 2,
+      "lo": 3600,
+      "hi": 3800,
+      "mirror": false,
+      "transform": [
+        1,
+        -0.08823529411764752,
+        0,
+        1,
+        2000,
+        198.82352941176555
+      ]
+    },
+    {
+      "tile": 2,
+      "lo": 3800,
+      "hi": 4450,
+      "mirror": false,
+      "transform": [
+        1,
+        -0.07692307692307693,
+        0,
+        1,
+        2000,
+        178.46153846153857
+      ]
+    },
+    {
+      "tile": 2,
+      "lo": 4450,
+      "hi": 5090,
+      "mirror": false,
+      "transform": [
+        1,
+        -0.03125,
+        0,
+        1,
+        2000,
+        66.5625
+      ]
+    },
+    {
+      "tile": 2,
+      "lo": 5090,
+      "hi": 5400,
+      "mirror": false,
+      "transform": [
+        1,
+        0,
+        0,
+        1,
+        2000,
+        -30
+      ]
+    },
+    {
+      "tile": 3,
+      "lo": 5400,
+      "hi": 5700,
+      "mirror": true,
+      "transform": [
+        -1,
+        0,
+        0,
+        1,
+        8800,
+        -30
+      ]
+    },
+    {
+      "tile": 3,
+      "lo": 5700,
+      "hi": 5710,
+      "mirror": true,
+      "transform": [
+        -1,
+        0.275,
+        0,
+        1,
+        8800,
+        -882.5
+      ]
+    },
+    {
+      "tile": 3,
+      "lo": 5710,
+      "hi": 6100,
+      "mirror": true,
+      "transform": [
+        -1,
+        0.24375000000000002,
+        0,
+        1,
+        8800,
+        -785.9375
+      ]
+    },
+    {
+      "tile": 3,
+      "lo": 6100,
+      "hi": 6350,
+      "mirror": true,
+      "transform": [
+        -1,
+        -0.03125,
+        0,
+        1,
+        8800,
+        -43.4375
+      ]
+    },
+    {
+      "tile": 3,
+      "lo": 6350,
+      "hi": 6600,
+      "mirror": true,
+      "transform": [
+        -1,
+        -0.07692307692307693,
+        0,
+        1,
+        8800,
+        68.46153846153857
+      ]
+    }
+  ],
+  "expandedNodes": 323,
+  "maxDepth": 8,
+  "maxPathChars": 35212,
+  "symbolCount": 1,
+  "bytes": 198155,
+  "sourceBytes": 191590,
+  "sourceGeometryUnchanged": true,
+  "collision": [],
+  "visualApproval": false,
+  "scope": "Exact affine relative-depth mapping; original source paths shared, original physics unchanged. Palette/repetition/seam review required."
+}

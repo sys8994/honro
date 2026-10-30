@@ -1,0 +1,26 @@
+{
+  "trace": {
+    "tool": "Inkscape1.4 native GUI",
+    "mode": "Colors",
+    "scans": 8,
+    "smooth": true,
+    "stack": true,
+    "removeBackground": true,
+    "speckles": 2,
+    "smoothCorners": 1,
+    "optimize": 0.2
+  },
+  "sourceSize": [
+    1983,
+    793
+  ],
+  "mapping": "Wholecanvas world[1660,1680,640,256], exactclip top1760 bottom1806 byintegrator, noinkfitcrop",
+  "rawSha256": "eb6397f772daa213af391834c91170e098aa212c786b7786e020b18c3c606610",
+  "selected": "simplify-0.0001",
+  "commandsRaw": 2476,
+  "commandsFinal": 2294,
+  "runtimeNodes": 11,
+  "gateStatus": "ALL original quality andbudgetgatespass at339px normal and704px max, no supersamplingoverride needed",
+  "rejected": "Stronger .0003 qualityfailed retained inreport",
+  "visualReview": "Native trace, normalprovisional339px andfinalmax704px directlyviewed: two buttjoints, topbevel, broadgrain retained. Integration agent verified32normal/mobile original46worldclip, noactorocclusion. Partialpilot only: existingblackramps materialdiscontinuity andoldbackgrounddensity remain outofscope."
+}

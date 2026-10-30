@@ -1,0 +1,31 @@
+{
+  "id": "density-play:wood-platform-flat",
+  "name": "목재 발판 구조면",
+  "semanticLayer": "SURFACE",
+  "category": "wood",
+  "bounds": {
+    "x": 1660,
+    "y": 1680,
+    "w": 640,
+    "h": 256
+  },
+  "anchor": {
+    "x": 0,
+    "y": 0
+  },
+  "foot": {
+    "x": 0,
+    "y": 0
+  },
+  "transform": [
+    0.3227433182047403,
+    0,
+    0,
+    0.3228247162673392,
+    1660,
+    1680
+  ],
+  "params": {
+    "sourceRole": "Flat interior wood platform; two butt joints; original collision clipping separate"
+  }
+}

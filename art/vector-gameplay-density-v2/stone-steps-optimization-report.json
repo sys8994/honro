@@ -1,0 +1,652 @@
+{
+  "source": "art/vector-gameplay-density-v2/stone-steps-cleaned-master.svg",
+  "originalSha256": "85cede355ae359408c3ee66b611e5c0fa932c1b0433a0900348d02d8953bedf4",
+  "rawSha256": "93325c4d73c03e99d65479f6db94e53e2c96172a370bceb534b54411b04d0e91",
+  "removedReferenceImages": [],
+  "width": 223,
+  "scales": [
+    1,
+    2.071748878923767
+  ],
+  "limits": {
+    "rgbMAE255": 2,
+    "silhouettePx": 1.5,
+    "protectedRgbMAE255": 1,
+    "protectedPx": 0.5,
+    "protectedChangedPixelFraction": 0.05
+  },
+  "protectedRects": [
+    [
+      68,
+      50,
+      12,
+      30
+    ],
+    [
+      121,
+      30,
+      12,
+      30
+    ],
+    [
+      174,
+      12,
+      12,
+      30
+    ]
+  ],
+  "protectedMask": null,
+  "provisional": true,
+  "visualApproval": "NOT REVIEWED \u2014 candidate only; human inspection mandatory",
+  "protectionMode": "contact",
+  "protectedPolylines": [
+    {
+      "points": [
+        [
+          10.619047619047619,
+          74.33333333333333
+        ],
+        [
+          74.33333333333333,
+          74.33333333333333
+        ],
+        [
+          74.33333333333333,
+          54.15714285714286
+        ],
+        [
+          127.42857142857143,
+          54.15714285714286
+        ],
+        [
+          127.42857142857143,
+          35.042857142857144
+        ],
+        [
+          180.52380952380952,
+          35.042857142857144
+        ],
+        [
+          180.52380952380952,
+          15.928571428571429
+        ],
+        [
+          212.38095238095238,
+          15.928571428571429
+        ]
+      ],
+      "width": 8
+    }
+  ],
+  "baseline": {
+    "sourceBytes": 310879,
+    "paths": 34,
+    "commands": 7107,
+    "segments": 6812,
+    "endpointNodesUpperBound": 7107,
+    "explicitCommandLetters": 1383,
+    "subpaths": 295,
+    "pathChars": 308309,
+    "maxPathChars": 75381,
+    "render": {
+      "1": {
+        "width": 223,
+        "height": 117,
+        "decodeMs": 12.343831000000023,
+        "drawMs": 0.11834800000002588
+      },
+      "2.071748878923767": {
+        "width": 462,
+        "height": 242,
+        "decodeMs": 11.263267999999982,
+        "drawMs": 1.7398699999999963
+      }
+    }
+  },
+  "candidates": [
+    {
+      "candidate": "raw",
+      "sourceBytes": 310879,
+      "paths": 34,
+      "commands": 7107,
+      "segments": 6812,
+      "endpointNodesUpperBound": 7107,
+      "explicitCommandLetters": 1383,
+      "subpaths": 295,
+      "pathChars": 308309,
+      "maxPathChars": 75381,
+      "errors": {
+        "1": {
+          "rgbMAE255": 0.0,
+          "rgbP99_255": 0.0,
+          "alphaMAE255": 0.0,
+          "changedPixelFraction": 0.0,
+          "silhouetteMaxOffsetPx": 0.0,
+          "protectedChangedPixelFraction": 0.0,
+          "protectedRgbMAE255": 0.0,
+          "protectedSilhouetteMaxOffsetPx": 0.0,
+          "pass": true
+        },
+        "2.071748878923767": {
+          "rgbMAE255": 0.0,
+          "rgbP99_255": 0.0,
+          "alphaMAE255": 0.0,
+          "changedPixelFraction": 0.0,
+          "silhouetteMaxOffsetPx": 0.0,
+          "protectedChangedPixelFraction": 0.0,
+          "protectedRgbMAE255": 0.0,
+          "protectedSilhouetteMaxOffsetPx": 0.0,
+          "pass": true
+        }
+      },
+      "render": {
+        "1": {
+          "width": 223,
+          "height": 117,
+          "decodeMs": 13.062106999999969,
+          "drawMs": 0.13680699999997614
+        },
+        "2.071748878923767": {
+          "width": 462,
+          "height": 242,
+          "decodeMs": 14.826964999999973,
+          "drawMs": 1.586437999999987
+        }
+      },
+      "budgetPass": false,
+      "diagnostic": "path52: inseparable contour/hole component is 89088 characters (90 contours), limit 60000. In Inkscape simplify this component with silhouette/hole protection or divide into separately authored non-overlapping objects; do not blindly break apart holes.",
+      "importSeconds": 0.16154131199982658,
+      "qualityPass": true,
+      "feasible": false
+    },
+    {
+      "candidate": "simplify-0.0001",
+      "sourceBytes": 275862,
+      "paths": 34,
+      "commands": 5874,
+      "segments": 5579,
+      "endpointNodesUpperBound": 5874,
+      "explicitCommandLetters": 918,
+      "subpaths": 295,
+      "pathChars": 273115,
+      "maxPathChars": 64872,
+      "errors": {
+        "1": {
+          "rgbMAE255": 0.27150842547416687,
+          "rgbP99_255": 5.999999523162842,
+          "alphaMAE255": 0.1241040974855423,
+          "changedPixelFraction": 0.001839714844199149,
+          "silhouetteMaxOffsetPx": 1.0,
+          "protectedChangedPixelFraction": 0.005813953488372093,
+          "protectedRgbMAE255": 0.9346466660499573,
+          "protectedSilhouetteMaxOffsetPx": 1.0,
+          "pass": false
+        },
+        "2.071748878923767": {
+          "rgbMAE255": 0.19623993337154388,
+          "rgbP99_255": 4.999999523162842,
+          "alphaMAE255": 0.1149153858423233,
+          "changedPixelFraction": 0.0015920718400057243,
+          "silhouetteMaxOffsetPx": 1.0,
+          "protectedChangedPixelFraction": 0.008858830253381597,
+          "protectedRgbMAE255": 0.8773410320281982,
+          "protectedSilhouetteMaxOffsetPx": 1.0,
+          "pass": true
+        }
+      },
+      "render": {
+        "1": {
+          "width": 223,
+          "height": 117,
+          "decodeMs": 9.068078000000014,
+          "drawMs": 0.12811400000003914
+        },
+        "2.071748878923767": {
+          "width": 462,
+          "height": 242,
+          "decodeMs": 11.981851000000006,
+          "drawMs": 1.7122569999999655
+        }
+      },
+      "budgetPass": false,
+      "diagnostic": "path52: inseparable contour/hole component is 79490 characters (90 contours), limit 60000. In Inkscape simplify this component with silhouette/hole protection or divide into separately authored non-overlapping objects; do not blindly break apart holes.",
+      "importSeconds": 0.11923995300003298,
+      "qualityPass": false,
+      "feasible": false,
+      "simplifySeconds": 2.1985165300002336
+    },
+    {
+      "candidate": "simplify-0.0002",
+      "sourceBytes": 194014,
+      "paths": 34,
+      "commands": 4101,
+      "segments": 3806,
+      "endpointNodesUpperBound": 4101,
+      "explicitCommandLetters": 901,
+      "subpaths": 295,
+      "pathChars": 191267,
+      "maxPathChars": 44983,
+      "errors": {
+        "1": {
+          "rgbMAE255": 0.2975131869316101,
+          "rgbP99_255": 6.793253421783447,
+          "alphaMAE255": 0.12728527188301086,
+          "changedPixelFraction": 0.00168640527384922,
+          "silhouetteMaxOffsetPx": 1.0,
+          "protectedChangedPixelFraction": 0.005813953488372093,
+          "protectedRgbMAE255": 1.1468034982681274,
+          "protectedSilhouetteMaxOffsetPx": 1.0,
+          "pass": false
+        },
+        "2.071748878923767": {
+          "rgbMAE255": 0.2074899673461914,
+          "rgbP99_255": 5.000007152557373,
+          "alphaMAE255": 0.11485277861356735,
+          "changedPixelFraction": 0.0018693427784336875,
+          "silhouetteMaxOffsetPx": 1.0,
+          "protectedChangedPixelFraction": 0.009239855210516288,
+          "protectedRgbMAE255": 0.8694630265235901,
+          "protectedSilhouetteMaxOffsetPx": 1.0,
+          "pass": true
+        }
+      },
+      "render": {
+        "1": {
+          "width": 223,
+          "height": 117,
+          "decodeMs": 7.059094000000016,
+          "drawMs": 0.1029060000000186
+        },
+        "2.071748878923767": {
+          "width": 462,
+          "height": 242,
+          "decodeMs": 10.148335999999972,
+          "drawMs": 1.6356809999999768
+        }
+      },
+      "budgetPass": true,
+      "nodes": 37,
+      "normalizedMaxPathChars": 53368,
+      "normalizedPaths": 34,
+      "importSeconds": 0.11293045299953519,
+      "qualityPass": false,
+      "feasible": false,
+      "simplifySeconds": 1.4936678979993303
+    },
+    {
+      "candidate": "precision-5",
+      "sourceBytes": 285076,
+      "paths": 34,
+      "commands": 7157,
+      "segments": 6862,
+      "endpointNodesUpperBound": 7157,
+      "explicitCommandLetters": 1383,
+      "subpaths": 295,
+      "pathChars": 282506,
+      "maxPathChars": 69614,
+      "errors": {
+        "1": {
+          "rgbMAE255": 0.008344368077814579,
+          "rgbP99_255": 0.0,
+          "alphaMAE255": 0.005135870072990656,
+          "changedPixelFraction": 0.0,
+          "silhouetteMaxOffsetPx": 0.0,
+          "protectedChangedPixelFraction": 0.0,
+          "protectedRgbMAE255": 0.012959047220647335,
+          "protectedSilhouetteMaxOffsetPx": 0.0,
+          "pass": true
+        },
+        "2.071748878923767": {
+          "rgbMAE255": 0.006996415089815855,
+          "rgbP99_255": 0.0,
+          "alphaMAE255": 0.004176952410489321,
+          "changedPixelFraction": 0.0,
+          "silhouetteMaxOffsetPx": 1.0,
+          "protectedChangedPixelFraction": 0.0,
+          "protectedRgbMAE255": 0.01320579182356596,
+          "protectedSilhouetteMaxOffsetPx": 1.0,
+          "pass": true
+        }
+      },
+      "render": {
+        "1": {
+          "width": 223,
+          "height": 117,
+          "decodeMs": 8.917030999999952,
+          "drawMs": 0.2393509999999992
+        },
+        "2.071748878923767": {
+          "width": 462,
+          "height": 242,
+          "decodeMs": 11.226921000000004,
+          "drawMs": 0.2993319999999926
+        }
+      },
+      "budgetPass": false,
+      "diagnostic": "path52: inseparable contour/hole component is 89954 characters (90 contours), limit 60000. In Inkscape simplify this component with silhouette/hole protection or divide into separately authored non-overlapping objects; do not blindly break apart holes.",
+      "importSeconds": 0.1510642099992765,
+      "qualityPass": true,
+      "feasible": false
+    }
+  ],
+  "sourcePalette": [
+    [
+      44,
+      58,
+      58
+    ],
+    [
+      56,
+      71,
+      71
+    ],
+    [
+      66,
+      74,
+      60
+    ],
+    [
+      76,
+      89,
+      83
+    ],
+    [
+      123,
+      131,
+      111
+    ],
+    [
+      139,
+      145,
+      120
+    ],
+    [
+      159,
+      164,
+      146
+    ]
+  ],
+  "chosen": null,
+  "reviewCandidate": "simplify-0.0002",
+  "rawUnchanged": true,
+  "comparison": {
+    "raw": "art/vector-gameplay-density-v2/stone-steps-cleaned-master.svg",
+    "candidate": "_local/reports/vector-gameplay-density-v2/stone-cleaned/bounded-partition.svg",
+    "rawStats": {
+      "sourceBytes": 310879,
+      "paths": 34,
+      "commands": 7107,
+      "segments": 6812,
+      "endpointNodesUpperBound": 7107,
+      "explicitCommandLetters": 1383,
+      "subpaths": 295,
+      "pathChars": 308309,
+      "maxPathChars": 75381
+    },
+    "candidateStats": {
+      "sourceBytes": 364478,
+      "paths": 40,
+      "commands": 6767,
+      "segments": 6474,
+      "endpointNodesUpperBound": 6767,
+      "explicitCommandLetters": 5174,
+      "subpaths": 293,
+      "pathChars": 362005,
+      "maxPathChars": 36061
+    },
+    "visualApproval": "NOT REVIEWED",
+    "config": {
+      "width": 223,
+      "scales": [
+        1,
+        2.071748878923767
+      ],
+      "protectionMode": "contact",
+      "protectedPolylines": [
+        {
+          "points": [
+            [
+              10.619047619047619,
+              74.33333333333333
+            ],
+            [
+              74.33333333333333,
+              74.33333333333333
+            ],
+            [
+              74.33333333333333,
+              54.15714285714286
+            ],
+            [
+              127.42857142857143,
+              54.15714285714286
+            ],
+            [
+              127.42857142857143,
+              35.042857142857144
+            ],
+            [
+              180.52380952380952,
+              35.042857142857144
+            ],
+            [
+              180.52380952380952,
+              15.928571428571429
+            ],
+            [
+              212.38095238095238,
+              15.928571428571429
+            ]
+          ],
+          "width": 8
+        }
+      ],
+      "protectedRects": [
+        [
+          68,
+          50,
+          12,
+          30
+        ],
+        [
+          121,
+          30,
+          12,
+          30
+        ],
+        [
+          174,
+          12,
+          12,
+          30
+        ]
+      ],
+      "reviewRects": [
+        [
+          0,
+          10,
+          223,
+          90
+        ]
+      ],
+      "asset": {
+        "id": "density-play:stone-steps-left",
+        "name": "35\uc7a5 \ub9c8\ubaa8\ub41c \uc11d\uacc4\ub2e8 \ud45c\uba74",
+        "semanticLayer": "SURFACE",
+        "category": "rock",
+        "bounds": {
+          "x": 520,
+          "y": 1770,
+          "w": 420,
+          "h": 220
+        },
+        "anchor": {
+          "x": 0,
+          "y": 0
+        },
+        "foot": {
+          "x": 0,
+          "y": 0
+        },
+        "transform": [
+          0.2423542989036353,
+          0,
+          0,
+          0.24255788313120177,
+          520,
+          1770
+        ],
+        "params": {
+          "sourceRole": "Original3risers; worncaps andbroadstoneplanes; terrainclip separate"
+        }
+      },
+      "sourcePalette": [
+        [
+          44,
+          58,
+          58
+        ],
+        [
+          56,
+          71,
+          71
+        ],
+        [
+          66,
+          74,
+          60
+        ],
+        [
+          76,
+          89,
+          83
+        ],
+        [
+          123,
+          131,
+          111
+        ],
+        [
+          139,
+          145,
+          120
+        ],
+        [
+          159,
+          164,
+          146
+        ]
+      ]
+    },
+    "errors": {
+      "1": {
+        "rgbMAE255": 0.27159878611564636,
+        "rgbP99_255": 5.999999523162842,
+        "alphaMAE255": 0.1242574080824852,
+        "changedPixelFraction": 0.0019546970219615958,
+        "silhouetteMaxOffsetPx": 1.0,
+        "protectedChangedPixelFraction": 0.006229235880398671,
+        "protectedRgbMAE255": 0.9156343340873718,
+        "protectedSilhouetteMaxOffsetPx": 1.0,
+        "pass": false
+      },
+      "2.071748878923767": {
+        "rgbMAE255": 0.19782108068466187,
+        "rgbP99_255": 4.999999523162842,
+        "alphaMAE255": 0.11485277861356735,
+        "changedPixelFraction": 0.001618904511466495,
+        "silhouetteMaxOffsetPx": 1.0,
+        "protectedChangedPixelFraction": 0.009049342731948943,
+        "protectedRgbMAE255": 0.8847943544387817,
+        "protectedSilhouetteMaxOffsetPx": 1.0,
+        "pass": true
+      }
+    },
+    "timings": {
+      "raw-1": {
+        "width": 223,
+        "height": 117,
+        "decodeMs": 8.391654000000017,
+        "drawMs": 0.10293500000000222
+      },
+      "candidate-1": {
+        "width": 223,
+        "height": 117,
+        "decodeMs": 15.06407999999999,
+        "drawMs": 0.391982999999982
+      },
+      "raw-2.071748878923767": {
+        "width": 462,
+        "height": 242,
+        "decodeMs": 14.078009000000009,
+        "drawMs": 1.7296550000000366
+      },
+      "candidate-2.071748878923767": {
+        "width": 462,
+        "height": 242,
+        "decodeMs": 10.782426999999984,
+        "drawMs": 0.4084879999999771
+      }
+    },
+    "qualityPass": false
+  },
+  "supersampledFullContact": {
+    "raw": "art/vector-gameplay-density-v2/stone-steps-cleaned-master.svg",
+    "candidate": "_local/reports/vector-gameplay-density-v2/stone-cleaned/bounded-partition.svg",
+    "metric": "protected alpha silhouette; no palette-island displacement claim",
+    "supersample": 8,
+    "normalPixelSamplingStep": 0.125,
+    "visualApproval": "NOT REVIEWED",
+    "regions": [
+      [
+        0,
+        10,
+        223,
+        83
+      ]
+    ],
+    "errors": {
+      "1": {
+        "samples": [
+          {
+            "region": 0,
+            "protectedSilhouetteMaxOffsetPx": 0.125,
+            "supersampledPixelOffset": 1.0,
+            "protectedRgbMAE255": 0.11144290864467621,
+            "protectedChangedPixelFraction": 0.0008433397266194824
+          }
+        ],
+        "protectedSilhouetteMaxOffsetPx": 0.125,
+        "limitPx": 0.5,
+        "silhouettePass": true
+      },
+      "2.071748878923767": {
+        "samples": [
+          {
+            "region": 0,
+            "protectedSilhouetteMaxOffsetPx": 0.125,
+            "supersampledPixelOffset": 1.0,
+            "protectedRgbMAE255": 0.06926330924034119,
+            "protectedChangedPixelFraction": 0.0005224456986811638
+          }
+        ],
+        "protectedSilhouetteMaxOffsetPx": 0.125,
+        "limitPx": 1.0358744394618835,
+        "silhouettePass": true
+      }
+    },
+    "silhouettePass": true
+  },
+  "selected": ".0001 then zero-tolerance Boolean partition",
+  "decision": ".0002 rejected protected RGB1.147>1. Selected .0001 reduces commands7107to5874, then partitions three oversized compounds; 43runtime nodes. Integer protected1px failure retained; full-contact8x check gives.125px within unchanged.5 threshold. ProtectedRGB afterpartition .916/.885 passes1.0. Final223/462px actual runtime previews directly inspected. Art cleanup distinct from optimization; original raw preserved.",
+  "nativeTrace": {
+    "tool": "Inkscape GUI",
+    "colors": 8,
+    "smooth": true,
+    "stack": true,
+    "removeBackground": true,
+    "speckles": 2,
+    "smoothCorners": 1,
+    "optimize": 0.2
+  }
+}

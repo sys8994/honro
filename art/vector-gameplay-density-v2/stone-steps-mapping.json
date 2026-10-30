@@ -1,0 +1,52 @@
+{
+  "sourceStage": 35,
+  "sourceTerrain": "a4-35-land",
+  "worldBounds": [
+    520,
+    1770,
+    420,
+    220
+  ],
+  "imageSize": [
+    1680,
+    880
+  ],
+  "contactWorld": [
+    [
+      540,
+      1910
+    ],
+    [
+      660,
+      1910
+    ],
+    [
+      660,
+      1872
+    ],
+    [
+      760,
+      1872
+    ],
+    [
+      760,
+      1836
+    ],
+    [
+      860,
+      1836
+    ],
+    [
+      860,
+      1800
+    ],
+    [
+      920,
+      1800
+    ]
+  ],
+  "baseMaterial": "rock",
+  "oneWay": false,
+  "actorHeightWorld": 92,
+  "scope": "Source-derived authoring guide only, actual top/riser collision fixed"
+}
