@@ -1,0 +1,223 @@
+[
+ {
+  "name": "struct-x5",
+  "layer": "STRUCT",
+  "module": "x5",
+  "bounds": [
+   2662,
+   4386,
+   3468,
+   5768
+  ],
+  "paths": 5,
+  "terrain": null
+ },
+ {
+  "name": "struct-x6",
+  "layer": "STRUCT",
+  "module": "x6",
+  "bounds": [
+   3316,
+   4485,
+   4399,
+   5824
+  ],
+  "paths": 5,
+  "terrain": null
+ },
+ {
+  "name": "struct-x7",
+  "layer": "STRUCT",
+  "module": "x7",
+  "bounds": [
+   4356,
+   5503,
+   4426,
+   5535
+  ],
+  "paths": 3,
+  "terrain": null
+ },
+ {
+  "name": "body-shore",
+  "layer": "BODY",
+  "module": "shore",
+  "bounds": [
+   -1604,
+   7336,
+   7804,
+   8304
+  ],
+  "paths": 6,
+  "terrain": "pilot34-shore"
+ },
+ {
+  "name": "body-west-cliff",
+  "layer": "BODY",
+  "module": "west-cliff",
+  "bounds": [
+   514,
+   5556,
+   2784,
+   7504
+  ],
+  "paths": 7,
+  "terrain": "pilot34-west-cliff"
+ },
+ {
+  "name": "body-cave-stack",
+  "layer": "BODY",
+  "module": "cave-stack",
+  "bounds": [
+   3116,
+   5701,
+   3668,
+   7564
+  ],
+  "paths": 7,
+  "terrain": "pilot34-cave-stack"
+ },
+ {
+  "name": "body-east-ledge",
+  "layer": "BODY",
+  "module": "east-ledge",
+  "bounds": [
+   4020,
+   5516,
+   4670,
+   5774
+  ],
+  "paths": 7,
+  "terrain": "pilot34-east-ledge"
+ },
+ {
+  "name": "body-east-cliff",
+  "layer": "BODY",
+  "module": "east-cliff",
+  "bounds": [
+   3166,
+   2794,
+   7254,
+   7604
+  ],
+  "paths": 7,
+  "terrain": "pilot34-east-cliff"
+ },
+ {
+  "name": "body-terrace-boulder",
+  "layer": "BODY",
+  "module": "terrace-boulder",
+  "bounds": [
+   1632,
+   6369,
+   1748,
+   6513
+  ],
+  "paths": 2,
+  "terrain": "pilot34-terrace-boulder"
+ },
+ {
+  "name": "body-ridge-boulder",
+  "layer": "BODY",
+  "module": "ridge-boulder",
+  "bounds": [
+   4412,
+   3511,
+   4538,
+   3665
+  ],
+  "paths": 2,
+  "terrain": "pilot34-ridge-boulder"
+ },
+ {
+  "name": "body-summit-boulder",
+  "layer": "BODY",
+  "module": "summit-boulder",
+  "bounds": [
+   5332,
+   3001,
+   5448,
+   3145
+  ],
+  "paths": 2,
+  "terrain": "pilot34-summit-boulder"
+ },
+ {
+  "name": "surface-cave-bridge",
+  "layer": "SURFACE",
+  "module": "cave-bridge",
+  "bounds": [
+   2596,
+   5529,
+   4054,
+   5596
+  ],
+  "paths": 5,
+  "terrain": "pilot34-cave-bridge"
+ },
+ {
+  "name": "surface-cave-stairs",
+  "layer": "SURFACE",
+  "module": "cave-stairs",
+  "bounds": [
+   3026,
+   4482,
+   4424,
+   5554
+  ],
+  "paths": 4,
+  "terrain": "pilot34-cave-stairs"
+ },
+ {
+  "name": "surface-ledge-crates",
+  "layer": "SURFACE",
+  "module": "ledge-crates",
+  "bounds": [
+   4356,
+   5400,
+   4454,
+   5528
+  ],
+  "paths": 3,
+  "terrain": "pilot34-ledge-crates"
+ },
+ {
+  "name": "rear-x8",
+  "layer": "REAR",
+  "module": "x8",
+  "bounds": [
+   5526,
+   2744,
+   5774,
+   2985
+  ],
+  "paths": 3,
+  "terrain": null
+ },
+ {
+  "name": "rear-x6",
+  "layer": "REAR",
+  "module": "x6",
+  "bounds": [
+   3876,
+   3656,
+   4124,
+   3861
+  ],
+  "paths": 3,
+  "terrain": null
+ },
+ {
+  "name": "fore-x2",
+  "layer": "FORE",
+  "module": "x2",
+  "bounds": [
+   148,
+   7275,
+   450,
+   7381
+  ],
+  "paths": 2,
+  "terrain": null
+ }
+]

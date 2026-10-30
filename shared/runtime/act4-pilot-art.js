@@ -3,7 +3,7 @@ if(G.HonroAct4PilotArt)return;
 // Art-only opt-in. Ordinary Scene layers and their world/domain caches remain
 // authoritative. No collision, actor, event, or authored instance is rewritten.
 const layers=Object.freeze({background:'back',structure:'structural-back',body:'mid',rear:'prop',front:'front'});
-function config(b){const q=b?.honroMap?.nativeArt;return b?.honroStage===31&&q?.version===1&&Array.isArray(q.coveredTerrainIds)?q:null;}
+function config(b){const q=b?.honroMap?.nativeArt;return b?.honroStage>=31&&b.honroStage<=40&&q?.version===1&&Array.isArray(q.coveredTerrainIds)?q:null;}
 function native(l,b){return !!(config(b)&&Object.hasOwn(layers,l?.nativeArtLayer)&&l.layer===layers[l.nativeArtLayer]&&l.kind==='canonical-element'&&l.asset?.vector&&!l.asset.collision?.length&&!l.collisionIds?.length&&!l.honroElementCollision);}
 function terrainIds(l){return Array.isArray(l?.nativeTerrainIds)?l.nativeTerrainIds:(l?.nativeTerrainId?[l.nativeTerrainId]:[]);}
 function bodyLive(l,b){const ids=terrainIds(l);return ids.length>0&&new Set(ids).size===ids.length&&ids.every(id=>typeof id==='string'&&b.terrain?.some(t=>t.id===id&&!t.broken));}
@@ -12,7 +12,7 @@ function covered(t,b){const q=config(b);return !!(q&&q.coveredTerrainIds.include
 // asset is absent in an older/incomplete saved battle.
 function validateStage(stage,library){
  const q=stage.design?.nativeArt;if(!q)return true;
- if(stage.metadata?.stageId!==31||q.version!==1||!Array.isArray(q.coveredTerrainIds))throw Error('Invalid native art opt-in');
+ if(!(stage.metadata?.stageId>=31&&stage.metadata?.stageId<=40)||q.version!==1||!Array.isArray(q.coveredTerrainIds))throw Error('Invalid native art opt-in');
  for(const l of stage.elements||[]){if(!l.nativeArtLayer)continue;const a=library.find(a=>a.id===l.assetId);
   if(!Object.hasOwn(layers,l.nativeArtLayer)||l.layer!==layers[l.nativeArtLayer]||!a?.vector||a.collision?.length||a.interactionType)throw Error('Invalid native art element '+l.id);
  }

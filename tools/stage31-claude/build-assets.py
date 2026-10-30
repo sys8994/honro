@@ -3,14 +3,15 @@
 import json, subprocess, sys
 from pathlib import Path
 ROOT = Path(__file__).resolve().parents[2]
-ART = ROOT / 'art/act4-stage31-claude-v1'
-OUT = ROOT / '_local/reports/stage31-claude/modules'
+N = int(sys.argv[1]) if len(sys.argv) > 1 else 31
+ART = ROOT / ('art/act4-stage31-claude-v1' if N == 31 else 'art/act4-claude/stage%d' % N)
+OUT = ROOT / ('_local/reports/stage31-claude/modules' if N == 31 else '_local/reports/act4-claude/stage%d/modules' % N)
 OUT.mkdir(parents=True, exist_ok=True)
 SEM = {'BODY': 'BODY', 'SURFACE': 'SURFACE', 'STRUCT': 'REAR', 'REAR': 'REAR', 'FORE': 'FORE'}
 rows = []
 for m in json.load(open(ART / 'modules.json')):
     x0, y0, x1, y1 = m['bounds']
-    cfg = {'id': 's31c:' + m['name'], 'name': 'Stage31 ' + m['name'], 'semanticLayer': SEM[m['layer']], 'category': 'terrain',
+    cfg = {'id': 's%dc:' % N + m['name'], 'name': 'Stage%d ' % N + m['name'], 'semanticLayer': SEM[m['layer']], 'category': 'terrain',
            'bounds': {'x': x0, 'y': y0, 'w': x1 - x0, 'h': y1 - y0}, 'anchor': {'x': 0, 'y': 0}, 'foot': {'x': 0, 'y': 0},
            'params': {'artRevision': 2, 'author': 'claude-direct-vector', 'silhouetteUnderpaint': False}}
     c = OUT / (m['name'] + '.config.json'); c.write_text(json.dumps(cfg))

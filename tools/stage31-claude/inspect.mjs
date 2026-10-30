@@ -7,8 +7,8 @@ import {createCanvas,Image as NativeImage,Path2D,DOMMatrix,GlobalFonts} from '@n
 import {runtimeParts} from '../../shared/build.mjs';
 process.env.HONRO_ACT4_RELEASE='1';
 const arg=k=>process.argv.find(a=>a.startsWith(`--${k}=`))?.slice(k.length+3);
-const tag=arg('tag')||'v1',geo=arg('stage')||'_local/reports/act4-pilot/stage31/v6/stage.json',assets=arg('assets')||'_local/reports/stage31-claude/modules';
-const out=`_local/reports/stage31-claude/${tag}`;await mkdir(out,{recursive:true});
+const N=Number(arg('n')||31),tag=arg('tag')||'v1',geo=arg('stage')||'_local/reports/act4-pilot/stage31/v6/stage.json',assets=arg('assets')||'_local/reports/stage31-claude/modules';
+const out=N===31?`_local/reports/stage31-claude/${tag}`:`_local/reports/act4-claude/stage${N}/${tag}`;await mkdir(out,{recursive:true});
 try{GlobalFonts.registerFromPath('/usr/share/fonts/opentype/noto/NotoSansCJK-Regular.ttc','sans-serif');}catch{}
 function canvas(w=300,h=150){const c=createCanvas(w,h);Object.defineProperties(c,{clientWidth:{get:()=>c.width},clientHeight:{get:()=>c.height}});c.getBoundingClientRect=()=>({left:0,top:0,width:c.width,height:c.height});return c;}
 class Image extends NativeImage{set src(v){super.src=typeof v==='string'&&v.startsWith('data:')?Buffer.from(v.split(',')[1],'base64'):v;}get src(){return super.src;}}
@@ -24,15 +24,15 @@ const stage=JSON.parse(await readFile(geo,'utf8'));
 // behind (structural-back), REAR reeds (prop), FORE after actors (front).
 const index=JSON.parse(await readFile(`${assets}/index.json`,'utf8')),passOf={structure:'structural-back',body:'mid',rear:'prop',front:'front'},nativeOf={STRUCT:'structure',BODY:'body',SURFACE:'body',REAR:'rear',FORE:'front'};
 const library=[];for(const r of index)library.push(JSON.parse(await readFile(r.asset,'utf8')));
-const elements=index.map(r=>{const n=nativeOf[r.layer],e={id:'s31c-'+r.name,assetId:r.assetId,x:0,y:0,scale:1,rotation:0,snap:false,depthLayer:'L1',nativeArtLayer:n,layer:passOf[n]};if(r.terrain){if(!stage.terrains.some(t=>t.id===r.terrain))throw Error('Unknown collider '+r.terrain);e.nativeTerrainIds=[r.terrain];}return e;});
+const elements=index.map(r=>{const n=nativeOf[r.layer],e={id:`s${N}c-`+r.name,assetId:r.assetId,x:0,y:0,scale:1,rotation:0,snap:false,depthLayer:'L1',nativeArtLayer:n,layer:passOf[n]};if(r.terrain){if(!stage.terrains.some(t=>t.id===r.terrain))throw Error('Unknown collider '+r.terrain);e.nativeTerrainIds=[r.terrain];}return e;});
 const owned=elements.flatMap(e=>e.nativeTerrainIds||[]);
 stage.elements=[...elements,...stage.elements];
-stage.design.nativeArt={version:1,coveredTerrainIds:owned,preservePalette:true,author:'claude-direct-vector',status:'candidate; not accepted'};
-const P=g.HONRO_PROJECT;P.library=[...P.library.filter(a=>!a.id.startsWith('s31c:')),...library];
-P.stages=P.stages.map(s=>s.metadata?.stageId===31?stage:s);
+stage.design.nativeArt={version:1,coveredTerrainIds:owned,...(arg('far')?{far:arg('far')}:{}),preservePalette:true,author:'claude-direct-vector',status:'candidate; not accepted'};
+const P=g.HONRO_PROJECT;P.library=[...P.library.filter(a=>!a.id.startsWith(`s${N}c:`)),...library];
+P.stages=P.stages.map(s=>s.metadata?.stageId===N?stage:s);
 if(g.HonroAct4PilotArt?.validateStage)g.HonroAct4PilotArt.validateStage(stage,P.library);
 const issues=g.HonroMaps.validate?g.HonroMaps.validate({...P,stages:[stage]}):[];
-await writeFile(`${out}/stage31-composed.json`,JSON.stringify(stage));
+await writeFile(`${out}/stage${N}-composed.json`,JSON.stringify(stage));
 
 // ---- render views on the production Scene
 const profile=g.HONRO_CORE.defaults();profile.recruited=['archer','mage','knight','occultist'];g.HonroEquipment.fresh(profile);
