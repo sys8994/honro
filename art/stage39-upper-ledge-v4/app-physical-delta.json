@@ -1,0 +1,67 @@
+{
+  "scope": "Actual App entry complete terrain including instantiated element colliders; no renderer or movement. Exact physical-holder equality only.",
+  "stage": 39,
+  "runtimeSHA256": "9278a691f97be21437b58fe67cdffa6a7e031da6666b2b34faa2e6f6829e0544",
+  "before": {
+    "projectSHA256": "ab4a4c4dcb372c6054e82e4f0ade6b429ecd1c2d077c39c8f95fbc512d011ea1",
+    "terrainSHA256": "ddec68a1a2616cdb79bbb366a7c67a85e7009763e55ef45ba3b22f43e2f558bc",
+    "colliders": [
+      {
+        "id": "a4-39-land",
+        "mat": "rock",
+        "vertices": 239,
+        "oneWay": false,
+        "indestructible": true
+      },
+      {
+        "id": "a4-39-west-upper",
+        "mat": "wood",
+        "vertices": 10,
+        "oneWay": true,
+        "indestructible": true
+      },
+      {
+        "id": "a4-39-east-upper",
+        "mat": "rock",
+        "vertices": 6,
+        "oneWay": true,
+        "indestructible": true
+      }
+    ]
+  },
+  "after": {
+    "projectSHA256": "5337c9b73bc173c767375999451596e4e88fe0c5342a5c7a5bf38a52219b1a21",
+    "terrainSHA256": "48c6fe7b8c389572f2e157a6b7a9dec6ccd9eefaf3cc86cc3850d5c9a73bb80c",
+    "colliders": [
+      {
+        "id": "a4-39-land",
+        "mat": "rock",
+        "vertices": 239,
+        "oneWay": false,
+        "indestructible": true
+      },
+      {
+        "id": "a4-39-west-upper",
+        "mat": "wood",
+        "vertices": 10,
+        "oneWay": true,
+        "indestructible": true
+      },
+      {
+        "id": "a4-39-east-upper",
+        "mat": "rock",
+        "vertices": 92,
+        "oneWay": true,
+        "indestructible": true
+      }
+    ]
+  },
+  "sourceStillCurrent": {
+    "before": true,
+    "after": true
+  },
+  "exact": false,
+  "changed": [
+    "a4-39-east-upper"
+  ]
+}

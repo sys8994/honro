@@ -1,0 +1,162 @@
+{
+  "stage": 39,
+  "removeElementIds": [],
+  "insertBeforeElementId": "s39v:body",
+  "additions": [
+    {
+      "assetFile": "art/stage39-stone-density/east-asset.json",
+      "element": {
+        "x": 0,
+        "y": 0,
+        "scale": 1,
+        "rotation": 0,
+        "depthLayer": "L1",
+        "layer": "front",
+        "visualRole": "scenery",
+        "id": "s39-density:rock-east",
+        "assetId": "s39-density:rock-east"
+      },
+      "tiles": 14,
+      "detail": [
+        {
+          "segment": 0,
+          "x": 4600,
+          "right": 4700,
+          "module": "density-play:stone-tread-block",
+          "mirror": false,
+          "verticalScale": 1,
+          "horizontalScale": 1
+        },
+        {
+          "segment": 0,
+          "x": 4700,
+          "right": 4800,
+          "module": "density-play:stone-tread-block-b",
+          "mirror": false,
+          "verticalScale": 1,
+          "horizontalScale": 1
+        },
+        {
+          "segment": 0,
+          "x": 4800,
+          "right": 4900,
+          "module": "density-play:stone-tread-block",
+          "mirror": true,
+          "verticalScale": 1,
+          "horizontalScale": -1
+        },
+        {
+          "segment": 0,
+          "x": 4900,
+          "right": 5000,
+          "module": "density-play:stone-tread-block-b",
+          "mirror": true,
+          "verticalScale": 1,
+          "horizontalScale": -1
+        },
+        {
+          "segment": 0,
+          "x": 5000,
+          "right": 5100,
+          "module": "density-play:stone-tread-block",
+          "mirror": false,
+          "verticalScale": 1,
+          "horizontalScale": 1
+        },
+        {
+          "segment": 0,
+          "x": 5100,
+          "right": 5200,
+          "module": "density-play:stone-tread-block-b",
+          "mirror": false,
+          "verticalScale": 1,
+          "horizontalScale": 1
+        },
+        {
+          "segment": 0,
+          "x": 5200,
+          "right": 5300,
+          "module": "density-play:stone-tread-block",
+          "mirror": true,
+          "verticalScale": 1,
+          "horizontalScale": -1
+        },
+        {
+          "segment": 1,
+          "x": 5300,
+          "right": 5400,
+          "module": "density-play:stone-tread-block-b",
+          "mirror": true,
+          "verticalScale": 1,
+          "horizontalScale": -1
+        },
+        {
+          "segment": 1,
+          "x": 5400,
+          "right": 5500,
+          "module": "density-play:stone-tread-block",
+          "mirror": false,
+          "verticalScale": 1,
+          "horizontalScale": 1
+        },
+        {
+          "segment": 1,
+          "x": 5500,
+          "right": 5600,
+          "module": "density-play:stone-tread-block-b",
+          "mirror": false,
+          "verticalScale": 1,
+          "horizontalScale": 1
+        },
+        {
+          "segment": 1,
+          "x": 5600,
+          "right": 5700,
+          "module": "density-play:stone-tread-block",
+          "mirror": true,
+          "verticalScale": 1,
+          "horizontalScale": -1
+        },
+        {
+          "segment": 1,
+          "x": 5700,
+          "right": 5800,
+          "module": "density-play:stone-tread-block-b",
+          "mirror": true,
+          "verticalScale": 1,
+          "horizontalScale": -1
+        },
+        {
+          "segment": 1,
+          "x": 5800,
+          "right": 5900,
+          "module": "density-play:stone-tread-block",
+          "mirror": false,
+          "verticalScale": 1,
+          "horizontalScale": 1
+        },
+        {
+          "segment": 1,
+          "x": 5900,
+          "right": 6000,
+          "module": "density-play:stone-tread-block-b",
+          "mirror": false,
+          "verticalScale": 1,
+          "horizontalScale": 1
+        }
+      ],
+      "bytes": 103711,
+      "deduplication": {
+        "beforeBytes": 696303,
+        "afterBytes": 103003,
+        "symbols": 2,
+        "uses": 14,
+        "applied": true,
+        "savedBytes": 593300
+      }
+    }
+  ],
+  "compiledPhysicsPreserved": true,
+  "visualApproval": false,
+  "order": "Keep existing woodroute; insert east rockroute immediately before s39v:body so BODY naturally hides buried ends; fullphysicalclip, noaddedcollisions"
+}

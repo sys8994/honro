@@ -1,0 +1,19 @@
+{
+  "scope": "Actual originalApp normal-prefix branch; no actor/resource/event overrides, not a complete mission",
+  "prefixInputs": 68,
+  "frame": 20668,
+  "actor": "mage",
+  "originalPendingWork": {
+    "actor": "mage",
+    "elapsed": 0.08333333333333333
+  },
+  "saveContinueExact": true,
+  "cancelMethod": "ordinary movement out of work radius",
+  "cancelled": true,
+  "noFalseCompletion": true,
+  "finalActive": "mage",
+  "position": {
+    "x": 5769.405429319271,
+    "y": 2000
+  }
+}

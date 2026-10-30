@@ -1,0 +1,54 @@
+{
+  "asset": "s39-density:rock-east",
+  "expandedNodes": 226,
+  "maxDepth": 7,
+  "maxPath": 15784,
+  "bytes": 103711,
+  "compiledPhysicsPreserved": true,
+  "material": "rock",
+  "thickness": 50,
+  "route": [
+    [
+      4600,
+      1790
+    ],
+    [
+      5300,
+      1720
+    ],
+    [
+      6000,
+      1720
+    ]
+  ],
+  "method": "14 crops of native100x52 stone blocks; 1:1 horizontal and vertical scale with shear, last2world cropped, exactphysics outline clip",
+  "visualInspection": {
+    "actualScene": true,
+    "views": [
+      "normal",
+      "mobile",
+      "detail"
+    ],
+    "observed": [
+      "Stone band follows slope and bend with continuous readable top edge.",
+      "Wood-to-rock meeting point remains exact x4600,y1790 with no gap.",
+      "Normal/mobile stone facet detail comparable to wood joints, not pale featureless strip.",
+      "No edits to decorative net, existing supports or actors."
+    ],
+    "wholeStageApproval": false
+  },
+  "evidence": {
+    "normal": {
+      "file": "_local/reports/stage39-stone-density/native/39-normal.png",
+      "sha256": "e7eef643a62c4a707fd727bdca5c442ec106e0c421c6ba9b2e6290fcbe09265b"
+    },
+    "mobile": {
+      "file": "_local/reports/stage39-stone-density/native/39-mobile.png",
+      "sha256": "e826b975053416a08cee0e5491e4896c09a720fb442f538cea6e93ef78721af9"
+    },
+    "detail": {
+      "file": "_local/reports/stage39-stone-density/native/39-detail.png",
+      "sha256": "c34486c76e021bd4b3f2d6268cf0d5c87f24515502dd134b763c0e62f87be1fa"
+    }
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "source": "body-raw.svg",
+  "removedTracePaths": [
+    9,
+    10
+  ],
+  "recoloredTracePath": 8,
+  "from": "#2c3849",
+  "to": "#2a3647",
+  "purpose": "Remove nearly indistinguishable deep gradient quantization noise, preserve all original authored upper rock paths and contacts",
+  "scope": "Candidate only until bounded raw comparison and direct visual review"
+}

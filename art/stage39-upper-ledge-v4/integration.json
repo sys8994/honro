@@ -1,0 +1,14 @@
+{
+  "assetFile": "art/stage39-upper-ledge-v4/world-asset.json",
+  "terrainDeltaFile": "art/stage39-upper-ledge-v4/terrain-delta.json",
+  "replaceTerrainId": "a4-39-east-upper",
+  "replaceElementId": "s39-density:rock-east",
+  "newAssetId": "s39-authored-v4:upper-east",
+  "sourceFiles": [
+    "concept.png",
+    "ledge-source.svg",
+    "palette.svg",
+    "contour.json"
+  ],
+  "status": "pending visual and actual gameplay QA"
+}

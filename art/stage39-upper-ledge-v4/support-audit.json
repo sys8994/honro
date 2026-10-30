@@ -1,0 +1,142 @@
+{
+  "checks": [
+    {
+      "x": 4600,
+      "hits": [
+        {
+          "y": 1790,
+          "slope": -0.13145950524199018,
+          "edge": 0
+        }
+      ],
+      "distinctSupportedLevels": [
+        1790
+      ]
+    },
+    {
+      "x": 4600.1,
+      "hits": [
+        {
+          "y": 1789.9868540494758,
+          "slope": -0.13145950524199018,
+          "edge": 0
+        }
+      ],
+      "distinctSupportedLevels": [
+        1789.986854
+      ]
+    },
+    {
+      "x": 4650,
+      "hits": [
+        {
+          "y": 1784.9434579031915,
+          "slope": -0.06613992206358006,
+          "edge": 2
+        }
+      ],
+      "distinctSupportedLevels": [
+        1784.943458
+      ]
+    },
+    {
+      "x": 4800,
+      "hits": [
+        {
+          "y": 1769.6120591131819,
+          "slope": -0.09970719319912709,
+          "edge": 7
+        }
+      ],
+      "distinctSupportedLevels": [
+        1769.612059
+      ]
+    },
+    {
+      "x": 5000,
+      "hits": [
+        {
+          "y": 1749.8738110626705,
+          "slope": -0.0834201975244142,
+          "edge": 8
+        }
+      ],
+      "distinctSupportedLevels": [
+        1749.873811
+      ]
+    },
+    {
+      "x": 5300,
+      "hits": [
+        {
+          "y": 1720,
+          "slope": -0.09845361858700244,
+          "edge": 15
+        },
+        {
+          "y": 1720,
+          "slope": -0.026518545859958977,
+          "edge": 16
+        }
+      ],
+      "distinctSupportedLevels": [
+        1720
+      ]
+    },
+    {
+      "x": 5600,
+      "hits": [
+        {
+          "y": 1720.4245438100488,
+          "slope": 0.005418371382210363,
+          "edge": 19
+        }
+      ],
+      "distinctSupportedLevels": [
+        1720.424544
+      ]
+    },
+    {
+      "x": 5800,
+      "hits": [
+        {
+          "y": 1719.9832961263767,
+          "slope": -0.002782912616167929,
+          "edge": 22
+        }
+      ],
+      "distinctSupportedLevels": [
+        1719.983296
+      ]
+    },
+    {
+      "x": 5999.9,
+      "hits": [
+        {
+          "y": 1719.9989298402295,
+          "slope": 0.01070159770490136,
+          "edge": 24
+        }
+      ],
+      "distinctSupportedLevels": [
+        1719.99893
+      ]
+    },
+    {
+      "x": 6000,
+      "hits": [
+        {
+          "y": 1720,
+          "slope": 0.01070159770490136,
+          "edge": 24
+        }
+      ],
+      "distinctSupportedLevels": [
+        1720
+      ]
+    }
+  ],
+  "exactAnchors": true,
+  "pass": true,
+  "scope": "Actual compiled terrain support; coincident vertex hits deduplicated by height; no gameplay route claim"
+}

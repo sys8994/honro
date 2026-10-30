@@ -1,0 +1,29 @@
+{
+  "candidateSHA256": "5337c9b73bc173c767375999451596e4e88fe0c5342a5c7a5bf38a52219b1a21",
+  "runtimeSHA256": "9278a691f97be21437b58fe67cdffa6a7e031da6666b2b34faa2e6f6829e0544",
+  "scope": "Actual App Native Canvas; fixed inspection cameras, initial actors, no gameplay approval",
+  "views": [
+    {
+      "id": "join",
+      "x": 4650,
+      "y": 1800,
+      "scale": 0.8
+    },
+    {
+      "id": "rescue",
+      "x": 5500,
+      "y": 1840,
+      "scale": 0.75
+    }
+  ],
+  "cameraAssertionsPassed": true,
+  "images": [
+    "_local/reports/stage39-upper-ledge-v4/actual-after-corrected/join.png",
+    "_local/reports/stage39-upper-ledge-v4/actual-after-corrected/rescue.png"
+  ],
+  "rejectedFirstCapture": "actual-after directory: active Story camera overrode manual view. Not evidence of ledge quality. Fixed inspection clears camera-only Story frame and asserts actual coordinates.",
+  "visualInspection": "Connected uneven thin stone underside and quiet broad faces; source top matches compiled route. Root review pending.",
+  "sourceAttachment": "libfile_05a6bd6da1208191a0a7863cb4ef69dd",
+  "joinAttachment": "libfile_659ba500f3ec8191baa0bd0058b97020",
+  "rescueAttachment": "libfile_cb3b31d3465481918e2d7683f80cb3d8"
+}

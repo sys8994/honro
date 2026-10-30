@@ -1,0 +1,221 @@
+{
+  "raw": "art/stage39-vector-production/body-raw.svg",
+  "candidate": "art/stage39-vector-production/body-contact-preserved.svg",
+  "rawStats": {
+    "sourceBytes": 940323,
+    "paths": 11,
+    "commands": 22408,
+    "segments": 21091,
+    "endpointNodesUpperBound": 22408,
+    "explicitCommandLetters": 5842,
+    "subpaths": 1317,
+    "pathChars": 938996,
+    "maxPathChars": 314898
+  },
+  "candidateStats": {
+    "sourceBytes": 221311,
+    "paths": 9,
+    "commands": 4961,
+    "segments": 4654,
+    "endpointNodesUpperBound": 4961,
+    "explicitCommandLetters": 4661,
+    "subpaths": 307,
+    "pathChars": 220607,
+    "maxPathChars": 56534
+  },
+  "visualApproval": "Producer directly compared source and selected pixels, final stage review separate; not user art approval",
+  "config": {
+    "width": 1400,
+    "scales": [
+      1,
+      2.1
+    ],
+    "protectionMode": "contact",
+    "limits": {
+      "protectedChangedPixelFraction": 0.05
+    },
+    "protectedPolylines": [
+      {
+        "points": [
+          [
+            43.75,
+            58.333333333333336
+          ],
+          [
+            218.75,
+            58.333333333333336
+          ],
+          [
+            244.99999999999997,
+            87.5
+          ],
+          [
+            291.6666666666667,
+            87.5
+          ],
+          [
+            335.4166666666667,
+            123.95833333333334
+          ],
+          [
+            408.33333333333337,
+            167.70833333333334
+          ],
+          [
+            539.5833333333334,
+            175.0
+          ],
+          [
+            641.6666666666666,
+            145.83333333333334
+          ],
+          [
+            700.0,
+            87.5
+          ],
+          [
+            758.3333333333333,
+            87.5
+          ],
+          [
+            772.9166666666667,
+            87.5
+          ],
+          [
+            889.5833333333333,
+            87.5
+          ],
+          [
+            947.9166666666667,
+            87.5
+          ],
+          [
+            1006.25,
+            43.75
+          ],
+          [
+            1210.4166666666667,
+            43.75
+          ],
+          [
+            1283.3333333333333,
+            36.458333333333336
+          ],
+          [
+            1356.25,
+            36.458333333333336
+          ]
+        ],
+        "width": 12
+      }
+    ],
+    "sourcePalette": [
+      [
+        42,
+        54,
+        70
+      ],
+      [
+        42,
+        54,
+        72
+      ],
+      [
+        44,
+        56,
+        73
+      ],
+      [
+        49,
+        62,
+        81
+      ],
+      [
+        54,
+        67,
+        87
+      ],
+      [
+        62,
+        76,
+        96
+      ],
+      [
+        68,
+        81,
+        102
+      ],
+      [
+        103,
+        96,
+        57
+      ],
+      [
+        135,
+        120,
+        60
+      ],
+      [
+        142,
+        124,
+        67
+      ],
+      [
+        166,
+        138,
+        74
+      ]
+    ]
+  },
+  "errors": {
+    "1": {
+      "rgbMAE255": 0.4058763384819031,
+      "rgbP99_255": 1.9999998807907104,
+      "alphaMAE255": 0.0,
+      "changedPixelFraction": 0.0,
+      "silhouetteMaxOffsetPx": 0.0,
+      "protectedChangedPixelFraction": 0.0,
+      "protectedRgbMAE255": 0.0,
+      "protectedSilhouetteMaxOffsetPx": 0.0,
+      "pass": true
+    },
+    "2.1": {
+      "rgbMAE255": 0.4067429006099701,
+      "rgbP99_255": 1.9999998807907104,
+      "alphaMAE255": 0.0,
+      "changedPixelFraction": 5.5532417048452035e-06,
+      "silhouetteMaxOffsetPx": 0.0,
+      "protectedChangedPixelFraction": 0.0,
+      "protectedRgbMAE255": 0.0,
+      "protectedSilhouetteMaxOffsetPx": 0.0,
+      "pass": true
+    }
+  },
+  "timings": {
+    "raw-1": {
+      "width": 1400,
+      "height": 467,
+      "decodeMs": 31.421199,
+      "drawMs": 0.805027999999993
+    },
+    "candidate-1": {
+      "width": 1400,
+      "height": 467,
+      "decodeMs": 10.765593999999965,
+      "drawMs": 1.0703280000000177
+    },
+    "raw-2.1": {
+      "width": 2940,
+      "height": 980,
+      "decodeMs": 45.827913000000024,
+      "drawMs": 4.074207000000001
+    },
+    "candidate-2.1": {
+      "width": 2940,
+      "height": 980,
+      "decodeMs": 23.733934999999974,
+      "drawMs": 4.465323999999953
+    }
+  },
+  "qualityPass": true
+}
