@@ -146,7 +146,7 @@ def undulate(top, seed, amp=1.0, keep=()):
 
 TOPS = {
     'shore': undulate(S['shore']['top'], 0.4, keep=[(-1, 680), (5560, 6240)]),
-    'west-step': undulate(S['west-step']['top'], 1.7, 0.8),
+    'west-step': undulate([[480, 4000], [600, 3930]] + S['west-step']['top'][2:], 1.7, 0.8),
     'west-ledge': undulate(S['west-ledge']['top'], 2.9),
     'ridge-court': undulate(S['ridge-court']['top'], 4.1),
     'east-overhang': undulate(S['east-overhang']['top'], 5.3),
@@ -189,6 +189,11 @@ LOWER = {
     'return-ramp': [(5190, 3510), (5300, 3524), (5432, 3536, 'c'), (5450, 3700), (5420, 3860), (5370, 4000, 'c'), (5300, 4170), (4500, 4170, 'c'), (4504, 4110)],
 }
 
+import sys as _sys
+_sys.path.insert(0, str(ROOT / 'tools/act4-claude'))
+from painter import fix_solid
+TOPS['shore'], _ = fix_solid(TOPS['shore'], [(7000, 4700), (0, 4700)])
+
 def outline(sid):
     top = TOPS[sid]
     lower = LOWER[sid]
@@ -197,9 +202,10 @@ def outline(sid):
     # Smooth the lower outline from the top's last point to the first.
     chain = [top[-1]] + pts + [top[0]]
     segs = catmull(chain, closed=False, tension=0.3, corners={0, len(chain) - 1} | corners)
-    lower_pts = sample(segs, 14)
-    poly = list(top) + lower_pts[1:-1]
-    return poly, segs
+    lower_pts = rdp(sample(segs, 14)[1:-1], 5.0)
+    top2, lower2 = fix_solid(top, lower_pts)
+    TOPS[sid] = top2
+    return list(top2) + lower2, segs
 
 SHAPES = {}
 for sid in ['west-ledge', 'west-step', 'ridge-court', 'east-overhang', 'return-ramp']:
@@ -223,8 +229,8 @@ for s in v6['surfaces']:
     if s['id'] in LOWER:
         poly, _ = outline(s['id'])
         n_top = len(TOPS[s['id']])
-        lower = poly[n_top:]
-        s['bottom'] = [[round(x, 1), round(y, 1)] for x, y in rdp(lower, 6.0)]
+        s['top'] = [list(p) for p in TOPS[s['id']]]
+        s['bottom'] = [[round(x, 1), round(y, 1)] for x, y in poly[n_top:]]
         s['artOutline'] = 'art/act4-stage31-claude-v1 (identical authored outline)'
 v6['version'] = 6
 v6['status'] = 'v6 Claude art-matched collision draft; physics re-probe required; not art/combat accepted'

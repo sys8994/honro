@@ -95,6 +95,33 @@ def interp(poly, x):
     return poly[-1][1]
 
 
+def fix_traps(ring, walk_slope=1.25):
+    """Engine rule (found in 31 playtests): an upward-facing face steeper than
+    walkable but not vertical holds a falling body in a land/fall loop (not
+    grounded, cannot jump). Replace each such edge with a vertical wall plus a
+    walkable apron so bodies either slide off a wall or stand on a slope."""
+    poly = Polygon(ring)
+    out = [ring[0]]
+    for p0, p1 in zip(ring, ring[1:] + ring[:1]):
+        dx, dy = p1[0] - p0[0], p1[1] - p0[1]
+        L = math.hypot(dx, dy)
+        if L > 1 and abs(dx) > 0.5 and abs(dy) > walk_slope * abs(dx):
+            nx, ny = dy / L, -dx / L
+            mx, my = (p0[0] + p1[0]) / 2, (p0[1] + p1[1]) / 2
+            if poly.contains(Point(mx + nx * 3, my + ny * 3)):
+                nx, ny = -nx, -ny
+            if ny < -0.02:   # upward-facing steep face
+                hi, lo = (p0, p1) if p0[1] < p1[1] else (p1, p0)
+                out.append((hi[0], lo[1] - abs(dx) * 0.9))
+        out.append(p1)
+    return out[:-1]
+
+def fix_solid(walk, lower):
+    """Apply fix_traps to a solid and split it back into walk line + outline."""
+    ring = fix_traps(list(walk) + list(lower))
+    k = max(i for i, p in enumerate(ring) if p == walk[-1])
+    return ring[:k + 1], ring[k + 1:]
+
 class Painter:
     def __init__(self, stage, width, height, seed=1):
         self.n, self.W, self.H = stage, width, height
@@ -125,11 +152,12 @@ class Painter:
         chain = [walk[-1]] + [tuple(p[:2]) for p in lower] + [walk[0]]
         segs = catmull(chain, 0.3, {0, len(chain) - 1} | corners)
         art_lower = sample(segs, 16)[1:-1]
+        walk, art_lower = fix_solid(walk, rdp(art_lower, 5.0))
         poly = Polygon(list(walk) + art_lower).buffer(0)
         if extend:  # zoom-out continuation beyond play bounds (art only; domain extends collision)
             polys = extend if isinstance(extend[0][0], (list, tuple)) else [extend]
             poly = unary_union([poly] + [Polygon(e) for e in polys]).buffer(0)
-        self.solids[sid] = dict(id=sid, walk=walk, lower=rdp(art_lower, 6.0), poly=poly, kind=kind, role=role, band=band)
+        self.solids[sid] = dict(id=sid, walk=walk, lower=art_lower, poly=poly, kind=kind, role=role, band=band)
 
     def deck(self, sid, top, kind='plank', role='', sockets=()):
         self.decks[sid] = dict(id=sid, top=rdp([tuple(p) for p in top], 0.5), kind=kind, role=role, sockets=sockets)
@@ -315,7 +343,8 @@ class Painter:
             # brace to the nearest rock face within reach
             best = None
             for s in self.solids.values():
-                p, q = s['poly'].exterior.interpolate(s['poly'].exterior.project(Point(x, y + 200))), None
+                g = max(getattr(s['poly'], 'geoms', [s['poly']]), key=lambda q: q.area)
+                p = g.exterior.interpolate(g.exterior.project(Point(x, y + 200)))
                 dist = math.dist((p.x, p.y), (x, y))
                 if p.y > y and dist < 520 and (best is None or dist < best[0]):
                     best = (dist, p.x, p.y)
