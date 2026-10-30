@@ -1,0 +1,3723 @@
+- banner:
+  - generic: 魂
+  - strong: HONRO WORKSHOP
+  - text: HONRO · Stage 1–10
+  - navigation:
+    - button "ELEMENTS"
+    - button "STAGE"
+    - button "PLAYTEST"
+    - button "제작 계약"
+  - checkbox "Overlay" [checked]
+  - text: Overlay
+  - checkbox "Bounds"
+  - text: Bounds
+  - button "↶" [disabled]
+  - button "↷" [disabled]
+  - button "+ Stage"
+  - button "Import"
+  - button "Export"
+- main:
+  - complementary:
+    - generic: STAGES
+    - button "복제"
+    - button "연목 고갯길 5400×2200":
+      - text: 연목 고갯길
+      - text: 5400×2200
+    - button "상여 위의 높은 길 4300×3300":
+      - text: 상여 위의 높은 길
+      - text: 4300×3300
+    - button "나루의 남은 장부 6500×3100":
+      - text: 나루의 남은 장부
+      - text: 6500×3100
+    - button "문 밖에 남은 사람들 4600×3500":
+      - text: 문 밖에 남은 사람들
+      - text: 4600×3500
+    - button "폭포 틈의 한 발 6400×4300":
+      - text: 폭포 틈의 한 발
+      - text: 6400×4300
+    - button "끊어진 나무다리 6600×3800":
+      - text: 끊어진 나무다리
+      - text: 6600×3800
+    - button "살아 있는 사람을 꺼내는 법 3600×5000":
+      - text: 살아 있는 사람을 꺼내는 법
+      - text: 3600×5000
+    - button "돌아오는 빈 상여 9600×5500":
+      - text: 돌아오는 빈 상여
+      - text: 9600×5500
+    - button "바람 없는 마당 3600×3500":
+      - text: 바람 없는 마당
+      - text: 3600×3500
+    - button "소단 — 놓지 못한 밤 5000×3900":
+      - text: 소단 — 놓지 못한 밤
+      - text: 5000×3900
+    - button "매듭을 거둔 아침 16000×12000":
+      - text: 매듭을 거둔 아침
+      - text: 16000×12000
+    - button "돌아오는 산길 11200×8000":
+      - text: 돌아오는 산길
+      - text: 11200×8000
+    - button "숨은 석문 8200×6600":
+      - text: 숨은 석문
+      - text: 8200×6600
+    - button "해가 닿지 않는 마을 7600×10400":
+      - text: 해가 닿지 않는 마을
+      - text: 7600×10400
+    - button "물 아래의 길 8000×6000":
+      - text: 물 아래의 길
+      - text: 8000×6000
+    - button "잠운사 11000×7600":
+      - text: 잠운사
+      - text: 11000×7600
+    - button "두드리는 벽 11200×8200":
+      - text: 두드리는 벽
+      - text: 11200×8200
+    - button "묵종 13600×9600":
+      - text: 묵종
+      - text: 13600×9600
+    - button "종 안의 사람들 13600×9600":
+      - text: 종 안의 사람들
+      - text: 13600×9600
+    - button "다시 하늘 아래 9000×5800":
+      - text: 다시 하늘 아래
+      - text: 9000×5800
+    - button "성문 아래 6400×3200":
+      - text: 성문 아래
+      - text: 6400×3200
+    - button "옛 장부 4800×6600":
+      - text: 옛 장부
+      - text: 4800×6600
+    - button "사라진 짐 9800×6200":
+      - text: 사라진 짐
+      - text: 9800×6200
+    - button "휘겸의 문장 7000×3300":
+      - text: 휘겸의 문장
+      - text: 7000×3300
+    - button "물 아래 묶인 이름 5600×6800":
+      - text: 물 아래 묶인 이름
+      - text: 5600×6800
+    - button "지상에 남은 증언 7000×3300":
+      - text: 지상에 남은 증언
+      - text: 7000×3300
+    - button "검은 집하장 8200×7200":
+      - text: 검은 집하장
+      - text: 8200×7200
+    - button "지운 이름과 남은 명령 7200×3400":
+      - text: 지운 이름과 남은 명령
+      - text: 7200×3400
+    - button "현묵의 글 7200×3500":
+      - text: 현묵의 글
+      - text: 7200×3500
+    - button "남겨진 길 11200×7200":
+      - text: 남겨진 길
+      - text: 11200×7200
+    - button "31 · 강 끝의 갈대 7200×3100":
+      - text: 31 · 강 끝의 갈대
+      - text: 7200×3100
+    - button "32 · 빈 포구 6600×3200":
+      - text: 32 · 빈 포구
+      - text: 6600×3200
+    - button "33 · 물 빠진 갯길 7600×3400":
+      - text: 33 · 물 빠진 갯길
+      - text: 7600×3400
+    - button "34 · 파도에 깎인 절벽 7600×6200":
+      - text: 34 · 파도에 깎인 절벽
+      - text: 7600×6200
+    - button "35 · 대숲의 옛길 7200×3100":
+      - text: 35 · 대숲의 옛길
+      - text: 7200×3100
+    - button "36 · 쇠가 없는 마을 7200×3100":
+      - text: 36 · 쇠가 없는 마을
+      - text: 7200×3100
+    - button "37 · 곶의 뒤편 7800×4300":
+      - text: 37 · 곶의 뒤편
+      - text: 7800×4300
+    - button "38 · 어긋난 해식굴 7200×4400":
+      - text: 38 · 어긋난 해식굴
+      - text: 7200×4400
+    - button "39 · 돌아오는 물 9000×4600":
+      - text: 39 · 돌아오는 물
+      - text: 9000×4600
+    - button "40 · 돌아가는 배 6200×3200":
+      - text: 40 · 돌아가는 배
+      - text: 6200×3200
+    - generic: PLACE SETTINGS
+    - generic: "클릭 선택 · 드래그 이동 · Terrain/solid node 직접 편집 · Ctrl+드래그: Grid snap"
+    - generic: Depth
+    - combobox:
+      - option "L1" [selected]
+      - option "L2"
+      - option "L3"
+      - option "L4"
+    - paragraph: 전장 지면에 배치 · WORLD
+    - generic: ASSET LIBRARY
+    - button "편집"
+    - button "전체"
+    - button "native"
+    - button "rock"
+    - button "tree"
+    - button "branch"
+    - button "vegetation"
+    - button "architecture"
+    - button "prop"
+    - button "environment"
+    - button "작은 바위 rock COL":
+      - generic: 작은 바위
+      - generic: rock
+      - generic: COL
+    - button "큰 바위 rock COL":
+      - generic: 큰 바위
+      - generic: rock
+      - generic: COL
+    - button "평평한 암반 rock COL":
+      - generic: 평평한 암반
+      - generic: rock
+      - generic: COL
+    - button "거대 소나무 tree":
+      - generic: 거대 소나무
+      - generic: tree
+    - button "고사목 tree":
+      - generic: 고사목
+      - generic: tree
+    - button "굵은 나뭇가지 branch COL":
+      - generic: 굵은 나뭇가지
+      - generic: branch
+      - generic: COL
+    - button "풀 군락 vegetation":
+      - generic: 풀 군락
+      - generic: vegetation
+    - button "고사리 군락 vegetation":
+      - generic: 고사리 군락
+      - generic: vegetation
+    - button "갈대 vegetation":
+      - generic: 갈대
+      - generic: vegetation
+    - button "사당 문 architecture":
+      - generic: 사당 문
+      - generic: architecture
+    - button "초가/오두막 architecture":
+      - generic: 초가/오두막
+      - generic: architecture
+    - button "창고 architecture":
+      - generic: 창고
+      - generic: architecture
+    - button "수레 prop":
+      - generic: 수레
+      - generic: prop
+    - button "등불 prop":
+      - generic: 등불
+      - generic: prop
+    - button "장승/비석 prop":
+      - generic: 장승/비석
+      - generic: prop
+    - button "먹빛 산등성이 environment":
+      - generic: 먹빛 산등성이
+      - generic: environment
+    - button "절벽 암면 environment":
+      - generic: 절벽 암면
+      - generic: environment
+    - button "밤구름 environment":
+      - generic: 밤구름
+      - generic: environment
+    - button "ancientPine native":
+      - generic: ancientPine
+      - generic: native
+    - button "scree native":
+      - generic: scree
+      - generic: native
+    - button "fernPatch native":
+      - generic: fernPatch
+      - generic: native
+    - button "rockPile native":
+      - generic: rockPile
+      - generic: native
+    - button "giantPine native":
+      - generic: giantPine
+      - generic: native
+    - button "fallenTree native":
+      - generic: fallenTree
+      - generic: native
+    - button "spiritKnot native":
+      - generic: spiritKnot
+      - generic: native
+    - button "oldGate native":
+      - generic: oldGate
+      - generic: native
+    - button "ravinePine native":
+      - generic: ravinePine
+      - generic: native
+    - button "funeralGate native":
+      - generic: funeralGate
+      - generic: native
+    - button "reedBank native":
+      - generic: reedBank
+      - generic: native
+    - button "ferry native":
+      - generic: ferry
+      - generic: native
+    - button "brokenDock native":
+      - generic: brokenDock
+      - generic: native
+    - button "waterShrine native":
+      - generic: waterShrine
+      - generic: native
+    - button "cargoScaffold native":
+      - generic: cargoScaffold
+      - generic: native
+    - button "warehouse native":
+      - generic: warehouse
+      - generic: native
+    - button "oldHall native":
+      - generic: oldHall
+      - generic: native
+    - button "refugeeCarts native":
+      - generic: refugeeCarts
+      - generic: native
+    - button "villageWall native":
+      - generic: villageWall
+      - generic: native
+    - button "cliffFace native":
+      - generic: cliffFace
+      - generic: native
+    - button "burnedHouses native":
+      - generic: burnedHouses
+      - generic: native
+    - button "watchtower native":
+      - generic: watchtower
+      - generic: native
+    - button "waterfall native":
+      - generic: waterfall
+      - generic: native
+    - button "receiverStone native":
+      - generic: receiverStone
+      - generic: native
+    - button "cliffShrine native":
+      - generic: cliffShrine
+      - generic: native
+    - button "deadPines native":
+      - generic: deadPines
+      - generic: native
+    - button "brokenBridge native":
+      - generic: brokenBridge
+      - generic: native
+    - button "bridgePillar native":
+      - generic: bridgePillar
+      - generic: native
+    - button "bell native":
+      - generic: bell
+      - generic: native
+    - button "greatTree native":
+      - generic: greatTree
+      - generic: native
+    - button "rootHut native":
+      - generic: rootHut
+      - generic: native
+    - button "hollowRoot native":
+      - generic: hollowRoot
+      - generic: native
+    - button "rootShrine native":
+      - generic: rootShrine
+      - generic: native
+    - button "gravePosts native":
+      - generic: gravePosts
+      - generic: native
+    - button "bierRest native":
+      - generic: bierRest
+      - generic: native
+    - button "incenseYard native":
+      - generic: incenseYard
+      - generic: native
+    - button "royalGate native":
+      - generic: royalGate
+      - generic: native
+    - button "ritualDais native":
+      - generic: ritualDais
+      - generic: native
+    - button "upperShrine native":
+      - generic: upperShrine
+      - generic: native
+    - button "능선 숲 덩어리 environment":
+      - generic: 능선 숲 덩어리
+      - generic: environment
+    - button "능선 화강암 environment":
+      - generic: 능선 화강암
+      - generic: environment
+    - button "먼 산신당 environment":
+      - generic: 먼 산신당
+      - generic: environment
+    - button "절벽 물줄기 environment":
+      - generic: 절벽 물줄기
+      - generic: environment
+    - button "화강암 · mockup-granite-large rock COL":
+      - generic: 화강암 · mockup-granite-large
+      - generic: rock
+      - generic: COL
+    - button "화강암 · mockup-granite-small rock COL":
+      - generic: 화강암 · mockup-granite-small
+      - generic: rock
+      - generic: COL
+    - button "화강암 · mockup-granite-shelf rock COL":
+      - generic: 화강암 · mockup-granite-shelf
+      - generic: rock
+      - generic: COL
+    - button "산지 구조·흔적 native":
+      - generic: 산지 구조·흔적
+      - generic: native
+    - button "암반 위 돌집 architecture":
+      - generic: 암반 위 돌집
+      - generic: architecture
+    - button "암벽에 기댄 살림집 architecture":
+      - generic: 암벽에 기댄 살림집
+      - generic: architecture
+    - button "무너진 지붕의 옛 돌집 architecture":
+      - generic: 무너진 지붕의 옛 돌집
+      - generic: architecture
+    - button "잠운사 암벽 법당 architecture":
+      - generic: 잠운사 암벽 법당
+      - generic: architecture
+    - button "묵종 · 보존해야 할 대종 prop":
+      - generic: 묵종 · 보존해야 할 대종
+      - generic: prop
+    - button "멈춘 인양틀 architecture":
+      - generic: 멈춘 인양틀
+      - generic: architecture
+    - button "동굴 등잔 prop":
+      - generic: 동굴 등잔
+      - generic: prop
+    - button "임시 그릇과 천도진 prop":
+      - generic: 임시 그릇과 천도진
+      - generic: prop
+    - button "채석장의 목재 받침과 밧줄 prop":
+      - generic: 채석장의 목재 받침과 밧줄
+      - generic: prop
+    - button "끊긴 수레 궤도와 침목 prop":
+      - generic: 끊긴 수레 궤도와 침목
+      - generic: prop
+    - button "암수로와 나무 물통 prop":
+      - generic: 암수로와 나무 물통
+      - generic: prop
+    - button "이름을 적은 위패와 제물 prop":
+      - generic: 이름을 적은 위패와 제물
+      - generic: prop
+    - button "피난민의 보따리와 짚신 prop":
+      - generic: 피난민의 보따리와 짚신
+      - generic: prop
+    - button "공동의 침식 암주 prop":
+      - generic: 공동의 침식 암주
+      - generic: prop
+    - button "매듭을 남긴 빨랫줄 prop":
+      - generic: 매듭을 남긴 빨랫줄
+      - generic: prop
+    - button "승려의 기록상과 펼친 장부 prop":
+      - generic: 승려의 기록상과 펼친 장부
+      - generic: prop
+    - button "오래된 혼의 암석 표식 prop":
+      - generic: 오래된 혼의 암석 표식
+      - generic: prop
+    - button "암반 가장자리의 돌무더기 rock":
+      - generic: 암반 가장자리의 돌무더기
+      - generic: rock
+    - button "비대칭 먹빛 소나무 tree":
+      - generic: 비대칭 먹빛 소나무
+      - generic: tree
+    - button "돌 수문 architecture":
+      - generic: 돌 수문
+      - generic: architecture
+    - button "마을의 툇마루 집 architecture":
+      - generic: 마을의 툇마루 집
+      - generic: architecture
+    - button "생활 장터 차양 architecture":
+      - generic: 생활 장터 차양
+      - generic: architecture
+    - button "기록실과 짧은 측면 회랑 architecture":
+      - generic: 기록실과 짧은 측면 회랑
+      - generic: architecture
+    - button "내려앉은 산 아래 석문 architecture":
+      - generic: 내려앉은 산 아래 석문
+      - generic: architecture
+    - button "석재와 공구 작업막 architecture":
+      - generic: 석재와 공구 작업막
+      - generic: architecture
+    - button "마을 뒤편의 이어진 계단과 회랑 architecture":
+      - generic: 마을 뒤편의 이어진 계단과 회랑
+      - generic: architecture
+    - button "윗집을 잇는 뒤편 돌계단 architecture":
+      - generic: 윗집을 잇는 뒤편 돌계단
+      - generic: architecture
+    - button "기와 담장과 앞마당 architecture":
+      - generic: 기와 담장과 앞마당
+      - generic: architecture
+    - button "고갯길의 비대칭 솔숲 tree":
+      - generic: 고갯길의 비대칭 솔숲
+      - generic: tree
+    - button "붉은 실이 남은 당산 숲 tree":
+      - generic: 붉은 실이 남은 당산 숲
+      - generic: tree
+    - button "넓은 명암면의 계곡 화강암 rock":
+      - generic: 넓은 명암면의 계곡 화강암
+      - generic: rock
+    - button "연목 나루 움막과 작업 처마 architecture":
+      - generic: 연목 나루 움막과 작업 처마
+      - generic: architecture
+    - button "피란문과 이어진 마을 담장 architecture":
+      - generic: 피란문과 이어진 마을 담장
+      - generic: architecture
+    - button "사람을 기다리는 피란 쉼터 architecture":
+      - generic: 사람을 기다리는 피란 쉼터
+      - generic: architecture
+    - button "끊어진 다리의 목조 교대 architecture":
+      - generic: 끊어진 다리의 목조 교대
+      - generic: architecture
+    - button "무너진 제례문과 빈 회랑 architecture":
+      - generic: 무너진 제례문과 빈 회랑
+      - generic: architecture
+    - button "세 쉼터를 품은 거대한 당산나무 tree":
+      - generic: 세 쉼터를 품은 거대한 당산나무
+      - generic: tree
+    - button "받이진 뒤의 열린 제당 architecture":
+      - generic: 받이진 뒤의 열린 제당
+      - generic: architecture
+    - button "경사지에 접지된 당산나무 tree":
+      - generic: 경사지에 접지된 당산나무
+      - generic: tree
+    - button "경사지에 접지된 한 그루 소나무 tree":
+      - generic: 경사지에 접지된 한 그루 소나무
+      - generic: tree
+    - button "하역 경사로 architecture COL":
+      - generic: 하역 경사로
+      - generic: architecture
+      - generic: COL
+    - button "돌다리·성벽길 architecture COL":
+      - generic: 돌다리·성벽길
+      - generic: architecture
+      - generic: COL
+    - button "다리 / 회랑 architecture COL":
+      - generic: 다리 / 회랑
+      - generic: architecture
+      - generic: COL
+    - button "다리 / 회랑 architecture COL":
+      - generic: 다리 / 회랑
+      - generic: architecture
+      - generic: COL
+    - button "다리 / 회랑 architecture":
+      - generic: 다리 / 회랑
+      - generic: architecture
+    - button "다리 / 회랑 architecture COL":
+      - generic: 다리 / 회랑
+      - generic: architecture
+      - generic: COL
+    - button "다리 / 회랑 architecture COL":
+      - generic: 다리 / 회랑
+      - generic: architecture
+      - generic: COL
+    - button "다리 / 회랑 architecture COL":
+      - generic: 다리 / 회랑
+      - generic: architecture
+      - generic: COL
+    - button "다리 / 회랑 architecture":
+      - generic: 다리 / 회랑
+      - generic: architecture
+    - button "다리 / 회랑 architecture COL":
+      - generic: 다리 / 회랑
+      - generic: architecture
+      - generic: COL
+    - button "뒤벽 서가 architecture":
+      - generic: 뒤벽 서가
+      - generic: architecture
+    - button "뒤벽 서가 architecture":
+      - generic: 뒤벽 서가
+      - generic: architecture
+    - button "뒤벽 서가 architecture":
+      - generic: 뒤벽 서가
+      - generic: architecture
+    - button "뒤벽 서가 architecture":
+      - generic: 뒤벽 서가
+      - generic: architecture
+    - button "뒤벽 서가 architecture":
+      - generic: 뒤벽 서가
+      - generic: architecture
+    - button "뒤벽 서가 architecture":
+      - generic: 뒤벽 서가
+      - generic: architecture
+    - button "뒤벽 서가 architecture":
+      - generic: 뒤벽 서가
+      - generic: architecture
+    - button "뒤벽 서가 architecture":
+      - generic: 뒤벽 서가
+      - generic: architecture
+    - button "뒤벽 서가 architecture":
+      - generic: 뒤벽 서가
+      - generic: architecture
+    - button "뒤벽 서가 architecture":
+      - generic: 뒤벽 서가
+      - generic: architecture
+    - button "종이묶음 장부서가 architecture":
+      - generic: 종이묶음 장부서가
+      - generic: architecture
+    - button "아트리움 현판 architecture":
+      - generic: 아트리움 현판
+      - generic: architecture
+    - button "계단과 층바닥의 연속 단면 architecture COL":
+      - generic: 계단과 층바닥의 연속 단면
+      - generic: architecture
+      - generic: COL
+    - button "계단과 층바닥의 연속 단면 architecture COL":
+      - generic: 계단과 층바닥의 연속 단면
+      - generic: architecture
+      - generic: COL
+    - button "회랑·누마루 architecture COL":
+      - generic: 회랑·누마루
+      - generic: architecture
+      - generic: COL
+    - button "상층 회랑 뒤기둥 architecture":
+      - generic: 상층 회랑 뒤기둥
+      - generic: architecture
+    - button "입구 묶음서가와 빛 architecture":
+      - generic: 입구 묶음서가와 빛
+      - generic: architecture
+    - button "마을의 이어진 흙바닥 architecture":
+      - generic: 마을의 이어진 흙바닥
+      - generic: architecture
+    - button "낮은 민가 architecture":
+      - generic: 낮은 민가
+      - generic: architecture
+    - button "골목의 낮은 돌담과 대문 architecture":
+      - generic: 골목의 낮은 돌담과 대문
+      - generic: architecture
+    - button "낮은 민가 architecture":
+      - generic: 낮은 민가
+      - generic: architecture
+    - button "장터 가게 architecture":
+      - generic: 장터 가게
+      - generic: architecture
+    - button "골목의 낮은 돌담과 대문 architecture":
+      - generic: 골목의 낮은 돌담과 대문
+      - generic: architecture
+    - button "낮은 민가 architecture":
+      - generic: 낮은 민가
+      - generic: architecture
+    - button "골목의 낮은 돌담과 대문 architecture":
+      - generic: 골목의 낮은 돌담과 대문
+      - generic: architecture
+    - button "널문 창고 architecture":
+      - generic: 널문 창고
+      - generic: architecture
+    - button "낮은 민가 architecture":
+      - generic: 낮은 민가
+      - generic: architecture
+    - button "골목의 낮은 돌담과 대문 architecture":
+      - generic: 골목의 낮은 돌담과 대문
+      - generic: architecture
+    - button "관아 대청 architecture":
+      - generic: 관아 대청
+      - generic: architecture
+    - button "골목의 낮은 돌담과 대문 architecture":
+      - generic: 골목의 낮은 돌담과 대문
+      - generic: architecture
+    - button "낮은 민가 architecture":
+      - generic: 낮은 민가
+      - generic: architecture
+    - button "낮은 민가 architecture":
+      - generic: 낮은 민가
+      - generic: architecture
+    - button "골목의 낮은 돌담과 대문 architecture":
+      - generic: 골목의 낮은 돌담과 대문
+      - generic: architecture
+    - button "장터 가게 architecture":
+      - generic: 장터 가게
+      - generic: architecture
+    - button "골목의 낮은 돌담과 대문 architecture":
+      - generic: 골목의 낮은 돌담과 대문
+      - generic: architecture
+    - button "낮은 민가 architecture":
+      - generic: 낮은 민가
+      - generic: architecture
+    - button "널문 창고 architecture":
+      - generic: 널문 창고
+      - generic: architecture
+    - button "골목의 낮은 돌담과 대문 architecture":
+      - generic: 골목의 낮은 돌담과 대문
+      - generic: architecture
+    - button "낮은 민가 architecture":
+      - generic: 낮은 민가
+      - generic: architecture
+    - button "골목의 낮은 돌담과 대문 architecture":
+      - generic: 골목의 낮은 돌담과 대문
+      - generic: architecture
+    - button "관아 대청 architecture":
+      - generic: 관아 대청
+      - generic: architecture
+    - button "낮은 민가 architecture":
+      - generic: 낮은 민가
+      - generic: architecture
+    - button "골목의 낮은 돌담과 대문 architecture":
+      - generic: 골목의 낮은 돌담과 대문
+      - generic: architecture
+    - button "낮은 민가 architecture":
+      - generic: 낮은 민가
+      - generic: architecture
+    - button "골목의 낮은 돌담과 대문 architecture":
+      - generic: 골목의 낮은 돌담과 대문
+      - generic: architecture
+    - button "마을의 이어진 흙바닥 architecture":
+      - generic: 마을의 이어진 흙바닥
+      - generic: architecture
+    - button "낮은 민가 architecture":
+      - generic: 낮은 민가
+      - generic: architecture
+    - button "골목의 낮은 돌담과 대문 architecture":
+      - generic: 골목의 낮은 돌담과 대문
+      - generic: architecture
+    - button "낮은 민가 architecture":
+      - generic: 낮은 민가
+      - generic: architecture
+    - button "장터 가게 architecture":
+      - generic: 장터 가게
+      - generic: architecture
+    - button "골목의 낮은 돌담과 대문 architecture":
+      - generic: 골목의 낮은 돌담과 대문
+      - generic: architecture
+    - button "낮은 민가 architecture":
+      - generic: 낮은 민가
+      - generic: architecture
+    - button "골목의 낮은 돌담과 대문 architecture":
+      - generic: 골목의 낮은 돌담과 대문
+      - generic: architecture
+    - button "널문 창고 architecture":
+      - generic: 널문 창고
+      - generic: architecture
+    - button "낮은 민가 architecture":
+      - generic: 낮은 민가
+      - generic: architecture
+    - button "골목의 낮은 돌담과 대문 architecture":
+      - generic: 골목의 낮은 돌담과 대문
+      - generic: architecture
+    - button "관아 대청 architecture":
+      - generic: 관아 대청
+      - generic: architecture
+    - button "골목의 낮은 돌담과 대문 architecture":
+      - generic: 골목의 낮은 돌담과 대문
+      - generic: architecture
+    - button "낮은 민가 architecture":
+      - generic: 낮은 민가
+      - generic: architecture
+    - button "낮은 민가 architecture":
+      - generic: 낮은 민가
+      - generic: architecture
+    - button "골목의 낮은 돌담과 대문 architecture":
+      - generic: 골목의 낮은 돌담과 대문
+      - generic: architecture
+    - button "장터 가게 architecture":
+      - generic: 장터 가게
+      - generic: architecture
+    - button "골목의 낮은 돌담과 대문 architecture":
+      - generic: 골목의 낮은 돌담과 대문
+      - generic: architecture
+    - button "낮은 민가 architecture":
+      - generic: 낮은 민가
+      - generic: architecture
+    - button "널문 창고 architecture":
+      - generic: 널문 창고
+      - generic: architecture
+    - button "골목의 낮은 돌담과 대문 architecture":
+      - generic: 골목의 낮은 돌담과 대문
+      - generic: architecture
+    - button "낮은 민가 architecture":
+      - generic: 낮은 민가
+      - generic: architecture
+    - button "골목의 낮은 돌담과 대문 architecture":
+      - generic: 골목의 낮은 돌담과 대문
+      - generic: architecture
+    - button "장터 가게 architecture COL":
+      - generic: 장터 가게
+      - generic: architecture
+      - generic: COL
+    - button "장터 가게 architecture COL":
+      - generic: 장터 가게
+      - generic: architecture
+      - generic: COL
+    - button "관아 대청 architecture":
+      - generic: 관아 대청
+      - generic: architecture
+    - button "관아 대청 architecture":
+      - generic: 관아 대청
+      - generic: architecture
+    - button "장터 가게 architecture COL":
+      - generic: 장터 가게
+      - generic: architecture
+      - generic: COL
+    - button "널문 창고 architecture COL":
+      - generic: 널문 창고
+      - generic: architecture
+      - generic: COL
+    - button "관아 대청 architecture COL":
+      - generic: 관아 대청
+      - generic: architecture
+      - generic: COL
+    - button "낮은 민가 architecture COL":
+      - generic: 낮은 민가
+      - generic: architecture
+      - generic: COL
+    - button "읍성 석축과 단층 문루 architecture COL":
+      - generic: 읍성 석축과 단층 문루
+      - generic: architecture
+      - generic: COL
+    - button "석축에 붙은 성벽 오름길 architecture":
+      - generic: 석축에 붙은 성벽 오름길
+      - generic: architecture
+    - button "석계단 architecture COL":
+      - generic: 석계단
+      - generic: architecture
+      - generic: COL
+    - button "골목의 낮은 돌담과 대문 architecture":
+      - generic: 골목의 낮은 돌담과 대문
+      - generic: architecture
+    - button "골목의 낮은 돌담과 대문 architecture":
+      - generic: 골목의 낮은 돌담과 대문
+      - generic: architecture
+    - button "골목의 낮은 돌담과 대문 architecture":
+      - generic: 골목의 낮은 돌담과 대문
+      - generic: architecture
+    - button "판문과 작은 상부창을 둔 사고 뒤벽 architecture":
+      - generic: 판문과 작은 상부창을 둔 사고 뒤벽
+      - generic: architecture
+    - button "사고 익랑의 긴 맞배지붕 architecture COL":
+      - generic: 사고 익랑의 긴 맞배지붕
+      - generic: architecture
+      - generic: COL
+    - button "사고 익랑의 긴 맞배지붕 architecture COL":
+      - generic: 사고 익랑의 긴 맞배지붕
+      - generic: architecture
+      - generic: COL
+    - button "실제 보행 교면 architecture COL":
+      - generic: 실제 보행 교면
+      - generic: architecture
+      - generic: COL
+    - button "실제 보행 교면 architecture COL":
+      - generic: 실제 보행 교면
+      - generic: architecture
+      - generic: COL
+    - button "western-vault-wall architecture":
+      - generic: western-vault-wall
+      - generic: architecture
+    - button "eastern-vault-wall architecture":
+      - generic: eastern-vault-wall
+      - generic: architecture
+    - button "loading-bay-0 architecture":
+      - generic: loading-bay-0
+      - generic: architecture
+    - button "loading-bay-1 architecture":
+      - generic: loading-bay-1
+      - generic: architecture
+    - button "loading-bay-2 architecture":
+      - generic: loading-bay-2
+      - generic: architecture
+    - button "loading-bay-3 architecture":
+      - generic: loading-bay-3
+      - generic: architecture
+    - button "loading-bay-4 architecture":
+      - generic: loading-bay-4
+      - generic: architecture
+    - button "실제 보행 교면 architecture COL":
+      - generic: 실제 보행 교면
+      - generic: architecture
+      - generic: COL
+    - button "실제 보행 교면 architecture COL":
+      - generic: 실제 보행 교면
+      - generic: architecture
+      - generic: COL
+    - button "canal-bridge-bearing-piers architecture":
+      - generic: canal-bridge-bearing-piers
+      - generic: architecture
+    - button "west-masonry-water-arch architecture":
+      - generic: west-masonry-water-arch
+      - generic: architecture
+    - button "east-masonry-water-arch architecture":
+      - generic: east-masonry-water-arch
+      - generic: architecture
+    - button "sluice-arches-and-loading-ports architecture":
+      - generic: sluice-arches-and-loading-ports
+      - generic: architecture
+    - button "낮은 민가 architecture COL":
+      - generic: 낮은 민가
+      - generic: architecture
+      - generic: COL
+    - button "관아 대청 architecture COL":
+      - generic: 관아 대청
+      - generic: architecture
+      - generic: COL
+    - button "관아 대청 architecture COL":
+      - generic: 관아 대청
+      - generic: architecture
+      - generic: COL
+    - button "낮은 민가 architecture COL":
+      - generic: 낮은 민가
+      - generic: architecture
+      - generic: COL
+    - button "골목의 낮은 돌담과 대문 architecture":
+      - generic: 골목의 낮은 돌담과 대문
+      - generic: architecture
+    - button "골목의 낮은 돌담과 대문 architecture":
+      - generic: 골목의 낮은 돌담과 대문
+      - generic: architecture
+    - button "골목의 낮은 돌담과 대문 architecture":
+      - generic: 골목의 낮은 돌담과 대문
+      - generic: architecture
+    - button "low-west-stone-passage architecture":
+      - generic: low-west-stone-passage
+      - generic: architecture
+    - button "record-chamber-rear architecture":
+      - generic: record-chamber-rear
+      - generic: architecture
+    - button "low-east-stone-passage architecture":
+      - generic: low-east-stone-passage
+      - generic: architecture
+    - button "낮은 민가 architecture COL":
+      - generic: 낮은 민가
+      - generic: architecture
+      - generic: COL
+    - button "포갑과 목궤를 둔 서가 architecture":
+      - generic: 포갑과 목궤를 둔 서가
+      - generic: architecture
+    - button "포갑과 목궤를 둔 서가 architecture":
+      - generic: 포갑과 목궤를 둔 서가
+      - generic: architecture
+    - button "visible-earth-roots architecture":
+      - generic: visible-earth-roots
+      - generic: architecture
+    - button "record-room-oil-lamps architecture":
+      - generic: record-room-oil-lamps
+      - generic: architecture
+    - button "record-chamber-retaining-masonry architecture":
+      - generic: record-chamber-retaining-masonry
+      - generic: architecture
+    - button "널문 창고 architecture COL":
+      - generic: 널문 창고
+      - generic: architecture
+      - generic: COL
+    - button "단층 수문 누각 architecture COL":
+      - generic: 단층 수문 누각
+      - generic: architecture
+      - generic: COL
+    - button "blockade-road-embankments architecture":
+      - generic: blockade-road-embankments
+      - generic: architecture
+    - button "실제 보행 교면 architecture COL":
+      - generic: 실제 보행 교면
+      - generic: architecture
+      - generic: COL
+    - button "sealed-understore-rear architecture":
+      - generic: sealed-understore-rear
+      - generic: architecture
+    - button "포갑과 목궤를 둔 서가 architecture":
+      - generic: 포갑과 목궤를 둔 서가
+      - generic: architecture
+    - button "단층 수문 누각 architecture COL":
+      - generic: 단층 수문 누각
+      - generic: architecture
+      - generic: COL
+    - button "실제 보행 교면 architecture COL":
+      - generic: 실제 보행 교면
+      - generic: architecture
+      - generic: COL
+    - button "real-sluice-rear-piers architecture":
+      - generic: real-sluice-rear-piers
+      - generic: architecture
+    - button "실제 보행 교면 architecture COL":
+      - generic: 실제 보행 교면
+      - generic: architecture
+      - generic: COL
+    - button "낮은 민가 architecture":
+      - generic: 낮은 민가
+      - generic: architecture
+    - button "관아 대청 architecture":
+      - generic: 관아 대청
+      - generic: architecture
+    - button "낮은 민가 architecture":
+      - generic: 낮은 민가
+      - generic: architecture
+    - button "널문 창고 architecture":
+      - generic: 널문 창고
+      - generic: architecture
+    - button "수변 창고와 열린 하역 정자 architecture COL":
+      - generic: 수변 창고와 열린 하역 정자
+      - generic: architecture
+      - generic: COL
+    - button "낮은 민가 architecture COL":
+      - generic: 낮은 민가
+      - generic: architecture
+      - generic: COL
+    - button "moored-ferry-boats architecture":
+      - generic: moored-ferry-boats
+      - generic: architecture
+    - button "weathered-ground-washes rock":
+      - generic: weathered-ground-washes
+      - generic: rock
+    - button "ground-vignette-0 rock":
+      - generic: ground-vignette-0
+      - generic: rock
+    - button "ground-vignette-1 rock":
+      - generic: ground-vignette-1
+      - generic: rock
+    - button "ground-vignette-2 rock":
+      - generic: ground-vignette-2
+      - generic: rock
+    - button "굽은 한국화 소나무 1 tree":
+      - generic: 굽은 한국화 소나무 1
+      - generic: tree
+    - button "굽은 한국화 소나무 2 tree":
+      - generic: 굽은 한국화 소나무 2
+      - generic: tree
+    - button "굽은 한국화 소나무 3 tree":
+      - generic: 굽은 한국화 소나무 3
+      - generic: tree
+    - button "weathered-ground-washes rock":
+      - generic: weathered-ground-washes
+      - generic: rock
+    - button "ground-vignette-0 rock":
+      - generic: ground-vignette-0
+      - generic: rock
+    - button "ground-vignette-1 rock":
+      - generic: ground-vignette-1
+      - generic: rock
+    - button "굽은 한국화 소나무 2 tree":
+      - generic: 굽은 한국화 소나무 2
+      - generic: tree
+    - button "굽은 한국화 소나무 3 tree":
+      - generic: 굽은 한국화 소나무 3
+      - generic: tree
+    - button "weathered-ground-washes rock":
+      - generic: weathered-ground-washes
+      - generic: rock
+    - button "ground-vignette-0 rock":
+      - generic: ground-vignette-0
+      - generic: rock
+    - button "ground-vignette-1 rock":
+      - generic: ground-vignette-1
+      - generic: rock
+    - button "ground-vignette-2 rock":
+      - generic: ground-vignette-2
+      - generic: rock
+    - button "ground-vignette-3 rock":
+      - generic: ground-vignette-3
+      - generic: rock
+    - button "weathered-ground-washes rock":
+      - generic: weathered-ground-washes
+      - generic: rock
+    - button "ground-vignette-0 rock":
+      - generic: ground-vignette-0
+      - generic: rock
+    - button "ground-vignette-1 rock":
+      - generic: ground-vignette-1
+      - generic: rock
+    - button "ground-vignette-2 rock":
+      - generic: ground-vignette-2
+      - generic: rock
+    - button "ground-vignette-3 rock":
+      - generic: ground-vignette-3
+      - generic: rock
+    - button "굽은 한국화 소나무 1 tree":
+      - generic: 굽은 한국화 소나무 1
+      - generic: tree
+    - button "굽은 한국화 소나무 2 tree":
+      - generic: 굽은 한국화 소나무 2
+      - generic: tree
+    - button "굽은 한국화 소나무 3 tree":
+      - generic: 굽은 한국화 소나무 3
+      - generic: tree
+    - button "굽은 한국화 소나무 1 tree":
+      - generic: 굽은 한국화 소나무 1
+      - generic: tree
+    - button "굽은 한국화 소나무 2 tree":
+      - generic: 굽은 한국화 소나무 2
+      - generic: tree
+    - button "broken-garden-boundary rock":
+      - generic: broken-garden-boundary
+      - generic: rock
+    - button "weathered-ground-washes rock":
+      - generic: weathered-ground-washes
+      - generic: rock
+    - button "ground-vignette-0 rock":
+      - generic: ground-vignette-0
+      - generic: rock
+    - button "ground-vignette-1 rock":
+      - generic: ground-vignette-1
+      - generic: rock
+    - button "ground-vignette-2 rock":
+      - generic: ground-vignette-2
+      - generic: rock
+    - button "ground-vignette-3 rock":
+      - generic: ground-vignette-3
+      - generic: rock
+    - button "굽은 한국화 소나무 2 tree":
+      - generic: 굽은 한국화 소나무 2
+      - generic: tree
+    - button "굽은 한국화 소나무 3 tree":
+      - generic: 굽은 한국화 소나무 3
+      - generic: tree
+    - button "굽은 한국화 소나무 1 tree":
+      - generic: 굽은 한국화 소나무 1
+      - generic: tree
+    - button "weathered-ground-washes rock":
+      - generic: weathered-ground-washes
+      - generic: rock
+    - button "ground-vignette-0 rock":
+      - generic: ground-vignette-0
+      - generic: rock
+    - button "ground-vignette-1 rock":
+      - generic: ground-vignette-1
+      - generic: rock
+    - button "ground-vignette-2 rock":
+      - generic: ground-vignette-2
+      - generic: rock
+    - button "ground-vignette-3 rock":
+      - generic: ground-vignette-3
+      - generic: rock
+    - button "ground-vignette-4 rock":
+      - generic: ground-vignette-4
+      - generic: rock
+    - button "굽은 한국화 소나무 2 tree":
+      - generic: 굽은 한국화 소나무 2
+      - generic: tree
+    - button "굽은 한국화 소나무 3 tree":
+      - generic: 굽은 한국화 소나무 3
+      - generic: tree
+    - button "굽은 한국화 소나무 1 tree":
+      - generic: 굽은 한국화 소나무 1
+      - generic: tree
+    - button "굽은 한국화 소나무 2 tree":
+      - generic: 굽은 한국화 소나무 2
+      - generic: tree
+    - button "굽은 한국화 소나무 3 tree":
+      - generic: 굽은 한국화 소나무 3
+      - generic: tree
+    - button "굽은 한국화 소나무 1 tree":
+      - generic: 굽은 한국화 소나무 1
+      - generic: tree
+    - button "굽은 한국화 소나무 2 tree":
+      - generic: 굽은 한국화 소나무 2
+      - generic: tree
+    - button "굽은 한국화 소나무 3 tree":
+      - generic: 굽은 한국화 소나무 3
+      - generic: tree
+    - button "broken-garden-boundary rock":
+      - generic: broken-garden-boundary
+      - generic: rock
+    - button "weathered-ground-washes rock":
+      - generic: weathered-ground-washes
+      - generic: rock
+    - button "ground-vignette-0 rock":
+      - generic: ground-vignette-0
+      - generic: rock
+    - button "ground-vignette-1 rock":
+      - generic: ground-vignette-1
+      - generic: rock
+    - button "ground-vignette-2 rock":
+      - generic: ground-vignette-2
+      - generic: rock
+    - button "ground-vignette-3 rock":
+      - generic: ground-vignette-3
+      - generic: rock
+    - button "굽은 한국화 소나무 3 tree":
+      - generic: 굽은 한국화 소나무 3
+      - generic: tree
+    - button "굽은 한국화 소나무 1 tree":
+      - generic: 굽은 한국화 소나무 1
+      - generic: tree
+    - button "굽은 한국화 소나무 2 tree":
+      - generic: 굽은 한국화 소나무 2
+      - generic: tree
+    - button "굽은 한국화 소나무 3 tree":
+      - generic: 굽은 한국화 소나무 3
+      - generic: tree
+    - button "weathered-ground-washes rock":
+      - generic: weathered-ground-washes
+      - generic: rock
+    - button "ground-vignette-0 rock":
+      - generic: ground-vignette-0
+      - generic: rock
+    - button "ground-vignette-1 rock":
+      - generic: ground-vignette-1
+      - generic: rock
+    - button "ground-vignette-2 rock":
+      - generic: ground-vignette-2
+      - generic: rock
+    - button "ground-vignette-3 rock":
+      - generic: ground-vignette-3
+      - generic: rock
+    - button "ground-vignette-4 rock":
+      - generic: ground-vignette-4
+      - generic: rock
+    - button "굽은 한국화 소나무 1 tree":
+      - generic: 굽은 한국화 소나무 1
+      - generic: tree
+    - button "굽은 한국화 소나무 2 tree":
+      - generic: 굽은 한국화 소나무 2
+      - generic: tree
+    - button "굽은 한국화 소나무 3 tree":
+      - generic: 굽은 한국화 소나무 3
+      - generic: tree
+    - button "굽은 한국화 소나무 1 tree":
+      - generic: 굽은 한국화 소나무 1
+      - generic: tree
+    - button "굽은 한국화 소나무 2 tree":
+      - generic: 굽은 한국화 소나무 2
+      - generic: tree
+    - button "언덕을 감싸는 거대한 당산나무 tree":
+      - generic: 언덕을 감싸는 거대한 당산나무
+      - generic: tree
+    - button "continuous-masonry-waterline architecture":
+      - generic: continuous-masonry-waterline
+      - generic: architecture
+    - button "small-tally-office architecture":
+      - generic: small-tally-office
+      - generic: architecture
+    - button "entry-lamp architecture":
+      - generic: entry-lamp
+      - generic: architecture
+    - button "stone-quay-0 architecture COL":
+      - generic: stone-quay-0
+      - generic: architecture
+      - generic: COL
+    - button "great-sealed-store architecture":
+      - generic: great-sealed-store
+      - generic: architecture
+    - button "final-seal-lamp architecture":
+      - generic: final-seal-lamp
+      - generic: architecture
+    - button "stone-quay-1 architecture COL":
+      - generic: stone-quay-1
+      - generic: architecture
+      - generic: COL
+    - button "broken-haulway-0 architecture":
+      - generic: broken-haulway-0
+      - generic: architecture
+    - button "family-bundle-17 architecture":
+      - generic: family-bundle-17
+      - generic: architecture
+    - button "family-bundle-18 architecture":
+      - generic: family-bundle-18
+      - generic: architecture
+    - button "실제 보행 교면 architecture COL":
+      - generic: 실제 보행 교면
+      - generic: architecture
+      - generic: COL
+    - button "한 겹의 먼 능선 architecture":
+      - generic: 한 겹의 먼 능선
+      - generic: architecture
+    - button "기와가 무너진 주조 공방과 흙가마 architecture COL":
+      - generic: 기와가 무너진 주조 공방과 흙가마
+      - generic: architecture
+      - generic: COL
+    - button "낮은 민가 architecture COL":
+      - generic: 낮은 민가
+      - generic: architecture
+      - generic: COL
+    - button "널문 창고 architecture COL":
+      - generic: 널문 창고
+      - generic: architecture
+      - generic: COL
+    - button "open-air-casting-tools architecture":
+      - generic: open-air-casting-tools
+      - generic: architecture
+    - button "실제 보행 교면 architecture COL":
+      - generic: 실제 보행 교면
+      - generic: architecture
+      - generic: COL
+    - button "drying-gallery-timber-supports architecture":
+      - generic: drying-gallery-timber-supports
+      - generic: architecture
+    - button "foundry-kiln-cooling-and-metal-zones architecture":
+      - generic: foundry-kiln-cooling-and-metal-zones
+      - generic: architecture
+    - button "weathered-ground-washes rock":
+      - generic: weathered-ground-washes
+      - generic: rock
+    - button "ground-vignette-0 rock":
+      - generic: ground-vignette-0
+      - generic: rock
+    - button "ground-vignette-1 rock":
+      - generic: ground-vignette-1
+      - generic: rock
+    - button "ground-vignette-2 rock":
+      - generic: ground-vignette-2
+      - generic: rock
+    - button "ground-vignette-3 rock":
+      - generic: ground-vignette-3
+      - generic: rock
+    - button "ground-vignette-4 rock":
+      - generic: ground-vignette-4
+      - generic: rock
+    - button "burnt-trunk-0 rock":
+      - generic: burnt-trunk-0
+      - generic: rock
+    - button "burnt-trunk-1 rock":
+      - generic: burnt-trunk-1
+      - generic: rock
+    - button "burnt-trunk-2 rock":
+      - generic: burnt-trunk-2
+      - generic: rock
+    - button "burnt-trunk-3 rock":
+      - generic: burnt-trunk-3
+      - generic: rock
+    - button "burial-record-room-rear architecture":
+      - generic: burial-record-room-rear
+      - generic: architecture
+    - button "포갑과 목궤를 둔 서가 architecture":
+      - generic: 포갑과 목궤를 둔 서가
+      - generic: architecture
+    - button "record-room-lamp architecture":
+      - generic: record-room-lamp
+      - generic: architecture
+    - button "continuous-masonry-waterline architecture":
+      - generic: continuous-masonry-waterline
+      - generic: architecture
+    - button "small-tally-office architecture":
+      - generic: small-tally-office
+      - generic: architecture
+    - button "entry-lamp architecture":
+      - generic: entry-lamp
+      - generic: architecture
+    - button "stone-quay-0 architecture COL":
+      - generic: stone-quay-0
+      - generic: architecture
+      - generic: COL
+    - button "abandoned-loading-shed architecture":
+      - generic: abandoned-loading-shed
+      - generic: architecture
+    - button "loading-oil-lamp architecture":
+      - generic: loading-oil-lamp
+      - generic: architecture
+    - button "stone-quay-1 architecture COL":
+      - generic: stone-quay-1
+      - generic: architecture
+      - generic: COL
+    - button "household-inspection-dais architecture":
+      - generic: household-inspection-dais
+      - generic: architecture
+    - button "inspection-lamp architecture":
+      - generic: inspection-lamp
+      - generic: architecture
+    - button "stone-quay-2 architecture COL":
+      - generic: stone-quay-2
+      - generic: architecture
+      - generic: COL
+    - button "great-sealed-store architecture":
+      - generic: great-sealed-store
+      - generic: architecture
+    - button "final-seal-lamp architecture":
+      - generic: final-seal-lamp
+      - generic: architecture
+    - button "stone-quay-3 architecture COL":
+      - generic: stone-quay-3
+      - generic: architecture
+      - generic: COL
+    - button "broken-haulway-0 architecture":
+      - generic: broken-haulway-0
+      - generic: architecture
+    - button "broken-haulway-1 architecture":
+      - generic: broken-haulway-1
+      - generic: architecture
+    - button "broken-haulway-2 architecture":
+      - generic: broken-haulway-2
+      - generic: architecture
+    - button "numbered-family-bundle architecture":
+      - generic: numbered-family-bundle
+      - generic: architecture
+    - button "sunk-family-tools architecture":
+      - generic: sunk-family-tools
+      - generic: architecture
+    - button "manifest-bundle architecture":
+      - generic: manifest-bundle
+      - generic: architecture
+    - button "한 겹의 먼 능선 architecture":
+      - generic: 한 겹의 먼 능선
+      - generic: architecture
+    - button "낮은 민가 architecture":
+      - generic: 낮은 민가
+      - generic: architecture
+    - button "관아 대청 architecture":
+      - generic: 관아 대청
+      - generic: architecture
+    - button "낮은 민가 architecture":
+      - generic: 낮은 민가
+      - generic: architecture
+    - button "널문 창고 architecture":
+      - generic: 널문 창고
+      - generic: architecture
+    - button "목판문 서고 architecture COL":
+      - generic: 목판문 서고
+      - generic: architecture
+      - generic: COL
+    - button "목판문 서고 architecture COL":
+      - generic: 목판문 서고
+      - generic: architecture
+      - generic: COL
+    - button "단층 수문 누각 architecture COL":
+      - generic: 단층 수문 누각
+      - generic: architecture
+      - generic: COL
+    - button "burnt-corridor-supports architecture":
+      - generic: burnt-corridor-supports
+      - generic: architecture
+    - button "charred-door-frames-and-archive-bays architecture":
+      - generic: charred-door-frames-and-archive-bays
+      - generic: architecture
+    - button "weathered-ground-washes rock":
+      - generic: weathered-ground-washes
+      - generic: rock
+    - button "ground-vignette-0 rock":
+      - generic: ground-vignette-0
+      - generic: rock
+    - button "ground-vignette-1 rock":
+      - generic: ground-vignette-1
+      - generic: rock
+    - button "ground-vignette-2 rock":
+      - generic: ground-vignette-2
+      - generic: rock
+    - button "ground-vignette-3 rock":
+      - generic: ground-vignette-3
+      - generic: rock
+    - button "burnt-trunk-0 rock":
+      - generic: burnt-trunk-0
+      - generic: rock
+    - button "burnt-trunk-1 rock":
+      - generic: burnt-trunk-1
+      - generic: rock
+    - button "burnt-trunk-2 rock":
+      - generic: burnt-trunk-2
+      - generic: rock
+    - button "포갑과 목궤를 둔 서가 architecture":
+      - generic: 포갑과 목궤를 둔 서가
+      - generic: architecture
+    - button "포갑과 목궤를 둔 서가 architecture":
+      - generic: 포갑과 목궤를 둔 서가
+      - generic: architecture
+    - button "골목의 낮은 돌담과 대문 architecture":
+      - generic: 골목의 낮은 돌담과 대문
+      - generic: architecture
+    - button "골목의 낮은 돌담과 대문 architecture":
+      - generic: 골목의 낮은 돌담과 대문
+      - generic: architecture
+    - button "골목의 낮은 돌담과 대문 architecture":
+      - generic: 골목의 낮은 돌담과 대문
+      - generic: architecture
+    - button "골목의 낮은 돌담과 대문 architecture":
+      - generic: 골목의 낮은 돌담과 대문
+      - generic: architecture
+    - button "널문 창고 architecture":
+      - generic: 널문 창고
+      - generic: architecture
+    - button "포갑과 목궤를 둔 서가 architecture":
+      - generic: 포갑과 목궤를 둔 서가
+      - generic: architecture
+    - button "포갑과 목궤를 둔 서가 architecture":
+      - generic: 포갑과 목궤를 둔 서가
+      - generic: architecture
+    - button "포갑과 목궤를 둔 서가 architecture":
+      - generic: 포갑과 목궤를 둔 서가
+      - generic: architecture
+    - button "court-charred-papers-and-beams architecture":
+      - generic: court-charred-papers-and-beams
+      - generic: architecture
+    - button "court-record-lamp architecture":
+      - generic: court-record-lamp
+      - generic: architecture
+    - button "널문 창고 architecture":
+      - generic: 널문 창고
+      - generic: architecture
+    - button "널문 창고 architecture":
+      - generic: 널문 창고
+      - generic: architecture
+    - button "널문 창고 architecture":
+      - generic: 널문 창고
+      - generic: architecture
+    - button "vertical-depot-shell architecture":
+      - generic: vertical-depot-shell
+      - generic: architecture
+    - button "masonry-vault architecture COL":
+      - generic: masonry-vault
+      - generic: architecture
+      - generic: COL
+    - button "gallery-0 architecture COL":
+      - generic: gallery-0
+      - generic: architecture
+      - generic: COL
+    - button "gallery-lamp-0 architecture":
+      - generic: gallery-lamp-0
+      - generic: architecture
+    - button "haul-number-0 architecture":
+      - generic: haul-number-0
+      - generic: architecture
+    - button "gallery-1 architecture COL":
+      - generic: gallery-1
+      - generic: architecture
+      - generic: COL
+    - button "gallery-lamp-1 architecture":
+      - generic: gallery-lamp-1
+      - generic: architecture
+    - button "haul-number-1 architecture":
+      - generic: haul-number-1
+      - generic: architecture
+    - button "gallery-2 architecture COL":
+      - generic: gallery-2
+      - generic: architecture
+      - generic: COL
+    - button "gallery-lamp-2 architecture":
+      - generic: gallery-lamp-2
+      - generic: architecture
+    - button "haul-number-2 architecture":
+      - generic: haul-number-2
+      - generic: architecture
+    - button "gallery-3 architecture COL":
+      - generic: gallery-3
+      - generic: architecture
+      - generic: COL
+    - button "gallery-lamp-3 architecture":
+      - generic: gallery-lamp-3
+      - generic: architecture
+    - button "haul-number-3 architecture":
+      - generic: haul-number-3
+      - generic: architecture
+    - button "gallery-4 architecture COL":
+      - generic: gallery-4
+      - generic: architecture
+      - generic: COL
+    - button "gallery-lamp-4 architecture":
+      - generic: gallery-lamp-4
+      - generic: architecture
+    - button "haul-number-4 architecture":
+      - generic: haul-number-4
+      - generic: architecture
+    - button "gallery-5 architecture COL":
+      - generic: gallery-5
+      - generic: architecture
+      - generic: COL
+    - button "gallery-lamp-5 architecture":
+      - generic: gallery-lamp-5
+      - generic: architecture
+    - button "haul-number-5 architecture":
+      - generic: haul-number-5
+      - generic: architecture
+    - button "gallery-6 architecture COL":
+      - generic: gallery-6
+      - generic: architecture
+      - generic: COL
+    - button "gallery-lamp-6 architecture":
+      - generic: gallery-lamp-6
+      - generic: architecture
+    - button "haul-number-6 architecture":
+      - generic: haul-number-6
+      - generic: architecture
+    - button "닳은 석재 경사 회랑과 두꺼운 조적 지지부 architecture COL":
+      - generic: 닳은 석재 경사 회랑과 두꺼운 조적 지지부
+      - generic: architecture
+      - generic: COL
+    - button "inspection-room-roof architecture COL":
+      - generic: inspection-room-roof
+      - generic: architecture
+      - generic: COL
+    - button "inspection-room-east-wall architecture COL":
+      - generic: inspection-room-east-wall
+      - generic: architecture
+      - generic: COL
+    - button "maintenance-recess architecture":
+      - generic: maintenance-recess
+      - generic: architecture
+    - button "west-lookout-roof architecture COL":
+      - generic: west-lookout-roof
+      - generic: architecture
+      - generic: COL
+    - button "west-lookout-wall architecture COL":
+      - generic: west-lookout-wall
+      - generic: architecture
+      - generic: COL
+    - button "west-lookout-recess architecture":
+      - generic: west-lookout-recess
+      - generic: architecture
+    - button "upper-checkpoint-roof architecture COL":
+      - generic: upper-checkpoint-roof
+      - generic: architecture
+      - generic: COL
+    - button "upper-checkpoint-east-wall architecture COL":
+      - generic: upper-checkpoint-east-wall
+      - generic: architecture
+      - generic: COL
+    - button "sluice-side-pier architecture COL":
+      - generic: sluice-side-pier
+      - generic: architecture
+      - generic: COL
+    - button "upper-checkpoint architecture":
+      - generic: upper-checkpoint
+      - generic: architecture
+    - button "닳은 석재 경사 회랑과 두꺼운 조적 지지부 architecture COL":
+      - generic: 닳은 석재 경사 회랑과 두꺼운 조적 지지부
+      - generic: architecture
+      - generic: COL
+    - button "lookout-balcony architecture COL":
+      - generic: lookout-balcony
+      - generic: architecture
+      - generic: COL
+    - button "household-inspection-dais architecture":
+      - generic: household-inspection-dais
+      - generic: architecture
+    - button "inspection-lamp architecture":
+      - generic: inspection-lamp
+      - generic: architecture
+    - button "great-sealed-store architecture":
+      - generic: great-sealed-store
+      - generic: architecture
+    - button "family-bundle-17 architecture":
+      - generic: family-bundle-17
+      - generic: architecture
+    - button "family-bundle-18 architecture":
+      - generic: family-bundle-18
+      - generic: architecture
+    - button "broken-haul-bridge architecture COL":
+      - generic: broken-haul-bridge
+      - generic: architecture
+      - generic: COL
+    - button "vertical-depot-shell architecture":
+      - generic: vertical-depot-shell
+      - generic: architecture
+    - button "masonry-vault architecture COL":
+      - generic: masonry-vault
+      - generic: architecture
+      - generic: COL
+    - button "gallery-0 architecture COL":
+      - generic: gallery-0
+      - generic: architecture
+      - generic: COL
+    - button "gallery-lamp-0 architecture":
+      - generic: gallery-lamp-0
+      - generic: architecture
+    - button "haul-number-0 architecture":
+      - generic: haul-number-0
+      - generic: architecture
+    - button "gallery-1 architecture COL":
+      - generic: gallery-1
+      - generic: architecture
+      - generic: COL
+    - button "gallery-lamp-1 architecture":
+      - generic: gallery-lamp-1
+      - generic: architecture
+    - button "haul-number-1 architecture":
+      - generic: haul-number-1
+      - generic: architecture
+    - button "gallery-2 architecture COL":
+      - generic: gallery-2
+      - generic: architecture
+      - generic: COL
+    - button "gallery-lamp-2 architecture":
+      - generic: gallery-lamp-2
+      - generic: architecture
+    - button "haul-number-2 architecture":
+      - generic: haul-number-2
+      - generic: architecture
+    - button "gallery-3 architecture COL":
+      - generic: gallery-3
+      - generic: architecture
+      - generic: COL
+    - button "gallery-lamp-3 architecture":
+      - generic: gallery-lamp-3
+      - generic: architecture
+    - button "haul-number-3 architecture":
+      - generic: haul-number-3
+      - generic: architecture
+    - button "gallery-4 architecture COL":
+      - generic: gallery-4
+      - generic: architecture
+      - generic: COL
+    - button "gallery-lamp-4 architecture":
+      - generic: gallery-lamp-4
+      - generic: architecture
+    - button "haul-number-4 architecture":
+      - generic: haul-number-4
+      - generic: architecture
+    - button "gallery-5 architecture COL":
+      - generic: gallery-5
+      - generic: architecture
+      - generic: COL
+    - button "gallery-lamp-5 architecture":
+      - generic: gallery-lamp-5
+      - generic: architecture
+    - button "haul-number-5 architecture":
+      - generic: haul-number-5
+      - generic: architecture
+    - button "gallery-6 architecture COL":
+      - generic: gallery-6
+      - generic: architecture
+      - generic: COL
+    - button "gallery-lamp-6 architecture":
+      - generic: gallery-lamp-6
+      - generic: architecture
+    - button "haul-number-6 architecture":
+      - generic: haul-number-6
+      - generic: architecture
+    - button "gallery-7 architecture COL":
+      - generic: gallery-7
+      - generic: architecture
+      - generic: COL
+    - button "gallery-lamp-7 architecture":
+      - generic: gallery-lamp-7
+      - generic: architecture
+    - button "haul-number-7 architecture":
+      - generic: haul-number-7
+      - generic: architecture
+    - button "닳은 석재 경사 회랑과 두꺼운 조적 지지부 architecture COL":
+      - generic: 닳은 석재 경사 회랑과 두꺼운 조적 지지부
+      - generic: architecture
+      - generic: COL
+    - button "닳은 석재 경사 회랑과 두꺼운 조적 지지부 architecture COL":
+      - generic: 닳은 석재 경사 회랑과 두꺼운 조적 지지부
+      - generic: architecture
+      - generic: COL
+    - button "닳은 석재 경사 회랑과 두꺼운 조적 지지부 architecture COL":
+      - generic: 닳은 석재 경사 회랑과 두꺼운 조적 지지부
+      - generic: architecture
+      - generic: COL
+    - button "loading-office-roof architecture COL":
+      - generic: loading-office-roof
+      - generic: architecture
+      - generic: COL
+    - button "loading-office-east-wall architecture COL":
+      - generic: loading-office-east-wall
+      - generic: architecture
+      - generic: COL
+    - button "abandoned-loading-shed architecture":
+      - generic: abandoned-loading-shed
+      - generic: architecture
+    - button "loading-oil-lamp architecture":
+      - generic: loading-oil-lamp
+      - generic: architecture
+    - button "far-passage-roof architecture COL":
+      - generic: far-passage-roof
+      - generic: architecture
+      - generic: COL
+    - button "far-passage-wall architecture COL":
+      - generic: far-passage-wall
+      - generic: architecture
+      - generic: COL
+    - button "far-passage-buttress architecture COL":
+      - generic: far-passage-buttress
+      - generic: architecture
+      - generic: COL
+    - button "far-sealed-store architecture":
+      - generic: far-sealed-store
+      - generic: architecture
+    - button "ledger-room-roof architecture COL":
+      - generic: ledger-room-roof
+      - generic: architecture
+      - generic: COL
+    - button "ledger-room-west-wall architecture COL":
+      - generic: ledger-room-west-wall
+      - generic: architecture
+      - generic: COL
+    - button "ledger-vault architecture":
+      - generic: ledger-vault
+      - generic: architecture
+    - button "household-inspection-dais architecture":
+      - generic: household-inspection-dais
+      - generic: architecture
+    - button "inspection-lamp architecture":
+      - generic: inspection-lamp
+      - generic: architecture
+    - button "numbered-family-bundle architecture":
+      - generic: numbered-family-bundle
+      - generic: architecture
+    - button "sunk-family-tools architecture":
+      - generic: sunk-family-tools
+      - generic: architecture
+    - button "manifest-bundle architecture":
+      - generic: manifest-bundle
+      - generic: architecture
+    - button "broken-haul-bridge architecture COL":
+      - generic: broken-haul-bridge
+      - generic: architecture
+      - generic: COL
+    - button "세 층 선반 뒤로 이어진 맞은편 절벽 terrain":
+      - generic: 세 층 선반 뒤로 이어진 맞은편 절벽
+      - generic: terrain
+    - button "능선을 굽어 오른 장수송 tree":
+      - generic: 능선을 굽어 오른 장수송
+      - generic: tree
+    - button "倒木의 뒤틀린 나이테와 횡단 줄기 tree":
+      - generic: 倒木의 뒤틀린 나이테와 횡단 줄기
+      - generic: tree
+    - button "倒木의 뒤틀린 나이테와 횡단 줄기 tree":
+      - generic: 倒木의 뒤틀린 나이테와 횡단 줄기
+      - generic: tree
+    - button "倒木의 뒤틀린 나이테와 횡단 줄기 tree":
+      - generic: 倒木의 뒤틀린 나이테와 횡단 줄기
+      - generic: tree
+    - button "倒木의 뒤틀린 나이테와 횡단 줄기 tree":
+      - generic: 倒木의 뒤틀린 나이테와 횡단 줄기
+      - generic: tree
+    - button "倒木의 뒤틀린 나이테와 횡단 줄기 tree":
+      - generic: 倒木의 뒤틀린 나이테와 횡단 줄기
+      - generic: tree
+    - button "아래로 길을 내어준 노송의 뿌리아치 tree":
+      - generic: 아래로 길을 내어준 노송의 뿌리아치
+      - generic: tree
+    - button "아래로 길을 내어준 노송의 뿌리아치 tree":
+      - generic: 아래로 길을 내어준 노송의 뿌리아치
+      - generic: tree
+    - button "아래로 길을 내어준 노송의 뿌리아치 tree":
+      - generic: 아래로 길을 내어준 노송의 뿌리아치
+      - generic: tree
+    - button "북녘 바람에 기운 벼랑송 tree":
+      - generic: 북녘 바람에 기운 벼랑송
+      - generic: tree
+    - button "바위턱에 뿌리내린 비틀린 소나무 tree":
+      - generic: 바위턱에 뿌리내린 비틀린 소나무
+      - generic: tree
+    - button "암벽 옆으로 처진 짧은 소나무 tree":
+      - generic: 암벽 옆으로 처진 짧은 소나무
+      - generic: tree
+    - button "암벽 옆으로 처진 짧은 소나무 tree":
+      - generic: 암벽 옆으로 처진 짧은 소나무
+      - generic: tree
+    - button "서낭목과 낮은 돌무더기의 매듭 의식터 prop":
+      - generic: 서낭목과 낮은 돌무더기의 매듭 의식터
+      - generic: prop
+    - button "주민 암대의 천막과 자리·광주리·물동이 prop":
+      - generic: 주민 암대의 천막과 자리·광주리·물동이
+      - generic: prop
+    - button "실제 사격턱에 붙은 짧은 암석 어깨 terrain":
+      - generic: 실제 사격턱에 붙은 짧은 암석 어깨
+      - generic: terrain
+    - button "실제 사격턱에 붙은 짧은 암석 어깨 terrain":
+      - generic: 실제 사격턱에 붙은 짧은 암석 어깨
+      - generic: terrain
+    - button "실제 천장과 바닥 사이로 이어지는 작업장 뒤 암벽 terrain":
+      - generic: 실제 천장과 바닥 사이로 이어지는 작업장 뒤 암벽
+      - generic: terrain
+    - button "실제 낮은 천장면을 받치는 정비굴 갱목 architecture":
+      - generic: 실제 낮은 천장면을 받치는 정비굴 갱목
+      - generic: architecture
+    - button "인양틀과 암반에 걸어 맞춘 상부 작업 선반 architecture":
+      - generic: 인양틀과 암반에 걸어 맞춘 상부 작업 선반
+      - generic: architecture
+    - button "인양틀과 암반에 걸어 맞춘 상부 작업 선반 architecture":
+      - generic: 인양틀과 암반에 걸어 맞춘 상부 작업 선반
+      - generic: architecture
+    - button "서측 작업대를 한 몸으로 잇는 굵은 갱목 architecture":
+      - generic: 서측 작업대를 한 몸으로 잇는 굵은 갱목
+      - generic: architecture
+    - button "인양갱의 여섯 작업발판을 지탱하는 연속 기둥 architecture":
+      - generic: 인양갱의 여섯 작업발판을 지탱하는 연속 기둥
+      - generic: architecture
+    - button "동쪽 좁은 정비갱을 따라 세운 맞물린 갱목 architecture":
+      - generic: 동쪽 좁은 정비갱을 따라 세운 맞물린 갱목
+      - generic: architecture
+    - button "실제 바위에 내려앉은 목재 작업대와 버팀목 architecture":
+      - generic: 실제 바위에 내려앉은 목재 작업대와 버팀목
+      - generic: architecture
+    - button "실제 바위에 내려앉은 목재 작업대와 버팀목 architecture":
+      - generic: 실제 바위에 내려앉은 목재 작업대와 버팀목
+      - generic: architecture
+    - button "실제 바위에 내려앉은 목재 작업대와 버팀목 architecture":
+      - generic: 실제 바위에 내려앉은 목재 작업대와 버팀목
+      - generic: architecture
+    - button "실제 바위에 내려앉은 목재 작업대와 버팀목 architecture":
+      - generic: 실제 바위에 내려앉은 목재 작업대와 버팀목
+      - generic: architecture
+    - button "굵은 갱목과 매단 돌 인양추가 이어진 인양틀 architecture":
+      - generic: 굵은 갱목과 매단 돌 인양추가 이어진 인양틀
+      - generic: architecture
+    - button "들린 인양틀의 조작축과 큰 인양기 사이 동력 밧줄 architecture":
+      - generic: 들린 인양틀의 조작축과 큰 인양기 사이 동력 밧줄
+      - generic: architecture
+    - button "서쪽 석공 작업터의 부서진 바퀴와 쐐기 상자 prop":
+      - generic: 서쪽 석공 작업터의 부서진 바퀴와 쐐기 상자
+      - generic: prop
+    - button "낮은 정비굴의 부서진 철륜과 풀어 둔 밧줄 prop":
+      - generic: 낮은 정비굴의 부서진 철륜과 풀어 둔 밧줄
+      - generic: prop
+    - button "굴착 입구의 엇갈려 쌓은 굵은 갱목 prop":
+      - generic: 굴착 입구의 엇갈려 쌓은 굵은 갱목
+      - generic: prop
+    - button "굴착 곡괭이와 쇠쐐기를 내려둔 작업대 prop":
+      - generic: 굴착 곡괭이와 쇠쐐기를 내려둔 작업대
+      - generic: prop
+    - button "인양축 옆 망치와 광주리 작업대 prop":
+      - generic: 인양축 옆 망치와 광주리 작업대
+      - generic: prop
+    - button "작업면을 비추는 낮은 기름등 prop":
+      - generic: 작업면을 비추는 낮은 기름등
+      - generic: prop
+    - button "암벽 안쪽 세 깊이로 물러난 잠운사 전각과 돌계단 terrain":
+      - generic: 암벽 안쪽 세 깊이로 물러난 잠운사 전각과 돌계단
+      - generic: terrain
+    - 'button "잠운사 대법당: 넓은 겹처마와 일곱 칸 중층 전각 architecture"':
+      - generic: "잠운사 대법당: 넓은 겹처마와 일곱 칸 중층 전각"
+      - generic: architecture
+    - button "높은 암반에 기대어 두 층으로 접힌 서회랑 architecture":
+      - generic: 높은 암반에 기대어 두 층으로 접힌 서회랑
+      - generic: architecture
+    - button "돌계단 앞 승려 쉼터의 열린 툇마루 architecture":
+      - generic: 돌계단 앞 승려 쉼터의 열린 툇마루
+      - generic: architecture
+    - button "대법당 측면에 이어 붙인 누마루와 짧은 층계 architecture":
+      - generic: 대법당 측면에 이어 붙인 누마루와 짧은 층계
+      - generic: architecture
+    - button "동쪽 석축에 묶여 올라가는 넓은 회랑 층계 architecture":
+      - generic: 동쪽 석축에 묶여 올라가는 넓은 회랑 층계
+      - generic: architecture
+    - button "큰 돌계단 사이를 잇는 열린 사찰 다리 architecture":
+      - generic: 큰 돌계단 사이를 잇는 열린 사찰 다리
+      - generic: architecture
+    - button "동편 기록방의 긴 처마와 열린 회랑 architecture":
+      - generic: 동편 기록방의 긴 처마와 열린 회랑
+      - generic: architecture
+    - button "기단 아래 암반에 맞춘 낮은 기도굴 선반 architecture":
+      - generic: 기단 아래 암반에 맞춘 낮은 기도굴 선반
+      - generic: architecture
+    - button "불빛을 낮게 품은 잠운사 석등 architecture":
+      - generic: 불빛을 낮게 품은 잠운사 석등
+      - generic: architecture
+    - button "법당 밖 암벽에 반쯤 묻힌 잠운사 거대 석불 architecture":
+      - generic: 법당 밖 암벽에 반쯤 묻힌 잠운사 거대 석불
+      - generic: architecture
+    - button "묵종 뒤의 깊은 공동과 비대칭 암벽 terrain":
+      - generic: 묵종 뒤의 깊은 공동과 비대칭 암벽
+      - generic: terrain
+    - button "실제 돌마당 뒤에서 공동의 천장과 바닥에 이어지는 암맥 terrain":
+      - generic: 실제 돌마당 뒤에서 공동의 천장과 바닥에 이어지는 암맥
+      - generic: terrain
+    - button "전방 귀환길 뒤로 물러난 암벽 받침 terrain":
+      - generic: 전방 귀환길 뒤로 물러난 암벽 받침
+      - generic: terrain
+    - 'button "묵종: 둥근 청동 외피와 깊고 넓은 아랫입 architecture"':
+      - generic: "묵종: 둥근 청동 외피와 깊고 넓은 아랫입"
+      - generic: architecture
+    - button "종의 어둠 아래 낮은 석등 architecture":
+      - generic: 종의 어둠 아래 낮은 석등
+      - generic: architecture
+    - button "멀어진 단 하나의 먹산과 넓은 강굽이 terrain":
+      - generic: 멀어진 단 하나의 먹산과 넓은 강굽이
+      - generic: terrain
+    - button "실제 강수면 아래로 이어지는 먹빛 깊이 terrain":
+      - generic: 실제 강수면 아래로 이어지는 먹빛 깊이
+      - generic: terrain
+    - button "기단 위에 낮게 웅크린 폐초가 한 채 architecture":
+      - generic: 기단 위에 낮게 웅크린 폐초가 한 채
+      - generic: architecture
+    - button "운송 기록을 편 닳은 화강암 terrain":
+      - generic: 운송 기록을 편 닳은 화강암
+      - generic: terrain
+    - button "강바람에 비껴 자란 큰 소나무 tree":
+      - generic: 강바람에 비껴 자란 큰 소나무
+      - generic: tree
+    - button "강바람에 비껴 자란 큰 소나무 tree":
+      - generic: 강바람에 비껴 자란 큰 소나무
+      - generic: tree
+    - button "강바람에 비껴 자란 큰 소나무 tree":
+      - generic: 강바람에 비껴 자란 큰 소나무
+      - generic: tree
+    - button "돌의 빈 가장자리에 뿌리내린 갈대 1 tree":
+      - generic: 돌의 빈 가장자리에 뿌리내린 갈대 1
+      - generic: tree
+    - button "돌의 빈 가장자리에 뿌리내린 갈대 2 tree":
+      - generic: 돌의 빈 가장자리에 뿌리내린 갈대 2
+      - generic: tree
+    - button "바람에 닳은 옛 장례길의 나무 길표 architecture":
+      - generic: 바람에 닳은 옛 장례길의 나무 길표
+      - generic: architecture
+    - button "나루의 낮은 짐묶음과 비어 있는 적재함 architecture":
+      - generic: 나루의 낮은 짐묶음과 비어 있는 적재함
+      - generic: architecture
+    - button "실제 선창 끝의 낮은 계류 말뚝과 감긴 밧줄 architecture":
+      - generic: 실제 선창 끝의 낮은 계류 말뚝과 감긴 밧줄
+      - generic: architecture
+    - button "계류선에 붙잡혀 멎은 넓고 낮은 짐배 한 척 architecture":
+      - generic: 계류선에 붙잡혀 멎은 넓고 낮은 짐배 한 척
+      - generic: architecture
+    - button "나루 널판 아래 실제 돌해안에 닿는 뒤받침 architecture":
+      - generic: 나루 널판 아래 실제 돌해안에 닿는 뒤받침
+      - generic: architecture
+    - button "실제 여울·강둑에 이어지는 후퇴한 선창 암반 terrain":
+      - generic: 실제 여울·강둑에 이어지는 후퇴한 선창 암반
+      - generic: terrain
+    - button "능선 허리 안개를 두른 단 하나의 먹산 terrain":
+      - generic: 능선 허리 안개를 두른 단 하나의 먹산
+      - generic: terrain
+    - button "겹친 획과 마른 받침돌의 길표 하나 terrain":
+      - generic: 겹친 획과 마른 받침돌의 길표 하나
+      - generic: terrain
+    - button "운반대 옆 멈춰 선 빈 수레 하나 architecture":
+      - generic: 운반대 옆 멈춰 선 빈 수레 하나
+      - generic: architecture
+    - button "채석면에 놓인 곡괭이와 쐐기 terrain":
+      - generic: 채석면에 놓인 곡괭이와 쐐기
+      - generic: terrain
+    - button "채석장 바위에 뿌리내린 소나무 tree":
+      - generic: 채석장 바위에 뿌리내린 소나무
+      - generic: tree
+    - button "채석장 바위에 뿌리내린 소나무 tree":
+      - generic: 채석장 바위에 뿌리내린 소나무
+      - generic: tree
+    - button "채석장 바위에 뿌리내린 소나무 tree":
+      - generic: 채석장 바위에 뿌리내린 소나무
+      - generic: tree
+    - button "채석장 바위에 뿌리내린 소나무 tree":
+      - generic: 채석장 바위에 뿌리내린 소나무
+      - generic: tree
+    - button "채석면의 큰 자연 전석 terrain":
+      - generic: 채석면의 큰 자연 전석
+      - generic: terrain
+    - button "채석면의 큰 자연 전석 terrain":
+      - generic: 채석면의 큰 자연 전석
+      - generic: terrain
+    - button "보행면 뒤에서 실제 기반에 닿는 채석장 모암 terrain":
+      - generic: 보행면 뒤에서 실제 기반에 닿는 채석장 모암
+      - generic: terrain
+    - button "캐내지 않고 남겨 둔 비대칭 돌기둥과 쐐기흔적 terrain":
+      - generic: 캐내지 않고 남겨 둔 비대칭 돌기둥과 쐐기흔적
+      - generic: terrain
+    - button "운반대에 모아 둔 큰 잔석과 굵은 받침목 architecture":
+      - generic: 운반대에 모아 둔 큰 잔석과 굵은 받침목
+      - generic: architecture
+    - button "관창의 석축 하역고·버팀벽과 낮은 흙둑 architecture":
+      - generic: 관창의 석축 하역고·버팀벽과 낮은 흙둑
+      - generic: architecture
+    - button "인물 크기 문과 창을 갖춘 관창 주동·두 날개·상부 저장칸 architecture":
+      - generic: 인물 크기 문과 창을 갖춘 관창 주동·두 날개·상부 저장칸
+      - generic: architecture
+    - button "실제 보행앞선과 맞는 목재 경사대·석축마루·분절된 운반목 architecture":
+      - generic: 실제 보행앞선과 맞는 목재 경사대·석축마루·분절된 운반목
+      - generic: architecture
+    - button "양쪽 교대·낮은 수로둑과 구분되는 실제 석교 받침 architecture":
+      - generic: 양쪽 교대·낮은 수로둑과 구분되는 실제 석교 받침
+      - generic: architecture
+    - button "반출문과 장부석·곡식자루·옹기·빈 마당 흔적 architecture":
+      - generic: 반출문과 장부석·곡식자루·옹기·빈 마당 흔적
+      - generic: architecture
+    - button "놋그릇·곡식자루·농기구가 묶인 큰 생활화물 architecture":
+      - generic: 놋그릇·곡식자루·농기구가 묶인 큰 생활화물
+      - generic: architecture
+    - button "관창 너머 한 겹 먹산과 저녁 안개 architecture":
+      - generic: 관창 너머 한 겹 먹산과 저녁 안개
+      - generic: architecture
+    - button "상여집 석축과 큰 기단의 열린 앞회랑 architecture":
+      - generic: 상여집 석축과 큰 기단의 열린 앞회랑
+      - generic: architecture
+    - button "암괴에 뿌리내린 마른 소나무의 굵은 줄기와 짧은 가지 architecture":
+      - generic: 암괴에 뿌리내린 마른 소나무의 굵은 줄기와 짧은 가지
+      - generic: architecture
+    - button "반매몰 상여집·빈 가마채·바랜 소렴천 architecture":
+      - generic: 반매몰 상여집·빈 가마채·바랜 소렴천
+      - generic: architecture
+    - button "높은 동상여터의 낮은 석축과 빈 덧집 architecture":
+      - generic: 높은 동상여터의 낮은 석축과 빈 덧집
+      - generic: architecture
+    - button "낮은 석물·풀과 수습마당 흔적 architecture":
+      - generic: 낮은 석물·풀과 수습마당 흔적
+      - generic: architecture
+    - button "장례창고 너머 한 겹 저녁 먹산 architecture":
+      - generic: 장례창고 너머 한 겹 저녁 먹산
+      - generic: architecture
+    - button "거친 무늬 없이 깊이를 나누는 비대칭 동굴 암면 terrain":
+      - generic: 거친 무늬 없이 깊이를 나누는 비대칭 동굴 암면
+      - generic: terrain
+    - button "윗마을 작은 온돌집과 낮은 기와 처마 architecture":
+      - generic: 윗마을 작은 온돌집과 낮은 기와 처마
+      - generic: architecture
+    - button "장터의 낮은 삼베 차양과 생활 물건 architecture":
+      - generic: 장터의 낮은 삼베 차양과 생활 물건
+      - generic: architecture
+    - button "가게 뒤 낮은 빨랫줄과 작업돌 architecture":
+      - generic: 가게 뒤 낮은 빨랫줄과 작업돌
+      - generic: architecture
+    - button "가족의 낮은 초가와 덧댄 저장칸 architecture":
+      - generic: 가족의 낮은 초가와 덧댄 저장칸
+      - generic: architecture
+    - button "강가 작은 돌집과 옆칸 처마 architecture":
+      - generic: 강가 작은 돌집과 옆칸 처마
+      - generic: architecture
+    - button "피난민의 보따리·곡식자루·옹기 prop":
+      - generic: 피난민의 보따리·곡식자루·옹기
+      - generic: prop
+    - button "물가 받침돌 위 작은 등잔 prop":
+      - generic: 물가 받침돌 위 작은 등잔
+      - generic: prop
+    - button "실제 피난길 가장자리의 낮은 뒷난간 architecture":
+      - generic: 실제 피난길 가장자리의 낮은 뒷난간
+      - generic: architecture
+    - button "집터 뒤로 물러선 비대칭 자연 암벽 upper terrain":
+      - generic: 집터 뒤로 물러선 비대칭 자연 암벽 upper
+      - generic: terrain
+    - button "집터 뒤로 물러선 비대칭 자연 암벽 market terrain":
+      - generic: 집터 뒤로 물러선 비대칭 자연 암벽 market
+      - generic: terrain
+    - button "집터 뒤로 물러선 비대칭 자연 암벽 family terrain":
+      - generic: 집터 뒤로 물러선 비대칭 자연 암벽 family
+      - generic: terrain
+    - button "집터 뒤로 물러선 비대칭 자연 암벽 river terrain":
+      - generic: 집터 뒤로 물러선 비대칭 자연 암벽 river
+      - generic: terrain
+    - button "문이 닫힌 빈 온돌집과 작은 옆칸 architecture":
+      - generic: 문이 닫힌 빈 온돌집과 작은 옆칸
+      - generic: architecture
+    - button "장독·빨랫돌·짚바구니가 남은 마당 prop":
+      - generic: 장독·빨랫돌·짚바구니가 남은 마당
+      - generic: prop
+    - button "암벽 마당에 붙은 작은 흙집 옆칸 architecture":
+      - generic: 암벽 마당에 붙은 작은 흙집 옆칸
+      - generic: architecture
+    - button "낮은 온돌 아궁이와 가마솥·장작 prop":
+      - generic: 낮은 온돌 아궁이와 가마솥·장작
+      - generic: prop
+    - button "가족 마당의 짧은 돌턱 아래 실제 높이 목재받침 architecture":
+      - generic: 가족 마당의 짧은 돌턱 아래 실제 높이 목재받침
+      - generic: architecture
+    - button "문이 닫힌 빈 온돌집과 작은 옆칸·낮은 돌기단 architecture":
+      - generic: 문이 닫힌 빈 온돌집과 작은 옆칸·낮은 돌기단
+      - generic: architecture
+    - button "가족의 낮은 초가와 덧댄 저장칸·낮은 돌기단 architecture":
+      - generic: 가족의 낮은 초가와 덧댄 저장칸·낮은 돌기단
+      - generic: architecture
+    - button "강가 작은 돌집과 옆칸 처마·낮은 돌기단 architecture":
+      - generic: 강가 작은 돌집과 옆칸 처마·낮은 돌기단
+      - generic: architecture
+    - button "장터 실제 절벽 뒤 낮은 어깨와 깊은 집굴 terrain":
+      - generic: 장터 실제 절벽 뒤 낮은 어깨와 깊은 집굴
+      - generic: terrain
+    - button "기록고의 층대를 받치는 뒤쪽 암산 architecture":
+      - generic: 기록고의 층대를 받치는 뒤쪽 암산
+      - generic: architecture
+    - button "실제 아래층에 닿는 관아의 east-return-bearing architecture":
+      - generic: 실제 아래층에 닿는 관아의 east-return-bearing
+      - generic: architecture
+    - button "실제 아래층에 닿는 관아의 comparison-archive-bearing architecture":
+      - generic: 실제 아래층에 닿는 관아의 comparison-archive-bearing
+      - generic: architecture
+    - button "실제 아래층에 닿는 관아의 lower-return-bearing architecture":
+      - generic: 실제 아래층에 닿는 관아의 lower-return-bearing
+      - generic: architecture
+    - button "실제 아래 회랑에 닿는 높은 폐쇄 기록칸과 목조 서고 architecture":
+      - generic: 실제 아래 회랑에 닿는 높은 폐쇄 기록칸과 목조 서고
+      - generic: architecture
+    - button "실제 아래 회랑에 닿는 높은 폐쇄 기록칸과 목조 서고 architecture":
+      - generic: 실제 아래 회랑에 닿는 높은 폐쇄 기록칸과 목조 서고
+      - generic: architecture
+    - button "실제 아래 회랑에 닿는 높은 폐쇄 기록칸과 목조 서고 architecture":
+      - generic: 실제 아래 회랑에 닿는 높은 폐쇄 기록칸과 목조 서고
+      - generic: architecture
+    - button "아래뜰과 회랑을 잇는 문서고의 층보와 실제 지주 architecture":
+      - generic: 아래뜰과 회랑을 잇는 문서고의 층보와 실제 지주
+      - generic: architecture
+    - button "대조마당의 낮은 관아 대청 architecture":
+      - generic: 대조마당의 낮은 관아 대청
+      - generic: architecture
+    - button "가파른 석축의 한 칸 기록함과 낮은 맞배 처마 architecture":
+      - generic: 가파른 석축의 한 칸 기록함과 낮은 맞배 처마
+      - generic: architecture
+    - button "가파른 석축의 한 칸 기록함과 낮은 맞배 처마 architecture":
+      - generic: 가파른 석축의 한 칸 기록함과 낮은 맞배 처마
+      - generic: architecture
+    - button "석축에 붙은 판문 문서고 architecture COL":
+      - generic: 석축에 붙은 판문 문서고
+      - generic: architecture
+      - generic: COL
+    - button "석축에 붙은 판문 문서고 architecture":
+      - generic: 석축에 붙은 판문 문서고
+      - generic: architecture
+    - button "가파른 석축의 한 칸 기록함과 낮은 맞배 처마 architecture":
+      - generic: 가파른 석축의 한 칸 기록함과 낮은 맞배 처마
+      - generic: architecture
+    - button "대조마당의 낮은 관아 대청 architecture":
+      - generic: 대조마당의 낮은 관아 대청
+      - generic: architecture
+    - button "대조를 기다리는 두 포갑과 낮은 장부상 architecture":
+      - generic: 대조를 기다리는 두 포갑과 낮은 장부상
+      - generic: architecture
+    - button "문서곁의 낮은 나무 등잔 architecture":
+      - generic: 문서곁의 낮은 나무 등잔
+      - generic: architecture
+    - button "실제 경사를 따라가는 낮은 뒤난간 architecture":
+      - generic: 실제 경사를 따라가는 낮은 뒤난간
+      - generic: architecture
+    - button "실제 경사를 따라가는 낮은 뒤난간 architecture":
+      - generic: 실제 경사를 따라가는 낮은 뒤난간
+      - generic: architecture
+    - button "실제 경사를 따라가는 낮은 뒤난간 architecture":
+      - generic: 실제 경사를 따라가는 낮은 뒤난간
+      - generic: architecture
+    - button "실제 경사를 따라가는 낮은 뒤난간 architecture":
+      - generic: 실제 경사를 따라가는 낮은 뒤난간
+      - generic: architecture
+    - button "실제 경사를 따라가는 낮은 뒤난간 architecture":
+      - generic: 실제 경사를 따라가는 낮은 뒤난간
+      - generic: architecture
+    - button "실제 경사를 따라가는 낮은 뒤난간 architecture":
+      - generic: 실제 경사를 따라가는 낮은 뒤난간
+      - generic: architecture
+    - button "opening prop":
+      - generic: opening
+      - generic: prop
+    - button "tablet prop":
+      - generic: tablet
+      - generic: prop
+    - button "hammer prop":
+      - generic: hammer
+      - generic: prop
+    - button "bowl prop":
+      - generic: bowl
+      - generic: prop
+    - button "후퇴한 회랑과 암대의 접지 모암 terrain":
+      - generic: 후퇴한 회랑과 암대의 접지 모암
+      - generic: terrain
+    - button "후퇴한 회랑과 암대의 접지 모암 terrain":
+      - generic: 후퇴한 회랑과 암대의 접지 모암
+      - generic: terrain
+    - button "Recessed rear masonry and timber supports prop":
+      - generic: Recessed rear masonry and timber supports
+      - generic: prop
+    - button "Recessed rear masonry and timber supports prop":
+      - generic: Recessed rear masonry and timber supports
+      - generic: prop
+    - button "Recessed rear masonry and timber supports prop":
+      - generic: Recessed rear masonry and timber supports
+      - generic: prop
+    - button "shaft-bearing-masonry architecture":
+      - generic: shaft-bearing-masonry
+      - generic: architecture
+    - button "sluice-leaf-and-guides architecture":
+      - generic: sluice-leaf-and-guides
+      - generic: architecture
+    - button "maintenance-winding-drum architecture":
+      - generic: maintenance-winding-drum
+      - generic: architecture
+    - button "west-stoplog-workbench architecture COL":
+      - generic: west-stoplog-workbench
+      - generic: architecture
+      - generic: COL
+    - button "stoplog-storage architecture":
+      - generic: stoplog-storage
+      - generic: architecture
+    - button "rising-rear-watercourse architecture":
+      - generic: rising-rear-watercourse
+      - generic: architecture
+    - button "vertical-depot-shell architecture":
+      - generic: vertical-depot-shell
+      - generic: architecture
+    - button "수문 정비 회랑의 맞춤보와 석재 디딤면 architecture COL":
+      - generic: 수문 정비 회랑의 맞춤보와 석재 디딤면
+      - generic: architecture
+      - generic: COL
+    - button "수문 정비 회랑의 맞춤보와 석재 디딤면 architecture COL":
+      - generic: 수문 정비 회랑의 맞춤보와 석재 디딤면
+      - generic: architecture
+      - generic: COL
+    - button "수문 정비 회랑의 맞춤보와 석재 디딤면 architecture COL":
+      - generic: 수문 정비 회랑의 맞춤보와 석재 디딤면
+      - generic: architecture
+      - generic: COL
+    - button "수문 정비 회랑의 맞춤보와 석재 디딤면 architecture COL":
+      - generic: 수문 정비 회랑의 맞춤보와 석재 디딤면
+      - generic: architecture
+      - generic: COL
+    - button "수문 정비 회랑의 맞춤보와 석재 디딤면 architecture COL":
+      - generic: 수문 정비 회랑의 맞춤보와 석재 디딤면
+      - generic: architecture
+      - generic: COL
+    - button "수문 정비 회랑의 맞춤보와 석재 디딤면 architecture COL":
+      - generic: 수문 정비 회랑의 맞춤보와 석재 디딤면
+      - generic: architecture
+      - generic: COL
+    - button "수문 정비 회랑의 맞춤보와 석재 디딤면 architecture COL":
+      - generic: 수문 정비 회랑의 맞춤보와 석재 디딤면
+      - generic: architecture
+      - generic: COL
+    - button "inspection-room-roof architecture COL":
+      - generic: inspection-room-roof
+      - generic: architecture
+      - generic: COL
+    - button "inspection-room-east-wall architecture COL":
+      - generic: inspection-room-east-wall
+      - generic: architecture
+      - generic: COL
+    - button "west-lookout-roof architecture COL":
+      - generic: west-lookout-roof
+      - generic: architecture
+      - generic: COL
+    - button "west-lookout-wall architecture COL":
+      - generic: west-lookout-wall
+      - generic: architecture
+      - generic: COL
+    - button "upper-checkpoint-roof architecture COL":
+      - generic: upper-checkpoint-roof
+      - generic: architecture
+      - generic: COL
+    - button "upper-checkpoint-east-wall architecture COL":
+      - generic: upper-checkpoint-east-wall
+      - generic: architecture
+      - generic: COL
+    - button "낮은 처마 아래의 수문 정비 작업실 architecture":
+      - generic: 낮은 처마 아래의 수문 정비 작업실
+      - generic: architecture
+    - button "낮은 처마 아래의 수문 정비 작업실 architecture":
+      - generic: 낮은 처마 아래의 수문 정비 작업실
+      - generic: architecture
+    - button "수몰 목조 집하장 배면 architecture":
+      - generic: 수몰 목조 집하장 배면
+      - generic: architecture
+    - button "quay-face-1 architecture COL":
+      - generic: quay-face-1
+      - generic: architecture
+      - generic: COL
+    - button "quay-face-3 architecture COL":
+      - generic: quay-face-3
+      - generic: architecture
+      - generic: COL
+    - button "quay-face-7 architecture COL":
+      - generic: quay-face-7
+      - generic: architecture
+      - generic: COL
+    - button "cargo-incline architecture COL":
+      - generic: cargo-incline
+      - generic: architecture
+      - generic: COL
+    - button "loading-hoist architecture":
+      - generic: loading-hoist
+      - generic: architecture
+    - button "어긋나 이어지는 집하장 배면 architecture":
+      - generic: 어긋나 이어지는 집하장 배면
+      - generic: architecture
+    - button "gallery-0 architecture COL":
+      - generic: gallery-0
+      - generic: architecture
+      - generic: COL
+    - button "gallery-1 architecture COL":
+      - generic: gallery-1
+      - generic: architecture
+      - generic: COL
+    - button "gallery-2 architecture COL":
+      - generic: gallery-2
+      - generic: architecture
+      - generic: COL
+    - button "gallery-3 architecture COL":
+      - generic: gallery-3
+      - generic: architecture
+      - generic: COL
+    - button "gallery-4 architecture COL":
+      - generic: gallery-4
+      - generic: architecture
+      - generic: COL
+    - button "gallery-5 architecture COL":
+      - generic: gallery-5
+      - generic: architecture
+      - generic: COL
+    - button "gallery-6 architecture COL":
+      - generic: gallery-6
+      - generic: architecture
+      - generic: COL
+    - button "gallery-7 architecture COL":
+      - generic: gallery-7
+      - generic: architecture
+      - generic: COL
+    - button "loading-office-roof architecture COL":
+      - generic: loading-office-roof
+      - generic: architecture
+      - generic: COL
+    - button "far-passage-roof architecture COL":
+      - generic: far-passage-roof
+      - generic: architecture
+      - generic: COL
+    - button "ledger-room-roof architecture COL":
+      - generic: ledger-room-roof
+      - generic: architecture
+      - generic: COL
+    - button "far-sealed-store architecture":
+      - generic: far-sealed-store
+      - generic: architecture
+    - button "ledger-vault architecture":
+      - generic: ledger-vault
+      - generic: architecture
+    - button "높이가 어긋난 하역 배수로 architecture":
+      - generic: 높이가 어긋난 하역 배수로
+      - generic: architecture
+    - button "rear-retaining-work architecture":
+      - generic: rear-retaining-work
+      - generic: architecture
+    - button "letter-room architecture":
+      - generic: letter-room
+      - generic: architecture
+    - button "sluice-bearing architecture":
+      - generic: sluice-bearing
+      - generic: architecture
+    - button "archive-eaves architecture":
+      - generic: archive-eaves
+      - generic: architecture
+    - button "낮은 민가 architecture":
+      - generic: 낮은 민가
+      - generic: architecture
+    - button "upper-rear-rail architecture":
+      - generic: upper-rear-rail
+      - generic: architecture
+    - button "actual-stone-faces architecture":
+      - generic: actual-stone-faces
+      - generic: architecture
+    - button "inspection-eaves architecture":
+      - generic: inspection-eaves
+      - generic: architecture
+    - button "선창 널마루를 받치는 목구조와 계류 밧줄을 감는 호롱 architecture":
+      - generic: 선창 널마루를 받치는 목구조와 계류 밧줄을 감는 호롱
+      - generic: architecture
+    - button "쐐기돌 홍예·두꺼운 석축·삼칸 목조 문루 architecture COL":
+      - generic: 쐐기돌 홍예·두꺼운 석축·삼칸 목조 문루
+      - generic: architecture
+      - generic: COL
+    - button "성벽 뒤 흙비탈 architecture":
+      - generic: 성벽 뒤 흙비탈
+      - generic: architecture
+    - button "gate-roof-step architecture":
+      - generic: gate-roof-step
+      - generic: architecture
+    - button "market-west-step architecture":
+      - generic: market-west-step
+      - generic: architecture
+    - button "market-east-step architecture":
+      - generic: market-east-step
+      - generic: architecture
+    - button "office-roof-step architecture":
+      - generic: office-roof-step
+      - generic: architecture
+    - button "office-west-step architecture":
+      - generic: office-west-step
+      - generic: architecture
+    - button "office-east-step architecture":
+      - generic: office-east-step
+      - generic: architecture
+    - button "시장 하역 마루와 아래 통로 architecture COL":
+      - generic: 시장 하역 마루와 아래 통로
+      - generic: architecture
+      - generic: COL
+    - button "관아 석조 기단·앞쪽 낮은 통과 길 architecture COL":
+      - generic: 관아 석조 기단·앞쪽 낮은 통과 길
+      - generic: architecture
+      - generic: COL
+    - button "마루 위 실제 화물 엄폐 architecture COL":
+      - generic: 마루 위 실제 화물 엄폐
+      - generic: architecture
+      - generic: COL
+    - button "outside-stall architecture":
+      - generic: outside-stall
+      - generic: architecture
+    - button "cloth-shelter architecture":
+      - generic: cloth-shelter
+      - generic: architecture
+    - button "inner-home architecture":
+      - generic: inner-home
+      - generic: architecture
+    - button "potter-home architecture":
+      - generic: potter-home
+      - generic: architecture
+    - button "stable architecture":
+      - generic: stable
+      - generic: architecture
+    - button "office-store architecture":
+      - generic: office-store
+      - generic: architecture
+    - button "관아 삼칸 집무당·목조 창호 architecture":
+      - generic: 관아 삼칸 집무당·목조 창호
+      - generic: architecture
+    - button "market-yard architecture":
+      - generic: market-yard
+      - generic: architecture
+    - button "office-court architecture":
+      - generic: office-court
+      - generic: architecture
+    - button "entry-jars architecture":
+      - generic: entry-jars
+      - generic: architecture
+    - button "shelter-wood architecture":
+      - generic: shelter-wood
+      - generic: architecture
+    - button "inner-jars architecture":
+      - generic: inner-jars
+      - generic: architecture
+    - button "office-jars architecture":
+      - generic: office-jars
+      - generic: architecture
+    - button "지반 단면·석축 받침·시장 배수로 architecture":
+      - generic: 지반 단면·석축 받침·시장 배수로
+      - generic: architecture
+    - button "기울어진 장터 수레 architecture":
+      - generic: 기울어진 장터 수레
+      - generic: architecture
+    - button "낮은 민가 architecture":
+      - generic: 낮은 민가
+      - generic: architecture
+    - button "골목의 낮은 돌담과 대문 architecture":
+      - generic: 골목의 낮은 돌담과 대문
+      - generic: architecture
+    - button "낮은 민가 architecture":
+      - generic: 낮은 민가
+      - generic: architecture
+    - button "장터 가게 architecture":
+      - generic: 장터 가게
+      - generic: architecture
+    - button "골목의 낮은 돌담과 대문 architecture":
+      - generic: 골목의 낮은 돌담과 대문
+      - generic: architecture
+    - button "낮은 민가 architecture":
+      - generic: 낮은 민가
+      - generic: architecture
+    - button "골목의 낮은 돌담과 대문 architecture":
+      - generic: 골목의 낮은 돌담과 대문
+      - generic: architecture
+    - button "널문 창고 architecture":
+      - generic: 널문 창고
+      - generic: architecture
+    - button "낮은 민가 architecture":
+      - generic: 낮은 민가
+      - generic: architecture
+    - button "골목의 낮은 돌담과 대문 architecture":
+      - generic: 골목의 낮은 돌담과 대문
+      - generic: architecture
+    - button "관아 대청 architecture":
+      - generic: 관아 대청
+      - generic: architecture
+    - button "골목의 낮은 돌담과 대문 architecture":
+      - generic: 골목의 낮은 돌담과 대문
+      - generic: architecture
+    - button "낮은 민가 architecture":
+      - generic: 낮은 민가
+      - generic: architecture
+    - button "낮은 민가 architecture":
+      - generic: 낮은 민가
+      - generic: architecture
+    - button "골목의 낮은 돌담과 대문 architecture":
+      - generic: 골목의 낮은 돌담과 대문
+      - generic: architecture
+    - button "장터 가게 architecture":
+      - generic: 장터 가게
+      - generic: architecture
+    - button "골목의 낮은 돌담과 대문 architecture":
+      - generic: 골목의 낮은 돌담과 대문
+      - generic: architecture
+    - button "낮은 민가 architecture":
+      - generic: 낮은 민가
+      - generic: architecture
+    - button "널문 창고 architecture":
+      - generic: 널문 창고
+      - generic: architecture
+    - button "골목의 낮은 돌담과 대문 architecture":
+      - generic: 골목의 낮은 돌담과 대문
+      - generic: architecture
+    - button "낮은 민가 architecture":
+      - generic: 낮은 민가
+      - generic: architecture
+    - button "골목의 낮은 돌담과 대문 architecture":
+      - generic: 골목의 낮은 돌담과 대문
+      - generic: architecture
+    - button "관아 대청 architecture":
+      - generic: 관아 대청
+      - generic: architecture
+    - button "낮은 민가 architecture":
+      - generic: 낮은 민가
+      - generic: architecture
+    - button "골목의 낮은 돌담과 대문 architecture":
+      - generic: 골목의 낮은 돌담과 대문
+      - generic: architecture
+    - button "낮은 민가 architecture":
+      - generic: 낮은 민가
+      - generic: architecture
+    - button "골목의 낮은 돌담과 대문 architecture":
+      - generic: 골목의 낮은 돌담과 대문
+      - generic: architecture
+    - button "낮은 민가 architecture":
+      - generic: 낮은 민가
+      - generic: architecture
+    - button "골목의 낮은 돌담과 대문 architecture":
+      - generic: 골목의 낮은 돌담과 대문
+      - generic: architecture
+    - button "낮은 민가 architecture":
+      - generic: 낮은 민가
+      - generic: architecture
+    - button "장터 가게 architecture":
+      - generic: 장터 가게
+      - generic: architecture
+    - button "골목의 낮은 돌담과 대문 architecture":
+      - generic: 골목의 낮은 돌담과 대문
+      - generic: architecture
+    - button "낮은 민가 architecture":
+      - generic: 낮은 민가
+      - generic: architecture
+    - button "골목의 낮은 돌담과 대문 architecture":
+      - generic: 골목의 낮은 돌담과 대문
+      - generic: architecture
+    - button "널문 창고 architecture":
+      - generic: 널문 창고
+      - generic: architecture
+    - button "낮은 민가 architecture":
+      - generic: 낮은 민가
+      - generic: architecture
+    - button "골목의 낮은 돌담과 대문 architecture":
+      - generic: 골목의 낮은 돌담과 대문
+      - generic: architecture
+    - button "관아 대청 architecture":
+      - generic: 관아 대청
+      - generic: architecture
+    - button "골목의 낮은 돌담과 대문 architecture":
+      - generic: 골목의 낮은 돌담과 대문
+      - generic: architecture
+    - button "낮은 민가 architecture":
+      - generic: 낮은 민가
+      - generic: architecture
+    - button "낮은 민가 architecture":
+      - generic: 낮은 민가
+      - generic: architecture
+    - button "골목의 낮은 돌담과 대문 architecture":
+      - generic: 골목의 낮은 돌담과 대문
+      - generic: architecture
+    - button "장터 가게 architecture":
+      - generic: 장터 가게
+      - generic: architecture
+    - button "골목의 낮은 돌담과 대문 architecture":
+      - generic: 골목의 낮은 돌담과 대문
+      - generic: architecture
+    - button "낮은 민가 architecture":
+      - generic: 낮은 민가
+      - generic: architecture
+    - button "널문 창고 architecture":
+      - generic: 널문 창고
+      - generic: architecture
+    - button "골목의 낮은 돌담과 대문 architecture":
+      - generic: 골목의 낮은 돌담과 대문
+      - generic: architecture
+    - button "낮은 민가 architecture":
+      - generic: 낮은 민가
+      - generic: architecture
+    - button "골목의 낮은 돌담과 대문 architecture":
+      - generic: 골목의 낮은 돌담과 대문
+      - generic: architecture
+    - button "낮은 민가 architecture COL":
+      - generic: 낮은 민가
+      - generic: architecture
+      - generic: COL
+    - button "관아 대청 architecture COL":
+      - generic: 관아 대청
+      - generic: architecture
+      - generic: COL
+    - button "단층 수문 누각 architecture COL":
+      - generic: 단층 수문 누각
+      - generic: architecture
+      - generic: COL
+    - button "목판문 서고 architecture COL":
+      - generic: 목판문 서고
+      - generic: architecture
+      - generic: COL
+    - button "널문 창고 architecture COL":
+      - generic: 널문 창고
+      - generic: architecture
+      - generic: COL
+    - button "골목의 낮은 돌담과 대문 architecture":
+      - generic: 골목의 낮은 돌담과 대문
+      - generic: architecture
+    - button "골목의 낮은 돌담과 대문 architecture":
+      - generic: 골목의 낮은 돌담과 대문
+      - generic: architecture
+    - button "골목의 낮은 돌담과 대문 architecture":
+      - generic: 골목의 낮은 돌담과 대문
+      - generic: architecture
+    - button "hall-west-step-bearing architecture":
+      - generic: hall-west-step-bearing
+      - generic: architecture
+    - button "hall-east-step-bearing architecture":
+      - generic: hall-east-step-bearing
+      - generic: architecture
+    - button "garden-gallery-bearing architecture":
+      - generic: garden-gallery-bearing
+      - generic: architecture
+    - button "얕은 종택 기단 architecture":
+      - generic: 얕은 종택 기단
+      - generic: architecture
+    - button "후원 흙과 암반의 큰 명암면 architecture":
+      - generic: 후원 흙과 암반의 큰 명암면
+      - generic: architecture
+    - button "water-route-mouth architecture":
+      - generic: water-route-mouth
+      - generic: architecture
+    - button "shrine-gate-frame architecture":
+      - generic: shrine-gate-frame
+      - generic: architecture
+    - button "record-room-rear architecture":
+      - generic: record-room-rear
+      - generic: architecture
+    - button "포갑과 목궤를 둔 서가 architecture":
+      - generic: 포갑과 목궤를 둔 서가
+      - generic: architecture
+    - button "west-work-ramp architecture COL":
+      - generic: west-work-ramp
+      - generic: architecture
+      - generic: COL
+    - button "work-loft architecture COL":
+      - generic: work-loft
+      - generic: architecture
+      - generic: COL
+    - button "east-work-ramp architecture COL":
+      - generic: east-work-ramp
+      - generic: architecture
+      - generic: COL
+    - button "burnt-workshop-frame architecture":
+      - generic: burnt-workshop-frame
+      - generic: architecture
+    - button "기와가 무너진 주조 공방과 흙가마 architecture COL":
+      - generic: 기와가 무너진 주조 공방과 흙가마
+      - generic: architecture
+      - generic: COL
+    - button "낮은 민가 architecture COL":
+      - generic: 낮은 민가
+      - generic: architecture
+      - generic: COL
+    - button "refuge-yard architecture":
+      - generic: refuge-yard
+      - generic: architecture
+    - button "return-bank-stones architecture":
+      - generic: return-bank-stones
+      - generic: architecture
+    - button "earth-and-footing-planes architecture":
+      - generic: earth-and-footing-planes
+      - generic: architecture
+    - button "burial-roof-earth-planes architecture":
+      - generic: burial-roof-earth-planes
+      - generic: architecture
+    - button "낮은 민가 architecture COL":
+      - generic: 낮은 민가
+      - generic: architecture
+      - generic: COL
+    - button "낮은 민가 architecture COL":
+      - generic: 낮은 민가
+      - generic: architecture
+      - generic: COL
+    - button "shrine-west-porch-bearing architecture":
+      - generic: shrine-west-porch-bearing
+      - generic: architecture
+    - button "shrine-east-porch-bearing architecture":
+      - generic: shrine-east-porch-bearing
+      - generic: architecture
+    - button "recessed-garden-wall-and-stones architecture":
+      - generic: recessed-garden-wall-and-stones
+      - generic: architecture
+    - button "deep-foundation-masonry architecture":
+      - generic: deep-foundation-masonry
+      - generic: architecture
+    - button "어긋나 되돌아오는 검은 집하장의 깊이 architecture":
+      - generic: 어긋나 되돌아오는 검은 집하장의 깊이
+      - generic: architecture
+    - button "관창 뒤로 길게 이어지는 먼 운하와 낮은 갈대 물가 architecture":
+      - generic: 관창 뒤로 길게 이어지는 먼 운하와 낮은 갈대 물가
+      - generic: architecture
+    - button "ruined-artisans-yard-rear architecture":
+      - generic: ruined-artisans-yard-rear
+      - generic: architecture
+    - button "west-lean-to-step architecture COL":
+      - generic: west-lean-to-step
+      - generic: architecture
+      - generic: COL
+    - button "연무에 잠긴 공방 뒤 산기슭 architecture":
+      - generic: 연무에 잠긴 공방 뒤 산기슭
+      - generic: architecture
+    - button "연무 너머 낮은 공방마을 architecture":
+      - generic: 연무 너머 낮은 공방마을
+      - generic: architecture
+    - button "연무 너머 낮은 공방마을 architecture":
+      - generic: 연무 너머 낮은 공방마을
+      - generic: architecture
+    - button "연무 너머 낮은 공방마을 architecture":
+      - generic: 연무 너머 낮은 공방마을
+      - generic: architecture
+    - button "far-river-bank architecture":
+      - generic: far-river-bank
+      - generic: architecture
+    - button "market-entry-awning architecture":
+      - generic: market-entry-awning
+      - generic: architecture
+    - button "market-alley-eave architecture":
+      - generic: market-alley-eave
+      - generic: architecture
+    - button "market-potter-awning architecture":
+      - generic: market-potter-awning
+      - generic: architecture
+    - button "office-west-awning architecture":
+      - generic: office-west-awning
+      - generic: architecture
+    - button "office-return-eave architecture":
+      - generic: office-return-eave
+      - generic: architecture
+    - button "이어진 장터 뒷담·작업칸·석축 발 architecture":
+      - generic: 이어진 장터 뒷담·작업칸·석축 발
+      - generic: architecture
+    - button "관아 옆 부엌·경사진 나무 처마 architecture":
+      - generic: 관아 옆 부엌·경사진 나무 처마
+      - generic: architecture
+    - button "나루 뒤로 넓게 이어지는 낮은 대비의 강과 건너편 둑 terrain":
+      - generic: 나루 뒤로 넓게 이어지는 낮은 대비의 강과 건너편 둑
+      - generic: terrain
+    - button "물가의 낮은 뿌리와 젖은 흙덩이 tree":
+      - generic: 물가의 낮은 뿌리와 젖은 흙덩이
+      - generic: tree
+    - button "실제 지형 안에서 이어지는 젖은 모래·풍화암의 넓은 층 terrain":
+      - generic: 실제 지형 안에서 이어지는 젖은 모래·풍화암의 넓은 층
+      - generic: terrain
+    - button "풍화 화강암 수직 능선 rock":
+      - generic: 풍화 화강암 수직 능선
+      - generic: rock
+    - button "중앙 능선이 높은 화강암 절벽 rock":
+      - generic: 중앙 능선이 높은 화강암 절벽
+      - generic: rock
+    - button "넓은 화강암 절벽 밑동 rock":
+      - generic: 넓은 화강암 절벽 밑동
+      - generic: rock
+    - button "암벽에 묻힌 소나무 뿌리 접합 tree":
+      - generic: 암벽에 묻힌 소나무 뿌리 접합
+      - generic: tree
+    - button "암턱 뒤의 화강암 연결 어깨 rock":
+      - generic: 암턱 뒤의 화강암 연결 어깨
+      - generic: rock
+    - button "버려진 빈 나무 수레 prop":
+      - generic: 버려진 빈 나무 수레
+      - generic: prop
+    - button "석재와 공구 작업막 · 석문 작업장 접합 architecture":
+      - generic: 석재와 공구 작업막 · 석문 작업장 접합
+      - generic: architecture
+    - button "암벽에 기댄 살림집 · 석문 작업장 접합 architecture":
+      - generic: 암벽에 기댄 살림집 · 석문 작업장 접합
+      - generic: architecture
+    - button "멈춘 인양틀 · 석문 작업장 접합 architecture":
+      - generic: 멈춘 인양틀 · 석문 작업장 접합
+      - generic: architecture
+    - button "내려앉은 산 아래 석문 · 석문 작업장 접합 architecture":
+      - generic: 내려앉은 산 아래 석문 · 석문 작업장 접합
+      - generic: architecture
+    - button "잠운사 기단 뒤 낮은 대비의 지지 모암 rock":
+      - generic: 잠운사 기단 뒤 낮은 대비의 지지 모암
+      - generic: rock
+    - button "노송 폭포 · lower-bank rock":
+      - generic: 노송 폭포 · lower-bank
+      - generic: rock
+    - button "노송 폭포 · upper-shoulder rock":
+      - generic: 노송 폭포 · upper-shoulder
+      - generic: rock
+    - button "노송 폭포 · ritual-cave rock":
+      - generic: 노송 폭포 · ritual-cave
+      - generic: rock
+    - button "노송 폭포 · east-cliff rock":
+      - generic: 노송 폭포 · east-cliff
+      - generic: rock
+    - button "노송 폭포 · shot-brow rock":
+      - generic: 노송 폭포 · shot-brow
+      - generic: rock
+    - button "노송 폭포 · old-pine tree":
+      - generic: 노송 폭포 · old-pine
+      - generic: tree
+    - button "노송 폭포 · cave-back rock":
+      - generic: 노송 폭포 · cave-back
+      - generic: rock
+    - button "노송 폭포 · fallen-log architecture":
+      - generic: 노송 폭포 · fallen-log
+      - generic: architecture
+    - button "노송 폭포 · western-backwall rock":
+      - generic: 노송 폭포 · western-backwall
+      - generic: rock
+    - button "boundary-walls architecture":
+      - generic: boundary-walls
+      - generic: architecture
+    - button "west-clerks-wing-rear architecture":
+      - generic: west-clerks-wing-rear
+      - generic: architecture
+    - button "west-clerks-wing-charred-frame architecture":
+      - generic: west-clerks-wing-charred-frame
+      - generic: architecture
+    - button "west-clerks-wing-roof architecture COL":
+      - generic: west-clerks-wing-roof
+      - generic: architecture
+      - generic: COL
+    - button "raised-open-record-hall-rear architecture":
+      - generic: raised-open-record-hall-rear
+      - generic: architecture
+    - button "raised-open-record-hall-roof architecture COL":
+      - generic: raised-open-record-hall-roof
+      - generic: architecture
+      - generic: COL
+    - button "east-record-annex-rear architecture":
+      - generic: east-record-annex-rear
+      - generic: architecture
+    - button "east-record-annex-roof architecture COL":
+      - generic: east-record-annex-roof
+      - generic: architecture
+      - generic: COL
+    - button "water-yard-shed-rear architecture":
+      - generic: water-yard-shed-rear
+      - generic: architecture
+    - button "water-yard-shed-roof architecture COL":
+      - generic: water-yard-shed-roof
+      - generic: architecture
+      - generic: COL
+    - button "roof-access-support-west architecture":
+      - generic: roof-access-support-west
+      - generic: architecture
+    - button "roof-access-support-court-lower architecture":
+      - generic: roof-access-support-court-lower
+      - generic: architecture
+    - button "roof-access-support-court-upper architecture":
+      - generic: roof-access-support-court-upper
+      - generic: architecture
+    - button "roof-access-support-annex architecture":
+      - generic: roof-access-support-annex
+      - generic: architecture
+    - button "roof-access-support-water architecture":
+      - generic: roof-access-support-water
+      - generic: architecture
+    - button "west-service-canopy architecture COL":
+      - generic: west-service-canopy
+      - generic: architecture
+      - generic: COL
+    - button "annex-west-awning architecture COL":
+      - generic: annex-west-awning
+      - generic: architecture
+      - generic: COL
+    - button "annex-east-awning architecture COL":
+      - generic: annex-east-awning
+      - generic: architecture
+      - generic: COL
+    - button "court-plinth architecture":
+      - generic: court-plinth
+      - generic: architecture
+    - button "veranda-supports architecture":
+      - generic: veranda-supports
+      - generic: architecture
+    - button "fire-water-basin architecture":
+      - generic: fire-water-basin
+      - generic: architecture
+    - button "charred-west-fittings architecture":
+      - generic: charred-west-fittings
+      - generic: architecture
+    - button "mound-stone-shoulders architecture":
+      - generic: mound-stone-shoulders
+      - generic: architecture
+    - button "petition-worktable architecture":
+      - generic: petition-worktable
+      - generic: architecture
+    - button "approval-worktable architecture":
+      - generic: approval-worktable
+      - generic: architecture
+    - button "suppression-worktable architecture":
+      - generic: suppression-worktable
+      - generic: architecture
+    - button "empty-house architecture":
+      - generic: empty-house
+      - generic: architecture
+    - button "door architecture":
+      - generic: door
+      - generic: architecture
+    - button "a4:reeds architecture":
+      - generic: a4:reeds
+      - generic: architecture
+    - button "estuary-water architecture":
+      - generic: estuary-water
+      - generic: architecture
+    - button "a4:bamboo architecture":
+      - generic: a4:bamboo
+      - generic: architecture
+    - button "thick-bamboo architecture COL":
+      - generic: thick-bamboo
+      - generic: architecture
+      - generic: COL
+    - button "dock architecture":
+      - generic: dock
+      - generic: architecture
+    - button "old-wall architecture COL":
+      - generic: old-wall
+      - generic: architecture
+      - generic: COL
+    - button "boat architecture":
+      - generic: boat
+      - generic: architecture
+    - button "a4-art:bamboo-lean architecture":
+      - generic: a4-art:bamboo-lean
+      - generic: architecture
+    - button "a4-art:home-ruin architecture":
+      - generic: a4-art:home-ruin
+      - generic: architecture
+    - button "a4-art:workshop-ruin architecture":
+      - generic: a4-art:workshop-ruin
+      - generic: architecture
+    - button "a4-art:bare-doorframe architecture":
+      - generic: a4-art:bare-doorframe
+      - generic: architecture
+    - button "a4-art:charred-frame architecture":
+      - generic: a4-art:charred-frame
+      - generic: architecture
+    - button "a4-art:rubble-wall architecture":
+      - generic: a4-art:rubble-wall
+      - generic: architecture
+    - button "a4-art:delta-bars architecture":
+      - generic: a4-art:delta-bars
+      - generic: architecture
+    - button "a4-art:empty-foundation architecture":
+      - generic: a4-art:empty-foundation
+      - generic: architecture
+    - button "a4-art:thick-leafy architecture":
+      - generic: a4-art:thick-leafy
+      - generic: architecture
+    - button "a4-art:abandoned-skiff architecture":
+      - generic: a4-art:abandoned-skiff
+      - generic: architecture
+    - button "a4-art:fallen-bamboo architecture":
+      - generic: a4-art:fallen-bamboo
+      - generic: architecture
+    - button "a4:bamboo architecture":
+      - generic: a4:bamboo
+      - generic: architecture
+    - button "a4-art:bamboo-lean architecture":
+      - generic: a4-art:bamboo-lean
+      - generic: architecture
+    - button "estuary-water environment":
+      - generic: estuary-water
+      - generic: environment
+    - button "a4-coast:haul-footing architecture":
+      - generic: a4-coast:haul-footing
+      - generic: architecture
+    - button "a4-coast:port-house architecture":
+      - generic: a4-coast:port-house
+      - generic: architecture
+    - button "a4-coast:signal-outcrop architecture":
+      - generic: a4-coast:signal-outcrop
+      - generic: architecture
+    - button "a4-coast:signal architecture":
+      - generic: a4-coast:signal
+      - generic: architecture
+    - button "a4-coast:crack architecture":
+      - generic: a4-coast:crack
+      - generic: architecture
+    - button "a4-coast:net architecture":
+      - generic: a4-coast:net
+      - generic: architecture
+    - button "a4-coast:wreck architecture":
+      - generic: a4-coast:wreck
+      - generic: architecture
+    - button "a4-coast:cavern-wall architecture":
+      - generic: a4-coast:cavern-wall
+      - generic: architecture
+    - button "a4-coast:ridge architecture":
+      - generic: a4-coast:ridge
+      - generic: architecture
+    - button "a4-coast:port-shed architecture":
+      - generic: a4-coast:port-shed
+      - generic: architecture
+    - button "a4-coast:drying-frame architecture":
+      - generic: a4-coast:drying-frame
+      - generic: architecture
+    - button "a4-coast:haul-winch architecture":
+      - generic: a4-coast:haul-winch
+      - generic: architecture
+    - button "a4-coast:breath-flask architecture":
+      - generic: a4-coast:breath-flask
+      - generic: architecture
+    - button "a4-coast:pier-32-1520 architecture":
+      - generic: a4-coast:pier-32-1520
+      - generic: architecture
+    - button "a4-coast:pier-32-2370 architecture":
+      - generic: a4-coast:pier-32-2370
+      - generic: architecture
+    - button "a4-coast:pier-33-1450 architecture":
+      - generic: a4-coast:pier-33-1450
+      - generic: architecture
+    - button "a4-coast:pier-33-2430 architecture":
+      - generic: a4-coast:pier-33-2430
+      - generic: architecture
+    - button "a4-coast:pier-33-3600 architecture":
+      - generic: a4-coast:pier-33-3600
+      - generic: architecture
+    - button "a4-coast:pier-33-4690 architecture":
+      - generic: a4-coast:pier-33-4690
+      - generic: architecture
+    - button "a4-art:walkway-support architecture":
+      - generic: a4-art:walkway-support
+      - generic: architecture
+    - button "a4-coast:pier-37-2070 architecture":
+      - generic: a4-coast:pier-37-2070
+      - generic: architecture
+    - button "a4-coast:pier-37-2820 architecture":
+      - generic: a4-coast:pier-37-2820
+      - generic: architecture
+    - button "a4-coast:pier-39-1750 architecture":
+      - generic: a4-coast:pier-39-1750
+      - generic: architecture
+    - button "a4-coast:pier-39-2440 architecture":
+      - generic: a4-coast:pier-39-2440
+      - generic: architecture
+    - button "a4-coast:pier-39-3840 architecture":
+      - generic: a4-coast:pier-39-3840
+      - generic: architecture
+    - button "a4-coast:pier-39-4400 architecture":
+      - generic: a4-coast:pier-39-4400
+      - generic: architecture
+    - button "a4-coast:pier-39-4900 architecture":
+      - generic: a4-coast:pier-39-4900
+      - generic: architecture
+    - button "a4-coast:pier-39-5700 architecture":
+      - generic: a4-coast:pier-39-5700
+      - generic: architecture
+    - button "a4-coast:pier-40-2810 architecture":
+      - generic: a4-coast:pier-40-2810
+      - generic: architecture
+    - button "a4-coast:pier-40-3350 architecture":
+      - generic: a4-coast:pier-40-3350
+      - generic: architecture
+    - button "a4-coast:pier-40-4050 architecture":
+      - generic: a4-coast:pier-40-4050
+      - generic: architecture
+    - button "a4-coast:pier-40-4540 architecture":
+      - generic: a4-coast:pier-40-4540
+      - generic: architecture
+    - button "a4-coast:pier-40-4930 architecture":
+      - generic: a4-coast:pier-40-4930
+      - generic: architecture
+    - button "s31:timber-structure architecture":
+      - generic: s31:timber-structure
+      - generic: architecture
+    - button "s31:shore-material architecture":
+      - generic: s31:shore-material
+      - generic: architecture
+    - button "abandoned-skiff architecture":
+      - generic: abandoned-skiff
+      - generic: architecture
+    - button "철물 빠진 빈 골조 (저밀도) architecture":
+      - generic: 철물 빠진 빈 골조 (저밀도)
+      - generic: architecture
+    - button "물가 갈대 근경 plant":
+      - generic: 물가 갈대 근경
+      - generic: plant
+    - button "하구 근경 흙둑 rock":
+      - generic: 하구 근경 흙둑
+      - generic: rock
+    - button "하구 근경 흙둑 rock":
+      - generic: 하구 근경 흙둑
+      - generic: rock
+    - button "근경 갈대와 뿌리 plant":
+      - generic: 근경 갈대와 뿌리
+      - generic: plant
+    - button "하구 근경 흙둑 rock":
+      - generic: 하구 근경 흙둑
+      - generic: rock
+    - button "돌아가는 배 boat architecture":
+      - generic: 돌아가는 배 boat
+      - generic: architecture
+    - button "포구 집 저밀도 배경 architecture":
+      - generic: 포구 집 저밀도 배경
+      - generic: architecture
+    - button "abandoned-skiff architecture":
+      - generic: abandoned-skiff
+      - generic: architecture
+    - button "빈 솥자리와 집터 architecture":
+      - generic: 빈 솥자리와 집터
+      - generic: architecture
+    - button "갯길 상부 피난 석재 보행면 west rock":
+      - generic: 갯길 상부 피난 석재 보행면 west
+      - generic: rock
+    - button "갯길 상부 피난 석재 보행면 east rock":
+      - generic: 갯길 상부 피난 석재 보행면 east
+      - generic: rock
+    - button "coastal-boulder rock":
+      - generic: coastal-boulder
+      - generic: rock
+    - button "coastal-boulder rock":
+      - generic: coastal-boulder
+      - generic: rock
+    - button "해안 수직 균열 바위 architecture":
+      - generic: 해안 수직 균열 바위
+      - generic: architecture
+    - button "절벽 지반 BODY rock":
+      - generic: 절벽 지반 BODY
+      - generic: rock
+    - button "회청록 대나무 군락 tree":
+      - generic: 회청록 대나무 군락
+      - generic: tree
+    - button "Bamboo physical cover architecture COL":
+      - generic: Bamboo physical cover
+      - generic: architecture
+      - generic: COL
+    - button "회청록 대나무 군락 tree":
+      - generic: 회청록 대나무 군락
+      - generic: tree
+    - button "회청록 대나무 군락 tree":
+      - generic: 회청록 대나무 군락
+      - generic: tree
+    - button "철물 빠진 빈 골조 (저밀도) architecture":
+      - generic: 철물 빠진 빈 골조 (저밀도)
+      - generic: architecture
+    - button "coastal-boulder rock":
+      - generic: coastal-boulder
+      - generic: rock
+    - button "해안 목제 권양기 architecture":
+      - generic: 해안 목제 권양기
+      - generic: architecture
+    - button "곶의 신호 바위 · 원형 앵커 보존 rock":
+      - generic: 곶의 신호 바위 · 원형 앵커 보존
+      - generic: rock
+    - button "coastal-boulder rock":
+      - generic: coastal-boulder
+      - generic: rock
+    - button "해식굴 floor BODY rock":
+      - generic: 해식굴 floor BODY
+      - generic: rock
+    - button "해식굴 실제 접촉 림 rock":
+      - generic: 해식굴 실제 접촉 림
+      - generic: rock
+    - button "절벽 접촉면 석재 군집 ground":
+      - generic: 절벽 접촉면 석재 군집
+      - generic: ground
+    - button "절벽 접촉면 석재 군집 ground":
+      - generic: 절벽 접촉면 석재 군집
+      - generic: ground
+    - button "절벽 접촉면 석재 군집 ground":
+      - generic: 절벽 접촉면 석재 군집
+      - generic: ground
+    - button "39장 a4-39-west-upper 목재 구조면 wood":
+      - generic: 39장 a4-39-west-upper 목재 구조면
+      - generic: wood
+    - button "갯길 상부 피난 석재 보행면 east rock":
+      - generic: 갯길 상부 피난 석재 보행면 east
+      - generic: rock
+    - button "살아있는 폐선 architecture":
+      - generic: 살아있는 폐선
+      - generic: architecture
+    - button "귀환 포구 coastal-shed architecture":
+      - generic: 귀환 포구 coastal-shed
+      - generic: architecture
+    - button "포구 집 저밀도 배경 architecture":
+      - generic: 포구 집 저밀도 배경
+      - generic: architecture
+    - button "abandoned-skiff architecture":
+      - generic: abandoned-skiff
+      - generic: architecture
+    - button "귀환 포구 timber-brace architecture":
+      - generic: 귀환 포구 timber-brace
+      - generic: architecture
+    - button "귀환 포구 timber-brace architecture":
+      - generic: 귀환 포구 timber-brace
+      - generic: architecture
+    - button "귀환 포구 timber-brace architecture":
+      - generic: 귀환 포구 timber-brace
+      - generic: architecture
+    - button "귀환 포구 timber-brace architecture":
+      - generic: 귀환 포구 timber-brace
+      - generic: architecture
+    - button "귀환 포구 timber-brace architecture":
+      - generic: 귀환 포구 timber-brace
+      - generic: architecture
+    - button "돌아가는 배 body rock":
+      - generic: 돌아가는 배 body
+      - generic: rock
+    - button "돌아가는 배 boat architecture":
+      - generic: 돌아가는 배 boat
+      - generic: architecture
+    - button "abandoned-skiff architecture":
+      - generic: abandoned-skiff
+      - generic: architecture
+    - button "s31-silhouette:play-left-source-v5 prop":
+      - generic: s31-silhouette:play-left-source-v5
+      - generic: prop
+    - button "s31-silhouette:play-right-source-v5 prop":
+      - generic: s31-silhouette:play-right-source-v5
+      - generic: prop
+    - button "s31-silhouette:wood-source-v4 prop":
+      - generic: s31-silhouette:wood-source-v4
+      - generic: prop
+    - button "s31-silhouette:wood-source-v4 prop":
+      - generic: s31-silhouette:wood-source-v4
+      - generic: prop
+    - button "s31-silhouette:wood-source-v4 prop":
+      - generic: s31-silhouette:wood-source-v4
+      - generic: prop
+    - button "근경 갈대와 뿌리 plant":
+      - generic: 근경 갈대와 뿌리
+      - generic: plant
+    - button "물가 갈대 근경 plant":
+      - generic: 물가 갈대 근경
+      - generic: plant
+    - button "바람에 닳은 옛 장례길의 나무 길표 architecture":
+      - generic: 바람에 닳은 옛 장례길의 나무 길표
+      - generic: architecture
+    - button "새벽 나루의 낮은 화물상자와 짐자루 architecture":
+      - generic: 새벽 나루의 낮은 화물상자와 짐자루
+      - generic: architecture
+    - button "Stage31 left native material continuation prop":
+      - generic: Stage31 left native material continuation
+      - generic: prop
+    - button "Stage31 right native material continuation prop":
+      - generic: Stage31 right native material continuation
+      - generic: prop
+    - button "Flat-landing broken stone parapet prop COL":
+      - generic: Flat-landing broken stone parapet
+      - generic: prop
+      - generic: COL
+    - button "a4-coast:pier-32-1520 architecture":
+      - generic: a4-coast:pier-32-1520
+      - generic: architecture
+    - button "a4-coast:pier-32-2370 architecture":
+      - generic: a4-coast:pier-32-2370
+      - generic: architecture
+    - button "포구 집 저밀도 배경 architecture":
+      - generic: 포구 집 저밀도 배경
+      - generic: architecture
+    - button "Stage32 authored coastal soil profile prop":
+      - generic: Stage32 authored coastal soil profile
+      - generic: prop
+    - button "Stage32 authored coastal soil profile prop":
+      - generic: Stage32 authored coastal soil profile
+      - generic: prop
+    - button "s32-silhouette:wood-source-v3 prop":
+      - generic: s32-silhouette:wood-source-v3
+      - generic: prop
+    - button "abandoned-skiff architecture":
+      - generic: abandoned-skiff
+      - generic: architecture
+    - button "빈 솥자리와 집터 architecture":
+      - generic: 빈 솥자리와 집터
+      - generic: architecture
+    - button "a4-coast:drying-frame architecture":
+      - generic: a4-coast:drying-frame
+      - generic: architecture
+    - button "s32-silhouette:bank-source-v3 prop":
+      - generic: s32-silhouette:bank-source-v3
+      - generic: prop
+    - button "s32-silhouette:bank-source-v3 prop":
+      - generic: s32-silhouette:bank-source-v3
+      - generic: prop
+    - button "s32-silhouette:bank-right-source-v3 prop":
+      - generic: s32-silhouette:bank-right-source-v3
+      - generic: prop
+    - button "s32-silhouette:bank-right-source-v3 prop":
+      - generic: s32-silhouette:bank-right-source-v3
+      - generic: prop
+    - button "abandoned-skiff architecture":
+      - generic: abandoned-skiff
+      - generic: architecture
+    - button "Blue dawn causeway source rock":
+      - generic: Blue dawn causeway source
+      - generic: rock
+    - button "Blue dawn causeway source rock":
+      - generic: Blue dawn causeway source
+      - generic: rock
+    - button "Native composed asymmetric bank rock":
+      - generic: Native composed asymmetric bank
+      - generic: rock
+    - button "Native composed asymmetric bank rock":
+      - generic: Native composed asymmetric bank
+      - generic: rock
+    - button "Native composed asymmetric bank rock":
+      - generic: Native composed asymmetric bank
+      - generic: rock
+    - button "Native composed asymmetric bank rock":
+      - generic: Native composed asymmetric bank
+      - generic: rock
+    - button "Native composed asymmetric bank rock":
+      - generic: Native composed asymmetric bank
+      - generic: rock
+    - button "Native composed asymmetric bank rock":
+      - generic: Native composed asymmetric bank
+      - generic: rock
+    - button "Native composed asymmetric bank rock":
+      - generic: Native composed asymmetric bank
+      - generic: rock
+    - button "Native composed asymmetric bank rock":
+      - generic: Native composed asymmetric bank
+      - generic: rock
+    - button "Native composed asymmetric bank rock":
+      - generic: Native composed asymmetric bank
+      - generic: rock
+    - button "coastal-boulder rock":
+      - generic: coastal-boulder
+      - generic: rock
+    - button "물가 갈대 근경 plant":
+      - generic: 물가 갈대 근경
+      - generic: plant
+    - button "물가 갈대 근경 plant":
+      - generic: 물가 갈대 근경
+      - generic: plant
+    - button "34 authored roof rock":
+      - generic: 34 authored roof
+      - generic: rock
+    - button "34 authored floor rock":
+      - generic: 34 authored floor
+      - generic: rock
+    - button "34 authored roof rock":
+      - generic: 34 authored roof
+      - generic: rock
+    - button "34 authored floor rock":
+      - generic: 34 authored floor
+      - generic: rock
+    - button "34 authored floor rock":
+      - generic: 34 authored floor
+      - generic: rock
+    - button "절벽 지반 BODY rock":
+      - generic: 절벽 지반 BODY
+      - generic: rock
+    - button "coastal-boulder rock":
+      - generic: coastal-boulder
+      - generic: rock
+    - button "coastal-boulder rock":
+      - generic: coastal-boulder
+      - generic: rock
+    - button "해안 수직 균열 바위 architecture":
+      - generic: 해안 수직 균열 바위
+      - generic: architecture
+    - button "회청록 대나무 군락 tree":
+      - generic: 회청록 대나무 군락
+      - generic: tree
+    - button "회청록 대나무 군락 tree":
+      - generic: 회청록 대나무 군락
+      - generic: tree
+    - button "Bamboo physical cover architecture COL":
+      - generic: Bamboo physical cover
+      - generic: architecture
+      - generic: COL
+    - button "Ground-supported broken stone cover architecture COL":
+      - generic: Ground-supported broken stone cover
+      - generic: architecture
+      - generic: COL
+    - button "Ground-supported broken stone cover architecture COL":
+      - generic: Ground-supported broken stone cover
+      - generic: architecture
+      - generic: COL
+    - button "s35-silhouette:west-bank-source rock":
+      - generic: s35-silhouette:west-bank-source
+      - generic: rock
+    - button "s35-silhouette:east-bank-source rock":
+      - generic: s35-silhouette:east-bank-source
+      - generic: rock
+    - button "s35-silhouette:east-bank-source rock":
+      - generic: s35-silhouette:east-bank-source
+      - generic: rock
+    - button "a4-art:fallen-bamboo architecture":
+      - generic: a4-art:fallen-bamboo
+      - generic: architecture
+    - button "근경 대나무 지지 지면 terrain":
+      - generic: 근경 대나무 지지 지면
+      - generic: terrain
+    - button "s35-silhouette:west-bank-source rock":
+      - generic: s35-silhouette:west-bank-source
+      - generic: rock
+    - button "대숲 옛길 연속 지반 rock":
+      - generic: 대숲 옛길 연속 지반
+      - generic: rock
+    - button "a4-art:fallen-bamboo architecture":
+      - generic: a4-art:fallen-bamboo
+      - generic: architecture
+    - button "36장 분리형 흙·돌 접촉군 ground":
+      - generic: 36장 분리형 흙·돌 접촉군
+      - generic: ground
+    - button "철물 빠진 문짝 — 구조 선명화 architecture":
+      - generic: 철물 빠진 문짝 — 구조 선명화
+      - generic: architecture
+    - button "빈 솥자리와 집터 (저밀도) architecture":
+      - generic: 빈 솥자리와 집터 (저밀도)
+      - generic: architecture
+    - button "철물 빠진 빈 골조 (저밀도) architecture":
+      - generic: 철물 빠진 빈 골조 (저밀도)
+      - generic: architecture
+    - button "철물 없는 빈집 — 배경 저밀도 architecture":
+      - generic: 철물 없는 빈집 — 배경 저밀도
+      - generic: architecture
+    - button "s36-silhouette:east-source rock":
+      - generic: s36-silhouette:east-source
+      - generic: rock
+    - button "s36-silhouette:east-source rock":
+      - generic: s36-silhouette:east-source
+      - generic: rock
+    - button "s36-silhouette:west-source rock":
+      - generic: s36-silhouette:west-source
+      - generic: rock
+    - button "s36-silhouette:west-source rock":
+      - generic: s36-silhouette:west-source
+      - generic: rock
+    - button "a4-coast:pier-37-2070 architecture":
+      - generic: a4-coast:pier-37-2070
+      - generic: architecture
+    - button "a4-coast:pier-37-2820 architecture":
+      - generic: a4-coast:pier-37-2820
+      - generic: architecture
+    - button "s37-silhouette:play-left-source-v5 prop":
+      - generic: s37-silhouette:play-left-source-v5
+      - generic: prop
+    - button "s37-silhouette:play-right-source-v5 prop":
+      - generic: s37-silhouette:play-right-source-v5
+      - generic: prop
+    - button "s37-silhouette:wood-source-v4 prop":
+      - generic: s37-silhouette:wood-source-v4
+      - generic: prop
+    - button "Ground-supported broken stone cover architecture COL":
+      - generic: Ground-supported broken stone cover
+      - generic: architecture
+      - generic: COL
+    - button "Ground-supported broken stone cover architecture COL":
+      - generic: Ground-supported broken stone cover
+      - generic: architecture
+      - generic: COL
+    - button "Ground-supported broken stone cover architecture COL":
+      - generic: Ground-supported broken stone cover
+      - generic: architecture
+      - generic: COL
+    - button "Ground-supported broken stone cover architecture COL":
+      - generic: Ground-supported broken stone cover
+      - generic: architecture
+      - generic: COL
+    - button "coastal-boulder rock":
+      - generic: coastal-boulder
+      - generic: rock
+    - button "해안 목제 권양기 architecture":
+      - generic: 해안 목제 권양기
+      - generic: architecture
+    - button "s37-silhouette:broken-wall-source-v5 prop":
+      - generic: s37-silhouette:broken-wall-source-v5
+      - generic: prop
+    - button "Stage37 left native material continuation prop":
+      - generic: Stage37 left native material continuation
+      - generic: prop
+    - button "Stage37 right native material continuation prop":
+      - generic: Stage37 right native material continuation
+      - generic: prop
+    - button "새벽 안개 속 신호 바위 rock":
+      - generic: 새벽 안개 속 신호 바위
+      - generic: rock
+    - button "해식굴 실제 접촉 림 rock":
+      - generic: 해식굴 실제 접촉 림
+      - generic: rock
+    - button "coastal-boulder rock":
+      - generic: coastal-boulder
+      - generic: rock
+    - button "해안 수직 균열 바위 architecture":
+      - generic: 해안 수직 균열 바위
+      - generic: architecture
+    - button "coastal-boulder rock":
+      - generic: coastal-boulder
+      - generic: rock
+    - button "절벽 접촉면 석재 군집 ground":
+      - generic: 절벽 접촉면 석재 군집
+      - generic: ground
+    - button "해식굴 floor BODY rock":
+      - generic: 해식굴 floor BODY
+      - generic: rock
+    - button "해식굴 floor BODY rock":
+      - generic: 해식굴 floor BODY
+      - generic: rock
+    - button "해식굴 floor BODY rock":
+      - generic: 해식굴 floor BODY
+      - generic: rock
+    - button "새벽 해식굴 침식 보행면 rock":
+      - generic: 새벽 해식굴 침식 보행면
+      - generic: rock
+    - button "새벽 해식굴 침식 보행면 rock":
+      - generic: 새벽 해식굴 침식 보행면
+      - generic: rock
+    - button "새벽 해식굴 침식 천장 rock":
+      - generic: 새벽 해식굴 침식 천장
+      - generic: rock
+    - button "새벽 해식굴 침식 천장 rock":
+      - generic: 새벽 해식굴 침식 천장
+      - generic: rock
+    - button "39 native full-profile stone ledge rock":
+      - generic: 39 native full-profile stone ledge
+      - generic: rock
+    - button "해안 수직 균열 바위 architecture":
+      - generic: 해안 수직 균열 바위
+      - generic: architecture
+    - button "coastal-boulder rock":
+      - generic: coastal-boulder
+      - generic: rock
+    - button "39장 a4-39-west-upper 목재 구조면 wood":
+      - generic: 39장 a4-39-west-upper 목재 구조면
+      - generic: wood
+    - button "s39-silhouette:west-bank-source rock":
+      - generic: s39-silhouette:west-bank-source
+      - generic: rock
+    - button "s39-silhouette:east-bank-source rock":
+      - generic: s39-silhouette:east-bank-source
+      - generic: rock
+    - button "s39-silhouette:east-bank-source rock":
+      - generic: s39-silhouette:east-bank-source
+      - generic: rock
+    - button "s39-silhouette:west-bank-source rock":
+      - generic: s39-silhouette:west-bank-source
+      - generic: rock
+    - button "coastal-boulder rock":
+      - generic: coastal-boulder
+      - generic: rock
+    - button "귀환 포구 timber-brace architecture":
+      - generic: 귀환 포구 timber-brace
+      - generic: architecture
+    - button "귀환 포구 timber-brace architecture":
+      - generic: 귀환 포구 timber-brace
+      - generic: architecture
+    - button "귀환 포구 timber-brace architecture":
+      - generic: 귀환 포구 timber-brace
+      - generic: architecture
+    - button "귀환 포구 timber-brace architecture":
+      - generic: 귀환 포구 timber-brace
+      - generic: architecture
+    - button "귀환 포구 timber-brace architecture":
+      - generic: 귀환 포구 timber-brace
+      - generic: architecture
+    - button "귀환 포구 timber-brace architecture":
+      - generic: 귀환 포구 timber-brace
+      - generic: architecture
+    - button "귀환 포구 coastal-shed architecture":
+      - generic: 귀환 포구 coastal-shed
+      - generic: architecture
+    - button "포구 집 저밀도 배경 architecture":
+      - generic: 포구 집 저밀도 배경
+      - generic: architecture
+    - button "abandoned-skiff architecture":
+      - generic: abandoned-skiff
+      - generic: architecture
+    - button "s40-silhouette:play-left-source-v5 prop":
+      - generic: s40-silhouette:play-left-source-v5
+      - generic: prop
+    - button "s40-silhouette:play-right-source-v5 prop":
+      - generic: s40-silhouette:play-right-source-v5
+      - generic: prop
+    - button "s40-silhouette:wood-source-v4 prop":
+      - generic: s40-silhouette:wood-source-v4
+      - generic: prop
+    - button "Stage40 left native material continuation prop":
+      - generic: Stage40 left native material continuation
+      - generic: prop
+    - button "Stage40 right native material continuation prop":
+      - generic: Stage40 right native material continuation
+      - generic: prop
+    - button "s39-silhouette:east-bank-source rock":
+      - generic: s39-silhouette:east-bank-source
+      - generic: rock
+    - generic: LAYERS
+    - generic: ◉
+    - generic: ◆
+    - generic: far
+    - generic: ◉
+    - generic: ◆
+    - generic: mid
+    - generic: ◉
+    - generic: ◆
+    - generic: back
+    - generic: ◉
+    - generic: ◆
+    - generic: structural-back
+    - generic: ◉
+    - generic: ◆
+    - generic: terrain
+    - generic: ◉
+    - generic: ◆
+    - generic: interactive
+    - generic: ◉
+    - generic: ◆
+    - generic: prop
+    - generic: ◉
+    - generic: ◆
+    - generic: units
+    - generic: ◉
+    - generic: ◆
+    - generic: events
+    - generic: ◉
+    - generic: ◆
+    - generic: front
+    - generic: ◉
+    - generic: ◆
+    - generic: L2
+    - generic: ◉
+    - generic: ◆
+    - generic: L3
+    - generic: ◉
+    - generic: ◆
+    - generic: L4
+    - generic: ◉
+    - generic: ◆
+    - generic: L5
+  - button "선택"
+  - button "지형"
+  - button "Solid"
+  - button "재질"
+  - button "배치"
+  - button "Scatter"
+  - button "유닛"
+  - button "이벤트"
+  - button "Pan"
+  - generic: 6%
+  - generic: 4500, 2300
+  - generic: "Wheel: zoom · Pan/우클릭: 이동 · Ctrl+드래그: Grid snap · Solid: 더블클릭/Enter 완료 · Ctrl+Z: Undo"
+  - complementary:
+    - generic: STAGE
+    - generic: 이름
+    - textbox: 39 · 돌아오는 물
+    - text: Width
+    - spinbutton: "9000"
+    - text: Height
+    - spinbutton: "4600"
+    - generic: Backdrop
+    - combobox:
+      - option "forest"
+      - option "temple"
+      - option "gate"
+      - option "river" [selected]
+      - option "valley"
+      - option "bridge"
+      - option "tree"
+      - option "shrine"
+    - text: Grid
+    - spinbutton: "40"
+    - text: Adaptive LOD
+    - checkbox [checked] [disabled]
+    - text: runtime raster LOD
+    - generic: ENVIRONMENT
+    - generic: Atmosphere
+    - combobox:
+      - option "forest"
+      - option "valley" [selected]
+      - option "enclosed"
+      - option "temple"
+      - option "burned"
+      - option "otherworld"
+    - paragraph: 구역 3 · 풍경 3 · 지지면 3
+    - generic "풍경 고급 편집"
+    - generic: PERFORMANCE
+    - generic: Terrain
+    - strong: "409"
+    - generic: Element vector
+    - strong: "0"
+    - generic: Total nodes
+    - strong: "409"
+    - generic: LOD ε
+    - spinbutton: "4"
+    - button "전체 적용"
+    - generic: ε가 클수록 export/render node가 줄어듭니다. 원본 control은 유지됩니다.
+    - generic: TOOL
+    - generic: "클릭 선택 · 드래그 이동 · Terrain/solid node 직접 편집 · Ctrl+드래그: Grid snap"
+    - generic: MATERIAL
+    - button "soil"
+    - button "grass"
+    - button "moss"
+    - button "rock"
+    - button "scree"
+    - button "mud"
+    - button "water"
+    - button "charred"
+    - button "stone"
+    - generic: Brush
+    - slider: "220"
+    - generic: "220"
+    - generic: AGENT COWORK
+    - button "Context 복사"
+    - textbox: "[ { \"op\": \"element.place\", \"assetId\": \"rock_large\", \"x\": 1600, \"layer\": \"interactive\" } ]"
+    - button "Preview"
+    - button "Apply"
+    - button "Discard"
+    - generic: AI/Agent는 같은 Command API로 맵을 수정합니다.
+    - generic: VALIDATION
+    - button "검사"
+    - generic: 구조 오류 없음
+- contentinfo:
+  - generic: 준비됨
+  - generic: HONRO Workshop · local-first · agent-ready

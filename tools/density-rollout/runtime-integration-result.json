@@ -1,0 +1,31 @@
+{
+  "scope": "Authorized local review-branch runtime source integration; not production build/release approval or remote publication.",
+  "target": "shared/data/act4/world.json",
+  "worldSha256": "6d7737450f484807d1ed927f00ed0e7d2cb6f25beb6140c416c27c00440b5b34",
+  "previousWorldSha256": "4b26793d41ab10ddc1aa6d02f184ff402e3ced1f28c73c874d1ce608fee7d2b6",
+  "campaignRawByteSha256": "54b1e47abe6b7c4d05fd1bf5eefb7702d127d1b37335411147d8590df4413f47",
+  "campaignRawBytesIdentical": true,
+  "sourceFinalProjectSha256": "2dc1904694285fa9efa654bd94dd7fe2c3ab546d7027b3d7dcce39c37ccb5f09",
+  "sourceBytes": 27909764,
+  "rootVisualDirectionAccepted": true,
+  "nativeFunctionalQA": "tools/density-qa/evidence/final-v5-functional-summary.json",
+  "browserQA": "blocked/unverified",
+  "productionReviews": "structure/native-art/native-integration pass; camera-and-state pending",
+  "remoteWrites": false,
+  "guardedBuild": {
+    "command": "npm run build",
+    "exitCode": 1,
+    "result": "blocked",
+    "reason": "Verified tools/stage31/production-package.json is absent; current honest draft retains pending production reviews.",
+    "log": "_local/reports/density-rollout/final-v5/guarded-build.log",
+    "downstreamBuilderRun": false
+  },
+  "latestGuardedBuild": {
+    "command": "npm run build",
+    "exitCode": 1,
+    "result": "blocked-on-camera-review-only",
+    "reason": "Current truthful package matches actual shared+Act4 payload and has9 passing current contract probes. camera-and-state remains pending: C1 partial camera-history coverage and C3 unverified real mobile controls/browser.",
+    "log": "_local/reports/density-rollout/final-v5/pending-package-build.log",
+    "downstreamBuilderRun": false
+  }
+}

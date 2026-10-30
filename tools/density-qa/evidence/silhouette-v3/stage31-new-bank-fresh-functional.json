@@ -1,0 +1,94 @@
+{
+  "scope": "Fresh independent Stage31 declared functional checks. New input tapes, unchanged target/support/objective assertions. Not art/camera/browser/linked-campaign approval.",
+  "source": {
+    "project": "_local/reports/silhouette-qa/sea31-3602/project.json",
+    "rawSHA256": "3602942d32579f00f7c7689208eac7b5a209bc9684a6aed11897aaa98ef6b5aa",
+    "probeDraft": "_local/reports/silhouette-qa/sea31-3602/probe-draft.json",
+    "probeDraftSHA256": "136661e1f26ccaac81c448f891b5302e193fd1977f5b4594c0a597411093e63f",
+    "probeMetadataOnly": "Required production probe definitions and encounter target zones copied into QA clone; stage/library unchanged."
+  },
+  "runtimeSHA256": "00b3f8b72c707db7b49e5c99d7b56397834b07a2261ef727b1b4639c1c046c3e",
+  "results": [
+    {
+      "id": "boardwalk-route",
+      "result": "pass",
+      "frames": 3354,
+      "fingerprint": "draft-v1-d7df11d-2516027"
+    },
+    {
+      "id": "low-channel-route",
+      "result": "pass",
+      "frames": 3737,
+      "fingerprint": "draft-v1-d7df11d-2516027"
+    },
+    {
+      "id": "first-bank-low-shot",
+      "result": "pass",
+      "frames": 480,
+      "fingerprint": "draft-v1-d7df11d-2516027"
+    },
+    {
+      "id": "first-bank-high-shot",
+      "result": "pass",
+      "frames": 480,
+      "fingerprint": "draft-v1-d7df11d-2516027"
+    },
+    {
+      "id": "s31-west-bank-action",
+      "result": "pass",
+      "frames": 6852,
+      "fingerprint": "draft-v1-d7df11d-2516027"
+    },
+    {
+      "id": "s31-low-channel-action",
+      "result": "pass",
+      "frames": 6852,
+      "fingerprint": "draft-v1-d7df11d-2516027"
+    },
+    {
+      "id": "s31-middle-rise-action",
+      "result": "pass",
+      "frames": 6852,
+      "fingerprint": "draft-v1-d7df11d-2516027"
+    },
+    {
+      "id": "s31-landing-action",
+      "result": "pass",
+      "frames": 14052,
+      "fingerprint": "draft-v1-d7df11d-2516027"
+    },
+    {
+      "id": "boarding",
+      "result": "pass",
+      "frames": 48585,
+      "entryBuild": "campaign-spent-v1",
+      "fingerprint": "draft-v1-d7df11d-2516027"
+    }
+  ],
+  "freshInputChanges": {
+    "lowShot": "Angle -10 to -12 degrees only; same launch movement, A01/power0.65, actual bank interception and no target damage required.",
+    "boarding": "Fresh ordinary-input campaign-spent-v1 policy; same earned-SP entry build and 60000-frame bounded objective runner. 48585 frames, all four alive and boarded."
+  },
+  "historicalFailures": "Original input fixtures remain 7/9 on new bank (low arc first blocker changed to wood; old boarding combat divergence). They have NOT been relabeled passing.",
+  "balancedDiagnostic": {
+    "success": false,
+    "reason": "58000-frame policy budget",
+    "allFoesCleared": true,
+    "boat": "docked",
+    "scope": "Not a proof of impossible completion or balanced difficulty approval."
+  },
+  "files": [
+    {
+      "path": "_local/reports/silhouette-qa/sea31-3602/refreshed-nonobjective-results.json",
+      "sha256": "7c0dfb62263a4598a6b80cfa2bd75d4e08613806063247ab81721cd92bb599df"
+    },
+    {
+      "path": "_local/reports/silhouette-qa/sea31-3602/spent/independent-final-paint.json",
+      "sha256": "5268fb470d9e3ff74192db580278f9318b7bf064cb8b13573b3ed331ef572e26"
+    },
+    {
+      "path": "_local/reports/silhouette-qa/sea31-3602/spent/inputs.json",
+      "sha256": "452f483a1a8ceab9791b3f8cd2af248a94c0e21df1e3a1cc26310da23539e400"
+    }
+  ]
+}

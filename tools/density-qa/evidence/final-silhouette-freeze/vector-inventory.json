@@ -1,0 +1,151 @@
+{
+  "scope": "Unique world asset definitions. Stored SVG pathcommands count is not flattened vertex count, decorative importance, actual frame cost or FPS. Expanded metrics follow use/symbol references.",
+  "beforeSHA256": "7fe487aab71d32c3e10ff59728856cfbc430cb02c0017a5e655d06d7a14faa01",
+  "afterSHA256": "1e7939fe0f9fd6cd8be0202807f0db74f7ed7958a212d480aa73d3e7ce72f0d4",
+  "before": {
+    "assets": 310,
+    "vectorAssets": 302,
+    "storedNodes": 9621,
+    "storedPaths": 4199,
+    "storedPathCommands": 357322,
+    "expandedNodes": 25609,
+    "expandedPaths": 16874,
+    "maxExpandedNodes": 477,
+    "maxPathChars": 59956,
+    "largestExpanded": [
+      {
+        "id": "s34-density:body-target-v3-domain-left-part-0",
+        "expandedNodes": 477,
+        "expandedPaths": 406,
+        "bytes": 65665
+      },
+      {
+        "id": "s34-density:body-target-v3-domain-right-part-0",
+        "expandedNodes": 477,
+        "expandedPaths": 406,
+        "bytes": 65637
+      },
+      {
+        "id": "s37-density:body-seam-v3-domain-left-part-0",
+        "expandedNodes": 469,
+        "expandedPaths": 420,
+        "bytes": 156937
+      },
+      {
+        "id": "s37-density:body-seam-v3-domain-right-part-0",
+        "expandedNodes": 469,
+        "expandedPaths": 420,
+        "bytes": 156865
+      },
+      {
+        "id": "s32-density:body-depthfade-domain-left-part-0",
+        "expandedNodes": 445,
+        "expandedPaths": 396,
+        "bytes": 126889
+      },
+      {
+        "id": "s32-density:body-depthfade-domain-right-part-0",
+        "expandedNodes": 445,
+        "expandedPaths": 396,
+        "bytes": 126853
+      },
+      {
+        "id": "s39-density:body-depthfade-domain-left-part-0",
+        "expandedNodes": 445,
+        "expandedPaths": 396,
+        "bytes": 204799
+      },
+      {
+        "id": "s39-density:body-depthfade-domain-right-part-0",
+        "expandedNodes": 445,
+        "expandedPaths": 396,
+        "bytes": 204728
+      },
+      {
+        "id": "s36-silhouette:west-native-v4",
+        "expandedNodes": 444,
+        "expandedPaths": 202,
+        "bytes": 62534
+      },
+      {
+        "id": "s34-density:stone-floor",
+        "expandedNodes": 422,
+        "expandedPaths": 210,
+        "bytes": 200710
+      }
+    ]
+  },
+  "after": {
+    "assets": 224,
+    "vectorAssets": 216,
+    "storedNodes": 6145,
+    "storedPaths": 2395,
+    "storedPathCommands": 261462,
+    "expandedNodes": 13903,
+    "expandedPaths": 7873,
+    "maxExpandedNodes": 444,
+    "maxPathChars": 59956,
+    "largestExpanded": [
+      {
+        "id": "s36-silhouette:west-native-v4",
+        "expandedNodes": 444,
+        "expandedPaths": 202,
+        "bytes": 62534
+      },
+      {
+        "id": "s33-density:refuge-west",
+        "expandedNodes": 401,
+        "expandedPaths": 275,
+        "bytes": 108139
+      },
+      {
+        "id": "s33-density:refuge-east",
+        "expandedNodes": 401,
+        "expandedPaths": 275,
+        "bytes": 107516
+      },
+      {
+        "id": "s32-silhouette:bank32-right-profile-v3",
+        "expandedNodes": 392,
+        "expandedPaths": 181,
+        "bytes": 33927
+      },
+      {
+        "id": "s33-silhouette:composite-bank-v4",
+        "expandedNodes": 388,
+        "expandedPaths": 194,
+        "bytes": 97915
+      },
+      {
+        "id": "s32-silhouette:bank32-profile-v3",
+        "expandedNodes": 374,
+        "expandedPaths": 187,
+        "bytes": 38370
+      },
+      {
+        "id": "s31-silhouette:play-left-bank-v5-0",
+        "expandedNodes": 314,
+        "expandedPaths": 169,
+        "bytes": 93570
+      },
+      {
+        "id": "s32-silhouette:domain-left-near",
+        "expandedNodes": 291,
+        "expandedPaths": 146,
+        "bytes": 38070
+      },
+      {
+        "id": "s32-silhouette:domain-right-near",
+        "expandedNodes": 291,
+        "expandedPaths": 146,
+        "bytes": 30882
+      },
+      {
+        "id": "s35-silhouette:domain-right",
+        "expandedNodes": 282,
+        "expandedPaths": 169,
+        "bytes": 100286
+      }
+    ]
+  }
+}

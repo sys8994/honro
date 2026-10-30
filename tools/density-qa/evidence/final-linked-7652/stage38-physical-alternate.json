@@ -1,0 +1,83 @@
+{
+  "status": "current-runtime-isolated-physical-route-pass-not-linked-branch-or-browser",
+  "success": true,
+  "frames": 20269,
+  "projectSHA256": "f16efd5cd4d4b4fdc6a7b7103015df2fafa95e026ce2682a318e09513954c300",
+  "runtimeSHA256": "7652daac71dc2c7c6ea02b438ce10105a26e1ac008b36258ad08e2835ee14fd9",
+  "worldSHA256": "801df923ce89d8747f337f0b71e2ae38c604a8efbd6250d56e885b931af9f1b5",
+  "scope": "Prepared earned-SP stage-entry profile; real App/Engine/Native Canvas events and sparse actual scene rendering every300 simulation frames (bounded snapshot evidence, not continuous rendered play); DOM/audio/storage scheduling are doubles, not browser or chapters1\u201337 playthrough. Phase-specific actual Continue, no forcing.",
+  "checkFailures": [],
+  "resume": [
+    {
+      "phase": "vista",
+      "frame": 5116,
+      "input": 22,
+      "pass": true,
+      "scope": "Actual stopBattle/persist/Continue exact units/objective/round/phase/active"
+    },
+    {
+      "phase": "physical-route",
+      "frame": 6234,
+      "input": 26,
+      "pass": true,
+      "scope": "Actual stopBattle/persist/Continue exact units/objective/round/phase/active"
+    }
+  ],
+  "roofImpacts": [
+    {
+      "frame": 137,
+      "owner": "archer",
+      "skill": "A01",
+      "terrain": "a4-38-cavern-roof",
+      "x": 334.4483633411335,
+      "y": 2007.029561095465
+    }
+  ],
+  "final": {
+    "phase": "won",
+    "complete": true,
+    "connected": null,
+    "connectionProbe": null,
+    "residents": [
+      {
+        "id": "a4-rescue-0",
+        "x": 4720,
+        "y": 2600,
+        "hp": 1450,
+        "dead": false
+      },
+      {
+        "id": "a4-rescue-1",
+        "x": 4890,
+        "y": 2600,
+        "hp": 1302.1,
+        "dead": false
+      },
+      {
+        "id": "a4-rescue-2",
+        "x": 5060,
+        "y": 2600,
+        "hp": 1450,
+        "dead": false
+      },
+      {
+        "id": "a4-rescue-3",
+        "x": 5230,
+        "y": 2600,
+        "hp": 1413.7,
+        "dead": false
+      }
+    ]
+  },
+  "sourceReport": "_local/reports/act4-final-7652/38-physical/result.json",
+  "sourceReportSHA256": "d9e263aa856d115580d60c866c89ce404a24779385fe751da1f74ee8d63174d8",
+  "tapePath": "tools/density-qa/tapes/stage38-floor-v3-physical-balanced.json",
+  "tapeSHA256": "ef4c4d7824ad8f1f74022904fb2c7e7f762a382b38a7bb05e5f359e7b2ea7f64",
+  "verifierSHA256": "087e1318b843ba9d41d5b4c92b4af286f1744b98378227e75edb78139306ef1a",
+  "nativeMemoryGuardBytes": 2147483648,
+  "sampledPeakRSSMiB": 1513,
+  "limitations": [
+    "Prepared earned-SP stage38 entry; not an additional linked37-to38 official profile run.",
+    "Sparse Native Canvas and fixture DOM/audio/storage scheduling; no browser or mobile performance approval."
+  ]
+}

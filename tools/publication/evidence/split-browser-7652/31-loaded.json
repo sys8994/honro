@@ -1,0 +1,780 @@
+{
+  "at": "2026-10-29T23:01:50.299Z",
+  "url": "http://127.0.0.1:4191/HONRO.html",
+  "app": true,
+  "screen": "battle",
+  "stageId": 31,
+  "custom": false,
+  "debug": false,
+  "training": false,
+  "lastError": "",
+  "crash": false,
+  "dialogue": false,
+  "modal": "",
+  "profile": {
+    "lastStage": 31,
+    "clearedAct4": [
+      "31",
+      "32",
+      "33",
+      "34",
+      "35",
+      "36",
+      "37",
+      "38",
+      "39",
+      "40"
+    ],
+    "hasBattle": true,
+    "act4": {
+      "version": 1,
+      "runId": "eq-mvty68sj-tlxd355a",
+      "completed": {
+        "31": {
+          "stage": 31,
+          "sourceRun": "honro-map-stage-31-1793302780071",
+          "campaignRunId": "eq-mvty68sj-tlxd355a",
+          "success": true,
+          "residents": [],
+          "rows": [
+            "A4.S31.BOAT.01",
+            "A4.S31.BOARD.01"
+          ]
+        },
+        "32": {
+          "stage": 32,
+          "sourceRun": "honro-map-stage-32-1793302827439",
+          "campaignRunId": "eq-mvty68sj-tlxd355a",
+          "success": true,
+          "residents": [
+            {
+              "id": "a4-shelter-speaker",
+              "hp": 1450,
+              "dead": false
+            }
+          ],
+          "rows": [
+            "A4.S32.REUNION.01",
+            "A4.S32.MISSING.01"
+          ]
+        },
+        "33": {
+          "stage": 33,
+          "sourceRun": "honro-map-stage-33-1793302878460",
+          "campaignRunId": "eq-mvty68sj-tlxd355a",
+          "success": true,
+          "residents": [],
+          "rows": [
+            "A4.S33.TIDE.01",
+            "A4.S33.TIDE.02"
+          ]
+        },
+        "34": {
+          "stage": 34,
+          "sourceRun": "honro-map-stage-34-1793302939975",
+          "campaignRunId": "eq-mvty68sj-tlxd355a",
+          "success": true,
+          "residents": [],
+          "rows": [
+            "A4.S34.DISLOCATION.01"
+          ]
+        },
+        "35": {
+          "stage": 35,
+          "sourceRun": "honro-map-stage-35-1793303087482",
+          "campaignRunId": "eq-mvty68sj-tlxd355a",
+          "success": true,
+          "residents": [],
+          "rows": [
+            "A4.S35.EXIT.01"
+          ]
+        },
+        "36": {
+          "stage": 36,
+          "sourceRun": "honro-map-stage-36-1793303326733",
+          "campaignRunId": "eq-mvty68sj-tlxd355a",
+          "success": true,
+          "residents": [],
+          "rows": [
+            "A4.S36.ENTRY.01",
+            "A4.S36.DOOR.01",
+            "A4.S36.DOOR.02",
+            "A4.S36.EXIT.01",
+            "A4.S36.EXIT.02"
+          ]
+        },
+        "37": {
+          "stage": 37,
+          "sourceRun": "honro-map-stage-37-1793303431708",
+          "campaignRunId": "eq-mvty68sj-tlxd355a",
+          "success": true,
+          "residents": [],
+          "rows": [
+            "A4.S37.SIGNAL.01"
+          ]
+        },
+        "38": {
+          "stage": 38,
+          "sourceRun": "honro-map-stage-38-1793303821034",
+          "campaignRunId": "eq-mvty68sj-tlxd355a",
+          "success": true,
+          "residents": [
+            {
+              "id": "a4-rescue-0",
+              "hp": 1450,
+              "dead": false
+            },
+            {
+              "id": "a4-rescue-1",
+              "hp": 1450,
+              "dead": false
+            },
+            {
+              "id": "a4-rescue-2",
+              "hp": 1450,
+              "dead": false
+            },
+            {
+              "id": "a4-rescue-3",
+              "hp": 1387.9,
+              "dead": false
+            }
+          ],
+          "rows": [
+            "A4.S38.VOICE.01",
+            "A4.S38.ANCHOR.01",
+            "A4.S38.CONNECTED.01"
+          ]
+        },
+        "39": {
+          "stage": 39,
+          "sourceRun": "honro-map-stage-39-1793304969261",
+          "campaignRunId": "eq-mvty68sj-tlxd355a",
+          "success": true,
+          "residents": [
+            {
+              "id": "a4-rescue-0",
+              "hp": 1117,
+              "dead": false
+            },
+            {
+              "id": "a4-rescue-1",
+              "hp": 1326,
+              "dead": false
+            },
+            {
+              "id": "a4-rescue-2",
+              "hp": 1450,
+              "dead": false
+            },
+            {
+              "id": "a4-rescue-3",
+              "hp": 1387.9,
+              "dead": false
+            }
+          ],
+          "rows": [
+            "A4.S39.BOSS.01",
+            "A4.S39.STABILIZE.01",
+            "A4.S39.RELEASE.01"
+          ]
+        },
+        "40": {
+          "stage": 40,
+          "sourceRun": "honro-map-stage-40-1793305198821",
+          "campaignRunId": "eq-mvty68sj-tlxd355a",
+          "success": true,
+          "residents": [
+            {
+              "id": "a4-rescue-0",
+              "hp": 1117,
+              "dead": false
+            },
+            {
+              "id": "a4-rescue-1",
+              "hp": 1326,
+              "dead": false
+            },
+            {
+              "id": "a4-rescue-2",
+              "hp": 1450,
+              "dead": false
+            },
+            {
+              "id": "a4-rescue-3",
+              "hp": 1387.9,
+              "dead": false
+            }
+          ],
+          "rows": [
+            "A4.S40.BOARD.01",
+            "A4.S40.REUNION.01",
+            "A4.S40.THIRTEEN.01",
+            "A4.S40.NEXT.01"
+          ]
+        }
+      },
+      "factEvents": {
+        "eq_se_t3b": {
+          "eventId": "eq_se_t3b",
+          "stage": 31,
+          "sourceRun": "honro-map-stage-31-1793302780071",
+          "campaignRunId": "eq-mvty68sj-tlxd355a",
+          "officialAct4": true,
+          "proof": {
+            "boarded": true,
+            "party": [
+              "archer",
+              "mage",
+              "knight",
+              "occultist"
+            ]
+          }
+        },
+        "eq_co_t3_choice": {
+          "eventId": "eq_co_t3_choice",
+          "stage": 35,
+          "sourceRun": "honro-map-stage-35-1793303087482",
+          "campaignRunId": "eq-mvty68sj-tlxd355a",
+          "officialAct4": true,
+          "proof": {
+            "tag": "rooted-third-clearing",
+            "reached": true
+          }
+        },
+        "eq_hw_t3b": {
+          "eventId": "eq_hw_t3b",
+          "stage": 36,
+          "sourceRun": "honro-map-stage-36-1793303326733",
+          "campaignRunId": "eq-mvty68sj-tlxd355a",
+          "officialAct4": true,
+          "proof": {
+            "target": "a4-36-g0-0",
+            "elite": true
+          }
+        },
+        "eq_so_t3b": {
+          "eventId": "eq_so_t3b",
+          "stage": 40,
+          "sourceRun": "honro-map-stage-40-1793305198821",
+          "campaignRunId": "eq-mvty68sj-tlxd355a",
+          "officialAct4": true,
+          "proof": {
+            "roster": {
+              "total": 13,
+              "living": 11,
+              "priorDeaths": 2
+            },
+            "rescued": {
+              "ids": [
+                "a4-rescue-0",
+                "a4-rescue-1",
+                "a4-rescue-2",
+                "a4-rescue-3"
+              ],
+              "sourceRun": "honro-map-stage-40-1793305198821"
+            }
+          }
+        }
+      },
+      "safeSeven": {
+        "ids": [
+          "shelter-person-0",
+          "shelter-person-1",
+          "shelter-person-2",
+          "shelter-person-3",
+          "shelter-person-4",
+          "shelter-person-5",
+          "shelter-person-6"
+        ],
+        "sourceRun": "honro-map-stage-32-1793302827439",
+        "reportIds": [
+          "A4.S32.MISSING.01"
+        ],
+        "reunionIds": [
+          "A4.S32.REUNION.01"
+        ],
+        "reunionObserved": {
+          "sourceRun": "honro-map-stage-32-1793302827439",
+          "npc": "a4-shelter-speaker",
+          "hero": "archer",
+          "seenAt": 115.00833333337093,
+          "positions": [
+            {
+              "id": "archer",
+              "x": 4587.753703945974,
+              "y": 2014.73755443995
+            },
+            {
+              "id": "a4-shelter-speaker",
+              "x": 4779.56439978659,
+              "y": 2010.8476090930183
+            }
+          ]
+        },
+        "campaignRunId": "eq-mvty68sj-tlxd355a",
+        "stage": 32,
+        "success": true,
+        "residents": [
+          {
+            "id": "a4-shelter-speaker",
+            "hp": 1450,
+            "dead": false
+          }
+        ],
+        "rows": [
+          "A4.S32.REUNION.01",
+          "A4.S32.MISSING.01"
+        ]
+      },
+      "rescued": {
+        "ids": [
+          "a4-rescue-0",
+          "a4-rescue-1",
+          "a4-rescue-2",
+          "a4-rescue-3"
+        ],
+        "sourceRun": "honro-map-stage-39-1793304969261",
+        "campaignRunId": "eq-mvty68sj-tlxd355a",
+        "stage": 39,
+        "success": true,
+        "residents": [
+          {
+            "id": "a4-rescue-0",
+            "hp": 1117,
+            "dead": false
+          },
+          {
+            "id": "a4-rescue-1",
+            "hp": 1326,
+            "dead": false
+          },
+          {
+            "id": "a4-rescue-2",
+            "hp": 1450,
+            "dead": false
+          },
+          {
+            "id": "a4-rescue-3",
+            "hp": 1387.9,
+            "dead": false
+          }
+        ],
+        "rows": [
+          "A4.S39.BOSS.01",
+          "A4.S39.STABILIZE.01",
+          "A4.S39.RELEASE.01"
+        ]
+      }
+    }
+  },
+  "battle": {
+    "stage": 31,
+    "phase": "aim",
+    "round": 1,
+    "active": "archer",
+    "units": [
+      {
+        "id": "archer",
+        "side": 0,
+        "x": 260,
+        "y": 1720.724628041237,
+        "hp": 1573,
+        "dead": false
+      },
+      {
+        "id": "mage",
+        "side": 0,
+        "x": 380,
+        "y": 1720.5016655670104,
+        "hp": 1766,
+        "dead": false
+      },
+      {
+        "id": "knight",
+        "side": 0,
+        "x": 500,
+        "y": 1720.2787030927834,
+        "hp": 3283,
+        "dead": false
+      },
+      {
+        "id": "occultist",
+        "side": 0,
+        "x": 620,
+        "y": 1720.0557406185567,
+        "hp": 2035,
+        "dead": false
+      },
+      {
+        "id": "s31-west-hound",
+        "side": 1,
+        "x": 1420,
+        "y": 1836.341463414634,
+        "hp": 1420,
+        "dead": false
+      },
+      {
+        "id": "s31-west-guard",
+        "side": 1,
+        "x": 1650,
+        "y": 1847.560975609756,
+        "hp": 1420,
+        "dead": false
+      },
+      {
+        "id": "s31-west-archer",
+        "side": 1,
+        "x": 2090,
+        "y": 1860,
+        "hp": 1420,
+        "dead": false
+      },
+      {
+        "id": "s31-low-hound",
+        "side": 1,
+        "x": 2480,
+        "y": 2121.6996139285716,
+        "hp": 1420,
+        "dead": false
+      },
+      {
+        "id": "s31-low-guard",
+        "side": 1,
+        "x": 2040,
+        "y": 2100.0231040625,
+        "hp": 1420,
+        "dead": false
+      },
+      {
+        "id": "s31-low-archer",
+        "side": 1,
+        "x": 2800,
+        "y": 2061.696687272727,
+        "hp": 1420,
+        "dead": false
+      },
+      {
+        "id": "s31-rise-hound",
+        "side": 1,
+        "x": 3510,
+        "y": 1785.44849,
+        "hp": 1420,
+        "dead": false
+      },
+      {
+        "id": "s31-rise-guard",
+        "side": 1,
+        "x": 3890,
+        "y": 1720,
+        "hp": 1420,
+        "dead": false
+      },
+      {
+        "id": "s31-rise-kiln",
+        "side": 1,
+        "x": 4780,
+        "y": 1725.8131704761904,
+        "hp": 1420,
+        "dead": false
+      },
+      {
+        "id": "s31-rise-archer",
+        "side": 1,
+        "x": 4300,
+        "y": 1472.3976744186048,
+        "hp": 1420,
+        "dead": false
+      },
+      {
+        "id": "s31-landing-hound",
+        "side": 1,
+        "x": 5400,
+        "y": 1859.811587179487,
+        "hp": 1420,
+        "dead": false
+      },
+      {
+        "id": "s31-landing-archer",
+        "side": 1,
+        "x": 5760,
+        "y": 1859.133301025641,
+        "hp": 1420,
+        "dead": false
+      },
+      {
+        "id": "s31-landing-guard",
+        "side": 1,
+        "x": 6100,
+        "y": 1858.7403257142857,
+        "hp": 1420,
+        "dead": false
+      }
+    ]
+  },
+  "camera": {
+    "x": 550,
+    "y": 1770,
+    "scale": 0.64,
+    "manual": true,
+    "canvas": {
+      "width": 1165,
+      "height": 574
+    }
+  },
+  "storage": {
+    "bytes": 148594
+  },
+  "loadedResources": [
+    "http://127.0.0.1:4191/web/graphics/title-landscape.e7a766053bfbf276.webp",
+    "http://127.0.0.1:4191/web/graphics/title-logo.120243a02a441a6c.webp",
+    "http://127.0.0.1:4191/web/graphics/title-hanja.717b4ef84f8f2d11.webp",
+    "http://127.0.0.1:4191/web/entries/game.450aa9331af5163f.js",
+    "http://127.0.0.1:4191/web/runtime/load-data.518edde934162e1e.js",
+    "http://127.0.0.1:4191/web/styles/game-vendor-ui-arcfall-layout.5dfc699852420d32.css",
+    "http://127.0.0.1:4191/web/styles/game-vendor-style.7793a1c24f08e38d.css",
+    "http://127.0.0.1:4191/web/styles/game-src-hud.52581f3f9b27a561.css",
+    "http://127.0.0.1:4191/web/styles/game-src-presentation.52a57948f386734c.css",
+    "http://127.0.0.1:4191/web/styles/game-src-unit-info.082de9b7c479495a.css",
+    "http://127.0.0.1:4191/web/styles/game-src-controls.e78848b3ff481488.css",
+    "http://127.0.0.1:4191/web/styles/game-src-training.2c1e01e835c1bc35.css",
+    "http://127.0.0.1:4191/web/styles/game-src-guide.869baa784cb9ba70.css",
+    "http://127.0.0.1:4191/web/styles/game-src-journey.4ed1fbe0fdef7ff1.css",
+    "http://127.0.0.1:4191/web/styles/game-src-skill-presentation.d533fe7e6ea35765.css",
+    "http://127.0.0.1:4191/web/styles/game-src-title.6feb904b14f9e87d.css",
+    "http://127.0.0.1:4191/web/styles/game-src-fonts.43855b81e6a81ba4.css",
+    "http://127.0.0.1:4191/web/styles/game-src-act3-void.fff422e530bb3189.css",
+    "http://127.0.0.1:4191/web/styles/game-src-act-endings.9f0fb63251dea0e6.css",
+    "http://127.0.0.1:4191/web/styles/game-src-skill-icons.c041660a380bc346.css",
+    "http://127.0.0.1:4191/web/styles/game-src-clear-report.1201612d6a27c5dc.css",
+    "http://127.0.0.1:4191/web/styles/game-src-equipment.280fb26b1b64548e.css",
+    "http://127.0.0.1:4191/web/styles/game-src-game-interface.0761b7861621753a.css",
+    "http://127.0.0.1:4191/web/data/campaign.0a9a324b4a43cde7.json",
+    "http://127.0.0.1:4191/web/data/HONRO_TITLE_ART.5005ea77f273dae9.json",
+    "http://127.0.0.1:4191/web/data/HONRO_STAGE_INTRO_ART.2fd23f2b329a0e27.json",
+    "http://127.0.0.1:4191/web/data/HONRO_STORY_PORTRAITS.bcace926e288900f.json",
+    "http://127.0.0.1:4191/web/data/HONRO_NPC_PORTRAITS.f6fd15022216a566.json",
+    "http://127.0.0.1:4191/web/runtime/title-scene.63b44eb84d35b848.js",
+    "http://127.0.0.1:4191/web/runtime/game-art.646a4550790ba2f4.js",
+    "http://127.0.0.1:4191/web/runtime/ordered-common-1.72087c74d515cf8c.js",
+    "http://127.0.0.1:4191/web/runtime/shared-runtime-title-markup.e0f242270b02362a.js",
+    "http://127.0.0.1:4191/web/data/HONRO_BGM_TRACKS.c152d3b0ef2ea83b.json",
+    "http://127.0.0.1:4191/web/runtime/HONRO_BGM_TRACKS.b2c9e0030ed32461.js",
+    "http://127.0.0.1:4191/web/data/HONRO_BGM_METADATA.8c4f7cb85a10e724.json",
+    "http://127.0.0.1:4191/web/runtime/HONRO_BGM_METADATA.eb485bfe53569da4.js",
+    "http://127.0.0.1:4191/web/data/HONRO_SKILL_ICON_MANIFEST.ce96d5880bfbc07c.json",
+    "http://127.0.0.1:4191/web/runtime/HONRO_SKILL_ICON_MANIFEST.5261635cbc047591.js",
+    "http://127.0.0.1:4191/web/runtime/ordered-common-2.83cef944457a76e7.js",
+    "http://127.0.0.1:4191/web/runtime/HONRO_EQUIPMENT_ICONS.9e8e5901a92eb53e.js",
+    "http://127.0.0.1:4191/web/data/HONRO_EQUIPMENT_ICONS.cd11e0f35e5781a3.json",
+    "http://127.0.0.1:4191/web/data/HONRO_BALANCE.e066899ab958f2b8.json",
+    "http://127.0.0.1:4191/web/runtime/ordered-common-3.0ed5b26e6bfbf24b.js",
+    "http://127.0.0.1:4191/web/runtime/HONRO_BALANCE.393e4c140fc86ad9.js",
+    "http://127.0.0.1:4191/web/runtime/HONRO_NARRATIVE_V0.35514b30e777a897.js",
+    "http://127.0.0.1:4191/web/data/HONRO_NARRATIVE_V0.1b1a16777125d7dc.json",
+    "http://127.0.0.1:4191/web/fonts/hangul-common.f5cbeca6796a2f88.woff2",
+    "http://127.0.0.1:4191/web/fonts/kr-0000.727adcd3562716eb.woff2",
+    "http://127.0.0.1:4191/web/data/campaign-base.0c57dcfe7c08d421.json",
+    "http://127.0.0.1:4191/web/data/campaign-shared.45d44b5246996216.json",
+    "http://127.0.0.1:4191/web/data/chapter-30.05aa9e3f55e54d6d.json",
+    "http://127.0.0.1:4191/web/data/chapter-30-assets.c5c1273e8e13d300.json",
+    "http://127.0.0.1:4191/web/data/HONRO_SPLIT_V1.8a0557450bffb24e.json",
+    "http://127.0.0.1:4191/web/runtime/HONRO_SPLIT_V1.0bf69cb857d86592.js",
+    "http://127.0.0.1:4191/web/data/HONRO_OPEN_STRUCTURES.bd10fa99a7eaab14.json",
+    "http://127.0.0.1:4191/web/runtime/HONRO_OPEN_STRUCTURES.50ad262eb15874b0.js",
+    "http://127.0.0.1:4191/web/data/narrative-data.0959085deda30be8.json",
+    "http://127.0.0.1:4191/web/runtime/narrative-data.814619bcaab868ae.js",
+    "http://127.0.0.1:4191/web/data/HONRO_ACT4_RELEASE.a17fcf0a2f50e2d4.json",
+    "http://127.0.0.1:4191/web/runtime/HONRO_ACT4_RELEASE.a1644a98e68114f4.js",
+    "http://127.0.0.1:4191/web/runtime/HONRO_ACT4_CONTENT.b6007d6d4e374e51.js",
+    "http://127.0.0.1:4191/web/data/HONRO_ACT4_CONTENT.4aebb786fde342d5.json",
+    "http://127.0.0.1:4191/web/runtime/HONRO_ACT4_REVIEWED.e5c4949f78ccb2ea.js",
+    "http://127.0.0.1:4191/web/data/HONRO_ACT4_REVIEWED.1dda5d312df792f9.json",
+    "http://127.0.0.1:4191/web/runtime/HONRO_ACT23_V4_PHASE_A.9b15c439ecb37c93.js",
+    "http://127.0.0.1:4191/web/data/HONRO_ACT23_V4_PHASE_A.a17fcf0a2f50e2d4.json",
+    "http://127.0.0.1:4191/web/data/HONRO_ACT23_V4_PHASE_B_CH11.a17fcf0a2f50e2d4.json",
+    "http://127.0.0.1:4191/web/runtime/HONRO_ACT23_V4_PHASE_B_CH11.ed59b993e572b4d7.js",
+    "http://127.0.0.1:4191/web/data/HONRO_ACT23_V4_REVIEWED.d63233b2aa9ca32e.json",
+    "http://127.0.0.1:4191/web/runtime/HONRO_ACT23_V4_REVIEWED.e24fb2fbdd12699c.js",
+    "http://127.0.0.1:4191/web/data/HONRO_ACT23_V4_PHASE_B_STAGES.14aab2db4e01b0f3.json",
+    "http://127.0.0.1:4191/web/runtime/HONRO_ACT23_V4_PHASE_B_STAGES.dadbe87823ca0108.js",
+    "http://127.0.0.1:4191/web/data/HONRO_ACT23_V4_REVIEWED_CHAPTERS.014f3ef346e8e3db.json",
+    "http://127.0.0.1:4191/web/runtime/HONRO_ACT23_V4_REVIEWED_CHAPTERS.c4eeb479e422f9e0.js",
+    "http://127.0.0.1:4191/web/data/HONRO_ACT23_V4_REVIEWED_COMMON.729b6ca7da7d2d19.json",
+    "http://127.0.0.1:4191/web/runtime/HONRO_ACT23_V4_REVIEWED_COMMON.b6dd9298fb64bb64.js",
+    "http://127.0.0.1:4191/web/data/HONRO_ACT23_V4_PHASE_B_CH21.a17fcf0a2f50e2d4.json",
+    "http://127.0.0.1:4191/web/runtime/HONRO_ACT23_V4_PHASE_B_CH21.5ec336e241192e67.js",
+    "http://127.0.0.1:4191/web/data/HONRO_ACT23_V4_REVIEWED_CH21.2b26628d7ce6d6cc.json",
+    "http://127.0.0.1:4191/web/runtime/HONRO_ACT23_V4_REVIEWED_CH21.eb5ac91fe6f60b5b.js",
+    "http://127.0.0.1:4191/web/data/HONRO_ACT23_V4_PHASE_B_CH22.a17fcf0a2f50e2d4.json",
+    "http://127.0.0.1:4191/web/runtime/HONRO_ACT23_V4_PHASE_B_CH22.82d421e3397c5391.js",
+    "http://127.0.0.1:4191/web/data/HONRO_ACT23_V4_REVIEWED_CH22.63f0c9402bb01402.json",
+    "http://127.0.0.1:4191/web/runtime/HONRO_ACT23_V4_REVIEWED_CH22.c885fdf86a41405b.js",
+    "http://127.0.0.1:4191/web/data/HONRO_ACT23_V4_PHASE_B_CH23.a17fcf0a2f50e2d4.json",
+    "http://127.0.0.1:4191/web/runtime/HONRO_ACT23_V4_PHASE_B_CH23.c9348c9050cf5eb4.js",
+    "http://127.0.0.1:4191/web/data/HONRO_ACT23_V4_REVIEWED_CH23.0a932cde99c3235f.json",
+    "http://127.0.0.1:4191/web/runtime/HONRO_ACT23_V4_REVIEWED_CH23.5b4485331ae09a82.js",
+    "http://127.0.0.1:4191/web/data/HONRO_ACT23_V4_PHASE_B_CH24.a17fcf0a2f50e2d4.json",
+    "http://127.0.0.1:4191/web/runtime/HONRO_ACT23_V4_PHASE_B_CH24.ae5991d5419184b0.js",
+    "http://127.0.0.1:4191/web/data/HONRO_ACT23_V4_REVIEWED_CH24.16f88c059655014c.json",
+    "http://127.0.0.1:4191/web/runtime/HONRO_ACT23_V4_REVIEWED_CH24.e282f5b58c9cac8e.js",
+    "http://127.0.0.1:4191/web/data/HONRO_ACT23_V4_PHASE_B_CH25.a17fcf0a2f50e2d4.json",
+    "http://127.0.0.1:4191/web/runtime/HONRO_ACT23_V4_PHASE_B_CH25.a4e15a2ca0c22382.js",
+    "http://127.0.0.1:4191/web/data/HONRO_ACT23_V4_REVIEWED_CH25.c7032dea08b791bd.json",
+    "http://127.0.0.1:4191/web/runtime/HONRO_ACT23_V4_REVIEWED_CH25.94e289e8c2acb871.js",
+    "http://127.0.0.1:4191/web/data/HONRO_ACT23_V4_PHASE_B_CH26.a17fcf0a2f50e2d4.json",
+    "http://127.0.0.1:4191/web/runtime/HONRO_ACT23_V4_PHASE_B_CH26.cfe9954bc56a3627.js",
+    "http://127.0.0.1:4191/web/data/HONRO_ACT23_V4_REVIEWED_CH26.79610da914dc3aa0.json",
+    "http://127.0.0.1:4191/web/runtime/HONRO_ACT23_V4_REVIEWED_CH26.17106cfc87945515.js",
+    "http://127.0.0.1:4191/web/data/HONRO_ACT23_V4_PHASE_B_CH27.a17fcf0a2f50e2d4.json",
+    "http://127.0.0.1:4191/web/runtime/HONRO_ACT23_V4_PHASE_B_CH27.826abbadd40cb036.js",
+    "http://127.0.0.1:4191/web/data/HONRO_ACT23_V4_REVIEWED_CH27.6756fea7e961df6f.json",
+    "http://127.0.0.1:4191/web/runtime/HONRO_ACT23_V4_REVIEWED_CH27.81df79165c18b3e6.js",
+    "http://127.0.0.1:4191/web/data/HONRO_ACT23_V4_PHASE_B_CH28.a17fcf0a2f50e2d4.json",
+    "http://127.0.0.1:4191/web/runtime/HONRO_ACT23_V4_PHASE_B_CH28.7caa89d605dbc14f.js",
+    "http://127.0.0.1:4191/web/data/HONRO_ACT23_V4_REVIEWED_CH28.b32d28b0fa75493d.json",
+    "http://127.0.0.1:4191/web/runtime/HONRO_ACT23_V4_REVIEWED_CH28.f247cb2e614c8de7.js",
+    "http://127.0.0.1:4191/web/data/HONRO_ACT23_V4_PHASE_B_CH29.a17fcf0a2f50e2d4.json",
+    "http://127.0.0.1:4191/web/runtime/HONRO_ACT23_V4_PHASE_B_CH29.ee97bf4179127acf.js",
+    "http://127.0.0.1:4191/web/data/HONRO_ACT23_V4_REVIEWED_CH29.eca1e09969dec733.json",
+    "http://127.0.0.1:4191/web/runtime/HONRO_ACT23_V4_REVIEWED_CH29.8cbb449ecd77f43c.js",
+    "http://127.0.0.1:4191/web/data/HONRO_ACT23_V4_PHASE_B_CH30.a17fcf0a2f50e2d4.json",
+    "http://127.0.0.1:4191/web/runtime/HONRO_ACT23_V4_PHASE_B_CH30.324081b6dde7926f.js",
+    "http://127.0.0.1:4191/web/data/HONRO_ACT23_V4_REVIEWED_CH30.73e2f2ed6d39d86a.json",
+    "http://127.0.0.1:4191/web/runtime/HONRO_ACT23_V4_REVIEWED_CH30.43db602a151ba6bf.js",
+    "http://127.0.0.1:4191/web/data/HONRO_PORTRAIT_VARIANTS.fbd9966fd5d3922a.json",
+    "http://127.0.0.1:4191/web/runtime/HONRO_PORTRAIT_VARIANTS.59aef3fbc239bf5e.js",
+    "http://127.0.0.1:4191/web/runtime/ordered-common-4.cee2634d9e6835f2.js",
+    "http://127.0.0.1:4191/web/runtime/ordered-common-5.35d0a9709dc464ca.js",
+    "http://127.0.0.1:4191/web/runtime/ordered-common-6.da97ff55283a05a3.js",
+    "http://127.0.0.1:4191/web/runtime/ordered-common-7.1e53d2d46bc8a14f.js",
+    "http://127.0.0.1:4191/web/runtime/ordered-common-8.9f944d4de2f89ff6.js",
+    "http://127.0.0.1:4191/web/runtime/ordered-common-9.4b7c0209d3610235.js",
+    "http://127.0.0.1:4191/web/runtime/ordered-common-10.5d93fb82c7b46de9.js",
+    "http://127.0.0.1:4191/web/runtime/ordered-common-11.b5def39a4d74de65.js",
+    "http://127.0.0.1:4191/web/runtime/campaign.fb142aa66c7b53ab.js",
+    "http://127.0.0.1:4191/web/runtime/ordered-common-12.e7f667817a1470ae.js",
+    "http://127.0.0.1:4191/web/data/HONRO_PARTY.16d29c28ac7225c7.json",
+    "http://127.0.0.1:4191/web/data/HONRO_PARTY_ART.3e80aca85f6101e0.json",
+    "http://127.0.0.1:4191/web/runtime/party-alias.765bd0ee4c6e585b.js",
+    "http://127.0.0.1:4191/web/runtime/ordered-common-13.afb93da58d5bd0d6.js",
+    "http://127.0.0.1:4191/web/data/HONRO_FAREWELL_SPIRITS.f256b9ab54449a33.json",
+    "http://127.0.0.1:4191/web/runtime/HONRO_FAREWELL_SPIRITS.2a8ba5e00ac66d30.js",
+    "http://127.0.0.1:4191/web/data/HONRO_ACT1_FAR_DATA.a7bedbfe9c843e9f.json",
+    "http://127.0.0.1:4191/web/runtime/HONRO_ACT1_FAR_DATA.38592483b08e3f9b.js",
+    "http://127.0.0.1:4191/web/data/HONRO_ACT2_FAR_DATA.55de354dd4cecfc3.json",
+    "http://127.0.0.1:4191/web/runtime/HONRO_ACT2_FAR_DATA.c9bc89fb96ee4790.js",
+    "http://127.0.0.1:4191/web/data/HONRO_REST_BACKDROPS.5d529fd524509f49.json",
+    "http://127.0.0.1:4191/web/runtime/HONRO_REST_BACKDROPS.1efc6604ffb48385.js",
+    "http://127.0.0.1:4191/web/data/HONRO_AUTHORED_FAR.0ade1692dcf2a58e.json",
+    "http://127.0.0.1:4191/web/runtime/HONRO_AUTHORED_FAR.4f66fb72ea5f215f.js",
+    "http://127.0.0.1:4191/web/data/HONRO_MONSTERS.fbfeb788663e09e1.json",
+    "http://127.0.0.1:4191/web/runtime/shared-assets-monsters-monsters-runtime.cbef8a140d16999e.js",
+    "http://127.0.0.1:4191/web/data/HONRO_ACTORS.dc66bad4ab069336.json",
+    "http://127.0.0.1:4191/web/runtime/shared-assets-actors-actors-runtime.d4de529bfd29ad1e.js",
+    "http://127.0.0.1:4191/web/runtime/ordered-common-14.10b4a74c63851083.js",
+    "http://127.0.0.1:4191/web/runtime/ordered-common-15.64df17f5d296f70c.js",
+    "http://127.0.0.1:4191/web/runtime/ordered-common-16.f6c55ba6a9bbcb47.js",
+    "http://127.0.0.1:4191/web/runtime/shared-assets-party-party-runtime.aeb0ae8b4fa2ab54.js",
+    "http://127.0.0.1:4191/web/data/HONRO_SKILL_AUDIO.386c4935607804f1.json",
+    "http://127.0.0.1:4191/web/runtime/HONRO_SKILL_AUDIO.3a7a7909868fa279.js",
+    "http://127.0.0.1:4191/web/data/HONRO_MUKJONG_AUDIO.5bf63a33e5796c72.json",
+    "http://127.0.0.1:4191/web/runtime/HONRO_MUKJONG_AUDIO.c7927e3bbe63e5ab.js",
+    "http://127.0.0.1:4191/web/data/HONRO_JOURNEY_MAPS.fc32fb2284b56e58.json",
+    "http://127.0.0.1:4191/web/runtime/HONRO_JOURNEY_MAPS.397437189a24a633.js",
+    "http://127.0.0.1:4191/web/graphics/honro_act1_far_data-mountains.785547297cc4d3c0.svg",
+    "http://127.0.0.1:4191/web/graphics/honro_act1_far_data-gorge.38d2033f7a1bd874.svg",
+    "http://127.0.0.1:4191/web/graphics/honro_act1_far_data-dawn.3ca9b11c3eb47bf6.svg",
+    "http://127.0.0.1:4191/web/graphics/honro_act1_far_data-act3.9814017ddf006228.svg",
+    "http://127.0.0.1:4191/web/runtime/ordered-common-17.5abda9e926a2f885.js",
+    "http://127.0.0.1:4191/web/runtime/ordered-game-18.db1a953a391c1d56.js",
+    "http://127.0.0.1:4191/web/runtime/shared-runtime-stage-rules.f9cf6a68b6172477.js",
+    "http://127.0.0.1:4191/web/runtime/ordered-game-19.0358f74cafecbd4f.js",
+    "http://127.0.0.1:4191/web/runtime/ordered-game-20.f3f793fe4b8ea131.js",
+    "http://127.0.0.1:4191/web/runtime/ordered-game-21.1c6125d0f15a56e0.js",
+    "http://127.0.0.1:4191/web/data/HONRO_ACT4_PREVIEW_SEEDS.1dda5d312df792f9.json",
+    "http://127.0.0.1:4191/web/runtime/HONRO_ACT4_PREVIEW_SEEDS.cb27ac2ced074af5.js",
+    "http://127.0.0.1:4191/web/runtime/ordered-game-22.c61f9b3a018929f0.js",
+    "http://127.0.0.1:4191/web/data/chapter-40-assets-parts.a783772575e0663a.json",
+    "http://127.0.0.1:4191/web/data/chapter-40.a3c215b69d0f3666.json",
+    "http://127.0.0.1:4191/assets/bgm/main.mp3",
+    "http://127.0.0.1:4191/web/data/chapter-40-assets-part-000.6ff1152472633e62.bin",
+    "http://127.0.0.1:4191/web/data/chapter-40-assets-part-001.72808465bc0191f4.bin",
+    "http://127.0.0.1:4191/web/graphics/honro_equipment_icons-itm_se_01.a8eb317e49fdedca.webp",
+    "http://127.0.0.1:4191/web/graphics/honro_equipment_icons-itm_da_01.e3e8ced3c30b1a7b.webp",
+    "http://127.0.0.1:4191/web/graphics/honro_equipment_icons-itm_hw_01.82bea611c2c478f8.webp",
+    "http://127.0.0.1:4191/web/graphics/honro_equipment_icons-itm_so_01.054975cdfa188a1e.webp",
+    "http://127.0.0.1:4191/web/graphics/honro_equipment_icons-itm_se_02.27775cb214919c93.webp",
+    "http://127.0.0.1:4191/web/graphics/honro_equipment_icons-itm_da_02.baae93c4ee41461b.webp",
+    "http://127.0.0.1:4191/web/graphics/honro_equipment_icons-itm_co_01.ce1e98e405c00588.webp",
+    "http://127.0.0.1:4191/web/graphics/honro_equipment_icons-itm_hw_02.aa6852994053eac4.webp",
+    "http://127.0.0.1:4191/web/graphics/honro_equipment_icons-itm_co_02.3384188f437edf32.webp",
+    "http://127.0.0.1:4191/web/graphics/honro_equipment_icons-itm_so_02.29c380ac771391da.webp",
+    "http://127.0.0.1:4191/web/graphics/honro_equipment_icons-itm_se_05.33f906eca6925fb5.webp",
+    "http://127.0.0.1:4191/web/graphics/honro_equipment_icons-itm_da_05.27c86b15accf8dba.webp",
+    "http://127.0.0.1:4191/web/fonts/kr-0020.1a9188e575bacb1f.woff2",
+    "http://127.0.0.1:4191/web/fonts/kr-0027.3a2339d80d96ebc8.woff2",
+    "http://127.0.0.1:4191/web/graphics/journey-map-act4.54e7aebcb5c2569b.webp",
+    "http://127.0.0.1:4191/web/graphics/honro_skill_audio-assets-bow_charge-src.34511a8742179118.mp3",
+    "http://127.0.0.1:4191/web/graphics/honro_skill_audio-assets-bow_charge_loop-src.770cdf8ce78b076e.wav",
+    "http://127.0.0.1:4191/web/graphics/honro_skill_audio-assets-bow_release-src.d359936cf6386905.mp3",
+    "http://127.0.0.1:4191/web/graphics/honro_skill_audio-assets-bow_hit-src.96918ec4cfac0d26.mp3",
+    "http://127.0.0.1:4191/web/graphics/honro_skill_audio-assets-arrow_block-src.6a52e58900de913a.mp3",
+    "http://127.0.0.1:4191/web/graphics/honro_skill_audio-assets-qi_charge-src.6a12c44aaf82a1ac.mp3",
+    "http://127.0.0.1:4191/web/graphics/honro_skill_audio-assets-qi_charge_loop-src.b051a18d7189ec7e.wav",
+    "http://127.0.0.1:4191/web/graphics/honro_skill_audio-assets-qi_launch-src.69a44f7f286c9a86.mp3",
+    "http://127.0.0.1:4191/web/graphics/honro_skill_audio-assets-qi_hit-src.826bf72073c78d4f.mp3",
+    "http://127.0.0.1:4191/web/graphics/honro_skill_audio-assets-gourd_throw-src.bcb9916e3f6c3c32.mp3",
+    "http://127.0.0.1:4191/web/graphics/honro_skill_audio-assets-fire_hit-src.991906ca064191b5.mp3",
+    "http://127.0.0.1:4191/web/graphics/honro_skill_audio-assets-ice_hit-src.4f29dc00bddeb969.mp3",
+    "http://127.0.0.1:4191/web/graphics/honro_skill_audio-assets-sword_swing-src.c0d2b195477d3c64.mp3",
+    "http://127.0.0.1:4191/web/graphics/honro_skill_audio-assets-sword_hit-src.d3eeb3d87d86a584.mp3",
+    "http://127.0.0.1:4191/web/graphics/honro_skill_audio-assets-rock_impact-src.4368b86dee29b75d.mp3",
+    "http://127.0.0.1:4191/web/graphics/honro_skill_audio-assets-sodan_release-src.18d88daac175526c.mp3",
+    "http://127.0.0.1:4191/web/graphics/honro_skill_audio-assets-spirit_hit-src.96ffd2b6d61a942e.mp3",
+    "http://127.0.0.1:4191/web/graphics/honro_skill_audio-assets-curse_attach-src.1b808afbec464608.mp3",
+    "http://127.0.0.1:4191/web/graphics/portrait-seoro-base.5461c4d01847334a.webp",
+    "http://127.0.0.1:4191/web/graphics/portrait-hwigyeom-base.90a546dd2fda53da.webp",
+    "http://127.0.0.1:4191/web/graphics/portrait-damheo-base.354084a697188d56.webp",
+    "http://127.0.0.1:4191/web/graphics/portrait-sodan-base.08ae11c4ce6c63cf.webp",
+    "http://127.0.0.1:4191/web/graphics/honro_authored_far-images-act4Sea.84b77e4b3d612d13.webp",
+    "http://127.0.0.1:4191/assets/bgm/battle-1.mp3",
+    "http://127.0.0.1:4191/web/graphics/skill-icon-A01.1fa04261cfcfceb8.webp",
+    "http://127.0.0.1:4191/web/graphics/skill-icon-A02.a8f55e024ef3fb38.webp",
+    "http://127.0.0.1:4191/web/graphics/skill-icon-A14.a54160bbaadedde4.webp",
+    "http://127.0.0.1:4191/web/graphics/skill-icon-A05.0bec2839bdda6e7b.webp",
+    "http://127.0.0.1:4191/web/graphics/skill-icon-A10.10c4941f5876eaec.webp",
+    "http://127.0.0.1:4191/web/graphics/skill-icon-A06.2da3b0603d6aef5c.webp",
+    "http://127.0.0.1:4191/web/graphics/skill-icon-A99.fcb91f4d89edc65a.webp",
+    "http://127.0.0.1:4191/web/graphics/skill-icon-A11.7720dd2557994f3e.webp",
+    "http://127.0.0.1:4191/web/graphics/skill-icon-A09.a0c7cc6478a4d6cb.webp",
+    "http://127.0.0.1:4191/web/graphics/skill-icon-A13.effc6b23f24edbac.webp",
+    "http://127.0.0.1:4191/web/graphics/skill-icon-A12.53e326bee86515ea.webp",
+    "http://127.0.0.1:4191/web/graphics/skill-icon-A15.c0b4215cf67b8d31.webp",
+    "http://127.0.0.1:4191/web/graphics/skill-icon-A04.347585d9aabb566f.webp",
+    "http://127.0.0.1:4191/web/graphics/skill-icon-A07.8df150ab698bea6f.webp",
+    "http://127.0.0.1:4191/web/graphics/skill-icon-A03.82568bdbd3a1b087.webp",
+    "http://127.0.0.1:4191/web/graphics/skill-icon-A08.eb5d1df18d52552e.webp",
+    "http://127.0.0.1:4191/web/graphics/skill-icon-AP04.2698d229bb2df9fa.webp",
+    "http://127.0.0.1:4191/web/graphics/skill-icon-AP02.a4d103eb85668c33.webp",
+    "http://127.0.0.1:4191/web/graphics/skill-icon-AP01.0afb39e6a85b8347.webp",
+    "http://127.0.0.1:4191/web/graphics/skill-icon-AP03.01d187d2d44de6b6.webp",
+    "http://127.0.0.1:4191/web/graphics/skill-icon-AP05.219425c37d635833.webp",
+    "http://127.0.0.1:4191/web/graphics/skill-icon-M01.a4a99a15222b1590.webp",
+    "http://127.0.0.1:4191/web/graphics/skill-icon-M06.478944405c7e23d5.webp",
+    "http://127.0.0.1:4191/web/graphics/skill-icon-M02.da5ed8483e1ebc54.webp",
+    "http://127.0.0.1:4191/web/graphics/skill-icon-M04.d9460adcebc0778e.webp",
+    "http://127.0.0.1:4191/web/graphics/skill-icon-M13.4d70e2a6c995d8da.webp",
+    "http://127.0.0.1:4191/web/graphics/skill-icon-M05.5b17a55a6b0ea27b.webp",
+    "http://127.0.0.1:4191/web/graphics/skill-icon-M03.1dee22422e96bc02.webp",
+    "http://127.0.0.1:4191/web/graphics/skill-icon-M11.fc2f33992c01af4c.webp",
+    "http://127.0.0.1:4191/web/graphics/skill-icon-M12.dc8f84d3d6a56e05.webp",
+    "http://127.0.0.1:4191/web/graphics/skill-icon-M14.6b96f3fc63bf12d6.webp",
+    "http://127.0.0.1:4191/web/graphics/skill-icon-M15.8b8b03bfdfbe1801.webp",
+    "http://127.0.0.1:4191/web/graphics/skill-icon-M07.aa4a4e1605fe25b5.webp",
+    "http://127.0.0.1:4191/web/graphics/skill-icon-M10.bee56d5640ac012c.webp",
+    "http://127.0.0.1:4191/web/graphics/skill-icon-M08.1375c2072af2d2bd.webp",
+    "http://127.0.0.1:4191/web/graphics/skill-icon-M09.2fc07f5d05f6fe1a.webp",
+    "http://127.0.0.1:4191/web/graphics/skill-icon-M99.7058c504aa5d7c26.webp"
+  ]
+}

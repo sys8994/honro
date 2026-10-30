@@ -1,0 +1,303 @@
+{
+  "projectFile": "_local/reports/density-rollout/review-round3/project-deduplicated.json",
+  "projectByteSHA256": "21bbfb24df16b9e49eb96e4b2bd409f3a575206f5d0aee53e4a24aa3aa3ee128",
+  "projectSHA256": "21bbfb24df16b9e49eb96e4b2bd409f3a575206f5d0aee53e4a24aa3aa3ee128",
+  "runtimeSHA256": "c06cffd6d892681fb3282a2679a114a1871827e16bc414c2122e7ef6d38bcdbd",
+  "allTenReplaysComplete": true,
+  "scope": "Frozen-project independent prepared-stage entry and recorded ordinary-input functional checks. DOM/audio/network loader and storage quota fixtures; Native Canvas adapters except stage31/35 no-render adapters. Stage40 valid prior-proof fixture is not linked campaign history. No browser HUD, mobile FPS, art approval, publication or deployment claim. Referenced-asset bytes are per-stage and must not be summed as deduplicated download payload.",
+  "rows": [
+    {
+      "stage": 31,
+      "entrySaveColdContinue": "passed",
+      "storedUTF16Bytes": 152388,
+      "exactWholeSnapshotCodec": true,
+      "referencedAssetJSONBytes": 3253076,
+      "maxExpandedNodes": 268,
+      "maxDepth": 9,
+      "maxPathChars": 59830,
+      "maxClipPathChars": 820,
+      "duplicateReferencedDefinitions": [],
+      "fullplay": {
+        "status": "passed",
+        "frames": 42960,
+        "resume": [
+          {
+            "frame": 12258,
+            "inputIndex": 32,
+            "result": "pass",
+            "scope": "Actual stopBattle/persist/Continue; exact units, event state, round, active, phase and all static/dynamic artwork holders preserved"
+          }
+        ],
+        "scope": "Prepared stage-entry profile; production App events; DOM/audio are doubles. Not a browser/campaign playthrough. No gate relabeling or automatic art approval.",
+        "verifierSha256": "fbe4c942096d375fe3d84b04f46386f4b3eaa3c3591a0e4445f7118bdfd6af1d"
+      }
+    },
+    {
+      "stage": 32,
+      "entrySaveColdContinue": "passed",
+      "storedUTF16Bytes": 94614,
+      "exactWholeSnapshotCodec": true,
+      "referencedAssetJSONBytes": 5562644,
+      "maxExpandedNodes": 505,
+      "maxDepth": 9,
+      "maxPathChars": 59830,
+      "maxClipPathChars": 724,
+      "duplicateReferencedDefinitions": [],
+      "fullplay": {
+        "status": "passed",
+        "frames": 30547,
+        "resume": [
+          {
+            "frame": 12249,
+            "inputIndex": 41,
+            "result": "pass",
+            "scope": "Actual stopBattle/persist/Continue; exact units, event state, round, active and phase preserved"
+          }
+        ],
+        "scope": "Prepared stage-entry profile; production App events; Native Canvas Scene initializes authored far art, then renders every60 physics ticks after combat until safeSeven receipts complete; raster caches explicitly disposed for bounded native-harness memory; DOM/audio are doubles, story text parsed from real rendered HTML. Not a browser/campaign playthrough. No gate relabeling or automatic art approval.",
+        "verifierSha256": "64c96be6f94c4ba5eab30e6ace7cde7cf26cb8632cec68406ccd49e67544cf64"
+      }
+    },
+    {
+      "stage": 33,
+      "entrySaveColdContinue": "passed",
+      "storedUTF16Bytes": 116376,
+      "exactWholeSnapshotCodec": true,
+      "referencedAssetJSONBytes": 2549474,
+      "maxExpandedNodes": 401,
+      "maxDepth": 6,
+      "maxPathChars": 59830,
+      "maxClipPathChars": 722,
+      "duplicateReferencedDefinitions": [],
+      "fullplay": {
+        "status": "passed",
+        "frames": 20476,
+        "resume": [
+          {
+            "frame": 11233,
+            "inputIndex": 44,
+            "result": "pass",
+            "scope": "Actual stopBattle/persist/Continue; exact units, event state, round, active and phase preserved"
+          }
+        ],
+        "scope": "Prepared earned-SP stage-entry profile; real App/Engine/Native Canvas events and sparse actual scene rendering every300 simulation frames (bounded snapshot evidence, not continuous rendered play); DOM/audio/storage scheduling are doubles, not browser or chapters1–32 playthrough. No gate relabeling or automatic art approval.",
+        "verifierSha256": "982212e546348868f1665f1219502590fd7e4310817e796f3be6d7098709641a"
+      }
+    },
+    {
+      "stage": 34,
+      "entrySaveColdContinue": "passed",
+      "storedUTF16Bytes": 94982,
+      "exactWholeSnapshotCodec": true,
+      "referencedAssetJSONBytes": 1515323,
+      "maxExpandedNodes": 511,
+      "maxDepth": 9,
+      "maxPathChars": 59759,
+      "maxClipPathChars": 759,
+      "duplicateReferencedDefinitions": [],
+      "fullplay": {
+        "status": "passed",
+        "frames": 20333,
+        "resume": [
+          {
+            "frame": 4847,
+            "inputIndex": 21,
+            "result": "pass",
+            "scope": "Actual stopBattle/persist/Continue; exact units, event state, round, active and phase preserved"
+          }
+        ],
+        "scope": "Prepared earned-SP stage-entry profile; real App/Engine/Native Canvas events and sparse actual scene rendering every300 simulation frames (bounded snapshot evidence, not continuous rendered play); DOM/audio/storage scheduling are doubles, not browser or chapters1–33 playthrough. No gate relabeling or automatic art approval.",
+        "verifierSha256": "ffe7860dbf64f47c3e24d0053a2d02e641792faa09f20362afdf1f2fd198ce30"
+      }
+    },
+    {
+      "stage": 35,
+      "entrySaveColdContinue": "passed",
+      "storedUTF16Bytes": 103854,
+      "exactWholeSnapshotCodec": true,
+      "referencedAssetJSONBytes": 3576213,
+      "maxExpandedNodes": 176,
+      "maxDepth": 7,
+      "maxPathChars": 59508,
+      "maxClipPathChars": 913,
+      "duplicateReferencedDefinitions": [],
+      "fullplay": {
+        "status": "passed",
+        "frames": 27497,
+        "resume": [
+          {
+            "frame": 12063,
+            "inputIndex": 48,
+            "result": "pass",
+            "scope": "Actual stopBattle/persist/Continue; exact units, event state, round, active and phase preserved"
+          }
+        ],
+        "scope": "Prepared stage-entry profile; production App events; DOM/audio are doubles. Not a browser/campaign playthrough. No gate relabeling or automatic art approval.",
+        "verifierSha256": "35709044164cd092999c49cffdc995254e4efcda65cf7e4a8863c497a86c792b"
+      }
+    },
+    {
+      "stage": 36,
+      "entrySaveColdContinue": "passed",
+      "storedUTF16Bytes": 69988,
+      "exactWholeSnapshotCodec": true,
+      "referencedAssetJSONBytes": 1947984,
+      "maxExpandedNodes": 56,
+      "maxDepth": 8,
+      "maxPathChars": 59119,
+      "maxClipPathChars": 755,
+      "duplicateReferencedDefinitions": [],
+      "fullplay": {
+        "status": "passed",
+        "frames": 18052,
+        "resume": [
+          {
+            "frame": 12011,
+            "inputIndex": 484,
+            "result": "pass",
+            "scope": "Actual stopBattle/persist/Continue; exact units, event state, round, active, phase and resolved static/dynamic art preserved"
+          }
+        ],
+        "scope": "Prepared stage-entry profile; production App events; DOM/audio are doubles. Not a browser/campaign playthrough. No gate relabeling or automatic art approval.",
+        "verifierSha256": "fbefb6df57759b53598518a43a9a137b44ee51e849107a1e2e340532b13e1cff"
+      }
+    },
+    {
+      "stage": 37,
+      "entrySaveColdContinue": "passed",
+      "storedUTF16Bytes": 97008,
+      "exactWholeSnapshotCodec": true,
+      "referencedAssetJSONBytes": 2963500,
+      "maxExpandedNodes": 495,
+      "maxDepth": 9,
+      "maxPathChars": 59625,
+      "maxClipPathChars": 755,
+      "duplicateReferencedDefinitions": [],
+      "fullplay": {
+        "status": "passed",
+        "frames": 33265,
+        "resume": [
+          {
+            "frame": 12735,
+            "inputIndex": 50,
+            "result": "pass",
+            "scope": "Actual stopBattle/persist/Continue; exact units, event state, round, active and phase preserved"
+          }
+        ],
+        "scope": "Prepared stage-entry profile; production App events; Native Canvas Scene initializes authored far art, then renders every60 physics ticks after combat until actual signal/gesture receipts complete; raster caches explicitly disposed for bounded native-harness memory; DOM/audio are doubles, story text parsed from real rendered HTML. Not a browser/campaign playthrough. No gate relabeling or automatic art approval.",
+        "verifierSha256": "733edb4312cc4b1fd3845ac68e71200754cac76fc5d28cda56c77621323212d3"
+      }
+    },
+    {
+      "stage": 38,
+      "entrySaveColdContinue": "passed",
+      "storedUTF16Bytes": 90132,
+      "exactWholeSnapshotCodec": true,
+      "referencedAssetJSONBytes": 1851299,
+      "maxExpandedNodes": 128,
+      "maxDepth": 9,
+      "maxPathChars": 59759,
+      "maxClipPathChars": 691,
+      "duplicateReferencedDefinitions": [],
+      "fullplay": {
+        "status": "passed",
+        "frames": 16096,
+        "resume": [
+          {
+            "phase": "vista",
+            "frame": 4895,
+            "input": 20,
+            "pass": true,
+            "scope": "Actual stopBattle/persist/Continue exact units/objective/round/phase/active"
+          },
+          {
+            "phase": "entry",
+            "frame": 5749,
+            "input": 26,
+            "pass": true,
+            "scope": "Actual stopBattle/persist/Continue exact units/objective/round/phase/active"
+          },
+          {
+            "phase": "wrong-exit",
+            "frame": 6001,
+            "input": 26,
+            "pass": true,
+            "scope": "Actual stopBattle/persist/Continue exact units/objective/round/phase/active"
+          },
+          {
+            "phase": "anchoring",
+            "frame": 6740,
+            "input": 30,
+            "pass": true,
+            "scope": "Actual stopBattle/persist/Continue exact units/objective/round/phase/active"
+          },
+          {
+            "phase": "connected",
+            "frame": 7071,
+            "input": 34,
+            "pass": true,
+            "scope": "Actual stopBattle/persist/Continue exact units/objective/round/phase/active"
+          }
+        ],
+        "scope": "Prepared earned-SP stage-entry profile; real App/Engine/Native Canvas events and sparse actual scene rendering every300 simulation frames (bounded snapshot evidence, not continuous rendered play); DOM/audio/storage scheduling are doubles, not browser or chapters1–37 playthrough. Phase-specific actual Continue, no forcing.",
+        "verifierSha256": "176705e0bea640ed4dbacf65dccdbf78bcfcae65130d9404206d983e1ba7ffe5"
+      }
+    },
+    {
+      "stage": 39,
+      "entrySaveColdContinue": "passed",
+      "storedUTF16Bytes": 98642,
+      "exactWholeSnapshotCodec": true,
+      "referencedAssetJSONBytes": 10218668,
+      "maxExpandedNodes": 505,
+      "maxDepth": 9,
+      "maxPathChars": 59956,
+      "maxClipPathChars": 759,
+      "duplicateReferencedDefinitions": [],
+      "fullplay": {
+        "status": "passed",
+        "frames": 36725,
+        "resume": [
+          {
+            "frame": 5612,
+            "inputIndex": 21,
+            "result": "pass",
+            "scope": "Actual stopBattle/persist/Continue; exact units, event state, round, active and phase preserved"
+          }
+        ],
+        "scope": "Prepared earned-SP stage-entry profile; real App/Engine/Native Canvas events and sparse actual scene rendering every300 simulation frames (bounded snapshot evidence, not continuous rendered play); DOM/audio/storage scheduling are doubles, not browser or chapters1–38 playthrough. No gate relabeling or automatic art approval.",
+        "verifierSha256": "e0fc4a1ad552a5e5a6359635c14be4173c0c96ce2f472a9659dce15576b511d9"
+      }
+    },
+    {
+      "stage": 40,
+      "entrySaveColdContinue": "passed",
+      "storedUTF16Bytes": 84364,
+      "exactWholeSnapshotCodec": true,
+      "referencedAssetJSONBytes": 3900306,
+      "maxExpandedNodes": 198,
+      "maxDepth": 9,
+      "maxPathChars": 59830,
+      "maxClipPathChars": 708,
+      "duplicateReferencedDefinitions": [],
+      "fullplay": {
+        "status": "passed",
+        "frames": 16829,
+        "resume": [
+          {
+            "frame": 14337,
+            "boatX": 3650.5,
+            "passengers": {
+              "a4-rescue-0": -70.00000062863546,
+              "a4-rescue-1": 20.469539497670667
+            },
+            "pass": true,
+            "scope": "Actual App stopBattle/persist/Continue; exact units/terrain/objective/round/active/phase"
+          }
+        ],
+        "scope": "Prepared earned-SP stage-entry profile; real App/Engine/Native Canvas events and sparse actual scene rendering every300 simulation frames (bounded snapshot evidence, not continuous rendered play); DOM/audio/storage scheduling are doubles, not browser or chapters1–39 playthrough. Prior32/39 are explicitly prepared from independent actual templates, not linked historical campaign. Dialogue skipped, not presented. No current-stage/pose/HP/resource forcing.",
+        "verifierSha256": "471772894218f9c77a8825bf12b87eba4854617d60c4d1c6e80806768e146cae"
+      }
+    }
+  ]
+}

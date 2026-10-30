@@ -1,0 +1,38 @@
+{
+  "status": "failed-exact-Continue-equality-not-gameplay-completion",
+  "projectSHA256": "7956c4ea8a2dde9afc583ecac1d9908a67203eb9397859fdff613850e6cbdd93",
+  "runtimeSHA256": "6cc9cfbf62e17ae9588d77fe27233d925d00c8bf6f3053a62dc1fec79166b995",
+  "frame": 13418,
+  "inputIndex": 51,
+  "unit": "knight",
+  "before": {
+    "x": 859.95,
+    "y": 1836,
+    "r": 22,
+    "h": 92
+  },
+  "after": {
+    "x": 827.95,
+    "y": 1836,
+    "r": 22,
+    "h": 92
+  },
+  "deltaX": -32.0,
+  "groundedBefore": true,
+  "groundedAfter": true,
+  "artStateExact": true,
+  "memoryObservation": {
+    "sampleCount": 11,
+    "rssMin": 1244389376,
+    "rssMax": 1250672640,
+    "heapUsedMin": 324787512,
+    "heapUsedMax": 327179160,
+    "domainTilesMin": 8,
+    "domainTilesMax": 8,
+    "scope": "Native test process samples under combined final source/runtime and backend cache flushing. Not browser total memory or proof of a single causal fix."
+  },
+  "evidence": {
+    "_local/reports/act4-final-qa-6cc9/35/replay-diagnostic-continue-mismatch.json": "a9cf3870f1dc2f6f8934a4ac8904d114d9295de1a3505ba99ead6dccdd598a20",
+    "_local/reports/act4-final-qa-6cc9/35/replay-diagnostic.log": "2fb8d7e3db29332917b542fc918aee7c46c2fc03564d0efa72acb0cbc2792af1"
+  }
+}

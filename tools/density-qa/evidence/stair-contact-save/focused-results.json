@@ -1,0 +1,428 @@
+{
+  "passed": true,
+  "observedFixtureProject": "7956c4ea8a2dde9afc583ecac1d9908a67203eb9397859fdff613850e6cbdd93",
+  "observedFixtureRuntime": "6cc9cfbf62e17ae9588d77fe27233d925d00c8bf6f3053a62dc1fec79166b995",
+  "locomotionSha256": "32e44ee4bb34a0b2aa8c2885303dab0297831507bd0d8634f1531820f7ecdd38",
+  "rows": [
+    {
+      "label": "stage1/archer/observed lower stair contact",
+      "recover": false,
+      "before": {
+        "x": 859.95,
+        "y": 1836,
+        "vx": 0,
+        "vy": 0,
+        "airborne": false,
+        "jumping": false,
+        "hp": 815,
+        "focus": 186,
+        "moveLeft": 1640
+      },
+      "after": {
+        "x": 859.95,
+        "y": 1836,
+        "vx": 0,
+        "vy": 0,
+        "airborne": false,
+        "jumping": false,
+        "hp": 815,
+        "focus": 186,
+        "moveLeft": 1640
+      }
+    },
+    {
+      "label": "stage1/mage/observed lower stair contact",
+      "recover": false,
+      "before": {
+        "x": 859.95,
+        "y": 1836,
+        "vx": 0,
+        "vy": 0,
+        "airborne": false,
+        "jumping": false,
+        "hp": 870,
+        "focus": 259,
+        "moveLeft": 1660
+      },
+      "after": {
+        "x": 859.95,
+        "y": 1836,
+        "vx": 0,
+        "vy": 0,
+        "airborne": false,
+        "jumping": false,
+        "hp": 870,
+        "focus": 259,
+        "moveLeft": 1660
+      }
+    },
+    {
+      "label": "stage1/knight/observed lower stair contact",
+      "recover": false,
+      "before": {
+        "x": 859.95,
+        "y": 1836,
+        "vx": 0,
+        "vy": 0,
+        "airborne": false,
+        "jumping": false,
+        "hp": 1436,
+        "focus": 209,
+        "moveLeft": 1750
+      },
+      "after": {
+        "x": 859.95,
+        "y": 1836,
+        "vx": 0,
+        "vy": 0,
+        "airborne": false,
+        "jumping": false,
+        "hp": 1436,
+        "focus": 209,
+        "moveLeft": 1750
+      }
+    },
+    {
+      "label": "stage1/occultist/observed lower stair contact",
+      "recover": false,
+      "before": {
+        "x": 859.95,
+        "y": 1836,
+        "vx": 0,
+        "vy": 0,
+        "airborne": false,
+        "jumping": false,
+        "hp": 1000,
+        "focus": 310,
+        "moveLeft": 1690
+      },
+      "after": {
+        "x": 859.95,
+        "y": 1836,
+        "vx": 0,
+        "vy": 0,
+        "airborne": false,
+        "jumping": false,
+        "hp": 1000,
+        "focus": 310,
+        "moveLeft": 1690
+      }
+    },
+    {
+      "label": "stage35/archer/observed lower stair contact",
+      "recover": false,
+      "before": {
+        "x": 859.95,
+        "y": 1836,
+        "vx": 0,
+        "vy": 0,
+        "airborne": false,
+        "jumping": false,
+        "hp": 815,
+        "focus": 186,
+        "moveLeft": 1640
+      },
+      "after": {
+        "x": 859.95,
+        "y": 1836,
+        "vx": 0,
+        "vy": 0,
+        "airborne": false,
+        "jumping": false,
+        "hp": 815,
+        "focus": 186,
+        "moveLeft": 1640
+      }
+    },
+    {
+      "label": "stage35/mage/observed lower stair contact",
+      "recover": false,
+      "before": {
+        "x": 859.95,
+        "y": 1836,
+        "vx": 0,
+        "vy": 0,
+        "airborne": false,
+        "jumping": false,
+        "hp": 870,
+        "focus": 259,
+        "moveLeft": 1660
+      },
+      "after": {
+        "x": 859.95,
+        "y": 1836,
+        "vx": 0,
+        "vy": 0,
+        "airborne": false,
+        "jumping": false,
+        "hp": 870,
+        "focus": 259,
+        "moveLeft": 1660
+      }
+    },
+    {
+      "label": "stage35/knight/observed lower stair contact",
+      "recover": false,
+      "before": {
+        "x": 859.95,
+        "y": 1836,
+        "vx": 0,
+        "vy": 0,
+        "airborne": false,
+        "jumping": false,
+        "hp": 1436,
+        "focus": 209,
+        "moveLeft": 1750
+      },
+      "after": {
+        "x": 859.95,
+        "y": 1836,
+        "vx": 0,
+        "vy": 0,
+        "airborne": false,
+        "jumping": false,
+        "hp": 1436,
+        "focus": 209,
+        "moveLeft": 1750
+      }
+    },
+    {
+      "label": "stage35/occultist/observed lower stair contact",
+      "recover": false,
+      "before": {
+        "x": 859.95,
+        "y": 1836,
+        "vx": 0,
+        "vy": 0,
+        "airborne": false,
+        "jumping": false,
+        "hp": 1000,
+        "focus": 310,
+        "moveLeft": 1690
+      },
+      "after": {
+        "x": 859.95,
+        "y": 1836,
+        "vx": 0,
+        "vy": 0,
+        "airborne": false,
+        "jumping": false,
+        "hp": 1000,
+        "focus": 310,
+        "moveLeft": 1690
+      }
+    },
+    {
+      "label": "exact captured stage35 knight in production App save path",
+      "recover": false,
+      "before": {
+        "x": 859.95,
+        "y": 1836,
+        "vx": 0,
+        "vy": 0,
+        "airborne": false,
+        "jumping": false,
+        "hp": 1961.9,
+        "focus": 299,
+        "moveLeft": 2354
+      },
+      "after": {
+        "x": 859.95,
+        "y": 1836,
+        "vx": 0,
+        "vy": 0,
+        "airborne": false,
+        "jumping": false,
+        "hp": 1961.9,
+        "focus": 299,
+        "moveLeft": 2354
+      }
+    },
+    {
+      "label": "ordinary impulse stair stop -1",
+      "recover": false,
+      "before": {
+        "x": 860.05,
+        "y": 1836,
+        "vx": 0,
+        "vy": 0,
+        "airborne": false,
+        "jumping": false,
+        "hp": 1436,
+        "focus": 209,
+        "moveLeft": 1750
+      },
+      "after": {
+        "x": 860.05,
+        "y": 1836,
+        "vx": 0,
+        "vy": 0,
+        "airborne": false,
+        "jumping": false,
+        "hp": 1436,
+        "focus": 209,
+        "moveLeft": 1750
+      }
+    },
+    {
+      "label": "ordinary impulse stair stop 1",
+      "recover": false,
+      "before": {
+        "x": 859.95,
+        "y": 1836,
+        "vx": 0,
+        "vy": 0,
+        "airborne": false,
+        "jumping": false,
+        "hp": 1436,
+        "focus": 209,
+        "moveLeft": 1750
+      },
+      "after": {
+        "x": 859.95,
+        "y": 1836,
+        "vx": 0,
+        "vy": 0,
+        "airborne": false,
+        "jumping": false,
+        "hp": 1436,
+        "focus": 209,
+        "moveLeft": 1750
+      }
+    },
+    {
+      "label": "riser-burial",
+      "recover": true,
+      "before": {
+        "x": 861,
+        "y": 1836,
+        "vx": 0,
+        "vy": 0,
+        "airborne": false,
+        "jumping": false,
+        "hp": 1436,
+        "focus": 209,
+        "moveLeft": 1750
+      },
+      "after": {
+        "x": 861,
+        "y": 1800,
+        "vx": 0,
+        "vy": 0,
+        "airborne": false,
+        "jumping": false,
+        "hp": 1436,
+        "focus": 209,
+        "moveLeft": 1750
+      }
+    },
+    {
+      "label": "deep-floor",
+      "recover": true,
+      "before": {
+        "x": 859.95,
+        "y": 1856,
+        "vx": 0,
+        "vy": 0,
+        "airborne": false,
+        "jumping": false,
+        "hp": 1436,
+        "focus": 209,
+        "moveLeft": 1750
+      },
+      "after": {
+        "x": 859.95,
+        "y": 1836,
+        "vx": 0,
+        "vy": 0,
+        "airborne": false,
+        "jumping": false,
+        "hp": 1436,
+        "focus": 209,
+        "moveLeft": 1750
+      }
+    },
+    {
+      "label": "full-wall",
+      "recover": true,
+      "before": {
+        "x": 870,
+        "y": 1836,
+        "vx": 0,
+        "vy": 0,
+        "airborne": false,
+        "jumping": false,
+        "hp": 1436,
+        "focus": 209,
+        "moveLeft": 1750
+      },
+      "after": {
+        "x": 806,
+        "y": 1836,
+        "vx": 0,
+        "vy": 0,
+        "airborne": false,
+        "jumping": false,
+        "hp": 1436,
+        "focus": 209,
+        "moveLeft": 1750
+      }
+    },
+    {
+      "label": "thin-roof",
+      "recover": true,
+      "before": {
+        "x": 859.95,
+        "y": 1836,
+        "vx": 0,
+        "vy": 0,
+        "airborne": false,
+        "jumping": false,
+        "hp": 1436,
+        "focus": 209,
+        "moveLeft": 1750
+      },
+      "after": {
+        "x": 827.95,
+        "y": 1808.4,
+        "vx": 0,
+        "vy": 0,
+        "airborne": false,
+        "jumping": false,
+        "hp": 1436,
+        "focus": 209,
+        "moveLeft": 1750
+      }
+    },
+    {
+      "label": "low-cave",
+      "recover": true,
+      "before": {
+        "x": 859.95,
+        "y": 1836,
+        "vx": 0,
+        "vy": 0,
+        "airborne": false,
+        "jumping": false,
+        "hp": 1436,
+        "focus": 209,
+        "moveLeft": 1750
+      },
+      "after": {
+        "x": 763.95,
+        "y": 1836,
+        "vx": 0,
+        "vy": 0,
+        "airborne": false,
+        "jumping": false,
+        "hp": 1436,
+        "focus": 209,
+        "moveLeft": 1750
+      }
+    }
+  ],
+  "limits": [
+    "Actual App stop/Continue with DOM/storage doubles; explicitly constructed stage1 fixtures use captured ordinary-play geometry and pose.",
+    "Captured original unit independently validated; full original stage35 tape replay is separate."
+  ]
+}

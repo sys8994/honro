@@ -1,0 +1,18 @@
+/** Read-only compiled geometry differential. Synthetic ray/contact samples are not playthrough evidence. */
+import {readFile,writeFile,mkdir} from 'node:fs/promises';
+import {createHash} from 'node:crypto';
+import assert from 'node:assert/strict';
+import {runtime} from '../../game/tests/helpers.mjs';
+import {runtimeDigest} from '../stage31/probes.mjs';
+const [beforeFile,afterFile,stageText,out]=process.argv.slice(2),n=Number(stageText),sha=x=>createHash('sha256').update(JSON.stringify(x)).digest('hex'),before=JSON.parse(await readFile(beforeFile)),after=JSON.parse(await readFile(afterFile)),initialRuntime=await runtimeDigest(),g=await runtime({legacyMaps:false}),C=g.HONRO_CORE;
+const st=p=>p.stages.find(s=>s.metadata?.stageId===n),old=g.HonroMaps.compile(st(before),before).terrain,newer=g.HonroMaps.compile(st(after),after).terrain;
+const idSet=new Set([...old,...newer].map(t=>t.id)),changed=[...idSet].filter(id=>sha(old.find(t=>t.id===id)??null)!==sha(newer.find(t=>t.id===id)??null));
+const cross=(a,b,c)=>(b.x-a.x)*(c.y-a.y)-(b.y-a.y)*(c.x-a.x),edges=t=>{const p=C.poly(t);return p.map((a,i)=>[a,p[(i+1)%p.length]]);},rows=[];
+for(const id of changed){const a=old.find(t=>t.id===id),b=newer.find(t=>t.id===id),issues=[];if(b){const e=edges(b);for(let i=0;i<e.length;i++){assert(e[i].flatMap(p=>[p.x,p.y]).every(Number.isFinite));if(Math.hypot(e[i][0].x-e[i][1].x,e[i][0].y-e[i][1].y)<1e-7)issues.push({kind:'zero-length-edge',edge:i});for(let j=i+2;j<e.length;j++){if(i===0&&j===e.length-1)continue;const[u,v]=e[i],[x,y]=e[j];if(cross(u,v,x)*cross(u,v,y)<-1e-8&&cross(x,y,u)*cross(x,y,v)<-1e-8)issues.push({kind:'self-crossing',edges:[i,j]});}}}
+ const boxes=[a,b].filter(Boolean),x0=Math.min(...boxes.map(t=>t.x)),x1=Math.max(...boxes.map(t=>t.x+t.w)),y0=Math.min(...boxes.map(t=>t.y)),y1=Math.max(...boxes.map(t=>t.y+t.h)),rays=[];
+ // Use actual engine projectile intersection at several finite body radii.
+ for(const mode of ['solid-boundary','projectile-policy'])for(const radius of [0,3,8])for(let k=0;k<=64;k++){const x=x0+(x1-x0)*k/64,y=y0+(y1-y0)*k/64;for(const [axis,start,end]of [['vertical',{x,y:y0-20},{x,y:y1+20}],['horizontal',{x:x0-20,y},{x:x1+20,y}],['upward',{x,y:y1+20},{x,y:y0-20}],['leftward',{x:x1+20,y},{x:x0-20,y}]]){const hit=t=>t?(mode==='projectile-policy'?C.segmentProjectileTerrain:C.segmentTerrain)(start,end,t,radius):null,u=hit(a),v=hit(b);if(!!u!==!!v||u&&v&&Math.abs(u.t-v.t)>1e-6)rays.push({mode,axis,radius,k,before:u,after:v});}}
+ const xs=[...new Set(boxes.flatMap(t=>C.poly(t).map(p=>p.x)))].flatMap(x=>[x-.1,x,x+.1]),surfaces=xs.map(x=>({x,before:a?C.terrainSurfaces(a,x):[],after:b?C.terrainSurfaces(b,x):[]})).filter(s=>sha(s.before)!==sha(s.after));
+ rows.push({id,before:a??null,after:b??null,issues,changedRayIntersections:rays,surfaceChangesAtVertices:surfaces});}
+assert.equal(await runtimeDigest(),initialRuntime,'runtime changed during audit');assert.equal(sha(JSON.parse(await readFile(afterFile))),sha(after),'candidate changed');
+const report={stage:n,beforeSHA256:sha(before),afterSHA256:sha(after),runtimeSHA256:initialRuntime,scope:'Compiled geometry differential with synthetic engine segment rays and vertex-adjacent surface samples. Not normal input, visual alignment or route-clear approval.',engineSeamRules:{gap:C.SEAM_GAP,heightDelta:3,maxSlope:1.35},changedTerrainCount:changed.length,rows};await mkdir(out.slice(0,out.lastIndexOf('/')),{recursive:true});await writeFile(out,JSON.stringify(report,null,2));console.log(JSON.stringify({stage:n,changed:rows.map(r=>({id:r.id,issues:r.issues,rays:r.changedRayIntersections.length}))}));assert(rows.every(r=>!r.issues.length),'invalid candidate polygon');

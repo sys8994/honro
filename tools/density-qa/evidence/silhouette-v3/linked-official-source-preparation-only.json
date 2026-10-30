@@ -1,0 +1,171 @@
+{
+  "scope": "Pre-final harness/source identity sanity check ONLY; current older canonical world, not redesigned campaign acceptance",
+  "worldPath": "shared/data/act4/world.json",
+  "worldSHA256": "6d7737450f484807d1ed927f00ed0e7d2cb6f25beb6140c416c27c00440b5b34",
+  "manifestPath": "shared/data/act4/world.parts/manifest.json",
+  "manifestSHA256": "dfb7fccf628a4bd9f474c674fa8a0f700db4a5872f8e6d69b3e8cf0968d07101",
+  "partCount": 14,
+  "runtimeMetadataAdditions": [
+    {
+      "stage": "stage-32",
+      "path": "initialState.honroNarrativeRevision",
+      "value": 1
+    },
+    {
+      "stage": "stage-32",
+      "path": "initialState.honroStoryCanonRevision",
+      "value": 1
+    },
+    {
+      "stage": "stage-32",
+      "path": "initialState.honroNarrativeCatalogueRevision",
+      "value": 1
+    },
+    {
+      "stage": "stage-33",
+      "path": "initialState.honroNarrativeRevision",
+      "value": 1
+    },
+    {
+      "stage": "stage-33",
+      "path": "initialState.honroStoryCanonRevision",
+      "value": 1
+    },
+    {
+      "stage": "stage-33",
+      "path": "initialState.honroNarrativeCatalogueRevision",
+      "value": 1
+    },
+    {
+      "stage": "stage-34",
+      "path": "initialState.honroNarrativeRevision",
+      "value": 1
+    },
+    {
+      "stage": "stage-34",
+      "path": "initialState.honroStoryCanonRevision",
+      "value": 1
+    },
+    {
+      "stage": "stage-34",
+      "path": "initialState.honroNarrativeCatalogueRevision",
+      "value": 1
+    },
+    {
+      "stage": "stage-37",
+      "path": "initialState.honroNarrativeRevision",
+      "value": 1
+    },
+    {
+      "stage": "stage-37",
+      "path": "initialState.honroStoryCanonRevision",
+      "value": 1
+    },
+    {
+      "stage": "stage-37",
+      "path": "initialState.honroNarrativeCatalogueRevision",
+      "value": 1
+    },
+    {
+      "stage": "stage-38",
+      "path": "initialState.honroNarrativeRevision",
+      "value": 1
+    },
+    {
+      "stage": "stage-38",
+      "path": "initialState.honroStoryCanonRevision",
+      "value": 1
+    },
+    {
+      "stage": "stage-38",
+      "path": "initialState.honroNarrativeCatalogueRevision",
+      "value": 1
+    },
+    {
+      "stage": "stage-39",
+      "path": "initialState.honroNarrativeRevision",
+      "value": 1
+    },
+    {
+      "stage": "stage-39",
+      "path": "initialState.honroStoryCanonRevision",
+      "value": 1
+    },
+    {
+      "stage": "stage-39",
+      "path": "initialState.honroNarrativeCatalogueRevision",
+      "value": 1
+    },
+    {
+      "stage": "stage-40",
+      "path": "initialState.honroNarrativeRevision",
+      "value": 1
+    },
+    {
+      "stage": "stage-40",
+      "path": "initialState.honroStoryCanonRevision",
+      "value": 1
+    },
+    {
+      "stage": "stage-40",
+      "path": "initialState.honroNarrativeCatalogueRevision",
+      "value": 1
+    }
+  ],
+  "defaultBuiltProjectSHA256": "4ce27c38e54446b63f38b3c43e4f642fe7a752c4fce5af702be9c27208691ce6",
+  "stages": [
+    {
+      "id": "stage-31",
+      "sourceSHA256": "b0e140c3fc22a502373969c6fc93b8ea4b0a28f63d24ed5bca8fab04385bb121",
+      "loadedSHA256": "b0e140c3fc22a502373969c6fc93b8ea4b0a28f63d24ed5bca8fab04385bb121"
+    },
+    {
+      "id": "stage-32",
+      "sourceSHA256": "e979be628db165b91e1571b621cc7e5345ae95ecd7a5d473c144fa6dc4388db5",
+      "loadedSHA256": "bcf389d76d2e24455391f419b758107255853e1dca1669bcadf911bdad6e5abf"
+    },
+    {
+      "id": "stage-33",
+      "sourceSHA256": "1805bc87d6f96506434b0d2ff17b920c339b604627d756fb7e7a62871b5a2dcc",
+      "loadedSHA256": "85cb77e6f5e56969777a91f411ab04da75f3503feddf6c13245e326045f5886d"
+    },
+    {
+      "id": "stage-34",
+      "sourceSHA256": "52eaec0736c3e8b7b99786b250b4096d41ac4f3b59b72cd12634cbbaf1c3d7af",
+      "loadedSHA256": "eadab1c08b57f14d6c1482ad519d49b99019961afb48e050b7687d72df974e93"
+    },
+    {
+      "id": "stage-35",
+      "sourceSHA256": "f406de47fb00b7b8ae9ac97042323410a1c1de9e3b2ec5481a0fb0a0c6920965",
+      "loadedSHA256": "f406de47fb00b7b8ae9ac97042323410a1c1de9e3b2ec5481a0fb0a0c6920965"
+    },
+    {
+      "id": "stage-36",
+      "sourceSHA256": "a43a9334a25e42b3afdedc2c8a0a16e4e610b655f29687fa7a8af596bff75a75",
+      "loadedSHA256": "a43a9334a25e42b3afdedc2c8a0a16e4e610b655f29687fa7a8af596bff75a75"
+    },
+    {
+      "id": "stage-37",
+      "sourceSHA256": "6b5b97112674da939abfbb5e593c3c44aaaeb1db578db26d5494906d79ec423c",
+      "loadedSHA256": "48b7fffad07be2bc4dcf622885d8f610cc92971f3ec0ee34f83a88c9013fe1e2"
+    },
+    {
+      "id": "stage-38",
+      "sourceSHA256": "4d2faf42ff0f21f7cc2793e700c27a435cb0e1826a3521ae98448216bd2ddcde",
+      "loadedSHA256": "8266418234e1ce6ee2b3b1e3da00fa7c26f53f5088ba95189813900dee2ec020"
+    },
+    {
+      "id": "stage-39",
+      "sourceSHA256": "f679fa2b2d970766ec01425f9aaa131fe34d1feecaf87017dc51d63eb54a022f",
+      "loadedSHA256": "554c69da3254ea870bcd1434f64882776b195e7c8299d88cd7e8df176aab89d7"
+    },
+    {
+      "id": "stage-40",
+      "sourceSHA256": "abe7149cdcafdf9ca5f2c8a4bdb555e896e27d5430323f66a19b292fc145e8d7",
+      "loadedSHA256": "0b5f070eb327c5eb0fc112507b4683d46dce1dd317e21df2c198e238e2d6023e"
+    }
+  ],
+  "assetCount": 188,
+  "entryPath": "Actual App.launch/continue on default runtimeParts campaign, no HONRO_PROJECT substitution, launchMap, importedDraft, customMap or debug mode",
+  "limit": "Native default-build source/transport identity, not browser HTTP-loader or UI proof"
+}

@@ -1,0 +1,22 @@
+{
+  "status": "canonical39-only-qa-freeze-full39-outcome-pending",
+  "runtimeSHA256": "7652daac71dc2c7c6ea02b438ce10105a26e1ac008b36258ad08e2835ee14fd9",
+  "previousWorldSHA256": "1e7939fe0f9fd6cd8be0202807f0db74f7ed7958a212d480aa73d3e7ce72f0d4",
+  "worldSHA256": "801df923ce89d8747f337f0b71e2ae38c604a8efbd6250d56e885b931af9f1b5",
+  "projectSHA256": "f16efd5cd4d4b4fdc6a7b7103015df2fafa95e026ce2682a318e09513954c300",
+  "worldBytes": 32073198,
+  "parts": 16,
+  "onlyChangedStage": 39,
+  "stage31ProductionPackagePayloadExact": true,
+  "productionReviewsUnchanged": true,
+  "sourcePackRegression": "3 groups PASS",
+  "sourceProof": "unaffected-source-proof.json",
+  "walkerProof": "walker-regression.json",
+  "paintProof": "paint-contact-proof.json",
+  "publicImport": "public-import.json",
+  "reviewer": "assistant /root",
+  "userApproval": false,
+  "artReview": "Root directly inspected transition-close and rescue-normal; local correction accepted with protected ledge/net intact, connected surface/strata and grounded rear rock. Not full objective approval.",
+  "previousWorldPreserved": "_local/reports/stage39-escort-grade-v1/before-world-1e7939fe.json",
+  "priorProjectPreserved": "_local/reports/act4-silhouette-final-qa/project-pruned.json"
+}

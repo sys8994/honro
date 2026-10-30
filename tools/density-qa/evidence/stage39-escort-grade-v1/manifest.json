@@ -1,0 +1,32 @@
+{
+  "source": "_local/reports/stage39-escort-grade-v1/project.json",
+  "projectSHA256": "f16efd5cd4d4b4fdc6a7b7103015df2fafa95e026ce2682a318e09513954c300",
+  "runtimeSHA256": "7652daac71dc2c7c6ea02b438ce10105a26e1ac008b36258ad08e2835ee14fd9",
+  "scope": "Actual App initialization/native renderer, explicit inspection cameras; no NPC success/state injection. Not browser or full gameplay proof.",
+  "frames": [
+    {
+      "id": "transition-close",
+      "x": 6400,
+      "y": 1830,
+      "scale": 0.95,
+      "width": 1440,
+      "height": 900
+    },
+    {
+      "id": "rescue-normal",
+      "x": 6650,
+      "y": 1790,
+      "scale": 0.55,
+      "width": 1440,
+      "height": 900
+    },
+    {
+      "id": "transition-mobile",
+      "x": 6380,
+      "y": 1820,
+      "scale": 0.42,
+      "width": 720,
+      "height": 1100
+    }
+  ]
+}

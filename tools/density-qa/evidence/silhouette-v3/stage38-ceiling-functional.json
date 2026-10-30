@@ -1,0 +1,1088 @@
+{
+  "status": "isolated-ceiling-functional-evidence-not-final-floor-or-art-approval",
+  "candidateSHA256": "3887fa5168c263dc4c75a52fe5e3a8a5d34e8994789cac51a9bc75588bc2705a",
+  "runtimeSHA256": "c06cffd6d892681fb3282a2679a114a1871827e16bc414c2122e7ef6d38bcdbd",
+  "tape": "tools/density-qa/tapes/stage38-ceiling-v4-balanced.json",
+  "balancedReplay": {
+    "success": true,
+    "frames": 22365,
+    "checkFailures": [],
+    "resume": [
+      {
+        "phase": "vista",
+        "frame": 7776,
+        "input": 51,
+        "pass": true,
+        "scope": "Actual stopBattle/persist/Continue exact units/objective/round/phase/active"
+      },
+      {
+        "phase": "entry",
+        "frame": 8425,
+        "input": 57,
+        "pass": true,
+        "scope": "Actual stopBattle/persist/Continue exact units/objective/round/phase/active"
+      },
+      {
+        "phase": "wrong-exit",
+        "frame": 8701,
+        "input": 57,
+        "pass": true,
+        "scope": "Actual stopBattle/persist/Continue exact units/objective/round/phase/active"
+      },
+      {
+        "phase": "anchoring",
+        "frame": 12548,
+        "input": 71,
+        "pass": true,
+        "scope": "Actual stopBattle/persist/Continue exact units/objective/round/phase/active"
+      },
+      {
+        "phase": "connected",
+        "frame": 12879,
+        "input": 75,
+        "pass": true,
+        "scope": "Actual stopBattle/persist/Continue exact units/objective/round/phase/active"
+      }
+    ],
+    "final": {
+      "phase": "won",
+      "objective": {
+        "version": 1,
+        "clock": 186.37499999999483,
+        "events": {
+          "voice": {
+            "started": true,
+            "terminal": true,
+            "presented": [],
+            "retired": [
+              "A4.S38.VOICE.01",
+              "A4.S38.VOICE.02",
+              "A4.S38.VOICE.03"
+            ]
+          },
+          "anchor": {
+            "started": true,
+            "terminal": true,
+            "presented": [],
+            "retired": [
+              "A4.S38.ANCHOR.01"
+            ]
+          },
+          "connected": {
+            "started": true,
+            "terminal": true,
+            "presented": [],
+            "retired": [
+              "A4.S38.CONNECTED.01"
+            ]
+          }
+        },
+        "receipts": [],
+        "boat": {
+          "phase": "waiting",
+          "x": 500
+        },
+        "door": {
+          "phase": "standing",
+          "time": 0
+        },
+        "complete": true,
+        "visualDrawn": {
+          "probe": 75.00000000000576
+        },
+        "observed": {
+          "rescue-voices": 64.9999999999978,
+          "probe-entry": 72.50000000000377,
+          "probe-wrong": 75.00000000000576,
+          "anchor-action": 102.50000000002764
+        },
+        "water": {
+          "dry": {
+            "archer": {
+              "x": 6489.967827877671,
+              "y": 2400
+            },
+            "mage": {
+              "x": 6486.523536326948,
+              "y": 2400
+            },
+            "knight": {
+              "x": 6491.45136932782,
+              "y": 2400
+            },
+            "occultist": {
+              "x": 6438.896550049566,
+              "y": 2400
+            },
+            "a4-38-g0-0": {
+              "x": 1272.6683159987574,
+              "y": 2800
+            },
+            "a4-38-pursuer-0": {
+              "x": 5414.7415810901475,
+              "y": 2600
+            },
+            "a4-38-pursuer-1": {
+              "x": 5923.172953013049,
+              "y": 2510.7308187947806
+            },
+            "a4-rescue-0": {
+              "x": 4720,
+              "y": 2600
+            },
+            "a4-rescue-1": {
+              "x": 4890,
+              "y": 2600
+            },
+            "a4-rescue-2": {
+              "x": 5060,
+              "y": 2600
+            },
+            "a4-rescue-3": {
+              "x": 5230,
+              "y": 2600
+            }
+          },
+          "recoveries": []
+        },
+        "vista": {
+          "active": false,
+          "index": 3,
+          "elapsed": 0
+        },
+        "pursuitSeen": true,
+        "vistaDone": true,
+        "reader": null,
+        "connectionProbe": {
+          "phase": "observed",
+          "at": 72.5083333333371
+        },
+        "anchorAction": null,
+        "connected": {
+          "destination": {
+            "x": 4520,
+            "y": 2600
+          },
+          "sourceRun": "honro-map-stage-38-1793285978332",
+          "stageOnly": true,
+          "mpSpent": 0
+        },
+        "completionProof": {
+          "exit": {
+            "x": 6700,
+            "y": 2400
+          },
+          "connection": {
+            "destination": {
+              "x": 4520,
+              "y": 2600
+            },
+            "sourceRun": "honro-map-stage-38-1793285978332",
+            "stageOnly": true,
+            "mpSpent": 0
+          }
+        }
+      },
+      "units": [
+        {
+          "id": "archer",
+          "x": 6489.967827877671,
+          "y": 2400,
+          "hp": 1183,
+          "dead": false
+        },
+        {
+          "id": "mage",
+          "x": 6486.523536326948,
+          "y": 2400,
+          "hp": 1278.8,
+          "dead": false
+        },
+        {
+          "id": "knight",
+          "x": 6491.45136932782,
+          "y": 2400,
+          "hp": 2034.4,
+          "dead": false
+        },
+        {
+          "id": "occultist",
+          "x": 6438.896550049566,
+          "y": 2400,
+          "hp": 1483,
+          "dead": false
+        },
+        {
+          "id": "a4-38-g0-0",
+          "x": 1272.6683159987574,
+          "y": 2800,
+          "hp": 0,
+          "dead": true
+        },
+        {
+          "id": "a4-38-g0-1",
+          "x": 2262.6228417703396,
+          "y": 2199.2,
+          "hp": 0,
+          "dead": true
+        },
+        {
+          "id": "a4-38-pursuer-0",
+          "x": 5414.7415810901475,
+          "y": 2600,
+          "hp": 0,
+          "dead": true
+        },
+        {
+          "id": "a4-38-pursuer-1",
+          "x": 5923.172953013049,
+          "y": 2510.7308187947806,
+          "hp": 0,
+          "dead": true
+        },
+        {
+          "id": "a4-rescue-0",
+          "x": 4720,
+          "y": 2600,
+          "hp": 1450,
+          "dead": false
+        },
+        {
+          "id": "a4-rescue-1",
+          "x": 4890,
+          "y": 2600,
+          "hp": 1450,
+          "dead": false
+        },
+        {
+          "id": "a4-rescue-2",
+          "x": 5060,
+          "y": 2600,
+          "hp": 1450,
+          "dead": false
+        },
+        {
+          "id": "a4-rescue-3",
+          "x": 5230,
+          "y": 2600,
+          "hp": 1416.1,
+          "dead": false
+        }
+      ]
+    }
+  },
+  "oldTapeInvalidation": {
+    "baselineConnectionFrames": 16096,
+    "baselineSuccess": true,
+    "candidatePhysicalFailures": [
+      "objective not complete",
+      "physical-route Continue missing"
+    ],
+    "candidateConnectionFailures": [
+      "objective not complete",
+      "stage-only zero-MP connection missing",
+      "Missing Continue phase entry",
+      "Missing Continue phase wrong-exit",
+      "Missing Continue phase anchoring",
+      "Missing Continue phase connected"
+    ],
+    "firstDivergence": "First four player hits/damage match; enemyHLN01 impact2116→2239 causes scheduled input turn mismatch."
+  },
+  "balancedPolicyDiagnosis": {
+    "budgetFrames": 58015,
+    "failures": [
+      "objective not complete"
+    ],
+    "remainingEnemy": [
+      {
+        "id": "a4-38-pursuer-1",
+        "x": 5260.329625181078,
+        "y": 2600,
+        "hp": 2,
+        "dead": false
+      }
+    ],
+    "cause": "shotViable requires net>max(2,enemyDamage*.05) while damage is capped by HP; lone2HP target rejected even when lethal and safe.",
+    "resolution": "Only policy accepts predicted lethal damage with same<.5friendly-risk. Same first20,000 ordinary input ticks; one legal knight finisher. Full independent replay passes; engine/runtime unchanged."
+  },
+  "geometry": {
+    "changedIds": [
+      "a4-38-cavern-roof"
+    ],
+    "compiledRoofVertices": 174,
+    "issues": [],
+    "carve": {
+      "sampleCount": 516,
+      "maxAddedSolidWorldY": 0,
+      "maxRemovedRoofWorldY": 310.8485100316643
+    },
+    "v4v5CompiledGeometryEqual": true
+  },
+  "entry": {
+    "verifierSha256": "109ce5624b29450779081e4ec96ada7e510a0deeb9d341053e6199711409107e",
+    "stage": 38,
+    "projectSha256": "3887fa5168c263dc4c75a52fe5e3a8a5d34e8994789cac51a9bc75588bc2705a",
+    "stageSha256": "f750224cc0452bf7272d5fad03df49cfed6a9fcefe0423ad7a65d1ea22fb2d49",
+    "runtimeSha256": "c06cffd6d892681fb3282a2679a114a1871827e16bc414c2122e7ef6d38bcdbd",
+    "launch": "actual official App",
+    "rawProfileCharacters": 6555091,
+    "storedCharacters": 56205,
+    "storedUTF16Bytes": 112410,
+    "quotaUTF16Bytes": 5242880,
+    "staticRefs": 40,
+    "writes": 9,
+    "exactWholeSnapshotCodec": true,
+    "actualDeferredContinueFields": [
+      "units",
+      "terrain",
+      "waters",
+      "honroSurfaceZones",
+      "honroAct4PreviewState",
+      "phase",
+      "round",
+      "active",
+      "honroElements",
+      "honroLandmarks",
+      "honroEnvironment",
+      "honroAct4PreviewDynamic"
+    ],
+    "singlePendingLoad": true,
+    "scope": "Entry only, prepared independent prior clears, no fabricated terminal outcome. DOM/render/audio/storage/network loader fixtures; actual App/Engine/profile-store/campaign-entry code."
+  },
+  "cost": {
+    "stage": 38,
+    "projectSha256": "3887fa5168c263dc4c75a52fe5e3a8a5d34e8994789cac51a9bc75588bc2705a",
+    "scope": "Unique asset definitions referenced by stage/config plus instantiated actual App entry art holders. Future unconfigured runtime selectors/legacy saves may add assets; not a pruning authorization. Serialized JSON and expanded vector tree only, not GPU, FPS or visual approval.",
+    "referencedAssetJSONBytes": 1873327,
+    "referencedAssets": 15,
+    "vectorAssets": 15,
+    "maxExpandedNodes": 128,
+    "maxDepth": 9,
+    "maxPathChars": 59759,
+    "maxClipPathChars": 4763,
+    "exactDefinitionDuplicatesExceptIdName": []
+  },
+  "pending": [
+    "Later floorcandidate changes require new evidence",
+    "Native Canvas/DOMfixtures, not browser/mobile/performance/humanbalance approval"
+  ],
+  "physicalBalancedReplay": {
+    "success": true,
+    "frames": 22291,
+    "checkFailures": [],
+    "resume": [
+      {
+        "phase": "vista",
+        "frame": 7416,
+        "input": 51,
+        "pass": true,
+        "scope": "Actual stopBattle/persist/Continue exact units/objective/round/phase/active"
+      },
+      {
+        "phase": "physical-route",
+        "frame": 8325,
+        "input": 55,
+        "pass": true,
+        "scope": "Actual stopBattle/persist/Continue exact units/objective/round/phase/active"
+      }
+    ],
+    "roofImpacts": [
+      {
+        "frame": 139,
+        "owner": "archer",
+        "skill": "A01",
+        "terrain": "a4-38-cavern-roof",
+        "x": 335.76365376914066,
+        "y": 2004.3456058830454
+      }
+    ],
+    "tape": "tools/density-qa/tapes/stage38-ceiling-v4-physical-balanced.json",
+    "final": {
+      "phase": "won",
+      "objective": {
+        "version": 1,
+        "clock": 185.75833333332872,
+        "events": {
+          "voice": {
+            "started": true,
+            "terminal": true,
+            "presented": [],
+            "retired": [
+              "A4.S38.VOICE.01",
+              "A4.S38.VOICE.02",
+              "A4.S38.VOICE.03"
+            ]
+          }
+        },
+        "receipts": [],
+        "boat": {
+          "phase": "waiting",
+          "x": 500
+        },
+        "door": {
+          "phase": "standing",
+          "time": 0
+        },
+        "complete": true,
+        "visualDrawn": {},
+        "observed": {
+          "rescue-voices": 62.499999999997094
+        },
+        "water": {
+          "dry": {
+            "archer": {
+              "x": 6486.810052569758,
+              "y": 2400
+            },
+            "mage": {
+              "x": 6486.523536326948,
+              "y": 2400
+            },
+            "knight": {
+              "x": 6477.332041069352,
+              "y": 2400
+            },
+            "occultist": {
+              "x": 6438.896550049566,
+              "y": 2400
+            },
+            "a4-38-g0-0": {
+              "x": 1401.5086771862664,
+              "y": 2800
+            },
+            "a4-38-pursuer-0": {
+              "x": 5609.998538106676,
+              "y": 2600
+            },
+            "a4-38-pursuer-1": {
+              "x": 5615.983215542239,
+              "y": 2600
+            },
+            "a4-rescue-0": {
+              "x": 4720,
+              "y": 2600
+            },
+            "a4-rescue-1": {
+              "x": 4890,
+              "y": 2600
+            },
+            "a4-rescue-2": {
+              "x": 5060,
+              "y": 2600
+            },
+            "a4-rescue-3": {
+              "x": 5230,
+              "y": 2600
+            }
+          },
+          "recoveries": []
+        },
+        "vista": {
+          "active": false,
+          "index": 3,
+          "elapsed": 0
+        },
+        "pursuitSeen": true,
+        "vistaDone": true,
+        "reader": null,
+        "completionProof": {
+          "exit": {
+            "x": 6700,
+            "y": 2400
+          },
+          "connection": {
+            "physicalRoute": true
+          }
+        }
+      },
+      "units": [
+        {
+          "id": "archer",
+          "x": 6486.810052569758,
+          "y": 2400,
+          "hp": 1183,
+          "dead": false
+        },
+        {
+          "id": "mage",
+          "x": 6486.523536326948,
+          "y": 2400,
+          "hp": 1280,
+          "dead": false
+        },
+        {
+          "id": "knight",
+          "x": 6477.332041069352,
+          "y": 2400,
+          "hp": 2024,
+          "dead": false
+        },
+        {
+          "id": "occultist",
+          "x": 6438.896550049566,
+          "y": 2400,
+          "hp": 1483,
+          "dead": false
+        },
+        {
+          "id": "a4-38-g0-0",
+          "x": 1401.5086771862664,
+          "y": 2800,
+          "hp": 0,
+          "dead": true
+        },
+        {
+          "id": "a4-38-g0-1",
+          "x": 2262.6228417703396,
+          "y": 2199.2,
+          "hp": 0,
+          "dead": true
+        },
+        {
+          "id": "a4-38-pursuer-0",
+          "x": 5609.998538106676,
+          "y": 2600,
+          "hp": 0,
+          "dead": true
+        },
+        {
+          "id": "a4-38-pursuer-1",
+          "x": 5615.983215542239,
+          "y": 2600,
+          "hp": 0,
+          "dead": true
+        },
+        {
+          "id": "a4-rescue-0",
+          "x": 4720,
+          "y": 2600,
+          "hp": 1450,
+          "dead": false
+        },
+        {
+          "id": "a4-rescue-1",
+          "x": 4890,
+          "y": 2600,
+          "hp": 1450,
+          "dead": false
+        },
+        {
+          "id": "a4-rescue-2",
+          "x": 5060,
+          "y": 2600,
+          "hp": 1450,
+          "dead": false
+        },
+        {
+          "id": "a4-rescue-3",
+          "x": 5230,
+          "y": 2600,
+          "hp": 1417.3,
+          "dead": false
+        }
+      ]
+    }
+  },
+  "liveWestReturn": {
+    "baseline": {
+      "projectSHA256": "f6d7946fb666fb5f7116da3b8f5c87a2d1f030ab5a67379cbc485a5b0c42fa74",
+      "scope": "Actual App ordinary move/jump/select/defend/interact inputs from prepared balanced entry; no attacks, actor relocation, enemy deletion or resource injection. Checks possible physical return while west enemies alive, not full campaign-clear.",
+      "frame": 4801,
+      "crossed": true,
+      "westAliveAtCross": 2,
+      "returned": true,
+      "events": [
+        {
+          "kind": "crossed",
+          "frame": 3408,
+          "mage": {
+            "x": 4520,
+            "y": 2600,
+            "hp": 1280
+          },
+          "west": [
+            {
+              "id": "a4-38-g0-0",
+              "x": 776.9999999999962,
+              "y": 2800,
+              "hp": 1559
+            },
+            {
+              "id": "a4-38-g0-1",
+              "x": 1300,
+              "y": 2350,
+              "hp": 1247
+            }
+          ]
+        },
+        {
+          "kind": "returned-physical",
+          "frame": 4801,
+          "mage": {
+            "x": 3092.836076168403,
+            "y": 3050,
+            "hp": 1280
+          },
+          "west": [
+            {
+              "id": "a4-38-g0-0",
+              "x": 540.1666666666666,
+              "y": 2800,
+              "hp": 1559
+            },
+            {
+              "id": "a4-38-g0-1",
+              "x": 1300,
+              "y": 2350,
+              "hp": 1247
+            }
+          ]
+        }
+      ],
+      "final": {
+        "phase": "aim",
+        "objective": {
+          "version": 1,
+          "clock": 40.008333333331706,
+          "events": {
+            "anchor": {
+              "started": true,
+              "terminal": true,
+              "presented": [],
+              "retired": [
+                "A4.S38.ANCHOR.01"
+              ]
+            },
+            "connected": {
+              "started": true,
+              "terminal": true,
+              "presented": [],
+              "retired": [
+                "A4.S38.CONNECTED.01"
+              ]
+            }
+          },
+          "receipts": [],
+          "boat": {
+            "phase": "waiting",
+            "x": 500
+          },
+          "door": {
+            "phase": "standing",
+            "time": 0
+          },
+          "complete": false,
+          "visualDrawn": {
+            "probe": 19.999999999999506
+          },
+          "observed": {
+            "probe-entry": 17.49999999999965,
+            "probe-wrong": 19.999999999999506,
+            "anchor-action": 22.499999999999364
+          },
+          "water": {
+            "dry": {
+              "archer": {
+                "x": 260,
+                "y": 2800
+              },
+              "mage": {
+                "x": 3092.836076168403,
+                "y": 3050
+              },
+              "knight": {
+                "x": 467.7125804790616,
+                "y": 2800
+              },
+              "occultist": {
+                "x": 622.1146981629138,
+                "y": 2800
+              },
+              "a4-38-g0-0": {
+                "x": 540.1666666666666,
+                "y": 2800
+              },
+              "a4-38-pursuer-0": {
+                "x": 5920,
+                "y": 2512
+              },
+              "a4-38-pursuer-1": {
+                "x": 6270,
+                "y": 2400
+              },
+              "a4-rescue-0": {
+                "x": 4720,
+                "y": 2600
+              },
+              "a4-rescue-1": {
+                "x": 4890,
+                "y": 2600
+              },
+              "a4-rescue-2": {
+                "x": 5060,
+                "y": 2600
+              },
+              "a4-rescue-3": {
+                "x": 5230,
+                "y": 2600
+              }
+            },
+            "recoveries": []
+          },
+          "connectionProbe": {
+            "phase": "observed",
+            "at": 17.50833333333298
+          },
+          "anchorAction": null,
+          "reader": null,
+          "connected": {
+            "destination": {
+              "x": 4520,
+              "y": 2600
+            },
+            "sourceRun": "honro-map-stage-38-1793286398324",
+            "stageOnly": true,
+            "mpSpent": 0
+          }
+        },
+        "units": [
+          {
+            "id": "archer",
+            "x": 260,
+            "y": 2800,
+            "hp": 1183,
+            "dead": false
+          },
+          {
+            "id": "mage",
+            "x": 3092.836076168403,
+            "y": 3050,
+            "hp": 1280,
+            "dead": false
+          },
+          {
+            "id": "knight",
+            "x": 467.7125804790616,
+            "y": 2800,
+            "hp": 2217,
+            "dead": false
+          },
+          {
+            "id": "occultist",
+            "x": 622.1146981629138,
+            "y": 2800,
+            "hp": 1483,
+            "dead": false
+          },
+          {
+            "id": "a4-38-g0-0",
+            "x": 540.1666666666666,
+            "y": 2800,
+            "hp": 1559,
+            "dead": false
+          },
+          {
+            "id": "a4-38-g0-1",
+            "x": 1300,
+            "y": 2350,
+            "hp": 1247,
+            "dead": false
+          },
+          {
+            "id": "a4-38-pursuer-0",
+            "x": 5920,
+            "y": 2512,
+            "hp": 1559,
+            "dead": false
+          },
+          {
+            "id": "a4-38-pursuer-1",
+            "x": 6270,
+            "y": 2400,
+            "hp": 1559,
+            "dead": false
+          },
+          {
+            "id": "a4-rescue-0",
+            "x": 4720,
+            "y": 2600,
+            "hp": 1450,
+            "dead": false
+          },
+          {
+            "id": "a4-rescue-1",
+            "x": 4890,
+            "y": 2600,
+            "hp": 1450,
+            "dead": false
+          },
+          {
+            "id": "a4-rescue-2",
+            "x": 5060,
+            "y": 2600,
+            "hp": 1450,
+            "dead": false
+          },
+          {
+            "id": "a4-rescue-3",
+            "x": 5230,
+            "y": 2600,
+            "hp": 1450,
+            "dead": false
+          }
+        ]
+      },
+      "success": true
+    },
+    "candidate": {
+      "projectSHA256": "3887fa5168c263dc4c75a52fe5e3a8a5d34e8994789cac51a9bc75588bc2705a",
+      "scope": "Actual App ordinary move/jump/select/defend/interact inputs from prepared balanced entry; no attacks, actor relocation, enemy deletion or resource injection. Checks possible physical return while west enemies alive, not full campaign-clear.",
+      "frame": 4801,
+      "crossed": true,
+      "westAliveAtCross": 2,
+      "returned": true,
+      "events": [
+        {
+          "kind": "crossed",
+          "frame": 3393,
+          "mage": {
+            "x": 4520,
+            "y": 2600,
+            "hp": 1280
+          },
+          "west": [
+            {
+              "id": "a4-38-g0-0",
+              "x": 776.9999999999962,
+              "y": 2800,
+              "hp": 1559
+            },
+            {
+              "id": "a4-38-g0-1",
+              "x": 1337.512886940357,
+              "y": 2210,
+              "hp": 1247
+            }
+          ]
+        },
+        {
+          "kind": "returned-physical",
+          "frame": 4801,
+          "mage": {
+            "x": 3092.836076168403,
+            "y": 3050,
+            "hp": 1280
+          },
+          "west": [
+            {
+              "id": "a4-38-g0-0",
+              "x": 540.1666666666666,
+              "y": 2800,
+              "hp": 1559
+            },
+            {
+              "id": "a4-38-g0-1",
+              "x": 1337.512886940357,
+              "y": 2210,
+              "hp": 1247
+            }
+          ]
+        }
+      ],
+      "final": {
+        "phase": "aim",
+        "objective": {
+          "version": 1,
+          "clock": 40.008333333331706,
+          "events": {
+            "anchor": {
+              "started": true,
+              "terminal": true,
+              "presented": [],
+              "retired": [
+                "A4.S38.ANCHOR.01"
+              ]
+            },
+            "connected": {
+              "started": true,
+              "terminal": true,
+              "presented": [],
+              "retired": [
+                "A4.S38.CONNECTED.01"
+              ]
+            }
+          },
+          "receipts": [],
+          "boat": {
+            "phase": "waiting",
+            "x": 500
+          },
+          "door": {
+            "phase": "standing",
+            "time": 0
+          },
+          "complete": false,
+          "visualDrawn": {
+            "probe": 19.999999999999506
+          },
+          "observed": {
+            "probe-entry": 17.49999999999965,
+            "probe-wrong": 19.999999999999506,
+            "anchor-action": 22.499999999999364
+          },
+          "water": {
+            "dry": {
+              "archer": {
+                "x": 260,
+                "y": 2800
+              },
+              "mage": {
+                "x": 3092.836076168403,
+                "y": 3050
+              },
+              "knight": {
+                "x": 468.29035647869074,
+                "y": 2800
+              },
+              "occultist": {
+                "x": 622.0406790084444,
+                "y": 2800
+              },
+              "a4-38-g0-0": {
+                "x": 540.1666666666666,
+                "y": 2800
+              },
+              "a4-38-pursuer-0": {
+                "x": 5920,
+                "y": 2512
+              },
+              "a4-38-pursuer-1": {
+                "x": 6270,
+                "y": 2400
+              },
+              "a4-rescue-0": {
+                "x": 4720,
+                "y": 2600
+              },
+              "a4-rescue-1": {
+                "x": 4890,
+                "y": 2600
+              },
+              "a4-rescue-2": {
+                "x": 5060,
+                "y": 2600
+              },
+              "a4-rescue-3": {
+                "x": 5230,
+                "y": 2600
+              }
+            },
+            "recoveries": []
+          },
+          "connectionProbe": {
+            "phase": "observed",
+            "at": 17.50833333333298
+          },
+          "anchorAction": null,
+          "reader": null,
+          "connected": {
+            "destination": {
+              "x": 4520,
+              "y": 2600
+            },
+            "sourceRun": "honro-map-stage-38-1793286420771",
+            "stageOnly": true,
+            "mpSpent": 0
+          }
+        },
+        "units": [
+          {
+            "id": "archer",
+            "x": 260,
+            "y": 2800,
+            "hp": 1183,
+            "dead": false
+          },
+          {
+            "id": "mage",
+            "x": 3092.836076168403,
+            "y": 3050,
+            "hp": 1280,
+            "dead": false
+          },
+          {
+            "id": "knight",
+            "x": 468.29035647869074,
+            "y": 2800,
+            "hp": 2217,
+            "dead": false
+          },
+          {
+            "id": "occultist",
+            "x": 622.0406790084444,
+            "y": 2800,
+            "hp": 1483,
+            "dead": false
+          },
+          {
+            "id": "a4-38-g0-0",
+            "x": 540.1666666666666,
+            "y": 2800,
+            "hp": 1559,
+            "dead": false
+          },
+          {
+            "id": "a4-38-g0-1",
+            "x": 1337.512886940357,
+            "y": 2210,
+            "hp": 1247,
+            "dead": false
+          },
+          {
+            "id": "a4-38-pursuer-0",
+            "x": 5920,
+            "y": 2512,
+            "hp": 1559,
+            "dead": false
+          },
+          {
+            "id": "a4-38-pursuer-1",
+            "x": 6270,
+            "y": 2400,
+            "hp": 1559,
+            "dead": false
+          },
+          {
+            "id": "a4-rescue-0",
+            "x": 4720,
+            "y": 2600,
+            "hp": 1450,
+            "dead": false
+          },
+          {
+            "id": "a4-rescue-1",
+            "x": 4890,
+            "y": 2600,
+            "hp": 1450,
+            "dead": false
+          },
+          {
+            "id": "a4-rescue-2",
+            "x": 5060,
+            "y": 2600,
+            "hp": 1450,
+            "dead": false
+          },
+          {
+            "id": "a4-rescue-3",
+            "x": 5230,
+            "y": 2600,
+            "hp": 1450,
+            "dead": false
+          }
+        ]
+      },
+      "success": true
+    }
+  }
+}

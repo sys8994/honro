@@ -1,0 +1,928 @@
+{
+  "retentionVerifiedAt": "2026-10-30T04:02:59.380Z",
+  "runtimeSHA256": "7652daac71dc2c7c6ea02b438ce10105a26e1ac008b36258ad08e2835ee14fd9",
+  "status": "pass",
+  "baselineCommit": "a6da24cc7b5c9df33b56b3cf592d7260fd6ad7db",
+  "worldSHA256": "801df923ce89d8747f337f0b71e2ae38c604a8efbd6250d56e885b931af9f1b5",
+  "librarySHA256": "9cfd3a407aa0d3cda9c34e6824b24c0d7511190b0a236b3713e6c1a0b06b2018",
+  "libraryCount": 1090,
+  "editorExtras": 382,
+  "independentObjects": 60522,
+  "currentGraph": {
+    "before": 116819329,
+    "after": 65150170
+  },
+  "currentJSON": {
+    "before": 77988834,
+    "after": 29195053
+  },
+  "retainedExtraUnique": {
+    "before": 136267112,
+    "after": 115130810
+  },
+  "publishedGraphs": {
+    "before": 66,
+    "after": 48,
+    "naturallyExpired": 18
+  },
+  "manifestBytes": {
+    "before": 6738887,
+    "after": 5385491
+  },
+  "fullLibraryTransport": {
+    "before": {
+      "bytes": 38388329,
+      "gzip": 14503518
+    },
+    "after": {
+      "bytes": 24021956,
+      "gzip": 9013466
+    }
+  },
+  "currentFiles": 732,
+  "verifiedCurrentAndRetainedFiles": 1494,
+  "noCurrentByteParts": true,
+  "stages": [
+    {
+      "stage": 1,
+      "encoding": "json",
+      "stageSHA256": "b4cab5203d0055f53186eefffa17b77ccfa504c5682fcd255cf89039c0452105",
+      "assetsSHA256": "f9eb23f655436f313d1c6e858d4383f767f7b49653e502cf90192fe6156dfba5",
+      "assetBytesBefore": {
+        "bytes": 2030,
+        "gzip": 571
+      },
+      "assetBytesAfter": {
+        "bytes": 2030,
+        "gzip": 571
+      },
+      "coldJSONBefore": {
+        "bytes": 962735,
+        "gzip": 370309
+      },
+      "coldJSONAfter": {
+        "bytes": 962735,
+        "gzip": 370309
+      }
+    },
+    {
+      "stage": 2,
+      "encoding": "json",
+      "stageSHA256": "fd280868c7f94819011491549651ec70d3ceac5fc6887b8dd59020bc8c8ac09a",
+      "assetsSHA256": "45ff68dde5c1adced2750aff87b019e1fb0348d84eb3292a34d057e692c2cc22",
+      "assetBytesBefore": {
+        "bytes": 1860,
+        "gzip": 978
+      },
+      "assetBytesAfter": {
+        "bytes": 1860,
+        "gzip": 978
+      },
+      "coldJSONBefore": {
+        "bytes": 969257,
+        "gzip": 370229
+      },
+      "coldJSONAfter": {
+        "bytes": 969257,
+        "gzip": 370229
+      }
+    },
+    {
+      "stage": 3,
+      "encoding": "json",
+      "stageSHA256": "29499ac1f619fbb83bf9e064779384323a108667e3a41d0a011c9fa16349213e",
+      "assetsSHA256": "5e3cb1bb38d276d1ea5d96fb9787469af793d190f429dafab854842ce424a09a",
+      "assetBytesBefore": {
+        "bytes": 5719,
+        "gzip": 1166
+      },
+      "assetBytesAfter": {
+        "bytes": 5719,
+        "gzip": 1166
+      },
+      "coldJSONBefore": {
+        "bytes": 989499,
+        "gzip": 374878
+      },
+      "coldJSONAfter": {
+        "bytes": 989499,
+        "gzip": 374878
+      }
+    },
+    {
+      "stage": 4,
+      "encoding": "json",
+      "stageSHA256": "ecf7351846abcdfe2ad91e98647919a1ce7a69679693d27ad66dcc530c4ef4de",
+      "assetsSHA256": "9bfc6d6332bac5bc7128efe2ec27c3d17578f10787ed32eebe3fea6ea734a802",
+      "assetBytesBefore": {
+        "bytes": 11586,
+        "gzip": 2886
+      },
+      "assetBytesAfter": {
+        "bytes": 11586,
+        "gzip": 2886
+      },
+      "coldJSONBefore": {
+        "bytes": 986670,
+        "gzip": 373727
+      },
+      "coldJSONAfter": {
+        "bytes": 986670,
+        "gzip": 373727
+      }
+    },
+    {
+      "stage": 5,
+      "encoding": "json",
+      "stageSHA256": "74255f524eb58adb63be86014a2437aeeceb58b40d037f432667f831009954ec",
+      "assetsSHA256": "5fc598bcaea2b3a3fe9d50b3de1696c2b114e8155abce6ad4d29cc5399498291",
+      "assetBytesBefore": {
+        "bytes": 21152,
+        "gzip": 4507
+      },
+      "assetBytesAfter": {
+        "bytes": 21152,
+        "gzip": 4507
+      },
+      "coldJSONBefore": {
+        "bytes": 970099,
+        "gzip": 369643
+      },
+      "coldJSONAfter": {
+        "bytes": 970099,
+        "gzip": 369643
+      }
+    },
+    {
+      "stage": 6,
+      "encoding": "json",
+      "stageSHA256": "6754789929115aecfbb2f40d8e29235363cf666d8fec817028dddfdb3499060c",
+      "assetsSHA256": "ee9322be7b89f7f291f3f457e3e4285e76c512b7a9a56e755678638b2f704147",
+      "assetBytesBefore": {
+        "bytes": 2024,
+        "gzip": 465
+      },
+      "assetBytesAfter": {
+        "bytes": 2024,
+        "gzip": 465
+      },
+      "coldJSONBefore": {
+        "bytes": 962434,
+        "gzip": 366952
+      },
+      "coldJSONAfter": {
+        "bytes": 962434,
+        "gzip": 366952
+      }
+    },
+    {
+      "stage": 7,
+      "encoding": "json",
+      "stageSHA256": "6dca1219ba17d9b202e457177b34edfcc0a0e7da020fdb9cd9c1b74e448078ed",
+      "assetsSHA256": "536c00658675bdb369dacb7dbcf32e4d32bf92c104757a1c5214ac330c6b5907",
+      "assetBytesBefore": {
+        "bytes": 33249,
+        "gzip": 7542
+      },
+      "assetBytesAfter": {
+        "bytes": 33249,
+        "gzip": 7542
+      },
+      "coldJSONBefore": {
+        "bytes": 987169,
+        "gzip": 371470
+      },
+      "coldJSONAfter": {
+        "bytes": 987169,
+        "gzip": 371470
+      }
+    },
+    {
+      "stage": 8,
+      "encoding": "json",
+      "stageSHA256": "7bde78f4e0e78d30777f2c54f13d40f204e34b395adbd704b5be85889bab5589",
+      "assetsSHA256": "338b24b0f6d921d8ee4491c6924b25c09ed7daff567e8c9da62aeacac992d572",
+      "assetBytesBefore": {
+        "bytes": 44399,
+        "gzip": 7579
+      },
+      "assetBytesAfter": {
+        "bytes": 44399,
+        "gzip": 7579
+      },
+      "coldJSONBefore": {
+        "bytes": 1054217,
+        "gzip": 374980
+      },
+      "coldJSONAfter": {
+        "bytes": 1054217,
+        "gzip": 374980
+      }
+    },
+    {
+      "stage": 9,
+      "encoding": "json",
+      "stageSHA256": "3fae26ad7d4b5d33eb23e0fdd69ea3a9d3eaa6e53143e20dd79f761db2166321",
+      "assetsSHA256": "37dbde5d6cbc32224543889dd91c3b296b9861625ba4a132c18ac71cb124c07a",
+      "assetBytesBefore": {
+        "bytes": 4414,
+        "gzip": 1318
+      },
+      "assetBytesAfter": {
+        "bytes": 4414,
+        "gzip": 1318
+      },
+      "coldJSONBefore": {
+        "bytes": 954944,
+        "gzip": 364621
+      },
+      "coldJSONAfter": {
+        "bytes": 954944,
+        "gzip": 364621
+      }
+    },
+    {
+      "stage": 10,
+      "encoding": "json",
+      "stageSHA256": "397eb0af817b2f4a21e8a3b64f2ba7144bbb50a8468d84df22664853a2c9877e",
+      "assetsSHA256": "0ca59f0fa09d8f50d792240fa9b535287ff7cccdd49495d481053c3089bba610",
+      "assetBytesBefore": {
+        "bytes": 10841,
+        "gzip": 3125
+      },
+      "assetBytesAfter": {
+        "bytes": 10841,
+        "gzip": 3125
+      },
+      "coldJSONBefore": {
+        "bytes": 957575,
+        "gzip": 366146
+      },
+      "coldJSONAfter": {
+        "bytes": 957575,
+        "gzip": 366146
+      }
+    },
+    {
+      "stage": 11,
+      "encoding": "json",
+      "stageSHA256": "908b27ef51b9a4422314d2640f70c9fee59aed08afa61336e2ce406a3470a395",
+      "assetsSHA256": "68f00f7072d4fea743f88d546fe3846394e9de7761a803a5c9b1f5193854ceb6",
+      "assetBytesBefore": {
+        "bytes": 73282,
+        "gzip": 7741
+      },
+      "assetBytesAfter": {
+        "bytes": 73282,
+        "gzip": 7741
+      },
+      "coldJSONBefore": {
+        "bytes": 1194704,
+        "gzip": 413663
+      },
+      "coldJSONAfter": {
+        "bytes": 1194704,
+        "gzip": 413663
+      }
+    },
+    {
+      "stage": 12,
+      "encoding": "json",
+      "stageSHA256": "c06c02eeb21b428b7af80c33602a664ee4296a8d66e3819f8261ab93170c4214",
+      "assetsSHA256": "7ff55683f0eb1eae6090ce582bf224fa9171a81d13f9f5a7d589867a87653f41",
+      "assetBytesBefore": {
+        "bytes": 6168,
+        "gzip": 2305
+      },
+      "assetBytesAfter": {
+        "bytes": 6168,
+        "gzip": 2305
+      },
+      "coldJSONBefore": {
+        "bytes": 1009243,
+        "gzip": 371995
+      },
+      "coldJSONAfter": {
+        "bytes": 1009243,
+        "gzip": 371995
+      }
+    },
+    {
+      "stage": 13,
+      "encoding": "json",
+      "stageSHA256": "66ba3c8b109b9319190c98165739bd4b23229e09fcbb79d5e461c453e666f7bf",
+      "assetsSHA256": "17df34194d3c8fc565e1af694135d644bcabefb66d11f327b0415c9c5a37373d",
+      "assetBytesBefore": {
+        "bytes": 50136,
+        "gzip": 8980
+      },
+      "assetBytesAfter": {
+        "bytes": 50136,
+        "gzip": 8980
+      },
+      "coldJSONBefore": {
+        "bytes": 1058611,
+        "gzip": 383999
+      },
+      "coldJSONAfter": {
+        "bytes": 1058611,
+        "gzip": 383999
+      }
+    },
+    {
+      "stage": 14,
+      "encoding": "json",
+      "stageSHA256": "616f15527b5768e573c074aff79e5653bee411b889a70c9e5d82223c1d7fd160",
+      "assetsSHA256": "61c7183dbc18d769d38dc31f53646f9a5b9651cadba01ce7139cfabd5c84fd39",
+      "assetBytesBefore": {
+        "bytes": 119660,
+        "gzip": 18706
+      },
+      "assetBytesAfter": {
+        "bytes": 119660,
+        "gzip": 18706
+      },
+      "coldJSONBefore": {
+        "bytes": 1303358,
+        "gzip": 420505
+      },
+      "coldJSONAfter": {
+        "bytes": 1303358,
+        "gzip": 420505
+      }
+    },
+    {
+      "stage": 15,
+      "encoding": "json",
+      "stageSHA256": "50ce97f542c4b54c097f512c11f77bbb11a0fe733838c599314870244bbb4d39",
+      "assetsSHA256": "f5b06f689f84b6b12134e6b3677f0fbc4c00fe7e9f2b48e5759f497cb023ab9a",
+      "assetBytesBefore": {
+        "bytes": 2797,
+        "gzip": 1096
+      },
+      "assetBytesAfter": {
+        "bytes": 2797,
+        "gzip": 1096
+      },
+      "coldJSONBefore": {
+        "bytes": 1025733,
+        "gzip": 380049
+      },
+      "coldJSONAfter": {
+        "bytes": 1025733,
+        "gzip": 380049
+      }
+    },
+    {
+      "stage": 16,
+      "encoding": "json",
+      "stageSHA256": "dc727c5a96b4d7e30d60ac162a43c37ac0f3a71d82ddce085d45fc7a7895962c",
+      "assetsSHA256": "c46841a077a036e5e8b6b948f2b2807f5eaecac427331e8410b7e2378070c1e8",
+      "assetBytesBefore": {
+        "bytes": 207928,
+        "gzip": 32782
+      },
+      "assetBytesAfter": {
+        "bytes": 207928,
+        "gzip": 32782
+      },
+      "coldJSONBefore": {
+        "bytes": 1259152,
+        "gzip": 410983
+      },
+      "coldJSONAfter": {
+        "bytes": 1259152,
+        "gzip": 410983
+      }
+    },
+    {
+      "stage": 17,
+      "encoding": "json",
+      "stageSHA256": "96932a6a293d66cbc8abf46851ef47d129338796f714ed8dde263c96d52cc629",
+      "assetsSHA256": "6e48a835a79e82637a4f0286081bd239f56208105d23e7e31ce70243ac202aa5",
+      "assetBytesBefore": {
+        "bytes": 306101,
+        "gzip": 37230
+      },
+      "assetBytesAfter": {
+        "bytes": 306101,
+        "gzip": 37230
+      },
+      "coldJSONBefore": {
+        "bytes": 1405417,
+        "gzip": 424155
+      },
+      "coldJSONAfter": {
+        "bytes": 1405417,
+        "gzip": 424155
+      }
+    },
+    {
+      "stage": 18,
+      "encoding": "json",
+      "stageSHA256": "32a0723da44c5054ed8c04e84a6459c4060fc276733da99d6636a00dd21728fa",
+      "assetsSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "assetBytesBefore": {
+        "bytes": 3,
+        "gzip": 23
+      },
+      "assetBytesAfter": {
+        "bytes": 3,
+        "gzip": 23
+      },
+      "coldJSONBefore": {
+        "bytes": 1109821,
+        "gzip": 387623
+      },
+      "coldJSONAfter": {
+        "bytes": 1109821,
+        "gzip": 387623
+      }
+    },
+    {
+      "stage": 19,
+      "encoding": "json",
+      "stageSHA256": "a49816dd6204846140cc80dcf61e913937bb6793c36793948913c124cded4845",
+      "assetsSHA256": "fa9cf8cda429d431d71675e067c50facd254203d64e6c504b07dc48c22171414",
+      "assetBytesBefore": {
+        "bytes": 1453,
+        "gzip": 581
+      },
+      "assetBytesAfter": {
+        "bytes": 1453,
+        "gzip": 581
+      },
+      "coldJSONBefore": {
+        "bytes": 1049828,
+        "gzip": 378773
+      },
+      "coldJSONAfter": {
+        "bytes": 1049828,
+        "gzip": 378773
+      }
+    },
+    {
+      "stage": 20,
+      "encoding": "json",
+      "stageSHA256": "ef2448f7bed9ffb4c9807ce1aa61e3ddbf2e4cba5bdaf69f3ed45afd427152be",
+      "assetsSHA256": "afb5487bbf6d8a782ec5868910f31e0f6e08e306686d61ee527111e25994c916",
+      "assetBytesBefore": {
+        "bytes": 9195,
+        "gzip": 2493
+      },
+      "assetBytesAfter": {
+        "bytes": 9195,
+        "gzip": 2493
+      },
+      "coldJSONBefore": {
+        "bytes": 961893,
+        "gzip": 366033
+      },
+      "coldJSONAfter": {
+        "bytes": 961893,
+        "gzip": 366033
+      }
+    },
+    {
+      "stage": 21,
+      "encoding": "json-pool-v1",
+      "stageSHA256": "6fa15f07f7cc67eff736408e7057ea12b1d8e30963e55f7952ec91e8e668cb35",
+      "assetsSHA256": "240af507bb8cbf3b558d538cbe3269bddbd76433ffea4b85b4aff9aeb7ee2273",
+      "assetBytesBefore": {
+        "bytes": 1328987,
+        "gzip": 183916
+      },
+      "assetBytesAfter": {
+        "bytes": 501081,
+        "gzip": 96091
+      },
+      "coldJSONBefore": {
+        "bytes": 2309153,
+        "gzip": 550338
+      },
+      "coldJSONAfter": {
+        "bytes": 1481247,
+        "gzip": 462513
+      }
+    },
+    {
+      "stage": 22,
+      "encoding": "json",
+      "stageSHA256": "32128fae154872b33debce4cafc1603ec4d380db40bdb2861148ab31c2cdd44f",
+      "assetsSHA256": "5ce3ee7c9e1db4eba25a02d2fb69c4873e7b339f44232ebd854051e1d1d84b20",
+      "assetBytesBefore": {
+        "bytes": 219939,
+        "gzip": 31936
+      },
+      "assetBytesAfter": {
+        "bytes": 219939,
+        "gzip": 31936
+      },
+      "coldJSONBefore": {
+        "bytes": 1486621,
+        "gzip": 428994
+      },
+      "coldJSONAfter": {
+        "bytes": 1486621,
+        "gzip": 428994
+      }
+    },
+    {
+      "stage": 23,
+      "encoding": "json",
+      "stageSHA256": "435db6d9a8684761fe38e25617ebac92647df3b314314b85490e37b5af3f09dd",
+      "assetsSHA256": "8e51ceadd2addcc37dd238d635c4c20feea8c2b1727140527697876587fa7357",
+      "assetBytesBefore": {
+        "bytes": 182692,
+        "gzip": 25293
+      },
+      "assetBytesAfter": {
+        "bytes": 182692,
+        "gzip": 25293
+      },
+      "coldJSONBefore": {
+        "bytes": 1192932,
+        "gzip": 395959
+      },
+      "coldJSONAfter": {
+        "bytes": 1192932,
+        "gzip": 395959
+      }
+    },
+    {
+      "stage": 24,
+      "encoding": "json",
+      "stageSHA256": "9f53f3e882b3d2b23c3645b168f351b32b029a19edee8c17d90ddfe36a1b1945",
+      "assetsSHA256": "636917d6beeaf940347f2e263a19cc30f9c6f8898f6e1b3a26a8864d9bd5260a",
+      "assetBytesBefore": {
+        "bytes": 165333,
+        "gzip": 23117
+      },
+      "assetBytesAfter": {
+        "bytes": 165333,
+        "gzip": 23117
+      },
+      "coldJSONBefore": {
+        "bytes": 1113698,
+        "gzip": 385203
+      },
+      "coldJSONAfter": {
+        "bytes": 1113698,
+        "gzip": 385203
+      }
+    },
+    {
+      "stage": 25,
+      "encoding": "json",
+      "stageSHA256": "b6739aa2a30c4f1c09f215422d7f3a806784696980866448a5bc428c69fcd52d",
+      "assetsSHA256": "78dc8460d89bec7515567aec4664516ed26c07aa3c4b7a90c188f35f76846e66",
+      "assetBytesBefore": {
+        "bytes": 176343,
+        "gzip": 23226
+      },
+      "assetBytesAfter": {
+        "bytes": 176343,
+        "gzip": 23226
+      },
+      "coldJSONBefore": {
+        "bytes": 1115301,
+        "gzip": 383959
+      },
+      "coldJSONAfter": {
+        "bytes": 1115301,
+        "gzip": 383959
+      }
+    },
+    {
+      "stage": 26,
+      "encoding": "json",
+      "stageSHA256": "c8e0c0b0d7b17ff75d8bedb82b973b38397cf0691b418b056e595fbf2d2b91ec",
+      "assetsSHA256": "baf3c72de01594fad0eeaef88b2dab36ff717b0965e00f96875f699adeead5e0",
+      "assetBytesBefore": {
+        "bytes": 77989,
+        "gzip": 13660
+      },
+      "assetBytesAfter": {
+        "bytes": 77989,
+        "gzip": 13660
+      },
+      "coldJSONBefore": {
+        "bytes": 1015801,
+        "gzip": 374535
+      },
+      "coldJSONAfter": {
+        "bytes": 1015801,
+        "gzip": 374535
+      }
+    },
+    {
+      "stage": 27,
+      "encoding": "json",
+      "stageSHA256": "8f4dac48de7d2bbd91276dbebe4b41d9f39ada5949e4e21709bf08abb09df2d7",
+      "assetsSHA256": "b30ee5821f5ae1eda665fd51044ac02e0419eef2b9e5770dc855032df99ddf5c",
+      "assetBytesBefore": {
+        "bytes": 211003,
+        "gzip": 25947
+      },
+      "assetBytesAfter": {
+        "bytes": 211003,
+        "gzip": 25947
+      },
+      "coldJSONBefore": {
+        "bytes": 1150974,
+        "gzip": 386879
+      },
+      "coldJSONAfter": {
+        "bytes": 1150974,
+        "gzip": 386879
+      }
+    },
+    {
+      "stage": 28,
+      "encoding": "json",
+      "stageSHA256": "a888bd29103260f28bb052900d9b5b33197bac4c873407771b9eaabc54a54b9e",
+      "assetsSHA256": "aeb22ee2faee2b54a88306572d832ca0bb6e7d954d933e898533249a6b0f7311",
+      "assetBytesBefore": {
+        "bytes": 137475,
+        "gzip": 19523
+      },
+      "assetBytesAfter": {
+        "bytes": 137475,
+        "gzip": 19523
+      },
+      "coldJSONBefore": {
+        "bytes": 1081021,
+        "gzip": 380773
+      },
+      "coldJSONAfter": {
+        "bytes": 1081021,
+        "gzip": 380773
+      }
+    },
+    {
+      "stage": 29,
+      "encoding": "json",
+      "stageSHA256": "538b3e3b6bf5522ab5de9147d7954c6d469366a6cb46c2c1cf272a7730e8edbd",
+      "assetsSHA256": "0c7cb3f982edcf2ea6912bdd26daca6fa7c8e9a8ddf14b5d908bcb1d4939986f",
+      "assetBytesBefore": {
+        "bytes": 80703,
+        "gzip": 12359
+      },
+      "assetBytesAfter": {
+        "bytes": 80703,
+        "gzip": 12359
+      },
+      "coldJSONBefore": {
+        "bytes": 1025228,
+        "gzip": 373906
+      },
+      "coldJSONAfter": {
+        "bytes": 1025228,
+        "gzip": 373906
+      }
+    },
+    {
+      "stage": 30,
+      "encoding": "json",
+      "stageSHA256": "88ab4028852a2b7f76d22f151483fee03f9f1ddf8b23244e0d0ee712b0f2d1f1",
+      "assetsSHA256": "2e3f1629f81145983d1d780235dec524c4c53d96524885b7748eb43ed64077d6",
+      "assetBytesBefore": {
+        "bytes": 135682,
+        "gzip": 20454
+      },
+      "assetBytesAfter": {
+        "bytes": 135682,
+        "gzip": 20454
+      },
+      "coldJSONBefore": {
+        "bytes": 1158062,
+        "gzip": 392399
+      },
+      "coldJSONAfter": {
+        "bytes": 1158062,
+        "gzip": 392399
+      }
+    },
+    {
+      "stage": 31,
+      "encoding": "json-pool-v1",
+      "stageSHA256": "bb111c130c0c9571173f753a1a305ce63b1185c3c5c110940483eb2b672fcf3e",
+      "assetsSHA256": "116461752d682b4a4640046b66ada244ff6cdff3655109e641565c913700f285",
+      "assetBytesBefore": {
+        "bytes": 4151884,
+        "gzip": 1799233
+      },
+      "assetBytesAfter": {
+        "bytes": 2420668,
+        "gzip": 1050741
+      },
+      "coldJSONBefore": {
+        "bytes": 5084352,
+        "gzip": 2159837
+      },
+      "coldJSONAfter": {
+        "bytes": 3353136,
+        "gzip": 1411345
+      }
+    },
+    {
+      "stage": 32,
+      "encoding": "json-pool-v1",
+      "stageSHA256": "858b6e0256d5adb1cccd5fdd2c34e2d4670a4c2702b0c2e7075946c7cca27723",
+      "assetsSHA256": "25b00d46ceb50b03125f565f987ac6b6b06baf5af9fda333341fa2fb17091c09",
+      "assetBytesBefore": {
+        "bytes": 3097441,
+        "gzip": 1316520
+      },
+      "assetBytesAfter": {
+        "bytes": 1696360,
+        "gzip": 725533
+      },
+      "coldJSONBefore": {
+        "bytes": 4026832,
+        "gzip": 1676866
+      },
+      "coldJSONAfter": {
+        "bytes": 2625751,
+        "gzip": 1085879
+      }
+    },
+    {
+      "stage": 33,
+      "encoding": "json-pool-v1",
+      "stageSHA256": "ff0660ee66aedd6b0ee8978689ea654abb365620afa6dfa4fe819cc96f8817fe",
+      "assetsSHA256": "03fb2e14e051b4f6e8519e6288aa5fcddf9373207766a2ceb1ae73de1c8228cd",
+      "assetBytesBefore": {
+        "bytes": 1845676,
+        "gzip": 757419
+      },
+      "assetBytesAfter": {
+        "bytes": 1212110,
+        "gzip": 518025
+      },
+      "coldJSONBefore": {
+        "bytes": 2784861,
+        "gzip": 1120578
+      },
+      "coldJSONAfter": {
+        "bytes": 2151295,
+        "gzip": 881184
+      }
+    },
+    {
+      "stage": 34,
+      "encoding": "json-pool-v1",
+      "stageSHA256": "bc49ec5ca1781fa20f5f71046c8c4a11af1adecb48f896d7a997eed96dcfb3af",
+      "assetsSHA256": "840cf732b531196e58d89f68a3431f45c05189478d865a820acd7235a788fb5b",
+      "assetBytesBefore": {
+        "bytes": 1660445,
+        "gzip": 741350
+      },
+      "assetBytesAfter": {
+        "bytes": 789842,
+        "gzip": 355765
+      },
+      "coldJSONBefore": {
+        "bytes": 2596058,
+        "gzip": 1104407
+      },
+      "coldJSONAfter": {
+        "bytes": 1725455,
+        "gzip": 718822
+      }
+    },
+    {
+      "stage": 35,
+      "encoding": "json-pool-v1",
+      "stageSHA256": "2bbcc83f16566e23b1d921c805dbbcf5ab99ec1c4a680ea1b3a26d422fab3a62",
+      "assetsSHA256": "5f4a3c6ba1e48a76470a567f271956d1a372c434fea06321e3bae17f8134905e",
+      "assetBytesBefore": {
+        "bytes": 2477546,
+        "gzip": 1103933
+      },
+      "assetBytesAfter": {
+        "bytes": 1349885,
+        "gzip": 598073
+      },
+      "coldJSONBefore": {
+        "bytes": 3411444,
+        "gzip": 1465043
+      },
+      "coldJSONAfter": {
+        "bytes": 2283783,
+        "gzip": 959183
+      }
+    },
+    {
+      "stage": 36,
+      "encoding": "json-pool-v1",
+      "stageSHA256": "8e6bd094e8d09a328ccc714724e329b8a329b1000826002bd058cc80dd228933",
+      "assetsSHA256": "a56e152e5f94667337812701dad8d8f1037cc3da5afe804d998b29c9a533a934",
+      "assetBytesBefore": {
+        "bytes": 1972095,
+        "gzip": 852349
+      },
+      "assetBytesAfter": {
+        "bytes": 1864200,
+        "gzip": 812208
+      },
+      "coldJSONBefore": {
+        "bytes": 2900686,
+        "gzip": 1212813
+      },
+      "coldJSONAfter": {
+        "bytes": 2792791,
+        "gzip": 1172672
+      }
+    },
+    {
+      "stage": 37,
+      "encoding": "json-pool-v1",
+      "stageSHA256": "27a2c48c9006691f1f5a1726640d32060be3c964c697f77b97303e44b25eb96a",
+      "assetsSHA256": "8fbf8263ea0a8b6a5eab132683b9394e46611cc99ea18b373e139570e181c736",
+      "assetBytesBefore": {
+        "bytes": 2839769,
+        "gzip": 1253782
+      },
+      "assetBytesAfter": {
+        "bytes": 1888510,
+        "gzip": 833307
+      },
+      "coldJSONBefore": {
+        "bytes": 3766698,
+        "gzip": 1613255
+      },
+      "coldJSONAfter": {
+        "bytes": 2815439,
+        "gzip": 1192780
+      }
+    },
+    {
+      "stage": 38,
+      "encoding": "json-pool-v1",
+      "stageSHA256": "c1c97eed455c1c1aa46de2906544fb77e012d612683b9b47b5838562b2a14fcf",
+      "assetsSHA256": "58afc4d13d0bb4fde7a690bc87ebd2115b2ea8ceeecae4f72e20e3f0d0c2970c",
+      "assetBytesBefore": {
+        "bytes": 2324699,
+        "gzip": 1010691
+      },
+      "assetBytesAfter": {
+        "bytes": 1023425,
+        "gzip": 455839
+      },
+      "coldJSONBefore": {
+        "bytes": 3259420,
+        "gzip": 1373021
+      },
+      "coldJSONAfter": {
+        "bytes": 1958146,
+        "gzip": 818169
+      }
+    },
+    {
+      "stage": 39,
+      "encoding": "json-pool-v1",
+      "stageSHA256": "8695dbcd724d4dd70cfe4dea619427de21b259e2f7cb6881894ade3a0d6b66f1",
+      "assetsSHA256": "c3df0f086a6c2d02f0ddd50bf9389b71ac1e894ba872dddd06e6d10ca6d95c97",
+      "assetBytesBefore": {
+        "bytes": 4620031,
+        "gzip": 1896264
+      },
+      "assetBytesAfter": {
+        "bytes": 2930210,
+        "gzip": 1207374
+      },
+      "coldJSONBefore": {
+        "bytes": 5559116,
+        "gzip": 2259750
+      },
+      "coldJSONAfter": {
+        "bytes": 3869295,
+        "gzip": 1570860
+      }
+    },
+    {
+      "stage": 40,
+      "encoding": "json-pool-v1",
+      "stageSHA256": "59ce3ae2cfe71932aed3c7816fb6d7acd1e4a532db16ab1b91cd6ba3a9819424",
+      "assetsSHA256": "701b6cfa5ebf9f664fa2e011b6593a807fc83ef4af1af00370fd117f9616c2f6",
+      "assetBytesBefore": {
+        "bytes": 4895436,
+        "gzip": 2003479
+      },
+      "assetBytesAfter": {
+        "bytes": 2319782,
+        "gzip": 960989
+      },
+      "coldJSONBefore": {
+        "bytes": 5821174,
+        "gzip": 2362892
+      },
+      "coldJSONAfter": {
+        "bytes": 3245520,
+        "gzip": 1320402
+      }
+    }
+  ],
+  "scope": "Exact JSON/canonical source identity and immutable-file integrity; gzip figures are local estimates, not observed wire transfer. Currentgraph bytes are not startup download bytes. Browser loading/visual validation recorded separately."
+}

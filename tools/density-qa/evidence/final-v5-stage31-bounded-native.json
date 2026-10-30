@@ -1,0 +1,805 @@
+{
+  "projectSHA256": "2dc1904694285fa9efa654bd94dd7fe2c3ab546d7027b3d7dcce39c37ccb5f09",
+  "runtimeSHA256": "c06cffd6d892681fb3282a2679a114a1871827e16bc414c2122e7ef6d38bcdbd",
+  "frame": 42960,
+  "success": true,
+  "entryBuild": "campaign-spent-v1",
+  "scope": "Actual App ordinary-input tape, real Scene rendered continuously at ticks1–180 and41401–end only; ticks181–41400 are unrendered ordinary mechanics. Camera history across gap is NOT verified. Natural camera without pose override within observed windows. Native Canvas only; DOM/audio/scheduler fixtures, no browser HUD, no mobile performance or automatic C1/C4 signoff. No midrun Continue in this visual replay.",
+  "frames": [
+    {
+      "name": "entry",
+      "frame": 0,
+      "camera": {
+        "x": 260,
+        "y": 1550,
+        "scale": 0.94,
+        "manual": true,
+        "storyTween": false,
+        "storyFrame": true,
+        "width": 1440,
+        "height": 900
+      },
+      "phase": "aim",
+      "boat": {
+        "phase": "waiting",
+        "x": 500
+      },
+      "paintBoat": {
+        "x": 500,
+        "y": 1735,
+        "scale": 0.6,
+        "assetId": "s31v:arrival-ferry"
+      },
+      "deck": null,
+      "water": [],
+      "party": [
+        {
+          "id": "archer",
+          "x": 260,
+          "y": 1720,
+          "grounded": true
+        },
+        {
+          "id": "mage",
+          "x": 380,
+          "y": 1720,
+          "grounded": true
+        },
+        {
+          "id": "knight",
+          "x": 500,
+          "y": 1720,
+          "grounded": true
+        },
+        {
+          "id": "occultist",
+          "x": 620,
+          "y": 1720,
+          "grounded": true
+        }
+      ]
+    },
+    {
+      "name": "frame-30",
+      "frame": 30,
+      "camera": {
+        "x": 449.3,
+        "y": 1829.36,
+        "scale": 0.94,
+        "manual": false,
+        "storyTween": false,
+        "storyFrame": false,
+        "width": 1440,
+        "height": 900
+      },
+      "phase": "aim",
+      "boat": {
+        "phase": "waiting",
+        "x": 500
+      },
+      "paintBoat": {
+        "x": 500,
+        "y": 1735,
+        "scale": 0.6,
+        "assetId": "s31v:arrival-ferry"
+      },
+      "deck": null,
+      "water": [],
+      "party": [
+        {
+          "id": "archer",
+          "x": 260,
+          "y": 1720,
+          "grounded": true
+        },
+        {
+          "id": "mage",
+          "x": 380,
+          "y": 1720,
+          "grounded": true
+        },
+        {
+          "id": "knight",
+          "x": 500,
+          "y": 1720,
+          "grounded": true
+        },
+        {
+          "id": "occultist",
+          "x": 620,
+          "y": 1720,
+          "grounded": true
+        }
+      ]
+    },
+    {
+      "name": "frame-180",
+      "frame": 180,
+      "camera": {
+        "x": 694.0139707261068,
+        "y": 1233.1665370452897,
+        "scale": 0.94,
+        "manual": false,
+        "storyTween": false,
+        "storyFrame": false,
+        "width": 1440,
+        "height": 900
+      },
+      "phase": "flight",
+      "boat": {
+        "phase": "waiting",
+        "x": 500
+      },
+      "paintBoat": {
+        "x": 500,
+        "y": 1735,
+        "scale": 0.6,
+        "assetId": "s31v:arrival-ferry"
+      },
+      "deck": null,
+      "water": [],
+      "party": [
+        {
+          "id": "archer",
+          "x": 260,
+          "y": 1720,
+          "grounded": true
+        },
+        {
+          "id": "mage",
+          "x": 380,
+          "y": 1720,
+          "grounded": true
+        },
+        {
+          "id": "knight",
+          "x": 500,
+          "y": 1720,
+          "grounded": true
+        },
+        {
+          "id": "occultist",
+          "x": 620,
+          "y": 1720,
+          "grounded": true
+        }
+      ]
+    },
+    {
+      "name": "frame-42000",
+      "frame": 42000,
+      "camera": {
+        "x": 6493.699886409921,
+        "y": 1484.705276414494,
+        "scale": 0.94,
+        "manual": false,
+        "storyTween": false,
+        "storyFrame": false,
+        "width": 1440,
+        "height": 900
+      },
+      "phase": "aim",
+      "boat": {
+        "phase": "docked",
+        "x": 6470
+      },
+      "paintBoat": {
+        "x": 6470,
+        "y": 1910,
+        "scale": 1,
+        "assetId": "s31v:arrival-ferry"
+      },
+      "deck": {
+        "id": "a4-boat-deck",
+        "x": 6260,
+        "y": 1860,
+        "w": 450,
+        "h": 24,
+        "mat": "wood",
+        "indestructible": true,
+        "oneWay": true,
+        "hp": 9999,
+        "maxHp": 9999
+      },
+      "water": [],
+      "party": [
+        {
+          "id": "archer",
+          "x": 6475.99234735594,
+          "y": 1860,
+          "grounded": true
+        },
+        {
+          "id": "mage",
+          "x": 6448.744698466599,
+          "y": 1860,
+          "grounded": true
+        },
+        {
+          "id": "knight",
+          "x": 6465.297230086851,
+          "y": 1664.2490843234295,
+          "grounded": false
+        },
+        {
+          "id": "occultist",
+          "x": 4078.284080895986,
+          "y": 1720,
+          "grounded": true
+        }
+      ]
+    },
+    {
+      "name": "frame-42955",
+      "frame": 42955,
+      "camera": {
+        "x": 6594.1472015641475,
+        "y": 1681.7111771287948,
+        "scale": 0.94,
+        "manual": false,
+        "storyTween": false,
+        "storyFrame": false,
+        "width": 1440,
+        "height": 900
+      },
+      "phase": "aim",
+      "boat": {
+        "phase": "docked",
+        "x": 6470
+      },
+      "paintBoat": {
+        "x": 6470,
+        "y": 1910,
+        "scale": 1,
+        "assetId": "s31v:arrival-ferry"
+      },
+      "deck": {
+        "id": "a4-boat-deck",
+        "x": 6260,
+        "y": 1860,
+        "w": 450,
+        "h": 24,
+        "mat": "wood",
+        "indestructible": true,
+        "oneWay": true,
+        "hp": 9999,
+        "maxHp": 9999
+      },
+      "water": [],
+      "party": [
+        {
+          "id": "archer",
+          "x": 6475.99234735594,
+          "y": 1860,
+          "grounded": true
+        },
+        {
+          "id": "mage",
+          "x": 6448.744698466599,
+          "y": 1860,
+          "grounded": true
+        },
+        {
+          "id": "knight",
+          "x": 6502.422230086851,
+          "y": 1860,
+          "grounded": true
+        },
+        {
+          "id": "occultist",
+          "x": 6406.229486153642,
+          "y": 1860,
+          "grounded": true
+        }
+      ]
+    },
+    {
+      "name": "before-interact-42955",
+      "frame": 42955,
+      "camera": {
+        "x": 6594.1472015641475,
+        "y": 1681.7111771287948,
+        "scale": 0.94,
+        "manual": false,
+        "storyTween": false,
+        "storyFrame": false,
+        "width": 1440,
+        "height": 900
+      },
+      "phase": "aim",
+      "boat": {
+        "phase": "docked",
+        "x": 6470
+      },
+      "paintBoat": {
+        "x": 6470,
+        "y": 1910,
+        "scale": 1,
+        "assetId": "s31v:arrival-ferry"
+      },
+      "deck": {
+        "id": "a4-boat-deck",
+        "x": 6260,
+        "y": 1860,
+        "w": 450,
+        "h": 24,
+        "mat": "wood",
+        "indestructible": true,
+        "oneWay": true,
+        "hp": 9999,
+        "maxHp": 9999
+      },
+      "water": [],
+      "party": [
+        {
+          "id": "archer",
+          "x": 6475.99234735594,
+          "y": 1860,
+          "grounded": true
+        },
+        {
+          "id": "mage",
+          "x": 6448.744698466599,
+          "y": 1860,
+          "grounded": true
+        },
+        {
+          "id": "knight",
+          "x": 6502.422230086851,
+          "y": 1860,
+          "grounded": true
+        },
+        {
+          "id": "occultist",
+          "x": 6406.229486153642,
+          "y": 1860,
+          "grounded": true
+        }
+      ]
+    },
+    {
+      "name": "boat-boarded",
+      "frame": 42956,
+      "camera": {
+        "x": 6590.01178166686,
+        "y": 1681.511285929287,
+        "scale": 0.94,
+        "manual": false,
+        "storyTween": false,
+        "storyFrame": false,
+        "width": 1440,
+        "height": 900
+      },
+      "phase": "won",
+      "boat": {
+        "phase": "boarded",
+        "x": 6470
+      },
+      "paintBoat": {
+        "x": 6470,
+        "y": 1910,
+        "scale": 1,
+        "assetId": "s31v:arrival-ferry"
+      },
+      "deck": {
+        "id": "a4-boat-deck",
+        "x": 6260,
+        "y": 1860,
+        "w": 450,
+        "h": 24,
+        "mat": "wood",
+        "indestructible": true,
+        "oneWay": true,
+        "hp": 9999,
+        "maxHp": 9999
+      },
+      "water": [],
+      "party": [
+        {
+          "id": "archer",
+          "x": 6475.99234735594,
+          "y": 1860,
+          "grounded": true
+        },
+        {
+          "id": "mage",
+          "x": 6448.744698466599,
+          "y": 1860,
+          "grounded": true
+        },
+        {
+          "id": "knight",
+          "x": 6502.422230086851,
+          "y": 1860,
+          "grounded": true
+        },
+        {
+          "id": "occultist",
+          "x": 6406.229486153642,
+          "y": 1860,
+          "grounded": true
+        }
+      ]
+    },
+    {
+      "name": "final",
+      "frame": 42960,
+      "camera": {
+        "x": 6574.8677204729465,
+        "y": 1680.7792769356035,
+        "scale": 0.94,
+        "manual": false,
+        "storyTween": false,
+        "storyFrame": false,
+        "width": 1440,
+        "height": 900
+      },
+      "phase": "won",
+      "boat": {
+        "phase": "boarded",
+        "x": 6470
+      },
+      "paintBoat": {
+        "x": 6470,
+        "y": 1910,
+        "scale": 1,
+        "assetId": "s31v:arrival-ferry"
+      },
+      "deck": {
+        "id": "a4-boat-deck",
+        "x": 6260,
+        "y": 1860,
+        "w": 450,
+        "h": 24,
+        "mat": "wood",
+        "indestructible": true,
+        "oneWay": true,
+        "hp": 9999,
+        "maxHp": 9999
+      },
+      "water": [],
+      "party": [
+        {
+          "id": "archer",
+          "x": 6475.99234735594,
+          "y": 1860,
+          "grounded": true
+        },
+        {
+          "id": "mage",
+          "x": 6448.744698466599,
+          "y": 1860,
+          "grounded": true
+        },
+        {
+          "id": "knight",
+          "x": 6502.422230086851,
+          "y": 1860,
+          "grounded": true
+        },
+        {
+          "id": "occultist",
+          "x": 6406.229486153642,
+          "y": 1860,
+          "grounded": true
+        }
+      ]
+    }
+  ],
+  "status": "bounded-native-observations-for-root-review-not-release-approval",
+  "criteria": {
+    "C1": "Native first post-intro and final moving-camera windows only; unrendered middle means no full camera-history claim",
+    "C4": "Actual ordinary-input preboarding/boarded boat render with deck-y and water policy observations; visual signoff remains root-owned",
+    "C3": "Browser/mobile DOM-HUD and phone performance remain unverified"
+  },
+  "paintCollisionObservations": [
+    {
+      "name": "frame-42000",
+      "frame": 42000,
+      "paintDeckY": 1860,
+      "collisionDeckY": 1860,
+      "paintStraightDeckX": [
+        6290,
+        6650
+      ],
+      "collisionDeckX": [
+        6260,
+        6710
+      ],
+      "party": [
+        {
+          "id": "archer",
+          "x": 6475.99234735594,
+          "y": 1860,
+          "grounded": true
+        },
+        {
+          "id": "mage",
+          "x": 6448.744698466599,
+          "y": 1860,
+          "grounded": true
+        },
+        {
+          "id": "knight",
+          "x": 6465.297230086851,
+          "y": 1664.2490843234295,
+          "grounded": false
+        },
+        {
+          "id": "occultist",
+          "x": 4078.284080895986,
+          "y": 1720,
+          "grounded": true
+        }
+      ]
+    },
+    {
+      "name": "frame-42955",
+      "frame": 42955,
+      "paintDeckY": 1860,
+      "collisionDeckY": 1860,
+      "paintStraightDeckX": [
+        6290,
+        6650
+      ],
+      "collisionDeckX": [
+        6260,
+        6710
+      ],
+      "party": [
+        {
+          "id": "archer",
+          "x": 6475.99234735594,
+          "y": 1860,
+          "grounded": true
+        },
+        {
+          "id": "mage",
+          "x": 6448.744698466599,
+          "y": 1860,
+          "grounded": true
+        },
+        {
+          "id": "knight",
+          "x": 6502.422230086851,
+          "y": 1860,
+          "grounded": true
+        },
+        {
+          "id": "occultist",
+          "x": 6406.229486153642,
+          "y": 1860,
+          "grounded": true
+        }
+      ]
+    },
+    {
+      "name": "before-interact-42955",
+      "frame": 42955,
+      "paintDeckY": 1860,
+      "collisionDeckY": 1860,
+      "paintStraightDeckX": [
+        6290,
+        6650
+      ],
+      "collisionDeckX": [
+        6260,
+        6710
+      ],
+      "party": [
+        {
+          "id": "archer",
+          "x": 6475.99234735594,
+          "y": 1860,
+          "grounded": true
+        },
+        {
+          "id": "mage",
+          "x": 6448.744698466599,
+          "y": 1860,
+          "grounded": true
+        },
+        {
+          "id": "knight",
+          "x": 6502.422230086851,
+          "y": 1860,
+          "grounded": true
+        },
+        {
+          "id": "occultist",
+          "x": 6406.229486153642,
+          "y": 1860,
+          "grounded": true
+        }
+      ]
+    },
+    {
+      "name": "boat-boarded",
+      "frame": 42956,
+      "paintDeckY": 1860,
+      "collisionDeckY": 1860,
+      "paintStraightDeckX": [
+        6290,
+        6650
+      ],
+      "collisionDeckX": [
+        6260,
+        6710
+      ],
+      "party": [
+        {
+          "id": "archer",
+          "x": 6475.99234735594,
+          "y": 1860,
+          "grounded": true
+        },
+        {
+          "id": "mage",
+          "x": 6448.744698466599,
+          "y": 1860,
+          "grounded": true
+        },
+        {
+          "id": "knight",
+          "x": 6502.422230086851,
+          "y": 1860,
+          "grounded": true
+        },
+        {
+          "id": "occultist",
+          "x": 6406.229486153642,
+          "y": 1860,
+          "grounded": true
+        }
+      ]
+    },
+    {
+      "name": "final",
+      "frame": 42960,
+      "paintDeckY": 1860,
+      "collisionDeckY": 1860,
+      "paintStraightDeckX": [
+        6290,
+        6650
+      ],
+      "collisionDeckX": [
+        6260,
+        6710
+      ],
+      "party": [
+        {
+          "id": "archer",
+          "x": 6475.99234735594,
+          "y": 1860,
+          "grounded": true
+        },
+        {
+          "id": "mage",
+          "x": 6448.744698466599,
+          "y": 1860,
+          "grounded": true
+        },
+        {
+          "id": "knight",
+          "x": 6502.422230086851,
+          "y": 1860,
+          "grounded": true
+        },
+        {
+          "id": "occultist",
+          "x": 6406.229486153642,
+          "y": 1860,
+          "grounded": true
+        }
+      ]
+    }
+  ],
+  "water": {
+    "materials": [
+      {
+        "id": "s31-channel-rill",
+        "kind": "shallow-water",
+        "terrainId": "s31-estuary-bank",
+        "x1": 2480,
+        "x2": 2910,
+        "depth": 16,
+        "conductive": true
+      },
+      {
+        "id": "s31-local-river",
+        "kind": "water",
+        "terrainId": "s31-estuary-bank",
+        "x1": 6238,
+        "x2": 7200,
+        "surfaceY": 1890,
+        "depth": 600,
+        "conductive": true
+      }
+    ],
+    "policies": [
+      {
+        "id": "31-dock-water",
+        "kind": "recover",
+        "x1": 6238,
+        "x2": 7200,
+        "surface": 1890,
+        "entryLeft": [
+          5300,
+          6220
+        ],
+        "entryRight": [
+          5300,
+          6220
+        ]
+      }
+    ],
+    "continuation": {
+      "version": 1,
+      "zoneId": "s31-local-river",
+      "side": "right"
+    }
+  },
+  "limitations": [
+    "Prepared earned-SP Stage31 entry, not linked campaign",
+    "No midrun Continue in this bounded visual run; separate final-v5 save/Continue evidence exists",
+    "Native Canvas DOM/audio/scheduler fixtures; no browser HUD",
+    "Earlier continuous runs exited137 after180+frames; bounded rerun avoids unneeded middle rendering",
+    "Physical deck horizontal span is wider than straight painted plank span; these are reported, not asserted equal"
+  ],
+  "files": [
+    {
+      "file": "_local/reports/density-qa/final-v5/stage31-natural-bounded/entry.png",
+      "sha256": "3f30b9c2a678453306e941eadf8f8d6bcd6622edb2f0aecdca9f1d5fff961383",
+      "frame": 0
+    },
+    {
+      "file": "_local/reports/density-qa/final-v5/stage31-natural-bounded/frame-30.png",
+      "sha256": "143ca8db39d375d5f738937fe9754ef8290a8a9b56ae2f3662f90f54f4edd0df",
+      "frame": 30
+    },
+    {
+      "file": "_local/reports/density-qa/final-v5/stage31-natural-bounded/frame-180.png",
+      "sha256": "807bb9d579839cd971b64cd53c9265a7fc78b0ca27848fc3a58d10d7278d8c59",
+      "frame": 180
+    },
+    {
+      "file": "_local/reports/density-qa/final-v5/stage31-natural-bounded/frame-42000.png",
+      "sha256": "fdb05d146a06629132c1cee762f13f98b9dcab2f51489dc9b934f93cf96343da",
+      "frame": 42000
+    },
+    {
+      "file": "_local/reports/density-qa/final-v5/stage31-natural-bounded/frame-42955.png",
+      "sha256": "3eb6f4f91562e0cc07cb0b6ac98da556815129b17250a4dbe9b17e94564dc3df",
+      "frame": 42955
+    },
+    {
+      "file": "_local/reports/density-qa/final-v5/stage31-natural-bounded/before-interact-42955.png",
+      "sha256": "3eb6f4f91562e0cc07cb0b6ac98da556815129b17250a4dbe9b17e94564dc3df",
+      "frame": 42955
+    },
+    {
+      "file": "_local/reports/density-qa/final-v5/stage31-natural-bounded/boat-boarded.png",
+      "sha256": "b55520823a498037eb505735369a2c6cc6bb912d7c368eaf377e8933169480d9",
+      "frame": 42956
+    },
+    {
+      "file": "_local/reports/density-qa/final-v5/stage31-natural-bounded/final.png",
+      "sha256": "8ceac4090c24b5dd462cf3af91dd1171dea8b2b99d12f949d37e2685a92f8672",
+      "frame": 42960
+    }
+  ],
+  "tools": [
+    {
+      "name": "capture31-natural.mjs",
+      "sha256": "2bb37d9b45ca85aa88e2862ff6383b0e3dc16fecc4428c99c2cad77219af7bbc"
+    },
+    {
+      "name": "native-entry.mjs",
+      "sha256": "fdeed84b96298ce2013a5fe268ea514f2da54e9c41de4b614a14314a3193db76"
+    },
+    {
+      "name": "summarize31-natural.mjs",
+      "sha256": "f6506b5cf51fddd85b885c93d6145165c691bcc8a8db7f6ca14e4de7d8697e7d"
+    }
+  ]
+}

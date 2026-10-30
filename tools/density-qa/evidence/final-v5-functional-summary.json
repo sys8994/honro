@@ -1,0 +1,282 @@
+{
+  "finalProjectSHA256": "2dc1904694285fa9efa654bd94dd7fe2c3ab546d7027b3d7dcce39c37ccb5f09",
+  "priorProjectSHA256": "fd8e0ec9019e88ac52ef85e3027f08b1e990b065770efd335474e7bc5a41da04",
+  "runtimeSHA256": "c06cffd6d892681fb3282a2679a114a1871827e16bc414c2122e7ef6d38bcdbd",
+  "status": "functional-coverage-established-with-explicit-cross-version-equivalence",
+  "allTenEntrySaveColdContinueOnFinal": true,
+  "allTenReplayedOnFinal": false,
+  "lastChangedStageReplayedOnFinal": 38,
+  "changedLibraryIds": [
+    "s38-density:body-land",
+    "s38-density:body-land-domain-left",
+    "s38-density:body-east",
+    "s38-density:body-east-domain-right",
+    "s38-density:body-emergency-ledges"
+  ],
+  "scope": "Independent prepared-stage ordinary inputs. Stage40 prior-proof fixture is not linked campaign history. Actual App/Engine code with DOM/audio/network/storage fixtures;31/35 fullplay adapters are non-rendering, others sparse Native Canvas. Final actual-App entry imagery uses Native Canvas for all10. No browser HUD, phone FPS, art/release approval, remote publication or deployment claim. Per-stage referenced asset bytes are not total download payload.",
+  "rows": [
+    {
+      "stage": 31,
+      "finalEntrySaveColdContinue": "passed",
+      "storedUTF16Bytes": 152388,
+      "fullplayStatus": "passed",
+      "fullplayObservedProjectSHA256": "fd8e0ec9019e88ac52ef85e3027f08b1e990b065770efd335474e7bc5a41da04",
+      "finalBinding": "Prior-project replay plus exact unchanged stage and configured/actual-App-entry asset closure under same runtime; not a later-project replay",
+      "frames": 42960,
+      "resume": [
+        {
+          "frame": 12258,
+          "inputIndex": 32,
+          "result": "pass",
+          "scope": "Actual stopBattle/persist/Continue; exact units, event state, round, active, phase and all static/dynamic artwork holders preserved"
+        }
+      ],
+      "verifierSha256": "fbe4c942096d375fe3d84b04f46386f4b3eaa3c3591a0e4445f7118bdfd6af1d",
+      "referencedAssetJSONBytes": 3253076,
+      "maxExpandedNodes": 268,
+      "maxDepth": 9,
+      "maxPathChars": 59830,
+      "maxClipPathChars": 820
+    },
+    {
+      "stage": 32,
+      "finalEntrySaveColdContinue": "passed",
+      "storedUTF16Bytes": 94606,
+      "fullplayStatus": "passed",
+      "fullplayObservedProjectSHA256": "fd8e0ec9019e88ac52ef85e3027f08b1e990b065770efd335474e7bc5a41da04",
+      "finalBinding": "Prior-project replay plus exact unchanged stage and configured/actual-App-entry asset closure under same runtime; not a later-project replay",
+      "frames": 30547,
+      "resume": [
+        {
+          "frame": 12249,
+          "inputIndex": 41,
+          "result": "pass",
+          "scope": "Actual stopBattle/persist/Continue; exact units, event state, round, active and phase preserved"
+        }
+      ],
+      "verifierSha256": "64c96be6f94c4ba5eab30e6ace7cde7cf26cb8632cec68406ccd49e67544cf64",
+      "referencedAssetJSONBytes": 2437348,
+      "maxExpandedNodes": 445,
+      "maxDepth": 9,
+      "maxPathChars": 59830,
+      "maxClipPathChars": 724
+    },
+    {
+      "stage": 33,
+      "finalEntrySaveColdContinue": "passed",
+      "storedUTF16Bytes": 120324,
+      "fullplayStatus": "passed",
+      "fullplayObservedProjectSHA256": "fd8e0ec9019e88ac52ef85e3027f08b1e990b065770efd335474e7bc5a41da04",
+      "finalBinding": "Prior-project replay plus exact unchanged stage and configured/actual-App-entry asset closure under same runtime; not a later-project replay",
+      "frames": 20476,
+      "resume": [
+        {
+          "frame": 11233,
+          "inputIndex": 44,
+          "result": "pass",
+          "scope": "Actual stopBattle/persist/Continue; exact units, event state, round, active and phase preserved"
+        }
+      ],
+      "verifierSha256": "982212e546348868f1665f1219502590fd7e4310817e796f3be6d7098709641a",
+      "referencedAssetJSONBytes": 2778328,
+      "maxExpandedNodes": 401,
+      "maxDepth": 9,
+      "maxPathChars": 59830,
+      "maxClipPathChars": 722
+    },
+    {
+      "stage": 34,
+      "finalEntrySaveColdContinue": "passed",
+      "storedUTF16Bytes": 94986,
+      "fullplayStatus": "passed",
+      "fullplayObservedProjectSHA256": "fd8e0ec9019e88ac52ef85e3027f08b1e990b065770efd335474e7bc5a41da04",
+      "finalBinding": "Prior-project replay plus exact unchanged stage and configured/actual-App-entry asset closure under same runtime; not a later-project replay",
+      "frames": 20333,
+      "resume": [
+        {
+          "frame": 4847,
+          "inputIndex": 21,
+          "result": "pass",
+          "scope": "Actual stopBattle/persist/Continue; exact units, event state, round, active and phase preserved"
+        }
+      ],
+      "verifierSha256": "ffe7860dbf64f47c3e24d0053a2d02e641792faa09f20362afdf1f2fd198ce30",
+      "referencedAssetJSONBytes": 1515378,
+      "maxExpandedNodes": 477,
+      "maxDepth": 9,
+      "maxPathChars": 59759,
+      "maxClipPathChars": 759
+    },
+    {
+      "stage": 35,
+      "finalEntrySaveColdContinue": "passed",
+      "storedUTF16Bytes": 103854,
+      "fullplayStatus": "passed",
+      "fullplayObservedProjectSHA256": "fd8e0ec9019e88ac52ef85e3027f08b1e990b065770efd335474e7bc5a41da04",
+      "finalBinding": "Prior-project replay plus exact unchanged stage and configured/actual-App-entry asset closure under same runtime; not a later-project replay",
+      "frames": 27497,
+      "resume": [
+        {
+          "frame": 12063,
+          "inputIndex": 48,
+          "result": "pass",
+          "scope": "Actual stopBattle/persist/Continue; exact units, event state, round, active and phase preserved"
+        }
+      ],
+      "verifierSha256": "35709044164cd092999c49cffdc995254e4efcda65cf7e4a8863c497a86c792b",
+      "referencedAssetJSONBytes": 3576213,
+      "maxExpandedNodes": 176,
+      "maxDepth": 7,
+      "maxPathChars": 59508,
+      "maxClipPathChars": 913
+    },
+    {
+      "stage": 36,
+      "finalEntrySaveColdContinue": "passed",
+      "storedUTF16Bytes": 69988,
+      "fullplayStatus": "passed",
+      "fullplayObservedProjectSHA256": "fd8e0ec9019e88ac52ef85e3027f08b1e990b065770efd335474e7bc5a41da04",
+      "finalBinding": "Prior-project replay plus exact unchanged stage and configured/actual-App-entry asset closure under same runtime; not a later-project replay",
+      "frames": 18052,
+      "resume": [
+        {
+          "frame": 12011,
+          "inputIndex": 484,
+          "result": "pass",
+          "scope": "Actual stopBattle/persist/Continue; exact units, event state, round, active, phase and resolved static/dynamic art preserved"
+        }
+      ],
+      "verifierSha256": "fbefb6df57759b53598518a43a9a137b44ee51e849107a1e2e340532b13e1cff",
+      "referencedAssetJSONBytes": 1947984,
+      "maxExpandedNodes": 56,
+      "maxDepth": 8,
+      "maxPathChars": 59119,
+      "maxClipPathChars": 755
+    },
+    {
+      "stage": 37,
+      "finalEntrySaveColdContinue": "passed",
+      "storedUTF16Bytes": 96928,
+      "fullplayStatus": "passed",
+      "fullplayObservedProjectSHA256": "fd8e0ec9019e88ac52ef85e3027f08b1e990b065770efd335474e7bc5a41da04",
+      "finalBinding": "Prior-project replay plus exact unchanged stage and configured/actual-App-entry asset closure under same runtime; not a later-project replay",
+      "frames": 33265,
+      "resume": [
+        {
+          "frame": 12735,
+          "inputIndex": 50,
+          "result": "pass",
+          "scope": "Actual stopBattle/persist/Continue; exact units, event state, round, active and phase preserved"
+        }
+      ],
+      "verifierSha256": "733edb4312cc4b1fd3845ac68e71200754cac76fc5d28cda56c77621323212d3",
+      "referencedAssetJSONBytes": 2967629,
+      "maxExpandedNodes": 469,
+      "maxDepth": 9,
+      "maxPathChars": 59625,
+      "maxClipPathChars": 755
+    },
+    {
+      "stage": 38,
+      "finalEntrySaveColdContinue": "passed",
+      "storedUTF16Bytes": 90136,
+      "fullplayStatus": "passed",
+      "fullplayObservedProjectSHA256": "2dc1904694285fa9efa654bd94dd7fe2c3ab546d7027b3d7dcce39c37ccb5f09",
+      "finalBinding": "Direct later-project replay",
+      "frames": 16096,
+      "resume": [
+        {
+          "phase": "vista",
+          "frame": 4895,
+          "input": 20,
+          "pass": true,
+          "scope": "Actual stopBattle/persist/Continue exact units/objective/round/phase/active"
+        },
+        {
+          "phase": "entry",
+          "frame": 5749,
+          "input": 26,
+          "pass": true,
+          "scope": "Actual stopBattle/persist/Continue exact units/objective/round/phase/active"
+        },
+        {
+          "phase": "wrong-exit",
+          "frame": 6001,
+          "input": 26,
+          "pass": true,
+          "scope": "Actual stopBattle/persist/Continue exact units/objective/round/phase/active"
+        },
+        {
+          "phase": "anchoring",
+          "frame": 6740,
+          "input": 30,
+          "pass": true,
+          "scope": "Actual stopBattle/persist/Continue exact units/objective/round/phase/active"
+        },
+        {
+          "phase": "connected",
+          "frame": 7071,
+          "input": 34,
+          "pass": true,
+          "scope": "Actual stopBattle/persist/Continue exact units/objective/round/phase/active"
+        }
+      ],
+      "verifierSha256": "176705e0bea640ed4dbacf65dccdbf78bcfcae65130d9404206d983e1ba7ffe5",
+      "referencedAssetJSONBytes": 1851504,
+      "maxExpandedNodes": 128,
+      "maxDepth": 9,
+      "maxPathChars": 59759,
+      "maxClipPathChars": 691
+    },
+    {
+      "stage": 39,
+      "finalEntrySaveColdContinue": "passed",
+      "storedUTF16Bytes": 99810,
+      "fullplayStatus": "passed",
+      "fullplayObservedProjectSHA256": "fd8e0ec9019e88ac52ef85e3027f08b1e990b065770efd335474e7bc5a41da04",
+      "finalBinding": "Prior-project replay plus exact unchanged stage and configured/actual-App-entry asset closure under same runtime; not a later-project replay",
+      "frames": 36725,
+      "resume": [
+        {
+          "frame": 5612,
+          "inputIndex": 21,
+          "result": "pass",
+          "scope": "Actual stopBattle/persist/Continue; exact units, event state, round, active and phase preserved"
+        }
+      ],
+      "verifierSha256": "e0fc4a1ad552a5e5a6359635c14be4173c0c96ce2f472a9659dce15576b511d9",
+      "referencedAssetJSONBytes": 5178729,
+      "maxExpandedNodes": 445,
+      "maxDepth": 9,
+      "maxPathChars": 59956,
+      "maxClipPathChars": 759
+    },
+    {
+      "stage": 40,
+      "finalEntrySaveColdContinue": "passed",
+      "storedUTF16Bytes": 84364,
+      "fullplayStatus": "passed",
+      "fullplayObservedProjectSHA256": "fd8e0ec9019e88ac52ef85e3027f08b1e990b065770efd335474e7bc5a41da04",
+      "finalBinding": "Prior-project replay plus exact unchanged stage and configured/actual-App-entry asset closure under same runtime; not a later-project replay",
+      "frames": 16829,
+      "resume": [
+        {
+          "frame": 14337,
+          "boatX": 3650.5,
+          "passengers": {
+            "a4-rescue-0": -70.00000062863546,
+            "a4-rescue-1": 20.469539497670667
+          },
+          "pass": true,
+          "scope": "Actual App stopBattle/persist/Continue; exact units/terrain/objective/round/active/phase"
+        }
+      ],
+      "verifierSha256": "471772894218f9c77a8825bf12b87eba4854617d60c4d1c6e80806768e146cae",
+      "referencedAssetJSONBytes": 3900306,
+      "maxExpandedNodes": 198,
+      "maxDepth": 9,
+      "maxPathChars": 59830,
+      "maxClipPathChars": 708
+    }
+  ]
+}

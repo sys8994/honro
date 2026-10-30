@@ -1,0 +1,29 @@
+[
+  {
+    "id": "first-bank-low-shot",
+    "kind": "shot",
+    "actor": "archer",
+    "expect": {
+      "type": "blocked",
+      "target": "s31-west-hound",
+      "terrain": "s31-estuary-bank"
+    },
+    "inputs": [
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 180
+      },
+      {
+        "op": "fire",
+        "skill": "A01",
+        "angle": -12,
+        "power": 0.65
+      },
+      {
+        "op": "advance",
+        "frames": 300
+      }
+    ]
+  }
+]

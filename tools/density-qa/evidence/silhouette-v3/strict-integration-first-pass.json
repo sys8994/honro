@@ -1,0 +1,225 @@
+{
+  "campaignSourceSHA256": "547aad96c58c1779d70399d08c2ec9b91d8afbbebeec900174f5d3eaa6b45959",
+  "compiledCampaignStagesSHA256": "d00413a96e6fd85d6c01e6ded905591a32c4689cf91e6793b85e19f399793ba3",
+  "compiledCampaignAssetsSHA256": "371570aca7f7eedf23541b283e8f5f5a144871b3996958eb57ca44262baed999",
+  "compiledCampaignPreserved": true,
+  "completeLibraryValidationErrors": [],
+  "act4StrictErrors": [],
+  "baselineUnchangedFullProjectErrors": [
+    {
+      "level": "err",
+      "text": "entry-front: missing member sb-a-front"
+    },
+    {
+      "level": "err",
+      "text": "entry-front: missing member sb-a-side"
+    },
+    {
+      "level": "err",
+      "text": "entry-front: missing member sb-a-point"
+    },
+    {
+      "level": "err",
+      "text": "entry-rear: missing member sb-a-lamp"
+    },
+    {
+      "level": "err",
+      "text": "entry-rear: missing member sb-a-air-screen"
+    },
+    {
+      "level": "err",
+      "text": "entry-roof: missing member sb-a-bat-low"
+    },
+    {
+      "level": "err",
+      "text": "entry-roof: missing member sb-a-bat-high"
+    },
+    {
+      "level": "err",
+      "text": "court-west: missing member sb-b-center"
+    },
+    {
+      "level": "err",
+      "text": "court-west: missing member sb-b-west-point"
+    },
+    {
+      "level": "err",
+      "text": "court-west: missing member sb-b-west-lamp"
+    },
+    {
+      "level": "err",
+      "text": "court-east: missing member sb-b-east"
+    },
+    {
+      "level": "err",
+      "text": "court-overwatch: missing member sb-b-high"
+    },
+    {
+      "level": "err",
+      "text": "court-overwatch: missing member sb-b-high-elite"
+    },
+    {
+      "level": "err",
+      "text": "court-spirits: missing member sb-b-spirit-left"
+    },
+    {
+      "level": "err",
+      "text": "court-spirits: missing member sb-b-spirit-right"
+    },
+    {
+      "level": "err",
+      "text": "west-rise: missing member sb-c-bat-side"
+    },
+    {
+      "level": "err",
+      "text": "west-crown: missing member sb-c-bat-crown"
+    },
+    {
+      "level": "err",
+      "text": "west-crown: missing member sb-c-bat-rear"
+    },
+    {
+      "level": "err",
+      "text": "west-crown: missing member sb-c-lamp"
+    },
+    {
+      "level": "err",
+      "text": "west-crown: missing member sb-c-crown-elite"
+    },
+    {
+      "level": "err",
+      "text": "east-ledge: missing member sb-d-bat-front"
+    },
+    {
+      "level": "err",
+      "text": "east-ledge: missing member sb-d-bat-roof"
+    },
+    {
+      "level": "err",
+      "text": "east-arc: missing member sb-d-bat-flank"
+    },
+    {
+      "level": "err",
+      "text": "east-arc: missing member sb-d-arc-point"
+    },
+    {
+      "level": "err",
+      "text": "basin-east: missing member sb-d-spirit"
+    },
+    {
+      "level": "err",
+      "text": "basin-east: missing member sb-f-spirit-side"
+    },
+    {
+      "level": "err",
+      "text": "basin-east: missing member sb-f-spirit-east"
+    },
+    {
+      "level": "err",
+      "text": "basin-east: missing member sb-f-tool-east"
+    },
+    {
+      "level": "err",
+      "text": "basin-east: missing member sb-f-east-screen"
+    },
+    {
+      "level": "err",
+      "text": "lower-front: missing member sb-e-screen"
+    },
+    {
+      "level": "err",
+      "text": "lower-front: missing member sb-e-point"
+    },
+    {
+      "level": "err",
+      "text": "lower-flank: missing member sb-e-flank"
+    },
+    {
+      "level": "err",
+      "text": "lower-flank: missing member sb-e-rear"
+    },
+    {
+      "level": "err",
+      "text": "lower-flank: missing member sb-e-rear-elite"
+    },
+    {
+      "level": "err",
+      "text": "maintenance-watch: missing member sb-e-high"
+    },
+    {
+      "level": "err",
+      "text": "maintenance-watch: missing member sb-e-ramp"
+    },
+    {
+      "level": "err",
+      "text": "basin-west: missing member sb-f-spirit-front"
+    },
+    {
+      "level": "err",
+      "text": "basin-west: missing member sb-f-spirit-high"
+    },
+    {
+      "level": "err",
+      "text": "basin-west: missing member sb-f-west-screen"
+    },
+    {
+      "level": "err",
+      "text": "keeper-front: missing member sb-g-tool"
+    },
+    {
+      "level": "err",
+      "text": "keeper-front: missing member sb-g-point"
+    },
+    {
+      "level": "err",
+      "text": "keeper-high: missing member sb-g-lamp-high"
+    },
+    {
+      "level": "err",
+      "text": "keeper-flank: missing member sb-g-bat-side"
+    },
+    {
+      "level": "err",
+      "text": "west-crown-air: missing member sb-c-crown-support"
+    },
+    {
+      "level": "err",
+      "text": "east-arc-air: missing member sb-d-arc-support"
+    },
+    {
+      "level": "err",
+      "text": "stage-21: missing/duplicate ID v4.gate-cart"
+    },
+    {
+      "level": "err",
+      "text": "stage-13/stage13-finish-rubble-mason: scale outside stage12:quarry-carrier-rubble range"
+    },
+    {
+      "level": "err",
+      "text": "stage-13/stage13-finish-rubble-threshold: scale outside stage12:quarry-carrier-rubble range"
+    },
+    {
+      "level": "err",
+      "text": "stage-21: duplicate/missing environment/content ID v4.gate-cart"
+    }
+  ],
+  "sourceFilesMutated": false,
+  "productionApproval": false,
+  "scope": "Intermediate all10 metadata-corrected candidate v3, before newer coastal camera-edge joins. Strict Act4 schema pass is not final canonical source acceptance.",
+  "scaleMetadataRepairAssets": [
+    "s34-coherent-v4:s34v-coastal-boulder",
+    "s34-coherent-v4:s34v-haul-footing",
+    "s35-silhouette:a4-35-old-wall-13-cover-v3",
+    "s35-silhouette:a4-art-35-extra-1-cover-v3",
+    "s36-density:frame-dawn-v4",
+    "s36-density:home-dawn-v4",
+    "s36-density:foundation-dawn-v4",
+    "s37-silhouette:a4-37-prop-0-cover-v4",
+    "s37-silhouette:a4-37-prop-1-cover-v4",
+    "s37-silhouette:a4-37-prop-2-cover-v4",
+    "s37-silhouette:a4-37-prop-3-cover-v4",
+    "s37-density:haul-winch-quiet-dawn-v4",
+    "s39v:haul-footing-dawn-v4",
+    "s39-coherent-v4:a4-coast-39-art-4"
+  ]
+}

@@ -1,0 +1,760 @@
+{
+  "status": "isolated-functional-not-art-release-approval",
+  "stage": 38,
+  "projectSHA256": "991a0bdfb50097aea492a39fe39d828713985cb5525f248e31e6ee8fb388fee9",
+  "runtimeSHA256": "c06cffd6d892681fb3282a2679a114a1871827e16bc414c2122e7ef6d38bcdbd",
+  "scope": "Prepared earned-SP stage-entry profile; real App/Engine/Native Canvas events and sparse actual scene rendering every300 simulation frames (bounded snapshot evidence, not continuous rendered play); DOM/audio/storage scheduling are doubles, not browser or chapters1–37 playthrough. Phase-specific actual Continue, no forcing.",
+  "balancedConnectionReplay": {
+    "success": true,
+    "frames": 20478,
+    "checkFailures": [],
+    "resume": [
+      {
+        "phase": "vista",
+        "frame": 5807,
+        "input": 23,
+        "pass": true,
+        "scope": "Actual stopBattle/persist/Continue exact units/objective/round/phase/active"
+      },
+      {
+        "phase": "entry",
+        "frame": 6627,
+        "input": 29,
+        "pass": true,
+        "scope": "Actual stopBattle/persist/Continue exact units/objective/round/phase/active"
+      },
+      {
+        "phase": "wrong-exit",
+        "frame": 6901,
+        "input": 29,
+        "pass": true,
+        "scope": "Actual stopBattle/persist/Continue exact units/objective/round/phase/active"
+      },
+      {
+        "phase": "anchoring",
+        "frame": 9530,
+        "input": 43,
+        "pass": true,
+        "scope": "Actual stopBattle/persist/Continue exact units/objective/round/phase/active"
+      },
+      {
+        "phase": "connected",
+        "frame": 9861,
+        "input": 47,
+        "pass": true,
+        "scope": "Actual stopBattle/persist/Continue exact units/objective/round/phase/active"
+      }
+    ],
+    "final": {
+      "phase": "won",
+      "objective": {
+        "version": 1,
+        "clock": 170.65000000000913,
+        "events": {
+          "voice": {
+            "started": true,
+            "terminal": true,
+            "presented": [],
+            "retired": [
+              "A4.S38.VOICE.01",
+              "A4.S38.VOICE.02",
+              "A4.S38.VOICE.03"
+            ]
+          },
+          "anchor": {
+            "started": true,
+            "terminal": true,
+            "presented": [],
+            "retired": [
+              "A4.S38.ANCHOR.01"
+            ]
+          },
+          "connected": {
+            "started": true,
+            "terminal": true,
+            "presented": [],
+            "retired": [
+              "A4.S38.CONNECTED.01"
+            ]
+          }
+        },
+        "receipts": [],
+        "boat": {
+          "phase": "waiting",
+          "x": 500
+        },
+        "door": {
+          "phase": "standing",
+          "time": 0
+        },
+        "complete": true,
+        "visualDrawn": {
+          "probe": 59.999999999997236
+        },
+        "observed": {
+          "rescue-voices": 49.999999999997804,
+          "probe-entry": 57.49999999999738,
+          "probe-wrong": 59.999999999997236,
+          "anchor-action": 77.50000000000774
+        },
+        "water": {
+          "dry": {
+            "archer": {
+              "x": 6489.967827877671,
+              "y": 2400
+            },
+            "mage": {
+              "x": 6486.024916332291,
+              "y": 2400
+            },
+            "knight": {
+              "x": 6463.703024717592,
+              "y": 2400
+            },
+            "occultist": {
+              "x": 6437.729377799424,
+              "y": 2400
+            },
+            "a4-38-g0-0": {
+              "x": 1266.414685490913,
+              "y": 2809.693045248678
+            },
+            "a4-38-pursuer-0": {
+              "x": 5904.17242221845,
+              "y": 2518.3310311126197
+            },
+            "a4-38-pursuer-1": {
+              "x": 6015.568804424773,
+              "y": 2473.772478230091
+            },
+            "a4-rescue-0": {
+              "x": 4720,
+              "y": 2600
+            },
+            "a4-rescue-1": {
+              "x": 4890,
+              "y": 2600
+            },
+            "a4-rescue-2": {
+              "x": 5060,
+              "y": 2600
+            },
+            "a4-rescue-3": {
+              "x": 5230,
+              "y": 2600
+            }
+          },
+          "recoveries": []
+        },
+        "vista": {
+          "active": false,
+          "index": 3,
+          "elapsed": 0
+        },
+        "pursuitSeen": true,
+        "vistaDone": true,
+        "reader": null,
+        "connectionProbe": {
+          "phase": "observed",
+          "at": 57.50833333333071
+        },
+        "anchorAction": null,
+        "connected": {
+          "destination": {
+            "x": 4520,
+            "y": 2600
+          },
+          "sourceRun": "honro-map-stage-38-1793288644937",
+          "stageOnly": true,
+          "mpSpent": 0
+        },
+        "completionProof": {
+          "exit": {
+            "x": 6700,
+            "y": 2400
+          },
+          "connection": {
+            "destination": {
+              "x": 4520,
+              "y": 2600
+            },
+            "sourceRun": "honro-map-stage-38-1793288644937",
+            "stageOnly": true,
+            "mpSpent": 0
+          }
+        }
+      },
+      "units": [
+        {
+          "id": "archer",
+          "x": 6489.967827877671,
+          "y": 2400,
+          "hp": 1183,
+          "dead": false
+        },
+        {
+          "id": "mage",
+          "x": 6486.024916332291,
+          "y": 2400,
+          "hp": 1280,
+          "dead": false
+        },
+        {
+          "id": "knight",
+          "x": 6463.703024717592,
+          "y": 2400,
+          "hp": 2055,
+          "dead": false
+        },
+        {
+          "id": "occultist",
+          "x": 6437.729377799424,
+          "y": 2400,
+          "hp": 1483,
+          "dead": false
+        },
+        {
+          "id": "a4-38-g0-0",
+          "x": 1266.414685490913,
+          "y": 2809.693045248678,
+          "hp": 0,
+          "dead": true
+        },
+        {
+          "id": "a4-38-g0-1",
+          "x": 1834.088020095008,
+          "y": 2204.6,
+          "hp": 0,
+          "dead": true
+        },
+        {
+          "id": "a4-38-pursuer-0",
+          "x": 5904.17242221845,
+          "y": 2518.3310311126197,
+          "hp": 0,
+          "dead": true
+        },
+        {
+          "id": "a4-38-pursuer-1",
+          "x": 6015.568804424773,
+          "y": 2473.772478230091,
+          "hp": 0,
+          "dead": true
+        },
+        {
+          "id": "a4-rescue-0",
+          "x": 4720,
+          "y": 2600,
+          "hp": 1450,
+          "dead": false
+        },
+        {
+          "id": "a4-rescue-1",
+          "x": 4890,
+          "y": 2600,
+          "hp": 1450,
+          "dead": false
+        },
+        {
+          "id": "a4-rescue-2",
+          "x": 5060,
+          "y": 2600,
+          "hp": 1450,
+          "dead": false
+        },
+        {
+          "id": "a4-rescue-3",
+          "x": 5230,
+          "y": 2600,
+          "hp": 1411,
+          "dead": false
+        }
+      ]
+    }
+  },
+  "entryColdContinue": {
+    "verifierSha256": "109ce5624b29450779081e4ec96ada7e510a0deeb9d341053e6199711409107e",
+    "stage": 38,
+    "projectSha256": "991a0bdfb50097aea492a39fe39d828713985cb5525f248e31e6ee8fb388fee9",
+    "stageSha256": "d69836fe5be9f827d445e1c1d530a01946f478fe156eed565a74fcf87e022dc8",
+    "runtimeSha256": "c06cffd6d892681fb3282a2679a114a1871827e16bc414c2122e7ef6d38bcdbd",
+    "launch": "actual official App",
+    "rawProfileCharacters": 6501098,
+    "storedCharacters": 61306,
+    "storedUTF16Bytes": 122612,
+    "quotaUTF16Bytes": 5242880,
+    "staticRefs": 40,
+    "writes": 9,
+    "exactWholeSnapshotCodec": true,
+    "actualDeferredContinueFields": [
+      "units",
+      "terrain",
+      "waters",
+      "honroSurfaceZones",
+      "honroAct4PreviewState",
+      "phase",
+      "round",
+      "active",
+      "honroElements",
+      "honroLandmarks",
+      "honroEnvironment",
+      "honroAct4PreviewDynamic"
+    ],
+    "singlePendingLoad": true,
+    "scope": "Entry only, prepared independent prior clears, no fabricated terminal outcome. DOM/render/audio/storage/network loader fixtures; actual App/Engine/profile-store/campaign-entry code."
+  },
+  "referencedAssetCost": {
+    "stage": 38,
+    "projectSha256": "991a0bdfb50097aea492a39fe39d828713985cb5525f248e31e6ee8fb388fee9",
+    "scope": "Unique asset definitions referenced by stage/config plus instantiated actual App entry art holders. Future unconfigured runtime selectors/legacy saves may add assets; not a pruning authorization. Serialized JSON and expanded vector tree only, not GPU, FPS or visual approval.",
+    "referencedAssetJSONBytes": 1843806,
+    "referencedAssets": 15,
+    "vectorAssets": 15,
+    "maxExpandedNodes": 128,
+    "maxDepth": 9,
+    "maxPathChars": 59759,
+    "maxClipPathChars": 4763,
+    "exactDefinitionDuplicatesExceptIdName": [],
+    "assets": [
+      {
+        "id": "s38v:coastal-boulder",
+        "bytes": 231522,
+        "expandedNodes": 12,
+        "maxDepth": 3,
+        "maxPathChars": 53671,
+        "maxClipPathChars": 0,
+        "expandedPaths": 9
+      },
+      {
+        "id": "s34v:crack",
+        "bytes": 451239,
+        "expandedNodes": 14,
+        "maxDepth": 3,
+        "maxPathChars": 59759,
+        "maxClipPathChars": 0,
+        "expandedPaths": 11
+      },
+      {
+        "id": "s37v:haul-footing",
+        "bytes": 231735,
+        "expandedNodes": 13,
+        "maxDepth": 4,
+        "maxPathChars": 53671,
+        "maxClipPathChars": 0,
+        "expandedPaths": 9
+      },
+      {
+        "id": "s38-floor-v4:west-land",
+        "bytes": 22620,
+        "expandedNodes": 33,
+        "maxDepth": 8,
+        "maxPathChars": 7958,
+        "maxClipPathChars": 2137,
+        "expandedPaths": 13
+      },
+      {
+        "id": "s38-density:body-land-domain-left",
+        "bytes": 52087,
+        "expandedNodes": 65,
+        "maxDepth": 5,
+        "maxPathChars": 22361,
+        "maxClipPathChars": 349,
+        "expandedPaths": 56
+      },
+      {
+        "id": "s38-density:body-east",
+        "bytes": 52157,
+        "expandedNodes": 31,
+        "maxDepth": 3,
+        "maxPathChars": 22361,
+        "maxClipPathChars": 352,
+        "expandedPaths": 28
+      },
+      {
+        "id": "s38-density:body-east-domain-right",
+        "bytes": 52089,
+        "expandedNodes": 65,
+        "maxDepth": 5,
+        "maxPathChars": 22361,
+        "maxClipPathChars": 352,
+        "expandedPaths": 56
+      },
+      {
+        "id": "s38-silhouette-v4:ceiling",
+        "bytes": 66213,
+        "expandedNodes": 55,
+        "maxDepth": 9,
+        "maxPathChars": 23530,
+        "maxClipPathChars": 4763,
+        "expandedPaths": 25
+      },
+      {
+        "id": "s38-silhouette-v4:ceiling-domain-left",
+        "bytes": 44398,
+        "expandedNodes": 63,
+        "maxDepth": 5,
+        "maxPathChars": 21195,
+        "maxClipPathChars": 691,
+        "expandedPaths": 54
+      },
+      {
+        "id": "s38-density:body-emergency-ledges",
+        "bytes": 51860,
+        "expandedNodes": 32,
+        "maxDepth": 4,
+        "maxPathChars": 22361,
+        "maxClipPathChars": 352,
+        "expandedPaths": 28
+      },
+      {
+        "id": "s38-floor-v4:unmodified-contact",
+        "bytes": 3548,
+        "expandedNodes": 10,
+        "maxDepth": 3,
+        "maxPathChars": 632,
+        "maxClipPathChars": 352,
+        "expandedPaths": 3
+      },
+      {
+        "id": "s38-density:stone-west-floor",
+        "bytes": 194360,
+        "expandedNodes": 114,
+        "maxDepth": 9,
+        "maxPathChars": 35212,
+        "maxClipPathChars": 81,
+        "expandedPaths": 56
+      },
+      {
+        "id": "s38-density:stone-east-floor",
+        "bytes": 194577,
+        "expandedNodes": 128,
+        "maxDepth": 9,
+        "maxPathChars": 35212,
+        "maxClipPathChars": 87,
+        "expandedPaths": 63
+      },
+      {
+        "id": "s38-density:stone-ledges",
+        "bytes": 194572,
+        "expandedNodes": 114,
+        "maxDepth": 9,
+        "maxPathChars": 35212,
+        "maxClipPathChars": 153,
+        "expandedPaths": 56
+      },
+      {
+        "id": "a4-coast:ridge",
+        "bytes": 829,
+        "expandedNodes": 4,
+        "maxDepth": 1,
+        "maxPathChars": 129,
+        "maxClipPathChars": 0,
+        "expandedPaths": 3
+      }
+    ]
+  },
+  "floorV2SupportEvidence": {
+    "projectSHA256": "18142e27f224abf42066089a6aaafdc9e0c4966fb746b827b0b742972244cc5e",
+    "runtimeSHA256": "c06cffd6d892681fb3282a2679a114a1871827e16bc414c2122e7ef6d38bcdbd",
+    "scope": "Actual App entry + ordinary intro skips +240ticks gravity only; no actor movement/relocation. Exact units restored by actual Continue. Native fixture not browser.",
+    "rows": [
+      {
+        "frame": 0,
+        "units": [
+          {
+            "id": "archer",
+            "x": 260,
+            "y": 2792.334307034312,
+            "hp": 1183,
+            "grounded": true,
+            "validContact": true
+          },
+          {
+            "id": "mage",
+            "x": 380,
+            "y": 2805.6068001936947,
+            "hp": 1280,
+            "grounded": true,
+            "validContact": true
+          },
+          {
+            "id": "knight",
+            "x": 500,
+            "y": 2819.0668955556635,
+            "hp": 2217,
+            "grounded": true,
+            "validContact": true
+          },
+          {
+            "id": "occultist",
+            "x": 620,
+            "y": 2814.8698711911197,
+            "hp": 1483,
+            "grounded": true,
+            "validContact": true
+          },
+          {
+            "id": "a4-rescue-0",
+            "x": 4720,
+            "y": 2600,
+            "hp": 1450,
+            "grounded": true,
+            "validContact": true
+          },
+          {
+            "id": "a4-rescue-1",
+            "x": 4890,
+            "y": 2600,
+            "hp": 1450,
+            "grounded": true,
+            "validContact": true
+          },
+          {
+            "id": "a4-rescue-2",
+            "x": 5060,
+            "y": 2600,
+            "hp": 1450,
+            "grounded": true,
+            "validContact": true
+          },
+          {
+            "id": "a4-rescue-3",
+            "x": 5230,
+            "y": 2600,
+            "hp": 1450,
+            "grounded": true,
+            "validContact": true
+          }
+        ]
+      },
+      {
+        "frame": 30,
+        "units": [
+          {
+            "id": "archer",
+            "x": 260,
+            "y": 2792.334307034312,
+            "hp": 1183,
+            "grounded": true,
+            "validContact": true
+          },
+          {
+            "id": "mage",
+            "x": 380,
+            "y": 2805.6068001936947,
+            "hp": 1280,
+            "grounded": true,
+            "validContact": true
+          },
+          {
+            "id": "knight",
+            "x": 500,
+            "y": 2819.0668955556635,
+            "hp": 2217,
+            "grounded": true,
+            "validContact": true
+          },
+          {
+            "id": "occultist",
+            "x": 620,
+            "y": 2814.8698711911197,
+            "hp": 1483,
+            "grounded": true,
+            "validContact": true
+          },
+          {
+            "id": "a4-rescue-0",
+            "x": 4720,
+            "y": 2600,
+            "hp": 1450,
+            "grounded": true,
+            "validContact": true
+          },
+          {
+            "id": "a4-rescue-1",
+            "x": 4890,
+            "y": 2600,
+            "hp": 1450,
+            "grounded": true,
+            "validContact": true
+          },
+          {
+            "id": "a4-rescue-2",
+            "x": 5060,
+            "y": 2600,
+            "hp": 1450,
+            "grounded": true,
+            "validContact": true
+          },
+          {
+            "id": "a4-rescue-3",
+            "x": 5230,
+            "y": 2600,
+            "hp": 1450,
+            "grounded": true,
+            "validContact": true
+          }
+        ]
+      },
+      {
+        "frame": 120,
+        "units": [
+          {
+            "id": "archer",
+            "x": 260,
+            "y": 2792.334307034312,
+            "hp": 1183,
+            "grounded": true,
+            "validContact": true
+          },
+          {
+            "id": "mage",
+            "x": 380,
+            "y": 2805.6068001936947,
+            "hp": 1280,
+            "grounded": true,
+            "validContact": true
+          },
+          {
+            "id": "knight",
+            "x": 500,
+            "y": 2819.0668955556635,
+            "hp": 2217,
+            "grounded": true,
+            "validContact": true
+          },
+          {
+            "id": "occultist",
+            "x": 620,
+            "y": 2814.8698711911197,
+            "hp": 1483,
+            "grounded": true,
+            "validContact": true
+          },
+          {
+            "id": "a4-rescue-0",
+            "x": 4720,
+            "y": 2600,
+            "hp": 1450,
+            "grounded": true,
+            "validContact": true
+          },
+          {
+            "id": "a4-rescue-1",
+            "x": 4890,
+            "y": 2600,
+            "hp": 1450,
+            "grounded": true,
+            "validContact": true
+          },
+          {
+            "id": "a4-rescue-2",
+            "x": 5060,
+            "y": 2600,
+            "hp": 1450,
+            "grounded": true,
+            "validContact": true
+          },
+          {
+            "id": "a4-rescue-3",
+            "x": 5230,
+            "y": 2600,
+            "hp": 1450,
+            "grounded": true,
+            "validContact": true
+          }
+        ]
+      },
+      {
+        "frame": 240,
+        "units": [
+          {
+            "id": "archer",
+            "x": 260,
+            "y": 2792.334307034312,
+            "hp": 1183,
+            "grounded": true,
+            "validContact": true
+          },
+          {
+            "id": "mage",
+            "x": 380,
+            "y": 2805.6068001936947,
+            "hp": 1280,
+            "grounded": true,
+            "validContact": true
+          },
+          {
+            "id": "knight",
+            "x": 500,
+            "y": 2819.0668955556635,
+            "hp": 2217,
+            "grounded": true,
+            "validContact": true
+          },
+          {
+            "id": "occultist",
+            "x": 620,
+            "y": 2814.8698711911197,
+            "hp": 1483,
+            "grounded": true,
+            "validContact": true
+          },
+          {
+            "id": "a4-rescue-0",
+            "x": 4720,
+            "y": 2600,
+            "hp": 1450,
+            "grounded": true,
+            "validContact": true
+          },
+          {
+            "id": "a4-rescue-1",
+            "x": 4890,
+            "y": 2600,
+            "hp": 1450,
+            "grounded": true,
+            "validContact": true
+          },
+          {
+            "id": "a4-rescue-2",
+            "x": 5060,
+            "y": 2600,
+            "hp": 1450,
+            "grounded": true,
+            "validContact": true
+          },
+          {
+            "id": "a4-rescue-3",
+            "x": 5230,
+            "y": 2600,
+            "hp": 1450,
+            "grounded": true,
+            "validContact": true
+          }
+        ]
+      }
+    ],
+    "continueExact": true,
+    "note": "Different project fingerprint: floor-v2 andfloor-v3 compiledterrain identical, palette-onlydifference; notrelabeled.",
+    "geometryEquivalence": {
+      "stage": 38,
+      "beforeSHA256": "18142e27f224abf42066089a6aaafdc9e0c4966fb746b827b0b742972244cc5e",
+      "afterSHA256": "991a0bdfb50097aea492a39fe39d828713985cb5525f248e31e6ee8fb388fee9",
+      "runtimeSHA256": "c06cffd6d892681fb3282a2679a114a1871827e16bc414c2122e7ef6d38bcdbd",
+      "scope": "Compiled geometry differential with synthetic engine segment rays and vertex-adjacent surface samples. Not normal input, visual alignment or route-clear approval.",
+      "engineSeamRules": {
+        "gap": 2.5,
+        "heightDelta": 3,
+        "maxSlope": 1.35
+      },
+      "changedTerrainCount": 0,
+      "rows": []
+    }
+  },
+  "pending": [
+    "newfloor physical route withoutconnection freshreplay",
+    "actualgrounded artcontact finalpaintreview"
+  ],
+  "sourceReports": "_local/reports/silhouette-qa/cave38-floor-v3/"
+}

@@ -1,0 +1,95 @@
+{
+  "runtime": "71748ef5f9ddc261c1af1b9e04b9fc675c5d666b138e90b3ab5fd2215d1b5d33",
+  "source": "7956c4ea8a2dde9afc583ecac1d9908a67203eb9397859fdff613850e6cbdd93",
+  "input": "524ee066a003976ce54457b196e148199ba7622b1ad253931d533a0e37d51ab4",
+  "scope": "Actual App publiclaunchMap whole1089library,10Act4stages; notofficialproduction",
+  "C2": {
+    "result": "Pass observedminimumzoomwest/east largepalettecutsabsent; thinlowcontrastjoinlineremains",
+    "cameraX": [
+      -320,
+      7520
+    ],
+    "scale": [
+      0.1713235294117647,
+      0.17352941176470588
+    ]
+  },
+  "C3": {
+    "portrait": {
+      "size": [
+        390,
+        844
+      ],
+      "sequence": "Right600ms,Up300ms,jumpbutton",
+      "actorX": [
+        260,
+        628.9993630632545
+      ],
+      "cameraX": [
+        344.9467624483464,
+        705.7886224907493
+      ],
+      "moveBudget": [
+        1856,
+        1411.9999999999995
+      ],
+      "note": "Beforebaselineinsidefinishingstorytween; notsteadyfollowbaseline. Actualcontrol/movementstillverified."
+    },
+    "landscape": {
+      "size": [
+        844,
+        390
+      ],
+      "sequence": "Right300ms,Down200ms,jumpbutton thennormalwheelminzoom/pantoenemyarea",
+      "actorX": [
+        628.9993630632545,
+        822.4436428825504
+      ],
+      "cameraX": [
+        748.5762646634211,
+        988.453530179526
+      ],
+      "moveBudget": [
+        1411.9999999999995,
+        1142.2367369201827
+      ],
+      "aimDegrees": [
+        64,
+        51
+      ]
+    },
+    "result": "Controlsvisible, ordinarymovement/aim/jumprespond; targetarea andterrainvisible atwidezoom. Notallcamerastatespass; close landscapejumpframecanclipfeetnearHUD."
+  },
+  "images": [
+    {
+      "file": "7174-31-portrait-before.jpg",
+      "sha256": "17b5de16679749d974caf583916242b8cc77d29ad3856797640e42bb4d167db8"
+    },
+    {
+      "file": "7174-31-portrait-controls.jpg",
+      "sha256": "d8ecdef6d09d148007501848969515e7025ba13bbd271fd6bf2c0d21d8d39713"
+    },
+    {
+      "file": "7174-31-landscape-controls.jpg",
+      "sha256": "f37559a59eab2795d5a24aaab83332523017361a2ddf975ac12e085a2bbc3aa9"
+    },
+    {
+      "file": "7174-31-landscape-targets.jpg",
+      "sha256": "31c917b4d0b7c9a4533274c96d377f1147ad31b53185c433d91c14517e91ba56"
+    },
+    {
+      "file": "7174-31-west-settled.jpg",
+      "sha256": "d78ef492abc47574df81042cd403e503ebcb4ded85009d206c493549c05a1430"
+    },
+    {
+      "file": "7174-31-east-settled.jpg",
+      "sha256": "f9c6b1af5317c0fae9902fdcd08c04fe55bf9b7516148a429c6c24f5e1be9b65"
+    }
+  ],
+  "observations": "7174-31-c2c3-observations.json",
+  "limits": [
+    "Desktopiframe responsive sizing notrealphone performance/touchpinch.",
+    "Notfullgameplay completion orofficialcampaign/saveproof.",
+    "NoFPS/GPU/RSSclaims."
+  ]
+}

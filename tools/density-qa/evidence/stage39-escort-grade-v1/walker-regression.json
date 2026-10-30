@@ -1,0 +1,149 @@
+{
+  "status": "PASS",
+  "projectSHA256": "f16efd5cd4d4b4fdc6a7b7103015df2fafa95e026ce2682a318e09513954c300",
+  "runtimeSHA256": "7652daac71dc2c7c6ea02b438ce10105a26e1ac008b36258ad08e2835ee14fd9",
+  "results": [
+    {
+      "source": "old",
+      "convoy": false,
+      "dt": 0.008333333333333333,
+      "pass": false,
+      "ticks": 16,
+      "waits": 0,
+      "stuck": {
+        "id": "a4-rescue-3",
+        "x": 6218,
+        "y": 1987.1357,
+        "reason": "walk rejected"
+      },
+      "final": [
+        {
+          "id": "a4-rescue-3",
+          "x": 6218,
+          "y": 1987.1357,
+          "r": 22,
+          "h": 92
+        }
+      ],
+      "scope": "Diagnostic production Engine.walk(requireSupport=true) and actual separation12 on checkpoint actor fields; starts explicitly on unchanged protected support, no campaign outcome claim."
+    },
+    {
+      "source": "candidate",
+      "convoy": false,
+      "dt": 0.008333333333333333,
+      "pass": true,
+      "ticks": 1192,
+      "waits": 0,
+      "stuck": null,
+      "final": [
+        {
+          "id": "a4-rescue-3",
+          "x": 7778.410844778575,
+          "y": 1700,
+          "r": 22,
+          "h": 92
+        }
+      ],
+      "scope": "Diagnostic production Engine.walk(requireSupport=true) and actual separation12 on checkpoint actor fields; starts explicitly on unchanged protected support, no campaign outcome claim."
+    },
+    {
+      "source": "candidate",
+      "convoy": false,
+      "dt": 0.05,
+      "pass": true,
+      "ticks": 198,
+      "waits": 0,
+      "stuck": null,
+      "final": [
+        {
+          "id": "a4-rescue-3",
+          "x": 7779.623617522883,
+          "y": 1700,
+          "r": 22,
+          "h": 92
+        }
+      ],
+      "scope": "Diagnostic production Engine.walk(requireSupport=true) and actual separation12 on checkpoint actor fields; starts explicitly on unchanged protected support, no campaign outcome claim."
+    },
+    {
+      "source": "candidate",
+      "convoy": true,
+      "dt": 0.008333333333333333,
+      "pass": true,
+      "ticks": 1243,
+      "waits": 102,
+      "stuck": null,
+      "final": [
+        {
+          "id": "a4-rescue-3",
+          "x": 7778.410844778575,
+          "y": 1700,
+          "r": 22,
+          "h": 92
+        },
+        {
+          "id": "a4-rescue-2",
+          "x": 7718.59431148606,
+          "y": 1700,
+          "r": 22,
+          "h": 92
+        },
+        {
+          "id": "a4-rescue-1",
+          "x": 7658.067333585927,
+          "y": 1700,
+          "r": 22,
+          "h": 92
+        },
+        {
+          "id": "a4-rescue-0",
+          "x": 7598.56170497952,
+          "y": 1700,
+          "r": 22,
+          "h": 92
+        }
+      ],
+      "scope": "Diagnostic production Engine.walk(requireSupport=true) and actual separation12 on checkpoint actor fields; starts explicitly on unchanged protected support, no campaign outcome claim."
+    },
+    {
+      "source": "candidate",
+      "convoy": true,
+      "dt": 0.05,
+      "pass": true,
+      "ticks": 207,
+      "waits": 18,
+      "stuck": null,
+      "final": [
+        {
+          "id": "a4-rescue-3",
+          "x": 7779.623617522883,
+          "y": 1700,
+          "r": 22,
+          "h": 92
+        },
+        {
+          "id": "a4-rescue-2",
+          "x": 7719.354529627519,
+          "y": 1700,
+          "r": 22,
+          "h": 92
+        },
+        {
+          "id": "a4-rescue-1",
+          "x": 7659.097830750241,
+          "y": 1700,
+          "r": 22,
+          "h": 92
+        },
+        {
+          "id": "a4-rescue-0",
+          "x": 7599.026509846761,
+          "y": 1700,
+          "r": 22,
+          "h": 92
+        }
+      ],
+      "scope": "Diagnostic production Engine.walk(requireSupport=true) and actual separation12 on checkpoint actor fields; starts explicitly on unchanged protected support, no campaign outcome claim."
+    }
+  ]
+}

@@ -1,0 +1,55 @@
+{
+  "status": "partial-camera-criteria-only",
+  "reviewer": "assistant /root",
+  "reviewerMessageAt": "2026-10-29T19:17:59Z",
+  "userApproval": false,
+  "runtimeSha256": "71748ef5f9ddc261c1af1b9e04b9fc675c5d666b138e90b3ab5fd2215d1b5d33",
+  "canonicalProjectSha256": "7956c4ea8a2dde9afc583ecac1d9908a67203eb9397859fdff613850e6cbdd93",
+  "actualBrowserInputSha256": "524ee066a003976ce54457b196e148199ba7622b1ad253931d533a0e37d51ab4",
+  "stage31TransitivePayloadSha256": "007335c21f222c6adf34d9c47a7b6f8c298b5b682cb12910bb320c6d9d69c9d3",
+  "binding": "Independently computed stagePayload(actual browser full1089 library/10stage input) equals frozen package and canonical Stage31 transitive payload. Other custom entry semantics are not represented as official campaign entry.",
+  "criteria": [
+    {
+      "id": "C2",
+      "result": "pass",
+      "observation": "Assistant directly inspected observed maximum zoom-out left/right views: no large material cut, gap or floating segment. Minor low-contrast hairline seam remains."
+    },
+    {
+      "id": "C3",
+      "result": "pass",
+      "observation": "Assistant directly inspected responsive portrait controls and landscape targets. Observed controls/targets readable. Not real-device performance/touch-pinch; source receipt retains close-landscape jump frame foot clipping caveat."
+    }
+  ],
+  "pending": [
+    "C1 actual initial and ordinary moving view",
+    "C4 boat/water/gimmick state changes",
+    "Whole camera-and-state review",
+    "Normal production build and Pages verification"
+  ],
+  "evidence": [
+    {
+      "path": "tools/stage31/evidence/silhouette-final-7174/7174-31-west-settled.jpg",
+      "sha256": "d78ef492abc47574df81042cd403e503ebcb4ded85009d206c493549c05a1430"
+    },
+    {
+      "path": "tools/stage31/evidence/silhouette-final-7174/7174-31-east-settled.jpg",
+      "sha256": "f9c6b1af5317c0fae9902fdcd08c04fe55bf9b7516148a429c6c24f5e1be9b65"
+    },
+    {
+      "path": "tools/stage31/evidence/silhouette-final-7174/7174-31-portrait-controls.jpg",
+      "sha256": "d8ecdef6d09d148007501848969515e7025ba13bbd271fd6bf2c0d21d8d39713"
+    },
+    {
+      "path": "tools/stage31/evidence/silhouette-final-7174/7174-31-landscape-targets.jpg",
+      "sha256": "31c917b4d0b7c9a4533274c96d377f1147ad31b53185c433d91c14517e91ba56"
+    },
+    {
+      "path": "tools/stage31/evidence/silhouette-final-7174/7174-31-c2c3-receipt.json",
+      "sha256": "2388f84533af123eb3a85f28adf3fcbb567867bcb427a6414e7d79de0bb8b6ff"
+    },
+    {
+      "path": "tools/stage31/evidence/silhouette-final-7174/7174-31-c2c3-observations.json",
+      "sha256": "527e1a50f64a1e52231f2f2a97eafd3d91439c8d37de87671b4afe7d9ae6e5a7"
+    }
+  ]
+}

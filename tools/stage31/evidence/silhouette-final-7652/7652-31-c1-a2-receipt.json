@@ -1,0 +1,82 @@
+{
+  "runtimeSHA256": "7652daac71dc2c7c6ea02b438ce10105a26e1ac008b36258ad08e2835ee14fd9",
+  "currentProjectSHA256": "f16efd5cd4d4b4fdc6a7b7103015df2fafa95e026ce2682a318e09513954c300",
+  "testedProjectSHA256": "7956c4ea8a2dde9afc583ecac1d9908a67203eb9397859fdff613850e6cbdd93",
+  "closureProof": "7652-31-closure-equivalence.json",
+  "observations": "7652-31-c1-a2-observations.json",
+  "scope": "Actual browser App publiclaunchMap, all1089 assets; custom review not official campaign build",
+  "inputs": [
+    {
+      "action": "Guide confirm + opening dialogue skip",
+      "capture": "7652-31-first-play.jpg",
+      "actorX": 260,
+      "cameraManual": false
+    },
+    {
+      "action": "InitialAX62 keyboard attempt failed before input; canvas click selected mage; closed info and reselected archer. No state setters."
+    },
+    {
+      "action": "Right900ms, Up250ms, actual jump button",
+      "capture": "7652-31-move-jump.jpg",
+      "actorX": 795.3373623503896,
+      "budget": 1244.5700702535166,
+      "cameraManual": false
+    },
+    {
+      "action": "Reselect archer HUD to focus iframe, Right650ms",
+      "capture": "7652-31-move-slope.jpg",
+      "actorX": 1198.8370633915881,
+      "budget": 834.5141802144843,
+      "cameraManual": false
+    },
+    {
+      "action": "Ordinary wheel up onepage, no actor movement",
+      "capture": "7652-31-ground-wood-close.jpg",
+      "zoom": 1.65,
+      "cameraManual": true
+    },
+    {
+      "action": "Ordinary canvas drag600,480\u2192600,340",
+      "capture": "7652-31-ground-wood-contact.jpg",
+      "zoom": 1.65,
+      "cameraManual": true
+    }
+  ],
+  "visualFindings": [
+    "First playable view shows allfour actors, startbank, aimarc and minimap threats.",
+    "Representative automatic-camera slope view shows archer, descendingbank, firsttwo enemies, boardwalk and next gap.",
+    "Close view resolves irregular broad plank shading and supporting post; ground contour/internal planes remain legible.",
+    "Intermediate jumping/first-bank frame clips downhill threat partly at bottomHUD; retained as limitation rather than clean pass of every camera state."
+  ],
+  "limits": [
+    "Read-only observer sample and screenshot sequential, not same simulation frame. Coordinates prove actual movement, not continuous-video evidence.",
+    "A2 close shots are explicitly manual wheel/drag, not claimed ordinary automatic view.",
+    "No combat completion or movingboat/C4 state proof. Parent reviews visuals for gate judgment."
+  ],
+  "screenshots": [
+    {
+      "file": "7652-31-first.jpg",
+      "sha256": "7152c5b533addf287fd8b2e104c81f40965f3678b6b1f7986d47aedb3b2cea0c"
+    },
+    {
+      "file": "7652-31-first-play.jpg",
+      "sha256": "56a721211fcc4330281ad65496660c4f74c76c94f9cb994158c8341b4bdc9232"
+    },
+    {
+      "file": "7652-31-move-jump.jpg",
+      "sha256": "d6f3ab4bd5036341aa85794ed61013f24f3414538a596a4e5db40d3a7aa9fb1e"
+    },
+    {
+      "file": "7652-31-move-slope.jpg",
+      "sha256": "f6787235223ae1bbf37cd0df175fa48ea3d38de2cc1e9bc2424f8df7f49ba210"
+    },
+    {
+      "file": "7652-31-ground-wood-close.jpg",
+      "sha256": "0af4b8a584c842dba853c566f61fb67b04bb7627f9ab7712d2d6f5858b4f9bff"
+    },
+    {
+      "file": "7652-31-ground-wood-contact.jpg",
+      "sha256": "6c81d8f8ac786edafbdbf1bdee7bf1fcda1d4be693b1ed7021dfb34c46a2329c"
+    }
+  ]
+}

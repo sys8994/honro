@@ -1,0 +1,240 @@
+{
+  "pass": true,
+  "scope": "All39 unaffected stages incl1–30,31–38,40 and their explicit transitiveassetclosures exact. Existing unresolved Acts1–3 reference IDs retained as explicit comparison sentinels; Act4 missing references fail closed; sourceAssetId is provenance, not a runtime reference. Stage39 all gameplay fields except localterrain exact; only one rear decorative foot placement adjusted.",
+  "rows": [
+    {
+      "stage": "stage-1",
+      "stageSHA256": "d6f74a650517bb7de85757d33db733ef8e87c7308acc98637f74c0bde19c29b3",
+      "transitiveAssetClosureSHA256": "ef765b452dc009e13f8ac24269be9f3d8c6b5c40d1ca7bea6e002b42b023e799",
+      "exact": true
+    },
+    {
+      "stage": "stage-2",
+      "stageSHA256": "71a93af1cfa5752718cc0ed677f4242572626daa6714ee02c2d842b8cd0da2be",
+      "transitiveAssetClosureSHA256": "df4f82a5a25ad8d1b29ec1b8b24cef2ef09314d255c5b5b9bf30534b99c7dbf8",
+      "exact": true
+    },
+    {
+      "stage": "stage-3",
+      "stageSHA256": "a822adab4a3532c09fcc977b511138295645b8501785877c76847bb913c0e0d0",
+      "transitiveAssetClosureSHA256": "3ccec33b4d73109bb96170fb3e743df2f95288144039cae14223bdaa34687b3a",
+      "exact": true
+    },
+    {
+      "stage": "stage-4",
+      "stageSHA256": "9506df09253effbf6b2289d87524e78ea1b03a84016ad0980da20b52db2f6ff4",
+      "transitiveAssetClosureSHA256": "281eb5b6a7d1b76b69bdfcccb16740bb3b825837b47b59cb3495126c5d761355",
+      "exact": true
+    },
+    {
+      "stage": "stage-5",
+      "stageSHA256": "b0230c8f53327aceec386cd9ca3d5225cd3e03de28dad21de57030c412202d04",
+      "transitiveAssetClosureSHA256": "49b3604ccdae20fa0c679f9c160d99d00082f107968ee41cb338d6f26bb88086",
+      "exact": true
+    },
+    {
+      "stage": "stage-6",
+      "stageSHA256": "5cd0a7d04564267806b53ffb5295cbdfc469e6ed8cd4bd1239feeb9c5b703e03",
+      "transitiveAssetClosureSHA256": "657492ed81fcbe96d71afe9781fd0ab4722002c020557f67c2be4a385d6e7438",
+      "exact": true
+    },
+    {
+      "stage": "stage-7",
+      "stageSHA256": "5a97a2a0b33c1d883788cb739bd8dbd51f27d8966e270f59abebb43d45376e5e",
+      "transitiveAssetClosureSHA256": "833c7f3243767bc510e29e0333011e3f2a241c3b123afcab9f4726feea9f18b4",
+      "exact": true
+    },
+    {
+      "stage": "stage-8",
+      "stageSHA256": "8c36ed3460eb659111b54bc93aa397b6469808477d886654c7111a5f50a3d5ce",
+      "transitiveAssetClosureSHA256": "d2032c4ddd3c47b0cbc7542684ae7a82137438ca3ba5c8492c8f057ddbd74830",
+      "exact": true
+    },
+    {
+      "stage": "stage-9",
+      "stageSHA256": "d7f236f897d1bbbe8ffe85f3943d4bf961ac31b3ada9eea6e1e838dde3c876c3",
+      "transitiveAssetClosureSHA256": "07be058301a0fe39c729884378807d66ee9d7f211edc4fe4698d9bdd2b665d88",
+      "exact": true
+    },
+    {
+      "stage": "stage-10",
+      "stageSHA256": "29b3a182b07b610743a10bb193f0b2e97328a875c2744cc365fe10108bd1fdd4",
+      "transitiveAssetClosureSHA256": "af68bc426a780f6bf42162bff1ccbabd4f1ad024bfa723cf3b8e88fcded12d2b",
+      "exact": true
+    },
+    {
+      "stage": "stage-11",
+      "stageSHA256": "3f3d00195e127cc344aa0fb76b7d1895ea8db53e520964b0b4139fc175b2c163",
+      "transitiveAssetClosureSHA256": "5461d72f42dd233b897484dd600a8152ec363ee867927978b764724343370753",
+      "exact": true
+    },
+    {
+      "stage": "stage-12",
+      "stageSHA256": "95364c5b88ab81859c8302bc562e81060c56ed1e6c3327fb6c43d4cfe1dc823e",
+      "transitiveAssetClosureSHA256": "d4b39bfeeff8e89e85b9f1d8e9e24c92113ddf707e3c0fec1f55d2e9c88070aa",
+      "exact": true
+    },
+    {
+      "stage": "stage-13",
+      "stageSHA256": "d0c997b8dcfff5f083caf75f146cafba573e2f98f27e89b806d5cc8acd851fb4",
+      "transitiveAssetClosureSHA256": "629a7167661626e9ee063cbd87b9fd0c0223460f68530e262b6a4b7357f5bcde",
+      "exact": true
+    },
+    {
+      "stage": "stage-14",
+      "stageSHA256": "73fc6f4f6c6ee4a7b0c93bbba8b999af1d061395c51168514010cf8d55feae03",
+      "transitiveAssetClosureSHA256": "d569d602ff41f927e0c7ec82afb3df71017a3cf7e9d64bd639197b110057a6a3",
+      "exact": true
+    },
+    {
+      "stage": "stage-15",
+      "stageSHA256": "ead36ee94041845704affb39c2005866c9dd2c0bd64ed70538f72b39f372a5d4",
+      "transitiveAssetClosureSHA256": "cc2943c271ee8111f77badc0f3ccb02ae07e8bd4b2081a3285ffb72d8d0b9614",
+      "exact": true
+    },
+    {
+      "stage": "stage-16",
+      "stageSHA256": "8ca631cc998c7cb825de788a9e5556a9c6f8d713d0fb1883675fc6bd863cc681",
+      "transitiveAssetClosureSHA256": "50d250693920186f7af435a4cf61dd264d3998a127fc8ce269a534e9ebd51ce3",
+      "exact": true
+    },
+    {
+      "stage": "stage-17",
+      "stageSHA256": "d629d58dfcb14ae418dbd1d6fd2baf268db5511c07496f872bf6dd9c7ba81991",
+      "transitiveAssetClosureSHA256": "18e6097c357763cf0b6f4065e649830c7efd80048469a8a534603b5cf3e40612",
+      "exact": true
+    },
+    {
+      "stage": "stage-18",
+      "stageSHA256": "ba386fa8d83246c8ad93035512234010e326c571255388ea4e326fa1616a5b3e",
+      "transitiveAssetClosureSHA256": "fad11afd53716c5168c09bb58c2fa2b0566f599e53a1bb234bf7e5cf89673403",
+      "exact": true
+    },
+    {
+      "stage": "stage-19",
+      "stageSHA256": "c42ff7d63accbaa99735d0767a2feedc23016eb5555491ab6b3ef1ec8131cac1",
+      "transitiveAssetClosureSHA256": "3a62919531d9a4cc427fc8a3f90b71520d5a3e9a4f22d3257f662ef88562b527",
+      "exact": true
+    },
+    {
+      "stage": "stage-20",
+      "stageSHA256": "3d4653c2bc6a9fc2bbab210e03ced65eebc155b1012387c08bee76794a0b7294",
+      "transitiveAssetClosureSHA256": "58af34ddd1c2439abd29020be9ac551517347ecf013a81d0a755940fcfa6d282",
+      "exact": true
+    },
+    {
+      "stage": "stage-21",
+      "stageSHA256": "854f2005fe7101ee2fec9b9cc434bc8153dd42475aba467aa433b349c3225398",
+      "transitiveAssetClosureSHA256": "84b203c05ee782075f864328d87e2ccc97465117b3852b8f37cac4e5730901d7",
+      "exact": true
+    },
+    {
+      "stage": "stage-22",
+      "stageSHA256": "89efbb6419b4cce255a45cba9fbc54a680af83a06e2db8b6dfcfc5feed2b9c3c",
+      "transitiveAssetClosureSHA256": "110c7703d76864433b6b27c956122cf8e9fb553181f59920e9d027d13e31ed8e",
+      "exact": true
+    },
+    {
+      "stage": "stage-23",
+      "stageSHA256": "e7e34c4f3f6a048a431bd25f9cf4e705224071b8c52d843605d9ff450ea1fae5",
+      "transitiveAssetClosureSHA256": "d9c12c83ce9f5d49a1428355bde8f73b5943dcf8fca92d3dda65bcaac9fb150e",
+      "exact": true
+    },
+    {
+      "stage": "stage-24",
+      "stageSHA256": "ca33bebd56ad0dd520f2241828ffa81a28c0a3696ebe32c4745474ffa5ecaf9f",
+      "transitiveAssetClosureSHA256": "c81dc2235b64a7937645398e4cab070b25605e1d866708e7d5405c31d675e194",
+      "exact": true
+    },
+    {
+      "stage": "stage-25",
+      "stageSHA256": "e59abe20839b54cc65d7b6c649f7d9079da9c12c913a9c32e962a9e2206a8db6",
+      "transitiveAssetClosureSHA256": "8630529f5bf4e7650924a062e5d41d71e1817075b9cb910d3df5d73c7758bc17",
+      "exact": true
+    },
+    {
+      "stage": "stage-26",
+      "stageSHA256": "845d25fc800b5565a643afa7a8fd779a402207e7b93d345aaf753c4c38266bf2",
+      "transitiveAssetClosureSHA256": "0174f128c999bba2aae368f219c0994e5b8411dfcbfc3b43ff0c580879b12432",
+      "exact": true
+    },
+    {
+      "stage": "stage-27",
+      "stageSHA256": "ef28221b6f7d48ea856aec14ef21d88ca3da08d4d5e65856e99833e023dfe917",
+      "transitiveAssetClosureSHA256": "ffe4c0135eeefe2da10e1e7b4d4e7663ffcedc686c9bd13c660182cbf021f0ab",
+      "exact": true
+    },
+    {
+      "stage": "stage-28",
+      "stageSHA256": "9f059331a92d74fee64d004eaef75977e26a9f222035498d34c3ad8f8255bb2a",
+      "transitiveAssetClosureSHA256": "76324e55d0110af991603e07692e6bc17abe75cc6d869f37b18107c800fea11c",
+      "exact": true
+    },
+    {
+      "stage": "stage-29",
+      "stageSHA256": "0f94b5c971e55f930d57cae55fa0ad9b595791a44309d58033af73cf5a0bf50c",
+      "transitiveAssetClosureSHA256": "32bbcb75ac2bcd9c9ae503e8a6849956631b017879ae32a54fc9aeca9c464557",
+      "exact": true
+    },
+    {
+      "stage": "stage-30",
+      "stageSHA256": "02fbf0aba64e39b3ec54eccbd0e3704f1a8759730ebb2ced90c23949cc5804f6",
+      "transitiveAssetClosureSHA256": "e628438b18e283688629bf69f8c28547aba2d37d5fb004b7e76440fc53a29952",
+      "exact": true
+    },
+    {
+      "stage": "stage-31",
+      "stageSHA256": "bb111c130c0c9571173f753a1a305ce63b1185c3c5c110940483eb2b672fcf3e",
+      "transitiveAssetClosureSHA256": "fe2fd082f924b85ade82ff85fafbdfb807bd9a832ff13fab5057d889cc927e16",
+      "exact": true
+    },
+    {
+      "stage": "stage-32",
+      "stageSHA256": "858b6e0256d5adb1cccd5fdd2c34e2d4670a4c2702b0c2e7075946c7cca27723",
+      "transitiveAssetClosureSHA256": "c10fc815d976e51add40b1462d99c4d9e52e03bc2e90e43982d91b2277516f36",
+      "exact": true
+    },
+    {
+      "stage": "stage-33",
+      "stageSHA256": "ff0660ee66aedd6b0ee8978689ea654abb365620afa6dfa4fe819cc96f8817fe",
+      "transitiveAssetClosureSHA256": "fac3d70c02af1f7fe50db6f8bb15ded6d50a594522e6de0a72629ac99bac3dcc",
+      "exact": true
+    },
+    {
+      "stage": "stage-34",
+      "stageSHA256": "bc49ec5ca1781fa20f5f71046c8c4a11af1adecb48f896d7a997eed96dcfb3af",
+      "transitiveAssetClosureSHA256": "3572b2866797903113d83240ec934fbe7254114408006770d7b7b81962638183",
+      "exact": true
+    },
+    {
+      "stage": "stage-35",
+      "stageSHA256": "2bbcc83f16566e23b1d921c805dbbcf5ab99ec1c4a680ea1b3a26d422fab3a62",
+      "transitiveAssetClosureSHA256": "118829bb24626c2659b6c1c544c1ef9fd2d853e9ba5ef3e5cb45430a9e527791",
+      "exact": true
+    },
+    {
+      "stage": "stage-36",
+      "stageSHA256": "8e6bd094e8d09a328ccc714724e329b8a329b1000826002bd058cc80dd228933",
+      "transitiveAssetClosureSHA256": "3e831800679a8099e8a7b91e957af6275e16d5e113c0977c6585c8bbaf79f691",
+      "exact": true
+    },
+    {
+      "stage": "stage-37",
+      "stageSHA256": "27a2c48c9006691f1f5a1726640d32060be3c964c697f77b97303e44b25eb96a",
+      "transitiveAssetClosureSHA256": "c9597e47c38bbe2c43d00c51b03e55c99a9241d160c03ba801791b9072d9a093",
+      "exact": true
+    },
+    {
+      "stage": "stage-38",
+      "stageSHA256": "c1c97eed455c1c1aa46de2906544fb77e012d612683b9b47b5838562b2a14fcf",
+      "transitiveAssetClosureSHA256": "6d9fe62d815af72ad6b7925c3d940a63b73fba83e209cef0d5b226720c7acbdc",
+      "exact": true
+    },
+    {
+      "stage": "stage-40",
+      "stageSHA256": "59ce3ae2cfe71932aed3c7816fb6d7acd1e4a532db16ab1b91cd6ba3a9819424",
+      "transitiveAssetClosureSHA256": "f6a91e3eb93ddd247195928412b5325544c025c7b280ceafea0fbb2c83db027b",
+      "exact": true
+    }
+  ]
+}

@@ -1,0 +1,407 @@
+{
+  "visualCaptures": [],
+  "midContinue": [
+    {
+      "kind": "ordinary-midstage",
+      "frame": 4501,
+      "pass": true,
+      "scope": "Actual stopBattle/persist/Continue, exact gameplay and resolved visual-state equality"
+    }
+  ],
+  "success": true,
+  "officialIdentity": {
+    "worldPath": "shared/data/act4/world.json",
+    "worldSHA256": "801df923ce89d8747f337f0b71e2ae38c604a8efbd6250d56e885b931af9f1b5",
+    "manifestPath": "shared/data/act4/world.parts/manifest.json",
+    "manifestSHA256": "268605120a84dff630108b33a3a6db05d9b060f8852cc6178f7e875d2ad3a30d",
+    "partCount": 16,
+    "runtimeMetadataAdditions": [
+      {
+        "stage": "stage-34",
+        "path": "initialState.honroNarrativeRevision",
+        "value": 1
+      },
+      {
+        "stage": "stage-34",
+        "path": "initialState.honroStoryCanonRevision",
+        "value": 1
+      },
+      {
+        "stage": "stage-34",
+        "path": "initialState.honroNarrativeCatalogueRevision",
+        "value": 1
+      },
+      {
+        "stage": "stage-38",
+        "path": "initialState.honroNarrativeRevision",
+        "value": 1
+      },
+      {
+        "stage": "stage-38",
+        "path": "initialState.honroStoryCanonRevision",
+        "value": 1
+      },
+      {
+        "stage": "stage-38",
+        "path": "initialState.honroNarrativeCatalogueRevision",
+        "value": 1
+      }
+    ],
+    "defaultBuiltProjectSHA256": "fcea8aaf29aff74933cfa31c47746d327e4bd9a6b2ce198eea90585cd6af87f3",
+    "stages": [
+      {
+        "id": "stage-31",
+        "sourceSHA256": "bb111c130c0c9571173f753a1a305ce63b1185c3c5c110940483eb2b672fcf3e",
+        "loadedSHA256": "bb111c130c0c9571173f753a1a305ce63b1185c3c5c110940483eb2b672fcf3e"
+      },
+      {
+        "id": "stage-32",
+        "sourceSHA256": "858b6e0256d5adb1cccd5fdd2c34e2d4670a4c2702b0c2e7075946c7cca27723",
+        "loadedSHA256": "858b6e0256d5adb1cccd5fdd2c34e2d4670a4c2702b0c2e7075946c7cca27723"
+      },
+      {
+        "id": "stage-33",
+        "sourceSHA256": "ff0660ee66aedd6b0ee8978689ea654abb365620afa6dfa4fe819cc96f8817fe",
+        "loadedSHA256": "ff0660ee66aedd6b0ee8978689ea654abb365620afa6dfa4fe819cc96f8817fe"
+      },
+      {
+        "id": "stage-34",
+        "sourceSHA256": "bc49ec5ca1781fa20f5f71046c8c4a11af1adecb48f896d7a997eed96dcfb3af",
+        "loadedSHA256": "38d8a6a6c9c631857854cc66204f45a4cfa994f08d5a4164e3cbb05c045bcb36"
+      },
+      {
+        "id": "stage-35",
+        "sourceSHA256": "2bbcc83f16566e23b1d921c805dbbcf5ab99ec1c4a680ea1b3a26d422fab3a62",
+        "loadedSHA256": "2bbcc83f16566e23b1d921c805dbbcf5ab99ec1c4a680ea1b3a26d422fab3a62"
+      },
+      {
+        "id": "stage-36",
+        "sourceSHA256": "8e6bd094e8d09a328ccc714724e329b8a329b1000826002bd058cc80dd228933",
+        "loadedSHA256": "8e6bd094e8d09a328ccc714724e329b8a329b1000826002bd058cc80dd228933"
+      },
+      {
+        "id": "stage-37",
+        "sourceSHA256": "27a2c48c9006691f1f5a1726640d32060be3c964c697f77b97303e44b25eb96a",
+        "loadedSHA256": "27a2c48c9006691f1f5a1726640d32060be3c964c697f77b97303e44b25eb96a"
+      },
+      {
+        "id": "stage-38",
+        "sourceSHA256": "c1c97eed455c1c1aa46de2906544fb77e012d612683b9b47b5838562b2a14fcf",
+        "loadedSHA256": "0fd51aac08b4da2d48cebb06a4e9cbef102d6d3cd4d9516a7f41d4fb36419b70"
+      },
+      {
+        "id": "stage-39",
+        "sourceSHA256": "8695dbcd724d4dd70cfe4dea619427de21b259e2f7cb6881894ade3a0d6b66f1",
+        "loadedSHA256": "8695dbcd724d4dd70cfe4dea619427de21b259e2f7cb6881894ade3a0d6b66f1"
+      },
+      {
+        "id": "stage-40",
+        "sourceSHA256": "59ce3ae2cfe71932aed3c7816fb6d7acd1e4a532db16ab1b91cd6ba3a9819424",
+        "loadedSHA256": "59ce3ae2cfe71932aed3c7816fb6d7acd1e4a532db16ab1b91cd6ba3a9819424"
+      }
+    ],
+    "assetCount": 225,
+    "entryPath": "Actual App.launch/continue on default runtimeParts campaign, no HONRO_PROJECT substitution, launchMap, importedDraft, customMap or debug mode",
+    "limit": "Native default-build source/transport identity, not browser HTTP-loader or UI proof"
+  },
+  "stage": 39,
+  "nextStage": 40,
+  "frame": 29799,
+  "entryBuild": "campaign-spent-v1",
+  "projectSHA256": "801df923ce89d8747f337f0b71e2ae38c604a8efbd6250d56e885b931af9f1b5",
+  "runtimeSHA256": "7652daac71dc2c7c6ea02b438ce10105a26e1ac008b36258ad08e2835ee14fd9",
+  "tapeSHA256": "d82a9c7aa10962fd77344f113a437987a0d9dd18b291da2e579d1410c244cbea",
+  "previousBoundarySHA256": "2489c8309602decf9ad3dd9f3df8275527db4ea44f62eb9b6f7d4cd79e854c2a",
+  "proof": {
+    "version": 1,
+    "runId": "eq-mvty68sj-tlxd355a",
+    "completed": {
+      "31": {
+        "stage": 31,
+        "sourceRun": "honro-map-stage-31-1793302780071",
+        "campaignRunId": "eq-mvty68sj-tlxd355a",
+        "success": true,
+        "residents": [],
+        "rows": [
+          "A4.S31.BOAT.01",
+          "A4.S31.BOARD.01"
+        ]
+      },
+      "32": {
+        "stage": 32,
+        "sourceRun": "honro-map-stage-32-1793302827439",
+        "campaignRunId": "eq-mvty68sj-tlxd355a",
+        "success": true,
+        "residents": [
+          {
+            "id": "a4-shelter-speaker",
+            "hp": 1450,
+            "dead": false
+          }
+        ],
+        "rows": [
+          "A4.S32.REUNION.01",
+          "A4.S32.MISSING.01"
+        ]
+      },
+      "33": {
+        "stage": 33,
+        "sourceRun": "honro-map-stage-33-1793302878460",
+        "campaignRunId": "eq-mvty68sj-tlxd355a",
+        "success": true,
+        "residents": [],
+        "rows": [
+          "A4.S33.TIDE.01",
+          "A4.S33.TIDE.02"
+        ]
+      },
+      "34": {
+        "stage": 34,
+        "sourceRun": "honro-map-stage-34-1793302939975",
+        "campaignRunId": "eq-mvty68sj-tlxd355a",
+        "success": true,
+        "residents": [],
+        "rows": [
+          "A4.S34.DISLOCATION.01"
+        ]
+      },
+      "35": {
+        "stage": 35,
+        "sourceRun": "honro-map-stage-35-1793303087482",
+        "campaignRunId": "eq-mvty68sj-tlxd355a",
+        "success": true,
+        "residents": [],
+        "rows": [
+          "A4.S35.EXIT.01"
+        ]
+      },
+      "36": {
+        "stage": 36,
+        "sourceRun": "honro-map-stage-36-1793303326733",
+        "campaignRunId": "eq-mvty68sj-tlxd355a",
+        "success": true,
+        "residents": [],
+        "rows": [
+          "A4.S36.ENTRY.01",
+          "A4.S36.DOOR.01",
+          "A4.S36.DOOR.02",
+          "A4.S36.EXIT.01",
+          "A4.S36.EXIT.02"
+        ]
+      },
+      "37": {
+        "stage": 37,
+        "sourceRun": "honro-map-stage-37-1793303431708",
+        "campaignRunId": "eq-mvty68sj-tlxd355a",
+        "success": true,
+        "residents": [],
+        "rows": [
+          "A4.S37.SIGNAL.01"
+        ]
+      },
+      "38": {
+        "stage": 38,
+        "sourceRun": "honro-map-stage-38-1793303821034",
+        "campaignRunId": "eq-mvty68sj-tlxd355a",
+        "success": true,
+        "residents": [
+          {
+            "id": "a4-rescue-0",
+            "hp": 1450,
+            "dead": false
+          },
+          {
+            "id": "a4-rescue-1",
+            "hp": 1450,
+            "dead": false
+          },
+          {
+            "id": "a4-rescue-2",
+            "hp": 1450,
+            "dead": false
+          },
+          {
+            "id": "a4-rescue-3",
+            "hp": 1387.9,
+            "dead": false
+          }
+        ],
+        "rows": [
+          "A4.S38.VOICE.01",
+          "A4.S38.ANCHOR.01",
+          "A4.S38.CONNECTED.01"
+        ]
+      },
+      "39": {
+        "stage": 39,
+        "sourceRun": "honro-map-stage-39-1793304969261",
+        "campaignRunId": "eq-mvty68sj-tlxd355a",
+        "success": true,
+        "residents": [
+          {
+            "id": "a4-rescue-0",
+            "hp": 1117,
+            "dead": false
+          },
+          {
+            "id": "a4-rescue-1",
+            "hp": 1326,
+            "dead": false
+          },
+          {
+            "id": "a4-rescue-2",
+            "hp": 1450,
+            "dead": false
+          },
+          {
+            "id": "a4-rescue-3",
+            "hp": 1387.9,
+            "dead": false
+          }
+        ],
+        "rows": [
+          "A4.S39.BOSS.01",
+          "A4.S39.STABILIZE.01",
+          "A4.S39.RELEASE.01"
+        ]
+      }
+    },
+    "factEvents": {
+      "eq_se_t3b": {
+        "eventId": "eq_se_t3b",
+        "stage": 31,
+        "sourceRun": "honro-map-stage-31-1793302780071",
+        "campaignRunId": "eq-mvty68sj-tlxd355a",
+        "officialAct4": true,
+        "proof": {
+          "boarded": true,
+          "party": [
+            "archer",
+            "mage",
+            "knight",
+            "occultist"
+          ]
+        }
+      },
+      "eq_co_t3_choice": {
+        "eventId": "eq_co_t3_choice",
+        "stage": 35,
+        "sourceRun": "honro-map-stage-35-1793303087482",
+        "campaignRunId": "eq-mvty68sj-tlxd355a",
+        "officialAct4": true,
+        "proof": {
+          "tag": "rooted-third-clearing",
+          "reached": true
+        }
+      },
+      "eq_hw_t3b": {
+        "eventId": "eq_hw_t3b",
+        "stage": 36,
+        "sourceRun": "honro-map-stage-36-1793303326733",
+        "campaignRunId": "eq-mvty68sj-tlxd355a",
+        "officialAct4": true,
+        "proof": {
+          "target": "a4-36-g0-0",
+          "elite": true
+        }
+      }
+    },
+    "safeSeven": {
+      "ids": [
+        "shelter-person-0",
+        "shelter-person-1",
+        "shelter-person-2",
+        "shelter-person-3",
+        "shelter-person-4",
+        "shelter-person-5",
+        "shelter-person-6"
+      ],
+      "sourceRun": "honro-map-stage-32-1793302827439",
+      "reportIds": [
+        "A4.S32.MISSING.01"
+      ],
+      "reunionIds": [
+        "A4.S32.REUNION.01"
+      ],
+      "reunionObserved": {
+        "sourceRun": "honro-map-stage-32-1793302827439",
+        "npc": "a4-shelter-speaker",
+        "hero": "archer",
+        "seenAt": 115.00833333337093,
+        "positions": [
+          {
+            "id": "archer",
+            "x": 4587.753703945974,
+            "y": 2014.73755443995
+          },
+          {
+            "id": "a4-shelter-speaker",
+            "x": 4779.56439978659,
+            "y": 2010.8476090930183
+          }
+        ]
+      },
+      "campaignRunId": "eq-mvty68sj-tlxd355a",
+      "stage": 32,
+      "success": true,
+      "residents": [
+        {
+          "id": "a4-shelter-speaker",
+          "hp": 1450,
+          "dead": false
+        }
+      ],
+      "rows": [
+        "A4.S32.REUNION.01",
+        "A4.S32.MISSING.01"
+      ]
+    },
+    "rescued": {
+      "ids": [
+        "a4-rescue-0",
+        "a4-rescue-1",
+        "a4-rescue-2",
+        "a4-rescue-3"
+      ],
+      "sourceRun": "honro-map-stage-39-1793304969261",
+      "campaignRunId": "eq-mvty68sj-tlxd355a",
+      "stage": 39,
+      "success": true,
+      "residents": [
+        {
+          "id": "a4-rescue-0",
+          "hp": 1117,
+          "dead": false
+        },
+        {
+          "id": "a4-rescue-1",
+          "hp": 1326,
+          "dead": false
+        },
+        {
+          "id": "a4-rescue-2",
+          "hp": 1450,
+          "dead": false
+        },
+        {
+          "id": "a4-rescue-3",
+          "hp": 1387.9,
+          "dead": false
+        }
+      ],
+      "rows": [
+        "A4.S39.BOSS.01",
+        "A4.S39.STABILIZE.01",
+        "A4.S39.RELEASE.01"
+      ]
+    }
+  },
+  "utf16Bytes": 222898,
+  "coldEntryVerified": true,
+  "scope": "Linked ordinary-input actual App win/outro/Next, exact storage transfer. Initial stage30-complete fixture only; no subsequent prepared flags/XP resets. Native Canvas with sparse rendering; not browser/HUD/continuous camera proof.",
+  "boundaryPath": "_local/reports/act4-linked-7652/39/replay-repaired/boundary.json",
+  "boundarySHA256": "a5bd85b15af1a31fbc800e866514ed1f6b239392ebe021b504c0db270b670090",
+  "nextBattleSHA256": "aecc19ece1174e11c37cea46b1501ea691a54cb8414591a6d5dd83c3ae3e98ca",
+  "sourceTransitionEvidence": "tools/density-qa/evidence/final-linked-7652/stage39-source-transition.json",
+  "status": "completed linked39 after explicit source-only actualRetry;40 pending"
+}

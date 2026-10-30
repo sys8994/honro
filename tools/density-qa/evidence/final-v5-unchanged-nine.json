@@ -1,0 +1,858 @@
+{
+  "oldProjectSHA256": "fd8e0ec9019e88ac52ef85e3027f08b1e990b065770efd335474e7bc5a41da04",
+  "newProjectSHA256": "2dc1904694285fa9efa654bd94dd7fe2c3ab546d7027b3d7dcce39c37ccb5f09",
+  "changedLibraryIds": [
+    "s38-density:body-land",
+    "s38-density:body-land-domain-left",
+    "s38-density:body-east",
+    "s38-density:body-east-domain-right",
+    "s38-density:body-emergency-ledges"
+  ],
+  "scope": "Exact unchanged-stage and configured plus actual-App-entry asset-reference closure proof for nine stages. This is not a new replay on the later fingerprint, nor art/browser approval. Stage38 is excluded and requires its own later-project replay.",
+  "rows": [
+    {
+      "stage": 31,
+      "oldProjectSHA256": "fd8e0ec9019e88ac52ef85e3027f08b1e990b065770efd335474e7bc5a41da04",
+      "newProjectSHA256": "2dc1904694285fa9efa654bd94dd7fe2c3ab546d7027b3d7dcce39c37ccb5f09",
+      "runtimeSHA256": "c06cffd6d892681fb3282a2679a114a1871827e16bc414c2122e7ef6d38bcdbd",
+      "stageSHA256": "b0e140c3fc22a502373969c6fc93b8ea4b0a28f63d24ed5bca8fab04385bb121",
+      "stageExactEqual": true,
+      "entryAndConfiguredAssetClosureExactEqual": true,
+      "closure": [
+        {
+          "id": "a4:boat",
+          "source": "project-library",
+          "sha256": "687bc5deb121bf478b46ac7e9406d6a18b5309db111d777a430c7b39a530596c"
+        },
+        {
+          "id": "a4:dock",
+          "source": "project-library",
+          "sha256": "73a5577626a0694cfbed30aa3982f45688c161dbb76e8f5721e4e9844e2399df"
+        },
+        {
+          "id": "act1-scene:ferry-house",
+          "source": "project-library",
+          "sha256": "36880906c66f053b58362453f3f1d5a78c4aaf2af2d25491a78cb2da450050dc"
+        },
+        {
+          "id": "act1-scene:rooted-pine",
+          "source": "project-library",
+          "sha256": "92523de041020cac1da310ddb75522ce594e40783d39cff565ca864f4cab530c"
+        },
+        {
+          "id": "common-v:fore-reeds",
+          "source": "project-library",
+          "sha256": "72a807c361817ce97e4777a36f8dc1582b9a5b235df9e22e75d9c53408271b28"
+        },
+        {
+          "id": "s31-density:body-depthfade",
+          "source": "project-library",
+          "sha256": "6f5afdbc23413cc03ae57308b74f0448c2191da2c1d1b97a5f98da894a793473"
+        },
+        {
+          "id": "s31-density:body-depthfade-domain-left",
+          "source": "project-library",
+          "sha256": "03d89866898f98c3a0e8235ca934b496b0e6a8af71a8d1c653604408003d76c6"
+        },
+        {
+          "id": "s31-density:body-depthfade-domain-right",
+          "source": "project-library",
+          "sha256": "c7db1cafa5202be256962ecacd9903a6fff948fed32ef09ba4ebea692b8c896a"
+        },
+        {
+          "id": "s31-density:landing-ruin",
+          "source": "project-library",
+          "sha256": "a00ccd87f3500c65b4a080da62a7a6a0ec46ac0149e32ab37c1305b9493dc15a"
+        },
+        {
+          "id": "s31-density:soil-contact-0",
+          "source": "project-library",
+          "sha256": "0142c9672b4b2ebed9fc1f8c34072f3ea1b15d5b82c8e819404ffb1e39ffc6b1"
+        },
+        {
+          "id": "s31-density:soil-contact-3600",
+          "source": "project-library",
+          "sha256": "72c40e3388ec0aec476bce2be926b94fa0c15992437a1e4d5cb24656affb7c1a"
+        },
+        {
+          "id": "s31-density:wood-boardwalks",
+          "source": "project-library",
+          "sha256": "9604a8e25a629868686f02288653efbe617f9f8d62924f5c72207238c6bf4188"
+        },
+        {
+          "id": "s31:shore-material",
+          "source": "project-library",
+          "sha256": "ccf874d36a8c0223a357cf69fcc3b3f1255e7fe1ca0d70412b1afa107ebcd2e7"
+        },
+        {
+          "id": "s31:timber-structure",
+          "source": "project-library",
+          "sha256": "f66919fa55dba0db6e94a8ab5062d30d890580eb1027201a9783663aa9ebacd9"
+        },
+        {
+          "id": "s31v:abandoned-skiff",
+          "source": "project-library",
+          "sha256": "c6b9cd388e5c313a4bd435a1fd74801db7d7e996808ba25d408e8a6374a40824"
+        },
+        {
+          "id": "s31v:arrival-ferry",
+          "source": "project-library",
+          "sha256": "1b33566e6d8831d3a418f0954d4a347cb78c2f34d7e5fb65e844333b082b5ae1"
+        },
+        {
+          "id": "s31v:bank-reed",
+          "source": "project-library",
+          "sha256": "0d9aa531318b594956581276a69891400522e7308b750ce9f028536fa2412e95"
+        },
+        {
+          "id": "s31v:fore-ridge",
+          "source": "project-library",
+          "sha256": "f1b35aa088db25bfb3fd260210ccbb74dfb6b548a3c377f810232c56df1f24a4"
+        },
+        {
+          "id": "s31v:fore-ridge-left",
+          "source": "project-library",
+          "sha256": "26b62d644c69a2be5c060273fd8c219bb6d341fe848c0cd59dd05a7d896fa8f9"
+        },
+        {
+          "id": "s31v:fore-ridge-right",
+          "source": "project-library",
+          "sha256": "fa443463d20132b15594345eac06c7a151c6b700b64d9335eadc1fb4b77cdf22"
+        },
+        {
+          "id": "stage30:ferry-old-funeral-sign",
+          "source": "project-library",
+          "sha256": "a71c5c03eafd72eeaa2ae38a99e6eafa42fb36c34ccbff3ee4b8391bbf778614"
+        },
+        {
+          "id": "stage30:ferry-quay-cargo",
+          "source": "project-library",
+          "sha256": "83b0500bef14c97107b01108b4613a46a30e2743cc98f2f95bcb66b9c740aef6"
+        }
+      ]
+    },
+    {
+      "stage": 32,
+      "oldProjectSHA256": "fd8e0ec9019e88ac52ef85e3027f08b1e990b065770efd335474e7bc5a41da04",
+      "newProjectSHA256": "2dc1904694285fa9efa654bd94dd7fe2c3ab546d7027b3d7dcce39c37ccb5f09",
+      "runtimeSHA256": "c06cffd6d892681fb3282a2679a114a1871827e16bc414c2122e7ef6d38bcdbd",
+      "stageSHA256": "e979be628db165b91e1571b621cc7e5345ae95ecd7a5d473c144fa6dc4388db5",
+      "stageExactEqual": true,
+      "entryAndConfiguredAssetClosureExactEqual": true,
+      "closure": [
+        {
+          "id": "a4-coast:drying-frame",
+          "source": "project-library",
+          "sha256": "9d0659d5aaac621d1e3cbc3cfe73f27c7f4ff3cc31189090ddd5a2b1e1b460ce"
+        },
+        {
+          "id": "a4-coast:pier-32-1520",
+          "source": "project-library",
+          "sha256": "b9ddc656db1ffabcff81d2575774bfd9c12b01001e799eabfe1982fdd44b63b0"
+        },
+        {
+          "id": "a4-coast:pier-32-2370",
+          "source": "project-library",
+          "sha256": "217cc093ce419866e59e7f94d331a8d1b195108c167aa9c43b2fa94ff6833df4"
+        },
+        {
+          "id": "a4-coast:ridge",
+          "source": "project-library",
+          "sha256": "e34bff0a5fa9049828b921706bf383c34ad0a437bc263cbba07942d15114323a"
+        },
+        {
+          "id": "a4:dock",
+          "source": "project-library",
+          "sha256": "73a5577626a0694cfbed30aa3982f45688c161dbb76e8f5721e4e9844e2399df"
+        },
+        {
+          "id": "a4:door",
+          "source": "project-library",
+          "sha256": "ffe90bb16d8af3f4e5dcca63d8e8964e4f78dbaf2c316cb6aed465d9e36771c7"
+        },
+        {
+          "id": "density-bg:coastal-house-32",
+          "source": "project-library",
+          "sha256": "f7cc6fdc77625d9b6abe1a5c4c0706cf6200dbe883d7505783e7da94e1530e46"
+        },
+        {
+          "id": "density-play:wood-platform-route",
+          "source": "project-library",
+          "sha256": "9af24ecaae380e13a0c08f249c5bbd11b86189e71a1152fa12b1e7d4d3cd3c05"
+        },
+        {
+          "id": "s32-density:body-depthfade",
+          "source": "project-library",
+          "sha256": "de3a40afe5b6bb3eafbc474e3fd60e1837067f57da679d7cc71317471e384537"
+        },
+        {
+          "id": "s32-density:body-depthfade-domain-left-part-0",
+          "source": "project-library",
+          "sha256": "a4bb1bc3b3b9bf58dea0ebf117f8c0e563d6f5ea890c8e25d325de6fd8c6653e"
+        },
+        {
+          "id": "s32-density:body-depthfade-domain-left-part-1",
+          "source": "project-library",
+          "sha256": "b5bef0b35e4d33175c1ba396ea92147ab6e135f42ac09b31354784d853ba59f4"
+        },
+        {
+          "id": "s32-density:body-depthfade-domain-right-part-0",
+          "source": "project-library",
+          "sha256": "4e6145372f500ac4a566cf74cea8878bce147453cb5aebfd4d8d424b779fcda8"
+        },
+        {
+          "id": "s32-density:body-depthfade-domain-right-part-1",
+          "source": "project-library",
+          "sha256": "1f90f55fbcc279538377303111c88a9ce568e922b17bcd20d92338a2d82250dd"
+        },
+        {
+          "id": "s32-density:soil-contact",
+          "source": "project-library",
+          "sha256": "03c4fd2c920f4bb73ec952614d75e591dd26b10f6933301e7a0fc4659cb8c7fc"
+        },
+        {
+          "id": "s32-density:stone-cover-natural",
+          "source": "project-library",
+          "sha256": "2faa7750a276fbd90a1ebc1af47b428c7af02cfe32b11697755cc06bdba2c867"
+        },
+        {
+          "id": "s32v:abandoned-skiff",
+          "source": "project-library",
+          "sha256": "a438c3c4cd7cb10636c06a9e2a6c98e1a5bc7f221f97cb04e95a4309ad128305"
+        },
+        {
+          "id": "s32v:rubble-foundation",
+          "source": "project-library",
+          "sha256": "18d0ef8201ad16ffef02b3b97a011dd55d144ee65ce060235816a3371df05d5a"
+        }
+      ]
+    },
+    {
+      "stage": 33,
+      "oldProjectSHA256": "fd8e0ec9019e88ac52ef85e3027f08b1e990b065770efd335474e7bc5a41da04",
+      "newProjectSHA256": "2dc1904694285fa9efa654bd94dd7fe2c3ab546d7027b3d7dcce39c37ccb5f09",
+      "runtimeSHA256": "c06cffd6d892681fb3282a2679a114a1871827e16bc414c2122e7ef6d38bcdbd",
+      "stageSHA256": "1805bc87d6f96506434b0d2ff17b920c339b604627d756fb7e7a62871b5a2dcc",
+      "stageExactEqual": true,
+      "entryAndConfiguredAssetClosureExactEqual": true,
+      "closure": [
+        {
+          "id": "a4-coast:ridge",
+          "source": "project-library",
+          "sha256": "e34bff0a5fa9049828b921706bf383c34ad0a437bc263cbba07942d15114323a"
+        },
+        {
+          "id": "s31v:abandoned-skiff",
+          "source": "project-library",
+          "sha256": "c6b9cd388e5c313a4bd435a1fd74801db7d7e996808ba25d408e8a6374a40824"
+        },
+        {
+          "id": "s33-density:body-target-v3",
+          "source": "project-library",
+          "sha256": "b5642b7ccc5d9b82ca777a505eaff45a28d49c246f2b22af325c5a2e794486ad"
+        },
+        {
+          "id": "s33-density:body-target-v3-domain-left",
+          "source": "project-library",
+          "sha256": "22d83fe7c2404c3218b33d5a733d3be36763e0e9a0a95cc01f47f4c77ea124f8"
+        },
+        {
+          "id": "s33-density:body-target-v3-domain-right",
+          "source": "project-library",
+          "sha256": "3483086565ab54651373d11de5a9fc69e149bb8ed0742f7cf3a67f77248b4582"
+        },
+        {
+          "id": "s33-density:refuge-east",
+          "source": "project-library",
+          "sha256": "abe1f695de6283de9662d4540ee544e987d5036d3e4da46d0a01d9ce9bd8d968"
+        },
+        {
+          "id": "s33-density:refuge-west",
+          "source": "project-library",
+          "sha256": "2da5299fa5896dd29f7e841e3243efa0d3c0be47a414e8c6e7ceb1ebc532ab50"
+        },
+        {
+          "id": "s33-density:soil-contact-0",
+          "source": "project-library",
+          "sha256": "ae75292f62d5ec362448bb6efbf107415ac9e3bf9db94bb9d61ca0d07d43d3c8"
+        },
+        {
+          "id": "s33-density:soil-contact-3600",
+          "source": "project-library",
+          "sha256": "4f59a921ac4bd58b71a66ba1ebb328e54e4be9d22f270340ef4a1063a92582c9"
+        },
+        {
+          "id": "s33-density:soil-contact-7200",
+          "source": "project-library",
+          "sha256": "b9829665ac882fe046db300a50fa4a0abfa6560b4c8b4954113082320682f0e3"
+        },
+        {
+          "id": "s33v:body-contact-underpaint",
+          "source": "project-library",
+          "sha256": "307667eb2da016d0e4ef0d833799fe0d34b2f9beb3282b877b4f0459a7dc82f4"
+        },
+        {
+          "id": "s33v:coastal-boulder",
+          "source": "project-library",
+          "sha256": "bb66a6235096a34f62b6258dbf4a645950efc4bfd927e153580a729d26b2a1bb"
+        },
+        {
+          "id": "s33v:fore-reed-cluster",
+          "source": "project-library",
+          "sha256": "81d1424272ce0e15d3e7afebec89a4b2d46dae9bb45f5f4657eabffa4ba385fc"
+        },
+        {
+          "id": "s33v:rear-reed-cluster",
+          "source": "project-library",
+          "sha256": "0f84337d0094510ba032fb129b3fa6295a809628b8846740ff79e9ee98aa7608"
+        },
+        {
+          "id": "s33v:stone-pier",
+          "source": "project-library",
+          "sha256": "4ef325122e12cdb909949a93d68cddafc8a6c4d102472f3ae927ed44e77c51f4"
+        }
+      ]
+    },
+    {
+      "stage": 34,
+      "oldProjectSHA256": "fd8e0ec9019e88ac52ef85e3027f08b1e990b065770efd335474e7bc5a41da04",
+      "newProjectSHA256": "2dc1904694285fa9efa654bd94dd7fe2c3ab546d7027b3d7dcce39c37ccb5f09",
+      "runtimeSHA256": "c06cffd6d892681fb3282a2679a114a1871827e16bc414c2122e7ef6d38bcdbd",
+      "stageSHA256": "52eaec0736c3e8b7b99786b250b4096d41ac4f3b59b72cd12634cbbaf1c3d7af",
+      "stageExactEqual": true,
+      "entryAndConfiguredAssetClosureExactEqual": true,
+      "closure": [
+        {
+          "id": "a4-coast:ridge",
+          "source": "project-library",
+          "sha256": "e34bff0a5fa9049828b921706bf383c34ad0a437bc263cbba07942d15114323a"
+        },
+        {
+          "id": "dead_pine",
+          "source": "project-library",
+          "sha256": "28c3a5212c01362c5df4a15fe1c147d5d62db07338820e53b1374407582d0752"
+        },
+        {
+          "id": "s34-density:body-target-v3",
+          "source": "project-library",
+          "sha256": "d3208ca02fec85ac2d5691b50968acb1ba72d0a6389c41c2a327919afd43c706"
+        },
+        {
+          "id": "s34-density:body-target-v3-domain-left-part-0",
+          "source": "project-library",
+          "sha256": "b307f804b63ea1785b4c34cf50b851391b6e708158fe6c18d62ecacaa3f9e472"
+        },
+        {
+          "id": "s34-density:body-target-v3-domain-left-part-1",
+          "source": "project-library",
+          "sha256": "a04eb19ea4204a454c741a7517ebc34f3a4c44db834dd84387f9a4e3aa96d520"
+        },
+        {
+          "id": "s34-density:body-target-v3-domain-right-part-0",
+          "source": "project-library",
+          "sha256": "f2889f9586dce3c6e03667a41102a9a3684583ffe0857715e6d1dba2bb355f99"
+        },
+        {
+          "id": "s34-density:body-target-v3-domain-right-part-1",
+          "source": "project-library",
+          "sha256": "9c783cc88d68f8390c00f08b9df2c65a0086b8cb60104647c815bffef677b841"
+        },
+        {
+          "id": "s34-density:overhang-depthfade",
+          "source": "project-library",
+          "sha256": "56fe4ebbea37dea36d0b97ebf44da25c3e73f57827083ae5162b8fa6d1db09db"
+        },
+        {
+          "id": "s34-density:stone-floor",
+          "source": "project-library",
+          "sha256": "476231eee4ebb1775918199a3d27fca1edac9a1dec414542d3809b8278740148"
+        },
+        {
+          "id": "s34v:coastal-boulder",
+          "source": "project-library",
+          "sha256": "0d6c7ac7e70dfc54f6b76aeb8894afbf12485947475a7c5b98b9006214afe65e"
+        },
+        {
+          "id": "s34v:contact",
+          "source": "project-library",
+          "sha256": "0de441864a190dd525dc3a40c0f544ea29ce3d9787ad9fe8dc69451f909201b4"
+        },
+        {
+          "id": "s34v:crack",
+          "source": "project-library",
+          "sha256": "da4a34c9b50592e7f9f7a3f7c2068a4ac0353d9f4206d455ddab6dca2fd0065c"
+        },
+        {
+          "id": "s34v:haul-footing",
+          "source": "project-library",
+          "sha256": "d480cafa7e6a6591f9485519f7c30bbcf035fcd5f0f00cb7bf9b5931fdcd789c"
+        }
+      ]
+    },
+    {
+      "stage": 35,
+      "oldProjectSHA256": "fd8e0ec9019e88ac52ef85e3027f08b1e990b065770efd335474e7bc5a41da04",
+      "newProjectSHA256": "2dc1904694285fa9efa654bd94dd7fe2c3ab546d7027b3d7dcce39c37ccb5f09",
+      "runtimeSHA256": "c06cffd6d892681fb3282a2679a114a1871827e16bc414c2122e7ef6d38bcdbd",
+      "stageSHA256": "f406de47fb00b7b8ae9ac97042323410a1c1de9e3b2ec5481a0fb0a0c6920965",
+      "stageExactEqual": true,
+      "entryAndConfiguredAssetClosureExactEqual": true,
+      "closure": [
+        {
+          "id": "a4-art:fallen-bamboo",
+          "source": "project-library",
+          "sha256": "7a523210bff6c4d94da23866fde11563c6f0460f18fed162c99b6ac9a786cc88"
+        },
+        {
+          "id": "a4-production:bamboo-clump",
+          "source": "project-library",
+          "sha256": "a963c46df621fbc9fb1227c4d97f84e1681b85f7c7d91c6fd61f627c58c0fad8"
+        },
+        {
+          "id": "a4-production:bamboo-foreground",
+          "source": "project-library",
+          "sha256": "e54ea1a5aba9e824a9b5c8e38a955c3968bf139b3e65c3cbf8e2cfac3c6d18f1"
+        },
+        {
+          "id": "a4-production:bamboo-mist",
+          "source": "project-library",
+          "sha256": "172223adf09b5ccfe817c5c0cfcec5a67318d6d981b7f7277e6b08af07f15141"
+        },
+        {
+          "id": "a4-production:thick-bamboo-cover",
+          "source": "project-library",
+          "sha256": "97c33ab8e667fe90e6ecc23f555f0ba5e0eec9cf93e4e2f5edb8cea28f7e1b8e"
+        },
+        {
+          "id": "density-play:stone-steps-left",
+          "source": "project-library",
+          "sha256": "12a0d4a9d2ba4ca237dd599b64ebf5976c5196ed7322c2323811a99281be6c8c"
+        },
+        {
+          "id": "s35-density:body-depthfade",
+          "source": "project-library",
+          "sha256": "6d8c244e0a75cba857c89032f691a0608cd6288c76700859f6dcc1417f4e6ade"
+        },
+        {
+          "id": "s35-density:body-depthfade-domain-left",
+          "source": "project-library",
+          "sha256": "83c2fb86ac3910dc13b144d3a69d41fa2112709ce6577dc23c0513db94444006"
+        },
+        {
+          "id": "s35-density:body-depthfade-domain-right",
+          "source": "project-library",
+          "sha256": "2f9f958bd65589865b2029bcc3ab5054521f27cf0a7b913079ef961c9169c8e2"
+        },
+        {
+          "id": "s35-density:central-stone-treads",
+          "source": "project-library",
+          "sha256": "29a722acc530c92487b9243b2e4bf8c23d2b8e7292d1f4d17c5588292b2247d0"
+        },
+        {
+          "id": "s35-density:stone-cover-natural",
+          "source": "project-library",
+          "sha256": "56433d64e6379512ee96ea228a273793291074245a753798c31bfa548131ac54"
+        },
+        {
+          "id": "s35v:rear-continuous",
+          "source": "project-library",
+          "sha256": "e199edd5e8445651c6dc8c9bd44e1f7e4cc5a75c27293cd530984526572e8538"
+        }
+      ]
+    },
+    {
+      "stage": 36,
+      "oldProjectSHA256": "fd8e0ec9019e88ac52ef85e3027f08b1e990b065770efd335474e7bc5a41da04",
+      "newProjectSHA256": "2dc1904694285fa9efa654bd94dd7fe2c3ab546d7027b3d7dcce39c37ccb5f09",
+      "runtimeSHA256": "c06cffd6d892681fb3282a2679a114a1871827e16bc414c2122e7ef6d38bcdbd",
+      "stageSHA256": "a43a9334a25e42b3afdedc2c8a0a16e4e610b655f29687fa7a8af596bff75a75",
+      "stageExactEqual": true,
+      "entryAndConfiguredAssetClosureExactEqual": true,
+      "closure": [
+        {
+          "id": "a4-art:fallen-bamboo",
+          "source": "project-library",
+          "sha256": "7a523210bff6c4d94da23866fde11563c6f0460f18fed162c99b6ac9a786cc88"
+        },
+        {
+          "id": "a4:door",
+          "source": "project-library",
+          "sha256": "ffe90bb16d8af3f4e5dcca63d8e8964e4f78dbaf2c316cb6aed465d9e36771c7"
+        },
+        {
+          "id": "s36-density:body",
+          "source": "project-library",
+          "sha256": "1fb0bbef17cfa6b87efd115fe5aa20f0e85d19e4d228208d528f531d50aa0f1f"
+        },
+        {
+          "id": "s36-density:body-domain-left",
+          "source": "project-library",
+          "sha256": "f1a29fbb09048018c869678dc4a804aea31c6d5ee86e0d40cce6f067e1beee6a"
+        },
+        {
+          "id": "s36-density:body-domain-right",
+          "source": "project-library",
+          "sha256": "f3f87c1948c4f948ff396c89516b50c4ecf99a7124f74b4297600efb86e2d619"
+        },
+        {
+          "id": "s36-density:contact-clusters",
+          "source": "project-library",
+          "sha256": "63b15bcf311aa8be95d101d9e819f8e6da7305ce805a59a9ebbeca63e1e7c6e0"
+        },
+        {
+          "id": "s36-density:door",
+          "source": "project-library",
+          "sha256": "adc802cb49ce9a7bd1d00fbd663861a56528158861ec6da37c86fe7e5739720f"
+        },
+        {
+          "id": "s36-density:foundation",
+          "source": "project-library",
+          "sha256": "3289066f2e15d41bfe8550423b56948c76af79ca1df0648cd4e1c499f4d968e6"
+        },
+        {
+          "id": "s36-density:frame",
+          "source": "project-library",
+          "sha256": "c2169017671ad0278a18796e82be724481ba2d677c18701aa0fe91715457bcb1"
+        },
+        {
+          "id": "s36-density:home",
+          "source": "project-library",
+          "sha256": "481ecd2fdd3168a3bd0b39475482d013574d72fb62ed92b6516d409a81f2e4eb"
+        },
+        {
+          "id": "s36v:rear-soil",
+          "source": "project-library",
+          "sha256": "e2b4250fb0240da5a374c51d99f14973a3f06ff23f68ee1efec8b0d73fbab338"
+        }
+      ]
+    },
+    {
+      "stage": 37,
+      "oldProjectSHA256": "fd8e0ec9019e88ac52ef85e3027f08b1e990b065770efd335474e7bc5a41da04",
+      "newProjectSHA256": "2dc1904694285fa9efa654bd94dd7fe2c3ab546d7027b3d7dcce39c37ccb5f09",
+      "runtimeSHA256": "c06cffd6d892681fb3282a2679a114a1871827e16bc414c2122e7ef6d38bcdbd",
+      "stageSHA256": "6b5b97112674da939abfbb5e593c3c44aaaeb1db578db26d5494906d79ec423c",
+      "stageExactEqual": true,
+      "entryAndConfiguredAssetClosureExactEqual": true,
+      "closure": [
+        {
+          "id": "a4-art:fallen-bamboo",
+          "source": "project-library",
+          "sha256": "7a523210bff6c4d94da23866fde11563c6f0460f18fed162c99b6ac9a786cc88"
+        },
+        {
+          "id": "a4-coast:pier-37-2070",
+          "source": "project-library",
+          "sha256": "855111e9aaac60c77a23bbae89f54ef113d0b6104dd8c3df0d0a72fa2f741390"
+        },
+        {
+          "id": "a4-coast:pier-37-2820",
+          "source": "project-library",
+          "sha256": "92cb6b5e901a887a6c172886e28654fc0530cf492f982e26ea2e1b9196e4bccb"
+        },
+        {
+          "id": "a4-coast:signal",
+          "source": "project-library",
+          "sha256": "6a226a7279e4d24d9c50594bbcf3759a576fc70c6be50732b2a6a0e4658f9e26"
+        },
+        {
+          "id": "s32-density:stone-cover-natural",
+          "source": "project-library",
+          "sha256": "2faa7750a276fbd90a1ebc1af47b428c7af02cfe32b11697755cc06bdba2c867"
+        },
+        {
+          "id": "s37-density:body-seam-v3",
+          "source": "project-library",
+          "sha256": "2777f130ad8a37e140bd95012edc006bf35b8342d47a5100f1a2f698dd4488c9"
+        },
+        {
+          "id": "s37-density:body-seam-v3-domain-left-part-0",
+          "source": "project-library",
+          "sha256": "189fe94cfca8d7505eb63792ec7fb0ba4d40e8734fc32e666d4940d303c5a257"
+        },
+        {
+          "id": "s37-density:body-seam-v3-domain-left-part-1",
+          "source": "project-library",
+          "sha256": "2006351ca46decb56d55ceb6a45236ccefe9b492e8316c05b0a2ebcb7128a809"
+        },
+        {
+          "id": "s37-density:body-seam-v3-domain-right-part-0",
+          "source": "project-library",
+          "sha256": "948cc6eb3d7a61ecda5576ee8f45c25bd0bf3d9ddd65659cb7fd77363e955b9d"
+        },
+        {
+          "id": "s37-density:body-seam-v3-domain-right-part-1",
+          "source": "project-library",
+          "sha256": "a7933ae30829f9deacdcecbe6600e04b02e6dbbd432b5be14bbecdb67be3230c"
+        },
+        {
+          "id": "s37-density:haul-winch",
+          "source": "project-library",
+          "sha256": "a4365c4b1565e06adfd26f8542c11b33ecdd998335516b1e49793bfae27d494c"
+        },
+        {
+          "id": "s37-density:soil-contact-0",
+          "source": "project-library",
+          "sha256": "1fe3c0bee749493f34358ddd5e8f90cd0d180b89e8477ff0f517014209995520"
+        },
+        {
+          "id": "s37-density:soil-contact-3600",
+          "source": "project-library",
+          "sha256": "409495f2519d6e0bcf324b7ee8daf9d0848a9365413b7e17aaba2f87bf47cc6a"
+        },
+        {
+          "id": "s37-density:soil-contact-7200",
+          "source": "project-library",
+          "sha256": "e9e94b6f1347d2623b9e0e97558fdbc18d3bf7f3022e940ef45778b456f5ed32"
+        },
+        {
+          "id": "s37-density:wood-0",
+          "source": "project-library",
+          "sha256": "8d477e66668e143eb21cac810aa13e9196136400fc045b3cab41c921a5a0ce25"
+        },
+        {
+          "id": "s37-density:workshop-frame",
+          "source": "project-library",
+          "sha256": "57bcf36ec2313000c3e596816e66a55ff882ea96d8376f26e87e61e8516de081"
+        },
+        {
+          "id": "s37v:haul-footing",
+          "source": "project-library",
+          "sha256": "c168b13f421416fcea3288392e71bc031c444ea1fad98c53041f86be6f872253"
+        },
+        {
+          "id": "s37v:signal-outcrop",
+          "source": "project-library",
+          "sha256": "c2b98af53acb698d72999579f54ed7d89bea94d16a9f5167f0e080cfcc039314"
+        }
+      ]
+    },
+    {
+      "stage": 39,
+      "oldProjectSHA256": "fd8e0ec9019e88ac52ef85e3027f08b1e990b065770efd335474e7bc5a41da04",
+      "newProjectSHA256": "2dc1904694285fa9efa654bd94dd7fe2c3ab546d7027b3d7dcce39c37ccb5f09",
+      "runtimeSHA256": "c06cffd6d892681fb3282a2679a114a1871827e16bc414c2122e7ef6d38bcdbd",
+      "stageSHA256": "f679fa2b2d970766ec01425f9aaa131fe34d1feecaf87017dc51d63eb54a022f",
+      "stageExactEqual": true,
+      "entryAndConfiguredAssetClosureExactEqual": true,
+      "closure": [
+        {
+          "id": "a4-coast:net",
+          "source": "project-library",
+          "sha256": "a8dfdf80f1ee710ee39cab0d77f2114d9b0fc78a6c781ebefa13a0756e3735c5"
+        },
+        {
+          "id": "a4-coast:ridge",
+          "source": "project-library",
+          "sha256": "e34bff0a5fa9049828b921706bf383c34ad0a437bc263cbba07942d15114323a"
+        },
+        {
+          "id": "s34v:crack",
+          "source": "project-library",
+          "sha256": "da4a34c9b50592e7f9f7a3f7c2068a4ac0353d9f4206d455ddab6dca2fd0065c"
+        },
+        {
+          "id": "s39-density:body-depthfade",
+          "source": "project-library",
+          "sha256": "183a7c65c717cdb92e6f8813df7d71e16c1b8f29198d9936ede19b53d184afd0"
+        },
+        {
+          "id": "s39-density:body-depthfade-domain-left-part-0",
+          "source": "project-library",
+          "sha256": "42f421da1481bb7afbc1fafe8796040b47772df1d9ea62de63836973741e6645"
+        },
+        {
+          "id": "s39-density:body-depthfade-domain-left-part-1",
+          "source": "project-library",
+          "sha256": "48a191da940f9e76f05634fc2238314e4a8ba2b74e94d707f84df0e88e9c4954"
+        },
+        {
+          "id": "s39-density:body-depthfade-domain-right-part-0",
+          "source": "project-library",
+          "sha256": "156dc3c8796e12e1dbac5a345d379e00fa78390e19033ebfaa65c51cc97f59b7"
+        },
+        {
+          "id": "s39-density:body-depthfade-domain-right-part-1",
+          "source": "project-library",
+          "sha256": "5497df4e4c82e8f16b723f4538b658e012752d7a8891874bcda5e8bbde5c1f57"
+        },
+        {
+          "id": "s39-density:rock-east",
+          "source": "project-library",
+          "sha256": "c5e0cf8ff7b37b2e541d6cff43b9caac7ddaceb26aea843d63853c9c0baf128b"
+        },
+        {
+          "id": "s39-density:soil-contact-0",
+          "source": "project-library",
+          "sha256": "dcd999190ca1fb2959c3aeff865879a8aec9e0fb784361d4540a93e20c25ead5"
+        },
+        {
+          "id": "s39-density:soil-contact-3600",
+          "source": "project-library",
+          "sha256": "b5613ae8805158c53047c8a9264976af645c3bd6ef5370c8dec2050f6ce1a63f"
+        },
+        {
+          "id": "s39-density:soil-contact-7200",
+          "source": "project-library",
+          "sha256": "84793b489f73b1f9d692e9a09b1b9c7c2b7c4a2a5dd4392279ecc593613a34a2"
+        },
+        {
+          "id": "s39-density:wood-0",
+          "source": "project-library",
+          "sha256": "5a7ccf6e8664d70bb9c6108bb7e66735c110503b88258efedeff800032af1e32"
+        },
+        {
+          "id": "s39v:contact",
+          "source": "project-library",
+          "sha256": "915f47f096d1ce19e00e3a2b4a6ae85a9f3cff1991fa3c0d3fdc7395f6fbfbd0"
+        },
+        {
+          "id": "s39v:haul-footing",
+          "source": "project-library",
+          "sha256": "bef2de739edb0b28e4e3da8569dd663f5fa998aaf961f40716c94c0b7d335705"
+        },
+        {
+          "id": "s39v:timber-1750",
+          "source": "project-library",
+          "sha256": "99bc8b6863a329ca732f381407d147848704324ee040afaa77caf47c5412ead0"
+        },
+        {
+          "id": "s39v:timber-2440",
+          "source": "project-library",
+          "sha256": "034d2c7e3a9212bcf63fd7a7e51a66209fe84ad1c418573c2f9a4975051f2790"
+        },
+        {
+          "id": "s39v:timber-3840",
+          "source": "project-library",
+          "sha256": "7932fa5a10be134b73aa2c3e9a82189cac13395fa930bb6d8df911adae2f27b1"
+        },
+        {
+          "id": "s39v:timber-4400",
+          "source": "project-library",
+          "sha256": "08db4854a62e6d21ac205ec0ea4095d128e1892a792748e56c2a516e21d671fc"
+        },
+        {
+          "id": "s39v:timber-4900",
+          "source": "project-library",
+          "sha256": "4e33772f3f80b523ed2b2e29f4138776fca83a7ca298e7649ddbe4754cd5bf1b"
+        },
+        {
+          "id": "s39v:timber-5700",
+          "source": "project-library",
+          "sha256": "13d8cdcab11455f0537cdfb80ee3c676126db18a8f6d62e626cbe83191e1a29b"
+        },
+        {
+          "id": "s39v:wreck",
+          "source": "project-library",
+          "sha256": "36ab4312f9d3134ebb66c54575ca424b90668e68267957655df1271079e1d56a"
+        }
+      ]
+    },
+    {
+      "stage": 40,
+      "oldProjectSHA256": "fd8e0ec9019e88ac52ef85e3027f08b1e990b065770efd335474e7bc5a41da04",
+      "newProjectSHA256": "2dc1904694285fa9efa654bd94dd7fe2c3ab546d7027b3d7dcce39c37ccb5f09",
+      "runtimeSHA256": "c06cffd6d892681fb3282a2679a114a1871827e16bc414c2122e7ef6d38bcdbd",
+      "stageSHA256": "abe7149cdcafdf9ca5f2c8a4bdb555e896e27d5430323f66a19b292fc145e8d7",
+      "stageExactEqual": true,
+      "entryAndConfiguredAssetClosureExactEqual": true,
+      "closure": [
+        {
+          "id": "a4:boat",
+          "source": "project-library",
+          "sha256": "687bc5deb121bf478b46ac7e9406d6a18b5309db111d777a430c7b39a530596c"
+        },
+        {
+          "id": "a4:dock",
+          "source": "project-library",
+          "sha256": "73a5577626a0694cfbed30aa3982f45688c161dbb76e8f5721e4e9844e2399df"
+        },
+        {
+          "id": "density-bg:coastal-house",
+          "source": "project-library",
+          "sha256": "b870e56944654faa33425d07a9f3a3393fdf38d6ea3ab0ea97422ff6c2b4cd74"
+        },
+        {
+          "id": "s40-density:body-depthfade",
+          "source": "project-library",
+          "sha256": "4723a0f19bc32dcc2278016288bc8d4fd35af699ff2af20547c761d47c49d154"
+        },
+        {
+          "id": "s40-density:body-depthfade-domain-left",
+          "source": "project-library",
+          "sha256": "1ed85ccf7376741f36b27deb645d0baca606bee0e8a93ae362e7287575457826"
+        },
+        {
+          "id": "s40-density:body-depthfade-domain-right",
+          "source": "project-library",
+          "sha256": "fb6fcd1f92148da0230d843c7e5a18e1328c355d23ba8d820fc3d405c23f8e01"
+        },
+        {
+          "id": "s40-density:soil-contact-0",
+          "source": "project-library",
+          "sha256": "c6f169f3513e900c869fb6979bbeb8ae197c093c0abe54df65bd2b3c503f2deb"
+        },
+        {
+          "id": "s40-density:soil-contact-3600",
+          "source": "project-library",
+          "sha256": "f66bf6434e8bcf1a7769fe8dadc02eb22691b678d011d26a58ab8d0e00f618f8"
+        },
+        {
+          "id": "s40-density:wood-0",
+          "source": "project-library",
+          "sha256": "1a8074fbb4f53f72965fb6751a8548fbdfc17b039b27c56c5a45a11b93635f35"
+        },
+        {
+          "id": "s40v:abandoned-skiff",
+          "source": "project-library",
+          "sha256": "5c01ee7f9acb87fcc9b07794aba92b3f3c73e2671a049b38fcd25109992f6f89"
+        },
+        {
+          "id": "s40v:boat",
+          "source": "project-library",
+          "sha256": "b8ecdc4d0eb558e7e72ad93cbcf4522bff60f71bfb6089cc3aa5c18c1e5aea2c"
+        },
+        {
+          "id": "s40v:contact-surface",
+          "source": "project-library",
+          "sha256": "ddf9d89126ee2536d45f22f8c83cf7dc035a5d8ec5ff2f3455d0f839d8e84951"
+        },
+        {
+          "id": "s40v:exact-ground-underpaint",
+          "source": "project-library",
+          "sha256": "3642dc38cacd217ec73c8a0b96f4983dad6f1659d5f22f8211367178ae98b891"
+        },
+        {
+          "id": "s40v:pier-40-2810",
+          "source": "project-library",
+          "sha256": "8d8098d5d2a6fe86372edc0db8e6d4dc4fbc3dba24024077c7dffefefcf82c5c"
+        },
+        {
+          "id": "s40v:pier-40-3350",
+          "source": "project-library",
+          "sha256": "7278ea1e22ca2273d67471e5e3af5deb37475f02cb18dcc38f810ad5cd1ef1d4"
+        },
+        {
+          "id": "s40v:pier-40-4050",
+          "source": "project-library",
+          "sha256": "c03479abf978a9e95aac4f96620f1f6b186db8298bf27cf561085c74c0eae6b2"
+        },
+        {
+          "id": "s40v:pier-40-4540",
+          "source": "project-library",
+          "sha256": "5bee892edbf5c0126980b583ba335278ff86deb51f0191657f8df4bdc63dfa0c"
+        },
+        {
+          "id": "s40v:pier-40-4930",
+          "source": "project-library",
+          "sha256": "7c61e389d7f2ebe10acf416ab3499621479e8e68e33b4640ca23c0492fe08893"
+        },
+        {
+          "id": "s40v:workshop-ruin",
+          "source": "project-library",
+          "sha256": "60f5212d4e706b8f4693c08fb7c08f7716a8efaf53af29f9f660ae7ce5c74cfb"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,132 @@
+{
+  "success": true,
+  "scope": "Actual browser check of packaging-only JSON split. Normal HONRO.html and HONRO_WORKSHOP.html served unchanged. Isolated local4191 origin; exact actual31–40 terminal QA storage seeded once, no existing user profile accessed. Ordinary Journey UI entered31/39/40; no custom launchMap or debug. Load/render smoke, not a new full gameplay campaign.",
+  "htmlSHA256": "fb39546930138f5200cc091d13c1ef06e3c7f6ad4ada08fcb98724b5919a8bf5",
+  "manifestSHA256": "1f847ead0ca1316b7e91f3dc6f2d5b858a683e0bec34612eb7888f91ff2d039b",
+  "runtimeSHA256": "7652daac71dc2c7c6ea02b438ce10105a26e1ac008b36258ad08e2835ee14fd9",
+  "worldSHA256": "801df923ce89d8747f337f0b71e2ae38c604a8efbd6250d56e885b931af9f1b5",
+  "packagingReceipt": {
+    "path": "tools/publication/evidence/json-parts-20261029.json",
+    "sha256": "ca3fc27e8aee96890410443efae6e1933127495b27a076fc60e77cf2c4d844ce"
+  },
+  "initialTerminalStorageSHA256": "d91d3164b5b4c91ccbeadca2a9569d0bc654e50b55d72584c29d493462ed4067",
+  "exactTerminalProofAndClearsPreserved": true,
+  "normalGameStagesLoaded": [
+    40,
+    39,
+    31
+  ],
+  "descriptors": [
+    {
+      "path": "web/data/campaign-library-parts.e65e786d8a043ccd.json",
+      "sha256": "e65e786d8a043ccda340f4dca420f530de63fd39a26c28904a53370f2240855a",
+      "parts": 10,
+      "bytes": 38386615,
+      "reconstructedSHA256": "35843286c2c9c6015c1f2d4b9d601e017d80fb958d699f406ef2c87bbb1343c6",
+      "allRequests200": true,
+      "reconstructedJsonParsed": true
+    },
+    {
+      "path": "web/data/chapter-39-assets-parts.67d143d17a8fa8f5.json",
+      "sha256": "67d143d17a8fa8f59067a233b480d071a665529d36613ab4b32dbdbfb87aeb54",
+      "parts": 2,
+      "bytes": 4619588,
+      "reconstructedSHA256": "a872fce6e826578ac42b414969b0ab27a91bb00e6512cb669fc471747ceb2bda",
+      "allRequests200": true,
+      "reconstructedJsonParsed": true
+    },
+    {
+      "path": "web/data/chapter-40-assets-parts.a783772575e0663a.json",
+      "sha256": "a783772575e0663a23c27e8a03d395100c37496d580ab864ae125bccae4edb57",
+      "parts": 2,
+      "bytes": 4894993,
+      "reconstructedSHA256": "c6a3ab8865b99e995c24bd4d48484e82a66093f5f4b61adbacea94486da46e59",
+      "allRequests200": true,
+      "reconstructedJsonParsed": true
+    }
+  ],
+  "workshop": {
+    "all40StageButtonsLoaded": true,
+    "stage39SelectedAndRendered": true,
+    "visibleValidation": "구조 오류 없음",
+    "scope": "Read-only load/selection; no editing or exporting. Selection tool timed out after dispatch, but screenshot and subsequent DOM proved39 selection/render succeeded; did not retry selection."
+  },
+  "limits": [
+    "Not deployment or live GitHub Pages verification.",
+    "ResourceTiming buffer saturated after40. Server HTTP log is evidence of later39 and full-library chunk requests.",
+    "No current input-tape replay or mobile/performance claim; gameplay runtime/world hashes unchanged from prior validated build.",
+    "Only extension metadata errors in captured browser warning/error logs; no observed game-origin warnings/errors or App error/crash."
+  ],
+  "artifacts": [
+    {
+      "path": "tools/publication/evidence/split-browser-7652/index.html",
+      "sha256": "1aa11fbeb8a7301429a52d199f11b463f0abf878527e456ad2bab22b3742b5ef",
+      "bytes": 2375
+    },
+    {
+      "path": "tools/publication/evidence/split-browser-7652/cold-title.json",
+      "sha256": "72f4e45a7b2065173cb70c5da58bb5f7c2a637747f7e04cf652b36e2f17584a3",
+      "bytes": 23726
+    },
+    {
+      "path": "tools/publication/evidence/split-browser-7652/terminal-rest.jpg",
+      "sha256": "1e0185bd2c003ca6af1d65ab8152e080a4bedf924b708f274512b7f140fc9feb",
+      "bytes": 70194
+    },
+    {
+      "path": "tools/publication/evidence/split-browser-7652/31-loaded.json",
+      "sha256": "d0c13d397286a2c2554a1ba890527f7a0ea391111fcaa8174c92d15807a48583",
+      "bytes": 33357
+    },
+    {
+      "path": "tools/publication/evidence/split-browser-7652/31-loaded.jpg",
+      "sha256": "58a473703552eedd407ca2479b374e25e10cc57e937437f67f4edec8dcfb2503",
+      "bytes": 62008
+    },
+    {
+      "path": "tools/publication/evidence/split-browser-7652/39-loaded.json",
+      "sha256": "4fee87db829b2cd1a2916a7d145743fa2dc3b4d982b9a2253b84fc3ef4e76f26",
+      "bytes": 32623
+    },
+    {
+      "path": "tools/publication/evidence/split-browser-7652/39-loaded.jpg",
+      "sha256": "2c33420f94f8e1941ec711ac56f7a3ab6d08df856c0b47788b9a8f098ca6f55e",
+      "bytes": 62485
+    },
+    {
+      "path": "tools/publication/evidence/split-browser-7652/40-loaded.json",
+      "sha256": "b63d9f1d31d490fc43822e74b61a8eb32706dd5787b82c0c0ee223b21751ecdd",
+      "bytes": 32422
+    },
+    {
+      "path": "tools/publication/evidence/split-browser-7652/40-loaded.jpg",
+      "sha256": "af7b085ac6b0dd3c665aabd5b836342418201d63a6e788dc1a3d38a5c2b9830e",
+      "bytes": 70961
+    },
+    {
+      "path": "tools/publication/evidence/split-browser-7652/game-logs.json",
+      "sha256": "ed41320adfc264460ee41031ced12530347129746f49048eb8df3085b5c90cbe",
+      "bytes": 14870
+    },
+    {
+      "path": "tools/publication/evidence/split-browser-7652/workshop-loaded.txt",
+      "sha256": "a007db8009dd7e28c911af93b59002069e6b8ba119e69292c8c93ef4b0f03dc4",
+      "bytes": 148553
+    },
+    {
+      "path": "tools/publication/evidence/split-browser-7652/workshop39.jpg",
+      "sha256": "6341efe341576b7823c84703a605daf90ef3c431dcaaf353b916c5012d0d54f6",
+      "bytes": 78915
+    },
+    {
+      "path": "tools/publication/evidence/split-browser-7652/workshop-logs.json",
+      "sha256": "4cc4c2b5df5e7b982de5d479ba669942daaa46808406f6db200e1aae33f777fe",
+      "bytes": 15578
+    },
+    {
+      "path": "tools/publication/evidence/split-browser-7652/server.log",
+      "sha256": "9c5569000deeb8bcbc777bacb99e9c580467f11b1d24139f68984dd4ddfb6e64",
+      "bytes": 56805
+    }
+  ]
+}

@@ -1,0 +1,115 @@
+{
+  "status": "isolated-final-source-native-door-and-Continue-pass-not-linked-campaign-browser-release-approval",
+  "projectSha256": "7956c4ea8a2dde9afc583ecac1d9908a67203eb9397859fdff613850e6cbdd93",
+  "runtimeSha256": "6cc9cfbf62e17ae9588d77fe27233d925d00c8bf6f3053a62dc1fec79166b995",
+  "verifierSha256": "1e5ac9346afd6ed1f778f4a6f93dab3ded99387abc0f6efcc1368cba6abda1d9",
+  "success": true,
+  "frame": 17800,
+  "entryBuild": "campaign-balanced-v1",
+  "resume": [
+    {
+      "frame": 12077,
+      "inputIndex": 523,
+      "result": "pass",
+      "scope": "Actual stopBattle/persist/Continue; exact units, event state, round, active, phase and resolved static/dynamic art preserved"
+    }
+  ],
+  "door": {
+    "phase": "fallen",
+    "time": 1,
+    "soundAt": 56.72499999999742,
+    "renderedAt": 56.74999999999742
+  },
+  "receipts": [
+    "A4.S36.ENTRY.01",
+    "A4.S36.DOOR.01",
+    "A4.S36.DOOR.02",
+    "A4.S36.EXIT.01",
+    "A4.S36.EXIT.02"
+  ],
+  "leaveTerminal": true,
+  "party": [
+    {
+      "id": "archer",
+      "x": 6531.48334887999,
+      "y": 1850.8326820146465,
+      "hp": 1183,
+      "dead": false
+    },
+    {
+      "id": "mage",
+      "x": 6525.217923757297,
+      "y": 1849.7032423069836,
+      "hp": 1280,
+      "dead": false
+    },
+    {
+      "id": "knight",
+      "x": 6574.367211063854,
+      "y": 1856.0576160538192,
+      "hp": 2217,
+      "dead": false
+    },
+    {
+      "id": "occultist",
+      "x": 6563.058994620537,
+      "y": 1854.8435618978162,
+      "hp": 1483,
+      "dead": false
+    }
+  ],
+  "renders": [
+    {
+      "frame": 6690,
+      "phase": "falling",
+      "camera": {
+        "x": 2451.625740614892,
+        "y": 1823.0481328141311,
+        "scale": 0.6
+      }
+    },
+    {
+      "frame": 6720,
+      "phase": "falling",
+      "camera": {
+        "x": 2281.625740614892,
+        "y": 1907.0481328141311,
+        "scale": 0.6
+      }
+    },
+    {
+      "frame": 6750,
+      "phase": "falling",
+      "camera": {
+        "x": 2281.625740614892,
+        "y": 1907.0481328141311,
+        "scale": 0.6
+      }
+    },
+    {
+      "frame": 6780,
+      "phase": "falling",
+      "camera": {
+        "x": 2281.625740614892,
+        "y": 1907.0481328141311,
+        "scale": 0.6
+      }
+    },
+    {
+      "frame": 6810,
+      "phase": "fallen",
+      "renderedAt": 56.74999999999742,
+      "camera": {
+        "x": 2281.625740614892,
+        "y": 1907.0481328141311,
+        "scale": 0.6
+      }
+    }
+  ],
+  "scope": "Prepared stage-entry profile; production App events; DOM/audio are doubles. Not a browser/campaign playthrough. No gate relabeling or automatic art approval.",
+  "files": {
+    "_local/reports/act4-final-qa-6cc9/36/independent.json": "d51c0976950d62a6dbcfc9ec893bb80ac0822b0930b78ee74b5c69edb36d57c0",
+    "_local/reports/act4-final-qa-6cc9/36/fresh-adaptive/inputs.json": "e8cd0aae5e1a92ad463e4634fa74670eb6930bb1e5247debd829baa3e08a00f0",
+    "tools/stage36-production/app-adapter.mjs": "fbb7b2ac24ab9b00d086a888121fbb9be13b6affcd1cfb0b615ee2b0c204e819"
+  }
+}

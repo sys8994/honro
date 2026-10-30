@@ -1,0 +1,30 @@
+{
+  "stage": 31,
+  "projectSHA256": "7e00a9a05de35860e67dc4dbde3a6cf5d96966bb29d29c022d2f70ef6242a2d4",
+  "runtimeSHA256": "7652daac71dc2c7c6ea02b438ce10105a26e1ac008b36258ad08e2835ee14fd9",
+  "externalCameraSHA256": "5cb52772310678a2846b248011306006c393a0984d23ae7e6eeac400f3c93844",
+  "entryBuild": "campaign-spent-v1",
+  "preparedPriorProof": null,
+  "sceneScope": "Actual App launch for stage31/35 with Native Canvas Scene. DOM/audio/scheduling fixtures; optional ordinary-input tick with real Scene rendering. No actor/event injection. Native evidence only, not browser or automatic gameplay approval.",
+  "scope": "Actual App launch with current shared source runtime; no VM renderer override.  no actor or event state injected. Fixed inspection camera only. Native Canvas image, DOM/HUD/audio fixtures, no browser/mobile FPS or art approval.",
+  "frames": [
+    {
+      "file": "overview.png",
+      "requested": {
+        "id": "overview",
+        "x": 3600,
+        "y": 1900,
+        "scale": 0.20833333333333334,
+        "width": 1600,
+        "height": 850
+      },
+      "actual": {
+        "x": 3600,
+        "y": 1900,
+        "scale": 0.20833333333333334,
+        "width": 1600,
+        "height": 850
+      }
+    }
+  ]
+}

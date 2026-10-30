@@ -1,0 +1,74 @@
+{
+  "reviewer": "/root",
+  "scope": "Direct native visual review plus current constrained Engine/App probes. Not user approval, browser/HUD or linked campaign playthrough.",
+  "decisions": {
+    "S1": [
+      "pass",
+      "Direct overview/minimum zoom/left/right review: continuous geology and contact; no exposed vertical terrain cut."
+    ],
+    "S2": [
+      "pass",
+      "Current boardwalk route reached4 checkpoints in3354frames; low channel reached5 in3737frames. Low shot was blocked, high shot damaged west hound220. Actual distinct movement/shot choices, not a fun claim."
+    ],
+    "S3": [
+      "pass",
+      "Exact compiled terrain equality retained; both actual input routes and both shot probes passed against that terrain."
+    ],
+    "S4": [
+      "pass",
+      "Root independently viewed actual3-contact,6-contact,30-quay,31-contact/collision and prior31overview; compared material/collider implementation.3 earth/one-way wood docks,6 rock lower road/high broken timber,30 multi-level coastal earth/stone/wood versus31 solid estuary and three one-way timber routes/roof with two actual220-world gaps. Continuity is recognizable without copying primitive art or equating node counts. Evidence source SHA2dc1904694285fa9efa654bd94dd7fe2c3ab546d7027b3d7dcce39c37ccb5f09, reference implementation and PNG hashes attached."
+    ],
+    "A1": [
+      "unverified",
+      "Superseded by user visual rejection2026-10-29: overly simple gameplay silhouettes versus excessive interior/decoration detail; palette needs darker blue dawn. Previous native review is historical evidence, not current art acceptance."
+    ],
+    "A2": [
+      "unverified",
+      "Superseded by user visual rejection2026-10-29: overly simple gameplay silhouettes versus excessive interior/decoration detail; palette needs darker blue dawn. Previous native review is historical evidence, not current art acceptance."
+    ],
+    "A3": [
+      "pass",
+      "Root directly viewed actual natural NativeCanvas frame30 andframe180: at.94scale party, selectionarrow, HP and dotted aim path readable. Enemies/targets distinguishable in prior actualAppnormal. This is native art readability only, not browser/HUD/mobile controls."
+    ],
+    "A4": [
+      "unverified",
+      "Superseded by user visual rejection2026-10-29: overly simple gameplay silhouettes versus excessive interior/decoration detail; palette needs darker blue dawn. Previous native review is historical evidence, not current art acceptance."
+    ],
+    "C1": [
+      "unverified",
+      "Actual natural first/final moving windows rendered, but middle181–41400 camera history unrendered. Frame180 projectile tracking crops feet in shot context; not a complete natural-camera lifecycle check."
+    ],
+    "C2": [
+      "pass",
+      "Direct minimum-zoom/left/right review found no exposed terrain cuts, gaps or floating bases. Sparse bounded AA differences are not geometry gaps."
+    ],
+    "C3": [
+      "unverified",
+      "Actual mobile controls/browser unavailable; native portrait rendering does not establish control visibility or touch usability."
+    ],
+    "C4": [
+      "pass",
+      "Root directly reviewed waiting/docked/boarding states and before-interact42955: all four grounded on observed deck, deckpaintY and collisionY both1860, waterY1890. Physical span is wider than straight painted deck; only observed feet within hull/deck are affirmed."
+    ],
+    "F1": [
+      "pass",
+      "Current objective probe and independent ordinary-input fullplay reached boarding in42960frames; actual Continue preserved state at12258frames."
+    ],
+    "F2": [
+      "pass",
+      "Four current enemy-action probes observed actual player damage from west guard/archer, low guard/archer, rise guard/archer/kiln, landing guard/archer. Roles have observed behavior, not just names; no human difficulty claim."
+    ],
+    "F3": [
+      "pass",
+      "Literal reviewed-source/assets/evidence match current local shipping payload: shared/data/act4/world.json exact final-v5 SHA6d7737450f484807d1ed927f00ed0e7d2cb6f25beb6140c416c27c00440b5b34; strict shared-asset payload comparison passed. Published production build remains separately blocked/unverified."
+    ],
+    "F4": [
+      "pass",
+      "Missing browser/criteria, version-equivalence limits and unapproved release status are explicitly retained; no automatic visual approval."
+    ]
+  },
+  "wholeReviewVerdicts": {
+    "structure-and-routes": "pass"
+  },
+  "supersession": "Superseded by user visual rejection2026-10-29: overly simple gameplay silhouettes versus excessive interior/decoration detail; palette needs darker blue dawn. Previous native review is historical evidence, not current art acceptance."
+}

@@ -1,0 +1,520 @@
+[
+  {
+    "id": "cave-exit",
+    "kind": "objective",
+    "entryBuild": "campaign-balanced-v1",
+    "inputs": [
+      {
+        "op": "skip-dialogue"
+      },
+      {
+        "op": "advance",
+        "frames": 31
+      },
+      {
+        "op": "fire",
+        "skill": "A01",
+        "angle": 85,
+        "power": 1
+      },
+      {
+        "op": "advance",
+        "frames": 225
+      },
+      {
+        "op": "fire",
+        "skill": "M03",
+        "angle": 52.87494572999751,
+        "power": 0.9620866305544972
+      },
+      {
+        "op": "advance",
+        "frames": 435
+      },
+      {
+        "op": "fire",
+        "skill": "S04",
+        "angle": 27.695048736070643,
+        "power": 0.9734469766900175
+      },
+      {
+        "op": "advance",
+        "frames": 285
+      },
+      {
+        "op": "fire",
+        "skill": "O03",
+        "angle": 12.566510581128938,
+        "power": 0.8452025755228728
+      },
+      {
+        "op": "advance",
+        "frames": 1215
+      },
+      {
+        "op": "fire",
+        "skill": "A14",
+        "angle": 35.55940514473922,
+        "power": 0.9714723113045536
+      },
+      {
+        "op": "advance",
+        "frames": 315
+      },
+      {
+        "op": "fire",
+        "skill": "M02",
+        "angle": 75,
+        "power": 0.65
+      },
+      {
+        "op": "advance",
+        "frames": 795
+      },
+      {
+        "op": "fire",
+        "skill": "S06",
+        "angle": 35,
+        "power": 0.35
+      },
+      {
+        "op": "advance",
+        "frames": 195
+      },
+      {
+        "op": "fire",
+        "skill": "O01",
+        "angle": 30.768118119432057,
+        "power": 0.7992820720906693
+      },
+      {
+        "op": "advance",
+        "frames": 645
+      },
+      {
+        "op": "fire",
+        "skill": "A14",
+        "angle": 15,
+        "power": 0.65
+      },
+      {
+        "op": "advance",
+        "frames": 285
+      },
+      {
+        "op": "fire",
+        "skill": "M01",
+        "angle": 12.861845653442433,
+        "power": 0.8536353334453562
+      },
+      {
+        "op": "advance",
+        "frames": 255
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 448
+      },
+      {
+        "op": "advance",
+        "frames": 840
+      },
+      {
+        "op": "skip-dialogue"
+      },
+      {
+        "op": "advance",
+        "frames": 1
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 268
+      },
+      {
+        "op": "defend"
+      },
+      {
+        "op": "advance",
+        "frames": 90
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 616
+      },
+      {
+        "op": "defend"
+      },
+      {
+        "op": "advance",
+        "frames": 120
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 588
+      },
+      {
+        "op": "defend"
+      },
+      {
+        "op": "advance",
+        "frames": 90
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 616
+      },
+      {
+        "op": "defend"
+      },
+      {
+        "op": "advance",
+        "frames": 90
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 252
+      },
+      {
+        "op": "jump"
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 136
+      },
+      {
+        "op": "fire",
+        "skill": "S04",
+        "angle": 35,
+        "power": 1
+      },
+      {
+        "op": "advance",
+        "frames": 345
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 372
+      },
+      {
+        "op": "fire",
+        "skill": "O02",
+        "angle": 15,
+        "power": 1
+      },
+      {
+        "op": "advance",
+        "frames": 1095
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 140
+      },
+      {
+        "op": "fire",
+        "skill": "A14",
+        "angle": 55,
+        "power": 1
+      },
+      {
+        "op": "advance",
+        "frames": 675
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 624
+      },
+      {
+        "op": "defend"
+      },
+      {
+        "op": "advance",
+        "frames": 90
+      },
+      {
+        "op": "fire",
+        "skill": "S04",
+        "angle": 16.46179097996708,
+        "power": 0.7393538337297699
+      },
+      {
+        "op": "advance",
+        "frames": 195
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 84
+      },
+      {
+        "op": "fire",
+        "skill": "O02",
+        "angle": 14.756079062421176,
+        "power": 0.7738609485590979
+      },
+      {
+        "op": "advance",
+        "frames": 945
+      },
+      {
+        "op": "fire",
+        "skill": "A02",
+        "angle": 47.47822352108498,
+        "power": 0.9858430593067443
+      },
+      {
+        "op": "advance",
+        "frames": 585
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 28
+      },
+      {
+        "op": "jump"
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 108
+      },
+      {
+        "op": "fire",
+        "skill": "M06",
+        "angle": 20.101245216593462,
+        "power": 0.8501682554643649
+      },
+      {
+        "op": "advance",
+        "frames": 375
+      },
+      {
+        "op": "fire",
+        "skill": "S01",
+        "angle": 165.77528057608743,
+        "power": 0.8331060684956039
+      },
+      {
+        "op": "advance",
+        "frames": 225
+      },
+      {
+        "op": "fire",
+        "skill": "O06",
+        "angle": 72.0582576586477,
+        "power": 0.9946067660069797
+      },
+      {
+        "op": "advance",
+        "frames": 1155
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 28
+      },
+      {
+        "op": "fire",
+        "skill": "A02",
+        "angle": 35,
+        "power": 1
+      },
+      {
+        "op": "advance",
+        "frames": 435
+      },
+      {
+        "op": "select",
+        "actor": "archer"
+      },
+      {
+        "op": "defend"
+      },
+      {
+        "op": "advance",
+        "frames": 90
+      },
+      {
+        "op": "select",
+        "actor": "archer"
+      },
+      {
+        "op": "defend"
+      },
+      {
+        "op": "advance",
+        "frames": 90
+      },
+      {
+        "op": "select",
+        "actor": "archer"
+      },
+      {
+        "op": "defend"
+      },
+      {
+        "op": "advance",
+        "frames": 120
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 468
+      },
+      {
+        "op": "jump"
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 180
+      },
+      {
+        "op": "defend"
+      },
+      {
+        "op": "advance",
+        "frames": 90
+      },
+      {
+        "op": "select",
+        "actor": "archer"
+      },
+      {
+        "op": "defend"
+      },
+      {
+        "op": "advance",
+        "frames": 90
+      },
+      {
+        "op": "select",
+        "actor": "archer"
+      },
+      {
+        "op": "defend"
+      },
+      {
+        "op": "advance",
+        "frames": 90
+      },
+      {
+        "op": "select",
+        "actor": "archer"
+      },
+      {
+        "op": "defend"
+      },
+      {
+        "op": "advance",
+        "frames": 120
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 504
+      },
+      {
+        "op": "select",
+        "actor": "mage"
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 612
+      },
+      {
+        "op": "select",
+        "actor": "knight"
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 324
+      },
+      {
+        "op": "select",
+        "actor": "occultist"
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 72
+      },
+      {
+        "op": "jump"
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 594
+      },
+      {
+        "op": "defend"
+      },
+      {
+        "op": "advance",
+        "frames": 90
+      },
+      {
+        "op": "select",
+        "actor": "occultist"
+      },
+      {
+        "op": "defend"
+      },
+      {
+        "op": "advance",
+        "frames": 90
+      },
+      {
+        "op": "select",
+        "actor": "occultist"
+      },
+      {
+        "op": "defend"
+      },
+      {
+        "op": "advance",
+        "frames": 90
+      },
+      {
+        "op": "select",
+        "actor": "occultist"
+      },
+      {
+        "op": "defend"
+      },
+      {
+        "op": "advance",
+        "frames": 120
+      },
+      {
+        "op": "select",
+        "actor": "occultist"
+      },
+      {
+        "op": "move",
+        "direction": 1,
+        "frames": 90
+      },
+      {
+        "op": "interact"
+      },
+      {
+        "op": "advance",
+        "frames": 5
+      }
+    ]
+  }
+]

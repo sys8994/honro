@@ -1,0 +1,32 @@
+{
+  "pass": true,
+  "results": [
+    {
+      "name": "missing-final-units",
+      "expectedRejection": "Missing final scoped stage units",
+      "status": 1
+    },
+    {
+      "name": "shared-hash",
+      "expectedRejection": "Shared source dependency drift",
+      "status": 1
+    },
+    {
+      "name": "shared-overwrite",
+      "expectedRejection": "cannot overwrite",
+      "status": 1
+    },
+    {
+      "name": "unused-invalid-schema",
+      "expectedRejection": "Complete library reference\\/vector schema failed",
+      "status": 1
+    },
+    {
+      "name": "invalid-instance-scale",
+      "expectedRejection": "Act4 public instance-aware map\\/schema validation failed",
+      "status": 1
+    }
+  ],
+  "sourceWorldUnchanged": true,
+  "campaignUnchanged": true
+}

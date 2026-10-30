@@ -1,0 +1,373 @@
+{
+  "success": false,
+  "reason": "budget",
+  "frames": 41493,
+  "actions": 240,
+  "entryBuild": "campaign-spent-v1",
+  "heroes": [
+    {
+      "id": "archer",
+      "x": 8325.924729537835,
+      "y": 1647.698154277649,
+      "hp": 1573,
+      "dead": false,
+      "move": 2701
+    },
+    {
+      "id": "mage",
+      "x": 8335.316356912277,
+      "y": 1650.1998288946002,
+      "hp": 1766,
+      "dead": false,
+      "move": 2728
+    },
+    {
+      "id": "knight",
+      "x": 8310.249593108601,
+      "y": 1644.9478220814137,
+      "hp": 3283,
+      "dead": false,
+      "move": 3353
+    },
+    {
+      "id": "occultist",
+      "x": 8314.341668131674,
+      "y": 1645.4953849136261,
+      "hp": 2035,
+      "dead": false,
+      "move": 2838
+    }
+  ],
+  "npcs": [
+    {
+      "id": "a4-rescue-0",
+      "x": 6049.083333333466,
+      "y": 2000,
+      "hp": 1335
+    },
+    {
+      "id": "a4-rescue-1",
+      "x": 6105.416666666783,
+      "y": 2000,
+      "hp": 1450
+    },
+    {
+      "id": "a4-rescue-2",
+      "x": 6161.750000000101,
+      "y": 2000,
+      "hp": 1450
+    },
+    {
+      "id": "a4-rescue-3",
+      "x": 6218,
+      "y": 1987.1357,
+      "hp": 1387.9
+    }
+  ],
+  "rescue": {
+    "net": {
+      "sourceRun": "honro-map-stage-39-1793304012730",
+      "actor": "occultist"
+    },
+    "anchor": {
+      "sourceRun": "honro-map-stage-39-1793304012730",
+      "actor": "mage",
+      "once": true
+    }
+  },
+  "scope": "Linked Act4 actual App entry. Prepared profile only for31; every later entry cold-loads exact previous storage with no XP/flags reset. Native Canvas Scene with accumulated unpaused presentation time between sparse paints. DOM/audio/scheduling fixtures; ordinary-input ticks with actual Scene rendering, not continuous camera-history evidence. No actor/event injection. Native evidence only, not browser or automatic gameplay approval. Existing adaptive ordinary-input policy on real carried profile; no independent-stage reset. Generated tape still requires linked outcome/Next verification. Adaptive expert input smoke, not browser play or human difficulty approval.",
+  "status": "failed ordinary escort progression; no linked39 boundary",
+  "runtimeSha256": "7652daac71dc2c7c6ea02b438ce10105a26e1ac008b36258ad08e2835ee14fd9",
+  "worldSha256": "1e7939fe0f9fd6cd8be0202807f0db74f7ed7958a212d480aa73d3e7ce72f0d4",
+  "objective": {
+    "version": 1,
+    "clock": 339.9999999998551,
+    "events": {
+      "boss": {
+        "started": true,
+        "terminal": true,
+        "presented": [
+          "A4.S39.BOSS.01"
+        ],
+        "retired": [
+          "A4.S39.BOSS.02"
+        ]
+      },
+      "stabilize": {
+        "started": true,
+        "terminal": true,
+        "presented": [
+          "A4.S39.STABILIZE.01"
+        ],
+        "retired": []
+      }
+    },
+    "receipts": [
+      "A4.S39.BOSS.01",
+      "A4.S39.STABILIZE.01"
+    ],
+    "boat": {
+      "phase": "waiting",
+      "x": 500
+    },
+    "door": {
+      "phase": "standing",
+      "time": 0
+    },
+    "complete": false,
+    "visualDrawn": {},
+    "observed": {
+      "upper-route": 20.00833333333284,
+      "wreck": 45.00833333333142,
+      "net-action": 100.00833333335899,
+      "stabilizing": 110.00833333336695
+    },
+    "tide": {
+      "phase": "low",
+      "surface": 2610,
+      "warningRound": 2,
+      "highRound": 5,
+      "lowRound": 7,
+      "warned": true,
+      "warningAtRound": 2,
+      "opportunities": {
+        "2": [
+          "archer",
+          "mage",
+          "knight",
+          "occultist"
+        ],
+        "3": [
+          "archer",
+          "mage",
+          "knight",
+          "occultist"
+        ],
+        "4": [
+          "archer",
+          "mage",
+          "knight",
+          "occultist"
+        ]
+      },
+      "finished": true
+    },
+    "waterVisualLevel": 2610,
+    "water": {
+      "dry": {
+        "archer": {
+          "x": 8325.924729537835,
+          "y": 1647.698154277649
+        },
+        "mage": {
+          "x": 8335.316356912277,
+          "y": 1650.1998288946002
+        },
+        "knight": {
+          "x": 8310.249593108601,
+          "y": 1644.9478220814137
+        },
+        "occultist": {
+          "x": 8314.341668131674,
+          "y": 1645.4953849136261
+        },
+        "a4-39-g0-0": {
+          "x": 2170,
+          "y": 1824.2
+        },
+        "a4-39-g0-1": {
+          "x": 2742.9999999999873,
+          "y": 1820
+        },
+        "a4-rescue-0": {
+          "x": 6049.083333333466,
+          "y": 2000
+        },
+        "a4-rescue-1": {
+          "x": 6105.416666666783,
+          "y": 2000
+        },
+        "a4-rescue-2": {
+          "x": 6161.750000000101,
+          "y": 2000
+        },
+        "a4-rescue-3": {
+          "x": 6218,
+          "y": 1987.1357
+        }
+      },
+      "recoveries": []
+    },
+    "artillery": {
+      "count": 5,
+      "history": [
+        {
+          "x": 260,
+          "y": 1729.4496948888889,
+          "target": "archer",
+          "dueRound": 2,
+          "warningSeen": true,
+          "shot": 11
+        },
+        {
+          "x": 4920,
+          "y": 1954,
+          "target": "a4-rescue-0",
+          "dueRound": 3,
+          "warningSeen": true,
+          "shot": 17
+        },
+        {
+          "x": 5277.848060736187,
+          "y": 1676.180938579242,
+          "target": "knight",
+          "dueRound": 5,
+          "warningSeen": true,
+          "shot": 18
+        },
+        {
+          "x": 5023.416666666689,
+          "y": 1954,
+          "target": "a4-rescue-0",
+          "dueRound": 6,
+          "warningSeen": true,
+          "shot": 19
+        },
+        {
+          "x": 8335.316356912277,
+          "y": 1604.1998288946002,
+          "target": "mage",
+          "dueRound": 8,
+          "warningSeen": true,
+          "shot": 20
+        }
+      ],
+      "next": {
+        "x": 5533.416666666689,
+        "y": 1954,
+        "target": "a4-rescue-0",
+        "dueRound": 9,
+        "warningSeen": false
+      }
+    },
+    "reader": null,
+    "releasing": null,
+    "netOpen": {
+      "sourceRun": "honro-map-stage-39-1793304012730",
+      "actor": "occultist"
+    },
+    "releasePending": {
+      "actor": "occultist"
+    },
+    "stabilizing": null,
+    "exitStable": {
+      "sourceRun": "honro-map-stage-39-1793304012730",
+      "actor": "mage",
+      "once": true
+    },
+    "escort": {
+      "a4-rescue-0": {
+        "token": "59:20:0",
+        "remaining": 170
+      },
+      "a4-rescue-1": {
+        "token": "59:20:0",
+        "remaining": 170
+      },
+      "a4-rescue-2": {
+        "token": "59:20:0",
+        "remaining": 170
+      },
+      "a4-rescue-3": {
+        "token": "59:20:0",
+        "remaining": 170
+      }
+    },
+    "pathProbeAt": 339.766666666522,
+    "livePathClear": false
+  },
+  "contourAtObstruction": [
+    {
+      "x": 6200,
+      "y": 2000
+    },
+    {
+      "x": 6212,
+      "y": 1992.82237
+    },
+    {
+      "x": 6218,
+      "y": 1987.1357
+    },
+    {
+      "x": 6227,
+      "y": 1973.90944
+    },
+    {
+      "x": 6239,
+      "y": 1951.5472
+    },
+    {
+      "x": 6242,
+      "y": 1947.11147
+    },
+    {
+      "x": 6245,
+      "y": 1944.75209
+    },
+    {
+      "x": 6299,
+      "y": 1927.90277
+    },
+    {
+      "x": 6311,
+      "y": 1922.15261
+    },
+    {
+      "x": 6317,
+      "y": 1917.75622
+    },
+    {
+      "x": 6326,
+      "y": 1907.72989
+    },
+    {
+      "x": 6356,
+      "y": 1867.4466
+    },
+    {
+      "x": 6359,
+      "y": 1860.86104
+    },
+    {
+      "x": 6362,
+      "y": 1843.69943
+    },
+    {
+      "x": 6365,
+      "y": 1838.73275
+    },
+    {
+      "x": 6371,
+      "y": 1833.15793
+    },
+    {
+      "x": 6386,
+      "y": 1824.33598
+    },
+    {
+      "x": 6404,
+      "y": 1816.88502
+    },
+    {
+      "x": 6428,
+      "y": 1809.4395
+    }
+  ],
+  "diagnosis": "Front escort resident is blocked at6218 before slope magnitude1.47, then1.86; ordinary walk limit1.35. Other residents queue. Actual livePathClear remains false; party safely reached exit but residents cannot walk there. No state/actor/flags overrides or runtime weakening.",
+  "artifacts": {
+    "_local/reports/act4-linked-7652/39/policy/result.json": "f63de1b2566aa0ee4550a48547769369470f726cd51676fd18cc9b030fb0b5d2",
+    "_local/reports/act4-linked-7652/39/policy/atomic-linked-prefix/checkpoint.json": "79484ffcd849b1b6aed0c1854e6787c6abd34f0fe4809560ef1d1b2046cd0b6a",
+    "_local/reports/act4-linked-7652/39/policy/inputs.json": "fb9ccc289c2eb00969fd5ddc857f0c25d174f57d2dc8029b510b8f180b080137"
+  }
+}

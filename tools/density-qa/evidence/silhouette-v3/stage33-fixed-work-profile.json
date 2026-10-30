@@ -1,0 +1,331 @@
+{
+  "status": "diagnostic-not-FPS-or-release-approval",
+  "baseline": {
+    "scope": "Actual App balanced entry +30 ordinary skip/gravity ticks; fixed9 measured A01 predictions after3warmups;120 fixedApp ticks. Native initialization excluded. No simulation/actor overrides, no FPS or human-difficulty claim.",
+    "projectSHA256": "f6d7946fb666fb5f7116da3b8f5c87a2d1f030ab5a67379cbc485a5b0c42fa74",
+    "runtimeSHA256": "264b42d9b85f63847877ad839c67365a9b63b06b34a27cf9c84d53d9307ece2e",
+    "actor": {
+      "id": "archer",
+      "x": 260,
+      "y": 2100
+    },
+    "terrain": [
+      {
+        "id": "a4-33-land",
+        "vertices": 16
+      },
+      {
+        "id": "a4-33-upper-west",
+        "vertices": 16
+      },
+      {
+        "id": "a4-33-upper-east",
+        "vertices": 16
+      }
+    ],
+    "rows": [
+      {
+        "pass": 0,
+        "angle": 35,
+        "power": 0.65,
+        "ms": 18.31622399999833,
+        "warmup": true,
+        "hit": {
+          "x": 1297.2067989041977,
+          "y": 1998.6932191161284
+        }
+      },
+      {
+        "pass": 0,
+        "angle": 55,
+        "power": 0.65,
+        "ms": 10.708107000000382,
+        "warmup": true,
+        "hit": {
+          "x": 1288.3763375650155,
+          "y": 2000.2385498504852
+        }
+      },
+      {
+        "pass": 0,
+        "angle": 75,
+        "power": 0.65,
+        "ms": 10.887956999999005,
+        "warmup": true,
+        "hit": {
+          "x": 826.0220876308263,
+          "y": 2105.9292876557265
+        }
+      },
+      {
+        "pass": 1,
+        "angle": 35,
+        "power": 0.65,
+        "ms": 12.06275800000003,
+        "warmup": false,
+        "hit": {
+          "x": 1297.2067989041977,
+          "y": 1998.6932191161284
+        }
+      },
+      {
+        "pass": 1,
+        "angle": 55,
+        "power": 0.65,
+        "ms": 10.77002899999934,
+        "warmup": false,
+        "hit": {
+          "x": 1288.3763375650155,
+          "y": 2000.2385498504852
+        }
+      },
+      {
+        "pass": 1,
+        "angle": 75,
+        "power": 0.65,
+        "ms": 8.513648000000103,
+        "warmup": false,
+        "hit": {
+          "x": 826.0220876308263,
+          "y": 2105.9292876557265
+        }
+      },
+      {
+        "pass": 2,
+        "angle": 35,
+        "power": 0.65,
+        "ms": 15.733080999998492,
+        "warmup": false,
+        "hit": {
+          "x": 1297.2067989041977,
+          "y": 1998.6932191161284
+        }
+      },
+      {
+        "pass": 2,
+        "angle": 55,
+        "power": 0.65,
+        "ms": 14.173194999999396,
+        "warmup": false,
+        "hit": {
+          "x": 1288.3763375650155,
+          "y": 2000.2385498504852
+        }
+      },
+      {
+        "pass": 2,
+        "angle": 75,
+        "power": 0.65,
+        "ms": 8.1674869999988,
+        "warmup": false,
+        "hit": {
+          "x": 826.0220876308263,
+          "y": 2105.9292876557265
+        }
+      },
+      {
+        "pass": 3,
+        "angle": 35,
+        "power": 0.65,
+        "ms": 7.278331000001344,
+        "warmup": false,
+        "hit": {
+          "x": 1297.2067989041977,
+          "y": 1998.6932191161284
+        }
+      },
+      {
+        "pass": 3,
+        "angle": 55,
+        "power": 0.65,
+        "ms": 6.605951000001369,
+        "warmup": false,
+        "hit": {
+          "x": 1288.3763375650155,
+          "y": 2000.2385498504852
+        }
+      },
+      {
+        "pass": 3,
+        "angle": 75,
+        "power": 0.65,
+        "ms": 7.616669999999431,
+        "warmup": false,
+        "hit": {
+          "x": 826.0220876308263,
+          "y": 2105.9292876557265
+        }
+      }
+    ],
+    "medianPredictionMs": 8.513648000000103,
+    "simulationTicks": 120,
+    "simulationMs": 26.89974699999948
+  },
+  "candidate": {
+    "scope": "Actual App balanced entry +30 ordinary skip/gravity ticks; fixed9 measured A01 predictions after3warmups;120 fixedApp ticks. Native initialization excluded. No simulation/actor overrides, no FPS or human-difficulty claim.",
+    "projectSHA256": "f83fbbafec16c804e7f2bb653875452db38c48e4dd438a9bc01a8e264bb85318",
+    "runtimeSHA256": "264b42d9b85f63847877ad839c67365a9b63b06b34a27cf9c84d53d9307ece2e",
+    "actor": {
+      "id": "archer",
+      "x": 260,
+      "y": 2100.0728556
+    },
+    "terrain": [
+      {
+        "id": "a4-33-land",
+        "vertices": 288
+      },
+      {
+        "id": "a4-33-upper-west",
+        "vertices": 142
+      },
+      {
+        "id": "a4-33-upper-east",
+        "vertices": 144
+      }
+    ],
+    "rows": [
+      {
+        "pass": 0,
+        "angle": 35,
+        "power": 0.65,
+        "ms": 40.78330599999936,
+        "warmup": true,
+        "hit": {
+          "x": 1295.709950522729,
+          "y": 1997.7290340599043
+        }
+      },
+      {
+        "pass": 0,
+        "angle": 55,
+        "power": 0.65,
+        "ms": 24.488061000000016,
+        "warmup": true,
+        "hit": {
+          "x": 1287.3778527131649,
+          "y": 1998.7992076766802
+        }
+      },
+      {
+        "pass": 0,
+        "angle": 75,
+        "power": 0.65,
+        "ms": 25.167602999999872,
+        "warmup": true,
+        "hit": {
+          "x": 823.6575789036568,
+          "y": 2095.5086972955123
+        }
+      },
+      {
+        "pass": 1,
+        "angle": 35,
+        "power": 0.65,
+        "ms": 31.646812999999383,
+        "warmup": false,
+        "hit": {
+          "x": 1295.709950522729,
+          "y": 1997.7290340599043
+        }
+      },
+      {
+        "pass": 1,
+        "angle": 55,
+        "power": 0.65,
+        "ms": 33.00332100000014,
+        "warmup": false,
+        "hit": {
+          "x": 1287.3778527131649,
+          "y": 1998.7992076766802
+        }
+      },
+      {
+        "pass": 1,
+        "angle": 75,
+        "power": 0.65,
+        "ms": 23.86412399999972,
+        "warmup": false,
+        "hit": {
+          "x": 823.6575789036568,
+          "y": 2095.5086972955123
+        }
+      },
+      {
+        "pass": 2,
+        "angle": 35,
+        "power": 0.65,
+        "ms": 31.202965000000404,
+        "warmup": false,
+        "hit": {
+          "x": 1295.709950522729,
+          "y": 1997.7290340599043
+        }
+      },
+      {
+        "pass": 2,
+        "angle": 55,
+        "power": 0.65,
+        "ms": 21.05913700000019,
+        "warmup": false,
+        "hit": {
+          "x": 1287.3778527131649,
+          "y": 1998.7992076766802
+        }
+      },
+      {
+        "pass": 2,
+        "angle": 75,
+        "power": 0.65,
+        "ms": 41.73930300000029,
+        "warmup": false,
+        "hit": {
+          "x": 823.6575789036568,
+          "y": 2095.5086972955123
+        }
+      },
+      {
+        "pass": 3,
+        "angle": 35,
+        "power": 0.65,
+        "ms": 34.56043200000022,
+        "warmup": false,
+        "hit": {
+          "x": 1295.709950522729,
+          "y": 1997.7290340599043
+        }
+      },
+      {
+        "pass": 3,
+        "angle": 55,
+        "power": 0.65,
+        "ms": 23.493306000000302,
+        "warmup": false,
+        "hit": {
+          "x": 1287.3778527131649,
+          "y": 1998.7992076766802
+        }
+      },
+      {
+        "pass": 3,
+        "angle": 75,
+        "power": 0.65,
+        "ms": 33.72939300000144,
+        "warmup": false,
+        "hit": {
+          "x": 823.6575789036568,
+          "y": 2095.5086972955123
+        }
+      }
+    ],
+    "medianPredictionMs": 31.646812999999383,
+    "simulationTicks": 120,
+    "simulationMs": 168.07726900000125
+  },
+  "limitations": [
+    "Sequential single run, not statistical performance certification",
+    "Naturally settled spawn differs slightly with actual terrain",
+    "Prediction path/hit may change, so ratio does not isolate vertex cost",
+    "No browser/native frame-render timing included"
+  ]
+}

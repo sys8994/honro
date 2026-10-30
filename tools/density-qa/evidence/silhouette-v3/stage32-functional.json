@@ -1,0 +1,614 @@
+{
+  "version": 1,
+  "status": "candidate-functional-evidence-not-release-or-art-approval",
+  "candidateFile": "_local/reports/silhouette-qa/sea32-v1/project.json",
+  "candidateSHA256": "6725348e76004f9d77606f2dfc75f5bde33d3991530972c956538f0777cf1bbd",
+  "runtimeSHA256": "c06cffd6d892681fb3282a2679a114a1871827e16bc414c2122e7ef6d38bcdbd",
+  "oldBalancedTape": {
+    "baselineSuccess": true,
+    "baselineFrames": 30547,
+    "candidateSuccess": false,
+    "candidateFrames": 26241,
+    "note": "Old balanced tape invalidated by true collider relocation/material change; did not complete, all party alive."
+  },
+  "freshOrdinaryReplay": {
+    "success": true,
+    "frames": 21532,
+    "entryBuild": "campaign-spent-v1",
+    "tape": "tools/density-qa/tapes/stage32-silhouette-v3.json",
+    "resume": [
+      {
+        "frame": 12065,
+        "inputIndex": 39,
+        "result": "pass",
+        "scope": "Actual stopBattle/persist/Continue; exact units, event state, round, active, phase and all static/dynamic artwork holders preserved"
+      }
+    ],
+    "coverImpacts": [
+      {
+        "frame": 10410,
+        "owner": "mage",
+        "skill": "M03",
+        "terrain": "a4-32-prop-4:collision:0",
+        "x": 1973.9902783560342,
+        "y": 1752.4128572794561
+      }
+    ],
+    "groundedOnCover": [
+      {
+        "frame": 10875,
+        "id": "knight",
+        "x": 2145.998911682199,
+        "y": 1697.8963337977768,
+        "hp": 3076,
+        "grounded": true
+      },
+      {
+        "frame": 10890,
+        "id": "knight",
+        "x": 2145.998911682199,
+        "y": 1697.8963337977768,
+        "hp": 3076,
+        "grounded": true
+      },
+      {
+        "frame": 10905,
+        "id": "knight",
+        "x": 2145.998911682199,
+        "y": 1697.8963337977768,
+        "hp": 3076,
+        "grounded": true
+      },
+      {
+        "frame": 10920,
+        "id": "knight",
+        "x": 2145.998911682199,
+        "y": 1697.8963337977768,
+        "hp": 3076,
+        "grounded": true
+      }
+    ]
+  },
+  "geometry": {
+    "changedIds": [
+      "a4-32-prop-4:collision:0"
+    ],
+    "issues": [],
+    "compiledMaterial": "rock",
+    "compiledHP": 99999,
+    "indestructible": true,
+    "vertices": 95,
+    "isolatedTraversal": {
+      "scope": "Synthetic isolated locomotion fixture using real Engine; starts near cover, other actors removed, movement replenished and checkEnd disabled. Not ordinary-input campaign or balance proof.",
+      "rows": [
+        {
+          "direction": 1,
+          "frames": 223,
+          "jumps": 1,
+          "standing": 17,
+          "final": {
+            "x": 2338.2886010582315,
+            "y": 1697.692322811906,
+            "grounded": false
+          },
+          "reached": true
+        },
+        {
+          "direction": -1,
+          "frames": 248,
+          "jumps": 2,
+          "standing": 19,
+          "final": {
+            "x": 1932.6183118848594,
+            "y": 1487.2925247566673,
+            "grounded": false
+          },
+          "reached": true
+        }
+      ]
+    }
+  },
+  "entry": {
+    "verifierSha256": "109ce5624b29450779081e4ec96ada7e510a0deeb9d341053e6199711409107e",
+    "stage": 32,
+    "projectSha256": "6725348e76004f9d77606f2dfc75f5bde33d3991530972c956538f0777cf1bbd",
+    "stageSha256": "7b83ed882eb5a374defbbd44a5a3fa77e50f24d68a8ac2e7949dedde0f79a906",
+    "runtimeSha256": "c06cffd6d892681fb3282a2679a114a1871827e16bc414c2122e7ef6d38bcdbd",
+    "launch": "actual official App",
+    "rawProfileCharacters": 9476079,
+    "storedCharacters": 50593,
+    "storedUTF16Bytes": 101186,
+    "quotaUTF16Bytes": 5242880,
+    "staticRefs": 44,
+    "writes": 9,
+    "exactWholeSnapshotCodec": true,
+    "actualDeferredContinueFields": [
+      "units",
+      "terrain",
+      "waters",
+      "honroSurfaceZones",
+      "honroAct4PreviewState",
+      "phase",
+      "round",
+      "active",
+      "honroElements",
+      "honroLandmarks",
+      "honroEnvironment",
+      "honroAct4PreviewDynamic"
+    ],
+    "singlePendingLoad": true,
+    "scope": "Entry only, prepared independent prior clears, no fabricated terminal outcome. DOM/render/audio/storage/network loader fixtures; actual App/Engine/profile-store/campaign-entry code."
+  },
+  "cost": {
+    "stage": 32,
+    "projectSha256": "6725348e76004f9d77606f2dfc75f5bde33d3991530972c956538f0777cf1bbd",
+    "scope": "Unique asset definitions referenced by stage/config plus instantiated actual App entry art holders. Future unconfigured runtime selectors/legacy saves may add assets; not a pruning authorization. Serialized JSON and expanded vector tree only, not GPU, FPS or visual approval.",
+    "referencedAssetJSONBytes": 2333548,
+    "referencedAssets": 17,
+    "vectorAssets": 15,
+    "maxExpandedNodes": 445,
+    "maxDepth": 9,
+    "maxPathChars": 59830,
+    "maxClipPathChars": 724,
+    "exactDefinitionDuplicatesExceptIdName": []
+  },
+  "nativeImages": {
+    "standing": "_local/reports/silhouette-qa/sea32-v1/contact-capture/actual-cover-standing.png",
+    "impact": "_local/reports/silhouette-qa/sea32-v1/contact-capture/actual-cover-impact.png",
+    "receipt": "_local/reports/silhouette-qa/sea32-v1/contact-capture/receipt.json",
+    "impactReceipt": "_local/reports/silhouette-qa/sea32-v1/contact-capture/impact-receipt.json",
+    "captureReceipt": {
+      "frame": 10875,
+      "projectSHA256": "6725348e76004f9d77606f2dfc75f5bde33d3991530972c956538f0777cf1bbd",
+      "runtimeSHA256": "c06cffd6d892681fb3282a2679a114a1871827e16bc414c2122e7ef6d38bcdbd",
+      "scope": "Actual ordinary-input prefix to grounded knight on moved cover. Fixed inspection camera only; no actor/event overrides; Native Canvas not browserHUD.",
+      "entryBuild": "campaign-spent-v1",
+      "camera": {
+        "x": 2130,
+        "y": 1740,
+        "scale": 1.1
+      },
+      "actor": {
+        "id": "knight",
+        "x": 2145.998911682199,
+        "y": 1697.8963337977768,
+        "grounded": true
+      },
+      "cover": {
+        "id": "a4-32-prop-4:collision:0",
+        "mat": "rock",
+        "vertices": [
+          {
+            "x": 2274.63354,
+            "y": 1763.43868
+          },
+          {
+            "x": 2254.92996,
+            "y": 1761.50514
+          },
+          {
+            "x": 2239.14759,
+            "y": 1761.75221
+          },
+          {
+            "x": 2218.36025,
+            "y": 1761.15479
+          },
+          {
+            "x": 2192.0085,
+            "y": 1761.70018
+          },
+          {
+            "x": 2012.04583,
+            "y": 1761.42396
+          },
+          {
+            "x": 2005.12001,
+            "y": 1761.50061
+          },
+          {
+            "x": 1982.38357,
+            "y": 1764.99972
+          },
+          {
+            "x": 1981.08422,
+            "y": 1764.14545
+          },
+          {
+            "x": 1980,
+            "y": 1761.43958
+          },
+          {
+            "x": 1980.23965,
+            "y": 1756.74352
+          },
+          {
+            "x": 1981.05732,
+            "y": 1751.49847
+          },
+          {
+            "x": 1982.65169,
+            "y": 1743.81043
+          },
+          {
+            "x": 1983.91598,
+            "y": 1739.65123
+          },
+          {
+            "x": 1985.23387,
+            "y": 1737.97571
+          },
+          {
+            "x": 1991.07291,
+            "y": 1734.32159
+          },
+          {
+            "x": 1993.48548,
+            "y": 1730.43614
+          },
+          {
+            "x": 1996.86762,
+            "y": 1723.65782
+          },
+          {
+            "x": 1997.31685,
+            "y": 1720.52649
+          },
+          {
+            "x": 1997.36646,
+            "y": 1710.31678
+          },
+          {
+            "x": 2001.1400899999999,
+            "y": 1694.73178
+          },
+          {
+            "x": 2002.35348,
+            "y": 1691.42052
+          },
+          {
+            "x": 2006.38577,
+            "y": 1687.83941
+          },
+          {
+            "x": 2009.22341,
+            "y": 1685.94894
+          },
+          {
+            "x": 2010.64706,
+            "y": 1685.76081
+          },
+          {
+            "x": 2016.4467,
+            "y": 1686.34731
+          },
+          {
+            "x": 2019.73379,
+            "y": 1686.06796
+          },
+          {
+            "x": 2023.12965,
+            "y": 1684.99469
+          },
+          {
+            "x": 2028.73625,
+            "y": 1681.91641
+          },
+          {
+            "x": 2031.02082,
+            "y": 1681.35047
+          },
+          {
+            "x": 2035.0012,
+            "y": 1680.97698
+          },
+          {
+            "x": 2037.56642,
+            "y": 1674.42093
+          },
+          {
+            "x": 2038.962,
+            "y": 1672.04312
+          },
+          {
+            "x": 2041.06205,
+            "y": 1670.46
+          },
+          {
+            "x": 2043.96146,
+            "y": 1670.00866
+          },
+          {
+            "x": 2044.58019,
+            "y": 1669.50172
+          },
+          {
+            "x": 2048.0534,
+            "y": 1659.63388
+          },
+          {
+            "x": 2054.44738,
+            "y": 1646.91637
+          },
+          {
+            "x": 2056.24273,
+            "y": 1643.9339
+          },
+          {
+            "x": 2058.10991,
+            "y": 1642.95426
+          },
+          {
+            "x": 2068.08234,
+            "y": 1645.875
+          },
+          {
+            "x": 2071.47838,
+            "y": 1646.55229
+          },
+          {
+            "x": 2084.14603,
+            "y": 1648.06228
+          },
+          {
+            "x": 2094.11278,
+            "y": 1649.66712
+          },
+          {
+            "x": 2110.59854,
+            "y": 1649.90328
+          },
+          {
+            "x": 2112.32319,
+            "y": 1650.23793
+          },
+          {
+            "x": 2117.62634,
+            "y": 1652.37252
+          },
+          {
+            "x": 2128.27355,
+            "y": 1653.05472
+          },
+          {
+            "x": 2129.75201,
+            "y": 1654.54835
+          },
+          {
+            "x": 2131.08269,
+            "y": 1657.85659
+          },
+          {
+            "x": 2132.33467,
+            "y": 1671.16131
+          },
+          {
+            "x": 2133.40598,
+            "y": 1672.40816
+          },
+          {
+            "x": 2135.85177,
+            "y": 1673.63636
+          },
+          {
+            "x": 2137.16254,
+            "y": 1675.82026
+          },
+          {
+            "x": 2138.22663,
+            "y": 1678.55375
+          },
+          {
+            "x": 2140.46341,
+            "y": 1687.52565
+          },
+          {
+            "x": 2141.19343,
+            "y": 1693.38995
+          },
+          {
+            "x": 2142.27465,
+            "y": 1695.15545
+          },
+          {
+            "x": 2143.889,
+            "y": 1696.78587
+          },
+          {
+            "x": 2147.28243,
+            "y": 1698.57186
+          },
+          {
+            "x": 2149.40918,
+            "y": 1698.28145
+          },
+          {
+            "x": 2152.74516,
+            "y": 1695.37497
+          },
+          {
+            "x": 2158.46285,
+            "y": 1693.95301
+          },
+          {
+            "x": 2160.89967,
+            "y": 1687.57106
+          },
+          {
+            "x": 2164.31964,
+            "y": 1676.36895
+          },
+          {
+            "x": 2165.83904,
+            "y": 1674.75178
+          },
+          {
+            "x": 2169.69875,
+            "y": 1673.29167
+          },
+          {
+            "x": 2175.1695,
+            "y": 1672.32154
+          },
+          {
+            "x": 2179.90238,
+            "y": 1672.52886
+          },
+          {
+            "x": 2205.03483,
+            "y": 1676.68001
+          },
+          {
+            "x": 2211.65571,
+            "y": 1678.22832
+          },
+          {
+            "x": 2215.55983,
+            "y": 1679.70031
+          },
+          {
+            "x": 2217.06842,
+            "y": 1681.12497
+          },
+          {
+            "x": 2218.29597,
+            "y": 1683.83078
+          },
+          {
+            "x": 2219.6394,
+            "y": 1689.26161
+          },
+          {
+            "x": 2221.21942,
+            "y": 1698.43757
+          },
+          {
+            "x": 2222.3005,
+            "y": 1700.57798
+          },
+          {
+            "x": 2224.05165,
+            "y": 1701.2024
+          },
+          {
+            "x": 2230.74531,
+            "y": 1701.72124
+          },
+          {
+            "x": 2239.06051,
+            "y": 1703.19835
+          },
+          {
+            "x": 2249.06602,
+            "y": 1704.38023
+          },
+          {
+            "x": 2252.37356,
+            "y": 1705.1463899999999
+          },
+          {
+            "x": 2253.79315,
+            "y": 1706.72171
+          },
+          {
+            "x": 2258.52263,
+            "y": 1713.96425
+          },
+          {
+            "x": 2265.0746,
+            "y": 1720.75889
+          },
+          {
+            "x": 2265.98178,
+            "y": 1722.71403
+          },
+          {
+            "x": 2267.00838,
+            "y": 1730.46052
+          },
+          {
+            "x": 2268.01154,
+            "y": 1734.97031
+          },
+          {
+            "x": 2269.46998,
+            "y": 1737.3615
+          },
+          {
+            "x": 2273.40104,
+            "y": 1741.51377
+          },
+          {
+            "x": 2275.82289,
+            "y": 1745.07519
+          },
+          {
+            "x": 2277.56375,
+            "y": 1749.61468
+          },
+          {
+            "x": 2279.6226,
+            "y": 1757.0598
+          },
+          {
+            "x": 2279.94129,
+            "y": 1761.9297
+          },
+          {
+            "x": 2278.24906,
+            "y": 1763.58378
+          }
+        ]
+      }
+    },
+    "actualImpactReceipt": {
+      "frame": 10411,
+      "projectSHA256": "6725348e76004f9d77606f2dfc75f5bde33d3991530972c956538f0777cf1bbd",
+      "impacts": [
+        {
+          "frame": 10410,
+          "terrain": "a4-32-prop-4:collision:0",
+          "owner": "mage",
+          "skill": "M03",
+          "x": 1973.9902783560342,
+          "y": 1752.4128572794561
+        }
+      ],
+      "scope": "Actual ordinary-input collision event, fixed inspection camera, no actor/event injection"
+    },
+    "hashes": [
+      {
+        "key": "standing",
+        "sha256": "f49a50e19e7ad4e905eaf68af65cf46c0db0914ccb419e1bd361fe447fe1540e"
+      },
+      {
+        "key": "impact",
+        "sha256": "55051cf49fe4d637847a43920bd600f0e2c65c675e4cb34279525ae449d7137d"
+      }
+    ]
+  },
+  "limitations": [
+    "Fresh balanced and spent earned-SP policies both complete; neither is human difficulty approval.",
+    "Isolated route fixture removes other actors and replenishes movement; not normal-input evidence",
+    "Native Canvas fixed-camera captures, not browser HUD or mobile-performance proof",
+    "No overall Act4 completion/release/deployment approval"
+  ],
+  "balancedOrdinaryReplay": {
+    "success": true,
+    "frames": 27447,
+    "entryBuild": "campaign-balanced-v1",
+    "runtimeSHA256": "c06cffd6d892681fb3282a2679a114a1871827e16bc414c2122e7ef6d38bcdbd",
+    "projectSHA256": "6725348e76004f9d77606f2dfc75f5bde33d3991530972c956538f0777cf1bbd",
+    "tape": "tools/density-qa/tapes/stage32-silhouette-v3-balanced.json",
+    "resume": [
+      {
+        "frame": 12050,
+        "inputIndex": 36,
+        "result": "pass",
+        "scope": "Actual stopBattle/persist/Continue; exact units, event state, round, active, phase and all static/dynamic artwork holders preserved"
+      }
+    ],
+    "coverImpacts": []
+  },
+  "nativeResourceNote": "First balanced generator process exited137 after enemies cleared; exposedGC retry and independent balanced replay completed. Not mobile performance evidence."
+}

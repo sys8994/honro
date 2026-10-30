@@ -1,0 +1,31 @@
+{
+  "reviewer": "/root",
+  "reviewMessageAt": "2026-10-29T17:40:11Z",
+  "sourceSHA256": "3602942d32579f00f7c7689208eac7b5a209bc9684a6aed11897aaa98ef6b5aa",
+  "runtimeSHA256": "9278a691f97be21437b58fe67cdffa6a7e031da6666b2b34faa2e6f6829e0544",
+  "scope": "Root visual judgment of specific observed native states, not automatic approval or blanket release.",
+  "C1": {
+    "result": "root-accepted-for-observed-representative-cases",
+    "criterion": "실제 첫 시점과 일반 이동 시점에서 길과 위협을 판단할 수 있는가?",
+    "reviewedFrames": [30, 24310, 33270, 38530, 38345],
+    "observations": "First view, normal path/gap/lower-channel/rise readable; foreground did not block feet. Threat assessment separately supported by real combat transition38345 with both threats, actor and ground visible. The cleared walking views are not claimed to contain enemies.",
+    "limit": "Only explicit bounded windows rendered continuously; unrendered intervening history remains unverified. Full48k continuous rendering is not asserted or treated as the criterion."
+  },
+  "C4": {
+    "result": "root-accepted-for-observed-states",
+    "reviewedFrame": 48581,
+    "observations": "Actual boarded boat visible, four grounded characters and deck/waterline accepted. Paint deckY equals physical deckY in recorded dock/board observations."
+  },
+  "pending": [
+    "C2 latest minimum-zoom and world-edge inspection",
+    "C3 actual latest Stage31 browser portrait/landscape controls and HUD",
+    "Final combined-world and any later crate-art provenance/review binding"
+  ],
+  "noTransfer": "Do not automatically apply this judgment to a different project/runtime fingerprint, final combined world, or later crate art. Establish reference closure and required visual review first.",
+  "evidence": [
+    "stage31-new-bank-native-natural.json",
+    "stage31-new-bank-mid-natural.json",
+    "stage31-new-bank-shot-pair.json",
+    "stage31-official-refreshed-gates.json"
+  ]
+}

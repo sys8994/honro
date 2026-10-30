@@ -1,0 +1,742 @@
+{
+  "passed": true,
+  "source": {
+    "shared/map/bounds.js": "823bdb282be142b95b731c71053b500038219abe2415d031062fa994f1f50170",
+    "shared/runtime/camera.js": "be3dc6bb12cfead54de292a6e6c9331be3cb51e9a9be46aa1f5d21596e60e1af",
+    "shared/runtime/attack-camera.js": "c226961efd24ee24d0001010b9a9b982323f04225c2bdb490b9270190ed9e3cf",
+    "shared/runtime/reinforcement-camera.js": "43c1f916dd61a7ebedb6748dda82d85ebdd3f9aa18b5aedcb3fddeb95027b38a",
+    "shared/runtime/renderer.js": "55f98d7464950fd6b0457916082d502bcb6a8cc03f57c449fc3791ce7f42f1ac",
+    "shared/runtime/main.js": "6b0ba08d4cfbd12579b4cc8c92a5ddfa13a08c7bf831c91f445fba8cc1a95f0e"
+  },
+  "baseline": "00e4b8419a887b0f1d6dae46650046534e800476e4f87ed33b49d9910a8b6dea",
+  "rows": [
+    {
+      "case": "drag-left",
+      "w": 1280,
+      "h": 800,
+      "pair": [
+        {
+          "label": "before",
+          "held": {
+            "x": -98000,
+            "y": 1000,
+            "scale": 0.5,
+            "manual": true,
+            "intent": {
+              "intent": 1,
+              "attacks": 0,
+              "manual": true,
+              "gesture": true
+            }
+          },
+          "released": {
+            "x": -98000,
+            "y": 1000,
+            "scale": 0.5,
+            "manual": true,
+            "intent": {
+              "intent": 1,
+              "attacks": 0,
+              "manual": true,
+              "gesture": false
+            }
+          },
+          "focus": {
+            "left": -320,
+            "top": -1800,
+            "right": 7520,
+            "bottom": 3440
+          }
+        },
+        {
+          "label": "after",
+          "held": {
+            "x": -320,
+            "y": 1000,
+            "scale": 0.5,
+            "manual": true,
+            "intent": {
+              "intent": 1,
+              "attacks": 0,
+              "manual": true,
+              "gesture": true
+            }
+          },
+          "released": {
+            "x": -320,
+            "y": 1000,
+            "scale": 0.5,
+            "manual": true,
+            "intent": {
+              "intent": 1,
+              "attacks": 0,
+              "manual": true,
+              "gesture": false
+            }
+          },
+          "focus": {
+            "left": -320,
+            "top": -1800,
+            "right": 7520,
+            "bottom": 3440
+          }
+        }
+      ]
+    },
+    {
+      "case": "drag-right",
+      "w": 1280,
+      "h": 800,
+      "pair": [
+        {
+          "label": "before",
+          "held": {
+            "x": 102000,
+            "y": 1000,
+            "scale": 0.5,
+            "manual": true,
+            "intent": {
+              "intent": 1,
+              "attacks": 0,
+              "manual": true,
+              "gesture": true
+            }
+          },
+          "released": {
+            "x": 102000,
+            "y": 1000,
+            "scale": 0.5,
+            "manual": true,
+            "intent": {
+              "intent": 1,
+              "attacks": 0,
+              "manual": true,
+              "gesture": false
+            }
+          },
+          "focus": {
+            "left": -320,
+            "top": -1800,
+            "right": 7520,
+            "bottom": 3440
+          }
+        },
+        {
+          "label": "after",
+          "held": {
+            "x": 7520,
+            "y": 1000,
+            "scale": 0.5,
+            "manual": true,
+            "intent": {
+              "intent": 1,
+              "attacks": 0,
+              "manual": true,
+              "gesture": true
+            }
+          },
+          "released": {
+            "x": 7520,
+            "y": 1000,
+            "scale": 0.5,
+            "manual": true,
+            "intent": {
+              "intent": 1,
+              "attacks": 0,
+              "manual": true,
+              "gesture": false
+            }
+          },
+          "focus": {
+            "left": -320,
+            "top": -1800,
+            "right": 7520,
+            "bottom": 3440
+          }
+        }
+      ]
+    },
+    {
+      "case": "drag-top",
+      "w": 1280,
+      "h": 800,
+      "pair": [
+        {
+          "label": "before",
+          "held": {
+            "x": 1600,
+            "y": -98600,
+            "scale": 0.5,
+            "manual": true,
+            "intent": {
+              "intent": 1,
+              "attacks": 0,
+              "manual": true,
+              "gesture": true
+            }
+          },
+          "released": {
+            "x": 1600,
+            "y": -98600,
+            "scale": 0.5,
+            "manual": true,
+            "intent": {
+              "intent": 1,
+              "attacks": 0,
+              "manual": true,
+              "gesture": false
+            }
+          },
+          "focus": {
+            "left": -320,
+            "top": -1800,
+            "right": 7520,
+            "bottom": 3440
+          }
+        },
+        {
+          "label": "after",
+          "held": {
+            "x": 1600,
+            "y": -1800,
+            "scale": 0.5,
+            "manual": true,
+            "intent": {
+              "intent": 1,
+              "attacks": 0,
+              "manual": true,
+              "gesture": true
+            }
+          },
+          "released": {
+            "x": 1600,
+            "y": -1800,
+            "scale": 0.5,
+            "manual": true,
+            "intent": {
+              "intent": 1,
+              "attacks": 0,
+              "manual": true,
+              "gesture": false
+            }
+          },
+          "focus": {
+            "left": -320,
+            "top": -1800,
+            "right": 7520,
+            "bottom": 3440
+          }
+        }
+      ]
+    },
+    {
+      "case": "drag-bottom",
+      "w": 1280,
+      "h": 800,
+      "pair": [
+        {
+          "label": "before",
+          "held": {
+            "x": 1600,
+            "y": 101400,
+            "scale": 0.5,
+            "manual": true,
+            "intent": {
+              "intent": 1,
+              "attacks": 0,
+              "manual": true,
+              "gesture": true
+            }
+          },
+          "released": {
+            "x": 1600,
+            "y": 101400,
+            "scale": 0.5,
+            "manual": true,
+            "intent": {
+              "intent": 1,
+              "attacks": 0,
+              "manual": true,
+              "gesture": false
+            }
+          },
+          "focus": {
+            "left": -320,
+            "top": -1800,
+            "right": 7520,
+            "bottom": 3440
+          }
+        },
+        {
+          "label": "after",
+          "held": {
+            "x": 1600,
+            "y": 3440,
+            "scale": 0.5,
+            "manual": true,
+            "intent": {
+              "intent": 1,
+              "attacks": 0,
+              "manual": true,
+              "gesture": true
+            }
+          },
+          "released": {
+            "x": 1600,
+            "y": 3440,
+            "scale": 0.5,
+            "manual": true,
+            "intent": {
+              "intent": 1,
+              "attacks": 0,
+              "manual": true,
+              "gesture": false
+            }
+          },
+          "focus": {
+            "left": -320,
+            "top": -1800,
+            "right": 7520,
+            "bottom": 3440
+          }
+        }
+      ]
+    },
+    {
+      "case": "drag-left",
+      "w": 390,
+      "h": 844,
+      "pair": [
+        {
+          "label": "before",
+          "held": {
+            "x": -98000,
+            "y": 1000,
+            "scale": 0.5,
+            "manual": true,
+            "intent": {
+              "intent": 1,
+              "attacks": 0,
+              "manual": true,
+              "gesture": true
+            }
+          },
+          "released": {
+            "x": -98000,
+            "y": 1000,
+            "scale": 0.5,
+            "manual": true,
+            "intent": {
+              "intent": 1,
+              "attacks": 0,
+              "manual": true,
+              "gesture": false
+            }
+          },
+          "focus": {
+            "left": -320,
+            "top": -1800,
+            "right": 7520,
+            "bottom": 3440
+          }
+        },
+        {
+          "label": "after",
+          "held": {
+            "x": -320,
+            "y": 1000,
+            "scale": 0.5,
+            "manual": true,
+            "intent": {
+              "intent": 1,
+              "attacks": 0,
+              "manual": true,
+              "gesture": true
+            }
+          },
+          "released": {
+            "x": -320,
+            "y": 1000,
+            "scale": 0.5,
+            "manual": true,
+            "intent": {
+              "intent": 1,
+              "attacks": 0,
+              "manual": true,
+              "gesture": false
+            }
+          },
+          "focus": {
+            "left": -320,
+            "top": -1800,
+            "right": 7520,
+            "bottom": 3440
+          }
+        }
+      ]
+    },
+    {
+      "case": "drag-right",
+      "w": 390,
+      "h": 844,
+      "pair": [
+        {
+          "label": "before",
+          "held": {
+            "x": 102000,
+            "y": 1000,
+            "scale": 0.5,
+            "manual": true,
+            "intent": {
+              "intent": 1,
+              "attacks": 0,
+              "manual": true,
+              "gesture": true
+            }
+          },
+          "released": {
+            "x": 102000,
+            "y": 1000,
+            "scale": 0.5,
+            "manual": true,
+            "intent": {
+              "intent": 1,
+              "attacks": 0,
+              "manual": true,
+              "gesture": false
+            }
+          },
+          "focus": {
+            "left": -320,
+            "top": -1800,
+            "right": 7520,
+            "bottom": 3440
+          }
+        },
+        {
+          "label": "after",
+          "held": {
+            "x": 7520,
+            "y": 1000,
+            "scale": 0.5,
+            "manual": true,
+            "intent": {
+              "intent": 1,
+              "attacks": 0,
+              "manual": true,
+              "gesture": true
+            }
+          },
+          "released": {
+            "x": 7520,
+            "y": 1000,
+            "scale": 0.5,
+            "manual": true,
+            "intent": {
+              "intent": 1,
+              "attacks": 0,
+              "manual": true,
+              "gesture": false
+            }
+          },
+          "focus": {
+            "left": -320,
+            "top": -1800,
+            "right": 7520,
+            "bottom": 3440
+          }
+        }
+      ]
+    },
+    {
+      "case": "drag-top",
+      "w": 390,
+      "h": 844,
+      "pair": [
+        {
+          "label": "before",
+          "held": {
+            "x": 1600,
+            "y": -98600,
+            "scale": 0.5,
+            "manual": true,
+            "intent": {
+              "intent": 1,
+              "attacks": 0,
+              "manual": true,
+              "gesture": true
+            }
+          },
+          "released": {
+            "x": 1600,
+            "y": -98600,
+            "scale": 0.5,
+            "manual": true,
+            "intent": {
+              "intent": 1,
+              "attacks": 0,
+              "manual": true,
+              "gesture": false
+            }
+          },
+          "focus": {
+            "left": -320,
+            "top": -1800,
+            "right": 7520,
+            "bottom": 3440
+          }
+        },
+        {
+          "label": "after",
+          "held": {
+            "x": 1600,
+            "y": -1800,
+            "scale": 0.5,
+            "manual": true,
+            "intent": {
+              "intent": 1,
+              "attacks": 0,
+              "manual": true,
+              "gesture": true
+            }
+          },
+          "released": {
+            "x": 1600,
+            "y": -1800,
+            "scale": 0.5,
+            "manual": true,
+            "intent": {
+              "intent": 1,
+              "attacks": 0,
+              "manual": true,
+              "gesture": false
+            }
+          },
+          "focus": {
+            "left": -320,
+            "top": -1800,
+            "right": 7520,
+            "bottom": 3440
+          }
+        }
+      ]
+    },
+    {
+      "case": "drag-bottom",
+      "w": 390,
+      "h": 844,
+      "pair": [
+        {
+          "label": "before",
+          "held": {
+            "x": 1600,
+            "y": 101400,
+            "scale": 0.5,
+            "manual": true,
+            "intent": {
+              "intent": 1,
+              "attacks": 0,
+              "manual": true,
+              "gesture": true
+            }
+          },
+          "released": {
+            "x": 1600,
+            "y": 101400,
+            "scale": 0.5,
+            "manual": true,
+            "intent": {
+              "intent": 1,
+              "attacks": 0,
+              "manual": true,
+              "gesture": false
+            }
+          },
+          "focus": {
+            "left": -320,
+            "top": -1800,
+            "right": 7520,
+            "bottom": 3440
+          }
+        },
+        {
+          "label": "after",
+          "held": {
+            "x": 1600,
+            "y": 3440,
+            "scale": 0.5,
+            "manual": true,
+            "intent": {
+              "intent": 1,
+              "attacks": 0,
+              "manual": true,
+              "gesture": true
+            }
+          },
+          "released": {
+            "x": 1600,
+            "y": 3440,
+            "scale": 0.5,
+            "manual": true,
+            "intent": {
+              "intent": 1,
+              "attacks": 0,
+              "manual": true,
+              "gesture": false
+            }
+          },
+          "focus": {
+            "left": -320,
+            "top": -1800,
+            "right": 7520,
+            "bottom": 3440
+          }
+        }
+      ]
+    },
+    {
+      "case": "inside-manual-pan",
+      "w": 1280,
+      "h": 800,
+      "camera": {
+        "x": 1700,
+        "y": 1040,
+        "scale": 0.5,
+        "manual": true,
+        "intent": {
+          "intent": 1,
+          "attacks": 0,
+          "manual": true,
+          "gesture": false
+        }
+      }
+    },
+    {
+      "case": "pinch-translation-extreme",
+      "w": 1280,
+      "h": 800,
+      "camera": {
+        "x": 7520,
+        "y": 3440,
+        "scale": 0.18823529411764706,
+        "manual": true,
+        "intent": {
+          "intent": 4,
+          "attacks": 0,
+          "manual": true,
+          "gesture": false
+        }
+      },
+      "focus": {
+        "left": -320,
+        "top": -1800,
+        "right": 7520,
+        "bottom": 3440
+      }
+    },
+    {
+      "case": "inside-manual-pan",
+      "w": 390,
+      "h": 844,
+      "camera": {
+        "x": 1700,
+        "y": 1040,
+        "scale": 0.5,
+        "manual": true,
+        "intent": {
+          "intent": 1,
+          "attacks": 0,
+          "manual": true,
+          "gesture": false
+        }
+      }
+    },
+    {
+      "case": "pinch-translation-extreme",
+      "w": 390,
+      "h": 844,
+      "camera": {
+        "x": 7520,
+        "y": 3440,
+        "scale": 0.057352941176470586,
+        "manual": true,
+        "intent": {
+          "intent": 4,
+          "attacks": 0,
+          "manual": true,
+          "gesture": false
+        }
+      },
+      "focus": {
+        "left": -320,
+        "top": -1800,
+        "right": 7520,
+        "bottom": 3440
+      }
+    },
+    {
+      "case": "authored-focus-preserved",
+      "camera": {
+        "x": 9500,
+        "y": 5000,
+        "scale": 0.5,
+        "manual": true,
+        "intent": {
+          "intent": 1,
+          "attacks": 0,
+          "manual": true,
+          "gesture": false
+        }
+      }
+    },
+    {
+      "case": "storyFrame-special-frame",
+      "camera": {
+        "x": 11000,
+        "y": -3000,
+        "scale": 0.5,
+        "manual": true,
+        "intent": {
+          "intent": 1,
+          "attacks": 0,
+          "manual": true,
+          "gesture": false
+        }
+      }
+    },
+    {
+      "case": "storyTween-special-frame",
+      "camera": {
+        "x": 11000,
+        "y": -3000,
+        "scale": 0.5,
+        "manual": true,
+        "intent": {
+          "intent": 1,
+          "attacks": 0,
+          "manual": true,
+          "gesture": false
+        }
+      }
+    },
+    {
+      "case": "reinforcement-special-frame",
+      "camera": {
+        "x": 11000,
+        "y": 982,
+        "scale": 0.5,
+        "manual": false,
+        "intent": {
+          "intent": 0,
+          "attacks": 0,
+          "manual": false,
+          "gesture": false
+        }
+      }
+    }
+  ],
+  "limits": [
+    "Actual production pointer handlers and Scene camera phase with a DOM/canvas stub; not browser pixel or gameplay proof.",
+    "The renderer stops immediately before background paint. Existing focus policy is unchanged."
+  ]
+}

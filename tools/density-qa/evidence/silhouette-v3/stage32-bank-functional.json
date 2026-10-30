@@ -1,0 +1,634 @@
+{
+  "status": "isolated-functional-not-art-release-approval",
+  "stage": 32,
+  "projectSHA256": "94691a6ba4a72db12ead948deeebcaa60e74074338d4a76f7987aff713d30973",
+  "runtimeSHA256": "c06cffd6d892681fb3282a2679a114a1871827e16bc414c2122e7ef6d38bcdbd",
+  "scope": "Prepared stage-entry profile; production App events; Native Canvas Scene initializes authored far art, then renders every60 physics ticks after combat until safeSeven receipts complete; raster caches explicitly disposed for bounded native-harness memory; DOM/audio are doubles, story text parsed from real rendered HTML. Not a browser/campaign playthrough. No gate relabeling or automatic art approval.",
+  "balancedReplay": {
+    "success": true,
+    "frames": 32943,
+    "resume": [
+      {
+        "frame": 12388,
+        "inputIndex": 35,
+        "result": "pass",
+        "scope": "Actual stopBattle/persist/Continue; exact units, event state, round, active, phase and all static/dynamic artwork holders preserved"
+      }
+    ],
+    "groups": [
+      {
+        "id": "a4-32-0",
+        "damageEvents": 8
+      },
+      {
+        "id": "a4-32-1",
+        "damageEvents": 11
+      }
+    ],
+    "final": {
+      "phase": "won",
+      "objective": {
+        "version": 1,
+        "clock": 274.52499999991466,
+        "events": {
+          "reunion": {
+            "started": true,
+            "terminal": true,
+            "presented": [
+              "A4.S32.REUNION.01",
+              "A4.S32.REUNION.02",
+              "A4.S32.REUNION.03",
+              "A4.S32.REUNION.04"
+            ],
+            "retired": []
+          },
+          "missing_four": {
+            "started": true,
+            "terminal": true,
+            "presented": [
+              "A4.S32.MISSING.01",
+              "A4.S32.MISSING.02",
+              "A4.S32.MISSING.03",
+              "A4.S32.MISSING.04"
+            ],
+            "retired": []
+          }
+        },
+        "receipts": [
+          "A4.S32.REUNION.01",
+          "A4.S32.REUNION.02",
+          "A4.S32.REUNION.03",
+          "A4.S32.REUNION.04",
+          "A4.S32.MISSING.01",
+          "A4.S32.MISSING.02",
+          "A4.S32.MISSING.03",
+          "A4.S32.MISSING.04"
+        ],
+        "boat": {
+          "phase": "waiting",
+          "x": 500
+        },
+        "door": {
+          "phase": "standing",
+          "time": 0
+        },
+        "complete": true,
+        "visualDrawn": {},
+        "observed": {
+          "door-open": 214.9999999999688,
+          "threshold": 215.99999999996788
+        },
+        "water": {
+          "dry": {
+            "archer": {
+              "x": 5995.108633390774,
+              "y": 1906.3878156733656
+            },
+            "mage": {
+              "x": 5994.394348190043,
+              "y": 1906.5526622215114
+            },
+            "knight": {
+              "x": 5971.779727008428,
+              "y": 1912.8643358889665
+            },
+            "occultist": {
+              "x": 5919.828317465011,
+              "y": 1932.443212565544
+            },
+            "a4-32-g0-0": {
+              "x": 1404.5411606703208,
+              "y": 1898.8363257226517
+            },
+            "a4-32-g0-1": {
+              "x": 2244.5159458793796,
+              "y": 1703.8427619847084
+            },
+            "a4-32-g0-2": {
+              "x": 1240.8933434143962,
+              "y": 1987.7753568400021
+            },
+            "a4-32-g1-0": {
+              "x": 1997.266973384155,
+              "y": 1720.8741518736358
+            },
+            "a4-32-g1-1": {
+              "x": 2058.4882063642963,
+              "y": 1643.0650559968688
+            },
+            "a4-shelter-speaker": {
+              "x": 4779.56439978659,
+              "y": 2010.8476090930183
+            }
+          },
+          "recoveries": []
+        },
+        "quietAt": 195.64166666665307,
+        "quietCleanup": {
+          "actors": [],
+          "sources": []
+        },
+        "shelterDoor": {
+          "phase": "open",
+          "time": 1
+        },
+        "thresholdAt": 215.6499999999682,
+        "reunionObserved": {
+          "sourceRun": "honro-map-stage-32-1793287872957",
+          "npc": "a4-shelter-speaker",
+          "hero": "archer",
+          "seenAt": 215.99999999996788,
+          "positions": [
+            {
+              "id": "archer",
+              "x": 4587.753703945974,
+              "y": 2014.73755443995
+            },
+            {
+              "id": "a4-shelter-speaker",
+              "x": 4779.56439978659,
+              "y": 2010.8476090930183
+            }
+          ]
+        },
+        "reader": null,
+        "safeSeven": {
+          "ids": [
+            "shelter-person-0",
+            "shelter-person-1",
+            "shelter-person-2",
+            "shelter-person-3",
+            "shelter-person-4",
+            "shelter-person-5",
+            "shelter-person-6"
+          ],
+          "sourceRun": "honro-map-stage-32-1793287872957",
+          "reportIds": [
+            "A4.S32.MISSING.01",
+            "A4.S32.MISSING.02",
+            "A4.S32.MISSING.03",
+            "A4.S32.MISSING.04"
+          ],
+          "reunionIds": [
+            "A4.S32.REUNION.01",
+            "A4.S32.REUNION.02",
+            "A4.S32.REUNION.03",
+            "A4.S32.REUNION.04"
+          ],
+          "reunionObserved": {
+            "sourceRun": "honro-map-stage-32-1793287872957",
+            "npc": "a4-shelter-speaker",
+            "hero": "archer",
+            "seenAt": 215.99999999996788,
+            "positions": [
+              {
+                "id": "archer",
+                "x": 4587.753703945974,
+                "y": 2014.73755443995
+              },
+              {
+                "id": "a4-shelter-speaker",
+                "x": 4779.56439978659,
+                "y": 2010.8476090930183
+              }
+            ]
+          },
+          "campaignRunId": "eq-mvtpaqfs-cskcp3qo"
+        },
+        "completionProof": {
+          "safeSeven": {
+            "ids": [
+              "shelter-person-0",
+              "shelter-person-1",
+              "shelter-person-2",
+              "shelter-person-3",
+              "shelter-person-4",
+              "shelter-person-5",
+              "shelter-person-6"
+            ],
+            "sourceRun": "honro-map-stage-32-1793287872957",
+            "reportIds": [
+              "A4.S32.MISSING.01",
+              "A4.S32.MISSING.02",
+              "A4.S32.MISSING.03",
+              "A4.S32.MISSING.04"
+            ],
+            "reunionIds": [
+              "A4.S32.REUNION.01",
+              "A4.S32.REUNION.02",
+              "A4.S32.REUNION.03",
+              "A4.S32.REUNION.04"
+            ],
+            "reunionObserved": {
+              "sourceRun": "honro-map-stage-32-1793287872957",
+              "npc": "a4-shelter-speaker",
+              "hero": "archer",
+              "seenAt": 215.99999999996788,
+              "positions": [
+                {
+                  "id": "archer",
+                  "x": 4587.753703945974,
+                  "y": 2014.73755443995
+                },
+                {
+                  "id": "a4-shelter-speaker",
+                  "x": 4779.56439978659,
+                  "y": 2010.8476090930183
+                }
+              ]
+            },
+            "campaignRunId": "eq-mvtpaqfs-cskcp3qo"
+          }
+        }
+      },
+      "units": [
+        {
+          "id": "archer",
+          "x": 5995.108633390774,
+          "y": 1906.3878156733656,
+          "hp": 1117,
+          "dead": false
+        },
+        {
+          "id": "mage",
+          "x": 5994.394348190043,
+          "y": 1906.5526622215114,
+          "hp": 1209,
+          "dead": false
+        },
+        {
+          "id": "knight",
+          "x": 5971.779727008428,
+          "y": 1912.8643358889665,
+          "hp": 1807,
+          "dead": false
+        },
+        {
+          "id": "occultist",
+          "x": 5919.828317465011,
+          "y": 1932.443212565544,
+          "hp": 1402,
+          "dead": false
+        },
+        {
+          "id": "a4-32-g0-0",
+          "x": 1404.5411606703208,
+          "y": 1898.8363257226517,
+          "hp": 0,
+          "dead": true
+        },
+        {
+          "id": "a4-32-g0-1",
+          "x": 2244.5159458793796,
+          "y": 1703.8427619847084,
+          "hp": 0,
+          "dead": true
+        },
+        {
+          "id": "a4-32-g0-2",
+          "x": 1240.8933434143962,
+          "y": 1987.7753568400021,
+          "hp": 0,
+          "dead": true
+        },
+        {
+          "id": "a4-32-g1-0",
+          "x": 1997.266973384155,
+          "y": 1720.8741518736358,
+          "hp": 0,
+          "dead": true
+        },
+        {
+          "id": "a4-32-g1-1",
+          "x": 2058.4882063642963,
+          "y": 1643.0650559968688,
+          "hp": 0,
+          "dead": true
+        },
+        {
+          "id": "a4-shelter-speaker",
+          "x": 4779.56439978659,
+          "y": 2010.8476090930183,
+          "hp": 1450,
+          "dead": false
+        }
+      ]
+    }
+  },
+  "geometry": {
+    "stage": 32,
+    "beforeSHA256": "6725348e76004f9d77606f2dfc75f5bde33d3991530972c956538f0777cf1bbd",
+    "afterSHA256": "94691a6ba4a72db12ead948deeebcaa60e74074338d4a76f7987aff713d30973",
+    "runtimeSHA256": "c06cffd6d892681fb3282a2679a114a1871827e16bc414c2122e7ef6d38bcdbd",
+    "scope": "Compiled geometry differential with synthetic engine segment rays and vertex-adjacent surface samples. Not normal input, visual alignment or route-clear approval.",
+    "engineSeamRules": {
+      "gap": 2.5,
+      "heightDelta": 3,
+      "maxSlope": 1.35
+    },
+    "changedTerrainCount": 1
+  },
+  "pending": [
+    "actual contact screenshot of newbank",
+    "cold entry/save size and latestpaint freeze equality"
+  ],
+  "sourceReports": "_local/reports/silhouette-qa/sea32-bank-v1/",
+  "coverImpacts": [
+    {
+      "frame": 771,
+      "owner": "mage",
+      "skill": "M02",
+      "terrain": "a4-32-prop-4:collision:0",
+      "x": 2028.2311108031276,
+      "y": 1673.521191077742
+    },
+    {
+      "frame": 13051,
+      "owner": "mage",
+      "skill": "M02",
+      "terrain": "a4-32-prop-4:collision:0",
+      "x": 2050.9421075759883,
+      "y": 1636.0235023236257
+    },
+    {
+      "frame": 13362,
+      "owner": "mage",
+      "skill": "M02",
+      "terrain": "a4-32-prop-4:collision:0",
+      "x": 2160.3341915112246,
+      "y": 1669.9045743803963
+    },
+    {
+      "frame": 13370,
+      "owner": "mage",
+      "skill": "M02",
+      "terrain": "a4-32-prop-4:collision:0",
+      "x": 2139.9272903762385,
+      "y": 1666.985589020924
+    },
+    {
+      "frame": 13390,
+      "owner": "mage",
+      "skill": "M02",
+      "terrain": "a4-32-prop-4:collision:0",
+      "x": 2171.3407961456805,
+      "y": 1666.8102367554136
+    },
+    {
+      "frame": 13452,
+      "owner": "mage",
+      "skill": "M02",
+      "terrain": "a4-32-prop-4:collision:0",
+      "x": 2216.541383573178,
+      "y": 1673.527313266854
+    },
+    {
+      "frame": 13479,
+      "owner": "mage",
+      "skill": "M02",
+      "terrain": "a4-32-prop-4:collision:0",
+      "x": 2209.1928253950396,
+      "y": 1670.982057861698
+    },
+    {
+      "frame": 13528,
+      "owner": "mage",
+      "skill": "M02",
+      "terrain": "a4-32-prop-4:collision:0",
+      "x": 2203.474203251019,
+      "y": 1671.9933080502017
+    },
+    {
+      "frame": 13528,
+      "owner": "mage",
+      "skill": "M02",
+      "terrain": "a4-32-prop-4:collision:0",
+      "x": 2201.199889504556,
+      "y": 1671.8367425080687
+    },
+    {
+      "frame": 13530,
+      "owner": "mage",
+      "skill": "M02",
+      "terrain": "a4-32-prop-4:collision:0",
+      "x": 2194.4795631398833,
+      "y": 1671.3915316408427
+    },
+    {
+      "frame": 13532,
+      "owner": "mage",
+      "skill": "M02",
+      "terrain": "a4-32-prop-4:collision:0",
+      "x": 2214.719394289889,
+      "y": 1675.9914829306374
+    },
+    {
+      "frame": 13553,
+      "owner": "mage",
+      "skill": "M02",
+      "terrain": "a4-32-prop-4:collision:0",
+      "x": 2134.8328967937305,
+      "y": 1654.4416603885516
+    },
+    {
+      "frame": 16801,
+      "owner": "mage",
+      "skill": "M06",
+      "terrain": "a4-32-prop-4:collision:0",
+      "x": 2049.1941758490584,
+      "y": 1648.5468172011865
+    },
+    {
+      "frame": 16812,
+      "owner": "mage",
+      "skill": "M06",
+      "terrain": "a4-32-prop-4:collision:0",
+      "x": 2004.1794452963043,
+      "y": 1685.629082016669
+    },
+    {
+      "frame": 16832,
+      "owner": "mage",
+      "skill": "M06",
+      "terrain": "a4-32-prop-4:collision:0",
+      "x": 2166.824768111033,
+      "y": 1669.4435715118955
+    },
+    {
+      "frame": 19011,
+      "owner": "archer",
+      "skill": "A02",
+      "terrain": "a4-32-prop-4:collision:0",
+      "x": 2033.7883165306207,
+      "y": 1667.4076137694713
+    }
+  ],
+  "actualGroundedRouteSamples": [
+    {
+      "frame": 8160,
+      "round": 3,
+      "active": "knight",
+      "units": [
+        {
+          "id": "archer",
+          "x": 260,
+          "y": 1921.3345253333334,
+          "hp": 1117,
+          "grounded": true
+        },
+        {
+          "id": "mage",
+          "x": 377.7003886168234,
+          "y": 1916.5974571199215,
+          "hp": 1164,
+          "grounded": true
+        },
+        {
+          "id": "knight",
+          "x": 1750.1742150756297,
+          "y": 1760,
+          "hp": 1812,
+          "grounded": true
+        },
+        {
+          "id": "occultist",
+          "x": 620,
+          "y": 1909.4346992592593,
+          "hp": 1402,
+          "grounded": true
+        }
+      ]
+    },
+    {
+      "frame": 17055,
+      "round": 6,
+      "active": "knight",
+      "units": [
+        {
+          "id": "archer",
+          "x": 453.33165116007297,
+          "y": 1915.73088872973,
+          "hp": 1117,
+          "grounded": true
+        },
+        {
+          "id": "mage",
+          "x": 469.094640949401,
+          "y": 1916.3013100461849,
+          "hp": 1164,
+          "grounded": true
+        },
+        {
+          "id": "knight",
+          "x": 2210.483945031045,
+          "y": 1677.9529507372974,
+          "hp": 1317,
+          "grounded": true
+        },
+        {
+          "id": "occultist",
+          "x": 603.3265785771222,
+          "y": 1910.9741200060719,
+          "hp": 1331,
+          "grounded": true
+        }
+      ]
+    },
+    {
+      "frame": 24195,
+      "round": 10,
+      "active": "archer",
+      "units": [
+        {
+          "id": "archer",
+          "x": 1833.6487321892798,
+          "y": 1983.9130772995918,
+          "hp": 1117,
+          "grounded": true
+        },
+        {
+          "id": "mage",
+          "x": 469.094640949401,
+          "y": 1916.3013100461849,
+          "hp": 1209,
+          "grounded": true
+        },
+        {
+          "id": "knight",
+          "x": 2188.120848062182,
+          "y": 1673.8863119673301,
+          "hp": 1219,
+          "grounded": true
+        },
+        {
+          "id": "occultist",
+          "x": 972.3225107338312,
+          "y": 1977.3748407291605,
+          "hp": 1387,
+          "grounded": true
+        }
+      ]
+    }
+  ],
+  "paintRevisionPhysicalClosure": {
+    "scope": "Actual App entry complete terrain including instantiated element colliders; no renderer or movement. Exact physical-holder equality only.",
+    "stage": 32,
+    "runtimeSHA256": "c06cffd6d892681fb3282a2679a114a1871827e16bc414c2122e7ef6d38bcdbd",
+    "before": {
+      "projectSHA256": "94691a6ba4a72db12ead948deeebcaa60e74074338d4a76f7987aff713d30973",
+      "terrainSHA256": "8eafb5bd1e9a5a72d012b4cb9fd293511c77685bc88a12122298efbee787d5f7",
+      "colliders": [
+        {
+          "id": "a4-32-land",
+          "mat": "earth",
+          "vertices": 165,
+          "oneWay": false,
+          "indestructible": true
+        },
+        {
+          "id": "a4-32-back-alley",
+          "mat": "wood",
+          "vertices": 8,
+          "oneWay": true,
+          "indestructible": true
+        },
+        {
+          "id": "a4-32-prop-4:collision:0",
+          "mat": "rock",
+          "vertices": 95,
+          "oneWay": false,
+          "indestructible": true
+        }
+      ]
+    },
+    "after": {
+      "projectSHA256": "cdc6db8c46540ecfca3cb683e393b3402cff96ef603397e43a51028795be3e8e",
+      "terrainSHA256": "8eafb5bd1e9a5a72d012b4cb9fd293511c77685bc88a12122298efbee787d5f7",
+      "colliders": [
+        {
+          "id": "a4-32-land",
+          "mat": "earth",
+          "vertices": 165,
+          "oneWay": false,
+          "indestructible": true
+        },
+        {
+          "id": "a4-32-back-alley",
+          "mat": "wood",
+          "vertices": 8,
+          "oneWay": true,
+          "indestructible": true
+        },
+        {
+          "id": "a4-32-prop-4:collision:0",
+          "mat": "rock",
+          "vertices": 95,
+          "oneWay": false,
+          "indestructible": true
+        }
+      ]
+    },
+    "exact": true,
+    "changed": []
+  }
+}

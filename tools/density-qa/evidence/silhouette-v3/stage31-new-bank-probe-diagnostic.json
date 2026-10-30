@@ -1,0 +1,1289 @@
+{
+  "status": "partial-new-bank-probes-boarding-pending-not-release-approval",
+  "sourceSHA256": "4619a2162c7c307a50100e02de5d5190d0c61665418d94c7dec50cb416885785",
+  "declarationScope": {
+    "scope": "Readonly QA copy declares existing nine probe IDs and encounter member/target-zone definitions needed by unchanged runner. Stages/library unchanged; no reviews or previous passes copied. NOT a completed release package.",
+    "source": "_local/reports/silhouette-qa/sea31-4619/project.json",
+    "probeDefinitions": "art/stage31-vector-production/package/production-card.json",
+    "count": 9
+  },
+  "baseline": {
+    "sourceReport": "_local/reports/silhouette-qa/sea31-4619/baseline-probes/probe-results.json",
+    "sourceReportSHA256": "45fe8d9e2a1d43a2cebf7894ce5e086a7433e845e0bafabc6c8b56984a5dfad8",
+    "version": 1,
+    "stageId": "stage-31",
+    "inputs": [
+      {
+        "path": "tests/fixtures/stage31-production/route-inputs.json",
+        "sha256": "69772b4812bdca4e4e8e8ba9accff851007ddb50eadb9bca8727e5104ee2ecf8"
+      },
+      {
+        "path": "tests/fixtures/stage31-production/shot-inputs.json",
+        "sha256": "64cda126db95ef7968c3025c3233619afb28e864a351c7734a96eb398669d6bb"
+      },
+      {
+        "path": "tests/fixtures/stage31-production/enemy-inputs.json",
+        "sha256": "f0364b9349f24f45af1569b4b271fbe6d81ab8e121c06f18d8bfa1502e10cda3"
+      },
+      {
+        "path": "tests/fixtures/stage31-production/objective-inputs.json",
+        "sha256": "1153e1bac628723742091c0ebc82f8cc612ebce2fda655496b65dfc588166a23"
+      }
+    ],
+    "results": [
+      {
+        "id": "boardwalk-route",
+        "kind": "route",
+        "result": "pass",
+        "fingerprint": "draft-v1-3362df14-3134958",
+        "runtimeSHA256": "00b3f8b72c707db7b49e5c99d7b56397834b07a2261ef727b1b4639c1c046c3e",
+        "scope": "Native production Engine inputs from authored spawn; no browser HUD or campaign-completion claim",
+        "frames": 3354,
+        "checkpointsReached": 4
+      },
+      {
+        "id": "low-channel-route",
+        "kind": "route",
+        "result": "pass",
+        "fingerprint": "draft-v1-3362df14-3134958",
+        "runtimeSHA256": "00b3f8b72c707db7b49e5c99d7b56397834b07a2261ef727b1b4639c1c046c3e",
+        "scope": "Native production Engine inputs from authored spawn; no browser HUD or campaign-completion claim",
+        "frames": 3737,
+        "checkpointsReached": 5
+      },
+      {
+        "id": "first-bank-low-shot",
+        "kind": "shot",
+        "result": "pass",
+        "fingerprint": "draft-v1-3362df14-3134958",
+        "runtimeSHA256": "00b3f8b72c707db7b49e5c99d7b56397834b07a2261ef727b1b4639c1c046c3e",
+        "scope": "Native production Engine inputs from authored spawn; no browser HUD or campaign-completion claim",
+        "frames": 480,
+        "checkpointsReached": 0,
+        "impacts": [
+          {
+            "frame": 255,
+            "owner": "archer",
+            "skill": "A01",
+            "terrain": "s31-estuary-bank",
+            "x": 1284.119269113758,
+            "y": 1824.4514225229793
+          }
+        ],
+        "hurts": []
+      },
+      {
+        "id": "first-bank-high-shot",
+        "kind": "shot",
+        "result": "pass",
+        "fingerprint": "draft-v1-3362df14-3134958",
+        "runtimeSHA256": "00b3f8b72c707db7b49e5c99d7b56397834b07a2261ef727b1b4639c1c046c3e",
+        "scope": "Native production Engine inputs from authored spawn; no browser HUD or campaign-completion claim",
+        "frames": 480,
+        "checkpointsReached": 0,
+        "impacts": [
+          {
+            "frame": 275,
+            "owner": "archer",
+            "skill": "A01",
+            "unit": "s31-west-hound",
+            "x": 1387.2006869627762,
+            "y": 1744.3729231238028
+          }
+        ],
+        "hurts": [
+          {
+            "frame": 275,
+            "target": "s31-west-hound",
+            "owner": "archer",
+            "amount": 220
+          }
+        ]
+      },
+      {
+        "id": "s31-west-bank-action",
+        "kind": "enemy-action",
+        "result": "pass",
+        "fingerprint": "draft-v1-3362df14-3134958",
+        "runtimeSHA256": "00b3f8b72c707db7b49e5c99d7b56397834b07a2261ef727b1b4639c1c046c3e",
+        "scope": "Native production Engine inputs from authored spawn; no browser HUD or campaign-completion claim",
+        "frames": 6852,
+        "checkpointsReached": 0
+      },
+      {
+        "id": "s31-low-channel-action",
+        "kind": "enemy-action",
+        "result": "pass",
+        "fingerprint": "draft-v1-3362df14-3134958",
+        "runtimeSHA256": "00b3f8b72c707db7b49e5c99d7b56397834b07a2261ef727b1b4639c1c046c3e",
+        "scope": "Native production Engine inputs from authored spawn; no browser HUD or campaign-completion claim",
+        "frames": 6852,
+        "checkpointsReached": 0
+      },
+      {
+        "id": "s31-middle-rise-action",
+        "kind": "enemy-action",
+        "result": "pass",
+        "fingerprint": "draft-v1-3362df14-3134958",
+        "runtimeSHA256": "00b3f8b72c707db7b49e5c99d7b56397834b07a2261ef727b1b4639c1c046c3e",
+        "scope": "Native production Engine inputs from authored spawn; no browser HUD or campaign-completion claim",
+        "frames": 6852,
+        "checkpointsReached": 0
+      },
+      {
+        "id": "s31-landing-action",
+        "kind": "enemy-action",
+        "result": "pass",
+        "fingerprint": "draft-v1-3362df14-3134958",
+        "runtimeSHA256": "00b3f8b72c707db7b49e5c99d7b56397834b07a2261ef727b1b4639c1c046c3e",
+        "scope": "Native production Engine inputs from authored spawn; no browser HUD or campaign-completion claim",
+        "frames": 14052,
+        "checkpointsReached": 0
+      },
+      {
+        "id": "boarding",
+        "kind": "objective",
+        "result": "pass",
+        "fingerprint": "draft-v1-3362df14-3134958",
+        "runtimeSHA256": "00b3f8b72c707db7b49e5c99d7b56397834b07a2261ef727b1b4639c1c046c3e",
+        "scope": "Prepared stage-entry profile; production App events; DOM/audio are doubles. Not a browser/campaign playthrough.",
+        "entryBuild": "campaign-spent-v1",
+        "frames": 42960,
+        "final": {
+          "frame": 42960,
+          "final": {
+            "phase": "won",
+            "objective": {
+              "version": 1,
+              "clock": 357.99999999983874,
+              "events": {
+                "arrival": {
+                  "started": true,
+                  "terminal": true,
+                  "presented": [],
+                  "retired": [
+                    "A4.S31.ENTRY.01",
+                    "A4.S31.ENTRY.02"
+                  ]
+                },
+                "boat_approach": {
+                  "started": true,
+                  "terminal": true,
+                  "presented": [],
+                  "retired": [
+                    "A4.S31.BOAT.01"
+                  ]
+                },
+                "board_ready": {
+                  "started": true,
+                  "terminal": true,
+                  "presented": [],
+                  "retired": [
+                    "A4.S31.BOARD.01"
+                  ]
+                }
+              },
+              "receipts": [],
+              "boat": {
+                "phase": "boarded",
+                "x": 6470
+              },
+              "door": {
+                "phase": "standing",
+                "time": 0
+              },
+              "complete": true,
+              "arrivalTour": {
+                "active": false,
+                "index": 0,
+                "seen": {}
+              },
+              "water": {
+                "dry": {
+                  "archer": {
+                    "x": 6475.99234735594,
+                    "y": 1860
+                  },
+                  "mage": {
+                    "x": 6448.744698466599,
+                    "y": 1860
+                  },
+                  "knight": {
+                    "x": 6502.422230086851,
+                    "y": 1860
+                  },
+                  "occultist": {
+                    "x": 6406.229486153642,
+                    "y": 1860
+                  },
+                  "s31-west-hound": {
+                    "x": 1697.586599250135,
+                    "y": 1849.882273134153
+                  },
+                  "s31-west-guard": {
+                    "x": 1650,
+                    "y": 1847.560975609756
+                  },
+                  "s31-west-archer": {
+                    "x": 2421.0833333333126,
+                    "y": 1860
+                  },
+                  "s31-rise-hound": {
+                    "x": 3272.938470967151,
+                    "y": 1789.0140265022544
+                  },
+                  "s31-rise-guard": {
+                    "x": 3235.936575457419,
+                    "y": 1791.5533722725302
+                  },
+                  "s31-rise-kiln": {
+                    "x": 3603.3649748440703,
+                    "y": 1762.1522095817543
+                  },
+                  "s31-rise-archer": {
+                    "x": 2730.6082490042836,
+                    "y": 1835.9391750995717
+                  },
+                  "s31-landing-hound": {
+                    "x": 5400,
+                    "y": 1860
+                  },
+                  "s31-landing-archer": {
+                    "x": 5795.097610248753,
+                    "y": 1860
+                  },
+                  "s31-landing-guard": {
+                    "x": 6112.208265049921,
+                    "y": 1860
+                  },
+                  "s31-low-guard": {
+                    "x": 1943.3333333333303,
+                    "y": 1860
+                  },
+                  "s31-low-hound": {
+                    "x": 2275.27538173951,
+                    "y": 1860
+                  }
+                },
+                "recoveries": []
+              },
+              "reader": null
+            },
+            "units": [
+              {
+                "id": "archer",
+                "x": 6475.99234735594,
+                "y": 1860,
+                "hp": 1443,
+                "dead": false
+              },
+              {
+                "id": "mage",
+                "x": 6448.744698466599,
+                "y": 1860,
+                "hp": 1620,
+                "dead": false
+              },
+              {
+                "id": "knight",
+                "x": 6502.422230086851,
+                "y": 1860,
+                "hp": 2319.5,
+                "dead": false
+              },
+              {
+                "id": "occultist",
+                "x": 6406.229486153642,
+                "y": 1860,
+                "hp": 1921,
+                "dead": false
+              },
+              {
+                "id": "s31-west-hound",
+                "x": 1755.5837290986885,
+                "y": 2011.7501548647042,
+                "hp": 0,
+                "dead": true
+              },
+              {
+                "id": "s31-west-guard",
+                "x": 1650,
+                "y": 1847.560975609756,
+                "hp": 0,
+                "dead": true
+              },
+              {
+                "id": "s31-west-archer",
+                "x": 2421.0833333333126,
+                "y": 1860,
+                "hp": 0,
+                "dead": true
+              },
+              {
+                "id": "s31-low-hound",
+                "x": 2275.27538173951,
+                "y": 1860,
+                "hp": 0,
+                "dead": true
+              },
+              {
+                "id": "s31-low-guard",
+                "x": 1943.3333333333303,
+                "y": 1860,
+                "hp": 0,
+                "dead": true
+              },
+              {
+                "id": "s31-low-archer",
+                "x": 2726.754400490179,
+                "y": 2079.6826586937764,
+                "hp": 0,
+                "dead": true
+              },
+              {
+                "id": "s31-rise-hound",
+                "x": 3272.938470967151,
+                "y": 1789.0140265022544,
+                "hp": 0,
+                "dead": true
+              },
+              {
+                "id": "s31-rise-guard",
+                "x": 3243.6922373680995,
+                "y": 1791.0211209649344,
+                "hp": 0,
+                "dead": true
+              },
+              {
+                "id": "s31-rise-kiln",
+                "x": 3603.3649748440703,
+                "y": 1762.1522095817543,
+                "hp": 0,
+                "dead": true
+              },
+              {
+                "id": "s31-rise-archer",
+                "x": 2730.6082490042836,
+                "y": 1835.9391750995717,
+                "hp": 0,
+                "dead": true
+              },
+              {
+                "id": "s31-landing-hound",
+                "x": 5400,
+                "y": 1860,
+                "hp": 0,
+                "dead": true
+              },
+              {
+                "id": "s31-landing-archer",
+                "x": 5795.097610248753,
+                "y": 1860,
+                "hp": 0,
+                "dead": true
+              },
+              {
+                "id": "s31-landing-guard",
+                "x": 6112.208265049921,
+                "y": 1860,
+                "hp": 0,
+                "dead": true
+              }
+            ]
+          }
+        }
+      }
+    ]
+  },
+  "originalCandidateProbes": {
+    "sourceReport": "_local/reports/silhouette-qa/sea31-4619/probes/probe-results.json",
+    "sourceReportSHA256": "5d32994a0bbbfdf7ac3ed68334656dcab1d6f59fda045250b39f834e44d88e46",
+    "version": 1,
+    "stageId": "stage-31",
+    "inputs": [
+      {
+        "path": "tests/fixtures/stage31-production/route-inputs.json",
+        "sha256": "69772b4812bdca4e4e8e8ba9accff851007ddb50eadb9bca8727e5104ee2ecf8"
+      },
+      {
+        "path": "tests/fixtures/stage31-production/shot-inputs.json",
+        "sha256": "64cda126db95ef7968c3025c3233619afb28e864a351c7734a96eb398669d6bb"
+      },
+      {
+        "path": "tests/fixtures/stage31-production/enemy-inputs.json",
+        "sha256": "f0364b9349f24f45af1569b4b271fbe6d81ab8e121c06f18d8bfa1502e10cda3"
+      },
+      {
+        "path": "tests/fixtures/stage31-production/objective-inputs.json",
+        "sha256": "1153e1bac628723742091c0ebc82f8cc612ebce2fda655496b65dfc588166a23"
+      }
+    ],
+    "results": [
+      {
+        "id": "boardwalk-route",
+        "kind": "route",
+        "result": "pass",
+        "fingerprint": "draft-v1-80a68e45-2516027",
+        "runtimeSHA256": "00b3f8b72c707db7b49e5c99d7b56397834b07a2261ef727b1b4639c1c046c3e",
+        "scope": "Native production Engine inputs from authored spawn; no browser HUD or campaign-completion claim",
+        "frames": 3354,
+        "checkpointsReached": 4
+      },
+      {
+        "id": "low-channel-route",
+        "kind": "route",
+        "result": "pass",
+        "fingerprint": "draft-v1-80a68e45-2516027",
+        "runtimeSHA256": "00b3f8b72c707db7b49e5c99d7b56397834b07a2261ef727b1b4639c1c046c3e",
+        "scope": "Native production Engine inputs from authored spawn; no browser HUD or campaign-completion claim",
+        "frames": 3737,
+        "checkpointsReached": 5
+      },
+      {
+        "id": "first-bank-low-shot",
+        "kind": "shot",
+        "result": "fail",
+        "fingerprint": "draft-v1-80a68e45-2516027",
+        "runtimeSHA256": "00b3f8b72c707db7b49e5c99d7b56397834b07a2261ef727b1b4639c1c046c3e",
+        "scope": "Native production Engine inputs from authored spawn; no browser HUD or campaign-completion claim",
+        "frames": 480,
+        "checkpointsReached": 0,
+        "impacts": [
+          {
+            "frame": 256,
+            "owner": "archer",
+            "skill": "A01",
+            "terrain": "s31-west-boardwalk",
+            "x": 1288.9755932147038,
+            "y": 1826.1373383271873
+          }
+        ],
+        "hurts": []
+      },
+      {
+        "id": "first-bank-high-shot",
+        "kind": "shot",
+        "result": "pass",
+        "fingerprint": "draft-v1-80a68e45-2516027",
+        "runtimeSHA256": "00b3f8b72c707db7b49e5c99d7b56397834b07a2261ef727b1b4639c1c046c3e",
+        "scope": "Native production Engine inputs from authored spawn; no browser HUD or campaign-completion claim",
+        "frames": 480,
+        "checkpointsReached": 0,
+        "impacts": [
+          {
+            "frame": 276,
+            "owner": "archer",
+            "skill": "A01",
+            "unit": "s31-west-hound",
+            "x": 1392.0855043223505,
+            "y": 1745.2044613737758
+          }
+        ],
+        "hurts": [
+          {
+            "frame": 276,
+            "target": "s31-west-hound",
+            "owner": "archer",
+            "amount": 220
+          }
+        ]
+      },
+      {
+        "id": "s31-west-bank-action",
+        "kind": "enemy-action",
+        "result": "pass",
+        "fingerprint": "draft-v1-80a68e45-2516027",
+        "runtimeSHA256": "00b3f8b72c707db7b49e5c99d7b56397834b07a2261ef727b1b4639c1c046c3e",
+        "scope": "Native production Engine inputs from authored spawn; no browser HUD or campaign-completion claim",
+        "frames": 6852,
+        "checkpointsReached": 0
+      },
+      {
+        "id": "s31-low-channel-action",
+        "kind": "enemy-action",
+        "result": "pass",
+        "fingerprint": "draft-v1-80a68e45-2516027",
+        "runtimeSHA256": "00b3f8b72c707db7b49e5c99d7b56397834b07a2261ef727b1b4639c1c046c3e",
+        "scope": "Native production Engine inputs from authored spawn; no browser HUD or campaign-completion claim",
+        "frames": 6852,
+        "checkpointsReached": 0
+      },
+      {
+        "id": "s31-middle-rise-action",
+        "kind": "enemy-action",
+        "result": "pass",
+        "fingerprint": "draft-v1-80a68e45-2516027",
+        "runtimeSHA256": "00b3f8b72c707db7b49e5c99d7b56397834b07a2261ef727b1b4639c1c046c3e",
+        "scope": "Native production Engine inputs from authored spawn; no browser HUD or campaign-completion claim",
+        "frames": 6852,
+        "checkpointsReached": 0
+      },
+      {
+        "id": "s31-landing-action",
+        "kind": "enemy-action",
+        "result": "pass",
+        "fingerprint": "draft-v1-80a68e45-2516027",
+        "runtimeSHA256": "00b3f8b72c707db7b49e5c99d7b56397834b07a2261ef727b1b4639c1c046c3e",
+        "scope": "Native production Engine inputs from authored spawn; no browser HUD or campaign-completion claim",
+        "frames": 14052,
+        "checkpointsReached": 0
+      },
+      {
+        "id": "boarding",
+        "kind": "objective",
+        "result": "fail",
+        "fingerprint": "draft-v1-80a68e45-2516027",
+        "runtimeSHA256": "00b3f8b72c707db7b49e5c99d7b56397834b07a2261ef727b1b4639c1c046c3e",
+        "scope": "Prepared stage-entry profile; production App events; DOM/audio are doubles. Not a browser/campaign playthrough.",
+        "entryBuild": "campaign-spent-v1",
+        "frames": 40200,
+        "final": {
+          "frame": 40200,
+          "final": {
+            "phase": "review",
+            "objective": {
+              "version": 1,
+              "clock": 334.99999999985965,
+              "events": {
+                "arrival": {
+                  "started": true,
+                  "terminal": true,
+                  "presented": [],
+                  "retired": [
+                    "A4.S31.ENTRY.01",
+                    "A4.S31.ENTRY.02"
+                  ]
+                }
+              },
+              "receipts": [],
+              "boat": {
+                "phase": "waiting",
+                "x": 500
+              },
+              "door": {
+                "phase": "standing",
+                "time": 0
+              },
+              "complete": false,
+              "arrivalTour": {
+                "active": false,
+                "index": 0,
+                "seen": {}
+              },
+              "water": {
+                "dry": {
+                  "archer": {
+                    "x": 5266.7985023297515,
+                    "y": 1857.2781740853811
+                  },
+                  "mage": {
+                    "x": 1697.7207169747624,
+                    "y": 1849.8888154621836
+                  },
+                  "knight": {
+                    "x": 3804.73497609492,
+                    "y": 1730.1694280144643
+                  },
+                  "occultist": {
+                    "x": 3603.0408869615667,
+                    "y": 1762.16467633732
+                  },
+                  "s31-west-hound": {
+                    "x": 1666.2072445522936,
+                    "y": 1848.35157290499
+                  },
+                  "s31-west-guard": {
+                    "x": 1650,
+                    "y": 1847.560975609756
+                  },
+                  "s31-west-archer": {
+                    "x": 2421.0833333333126,
+                    "y": 1860
+                  },
+                  "s31-rise-hound": {
+                    "x": 2725.232070300224,
+                    "y": 1836.4767929699776
+                  },
+                  "s31-rise-guard": {
+                    "x": 3239.6188302407045,
+                    "y": 1791.3006685128928
+                  },
+                  "s31-rise-kiln": {
+                    "x": 3795.891202711096,
+                    "y": 1731.5723383661873
+                  },
+                  "s31-rise-archer": {
+                    "x": 3120.5083474157127,
+                    "y": 1799.474917334216
+                  },
+                  "s31-landing-hound": {
+                    "x": 5400,
+                    "y": 1859.811587179487
+                  },
+                  "s31-landing-archer": {
+                    "x": 5760,
+                    "y": 1859.133301025641
+                  },
+                  "s31-landing-guard": {
+                    "x": 6100,
+                    "y": 1858.7403257142857
+                  },
+                  "s31-low-guard": {
+                    "x": 1943.3333333333303,
+                    "y": 1860
+                  },
+                  "s31-low-hound": {
+                    "x": 2274.4315872969273,
+                    "y": 1860
+                  }
+                },
+                "recoveries": []
+              }
+            },
+            "units": [
+              {
+                "id": "archer",
+                "x": 5266.7985023297515,
+                "y": 1857.2781740853811,
+                "hp": 1418,
+                "dead": false
+              },
+              {
+                "id": "mage",
+                "x": 2611.260712392207,
+                "y": 2107.5812786029524,
+                "hp": 1314,
+                "dead": false
+              },
+              {
+                "id": "knight",
+                "x": 3804.73497609492,
+                "y": 1730.1694280144643,
+                "hp": 2406.9,
+                "dead": false
+              },
+              {
+                "id": "occultist",
+                "x": 3603.0408869615667,
+                "y": 1762.16467633732,
+                "hp": 1639,
+                "dead": false
+              },
+              {
+                "id": "s31-west-hound",
+                "x": 1666.2072445522936,
+                "y": 1848.35157290499,
+                "hp": 0,
+                "dead": true
+              },
+              {
+                "id": "s31-west-guard",
+                "x": 1650,
+                "y": 1847.560975609756,
+                "hp": 0,
+                "dead": true
+              },
+              {
+                "id": "s31-west-archer",
+                "x": 2421.0833333333126,
+                "y": 1860,
+                "hp": 487,
+                "dead": false
+              },
+              {
+                "id": "s31-low-hound",
+                "x": 2274.4315872969273,
+                "y": 1860,
+                "hp": 0,
+                "dead": true
+              },
+              {
+                "id": "s31-low-guard",
+                "x": 1943.3333333333303,
+                "y": 1860,
+                "hp": 0,
+                "dead": true
+              },
+              {
+                "id": "s31-low-archer",
+                "x": 2148.7724130077067,
+                "y": 2119.822752651432,
+                "hp": 1420,
+                "dead": false
+              },
+              {
+                "id": "s31-rise-hound",
+                "x": 2725.232070300224,
+                "y": 1836.4767929699776,
+                "hp": 869,
+                "dead": false
+              },
+              {
+                "id": "s31-rise-guard",
+                "x": 3239.6188302407045,
+                "y": 1791.3006685128928,
+                "hp": 1164,
+                "dead": false
+              },
+              {
+                "id": "s31-rise-kiln",
+                "x": 3795.891202711096,
+                "y": 1731.5723383661873,
+                "hp": 905,
+                "dead": false
+              },
+              {
+                "id": "s31-rise-archer",
+                "x": 3120.5083474157127,
+                "y": 1799.474917334216,
+                "hp": 685,
+                "dead": false
+              },
+              {
+                "id": "s31-landing-hound",
+                "x": 5400,
+                "y": 1859.811587179487,
+                "hp": 1199,
+                "dead": false
+              },
+              {
+                "id": "s31-landing-archer",
+                "x": 5760,
+                "y": 1859.133301025641,
+                "hp": 1420,
+                "dead": false
+              },
+              {
+                "id": "s31-landing-guard",
+                "x": 6100,
+                "y": 1858.7403257142857,
+                "hp": 1420,
+                "dead": false
+              }
+            ]
+          }
+        }
+      }
+    ]
+  },
+  "refreshedLowShot": {
+    "id": "first-bank-low-shot",
+    "kind": "shot",
+    "runner": "honro-production-engine-v1",
+    "fingerprint": "draft-v1-80a68e45-2516027",
+    "result": "pass",
+    "scope": "Native production Engine inputs from authored spawn; no browser HUD or campaign-completion claim",
+    "observations": [
+      {
+        "input": {
+          "op": "fire",
+          "skill": "A01",
+          "angle": -12,
+          "power": 0.65
+        },
+        "accepted": true
+      },
+      {
+        "initial": [
+          {
+            "id": "archer",
+            "x": 260,
+            "y": 1720,
+            "hp": 995,
+            "focus": 222,
+            "move": 1856
+          },
+          {
+            "id": "mage",
+            "x": 380,
+            "y": 1720,
+            "hp": 1062,
+            "focus": 288,
+            "move": 1876
+          },
+          {
+            "id": "knight",
+            "x": 500,
+            "y": 1720,
+            "hp": 1618,
+            "focus": 251,
+            "move": 1966
+          },
+          {
+            "id": "occultist",
+            "x": 620,
+            "y": 1720,
+            "hp": 1216,
+            "focus": 344,
+            "move": 1906
+          },
+          {
+            "id": "s31-west-hound",
+            "x": 1420,
+            "y": 1836.341463414634,
+            "hp": 1420,
+            "focus": 198,
+            "move": 550
+          },
+          {
+            "id": "s31-west-guard",
+            "x": 1650,
+            "y": 1847.560975609756,
+            "hp": 1420,
+            "focus": 198,
+            "move": 550
+          },
+          {
+            "id": "s31-west-archer",
+            "x": 2090,
+            "y": 1860,
+            "hp": 1420,
+            "focus": 198,
+            "move": 550
+          },
+          {
+            "id": "s31-low-hound",
+            "x": 2480,
+            "y": 2118.8888888888887,
+            "hp": 1420,
+            "focus": 198,
+            "move": 550
+          },
+          {
+            "id": "s31-low-guard",
+            "x": 2040,
+            "y": 2098.3333333333335,
+            "hp": 1420,
+            "focus": 198,
+            "move": 550
+          },
+          {
+            "id": "s31-low-archer",
+            "x": 2800,
+            "y": 2060.294117647059,
+            "hp": 1420,
+            "focus": 198,
+            "move": 550
+          },
+          {
+            "id": "s31-rise-hound",
+            "x": 3510,
+            "y": 1786.923076923077,
+            "hp": 1420,
+            "focus": 198,
+            "move": 550
+          },
+          {
+            "id": "s31-rise-guard",
+            "x": 3890,
+            "y": 1720,
+            "hp": 1420,
+            "focus": 198,
+            "move": 550
+          },
+          {
+            "id": "s31-rise-kiln",
+            "x": 4780,
+            "y": 1725.7142857142858,
+            "hp": 1420,
+            "focus": 198,
+            "move": 550
+          },
+          {
+            "id": "s31-rise-archer",
+            "x": 4300,
+            "y": 1472.3976744186048,
+            "hp": 1420,
+            "focus": 198,
+            "move": 550
+          },
+          {
+            "id": "s31-landing-hound",
+            "x": 5400,
+            "y": 1860,
+            "hp": 1420,
+            "focus": 198,
+            "move": 550
+          },
+          {
+            "id": "s31-landing-archer",
+            "x": 5760,
+            "y": 1860,
+            "hp": 1420,
+            "focus": 198,
+            "move": 550
+          },
+          {
+            "id": "s31-landing-guard",
+            "x": 6100,
+            "y": 1860,
+            "hp": 1420,
+            "focus": 198,
+            "move": 550
+          }
+        ],
+        "final": [
+          {
+            "id": "archer",
+            "x": 873.2679188803519,
+            "y": 1747.077266092436,
+            "hp": 995,
+            "dead": false
+          },
+          {
+            "id": "mage",
+            "x": 380,
+            "y": 1720.5016655670104,
+            "hp": 1062,
+            "dead": false
+          },
+          {
+            "id": "knight",
+            "x": 500,
+            "y": 1720.2787030927834,
+            "hp": 1618,
+            "dead": false
+          },
+          {
+            "id": "occultist",
+            "x": 620,
+            "y": 1720.0557406185567,
+            "hp": 1216,
+            "dead": false
+          },
+          {
+            "id": "s31-west-hound",
+            "x": 1420,
+            "y": 1836.341463414634,
+            "hp": 1420,
+            "dead": false
+          },
+          {
+            "id": "s31-west-guard",
+            "x": 1650,
+            "y": 1847.560975609756,
+            "hp": 1420,
+            "dead": false
+          },
+          {
+            "id": "s31-west-archer",
+            "x": 2090,
+            "y": 1860,
+            "hp": 1420,
+            "dead": false
+          },
+          {
+            "id": "s31-low-hound",
+            "x": 2480,
+            "y": 2121.6996139285716,
+            "hp": 1420,
+            "dead": false
+          },
+          {
+            "id": "s31-low-guard",
+            "x": 2040,
+            "y": 2100.0231040625,
+            "hp": 1420,
+            "dead": false
+          },
+          {
+            "id": "s31-low-archer",
+            "x": 2800,
+            "y": 2061.696687272727,
+            "hp": 1420,
+            "dead": false
+          },
+          {
+            "id": "s31-rise-hound",
+            "x": 3510,
+            "y": 1785.44849,
+            "hp": 1420,
+            "dead": false
+          },
+          {
+            "id": "s31-rise-guard",
+            "x": 3890,
+            "y": 1720,
+            "hp": 1420,
+            "dead": false
+          },
+          {
+            "id": "s31-rise-kiln",
+            "x": 4780,
+            "y": 1725.8131704761904,
+            "hp": 1420,
+            "dead": false
+          },
+          {
+            "id": "s31-rise-archer",
+            "x": 4300,
+            "y": 1472.3976744186048,
+            "hp": 1420,
+            "dead": false
+          },
+          {
+            "id": "s31-landing-hound",
+            "x": 5400,
+            "y": 1859.811587179487,
+            "hp": 1420,
+            "dead": false
+          },
+          {
+            "id": "s31-landing-archer",
+            "x": 5760,
+            "y": 1859.133301025641,
+            "hp": 1420,
+            "dead": false
+          },
+          {
+            "id": "s31-landing-guard",
+            "x": 6100,
+            "y": 1858.7403257142857,
+            "hp": 1420,
+            "dead": false
+          }
+        ],
+        "checkpointsReached": 0,
+        "hurts": [],
+        "impacts": [
+          {
+            "frame": 244,
+            "owner": "archer",
+            "skill": "A01",
+            "terrain": "s31-estuary-bank",
+            "x": 1227.9876894739525,
+            "y": 1809.7525451773797
+          }
+        ],
+        "fires": [
+          {
+            "frame": 180,
+            "actor": "archer",
+            "side": 0,
+            "skill": "A01"
+          }
+        ],
+        "trace": [
+          {
+            "frame": 30,
+            "actor": {
+              "x": 362.4998230731268,
+              "y": 1720.534181256569,
+              "hp": 995,
+              "move": 1753.4253206935634
+            },
+            "phase": "aim",
+            "round": 1,
+            "active": "archer"
+          },
+          {
+            "frame": 60,
+            "actor": {
+              "x": 464.99964614625355,
+              "y": 1720.3437344719005,
+              "hp": 995,
+              "move": 1650.9253206935612
+            },
+            "phase": "aim",
+            "round": 1,
+            "active": "archer"
+          },
+          {
+            "frame": 90,
+            "actor": {
+              "x": 567.4994692193794,
+              "y": 1720.1532876872323,
+              "hp": 995,
+              "move": 1548.4253206935625
+            },
+            "phase": "aim",
+            "round": 1,
+            "active": "archer"
+          },
+          {
+            "frame": 120,
+            "actor": {
+              "x": 669.970814889146,
+              "y": 1720.7089610883556,
+              "hp": 995,
+              "move": 1445.9120576137518
+            },
+            "phase": "aim",
+            "round": 1,
+            "active": "archer"
+          },
+          {
+            "frame": 150,
+            "actor": {
+              "x": 771.619366884749,
+              "y": 1733.8931135903958,
+              "hp": 995,
+              "move": 1343.4120576137495
+            },
+            "phase": "aim",
+            "round": 1,
+            "active": "archer"
+          },
+          {
+            "frame": 180,
+            "actor": {
+              "x": 873.2679188803519,
+              "y": 1747.077266092436,
+              "hp": 995,
+              "move": 1240.9120576137473
+            },
+            "phase": "aim",
+            "round": 1,
+            "active": "archer"
+          },
+          {
+            "frame": 210,
+            "actor": {
+              "x": 873.2679188803519,
+              "y": 1747.077266092436,
+              "hp": 995,
+              "move": 1240.9120576137473
+            },
+            "phase": "flight",
+            "round": 1,
+            "active": "archer"
+          },
+          {
+            "frame": 240,
+            "actor": {
+              "x": 873.2679188803519,
+              "y": 1747.077266092436,
+              "hp": 995,
+              "move": 1240.9120576137473
+            },
+            "phase": "flight",
+            "round": 1,
+            "active": "archer"
+          },
+          {
+            "frame": 270,
+            "actor": {
+              "x": 873.2679188803519,
+              "y": 1747.077266092436,
+              "hp": 995,
+              "move": 1240.9120576137473
+            },
+            "phase": "review",
+            "round": 1,
+            "active": "archer"
+          },
+          {
+            "frame": 300,
+            "actor": {
+              "x": 873.2679188803519,
+              "y": 1747.077266092436,
+              "hp": 995,
+              "move": 1240.9120576137473
+            },
+            "phase": "review",
+            "round": 1,
+            "active": "archer"
+          },
+          {
+            "frame": 330,
+            "actor": {
+              "x": 873.2679188803519,
+              "y": 1747.077266092436,
+              "hp": 995,
+              "move": 1240.9120576137473
+            },
+            "phase": "review",
+            "round": 1,
+            "active": "archer"
+          },
+          {
+            "frame": 360,
+            "actor": {
+              "x": 873.2679188803519,
+              "y": 1747.077266092436,
+              "hp": 995,
+              "move": 1240.9120576137473
+            },
+            "phase": "aim",
+            "round": 1,
+            "active": "mage"
+          },
+          {
+            "frame": 390,
+            "actor": {
+              "x": 873.2679188803519,
+              "y": 1747.077266092436,
+              "hp": 995,
+              "move": 1240.9120576137473
+            },
+            "phase": "aim",
+            "round": 1,
+            "active": "mage"
+          },
+          {
+            "frame": 420,
+            "actor": {
+              "x": 873.2679188803519,
+              "y": 1747.077266092436,
+              "hp": 995,
+              "move": 1240.9120576137473
+            },
+            "phase": "aim",
+            "round": 1,
+            "active": "mage"
+          },
+          {
+            "frame": 450,
+            "actor": {
+              "x": 873.2679188803519,
+              "y": 1747.077266092436,
+              "hp": 995,
+              "move": 1240.9120576137473
+            },
+            "phase": "aim",
+            "round": 1,
+            "active": "mage"
+          },
+          {
+            "frame": 480,
+            "actor": {
+              "x": 873.2679188803519,
+              "y": 1747.077266092436,
+              "hp": 995,
+              "move": 1240.9120576137473
+            },
+            "phase": "aim",
+            "round": 1,
+            "active": "mage"
+          }
+        ]
+      }
+    ],
+    "frames": 480,
+    "runtimeSHA256": "00b3f8b72c707db7b49e5c99d7b56397834b07a2261ef727b1b4639c1c046c3e",
+    "scopeNote": "Changed ONLY ordinary aim angle; same blocked-bank/zero-target-damage assertion. Old -10deg fixture remains failed, not relabeled."
+  },
+  "angleDiagnostic": [
+    {
+      "angle": -12,
+      "result": "pass",
+      "impacts": [
+        {
+          "frame": 244,
+          "owner": "archer",
+          "skill": "A01",
+          "terrain": "s31-estuary-bank",
+          "x": 1227.9876894739525,
+          "y": 1809.7525451773797
+        }
+      ],
+      "hurts": []
+    }
+  ],
+  "pending": [
+    "fresh legitimate boarding policy and independent replay",
+    "actual low/high impact visual pair",
+    "actual natural-camera/boat windows on new source",
+    "final production package declaration and acceptance"
+  ]
+}

@@ -1,0 +1,79 @@
+{
+  "status": "isolated-native-replay-pass-not-linked-campaign-browser-art-release-approval",
+  "projectSha256": "43edff3b1b6fda17a02a93784dba488d5c3d175be269b7fcabc4eea4e6c61cf0",
+  "runtimeSha256": "9278a691f97be21437b58fe67cdffa6a7e031da6666b2b34faa2e6f6829e0544",
+  "success": true,
+  "frame": 18163,
+  "entryBuild": "campaign-spent-v1",
+  "resume": [
+    {
+      "frame": 4622,
+      "inputIndex": 20,
+      "result": "pass",
+      "scope": "Actual stopBattle/persist/Continue; exact units, event state, round, active and phase preserved"
+    }
+  ],
+  "recoveryChecks": [],
+  "scope": "Prepared earned-SP stage-entry profile; real App/Engine/Native Canvas events and sparse actual scene rendering every300 simulation frames (bounded snapshot evidence, not continuous rendered play); DOM/audio/storage scheduling are doubles, not browser or chapters1\u201333 playthrough. No gate relabeling or automatic art approval.",
+  "finalPhase": "won",
+  "dislocation": {
+    "phase": "complete",
+    "at": 12.508333333333264,
+    "originalFixed": false
+  },
+  "party": [
+    {
+      "id": "archer",
+      "x": 7263.528049968167,
+      "y": 2200,
+      "hp": 1671,
+      "dead": false
+    },
+    {
+      "id": "mage",
+      "x": 7268.2104648391705,
+      "y": 2200,
+      "hp": 1826.6,
+      "dead": false
+    },
+    {
+      "id": "knight",
+      "x": 7231.040421877061,
+      "y": 2200,
+      "hp": 3763.3,
+      "dead": false
+    },
+    {
+      "id": "occultist",
+      "x": 6937.808696308379,
+      "y": 2334.4853207237375,
+      "hp": 2236.6,
+      "dead": false
+    }
+  ],
+  "groups": [
+    {
+      "id": "a4-34-g0",
+      "damageEvents": 0
+    },
+    {
+      "id": "a4-34-g1",
+      "damageEvents": 3
+    },
+    {
+      "id": "a4-34-g2",
+      "damageEvents": 2
+    }
+  ],
+  "files": {
+    "tools/density-qa/observe34-silhouette.mjs": "84d13954ecb6c2a0ed0c528c57cd03daa98c96b4f15b35e277e1d07601f37973",
+    "tools/stage34-production/app-adapter.mjs": "723b8cffb01a9f5832bdad5f32f9b22a2765a8dcb7f4f61ed7a236d51b9c405f",
+    "tools/density-qa/tapes/stage34-authored-bank-spent.json": "b8c000a1379310738df2eae5de62ce2e7574a240937c96be70a8057eb14d5632",
+    "_local/reports/silhouette-qa/cave34-decor-v1/fresh-independent.json": "421e97f5155281c22d271d4d9eaff3d57e621b9c73fc25155d9451218fbeb874"
+  },
+  "limitations": [
+    "Prepared stage-entry earned-SP profile, not prior campaign playthrough",
+    "No recovery occurred; recovery behavior not exercised in this run",
+    "Sparse Native renders, not browser/mobile or continuous camera-history proof"
+  ]
+}

@@ -1,0 +1,114 @@
+{
+  "success": true,
+  "reason": "exited-and-won",
+  "frames": 19805,
+  "entryBuild": "campaign-spent-v1",
+  "scope": "Linked Act4 actual App entry. Prepared profile only for31; every later entry cold-loads exact previous storage with no XP/flags reset. Native Canvas Scene with accumulated unpaused presentation time between sparse paints. DOM/audio/scheduling fixtures; ordinary-input ticks with actual Scene rendering, not continuous camera-history evidence. No actor/event injection. Native evidence only, not browser or automatic gameplay approval. Existing adaptive ordinary-input policy on real carried profile; no independent-stage reset. Generated tape still requires linked outcome/Next verification. Adaptive expert input smoke, not browser play or human difficulty approval.",
+  "heroes": [
+    {
+      "id": "archer",
+      "x": 6906.942136546498,
+      "y": 1932.5900773109106,
+      "hp": 1431,
+      "dead": false,
+      "move": 2701
+    },
+    {
+      "id": "mage",
+      "x": 6886.27753184796,
+      "y": 1931.8979710769572,
+      "hp": 1717,
+      "dead": false,
+      "move": 2679
+    },
+    {
+      "id": "knight",
+      "x": 6889.084650902659,
+      "y": 1931.9919880990851,
+      "hp": 2861,
+      "dead": false,
+      "move": 3353
+    },
+    {
+      "id": "occultist",
+      "x": 6810.877212077689,
+      "y": 1929.3726369553337,
+      "hp": 2035,
+      "dead": false,
+      "move": 682.6752011421054
+    }
+  ],
+  "tide": {
+    "phase": "low",
+    "surface": 2280,
+    "warningRound": 2,
+    "highRound": 5,
+    "lowRound": 7,
+    "warned": true,
+    "warningAtRound": 2,
+    "opportunities": {
+      "2": [
+        "archer",
+        "mage",
+        "knight",
+        "occultist"
+      ],
+      "3": [
+        "archer",
+        "mage",
+        "knight",
+        "occultist"
+      ],
+      "4": [
+        "archer",
+        "mage",
+        "knight",
+        "occultist"
+      ]
+    },
+    "finished": true
+  },
+  "recoveries": [
+    {
+      "unit": "knight",
+      "zone": "33-east",
+      "side": "Left",
+      "entry": {
+        "x": 3480.8434092870234,
+        "y": 1997.7182436767296
+      },
+      "landing": {
+        "x": 3078,
+        "y": 2086.569724857143
+      },
+      "hpLoss": 821,
+      "round": 5,
+      "shot": 22
+    },
+    {
+      "unit": "archer",
+      "zone": "33-east",
+      "side": "Left",
+      "entry": {
+        "x": 3266.207828261907,
+        "y": 2124.3199953914586
+      },
+      "landing": {
+        "x": 3018,
+        "y": 2090.6831077142856
+      },
+      "hpLoss": 394,
+      "round": 6,
+      "shot": 24
+    }
+  ],
+  "status": "ordinary policy win only; independent linked outcome/Next replay interrupted before any persisted checkpoint",
+  "runtimeSha256": "71748ef5f9ddc261c1af1b9e04b9fc675c5d666b138e90b3ab5fd2215d1b5d33",
+  "artWorldSha256": "1e7939fe0f9fd6cd8be0202807f0db74f7ed7958a212d480aa73d3e7ce72f0d4",
+  "artifacts": {
+    "_local/reports/act4-linked-final/33/policy-dom/result.json": "d2518d7745536e3ab1bf0ef9c02e10a3d59a2cc76c0ff8504cde220d1af66109",
+    "_local/reports/act4-linked-final/33/policy-dom/inputs.json": "f7124223e37177d22c8eb353d01544d95cdcce6f5e5a57598fd7143a3fb8c3a4",
+    "_local/reports/act4-linked-final/32/replay-adaptive/boundary.json": "767613ec90674392622f153082de475593106bdfc96175caedc1356b99b0d308"
+  },
+  "resumeNote": "Owned session73630 returned Unknown process id after interruption. No33 boundary exists; last verified cold-carried boundary is32. Runtime lease explicitly released for raw-save archive fix; final fullchain will restart31."
+}

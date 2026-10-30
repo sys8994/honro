@@ -1,0 +1,1698 @@
+{
+  "scope": "Runtime JSON definitions only; all source concepts/traces/trials retained. Not pixel/FPS/mobile or release approval.",
+  "all40StageRoots": 676,
+  "runtimeLiteralRoots": 74,
+  "computedFamiliesRetained": [
+    "env:ridge",
+    "env:cliff",
+    "env:cloud",
+    "env:forest",
+    "env:rock",
+    "env:shrine",
+    "env:waterfall",
+    "a4:empty-house",
+    "a4:door",
+    "a4:reeds",
+    "a4:estuary-water",
+    "a4:bamboo",
+    "a4:thick-bamboo",
+    "a4:dock",
+    "a4:old-wall",
+    "a4:boat",
+    "a4-art:bamboo-lean",
+    "a4-art:home-ruin",
+    "a4-art:workshop-ruin",
+    "a4-art:bare-doorframe",
+    "a4-art:charred-frame",
+    "a4-art:rubble-wall",
+    "a4-art:delta-bars",
+    "a4-art:empty-foundation",
+    "a4-art:thick-leafy",
+    "a4-art:abandoned-skiff",
+    "a4-art:fallen-bamboo",
+    "a4-art:bamboo-background",
+    "a4-art:bamboo-background-lean",
+    "a4-art:delta-water",
+    "a4-coast:haul-footing",
+    "a4-coast:port-house",
+    "a4-coast:signal-outcrop",
+    "a4-coast:signal",
+    "a4-coast:crack",
+    "a4-coast:net",
+    "a4-coast:wreck",
+    "a4-coast:cavern-wall",
+    "a4-coast:ridge",
+    "a4-coast:port-shed",
+    "a4-coast:drying-frame",
+    "a4-coast:haul-winch",
+    "a4-coast:breath-flask",
+    "a4-coast:pier-32-1520",
+    "a4-coast:pier-32-2370",
+    "a4-coast:pier-33-1450",
+    "a4-coast:pier-33-2430",
+    "a4-coast:pier-33-3600",
+    "a4-coast:pier-33-4690",
+    "a4-art:walkway-support",
+    "a4-coast:pier-37-2070",
+    "a4-coast:pier-37-2820",
+    "a4-coast:pier-39-1750",
+    "a4-coast:pier-39-2440",
+    "a4-coast:pier-39-3840",
+    "a4-coast:pier-39-4400",
+    "a4-coast:pier-39-4900",
+    "a4-coast:pier-39-5700",
+    "a4-coast:pier-40-2810",
+    "a4-coast:pier-40-3350",
+    "a4-coast:pier-40-4050",
+    "a4-coast:pier-40-4540",
+    "a4-coast:pier-40-4930",
+    "a4-production:bamboo-clump",
+    "a4-production:thick-bamboo-cover",
+    "a4-production:bamboo-foreground",
+    "a4-production:bamboo-mist",
+    "a4-coast:pier-32-1520-blue-dawn-v3",
+    "a4-coast:pier-32-2370-blue-dawn-v3",
+    "a4-coast:drying-frame-s32-blue-dawn-v3",
+    "a4-production:bamboo-clump-blue-dawn-v3",
+    "a4-production:bamboo-foreground-blue-dawn-v3",
+    "a4-production:thick-bamboo-cover-blue-dawn-v3",
+    "a4-art:fallen-bamboo-dawn-v4",
+    "a4-coast:pier-37-2070-s37-blue-dawn-v4",
+    "a4-coast:pier-37-2820-s37-blue-dawn-v4"
+  ],
+  "completeReachableAssetCount": 1089,
+  "beforeWorld": {
+    "jsonBytes": 46813588,
+    "gzip9Bytes": 19751402,
+    "sha256": "7fe487aab71d32c3e10ff59728856cfbc430cb02c0017a5e655d06d7a14faa01"
+  },
+  "afterWorld": {
+    "jsonBytes": 31904252,
+    "gzip9Bytes": 13566314,
+    "sha256": "1e7939fe0f9fd6cd8be0202807f0db74f7ed7958a212d480aa73d3e7ce72f0d4"
+  },
+  "beforeProject": {
+    "jsonBytes": 56152069,
+    "gzip9Bytes": 21155792,
+    "sha256": "c65ca11d3068d039294dd8cc7f0d47faba463aac524027e81fb8e30e1ee870bf"
+  },
+  "afterProject": {
+    "jsonBytes": 41242733,
+    "gzip9Bytes": 14969508,
+    "sha256": "7956c4ea8a2dde9afc583ecac1d9908a67203eb9397859fdff613850e6cbdd93"
+  },
+  "removed": [
+    {
+      "id": "s36-density:door",
+      "bytes": 443679,
+      "reason": "No all40stage/configured selector, transitive asset dependency, literal runtime reference or conservatively retained computed family"
+    },
+    {
+      "id": "s36-density:foundation",
+      "bytes": 428115,
+      "reason": "No all40stage/configured selector, transitive asset dependency, literal runtime reference or conservatively retained computed family"
+    },
+    {
+      "id": "density-play:stone-steps-left",
+      "bytes": 386667,
+      "reason": "No all40stage/configured selector, transitive asset dependency, literal runtime reference or conservatively retained computed family"
+    },
+    {
+      "id": "s36-density:home",
+      "bytes": 358580,
+      "reason": "No all40stage/configured selector, transitive asset dependency, literal runtime reference or conservatively retained computed family"
+    },
+    {
+      "id": "s36-density:frame",
+      "bytes": 350876,
+      "reason": "No all40stage/configured selector, transitive asset dependency, literal runtime reference or conservatively retained computed family"
+    },
+    {
+      "id": "s35v:rear-continuous",
+      "bytes": 341560,
+      "reason": "No all40stage/configured selector, transitive asset dependency, literal runtime reference or conservatively retained computed family"
+    },
+    {
+      "id": "s33v:stone-pier",
+      "bytes": 329042,
+      "reason": "No all40stage/configured selector, transitive asset dependency, literal runtime reference or conservatively retained computed family"
+    },
+    {
+      "id": "s35-density:body-depthfade-domain-left",
+      "bytes": 314074,
+      "reason": "No all40stage/configured selector, transitive asset dependency, literal runtime reference or conservatively retained computed family"
+    },
+    {
+      "id": "s35-density:body-depthfade-domain-right",
+      "bytes": 314073,
+      "reason": "No all40stage/configured selector, transitive asset dependency, literal runtime reference or conservatively retained computed family"
+    },
+    {
+      "id": "s35-density:body-depthfade",
+      "bytes": 313231,
+      "reason": "No all40stage/configured selector, transitive asset dependency, literal runtime reference or conservatively retained computed family"
+    },
+    {
+      "id": "s39v:haul-footing",
+      "bytes": 231615,
+      "reason": "No all40stage/configured selector, transitive asset dependency, literal runtime reference or conservatively retained computed family"
+    },
+    {
+      "id": "s33v:coastal-boulder",
+      "bytes": 231448,
+      "reason": "No all40stage/configured selector, transitive asset dependency, literal runtime reference or conservatively retained computed family"
+    },
+    {
+      "id": "s31-density:body-depthfade-domain-right",
+      "bytes": 224474,
+      "reason": "No all40stage/configured selector, transitive asset dependency, literal runtime reference or conservatively retained computed family"
+    },
+    {
+      "id": "s31-density:body-depthfade-domain-left",
+      "bytes": 224462,
+      "reason": "No all40stage/configured selector, transitive asset dependency, literal runtime reference or conservatively retained computed family"
+    },
+    {
+      "id": "s31-density:body-depthfade",
+      "bytes": 222820,
+      "reason": "No all40stage/configured selector, transitive asset dependency, literal runtime reference or conservatively retained computed family"
+    },
+    {
+      "id": "s33v:fore-reed-cluster",
+      "bytes": 220951,
+      "reason": "No all40stage/configured selector, transitive asset dependency, literal runtime reference or conservatively retained computed family"
+    },
+    {
+      "id": "s33v:rear-reed-cluster",
+      "bytes": 220939,
+      "reason": "No all40stage/configured selector, transitive asset dependency, literal runtime reference or conservatively retained computed family"
+    },
+    {
+      "id": "s39v:timber-1750",
+      "bytes": 219347,
+      "reason": "No all40stage/configured selector, transitive asset dependency, literal runtime reference or conservatively retained computed family"
+    },
+    {
+      "id": "s39v:timber-4400",
+      "bytes": 219346,
+      "reason": "No all40stage/configured selector, transitive asset dependency, literal runtime reference or conservatively retained computed family"
+    },
+    {
+      "id": "s39v:timber-3840",
+      "bytes": 219341,
+      "reason": "No all40stage/configured selector, transitive asset dependency, literal runtime reference or conservatively retained computed family"
+    },
+    {
+      "id": "s39v:timber-5700",
+      "bytes": 219316,
+      "reason": "No all40stage/configured selector, transitive asset dependency, literal runtime reference or conservatively retained computed family"
+    },
+    {
+      "id": "s39v:timber-2440",
+      "bytes": 219313,
+      "reason": "No all40stage/configured selector, transitive asset dependency, literal runtime reference or conservatively retained computed family"
+    },
+    {
+      "id": "s39v:timber-4900",
+      "bytes": 219312,
+      "reason": "No all40stage/configured selector, transitive asset dependency, literal runtime reference or conservatively retained computed family"
+    },
+    {
+      "id": "s39-density:body-depthfade-domain-left-part-0",
+      "bytes": 204799,
+      "reason": "No all40stage/configured selector, transitive asset dependency, literal runtime reference or conservatively retained computed family"
+    },
+    {
+      "id": "s39-density:body-depthfade-domain-right-part-0",
+      "bytes": 204728,
+      "reason": "No all40stage/configured selector, transitive asset dependency, literal runtime reference or conservatively retained computed family"
+    },
+    {
+      "id": "s39-density:body-depthfade-domain-left-part-1",
+      "bytes": 204447,
+      "reason": "No all40stage/configured selector, transitive asset dependency, literal runtime reference or conservatively retained computed family"
+    },
+    {
+      "id": "s39-density:body-depthfade-domain-right-part-1",
+      "bytes": 204127,
+      "reason": "No all40stage/configured selector, transitive asset dependency, literal runtime reference or conservatively retained computed family"
+    },
+    {
+      "id": "s34-density:stone-floor",
+      "bytes": 200710,
+      "reason": "No all40stage/configured selector, transitive asset dependency, literal runtime reference or conservatively retained computed family"
+    },
+    {
+      "id": "s39-density:body-depthfade",
+      "bytes": 200511,
+      "reason": "No all40stage/configured selector, transitive asset dependency, literal runtime reference or conservatively retained computed family"
+    },
+    {
+      "id": "s32-density:soil-contact",
+      "bytes": 198526,
+      "reason": "No all40stage/configured selector, transitive asset dependency, literal runtime reference or conservatively retained computed family"
+    },
+    {
+      "id": "s31-density:soil-contact-0",
+      "bytes": 198502,
+      "reason": "No all40stage/configured selector, transitive asset dependency, literal runtime reference or conservatively retained computed family"
+    },
+    {
+      "id": "s31-density:soil-contact-3600",
+      "bytes": 197412,
+      "reason": "No all40stage/configured selector, transitive asset dependency, literal runtime reference or conservatively retained computed family"
+    },
+    {
+      "id": "s39-density:soil-contact-3600",
+      "bytes": 197253,
+      "reason": "No all40stage/configured selector, transitive asset dependency, literal runtime reference or conservatively retained computed family"
+    },
+    {
+      "id": "s37-density:soil-contact-3600",
+      "bytes": 196959,
+      "reason": "No all40stage/configured selector, transitive asset dependency, literal runtime reference or conservatively retained computed family"
+    },
+    {
+      "id": "s33-density:soil-contact-3600",
+      "bytes": 196791,
+      "reason": "No all40stage/configured selector, transitive asset dependency, literal runtime reference or conservatively retained computed family"
+    },
+    {
+      "id": "s40-density:soil-contact-0",
+      "bytes": 196780,
+      "reason": "No all40stage/configured selector, transitive asset dependency, literal runtime reference or conservatively retained computed family"
+    },
+    {
+      "id": "s39-density:soil-contact-0",
+      "bytes": 196695,
+      "reason": "No all40stage/configured selector, transitive asset dependency, literal runtime reference or conservatively retained computed family"
+    },
+    {
+      "id": "s33-density:soil-contact-0",
+      "bytes": 196584,
+      "reason": "No all40stage/configured selector, transitive asset dependency, literal runtime reference or conservatively retained computed family"
+    },
+    {
+      "id": "s37-density:soil-contact-0",
+      "bytes": 196456,
+      "reason": "No all40stage/configured selector, transitive asset dependency, literal runtime reference or conservatively retained computed family"
+    },
+    {
+      "id": "s40-density:soil-contact-3600",
+      "bytes": 196013,
+      "reason": "No all40stage/configured selector, transitive asset dependency, literal runtime reference or conservatively retained computed family"
+    },
+    {
+      "id": "s39-density:soil-contact-7200",
+      "bytes": 194843,
+      "reason": "No all40stage/configured selector, transitive asset dependency, literal runtime reference or conservatively retained computed family"
+    },
+    {
+      "id": "s37-density:soil-contact-7200",
+      "bytes": 193770,
+      "reason": "No all40stage/configured selector, transitive asset dependency, literal runtime reference or conservatively retained computed family"
+    },
+    {
+      "id": "s33-density:soil-contact-7200",
+      "bytes": 193724,
+      "reason": "No all40stage/configured selector, transitive asset dependency, literal runtime reference or conservatively retained computed family"
+    },
+    {
+      "id": "s35-density:stone-cover-natural",
+      "bytes": 193355,
+      "reason": "No all40stage/configured selector, transitive asset dependency, literal runtime reference or conservatively retained computed family"
+    },
+    {
+      "id": "s32-density:stone-cover-natural",
+      "bytes": 193337,
+      "reason": "No all40stage/configured selector, transitive asset dependency, literal runtime reference or conservatively retained computed family"
+    },
+    {
+      "id": "s36-density:contact-clusters",
+      "bytes": 191918,
+      "reason": "No all40stage/configured selector, transitive asset dependency, literal runtime reference or conservatively retained computed family"
+    },
+    {
+      "id": "s33-density:body-target-v3-domain-right",
+      "bytes": 177619,
+      "reason": "No all40stage/configured selector, transitive asset dependency, literal runtime reference or conservatively retained computed family"
+    },
+    {
+      "id": "s33-density:body-target-v3-domain-left",
+      "bytes": 177618,
+      "reason": "No all40stage/configured selector, transitive asset dependency, literal runtime reference or conservatively retained computed family"
+    },
+    {
+      "id": "s33-density:body-target-v3",
+      "bytes": 177472,
+      "reason": "No all40stage/configured selector, transitive asset dependency, literal runtime reference or conservatively retained computed family"
+    },
+    {
+      "id": "s37-density:body-seam-v3-domain-left-part-0",
+      "bytes": 156937,
+      "reason": "No all40stage/configured selector, transitive asset dependency, literal runtime reference or conservatively retained computed family"
+    },
+    {
+      "id": "s37-density:body-seam-v3-domain-right-part-0",
+      "bytes": 156865,
+      "reason": "No all40stage/configured selector, transitive asset dependency, literal runtime reference or conservatively retained computed family"
+    },
+    {
+      "id": "s37-density:body-seam-v3-domain-left-part-1",
+      "bytes": 156313,
+      "reason": "No all40stage/configured selector, transitive asset dependency, literal runtime reference or conservatively retained computed family"
+    },
+    {
+      "id": "s37-density:body-seam-v3-domain-right-part-1",
+      "bytes": 155940,
+      "reason": "No all40stage/configured selector, transitive asset dependency, literal runtime reference or conservatively retained computed family"
+    },
+    {
+      "id": "s37-density:body-seam-v3",
+      "bytes": 152723,
+      "reason": "No all40stage/configured selector, transitive asset dependency, literal runtime reference or conservatively retained computed family"
+    },
+    {
+      "id": "s40-density:body-depthfade-domain-left",
+      "bytes": 150546,
+      "reason": "No all40stage/configured selector, transitive asset dependency, literal runtime reference or conservatively retained computed family"
+    },
+    {
+      "id": "s40-density:body-depthfade-domain-right",
+      "bytes": 150541,
+      "reason": "No all40stage/configured selector, transitive asset dependency, literal runtime reference or conservatively retained computed family"
+    },
+    {
+      "id": "s40-density:body-depthfade",
+      "bytes": 150371,
+      "reason": "No all40stage/configured selector, transitive asset dependency, literal runtime reference or conservatively retained computed family"
+    },
+    {
+      "id": "s32-density:body-depthfade-domain-left-part-0",
+      "bytes": 126889,
+      "reason": "No all40stage/configured selector, transitive asset dependency, literal runtime reference or conservatively retained computed family"
+    },
+    {
+      "id": "s32-density:body-depthfade-domain-right-part-0",
+      "bytes": 126853,
+      "reason": "No all40stage/configured selector, transitive asset dependency, literal runtime reference or conservatively retained computed family"
+    },
+    {
+      "id": "s31-density:wood-boardwalks",
+      "bytes": 125955,
+      "reason": "No all40stage/configured selector, transitive asset dependency, literal runtime reference or conservatively retained computed family"
+    },
+    {
+      "id": "s40-density:wood-0",
+      "bytes": 125796,
+      "reason": "No all40stage/configured selector, transitive asset dependency, literal runtime reference or conservatively retained computed family"
+    },
+    {
+      "id": "s32-density:body-depthfade-domain-left-part-1",
+      "bytes": 125635,
+      "reason": "No all40stage/configured selector, transitive asset dependency, literal runtime reference or conservatively retained computed family"
+    },
+    {
+      "id": "s32-density:body-depthfade-domain-right-part-1",
+      "bytes": 125615,
+      "reason": "No all40stage/configured selector, transitive asset dependency, literal runtime reference or conservatively retained computed family"
+    },
+    {
+      "id": "s37-density:wood-0",
+      "bytes": 125468,
+      "reason": "No all40stage/configured selector, transitive asset dependency, literal runtime reference or conservatively retained computed family"
+    },
+    {
+      "id": "density-play:wood-platform-route",
+      "bytes": 125304,
+      "reason": "No all40stage/configured selector, transitive asset dependency, literal runtime reference or conservatively retained computed family"
+    },
+    {
+      "id": "s32-density:body-depthfade",
+      "bytes": 122731,
+      "reason": "No all40stage/configured selector, transitive asset dependency, literal runtime reference or conservatively retained computed family"
+    },
+    {
+      "id": "s35-density:central-stone-treads",
+      "bytes": 121984,
+      "reason": "No all40stage/configured selector, transitive asset dependency, literal runtime reference or conservatively retained computed family"
+    },
+    {
+      "id": "s34-density:overhang-depthfade",
+      "bytes": 76084,
+      "reason": "No all40stage/configured selector, transitive asset dependency, literal runtime reference or conservatively retained computed family"
+    },
+    {
+      "id": "s34-density:body-target-v3-domain-left-part-0",
+      "bytes": 65665,
+      "reason": "No all40stage/configured selector, transitive asset dependency, literal runtime reference or conservatively retained computed family"
+    },
+    {
+      "id": "s34-density:body-target-v3-domain-right-part-0",
+      "bytes": 65637,
+      "reason": "No all40stage/configured selector, transitive asset dependency, literal runtime reference or conservatively retained computed family"
+    },
+    {
+      "id": "s34-density:body-target-v3-domain-right-part-1",
+      "bytes": 64440,
+      "reason": "No all40stage/configured selector, transitive asset dependency, literal runtime reference or conservatively retained computed family"
+    },
+    {
+      "id": "s34-density:body-target-v3-domain-left-part-1",
+      "bytes": 64437,
+      "reason": "No all40stage/configured selector, transitive asset dependency, literal runtime reference or conservatively retained computed family"
+    },
+    {
+      "id": "s34-density:body-target-v3",
+      "bytes": 59344,
+      "reason": "No all40stage/configured selector, transitive asset dependency, literal runtime reference or conservatively retained computed family"
+    },
+    {
+      "id": "s36-density:body-domain-right",
+      "bytes": 57277,
+      "reason": "No all40stage/configured selector, transitive asset dependency, literal runtime reference or conservatively retained computed family"
+    },
+    {
+      "id": "s36-density:body-domain-left",
+      "bytes": 57276,
+      "reason": "No all40stage/configured selector, transitive asset dependency, literal runtime reference or conservatively retained computed family"
+    },
+    {
+      "id": "s36-density:body",
+      "bytes": 56357,
+      "reason": "No all40stage/configured selector, transitive asset dependency, literal runtime reference or conservatively retained computed family"
+    },
+    {
+      "id": "s38-density:body-land",
+      "bytes": 52154,
+      "reason": "No all40stage/configured selector, transitive asset dependency, literal runtime reference or conservatively retained computed family"
+    },
+    {
+      "id": "s38-density:body-east-domain-right",
+      "bytes": 52089,
+      "reason": "No all40stage/configured selector, transitive asset dependency, literal runtime reference or conservatively retained computed family"
+    },
+    {
+      "id": "s38-density:body-land-domain-left",
+      "bytes": 52087,
+      "reason": "No all40stage/configured selector, transitive asset dependency, literal runtime reference or conservatively retained computed family"
+    },
+    {
+      "id": "s38-density:body-emergency-ledges",
+      "bytes": 51860,
+      "reason": "No all40stage/configured selector, transitive asset dependency, literal runtime reference or conservatively retained computed family"
+    },
+    {
+      "id": "s38-density:body-cavern-roof-domain-left",
+      "bytes": 44401,
+      "reason": "No all40stage/configured selector, transitive asset dependency, literal runtime reference or conservatively retained computed family"
+    },
+    {
+      "id": "s38-density:body-cavern-roof",
+      "bytes": 44387,
+      "reason": "No all40stage/configured selector, transitive asset dependency, literal runtime reference or conservatively retained computed family"
+    },
+    {
+      "id": "s33v:body-contact-underpaint",
+      "bytes": 2733,
+      "reason": "No all40stage/configured selector, transitive asset dependency, literal runtime reference or conservatively retained computed family"
+    },
+    {
+      "id": "s40v:contact-surface",
+      "bytes": 2603,
+      "reason": "No all40stage/configured selector, transitive asset dependency, literal runtime reference or conservatively retained computed family"
+    },
+    {
+      "id": "s36v:rear-soil",
+      "bytes": 2214,
+      "reason": "No all40stage/configured selector, transitive asset dependency, literal runtime reference or conservatively retained computed family"
+    },
+    {
+      "id": "s39v:contact",
+      "bytes": 2209,
+      "reason": "No all40stage/configured selector, transitive asset dependency, literal runtime reference or conservatively retained computed family"
+    }
+  ],
+  "top10RetiredByteContributors": [
+    {
+      "id": "s36-density:door",
+      "bytes": 443679,
+      "reason": "No all40stage/configured selector, transitive asset dependency, literal runtime reference or conservatively retained computed family"
+    },
+    {
+      "id": "s36-density:foundation",
+      "bytes": 428115,
+      "reason": "No all40stage/configured selector, transitive asset dependency, literal runtime reference or conservatively retained computed family"
+    },
+    {
+      "id": "density-play:stone-steps-left",
+      "bytes": 386667,
+      "reason": "No all40stage/configured selector, transitive asset dependency, literal runtime reference or conservatively retained computed family"
+    },
+    {
+      "id": "s36-density:home",
+      "bytes": 358580,
+      "reason": "No all40stage/configured selector, transitive asset dependency, literal runtime reference or conservatively retained computed family"
+    },
+    {
+      "id": "s36-density:frame",
+      "bytes": 350876,
+      "reason": "No all40stage/configured selector, transitive asset dependency, literal runtime reference or conservatively retained computed family"
+    },
+    {
+      "id": "s35v:rear-continuous",
+      "bytes": 341560,
+      "reason": "No all40stage/configured selector, transitive asset dependency, literal runtime reference or conservatively retained computed family"
+    },
+    {
+      "id": "s33v:stone-pier",
+      "bytes": 329042,
+      "reason": "No all40stage/configured selector, transitive asset dependency, literal runtime reference or conservatively retained computed family"
+    },
+    {
+      "id": "s35-density:body-depthfade-domain-left",
+      "bytes": 314074,
+      "reason": "No all40stage/configured selector, transitive asset dependency, literal runtime reference or conservatively retained computed family"
+    },
+    {
+      "id": "s35-density:body-depthfade-domain-right",
+      "bytes": 314073,
+      "reason": "No all40stage/configured selector, transitive asset dependency, literal runtime reference or conservatively retained computed family"
+    },
+    {
+      "id": "s35-density:body-depthfade",
+      "bytes": 313231,
+      "reason": "No all40stage/configured selector, transitive asset dependency, literal runtime reference or conservatively retained computed family"
+    }
+  ],
+  "runtimeInputs": [
+    {
+      "path": "shared/runtime/act-endings-content.js",
+      "sha256": "ffb010a9ab3250a4d086ef759a33bed624750f635dcf2274edd7176000b14657"
+    },
+    {
+      "path": "shared/runtime/act-endings.js",
+      "sha256": "8d14605c035e60c3ae208f0aedf0042f5f6478ddc427061c11dbdc2e86eca5e6"
+    },
+    {
+      "path": "shared/runtime/act1-roster.js",
+      "sha256": "ceeb10a02706336734b9ed571f84584a3124a503d6a1b0ea176c213533ab8d16"
+    },
+    {
+      "path": "shared/runtime/act1-spatial-art.js",
+      "sha256": "caa77fdbcae7490ddc7b35bcd9b6e7854289cec189877288d10ea9219ec71742"
+    },
+    {
+      "path": "shared/runtime/act2-art.js",
+      "sha256": "30553c744c327d303043ca6b439627dfb0b154bc4ce26a25fdd71b3b1595ddc0"
+    },
+    {
+      "path": "shared/runtime/act2-content.js",
+      "sha256": "9b085bbda379420c76509b9c280e13f7cd73ef995f2b09c924393b443a12eb90"
+    },
+    {
+      "path": "shared/runtime/act2-pacing.js",
+      "sha256": "75eb7ef57096ff446aa254b555b3864aa20f4c582fe65e863c42f70aeb21d973"
+    },
+    {
+      "path": "shared/runtime/act2-spatial-art.js",
+      "sha256": "300a8fa242e51624f09ac26f5ddf33e72efdc71078b159895ebf231c7fa4b718"
+    },
+    {
+      "path": "shared/runtime/act2.js",
+      "sha256": "d34325ad38e4363ae8b7b8adc0f74ba5d04dc52cc30a0197c7263d4b305963c0"
+    },
+    {
+      "path": "shared/runtime/act23-v4-act2-scenes.js",
+      "sha256": "ffdd9fc4095447e5adf4d75882dad82708cc2ff0ddcd10c05f6c9a6a2e5dd6f8"
+    },
+    {
+      "path": "shared/runtime/act23-v4-act2.js",
+      "sha256": "799d8df3b9118d77d522fb42788c6d8fcc6ad8a49784fce816f180659beecefd"
+    },
+    {
+      "path": "shared/runtime/act23-v4-act3.js",
+      "sha256": "d9e94a5c12dcdc7f2c70db5e27c96b4a630819b1263f088501f9664c4a5c8e2c"
+    },
+    {
+      "path": "shared/runtime/act23-v4-ch11-scenes.js",
+      "sha256": "8eb81fb3f12901776a7e6ac2b5d75b2dca7596611165d256487d1774984d9920"
+    },
+    {
+      "path": "shared/runtime/act23-v4-ch21-art.js",
+      "sha256": "c252f92e9d7ff98293ee8a8a3a9274250216b215d95a28136a043ddbf4116acf"
+    },
+    {
+      "path": "shared/runtime/act23-v4-ch21-reviewed.js",
+      "sha256": "28a9aea2492b93c91f9c5d665d05e033b4b4a487c220596512a8a00631098f45"
+    },
+    {
+      "path": "shared/runtime/act23-v4-ch21-scenes.js",
+      "sha256": "80314b65e2b331b95f60f4fffb884a00de21cf553402877406ffdfd562e26c32"
+    },
+    {
+      "path": "shared/runtime/act23-v4-ch22-reviewed.js",
+      "sha256": "7f082cd58df60b4028860db5add9912c41094a9baa079d200e8277efa1b4cceb"
+    },
+    {
+      "path": "shared/runtime/act23-v4-ch23-reviewed.js",
+      "sha256": "71e3b81904fe845b4cbc190e1e0be9be714421c75a146725075665e42b07773c"
+    },
+    {
+      "path": "shared/runtime/act23-v4-ch24-reviewed.js",
+      "sha256": "93597344eec5c2821cfd4a67a7ff678966d7c36dacee4eac092420e67fb3b568"
+    },
+    {
+      "path": "shared/runtime/act23-v4-ch25-reviewed.js",
+      "sha256": "1f65e132cbf30f71e3714e6cd2c33a3d7e1923c483ddcb5c59e3a8101c2fee8e"
+    },
+    {
+      "path": "shared/runtime/act23-v4-ch26-reviewed.js",
+      "sha256": "116aec7dcad7d5dae4cd28e5f4f21f884efa608152b1565650855430e4cb7b5e"
+    },
+    {
+      "path": "shared/runtime/act23-v4-ch27-reviewed.js",
+      "sha256": "4a1429d6c4f7eb22d802b0c1ad19f42aa1b775c8ba790d6dc8203c6fe49253d4"
+    },
+    {
+      "path": "shared/runtime/act23-v4-ch28-reviewed.js",
+      "sha256": "52dfa35ca936c160c4fb00fbb724daf4c93098f9b62700f7a13f38caff0e9795"
+    },
+    {
+      "path": "shared/runtime/act23-v4-ch29-reviewed-spear.js",
+      "sha256": "cb1c86e614ac128e747df51f2a54b0039b69484de2f34d4754c86f012460db78"
+    },
+    {
+      "path": "shared/runtime/act23-v4-ch29-reviewed.js",
+      "sha256": "41c1fa7d454a4e4f3fe5781400fca907228314a08b5ce0264fcd63b41e9e8203"
+    },
+    {
+      "path": "shared/runtime/act23-v4-ch30-reviewed.js",
+      "sha256": "f8c19764cbbd0f9579a11ef295652b53ea24b3053f260deb58526ece1dd79c57"
+    },
+    {
+      "path": "shared/runtime/act23-v4-city.js",
+      "sha256": "63ce2b53ea42a080023db25536f7cff0b1e374109a6d34ce3f3ff9e7e7fa9d27"
+    },
+    {
+      "path": "shared/runtime/act23-v4-field-talk.js",
+      "sha256": "5ee7db46ec7f46ea2860bf92cb88b7d02f25bf7f9c45cf421ab2592358ccae39"
+    },
+    {
+      "path": "shared/runtime/act23-v4-reviewed-chapters.js",
+      "sha256": "e7c56bdf36a4519af684296c85389239a06ba1c23d52389d42759d2a4e4a8f1a"
+    },
+    {
+      "path": "shared/runtime/act23-v4-reviewed-common.js",
+      "sha256": "4388bea16a5dad4605f7d545d9ff1f301dac46b222538a6e36a28e0a6986fd34"
+    },
+    {
+      "path": "shared/runtime/act23-v4-reviewed.js",
+      "sha256": "2601f242688d30369b22190f9af2510e5b93de3f90f274358337aa5794554e11"
+    },
+    {
+      "path": "shared/runtime/act23-v4-reviewed12.js",
+      "sha256": "dccd2212624624c3c24a8e9c331feeb1c0e6ebaa9f6206bd4bb226cf426b7e54"
+    },
+    {
+      "path": "shared/runtime/act23-v4-reviewed13.js",
+      "sha256": "51abbb027b272df6e9d0ba762e40c8c3c0b3f1443a0c8959b92fd130be49ab9e"
+    },
+    {
+      "path": "shared/runtime/act23-v4-reviewed14.js",
+      "sha256": "e348053ded04399fbc2e389b289ef0710d557e9c05a9e209995e7b7cd51c11c3"
+    },
+    {
+      "path": "shared/runtime/act23-v4-reviewed15.js",
+      "sha256": "99534b91a9bc1c4c86c046b5ef424ccb49ced89a33a53078a25fb918b6702547"
+    },
+    {
+      "path": "shared/runtime/act23-v4-reviewed16.js",
+      "sha256": "7a15bb26eec8dd35babb0697a04d8f5fc336650b41dcea75632671f36c742f63"
+    },
+    {
+      "path": "shared/runtime/act23-v4-reviewed17.js",
+      "sha256": "6c382f3b07666c495e8eb1cbef7cbb294c6b40c89b8cdb05c9c89a1af3ba789b"
+    },
+    {
+      "path": "shared/runtime/act23-v4-reviewed18.js",
+      "sha256": "bcb1f840620a8f83337c064d769219446cd3a0e7d1f2350f2c654d2d366d4a81"
+    },
+    {
+      "path": "shared/runtime/act23-v4-reviewed19.js",
+      "sha256": "cbd25adc474eedca632944b89a2b5b72b7d64ae549e6e90827d591b5778bc6db"
+    },
+    {
+      "path": "shared/runtime/act23-v4-reviewed20.js",
+      "sha256": "0ee582cc88ca177b489fa288724054b4f2849380d18c466e46cff27587d1a7cc"
+    },
+    {
+      "path": "shared/runtime/act23-v4-stage18.js",
+      "sha256": "cbc0e9902149c8399d43c6701ac76e2563bc6705d0eda271492eaf4e6b3cbc19"
+    },
+    {
+      "path": "shared/runtime/act23-v4-stage29.js",
+      "sha256": "78787ef352c6c7370c370cc2342a60e8279f6c79831676e2449778cc97130f4d"
+    },
+    {
+      "path": "shared/runtime/act23-v4-stage30.js",
+      "sha256": "8bf287d2c2347413ed774da851e3c5f2a9ea5bca406e6c5ea5d2ce55d7fa94f3"
+    },
+    {
+      "path": "shared/runtime/act23-v4.js",
+      "sha256": "17f5f3e0997d2f61146d26176acac361d0e0f56ac5f4f7d87f1ff1eab921acfa"
+    },
+    {
+      "path": "shared/runtime/act3-art.js",
+      "sha256": "14ef1006e045036e0dfca0f20c263fb4fe3a2ae7864a27a64a9db732e83d7ca8"
+    },
+    {
+      "path": "shared/runtime/act3-content.js",
+      "sha256": "4af6f846803752485f55c9216e34b7109ca5a0dce47c76fda80785967617d124"
+    },
+    {
+      "path": "shared/runtime/act3-encounters.js",
+      "sha256": "44fe64706cd601e081f66408bf82be40d18ff0ecab9a3694b90de3a4ab3de65e"
+    },
+    {
+      "path": "shared/runtime/act3-journey.js",
+      "sha256": "1ee428c0c0a7ba5ac5b53ec4a05ca6b93a99049dfd8d8fc2c61478da13d1fef7"
+    },
+    {
+      "path": "shared/runtime/act3-objectives.js",
+      "sha256": "f106c3d17ce187a12e2b17a30bf95a4fc3c5cf1dafe81f374a29487a0ebd9ae2"
+    },
+    {
+      "path": "shared/runtime/act3-v4-reviewed-actors.js",
+      "sha256": "fdeb7e4ee551c485c6b1d26af4b6bacb9b5b008983e6d0d82a7f43552d475d17"
+    },
+    {
+      "path": "shared/runtime/act3-v4-reviewed-core.js",
+      "sha256": "0a144d188e1eb519015f72df043b50d260562a74bd2c6f1b5e11a60bcafadee5"
+    },
+    {
+      "path": "shared/runtime/act3-v4-reviewed-documents.js",
+      "sha256": "618d55fc92a7191baf5dfc3b6dbbda7dcc8c47a9afe0db7d19d15e3680b198e9"
+    },
+    {
+      "path": "shared/runtime/act3-v4-reviewed-waterworks.js",
+      "sha256": "0ec2df6fdc4e68d383f82c753356c4abd5e49796ab51ded1800a287dd62792d3"
+    },
+    {
+      "path": "shared/runtime/act3-void.js",
+      "sha256": "894a755a69bb4db718b978699b6ac5bd848a75841c96a01258138b29715d58af"
+    },
+    {
+      "path": "shared/runtime/act4-art.js",
+      "sha256": "d8b49066e75c41d89a4638a7a0a8aaea43c5f9c7051fabc39f746a8bdc7befcb"
+    },
+    {
+      "path": "shared/runtime/act4-campaign.js",
+      "sha256": "7e114d404a4cf924844cc85f622cd50e67bc5a09d9fea2cfccb916cd842fab65"
+    },
+    {
+      "path": "shared/runtime/act4-coast-art.js",
+      "sha256": "a0c21bd847f71cede300111a02180a8be6d674b3a2b5629d7086bf56a97fcd10"
+    },
+    {
+      "path": "shared/runtime/act4-coast-events.js",
+      "sha256": "7cb9285fb6e90ff6367e108d8468b81c225f7e4b5a6995c3033a9762373d8b2d"
+    },
+    {
+      "path": "shared/runtime/act4-coast-maps.js",
+      "sha256": "facc21950e3a247d9f0f7aebce1ece316732e6ea399b25701677fb6fab3db674"
+    },
+    {
+      "path": "shared/runtime/act4-content.js",
+      "sha256": "090265f087ba4499b771548aa8fc7a55634bd57f07e41fb29ebc08a24a5620b1"
+    },
+    {
+      "path": "shared/runtime/act4-events.js",
+      "sha256": "54ec989e143e80a073af3b1bb11712cdcdbddfeb0bd8ee2ddcd04ca5d6449414"
+    },
+    {
+      "path": "shared/runtime/act4-maps.js",
+      "sha256": "c9462b819e1160c63fc79b7d5016fb908b080702e3148470ab9155da8b181173"
+    },
+    {
+      "path": "shared/runtime/action-prompts.js",
+      "sha256": "04ae58f62f96900936a1f203303353d393064445a63c85a4127f1b11bfac4cd7"
+    },
+    {
+      "path": "shared/runtime/actor-vector.js",
+      "sha256": "3b414d9a5eacda05ba0f1c794403170e94fa64b4bdfcd6d197aa3168375afe86"
+    },
+    {
+      "path": "shared/runtime/allies.js",
+      "sha256": "e9ac5d12e6af531371b05d715ca5b99cc6f9d6ff115bc7210d600e339bd44b33"
+    },
+    {
+      "path": "shared/runtime/art-dark.js",
+      "sha256": "d7dff531defcd580c65725be677adcf14bf3be284abaaf25f9aeed7e254b88ca"
+    },
+    {
+      "path": "shared/runtime/attack-camera.js",
+      "sha256": "c226961efd24ee24d0001010b9a9b982323f04225c2bdb490b9270190ed9e3cf"
+    },
+    {
+      "path": "shared/runtime/audio.js",
+      "sha256": "17766ff2d11115a59b6e5b1a4b1188d718a3ad21e663c236f673f364faffe6fa"
+    },
+    {
+      "path": "shared/runtime/authored-far-art.js",
+      "sha256": "0782ada2d93343c25c170747ddaa98cea502d38a92fb662c1765240b2d0a144f"
+    },
+    {
+      "path": "shared/runtime/authored.js",
+      "sha256": "192f254fc1009c8d707edcbb1cc24c7669d95dd5e85a2129436c3626866da7b0"
+    },
+    {
+      "path": "shared/runtime/battlefield-layouts.js",
+      "sha256": "597e37bde592a3cc3aca252443096ac88832f3e29aaf67aac3360cbb8fbfb781"
+    },
+    {
+      "path": "shared/runtime/bell-anomaly.js",
+      "sha256": "bc9a2bc7c779175ad4c24a0566eee04fd2c67080190bc2d838c9820800262aab"
+    },
+    {
+      "path": "shared/runtime/camera.js",
+      "sha256": "be3dc6bb12cfead54de292a6e6c9331be3cb51e9a9be46aa1f5d21596e60e1af"
+    },
+    {
+      "path": "shared/runtime/camp-renderer.js",
+      "sha256": "809c2cd8971dcd15bf64dc4d50d478e7f69b9f1c1f35f66b10f72ec86804ae5f"
+    },
+    {
+      "path": "shared/runtime/campaign-entry.js",
+      "sha256": "6eaaf960f8fe27f9fc568d502b6e519bb7edc01d82cf0c6d7c15048c4d22efbb"
+    },
+    {
+      "path": "shared/runtime/campaign-map-revision.js",
+      "sha256": "49fc736010e8d0e9724820cb5d88eefd8d5fc2a7c94f2e1d0745cfa43e558ec5"
+    },
+    {
+      "path": "shared/runtime/cave-enclosure.js",
+      "sha256": "55e5e9481c95ddb3d70bb6916ef958f05048561c44a7893aa3cf854a404c2f19"
+    },
+    {
+      "path": "shared/runtime/clear-report-ui.js",
+      "sha256": "6a91a74d93428de706276c2dd4fe983b15840706d7b8809b088ac06609e2ead1"
+    },
+    {
+      "path": "shared/runtime/clear-report.js",
+      "sha256": "f53711263420f7d5933b91f96ddddc1c4f8db10895a7d2158e330b78efe5978b"
+    },
+    {
+      "path": "shared/runtime/combat-feedback.js",
+      "sha256": "460a910358790175c0db19f5a5111d9def5d81450f7ebd180940dd7a78406f5d"
+    },
+    {
+      "path": "shared/runtime/combat-status.js",
+      "sha256": "75792064ebc4812c17bb88b43d95d84d48caa755eb3e614c5c4ad6b44c1d2796"
+    },
+    {
+      "path": "shared/runtime/content.js",
+      "sha256": "2f59ed9da451c2201b4bf33879099e94d9b95d9fb6404db54445d6f3caabe2ae"
+    },
+    {
+      "path": "shared/runtime/contribution-xp.js",
+      "sha256": "7d9c6626f92f02752034b3bb39caa03575f21c939ce2d12a1789ad3250050355"
+    },
+    {
+      "path": "shared/runtime/difficulty.js",
+      "sha256": "5c9059dc850cb54f014c71974df711ecdbe3671c017c92ff830bdc06223dbe5e"
+    },
+    {
+      "path": "shared/runtime/elements.js",
+      "sha256": "b96f48edd607978c1d2f5ecce6ef2d39c902fffb96cf47aa95a14bb8e32a372e"
+    },
+    {
+      "path": "shared/runtime/encounter-density.js",
+      "sha256": "54d8a69c94f1a797c3cb7fa199075505e95e617971a7f68e8bb283dc7629622c"
+    },
+    {
+      "path": "shared/runtime/encounters.js",
+      "sha256": "5abd9c9e0fe8f3e4a59ddfe5d39709ad6ee6e7a294839363e0dd46f0ef4c17d0"
+    },
+    {
+      "path": "shared/runtime/environment-art.js",
+      "sha256": "9373ab7c8ed7b1c2c1adeed36747815617f98859cb458c1957568d3df394530c"
+    },
+    {
+      "path": "shared/runtime/environment-renderer.js",
+      "sha256": "370d07203f875799ff2b7fe76e8e48a1f55679fc0a5087396c479f9cb0d7fbe2"
+    },
+    {
+      "path": "shared/runtime/equipment-state.js",
+      "sha256": "72572f1f80a0ff57010f667f4fa16930570ae5c01fbec8e5cdf38a4cd9580420"
+    },
+    {
+      "path": "shared/runtime/equipment-ui.js",
+      "sha256": "7a6df63ef6d8d004ef8363010921e2a866d827a7faba1fcb4aadf9af6ebbd03f"
+    },
+    {
+      "path": "shared/runtime/evidence-quests.js",
+      "sha256": "7f89efeb9d676705e7b5d363e8252f6a5747b827655baf1755e3da10f0ecf2a7"
+    },
+    {
+      "path": "shared/runtime/fullscreen-input.js",
+      "sha256": "f1847b60e8d5a5db4bfe3b080f891986d294f7e3889c08b9f7f1f5cbb12f6f62"
+    },
+    {
+      "path": "shared/runtime/geology-art.js",
+      "sha256": "80d830b6a3435c4432684ef39bce98b5f37f8d67be4b3faf16ca09820a0b6924"
+    },
+    {
+      "path": "shared/runtime/geology-rear-support.js",
+      "sha256": "66e285f44cb927e23455274aa4c1a092b10eec447f86df6151945fe29126c488"
+    },
+    {
+      "path": "shared/runtime/interactions.js",
+      "sha256": "466dc1db5005e55ca8db7deea749e519e5f42644c22bc26406ce8944d3eb22ac"
+    },
+    {
+      "path": "shared/runtime/journey-art.js",
+      "sha256": "caf6d50f207fe4185614712aa99af69ef7fedbb50a321dcb6d23d48b4407b33b"
+    },
+    {
+      "path": "shared/runtime/journey-content.js",
+      "sha256": "1842c0fa6bdd7bd7326036211f51fa13d17172b579860ceed9f1f4538a22197a"
+    },
+    {
+      "path": "shared/runtime/journey-images.js",
+      "sha256": "787e8b77efd7c200bac066b6ade54e21c0a9102948b3b62986dc76ec41476488"
+    },
+    {
+      "path": "shared/runtime/keeper-ritual-art.js",
+      "sha256": "aa45a83495ecfa98d89d72abdb3add3db9047121009367f919cf82eef749a1ff"
+    },
+    {
+      "path": "shared/runtime/keeper-ritual.js",
+      "sha256": "a9608b1b317ef0b5621a50299225ff8db1abd8e82bc6e735c49fab4a21909cbf"
+    },
+    {
+      "path": "shared/runtime/main.js",
+      "sha256": "6b0ba08d4cfbd12579b4cc8c92a5ddfa13a08c7bf831c91f445fba8cc1a95f0e"
+    },
+    {
+      "path": "shared/runtime/map-art-polish.js",
+      "sha256": "0ec708027c11c5730d9da8c1fe2d5e0f796a1ec9c2812897cff161b331e737f7"
+    },
+    {
+      "path": "shared/runtime/map-engine.js",
+      "sha256": "255779df783a56416b8765ed52b63d9e7ceb5396272aef5b096270aa5da609af"
+    },
+    {
+      "path": "shared/runtime/menu-ui.js",
+      "sha256": "635708d70e3da252cbc3f69ba72112f76efd4696fb93c1d6c444a87c22d1d864"
+    },
+    {
+      "path": "shared/runtime/mission.js",
+      "sha256": "c7f42bc74fc3a68ad42d4d32bea1f6dedf771be685abc47a43a9da0fee7840b4"
+    },
+    {
+      "path": "shared/runtime/monster-vector.js",
+      "sha256": "e07e418068c132a03afa4f11f9e2cf14e190979d73ce7c39e1959738d8a13aee"
+    },
+    {
+      "path": "shared/runtime/mukjong-audio.js",
+      "sha256": "b591b315a1b28e4d4721303ecfbe7b2e9b38fb034d54250ae8054352dedd3a07"
+    },
+    {
+      "path": "shared/runtime/mukjong-pitch-dialogue.js",
+      "sha256": "9fbadbee34fa3ed8bac8f89a58ab140dda512ea7a9228a0b81a79bb65b2bfa66"
+    },
+    {
+      "path": "shared/runtime/music-titles.js",
+      "sha256": "b5f63d8a1d2a7ae3e9191917f659fd3296f9e5e30bad104d5d50a79c112166c5"
+    },
+    {
+      "path": "shared/runtime/narrative-art.js",
+      "sha256": "3965ddc80da6901c38f95ed16c40e86f06de890f795b4dc29524264708153a17"
+    },
+    {
+      "path": "shared/runtime/narrative-catalogue.js",
+      "sha256": "e57e6ecac4fd79cff26c8bb3fb31ade4f9ef7546fdfafd07a3e97890a52616ea"
+    },
+    {
+      "path": "shared/runtime/narrative-revision.js",
+      "sha256": "12abfd8cbd850e2222a879fe1d8212540d6f01595e3e7b2f690cf940e4a9fd5b"
+    },
+    {
+      "path": "shared/runtime/npc-portraits.js",
+      "sha256": "04caef98cabb0426d2ed67b32eefacd382455705ec62225efaa9a5c6a16c62ac"
+    },
+    {
+      "path": "shared/runtime/object-damage.js",
+      "sha256": "9cf9ff3277bd87e0edd2baa2f9aa94f63970788c731387db9cfcc317623f4a48"
+    },
+    {
+      "path": "shared/runtime/objective-contributions.js",
+      "sha256": "4d7ee345a5fda1d0c9e3d71dce8036db476f5cc0d12391188985d38d273f2b47"
+    },
+    {
+      "path": "shared/runtime/objective-guidance.js",
+      "sha256": "a6b7ae1bda40270c1c9cc7a69f3e64f852b95f6622cb536c0ca9520091d148ad"
+    },
+    {
+      "path": "shared/runtime/objective-revision.js",
+      "sha256": "c4b741b424ee0d5cbfe72892f6d041a267c49d0ab27aaa2e2c1330d071d2173a"
+    },
+    {
+      "path": "shared/runtime/objectives.js",
+      "sha256": "4b638aa96fbb04a231fd46a6746f4b00446e506eef65a4b1fedf088131c8d782"
+    },
+    {
+      "path": "shared/runtime/optional-runtime-loader.js",
+      "sha256": "36622c91cde00daaa83d1b7406c10620739083c18d29916f0f95411c9e810bf4"
+    },
+    {
+      "path": "shared/runtime/party-rig.js",
+      "sha256": "1ccaf5044a1580218f69cae6754e969b173fc18056f1786de229916f5ba6212a"
+    },
+    {
+      "path": "shared/runtime/player-turn-order.js",
+      "sha256": "503b4591d1858ff4e03dd9ef0dfc8fef0552bcca92ff94c43c53d8cfbea79b6a"
+    },
+    {
+      "path": "shared/runtime/portraits.js",
+      "sha256": "439d8a88a589614621ce714afb7af793b620e17f7051e231fd40eb7d32ecba8b"
+    },
+    {
+      "path": "shared/runtime/profile-store.js",
+      "sha256": "76696d902664671dfceceb5de514c66e3cacea7623617b335b5861f19cbb6488"
+    },
+    {
+      "path": "shared/runtime/progression.js",
+      "sha256": "d0a3da6460c6a6f9cbc9160bdd4d46b24ccc0e8021855e3ab3fe597dee9e5c74"
+    },
+    {
+      "path": "shared/runtime/quest-target-art.js",
+      "sha256": "b5dc73a386531756561f8825945352de274447cef5cada5e35e29c3b9776f13b"
+    },
+    {
+      "path": "shared/runtime/quest-targets.js",
+      "sha256": "5306b3cdce1ea97efcc5f22bc054abe0a826a13a72f4a7919b03cfe3b5f15560"
+    },
+    {
+      "path": "shared/runtime/reinforcement-camera.js",
+      "sha256": "43c1f916dd61a7ebedb6748dda82d85ebdd3f9aa18b5aedcb3fddeb95027b38a"
+    },
+    {
+      "path": "shared/runtime/renderer.js",
+      "sha256": "55f98d7464950fd6b0457916082d502bcb6a8cc03f57c449fc3791ce7f42f1ac"
+    },
+    {
+      "path": "shared/runtime/rest-journey.js",
+      "sha256": "120fe1c88f4aa4769fa718c65888e55a7ba85a1470a395e0e73b9b818aaeff3a"
+    },
+    {
+      "path": "shared/runtime/route-branches.js",
+      "sha256": "541a5de814beef1a0571eea4c1e9dc96c30488ce89f1cdeb0f4b320007da06e3"
+    },
+    {
+      "path": "shared/runtime/skill-images.js",
+      "sha256": "2a8ca6b16833faf8ca71873ad1effd297a02ae6ee77ce1958343cba789bf4a02"
+    },
+    {
+      "path": "shared/runtime/skill-preview.js",
+      "sha256": "09168a35f6efa1b2c8379d8ec32ea9a9352b25538fe41f74a0f830fcf399f934"
+    },
+    {
+      "path": "shared/runtime/sodan-withdrawal.js",
+      "sha256": "69517f097ea8249f050d8cb2ceab54b27ee8adb0f4af906718a8a0c5986b0b3c"
+    },
+    {
+      "path": "shared/runtime/split-campaign.js",
+      "sha256": "73821787403a178af9cb5df56b860a21e477058d23c33ef1ad93b5aed85549b7"
+    },
+    {
+      "path": "shared/runtime/stage-rules.js",
+      "sha256": "edb57a838e510321e8b879b80c48c3ad3179ee1641b2e1525550d601a2f494eb"
+    },
+    {
+      "path": "shared/runtime/stage1-image-first-roster.js",
+      "sha256": "073426899b40b7b5cc286e51614e63830c8794b2dfa72324e2667b5cfd77ed00"
+    },
+    {
+      "path": "shared/runtime/stage11-landscape-art.js",
+      "sha256": "824cac5edfd7283fd987c0c6c16283d2cc81c4e7d7fd7c4970be30ac81b5c6b8"
+    },
+    {
+      "path": "shared/runtime/stage11-quest-simplification.js",
+      "sha256": "0564538f4d5cdff9aac5eaa7372a4b003358c5978ec3c2ec8402cc02c50af0cb"
+    },
+    {
+      "path": "shared/runtime/stage11-ravine-encounters.js",
+      "sha256": "a279c4e33087261e4d77aa48dd256f01349c1ea773dfb287db45aea31328312c"
+    },
+    {
+      "path": "shared/runtime/stage11-trace-exit.js",
+      "sha256": "c7829053c84e3b5fe308a6f04e1eb8cdb7b683022a5acbca4e9112f1f0eda298"
+    },
+    {
+      "path": "shared/runtime/stage12-quarry-art.js",
+      "sha256": "66e1fcf41b89158e8c34e93bc60f85cafbb2fc6ef23609e4976a68059709a44f"
+    },
+    {
+      "path": "shared/runtime/stage12-quarry.js",
+      "sha256": "af2bf04dee2665b7ffd1e9bc495173dd3806951947dbfc3e12949c4bd0ba0637"
+    },
+    {
+      "path": "shared/runtime/stage14-rescue-gates.js",
+      "sha256": "910a35ba2e2ed248d06d9e3bbe26ac03d3f111518d353dc75d8d2cfb336e539e"
+    },
+    {
+      "path": "shared/runtime/stage14-vertical.js",
+      "sha256": "e4c8d54b6a5ae7d536641f2f7e567d1344e1e9bd1cb87bc27a7e5db0aded67f7"
+    },
+    {
+      "path": "shared/runtime/stage15-drain-contact.js",
+      "sha256": "1131665d62209387fc255b688600bd38d1b6863daa345ece6b25230a2e6b41f7"
+    },
+    {
+      "path": "shared/runtime/stage16-temple.js",
+      "sha256": "43aeec9a8b825aaf162e791e54b96d01c9e6a8ee5cfe5bb5bfd5d0d398080270"
+    },
+    {
+      "path": "shared/runtime/stage17-worksite.js",
+      "sha256": "4f7fdae5d199de958bdddcf728b596d2f8bcd44d26fe3966487b43918f55567b"
+    },
+    {
+      "path": "shared/runtime/stage18-bell-art.js",
+      "sha256": "c0ccc27820becd028f25548451a968341e398289e28f382adb6d4f802508c88b"
+    },
+    {
+      "path": "shared/runtime/stage18-bell.js",
+      "sha256": "cd25e76cad0b85d781d1cc83eee3e1f40ab0bb3a21f4e1fd186096601a77afbf"
+    },
+    {
+      "path": "shared/runtime/stage18-short-quest.js",
+      "sha256": "ba24a509aad5e814224dfeeb68a187eb581451bce3cbea7580f66e354c312e12"
+    },
+    {
+      "path": "shared/runtime/stage19-farewell-art.js",
+      "sha256": "c4a167e3e1808dd2b03bf56413fc7045b1752895715d8a05f3ed9b87b8360cb2"
+    },
+    {
+      "path": "shared/runtime/stage19-farewell.js",
+      "sha256": "28b22f1c36a5dcf4bb7894ef40bb2611747dfea5f67caa88c543281f7c7049c3"
+    },
+    {
+      "path": "shared/runtime/stage2-airborne.js",
+      "sha256": "ec849f82f890cf86ed4d4134f33be542e3643b7d5f4dbbb6e2da6ec6ab000c87"
+    },
+    {
+      "path": "shared/runtime/stage2-image-first-roster.js",
+      "sha256": "d9cb7fd10e3b827bd45711c53cf89355f0db57a59f0a1c0561aa79e704d823c0"
+    },
+    {
+      "path": "shared/runtime/stage2-layered-road-art.js",
+      "sha256": "f96be8bf9b83dd7177eb69d07e0c00f24356ed7221de1a55dec19f1417507e04"
+    },
+    {
+      "path": "shared/runtime/stage2-layered-road.js",
+      "sha256": "3498155b6d7a34b40448e3b9c81868206427be8a8ba45aade6c45aa63e80a1c9"
+    },
+    {
+      "path": "shared/runtime/stage22-vertical.js",
+      "sha256": "aeb7a7b1310620b1794ed7994ba79bbd511ffb0c2293b2186d2134aceae63852"
+    },
+    {
+      "path": "shared/runtime/stage23-escort-art.js",
+      "sha256": "09e645faeb70f3214345fe14f7cc3ed52e435e4c412cfea8e285fcf87fa8ae5c"
+    },
+    {
+      "path": "shared/runtime/stage23-escort.js",
+      "sha256": "61c011623aaedb0b9c648e7221ef547cddf2945fcc09aecd0b94ade3231cffdd"
+    },
+    {
+      "path": "shared/runtime/stage3-image-first-roster.js",
+      "sha256": "8d1237ceb69a6859df62b5f307db0242e173488e9f452fd135495b27d60046f3"
+    },
+    {
+      "path": "shared/runtime/stage30-ferry-art.js",
+      "sha256": "5f023ac8fd37c85454bffb61555eac3dc028e260f6ed77e0459ad69801bad952"
+    },
+    {
+      "path": "shared/runtime/stage30-ferry.js",
+      "sha256": "7de14655855058c994cdaea3c62fcfb66b3ee87e257ade179f33e780d7901514"
+    },
+    {
+      "path": "shared/runtime/stage4-image-first-roster.js",
+      "sha256": "28347fee297dadec9e0e530984ea2fca0555ca9a051cdb5281704b73d529fbd1"
+    },
+    {
+      "path": "shared/runtime/stage5-positioning-art.js",
+      "sha256": "04b34a6a576e858bdf3ef488da228f2d66243e876904addf5ffa5e3fe374d75f"
+    },
+    {
+      "path": "shared/runtime/stage5-positioning.js",
+      "sha256": "e92c0af50b882ff2d84d2cfc061d69a1c4ce6a33432f20be42ca4e79065ec4ef"
+    },
+    {
+      "path": "shared/runtime/stage5-waterfall-art.js",
+      "sha256": "a6b41bd240502a6d42deb78f001b8ef2f6d20b67335d92aca7a8df297ed1de38"
+    },
+    {
+      "path": "shared/runtime/stage5-waterfall-geometry.js",
+      "sha256": "2aff1c723b2b83d7acd3314cf64ad3b5db249168c8bb1c021999f3b2ded956ee"
+    },
+    {
+      "path": "shared/runtime/stage5-waterfall.js",
+      "sha256": "2cfba2702802daaf47e0aa5e84fc640020de39fecee64f56600de2cf18dfb131"
+    },
+    {
+      "path": "shared/runtime/stage8-bier-art.js",
+      "sha256": "4abee443b58e6df3409e2d51c773c01b1c9c723edb794587057194f2cfe528e3"
+    },
+    {
+      "path": "shared/runtime/stage8-bier.js",
+      "sha256": "4abec9898397e35ef31547731674465a56d354268a06b002082728e6f2e713b1"
+    },
+    {
+      "path": "shared/runtime/stake-crossing.js",
+      "sha256": "7de3d8e2e5546a6b7dd7d63b7a92bfaca317dcb1e0bc6e37b5a4a49b9f39f79b"
+    },
+    {
+      "path": "shared/runtime/startup-shell.js",
+      "sha256": "1cab2a294f817a118abd78d79d6d0862113865a1cd16208bc62ee66d2433f54a"
+    },
+    {
+      "path": "shared/runtime/story-act1-art.js",
+      "sha256": "18541d2f5f956e61215446a94dc7311aae7fb04f3bb45e99a99a4a20abf3b6d8"
+    },
+    {
+      "path": "shared/runtime/story-act23-art.js",
+      "sha256": "72ce9a5f6ffb6b15434171b4a0eb0c47488cd4bfc62924f8863108178e8393e1"
+    },
+    {
+      "path": "shared/runtime/story-anomaly-art.js",
+      "sha256": "f22797b90d9d19d42d0e9df2a7744acb0bcd3ebc9729f9e233a31d87b474d053"
+    },
+    {
+      "path": "shared/runtime/story-barks.js",
+      "sha256": "09770f4e6ef9856f6376bf8cb486ae1ae5cfc0fc5687a0ff3cfccf988211ff1c"
+    },
+    {
+      "path": "shared/runtime/story-canon-v1.js",
+      "sha256": "9a2c8a42c2bee1a08fe50ff87c852b4802763e54d7a79d30a65fccee04cbf700"
+    },
+    {
+      "path": "shared/runtime/story-content-v0.js",
+      "sha256": "ff020be5ee8c48656d658ceacb2bc16c65cadae6cf1514e4a893c4a6988d8103"
+    },
+    {
+      "path": "shared/runtime/story-content-v1.js",
+      "sha256": "a86d2e1c55d147277ab5d8e557b4a5a54b8f2d3c93797b2e594e8353e1971e69"
+    },
+    {
+      "path": "shared/runtime/story-content.js",
+      "sha256": "a134e5bd9373a03fda4cea30ca86a1e8f97475b93bcb20ad6e53a2cea61bedf4"
+    },
+    {
+      "path": "shared/runtime/story-direction.js",
+      "sha256": "1322250708eb73fbf3ad4fc64d5a563d58d3251ceed5497df4213d2d18ff452e"
+    },
+    {
+      "path": "shared/runtime/story-framing.js",
+      "sha256": "d996ba4bcbc92b1bbf6549d6cb1d5e66918a29fe71ed8ad160dabd7bdfff55cc"
+    },
+    {
+      "path": "shared/runtime/story-staging.js",
+      "sha256": "3255b667b633650c895a4e10cb6963018f75b30a18eb9fbc7802f4b8857cdb23"
+    },
+    {
+      "path": "shared/runtime/story.js",
+      "sha256": "5e9d9c491f5e43af936c898009e21ae252c620b0898264bf103962a39937d1b2"
+    },
+    {
+      "path": "shared/runtime/terrain-readability.js",
+      "sha256": "a9685a0a69da3bd68eb90e27957526a3c614d0acc79e986feb4fbc0ed2100fdd"
+    },
+    {
+      "path": "shared/runtime/terrain-skirt.js",
+      "sha256": "b85570692e019d3eda81cace46c4fd6b660206f3aa72d356bb2cc9e9ad2afa50"
+    },
+    {
+      "path": "shared/runtime/terrain-space.js",
+      "sha256": "755c4de7bafb4a17531aaf4109ab6670b559bb4696ef23b85346bcd1ce849cd9"
+    },
+    {
+      "path": "shared/runtime/title-markup.js",
+      "sha256": "415845b5edc27d40480b1b215457bffd01b7f43286ec06cfc0171a6d633139cc"
+    },
+    {
+      "path": "shared/runtime/tooltips.js",
+      "sha256": "6056adb7a7abf8559b8abda8f404257fba28382ae41580e23c48ad57ef4fe40e"
+    },
+    {
+      "path": "shared/runtime/training.js",
+      "sha256": "f8f780ff2dced393d27ad75955c39b36fd383ee6c41608e8360210923fc43dcd"
+    },
+    {
+      "path": "shared/runtime/ui-bridge.js",
+      "sha256": "f90ba1746743ce23b905c852d2e964d7dc9e36f2ae533ade897ac827e834901e"
+    },
+    {
+      "path": "shared/runtime/unit-info.js",
+      "sha256": "525ccd2aa7201907786619d0576a26864f01401c264e4a4cbcfac8d442b16f79"
+    },
+    {
+      "path": "shared/runtime/vector-campaign-config.js",
+      "sha256": "c154b88056b5a5d53e5127d75576cfb61d0ccbbcca2dd84e7d48b1880bf569ac"
+    },
+    {
+      "path": "shared/runtime/visual-hierarchy.js",
+      "sha256": "27cf90bb0e92f6a9c7772538a2de8e0b9df85101cccf0ca59567711c5f7b3a47"
+    },
+    {
+      "path": "shared/runtime/world.js",
+      "sha256": "952081b9e60a121923ea35901eb428121dae6845354ab97b1561f6432e0e4529"
+    },
+    {
+      "path": "shared/map/bounds.js",
+      "sha256": "823bdb282be142b95b731c71053b500038219abe2415d031062fa994f1f50170"
+    },
+    {
+      "path": "shared/map/commands.js",
+      "sha256": "28d29bb43a3aeb23166f0151d2fdd8b3dd916db02c63ed9fac320e2fd7a8b658"
+    },
+    {
+      "path": "shared/map/compiler.js",
+      "sha256": "8a22cb3cc14a2e1f26d3901f392520568991004a79596b4a168b7253d1637e10"
+    },
+    {
+      "path": "shared/map/environment.js",
+      "sha256": "1045e3600bcb284884c6d2848b5e5b615032a515b6d22a2348974af779c5ad4d"
+    },
+    {
+      "path": "shared/map/geometry.js",
+      "sha256": "42f8157a668b7d92b07c211a741030b18cffef762310438078b442aaa71b76d1"
+    },
+    {
+      "path": "shared/map/open-structures.js",
+      "sha256": "995df813bdde6b8404a6b083edf29a998764bdac6efc1548ed491be4a53a5936"
+    },
+    {
+      "path": "shared/map/platform-passages.js",
+      "sha256": "d8f168c6d985bc4d33b881455c08b47dd07fffca139516f8ef17cd38e32c9cca"
+    },
+    {
+      "path": "shared/map/production-contract.js",
+      "sha256": "41627d1b82cbdf821da6fef6f0f8473dfc9b4b384959fd89b57f3f807dee7efd"
+    },
+    {
+      "path": "shared/map/projectile-targets.js",
+      "sha256": "56da042d35c89b7c6cdcac1942290f6f59f18640a49f43800fd95817def94895"
+    },
+    {
+      "path": "shared/map/schema.js",
+      "sha256": "67c2e3810a90dd85ce8e4d8972f175db44051ef0ac4e08a88cc50245789018ad"
+    },
+    {
+      "path": "shared/map/space-layout.js",
+      "sha256": "8fd724221d6e31308aadce10e41fc96ad55aa717ff3ec28116e7a175153f9e16"
+    },
+    {
+      "path": "shared/map/stage7-reentry.js",
+      "sha256": "7f4250a3d5585a59ca2083708fccf2adf68f9a36228a708a10ad91e3db0304a1"
+    },
+    {
+      "path": "shared/map/terrain-domain.js",
+      "sha256": "623edc284c3f488a7f804f0953b5e445f93926bbbb4fea758f9f287af2831f1b"
+    },
+    {
+      "path": "shared/map/units.js",
+      "sha256": "aac20b04375a6a31b50f9acb30e291dbe4906331ce8734e271167b0d8b7862c4"
+    },
+    {
+      "path": "shared/map/vector-art.js",
+      "sha256": "2af414017fa2fea95c30332cf695cbb7d740d3cc6610f7cf073abef2faebca9e"
+    },
+    {
+      "path": "shared/map/visual-style.js",
+      "sha256": "a11578232411122ec3cf824587d0737937586eacd8339547633a855b3b138b04"
+    },
+    {
+      "path": "shared/engine/src/art.ts",
+      "sha256": "f9671146717ade649d931647d45fffeb436166483ab655ede57ad088ecf3242f"
+    },
+    {
+      "path": "shared/engine/src/atlasControls.ts",
+      "sha256": "448468a248322ca5c2a0538100ae90acc73c3b0e5c080c3a73b3396853431dce"
+    },
+    {
+      "path": "shared/engine/src/atlasLayout.ts",
+      "sha256": "722a5d2b91e8329bf3ce51260a425ca0134ecba36da19208ffa229671ca4f05a"
+    },
+    {
+      "path": "shared/engine/src/audio.ts",
+      "sha256": "86395e0849ce47a6e6ff3d2b10f4c3e231da788fb0ebfd0c8ad8993caed254a4"
+    },
+    {
+      "path": "shared/engine/src/balance.ts",
+      "sha256": "057fb733c8e3f8a637187febbd238c09197fa4899f2da2f503e6fa33b8a301ac"
+    },
+    {
+      "path": "shared/engine/src/balanceModel.ts",
+      "sha256": "afcb34d9bf641080b50fcc25b619cce241ce27c3b11172f62e0c36d11d656770"
+    },
+    {
+      "path": "shared/engine/src/beastMelee.ts",
+      "sha256": "4718e4fccae9eef28328bf296e803c983355963a0105fbf75d57eda240193b2e"
+    },
+    {
+      "path": "shared/engine/src/bgm.ts",
+      "sha256": "f790b570661e903aae3bfef919680d8a5bfaf85e1687bd6cde97fd3cb7fb48b2"
+    },
+    {
+      "path": "shared/engine/src/campUI.ts",
+      "sha256": "11d84e2b5a7b6127b6aadacc2dfa48036ed48986a87d69e482bb866271741d95"
+    },
+    {
+      "path": "shared/engine/src/combatPassives.ts",
+      "sha256": "7a579372d2066c7cf8232284c78d7a5ec1b21553df5ccdbb3708fd2d56b33028"
+    },
+    {
+      "path": "shared/engine/src/contribution.ts",
+      "sha256": "e34d01666e17cbba6ed462a7140db1d125c50be261fb7338fa899279e297b448"
+    },
+    {
+      "path": "shared/engine/src/damageVariance.ts",
+      "sha256": "156e19d2f69dc467f5d957636455371ac049828568fd23416165c17606b45024"
+    },
+    {
+      "path": "shared/engine/src/data.ts",
+      "sha256": "337d96d72bdf81d54f98283ca6b7d57399ff7059af4074de2ead7345db97b06c"
+    },
+    {
+      "path": "shared/engine/src/eaterMechanics.ts",
+      "sha256": "1106026a31c42c74480adbae44e52972d3e635a68696370b4153d8cc5e9baba2"
+    },
+    {
+      "path": "shared/engine/src/enemyAI.ts",
+      "sha256": "f75b9495cca92df6d1ac903b2a80392d3e721304e8329c08037511a5e306e05a"
+    },
+    {
+      "path": "shared/engine/src/engine.ts",
+      "sha256": "dde628474a97a4b380b9e7d518329e3d315a4f6bd23085481811b768ca51f28b"
+    },
+    {
+      "path": "shared/engine/src/equipment.ts",
+      "sha256": "bdea8b5b62d475268e375011ee13c53cd220874a38cda20ec1f2715fc4ea165c"
+    },
+    {
+      "path": "shared/engine/src/equipmentCombat.ts",
+      "sha256": "61293a0d6ad49c692eb0a613c109b57512006eb007e66cd5c45c77fac74ebc10"
+    },
+    {
+      "path": "shared/engine/src/equipmentData.ts",
+      "sha256": "60bc6c19336691f173cd2d872da85b75af37b5ed6dd9f4c607e1872470a86b24"
+    },
+    {
+      "path": "shared/engine/src/equipmentPresentation.ts",
+      "sha256": "56649909008e8340362a13bdf55cbddef0900dd39b8c185f5721bbdafe81a054"
+    },
+    {
+      "path": "shared/engine/src/equipmentSkillOptions.ts",
+      "sha256": "0dcfa316319e6660d306513ecb731b17c11826151b44729a3b974ff720f9d52a"
+    },
+    {
+      "path": "shared/engine/src/existence.ts",
+      "sha256": "ff6d1a78e8fda0dcdc6d0aafdb66dad934407ef4d4f80e8a7e114e8981520d15"
+    },
+    {
+      "path": "shared/engine/src/gateTravel.ts",
+      "sha256": "514473f5d47daa4d797149df00eb3f40e5179babf2e94eea532c1c9e957f7128"
+    },
+    {
+      "path": "shared/engine/src/icons.ts",
+      "sha256": "c03f03ce021df68440aa5bdcc2a11fdb958a2b77b30550722f82cf5c08226dd6"
+    },
+    {
+      "path": "shared/engine/src/keeperRitual.ts",
+      "sha256": "6e0a03bdc0812b836f788b570aab62ddbfedf37b56c4c904ee82cc7662d8b8c2"
+    },
+    {
+      "path": "shared/engine/src/lightningGeometry.ts",
+      "sha256": "b5fe75fb05db80be27bc71b1b9c262a70ee171ece1f8bcacd4129dbaab75db0b"
+    },
+    {
+      "path": "shared/engine/src/locomotion.ts",
+      "sha256": "388b4246a9e46be51e80c5a62c014dd710014d88e40fb91408eea3a8136beba0"
+    },
+    {
+      "path": "shared/engine/src/mageGeometry.ts",
+      "sha256": "4f78543768aee3cb7e60082875647ba5fccf825b838458581a34d758edcbb62e"
+    },
+    {
+      "path": "shared/engine/src/main.ts",
+      "sha256": "64ea078ce95b1a1668ade249c1d684ecbb20a7c47fe4e1ea67244e04260244f6"
+    },
+    {
+      "path": "shared/engine/src/mapArt.ts",
+      "sha256": "5646326c72332dc8c5dfa4f25e462ac6f95161fdbd271687a490c45ad5ef697b"
+    },
+    {
+      "path": "shared/engine/src/math.ts",
+      "sha256": "b4396325d8f43e7e8125fbc973ea43665e758547ac53310c110d2f48ebe657d0"
+    },
+    {
+      "path": "shared/engine/src/occultData.ts",
+      "sha256": "a7984df73d1451a04dcd8bc57abedd66c32292f21b27620b740a5defe62f438c"
+    },
+    {
+      "path": "shared/engine/src/occultMechanics.ts",
+      "sha256": "a2b1831fda683ba61082b538068f2345d798afb4fef1b01b44b5a8008b451dac"
+    },
+    {
+      "path": "shared/engine/src/passiveBalance.ts",
+      "sha256": "68d37bfd0710d22506c2fc076c21fdb84d6f18ebbeecd11fd747ceb6324941c8"
+    },
+    {
+      "path": "shared/engine/src/physics.ts",
+      "sha256": "b50804ddad3ef8004c0587026586b6125525e9cab28d6001b23b985e4c1407f3"
+    },
+    {
+      "path": "shared/engine/src/playerRange.ts",
+      "sha256": "d61adc0e334cbbab809cee303bcba7dc8c4f99530fe9aa8d41b244168d55f200"
+    },
+    {
+      "path": "shared/engine/src/playerRangeMechanics.ts",
+      "sha256": "16e147b69adee479c0e0ce6f3c57d2c2f304488c5e6f8d7292a1ac0c0ef12692"
+    },
+    {
+      "path": "shared/engine/src/progression.ts",
+      "sha256": "d9da3e3cdc36e2c798dc662019fa3bf1642da05c02ad2ff7624a474d2cd111b7"
+    },
+    {
+      "path": "shared/engine/src/projectileGrowth.ts",
+      "sha256": "869bfb5b3491eb886a036d5fb52939042469cfe918ba21069b0474e7025ae07a"
+    },
+    {
+      "path": "shared/engine/src/returningWraith.ts",
+      "sha256": "839ed0541ed96c7c3d8393623f3655ff312fd71fefd8526246483f6657b0e2e6"
+    },
+    {
+      "path": "shared/engine/src/skillAudioMap.ts",
+      "sha256": "7d9ce78938e9132d1ffefbf49b73c040c48b55bd84d0f50449528d6f974de840"
+    },
+    {
+      "path": "shared/engine/src/skillAudioPlayer.ts",
+      "sha256": "2162e9703961a17ff2215a51948f1cbcaca8f38f1b3cfb2b1c1a9d0beb55ab4c"
+    },
+    {
+      "path": "shared/engine/src/skillLore.ts",
+      "sha256": "b0ef5a315c438d1577061a3e512654a7cdf56fde58c198415958e35d36acbbb1"
+    },
+    {
+      "path": "shared/engine/src/skillMechanics.ts",
+      "sha256": "4bc17931e2ee7445952a0ccbf1676b8f6fcf0ad97b33186f8077445ecc38a3a7"
+    },
+    {
+      "path": "shared/engine/src/skillNotes.ts",
+      "sha256": "9e8a9f5b086dd5065de279a0d9516bbf71f752a8b28356e6befd98e5805e872c"
+    },
+    {
+      "path": "shared/engine/src/skillRedesignData.ts",
+      "sha256": "a499482be7a1d45f159bf565fa2e26f823a075447d244502f96540c5df9e97ff"
+    },
+    {
+      "path": "shared/engine/src/skillVisuals.ts",
+      "sha256": "dfb48a4913d1ca593932b1779bc6fd213262f89ec3d316dd7db5c5c7a0aa135b"
+    },
+    {
+      "path": "shared/engine/src/sound-design.ts",
+      "sha256": "8209a5c37b9c2b4b2e419f788158d81041a3be1fd21b33cb44752df393750947"
+    },
+    {
+      "path": "shared/engine/src/spBalanceModel.ts",
+      "sha256": "1efb4045907a89703c3df0d63d5bce3117ab963fa27a687019ae62562ffe71a9"
+    },
+    {
+      "path": "shared/engine/src/stageRules.ts",
+      "sha256": "788b454b4687c5bb94d8e570a208b5206c25ee7c69083fd7fc2ed1c3ecfe6525"
+    },
+    {
+      "path": "shared/engine/src/store.ts",
+      "sha256": "17c7bb48f8bb31b343232d84a2124b09600b7e729fcdb6093dd68767ab318bdd"
+    },
+    {
+      "path": "shared/engine/src/summons.ts",
+      "sha256": "c62a208f3ab0822a9e8b6a95c91a788b56b126be900d85b5bb5dccb0b9f973a2"
+    },
+    {
+      "path": "shared/engine/src/totemBehavior.ts",
+      "sha256": "bda712e32de3c329d63fe0d4ff24f9b9d603df5772279119e929c595b7fbdec8"
+    },
+    {
+      "path": "shared/engine/src/turnOrder.ts",
+      "sha256": "a7da1f626dfa44e3ad860228995adc0e074df39bed29d4c4b9ea06305e49999e"
+    },
+    {
+      "path": "shared/engine/src/types.ts",
+      "sha256": "0b1a9a0967bccc176056befadd0b072a8e61a11f84179b6bfebcdaedcdd89915"
+    },
+    {
+      "path": "shared/engine/src/warriorData.ts",
+      "sha256": "07c6917ebfd5004d5fda90ff0f5030f0aa88ecf0a6b2528a700d16a7bfe96a0a"
+    },
+    {
+      "path": "shared/engine/src/warriorMechanics.ts",
+      "sha256": "5c5d37acb99ae02bc3ffafd3566de0fbe9633423cdac3a00186a0c82e3460e2d"
+    },
+    {
+      "path": "shared/engine/src/warriorVisuals.ts",
+      "sha256": "ab67f607e122045d7de524ac2691fbd5bd3bd05733d09f594dff7f47c2ea02ce"
+    },
+    {
+      "path": "shared/engine/src/waterfallPhysics.ts",
+      "sha256": "960113d8d84aeb398df79f0484b4292b19d511ee89e61b258c06e35a7323bdd9"
+    },
+    {
+      "path": "shared/engine/src/waveReflection.ts",
+      "sha256": "9c79df5ba8373dc6717983f47df8d58806ff1340854a0202aaf09fe31b0ad2bd"
+    },
+    {
+      "path": "shared/engine/src/world.ts",
+      "sha256": "4d53ac5c8a44c23b65818d8f56de88496a8c8c29d8548cc94b0539d6a7655f85"
+    }
+  ],
+  "dynamicSelectorRisks": [],
+  "reviewedNonAssetHeuristicMatches": [
+    {
+      "path": "shared/runtime/act23-v4-act2.js",
+      "sha256": "d90f772aafd383f92719414914505d41699753abafc925fd9bf0a2e148f4a609",
+      "reason": "Act2 event/warning IDs only; no asset lookup"
+    },
+    {
+      "path": "shared/runtime/art-dark.js",
+      "sha256": "4a145c23051cd5d4b5ffdb9de5e7b23bfcc741369e21e9c7991601575df8ba78",
+      "reason": "Procedural grass density and arithmetic; no asset lookup"
+    }
+  ],
+  "allStagesExact": true,
+  "campaignAssetsExact": true,
+  "needsFinalActualAppDynamicStateClosure": true
+}

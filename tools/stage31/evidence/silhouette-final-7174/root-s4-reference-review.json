@@ -1,0 +1,51 @@
+{
+  "reviewer": "assistant /root",
+  "userApproval": false,
+  "criterion": "S4",
+  "result": "pass",
+  "captureRuntimeSha256": "71748ef5f9ddc261c1af1b9e04b9fc675c5d666b138e90b3ab5fd2215d1b5d33",
+  "actualReferenceInputSha256": "84dc839fd46b342bf4b967318c2e654891042c7214f972874e54cb3cea7466d2",
+  "sourceSha256": "7956c4ea8a2dde9afc583ecac1d9908a67203eb9397859fdff613850e6cbdd93",
+  "referenceBinding": "All three stages and whole1089 asset library deep-equal frozen project7956 records.",
+  "observation": "Root directly inspected all six reference3/6/30 contact+overview screenshots. Actual comparison satisfied, not endorsement of older primitive artwork. New Act4 improves natural contours while retaining actor/HUD/vector idiom and uses regional blue dawn.",
+  "equivalenceReceipt": "7174-to-7652-render-source-equivalence.json",
+  "scope": "Historical7174 custom public-launch reference renders, not7652 recaptures, official campaign entry, or whole structure review.",
+  "evidence": [
+    {
+      "path": "tools/stage31/evidence/silhouette-final-7174/7174-ref3-contact.jpg",
+      "sha256": "79dde66b08cbda0e14ecb851f19b4829379c2d456fe0ee4050d492da36d1ad7f",
+      "stage": 3,
+      "view": "contact"
+    },
+    {
+      "path": "tools/stage31/evidence/silhouette-final-7174/7174-ref3-overview.jpg",
+      "sha256": "f24a0102db2c635a113bf327dc4be2ee260ecedfc80feea1aee1481a0f9059c5",
+      "stage": 3,
+      "view": "overview"
+    },
+    {
+      "path": "tools/stage31/evidence/silhouette-final-7174/7174-ref6-contact.jpg",
+      "sha256": "e3a58b2b926b5033c86802dcb0a3c63088b5ecacf4325da869fc209c87cd7d1f",
+      "stage": 6,
+      "view": "contact"
+    },
+    {
+      "path": "tools/stage31/evidence/silhouette-final-7174/7174-ref6-overview.jpg",
+      "sha256": "e7291624c4fd3137c2a915799ff1d590f35c5d3d1270ae95473125d5b77dc56e",
+      "stage": 6,
+      "view": "overview"
+    },
+    {
+      "path": "tools/stage31/evidence/silhouette-final-7174/7174-ref30-contact.jpg",
+      "sha256": "28d8669f9fc60c5db7991a5928bd977f282ed0d531e65fd4d2683a701eaa9967",
+      "stage": 30,
+      "view": "contact"
+    },
+    {
+      "path": "tools/stage31/evidence/silhouette-final-7174/7174-ref30-overview.jpg",
+      "sha256": "e90469e64d83cb252e406301a62c9340b5ca6864b2d49d94af0bc968f7d7900a",
+      "stage": 30,
+      "view": "overview"
+    }
+  ]
+}

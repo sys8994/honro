@@ -1,0 +1,15 @@
+{
+  "sourceRuntimeSha256": "71748ef5f9ddc261c1af1b9e04b9fc675c5d666b138e90b3ab5fd2215d1b5d33",
+  "targetRuntimeSha256": "7652daac71dc2c7c6ea02b438ce10105a26e1ac008b36258ad08e2835ee14fd9",
+  "commit": "2eb6672",
+  "changedFiles": [
+    "shared/runtime/main.js",
+    "shared/runtime/menu-ui.js",
+    "shared/runtime/profile-store.js",
+    "tests/app-regression-helpers.mjs"
+  ],
+  "diffSha256": "7472c48c8d6519030c212820bdaebe7d9919170f94974697ec038786c9bf8a2f",
+  "scope": "Exact code diff changes raw save archive/storage checks, records UI/export/restart notice and test-only storage mock. Map, engine, terrain, vector assets, drawing/render/camera modules are unchanged. This is unchanged-art/render-source equivalence, not a new7652 screenshot or full behavioral equivalence.",
+  "canonicalProjectSha256": "7956c4ea8a2dde9afc583ecac1d9908a67203eb9397859fdff613850e6cbdd93",
+  "worldSha256": "1e7939fe0f9fd6cd8be0202807f0db74f7ed7958a212d480aa73d3e7ce72f0d4"
+}

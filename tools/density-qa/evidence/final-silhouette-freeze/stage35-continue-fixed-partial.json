@@ -1,0 +1,170 @@
+{
+  "stage": 35,
+  "scope": "Actual App launch for stage31/35 with Native Canvas Scene. DOM/audio/scheduling fixtures; optional ordinary-input tick with real Scene rendering. No actor/event injection. Native evidence only, not browser or automatic gameplay approval. Initial180ticks and every300thtick rendered with elapsed presentation time; other ticks unrendered mechanics. No continuous camera history, gate relabeling or automatic art approval.",
+  "fingerprint": "7956c4ea8a2dde9afc583ecac1d9908a67203eb9397859fdff613850e6cbdd93",
+  "runtimeSha256": "1e9aada7734bbcbb2b9d6362633fc9bd4f36b4a76fe56b76967082ddcdb66ddc",
+  "verifierSha256": "1ddff21f04769a408c32026e7bd2ae96734dc09b50f91ede488788b56b04f5df",
+  "success": false,
+  "frame": 29380,
+  "entryBuild": "campaign-balanced-v1",
+  "resume": [
+    {
+      "frame": 13418,
+      "inputIndex": 51,
+      "result": "pass",
+      "scope": "Actual stopBattle/persist/Continue; exact units, event state, round, active, phase and all static/dynamic artwork holders preserved"
+    }
+  ],
+  "final": {
+    "phase": "enemy",
+    "objective": {
+      "version": 1,
+      "clock": 244.833333333275,
+      "events": {
+        "entry": {
+          "started": true,
+          "terminal": true,
+          "presented": [],
+          "retired": [
+            "A4.S35.ENTRY.01",
+            "A4.S35.ENTRY.02"
+          ]
+        }
+      },
+      "receipts": [],
+      "boat": {
+        "phase": "waiting",
+        "x": 500
+      },
+      "door": {
+        "phase": "standing",
+        "time": 0
+      },
+      "complete": false,
+      "visualDrawn": {},
+      "observed": {},
+      "reader": null,
+      "water": {
+        "dry": {
+          "archer": {
+            "x": 3622.6260094807103,
+            "y": 1839.637367282522
+          },
+          "mage": {
+            "x": 2932.364865633702,
+            "y": 1960
+          },
+          "knight": {
+            "x": 1213.45,
+            "y": 1749.316204478713
+          },
+          "occultist": {
+            "x": 4012.995531570675,
+            "y": 1846.3599994788847
+          },
+          "a4-35-g0-0": {
+            "x": 913.95,
+            "y": 1800
+          },
+          "a4-35-g0-1": {
+            "x": 1504.2888624617503,
+            "y": 1816.8310290741665
+          },
+          "a4-35-g1-0": {
+            "x": 2540.40588094439,
+            "y": 2060.024539214719
+          },
+          "a4-35-g1-1": {
+            "x": 3120.0854451788914,
+            "y": 1663.5
+          },
+          "a4-35-g2-0": {
+            "x": 5360,
+            "y": 1791.0216762962962
+          },
+          "a4-35-g2-1": {
+            "x": 5690,
+            "y": 1788.0359677777778
+          }
+        },
+        "recoveries": []
+      }
+    },
+    "units": [
+      {
+        "id": "archer",
+        "x": 3622.6260094807103,
+        "y": 1839.637367282522,
+        "hp": 1049,
+        "dead": false
+      },
+      {
+        "id": "mage",
+        "x": 2932.364865633702,
+        "y": 1960,
+        "hp": 1013,
+        "dead": false
+      },
+      {
+        "id": "knight",
+        "x": 1213.45,
+        "y": 1749.316204478713,
+        "hp": 2021,
+        "dead": false
+      },
+      {
+        "id": "occultist",
+        "x": 4012.995531570675,
+        "y": 1846.3599994788847,
+        "hp": 1483,
+        "dead": false
+      },
+      {
+        "id": "a4-35-g0-0",
+        "x": 913.95,
+        "y": 1800,
+        "hp": 646,
+        "dead": false
+      },
+      {
+        "id": "a4-35-g0-1",
+        "x": 1504.2888624617503,
+        "y": 1816.8310290741665,
+        "hp": 1341,
+        "dead": false
+      },
+      {
+        "id": "a4-35-g1-0",
+        "x": 2540.40588094439,
+        "y": 2060.024539214719,
+        "hp": 1559,
+        "dead": false
+      },
+      {
+        "id": "a4-35-g1-1",
+        "x": 3120.0854451788914,
+        "y": 1663.5,
+        "hp": 1559,
+        "dead": false
+      },
+      {
+        "id": "a4-35-g2-0",
+        "x": 5360,
+        "y": 1791.0216762962962,
+        "hp": 1559,
+        "dead": false
+      },
+      {
+        "id": "a4-35-g2-1",
+        "x": 5690,
+        "y": 1788.0359677777778,
+        "hp": 1559,
+        "dead": false
+      }
+    ]
+  },
+  "status": "partial: exact Continue passed; historical cover-only tape did not win final bank",
+  "sourceReport": "_local/reports/act4-final-qa-1e9a/35/replay-balanced.json",
+  "sourceReportSHA256": "9d863f57929a78bdc7645a221c798cd88e6a371313955d79ecb5d9fa9a528ab3",
+  "interpretation": "Not a completed stage proof. The ordinary-input tape left six foes alive; no memory guard hit. Official carried-profile adaptive proof remains pending."
+}

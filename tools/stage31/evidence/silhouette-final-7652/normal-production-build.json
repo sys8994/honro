@@ -1,0 +1,46 @@
+{
+  "status": "pass",
+  "command": "npm run build",
+  "exitCode": 0,
+  "gate": "production evidence present and current; no bypass/legacy exception",
+  "runtimeSHA256": "7652daac71dc2c7c6ea02b438ce10105a26e1ac008b36258ad08e2835ee14fd9",
+  "worldSHA256": "801df923ce89d8747f337f0b71e2ae38c604a8efbd6250d56e885b931af9f1b5",
+  "files": [
+    {
+      "path": "HONRO.html",
+      "bytes": 17379,
+      "sha256": "e1ef07900eb5645cae5cd3c8154ba0e008f6f5b2b81cface5bbe4ed9b90400c9"
+    },
+    {
+      "path": "HONRO_WORKSHOP.html",
+      "bytes": 4011,
+      "sha256": "120814de5483b24939c6c95ee71fd79d5f7550d18c8caec13e50973d343e18ad"
+    },
+    {
+      "path": "index.html",
+      "bytes": 17379,
+      "sha256": "e1ef07900eb5645cae5cd3c8154ba0e008f6f5b2b81cface5bbe4ed9b90400c9"
+    },
+    {
+      "path": "web/manifest.json",
+      "bytes": 6951998,
+      "sha256": "de1a5ee0e3cb8254f4437f561d321f8c9a2da346bd667fad827cbe649155d06a"
+    },
+    {
+      "path": "web/entries/game.842232bed5a62baf.html",
+      "bytes": 11318,
+      "sha256": "842232bed5a62bafcca3890dc4eb90741c02e6cdafa68f012fac1775c6e61197"
+    },
+    {
+      "path": "tools/stage31/production-package.json",
+      "bytes": 4601674,
+      "sha256": "7381cf53e4a424336ce095b52f9755b6aaaccc01b21f3f0942db43737ad89537"
+    },
+    {
+      "path": "shared/data/act4/world.json",
+      "bytes": 32073198,
+      "sha256": "801df923ce89d8747f337f0b71e2ae38c604a8efbd6250d56e885b931af9f1b5"
+    }
+  ],
+  "scope": "Normal production build only. Actual official-source browser smoke and remote master/Pages remain separately pending; no deployment claim."
+}

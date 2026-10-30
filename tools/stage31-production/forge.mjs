@@ -2,6 +2,8 @@
  * Bank, supported timber spans, scenery feet and enemy roles come from blueprint.json.
  * Renderer/physics are the game's existing compiler and vector renderer. */
 import {readFile,writeFile,mkdir} from 'node:fs/promises';
+import {deduplicateAsset} from '../vector-production/deduplicate-vector.mjs';
+import {extendBodyDomain} from '../vector-production/extend-body-domain.mjs';
 import {Path2D} from '@napi-rs/canvas';
 import {runtime} from '../../game/tests/helpers.mjs';
 process.env.HONRO_ACT4_RELEASE='1';
@@ -109,12 +111,55 @@ card.requiredProbes=[
  ...spec.encounters.map(e=>({id:e.id+'-action',kind:'enemy-action',claim:e.purpose})),
  {id:'boarding',kind:'objective',claim:'정상 전투·이동으로 적을 정리하고 기존 배가 도착한 뒤 실제 승선하여 장이 끝난다.'}
 ];
-// Separate actual Inkscape BODY layer; contact geometry remains the authored bank.
-for(const name of ['west','east']){let a;try{a=JSON.parse(await readFile('art/stage31-vector-production/body-'+name+'-asset.json','utf8'));}catch(e){if(e.code==='ENOENT')continue;throw e;}
- a.reference.scaleRange??=[1,1];a.reference.backgroundRange??=[1,1];p.library.push(a);card.assetExceptions.push({assetId:a.id,reason:'Actual Inkscape traced and reviewed stage-specific BODY layer, clipped to the authored terrain only.'});s.elements.push({id:a.id+'-instance',assetId:a.id,x:0,y:0,scale:1,rotation:0,depthLayer:'L1',layer:'front'});s.elements.push({id:a.id+'-rear-instance',assetId:a.id,x:-35,y:-65,scale:1,rotation:0,depthLayer:'L1',layer:'back'});
+// Distinct actual Inkscape BODY and FORE assets; no raster ground fallback.
+const loadArt=async file=>JSON.parse(await readFile(file,'utf8'));
+const addArt=(asset,layer='front',instance={})=>{
+ asset=deduplicateAsset(asset).asset;
+ const prior=p.library.findIndex(a=>a.id===asset.id);if(prior<0)p.library.push(asset);else p.library[prior]=asset;
+ card.assetExceptions.push({assetId:asset.id,reason:'Reference concept → actual Inkscape trace → bounded optimization/direct visual review. Separate semantic art, unchanged collision.'});
+ s.elements.push({id:asset.id+'-instance',assetId:asset.id,x:0,y:0,scale:1,rotation:0,depthLayer:'L1',layer,...instance});
+};
+// Reusable traced skiff: preserve the existing noncolliding instance and its foot.
+const village=await loadArt('art/stage36-vector-production/stage36-production-package.json');
+const landingRuin=copy(village.library.find(a=>a.id==='a4-production:ironless-frame'));
+if(!landingRuin||landingRuin.collision?.length)throw Error('Expected noncolliding traced empty frame');
+landingRuin.id='s31v:landing-ruin';landingRuin.reference.scaleRange=[.1,4];landingRuin.reference.backgroundRange=[.1,4];p.library.push(landingRuin);
+s.elements.find(e=>e.id==='s31-ruined-court').assetId=landingRuin.id;
+card.assetExceptions.push({assetId:landingRuin.id,reason:'Reusable actual Inkscape ruined frame at original broad landing support; no roof collision or interactive event.'});
+const skiff=await loadArt('art/stage33-vector-production/abandoned-skiff-asset.json');
+const oldSkiff=p.library.find(a=>a.id==='a4-art:abandoned-skiff');
+if(oldSkiff.collision?.length||skiff.collision?.length)throw Error('Scenic skiff must remain noncolliding');
+skiff.id='s31v:abandoned-skiff';skiff.reference.scaleRange=copy(oldSkiff.reference.scaleRange);skiff.reference.backgroundRange=copy(oldSkiff.reference.backgroundRange);
+p.library.push(skiff);s.elements.find(e=>e.id==='s31-abandoned-boat').assetId=skiff.id;
+card.assetExceptions.push({assetId:skiff.id,reason:'Reusable actual Inkscape wooden skiff, fitted by ink bounds; original instance foot, scale and empty collision retained.'});
+// Same traced ferry reused at Stage31's original local deck (-50 rather than40's -60).
+// Paint translation only: arrival/boarding identity, dynamic position/scale and collider stay original.
+const ferry=await loadArt('art/stage40-vector-production/boat-asset.json');
+ferry.id='s31v:arrival-ferry';ferry.vector.root={tag:'g',transform:[1,0,0,1,0,10],children:[ferry.vector.root]};
+ferry.bounds.y+=10;ferry.reference.bounds.y+=10;ferry.vector.viewBox[1]+=10;
+ferry.params={...ferry.params,sourceAsset:'art/stage40-vector-production/boat-asset.json',stage31DeckLocalY:-50,paintOffsetY:10};
+p.library.push(ferry);s.design.vectorArrivalBoatAssetId=ferry.id;
+card.assetExceptions.push({assetId:ferry.id,reason:'Shared actual Inkscape ferry with +10 localY paint normalization to original Stage31 deck. Original a4:boat event identity and collision retained.'});
+const bankReed=await loadArt('art/vector-common-production/reed-cluster-asset.json');
+bankReed.id='s31v:bank-reed';bankReed.params.semanticLayer='REAR';bankReed.reference.scaleRange=[.1,4];bankReed.reference.backgroundRange=[.1,4];p.library.push(bankReed);
+for(const e of s.elements.filter(e=>e.id.startsWith('s31-reeds-'))){const foot=e.productionSupport;e.assetId=bankReed.id;e.x=foot.x-bankReed.reference.foot.x*e.scale;e.y=foot.y-bankReed.reference.foot.y*e.scale+10;}
+card.assetExceptions.push({assetId:bankReed.id,reason:'Reusable actual Inkscape reed cluster; roots buried ten world units at original grounded support, behind actors.'});
+const body=await loadArt('art/stage31-vector-production/body-small-asset.json'),terrain=s.terrains.find(t=>t.id===spec.bank.id);
+const extended=extendBodyDomain(body,{terrainPoints:terrain.points,topPoints:terrain.points.filter(v=>v.y<3000),left:16,right:7184,leftBreaks:[-6000,-4500,-3000,-1800,-900,16],rightBreaks:[7184,8200,9200,10200,11700,13200],baseColor:'#283344',deepTop:4250,deepBottom:27100});
+for(const asset of extended.extensions)addArt(asset);addArt(extended.body);
+s.design.vectorGround={version:1,baseColor:'#283344',visualDepth:'gameplay'};
+s.design.vectorWaterContinuation={version:1,zoneId:'s31-local-river',side:'right'};
+const reeds=await loadArt('art/vector-common-production/fore-reeds-asset.json');
+const priorReeds=p.library.findIndex(a=>a.id===reeds.id);if(priorReeds<0)p.library.push(reeds);else p.library[priorReeds]=reeds;
+card.assetExceptions.push({assetId:reeds.id,reason:'Reusable Inkscape foreground reeds, protected stem/head silhouettes verified at supersampled normal and maximum zoom.'});
+const ridge=await loadArt('art/stage31-vector-production/fore-ridge-asset.json');
+// Only the verified flat deep color is continued; the visible ridge is traced art.
+ridge.vector.root={tag:'g',children:[ridge.vector.root,{tag:'path',d:'M-1000 6330H8200V27100H-1000Z',fill:'#0c2228',stroke:'none'}]};ridge.bounds.h=ridge.reference.bounds.h=24900;
+for(const [side,edge,left,right]of [['left',-1000,-6000,-1000],['right',8200,8200,13200]]){
+ const a=copy(ridge);a.id+='-'+side;a.vector.clips={side:[`M${left} 0H${right}V27100H${left}Z`]};a.vector.root={tag:'g',clipPath:'side',pixelSnapClip:true,children:[{tag:'g',transform:[-1,0,0,1,2*edge,0],children:[ridge.vector.root]}]};a.bounds=a.reference.bounds={x:left,y:2200,w:right-left,h:24900};a.vector.viewBox=[left,2200,right-left,24900];addArt(a);
 }
-// Independently reusable foreground prop; lower-bank attachment preserves the walk/aim corridor.
-try{const a=JSON.parse(await readFile('art/vector-common-production/reed-cluster-asset.json','utf8'));p.library.push(a);card.assetExceptions.push({assetId:a.id,reason:'Shared generated-reference Inkscape FORE reed asset; lower bank offsets do not change collision.'});for(const [i,[x,z,depth]]of [[90,1.25,200],[850,.9,180],[1780,1.2,220],[3200,.85,180],[4870,1.15,220],[5780,1,200]].entries())s.elements.push({id:'s31v-front-reed-'+i,assetId:a.id,x:x-90*z,y:groundY(x)+depth-175*z,scale:z,rotation:0,depthLayer:'L1',layer:'front'});}catch(e){if(e.code!=='ENOENT')throw e;}
+for(const [i,[x,z]]of [[750,1.45],[2850,1.25],[4470,1.4],[6250,1.15]].entries())s.elements.push({id:'s31v-fore-reed-'+i,assetId:reeds.id,x:x-325*z,y:groundY(x)+1050-500*z,scale:z,rotation:0,depthLayer:'L1',layer:'front'});
+addArt(ridge);
 p.activeStageId=s.id;p.production.reviews[s.id]=[];p.production.probeResults??={};p.production.probeResults[s.id]=[];
 const out=process.argv[3]||'_local/reports/stage31-direct/draft-01';await mkdir(out,{recursive:true});
 await writeFile(out+'/stage31.draft.honro-map.json',JSON.stringify(p)+'\n');

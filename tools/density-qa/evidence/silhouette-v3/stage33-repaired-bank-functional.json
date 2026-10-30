@@ -1,0 +1,551 @@
+{
+  "status": "isolated-functional-pass-not-art-browser-release-approval",
+  "stage": 33,
+  "projectRawSHA256": "44ffea80ef6806de90221e29824d1d83f7c2c1bdf47e039a02a420b38c2a8402",
+  "projectCanonicalSHA256": "f83fbbafec16c804e7f2bb653875452db38c48e4dd438a9bc01a8e264bb85318",
+  "runtimeSHA256": "264b42d9b85f63847877ad839c67365a9b63b06b34a27cf9c84d53d9307ece2e",
+  "scope": "Prepared earned-SP stage-entry profile; real App/Engine/Native Canvas events and sparse actual scene rendering every300 simulation frames (bounded snapshot evidence, not continuous rendered play); DOM/audio/storage scheduling are doubles, not browser or chapters1–32 playthrough. No gate relabeling or automatic art approval.",
+  "balancedReplay": {
+    "success": true,
+    "frames": 23150,
+    "checkFailures": [],
+    "recoveryCoverage": true,
+    "recoveries": [
+      {
+        "frame": 12775,
+        "unit": "knight",
+        "zone": "33-east",
+        "side": "Left",
+        "entry": {
+          "x": 3629.3876543389215,
+          "y": 1968.6530135071662
+        },
+        "landing": {
+          "x": 3078,
+          "y": 2086.569724857143
+        },
+        "hpLoss": 540,
+        "round": 5,
+        "shot": 26,
+        "expectedLoss": 540,
+        "focusBefore": 289,
+        "focusAfter": 289,
+        "acted": true,
+        "moveLeft": 0,
+        "sameDeclaredBank": true,
+        "focusNotSpent": true,
+        "actionSpent": true,
+        "newRoundMayRefresh": false
+      },
+      {
+        "frame": 15168,
+        "unit": "knight",
+        "zone": "33-east",
+        "side": "Left",
+        "entry": {
+          "x": 3719.719353336911,
+          "y": 1946.9350845749793
+        },
+        "landing": {
+          "x": 3078,
+          "y": 2086.569724857143
+        },
+        "hpLoss": 540,
+        "round": 6,
+        "shot": 31,
+        "expectedLoss": 540,
+        "focusBefore": 293,
+        "focusAfter": 293,
+        "acted": true,
+        "moveLeft": 0,
+        "sameDeclaredBank": true,
+        "focusNotSpent": true,
+        "actionSpent": true,
+        "newRoundMayRefresh": false
+      }
+    ],
+    "resume": [
+      {
+        "frame": 11178,
+        "inputIndex": 39,
+        "result": "pass",
+        "scope": "Actual stopBattle/persist/Continue; exact units, event state, round, active and phase preserved"
+      }
+    ],
+    "final": {
+      "phase": "won",
+      "objective": {
+        "version": 1,
+        "clock": 192.91666666665554,
+        "events": {
+          "tide_warning": {
+            "started": true,
+            "terminal": true,
+            "presented": [
+              "A4.S33.TIDE.01",
+              "A4.S33.TIDE.02"
+            ],
+            "retired": []
+          }
+        },
+        "receipts": [
+          "A4.S33.TIDE.01",
+          "A4.S33.TIDE.02"
+        ],
+        "boat": {
+          "phase": "waiting",
+          "x": 500
+        },
+        "door": {
+          "phase": "standing",
+          "time": 0
+        },
+        "complete": true,
+        "visualDrawn": {},
+        "observed": {
+          "upper-route": 2.499999999999994,
+          "water-rising": 19.999999999999506
+        },
+        "tide": {
+          "phase": "low",
+          "surface": 2280,
+          "warningRound": 2,
+          "highRound": 5,
+          "lowRound": 7,
+          "warned": true,
+          "warningAtRound": 2,
+          "opportunities": {
+            "2": [
+              "archer",
+              "mage",
+              "knight",
+              "occultist"
+            ],
+            "3": [
+              "archer",
+              "mage",
+              "knight",
+              "occultist"
+            ],
+            "4": [
+              "archer",
+              "mage",
+              "knight",
+              "occultist"
+            ]
+          },
+          "finished": true
+        },
+        "waterVisualLevel": 2280,
+        "water": {
+          "dry": {
+            "archer": {
+              "x": 6882.835294103273,
+              "y": 1931.7826824355047
+            },
+            "mage": {
+              "x": 6896.842533574549,
+              "y": 1932.2518178436083
+            },
+            "knight": {
+              "x": 6874.325054037244,
+              "y": 1931.4976544715992
+            },
+            "occultist": {
+              "x": 6824.569534632862,
+              "y": 1929.831225054936
+            },
+            "a4-33-g0-0": {
+              "x": 1967.0819288016658,
+              "y": 1937.7007587243825
+            },
+            "a4-33-g0-1": {
+              "x": 2632.6867364905056,
+              "y": 1935.0257244057605
+            },
+            "a4-33-g1-0": {
+              "x": 3585.756036589872,
+              "y": 1978.4825488743468
+            }
+          },
+          "recoveries": [
+            {
+              "unit": "knight",
+              "zone": "33-east",
+              "side": "Left",
+              "entry": {
+                "x": 3629.3876543389215,
+                "y": 1968.6530135071662
+              },
+              "landing": {
+                "x": 3078,
+                "y": 2086.569724857143
+              },
+              "hpLoss": 540,
+              "round": 5,
+              "shot": 26
+            },
+            {
+              "unit": "knight",
+              "zone": "33-east",
+              "side": "Left",
+              "entry": {
+                "x": 3719.719353336911,
+                "y": 1946.9350845749793
+              },
+              "landing": {
+                "x": 3078,
+                "y": 2086.569724857143
+              },
+              "hpLoss": 540,
+              "round": 6,
+              "shot": 31
+            }
+          ]
+        },
+        "bark": null,
+        "completionProof": {
+          "exit": {
+            "x": 7100,
+            "y": 1930
+          },
+          "connection": {
+            "physicalRoute": true
+          }
+        }
+      },
+      "units": [
+        {
+          "id": "archer",
+          "x": 6882.835294103273,
+          "y": 1931.7826824355047,
+          "hp": 1150,
+          "dead": false
+        },
+        {
+          "id": "mage",
+          "x": 6896.842533574549,
+          "y": 1932.2518178436083,
+          "hp": 1244,
+          "dead": false
+        },
+        {
+          "id": "knight",
+          "x": 6874.325054037244,
+          "y": 1931.4976544715992,
+          "hp": 864.0999999999999,
+          "dead": false
+        },
+        {
+          "id": "occultist",
+          "x": 6824.569534632862,
+          "y": 1929.831225054936,
+          "hp": 1443,
+          "dead": false
+        },
+        {
+          "id": "a4-33-g0-0",
+          "x": 1967.0819288016658,
+          "y": 1937.7007587243825,
+          "hp": 0,
+          "dead": true
+        },
+        {
+          "id": "a4-33-g0-1",
+          "x": 2632.6867364905056,
+          "y": 1935.0257244057605,
+          "hp": 0,
+          "dead": true
+        },
+        {
+          "id": "a4-33-g1-0",
+          "x": 3585.756036589872,
+          "y": 1978.4825488743468,
+          "hp": 0,
+          "dead": true
+        },
+        {
+          "id": "a4-33-g1-1",
+          "x": 3641.477951686406,
+          "y": 2223.7021154679333,
+          "hp": 0,
+          "dead": true
+        },
+        {
+          "id": "a4-33-g1-2",
+          "x": 4373.083520138933,
+          "y": 2306.909657213578,
+          "hp": 0,
+          "dead": true
+        }
+      ]
+    }
+  },
+  "entryColdContinue": {
+    "verifierSha256": "109ce5624b29450779081e4ec96ada7e510a0deeb9d341053e6199711409107e",
+    "stage": 33,
+    "projectSha256": "f83fbbafec16c804e7f2bb653875452db38c48e4dd438a9bc01a8e264bb85318",
+    "stageSha256": "5c1d9a1c55100b745f50b3d65e9f4dab3940a5a6e36af975eaeb106bdaa7d35a",
+    "runtimeSha256": "264b42d9b85f63847877ad839c67365a9b63b06b34a27cf9c84d53d9307ece2e",
+    "launch": "actual official App",
+    "rawProfileCharacters": 8210115,
+    "storedCharacters": 88473,
+    "storedUTF16Bytes": 176946,
+    "quotaUTF16Bytes": 5242880,
+    "staticRefs": 44,
+    "writes": 9,
+    "exactWholeSnapshotCodec": true,
+    "actualDeferredContinueFields": [
+      "units",
+      "terrain",
+      "waters",
+      "honroSurfaceZones",
+      "honroAct4PreviewState",
+      "phase",
+      "round",
+      "active",
+      "honroElements",
+      "honroLandmarks",
+      "honroEnvironment",
+      "honroAct4PreviewDynamic"
+    ],
+    "singlePendingLoad": true,
+    "scope": "Entry only, prepared independent prior clears, no fabricated terminal outcome. DOM/render/audio/storage/network loader fixtures; actual App/Engine/profile-store/campaign-entry code."
+  },
+  "referencedAssetCost": {
+    "stage": 33,
+    "projectSha256": "f83fbbafec16c804e7f2bb653875452db38c48e4dd438a9bc01a8e264bb85318",
+    "scope": "Unique asset definitions referenced by stage/config plus instantiated actual App entry art holders. Future unconfigured runtime selectors/legacy saves may add assets; not a pruning authorization. Serialized JSON and expanded vector tree only, not GPU, FPS or visual approval.",
+    "referencedAssetJSONBytes": 1379387,
+    "referencedAssets": 12,
+    "vectorAssets": 12,
+    "maxExpandedNodes": 242,
+    "maxDepth": 6,
+    "maxPathChars": 59830,
+    "maxClipPathChars": 195,
+    "exactDefinitionDuplicatesExceptIdName": [],
+    "assets": [
+      {
+        "id": "s31v:abandoned-skiff-dawn",
+        "bytes": 436928,
+        "expandedNodes": 15,
+        "maxDepth": 3,
+        "maxPathChars": 59830,
+        "maxClipPathChars": 0,
+        "expandedPaths": 12
+      },
+      {
+        "id": "s33v:coastal-boulder-dawn",
+        "bytes": 231453,
+        "expandedNodes": 12,
+        "maxDepth": 3,
+        "maxPathChars": 53671,
+        "maxClipPathChars": 0,
+        "expandedPaths": 9
+      },
+      {
+        "id": "s33v:rear-reed-cluster-dawn",
+        "bytes": 220944,
+        "expandedNodes": 10,
+        "maxDepth": 3,
+        "maxPathChars": 42835,
+        "maxClipPathChars": 0,
+        "expandedPaths": 7
+      },
+      {
+        "id": "s33-silhouette:bridge-west-v5",
+        "bytes": 56945,
+        "expandedNodes": 9,
+        "maxDepth": 4,
+        "maxPathChars": 17098,
+        "maxClipPathChars": 0,
+        "expandedPaths": 5
+      },
+      {
+        "id": "s33-silhouette:bridge-east-v5",
+        "bytes": 56946,
+        "expandedNodes": 9,
+        "maxDepth": 4,
+        "maxPathChars": 17098,
+        "maxClipPathChars": 0,
+        "expandedPaths": 5
+      },
+      {
+        "id": "s33-silhouette:composite-bank-v4",
+        "bytes": 24272,
+        "expandedNodes": 5,
+        "maxDepth": 2,
+        "maxPathChars": 10389,
+        "maxClipPathChars": 0,
+        "expandedPaths": 3
+      },
+      {
+        "id": "s33v:fore-reed-cluster-dawn",
+        "bytes": 220956,
+        "expandedNodes": 10,
+        "maxDepth": 3,
+        "maxPathChars": 42835,
+        "maxClipPathChars": 0,
+        "expandedPaths": 7
+      },
+      {
+        "id": "s33-silhouette:domain-left-far",
+        "bytes": 32523,
+        "expandedNodes": 242,
+        "maxDepth": 6,
+        "maxPathChars": 10389,
+        "maxClipPathChars": 195,
+        "expandedPaths": 91
+      },
+      {
+        "id": "s33-silhouette:domain-left-near",
+        "bytes": 32395,
+        "expandedNodes": 242,
+        "maxDepth": 6,
+        "maxPathChars": 10389,
+        "maxClipPathChars": 166,
+        "expandedPaths": 91
+      },
+      {
+        "id": "s33-silhouette:domain-right-near",
+        "bytes": 32530,
+        "expandedNodes": 242,
+        "maxDepth": 6,
+        "maxPathChars": 10389,
+        "maxClipPathChars": 173,
+        "expandedPaths": 91
+      },
+      {
+        "id": "s33-silhouette:domain-right-far",
+        "bytes": 32666,
+        "expandedNodes": 242,
+        "maxDepth": 6,
+        "maxPathChars": 10389,
+        "maxClipPathChars": 194,
+        "expandedPaths": 91
+      },
+      {
+        "id": "a4-coast:ridge",
+        "bytes": 829,
+        "expandedNodes": 4,
+        "maxDepth": 1,
+        "maxPathChars": 129,
+        "maxClipPathChars": 0,
+        "expandedPaths": 3
+      }
+    ]
+  },
+  "paintPhysicalEquality": {
+    "scope": "Actual App entry complete terrain including instantiated element colliders; no renderer or movement. Exact physical-holder equality only.",
+    "stage": 33,
+    "runtimeSHA256": "264b42d9b85f63847877ad839c67365a9b63b06b34a27cf9c84d53d9307ece2e",
+    "before": {
+      "projectSHA256": "a04b3fd02a2d412328fd1bfac50fb122f86368d17dd7393b3a395090d4584a74",
+      "terrainSHA256": "a016e5238ac42963739cb51ca3898b5bd5d2bdc8d5198d2f5fb2516279ceaa3b",
+      "colliders": [
+        {
+          "id": "a4-33-land",
+          "mat": "rock",
+          "vertices": 288,
+          "oneWay": false,
+          "indestructible": true
+        },
+        {
+          "id": "a4-33-upper-west",
+          "mat": "rock",
+          "vertices": 142,
+          "oneWay": true,
+          "indestructible": true
+        },
+        {
+          "id": "a4-33-upper-east",
+          "mat": "rock",
+          "vertices": 144,
+          "oneWay": true,
+          "indestructible": true
+        }
+      ]
+    },
+    "after": {
+      "projectSHA256": "f83fbbafec16c804e7f2bb653875452db38c48e4dd438a9bc01a8e264bb85318",
+      "terrainSHA256": "a016e5238ac42963739cb51ca3898b5bd5d2bdc8d5198d2f5fb2516279ceaa3b",
+      "colliders": [
+        {
+          "id": "a4-33-land",
+          "mat": "rock",
+          "vertices": 288,
+          "oneWay": false,
+          "indestructible": true
+        },
+        {
+          "id": "a4-33-upper-west",
+          "mat": "rock",
+          "vertices": 142,
+          "oneWay": true,
+          "indestructible": true
+        },
+        {
+          "id": "a4-33-upper-east",
+          "mat": "rock",
+          "vertices": 144,
+          "oneWay": true,
+          "indestructible": true
+        }
+      ]
+    },
+    "sourceStillCurrent": {
+      "before": true,
+      "after": true
+    },
+    "exact": true,
+    "changed": []
+  },
+  "sourceReports": "_local/reports/silhouette-qa/causeway33-covered/",
+  "pending": [
+    "root art review of actual high-tide water bands",
+    "browser HUD/performance and linked campaign"
+  ],
+  "occupiedBankFixture": {
+    "scope": "Synthetic occupied-bank boundary fixture after ordinary input prefix, not campaign victory or natural occupancy evidence",
+    "projectSha256": "f83fbbafec16c804e7f2bb653875452db38c48e4dd438a9bc01a8e264bb85318",
+    "frame": 12775,
+    "pass": true,
+    "runtimeSHA256": "264b42d9b85f63847877ad839c67365a9b63b06b34a27cf9c84d53d9307ece2e",
+    "triggerFrame": 12774,
+    "actor": "knight",
+    "zoneId": "33-east",
+    "returnSide": "Left",
+    "bank": [
+      2900,
+      3100
+    ],
+    "before": {
+      "x": 3629.3876543389215,
+      "y": 2165.380372699767,
+      "hp": 1548.1,
+      "focus": 289
+    },
+    "after": {
+      "x": 3629.3876543389215,
+      "y": 2170.63352622525,
+      "hp": 1548.1,
+      "focus": 289,
+      "pending": true,
+      "recovering": {
+        "zone": "33-east",
+        "entry": {
+          "x": 3629.3876543389215,
+          "y": 1968.6530135071662
+        },
+        "side": "Left",
+        "damage": 540,
+        "damaged": false,
+        "surface": 2135,
+        "probeWait": 0.1,
+        "closedToken": "5:0"
+      },
+      "acted": true,
+      "moveLeft": 0
+    }
+  }
+}

@@ -1,0 +1,814 @@
+[
+  {
+    "at": "2026-10-29T19:19:13.208Z",
+    "stage": 3,
+    "customReview": true,
+    "fullPayload": true,
+    "sameAppReuse": true,
+    "parentJSHeapBytes": {
+      "used": 175601110,
+      "total": 233822870,
+      "limit": 4395630592
+    },
+    "source": "7956c4ea8a2dde9afc583ecac1d9908a67203eb9397859fdff613850e6cbdd93",
+    "frame": {
+      "width": 1165,
+      "height": 623
+    },
+    "canvas": {
+      "width": 1165,
+      "height": 492.1875
+    },
+    "diagnostics": {
+      "lastError": "",
+      "crashShown": false,
+      "screen": "battle",
+      "done": false,
+      "modalKind": "",
+      "modalOpen": false,
+      "dialogue": false,
+      "appPrev": 42921.2,
+      "now": 42934.300000000745,
+      "sceneTime": 16.09166666666682,
+      "canvasMatches": true,
+      "canvasConnected": true,
+      "battleMatches": true,
+      "canvasBacking": {
+        "width": 1165,
+        "height": 492
+      },
+      "contextLost": false,
+      "screenWorldKey": "honro-map-stage-3-1793301512833:80:6500x3100:0.680::visual-2-0.82-0.66-0.48-0.32-0.28-1-0.97-0.88-0.84-0.8-64-#12232bd9-1.15-6:1165:492.1875:1165:492:0.9399999976158142:0:0:0.9399999976158142:112.5000011920929:-1263.238841386621",
+      "staticWorldKey": "honro-map-stage-3-1793301512833:80:6500x3100:0.680::visual-2-0.82-0.66-0.48-0.32-0.28-1-0.97-0.88-0.84-0.8-64-#12232bd9-1.15-6",
+      "storyFrozen": false
+    },
+    "actor": {
+      "id": "p-archer",
+      "x": 330,
+      "y": 1752.282,
+      "moveLeft": 1172
+    },
+    "camera": {
+      "x": 500,
+      "y": 1605.6729574468084,
+      "scale": 0.94,
+      "manual": false,
+      "storyFrameActive": false,
+      "storyTweenActive": false,
+      "goalFocusActive": false,
+      "skillPreview": false,
+      "editorView": false,
+      "attackBlocksFocus": false,
+      "attackStatus": {
+        "intent": 0,
+        "attacks": 0,
+        "manual": false,
+        "gesture": false
+      }
+    },
+    "battleBounds": {
+      "width": 6500,
+      "height": 3100,
+      "play": {
+        "left": 0,
+        "top": 0,
+        "right": 6500,
+        "bottom": 3100
+      },
+      "terrain": {
+        "left": -6000,
+        "top": -24000,
+        "right": 12500,
+        "bottom": 27100
+      },
+      "camera": {},
+      "focus": {
+        "left": -320,
+        "top": -1800,
+        "right": 6820,
+        "bottom": 3340
+      }
+    },
+    "cache": {
+      "worldBuilds": 1,
+      "worldBuildMs": 48.50000001117587,
+      "bgBuilds": 0,
+      "bgBuildMs": 0,
+      "worldHits": 3530,
+      "bgHits": 2157,
+      "domainCanvasAllocations": 10,
+      "domainTileBuilds": 10,
+      "screenBuilds": 6,
+      "screenHits": 4314,
+      "screenWorldBytes": 2292720,
+      "screenBackgroundBytes": 2292720,
+      "screenForegroundBytes": 0,
+      "worldBytes": 10650240,
+      "worldScale": 0.68,
+      "backgroundBytes": 0
+    },
+    "domainTileCount": 10,
+    "jsHeapBytes": {
+      "used": 175601110,
+      "total": 233822870,
+      "limit": 4395630592
+    },
+    "limits": "JS heap and live cache estimates do not measure GPU/backing memory or real mobile performance"
+  },
+  {
+    "at": "2026-10-29T19:19:14.055Z",
+    "stage": 3,
+    "customReview": true,
+    "fullPayload": true,
+    "sameAppReuse": true,
+    "parentJSHeapBytes": {
+      "used": 164914023,
+      "total": 234103751,
+      "limit": 4395630592
+    },
+    "source": "7956c4ea8a2dde9afc583ecac1d9908a67203eb9397859fdff613850e6cbdd93",
+    "frame": {
+      "width": 1180,
+      "height": 623
+    },
+    "canvas": {
+      "width": 1180,
+      "height": 492.1875
+    },
+    "diagnostics": {
+      "lastError": "",
+      "crashShown": false,
+      "screen": "battle",
+      "done": false,
+      "modalKind": "",
+      "modalOpen": false,
+      "dialogue": false,
+      "appPrev": 43771,
+      "now": 43781,
+      "sceneTime": 17.366666666666756,
+      "canvasMatches": true,
+      "canvasConnected": true,
+      "battleMatches": true,
+      "canvasBacking": {
+        "width": 1180,
+        "height": 492
+      },
+      "contextLost": false,
+      "screenWorldKey": "honro-map-stage-3-1793301512833:80:6500x3100:0.210::visual-2-0.82-0.66-0.48-0.32-0.28-1-0.97-0.88-0.84-0.8-64-#12232bd9-1.15-6:1180:492.1875:1180:492:0.17352941632270813:0:0:0.17352941632270813:-188.5873452439264:-46.83941055506875",
+      "staticWorldKey": "honro-map-stage-3-1793301512833:80:6500x3100:0.210::visual-2-0.82-0.66-0.48-0.32-0.28-1-0.97-0.88-0.84-0.8-64-#12232bd9-1.15-6",
+      "storyFrozen": false
+    },
+    "actor": {
+      "id": "p-archer",
+      "x": 330,
+      "y": 1752.282,
+      "moveLeft": 1172
+    },
+    "camera": {
+      "x": 4486.774251712946,
+      "y": 1688.0893104489721,
+      "scale": 0.17352941176470588,
+      "manual": true,
+      "storyFrameActive": false,
+      "storyTweenActive": false,
+      "goalFocusActive": false,
+      "skillPreview": false,
+      "editorView": false,
+      "attackBlocksFocus": true,
+      "attackStatus": {
+        "intent": 9,
+        "attacks": 0,
+        "manual": true,
+        "gesture": false
+      }
+    },
+    "battleBounds": {
+      "width": 6500,
+      "height": 3100,
+      "play": {
+        "left": 0,
+        "top": 0,
+        "right": 6500,
+        "bottom": 3100
+      },
+      "terrain": {
+        "left": -6000,
+        "top": -24000,
+        "right": 12500,
+        "bottom": 27100
+      },
+      "camera": {},
+      "focus": {
+        "left": -320,
+        "top": -1800,
+        "right": 6820,
+        "bottom": 3340
+      }
+    },
+    "cache": {
+      "worldBuilds": 2,
+      "worldBuildMs": 92.50000001490116,
+      "bgBuilds": 0,
+      "bgBuildMs": 0,
+      "worldHits": 3648,
+      "bgHits": 2191,
+      "domainCanvasAllocations": 22,
+      "domainTileBuilds": 22,
+      "screenBuilds": 12,
+      "screenHits": 4382,
+      "screenWorldBytes": 2322240,
+      "screenBackgroundBytes": 2322240,
+      "screenForegroundBytes": 0,
+      "worldBytes": 12780288,
+      "worldScale": 0.21022410381342863,
+      "backgroundBytes": 0
+    },
+    "domainTileCount": 12,
+    "jsHeapBytes": {
+      "used": 164914023,
+      "total": 234103751,
+      "limit": 4395630592
+    },
+    "limits": "JS heap and live cache estimates do not measure GPU/backing memory or real mobile performance"
+  },
+  {
+    "at": "2026-10-29T19:21:57.386Z",
+    "stage": 3,
+    "customReview": true,
+    "fullPayload": true,
+    "sameAppReuse": true,
+    "parentJSHeapBytes": {
+      "used": 167768241,
+      "total": 232791497,
+      "limit": 4395630592
+    },
+    "source": "7956c4ea8a2dde9afc583ecac1d9908a67203eb9397859fdff613850e6cbdd93",
+    "frame": {
+      "width": 1165,
+      "height": 623
+    },
+    "canvas": {
+      "width": 1165,
+      "height": 492.1875
+    },
+    "diagnostics": {
+      "lastError": "",
+      "crashShown": false,
+      "screen": "battle",
+      "done": false,
+      "modalKind": "",
+      "modalOpen": false,
+      "dialogue": false,
+      "appPrev": 207101.7,
+      "now": 207112.6000000015,
+      "sceneTime": 262.2166666667019,
+      "canvasMatches": true,
+      "canvasConnected": true,
+      "battleMatches": true,
+      "canvasBacking": {
+        "width": 1165,
+        "height": 492
+      },
+      "contextLost": false,
+      "screenWorldKey": "honro-map-stage-3-1793301512833:80:6500x3100:0.210::visual-2-0.82-0.66-0.48-0.32-0.28-1-0.97-0.88-0.84-0.8-64-#12232bd9-1.15-6:1165:492.1875:1165:492:0.1713235229253769:0:0:0.1713235229253769:-186.1899991886312:-43.11566539173509",
+      "staticWorldKey": "honro-map-stage-3-1793301512833:80:6500x3100:0.210::visual-2-0.82-0.66-0.48-0.32-0.28-1-0.97-0.88-0.84-0.8-64-#12232bd9-1.15-6",
+      "storyFrozen": false
+    },
+    "actor": {
+      "id": "p-archer",
+      "x": 330,
+      "y": 1752.282,
+      "moveLeft": 1172
+    },
+    "camera": {
+      "x": 4486.774251712946,
+      "y": 1688.0893104489721,
+      "scale": 0.1713235294117647,
+      "manual": true,
+      "storyFrameActive": false,
+      "storyTweenActive": false,
+      "goalFocusActive": false,
+      "skillPreview": false,
+      "editorView": false,
+      "attackBlocksFocus": true,
+      "attackStatus": {
+        "intent": 9,
+        "attacks": 0,
+        "manual": true,
+        "gesture": false
+      }
+    },
+    "battleBounds": {
+      "width": 6500,
+      "height": 3100,
+      "play": {
+        "left": 0,
+        "top": 0,
+        "right": 6500,
+        "bottom": 3100
+      },
+      "terrain": {
+        "left": -6000,
+        "top": -24000,
+        "right": 12500,
+        "bottom": 27100
+      },
+      "camera": {},
+      "focus": {
+        "left": -320,
+        "top": -1800,
+        "right": 6820,
+        "bottom": 3340
+      }
+    },
+    "cache": {
+      "worldBuilds": 2,
+      "worldBuildMs": 92.50000001490116,
+      "bgBuilds": 0,
+      "bgBuildMs": 0,
+      "worldHits": 13448,
+      "bgHits": 11975,
+      "domainCanvasAllocations": 22,
+      "domainTileBuilds": 22,
+      "screenBuilds": 14,
+      "screenHits": 23950,
+      "screenWorldBytes": 2292720,
+      "screenBackgroundBytes": 2292720,
+      "screenForegroundBytes": 0,
+      "worldBytes": 12780288,
+      "worldScale": 0.21022410381342863,
+      "backgroundBytes": 0
+    },
+    "domainTileCount": 12,
+    "jsHeapBytes": {
+      "used": 167768241,
+      "total": 232791497,
+      "limit": 4395630592
+    },
+    "limits": "JS heap and live cache estimates do not measure GPU/backing memory or real mobile performance"
+  },
+  {
+    "at": "2026-10-29T19:22:11.303Z",
+    "stage": 6,
+    "customReview": true,
+    "fullPayload": true,
+    "sameAppReuse": true,
+    "parentJSHeapBytes": {
+      "used": 221923246,
+      "total": 278160126,
+      "limit": 4395630592
+    },
+    "source": "7956c4ea8a2dde9afc583ecac1d9908a67203eb9397859fdff613850e6cbdd93",
+    "frame": {
+      "width": 1165,
+      "height": 623
+    },
+    "canvas": {
+      "width": 1165,
+      "height": 492.1875
+    },
+    "diagnostics": {
+      "lastError": "",
+      "crashShown": false,
+      "screen": "battle",
+      "done": false,
+      "modalKind": "",
+      "modalOpen": false,
+      "dialogue": false,
+      "appPrev": 221015.3,
+      "now": 221029.1000000015,
+      "sceneTime": 10.191666666666745,
+      "canvasMatches": true,
+      "canvasConnected": true,
+      "battleMatches": true,
+      "canvasBacking": {
+        "width": 1165,
+        "height": 492
+      },
+      "contextLost": false,
+      "screenWorldKey": "honro-map-stage-6-1793301719579:80:6600x3800:0.680::visual-2-0.82-0.66-0.48-0.32-0.28-1-0.97-0.88-0.84-0.8-64-#12232bd9-1.15-6:1165:492.1875:1165:492:0.9399999976158142:0:0:0.9399999976158142:112.5000011920929:-1881.5379535879183",
+      "staticWorldKey": "honro-map-stage-6-1793301719579:80:6600x3800:0.680::visual-2-0.82-0.66-0.48-0.32-0.28-1-0.97-0.88-0.84-0.8-64-#12232bd9-1.15-6",
+      "storyFrozen": false
+    },
+    "actor": {
+      "id": "p-archer",
+      "x": 330,
+      "y": 2410.047,
+      "moveLeft": 1280
+    },
+    "camera": {
+      "x": 500,
+      "y": 2263.4379574468085,
+      "scale": 0.94,
+      "manual": false,
+      "storyFrameActive": false,
+      "storyTweenActive": false,
+      "goalFocusActive": false,
+      "skillPreview": false,
+      "editorView": false,
+      "attackBlocksFocus": false,
+      "attackStatus": {
+        "intent": 0,
+        "attacks": 0,
+        "manual": false,
+        "gesture": false
+      }
+    },
+    "battleBounds": {
+      "width": 6600,
+      "height": 3800,
+      "play": {
+        "left": 0,
+        "top": 0,
+        "right": 6600,
+        "bottom": 3800
+      },
+      "terrain": {
+        "left": -6000,
+        "top": -24000,
+        "right": 12600,
+        "bottom": 27800
+      },
+      "camera": {},
+      "focus": {
+        "left": -320,
+        "top": -1800,
+        "right": 6920,
+        "bottom": 4040
+      }
+    },
+    "cache": {
+      "worldBuilds": 1,
+      "worldBuildMs": 65.59999999403954,
+      "bgBuilds": 0,
+      "bgBuildMs": 0,
+      "worldHits": 1516,
+      "bgHits": 510,
+      "domainCanvasAllocations": 17,
+      "domainTileBuilds": 17,
+      "screenBuilds": 4,
+      "screenHits": 1020,
+      "screenWorldBytes": 2292720,
+      "screenBackgroundBytes": 2292720,
+      "screenForegroundBytes": 0,
+      "worldBytes": 18105408,
+      "worldScale": 0.68,
+      "backgroundBytes": 0
+    },
+    "domainTileCount": 17,
+    "jsHeapBytes": {
+      "used": 221923246,
+      "total": 278160126,
+      "limit": 4395630592
+    },
+    "limits": "JS heap and live cache estimates do not measure GPU/backing memory or real mobile performance"
+  },
+  {
+    "at": "2026-10-29T19:22:25.334Z",
+    "stage": 6,
+    "customReview": true,
+    "fullPayload": true,
+    "sameAppReuse": true,
+    "parentJSHeapBytes": {
+      "used": 220102136,
+      "total": 279215352,
+      "limit": 4395630592
+    },
+    "source": "7956c4ea8a2dde9afc583ecac1d9908a67203eb9397859fdff613850e6cbdd93",
+    "frame": {
+      "width": 1180,
+      "height": 623
+    },
+    "canvas": {
+      "width": 1180,
+      "height": 492.1875
+    },
+    "diagnostics": {
+      "lastError": "",
+      "crashShown": false,
+      "screen": "battle",
+      "done": false,
+      "modalKind": "",
+      "modalOpen": false,
+      "dialogue": false,
+      "appPrev": 235045.6,
+      "now": 235060,
+      "sceneTime": 31.241666666665964,
+      "canvasMatches": true,
+      "canvasConnected": true,
+      "battleMatches": true,
+      "canvasBacking": {
+        "width": 1180,
+        "height": 492
+      },
+      "contextLost": false,
+      "screenWorldKey": "honro-map-stage-6-1793301719579:80:6600x3800:0.210::visual-2-0.82-0.66-0.48-0.32-0.28-1-0.97-0.88-0.84-0.8-64-#12232bd9-1.15-6:1180:492.1875:1180:492:0.17352941632270813:0:0:0.17352941632270813:-188.5873452439264:-160.9809684417196",
+      "staticWorldKey": "honro-map-stage-6-1793301719579:80:6600x3800:0.210::visual-2-0.82-0.66-0.48-0.32-0.28-1-0.97-0.88-0.84-0.8-64-#12232bd9-1.15-6",
+      "storyFrozen": false
+    },
+    "actor": {
+      "id": "p-archer",
+      "x": 330,
+      "y": 2410.047,
+      "moveLeft": 1280
+    },
+    "camera": {
+      "x": 4486.774251712946,
+      "y": 2345.8543104489722,
+      "scale": 0.17352941176470588,
+      "manual": true,
+      "storyFrameActive": false,
+      "storyTweenActive": false,
+      "goalFocusActive": false,
+      "skillPreview": false,
+      "editorView": false,
+      "attackBlocksFocus": true,
+      "attackStatus": {
+        "intent": 9,
+        "attacks": 0,
+        "manual": true,
+        "gesture": false
+      }
+    },
+    "battleBounds": {
+      "width": 6600,
+      "height": 3800,
+      "play": {
+        "left": 0,
+        "top": 0,
+        "right": 6600,
+        "bottom": 3800
+      },
+      "terrain": {
+        "left": -6000,
+        "top": -24000,
+        "right": 12600,
+        "bottom": 27800
+      },
+      "camera": {},
+      "focus": {
+        "left": -320,
+        "top": -1800,
+        "right": 6920,
+        "bottom": 4040
+      }
+    },
+    "cache": {
+      "worldBuilds": 2,
+      "worldBuildMs": 101.89999999850988,
+      "bgBuilds": 0,
+      "bgBuildMs": 0,
+      "worldHits": 2422,
+      "bgHits": 1332,
+      "domainCanvasAllocations": 29,
+      "domainTileBuilds": 29,
+      "screenBuilds": 10,
+      "screenHits": 2664,
+      "screenWorldBytes": 2322240,
+      "screenBackgroundBytes": 2322240,
+      "screenForegroundBytes": 0,
+      "worldBytes": 12780288,
+      "worldScale": 0.21022410381342863,
+      "backgroundBytes": 0
+    },
+    "domainTileCount": 12,
+    "jsHeapBytes": {
+      "used": 220102136,
+      "total": 279215352,
+      "limit": 4395630592
+    },
+    "limits": "JS heap and live cache estimates do not measure GPU/backing memory or real mobile performance"
+  },
+  {
+    "at": "2026-10-29T19:22:43.777Z",
+    "stage": 30,
+    "customReview": true,
+    "fullPayload": true,
+    "sameAppReuse": true,
+    "parentJSHeapBytes": {
+      "used": 176717111,
+      "total": 268726347,
+      "limit": 4395630592
+    },
+    "source": "7956c4ea8a2dde9afc583ecac1d9908a67203eb9397859fdff613850e6cbdd93",
+    "frame": {
+      "width": 1165,
+      "height": 623
+    },
+    "canvas": {
+      "width": 1165,
+      "height": 492.1875
+    },
+    "diagnostics": {
+      "lastError": "",
+      "crashShown": false,
+      "screen": "battle",
+      "done": false,
+      "modalKind": "",
+      "modalOpen": false,
+      "dialogue": false,
+      "appPrev": 253491.5,
+      "now": 253503.40000000224,
+      "sceneTime": 12.216666666666773,
+      "canvasMatches": true,
+      "canvasConnected": true,
+      "battleMatches": true,
+      "canvasBacking": {
+        "width": 1165,
+        "height": 492
+      },
+      "contextLost": false,
+      "screenWorldKey": "honro-map-stage-30-1793301747490:80:11200x7200:0.680::visual-2-0.82-0.66-0.48-0.32-0.28-1-0.97-0.88-0.84-0.8-64-#12232bd9-1.15-6:act3-overcast-1:1165:492.1875:1165:492:0.9399999976158142:0:0:0.9399999976158142:-235.29999792575836:-4698.929997223226",
+      "staticWorldKey": "honro-map-stage-30-1793301747490:80:11200x7200:0.680::visual-2-0.82-0.66-0.48-0.32-0.28-1-0.97-0.88-0.84-0.8-64-#12232bd9-1.15-6:act3-overcast-1",
+      "storyFrozen": false
+    },
+    "actor": {
+      "id": "p-archer",
+      "x": 700,
+      "y": 5407.272727272727,
+      "moveLeft": 1820
+    },
+    "camera": {
+      "x": 870,
+      "y": 5260.663684719536,
+      "scale": 0.94,
+      "manual": false,
+      "storyFrameActive": false,
+      "storyTweenActive": false,
+      "goalFocusActive": false,
+      "skillPreview": false,
+      "editorView": false,
+      "attackBlocksFocus": false,
+      "attackStatus": {
+        "intent": 0,
+        "attacks": 0,
+        "manual": false,
+        "gesture": false
+      }
+    },
+    "battleBounds": {
+      "width": 11200,
+      "height": 7200,
+      "play": {
+        "left": 0,
+        "top": 0,
+        "right": 11200,
+        "bottom": 7200
+      },
+      "terrain": {
+        "left": -6000,
+        "top": -24000,
+        "right": 17200,
+        "bottom": 31200
+      },
+      "camera": {},
+      "focus": {
+        "left": -320,
+        "top": -1800,
+        "right": 11520,
+        "bottom": 7440
+      }
+    },
+    "cache": {
+      "worldBuilds": 1,
+      "worldBuildMs": 47.30000000819564,
+      "bgBuilds": 0,
+      "bgBuildMs": 0,
+      "worldHits": 1500,
+      "bgHits": 778,
+      "domainCanvasAllocations": 19,
+      "domainTileBuilds": 19,
+      "screenBuilds": 4,
+      "screenHits": 1556,
+      "screenWorldBytes": 2292720,
+      "screenBackgroundBytes": 2292720,
+      "screenForegroundBytes": 0,
+      "worldBytes": 20235456,
+      "worldScale": 0.68,
+      "backgroundBytes": 0
+    },
+    "domainTileCount": 19,
+    "jsHeapBytes": {
+      "used": 176717111,
+      "total": 268726347,
+      "limit": 4395630592
+    },
+    "limits": "JS heap and live cache estimates do not measure GPU/backing memory or real mobile performance"
+  },
+  {
+    "at": "2026-10-29T19:22:58.079Z",
+    "stage": 30,
+    "customReview": true,
+    "fullPayload": true,
+    "sameAppReuse": true,
+    "parentJSHeapBytes": {
+      "used": 181531209,
+      "total": 238596469,
+      "limit": 4395630592
+    },
+    "source": "7956c4ea8a2dde9afc583ecac1d9908a67203eb9397859fdff613850e6cbdd93",
+    "frame": {
+      "width": 1180,
+      "height": 623
+    },
+    "canvas": {
+      "width": 1180,
+      "height": 492.1875
+    },
+    "diagnostics": {
+      "lastError": "",
+      "crashShown": false,
+      "screen": "battle",
+      "done": false,
+      "modalKind": "",
+      "modalOpen": false,
+      "dialogue": false,
+      "appPrev": 267788.4,
+      "now": 267805.40000000224,
+      "sceneTime": 33.66666666666583,
+      "canvasMatches": true,
+      "canvasConnected": true,
+      "battleMatches": true,
+      "canvasBacking": {
+        "width": 1180,
+        "height": 492
+      },
+      "contextLost": false,
+      "screenWorldKey": "honro-map-stage-30-1793301747490:80:11200x7200:0.210::visual-2-0.82-0.66-0.48-0.32-0.28-1-0.97-0.88-0.84-0.8-64-#12232bd9-1.15-6:act3-overcast-1:1180:492.1875:1180:492:0.17352941632270813:0:0:0.17352941632270813:-252.7932292833284:-681.087817322521",
+      "staticWorldKey": "honro-map-stage-30-1793301747490:80:11200x7200:0.210::visual-2-0.82-0.66-0.48-0.32-0.28-1-0.97-0.88-0.84-0.8-64-#12232bd9-1.15-6:act3-overcast-1",
+      "storyFrozen": false
+    },
+    "actor": {
+      "id": "p-archer",
+      "x": 700,
+      "y": 5407.272727272727,
+      "moveLeft": 1820
+    },
+    "camera": {
+      "x": 4856.774251712946,
+      "y": 5343.080037721699,
+      "scale": 0.17352941176470588,
+      "manual": true,
+      "storyFrameActive": false,
+      "storyTweenActive": false,
+      "goalFocusActive": false,
+      "skillPreview": false,
+      "editorView": false,
+      "attackBlocksFocus": true,
+      "attackStatus": {
+        "intent": 9,
+        "attacks": 0,
+        "manual": true,
+        "gesture": false
+      }
+    },
+    "battleBounds": {
+      "width": 11200,
+      "height": 7200,
+      "play": {
+        "left": 0,
+        "top": 0,
+        "right": 11200,
+        "bottom": 7200
+      },
+      "terrain": {
+        "left": -6000,
+        "top": -24000,
+        "right": 17200,
+        "bottom": 31200
+      },
+      "camera": {},
+      "focus": {
+        "left": -320,
+        "top": -1800,
+        "right": 11520,
+        "bottom": 7440
+      }
+    },
+    "cache": {
+      "worldBuilds": 2,
+      "worldBuildMs": 73.50000001117587,
+      "bgBuilds": 0,
+      "bgBuildMs": 0,
+      "worldHits": 2420,
+      "bgHits": 1618,
+      "domainCanvasAllocations": 31,
+      "domainTileBuilds": 31,
+      "screenBuilds": 10,
+      "screenHits": 3236,
+      "screenWorldBytes": 2322240,
+      "screenBackgroundBytes": 2322240,
+      "screenForegroundBytes": 0,
+      "worldBytes": 12780288,
+      "worldScale": 0.21022410381342863,
+      "backgroundBytes": 0
+    },
+    "domainTileCount": 12,
+    "jsHeapBytes": {
+      "used": 181531209,
+      "total": 238596469,
+      "limit": 4395630592
+    },
+    "limits": "JS heap and live cache estimates do not measure GPU/backing memory or real mobile performance"
+  }
+]

@@ -1,0 +1,93 @@
+{
+  "scope": "Official Stage31 verify-gates.mjs after explicitly approved input refresh; unchanged assertions/60k objective bound/earned-SP profile. Not automatic art/browser/release approval.",
+  "command": "node --expose-gc tools/stage31-production/verify-gates.mjs _local/reports/silhouette-qa/sea31-3602/probe-draft.json _local/reports/silhouette-qa/sea31-3602/official-refreshed-gates",
+  "source": {
+    "project": "_local/reports/silhouette-qa/sea31-3602/project.json",
+    "rawSHA256": "3602942d32579f00f7c7689208eac7b5a209bc9684a6aed11897aaa98ef6b5aa",
+    "probeDraft": "_local/reports/silhouette-qa/sea31-3602/probe-draft.json",
+    "probeDraftSHA256": "136661e1f26ccaac81c448f891b5302e193fd1977f5b4594c0a597411093e63f",
+    "onlyProductionCardMetadataDiffers": true
+  },
+  "runtimeSHA256": "9278a691f97be21437b58fe67cdffa6a7e031da6666b2b34faa2e6f6829e0544",
+  "fixtureRefreshCommit": "febaf21",
+  "officialFixtureInputs": [
+    {
+      "path": "tests/fixtures/stage31-production/route-inputs.json",
+      "sha256": "69772b4812bdca4e4e8e8ba9accff851007ddb50eadb9bca8727e5104ee2ecf8"
+    },
+    {
+      "path": "tests/fixtures/stage31-production/shot-inputs.json",
+      "sha256": "21d7d1d0905e9f83e41f1a534845c0fde0c4d515d6dd1eed5f34e209ddc7dfb8"
+    },
+    {
+      "path": "tests/fixtures/stage31-production/enemy-inputs.json",
+      "sha256": "f0364b9349f24f45af1569b4b271fbe6d81ab8e121c06f18d8bfa1502e10cda3"
+    },
+    {
+      "path": "tests/fixtures/stage31-production/objective-inputs.json",
+      "sha256": "d99c88408ed47d27bbb0f0b5109cae8a9fcee257c4dece35845c4e7d1d5606bd"
+    }
+  ],
+  "results": [
+    {
+      "id": "boardwalk-route",
+      "result": "pass",
+      "frames": 3354,
+      "fingerprint": "draft-v1-d7df11d-2516027"
+    },
+    {
+      "id": "low-channel-route",
+      "result": "pass",
+      "frames": 3737,
+      "fingerprint": "draft-v1-d7df11d-2516027"
+    },
+    {
+      "id": "first-bank-low-shot",
+      "result": "pass",
+      "frames": 480,
+      "fingerprint": "draft-v1-d7df11d-2516027"
+    },
+    {
+      "id": "first-bank-high-shot",
+      "result": "pass",
+      "frames": 480,
+      "fingerprint": "draft-v1-d7df11d-2516027"
+    },
+    {
+      "id": "s31-west-bank-action",
+      "result": "pass",
+      "frames": 6852,
+      "fingerprint": "draft-v1-d7df11d-2516027"
+    },
+    {
+      "id": "s31-low-channel-action",
+      "result": "pass",
+      "frames": 6852,
+      "fingerprint": "draft-v1-d7df11d-2516027"
+    },
+    {
+      "id": "s31-middle-rise-action",
+      "result": "pass",
+      "frames": 6852,
+      "fingerprint": "draft-v1-d7df11d-2516027"
+    },
+    {
+      "id": "s31-landing-action",
+      "result": "pass",
+      "frames": 14052,
+      "fingerprint": "draft-v1-d7df11d-2516027"
+    },
+    {
+      "id": "boarding",
+      "result": "pass",
+      "frames": 48585,
+      "entryBuild": "campaign-spent-v1",
+      "fingerprint": "draft-v1-d7df11d-2516027"
+    }
+  ],
+  "fullReport": {
+    "path": "_local/reports/silhouette-qa/sea31-3602/official-refreshed-gates/probe-results.json",
+    "sha256": "874ea38f62535d23da3091f5a2d89f2a4b71361d33f60921147bcbe4cab49b81"
+  },
+  "historicalFailures": "Original pre-refresh input fixtures retained in tools/density-qa/evidence/silhouette-v3/historical31-inputs; their7/9 failure on new bank remains historical, not relabeled."
+}

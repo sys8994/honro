@@ -1,0 +1,156 @@
+{
+  "projectSHA256": "3602942d32579f00f7c7689208eac7b5a209bc9684a6aed11897aaa98ef6b5aa",
+  "runtimeSHA256": "9278a691f97be21437b58fe67cdffa6a7e031da6666b2b34faa2e6f6829e0544",
+  "scope": "Actual authored-spawn Engine input probe and projectile impact; first Scene paint initializes default preview memory with exact units/terrain/projectiles/phase/round/active/physics invariance before inputs; Native Scene fixed review camera. No actor/event override; not App/campaign/HUD proof.",
+  "results": [
+    {
+      "id": "first-bank-low-shot",
+      "probe": {
+        "id": "first-bank-low-shot",
+        "kind": "shot",
+        "actor": "archer",
+        "expect": {
+          "type": "blocked",
+          "target": "s31-west-hound",
+          "terrain": "s31-estuary-bank"
+        },
+        "inputs": [
+          {
+            "op": "move",
+            "direction": 1,
+            "frames": 180
+          },
+          {
+            "op": "fire",
+            "skill": "A01",
+            "angle": -12,
+            "power": 0.65
+          },
+          {
+            "op": "advance",
+            "frames": 300
+          }
+        ]
+      },
+      "frame": 480,
+      "paintInitializedObjective": {
+        "version": 1,
+        "clock": 0,
+        "events": {},
+        "receipts": [],
+        "boat": {
+          "phase": "waiting",
+          "x": 500
+        },
+        "door": {
+          "phase": "standing",
+          "time": 0
+        },
+        "complete": false,
+        "visualDrawn": {},
+        "observed": {}
+      },
+      "impacts": [
+        {
+          "frame": 244,
+          "terrain": "s31-estuary-bank",
+          "x": 1227.9876894739525,
+          "y": 1809.7525451773797,
+          "skill": "A01"
+        }
+      ],
+      "hurts": [],
+      "pass": true
+    },
+    {
+      "id": "first-bank-high-shot",
+      "probe": {
+        "id": "first-bank-high-shot",
+        "kind": "shot",
+        "actor": "archer",
+        "expect": {
+          "type": "hit",
+          "target": "s31-west-hound"
+        },
+        "inputs": [
+          {
+            "op": "move",
+            "direction": 1,
+            "frames": 180
+          },
+          {
+            "op": "fire",
+            "skill": "A01",
+            "angle": 5,
+            "power": 0.65
+          },
+          {
+            "op": "advance",
+            "frames": 300
+          }
+        ]
+      },
+      "frame": 480,
+      "paintInitializedObjective": {
+        "version": 1,
+        "clock": 0,
+        "events": {},
+        "receipts": [],
+        "boat": {
+          "phase": "waiting",
+          "x": 500
+        },
+        "door": {
+          "phase": "standing",
+          "time": 0
+        },
+        "complete": false,
+        "visualDrawn": {},
+        "observed": {}
+      },
+      "impacts": [
+        {
+          "frame": 276,
+          "unit": "s31-west-hound",
+          "x": 1392.0855043223505,
+          "y": 1745.2044613737758,
+          "skill": "A01"
+        }
+      ],
+      "hurts": [
+        {
+          "frame": 276,
+          "target": "s31-west-hound",
+          "owner": "archer",
+          "amount": 220
+        }
+      ],
+      "pass": true
+    }
+  ],
+  "files": [
+    {
+      "path": "_local/reports/silhouette-qa/sea31-3602/shot-pair/first-bank-high-shot-impact-1.png",
+      "sha256": "3a4eee2b84521c4fc18559c1279cc43d6fc2f3b098cfba48236ea7cfa07e1c87"
+    },
+    {
+      "path": "_local/reports/silhouette-qa/sea31-3602/shot-pair/first-bank-high-shot-launch.png",
+      "sha256": "609422e0322f031729c7c0265bc72979804a0c665b3248a44847a7d52c308081"
+    },
+    {
+      "path": "_local/reports/silhouette-qa/sea31-3602/shot-pair/first-bank-low-shot-impact-1.png",
+      "sha256": "4ad81fafaebbf4f04c028b6b1836167346b0225a405141c605770a43cd6a1d25"
+    },
+    {
+      "path": "_local/reports/silhouette-qa/sea31-3602/shot-pair/first-bank-low-shot-launch.png",
+      "sha256": "6f2495ac6b1cf2a1454bc52c7bde56b0e93fec52431f8f2ae4264e0245fa16d0"
+    }
+  ],
+  "initialDiagnostic": {
+    "paths": [
+      "_local/reports/silhouette-qa/sea31-3602/shot-pair.log",
+      "_local/reports/silhouette-qa/sea31-3602/shot-pair-compact-diagnostic.log"
+    ],
+    "failure": "Whole-battle immutable check caught default honroAct4PreviewState creation on first paint of bare Engine. Final runner explicitly performs first paint before inputs, proves exact physical state unchanged, then retains strict whole-battle immutability during launch/impact paints."
+  }
+}
