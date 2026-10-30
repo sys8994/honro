@@ -1,0 +1,235 @@
+{
+  "source": "art/stage35-bank-silhouette-v4/play-east-raw.svg",
+  "originalSha256": "b4b97ae0c4d94578b623f9cebf7379b2f92c403a1e058179c097cd356fde0031",
+  "rawSha256": "39cb162a404395e823f14e2731930a155e6870822523e065a0bf98cd7f0a84c5",
+  "removedReferenceImages": [],
+  "width": 1774,
+  "scales": [
+    1,
+    1.5
+  ],
+  "limits": {
+    "rgbMAE255": 2,
+    "silhouettePx": 0.7,
+    "protectedRgbMAE255": 1,
+    "protectedPx": 0.5,
+    "protectedChangedPixelFraction": 0.05
+  },
+  "protectedRects": [],
+  "protectedMask": null,
+  "provisional": true,
+  "visualApproval": "NOT REVIEWED \u2014 candidate only; human inspection mandatory",
+  "protectionMode": "feature",
+  "protectedPolylines": [],
+  "baseline": {
+    "sourceBytes": 41068,
+    "paths": 5,
+    "commands": 959,
+    "segments": 910,
+    "endpointNodesUpperBound": 959,
+    "explicitCommandLetters": 229,
+    "subpaths": 49,
+    "pathChars": 40665,
+    "maxPathChars": 13368,
+    "render": {
+      "1": {
+        "width": 1774,
+        "height": 887,
+        "decodeMs": 5.546948999999984,
+        "drawMs": 3.243255999999974
+      },
+      "1.5": {
+        "width": 2661,
+        "height": 1331,
+        "decodeMs": 7.761167,
+        "drawMs": 5.00662600000004
+      }
+    }
+  },
+  "candidates": [
+    {
+      "candidate": "raw",
+      "sourceBytes": 41068,
+      "paths": 5,
+      "commands": 959,
+      "segments": 910,
+      "endpointNodesUpperBound": 959,
+      "explicitCommandLetters": 229,
+      "subpaths": 49,
+      "pathChars": 40665,
+      "maxPathChars": 13368,
+      "errors": {
+        "1": {
+          "rgbMAE255": 0.0,
+          "rgbP99_255": 0.0,
+          "alphaMAE255": 0.0,
+          "changedPixelFraction": 0.0,
+          "silhouetteMaxOffsetPx": 0.0,
+          "pass": true
+        },
+        "1.5": {
+          "rgbMAE255": 0.0,
+          "rgbP99_255": 0.0,
+          "alphaMAE255": 0.0,
+          "changedPixelFraction": 0.0,
+          "silhouetteMaxOffsetPx": 0.0,
+          "pass": true
+        }
+      },
+      "render": {
+        "1": {
+          "width": 1774,
+          "height": 887,
+          "decodeMs": 4.987647999999979,
+          "drawMs": 1.9519540000000006
+        },
+        "1.5": {
+          "width": 2661,
+          "height": 1331,
+          "decodeMs": 10.250200000000007,
+          "drawMs": 6.068624
+        }
+      },
+      "budgetPass": true,
+      "nodes": 8,
+      "normalizedMaxPathChars": 15337,
+      "normalizedPaths": 5,
+      "importSeconds": 0.02592449499934446,
+      "qualityPass": true,
+      "feasible": true
+    },
+    {
+      "candidate": "simplify-0.0001",
+      "sourceBytes": 40953,
+      "paths": 5,
+      "commands": 874,
+      "segments": 825,
+      "endpointNodesUpperBound": 874,
+      "explicitCommandLetters": 161,
+      "subpaths": 49,
+      "pathChars": 40309,
+      "maxPathChars": 12929,
+      "errors": {
+        "1": {
+          "rgbMAE255": 0.026480769738554955,
+          "rgbP99_255": 0.0,
+          "alphaMAE255": 0.028368555009365082,
+          "changedPixelFraction": 0.0004855300602845308,
+          "silhouetteMaxOffsetPx": 1.0,
+          "pass": false
+        },
+        "1.5": {
+          "rgbMAE255": 0.020608484745025635,
+          "rgbP99_255": 0.0,
+          "alphaMAE255": 0.0223254282027483,
+          "changedPixelFraction": 0.0003924568106926693,
+          "silhouetteMaxOffsetPx": 1.0,
+          "pass": true
+        }
+      },
+      "render": {
+        "1": {
+          "width": 1774,
+          "height": 887,
+          "decodeMs": 6.784059000000013,
+          "drawMs": 2.721471000000008
+        },
+        "1.5": {
+          "width": 2661,
+          "height": 1331,
+          "decodeMs": 14.804337000000032,
+          "drawMs": 7.838614000000007
+        }
+      },
+      "budgetPass": true,
+      "nodes": 8,
+      "normalizedMaxPathChars": 15068,
+      "normalizedPaths": 5,
+      "importSeconds": 0.03465506800057483,
+      "qualityPass": false,
+      "feasible": false,
+      "simplifySeconds": 3.2580156210005953
+    },
+    {
+      "candidate": "precision-4",
+      "sourceBytes": 32638,
+      "paths": 5,
+      "commands": 973,
+      "segments": 924,
+      "endpointNodesUpperBound": 973,
+      "explicitCommandLetters": 229,
+      "subpaths": 49,
+      "pathChars": 32235,
+      "maxPathChars": 10581,
+      "errors": {
+        "1": {
+          "rgbMAE255": 0.004916142672300339,
+          "rgbP99_255": 0.0,
+          "alphaMAE255": 0.0035556815564632416,
+          "changedPixelFraction": 5.084084400885139e-05,
+          "silhouetteMaxOffsetPx": 1.0,
+          "pass": false
+        },
+        "1.5": {
+          "rgbMAE255": 0.006621764041483402,
+          "rgbP99_255": 0.0,
+          "alphaMAE255": 0.006464808247983456,
+          "changedPixelFraction": 9.91024032756309e-05,
+          "silhouetteMaxOffsetPx": 1.0,
+          "pass": true
+        }
+      },
+      "render": {
+        "1": {
+          "width": 1774,
+          "height": 887,
+          "decodeMs": 6.936958000000004,
+          "drawMs": 2.654931999999974
+        },
+        "1.5": {
+          "width": 2661,
+          "height": 1331,
+          "decodeMs": 11.525075999999956,
+          "drawMs": 8.027097000000026
+        }
+      },
+      "budgetPass": true,
+      "nodes": 8,
+      "normalizedMaxPathChars": 13689,
+      "normalizedPaths": 5,
+      "importSeconds": 0.03596157300125924,
+      "qualityPass": false,
+      "feasible": false
+    }
+  ],
+  "sourcePalette": [
+    [
+      33,
+      58,
+      77
+    ],
+    [
+      40,
+      66,
+      87
+    ],
+    [
+      54,
+      80,
+      103
+    ],
+    [
+      70,
+      97,
+      120
+    ],
+    [
+      89,
+      114,
+      135
+    ]
+  ],
+  "chosen": "raw",
+  "reviewCandidate": "raw",
+  "rawUnchanged": true
+}
