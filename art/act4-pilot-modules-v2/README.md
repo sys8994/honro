@@ -125,3 +125,12 @@ solve the appearance of passing through solid rock. Preserve physics and request
 an open/appropriately thin support design for these corridors; no automatic
 clipping, invisible rock wall, or physical support expansion is allowed.
 `route-occlusion-summary.json` records this rejected-candidate evidence.
+
+### Native re-trace requires fresh contact measurement
+
+The stacked trace changes the moss upper envelope relative to the previous
+unstacked profile by up to 2.24/2.35/.39/3.01 source units (ascending/plateau/
+descending/overhang). Reusing the old sourceTop is not valid final contact proof.
+After stacked extraction run `python tools/act4-pilot-native/refine-stacked-contact.py`;
+the assembler now uses these source-specific profiles and records their SHA.
+The earlier rejected v4 screenshots remain unchanged as failure evidence.
