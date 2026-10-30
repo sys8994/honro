@@ -1,0 +1,448 @@
+{
+  "version": 1,
+  "runner": "honro-production-app-observation-v1",
+  "scope": "Prepared stage-entry profile; production App events; Native Canvas Scene initializes authored far art, then renders every60 physics ticks after combat until safeSeven receipts complete; raster caches explicitly disposed for bounded native-harness memory; DOM/audio are doubles, story text parsed from real rendered HTML. Not a browser/campaign playthrough. No gate relabeling or automatic art approval.",
+  "fingerprint": "5f8eb9cbcf3323b261db9cc0bd34b0f68e98abc277ec390cfd6be81f0dc58081",
+  "runtimeSha256": "ca55e7e158dec1cf2322ba27432a8e3d18ab433961f3cb8c56975d9e6f4f45bb",
+  "verifierSha256": "64c96be6f94c4ba5eab30e6ace7cde7cf26cb8632cec68406ccd49e67544cf64",
+  "success": true,
+  "frame": 30547,
+  "entryBuild": "campaign-balanced-v1",
+  "resume": [
+    {
+      "frame": 12249,
+      "inputIndex": 41,
+      "result": "pass",
+      "scope": "Actual stopBattle/persist/Continue; exact units, event state, round, active and phase preserved"
+    }
+  ],
+  "wallContact": {
+    "impacts": [
+      {
+        "frame": 5553,
+        "owner": "archer",
+        "skill": "A02",
+        "terrain": "a4-32-prop-4:collision:0",
+        "x": 2247.860473285527,
+        "y": 1690.926110046558
+      },
+      {
+        "frame": 6427,
+        "owner": "mage",
+        "skill": "M02",
+        "terrain": "a4-32-prop-4:collision:0",
+        "x": 2183.9177326274917,
+        "y": 1754.461681866899
+      },
+      {
+        "frame": 6427,
+        "owner": "mage",
+        "skill": "M02",
+        "terrain": "a4-32-prop-4:collision:0",
+        "x": 2183.945875466539,
+        "y": 1746.212120833451
+      },
+      {
+        "frame": 14496,
+        "owner": "mage",
+        "skill": "M02",
+        "terrain": "a4-32-prop-4:collision:0",
+        "x": 2322.818535962646,
+        "y": 1695.2319419197831
+      },
+      {
+        "frame": 14511,
+        "owner": "mage",
+        "skill": "M02",
+        "terrain": "a4-32-prop-4:collision:0",
+        "x": 2379.3547913018915,
+        "y": 1688.9036119397076
+      },
+      {
+        "frame": 18704,
+        "owner": "mage",
+        "skill": "M02",
+        "terrain": "a4-32-prop-4:collision:0",
+        "x": 2181.28364430157,
+        "y": 1752.1259326046884
+      },
+      {
+        "frame": 19165,
+        "owner": "mage",
+        "skill": "M02",
+        "terrain": "a4-32-prop-4:collision:0",
+        "x": 2220.841830694135,
+        "y": 1706.244826624808
+      }
+    ],
+    "standing": [
+      {
+        "frame": 6810,
+        "id": "knight",
+        "x": 2187.3836449844225,
+        "y": 1750.4642032897411,
+        "hp": 1760,
+        "grounded": true
+      },
+      {
+        "frame": 6825,
+        "id": "knight",
+        "x": 2187.3836449844225,
+        "y": 1750.4642032897411,
+        "hp": 1760,
+        "grounded": true
+      },
+      {
+        "frame": 6840,
+        "id": "knight",
+        "x": 2187.3836449844225,
+        "y": 1750.4642032897411,
+        "hp": 1760,
+        "grounded": true
+      },
+      {
+        "frame": 6855,
+        "id": "knight",
+        "x": 2187.3836449844225,
+        "y": 1750.4642032897411,
+        "hp": 1760,
+        "grounded": true
+      },
+      {
+        "frame": 6870,
+        "id": "knight",
+        "x": 2187.3836449844225,
+        "y": 1750.4642032897411,
+        "hp": 1760,
+        "grounded": true
+      },
+      {
+        "frame": 6885,
+        "id": "knight",
+        "x": 2187.3836449844225,
+        "y": 1750.4642032897411,
+        "hp": 1760,
+        "grounded": true
+      },
+      {
+        "frame": 6900,
+        "id": "knight",
+        "x": 2187.3836449844225,
+        "y": 1750.4642032897411,
+        "hp": 1760,
+        "grounded": true
+      },
+      {
+        "frame": 6915,
+        "id": "knight",
+        "x": 2187.3836449844225,
+        "y": 1750.4642032897411,
+        "hp": 1760,
+        "grounded": true
+      }
+    ]
+  },
+  "final": {
+    "phase": "won",
+    "objective": {
+      "version": 1,
+      "clock": 254.55833333326615,
+      "events": {
+        "reunion": {
+          "started": true,
+          "terminal": true,
+          "presented": [
+            "A4.S32.REUNION.01",
+            "A4.S32.REUNION.02",
+            "A4.S32.REUNION.03",
+            "A4.S32.REUNION.04"
+          ],
+          "retired": []
+        },
+        "missing_four": {
+          "started": true,
+          "terminal": true,
+          "presented": [
+            "A4.S32.MISSING.01",
+            "A4.S32.MISSING.02",
+            "A4.S32.MISSING.03",
+            "A4.S32.MISSING.04"
+          ],
+          "retired": []
+        }
+      },
+      "receipts": [
+        "A4.S32.REUNION.01",
+        "A4.S32.REUNION.02",
+        "A4.S32.REUNION.03",
+        "A4.S32.REUNION.04",
+        "A4.S32.MISSING.01",
+        "A4.S32.MISSING.02",
+        "A4.S32.MISSING.03",
+        "A4.S32.MISSING.04"
+      ],
+      "boat": {
+        "phase": "waiting",
+        "x": 500
+      },
+      "door": {
+        "phase": "standing",
+        "time": 0
+      },
+      "complete": true,
+      "visualDrawn": {},
+      "observed": {
+        "door-open": 194.49999999998744,
+        "threshold": 195.49999999998653
+      },
+      "water": {
+        "dry": {
+          "archer": {
+            "x": 5960.807015531226,
+            "y": 1938.2780707289128
+          },
+          "mage": {
+            "x": 5992.433657606702,
+            "y": 1929.5807441581571
+          },
+          "knight": {
+            "x": 6017.5318587143975,
+            "y": 1922.6787388535406
+          },
+          "occultist": {
+            "x": 5932.85260435373,
+            "y": 1945.9655338027242
+          },
+          "a4-32-g0-0": {
+            "x": 1891.3903827213567,
+            "y": 1760
+          },
+          "a4-32-g0-1": {
+            "x": 1880.089924779207,
+            "y": 1760
+          },
+          "a4-32-g0-2": {
+            "x": 2542.6611811502735,
+            "y": 1725.7472798040803
+          },
+          "a4-32-g1-0": {
+            "x": 2641.3306721513436,
+            "y": 2001.4050872638668
+          },
+          "a4-32-g1-1": {
+            "x": 2112.813066193217,
+            "y": 1931.993143630056
+          },
+          "a4-shelter-speaker": {
+            "x": 4779.499999999976,
+            "y": 2010
+          }
+        },
+        "recoveries": []
+      },
+      "quietAt": 181.66666666666578,
+      "quietCleanup": {
+        "actors": [],
+        "sources": []
+      },
+      "shelterDoor": {
+        "phase": "open",
+        "time": 1
+      },
+      "thresholdAt": 195.14999999998685,
+      "reunionObserved": {
+        "sourceRun": "honro-map-stage-32-1793207118452",
+        "npc": "a4-shelter-speaker",
+        "hero": "archer",
+        "seenAt": 195.49999999998653,
+        "positions": [
+          {
+            "id": "archer",
+            "x": 4600.962610822499,
+            "y": 2010
+          },
+          {
+            "id": "a4-shelter-speaker",
+            "x": 4779.499999999976,
+            "y": 2010
+          }
+        ]
+      },
+      "reader": null,
+      "safeSeven": {
+        "ids": [
+          "shelter-person-0",
+          "shelter-person-1",
+          "shelter-person-2",
+          "shelter-person-3",
+          "shelter-person-4",
+          "shelter-person-5",
+          "shelter-person-6"
+        ],
+        "sourceRun": "honro-map-stage-32-1793207118452",
+        "reportIds": [
+          "A4.S32.MISSING.01",
+          "A4.S32.MISSING.02",
+          "A4.S32.MISSING.03",
+          "A4.S32.MISSING.04"
+        ],
+        "reunionIds": [
+          "A4.S32.REUNION.01",
+          "A4.S32.REUNION.02",
+          "A4.S32.REUNION.03",
+          "A4.S32.REUNION.04"
+        ],
+        "reunionObserved": {
+          "sourceRun": "honro-map-stage-32-1793207118452",
+          "npc": "a4-shelter-speaker",
+          "hero": "archer",
+          "seenAt": 195.49999999998653,
+          "positions": [
+            {
+              "id": "archer",
+              "x": 4600.962610822499,
+              "y": 2010
+            },
+            {
+              "id": "a4-shelter-speaker",
+              "x": 4779.499999999976,
+              "y": 2010
+            }
+          ]
+        },
+        "campaignRunId": "eq-mvsd7vv3-pqwkpk17"
+      },
+      "completionProof": {
+        "safeSeven": {
+          "ids": [
+            "shelter-person-0",
+            "shelter-person-1",
+            "shelter-person-2",
+            "shelter-person-3",
+            "shelter-person-4",
+            "shelter-person-5",
+            "shelter-person-6"
+          ],
+          "sourceRun": "honro-map-stage-32-1793207118452",
+          "reportIds": [
+            "A4.S32.MISSING.01",
+            "A4.S32.MISSING.02",
+            "A4.S32.MISSING.03",
+            "A4.S32.MISSING.04"
+          ],
+          "reunionIds": [
+            "A4.S32.REUNION.01",
+            "A4.S32.REUNION.02",
+            "A4.S32.REUNION.03",
+            "A4.S32.REUNION.04"
+          ],
+          "reunionObserved": {
+            "sourceRun": "honro-map-stage-32-1793207118452",
+            "npc": "a4-shelter-speaker",
+            "hero": "archer",
+            "seenAt": 195.49999999998653,
+            "positions": [
+              {
+                "id": "archer",
+                "x": 4600.962610822499,
+                "y": 2010
+              },
+              {
+                "id": "a4-shelter-speaker",
+                "x": 4779.499999999976,
+                "y": 2010
+              }
+            ]
+          },
+          "campaignRunId": "eq-mvsd7vv3-pqwkpk17"
+        }
+      }
+    },
+    "units": [
+      {
+        "id": "archer",
+        "x": 5960.807015531226,
+        "y": 1938.2780707289128,
+        "hp": 1117,
+        "dead": false
+      },
+      {
+        "id": "mage",
+        "x": 5992.433657606702,
+        "y": 1929.5807441581571,
+        "hp": 1209,
+        "dead": false
+      },
+      {
+        "id": "knight",
+        "x": 6017.5318587143975,
+        "y": 1922.6787388535406,
+        "hp": 1784,
+        "dead": false
+      },
+      {
+        "id": "occultist",
+        "x": 5932.85260435373,
+        "y": 1945.9655338027242,
+        "hp": 1402,
+        "dead": false
+      },
+      {
+        "id": "a4-32-g0-0",
+        "x": 1891.3903827213567,
+        "y": 1760,
+        "hp": 0,
+        "dead": true
+      },
+      {
+        "id": "a4-32-g0-1",
+        "x": 1880.089924779207,
+        "y": 1760,
+        "hp": 0,
+        "dead": true
+      },
+      {
+        "id": "a4-32-g0-2",
+        "x": 2542.6611811502735,
+        "y": 1725.7472798040803,
+        "hp": 0,
+        "dead": true
+      },
+      {
+        "id": "a4-32-g1-0",
+        "x": 2641.3306721513436,
+        "y": 2001.4050872638668,
+        "hp": 0,
+        "dead": true
+      },
+      {
+        "id": "a4-32-g1-1",
+        "x": 2112.813066193217,
+        "y": 1931.993143630056,
+        "hp": 0,
+        "dead": true
+      },
+      {
+        "id": "a4-shelter-speaker",
+        "x": 4779.499999999976,
+        "y": 2010,
+        "hp": 1450,
+        "dead": false
+      }
+    ]
+  },
+  "encounterDamage": [
+    {
+      "id": "a4-32-0",
+      "damageEvents": 7
+    },
+    {
+      "id": "a4-32-1",
+      "damageEvents": 12
+    }
+  ],
+  "shots": 35,
+  "artApproval": false,
+  "sourceReportSha256": "45da8e2e9e2861cb3958d55b18b69505bd8e4fd325b475fe0bfbf3a1a992c617",
+  "verifiedProjectSha256": "5f8eb9cbcf3323b261db9cc0bd34b0f68e98abc277ec390cfd6be81f0dc58081"
+}

@@ -1,0 +1,140 @@
+{
+  "status": "candidate-not-user-art-approved",
+  "visualReview": {
+    "whole": "Four occupied houses/sheds reuse one maintained traced coastal building, low ruin foundation and four common hulls. Former upper-alley hull moved to lower quay so wall/upper route remain legible.",
+    "normalMobile": "Uniform footprint scaling; foundations and hulls lowered into unchanged sloping bank to remove floating edges. Original interactive door and drying racks retained. Actor and physical route remain legible.",
+    "extremeDomain": "Exact-knot reflections with pixelSnapClip remove vertical slice lines; verified flat fill continued to40000 under unchanged terrain clip removes deep boundary.",
+    "wall": "Physical silhouette backed/clipped to unchanged wall polygon; actual ordinary-input standing and projectile impacts verified."
+  },
+  "source": "Actual production Native Canvas; inspector calls real HonroAct4Content.prepare and waits authored image readiness. Stage explicitly persists actual default act4Sea.",
+  "baselineViews": "art/stage32-vector-production/baseline-prepared/",
+  "candidateViews": "art/stage32-vector-production/architecture-review/",
+  "metrics": [
+    {
+      "stage": 32,
+      "view": {
+        "name": "whole",
+        "x": 3300,
+        "y": 1900,
+        "scale": 0.22727272727272727,
+        "w": 1600,
+        "h": 850
+      },
+      "file": "32-whole.png",
+      "metrics": {
+        "medianMs": 9.666927000000214,
+        "p95Ms": 13.610975999999937,
+        "scope": "warm Native Canvas CPU timings, not browser or mobile hardware"
+      },
+      "scope": "Actual production Native Canvas, initial actors. Not browser play or quality approval."
+    },
+    {
+      "stage": 32,
+      "view": {
+        "name": "first-contact",
+        "x": 1950,
+        "y": 1900,
+        "scale": 0.53,
+        "w": 1400,
+        "h": 900
+      },
+      "file": "32-first-contact.png",
+      "metrics": {
+        "medianMs": 4.503704999999172,
+        "p95Ms": 8.66177400000015,
+        "scope": "warm Native Canvas CPU timings, not browser or mobile hardware"
+      },
+      "scope": "Actual production Native Canvas, initial actors. Not browser play or quality approval."
+    },
+    {
+      "stage": 32,
+      "view": {
+        "name": "right-edge-mobile",
+        "x": 6050,
+        "y": 1900,
+        "scale": 0.53,
+        "w": 720,
+        "h": 1100
+      },
+      "file": "32-right-edge-mobile.png",
+      "metrics": {
+        "medianMs": 1.1447420000004058,
+        "p95Ms": 1.2817169999998441,
+        "scope": "warm Native Canvas CPU timings, not browser or mobile hardware"
+      },
+      "scope": "Actual production Native Canvas, initial actors. Not browser play or quality approval."
+    },
+    {
+      "stage": 32,
+      "view": {
+        "name": "left-contact",
+        "x": 900,
+        "y": 1900,
+        "scale": 0.53,
+        "w": 1400,
+        "h": 900
+      },
+      "file": "32-left-contact.png",
+      "metrics": {
+        "medianMs": 6.750970999999481,
+        "p95Ms": 10.358819000000949,
+        "scope": "warm Native Canvas CPU timings, not browser or mobile hardware"
+      },
+      "scope": "Actual production Native Canvas, initial actors. Not browser play or quality approval."
+    },
+    {
+      "stage": 32,
+      "view": {
+        "name": "central-max",
+        "x": 4890,
+        "y": 1980,
+        "scale": 1.1,
+        "w": 1400,
+        "h": 900
+      },
+      "file": "32-central-max.png",
+      "metrics": {
+        "medianMs": 5.531493999998929,
+        "p95Ms": 5.839567999999417,
+        "scope": "warm Native Canvas CPU timings, not browser or mobile hardware"
+      },
+      "scope": "Actual production Native Canvas, initial actors. Not browser play or quality approval."
+    },
+    {
+      "stage": 32,
+      "view": {
+        "name": "right-domain-wide",
+        "x": 6050,
+        "y": 1900,
+        "scale": 0.10588235294117647,
+        "w": 720,
+        "h": 1100
+      },
+      "file": "32-right-domain-wide.png",
+      "metrics": {
+        "medianMs": 3.009368999999424,
+        "p95Ms": 5.464092000000164,
+        "scope": "warm Native Canvas CPU timings, not browser or mobile hardware"
+      },
+      "scope": "Actual production Native Canvas, initial actors. Not browser play or quality approval."
+    }
+  ],
+  "limits": [
+    "Prepared stage-entry build and modeled DOM/audio are not full campaign/browser evidence.",
+    "Native OOM retry was not counted as pass; bounded-render final replay completed.",
+    "Existing building/boat source art is preserved, not claimed newly produced."
+  ],
+  "images": {
+    "32-first-contact-collision.png": "6dc2a7d96c5a233bf100b2fc0438d68b0f62ed3d15df7e2851e5718d942c5311",
+    "32-right-domain-wide.png": "bfdcb21671338f3280f238d11022e0eed1365d5984d4d0384bb46eca9fe81a5d",
+    "32-whole.png": "a24185acc007dd651a89f8eff74c21eb2429fddfaca92fa3fd4e15c548c2f965",
+    "32-right-edge-mobile.png": "f3eacaa9f7deef9d0ef16c45a06ca6f11708bd4e49893f51dc3d6c1c050722a2",
+    "actual-app-wall-standing.png": "1c63a1d9316c1df4e1ddd51c951207b75bdf302d064fd39d5db7b06d53937c07"
+  },
+  "scopeOfLatestPass": "Paint-only reuse and noncolliding prop grounding; exact original gameplay fields and compiled terrain asserted by assembler. Earlier app-check.json remains unchanged historical gameplay replay, not relabeled as this paint revision. Browser pending.",
+  "latestProjectSha256": "b43ba641a66e01ba44c185cabeeb24879c2eeb3c01f93dd740360394e6020d3c",
+  "remainingVisualLimits": [
+    "Interactive door retains original simple artwork",
+    "Drying racks and physical upper-alley platform retain original artwork"
+  ]
+}
