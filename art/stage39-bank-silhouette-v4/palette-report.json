@@ -1,0 +1,59 @@
+{
+  "changes": [
+    {
+      "old": "s39v:haul-footing",
+      "new": "s39v:haul-footing-dawn-v4",
+      "role": "boulder",
+      "geometryExact": true
+    },
+    {
+      "old": "s39v:timber-1750",
+      "new": "s39v:timber-1750-dawn-v4",
+      "role": "timber",
+      "geometryExact": true
+    },
+    {
+      "old": "s39v:timber-2440",
+      "new": "s39v:timber-2440-dawn-v4",
+      "role": "timber",
+      "geometryExact": true
+    },
+    {
+      "old": "s39v:timber-3840",
+      "new": "s39v:timber-3840-dawn-v4",
+      "role": "timber",
+      "geometryExact": true
+    },
+    {
+      "old": "s39v:timber-4400",
+      "new": "s39v:timber-4400-dawn-v4",
+      "role": "timber",
+      "geometryExact": true
+    },
+    {
+      "old": "s39v:timber-4900",
+      "new": "s39v:timber-4900-dawn-v4",
+      "role": "timber",
+      "geometryExact": true
+    },
+    {
+      "old": "s39v:timber-5700",
+      "new": "s39v:timber-5700-dawn-v4",
+      "role": "timber",
+      "geometryExact": true
+    },
+    {
+      "old": "s39-density:wood-0",
+      "new": "s39-density:wood-0-dawn-v4",
+      "role": "wood",
+      "geometryExact": true
+    },
+    {
+      "old": "s39-density:rock-east",
+      "new": "s39-density:rock-east-dawn-v4",
+      "role": "rock",
+      "geometryExact": true
+    }
+  ],
+  "removedPaintOnly": "obsolete old-polyline ground contact and soil overlays; no physical terrain removed"
+}

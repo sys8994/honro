@@ -1,0 +1,43 @@
+[
+  {
+    "instance": "a4-coast-39-art-2",
+    "action": "remove",
+    "reason": "noncolliding steep cliff boulder reads as dangling false obstacle in actual normal; no functional support"
+  },
+  {
+    "instance": "a4-coast-39-art-6",
+    "oldY": 2041.6666666666667,
+    "newY": 2088.4476633333334,
+    "collision": false
+  },
+  {
+    "instance": "a4-coast-39-art-7",
+    "oldY": 2514,
+    "newY": 2500.862706666667,
+    "collision": false
+  },
+  {
+    "instance": "a4-coast-39-art-8",
+    "oldY": 2474.285714285714,
+    "newY": 2540.949917777778,
+    "collision": false
+  },
+  {
+    "instance": "a4-coast-39-art-9",
+    "oldY": 2100,
+    "newY": 2098.1856162500003,
+    "collision": false
+  },
+  {
+    "instance": "a4-coast-39-art-10",
+    "oldY": 2000,
+    "newY": 2000.0,
+    "collision": false
+  },
+  {
+    "instance": "a4-coast-39-art-11",
+    "oldY": 2000,
+    "newY": 2000.0,
+    "collision": false
+  }
+]

@@ -1,0 +1,70 @@
+{
+  "protected": [
+    [
+      1380,
+      1700
+    ],
+    [
+      4500,
+      6200
+    ],
+    [
+      6600,
+      8000
+    ]
+  ],
+  "newVertices": 288,
+  "materialJoin": [
+    {
+      "side": "west",
+      "path": "path5",
+      "joinDelta": 0
+    },
+    {
+      "side": "west",
+      "path": "path4",
+      "joinDelta": 0
+    },
+    {
+      "side": "west",
+      "path": "path3",
+      "joinDelta": 0
+    },
+    {
+      "side": "west",
+      "path": "path2",
+      "joinDelta": 0
+    },
+    {
+      "side": "west",
+      "path": "path1",
+      "joinDelta": 0
+    },
+    {
+      "side": "east",
+      "path": "path5",
+      "joinDelta": 0.0
+    },
+    {
+      "side": "east",
+      "path": "path4",
+      "joinDelta": 0.8762203792766599
+    },
+    {
+      "side": "east",
+      "path": "path3",
+      "joinDelta": 27.02020905864469
+    },
+    {
+      "side": "east",
+      "path": "path2",
+      "joinDelta": 34.546145733157054
+    },
+    {
+      "side": "east",
+      "path": "path1",
+      "joinDelta": -31.387920828960674
+    }
+  ],
+  "visualApproval": false
+}
