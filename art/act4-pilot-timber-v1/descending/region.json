@@ -1,0 +1,24 @@
+{
+  "wholeContourCount": 64,
+  "region": [
+    [
+      -10,
+      500
+    ],
+    [
+      810,
+      500
+    ],
+    [
+      810,
+      1034
+    ],
+    [
+      -10,
+      1034
+    ]
+  ],
+  "cropGeometry": false,
+  "classificationFlattenSourceBound": 0.1,
+  "classificationSafetyBuffer": 0.11
+}

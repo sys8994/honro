@@ -1,0 +1,34 @@
+{
+  "id": "act4:timber-v1:short-flat",
+  "name": "short-flat",
+  "semanticLayer": "REAR",
+  "category": "architecture",
+  "bounds": {
+    "x": 860.8797424575715,
+    "y": 713.0276534269622,
+    "w": 618.1202575424294,
+    "h": 130.87755628884304
+  },
+  "anchor": {
+    "x": 0,
+    "y": 0
+  },
+  "foot": {
+    "x": 1169.9398712287862,
+    "y": 843.9052097158052
+  },
+  "scaleRange": [
+    1,
+    1
+  ],
+  "backgroundRange": [
+    1,
+    1
+  ],
+  "params": {
+    "nativeSourceFile": "timber-traced.svg",
+    "sourceSHA256": "1359f8de6ac84a3196b530775d0cf1cd4a701230cbab255ddd74ed091136f4ff",
+    "candidateOnly": true,
+    "semanticRole": "one-way thin timber deck; navy braces rear-only"
+  }
+}

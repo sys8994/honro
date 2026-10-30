@@ -1,0 +1,34 @@
+{
+  "id": "act4:timber-v1:descending",
+  "name": "descending",
+  "semanticLayer": "REAR",
+  "category": "architecture",
+  "bounds": {
+    "x": 49.071233469182694,
+    "y": 621.0368524640345,
+    "w": 709.561631229343,
+    "h": 250.0501875359655
+  },
+  "anchor": {
+    "x": 0,
+    "y": 0
+  },
+  "foot": {
+    "x": 403.8520490838542,
+    "y": 871.08704
+  },
+  "scaleRange": [
+    1,
+    1
+  ],
+  "backgroundRange": [
+    1,
+    1
+  ],
+  "params": {
+    "nativeSourceFile": "timber-traced.svg",
+    "sourceSHA256": "1359f8de6ac84a3196b530775d0cf1cd4a701230cbab255ddd74ed091136f4ff",
+    "candidateOnly": true,
+    "semanticRole": "one-way thin timber ramp; navy braces rear-only"
+  }
+}

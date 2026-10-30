@@ -1,0 +1,107 @@
+{
+  "idPrefix": "act4:timber-v1:",
+  "category": "architecture",
+  "objects": {
+    "long-flat": {
+      "role": "one-way thin timber deck; navy braces rear-only",
+      "region": [
+        [
+          -10,
+          -10
+        ],
+        [
+          810,
+          -10
+        ],
+        [
+          810,
+          500
+        ],
+        [
+          -10,
+          500
+        ]
+      ],
+      "proposedContactDomainSourceX": [
+        52,
+        760
+      ]
+    },
+    "ascending": {
+      "role": "one-way thin timber ramp; navy braces rear-only",
+      "region": [
+        [
+          810,
+          -10
+        ],
+        [
+          1546,
+          -10
+        ],
+        [
+          1546,
+          500
+        ],
+        [
+          810,
+          500
+        ]
+      ],
+      "proposedContactDomainSourceX": [
+        862,
+        1480
+      ]
+    },
+    "descending": {
+      "role": "one-way thin timber ramp; navy braces rear-only",
+      "region": [
+        [
+          -10,
+          500
+        ],
+        [
+          810,
+          500
+        ],
+        [
+          810,
+          1034
+        ],
+        [
+          -10,
+          1034
+        ]
+      ],
+      "proposedContactDomainSourceX": [
+        72,
+        734
+      ]
+    },
+    "short-flat": {
+      "role": "one-way thin timber deck; navy braces rear-only",
+      "region": [
+        [
+          810,
+          500
+        ],
+        [
+          1546,
+          500
+        ],
+        [
+          1546,
+          1034
+        ],
+        [
+          810,
+          1034
+        ]
+      ],
+      "proposedContactDomainSourceX": [
+        884,
+        1455
+      ]
+    }
+  },
+  "nativeSource": "timber-traced.svg"
+}

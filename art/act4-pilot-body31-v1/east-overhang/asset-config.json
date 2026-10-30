@@ -1,0 +1,34 @@
+{
+  "id": "act4:body31-v1:east-overhang",
+  "name": "east-overhang",
+  "semanticLayer": "REAR",
+  "category": "rock",
+  "bounds": {
+    "x": 966.8466804520607,
+    "y": 283.04102,
+    "w": 543.1724682390108,
+    "h": 649.02012
+  },
+  "anchor": {
+    "x": 0,
+    "y": 0
+  },
+  "foot": {
+    "x": 1238.432914571566,
+    "y": 932.06114
+  },
+  "scaleRange": [
+    1,
+    1
+  ],
+  "backgroundRange": [
+    1,
+    1
+  ],
+  "params": {
+    "nativeSourceFile": "body-traced.svg",
+    "sourceSHA256": "c23a6b692a4bfa1ff6cd6d5fd0d01009b402784f29eceade265e26b3914d742c",
+    "candidateOnly": true,
+    "semanticRole": "stage-specific solid body"
+  }
+}
