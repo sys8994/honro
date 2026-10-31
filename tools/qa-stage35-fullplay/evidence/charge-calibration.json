@@ -1,0 +1,139 @@
+{
+  "scope": "Isolated fresh legal declared prior-clear fixture; four real UI casts, not a campaign completion or statistical estimate. First two use threshold .600, latter two .575; actors/skills differ so this does not establish a controlled treatment effect. No charge or Engine.fire mutation. Fixed-band predictions are read-only and do not count as hits.",
+  "candidateSha256": "9f3fbf1956d568f5f6cad54a570e5dd59886379b4772b5cc6bc7a774895869ab",
+  "rows": [
+    {
+      "actor": "archer",
+      "skill": "A01",
+      "angleBefore": 44,
+      "angleAfterNormal150msKey": 53.300000000000004,
+      "targetPower": 0.6,
+      "releaseThreshold": 0.6,
+      "observed": {
+        "now": 14158.60000000149,
+        "chargeAt": 12920.800000000745,
+        "power": 0.6365733585934418,
+        "duration": 1.9444734582291665
+      },
+      "actual": {
+        "angle": 53.300000000000004,
+        "power": 0.6490703149772794,
+        "wind": 0,
+        "skill": "A01",
+        "path": []
+      },
+      "inferredObservationToKeyupMs": 24.299999997019768,
+      "powerError": 0.04907031497727943
+    },
+    {
+      "actor": "mage",
+      "skill": "M01",
+      "angleBefore": 44,
+      "angleAfterNormal150msKey": 55.370800000000095,
+      "targetPower": 0.6,
+      "releaseThreshold": 0.6,
+      "observed": {
+        "now": 19478.199999999255,
+        "chargeAt": 18362.60000000149,
+        "power": 0.6237661308002843,
+        "duration": 1.7884908219791666
+      },
+      "actual": {
+        "angle": 55.370800000000095,
+        "power": 0.6266176970139964,
+        "wind": 0,
+        "skill": "M01",
+        "path": []
+      },
+      "inferredObservationToKeyupMs": 5.100000001490116,
+      "powerError": 0.02661769701399641
+    },
+    {
+      "actor": "knight",
+      "skill": "S00",
+      "angleBefore": 44,
+      "angleAfterNormal150msKey": 54.32920000000014,
+      "targetPower": 0.6,
+      "releaseThreshold": 0.575,
+      "observed": {
+        "now": 24560.199999999255,
+        "chargeAt": 23468.39999999851,
+        "power": 0.5918283455678798,
+        "duration": 1.8447916666666668
+      },
+      "actual": {
+        "angle": 54.32920000000014,
+        "power": 0.6029407114628544,
+        "wind": 0,
+        "skill": "S00",
+        "path": []
+      },
+      "inferredObservationToKeyupMs": 20.5,
+      "powerError": 0.0029407114628544617
+    },
+    {
+      "actor": "occultist",
+      "skill": "O01",
+      "angleBefore": 44,
+      "angleAfterNormal150msKey": 54.33540000000005,
+      "targetPower": 0.6,
+      "releaseThreshold": 0.575,
+      "observed": {
+        "now": 28881.39999999851,
+        "chargeAt": 27940,
+        "power": 0.5908754494923631,
+        "duration": 1.5932291666666667
+      },
+      "actual": {
+        "angle": 54.33540000000005,
+        "power": 0.599411572409284,
+        "wind": 0,
+        "skill": "O01",
+        "path": []
+      },
+      "inferredObservationToKeyupMs": 13.600000001490116,
+      "powerError": -0.0005884275907159786
+    }
+  ],
+  "fixedBand": {
+    "skill": "A01",
+    "visible": [
+      "a4-35-r-1",
+      "a4-35-r-2"
+    ],
+    "directHitCandidates": [
+      {
+        "target": "a4-35-r-1",
+        "angle": 65,
+        "power": 0.6,
+        "enemyDamage": 464.8066080000001
+      },
+      {
+        "target": "a4-35-r-2",
+        "angle": 30,
+        "power": 0.6,
+        "enemyDamage": 464.8066080000001
+      },
+      {
+        "target": "a4-35-r-2",
+        "angle": 35,
+        "power": 0.6,
+        "enemyDamage": 464.8066080000001
+      },
+      {
+        "target": "a4-35-r-2",
+        "angle": 55,
+        "power": 0.6,
+        "enemyDamage": 464.8066080000001
+      },
+      {
+        "target": "a4-35-r-2",
+        "angle": 60,
+        "power": 0.6,
+        "enemyDamage": 464.8066080000001
+      }
+    ]
+  },
+  "storageSha256": "bd6cf93522c99747f79c85247d3dc421f27b6e2db13622a15ac83b5d0c41c98a",
+  "pageErrors": []
+}
