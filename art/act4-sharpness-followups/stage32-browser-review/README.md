@@ -1,0 +1,17 @@
+# Stage 32 sharp candidate: local Chromium visual review
+
+This is a **review requiring follow-up**, not an art, mission or release pass. Chromium used integration source `8594270a0f164498289b79fa2f1c0b993c3c8d5e` and a local QA-only preview build. The exact candidate was decoded from auxiliary commit `cace5b5b3c9d156807160d1a9d0ef0ed934a09dd`, SHA-256 `e22e8d2773728ef3443a93b95192dab0b64c711c5f484a8cad24c671f3b902b9` (2,735,506 bytes). The compressed payload was 660,712 bytes, SHA-256 `48c55322b2184107d9d01219b738e71af87dd92b10b05dadefb22ac39853b465`.
+
+The QA page supplied **only** the missing `act4Estuary` manifest key, pointing to the exact `c2c84576307a5d6428ee2ba2b7222bf53b6e0101` WebP (SHA-256 `1ba81aae5bebeebd46cc094be2519797d67ef49a887d7aade45cb61b39878fff`). Browser fetch SHA and decoded `HonroAuthoredFarArt` cache were checked. No other manifest key, canonical stage, art asset or published build was modified. Source and actual local entry hashes are in `runtime-source-hashes.txt`.
+
+The genuine entry used a fresh profile with chapters 1–31 marked cleared as a fixture, story and game loop active, no position/HP/phase edits. Initial and two-second snapshots, while opening dialogue remained active, recorded 4 heroes, 12 enemies and 1 NPC. All except lantern enemy `a4-32-d-3` were grounded on recorded terrain. The lantern is `fixed:true`, at y=805 with no ground contact; the authored record is y=869. It stayed at y=805 across those two seconds. Do not label this a grounding pass or a demonstrated fault until its intended hovering behavior is checked. No combat or completed stage is proven.
+
+For image inspection only, the opening dialogue was dismissed, the game loop frozen, the turn banner hidden, and the camera set manually. Other HUD remains. Desktop DPR1 and mobile 390×844 DPR2/DPR3 were captured at whole-stage, normal, maximum and minimum zoom left/right. `results.json` records all 21 static frame configurations; seven selected original PNG files are included here. Images are uncompressed browser PNGs, not scaled JPEGs. `entry-physics.json` also records the two-second entry inspection. The source run produced no JS page exceptions; observed console 404s are `favicon.ico`; a muted BGM request was aborted. Audio was disabled by the fixture.
+
+Findings needing user/author review:
+
+- `normal-door-1440x900-dpr1.png` shows a large flat gray animated `a4:door` covering part of the right building and an enemy. It is not a normal integrated timber door visually; the actual event uses this door landmark, so do not simply hide or reposition it for the screenshot. Its visual replacement and opening/observation behavior need review.
+- `max-middle-390x844-dpr3.png` shows thin warm-colored fringes at some rock/wood boundaries at extreme zoom. The SVG-like surfaces and stairs remain legible; the images do not by themselves establish whether each fringe originates in the art, renderer, or antialiasing. Normal and maximum views should be judged at their actual output pixels.
+- The wider views show the water/background and lower rocks connecting across the scene without an obvious rectangular water edge. In the mobile minimum-zoom view, a broad uniform dark lower area remains below the rock fade; its intended appearance needs visual review. This is a static view, not proof of water behavior or route traversal.
+
+See `png-sha256.txt`. `master` and Pages were not changed.
