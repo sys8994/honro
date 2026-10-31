@@ -8,6 +8,7 @@ import {guidanceRuntime} from './act2-guidance-helpers.mjs';
 import {pathBounds,paintedBounds} from '../tools/party-forge/shape-bounds.mjs';
 import {BALANCE} from '../tools/party-forge/balance.mjs';
 import {buildParty} from '../tools/party-forge/build.mjs';
+import {PALETTE as READABLE,INK} from '../tools/party-forge/readability.mjs';
 const out='_local/reports/character-balance';await mkdir(out,{recursive:true});
 const read=p=>readFile(p,'utf8'),hash=p=>createHash('sha256').update(p).digest('hex'),plain=x=>x===undefined?undefined:JSON.parse(JSON.stringify(x));
 const old={};vm.runInNewContext(await read('tests/fixtures/party-v009.runtime.js'),old);
@@ -30,9 +31,9 @@ for(const [id,a]of Object.entries(assets)){
   assert(Math.abs(shoulder(a)/shoulder(previous)-spec.width*(requested?.bodyMultiplier||1))<.00001);assert(Math.abs(bodyWidth(a)/bodyWidth(previous)-spec.width*(requested?.bodyMultiplier||1))<.00001);
  });
  check(id+': facial identity, palette, path budget, weapon grip and animation timing preserved',()=>{
-  assert.equal(a.paths.length,previous.paths.length);assert.deepEqual(plain(a.palette),plain(previous.palette));assert.deepEqual(plain(a.paths.map(p=>p.id)),plain(previous.paths.map(p=>p.id)));
+  assert.equal(a.paths.length,previous.paths.length);assert.deepEqual(plain(a.palette),plain({...previous.palette,...READABLE[id],outline:INK[id]}));/* v012: documented contrast lifts + outline ink only */assert.deepEqual(plain(a.paths.map(p=>p.id)),plain(previous.paths.map(p=>p.id)));
   const scale=a.proportions.balance.headMultiplier*(a.proportions.hwigyeomScale?.headMultiplier||1),pivot=beforeBy.head.pivot,nextPivot=by.head.pivot;
-  for(const p of a.paths.filter(p=>['head','hair_tail'].includes(p.part))){const q=previous.paths.find(q=>q.id===p.id),ns=d=>(d.match(/[-+]?(?:\d*\.)?\d+/g)||[]).map(Number),x=ns(p.d),y=ns(q.d);assert.equal(x.length,y.length);for(let i=0;i<x.length;i++)assert(Math.abs(x[i]-(nextPivot[i%2]+(y[i]-pivot[i%2])*scale))<(a.proportions.hwigyeomScale?.00012:.00006));assert.equal(p.fill,q.fill);assert.equal(p.stroke,q.stroke);}
+  for(const p of a.paths.filter(p=>['head','hair_tail'].includes(p.part))){const q=previous.paths.find(q=>q.id===p.id),ns=d=>(d.match(/[-+]?(?:\d*\.)?\d+/g)||[]).map(Number),x=ns(p.d),y=ns(q.d);assert.equal(x.length,y.length);for(let i=0;i<x.length;i++)assert(Math.abs(x[i]-(nextPivot[i%2]+(y[i]-pivot[i%2])*scale))<(a.proportions.hwigyeomScale?.00012:.00006));assert.equal(p.fill,q.fill);assert.equal(p.stroke,q.stroke===undefined&&p.stroke==='outline'?'outline':q.stroke);}
   if(a.anatomyRevision){assert.equal(a.anatomyRevision,12);assert.deepEqual(plain(by.weapon.pivot),plain(a.rig.handSockets.front));for(const side of ['front','rear'])assert(Math.hypot(...a.rig.handSockets[side].map((v,i)=>v-by[side+'_hand'].pivot[i]))<12,'grip remains inside palm');}
   if(!a.anatomyRevision)for(let axis=0;axis<2;axis++){const expected=(beforeBy.weapon.pivot[axis]-beforeBy.front_hand.pivot[axis])*(id==='damheo'&&axis===1?a.proportions.balance.bodyHeightMultiplier:1);assert(Math.abs(by.weapon.pivot[axis]-by.front_hand.pivot[axis]-expected)<.000002,'weapon retains its authored grip offset');}
   if(!a.anatomyRevision&&id!=='damheo')for(const p of a.paths.filter(p=>p.part==='weapon')){const q=previous.paths.find(q=>q.id===p.id),ns=d=>(d.match(/[-+]?(?:\d*\.)?\d+/g)||[]).map(Number),x=ns(p.d),y=ns(q.d),delta=by.weapon.pivot.map((v,i)=>v-beforeBy.weapon.pivot[i]);for(let i=0;i<x.length;i++)assert(Math.abs(x[i]-y[i]-delta[i%2])<.00006,'rigid implement may translate, not deform');}

@@ -44,8 +44,9 @@
 
 /* ---------- desktop landscape: one centred instrument group ---------- */
 @media (orientation:landscape) and (min-width:900px){
-  .honro #app .battle-screen .battle-bottom.honro-compact-hud{grid-template-columns:var(--joystick-size) minmax(0,1fr) clamp(180px,15vw,220px) clamp(220px,19vw,280px) max-content minmax(0,1fr) var(--action-width)!important;column-gap:clamp(10px,1.2vw,16px)!important}
-  .honro #app .battle-screen .honro-compact-hud .hud-roster{grid-column:3!important}
+  .honro #app .battle-screen .battle-bottom.honro-compact-hud{grid-template-columns:var(--joystick-size) minmax(0,1fr) max-content clamp(220px,19vw,280px) max-content minmax(0,1fr) var(--action-width)!important;column-gap:clamp(10px,1.2vw,16px)!important}
+  .honro #app .battle-screen .honro-compact-hud .hud-roster{grid-column:3!important;width:auto!important}
+  .honro #app .battle-screen .honro-compact-hud .hero-switches{grid-template-columns:repeat(2,minmax(104px,auto))!important;width:auto!important}
   .honro #app .battle-screen .honro-compact-hud .hud-vitals{grid-column:4!important}
   .honro #app .battle-screen .honro-compact-hud .hud-controls-row>#combat-skills{grid-column:5!important;justify-self:start!important}
   .honro #app .battle-screen .honro-compact-hud .hud-controls-row>.radial-actions{grid-column:7!important}
@@ -79,3 +80,17 @@
   .honro #app .battle-screen .honro-compact-hud .hud-controls-row>.radial-actions{grid-column:4!important;grid-row:1/3!important;align-self:center!important}
   .honro #app .battle-screen .honro-compact-hud .radial-actions .shot-readout{font-size:10px!important}
 }
+
+/* ---------- journey: locked acts read as locked, unreleased acts recede further ---------- */
+.honro .journey-acts button:disabled{opacity:.62!important;color:#a9b5aa!important}
+.honro .journey-acts button:disabled span{display:inline-flex;align-items:center;gap:3px}
+.honro .journey-acts button:disabled span::after{content:"";width:8px;height:9px;flex:none;background:currentColor;-webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 9'%3E%3Cpath d='M1.5 4V2.6a2.5 2.5 0 0 1 5 0V4H8v5H0V4Zm1.2 0h2.6V2.6a1.3 1.3 0 0 0-2.6 0Z'/%3E%3C/svg%3E") center/contain no-repeat;mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 9'%3E%3Cpath d='M1.5 4V2.6a2.5 2.5 0 0 1 5 0V4H8v5H0V4Zm1.2 0h2.6V2.6a1.3 1.3 0 0 0-2.6 0Z'/%3E%3C/svg%3E") center/contain no-repeat}
+.honro .journey-acts button:disabled[aria-label*="준비 중"]{opacity:.38!important}
+.honro .journey-acts button[aria-pressed=true]{box-shadow:inset 0 -2px 0 #d8c38b!important}
+
+/* ---------- camp: companions not yet met are placeholders, not full cards ---------- */
+.honro .hero-tabs .hero-tab:disabled{background:transparent!important;border:1px dashed #44544f!important;box-shadow:none!important;opacity:.7}
+.honro .hero-tabs .hero-tab:disabled strong{font-size:12px!important;font-weight:500;color:#7f8f88!important;letter-spacing:.06em}
+
+/* ---------- rest camp on portrait phones: zoomed scene lifted clear of the action bar ---------- */
+.honro #app .rest-world{top:calc(50% - var(--rest-height,111.111112%)/2 - var(--rest-lift,0px))}

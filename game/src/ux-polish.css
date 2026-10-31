@@ -91,3 +91,6 @@
 /* ---------- camp: companions not yet met are placeholders, not full cards ---------- */
 .honro .hero-tabs .hero-tab:disabled{background:transparent!important;border:1px dashed #44544f!important;box-shadow:none!important;opacity:.7}
 .honro .hero-tabs .hero-tab:disabled strong{font-size:12px!important;font-weight:500;color:#7f8f88!important;letter-spacing:.06em}
+
+/* ---------- rest camp on portrait phones: zoomed scene lifted clear of the action bar ---------- */
+.honro #app .rest-world{top:calc(50% - var(--rest-height,111.111112%)/2 - var(--rest-lift,0px))}

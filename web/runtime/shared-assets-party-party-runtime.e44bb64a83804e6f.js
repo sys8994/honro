@@ -1,0 +1,1 @@
+import{loadData,loadProject}from"./load-data.281437c4288b1469.js";globalThis.HONRO_PARTY=await loadData("web/data/HONRO_PARTY.80937426bd7a0871.json",[],{svgSources:false});globalThis.HONRO_PARTY_ART=await loadData("web/data/HONRO_PARTY_ART.e53eb037a1453a06.json",[],{svgSources:false});
