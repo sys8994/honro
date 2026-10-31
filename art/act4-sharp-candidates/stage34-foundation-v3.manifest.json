@@ -1,0 +1,236 @@
+{
+  "status": "Ready for actual Chromium re-review; NOT full art approval, shipping approval, or gameplay acceptance",
+  "selectedSource": "qa/east-color-join/candidate-color-join.json",
+  "candidateSha256": "61a8d9941e7bc013b0c7f7ab3d88c118b86da8bcaded10d7fa167de2f2083e21",
+  "frozenBaselineSha256": "5490dd915e485d203320b20036d951e8bdc35ea8bd5b0a5ab27739f4b27400b8",
+  "rawXzBase64RoundtripExact": true,
+  "files": [
+    {
+      "file": "candidate.json",
+      "bytes": 4700488,
+      "sha256": "61a8d9941e7bc013b0c7f7ab3d88c118b86da8bcaded10d7fa167de2f2083e21"
+    },
+    {
+      "file": "candidate.json.xz",
+      "bytes": 1219960,
+      "sha256": "12501e79a0079ca311693f05b3ea271ff78538e4be47408c8c234eaa045632ec"
+    },
+    {
+      "file": "candidate.json.xz.b64",
+      "bytes": 1626616,
+      "sha256": "b4e3209ccf557bc5f7936ae26d78cd55d70893ee7fb648e9f6a2801e31fcae64"
+    },
+    {
+      "file": "assets/00-approved34-body.json",
+      "bytes": 3558225,
+      "sha256": "35f7503421790617c109f091cf106068b04862695ffae449b9b59c12031d1a8e"
+    },
+    {
+      "file": "assets/01-approved34-coastal-foundation.json",
+      "bytes": 316516,
+      "sha256": "4f43c8e25cdebd43222dc6c15b6a3d30ab541cab7c59ea240372314fefb78c6c"
+    },
+    {
+      "file": "assets/02-approved34-deep-bedrock.json",
+      "bytes": 171012,
+      "sha256": "b0b81aeee06309de7fa11c7cc86b5ecfe3703cb48f4fd103eb9405db3e867b91"
+    },
+    {
+      "file": "assets/03-approved34-lower-continuation-v2.json",
+      "bytes": 113113,
+      "sha256": "f7855bd54cc12e5bc97b4dcd6dd16551af7e34d697e071e1206eb2ff6c33f022"
+    },
+    {
+      "file": "assets/04-approved34-lower-natural-mask-v2.json",
+      "bytes": 514409,
+      "sha256": "6462b02746cae05fefa0ff8e104c082916f52e7c59238d398aa83bda0f0be0ec"
+    }
+  ],
+  "scope": "Only the two new nonplay environment assets differ. Original BODY/timber/source transform, oldfoundation/deep, stage/collision/shorev2/actors/story unchanged. No runtime/remote changes.",
+  "creativeSource": "generated-lower-irregular-v1.png",
+  "sourceSha256": "e27fe986f8a4fb4e6f0ccfd8f0e04655fa9b0b1b46e0e94c81dd61d7fb0930b2",
+  "registration": {
+    "worldOrigin": [
+      -1536,
+      3072
+    ],
+    "worldSize": [
+      9216,
+      3072
+    ],
+    "sourceSize": [
+      2172,
+      724
+    ],
+    "worldPerSourcePixel": 4.2430939226519335,
+    "originalBodyScale": 4
+  },
+  "validationReports": [
+    "qa/final-validation/61a8d9941e7bc013/report.json",
+    "qa/east-color-join/two-face-preservation.json",
+    "qa/final-validation/a554463c7b081de1/paint-preservation.json",
+    "qa/MASK-DIAGNOSIS.md",
+    "qa/FINAL-COST-COMPARISON.json",
+    "qa/final-61a8-vector-costs.json",
+    "optimization/final-color-cleanup/REPORT.md"
+  ],
+  "limits": [
+    "Actual Chromium visual/performance review pending.",
+    "Normal gameplay not newly validated; existing shorev2/baseline route evidence is not a fullplay claim.",
+    "Native timings are local measured costs, not browser FPS."
+  ],
+  "nativeCoverage": {
+    "views": 44,
+    "manifest": "qa/final-61a8-coverage/manifest.json",
+    "pngHashes": "qa/final-61a8-png-hashes.json",
+    "contactSheet": "qa/final-61a8-coverage-sheet.png",
+    "directInspection": "Contact sheet plus original-size west entrance, east upper, east/west outer, lower context and bottom maximum directly viewed. No relocated rectangular panel or pixelstep outer contour seen."
+  },
+  "remainingReviewItems": [
+    {
+      "kind": "Thin Native AA seam",
+      "camera": [
+        6464,
+        3550,
+        1.65
+      ],
+      "screenRegion": "x600–730/y490–540 (example pixel640,500); also inspect first joining edge x120–210/y145",
+      "decision": "Two broad color faces now agree; thin Native edge remains. Parent directly viewed and approved moving to actual Chrome maximum-scale re-review, not blanket art approval."
+    },
+    {
+      "kind": "Small connected ridge projections",
+      "camera": [
+        6000,
+        4050,
+        1.65
+      ],
+      "sourceBounds": [
+        1829,
+        133,
+        1903,
+        220
+      ],
+      "decision": "Long bead chains removed. Some connected rounded projections remain; source indicates trace artifact, not asserted natural detail. Parent viewed .001/.003 local alternatives and declined extra candidate for minor improvement; disclose and judge at actual gameplay maximum scale, not enlarged diagnostic."
+    }
+  ],
+  "measuredProtection": {
+    "sourceAlphaMaxMissingPx": 1.346291201783626,
+    "sourceAlphaMaxExtraPx": 0.5,
+    "actualWalkColumns": 5430,
+    "overlapColumns": 0,
+    "minimumClearanceWorldAtAlpha1": 27.729281767955854,
+    "scope": "Exact values and thresholds in final validation report; complete stage data and all original assets exact."
+  },
+  "costComparison": {
+    "baseline": "5490dd915e485d203320b20036d951e8bdc35ea8bd5b0a5ab27739f4b27400b8",
+    "candidate": "61a8d9941e7bc013b0c7f7ab3d88c118b86da8bcaded10d7fa167de2f2083e21",
+    "baselineBytes": 5790105,
+    "candidateBytes": 4700488,
+    "baselineTotals": {
+      "nodes": 106,
+      "path_nodes": 93,
+      "segments": 202162,
+      "subpaths": 17744,
+      "clip_paths": 7,
+      "clip_segments": 8446,
+      "vector_bytes": 5759846
+    },
+    "candidateTotals": {
+      "nodes": 104,
+      "path_nodes": 91,
+      "segments": 162674,
+      "subpaths": 13353,
+      "clip_paths": 7,
+      "clip_segments": 4925,
+      "vector_bytes": 4667806
+    },
+    "deltaPercent": {
+      "nodes": -1.8867924528301883,
+      "path_nodes": -2.1505376344086002,
+      "segments": -19.53284989266034,
+      "subpaths": -24.746393146979262,
+      "clip_paths": 0.0,
+      "clip_segments": -41.688373194411554,
+      "vector_bytes": -18.959534682003653
+    },
+    "newEnvironmentSegments": {
+      "baseline": 64232,
+      "candidate": 24744
+    },
+    "sameRuntimeSnapshot": {
+      "capturedUtc": "2026-10-31T19:58:37.560Z",
+      "act4Release": true,
+      "parts": 224,
+      "evaluatedRuntimeSha256": "3f891880b64565dfaaac664f94a1384c668c76a1469dd87870ef32188d845981",
+      "scope": "Local QA snapshot for same-runtime baseline/final comparison. Not a runtime code edit nor actual Chromium acceptance."
+    },
+    "benchmarkSamplesPerView": 30,
+    "selectedTimings": [
+      {
+        "view": "landscape-minimum-left",
+        "baseline": {
+          "coldMs": 1236.3341540000001,
+          "settledMs": 46.659074000000146,
+          "p50": 13.981307999999899,
+          "p95": 20.701375999999982,
+          "max": 22.018769999999677
+        },
+        "candidate": {
+          "coldMs": 869.8338979999999,
+          "settledMs": 27.32625199999984,
+          "p50": 11.900826000000052,
+          "p95": 16.503077000000303,
+          "max": 20.106142999999975
+        }
+      },
+      {
+        "view": "browser-bottom-exact",
+        "baseline": {
+          "coldMs": 40.40269599999738,
+          "settledMs": 105.56318900000042,
+          "p50": 12.169878000000608,
+          "p95": 13.279255999994348,
+          "max": 13.534993000001123
+        },
+        "candidate": {
+          "coldMs": 14.173281000003044,
+          "settledMs": 53.14665600000444,
+          "p50": 10.747615000000224,
+          "p95": 12.911801000002015,
+          "max": 13.78484799999569
+        }
+      },
+      {
+        "view": "entrance-landscape",
+        "baseline": {
+          "coldMs": 317.6688470000008,
+          "settledMs": 109.17536100000143,
+          "p50": 9.857356999993499,
+          "p95": 11.44846200000029,
+          "max": 11.675885999997263
+        },
+        "candidate": {
+          "coldMs": 269.9470879999935,
+          "settledMs": 73.68289999999979,
+          "p50": 10.514400999993086,
+          "p95": 12.522375000000466,
+          "max": 12.911659999997937
+        }
+      }
+    ],
+    "limits": "Native only; concurrent nonbrowser work may affect timings. First view cold includes first compiledasset/cachebuild; later scene cold shares asset cache. Not isolated Chrome FPS or gameplay acceptance."
+  },
+  "separateArtAndOptimization": {
+    "colorCleanup": "1323 tiny/thin components recolored; all component d strings preserved. No segment reduction from this art operation; +1front path node/+132vectorbytes before final two-face join.",
+    "eastJoin": "Two existing compound natural faces, outer+holes retained, net area2027.92sourcepx²; only fill and matching stroke changed.",
+    "actualReduction": "Simpler generated lower source + actual Inkscape same-color union + lighter registered masks. See perasset segment/bytes and native timings; do not call lossless component splitting a performance optimization."
+  },
+  "reportRoot": "_local/reports/approved34-foundation-seam-v3",
+  "inputAndTraceHashes": {
+    "generated-lower-irregular-v1.png": "e27fe986f8a4fb4e6f0ccfd8f0e04655fa9b0b1b46e0e94c81dd61d7fb0930b2",
+    "trace8/02-inkscape-color-trace-unclipped.svg": "64094bba48c3f8a5ca810b1aab55b4db8a6cf3467b42f29b8a0909bb7e062e8f",
+    "trace8/03-optimized.svg": "f94d145705863e4d2159efdb0281b27518fe0cc3ba95134c55d18937f718f2d8",
+    "qa/global-singleclip-mask.json": "4bde4ae7a639cff6049cd8d0c8203ba41936b774dabac3f734031203d2ea146c",
+    "qa/east-color-join/two-face-preservation.json": "9fb362129659d1558d0e12b3b4b93a8fbfc080a72b8b56de2be127f35c5cf93f"
+  }
+}
