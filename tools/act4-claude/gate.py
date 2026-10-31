@@ -6,27 +6,31 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[2]
 n = sys.argv[1]
 card = json.load(open(ROOT / 'tools/act4-claude/cards.json'))[n]
+if card.get('schema') == 'criteria-v3':
+    raise SystemExit('Criteria card exists, but geometry, actual play and visual acceptance are unverified; integration blocked.')
 L = json.load(open(ROOT / f'tools/act4-pilot/layouts/stage{n}-claude.json'))
 D = ROOT / f'_local/reports/act4-pilot/stage{n}/claude'
 S = {s['id']: s for s in L['surfaces']}
 rows = []
 def check(name, ok, got, want):
     rows.append((name, ok, got, want))
+def diagnostic(name, ok, got, want):
+    print(('INFO ' if ok else 'NOTE ') + name.ljust(42), got, '| reference', want)
 W, H = L['width'], L['height']
-check('width', card['Wr'][0] <= W <= card['Wr'][1], W, card['Wr'])
-check('height', card['Hr'][0] <= H <= card['Hr'][1], H, card['Hr'])
-check('aspect W/H', card['aspect'][0] <= W / H <= card['aspect'][1], round(W / H, 3), card['aspect'])
+diagnostic('width', card['Wr'][0] <= W <= card['Wr'][1], W, card['Wr'])
+diagnostic('height', card['Hr'][0] <= H <= card['Hr'][1], H, card['Hr'])
+diagnostic('aspect W/H', card['aspect'][0] <= W / H <= card['aspect'][1], round(W / H, 3), card['aspect'])
 walk = [s for s in L['surfaces'] if s['id'] != 'shore' or len(L['surfaces']) < 3]
 # Boundary cliff walls (role contains 'cliff edge') are map edges, not platforms.
 plat = [s for s in L['surfaces'] if 'cliff edge' not in s.get('role', '')]
-check('supports (platforms)', card['supports'][0] <= len(plat) <= card['supports'][1], len(plat), card['supports'])
+diagnostic('supports (platforms)', card['supports'][0] <= len(plat) <= card['supports'][1], len(plat), card['supports'])
 levels = sorted({int(sum(p[1] for p in s['top']) / len(s['top']) // 300) for s in L['surfaces']})
-check('height bands', len(levels) >= card['bands'][0], len(levels), card['bands'])
+diagnostic('height bands', len(levels) >= card['bands'][0], len(levels), card['bands'])
 main = L['routes'][0]['supports']
 ys = [p[1] for sid in main for p in S[sid]['top']]
 span = max(ys) - min(ys)
-check('route altitude span', card['span'][0] <= span <= card['span'][1] + 400, round(span), card['span'])
-check('routes', len(L['routes']) >= card['routes'], len(L['routes']), card['routes'])
+diagnostic('route altitude span', card['span'][0] <= span <= card['span'][1] + 400, round(span), card['span'])
+diagnostic('routes', len(L['routes']) >= card['routes'], len(L['routes']), card['routes'])
 for f, ids in card['features'].items():
     miss = [i for i in ids if i not in S and i not in [c['id'] for c in L.get('covers', [])] and i not in L.get('artFeatures', [])]
     check('feature: ' + f, not miss, 'missing ' + ','.join(miss) if miss else 'ok', 'present')

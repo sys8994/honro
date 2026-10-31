@@ -1,5 +1,5 @@
 {
- "_doc": "Design cards fixed BEFORE geometry (2026-10-31, user: decide aspect from the plan first). Ranges from planning/HONRO_40_STAGE_CRITERIA_v3 + act4 terrain spec v0.2. supports = 발판(walkable surfaces), bands = 높이대 (300u bins of walk levels), span = 필수 고도폭 over the main route, features = plan phrase -> surfaces that realise it.",
+ "_doc": "설계 참고: game/docs/quality/40-stage-criteria-v3.md 및 terrain-art-spec-v0.2. 지리 우선 규칙에 따라 폭·높이·발판·점프 등의 숫자는 진단 참고이며 기계적 합격 조건이 아니다. 미실측은 미완료.",
  "37": {
   "type": "vertical",
   "W": 6200,
@@ -340,5 +340,401 @@
     "exit-ledge"
    ]
   }
+ },
+ "31": {
+  "schema": "criteria-v3",
+  "title": "강 끝의 갈대",
+  "source": "game/docs/quality/40-stage-criteria-v3.md",
+  "terrainSource": "game/docs/act4/honro-act4-terrain-art-spec-v0.2.md",
+  "status": "proposed-unmeasured",
+  "story": "강이 바다로 퍼지는 하구에서 연실의 배가 건널 물길과 선착장을 확보한다.",
+  "gimmick": "두 둑의 굴곡/곡사·군집 사이 여백, 실제 배 접근과 전원 승선.",
+  "winCondition": "현재 quiet 조건의 모든 위협 해소→배 실제 접안→생존 파티 전원 갑판에 접지 승선. 단순 출구 도착으로 대체하지 않는다.",
+  "spatialType": "넓은 하구 둑의 상하 복합 통과",
+  "spatialReason": "두 큰 교전 주머니 안에 높이가 다른 둑·차폐·측면길을 둔다. 절벽처럼 바꾸지 않으면서 첫 위치의 정지 사격으로 다음 둑까지 해소하지 못하게 한다.",
+  "enemyPlan": [
+   {
+    "role": "둑 근접 압박군",
+    "behavior": "첫 굴곡을 돌아 접근하며 원거리 정지사격에 압박",
+    "loreBasis": "하구 첫 교전 둑",
+    "status": "proposed"
+   },
+   {
+    "role": "낮은 차폐 사격군",
+    "behavior": "흙턱 뒤에서 사격하고 곡사 또는 측면진입으로 해소 가능",
+    "loreBasis": "갈대섬과 굽은 둑",
+    "status": "proposed"
+   },
+   {
+    "role": "둘째 둑 경계군",
+    "behavior": "접근 후에 개입하고 물길/선착장 확보와 연동",
+    "loreBasis": "배가 건널 안전 통로",
+    "status": "proposed"
+   }
+  ],
+  "midbossCount": [
+   1,
+   1
+  ],
+  "requiredTargets": {
+   "rounds": [
+    15,
+    18
+   ],
+   "clearRatePercent": [
+    65,
+    75
+   ],
+   "requiredEngagements": [
+    30,
+    36
+   ],
+   "enemyActions": [
+    5,
+    7
+   ],
+   "damagePercentHP": [
+    22,
+    30
+   ],
+   "roundUpperBound": 20
+  },
+  "referenceOnly": {
+   "width": [
+    6500,
+    7200
+   ],
+   "height": [
+    4400,
+    5000
+   ],
+   "aspect": [
+    1.3,
+    1.637
+   ],
+   "platforms": [
+    16,
+    22
+   ],
+   "elevationBands": [
+    4,
+    5
+   ],
+   "routes": [
+    2,
+    3
+   ],
+   "jumps": [
+    22,
+    32
+   ],
+   "drops": [
+    12,
+    18
+   ]
+  },
+  "reviewRequired": [
+   "실제 정상 조작·성장과 여러 전략을 사용한 완주 및 실패 측정",
+   "목표·사건·저장/재개 및 다음 장 연결",
+   "실제 화면의 지형·충돌·지지·동선과 원경 확인"
+  ],
+  "layoutAcceptance": "미확인: 시안과 실제 게임 지형을 대조하고 의미 있는 경로와 지지를 직접 검수해야 한다."
+ },
+ "34": {
+  "schema": "criteria-v3",
+  "title": "파도에 깎인 절벽",
+  "source": "game/docs/quality/40-stage-criteria-v3.md",
+  "terrainSource": "game/docs/act4/honro-act4-terrain-art-spec-v0.2.md",
+  "status": "proposed-unmeasured",
+  "story": "파도에 깎인 절벽을 올라 산길로 우회하며 한 통로의 입구와 출구가 어긋남을 목격한다.",
+  "gimmick": "강한 자연 고저차·오버행 포격, 적의 선택적 낮은굴 진입/다른높이 출현.",
+  "winCondition": "생존 파티 전원 산길 출구 접지. 어긋난 출구 목격/해당 적 생존은 추가 필수승리조건이 아니다.",
+  "spatialType": "깊은 자연 절벽의 수직 내외부",
+  "spatialReason": "자연 오버행·안쪽 굴·외벽 턱을 큰 높이차로 연결한다. 폭만 좁힌 완만한 경사로가 아니라 서로 다른 사선의 전술 지지면을 만든다.",
+  "enemyPlan": [
+   {
+    "role": "턱 근접 경계군",
+    "behavior": "자연 암반 오버행 안쪽에서 진입을 압박",
+    "loreBasis": "절벽 안쪽 통로",
+    "status": "proposed"
+   },
+   {
+    "role": "고저차 사격군",
+    "behavior": "높은 턱과 낮은 사격점 사이 곡사/차폐 선택 요구",
+    "loreBasis": "막내 최대 고저차 포격",
+    "status": "proposed"
+   },
+   {
+    "role": "어긋난 출구의 기존 적",
+    "behavior": "선택적으로 낮은굴 진입→다른높이 출현; 사전처치 시 연출 생략",
+    "loreBasis": "현행wrongExit actor·새종족 아님",
+    "status": "proposed"
+   }
+  ],
+  "midbossCount": [
+   1,
+   2
+  ],
+  "requiredTargets": {
+   "rounds": [
+    17,
+    20
+   ],
+   "clearRatePercent": [
+    60,
+    70
+   ],
+   "requiredEngagements": [
+    22,
+    28
+   ],
+   "enemyActions": [
+    5,
+    7
+   ],
+   "damagePercentHP": [
+    22,
+    30
+   ],
+   "roundUpperBound": 20
+  },
+  "referenceOnly": {
+   "width": [
+    5600,
+    6500
+   ],
+   "height": [
+    7400,
+    8600
+   ],
+   "aspect": [
+    0.651,
+    0.879
+   ],
+   "platforms": [
+    24,
+    32
+   ],
+   "elevationBands": [
+    6,
+    8
+   ],
+   "routes": [
+    2,
+    3
+   ],
+   "jumps": [
+    40,
+    56
+   ],
+   "drops": [
+    18,
+    28
+   ]
+  },
+  "reviewRequired": [
+   "실제 정상 조작·성장과 여러 전략을 사용한 완주 및 실패 측정",
+   "목표·사건·저장/재개 및 다음 장 연결",
+   "실제 화면의 지형·충돌·지지·동선과 원경 확인"
+  ],
+  "layoutAcceptance": "미확인: 시안과 실제 게임 지형을 대조하고 의미 있는 경로와 지지를 직접 검수해야 한다."
+ },
+ "38": {
+  "schema": "criteria-v3",
+  "title": "어긋난 해식굴",
+  "source": "game/docs/quality/40-stage-criteria-v3.md",
+  "terrainSource": "game/docs/act4/honro-act4-terrain-art-spec-v0.2.md",
+  "status": "proposed-unmeasured",
+  "story": "해식굴 건너 네 사람과 추격을 보고 어긋난 통로를 해독해 구조 접근로를 잇는다.",
+  "gimmick": "잘못 나온 탐침 관찰→담허의 장 한정 진목 연결; 정상 물리 경로도 보존.",
+  "winCondition": "생존 파티 전원 건너편 출구 접지. 정상 물리 도달이면 physicalRoute 승리 허용; 구조대상4명 생존 필요.",
+  "spatialType": "상하로 어긋난 수직 해식굴",
+  "spatialReason": "위·아래 출구와 반대편 착지면을 실제 높이차로 연결한다. 진목 전이와 정상 물리 우회의 이동 증거를 따로 보존한다.",
+  "enemyPlan": [
+   {
+    "role": "입구 경계군",
+    "behavior": "기존 사냥개/등롱계열 위협을 짧은 접근교전에 배치",
+    "loreBasis": "해식굴 초입",
+    "status": "proposed"
+   },
+   {
+    "role": "실제 추격군",
+    "behavior": "구조대상 뒤에서 실제로 이동하는 기존 추격자; 대사와 동기화",
+    "loreBasis": "도식 뒤의 추격",
+    "status": "proposed"
+   },
+   {
+    "role": "착지면 견제군",
+    "behavior": "연결 도착점을 엄호/선제제압 대상으로 만들되 도착불능 봉쇄 금지",
+    "loreBasis": "진목의 안전 착지면",
+    "status": "proposed"
+   }
+  ],
+  "midbossCount": [
+   2,
+   2
+  ],
+  "requiredTargets": {
+   "rounds": [
+    17,
+    20
+   ],
+   "clearRatePercent": [
+    60,
+    70
+   ],
+   "requiredEngagements": [
+    18,
+    26
+   ],
+   "enemyActions": [
+    5,
+    7
+   ],
+   "damagePercentHP": [
+    22,
+    30
+   ],
+   "roundUpperBound": 20
+  },
+  "referenceOnly": {
+   "width": [
+    4900,
+    5700
+   ],
+   "height": [
+    6400,
+    7300
+   ],
+   "aspect": [
+    0.671,
+    0.891
+   ],
+   "platforms": [
+    22,
+    28
+   ],
+   "elevationBands": [
+    5,
+    7
+   ],
+   "routes": [
+    2,
+    3
+   ],
+   "jumps": [
+    34,
+    50
+   ],
+   "drops": [
+    16,
+    26
+   ]
+  },
+  "reviewRequired": [
+   "실제 정상 조작·성장과 여러 전략을 사용한 완주 및 실패 측정",
+   "목표·사건·저장/재개 및 다음 장 연결",
+   "실제 화면의 지형·충돌·지지·동선과 원경 확인"
+  ],
+  "layoutAcceptance": "미확인: 시안과 실제 게임 지형을 대조하고 의미 있는 경로와 지지를 직접 검수해야 한다."
+ },
+ "40": {
+  "schema": "criteria-v3",
+  "title": "돌아가는 배",
+  "source": "game/docs/quality/40-stage-criteria-v3.md",
+  "terrainSource": "game/docs/act4/honro-act4-terrain-art-spec-v0.2.md",
+  "status": "proposed-unmeasured",
+  "story": "구조한 네 사람을 안전한 포구로 데려가 열셋의 행방을 결산하고 무명사 쪽 다음 길을 남긴다.",
+  "gimmick": "짧은 호송위협→부상자2명 실제배/보행2명 높은길→재회→13/11/2 결산.",
+  "winCondition": "짧은 위협 해소·4명 실제 귀환안전→기존7명 proof와 합쳐13명 결산→다음 장면 완료·생존 파티 안전 출구.",
+  "spatialType": "짧은 배/고지 병렬 귀환",
+  "spatialReason": "실제 배와 높은 보행길의 높이차를 짧은 연속 경사로로 연결한다. 점프 반복을 강요하지 않고 귀환 뒤 결산은 안전지대에서 끝낸다.",
+  "enemyPlan": [
+   {
+    "role": "초입 추격군",
+    "behavior": "기존 사냥개 역할로 짧은 위협; 귀환 시작 전에 해소",
+    "loreBasis": "짧은 호송 귀환",
+    "status": "proposed"
+   },
+   {
+    "role": "승선 접근 경비",
+    "behavior": "기존 경비 역할로 배/높은길 접근을 짧게 방해",
+    "loreBasis": "부상자 배와 보행자 높은길",
+    "status": "proposed"
+   },
+   {
+    "role": "잔여 원거리 위협",
+    "behavior": "기존 등롱계열 역할을 한정; 안전귀환 이후 공격/증원 없음",
+    "loreBasis": "재회와 열셋 결산 전 안전확보",
+    "status": "proposed"
+   }
+  ],
+  "midbossCount": [
+   0,
+   0
+  ],
+  "requiredTargets": {
+   "rounds": [
+    8,
+    11
+   ],
+   "clearRatePercent": [
+    75,
+    85
+   ],
+   "requiredEngagements": [
+    3,
+    6
+   ],
+   "enemyActions": [
+    3,
+    4
+   ],
+   "damagePercentHP": [
+    20,
+    26
+   ],
+   "roundUpperBound": 20
+  },
+  "referenceOnly": {
+   "width": [
+    5000,
+    5800
+   ],
+   "height": [
+    3400,
+    4000
+   ],
+   "aspect": [
+    1.25,
+    1.706
+   ],
+   "platforms": [
+    10,
+    14
+   ],
+   "elevationBands": [
+    3,
+    4
+   ],
+   "routes": [
+    2,
+    2
+   ],
+   "jumps": [
+    8,
+    14
+   ],
+   "drops": [
+    4,
+    8
+   ]
+  },
+  "reviewRequired": [
+   "실제 정상 조작·성장과 여러 전략을 사용한 완주 및 실패 측정",
+   "목표·사건·저장/재개 및 다음 장 연결",
+   "실제 화면의 지형·충돌·지지·동선과 원경 확인"
+  ],
+  "layoutAcceptance": "미확인: 시안과 실제 게임 지형을 대조하고 의미 있는 경로와 지지를 직접 검수해야 한다."
  }
 }

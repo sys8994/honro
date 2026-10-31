@@ -11,6 +11,8 @@ with open('tools/act4-claude/cards.json') as f:
     cards = json.load(f)
 if n not in cards:
     raise SystemExit(f'No design card for stage {n}; integration blocked.')
+if cards[n].get('schema') == 'criteria-v3':
+    raise SystemExit('Criteria card exists, but its actual play and visual acceptance are unverified; integration blocked.')
 PY
 FAR=$(python3 -c "import json,sys;print(json.load(open('tools/act4-claude/views.json'))[sys.argv[1]][0])" "$N")
 VIEWS=$(python3 -c "import json,sys;print(json.dumps(json.load(open('tools/act4-claude/views.json'))[sys.argv[1]][1]))" "$N")
