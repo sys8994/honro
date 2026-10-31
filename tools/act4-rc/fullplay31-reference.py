@@ -32,7 +32,12 @@ with sync_playwright() as w:
    q=survival()
    if not q['needed'] or not q['path'] or not state()['can']:break
    before=state();key='ArrowLeft' if q['path']['dir']<0 else 'ArrowRight';p.keyboard.down(key);p.wait_for_timeout(550);p.keyboard.up(key);p.wait_for_timeout(1300);after=state();record('survival-move-'+str(n),{'assessment':q,'input':key,'beforeX':before['x']})
-   if not after['grounded'] or abs(after['x']-before['x'])<20:break
+   for _ in range(20):
+    if after['grounded'] or after['active']!=before['active'] or not after['can']:break
+    p.wait_for_timeout(500);after=state()
+   record('survival-landing-'+str(n),{'assessment':q,'beforeX':before['x']})
+   if after['active']!=before['active'] or not after['can'] or not after['grounded']:return True
+   if abs(after['x']-before['x'])<20:break
   q=survival()
   if state()['can'] and state()['grounded'] and (initial['low'] or q['exposed']):
    p.keyboard.press('f');p.wait_for_timeout(2500);record('survival-defend-'+str(n),{'assessment':q});return True
