@@ -33,6 +33,20 @@ function normalize(input){
  for(const st of p.stages)reconcileAct1Scene(st,p.library);
  return p;
 }
+// Validated here at authoring time; runtime keeps its legacy fallback for old saves.
+function wreckDamageValid(st,library){
+ const link=st.design?.vectorWreckInTerrain,d=link?.damage;
+ if(d===undefined)return true;
+ const units=(st.units||[]).filter(u=>u.id===d?.unitId),terrain=(st.terrains||[]).filter(t=>t.id===link?.terrainId),elements=(st.elements||[]).filter(e=>e.id===link?.instanceId),element=elements[0],assets=library.filter(a=>a.id===link?.assetId),asset=assets[0];
+ if(st.metadata?.stageId!==39||link?.version!==1||link.terrainId!=='approved39-wreck-hull'||d?.version!==1||d.unitId!=='a4-wreck'||d.projectileHullReplacement!==true||units.length!==1||units[0].team!=='enemy'||units[0].stageOverrides?.honroAct4WreckBoss!==true||terrain.length!==1||elements.length!==1||element.assetId!==link.assetId||element.nativeArtLayer!=='body'||element.layer!=='mid'||!Array.isArray(element.nativeTerrainIds)||!element.nativeTerrainIds.includes(link.terrainId)||assets.length!==1||!asset.vector||asset.collision?.length||asset.interactionType)return false;
+ const polygons=d.polygons,aim=d.aim,point=p=>p&&Number.isFinite(p.x)&&Number.isFinite(p.y);
+ if(!point(aim)||!Array.isArray(polygons)||!polygons.length||polygons.length>4||polygons.reduce((n,p)=>n+(Array.isArray(p)?p.length:129),0)>128||!polygons.every(p=>Array.isArray(p)&&p.length>=3&&p.length<=64&&p.every(point)))return false;
+ const cross=(a,b,c)=>(b.x-a.x)*(c.y-a.y)-(b.y-a.y)*(c.x-a.x),on=(a,b,p)=>Math.abs(cross(a,b,p))<1e-8&&p.x>=Math.min(a.x,b.x)-1e-8&&p.x<=Math.max(a.x,b.x)+1e-8&&p.y>=Math.min(a.y,b.y)-1e-8&&p.y<=Math.max(a.y,b.y)+1e-8;
+ const intersects=(a,b,c,d)=>{const x=cross(a,b,c),y=cross(a,b,d),z=cross(c,d,a),w=cross(c,d,b);return ![x,y,z,w].every(Number.isFinite)||(x>0&&y<0||x<0&&y>0)&&(z>0&&w<0||z<0&&w>0)||on(a,b,c)||on(a,b,d)||on(c,d,a)||on(c,d,b);};
+ let contains=false;
+ for(const ps of polygons){let area=0,inside=false;for(let i=0;i<ps.length;i++){const a=ps[i],b=ps[(i+1)%ps.length];if(a.x===b.x&&a.y===b.y)return false;area+=a.x*b.y-b.x*a.y;if(!Number.isFinite(cross(a,b,aim)))return false;if(on(a,b,aim))contains=true;if((a.y>aim.y)!==(b.y>aim.y)&&aim.x<(b.x-a.x)*(aim.y-a.y)/(b.y-a.y)+a.x)inside=!inside;for(let j=i+1;j<ps.length;j++){if(j===i+1||i===0&&j===ps.length-1)continue;if(intersects(a,b,ps[j],ps[(j+1)%ps.length]))return false;}}if(!Number.isFinite(area)||Math.abs(area)<=2e-6)return false;if(inside)contains=true;}
+ return contains;
+}
 function validate(project){
  const out=[],issue=(level,text)=>out.push({level,text});
  if(project.schema!=='honro-map'||project.version!==VERSION)issue('err','Unsupported canonical map schema');
@@ -44,6 +58,7 @@ function validate(project){
   for(const pts of [...(a.visual||[]).map(s=>s.points||[]),...(a.collision||[])])if(pts.some(p=>!Number.isFinite(p.x)||!Number.isFinite(p.y)))issue('err',`${a.id}: invalid asset coordinates`);
  }
  for(const st of project.stages){
+  if(!wreckDamageValid(st,project.library))issue('err',st.id+': invalid vectorWreckInTerrain.damage contract');
   // Optional Stage 36 reward targets one existing elite; keep authoring and
   // serialized battle design in agreement so preview and reload cannot drift.
   const reward=st.design?.act4?.eliteReward36,saved=st.initialState?.honroAct4Design?.eliteReward36;
