@@ -45,7 +45,7 @@ function observe(app,dt){const b=app.engine?.b;if(!(b?.honroCustom||b?.honroAct4
   // MID advice remains withheld until a real reviewed-bank arc was observed.
   if(q.arcObserved&&inView(app,{x:4140,y:cfg.arcY??1730})&&party(b).some(u=>u.x>3400&&u.x<4000))play(app,'second_bank',true);
  }
- if(n===35){if(!q.events.entry?.started&&inView(app,{x:900,y:1800}))play(app,'entry');
+ if(n===35){if(!q.events.entry?.started&&inView(app,{x:K(b,'entryViewX',900),y:K(b,'entryViewY',1800)}))play(app,'entry');
   // The clearing advice requires explicit real shot receipts, never a string
   // or metadata-only assertion. The focused projectile audit supplies these.
   if(q.blockedAtBamboo&&q.clearShotFromSide&&q.clock-(q.blockedAt??-100)<2&&alive(app.engine.unit(q.clearShotTarget))&&app.engine.active?.x>3000&&app.engine.active?.x<3090)play(app,'blocked_shot',true);
@@ -62,8 +62,8 @@ function observe(app,dt){const b=app.engine?.b;if(!(b?.honroCustom||b?.honroAct4
 function interact(app=G.HonroApp,probe=false){const b=app.engine?.b;if(!(b?.honroCustom||b?.honroAct4Official===1)||!b.honroAct4Preview||app.dialogue)return false;const q=memory(b),n=b.honroAct4Preview,u=app.engine.active;if(b.side!==0||b.phase!=='aim'||u?.side!==0||u.acted||!alive(u)||!app.engine.grounded(u))return false;
  if(n===31&&q.boat.phase==='docked'&&quiet(b)&&party(b).every(u=>u.x>boarding(b).boardX1&&u.x<boarding(b).boardX2&&Math.abs(u.y-boarding(b).deckY)<5&&app.engine.grounded(u))){if(probe)return true;q.boat.phase='boarded';q.complete=true;return true;}
  if(n===36&&u.cls==='knight'&&quiet(b)&&Math.abs(u.x-K(b,'doorPushX',2370))<220&&q.door.phase==='standing'){if(probe)return true;q.door.phase='falling';q.door.time=0;return true;}
- if(n===35&&quiet(b)&&party(b).every(u=>u.x>K(b,'completeX',6500))){if(probe)return true;q.complete=true;return true;}
- if(n===36&&quiet(b)&&q.door.phase==='fallen'&&q.events.leave?.terminal&&['A4.S36.DOOR.01','A4.S36.DOOR.02'].every(id=>q.receipts.includes(id))&&party(b).every(u=>u.x>K(b,'completeX',6500))){if(probe)return true;q.complete=true;return true;}
+ if(n===35&&quiet(b)&&party(b).every(u=>u.x>K(b,'completeX',6500)&&u.y<K(b,'completeYMax',1e9))){if(probe)return true;q.complete=true;return true;}
+ if(n===36&&quiet(b)&&q.door.phase==='fallen'&&q.events.leave?.terminal&&['A4.S36.DOOR.01','A4.S36.DOOR.02'].every(id=>q.receipts.includes(id))&&party(b).every(u=>u.x>K(b,'completeX',6500)&&u.y<K(b,'completeYMax',1e9))){if(probe)return true;q.complete=true;return true;}
  if(n===36&&u.cls==='knight'&&quiet(b)&&Math.abs(u.x-2370)<220&&q.door.phase==='fallen'&&q.events.door_falls?.terminal&&!['A4.S36.DOOR.01','A4.S36.DOOR.02'].every(id=>q.receipts.includes(id))){if(probe)return true;const d=event(q,'door_falls');d.started=d.terminal=false;return play(app,'door_falls');}
  return false;
 }

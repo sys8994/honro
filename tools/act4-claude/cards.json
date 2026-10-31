@@ -60,5 +60,65 @@
     "pass"
    ]
   }
+ },
+ "35": {
+  "type": "vertical",
+  "W": 5800,
+  "H": 6900,
+  "Wr": [
+   5100,
+   5900
+  ],
+  "Hr": [
+   6100,
+   7000
+  ],
+  "aspect": [
+   0.728,
+   0.968
+  ],
+  "supports": [
+   22,
+   28
+  ],
+  "bands": [
+   5,
+   7
+  ],
+  "span": [
+   3900,
+   4700
+  ],
+  "routes": 2,
+  "features": {
+   "굽은 진입 계단": [
+    "entry-stairs"
+   ],
+   "낮고 넓은 빈터 ①": [
+    "clear-1"
+   ],
+   "도랑 옆 비스듬한 빈터 ②": [
+    "clear-2"
+   ],
+   "돌담 아래 빈터 ③": [
+    "clear-3b"
+   ],
+   "깊은 도랑·낮은 우회": [
+    "ditch",
+    "gully",
+    "fallen-bamboo"
+   ],
+   "옆 틈 우회": [
+    "clefta",
+    "cleftb"
+   ],
+   "쓰러진 대나무": [
+    "fallen-bamboo",
+    "cleft-bamboo"
+   ],
+   "대숲 사면 절개": [
+    "hillside"
+   ]
+  }
  }
 }

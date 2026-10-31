@@ -22,7 +22,7 @@ function goal(app,id){const text=G.HONRO_ACT4_PREVIEW_SEEDS.ui.find(v=>v[0]===id
 function hasFact(b,id){return b.honroAct4FactEvents?.some(v=>v.eventId===id)||P.campaignProof?.runId===b.honroAct4ReviewRunId&&!!P.campaignProof.factEvents?.[id];}
 function fact(b,id,proof){if(hasFact(b,id))return;const row={eventId:id,stage:b.honroAct4Preview,sourceRun:b.session,campaignRunId:b.honroAct4ReviewRunId,officialAct4:b.honroAct4Official===1,proof:copy(proof)};(b.honroAct4FactEvents??=[]).push(row);if(P.campaignProof?.runId===b.honroAct4ReviewRunId)(P.campaignProof.factEvents??={})[id]=copy(row);}
 const companion=u=>!!u&&['archer','mage','knight','occultist'].includes(u.id)&&u.id===u.cls&&C.equipmentActor(u);
-function flaskPair(e){const b=e.b,mage=party(b).find(u=>u.cls==='mage'&&companion(u));if(!alive(mage)||mage.x<K(b,'flaskX1',6100)||mage.x>K(b,'flaskX2',6620)||!e.grounded(mage)||!quiet(b)||hasFact(b,'eq_da_t3b'))return null;const giver=party(b).find(u=>u!==mage&&companion(u)&&e.grounded(u)&&near(u,mage,150));return giver?{mage,giver}:null;}
+function flaskPair(e){const b=e.b,mage=party(b).find(u=>u.cls==='mage'&&companion(u));if(!alive(mage)||mage.x<K(b,'flaskX1',6100)||mage.x>K(b,'flaskX2',6620)||mage.y>K(b,'flaskYMax',1e9)||!e.grounded(mage)||!quiet(b)||hasFact(b,'eq_da_t3b'))return null;const giver=party(b).find(u=>u!==mage&&companion(u)&&e.grounded(u)&&near(u,mage,150));return giver?{mage,giver}:null;}
 function complete(app,proof){const b=app.engine.b,q=memory(b);if(q.complete||q.failure)return;q.complete=true;q.completionProof=copy(proof);b.phase='won';if(b.honroAct4Preview===40)fact(b,'eq_so_t3b',proof);P.save?.();}
 function fail(b,reason){const q=memory(b);if(q.complete||q.failure)return;q.failure=reason;b.phase='lost';}
 function space(b,u,p,range=220,accept=null,step=32){return G.HonroTerrain.place(b,u,{x:p.x,y:p.y,maxDistance:range,clearance:15,accept,step});}
@@ -110,7 +110,7 @@ P.coastObserve=function(app,dt){const b=app.engine.b,n=b.honroAct4Preview;if(!ac
   }
  }
  if(n===35){const d=q.flaskDelivery;if(d&&d.phase!=='complete'){const mage=e.unit(d.receiver),giver=e.unit(d.giver);if(!working(e,mage,giver,150)||!alive(giver)||!e.grounded(giver)||!quiet(b)){delete mage?.honroScenePose;delete giver?.honroScenePose;q.flaskDelivery=null;}else{mage.facing=giver.x>mage.x?1:-1;giver.facing=-mage.facing;mage.honroScenePose=giver.honroScenePose={kind:'point',time:1};d.elapsed+=dt;if(d.elapsed>=1.4&&d.received){d.phase='complete';fact(b,'eq_da_t3b',{itemId:'itm_da_06',giver:giver.id,receiver:mage.id,receivedAt:d.received.at,positions:d.received.positions,kind:'companion-handoff'});delete mage.honroScenePose;delete giver.honroScenePose;P.save?.();}}}
-  if(party(b).some(u=>u.x>K(b,'clearingX1',5520)&&u.x<K(b,'clearingX2',5720)&&e.grounded(u))&&!foes(b).some(u=>u.x>K(b,'clearingFoeX',5000)))fact(b,'eq_co_t3_choice',{tag:'rooted-third-clearing',reached:true});}
+  if(party(b).some(u=>u.x>K(b,'clearingX1',5520)&&u.x<K(b,'clearingX2',5720)&&u.y<K(b,'clearingYMax',1e9)&&e.grounded(u))&&!foes(b).some(u=>u.x>K(b,'clearingFoeX',5000)&&u.y<K(b,'clearingFoeYMax',1e9)))fact(b,'eq_co_t3_choice',{tag:'rooted-third-clearing',reached:true});}
  if(n===37){if(seen(q,'signal')&&seen(q,'gesture'))play(app,'signal');}
  if(n===38){const c=cfg.connection,pursuers=foes(b).filter(u=>u.honroAct4Pursuer),tour=rescueVista(app,q,dt);
   if(seen(q,'rescue-voices')&&!q.connected){for(const [i,u]of pursuers.entries()){if(u.x>5610+i*170)moveNpc(e,u,5610+i*170,dt,180);}if(!tour&&(!pursuers.length||q.pursuitSeen))play(app,'voice');}

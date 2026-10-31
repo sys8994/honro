@@ -1,13 +1,27 @@
 #!/usr/bin/env python3
-"""Stage 35 roster: clearing pockets, ditch and bridge, shelf shooters, flank commander in the middle clearing."""
+"""Stage 35 v2 roster — role clusters at places on the old road (spec G35-A/B/C).
+
+r  ruin lookout: two behind the pillars at the west of clearing 1
+a  G35-A close pressure behind the wall stub on clearing 1, by the flight foot
+k  ditch ambush: hounds in the deep ditch (low detour)
+b  G35-B stone-wall line of fire on clearing 2: guard at the wall, bows on the
+   knoll for height, binder and warden covering the cleft foot
+c  flank commander (midboss) on the crag landing over the flights
+d  clearing 3 arrival guard behind the boulder
+e  garrison under the ruined wall by the exit (lantern keeper)
+Entry valley, entry stairs, the flights, the gully and the fallen bamboo stay empty."""
 import sys
 from pathlib import Path
 sys.path.insert(0, str(Path(__file__).parent))
 from roster import place
 place(35, '_local/reports/act4-pilot/stage35/claude', {
-    'a': [('west-rise', 760, 'bow', 0), ('west-rise', 880, 'bow', 0), ('west-rise', 980, 'guard', 0), ('shore', 1250, 'guard', 0), ('shore', 1350, 'hound', 0), ('shore', 1500, 'bow', 0), ('shore', 1650, 'close', 0)],
-    'b': [('shore', 2200, 'hound', 0), ('shore', 2300, 'hound', 0), ('shore', 2500, 'close', 0), ('ditch-bridge', 2100, 'bow', 0), ('ditch-bridge', 2400, 'bind', 0), ('ditch-bridge', 2650, 'guard', 0)],
-    'c': [('shore', 3300, 'guard', 1), ('shore', 3500, 'midboss', 0), ('shore', 3620, 'bow', 0), ('shore', 3760, 'bind', 0), ('shore', 3880, 'arc', 0)],
-    'd': [('east-shelf', 4380, 'bow', 0), ('east-shelf', 4500, 'bow', 0), ('east-shelf', 4620, 'guard', 1), ('shore', 5050, 'hound', 0)],
-    'e': [('shore', 5400, 'guard', 0), ('shore', 5550, 'bow', 0), ('shore', 5700, 'close', 0), ('shore', 5820, 'bind', 0)],
-    'f': [('shore', 6300, 'guard', 1), ('shore', 6500, 'bow', 0), ('shore', 6700, 'lantern', 0), ('shore', 6900, 'bow', 0)]}, active_limit=6)
+    'r': [('clear-1', 1560, 'bow', 0), ('clear-1', 1700, 'bind', 0)],
+    'a': [('clear-1', 2250, 'hound', 0), ('clear-1', 2380, 'close', 0), ('clear-1', 2520, 'guard', 1)],
+    'k': [('ditch', 3500, 'hound', 0), ('ditch', 3650, 'hound', 0), ('ditch', 3800, 'close', 0)],
+    'b': [('clear-2', 3150, 'guard', 1), ('clear-2', 3280, 'bow', 0), ('knoll', 3480, 'bow', 0), ('knoll', 3610, 'bow', 0),
+          ('clear-2', 3850, 'bind', 0), ('clear-2', 4000, 'close', 0), ('clear-2', 4150, 'arc', 0)],
+    'c': [('crag', 1980, 'guard', 0), ('crag', 2330, 'midboss', 0), ('crag', 2440, 'bow', 0)],
+    'd': [('clear-3a', 3250, 'guard', 1), ('clear-3a', 3380, 'close', 0), ('clear-3a', 3510, 'bind', 0), ('clear-3a', 3820, 'bow', 0), ('clear-3a', 3910, 'bow', 0)],
+    'e': [('clear-3b', 4640, 'bind', 0), ('clear-3b', 4800, 'hound', 0), ('clear-3b', 4950, 'close', 0), ('clear-3b', 5340, 'guard', 1), ('clear-3b', 5460, 'lantern', 0),
+          ('clear-3b', 5580, 'bow', 0), ('clear-3b', 5700, 'bow', 0)],
+}, active_limit=6)

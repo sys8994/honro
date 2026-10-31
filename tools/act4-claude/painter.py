@@ -141,6 +141,7 @@ class Painter:
         self.errors = []
         self.art_features = []
         self._lit_wall = False
+        self.crag = False   # concept crag shader for rock bodies (35+)
         self.depth = None   # (y_far, y_near): higher terraces recede into haze
 
     # ------------------------------------------------------------ declarations
@@ -158,7 +159,7 @@ class Painter:
             out.append((round(x, 1), round(y, 1)))
         return rdp(out, 4.0)
 
-    def solid(self, sid, top, lower, kind='rock', amp=1.0, keep=(), role='', band=(16, 30), extend=None):
+    def solid(self, sid, top, lower, kind='rock', amp=1.0, keep=(), role='', band=(16, 30), extend=None, steps=(), moss=True):
         """kind: rock | earth (mud/soil strata) | masonry."""
         assert top[0][0] < top[-1][0], 'walk line must run west -> east: ' + sid
         walk = self.undulate([tuple(p) for p in top], len(sid) * 1.7, amp, keep)
@@ -171,7 +172,7 @@ class Painter:
         if extend:  # zoom-out continuation beyond play bounds (art only; domain extends collision)
             polys = extend if isinstance(extend[0][0], (list, tuple)) else [extend]
             poly = unary_union([poly] + [Polygon(e) for e in polys]).buffer(0)
-        self.solids[sid] = dict(id=sid, walk=walk, lower=art_lower, poly=poly, kind=kind, role=role, band=band)
+        self.solids[sid] = dict(id=sid, walk=walk, lower=art_lower, poly=poly, kind=kind, role=role, band=band, steps=steps, moss=moss)
 
     def deck(self, sid, top, kind='plank', role='', sockets=()):
         self.decks[sid] = dict(id=sid, top=rdp([tuple(p) for p in top], 0.5), kind=kind, role=role, sockets=sockets)
@@ -220,6 +221,8 @@ class Painter:
 
     def add(self, layer, d, fill):
         if not d:
+            return
+        if getattr(self, '_mute', False) and layer == 'STRUCT':
             return
         if getattr(self, '_hz_y', None) is not None and fill.startswith('#'):
             fill = self.hz(fill, self._hz_y)
@@ -298,6 +301,169 @@ class Painter:
             # road reads as carved into the wall, not a slab in front of it.
             self.clip('BODY', poly, unary_union(darks + deep), '#1d3358' if s.get('carved') else ROCK_DARK)
 
+    def rock_mass(self, layer, g, seed=0, cell=430, rim=True,
+                  tones=('#101d3b', '#1b305b', '#2a4777', '#3d6194', '#5980b3')):
+        """Concept-style crag rock: angular planes (Voronoi chunks, each split
+        into a lit and a shaded facet), brighter toward the top of the mass,
+        darkest on the underside; a dark rim reads the silhouette. No grout
+        lines, so it does not look like paving or columns. One path per tone."""
+        from shapely.ops import voronoi_diagram
+        from shapely.geometry import MultiPoint, box
+        if g.is_empty or g.area < 3000:
+            return
+        rng = random.Random(seed * 13 + 3)
+        minx, miny, maxx, maxy = g.bounds
+        pts, y = [], miny - cell
+        while y < maxy + cell:
+            x = minx - cell
+            while x < maxx + cell:
+                pts.append((x + rng.uniform(-.42, .42) * cell, y + rng.uniform(-.42, .42) * cell * 1.25))
+                x += cell
+            y += cell * 1.25
+        cells = voronoi_diagram(MultiPoint(pts), envelope=box(minx - 3 * cell, miny - 3 * cell, maxx + 3 * cell, maxy + 3 * cell))
+        groups = {}
+        G = lambda i, yy: groups.setdefault(self.hz(tones[max(0, min(len(tones) - 1, i))], yy), [])
+        for c in cells.geoms:
+            c2 = c.intersection(g)
+            if c2.is_empty or c2.area < 400:
+                continue
+            cx, cy = c.centroid.x, c.centroid.y
+            # local depth below the top surface of the mass at this x
+            col = g.intersection(LineString([(cx, miny - 10), (cx, maxy + 10)]))
+            top = col.bounds[1] if not col.is_empty else miny
+            bot = col.bounds[3] if not col.is_empty else maxy
+            f = (cy - top) / max(1, bot - top)
+            base = 3 - int(f * 3.2 + rng.random() * .9)          # 3 near top .. 0 underside
+            k = rng.uniform(-.5, .9)
+            d = cell * 2
+            lit = Polygon([(cx - d, cy - d), (cx + d, cy - d - k * d), (cx + d, cy + rng.uniform(-.3, .2) * cell - k * d * .2), (cx - d, cy + rng.uniform(.0, .4) * cell)]).buffer(0)
+            G(base + 1, cy).append(c2.intersection(lit))
+            G(base, cy).append(c2.difference(lit))
+        if rim:
+            self.add(layer, shapely_d(g), self.hz('#0f1c36', (miny + maxy) / 2))
+            inner = g.buffer(-10)
+        else:
+            inner = g
+        for t, gs in groups.items():
+            u = unary_union([q for q in gs if not q.is_empty]).intersection(inner)
+            if not u.is_empty:
+                self.add(layer, shapely_d(u, simplify=2.5), t)
+
+    def hang_body(self, sid, depth, seed=0, to=None, arch=None, layer='STRUCT'):
+        """Visual rock body under a terrace (behind actors, no collision): jagged
+        underside with downward crags, tapering sides; `to` = solid id the body
+        is rooted on (it reaches down to that surface); `arch` = (x0, x1, y_floor,
+        h) opening left dark for a path passing under it."""
+        rng = random.Random(seed * 17 + 5)
+        s = self.solids[sid]
+        W_ = s['walk']
+        x0, x1 = W_[0][0], W_[-1][0]
+        root = self.solids[to]['walk'] if to else None
+        n = max(6, int((x1 - x0) / 170))
+        bottom = []
+        for i in range(n + 1):
+            x = x0 + (x1 - x0) * i / n
+            e = min(i, n - i) / (n / 2)              # 0 at the ends, 1 mid
+            if root and root[0][0] <= x <= root[-1][0]:
+                yb = interp(root, x) + 6
+            else:
+                dd = depth * (0.25 + 0.75 * e ** .6) * rng.uniform(.75, 1.05)
+                if rng.random() < .25 and 0 < i < n:
+                    dd *= rng.uniform(1.15, 1.45)     # a crag hanging lower
+                yb = interp(W_, x) + dd
+            bottom.append((x + rng.uniform(-30, 30) * (0 < i < n), yb))
+        # flared, broken sides: the mass widens toward its root
+        def side(xe, ye, yb, out):
+            pts = []
+            for t in (0.2, 0.45, 0.7, 1.0):
+                pts.append((xe + out * (t ** 1.3) * rng.uniform(.6, 1.2) + rng.uniform(-40, 40) * (t < 1), ye + (yb - ye) * t))
+            return pts
+        fl, fr = rng.uniform(80, 260), rng.uniform(80, 260)
+        if root:
+            fl = min(fl, max(0, x0 - root[0][0])); fr = min(fr, max(0, root[-1][0] - x1))
+            ybl, ybr = interp(root, max(root[0][0], x0 - fl)) + 6, interp(root, min(root[-1][0], x1 + fr)) + 6
+        else:
+            ybl, ybr = bottom[0][1], bottom[-1][1]
+        right = side(x1, W_[-1][1] + 10, ybr, fr)
+        left = list(reversed(side(x0, W_[0][1] + 10, ybl, -fl)))
+        body = Polygon([(x, y + 10) for x, y in W_] + right + list(reversed(bottom))[1:-1] + left).buffer(0)
+        if arch:
+            ax0, ax1, fl, ah = arch
+            pts = [(ax0, fl + 10)] + [(ax0 + (ax1 - ax0) * (0.5 - 0.5 * math.cos(math.pi * t / 12)), fl - ah * math.sin(math.pi * t / 12) ** .7) for t in range(13)] + [(ax1, fl + 10)]
+            hole = Polygon(pts).buffer(0)
+            self.rock_mass(layer, body.difference(hole), seed)
+            self.add(layer, shapely_d(hole.intersection(body.buffer(60))), self.hz('#0b1529', fl))
+            return
+        self.rock_mass(layer, body, seed)
+
+    def buttress(self, did, depth=None, seed=0):
+        """Masonry under a stone flight (behind actors): down to the surface
+        below, or a stringer of `depth` with a ragged underside."""
+        d = self.decks[did]
+        d['buttress'] = True
+        top = d['top']
+        x0, x1 = top[0][0], top[-1][0]
+        rng = random.Random(seed)
+        xs = [x0 + (x1 - x0) * i / 16 for i in range(17)]
+        bot = []
+        for x in reversed(xs):
+            y = interp(top, x)
+            g = self.ground_below(x, y + 20)
+            yb = g + 4 if g is not None and (depth is None or g - y < depth) else y + (depth or 300) * rng.uniform(.75, 1.1)
+            bot.append((x, yb))
+        g = Polygon([(x, interp(top, x) + 20) for x in xs] + bot).buffer(0)
+        stringer = Polygon([(x, interp(top, x) + 20) for x in xs] + [(x, interp(top, x) + 150) for x in reversed(xs)]).buffer(0).intersection(g)
+        self.rock_mass('STRUCT', g.difference(stringer), seed, cell=330)
+        self._masonry_into('STRUCT', stringer, seed, y_ref=sum(y for _, y in top) / len(top), scale=.55,
+                           tones=('#4a6273', '#5a7383', '#6c8592'), mortar='#1d2f40')
+
+    def moss_drape(self, s):
+        """Moss hanging over ledge lips and down rock faces (concept: green
+        tongues and a few vines), only where the face below is rock."""
+        rng = random.Random(len(s['id']) * 31 + 7)
+        top, poly = s['walk'], s['poly']
+        tongues, dark, vines = [], [], []
+        x = top[0][0] + rng.uniform(10, 80)
+        while x < top[-1][0] - 20:
+            y = interp(top, x)
+            w = rng.uniform(70, 200)
+            ln = rng.uniform(60, 260) if rng.random() < .6 else rng.uniform(25, 70)
+            pts = [(x - w / 2, y + 6), (x - w * .3, y + ln * .6), (x - w * .1, y + ln * rng.uniform(.75, 1)), (x + w * .12, y + ln * .55),
+                   (x + w * .3, y + ln * rng.uniform(.6, .95)), (x + w / 2, y + 6)]
+            t = Polygon(pts).buffer(0)
+            tongues.append(t)
+            dark.append(t.difference(Polygon([(x - w, y - 50), (x + w, y - 50), (x + w, y + ln * .45), (x - w, y + ln * .45)])))
+            if rng.random() < .3:
+                vl = rng.uniform(140, 380); vx = x + rng.uniform(-w / 3, w / 3)
+                vines.append(LineString([(vx, y + 10), (vx + rng.uniform(-14, 14), y + vl * .5), (vx + rng.uniform(-20, 20), y + vl)]).buffer(3.5))
+            x += rng.uniform(60, 190)
+        face = poly.buffer(-2)
+        for geoms, col in ((tongues, SAGE_SHADOW), (dark, '#55684a'), (vines, '#3f5a44')):
+            g = unary_union(geoms).intersection(face)
+            if not g.is_empty:
+                self.add('BODY', shapely_d(g), col)
+
+    def carved_steps(self, s, a, b):
+        """Stone stair carved into a ramp: pale treads and dark risers."""
+        top, poly = s['walk'], s['poly']
+        xs = [a + (b - a) * i / 20 for i in range(21)]
+        band = Polygon([(x, interp(top, x) - 2) for x in xs] + [(x, interp(top, x) + 60) for x in reversed(xs)]).buffer(0).intersection(poly.buffer(1))
+        self.add('BODY', shapely_d(band), '#56707a')
+        treads, risers = [], []
+        x = a
+        while x < b - 10:
+            y0 = interp(top, x)
+            xn = x + 46
+            while xn < b and y0 - interp(top, min(xn, b)) < 34:
+                xn += 6
+            xn = min(xn, b)
+            y1 = interp(top, xn)
+            treads.append(Polygon([(x, y0 - 1), (xn, y1 - 1), (xn, y1 + 9), (x, y0 + 9)]))
+            risers.append(Polygon([(xn - 6, y1), (xn, y1), (xn, y1 + 54), (xn - 6, y1 + 54)]))
+            x = xn
+        self.add('BODY', shapely_d(unary_union(treads).intersection(band)), '#8fa3a2')
+        self.add('BODY', shapely_d(unary_union(risers).intersection(band)), '#2c434c')
+
     def surface_band(self, s):
         top, poly = s['walk'], s['poly'].buffer(2)
         if len(top) < 2:
@@ -306,6 +472,21 @@ class Painter:
         th = lambda x: lo + (hi - lo) * (0.5 + 0.5 * math.sin(x / 140 + len(s['id'])))
         def band(fn):
             return [(x, y - 3) for x, y in top] + [(x, y + fn(x)) for x, y in reversed(top)]
+        if s.get('path'):   # old stone road across a clearing: pale path, grass verge, moss lip
+            self.clip('BODY', poly, band(lambda x: th(x) + 34), '#5d6f5a')
+            self.clip('BODY', poly, band(lambda x: th(x) + 24), '#a9a58e')
+            self.clip('BODY', poly, band(lambda x: 9 + 6 * math.sin(x / 47) + 4 * math.sin(x / 13)), SAGE)
+            rng = random.Random(len(s['id']))
+            slabs = []
+            x = top[0][0] + 20
+            while x < top[-1][0] - 60:
+                w = rng.uniform(60, 130); y = interp(top, x)
+                slabs.append(Polygon([(x, y + 16), (x + w - 8, interp(top, x + w) + 16), (x + w - 8, interp(top, x + w) + 22 + th(x)), (x, y + 22 + th(x))]))
+                x += w
+            g = unary_union([q for i, q in enumerate(slabs) if i % 3]).intersection(poly)
+            if not g.is_empty:
+                self.add('BODY', shapely_d(g), '#bdb8a0')
+            return
         if s['kind'] == 'terrace':   # worn hauling road: pale packed-earth path
             self.clip('BODY', poly, band(lambda x: th(x) + 30), '#6f6a5c')
             self.clip('BODY', poly, band(lambda x: th(x) + 22), '#b3a98c')
@@ -370,10 +551,18 @@ class Painter:
                 for y0, col in [(miny + 380, MUD_DARK), (miny + 650, ROCK_DARK)]:
                     strip = [(x, y0 + 30 * math.sin(x / 410) + 18 * math.sin(x / 133)) for x in range(int(minx), int(maxx) + 81, 80)]
                     self.clip('BODY', poly, strip + [(maxx + 80, maxy + 100), (minx, maxy + 100)], col)
+            elif self.crag:
+                s['band'] = (24, 48)
+                self._hz_y = None
+                self.rock_mass('BODY', s['poly'], len(s['id']) * 7, cell=360, rim=not s.get('carved'))
             else:
                 self.shade_rock(s)
             self._hz_y = sum(y for _, y in s['walk']) / len(s['walk'])
+            if s['kind'] == 'rock' and s.get('moss', True):
+                self.moss_drape(s)
             self.surface_band(s)
+            for a, b in s.get('steps', ()):
+                self.carved_steps(s, a, b)
             self._hz_y = None
 
     # ------------------------------------------------------------ timber
@@ -410,7 +599,7 @@ class Painter:
                 self.socket(x, y)
                 continue
             g = self.ground_below(x, y + 20)
-            if g is not None and g - y <= 1800:
+            if g is not None and g - y <= (2200 if d['kind'] == 'stonestair' else 1800):
                 self.post(x, y + 26, g, w=24 if g - y > 600 else 20)
                 posts.append((x, y, g))
                 continue
@@ -456,10 +645,46 @@ class Painter:
         for d in self.decks.values():
             self.module(d['id'])
             self._hz_y = sum(y for _, y in d['top']) / len(d['top'])
-            self.stone_posts = d['kind'] == 'stone'
-            self.support_deck(d)
-            self.stone_posts = False
             top, t = d['top'], 26
+            if d['kind'] == 'log':   # fallen bamboo: rests on its two ends only
+                for ex, ey in (top[0], top[-1]):
+                    g = self.ground_below(ex, ey - 30)
+                    if not (self.in_solid(ex, ey + 14, pad=4) or (g is not None and abs(g - ey) < 40)):
+                        self.errors.append('log %s end unsupported at x=%d' % (d['id'], ex))
+                a, b = top[0], top[-1]
+                L = math.dist(a, b); ux, uy = (b[0] - a[0]) / L, (b[1] - a[1]) / L; nx, ny = -uy, ux
+                def strip(o0, o1, col, s0=-30, s1=30):
+                    q = [(a[0] - ux * -s0 + nx * o0, a[1] - uy * -s0 + ny * o0), (b[0] + ux * s1 + nx * o0, b[1] + uy * s1 + ny * o0),
+                         (b[0] + ux * s1 + nx * o1, b[1] + uy * s1 + ny * o1), (a[0] - ux * -s0 + nx * o1, a[1] - uy * -s0 + ny * o1)]
+                    self.add('SURFACE', poly_d(q), col)
+                strip(-4, 46, '#4f6a55'); strip(-4, 14, '#9fb08a'); strip(30, 46, '#33483e')
+                for i in range(1, int(L // 170) + 1):   # nodes of the culm
+                    c = (a[0] + ux * i * 170, a[1] + uy * i * 170)
+                    self.add('SURFACE', poly_d([(c[0] - ux * 5 + nx * -4, c[1] - uy * 5 + ny * -4), (c[0] + ux * 5 + nx * -4, c[1] + uy * 5 + ny * -4),
+                                                (c[0] + ux * 5 + nx * 46, c[1] + uy * 5 + ny * 46), (c[0] - ux * 5 + nx * 46, c[1] - uy * 5 + ny * 46)]), '#33483e')
+                continue
+            self.stone_posts = d['kind'] in ('stone', 'stonestair')
+            self._mute = bool(d.get('buttress'))   # supports proven, drawn as the buttress
+            self.support_deck(d)
+            self._mute = False
+            self.stone_posts = False
+            if d['kind'] == 'stonestair':   # dressed stone flight on stone piers
+                t = 96
+                self.add('SURFACE', poly_d(list(top) + [(x, y + t) for x, y in reversed(top)]), '#4e6870')
+                self.add('SURFACE', poly_d([(x, y + t - 12) for x, y in top] + [(x, y + t) for x, y in reversed(top)]), '#2c434c')
+                x = top[0][0]
+                tr, ri = [], []
+                while x < top[-1][0] - 4:
+                    y0 = interp(top, x); xn = x + 40
+                    while xn < top[-1][0] and abs(y0 - interp(top, min(xn, top[-1][0]))) < 30:
+                        xn += 5
+                    xn = min(xn, top[-1][0]); y1 = interp(top, xn)
+                    tr.append(Polygon([(x, y0 - 1), (xn, y1 - 1), (xn, y1 + 22), (x, y0 + 22)]))
+                    ri.append(Polygon([(xn - 7, y1), (xn, y1), (xn, y1 + 70), (xn - 7, y1 + 70)] if y1 < y0 else [(x, y0), (x + 7, y0), (x + 7, y0 + 70), (x, y0 + 70)]))
+                    x = xn
+                self.add('SURFACE', shapely_d(unary_union(tr)), '#9aaeab')
+                self.add('SURFACE', shapely_d(unary_union(ri)), '#2c434c')
+                continue
             if d['kind'] == 'rope':
                 x = top[0][0]
                 while x < top[-1][0] - 8:
@@ -502,6 +727,24 @@ class Painter:
                     self.add('SURFACE', poly_d([(x - 1.5, y + 6), (x + 1.5, y + 6), (x + 1.5, y + t - 6), (x - 1.5, y + t - 6)]), WOOD_DARK)
                     x += 58 + (int(x) * 7919 % 23)
 
+    # ------------------------------------------------------------ traced decor (hybrid)
+    _decor_cache = {}
+
+    def decor(self, name, x, y, h, layer='REAR', flip=False, tint=None, tint_a=0.0):
+        """Place a traced reference decor (art/act4-claude/decor/<name>.json):
+        foot (bottom centre) at (x, y), scaled to world height h."""
+        rec = self._decor_cache.get(name)
+        if rec is None:
+            rec = self._decor_cache[name] = json.loads((ROOT / 'art/act4-claude/decor' / (name + '.json')).read_text())
+        k, w2, hh = h / rec['h'], rec['w'] / 2, rec['h']
+        X = (lambda px: x - (px - w2) * k) if flip else (lambda px: x + (px - w2) * k)
+        hz_y = getattr(self, '_hz_y', None)
+        self._hz_y = y
+        for fill, rings in rec['fills']:
+            d = ' '.join('M' + ' L'.join('%d %d' % (round(X(px)), round(y + (py - hh) * k)) for px, py in r) + ' Z' for r in rings)
+            self.add(layer, d, mix(fill, tint_a) if tint_a else fill)
+        self._hz_y = hz_y
+
     # ------------------------------------------------------------ covers and dressing
     def paint_covers(self):
         self._hz_y = None
@@ -515,6 +758,9 @@ class Painter:
                 for k in range(1, 4):
                     xk = x0 + k * w / 4
                     self.add('SURFACE', poly_d([(xk - 1.5, y0 + 8), (xk + 1.5, y0 + 8), (xk + 1.5, y1), (xk - 1.5, y1)]), WOOD_DARK)
+            elif c['kind'] == 'wall':   # ruined dry-stone wall stub (돌담)
+                g = Polygon([(x0, y1 + 4), (x0, y0 + 10), (x0 + w * .3, y0), (x0 + w * .55, y0 + h * .18), (x1, y0 + h * .3), (x1, y1 + 4)])
+                self._masonry_into('SURFACE', g, y_ref=y1, scale=.5, tones=('#7f908f', '#93a3a0', '#a7b5b0'), mortar='#4a5d62')
             else:  # boulder
                 self.add('BODY', poly_d([(x0 - 4, y1 + 6), (x0 + 2, y0 + h * .4), (x0 + w * .25, y0 + 4), (x0 + w * .6, y0), (x1 + 2, y0 + h * .35), (x1 + 4, y1 + 6)]), ROCK_MIDL)
                 self.add('BODY', poly_d([(x0 + w * .6, y0), (x1 + 2, y0 + h * .35), (x1 + 4, y1 + 6), (x0 + w * .55, y1 + 6), (x0 + w * .5, y0 + h * .4)]), ROCK_LIGHT)
@@ -569,11 +815,11 @@ class Painter:
         self.solid(sid, top, lower, kind=kind, role=role, amp=amp)
         self.solids[sid]['carved'] = True
 
-    def stair_tower(self, prefix, x0, x1, y_bottom, y_top, start='west', end=None, role='switchback stair tower'):
+    def stair_tower(self, prefix, x0, x1, y_bottom, y_top, start='west', end=None, role='switchback stair tower', kind='stairs', pitch=0.5):
         """Zigzag timber flights between x0..x1 rising y_bottom -> y_top; `end`
         forces the side where the last flight arrives (next road starts there)."""
         width = x1 - x0
-        k = max(1, math.ceil((y_bottom - y_top) / (0.5 * width)))
+        k = max(1, math.ceil((y_bottom - y_top) / (pitch * width)))
         if end and ((k % 2 == 1) != (start != end)):
             k += 1
         r = (y_bottom - y_top) / k
@@ -583,7 +829,7 @@ class Painter:
             pts = [(x0, yb), (x1, yt)] if side == 'west' else [(x1, yb), (x0, yt)]
             pts.sort()
             fid = '%s%s' % (prefix, 'abcdefghij'[i])
-            self.deck(fid, pts, kind='stairs', role=role)
+            self.deck(fid, pts, kind=kind, role=role)
             ids.append(fid)
             side = 'east' if side == 'west' else 'west'
         return ids
@@ -598,7 +844,7 @@ class Painter:
         finally:
             self._grp = None
 
-    def _retaining(self, upper, lower, seed=0):
+    def _retaining(self, upper, lower, seed=0, masonry=True):
         """Depth fill (behind actors, no collision): the upper road recedes on a
         coursed retaining wall of uneven height, founded on faceted bedrock that
         runs down to the lower road, so switchbacks read as stacked terraces."""
@@ -623,10 +869,13 @@ class Painter:
             top += [(x, interp(U, min(x, x1)) + h), (min(x + w, x1), interp(U, min(x + w, x1)) + h)]
             x += w
         band = Polygon([(x, interp(U, x)) for x in xs] + list(reversed(top))).buffer(0).intersection(wall)
+        if not masonry:   # natural terrace: bedrock all the way down
+            band = Polygon()
         rock = wall.difference(band)
         yr = sum(y for _, y in U) / len(U)
         self.facet_rock('STRUCT', rock, seed, cell=300 * (1 - .4 * self.recede(yr)), grass=True)
-        self._masonry_into('STRUCT', band, seed, y_ref=yr)
+        if not band.is_empty:
+            self._masonry_into('STRUCT', band, seed, y_ref=yr)
         if self.solids[upper]['kind'] == 'terrace' and not self.solids[upper].get('_rail'):
             self.solids[upper]['_rail'] = True
             posts, rails = [], []
@@ -706,7 +955,7 @@ class Painter:
             if not gg.is_empty:
                 self.add(layer, shapely_d(gg, simplify=3), t)
 
-    def _masonry_into(self, layer, poly, seed=0, y_ref=None):
+    def _masonry_into(self, layer, poly, seed=0, y_ref=None, scale=1.0, tones=None, mortar='#16253f'):
         """Coursed rubble: uneven course heights, staggered blocks of mixed
         width, three stone tones; the base fill shows as mortar."""
         if poly.is_empty or poly.area < 2000:
@@ -714,10 +963,10 @@ class Painter:
         # world-anchored course grid: a road shelf (BODY) and the retaining
         # wall behind it (STRUCT) share joints, so the seam disappears
         yr = poly.bounds[1] if y_ref is None else y_ref
-        sc = 1 - .4 * self.recede(yr)   # far courses are smaller
-        self.add(layer, shapely_d(poly), self.hz('#16253f', yr))
+        sc = (1 - .4 * self.recede(yr)) * scale   # far courses are smaller
+        self.add(layer, shapely_d(poly), self.hz(mortar, yr))
         minx, miny, maxx, maxy = poly.bounds
-        tones = tuple(self.hz(c, yr) for c in ('#2a4168', '#33507b', '#3f5f8c'))
+        tones = tuple(self.hz(c, yr) for c in (tones or ('#2a4168', '#33507b', '#3f5f8c')))
         groups = [[] for _ in tones]
         y, row = -2000.0 * sc, 0
         while y < maxy:
