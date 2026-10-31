@@ -1,0 +1,5 @@
+# Act4 subtitle sequencing — limited browser diagnostic
+
+With the QA preview pinned in `COMMON-SOURCE-STATUS.md`, Chromium was run at 1440×900, 375×812 and 844×390. The stage 35 entry used the declared stage-34-cleared fixture. This diagnostic explicitly calls the Act4 blocked-shot bark event rather than producing the real obstacle shot; it is not natural-play or mission-completion evidence.
+
+At each viewport the Act4 subtitle became visible. A synthetic simultaneously visible generic subtitle took priority without consuming Act4 reading time; a real Escape pause hid the Act4 node and held its timer for one second; closing the modal resumed, and opening the title removed or hid the node. Existing `act4-stage35-blocked-shot.mjs` DOM/Canvas doubles and `act23-v4-live-barks.mjs` also passed. Natural 39 tide dialogue on this combined build, actual generic concurrent playback, other-stage transitions, visibility and save/reload of an active line remain to be independently verified. Another worker reported 3.33–3.47s natural tide display on its earlier source; that result is not a combined-build retest.
