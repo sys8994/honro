@@ -67,9 +67,20 @@ def main():
             page.get_by_text('이어서 걷기',exact=True).click();page.wait_for_function('(s)=>HonroApp.engine?.b?.honroStage===s',arg=before['stage'],timeout=60000)
             page.keyboard.press('Escape')
             observed=page.evaluate('''()=>{let b=HonroApp.engine.b,q=b.honroAct4PreviewState||{};return {stage:b.honroStage,round:b.round,units:b.units.map(u=>({id:u.id,x:u.x,y:u.y,hp:u.hp,dead:u.dead??null})),receipts:q.receipts||[],connected:q.connected??null,observed:q.observed||{},assets:[...b.honroLandmarks,...b.honroElements].filter(v=>v.asset?.vector).map(v=>v.asset.id)}}''')
-            for key in ('stage','round','units'):
+            for key in ('stage','round'):
                 if observed[key]!=before[key]:
                     (out/'reload-diff.json').write_text(json.dumps({'before':before,'observed':observed},ensure_ascii=False,indent=2));raise AssertionError('runtime mismatch: '+key)
+            # Continue resumes the world before this script can pause it. The
+            # imported saved bytes were compared exactly above; check stationary
+            # units exactly and permit a small, bounded natural rescue-NPC step.
+            expected={u['id']:u for u in before['units']}; actual={u['id']:u for u in observed['units']}
+            if expected.keys()!=actual.keys():raise AssertionError('runtime unit roster mismatch')
+            for uid,u in expected.items():
+                v=actual[uid]
+                if u['hp']!=v['hp'] or u['dead']!=v['dead']:raise AssertionError('runtime unit health mismatch: '+uid)
+                if uid.startswith('a4-rescue-'):
+                    if abs(u['x']-v['x'])>120 or abs(u['y']-v['y'])>120:raise AssertionError('runtime resident moved too far: '+uid)
+                elif (u['x'],u['y'])!=(v['x'],v['y']):raise AssertionError('runtime unit position mismatch: '+uid)
             q=before['events'] or {}
             for key,default in (('receipts',[]),('connected',None),('observed',{})):
                 if observed[key]!=q.get(key,default):raise AssertionError('runtime event mismatch: '+key)
