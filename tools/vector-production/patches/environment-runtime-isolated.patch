@@ -1,0 +1,79 @@
+--- a/shared/runtime/renderer.js
++++ b/shared/runtime/renderer.js
+@@ -98,9 +98,16 @@
+             if(!this._screenRaster(c,key,w,h,paint,'_screenForegroundCache'))paint(c);
+             c.restore();
+         }
++        _landmarkPaintBounds(l){
++            const bounds=l.asset?.bounds||l.asset?.reference?.bounds;
++            if(!bounds||!G.HonroGeometry||![bounds.x,bounds.y,bounds.w,bounds.h].every(Number.isFinite)||bounds.w<0||bounds.h<0)return null;
++            const ps=[[bounds.x,bounds.y],[bounds.x+bounds.w,bounds.y],[bounds.x,bounds.y+bounds.h],[bounds.x+bounds.w,bounds.y+bounds.h]].map(([x,y])=>G.HonroGeometry.transformPoint({x,y},l.asset,l));
++            if(ps.some(p=>!Number.isFinite(p.x)||!Number.isFinite(p.y)))return null;
++            return{left:Math.min(...ps.map(p=>p.x)),right:Math.max(...ps.map(p=>p.x)),top:Math.min(...ps.map(p=>p.y)),bottom:Math.max(...ps.map(p=>p.y))};
++        }
+         _landmarkVisible(l,view,padding=40){
+-            const bounds=l.asset?.bounds||l.asset?.reference?.bounds;
+-            if(bounds&&G.HonroGeometry){const ps=[[bounds.x,bounds.y],[bounds.x+bounds.w,bounds.y],[bounds.x,bounds.y+bounds.h],[bounds.x+bounds.w,bounds.y+bounds.h]].map(([x,y])=>G.HonroGeometry.transformPoint({x,y},l.asset,l));return Math.max(...ps.map(p=>p.x))+padding>=view.left&&Math.min(...ps.map(p=>p.x))-padding<=view.right&&Math.max(...ps.map(p=>p.y))+padding>=view.top&&Math.min(...ps.map(p=>p.y))-padding<=view.bottom;}
++            const bounds=this._landmarkPaintBounds(l);
++            if(bounds)return bounds.right+padding>=view.left&&bounds.left-padding<=view.right&&bounds.bottom+padding>=view.top&&bounds.top-padding<=view.bottom;
+             const reach=3000*Math.max(.2,Math.abs(l.scale??l.size??1));return l.x+reach>=view.left&&l.x-reach<=view.right&&l.y+reach>=view.top&&l.y-reach<=view.bottom;
+         }
+         _worldCacheKey(b,w){const rs=this._worldRasterScale(b,w);return`${b.session||b.honroStage}:${b.sceneVersion||0}:${b.width}x${b.height}:${rs.toFixed(3)}:${G.HonroAct2SpatialArt?.appearanceKey(b)||''}`;}
+@@ -147,8 +154,8 @@
+             const view=G.HonroBounds.viewport(this,w,h);
+             if(view.left>=0&&view.top>=0&&view.right<=b.width&&view.bottom<=b.height)return;
+             const candidates=(b.honroLandmarks||[]).filter(l=>{
+-                const r=1500*Math.max(.2,Math.abs(l.scale??l.size??1));
+-                return (l.x-r<0||l.x+r>b.width||l.y-r<0||l.y+r>b.height)&&l.x+r>view.left&&l.x-r<view.right&&l.y+r>view.top&&l.y-r<view.bottom;
++                const r=1500*Math.max(.2,Math.abs(l.scale??l.size??1)),a=this._landmarkPaintBounds(l)||{left:l.x-r,right:l.x+r,top:l.y-r,bottom:l.y+r};
++                return (a.left<0||a.right>b.width||a.top<0||a.bottom>b.height)&&a.right>view.left&&a.left<view.right&&a.bottom>view.top&&a.top<view.bottom;
+             });
+             if(!candidates.length)return;
+             c.save();c.beginPath();c.rect(view.left-1,view.top-1,view.right-view.left+2,view.bottom-view.top+2);c.rect(0,0,b.width,b.height);c.clip('evenodd');
+--- a/shared/runtime/act4-pilot-art.js
++++ b/shared/runtime/act4-pilot-art.js
+@@ -47,7 +47,10 @@
+  // Defer only that existing instance to the world-space live-water pass.
+  const background=S.background;S.background=function(c,w,h,b,...args){const prior=this._nativeArtBackground;this._nativeArtDeferredBoat=null;this._nativeArtBackground=!!config(b);try{return background?.call(this,c,w,h,b,...args);}finally{this._nativeArtBackground=prior;}};
+  const water=S.liveWater;S.liveWater=function(c,b,...args){const out=water?.call(this,c,b,...args),harbor=b.honroMap?.act4?.harborWater;
+-  if(config(b)&&validHarbor(harbor)){c.save();c.beginPath();c.moveTo(harbor.shore[0][0],harbor.surface);c.lineTo(harbor.right,harbor.surface);c.lineTo(harbor.right,harbor.bottom);for(const p of [...harbor.shore].reverse())c.lineTo(p[0],p[1]);c.closePath();c.clip();const gradient=c.createLinearGradient(0,harbor.surface,0,harbor.bottom);gradient.addColorStop(0,'#456b85d9');gradient.addColorStop(.45,'#244963e8');gradient.addColorStop(1,'#16384fed');c.fillStyle=gradient;c.fillRect(harbor.left-400,harbor.surface,harbor.right-harbor.left+800,harbor.bottom-harbor.surface);c.strokeStyle='#a4c4d145';c.lineWidth=3;for(let j=0;j<6;j++){const yy=harbor.surface+12+j*j*17;c.beginPath();for(let x=harbor.left-300;x<harbor.right;x+=24){const y=yy+Math.sin(x*.008+(this.time||0)*.7+j)*3;if(x===harbor.left-300)c.moveTo(x,y);else c.lineTo(x,y);}c.stroke();}c.restore();}
++  const sea=harbor?.continuousSea,rect=this.canvas?.getBoundingClientRect?.(),vw=rect?.width??this.canvas?.clientWidth,vh=rect?.height??this.canvas?.clientHeight;
++  const continuous=b.honroStage===31&&config(b)&&validHarbor(harbor)&&sea?.version===1&&Number.isFinite(sea.depth)&&sea.depth>=300&&sea.depth<=10000&&Number.isFinite(vw)&&Number.isFinite(vh)&&vw>0&&vh>0&&Number.isFinite(this.scale)&&this.scale>0&&Number.isFinite(this.x)&&Number.isFinite(this.y)&&!!G.HonroBounds?.viewport;
++  if(continuous){const view=G.HonroBounds.viewport(this,vw,vh),left=view.left-8/this.scale,right=view.right+8/this.scale,bottom=Math.max(harbor.surface,view.bottom+8/this.scale),depthEnd=harbor.surface+sea.depth;c.save();const gradient=c.createLinearGradient(0,harbor.surface,0,depthEnd);gradient.addColorStop(0,'#456b85d9');gradient.addColorStop(.45,'#244963e8');gradient.addColorStop(1,'#16384fff');c.fillStyle=gradient;c.fillRect(left,harbor.surface,right-left,bottom-harbor.surface);c.strokeStyle='#a4c4d145';c.lineWidth=3;for(let j=0;j<6;j++){const yy=harbor.surface+12+j*j*17;c.beginPath();for(let x=Math.floor(left/24)*24;x<=right+24;x+=24){const y=yy+Math.sin(x*.008+(this.time||0)*.7+j)*3;if(x===Math.floor(left/24)*24)c.moveTo(x,y);else c.lineTo(x,y);}c.stroke();}c.restore();}
++  else if(config(b)&&validHarbor(harbor)){c.save();c.beginPath();c.moveTo(harbor.shore[0][0],harbor.surface);c.lineTo(harbor.right,harbor.surface);c.lineTo(harbor.right,harbor.bottom);for(const p of [...harbor.shore].reverse())c.lineTo(p[0],p[1]);c.closePath();c.clip();const gradient=c.createLinearGradient(0,harbor.surface,0,harbor.bottom);gradient.addColorStop(0,'#456b85d9');gradient.addColorStop(.45,'#244963e8');gradient.addColorStop(1,'#16384fed');c.fillStyle=gradient;c.fillRect(harbor.left-400,harbor.surface,harbor.right-harbor.left+800,harbor.bottom-harbor.surface);c.strokeStyle='#a4c4d145';c.lineWidth=3;for(let j=0;j<6;j++){const yy=harbor.surface+12+j*j*17;c.beginPath();for(let x=harbor.left-300;x<harbor.right;x+=24){const y=yy+Math.sin(x*.008+(this.time||0)*.7+j)*3;if(x===harbor.left-300)c.moveTo(x,y);else c.lineTo(x,y);}c.stroke();}c.restore();}
+   const boat=this._nativeArtDeferredBoat;this._nativeArtDeferredBoat=null;if(config(b)&&boat)this.landmark(c,boat);return out;};
+  const tone=S.environmentTone;S.environmentTone=function(c,w,h,b,...args){if(config(b)?.preservePalette===true)return;return tone?.call(this,c,w,h,b,...args);};
+  const cacheKey=S._worldCacheKey;S._worldCacheKey=function(b,...args){const q=config(b);return cacheKey.call(this,b,...args)+(q?':native-art-1:'+JSON.stringify(q):'');};
+--- a/game/docs/PILOT_FAILURE_PREVENTION.md
++++ b/game/docs/PILOT_FAILURE_PREVENTION.md
+@@ -146,3 +146,12 @@
+ - 실패: 이동 적분 직후 이미 목표에 접지했는데 도달 여부를 다시 확인하지 않고 stuck 점프를 실행해 반복 점프 수를 부풀렸다.
+ - 절차: 각 integrateBody 직후 목표 거리와 grounded/support를 재확인한 뒤에만 stuck 탈출을 판단한다. 순간 위치 재설정/낙사 복구도 따로 기록한다.
+ - 검증: 연속 이동 fixture의 점프 입력 수는 최소 필요 점프 수나 재미 지표로 주장하지 않는다. 입구→목표의 실제 경로와 착지·회복·예산을 함께 보존한다.
++
++### A17. 승인된 지형 컷아웃을 전체 게임 환경으로 착각 (2026-10-31)
++- 실패: 플레이 지형 벡터만 배치하고 아래 지반·해저·좌우 연장을 생략해 지형 덩어리가 공중에 뜬 것처럼 보였다. 유한한 배경 조각을 뒤에 붙이는 것만으로는 조각의 직각 끝선이 사라지지 않았다.
++- 절차: 기존 플레이 BODY/충돌을 보존하면서 비플레이 환경의 연결 지질을 별도 저작한다. 생성 전에 실제 `HonroBounds.focus/zoomLimits`로 최소 줌·수동 pan·세로/가로 viewport의 외곽을 계산해 레이아웃 가이드에 넣는다. 줌 축소·카메라 제한으로 부족한 미술을 감추지 않는다.
++- 연결: 새로운 해안이 지반/해저로 실제 이어지도록 그린다. 넓은 연속 지질이 필요한 경우 조각의 사각 경계를 반복 봉합하지 말고 새 환경층을 하나의 연결된 그림으로 수선한 뒤 Inkscape로 추적한다. 기존 플레이 스켈레톤을 다시 생성하지 않는다.
++- 깊이: 물 시각은 viewport 끝까지 연속되게 하되 색과 깊이 안개는 world-depth에 고정한다. 실제 연결 해저가 깊은 물로 흐려지는 것과, 지반 없이 단색 사각형/안개로만 가리는 것을 구분한다. 물리 수위·회복 정책·플레이 bounds는 시각 연장 때문에 바꾸지 않는다.
++- 충돌: 비플레이 배경 암반이 배우와 겹치면 alpha 수치만으로 관통 판정하지 않고 동일 실제 이동 좌표/카메라의 전후 프레임을 비교한다. 같은 평면의 가짜 선반으로 보이면 자연스러운 해안 수로를 원본 그림에 설계한다. 직사각/물결 alpha 구멍, 반투명 바위, 숨은 collider로 봉합하지 않는다.
++- 검증: 원본 시안/추적/전체·일반·최소 줌 양끝·모바일·낙하 프레임을 확인하고, 기존 지형/배우/이벤트 좌표의 불변과 새 자산의 collision 없음도 검사한다. 조수 스테이지에서는 최저·최고 수위 모두 노출 지형과 물리의 관계를 확인한다. 대표 viewport 검사를 모든 무제한 화면 크기 지원으로 확대 주장하지 않는다.
++- 중복 레이어: BODY를 원본 전체로 바꾼 뒤 옛 하단 FORE를 그대로 두면 물 다음에 바위·모래가 다시 불투명하게 칠해져 수중 지반이 마른 스티커처럼 뜬다. 실제 배우 가림용 근경인지, FULL BODY와 중복인지를 같은 카메라의 물 전/후 순서로 비교한다. 중복만 제거하고 원본 지질·충돌·배를 보존하며 미사용 벡터 자산도 함께 제거한다.
+--- /dev/null
++++ b/tests/nonplay-environment-bounds.mjs
+@@ -0,0 +1,7 @@
++import assert from'node:assert/strict';import{readFile,writeFile}from'node:fs/promises';
++const source=await readFile('shared/runtime/renderer.js','utf8');const method=(a,z)=>source.slice(source.indexOf('        '+a+'('),source.indexOf('        '+z+'('));
++let view={left:2500,right:2700,top:300,bottom:500},calls=[];const G={HonroBounds:{viewport:()=>view},HonroGeometry:{transformPoint(p,a,l){const scale=l.scale??1,x=(p.x-(a.anchor?.x||0))*scale,y=(p.y-(a.anchor?.y||0))*scale,co=Math.cos(l.rotation||0),si=Math.sin(l.rotation||0);return{x:(l.x||0)+x*co-y*si,y:(l.y||0)+x*si+y*co};}}};
++const methods=[method('_landmarkPaintBounds','_landmarkVisible'),method('_landmarkVisible','_worldCacheKey'),method('_drawStaticWorldCached','_terrainPaintBounds')].join(',');const s=new Function('G','return({'+methods+'})')(G);s._buildStaticWorld=()=>({canvas:{width:1,height:1}});s._landmarkLayer=(c,ls,layer)=>{if(layer==='structural-back')calls.push(...ls.map(l=>l.id));};const c={drawImage(){},save(){},restore(){},beginPath(){},rect(){},clip(){}};const broad={id:'extension',x:0,y:0,asset:{bounds:{x:-2000,y:0,w:6000,h:6000}}},inside={id:'inside',x:0,y:0,asset:{bounds:{x:1,y:1,w:10,h:10}}};const b={width:100,height:100,honroLandmarks:[broad,inside]};s._drawStaticWorldCached(c,b,200,200);assert.deepEqual(calls,['extension']);assert.equal(s._landmarkVisible(broad,view),true);assert.equal(s._landmarkVisible(inside,view),false);
++view={left:-1800,right:-1600,top:0,bottom:200};calls=[];s._drawStaticWorldCached(c,b,200,200);assert.deepEqual(calls,['extension']);view={left:0,right:200,top:5200,bottom:5400};calls=[];s._drawStaticWorldCached(c,b,200,200);assert.deepEqual(calls,['extension']);
++assert.deepEqual(s._landmarkPaintBounds({x:100,y:100,scale:2,rotation:Math.PI/2,asset:{bounds:{x:0,y:0,w:20,h:10},anchor:{x:0,y:0}}}),{left:80,right:100,top:100,bottom:140});assert.equal(s._landmarkPaintBounds({asset:{bounds:{x:NaN,y:0,w:10,h:10}}}),null);assert.equal(b.width,100);assert.equal(b.height,100);
++console.log('PASS broad nonplay asset visibility without physics bounds expansion');
+--- /dev/null
++++ b/tests/act4-continuous-sea.mjs
+@@ -0,0 +1,5 @@
++import assert from'node:assert/strict';import vm from'node:vm';import{readFileSync}from'node:fs';import{createCanvas}from'@napi-rs/canvas';
++class Scene{}Scene.prototype.liveWater=function(){return'prior';};Scene.prototype.landmark=function(){};Scene.prototype._isForeground=function(){return false;};Scene.prototype.background=function(){};Scene.prototype._worldCacheKey=function(){return'';};const g=vm.createContext({HonroScene:Scene});vm.runInContext(readFileSync('shared/map/bounds.js','utf8'),g);vm.runInContext(readFileSync('shared/runtime/act4-pilot-art.js','utf8'),g);
++const h={surface:10,left:0,right:100,bottom:90,shore:[[0,10],[0,90]],continuousSea:{version:1,depth:300}},battle=(stage=31)=>({honroStage:stage,honroMap:{nativeArt:{version:1,coveredTerrainIds:[]},act4:{harborWater:h}}});
++function draw(y,stage=31){const c=createCanvas(240,500),ctx=c.getContext('2d'),s=new Scene();Object.assign(s,{canvas:{getBoundingClientRect:()=>({width:240,height:500})},x:120,y:y+250,scale:1,time:0});ctx.translate(0,-y);s.liveWater(ctx,battle(stage));return ctx;}
++const a=draw(0),z=draw(200);assert.equal(a.getImageData(200,450,1,1).data[3],255);assert.deepEqual([...a.getImageData(200,250,1,1).data],[...z.getImageData(200,50,1,1).data]);assert.equal(draw(0,40).getImageData(200,450,1,1).data[3],0);h.continuousSea.depth=NaN;assert.equal(draw(0).getImageData(200,450,1,1).data[3],0);console.log('PASS viewport extension, world-depth color stability, opaque deepwater, stage40/invalid opt-in fallback');
