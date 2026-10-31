@@ -18,7 +18,7 @@ def validate(args):
     return args[0]
 
 def main():
-    ap=argparse.ArgumentParser();ap.add_argument('--url',default='http://127.0.0.1:8772/HONRO.html');ap.add_argument('--profile',required=True);ap.add_argument('--out',required=True);ap.add_argument('--stage',type=int,choices=(38,40),default=38);ap.add_argument('--preflight',action='store_true');o=ap.parse_args()
+    ap=argparse.ArgumentParser();ap.add_argument('--url',default='http://127.0.0.1:8772/HONRO.html');ap.add_argument('--profile',required=True);ap.add_argument('--out',required=True);ap.add_argument('--stage',type=int,choices=(38,40),default=38);ap.add_argument('--preflight',action='store_true');ap.add_argument('--expected-sha256',help='Exact hash for a previously exported UI checkpoint');o=ap.parse_args()
     out=Path(o.out).resolve();out.mkdir(parents=True,exist_ok=False);log=(out/'events.jsonl').open('x',encoding='utf8')
     def record(event):
         event['time']=time.time();log.write(json.dumps(event,ensure_ascii=False)+'\n');log.flush();print(json.dumps(event,ensure_ascii=False),flush=True)
@@ -80,7 +80,7 @@ def main():
             if page.evaluate("document.querySelector('#modal')?.classList.contains('open')"):raise RuntimeError('could not close export menu')
         page.goto(o.url,wait_until='domcontentloaded');page.wait_for_function('window.HonroApp&&window.HonroCampaignLoader',timeout=60000)
         raw=Path(o.profile).read_bytes();source_sha=hashlib.sha256(raw).hexdigest()
-        if o.stage==40 and source_sha!='c3724ff6ff7e2417489147457c0956c1642af3907b8b5bd923b4843c41675f6f':raise ValueError('unexpected stage 40 source hash')
+        if o.stage==40 and source_sha!=(o.expected_sha256 or 'c3724ff6ff7e2417489147457c0956c1642af3907b8b5bd923b4843c41675f6f'):raise ValueError('unexpected stage 40 source hash')
         record({'input_sha256':source_sha,'stage':o.stage})
         page.locator('#file-import').set_input_files(str(Path(o.profile).resolve()));page.wait_for_timeout(5000);snapshot('fixture-import')
         if o.stage==38:
