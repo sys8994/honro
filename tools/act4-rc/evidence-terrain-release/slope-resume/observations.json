@@ -1,0 +1,1776 @@
+{
+  "sourceSha256": "c7fa7d22e923e6b3ca80a84c309a8f8ded5343e94d455ca2272956640a47c274",
+  "events": [
+    {
+      "round": 12,
+      "phase": "aim",
+      "side": 0,
+      "active": "mage",
+      "can": true,
+      "dialogue": false,
+      "actor": {
+        "x": 4805.5,
+        "y": 3065.766666666667,
+        "hp": 332,
+        "dead": false,
+        "grounded": true,
+        "role": "leaper"
+      },
+      "party": [
+        {
+          "id": "archer",
+          "x": 5645.147003909432,
+          "y": 1589.7303683607538,
+          "hp": 437,
+          "dead": false
+        },
+        {
+          "id": "mage",
+          "x": 3240.615559641663,
+          "y": 2943.143630583055,
+          "hp": 1344,
+          "dead": false
+        },
+        {
+          "id": "knight",
+          "x": 4981.295245084911,
+          "y": 1158.6476225424553,
+          "hp": 1191,
+          "dead": false
+        },
+        {
+          "id": "occultist",
+          "x": 4442.552048330421,
+          "y": 1094.7381339150672,
+          "hp": 1731,
+          "dead": false
+        }
+      ],
+      "shots": [],
+      "label": "resumed",
+      "time": 1793490985.5362327
+    },
+    {
+      "round": 12,
+      "phase": "aim",
+      "side": 0,
+      "active": "mage",
+      "can": true,
+      "dialogue": false,
+      "actor": {
+        "x": 4805.5,
+        "y": 3065.766666666667,
+        "hp": 332,
+        "dead": false,
+        "grounded": true,
+        "role": "leaper"
+      },
+      "party": [
+        {
+          "id": "archer",
+          "x": 5645.147003909432,
+          "y": 1589.7303683607538,
+          "hp": 437,
+          "dead": false
+        },
+        {
+          "id": "mage",
+          "x": 3961.3276845118558,
+          "y": 3063.08851230079,
+          "hp": 1344,
+          "dead": false
+        },
+        {
+          "id": "knight",
+          "x": 4981.295245084911,
+          "y": 1158.6476225424553,
+          "hp": 1191,
+          "dead": false
+        },
+        {
+          "id": "occultist",
+          "x": 4442.552048330421,
+          "y": 1094.7381339150672,
+          "hp": 1731,
+          "dead": false
+        }
+      ],
+      "shots": [],
+      "label": "mage-move",
+      "time": 1793490988.5107133
+    },
+    {
+      "round": 12,
+      "phase": "aim",
+      "side": 0,
+      "active": "mage",
+      "can": true,
+      "dialogue": false,
+      "actor": {
+        "x": 4805.5,
+        "y": 3065.766666666667,
+        "hp": 332,
+        "dead": false,
+        "grounded": true,
+        "role": "leaper"
+      },
+      "party": [
+        {
+          "id": "archer",
+          "x": 5645.147003909432,
+          "y": 1589.7303683607538,
+          "hp": 437,
+          "dead": false
+        },
+        {
+          "id": "mage",
+          "x": 3961.3276845118558,
+          "y": 3063.08851230079,
+          "hp": 1344,
+          "dead": false
+        },
+        {
+          "id": "knight",
+          "x": 4981.295245084911,
+          "y": 1158.6476225424553,
+          "hp": 1191,
+          "dead": false
+        },
+        {
+          "id": "occultist",
+          "x": 4442.552048330421,
+          "y": 1094.7381339150672,
+          "hp": 1731,
+          "dead": false
+        }
+      ],
+      "shots": [],
+      "label": "poll",
+      "time": 1793490989.0748787
+    },
+    {
+      "round": 12,
+      "phase": "review",
+      "side": 0,
+      "active": "mage",
+      "can": false,
+      "dialogue": false,
+      "actor": {
+        "x": 4805.5,
+        "y": 3065.766666666667,
+        "hp": 332,
+        "dead": false,
+        "grounded": true,
+        "role": "leaper"
+      },
+      "party": [
+        {
+          "id": "archer",
+          "x": 5645.147003909432,
+          "y": 1589.7303683607538,
+          "hp": 437,
+          "dead": false
+        },
+        {
+          "id": "mage",
+          "x": 3961.3276845118558,
+          "y": 3063.08851230079,
+          "hp": 1417,
+          "dead": false
+        },
+        {
+          "id": "knight",
+          "x": 4981.295245084911,
+          "y": 1158.6476225424553,
+          "hp": 1191,
+          "dead": false
+        },
+        {
+          "id": "occultist",
+          "x": 4442.552048330421,
+          "y": 1094.7381339150672,
+          "hp": 1731,
+          "dead": false
+        }
+      ],
+      "shots": [],
+      "label": "normal-defend",
+      "time": 1793490989.6128092
+    },
+    {
+      "round": 12,
+      "phase": "review",
+      "side": 0,
+      "active": "mage",
+      "can": false,
+      "dialogue": false,
+      "actor": {
+        "x": 4805.5,
+        "y": 3065.766666666667,
+        "hp": 332,
+        "dead": false,
+        "grounded": true,
+        "role": "leaper"
+      },
+      "party": [
+        {
+          "id": "archer",
+          "x": 5645.147003909432,
+          "y": 1589.7303683607538,
+          "hp": 437,
+          "dead": false
+        },
+        {
+          "id": "mage",
+          "x": 3961.3276845118558,
+          "y": 3063.08851230079,
+          "hp": 1417,
+          "dead": false
+        },
+        {
+          "id": "knight",
+          "x": 4981.295245084911,
+          "y": 1158.6476225424553,
+          "hp": 1191,
+          "dead": false
+        },
+        {
+          "id": "occultist",
+          "x": 4442.552048330421,
+          "y": 1094.7381339150672,
+          "hp": 1731,
+          "dead": false
+        }
+      ],
+      "shots": [],
+      "label": "poll",
+      "time": 1793490989.6143725
+    },
+    {
+      "round": 12,
+      "phase": "aim",
+      "side": 0,
+      "active": "knight",
+      "can": true,
+      "dialogue": false,
+      "actor": {
+        "x": 4805.5,
+        "y": 3065.766666666667,
+        "hp": 332,
+        "dead": false,
+        "grounded": true,
+        "role": "leaper"
+      },
+      "party": [
+        {
+          "id": "archer",
+          "x": 5645.147003909432,
+          "y": 1589.7303683607538,
+          "hp": 437,
+          "dead": false
+        },
+        {
+          "id": "mage",
+          "x": 3961.3276845118558,
+          "y": 3063.08851230079,
+          "hp": 1417,
+          "dead": false
+        },
+        {
+          "id": "knight",
+          "x": 4981.295245084911,
+          "y": 1158.6476225424553,
+          "hp": 1191,
+          "dead": false
+        },
+        {
+          "id": "occultist",
+          "x": 4442.552048330421,
+          "y": 1094.7381339150672,
+          "hp": 1731,
+          "dead": false
+        }
+      ],
+      "shots": [],
+      "label": "poll",
+      "time": 1793490989.879038
+    },
+    {
+      "round": 12,
+      "phase": "review",
+      "side": 0,
+      "active": "knight",
+      "can": false,
+      "dialogue": false,
+      "actor": {
+        "x": 4805.5,
+        "y": 3065.766666666667,
+        "hp": 332,
+        "dead": false,
+        "grounded": true,
+        "role": "leaper"
+      },
+      "party": [
+        {
+          "id": "archer",
+          "x": 5645.147003909432,
+          "y": 1589.7303683607538,
+          "hp": 437,
+          "dead": false
+        },
+        {
+          "id": "mage",
+          "x": 3961.3276845118558,
+          "y": 3063.08851230079,
+          "hp": 1417,
+          "dead": false
+        },
+        {
+          "id": "knight",
+          "x": 4981.295245084911,
+          "y": 1158.6476225424553,
+          "hp": 1313,
+          "dead": false
+        },
+        {
+          "id": "occultist",
+          "x": 4442.552048330421,
+          "y": 1094.7381339150672,
+          "hp": 1731,
+          "dead": false
+        }
+      ],
+      "shots": [],
+      "label": "normal-defend",
+      "time": 1793490990.4121122
+    },
+    {
+      "round": 12,
+      "phase": "review",
+      "side": 0,
+      "active": "knight",
+      "can": false,
+      "dialogue": false,
+      "actor": {
+        "x": 4805.5,
+        "y": 3065.766666666667,
+        "hp": 332,
+        "dead": false,
+        "grounded": true,
+        "role": "leaper"
+      },
+      "party": [
+        {
+          "id": "archer",
+          "x": 5645.147003909432,
+          "y": 1589.7303683607538,
+          "hp": 437,
+          "dead": false
+        },
+        {
+          "id": "mage",
+          "x": 3961.3276845118558,
+          "y": 3063.08851230079,
+          "hp": 1417,
+          "dead": false
+        },
+        {
+          "id": "knight",
+          "x": 4981.295245084911,
+          "y": 1158.6476225424553,
+          "hp": 1313,
+          "dead": false
+        },
+        {
+          "id": "occultist",
+          "x": 4442.552048330421,
+          "y": 1094.7381339150672,
+          "hp": 1731,
+          "dead": false
+        }
+      ],
+      "shots": [],
+      "label": "poll",
+      "time": 1793490990.4140232
+    },
+    {
+      "round": 12,
+      "phase": "aim",
+      "side": 0,
+      "active": "occultist",
+      "can": true,
+      "dialogue": false,
+      "actor": {
+        "x": 4805.5,
+        "y": 3065.766666666667,
+        "hp": 332,
+        "dead": false,
+        "grounded": true,
+        "role": "leaper"
+      },
+      "party": [
+        {
+          "id": "archer",
+          "x": 5645.147003909432,
+          "y": 1589.7303683607538,
+          "hp": 437,
+          "dead": false
+        },
+        {
+          "id": "mage",
+          "x": 3961.3276845118558,
+          "y": 3063.08851230079,
+          "hp": 1417,
+          "dead": false
+        },
+        {
+          "id": "knight",
+          "x": 4981.295245084911,
+          "y": 1158.6476225424553,
+          "hp": 1313,
+          "dead": false
+        },
+        {
+          "id": "occultist",
+          "x": 4442.552048330421,
+          "y": 1094.7381339150672,
+          "hp": 1731,
+          "dead": false
+        }
+      ],
+      "shots": [],
+      "label": "poll",
+      "time": 1793490990.669536
+    },
+    {
+      "round": 12,
+      "phase": "review",
+      "side": 0,
+      "active": "occultist",
+      "can": false,
+      "dialogue": false,
+      "actor": {
+        "x": 4805.5,
+        "y": 3065.766666666667,
+        "hp": 332,
+        "dead": false,
+        "grounded": true,
+        "role": "leaper"
+      },
+      "party": [
+        {
+          "id": "archer",
+          "x": 5645.147003909432,
+          "y": 1589.7303683607538,
+          "hp": 437,
+          "dead": false
+        },
+        {
+          "id": "mage",
+          "x": 3961.3276845118558,
+          "y": 3063.08851230079,
+          "hp": 1417,
+          "dead": false
+        },
+        {
+          "id": "knight",
+          "x": 4981.295245084911,
+          "y": 1158.6476225424553,
+          "hp": 1313,
+          "dead": false
+        },
+        {
+          "id": "occultist",
+          "x": 4442.552048330421,
+          "y": 1094.7381339150672,
+          "hp": 1806,
+          "dead": false
+        }
+      ],
+      "shots": [],
+      "label": "normal-defend",
+      "time": 1793490991.2799547
+    },
+    {
+      "round": 12,
+      "phase": "review",
+      "side": 0,
+      "active": "occultist",
+      "can": false,
+      "dialogue": false,
+      "actor": {
+        "x": 4805.5,
+        "y": 3065.766666666667,
+        "hp": 332,
+        "dead": false,
+        "grounded": true,
+        "role": "leaper"
+      },
+      "party": [
+        {
+          "id": "archer",
+          "x": 5645.147003909432,
+          "y": 1589.7303683607538,
+          "hp": 437,
+          "dead": false
+        },
+        {
+          "id": "mage",
+          "x": 3961.3276845118558,
+          "y": 3063.08851230079,
+          "hp": 1417,
+          "dead": false
+        },
+        {
+          "id": "knight",
+          "x": 4981.295245084911,
+          "y": 1158.6476225424553,
+          "hp": 1313,
+          "dead": false
+        },
+        {
+          "id": "occultist",
+          "x": 4442.552048330421,
+          "y": 1094.7381339150672,
+          "hp": 1806,
+          "dead": false
+        }
+      ],
+      "shots": [],
+      "label": "poll",
+      "time": 1793490991.2815514
+    },
+    {
+      "round": 12,
+      "phase": "transition",
+      "side": 0,
+      "active": "occultist",
+      "can": false,
+      "dialogue": false,
+      "actor": {
+        "x": 4805.5,
+        "y": 3065.766666666667,
+        "hp": 332,
+        "dead": false,
+        "grounded": true,
+        "role": "leaper"
+      },
+      "party": [
+        {
+          "id": "archer",
+          "x": 5645.147003909432,
+          "y": 1589.7303683607538,
+          "hp": 437,
+          "dead": false
+        },
+        {
+          "id": "mage",
+          "x": 3961.3276845118558,
+          "y": 3063.08851230079,
+          "hp": 1417,
+          "dead": false
+        },
+        {
+          "id": "knight",
+          "x": 4981.295245084911,
+          "y": 1158.6476225424553,
+          "hp": 1313,
+          "dead": false
+        },
+        {
+          "id": "occultist",
+          "x": 4442.552048330421,
+          "y": 1094.7381339150672,
+          "hp": 1806,
+          "dead": false
+        }
+      ],
+      "shots": [],
+      "label": "poll",
+      "time": 1793490991.5533698
+    },
+    {
+      "round": 12,
+      "phase": "flight",
+      "side": 1,
+      "active": "pilot31-lookout-return-2",
+      "can": false,
+      "dialogue": false,
+      "actor": {
+        "x": 4805.5,
+        "y": 3065.766666666667,
+        "hp": 332,
+        "dead": false,
+        "grounded": true,
+        "role": "leaper"
+      },
+      "party": [
+        {
+          "id": "archer",
+          "x": 5645.147003909432,
+          "y": 1589.7303683607538,
+          "hp": 437,
+          "dead": false
+        },
+        {
+          "id": "mage",
+          "x": 3961.3276845118558,
+          "y": 3063.08851230079,
+          "hp": 1417,
+          "dead": false
+        },
+        {
+          "id": "knight",
+          "x": 4981.295245084911,
+          "y": 1158.6476225424553,
+          "hp": 1313,
+          "dead": false
+        },
+        {
+          "id": "occultist",
+          "x": 4442.552048330421,
+          "y": 1094.7381339150672,
+          "hp": 1806,
+          "dead": false
+        }
+      ],
+      "shots": [],
+      "label": "poll",
+      "time": 1793490991.8164475
+    },
+    {
+      "round": 12,
+      "phase": "flight",
+      "side": 1,
+      "active": "pilot31-lookout-return-2",
+      "can": false,
+      "dialogue": false,
+      "actor": {
+        "x": 4805.5,
+        "y": 3065.766666666667,
+        "hp": 332,
+        "dead": false,
+        "grounded": true,
+        "role": "leaper"
+      },
+      "party": [
+        {
+          "id": "archer",
+          "x": 5645.147003909432,
+          "y": 1589.7303683607538,
+          "hp": 437,
+          "dead": false
+        },
+        {
+          "id": "mage",
+          "x": 3961.3276845118558,
+          "y": 3063.08851230079,
+          "hp": 1417,
+          "dead": false
+        },
+        {
+          "id": "knight",
+          "x": 4981.295245084911,
+          "y": 1158.6476225424553,
+          "hp": 1313,
+          "dead": false
+        },
+        {
+          "id": "occultist",
+          "x": 4442.552048330421,
+          "y": 1094.7381339150672,
+          "hp": 1806,
+          "dead": false
+        }
+      ],
+      "shots": [],
+      "label": "poll",
+      "time": 1793490992.0800257
+    },
+    {
+      "round": 12,
+      "phase": "review",
+      "side": 1,
+      "active": "pilot31-lookout-return-2",
+      "can": false,
+      "dialogue": false,
+      "actor": {
+        "x": 4805.5,
+        "y": 3065.766666666667,
+        "hp": 332,
+        "dead": false,
+        "grounded": true,
+        "role": "leaper"
+      },
+      "party": [
+        {
+          "id": "archer",
+          "x": 5645.147003909432,
+          "y": 1589.7303683607538,
+          "hp": 437,
+          "dead": false
+        },
+        {
+          "id": "mage",
+          "x": 3961.3276845118558,
+          "y": 3063.08851230079,
+          "hp": 1401,
+          "dead": false
+        },
+        {
+          "id": "knight",
+          "x": 4981.295245084911,
+          "y": 1158.6476225424553,
+          "hp": 1313,
+          "dead": false
+        },
+        {
+          "id": "occultist",
+          "x": 4442.552048330421,
+          "y": 1094.7381339150672,
+          "hp": 1806,
+          "dead": false
+        }
+      ],
+      "shots": [],
+      "label": "poll",
+      "time": 1793490992.3415678
+    },
+    {
+      "round": 12,
+      "phase": "enemy",
+      "side": 1,
+      "active": "pilot31-ridge-court-1",
+      "can": false,
+      "dialogue": false,
+      "actor": {
+        "x": 4805.5,
+        "y": 3065.766666666667,
+        "hp": 332,
+        "dead": false,
+        "grounded": true,
+        "role": "leaper"
+      },
+      "party": [
+        {
+          "id": "archer",
+          "x": 5645.147003909432,
+          "y": 1589.7303683607538,
+          "hp": 437,
+          "dead": false
+        },
+        {
+          "id": "mage",
+          "x": 3961.3276845118558,
+          "y": 3063.08851230079,
+          "hp": 1401,
+          "dead": false
+        },
+        {
+          "id": "knight",
+          "x": 4981.295245084911,
+          "y": 1158.6476225424553,
+          "hp": 1313,
+          "dead": false
+        },
+        {
+          "id": "occultist",
+          "x": 4442.552048330421,
+          "y": 1094.7381339150672,
+          "hp": 1806,
+          "dead": false
+        }
+      ],
+      "shots": [],
+      "label": "poll",
+      "time": 1793490992.6023483
+    },
+    {
+      "round": 12,
+      "phase": "enemy",
+      "side": 1,
+      "active": "pilot31-ridge-court-1",
+      "can": false,
+      "dialogue": false,
+      "actor": {
+        "x": 4805.5,
+        "y": 3065.766666666667,
+        "hp": 332,
+        "dead": false,
+        "grounded": true,
+        "role": "leaper"
+      },
+      "party": [
+        {
+          "id": "archer",
+          "x": 5645.147003909432,
+          "y": 1589.7303683607538,
+          "hp": 437,
+          "dead": false
+        },
+        {
+          "id": "mage",
+          "x": 3961.3276845118558,
+          "y": 3063.08851230079,
+          "hp": 1401,
+          "dead": false
+        },
+        {
+          "id": "knight",
+          "x": 4981.295245084911,
+          "y": 1158.6476225424553,
+          "hp": 1313,
+          "dead": false
+        },
+        {
+          "id": "occultist",
+          "x": 4442.552048330421,
+          "y": 1094.7381339150672,
+          "hp": 1806,
+          "dead": false
+        }
+      ],
+      "shots": [],
+      "label": "poll",
+      "time": 1793490992.8792405
+    },
+    {
+      "round": 12,
+      "phase": "enemy",
+      "side": 1,
+      "active": "pilot31-ridge-court-1",
+      "can": false,
+      "dialogue": false,
+      "actor": {
+        "x": 4805.5,
+        "y": 3065.766666666667,
+        "hp": 332,
+        "dead": false,
+        "grounded": true,
+        "role": "leaper"
+      },
+      "party": [
+        {
+          "id": "archer",
+          "x": 5645.147003909432,
+          "y": 1589.7303683607538,
+          "hp": 437,
+          "dead": false
+        },
+        {
+          "id": "mage",
+          "x": 3961.3276845118558,
+          "y": 3063.08851230079,
+          "hp": 1401,
+          "dead": false
+        },
+        {
+          "id": "knight",
+          "x": 4981.295245084911,
+          "y": 1158.6476225424553,
+          "hp": 1313,
+          "dead": false
+        },
+        {
+          "id": "occultist",
+          "x": 4442.552048330421,
+          "y": 1094.7381339150672,
+          "hp": 1806,
+          "dead": false
+        }
+      ],
+      "shots": [],
+      "label": "poll",
+      "time": 1793490993.1516466
+    },
+    {
+      "round": 12,
+      "phase": "enemy",
+      "side": 1,
+      "active": "pilot31-ridge-court-1",
+      "can": false,
+      "dialogue": false,
+      "actor": {
+        "x": 4805.5,
+        "y": 3065.766666666667,
+        "hp": 332,
+        "dead": false,
+        "grounded": true,
+        "role": "leaper"
+      },
+      "party": [
+        {
+          "id": "archer",
+          "x": 5645.147003909432,
+          "y": 1589.7303683607538,
+          "hp": 437,
+          "dead": false
+        },
+        {
+          "id": "mage",
+          "x": 3961.3276845118558,
+          "y": 3063.08851230079,
+          "hp": 1401,
+          "dead": false
+        },
+        {
+          "id": "knight",
+          "x": 4981.295245084911,
+          "y": 1158.6476225424553,
+          "hp": 1313,
+          "dead": false
+        },
+        {
+          "id": "occultist",
+          "x": 4442.552048330421,
+          "y": 1094.7381339150672,
+          "hp": 1806,
+          "dead": false
+        }
+      ],
+      "shots": [],
+      "label": "poll",
+      "time": 1793490993.412613
+    },
+    {
+      "round": 12,
+      "phase": "enemy",
+      "side": 1,
+      "active": "pilot31-ridge-court-1",
+      "can": false,
+      "dialogue": false,
+      "actor": {
+        "x": 4805.5,
+        "y": 3065.766666666667,
+        "hp": 332,
+        "dead": false,
+        "grounded": true,
+        "role": "leaper"
+      },
+      "party": [
+        {
+          "id": "archer",
+          "x": 5645.147003909432,
+          "y": 1589.7303683607538,
+          "hp": 437,
+          "dead": false
+        },
+        {
+          "id": "mage",
+          "x": 3961.3276845118558,
+          "y": 3063.08851230079,
+          "hp": 1401,
+          "dead": false
+        },
+        {
+          "id": "knight",
+          "x": 4981.295245084911,
+          "y": 1158.6476225424553,
+          "hp": 1313,
+          "dead": false
+        },
+        {
+          "id": "occultist",
+          "x": 4442.552048330421,
+          "y": 1094.7381339150672,
+          "hp": 1806,
+          "dead": false
+        }
+      ],
+      "shots": [],
+      "label": "poll",
+      "time": 1793490993.6784773
+    },
+    {
+      "round": 12,
+      "phase": "enemy",
+      "side": 1,
+      "active": "pilot31-ridge-court-1",
+      "can": false,
+      "dialogue": false,
+      "actor": {
+        "x": 4805.5,
+        "y": 3065.766666666667,
+        "hp": 332,
+        "dead": false,
+        "grounded": true,
+        "role": "leaper"
+      },
+      "party": [
+        {
+          "id": "archer",
+          "x": 5645.147003909432,
+          "y": 1589.7303683607538,
+          "hp": 437,
+          "dead": false
+        },
+        {
+          "id": "mage",
+          "x": 3961.3276845118558,
+          "y": 3063.08851230079,
+          "hp": 1401,
+          "dead": false
+        },
+        {
+          "id": "knight",
+          "x": 4981.295245084911,
+          "y": 1158.6476225424553,
+          "hp": 1313,
+          "dead": false
+        },
+        {
+          "id": "occultist",
+          "x": 4442.552048330421,
+          "y": 1094.7381339150672,
+          "hp": 1806,
+          "dead": false
+        }
+      ],
+      "shots": [],
+      "label": "poll",
+      "time": 1793490993.9379652
+    },
+    {
+      "round": 12,
+      "phase": "enemy",
+      "side": 1,
+      "active": "pilot31-ridge-court-1",
+      "can": false,
+      "dialogue": false,
+      "actor": {
+        "x": 4805.5,
+        "y": 3065.766666666667,
+        "hp": 332,
+        "dead": false,
+        "grounded": true,
+        "role": "leaper"
+      },
+      "party": [
+        {
+          "id": "archer",
+          "x": 5645.147003909432,
+          "y": 1589.7303683607538,
+          "hp": 437,
+          "dead": false
+        },
+        {
+          "id": "mage",
+          "x": 3961.3276845118558,
+          "y": 3063.08851230079,
+          "hp": 1401,
+          "dead": false
+        },
+        {
+          "id": "knight",
+          "x": 4981.295245084911,
+          "y": 1158.6476225424553,
+          "hp": 1313,
+          "dead": false
+        },
+        {
+          "id": "occultist",
+          "x": 4442.552048330421,
+          "y": 1094.7381339150672,
+          "hp": 1806,
+          "dead": false
+        }
+      ],
+      "shots": [],
+      "label": "poll",
+      "time": 1793490994.2024617
+    },
+    {
+      "round": 12,
+      "phase": "enemy",
+      "side": 1,
+      "active": "pilot31-ridge-court-1",
+      "can": false,
+      "dialogue": false,
+      "actor": {
+        "x": 4805.5,
+        "y": 3065.766666666667,
+        "hp": 332,
+        "dead": false,
+        "grounded": true,
+        "role": "leaper"
+      },
+      "party": [
+        {
+          "id": "archer",
+          "x": 5645.147003909432,
+          "y": 1589.7303683607538,
+          "hp": 437,
+          "dead": false
+        },
+        {
+          "id": "mage",
+          "x": 3961.3276845118558,
+          "y": 3063.08851230079,
+          "hp": 1401,
+          "dead": false
+        },
+        {
+          "id": "knight",
+          "x": 4981.295245084911,
+          "y": 1158.6476225424553,
+          "hp": 1313,
+          "dead": false
+        },
+        {
+          "id": "occultist",
+          "x": 4442.552048330421,
+          "y": 1094.7381339150672,
+          "hp": 1806,
+          "dead": false
+        }
+      ],
+      "shots": [],
+      "label": "poll",
+      "time": 1793490994.4700818
+    },
+    {
+      "round": 12,
+      "phase": "enemy",
+      "side": 1,
+      "active": "pilot31-ridge-court-1",
+      "can": false,
+      "dialogue": false,
+      "actor": {
+        "x": 4805.5,
+        "y": 3065.766666666667,
+        "hp": 332,
+        "dead": false,
+        "grounded": true,
+        "role": "leaper"
+      },
+      "party": [
+        {
+          "id": "archer",
+          "x": 5645.147003909432,
+          "y": 1589.7303683607538,
+          "hp": 437,
+          "dead": false
+        },
+        {
+          "id": "mage",
+          "x": 3961.3276845118558,
+          "y": 3063.08851230079,
+          "hp": 1401,
+          "dead": false
+        },
+        {
+          "id": "knight",
+          "x": 4981.295245084911,
+          "y": 1158.6476225424553,
+          "hp": 1313,
+          "dead": false
+        },
+        {
+          "id": "occultist",
+          "x": 4442.552048330421,
+          "y": 1094.7381339150672,
+          "hp": 1806,
+          "dead": false
+        }
+      ],
+      "shots": [],
+      "label": "poll",
+      "time": 1793490994.737306
+    },
+    {
+      "round": 12,
+      "phase": "enemy",
+      "side": 1,
+      "active": "pilot31-ridge-court-1",
+      "can": false,
+      "dialogue": false,
+      "actor": {
+        "x": 4805.5,
+        "y": 3065.766666666667,
+        "hp": 332,
+        "dead": false,
+        "grounded": true,
+        "role": "leaper"
+      },
+      "party": [
+        {
+          "id": "archer",
+          "x": 5645.147003909432,
+          "y": 1589.7303683607538,
+          "hp": 437,
+          "dead": false
+        },
+        {
+          "id": "mage",
+          "x": 3961.3276845118558,
+          "y": 3063.08851230079,
+          "hp": 1401,
+          "dead": false
+        },
+        {
+          "id": "knight",
+          "x": 4981.295245084911,
+          "y": 1158.6476225424553,
+          "hp": 1313,
+          "dead": false
+        },
+        {
+          "id": "occultist",
+          "x": 4442.552048330421,
+          "y": 1094.7381339150672,
+          "hp": 1806,
+          "dead": false
+        }
+      ],
+      "shots": [],
+      "label": "poll",
+      "time": 1793490994.9984043
+    },
+    {
+      "round": 12,
+      "phase": "review",
+      "side": 1,
+      "active": "pilot31-ridge-court-1",
+      "can": false,
+      "dialogue": false,
+      "actor": {
+        "x": 4805.5,
+        "y": 3065.766666666667,
+        "hp": 332,
+        "dead": false,
+        "grounded": true,
+        "role": "leaper"
+      },
+      "party": [
+        {
+          "id": "archer",
+          "x": 5645.147003909432,
+          "y": 1589.7303683607538,
+          "hp": 437,
+          "dead": false
+        },
+        {
+          "id": "mage",
+          "x": 3961.3276845118558,
+          "y": 3063.08851230079,
+          "hp": 1401,
+          "dead": false
+        },
+        {
+          "id": "knight",
+          "x": 4981.295245084911,
+          "y": 1158.6476225424553,
+          "hp": 1313,
+          "dead": false
+        },
+        {
+          "id": "occultist",
+          "x": 4442.552048330421,
+          "y": 1094.7381339150672,
+          "hp": 1806,
+          "dead": false
+        }
+      ],
+      "shots": [],
+      "label": "poll",
+      "time": 1793490995.2688568
+    },
+    {
+      "round": 12,
+      "phase": "enemy",
+      "side": 1,
+      "active": "pilot31-lookout-return-5",
+      "can": false,
+      "dialogue": false,
+      "actor": {
+        "x": 4731.240509773859,
+        "y": 3075.6679320301523,
+        "hp": 332,
+        "dead": false,
+        "grounded": true,
+        "role": "leaper"
+      },
+      "party": [
+        {
+          "id": "archer",
+          "x": 5645.147003909432,
+          "y": 1589.7303683607538,
+          "hp": 437,
+          "dead": false
+        },
+        {
+          "id": "mage",
+          "x": 3961.3276845118558,
+          "y": 3063.08851230079,
+          "hp": 1401,
+          "dead": false
+        },
+        {
+          "id": "knight",
+          "x": 4981.295245084911,
+          "y": 1158.6476225424553,
+          "hp": 1313,
+          "dead": false
+        },
+        {
+          "id": "occultist",
+          "x": 4442.552048330421,
+          "y": 1094.7381339150672,
+          "hp": 1806,
+          "dead": false
+        }
+      ],
+      "shots": [],
+      "label": "poll",
+      "time": 1793490995.5249748
+    },
+    {
+      "round": 12,
+      "phase": "enemy",
+      "side": 1,
+      "active": "pilot31-lookout-return-5",
+      "can": false,
+      "dialogue": false,
+      "actor": {
+        "x": 4403.392200900548,
+        "y": 3070.271376072044,
+        "hp": 332,
+        "dead": false,
+        "grounded": true,
+        "role": "leaper"
+      },
+      "party": [
+        {
+          "id": "archer",
+          "x": 5645.147003909432,
+          "y": 1589.7303683607538,
+          "hp": 437,
+          "dead": false
+        },
+        {
+          "id": "mage",
+          "x": 3961.3276845118558,
+          "y": 3063.08851230079,
+          "hp": 1401,
+          "dead": false
+        },
+        {
+          "id": "knight",
+          "x": 4981.295245084911,
+          "y": 1158.6476225424553,
+          "hp": 1313,
+          "dead": false
+        },
+        {
+          "id": "occultist",
+          "x": 4442.552048330421,
+          "y": 1094.7381339150672,
+          "hp": 1806,
+          "dead": false
+        }
+      ],
+      "shots": [],
+      "label": "poll",
+      "time": 1793490996.079721
+    },
+    {
+      "round": 12,
+      "phase": "flight",
+      "side": 1,
+      "active": "pilot31-lookout-return-5",
+      "can": false,
+      "dialogue": false,
+      "actor": {
+        "x": 4314.2603014114375,
+        "y": 3063.140824112915,
+        "hp": 332,
+        "dead": false,
+        "grounded": true,
+        "role": "leaper"
+      },
+      "party": [
+        {
+          "id": "archer",
+          "x": 5645.147003909432,
+          "y": 1589.7303683607538,
+          "hp": 437,
+          "dead": false
+        },
+        {
+          "id": "mage",
+          "x": 3961.3276845118558,
+          "y": 3063.08851230079,
+          "hp": 1401,
+          "dead": false
+        },
+        {
+          "id": "knight",
+          "x": 4981.295245084911,
+          "y": 1158.6476225424553,
+          "hp": 1313,
+          "dead": false
+        },
+        {
+          "id": "occultist",
+          "x": 4442.552048330421,
+          "y": 1094.7381339150672,
+          "hp": 1806,
+          "dead": false
+        }
+      ],
+      "shots": [
+        {
+          "skill": "HMO01",
+          "x": 4096.67711954026,
+          "y": 3002.338846302343
+        }
+      ],
+      "label": "poll",
+      "time": 1793490996.3457508
+    },
+    {
+      "round": 12,
+      "phase": "flight",
+      "side": 1,
+      "active": "pilot31-lookout-return-5",
+      "can": false,
+      "dialogue": false,
+      "actor": {
+        "x": 4314.2603014114375,
+        "y": 3063.140824112915,
+        "hp": 332,
+        "dead": false,
+        "grounded": true,
+        "role": "leaper"
+      },
+      "party": [
+        {
+          "id": "archer",
+          "x": 5645.147003909432,
+          "y": 1589.7303683607538,
+          "hp": 437,
+          "dead": false
+        },
+        {
+          "id": "mage",
+          "x": 3944.9247751653356,
+          "y": 3061.9949850110224,
+          "hp": 1172,
+          "dead": false
+        },
+        {
+          "id": "knight",
+          "x": 4981.295245084911,
+          "y": 1158.6476225424553,
+          "hp": 1313,
+          "dead": false
+        },
+        {
+          "id": "occultist",
+          "x": 4442.552048330421,
+          "y": 1094.7381339150672,
+          "hp": 1806,
+          "dead": false
+        }
+      ],
+      "shots": [],
+      "label": "poll",
+      "time": 1793490996.6135201
+    },
+    {
+      "round": 12,
+      "phase": "review",
+      "side": 1,
+      "active": "pilot31-lookout-return-5",
+      "can": false,
+      "dialogue": false,
+      "actor": {
+        "x": 4314.2603014114375,
+        "y": 3063.140824112915,
+        "hp": 332,
+        "dead": false,
+        "grounded": true,
+        "role": "leaper"
+      },
+      "party": [
+        {
+          "id": "archer",
+          "x": 5645.147003909432,
+          "y": 1589.7303683607538,
+          "hp": 437,
+          "dead": false
+        },
+        {
+          "id": "mage",
+          "x": 3944.9247751653356,
+          "y": 3061.9949850110224,
+          "hp": 1172,
+          "dead": false
+        },
+        {
+          "id": "knight",
+          "x": 4981.295245084911,
+          "y": 1158.6476225424553,
+          "hp": 1313,
+          "dead": false
+        },
+        {
+          "id": "occultist",
+          "x": 4442.552048330421,
+          "y": 1094.7381339150672,
+          "hp": 1806,
+          "dead": false
+        }
+      ],
+      "shots": [],
+      "label": "poll",
+      "time": 1793490996.87957
+    },
+    {
+      "round": 12,
+      "phase": "enemy",
+      "side": 1,
+      "active": "pilot31-lookout-return-6",
+      "can": false,
+      "dialogue": false,
+      "actor": {
+        "x": 4314.2603014114375,
+        "y": 3063.140824112915,
+        "hp": 332,
+        "dead": false,
+        "grounded": true,
+        "role": "leaper"
+      },
+      "party": [
+        {
+          "id": "archer",
+          "x": 5645.147003909432,
+          "y": 1589.7303683607538,
+          "hp": 437,
+          "dead": false
+        },
+        {
+          "id": "mage",
+          "x": 3944.9247751653356,
+          "y": 3061.9949850110224,
+          "hp": 1172,
+          "dead": false
+        },
+        {
+          "id": "knight",
+          "x": 4981.295245084911,
+          "y": 1158.6476225424553,
+          "hp": 1313,
+          "dead": false
+        },
+        {
+          "id": "occultist",
+          "x": 4442.552048330421,
+          "y": 1094.7381339150672,
+          "hp": 1806,
+          "dead": false
+        }
+      ],
+      "shots": [],
+      "label": "poll",
+      "time": 1793490997.132944
+    },
+    {
+      "round": 12,
+      "phase": "enemy",
+      "side": 1,
+      "active": "pilot31-lookout-return-6",
+      "can": false,
+      "dialogue": false,
+      "actor": {
+        "x": 4314.2603014114375,
+        "y": 3063.140824112915,
+        "hp": 332,
+        "dead": false,
+        "grounded": true,
+        "role": "leaper"
+      },
+      "party": [
+        {
+          "id": "archer",
+          "x": 5645.147003909432,
+          "y": 1589.7303683607538,
+          "hp": 437,
+          "dead": false
+        },
+        {
+          "id": "mage",
+          "x": 3944.9247751653356,
+          "y": 3061.9949850110224,
+          "hp": 1172,
+          "dead": false
+        },
+        {
+          "id": "knight",
+          "x": 4981.295245084911,
+          "y": 1158.6476225424553,
+          "hp": 1313,
+          "dead": false
+        },
+        {
+          "id": "occultist",
+          "x": 4442.552048330421,
+          "y": 1094.7381339150672,
+          "hp": 1806,
+          "dead": false
+        }
+      ],
+      "shots": [],
+      "label": "poll",
+      "time": 1793490997.3946497
+    },
+    {
+      "round": 12,
+      "phase": "enemy",
+      "side": 1,
+      "active": "pilot31-lookout-return-6",
+      "can": false,
+      "dialogue": false,
+      "actor": {
+        "x": 4314.2603014114375,
+        "y": 3063.140824112915,
+        "hp": 332,
+        "dead": false,
+        "grounded": true,
+        "role": "leaper"
+      },
+      "party": [
+        {
+          "id": "archer",
+          "x": 5645.147003909432,
+          "y": 1589.7303683607538,
+          "hp": 437,
+          "dead": false
+        },
+        {
+          "id": "mage",
+          "x": 3944.9247751653356,
+          "y": 3061.9949850110224,
+          "hp": 1172,
+          "dead": false
+        },
+        {
+          "id": "knight",
+          "x": 4981.295245084911,
+          "y": 1158.6476225424553,
+          "hp": 1313,
+          "dead": false
+        },
+        {
+          "id": "occultist",
+          "x": 4442.552048330421,
+          "y": 1094.7381339150672,
+          "hp": 1806,
+          "dead": false
+        }
+      ],
+      "shots": [],
+      "label": "poll",
+      "time": 1793490997.6848857
+    },
+    {
+      "round": 12,
+      "phase": "enemy",
+      "side": 1,
+      "active": "pilot31-lookout-return-6",
+      "can": false,
+      "dialogue": false,
+      "actor": {
+        "x": 4314.2603014114375,
+        "y": 3063.140824112915,
+        "hp": 332,
+        "dead": false,
+        "grounded": true,
+        "role": "leaper"
+      },
+      "party": [
+        {
+          "id": "archer",
+          "x": 5645.147003909432,
+          "y": 1589.7303683607538,
+          "hp": 437,
+          "dead": false
+        },
+        {
+          "id": "mage",
+          "x": 3944.9247751653356,
+          "y": 3061.9949850110224,
+          "hp": 1172,
+          "dead": false
+        },
+        {
+          "id": "knight",
+          "x": 4981.295245084911,
+          "y": 1158.6476225424553,
+          "hp": 1313,
+          "dead": false
+        },
+        {
+          "id": "occultist",
+          "x": 4442.552048330421,
+          "y": 1094.7381339150672,
+          "hp": 1806,
+          "dead": false
+        }
+      ],
+      "shots": [],
+      "label": "poll",
+      "time": 1793490997.9492476
+    },
+    {
+      "round": 12,
+      "phase": "review",
+      "side": 1,
+      "active": "pilot31-lookout-return-6",
+      "can": false,
+      "dialogue": false,
+      "actor": {
+        "x": 4314.2603014114375,
+        "y": 3063.140824112915,
+        "hp": 332,
+        "dead": false,
+        "grounded": true,
+        "role": "leaper"
+      },
+      "party": [
+        {
+          "id": "archer",
+          "x": 5645.147003909432,
+          "y": 1589.7303683607538,
+          "hp": 437,
+          "dead": false
+        },
+        {
+          "id": "mage",
+          "x": 3944.9247751653356,
+          "y": 3061.9949850110224,
+          "hp": 1172,
+          "dead": false
+        },
+        {
+          "id": "knight",
+          "x": 4981.295245084911,
+          "y": 1158.6476225424553,
+          "hp": 1313,
+          "dead": false
+        },
+        {
+          "id": "occultist",
+          "x": 4442.552048330421,
+          "y": 1094.7381339150672,
+          "hp": 1806,
+          "dead": false
+        }
+      ],
+      "shots": [],
+      "label": "poll",
+      "time": 1793490998.2107055
+    }
+  ],
+  "pageErrors": []
+}
