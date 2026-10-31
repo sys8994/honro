@@ -85,12 +85,14 @@ with sync_playwright() as pw:
   # Route geometry: west middle -> stone stair/gallery -> upper, then drop
   # through the open upper support around x3300 onto the wreck deck.
   if x<4700 and (s.get('moveLeft') or 0)>120:
-   if support=='approved39-west-middle' and x<488:
-    held('ArrowRight',min(100,max(35,(490-x)*.9)));page.wait_for_timeout(150);after=record('advance-middle');route=True
-   elif support=='approved39-west-middle' and x>499:
-    held('ArrowLeft',min(150,max(45,(x-495)*.9)));page.wait_for_timeout(150);after=record('align-stair');route=True
-   elif support=='approved39-west-middle' and 488<=x<=499:
-    page.keyboard.press('Control');page.wait_for_timeout(100);held('ArrowRight',70)
+   if support=='approved39-west-middle' and x<300:
+    held('ArrowRight',min(100,max(35,(315-x)*.9)));page.wait_for_timeout(150);after=record('advance-middle');route=True
+   elif support=='approved39-west-middle' and x>330:
+    held('ArrowLeft',min(150,max(45,(x-320)*.9)));page.wait_for_timeout(150);after=record('align-stair');route=True
+   elif support=='approved39-west-middle' and 300<=x<=330:
+    page.keyboard.press('Control');page.wait_for_timeout(100);page.keyboard.down('ArrowRight')
+    try:page.wait_for_function('HonroApp.engine.active.x>=545',polling='raf',timeout=1200)
+    finally:page.keyboard.up('ArrowRight')
     record('jump-in-flight');settle();after=record('jump-to-upper');route=True;jumped[s['active']]=jumped.get(s['active'],0)+1
     if after['support']=='approved39-west-middle':record('jump-missed-stop');stopReason='upper-jump-missed';break
    elif support=='approved39-west-deck' and 1800<=x<=2100:
@@ -101,7 +103,9 @@ with sync_playwright() as pw:
     held('ArrowRight',550);settle();after=record('advance-support');route=True
    if route:
     if after['active']!=s['active'] or after['round']!=s['round']:continue
-    delta=after['x']-s['x'];stalls[s['active']]=stalls.get(s['active'],0)+1 if delta<15 else 0
+    delta=after['x']-s['x'];aligning=support=='approved39-west-middle' and x>330
+    progress=(abs(after['x']-320)<abs(x-320)-5) if aligning else delta>=15
+    stalls[s['active']]=0 if progress else stalls.get(s['active'],0)+1
     if stalls[s['active']]>=3:
      record('route-stall',history=stalls[s['active']]);stopReason='route-stall';break
     continue
