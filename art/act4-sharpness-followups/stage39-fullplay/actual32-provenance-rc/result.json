@@ -1,0 +1,342 @@
+{
+  "scope": "Separate context restored unchanged real39 victory storage. Title Continue then normal journey UI if needed; not automatic direct transition, not stage40 completion. 33-38 earlier fixture.",
+  "sourceStorageSHA256": "a2405d485f13149a7e89cd58fd22b98f44326f5f51e82b69e944ff79f72b7080",
+  "before": {
+    "clear": {
+      "visits": 1,
+      "rounds": 3
+    },
+    "pending": 40,
+    "proof": {
+      "version": 1,
+      "runId": "eq-mvw35tg3-84xgprgd",
+      "completed": {
+        "31": {
+          "stage": 31,
+          "sourceRun": "honro-map-stage-31-1793462522633",
+          "campaignRunId": "eq-mvw35tg3-84xgprgd",
+          "success": true,
+          "residents": [],
+          "rows": [
+            "A4.S31.ENTRY.01",
+            "A4.S31.ENTRY.02",
+            "A4.S31.BOAT.01",
+            "A4.S31.BOARD.01"
+          ]
+        },
+        "32": {
+          "stage": 32,
+          "sourceRun": "honro-map-stage-32-1793463406330",
+          "campaignRunId": "eq-mvw35tg3-84xgprgd",
+          "success": true,
+          "residents": [
+            {
+              "id": "a4-shelter-speaker",
+              "hp": 1450,
+              "dead": false
+            }
+          ],
+          "rows": [
+            "A4.S32.REUNION.01",
+            "A4.S32.REUNION.02",
+            "A4.S32.REUNION.03",
+            "A4.S32.REUNION.04",
+            "A4.S32.MISSING.01",
+            "A4.S32.MISSING.02",
+            "A4.S32.MISSING.03",
+            "A4.S32.MISSING.04"
+          ]
+        },
+        "39": {
+          "stage": 39,
+          "sourceRun": "honro-map-stage-39-1793466005389",
+          "campaignRunId": "eq-mvw35tg3-84xgprgd",
+          "success": true,
+          "residents": [
+            {
+              "id": "a4-rescue-0",
+              "hp": 1450,
+              "dead": false
+            },
+            {
+              "id": "a4-rescue-1",
+              "hp": 1450,
+              "dead": false
+            },
+            {
+              "id": "a4-rescue-2",
+              "hp": 1450,
+              "dead": false
+            },
+            {
+              "id": "a4-rescue-3",
+              "hp": 1450,
+              "dead": false
+            }
+          ],
+          "rows": [
+            "A4.S39.BOSS.01",
+            "A4.S39.BOSS.02",
+            "A4.S39.TIDE.01"
+          ]
+        }
+      },
+      "factEvents": {
+        "eq_se_t3b": {
+          "eventId": "eq_se_t3b",
+          "stage": 31,
+          "sourceRun": "honro-map-stage-31-1793462522633",
+          "campaignRunId": "eq-mvw35tg3-84xgprgd",
+          "officialAct4": true,
+          "proof": {
+            "boarded": true,
+            "party": [
+              "archer",
+              "mage",
+              "knight",
+              "occultist"
+            ]
+          }
+        }
+      },
+      "safeSeven": {
+        "ids": [
+          "shelter-person-0",
+          "shelter-person-1",
+          "shelter-person-2",
+          "shelter-person-3",
+          "shelter-person-4",
+          "shelter-person-5",
+          "shelter-person-6"
+        ],
+        "sourceRun": "honro-map-stage-32-1793463406330",
+        "reportIds": [
+          "A4.S32.MISSING.01",
+          "A4.S32.MISSING.02",
+          "A4.S32.MISSING.03",
+          "A4.S32.MISSING.04"
+        ],
+        "reunionIds": [
+          "A4.S32.REUNION.01",
+          "A4.S32.REUNION.02",
+          "A4.S32.REUNION.03",
+          "A4.S32.REUNION.04"
+        ],
+        "reunionObserved": {
+          "sourceRun": "honro-map-stage-32-1793463406330",
+          "npc": "a4-shelter-speaker",
+          "hero": "archer",
+          "seenAt": 460.11700000005504,
+          "positions": [
+            {
+              "id": "archer",
+              "x": 2656.857152993221,
+              "y": 1030.578564079915
+            },
+            {
+              "id": "a4-shelter-speaker",
+              "x": 2984,
+              "y": 869.0000000000001
+            }
+          ]
+        },
+        "campaignRunId": "eq-mvw35tg3-84xgprgd",
+        "stage": 32,
+        "success": true,
+        "residents": [
+          {
+            "id": "a4-shelter-speaker",
+            "hp": 1450,
+            "dead": false
+          }
+        ],
+        "rows": [
+          "A4.S32.REUNION.01",
+          "A4.S32.REUNION.02",
+          "A4.S32.REUNION.03",
+          "A4.S32.REUNION.04",
+          "A4.S32.MISSING.01",
+          "A4.S32.MISSING.02",
+          "A4.S32.MISSING.03",
+          "A4.S32.MISSING.04"
+        ]
+      },
+      "rescued": {
+        "ids": [
+          "a4-rescue-0",
+          "a4-rescue-1",
+          "a4-rescue-2",
+          "a4-rescue-3"
+        ],
+        "sourceRun": "honro-map-stage-39-1793466005389",
+        "campaignRunId": "eq-mvw35tg3-84xgprgd",
+        "stage": 39,
+        "success": true,
+        "residents": [
+          {
+            "id": "a4-rescue-0",
+            "hp": 1450,
+            "dead": false
+          },
+          {
+            "id": "a4-rescue-1",
+            "hp": 1450,
+            "dead": false
+          },
+          {
+            "id": "a4-rescue-2",
+            "hp": 1450,
+            "dead": false
+          },
+          {
+            "id": "a4-rescue-3",
+            "hp": 1450,
+            "dead": false
+          }
+        ],
+        "rows": [
+          "A4.S39.BOSS.01",
+          "A4.S39.BOSS.02",
+          "A4.S39.TIDE.01"
+        ]
+      }
+    }
+  },
+  "after": {
+    "screen": "battle",
+    "stage": 40,
+    "official": 1,
+    "proof": true,
+    "safeSeven": {
+      "ids": [
+        "shelter-person-0",
+        "shelter-person-1",
+        "shelter-person-2",
+        "shelter-person-3",
+        "shelter-person-4",
+        "shelter-person-5",
+        "shelter-person-6"
+      ],
+      "sourceRun": "honro-map-stage-32-1793463406330",
+      "reportIds": [
+        "A4.S32.MISSING.01",
+        "A4.S32.MISSING.02",
+        "A4.S32.MISSING.03",
+        "A4.S32.MISSING.04"
+      ],
+      "reunionIds": [
+        "A4.S32.REUNION.01",
+        "A4.S32.REUNION.02",
+        "A4.S32.REUNION.03",
+        "A4.S32.REUNION.04"
+      ],
+      "reunionObserved": {
+        "sourceRun": "honro-map-stage-32-1793463406330",
+        "npc": "a4-shelter-speaker",
+        "hero": "archer",
+        "seenAt": 460.11700000005504,
+        "positions": [
+          {
+            "id": "archer",
+            "x": 2656.857152993221,
+            "y": 1030.578564079915
+          },
+          {
+            "id": "a4-shelter-speaker",
+            "x": 2984,
+            "y": 869.0000000000001
+          }
+        ]
+      },
+      "campaignRunId": "eq-mvw35tg3-84xgprgd",
+      "stage": 32,
+      "success": true,
+      "residents": [
+        {
+          "id": "a4-shelter-speaker",
+          "hp": 1450,
+          "dead": false
+        }
+      ],
+      "rows": [
+        "A4.S32.REUNION.01",
+        "A4.S32.REUNION.02",
+        "A4.S32.REUNION.03",
+        "A4.S32.REUNION.04",
+        "A4.S32.MISSING.01",
+        "A4.S32.MISSING.02",
+        "A4.S32.MISSING.03",
+        "A4.S32.MISSING.04"
+      ]
+    },
+    "rescued": {
+      "ids": [
+        "a4-rescue-0",
+        "a4-rescue-1",
+        "a4-rescue-2",
+        "a4-rescue-3"
+      ],
+      "sourceRun": "honro-map-stage-39-1793466005389",
+      "campaignRunId": "eq-mvw35tg3-84xgprgd",
+      "stage": 39,
+      "success": true,
+      "residents": [
+        {
+          "id": "a4-rescue-0",
+          "hp": 1450,
+          "dead": false
+        },
+        {
+          "id": "a4-rescue-1",
+          "hp": 1450,
+          "dead": false
+        },
+        {
+          "id": "a4-rescue-2",
+          "hp": 1450,
+          "dead": false
+        },
+        {
+          "id": "a4-rescue-3",
+          "hp": 1450,
+          "dead": false
+        }
+      ],
+      "rows": [
+        "A4.S39.BOSS.01",
+        "A4.S39.BOSS.02",
+        "A4.S39.TIDE.01"
+      ]
+    },
+    "run": "eq-mvw35tg3-84xgprgd",
+    "entry": {
+      "fromStage": 39,
+      "targetStage": 40,
+      "sourceRun": "honro-map-stage-39-1793466005389",
+      "runId": "eq-mvw35tg3-84xgprgd"
+    },
+    "residents": [
+      {
+        "id": "a4-rescue-0",
+        "hp": 1450,
+        "dead": false
+      },
+      {
+        "id": "a4-rescue-1",
+        "hp": 1450,
+        "dead": false
+      },
+      {
+        "id": "a4-rescue-2",
+        "hp": 1450,
+        "dead": false
+      },
+      {
+        "id": "a4-rescue-3",
+        "hp": 1450,
+        "dead": false
+      }
+    ]
+  },
+  "errors": []
+}

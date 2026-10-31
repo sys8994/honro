@@ -1,0 +1,2892 @@
+{
+  "version": 2,
+  "revision": 13,
+  "cleared": {
+    "1": {
+      "visits": 1,
+      "rounds": 5,
+      "stars": 1,
+      "shots": 0
+    },
+    "2": {
+      "visits": 1,
+      "rounds": 5,
+      "stars": 1,
+      "shots": 0
+    },
+    "3": {
+      "visits": 1,
+      "rounds": 5,
+      "stars": 1,
+      "shots": 0
+    },
+    "4": {
+      "visits": 1,
+      "rounds": 5,
+      "stars": 1,
+      "shots": 0
+    },
+    "5": {
+      "visits": 1,
+      "rounds": 5,
+      "stars": 1,
+      "shots": 0
+    },
+    "6": {
+      "visits": 1,
+      "rounds": 5,
+      "stars": 1,
+      "shots": 0
+    },
+    "7": {
+      "visits": 1,
+      "rounds": 5,
+      "stars": 1,
+      "shots": 0
+    },
+    "8": {
+      "visits": 1,
+      "rounds": 5,
+      "stars": 1,
+      "shots": 0
+    },
+    "9": {
+      "visits": 1,
+      "rounds": 5,
+      "stars": 1,
+      "shots": 0
+    },
+    "10": {
+      "visits": 1,
+      "rounds": 5,
+      "stars": 1,
+      "shots": 0
+    },
+    "11": {
+      "visits": 1,
+      "rounds": 5,
+      "stars": 1,
+      "shots": 0
+    },
+    "12": {
+      "visits": 1,
+      "rounds": 5,
+      "stars": 1,
+      "shots": 0
+    },
+    "13": {
+      "visits": 1,
+      "rounds": 5,
+      "stars": 1,
+      "shots": 0
+    },
+    "14": {
+      "visits": 1,
+      "rounds": 5,
+      "stars": 1,
+      "shots": 0
+    },
+    "15": {
+      "visits": 1,
+      "rounds": 5,
+      "stars": 1,
+      "shots": 0
+    },
+    "16": {
+      "visits": 1,
+      "rounds": 5,
+      "stars": 1,
+      "shots": 0
+    },
+    "17": {
+      "visits": 1,
+      "rounds": 5,
+      "stars": 1,
+      "shots": 0
+    },
+    "18": {
+      "visits": 1,
+      "rounds": 5,
+      "stars": 1,
+      "shots": 0
+    },
+    "19": {
+      "visits": 1,
+      "rounds": 5,
+      "stars": 1,
+      "shots": 0
+    },
+    "20": {
+      "visits": 1,
+      "rounds": 5,
+      "stars": 1,
+      "shots": 0
+    },
+    "21": {
+      "visits": 1,
+      "rounds": 5,
+      "stars": 1,
+      "shots": 0
+    },
+    "22": {
+      "visits": 1,
+      "rounds": 5,
+      "stars": 1,
+      "shots": 0
+    },
+    "23": {
+      "visits": 1,
+      "rounds": 5,
+      "stars": 1,
+      "shots": 0
+    },
+    "24": {
+      "visits": 1,
+      "rounds": 5,
+      "stars": 1,
+      "shots": 0
+    },
+    "25": {
+      "visits": 1,
+      "rounds": 5,
+      "stars": 1,
+      "shots": 0
+    },
+    "26": {
+      "visits": 1,
+      "rounds": 5,
+      "stars": 1,
+      "shots": 0
+    },
+    "27": {
+      "visits": 1,
+      "rounds": 5,
+      "stars": 1,
+      "shots": 0
+    },
+    "28": {
+      "visits": 1,
+      "rounds": 5,
+      "stars": 1,
+      "shots": 0
+    },
+    "29": {
+      "visits": 1,
+      "rounds": 5,
+      "stars": 1,
+      "shots": 0
+    },
+    "30": {
+      "visits": 1,
+      "rounds": 5,
+      "stars": 1,
+      "shots": 0
+    },
+    "31": {
+      "visits": 1,
+      "rounds": 13
+    },
+    "32": {
+      "visits": 1,
+      "rounds": 8
+    },
+    "33": {
+      "visits": 1,
+      "rounds": 0
+    },
+    "34": {
+      "visits": 1,
+      "rounds": 0
+    },
+    "35": {
+      "visits": 1,
+      "rounds": 0
+    },
+    "36": {
+      "visits": 1,
+      "rounds": 0
+    },
+    "37": {
+      "visits": 1,
+      "rounds": 0
+    },
+    "38": {
+      "visits": 1,
+      "rounds": 0
+    }
+  },
+  "party": [
+    "archer",
+    "mage",
+    "knight",
+    "occultist"
+  ],
+  "loadouts": {
+    "mage": [
+      "M01",
+      "M06",
+      "M02",
+      "M03"
+    ],
+    "archer": [
+      "A01",
+      "A14",
+      "A02",
+      "A05"
+    ],
+    "knight": [
+      "S00",
+      "S01",
+      "S06",
+      "S08"
+    ],
+    "occultist": [
+      "O01",
+      "O02",
+      "O06",
+      "O13"
+    ]
+  },
+  "tuning": {
+    "mage": 0.5,
+    "archer": 0.5,
+    "knight": 0.5,
+    "occultist": 0.5
+  },
+  "settings": {
+    "sound": true,
+    "music": false,
+    "volume": 0.35,
+    "assist": false,
+    "shake": true,
+    "quality": "high",
+    "difficulty": "normal",
+    "speed": 2,
+    "playerSpeed": 1,
+    "orientation": "landscape",
+    "musicVolume": 0.65,
+    "minimapVisible": true,
+    "debugTerrainOutline": false
+  },
+  "saved": null,
+  "lastStage": 38,
+  "mapNode": 39,
+  "tutorial": false,
+  "heroes": {
+    "mage": {
+      "xp": 225393,
+      "ranks": {
+        "M01": 1,
+        "M06": 5,
+        "M02": 5,
+        "M03": 5
+      },
+      "statTraining": 30,
+      "kills": 9,
+      "damage": 8244,
+      "skillRevision": 1,
+      "martialRevision": 1,
+      "equipmentIds": [
+        "itm_da_05",
+        "itm_co_08"
+      ]
+    },
+    "archer": {
+      "xp": 225393,
+      "ranks": {
+        "A01": 1,
+        "A14": 5,
+        "A02": 5,
+        "A05": 5
+      },
+      "statTraining": 30,
+      "kills": 8,
+      "damage": 7918,
+      "skillRevision": 1,
+      "martialRevision": 1,
+      "equipmentIds": [
+        "itm_se_05",
+        "itm_co_11"
+      ]
+    },
+    "knight": {
+      "xp": 225393,
+      "ranks": {
+        "S00": 1,
+        "S03": 1,
+        "S05": 1,
+        "S07": 1,
+        "S01": 5,
+        "S06": 5,
+        "S08": 5
+      },
+      "statTraining": 27,
+      "kills": 16,
+      "damage": 8318,
+      "skillRevision": 1,
+      "martialRevision": 1,
+      "equipmentIds": [
+        "itm_hw_05",
+        "itm_co_01"
+      ]
+    },
+    "occultist": {
+      "xp": 225393,
+      "ranks": {
+        "O01": 1,
+        "O06": 6,
+        "O11": 1,
+        "O12": 1,
+        "O02": 5,
+        "O13": 5
+      },
+      "statTraining": 27,
+      "kills": 13,
+      "damage": 5911,
+      "skillRevision": 1,
+      "martialRevision": 1,
+      "occultRevision": 1,
+      "equipmentIds": [
+        "itm_so_05",
+        "itm_co_02"
+      ]
+    }
+  },
+  "recruited": [
+    "archer",
+    "mage",
+    "knight",
+    "occultist"
+  ],
+  "schema": 5,
+  "game": "honro",
+  "seen": {
+    "rest-interlude-v1-31": true,
+    "act4-preview-31-arrival": true,
+    "act4-preview-31-boat_approach": true,
+    "act4-preview-31-board_ready": true,
+    "rest-interlude-v1-32": true,
+    "act4-preview-32-reunion": true,
+    "act4-preview-32-missing_four": true,
+    "rest-interlude-v1-33": true
+  },
+  "record": [
+    {
+      "place": "강 끝의 갈대",
+      "text": ""
+    },
+    {
+      "place": "강 끝의 갈대",
+      "text": ""
+    },
+    {
+      "place": "빈 포구",
+      "text": ""
+    },
+    {
+      "place": "빈 포구",
+      "text": ""
+    },
+    {
+      "place": "물 빠진 갯길",
+      "text": ""
+    }
+  ],
+  "honroFlags": {
+    "cleared-31": true,
+    "cleared-32": true
+  },
+  "equipment": {
+    "schema": 1,
+    "definitionRevision": 1,
+    "runId": "eq-mvw35tg3-84xgprgd",
+    "ownedItemIds": [
+      "itm_se_01",
+      "itm_da_01",
+      "itm_hw_01",
+      "itm_so_01",
+      "itm_se_02",
+      "itm_da_02",
+      "itm_hw_02",
+      "itm_co_01",
+      "itm_co_02",
+      "itm_so_02",
+      "itm_se_05",
+      "itm_da_05",
+      "itm_hw_05",
+      "itm_so_05",
+      "itm_co_11",
+      "itm_co_03",
+      "itm_se_03",
+      "itm_da_03",
+      "itm_hw_03",
+      "itm_so_03",
+      "itm_co_08",
+      "itm_se_06"
+    ],
+    "eligibleEventIds": [
+      "eq_se_t3b"
+    ],
+    "equippedByClass": {
+      "archer": {
+        "personal": "itm_se_05",
+        "common": "itm_co_11"
+      },
+      "mage": {
+        "personal": "itm_da_05",
+        "common": "itm_co_08"
+      },
+      "knight": {
+        "personal": "itm_hw_05",
+        "common": "itm_co_01"
+      },
+      "occultist": {
+        "personal": "itm_so_05",
+        "common": "itm_co_02"
+      }
+    },
+    "rewardLedger": {
+      "eq_se_start": {
+        "state": "committed",
+        "choiceGroup": null,
+        "selectedItemId": "itm_se_01",
+        "notified": true
+      },
+      "eq_da_join": {
+        "state": "committed",
+        "choiceGroup": null,
+        "selectedItemId": "itm_da_01",
+        "notified": true
+      },
+      "eq_hw_join": {
+        "state": "committed",
+        "choiceGroup": null,
+        "selectedItemId": "itm_hw_01",
+        "notified": true
+      },
+      "eq_so_join": {
+        "state": "committed",
+        "choiceGroup": null,
+        "selectedItemId": "itm_so_01",
+        "notified": true
+      },
+      "eq_se_ledger": {
+        "state": "committed",
+        "choiceGroup": null,
+        "selectedItemId": "itm_se_02",
+        "notified": true
+      },
+      "eq_da_gate": {
+        "state": "committed",
+        "choiceGroup": null,
+        "selectedItemId": "itm_da_02",
+        "notified": true
+      },
+      "eq_hw_bier": {
+        "state": "committed",
+        "choiceGroup": null,
+        "selectedItemId": "itm_hw_02",
+        "notified": true
+      },
+      "eq_co_01": {
+        "state": "committed",
+        "choiceGroup": null,
+        "selectedItemId": "itm_co_01",
+        "notified": true
+      },
+      "eq_co_02": {
+        "state": "committed",
+        "choiceGroup": null,
+        "selectedItemId": "itm_co_02",
+        "notified": true
+      },
+      "eq_co_t1_choice": {
+        "state": "committed",
+        "choiceGroup": "cg_co_t1",
+        "selectedItemId": "itm_co_03",
+        "notified": true
+      },
+      "eq_so_resident": {
+        "state": "committed",
+        "choiceGroup": null,
+        "selectedItemId": "itm_so_02",
+        "notified": true
+      },
+      "eq_se_t2_choice": {
+        "state": "committed",
+        "choiceGroup": "cg_se_t2",
+        "selectedItemId": "itm_se_03",
+        "notified": true
+      },
+      "eq_da_t2_choice": {
+        "state": "committed",
+        "choiceGroup": "cg_da_t2",
+        "selectedItemId": "itm_da_03",
+        "notified": true
+      },
+      "eq_hw_t2_choice": {
+        "state": "committed",
+        "choiceGroup": "cg_hw_t2",
+        "selectedItemId": "itm_hw_03",
+        "notified": true
+      },
+      "eq_so_t2_choice": {
+        "state": "committed",
+        "choiceGroup": "cg_so_t2",
+        "selectedItemId": "itm_so_03",
+        "notified": true
+      },
+      "eq_se_t3a": {
+        "state": "committed",
+        "choiceGroup": null,
+        "selectedItemId": "itm_se_05",
+        "notified": true
+      },
+      "eq_da_t3a": {
+        "state": "committed",
+        "choiceGroup": null,
+        "selectedItemId": "itm_da_05",
+        "notified": true
+      },
+      "eq_hw_t3a": {
+        "state": "committed",
+        "choiceGroup": null,
+        "selectedItemId": "itm_hw_05",
+        "notified": true
+      },
+      "eq_so_t3a": {
+        "state": "committed",
+        "choiceGroup": null,
+        "selectedItemId": "itm_so_05",
+        "notified": true
+      },
+      "eq_co_t2_choice": {
+        "state": "committed",
+        "choiceGroup": "cg_co_t2",
+        "selectedItemId": "itm_co_08",
+        "notified": true
+      },
+      "eq_co_11": {
+        "state": "committed",
+        "choiceGroup": null,
+        "selectedItemId": "itm_co_11",
+        "notified": true
+      },
+      "eq_se_t3b": {
+        "state": "committed",
+        "choiceGroup": null,
+        "selectedItemId": "itm_se_06",
+        "notified": true
+      }
+    },
+    "initialAutoEquip": true,
+    "basicPrepared": [
+      "archer",
+      "mage",
+      "knight",
+      "occultist"
+    ]
+  },
+  "honroAct23V4PresentationRevision": 1,
+  "honroReviewed11PresentationRevision": 1,
+  "honroReviewedPresentationRevisions": {
+    "12": 512,
+    "13": 513,
+    "14": 514,
+    "15": 515,
+    "16": 516,
+    "17": 517,
+    "18": 518,
+    "19": 519,
+    "20": 520
+  },
+  "honroReviewed21PresentationRevision": 1,
+  "honroReviewed22PresentationRevision": 1,
+  "honroReviewedAct3Presentation": {
+    "23": 1,
+    "24": 1,
+    "25": 1,
+    "26": 1,
+    "27": 1,
+    "28": 1,
+    "29": 1,
+    "30": 1
+  },
+  "honroReviewed30EndingPresentation": 1,
+  "honroJourney": {
+    "version": 1,
+    "talked": {},
+    "stageId": 31,
+    "growthObserved": {
+      "session": "honro-map-stage-32-1793463406330",
+      "earned": {
+        "archer": 47,
+        "mage": 49,
+        "knight": 49,
+        "occultist": 47
+      }
+    },
+    "newGrowth": {
+      "mage": {
+        "stageId": 32,
+        "spent": 45,
+        "points": 4
+      },
+      "knight": {
+        "stageId": 32,
+        "spent": 45,
+        "points": 4
+      },
+      "occultist": {
+        "stageId": 31,
+        "spent": 45,
+        "points": 2
+      },
+      "archer": {
+        "stageId": 32,
+        "spent": 45,
+        "points": 2
+      }
+    },
+    "pendingDirect": 39
+  },
+  "honroAct4": {
+    "version": 1,
+    "runId": "eq-mvw35tg3-84xgprgd",
+    "completed": {
+      "31": {
+        "stage": 31,
+        "sourceRun": "honro-map-stage-31-1793462522633",
+        "campaignRunId": "eq-mvw35tg3-84xgprgd",
+        "success": true,
+        "residents": [],
+        "rows": [
+          "A4.S31.ENTRY.01",
+          "A4.S31.ENTRY.02",
+          "A4.S31.BOAT.01",
+          "A4.S31.BOARD.01"
+        ]
+      },
+      "32": {
+        "stage": 32,
+        "sourceRun": "honro-map-stage-32-1793463406330",
+        "campaignRunId": "eq-mvw35tg3-84xgprgd",
+        "success": true,
+        "residents": [
+          {
+            "id": "a4-shelter-speaker",
+            "hp": 1450,
+            "dead": false
+          }
+        ],
+        "rows": [
+          "A4.S32.REUNION.01",
+          "A4.S32.REUNION.02",
+          "A4.S32.REUNION.03",
+          "A4.S32.REUNION.04",
+          "A4.S32.MISSING.01",
+          "A4.S32.MISSING.02",
+          "A4.S32.MISSING.03",
+          "A4.S32.MISSING.04"
+        ]
+      }
+    },
+    "factEvents": {
+      "eq_se_t3b": {
+        "eventId": "eq_se_t3b",
+        "stage": 31,
+        "sourceRun": "honro-map-stage-31-1793462522633",
+        "campaignRunId": "eq-mvw35tg3-84xgprgd",
+        "officialAct4": true,
+        "proof": {
+          "boarded": true,
+          "party": [
+            "archer",
+            "mage",
+            "knight",
+            "occultist"
+          ]
+        }
+      }
+    },
+    "safeSeven": {
+      "ids": [
+        "shelter-person-0",
+        "shelter-person-1",
+        "shelter-person-2",
+        "shelter-person-3",
+        "shelter-person-4",
+        "shelter-person-5",
+        "shelter-person-6"
+      ],
+      "sourceRun": "honro-map-stage-32-1793463406330",
+      "reportIds": [
+        "A4.S32.MISSING.01",
+        "A4.S32.MISSING.02",
+        "A4.S32.MISSING.03",
+        "A4.S32.MISSING.04"
+      ],
+      "reunionIds": [
+        "A4.S32.REUNION.01",
+        "A4.S32.REUNION.02",
+        "A4.S32.REUNION.03",
+        "A4.S32.REUNION.04"
+      ],
+      "reunionObserved": {
+        "sourceRun": "honro-map-stage-32-1793463406330",
+        "npc": "a4-shelter-speaker",
+        "hero": "archer",
+        "seenAt": 460.11700000005504,
+        "positions": [
+          {
+            "id": "archer",
+            "x": 2656.857152993221,
+            "y": 1030.578564079915
+          },
+          {
+            "id": "a4-shelter-speaker",
+            "x": 2984,
+            "y": 869.0000000000001
+          }
+        ]
+      },
+      "campaignRunId": "eq-mvw35tg3-84xgprgd",
+      "stage": 32,
+      "success": true,
+      "residents": [
+        {
+          "id": "a4-shelter-speaker",
+          "hp": 1450,
+          "dead": false
+        }
+      ],
+      "rows": [
+        "A4.S32.REUNION.01",
+        "A4.S32.REUNION.02",
+        "A4.S32.REUNION.03",
+        "A4.S32.REUNION.04",
+        "A4.S32.MISSING.01",
+        "A4.S32.MISSING.02",
+        "A4.S32.MISSING.03",
+        "A4.S32.MISSING.04"
+      ]
+    }
+  },
+  "honroGrowth": {
+    "version": 4,
+    "stages": {
+      "31": {
+        "combat": {},
+        "cleared": true,
+        "limit": {
+          "start": 158091,
+          "end": 178872,
+          "total": 20781,
+          "combat": 8312
+        },
+        "contribution": {
+          "version": 4,
+          "rewardBalance": 1,
+          "sequence": 202,
+          "total": 83124,
+          "combatLimit": 33248,
+          "actors": [
+            "archer",
+            "knight",
+            "mage",
+            "occultist"
+          ],
+          "factors": {
+            "archer": 1,
+            "mage": 1,
+            "knight": 1,
+            "occultist": 1
+          },
+          "owners": {
+            "archer": "archer",
+            "mage": "mage",
+            "knight": "knight",
+            "occultist": "occultist"
+          },
+          "enemies": {
+            "pilot31-west-entry-1": {
+              "id": "pilot31-west-entry-1",
+              "hp": 266,
+              "weight": 1,
+              "progress": 266,
+              "damage": {
+                "mage": 100
+              },
+              "support": {},
+              "threats": {},
+              "wounds": {},
+              "controls": {},
+              "defeated": true,
+              "settled": true
+            },
+            "pilot31-west-entry-2": {
+              "id": "pilot31-west-entry-2",
+              "hp": 332,
+              "weight": 1.45,
+              "progress": 332,
+              "damage": {
+                "mage": 145
+              },
+              "support": {},
+              "threats": {},
+              "wounds": {},
+              "controls": {},
+              "defeated": true,
+              "settled": true
+            },
+            "pilot31-west-entry-3": {
+              "id": "pilot31-west-entry-3",
+              "hp": 332,
+              "weight": 1.45,
+              "progress": 332,
+              "damage": {
+                "knight": 145
+              },
+              "support": {},
+              "threats": {},
+              "wounds": {},
+              "controls": {},
+              "defeated": true,
+              "settled": true
+            },
+            "pilot31-west-entry-4": {
+              "id": "pilot31-west-entry-4",
+              "hp": 266,
+              "weight": 1,
+              "progress": 266,
+              "damage": {
+                "archer": 100
+              },
+              "support": {},
+              "threats": {},
+              "wounds": {},
+              "controls": {},
+              "defeated": true,
+              "settled": true
+            },
+            "pilot31-west-entry-5": {
+              "id": "pilot31-west-entry-5",
+              "hp": 293,
+              "weight": 1.6,
+              "progress": 293,
+              "damage": {
+                "knight": 160
+              },
+              "support": {},
+              "threats": {},
+              "wounds": {},
+              "controls": {},
+              "defeated": true,
+              "settled": true
+            },
+            "pilot31-west-entry-6": {
+              "id": "pilot31-west-entry-6",
+              "hp": 372,
+              "weight": 1,
+              "progress": 372,
+              "damage": {
+                "mage": 85.75268817204301,
+                "knight": 14.24731182795699
+              },
+              "support": {
+                "knight": 13.16912972085386
+              },
+              "threats": {
+                "knight:0": 401
+              },
+              "wounds": {
+                "knight": [
+                  {
+                    "hp": 0,
+                    "unit": 0.03284072249589491
+                  }
+                ]
+              },
+              "controls": {},
+              "defeated": true,
+              "settled": true
+            },
+            "pilot31-west-entry-7": {
+              "id": "pilot31-west-entry-7",
+              "hp": 297,
+              "weight": 1.15,
+              "progress": 297,
+              "damage": {
+                "knight": 92.54208754208753,
+                "archer": 22.457912457912457
+              },
+              "support": {
+                "knight": 14.57799671592775
+              },
+              "threats": {
+                "knight:8": 386
+              },
+              "wounds": {
+                "knight": [
+                  {
+                    "hp": 0,
+                    "unit": 0.03776683087027914
+                  }
+                ]
+              },
+              "controls": {},
+              "defeated": true,
+              "settled": true
+            },
+            "pilot31-west-entry-8": {
+              "id": "pilot31-west-entry-8",
+              "hp": 372,
+              "weight": 1,
+              "progress": 372,
+              "damage": {
+                "archer": 100
+              },
+              "support": {
+                "knight": 13.661740558292284
+              },
+              "threats": {
+                "knight:0": 416
+              },
+              "wounds": {
+                "knight": [
+                  {
+                    "hp": 0,
+                    "unit": 0.03284072249589491
+                  }
+                ]
+              },
+              "controls": {},
+              "defeated": true,
+              "settled": true
+            },
+            "pilot31-west-crossfire-1": {
+              "id": "pilot31-west-crossfire-1",
+              "hp": 372,
+              "weight": 1,
+              "progress": 372,
+              "damage": {
+                "occultist": 100.00000000000001
+              },
+              "support": {
+                "knight": 13.267651888341547
+              },
+              "threats": {
+                "knight:9": 404
+              },
+              "wounds": {
+                "knight": [
+                  {
+                    "hp": 0,
+                    "unit": 0.03284072249589491
+                  }
+                ]
+              },
+              "controls": {},
+              "defeated": true,
+              "settled": true
+            },
+            "pilot31-west-crossfire-2": {
+              "id": "pilot31-west-crossfire-2",
+              "hp": 372,
+              "weight": 1,
+              "progress": 372,
+              "damage": {
+                "occultist": 100
+              },
+              "support": {
+                "knight": 12.118226600985224
+              },
+              "threats": {
+                "knight:5": 397
+              },
+              "wounds": {
+                "knight": [
+                  {
+                    "hp": 28,
+                    "unit": 0.03284072249589491
+                  }
+                ]
+              },
+              "controls": {},
+              "defeated": true,
+              "settled": true
+            },
+            "pilot31-west-crossfire-3": {
+              "id": "pilot31-west-crossfire-3",
+              "hp": 332,
+              "weight": 1.45,
+              "progress": 332,
+              "damage": {
+                "occultist": 145
+              },
+              "support": {},
+              "threats": {},
+              "wounds": {},
+              "controls": {},
+              "defeated": true,
+              "settled": true
+            },
+            "pilot31-west-crossfire-4": {
+              "id": "pilot31-west-crossfire-4",
+              "hp": 332,
+              "weight": 1.45,
+              "progress": 332,
+              "damage": {
+                "mage": 127.96686746987952,
+                "knight": 17.033132530120483
+              },
+              "support": {},
+              "threats": {},
+              "wounds": {},
+              "controls": {},
+              "defeated": true,
+              "settled": true
+            },
+            "pilot31-west-crossfire-5": {
+              "id": "pilot31-west-crossfire-5",
+              "hp": 356,
+              "weight": 1.15,
+              "progress": 356,
+              "damage": {
+                "mage": 107.24719101123594,
+                "occultist": 7.752808988764044
+              },
+              "support": {
+                "knight": 15.711001642036123
+              },
+              "threats": {
+                "knight:0": 416
+              },
+              "wounds": {},
+              "controls": {},
+              "defeated": true,
+              "settled": true
+            },
+            "pilot31-west-crossfire-6": {
+              "id": "pilot31-west-crossfire-6",
+              "hp": 372,
+              "weight": 1,
+              "progress": 372,
+              "damage": {
+                "mage": 100
+              },
+              "support": {
+                "occultist": 20.7154297917779
+              },
+              "threats": {
+                "occultist:0": 395
+              },
+              "wounds": {
+                "occultist": [
+                  {
+                    "hp": 7,
+                    "unit": 0.053390282968499736
+                  }
+                ]
+              },
+              "controls": {},
+              "defeated": true,
+              "settled": true
+            },
+            "pilot31-west-crossfire-7": {
+              "id": "pilot31-west-crossfire-7",
+              "hp": 266,
+              "weight": 1,
+              "progress": 266,
+              "damage": {
+                "mage": 69.92481203007519,
+                "occultist": 30.075187969924812
+              },
+              "support": {
+                "occultist": 8.222103577148959
+              },
+              "threats": {
+                "occultist:0": 372
+              },
+              "wounds": {
+                "occultist": [
+                  {
+                    "hp": 218,
+                    "unit": 0.053390282968499736
+                  }
+                ]
+              },
+              "controls": {},
+              "defeated": true,
+              "settled": true
+            },
+            "pilot31-west-crossfire-8": {
+              "id": "pilot31-west-crossfire-8",
+              "hp": 266,
+              "weight": 1,
+              "progress": 266,
+              "damage": {
+                "knight": 100
+              },
+              "support": {
+                "occultist": 5.766150560597971
+              },
+              "threats": {
+                "occultist:0": 262
+              },
+              "wounds": {
+                "occultist": [
+                  {
+                    "hp": 154,
+                    "unit": 0.053390282968499736
+                  }
+                ]
+              },
+              "controls": {},
+              "defeated": true,
+              "settled": true
+            },
+            "pilot31-west-crossfire-9": {
+              "id": "pilot31-west-crossfire-9",
+              "hp": 372,
+              "weight": 1,
+              "progress": 372,
+              "damage": {
+                "archer": 100
+              },
+              "support": {
+                "knight": 7.528446384628051
+              },
+              "threats": {
+                "knight:0": 369
+              },
+              "wounds": {
+                "knight": [
+                  {
+                    "hp": 139.75880758807588,
+                    "unit": 0.03284072249589491
+                  }
+                ]
+              },
+              "controls": {},
+              "defeated": true,
+              "settled": true
+            },
+            "pilot31-ridge-court-1": {
+              "id": "pilot31-ridge-court-1",
+              "hp": 332,
+              "weight": 1.45,
+              "progress": 332,
+              "damage": {
+                "knight": 145
+              },
+              "support": {
+                "knight": 11.238095238095237
+              },
+              "threats": {
+                "knight:0": 381
+              },
+              "wounds": {
+                "knight": [
+                  {
+                    "hp": 145,
+                    "unit": 0.047619047619047616
+                  }
+                ]
+              },
+              "controls": {},
+              "defeated": true,
+              "settled": true
+            },
+            "pilot31-ridge-court-2": {
+              "id": "pilot31-ridge-court-2",
+              "hp": 266,
+              "weight": 1,
+              "progress": 266,
+              "damage": {
+                "occultist": 46.99248120300752,
+                "archer": 53.00751879699248
+              },
+              "support": {
+                "knight": 7.355139209184486
+              },
+              "threats": {
+                "knight:4": 361
+              },
+              "wounds": {
+                "knight": [
+                  {
+                    "hp": 137.0360110803324,
+                    "unit": 0.03284072249589491
+                  }
+                ]
+              },
+              "controls": {},
+              "defeated": true,
+              "settled": true
+            },
+            "pilot31-ridge-court-3": {
+              "id": "pilot31-ridge-court-3",
+              "hp": 372,
+              "weight": 1,
+              "progress": 372,
+              "damage": {
+                "knight": 100
+              },
+              "support": {
+                "archer": 12.724014336917563
+              },
+              "threats": {
+                "archer:0": 377
+              },
+              "wounds": {
+                "archer": [
+                  {
+                    "hp": 164,
+                    "unit": 0.05973715651135006
+                  }
+                ]
+              },
+              "controls": {},
+              "defeated": true,
+              "settled": true
+            },
+            "pilot31-ridge-court-4": {
+              "id": "pilot31-ridge-court-4",
+              "hp": 332,
+              "weight": 1.45,
+              "progress": 332,
+              "damage": {
+                "occultist": 118.35843373493975,
+                "knight": 26.641566265060238
+              },
+              "support": {
+                "knight": 11.476190476190476
+              },
+              "threats": {
+                "knight:8": 388
+              },
+              "wounds": {
+                "knight": [
+                  {
+                    "hp": 147,
+                    "unit": 0.047619047619047616
+                  }
+                ]
+              },
+              "controls": {},
+              "defeated": true,
+              "settled": true
+            },
+            "pilot31-ridge-court-5": {
+              "id": "pilot31-ridge-court-5",
+              "hp": 319,
+              "weight": 1,
+              "progress": 319,
+              "damage": {
+                "occultist": 100.00000000000001
+              },
+              "support": {},
+              "threats": {},
+              "wounds": {},
+              "controls": {},
+              "defeated": true,
+              "settled": true
+            },
+            "pilot31-ridge-court-6": {
+              "id": "pilot31-ridge-court-6",
+              "hp": 372,
+              "weight": 1,
+              "progress": 372,
+              "damage": {
+                "knight": 100
+              },
+              "support": {
+                "archer": 8.422939068100359
+              },
+              "threats": {
+                "archer:0": 363
+              },
+              "wounds": {
+                "archer": [
+                  {
+                    "hp": 222,
+                    "unit": 0.05973715651135006
+                  }
+                ]
+              },
+              "controls": {},
+              "defeated": true,
+              "settled": true
+            },
+            "pilot31-ridge-court-7": {
+              "id": "pilot31-ridge-court-7",
+              "hp": 297,
+              "weight": 1.15,
+              "progress": 297,
+              "damage": {
+                "archer": 46.46464646464646,
+                "knight": 68.53535353535352
+              },
+              "support": {
+                "archer": 10.304659498207883,
+                "knight": 14.577996715927748
+              },
+              "threats": {
+                "archer:0": 386,
+                "knight:0": 386
+              },
+              "wounds": {
+                "archer": [
+                  {
+                    "hp": 236,
+                    "unit": 0.06869772998805256
+                  }
+                ]
+              },
+              "controls": {},
+              "defeated": true,
+              "settled": true
+            },
+            "pilot31-ridge-court-8": {
+              "id": "pilot31-ridge-court-8",
+              "hp": 1191,
+              "weight": 1.6,
+              "progress": 1191,
+              "damage": {
+                "knight": 62.19983207388749,
+                "archer": 82.88832913518053,
+                "mage": 14.91183879093199
+              },
+              "support": {},
+              "threats": {},
+              "wounds": {},
+              "controls": {},
+              "defeated": true,
+              "settled": true
+            },
+            "pilot31-ridge-court-9": {
+              "id": "pilot31-ridge-court-9",
+              "hp": 372,
+              "weight": 1,
+              "progress": 372,
+              "damage": {
+                "knight": 100
+              },
+              "support": {},
+              "threats": {},
+              "wounds": {},
+              "controls": {},
+              "defeated": true,
+              "settled": true
+            },
+            "pilot31-lookout-return-1": {
+              "id": "pilot31-lookout-return-1",
+              "hp": 372,
+              "weight": 1,
+              "progress": 372,
+              "damage": {
+                "mage": 100
+              },
+              "support": {},
+              "threats": {},
+              "wounds": {},
+              "controls": {},
+              "defeated": true,
+              "settled": true
+            },
+            "pilot31-lookout-return-2": {
+              "id": "pilot31-lookout-return-2",
+              "hp": 446,
+              "weight": 1,
+              "progress": 446,
+              "damage": {
+                "mage": 100
+              },
+              "support": {
+                "knight": 7.816091954022989
+              },
+              "threats": {
+                "knight:9": 384
+              },
+              "wounds": {
+                "knight": [
+                  {
+                    "hp": 146,
+                    "unit": 0.03284072249589491
+                  }
+                ]
+              },
+              "controls": {},
+              "defeated": true,
+              "settled": true
+            },
+            "pilot31-lookout-return-3": {
+              "id": "pilot31-lookout-return-3",
+              "hp": 297,
+              "weight": 1.15,
+              "progress": 297,
+              "damage": {
+                "archer": 42.59259259259259,
+                "knight": 72.4074074074074
+              },
+              "support": {
+                "archer": 24.250298685782553,
+                "knight": 12.76518883415435
+              },
+              "threats": {
+                "archer:0": 392,
+                "knight:0": 338
+              },
+              "wounds": {
+                "archer": [
+                  {
+                    "hp": 39,
+                    "unit": 0.06869772998805256
+                  }
+                ]
+              },
+              "controls": {},
+              "defeated": true,
+              "settled": true
+            },
+            "pilot31-lookout-return-4": {
+              "id": "pilot31-lookout-return-4",
+              "hp": 332,
+              "weight": 1.45,
+              "progress": 332,
+              "damage": {
+                "mage": 144.99999999999997
+              },
+              "support": {
+                "mage": 12.40474685607231
+              },
+              "threats": {
+                "mage:8": 389
+              },
+              "wounds": {
+                "mage": [
+                  {
+                    "hp": 233.81233933161954,
+                    "unit": 0.07993384785005513
+                  }
+                ]
+              },
+              "controls": {},
+              "defeated": true,
+              "settled": true
+            },
+            "pilot31-lookout-return-5": {
+              "id": "pilot31-lookout-return-5",
+              "hp": 332,
+              "weight": 1.45,
+              "progress": 332,
+              "damage": {
+                "occultist": 81.67168674698794,
+                "archer": 63.32831325301205
+              },
+              "support": {
+                "knight": 18.285714285714285
+              },
+              "threats": {
+                "knight:0": 227,
+                "knight:5": 391
+              },
+              "wounds": {
+                "knight": [
+                  {
+                    "hp": 234,
+                    "unit": 0.047619047619047616
+                  }
+                ]
+              },
+              "controls": {},
+              "defeated": true,
+              "settled": true
+            },
+            "pilot31-lookout-return-6": {
+              "id": "pilot31-lookout-return-6",
+              "hp": 266,
+              "weight": 1,
+              "progress": 266,
+              "damage": {
+                "occultist": 100
+              },
+              "support": {
+                "knight": 6.765188834154352
+              },
+              "threats": {
+                "knight:0": 332
+              },
+              "wounds": {
+                "knight": [
+                  {
+                    "hp": 126,
+                    "unit": 0.03284072249589491
+                  }
+                ]
+              },
+              "controls": {},
+              "defeated": true,
+              "settled": true
+            },
+            "pilot31-lookout-return-7": {
+              "id": "pilot31-lookout-return-7",
+              "hp": 372,
+              "weight": 1,
+              "progress": 372,
+              "damage": {
+                "occultist": 100
+              },
+              "support": {},
+              "threats": {},
+              "wounds": {},
+              "controls": {},
+              "defeated": true,
+              "settled": true
+            },
+            "pilot31-lookout-return-8": {
+              "id": "pilot31-lookout-return-8",
+              "hp": 372,
+              "weight": 1,
+              "progress": 372,
+              "damage": {
+                "occultist": 100
+              },
+              "support": {},
+              "threats": {},
+              "wounds": {},
+              "controls": {},
+              "defeated": true,
+              "settled": true
+            }
+          },
+          "objectives": {},
+          "objectiveEvidence": {
+            "terrain": {},
+            "escorts": {},
+            "arrivals": {}
+          },
+          "paid": {
+            "archer": 14572,
+            "knight": 26123,
+            "mage": 21553,
+            "occultist": 20876
+          },
+          "spent": 83124,
+          "forfeited": 0,
+          "combatSpent": 33224,
+          "completed": true,
+          "systemForfeited": 0,
+          "capDiscarded": {
+            "archer": 0,
+            "knight": 0,
+            "mage": 0,
+            "occultist": 0
+          }
+        },
+        "policy": 4
+      },
+      "32": {
+        "combat": {},
+        "cleared": true,
+        "limit": {
+          "start": 178872,
+          "end": 201290,
+          "total": 22418,
+          "combat": 8967
+        },
+        "contribution": {
+          "version": 4,
+          "rewardBalance": 1,
+          "sequence": 105,
+          "total": 89672,
+          "combatLimit": 35868,
+          "actors": [
+            "archer",
+            "knight",
+            "mage",
+            "occultist"
+          ],
+          "factors": {
+            "archer": 1.1,
+            "mage": 1,
+            "knight": 1,
+            "occultist": 1
+          },
+          "owners": {
+            "archer": "archer",
+            "mage": "mage",
+            "knight": "knight",
+            "occultist": "occultist"
+          },
+          "enemies": {
+            "a4-32-a-1": {
+              "id": "a4-32-a-1",
+              "hp": 1466,
+              "weight": 1,
+              "progress": 1466,
+              "damage": {
+                "archer": 55.18417462482946,
+                "mage": 44.81582537517053
+              },
+              "support": {},
+              "threats": {},
+              "wounds": {},
+              "controls": {},
+              "defeated": true,
+              "settled": true
+            },
+            "a4-32-a-2": {
+              "id": "a4-32-a-2",
+              "hp": 1466,
+              "weight": 1,
+              "progress": 1466,
+              "damage": {
+                "archer": 51.84174624829468,
+                "knight": 48.158253751705324
+              },
+              "support": {},
+              "threats": {},
+              "wounds": {},
+              "controls": {},
+              "defeated": true,
+              "settled": true
+            },
+            "a4-32-a-3": {
+              "id": "a4-32-a-3",
+              "hp": 1466,
+              "weight": 1,
+              "progress": 1466,
+              "damage": {
+                "occultist": 13.847203274215552,
+                "knight": 38.54024556616643,
+                "archer": 47.61255115961801
+              },
+              "support": {
+                "knight": 4.81658692185008,
+                "occultist": 6.327800829875519
+              },
+              "threats": {
+                "knight:0": 151,
+                "occultist:1": 145,
+                "occultist:5": 146
+              },
+              "wounds": {
+                "knight": [
+                  {
+                    "hp": 0,
+                    "unit": 0.03189792663476874
+                  }
+                ],
+                "occultist": [
+                  {
+                    "hp": 169,
+                    "unit": 0.05186721991701245
+                  }
+                ]
+              },
+              "controls": {},
+              "defeated": true,
+              "settled": true
+            },
+            "a4-32-b-1": {
+              "id": "a4-32-b-1",
+              "hp": 1466,
+              "weight": 1,
+              "progress": 1466,
+              "damage": {
+                "occultist": 17.189631650750343,
+                "archer": 49.727148703956345,
+                "mage": 33.08321964529332
+              },
+              "support": {},
+              "threats": {},
+              "wounds": {},
+              "controls": {},
+              "defeated": true,
+              "settled": true
+            },
+            "a4-32-b-2": {
+              "id": "a4-32-b-2",
+              "hp": 1466,
+              "weight": 1,
+              "progress": 1466,
+              "damage": {
+                "archer": 100
+              },
+              "support": {},
+              "threats": {},
+              "wounds": {},
+              "controls": {},
+              "defeated": true,
+              "settled": true
+            },
+            "a4-32-b-3": {
+              "id": "a4-32-b-3",
+              "hp": 1466,
+              "weight": 1,
+              "progress": 1466,
+              "damage": {
+                "occultist": 46.657571623465216,
+                "archer": 53.34242837653479
+              },
+              "support": {
+                "knight": 5.03987240829346,
+                "archer": 5.336426914153131
+              },
+              "threats": {
+                "knight:0": 98,
+                "knight:2": 60,
+                "archer:2": 92
+              },
+              "wounds": {
+                "knight": [
+                  {
+                    "hp": 0,
+                    "unit": 0.03189792663476874
+                  }
+                ],
+                "archer": [
+                  {
+                    "hp": 0,
+                    "unit": 0.058004640371229696
+                  }
+                ]
+              },
+              "controls": {},
+              "defeated": true,
+              "settled": true
+            },
+            "a4-32-b-4": {
+              "id": "a4-32-b-4",
+              "hp": 1686,
+              "weight": 1.15,
+              "progress": 1686,
+              "damage": {
+                "knight": 30.352906287069985,
+                "mage": 84.64709371293
+              },
+              "support": {
+                "occultist": 1.789419087136929,
+                "knight": 1.6507177033492821
+              },
+              "threats": {
+                "occultist:0": 72,
+                "knight:1": 54
+              },
+              "wounds": {
+                "occultist": [
+                  {
+                    "hp": 42,
+                    "unit": 0.059647302904564305
+                  }
+                ],
+                "knight": [
+                  {
+                    "hp": 9,
+                    "unit": 0.036682615629984046
+                  }
+                ]
+              },
+              "controls": {},
+              "defeated": true,
+              "settled": true
+            },
+            "a4-32-c-1": {
+              "id": "a4-32-c-1",
+              "hp": 2126,
+              "weight": 1.45,
+              "progress": 2126,
+              "damage": {
+                "knight": 129.17685794920038,
+                "occultist": 15.823142050799625
+              },
+              "support": {
+                "knight": 5.233413078149921,
+                "occultist": 3.008298755186722
+              },
+              "threats": {
+                "knight:0": 100,
+                "knight:4": 80,
+                "occultist:6": 96
+              },
+              "wounds": {
+                "knight": [
+                  {
+                    "hp": 66.85,
+                    "unit": 0.046251993620414676
+                  }
+                ],
+                "occultist": [
+                  {
+                    "hp": 56,
+                    "unit": 0.07520746887966805
+                  }
+                ]
+              },
+              "controls": {},
+              "defeated": true,
+              "settled": true
+            },
+            "a4-32-c-2": {
+              "id": "a4-32-c-2",
+              "hp": 1466,
+              "weight": 1,
+              "progress": 1466,
+              "damage": {
+                "mage": 56.070941336971345,
+                "occultist": 9.413369713506139,
+                "knight": 34.51568894952251
+              },
+              "support": {
+                "occultist": 6.393053138803373
+              },
+              "threats": {
+                "occultist:0": 155,
+                "occultist:6": 138
+              },
+              "wounds": {
+                "occultist": [
+                  {
+                    "hp": 169.74193548387098,
+                    "unit": 0.05186721991701245
+                  }
+                ]
+              },
+              "controls": {},
+              "defeated": true,
+              "settled": true
+            },
+            "a4-32-d-1": {
+              "id": "a4-32-d-1",
+              "hp": 1466,
+              "weight": 1,
+              "progress": 1466,
+              "damage": {
+                "occultist": 43.929058663028655,
+                "mage": 56.070941336971345
+              },
+              "support": {
+                "knight": 2.881593601947446,
+                "occultist": 1.335226495617581
+              },
+              "threats": {
+                "knight:0": 87,
+                "occultist:0": 58,
+                "knight:2": 57
+              },
+              "wounds": {
+                "knight": [
+                  {
+                    "hp": 50.827586206896555,
+                    "unit": 0.03189792663476874
+                  }
+                ],
+                "occultist": [
+                  {
+                    "hp": 34,
+                    "unit": 0.05186721991701245
+                  }
+                ]
+              },
+              "controls": {},
+              "defeated": true,
+              "settled": true
+            },
+            "a4-32-d-2": {
+              "id": "a4-32-d-2",
+              "hp": 1466,
+              "weight": 1,
+              "progress": 1466,
+              "damage": {
+                "mage": 56.070941336971345,
+                "knight": 43.92905866302865
+              },
+              "support": {
+                "knight": 6.276071410197046
+              },
+              "threats": {
+                "knight:0": 155,
+                "knight:9": 158
+              },
+              "wounds": {
+                "knight": [
+                  {
+                    "hp": 116.24516129032259,
+                    "unit": 0.03189792663476874
+                  }
+                ]
+              },
+              "controls": {},
+              "defeated": true,
+              "settled": true
+            },
+            "a4-32-d-3": {
+              "id": "a4-32-d-3",
+              "hp": 1173,
+              "weight": 0.8,
+              "progress": 1173,
+              "damage": {
+                "archer": 32.25916453537937,
+                "occultist": 47.74083546462063
+              },
+              "support": {
+                "occultist": 1.8617908248342188
+              },
+              "threats": {
+                "occultist:0": 107
+              },
+              "wounds": {
+                "occultist": [
+                  {
+                    "hp": 62.13084112149532,
+                    "unit": 0.04149377593360996
+                  }
+                ]
+              },
+              "controls": {},
+              "defeated": true,
+              "settled": true
+            }
+          },
+          "objectives": {},
+          "objectiveEvidence": {
+            "terrain": {},
+            "escorts": {},
+            "arrivals": {}
+          },
+          "paid": {
+            "archer": 27633,
+            "knight": 23474,
+            "mage": 22317,
+            "occultist": 16248
+          },
+          "spent": 89672,
+          "forfeited": 0,
+          "combatSpent": 35862,
+          "completed": true,
+          "systemForfeited": 0,
+          "capDiscarded": {
+            "archer": 0,
+            "knight": 0,
+            "mage": 0,
+            "occultist": 0
+          }
+        },
+        "policy": 4
+      },
+      "33": {
+        "combat": {},
+        "cleared": false,
+        "limit": {
+          "start": 201290,
+          "end": 225393,
+          "total": 24103,
+          "combat": 9641
+        },
+        "contribution": {
+          "version": 4,
+          "rewardBalance": 1,
+          "sequence": 0,
+          "total": 96412,
+          "combatLimit": 38564,
+          "actors": [
+            "archer",
+            "knight",
+            "mage",
+            "occultist"
+          ],
+          "factors": {
+            "archer": 1.1,
+            "mage": 1,
+            "knight": 1,
+            "occultist": 1.1
+          },
+          "owners": {
+            "archer": "archer",
+            "mage": "mage",
+            "knight": "knight",
+            "occultist": "occultist"
+          },
+          "enemies": {
+            "a4-33-a-1": {
+              "id": "a4-33-a-1",
+              "hp": 1512,
+              "weight": 1,
+              "progress": 0,
+              "damage": {},
+              "support": {},
+              "threats": {},
+              "wounds": {},
+              "controls": {},
+              "defeated": false,
+              "settled": false
+            },
+            "a4-33-a-2": {
+              "id": "a4-33-a-2",
+              "hp": 1512,
+              "weight": 1,
+              "progress": 0,
+              "damage": {},
+              "support": {},
+              "threats": {},
+              "wounds": {},
+              "controls": {},
+              "defeated": false,
+              "settled": false
+            },
+            "a4-33-a-3": {
+              "id": "a4-33-a-3",
+              "hp": 1512,
+              "weight": 1,
+              "progress": 0,
+              "damage": {},
+              "support": {},
+              "threats": {},
+              "wounds": {},
+              "controls": {},
+              "defeated": false,
+              "settled": false
+            },
+            "a4-33-b-1": {
+              "id": "a4-33-b-1",
+              "hp": 1512,
+              "weight": 1,
+              "progress": 0,
+              "damage": {},
+              "support": {},
+              "threats": {},
+              "wounds": {},
+              "controls": {},
+              "defeated": false,
+              "settled": false
+            },
+            "a4-33-b-2": {
+              "id": "a4-33-b-2",
+              "hp": 1512,
+              "weight": 1,
+              "progress": 0,
+              "damage": {},
+              "support": {},
+              "threats": {},
+              "wounds": {},
+              "controls": {},
+              "defeated": false,
+              "settled": false
+            },
+            "a4-33-b-3": {
+              "id": "a4-33-b-3",
+              "hp": 2193,
+              "weight": 1.45,
+              "progress": 0,
+              "damage": {},
+              "support": {},
+              "threats": {},
+              "wounds": {},
+              "controls": {},
+              "defeated": false,
+              "settled": false
+            },
+            "a4-33-b-4": {
+              "id": "a4-33-b-4",
+              "hp": 1512,
+              "weight": 1,
+              "progress": 0,
+              "damage": {},
+              "support": {},
+              "threats": {},
+              "wounds": {},
+              "controls": {},
+              "defeated": false,
+              "settled": false
+            },
+            "a4-33-c-1": {
+              "id": "a4-33-c-1",
+              "hp": 2193,
+              "weight": 1.45,
+              "progress": 0,
+              "damage": {},
+              "support": {},
+              "threats": {},
+              "wounds": {},
+              "controls": {},
+              "defeated": false,
+              "settled": false
+            },
+            "a4-33-c-2": {
+              "id": "a4-33-c-2",
+              "hp": 1512,
+              "weight": 1,
+              "progress": 0,
+              "damage": {},
+              "support": {},
+              "threats": {},
+              "wounds": {},
+              "controls": {},
+              "defeated": false,
+              "settled": false
+            },
+            "a4-33-c-3": {
+              "id": "a4-33-c-3",
+              "hp": 2420,
+              "weight": 1.6,
+              "progress": 0,
+              "damage": {},
+              "support": {},
+              "threats": {},
+              "wounds": {},
+              "controls": {},
+              "defeated": false,
+              "settled": false
+            },
+            "a4-33-c-4": {
+              "id": "a4-33-c-4",
+              "hp": 1512,
+              "weight": 1,
+              "progress": 0,
+              "damage": {},
+              "support": {},
+              "threats": {},
+              "wounds": {},
+              "controls": {},
+              "defeated": false,
+              "settled": false
+            },
+            "a4-33-d-1": {
+              "id": "a4-33-d-1",
+              "hp": 2193,
+              "weight": 1.45,
+              "progress": 0,
+              "damage": {},
+              "support": {},
+              "threats": {},
+              "wounds": {},
+              "controls": {},
+              "defeated": false,
+              "settled": false
+            },
+            "a4-33-d-2": {
+              "id": "a4-33-d-2",
+              "hp": 1512,
+              "weight": 1,
+              "progress": 0,
+              "damage": {},
+              "support": {},
+              "threats": {},
+              "wounds": {},
+              "controls": {},
+              "defeated": false,
+              "settled": false
+            },
+            "a4-33-d-3": {
+              "id": "a4-33-d-3",
+              "hp": 1512,
+              "weight": 1,
+              "progress": 0,
+              "damage": {},
+              "support": {},
+              "threats": {},
+              "wounds": {},
+              "controls": {},
+              "defeated": false,
+              "settled": false
+            },
+            "a4-33-d-4": {
+              "id": "a4-33-d-4",
+              "hp": 1739,
+              "weight": 1.15,
+              "progress": 0,
+              "damage": {},
+              "support": {},
+              "threats": {},
+              "wounds": {},
+              "controls": {},
+              "defeated": false,
+              "settled": false
+            },
+            "a4-33-e-1": {
+              "id": "a4-33-e-1",
+              "hp": 1512,
+              "weight": 1,
+              "progress": 0,
+              "damage": {},
+              "support": {},
+              "threats": {},
+              "wounds": {},
+              "controls": {},
+              "defeated": false,
+              "settled": false
+            },
+            "a4-33-e-2": {
+              "id": "a4-33-e-2",
+              "hp": 1512,
+              "weight": 1,
+              "progress": 0,
+              "damage": {},
+              "support": {},
+              "threats": {},
+              "wounds": {},
+              "controls": {},
+              "defeated": false,
+              "settled": false
+            },
+            "a4-33-e-3": {
+              "id": "a4-33-e-3",
+              "hp": 1512,
+              "weight": 1,
+              "progress": 0,
+              "damage": {},
+              "support": {},
+              "threats": {},
+              "wounds": {},
+              "controls": {},
+              "defeated": false,
+              "settled": false
+            },
+            "a4-33-e-4": {
+              "id": "a4-33-e-4",
+              "hp": 1739,
+              "weight": 1.15,
+              "progress": 0,
+              "damage": {},
+              "support": {},
+              "threats": {},
+              "wounds": {},
+              "controls": {},
+              "defeated": false,
+              "settled": false
+            },
+            "a4-33-f-1": {
+              "id": "a4-33-f-1",
+              "hp": 1512,
+              "weight": 1,
+              "progress": 0,
+              "damage": {},
+              "support": {},
+              "threats": {},
+              "wounds": {},
+              "controls": {},
+              "defeated": false,
+              "settled": false
+            },
+            "a4-33-f-2": {
+              "id": "a4-33-f-2",
+              "hp": 1512,
+              "weight": 1,
+              "progress": 0,
+              "damage": {},
+              "support": {},
+              "threats": {},
+              "wounds": {},
+              "controls": {},
+              "defeated": false,
+              "settled": false
+            },
+            "a4-33-g-1": {
+              "id": "a4-33-g-1",
+              "hp": 1512,
+              "weight": 1,
+              "progress": 0,
+              "damage": {},
+              "support": {},
+              "threats": {},
+              "wounds": {},
+              "controls": {},
+              "defeated": false,
+              "settled": false
+            },
+            "a4-33-g-2": {
+              "id": "a4-33-g-2",
+              "hp": 2193,
+              "weight": 1.45,
+              "progress": 0,
+              "damage": {},
+              "support": {},
+              "threats": {},
+              "wounds": {},
+              "controls": {},
+              "defeated": false,
+              "settled": false
+            },
+            "a4-33-g-3": {
+              "id": "a4-33-g-3",
+              "hp": 1512,
+              "weight": 1,
+              "progress": 0,
+              "damage": {},
+              "support": {},
+              "threats": {},
+              "wounds": {},
+              "controls": {},
+              "defeated": false,
+              "settled": false
+            },
+            "a4-33-g-4": {
+              "id": "a4-33-g-4",
+              "hp": 1739,
+              "weight": 1.15,
+              "progress": 0,
+              "damage": {},
+              "support": {},
+              "threats": {},
+              "wounds": {},
+              "controls": {},
+              "defeated": false,
+              "settled": false
+            },
+            "a4-33-h-1": {
+              "id": "a4-33-h-1",
+              "hp": 2193,
+              "weight": 1.45,
+              "progress": 0,
+              "damage": {},
+              "support": {},
+              "threats": {},
+              "wounds": {},
+              "controls": {},
+              "defeated": false,
+              "settled": false
+            },
+            "a4-33-h-2": {
+              "id": "a4-33-h-2",
+              "hp": 1512,
+              "weight": 1,
+              "progress": 0,
+              "damage": {},
+              "support": {},
+              "threats": {},
+              "wounds": {},
+              "controls": {},
+              "defeated": false,
+              "settled": false
+            },
+            "a4-33-h-3": {
+              "id": "a4-33-h-3",
+              "hp": 2420,
+              "weight": 1.6,
+              "progress": 0,
+              "damage": {},
+              "support": {},
+              "threats": {},
+              "wounds": {},
+              "controls": {},
+              "defeated": false,
+              "settled": false
+            },
+            "a4-33-h-4": {
+              "id": "a4-33-h-4",
+              "hp": 1210,
+              "weight": 0.8,
+              "progress": 0,
+              "damage": {},
+              "support": {},
+              "threats": {},
+              "wounds": {},
+              "controls": {},
+              "defeated": false,
+              "settled": false
+            },
+            "a4-33-h-5": {
+              "id": "a4-33-h-5",
+              "hp": 1512,
+              "weight": 1,
+              "progress": 0,
+              "damage": {},
+              "support": {},
+              "threats": {},
+              "wounds": {},
+              "controls": {},
+              "defeated": false,
+              "settled": false
+            }
+          },
+          "objectives": {},
+          "objectiveEvidence": {
+            "terrain": {},
+            "escorts": {},
+            "arrivals": {}
+          },
+          "paid": {},
+          "spent": 0,
+          "forfeited": 0,
+          "combatSpent": 0,
+          "completed": false
+        },
+        "policy": 4
+      }
+    }
+  },
+  "honroNarrative": [
+    {
+      "id": "act1-v6:entry-31",
+      "title": "강 끝의 갈대",
+      "lines": [
+        [
+          "안내",
+          "물길과 선착장을 확보하기",
+          {
+            "kind": "guide",
+            "storyId": "act1-v6:entry-31",
+            "storyTitle": "강 끝의 갈대",
+            "focus": "interact",
+            "camera": {
+              "intent": "objective",
+              "targets": [
+                {
+                  "objective": "current"
+                }
+              ],
+              "padding": 100,
+              "maxScale": 0.75,
+              "id": "31:entry:0",
+              "speakerPolicy": "none"
+            }
+          }
+        ]
+      ]
+    },
+    {
+      "id": "31:강 끝의 갈대:저 선착장으로 건너야 해요. 들린 것들이 물길을 막고 있어요.",
+      "title": "강 끝의 갈대",
+      "lines": [
+        [
+          "연실",
+          "저 선착장으로 건너야 해요. 들린 것들이 물길을 막고 있어요.",
+          {
+            "kind": "character",
+            "act4PreviewRow": "A4.S31.ENTRY.01",
+            "camera": {
+              "intent": "portrait",
+              "targets": [
+                {
+                  "speaker": "연실"
+                }
+              ],
+              "padding": 40,
+              "maxScale": 1.05,
+              "participants": [
+                {
+                  "speaker": "연실"
+                },
+                {
+                  "actor": "knight"
+                }
+              ],
+              "id": "31:act4-preview-31-arrival:0",
+              "speakerPolicy": "world"
+            }
+          }
+        ],
+        [
+          "휘겸",
+          "물가부터 비웁시다. 연실, 배는 아직 대지 마시오.",
+          {
+            "kind": "character",
+            "act4PreviewRow": "A4.S31.ENTRY.02",
+            "camera": {
+              "intent": "portrait",
+              "targets": [
+                {
+                  "speaker": "휘겸"
+                }
+              ],
+              "padding": 40,
+              "maxScale": 1.05,
+              "participants": [
+                {
+                  "speaker": "연실"
+                },
+                {
+                  "actor": "knight"
+                }
+              ],
+              "id": "31:act4-preview-31-arrival:1",
+              "speakerPolicy": "world"
+            }
+          }
+        ]
+      ]
+    },
+    {
+      "id": "31:강 끝의 갈대:됐어요. 배를 댈게요.",
+      "title": "강 끝의 갈대",
+      "lines": [
+        [
+          "연실",
+          "됐어요. 배를 댈게요.",
+          {
+            "kind": "character",
+            "act4PreviewRow": "A4.S31.BOAT.01",
+            "camera": {
+              "intent": "portrait",
+              "targets": [
+                {
+                  "speaker": "연실"
+                }
+              ],
+              "padding": 40,
+              "maxScale": 1.05,
+              "participants": [
+                {
+                  "speaker": "연실"
+                }
+              ],
+              "id": "31:act4-preview-31-boat_approach:0",
+              "speakerPolicy": "world"
+            }
+          }
+        ]
+      ]
+    },
+    {
+      "id": "31:강 끝의 갈대:한 사람씩 타세요.",
+      "title": "강 끝의 갈대",
+      "lines": [
+        [
+          "연실",
+          "한 사람씩 타세요.",
+          {
+            "kind": "character",
+            "act4PreviewRow": "A4.S31.BOARD.01",
+            "camera": {
+              "intent": "portrait",
+              "targets": [
+                {
+                  "speaker": "연실"
+                }
+              ],
+              "padding": 40,
+              "maxScale": 1.05,
+              "participants": [
+                {
+                  "speaker": "연실"
+                }
+              ],
+              "id": "31:act4-preview-31-board_ready:0",
+              "speakerPolicy": "world"
+            }
+          }
+        ]
+      ]
+    },
+    {
+      "id": "act1-v6:entry-32",
+      "title": "빈 포구",
+      "lines": [
+        [
+          "안내",
+          "포구 안쪽으로 가기",
+          {
+            "kind": "guide",
+            "storyId": "act1-v6:entry-32",
+            "storyTitle": "빈 포구",
+            "focus": "interact",
+            "camera": {
+              "intent": "objective",
+              "targets": [
+                {
+                  "objective": "current"
+                }
+              ],
+              "padding": 100,
+              "maxScale": 0.75,
+              "id": "32:entry:0",
+              "speakerPolicy": "none"
+            }
+          }
+        ]
+      ]
+    },
+    {
+      "id": "32:빈 포구:……아주머니?",
+      "title": "빈 포구",
+      "lines": [
+        [
+          "설오",
+          "……아주머니?",
+          {
+            "kind": "character",
+            "act4PreviewRow": "A4.S32.REUNION.01",
+            "camera": {
+              "intent": "conversation",
+              "targets": [
+                {
+                  "speaker": "설오"
+                },
+                {
+                  "actor": "a4-shelter-speaker"
+                }
+              ],
+              "padding": 40,
+              "maxScale": 1.05,
+              "participants": [
+                {
+                  "actor": "archer"
+                },
+                {
+                  "actor": "a4-shelter-speaker"
+                }
+              ],
+              "id": "32:act4-preview-32-reunion:0",
+              "speakerPolicy": "world"
+            }
+          }
+        ],
+        [
+          "고향 사람",
+          "설오?",
+          {
+            "kind": "character",
+            "act4PreviewRow": "A4.S32.REUNION.02",
+            "camera": {
+              "intent": "conversation",
+              "targets": [
+                {
+                  "speaker": "고향 사람"
+                },
+                {
+                  "actor": "archer"
+                }
+              ],
+              "padding": 40,
+              "maxScale": 1.05,
+              "participants": [
+                {
+                  "actor": "archer"
+                },
+                {
+                  "actor": "a4-shelter-speaker"
+                }
+              ],
+              "id": "32:act4-preview-32-reunion:1",
+              "speakerPolicy": "world"
+            }
+          }
+        ],
+        [
+          "설오",
+          "다들 어디 있어요?",
+          {
+            "kind": "character",
+            "act4PreviewRow": "A4.S32.REUNION.03",
+            "camera": {
+              "intent": "conversation",
+              "targets": [
+                {
+                  "speaker": "설오"
+                },
+                {
+                  "actor": "a4-shelter-speaker"
+                }
+              ],
+              "padding": 40,
+              "maxScale": 1.05,
+              "participants": [
+                {
+                  "actor": "archer"
+                },
+                {
+                  "actor": "a4-shelter-speaker"
+                }
+              ],
+              "id": "32:act4-preview-32-reunion:2",
+              "speakerPolicy": "world"
+            }
+          }
+        ],
+        [
+          "고향 사람",
+          "들어와. 밖에서 그러지 말고.",
+          {
+            "kind": "character",
+            "act4PreviewRow": "A4.S32.REUNION.04",
+            "camera": {
+              "intent": "conversation",
+              "targets": [
+                {
+                  "speaker": "고향 사람"
+                },
+                {
+                  "actor": "archer"
+                }
+              ],
+              "padding": 40,
+              "maxScale": 1.05,
+              "participants": [
+                {
+                  "actor": "archer"
+                },
+                {
+                  "actor": "a4-shelter-speaker"
+                }
+              ],
+              "id": "32:act4-preview-32-reunion:3",
+              "speakerPolicy": "world"
+            }
+          }
+        ]
+      ]
+    },
+    {
+      "id": "32:빈 포구:여기 남은 건 일곱이야. 도식이네 넷은 곶으로 갔는데 돌아오질 않아.",
+      "title": "빈 포구",
+      "lines": [
+        [
+          "고향 사람",
+          "여기 남은 건 일곱이야. 도식이네 넷은 곶으로 갔는데 돌아오질 않아.",
+          {
+            "kind": "character",
+            "act4PreviewRow": "A4.S32.MISSING.01",
+            "camera": {
+              "intent": "conversation",
+              "targets": [
+                {
+                  "speaker": "고향 사람"
+                },
+                {
+                  "actor": "archer"
+                }
+              ],
+              "padding": 40,
+              "maxScale": 1.05,
+              "participants": [
+                {
+                  "actor": "a4-shelter-speaker"
+                },
+                {
+                  "actor": "archer"
+                }
+              ],
+              "id": "32:act4-preview-32-missing_four:0",
+              "speakerPolicy": "world"
+            }
+          }
+        ],
+        [
+          "설오",
+          "곶으로 가는 길이 어디예요?",
+          {
+            "kind": "character",
+            "act4PreviewRow": "A4.S32.MISSING.02",
+            "camera": {
+              "intent": "conversation",
+              "targets": [
+                {
+                  "speaker": "설오"
+                },
+                {
+                  "actor": "a4-shelter-speaker"
+                }
+              ],
+              "padding": 40,
+              "maxScale": 1.05,
+              "participants": [
+                {
+                  "actor": "a4-shelter-speaker"
+                },
+                {
+                  "actor": "archer"
+                }
+              ],
+              "id": "32:act4-preview-32-missing_four:1",
+              "speakerPolicy": "world"
+            }
+          }
+        ],
+        [
+          "고향 사람",
+          "해안길은 물이 차면 끊겨. 산으로 돌아가야 해.",
+          {
+            "kind": "character",
+            "act4PreviewRow": "A4.S32.MISSING.03",
+            "camera": {
+              "intent": "conversation",
+              "targets": [
+                {
+                  "speaker": "고향 사람"
+                },
+                {
+                  "actor": "archer"
+                }
+              ],
+              "padding": 40,
+              "maxScale": 1.05,
+              "participants": [
+                {
+                  "actor": "a4-shelter-speaker"
+                },
+                {
+                  "actor": "archer"
+                }
+              ],
+              "id": "32:act4-preview-32-missing_four:2",
+              "speakerPolicy": "world"
+            }
+          }
+        ],
+        [
+          "설오",
+          "알겠어요. 다녀오겠습니다.",
+          {
+            "kind": "character",
+            "act4PreviewRow": "A4.S32.MISSING.04",
+            "camera": {
+              "intent": "conversation",
+              "targets": [
+                {
+                  "speaker": "설오"
+                },
+                {
+                  "actor": "a4-shelter-speaker"
+                }
+              ],
+              "padding": 40,
+              "maxScale": 1.05,
+              "participants": [
+                {
+                  "actor": "a4-shelter-speaker"
+                },
+                {
+                  "actor": "archer"
+                }
+              ],
+              "id": "32:act4-preview-32-missing_four:3",
+              "speakerPolicy": "world"
+            }
+          }
+        ]
+      ]
+    },
+    {
+      "id": "act1-v6:entry-33",
+      "title": "물 빠진 갯길",
+      "lines": [
+        [
+          "안내",
+          "갯길을 지나 높은 바위 지대로 가기",
+          {
+            "kind": "guide",
+            "storyId": "act1-v6:entry-33",
+            "storyTitle": "물 빠진 갯길",
+            "focus": "interact",
+            "camera": {
+              "intent": "objective",
+              "targets": [
+                {
+                  "objective": "current"
+                }
+              ],
+              "padding": 100,
+              "maxScale": 0.75,
+              "id": "33:entry:0",
+              "speakerPolicy": "none"
+            }
+          }
+        ]
+      ]
+    }
+  ],
+  "honroMapStory": null,
+  "honroClearReports": {}
+}
