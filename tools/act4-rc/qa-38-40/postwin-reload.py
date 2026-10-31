@@ -3,7 +3,7 @@
 import argparse, hashlib, json
 from pathlib import Path
 from playwright.sync_api import sync_playwright
-p=argparse.ArgumentParser();p.add_argument('--url',required=True);p.add_argument('--profile',required=True);p.add_argument('--sha256',required=True);p.add_argument('--out',required=True);a=p.parse_args()
+p=argparse.ArgumentParser();p.add_argument('--url',required=True);p.add_argument('--profile',required=True);p.add_argument('--sha256',required=True);p.add_argument('--out',required=True);p.add_argument('--rounds',type=int,required=True);a=p.parse_args()
 data=Path(a.profile).read_bytes(); assert hashlib.sha256(data).hexdigest()==a.sha256
 with sync_playwright() as pw:
  b=pw.chromium.launch(executable_path='/usr/bin/chromium',headless=True,args=['--no-sandbox']);ctx=b.new_context(viewport={'width':1440,'height':900});page=ctx.new_page()
@@ -13,7 +13,7 @@ with sync_playwright() as pw:
  def cont():
   label='이어서 걷기' if page.get_by_text('이어서 걷기',exact=True).count() else '여정 이어가기'
   page.get_by_text(label,exact=True).click();page.wait_for_function("HonroApp.screen==='rest'",timeout=60000);page.wait_for_timeout(1000)
- cont();before=snapshot();assert '다음 여정은 준비 중입니다' in before['body'];assert before['cleared']['40']['rounds']==21
+ cont();before=snapshot();assert '다음 여정은 준비 중입니다' in before['body'];assert before['cleared']['40']['rounds']==a.rounds
  page.reload(wait_until='domcontentloaded');page.wait_for_function('window.HonroApp&&window.HonroCampaignLoader',timeout=60000);cont();after=snapshot()
  for k in ('cleared','heroes','equipment','act4','progress'):assert before[k]==after[k],k
  assert '다음 여정은 준비 중입니다' in after['body']
