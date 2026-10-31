@@ -110,6 +110,14 @@
             this.storageWarned = true;
             this.notify('이 환경에서는 자동 기록이 제한돼. 설정에서 기록 파일을 보관해줘.');
         } }
+        flushBattleSave() {
+            const e=this.engine;
+            if(!this.dirty||!e||this.screen!=='battle'||this.pendingJourneyLaunch||this.training||this.done)return;
+            this.dirty=false;
+            G.HonroProgression.syncRoster(this.profile,e.b);
+            this.profile.honroBattle=clone(e.b);
+            this.persist();
+        }
         campaignReady(){if(!this.profileStore.locked||this.customMap||G.HONRO_EMBEDDED)return true;this.recoverProfile();return false;}
         recoverProfile(){G.HonroMenuUI.recovery(this);}
         replaceProfile(result){
@@ -781,7 +789,7 @@
             document.addEventListener('input',e=>{const k=e.target.dataset?.setting;if(k==='volume'||k==='musicVolume'){const output=this.modal.querySelector(`[data-volume-for="${k}"]`);if(output)output.textContent=Math.round(Number(e.target.value)*100)+'%';}});
             window.addEventListener('resize',()=>{if(this.screen==='rest')G.HonroRestJourney?.layoutRest();if(this.screen==='journey')document.querySelector('.journey-map-scroll')?._journeyResize?.();});
             document.addEventListener('visibilitychange',()=>{this.reportClock=null;if(document.hidden)this.cancelInput();this.updateAudio();});
-            window.addEventListener('pagehide',()=>this.cancelInput());
+            window.addEventListener('pagehide',()=>{this.cancelInput();this.flushBattleSave();});
             // Game text is UI, not a document. Cancel selection, dragging and long-press menus throughout the app.
             for(const type of ['selectstart','dragstart','contextmenu'])document.addEventListener(type,e=>{if(e.target?.closest?.('#app,#modal'))e.preventDefault();},{capture:true,passive:false});
             document.addEventListener('selectionchange',()=>{const selection=window.getSelection();if(selection&&!selection.isCollapsed&&(this.root.contains(selection.anchorNode)||this.modal.contains(selection.anchorNode)))selection.removeAllRanges();});
@@ -842,6 +850,7 @@
             document.addEventListener('visibilitychange', () => { this.cancelInput(); if (document.hidden && this.engine && !this.done && !this.dialogue && !this.endingGallery?.debug) {
                 this.pause();
                 this.dirty = true;
+                this.flushBattleSave();
             } });
             window.addEventListener('blur', () => { this.cancelInput(); });
             document.addEventListener('click', e => { G.HonroEquipmentUI.outside(this,e);if(e.target===this.modal)return; let el = e.target.closest('[data-action]'); if (!el || el.disabled)
@@ -1193,6 +1202,8 @@
                         this.acc += dt * this.playbackSpeed();
                         // .06s frame cap × 4 speed × 120Hz needs up to 29 substeps.
                         e.planningBudget(4);
+                        const moving=e.b.side===0&&e.b.phase==='aim'?e.active:null;
+                        const beforeMotion=moving&&[moving.x,moving.y,moving.vx,moving.vy,moving.moveLeft];
                         try{
                         for (let k = 0; k < 32 && this.acc >= 1 / 120; k++) {
                             if (e.canAct()) {
@@ -1211,6 +1222,9 @@
                             if (G.HonroAct3Void?.blocked(this)||this.dialogue||G.HonroStory.turnPaused(this)||['won', 'lost'].includes(e.b.phase)){this.acc=0;break;}
                         }
                         }finally{e.planningBudget();}
+                        // Walking and airborne motion do not necessarily emit a save event.
+                        // Mark only actual changes; the existing throttle batches snapshots.
+                        if(moving&&beforeMotion.some((v,i)=>v!==[moving.x,moving.y,moving.vx,moving.vy,moving.moveLeft][i]))this.dirty=true;
                         if (['won', 'lost'].includes(e.b.phase) && !this.training&&!this.dialogue)
                             this.outcome();
                     }
@@ -1227,11 +1241,7 @@
                     }else this.updateChargeDisplay();
                     if (this.dirty && !this.pendingJourneyLaunch && !this.training && !this.done && now - (this.lastSave || 0) > 1200) {
                         this.lastSave = now;
-                        this.dirty = false;
-                        G.HonroProgression.syncRoster(this.profile,e.b);
-                        if (!this.done)
-                            this.profile.honroBattle = clone(e.b);
-                        this.persist();
+                        this.flushBattleSave();
                     }
                 }
             }
