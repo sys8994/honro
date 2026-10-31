@@ -66,13 +66,34 @@ function verifyLegacy33Assets(items){
  if(library.size!==2)return false;const b={mode:'campaign',honroAct4Official:1,honroStage:33};
  return Object.entries(ACT4_33_LEGACY).every(([id,sig])=>!!legacy33Art(b,id,sig,library));
 }
+// Only the exact previous official stage-34 BODY can use this lazy archive.
+const ACT4_34_LEGACY=Object.freeze({'approved34:body':'3417265:bff32c0d'});
+function legacy34Art(b,id,signature,library){
+ if(!b||b.honroCustom||b.mode!=='campaign'||b.honroAct4Official!==1||b.honroStage!==34||typeof signature!=='string'||ACT4_34_LEGACY[id]!==signature)return null;
+ const archived=library.get('act4compat34:v1:'+id);if(!archived?.vector||archived.collision?.length||archived.interactionType)return null;
+ const asset={...archived,id},text=JSON.stringify(asset);if(assetSignature(text)!==signature)return null;return{asset,text,signature};
+}
+function needsLegacy34Art(b){
+ if(!b||b.honroCustom||b.mode!=='campaign'||b.honroAct4Official!==1||b.honroStage!==34)return false;
+ for(const items of [b.honroLandmarks,b.honroElements,b.honroEnvironment?.placements])for(const item of items||[]){
+  const a=item?.asset,sig=ACT4_34_LEGACY[a?.id];if(!sig)continue;
+  if(a.honroStaticAssetRef===1&&a.signature===sig)return true;
+  if(a.vector&&assetSignature(JSON.stringify(a))===sig)return true;
+ }
+ return false;
+}
+function verifyLegacy34Assets(items){
+ if(!Array.isArray(items)||items.length!==1)return false;const library=new Map(items.map(a=>[a?.id,a]));
+ if(library.size!==1)return false;const b={mode:'campaign',honroAct4Official:1,honroStage:34};
+ return Object.entries(ACT4_34_LEGACY).every(([id,sig])=>!!legacy34Art(b,id,sig,library));
+}
 function compactBattleArt(b){
  if(!b||b.honroCustom||b.mode!=='campaign'||b.honroAct4Official!==1||b.honroStage<31||b.honroStage>40)return b;
  const library=new Map((G.HONRO_PROJECT?.library||[]).map(a=>[a.id,a])),texts=new Map();let changed=false;const out={...b};
  const compactItems=items=>items.map(item=>{
   const asset=item.asset,source=asset?.vector&&library.get(asset.id);if(!source)return item;
   const key=asset.id;let row=texts.get(key);if(!row){const text=JSON.stringify(source);row={text,signature:providerSignature(key,text)};texts.set(asset.id,row);}
-  const assetText=JSON.stringify(asset);if(assetText!==row.text){const legacy=legacy33Art(b,asset.id,ACT4_33_LEGACY[asset.id],library);if(!legacy||assetText!==legacy.text)return item;row=legacy;}else rememberProviderSignature(key,row.text,row.signature);
+  const assetText=JSON.stringify(asset);if(assetText!==row.text){const legacy=legacy33Art(b,asset.id,ACT4_33_LEGACY[asset.id],library)||legacy34Art(b,asset.id,ACT4_34_LEGACY[asset.id],library);if(!legacy||assetText!==legacy.text)return item;row=legacy;}else rememberProviderSignature(key,row.text,row.signature);
   changed=true;return{...item,asset:{honroStaticAssetRef:1,id:asset.id,signature:row.signature}};
  });
  for(const key of ['honroLandmarks','honroElements'])if(Array.isArray(b[key]))out[key]=compactItems(b[key]);
@@ -86,7 +107,7 @@ function restoreBattleArt(b){
   if(ref.honroStaticAssetRef!==1||typeof ref.id!=='string'||typeof ref.signature!=='string')return false;
   let source=library.get(ref.id);if(!source)return false;
   if(!signatures.has(ref.id))signatures.set(ref.id,assetSignature(JSON.stringify(source)));
-  if(signatures.get(ref.id)!==ref.signature){const legacy=legacy33Art(b,ref.id,ref.signature,library);if(!legacy)return false;source=legacy.asset;}
+  if(signatures.get(ref.id)!==ref.signature){const legacy=legacy33Art(b,ref.id,ref.signature,library)||legacy34Art(b,ref.id,ref.signature,library);if(!legacy)return false;source=legacy.asset;}
   replacements.push([item,source]);
  }
  // Resolve only after campaign lazy loading and revision checks, atomically.
@@ -168,5 +189,5 @@ function create(){
   cancelRetry(){retryCandidate=null;}
  };
 }
-G.HonroProfileStore={create,fresh,migrate,compactBattleArt,restoreBattleArt,needsLegacy33Art,verifyLegacy33Assets};
+G.HonroProfileStore={create,fresh,migrate,compactBattleArt,restoreBattleArt,needsLegacy33Art,verifyLegacy33Assets,needsLegacy34Art,verifyLegacy34Assets};
 })(globalThis);

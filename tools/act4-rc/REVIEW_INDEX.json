@@ -1,5 +1,5 @@
 {
-  "version": 2,
+  "version": 3,
   "kind": "QA-only review index",
   "createdUtc": "2026-10-31T15:13:07.109Z",
   "baselineMaster": "7238c788662cdfc55947d51dbe6cfe3a46768d0b",
@@ -42,10 +42,10 @@
       "stage": 34,
       "act": 4,
       "chapter": 4,
-      "payload": "art/act4-sharp-candidates/stage34-align-v2.candidate.json.xz.b64",
-      "manifest": "art/act4-sharp-candidates/stage34-align-v2.manifest.json",
-      "rawSha256": "19c4824a013675e6b3454e2ea01487d190cbabb3aa209318b787b34889b5c7a1",
-      "note": "Timber repair and initial shore/link alignment; one extra legal jump; full gameplay required"
+      "payload": "art/act4-sharp-candidates/stage34-foundation-v6.candidate.json.xz.b64",
+      "manifest": "art/act4-sharp-candidates/stage34-foundation-v6.transfer.manifest.json",
+      "rawSha256": "1afeaf3218259130c0c21964483bb26e31f683d3a6a31d6ff726f687efcee248",
+      "note": "Foundation v6: actual Chromium scoped joins and full-height east pan reviewed at 83f579ea; collision/actors unchanged. Whole-stage art, current integrated gameplay and performance acceptance remain separate."
     },
     {
       "stage": 35,
@@ -102,6 +102,6 @@
       "note": "Environment joins and static boat removed; follower opt-in; lossless structural optimization"
     }
   ],
-  "updatedUtc": "2026-10-31T19:42:00.824Z",
-  "previousIndexCommit": "a5c521b384ef9086194cfaafcf36291f06e05569"
+  "updatedUtc": "2026-10-31T23:09:47.488Z",
+  "previousIndexCommit": "c5df56daf71d62d28d308d982bc431b3c75fb98d"
 }

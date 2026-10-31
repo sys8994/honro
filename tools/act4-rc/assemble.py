@@ -28,6 +28,10 @@ for ident in ('approved33:near-west','approved33:body'):
  original=old_assets[ident];a=copy.deepcopy(original);assert a.get('vector') and not a.get('collision') and not a.get('interactionType');a['id']='act4compat33:v1:'+ident;assert a['id'] not in assets and a['id'] not in canonical;assets[a['id']]=a;compat.append(a['id']);compat_report.append({'original':ident,'alias':a['id'],'originalAssetSha256':digest(original),'aliasAssetSha256':digest(a)})
 assert 'compatibilityAssetIds' not in stage33['design'] # old art is loaded only for matching saves
 stages[2]['assembledStageSemanticSha256']=digest(stage33)
+# The previous 34 BODY remains available only to saves carrying its exact signature.
+legacy34_raw=(out/'candidates/stage34-legacy.json').read_bytes();assert hashlib.sha256(legacy34_raw).hexdigest()=='19c4824a013675e6b3454e2ea01487d190cbabb3aa209318b787b34889b5c7a1'
+legacy34=json.loads(legacy34_raw);old34={a['id']:a for a in legacy34['library']};stage34=world['stages'][3];original=old34['approved34:body'];a=copy.deepcopy(original);assert a.get('vector') and not a.get('collision') and not a.get('interactionType');a['id']='act4compat34:v1:approved34:body';assert a['id'] not in assets and a['id'] not in canonical;assets[a['id']]=a;compat_report.append({'original':original['id'],'alias':a['id'],'originalAssetSha256':digest(original),'aliasAssetSha256':digest(a)});stages[3]['assembledStageSemanticSha256']=digest(stage34)
+
 world['library']=list(assets.values());known=set(assets)|set(canonical)
 for s in world['stages']:
  for e in [*s.get('elements',[]),*s.get('environment',{}).get('placements',[])]:

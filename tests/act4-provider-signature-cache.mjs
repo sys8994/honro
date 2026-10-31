@@ -3,7 +3,7 @@ import vm from 'node:vm';
 import {readFile} from 'node:fs/promises';
 const g={HONRO_CORE:{},HONRO_PROJECT:{library:[]},structuredClone};
 const source=await readFile('shared/runtime/profile-store.js','utf8');
-const exposed=source.replace('G.HonroProfileStore={create,fresh,migrate,compactBattleArt,restoreBattleArt,needsLegacy33Art,verifyLegacy33Assets};','G.HonroProfileStore={create,fresh,migrate,compactBattleArt,restoreBattleArt,needsLegacy33Art,verifyLegacy33Assets};G.__cacheStats=()=>({chars:providerHashChars,size:providerHashCache.size,keysAreStrings:[...providerHashCache.keys()].every(x=>typeof x==="string")});');
+const exposed=source.replace('G.HonroProfileStore={create,fresh,migrate,compactBattleArt,restoreBattleArt,needsLegacy33Art,verifyLegacy33Assets,needsLegacy34Art,verifyLegacy34Assets};','G.HonroProfileStore={create,fresh,migrate,compactBattleArt,restoreBattleArt,needsLegacy33Art,verifyLegacy33Assets,needsLegacy34Art,verifyLegacy34Assets};G.__cacheStats=()=>({chars:providerHashChars,size:providerHashCache.size,keysAreStrings:[...providerHashCache.keys()].every(x=>typeof x==="string")});');
 assert.notEqual(exposed,source);vm.runInNewContext(exposed,g);
 const S=g.HonroProfileStore;
 function signature(text){let h=2166136261;for(let i=0;i<text.length;i++){h^=text.charCodeAt(i);h=Math.imul(h,16777619)}return text.length+':'+(h>>>0).toString(16)}
