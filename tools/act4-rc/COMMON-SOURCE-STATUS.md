@@ -115,3 +115,5 @@ No new code was integrated after `dd65fcec1`: dynamic asset provider safety coul
 ## 2026-10-31 Stage 38 prediction snapshot review
 
 Candidate `03fd076` was reviewed but is **not integrated**: a reflective access returns a different value instead of triggering the promised full-clone fallback. The independent reproducible counterexample and baseline aim test failure are in `PREDICTION-SNAPSHOT-REVIEW.md`. Existing common source and stage run identities are unchanged.
+
+The performance branch subsequently withdrew the `03fd076` prototype and restored a single full-clone replay in `927fdd61834ca966655b2e4d2136b28c6fb7f4b6` (review `4d452f1bea68cb1fbc4fdfc4551d83afbc434cb2`). Its frame measurements are not an achieved common RC improvement. No common rollback was needed because the prototype was never integrated. The independent compact-autosave and guide-preparation improvements remain integrated.
