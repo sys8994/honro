@@ -68,6 +68,29 @@
 - **재발검사/증거:** 아카이브의 경로/해시 검증과 소비 환경 해제, HTML의 모바일 가로/세로 및 실제 브라우저 링크·원본 PNG 로드·전후 동일 crop/zoom·장별 상태 표시 확인. 설명보다 단계별 핵심 지표/이미지를 우선하고 오프라인 번들이라면 외부 링크 의존도 표시한다.
 - **한계:** 현재 새 HTML/압축판 조립 중. Library 업로드 성공 ≠ 소비 성공, Native 전체 캡처 ≠ 브라우저 플레이.
 
-## 현재 멈춰야 할 완료 표현
+## 당시 멈춰야 할 완료 표현 (2026-10-31 11:28 기록)
 
 10장 sharp 미술 후보는 부모 보고상 로컬 검증 완료(40은 main+9 추출 색면 교체). production Native 전체 10장 캡처 진행 중이며 신규 후보의 실제 브라우저·정상 완주·master 배포는 미완료다. 과거 버전 검증을 새 후보 통과로 바꾸지 않는다. 이 감사는 기존 진단을 보존하며 새로운 플레이·배포 성공을 만들지 않는다.
+
+
+## 후속 해결 — source/compiled parity 복구 (2026-10-31 12:10 UTC 기록)
+
+앞의 추가 3은 당시의 실패 이력으로 보존한다. **source/compiled 불일치 원인은 후속 조사로 확정됐고 기존 배포 내용과 source의 parity는 복구됐다.** 아래 결과는 root 및 별도 cloud 작업의 확인 보고에 근거하며, 이 문서 작성자가 새 build/배포를 실행한 것은 아니다.
+
+- **증상:** 기존 공개 실행본의 31장과 동일 source 정식 rebuild의 배우/지형 수가 달랐다.
+- **원인(확정):** master `cc33f68`의 commit message 자체가 `Deploy verified Act 4 runtime and compact loading ahead of source synchronization`이었다. compiled 런타임을 source 동기화보다 먼저 배포해 source가 뒤처졌다.
+- **폐기:** 차이를 원인 불명으로 영구 방치하거나 rebuilt의 다른 데이터를 정상으로 간주해 덮어쓰기, compiled만 먼저 배포하는 순서.
+- **채택 해결:** 보존 source snapshot `74628ce460059fc7ab4458a798f53a1ca20ba052`에서 기존 배포와 정확히 맞는 runtime 및 world literal parts를 복구했다. 기존 게임 내용을 바꾸지 않는 source 동기화이며 새 sharp 미술 배포가 아니다.
+- **재발검사/확인 증거:** 정식 build의 활성 output **732개**에 대해 bytes/SHA를 비교하고 1–40장 전체 stage JSON이 동일함을 검증했다. canonical world parts는 32,073,198 bytes, SHA256 `801df923ce89d8747f337f0b71e2ae38c604a8efbd6250d56e885b931af9f1b5`. parity 복구 commit `f86d149de3d39e46b613cd4ab5b03f7aab77c2d7`, 확인된 master `736f462ecb3585b5384449b5bf8741695493752e`, Pages run `41198544961` success. root가 실제 공개 Chrome reload 후 78자료 로딩 완료와 ‘길을 열다’ 활성 상태를 확인했다.
+- **미검증 한계:** 위 성공은 기존 공개 게임과 source/build의 동등성 복구다. 신규 sharp 미술, 새 지형의 정상 완주, 신규 전투/승선 합격 또는 그 배포를 뜻하지 않는다. master SHA는 이 기록 시점의 값이다.
+
+**이후 출하 순서:** source → 정식 build → 활성 manifest 전체 output bytes/hash → 모든 stage 데이터 비교 → 실제 공개 실행본 확인. 의도된 새 feature는 바뀔 영역을 명시하고 그 차이를 별도 검수한다. 의도된 차이가 있으므로 전부 byte-identical해야 한다고 강제하지 않되, 설명 없는 차이는 출하 차단이다. compiled를 source보다 먼저 배포하지 않는다.
+
+## 추가 6 — release guard와 QA의 순환 차단
+
+- **증상:** 미검수 후보의 production package가 불완전해 정식 build가 차단됨. 이 제약을 격리된 QA preview에도 그대로 적용하면 검수 증거를 모을 수 없어 영구 미완료가 된다.
+- **원인(구분):** 미완성 production package의 출하 차단은 정상 guard다. 검수용 후보의 실행까지 모두 금지하는 것은 QA/출하 경계 설계의 순환이다. guard 자체를 제거해야 한다는 뜻이 아니다.
+- **폐기:** 정식 release guard 우회·해제, QA 생성 HTML을 공개 배포, 검수 편의를 위해 적 제거/중간 위치/경고 receipt 주입 후 정상 플레이 합격으로 보고.
+- **채택 해결:** production Engine/App/Story를 사용하는 **격리 QA-only build/importer**의 목적·입력 SHA·출력 위치·fixture 여부를 명시한다. 공개 배포 경로와 분리하고 같은 production 게임 동작으로 후보를 검증한다. 정상 입장부터 실제 적/스토리/관측을 거치는 플레이와 조작기/기믹 진단 fixture를 구분해 별도 결과로 남긴다.
+- **재발검사/확인 증거:** source branch `codex/act4-stage31-browser-harness`, commit `f69cb3c`의 재사용 로더에서 실제 **38 units** 진입이 성공했다고 root가 보고했다. roster·시작 위치·Engine/App/Story 출처·관측 주입 없음 여부·후보/runtime SHA를 정상 플레이 run에 연결한다. QA 산출물에는 QA-only 표식을 유지하고 production release guard는 그대로 둔다.
+- **미검증 한계:** 38 units 정상 진입은 정상 완주가 아니다. 완주 task는 진행 중이며 QA 생성 실행본은 공개 배포/최종 완료 증거가 아니다. 정식 package·build·release gate는 검수 뒤 별도로 통과해야 한다.
