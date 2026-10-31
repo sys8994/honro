@@ -1,0 +1,42 @@
+--- a/shared/runtime/act4-pilot-art.js
++++ b/shared/runtime/act4-pilot-art.js
+@@ -9,23 +9,36 @@
+ // never advance events or invent a fixed harbor level for this tidal coast.
+ function tidalSea(b){
+  const cfg=b?.honroAct4Design?.tide,sea=b?.honroMap?.act4?.tide?.continuousSea,level=b?.honroAct4PreviewState?.tide?.surface;
+- if(b?.honroStage!==33||!config(b)||sea?.version!==1||sea.stage33!==true||!Number.isFinite(sea.depth)||sea.depth<300||sea.depth>10000||!Number.isFinite(cfg?.low)||!Number.isFinite(cfg?.high)||cfg.high>=cfg.low||!Number.isFinite(level)||level<cfg.high||level>cfg.low||cfg.floorTerrainIds?.length!==1||cfg.floorTerrainIds[0]!=='approved33-low-ground')return null;
++ const stage=b?.honroStage,allowed=stage===33&&sea?.stage33===true||stage===39&&sea?.stage39===true;
++ if(!allowed||!config(b)||sea?.version!==1||!Number.isFinite(sea.depth)||sea.depth<300||sea.depth>10000||!Number.isFinite(cfg?.low)||!Number.isFinite(cfg?.high)||cfg.high>=cfg.low||!Number.isFinite(level)||level<cfg.high||level>cfg.low||cfg.floorTerrainIds?.length!==1||cfg.floorTerrainIds[0]!==`approved${stage}-low-ground`)return null;
+  const zones=(b.honroSurfaceZones||[]).filter(z=>String(z.id).startsWith('a4-live-'));
+  if(zones.some(z=>!Array.isArray(z.surface)||z.surface.some(p=>!Array.isArray(p)||p[1]!==level)))return null;
+- return {surface:level,depth:sea.depth};
++ const occlusion=stage===39?shoreOcclusion39(b,sea):null;
++ if(stage===39&&!occlusion)return null;
++ return {surface:level,depth:sea.depth,occlusion};
++}
++// Semantic dry-land silhouette derived from the approved BODY materials. This
++// only clips environmental paint; shallow play-contact zones remain untouched.
++const shoreCache39=new WeakMap();
++function shoreOcclusion39(b,sea){
++ const id=sea?.shoreOcclusionAssetId,a=G.HONRO_PROJECT?.library?.find(a=>a.id===id),v=a?.vector;
++ if(typeof id!=='string'||a?.params?.stage39VisualDryMask!==true||a.collision?.length||v?.version!==1||v.root?.tag!=='g'||!Array.isArray(v.root.transform)||v.root.transform.length!==6||!v.root.transform.every(Number.isFinite)||!Array.isArray(v.root.children)||!v.root.children.length||v.root.children.some(p=>p.tag!=='path'||!(typeof p.d==='string'||Array.isArray(p.dParts)&&p.dParts.length<=32&&p.dParts.every(d=>typeof d==='string'&&d.length<=60000))||(p.d||p.dParts.join('')).length>240000)||typeof G.Path2D!=='function'||typeof G.DOMMatrix!=='function')return null;
++ if(shoreCache39.has(a))return shoreCache39.get(a);
++ try{const path=new G.Path2D(),matrix=new G.DOMMatrix(v.root.transform);for(const p of v.root.children)path.addPath(new G.Path2D(p.d||p.dParts.join('')),matrix);shoreCache39.set(a,path);return path;}catch{return null;}
+ }
+ // Explicit nonphysical sea for village scenery, and policy-bound static cave water.
+ function staticSea(b){
+  if(!config(b))return null;
+  const v=b.honroMap?.nonplayEnvironment?.visualSea,c=b.honroMap?.nativeArt?.continuousCaveWater;
+  if(b.honroStage===32&&v?.version===1&&v.stage32===true&&Number.isFinite(v.level)&&Math.abs(v.level)<=1000000&&Number.isFinite(v.depth)&&v.depth>=300&&v.depth<=10000)return {surface:v.level,depth:v.depth,soft:true};
++ if(b.honroStage===37&&v?.version===1&&v.stage37===true&&!b.honroAct4Design?.tide&&Array.isArray(b.honroAct4Design?.waterPolicies)&&b.honroAct4Design.waterPolicies.length===0&&Number.isFinite(v.level)&&Math.abs(v.level)<=1000000&&Number.isFinite(v.depth)&&v.depth>=300&&v.depth<=10000)return {surface:v.level,depth:v.depth,soft:true};
+  if(b.honroStage===38&&c?.version===1&&c.stage38===true&&!b.honroAct4Design?.tide&&typeof c.policyId==='string'&&Number.isFinite(c.surface)&&Number.isFinite(c.depth)&&c.depth>=300&&c.depth<=10000){const policies=b.honroAct4Design?.waterPolicies?.filter(p=>p.id===c.policyId&&p.kind==='recover');if(policies?.length===1&&policies[0].surface===c.surface)return {surface:c.surface,depth:c.depth,cave:true};}
+  return null;
+ }
+ function paintContinuousSea(scene,c,sea,w,h){
+  if(!sea||![w,h,scene.scale].every(v=>Number.isFinite(v)&&v>0)||![scene.x,scene.y].every(Number.isFinite)||!G.HonroBounds?.viewport)return;
+  const view=G.HonroBounds.viewport(scene,w,h),left=view.left-8/scene.scale,right=view.right+8/scene.scale,bottom=Math.max(sea.surface,view.bottom+8/scene.scale);
+- c.save();const gradient=c.createLinearGradient(0,sea.surface,0,sea.surface+sea.depth);gradient.addColorStop(0,sea.cave?'#31577400':sea.soft?'#456b8500':'#456b85d9');gradient.addColorStop(sea.soft?.25:.45,sea.cave?'#24496399':sea.soft?'#24496340':'#244963e8');gradient.addColorStop(1,sea.cave?'#102335ff':'#16384fff');c.fillStyle=gradient;c.fillRect(left,sea.surface,right-left,bottom-sea.surface);c.restore();
++ c.save();if(sea.occlusion){const visible=new G.Path2D(sea.occlusion);visible.rect(left,view.top-8/scene.scale,right-left,bottom-view.top+16/scene.scale);c.clip(visible,'evenodd');}const gradient=c.createLinearGradient(0,sea.surface,0,sea.surface+sea.depth);gradient.addColorStop(0,sea.cave?'#31577400':sea.soft?'#456b8500':'#456b85d9');gradient.addColorStop(sea.soft?.25:.45,sea.cave?'#24496399':sea.soft?'#24496340':'#244963e8');gradient.addColorStop(1,sea.cave?'#102335ff':'#16384fff');c.fillStyle=gradient;c.fillRect(left,sea.surface,right-left,bottom-sea.surface);c.restore();
+ }
+ function native(l,b){return !!(config(b)&&Object.hasOwn(layers,l?.nativeArtLayer)&&l.layer===layers[l.nativeArtLayer]&&l.kind==='canonical-element'&&l.asset?.vector&&!l.asset.collision?.length&&!l.collisionIds?.length&&!l.honroElementCollision);}
+ function terrainIds(l){return Array.isArray(l?.nativeTerrainIds)?l.nativeTerrainIds:(l?.nativeTerrainId?[l.nativeTerrainId]:[]);}
