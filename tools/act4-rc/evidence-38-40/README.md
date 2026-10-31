@@ -1,6 +1,6 @@
 # Stage 38 and 40 RC entry inspection, 2026-10-31
 
-**Status: entry inspection only; gameplay, art acceptance, and release remain pending.** No normal completion or 20-turn result is established here. The screenshots show the initial tutorial overlay and visible initial placement, not the complete enemy deployment or required event scenes.
+**Status: entry inspection only; gameplay, art acceptance, and release remain pending.** No normal completion or 20-turn result is established here. The stage 38 screenshot shows the declared 37-cleared trial profile after opening instructions; stage 40 shows the initial tutorial overlay. Neither shows the complete enemy deployment or required event scenes.
 
 - Execution source: `2577ef15e1c9b81fbb824ffd68f3f265ca9086b2`; auxiliary candidate source `a5c521b384ef9086194cfaafcf36291f06e05569`.
 - Raw candidate SHA-256: 38 `6e84a8e16b3d6eb42f6e715e923947f6bdf92e6a0a6f3461a4a4a394ff103dc0`; 40 `c41085576168a69839cf1fb731ffcf329b37d2a7691d8a7b8d9c5ce704c60322`.
