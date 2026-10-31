@@ -1,0 +1,22 @@
+import assert from 'node:assert/strict';
+import {readFile} from 'node:fs/promises';
+import vm from 'node:vm';
+import ts from '../game/node_modules/typescript/lib/typescript.js';
+const source=await readFile('shared/engine/src/predictionSnapshot.ts','utf8');
+const compiled=ts.transpileModule(source,{compilerOptions:{target:ts.ScriptTarget.ES2020,module:ts.ModuleKind.CommonJS}}).outputText;
+let clones=0;const context={exports:{},structuredClone(value){clones++;return structuredClone(value)},Object,Array,WeakMap,WeakSet,Set,RangeError};
+vm.runInNewContext(compiled,context);const run=context.exports.withPredictionBattle;
+const art={root:{children:[{d:'M0 0L3 4'}]}};const asset={id:'custom',vector:art,collision:[{x:3}]};const landmark={id:'a',asset};
+const battle={honroAct4Official:1,honroStage:38,honroLandmarks:[landmark],honroElements:[landmark],units:[{id:'x',hp:10}],rng:42};battle.alias=asset;
+let calls=0;const out=run(battle,copy=>{calls++;assert.equal(copy.honroLandmarks[0],copy.honroElements[0]);assert.equal(copy.alias,copy.honroLandmarks[0].asset);copy.units[0].hp=3;return copy.units[0].hp});
+assert.equal(out,3);assert.equal(calls,1);assert.equal(battle.units[0].hp,10);assert.equal(battle.rng,42);
+calls=0;const path=run(battle,copy=>{calls++;return copy.honroLandmarks[0].asset.vector.root.children[0].d});assert.equal(path,'M0 0L3 4');assert.equal(calls,2,'reading omitted art retries full clone');
+calls=0;run(battle,copy=>{calls++;copy.honroLandmarks[0].asset.vector.root.children[0].d='changed'});assert.equal(calls,2);assert.equal(art.root.children[0].d,'M0 0L3 4','live art is never mutated');
+for(const extra of [{honroCustom:true},{honroMapOrigin:'workshop'},{honroStage:39}]){calls=0;const b={...battle,...extra};run(b,copy=>{calls++;assert.equal(copy.honroLandmarks[0].asset.vector.root.children[0].d,'M0 0L3 4')});assert.equal(calls,1,'outside scope uses full clone');}
+const artWithGetter={root:{}};let gets=0;Object.defineProperty(artWithGetter.root,'value',{enumerable:true,get(){gets++;return 7}});
+const getterBattle={...battle,honroLandmarks:[{asset:{vector:artWithGetter}}],honroElements:[]};
+assert.equal(run(getterBattle,copy=>copy.honroLandmarks[0].asset.vector.root.value),7);assert.equal(gets,1,'unsupported accessor falls back without extra getter calls');
+const invalidArt={...battle,honroLandmarks:[{asset:{vector:{bad(){}}}}],honroElements:[]};
+assert.throws(()=>run(invalidArt,()=>true),{name:'DataCloneError'},'uncloneable artwork retains full-clone failure');
+const strange={...battle,extra:new Date(0)};calls=0;run(strange,copy=>{calls++;assert.equal(copy.extra.getTime(),0)});assert.equal(calls,1,'unsupported types use full clone');
+assert(clones>=6);console.log('PASS prediction snapshot aliases, isolation, access and mutation fallback, custom map, unsupported input');
