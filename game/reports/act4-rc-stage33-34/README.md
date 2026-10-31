@@ -124,3 +124,18 @@ A read-only initial actor check in each build found identical positions/flags fo
 ## Preserved live-context loss
 
 On the subsequent v2 review, the earlier stage-33 scoped controller was found defunct and its session unavailable; the time and cause are unknown. The stage-34 controller process remained present, but its Chromium child was gone, the former session was unavailable, and the read-only localStorage watcher repeatedly returned `Cannot find context with specified id`. The last confirmed stage-34 actual localStorage snapshot is the round-16 file and SHA-256 recorded above; its checksum and the initial snapshot checksum were reverified. The failing watcher was stopped after preserving its log locally as `stage34-watch-context-loss.log`. No battle was reconstructed from logs or silently restarted. The UI downloads and the separate v2 visual test are unaffected; neither substitutes for the lost live contexts.
+
+### Exact Chromium comparison camera for v3
+
+The 1440×900 viewport had a canvas rectangle `(0,0,1440,769.1875)`. Read-only scene values below were identical in the separate baseline and v2 Chromium runs (round 1):
+
+| Frame | World camera x | World camera y | Scale |
+| --- | ---: | ---: | ---: |
+| Entry | 237.5 | 2028.03125 | 0.94 |
+| Entry maximum | 214.61154094132817 | 2057.972215506125 | 1.65 |
+| Left minimum | 136.42105263157893 | 2245.6016398514853 | 0.21176470588235294 |
+| Bottom minimum | 136.42105263157893 | 4562.376237623763 | 0.21176470588235294 |
+| Bottom maximum | −69.38702817650187 | 4831.5989333308335 | 1.65 |
+| **Left maximum: new zigzag** | **−69.38702817650187** | **2514.824335558556** | **1.65** |
+
+The comparison used the declared 1–32 fixture, normal journey entry, pointer wheel at screen (670,450), and actual minimap clicks; screen x≈92–810/y≈346–600 is the new line ROI at the bold camera. `stage33-v2-left-max.png` SHA-256 `0cadb834b356cdab7a7c613e7c7d0d143951a2d9d1bb521aa30e15347ae06126`; `stage33-v2-left-baseline.png` SHA-256 `6d41aa7981d82389a05a9d61dbaeb1b8d6dabce479f8ba630c9e583341272070`. These exact camera values are for matching the next candidate; no old flawed seam pixels are required to remain unchanged.
