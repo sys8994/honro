@@ -99,3 +99,7 @@ The worker's separate [actual UI and fixed-camera report](https://github.com/sys
 ## 2026-10-31 Workshop / stage 40 spur integration
 
 Source `d5e443e17a9a9c3121ee782559698c0e131b6bd2` includes independent Workshop bootstrap dependency fix `3ce35850f` and stage 40 bounded ordinary-jump retry `d5e443e17`. Workshop fix affects Workshop bootstrap only; stage 40 retry affects the coast route runtime and requires its saved-state and fresh-mission checks. `shared/runtime/act4-coast-events.js` SHA-256 `36026149e457f876d6e45a16097d791e9c07597a55efd61f3e2ecc5f8af8c368`; isolated QA `HONRO.html` SHA-256 `7175c1f5aa87fbde8f5eacc93088be21181cb9ee8a4e36a2656209d7ee6765e4`. World input remains `7959e96972a0219bbef37081d997ed70356ba971385620369129f28db59bc40c`. See `WORKSHOP-COMPATIBILITY.md`, `STAGE40-SPUR-RECOVERY.md` and `ACT4-REVIEW-MATRIX.md` for actual coverage and pending gates. Earlier source entries above remain historical.
+
+## 2026-10-31 Workshop quota warning
+
+Workshop-only source `b4e62a58c` reports autosave errors while preserving in-memory work and previous saved bytes. Earlier stage play results retain their recorded source and were not rerun. The full 40-stage Workshop import and embedded play remain blocked by the bounded shared-memory tests described in `WORKSHOP-COMPATIBILITY.md`; this source change is not a performance fix.

@@ -167,3 +167,5 @@
 ## 추가 — Workshop 의존성과 대형 프로젝트 실패 분리
 
 Workshop은 게임과 별도 bootstrap이므로 후보 태그가 요구하는 runtime과 reference가 게임에 존재한다는 사실만으로 편집기 import/embedded play가 되는 것은 아니다. 동일한 유효 프로젝트를 기준/후보의 실제 UI에 입력하고 오류와 owner 저장 보존을 대조한다. 31장의 pilot 태그 import 실패는 Workshop bootstrap 의존성 누락이었으며 수정 후 UI import·정상 입력·종료가 확인됐다. 40장 전체 대형 프로젝트의 과거 탭 종료 원인은 별도로 미확정이다. 검증 오류로 거절된 raw campaign 파일을 대형 정상 프로젝트 재현으로 취급하거나, 한 장짜리 성공을 전체 Workshop·quota 통과로 확대하지 않는다. 40장 주민의 턱 정체도 슬롯 교착과 구분하며 기존 저장 복구 성공을 fresh 완주나 서사 receipt 통과로 승격하지 않는다.
+
+- **Workshop 대용량과 quota는 별도 원인:** 기본 40장 프로젝트는 compact JSON 약 92–95 MB였다. 동일 원본 import와 기본 2장 Playtest는 공유 메모리 보호 한도에서 중단되어 결과나 원인 확정이 불가능했다. 별도의 유효 소형 입력으로 quota 실패 시 이전 저장이 유지되지만 성공 메시지만 보이던 결함을 재현해 경고·내보내기 안내를 추가했다. 이 보완을 대용량 import 성공이나 원래 메모리 문제 해결로 취급하지 않는다.
