@@ -1,0 +1,605 @@
+{
+  "scope": "Fresh official 38-cleared entry fixture v2. UI navigation and combat are real; no claim of prior play. Headless Chromium.",
+  "candidateSha256": "0bb8dd43bf33af941c88800c4e7e13bbf2c7d3dd924444c035c997daad8f5dcb",
+  "fixtureSha256": "fdb46cdffa936d57a73eb50c086d98ae7bba697f54eb25beb5819596a7aec123",
+  "errors": [],
+  "httpErrors": [],
+  "resumeStorageSha256": "7fe5de5db29fabde00b4a265d9b79b7890229d385aa61c93a024f1856c2dbfd3",
+  "entry": {
+    "mapNode": 39,
+    "lastStage": 39,
+    "pending": null,
+    "next": 39,
+    "heroes": [
+      {
+        "id": "archer",
+        "level": 25,
+        "earned": 51,
+        "spent": 51,
+        "loadout": [
+          "A01",
+          "A02",
+          "A05",
+          "A09"
+        ],
+        "equipment": {
+          "personal": "itm_se_05",
+          "common": "itm_co_11"
+        }
+      },
+      {
+        "id": "mage",
+        "level": 25,
+        "earned": 51,
+        "spent": 51,
+        "loadout": [
+          "M01",
+          "M02",
+          "M03",
+          "M06"
+        ],
+        "equipment": {
+          "personal": "itm_da_05",
+          "common": "itm_co_02"
+        }
+      },
+      {
+        "id": "knight",
+        "level": 25,
+        "earned": 51,
+        "spent": 51,
+        "loadout": [
+          "S00",
+          "S01",
+          "S03",
+          "S05"
+        ],
+        "equipment": {
+          "personal": "itm_hw_05",
+          "common": "itm_co_01"
+        }
+      },
+      {
+        "id": "occultist",
+        "level": 25,
+        "earned": 51,
+        "spent": 51,
+        "loadout": [
+          "O01",
+          "O06",
+          "O11",
+          "O02"
+        ],
+        "equipment": {
+          "personal": "itm_so_05",
+          "common": null
+        }
+      }
+    ]
+  },
+  "pilot": {
+    "official": 1,
+    "custom": false,
+    "reference": 2,
+    "mid": [
+      {
+        "id": "a4-39-n-2",
+        "equipped": true
+      }
+    ]
+  },
+  "tideBarkLayout": {
+    "rect": {
+      "left": 80,
+      "right": 310,
+      "top": 152,
+      "bottom": 226
+    },
+    "font": "15px",
+    "obstacles": [
+      {
+        "selector": "#minimap-dock",
+        "visible": true,
+        "rect": {
+          "left": 264,
+          "right": 382,
+          "top": 8,
+          "bottom": 87
+        }
+      },
+      {
+        "selector": "#equipment-pending-battle",
+        "visible": true,
+        "rect": {
+          "left": 259.546875,
+          "right": 378,
+          "top": 100,
+          "bottom": 144
+        }
+      },
+      {
+        "selector": ".battle-head",
+        "visible": true,
+        "rect": {
+          "left": 8,
+          "right": 256,
+          "top": 8,
+          "bottom": 52
+        }
+      },
+      {
+        "selector": ".battle-bottom",
+        "visible": true,
+        "rect": {
+          "left": 0,
+          "right": 390,
+          "top": 647.609375,
+          "bottom": 844
+        }
+      }
+    ]
+  },
+  "tideBarkVisibleSeconds": 3.632196737002232,
+  "final": {
+    "round": 2,
+    "side": 0,
+    "phase": "aim",
+    "shot": 8,
+    "active": "archer",
+    "cls": "archer",
+    "x": 1181.1184758570357,
+    "y": 1053.8990606953596,
+    "angle": 44,
+    "facing": 1,
+    "moveLeft": 2015.9583333333314,
+    "grounded": true,
+    "drop": true,
+    "dropState": null,
+    "jumping": false,
+    "retreat": false,
+    "support": "approved39-west-upper-stair",
+    "can": true,
+    "dialogue": false,
+    "dialogueText": null,
+    "heroes": [
+      {
+        "id": "archer",
+        "hp": 1207,
+        "maxHp": 1259,
+        "dead": false,
+        "x": 1181.1184758570357,
+        "y": 1053.8990606953596,
+        "acted": false
+      },
+      {
+        "id": "mage",
+        "hp": 1158,
+        "maxHp": 1158,
+        "dead": false,
+        "x": 1931.041648669741,
+        "y": 820.5390618251153,
+        "acted": false
+      },
+      {
+        "id": "knight",
+        "hp": 2093,
+        "maxHp": 2093,
+        "dead": false,
+        "x": 2509.499235749986,
+        "y": 893.558643705879,
+        "acted": false
+      },
+      {
+        "id": "occultist",
+        "hp": 1211,
+        "maxHp": 1324,
+        "dead": false,
+        "x": 1768.532744269421,
+        "y": 825.6254866762134,
+        "acted": false
+      }
+    ],
+    "residents": [
+      {
+        "id": "a4-rescue-0",
+        "hp": 1450,
+        "dead": false,
+        "x": 3555,
+        "y": 2174.1428571428573
+      },
+      {
+        "id": "a4-rescue-1",
+        "hp": 1450,
+        "dead": false,
+        "x": 3676.5,
+        "y": 2212.3285714285716
+      },
+      {
+        "id": "a4-rescue-2",
+        "hp": 1450,
+        "dead": false,
+        "x": 3798,
+        "y": 2250.5142857142855
+      },
+      {
+        "id": "a4-rescue-3",
+        "hp": 1450,
+        "dead": false,
+        "x": 3919.5,
+        "y": 2285.1692307692306
+      }
+    ],
+    "foes": [
+      {
+        "id": "a4-39-a-1",
+        "x": 1506.1277132798834,
+        "y": 839.9384883665518,
+        "hp": 971
+      },
+      {
+        "id": "a4-39-a-2",
+        "x": 2151.686105103173,
+        "y": 828.813228941369,
+        "hp": 524
+      },
+      {
+        "id": "a4-39-r-1",
+        "x": 990,
+        "y": 2095,
+        "hp": 2260
+      },
+      {
+        "id": "a4-39-r-2",
+        "x": 1170,
+        "y": 2097,
+        "hp": 1559
+      },
+      {
+        "id": "a4-39-r-3",
+        "x": 1350,
+        "y": 2097,
+        "hp": 1559
+      },
+      {
+        "id": "a4-39-w-1",
+        "x": 810,
+        "y": 1576.9285714285713,
+        "hp": 1559
+      },
+      {
+        "id": "a4-39-w-2",
+        "x": 1027.1941674586167,
+        "y": 1630.318583525664,
+        "hp": 2260
+      },
+      {
+        "id": "a4-39-w-3",
+        "x": 744.083333333336,
+        "y": 1559.9785714285722,
+        "hp": 1559
+      },
+      {
+        "id": "a4-39-w-4",
+        "x": 1133.2165807959966,
+        "y": 1656.0668839075993,
+        "hp": 2260
+      },
+      {
+        "id": "a4-39-w-5",
+        "x": 1327.5,
+        "y": 1709.1,
+        "hp": 1792
+      },
+      {
+        "id": "a4-39-m-1",
+        "x": 2475,
+        "y": 885.4411764705883,
+        "hp": 1559
+      },
+      {
+        "id": "a4-39-m-2",
+        "x": 2655,
+        "y": 926.3076923076923,
+        "hp": 1792
+      },
+      {
+        "id": "a4-39-m-3",
+        "x": 3060,
+        "y": 977.0625,
+        "hp": 1559
+      },
+      {
+        "id": "a4-39-m-4",
+        "x": 3285,
+        "y": 985.5,
+        "hp": 2494
+      },
+      {
+        "id": "a4-39-m-5",
+        "x": 3465,
+        "y": 978.3,
+        "hp": 1559
+      },
+      {
+        "id": "a4-39-n-1",
+        "x": 4860,
+        "y": 2143.5,
+        "hp": 1559
+      },
+      {
+        "id": "a4-39-n-2",
+        "x": 4995,
+        "y": 2148,
+        "hp": 2494
+      },
+      {
+        "id": "a4-39-n-3",
+        "x": 5130,
+        "y": 2152.9285714285716,
+        "hp": 2260
+      },
+      {
+        "id": "a4-39-n-4",
+        "x": 5355,
+        "y": 2162.5714285714284,
+        "hp": 1792
+      },
+      {
+        "id": "a4-39-g-1",
+        "x": 4185,
+        "y": 838.8,
+        "hp": 1559
+      },
+      {
+        "id": "a4-39-g-2",
+        "x": 4365,
+        "y": 835.2,
+        "hp": 1559
+      },
+      {
+        "id": "a4-39-g-3",
+        "x": 4545,
+        "y": 842.25,
+        "hp": 2494
+      },
+      {
+        "id": "a4-39-x-1",
+        "x": 5580,
+        "y": 1163.5,
+        "hp": 1559
+      },
+      {
+        "id": "a4-39-x-2",
+        "x": 5760,
+        "y": 1195.5,
+        "hp": 1559
+      },
+      {
+        "id": "a4-39-x-3",
+        "x": 5940,
+        "y": 1136,
+        "hp": 1247
+      },
+      {
+        "id": "a4-39-x-4",
+        "x": 6120,
+        "y": 1242,
+        "hp": 1559
+      },
+      {
+        "id": "a4-wreck",
+        "x": 2925,
+        "y": 1994.0625,
+        "hp": 7800
+      }
+    ],
+    "pilot": [
+      {
+        "id": "a4-39-n-2",
+        "hp": 2494,
+        "combat": {
+          "version": 1,
+          "phase": "guard",
+          "cycles": 0,
+          "history": []
+        }
+      }
+    ],
+    "water": {
+      "dry": {
+        "archer": {
+          "x": 1181.1184758570357,
+          "y": 1053.8990606953596
+        },
+        "mage": {
+          "x": 1931.041648669741,
+          "y": 820.5390618251153
+        },
+        "knight": {
+          "x": 2509.499235749986,
+          "y": 893.558643705879
+        },
+        "occultist": {
+          "x": 1768.532744269421,
+          "y": 825.6254866762134
+        },
+        "a4-rescue-0": {
+          "x": 3555,
+          "y": 2174.1428571428573
+        },
+        "a4-rescue-1": {
+          "x": 3676.5,
+          "y": 2212.3285714285716
+        },
+        "a4-rescue-2": {
+          "x": 3798,
+          "y": 2250.5142857142855
+        },
+        "a4-rescue-3": {
+          "x": 3919.5,
+          "y": 2285.1692307692306
+        },
+        "a4-39-a-1": {
+          "x": 1506.1277132798834,
+          "y": 839.9384883665518
+        },
+        "a4-39-a-2": {
+          "x": 2151.686105103173,
+          "y": 828.813228941369
+        },
+        "a4-39-r-1": {
+          "x": 990,
+          "y": 2095
+        },
+        "a4-39-r-2": {
+          "x": 1170,
+          "y": 2097
+        },
+        "a4-39-r-3": {
+          "x": 1350,
+          "y": 2097
+        },
+        "a4-39-w-1": {
+          "x": 810,
+          "y": 1576.9285714285713
+        },
+        "a4-39-w-2": {
+          "x": 1027.1941674586167,
+          "y": 1630.318583525664
+        },
+        "a4-39-w-3": {
+          "x": 744.083333333336,
+          "y": 1559.9785714285722
+        },
+        "a4-39-w-4": {
+          "x": 1133.2165807959966,
+          "y": 1656.0668839075993
+        },
+        "a4-39-w-5": {
+          "x": 1327.5,
+          "y": 1709.1
+        },
+        "a4-39-m-1": {
+          "x": 2475,
+          "y": 885.4411764705883
+        },
+        "a4-39-m-2": {
+          "x": 2655,
+          "y": 926.3076923076923
+        },
+        "a4-39-m-3": {
+          "x": 3060,
+          "y": 977.0625
+        },
+        "a4-39-m-4": {
+          "x": 3285,
+          "y": 985.5
+        },
+        "a4-39-m-5": {
+          "x": 3465,
+          "y": 978.3
+        },
+        "a4-39-n-1": {
+          "x": 4860,
+          "y": 2143.5
+        },
+        "a4-39-n-2": {
+          "x": 4995,
+          "y": 2148
+        },
+        "a4-39-n-3": {
+          "x": 5130,
+          "y": 2152.9285714285716
+        },
+        "a4-39-n-4": {
+          "x": 5355,
+          "y": 2162.5714285714284
+        },
+        "a4-39-g-1": {
+          "x": 4185,
+          "y": 838.8
+        },
+        "a4-39-g-2": {
+          "x": 4365,
+          "y": 835.2
+        },
+        "a4-39-g-3": {
+          "x": 4545,
+          "y": 842.25
+        },
+        "a4-39-x-1": {
+          "x": 5580,
+          "y": 1163.5
+        },
+        "a4-39-x-2": {
+          "x": 5760,
+          "y": 1195.5
+        },
+        "a4-39-x-4": {
+          "x": 6120,
+          "y": 1242
+        }
+      },
+      "recoveries": []
+    },
+    "tide": {
+      "phase": "rising",
+      "surface": 3132,
+      "warningRound": 2,
+      "highRound": 5,
+      "lowRound": 7,
+      "warned": true,
+      "warningAtRound": 2,
+      "opportunities": {
+        "2": [
+          "archer",
+          "mage",
+          "knight",
+          "occultist"
+        ]
+      }
+    },
+    "artillery": {
+      "count": 0,
+      "history": [],
+      "next": {
+        "x": 400.5,
+        "y": 1416.86,
+        "target": "knight",
+        "dueRound": 2,
+        "warningSeen": true
+      }
+    },
+    "observed": {
+      "upper-route": 80.23379999999976,
+      "water-rising": 83.2401999999997,
+      "wreck": 83.2401999999997
+    },
+    "netOpen": null,
+    "exitStable": null,
+    "rescued": null,
+    "failure": null,
+    "complete": false,
+    "screen": "battle"
+  },
+  "stopReason": "tide-observed",
+  "naturalTideFrames": [
+    {
+      "kind": "start",
+      "time": 62029.1,
+      "text": "설오 물이 올라옵니다. 높은 쪽으로 가세요!",
+      "rect": {
+        "left": 80,
+        "top": 152,
+        "right": 310,
+        "bottom": 226
+      },
+      "font": "15px"
+    },
+    {
+      "kind": "end",
+      "time": 65495.7,
+      "duration": 3.4665999999999983
+    }
+  ]
+}
