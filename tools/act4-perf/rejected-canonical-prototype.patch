@@ -1,0 +1,45 @@
+diff --git a/shared/runtime/profile-store.js b/shared/runtime/profile-store.js
+index 8622fb99..2cbda4a9 100644
+--- a/shared/runtime/profile-store.js
++++ b/shared/runtime/profile-store.js
+@@ -45,6 +45,29 @@ function rememberProviderSignature(key,text,signature){
+  }
+  providerHashCache.set(key,{text,signature,size});providerHashChars+=size;
+ }
++// EXPERIMENT: private canonical snapshot. Never use for arbitrary JS objects.
++let qaCanonical=null;
++function qaSamePlain(value,reference){
++ if(Object.hasOwn(Object.prototype,'toJSON')||Object.hasOwn(Array.prototype,'toJSON'))return false;
++ const seen=new WeakSet();let nodes=0;
++ const equal=(v,r)=>{
++  if(v===null||typeof v!=='object')return (v===null||typeof v==='string'||typeof v==='boolean'||typeof v==='number'&&Number.isFinite(v))&&v===r;
++  if(!r||typeof r!=='object'||seen.has(v)||++nodes>100000)return false;seen.add(v);
++  const arr=Array.isArray(v);if(arr!==Array.isArray(r)||Object.getPrototypeOf(v)!==(arr?Array.prototype:Object.prototype))return false;
++  const keys=Reflect.ownKeys(v),ref=Reflect.ownKeys(r);if(keys.length!==ref.length)return false;
++  for(let i=0;i<keys.length;i++){
++   const k=keys[i];if(typeof k!=='string'||k!==ref[i])return false;
++   const d=Object.getOwnPropertyDescriptor(v,k),rd=Object.getOwnPropertyDescriptor(r,k);if(!d||!rd||!('value'in d)||!('value'in rd)||d.enumerable!==rd.enumerable)return false;
++   if(!equal(d.value,rd.value))return false;
++  }
++  return true;
++ };
++ try{return equal(value,reference)}catch{return false}
++}
++function qaRemember(key,text,signature){
++ if(typeof key!=='string'||typeof text!=='string'||text.length>5000000||qaCanonical&&qaCanonical.text.length>=text.length)return;
++ try{const canonical=JSON.parse(text);qaCanonical={key,text,signature,canonical}}catch{}
++}
+ // Exact archived 33 QA art; never apply to custom or arbitrary signatures.
+ const ACT4_33_LEGACY=Object.freeze({'approved33:near-west':'446435:980e0bba','approved33:body':'2183752:7b7b6e'});
+ function legacy33Art(b,id,signature,library){
+@@ -71,8 +94,8 @@ function compactBattleArt(b){
+  const library=new Map((G.HONRO_PROJECT?.library||[]).map(a=>[a.id,a])),texts=new Map();let changed=false;const out={...b};
+  const compactItems=items=>items.map(item=>{
+   const asset=item.asset,source=asset?.vector&&library.get(asset.id);if(!source)return item;
+-  const key=asset.id;let row=texts.get(key);if(!row){const text=JSON.stringify(source);row={text,signature:providerSignature(key,text)};texts.set(asset.id,row);}
+-  const assetText=JSON.stringify(asset);if(assetText!==row.text){const legacy=legacy33Art(b,asset.id,ACT4_33_LEGACY[asset.id],library);if(!legacy||assetText!==legacy.text)return item;row=legacy;}else rememberProviderSignature(key,row.text,row.signature);
++  const key=asset.id;let row=texts.get(key);if(!row){if(qaCanonical?.key===key&&qaSamePlain(source,qaCanonical.canonical))row={text:qaCanonical.text,signature:qaCanonical.signature,canonical:qaCanonical.canonical};else{const text=JSON.stringify(source);row={text,signature:providerSignature(key,text)};}texts.set(asset.id,row);}
++  const assetText=row.canonical&&qaSamePlain(asset,row.canonical)?row.text:JSON.stringify(asset);if(assetText!==row.text){const legacy=legacy33Art(b,asset.id,ACT4_33_LEGACY[asset.id],library);if(!legacy||assetText!==legacy.text)return item;row=legacy;}else{rememberProviderSignature(key,row.text,row.signature);if(!row.canonical)qaRemember(key,row.text,row.signature);}
+   changed=true;return{...item,asset:{honroStaticAssetRef:1,id:asset.id,signature:row.signature}};
+  });
+  for(const key of ['honroLandmarks','honroElements'])if(Array.isArray(b[key]))out[key]=compactItems(b[key]);

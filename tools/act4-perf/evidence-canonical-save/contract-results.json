@@ -1,0 +1,30 @@
+{
+  "matched": [
+    "same",
+    "path",
+    "long-path",
+    "source-change",
+    "delete",
+    "add",
+    "reorder",
+    "array",
+    "hole",
+    "undefined",
+    "nan",
+    "prototype",
+    "accessor",
+    "cycle",
+    "alias",
+    "bigint",
+    "symbol",
+    "toJSON",
+    "inherited-toJSON",
+    "shared-alias"
+  ],
+  "proxyDifferent": true,
+  "baseline": "{\"mode\":\"campaign\",\"honroAct4Official\":1,\"honroStage\":40,\"honroLandmarks\":[{\"asset\":{\"id\":\"qa\",\"vector\":{\"root\":{\"d\":\"M999 999\",\"color\":\"blue\"},\"nodes\":[1,2,3]},\"collision\":[]}}],\"honroElements\":[]}",
+  "candidate": "{\"mode\":\"campaign\",\"honroAct4Official\":1,\"honroStage\":40,\"honroLandmarks\":[{\"asset\":{\"honroStaticAssetRef\":1,\"id\":\"qa\",\"signature\":\"94:9295e336\"}}],\"honroElements\":[]}",
+  "providerProxyDifferent": true,
+  "providerBaseline": "{\"mode\":\"campaign\",\"honroAct4Official\":1,\"honroStage\":40,\"honroLandmarks\":[{\"asset\":{\"id\":\"qa\",\"vector\":{\"root\":{\"d\":\"M0 0L30 30\",\"color\":\"blue\"},\"nodes\":[1,2,3]},\"collision\":[]}}],\"honroElements\":[]}",
+  "providerCandidate": "{\"mode\":\"campaign\",\"honroAct4Official\":1,\"honroStage\":40,\"honroLandmarks\":[{\"asset\":{\"honroStaticAssetRef\":1,\"id\":\"qa\",\"signature\":\"94:9295e336\"}}],\"honroElements\":[]}"
+}
