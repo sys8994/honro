@@ -1,0 +1,147 @@
+{
+  "status": "rejected: two of three equipped starts return to lower ledge; existing round14 actor overlaps new solid",
+  "scope": "isolated diagnostic clone only; positions, movement budget and equipment intentionally reset in clone; not normal play",
+  "inputSha256": "d79309d76726fa21bd3df7a517612ab71fb90a5addfa00a6f6180c0a5c46d498",
+  "holdMs": 1300,
+  "candidateWorldSha256": "bde1119e6569c8b515514ac27bc77c3119f3d18428648108981c6b78dd2b0abf",
+  "trials": [
+    {
+      "final": {
+        "x": 4917.862622926421,
+        "y": 2601.974918049053,
+        "grounded": true,
+        "jumping": false,
+        "equipment": [
+          "itm_se_05",
+          "itm_co_11"
+        ]
+      },
+      "minY": 2490.80314291147,
+      "maxX": 4917.862622926421,
+      "jumpObserved": true,
+      "start": {
+        "x": 4740,
+        "y": 2662.5,
+        "grounded": true,
+        "equipment": [
+          "itm_se_05",
+          "itm_co_11"
+        ]
+      }
+    },
+    {
+      "final": {
+        "x": 5029.807672096989,
+        "y": 2657.00384655806,
+        "grounded": true,
+        "jumping": false,
+        "equipment": [
+          "itm_se_05",
+          "itm_co_11"
+        ]
+      },
+      "minY": 2476.558029551864,
+      "maxX": 5029.807672096989,
+      "jumpObserved": true,
+      "start": {
+        "x": 4780,
+        "y": 2635.7,
+        "grounded": true,
+        "equipment": [
+          "itm_se_05",
+          "itm_co_11"
+        ]
+      }
+    },
+    {
+      "final": {
+        "x": 5186.284899246535,
+        "y": 2655,
+        "grounded": true,
+        "jumping": false,
+        "equipment": [
+          "itm_se_05",
+          "itm_co_11"
+        ]
+      },
+      "minY": 2475.308324652778,
+      "maxX": 5186.284899246535,
+      "jumpObserved": true,
+      "start": {
+        "x": 4820,
+        "y": 2626.875,
+        "grounded": true,
+        "equipment": [
+          "itm_se_05",
+          "itm_co_11"
+        ]
+      }
+    },
+    {
+      "final": {
+        "x": 4920.6250000000155,
+        "y": 2456.9652777777355,
+        "grounded": true,
+        "jumping": false,
+        "equipment": [
+          "itm_se_05"
+        ]
+      },
+      "minY": 2448.8984192009825,
+      "maxX": 4920.6250000000155,
+      "jumpObserved": true,
+      "start": {
+        "x": 4740,
+        "y": 2662.5,
+        "grounded": true,
+        "equipment": [
+          "itm_se_05"
+        ]
+      }
+    },
+    {
+      "final": {
+        "x": 4932.29166666668,
+        "y": 2425.2060185184832,
+        "grounded": true,
+        "jumping": false,
+        "equipment": [
+          "itm_se_05"
+        ]
+      },
+      "minY": 2422.0849187047093,
+      "maxX": 4932.29166666668,
+      "jumpObserved": true,
+      "start": {
+        "x": 4780,
+        "y": 2635.7,
+        "grounded": true,
+        "equipment": [
+          "itm_se_05"
+        ]
+      }
+    },
+    {
+      "final": {
+        "x": 5152.91345865413,
+        "y": 2655,
+        "grounded": true,
+        "jumping": false,
+        "equipment": [
+          "itm_se_05"
+        ]
+      },
+      "minY": 2475.51483166217,
+      "maxX": 5152.91345865413,
+      "jumpObserved": true,
+      "start": {
+        "x": 4820,
+        "y": 2626.875,
+        "grounded": true,
+        "equipment": [
+          "itm_se_05"
+        ]
+      }
+    }
+  ]
+}

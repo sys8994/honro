@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Unapproved QA-only candidate: move traced rock down and left for grounding.
+"""Rejected QA-only candidate: two equipped starts fall back and old actor overlaps solid.
 
 Consumes only the pinned assembled world. Output must be a disposable QA copy.
 The contact is sampled from the final vector's visible alpha edge; no original
