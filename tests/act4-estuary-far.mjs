@@ -4,11 +4,12 @@ import fs from 'node:fs/promises';
 import vm from 'node:vm';
 import sharp from 'sharp';
 import {createCanvas,Image,loadImage} from '@napi-rs/canvas';
+import {assertExactBytes} from './exact-byte-check.mjs';
 const read=p=>fs.readFile(new URL('../'+p,import.meta.url));
 const code=String(await read('shared/runtime/authored-far-art.js'));
 const manifest=JSON.parse(await read('shared/assets/environment/campaign-far/manifest.json'));
 const source=await read('art/act4-estuary-far-v1/source.png'),webp=await read('shared/assets/environment/campaign-far/'+manifest.images.act4Estuary);
-assert.deepEqual(await sharp(webp).ensureAlpha().raw().toBuffer(),await sharp(source).ensureAlpha().raw().toBuffer(),'format optimization preserves every source pixel');
+assertExactBytes(await sharp(webp).ensureAlpha().raw().toBuffer(),await sharp(source).ensureAlpha().raw().toBuffer(),'format optimization preserves every source pixel');
 const requestCode=code.slice(code.indexOf('function request('),code.indexOf('function layers('));
 const g=vm.createContext({Image,document:{createElement:()=>createCanvas(1,1)},manifest:{images:{act4Estuary:webp,act4Dawn:webp,act4Sea:webp,forest:webp}},cache:new Map(),MAX:3});
 vm.runInContext(requestCode+';globalThis.requestForTest=request;',g);
@@ -18,7 +19,7 @@ async function decoded(item){for(let i=0;i<200&&!item.canvas;i++)await new Promi
 const cv=await decoded(item),expected=createCanvas(cv.width,cv.height);
 expected.getContext('2d').drawImage(await loadImage(await sharp(source).png().toBuffer()),0,0,cv.width,cv.height);
 assert.equal(cv.width,2048,'existing decode width cap');assert.equal(cv.height,682);
-assert.deepEqual(Buffer.from(cv.getContext('2d').getImageData(0,0,cv.width,cv.height).data),Buffer.from(expected.getContext('2d').getImageData(0,0,cv.width,cv.height).data),'authored palette receives no filter, recolor or wash');
+assertExactBytes(Buffer.from(cv.getContext('2d').getImageData(0,0,cv.width,cv.height).data),Buffer.from(expected.getContext('2d').getImageData(0,0,cv.width,cv.height).data),'authored palette receives no filter, recolor or wash');
 for(const key of ['act4Dawn','act4Sea','forest'])await decoded(g.requestForTest(key));
 assert.equal(g.cache.size,3,'existing LRU cap');assert(!g.cache.has('act4Estuary:'),'least recent decode evicted');
 // Use the production opt-in validator, not a second test-only definition.
