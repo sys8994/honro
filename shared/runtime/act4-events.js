@@ -46,7 +46,7 @@ function arrivalTour(app,q,dt){const t=q.arrivalTour;if(!t?.active)return false;
 function observe(app,dt){const b=app.engine?.b,node=G.document.getElementById('act4-banter');if(!(b?.honroCustom||b?.honroAct4Official===1)||!b.honroAct4Preview||G.document.hidden||app.modal?.classList.contains('open')){if(node)node.hidden=true;return;}const q=memory(b),n=b.honroAct4Preview;q.clock+=dt;
  P.coastObserve?.(app,dt);
  if(q.reader){const e=event(q,q.reader.key),d=app.dialogue,line=d?.lines[d.index],node=G.document.getElementById('story-line');
-  if(line?.[2]?.act4PreviewRow&&node?.textContent===line[1]&&shown(node)&&!app.modal.classList.contains('open')&&!G.document.hidden&&app.canSpeak(line[0])&&(!P.rowAllowed||P.rowAllowed(app,line[2].act4PreviewRow)))receipt(q,e,line[2].act4PreviewRow);
+  if(line?.[2]?.act4PreviewRow&&node?.textContent===line[1]&&shown(node)&&!app.modal.classList.contains('open')&&!G.document.hidden&&app.canSpeak(line[0])&&(!P.rowAllowed||P.rowAllowed(app,line[2].act4PreviewRow))){receipt(q,e,line[2].act4PreviewRow);const next=G.document.querySelector('#dialogue-root [data-action="dialogue-next"]');if(next)next.disabled=false;}
   if(!d){e.terminal=true;for(const [id]of seed(n,q.reader.key).lines)if(!e.presented.includes(id)&&!e.retired.includes(id))e.retired.push(id);q.reader=null;}
  }
  // Reviewed generic subtitles keep priority; their queued time must not overlap Act 4 speech.
