@@ -151,3 +151,7 @@ The opening combat took 11 rounds against a 2–4-round design aim. Seolo twice 
 ## 2026-10-31 Stage 34 v6 and lazy old-save compatibility
 
 Source `9f318ac390ad1369c816ed04c41b8b39fb9079ce` selects v3 index and v6 stage 34 art; it adds a separate lazy bundle only for the exact previous official 34 BODY signature. The assembled QA world is `48c4c4deb9aec62518bde72e9c8668f36817da8f2626e7f8a736b0bd8af65b43`. Source and QA hashes, 1–30 preservation, browser entry, old portable/compact save, failed-fetch recovery and the synthetic already-cleared replay/XP limit are in `STAGE34-V6-INTEGRATION.md`. Nonzero first-clear XP on an unclaimed original pre-exit save remains unverified. No full current-source play or release approval is implied.
+
+## Published baseline update (2026-10-31)
+
+The parent verified through the connected GitHub tool that Pages workflow [run 41200502315](https://github.com/sys8994/honro/actions/runs/41200502315), created 2026-10-31 12:18:19 UTC, completed successfully for master commit `7238c788662cdfc55947d51dbe6cfe3a46768d0b`. This updates the older `736f462` deployment record. Workflow success does not establish the actual public site's current pixels or cache contents. This workspace's GitHub API and Pages HTTP requests returned 403, so there was no independent public-site inspection here. No new candidate has been deployed.
