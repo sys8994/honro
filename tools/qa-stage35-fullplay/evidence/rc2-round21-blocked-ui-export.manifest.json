@@ -1,0 +1,27 @@
+{
+  "kind": "actual UI download, not raw localStorage",
+  "stage": 35,
+  "round": 21,
+  "rawBytes": 4454614,
+  "rawSha256": "922d5087a4e9a44ee975877ca83d0ff8a2c0fd8303244747423a0514a7cd8d0e",
+  "xzBytes": 590028,
+  "xzSha256": "c6f9394805a271bcd05dee750b723dc3ff5d88b520abf67160049aa8ef46b770",
+  "factEvents": [
+    "eq_co_t3_choice",
+    "eq_da_t3b"
+  ],
+  "blockedShot": {
+    "impactAt": 1165.8833999988635,
+    "shot": 167,
+    "shooterId": "archer",
+    "supportId": "approved35-middle-clearing",
+    "launchX": 2307.8035466510896,
+    "obstacleId": "approved35-fallen-bamboo"
+  },
+  "receipts": [
+    "A4.S35.ENTRY.01",
+    "A4.S35.ENTRY.02",
+    "A4.S35.MID.01"
+  ],
+  "complete": false
+}
