@@ -1,6 +1,6 @@
 # Stage 33–34 UI export evidence
 
-Executed source: `2577ef15e1c9b81fbb824ffd68f3f265ca9086b2`; disposable QA build, same Chromium contexts. This archive contains the four unmodified **UI download** files, not localStorage snapshots and not states reconstructed from logs. The actual stage-33 localStorage strings immediately before and after its reload were not captured and are unavailable. In particular, these downloads do not establish when localStorage was last updated.
+Executed source: `2577ef15e1c9b81fbb824ffd68f3f265ca9086b2`; disposable QA build, same Chromium contexts. This archive contains the four unmodified **UI download** files, not localStorage snapshots and not states reconstructed from logs. The actual localStorage strings immediately before and after either of these stage-33 and stage-34 reload comparisons were not captured and are unavailable. In particular, these downloads do not establish when localStorage was last updated.
 
 `ui-exports.tar.xz` SHA-256: `32885c72b4ad9497f221b6b2fc889f8d50d31f33190f4db688ab701d9cb1f16d`. Its included relative `SHA256SUMS` was verified after extraction into a fresh directory:
 
