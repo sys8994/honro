@@ -21,7 +21,7 @@ with sync_playwright() as pw:
  import time
  events=(out/'events.jsonl').open('a',encoding='utf8')
  def snapshot():
-  return page.evaluate('''()=>{const a=HonroApp,e=a.engine,b=e.b,u=e.active,q=b.honroAct4PreviewState||{};return {round:b.round,side:b.side,phase:b.phase,shot:b.shot,active:u?.id,cls:u?.cls,x:u?.x,y:u?.y,angle:u?.angle,facing:u?.facing,grounded:u&&e.grounded(u),drop:u&&e.canDrop(),support:u&&e.contactSurface(u.x,u.y-4,u.y+5)?.t?.id,retreat:!!u?.retreat,can:a.canInput(),canAct:e.canAct(),selected:a.selected,charging:a.charging,projectiles:b.projectiles.length,dialogue:!!a.dialogue,dialogueText:document.querySelector('#story-line')?.innerText,heroes:b.units.filter(v=>v.side===0&&!v.summoned).map(v=>({id:v.id,hp:v.hp,maxHp:v.maxHp,dead:v.dead,x:v.x,y:v.y,acted:v.acted})),residents:b.units.filter(v=>v.honroAct4Resident).map(v=>({id:v.id,hp:v.hp,dead:v.dead,x:v.x,y:v.y})),foes:b.units.filter(v=>v.side===1&&!v.dead).map(v=>({id:v.id,x:v.x,y:v.y,hp:v.hp})),tide:q.tide,artillery:q.artillery,netOpen:q.netOpen,exitStable:q.exitStable,rescued:q.rescued,failure:q.failure,complete:q.complete,screen:a.screen}}''')
+  return page.evaluate('''()=>{const a=HonroApp,e=a.engine,b=e.b,u=e.active,q=b.honroAct4PreviewState||{};return {round:b.round,side:b.side,phase:b.phase,shot:b.shot,active:u?.id,cls:u?.cls,x:u?.x,y:u?.y,angle:u?.angle,facing:u?.facing,grounded:u&&e.grounded(u),drop:u&&e.canDrop(),support:u&&e.contactSurface(u.x,u.y-4,u.y+5)?.t?.id,moveLeft:u?.moveLeft,retreat:!!u?.retreat,can:a.canInput(),canAct:e.canAct(),selected:a.selected,charging:a.charging,projectiles:b.projectiles.length,dialogue:!!a.dialogue,dialogueText:document.querySelector('#story-line')?.innerText,heroes:b.units.filter(v=>v.side===0&&!v.summoned).map(v=>({id:v.id,hp:v.hp,maxHp:v.maxHp,dead:v.dead,x:v.x,y:v.y,acted:v.acted})),residents:b.units.filter(v=>v.honroAct4Resident).map(v=>({id:v.id,hp:v.hp,dead:v.dead,x:v.x,y:v.y})),foes:b.units.filter(v=>v.side===1&&!v.dead).map(v=>({id:v.id,x:v.x,y:v.y,hp:v.hp})),tide:q.tide,artillery:q.artillery,netOpen:q.netOpen,exitStable:q.exitStable,rescued:q.rescued,failure:q.failure,complete:q.complete,screen:a.screen}}''')
  def record(kind,**extra):
   x={'kind':kind,'time':time.time(),'state':snapshot(),**extra};events.write(json.dumps(x,ensure_ascii=False)+'\n');events.flush();print(json.dumps(x,ensure_ascii=False),flush=True);return x['state']
  def plan():
@@ -39,8 +39,8 @@ with sync_playwright() as pw:
    elif s['can'] and s['side']==0 and s['phase']=='aim' and s['grounded']:return True
    else:page.wait_for_timeout(500)
   record('wait-timeout');return False
- record('start');page.screenshot(path=str(out/'start.png'));history={};warnings=set()
- for turn in range(160):
+ record('start');page.screenshot(path=str(out/'start.png'));history={};warnings=set();stalls={}
+ for turn in range(2000):
   if not ready():record('terminal-or-wait');break
   s=record('turn-start',index=turn)
   if s.get('retreat'):
@@ -58,8 +58,32 @@ with sync_playwright() as pw:
   if s.get('tide') and s['tide'].get('warned') and 'tide' not in warnings:
    warnings.add('tide');page.screenshot(path=str(out/f'tide-{turn}.png'));record('tide-state')
   enemies=[v for v in s['foes'] if v['id']!='a4-wreck']
-  if not enemies:
-   record('combat-ended-needs-route');break
+  nearThreat=any(abs(v['x']-s['x'])<800 and abs(v['y']-s['y'])<500 for v in enemies)
+  # Once the nearby threat is cleared, use the real connected lower route.
+  # The low strand leads east to the ship ladder; never chase an upper-floor
+  # enemy west into the submerged tidal rock.
+  if s.get('rescued') and all(v['dead'] or v['x']>4600 for v in s['heroes']):
+   page.keyboard.press('e');page.wait_for_timeout(2500);record('exit-interact');page.screenshot(path=str(out/f'exit-{turn}.png'));continue
+  if not nearThreat and s['grounded']:
+   anchor={'x':4545,'y':2362.5};net={'x':4050,'y':2317.5}
+   target=net if not s.get('netOpen') else anchor if not s.get('exitStable') else {'x':4700,'y':2360}
+   distance=((s['x']-target['x'])**2+(s['y']-target['y'])**2)**.5
+   interactionRadius=(340 if s['cls']=='occultist' else 180) if not s.get('netOpen') else (360 if s['cls']=='mage' else 180)
+   if (not s.get('netOpen') or not s.get('exitStable')) and distance<interactionRadius-20:
+    page.keyboard.press('e');page.wait_for_timeout(2200);record('objective-interact',target=target);page.screenshot(path=str(out/f'objective-{turn}.png'));continue
+   if s['x']<target['x']-(30 if s.get('exitStable') and s.get('netOpen') else 100) and (s.get('moveLeft') or 0)>90:
+    before=s;held('ArrowRight',650);page.wait_for_timeout(300)
+    for _ in range(30):
+     if snapshot()['grounded']:break
+     page.wait_for_timeout(300)
+    after=record('route-east',target=target);stall=stalls.get(s['active'],0)
+    stalls[s['active']]=stall+1 if after['x']<before['x']+20 else 0
+    if stalls[s['active']]>=2:
+     page.keyboard.press('Control');held('ArrowRight',350);page.wait_for_timeout(1200);after=record('route-jump');stalls[s['active']]=0
+     if after['x']<before['x']+20 and after['grounded']:
+      page.keyboard.press('f');page.wait_for_timeout(500);record('route-blocked-defend')
+    continue
+   page.keyboard.press('f');page.wait_for_timeout(500);record('route-wait-defend');continue
   signature=(round(sum(v['hp'] for v in enemies)),s['support'],round(s['x']/100),round(s['y']/100));h=history.setdefault(s['active'],[]);h.append(signature)
   if len(h)>=4 and h[-1]==h[-2]==h[-3]==h[-4]:record('watchdog-no-progress',history=h[-4:]);break
   choice=plan();record('plan',choice=choice)
