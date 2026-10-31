@@ -32,6 +32,8 @@
 - **재발검사/증거:** `approved39-environment/SHADOW_HANDOFF.md`, `shadow-water-isolation.json`, production equivalence 및 `tests/act4-wreck-embedded-shadow.mjs`. 화면상 선만 보고 물 탓으로 단정하지 않고 층별 격리한다.
 - **한계:** 보스 생존 승리 계약은 유지하지만 이 미술 수정이 전투/미션 통과를 증명하지 않는다.
 
+- **피격 후속(진행 중):** 성공한 3발에 맞춘 상단55 world 띠·우측65 world 면만의 hit geometry는 보이는 넓은 중앙 목재에서 피해0을 만들어 시각 검수에서 기각됐다. 수치 성공을 시각 의미 정합으로 확대하지 않는다. 자연 목재 외곽54점으로 넓은 판재와 빈틈을 구분한 후보에서 33분산 사격·빈공간 음성 대조·사망 후 차폐·주민 가로채기를 검증 중이며 아직 합격이 아니다.
+
 ## 추가 2 — 실제 주민 drop과 moving deck
 
 - **증상:** 영웅은 지나가는데 주민이 경사/단차에서 멈춤, 여러 주민이 switchback에서 막힘, 배가 움직일 때 프레임 비용 급증.
@@ -41,6 +43,8 @@
 - **재발검사/증거:** `approved40/FAILURES.md`, `HANDOFF.md`, `npc-return-event-v10.json`, `actual-event-v12/manifest.json`. 실제 4주민 observer+physics+water fixture는 complete=false에서 끝났고 116.708초 pacing 문제가 남았다. 해당 Native moving-frame p95 389.85→8.50 ms, worldBuild45→1은 측정 범위 그대로 기록한다.
 - **한계:** 명시 boarding-dialogue 시작 fixture ≠ 실제 목격·대사 시작. follow-camera p95 34.48 ms와 cold build 약1.74초도 남았으므로 모바일60fps·정상 mission 완료를 주장하지 않는다. 최신 pacing 변경은 별도 버전의 실제 결과가 필요하다.
 
+- **설정 전달 후속:** `followerRelease`를 runtime에만 주입한 실험은 최신 candidate 통합이 아니다. 양쪽 실제 JSON 설정 → production compiler → runtime 값 assert를 확인한 사본에서 다시 시험한다. 이번 실제 candidate 사본은 normal87.7초/delayed101.9917초 및 6개 resume 동등성을 확인했지만 정상 완주 증거는 아니다.
+
 ## 추가 3 — source/master/compiled 실행본 parity: 출하 차단 gate
 
 - **증상:** 부모의 실증 보고에서 현재 master 실제 31장은 17 units/6 terrain이나 같은 source의 정식 rebuild는 10 units/1 terrain이 됨.
@@ -49,6 +53,8 @@
 - **채택:** 현재 배포 실행본·source commit·입력 데이터·공식 build 명령·의존 버전·출력 SHA를 보존하고 격리된 정식 rebuild와 대조한다. stage ID별 units/terrain ID·수·배치·스킬·목표·asset/manifest를 비교하고 의도된 차이만 남긴다. source→compiled→실제 실행본이 연결되기 전 master 반영 차단.
 - **재발검사/증거:** 각 빌드의 입력/출력 manifest와 실제 앱에 로드된 31장 구조 dump, 기존17/6과 rebuild10/1을 재현하는 artifact를 출하 담당자가 확보한다. 현재 숫자는 부모 보고이며 이 문서 작성자가 새 build를 실행한 결과가 아니다. 공식 build가 실패하면 정확한 실패 단계와 기준 버전 결과를 보존한다.
 - **한계:** parity 원인 미확정, 정식 build/배포 검증 미완료. 단위 테스트·Native candidate 성공은 이 gate를 대체하지 못한다.
+
+- **수정·baseline 판별:** 임의 global 문자열 치환이 `.5`→`.52` 순서에서 `.y2`를 만든 사례처럼 수정 도구가 낸 손상을 baseline 버그로 오인하지 않는다. 좁은 diff와 typecheck로 확인한다. 잘못된 ES2020 설정의 TS 오류8개를 기존 엔진 면책으로 남기지 않는다. 정식 ES2022 설정에서 baseline/candidate 모두 오류0을 확인한 결과를 기준으로 삼는다.
 
 ## 추가 4 — 전송 실패·중복 승인·증거 보존
 
@@ -107,4 +113,9 @@
 - **watchdog / 재발검사:** 적 감소·피해/기믹 진행·목표 층 접근·유효 착지·승선 인원 등 현재 상태의 진행 신호를 기록한다. 동일 위치/층 왕복과 무효 행동이 반복되면 짧은 유한 예산 내 자동입력을 멈추고 화면·실제 키 바인딩·경로를 재확인한다. 예산을 run 전에 명시하며 10턴 무진행 뒤에야 판단하지 않는다. 재개 전에 키 해제와 활성 배우/생존/상태를 확인한다. 조작기를 먼저 보정한 뒤 합법적인 fresh entry로 재시험하고 실패 run·seed·정책/runtime/candidate hash를 보존한다. 진단 재개는 독립 성공 표본으로 세지 않는다.
 - **저장 증거 / 한계:** 저장 성공 메시지나 파일 존재만으로 완료하지 않는다. 실제 재로드 후 같은 진행/파티/장비·미션 상태로 합법적 조작이 가능한지 확인한다. 현재 이 run의 최종 저장·정상 미션 재개는 미검증이다. 11R 전투 결과만으로 전 장 라운드 cap·승선 안전·난이도·재미를 합격 처리하지 않는다.
 
-**별도 미해결:** 39장 선체 피격 불일치는 이 조작 정책 실패와 다른 조사 항목이다. 원인/수정 구현안은 아직 확정하지 않았으며, 위 사례나 보스 그림자 수정으로 해결됐다고 주장하지 않는다.
+**별도 진행:** 39장 피격은 추가1의 시각 과적합 기각 후 새 후보 검증 중이다. 보스 그림자 수정이나 일부 명중만으로 해결 판정하지 않는다.
+
+- **36장 보상 연결:** reward tag는 identity 조회뿐 아니라 HP×1.55/attack×1.15 decorator에서도 소비된다. 연결 수정 전에 전체 consumer를 추적한다. 능력 불변 exact-target opt-in으로 최신9명 후보의 실제 fact/once/save 검사는 통과했으나 이것을 전체 정상 mission 통과로 확대하지 않는다.
+- **40장 환경 후속(진행 중):** BODY–foundation의 큰 수평 접합은 v20부터 있었고 v20↔v24 전체 pixel 차이0으로 확인됐다. Native AA 우회는 얇은 edge만 바꿨으므로 큰 접합의 원인으로 오인하지 않는다. 16k 환경 시안 하나를 확대하는 방식은 바위 배율/접합 불일치를 반복한다. near는 원BODY world/px에서 생성하고 플레이면·구조·의미 ROI를 보호한다. 잘못된 비플레이 하단 전체의 픽셀 차이0을 강제하지 말고 안전 ROI에서 겹침 교체를 허용한다. 이 교정은 진행 중이며 미술 합격이 아니다.
+
+- **31장 후속 정상 UI 결과:** 부모 보고의 새 fresh run에서 15턴 동안 적 34명 처치 후 4명 생존, 전원 승선·클리어 저장·export/re-import 후 32장 진입을 확인했다. 앞선 11R 승선 실패 기록은 그 실행의 이력으로 보존한다. 후속 결과는 최신 sharp 미술·경고 가독성·4막 전체 합격을 뜻하지 않는다.
