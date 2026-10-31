@@ -271,7 +271,11 @@ catch(error){if(globalThis.HonroStartup)globalThis.HonroStartup.failed(error);el
   const gameHtml=(base='',embedded=false)=>`<!doctype html>\n<html lang="ko"><head><meta charset="utf-8">${base}<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover"><meta name="theme-color" content="#101b20"><title>혼로 · HONRO</title><script>globalThis.HONRO_EMBEDDED=new URLSearchParams(location.search).get('embedded')==='1';if(HONRO_EMBEDDED)document.documentElement.classList.add('honro-embedded');</script><style>${criticalStyle}</style>${embedded?'':imagePreloads}</head>${shell.replace('<!--HONRO_STARTUP_TITLE-->',embedded?'':initialTitle)}${embedded?'':`<script>${startup}</script>`}${scriptTag(gameEntry)}</body></html>\n`;
   const gameDocument=await emit('entries','game','html',gameHtml('<base href="../../">',true));
   const editorModule=await emit('runtime','workshop-app','js',await read('workshop/src/app.js'));
-  const workshopEntry=await bootstrap('workshop',[...common,stageRules,editorModule],{playtest:gameDocument+'?embedded=1'});
+  // The editor compiles tagged Act 4 actors too, before it opens the game
+  // iframe. Load only the required pilot contract in the editor itself.
+  const pilotReference=entries.find(e=>e.global==='HONRO_ACT4_PILOT_COMBAT_REFERENCE'),pilotRuntime=entries.find(e=>e.name==='shared/runtime/act4-pilot-combat.js'),workshopPilot=[];
+  if(pilotReference&&pilotRuntime){workshopPilot.push(await dataModule('workshop-act4-pilot-reference',{HONRO_ACT4_PILOT_COMBAT_REFERENCE:pilotReference.data}));workshopPilot.push(await emit('runtime','workshop-act4-pilot-combat','js',pilotRuntime.code));}
+  const workshopEntry=await bootstrap('workshop',[...common,stageRules,...workshopPilot,editorModule],{playtest:gameDocument+'?embedded=1'});
   const workshopHtml=(await read('workshop/src/index.html')).replace('<style>/*STYLE*/</style>',cssTag(workshopStyle)).replace('<script>/*SCRIPT*/</script>',scriptTag(workshopEntry));
   await writeGenerated(destination,gameHtml());
   await writeGenerated(path.join(root,'index.html'),gameHtml());
