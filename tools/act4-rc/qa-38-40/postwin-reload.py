@@ -11,7 +11,8 @@ with sync_playwright() as pw:
  page.locator('#file-import').set_input_files(str(Path(a.profile).resolve()));page.wait_for_timeout(4000)
  def snapshot():return page.evaluate('''()=>{let p=HonroApp.profile;return {cleared:p.cleared,heroes:p.heroes,equipment:p.equipment,act4:p.honroAct4,progress:p.honroProgress,screen:HonroApp.screen,body:document.body.innerText}}''')
  def cont():
-  page.get_by_text('이어서 걷기',exact=True).click();page.wait_for_function("HonroApp.screen==='rest'",timeout=60000);page.wait_for_timeout(1000)
+  label='이어서 걷기' if page.get_by_text('이어서 걷기',exact=True).count() else '여정 이어가기'
+  page.get_by_text(label,exact=True).click();page.wait_for_function("HonroApp.screen==='rest'",timeout=60000);page.wait_for_timeout(1000)
  cont();before=snapshot();assert '다음 여정은 준비 중입니다' in before['body'];assert before['cleared']['40']['rounds']==21
  page.reload(wait_until='domcontentloaded');page.wait_for_function('window.HonroApp&&window.HonroCampaignLoader',timeout=60000);cont();after=snapshot()
  for k in ('cleared','heroes','equipment','act4','progress'):assert before[k]==after[k],k
