@@ -1,0 +1,373 @@
+{
+  "candidateSha256": "4c1b86d1222024561ab7025361c4eb5e30cfe0d010482529907412ac9ca01666",
+  "scope": "Story started normally then dismissed; stationary event/landmark inspection, not gameplay completion",
+  "state": {
+    "phase": "aim",
+    "dialogue": false,
+    "stage": 34,
+    "landmarks": [
+      {
+        "id": "approved34-deep-bedrock",
+        "asset": "approved34:deep-bedrock",
+        "layer": "structural-back",
+        "native": "structure",
+        "x": -4400,
+        "y": -3000
+      },
+      {
+        "id": "approved34-coastal-foundation",
+        "asset": "approved34:coastal-foundation",
+        "layer": "structural-back",
+        "native": "structure",
+        "x": -1536,
+        "y": -256
+      },
+      {
+        "id": "approved34-body",
+        "asset": "approved34:body",
+        "layer": "mid",
+        "native": "body",
+        "x": 0,
+        "y": 0
+      }
+    ],
+    "dynamic": [],
+    "units": [
+      {
+        "id": "archer",
+        "kind": null,
+        "side": 0,
+        "x": 320,
+        "y": 3527.1111111111113,
+        "grounded": true,
+        "support": "approved34-shore"
+      },
+      {
+        "id": "mage",
+        "kind": null,
+        "side": 0,
+        "x": 448,
+        "y": 3537.0666666666666,
+        "grounded": true,
+        "support": "approved34-shore"
+      },
+      {
+        "id": "knight",
+        "kind": null,
+        "side": 0,
+        "x": 576,
+        "y": 3547.0222222222224,
+        "grounded": true,
+        "support": "approved34-shore"
+      },
+      {
+        "id": "occultist",
+        "kind": null,
+        "side": 0,
+        "x": 704,
+        "y": 3559.4666666666667,
+        "grounded": true,
+        "support": "approved34-shore"
+      },
+      {
+        "id": "a4-34-g0-1",
+        "kind": null,
+        "side": 1,
+        "x": 5200,
+        "y": 2087.0588235294117,
+        "grounded": true,
+        "support": "approved34-cave-stairs"
+      },
+      {
+        "id": "a4-34-g0-2",
+        "kind": null,
+        "side": 1,
+        "x": 1160,
+        "y": 2692,
+        "grounded": true,
+        "support": "approved34-first-rise"
+      },
+      {
+        "id": "a4-34-g0-3",
+        "kind": null,
+        "side": 1,
+        "x": 1560,
+        "y": 2882,
+        "grounded": true,
+        "support": "approved34-first-rise"
+      },
+      {
+        "id": "a4-34-g0-4",
+        "kind": null,
+        "side": 1,
+        "x": 1960,
+        "y": 3060,
+        "grounded": true,
+        "support": "approved34-first-rise"
+      },
+      {
+        "id": "a4-34-g0-5",
+        "kind": null,
+        "side": 1,
+        "x": 2360,
+        "y": 3250.8571428571427,
+        "grounded": true,
+        "support": "approved34-first-rise"
+      },
+      {
+        "id": "a4-34-g0-6",
+        "kind": null,
+        "side": 1,
+        "x": 1200,
+        "y": 1848,
+        "grounded": true,
+        "support": "approved34-mid-rise"
+      },
+      {
+        "id": "a4-34-g0-7",
+        "kind": null,
+        "side": 1,
+        "x": 1360,
+        "y": 1784,
+        "grounded": true,
+        "support": "approved34-mid-rise"
+      },
+      {
+        "id": "a4-34-g0-8",
+        "kind": null,
+        "side": 1,
+        "x": 1600,
+        "y": 1728,
+        "grounded": true,
+        "support": "approved34-mid-rise"
+      },
+      {
+        "id": "a4-34-w-1",
+        "kind": null,
+        "side": 1,
+        "x": 1840,
+        "y": 1713.3333333333333,
+        "grounded": true,
+        "support": "approved34-mid-rise"
+      },
+      {
+        "id": "a4-34-w-2",
+        "kind": null,
+        "side": 1,
+        "x": 2080,
+        "y": 1706,
+        "grounded": true,
+        "support": "approved34-mid-rise"
+      },
+      {
+        "id": "a4-34-w-3",
+        "kind": null,
+        "side": 1,
+        "x": 1600,
+        "y": 1258.4,
+        "grounded": true,
+        "support": "approved34-upper-switch"
+      },
+      {
+        "id": "a4-34-w-4",
+        "kind": null,
+        "side": 1,
+        "x": 1760,
+        "y": 1166,
+        "grounded": true,
+        "support": "approved34-upper-switch"
+      },
+      {
+        "id": "a4-34-w-5",
+        "kind": null,
+        "side": 1,
+        "x": 1940,
+        "y": 1096.888888888889,
+        "grounded": true,
+        "support": "approved34-upper-switch"
+      },
+      {
+        "id": "a4-34-w-6",
+        "kind": null,
+        "side": 1,
+        "x": 2100,
+        "y": 1033,
+        "grounded": true,
+        "support": "approved34-upper-switch"
+      },
+      {
+        "id": "a4-34-w-7",
+        "kind": null,
+        "side": 1,
+        "x": 2240,
+        "y": 998,
+        "grounded": true,
+        "support": "approved34-upper-switch"
+      },
+      {
+        "id": "a4-34-w-8",
+        "kind": null,
+        "side": 1,
+        "x": 3600,
+        "y": 332,
+        "grounded": true,
+        "support": "approved34-summit"
+      },
+      {
+        "id": "a4-34-w-9",
+        "kind": null,
+        "side": 1,
+        "x": 3840,
+        "y": 322.8,
+        "grounded": true,
+        "support": "approved34-summit"
+      },
+      {
+        "id": "a4-34-s-1",
+        "kind": null,
+        "side": 1,
+        "x": 4120,
+        "y": 342.4,
+        "grounded": true,
+        "support": "approved34-summit"
+      },
+      {
+        "id": "a4-34-s-2",
+        "kind": null,
+        "side": 1,
+        "x": 4440,
+        "y": 408,
+        "grounded": true,
+        "support": "approved34-summit"
+      },
+      {
+        "id": "a4-34-s-3",
+        "kind": null,
+        "side": 1,
+        "x": 4760,
+        "y": 494.4,
+        "grounded": true,
+        "support": "approved34-summit"
+      },
+      {
+        "id": "a4-34-s-4",
+        "kind": null,
+        "side": 1,
+        "x": 5080,
+        "y": 582.6666666666666,
+        "grounded": true,
+        "support": "approved34-summit"
+      },
+      {
+        "id": "a4-34-r-1",
+        "kind": null,
+        "side": 1,
+        "x": 5400,
+        "y": 657.3333333333334,
+        "grounded": true,
+        "support": "approved34-summit"
+      },
+      {
+        "id": "a4-34-r-2",
+        "kind": null,
+        "side": 1,
+        "x": 5720,
+        "y": 721.8181818181818,
+        "grounded": true,
+        "support": "approved34-summit"
+      },
+      {
+        "id": "a4-34-r-3",
+        "kind": null,
+        "side": 1,
+        "x": 4120,
+        "y": 2510,
+        "grounded": true,
+        "support": "approved34-cave-floor"
+      },
+      {
+        "id": "a4-34-r-4",
+        "kind": null,
+        "side": 1,
+        "x": 4400,
+        "y": 2555.5555555555557,
+        "grounded": true,
+        "support": "approved34-cave-floor"
+      },
+      {
+        "id": "a4-34-r-5",
+        "kind": null,
+        "side": 1,
+        "x": 4760,
+        "y": 2555.2,
+        "grounded": true,
+        "support": "approved34-cave-floor"
+      },
+      {
+        "id": "a4-34-r-6",
+        "kind": null,
+        "side": 1,
+        "x": 5080,
+        "y": 2567.2,
+        "grounded": true,
+        "support": "approved34-cave-floor"
+      },
+      {
+        "id": "a4-34-r-7",
+        "kind": null,
+        "side": 1,
+        "x": 5480,
+        "y": 2683.2,
+        "grounded": true,
+        "support": "approved34-cave-floor"
+      },
+      {
+        "id": "a4-34-r-8",
+        "kind": null,
+        "side": 1,
+        "x": 4760,
+        "y": 2373.3333333333335,
+        "grounded": true,
+        "support": "approved34-cave-stairs"
+      },
+      {
+        "id": "a4-34-r-9",
+        "kind": null,
+        "side": 1,
+        "x": 5040,
+        "y": 2101.176470588235,
+        "grounded": true,
+        "support": "approved34-cave-stairs"
+      },
+      {
+        "id": "a4-34-r-10",
+        "kind": null,
+        "side": 1,
+        "x": 5320,
+        "y": 2081,
+        "grounded": true,
+        "support": "approved34-cave-stairs"
+      },
+      {
+        "id": "a4-34-r-11",
+        "kind": null,
+        "side": 1,
+        "x": 5600,
+        "y": 2088,
+        "grounded": true,
+        "support": "approved34-cave-stairs"
+      },
+      {
+        "id": "a4-34-r-12",
+        "kind": null,
+        "side": 1,
+        "x": 5744.574374157796,
+        "y": 2072.6666666666665,
+        "grounded": false,
+        "support": null
+      }
+    ]
+  },
+  "shots": [],
+  "pageErrors": []
+}

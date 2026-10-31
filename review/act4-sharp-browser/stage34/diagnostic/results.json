@@ -1,0 +1,95 @@
+{
+  "landmarks": [
+    {
+      "id": "approved34-deep-bedrock",
+      "asset": "approved34:deep-bedrock",
+      "layer": "structural-back",
+      "nativeArtLayer": "structure"
+    },
+    {
+      "id": "approved34-coastal-foundation",
+      "asset": "approved34:coastal-foundation",
+      "layer": "structural-back",
+      "nativeArtLayer": "structure"
+    },
+    {
+      "id": "approved34-body",
+      "asset": "approved34:body",
+      "layer": "mid",
+      "nativeArtLayer": "body"
+    }
+  ],
+  "far": null,
+  "shots": {
+    "baseline": {
+      "x": 3072,
+      "y": 2048,
+      "scale": 0.65,
+      "far": [
+        {
+          "key": "act4Estuary",
+          "mood": "",
+          "alpha": 1,
+          "frame": {
+            "x": -1244.0539214076248,
+            "y": -6.300000000000006,
+            "w": 2740.476246334311,
+            "h": 912.6,
+            "offsetX": -0.0,
+            "offsetY": -0.0
+          }
+        }
+      ],
+      "stats": {
+        "groups": 1,
+        "visibleAssets": 1,
+        "cachedPaths": 0,
+        "backgroundAnimatedPrimitives": 0,
+        "animatedPrimitives": 0,
+        "paths": 0,
+        "fogCards": 2,
+        "fogBytes": 524288,
+        "pools": 0,
+        "waterfalls": 0,
+        "authoredFar": [
+          "act4Estuary"
+        ]
+      }
+    },
+    "direct": {
+      "x": 3072,
+      "y": 2048,
+      "scale": 0.65,
+      "far": [
+        {
+          "key": "act4Estuary",
+          "mood": "",
+          "alpha": 1,
+          "frame": {
+            "x": -1244.0539214076248,
+            "y": -6.300000000000006,
+            "w": 2740.476246334311,
+            "h": 912.6,
+            "offsetX": -0.0,
+            "offsetY": -0.0
+          }
+        }
+      ],
+      "stats": {
+        "groups": 1,
+        "visibleAssets": 1,
+        "cachedPaths": 0,
+        "backgroundAnimatedPrimitives": 0,
+        "animatedPrimitives": 0,
+        "paths": 0,
+        "fogCards": 2,
+        "fogBytes": 524288,
+        "pools": 0,
+        "waterfalls": 0,
+        "authoredFar": [
+          "act4Estuary"
+        ]
+      }
+    }
+  }
+}

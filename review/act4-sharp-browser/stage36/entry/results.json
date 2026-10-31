@@ -1,0 +1,177 @@
+{
+  "candidateSha256": "dcecb8a22c5740c6ccbd4211e3a7f7a71f1b62be16ee51ab369d65eb325f8dca",
+  "scope": "Story started normally then dismissed; stationary event/landmark inspection, not gameplay completion",
+  "state": {
+    "phase": "aim",
+    "dialogue": false,
+    "stage": 36,
+    "landmarks": [
+      {
+        "id": "approved36-mountain-foundation",
+        "asset": "approved36:mountain-foundation",
+        "layer": "structural-back",
+        "native": "structure",
+        "x": -7300,
+        "y": -7200
+      },
+      {
+        "id": "approved36-near-slope-join",
+        "asset": "approved36:near-slope-join",
+        "layer": "structural-back",
+        "native": "structure",
+        "x": 0,
+        "y": 650
+      },
+      {
+        "id": "approved36-body",
+        "asset": "approved36:body",
+        "layer": "mid",
+        "native": "body",
+        "x": 0,
+        "y": 0
+      }
+    ],
+    "dynamic": [
+      {
+        "id": "a4-36-door-4-p0-p0",
+        "asset": "a4:door",
+        "x": 1463.0000000000002,
+        "y": 1254
+      }
+    ],
+    "units": [
+      {
+        "id": "archer",
+        "kind": null,
+        "side": 0,
+        "x": 77,
+        "y": 1076.4285714285716,
+        "grounded": true,
+        "support": "approved36-entry"
+      },
+      {
+        "id": "mage",
+        "kind": null,
+        "side": 0,
+        "x": 143,
+        "y": 1078.314285714286,
+        "grounded": true,
+        "support": "approved36-entry"
+      },
+      {
+        "id": "knight",
+        "kind": null,
+        "side": 0,
+        "x": 209.00000000000003,
+        "y": 1080.2,
+        "grounded": true,
+        "support": "approved36-entry"
+      },
+      {
+        "id": "occultist",
+        "kind": null,
+        "side": 0,
+        "x": 275,
+        "y": 1086.0666666666666,
+        "grounded": true,
+        "support": "approved36-entry"
+      },
+      {
+        "id": "a4-36-a-1",
+        "kind": null,
+        "side": 1,
+        "x": 990.0000000000001,
+        "y": 1248,
+        "grounded": true,
+        "support": "approved36-workshop"
+      },
+      {
+        "id": "a4-36-a-2",
+        "kind": null,
+        "side": 1,
+        "x": 1210,
+        "y": 1254,
+        "grounded": true,
+        "support": "approved36-workshop"
+      },
+      {
+        "id": "a4-36-a-3",
+        "kind": null,
+        "side": 1,
+        "x": 1430.0000000000002,
+        "y": 1257.3000000000002,
+        "grounded": true,
+        "support": "approved36-workshop"
+      },
+      {
+        "id": "a4-36-g-1",
+        "kind": null,
+        "side": 1,
+        "x": 2189,
+        "y": 1166.8000000000002,
+        "grounded": true,
+        "support": "approved36-house-front"
+      },
+      {
+        "id": "a4-36-g-2",
+        "kind": null,
+        "side": 1,
+        "x": 2486,
+        "y": 1179,
+        "grounded": true,
+        "support": "approved36-house-front"
+      },
+      {
+        "id": "a4-36-b-1",
+        "kind": null,
+        "side": 1,
+        "x": 3014.0000000000005,
+        "y": 1210.0000000000002,
+        "grounded": true,
+        "support": "approved36-court"
+      },
+      {
+        "id": "a4-36-b-2",
+        "kind": null,
+        "side": 1,
+        "x": 3234.0000000000005,
+        "y": 1262.3600000000001,
+        "grounded": true,
+        "support": "approved36-court"
+      },
+      {
+        "id": "a4-36-b-3",
+        "kind": null,
+        "side": 1,
+        "x": 2684,
+        "y": 1311.75,
+        "grounded": true,
+        "support": "approved36-court"
+      },
+      {
+        "id": "a4-36-b-4",
+        "kind": null,
+        "side": 1,
+        "x": 2860.0000000000005,
+        "y": 1150.2,
+        "grounded": false,
+        "support": null
+      }
+    ]
+  },
+  "shots": [
+    {
+      "landmark": {
+        "id": "a4-36-door-4-p0-p0",
+        "asset": "a4:door",
+        "x": 1463.0000000000002,
+        "y": 1254
+      },
+      "x": 1463.0000000000002,
+      "y": 1254,
+      "scale": 0.65,
+      "file": "landmark-0.png"
+    }
+  ],
+  "pageErrors": []
+}

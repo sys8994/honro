@@ -1,0 +1,200 @@
+{
+  "landmarks": [
+    {
+      "id": "approved38-cavern-continuation",
+      "asset": "approved38:cavern-continuation",
+      "layer": "structural-back",
+      "nativeArtLayer": "structure"
+    },
+    {
+      "id": "approved38-body",
+      "asset": "approved38:body",
+      "layer": "mid",
+      "nativeArtLayer": "body"
+    },
+    {
+      "id": "approved38-roof-alpha-overlap",
+      "asset": "approved38:roof-alpha-overlap",
+      "layer": "front",
+      "nativeArtLayer": "front"
+    }
+  ],
+  "far": "cave-entrance",
+  "shots": {
+    "baseline": {
+      "x": 3456,
+      "y": 2304,
+      "scale": 0.65,
+      "far": [
+        {
+          "key": "cave-entrance",
+          "mood": "",
+          "alpha": 1,
+          "frame": {
+            "x": -1240.1217592972182,
+            "y": -6.300000000000006,
+            "w": 2736.4638360175695,
+            "h": 912.6,
+            "offsetX": -0.0,
+            "offsetY": -0.0
+          }
+        }
+      ],
+      "stats": {
+        "groups": 0,
+        "visibleAssets": 1,
+        "cachedPaths": 0,
+        "backgroundAnimatedPrimitives": 0,
+        "animatedPrimitives": 0,
+        "paths": 0,
+        "fogCards": 2,
+        "fogBytes": 524288,
+        "pools": 0,
+        "waterfalls": 0,
+        "authoredFar": [
+          "cave-entrance"
+        ]
+      }
+    },
+    "no-body": {
+      "x": 3456,
+      "y": 2304,
+      "scale": 0.65,
+      "far": [
+        {
+          "key": "cave-entrance",
+          "mood": "",
+          "alpha": 1,
+          "frame": {
+            "x": -1240.1217592972182,
+            "y": -6.300000000000006,
+            "w": 2736.4638360175695,
+            "h": 912.6,
+            "offsetX": -0.0,
+            "offsetY": -0.0
+          }
+        }
+      ],
+      "stats": {
+        "groups": 0,
+        "visibleAssets": 1,
+        "cachedPaths": 0,
+        "backgroundAnimatedPrimitives": 0,
+        "animatedPrimitives": 0,
+        "paths": 0,
+        "fogCards": 2,
+        "fogBytes": 524288,
+        "pools": 0,
+        "waterfalls": 0,
+        "authoredFar": [
+          "cave-entrance"
+        ]
+      }
+    },
+    "no-structure": {
+      "x": 3456,
+      "y": 2304,
+      "scale": 0.65,
+      "far": [
+        {
+          "key": "cave-entrance",
+          "mood": "",
+          "alpha": 1,
+          "frame": {
+            "x": -1240.1217592972182,
+            "y": -6.300000000000006,
+            "w": 2736.4638360175695,
+            "h": 912.6,
+            "offsetX": -0.0,
+            "offsetY": -0.0
+          }
+        }
+      ],
+      "stats": {
+        "groups": 0,
+        "visibleAssets": 1,
+        "cachedPaths": 0,
+        "backgroundAnimatedPrimitives": 0,
+        "animatedPrimitives": 0,
+        "paths": 0,
+        "fogCards": 2,
+        "fogBytes": 524288,
+        "pools": 0,
+        "waterfalls": 0,
+        "authoredFar": [
+          "cave-entrance"
+        ]
+      }
+    },
+    "no-front": {
+      "x": 3456,
+      "y": 2304,
+      "scale": 0.65,
+      "far": [
+        {
+          "key": "cave-entrance",
+          "mood": "",
+          "alpha": 1,
+          "frame": {
+            "x": -1240.1217592972182,
+            "y": -6.300000000000006,
+            "w": 2736.4638360175695,
+            "h": 912.6,
+            "offsetX": -0.0,
+            "offsetY": -0.0
+          }
+        }
+      ],
+      "stats": {
+        "groups": 0,
+        "visibleAssets": 1,
+        "cachedPaths": 0,
+        "backgroundAnimatedPrimitives": 0,
+        "animatedPrimitives": 0,
+        "paths": 0,
+        "fogCards": 2,
+        "fogBytes": 524288,
+        "pools": 0,
+        "waterfalls": 0,
+        "authoredFar": [
+          "cave-entrance"
+        ]
+      }
+    },
+    "no-landmarks": {
+      "x": 3456,
+      "y": 2304,
+      "scale": 0.65,
+      "far": [
+        {
+          "key": "cave-entrance",
+          "mood": "",
+          "alpha": 1,
+          "frame": {
+            "x": -1240.1217592972182,
+            "y": -6.300000000000006,
+            "w": 2736.4638360175695,
+            "h": 912.6,
+            "offsetX": -0.0,
+            "offsetY": -0.0
+          }
+        }
+      ],
+      "stats": {
+        "groups": 0,
+        "visibleAssets": 1,
+        "cachedPaths": 0,
+        "backgroundAnimatedPrimitives": 0,
+        "animatedPrimitives": 0,
+        "paths": 0,
+        "fogCards": 2,
+        "fogBytes": 524288,
+        "pools": 0,
+        "waterfalls": 0,
+        "authoredFar": [
+          "cave-entrance"
+        ]
+      }
+    }
+  }
+}

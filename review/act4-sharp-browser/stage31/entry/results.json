@@ -1,0 +1,410 @@
+{
+  "candidateSha256": "cebd6fa4858c7770739f236bbace39ef02ede43e1493ad82c0acadf10c695ff7",
+  "scope": "Story started normally then dismissed; stationary event/landmark inspection, not gameplay completion",
+  "state": {
+    "phase": "aim",
+    "dialogue": false,
+    "stage": 31,
+    "landmarks": [
+      {
+        "id": "approved31-coastal-foundation",
+        "asset": "approved31:coastal-foundation",
+        "layer": "structural-back",
+        "native": "structure",
+        "x": -4500,
+        "y": -1125
+      },
+      {
+        "id": "approved31-body",
+        "asset": "approved31:body",
+        "layer": "mid",
+        "native": "body",
+        "x": 0,
+        "y": 0
+      },
+      {
+        "id": "approved31-harbor-piling",
+        "asset": "approved31:harbor-piling",
+        "layer": "structural-back",
+        "native": "structure",
+        "x": -270,
+        "y": 1314
+      },
+      {
+        "id": "approved31-harbor-stair-art",
+        "asset": "approved31:harbor-stair",
+        "layer": "mid",
+        "native": "body",
+        "x": 450,
+        "y": 765
+      }
+    ],
+    "dynamic": [
+      {
+        "id": "a4-31-boat-10",
+        "asset": "a4:boat",
+        "x": 500,
+        "y": 3416
+      }
+    ],
+    "units": [
+      {
+        "id": "archer",
+        "kind": null,
+        "side": 0,
+        "x": 315,
+        "y": 2455.875,
+        "grounded": true,
+        "support": "approved31-entry"
+      },
+      {
+        "id": "mage",
+        "kind": null,
+        "side": 0,
+        "x": 436.5,
+        "y": 2440.6875,
+        "grounded": true,
+        "support": "approved31-entry"
+      },
+      {
+        "id": "knight",
+        "kind": null,
+        "side": 0,
+        "x": 558,
+        "y": 2416.05,
+        "grounded": true,
+        "support": "approved31-entry"
+      },
+      {
+        "id": "occultist",
+        "kind": null,
+        "side": 0,
+        "x": 679.5,
+        "y": 2390.23125,
+        "grounded": true,
+        "support": "approved31-entry"
+      },
+      {
+        "id": "pilot31-west-entry-1",
+        "kind": null,
+        "side": 1,
+        "x": 1575,
+        "y": 1953.586956521739,
+        "grounded": true,
+        "support": "approved31-entry"
+      },
+      {
+        "id": "pilot31-west-entry-2",
+        "kind": null,
+        "side": 1,
+        "x": 1485,
+        "y": 2028.4615384615386,
+        "grounded": true,
+        "support": "approved31-entry"
+      },
+      {
+        "id": "pilot31-west-entry-3",
+        "kind": null,
+        "side": 1,
+        "x": 1845,
+        "y": 1922.4,
+        "grounded": true,
+        "support": "approved31-entry"
+      },
+      {
+        "id": "pilot31-west-entry-4",
+        "kind": null,
+        "side": 1,
+        "x": 1732.5,
+        "y": 1929,
+        "grounded": true,
+        "support": "approved31-entry"
+      },
+      {
+        "id": "pilot31-west-entry-5",
+        "kind": null,
+        "side": 1,
+        "x": 2475,
+        "y": 1635.9545454545455,
+        "grounded": true,
+        "support": "approved31-upper-west"
+      },
+      {
+        "id": "pilot31-west-entry-6",
+        "kind": null,
+        "side": 1,
+        "x": 2610,
+        "y": 1585.7560975609756,
+        "grounded": true,
+        "support": "approved31-upper-west"
+      },
+      {
+        "id": "pilot31-west-entry-7",
+        "kind": null,
+        "side": 1,
+        "x": 1980,
+        "y": 1911.6,
+        "grounded": true,
+        "support": "approved31-entry"
+      },
+      {
+        "id": "pilot31-west-entry-8",
+        "kind": null,
+        "side": 1,
+        "x": 2092.5,
+        "y": 1900.3295454545455,
+        "grounded": true,
+        "support": "approved31-entry"
+      },
+      {
+        "id": "pilot31-west-crossfire-1",
+        "kind": null,
+        "side": 1,
+        "x": 1822.5,
+        "y": 2538.5625,
+        "grounded": true,
+        "support": "approved31-low-flank"
+      },
+      {
+        "id": "pilot31-west-crossfire-2",
+        "kind": null,
+        "side": 1,
+        "x": 2227.5,
+        "y": 2685.75,
+        "grounded": true,
+        "support": "approved31-low-flank"
+      },
+      {
+        "id": "pilot31-west-crossfire-3",
+        "kind": null,
+        "side": 1,
+        "x": 2002.5,
+        "y": 2633.4,
+        "grounded": true,
+        "support": "approved31-low-flank"
+      },
+      {
+        "id": "pilot31-west-crossfire-4",
+        "kind": null,
+        "side": 1,
+        "x": 2340,
+        "y": 1751.357142857143,
+        "grounded": true,
+        "support": "approved31-upper-west"
+      },
+      {
+        "id": "pilot31-west-crossfire-5",
+        "kind": null,
+        "side": 1,
+        "x": 2677.5,
+        "y": 2795.85,
+        "grounded": true,
+        "support": "approved31-low-flank"
+      },
+      {
+        "id": "pilot31-west-crossfire-6",
+        "kind": null,
+        "side": 1,
+        "x": 2745,
+        "y": 1549.421052631579,
+        "grounded": true,
+        "support": "approved31-upper-west"
+      },
+      {
+        "id": "pilot31-west-crossfire-7",
+        "kind": null,
+        "side": 1,
+        "x": 2452.5,
+        "y": 2723.25,
+        "grounded": true,
+        "support": "approved31-low-flank"
+      },
+      {
+        "id": "pilot31-west-crossfire-8",
+        "kind": null,
+        "side": 1,
+        "x": 2542.5,
+        "y": 1600.5731707317073,
+        "grounded": true,
+        "support": "approved31-upper-west"
+      },
+      {
+        "id": "pilot31-west-crossfire-9",
+        "kind": null,
+        "side": 1,
+        "x": 2925,
+        "y": 1460.7391304347825,
+        "grounded": true,
+        "support": "approved31-upper-west"
+      },
+      {
+        "id": "pilot31-ridge-court-1",
+        "kind": null,
+        "side": 1,
+        "x": 5310,
+        "y": 2614.5,
+        "grounded": true,
+        "support": "approved31-east-return"
+      },
+      {
+        "id": "pilot31-ridge-court-2",
+        "kind": null,
+        "side": 1,
+        "x": 5390.5,
+        "y": 2587.5,
+        "grounded": true,
+        "support": "approved31-east-return"
+      },
+      {
+        "id": "pilot31-ridge-court-3",
+        "kind": null,
+        "side": 1,
+        "x": 6165,
+        "y": 1944.409090909091,
+        "grounded": true,
+        "support": "approved31-upper-east"
+      },
+      {
+        "id": "pilot31-ridge-court-4",
+        "kind": null,
+        "side": 1,
+        "x": 5647.5,
+        "y": 2548.9285714285716,
+        "grounded": true,
+        "support": "approved31-east-return"
+      },
+      {
+        "id": "pilot31-ridge-court-5",
+        "kind": null,
+        "side": 1,
+        "x": 5567,
+        "y": 2576.5285714285715,
+        "grounded": true,
+        "support": "approved31-east-return"
+      },
+      {
+        "id": "pilot31-ridge-court-6",
+        "kind": null,
+        "side": 1,
+        "x": 6345,
+        "y": 1947.1153846153845,
+        "grounded": true,
+        "support": "approved31-upper-east"
+      },
+      {
+        "id": "pilot31-ridge-court-7",
+        "kind": null,
+        "side": 1,
+        "x": 5953,
+        "y": 2190.35,
+        "grounded": true,
+        "support": "approved31-east-return"
+      },
+      {
+        "id": "pilot31-ridge-court-8",
+        "kind": null,
+        "side": 1,
+        "x": 5760,
+        "y": 2442.375,
+        "grounded": true,
+        "support": "approved31-east-return"
+      },
+      {
+        "id": "pilot31-ridge-court-9",
+        "kind": null,
+        "side": 1,
+        "x": 5872.5,
+        "y": 2295,
+        "grounded": true,
+        "support": "approved31-east-return"
+      },
+      {
+        "id": "pilot31-lookout-return-1",
+        "kind": null,
+        "side": 1,
+        "x": 4230,
+        "y": 3061.8,
+        "grounded": true,
+        "support": "approved31-low-flank"
+      },
+      {
+        "id": "pilot31-lookout-return-2",
+        "kind": null,
+        "side": 1,
+        "x": 4635,
+        "y": 3081.375,
+        "grounded": true,
+        "support": "approved31-low-flank"
+      },
+      {
+        "id": "pilot31-lookout-return-3",
+        "kind": null,
+        "side": 1,
+        "x": 5985,
+        "y": 1881.3461538461538,
+        "grounded": true,
+        "support": "approved31-upper-east"
+      },
+      {
+        "id": "pilot31-lookout-return-4",
+        "kind": null,
+        "side": 1,
+        "x": 4432.5,
+        "y": 3072.6,
+        "grounded": true,
+        "support": "approved31-low-flank"
+      },
+      {
+        "id": "pilot31-lookout-return-5",
+        "kind": null,
+        "side": 1,
+        "x": 4805.5,
+        "y": 3065.766666666667,
+        "grounded": true,
+        "support": "approved31-low-flank"
+      },
+      {
+        "id": "pilot31-lookout-return-6",
+        "kind": null,
+        "side": 1,
+        "x": 5040,
+        "y": 2848.5,
+        "grounded": true,
+        "support": "approved31-low-flank"
+      },
+      {
+        "id": "pilot31-lookout-return-7",
+        "kind": null,
+        "side": 1,
+        "x": 5175,
+        "y": 2740.5,
+        "grounded": true,
+        "support": "approved31-east-return"
+      },
+      {
+        "id": "pilot31-lookout-return-8",
+        "kind": null,
+        "side": 1,
+        "x": 5476.5,
+        "y": 2587.5,
+        "grounded": true,
+        "support": "approved31-east-return"
+      }
+    ]
+  },
+  "shots": [
+    {
+      "landmark": {
+        "id": "a4-31-boat-10",
+        "asset": "a4:boat",
+        "x": 500,
+        "y": 3416
+      },
+      "x": 500,
+      "y": 3416,
+      "scale": 0.65,
+      "file": "landmark-0.png"
+    }
+  ],
+  "pageErrors": []
+}

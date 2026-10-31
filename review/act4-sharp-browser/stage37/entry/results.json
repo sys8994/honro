@@ -1,0 +1,362 @@
+{
+  "candidateSha256": "4c4c73ec8d500619b65c1f1ad90e12ec5942ec11f4b5759451e7d311cc5ba1b8",
+  "scope": "Story started normally then dismissed; stationary event/landmark inspection, not gameplay completion",
+  "state": {
+    "phase": "aim",
+    "dialogue": false,
+    "stage": 37,
+    "landmarks": [
+      {
+        "id": "approved37-right-coast",
+        "asset": "approved37:right-coast",
+        "layer": "structural-back",
+        "native": "structure",
+        "x": 2250,
+        "y": 1180
+      },
+      {
+        "id": "approved37-left-coast",
+        "asset": "approved37:left-coast",
+        "layer": "structural-back",
+        "native": "structure",
+        "x": -2250,
+        "y": 1060
+      },
+      {
+        "id": "approved37-deep-seabed",
+        "asset": "approved37:deep-seabed",
+        "layer": "structural-back",
+        "native": "structure",
+        "x": -5000,
+        "y": 100
+      },
+      {
+        "id": "approved37-near-foundation",
+        "asset": "approved37:near-foundation",
+        "layer": "structural-back",
+        "native": "structure",
+        "x": 0,
+        "y": 700
+      },
+      {
+        "id": "approved37-body",
+        "asset": "approved37:body",
+        "layer": "mid",
+        "native": "body",
+        "x": 0,
+        "y": 0
+      }
+    ],
+    "dynamic": [],
+    "units": [
+      {
+        "id": "archer",
+        "kind": null,
+        "side": 0,
+        "x": 224,
+        "y": 1439.3263157894737,
+        "grounded": true,
+        "support": "approved37-entry"
+      },
+      {
+        "id": "mage",
+        "kind": null,
+        "side": 0,
+        "x": 296,
+        "y": 1429.4736842105265,
+        "grounded": true,
+        "support": "approved37-entry"
+      },
+      {
+        "id": "knight",
+        "kind": null,
+        "side": 0,
+        "x": 368,
+        "y": 1423.68,
+        "grounded": true,
+        "support": "approved37-entry"
+      },
+      {
+        "id": "occultist",
+        "kind": null,
+        "side": 0,
+        "x": 440,
+        "y": 1422.96,
+        "grounded": true,
+        "support": "approved37-entry"
+      },
+      {
+        "id": "a4-37-a-1",
+        "kind": null,
+        "side": 1,
+        "x": 1792,
+        "y": 1421.0133333333335,
+        "grounded": true,
+        "support": "approved37-lower-diagonal"
+      },
+      {
+        "id": "a4-37-a-2",
+        "kind": null,
+        "side": 1,
+        "x": 1680,
+        "y": 1393.3866666666668,
+        "grounded": true,
+        "support": "approved37-lower-diagonal"
+      },
+      {
+        "id": "a4-37-a-3",
+        "kind": null,
+        "side": 1,
+        "x": 1568,
+        "y": 1362.4615384615386,
+        "grounded": true,
+        "support": "approved37-lower-diagonal"
+      },
+      {
+        "id": "a4-37-b-1",
+        "kind": null,
+        "side": 1,
+        "x": 1840,
+        "y": 992.8000000000001,
+        "grounded": true,
+        "support": "approved37-lower-road"
+      },
+      {
+        "id": "a4-37-b-2",
+        "kind": null,
+        "side": 1,
+        "x": 1728,
+        "y": 1027.8857142857144,
+        "grounded": true,
+        "support": "approved37-lower-road"
+      },
+      {
+        "id": "a4-37-b-3",
+        "kind": null,
+        "side": 1,
+        "x": 1600,
+        "y": 1067.2,
+        "grounded": true,
+        "support": "approved37-lower-road"
+      },
+      {
+        "id": "a4-37-b-4",
+        "kind": null,
+        "side": 1,
+        "x": 1472,
+        "y": 1099.6266666666668,
+        "grounded": true,
+        "support": "approved37-lower-road"
+      },
+      {
+        "id": "a4-37-b-5",
+        "kind": null,
+        "side": 1,
+        "x": 1344,
+        "y": 1131.0857142857144,
+        "grounded": true,
+        "support": "approved37-lower-road"
+      },
+      {
+        "id": "a4-37-c-1",
+        "kind": null,
+        "side": 1,
+        "x": 1520,
+        "y": 838.9333333333334,
+        "grounded": true,
+        "support": "approved37-middle-road"
+      },
+      {
+        "id": "a4-37-c-2",
+        "kind": null,
+        "side": 1,
+        "x": 1408,
+        "y": 809.7066666666667,
+        "grounded": true,
+        "support": "approved37-middle-road"
+      },
+      {
+        "id": "a4-37-c-3",
+        "kind": null,
+        "side": 1,
+        "x": 1296,
+        "y": 782.08,
+        "grounded": true,
+        "support": "approved37-middle-road"
+      },
+      {
+        "id": "a4-37-c-4",
+        "kind": null,
+        "side": 1,
+        "x": 1168,
+        "y": 750.2933333333334,
+        "grounded": true,
+        "support": "approved37-middle-road"
+      },
+      {
+        "id": "a4-37-c-5",
+        "kind": null,
+        "side": 1,
+        "x": 1040,
+        "y": 717.8666666666667,
+        "grounded": true,
+        "support": "approved37-middle-road"
+      },
+      {
+        "id": "a4-37-c-6",
+        "kind": null,
+        "side": 1,
+        "x": 928,
+        "y": 690.9866666666667,
+        "grounded": true,
+        "support": "approved37-middle-road"
+      },
+      {
+        "id": "a4-37-d-1",
+        "kind": null,
+        "side": 1,
+        "x": 1648,
+        "y": 679.2615384615385,
+        "grounded": true,
+        "support": "approved37-hoist-deck"
+      },
+      {
+        "id": "a4-37-d-2",
+        "kind": null,
+        "side": 1,
+        "x": 1824,
+        "y": 679.6190476190477,
+        "grounded": true,
+        "support": "approved37-hoist-deck"
+      },
+      {
+        "id": "a4-37-e-1",
+        "kind": null,
+        "side": 1,
+        "x": 1008,
+        "y": 545.2,
+        "grounded": true,
+        "support": "approved37-upper-road"
+      },
+      {
+        "id": "a4-37-e-2",
+        "kind": null,
+        "side": 1,
+        "x": 1136,
+        "y": 513.9200000000001,
+        "grounded": true,
+        "support": "approved37-upper-road"
+      },
+      {
+        "id": "a4-37-e-3",
+        "kind": null,
+        "side": 1,
+        "x": 1264,
+        "y": 482.3466666666667,
+        "grounded": true,
+        "support": "approved37-upper-road"
+      },
+      {
+        "id": "a4-37-e-4",
+        "kind": null,
+        "side": 1,
+        "x": 1392,
+        "y": 449.28000000000003,
+        "grounded": true,
+        "support": "approved37-upper-road"
+      },
+      {
+        "id": "a4-37-f-1",
+        "kind": null,
+        "side": 1,
+        "x": 736,
+        "y": 457.44,
+        "grounded": true,
+        "support": "approved37-west-deck"
+      },
+      {
+        "id": "a4-37-f-2",
+        "kind": null,
+        "side": 1,
+        "x": 880,
+        "y": 470.4,
+        "grounded": true,
+        "support": "approved37-west-deck"
+      },
+      {
+        "id": "a4-37-g-1",
+        "kind": null,
+        "side": 1,
+        "x": 1904,
+        "y": 681.1428571428572,
+        "grounded": true,
+        "support": "approved37-hoist-deck"
+      },
+      {
+        "id": "a4-37-g-2",
+        "kind": null,
+        "side": 1,
+        "x": 2080,
+        "y": 302.54545454545456,
+        "grounded": true,
+        "support": "approved37-upper-road"
+      },
+      {
+        "id": "a4-37-h-1",
+        "kind": null,
+        "side": 1,
+        "x": 1600,
+        "y": 401.06666666666666,
+        "grounded": true,
+        "support": "approved37-upper-road"
+      },
+      {
+        "id": "a4-37-h-2",
+        "kind": null,
+        "side": 1,
+        "x": 1728,
+        "y": 377.1733333333334,
+        "grounded": true,
+        "support": "approved37-upper-road"
+      },
+      {
+        "id": "a4-37-h-3",
+        "kind": null,
+        "side": 1,
+        "x": 1856,
+        "y": 353.3714285714286,
+        "grounded": true,
+        "support": "approved37-upper-road"
+      },
+      {
+        "id": "a4-37-h-4",
+        "kind": null,
+        "side": 1,
+        "x": 2000,
+        "y": 261.0909090909091,
+        "grounded": false,
+        "support": null
+      },
+      {
+        "id": "a4-37-h-5",
+        "kind": null,
+        "side": 1,
+        "x": 2144,
+        "y": 284.5090909090909,
+        "grounded": true,
+        "support": "approved37-upper-road"
+      },
+      {
+        "id": "a4-37-h-6",
+        "kind": null,
+        "side": 1,
+        "x": 2272,
+        "y": 271.8545454545455,
+        "grounded": true,
+        "support": "approved37-upper-road"
+      }
+    ]
+  },
+  "shots": [],
+  "pageErrors": []
+}
