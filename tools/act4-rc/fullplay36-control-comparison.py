@@ -11,7 +11,7 @@ src=Path(os.environ.get('HONRO_INITIAL_SAVE','/workspace/honro/_local/act4-rc/fi
 raw=src.read_bytes(); expected=os.environ.get('HONRO_INITIAL_SHA','1a94cf8169ea4db4ac8a2e4f8b4e0a69a09c575cc486080bfef1bd36453433eb'); assert hashlib.sha256(raw).hexdigest()==expected
 p=json.loads(raw); b=p['honroBattle']; assert b['honroStage']==36 and b['seed']==19388; expected_state=(b['round'],b['seed'],b['rng'],b['shots'],b['kills'])
 out=Path(os.environ.get('HONRO_RUN_DIR','/workspace/honro/_local/act4-rc/control-36-comparison'));out.mkdir(parents=True,exist_ok=False)
-state_js='''()=>{let a=HonroApp,e=a.engine,b=e?.b,u=e?.active;if(!b)return {screen:a.screen};return {screen:a.screen,stage:b.honroStage,round:b.round,phase:b.phase,active:u?.id,side:u?.side,canInput:a.canInput(),grounded:u?e.grounded(u):null,selected:a.selected,charge:a.charging,power:a.power,angle:u?.angle,move:u?.moveLeft,shot:b.shot,shots:b.shots,hits:b.hits,kills:b.kills,seed:b.seed,rng:b.rng,projectiles:b.projectiles.length,volley:!!b.volley,dialogue:a.dialogue&&{index:a.dialogue.index,line:a.dialogue.lines[a.dialogue.index]?.slice(0,2)},units:b.units.map(v=>({id:v.id,side:v.side,x:Math.round(v.x*10)/10,y:Math.round(v.y*10)/10,hp:Math.round(v.hp*10)/10,dead:v.dead,acted:v.acted,angle:v.angle})),lastShots:Object.fromEntries(Object.entries(b.lastShots||{}).map(([k,v])=>[k,{skill:v.skill,angle:v.angle,power:v.power,wind:v.wind}])),events:((q)=>q&&({door:q.door,events:q.events,receipts:q.receipts}))(b.honroAct4PreviewState)}}'''
+state_js='''()=>{let a=HonroApp,e=a.engine,b=e?.b,u=e?.active;if(!b)return {screen:a.screen};return {screen:a.screen,stage:b.honroStage,round:b.round,phase:b.phase,active:u?.id,side:u?.side,canInput:a.canInput(),grounded:u?e.grounded(u):null,selected:a.selected,charge:a.charging,power:a.power,camera:{x:a.scene?.x,y:a.scene?.y,scale:a.scene?.scale},angle:u?.angle,move:u?.moveLeft,shot:b.shot,shots:b.shots,hits:b.hits,kills:b.kills,seed:b.seed,rng:b.rng,projectiles:b.projectiles.length,volley:!!b.volley,dialogue:a.dialogue&&{index:a.dialogue.index,line:a.dialogue.lines[a.dialogue.index]?.slice(0,2)},units:b.units.map(v=>({id:v.id,side:v.side,x:Math.round(v.x*10)/10,y:Math.round(v.y*10)/10,hp:Math.round(v.hp*10)/10,dead:v.dead,acted:v.acted,angle:v.angle})),lastShots:Object.fromEntries(Object.entries(b.lastShots||{}).map(([k,v])=>[k,{skill:v.skill,angle:v.angle,power:v.power,wind:v.wind}])),events:((q)=>q&&({door:q.door,events:q.events,receipts:q.receipts}))(b.honroAct4PreviewState)}}'''
 with sync_playwright() as w:
  browser=w.chromium.launch(executable_path='/usr/bin/chromium',headless=True,args=['--no-sandbox']);page=browser.new_page(viewport={'width':1440,'height':900})
  page.goto(os.environ.get('HONRO_QA_URL','http://127.0.0.1:8772')+'/HONRO.html',wait_until='domcontentloaded');page.wait_for_function('window.HonroApp')
@@ -24,6 +24,13 @@ with sync_playwright() as w:
  for v in initial['units']:
   original=next(x for x in b['units'] if x['id']==v['id']);assert abs(v['hp']-original['hp'])<.11 and abs(v['x']-original['x'])<.11 and abs(v['y']-original['y'])<.11,(v,original['id'])
  print('READY',json.dumps(initial,ensure_ascii=False),flush=True)
+ if os.environ.get('HONRO_PREFLIGHT')=='1':
+  page.mouse.move(700,350);page.mouse.wheel(0,500);page.wait_for_timeout(1000);wide=page.evaluate(state_js)
+  assert abs(wide['camera']['scale']-initial['camera']['scale'])>.01,(initial['camera'],wide['camera'])
+  for k in ('round','phase','active','shots','kills','seed','rng','units'):assert wide[k]==initial[k],k
+  page.mouse.wheel(0,-500);page.wait_for_timeout(1000);restored=page.evaluate(state_js)
+  assert abs(restored['camera']['scale']-initial['camera']['scale'])<.03,(initial['camera'],restored['camera'])
+  (out/'camera-preflight.json').write_text(json.dumps({'before':initial['camera'],'wide':wide['camera'],'restored':restored['camera'],'battleUnchanged':True},indent=2));print('CAMERA_PREFLIGHT_OK',json.dumps({'before':initial['camera'],'wide':wide['camera'],'restored':restored['camera']}),flush=True);browser.close();sys.exit(0)
  for text in sys.stdin:
   args=text.strip().split()
   if not args: continue
