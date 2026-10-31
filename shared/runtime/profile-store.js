@@ -30,6 +30,20 @@ function legacy33Art(b,id,signature,library){
  const archived=library.get('act4compat33:v1:'+id);if(!archived?.vector||archived.collision?.length||archived.interactionType)return null;
  const asset={...archived,id},text=JSON.stringify(asset);if(assetSignature(text)!==signature)return null;return{asset,text,signature};
 }
+function needsLegacy33Art(b){
+ if(!b||b.honroCustom||b.mode!=='campaign'||b.honroAct4Official!==1||b.honroStage!==33)return false;
+ for(const items of [b.honroLandmarks,b.honroElements,b.honroEnvironment?.placements])for(const item of items||[]){
+  const a=item?.asset,sig=ACT4_33_LEGACY[a?.id];if(!sig)continue;
+  if(a.honroStaticAssetRef===1&&a.signature===sig)return true;
+  if(a.vector&&assetSignature(JSON.stringify(a))===sig)return true;
+ }
+ return false;
+}
+function verifyLegacy33Assets(items){
+ if(!Array.isArray(items)||items.length!==2)return false;const library=new Map(items.map(a=>[a?.id,a]));
+ if(library.size!==2)return false;const b={mode:'campaign',honroAct4Official:1,honroStage:33};
+ return Object.entries(ACT4_33_LEGACY).every(([id,sig])=>!!legacy33Art(b,id,sig,library));
+}
 function compactBattleArt(b){
  if(!b||b.honroCustom||b.mode!=='campaign'||b.honroAct4Official!==1||b.honroStage<31||b.honroStage>40)return b;
  const library=new Map((G.HONRO_PROJECT?.library||[]).map(a=>[a.id,a])),texts=new Map();let changed=false;const out={...b};
@@ -132,5 +146,5 @@ function create(){
   cancelRetry(){retryCandidate=null;}
  };
 }
-G.HonroProfileStore={create,fresh,migrate,compactBattleArt,restoreBattleArt};
+G.HonroProfileStore={create,fresh,migrate,compactBattleArt,restoreBattleArt,needsLegacy33Art,verifyLegacy33Assets};
 })(globalThis);

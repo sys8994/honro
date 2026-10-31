@@ -419,7 +419,7 @@
             if(!this.campaignReady())return;
             if(G.HonroActEndings?.show(this))return;
             const target=G.HonroCampaignLoader?.destination(this.profile);
-            if(target&&G.HonroCampaignEntry?.defer(this,target,()=>this.continue()))return;
+            if(target&&G.HonroCampaignEntry?.defer(this,target,()=>this.continue(),this.profile.honroBattle))return;
             G.HonroCampaignMapRevision.discard(this.profile);
             const restart=this.profile.honroMapRestart;
             if(restart){this.engine=null;this.persist();this.launch(restart);this.notify('지형이 개편되어 현재 장 입구에서 다시 시작합니다. 성장과 장착은 유지됩니다.'+(restart>=31&&restart<=40&&this.profileStore.archives().items?.length?' 개편 전 원본은 설정의 기록·관리에서 내보낼 수 있습니다.':''));return;}
@@ -1162,7 +1162,7 @@
                     // compacts it. The title may have loaded a different chapter.
                     const inspected=G.HonroProfileStore.migrate(text),battle=inspected.honroBattle;
                     if(battle?.mode==='campaign'&&!battle.honroCustom&&battle.honroAct4Official===1&&battle.honroStage>=31&&battle.honroStage<=40){
-                        if(G.HonroCampaignLoader)await G.HonroCampaignLoader.ensureStage(battle.honroStage);
+                        if(G.HonroCampaignLoader){await G.HonroCampaignLoader.ensureStage(battle.honroStage);await G.HonroCampaignLoader.ensureBattleArt?.(battle);}
                         if(request!==this.profileImportSequence)return;
                         if(!G.HonroProfileStore.restoreBattleArt(battle))throw Error('기록의 지형 그림을 확인하지 못했습니다. 기존 기록은 유지됩니다.');
                     }
@@ -1184,11 +1184,23 @@
         } }
         equipConfirm(i) {const id=this.equipIncoming;if(!Number.isInteger(i)||i<1||i>3||!this.canEquip(id))return;const l=this.profile.loadouts[this.cls],j=l.indexOf(id),old=l[i];if(j===i)return;l[i]=id;if(j>0)l[j]=old||'';C.sanitizeLoadout(this.profile,this.cls);this.saveCampAllocation();const context=this.equipReturn;this.equipReturn=null;this.showCamp();if(context)this.restoreTalent(context);}
         nextDialogue(){G.HonroStory.next(this);}
-        export() { if(this.profileStore.locked)return this.exportOriginal(); if (this.engine && !this.training && !this.debugMode && !this.done) {
+        async export() { if(this.profileStore.locked)return this.exportOriginal(); if (this.engine && !this.training && !this.debugMode && !this.done) {
             G.HonroProgression.syncRoster(this.profile,this.engine.b);
             this.profile.honroBattle = clone(this.engine.b);
             G.HonroProgression.persist(this);
-        } this.downloadProfile(JSON.stringify(this.debugMode?this.normalProfile:this.profile)); }
+        }
+            const profile=this.debugMode?this.normalProfile:this.profile,b=profile.honroBattle;
+            const refs=[b?.honroLandmarks,b?.honroElements,b?.honroEnvironment?.placements].some(items=>Array.isArray(items)&&items.some(item=>item?.asset?.honroStaticAssetRef!==undefined));
+            if(!refs){this.downloadProfile(JSON.stringify(profile));return;}
+            // Portable exports contain art, including when the title loaded a
+            // compact autosave for a chapter whose provider is not loaded yet.
+            const portable=clone(profile);
+            try{
+                if(G.HonroCampaignLoader){await G.HonroCampaignLoader.ensureStage(b.honroStage);await G.HonroCampaignLoader.ensureBattleArt?.(portable.honroBattle);}
+                if(!G.HonroProfileStore.restoreBattleArt(portable.honroBattle))throw Error('asset mismatch');
+                this.downloadProfile(JSON.stringify(portable));
+            }catch{this.notify('기록의 지형 그림을 확인하지 못해 내보내지 못했습니다.');}
+        }
         frame(now) {
             if(this.endingGallery?.debug){this.prev=now;requestAnimationFrame(t=>this.frame(t));return;}
             this.updateAudio();
