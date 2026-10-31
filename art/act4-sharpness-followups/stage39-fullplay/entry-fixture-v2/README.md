@@ -1,0 +1,5 @@
+# Stage 39 entry fixture v2
+
+`profile.json` is a declared 38-cleared entry fixture, not evidence of playing the earlier chapters. Its SHA-256 is `fdb46cdffa936d57a73eb50c086d98ae7bba697f54eb25beb5819596a7aec123`. It differs from v1 only in `mapNode` (1→39), `lastStage` (39→38), and `honroJourney` (absent→version 1 with `pendingDirect=39` and empty talk history). The same level 25, 51 earned/spent SP, ranks, loadouts, owned/equipped items and prior-clear declarations are retained. This fixture does not invent Stage 32 rescue proof.
+
+The actual title UI with clean integration `e0ae4d13` resumed the pending 39 direct entry and mounted the real Stage 39 candidate, official mode, with the tagged pilot midboss. A separate test of the earlier real 39-clear save showed the same title handoff fix opened Stage 40; that old save lacked Stage 32 campaign proof, so it was not Stage 40 mission-completion evidence. See `game/docs/integration/ACT4_PENDING_DIRECT_TITLE.md` for the source fix and pre-existing broad test failures.
