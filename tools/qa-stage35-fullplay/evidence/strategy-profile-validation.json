@@ -1,0 +1,278 @@
+{
+  "scope": "Declared prior clears 1–34; same level, XP, stat training, owned/equipped items and progression as earlier fixture. No claim of actual preceding clears.",
+  "sourceFixtureSha256": "e7be3773e82ea36afcd09bd881b9e490b4fe11a672f570dfa9fdb296ac47985d",
+  "generatedProfileSha256": "665e9c1ca675be1dcfe99f1edaa98c422781397f76da91de747f2a8cfa7b7e93",
+  "trainingHistory": [
+    {
+      "cls": "mage",
+      "skill": "M07",
+      "rank": 1,
+      "spent": 46,
+      "earned": 51
+    },
+    {
+      "cls": "mage",
+      "skill": "M07",
+      "rank": 2,
+      "spent": 47,
+      "earned": 51
+    },
+    {
+      "cls": "mage",
+      "skill": "M07",
+      "rank": 3,
+      "spent": 48,
+      "earned": 51
+    },
+    {
+      "cls": "mage",
+      "skill": "M10",
+      "rank": 1,
+      "spent": 49,
+      "earned": 51
+    },
+    {
+      "cls": "mage",
+      "skill": "M10",
+      "rank": 2,
+      "spent": 50,
+      "earned": 51
+    },
+    {
+      "cls": "mage",
+      "skill": "M10",
+      "rank": 3,
+      "spent": 51,
+      "earned": 51
+    },
+    {
+      "cls": "archer",
+      "skill": "A14",
+      "rank": 6,
+      "spent": 46,
+      "earned": 51
+    },
+    {
+      "cls": "archer",
+      "skill": "A14",
+      "rank": 7,
+      "spent": 47,
+      "earned": 51
+    },
+    {
+      "cls": "archer",
+      "skill": "A14",
+      "rank": 8,
+      "spent": 48,
+      "earned": 51
+    },
+    {
+      "cls": "archer",
+      "skill": "A02",
+      "rank": 6,
+      "spent": 49,
+      "earned": 51
+    },
+    {
+      "cls": "archer",
+      "skill": "A02",
+      "rank": 7,
+      "spent": 50,
+      "earned": 51
+    },
+    {
+      "cls": "archer",
+      "skill": "A02",
+      "rank": 8,
+      "spent": 51,
+      "earned": 51
+    },
+    {
+      "cls": "knight",
+      "skill": "S01",
+      "rank": 6,
+      "spent": 46,
+      "earned": 51
+    },
+    {
+      "cls": "knight",
+      "skill": "S01",
+      "rank": 7,
+      "spent": 47,
+      "earned": 51
+    },
+    {
+      "cls": "knight",
+      "skill": "S01",
+      "rank": 8,
+      "spent": 48,
+      "earned": 51
+    },
+    {
+      "cls": "knight",
+      "skill": "S06",
+      "rank": 6,
+      "spent": 49,
+      "earned": 51
+    },
+    {
+      "cls": "knight",
+      "skill": "S06",
+      "rank": 7,
+      "spent": 50,
+      "earned": 51
+    },
+    {
+      "cls": "knight",
+      "skill": "S06",
+      "rank": 8,
+      "spent": 51,
+      "earned": 51
+    },
+    {
+      "cls": "occultist",
+      "skill": "O03",
+      "rank": 1,
+      "spent": 46,
+      "earned": 51
+    },
+    {
+      "cls": "occultist",
+      "skill": "O04",
+      "rank": 1,
+      "spent": 47,
+      "earned": 51
+    },
+    {
+      "cls": "occultist",
+      "skill": "O04",
+      "rank": 2,
+      "spent": 48,
+      "earned": 51
+    },
+    {
+      "cls": "occultist",
+      "skill": "O04",
+      "rank": 3,
+      "spent": 49,
+      "earned": 51
+    },
+    {
+      "cls": "occultist",
+      "skill": "O04",
+      "rank": 4,
+      "spent": 50,
+      "earned": 51
+    },
+    {
+      "cls": "occultist",
+      "skill": "O04",
+      "rank": 5,
+      "spent": 51,
+      "earned": 51
+    }
+  ],
+  "report": {
+    "mage": {
+      "level": 25,
+      "xp": 225393,
+      "earned": 51,
+      "spent": 51,
+      "training": 30,
+      "ranks": {
+        "M01": 1,
+        "M06": 5,
+        "M02": 5,
+        "M03": 5,
+        "M07": 3,
+        "M10": 3
+      },
+      "slots": [
+        "M01",
+        "M06",
+        "M03",
+        "M10"
+      ],
+      "equipment": [
+        "itm_da_05",
+        "itm_co_08"
+      ]
+    },
+    "archer": {
+      "level": 25,
+      "xp": 225393,
+      "earned": 51,
+      "spent": 51,
+      "training": 30,
+      "ranks": {
+        "A01": 1,
+        "A14": 8,
+        "A02": 8,
+        "A05": 5
+      },
+      "slots": [
+        "A01",
+        "A14",
+        "A02",
+        "A05"
+      ],
+      "equipment": [
+        "itm_se_05",
+        "itm_co_11"
+      ]
+    },
+    "knight": {
+      "level": 25,
+      "xp": 225393,
+      "earned": 51,
+      "spent": 51,
+      "training": 27,
+      "ranks": {
+        "S00": 1,
+        "S03": 1,
+        "S05": 1,
+        "S07": 1,
+        "S01": 8,
+        "S06": 8,
+        "S08": 5
+      },
+      "slots": [
+        "S00",
+        "S01",
+        "S06",
+        "S08"
+      ],
+      "equipment": [
+        "itm_hw_05",
+        "itm_co_01"
+      ]
+    },
+    "occultist": {
+      "level": 25,
+      "xp": 225393,
+      "earned": 51,
+      "spent": 51,
+      "training": 27,
+      "ranks": {
+        "O01": 1,
+        "O06": 6,
+        "O11": 1,
+        "O12": 1,
+        "O02": 5,
+        "O13": 5,
+        "O03": 1,
+        "O04": 5
+      },
+      "slots": [
+        "O01",
+        "O02",
+        "O06",
+        "O04"
+      ],
+      "equipment": [
+        "itm_so_05",
+        "itm_co_02"
+      ]
+    }
+  }
+}
