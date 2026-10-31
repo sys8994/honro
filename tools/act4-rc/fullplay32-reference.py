@@ -82,6 +82,6 @@ with sync_playwright() as w:
    elif op=='reload':
     before=p.evaluate('''()=>{const p=JSON.parse(localStorage.getItem('honro-first-act-profile-1'));return {stage:p.honroBattle?.honroStage,round:p.honroBattle?.round,cleared:p.cleared,heroes:p.heroes,equipment:p.equipment,recruited:p.recruited,proof:p.honroAct4,units:p.honroBattle?.units?.map(u=>({id:u.id,x:u.x,y:u.y,hp:u.hp,dead:u.dead}))}}''');p.reload(wait_until='domcontentloaded');p.wait_for_function('window.HonroApp');p.get_by_text('이어서 걷기',exact=True).click();p.wait_for_function('(n)=>HonroApp.engine?.b?.honroStage===n',arg=before['stage'],timeout=60000);p.wait_for_timeout(1200);after=p.evaluate('''()=>({stage:HonroApp.engine.b.honroStage,round:HonroApp.engine.b.round,cleared:HonroApp.profile.cleared,heroes:HonroApp.profile.heroes,equipment:HonroApp.profile.equipment,recruited:HonroApp.profile.recruited,proof:HonroApp.profile.honroAct4,units:HonroApp.engine.b.units.map(u=>({id:u.id,x:u.x,y:u.y,hp:u.hp,dead:u.dead}))})''');assert before==after,(before,after);print('SAME_CONTEXT_RELOAD',after['stage'],after['round'],flush=True)
    elif op=='stop': break
-   record('interactive-'+op);p.screenshot(path=str(out/'stage32-interactive.png'))
+   record('interactive-'+op,{'input':z[1:]});p.screenshot(path=str(out/'stage32-interactive.png'))
   except Exception as ex: print('ERROR',repr(ex),flush=True)
  b.close();f.close()
