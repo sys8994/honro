@@ -1,0 +1,5 @@
+# Pilot-combat fresh run: 20-round checkpoint
+
+This is the same fresh headless Chromium UI run identified in `../pilot-fresh-entry/README.md`, with the actual tagged midboss module and reference loaded. At the end of round 20 all four residents were alive and had reached the game's rescue-safe state; net and exit stabilization had been completed. All four heroes were alive, but only the archer and knight had reached x>4600. The mage and occultist remained near x1090 and x1317, so the mission was not complete within 20 rounds. `round20.png` is a real action frame, not a whole-map or physical-device proof.
+
+The controller repeatedly pursued western enemies and moved away from the exit after rescue. Earlier it also took two ordinary high-tide water recoveries. These choices are tactical/controller shortcomings: the result does not establish that completing within 20 turns is impossible or that game balance is defective. The earlier warning checkpoint records the actual pilot warning and protected-area cancellation. The game continued after this checkpoint; no outcome, clear save or reload is claimed here.
