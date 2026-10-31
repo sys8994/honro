@@ -78,6 +78,10 @@ function constrainedPaths(asset, matrices, controls = {}) {
 }
 function createCanvasRenderer(asset) {
   const cache = new Map(asset.paths.map(p=>[p.id,new Path2D(p.d)]));
+  // Constraint and bow geometry can change with animation. Reuse only the
+  // exact last path string for each authored part; replacement bounds memory.
+  const dynamicCache=new Map();
+  function dynamicPath(id,d){const old=dynamicCache.get(id);if(old?.d===d)return old.path;const path=new Path2D(d);dynamicCache.set(id,{d,path});return path;}
   const sorted = [...asset.rig.parts].sort((a,b)=>a.z-b.z || a.id.localeCompare(b.id));
   const groups = new Map(sorted.map(p=>[p.id,asset.paths.filter(s=>s.part===p.id)]));
   // A curve stays inside its control hull. Support only the absolute commands
@@ -109,10 +113,10 @@ function createCanvasRenderer(asset) {
       };
       const renderPath = (p,path) => { if(p.fill){context.fillStyle=silhouette?'#080A0B':asset.palette[p.fill];context.fill(path);} if(p.stroke){context.strokeStyle=silhouette?'#080A0B':asset.palette[p.stroke];context.lineWidth=p.strokeWidth||1;context.lineCap='round';context.lineJoin='round';context.stroke(path);} };
       const constraint=constrainedPaths(asset,matrices,sample.controls),pending=[...constraint.paths].sort((a,b)=>(a.z??100)-(b.z??100)),flex=bowTension(asset,matrices,sample.controls);
-      const paintConstraint=p=>{if(p.opacity>0){if(bounds)include(p,root,p.d);context.save();context.globalAlpha*=p.opacity;renderPath(p,new Path2D(p.d));context.restore();}};
+      const paintConstraint=p=>{if(p.opacity>0){if(bounds)include(p,root,p.d);context.save();context.globalAlpha*=p.opacity;renderPath(p,dynamicPath('constraint:'+p.id,p.d));context.restore();}};
       for(const part of [...sorted].sort((a,b)=>partDepth(asset,a,sample)-partDepth(asset,b,sample))){while(pending.length&&(pending[0].z??100)<partDepth(asset,part,sample))paintConstraint(pending.shift()); context.save();context.transform(...matrices[part.id]);context.globalAlpha*=sample.poses[part.id].opacity;
         const transform=bounds?multiply(root,matrices[part.id]):null;
-        for(const p of groups.get(part.id))if((p.detail||0)<=lod){const d=asset.constraints?.bowFlex&&['bow_body','bow_laminate'].includes(p.id)?flexPath(asset,p.d,flex):null;if(bounds&&context.globalAlpha>0)include(p,transform,d);renderPath(p,d?new Path2D(d):cache.get(p.id));}context.restore(); }
+        for(const p of groups.get(part.id))if((p.detail||0)<=lod){const d=asset.constraints?.bowFlex&&['bow_body','bow_laminate'].includes(p.id)?flexPath(asset,p.d,flex):null;if(bounds&&context.globalAlpha>0)include(p,transform,d);renderPath(p,d?dynamicPath('flex:'+p.id,d):cache.get(p.id));}context.restore(); }
       for(const p of pending)paintConstraint(p);
       if(debug){context.strokeStyle='#62C9C7';context.lineWidth=1;for(const part of sorted){const [px,py]=point(matrices[part.id],part.pivot);context.beginPath();context.arc(px,py,2.5,0,Math.PI*2);context.stroke();}}
       context.restore();return {sample,matrices,constraint,bounds:bounds&&known&&box?.every(Number.isFinite)?box:null};
