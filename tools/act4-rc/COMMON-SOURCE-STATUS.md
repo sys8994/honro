@@ -111,3 +111,7 @@ Workshop-only source `dd65fcec1` avoids the discarded import return clone and ex
 ## 2026-10-31 Workshop selected-stage asset review
 
 No new code was integrated after `dd65fcec1`: dynamic asset provider safety could not be established. See `WORKSHOP-PAYLOAD-REVIEW.md`; the static sizes are estimates only and full-size Workshop remains unverified. Earlier play runs retain their recorded source.
+
+## 2026-10-31 Stage 38 prediction snapshot review
+
+Candidate `03fd076` was reviewed but is **not integrated**: a reflective access returns a different value instead of triggering the promised full-clone fallback. The independent reproducible counterexample and baseline aim test failure are in `PREDICTION-SNAPSHOT-REVIEW.md`. Existing common source and stage run identities are unchanged.
