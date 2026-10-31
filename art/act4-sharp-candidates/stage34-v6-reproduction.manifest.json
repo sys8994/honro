@@ -1,0 +1,27 @@
+{
+  "archive": {
+    "file": "stage34-v6-reproduction.tar.xz",
+    "bytes": 1333212,
+    "sha256": "11419efe4619d98694c0b8fc7469ec687dd52dc899d2c0d8cd2bc87c9beab3c5"
+  },
+  "innerManifestSha256": "64308967fac3a74de16e6e3edd1f998e1e86b80cc4996dcd67c4cb6e22721faa",
+  "fileCount": 32,
+  "uncompressedFileBytes": 2939456,
+  "sop": {
+    "file": "STAGE34-ENVIRONMENT-REPRO-SOP.md",
+    "bytes": 4140,
+    "sha256": "3fa57a59caff2f139018b4e43f3fa705832ac875f36c688a905b9fb86cb797ba"
+  },
+  "selectedCandidateSha256": "1afeaf3218259130c0c21964483bb26e31f683d3a6a31d6ff726f687efcee248",
+  "candidatePayloadIncluded": false,
+  "sourcePngCount": 1,
+  "scenePngCount": 0,
+  "basePayloadIncluded": false,
+  "baseDerivation": "Exact35ea is reconstructed from alreadyarchivedaux1afe, verified byteexact",
+  "actualTraceReplay": "AllhistoricalrawSVGs/technicalRGB/renderPNG byteexact in recorded environment",
+  "finalAssemblyReplay": "Output1afe SHA byteexact",
+  "archiveRoundTripVerified": true,
+  "extractedArchiveAllChecksumsVerified": true,
+  "extractedArchiveReplayCandidateSha256": "1afeaf3218259130c0c21964483bb26e31f683d3a6a31d6ff726f687efcee248",
+  "extractedArchiveFinalSvgByteExact": true
+}
