@@ -1151,10 +1151,18 @@
                 try {
                     if(this.debugMode)throw Error('디버그 모드를 끈 뒤 기록을 가져오세요.');
                     const request=++this.profileImportSequence,text=await el.files[0].text();
+                    // Prepare the imported battle's immutable art before the store
+                    // compacts it. The title may have loaded a different chapter.
+                    const inspected=G.HonroProfileStore.migrate(text),battle=inspected.honroBattle;
+                    if(battle?.mode==='campaign'&&!battle.honroCustom&&battle.honroAct4Official===1&&battle.honroStage>=31&&battle.honroStage<=40){
+                        if(G.HonroCampaignLoader)await G.HonroCampaignLoader.ensureStage(battle.honroStage);
+                        if(request!==this.profileImportSequence)return;
+                        if(!G.HonroProfileStore.restoreBattleArt(battle))throw Error('기록의 지형 그림을 확인하지 못했습니다. 기존 기록은 유지됩니다.');
+                    }
                     if(request===this.profileImportSequence&&this.replaceProfile(this.profileStore.importText(text)))this.notify('기록을 불러왔어.');
                 }
                 catch (err) {
-                    this.notify(this.debugMode?'디버그 모드를 끈 뒤 기록을 가져오세요.':'기록 파일을 읽지 못했습니다. 현재 기록은 유지됩니다.');
+                    this.notify(this.debugMode?'디버그 모드를 끈 뒤 기록을 가져오세요.':err.message?.startsWith('기록의 지형 그림')?err.message:'기록 파일을 읽지 못했습니다. 현재 기록은 유지됩니다.');
                 }
                 el.value = '';
             } });
