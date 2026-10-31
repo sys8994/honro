@@ -5309,3 +5309,8 @@ The new traced door kept the old 2D rotation but appeared as a tall horizontal c
 ### 2026-10-31 · 비플레이 환경의 선택형 벡터 외곽선
 - 비플레이 환경이 `nonplayEnvironment:true`와 `silhouetteUnderpaint:false`를 모두 명시한 경우에만 게임플레이 레이어의 자동 외곽선 생략을 허용한다. 기존 BODY 예외와 일반 자산 기본 동작은 유지한다.
 - 아홉 synthetic 가드, 복합 경로·심볼·클립 이음새 회귀가 통과했다. 이 수정만으로 실제 미술의 모든 밝은 테두리를 해결했다고 판단하지 않는다.
+
+### 2026-10-31 · 4막 nativeArt 화면/타일 확대 선명도
+- 4막의 일반 배율 타일이 DPR과 무관하게 0.68로 제한되고 화면도 DPR 1.7로 제한되어 고밀도 화면에서 보간 확대됐다. 최대 줌은 기존에도 직접 벡터 경로임을 브라우저에서 확인했다.
+- 4막 명시적 nativeArt에만 화면당 600만 픽셀 이내 DPR 최대 3과 줌·DPR 기반 타일 버킷을 적용한다. 화면에 필요한 타일 수가 기존 12/24 LRU 한도를 넘지 않도록 밀도를 단계적으로 낮추며 기존 1~3막 정책을 유지한다.
+- 브라우저 전후 PNG 및 45회 카메라 이동 성능·미해결 기존 검사 결과는 `art/act4-grounding-v1/stage31/review/sharpness/README.md` 참조. 고해상도 캐시가 원본 추적의 둥근 형태·색 띠나 실제 장치 성능을 보증하지 않는다.
