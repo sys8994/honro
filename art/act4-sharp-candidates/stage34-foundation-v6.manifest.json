@@ -1,0 +1,277 @@
+{
+  "createdUtc": "2026-10-31T22:59:44.763638+00:00",
+  "status": "Root selected1afe for actual Chromium reinspection; NOT actualChromium art acceptance and NOT normal gameplay validation.",
+  "stage": 34,
+  "candidateSha256": "1afeaf3218259130c0c21964483bb26e31f683d3a6a31d6ff726f687efcee248",
+  "candidateBytes": 4894892,
+  "baselinePreserved": "35ea9ea23ef51a3e7fc71282bc9e709d7da445774b14730cfeac6af3ad4be0e9",
+  "unculledVisualReference": "d847c07dda88af8318d694480befa4c32151ae16385f674640b97b93db41f1ad",
+  "changes": "One appended scoped east natural-face art asset/element; original5assets, existingstage/terrain/actor/story records unchanged. BODY source\u00d74 and originalcoast source\u00d76 unchanged. Prior timber/shore-link/v4lower/v5AA corrections retained.",
+  "source": {
+    "image": "generated-east-connection-v2-flat.png",
+    "sha256": "29992cc5f66adb64c8c9810b0d37bbc2278aaf50389495bde4e1cbb8979c11f2",
+    "size": [
+      870,
+      1808
+    ],
+    "worldOrigin": [
+      5600,
+      600
+    ],
+    "worldSize": [
+      1300,
+      2700
+    ],
+    "traceAction": "object-trace:8,true,false,false,0,1,0.2",
+    "traceTool": "Actual Inkscape, nonstack8colors, nearest-opaque hidden RGB, separate alpha"
+  },
+  "preservation": {
+    "oldFiveAssetObjectsExact": true,
+    "oldStageTerrainActorsStoryExact": true,
+    "composedAlphaChangedSamplesLocal1pxWorld": 0,
+    "composedAlphaChangedSamplesFull025pxWorld": 0,
+    "actualFootWarmExteriorProtectedRGBAChangedSamples": 0,
+    "lower3100AndBuffer3090ProtectedRGBAChangedSamples": 0,
+    "approvedAbove1400Changes": 7508,
+    "approvedAbove1400WorldBBox": [
+      6059,
+      1241,
+      6136,
+      1400
+    ]
+  },
+  "standaloneFinal": {
+    "candidateSha256": "1afeaf3218259130c0c21964483bb26e31f683d3a6a31d6ff726f687efcee248",
+    "method": "Direct measurement of existing1afe actualfinalSVG render including allstrokes/clips/addedplanes at4generatedsource samples, NOT inherited d847 numbers. Semantic target selection mask same5495. Physicalguard includesactualwalk/foot/exterior/lower3100; upper1400 isnot a hardlock.",
+    "paintPngSha256": "f1b1b313d204f0a7f0abe77d9edaccc02260bd546fbd598e41af3d593734a3ea",
+    "maskPngSha256": "fa5fda39e78a94bc0089b8411fd9ece8f99139d4babd2a3b6cce04dfec2976c7",
+    "semanticMask": {
+      "missingSamples": 30,
+      "extraSamples": 95,
+      "maxMissingDistanceSourcePx": 0.25,
+      "maxExtraDistanceSourcePx": 0.25
+    },
+    "interior": {
+      "samples": 2986927,
+      "alphaBelow128": 30,
+      "alphaZero": 0,
+      "minimumAlpha": 21,
+      "maxGapRadiusSourcePx": 0.25
+    },
+    "sourceAndProtection": {
+      "paintPositiveOutsideGeneratedSourceAlpha128": 0,
+      "paintAlpha128OutsideGeneratedSourceAlpha128": 0,
+      "paintPositiveOnPhysicalGuard": 0,
+      "paintAlpha128OnPhysicalGuard": 0
+    },
+    "scope": "Standaloneoverlay proof; composedstage/71view/rootvisual evidence separate. ActualChromium andnormalgameplay not testedhere."
+  },
+  "sceneCoverage": {
+    "views": 71,
+    "groups": [
+      46,
+      25
+    ],
+    "d847ChangedPixelsTotal": 7,
+    "d847MaxChannelDifference": 1,
+    "d847AlphaChangedPixelsTotal": 0,
+    "directVisualReview": "Both contact sheets, changedmax views, AA peak before/after and actualscale location maps directly inspected. No meaningful facet/detail omission observed."
+  },
+  "optimization": {
+    "removedIrrelevantSubpaths": 565,
+    "retainedAbsoluteMChunksByteExact": true,
+    "geometrySimplification": false,
+    "newColorSegmentsBefore": 9940,
+    "newColorSegmentsAfter": 5426,
+    "newAssetBytesBefore": 297661,
+    "newAssetBytesAfter": 187721,
+    "newAssetSegmentsBefore": 10559,
+    "newAssetSegmentsAfter": 6045,
+    "standalone4xRGBAChangedPixels": 298,
+    "standalone4xMaxUnpremultipliedRGBDifference": 9,
+    "peakAlpha": 29,
+    "maxPremultipliedRGBDifference": 2,
+    "flatOpaque5x5InteriorChangedSamples": 0,
+    "physicalGuardChangedSamples": 0,
+    "AAClassification": "Small edge sampling differences; not byte-identical. Root explicitly accepted visual/semantic-equivalence evidence rather than preserving irrelevant paths for bitwise equality."
+  },
+  "residualReferences": [
+    "camera(6464,1000,1.65): originalcliff side-face longblue/dark boundary; no newmask expansion.",
+    "camera(6464,1700,1.65): smalljunction proven present in generated sourcefacet apex, not oldclip leakage afterrim correction.",
+    "camera(6464,3100,1.65): cliff front/side blue-dark boundary retained after root visual review.",
+    "ActualChromium must check completeeastpan plus1700/2500/2900/3300/3550 and oldwestshore/bottom views."
+  ],
+  "runtimeBinding": {
+    "loadedRuntimeSha256": "3f891880b64565dfaaac664f94a1384c668c76a1469dd87870ef32188d845981",
+    "scope": "exact runtimeParts strings evaluated for this coverage run"
+  },
+  "auxiliaryBindings": [
+    {
+      "path": "shared/runtime/act4-art.js",
+      "sha256": "d8b49066e75c41d89a4638a7a0a8aaea43c5f9c7051fabc39f746a8bdc7befcb"
+    },
+    {
+      "path": "shared/runtime/act4-pilot-art.js",
+      "sha256": "916d99695671a1abdc1f55eab5d8e0b6008273844fa8b7bded14ee814775b3fa"
+    }
+  ],
+  "costTotals": {
+    "baseline5490": {
+      "jsonBytes": 5790105,
+      "nodes": 106,
+      "path_nodes": 93,
+      "segments": 202162,
+      "subpaths": 17744,
+      "clip_paths": 7,
+      "clip_segments": 8446,
+      "vector_bytes": 5759846,
+      "asset_bytes": 5762947
+    },
+    "baseline35ea": {
+      "jsonBytes": 4706956,
+      "nodes": 107,
+      "path_nodes": 92,
+      "segments": 162739,
+      "subpaths": 13354,
+      "clip_paths": 9,
+      "clip_segments": 5001,
+      "vector_bytes": 4674274,
+      "asset_bytes": 4679743
+    },
+    "d847": {
+      "jsonBytes": 5004832,
+      "nodes": 132,
+      "path_nodes": 115,
+      "segments": 173298,
+      "subpaths": 14493,
+      "clip_paths": 10,
+      "clip_segments": 7091,
+      "vector_bytes": 4968719,
+      "asset_bytes": 4977404
+    },
+    "1afe": {
+      "jsonBytes": 4894892,
+      "nodes": 132,
+      "path_nodes": 115,
+      "segments": 168784,
+      "subpaths": 13928,
+      "clip_paths": 10,
+      "clip_segments": 7091,
+      "vector_bytes": 4858590,
+      "asset_bytes": 4867464
+    }
+  },
+  "hiddenOriginalDeletion": "Original5assets unchanged. BODY-only conservative potential audit is22subpaths/75segments (0.0612% ofBODY), not deletionapproval; no deletion applied. Other4originalassets not audited. Audit dParts omission was corrected and failed report preserved.",
+  "limitations": [
+    "No renderer/sharedruntime/canonicalsource/remote change.",
+    "No normal gameplay, movement/projectile/mission rerun for this art-only v6 delta; existingdata preserved.",
+    "All Native precision/performance claims bound to recorded frozen runtime, not actualChromium.",
+    "Generatedsource\u2192raw silhouette1.414sourcepx; final local authoring geometry/overlap and precision separated in reproduction report.",
+    "Standalone final interior has30 subpixel samples belowalpha128, noalpha0; maxradius.25sourcepx. They are disclosed, not hidden beneath originalpaint for coverage acceptance."
+  ],
+  "evidence": [
+    {
+      "path": "_local/reports/approved34-foundation-seam-v6/STATUS-AND-LESSONS.md",
+      "sha256": "0448eccab5b4aaf844a0348295d5697c01fe5c9ca0b722c8d1008549dff6c95f",
+      "bytes": 15548
+    },
+    {
+      "path": "_local/reports/approved34-foundation-seam-v6/qa/east-color-join/FINAL-REPRODUCTION-AND-LIMITS.md",
+      "sha256": "493940202c48cc2e8640db4c8153f31fb01dbd30f1c7201201560175ec9a76dc",
+      "bytes": 8761
+    },
+    {
+      "path": "_local/reports/approved34-foundation-seam-v6/qa/east-color-join/FINAL-1AFE-ADDENDUM.md",
+      "sha256": "d88922e91f8f0b2e20280efd7b8203b84230d0fa0bfb986e72a720160afc8122",
+      "bytes": 917
+    },
+    {
+      "path": "_local/reports/approved34-foundation-seam-v6/qa/east-color-join/FINAL-ARTIFACT-HASHES.json",
+      "sha256": "37a2db883519f4e10a87486c79dd42e75fd627fc3cd67fac59e33a1676aa6c56",
+      "bytes": 3582
+    },
+    {
+      "path": "_local/reports/approved34-foundation-seam-v6/qa/east-color-join/FINAL-1AFE-VALIDATION.json",
+      "sha256": "6416b77951c2710ceba414b97c614ed08941bade148b68adf2e403904d61bbc2",
+      "bytes": 1215
+    },
+    {
+      "path": "_local/reports/approved34-foundation-seam-v6/qa/east-color-join/optimization/aa-qualification/report.json",
+      "sha256": "44742762afd82f752610526bb439c308e0cd79189862f222e91cdd46ab9041a4",
+      "bytes": 64913
+    },
+    {
+      "path": "_local/reports/approved34-foundation-seam-v6/qa/independent-validation/review-1afe/REPORT.md",
+      "sha256": "9cafe53cc92f4d241e0fd52659385caa63323c90fc64e54bd7589e8e8a7145e0",
+      "bytes": 750
+    },
+    {
+      "path": "_local/reports/approved34-foundation-seam-v6/qa/independent-validation/review-1afe/independent-report.json",
+      "sha256": "7fd7abe15539e66fa711c805c5247c263d1e668c9b69304f29a822b1c2071793",
+      "bytes": 2747
+    },
+    {
+      "path": "_local/reports/approved34-foundation-seam-v6/qa/independent-validation/review-1afe/structure.json",
+      "sha256": "a3afecee9cca980cec3da888e84fa06e2c68fab93e9fc19323444da4a7cf2af4",
+      "bytes": 2079
+    },
+    {
+      "path": "_local/reports/approved34-foundation-seam-v6/qa/independent-validation/hidden-body-potential/REPORT.md",
+      "sha256": "88944a2fbb6da541c1202ac860e6a7efefd47be83b9f00e4ce0e0e55ae37f1e8",
+      "bytes": 1493
+    },
+    {
+      "path": "_local/reports/approved34-foundation-seam-v6/qa/independent-validation/hidden-body-potential/potential.json",
+      "sha256": "23c45899a88048bb11912f51aa3147edeb2cd8e82344be64ee1181a79308c9cd",
+      "bytes": 11650
+    },
+    {
+      "path": "_local/reports/approved34-foundation-seam-v6/qa/1afe-46views/manifest.json",
+      "sha256": "02bf77871d2ace5f3fd1033654d1a55354b01f1357a875e5e01142af5016f5c0",
+      "bytes": 67961
+    },
+    {
+      "path": "_local/reports/approved34-foundation-seam-v6/qa/1afe-east-pan/manifest.json",
+      "sha256": "040f13f7bf3a037d417c265a0dacd56717e1758819e08b544afc68be52a6b4d4",
+      "bytes": 34834
+    },
+    {
+      "path": "_local/reports/approved34-foundation-seam-v6/qa/1afe-46views/d847-scene-comparison.json",
+      "sha256": "dad2c7f4b76aa5e58fe696531ef5a526e03dca1d489e4adf6d562b12010df447",
+      "bytes": 23672
+    },
+    {
+      "path": "_local/reports/approved34-foundation-seam-v6/qa/1afe-east-pan/d847-scene-comparison.json",
+      "sha256": "885c5637649d52172f03df1f7d879dc755b9170c5e2797a03c6e20332c273cf4",
+      "bytes": 12400
+    },
+    {
+      "path": "_local/reports/approved34-foundation-seam-v6/qa/independent-validation/hidden-body-potential/SOP-LESSON-dParts.md",
+      "sha256": "688698759f4d75d271a8836b1e88ebc79245496d1d765e9b45807b4441f47844",
+      "bytes": 1155
+    }
+  ],
+  "transport": {
+    "candidate.json": {
+      "sha256": "1afeaf3218259130c0c21964483bb26e31f683d3a6a31d6ff726f687efcee248",
+      "bytes": 4894892
+    },
+    "candidate.json.xz": {
+      "sha256": "35e358db1c01970e474ad267494403fba04b2d7ff3995617fc59a54ca1ad169a",
+      "bytes": 1286296
+    },
+    "candidate.json.xz.b64": {
+      "sha256": "fde1e713bd2d414cd675a7e99d9f68f45a3330eb3420e50660bdd8489a8de2d1",
+      "bytes": 1715065
+    },
+    "roundTripVerified": true
+  },
+  "runtimeSnapshotFileSha256": "94726a5911fbe1d38629c2d6b6572c7f54774dba7a99d531d6a5acacdd42e3ab",
+  "vectorValidation": {
+    "assets": 6,
+    "errors": 0,
+    "evidence": "qa/independent-validation/review-1afe/structure.json"
+  },
+  "costComparisonFile": "cost-comparison.json",
+  "rootLocalReview": "Root accepted1afe optimization and requested final packaging after71view/protection/AA review; actualChromium approval pending."
+}
