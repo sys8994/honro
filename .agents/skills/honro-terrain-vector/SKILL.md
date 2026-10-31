@@ -39,3 +39,5 @@ description: 혼로 지형 시안을 벡터형 래스터로 정리하고 실제 
 환경 횡전개·흰 테두리·renderer 차이·추출 자산 비대화가 발생하면 [환경 확장 교정](references/environment-rollout-corrections.md)을 읽는다. 보호 플레이 ROI는 보존하되 비플레이 접합 색면의 픽셀 불변을 강제하지 않는다. 최종 화면 판정은 실제 브라우저 기준이다.
 
 확대 선명도 검수와 캐시·원본 미술의 원인 분리는 [선명도 검수](references/sharpness-acceptance.md)를 따른다.
+
+반복 실패를 정리하거나 출하 전에 [시행착오 감사와 출시 차단 gate](references/failure-audit-and-release.md)를 읽는다. 기존 교훈 색인과 주민/배·실행본 parity·전송/패키지의 여섯 필드 재발방지 절차를 따른다.
