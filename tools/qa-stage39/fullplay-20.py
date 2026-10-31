@@ -6,7 +6,7 @@ from pathlib import Path
 from http.server import ThreadingHTTPServer,SimpleHTTPRequestHandler
 from playwright.sync_api import sync_playwright
 root=Path(__file__).resolve().parents[2];sys.path.insert(0,str(root/'tests'));from browser_support import launch
-out=root/'_local/reports/stage39-fullplay-20-v2';out.mkdir(parents=True,exist_ok=False)
+out=root/os.environ.get('HONRO39_OUTPUT','_local/reports/stage39-fullplay-20-v2');out.mkdir(parents=True,exist_ok=False);resume=os.environ.get('HONRO39_STORAGE')
 raw=(root/'_local/inputs/stage39-presentation/stage39.json').read_bytes();assert hashlib.sha256(raw).hexdigest()=='0bb8dd43bf33af941c88800c4e7e13bbf2c7d3dd924444c035c997daad8f5dcb';project=json.loads(raw)
 fixture=(root/'art/act4-sharpness-followups/stage39-fullplay/entry-fixture-v2/profile.json').read_bytes();assert hashlib.sha256(fixture).hexdigest()=='fdb46cdffa936d57a73eb50c086d98ae7bba697f54eb25beb5819596a7aec123'
 class Quiet(SimpleHTTPRequestHandler):
@@ -14,11 +14,15 @@ class Quiet(SimpleHTTPRequestHandler):
 srv=ThreadingHTTPServer(('127.0.0.1',0),functools.partial(Quiet,directory=str(root)));threading.Thread(target=srv.serve_forever,daemon=True).start();base=f'http://127.0.0.1:{srv.server_port}';result={'scope':'Fresh official 38-cleared entry fixture v2. UI navigation and combat are real; no claim of prior play. Headless Chromium.','candidateSha256':hashlib.sha256(raw).hexdigest(),'fixtureSha256':hashlib.sha256(fixture).hexdigest(),'errors':[],'httpErrors':[]}
 with sync_playwright() as pw:
  browser=launch(pw);ctx=browser.new_context(viewport={'width':1440,'height':900});page=ctx.new_page();page.on('pageerror',lambda e:result['errors'].append(str(e)));page.on('response',lambda r:result['httpErrors'].append({'status':r.status,'url':r.url}) if r.status>=400 else None)
- page.goto(base+'/HONRO.html');page.evaluate("v=>localStorage.setItem('honro-first-act-profile-1',v)",fixture.decode());page.reload();page.wait_for_function('window.HonroApp&&window.HONRO_PROJECT&&window.HONRO_AUTHORED_FAR',timeout=60000)
+ page.goto(base+'/HONRO.html');value=fixture.decode()
+ if resume:
+  prior=json.loads((root/resume).read_text());value=next(v['value'] for o in prior['origins'] for v in o['localStorage'] if v['name']=='honro-first-act-profile-1');result['resumeStorageSha256']=hashlib.sha256((root/resume).read_bytes()).hexdigest()
+ page.evaluate("v=>localStorage.setItem('honro-first-act-profile-1',v)",value);page.reload();page.wait_for_function('window.HonroApp&&window.HONRO_PROJECT&&window.HONRO_AUTHORED_FAR',timeout=60000)
  page.evaluate("""async project=>{await HonroCampaignLoader.ensureStage(39);const all=HONRO_PROJECT;all.stages=all.stages.filter(s=>s.metadata.stageId!==39).concat(project.stages);const ids=new Set(project.library.map(x=>x.id));all.library=all.library.filter(x=>!ids.has(x.id)).concat(project.library);HONRO_AUTHORED_FAR.images.act4Estuary='/_local/inputs/stage32-sharp/act4-estuary.webp'}""",project)
  result['entry']=page.evaluate("""()=>{const p=HonroApp.profile,C=HONRO_CORE;HonroEquipment.validate(p.equipment);return{mapNode:p.mapNode,lastStage:p.lastStage,pending:p.honroJourney?.pendingDirect,next:HonroJourneyContent.next(p)?.stageId,heroes:p.recruited.map(id=>({id,level:C.levelOf(p.heroes[id]),earned:C.pointsEarned(p.heroes[id]),spent:C.pointsSpent(p.heroes[id],id),loadout:p.loadouts[id],equipment:p.equipment.equippedByClass[id]}))}}""")
- assert result['entry']['next']==39 and result['entry']['pending']==39 and all(h['level']==25 and h['earned']==51 and h['spent']==51 for h in result['entry']['heroes'])
- page.get_by_text('여정 이어가기',exact=True).click();page.wait_for_function('HonroApp.engine?.b?.honroStage===39',timeout=60000);page.wait_for_timeout(1000)
+ assert all(h['level']==25 and h['earned']==51 and h['spent']==51 for h in result['entry']['heroes'])
+ if not resume:assert result['entry']['next']==39 and result['entry']['pending']==39
+ page.get_by_text('이어서 걷기' if resume else '여정 이어가기',exact=True).click();page.wait_for_function('HonroApp.engine?.b?.honroStage===39',timeout=60000);page.wait_for_timeout(1000)
  check=page.evaluate("""()=>({official:HonroApp.engine.b.honroAct4Official,custom:HonroApp.engine.b.honroCustom,reference:HONRO_ACT4_PILOT_COMBAT_REFERENCE?.version,mid:HonroApp.engine.b.units.filter(u=>u.honroPilotMidboss).map(u=>({id:u.id,equipped:HonroAct4PilotCombat.equipped(HonroApp.engine.b,u)}))})""");assert check['official']==1 and not check['custom'] and check['reference']==2 and len(check['mid'])==1 and check['mid'][0]['equipped'];result['pilot']=check
  events=(out/'events.jsonl').open('a',encoding='utf8');warnings=set();tide_attempted=False;turns=0;stopReason=None
  def state():
@@ -81,10 +85,19 @@ with sync_playwright() as pw:
   # Route geometry: west middle -> stone stair/gallery -> upper, then drop
   # through the open upper support around x3300 onto the wreck deck.
   if x<4700 and (s.get('moveLeft') or 0)>120:
-   if support=='approved39-west-middle' and x<480:
-    held('ArrowRight',min(600,max(120,(480-x)*2.1)));page.wait_for_timeout(200);after=record('advance-middle');route=True
-   elif support=='approved39-west-middle' and 480<=x<=800:
-    page.keyboard.down('ArrowRight');page.keyboard.press('Control');page.wait_for_timeout(300);page.keyboard.up('ArrowRight');settle();after=record('jump-to-upper');route=True;jumped[s['active']]=jumped.get(s['active'],0)+1
+   if support=='approved39-west-middle' and x<488:
+    held('ArrowRight',min(100,max(35,(490-x)*.9)));page.wait_for_timeout(150);after=record('advance-middle');route=True
+   elif support=='approved39-west-middle' and x>505:
+    held('ArrowLeft',min(150,max(45,(x-495)*.9)));page.wait_for_timeout(150);after=record('align-stair');route=True
+   elif support=='approved39-west-middle' and 488<=x<=505:
+    page.keyboard.down('ArrowRight');page.keyboard.press('Control')
+    for _ in range(25):
+     page.wait_for_timeout(10)
+     if state()['x']>=530:break
+    record('jump-in-flight');page.keyboard.up('ArrowRight');settle();after=record('jump-to-upper');route=True;jumped[s['active']]=jumped.get(s['active'],0)+1
+    if after['support']=='approved39-west-middle':record('jump-missed-stop');stopReason='upper-jump-missed';break
+   elif support=='approved39-west-deck' and 1800<=x<=2100:
+    page.keyboard.down('ArrowRight');page.keyboard.press('Control');page.wait_for_timeout(180);record('deck-jump-in-flight');page.keyboard.up('ArrowRight');settle();after=record('deck-jump-to-wreck');route=True;jumped[s['active']]=jumped.get(s['active'],0)+1
    elif support=='approved39-upper' and 3150<=x<=3450 and s['drop']:
     page.keyboard.press('Alt');page.wait_for_timeout(700);settle();after=record('upper-drop');route=True
    else:
