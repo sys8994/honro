@@ -1,9 +1,10 @@
 {
- "version": 1,
+ "version": 2,
  "stage": 40,
+ "intent": "Return: out of the cave mouth, short escort, boat and high-road fork over the inlet, wide look-back ground with a carved lookout.",
  "activePlayBounds": {
   "left": 60,
-  "top": 1500,
+  "top": 1300,
   "right": 6100,
   "bottom": 2450
  },
@@ -14,14 +15,12 @@
  "keepElements": [
   "a4:boat",
   "a4:dock",
-  "density-bg:coastal-house-s40-blue-dawn-v4",
   "s40v:abandoned-skiff-s40-blue-dawn-v4",
   "s40v:pier-40-2810",
   "s40v:pier-40-3350",
   "s40v:pier-40-4050",
   "s40v:pier-40-4540",
-  "s40v:pier-40-4930",
-  "s40v:workshop-ruin-s40-blue-dawn-v4"
+  "s40v:pier-40-4930"
  ],
  "act4": {
   "exit": {
@@ -37,10 +36,17 @@
     "high-walk",
     "shore"
    ]
+  },
+  {
+   "id": "lookout",
+   "supports": [
+    "shore",
+    "lookout"
+   ]
   }
  ],
  "enemyAnchors": [],
- "status": "Claude v1",
+ "status": "Claude v2 (contract-bound)",
  "surfaces": [
   {
    "id": "shore",
@@ -173,8 +179,124 @@
      1920.6
     ]
    ],
-   "role": "return ground and inlet",
-   "material": "soil"
+   "role": "return ground, inlet and the look-back ground",
+   "material": "rock"
+  },
+  {
+   "id": "cave-roof",
+   "kind": "overhang",
+   "top": [
+    [
+     0,
+     1000.0
+    ],
+    [
+     600,
+     1080.0
+    ],
+    [
+     1150,
+     1240.0
+    ]
+   ],
+   "bottom": [
+    [
+     1150,
+     1243.6
+    ],
+    [
+     1150.7,
+     1244.2
+    ],
+    [
+     1150.7,
+     1393.6
+    ],
+    [
+     1180.0,
+     1420.0
+    ],
+    [
+     1052.3,
+     1524.4
+    ],
+    [
+     988.1,
+     1564.6
+    ],
+    [
+     843.4,
+     1593.6
+    ],
+    [
+     511.6,
+     1638.9
+    ],
+    [
+     0.0,
+     1660.0
+    ],
+    [
+     0.0,
+     1001.2
+    ]
+   ],
+   "role": "cave roof over the start (way out of the underground)",
+   "material": "rock"
+  },
+  {
+   "id": "lookout",
+   "kind": "overhang",
+   "top": [
+    [
+     5720,
+     1717.0
+    ],
+    [
+     5840,
+     1627.5
+    ],
+    [
+     5960,
+     1556.0
+    ],
+    [
+     6104,
+     1499.8
+    ],
+    [
+     6200,
+     1495.0
+    ]
+   ],
+   "bottom": [
+    [
+     6200.0,
+     1498.0
+    ],
+    [
+     6200.0,
+     1760.0
+    ],
+    [
+     5710.0,
+     1760.0
+    ],
+    [
+     5715.0,
+     1755.5
+    ],
+    [
+     5715.0,
+     1738.5
+    ],
+    [
+     5720,
+     1734.0
+    ]
+   ],
+   "role": "carved lookout over the way home",
+   "material": "rock"
   },
   {
    "id": "high-walk",
@@ -204,7 +326,19 @@
    "role": "high route over the inlet (original contract)"
   }
  ],
- "covers": [],
+ "covers": [
+  {
+   "id": "landing-rock",
+   "x": 1500,
+   "y": 1859,
+   "w": 110,
+   "h": 110
+  }
+ ],
  "width": 6200,
- "height": 3200
+ "height": 3200,
+ "artFeatures": [
+  "cave-mouth",
+  "look-back"
+ ]
 }
