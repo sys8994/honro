@@ -45,6 +45,7 @@ def main():
         def reload_same_context():
             page.wait_for_timeout(1800);page.keyboard.press('Escape');page.wait_for_timeout(300)
             saved=snapshot('before-page-reload');before=digest(saved)
+            live=page.evaluate('''()=>{const b=HonroApp.engine.b;return {units:b.units.map(u=>({id:u.id,x:u.x,y:u.y,hp:u.hp,dead:u.dead??null})),events:JSON.parse(JSON.stringify(b.honroAct4PreviewState||{}))}}''')
             if not before['stage']: raise RuntimeError('no saved live battle')
             page.reload(wait_until='domcontentloaded');page.wait_for_function('window.HonroApp',timeout=60000)
             # Compare the loaded profile before Continue can advance clocks or notification queues.
@@ -53,7 +54,11 @@ def main():
             loaded=digest(page.evaluate('()=>HonroApp.profile'))
             if written!=loaded:
                 (out/'reload-diff.json').write_text(json.dumps({'before':before,'written':written,'loaded':loaded},ensure_ascii=False,indent=2));raise AssertionError('last-written profile mismatch; see reload-diff.json')
-            for key in ('stage','round','cleared','heroes','equipment','recruited','proof','units','refs'):
+            if live['units']!=written['units']:
+                (out/'reload-diff.json').write_text(json.dumps({'live':live,'written':written},ensure_ascii=False,indent=2));raise AssertionError('pagehide differs from paused live units')
+            for key in ('phase','routes','safeSlots','safeSlotsMigrated'):
+                if (live['events'].get('returnEscort') or {}).get(key)!=(written['events'] or {}).get('returnEscort',{}).get(key):raise AssertionError('pagehide changed escort '+key)
+            for key in ('stage','round','cleared','heroes','equipment','recruited','proof','refs'):
                 if before[key]!=written[key]:
                     (out/'reload-diff.json').write_text(json.dumps({'before':before,'written':written},ensure_ascii=False,indent=2));raise AssertionError('pagehide changed stable state: '+key)
             for key,default in (('receipts',[]),('connected',None),('observed',{})):
