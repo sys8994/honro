@@ -65,7 +65,10 @@ def main():
             page.keyboard.press('Escape');page.get_by_text('설정',exact=True).click();page.get_by_text('기록·관리',exact=False).click()
             with page.expect_download(timeout=60000) as pending: page.get_by_text('JSON 기록 내보내기',exact=True).click()
             d=pending.value;target=out/('ui-export-'+str(int(time.time()))+'.json');d.save_as(str(target));data=target.read_bytes();record({'ui_download':str(target),'suggested_filename':d.suggested_filename,'sha256':hashlib.sha256(data).hexdigest(),'bytes':len(data)})
-            page.keyboard.press('Escape');page.wait_for_timeout(300)
+            for _ in range(4):
+                if not page.evaluate("document.querySelector('#modal')?.classList.contains('open')"):break
+                page.keyboard.press('Escape');page.wait_for_timeout(300)
+            if page.evaluate("document.querySelector('#modal')?.classList.contains('open')"):raise RuntimeError('could not close export menu')
         page.goto(o.url,wait_until='domcontentloaded');page.wait_for_function('window.HonroApp&&window.HonroCampaignLoader',timeout=60000);page.locator('#file-import').set_input_files(str(Path(o.profile).resolve()));page.wait_for_timeout(3000);snapshot('fixture-import');page.get_by_text('여정 이어가기',exact=True).click();page.wait_for_timeout(2000);page.get_by_text('여정첩',exact=True).click();page.locator('[data-action=journey-select][data-id="38"]').click();page.wait_for_timeout(500);page.locator('[data-action=journey-travel][data-id="38"]').click();page.wait_for_function('HonroApp.engine?.b?.honroStage===38',timeout=60000);page.wait_for_timeout(1500)
         if page.evaluate('!!HonroApp.dialogue'):page.keyboard.press('Enter');page.wait_for_timeout(2000)
         snapshot('entry');record({'state':state()})
