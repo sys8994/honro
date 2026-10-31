@@ -6,7 +6,7 @@ The Next operation is held for the active, eligible and unobserved Act 4 reader 
 
 Independent Chromium tests on the actual stalled 40 localStorage fixture (raw SHA-256 `ac743e5d94dfac682e39964b27cf82d9b803bae95b3937cf33a0bebf25658494`), using Continue and normal camera input until natural reunion:
 
-* Physical Playwright keyboard Enter, 8× CPU stress: both reunion rows presented and none retired. The diagnostic did not observe an unpresented pending interval in this run; it therefore proves ordinary keyboard completion here, not physical-key suppression during that interval.
+* Browser-level Playwright keyboard Enter, 8× CPU stress: both reunion rows presented and none retired. The diagnostic did not observe an unpresented pending interval in this run; it therefore proves ordinary keyboard completion here, not physical-hardware input or suppression during that interval.
 * Mobile viewport 390×844 with touch, 8× CPU stress: synthetic same-event-loop Enter/Space/disabled click/Tab could not advance the pending second row; after the real observer receipt a touchscreen tap completed both rows with no retirement. These synthetic events are not physical keys or a phone test.
 * Explicit UI Skip after the first row: `.01` presented, `.02` retired; no fabricated second receipt.
 * Same-context reload without reseeding the profile: second row and text restored; real observer and Enter completed with both rows presented and none retired.
