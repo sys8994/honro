@@ -1,6 +1,6 @@
 # 4막 RC 브라우저 성능·용량 표본
 
-측정 대상은 `fc11f8fdc650a4af86d1fe4d4ae4a5b5daf31403`의 동일 공통 실행 소스(후속 커밋은 문서·도구만 변경), 격리 QA HTML SHA-256 `6f91174f3609d8827c7499aad094bce999b6250c445c9bbc81fb120392b01ae4`, web manifest SHA-256 `83311f845e7d8ff428110924bdb203cb6de56a1e67ab845f88f2abf3672f7783`이다. 10개 후보 SHA는 아래에 개별 고정하며 이 표본은 새 33·34 교정 후보에 적용되지 않는다. 원본 31~40 플레이·실제 휴대폰 FPS·성능 합격을 주장하지 않는다.
+측정 대상은 `fc11f8fdc650a4af86d1fe4d4ae4a5b5daf31403`의 동일 공통 실행 소스(후속 커밋은 문서·도구만 변경), 격리 QA HTML SHA-256 `6f91174f3609d8827c7499aad094bce999b6250c445c9bbc81fb120392b01ae4`, web manifest SHA-256 `83311f845e7d8ff428110924bdb203cb6de56a1e67ab845f88f2abf3672f7783`이다. 조립 world SHA-256은 `99c59777254cb4942d5bfc7b7398068fc294dc29ff7208ac5f468953ecf5e581`이다. 10개 후보 SHA는 아래에 개별 고정하며 이 표본은 새 33·34 교정 후보에 적용되지 않는다. 원본 31~40 플레이·실제 휴대폰 FPS·성능 합격을 주장하지 않는다.
 
 Chromium 154.0.8037.57 headless, Debian 13 x86-64, AMD EPYC 9V74의 할당 CPU 5개, cgroup 메모리 상한 16GiB인 공유 호스트다. PC는 1440×900/DPR1, 모바일은 390×844/DPR2와 모바일 viewport 에뮬레이션이다. 독립 브라우저·빈 context를 장과 viewport마다 하나씩 순서대로 열었으나 다른 기존 검수 프로세스는 유지돼 완전한 독점 환경은 아니다. 각 한 표본, 측정 시 부하·JIT·GC·자동 카메라/대사에 민감하다.
 
@@ -39,13 +39,14 @@ Chromium 154.0.8037.57 headless, Debian 13 x86-64, AMD EPYC 9V74의 할당 CPU 5
 ## 정체와 자산의 조사 단서
 
 - 31 PC 별도 진단에서 약 697ms Long Task 구간에 느린 persist 3회(각 약 87~97ms)와 느린 render 약 220ms가 겹쳤다. nested 시간이므로 합산·단일 원인 판정은 금지한다.
+- 38 PC 기준본 재시험은 median 33.2ms/p95 66.7ms(첫 표본 16.7/50ms)였다. RC의 계층 진단 재시험은 median 33.4ms/p95 150ms였으나 추가 계층 계측이 있어 정밀한 동등 비교가 아니다. 두 빌드의 지형과 카메라 위치도 달라 인과관계는 미확정이다.
 - 38 PC 본 표본은 median 66.6ms/p95 133.3ms였고 관측 구간 screen raster 45회·tile 12개가 생성됐다. 별도 계층 진단(한 표본, 다른 실행)에서는 terrain-domain 호출 2회 총 약 388ms와 foreground screen-cache 호출 14회 총 약 257ms가 관측됐다. 계층이 중첩되고 측정 오버헤드도 있어 개별 합계를 합산하지 않는다. 전경 화면 캐시와 지형 타일 합성이 후속 분석 대상이며 단일 자산의 인과관계는 미확정이다.
 - 39 PC 전체 전송 약 25.76MB에는 다음 40장의 세 자산 조각 약 10.19MB prewarm과 현재 장 자산 약 3.20MB가 포함됐다. 이는 로컬 비압축 HTTP 조건의 관측이다.
 - 40 PC 초기 tile 생성 누적 약 1.24초, 첫 render 약 6.14초, 로드 library 직렬화 약 15.69MB였다. 후보 원본에서 큰 자산은 `approved40:body` 약 4.72MB, `approved40:terrain-left-join` 약 1.76MB, `approved40:terrain-right-join` 약 1.66MB다. 실제 heap·렌더 인과효과를 의미하지 않는다. 미술·원본 경로를 삭제하거나 변형하지 않았다.
 
 측정 스크립트는 `browser-performance.py`, 상세 후보/기준별 request·decoded 크기·원본 간격·cache·느린 호출은 `evidence/performance-rc-browser.tar.xz`다. 해시와 상위 후보 SHA는 아래와 같다.
 
-- 증거 archive SHA-256 `022afbc2332e74075b1e3facbf057d0be4c30565c37e96074f2ebfef7d736ede`
+- 증거 archive SHA-256 `4d2e196e91b1953d6a6d265a79817779dd45792c19eaf1e794d6f82bcfc2dbab`
 - 내부 31: `cebd6fa4858c7770739f236bbace39ef02ede43e1493ad82c0acadf10c695ff7`
 - 내부 32: `681d13c6ba2cf1b93a031fd0e0aed80ecb83e51a6428aeec637c4f905cec8aa0`
 - 내부 33: `dec192b634d200adb179a4e24d7f8f0bba863579c67b233410c8649c9eb6b0dd`
