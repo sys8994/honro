@@ -1,0 +1,2513 @@
+{
+  "sourceCommit": "4ebe01b0bde5438782a7bd37e5dffdf89984f8ba",
+  "originalRawSha256": "67ea8ae574a4a0dd8bc50a6125f1d7db7aaa3334bd16782a342ba8540f6e7f60",
+  "context": "new isolated context; original RC5 context was closed",
+  "steps": [
+    {
+      "step": "ui-import-original",
+      "state": {
+        "screen": "title",
+        "last": 35,
+        "clear": {
+          "visits": 1,
+          "rounds": 20
+        },
+        "proof": {
+          "version": 1,
+          "runId": "eq-mvw35tg3-84xgprgd",
+          "completed": {
+            "35": {
+              "stage": 35,
+              "sourceRun": "honro-map-stage-35-1793473799711",
+              "campaignRunId": "eq-mvw35tg3-84xgprgd",
+              "success": true,
+              "residents": [],
+              "rows": [
+                "A4.S35.ENTRY.01",
+                "A4.S35.ENTRY.02"
+              ]
+            }
+          },
+          "factEvents": {
+            "eq_co_t3_choice": {
+              "eventId": "eq_co_t3_choice",
+              "stage": 35,
+              "sourceRun": "honro-map-stage-35-1793473799711",
+              "campaignRunId": "eq-mvw35tg3-84xgprgd",
+              "officialAct4": true,
+              "proof": {
+                "tag": "rooted-third-clearing",
+                "reached": true
+              }
+            }
+          }
+        },
+        "equipment": {
+          "schema": 1,
+          "definitionRevision": 1,
+          "runId": "eq-mvw35tg3-84xgprgd",
+          "ownedItemIds": [
+            "itm_se_01",
+            "itm_da_01",
+            "itm_hw_01",
+            "itm_so_01",
+            "itm_se_02",
+            "itm_da_02",
+            "itm_hw_02",
+            "itm_co_01",
+            "itm_co_02",
+            "itm_so_02",
+            "itm_se_05",
+            "itm_da_05",
+            "itm_hw_05",
+            "itm_so_05",
+            "itm_co_11",
+            "itm_co_03",
+            "itm_se_03",
+            "itm_da_03",
+            "itm_hw_03",
+            "itm_so_03",
+            "itm_co_08"
+          ],
+          "eligibleEventIds": [],
+          "equippedByClass": {
+            "archer": {
+              "personal": "itm_se_05",
+              "common": "itm_co_11"
+            },
+            "mage": {
+              "personal": "itm_da_05",
+              "common": "itm_co_08"
+            },
+            "knight": {
+              "personal": "itm_hw_05",
+              "common": "itm_co_01"
+            },
+            "occultist": {
+              "personal": "itm_so_05",
+              "common": "itm_co_02"
+            }
+          },
+          "rewardLedger": {
+            "eq_se_start": {
+              "state": "committed",
+              "choiceGroup": null,
+              "selectedItemId": "itm_se_01",
+              "notified": true
+            },
+            "eq_da_join": {
+              "state": "committed",
+              "choiceGroup": null,
+              "selectedItemId": "itm_da_01",
+              "notified": true
+            },
+            "eq_hw_join": {
+              "state": "committed",
+              "choiceGroup": null,
+              "selectedItemId": "itm_hw_01",
+              "notified": true
+            },
+            "eq_so_join": {
+              "state": "committed",
+              "choiceGroup": null,
+              "selectedItemId": "itm_so_01",
+              "notified": true
+            },
+            "eq_se_ledger": {
+              "state": "committed",
+              "choiceGroup": null,
+              "selectedItemId": "itm_se_02",
+              "notified": true
+            },
+            "eq_da_gate": {
+              "state": "committed",
+              "choiceGroup": null,
+              "selectedItemId": "itm_da_02",
+              "notified": true
+            },
+            "eq_hw_bier": {
+              "state": "committed",
+              "choiceGroup": null,
+              "selectedItemId": "itm_hw_02",
+              "notified": true
+            },
+            "eq_co_01": {
+              "state": "committed",
+              "choiceGroup": null,
+              "selectedItemId": "itm_co_01",
+              "notified": true
+            },
+            "eq_co_02": {
+              "state": "committed",
+              "choiceGroup": null,
+              "selectedItemId": "itm_co_02",
+              "notified": true
+            },
+            "eq_co_t1_choice": {
+              "state": "committed",
+              "choiceGroup": "cg_co_t1",
+              "selectedItemId": "itm_co_03",
+              "notified": true
+            },
+            "eq_so_resident": {
+              "state": "committed",
+              "choiceGroup": null,
+              "selectedItemId": "itm_so_02",
+              "notified": true
+            },
+            "eq_se_t2_choice": {
+              "state": "committed",
+              "choiceGroup": "cg_se_t2",
+              "selectedItemId": "itm_se_03",
+              "notified": true
+            },
+            "eq_da_t2_choice": {
+              "state": "committed",
+              "choiceGroup": "cg_da_t2",
+              "selectedItemId": "itm_da_03",
+              "notified": true
+            },
+            "eq_hw_t2_choice": {
+              "state": "committed",
+              "choiceGroup": "cg_hw_t2",
+              "selectedItemId": "itm_hw_03",
+              "notified": true
+            },
+            "eq_so_t2_choice": {
+              "state": "committed",
+              "choiceGroup": "cg_so_t2",
+              "selectedItemId": "itm_so_03",
+              "notified": true
+            },
+            "eq_se_t3a": {
+              "state": "committed",
+              "choiceGroup": null,
+              "selectedItemId": "itm_se_05",
+              "notified": true
+            },
+            "eq_da_t3a": {
+              "state": "committed",
+              "choiceGroup": null,
+              "selectedItemId": "itm_da_05",
+              "notified": true
+            },
+            "eq_hw_t3a": {
+              "state": "committed",
+              "choiceGroup": null,
+              "selectedItemId": "itm_hw_05",
+              "notified": true
+            },
+            "eq_so_t3a": {
+              "state": "committed",
+              "choiceGroup": null,
+              "selectedItemId": "itm_so_05",
+              "notified": true
+            },
+            "eq_co_t2_choice": {
+              "state": "committed",
+              "choiceGroup": "cg_co_t2",
+              "selectedItemId": "itm_co_08",
+              "notified": true
+            },
+            "eq_co_11": {
+              "state": "committed",
+              "choiceGroup": null,
+              "selectedItemId": "itm_co_11",
+              "notified": true
+            },
+            "eq_co_t3_choice": {
+              "state": "pending",
+              "choiceGroup": "cg_co_t3",
+              "selectedItemId": null,
+              "notified": false
+            }
+          },
+          "initialAutoEquip": true,
+          "basicPrepared": [
+            "archer",
+            "mage",
+            "knight",
+            "occultist"
+          ]
+        },
+        "heroes": {
+          "mage": {
+            "xp": 225393,
+            "ranks": {
+              "M01": 1,
+              "M06": 5,
+              "M02": 5,
+              "M03": 5,
+              "M07": 3,
+              "M10": 3
+            },
+            "statTraining": 30,
+            "kills": 6,
+            "damage": 8928,
+            "skillRevision": 1,
+            "martialRevision": 1,
+            "equipmentIds": [
+              "itm_da_05",
+              "itm_co_08"
+            ]
+          },
+          "archer": {
+            "xp": 225393,
+            "ranks": {
+              "A01": 1,
+              "A14": 8,
+              "A02": 8,
+              "A05": 5
+            },
+            "statTraining": 30,
+            "kills": 9,
+            "damage": 15405,
+            "skillRevision": 1,
+            "martialRevision": 1,
+            "equipmentIds": [
+              "itm_se_05",
+              "itm_co_11"
+            ]
+          },
+          "knight": {
+            "xp": 225393,
+            "ranks": {
+              "S00": 1,
+              "S03": 1,
+              "S05": 1,
+              "S07": 1,
+              "S01": 8,
+              "S06": 8,
+              "S08": 5
+            },
+            "statTraining": 27,
+            "kills": 10,
+            "damage": 14731,
+            "skillRevision": 1,
+            "martialRevision": 1,
+            "equipmentIds": [
+              "itm_hw_05",
+              "itm_co_01"
+            ]
+          },
+          "occultist": {
+            "xp": 225393,
+            "ranks": {
+              "O01": 1,
+              "O06": 6,
+              "O11": 1,
+              "O12": 1,
+              "O02": 5,
+              "O13": 5,
+              "O03": 1,
+              "O04": 5
+            },
+            "statTraining": 27,
+            "kills": 5,
+            "damage": 13701,
+            "skillRevision": 1,
+            "martialRevision": 1,
+            "occultRevision": 1,
+            "equipmentIds": [
+              "itm_so_05",
+              "itm_co_02"
+            ]
+          }
+        },
+        "loadouts": {
+          "mage": [
+            "M01",
+            "M06",
+            "M03",
+            "M10"
+          ],
+          "archer": [
+            "A01",
+            "A14",
+            "A02",
+            "A05"
+          ],
+          "knight": [
+            "S00",
+            "S01",
+            "S06",
+            "S08"
+          ],
+          "occultist": [
+            "O01",
+            "O02",
+            "O06",
+            "O04"
+          ]
+        },
+        "pendingDirect": 36,
+        "battleStage": null,
+        "savedStage": null,
+        "round": null,
+        "phase": null,
+        "units": null,
+        "dialogue": false
+      }
+    },
+    {
+      "step": "actual-entry-36",
+      "state": {
+        "screen": "battle",
+        "last": 36,
+        "clear": {
+          "visits": 1,
+          "rounds": 20
+        },
+        "proof": {
+          "version": 1,
+          "runId": "eq-mvw35tg3-84xgprgd",
+          "completed": {
+            "35": {
+              "stage": 35,
+              "sourceRun": "honro-map-stage-35-1793473799711",
+              "campaignRunId": "eq-mvw35tg3-84xgprgd",
+              "success": true,
+              "residents": [],
+              "rows": [
+                "A4.S35.ENTRY.01",
+                "A4.S35.ENTRY.02"
+              ]
+            }
+          },
+          "factEvents": {
+            "eq_co_t3_choice": {
+              "eventId": "eq_co_t3_choice",
+              "stage": 35,
+              "sourceRun": "honro-map-stage-35-1793473799711",
+              "campaignRunId": "eq-mvw35tg3-84xgprgd",
+              "officialAct4": true,
+              "proof": {
+                "tag": "rooted-third-clearing",
+                "reached": true
+              }
+            }
+          }
+        },
+        "equipment": {
+          "schema": 1,
+          "definitionRevision": 1,
+          "runId": "eq-mvw35tg3-84xgprgd",
+          "ownedItemIds": [
+            "itm_se_01",
+            "itm_da_01",
+            "itm_hw_01",
+            "itm_so_01",
+            "itm_se_02",
+            "itm_da_02",
+            "itm_hw_02",
+            "itm_co_01",
+            "itm_co_02",
+            "itm_so_02",
+            "itm_se_05",
+            "itm_da_05",
+            "itm_hw_05",
+            "itm_so_05",
+            "itm_co_11",
+            "itm_co_03",
+            "itm_se_03",
+            "itm_da_03",
+            "itm_hw_03",
+            "itm_so_03",
+            "itm_co_08"
+          ],
+          "eligibleEventIds": [],
+          "equippedByClass": {
+            "archer": {
+              "personal": "itm_se_05",
+              "common": "itm_co_11"
+            },
+            "mage": {
+              "personal": "itm_da_05",
+              "common": "itm_co_08"
+            },
+            "knight": {
+              "personal": "itm_hw_05",
+              "common": "itm_co_01"
+            },
+            "occultist": {
+              "personal": "itm_so_05",
+              "common": "itm_co_02"
+            }
+          },
+          "rewardLedger": {
+            "eq_se_start": {
+              "state": "committed",
+              "choiceGroup": null,
+              "selectedItemId": "itm_se_01",
+              "notified": true
+            },
+            "eq_da_join": {
+              "state": "committed",
+              "choiceGroup": null,
+              "selectedItemId": "itm_da_01",
+              "notified": true
+            },
+            "eq_hw_join": {
+              "state": "committed",
+              "choiceGroup": null,
+              "selectedItemId": "itm_hw_01",
+              "notified": true
+            },
+            "eq_so_join": {
+              "state": "committed",
+              "choiceGroup": null,
+              "selectedItemId": "itm_so_01",
+              "notified": true
+            },
+            "eq_se_ledger": {
+              "state": "committed",
+              "choiceGroup": null,
+              "selectedItemId": "itm_se_02",
+              "notified": true
+            },
+            "eq_da_gate": {
+              "state": "committed",
+              "choiceGroup": null,
+              "selectedItemId": "itm_da_02",
+              "notified": true
+            },
+            "eq_hw_bier": {
+              "state": "committed",
+              "choiceGroup": null,
+              "selectedItemId": "itm_hw_02",
+              "notified": true
+            },
+            "eq_co_01": {
+              "state": "committed",
+              "choiceGroup": null,
+              "selectedItemId": "itm_co_01",
+              "notified": true
+            },
+            "eq_co_02": {
+              "state": "committed",
+              "choiceGroup": null,
+              "selectedItemId": "itm_co_02",
+              "notified": true
+            },
+            "eq_co_t1_choice": {
+              "state": "committed",
+              "choiceGroup": "cg_co_t1",
+              "selectedItemId": "itm_co_03",
+              "notified": true
+            },
+            "eq_so_resident": {
+              "state": "committed",
+              "choiceGroup": null,
+              "selectedItemId": "itm_so_02",
+              "notified": true
+            },
+            "eq_se_t2_choice": {
+              "state": "committed",
+              "choiceGroup": "cg_se_t2",
+              "selectedItemId": "itm_se_03",
+              "notified": true
+            },
+            "eq_da_t2_choice": {
+              "state": "committed",
+              "choiceGroup": "cg_da_t2",
+              "selectedItemId": "itm_da_03",
+              "notified": true
+            },
+            "eq_hw_t2_choice": {
+              "state": "committed",
+              "choiceGroup": "cg_hw_t2",
+              "selectedItemId": "itm_hw_03",
+              "notified": true
+            },
+            "eq_so_t2_choice": {
+              "state": "committed",
+              "choiceGroup": "cg_so_t2",
+              "selectedItemId": "itm_so_03",
+              "notified": true
+            },
+            "eq_se_t3a": {
+              "state": "committed",
+              "choiceGroup": null,
+              "selectedItemId": "itm_se_05",
+              "notified": true
+            },
+            "eq_da_t3a": {
+              "state": "committed",
+              "choiceGroup": null,
+              "selectedItemId": "itm_da_05",
+              "notified": true
+            },
+            "eq_hw_t3a": {
+              "state": "committed",
+              "choiceGroup": null,
+              "selectedItemId": "itm_hw_05",
+              "notified": true
+            },
+            "eq_so_t3a": {
+              "state": "committed",
+              "choiceGroup": null,
+              "selectedItemId": "itm_so_05",
+              "notified": true
+            },
+            "eq_co_t2_choice": {
+              "state": "committed",
+              "choiceGroup": "cg_co_t2",
+              "selectedItemId": "itm_co_08",
+              "notified": true
+            },
+            "eq_co_11": {
+              "state": "committed",
+              "choiceGroup": null,
+              "selectedItemId": "itm_co_11",
+              "notified": true
+            },
+            "eq_co_t3_choice": {
+              "state": "pending",
+              "choiceGroup": "cg_co_t3",
+              "selectedItemId": null,
+              "notified": false
+            }
+          },
+          "initialAutoEquip": true,
+          "basicPrepared": [
+            "archer",
+            "mage",
+            "knight",
+            "occultist"
+          ]
+        },
+        "heroes": {
+          "mage": {
+            "xp": 225393,
+            "ranks": {
+              "M01": 1,
+              "M06": 5,
+              "M02": 5,
+              "M03": 5,
+              "M07": 3,
+              "M10": 3
+            },
+            "statTraining": 30,
+            "kills": 6,
+            "damage": 8928,
+            "skillRevision": 1,
+            "martialRevision": 1,
+            "equipmentIds": [
+              "itm_da_05",
+              "itm_co_08"
+            ]
+          },
+          "archer": {
+            "xp": 225393,
+            "ranks": {
+              "A01": 1,
+              "A14": 8,
+              "A02": 8,
+              "A05": 5
+            },
+            "statTraining": 30,
+            "kills": 9,
+            "damage": 15405,
+            "skillRevision": 1,
+            "martialRevision": 1,
+            "equipmentIds": [
+              "itm_se_05",
+              "itm_co_11"
+            ]
+          },
+          "knight": {
+            "xp": 225393,
+            "ranks": {
+              "S00": 1,
+              "S03": 1,
+              "S05": 1,
+              "S07": 1,
+              "S01": 8,
+              "S06": 8,
+              "S08": 5
+            },
+            "statTraining": 27,
+            "kills": 10,
+            "damage": 14731,
+            "skillRevision": 1,
+            "martialRevision": 1,
+            "equipmentIds": [
+              "itm_hw_05",
+              "itm_co_01"
+            ]
+          },
+          "occultist": {
+            "xp": 225393,
+            "ranks": {
+              "O01": 1,
+              "O06": 6,
+              "O11": 1,
+              "O12": 1,
+              "O02": 5,
+              "O13": 5,
+              "O03": 1,
+              "O04": 5
+            },
+            "statTraining": 27,
+            "kills": 5,
+            "damage": 13701,
+            "skillRevision": 1,
+            "martialRevision": 1,
+            "occultRevision": 1,
+            "equipmentIds": [
+              "itm_so_05",
+              "itm_co_02"
+            ]
+          }
+        },
+        "loadouts": {
+          "mage": [
+            "M01",
+            "M06",
+            "M03",
+            "M10"
+          ],
+          "archer": [
+            "A01",
+            "A14",
+            "A02",
+            "A05"
+          ],
+          "knight": [
+            "S00",
+            "S01",
+            "S06",
+            "S08"
+          ],
+          "occultist": [
+            "O01",
+            "O02",
+            "O06",
+            "O04"
+          ]
+        },
+        "pendingDirect": null,
+        "battleStage": 36,
+        "savedStage": 36,
+        "round": 1,
+        "phase": "aim",
+        "units": [
+          {
+            "id": "archer",
+            "side": 0,
+            "x": 77,
+            "y": 1076.4285714285716,
+            "hp": 1825,
+            "dead": false
+          },
+          {
+            "id": "mage",
+            "side": 0,
+            "x": 143,
+            "y": 1078.314285714286,
+            "hp": 1978,
+            "dead": false
+          },
+          {
+            "id": "knight",
+            "side": 0,
+            "x": 209.00000000000003,
+            "y": 1080.2,
+            "hp": 3316,
+            "dead": false
+          },
+          {
+            "id": "occultist",
+            "side": 0,
+            "x": 275,
+            "y": 1086.0666666666666,
+            "hp": 2039,
+            "dead": false
+          },
+          {
+            "id": "a4-36-a-1",
+            "side": 1,
+            "x": 990.0000000000001,
+            "y": 1248,
+            "hp": 1559,
+            "dead": false
+          },
+          {
+            "id": "a4-36-a-2",
+            "side": 1,
+            "x": 1210,
+            "y": 1254,
+            "hp": 2260,
+            "dead": false
+          },
+          {
+            "id": "a4-36-a-3",
+            "side": 1,
+            "x": 1430.0000000000002,
+            "y": 1257.3000000000002,
+            "hp": 1792,
+            "dead": false
+          },
+          {
+            "id": "a4-36-g-1",
+            "side": 1,
+            "x": 2189,
+            "y": 1166.8000000000002,
+            "hp": 1559,
+            "dead": false
+          },
+          {
+            "id": "a4-36-g-2",
+            "side": 1,
+            "x": 2486,
+            "y": 1179,
+            "hp": 1559,
+            "dead": false
+          },
+          {
+            "id": "a4-36-b-1",
+            "side": 1,
+            "x": 3014.0000000000005,
+            "y": 1210.0000000000002,
+            "hp": 1559,
+            "dead": false
+          },
+          {
+            "id": "a4-36-b-2",
+            "side": 1,
+            "x": 3234.0000000000005,
+            "y": 1262.3600000000001,
+            "hp": 1559,
+            "dead": false
+          },
+          {
+            "id": "a4-36-b-3",
+            "side": 1,
+            "x": 2684,
+            "y": 1311.75,
+            "hp": 2260,
+            "dead": false
+          },
+          {
+            "id": "a4-36-b-4",
+            "side": 1,
+            "x": 2860.0000000000005,
+            "y": 1150.2,
+            "hp": 1247,
+            "dead": false
+          }
+        ],
+        "dialogue": false
+      }
+    },
+    {
+      "step": "ui-choice-committed",
+      "state": {
+        "screen": "battle",
+        "last": 36,
+        "clear": {
+          "visits": 1,
+          "rounds": 20
+        },
+        "proof": {
+          "version": 1,
+          "runId": "eq-mvw35tg3-84xgprgd",
+          "completed": {
+            "35": {
+              "stage": 35,
+              "sourceRun": "honro-map-stage-35-1793473799711",
+              "campaignRunId": "eq-mvw35tg3-84xgprgd",
+              "success": true,
+              "residents": [],
+              "rows": [
+                "A4.S35.ENTRY.01",
+                "A4.S35.ENTRY.02"
+              ]
+            }
+          },
+          "factEvents": {
+            "eq_co_t3_choice": {
+              "eventId": "eq_co_t3_choice",
+              "stage": 35,
+              "sourceRun": "honro-map-stage-35-1793473799711",
+              "campaignRunId": "eq-mvw35tg3-84xgprgd",
+              "officialAct4": true,
+              "proof": {
+                "tag": "rooted-third-clearing",
+                "reached": true
+              }
+            }
+          }
+        },
+        "equipment": {
+          "schema": 1,
+          "definitionRevision": 1,
+          "runId": "eq-mvw35tg3-84xgprgd",
+          "ownedItemIds": [
+            "itm_se_01",
+            "itm_da_01",
+            "itm_hw_01",
+            "itm_so_01",
+            "itm_se_02",
+            "itm_da_02",
+            "itm_hw_02",
+            "itm_co_01",
+            "itm_co_02",
+            "itm_so_02",
+            "itm_se_05",
+            "itm_da_05",
+            "itm_hw_05",
+            "itm_so_05",
+            "itm_co_11",
+            "itm_co_03",
+            "itm_se_03",
+            "itm_da_03",
+            "itm_hw_03",
+            "itm_so_03",
+            "itm_co_08",
+            "itm_co_15"
+          ],
+          "eligibleEventIds": [],
+          "equippedByClass": {
+            "archer": {
+              "personal": "itm_se_05",
+              "common": "itm_co_11"
+            },
+            "mage": {
+              "personal": "itm_da_05",
+              "common": "itm_co_08"
+            },
+            "knight": {
+              "personal": "itm_hw_05",
+              "common": "itm_co_01"
+            },
+            "occultist": {
+              "personal": "itm_so_05",
+              "common": "itm_co_02"
+            }
+          },
+          "rewardLedger": {
+            "eq_se_start": {
+              "state": "committed",
+              "choiceGroup": null,
+              "selectedItemId": "itm_se_01",
+              "notified": true
+            },
+            "eq_da_join": {
+              "state": "committed",
+              "choiceGroup": null,
+              "selectedItemId": "itm_da_01",
+              "notified": true
+            },
+            "eq_hw_join": {
+              "state": "committed",
+              "choiceGroup": null,
+              "selectedItemId": "itm_hw_01",
+              "notified": true
+            },
+            "eq_so_join": {
+              "state": "committed",
+              "choiceGroup": null,
+              "selectedItemId": "itm_so_01",
+              "notified": true
+            },
+            "eq_se_ledger": {
+              "state": "committed",
+              "choiceGroup": null,
+              "selectedItemId": "itm_se_02",
+              "notified": true
+            },
+            "eq_da_gate": {
+              "state": "committed",
+              "choiceGroup": null,
+              "selectedItemId": "itm_da_02",
+              "notified": true
+            },
+            "eq_hw_bier": {
+              "state": "committed",
+              "choiceGroup": null,
+              "selectedItemId": "itm_hw_02",
+              "notified": true
+            },
+            "eq_co_01": {
+              "state": "committed",
+              "choiceGroup": null,
+              "selectedItemId": "itm_co_01",
+              "notified": true
+            },
+            "eq_co_02": {
+              "state": "committed",
+              "choiceGroup": null,
+              "selectedItemId": "itm_co_02",
+              "notified": true
+            },
+            "eq_co_t1_choice": {
+              "state": "committed",
+              "choiceGroup": "cg_co_t1",
+              "selectedItemId": "itm_co_03",
+              "notified": true
+            },
+            "eq_so_resident": {
+              "state": "committed",
+              "choiceGroup": null,
+              "selectedItemId": "itm_so_02",
+              "notified": true
+            },
+            "eq_se_t2_choice": {
+              "state": "committed",
+              "choiceGroup": "cg_se_t2",
+              "selectedItemId": "itm_se_03",
+              "notified": true
+            },
+            "eq_da_t2_choice": {
+              "state": "committed",
+              "choiceGroup": "cg_da_t2",
+              "selectedItemId": "itm_da_03",
+              "notified": true
+            },
+            "eq_hw_t2_choice": {
+              "state": "committed",
+              "choiceGroup": "cg_hw_t2",
+              "selectedItemId": "itm_hw_03",
+              "notified": true
+            },
+            "eq_so_t2_choice": {
+              "state": "committed",
+              "choiceGroup": "cg_so_t2",
+              "selectedItemId": "itm_so_03",
+              "notified": true
+            },
+            "eq_se_t3a": {
+              "state": "committed",
+              "choiceGroup": null,
+              "selectedItemId": "itm_se_05",
+              "notified": true
+            },
+            "eq_da_t3a": {
+              "state": "committed",
+              "choiceGroup": null,
+              "selectedItemId": "itm_da_05",
+              "notified": true
+            },
+            "eq_hw_t3a": {
+              "state": "committed",
+              "choiceGroup": null,
+              "selectedItemId": "itm_hw_05",
+              "notified": true
+            },
+            "eq_so_t3a": {
+              "state": "committed",
+              "choiceGroup": null,
+              "selectedItemId": "itm_so_05",
+              "notified": true
+            },
+            "eq_co_t2_choice": {
+              "state": "committed",
+              "choiceGroup": "cg_co_t2",
+              "selectedItemId": "itm_co_08",
+              "notified": true
+            },
+            "eq_co_11": {
+              "state": "committed",
+              "choiceGroup": null,
+              "selectedItemId": "itm_co_11",
+              "notified": true
+            },
+            "eq_co_t3_choice": {
+              "state": "committed",
+              "choiceGroup": "cg_co_t3",
+              "selectedItemId": "itm_co_15",
+              "notified": true
+            }
+          },
+          "initialAutoEquip": true,
+          "basicPrepared": [
+            "archer",
+            "mage",
+            "knight",
+            "occultist"
+          ]
+        },
+        "heroes": {
+          "mage": {
+            "xp": 225393,
+            "ranks": {
+              "M01": 1,
+              "M06": 5,
+              "M02": 5,
+              "M03": 5,
+              "M07": 3,
+              "M10": 3
+            },
+            "statTraining": 30,
+            "kills": 6,
+            "damage": 8928,
+            "skillRevision": 1,
+            "martialRevision": 1,
+            "equipmentIds": [
+              "itm_da_05",
+              "itm_co_08"
+            ]
+          },
+          "archer": {
+            "xp": 225393,
+            "ranks": {
+              "A01": 1,
+              "A14": 8,
+              "A02": 8,
+              "A05": 5
+            },
+            "statTraining": 30,
+            "kills": 9,
+            "damage": 15405,
+            "skillRevision": 1,
+            "martialRevision": 1,
+            "equipmentIds": [
+              "itm_se_05",
+              "itm_co_11"
+            ]
+          },
+          "knight": {
+            "xp": 225393,
+            "ranks": {
+              "S00": 1,
+              "S03": 1,
+              "S05": 1,
+              "S07": 1,
+              "S01": 8,
+              "S06": 8,
+              "S08": 5
+            },
+            "statTraining": 27,
+            "kills": 10,
+            "damage": 14731,
+            "skillRevision": 1,
+            "martialRevision": 1,
+            "equipmentIds": [
+              "itm_hw_05",
+              "itm_co_01"
+            ]
+          },
+          "occultist": {
+            "xp": 225393,
+            "ranks": {
+              "O01": 1,
+              "O06": 6,
+              "O11": 1,
+              "O12": 1,
+              "O02": 5,
+              "O13": 5,
+              "O03": 1,
+              "O04": 5
+            },
+            "statTraining": 27,
+            "kills": 5,
+            "damage": 13701,
+            "skillRevision": 1,
+            "martialRevision": 1,
+            "occultRevision": 1,
+            "equipmentIds": [
+              "itm_so_05",
+              "itm_co_02"
+            ]
+          }
+        },
+        "loadouts": {
+          "mage": [
+            "M01",
+            "M06",
+            "M03",
+            "M10"
+          ],
+          "archer": [
+            "A01",
+            "A14",
+            "A02",
+            "A05"
+          ],
+          "knight": [
+            "S00",
+            "S01",
+            "S06",
+            "S08"
+          ],
+          "occultist": [
+            "O01",
+            "O02",
+            "O06",
+            "O04"
+          ]
+        },
+        "pendingDirect": null,
+        "battleStage": 36,
+        "savedStage": 36,
+        "round": 1,
+        "phase": "aim",
+        "units": [
+          {
+            "id": "archer",
+            "side": 0,
+            "x": 77,
+            "y": 1076.4285714285716,
+            "hp": 1825,
+            "dead": false
+          },
+          {
+            "id": "mage",
+            "side": 0,
+            "x": 143,
+            "y": 1078.314285714286,
+            "hp": 1978,
+            "dead": false
+          },
+          {
+            "id": "knight",
+            "side": 0,
+            "x": 209.00000000000003,
+            "y": 1080.2,
+            "hp": 3316,
+            "dead": false
+          },
+          {
+            "id": "occultist",
+            "side": 0,
+            "x": 275,
+            "y": 1086.0666666666666,
+            "hp": 2039,
+            "dead": false
+          },
+          {
+            "id": "a4-36-a-1",
+            "side": 1,
+            "x": 990.0000000000001,
+            "y": 1248,
+            "hp": 1559,
+            "dead": false
+          },
+          {
+            "id": "a4-36-a-2",
+            "side": 1,
+            "x": 1210,
+            "y": 1254,
+            "hp": 2260,
+            "dead": false
+          },
+          {
+            "id": "a4-36-a-3",
+            "side": 1,
+            "x": 1430.0000000000002,
+            "y": 1257.3000000000002,
+            "hp": 1792,
+            "dead": false
+          },
+          {
+            "id": "a4-36-g-1",
+            "side": 1,
+            "x": 2189,
+            "y": 1166.8000000000002,
+            "hp": 1559,
+            "dead": false
+          },
+          {
+            "id": "a4-36-g-2",
+            "side": 1,
+            "x": 2486,
+            "y": 1179,
+            "hp": 1559,
+            "dead": false
+          },
+          {
+            "id": "a4-36-b-1",
+            "side": 1,
+            "x": 3014.0000000000005,
+            "y": 1210.0000000000002,
+            "hp": 1559,
+            "dead": false
+          },
+          {
+            "id": "a4-36-b-2",
+            "side": 1,
+            "x": 3234.0000000000005,
+            "y": 1262.3600000000001,
+            "hp": 1559,
+            "dead": false
+          },
+          {
+            "id": "a4-36-b-3",
+            "side": 1,
+            "x": 2684,
+            "y": 1311.75,
+            "hp": 2260,
+            "dead": false
+          },
+          {
+            "id": "a4-36-b-4",
+            "side": 1,
+            "x": 2860.0000000000005,
+            "y": 1150.2,
+            "hp": 1247,
+            "dead": false
+          }
+        ],
+        "dialogue": false
+      }
+    },
+    {
+      "step": "same-new-context-reload-continue",
+      "state": {
+        "screen": "battle",
+        "last": 36,
+        "clear": {
+          "visits": 1,
+          "rounds": 20
+        },
+        "proof": {
+          "version": 1,
+          "runId": "eq-mvw35tg3-84xgprgd",
+          "completed": {
+            "35": {
+              "stage": 35,
+              "sourceRun": "honro-map-stage-35-1793473799711",
+              "campaignRunId": "eq-mvw35tg3-84xgprgd",
+              "success": true,
+              "residents": [],
+              "rows": [
+                "A4.S35.ENTRY.01",
+                "A4.S35.ENTRY.02"
+              ]
+            }
+          },
+          "factEvents": {
+            "eq_co_t3_choice": {
+              "eventId": "eq_co_t3_choice",
+              "stage": 35,
+              "sourceRun": "honro-map-stage-35-1793473799711",
+              "campaignRunId": "eq-mvw35tg3-84xgprgd",
+              "officialAct4": true,
+              "proof": {
+                "tag": "rooted-third-clearing",
+                "reached": true
+              }
+            }
+          }
+        },
+        "equipment": {
+          "schema": 1,
+          "definitionRevision": 1,
+          "runId": "eq-mvw35tg3-84xgprgd",
+          "ownedItemIds": [
+            "itm_se_01",
+            "itm_da_01",
+            "itm_hw_01",
+            "itm_so_01",
+            "itm_se_02",
+            "itm_da_02",
+            "itm_hw_02",
+            "itm_co_01",
+            "itm_co_02",
+            "itm_so_02",
+            "itm_se_05",
+            "itm_da_05",
+            "itm_hw_05",
+            "itm_so_05",
+            "itm_co_11",
+            "itm_co_03",
+            "itm_se_03",
+            "itm_da_03",
+            "itm_hw_03",
+            "itm_so_03",
+            "itm_co_08",
+            "itm_co_15"
+          ],
+          "eligibleEventIds": [],
+          "equippedByClass": {
+            "archer": {
+              "personal": "itm_se_05",
+              "common": "itm_co_11"
+            },
+            "mage": {
+              "personal": "itm_da_05",
+              "common": "itm_co_08"
+            },
+            "knight": {
+              "personal": "itm_hw_05",
+              "common": "itm_co_01"
+            },
+            "occultist": {
+              "personal": "itm_so_05",
+              "common": "itm_co_02"
+            }
+          },
+          "rewardLedger": {
+            "eq_se_start": {
+              "state": "committed",
+              "choiceGroup": null,
+              "selectedItemId": "itm_se_01",
+              "notified": true
+            },
+            "eq_da_join": {
+              "state": "committed",
+              "choiceGroup": null,
+              "selectedItemId": "itm_da_01",
+              "notified": true
+            },
+            "eq_hw_join": {
+              "state": "committed",
+              "choiceGroup": null,
+              "selectedItemId": "itm_hw_01",
+              "notified": true
+            },
+            "eq_so_join": {
+              "state": "committed",
+              "choiceGroup": null,
+              "selectedItemId": "itm_so_01",
+              "notified": true
+            },
+            "eq_se_ledger": {
+              "state": "committed",
+              "choiceGroup": null,
+              "selectedItemId": "itm_se_02",
+              "notified": true
+            },
+            "eq_da_gate": {
+              "state": "committed",
+              "choiceGroup": null,
+              "selectedItemId": "itm_da_02",
+              "notified": true
+            },
+            "eq_hw_bier": {
+              "state": "committed",
+              "choiceGroup": null,
+              "selectedItemId": "itm_hw_02",
+              "notified": true
+            },
+            "eq_co_01": {
+              "state": "committed",
+              "choiceGroup": null,
+              "selectedItemId": "itm_co_01",
+              "notified": true
+            },
+            "eq_co_02": {
+              "state": "committed",
+              "choiceGroup": null,
+              "selectedItemId": "itm_co_02",
+              "notified": true
+            },
+            "eq_co_t1_choice": {
+              "state": "committed",
+              "choiceGroup": "cg_co_t1",
+              "selectedItemId": "itm_co_03",
+              "notified": true
+            },
+            "eq_so_resident": {
+              "state": "committed",
+              "choiceGroup": null,
+              "selectedItemId": "itm_so_02",
+              "notified": true
+            },
+            "eq_se_t2_choice": {
+              "state": "committed",
+              "choiceGroup": "cg_se_t2",
+              "selectedItemId": "itm_se_03",
+              "notified": true
+            },
+            "eq_da_t2_choice": {
+              "state": "committed",
+              "choiceGroup": "cg_da_t2",
+              "selectedItemId": "itm_da_03",
+              "notified": true
+            },
+            "eq_hw_t2_choice": {
+              "state": "committed",
+              "choiceGroup": "cg_hw_t2",
+              "selectedItemId": "itm_hw_03",
+              "notified": true
+            },
+            "eq_so_t2_choice": {
+              "state": "committed",
+              "choiceGroup": "cg_so_t2",
+              "selectedItemId": "itm_so_03",
+              "notified": true
+            },
+            "eq_se_t3a": {
+              "state": "committed",
+              "choiceGroup": null,
+              "selectedItemId": "itm_se_05",
+              "notified": true
+            },
+            "eq_da_t3a": {
+              "state": "committed",
+              "choiceGroup": null,
+              "selectedItemId": "itm_da_05",
+              "notified": true
+            },
+            "eq_hw_t3a": {
+              "state": "committed",
+              "choiceGroup": null,
+              "selectedItemId": "itm_hw_05",
+              "notified": true
+            },
+            "eq_so_t3a": {
+              "state": "committed",
+              "choiceGroup": null,
+              "selectedItemId": "itm_so_05",
+              "notified": true
+            },
+            "eq_co_t2_choice": {
+              "state": "committed",
+              "choiceGroup": "cg_co_t2",
+              "selectedItemId": "itm_co_08",
+              "notified": true
+            },
+            "eq_co_11": {
+              "state": "committed",
+              "choiceGroup": null,
+              "selectedItemId": "itm_co_11",
+              "notified": true
+            },
+            "eq_co_t3_choice": {
+              "state": "committed",
+              "choiceGroup": "cg_co_t3",
+              "selectedItemId": "itm_co_15",
+              "notified": true
+            }
+          },
+          "initialAutoEquip": true,
+          "basicPrepared": [
+            "archer",
+            "mage",
+            "knight",
+            "occultist"
+          ]
+        },
+        "heroes": {
+          "mage": {
+            "xp": 225393,
+            "ranks": {
+              "M01": 1,
+              "M06": 5,
+              "M02": 5,
+              "M03": 5,
+              "M07": 3,
+              "M10": 3
+            },
+            "statTraining": 30,
+            "kills": 6,
+            "damage": 8928,
+            "skillRevision": 1,
+            "martialRevision": 1,
+            "equipmentIds": [
+              "itm_da_05",
+              "itm_co_08"
+            ]
+          },
+          "archer": {
+            "xp": 225393,
+            "ranks": {
+              "A01": 1,
+              "A14": 8,
+              "A02": 8,
+              "A05": 5
+            },
+            "statTraining": 30,
+            "kills": 9,
+            "damage": 15405,
+            "skillRevision": 1,
+            "martialRevision": 1,
+            "equipmentIds": [
+              "itm_se_05",
+              "itm_co_11"
+            ]
+          },
+          "knight": {
+            "xp": 225393,
+            "ranks": {
+              "S00": 1,
+              "S03": 1,
+              "S05": 1,
+              "S07": 1,
+              "S01": 8,
+              "S06": 8,
+              "S08": 5
+            },
+            "statTraining": 27,
+            "kills": 10,
+            "damage": 14731,
+            "skillRevision": 1,
+            "martialRevision": 1,
+            "equipmentIds": [
+              "itm_hw_05",
+              "itm_co_01"
+            ]
+          },
+          "occultist": {
+            "xp": 225393,
+            "ranks": {
+              "O01": 1,
+              "O06": 6,
+              "O11": 1,
+              "O12": 1,
+              "O02": 5,
+              "O13": 5,
+              "O03": 1,
+              "O04": 5
+            },
+            "statTraining": 27,
+            "kills": 5,
+            "damage": 13701,
+            "skillRevision": 1,
+            "martialRevision": 1,
+            "occultRevision": 1,
+            "equipmentIds": [
+              "itm_so_05",
+              "itm_co_02"
+            ]
+          }
+        },
+        "loadouts": {
+          "mage": [
+            "M01",
+            "M06",
+            "M03",
+            "M10"
+          ],
+          "archer": [
+            "A01",
+            "A14",
+            "A02",
+            "A05"
+          ],
+          "knight": [
+            "S00",
+            "S01",
+            "S06",
+            "S08"
+          ],
+          "occultist": [
+            "O01",
+            "O02",
+            "O06",
+            "O04"
+          ]
+        },
+        "pendingDirect": null,
+        "battleStage": 36,
+        "savedStage": 36,
+        "round": 1,
+        "phase": "aim",
+        "units": [
+          {
+            "id": "archer",
+            "side": 0,
+            "x": 77,
+            "y": 1076.4285714285716,
+            "hp": 1825,
+            "dead": false
+          },
+          {
+            "id": "mage",
+            "side": 0,
+            "x": 143,
+            "y": 1078.314285714286,
+            "hp": 1978,
+            "dead": false
+          },
+          {
+            "id": "knight",
+            "side": 0,
+            "x": 209.00000000000003,
+            "y": 1080.2,
+            "hp": 3316,
+            "dead": false
+          },
+          {
+            "id": "occultist",
+            "side": 0,
+            "x": 275,
+            "y": 1086.0666666666666,
+            "hp": 2039,
+            "dead": false
+          },
+          {
+            "id": "a4-36-a-1",
+            "side": 1,
+            "x": 990.0000000000001,
+            "y": 1248,
+            "hp": 1559,
+            "dead": false
+          },
+          {
+            "id": "a4-36-a-2",
+            "side": 1,
+            "x": 1210,
+            "y": 1254,
+            "hp": 2260,
+            "dead": false
+          },
+          {
+            "id": "a4-36-a-3",
+            "side": 1,
+            "x": 1430.0000000000002,
+            "y": 1257.3000000000002,
+            "hp": 1792,
+            "dead": false
+          },
+          {
+            "id": "a4-36-g-1",
+            "side": 1,
+            "x": 2189,
+            "y": 1166.8000000000002,
+            "hp": 1559,
+            "dead": false
+          },
+          {
+            "id": "a4-36-g-2",
+            "side": 1,
+            "x": 2486,
+            "y": 1179,
+            "hp": 1559,
+            "dead": false
+          },
+          {
+            "id": "a4-36-b-1",
+            "side": 1,
+            "x": 3014.0000000000005,
+            "y": 1210.0000000000002,
+            "hp": 1559,
+            "dead": false
+          },
+          {
+            "id": "a4-36-b-2",
+            "side": 1,
+            "x": 3234.0000000000005,
+            "y": 1262.3600000000001,
+            "hp": 1559,
+            "dead": false
+          },
+          {
+            "id": "a4-36-b-3",
+            "side": 1,
+            "x": 2684,
+            "y": 1311.75,
+            "hp": 2260,
+            "dead": false
+          },
+          {
+            "id": "a4-36-b-4",
+            "side": 1,
+            "x": 2860.0000000000005,
+            "y": 1150.2,
+            "hp": 1247,
+            "dead": false
+          }
+        ],
+        "dialogue": false
+      }
+    },
+    {
+      "step": "separate-context-ui-import-committed",
+      "state": {
+        "screen": "title",
+        "last": 36,
+        "clear": {
+          "visits": 1,
+          "rounds": 20
+        },
+        "proof": {
+          "version": 1,
+          "runId": "eq-mvw35tg3-84xgprgd",
+          "completed": {
+            "35": {
+              "stage": 35,
+              "sourceRun": "honro-map-stage-35-1793473799711",
+              "campaignRunId": "eq-mvw35tg3-84xgprgd",
+              "success": true,
+              "residents": [],
+              "rows": [
+                "A4.S35.ENTRY.01",
+                "A4.S35.ENTRY.02"
+              ]
+            }
+          },
+          "factEvents": {
+            "eq_co_t3_choice": {
+              "eventId": "eq_co_t3_choice",
+              "stage": 35,
+              "sourceRun": "honro-map-stage-35-1793473799711",
+              "campaignRunId": "eq-mvw35tg3-84xgprgd",
+              "officialAct4": true,
+              "proof": {
+                "tag": "rooted-third-clearing",
+                "reached": true
+              }
+            }
+          }
+        },
+        "equipment": {
+          "schema": 1,
+          "definitionRevision": 1,
+          "runId": "eq-mvw35tg3-84xgprgd",
+          "ownedItemIds": [
+            "itm_se_01",
+            "itm_da_01",
+            "itm_hw_01",
+            "itm_so_01",
+            "itm_se_02",
+            "itm_da_02",
+            "itm_hw_02",
+            "itm_co_01",
+            "itm_co_02",
+            "itm_so_02",
+            "itm_se_05",
+            "itm_da_05",
+            "itm_hw_05",
+            "itm_so_05",
+            "itm_co_11",
+            "itm_co_03",
+            "itm_se_03",
+            "itm_da_03",
+            "itm_hw_03",
+            "itm_so_03",
+            "itm_co_08",
+            "itm_co_15"
+          ],
+          "eligibleEventIds": [],
+          "equippedByClass": {
+            "archer": {
+              "personal": "itm_se_05",
+              "common": "itm_co_11"
+            },
+            "mage": {
+              "personal": "itm_da_05",
+              "common": "itm_co_08"
+            },
+            "knight": {
+              "personal": "itm_hw_05",
+              "common": "itm_co_01"
+            },
+            "occultist": {
+              "personal": "itm_so_05",
+              "common": "itm_co_02"
+            }
+          },
+          "rewardLedger": {
+            "eq_se_start": {
+              "state": "committed",
+              "choiceGroup": null,
+              "selectedItemId": "itm_se_01",
+              "notified": true
+            },
+            "eq_da_join": {
+              "state": "committed",
+              "choiceGroup": null,
+              "selectedItemId": "itm_da_01",
+              "notified": true
+            },
+            "eq_hw_join": {
+              "state": "committed",
+              "choiceGroup": null,
+              "selectedItemId": "itm_hw_01",
+              "notified": true
+            },
+            "eq_so_join": {
+              "state": "committed",
+              "choiceGroup": null,
+              "selectedItemId": "itm_so_01",
+              "notified": true
+            },
+            "eq_se_ledger": {
+              "state": "committed",
+              "choiceGroup": null,
+              "selectedItemId": "itm_se_02",
+              "notified": true
+            },
+            "eq_da_gate": {
+              "state": "committed",
+              "choiceGroup": null,
+              "selectedItemId": "itm_da_02",
+              "notified": true
+            },
+            "eq_hw_bier": {
+              "state": "committed",
+              "choiceGroup": null,
+              "selectedItemId": "itm_hw_02",
+              "notified": true
+            },
+            "eq_co_01": {
+              "state": "committed",
+              "choiceGroup": null,
+              "selectedItemId": "itm_co_01",
+              "notified": true
+            },
+            "eq_co_02": {
+              "state": "committed",
+              "choiceGroup": null,
+              "selectedItemId": "itm_co_02",
+              "notified": true
+            },
+            "eq_co_t1_choice": {
+              "state": "committed",
+              "choiceGroup": "cg_co_t1",
+              "selectedItemId": "itm_co_03",
+              "notified": true
+            },
+            "eq_so_resident": {
+              "state": "committed",
+              "choiceGroup": null,
+              "selectedItemId": "itm_so_02",
+              "notified": true
+            },
+            "eq_se_t2_choice": {
+              "state": "committed",
+              "choiceGroup": "cg_se_t2",
+              "selectedItemId": "itm_se_03",
+              "notified": true
+            },
+            "eq_da_t2_choice": {
+              "state": "committed",
+              "choiceGroup": "cg_da_t2",
+              "selectedItemId": "itm_da_03",
+              "notified": true
+            },
+            "eq_hw_t2_choice": {
+              "state": "committed",
+              "choiceGroup": "cg_hw_t2",
+              "selectedItemId": "itm_hw_03",
+              "notified": true
+            },
+            "eq_so_t2_choice": {
+              "state": "committed",
+              "choiceGroup": "cg_so_t2",
+              "selectedItemId": "itm_so_03",
+              "notified": true
+            },
+            "eq_se_t3a": {
+              "state": "committed",
+              "choiceGroup": null,
+              "selectedItemId": "itm_se_05",
+              "notified": true
+            },
+            "eq_da_t3a": {
+              "state": "committed",
+              "choiceGroup": null,
+              "selectedItemId": "itm_da_05",
+              "notified": true
+            },
+            "eq_hw_t3a": {
+              "state": "committed",
+              "choiceGroup": null,
+              "selectedItemId": "itm_hw_05",
+              "notified": true
+            },
+            "eq_so_t3a": {
+              "state": "committed",
+              "choiceGroup": null,
+              "selectedItemId": "itm_so_05",
+              "notified": true
+            },
+            "eq_co_t2_choice": {
+              "state": "committed",
+              "choiceGroup": "cg_co_t2",
+              "selectedItemId": "itm_co_08",
+              "notified": true
+            },
+            "eq_co_11": {
+              "state": "committed",
+              "choiceGroup": null,
+              "selectedItemId": "itm_co_11",
+              "notified": true
+            },
+            "eq_co_t3_choice": {
+              "state": "committed",
+              "choiceGroup": "cg_co_t3",
+              "selectedItemId": "itm_co_15",
+              "notified": true
+            }
+          },
+          "initialAutoEquip": true,
+          "basicPrepared": [
+            "archer",
+            "mage",
+            "knight",
+            "occultist"
+          ]
+        },
+        "heroes": {
+          "mage": {
+            "xp": 225393,
+            "ranks": {
+              "M01": 1,
+              "M06": 5,
+              "M02": 5,
+              "M03": 5,
+              "M07": 3,
+              "M10": 3
+            },
+            "statTraining": 30,
+            "kills": 6,
+            "damage": 8928,
+            "skillRevision": 1,
+            "martialRevision": 1,
+            "equipmentIds": [
+              "itm_da_05",
+              "itm_co_08"
+            ]
+          },
+          "archer": {
+            "xp": 225393,
+            "ranks": {
+              "A01": 1,
+              "A14": 8,
+              "A02": 8,
+              "A05": 5
+            },
+            "statTraining": 30,
+            "kills": 9,
+            "damage": 15405,
+            "skillRevision": 1,
+            "martialRevision": 1,
+            "equipmentIds": [
+              "itm_se_05",
+              "itm_co_11"
+            ]
+          },
+          "knight": {
+            "xp": 225393,
+            "ranks": {
+              "S00": 1,
+              "S03": 1,
+              "S05": 1,
+              "S07": 1,
+              "S01": 8,
+              "S06": 8,
+              "S08": 5
+            },
+            "statTraining": 27,
+            "kills": 10,
+            "damage": 14731,
+            "skillRevision": 1,
+            "martialRevision": 1,
+            "equipmentIds": [
+              "itm_hw_05",
+              "itm_co_01"
+            ]
+          },
+          "occultist": {
+            "xp": 225393,
+            "ranks": {
+              "O01": 1,
+              "O06": 6,
+              "O11": 1,
+              "O12": 1,
+              "O02": 5,
+              "O13": 5,
+              "O03": 1,
+              "O04": 5
+            },
+            "statTraining": 27,
+            "kills": 5,
+            "damage": 13701,
+            "skillRevision": 1,
+            "martialRevision": 1,
+            "occultRevision": 1,
+            "equipmentIds": [
+              "itm_so_05",
+              "itm_co_02"
+            ]
+          }
+        },
+        "loadouts": {
+          "mage": [
+            "M01",
+            "M06",
+            "M03",
+            "M10"
+          ],
+          "archer": [
+            "A01",
+            "A14",
+            "A02",
+            "A05"
+          ],
+          "knight": [
+            "S00",
+            "S01",
+            "S06",
+            "S08"
+          ],
+          "occultist": [
+            "O01",
+            "O02",
+            "O06",
+            "O04"
+          ]
+        },
+        "pendingDirect": null,
+        "battleStage": null,
+        "savedStage": 36,
+        "round": null,
+        "phase": null,
+        "units": null,
+        "dialogue": false
+      }
+    },
+    {
+      "step": "separate-context-reload-continue",
+      "state": {
+        "screen": "battle",
+        "last": 36,
+        "clear": {
+          "visits": 1,
+          "rounds": 20
+        },
+        "proof": {
+          "version": 1,
+          "runId": "eq-mvw35tg3-84xgprgd",
+          "completed": {
+            "35": {
+              "stage": 35,
+              "sourceRun": "honro-map-stage-35-1793473799711",
+              "campaignRunId": "eq-mvw35tg3-84xgprgd",
+              "success": true,
+              "residents": [],
+              "rows": [
+                "A4.S35.ENTRY.01",
+                "A4.S35.ENTRY.02"
+              ]
+            }
+          },
+          "factEvents": {
+            "eq_co_t3_choice": {
+              "eventId": "eq_co_t3_choice",
+              "stage": 35,
+              "sourceRun": "honro-map-stage-35-1793473799711",
+              "campaignRunId": "eq-mvw35tg3-84xgprgd",
+              "officialAct4": true,
+              "proof": {
+                "tag": "rooted-third-clearing",
+                "reached": true
+              }
+            }
+          }
+        },
+        "equipment": {
+          "schema": 1,
+          "definitionRevision": 1,
+          "runId": "eq-mvw35tg3-84xgprgd",
+          "ownedItemIds": [
+            "itm_se_01",
+            "itm_da_01",
+            "itm_hw_01",
+            "itm_so_01",
+            "itm_se_02",
+            "itm_da_02",
+            "itm_hw_02",
+            "itm_co_01",
+            "itm_co_02",
+            "itm_so_02",
+            "itm_se_05",
+            "itm_da_05",
+            "itm_hw_05",
+            "itm_so_05",
+            "itm_co_11",
+            "itm_co_03",
+            "itm_se_03",
+            "itm_da_03",
+            "itm_hw_03",
+            "itm_so_03",
+            "itm_co_08",
+            "itm_co_15"
+          ],
+          "eligibleEventIds": [],
+          "equippedByClass": {
+            "archer": {
+              "personal": "itm_se_05",
+              "common": "itm_co_11"
+            },
+            "mage": {
+              "personal": "itm_da_05",
+              "common": "itm_co_08"
+            },
+            "knight": {
+              "personal": "itm_hw_05",
+              "common": "itm_co_01"
+            },
+            "occultist": {
+              "personal": "itm_so_05",
+              "common": "itm_co_02"
+            }
+          },
+          "rewardLedger": {
+            "eq_se_start": {
+              "state": "committed",
+              "choiceGroup": null,
+              "selectedItemId": "itm_se_01",
+              "notified": true
+            },
+            "eq_da_join": {
+              "state": "committed",
+              "choiceGroup": null,
+              "selectedItemId": "itm_da_01",
+              "notified": true
+            },
+            "eq_hw_join": {
+              "state": "committed",
+              "choiceGroup": null,
+              "selectedItemId": "itm_hw_01",
+              "notified": true
+            },
+            "eq_so_join": {
+              "state": "committed",
+              "choiceGroup": null,
+              "selectedItemId": "itm_so_01",
+              "notified": true
+            },
+            "eq_se_ledger": {
+              "state": "committed",
+              "choiceGroup": null,
+              "selectedItemId": "itm_se_02",
+              "notified": true
+            },
+            "eq_da_gate": {
+              "state": "committed",
+              "choiceGroup": null,
+              "selectedItemId": "itm_da_02",
+              "notified": true
+            },
+            "eq_hw_bier": {
+              "state": "committed",
+              "choiceGroup": null,
+              "selectedItemId": "itm_hw_02",
+              "notified": true
+            },
+            "eq_co_01": {
+              "state": "committed",
+              "choiceGroup": null,
+              "selectedItemId": "itm_co_01",
+              "notified": true
+            },
+            "eq_co_02": {
+              "state": "committed",
+              "choiceGroup": null,
+              "selectedItemId": "itm_co_02",
+              "notified": true
+            },
+            "eq_co_t1_choice": {
+              "state": "committed",
+              "choiceGroup": "cg_co_t1",
+              "selectedItemId": "itm_co_03",
+              "notified": true
+            },
+            "eq_so_resident": {
+              "state": "committed",
+              "choiceGroup": null,
+              "selectedItemId": "itm_so_02",
+              "notified": true
+            },
+            "eq_se_t2_choice": {
+              "state": "committed",
+              "choiceGroup": "cg_se_t2",
+              "selectedItemId": "itm_se_03",
+              "notified": true
+            },
+            "eq_da_t2_choice": {
+              "state": "committed",
+              "choiceGroup": "cg_da_t2",
+              "selectedItemId": "itm_da_03",
+              "notified": true
+            },
+            "eq_hw_t2_choice": {
+              "state": "committed",
+              "choiceGroup": "cg_hw_t2",
+              "selectedItemId": "itm_hw_03",
+              "notified": true
+            },
+            "eq_so_t2_choice": {
+              "state": "committed",
+              "choiceGroup": "cg_so_t2",
+              "selectedItemId": "itm_so_03",
+              "notified": true
+            },
+            "eq_se_t3a": {
+              "state": "committed",
+              "choiceGroup": null,
+              "selectedItemId": "itm_se_05",
+              "notified": true
+            },
+            "eq_da_t3a": {
+              "state": "committed",
+              "choiceGroup": null,
+              "selectedItemId": "itm_da_05",
+              "notified": true
+            },
+            "eq_hw_t3a": {
+              "state": "committed",
+              "choiceGroup": null,
+              "selectedItemId": "itm_hw_05",
+              "notified": true
+            },
+            "eq_so_t3a": {
+              "state": "committed",
+              "choiceGroup": null,
+              "selectedItemId": "itm_so_05",
+              "notified": true
+            },
+            "eq_co_t2_choice": {
+              "state": "committed",
+              "choiceGroup": "cg_co_t2",
+              "selectedItemId": "itm_co_08",
+              "notified": true
+            },
+            "eq_co_11": {
+              "state": "committed",
+              "choiceGroup": null,
+              "selectedItemId": "itm_co_11",
+              "notified": true
+            },
+            "eq_co_t3_choice": {
+              "state": "committed",
+              "choiceGroup": "cg_co_t3",
+              "selectedItemId": "itm_co_15",
+              "notified": true
+            }
+          },
+          "initialAutoEquip": true,
+          "basicPrepared": [
+            "archer",
+            "mage",
+            "knight",
+            "occultist"
+          ]
+        },
+        "heroes": {
+          "mage": {
+            "xp": 225393,
+            "ranks": {
+              "M01": 1,
+              "M06": 5,
+              "M02": 5,
+              "M03": 5,
+              "M07": 3,
+              "M10": 3
+            },
+            "statTraining": 30,
+            "kills": 6,
+            "damage": 8928,
+            "skillRevision": 1,
+            "martialRevision": 1,
+            "equipmentIds": [
+              "itm_da_05",
+              "itm_co_08"
+            ]
+          },
+          "archer": {
+            "xp": 225393,
+            "ranks": {
+              "A01": 1,
+              "A14": 8,
+              "A02": 8,
+              "A05": 5
+            },
+            "statTraining": 30,
+            "kills": 9,
+            "damage": 15405,
+            "skillRevision": 1,
+            "martialRevision": 1,
+            "equipmentIds": [
+              "itm_se_05",
+              "itm_co_11"
+            ]
+          },
+          "knight": {
+            "xp": 225393,
+            "ranks": {
+              "S00": 1,
+              "S03": 1,
+              "S05": 1,
+              "S07": 1,
+              "S01": 8,
+              "S06": 8,
+              "S08": 5
+            },
+            "statTraining": 27,
+            "kills": 10,
+            "damage": 14731,
+            "skillRevision": 1,
+            "martialRevision": 1,
+            "equipmentIds": [
+              "itm_hw_05",
+              "itm_co_01"
+            ]
+          },
+          "occultist": {
+            "xp": 225393,
+            "ranks": {
+              "O01": 1,
+              "O06": 6,
+              "O11": 1,
+              "O12": 1,
+              "O02": 5,
+              "O13": 5,
+              "O03": 1,
+              "O04": 5
+            },
+            "statTraining": 27,
+            "kills": 5,
+            "damage": 13701,
+            "skillRevision": 1,
+            "martialRevision": 1,
+            "occultRevision": 1,
+            "equipmentIds": [
+              "itm_so_05",
+              "itm_co_02"
+            ]
+          }
+        },
+        "loadouts": {
+          "mage": [
+            "M01",
+            "M06",
+            "M03",
+            "M10"
+          ],
+          "archer": [
+            "A01",
+            "A14",
+            "A02",
+            "A05"
+          ],
+          "knight": [
+            "S00",
+            "S01",
+            "S06",
+            "S08"
+          ],
+          "occultist": [
+            "O01",
+            "O02",
+            "O06",
+            "O04"
+          ]
+        },
+        "pendingDirect": null,
+        "battleStage": 36,
+        "savedStage": 36,
+        "round": 1,
+        "phase": "aim",
+        "units": [
+          {
+            "id": "archer",
+            "side": 0,
+            "x": 77,
+            "y": 1076.4285714285716,
+            "hp": 1825,
+            "dead": false
+          },
+          {
+            "id": "mage",
+            "side": 0,
+            "x": 143,
+            "y": 1078.314285714286,
+            "hp": 1978,
+            "dead": false
+          },
+          {
+            "id": "knight",
+            "side": 0,
+            "x": 209.00000000000003,
+            "y": 1080.2,
+            "hp": 3316,
+            "dead": false
+          },
+          {
+            "id": "occultist",
+            "side": 0,
+            "x": 275,
+            "y": 1086.0666666666666,
+            "hp": 2039,
+            "dead": false
+          },
+          {
+            "id": "a4-36-a-1",
+            "side": 1,
+            "x": 990.0000000000001,
+            "y": 1248,
+            "hp": 1559,
+            "dead": false
+          },
+          {
+            "id": "a4-36-a-2",
+            "side": 1,
+            "x": 1210,
+            "y": 1254,
+            "hp": 2260,
+            "dead": false
+          },
+          {
+            "id": "a4-36-a-3",
+            "side": 1,
+            "x": 1430.0000000000002,
+            "y": 1257.3000000000002,
+            "hp": 1792,
+            "dead": false
+          },
+          {
+            "id": "a4-36-g-1",
+            "side": 1,
+            "x": 2189,
+            "y": 1166.8000000000002,
+            "hp": 1559,
+            "dead": false
+          },
+          {
+            "id": "a4-36-g-2",
+            "side": 1,
+            "x": 2486,
+            "y": 1179,
+            "hp": 1559,
+            "dead": false
+          },
+          {
+            "id": "a4-36-b-1",
+            "side": 1,
+            "x": 3014.0000000000005,
+            "y": 1210.0000000000002,
+            "hp": 1559,
+            "dead": false
+          },
+          {
+            "id": "a4-36-b-2",
+            "side": 1,
+            "x": 3234.0000000000005,
+            "y": 1262.3600000000001,
+            "hp": 1559,
+            "dead": false
+          },
+          {
+            "id": "a4-36-b-3",
+            "side": 1,
+            "x": 2684,
+            "y": 1311.75,
+            "hp": 2260,
+            "dead": false
+          },
+          {
+            "id": "a4-36-b-4",
+            "side": 1,
+            "x": 2860.0000000000005,
+            "y": 1150.2,
+            "hp": 1247,
+            "dead": false
+          }
+        ],
+        "dialogue": false
+      }
+    }
+  ],
+  "errors": [],
+  "postChoiceRawSha256": "6d40c430126780de62e3f746377094ccbd10fcfaf7872733e2d1293b8e563bda",
+  "movement": {
+    "beforeX": 77,
+    "afterX": 246.8060076607012
+  }
+}
