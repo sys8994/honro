@@ -1,0 +1,33 @@
+# Act 4 autosave signature follow-up
+
+Candidate `6963180f94358eae9afdac9af544ae8216f79fb6`, independently branched from common `23e8204afe3a5143ec981a5ba522e49313e10eda`; frozen original world SHA-256 `99c59777254cb4942d5bfc7b7398068fc294dc29ff7208ac5f468953ecf5e581`. This is a review candidate, not a deployment or acceptance of remaining frame latency.
+
+## Cause in actual stage 40 checkpoint
+
+The supplied real `sailing-observation` checkpoint (stored phase boarding, SHA-256 `2c8e5d95e1e956059da5ae0b74a02641beed0bccf0932568194b108fec3a8141`) was imported via the actual Settings/JSON UI and resumed through title Continue. With the original common source and QA-only inner hash/equality timers, one run of 19 flushes measured median (range): **flush 52.7ms (45.5–72.4)**, nested snapshot **49.8ms (42.5–66.9)**, nested compact art **48.1ms (40.9–65.2)**, `localStorage.setItem` **0.4ms (0.2–4.7)**. Per flush, separately wrapped `JSON.stringify` calls above 0.1ms totaled medians **7.5ms provider** and **15.4ms live assets**; hash loop **18.9ms** and exact string comparisons **2.8ms**. Stringify categories are thresholded and timings overlap enclosing compact/snapshot/flush, so do not add nested totals or ascribe the residual exclusively to one operation. A separate unmodified baseline sample had flush median 56.6ms and `setItem` median 0.4ms. Each flush handled 13 provider sources (about 15.34 million serialized UTF-16 code units total) and 26 live placements. In this actual state all 26 live assets were separate from provider assets; neither side's top-level object was frozen. The renderer and browser may defer unrelated work across frames; these measured calls only locate synchronous main-thread work.
+
+## Contract
+
+Only official Act 4 compact snapshots use the existing path. Each invocation still serializes the **current** provider JSON, serializes every current live placement asset, and performs the original full exact serialized-text comparison. The original FNV signature is reused only if the freshly serialized provider text exactly equals the cached text; it is registered only after a live asset has matched that provider exactly. Changed provider content is rehashed before use; changed battle art remains inline. Custom battles, legacy-33 comparisons, signature verification on restore, storage failure handling, writer frequency and raw portable export are unchanged. There is no unverified identity-only cache and no battle mutation.
+
+The bounded cache holds only string IDs, source serialized texts and their signatures—not provider object references—and evicts smaller entries to preserve larger ones. Keys plus texts total at most 9,000,000 UTF-16 code units (nominally up to ~18 MB of string payload if stored two-byte, excluding engine bookkeeping and transient allocations); actual implementation memory representation is engine-dependent. Oversize items are not cached. The test creates a dozen large entries plus an oversized source and checks the cap and eviction. A single post-GC Chromium sample after warmup and 30 repeated compact calls measured JS heap 59.48→59.39 MB, but this is not a baseline memory comparison, GPU-memory measurement or proof against long-session leaks. Real mobile memory remains unmeasured.
+
+## Same-fixture measured results
+
+Single headless Chromium 154 target, 1440×900 DPR1, five CPUs, 10 live Chromium processes, ~15 GiB available RAM, software Canvas/SwiftShader. Same checkpoint, UI import and normal timed keyboard/drag/zoom; actual clock and camera advance and host load differ. Chronological common baseline / final candidate / baseline / final candidate. Each row has 19–20 flushes across idle, pan, zoom and movement. Nearest-rank p95:
+
+| Build | Flush median / p95 / max ms | Compact median / p95 / max ms | setItem median / max ms | max-zoom movement rAF median / p95 / max ms |
+|---|---:|---:|---:|---:|
+| baseline | 54.3 / 64.2 / 65.3 | 49.9 / 59.1 / 59.6 | 0.4 / 0.6 | 50.0 / 100.1 / 116.7 |
+| candidate | 44.3 / 59.7 / 59.7 | 40.0 / 53.2 / 53.2 | 0.4 / 0.6 | 50.1 / 100.0 / 116.7 |
+| baseline | 53.3 / 64.8 / 64.8 | 48.5 / 58.7 / 58.7 | 0.4 / 0.7 | 50.0 / 100.0 / 133.3 |
+| candidate | 46.3 / 55.3 / 62.0 | 41.0 / 50.8 / 54.8 | 0.5 / 0.8 | 50.0 / 116.6 / 116.7 |
+
+The candidate reduced median flush cost by about 7–10ms in these runs, not all frame stalls. The first source serialization and first validation still pay the original hashing cost; these are normal warm-play samples, not cold-start estimates. Instrumentation includes performance.now wrappers and JSON logging. New-tile zoom renders remained ~273–304ms in candidate samples. **Repeated long frames remain a performance failure / unresolved release concern**, not a claimed pass. Actual phone FPS and full natural campaign are untested.
+
+## Regression and evidence
+
+- Actual 40 UI-imported checkpoint: the candidate and original common compact functions produced identical full serialized output on the same live state. After warming, changing provider art forced old live art inline; modifying live art to match produced a different correct signature; valid reference restored exactly, subsequent source mutation caused atomic rejection, and live data returned unchanged after cleanup. A custom battle stayed inline.
+- Actual UI reader/reload synthetic 35 profile: both receipts and terminal state survived. 40 raw export remained ~30.76MB without refs; forced localStorage failure preserved original bytes and reload/Continue. Real 40 checkpoint reached sailing, repeatedly saved escort clock and restored boat/deck/resident offsets after reload; modal pause verified. The checkpoint test is not full 39→40 natural play.
+- `tests/act4-provider-signature-cache.mjs`, `tests/act4-stage33-legacy-art.mjs` (actual old/current fixtures), `tests/act4-map-revision-rc.mjs`, and `node --check shared/runtime/profile-store.js` passed. The 33 test uses restored local fixtures, not revised-art performance approval.
+- Raw timers, frame intervals, UI contract, memory sample and escort observations: `evidence-save-signature/results.tar.xz` SHA-256 `51a0e71d4b48efd8b17cd470c6391fe7aa149a88b6123fe1e83ba73c50b3815b` and `escort-observations.json`. For baseline decomposition only, apply `instrument-profile-hash-qa.py /path/to/disposable-qa`, rebuild that QA, and run `HONRO_QA_BASE=http://127.0.0.1:8775 python tools/act4-perf/stage40-save-breakdown.py TAG`; its wrappers must be attached after the Act 4 runtime loads. `stage40-provider-cache-contract.py` and `stage40-story-save-contract.py` exercise UI correctness. Compare baseline/candidate builds using one browser at a time. The QA-only timing patch is never part of the candidate.
