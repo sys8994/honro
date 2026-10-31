@@ -1,0 +1,38 @@
+# 선명도 교정: 미술 색면과 실제 렌더 해상도를 분리
+
+기존 `environment-rollout-corrections.md`의 보충 문서. 기존 승인 구도·환경 연결·보호 ROI·게임플레이 불변 계약을 유지한다. 2026-10-31 10:46 UTC 사용자 확대 경계 피드백(`Sentinel_2d5389c949a48191ad33975d9fb41b22`)에 따른 실제 시행착오다.
+
+## 1. 무엇이 흐린지 먼저 분리
+
+- 전달 JPEG를 모바일 이미지뷰어에서 확대한 모습은 실제 게임 확대와 다르다. 같은 월드 좌표, 동일 실제 게임 zoom, 같은 viewport에서 원본 PNG를 비교하고 backing DPR·tile raster scale·캐시 사용 여부를 기록한다. 사용자에게 전후 원본 PNG를 전달한다.
+- 실제 `_worldRasterScale` 최대 .68 및 DPR 미반영도 별도 원인이었다. direct vector / cached / DPR / zoom을 실제 Chromium에서 비교한다. 캐시를 무조건 끄거나 imageSmoothing을 꺼 픽셀 계단으로 만드는 것은 해결이 아니다.
+- cache/DPR 교정은 원격 `62d90b2`에 있으며 부모는 로컬 적용·테스트 통과를 보고했다. 이것으로 원본 추적의 둥근 색면·다중 중간색 띠까지 해결했다고 주장하지 않는다. 반대로 미술 재추적만으로 캐시 샘플링 결함을 해결했다고 하지 않는다.
+- Native Canvas와 실제 Chromium의 clip 차이는 기존 보충 문서대로 구분한다. Native 확대 검사만으로 브라우저 합격을 선언하지 않는다.
+
+## 2. 재질을 보존하는 trace 설정
+
+31장 전역 12/16/20색 감소는 갈색 목재·나무줄기를 녹색/남색으로 합쳐 기각했다. 이번 후보는 기존 의미 있는 팔레트를 유지했다(대부분 24색, 35장은 16색). Inkscape `smoothing=false`, `speckles=8`을 적용해 내부 다중 중간색 띠·둥근 edge를 줄였다.
+
+이 수치는 만능 고정 규칙이 아니다. 원본 재질/보호 요소별로 실제 확대 화면을 보고 선택한다. speckle 임계값으로 문양·작은 구조물을 지우지 않는다. 24색 강제나 무조건 색 수 감소는 금한다. source가 바뀌면 기존 설정의 적합성을 다시 검사한다.
+
+- 기존 `sourceAlpha`를 그대로 사용하고 localized repair·문양·목재 보호 그룹을 보존한다. 색 trace만 교체했는데 alpha도 새로 추적해 외곽이 달라지지 않게 한다.
+- 새 색 입력은 nearest-opaque RGB 확장으로 matte를 피한다. 원본 alpha는 독립 보호한다.
+- 필요한 경우 native simplify `0.00015`와 좌표 압축을 사용하되 source 기준 경계 오차 ≤1.5 px, 해당 장 보호 alpha와 geometry, 실제 재질 확대를 함께 검수한다. 숫자 합격만으로 palette 손실을 통과시키지 않는다.
+- 37장은 긴 단일 subpath에 endpoint-aware 0.1 px 압축을 사용했다. 상대 좌표를 단순 반올림해 누적 변위가 생기는 방식은 폐기했다. 실제 끝점/윤곽 오차를 검사하고 안전 한도를 올려 우회하지 않는다.
+- 기존 런타임 유효 한도와 importer의 보수적 기본값은 구분하되 **런타임 안전 한도 자체를 인상하지 않는다**. 원본 path cursor, compound winding/holes를 유지한다.
+
+근거: 작업공간 `honro-sharpness-20261031/stage31/HANDOFF.md`, `stage37/preservation.json`, 각 장 trace/geometry 보고서. 31장의 직접 3배 SVG crop은 JPEG 확대가 아니지만 전체 게임 브라우저 증거도 아니다.
+
+## 3. BODY뿐 아니라 실제 쓰이는 추출 자산까지
+
+40장은 BODY만 선명하게 바꾸면 보존된 부두 계단/경사로/기둥 추출물이 흐리게 남았다. 9개 추출 자산의 색 path를 새 31/40 출처로 교체했다. 기존 clip·transform·alpha, 물리·이벤트는 유지한 뒤 보수적 bbox cull을 적용해 후보 9,652,969 bytes로 정리했다. 독립 선박은 기존 선명 자산을 유지했다.
+
+추출 자산이 원래 전체 BODY를 복제하고 있지 않은지 확인한다. cull 과정에서 clip 안 경로, 상대 moveto cursor, winding/holes를 깨뜨리지 않는다. 잘 보이는 BODY만 검수하고 실제 재사용된 계단을 누락하지 않는다.
+
+근거: `_local/reports/act4-sharpness-rollout/stage40/report-v2.json`, `sharp-extraction-cull-report.json`. v2의 후반 `preservationV2`·`extractionReview`가 9개 색경로 변경을 명시한다. 이전 본문에 남은 “BODY만 변경/다른 assets 불변” 요약을 v2 전체에 적용하지 않는다. 실제 stage/event/geometry와 독립 ferry 보존을 별도로 확인한다.
+
+## 4. 완료 표현
+
+현재 10개 새 미술 후보는 부모 보고상 로컬 검수 완료이며 40장은 report-v2 기준이다. 실제 브라우저 신규 후보 검수·정상 게임플레이·master 배포는 아직 완료하지 않았다. 과거 31 v40 Chrome 정적 검사를 새 sharp 후보의 Chrome 합격으로 재사용하지 않는다.
+
+새 HTML/압축 검토판은 조립 단계다. 대형 업로드 승인 요청을 유발한 전송은 중단 상태이며 재시도하지 않는다. 출하 및 작은 소스 패치 통합은 root 담당이다. 이 문서는 구현·전송 권한을 새로 부여하지 않는다.
