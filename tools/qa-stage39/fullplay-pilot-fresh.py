@@ -137,7 +137,7 @@ with sync_playwright() as pw:
   page.reload();page.wait_for_function('window.HonroApp&&window.HONRO_PROJECT',timeout=60000);page.wait_for_timeout(1000)
   result['afterReload']=page.evaluate('''()=>({screen:HonroApp.screen,cleared:HonroApp.profile.cleared?.[39],battle:!!HonroApp.profile.honroBattle})''')
   page.screenshot(path=str(out/'same-context-reload.png'))
-  button=page.locator('[data-action="continue"]:visible').first
+  button=page.get_by_text('여정 이어가기',exact=True).first
   if button.count():
    button.click();page.wait_for_timeout(2000);page.screenshot(path=str(out/'same-context-continue.png'));result['afterContinue']=page.evaluate('''()=>({screen:HonroApp.screen,cleared:HonroApp.profile.cleared?.[39],stage:HonroApp.engine?.b?.honroStage})''')
  (out/'final-result.json').write_text(json.dumps(result,ensure_ascii=False,indent=2)+'\n')

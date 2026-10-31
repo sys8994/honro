@@ -12,8 +12,7 @@ with sync_playwright() as pw:
  browser=launch(pw);ctx=browser.new_context(viewport={'width':1440,'height':900});page=ctx.new_page()
  storage=json.loads((root/os.environ.get('HONRO39_STORAGE','_local/reports/stage39-fullplay-run2/browser-storage.json')).read_text())
  value=next(x['value'] for x in storage['origins'][0]['localStorage'] if x['name']=='honro-first-act-profile-1')
- page.add_init_script("localStorage.setItem('honro-first-act-profile-1',"+json.dumps(value)+");")
- page.on('pageerror',lambda e:result['errors'].append(str(e)));page.goto(base+'/HONRO.html');page.wait_for_function('window.HonroApp&&window.HONRO_PROJECT&&window.HONRO_AUTHORED_FAR',timeout=60000)
+ page.on('pageerror',lambda e:result['errors'].append(str(e)));page.goto(base+'/HONRO.html');page.evaluate("value=>localStorage.setItem('honro-first-act-profile-1',value)",value);page.reload();page.wait_for_function('window.HonroApp&&window.HONRO_PROJECT&&window.HONRO_AUTHORED_FAR',timeout=60000)
  page.evaluate("""async project=>{await HonroCampaignLoader.ensureStage(39);const all=HONRO_PROJECT;all.stages=all.stages.filter(s=>s.metadata.stageId!==39).concat(project.stages);const ids=new Set(project.library.map(x=>x.id));all.library=all.library.filter(x=>!ids.has(x.id)).concat(project.library);HONRO_AUTHORED_FAR.images.act4Estuary='/_local/inputs/stage32-sharp/act4-estuary.webp'}""",project)
  page.locator('[data-action="continue"]').first.click(timeout=30000);page.wait_for_function('HonroApp.engine?.b?.honroStage===39',timeout=60000)
  page.wait_for_timeout(1000)
@@ -21,7 +20,7 @@ with sync_playwright() as pw:
  import time
  events=(out/'events.jsonl').open('a',encoding='utf8')
  def snapshot():
-  return page.evaluate('''()=>{const a=HonroApp,e=a.engine,b=e.b,u=e.active,q=b.honroAct4PreviewState||{};return {round:b.round,side:b.side,phase:b.phase,shot:b.shot,active:u?.id,cls:u?.cls,x:u?.x,y:u?.y,angle:u?.angle,facing:u?.facing,grounded:u&&e.grounded(u),drop:u&&e.canDrop(),support:u&&e.contactSurface(u.x,u.y-4,u.y+5)?.t?.id,moveLeft:u?.moveLeft,retreat:!!u?.retreat,can:a.canInput(),canAct:e.canAct(),selected:a.selected,charging:a.charging,projectiles:b.projectiles.length,dialogue:!!a.dialogue,dialogueText:document.querySelector('#story-line')?.innerText,heroes:b.units.filter(v=>v.side===0&&!v.summoned).map(v=>({id:v.id,hp:v.hp,maxHp:v.maxHp,dead:v.dead,x:v.x,y:v.y,acted:v.acted})),residents:b.units.filter(v=>v.honroAct4Resident).map(v=>({id:v.id,hp:v.hp,dead:v.dead,x:v.x,y:v.y})),foes:b.units.filter(v=>v.side===1&&!v.dead).map(v=>({id:v.id,x:v.x,y:v.y,hp:v.hp})),tide:q.tide,artillery:q.artillery,netOpen:q.netOpen,exitStable:q.exitStable,rescued:q.rescued,failure:q.failure,complete:q.complete,screen:a.screen}}''')
+  return page.evaluate('''()=>{const a=HonroApp,e=a.engine,b=e.b,u=e.active,q=b.honroAct4PreviewState||{};return {round:b.round,side:b.side,phase:b.phase,shot:b.shot,active:u?.id,cls:u?.cls,x:u?.x,y:u?.y,angle:u?.angle,facing:u?.facing,grounded:u&&e.grounded(u),drop:u&&e.canDrop(),support:u&&e.contactSurface(u.x,u.y-4,u.y+5)?.t?.id,moveLeft:u?.moveLeft,retreat:!!u?.retreat,can:a.canInput(),canAct:e.canAct(),selected:a.selected,charging:a.charging,projectiles:b.projectiles.length,dialogue:!!a.dialogue,dialogueText:document.querySelector('#story-line')?.innerText,heroes:b.units.filter(v=>v.side===0&&!v.summoned).map(v=>({id:v.id,hp:v.hp,maxHp:v.maxHp,dead:v.dead,x:v.x,y:v.y,acted:v.acted})),residents:b.units.filter(v=>v.honroAct4Resident).map(v=>({id:v.id,hp:v.hp,dead:v.dead,x:v.x,y:v.y})),foes:b.units.filter(v=>v.side===1&&!v.dead).map(v=>({id:v.id,x:v.x,y:v.y,hp:v.hp})),pilot:b.units.filter(v=>v.honroPilotMidboss).map(v=>({id:v.id,hp:v.hp,combat:v.honroPilotCombat})),tide:q.tide,artillery:q.artillery,netOpen:q.netOpen,exitStable:q.exitStable,rescued:q.rescued,failure:q.failure,complete:q.complete,screen:a.screen}}''')
  def record(kind,**extra):
   x={'kind':kind,'time':time.time(),'state':snapshot(),**extra};events.write(json.dumps(x,ensure_ascii=False)+'\n');events.flush();print(json.dumps(x,ensure_ascii=False),flush=True);return x['state']
  def plan():
@@ -33,6 +32,11 @@ with sync_playwright() as pw:
  def ready():
   for i in range(180):
    s=snapshot()
+   for w in s.get('pilot',[]):
+    t=(w.get('combat') or {}).get('target') or {}
+    key=('midboss',w['id'],t.get('round'))
+    if t.get('seen') and key not in warnings:
+     warnings.add(key);record('pilot-warning-observed',warning=w);page.screenshot(path=str(out/f'pilot-warning-{len(warnings)}.png'))
    if s['phase'] in ('won','lost') or s.get('failure') or s.get('complete'):return False
    if s['dialogue']:
     record('dialogue');page.wait_for_timeout(1300);page.keyboard.press('Enter');page.wait_for_timeout(300)
@@ -42,7 +46,7 @@ with sync_playwright() as pw:
  record('start');page.screenshot(path=str(out/'start.png'));history={};warnings=set();stalls={}
  for turn in range(2000):
   if not ready():record('terminal-or-wait');break
-  s=record('turn-start',index=turn)
+  s=record('turn-start',index=turn);ctx.storage_state(path=str(out/'browser-storage-live.json'))
   if s.get('retreat'):
    page.keyboard.press('f');page.wait_for_timeout(450);record('finish-retreat');continue
   pending=(s.get('artillery') or {}).get('next')
@@ -58,7 +62,7 @@ with sync_playwright() as pw:
   if s.get('tide') and s['tide'].get('warned') and 'tide' not in warnings:
    warnings.add('tide');page.screenshot(path=str(out/f'tide-{turn}.png'));record('tide-state')
   enemies=[v for v in s['foes'] if v['id']!='a4-wreck']
-  nearThreat=any(abs(v['x']-s['x'])<800 and abs(v['y']-s['y'])<500 for v in enemies)
+  nearThreat=not s.get('rescued') and any(abs(v['x']-s['x'])<800 and abs(v['y']-s['y'])<500 for v in enemies)
   # Once the nearby threat is cleared, use the real connected lower route.
   # The low strand leads east to the ship ladder; never chase an upper-floor
   # enemy west into the submerged tidal rock.
@@ -119,5 +123,19 @@ with sync_playwright() as pw:
   if after['phase']=='aim' and after['side']==0 and after['active']==s['active'] and not after['dialogue'] and not after.get('retreat'):
    page.keyboard.press('Tab');page.wait_for_timeout(300);record('switch-hero')
  else:record('iteration-limit')
+ final=snapshot();result['final']=final;page.screenshot(path=str(out/'terminal.png'))
+ if final['phase']=='won' or final.get('complete'):
+  for _ in range(30):
+   if not page.evaluate('()=>!!HonroApp.dialogue'):break
+   page.wait_for_timeout(1200);page.keyboard.press('Enter')
+  page.wait_for_timeout(2000);page.screenshot(path=str(out/'clear-ui.png'))
+  result['beforeReload']=page.evaluate('''()=>({done:HonroApp.done,screen:HonroApp.screen,cleared:HonroApp.profile.cleared?.[39],battle:!!HonroApp.profile.honroBattle})''')
+  page.reload();page.wait_for_function('window.HonroApp&&window.HONRO_PROJECT',timeout=60000);page.wait_for_timeout(1000)
+  result['afterReload']=page.evaluate('''()=>({screen:HonroApp.screen,cleared:HonroApp.profile.cleared?.[39],battle:!!HonroApp.profile.honroBattle})''')
+  page.screenshot(path=str(out/'same-context-reload.png'))
+  button=page.get_by_text('여정 이어가기',exact=True).first
+  if button.count():
+   button.click();page.wait_for_timeout(2000);page.screenshot(path=str(out/'same-context-continue.png'));result['afterContinue']=page.evaluate('''()=>({screen:HonroApp.screen,cleared:HonroApp.profile.cleared?.[39],stage:HonroApp.engine?.b?.honroStage})''')
+ (out/'final-result.json').write_text(json.dumps(result,ensure_ascii=False,indent=2)+'\n')
  page.screenshot(path=str(out/'stop.png'));ctx.storage_state(path=str(out/'browser-storage.json'));events.close();ctx.close();browser.close()
 srv.shutdown();srv.server_close()
