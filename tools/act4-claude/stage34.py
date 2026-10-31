@@ -14,6 +14,7 @@ from painter import Painter, ROOT
 
 N, W, H = 34, 6200, 8000
 p = Painter(N, W, H, seed=34)
+p.crag = True
 
 # Shore / seabed. The cave floor sits under recoverable sea water.
 p.solid('shore', [(0, 7360), (500, 7375), (900, 7400), (1600, 7445), (2600, 7520), (3400, 7560), (4200, 7540),

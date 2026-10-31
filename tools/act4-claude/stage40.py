@@ -8,6 +8,7 @@ sys.path.insert(0, str(Path(__file__).parent))
 from painter import Painter, ROOT, canonical_top, keep_elements
 N, W, H = 40, 6200, 3200
 p = Painter(N, W, H, seed=40)
+p.crag = True
 p.solid('shore', canonical_top(N), [(W, H, 'c'), (0, H, 'c')], kind='earth', amp=0, role='return ground and inlet',
         extend=[[(-1600, 1930), (40, 1920), (40, H), (-1600, H)], [(W - 40, 1710), (W + 1600, 1690), (W + 1600, H), (W - 40, H)]])
 p.deck('high-walk', [(2810, 1790), (3100, 1720), (4200, 1720), (4650, 1780), (5100, 1780)], role='high route over the inlet (original contract)')
