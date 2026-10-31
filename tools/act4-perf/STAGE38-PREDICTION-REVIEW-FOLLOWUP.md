@@ -1,5 +1,7 @@
 # Stage 38 prediction review follow-up
 
+**Test correction:** the original 745-case runner carried the custom flag into later scenarios and did not reset the collision index. Both were fixed and independently rerun; see `STAGE38-A01-REPLAY.md`.
+
 The independent review on `codex/act4-release-candidate@1b8f9faae2016956e5b8b07204a7061ff8035b07` rejected `03fd076323e9bc0334bdb762b0486eec63e4fa7a`: an omitted vector property inspected via `Object.getOwnPropertyDescriptor` returned a different value, and the retry could run effects outside the cloned battle twice. The earlier performance result remains an experiment only; it must not be integrated or counted as achieved performance.
 
 Code `927fdd61834ca966655b2e4d2136b28c6fb7f4b6` restores the native full `structuredClone` before the replay and invokes the replay exactly once. This removes the proposed optimization rather than solving the performance issue. It preserves all operations supported by the browser's structured clone, not merely get/set. The expanded isolation test checks descriptor inspection, enumeration, deletion, aliases, mutation isolation, one external effect, clone errors before callback, proxy objects, custom/workshop, other stages and accessor data. The independent descriptor counterexample now succeeds. A separately tried complete plain-JavaScript copy passed the descriptor case but incorrectly accepted a Proxy that native clone rejects; that alternative was rejected too.

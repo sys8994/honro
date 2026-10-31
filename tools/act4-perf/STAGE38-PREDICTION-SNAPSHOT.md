@@ -1,5 +1,7 @@
 # Stage 38 isolated arrow prediction
 
+**Test correction:** the original 745-case runner carried the custom flag into later scenarios and did not reset the collision index. Both were fixed and independently rerun; see `STAGE38-A01-REPLAY.md`.
+
 **Rejected:** independent review found a descriptor-access mismatch and potential duplicate external effects. The candidate described below is not integration-ready. See `STAGE38-PREDICTION-REVIEW-FOLLOWUP.md` for the full-clone restoration and its performance impact.
 
 Code: `03fd076323e9bc0334bdb762b0486eec63e4fa7a`. This is narrowly scoped to official stage 38 arrow replay. The complete battle is still cloned on custom/workshop maps, other stages, unsupported object structures, or if simulated code reads or writes an omitted vector. No vector is shared with the live battle. The helper copies the non-art graph with aliases, checks the current art for cloneable plain data each time (no identity cache), and installs access guards on omitted values; access aborts the isolated replay and reruns with the original full clone. Collision geometry, gameplay fields, status, and RNG remain in the isolated copy. Visual vector data is unchanged in the live battle and renderer. The safety contract and fallback are tested by `tests/prediction-snapshot-isolation.mjs`.
