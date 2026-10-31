@@ -1,0 +1,163 @@
+diff --git a/shared/engine/src/skillMechanics.ts b/shared/engine/src/skillMechanics.ts
+index 3a7afd4b..f9ef6a61 100644
+--- a/shared/engine/src/skillMechanics.ts
++++ b/shared/engine/src/skillMechanics.ts
+@@ -474,13 +474,14 @@ function arrowReplaySnapshot(b:Battle,s:Skill):Battle {
+    if(Object.getPrototypeOf(item)!==Object.prototype||Object.keys(item).some(k=>{const d=Object.getOwnPropertyDescriptor(item,k);return !d||!('value' in d);})){safe=false;return source;}
+    const entry=Object.getOwnPropertyDescriptor(item,'asset');if(entry&&(!entry.enumerable||!('value' in entry))){safe=false;return source;}
+    const original=entry?.value;if(!original||typeof original!=='object'){next.push(item);continue;}
+-   if(Object.getPrototypeOf(original)!==Object.prototype||Object.keys(original).some(k=>{const d=Object.getOwnPropertyDescriptor(original,k);return !d||!('value' in d);})){safe=false;return source;}
+-   const descriptor=Object.getOwnPropertyDescriptor(original,'vector');if(descriptor&&(!descriptor.enumerable||!('value' in descriptor))){safe=false;return source;}
+-   if(!descriptor?.value){next.push(item);continue;}
+-   if(typeof descriptor.value!=='object'){safe=false;return source;}
+-   if(!plain(descriptor.value)){safe=false;return source;}
++   const lazy=(globalThis as any).HonroLazyArt, pending=q.honroStage===40&&lazy?.pending(original)===true;
++   if(Object.getPrototypeOf(original)!==Object.prototype||Object.keys(original).some(k=>{const d=Object.getOwnPropertyDescriptor(original,k);return !d||!('value' in d)&&!(pending&&k==='vector');})){safe=false;return source;}
++   const descriptor=Object.getOwnPropertyDescriptor(original,'vector');if(descriptor&&(!descriptor.enumerable||!('value' in descriptor)&&!pending)){safe=false;return source;}
++   const vector=pending?lazy.renderVector(original):descriptor?.value;if(!vector){next.push(item);continue;}
++   if(typeof vector!=='object'){safe=false;return source;}
++   if(!plain(vector)){safe=false;return source;}
+    let copy=items.get(item);
+-   if(!copy){let asset=assets.get(original);if(!asset){asset={...original,vector:{}};assets.set(original,asset);}copy={...item,asset};items.set(item,copy);replaced.add(item);replaced.add(original);pairs.push([item,original]);}
++   if(!copy){let asset=assets.get(original);if(!asset){asset={};for(const k of Object.keys(original))asset[k]=k==='vector'?{}:original[k];assets.set(original,asset);}copy={...item,asset};items.set(item,copy);replaced.add(item);replaced.add(original);pairs.push([item,original]);}
+    next.push(copy);
+   }
+   return next;
+diff --git a/shared/map/vector-art.js b/shared/map/vector-art.js
+index 6bce33f3..0bfedec7 100644
+--- a/shared/map/vector-art.js
++++ b/shared/map/vector-art.js
+@@ -65,9 +65,9 @@ function prepareIncremental(vector,{signal,eligible=()=>true,budgetMs=3}={}){
+   schedule();
+  });}
+ 
+-function draw(c,asset,inst){if(!asset.vector)return false;const data=prepare(asset.vector),gradients=Object.create(null);
++function draw(c,asset,inst){const vector=G.HonroLazyArt?.renderVector(asset)??asset.vector;if(!vector)return false;const data=prepare(vector),gradients=Object.create(null);
+  c.save();c.translate(inst.x||0,inst.y||0);c.rotate(inst.rotation||0);c.scale(inst.scale??1,inst.scale??1);c.translate(-(asset.anchor?.x||0),-(asset.anchor?.y||0));
+- const paint=color=>{if(!color?.startsWith('url('))return color;const id=color.slice(5,-1),m=c.getTransform(),key=id+':'+[m.a,m.b,m.c,m.d,m.e,m.f].join(',');if(gradients[key])return gradients[key];const g=asset.vector.gradients[id],v=g.type==='linear'?c.createLinearGradient(g.x1,g.y1,g.x2,g.y2):c.createRadialGradient(g.fx??g.cx,g.fy??g.cy,0,g.cx,g.cy,g.r);for(const s of g.stops)v.addColorStop(s.offset,s.color+Math.round(s.opacity*255).toString(16).padStart(2,'0'));return gradients[key]=v;};
++ const paint=color=>{if(!color?.startsWith('url('))return color;const id=color.slice(5,-1),m=c.getTransform(),key=id+':'+[m.a,m.b,m.c,m.d,m.e,m.f].join(',');if(gradients[key])return gradients[key];const g=vector.gradients[id],v=g.type==='linear'?c.createLinearGradient(g.x1,g.y1,g.x2,g.y2):c.createRadialGradient(g.fx??g.cx,g.fy??g.cy,0,g.cx,g.cy,g.r);for(const s of g.stops)v.addColorStop(s.offset,s.color+Math.round(s.opacity*255).toString(16).padStart(2,'0'));return gradients[key]=v;};
+  // Gameplay-only silhouette underpaint. Draw it before every face so internal
+  // facet edges are covered by their original fills, rather than cartoon ink.
+  // Connected authored BODY may opt out explicitly: its source silhouette and
+diff --git a/shared/runtime/act4-pilot-art.js b/shared/runtime/act4-pilot-art.js
+index 06cd3b3d..464fd42d 100644
+--- a/shared/runtime/act4-pilot-art.js
++++ b/shared/runtime/act4-pilot-art.js
+@@ -41,7 +41,7 @@ function paintContinuousSea(scene,c,sea,w,h){
+  const view=G.HonroBounds.viewport(scene,w,h),left=view.left-8/scene.scale,right=view.right+8/scene.scale,bottom=Math.max(sea.surface,view.bottom+8/scene.scale);
+  c.save();if(sea.occlusion){const visible=new G.Path2D(sea.occlusion);visible.rect(left,view.top-8/scene.scale,right-left,bottom-view.top+16/scene.scale);c.clip(visible,'evenodd');}const gradient=c.createLinearGradient(0,sea.surface,0,sea.surface+sea.depth);gradient.addColorStop(0,sea.cave?'#31577400':sea.soft?'#456b8500':'#456b85d9');gradient.addColorStop(sea.soft?.25:.45,sea.cave?'#24496399':sea.soft?'#24496340':'#244963e8');gradient.addColorStop(1,sea.cave?'#102335ff':'#16384fff');c.fillStyle=gradient;c.fillRect(left,sea.surface,right-left,bottom-sea.surface);c.restore();
+ }
+-function native(l,b){return !!(config(b)&&Object.hasOwn(layers,l?.nativeArtLayer)&&l.layer===layers[l.nativeArtLayer]&&l.kind==='canonical-element'&&l.asset?.vector&&!l.asset.collision?.length&&!l.collisionIds?.length&&!l.honroElementCollision);}
++function native(l,b){return !!(config(b)&&Object.hasOwn(layers,l?.nativeArtLayer)&&l.layer===layers[l.nativeArtLayer]&&l.kind==='canonical-element'&&(G.HonroLazyArt?.renderVector(l.asset)??l.asset?.vector)&&!l.asset.collision?.length&&!l.collisionIds?.length&&!l.honroElementCollision);}
+ function terrainIds(l){return Array.isArray(l?.nativeTerrainIds)?l.nativeTerrainIds:(l?.nativeTerrainId?[l.nativeTerrainId]:[]);}
+ function bodyLive(l,b){const ids=terrainIds(l);return ids.length>0&&new Set(ids).size===ids.length&&ids.every(id=>typeof id==='string'&&b.terrain?.some(t=>t.id===id&&!t.broken));}
+ function covered(t,b){const q=config(b);return !!(q&&q.coveredTerrainIds.includes(t.id)&&!t.honroElementCollision&&(b.honroLandmarks||[]).some(l=>native(l,b)&&l.nativeArtLayer==='body'&&bodyLive(l,b)&&terrainIds(l).includes(t.id)&&(l.opacity??1)===1));}
+diff --git a/shared/runtime/elements.js b/shared/runtime/elements.js
+index aa5cd52e..1f0eeb5b 100644
+--- a/shared/runtime/elements.js
++++ b/shared/runtime/elements.js
+@@ -4,7 +4,7 @@ const nativeLandmark=Scene.prototype.landmark;
+ function draw(c,asset,inst,scene){
+  const V=G.HonroVisualStyle;if(V)c=V.context(c,V.classify(inst,scene?.battle,asset)==='gameplay'?'gameplay':V.depth(inst,asset));
+  if(G.HonroAct2SpatialArt?.element(c,asset,inst,scene))return;
+- if(asset.vector&&G.HonroVectorArt?.draw(c,asset,inst))return;
++ if((G.HonroLazyArt?.renderVector(asset)??asset.vector)&&G.HonroVectorArt?.draw(c,asset,inst))return;
+  c.save();
+  if(asset.renderer==='landmark'){
+   c.translate(inst.x,inst.y);c.rotate(inst.rotation||0);c.scale(inst.scale??1,inst.scale??1);
+diff --git a/shared/runtime/environment-renderer.js b/shared/runtime/environment-renderer.js
+index 23ccae70..da5c6ee7 100644
+--- a/shared/runtime/environment-renderer.js
++++ b/shared/runtime/environment-renderer.js
+@@ -94,7 +94,7 @@ function surface(c,s,g,a){c=V?.context(c,g.depthLayer)||c;if(s.kind==='act2-rear
+ function child(c,e,g,st,view,w,h,a,time){c=V?.context(c,g.depthLayer)||c;const r=e.asset.reference,box=E.screenBounds(e.asset,e,view,w,h,st);if(box.x>w+60||box.x+box.w<-60||box.y>h+60||box.y+box.h<-60)return false;
+  const sf=E.supportOf(st,e),y=(sf?E.surfaceY(sf,e.x):0)+e.y,scale=E.WORLD_UNITS_PER_METER*r.heightM/r.bounds.h*e.scale;
+  c.save();c.translate(e.x,y);c.rotate(e.rotation||0);c.scale(scale,scale);c.translate(-r.foot.x,-r.foot.y);
+- if(e.asset.vector){c.globalAlpha*=1-E.FINISH[g.depthLayer].haze*.55;G.HonroVectorArt.draw(c,e.asset,{x:e.asset.anchor?.x||0,y:e.asset.anchor?.y||0,scale:1});}
++ if(G.HonroLazyArt?.renderVector(e.asset)??e.asset.vector){c.globalAlpha*=1-E.FINISH[g.depthLayer].haze*.55;G.HonroVectorArt.draw(c,e.asset,{x:e.asset.anchor?.x||0,y:e.asset.anchor?.y||0,scale:1});}
+  else if(e.asset.renderer==='landmark'){c.globalAlpha*=1-E.FINISH[g.depthLayer].haze*.55;G.HonroElements.nativeLandmark.call(view,c,{...e,kind:e.asset.kind,x:0,y:0,size:1});}
+  else if(e.role.role==='waterfall')A.waterfall(c,0,0,110,540,a,time);
+  else {const fade=E.FINISH[g.depthLayer].haze*a.hazeStrength;for(const [index,shape] of e.paths.entries()){c.save();c.globalAlpha*=shape.alpha??1;if(shape.fill){const base=E.mixColor(shape.fill.slice(0,7),a.ambientTint,.19),dark=E.mixColor(base,a.hazeColor,fade),lit=E.mixColor(dark,a.keyLightColor,(1-fade)*.10);c.fillStyle=index===0?A.gradient(c,0,r.bounds.y,0,r.bounds.y+r.bounds.h,[[0,lit],[.65,dark],[1,E.mixColor(dark,a.shadowTint,.16)]]):lit;c.fill(shape.path);}if(shape.stroke&&g.depthLayer==='L2'){c.strokeStyle=E.mixColor(shape.stroke.slice(0,7),a.hazeColor,fade+.15);c.lineWidth=shape.lineWidth||1;c.stroke(shape.path);}c.restore();}}
+diff --git a/shared/runtime/equipment-state.js b/shared/runtime/equipment-state.js
+index 7c3bc41f..2603fadc 100644
+--- a/shared/runtime/equipment-state.js
++++ b/shared/runtime/equipment-state.js
+@@ -61,7 +61,7 @@ function capture(app,options={}){
+  for(const id of Object.keys(probe.equipment.rewardLedger))if(!p.equipment.rewardLedger[id]){p.equipment.eligibleEventIds??=[];if(!p.equipment.eligibleEventIds.includes(id)){p.equipment.eligibleEventIds.push(id);changed=true;}}
+  return changed;
+ }
+-function observe(app,options={}){if(app.debugMode||app.customMap||app.training||G.HONRO_EMBEDDED)return false;const b=app.engine?.b||options.battle;if(b?.honroCustom||b&&b.mode!=='campaign')return false;return transaction(app,p=>collect(p,b,options));}
++function observe(app,options={}){if(app.debugMode||app.customMap||app.training||G.HONRO_EMBEDDED)return false;const b=app.engine?.b||options.battle;if(b?.honroCustom||b&&b.mode!=='campaign')return false;if(b?.honroAct4Official===1&&b.honroStage===40&&G.HonroLazyArt){const probe={...app.profile,equipment:clone(app.profile.equipment)};if(!collect(probe,b,options))return false;}return transaction(app,p=>collect(p,b,options));}
+ function choose(app,eventId,itemId){return transaction(app,p=>{const eq=p.equipment,e=events.get(eventId),r=eq.rewardLedger[eventId];if(!publicEvent(e)||!e.choiceGroup||r?.state!=='pending'||!e.itemIds.includes(itemId))return false;r.state='committed';r.selectedItemId=itemId;r.notified=false;eq.ownedItemIds.push(itemId);return true;});}
+ function equipLockReason(app){
+  if(app.training)return '허공터에서는 교환할 수 없습니다.';
+diff --git a/shared/runtime/profile-store.js b/shared/runtime/profile-store.js
+index 8622fb99..961cf861 100644
+--- a/shared/runtime/profile-store.js
++++ b/shared/runtime/profile-store.js
+@@ -45,6 +45,34 @@ function rememberProviderSignature(key,text,signature){
+  }
+  providerHashCache.set(key,{text,signature,size});providerHashChars+=size;
+ }
++// Experimental official stage-40 BODY lazy vector. The frozen copy is private;
++// ordinary property access materializes an independent mutable data property.
++const lazyBody=new WeakMap();
++function lazyState(asset){const q=asset&&lazyBody.get(asset),d=q&&Object.getOwnPropertyDescriptor(asset,'vector');return q&&d?.get===q.get&&d?.set===q.set&&d.enumerable&&d.configurable?q:null;}
++function renderVector(asset){return lazyState(asset)?.vector??asset?.vector;}
++function metaText(asset){
++ if(Object.getPrototypeOf(asset)!==Object.prototype||Object.prototype.hasOwnProperty.call(Object.prototype,'toJSON'))return null;
++ const meta=Object.create(null),names=Reflect.ownKeys(asset);for(const key of names){if(typeof key!=='string')return null;const d=Object.getOwnPropertyDescriptor(asset,key);if(!d?.enumerable)return null;if(key==='vector')continue;if(!Object.hasOwn(d,'value')||key==='toJSON')return null;Object.defineProperty(meta,key,d);}
++ try{return JSON.stringify(meta);}catch{return null;}
++}
++function freezeTree(x){if(x&&typeof x==='object'){for(const v of Object.values(x))freezeTree(v);Object.freeze(x);}return x;}
++function makeLazyBody(canonical,text,signature){
++ const vector=canonical.vector,asset={};let q;
++ for(const key of Object.keys(canonical)){
++  if(key!=='vector'){Object.defineProperty(asset,key,{value:structuredClone(canonical[key]),enumerable:true,writable:true,configurable:true});continue;}
++  const get=()=>{if(G.__lazyEvents)G.__lazyEvents.push({kind:'get',stack:(new Error()).stack});const value=structuredClone(vector);Object.defineProperty(asset,'vector',{value,writable:true,enumerable:true,configurable:true});lazyBody.delete(asset);return value;};
++  const set=value=>{if(G.__lazyEvents)G.__lazyEvents.push({kind:'set',stack:(new Error()).stack});Object.defineProperty(asset,'vector',{value,writable:true,enumerable:true,configurable:true});lazyBody.delete(asset);};
++  q={get,set,vector,text,signature,id:canonical.id};Object.defineProperty(asset,'vector',{get,set,enumerable:true,configurable:true});
++ }
++ if(!q)return null;if(G.__lazyEvents)G.__lazyEvents.push({kind:'installed',stack:(new Error()).stack});lazyBody.set(asset,q);q.keys=Object.keys(asset).join('\0');q.meta=metaText(asset);if(q.meta===null){void asset.vector;return asset;}return asset;
++}
++function compactLazy(asset,library,texts){
++ const q=lazyState(asset);if(!q)return null;
++ const keys=Object.keys(asset).join('\0'),meta=metaText(asset);if(lazyState(asset)!==q||keys!==q.keys||meta!==q.meta){void asset.vector;return null;}
++ const source=library.get(q.id);if(!source){void asset.vector;return null;}let row=texts.get(q.id);if(!row){const text=JSON.stringify(source);row={text,signature:providerSignature(q.id,text)};texts.set(q.id,row);}if(row.text!==q.text||lazyState(asset)!==q){void asset.vector;return null;}
++ return {honroStaticAssetRef:1,id:q.id,signature:q.signature};
++}
++G.HonroLazyArt={renderVector,pending:asset=>!!lazyState(asset)};
+ // Exact archived 33 QA art; never apply to custom or arbitrary signatures.
+ const ACT4_33_LEGACY=Object.freeze({'approved33:near-west':'446435:980e0bba','approved33:body':'2183752:7b7b6e'});
+ function legacy33Art(b,id,signature,library){
+@@ -70,7 +98,7 @@ function compactBattleArt(b){
+  if(!b||b.honroCustom||b.mode!=='campaign'||b.honroAct4Official!==1||b.honroStage<31||b.honroStage>40)return b;
+  const library=new Map((G.HONRO_PROJECT?.library||[]).map(a=>[a.id,a])),texts=new Map();let changed=false;const out={...b};
+  const compactItems=items=>items.map(item=>{
+-  const asset=item.asset,source=asset?.vector&&library.get(asset.id);if(!source)return item;
++  const asset=item.asset;if(b.honroStage===40){const ref=compactLazy(asset,library,texts);if(ref){changed=true;return{...item,asset:ref};}}const source=asset?.vector&&library.get(asset.id);if(!source)return item;
+   const key=asset.id;let row=texts.get(key);if(!row){const text=JSON.stringify(source);row={text,signature:providerSignature(key,text)};texts.set(asset.id,row);}
+   const assetText=JSON.stringify(asset);if(assetText!==row.text){const legacy=legacy33Art(b,asset.id,ACT4_33_LEGACY[asset.id],library);if(!legacy||assetText!==legacy.text)return item;row=legacy;}else rememberProviderSignature(key,row.text,row.signature);
+   changed=true;return{...item,asset:{honroStaticAssetRef:1,id:asset.id,signature:row.signature}};
+@@ -80,17 +108,17 @@ function compactBattleArt(b){
+  return changed?out:b;
+ }
+ function restoreBattleArt(b){
+- const library=new Map((G.HONRO_PROJECT?.library||[]).map(a=>[a.id,a])),signatures=new Map(),replacements=[];
++ const library=new Map((G.HONRO_PROJECT?.library||[]).map(a=>[a.id,a])),signatures=new Map(),sourceTexts=new Map(),replacements=[];
+  for(const items of [b?.honroLandmarks,b?.honroElements,b?.honroEnvironment?.placements])for(const item of items||[]){
+   const ref=item.asset;if(!ref||ref.honroStaticAssetRef===undefined)continue;
+   if(ref.honroStaticAssetRef!==1||typeof ref.id!=='string'||typeof ref.signature!=='string')return false;
+   let source=library.get(ref.id);if(!source)return false;
+-  if(!signatures.has(ref.id))signatures.set(ref.id,assetSignature(JSON.stringify(source)));
++  if(!signatures.has(ref.id)){const text=JSON.stringify(source);sourceTexts.set(ref.id,text);signatures.set(ref.id,assetSignature(text));}
+   if(signatures.get(ref.id)!==ref.signature){const legacy=legacy33Art(b,ref.id,ref.signature,library);if(!legacy)return false;source=legacy.asset;}
+-  replacements.push([item,source]);
++  replacements.push([item,source,ref,sourceTexts.get(ref.id)]);
+  }
+  // Resolve only after campaign lazy loading and revision checks, atomically.
+- for(const[item,source]of replacements)item.asset=structuredClone(source);
++ const canonical=new Map();for(const[item,source,ref,text]of replacements){if(b?.mode==='campaign'&&!b.honroCustom&&b.honroAct4Official===1&&b.honroStage===40&&source.id==='approved40:body'){let value=canonical.get(ref.id);if(!value){value=JSON.parse(text);freezeTree(value.vector);canonical.set(ref.id,value);}item.asset=makeLazyBody(value,text,ref.signature);}else item.asset=structuredClone(source);}
+  return true;
+ }
+ function failure(reason){return Object.assign(new Error('Profile '+reason),{profileReason:reason});}
