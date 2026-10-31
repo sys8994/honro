@@ -1,0 +1,1003 @@
+[
+  {
+    "index": 0,
+    "screen": [
+      300,
+      355
+    ],
+    "point": {
+      "x": 2722.727272727273,
+      "y": 1977.2727272727273
+    },
+    "found": [
+      {
+        "pose": "lower-west",
+        "fired": true,
+        "grounded": true,
+        "chosen": {
+          "angle": 51.4367162790993,
+          "power": 0.8986719494509984,
+          "pred": {
+            "x": 2679.1604655464316,
+            "y": 2016.951477684618
+          }
+        },
+        "contacts": [
+          {
+            "unit": "a4-wreck",
+            "x": 2679.1604655464316,
+            "y": 2016.951477684618
+          }
+        ],
+        "bossLoss": 148,
+        "hits": [
+          "a4-wreck"
+        ],
+        "steps": 126,
+        "terrainUnchanged": true
+      },
+      {
+        "pose": "west-deck",
+        "fired": true,
+        "grounded": true,
+        "chosen": {
+          "angle": 18.255174590078397,
+          "power": 0.742758625921914,
+          "pred": {
+            "x": 2662.3204763153385,
+            "y": 1996.743453559293
+          }
+        },
+        "contacts": [
+          {
+            "unit": "a4-wreck",
+            "x": 2662.3204763153385,
+            "y": 1996.743453559293
+          }
+        ],
+        "bossLoss": 148,
+        "hits": [
+          "a4-wreck"
+        ],
+        "steps": 94,
+        "terrainUnchanged": true
+      },
+      {
+        "pose": "lower-east",
+        "fired": true,
+        "grounded": true,
+        "chosen": {
+          "angle": 128.44437305665602,
+          "power": 0.8997188230967191,
+          "pred": {
+            "x": 3689.20046192334,
+            "y": 2592.1944144235313
+          }
+        },
+        "contacts": [
+          {
+            "unit": "a4-wreck",
+            "x": 3689.20046192334,
+            "y": 2592.1944144235313
+          }
+        ],
+        "bossLoss": 148,
+        "hits": [
+          "a4-wreck"
+        ],
+        "steps": 15,
+        "terrainUnchanged": true
+      }
+    ]
+  },
+  {
+    "index": 1,
+    "screen": [
+      430,
+      400
+    ],
+    "point": {
+      "x": 2959.090909090909,
+      "y": 2059.090909090909
+    },
+    "found": [
+      {
+        "pose": "lower-west",
+        "fired": true,
+        "grounded": true,
+        "chosen": {
+          "angle": 41.27651286127012,
+          "power": 0.9139416277576767,
+          "pred": {
+            "x": 2755.238051310902,
+            "y": 2136.8100429821748
+          }
+        },
+        "contacts": [
+          {
+            "unit": "a4-wreck",
+            "x": 2755.238051310902,
+            "y": 2136.8100429821748
+          }
+        ],
+        "bossLoss": 180,
+        "hits": [
+          "a4-wreck"
+        ],
+        "steps": 117,
+        "terrainUnchanged": true
+      },
+      {
+        "pose": "west-deck",
+        "fired": true,
+        "grounded": true,
+        "chosen": {
+          "angle": 13.197709107968704,
+          "power": 0.7773922574426364,
+          "pred": {
+            "x": 2692.4545,
+            "y": 2039.1196838850822
+          }
+        },
+        "contacts": [
+          {
+            "unit": "a4-wreck",
+            "x": 2692.4545,
+            "y": 2039.1196838850822
+          }
+        ],
+        "bossLoss": 148,
+        "hits": [
+          "a4-wreck"
+        ],
+        "steps": 93,
+        "terrainUnchanged": true
+      },
+      {
+        "pose": "lower-east",
+        "fired": true,
+        "grounded": true,
+        "chosen": {
+          "angle": 131.4402396547278,
+          "power": 0.9633720921090919,
+          "pred": {
+            "x": 3685.163761478661,
+            "y": 2598.605641468631
+          }
+        },
+        "contacts": [
+          {
+            "unit": "a4-wreck",
+            "x": 3685.163761478661,
+            "y": 2598.605641468631
+          }
+        ],
+        "bossLoss": 148,
+        "hits": [
+          "a4-wreck"
+        ],
+        "steps": 14,
+        "terrainUnchanged": true
+      }
+    ]
+  },
+  {
+    "index": 2,
+    "screen": [
+      550,
+      440
+    ],
+    "point": {
+      "x": 3177.2727272727275,
+      "y": 2131.818181818182
+    },
+    "found": [
+      {
+        "pose": "lower-west",
+        "fired": true,
+        "grounded": true,
+        "chosen": {
+          "angle": 35.26972599791938,
+          "power": 0.9291587519583868,
+          "pred": {
+            "x": 2828.7274667355023,
+            "y": 2197.3740836659576
+          }
+        },
+        "contacts": [
+          {
+            "unit": "a4-wreck",
+            "x": 2828.7274667355023,
+            "y": 2197.3740836659576
+          }
+        ],
+        "bossLoss": 180,
+        "hits": [
+          "a4-wreck"
+        ],
+        "steps": 118,
+        "terrainUnchanged": true
+      },
+      {
+        "pose": "west-deck",
+        "fired": true,
+        "grounded": true,
+        "chosen": {
+          "angle": 11.962160758003773,
+          "power": 0.795791700736293,
+          "pred": {
+            "x": 2692.4545,
+            "y": 2046.9331767981162
+          }
+        },
+        "contacts": [
+          {
+            "unit": "a4-wreck",
+            "x": 2692.4545,
+            "y": 2046.9331767981162
+          }
+        ],
+        "bossLoss": 148,
+        "hits": [
+          "a4-wreck"
+        ],
+        "steps": 90,
+        "terrainUnchanged": true
+      },
+      {
+        "pose": "lower-east",
+        "fired": true,
+        "grounded": true,
+        "chosen": {
+          "angle": 128.4797134119721,
+          "power": 0.8958106492185369,
+          "pred": {
+            "x": 3689.143305889241,
+            "y": 2592.2851916106483
+          }
+        },
+        "contacts": [
+          {
+            "unit": "a4-wreck",
+            "x": 3689.143305889241,
+            "y": 2592.2851916106483
+          }
+        ],
+        "bossLoss": 148,
+        "hits": [
+          "a4-wreck"
+        ],
+        "steps": 15,
+        "terrainUnchanged": true
+      }
+    ]
+  },
+  {
+    "index": 3,
+    "screen": [
+      690,
+      480
+    ],
+    "point": {
+      "x": 3431.818181818182,
+      "y": 2204.5454545454545
+    },
+    "found": [
+      {
+        "pose": "lower-west",
+        "fired": true,
+        "grounded": true,
+        "chosen": {
+          "angle": 31.58578582682032,
+          "power": 0.9495257285946611,
+          "pred": {
+            "x": 2881.997969307263,
+            "y": 2233.494716103062
+          }
+        },
+        "contacts": [
+          {
+            "unit": "a4-wreck",
+            "x": 2881.997969307263,
+            "y": 2233.494716103062
+          }
+        ],
+        "bossLoss": 180,
+        "hits": [
+          "a4-wreck"
+        ],
+        "steps": 119,
+        "terrainUnchanged": true
+      },
+      {
+        "pose": "west-deck",
+        "fired": true,
+        "grounded": true,
+        "chosen": {
+          "angle": 12.840185094344317,
+          "power": 0.8159110524379187,
+          "pred": {
+            "x": 2692.4545,
+            "y": 2033.886331265555
+          }
+        },
+        "contacts": [
+          {
+            "unit": "a4-wreck",
+            "x": 2692.4545,
+            "y": 2033.886331265555
+          }
+        ],
+        "bossLoss": 148,
+        "hits": [
+          "a4-wreck"
+        ],
+        "steps": 88,
+        "terrainUnchanged": true
+      },
+      {
+        "pose": "lower-east",
+        "fired": true,
+        "grounded": true,
+        "chosen": {
+          "angle": 119.8728067583102,
+          "power": 0.8054382301511247,
+          "pred": {
+            "x": 3700.5439259535033,
+            "y": 2570.165781599716
+          }
+        },
+        "contacts": [
+          {
+            "unit": "a4-wreck",
+            "x": 3700.5439259535033,
+            "y": 2570.165781599716
+          }
+        ],
+        "bossLoss": 148,
+        "hits": [
+          "a4-wreck"
+        ],
+        "steps": 19,
+        "terrainUnchanged": true
+      }
+    ]
+  },
+  {
+    "index": 4,
+    "screen": [
+      800,
+      530
+    ],
+    "point": {
+      "x": 3631.818181818182,
+      "y": 2295.4545454545455
+    },
+    "found": [
+      {
+        "pose": "lower-west",
+        "fired": true,
+        "grounded": true,
+        "chosen": {
+          "angle": 28.96657025541893,
+          "power": 0.9554864219430504,
+          "pred": {
+            "x": 2889.9696040258564,
+            "y": 2269.0532347972635
+          }
+        },
+        "contacts": [
+          {
+            "unit": "a4-wreck",
+            "x": 2889.9696040258564,
+            "y": 2269.0532347972635
+          }
+        ],
+        "bossLoss": 180,
+        "hits": [
+          "a4-wreck"
+        ],
+        "steps": 116,
+        "terrainUnchanged": true
+      },
+      {
+        "pose": "west-deck",
+        "fired": true,
+        "grounded": true,
+        "chosen": {
+          "angle": 13.022137502962915,
+          "power": 0.8228335145407693,
+          "pred": {
+            "x": 2690.4309690446316,
+            "y": 2030.4761066775907
+          }
+        },
+        "contacts": [
+          {
+            "unit": "a4-wreck",
+            "x": 2690.4309690446316,
+            "y": 2030.4761066775907
+          }
+        ],
+        "bossLoss": 148,
+        "hits": [
+          "a4-wreck"
+        ],
+        "steps": 87,
+        "terrainUnchanged": true
+      },
+      {
+        "pose": "lower-east",
+        "fired": true,
+        "grounded": true,
+        "chosen": {
+          "angle": 107.47841631462688,
+          "power": 0.6922375837059525,
+          "pred": {
+            "x": 3721.3306216889628,
+            "y": 2528.592453643648
+          }
+        },
+        "contacts": [
+          {
+            "unit": "a4-wreck",
+            "x": 3721.3306216889628,
+            "y": 2528.592453643648
+          }
+        ],
+        "bossLoss": 148,
+        "hits": [
+          "a4-wreck"
+        ],
+        "steps": 28,
+        "terrainUnchanged": true
+      }
+    ]
+  },
+  {
+    "index": 5,
+    "screen": [
+      900,
+      560
+    ],
+    "point": {
+      "x": 3813.6363636363635,
+      "y": 2350
+    },
+    "found": [
+      {
+        "pose": "lower-west",
+        "fired": true,
+        "grounded": true,
+        "chosen": {
+          "angle": 28.38687920547283,
+          "power": 0.9701433603263663,
+          "pred": {
+            "x": 2891.071236064436,
+            "y": 2272.9701561924494
+          }
+        },
+        "contacts": [
+          {
+            "unit": "a4-wreck",
+            "x": 2891.071236064436,
+            "y": 2272.9701561924494
+          }
+        ],
+        "bossLoss": 180,
+        "hits": [
+          "a4-wreck"
+        ],
+        "steps": 114,
+        "terrainUnchanged": true
+      },
+      {
+        "pose": "west-deck",
+        "fired": true,
+        "grounded": true,
+        "chosen": {
+          "angle": 14.568319758077749,
+          "power": 0.8379126717424901,
+          "pred": {
+            "x": 2674.601296308757,
+            "y": 2011.4804645692261
+          }
+        },
+        "contacts": [
+          {
+            "unit": "a4-wreck",
+            "x": 2674.601296308757,
+            "y": 2011.4804645692261
+          }
+        ],
+        "bossLoss": 148,
+        "hits": [
+          "a4-wreck"
+        ],
+        "steps": 84,
+        "terrainUnchanged": true
+      },
+      {
+        "pose": "lower-east",
+        "fired": true,
+        "grounded": true,
+        "chosen": {
+          "angle": 85.0536762850692,
+          "power": 0.6172159683817471,
+          "pred": {
+            "x": 3810.283777227605,
+            "y": 2390.9092582076087
+          }
+        },
+        "contacts": [
+          {
+            "unit": "a4-wreck",
+            "x": 3810.283777227605,
+            "y": 2390.9092582076087
+          }
+        ],
+        "bossLoss": 148,
+        "hits": [
+          "a4-wreck"
+        ],
+        "steps": 68,
+        "terrainUnchanged": true
+      }
+    ]
+  },
+  {
+    "index": 6,
+    "screen": [
+      350,
+      470
+    ],
+    "point": {
+      "x": 2813.636363636364,
+      "y": 2186.3636363636365
+    },
+    "found": [
+      {
+        "pose": "lower-west",
+        "fired": true,
+        "grounded": true,
+        "chosen": {
+          "angle": 37.12613744884986,
+          "power": 0.8404282946981331,
+          "pred": {
+            "x": 2835.1410511574536,
+            "y": 2204.2809977759134
+          }
+        },
+        "contacts": [
+          {
+            "unit": "a4-wreck",
+            "x": 2835.1410511574536,
+            "y": 2204.2809977759134
+          }
+        ],
+        "bossLoss": 180,
+        "hits": [
+          "a4-wreck"
+        ],
+        "steps": 135,
+        "terrainUnchanged": true
+      },
+      {
+        "pose": "west-deck",
+        "fired": true,
+        "grounded": true,
+        "chosen": {
+          "angle": 1.2290785525436714,
+          "power": 0.7272513554871564,
+          "pred": {
+            "x": 2886.4519199343085,
+            "y": 2253.982918383575
+          }
+        },
+        "contacts": [
+          {
+            "unit": "a4-wreck",
+            "x": 2886.4519199343085,
+            "y": 2253.982918383575
+          }
+        ],
+        "bossLoss": 180,
+        "hits": [
+          "a4-wreck"
+        ],
+        "steps": 132,
+        "terrainUnchanged": true
+      },
+      {
+        "pose": "lower-east",
+        "fired": true,
+        "grounded": true,
+        "chosen": {
+          "angle": 139.4838556397305,
+          "power": 0.9435917316478922,
+          "pred": {
+            "x": 3674.529396535068,
+            "y": 2615.495507107211
+          }
+        },
+        "contacts": [
+          {
+            "unit": "a4-wreck",
+            "x": 3674.529396535068,
+            "y": 2615.495507107211
+          }
+        ],
+        "bossLoss": 148,
+        "hits": [
+          "a4-wreck"
+        ],
+        "steps": 14,
+        "terrainUnchanged": true
+      }
+    ]
+  },
+  {
+    "index": 7,
+    "screen": [
+      520,
+      520
+    ],
+    "point": {
+      "x": 3122.727272727273,
+      "y": 2277.2727272727275
+    },
+    "found": [
+      {
+        "pose": "lower-west",
+        "fired": true,
+        "grounded": true,
+        "chosen": {
+          "angle": 28.624765431622443,
+          "power": 0.8748414140421773,
+          "pred": {
+            "x": 2899.2165860661917,
+            "y": 2301.9314559511913
+          }
+        },
+        "contacts": [
+          {
+            "unit": "a4-wreck",
+            "x": 2899.2165860661917,
+            "y": 2301.9314559511913
+          }
+        ],
+        "bossLoss": 180,
+        "hits": [
+          "a4-wreck"
+        ],
+        "steps": 128,
+        "terrainUnchanged": true
+      },
+      {
+        "pose": "west-deck",
+        "fired": true,
+        "grounded": true,
+        "chosen": {
+          "angle": 3.2360173210835863,
+          "power": 0.7526734143761084,
+          "pred": {
+            "x": 2818.8332507874825,
+            "y": 2186.724283762022
+          }
+        },
+        "contacts": [
+          {
+            "unit": "a4-wreck",
+            "x": 2818.8332507874825,
+            "y": 2186.724283762022
+          }
+        ],
+        "bossLoss": 180,
+        "hits": [
+          "a4-wreck"
+        ],
+        "steps": 116,
+        "terrainUnchanged": true
+      },
+      {
+        "pose": "lower-east",
+        "fired": true,
+        "grounded": true,
+        "chosen": {
+          "angle": 138.102873513079,
+          "power": 0.8512906212592487,
+          "pred": {
+            "x": 3676.1287369241,
+            "y": 2612.9553794715325
+          }
+        },
+        "contacts": [
+          {
+            "unit": "a4-wreck",
+            "x": 3676.1287369241,
+            "y": 2612.9553794715325
+          }
+        ],
+        "bossLoss": 148,
+        "hits": [
+          "a4-wreck"
+        ],
+        "steps": 15,
+        "terrainUnchanged": true
+      }
+    ]
+  },
+  {
+    "index": 8,
+    "screen": [
+      720,
+      620
+    ],
+    "point": {
+      "x": 3486.3636363636365,
+      "y": 2459.090909090909
+    },
+    "found": [
+      {
+        "pose": "lower-west",
+        "fired": true,
+        "grounded": true,
+        "chosen": {
+          "angle": 22.09107875994014,
+          "power": 0.8839919008618193,
+          "pred": {
+            "x": 3345.4689055160816,
+            "y": 2455.696297594987
+          }
+        },
+        "contacts": [
+          {
+            "unit": "a4-wreck",
+            "x": 3345.4689055160816,
+            "y": 2455.696297594987
+          }
+        ],
+        "bossLoss": 148,
+        "hits": [
+          "a4-wreck"
+        ],
+        "steps": 193,
+        "terrainUnchanged": true
+      },
+      {
+        "pose": "west-deck",
+        "fired": true,
+        "grounded": true,
+        "chosen": {
+          "angle": 4.375271166665414,
+          "power": 0.7574707118872877,
+          "pred": {
+            "x": 2784.4364511419267,
+            "y": 2159.056446494957
+          }
+        },
+        "contacts": [
+          {
+            "unit": "a4-wreck",
+            "x": 2784.4364511419267,
+            "y": 2159.056446494957
+          }
+        ],
+        "bossLoss": 180,
+        "hits": [
+          "a4-wreck"
+        ],
+        "steps": 109,
+        "terrainUnchanged": true
+      },
+      {
+        "pose": "lower-east",
+        "fired": true,
+        "grounded": true,
+        "chosen": {
+          "angle": 135.4812032264542,
+          "power": 0.6387602117518567,
+          "pred": {
+            "x": 3678.7841585657798,
+            "y": 2608.73794712088
+          }
+        },
+        "contacts": [
+          {
+            "unit": "a4-wreck",
+            "x": 3678.7841585657798,
+            "y": 2608.73794712088
+          }
+        ],
+        "bossLoss": 148,
+        "hits": [
+          "a4-wreck"
+        ],
+        "steps": 20,
+        "terrainUnchanged": true
+      }
+    ]
+  },
+  {
+    "index": 9,
+    "screen": [
+      790,
+      680
+    ],
+    "point": {
+      "x": 3613.6363636363635,
+      "y": 2568.181818181818
+    },
+    "found": [
+      {
+        "pose": "lower-west",
+        "fired": true,
+        "grounded": true,
+        "chosen": {
+          "angle": 19.49606744600506,
+          "power": 0.8741997728762558,
+          "pred": {
+            "x": 3477.4901177931106,
+            "y": 2562.508602306179
+          }
+        },
+        "contacts": [
+          {
+            "unit": "a4-wreck",
+            "x": 3477.4901177931106,
+            "y": 2562.508602306179
+          }
+        ],
+        "bossLoss": 148,
+        "hits": [
+          "a4-wreck"
+        ],
+        "steps": 213,
+        "terrainUnchanged": true
+      },
+      {
+        "pose": "west-deck",
+        "fired": true,
+        "grounded": true,
+        "chosen": {
+          "angle": 3.9518141088102166,
+          "power": 0.7479006867810147,
+          "pred": {
+            "x": 2803.4266369953875,
+            "y": 2174.2063868858345
+          }
+        },
+        "contacts": [
+          {
+            "unit": "a4-wreck",
+            "x": 2803.4266369953875,
+            "y": 2174.2063868858345
+          }
+        ],
+        "bossLoss": 180,
+        "hits": [
+          "a4-wreck"
+        ],
+        "steps": 114,
+        "terrainUnchanged": true
+      },
+      {
+        "pose": "lower-east",
+        "fired": true,
+        "grounded": true,
+        "chosen": {
+          "angle": 137.40116724958398,
+          "power": 0.4262079293237193,
+          "pred": {
+            "x": 3673.86827337236,
+            "y": 2616.545525744705
+          }
+        },
+        "contacts": [
+          {
+            "unit": "a4-wreck",
+            "x": 3673.86827337236,
+            "y": 2616.545525744705
+          }
+        ],
+        "bossLoss": 148,
+        "hits": [
+          "a4-wreck"
+        ],
+        "steps": 31,
+        "terrainUnchanged": true
+      }
+    ]
+  },
+  {
+    "index": 10,
+    "screen": [
+      660,
+      610
+    ],
+    "point": {
+      "x": 3377.2727272727275,
+      "y": 2440.909090909091
+    },
+    "found": [
+      {
+        "pose": "lower-west",
+        "fired": true,
+        "grounded": true,
+        "chosen": {
+          "angle": 21.87373256193878,
+          "power": 0.8712853077680786,
+          "pred": {
+            "x": 3354.29505684944,
+            "y": 2474.6094938839956
+          }
+        },
+        "contacts": [
+          {
+            "unit": "a4-wreck",
+            "x": 3354.29505684944,
+            "y": 2474.6094938839956
+          }
+        ],
+        "bossLoss": 148,
+        "hits": [
+          "a4-wreck"
+        ],
+        "steps": 197,
+        "terrainUnchanged": true
+      },
+      {
+        "pose": "west-deck",
+        "fired": true,
+        "grounded": true,
+        "chosen": {
+          "angle": 2.3142052791416394,
+          "power": 0.7467801274582585,
+          "pred": {
+            "x": 2839.295188585002,
+            "y": 2208.7546693650525
+          }
+        },
+        "contacts": [
+          {
+            "unit": "a4-wreck",
+            "x": 2839.295188585002,
+            "y": 2208.7546693650525
+          }
+        ],
+        "bossLoss": 180,
+        "hits": [
+          "a4-wreck"
+        ],
+        "steps": 120,
+        "terrainUnchanged": true
+      },
+      {
+        "pose": "lower-east",
+        "fired": true,
+        "grounded": true,
+        "chosen": {
+          "angle": 140.84395388468903,
+          "power": 0.7077060916647856,
+          "pred": {
+            "x": 3672.1591269209857,
+            "y": 2619.2600511605137
+          }
+        },
+        "contacts": [
+          {
+            "unit": "a4-wreck",
+            "x": 3672.1591269209857,
+            "y": 2619.2600511605137
+          }
+        ],
+        "bossLoss": 148,
+        "hits": [
+          "a4-wreck"
+        ],
+        "steps": 18,
+        "terrainUnchanged": true
+      }
+    ]
+  }
+]
