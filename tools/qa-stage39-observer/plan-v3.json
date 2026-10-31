@@ -1,0 +1,24 @@
+{
+  "version": 3,
+  "policies": [
+    "progress-first",
+    "threat-first"
+  ],
+  "runsPerPolicy": 1,
+  "seed": "game-created stage 39 seed; record initial value; no state injection",
+  "stop": [
+    "won",
+    "lost",
+    "round > 20",
+    "controller watchdog"
+  ],
+  "hashes": {
+    "art/act4-sharpness-followups/stage39-fullplay/entry-fixture-v2/profile.json": "fdb46cdffa936d57a73eb50c086d98ae7bba697f54eb25beb5819596a7aec123",
+    "_local/inputs/stage39-presentation/stage39.json": "0bb8dd43bf33af941c88800c4e7e13bbf2c7d3dd924444c035c997daad8f5dcb",
+    "web/manifest.json": "150ae5c7783e06853406a6a0a846073e648967365c079ac619a607274d9d43f5",
+    "tools/qa-stage39-observer/run-v3.py": "342ca238d94db5e0d79d9d29b52598f5a73fb79f2d9f70afce5fd04bcfacc216",
+    "tools/qa-stage39-observer/observer-v3.js": "08caf70195b9f8b3759715e30f96fa733a21827c45e17bd8520eab031b97be90"
+  },
+  "limits": "Pilot HUD observed through existing frame path; no receipt injection; no conclusions on human win rate.",
+  "reason": "Same predeclared policies, fixture and game seed; observe actual App.defend and aggregate repeated enemy planner calls. v1 and v2 pairs retained."
+}

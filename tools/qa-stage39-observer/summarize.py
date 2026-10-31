@@ -1,0 +1,15 @@
+"""Summarize captured method records; not a difficulty acceptance oracle."""
+import json,sys,collections
+from pathlib import Path
+p=Path(sys.argv[1]);r=json.loads((p/'result.json').read_text());o=json.loads((p/'observer.json').read_text());rows=o['rows'];events=[json.loads(x) for x in (p/'events.jsonl').read_text().splitlines()]; actors=collections.defaultdict(set);shooters=collections.defaultdict(set);hero_ids={'archer','mage','knight','occultist'}; hurt=[];impacts=[];waits=[]
+for x in rows:
+ a=x.get('actor') or {}
+ if x['kind']=='finishAction' and a.get('side')==1:actors[x['round']].add(a['id'])
+ if x['kind']=='fire' and a.get('side')==1 and x['outcome']=='fired':shooters[x['round']].add(a['id'])
+ if x['kind']=='hurt' and x['outcome']=='damage':hurt.append(x)
+ if x['kind']=='impact':impacts.append(x)
+ if x['kind']=='wait':waits.append(x)
+enemy_damage={x['target']['id'] for x in hurt if (x.get('target') or {}).get('side')==1 and x.get('owner') in hero_ids}
+resident_damage=[{'owner':x['owner'],'target':x['target']['id'],'hpLoss':x['hpBefore']-x['hpAfter'],'round':x['round']} for x in hurt if (x.get('target') or {}).get('role')=='resident']
+foes=r['final']['foes']; summary={'policy':r['policy'],'stop':r['stopReason'],'round':r['final']['round'],'foesAlive':len(foes),'heroes':r['final']['heroes'],'residents':r['final']['residents'],'netOpen':r['final']['netOpen'],'exitStable':r['final']['exitStable'],'rescued':r['final']['rescued'],'initialRng':r['initialRng'],'finalRng':o['finalRng'],'rows':len(rows),'observerBytes':r['observerBytes'],'dropped':o['failures']['count'],'counts':dict(collections.Counter(x['kind'] for x in rows)),'enemyFinishedActorsByRound':{str(k):sorted(v) for k,v in actors.items()},'enemyShootersByRound':{str(k):sorted(v) for k,v in shooters.items()},'enemyTargetsWithObservedHeroDamage':sorted(enemy_damage),'residentDamage':resident_damage,'impactCounts':dict(collections.Counter(x['outcome'] for x in impacts)),'waitCounts':dict(collections.Counter((x['attempt'],x['outcome']) for x in waits)) if False else {f'{a}/{b}':v for (a,b),v in collections.Counter((x['attempt'],x['outcome']) for x in waits).items()},'pilotWarningScreens':sum(x['kind']=='pilot-warning' for x in events),'errors':r['errors'],'elapsedWallSeconds':events[-1]['time']-events[0]['time'],'limits':['Impact calls do not establish subsequent damage.','Enemy finished-action counts are method-call actor counts, not all meaningful threats.','Damage source attribution is limited to recorded engine arguments; empty owner is unknown.','Pilot receipt or screenshot count alone does not prove readable duration or successful evasion.','No human win-rate or difficulty acceptance claim.']}
+print(json.dumps(summary,ensure_ascii=False,indent=2))
