@@ -35,12 +35,13 @@ try:
     e, b = v['edgeBodyChecks'], v['continuousBodyChecks']
     check('engine edges', e['passed'] == e['total'] > 0, f"{e['passed']}/{e['total']}", 'all')
     check('engine bodies', b['passed'] == b['total'] > 0, f"{b['passed']}/{b['total']}", 'all')
-    check('hp loss on route', all(r['hpLoss'] == 0 for r in v['routes']), max(r['hpLoss'] for r in v['routes']), 0)
+    check('routes completed', bool(v['routes']) and all(r['passed'] for r in v['routes']), sum(bool(r['passed']) for r in v['routes']), len(v['routes']))
+    check('hp loss on route', bool(v['routes']) and all(r['hpLoss'] == 0 for r in v['routes']), max((r['hpLoss'] for r in v['routes']), default=None), 0)
 except FileNotFoundError:
     check('engine probe', False, 'not run', 'run')
 try:
     t = json.load(open(D / 'trap-sweep.json'))
-    check('trap sweep', not t['traps'], len(t['traps']), 0)
+    check('trap sweep', t['tested'] > 0 and not t['traps'], f"{t['tested']} tested; {len(t['traps'])} traps", 'tested > 0; 0 traps')
 except FileNotFoundError:
     check('trap sweep', False, 'not run', 'run')
 bad = [r for r in rows if not r[1]]
