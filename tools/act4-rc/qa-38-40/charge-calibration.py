@@ -5,7 +5,11 @@ from pathlib import Path
 from playwright.sync_api import sync_playwright
 p=argparse.ArgumentParser();p.add_argument('--url',required=True);p.add_argument('--profile',required=True);p.add_argument('--out',required=True);a=p.parse_args();raw=Path(a.profile).read_bytes();sha=hashlib.sha256(raw).hexdigest();assert sha=='c3724ff6ff7e2417489147457c0956c1642af3907b8b5bd923b4843c41675f6f'
 with sync_playwright() as pw:
- b=pw.chromium.launch(executable_path='/usr/bin/chromium',headless=True,args=['--no-sandbox']);ctx=b.new_context(viewport={'width':1440,'height':900});page=ctx.new_page();page.goto(a.url);page.wait_for_function('window.HonroApp&&window.HonroCampaignLoader');page.locator('#file-import').set_input_files(str(Path(a.profile).resolve()));page.wait_for_timeout(5000);page.get_by_text('이어서 걷기',exact=True).click();page.wait_for_function("HonroApp.engine?.b?.honroStage===40&&HonroApp.canInput()",timeout=60000)
+ b=pw.chromium.launch(executable_path='/usr/bin/chromium',headless=True,args=['--no-sandbox']);ctx=b.new_context(viewport={'width':1440,'height':900});page=ctx.new_page();page.goto(a.url);page.wait_for_function('window.HonroApp&&window.HonroCampaignLoader');page.locator('#file-import').set_input_files(str(Path(a.profile).resolve()));page.wait_for_timeout(5000);page.get_by_text('이어서 걷기',exact=True).click();page.wait_for_function("HonroApp.engine?.b?.honroStage===40",timeout=60000)
+ for _ in range(8):
+  if not page.evaluate('!!HonroApp.dialogue'):break
+  page.locator('[data-action=dialogue-next]').click();page.wait_for_timeout(500)
+ page.wait_for_function('HonroApp.canInput()',timeout=60000)
  page.evaluate('''()=>{window.__chargeKeyEvents=[];for(const type of ['keydown','keyup'])document.addEventListener(type,e=>{if(e.code==='Space')window.__chargeKeyEvents.push({type,t:performance.now(),trusted:e.isTrusted})},true)}''')
  rows=[]
  for duration in (120,250,400):
