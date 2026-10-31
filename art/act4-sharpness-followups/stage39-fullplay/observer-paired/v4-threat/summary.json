@@ -1,0 +1,231 @@
+{
+  "policy": "threat-first",
+  "stop": "won",
+  "round": 6,
+  "foesAlive": 25,
+  "heroes": [
+    {
+      "id": "archer",
+      "hp": 1259,
+      "maxHp": 1259,
+      "dead": false,
+      "x": 4906.764979774008,
+      "y": 2615.9369982663434,
+      "acted": true
+    },
+    {
+      "id": "mage",
+      "hp": 943,
+      "maxHp": 1158,
+      "dead": false,
+      "x": 4776.143641777699,
+      "y": 2370.7589776111063,
+      "acted": false
+    },
+    {
+      "id": "knight",
+      "hp": 2093,
+      "maxHp": 2093,
+      "dead": false,
+      "x": 4801.618827123596,
+      "y": 2372.3511766952247,
+      "acted": false
+    },
+    {
+      "id": "occultist",
+      "hp": 886,
+      "maxHp": 1324,
+      "dead": false,
+      "x": 4709.742552864759,
+      "y": 2366.6089095540474,
+      "acted": false
+    }
+  ],
+  "residents": [
+    {
+      "id": "a4-rescue-0",
+      "hp": 1344,
+      "dead": false,
+      "x": 4128.195492333521,
+      "y": 2340.3774879647126
+    },
+    {
+      "id": "a4-rescue-1",
+      "hp": 1450,
+      "dead": false,
+      "x": 4240.305488694914,
+      "y": 2344.334311365703
+    },
+    {
+      "id": "a4-rescue-2",
+      "hp": 1450,
+      "dead": false,
+      "x": 4353.310784483834,
+      "y": 2348.3227335700176
+    },
+    {
+      "id": "a4-rescue-3",
+      "hp": 1450,
+      "dead": false,
+      "x": 4466.316073680418,
+      "y": 2352.3111555416617
+    }
+  ],
+  "netOpen": {
+    "sourceRun": "honro-map-stage-39-1793472823607",
+    "actor": "knight"
+  },
+  "exitStable": {
+    "sourceRun": "honro-map-stage-39-1793472823607",
+    "actor": "knight",
+    "once": true
+  },
+  "rescued": {
+    "ids": [
+      "a4-rescue-0",
+      "a4-rescue-1",
+      "a4-rescue-2",
+      "a4-rescue-3"
+    ],
+    "sourceRun": "honro-map-stage-39-1793472823607",
+    "campaignRunId": "eq-mvwhkevq-k31lxupc"
+  },
+  "initialRng": 19388,
+  "finalRng": 144693718615,
+  "rows": 450,
+  "observerBytes": 167294,
+  "dropped": 0,
+  "counts": {
+    "fire": 35,
+    "hurt": 50,
+    "impact": 46,
+    "finishAction": 105,
+    "appDefend": 16,
+    "walk": 108,
+    "enemyAction": 90
+  },
+  "enemyFinishedActorsByRound": {
+    "1": [
+      "a4-39-a-2",
+      "a4-39-m-1",
+      "a4-39-m-3",
+      "a4-39-w-2",
+      "a4-39-w-3",
+      "a4-39-w-4"
+    ],
+    "2": [
+      "a4-39-a-1",
+      "a4-39-a-2",
+      "a4-39-n-4",
+      "a4-39-w-3",
+      "a4-39-w-4",
+      "a4-39-w-5"
+    ],
+    "3": [
+      "a4-39-a-1",
+      "a4-39-a-2",
+      "a4-39-m-1",
+      "a4-39-m-2",
+      "a4-39-n-4",
+      "a4-39-w-4"
+    ],
+    "4": [
+      "a4-39-a-1",
+      "a4-39-m-1",
+      "a4-39-m-3",
+      "a4-39-n-1",
+      "a4-39-n-4",
+      "a4-wreck"
+    ],
+    "5": [
+      "a4-39-n-1",
+      "a4-39-n-2",
+      "a4-39-n-3",
+      "a4-39-n-4",
+      "a4-39-w-4",
+      "a4-wreck"
+    ]
+  },
+  "enemyShootersByRound": {
+    "1": [
+      "a4-39-a-2",
+      "a4-39-m-1",
+      "a4-39-m-3",
+      "a4-39-w-2",
+      "a4-39-w-3",
+      "a4-39-w-4"
+    ],
+    "2": [
+      "a4-39-a-1",
+      "a4-39-a-2",
+      "a4-39-n-4",
+      "a4-39-w-3",
+      "a4-39-w-4",
+      "a4-39-w-5"
+    ],
+    "3": [
+      "a4-39-a-1",
+      "a4-39-a-2",
+      "a4-39-m-1",
+      "a4-39-m-2",
+      "a4-39-n-4",
+      "a4-39-w-4"
+    ],
+    "4": [
+      "a4-39-a-1",
+      "a4-39-m-1",
+      "a4-39-m-3",
+      "a4-39-n-4",
+      "a4-wreck"
+    ],
+    "5": [
+      "a4-39-n-1",
+      "a4-39-n-4",
+      "a4-39-w-4",
+      "a4-wreck"
+    ]
+  },
+  "enemyTargetsWithObservedHeroDamage": [
+    "a4-39-w-1",
+    "a4-39-w-2",
+    "a4-39-w-3",
+    "a4-39-w-4"
+  ],
+  "residentDamage": [
+    {
+      "owner": "a4-wreck",
+      "target": "a4-rescue-0",
+      "hpLoss": 106,
+      "round": 5
+    }
+  ],
+  "impactCounts": {
+    "unit-impact": 40,
+    "terrain-impact": 6
+  },
+  "heroImpactEnemyTargets": [
+    "a4-39-w-1",
+    "a4-39-w-2",
+    "a4-39-w-3",
+    "a4-39-w-4"
+  ],
+  "successfulFireBySide": {
+    "0": 8,
+    "1": 27
+  },
+  "appDefenseCounts": {
+    "retreat-end/state-changed": 3,
+    "defend/state-changed": 13
+  },
+  "waitCounts": {},
+  "pilotWarningScreens": 1,
+  "errors": [],
+  "elapsedWallSeconds": 303.1982333660126,
+  "limits": [
+    "Impact calls do not establish subsequent damage.",
+    "Enemy finished-action counts are method-call actor counts, not all meaningful threats.",
+    "Damage source attribution is limited to recorded engine arguments; empty owner is unknown.",
+    "Pilot receipt or screenshot count alone does not prove readable duration or successful evasion.",
+    "No human win-rate or difficulty acceptance claim."
+  ]
+}
