@@ -2,7 +2,7 @@
   "schema": "honro-criteria-jsonpatch-v1",
   "baseFile": "40-stage-criteria-v2.json",
   "baseSha256": "afb7cc40f77a64ce63420e7b7bdfec4ffd9c9286b83683c25b896f807f6b8f92",
-  "targetCanonicalSha256": "2bf6fa68a3383f3d52c6b94710a6e70e8e17395fd42433f3eb6804c7d7127b73",
+  "targetCanonicalSha256": "332472a53a00e0376a489c10e8a58d38b9ffa9e36857231efe122731f6d2edad",
   "targetReportSha256": "e2183e74492a4cb61338f8a691a51f23e7af2205fb9148ae6f6b2c138311aa54",
   "purpose": "v3 필수/참고 구분 및 전체20R상한.원자료 중복보존 대신 검증 가능한 변경만 저장.",
   "operations": [
@@ -4535,6 +4535,10 @@
       "op": "add",
       "path": "/designAudit/roundBudgetMissing",
       "value": []
+    },
+    {
+      "op": "remove",
+      "path": "/stages/38/design/boss/routeRounds"
     }
   ]
 }
