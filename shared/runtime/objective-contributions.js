@@ -44,6 +44,12 @@ function escort(b,key,npc,goal,actors,before,radius=170){const mem=evidence(b);i
  if(progress>=1)finishEscort(b,key);
 }
 // The engine can confirm a win before the next mission tick (e.g. a final jump).
-function beforeComplete(b,st){if(!evidence(b))return;if(st?.objective==='arrival'){const exit=b.honroMarkers.find(m=>m.type==='exit')||b.honroMapAnchors?.exit||{x:b.width-180},arrived=b.units.filter(u=>alive(u)&&u.x>=exit.x-120);if(arrived.length)arrive(b,'arrival',[arrived.find(u=>u.id===b.active)||arrived[0]],p=>p.x>=exit.x-120);}if(st?.objective==='rescue')finishEscort(b,'rescue-carrier');}
+function beforeComplete(b,st){if(!evidence(b))return;if(st?.objective==='arrival'){const exit=b.honroMarkers.find(m=>m.type==='exit')||b.honroMapAnchors?.exit||{x:b.width-180},arrived=b.units.filter(u=>alive(u)&&u.x>=exit.x-120);if(arrived.length)arrive(b,'arrival',[arrived.find(u=>u.id===b.active)||arrived[0]],p=>p.x>=exit.x-120);}if(st?.objective==='rescue')finishEscort(b,'rescue-carrier');
+ const n=b.honroStage,q=b.honroAct4PreviewState,exit=q?.completionProof?.exit;
+ if(st?.objective==='act4'&&[33,34,37,38].includes(n)&&b.honroAct4Official===1&&b.honroAct4Preview===n&&b.phase==='won'&&q?.complete&&!q.failure&&q.completionProof.exitContributionVersion===1&&Number.isFinite(exit?.x)&&Number.isFinite(exit?.y)){
+  const inside=p=>p.x>exit.x-300&&Math.abs(p.y-exit.y)<=240;
+  arrive(b,'act4-exit:'+n,b.units.filter(u=>alive(u)&&inside(u)),inside);
+ }
+}
 G.HonroObjectiveContributions={evidence,owner,award,observe,movement,arrive,approach,interact,maintain,terrain,escort,finishEscort,beforeComplete};
 })(globalThis);
