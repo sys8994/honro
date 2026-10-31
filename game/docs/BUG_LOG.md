@@ -1,3 +1,7 @@
+## 2026-10-31 · 조수 바닥 및 해식굴 진입 좌표
+
+33장 조수의 수면 바닥은 선택적 `tide.floorTerrainIds`로 실제 바닥을 지정할 수 있고 바닥이 없는 좌표는 유한 좌표가 아니므로 물 폴리곤에서 제외한다. 34장 어긋난 동굴 진입은 선택적 `wrongExit.triggerBounds`의 x·y 범위를 사용한다. 설정 없는 이전 지형의 x 판정과 전체 바닥 선택은 유지하며 유효하지 않은 명시 설정은 차단한다. `node tests/act4-event-geometry.mjs`의 production 이벤트/지형 fixture와 기존 해안 지형·사격 검사는 통과했다. 조수 시기·피해·스토리 완료 조건은 바꾸지 않았다. DOM/시야 대역 기반 집중 검사이며 실제 장 완주·미술 검수는 별도다. `tests/act4-objective-guidance.mjs`의 35장 `has a ready interaction`(58행) 실패는 수정 전 c8ff67fa와 수정 후 모두 동일하게 재현된 미해결 기존 실패다.
+
 ## 2026-10-31 · 4막 기하 검사 실행·출처 범위 보완
 
 가상 환경에서 Python 의존성 NumPy 2.2.6, Shapely 2.1.2, Pillow 11.3.0을 설치하고 구 환경에 고정됐던 미리보기 경로를 로컬 보고서 경로로 옮겼다. 별도 체크아웃의 32장 check와 gate는 실행됐고 edge 20/20, body 8/8, trap 597지점·0건을 기록했다. 기하 fixture일 뿐 신규 승인 미술이나 전투 완주가 아니다. 기하 report 출처에는 실제 build가 참조하는 `tools/environment`, `tools/map-forge`, `tools/skill-icons` 등을 포함한 `tools`와 `workshop`, `art`, `assets`도 추가하고, Python 의존 버전과 GEOS 버전을 기록한다. 세 도구 경로를 각각 바꾸면 기존 report가 거부됨을 확인했다. 모든 외부 바이너리의 동일성이나 생성 미술의 품질을 증명하지는 않는다.

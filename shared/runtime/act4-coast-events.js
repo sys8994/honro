@@ -6,6 +6,9 @@ if(P.attachCoast)return;
 const airborne=u=>u.side===1&&u.fixed&&['airborne','spirit'].includes(u.honroAct4WaterTrait);
 const active=b=>(b?.honroCustom||b?.honroAct4Official===1)&&b.honroAct4Preview>=31&&b.honroAct4Preview<=40,copy=x=>JSON.parse(JSON.stringify(x));
 const near=(u,p,r=160)=>alive(u)&&Math.hypot(u.x-p.x,u.y-p.y)<r;
+// Authored cave proximity includes height; an invalid explicit box must not
+// silently activate the event at the legacy location. Missing config is legacy.
+function wrongExitNear(u,w){const z=w.triggerBounds;if(z===undefined)return u.x>1800&&u.x<2900;return !!z&&[z.x1,z.x2,z.y1,z.y2].every(Number.isFinite)&&z.x1<z.x2&&z.y1<z.y2&&u.x>=z.x1&&u.x<=z.x2&&u.y>=z.y1&&u.y<=z.y2;}
 const foes=b=>b.units.filter(u=>u.side===1&&alive(u));
 // damageSequence is the persistent damage RNG cursor, not a pending impact.
 // The engine returns to aim only after resolving its action and volley.
@@ -44,10 +47,13 @@ function tide(b){const q=memory(b),cfg=b.honroAct4Design.tide;if(!cfg)return;con
  if(b.round>=t.lowRound){t.phase='low';t.surface=cfg.low;t.finished=true;}
  syncWater(b);
 }
-function syncWater(b){const q=memory(b),level=q.tide?.surface;if(!Number.isFinite(level)||q.waterVisualLevel===level)return;q.waterVisualLevel=level;
+function syncWater(b){const q=memory(b),level=q.tide?.surface;if(!Number.isFinite(level)||q.waterVisualLevel===level)return;
+ const floorIds=b.honroAct4Design.tide?.floorTerrainIds,eligible=t=>!t.oneWay&&!t.honroElementCollision&&!t.honroCeiling;
+ if(floorIds!==undefined&&(!Array.isArray(floorIds)||!floorIds.length||floorIds.length>64||new Set(floorIds).size!==floorIds.length||floorIds.some(id=>typeof id!=='string'||!b.terrain.some(t=>t.id===id&&eligible(t)))))throw Error('Invalid tide floorTerrainIds');
+ q.waterVisualLevel=level;
  b.honroSurfaceZones=(b.honroSurfaceZones||[]).filter(z=>!String(z.id).startsWith('a4-live-'));
- const land=b.terrain.filter(t=>!t.oneWay&&!t.honroElementCollision&&!t.honroCeiling),floor=x=>Math.min(...land.map(t=>C.terrainSurfaces(t,x).map(v=>v.y)).flat().filter(y=>y>=level-800));
- for(const z of b.honroAct4Design.waterPolicies.filter(z=>z.kind==='recover')){let run=[];const emit=()=>{if(run.length>1){const a=run[0],c=run.at(-1);b.honroSurfaceZones.push({id:'a4-live-'+z.id+'-'+a[0],kind:'water-pool',surface:[[a[0],level],[c[0],level]],bottom:run,points:[[a[0],level],[c[0],level],...run.slice().reverse()],attached:true});}run=[];};for(let x=z.x1;x<=z.x2+32;x+=32){const px=Math.min(z.x2,x),y=floor(px);if(y>level){run.push([px,y]);}else emit();}emit();}b.sceneVersion++;
+ const land=b.terrain.filter(t=>eligible(t)&&(!floorIds||floorIds.includes(t.id))),floor=x=>Math.min(...land.map(t=>C.terrainSurfaces(t,x).map(v=>v.y)).flat().filter(y=>y>=level-800));
+ for(const z of b.honroAct4Design.waterPolicies.filter(z=>z.kind==='recover')){let run=[];const emit=()=>{if(run.length>1){const a=run[0],c=run.at(-1);b.honroSurfaceZones.push({id:'a4-live-'+z.id+'-'+a[0],kind:'water-pool',surface:[[a[0],level],[c[0],level]],bottom:run,points:[[a[0],level],[c[0],level],...run.slice().reverse()],attached:true});}run=[];};for(let x=z.x1;x<=z.x2+32;x+=32){const px=Math.min(z.x2,x),y=floor(px);if(Number.isFinite(y)&&y>level){run.push([px,y]);}else emit();}emit();}b.sceneVersion++;
 }
 function closeRecoveryAction(e,u,r){const b=e.b,token=b.round+':'+b.side;if(b.active!==u.id||b.side!==0||b.phase!=='aim'||b.projectiles.length||b.volley||r.closedToken===token)return;r.closedToken=token;e.finishAction(true);if(b.active===u.id&&u.acted&&b.phase==='aim')e.advanceAfterAction();}
 function water(e,dt=0){const b=e.b;if(!active(b))return;const q=memory(b),policies=b.honroAct4Design?.waterPolicies||[];q.water??={dry:{},recoveries:[]};
@@ -103,7 +109,7 @@ P.coastObserve=function(app,dt){const b=app.engine.b,n=b.honroAct4Preview;if(!ac
   if(closed(q,'reunion')&&cfg.shelter?.manifest.length===7&&seen(q,'threshold')){play(app,'missing_four');if(closed(q,'missing_four')&&q.events.missing_four.presented.includes('A4.S32.MISSING.01')&&q.reunionObserved)q.safeSeven={ids:copy(cfg.shelter.manifest),sourceRun:b.session,reportIds:copy(q.events.missing_four.presented),reunionIds:copy(q.events.reunion.presented),reunionObserved:copy(q.reunionObserved),campaignRunId:b.honroAct4ReviewRunId};}
  }
  if(n===33||n===39){if(q.tide?.phase==='rising'&&seen(q,'water-rising')&&seen(q,'upper-route')&&b.side===0&&party(b).some(u=>!u.acted&&u.moveLeft>80))play(app,'tide_warning',true);}
- if(n===34){const w=cfg.wrongExit,u=e.unit(w.actor);if(alive(u)&&!q.dislocation&&party(b).some(v=>v.x>1800&&v.x<2900)&&inView(app,w.entrance)){q.dislocation={phase:'entering',at:q.clock,originalFixed:u.fixed};}
+ if(n===34){const w=cfg.wrongExit,u=e.unit(w.actor);if(alive(u)&&!q.dislocation&&party(b).some(v=>wrongExitNear(v,w))&&inView(app,w.entrance)){q.dislocation={phase:'entering',at:q.clock,originalFixed:u.fixed};}
   const t=q.dislocation;if(t&&alive(u)){if(t.phase==='entering'){u.fixed=false;moveNpc(e,u,w.entrance.x,dt,180);if(Math.abs(u.x-w.entrance.x)<25){u.fixed=true;t.phase='inside';t.at=q.clock;}}
    if(t.phase==='inside'&&seen(q,'wrong-entry')&&q.clock-t.at>.8){const p=space(b,u,w.exit,180);if(p){feet(e,u,p);t.phase='emerged';t.at=q.clock;}}
    if(t.phase==='emerged'&&seen(q,'wrong-exit')){u.fixed=t.originalFixed;t.phase='complete';play(app,'wrong_exit');}
