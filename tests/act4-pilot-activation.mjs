@@ -1,0 +1,6 @@
+/** Explicit one-round pursuit is opt-in and reads never renew it. */
+import assert from 'node:assert/strict';import vm from 'node:vm';import{readFile}from'node:fs/promises';
+const g=vm.createContext({HonroEncounters:{attach(){}},HonroAllies:{},HonroMission:{tick(){}},HONRO_CORE:{}});vm.runInContext(await readFile('shared/runtime/encounter-density.js','utf8'),g);
+function make(enabled){const hero={x:0,y:0,hp:100},unit={id:'foe',side:1,x:10,y:0,hp:100,honroDensityCell:'a'},b={round:1,honroState:{},units:[hero,unit],honroEncounterDensityActivation:{a:{supports:['floor'],radius:100,...(enabled?{engagementRounds:1}:{})}}},e={b,refreshActivation(){},combatEnemies:()=>[unit],alive:()=>[unit],heroesAlive:()=>[hero],contactSurface:()=>({t:{id:'floor'}})};g.HonroEncounterDensity.installActivation(e);return{b,e,hero};}
+for(const enabled of [false,true]){const {b,e,hero}=make(enabled);e.refreshActivation();assert.equal(e.combatEnemies().length,1);hero.x=1000;b.round=2;assert.equal(e.combatEnemies().length,enabled?1:0);assert.equal(b.honroState.encounterDensity.engagedUntil?.a,enabled?2:undefined);e.combatEnemies();b.round=3;assert.equal(e.combatEnemies().length,0);}
+console.log('PASS activation opt-in persistence, expiry, read-only and default fallback');
