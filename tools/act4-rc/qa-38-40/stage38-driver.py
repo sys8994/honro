@@ -145,8 +145,10 @@ def main():
                     # click Next after the game has observed this exact row.
                     page.wait_for_timeout(1800)
                     visible=page.evaluate('''()=>{const a=HonroApp,d=a.dialogue,line=d?.lines[d.index],q=a.engine?.b?.honroAct4PreviewState;return {text:document.querySelector('#story-line')?.textContent,id:line?.[2]?.act4PreviewRow,key:q?.reader?.key}}''')
-                    if not visible['id'] or not visible['key']:raise RuntimeError('no current Act 4 reader row')
-                    page.wait_for_function('''v=>{const q=HonroApp.engine?.b?.honroAct4PreviewState,d=HonroApp.dialogue,line=d?.lines[d.index];return line?.[2]?.act4PreviewRow===v.id&&q?.events?.[v.key]?.presented?.includes(v.id)}''',arg=visible,timeout=15000)
+                    if not visible.get('text'):raise RuntimeError('no visible dialogue row')
+                    if visible.get('id'):
+                        if not visible.get('key'):raise RuntimeError('Act 4 row lacks reader')
+                        page.wait_for_function('''v=>{const q=HonroApp.engine?.b?.honroAct4PreviewState,d=HonroApp.dialogue,line=d?.lines[d.index];return line?.[2]?.act4PreviewRow===v.id&&q?.events?.[v.key]?.presented?.includes(v.id)}''',arg=visible,timeout=15000)
                     record({'observed_before_advance':visible});page.locator('[data-action=dialogue-next]').click();page.wait_for_timeout(700)
                 elif op=='help':record({'commands':sorted(COMMANDS)})
                 snapshot('after-'+op);record({'state':state()})
