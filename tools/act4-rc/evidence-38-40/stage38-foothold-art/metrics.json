@@ -1,0 +1,173 @@
+{
+  "source_sha256": "9ad6f28b27e9c9a1b3acb7b3e33adafe673d99fb167aa1b56b2a98908fedbaff",
+  "color_input_sanitation": {
+    "operation": "RGB unchanged where original alpha>=128; RGB forced to white where alpha<128; original alpha separately traced natively as clip",
+    "file": "trace-color-input.png",
+    "sha256": "063d5e5843245356f4212ddbc97733857be0c7eb423961e1db3d09f25583de4a"
+  },
+  "source_to_raw_rgb_mae": 4.581105591667507,
+  "source_silhouette_vs_native": {
+    "max_silhouette_deviation_px": 1.0,
+    "components_a": 1,
+    "components_b": 1
+  },
+  "source": "/workspace/honro/_local/act4-38-foothold-art/vector-ready.png",
+  "source_size": [
+    512,
+    194
+  ],
+  "engine": "Inkscape 1.4 (e7c3feb100, 2024-10-09)",
+  "trace_action": "object-trace:16,true,true,false,4,1,0.2",
+  "native_headless_workaround": "/workspace/honro/_local/act4-38-foothold-art/init-wrappers.so",
+  "raw": {
+    "paths": 17,
+    "segments": 2977,
+    "subpaths": 167,
+    "images": 0,
+    "bytes": 134196
+  },
+  "candidates": [
+    {
+      "file": "simplify-0.0001.svg",
+      "threshold": 0.0001,
+      "stats": {
+        "paths": 17,
+        "segments": 4239,
+        "subpaths": 167,
+        "images": 0,
+        "bytes": 215892
+      },
+      "metrics": {
+        "mean_abs_rgb": 0.08019981859797183,
+        "fraction_pixels_maxdiff_gt24": 0.0,
+        "p99_max_rgb": 2.0,
+        "max_silhouette_deviation_px": 0.0,
+        "components_a": 1,
+        "components_b": 1
+      },
+      "accepted": false
+    },
+    {
+      "file": "simplify-0.00015.svg",
+      "threshold": 0.00015,
+      "stats": {
+        "paths": 17,
+        "segments": 3591,
+        "subpaths": 167,
+        "images": 0,
+        "bytes": 181829
+      },
+      "metrics": {
+        "mean_abs_rgb": 0.08377577056380972,
+        "fraction_pixels_maxdiff_gt24": 0.0,
+        "p99_max_rgb": 2.0,
+        "max_silhouette_deviation_px": 0.0,
+        "components_a": 1,
+        "components_b": 1
+      },
+      "accepted": false
+    },
+    {
+      "file": "simplify-0.0002.svg",
+      "threshold": 0.0002,
+      "stats": {
+        "paths": 17,
+        "segments": 3199,
+        "subpaths": 167,
+        "images": 0,
+        "bytes": 162133
+      },
+      "metrics": {
+        "mean_abs_rgb": 0.09044083430193384,
+        "fraction_pixels_maxdiff_gt24": 0.0,
+        "p99_max_rgb": 2.0,
+        "max_silhouette_deviation_px": 0.0,
+        "components_a": 1,
+        "components_b": 1
+      },
+      "accepted": false
+    },
+    {
+      "file": "simplify-0.00025.svg",
+      "threshold": 0.00025,
+      "stats": {
+        "paths": 17,
+        "segments": 2887,
+        "subpaths": 167,
+        "images": 0,
+        "bytes": 146678
+      },
+      "metrics": {
+        "mean_abs_rgb": 0.09875734872986994,
+        "fraction_pixels_maxdiff_gt24": 0.0,
+        "p99_max_rgb": 2.0,
+        "max_silhouette_deviation_px": 0.0,
+        "components_a": 1,
+        "components_b": 1,
+        "internal_curve_hausdorff_upper_bound_px": 0.6490190967820206
+      },
+      "accepted": true
+    },
+    {
+      "file": "simplify-0.0005.svg",
+      "threshold": 0.0005,
+      "stats": {
+        "paths": 17,
+        "segments": 2184,
+        "subpaths": 167,
+        "images": 0,
+        "bytes": 110565
+      },
+      "metrics": {
+        "mean_abs_rgb": 0.1690468707886935,
+        "fraction_pixels_maxdiff_gt24": 0.0,
+        "p99_max_rgb": 4.0,
+        "max_silhouette_deviation_px": 0.0,
+        "components_a": 1,
+        "components_b": 1,
+        "internal_curve_hausdorff_upper_bound_px": 1.1090101925786486
+      },
+      "accepted": true
+    },
+    {
+      "file": "simplify-0.001.svg",
+      "threshold": 0.001,
+      "stats": {
+        "paths": 17,
+        "segments": 1564,
+        "subpaths": 167,
+        "images": 0,
+        "bytes": 78317
+      },
+      "metrics": {
+        "mean_abs_rgb": 0.4496736895466949,
+        "fraction_pixels_maxdiff_gt24": 0.0010772390463917527,
+        "p99_max_rgb": 11.0,
+        "max_silhouette_deviation_px": 0.0,
+        "components_a": 1,
+        "components_b": 1,
+        "internal_curve_hausdorff_upper_bound_px": 2.0410545728911034
+      },
+      "accepted": false
+    }
+  ],
+  "selected": "simplify-0.0005.svg",
+  "final": {
+    "paths": 17,
+    "segments": 2184,
+    "subpaths": 167,
+    "images": 0,
+    "bytes": 109976
+  },
+  "final_metrics": {
+    "mean_abs_rgb": 0.1690468707886935,
+    "fraction_pixels_maxdiff_gt24": 0.0
+  },
+  "segment_reduction_percent": 26.637554585152834,
+  "bounds": {
+    "max_silhouette_deviation_px": 1.5,
+    "mean_abs_rgb_max": 0.8,
+    "fraction_pixels_maxdiff_gt24_max": 0.01
+  },
+  "note": "Pixel bounds compare final vector to raw Inkscape trace, not to original painterly concept. Segment count is parsed SVG path segments, not Bezier control-point count."
+}
