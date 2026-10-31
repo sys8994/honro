@@ -1,5 +1,7 @@
 #!/usr/bin/env python3
-"""Unapproved QA-only candidate using a native Inkscape traced rock outcrop.
+"""Rejected QA-only candidate using a native Inkscape traced rock outcrop.
+
+Visually floats and obscures bridge; one equipped approach lands below.
 
 Consumes only the pinned assembled world. Output must be a disposable QA copy.
 The contact is sampled from the final vector's visible alpha edge; no original
