@@ -23,6 +23,10 @@ with sync_playwright() as pw:
  assert all(h['level']==25 and h['earned']==51 and h['spent']==51 for h in result['entry']['heroes'])
  if not resume:assert result['entry']['next']==39 and result['entry']['pending']==39
  page.get_by_text('이어서 걷기' if resume else '여정 이어가기',exact=True).click();page.wait_for_function('HonroApp.engine?.b?.honroStage===39',timeout=60000);page.wait_for_timeout(1000)
+ def tide_frame(source,info):
+  page.screenshot(path=str(out/'tide-bark-live.png'))
+ page.expose_binding('honroQATideFrame',tide_frame)
+ page.evaluate("""()=>{let was=false,start=0;window.__tideQA=[];function tick(now){const n=document.getElementById('banter'),v=!!n&&!n.hidden&&n.getClientRects().length>0&&n.textContent.includes('물이 올라옵니다');if(v&&!was){let r=n.getBoundingClientRect(),s=getComputedStyle(n);start=now;window.__tideQA.push({kind:'start',time:now,text:n.textContent,rect:{left:r.left,top:r.top,right:r.right,bottom:r.bottom},font:s.fontSize});window.honroQATideFrame({time:now});}if(!v&&was)window.__tideQA.push({kind:'end',time:now,duration:(now-start)/1000});was=v;requestAnimationFrame(tick)}requestAnimationFrame(tick)}""")
  check=page.evaluate("""()=>({official:HonroApp.engine.b.honroAct4Official,custom:HonroApp.engine.b.honroCustom,reference:HONRO_ACT4_PILOT_COMBAT_REFERENCE?.version,mid:HonroApp.engine.b.units.filter(u=>u.honroPilotMidboss).map(u=>({id:u.id,equipped:HonroAct4PilotCombat.equipped(HonroApp.engine.b,u)}))})""");assert check['official']==1 and not check['custom'] and check['reference']==2 and len(check['mid'])==1 and check['mid'][0]['equipped'];result['pilot']=check
  events=(out/'events.jsonl').open('a',encoding='utf8');warnings=set();tide_attempted=False;turns=0;stopReason=None
  def state():
@@ -46,7 +50,15 @@ with sync_playwright() as pw:
   # Use the normal wheel and minimap, never write observation or camera state.
   page.mouse.move(720,450);page.mouse.wheel(0,1700);page.wait_for_timeout(500)
   dims=page.evaluate("""()=>{let r=document.getElementById('minimap').getBoundingClientRect(),b=HonroApp.engine.b;return{x:r.left+r.width*3200/b.width,y:r.top+r.height*2450/b.height}}""")
-  page.mouse.click(dims['x'],dims['y']);page.wait_for_timeout(2400);record('tide-camera-ui');page.screenshot(path=str(out/'tide-ui.png'))
+  page.mouse.click(dims['x'],dims['y']);page.wait_for_timeout(150)
+  if not state()['dialogue']:
+   try:
+    page.wait_for_function("(()=>{const n=document.getElementById('banter');return n&&!n.hidden&&n.textContent.includes('물이 올라옵니다')})()",timeout=6000,polling=100)
+    start=time.monotonic();record('tide-bark-visible');page.screenshot(path=str(out/'tide-bark.png'))
+    while time.monotonic()-start<12 and page.evaluate("(()=>{const n=document.getElementById('banter');return !!n&&!n.hidden&&n.textContent.includes('물이 올라옵니다')})()"):page.wait_for_timeout(100)
+    result['tideBarkVisibleSeconds']=time.monotonic()-start;record('tide-bark-ended',seconds=result['tideBarkVisibleSeconds'])
+   except Exception as ex:result['tideBarkCaptureError']=str(ex)
+  record('tide-camera-ui');page.screenshot(path=str(out/'tide-ui.png'))
  def ready():
   for _ in range(240):
    s=state()
@@ -67,6 +79,8 @@ with sync_playwright() as pw:
  for turn in range(1000):
   if not ready():
    s=record('stop');stopReason='won' if s['phase']=='won' else 'lost' if s['phase']=='lost' or s.get('failure') else '20-turn-limit' if s['round']>20 else 'wait-timeout';break
+  if os.environ.get('HONRO39_STOP_AFTER_TIDE')=='1' and page.evaluate("(window.__tideQA||[]).some(x=>x.kind==='end')"):
+   record('tide-observed-stop');stopReason='tide-observed';break
   s=record('turn-start',index=turn);ctx.storage_state(path=str(out/'browser-storage-live.json'))
   if not tide_attempted and s['round']>=2 and (s.get('tide') or {}).get('phase')=='rising':
    tide_camera(s);tide_attempted=not state()['dialogue'];continue
@@ -123,6 +137,7 @@ with sync_playwright() as pw:
   page.keyboard.press('f');page.wait_for_timeout(500);record('defend-or-end')
  else:stopReason='controller-iteration-limit'
  final=state();result['final']=final;result['stopReason']=stopReason;page.screenshot(path=str(out/'terminal.png'))
+ result['naturalTideFrames']=page.evaluate('window.__tideQA||[]')
  if stopReason=='won':
   for _ in range(30):
    if not page.evaluate('()=>!!HonroApp.dialogue'):break
