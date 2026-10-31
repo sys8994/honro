@@ -1,0 +1,24 @@
+{
+  "version": 5,
+  "policies": [
+    "progress-first",
+    "threat-first"
+  ],
+  "runsPerPolicy": 1,
+  "seed": "game-created stage 39 seed; record initial value; no state injection",
+  "stop": [
+    "won",
+    "lost",
+    "round > 20",
+    "controller watchdog"
+  ],
+  "hashes": {
+    "art/act4-sharpness-followups/stage39-fullplay/entry-fixture-v2/profile.json": "fdb46cdffa936d57a73eb50c086d98ae7bba697f54eb25beb5819596a7aec123",
+    "_local/inputs/stage39-presentation/stage39.json": "0bb8dd43bf33af941c88800c4e7e13bbf2c7d3dd924444c035c997daad8f5dcb",
+    "web/manifest.json": "150ae5c7783e06853406a6a0a846073e648967365c079ac619a607274d9d43f5",
+    "tools/qa-stage39-observer/run-v5.py": "cc3aa1d3a2638952e5b5f36e01097db72f4dcd534d027816856a77d80a1eb847",
+    "tools/qa-stage39-observer/observer-v5.js": "e2909f0cfdc927747312faeebc6d624dce5a7fa9b90209aef90191e29de70c79"
+  },
+  "limits": "Pilot HUD observed through existing frame path; no receipt injection; no conclusions on human win rate.",
+  "reason": "Same predeclared two policies, fixture and game seed; preserve method-entry context so phase and round remain attributable across transitions. All prior pairs retained."
+}
