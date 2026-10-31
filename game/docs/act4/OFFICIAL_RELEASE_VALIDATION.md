@@ -36,3 +36,5 @@
 - 4막 SVG 원본을 빌드가 `.webp` 확장자로 발행하여 HTTP 200 뒤에도 Chromium 디코딩이 실패했다. 실패 파일은 `web/graphics/journey-map-act4.17afbdd8897b1210.webp`였다.
 - 원본 확장자로 발행하도록 한 줄을 수정했다. 새 파일은 같은 SVG 바이트의 `web/graphics/journey-map-act4.17afbdd8897b1210.svg`이며 실제 `image/svg+xml` 응답과 브라우저 표시를 확인했다. 1–3막 WebP URL/바이트는 그대로다.
 - 네 지도 실제 디코딩과 강제 1회 요청 실패 후 장소 버튼 유지/기존 재시도를 검증했다. 기준 master `ced733a6`의 1막은 같은 `journey-map-act1.31fefd98a807ce78.webp`를 HTTP 200으로 받아 1536px로 정상 디코딩했다. 부모가 본 공개 1막 실패는 로컬 기준/후보에서 재현되지 않아 원인을 확정하지 않는다.
+
+현재 재작업 RC의 게임성 출하 기준·원문 및 남은 실측은 [RC 게임성 검수 기준](RC_GAMEPLAY_CRITERIA.md)을 따른다. 이 문서 위의 기존 공개 연결 결과는 당시 실행 범위이며 새 RC 열 장의 전체 합격을 뜻하지 않는다.
