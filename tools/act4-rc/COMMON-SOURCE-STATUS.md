@@ -137,3 +137,7 @@ Source `3aaea974b4532de431ba0bdd3fea065fe41b55dd` integrates the independent com
 ## 2026-10-31 Stage 40 A01 private replay
 
 Source `0585c82c` extends the existing private A01 snapshot only to official stage/preview 40. Actual-checkpoint comparison, branch checks, 38 regression, reader/escort/result-save checks, QA hashes and the limited independent PC timing report are in `STAGE40-A01-PREDICTION-REVIEW.md`. Other skills and mobile performance remain unproven; tile and first-water hitches remain. Historical mission results retain their recorded source.
+
+## 2026-10-31 Verified provider signature cache
+
+Source `b59957592` integrates the bounded signature reuse after exact current provider/live content comparison. Independent mutation, atomic mismatch, 33 old-art, 35 reader, 40 export/escort and quota regressions, QA hashes and PC sample limits are in `SAVE-SIGNATURE-INTEGRATION.md`. Remaining serialization and long-frame performance remain open; historical mission runs retain their own source.
