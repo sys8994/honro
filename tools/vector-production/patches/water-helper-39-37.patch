@@ -1,6 +1,6 @@
 --- a/shared/runtime/act4-pilot-art.js
 +++ b/shared/runtime/act4-pilot-art.js
-@@ -9,23 +9,36 @@
+@@ -9,23 +9,37 @@
  // never advance events or invent a fixed harbor level for this tidal coast.
  function tidalSea(b){
   const cfg=b?.honroAct4Design?.tide,sea=b?.honroMap?.act4?.tide?.continuousSea,level=b?.honroAct4PreviewState?.tide?.surface;
@@ -17,11 +17,12 @@
 +// Semantic dry-land silhouette derived from the approved BODY materials. This
 +// only clips environmental paint; shallow play-contact zones remain untouched.
 +const shoreCache39=new WeakMap();
++function shorePathD(p){if(typeof p?.d==='string')return p.d;if(Array.isArray(p?.dParts)&&p.dParts.length<=32&&p.dParts.every(d=>typeof d==='string'&&d.length<=60000))return p.dParts.join('');return null;}
 +function shoreOcclusion39(b,sea){
 + const id=sea?.shoreOcclusionAssetId,a=G.HONRO_PROJECT?.library?.find(a=>a.id===id),v=a?.vector;
-+ if(typeof id!=='string'||a?.params?.stage39VisualDryMask!==true||a.collision?.length||v?.version!==1||v.root?.tag!=='g'||!Array.isArray(v.root.transform)||v.root.transform.length!==6||!v.root.transform.every(Number.isFinite)||!Array.isArray(v.root.children)||!v.root.children.length||v.root.children.some(p=>p.tag!=='path'||!(typeof p.d==='string'||Array.isArray(p.dParts)&&p.dParts.length<=32&&p.dParts.every(d=>typeof d==='string'&&d.length<=60000))||(p.d||p.dParts.join('')).length>240000)||typeof G.Path2D!=='function'||typeof G.DOMMatrix!=='function')return null;
++ if(typeof id!=='string'||a?.params?.stage39VisualDryMask!==true||a.collision?.length||v?.version!==1||v.root?.tag!=='g'||!Array.isArray(v.root.transform)||v.root.transform.length!==6||!v.root.transform.every(Number.isFinite)||!Array.isArray(v.root.children)||!v.root.children.length||v.root.children.some(p=>p.tag!=='path'||!shorePathD(p)||shorePathD(p).length>240000)||typeof G.Path2D!=='function'||typeof G.DOMMatrix!=='function')return null;
 + if(shoreCache39.has(a))return shoreCache39.get(a);
-+ try{const path=new G.Path2D(),matrix=new G.DOMMatrix(v.root.transform);for(const p of v.root.children)path.addPath(new G.Path2D(p.d||p.dParts.join('')),matrix);shoreCache39.set(a,path);return path;}catch{return null;}
++ try{const path=new G.Path2D(),matrix=new G.DOMMatrix(v.root.transform);for(const p of v.root.children)path.addPath(new G.Path2D(shorePathD(p)),matrix);shoreCache39.set(a,path);return path;}catch{return null;}
  }
  // Explicit nonphysical sea for village scenery, and policy-bound static cave water.
  function staticSea(b){
