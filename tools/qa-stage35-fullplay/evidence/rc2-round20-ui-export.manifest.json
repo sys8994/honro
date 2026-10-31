@@ -1,0 +1,18 @@
+{
+  "kind": "actual UI download, not raw localStorage",
+  "round": 20,
+  "stage": 35,
+  "rawBytes": 4453010,
+  "rawSha256": "4b6377bfdf6af8843dec8aaf651218514c5be984a6ffbc628724bc3b50f8e899",
+  "xzBytes": 589740,
+  "xzSha256": "51ef8a474935dec2cdedde1f32221289a5c5b6f9084e11e09c7d9bda597edd07",
+  "source": "normal JSON 기록 내보내기 UI; unchanged download bytes",
+  "events": [
+    "A4.S35.ENTRY.01",
+    "A4.S35.ENTRY.02"
+  ],
+  "factEvents": [
+    "eq_co_t3_choice"
+  ],
+  "complete": false
+}
