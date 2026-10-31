@@ -107,3 +107,7 @@ Workshop-only source `b4e62a58c` reports autosave errors while preserving in-mem
 ## 2026-10-31 Workshop clone reduction
 
 Workshop-only source `dd65fcec1` avoids the discarded import return clone and excludes unrelated stages before the Playtest snapshot clone. The complete library is preserved, and game `launchMap` still normalizes it. Differential small-fixture evidence and remaining full-size blocker are recorded in `WORKSHOP-COMPATIBILITY.md`. Past stage outcomes retain their own run sources.
+
+## 2026-10-31 Workshop selected-stage asset review
+
+No new code was integrated after `dd65fcec1`: dynamic asset provider safety could not be established. See `WORKSHOP-PAYLOAD-REVIEW.md`; the static sizes are estimates only and full-size Workshop remains unverified. Earlier play runs retain their recorded source.
