@@ -1,0 +1,27 @@
+{
+  "scope": "disposable preflight context; not the mission run",
+  "errors": [],
+  "unknownCommandRejected": "Unsupported command: unsupported-command",
+  "cameraBefore": {
+    "x": 481.7172083680894,
+    "y": 2274.670502249049,
+    "scale": 0.94,
+    "manual": false
+  },
+  "cameraAfter": {
+    "x": 482.5435619381216,
+    "y": 3581.0798793904964,
+    "scale": 0.21176470588235294,
+    "manual": true
+  },
+  "export": {
+    "sha256": "51048c0d9c4f6bce9ece1ec2a28824ec6293d333478e0e8dc7c00e8319155347",
+    "bytes": 7115245,
+    "suggestedFilename": "혼로_기록_2026-10-31.json"
+  },
+  "resumed": {
+    "stage": 31,
+    "round": 1,
+    "enemies": 34
+  }
+}
