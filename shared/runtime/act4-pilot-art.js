@@ -9,6 +9,8 @@ function native(l,b){return !!(config(b)&&Object.hasOwn(layers,l?.nativeArtLayer
 function terrainIds(l){return Array.isArray(l?.nativeTerrainIds)?l.nativeTerrainIds:(l?.nativeTerrainId?[l.nativeTerrainId]:[]);}
 function bodyLive(l,b){const ids=terrainIds(l);return ids.length>0&&new Set(ids).size===ids.length&&ids.every(id=>typeof id==='string'&&b.terrain?.some(t=>t.id===id&&!t.broken));}
 function covered(t,b){const q=config(b);return !!(q&&q.coveredTerrainIds.includes(t.id)&&!t.honroElementCollision&&(b.honroLandmarks||[]).some(l=>native(l,b)&&l.nativeArtLayer==='body'&&bodyLive(l,b)&&terrainIds(l).includes(t.id)&&(l.opacity??1)===1));}
+// Only a resolved moving return ferry replaces its collision deck's paint.
+function movingDeckCovered(t,b){const id=b?.honroMap?.vectorReturnBoatAssetId;return !!(config(b)&&b.honroAct4Preview===40&&b.honroAct4Design?.geometry40&&t?.id==='a4-return-deck'&&t.honroAct4MovingDeck===true&&(b.honroAct4PreviewDynamic||[]).some(l=>l.asset?.id==='a4:boat'&&(l.opacity??1)===1)&&typeof id==='string'&&G.HONRO_PROJECT?.library?.some(a=>a.id===id&&a.vector&&!a.collision?.length));}
 // Composer-side fail-fast contract; runtime still retains fallback if a BODY
 // asset is absent in an older/incomplete saved battle.
 function validateStage(stage,library){
@@ -23,7 +25,7 @@ function validateStage(stage,library){
 }
 const S=G.HonroScene?.prototype;
 if(S){
- const terrain=S.terrain;S.terrain=function(c,t,...args){if(covered(t,this.battle))return;return terrain.call(this,c,t,...args);};
+ const terrain=S.terrain;S.terrain=function(c,t,...args){if(covered(t,this.battle)||movingDeckCovered(t,this.battle))return;return terrain.call(this,c,t,...args);};
  const foreground=S._isForeground;S._isForeground=function(l){return native(l,this.battle)?l.nativeArtLayer==='front':foreground.call(this,l);};
  const landmark=S.landmark;S.landmark=function(c,l,...args){
   const b=this.battle;
@@ -49,5 +51,5 @@ if(S){
  const tone=S.environmentTone;S.environmentTone=function(c,w,h,b,...args){if(config(b)?.preservePalette===true)return;return tone?.call(this,c,w,h,b,...args);};
  const cacheKey=S._worldCacheKey;S._worldCacheKey=function(b,...args){const q=config(b);return cacheKey.call(this,b,...args)+(q?':native-art-1:'+JSON.stringify(q):'');};
 }
-G.HonroAct4PilotArt={layers,config,native,covered,validateStage};
+G.HonroAct4PilotArt={layers,config,native,covered,movingDeckCovered,validateStage};
 })(globalThis);
