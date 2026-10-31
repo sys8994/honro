@@ -1,0 +1,5 @@
+# Stage 39 live-control checkpoint
+
+Run 1 and run 2 are distinct fresh starts from the same explicitly declared official Stage 39 entry fixture; neither represents a real playthrough of chapters 1–38. They use candidate `0bb8dd43bf33af941c88800c4e7e13bbf2c7d3dd924444c035c997daad8f5dcb` and runtime `d4bf5415e34d07f0951aaf92faca5182d68fb168`. Headless Chromium drives real keyboard inputs. Run 2's saved browser profile is the actual game-generated automatic save, not an authored battle-state edit.
+
+The run-1 controller stopped after repeated ineffective inputs. Run 2 showed the same symptom. Inspection found the active hero in the normal post-shot retreat (`이탈보`) state, where another shot and hero selection are unavailable. This was a controller mistake, not evidence of a game softlock. Run 2 was subsequently resumed through the actual Continue UI, and F ended the retreat. The saved `browser-storage.json` is the exact run-2 checkpoint before that resume; the continuation is a separate event log. Do not use this checkpoint to claim a clear or verified warning.
