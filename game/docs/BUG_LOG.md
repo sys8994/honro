@@ -5127,3 +5127,7 @@ commonReviewRevision의 첫 혼령 대기열은 생성 후 소단/sceneTarget가
 ### 2026-10-31 — Act 4 pilot combat dependency
 
 The clean runtime omitted the opt-in pilot combat module used by tagged Act 4 candidates. Reconnected the unchanged reviewed module, its v2 reference, and the explicit one-round activation option; fresh tagged maps now fail preflight when required pieces are absent. Published untagged data are unchanged. Focused tests and remaining browser/play limits are recorded in [ACT4_PILOT_COMBAT_DEPENDENCY.md](integration/ACT4_PILOT_COMBAT_DEPENDENCY.md).
+
+### 2026-10-31 — title direct handoff
+
+Title `여정 이어가기` could choose an older hub before honoring a saved direct chapter handoff. Route matching pending handoffs through the existing direct continuation; keep suspended battles and explicit hub requests unchanged. Model and actual browser proof, including fixture and pre-existing broad-suite limits, are in [ACT4_PENDING_DIRECT_TITLE.md](integration/ACT4_PENDING_DIRECT_TITLE.md).
