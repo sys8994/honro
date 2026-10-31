@@ -1,0 +1,283 @@
+{
+  "scope": "Actual Chromium custom-map QA with 1-38 fixture-cleared profile; shot warning/actor state and overlapping injured resident are controlled fixtures. No normal mission or warning visibility claim.",
+  "candidateSha256": "0bb8dd43bf33af941c88800c4e7e13bbf2c7d3dd924444c035c997daad8f5dcb",
+  "rows": [
+    {
+      "viewport": [
+        1440,
+        900
+      ],
+      "dpr": 1,
+      "errors": [
+        {
+          "type": "console",
+          "text": "Failed to load resource: the server responded with a status of 404 (File not found)",
+          "location": {
+            "url": "http://127.0.0.1:39471/favicon.ico",
+            "line": 0,
+            "column": 0,
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "type": "console",
+          "text": "Failed to load resource: the server responded with a status of 404 (File not found)",
+          "location": {
+            "url": "http://127.0.0.1:39471/favicon.ico",
+            "line": 0,
+            "column": 0,
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        }
+      ],
+      "entry": {
+        "stage": 39,
+        "units": 35,
+        "dialogue": true,
+        "sha": "1ba81aae5bebeebd46cc094be2519797d67ef49a887d7aade45cb61b39878fff",
+        "schema": []
+      },
+      "woodHover": "a4-wreck",
+      "woodCard": {
+        "hidden": false,
+        "id": "a4-wreck",
+        "text": "적군 · 우두머리\n폐선 · Lv. 25\n7800 / 7800\n피해 반응\n100% = 보통 피해\n형\n82%\n기\n108%\n혼\n120%\n\n장승못과 터줏바람\n\n주요 기예 · 장승못 / 터줏바람",
+        "rect": {
+          "x": 750,
+          "y": 384.59375,
+          "w": 290,
+          "h": 238.125
+        },
+        "inspect": "a4-wreck"
+      },
+      "escapeClosed": true,
+      "injuredPick": {
+        "id": "a4-rescue-0",
+        "hidden": false,
+        "hp": 1440,
+        "maxHp": 1450,
+        "fixture": "resident moved onto wood and injured; restored immediately"
+      },
+      "heroCard": {
+        "id": "archer",
+        "hidden": false,
+        "text": "동행\n설오 · 경지 25\n1085 / 1085\n경험치 · 0%\n0 / 25,837 XP\n동행 공통 20% · 피해·유효 지원·목표 기여 80%\n피해 반응\n100% = 보통 피해\n형\n100%\n기\n100%\n혼\n88%\n\n함께 적을 상대하는 동행입니다.\n\n주요 기예 · 평사\n적용 중인 상태가 없습니다.\n\n이동·발사 가능"
+      },
+      "tabFocus": "BUTTON",
+      "spaceNoShot": true,
+      "heroEscapeClosed": true,
+      "mobileMin": {
+        "scale": 0.21176470588235294,
+        "barWorldWidth": 116,
+        "barCssWidth": 72,
+        "barCssHeight": 5,
+        "nameCssFont": 12,
+        "canvas": {
+          "w": 1440,
+          "h": 769,
+          "cssW": 1440,
+          "cssH": 769
+        },
+        "bar": {
+          "x": 3535,
+          "y": 2340
+        }
+      },
+      "fire": {
+        "actionMs": 6.399999998509884,
+        "origin": {
+          "x": 3780.4884525059674,
+          "y": 2427.901388849326
+        },
+        "launch": {
+          "id": "right-planks",
+          "surface": {
+            "x": 3775.45455,
+            "y": 2424.54545
+          },
+          "origin": {
+            "x": 3780.4884525059674,
+            "y": 2427.901388849326
+          },
+          "seconds": 1.8,
+          "legacyOrigin": {
+            "x": 2941.0601402178295,
+            "y": 1725.4262427599083
+          },
+          "target": {
+            "x": 4500,
+            "y": 2900,
+            "id": "qa"
+          }
+        },
+        "blast": 75,
+        "velocity": {
+          "x": 399.72863749668477,
+          "y": -25.722993805181066
+        },
+        "history": [
+          {
+            "target": "qa",
+            "x": 4500,
+            "y": 2900,
+            "dueRound": 5,
+            "warningSeen": true,
+            "shot": 1
+          }
+        ],
+        "scope": "controlled warningSeen/round/active fixture; real enemyAction/fire"
+      },
+      "damage": {
+        "fired": true,
+        "before": 7800,
+        "after": 7643,
+        "steps": 63,
+        "contacts": [
+          {
+            "unit": "a4-wreck",
+            "terrain": null,
+            "x": 3809.988912792312,
+            "y": 2391.136077531778
+          }
+        ],
+        "pending": 0,
+        "scope": "archer moved to controlled supported-shot pose; real Engine fire and impacts"
+      }
+    },
+    {
+      "viewport": [
+        390,
+        844
+      ],
+      "dpr": 3,
+      "errors": [
+        {
+          "type": "console",
+          "text": "Failed to load resource: the server responded with a status of 404 (File not found)",
+          "location": {
+            "url": "http://127.0.0.1:39471/favicon.ico",
+            "line": 0,
+            "column": 0,
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        }
+      ],
+      "entry": {
+        "stage": 39,
+        "units": 35,
+        "dialogue": true,
+        "sha": "1ba81aae5bebeebd46cc094be2519797d67ef49a887d7aade45cb61b39878fff",
+        "schema": []
+      },
+      "woodHover": "a4-wreck",
+      "woodCard": {
+        "hidden": false,
+        "id": "a4-wreck",
+        "text": "적군 · 우두머리\n폐선 · Lv. 25\n7800 / 7800\n피해 반응\n100% = 보통 피해\n형\n82%\n기\n108%\n혼\n120%\n\n장승못과 터줏바람\n\n주요 기예 · 장승못 / 터줏바람",
+        "rect": {
+          "x": 35,
+          "y": 411.484375,
+          "w": 320,
+          "h": 226.125
+        },
+        "inspect": "a4-wreck"
+      },
+      "escapeClosed": true,
+      "injuredPick": {
+        "id": "a4-rescue-0",
+        "hidden": false,
+        "hp": 1440,
+        "maxHp": 1450,
+        "fixture": "resident moved onto wood and injured; restored immediately"
+      },
+      "heroCard": {
+        "id": "archer",
+        "hidden": false,
+        "text": "동행\n설오 · 경지 25\n1085 / 1085\n경험치 · 0%\n0 / 25,837 XP\n동행 공통 20% · 피해·유효 지원·목표 기여 80%\n피해 반응\n100% = 보통 피해\n형\n100%\n기\n100%\n혼\n88%\n\n함께 적을 상대하는 동행입니다.\n\n주요 기예 · 평사\n적용 중인 상태가 없습니다.\n\n이동·발사 가능"
+      },
+      "tabFocus": "BUTTON",
+      "spaceNoShot": true,
+      "heroEscapeClosed": true,
+      "mobileMin": {
+        "scale": 0.057352941176470586,
+        "barWorldWidth": 116,
+        "barCssWidth": 72,
+        "barCssHeight": 5,
+        "nameCssFont": 12,
+        "canvas": {
+          "w": 1170,
+          "h": 1943,
+          "cssW": 390,
+          "cssH": 648
+        },
+        "bar": {
+          "x": 3535,
+          "y": 2340
+        }
+      },
+      "fire": {
+        "actionMs": 6.400000002235174,
+        "origin": {
+          "x": 3780.4884525059674,
+          "y": 2427.901388849326
+        },
+        "launch": {
+          "id": "right-planks",
+          "surface": {
+            "x": 3775.45455,
+            "y": 2424.54545
+          },
+          "origin": {
+            "x": 3780.4884525059674,
+            "y": 2427.901388849326
+          },
+          "seconds": 1.8,
+          "legacyOrigin": {
+            "x": 2941.0601402178295,
+            "y": 1725.4262427599083
+          },
+          "target": {
+            "x": 4500,
+            "y": 2900,
+            "id": "qa"
+          }
+        },
+        "blast": 75,
+        "velocity": {
+          "x": 399.72863749668477,
+          "y": -25.722993805181066
+        },
+        "history": [
+          {
+            "target": "qa",
+            "x": 4500,
+            "y": 2900,
+            "dueRound": 5,
+            "warningSeen": true,
+            "shot": 1
+          }
+        ],
+        "scope": "controlled warningSeen/round/active fixture; real enemyAction/fire"
+      },
+      "damage": {
+        "fired": true,
+        "before": 7800,
+        "after": 7643,
+        "steps": 63,
+        "contacts": [
+          {
+            "unit": "a4-wreck",
+            "terrain": null,
+            "x": 3809.988912792312,
+            "y": 2391.136077531778
+          }
+        ],
+        "pending": 0,
+        "scope": "archer moved to controlled supported-shot pose; real Engine fire and impacts"
+      }
+    }
+  ]
+}
