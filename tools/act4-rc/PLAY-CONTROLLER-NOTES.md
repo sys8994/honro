@@ -1,0 +1,8 @@
+# Normal-play controller notes
+
+A controller must send the actual UI's movement, jump, drop, skill, fire, interaction and dialogue inputs. Observation is read-only; it must not mutate live actor positions, HP, enemies, receipts or clear state. Declare the prepared campaign growth, equipment and clear fixture separately from earned campaign play.
+
+- Before committing an attack, use the actor's available movement to reach a supported position with a visible route and useful line of fire. Advance the entire party on its opportunities; avoid leaving three heroes at the entry while the knight alone fights ahead. Avoid firing through allies, and use varied available skills against visible threats.
+- A fixed observation count is a diagnostic watchdog, never a reason to end a mission. Log no-progress symptoms and preserve the same browser context and battle while adjusting ordinary inputs when possible. Record actual failures and policy changes; a resumed diagnostic continuation is not a new independent attempt.
+- Preserve round, casualties, enemy counts, actual damage, movements including jumps/drops, actions, events, dialogue and elapsed play versus debugging wait. Distinguish a controller error from difficulty. Seek completion within 20 turns without pixel-critical or hidden-information-dependent play.
+- After combat, use normal interactions and follow the actual event, dialogue and party route through completion, saving and same-context reload/continue. Observe mandatory and meaningful optional presentation, not just the completion predicate. Apply the same principles to stage 37's signal and group assembly.
