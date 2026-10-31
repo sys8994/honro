@@ -8,3 +8,9 @@ assert [x['stage'] for x in index['candidates']]==list(range(31,41)) and index['
 for x in index['candidates']:
  m=json.loads((ROOT/f"tools/act4-rc/stage{x['stage']}.manifest.json").read_text());encoded=subprocess.check_output(['git','show',f"{COMMIT}:{x['payload']}"],cwd=ROOT);encoded=b''.join(encoded.split());assert m.get('base64Chars',len(encoded))==len(encoded)
  compressed=base64.b64decode(encoded,validate=True);assert len(compressed)==m['xzBytes'] and sha(compressed)==m['xzSha256'];raw=lzma.decompress(compressed);assert len(raw)==m['rawBytes'] and sha(raw)==m['rawSha256']==x['rawSha256'];doc=json.loads(raw);assert len(doc['stages'])==1 and doc['stages'][0]['metadata']['stageId']==x['stage'];(out/f"stage{x['stage']}.json").write_bytes(raw);print(x['stage'],len(compressed),sha(compressed),len(raw),sha(raw),flush=True)
+
+# Preserve the earlier 33 QA art for exactly matching compact-save references.
+legacy_commit='a5c521b384ef9086194cfaafcf36291f06e05569'
+legacy_payload='art/act4-sharp-candidates/stage33-envfix-valid.candidate.json.xz.b64'
+legacy_manifest='art/act4-sharp-candidates/stage33-envfix-valid.manifest.json'
+m=json.loads(subprocess.check_output(['git','show',f'{legacy_commit}:{legacy_manifest}'],cwd=ROOT));encoded=b''.join(subprocess.check_output(['git','show',f'{legacy_commit}:{legacy_payload}'],cwd=ROOT).split());assert m.get('base64Chars',len(encoded))==len(encoded);compressed=base64.b64decode(encoded,validate=True);assert len(compressed)==m['xzBytes'] and sha(compressed)==m['xzSha256'];raw=lzma.decompress(compressed);assert len(raw)==m['rawBytes'] and sha(raw)==m['rawSha256']=='dec192b634d200adb179a4e24d7f8f0bba863579c67b233410c8649c9eb6b0dd';(out/'stage33-legacy.json').write_bytes(raw);print('33 legacy',len(compressed),sha(compressed),len(raw),sha(raw),flush=True)

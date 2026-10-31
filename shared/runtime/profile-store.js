@@ -23,13 +23,20 @@ const C=G.HONRO_CORE,ROSTER=['archer','mage','knight','occultist'],KEY='honro-fi
 // Only official Act4 snapshots reference immutable, already-shipped artwork.
 // Physics, mutable actor/event state and modified/custom assets remain inline.
 function assetSignature(text){let h=2166136261;for(let i=0;i<text.length;i++){h^=text.charCodeAt(i);h=Math.imul(h,16777619);}return text.length+':'+(h>>>0).toString(16);}
+// Exact archived 33 QA art; never apply to custom or arbitrary signatures.
+const ACT4_33_LEGACY=Object.freeze({'approved33:near-west':'446435:980e0bba','approved33:body':'2183752:7b7b6e'});
+function legacy33Art(b,id,signature,library){
+ if(!b||b.honroCustom||b.mode!=='campaign'||b.honroAct4Official!==1||b.honroStage!==33||typeof signature!=='string'||ACT4_33_LEGACY[id]!==signature)return null;
+ const archived=library.get('act4compat33:v1:'+id);if(!archived?.vector||archived.collision?.length||archived.interactionType)return null;
+ const asset={...archived,id},text=JSON.stringify(asset);if(assetSignature(text)!==signature)return null;return{asset,text,signature};
+}
 function compactBattleArt(b){
  if(!b||b.honroCustom||b.mode!=='campaign'||b.honroAct4Official!==1||b.honroStage<31||b.honroStage>40)return b;
  const library=new Map((G.HONRO_PROJECT?.library||[]).map(a=>[a.id,a])),texts=new Map();let changed=false;const out={...b};
  const compactItems=items=>items.map(item=>{
   const asset=item.asset,source=asset?.vector&&library.get(asset.id);if(!source)return item;
   let row=texts.get(asset.id);if(!row){const text=JSON.stringify(source);row={text,signature:assetSignature(text)};texts.set(asset.id,row);}
-  if(JSON.stringify(asset)!==row.text)return item;
+  const assetText=JSON.stringify(asset);if(assetText!==row.text){const legacy=legacy33Art(b,asset.id,ACT4_33_LEGACY[asset.id],library);if(!legacy||assetText!==legacy.text)return item;row=legacy;}
   changed=true;return{...item,asset:{honroStaticAssetRef:1,id:asset.id,signature:row.signature}};
  });
  for(const key of ['honroLandmarks','honroElements'])if(Array.isArray(b[key]))out[key]=compactItems(b[key]);
@@ -41,9 +48,9 @@ function restoreBattleArt(b){
  for(const items of [b?.honroLandmarks,b?.honroElements,b?.honroEnvironment?.placements])for(const item of items||[]){
   const ref=item.asset;if(!ref||ref.honroStaticAssetRef===undefined)continue;
   if(ref.honroStaticAssetRef!==1||typeof ref.id!=='string'||typeof ref.signature!=='string')return false;
-  const source=library.get(ref.id);if(!source)return false;
+  let source=library.get(ref.id);if(!source)return false;
   if(!signatures.has(ref.id))signatures.set(ref.id,assetSignature(JSON.stringify(source)));
-  if(signatures.get(ref.id)!==ref.signature)return false;
+  if(signatures.get(ref.id)!==ref.signature){const legacy=legacy33Art(b,ref.id,ref.signature,library);if(!legacy)return false;source=legacy.asset;}
   replacements.push([item,source]);
  }
  // Resolve only after campaign lazy loading and revision checks, atomically.

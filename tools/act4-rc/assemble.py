@@ -20,6 +20,14 @@ for row in index['candidates']:
   if aid in canonical and digest(canonical[aid])!=digest(a):raise ValueError(f'Conflict with 1–30 canonical asset {aid} in stage {n}')
   assets.setdefault(aid,a)
  i=next(i for i,x in enumerate(world['stages']) if x['metadata']['stageId']==n);world['stages'][i]=s;stages.append({'stage':n,'inputSha256':row['rawSha256'],'assembledStageSemanticSha256':digest(s)})
+# Retain exact previous art under private aliases for official 33 saves.
+# These are asset providers, not placed geometry or new collision.
+legacy_raw=(out/'candidates/stage33-legacy.json').read_bytes();assert hashlib.sha256(legacy_raw).hexdigest()=='dec192b634d200adb179a4e24d7f8f0bba863579c67b233410c8649c9eb6b0dd'
+legacy=json.loads(legacy_raw);old_assets={a['id']:a for a in legacy['library']};stage33=world['stages'][2];compat=[];compat_report=[]
+for ident in ('approved33:near-west','approved33:body'):
+ original=old_assets[ident];a=copy.deepcopy(original);assert a.get('vector') and not a.get('collision') and not a.get('interactionType');a['id']='act4compat33:v1:'+ident;assert a['id'] not in assets and a['id'] not in canonical;assets[a['id']]=a;compat.append(a['id']);compat_report.append({'original':ident,'alias':a['id'],'originalAssetSha256':digest(original),'aliasAssetSha256':digest(a)})
+assert 'compatibilityAssetIds' not in stage33['design'];stage33['design']['compatibilityAssetIds']=compat
+stages[2]['assembledStageSemanticSha256']=digest(stage33)
 world['library']=list(assets.values());known=set(assets)|set(canonical)
 for s in world['stages']:
  for e in [*s.get('elements',[]),*s.get('environment',{}).get('placements',[])]:
@@ -33,4 +41,4 @@ for s in world['stages']:
  stages[s['metadata']['stageId']-31]['reachableAssetIds']=sorted(reachable)
 assert 'act4rc:stage36-door' in stages[5]['reachableAssetIds']
 ferry=world['stages'][9]['design'].get('vectorReturnBoatAssetId');assert ferry and ferry in stages[9]['reachableAssetIds'],f'Missing stage40 dynamic ferry {ferry}'
-raw=json.dumps(world,ensure_ascii=False,separators=(',',':')).encode();(out/'world.json').write_bytes(raw);report={'kind':'QA-only assembly; no release acceptance','worldSha256':hashlib.sha256(raw).hexdigest(),'bytes':len(raw),'stages':stages,'aliases':aliases,'dynamicFerry':ferry,'libraryCount':len(assets)};(out/'assembly.json').write_text(json.dumps(report,ensure_ascii=False,indent=2)+'\n');print(json.dumps({'worldSha256':report['worldSha256'],'bytes':len(raw),'assets':len(assets),'aliases':aliases,'dynamicFerry':ferry},ensure_ascii=False))
+raw=json.dumps(world,ensure_ascii=False,separators=(',',':')).encode();(out/'world.json').write_bytes(raw);report={'kind':'QA-only assembly; no release acceptance','worldSha256':hashlib.sha256(raw).hexdigest(),'bytes':len(raw),'stages':stages,'aliases':aliases,'compatibilityAssets':compat_report,'dynamicFerry':ferry,'libraryCount':len(assets)};(out/'assembly.json').write_text(json.dumps(report,ensure_ascii=False,indent=2)+'\n');print(json.dumps({'worldSha256':report['worldSha256'],'bytes':len(raw),'assets':len(assets),'aliases':aliases,'dynamicFerry':ferry},ensure_ascii=False))
