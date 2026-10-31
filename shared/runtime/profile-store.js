@@ -23,6 +23,28 @@ const C=G.HONRO_CORE,ROSTER=['archer','mage','knight','occultist'],KEY='honro-fi
 // Only official Act4 snapshots reference immutable, already-shipped artwork.
 // Physics, mutable actor/event state and modified/custom assets remain inline.
 function assetSignature(text){let h=2166136261;for(let i=0;i<text.length;i++){h^=text.charCodeAt(i);h=Math.imul(h,16777619);}return text.length+':'+(h>>>0).toString(16);}
+// Cache only the deterministic hash, never asset validation: every save still
+// serializes the current provider and battle art and compares their full serialized text.
+// A provider mutation therefore invalidates this entry before it can be reused.
+// Keep at most 9 million UTF-16 code units and prefer the largest source texts.
+const PROVIDER_HASH_CACHE_LIMIT=9000000,providerHashCache=new Map();let providerHashChars=0;
+function providerSignature(key,text){
+ const previous=typeof key==='string'?providerHashCache.get(key):null;
+ if(previous&&previous.text===text)return previous.signature;
+ if(previous){providerHashCache.delete(key);providerHashChars-=previous.size;}
+ return assetSignature(text);
+}
+// Only publish after a live placement has matched this provider exactly.
+function rememberProviderSignature(key,text,signature){
+ if(typeof key!=='string'||providerHashCache.has(key)||typeof text!=='string')return;
+ const size=key.length+text.length;if(size>PROVIDER_HASH_CACHE_LIMIT)return;
+ while(providerHashChars+size>PROVIDER_HASH_CACHE_LIMIT){
+  let smallest=null;for(const entry of providerHashCache)if(!smallest||entry[1].size<smallest[1].size)smallest=entry;
+  if(!smallest||smallest[1].size>=size)return;
+  providerHashCache.delete(smallest[0]);providerHashChars-=smallest[1].size;
+ }
+ providerHashCache.set(key,{text,signature,size});providerHashChars+=size;
+}
 // Exact archived 33 QA art; never apply to custom or arbitrary signatures.
 const ACT4_33_LEGACY=Object.freeze({'approved33:near-west':'446435:980e0bba','approved33:body':'2183752:7b7b6e'});
 function legacy33Art(b,id,signature,library){
@@ -49,8 +71,8 @@ function compactBattleArt(b){
  const library=new Map((G.HONRO_PROJECT?.library||[]).map(a=>[a.id,a])),texts=new Map();let changed=false;const out={...b};
  const compactItems=items=>items.map(item=>{
   const asset=item.asset,source=asset?.vector&&library.get(asset.id);if(!source)return item;
-  let row=texts.get(asset.id);if(!row){const text=JSON.stringify(source);row={text,signature:assetSignature(text)};texts.set(asset.id,row);}
-  const assetText=JSON.stringify(asset);if(assetText!==row.text){const legacy=legacy33Art(b,asset.id,ACT4_33_LEGACY[asset.id],library);if(!legacy||assetText!==legacy.text)return item;row=legacy;}
+  const key=asset.id;let row=texts.get(key);if(!row){const text=JSON.stringify(source);row={text,signature:providerSignature(key,text)};texts.set(asset.id,row);}
+  const assetText=JSON.stringify(asset);if(assetText!==row.text){const legacy=legacy33Art(b,asset.id,ACT4_33_LEGACY[asset.id],library);if(!legacy||assetText!==legacy.text)return item;row=legacy;}else rememberProviderSignature(key,row.text,row.signature);
   changed=true;return{...item,asset:{honroStaticAssetRef:1,id:asset.id,signature:row.signature}};
  });
  for(const key of ['honroLandmarks','honroElements'])if(Array.isArray(b[key]))out[key]=compactItems(b[key]);
