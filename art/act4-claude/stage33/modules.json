@@ -22,20 +22,7 @@
    6204,
    4660
   ],
-  "paths": 7,
-  "terrain": null
- },
- {
-  "name": "struct-x8",
-  "layer": "STRUCT",
-  "module": "x8",
-  "bounds": [
-   4520,
-   2517,
-   6194,
-   3037
-  ],
-  "paths": 1,
+  "paths": 8,
   "terrain": null
  },
  {
@@ -56,10 +43,10 @@
   "layer": "STRUCT",
   "module": "x5",
   "bounds": [
-   775,
-   4320,
-   6603,
-   4461
+   815,
+   4274,
+   6631,
+   4541
   ],
   "paths": 1,
   "terrain": null
@@ -100,7 +87,7 @@
    8504,
    6704
   ],
-  "paths": 10,
+  "paths": 8,
   "terrain": "pilot33-flats"
  },
  {
@@ -113,7 +100,7 @@
    3714,
    4604
   ],
-  "paths": 7,
+  "paths": 8,
   "terrain": "pilot33-island"
  },
  {
@@ -126,7 +113,7 @@
    1334,
    4504
   ],
-  "paths": 5,
+  "paths": 6,
   "terrain": "pilot33-rock-w"
  },
  {
@@ -139,7 +126,7 @@
    5574,
    4484
   ],
-  "paths": 7,
+  "paths": 6,
   "terrain": "pilot33-rock-e"
  },
  {
@@ -191,7 +178,7 @@
    6904,
    4414
   ],
-  "paths": 10,
+  "paths": 11,
   "terrain": "pilot33-east-rock"
  },
  {
@@ -477,20 +464,7 @@
    6532,
    4673
   ],
-  "paths": 5,
-  "terrain": null
- },
- {
-  "name": "fore-x7",
-  "layer": "FORE",
-  "module": "x7",
-  "bounds": [
-   4761,
-   4567,
-   4829,
-   4652
-  ],
-  "paths": 1,
+  "paths": 4,
   "terrain": null
  },
  {
@@ -499,9 +473,22 @@
   "module": "x5",
   "bounds": [
    1132,
-   4354,
-   6514,
-   4580
+   4353,
+   4833,
+   4663
+  ],
+  "paths": 2,
+  "terrain": null
+ },
+ {
+  "name": "fore-x7",
+  "layer": "FORE",
+  "module": "x7",
+  "bounds": [
+   4573,
+   4544,
+   4778,
+   4663
   ],
   "paths": 1,
   "terrain": null

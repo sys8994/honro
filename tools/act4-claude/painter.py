@@ -311,15 +311,16 @@ class Painter:
         from shapely.geometry import MultiPoint, box
         if g.is_empty or g.area < 3000:
             return
-        rng = random.Random(seed * 13 + 3)
         minx, miny, maxx, maxy = g.bounds
-        pts, y = [], miny - cell
-        while y < maxy + cell:
-            x = minx - cell
-            while x < maxx + cell:
-                pts.append((x + rng.uniform(-.42, .42) * cell, y + rng.uniform(-.42, .42) * cell * 1.25))
-                x += cell
-            y += cell * 1.25
+        # world-anchored jittered grid: neighbouring solids share the same cells
+        # (no seams); jitter and shading are hashed from the grid index
+        cy_ = cell * 1.25
+        pts = []
+        for j in range(int(math.floor(miny / cy_)) - 2, int(math.ceil(maxy / cy_)) + 3):
+            for i in range(int(math.floor(minx / cell)) - 2, int(math.ceil(maxx / cell)) + 3):
+                r_ = random.Random(i * 92821 + j * 68917 + self.n * 7 + int(cell))
+                pts.append((i * cell + r_.uniform(-.42, .42) * cell, j * cy_ + r_.uniform(-.42, .42) * cy_))
+        rng = random.Random(seed * 13 + 3)
         cells = voronoi_diagram(MultiPoint(pts), envelope=box(minx - 3 * cell, miny - 3 * cell, maxx + 3 * cell, maxy + 3 * cell))
         groups = {}
         G = lambda i, yy: groups.setdefault(self.hz(tones[max(0, min(len(tones) - 1, i))], yy), [])
@@ -328,6 +329,7 @@ class Painter:
             if c2.is_empty or c2.area < 400:
                 continue
             cx, cy = c.centroid.x, c.centroid.y
+            rng = random.Random(int(cx) * 31 + int(cy) * 17 + self.n)
             # local depth below the top surface of the mass at this x
             col = g.intersection(LineString([(cx, miny - 10), (cx, maxy + 10)]))
             top = col.bounds[1] if not col.is_empty else miny
@@ -337,15 +339,15 @@ class Painter:
             f = (cy - top) / max(1, bot - top)
             base = 3 - int(f * 3.2 + rng.random() * .9)          # 3 near top .. 0 underside
             dep = cy - top                                         # deep ground recedes into shadow
-            deep = dep > 650
-            if dep > 1300:
+            deep = dep > 650 or cy > self.H - 250
+            if dep > 1300 or cy > self.H - 250:
                 base = 0
             elif deep:
                 base = min(base, 1)
             k = rng.uniform(-.5, .9)
             d = cell * 2
             lit = Polygon([(cx - d, cy - d), (cx + d, cy - d - k * d), (cx + d, cy + rng.uniform(-.3, .2) * cell - k * d * .2), (cx - d, cy + rng.uniform(.0, .4) * cell)]).buffer(0)
-            G(base + (0 if deep and base == 0 and dep > 1300 else 1), cy).append(c2.intersection(lit))
+            G(base + (0 if deep and base == 0 and (dep > 1300 or cy > self.H - 250) else 1), cy).append(c2.intersection(lit))
             G(base, cy).append(c2.difference(lit))
         if rim:
             self.add(layer, shapely_d(g), self.hz('#0f1c36', (miny + maxy) / 2))
@@ -705,7 +707,7 @@ class Painter:
             elif self.crag:
                 s['band'] = (24, 48)
                 self._hz_y = None
-                self.rock_mass('BODY', s['poly'], len(s['id']) * 7, cell=360, rim=not s.get('carved'), walk=s['walk'])
+                self.rock_mass('BODY', s['poly'], len(s['id']) * 7, cell=360, rim=not (s.get('carved') or s.get('path') or s.get('sand')), walk=s['walk'])
                 for x0, x1, depth, tones, mortar in s.get('mason', ()):   # dressed embankment (석축) under the walk
                     xs = [x0 + (x1 - x0) * i / 30 for i in range(31)]
                     W_ = s['walk']

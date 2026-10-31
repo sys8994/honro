@@ -22,20 +22,20 @@
    7657,
    4464
   ],
-  "paths": 4,
+  "paths": 3,
   "terrain": null
  },
  {
-  "name": "struct-x10",
+  "name": "struct-x8",
   "layer": "STRUCT",
-  "module": "x10",
+  "module": "x8",
   "bounds": [
-   6172,
+   4480,
    4015,
-   7964,
-   6004
+   7646,
+   4456
   ],
-  "paths": 4,
+  "paths": 6,
   "terrain": null
  },
  {
@@ -52,19 +52,6 @@
   "terrain": null
  },
  {
-  "name": "struct-x8",
-  "layer": "STRUCT",
-  "module": "x8",
-  "bounds": [
-   4564,
-   4057,
-   7646,
-   4456
-  ],
-  "paths": 4,
-  "terrain": null
- },
- {
   "name": "struct-x4",
   "layer": "STRUCT",
   "module": "x4",
@@ -75,6 +62,19 @@
    4918
   ],
   "paths": 8,
+  "terrain": null
+ },
+ {
+  "name": "struct-x10",
+  "layer": "STRUCT",
+  "module": "x10",
+  "bounds": [
+   7682,
+   4136,
+   7964,
+   6004
+  ],
+  "paths": 3,
   "terrain": null
  },
  {
@@ -139,7 +139,7 @@
    1014,
    3046
   ],
-  "paths": 9,
+  "paths": 10,
   "terrain": "pilot39-a-crag"
  },
  {
@@ -152,7 +152,7 @@
    8604,
    7504
   ],
-  "paths": 10,
+  "paths": 8,
   "terrain": "pilot39-basin"
  },
  {
@@ -165,7 +165,7 @@
    3174,
    5474
   ],
-  "paths": 4,
+  "paths": 6,
   "terrain": "pilot39-basin-rock-1"
  },
  {
@@ -178,7 +178,7 @@
    3534,
    5434
   ],
-  "paths": 4,
+  "paths": 6,
   "terrain": "pilot39-basin-rock-2"
  },
  {
@@ -191,7 +191,7 @@
    2104,
    3658
   ],
-  "paths": 8,
+  "paths": 7,
   "terrain": "pilot39-ramp-1"
  },
  {
@@ -204,7 +204,7 @@
    2324,
    4376
   ],
-  "paths": 8,
+  "paths": 7,
   "terrain": "pilot39-ramp-2"
  },
  {
@@ -217,7 +217,7 @@
    2054,
    4976
   ],
-  "paths": 9,
+  "paths": 8,
   "terrain": "pilot39-ramp-3"
  },
  {
@@ -230,7 +230,7 @@
    8284,
    4344
   ],
-  "paths": 7,
+  "paths": 9,
   "terrain": "pilot39-ledge-rock"
  },
  {
@@ -243,7 +243,7 @@
    2874,
    3246
   ],
-  "paths": 8,
+  "paths": 9,
   "terrain": "pilot39-mid-knob"
  },
  {
@@ -256,7 +256,7 @@
    3604,
    3784
   ],
-  "paths": 10,
+  "paths": 11,
   "terrain": "pilot39-mid-rock"
  },
  {
@@ -269,7 +269,7 @@
    7706,
    6004
   ],
-  "paths": 13,
+  "paths": 12,
   "terrain": "pilot39-lane"
  },
  {
@@ -282,7 +282,7 @@
    7534,
    4164
   ],
-  "paths": 11,
+  "paths": 9,
   "terrain": "pilot39-b-crag"
  },
  {
@@ -464,20 +464,7 @@
    4380,
    5499
   ],
-  "paths": 4,
-  "terrain": null
- },
- {
-  "name": "fore-x4",
-  "layer": "FORE",
-  "module": "x4",
-  "bounds": [
-   1633,
-   4862,
-   2981,
-   5489
-  ],
-  "paths": 2,
+  "paths": 5,
   "terrain": null
  },
  {
@@ -485,12 +472,12 @@
   "layer": "FORE",
   "module": "x6",
   "bounds": [
-   2812,
-   4921,
+   2873,
+   4893,
    4365,
-   5457
+   5436
   ],
-  "paths": 1,
+  "paths": 2,
   "terrain": null
  }
 ]

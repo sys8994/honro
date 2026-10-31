@@ -289,5 +289,56 @@
     "stone-terraces"
    ]
   }
+ },
+ "36": {
+  "type": "horizontal",
+  "W": 6800,
+  "H": 3200,
+  "Wr": [
+   6200,
+   7000
+  ],
+  "Hr": [
+   2900,
+   3400
+  ],
+  "aspect": [
+   1.82,
+   2.41
+  ],
+  "supports": [
+   7,
+   10
+  ],
+  "bands": [
+   2,
+   3
+  ],
+  "span": [
+   450,
+   800
+  ],
+  "routes": 2,
+  "features": {
+   "폐촌 입구": [
+    "entrance"
+   ],
+   "빈 작업장": [
+    "workshop",
+    "ironless-traces"
+   ],
+   "넓고 고요한 사건 마당": [
+    "yard",
+    "quiet-yard"
+   ],
+   "짧은 측면 이동": [
+    "gallery-w",
+    "gallery-e"
+   ],
+   "외곽 이탈길": [
+    "east",
+    "exit-ledge"
+   ]
+  }
  }
 }
