@@ -1,0 +1,346 @@
+{
+  "status": "Candidate for actual Chromium re-review only; not whole-stage art, gameplay, or performance approval.",
+  "candidate": {
+    "path": "/workspace/scratch/fff510b4df37/honro-act4-local-integration/_local/reports/approved34-foundation-seam-v4/handoff-review/candidate.json",
+    "sha256": "b8c58a8eb9b0829dd9f2459c15427242e5a485f4a27f4d43949f41299b3acf07",
+    "bytes": 4706639
+  },
+  "xz": {
+    "path": "/workspace/scratch/fff510b4df37/honro-act4-local-integration/_local/reports/approved34-foundation-seam-v4/handoff-review/candidate.json.xz",
+    "sha256": "a0fa3734533ad8ed25fff0abd5c93c27bccbc1fa450977f6267f8c45f6985296",
+    "bytes": 1223100
+  },
+  "base64": {
+    "path": "/workspace/scratch/fff510b4df37/honro-act4-local-integration/_local/reports/approved34-foundation-seam-v4/handoff-review/candidate.json.xz.b64",
+    "sha256": "787eb78b32150bc6eb3c5625ab2b55b73f78e002d72317ca16ee77b492defc67",
+    "bytes": 1630801
+  },
+  "compression": "Standard XZ, base64 ASCII. Decode->XZ decompress->verify raw SHA and exact byte count before use. Local round-trip verified.",
+  "sourceCandidate": "_local/reports/approved34-foundation-seam-v4/qa/combined-review/candidate.json",
+  "stageId": 34,
+  "frozenRejectedBaseline": {
+    "sha256": "61a8d9941e7bc013b0c7f7ab3d88c118b86da8bcaded10d7fa167de2f2083e21",
+    "path": "_local/reports/approved34-foundation-seam-v3/handoff-review/candidate.json"
+  },
+  "originalSelected19c": "19c4824a013675e6b3454e2ea01487d190cbabb3aa209318b787b34889b5c7a1",
+  "bodyIdentityQualification": "Original 19c BODY differs from prior authorized baked baseline61a8. New v4 must additionally be read with its localized face-reconciliation evidence. Do not call BODY exact to19c.",
+  "assets": [
+    {
+      "path": "/workspace/scratch/fff510b4df37/honro-act4-local-integration/_local/reports/approved34-foundation-seam-v4/handoff-review/assets/approved34-body.json",
+      "sha256": "21ccdf9a5b9db7f7a326ed8fb036b29d5813d238e7b6819702bbaf2f1ce115e1",
+      "bytes": 3564376
+    },
+    {
+      "path": "/workspace/scratch/fff510b4df37/honro-act4-local-integration/_local/reports/approved34-foundation-seam-v4/handoff-review/assets/approved34-coastal-foundation.json",
+      "sha256": "4f43c8e25cdebd43222dc6c15b6a3d30ab541cab7c59ea240372314fefb78c6c",
+      "bytes": 316516
+    },
+    {
+      "path": "/workspace/scratch/fff510b4df37/honro-act4-local-integration/_local/reports/approved34-foundation-seam-v4/handoff-review/assets/approved34-deep-bedrock.json",
+      "sha256": "b0b81aeee06309de7fa11c7cc86b5ecfe3703cb48f4fd103eb9405db3e867b91",
+      "bytes": 171012
+    },
+    {
+      "path": "/workspace/scratch/fff510b4df37/honro-act4-local-integration/_local/reports/approved34-foundation-seam-v4/handoff-review/assets/approved34-lower-continuation-v2.json",
+      "sha256": "48b76ee43e9f54105860134ad482f367a5f63b8b14d0c461fc834c556f627f55",
+      "bytes": 113113
+    },
+    {
+      "path": "/workspace/scratch/fff510b4df37/honro-act4-local-integration/_local/reports/approved34-foundation-seam-v4/handoff-review/assets/approved34-lower-natural-mask-v2.json",
+      "sha256": "6462b02746cae05fefa0ff8e104c082916f52e7c59238d398aa83bda0f0be0ec",
+      "bytes": 514409
+    }
+  ],
+  "actualChromeFailedBaselineReferences": [
+    {
+      "path": "/workspace/scratch/fff510b4df37/honro-act4-local-integration/_local/reports/approved34-foundation-seam-v4/references/chrome-v3-east-b2b043e3.png",
+      "sha256": "73bb7186f1b4e3388c841403ec47d02e007ca8ae2e2faf48eca49e69913bd44d",
+      "bytes": 194333
+    },
+    {
+      "path": "/workspace/scratch/fff510b4df37/honro-act4-local-integration/_local/reports/approved34-foundation-seam-v4/references/chrome-v3-shore-b2b043e3.png",
+      "sha256": "9033806f2db9d767d40b3db209bdf3ed0cefae549db95525465deb878af705d5",
+      "bytes": 353383
+    }
+  ],
+  "actualChromeCandidateStatus": "NOT RUN locally. Cloud/browser owner must recheck exact east(6464,3550,1.65), extra up(6464,3300,1.65), west/bottom/minimum frames. Local Chromium socket restriction respected.",
+  "normalGameplayStatus": "Not rerun; exact stage-data preservation is not a gameplay or visual-footing pass.",
+  "scope": "Only local report/candidate files changed by this task; no shared renderer/runtime, canonical source, remote push, deployment or official index selection.",
+  "qaEvidenceIndex": "See README.md and qa/*.json; all evidence SHA-bound, Native and actual Chromium scopes separate.",
+  "evidence": [
+    {
+      "path": "README.md",
+      "sha256": "8a69ab90918b20e5b646ae26e795463035a2312d9abe934deb4a806dd8158b1b",
+      "bytes": 8100
+    },
+    {
+      "path": "../PROVENANCE.md",
+      "sha256": "8f975e7646937430daf0511c658bcd45e26bf086e6285826630f73e03942dd43",
+      "bytes": 7324
+    },
+    {
+      "path": "../qa/FINAL-COST-COMPARISON.json",
+      "sha256": "5fe61c1a9a4047bcee08e1ce141ed50abae8c310d8119bd536079b22223791b6",
+      "bytes": 3163
+    },
+    {
+      "path": "../qa/final-b8c5-vector-costs.json",
+      "sha256": "93018dc406a9da3125246175c4e06b50e8f0c1e43563bd86e4809cc2476c3500",
+      "bytes": 1673
+    },
+    {
+      "path": "../qa/final-runtime-vector-validation.json",
+      "sha256": "27eea8c623951bd08857f40bf1f44eac3776119f9e85cf081f495a625a25da53",
+      "bytes": 575
+    },
+    {
+      "path": "../qa/final-geometry-provenance.json",
+      "sha256": "885ff43f8418ab868be82a924882967ccaa91ac77d3dba63c435650a4f5e80e0",
+      "bytes": 550
+    },
+    {
+      "path": "../qa/preservation-b8c58a8eb9b0829d.json",
+      "sha256": "3f4e4c739547a6ba73b86755dd597c96514c6c708954da62c2613c853ec484a5",
+      "bytes": 1279
+    },
+    {
+      "path": "../qa/changed-body-walk-distance.json",
+      "sha256": "7d8d8a87fda55450b32f473f5c042306912aa3167ceb0733db85a9fec9e71016",
+      "bytes": 1150
+    },
+    {
+      "path": "../qa/body-protection-9224baab14243abd/report.json",
+      "sha256": "83ddd8d53ab9855ec27e2304b7a9f511a590ee70e829747057166209f18f937a",
+      "bytes": 790
+    },
+    {
+      "path": "../qa/body-color-join/REPORT.md",
+      "sha256": "fdfd338cdd3a74e9fe16080d21fe71a79b136346b1eda10f13577b1646dc072b",
+      "bytes": 8151
+    },
+    {
+      "path": "../qa/body-color-join/combined-roi-validation.json",
+      "sha256": "f8689a316b6dbf3d004b143023b201ab0deecb7750909dc0b4a61f53a2401b79",
+      "bytes": 664
+    },
+    {
+      "path": "../qa/body-color-join/final-band-alpha-preservation.json",
+      "sha256": "3679c23403a012f15981b6cec0a4c3fb96d10ff80979469eb2a841ab2195b032",
+      "bytes": 517
+    },
+    {
+      "path": "../qa/body-color-join/final-supported-band-structure.json",
+      "sha256": "12e7d7e3e1fd92cd46bd54ee606c382f10236b2cd2334a5f499b4d4adb7a9411",
+      "bytes": 201
+    },
+    {
+      "path": "../qa/slanted-join/REPORT.md",
+      "sha256": "15576a6c073f65db7a4ab11b57ca3d4a488c2bbc6c3cac7bc4913357888c9d3c",
+      "bytes": 3742
+    },
+    {
+      "path": "../qa/slanted-join/verification.json",
+      "sha256": "5bfd49d21877dc3480a1ac7ee902adc9c35c612ce5ebbd8a0bd7b14ee8fdbde9",
+      "bytes": 1299
+    },
+    {
+      "path": "../qa/final-b8c5-coverage/manifest.json",
+      "sha256": "fdd08cd0250e73ca8557ba99c76ce25514c798ea0c0702df601b4352ee8a80f3",
+      "bytes": 66572
+    },
+    {
+      "path": "../qa/final-b8c5-coverage/runtime-binding.json",
+      "sha256": "8caee62fec96614460e2507bdbb1ba436df38c58b3dba9d957a17c1fd1fa3165",
+      "bytes": 168
+    },
+    {
+      "path": "../qa/final-b8c5-coverage-comparison.json",
+      "sha256": "a7c0ca30b40072042cdf1e2a84084f0a74cd9c2f52882899b8b90ecd556cb35a",
+      "bytes": 17293
+    },
+    {
+      "path": "../qa/final-b8c5-bench/manifest.json",
+      "sha256": "f89f4ba24a5a4315cdb1294d85bd37caa2ec76cf26961d3eb051eb1ab3d9f252",
+      "bytes": 58370
+    },
+    {
+      "path": "../qa/final-b8c5-east-bench/manifest.json",
+      "sha256": "13a1b8efdb9235aebc494fd8f5d0dfbb279230098a90293407a948e6252f0d40",
+      "bytes": 2860
+    },
+    {
+      "path": "../qa/baseline61a8-bench/manifest.json",
+      "sha256": "dd1178aa35042c7dd32e7184534627f6ff2ca6157435486bf0ffc2b4bfab3e74",
+      "bytes": 58225
+    },
+    {
+      "path": "../qa/baseline61a8-east-bench/manifest.json",
+      "sha256": "4d6bcdeefe724b512ca5797f9ebbaf3f57a72d978e72406866dcb3c312c64b00",
+      "bytes": 2854
+    },
+    {
+      "path": "../qa/native-shore-repeat-check.json",
+      "sha256": "bbe7bda766fe70cc8354fad230cbbcef296733a629f921c76937607baddb8c05",
+      "bytes": 194
+    },
+    {
+      "path": "../qa/final-b8c5-46views.png",
+      "sha256": "287d56e47d5da17f277adbe32e61ce870f4bdceb25a6ba8379b0f9260183ce1e",
+      "bytes": 2461570
+    },
+    {
+      "path": "../STATUS.md",
+      "sha256": "7f0ccedfe104794e2d84aeb3b7bdc50ecae789bbf25299046e6c326c1e173f78",
+      "bytes": 3313
+    }
+  ],
+  "nativeCoverageViews": 46,
+  "warmRimPlus3SourcePxGuard": {
+    "renderer": "Inkscape source2x BODY-only",
+    "pixels": 1087008,
+    "rgbaChanged": 0
+  },
+  "combinedAlpha": {
+    "renderer": "Independent SVG full-vector composite",
+    "worldROI": [
+      5800,
+      3200,
+      6700,
+      3900
+    ],
+    "samplesPerWorldPixel": 4,
+    "changedSamples": 0
+  },
+  "remainingReviewItems": [
+    "Actual Chrome candidate not yet run; parent/root visual review pending.",
+    "Farther-up existing fine BODY diagonal remains outside finite corrected wedge, not waived.",
+    "Native distant west max135pixels differ, maxchannel21; identical baseline rerun0. Source-space warmguard exact does not imply cross-renderer RGBA identity.",
+    "v3 small connected ridge retained per earlier review scope.",
+    "Normal gameplay not rerun; performance neither GPU nor browser approved."
+  ],
+  "costSummary": {
+    "baseline5490": {
+      "rawBytes": 5790105,
+      "totals": {
+        "nodes": 106,
+        "path_nodes": 93,
+        "segments": 202162,
+        "subpaths": 17744,
+        "clip_paths": 7,
+        "clip_segments": 8446,
+        "vector_bytes": 5759846
+      }
+    },
+    "baseline61a8": {
+      "rawBytes": 4700488,
+      "totals": {
+        "nodes": 104,
+        "path_nodes": 91,
+        "segments": 162674,
+        "subpaths": 13353,
+        "clip_paths": 7,
+        "clip_segments": 4925,
+        "vector_bytes": 4667806
+      }
+    },
+    "candidateB8c5": {
+      "sha256": "b8c58a8eb9b0829dd9f2459c15427242e5a485f4a27f4d43949f41299b3acf07",
+      "rawBytes": 4706639,
+      "totals": {
+        "nodes": 106,
+        "path_nodes": 92,
+        "segments": 162739,
+        "subpaths": 13354,
+        "clip_paths": 8,
+        "clip_segments": 4987,
+        "vector_bytes": 4673957
+      }
+    },
+    "deltaVersus61a8": {
+      "nodes": 2,
+      "path_nodes": 1,
+      "segments": 65,
+      "subpaths": 1,
+      "clip_paths": 1,
+      "clip_segments": 62,
+      "vector_bytes": 6151
+    },
+    "deltaVersus5490": {
+      "nodes": 0,
+      "path_nodes": -1,
+      "segments": -39423,
+      "subpaths": -4390,
+      "clip_paths": 1,
+      "clip_segments": -3459,
+      "vector_bytes": -1085889
+    },
+    "timings": [
+      {
+        "view": "landscape-minimum-left",
+        "baseline61a8Ms": {
+          "coldMs": 1037.673671,
+          "p50": 16.06004699999994,
+          "p95": 18.992585999999847
+        },
+        "candidateB8c5Ms": {
+          "coldMs": 860.074218,
+          "p50": 13.76990799999976,
+          "p95": 15.68091000000004
+        }
+      },
+      {
+        "view": "browser-bottom-exact",
+        "baseline61a8Ms": {
+          "coldMs": 16.808992999998736,
+          "p50": 11.37052599999879,
+          "p95": 15.038733999994292
+        },
+        "candidateB8c5Ms": {
+          "coldMs": 14.705711000002339,
+          "p50": 10.605318000001716,
+          "p95": 12.124820000004547
+        }
+      },
+      {
+        "view": "entrance-landscape",
+        "baseline61a8Ms": {
+          "coldMs": 256.26238800000283,
+          "p50": 9.062934000001405,
+          "p95": 10.380171000004339
+        },
+        "candidateB8c5Ms": {
+          "coldMs": 269.0972550000006,
+          "p50": 10.075681000002078,
+          "p95": 11.12403600000107
+        }
+      },
+      {
+        "view": "east-upper-max",
+        "baseline61a8Ms": {
+          "coldMs": 751.3504929999999,
+          "p50": 11.085747000000083,
+          "p95": 11.987848000000213
+        },
+        "candidateB8c5Ms": {
+          "coldMs": 771.2881109999998,
+          "p50": 12.325636999999915,
+          "p95": 13.659263999999894
+        }
+      },
+      {
+        "view": "east-up-max",
+        "baseline61a8Ms": {
+          "coldMs": 15.626530000000457,
+          "p50": 10.240272000000004,
+          "p95": 12.199315999999271
+        },
+        "candidateB8c5Ms": {
+          "coldMs": 18.61679499999991,
+          "p50": 8.266098999999485,
+          "p95": 10.92750100000012
+        }
+      }
+    ],
+    "scope": "Native Canvas synchronous timings on frozen runtimeParts3f891880...; not Chromium, GPU, FPS, or performance approval. Separate runs can reflect system noise. Original38views+30warm samples, plus separate2east views+30warm. Added local structure is a correctness fix, not a performance optimization."
+  }
+}
