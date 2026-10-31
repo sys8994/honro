@@ -1,3 +1,9 @@
+## 2026-10-31 · 하구 운영 원경 Q90 계약
+
+사용자의 경량화·오차 제한 지시와 부모의 원본/운영 이미지 직접 비교에 따라 원본 PNG를 보존하며 기존 Q90 WebP를 운영 원경으로 유지한다. 이전 무손실 픽셀 동일 계약 및 Q90의 실제 픽셀 불일치 기록은 아래에 보존한다. 운영 이미지와 소스 파일은 수정하지 않았다. 원경 전용 기준은 alpha 완전 일치, RGB 평균 절대 오차 ≤2/255, 채널 p99 ≤12/255, Rec.709 휘도 SSIM ≥0.98이다. 실제 값은 각각 0, 1.349111/255, 7/255, 0.985865로 통과. SSIM은 11×11 Gaussian σ1.5, valid 내부 영역, population covariance다. `npm run test:act4-estuary`는 metric 경계·자산 신원·품질 및 운영 파일의 디코드/캐시 RGBA 완전 일치를 독립 검증한다. 이전 원경 선택 fixture는 47cf9558의 4막 opt-in 확장에 맞춰 명시 원경·기본 원경·비 opt-in을 각각 검증한다.
+
+현재 소스의 임시 로컬 빌드에서 31장 데스크톱/모바일 브라우저가 해당 SHA의 운영 파일을 실제 요청해 원경 캐시에 넣는 것을 확인했다. 화면을 직접 확인했으나 목표 안내가 일부를 가리고 전경은 미승인 후보이며, 실제 플레이·전체 미술·정식 빌드·배포 승인으로 해석하지 않는다. 과거 원본과 Q90의 실제 차이 및 원본/무손실 이력은 아래에 남긴다.
+
 ## 2026-10-31 · 하구 원경 픽셀 불일치 출처
 
 `art/act4-estuary-far-v1/source.png`(SHA-256 `87929ed507ceaae6f12611f1d52be80fced2ed4992b4edf65e196c0e68fad8b6`)는 최초 커밋 `38baddc3be6503be6839f0fde10cce6d19a92378` 이후 동일하다. 그 커밋의 무손실 WebP(SHA-256 `636f62add1e346597707f18a285c1745d7bab9caa3f81dbd56c1243aaaf58942`, 1,266,358B)는 현 source PNG와 실제 RGBA 바이트가 모두 일치한다. 후속 `db9fe2a8aa1d205d4557fbc47df662218d28e98b`는 handoff의 Q90 하구 이미지를 명시적으로 `shared/assets/environment/campaign-far/act4-estuary.webp`에 교체했다. 현 파일 SHA-256 `1ba81aae5bebeebd46cc094be2519797d67ef49a887d7aade45cb61b39878fff`, 130,830B, VP8 손실 형식이다. manifest의 act4Estuary는 이 파일을 가리킨다.

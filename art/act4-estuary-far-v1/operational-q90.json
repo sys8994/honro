@@ -1,0 +1,12 @@
+{
+  "scope": "Act 4 stage 31 estuary far background only; not terrain, characters, text, or a visual approval",
+  "contractChange": "2026-10-31: preserve original PNG; retain the Q90 operational WebP after parent visual comparison. The earlier lossless reference remains historical in optimization.json.",
+  "source": {"path":"art/act4-estuary-far-v1/source.png","sha256":"87929ed507ceaae6f12611f1d52be80fced2ed4992b4edf65e196c0e68fad8b6","bytes":1752480,"commit":"38baddc3be6503be6839f0fde10cce6d19a92378"},
+  "operational": {"path":"shared/assets/environment/campaign-far/act4-estuary.webp","sha256":"1ba81aae5bebeebd46cc094be2519797d67ef49a887d7aade45cb61b39878fff","bytes":130830,"commit":"db9fe2a8aa1d205d4557fbc47df662218d28e98b","format":"lossy VP8; commit describes Q90 handoff; exact encoder settings unknown"},
+  "width":2173,"height":724,
+  "thresholds":{"rgbMeanAbsoluteErrorMax":2,"rgbChannelP99Max":12,"alphaDifferentPixels":0,"lumaSsimMin":0.98},
+  "metrics":{"rgbMeanAbsoluteError":1.3491112676163768,"rgbChannelP99":7,"rgbMaxError":36,"alphaDifferentPixels":0,"lumaSsim":0.9858652014172506,"ssimWindowCount":1544382},
+  "ssimDefinition":"Rec.709 luma, 11x11 Gaussian sigma 1.5, valid interior, population covariance, 8-bit C1/C2",
+  "history":"Historical lossless WebP 1266358 bytes, SHA-256 636f62add1e346597707f18a285c1745d7bab9caa3f81dbd56c1243aaaf58942, was exactly equal to source RGBA. The current Q90 differs in 3432353 of 6293008 RGBA bytes.",
+  "verification":"npm run test:act4-estuary; python3 tests/act4-estuary-screen.py on a current local build"
+}
