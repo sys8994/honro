@@ -1,0 +1,255 @@
+{
+  "status": "NATIVE_REVIEW_COMPLETE_READY_FOR_ROOT_REMOTE_CHROMIUM_REVIEW_NOT_FINAL_APPROVED",
+  "candidate": {
+    "file": "handoff-final/candidate.json",
+    "bytes": 5790105,
+    "sha256": "5490dd915e485d203320b20036d951e8bdc35ea8bd5b0a5ab27739f4b27400b8"
+  },
+  "xz": {
+    "file": "handoff-final/candidate.json.xz",
+    "bytes": 1526604,
+    "sha256": "bfb776f70a4949608f238a30b2396055943f2e2fa496eeb15725ea8c091bfa49"
+  },
+  "xz_base64": {
+    "file": "handoff-final/candidate.json.xz.b64",
+    "bytes": 2035472,
+    "sha256": "785d6ed4ba58a8a837acccc7b8568dd98e3e2612a2a702438295bc592e30b7c9"
+  },
+  "xz_and_base64_roundtrip_exact": true,
+  "baseline": {
+    "sha256": "19c4824a013675e6b3454e2ea01487d190cbabb3aa209318b787b34889b5c7a1",
+    "file": "../approved34-art-alignment/candidate-combined-v2-review.json"
+  },
+  "selected_variant": "hybrid-hidden-blue: exact visible original rim color region retained through front seam+3sourcepx; opaque source-blue support only starts below front seam+2sourcepx; same front as root-reviewedf50",
+  "source_trace_hashes": [
+    {
+      "file": "generated-flat-v7.png",
+      "bytes": 1935310,
+      "sha256": "ae0b8d2075bdea3ef400344fc91cbf60ddc68c31afc540b2709206a90418c34c"
+    },
+    {
+      "file": "registration.json",
+      "bytes": 545,
+      "sha256": "34851bd6ea0c0fc5014500548766b181e938d81a338866279ee6ed16d0f52345"
+    },
+    {
+      "file": "flat-source-nonstack8-smooth0/02-inkscape-trace.svg",
+      "bytes": 2762297,
+      "sha256": "d97edb4244b48f4baa2d21cbf4e807c0d43e44a17dab0c3ff63489cea2d3cbec"
+    },
+    {
+      "file": "flat-source-nonstack8-smooth0/registered-raw.svg",
+      "bytes": 2885646,
+      "sha256": "9994d23a62943bad734313ee0743b042b803de3fa60ede475636419f6639ed34"
+    },
+    {
+      "file": "flat-source-nonstack8-smooth0/03-partitioned.svg",
+      "bytes": 1726282,
+      "sha256": "dd220788fc04ca198ec973c1ad10c3cae7582a894d205fddd8e7b2578d8efc22"
+    },
+    {
+      "file": "nonstack-baked-raw.svg",
+      "bytes": 2974023,
+      "sha256": "c5637a58ed698412c0ba346d366cd2fbfe4f11b2f2af96af5415a92270103dbf"
+    },
+    {
+      "file": "nonstack-baked-final.svg",
+      "bytes": 1472890,
+      "sha256": "35cdb32d389df11a4dcd3ae8a6ada0d7d3cd1fd30baeb6b6c570fdef5ec18b7b"
+    },
+    {
+      "file": "nonstack-baked-partitioned.svg",
+      "bytes": 1473026,
+      "sha256": "67aea3aa8e31a7221e0d8a2d37556352612134d3e5cbfad2f51c045709e89e8f"
+    },
+    {
+      "file": "nonstack-palette-map.json",
+      "bytes": 360,
+      "sha256": "3eb006e4eeb0290addcb3abf5390e672fc4ba08daedd7242eb343e47a684c0ec"
+    },
+    {
+      "file": "smooth-gap-mask-source.png",
+      "bytes": 1824619,
+      "sha256": "42cdb14a91a38e7a2d02c167850dc5a24328d23f004206ab62641284961fcc0d"
+    },
+    {
+      "file": "smooth-gap-alpha4x/normalized.svg",
+      "bytes": 189818,
+      "sha256": "e6894d735b9fb623efef6141cf78b07e3119b3119f152e5886452311ebe25de4"
+    },
+    {
+      "file": "smooth-gap-alpha4x/compact.svg",
+      "bytes": 59385,
+      "sha256": "41a29ed401d586402d7c91942029cea21ce6b7de718b28e31f15134314ebb012"
+    },
+    {
+      "file": "visible-underlay-baked-raw.svg",
+      "bytes": 170222,
+      "sha256": "7399b16f04be51d986df3a0e233622797a283abc26c5b49c68bdcf63fa61f46f"
+    },
+    {
+      "file": "visible-underlay-baked-final.svg",
+      "bytes": 81576,
+      "sha256": "74439935740a2fbfcda620c38d0c920caf249385e39aa3177e12ebd3a21a889d"
+    },
+    {
+      "file": "hidden-blue-alpha4x/normalized.svg",
+      "bytes": 181730,
+      "sha256": "0676c1968c7023606138f59ffd092876fb83b5fb59e4c644819a453cacb68a14"
+    },
+    {
+      "file": "hidden-blue-alpha4x/compact.svg",
+      "bytes": 57537,
+      "sha256": "5c45c48bdfc9f58c2a5c24e087cf87a1922b3a1ca88a52d828bb20e1a54d8b88"
+    }
+  ],
+  "asset_copies": [
+    {
+      "file": "handoff-final/assets/approved34--body.json",
+      "bytes": 3558225,
+      "sha256": "35f7503421790617c109f091cf106068b04862695ffae449b9b59c12031d1a8e"
+    },
+    {
+      "file": "handoff-final/assets/approved34--coastal-foundation.json",
+      "bytes": 316516,
+      "sha256": "4f43c8e25cdebd43222dc6c15b6a3d30ab541cab7c59ea240372314fefb78c6c"
+    },
+    {
+      "file": "handoff-final/assets/approved34--deep-bedrock.json",
+      "bytes": 171012,
+      "sha256": "b0b81aeee06309de7fa11c7cc86b5ecfe3703cb48f4fd103eb9405db3e867b91"
+    },
+    {
+      "file": "handoff-final/assets/approved34--lower-continuation-v2.json",
+      "bytes": 182923,
+      "sha256": "cd56efe9ec5e19e8f442ffc526e77a673c97170cf40e30c4718f879ec901d018"
+    },
+    {
+      "file": "handoff-final/assets/approved34--lower-natural-mask-v2.json",
+      "bytes": 1534271,
+      "sha256": "07a6a2027643647bea0708f1fc6dc9371acbe37b6c298bd4629ae936b810f762"
+    }
+  ],
+  "vector_costs": {
+    "candidate": "_local/reports/approved34-foundation-seam-v2/qa/hybrid-hidden-blue-input.json",
+    "sha256": "5490dd915e485d203320b20036d951e8bdc35ea8bd5b0a5ab27739f4b27400b8",
+    "json_bytes": 5790105,
+    "assets": [
+      {
+        "id": "approved34:body",
+        "nodes": 43,
+        "path_nodes": 40,
+        "subpaths": 8991,
+        "segments": 122397,
+        "clip_paths": 3,
+        "clip_segments": 2395,
+        "vector_bytes": 3557732,
+        "asset_bytes": 3558225
+      },
+      {
+        "id": "approved34:coastal-foundation",
+        "nodes": 19,
+        "path_nodes": 16,
+        "subpaths": 1045,
+        "segments": 10099,
+        "clip_paths": 1,
+        "clip_segments": 338,
+        "vector_bytes": 315893,
+        "asset_bytes": 316516
+      },
+      {
+        "id": "approved34:deep-bedrock",
+        "nodes": 15,
+        "path_nodes": 12,
+        "subpaths": 512,
+        "segments": 5434,
+        "clip_paths": 1,
+        "clip_segments": 194,
+        "vector_bytes": 170394,
+        "asset_bytes": 171012
+      },
+      {
+        "id": "approved34:lower-continuation-v2",
+        "nodes": 15,
+        "path_nodes": 13,
+        "subpaths": 430,
+        "segments": 6706,
+        "clip_paths": 1,
+        "clip_segments": 2089,
+        "vector_bytes": 182199,
+        "asset_bytes": 182923
+      },
+      {
+        "id": "approved34:lower-natural-mask-v2",
+        "nodes": 14,
+        "path_nodes": 12,
+        "subpaths": 6766,
+        "segments": 57526,
+        "clip_paths": 1,
+        "clip_segments": 3430,
+        "vector_bytes": 1533628,
+        "asset_bytes": 1534271
+      }
+    ],
+    "scope": "Geometry segments via svgpathtools, includes explicit closing edges; clips separately counted. Not equivalent to drawcalls or measured browser performance."
+  },
+  "vector_totals": {
+    "nodes": 106,
+    "path_nodes": 93,
+    "segments": 202162,
+    "subpaths": 17744,
+    "clip_paths": 7,
+    "clip_segments": 8446,
+    "vector_bytes": 5759846
+  },
+  "environment_segment_change_vs_f50": {
+    "before": 124574,
+    "after": 64232,
+    "removed": 60342,
+    "percent_reduction": 48.43867901809366
+  },
+  "json_byte_change_vs_f50": {
+    "before": 7335342,
+    "after": 5790105,
+    "removed": 1545237
+  },
+  "native_bench_ms": {
+    "exact": {
+      "first_cold": 1049.98,
+      "warm_p50": 13.722,
+      "warm_p95": 19.951,
+      "samples": 30
+    },
+    "entry": {
+      "new_scene_cold": 313.71,
+      "warm_p50": 9.891,
+      "warm_p95": 11.296,
+      "samples": 30
+    },
+    "caveat": "Native only; laterScene reuses assetcache; concurrent workspace work may influence timings. Not actualChromium FPS or gameplay acceptance."
+  },
+  "protected_data": "qa/hybrid-hidden-blue-preservation.json: errors0; BODY equals validated clip-bake; original timber/4x transform/all stage gameplay/collision/actors/33enemies/events/story/shorelinkv2/oldfoundation/deep preserved.",
+  "geometry_alpha": [
+    "hybrid-hidden-blue-full-alpha.json",
+    "final-walk-rim-protection.json",
+    "selected-f50-validation.json",
+    "visible-underlay-baked-final-merged.geometry.json",
+    "hidden-blue-alpha4x/geometry-bound.json",
+    "qa/body-aa/geometry-bound.json",
+    "qa/body-aa/protected-roi-verification.json"
+  ],
+  "visual_qa": {
+    "views": 38,
+    "report": "qa/HYBRID-HIDDEN-BLUE-REVIEW.md",
+    "png_sha": "qa/hybrid-hidden-blue-png-sha256.json",
+    "all38_vs_f50": "qa/hybrid-hidden-blue-all38-delta.json",
+    "pixel_equivalence_claim": false,
+    "note": "No broad new single-color patch, relocated outer cutoff, or rectangular panel. Small AA-edge changes are documented, not claimed exact."
+  },
+  "remaining_review": [
+    "ActualChromium art and performance review pending",
+    "Normal gameplay/playthrough pending",
+    "Intermediate-blue bead-like quantization islands along some rock edges remain a style-review item; references/bead-origin-source-raw-final.png"
+  ],
+  "scope": "Only report-directory candidate/assets/scripts changed by this task. No shared runtime/renderer/source or remote edits."
+}
