@@ -82,7 +82,26 @@ function followReturnRoute(e,u,route,state,dt){if(!alive(u)||state.done)return !
 function authoredReturn(app,q,dt,geo){const e=app.engine,b=e.b,cfg=b.honroAct4Design.escort,np=residents(b);if(np.length!==4)throw Error('Authored return requires four residents');
  if(!q.returnEscort&&party(b).some(u=>insideEventBounds(u,geo.boardingTriggerBounds))&&seen(q,'return-boat')&&seen(q,'return-high')){q.returnEscort={phase:'boarding',clock:0,boatX:cfg.boat.x,routes:{}};play(app,'boarding');}
  const r=q.returnEscort;if(!r)return;const deck=b.terrain.find(t=>t.id==='a4-return-deck');deck.x=r.boatX-geo.deck.w/2;if(!closed(q,'boarding'))return;r.clock+=dt;r.routes??={};
- const follow=(u,route,key)=>followReturnRoute(e,u,route,r.routes[key]??={},dt);
+ // Both routes enter the safety slope from the west. Reserve its authored
+ // endpoints from far to near, so an early arrival never parks across the path
+ // of somebody still approaching. Assignments live in the saved escort state.
+ const slots=[...geo.passengerRoutes,...geo.highRoutes].map(route=>route.at(-1)).sort((a,b)=>b.x-a.x);
+ r.safeSlots??={};
+ if(!r.safeSlotsMigrated){
+  const finished=np.map((u,i)=>({u,i,key:(i<2?'land':'high')+i})).filter(v=>r.routes[v.key]?.done).sort((a,c)=>c.u.x-a.u.x);
+  for(const v of finished)r.safeSlots[v.u.id]??=slots[Object.keys(r.safeSlots).length];
+  r.safeSlotsMigrated=true;
+ }
+ // Old saves can already have a passenger parked on the shared waypoint.
+ // Walk completed residents out of that passage from the front, without
+ // relaxing collisions or modifying their saved coordinates.
+ const relocate=np.filter(u=>r.safeSlots[u.id]&&r.routes[(np.indexOf(u)<2?'land':'high')+np.indexOf(u)]?.done).sort((a,c)=>r.safeSlots[c.id].x-r.safeSlots[a.id].x);
+ for(const u of relocate){const p=r.safeSlots[u.id];if(Math.abs(u.x-p.x)>=8||Math.abs(u.y-p.y)>=24||!e.grounded(u)){moveNpc(e,u,p.x,dt,220);return;}}
+ const joining=np.map((u,i)=>({u,i,key:(i<2?'land':'high')+i})).filter(v=>!r.safeSlots[v.u.id]&&v.u.x>=4000&&((r.routes[v.key]?.index||0)>=(v.i<2?geo.passengerRoutes[v.i].length-1:geo.highRoutes[v.i-2].length-2))).sort((a,c)=>c.u.x-a.u.x);
+ for(const v of joining)r.safeSlots[v.u.id]=slots[Object.keys(r.safeSlots).length];
+ const follow=(u,route,key)=>{
+  const target=r.safeSlots[u.id];return followReturnRoute(e,u,target?[...route.slice(0,-1),target]:route,r.routes[key]??={},dt);
+ };
  for(let i=2;i<4;i++)if(!r.routes['high'+i]?.done)follow(np[i],geo.highRoutes[i-2],'high'+i);
  if(r.phase==='boarding'){
   r.boardingOrder??=[0,1].sort((a,c)=>geo.boatBoardingX[c]-geo.boatBoardingX[a]);for(const [rank,i] of r.boardingOrder.entries()){if(r.routes['board'+i]?.done)continue;const leader=r.boardingOrder[rank-1];if(rank && !r.routes['board'+leader]?.done && (!geo.followerRelease || (r.routes['board'+leader]?.index||0)<geo.followerRelease.boardingIndex || Math.hypot(np[leader].x-np[i].x,np[leader].y-np[i].y)<geo.followerRelease.minSeparation+Math.max(8,dt*360)))break;follow(np[i],geo.boardingRoutes[i],'board'+i);if(!geo.followerRelease)break;}
