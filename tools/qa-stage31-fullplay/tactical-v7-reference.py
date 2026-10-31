@@ -1,7 +1,7 @@
 import json,time
 from pathlib import Path
 from playwright.sync_api import sync_playwright
-out=Path('/workspace/honro/_local/reports/stage31-browser-fullplay'); events=out/'tactical-v6-events.jsonl';profile=json.loads((out/'support-entry-fixture.json').read_text())['profile'];f=events.open('w')
+out=Path('/workspace/honro/_local/reports/stage31-browser-fullplay'); events=out/'tactical-v7-events.jsonl';profile=json.loads((out/'support-entry-fixture.json').read_text())['profile'];f=events.open('w')
 with sync_playwright() as w:
  b=w.chromium.launch(executable_path='/usr/bin/chromium',headless=True,args=['--no-sandbox']);p=b.new_page(viewport={'width':1440,'height':900});p.on('pageerror',lambda e:f.write(json.dumps({'error':str(e)},ensure_ascii=False)+'\n'));p.goto('http://127.0.0.1:8766/HONRO.html',wait_until='domcontentloaded');p.wait_for_function('window.HonroApp');p.evaluate('(v)=>localStorage.setItem("honro-first-act-profile-1",JSON.stringify(v))',profile);p.reload(wait_until='domcontentloaded');p.wait_for_function('window.HonroApp');p.get_by_text('여정 이어가기',exact=True).click();p.wait_for_timeout(2500);p.get_by_text('스테이지 진입',exact=False).click();p.wait_for_function('HonroApp.engine?.b?.honroStage===31',timeout=60000);p.wait_for_timeout(3000)
  def state():return p.evaluate('''()=>{const a=HonroApp,e=a.engine,b=e.b,u=e.active;return{round:b.round,side:b.side,phase:b.phase,active:u?.id,cls:u?.cls,x:u?.x,y:u?.y,angle:u?.angle,facing:u?.facing,drop:u&&e.canDrop(),support:u&&e.contactSurface(u.x,u.y-4,u.y+5)?.t?.id,enemyHpSum:b.units.filter(v=>v.side===1&&!v.dead).reduce((n,v)=>n+v.hp,0),grounded:u&&e.grounded(u),can:a.canInput(),dialogue:!!a.dialogue,shots:b.shots,enemies:b.units.filter(v=>v.side===1&&!v.dead).length,health:b.units.filter(v=>v.side===0&&!v.summoned).map(v=>({id:v.id,hp:v.hp,dead:v.dead,x:v.x,y:v.y})),boat:b.honroAct4PreviewState?.boat,seed:b.seed,rng:b.rng}}''')
@@ -22,12 +22,12 @@ with sync_playwright() as w:
   for enemy in pl['observed']:
    if enemy['dead']:memory.pop(enemy['id'],None)
    else:memory[enemy['id']]=enemy
- record('entry');p.screenshot(path=str(out/'tactical-v6-entry.png'))
+ record('entry');p.screenshot(path=str(out/'tactical-v7-entry.png'))
  for n in range(120):
   if not waitready():record('stopped-wait');break
   warning=p.evaluate('''()=>{const a=HonroApp;return a.engine.b.units.filter(v=>v.honroPilotCombat?.phase==='telegraph').map(v=>({id:v.id,target:v.honroPilotCombat.target,visible:HonroAct4TerrainPreview.eventAPI.inView(a,v.honroPilotCombat.target,25)}))}''')
   if warning:
-   record('warning-before-'+str(n),{'warning':warning,'body':p.locator('body').inner_text()[:1800]});p.screenshot(path=str(out/('warning-v4-before-'+str(n)+'.png')));p.wait_for_timeout(2500);record('warning-after-'+str(n),{'warning':warning});p.screenshot(path=str(out/('warning-v4-after-'+str(n)+'.png')))
+   record('warning-before-'+str(n),{'warning':warning,'body':p.locator('body').inner_text()[:1800]});p.screenshot(path=str(out/('warning-v7-before-'+str(n)+'.png')));p.wait_for_timeout(2500);record('warning-after-'+str(n),{'warning':warning});p.screenshot(path=str(out/('warning-v7-after-'+str(n)+'.png')))
   start=state();pl=plan();observe(pl)
   if not pl['visible']:
    p.mouse.move(720,350);p.mouse.wheel(0,1400);p.wait_for_timeout(500);p.mouse.move(700,600);p.mouse.down();p.mouse.move(700,350,steps=15);p.mouse.up();p.wait_for_timeout(600);pl=plan();observe(pl);record('camera-scan-'+str(n),{'visible':pl['visible']})
@@ -61,6 +61,6 @@ with sync_playwright() as w:
     key='ArrowUp' if delta*state()['facing']>0 else 'ArrowDown';p.keyboard.down(key);p.wait_for_timeout(min(250,max(30,abs(delta)/62*1000)));p.keyboard.up(key);p.wait_for_timeout(100)
    duration=p.evaluate('''()=>HonroApp.engine.chargeDuration(HonroApp.engine.active,HONRO_CORE.SKILLS[HonroApp.selected])''');p.keyboard.down('Space');p.wait_for_timeout(max(80,round(duration*choice['power']*1000)));p.keyboard.up('Space')
   else:p.keyboard.press('f')
-  p.wait_for_timeout(3000);record('action-'+str(n),{'choice':choice});p.screenshot(path=str(out/('tactical-v6-'+str(n)+'.png')))
+  p.wait_for_timeout(3000);record('action-'+str(n),{'choice':choice});p.screenshot(path=str(out/('tactical-v7-'+str(n)+'.png')))
   if state()['phase'] in ('won','lost'):break
- record('end');p.evaluate('''()=>{if(HonroApp.engine)HonroApp.persist()}''');(out/'tactical-v6-storage.json').write_text(p.evaluate('localStorage.getItem("honro-first-act-profile-1")') or '');b.close();f.close()
+ record('end');p.evaluate('''()=>{if(HonroApp.engine)HonroApp.persist()}''');(out/'tactical-v7-storage.json').write_text(p.evaluate('localStorage.getItem("honro-first-act-profile-1")') or '');b.close();f.close()
