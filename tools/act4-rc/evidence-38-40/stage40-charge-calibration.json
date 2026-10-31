@@ -1,0 +1,78 @@
+{
+  "inputSha256": "c3724ff6ff7e2417489147457c0956c1642af3907b8b5bd923b4843c41675f6f",
+  "rows": [
+    {
+      "shot": {
+        "angle": 44,
+        "power": 0.10527271490024626,
+        "wind": 0,
+        "skill": "A01",
+        "path": []
+      },
+      "events": [
+        {
+          "type": "keydown",
+          "t": 17698.200000001118,
+          "trusted": true
+        },
+        {
+          "type": "keyup",
+          "t": 17903.700000001118,
+          "trusted": true
+        }
+      ],
+      "actor": "archer",
+      "requestedMs": 120,
+      "hostElapsedMs": 234.38479000105872
+    },
+    {
+      "shot": {
+        "angle": 44,
+        "power": 0.1634897962042301,
+        "wind": 0,
+        "skill": "M01",
+        "path": []
+      },
+      "events": [
+        {
+          "type": "keydown",
+          "t": 20912.400000000373,
+          "trusted": true
+        },
+        {
+          "type": "keyup",
+          "t": 21206.400000000373,
+          "trusted": true
+        }
+      ],
+      "actor": "mage",
+      "requestedMs": 250,
+      "hostElapsedMs": 774.5152470015455
+    },
+    {
+      "shot": {
+        "angle": 44,
+        "power": 0.23775042348935196,
+        "wind": 0,
+        "skill": "S00",
+        "path": []
+      },
+      "events": [
+        {
+          "type": "keydown",
+          "t": 24051.400000000373,
+          "trusted": true
+        },
+        {
+          "type": "keyup",
+          "t": 24487.099999999627,
+          "trusted": true
+        }
+      ],
+      "actor": "knight",
+      "requestedMs": 400,
+      "hostElapsedMs": 641.1259349988541
+    }
+  ],
+  "scope": "isolated normal key input diagnostic; not gameplay completion"
+}
