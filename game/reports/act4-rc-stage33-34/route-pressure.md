@@ -1,0 +1,45 @@
+# Stage 33 lower and upper routes: measured pressure and rewards
+
+Two **separate single** normal-UI runs used the same synthetic chapter-32-cleared fixture, stage-33 v4 candidate `a3b1fd368c82b86800bd719962408a506da2ad7b15a318c312210aebc2b94985`, runtime `aba9f38b39276ad8238d67986a5f83192751edb1`, and assembled world `2ac459b71b2c21a5f070e53f036148b409b44243a9ffb0ee25686885b908f892`. The lower run won in 7 turns and the all-upper attempt in 8; four survived, zero of 30 enemies were killed in each. Each upper-route character eventually crossed the western high arch, but the attempt includes earlier lower-bank falls and later right-middle recovery. The runs have different action sequences and enemy positions; they do not establish average turns, win probability, or which route generally causes more damage.
+
+The pressure values come from the real battle's `honroReport`, not from the rounded controller HP samples. `received` counts actual lost HP, `shieldReceived` counts cumulative HP damage absorbed by shields rather than shield granted or maximum shield, and healing counts actual restored HP. Shield expiry/replacement and absorption after a snapshot are not measured by that number. Lower values are **through the round-7 low-tide start snapshot**, before the remaining friendly movement and E; upper values are **through the round-8 snapshot immediately before E**. Both are complete attempt ledgers (`partial=false`) up to those points, but they are not equal-duration checkpoints.
+
+| Hero | Lower: HP lost / shield absorbed / HP healed | Upper: HP lost / shield absorbed / HP healed |
+| --- | ---: | ---: |
+| Archer | 89 / 468 / 89 | 0 / 393 / 0 |
+| Mage | 5 / 421 / 5 | 39 / 806 / 39 |
+| Knight | 46 / 414 / 46 | 0 / 553 / 0 |
+| Occultist | 0 / 550 / 0 | 0 / 697 / 0 |
+| **Total** | **140 / 1,853 / 140** | **39 / 2,449 / 39** |
+
+The source-group ledger assigns lower HP loss 94 and shield absorption 1,853 to enemy sources, plus 46 HP to the environment; the visible knight fall in round 5 coincides with that 46 loss. The upper ledger assigns 39 HP and shield absorption 2,449 to enemy sources and no hero HP loss to the environment through its checkpoint. Defense (`F`) healed the lower archer 89, mage 5 and knight 46, and the upper mage 39; sampled HP had returned to full by each result. These are actual restored values, not inferred shield regeneration. Damage and shield absorption from enemies remain real pressure despite 0 kills. These numbers do not imply which individual shot caused each amount.
+
+## Who actually attacked
+
+The persisted `lastShots` is written on a successful `Engine.fire` and stores **one most recent skill per actor**, not all shots. The lower round-7 checkpoint has 15 distinct recorded firing enemy IDs; the upper round-8 checkpoint has 17. The last 30 human-readable event messages independently include shots and defense, but are a bounded tail, not a total attack count. Named firing actors and their last recorded skills:
+
+| Firing enemy and skill | Lower recorded IDs | Upper recorded IDs |
+| --- | --- | --- |
+| Archer ghost `LA01` | `e-1`, `e-2`, `h-5` | `a-1`, `a-2`, `g-1`, `f-2`, `h-5` |
+| Guard ghost `LS09` | `b-4`, `d-3`, `e-3` | `a-3`, `b-4`, `f-1`, `g-3`, `h-2` |
+| Bier carrier `HMO01` | `c-1`, `d-1`, `h-1` | `b-3`, `g-2`, `h-1` |
+| Shroud ghost `HSH01/HSH02` | `d-4`, `g-4`, `e-4` | `g-4`, `e-4` |
+| Other `HWD01/HLN01` | `c-3` possessed post; `h-3` tide marksman; `h-4` lantern | `h-3` tide marksman; `h-4` lantern |
+
+All IDs in this table have prefix `a4-33-`. A saved contribution threat record associates lower `e-1` and `e-3` with archer wound histories, and `e-3` with a mage wound; upper `b-4` has a mage wound history. The wound balances are zero after healing and do **not** reveal each attack's HP amount. The same ledger records shield/HP threat associations for other attackers and targets. The UI logs captured `h-4` active in flight during lower round 5 and `g-3` and `g-4` active in flight during upper rounds 4 and 6. Neither evidence source is a complete per-projectile timeline; no unsupported attacker-to-damage allocation is claimed.
+
+## What the routes actually did
+
+- **Lower:** all moved east over the low bank on rounds 1–3. Rising warning and TIDE.01/.02 were observed in round 2. At round 3 feet were approximately y=3673–3878 while the rising water surface was y=4077; by round 4 the party was on the eastern higher bank around y=3049–3161, before high water y=3532.5 in round 5. They continued climbing and completed on the returning low tide in round 7. There was no documented deliberate empty-turn tide wait; F was the normal turn-ending defense and the progression to low tide occurred while climbing/retrying.
+- **Upper:** early failed entries and step recoveries occupied turns; each hero then ascended the west link, with all four on the high arch by round 5, and they crossed it while tide was high. Returning low water was observed in round 7. There was no purposeful tidal waiting, and the warning receipts were not observed in this run. Later two heroes descended to the east middle and re-climbed before exit; this is not a perfectly continuous high route.
+- **Actual actions:** the input log records 26 accepted F defenses in the lower run (archer 7, mage 7, knight 6, occultist 6) and 29 in the upper run (archer 8, each other 7). Neither run fired an allied offensive skill. There were 101 and 137 recorded Control/jump requests respectively, including failed inputs, diagnostics and recovery; these are not optimal or required jump counts. No explicit down/drop input was recorded; descending occurred via slopes and falls. Tests, reload and thinking time make the displayed 23:03 and 40:10 unsuitable as uninterrupted play duration.
+
+The routes therefore provide a real decision in these samples: the lower road advances toward the exit early and is exposed to tidal scheduling and east-bank ascent; the upper route bypasses high water after a difficult western climb but still encounters projectile pressure. The two shield totals show that the upper route is not threat-free; the unequal checkpoints and repeated stair trials prevent calling it 32% more dangerous. The lower route's tide hazard itself did not cause the recorded 46 hero HP loss, which coincided with a stair fall.
+
+## Experience outcome and design implication
+
+The actual lower result granted XP archer 3,109, mage 3,669, knight 3,346 and occultist 3,148 (total 13,272). The upper result granted 0 to each despite 2,449 shield absorption through its final checkpoint. Both are single outcomes from the same starting fixture, **not** an established route-based reward rule. The saved contribution ledger and the code explain a plausible concrete mechanism: `enemyScores` weights defense/support against an enemy by that enemy's damage progress (or defeat). In the lower ledger some attacks that hit shields came from `d/e` enemies that also had non-player damage progress; in the upper ledger shield support belonged to other enemies with zero progress while the progressed `d/e` enemies had no support credit. Both had no credited arrival objective in the saved ledger. Recomputing the source's `rewardScores` on the preserved outcome ledgers gives player weights for lower but only `_system` for upper. Thus the XP difference is supported by the recorded contribution accounting, but causation cannot be reduced to height/route alone: targets, timing, tide/environment damage and the exact action sequence differ. In this sample the upper route absorbed substantial enemy pressure yet paid no XP, so its observed risk/reward is a concrete concern for player-facing balance. Whether that outcome is intended or representative needs a controlled product/balance review, not a forced-kill condition.
+
+The intended 16–19-turn design target is substantially above both observed 7/8-turn results. With two heavily observed, highly retry-intensive samples, that is evidence to investigate route length, threat response, survival and reward incentives under representative play, not evidence to add blank turns, reduce the map's threat or require extermination. The upper-link input issue remains separately documented in [stair-usability.md](stair-usability.md).
+
+Source snapshots: `/workspace/honro-snapshots/current33-lower/r7-low-1793477673064-4b3961786a7b.json` (SHA-256 `4b3961786a7bdd98132dace63c1cfe4ad58042606a67134c4a8c6d7e359a6fd8`; UI logs are recorded in [stair-usability.md](stair-usability.md)) and `/workspace/honro-snapshots/current33-upper-probe/r8-all-upper-before-e-1793481903275-6ba25173b16f.json` (SHA-256 `6ba25173b16fd14831171e3be5c556e0ed54e4a819da0f51b200ea8827587ec8`). Result profile snapshots are `r7-outcome-1793477766714-1181d1b000b8.json` and `r8-all-upper-outcome-1793481907077-92efa1f29edd.json` in the respective folders, with SHA-256 `1181d1b000b8c5fc1d4b695cfe19cdac5bc56d0dfec6f090bd9d0a13d3787826` and `92efa1f29edde6e80c2d6b05c4b7988127a908d098d5fb312b90fe4a43895406`. These are preserved raw localStorage snapshots, not UI exports.
