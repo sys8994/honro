@@ -1,0 +1,164 @@
+[
+  {
+    "mode": "baseline",
+    "distances": [
+      {
+        "id": "archer",
+        "distance": 2829.7049323041174
+      },
+      {
+        "id": "mage",
+        "distance": 2705.809159273109
+      },
+      {
+        "id": "knight",
+        "distance": 2579.7822284073227
+      },
+      {
+        "id": "occultist",
+        "distance": 2452.9146833932587
+      }
+    ],
+    "npc": {
+      "frames": 2000,
+      "resets": 0,
+      "end": [
+        {
+          "id": "a4-rescue-0",
+          "x": 4130.962648533203,
+          "y": 2340.475152301172,
+          "hpLoss": 0,
+          "valid": true,
+          "separated": true,
+          "error": 9.03735146679719
+        },
+        {
+          "id": "a4-rescue-1",
+          "x": 4251.830053920778,
+          "y": 2344.7410607266156,
+          "hpLoss": 0,
+          "valid": true,
+          "separated": true,
+          "error": 0.6699460792224272
+        },
+        {
+          "id": "a4-rescue-2",
+          "x": 4363.5364966557945,
+          "y": 2348.6836410584397,
+          "hpLoss": 0,
+          "valid": true,
+          "separated": true,
+          "error": 1.4635033442054919
+        },
+        {
+          "id": "a4-rescue-3",
+          "x": 4475.658598457084,
+          "y": 2352.64089171025,
+          "hpLoss": 0,
+          "valid": true,
+          "separated": true,
+          "error": 1.8414015429161736
+        }
+      ]
+    },
+    "route": [
+      {
+        "name": "movement-results-v6.json",
+        "total": 1108,
+        "bossOverlaps": 0
+      },
+      {
+        "name": "movement-results-v6-lower.json",
+        "total": 674,
+        "bossOverlaps": 0
+      }
+    ],
+    "death": {
+      "dead": true,
+      "hp": 0,
+      "terrainUnchanged": true,
+      "hullPresent": true
+    }
+  },
+  {
+    "mode": "binding",
+    "distances": [
+      {
+        "id": "archer",
+        "distance": 2829.7049323041174
+      },
+      {
+        "id": "mage",
+        "distance": 2705.809159273109
+      },
+      {
+        "id": "knight",
+        "distance": 2579.7822284073227
+      },
+      {
+        "id": "occultist",
+        "distance": 2452.9146833932587
+      }
+    ],
+    "npc": {
+      "frames": 2000,
+      "resets": 0,
+      "end": [
+        {
+          "id": "a4-rescue-0",
+          "x": 4130.962648533203,
+          "y": 2340.475152301172,
+          "hpLoss": 0,
+          "valid": true,
+          "separated": true,
+          "error": 9.03735146679719
+        },
+        {
+          "id": "a4-rescue-1",
+          "x": 4251.830053920778,
+          "y": 2344.7410607266156,
+          "hpLoss": 0,
+          "valid": true,
+          "separated": true,
+          "error": 0.6699460792224272
+        },
+        {
+          "id": "a4-rescue-2",
+          "x": 4363.5364966557945,
+          "y": 2348.6836410584397,
+          "hpLoss": 0,
+          "valid": true,
+          "separated": true,
+          "error": 1.4635033442054919
+        },
+        {
+          "id": "a4-rescue-3",
+          "x": 4475.658598457084,
+          "y": 2352.64089171025,
+          "hpLoss": 0,
+          "valid": true,
+          "separated": true,
+          "error": 1.8414015429161736
+        }
+      ]
+    },
+    "route": [
+      {
+        "name": "movement-results-v6.json",
+        "total": 1108,
+        "bossOverlaps": 0
+      },
+      {
+        "name": "movement-results-v6-lower.json",
+        "total": 674,
+        "bossOverlaps": 0
+      }
+    ],
+    "death": {
+      "dead": true,
+      "hp": 0,
+      "terrainUnchanged": true,
+      "hullPresent": true
+    }
+  }
+]

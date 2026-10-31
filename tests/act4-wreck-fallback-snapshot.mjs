@@ -1,0 +1,3 @@
+import {pathToFileURL} from 'node:url';import{writeFile}from'node:fs/promises';
+const {runtime,battlefield}=await import(pathToFileURL(process.cwd()+'/game/tests/helpers.mjs')),g=await runtime({legacyMaps:false}),C=g.HONRO_CORE,rows=[];
+for(let n=1;n<=30;n++){const{b,e}=battlefield(g,n),u=e.active;let pred=null;if(u)pred=e.predict(u,C.SKILLS.A01,45,.6);rows.push({n,units:b.units.filter(v=>!v.dead).slice(0,4).map(v=>({id:v.id,origin:e.origin(v,55),aim:e.damageAim?e.damageAim(v):{x:v.x,y:v.y-v.h*.5}})),pred});}await writeFile(process.argv[2],JSON.stringify(rows));console.log('PASS generated 30 stages fallback');
