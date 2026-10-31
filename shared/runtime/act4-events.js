@@ -94,7 +94,7 @@ function interact(app=G.HonroApp,probe=false){const b=app.engine?.b;if(!(b?.honr
 const draw=G.HonroScene.prototype.landmark;
 G.HonroScene.prototype.landmark=function(c,l){const b=this.battle,q=(b?.honroCustom||b?.honroAct4Official===1)&&b.honroAct4Preview===36?memory(b):null;
  if((b?.honroCustom||b?.honroAct4Official===1)&&b.honroAct4Preview===31&&l.asset?.id==='a4:boat'){const id=b.honroMap?.vectorArrivalBoatAssetId,paint=typeof id==='string'?G.HONRO_PROJECT?.library?.find(a=>a.id===id&&a.vector&&!a.collision?.length):null;if(paint)return draw.call(this,c,{...l,asset:paint});}
- if(q&&l.asset?.id==='a4:door'){const id=b.honroMap?.vectorDoorAssetId,authored=typeof id==='string'?G.HONRO_PROJECT?.library?.find(a=>a.id===id&&a.vector&&!a.collision?.length):null,paint=authored||l.asset;const f=q.door.time??0,progress=f*f*(3-2*f),drop=id==='act4rc:stage36-door'?79*progress:0,next={...l,y:l.y+drop,asset:paint,rotation:Math.PI*.49*progress},pose=paint.params?.act4DoorForeshortening;
+ if(q&&l.asset?.id==='a4:door'){const id=b.honroMap?.vectorDoorAssetId,authored=typeof id==='string'?G.HONRO_PROJECT?.library?.find(a=>a.id===id&&a.vector&&!a.collision?.length):null,paint=authored||l.asset;const f=q.door.time??0,progress=f*f*(3-2*f),pose=paint.params?.act4DoorForeshortening,offset=pose?.version===1&&Number.isFinite(pose.fallenOffsetY)?pose.fallenOffsetY:0,next={...l,y:l.y+offset*progress,asset:paint,rotation:Math.PI*.49*progress};
   // Art-only world-Y compression AFTER the original rotation, about the same
   // authored pivot. The stage 36 leaf has no hinges; its foot falls from the
   // raised threshold to the courtyard surface. Event position and timing stay untouched.

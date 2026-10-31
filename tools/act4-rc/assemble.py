@@ -15,7 +15,7 @@ for row in index['candidates']:
  for raw_asset in d['library']:
   a=copy.deepcopy(raw_asset);aid=a['id']
   if aid=='a4:door' and n==36:
-   old=assets.get(aid);assert old and digest(old)!=digest(a) and not a.get('collision') and a.get('vector');assert not s['design'].get('vectorDoorAssetId');a['id']='act4rc:stage36-door';s['design']['vectorDoorAssetId']=a['id'];aliases.append({'stage':36,'original':aid,'alias':a['id'],'reason':'Distinct visual asset; retain shared dynamic door ID, use existing vectorDoorAssetId render contract','originalAssetSha256':digest(raw_asset),'aliasedAssetSha256':digest(a)});aid=a['id']
+   old=assets.get(aid);assert old and digest(old)!=digest(a) and not a.get('collision') and a.get('vector');assert not s['design'].get('vectorDoorAssetId');a['id']='act4rc:stage36-door';pose=a.get('params',{}).get('act4DoorForeshortening');assert pose and pose.get('version')==1 and pose.get('fallenScaleY')==0.25 and 'fallenOffsetY' not in pose;pose['fallenOffsetY']=79;s['design']['vectorDoorAssetId']=a['id'];aliases.append({'stage':36,'original':aid,'alias':a['id'],'reason':'Distinct visual asset; retain shared dynamic door ID, use existing vectorDoorAssetId render contract','originalAssetSha256':digest(raw_asset),'aliasedAssetSha256':digest(a)});aid=a['id']
   if aid in assets and digest(assets[aid])!=digest(a):raise ValueError(f'Conflicting asset {aid} in stage {n}')
   if aid in canonical and digest(canonical[aid])!=digest(a):raise ValueError(f'Conflict with 1–30 canonical asset {aid} in stage {n}')
   assets.setdefault(aid,a)
