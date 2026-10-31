@@ -1,0 +1,42 @@
+{
+  "scope": "real normal UI stage 40 run; exact game-generated UI export and separate read-only localStorage; 33–38 prior fixture",
+  "sourceCommit": "fc11f8fdc650a4af86d1fe4d4ae4a5b5daf31403",
+  "inputSha256": "c3724ff6ff7e2417489147457c0956c1642af3907b8b5bd923b4843c41675f6f",
+  "worldSha256": "99c59777254cb4942d5bfc7b7398068fc294dc29ff7208ac5f468953ecf5e581",
+  "rows": {
+    "boarding-ui-export": {
+      "rawSha256": "7420c6f17d7fc2270d7f435331634cdd945657b8d656f4551f63b87bf6381db9",
+      "rawBytes": 30827522,
+      "xzSha256": "619a1942474913a03ce8b6c196efad4468726ff054b828233cbb86624248b122",
+      "xzBytes": 5110472,
+      "stage": 40,
+      "round": 16,
+      "phase": "boarding",
+      "escortClock": 0.21990000000037252,
+      "boatX": 2660,
+      "routes": {
+        "high2": {
+          "index": 0
+        },
+        "high3": {
+          "index": 0
+        },
+        "board1": {
+          "index": 0
+        }
+      }
+    },
+    "boarding-local-storage": {
+      "rawSha256": "16aef98c77bcd9ff96d1dea088f8d65173be7f4063446e09714ee5cde149edf1",
+      "rawBytes": 140532,
+      "xzSha256": "0527ac9273b9801b527a1b7ae5d67fc7491b1e8e8093f876d6cf43edcb1c3575",
+      "xzBytes": 16964,
+      "stage": 40,
+      "round": 16,
+      "phase": "boarding",
+      "escortClock": 0,
+      "boatX": 2660,
+      "routes": {}
+    }
+  }
+}
