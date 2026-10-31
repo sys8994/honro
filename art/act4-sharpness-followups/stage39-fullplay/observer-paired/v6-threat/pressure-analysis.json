@@ -1,0 +1,1096 @@
+{
+  "scope": "Pre-registered event-level observation; no attack-level damage rate or human win-rate claim",
+  "run": "honro-map-stage-39-1793473499567",
+  "enemyRosterCount": 27,
+  "primaryAttributableHostileDamage": {
+    "count": 27,
+    "events": [
+      {
+        "round": 1,
+        "phase": "flight",
+        "owner": "a4-39-a-2",
+        "skill": "LA01",
+        "source": "normal",
+        "target": "knight",
+        "targetRole": "hero",
+        "hpLoss": 0,
+        "shieldLoss": 85,
+        "heroHpLossFraction": 0.0,
+        "heroShieldLossFraction": 0.040611562350692784,
+        "heroCombinedLossFraction": 0.040611562350692784,
+        "flags": []
+      },
+      {
+        "round": 1,
+        "phase": "flight",
+        "owner": "a4-39-w-2",
+        "skill": "HMO01",
+        "source": "normal",
+        "target": "occultist",
+        "targetRole": "hero",
+        "hpLoss": 0,
+        "shieldLoss": 69,
+        "heroHpLossFraction": 0.0,
+        "heroShieldLossFraction": 0.05211480362537765,
+        "heroCombinedLossFraction": 0.05211480362537765,
+        "flags": []
+      },
+      {
+        "round": 1,
+        "phase": "flight",
+        "owner": "a4-39-w-3",
+        "skill": "LS09",
+        "source": "normal",
+        "target": "occultist",
+        "targetRole": "hero",
+        "hpLoss": 17,
+        "shieldLoss": 33,
+        "heroHpLossFraction": 0.01283987915407855,
+        "heroShieldLossFraction": 0.024924471299093656,
+        "heroCombinedLossFraction": 0.0377643504531722,
+        "flags": []
+      },
+      {
+        "round": 1,
+        "phase": "flight",
+        "owner": "a4-39-w-4",
+        "skill": "HMO02",
+        "source": "normal",
+        "target": "occultist",
+        "targetRole": "hero",
+        "hpLoss": 54,
+        "shieldLoss": 0,
+        "heroHpLossFraction": 0.04078549848942598,
+        "heroShieldLossFraction": 0.0,
+        "heroCombinedLossFraction": 0.04078549848942598,
+        "flags": []
+      },
+      {
+        "round": 1,
+        "phase": "flight",
+        "owner": "a4-39-m-1",
+        "skill": "LS09",
+        "source": "normal",
+        "target": "knight",
+        "targetRole": "hero",
+        "hpLoss": 0,
+        "shieldLoss": 49,
+        "heroHpLossFraction": 0.0,
+        "heroShieldLossFraction": 0.023411371237458192,
+        "heroCombinedLossFraction": 0.023411371237458192,
+        "flags": []
+      },
+      {
+        "round": 1,
+        "phase": "flight",
+        "owner": "a4-39-m-3",
+        "skill": "LA01",
+        "source": "normal",
+        "target": "knight",
+        "targetRole": "hero",
+        "hpLoss": 0,
+        "shieldLoss": 82,
+        "heroHpLossFraction": 0.0,
+        "heroShieldLossFraction": 0.03917821309125657,
+        "heroCombinedLossFraction": 0.03917821309125657,
+        "flags": []
+      },
+      {
+        "round": 2,
+        "phase": "flight",
+        "owner": "a4-39-w-2",
+        "skill": "HMO02",
+        "source": "normal",
+        "target": "mage",
+        "targetRole": "hero",
+        "hpLoss": 57,
+        "shieldLoss": 0,
+        "heroHpLossFraction": 0.04922279792746114,
+        "heroShieldLossFraction": 0.0,
+        "heroCombinedLossFraction": 0.04922279792746114,
+        "flags": []
+      },
+      {
+        "round": 2,
+        "phase": "flight",
+        "owner": "a4-39-a-1",
+        "skill": "LA01",
+        "source": "normal",
+        "target": "archer",
+        "targetRole": "hero",
+        "hpLoss": 101,
+        "shieldLoss": 0,
+        "heroHpLossFraction": 0.08022239872915012,
+        "heroShieldLossFraction": 0.0,
+        "heroCombinedLossFraction": 0.08022239872915012,
+        "flags": []
+      },
+      {
+        "round": 2,
+        "phase": "flight",
+        "owner": "a4-39-w-3",
+        "skill": "LS09",
+        "source": "normal",
+        "target": "occultist",
+        "targetRole": "hero",
+        "hpLoss": 0,
+        "shieldLoss": 71,
+        "heroHpLossFraction": 0.0,
+        "heroShieldLossFraction": 0.05362537764350453,
+        "heroCombinedLossFraction": 0.05362537764350453,
+        "flags": []
+      },
+      {
+        "round": 2,
+        "phase": "flight",
+        "owner": "a4-39-w-4",
+        "skill": "HMO01",
+        "source": "normal",
+        "target": "occultist",
+        "targetRole": "hero",
+        "hpLoss": 42,
+        "shieldLoss": 31,
+        "heroHpLossFraction": 0.03172205438066465,
+        "heroShieldLossFraction": 0.023413897280966767,
+        "heroCombinedLossFraction": 0.05513595166163142,
+        "flags": []
+      },
+      {
+        "round": 2,
+        "phase": "flight",
+        "owner": "a4-39-w-5",
+        "skill": "HSH02",
+        "source": "normal",
+        "target": "occultist",
+        "targetRole": "hero",
+        "hpLoss": 61,
+        "shieldLoss": 0,
+        "heroHpLossFraction": 0.04607250755287009,
+        "heroShieldLossFraction": 0.0,
+        "heroCombinedLossFraction": 0.04607250755287009,
+        "flags": []
+      },
+      {
+        "round": 2,
+        "phase": "flight",
+        "owner": "a4-39-n-4",
+        "skill": "HSH01",
+        "source": "normal",
+        "target": "knight",
+        "targetRole": "hero",
+        "hpLoss": 0,
+        "shieldLoss": 29,
+        "heroHpLossFraction": 0.0,
+        "heroShieldLossFraction": 0.01385570950788342,
+        "heroCombinedLossFraction": 0.01385570950788342,
+        "flags": []
+      },
+      {
+        "round": 3,
+        "phase": "flight",
+        "owner": "a4-39-a-2",
+        "skill": "LA01",
+        "source": "normal",
+        "target": "occultist",
+        "targetRole": "hero",
+        "hpLoss": 0,
+        "shieldLoss": 112,
+        "heroHpLossFraction": 0.0,
+        "heroShieldLossFraction": 0.08459214501510574,
+        "heroCombinedLossFraction": 0.08459214501510574,
+        "flags": []
+      },
+      {
+        "round": 3,
+        "phase": "flight",
+        "owner": "a4-39-a-1",
+        "skill": "LA01",
+        "source": "normal",
+        "target": "occultist",
+        "targetRole": "hero",
+        "hpLoss": 60,
+        "shieldLoss": 47,
+        "heroHpLossFraction": 0.045317220543806644,
+        "heroShieldLossFraction": 0.035498489425981876,
+        "heroCombinedLossFraction": 0.08081570996978851,
+        "flags": []
+      },
+      {
+        "round": 3,
+        "phase": "flight",
+        "owner": "a4-39-w-4",
+        "skill": "HMO02",
+        "source": "normal",
+        "target": "mage",
+        "targetRole": "hero",
+        "hpLoss": 69,
+        "shieldLoss": 0,
+        "heroHpLossFraction": 0.05958549222797927,
+        "heroShieldLossFraction": 0.0,
+        "heroCombinedLossFraction": 0.05958549222797927,
+        "flags": []
+      },
+      {
+        "round": 3,
+        "phase": "flight",
+        "owner": "a4-39-m-1",
+        "skill": "LS09",
+        "source": "normal",
+        "target": "occultist",
+        "targetRole": "hero",
+        "hpLoss": 62,
+        "shieldLoss": 0,
+        "heroHpLossFraction": 0.04682779456193353,
+        "heroShieldLossFraction": 0.0,
+        "heroCombinedLossFraction": 0.04682779456193353,
+        "flags": []
+      },
+      {
+        "round": 3,
+        "phase": "flight",
+        "owner": "a4-39-m-2",
+        "skill": "HSH01",
+        "source": "normal",
+        "target": "occultist",
+        "targetRole": "hero",
+        "hpLoss": 41,
+        "shieldLoss": 0,
+        "heroHpLossFraction": 0.030966767371601207,
+        "heroShieldLossFraction": 0.0,
+        "heroCombinedLossFraction": 0.030966767371601207,
+        "flags": []
+      },
+      {
+        "round": 3,
+        "phase": "flight",
+        "owner": "a4-39-n-4",
+        "skill": "HSH01",
+        "source": "normal",
+        "target": "knight",
+        "targetRole": "hero",
+        "hpLoss": 0,
+        "shieldLoss": 29,
+        "heroHpLossFraction": 0.0,
+        "heroShieldLossFraction": 0.01385570950788342,
+        "heroCombinedLossFraction": 0.01385570950788342,
+        "flags": []
+      },
+      {
+        "round": 4,
+        "phase": "flight",
+        "owner": "a4-39-a-1",
+        "skill": "LA01",
+        "source": "normal",
+        "target": "mage",
+        "targetRole": "hero",
+        "hpLoss": 0,
+        "shieldLoss": 106,
+        "heroHpLossFraction": 0.0,
+        "heroShieldLossFraction": 0.09153713298791019,
+        "heroCombinedLossFraction": 0.09153713298791019,
+        "flags": []
+      },
+      {
+        "round": 4,
+        "phase": "flight",
+        "owner": "a4-39-a-2",
+        "skill": "LA01",
+        "source": "normal",
+        "target": "archer",
+        "targetRole": "hero",
+        "hpLoss": 0,
+        "shieldLoss": 111,
+        "heroHpLossFraction": 0.0,
+        "heroShieldLossFraction": 0.08816521048451152,
+        "heroCombinedLossFraction": 0.08816521048451152,
+        "flags": []
+      },
+      {
+        "round": 4,
+        "phase": "flight",
+        "owner": "a4-39-m-1",
+        "skill": "LS09",
+        "source": "normal",
+        "target": "archer",
+        "targetRole": "hero",
+        "hpLoss": 17,
+        "shieldLoss": 40,
+        "heroHpLossFraction": 0.013502779984114376,
+        "heroShieldLossFraction": 0.03177124702144559,
+        "heroCombinedLossFraction": 0.04527402700555997,
+        "flags": []
+      },
+      {
+        "round": 4,
+        "phase": "flight",
+        "owner": "a4-39-m-1",
+        "skill": "LS09",
+        "source": "normal",
+        "target": "mage",
+        "targetRole": "hero",
+        "hpLoss": 17,
+        "shieldLoss": 33,
+        "heroHpLossFraction": 0.01468048359240069,
+        "heroShieldLossFraction": 0.02849740932642487,
+        "heroCombinedLossFraction": 0.04317789291882556,
+        "flags": []
+      },
+      {
+        "round": 4,
+        "phase": "flight",
+        "owner": "a4-39-n-4",
+        "skill": "HSH01",
+        "source": "normal",
+        "target": "knight",
+        "targetRole": "hero",
+        "hpLoss": 0,
+        "shieldLoss": 29,
+        "heroHpLossFraction": 0.0,
+        "heroShieldLossFraction": 0.01385570950788342,
+        "heroCombinedLossFraction": 0.01385570950788342,
+        "flags": []
+      },
+      {
+        "round": 5,
+        "phase": "flight",
+        "owner": "a4-39-n-4",
+        "skill": "HSH01",
+        "source": "normal",
+        "target": "knight",
+        "targetRole": "hero",
+        "hpLoss": 0,
+        "shieldLoss": 29,
+        "heroHpLossFraction": 0.0,
+        "heroShieldLossFraction": 0.01385570950788342,
+        "heroCombinedLossFraction": 0.01385570950788342,
+        "flags": []
+      },
+      {
+        "round": 5,
+        "phase": "flight",
+        "owner": "a4-39-n-4",
+        "skill": "HSH01",
+        "source": "normal",
+        "target": "occultist",
+        "targetRole": "hero",
+        "hpLoss": 0,
+        "shieldLoss": 41,
+        "heroHpLossFraction": 0.0,
+        "heroShieldLossFraction": 0.030966767371601207,
+        "heroCombinedLossFraction": 0.030966767371601207,
+        "flags": []
+      },
+      {
+        "round": 5,
+        "phase": "flight",
+        "owner": "a4-39-w-5",
+        "skill": "HSH02",
+        "source": "normal",
+        "target": "mage",
+        "targetRole": "hero",
+        "hpLoss": 0,
+        "shieldLoss": 64,
+        "heroHpLossFraction": 0.0,
+        "heroShieldLossFraction": 0.055267702936096716,
+        "heroCombinedLossFraction": 0.055267702936096716,
+        "flags": []
+      },
+      {
+        "round": 5,
+        "phase": "flight",
+        "owner": "a4-wreck",
+        "skill": "HWD01",
+        "source": "normal",
+        "target": "archer",
+        "targetRole": "hero",
+        "hpLoss": 0,
+        "shieldLoss": 65,
+        "heroHpLossFraction": 0.0,
+        "heroShieldLossFraction": 0.051628276409849086,
+        "heroCombinedLossFraction": 0.051628276409849086,
+        "flags": []
+      }
+    ],
+    "hpLossDistribution": {
+      "n": 27,
+      "min": 0,
+      "q25": 0.0,
+      "median": 0,
+      "q75": 48.0,
+      "max": 101
+    },
+    "shieldLossDistribution": {
+      "n": 27,
+      "min": 0,
+      "q25": 14.5,
+      "median": 33,
+      "q75": 67.0,
+      "max": 112
+    },
+    "heroHpLossFractionDistribution": {
+      "n": 27,
+      "min": 0.0,
+      "q25": 0.0,
+      "median": 0.0,
+      "q75": 0.03625377643504532,
+      "max": 0.08022239872915012
+    },
+    "heroShieldLossFractionDistribution": {
+      "n": 27,
+      "min": 0.0,
+      "q25": 0.00692785475394171,
+      "median": 0.024924471299093656,
+      "q75": 0.046119919380270935,
+      "max": 0.09153713298791019
+    },
+    "heroCombinedLossFractionDistribution": {
+      "n": 27,
+      "min": 0.01385570950788342,
+      "q25": 0.034365558912386705,
+      "median": 0.04607250755287009,
+      "q75": 0.05520182729886407,
+      "max": 0.09153713298791019
+    },
+    "residentHpFractionUnknown": 0
+  },
+  "otherDamage": {
+    "count": 27,
+    "overlappingFlagCounts": {
+      "owner-not-in-initial-enemy-roster": 22,
+      "target-not-party-or-resident": 23,
+      "self": 3,
+      "enemy-on-enemy": 5,
+      "owner-unknown": 4,
+      "skill-unknown": 4
+    },
+    "events": [
+      {
+        "round": 1,
+        "phase": "flight",
+        "owner": "archer",
+        "skill": "A09",
+        "source": "normal",
+        "target": "a4-39-w-2",
+        "targetRole": "enemy",
+        "hpLoss": 452,
+        "shieldLoss": 0,
+        "heroHpLossFraction": null,
+        "heroShieldLossFraction": null,
+        "heroCombinedLossFraction": null,
+        "flags": [
+          "owner-not-in-initial-enemy-roster",
+          "target-not-party-or-resident"
+        ]
+      },
+      {
+        "round": 1,
+        "phase": "flight",
+        "owner": "archer",
+        "skill": "A09",
+        "source": "normal",
+        "target": "a4-39-w-3",
+        "targetRole": "enemy",
+        "hpLoss": 187,
+        "shieldLoss": 0,
+        "heroHpLossFraction": null,
+        "heroShieldLossFraction": null,
+        "heroCombinedLossFraction": null,
+        "flags": [
+          "owner-not-in-initial-enemy-roster",
+          "target-not-party-or-resident"
+        ]
+      },
+      {
+        "round": 1,
+        "phase": "flight",
+        "owner": "archer",
+        "skill": "A09",
+        "source": "normal",
+        "target": "a4-39-w-3",
+        "targetRole": "enemy",
+        "hpLoss": 124,
+        "shieldLoss": 0,
+        "heroHpLossFraction": null,
+        "heroShieldLossFraction": null,
+        "heroCombinedLossFraction": null,
+        "flags": [
+          "owner-not-in-initial-enemy-roster",
+          "target-not-party-or-resident"
+        ]
+      },
+      {
+        "round": 1,
+        "phase": "flight",
+        "owner": "mage",
+        "skill": "M03",
+        "source": "normal",
+        "target": "a4-39-w-1",
+        "targetRole": "enemy",
+        "hpLoss": 616,
+        "shieldLoss": 0,
+        "heroHpLossFraction": null,
+        "heroShieldLossFraction": null,
+        "heroCombinedLossFraction": null,
+        "flags": [
+          "owner-not-in-initial-enemy-roster",
+          "target-not-party-or-resident"
+        ]
+      },
+      {
+        "round": 1,
+        "phase": "flight",
+        "owner": "mage",
+        "skill": "M03",
+        "source": "normal",
+        "target": "a4-39-w-2",
+        "targetRole": "enemy",
+        "hpLoss": 612,
+        "shieldLoss": 0,
+        "heroHpLossFraction": null,
+        "heroShieldLossFraction": null,
+        "heroCombinedLossFraction": null,
+        "flags": [
+          "owner-not-in-initial-enemy-roster",
+          "target-not-party-or-resident"
+        ]
+      },
+      {
+        "round": 1,
+        "phase": "flight",
+        "owner": "occultist",
+        "skill": "O06",
+        "source": "normal",
+        "target": "a4-39-w-1",
+        "targetRole": "enemy",
+        "hpLoss": 316,
+        "shieldLoss": 0,
+        "heroHpLossFraction": null,
+        "heroShieldLossFraction": null,
+        "heroCombinedLossFraction": null,
+        "flags": [
+          "owner-not-in-initial-enemy-roster",
+          "target-not-party-or-resident"
+        ]
+      },
+      {
+        "round": 1,
+        "phase": "flight",
+        "owner": "a4-39-w-2",
+        "skill": "HMO01",
+        "source": "normal",
+        "target": "a4-39-w-2",
+        "targetRole": "enemy",
+        "hpLoss": 92,
+        "shieldLoss": 0,
+        "heroHpLossFraction": null,
+        "heroShieldLossFraction": null,
+        "heroCombinedLossFraction": null,
+        "flags": [
+          "self",
+          "enemy-on-enemy",
+          "target-not-party-or-resident"
+        ]
+      },
+      {
+        "round": 2,
+        "phase": "flight",
+        "owner": "mage",
+        "skill": "M01",
+        "source": "normal",
+        "target": "a4-39-w-4",
+        "targetRole": "enemy",
+        "hpLoss": 119,
+        "shieldLoss": 0,
+        "heroHpLossFraction": null,
+        "heroShieldLossFraction": null,
+        "heroCombinedLossFraction": null,
+        "flags": [
+          "owner-not-in-initial-enemy-roster",
+          "target-not-party-or-resident"
+        ]
+      },
+      {
+        "round": 2,
+        "phase": "aim",
+        "owner": "unknown",
+        "skill": "unknown",
+        "source": "normal",
+        "target": "knight",
+        "targetRole": "hero",
+        "hpLoss": 95,
+        "shieldLoss": 0,
+        "heroHpLossFraction": 0.045389393215480175,
+        "heroShieldLossFraction": 0.0,
+        "heroCombinedLossFraction": 0.045389393215480175,
+        "flags": [
+          "owner-not-in-initial-enemy-roster",
+          "owner-unknown",
+          "skill-unknown"
+        ]
+      },
+      {
+        "round": 2,
+        "phase": "flight",
+        "owner": "occultist",
+        "skill": "O06",
+        "source": "normal",
+        "target": "a4-39-w-2",
+        "targetRole": "enemy",
+        "hpLoss": 358,
+        "shieldLoss": 0,
+        "heroHpLossFraction": null,
+        "heroShieldLossFraction": null,
+        "heroCombinedLossFraction": null,
+        "flags": [
+          "owner-not-in-initial-enemy-roster",
+          "target-not-party-or-resident"
+        ]
+      },
+      {
+        "round": 2,
+        "phase": "flight",
+        "owner": "a4-39-w-2",
+        "skill": "HMO02",
+        "source": "normal",
+        "target": "a4-39-w-2",
+        "targetRole": "enemy",
+        "hpLoss": 74,
+        "shieldLoss": 0,
+        "heroHpLossFraction": null,
+        "heroShieldLossFraction": null,
+        "heroCombinedLossFraction": null,
+        "flags": [
+          "self",
+          "enemy-on-enemy",
+          "target-not-party-or-resident"
+        ]
+      },
+      {
+        "round": 3,
+        "phase": "flight",
+        "owner": "archer",
+        "skill": "A02",
+        "source": "normal",
+        "target": "a4-39-w-2",
+        "targetRole": "enemy",
+        "hpLoss": 443,
+        "shieldLoss": 0,
+        "heroHpLossFraction": null,
+        "heroShieldLossFraction": null,
+        "heroCombinedLossFraction": null,
+        "flags": [
+          "owner-not-in-initial-enemy-roster",
+          "target-not-party-or-resident"
+        ]
+      },
+      {
+        "round": 3,
+        "phase": "flight",
+        "owner": "archer",
+        "skill": "A02",
+        "source": "normal",
+        "target": "a4-39-w-2",
+        "targetRole": "enemy",
+        "hpLoss": 146,
+        "shieldLoss": 0,
+        "heroHpLossFraction": null,
+        "heroShieldLossFraction": null,
+        "heroCombinedLossFraction": null,
+        "flags": [
+          "owner-not-in-initial-enemy-roster",
+          "target-not-party-or-resident"
+        ]
+      },
+      {
+        "round": 3,
+        "phase": "flight",
+        "owner": "archer",
+        "skill": "A02",
+        "source": "normal",
+        "target": "a4-39-w-2",
+        "targetRole": "enemy",
+        "hpLoss": 83,
+        "shieldLoss": 0,
+        "heroHpLossFraction": null,
+        "heroShieldLossFraction": null,
+        "heroCombinedLossFraction": null,
+        "flags": [
+          "owner-not-in-initial-enemy-roster",
+          "target-not-party-or-resident"
+        ]
+      },
+      {
+        "round": 3,
+        "phase": "flight",
+        "owner": "archer",
+        "skill": "A02",
+        "source": "normal",
+        "target": "a4-39-w-3",
+        "targetRole": "enemy",
+        "hpLoss": 611,
+        "shieldLoss": 0,
+        "heroHpLossFraction": null,
+        "heroShieldLossFraction": null,
+        "heroCombinedLossFraction": null,
+        "flags": [
+          "owner-not-in-initial-enemy-roster",
+          "target-not-party-or-resident"
+        ]
+      },
+      {
+        "round": 3,
+        "phase": "flight",
+        "owner": "archer",
+        "skill": "A02",
+        "source": "normal",
+        "target": "a4-39-w-5",
+        "targetRole": "enemy",
+        "hpLoss": 161,
+        "shieldLoss": 0,
+        "heroHpLossFraction": null,
+        "heroShieldLossFraction": null,
+        "heroCombinedLossFraction": null,
+        "flags": [
+          "owner-not-in-initial-enemy-roster",
+          "target-not-party-or-resident"
+        ]
+      },
+      {
+        "round": 3,
+        "phase": "flight",
+        "owner": "archer",
+        "skill": "A02",
+        "source": "normal",
+        "target": "a4-39-w-3",
+        "targetRole": "enemy",
+        "hpLoss": 132,
+        "shieldLoss": 0,
+        "heroHpLossFraction": null,
+        "heroShieldLossFraction": null,
+        "heroCombinedLossFraction": null,
+        "flags": [
+          "owner-not-in-initial-enemy-roster",
+          "target-not-party-or-resident"
+        ]
+      },
+      {
+        "round": 3,
+        "phase": "flight",
+        "owner": "archer",
+        "skill": "A02",
+        "source": "normal",
+        "target": "a4-39-w-5",
+        "targetRole": "enemy",
+        "hpLoss": 35,
+        "shieldLoss": 0,
+        "heroHpLossFraction": null,
+        "heroShieldLossFraction": null,
+        "heroCombinedLossFraction": null,
+        "flags": [
+          "owner-not-in-initial-enemy-roster",
+          "target-not-party-or-resident"
+        ]
+      },
+      {
+        "round": 3,
+        "phase": "flight",
+        "owner": "mage",
+        "skill": "M06",
+        "source": "normal",
+        "target": "a4-39-w-4",
+        "targetRole": "enemy",
+        "hpLoss": 467,
+        "shieldLoss": 0,
+        "heroHpLossFraction": null,
+        "heroShieldLossFraction": null,
+        "heroCombinedLossFraction": null,
+        "flags": [
+          "owner-not-in-initial-enemy-roster",
+          "target-not-party-or-resident"
+        ]
+      },
+      {
+        "round": 3,
+        "phase": "flight",
+        "owner": "mage",
+        "skill": "M06",
+        "source": "normal",
+        "target": "a4-39-w-4",
+        "targetRole": "enemy",
+        "hpLoss": 143,
+        "shieldLoss": 0,
+        "heroHpLossFraction": null,
+        "heroShieldLossFraction": null,
+        "heroCombinedLossFraction": null,
+        "flags": [
+          "owner-not-in-initial-enemy-roster",
+          "target-not-party-or-resident"
+        ]
+      },
+      {
+        "round": 3,
+        "phase": "flight",
+        "owner": "mage",
+        "skill": "M06",
+        "source": "normal",
+        "target": "a4-39-w-4",
+        "targetRole": "enemy",
+        "hpLoss": 143,
+        "shieldLoss": 0,
+        "heroHpLossFraction": null,
+        "heroShieldLossFraction": null,
+        "heroCombinedLossFraction": null,
+        "flags": [
+          "owner-not-in-initial-enemy-roster",
+          "target-not-party-or-resident"
+        ]
+      },
+      {
+        "round": 3,
+        "phase": "flight",
+        "owner": "a4-39-w-4",
+        "skill": "HMO02",
+        "source": "normal",
+        "target": "a4-39-w-4",
+        "targetRole": "enemy",
+        "hpLoss": 80,
+        "shieldLoss": 0,
+        "heroHpLossFraction": null,
+        "heroShieldLossFraction": null,
+        "heroCombinedLossFraction": null,
+        "flags": [
+          "self",
+          "enemy-on-enemy",
+          "target-not-party-or-resident"
+        ]
+      },
+      {
+        "round": 4,
+        "phase": "aim",
+        "owner": "unknown",
+        "skill": "unknown",
+        "source": "normal",
+        "target": "occultist",
+        "targetRole": "hero",
+        "hpLoss": 88,
+        "shieldLoss": 0,
+        "heroHpLossFraction": 0.06646525679758308,
+        "heroShieldLossFraction": 0.0,
+        "heroCombinedLossFraction": 0.06646525679758308,
+        "flags": [
+          "owner-not-in-initial-enemy-roster",
+          "owner-unknown",
+          "skill-unknown"
+        ]
+      },
+      {
+        "round": 4,
+        "phase": "flight",
+        "owner": "a4-wreck",
+        "skill": "HWD01",
+        "source": "normal",
+        "target": "a4-39-w-4",
+        "targetRole": "enemy",
+        "hpLoss": 59,
+        "shieldLoss": 0,
+        "heroHpLossFraction": null,
+        "heroShieldLossFraction": null,
+        "heroCombinedLossFraction": null,
+        "flags": [
+          "enemy-on-enemy",
+          "target-not-party-or-resident"
+        ]
+      },
+      {
+        "round": 5,
+        "phase": "aim",
+        "owner": "unknown",
+        "skill": "unknown",
+        "source": "normal",
+        "target": "archer",
+        "targetRole": "hero",
+        "hpLoss": 89,
+        "shieldLoss": 0,
+        "heroHpLossFraction": 0.07069102462271644,
+        "heroShieldLossFraction": 0.0,
+        "heroCombinedLossFraction": 0.07069102462271644,
+        "flags": [
+          "owner-not-in-initial-enemy-roster",
+          "owner-unknown",
+          "skill-unknown"
+        ]
+      },
+      {
+        "round": 5,
+        "phase": "aim",
+        "owner": "unknown",
+        "skill": "unknown",
+        "source": "normal",
+        "target": "mage",
+        "targetRole": "hero",
+        "hpLoss": 78,
+        "shieldLoss": 0,
+        "heroHpLossFraction": 0.06735751295336788,
+        "heroShieldLossFraction": 0.0,
+        "heroCombinedLossFraction": 0.06735751295336788,
+        "flags": [
+          "owner-not-in-initial-enemy-roster",
+          "owner-unknown",
+          "skill-unknown"
+        ]
+      },
+      {
+        "round": 5,
+        "phase": "flight",
+        "owner": "a4-39-w-5",
+        "skill": "HSH02",
+        "source": "normal",
+        "target": "a4-wreck",
+        "targetRole": "enemy",
+        "hpLoss": 77,
+        "shieldLoss": 0,
+        "heroHpLossFraction": null,
+        "heroShieldLossFraction": null,
+        "heroCombinedLossFraction": null,
+        "flags": [
+          "enemy-on-enemy",
+          "target-not-party-or-resident"
+        ]
+      }
+    ]
+  },
+  "narrowExchange": {
+    "enemyOwnersInflictingPrimary": [
+      "a4-39-a-1",
+      "a4-39-a-2",
+      "a4-39-m-1",
+      "a4-39-m-2",
+      "a4-39-m-3",
+      "a4-39-n-4",
+      "a4-39-w-2",
+      "a4-39-w-3",
+      "a4-39-w-4",
+      "a4-39-w-5",
+      "a4-wreck"
+    ],
+    "enemyTargetsTakingHeroDamage": [
+      "a4-39-w-1",
+      "a4-39-w-2",
+      "a4-39-w-3",
+      "a4-39-w-4",
+      "a4-39-w-5"
+    ],
+    "ids": [
+      "a4-39-a-1",
+      "a4-39-a-2",
+      "a4-39-m-1",
+      "a4-39-m-2",
+      "a4-39-m-3",
+      "a4-39-n-4",
+      "a4-39-w-1",
+      "a4-39-w-2",
+      "a4-39-w-3",
+      "a4-39-w-4",
+      "a4-39-w-5",
+      "a4-wreck"
+    ],
+    "count": 12
+  },
+  "additionalImpactPressure": {
+    "allEnemyToPartyOrResidentImpact": {
+      "a4-39-a-1": [
+        "archer",
+        "mage",
+        "occultist"
+      ],
+      "a4-39-a-2": [
+        "archer",
+        "knight",
+        "occultist"
+      ],
+      "a4-39-m-1": [
+        "archer",
+        "knight",
+        "occultist"
+      ],
+      "a4-39-m-2": [
+        "occultist"
+      ],
+      "a4-39-m-3": [
+        "knight"
+      ],
+      "a4-39-n-4": [
+        "knight",
+        "occultist"
+      ],
+      "a4-39-w-2": [
+        "mage",
+        "occultist"
+      ],
+      "a4-39-w-3": [
+        "occultist"
+      ],
+      "a4-39-w-4": [
+        "mage",
+        "occultist"
+      ],
+      "a4-39-w-5": [
+        "mage",
+        "occultist"
+      ],
+      "a4-wreck": [
+        "archer"
+      ]
+    },
+    "additionalIds": [],
+    "count": 0
+  },
+  "confirmedDirectUnion": {
+    "ids": [
+      "a4-39-a-1",
+      "a4-39-a-2",
+      "a4-39-m-1",
+      "a4-39-m-2",
+      "a4-39-m-3",
+      "a4-39-n-4",
+      "a4-39-w-1",
+      "a4-39-w-2",
+      "a4-39-w-3",
+      "a4-39-w-4",
+      "a4-39-w-5",
+      "a4-wreck"
+    ],
+    "count": 12
+  },
+  "enemyFireOutcomesWithTargetUnknown": {
+    "fired": 26
+  },
+  "enemyTerrainImpactCallsWithoutLinkedChoice": {},
+  "enemyFinishedActionUniqueByRound": {
+    "1": 6,
+    "2": 6,
+    "3": 6,
+    "4": 6,
+    "5": 6
+  },
+  "enemyFinishRawCallsByRound": {
+    "1": 12,
+    "2": 12,
+    "3": 12,
+    "4": 12,
+    "5": 12
+  },
+  "duplicateFinishCalls": 30,
+  "appDefenseHealing": {
+    "events": 10,
+    "hpTotal": 496
+  },
+  "capturedWaterRecoveries": [],
+  "inputHash": "b0b2e75bcf59f573495293481b85dca59eea82134298a96c04456d09d9e6f9d4",
+  "limits": [
+    "Resident max HP is not in captured entry fields; fraction omitted.",
+    "Direct impact does not prove targeted intent or visible player reaction.",
+    "No causal input link demonstrates action change from a terrain block.",
+    "Healing and attack-level damage denominators are not instrumented."
+  ]
+}
