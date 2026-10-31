@@ -1,0 +1,24 @@
+{
+  "version": 2,
+  "policies": [
+    "progress-first",
+    "threat-first"
+  ],
+  "runsPerPolicy": 1,
+  "seed": "game-created stage 39 seed; record initial value; no state injection",
+  "stop": [
+    "won",
+    "lost",
+    "round > 20",
+    "controller watchdog"
+  ],
+  "hashes": {
+    "art/act4-sharpness-followups/stage39-fullplay/entry-fixture-v2/profile.json": "fdb46cdffa936d57a73eb50c086d98ae7bba697f54eb25beb5819596a7aec123",
+    "_local/inputs/stage39-presentation/stage39.json": "0bb8dd43bf33af941c88800c4e7e13bbf2c7d3dd924444c035c997daad8f5dcb",
+    "web/manifest.json": "150ae5c7783e06853406a6a0a846073e648967365c079ac619a607274d9d43f5",
+    "tools/qa-stage39-observer/run-v2.py": "c2774f34025fff083d47eacbbbc57730f9caa45bdf1bb7c4974fdaf882b2400c",
+    "tools/qa-stage39-observer/observer-v2.js": "e1ced0752c9064f25f2712ba50fb6a3c5a6017497fb9163c1a8bbbf26166abad"
+  },
+  "limits": "Pilot HUD observed through existing frame path; no receipt injection; no conclusions on human win rate.",
+  "reason": "Same predeclared two strategies and initial seed; add actual impact/wait methods and aggregate walk calls to reduce volume. First v1 pair remains preserved."
+}
