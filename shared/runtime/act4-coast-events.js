@@ -77,7 +77,16 @@ function followReturnRoute(e,u,route,state,dt){if(!alive(u)||state.done)return !
   if(p.action==='jump'){u.moveLeft=Math.max(u.moveLeft,e.jumpCost(u));if(!e.jump(u))return false;state.jumpLanding=p.landingTerrainId;}
   state.index++;if(state.index>=route.length){state.done=true;return true;}return false;
  }
- moveNpc(e,u,p.x,dt,220,p.allowStepOff===true?false:!u.jumping);return false;
+ const moved=moveNpc(e,u,p.x,dt,220,p.allowStepOff===true?false:!u.jumping);
+ // A passenger can land at the foot of the spur's steep lip. It is a
+ // valid landing, but the next jump waypoint cannot always be walked to.
+ // Retry with an ordinary jump on the expected support; never reposition an
+ // actor or relax separation. Persist retries so a resumed save behaves alike.
+ if(state.jumpLanding&&p.action==='jump'&&e.grounded(u)&&e.contactSurface(u.x,u.y-4,u.y+5)?.t?.id===state.jumpLanding){
+  state.lipBlocked=moved>0?0:(state.lipBlocked||0)+dt;
+  if(state.lipBlocked>=1&&(state.lipRetries||0)<3){u.moveLeft=Math.max(u.moveLeft,e.jumpCost(u));if(e.jump(u)){state.lipRetries=(state.lipRetries||0)+1;state.lipBlocked=0;}}
+ }
+ return false;
 }
 function authoredReturn(app,q,dt,geo){const e=app.engine,b=e.b,cfg=b.honroAct4Design.escort,np=residents(b);if(np.length!==4)throw Error('Authored return requires four residents');
  if(!q.returnEscort&&party(b).some(u=>insideEventBounds(u,geo.boardingTriggerBounds))&&seen(q,'return-boat')&&seen(q,'return-high')){q.returnEscort={phase:'boarding',clock:0,boatX:cfg.boat.x,routes:{}};play(app,'boarding');}
