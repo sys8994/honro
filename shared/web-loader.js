@@ -110,6 +110,7 @@ export async function loadCampaign(file,authors,{full=false}={}){
  if(full){let project=await loadProject(file);for(const author of authors){project=author.author(project);await yieldIfNeeded();}return project;}
  const manifest=await request(file),base=await loadData(manifest.base,manifest.assetPaths.base),project={...base,unitTemplates:manifest.unitTemplates,library:[],stages:manifest.catalog.map(stage=>({...stage}))},loading=new Map(),loaded=new Set(),assets=new Map();
  async function ensureStage(id){
+  cancelPrewarm();
   if(loaded.has(id))return project.stages.find(stage=>stage.metadata.stageId===id);
   if(loading.has(id))return loading.get(id);
   const index=manifest.catalog.findIndex(stage=>stage.metadata.stageId===id);if(index<0)throw Error('Unknown chapter '+id);
@@ -125,18 +126,34 @@ export async function loadCampaign(file,authors,{full=false}={}){
    project.library=[...assets.values()];project.stages[index]=local.stages[0];loaded.add(id);return local.stages[0];
   })();loading.set(id,pending);try{return await pending;}finally{loading.delete(id);}
  }
- let warmHandle;
- function prewarmNext(id){
-  if(warmHandle){if(globalThis.cancelIdleCallback)cancelIdleCallback(warmHandle);else clearTimeout(warmHandle);}
-  const index=manifest.catalog.findIndex(stage=>stage.metadata.stageId===id)+1;
-  if(index<=0||index>=manifest.stages.length)return;
-  const warm=()=>{warmHandle=null;const connection=navigator.connection;if(document.hidden||connection?.saveData||/^(slow-)?2g$/.test(connection?.effectiveType||'')||globalThis.HonroApp?.screen==='battle')return;
-   // Warm only the next chapter's two JSON bundles, sequentially, without
-   // authoring/compiling it. No all-chapter background burst during play.
-   void request(manifest.stageLibraries[index],false,'low').then(()=>{if(!document.hidden&&globalThis.HonroApp?.screen!=='battle')return request(manifest.stages[index],false,'low');}).catch(()=>{});
-  };
-  warmHandle=globalThis.requestIdleCallback?requestIdleCallback(warm,{timeout:5000}):setTimeout(warm,1500);
+ let warmTimer=null,warmIdle=null,warmController=null;
+ function cancelPrewarm(){
+  if(warmTimer!==null){clearTimeout(warmTimer);warmTimer=null;}
+  if(warmIdle!==null){if(globalThis.cancelIdleCallback)cancelIdleCallback(warmIdle);else clearTimeout(warmIdle);warmIdle=null;}
+  if(warmController){warmController.abort();warmController=null;}
  }
- globalThis.HonroCampaignLoader={ensureStage,has:id=>loaded.has(id),destination,prewarmNext,catalog:manifest.catalog};
+ const warmAllowed=()=>{const c=navigator.connection;return !document.hidden&&!c?.saveData&&!/^(slow-)?2g$/.test(c?.effectiveType||'')&&globalThis.HonroApp?.screen!=='battle';};
+ async function warmRaw(file,signal){
+  const response=await fetch(new URL(file,root).href,{priority:'low',signal});if(!response.ok)throw Error('Prewarm failed: '+response.status);
+  // Split descriptors are small; warm their byte parts sequentially. Do not
+  // parse or hydrate speculative multi-megabyte data on the interactive path.
+  if(/-parts\.[^/]+\.json$/.test(file)){
+   const d=await response.json();if(d?.$honroJsonParts!==1||!Array.isArray(d.parts))throw Error('Invalid prewarm descriptor');
+   for(const part of d.parts){if(!warmAllowed())return;if(typeof part.path!=='string')throw Error('Invalid prewarm part');const r=await fetch(new URL(part.path,root).href,{priority:'low',signal});if(!r.ok)throw Error('Prewarm part failed: '+r.status);await r.arrayBuffer();}
+  }else await response.arrayBuffer();
+ }
+ function prewarmNext(id){
+  cancelPrewarm();const index=manifest.catalog.findIndex(stage=>stage.metadata.stageId===id)+1;
+  if(index<=0||index>=manifest.stages.length||!warmAllowed())return;
+  // Give the current UI an opportunity to enter battle first; cancellation
+  // never touches required loading or shares its abort signal/cache entry.
+  warmTimer=setTimeout(()=>{warmTimer=null;if(!warmAllowed())return;const run=()=>{warmIdle=null;if(!warmAllowed())return;const controller=new AbortController();warmController=controller;
+   void (async()=>{await warmRaw(manifest.stageLibraries[index],controller.signal);if(warmAllowed()&&!controller.signal.aborted)await warmRaw(manifest.stages[index],controller.signal);})().catch(()=>{}).finally(()=>{if(warmController===controller)warmController=null;});
+  };warmIdle=globalThis.requestIdleCallback?requestIdleCallback(run,{timeout:5000}):setTimeout(run,0);},3000);
+ }
+ document.addEventListener('visibilitychange',()=>{if(document.hidden)cancelPrewarm();});
+ globalThis.addEventListener('pagehide',cancelPrewarm);
+
+ globalThis.HonroCampaignLoader={ensureStage,has:id=>loaded.has(id),destination,prewarmNext,cancelPrewarm,catalog:manifest.catalog};
  await ensureStage(hint??destination(savedHint()));return project;
 }

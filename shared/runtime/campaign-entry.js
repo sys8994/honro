@@ -5,6 +5,7 @@ const pending=new WeakMap();let serial=0;
 function cancel(app){const task=pending.get(app);if(!task)return;pending.delete(app);task.node.remove();}
 function defer(app,id,run){
  const loader=G.HonroCampaignLoader;
+ loader?.cancelPrewarm?.();
  if(!loader||G.HONRO_EMBEDDED||app.customMap)return false;
  if(loader.has(id)){cancel(app);return false;}
  const previous=pending.get(app);if(previous?.id===id&&previous.profile===app.profile&&previous.running){previous.run=run;return true;}
