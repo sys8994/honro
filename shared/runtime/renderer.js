@@ -98,9 +98,16 @@
             if(!this._screenRaster(c,key,w,h,paint,'_screenForegroundCache'))paint(c);
             c.restore();
         }
-        _landmarkVisible(l,view,padding=40){
+        _landmarkPaintBounds(l){
             const bounds=l.asset?.bounds||l.asset?.reference?.bounds;
-            if(bounds&&G.HonroGeometry){const ps=[[bounds.x,bounds.y],[bounds.x+bounds.w,bounds.y],[bounds.x,bounds.y+bounds.h],[bounds.x+bounds.w,bounds.y+bounds.h]].map(([x,y])=>G.HonroGeometry.transformPoint({x,y},l.asset,l));return Math.max(...ps.map(p=>p.x))+padding>=view.left&&Math.min(...ps.map(p=>p.x))-padding<=view.right&&Math.max(...ps.map(p=>p.y))+padding>=view.top&&Math.min(...ps.map(p=>p.y))-padding<=view.bottom;}
+            if(!bounds||!G.HonroGeometry||![bounds.x,bounds.y,bounds.w,bounds.h].every(Number.isFinite)||bounds.w<0||bounds.h<0)return null;
+            const ps=[[bounds.x,bounds.y],[bounds.x+bounds.w,bounds.y],[bounds.x,bounds.y+bounds.h],[bounds.x+bounds.w,bounds.y+bounds.h]].map(([x,y])=>G.HonroGeometry.transformPoint({x,y},l.asset,l));
+            if(ps.some(p=>!Number.isFinite(p.x)||!Number.isFinite(p.y)))return null;
+            return{left:Math.min(...ps.map(p=>p.x)),right:Math.max(...ps.map(p=>p.x)),top:Math.min(...ps.map(p=>p.y)),bottom:Math.max(...ps.map(p=>p.y))};
+        }
+        _landmarkVisible(l,view,padding=40){
+            const bounds=this._landmarkPaintBounds(l);
+            if(bounds)return bounds.right+padding>=view.left&&bounds.left-padding<=view.right&&bounds.bottom+padding>=view.top&&bounds.top-padding<=view.bottom;
             const reach=3000*Math.max(.2,Math.abs(l.scale??l.size??1));return l.x+reach>=view.left&&l.x-reach<=view.right&&l.y+reach>=view.top&&l.y-reach<=view.bottom;
         }
         _worldCacheKey(b,w){const rs=this._worldRasterScale(b,w);return`${b.session||b.honroStage}:${b.sceneVersion||0}:${b.width}x${b.height}:${rs.toFixed(3)}:${G.HonroAct2SpatialArt?.appearanceKey(b)||''}`;}
@@ -147,8 +154,8 @@
             const view=G.HonroBounds.viewport(this,w,h);
             if(view.left>=0&&view.top>=0&&view.right<=b.width&&view.bottom<=b.height)return;
             const candidates=(b.honroLandmarks||[]).filter(l=>{
-                const r=1500*Math.max(.2,Math.abs(l.scale??l.size??1));
-                return (l.x-r<0||l.x+r>b.width||l.y-r<0||l.y+r>b.height)&&l.x+r>view.left&&l.x-r<view.right&&l.y+r>view.top&&l.y-r<view.bottom;
+                const r=1500*Math.max(.2,Math.abs(l.scale??l.size??1)),a=this._landmarkPaintBounds(l)||{left:l.x-r,right:l.x+r,top:l.y-r,bottom:l.y+r};
+                return (a.left<0||a.right>b.width||a.top<0||a.bottom>b.height)&&a.right>view.left&&a.left<view.right&&a.bottom>view.top&&a.top<view.bottom;
             });
             if(!candidates.length)return;
             c.save();c.beginPath();c.rect(view.left-1,view.top-1,view.right-view.left+2,view.bottom-view.top+2);c.rect(0,0,b.width,b.height);c.clip('evenodd');
