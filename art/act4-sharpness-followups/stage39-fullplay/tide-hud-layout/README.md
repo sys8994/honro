@@ -1,0 +1,7 @@
+# Tide HUD layout regression
+
+Runtime fix is source-only commit `73d095f4`: the existing timer is mounted in the already reserved battle title row, at 15 CSS px, rather than an absolute top-right coordinate underneath the minimap and equipment reward button. Tide state and timing rules are unchanged.
+
+`tools/qa-stage39/tide-hud-browser.py` loaded the actual round-5 high-tide battle save from `../fresh-v2-warning-and-save/` in headless Chromium. Desktop 1440×900 DPR1, portrait 390×844 DPR3, and landscape 844×390 DPR2 each verified visible bounds, no overlap with the minimap, reward control, pause button or objective row, font size, and UI reload/Continue. Wheel input reached and asserted both real zoom limits for each viewport. No page errors. An explicit **synthetic rising-state copy** of that save displayed `≈ ↑ 3` continuously for 3.5 seconds, survived the game's save and reload, and remained unobscured on each viewport. The three PNGs show that synthetic state; this is not an actual 39 encounter or natural-story-dialogue observation.
+
+Actual earlier fresh-run logs show the rising state and action opportunities persisted during rounds 2–4, but the prior natural warning capture was obscured. This test does not establish the real dialogue's display duration/readability or physical-device performance; natural 33/39 warning playback needs separate visual review. The 32 safeSeven provenance is not provided by this fixture. The source fix changes no battle rules, phase lengths, event receipt or stage data.

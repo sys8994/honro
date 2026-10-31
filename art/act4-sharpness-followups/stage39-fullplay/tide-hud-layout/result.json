@@ -1,0 +1,1879 @@
+{
+  "scope": "Actual high-tide saved battle; headless Chromium responsive layout and reload. No normal-game warning-duration claim.",
+  "saveSHA": "2246c7cdad393e00baf476ae77477fa63a054b130ae3032c787af99b51588b98",
+  "cases": [
+    {
+      "device": "desktop",
+      "state": "restore",
+      "hud": {
+        "left": 642.09375,
+        "right": 676,
+        "top": 15,
+        "bottom": 31,
+        "width": 33.90625,
+        "height": 16
+      },
+      "text": "≈ ━",
+      "font": 15,
+      "visible": true,
+      "elements": [
+        "battlecanvas",
+        "battle-view",
+        "battle battle-screen",
+        "app",
+        "honro"
+      ],
+      "obstacles": [
+        {
+          "selector": "#minimap-dock",
+          "rect": {
+            "left": 1276,
+            "right": 1428,
+            "top": 10,
+            "bottom": 111,
+            "width": 152,
+            "height": 101
+          },
+          "visible": true
+        },
+        {
+          "selector": "#equipment-pending-battle",
+          "rect": {
+            "left": 1309.546875,
+            "right": 1428,
+            "top": 100,
+            "bottom": 144,
+            "width": 118.453125,
+            "height": 44
+          },
+          "visible": true
+        },
+        {
+          "selector": ".battle-head>button",
+          "rect": {
+            "left": 12,
+            "right": 56,
+            "top": 10,
+            "bottom": 54,
+            "width": 44,
+            "height": 44
+          },
+          "visible": true
+        },
+        {
+          "selector": ".battle-objective-row",
+          "rect": {
+            "left": 72,
+            "right": 676,
+            "top": 33,
+            "bottom": 49,
+            "width": 604,
+            "height": 16
+          },
+          "visible": true
+        }
+      ],
+      "tide": {
+        "phase": "high",
+        "surface": 2812.5,
+        "warningRound": 2,
+        "highRound": 5,
+        "lowRound": 7,
+        "warned": true,
+        "warningAtRound": 2,
+        "opportunities": {
+          "2": [
+            "archer",
+            "mage",
+            "knight",
+            "occultist"
+          ],
+          "3": [
+            "archer",
+            "mage",
+            "knight",
+            "occultist"
+          ],
+          "4": [
+            "archer",
+            "mage",
+            "knight",
+            "occultist"
+          ]
+        }
+      },
+      "scale": 0.94
+    },
+    {
+      "device": "desktop",
+      "state": "min-zoom",
+      "hud": {
+        "left": 642.09375,
+        "right": 676,
+        "top": 15,
+        "bottom": 31,
+        "width": 33.90625,
+        "height": 16
+      },
+      "text": "≈ ━",
+      "font": 15,
+      "visible": true,
+      "elements": [
+        "battlecanvas",
+        "battle-view",
+        "battle battle-screen",
+        "app",
+        "honro"
+      ],
+      "obstacles": [
+        {
+          "selector": "#minimap-dock",
+          "rect": {
+            "left": 1276,
+            "right": 1428,
+            "top": 10,
+            "bottom": 111,
+            "width": 152,
+            "height": 101
+          },
+          "visible": true
+        },
+        {
+          "selector": "#equipment-pending-battle",
+          "rect": {
+            "left": 1309.546875,
+            "right": 1428,
+            "top": 100,
+            "bottom": 144,
+            "width": 118.453125,
+            "height": 44
+          },
+          "visible": true
+        },
+        {
+          "selector": ".battle-head>button",
+          "rect": {
+            "left": 12,
+            "right": 56,
+            "top": 10,
+            "bottom": 54,
+            "width": 44,
+            "height": 44
+          },
+          "visible": true
+        },
+        {
+          "selector": ".battle-objective-row",
+          "rect": {
+            "left": 72,
+            "right": 676,
+            "top": 33,
+            "bottom": 49,
+            "width": 604,
+            "height": 16
+          },
+          "visible": true
+        }
+      ],
+      "tide": {
+        "phase": "high",
+        "surface": 2812.5,
+        "warningRound": 2,
+        "highRound": 5,
+        "lowRound": 7,
+        "warned": true,
+        "warningAtRound": 2,
+        "opportunities": {
+          "2": [
+            "archer",
+            "mage",
+            "knight",
+            "occultist"
+          ],
+          "3": [
+            "archer",
+            "mage",
+            "knight",
+            "occultist"
+          ],
+          "4": [
+            "archer",
+            "mage",
+            "knight",
+            "occultist"
+          ]
+        }
+      },
+      "scale": 0.21176470588235294
+    },
+    {
+      "device": "desktop",
+      "state": "max-zoom",
+      "hud": {
+        "left": 642.09375,
+        "right": 676,
+        "top": 15,
+        "bottom": 31,
+        "width": 33.90625,
+        "height": 16
+      },
+      "text": "≈ ━",
+      "font": 15,
+      "visible": true,
+      "elements": [
+        "battlecanvas",
+        "battle-view",
+        "battle battle-screen",
+        "app",
+        "honro"
+      ],
+      "obstacles": [
+        {
+          "selector": "#minimap-dock",
+          "rect": {
+            "left": 1276,
+            "right": 1428,
+            "top": 10,
+            "bottom": 111,
+            "width": 152,
+            "height": 101
+          },
+          "visible": true
+        },
+        {
+          "selector": "#equipment-pending-battle",
+          "rect": {
+            "left": 1309.546875,
+            "right": 1428,
+            "top": 100,
+            "bottom": 144,
+            "width": 118.453125,
+            "height": 44
+          },
+          "visible": true
+        },
+        {
+          "selector": ".battle-head>button",
+          "rect": {
+            "left": 12,
+            "right": 56,
+            "top": 10,
+            "bottom": 54,
+            "width": 44,
+            "height": 44
+          },
+          "visible": true
+        },
+        {
+          "selector": ".battle-objective-row",
+          "rect": {
+            "left": 72,
+            "right": 676,
+            "top": 33,
+            "bottom": 49,
+            "width": 604,
+            "height": 16
+          },
+          "visible": true
+        }
+      ],
+      "tide": {
+        "phase": "high",
+        "surface": 2812.5,
+        "warningRound": 2,
+        "highRound": 5,
+        "lowRound": 7,
+        "warned": true,
+        "warningAtRound": 2,
+        "opportunities": {
+          "2": [
+            "archer",
+            "mage",
+            "knight",
+            "occultist"
+          ],
+          "3": [
+            "archer",
+            "mage",
+            "knight",
+            "occultist"
+          ],
+          "4": [
+            "archer",
+            "mage",
+            "knight",
+            "occultist"
+          ]
+        }
+      },
+      "scale": 1.65
+    },
+    {
+      "device": "desktop",
+      "state": "reload",
+      "hud": {
+        "left": 642.09375,
+        "right": 676,
+        "top": 15,
+        "bottom": 31,
+        "width": 33.90625,
+        "height": 16
+      },
+      "text": "≈ ━",
+      "font": 15,
+      "visible": true,
+      "elements": [
+        "battlecanvas",
+        "battle-view",
+        "battle battle-screen",
+        "app",
+        "honro"
+      ],
+      "obstacles": [
+        {
+          "selector": "#minimap-dock",
+          "rect": {
+            "left": 1276,
+            "right": 1428,
+            "top": 10,
+            "bottom": 111,
+            "width": 152,
+            "height": 101
+          },
+          "visible": true
+        },
+        {
+          "selector": "#equipment-pending-battle",
+          "rect": {
+            "left": 1309.546875,
+            "right": 1428,
+            "top": 100,
+            "bottom": 144,
+            "width": 118.453125,
+            "height": 44
+          },
+          "visible": true
+        },
+        {
+          "selector": ".battle-head>button",
+          "rect": {
+            "left": 12,
+            "right": 56,
+            "top": 10,
+            "bottom": 54,
+            "width": 44,
+            "height": 44
+          },
+          "visible": true
+        },
+        {
+          "selector": ".battle-objective-row",
+          "rect": {
+            "left": 72,
+            "right": 676,
+            "top": 33,
+            "bottom": 49,
+            "width": 604,
+            "height": 16
+          },
+          "visible": true
+        }
+      ],
+      "tide": {
+        "phase": "high",
+        "surface": 2812.5,
+        "warningRound": 2,
+        "highRound": 5,
+        "lowRound": 7,
+        "warned": true,
+        "warningAtRound": 2,
+        "opportunities": {
+          "2": [
+            "archer",
+            "mage",
+            "knight",
+            "occultist"
+          ],
+          "3": [
+            "archer",
+            "mage",
+            "knight",
+            "occultist"
+          ],
+          "4": [
+            "archer",
+            "mage",
+            "knight",
+            "occultist"
+          ]
+        }
+      },
+      "scale": 0.94
+    },
+    {
+      "device": "desktop",
+      "state": "synthetic-rising",
+      "hud": {
+        "left": 629.609375,
+        "right": 676,
+        "top": 15,
+        "bottom": 31,
+        "width": 46.390625,
+        "height": 16
+      },
+      "text": "≈ ↑ 3",
+      "font": 15,
+      "visible": true,
+      "elements": [
+        "battlecanvas",
+        "battle-view",
+        "battle battle-screen",
+        "app",
+        "honro"
+      ],
+      "obstacles": [
+        {
+          "selector": "#minimap-dock",
+          "rect": {
+            "left": 1276,
+            "right": 1428,
+            "top": 10,
+            "bottom": 111,
+            "width": 152,
+            "height": 101
+          },
+          "visible": true
+        },
+        {
+          "selector": "#equipment-pending-battle",
+          "rect": {
+            "left": 1309.546875,
+            "right": 1428,
+            "top": 100,
+            "bottom": 144,
+            "width": 118.453125,
+            "height": 44
+          },
+          "visible": true
+        },
+        {
+          "selector": ".battle-head>button",
+          "rect": {
+            "left": 12,
+            "right": 56,
+            "top": 10,
+            "bottom": 54,
+            "width": 44,
+            "height": 44
+          },
+          "visible": true
+        },
+        {
+          "selector": ".battle-objective-row",
+          "rect": {
+            "left": 72,
+            "right": 676,
+            "top": 33,
+            "bottom": 49,
+            "width": 604,
+            "height": 16
+          },
+          "visible": true
+        }
+      ],
+      "tide": {
+        "phase": "rising",
+        "surface": 3132,
+        "warningRound": 2,
+        "highRound": 8,
+        "lowRound": 10,
+        "warned": true,
+        "warningAtRound": 2,
+        "opportunities": {
+          "2": [
+            "archer",
+            "mage",
+            "knight",
+            "occultist"
+          ],
+          "3": [
+            "archer",
+            "mage",
+            "knight",
+            "occultist"
+          ],
+          "4": [
+            "archer",
+            "mage",
+            "knight",
+            "occultist"
+          ],
+          "5": [
+            "archer",
+            "mage",
+            "knight",
+            "occultist"
+          ]
+        }
+      },
+      "scale": 0.94
+    },
+    {
+      "device": "desktop",
+      "state": "synthetic-rising-reload",
+      "hud": {
+        "left": 629.609375,
+        "right": 676,
+        "top": 15,
+        "bottom": 31,
+        "width": 46.390625,
+        "height": 16
+      },
+      "text": "≈ ↑ 3",
+      "font": 15,
+      "visible": true,
+      "elements": [
+        "battlecanvas",
+        "battle-view",
+        "battle battle-screen",
+        "app",
+        "honro"
+      ],
+      "obstacles": [
+        {
+          "selector": "#minimap-dock",
+          "rect": {
+            "left": 1276,
+            "right": 1428,
+            "top": 10,
+            "bottom": 111,
+            "width": 152,
+            "height": 101
+          },
+          "visible": true
+        },
+        {
+          "selector": "#equipment-pending-battle",
+          "rect": {
+            "left": 1309.546875,
+            "right": 1428,
+            "top": 100,
+            "bottom": 144,
+            "width": 118.453125,
+            "height": 44
+          },
+          "visible": true
+        },
+        {
+          "selector": ".battle-head>button",
+          "rect": {
+            "left": 12,
+            "right": 56,
+            "top": 10,
+            "bottom": 54,
+            "width": 44,
+            "height": 44
+          },
+          "visible": true
+        },
+        {
+          "selector": ".battle-objective-row",
+          "rect": {
+            "left": 72,
+            "right": 676,
+            "top": 33,
+            "bottom": 49,
+            "width": 604,
+            "height": 16
+          },
+          "visible": true
+        }
+      ],
+      "tide": {
+        "phase": "rising",
+        "surface": 3132,
+        "warningRound": 2,
+        "highRound": 8,
+        "lowRound": 10,
+        "warned": true,
+        "warningAtRound": 2,
+        "opportunities": {
+          "2": [
+            "archer",
+            "mage",
+            "knight",
+            "occultist"
+          ],
+          "3": [
+            "archer",
+            "mage",
+            "knight",
+            "occultist"
+          ],
+          "4": [
+            "archer",
+            "mage",
+            "knight",
+            "occultist"
+          ],
+          "5": [
+            "archer",
+            "mage",
+            "knight",
+            "occultist"
+          ]
+        }
+      },
+      "scale": 0.94
+    },
+    {
+      "device": "portrait",
+      "state": "restore",
+      "hud": {
+        "left": 214.09375,
+        "right": 248,
+        "top": 13,
+        "bottom": 29,
+        "width": 33.90625,
+        "height": 16
+      },
+      "text": "≈ ━",
+      "font": 15,
+      "visible": true,
+      "elements": [
+        "battlecanvas",
+        "battle-view",
+        "battle battle-screen",
+        "app",
+        "honro"
+      ],
+      "obstacles": [
+        {
+          "selector": "#minimap-dock",
+          "rect": {
+            "left": 264,
+            "right": 382,
+            "top": 8,
+            "bottom": 87,
+            "width": 118,
+            "height": 79
+          },
+          "visible": true
+        },
+        {
+          "selector": "#equipment-pending-battle",
+          "rect": {
+            "left": 259.546875,
+            "right": 378,
+            "top": 100,
+            "bottom": 144,
+            "width": 118.453125,
+            "height": 44
+          },
+          "visible": true
+        },
+        {
+          "selector": ".battle-head>button",
+          "rect": {
+            "left": 8,
+            "right": 52,
+            "top": 8,
+            "bottom": 52,
+            "width": 44,
+            "height": 44
+          },
+          "visible": true
+        },
+        {
+          "selector": ".battle-objective-row",
+          "rect": {
+            "left": 68,
+            "right": 248,
+            "top": 31,
+            "bottom": 47,
+            "width": 180,
+            "height": 16
+          },
+          "visible": true
+        }
+      ],
+      "tide": {
+        "phase": "high",
+        "surface": 2812.5,
+        "warningRound": 2,
+        "highRound": 5,
+        "lowRound": 7,
+        "warned": true,
+        "warningAtRound": 2,
+        "opportunities": {
+          "2": [
+            "archer",
+            "mage",
+            "knight",
+            "occultist"
+          ],
+          "3": [
+            "archer",
+            "mage",
+            "knight",
+            "occultist"
+          ],
+          "4": [
+            "archer",
+            "mage",
+            "knight",
+            "occultist"
+          ]
+        }
+      },
+      "scale": 0.82
+    },
+    {
+      "device": "portrait",
+      "state": "min-zoom",
+      "hud": {
+        "left": 214.09375,
+        "right": 248,
+        "top": 13,
+        "bottom": 29,
+        "width": 33.90625,
+        "height": 16
+      },
+      "text": "≈ ━",
+      "font": 15,
+      "visible": true,
+      "elements": [
+        "battlecanvas",
+        "battle-view",
+        "battle battle-screen",
+        "app",
+        "honro"
+      ],
+      "obstacles": [
+        {
+          "selector": "#minimap-dock",
+          "rect": {
+            "left": 264,
+            "right": 382,
+            "top": 8,
+            "bottom": 87,
+            "width": 118,
+            "height": 79
+          },
+          "visible": true
+        },
+        {
+          "selector": "#equipment-pending-battle",
+          "rect": {
+            "left": 259.546875,
+            "right": 378,
+            "top": 100,
+            "bottom": 144,
+            "width": 118.453125,
+            "height": 44
+          },
+          "visible": true
+        },
+        {
+          "selector": ".battle-head>button",
+          "rect": {
+            "left": 8,
+            "right": 52,
+            "top": 8,
+            "bottom": 52,
+            "width": 44,
+            "height": 44
+          },
+          "visible": true
+        },
+        {
+          "selector": ".battle-objective-row",
+          "rect": {
+            "left": 68,
+            "right": 248,
+            "top": 31,
+            "bottom": 47,
+            "width": 180,
+            "height": 16
+          },
+          "visible": true
+        }
+      ],
+      "tide": {
+        "phase": "high",
+        "surface": 2812.5,
+        "warningRound": 2,
+        "highRound": 5,
+        "lowRound": 7,
+        "warned": true,
+        "warningAtRound": 2,
+        "opportunities": {
+          "2": [
+            "archer",
+            "mage",
+            "knight",
+            "occultist"
+          ],
+          "3": [
+            "archer",
+            "mage",
+            "knight",
+            "occultist"
+          ],
+          "4": [
+            "archer",
+            "mage",
+            "knight",
+            "occultist"
+          ]
+        }
+      },
+      "scale": 0.057352941176470586
+    },
+    {
+      "device": "portrait",
+      "state": "max-zoom",
+      "hud": {
+        "left": 214.09375,
+        "right": 248,
+        "top": 13,
+        "bottom": 29,
+        "width": 33.90625,
+        "height": 16
+      },
+      "text": "≈ ━",
+      "font": 15,
+      "visible": true,
+      "elements": [
+        "battlecanvas",
+        "battle-view",
+        "battle battle-screen",
+        "app",
+        "honro"
+      ],
+      "obstacles": [
+        {
+          "selector": "#minimap-dock",
+          "rect": {
+            "left": 264,
+            "right": 382,
+            "top": 8,
+            "bottom": 87,
+            "width": 118,
+            "height": 79
+          },
+          "visible": true
+        },
+        {
+          "selector": "#equipment-pending-battle",
+          "rect": {
+            "left": 259.546875,
+            "right": 378,
+            "top": 100,
+            "bottom": 144,
+            "width": 118.453125,
+            "height": 44
+          },
+          "visible": true
+        },
+        {
+          "selector": ".battle-head>button",
+          "rect": {
+            "left": 8,
+            "right": 52,
+            "top": 8,
+            "bottom": 52,
+            "width": 44,
+            "height": 44
+          },
+          "visible": true
+        },
+        {
+          "selector": ".battle-objective-row",
+          "rect": {
+            "left": 68,
+            "right": 248,
+            "top": 31,
+            "bottom": 47,
+            "width": 180,
+            "height": 16
+          },
+          "visible": true
+        }
+      ],
+      "tide": {
+        "phase": "high",
+        "surface": 2812.5,
+        "warningRound": 2,
+        "highRound": 5,
+        "lowRound": 7,
+        "warned": true,
+        "warningAtRound": 2,
+        "opportunities": {
+          "2": [
+            "archer",
+            "mage",
+            "knight",
+            "occultist"
+          ],
+          "3": [
+            "archer",
+            "mage",
+            "knight",
+            "occultist"
+          ],
+          "4": [
+            "archer",
+            "mage",
+            "knight",
+            "occultist"
+          ]
+        }
+      },
+      "scale": 1.65
+    },
+    {
+      "device": "portrait",
+      "state": "reload",
+      "hud": {
+        "left": 214.09375,
+        "right": 248,
+        "top": 13,
+        "bottom": 29,
+        "width": 33.90625,
+        "height": 16
+      },
+      "text": "≈ ━",
+      "font": 15,
+      "visible": true,
+      "elements": [
+        "battlecanvas",
+        "battle-view",
+        "battle battle-screen",
+        "app",
+        "honro"
+      ],
+      "obstacles": [
+        {
+          "selector": "#minimap-dock",
+          "rect": {
+            "left": 264,
+            "right": 382,
+            "top": 8,
+            "bottom": 87,
+            "width": 118,
+            "height": 79
+          },
+          "visible": true
+        },
+        {
+          "selector": "#equipment-pending-battle",
+          "rect": {
+            "left": 259.546875,
+            "right": 378,
+            "top": 100,
+            "bottom": 144,
+            "width": 118.453125,
+            "height": 44
+          },
+          "visible": true
+        },
+        {
+          "selector": ".battle-head>button",
+          "rect": {
+            "left": 8,
+            "right": 52,
+            "top": 8,
+            "bottom": 52,
+            "width": 44,
+            "height": 44
+          },
+          "visible": true
+        },
+        {
+          "selector": ".battle-objective-row",
+          "rect": {
+            "left": 68,
+            "right": 248,
+            "top": 31,
+            "bottom": 47,
+            "width": 180,
+            "height": 16
+          },
+          "visible": true
+        }
+      ],
+      "tide": {
+        "phase": "high",
+        "surface": 2812.5,
+        "warningRound": 2,
+        "highRound": 5,
+        "lowRound": 7,
+        "warned": true,
+        "warningAtRound": 2,
+        "opportunities": {
+          "2": [
+            "archer",
+            "mage",
+            "knight",
+            "occultist"
+          ],
+          "3": [
+            "archer",
+            "mage",
+            "knight",
+            "occultist"
+          ],
+          "4": [
+            "archer",
+            "mage",
+            "knight",
+            "occultist"
+          ]
+        }
+      },
+      "scale": 0.82
+    },
+    {
+      "device": "portrait",
+      "state": "synthetic-rising",
+      "hud": {
+        "left": 201.609375,
+        "right": 248,
+        "top": 13,
+        "bottom": 29,
+        "width": 46.390625,
+        "height": 16
+      },
+      "text": "≈ ↑ 3",
+      "font": 15,
+      "visible": true,
+      "elements": [
+        "battlecanvas",
+        "battle-view",
+        "battle battle-screen",
+        "app",
+        "honro"
+      ],
+      "obstacles": [
+        {
+          "selector": "#minimap-dock",
+          "rect": {
+            "left": 264,
+            "right": 382,
+            "top": 8,
+            "bottom": 87,
+            "width": 118,
+            "height": 79
+          },
+          "visible": true
+        },
+        {
+          "selector": "#equipment-pending-battle",
+          "rect": {
+            "left": 259.546875,
+            "right": 378,
+            "top": 100,
+            "bottom": 144,
+            "width": 118.453125,
+            "height": 44
+          },
+          "visible": true
+        },
+        {
+          "selector": ".battle-head>button",
+          "rect": {
+            "left": 8,
+            "right": 52,
+            "top": 8,
+            "bottom": 52,
+            "width": 44,
+            "height": 44
+          },
+          "visible": true
+        },
+        {
+          "selector": ".battle-objective-row",
+          "rect": {
+            "left": 68,
+            "right": 248,
+            "top": 31,
+            "bottom": 47,
+            "width": 180,
+            "height": 16
+          },
+          "visible": true
+        }
+      ],
+      "tide": {
+        "phase": "rising",
+        "surface": 3132,
+        "warningRound": 2,
+        "highRound": 8,
+        "lowRound": 10,
+        "warned": true,
+        "warningAtRound": 2,
+        "opportunities": {
+          "2": [
+            "archer",
+            "mage",
+            "knight",
+            "occultist"
+          ],
+          "3": [
+            "archer",
+            "mage",
+            "knight",
+            "occultist"
+          ],
+          "4": [
+            "archer",
+            "mage",
+            "knight",
+            "occultist"
+          ],
+          "5": [
+            "archer",
+            "mage",
+            "knight",
+            "occultist"
+          ]
+        }
+      },
+      "scale": 0.82
+    },
+    {
+      "device": "portrait",
+      "state": "synthetic-rising-reload",
+      "hud": {
+        "left": 201.609375,
+        "right": 248,
+        "top": 13,
+        "bottom": 29,
+        "width": 46.390625,
+        "height": 16
+      },
+      "text": "≈ ↑ 3",
+      "font": 15,
+      "visible": true,
+      "elements": [
+        "battlecanvas",
+        "battle-view",
+        "battle battle-screen",
+        "app",
+        "honro"
+      ],
+      "obstacles": [
+        {
+          "selector": "#minimap-dock",
+          "rect": {
+            "left": 264,
+            "right": 382,
+            "top": 8,
+            "bottom": 87,
+            "width": 118,
+            "height": 79
+          },
+          "visible": true
+        },
+        {
+          "selector": "#equipment-pending-battle",
+          "rect": {
+            "left": 259.546875,
+            "right": 378,
+            "top": 100,
+            "bottom": 144,
+            "width": 118.453125,
+            "height": 44
+          },
+          "visible": true
+        },
+        {
+          "selector": ".battle-head>button",
+          "rect": {
+            "left": 8,
+            "right": 52,
+            "top": 8,
+            "bottom": 52,
+            "width": 44,
+            "height": 44
+          },
+          "visible": true
+        },
+        {
+          "selector": ".battle-objective-row",
+          "rect": {
+            "left": 68,
+            "right": 248,
+            "top": 31,
+            "bottom": 47,
+            "width": 180,
+            "height": 16
+          },
+          "visible": true
+        }
+      ],
+      "tide": {
+        "phase": "rising",
+        "surface": 3132,
+        "warningRound": 2,
+        "highRound": 8,
+        "lowRound": 10,
+        "warned": true,
+        "warningAtRound": 2,
+        "opportunities": {
+          "2": [
+            "archer",
+            "mage",
+            "knight",
+            "occultist"
+          ],
+          "3": [
+            "archer",
+            "mage",
+            "knight",
+            "occultist"
+          ],
+          "4": [
+            "archer",
+            "mage",
+            "knight",
+            "occultist"
+          ],
+          "5": [
+            "archer",
+            "mage",
+            "knight",
+            "occultist"
+          ]
+        }
+      },
+      "scale": 0.82
+    },
+    {
+      "device": "landscape",
+      "state": "restore",
+      "hud": {
+        "left": 632.09375,
+        "right": 666,
+        "top": 11,
+        "bottom": 27,
+        "width": 33.90625,
+        "height": 16
+      },
+      "text": "≈ ━",
+      "font": 15,
+      "visible": true,
+      "elements": [
+        "battlecanvas",
+        "battle-view",
+        "battle battle-screen",
+        "app",
+        "honro"
+      ],
+      "obstacles": [
+        {
+          "selector": "#minimap-dock",
+          "rect": {
+            "left": 680,
+            "right": 832,
+            "top": 10,
+            "bottom": 110,
+            "width": 152,
+            "height": 100
+          },
+          "visible": true
+        },
+        {
+          "selector": "#equipment-pending-battle",
+          "rect": {
+            "left": 713.546875,
+            "right": 832,
+            "top": 100,
+            "bottom": 144,
+            "width": 118.453125,
+            "height": 44
+          },
+          "visible": true
+        },
+        {
+          "selector": ".battle-head>button",
+          "rect": {
+            "left": 10,
+            "right": 54,
+            "top": 6,
+            "bottom": 50,
+            "width": 44,
+            "height": 44
+          },
+          "visible": true
+        },
+        {
+          "selector": ".battle-objective-row",
+          "rect": {
+            "left": 70,
+            "right": 666,
+            "top": 29,
+            "bottom": 45,
+            "width": 596,
+            "height": 16
+          },
+          "visible": true
+        }
+      ],
+      "tide": {
+        "phase": "high",
+        "surface": 2812.5,
+        "warningRound": 2,
+        "highRound": 5,
+        "lowRound": 7,
+        "warned": true,
+        "warningAtRound": 2,
+        "opportunities": {
+          "2": [
+            "archer",
+            "mage",
+            "knight",
+            "occultist"
+          ],
+          "3": [
+            "archer",
+            "mage",
+            "knight",
+            "occultist"
+          ],
+          "4": [
+            "archer",
+            "mage",
+            "knight",
+            "occultist"
+          ]
+        }
+      },
+      "scale": 0.94
+    },
+    {
+      "device": "landscape",
+      "state": "min-zoom",
+      "hud": {
+        "left": 632.09375,
+        "right": 666,
+        "top": 11,
+        "bottom": 27,
+        "width": 33.90625,
+        "height": 16
+      },
+      "text": "≈ ━",
+      "font": 15,
+      "visible": true,
+      "elements": [
+        "battlecanvas",
+        "battle-view",
+        "battle battle-screen",
+        "app",
+        "honro"
+      ],
+      "obstacles": [
+        {
+          "selector": "#minimap-dock",
+          "rect": {
+            "left": 680,
+            "right": 832,
+            "top": 10,
+            "bottom": 110,
+            "width": 152,
+            "height": 100
+          },
+          "visible": true
+        },
+        {
+          "selector": "#equipment-pending-battle",
+          "rect": {
+            "left": 713.546875,
+            "right": 832,
+            "top": 100,
+            "bottom": 144,
+            "width": 118.453125,
+            "height": 44
+          },
+          "visible": true
+        },
+        {
+          "selector": ".battle-head>button",
+          "rect": {
+            "left": 10,
+            "right": 54,
+            "top": 6,
+            "bottom": 50,
+            "width": 44,
+            "height": 44
+          },
+          "visible": true
+        },
+        {
+          "selector": ".battle-objective-row",
+          "rect": {
+            "left": 70,
+            "right": 666,
+            "top": 29,
+            "bottom": 45,
+            "width": 596,
+            "height": 16
+          },
+          "visible": true
+        }
+      ],
+      "tide": {
+        "phase": "high",
+        "surface": 2812.5,
+        "warningRound": 2,
+        "highRound": 5,
+        "lowRound": 7,
+        "warned": true,
+        "warningAtRound": 2,
+        "opportunities": {
+          "2": [
+            "archer",
+            "mage",
+            "knight",
+            "occultist"
+          ],
+          "3": [
+            "archer",
+            "mage",
+            "knight",
+            "occultist"
+          ],
+          "4": [
+            "archer",
+            "mage",
+            "knight",
+            "occultist"
+          ]
+        }
+      },
+      "scale": 0.12411764705882353
+    },
+    {
+      "device": "landscape",
+      "state": "max-zoom",
+      "hud": {
+        "left": 632.09375,
+        "right": 666,
+        "top": 11,
+        "bottom": 27,
+        "width": 33.90625,
+        "height": 16
+      },
+      "text": "≈ ━",
+      "font": 15,
+      "visible": true,
+      "elements": [
+        "battlecanvas",
+        "battle-view",
+        "battle battle-screen",
+        "app",
+        "honro"
+      ],
+      "obstacles": [
+        {
+          "selector": "#minimap-dock",
+          "rect": {
+            "left": 680,
+            "right": 832,
+            "top": 10,
+            "bottom": 110,
+            "width": 152,
+            "height": 100
+          },
+          "visible": true
+        },
+        {
+          "selector": "#equipment-pending-battle",
+          "rect": {
+            "left": 713.546875,
+            "right": 832,
+            "top": 100,
+            "bottom": 144,
+            "width": 118.453125,
+            "height": 44
+          },
+          "visible": true
+        },
+        {
+          "selector": ".battle-head>button",
+          "rect": {
+            "left": 10,
+            "right": 54,
+            "top": 6,
+            "bottom": 50,
+            "width": 44,
+            "height": 44
+          },
+          "visible": true
+        },
+        {
+          "selector": ".battle-objective-row",
+          "rect": {
+            "left": 70,
+            "right": 666,
+            "top": 29,
+            "bottom": 45,
+            "width": 596,
+            "height": 16
+          },
+          "visible": true
+        }
+      ],
+      "tide": {
+        "phase": "high",
+        "surface": 2812.5,
+        "warningRound": 2,
+        "highRound": 5,
+        "lowRound": 7,
+        "warned": true,
+        "warningAtRound": 2,
+        "opportunities": {
+          "2": [
+            "archer",
+            "mage",
+            "knight",
+            "occultist"
+          ],
+          "3": [
+            "archer",
+            "mage",
+            "knight",
+            "occultist"
+          ],
+          "4": [
+            "archer",
+            "mage",
+            "knight",
+            "occultist"
+          ]
+        }
+      },
+      "scale": 1.65
+    },
+    {
+      "device": "landscape",
+      "state": "reload",
+      "hud": {
+        "left": 632.09375,
+        "right": 666,
+        "top": 11,
+        "bottom": 27,
+        "width": 33.90625,
+        "height": 16
+      },
+      "text": "≈ ━",
+      "font": 15,
+      "visible": true,
+      "elements": [
+        "battlecanvas",
+        "battle-view",
+        "battle battle-screen",
+        "app",
+        "honro"
+      ],
+      "obstacles": [
+        {
+          "selector": "#minimap-dock",
+          "rect": {
+            "left": 680,
+            "right": 832,
+            "top": 10,
+            "bottom": 110,
+            "width": 152,
+            "height": 100
+          },
+          "visible": true
+        },
+        {
+          "selector": "#equipment-pending-battle",
+          "rect": {
+            "left": 713.546875,
+            "right": 832,
+            "top": 100,
+            "bottom": 144,
+            "width": 118.453125,
+            "height": 44
+          },
+          "visible": true
+        },
+        {
+          "selector": ".battle-head>button",
+          "rect": {
+            "left": 10,
+            "right": 54,
+            "top": 6,
+            "bottom": 50,
+            "width": 44,
+            "height": 44
+          },
+          "visible": true
+        },
+        {
+          "selector": ".battle-objective-row",
+          "rect": {
+            "left": 70,
+            "right": 666,
+            "top": 29,
+            "bottom": 45,
+            "width": 596,
+            "height": 16
+          },
+          "visible": true
+        }
+      ],
+      "tide": {
+        "phase": "high",
+        "surface": 2812.5,
+        "warningRound": 2,
+        "highRound": 5,
+        "lowRound": 7,
+        "warned": true,
+        "warningAtRound": 2,
+        "opportunities": {
+          "2": [
+            "archer",
+            "mage",
+            "knight",
+            "occultist"
+          ],
+          "3": [
+            "archer",
+            "mage",
+            "knight",
+            "occultist"
+          ],
+          "4": [
+            "archer",
+            "mage",
+            "knight",
+            "occultist"
+          ]
+        }
+      },
+      "scale": 0.94
+    },
+    {
+      "device": "landscape",
+      "state": "synthetic-rising",
+      "hud": {
+        "left": 619.609375,
+        "right": 666,
+        "top": 11,
+        "bottom": 27,
+        "width": 46.390625,
+        "height": 16
+      },
+      "text": "≈ ↑ 3",
+      "font": 15,
+      "visible": true,
+      "elements": [
+        "battlecanvas",
+        "battle-view",
+        "battle battle-screen",
+        "app",
+        "honro"
+      ],
+      "obstacles": [
+        {
+          "selector": "#minimap-dock",
+          "rect": {
+            "left": 680,
+            "right": 832,
+            "top": 10,
+            "bottom": 110,
+            "width": 152,
+            "height": 100
+          },
+          "visible": true
+        },
+        {
+          "selector": "#equipment-pending-battle",
+          "rect": {
+            "left": 713.546875,
+            "right": 832,
+            "top": 100,
+            "bottom": 144,
+            "width": 118.453125,
+            "height": 44
+          },
+          "visible": true
+        },
+        {
+          "selector": ".battle-head>button",
+          "rect": {
+            "left": 10,
+            "right": 54,
+            "top": 6,
+            "bottom": 50,
+            "width": 44,
+            "height": 44
+          },
+          "visible": true
+        },
+        {
+          "selector": ".battle-objective-row",
+          "rect": {
+            "left": 70,
+            "right": 666,
+            "top": 29,
+            "bottom": 45,
+            "width": 596,
+            "height": 16
+          },
+          "visible": true
+        }
+      ],
+      "tide": {
+        "phase": "rising",
+        "surface": 3132,
+        "warningRound": 2,
+        "highRound": 8,
+        "lowRound": 10,
+        "warned": true,
+        "warningAtRound": 2,
+        "opportunities": {
+          "2": [
+            "archer",
+            "mage",
+            "knight",
+            "occultist"
+          ],
+          "3": [
+            "archer",
+            "mage",
+            "knight",
+            "occultist"
+          ],
+          "4": [
+            "archer",
+            "mage",
+            "knight",
+            "occultist"
+          ],
+          "5": [
+            "archer",
+            "mage",
+            "knight",
+            "occultist"
+          ]
+        }
+      },
+      "scale": 0.94
+    },
+    {
+      "device": "landscape",
+      "state": "synthetic-rising-reload",
+      "hud": {
+        "left": 619.609375,
+        "right": 666,
+        "top": 11,
+        "bottom": 27,
+        "width": 46.390625,
+        "height": 16
+      },
+      "text": "≈ ↑ 3",
+      "font": 15,
+      "visible": true,
+      "elements": [
+        "battlecanvas",
+        "battle-view",
+        "battle battle-screen",
+        "app",
+        "honro"
+      ],
+      "obstacles": [
+        {
+          "selector": "#minimap-dock",
+          "rect": {
+            "left": 680,
+            "right": 832,
+            "top": 10,
+            "bottom": 110,
+            "width": 152,
+            "height": 100
+          },
+          "visible": true
+        },
+        {
+          "selector": "#equipment-pending-battle",
+          "rect": {
+            "left": 713.546875,
+            "right": 832,
+            "top": 100,
+            "bottom": 144,
+            "width": 118.453125,
+            "height": 44
+          },
+          "visible": true
+        },
+        {
+          "selector": ".battle-head>button",
+          "rect": {
+            "left": 10,
+            "right": 54,
+            "top": 6,
+            "bottom": 50,
+            "width": 44,
+            "height": 44
+          },
+          "visible": true
+        },
+        {
+          "selector": ".battle-objective-row",
+          "rect": {
+            "left": 70,
+            "right": 666,
+            "top": 29,
+            "bottom": 45,
+            "width": 596,
+            "height": 16
+          },
+          "visible": true
+        }
+      ],
+      "tide": {
+        "phase": "rising",
+        "surface": 3132,
+        "warningRound": 2,
+        "highRound": 8,
+        "lowRound": 10,
+        "warned": true,
+        "warningAtRound": 2,
+        "opportunities": {
+          "2": [
+            "archer",
+            "mage",
+            "knight",
+            "occultist"
+          ],
+          "3": [
+            "archer",
+            "mage",
+            "knight",
+            "occultist"
+          ],
+          "4": [
+            "archer",
+            "mage",
+            "knight",
+            "occultist"
+          ],
+          "5": [
+            "archer",
+            "mage",
+            "knight",
+            "occultist"
+          ]
+        }
+      },
+      "scale": 0.94
+    }
+  ],
+  "errors": []
+}
