@@ -1,0 +1,107 @@
+{
+  "scope": "Separate UI continuation from real pre-reunion read-only profile; not fresh play",
+  "sourceBase": "873ae0503a4a0fbcf281d2d8a7faf67274811e5e",
+  "lipPatch": "b50918d7",
+  "profileSha256": "b7e1ff449ac72abaf4d539fe08a9e48feeb0b881ad5151b660c5645033516070",
+  "observedBeforeClick": [
+    {
+      "text": "설오, 정말 왔네요.",
+      "id": "A4.S40.REUNION.01",
+      "key": "reunion"
+    },
+    {
+      "text": "많이 찾았습니다.",
+      "id": "A4.S40.REUNION.02",
+      "key": "reunion"
+    },
+    {
+      "text": "아버지 장부에 적힌 분들은 다 찾은 거죠?",
+      "id": "A4.S40.THIRTEEN.01",
+      "key": "thirteen"
+    },
+    {
+      "text": "두 분은 여기로 온 뒤에 돌아가셨어요.",
+      "id": "A4.S40.THIRTEEN.02",
+      "key": "thirteen"
+    },
+    {
+      "text": "……장부에 적어 둘게요.",
+      "id": "A4.S40.THIRTEEN.03",
+      "key": "thirteen"
+    },
+    {
+      "text": "이제 어디로 가실 겁니까?",
+      "id": "A4.S40.NEXT.01",
+      "key": "next"
+    },
+    {
+      "text": "일단 산 쪽으로 가야죠.",
+      "id": "A4.S40.NEXT.02",
+      "key": "next"
+    },
+    {
+      "text": "무명사의 일을 끝내지 못하면 저 산도 안전하지 않네.",
+      "id": "A4.S40.NEXT.03",
+      "key": "next"
+    },
+    {
+      "text": "사람들을 먼저 데려다 놓읍시다.",
+      "id": "A4.S40.NEXT.04",
+      "key": "next"
+    }
+  ],
+  "events": {
+    "reunion": {
+      "started": true,
+      "terminal": true,
+      "presented": [
+        "A4.S40.REUNION.01",
+        "A4.S40.REUNION.02"
+      ],
+      "retired": []
+    },
+    "thirteen": {
+      "started": true,
+      "terminal": true,
+      "presented": [
+        "A4.S40.THIRTEEN.01",
+        "A4.S40.THIRTEEN.02",
+        "A4.S40.THIRTEEN.03"
+      ],
+      "retired": []
+    },
+    "next": {
+      "started": true,
+      "terminal": true,
+      "presented": [
+        "A4.S40.NEXT.01",
+        "A4.S40.NEXT.02",
+        "A4.S40.NEXT.03",
+        "A4.S40.NEXT.04"
+      ],
+      "retired": []
+    }
+  },
+  "receipts": [
+    "A4.S40.BOARD.01",
+    "A4.S40.BOARD.02",
+    "A4.S40.REUNION.01",
+    "A4.S40.REUNION.02",
+    "A4.S40.THIRTEEN.01",
+    "A4.S40.THIRTEEN.02",
+    "A4.S40.THIRTEEN.03",
+    "A4.S40.NEXT.01",
+    "A4.S40.NEXT.02",
+    "A4.S40.NEXT.03",
+    "A4.S40.NEXT.04"
+  ],
+  "observed": {
+    "return-high": 97.68400000000318,
+    "return-boat": 480.27660000006597,
+    "return-ridge": 533.0089000000366,
+    "safe-return": 1421.6330999991903,
+    "small-dislocation": 1463.879199999161
+  },
+  "round": 10,
+  "logSha256": "e76c8dd72e29719e61f7b55f7b65514620af6c30c74f1c2d30fb4e33e807c897"
+}
