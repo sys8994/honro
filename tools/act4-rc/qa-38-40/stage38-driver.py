@@ -46,14 +46,19 @@ def main():
             saved=snapshot('before-page-reload');before=digest(saved)
             if not before['stage']: raise RuntimeError('no saved live battle')
             page.reload(wait_until='domcontentloaded');page.wait_for_function('window.HonroApp',timeout=60000)
+            # Compare the loaded profile before Continue can advance clocks or notification queues.
+            loaded=digest(page.evaluate('()=>HonroApp.profile'))
+            if before!=loaded:
+                (out/'reload-diff.json').write_text(json.dumps({'before':before,'loaded':loaded},ensure_ascii=False,indent=2));raise AssertionError('loaded profile mismatch; see reload-diff.json')
             page.get_by_text('이어서 걷기',exact=True).click();page.wait_for_function('(s)=>HonroApp.engine?.b?.honroStage===s',arg=before['stage'],timeout=60000)
-            after_profile=page.evaluate('()=>HonroApp.profile');after=digest(after_profile)
-            if before!=after:
-                (out/'reload-diff.json').write_text(json.dumps({'before':before,'after':after},ensure_ascii=False,indent=2));raise AssertionError('saved profile mismatch; see reload-diff.json')
-            observed=page.evaluate('''()=>{let b=HonroApp.engine.b;return {stage:b.honroStage,round:b.round,units:b.units.map(u=>({id:u.id,x:u.x,y:u.y,hp:u.hp,dead:u.dead})),events:b.honroAct4PreviewState, assets:[...b.honroLandmarks,...b.honroElements].filter(v=>v.asset?.vector).map(v=>v.asset.id)}}''')
-            for key in ('stage','round','units','events'):
+            page.keyboard.press('Escape')
+            observed=page.evaluate('''()=>{let b=HonroApp.engine.b,q=b.honroAct4PreviewState||{};return {stage:b.honroStage,round:b.round,units:b.units.map(u=>({id:u.id,x:u.x,y:u.y,hp:u.hp,dead:u.dead??null})),receipts:q.receipts||[],connected:q.connected??null,observed:q.observed||{},assets:[...b.honroLandmarks,...b.honroElements].filter(v=>v.asset?.vector).map(v=>v.asset.id)}}''')
+            for key in ('stage','round','units'):
                 if observed[key]!=before[key]:
                     (out/'reload-diff.json').write_text(json.dumps({'before':before,'observed':observed},ensure_ascii=False,indent=2));raise AssertionError('runtime mismatch: '+key)
+            q=before['events'] or {}
+            for key,default in (('receipts',[]),('connected',None),('observed',{})):
+                if observed[key]!=q.get(key,default):raise AssertionError('runtime event mismatch: '+key)
             if any(ref[2] not in observed['assets'] for ref in before['refs']):raise AssertionError('asset reference failed to restore')
             snapshot('after-page-reload');record({'same_context_reload':'passed','stage':before['stage'],'round':before['round'],'units':len(before['units']),'assetRefs':len(before['refs'])})
         def export_ui():

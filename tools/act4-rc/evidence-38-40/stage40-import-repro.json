@@ -1,0 +1,32 @@
+{
+  "scope": "unmodified real UI import; subsequent ensureStage is isolated read-only diagnosis and is not a successful UI import",
+  "sourceSha256": "c3724ff6ff7e2417489147457c0956c1642af3907b8b5bd923b4843c41675f6f",
+  "inputBytes": 31195677,
+  "titleProvider": {
+    "revision": 5,
+    "library": 43,
+    "hasBody": false
+  },
+  "actualUI": {
+    "notice": "기록을 저장하지 못했습니다. 기존 기록은 유지됩니다.",
+    "store": {
+      "kind": "absent",
+      "reason": null,
+      "hasOriginal": false
+    },
+    "hasStorage": false,
+    "screen": "title"
+  },
+  "compactBefore": {
+    "library": 43,
+    "hasBody": false,
+    "chars": 30816575,
+    "refs": 0
+  },
+  "compactAfterDiagnosticLoad": {
+    "library": 57,
+    "hasBody": true,
+    "chars": 130053,
+    "refs": 26
+  }
+}
