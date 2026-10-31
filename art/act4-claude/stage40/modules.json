@@ -1,5 +1,44 @@
 [
  {
+  "name": "struct-x1",
+  "layer": "STRUCT",
+  "module": "x1",
+  "bounds": [
+   -1604,
+   946,
+   184,
+   1944
+  ],
+  "paths": 6,
+  "terrain": null
+ },
+ {
+  "name": "struct-d01",
+  "layer": "STRUCT",
+  "module": "d01",
+  "bounds": [
+   -1604,
+   1596,
+   1004,
+   1934
+  ],
+  "paths": 2,
+  "terrain": null
+ },
+ {
+  "name": "struct-x8",
+  "layer": "STRUCT",
+  "module": "x8",
+  "bounds": [
+   5122,
+   1096,
+   6204,
+   1764
+  ],
+  "paths": 19,
+  "terrain": null
+ },
+ {
   "name": "struct-x5",
   "layer": "STRUCT",
   "module": "x5",
@@ -46,10 +85,49 @@
    -1604,
    1686,
    7804,
-   3204
+   4404
   ],
-  "paths": 6,
+  "paths": 20,
   "terrain": "pilot40-shore"
+ },
+ {
+  "name": "body-cave-roof",
+  "layer": "BODY",
+  "module": "cave-roof",
+  "bounds": [
+   -1604,
+   896,
+   1184,
+   1704
+  ],
+  "paths": 12,
+  "terrain": "pilot40-cave-roof"
+ },
+ {
+  "name": "body-lookout",
+  "layer": "BODY",
+  "module": "lookout",
+  "bounds": [
+   5706,
+   1489,
+   6204,
+   1765
+  ],
+  "paths": 8,
+  "terrain": "pilot40-lookout"
+ },
+ {
+  "name": "body-landing-rock",
+  "layer": "BODY",
+  "module": "landing-rock",
+  "bounds": [
+   1492,
+   1745,
+   1618,
+   1869
+  ],
+  "paths": 2,
+  "terrain": "pilot40-landing-rock"
  },
  {
   "name": "surface-high-walk",
@@ -65,55 +143,29 @@
   "terrain": "pilot40-high-walk"
  },
  {
-  "name": "rear-x8",
+  "name": "rear-x9",
   "layer": "REAR",
-  "module": "x8",
+  "module": "x9",
   "bounds": [
-   5776,
-   1513,
-   6024,
-   1727
+   5976,
+   1277,
+   6224,
+   1509
   ],
   "paths": 3,
   "terrain": null
  },
  {
-  "name": "rear-x3",
+  "name": "rear-x4",
   "layer": "REAR",
-  "module": "x3",
+  "module": "x4",
   "bounds": [
-   1376,
-   1682,
-   1624,
-   1868
+   1676,
+   1672,
+   1924,
+   1867
   ],
   "paths": 3,
-  "terrain": null
- },
- {
-  "name": "fore-x2",
-  "layer": "FORE",
-  "module": "x2",
-  "bounds": [
-   172,
-   1839,
-   222,
-   1928
-  ],
-  "paths": 2,
-  "terrain": null
- },
- {
-  "name": "fore-x3",
-  "layer": "FORE",
-  "module": "x3",
-  "bounds": [
-   1172,
-   1799,
-   1222,
-   1888
-  ],
-  "paths": 2,
   "terrain": null
  },
  {
@@ -121,23 +173,10 @@
   "layer": "FORE",
   "module": "x4",
   "bounds": [
-   2472,
-   1872,
-   2502,
-   1958
-  ],
-  "paths": 2,
-  "terrain": null
- },
- {
-  "name": "fore-x5",
-  "layer": "FORE",
-  "module": "x5",
-  "bounds": [
-   2493,
-   1869,
-   2522,
-   1958
+   2272,
+   1848,
+   2322,
+   1937
   ],
   "paths": 2,
   "terrain": null
