@@ -118,7 +118,7 @@
             // The Act 4 persist wrapper immediately snapshots the live battle,
             // including its dialogue cursor. Avoid cloning the same battle twice.
             if(!G.HonroAct4Campaign?.active(e.b))this.profile.honroBattle=clone(e.b);
-            this.persist();
+            this.persist({compactAct4Autosave:true});
         }
         campaignReady(){if(!this.profileStore.locked||this.customMap||G.HONRO_EMBEDDED)return true;this.recoverProfile();return false;}
         recoverProfile(){G.HonroMenuUI.recovery(this);}
@@ -1179,11 +1179,23 @@
         } }
         equipConfirm(i) {const id=this.equipIncoming;if(!Number.isInteger(i)||i<1||i>3||!this.canEquip(id))return;const l=this.profile.loadouts[this.cls],j=l.indexOf(id),old=l[i];if(j===i)return;l[i]=id;if(j>0)l[j]=old||'';C.sanitizeLoadout(this.profile,this.cls);this.saveCampAllocation();const context=this.equipReturn;this.equipReturn=null;this.showCamp();if(context)this.restoreTalent(context);}
         nextDialogue(){G.HonroStory.next(this);}
-        export() { if(this.profileStore.locked)return this.exportOriginal(); if (this.engine && !this.training && !this.debugMode && !this.done) {
+        async export() { if(this.profileStore.locked)return this.exportOriginal(); if (this.engine && !this.training && !this.debugMode && !this.done) {
             G.HonroProgression.syncRoster(this.profile,this.engine.b);
             this.profile.honroBattle = clone(this.engine.b);
             G.HonroProgression.persist(this);
-        } this.downloadProfile(JSON.stringify(this.debugMode?this.normalProfile:this.profile)); }
+        }
+            const profile=this.debugMode?this.normalProfile:this.profile,b=profile.honroBattle;
+            const refs=[b?.honroLandmarks,b?.honroElements,b?.honroEnvironment?.placements].some(items=>Array.isArray(items)&&items.some(item=>item?.asset?.honroStaticAssetRef!==undefined));
+            if(!refs){this.downloadProfile(JSON.stringify(profile));return;}
+            // Portable exports contain art, including when the title loaded a
+            // compact autosave for a chapter whose provider is not loaded yet.
+            const portable=clone(profile);
+            try{
+                if(G.HonroCampaignLoader)await G.HonroCampaignLoader.ensureStage(b.honroStage);
+                if(!G.HonroProfileStore.restoreBattleArt(portable.honroBattle))throw Error('asset mismatch');
+                this.downloadProfile(JSON.stringify(portable));
+            }catch{this.notify('기록의 지형 그림을 확인하지 못해 내보내지 못했습니다.');}
+        }
         frame(now) {
             if(this.endingGallery?.debug){this.prev=now;requestAnimationFrame(t=>this.frame(t));return;}
             this.updateAudio();
