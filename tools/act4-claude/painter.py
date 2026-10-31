@@ -302,7 +302,7 @@ class Painter:
             self.clip('BODY', poly, unary_union(darks + deep), '#1d3358' if s.get('carved') else ROCK_DARK)
 
     def rock_mass(self, layer, g, seed=0, cell=430, rim=True,
-                  tones=('#101d3b', '#1b305b', '#2a4777', '#3d6194', '#5980b3')):
+                  tones=('#101d3b', '#1b305b', '#2a4777', '#3d6194', '#5980b3'), walk=None):
         """Concept-style crag rock: angular planes (Voronoi chunks, each split
         into a lit and a shaded facet), brighter toward the top of the mass,
         darkest on the underside; a dark rim reads the silhouette. No grout
@@ -331,13 +331,21 @@ class Painter:
             # local depth below the top surface of the mass at this x
             col = g.intersection(LineString([(cx, miny - 10), (cx, maxy + 10)]))
             top = col.bounds[1] if not col.is_empty else miny
+            if walk and walk[0][0] <= cx <= walk[-1][0]:
+                top = interp(walk, cx)        # depth from the real walk line, not an art extension
             bot = col.bounds[3] if not col.is_empty else maxy
             f = (cy - top) / max(1, bot - top)
             base = 3 - int(f * 3.2 + rng.random() * .9)          # 3 near top .. 0 underside
+            dep = cy - top                                         # deep ground recedes into shadow
+            deep = dep > 650
+            if dep > 1300:
+                base = 0
+            elif deep:
+                base = min(base, 1)
             k = rng.uniform(-.5, .9)
             d = cell * 2
             lit = Polygon([(cx - d, cy - d), (cx + d, cy - d - k * d), (cx + d, cy + rng.uniform(-.3, .2) * cell - k * d * .2), (cx - d, cy + rng.uniform(.0, .4) * cell)]).buffer(0)
-            G(base + 1, cy).append(c2.intersection(lit))
+            G(base + (0 if deep and base == 0 and dep > 1300 else 1), cy).append(c2.intersection(lit))
             G(base, cy).append(c2.difference(lit))
         if rim:
             self.add(layer, shapely_d(g), self.hz('#0f1c36', (miny + maxy) / 2))
@@ -631,7 +639,7 @@ class Painter:
             elif self.crag:
                 s['band'] = (24, 48)
                 self._hz_y = None
-                self.rock_mass('BODY', s['poly'], len(s['id']) * 7, cell=360, rim=not s.get('carved'))
+                self.rock_mass('BODY', s['poly'], len(s['id']) * 7, cell=360, rim=not s.get('carved'), walk=s['walk'])
             else:
                 self.shade_rock(s)
             self._hz_y = sum(y for _, y in s['walk']) / len(s['walk'])
@@ -742,7 +750,13 @@ class Painter:
                 continue
             self.stone_posts = d['kind'] in ('stone', 'stonestair')
             self._mute = bool(d.get('buttress'))   # supports proven, drawn as the buttress
-            self.support_deck(d)
+            if d['kind'] == 'rope':   # slung between its two anchors only
+                for ex, ey in (top[0], top[-1]):
+                    g = self.ground_below(ex, ey - 80, include_decks=True)
+                    if not (self.in_solid(ex, ey + 14, pad=4) or (g is not None and abs(g - ey) < 40)):
+                        self.errors.append('rope %s end unanchored at x=%d' % (d['id'], ex))
+            else:
+                self.support_deck(d)
             self._mute = False
             self.stone_posts = False
             if d['kind'] == 'stonestair':   # dressed stone flight on stone piers

@@ -91,6 +91,19 @@
   "terrain": null
  },
  {
+  "name": "body-flats",
+  "layer": "BODY",
+  "module": "flats",
+  "bounds": [
+   -1604,
+   4394,
+   8504,
+   6704
+  ],
+  "paths": 10,
+  "terrain": "pilot33-flats"
+ },
+ {
   "name": "body-island",
   "layer": "BODY",
   "module": "island",
@@ -178,21 +191,8 @@
    6904,
    4414
   ],
-  "paths": 9,
+  "paths": 10,
   "terrain": "pilot33-east-rock"
- },
- {
-  "name": "body-flats",
-  "layer": "BODY",
-  "module": "flats",
-  "bounds": [
-   -1604,
-   4394,
-   8504,
-   6704
-  ],
-  "paths": 7,
-  "terrain": "pilot33-flats"
  },
  {
   "name": "body-arch-boulder",

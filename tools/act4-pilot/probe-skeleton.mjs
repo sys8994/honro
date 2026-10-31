@@ -73,7 +73,7 @@ await writeFile(dir+'/continuous-route.json',JSON.stringify({stageSHA256,scope:'
 await writeFile(dir+'/verification-summary.json',JSON.stringify({stageSHA256,scope:'Geometry only; no art/combat/App acceptance',edgeBodyChecks:{passed:rows.filter(r=>r.passed).length,total:rows.length},continuousBodyChecks:{passed:continuous.filter(r=>r.passed).length,total:continuous.length},routes:continuous.map(({routeId,cls,rounds,jumps,drops,groundedBounds,start,end,passed})=>({routeId,cls,rounds,inputJumps:jumps,inputDrops:drops,groundedBounds,hpLoss:start.hp-end.hp,passed})),remaining:['effective movement classification in normal party combat','enemy/staging integration','App boarding with authored coordinates','art acceptance','Pages deployment']},null,2));
 
 if(n===39){
- const npcs=structuredClone(originalResidents),starts=npcs.map(u=>({id:u.id,x:u.x,y:u.y,hp:u.hp}));
+ const npcs=structuredClone(originalResidents);for(const u of npcs){const v=stage.units.find(w=>w.id===u.id);if(v){u.x=v.x;u.y=v.y;}}const starts=npcs.map(u=>({id:u.id,x:u.x,y:u.y,hp:u.hp}));
  b.units=npcs;b.phase='aim';b.side=0;for(const u of npcs){u.fixed=false;u.moveLeft=10000;}
  let frames=0,minSeparation=Infinity;const trails=npcs.map(()=>[]);
  for(;frames<900;frames++){

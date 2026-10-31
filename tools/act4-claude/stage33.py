@@ -21,10 +21,11 @@ LOW, HIGH = 4700, 4540
 # ---- tidal flat (full width under the arches) with two curving channels
 p.solid('flats', [(0, 4420), (700, 4410), (1100, 4430), (1500, 4470), (1750, 4560), (2000, 4630), (2300, 4640), (2550, 4560), (2800, 4450),
                   (3600, 4440), (3900, 4520), (4150, 4620), (4400, 4650), (4700, 4600), (4950, 4480), (5300, 4420), (6200, 4400), (6900, 4410)],
-        [(W, H, 'c'), (0, H, 'c')], kind='earth', amp=0, role='exposed tidal flat with two channels',
+        [(W, H, 'c'), (0, H, 'c')], kind='rock', amp=0, role='exposed tidal flat with two channels',
         extend=[[(-1600, 4430), (40, 4420), (40, H + 1500), (-1600, H + 1500)], [(W - 40, 4410), (W + 1600, 4400), (W + 1600, H + 1500), (W - 40, H + 1500)],
                 [(0, H - 40), (W, H - 40), (W, H + 1500), (0, H + 1500)]])
 p.solids['flats']['sand'] = True
+p.solids['flats']['moss'] = False
 p.solid('island', [(2620, 4535), (2850, 4285), (2980, 4170), (3200, 4140), (3420, 4170), (3700, 4473)], [(3710, 4600, 'c'), (2590, 4600, 'c')],
         role='rock island beside the channels', amp=0.4)
 p.solid('rock-w', [(980, 4432), (1050, 4300), (1250, 4290), (1320, 4440)], [(1330, 4500, 'c'), (970, 4500, 'c')], role='low rock: ranged pressure', amp=0.3)

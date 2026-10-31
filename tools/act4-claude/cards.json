@@ -176,5 +176,64 @@
     "tide-line"
    ]
   }
+ },
+ "39": {
+  "type": "wide-tall",
+  "W": 8600,
+  "H": 6000,
+  "Wr": [
+   8000,
+   9000
+  ],
+  "Hr": [
+   5600,
+   6400
+  ],
+  "aspect": [
+   1.25,
+   1.61
+  ],
+  "supports": [
+   22,
+   28
+  ],
+  "bands": [
+   5,
+   6
+  ],
+  "span": [
+   2300,
+   3200
+  ],
+  "routes": 2,
+  "features": {
+   "진입 고지 A": [
+    "high-a"
+   ],
+   "폐선 골조와 낮은 전투면": [
+    "basin",
+    "gangway",
+    "wreck-basin"
+   ],
+   "구조 구역·연결 목표": [
+    "lane"
+   ],
+   "둘째 안전 고지 B": [
+    "lane",
+    "b-crag"
+   ],
+   "이탈 연결": [
+    "exit-plank",
+    "exit-ledge"
+   ],
+   "침수와 무관한 우회": [
+    "rope-bridge",
+    "mid-rock",
+    "mid-stairs"
+   ],
+   "바다에 열린 수로": [
+    "open-channel"
+   ]
+  }
  }
 }
