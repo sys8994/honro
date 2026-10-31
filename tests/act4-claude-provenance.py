@@ -32,11 +32,11 @@ with tempfile.TemporaryDirectory() as td:
  bind();assert gate().returncode==0,gate().stderr
  v['routes'][0]['passed']=False;(d/'verification-summary.json').write_text(json.dumps(v));bind();r=gate();assert r.returncode!=0 and 'FAIL routes completed' in r.stdout
  v['routes'][0]['passed']=True;(d/'verification-summary.json').write_text(json.dumps(v));bind();assert gate().returncode==0
- for path in ('shared/runtime/game.js','shared/assets/asset.svg','game/engine/code.js','game/node_modules/typescript/lib/typescript.js','tools/act4-pilot/layouts/stage32-claude.json','_local/reports/act4-pilot/stage32/claude/stage.json'):
+ for path in ('shared/data/act4/world.json','shared/data/act4/world.parts/part-000.jsonpart','shared/runtime/game.js','shared/assets/asset.svg','game/engine/code.js','game/node_modules/typescript/lib/typescript.js','tools/act4-pilot/layouts/stage32-claude.json','_local/reports/act4-pilot/stage32/claude/stage.json'):
   f=p/path;old=f.read_bytes() if f.exists() else None;f.write_text('changed');r=gate();assert r.returncode!=0 and 'provenance failed' in r.stderr,(path,r.stdout,r.stderr)
   if old is None:f.unlink()
   else:f.write_bytes(old)
  r=d/'trap-sweep.json';old=r.read_bytes();r.write_text('{"tested":999,"traps":[]}');assert gate().returncode!=0;r.write_bytes(old)
  env['ACT4_PROBE_RUN_ID']='other-run';assert gate().returncode!=0
  env['ACT4_PROBE_RUN_ID']='fresh-run';assert gate().returncode==0
- print('PASS unbound/mixed/stale runtime, asset, layout, stage and modified reports are rejected')
+ print('PASS unbound/mixed/stale world, runtime, asset, layout, stage and modified reports are rejected')
