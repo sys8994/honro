@@ -298,9 +298,9 @@ function pointSegmentDistance(p,a,b){const dx=b.x-a.x,dy=b.y-a.y,n=dx*dx+dy*dy,t
 
 function resetPlay(from='start'){
  if(playFrame)stopPlay(false);
- const snapshot=deep(project),st=snapshot.stages.find(s=>s.id===snapshot.activeStageId);
- // Play only this target; unrelated legacy drafts remain intact in the editor.
- const playProject={...snapshot,activeStageId:st.id,stages:[st]};
+ const target=project.stages.find(s=>s.id===project.activeStageId);
+ // Exclude unrelated stages before cloning; retain the entire authored library.
+ const playProject=deep({...project,activeStageId:target.id,stages:[target]}),st=playProject.stages[0];
  playSnapshot={stageView:deep(stageView),elementView:deep(elementView),selected:deep(selected),selectedNode,selectedShapeIndex,tool};
  const frame=document.createElement('iframe');frame.id='runtimeFrame';frame.title='HONRO 실제 게임 플레이테스트';frame.allow='autoplay; fullscreen';
  frame.src=new URL(HONRO_PLAYTEST_URL,document.baseURI).href;
@@ -336,11 +336,11 @@ function downloadProject(){const governed=HonroProductionContract.governed(proje
 function downloadHonroDraft(){download(`${safe(realStage().name)}.honro-map.json`,HonroMaps.serialize(exportHonroSpec()),'application/json')}
 
 function download(name,text,type){const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([text],{type}));a.download=name;a.click();setTimeout(()=>URL.revokeObjectURL(a.href),500)}
-function importProject(x){
+function importProject(x,{copyResult=true}={}){
  const next=HonroMaps.normalize(x),isDraft=HonroProductionContract.governed(next,next.activeStageId),errors=HonroMaps.validate(next).filter(x=>x.level==='err');if(!isDraft&&errors.length)throw Error(errors.map(x=>x.text).join('\n'));
- commit('Project import',p=>{Object.keys(p).forEach(k=>delete p[k]);Object.assign(p,next);selected=null;stageView._fit=false;});resizeAll();return deep(project);
+ commit('Project import',p=>{Object.keys(p).forEach(k=>delete p[k]);Object.assign(p,next);selected=null;stageView._fit=false;});resizeAll();return copyResult?deep(project):undefined;
 }
-function importFile(e){const f=e.target.files?.[0];if(!f)return;const r=new FileReader;r.onload=()=>{try{const x=JSON.parse(r.result);if(x.stages&&x.library)importProject(x);else if(x.kind==='honro-workshop-stage-pack'){const merged=deep(project),stages=deep(x.stages);for(const st of stages)if(merged.stages.some(s=>s.id===st.id))st.id=uid('stage');merged.stages.push(...stages);merged.activeStageId=stages[0].id;merged.version=1;importProject(merged)}else if(x.dimensions)importHonroSpec(x);else throw Error('지원하지 않는 JSON');if(!autosaveFailure)toast('Project를 불러왔습니다')}catch(err){toast('Import 실패: '+err.message)}};r.readAsText(f);e.target.value=''}
+function importFile(e){const f=e.target.files?.[0];if(!f)return;const r=new FileReader;r.onload=()=>{try{const x=JSON.parse(r.result);if(x.stages&&x.library)importProject(x,{copyResult:false});else if(x.kind==='honro-workshop-stage-pack'){const merged=deep(project),stages=deep(x.stages);for(const st of stages)if(merged.stages.some(s=>s.id===st.id))st.id=uid('stage');merged.stages.push(...stages);merged.activeStageId=stages[0].id;merged.version=1;importProject(merged,{copyResult:false})}else if(x.dimensions)importHonroSpec(x);else throw Error('지원하지 않는 JSON');if(!autosaveFailure)toast('Project를 불러왔습니다')}catch(err){toast('Import 실패: '+err.message)}};r.readAsText(f);e.target.value=''}
 
 function importHonroSpec(spec){commit('Legacy HONRO import',p=>{const st=HonroMaps.importSpec(spec,uid('stage'),p);p.stages.push(st);p.activeStageId=st.id;stageView._fit=false});resizeAll()}
 
