@@ -446,13 +446,13 @@ export function tickRedesign(e:Engine,dt:number){
 }
 
 export interface SkillPrediction extends Prediction {time:number;geometry?:SkillGeometry;contacts:Vec[];secondaryRadius?:number;secondaryPoint?:Vec;triggerRadius?:number;paths?:Vec[][];}
-/** Private A01 replay contract: these official stage-38 placements supply art,
+/** Private A01 replay contract: these official stage-38 and stage-40 placements supply art,
  * not combat geometry. Every other battle/skill keeps the native full clone.
  * This is not a general-purpose battle snapshot or portable save. */
 function arrowReplaySnapshot(b:Battle,s:Skill):Battle {
  const q=b as any;
  for(const k of ['honroAct4Official','mode','honroStage','honroAct4Preview','honroCustom','honroMapOrigin','honroLandmarks','honroElements','honroAct4PreviewDynamic']){const d=Object.getOwnPropertyDescriptor(q,k);if(d&&!('value' in d))return structuredClone(b);}
- if(q.honroAct4Official!==1||q.mode!=='campaign'||q.honroStage!==38||q.honroAct4Preview!==38||q.honroCustom||q.honroMapOrigin==='workshop'||s!==SKILLS.A01||s.id!=='A01'||s.cls!=='archer'||s.mode!=='arrow'||!s.redesigned)return structuredClone(b);
+ if(q.honroAct4Official!==1||q.mode!=='campaign'||!((q.honroStage===38&&q.honroAct4Preview===38)||(q.honroStage===40&&q.honroAct4Preview===40))||q.honroCustom||q.honroMapOrigin==='workshop'||s!==SKILLS.A01||s.id!=='A01'||s.cls!=='archer'||s.mode!=='arrow'||!s.redesigned)return structuredClone(b);
  const arrays=new WeakMap<object,any>(),items=new WeakMap<object,any>(),assets=new WeakMap<object,any>(),checked=new WeakSet<object>(),replaced=new WeakSet<object>(),pairs:Array<[any,any]>=[];let safe=true;
  // Exotic or accessor-bearing vector data is outside the authored JSON contract.
  // Check its current contents every time; no identity-based trust or replay.
