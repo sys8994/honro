@@ -235,5 +235,59 @@
     "open-channel"
    ]
   }
+ },
+ "32": {
+  "type": "horizontal",
+  "W": 6600,
+  "H": 3200,
+  "Wr": [
+   6200,
+   6800
+  ],
+  "Hr": [
+   2900,
+   3400
+  ],
+  "aspect": [
+   1.82,
+   2.35
+  ],
+  "supports": [
+   8,
+   12
+  ],
+  "bands": [
+   2,
+   3
+  ],
+  "span": [
+   500,
+   850
+  ],
+  "routes": 2,
+  "features": {
+   "포구 입구": [
+    "shore"
+   ],
+   "짧고 노출된 골목": [
+    "upper-alley"
+   ],
+   "낮은 담 우회": [
+    "lane-yard",
+    "wall-1",
+    "wall-2",
+    "undercroft"
+   ],
+   "공동 마당": [
+    "common-yard"
+   ],
+   "은신처와 다음 길": [
+    "yard-step",
+    "exit-rock"
+   ],
+   "집터 석축": [
+    "stone-terraces"
+   ]
+  }
  }
 }

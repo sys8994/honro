@@ -15,6 +15,8 @@ const spawn=spec.spawn||{x:260,y:sy('shore',260)};
 s.units=s.units.filter(u=>u.team!=='enemy');for(const u of s.units.filter(u=>u.team==='player'))u.y=spec.playerSupport?sy(spec.playerSupport,u.x):spawn.y;
 s.anchors={...s.anchors,spawn,start:spawn};s.encounters=[];s.materials=[];
 s.elements=s.elements.filter(e=>(spec.keepElements||(n===31?['a4:dock','a4:boat']:[])).includes(e.assetId));if(spec.moveElements)for(const e of s.elements){const m=spec.moveElements[e.assetId];if(m)Object.assign(e,m);}
+// Per-instance placement of kept art (several houses share one assetId).
+if(spec.placeElements){const tpl={};for(const e of s.elements)tpl[e.assetId]??=e;const ids=new Set(spec.placeElements.map(p=>p.assetId));s.elements=s.elements.filter(e=>!ids.has(e.assetId));for(const [i,p]of spec.placeElements.entries()){const t=tpl[p.assetId];if(!t)throw Error('placeElements: no template for '+p.assetId);s.elements.push({...structuredClone(t),id:(t.id||p.assetId)+'-p'+i,...p});}}
 // Rear landscape groups stand on the new ground (vertical redesigns move it far from the original y).
 if(spec.envGroupY&&s.environment)for(const g of s.environment.groups||[])if(g.id in spec.envGroupY)g.y=spec.envGroupY[g.id];
 if(spec.boarding){s.design.act4.boarding=spec.boarding;for(const e of s.elements){if(e.assetId==='a4:dock')e.y=spec.boarding.deckY+43*e.scale;else e.y=spec.boarding.approachY;}s.design.act4.waterPolicies=[{id:'31-dock-water',kind:'recover',x1:6238,x2:s.width,surface:spec.boarding.deckY+30,entryLeft:[5600,6220],entryRight:[5600,6220]}];}

@@ -1,28 +1,28 @@
 [
  {
-  "name": "struct-x3",
-  "layer": "STRUCT",
-  "module": "x3",
-  "bounds": [
-   1196,
-   1870,
-   1534,
-   2039
-  ],
-  "paths": 3,
-  "terrain": null
- },
- {
   "name": "struct-x4",
   "layer": "STRUCT",
   "module": "x4",
   "bounds": [
-   1492,
-   1782,
-   2579,
-   2020
+   1296,
+   1420,
+   3504,
+   2345
   ],
-  "paths": 3,
+  "paths": 18,
+  "terrain": null
+ },
+ {
+  "name": "struct-x3",
+  "layer": "STRUCT",
+  "module": "x3",
+  "bounds": [
+   846,
+   1420,
+   1470,
+   2333
+  ],
+  "paths": 5,
   "terrain": null
  },
  {
@@ -30,12 +30,51 @@
   "layer": "STRUCT",
   "module": "x5",
   "bounds": [
-   2536,
-   1980,
-   2606,
-   2012
+   2546,
+   1450,
+   3486,
+   1860
   ],
-  "paths": 3,
+  "paths": 16,
+  "terrain": null
+ },
+ {
+  "name": "struct-x7",
+  "layer": "STRUCT",
+  "module": "x7",
+  "bounds": [
+   4296,
+   1711,
+   5446,
+   2212
+  ],
+  "paths": 16,
+  "terrain": null
+ },
+ {
+  "name": "struct-x8",
+  "layer": "STRUCT",
+  "module": "x8",
+  "bounds": [
+   5270,
+   1711,
+   5310,
+   1759
+  ],
+  "paths": 1,
+  "terrain": null
+ },
+ {
+  "name": "struct-x9",
+  "layer": "STRUCT",
+  "module": "x9",
+  "bounds": [
+   6094,
+   1370,
+   6606,
+   1760
+  ],
+  "paths": 13,
   "terrain": null
  },
  {
@@ -43,26 +82,13 @@
   "layer": "STRUCT",
   "module": "x6",
   "bounds": [
-   3556,
-   1862,
-   3886,
-   2023
+   3400,
+   1510,
+   3956,
+   2330
   ],
-  "paths": 3,
+  "paths": 5,
   "terrain": null
- },
- {
-  "name": "body-exit-bluff",
-  "layer": "BODY",
-  "module": "exit-bluff",
-  "bounds": [
-   6246,
-   1697,
-   6602,
-   1994
-  ],
-  "paths": 7,
-  "terrain": "pilot32-exit-bluff"
  },
  {
   "name": "body-shore",
@@ -70,61 +96,165 @@
   "module": "shore",
   "bounds": [
    -1604,
-   1876,
-   8204,
-   3204
+   2294,
+   1104,
+   4404
   ],
-  "paths": 6,
+  "paths": 17,
   "terrain": "pilot32-shore"
  },
  {
-  "name": "body-yard-wall",
+  "name": "body-lane-yard",
   "layer": "BODY",
-  "module": "yard-wall",
+  "module": "lane-yard",
   "bounds": [
-   4292,
-   1936,
-   4428,
-   2020
+   -4,
+   1736,
+   8204,
+   4404
   ],
-  "paths": 2,
-  "terrain": "pilot32-yard-wall"
+  "paths": 21,
+  "terrain": "pilot32-lane-yard"
  },
  {
-  "name": "surface-back-alley",
-  "layer": "SURFACE",
-  "module": "back-alley",
+  "name": "body-upper-alley",
+  "layer": "BODY",
+  "module": "upper-alley",
   "bounds": [
-   1196,
-   1756,
-   2604,
-   2040
+   1296,
+   1839,
+   3506,
+   1999
+  ],
+  "paths": 8,
+  "terrain": "pilot32-upper-alley"
+ },
+ {
+  "name": "body-yard-step",
+  "layer": "BODY",
+  "module": "yard-step",
+  "bounds": [
+   4941,
+   2099,
+   5249,
+   2246
+  ],
+  "paths": 8,
+  "terrain": "pilot32-yard-step"
+ },
+ {
+  "name": "body-exit-rock",
+  "layer": "BODY",
+  "module": "exit-rock",
+  "bounds": [
+   6241,
+   1667,
+   6509,
+   1806
+  ],
+  "paths": 8,
+  "terrain": "pilot32-exit-rock"
+ },
+ {
+  "name": "surface-entry-stairs",
+  "layer": "SURFACE",
+  "module": "entry-stairs",
+  "bounds": [
+   846,
+   1850,
+   1304,
+   2404
+  ],
+  "paths": 3,
+  "terrain": "pilot32-entry-stairs"
+ },
+ {
+  "name": "surface-down-stairs",
+  "layer": "SURFACE",
+  "module": "down-stairs",
+  "bounds": [
+   3496,
+   1850,
+   3954,
+   2303
+  ],
+  "paths": 3,
+  "terrain": "pilot32-down-stairs"
+ },
+ {
+  "name": "surface-maru",
+  "layer": "SURFACE",
+  "module": "maru",
+  "bounds": [
+   2546,
+   1766,
+   2804,
+   1800
   ],
   "paths": 4,
-  "terrain": "pilot32-back-alley"
+  "terrain": "pilot32-maru"
  },
  {
   "name": "surface-net-loft",
   "layer": "SURFACE",
   "module": "net-loft",
   "bounds": [
-   3556,
-   1836,
-   3884,
-   1870
+   4296,
+   2056,
+   4604,
+   2090
   ],
   "paths": 4,
   "terrain": "pilot32-net-loft"
+ },
+ {
+  "name": "surface-wall-1",
+  "layer": "SURFACE",
+  "module": "wall-1",
+  "bounds": [
+   1846,
+   2246,
+   1974,
+   2338
+  ],
+  "paths": 3,
+  "terrain": "pilot32-wall-1"
+ },
+ {
+  "name": "surface-wall-2",
+  "layer": "SURFACE",
+  "module": "wall-2",
+  "bounds": [
+   2696,
+   2246,
+   2834,
+   2343
+  ],
+  "paths": 3,
+  "terrain": "pilot32-wall-2"
+ },
+ {
+  "name": "surface-yard-wall",
+  "layer": "SURFACE",
+  "module": "yard-wall",
+  "bounds": [
+   4246,
+   2120,
+   4374,
+   2207
+  ],
+  "paths": 2,
+  "terrain": "pilot32-yard-wall"
  },
  {
   "name": "rear-x9",
   "layer": "REAR",
   "module": "x9",
   "bounds": [
-   6356,
-   1507,
-   6604,
-   1711
+   6326,
+   1504,
+   6574,
+   1718
   ],
   "paths": 3,
   "terrain": null
@@ -135,35 +265,22 @@
   "module": "x2",
   "bounds": [
    122,
-   1828,
+   2227,
    172,
-   1917
+   2316
   ],
   "paths": 2,
   "terrain": null
  },
  {
-  "name": "fore-x5",
+  "name": "fore-x3",
   "layer": "FORE",
-  "module": "x5",
+  "module": "x3",
   "bounds": [
-   2672,
-   1922,
-   2722,
-   2011
-  ],
-  "paths": 2,
-  "terrain": null
- },
- {
-  "name": "fore-x8",
-  "layer": "FORE",
-  "module": "x8",
-  "bounds": [
-   5472,
-   1956,
-   5522,
-   2044
+   972,
+   2235,
+   1022,
+   2324
   ],
   "paths": 2,
   "terrain": null

@@ -1,46 +1,116 @@
 {
- "version": 1,
+ "version": 2,
  "stage": 32,
+ "intent": "Harbour village on stone terraces: exposed upper alley and walled undercroft lane join at the quiet common yard by the shelter; path climbs to the exit.",
  "activePlayBounds": {
   "left": 180,
-  "top": 1600,
-  "right": 6400,
-  "bottom": 2100
+  "top": 1500,
+  "right": 6450,
+  "bottom": 2450
  },
  "spawn": {
   "x": 260,
-  "y": 1918.86
+  "y": 2305.17
  },
+ "spawnSupport": "shore",
  "keepElements": [
-  "a4-coast:drying-frame-s32-blue-dawn-v3",
-  "a4-coast:pier-32-1520-blue-dawn-v3",
-  "a4-coast:pier-32-2370-blue-dawn-v3",
-  "a4:dock",
   "a4:door",
-  "density-bg:coastal-house-32-blue-dawn-v3",
+  "a4:dock",
   "s32v:abandoned-skiff-s32-blue-dawn-v3",
-  "s32v:rubble-foundation-s32-blue-dawn-v3"
+  "a4-coast:drying-frame-s32-blue-dawn-v3"
+ ],
+ "placeElements": [
+  {
+   "assetId": "a4:door",
+   "x": 4790,
+   "y": 2200,
+   "scale": 0.9
+  },
+  {
+   "assetId": "a4:dock",
+   "x": 200,
+   "y": 2330,
+   "scale": 0.5
+  },
+  {
+   "assetId": "s32v:abandoned-skiff-s32-blue-dawn-v3",
+   "x": 150,
+   "y": 2345,
+   "scale": 0.5
+  },
+  {
+   "assetId": "s32v:abandoned-skiff-s32-blue-dawn-v3",
+   "x": 4050,
+   "y": 2205,
+   "scale": 0.45
+  },
+  {
+   "assetId": "a4-coast:drying-frame-s32-blue-dawn-v3",
+   "x": 700,
+   "y": 2300,
+   "scale": 0.65
+  },
+  {
+   "assetId": "a4-coast:drying-frame-s32-blue-dawn-v3",
+   "x": 4450,
+   "y": 2198,
+   "scale": 0.8
+  }
+ ],
+ "npcs": [
+  {
+   "x": 4900,
+   "y": 2198.42
+  }
  ],
  "act4": {
   "exit": {
    "x": 6200,
-   "y": 1900
+   "y": 1760
+  },
+  "shelter": {
+   "x": 4790,
+   "y": 2200,
+   "count": 7,
+   "manifest": [
+    "shelter-person-0",
+    "shelter-person-1",
+    "shelter-person-2",
+    "shelter-person-3",
+    "shelter-person-4",
+    "shelter-person-5",
+    "shelter-person-6"
+   ]
+  },
+  "coords": {
+   "shelterX": 4900,
+   "doorX": 4790,
+   "speakerY": 2200,
+   "doorMarkX": 4900,
+   "doorMarkY": 2040
   }
  },
  "routes": [
   {
-   "id": "harbour",
+   "id": "exposed-alley",
    "supports": [
     "shore",
-    "back-alley",
+    "entry-stairs",
+    "upper-alley",
+    "down-stairs",
+    "lane-yard"
+   ]
+  },
+  {
+   "id": "walled-lane",
+   "supports": [
     "shore",
-    "net-loft",
-    "shore"
+    "lane-yard"
    ]
   }
  ],
  "enemyAnchors": [],
- "status": "Claude v1",
+ "status": "Claude v2 (plan-gated)",
  "surfaces": [
   {
    "id": "shore",
@@ -48,160 +118,24 @@
    "top": [
     [
      0,
-     1900.0
+     2310.0
     ],
     [
-     48,
-     1899.4
+     600,
+     2300.0
     ],
     [
-     288,
-     1922.0
-    ],
-    [
-     672,
-     1906.0
-    ],
-    [
-     912,
-     1953.4
-    ],
-    [
-     984,
-     1980.8
-    ],
-    [
-     1128,
-     2008.0
-    ],
-    [
-     1416,
-     2022.3
-    ],
-    [
-     1728,
-     2005.0
-    ],
-    [
-     2136,
-     1925.2
-    ],
-    [
-     2352,
-     1960.0
-    ],
-    [
-     2424,
-     1981.2
-    ],
-    [
-     2568,
-     2001.8
-    ],
-    [
-     2688,
-     2001.8
-    ],
-    [
-     2760,
-     2008.8
-    ],
-    [
-     2880,
-     2001.9
-    ],
-    [
-     3192,
-     2009.8
-    ],
-    [
-     3504,
-     2007.1
-    ],
-    [
-     3648,
-     2017.3
-    ],
-    [
-     3744,
-     2008.7
-    ],
-    [
-     3864,
-     2013.8
-    ],
-    [
-     3960,
-     2007.4
-    ],
-    [
-     4128,
-     2019.2
-    ],
-    [
-     4320,
-     2010.3
-    ],
-    [
-     4440,
-     2018.6
-    ],
-    [
-     4536,
-     2012.7
-    ],
-    [
-     4656,
-     2020.0
-    ],
-    [
-     4800,
-     2010.0
-    ],
-    [
-     5256,
-     2009.0
-    ],
-    [
-     5520,
-     2038.6
-    ],
-    [
-     5640,
-     2022.0
-    ],
-    [
-     5784,
-     1990.0
-    ],
-    [
-     5952,
-     1919.6
-    ],
-    [
-     6024,
-     1900.6
-    ],
-    [
-     6360,
-     1905.4
-    ],
-    [
-     6600,
-     1900.0
+     1100,
+     2320.0
     ]
    ],
    "bottom": [
     [
-     6600.0,
-     1900.6
+     1100.0,
+     2320.9
     ],
     [
-     6600.0,
-     3200.0
-    ],
-    [
-     4980.7,
+     1100.0,
      3200.0
     ],
     [
@@ -210,118 +144,357 @@
     ],
     [
      0.0,
-     1900.6
+     2310.9
     ]
    ],
-   "role": "harbour ground",
-   "material": "soil"
-  },
-  {
-   "id": "exit-bluff",
-   "kind": "overhang",
-   "top": [
-    [
-     6260,
-     1902.0
-    ],
-    [
-     6332,
-     1818.9
-    ],
-    [
-     6380,
-     1775.7
-    ],
-    [
-     6380,
-     1733.3
-    ],
-    [
-     6476,
-     1703.2
-    ],
-    [
-     6596,
-     1710.0
-    ]
-   ],
-   "bottom": [
-    [
-     6596.0,
-     1712.8
-    ],
-    [
-     6598.0,
-     1990.0
-    ],
-    [
-     6250.0,
-     1990.0
-    ],
-    [
-     6259.0,
-     1981.9
-    ],
-    [
-     6259.0,
-     1911.2
-    ],
-    [
-     6260,
-     1910.2
-    ]
-   ],
-   "role": "headland bluff by the exit",
+   "role": "harbour landing",
    "material": "rock"
   },
   {
-   "id": "back-alley",
+   "id": "lane-yard",
+   "kind": "overhang",
    "top": [
     [
-     1200,
-     2010
+     1100,
+     2320.0
     ],
     [
-     1660,
-     1760
+     2204,
+     2338.0
     ],
     [
-     2300,
-     1760
+     3404,
+     2334.5
     ],
     [
-     2600,
-     2000
+     3692,
+     2300.9
+    ],
+    [
+     3956,
+     2203.0
+    ],
+    [
+     5252,
+     2198.9
+    ],
+    [
+     5804,
+     1898.2
+    ],
+    [
+     6092,
+     1768.6
+    ],
+    [
+     6600,
+     1750.0
+    ]
+   ],
+   "bottom": [
+    [
+     6600.0,
+     1750.5
+    ],
+    [
+     6600.0,
+     3200.0
+    ],
+    [
+     1100.0,
+     3200.0
+    ],
+    [
+     1100.0,
+     2320.9
+    ]
+   ],
+   "role": "low-wall lane, common yard, climb to the exit",
+   "material": "rock"
+  },
+  {
+   "id": "upper-alley",
+   "kind": "overhang",
+   "top": [
+    [
+     1300,
+     1855.0
+    ],
+    [
+     2404,
+     1845.0
+    ],
+    [
+     3500,
+     1855.0
+    ]
+   ],
+   "bottom": [
+    [
+     3500.0,
+     1867.0
+    ],
+    [
+     3500.0,
+     1932.0
+    ],
+    [
+     2790.2,
+     1978.3
+    ],
+    [
+     2400.0,
+     1995.0
+    ],
+    [
+     2009.8,
+     1978.3
+    ],
+    [
+     1300.0,
+     1932.0
+    ],
+    [
+     1300.0,
+     1867.0
+    ]
+   ],
+   "role": "short exposed alley on the house terrace",
+   "material": "rock"
+  },
+  {
+   "id": "yard-step",
+   "kind": "overhang",
+   "top": [
+    [
+     4950,
+     2199.0
+    ],
+    [
+     4998,
+     2155.8
+    ],
+    [
+     4998,
+     2113.6
+    ],
+    [
+     5190,
+     2105.2
+    ],
+    [
+     5190,
+     2116.6
+    ],
+    [
+     5214,
+     2138.2
+    ],
+    [
+     5214,
+     2176.6
+    ],
+    [
+     5240,
+     2200.0
+    ]
+   ],
+   "bottom": [
+    [
+     5240,
+     2217.8
+    ],
+    [
+     5242.5,
+     2220.0
+    ],
+    [
+     5242.5,
+     2237.8
+    ],
+    [
+     5245.0,
+     2240.0
+    ],
+    [
+     4945.0,
+     2240.0
+    ],
+    [
+     4947.5,
+     2237.8
+    ],
+    [
+     4947.5,
+     2219.5
+    ],
+    [
+     4950,
+     2217.2
+    ]
+   ],
+   "role": "stone platform by the shelter",
+   "material": "rock"
+  },
+  {
+   "id": "exit-rock",
+   "kind": "overhang",
+   "top": [
+    [
+     6250,
+     1762.0
+    ],
+    [
+     6298,
+     1718.8
+    ],
+    [
+     6298,
+     1681.9
+    ],
+    [
+     6394,
+     1672.5
+    ],
+    [
+     6442,
+     1674.4
+    ],
+    [
+     6442,
+     1702.8
+    ],
+    [
+     6500,
+     1755.0
+    ]
+   ],
+   "bottom": [
+    [
+     6500,
+     1775.2
+    ],
+    [
+     6502.5,
+     1777.5
+    ],
+    [
+     6502.5,
+     1797.8
+    ],
+    [
+     6505.0,
+     1800.0
+    ],
+    [
+     6245.0,
+     1800.0
+    ],
+    [
+     6247.5,
+     1797.8
+    ],
+    [
+     6247.5,
+     1781.0
+    ],
+    [
+     6250,
+     1778.8
+    ]
+   ],
+   "role": "rock by the exit path",
+   "material": "rock"
+  },
+  {
+   "id": "entry-stairs",
+   "top": [
+    [
+     850,
+     2304
+    ],
+    [
+     1300,
+     1855
     ]
    ],
    "material": "wood",
-   "role": "raised back alley (original contract)"
+   "role": "stone steps up to the house terrace"
+  },
+  {
+   "id": "down-stairs",
+   "top": [
+    [
+     3500,
+     1855
+    ],
+    [
+     3950,
+     2203
+    ]
+   ],
+   "material": "wood",
+   "role": "stone steps down into the yard"
+  },
+  {
+   "id": "maru",
+   "top": [
+    [
+     2550,
+     1770
+    ],
+    [
+     2800,
+     1770
+    ]
+   ],
+   "material": "wood",
+   "role": "house porch (maru) on the terrace"
   },
   {
    "id": "net-loft",
    "top": [
     [
-     3560,
-     1840
+     4300,
+     2060
     ],
     [
-     3880,
-     1840
+     4600,
+     2060
     ]
    ],
    "material": "wood",
-   "role": "drying-frame loft over the yard"
+   "role": "net-drying loft in the yard"
   }
  ],
  "covers": [
   {
-   "id": "yard-wall",
-   "x": 4300,
-   "y": 2010,
+   "id": "wall-1",
+   "x": 1850,
+   "y": 2330,
    "w": 120,
-   "h": 70
+   "h": 80
+  },
+  {
+   "id": "wall-2",
+   "x": 2700,
+   "y": 2335,
+   "w": 130,
+   "h": 85
+  },
+  {
+   "id": "yard-wall",
+   "x": 4250,
+   "y": 2199,
+   "w": 120,
+   "h": 75
   }
  ],
  "width": 6600,
- "height": 3200
+ "height": 3200,
+ "artFeatures": [
+  "undercroft",
+  "stone-terraces",
+  "common-yard"
+ ]
 }

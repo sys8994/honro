@@ -482,6 +482,72 @@ class Painter:
                 if not u.is_empty:
                     self.add('STRUCT', shapely_d(u), self.hz(col, hi))
 
+    def hanok(self, x, y, w=420, wall=190, roof=150, porch=True, lit=(1, 2), seed=0, layer='STRUCT'):
+        """Korean house (behind actors): stone plinth, timber posts and beams,
+        lime-plaster walls with lattice windows (warm light), and a dark tile
+        roof with upturned eave tips and a pale ridge. Foot centre at (x, y)."""
+        rng = random.Random(seed)
+        L, R = x - w / 2, x + w / 2
+        pl = 34                                   # plinth (기단)
+        self.add(layer, poly_d([(L - 30, y + 4), (L - 26, y - pl), (R + 26, y - pl), (R + 30, y + 4)]), '#3c4b5c')
+        self.add(layer, poly_d([(L - 26, y - pl), (R + 26, y - pl), (R + 24, y - pl + 8), (L - 24, y - pl + 8)]), '#6a7a88')
+        yb, yt = y - pl, y - pl - wall
+        self.add(layer, poly_d([(L, yb), (L, yt), (R, yt), (R, yb)]), '#b9c2c6')          # plaster
+        self.add(layer, poly_d([(L, yb), (L, yb - wall * .28), (R, yb - wall * .28), (R, yb)]), '#7d8a91')  # lower wall
+        n = 3 if w > 300 else 2
+        posts = [L + (R - L) * i / n for i in range(n + 1)]
+        dark = []
+        for px in posts:
+            dark.append(Polygon([(px - 9, yb), (px - 9, yt), (px + 9, yt), (px + 9, yb)]))
+        dark.append(Polygon([(L - 6, yt), (R + 6, yt), (R + 6, yt + 16), (L - 6, yt + 16)]))      # head beam
+        dark.append(Polygon([(L, yb - wall * .28 - 6), (R, yb - wall * .28 - 6), (R, yb - wall * .28 + 2), (L, yb - wall * .28 + 2)]))
+        warm, lattice = [], []
+        for i in range(n):
+            a, b = posts[i] + 22, posts[i + 1] - 22
+            top, bot = yt + 34, yb - wall * .28 - 16
+            if i in lit:
+                warm.append(Polygon([(a, top), (b, top), (b, bot), (a, bot)]))
+            else:
+                dark.append(Polygon([(a, top), (b, top), (b, bot), (a, bot)]).difference(Polygon([(a + 8, top + 8), (b - 8, top + 8), (b - 8, bot - 8), (a + 8, bot - 8)])))
+            k = max(2, int((b - a) / 26))
+            for j in range(1, k):
+                xx = a + (b - a) * j / k
+                lattice.append(Polygon([(xx - 2, top), (xx + 2, top), (xx + 2, bot), (xx - 2, bot)]))
+            for yy in (top + (bot - top) / 3, top + 2 * (bot - top) / 3):
+                lattice.append(Polygon([(a, yy - 2), (b, yy - 2), (b, yy + 2), (a, yy + 2)]))
+        if warm:
+            self.add(layer, shapely_d(unary_union(warm)), '#e2b977')
+            self.add(layer, shapely_d(unary_union(lattice).intersection(unary_union(warm))), '#7a5a3a')
+        self.add(layer, shapely_d(unary_union(dark)), '#3a3536')
+        if porch:   # maru: low timber floor in front
+            self.add(layer, poly_d([(L - 10, yb + 2), (R + 10, yb + 2), (R + 10, yb - 14), (L - 10, yb - 14)]), '#6b5d4d')
+        # roof: near-straight eave line lifting at both tips (처마), concave slopes up to a straight ridge
+        ov, lift = w * .2, roof * .34
+        ridge_y = yt - roof
+        eave, n_ = [], 14
+        for i in range(n_ + 1):
+            t = i / n_
+            ex = L - ov + (R - L + 2 * ov) * t
+            eave.append((ex, yt + 4 - lift * abs(2 * t - 1) ** 3.2))
+        def slope(x0, y0, x1, y1, bulge):
+            return [(x0 + (x1 - x0) * k / 6, y0 + (y1 - y0) * k / 6 + bulge * math.sin(math.pi * k / 6)) for k in range(7)]
+        right = slope(R + ov, yt + 4 - lift, R - w * .1, ridge_y, roof * .16)[1:]
+        left = slope(L + w * .1, ridge_y, L - ov, yt + 4 - lift, roof * .16)[:-1]
+        g = Polygon(eave + right + left).buffer(0)
+        self.add(layer, shapely_d(g), '#253247')
+        self.add(layer, poly_d([(L, yt + 4), (R, yt + 4), (R, yt + 24), (L, yt + 24)]), '#2a2a30')   # eave shadow on the wall
+        cols = []
+        k = int((R - L + 2 * ov) / 24)
+        for j in range(k):
+            xx = L - ov + 12 + j * 24
+            cols.append(Polygon([(xx - 4, ridge_y), (xx + 4, ridge_y), (xx + 4, yt + 10), (xx - 4, yt + 10)]))
+        self.add(layer, shapely_d(unary_union(cols).intersection(g.buffer(-6))), '#34445e')
+        self.add(layer, shapely_d(Polygon(eave + [(e[0], e[1] - 10) for e in reversed(eave)]).buffer(0)), '#3f5272')
+        self.add(layer, poly_d([(L + w * .1 - 14, ridge_y - 14), (R - w * .1 + 14, ridge_y - 14), (R - w * .1 + 6, ridge_y + 6), (L + w * .1 - 6, ridge_y + 6)]), '#b8c3c9')
+        for sx in (-1, 1):   # ridge-end ornaments
+            ex = x + sx * (w / 2 - w * .1 + 10)
+            self.add(layer, poly_d([(ex - 10 * sx, ridge_y - 14), (ex + 18 * sx, ridge_y - 34), (ex + 22 * sx, ridge_y - 8), (ex, ridge_y + 6)]), '#b8c3c9')
+
     def moss_drape(self, s):
         """Moss hanging over ledge lips and down rock faces (concept: green
         tongues and a few vines), only where the face below is rock."""
@@ -640,6 +706,13 @@ class Painter:
                 s['band'] = (24, 48)
                 self._hz_y = None
                 self.rock_mass('BODY', s['poly'], len(s['id']) * 7, cell=360, rim=not s.get('carved'), walk=s['walk'])
+                for x0, x1, depth, tones, mortar in s.get('mason', ()):   # dressed embankment (석축) under the walk
+                    xs = [x0 + (x1 - x0) * i / 30 for i in range(31)]
+                    W_ = s['walk']
+                    xs = [x for x in xs if W_[0][0] <= x <= W_[-1][0]]
+                    if len(xs) > 2:
+                        band = Polygon([(x, interp(W_, x) + 20) for x in xs] + [(x, interp(W_, x) + depth) for x in reversed(xs)]).buffer(0).intersection(s['poly'])
+                        self._masonry_into('BODY', band, y_ref=interp(W_, xs[0]), scale=.75, tones=tones, mortar=mortar)
             else:
                 self.shade_rock(s)
             self._hz_y = sum(y for _, y in s['walk']) / len(s['walk'])
