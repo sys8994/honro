@@ -1,0 +1,8 @@
+# Profile regression comparison
+
+The identical checked-in `tests/profile-store-p01.mjs` and `tests/profile-store-p01-preservation.mjs` were run in clean baseline `d342a7226e46e9c2b2e28cfb6836d3cdd3c47d48` and RC `2577ef15e1c9b81fbb824ffd68f3f265ca9086b2`, with the same checked-in fixture generators, Node and dependencies. Both fail in the same assertions before and after RC's map-only change:
+
+- `profile-store-p01.mjs:13`: historical `7cab23ef` loader yields schema 4 without two presentation fields; current store yields schema 5 with those fields. This comparison targets an older contract. No expectation was changed.
+- `profile-store-p01-preservation.mjs:4`: current `web/manifest.json` lacks a historical published generation required by the old test; both commits fail with the same absent object. No manifest was altered to satisfy it.
+
+The current map contract is tested separately: `tests/act4-map-revision-rc.mjs`, `tests/act4-rc-archive.mjs`, and `tests/campaign-map-revision.mjs`. They check unchanged prior stages/Workshop, XP and reward/proof retention, byte-exact Act 4 archive and quota failure. `browser-migration.py` additionally checks heroes, equipment, clears, recruited party and Act 4 proof against the unchanged saved input in the actual App, then uses the restart UI. These results do not make the two historical tests pass and do not replace an end-to-end play/save/resume run.

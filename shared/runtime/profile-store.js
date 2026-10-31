@@ -62,13 +62,13 @@ function migrate(text){
   G.HonroProgression.repairRecruits(p);G.HonroProgression.reconcileCampAllocations(p);if(x.equipment===undefined)delete p.equipment;G.HonroEquipment.migrate(p);return p;
  }catch{throw failure('migration');}
 }
-// Immutable local raw archives for the Act4 revision3 transition. No index,
+// Immutable local raw archives for Act4 map revision transitions. No index,
 // deletion or overwrite. Exact bytes, not a hash alone, determine deduplication.
 const ARCHIVE_PREFIX=KEY+'-act4-before-map-revision-3-';
 function archiveMetadata(text){
  try{const p=JSON.parse(text),b=p?.honroBattle;
   if(!b||b.honroCustom||b.honroMapOrigin==='workshop'||b.mode!=='campaign'||b.honroStage<31||b.honroStage>40)return null;
-  return {stage:b.honroStage,fromRevision:b.honroCampaignMapRevision??null,toRevision:3};
+  return {stage:b.honroStage,fromRevision:b.honroCampaignMapRevision??null,toRevision:G.HonroCampaignMapRevision.current(b.honroStage)};
  }catch{return null;}
 }
 function archiveRows(){
