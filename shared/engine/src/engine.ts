@@ -2452,15 +2452,6 @@ export class Engine {
         b.turnAge += dt;
         this.stepUnits(dt);
         tickRedesign(this,dt);this.tickOccult();tickWarrior(this,dt);tickBeasts(this,dt);cleanupPassiveHistory(this);
-        // A player can die while walking or falling in aim, before firing an
-        // action. Finish that interrupted action once the other bodies settle.
-        // checkEnd first preserves immediate victory/defeat and its rewards.
-        const actor=this.active;
-        if(b.phase==='aim' && b.side===0 && actor && (actor.dead || actor.hp<=0)){
-            if(this.checkEnd())return;
-            if(!this.settleBusy())this.finishAction();
-            return;
-        }
         for (const z of b.zones) {
             if (z.attached) {
                 const u = this.unit(z.attached);
@@ -2469,6 +2460,15 @@ export class Engine {
                     z.y = u.y - u.h * .5;
                 }
             }
+        }
+        // A player can die while walking or falling in aim, before firing an
+        // action. Finish that interrupted action once the other bodies settle.
+        // checkEnd first preserves immediate victory/defeat and its rewards.
+        const actor=this.active;
+        if(b.phase==='aim' && b.side===0 && actor && (actor.dead || actor.hp<=0)){
+            if(this.checkEnd())return;
+            if(!this.settleBusy())this.finishAction();
+            return;
         }
         if(b.phase==='summon'){
             for(const p of [...b.projectiles])if(b.projectiles.includes(p))this.stepProjectile(p,dt);
