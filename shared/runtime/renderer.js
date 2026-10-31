@@ -69,7 +69,10 @@
         storyFocusPoint(x,y,duration=500,targetScale=null){const {h}=this.size(),scale=targetScale==null?this.storyScale():Math.max(.3,Math.min(1.15,targetScale));this.storyTween={kind:'static',start:performance.now(),duration,from:{x:this.x,y:this.y,scale:this.scale},to:{x,y:y-h*.10/scale,scale},manual:false};this.manual=false;this.speakerId=null;this.speakerUntil=0;}
         storyRelease(camera,duration=450){if(!camera||G.HonroAttackCamera&&!G.HonroAttackCamera.canRestore(this,camera))return;if(G.matchMedia?.('(prefers-reduced-motion: reduce)').matches)duration=1;this.storyTween={kind:'static',released:true,start:performance.now(),duration,from:{x:this.x,y:this.y,scale:this.scale},to:{x:camera.x,y:camera.y,scale:camera.scale},manual:camera.manual};}
         event(ev) { if (this.arcFx) { this.arcFx.event(ev); return; } if (ev.type === 'fx') this.effects.push({ ...ev, life: 0 }); }
-        size() { const r = this.canvas.getBoundingClientRect(), d = Math.min(devicePixelRatio || 1, 1.7), w = Math.max(1, r.width), h = Math.max(1, r.height); if (this.canvas.width !== Math.round(w * d) || this.canvas.height !== Math.round(h * d)) {
+        // Only opted-in Act 4 native art receives denser backing pixels. Keep
+        // the legacy ratio for existing stages and bound each screen surface.
+        _pixelRatio(w,h,b=this.battle){const raw=devicePixelRatio||1,q=b?.honroMap?.nativeArt,enabled=b?.honroStage>=31&&b.honroStage<=40&&q?.version===1&&Array.isArray(q.coveredTerrainIds);return enabled?Math.min(Math.max(1,raw),3,Math.max(1,Math.sqrt(6000000/(w*h)))):Math.min(raw,1.7);}
+        size(b=this.battle) { const r = this.canvas.getBoundingClientRect(), w = Math.max(1, r.width), h = Math.max(1, r.height), d = this._pixelRatio(w,h,b); if (this.canvas.width !== Math.round(w * d) || this.canvas.height !== Math.round(h * d)) {
             this.canvas.width = Math.round(w * d);
             this.canvas.height = Math.round(h * d);
         } return { w, h, d }; }
@@ -80,7 +83,7 @@
         // release after the last draw, before dropping the final cache reference.
         _releaseRasterCanvas(cv){if(cv&&cv!==this.canvas){cv.width=1;cv.height=1;}}
         _releaseDomainTiles(){if(!this._domainTiles)return;for(const tile of this._domainTiles.tiles.values())this._releaseRasterCanvas(tile.canvas);this._domainTiles.tiles.clear();this._domainTiles=null;}
-        _worldRasterScale(b,w){if(G.HonroTerrainDomain?.active(b))return Math.min(.68,Math.max(.05,2**(Math.floor(Math.log2(this.scale*1.25)*4)/4)));const mobile=w<900,maxPixels=mobile?3000000:6000000,desired=this.scale>.72?.68:this.scale>.38?.56:.42,cap=Math.sqrt(maxPixels/Math.max(1,b.width*b.height));return Math.max(.28,Math.min(desired,cap));}
+        _worldRasterScale(b,w){if(G.HonroTerrainDomain?.active(b)){const q=b?.honroMap?.nativeArt;if(b?.honroStage>=31&&b.honroStage<=40&&q?.version===1&&Array.isArray(q.coveredTerrainIds)){const h=Math.max(1,this.canvas.getBoundingClientRect().height),z=Math.max(.05,this.scale),d=this._pixelRatio(w,h,b),limit=w<900?12:24;let rs=Math.max(.05,2**(Math.ceil(Math.log2(z*d)*4)/4));while(rs>.05&&(Math.ceil(w*rs/(z*512))+1)*(Math.ceil(h*rs/(z*512))+1)>limit)rs/=Math.SQRT2;return Math.max(.05,rs);}return Math.min(.68,Math.max(.05,2**(Math.floor(Math.log2(this.scale*1.25)*4)/4)));}const mobile=w<900,maxPixels=mobile?3000000:6000000,desired=this.scale>.72?.68:this.scale>.38?.56:.42,cap=Math.sqrt(maxPixels/Math.max(1,b.width*b.height));return Math.max(.28,Math.min(desired,cap));}
         _isForeground(l){return l.asset?.params?.semanticLayer==='FORE'&&!l.asset?.collision?.length&&!l.collisionIds?.length&&!l.honroElementCollision&&G.HonroVisualStyle?.classify(l,this.battle)!=='gameplay';}
         _landmarkLayer(c,landmarks,layer){c.save();for(const l of landmarks){const foreground=this._isForeground(l);if(layer==='foreground'?!foreground:foreground||(l.layer||'back')!==layer)continue;c.globalAlpha=l.opacity??1;if(l.honroTerrainMaterialClip){c.save();c.clip(l.honroTerrainMaterialClip);this.landmark?.(c,l);c.restore();}else this.landmark?.(c,l);}c.restore();}
         _drawForeground(c,b,w,h,landmarks){
@@ -98,9 +101,16 @@
             if(!this._screenRaster(c,key,w,h,paint,'_screenForegroundCache'))paint(c);
             c.restore();
         }
-        _landmarkVisible(l,view,padding=40){
+        _landmarkPaintBounds(l){
             const bounds=l.asset?.bounds||l.asset?.reference?.bounds;
-            if(bounds&&G.HonroGeometry){const ps=[[bounds.x,bounds.y],[bounds.x+bounds.w,bounds.y],[bounds.x,bounds.y+bounds.h],[bounds.x+bounds.w,bounds.y+bounds.h]].map(([x,y])=>G.HonroGeometry.transformPoint({x,y},l.asset,l));return Math.max(...ps.map(p=>p.x))+padding>=view.left&&Math.min(...ps.map(p=>p.x))-padding<=view.right&&Math.max(...ps.map(p=>p.y))+padding>=view.top&&Math.min(...ps.map(p=>p.y))-padding<=view.bottom;}
+            if(!bounds||!G.HonroGeometry||![bounds.x,bounds.y,bounds.w,bounds.h].every(Number.isFinite)||bounds.w<0||bounds.h<0)return null;
+            const ps=[[bounds.x,bounds.y],[bounds.x+bounds.w,bounds.y],[bounds.x,bounds.y+bounds.h],[bounds.x+bounds.w,bounds.y+bounds.h]].map(([x,y])=>G.HonroGeometry.transformPoint({x,y},l.asset,l));
+            if(ps.some(p=>!Number.isFinite(p.x)||!Number.isFinite(p.y)))return null;
+            return{left:Math.min(...ps.map(p=>p.x)),right:Math.max(...ps.map(p=>p.x)),top:Math.min(...ps.map(p=>p.y)),bottom:Math.max(...ps.map(p=>p.y))};
+        }
+        _landmarkVisible(l,view,padding=40){
+            const bounds=this._landmarkPaintBounds(l);
+            if(bounds)return bounds.right+padding>=view.left&&bounds.left-padding<=view.right&&bounds.bottom+padding>=view.top&&bounds.top-padding<=view.bottom;
             const reach=3000*Math.max(.2,Math.abs(l.scale??l.size??1));return l.x+reach>=view.left&&l.x-reach<=view.right&&l.y+reach>=view.top&&l.y-reach<=view.bottom;
         }
         _worldCacheKey(b,w){const rs=this._worldRasterScale(b,w);return`${b.session||b.honroStage}:${b.sceneVersion||0}:${b.width}x${b.height}:${rs.toFixed(3)}:${G.HonroAct2SpatialArt?.appearanceKey(b)||''}`;}
@@ -147,8 +157,8 @@
             const view=G.HonroBounds.viewport(this,w,h);
             if(view.left>=0&&view.top>=0&&view.right<=b.width&&view.bottom<=b.height)return;
             const candidates=(b.honroLandmarks||[]).filter(l=>{
-                const r=1500*Math.max(.2,Math.abs(l.scale??l.size??1));
-                return (l.x-r<0||l.x+r>b.width||l.y-r<0||l.y+r>b.height)&&l.x+r>view.left&&l.x-r<view.right&&l.y+r>view.top&&l.y-r<view.bottom;
+                const r=1500*Math.max(.2,Math.abs(l.scale??l.size??1)),a=this._landmarkPaintBounds(l)||{left:l.x-r,right:l.x+r,top:l.y-r,bottom:l.y+r};
+                return (a.left<0||a.right>b.width||a.top<0||a.bottom>b.height)&&a.right>view.left&&a.left<view.right&&a.bottom>view.top&&a.top<view.bottom;
             });
             if(!candidates.length)return;
             c.save();c.beginPath();c.rect(view.left-1,view.top-1,view.right-view.left+2,view.bottom-view.top+2);c.rect(0,0,b.width,b.height);c.clip('evenodd');
@@ -203,7 +213,7 @@
             c.restore();
         }
         render(e, dt = 0, selected = '', power = .6, charging = false, effectDt = dt, paused = false) {
-            const { w, h, d } = this.size(), c = this.ctx, b = e.b;
+            const b = e.b, { w, h, d } = this.size(b), c = this.ctx;
             const quietWalk=e.noncombatWalk();
             const quietOutro=G.HonroSodanWithdrawal?.worldOutroDialogue(this.storyFrame?.app)||false;
             this.battle=b;
