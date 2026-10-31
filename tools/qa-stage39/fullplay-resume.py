@@ -1,16 +1,16 @@
 """Isolated official-entry QA fixture. No combat outcomes or mission flags injected."""
-import sys,json,threading,functools,hashlib
+import sys,json,threading,functools,hashlib,os
 from pathlib import Path
 from http.server import ThreadingHTTPServer,SimpleHTTPRequestHandler
 from playwright.sync_api import sync_playwright
 root=Path(__file__).resolve().parents[2];sys.path.insert(0,str(root/'tests'));from browser_support import launch
-raw=(root/'_local/inputs/stage39-presentation/stage39.json').read_bytes();assert hashlib.sha256(raw).hexdigest()=='0bb8dd43bf33af941c88800c4e7e13bbf2c7d3dd924444c035c997daad8f5dcb';project=json.loads(raw);out=root/'_local/reports/stage39-fullplay-run2-resumed';out.mkdir(parents=True,exist_ok=True)
+raw=(root/'_local/inputs/stage39-presentation/stage39.json').read_bytes();assert hashlib.sha256(raw).hexdigest()=='0bb8dd43bf33af941c88800c4e7e13bbf2c7d3dd924444c035c997daad8f5dcb';project=json.loads(raw);out=root/os.environ.get('HONRO39_OUTPUT','_local/reports/stage39-fullplay-run2-resumed');out.mkdir(parents=True,exist_ok=True)
 class Quiet(SimpleHTTPRequestHandler):
  def log_message(self,*a):pass
 srv=ThreadingHTTPServer(('127.0.0.1',0),functools.partial(Quiet,directory=str(root)));threading.Thread(target=srv.serve_forever,daemon=True).start();base=f'http://127.0.0.1:{srv.server_port}';result={'scope':'Isolated official-entry fixture with prior 1–38 cleared, official entry-level XP, official automatic talent training and mandatory/recruit equipment migration. No claim of actually playing prior chapters. Candidate is injected in memory only.','candidateSha256':hashlib.sha256(raw).hexdigest(),'errors':[]}
 with sync_playwright() as pw:
  browser=launch(pw);ctx=browser.new_context(viewport={'width':1440,'height':900});page=ctx.new_page()
- storage=json.loads((root/'_local/reports/stage39-fullplay-run2/browser-storage.json').read_text())
+ storage=json.loads((root/os.environ.get('HONRO39_STORAGE','_local/reports/stage39-fullplay-run2/browser-storage.json')).read_text())
  value=next(x['value'] for x in storage['origins'][0]['localStorage'] if x['name']=='honro-first-act-profile-1')
  page.add_init_script("localStorage.setItem('honro-first-act-profile-1',"+json.dumps(value)+");")
  page.on('pageerror',lambda e:result['errors'].append(str(e)));page.goto(base+'/HONRO.html');page.wait_for_function('window.HonroApp&&window.HONRO_PROJECT&&window.HONRO_AUTHORED_FAR',timeout=60000)
@@ -45,6 +45,9 @@ with sync_playwright() as pw:
   s=record('turn-start',index=turn)
   if s.get('retreat'):
    page.keyboard.press('f');page.wait_for_timeout(450);record('finish-retreat');continue
+  pending=(s.get('artillery') or {}).get('next')
+  if pending and pending.get('warningSeen') and pending.get('target')==s['active'] and s['round']>=pending.get('dueRound',9999):
+   held('ArrowRight' if s['x']<pending['x']+120 else 'ArrowLeft',450);page.wait_for_timeout(600);record('artillery-evasion');s=snapshot()
   if s.get('artillery'):
    n=s['artillery'].get('next')
    if n and n.get('warningSeen') and (n.get('dueRound'),n.get('x'),n.get('y')) not in warnings:
@@ -66,6 +69,11 @@ with sync_playwright() as pw:
     key='ArrowLeft' if target['x']<s['x']-100 else 'ArrowRight';held(key,650);page.wait_for_timeout(500);after=snapshot();record('walk',target=target)
     if abs(after['x']-s['x'])<12 and after['grounded']:
      page.keyboard.press('Control');held(key,350);page.wait_for_timeout(1000);record('jump')
+   
+   for landing in range(30):
+    if snapshot()['grounded']:break
+    page.wait_for_timeout(300)
+   record('landing-check',landed=snapshot()['grounded'])
    choice=plan() if snapshot()['can'] and snapshot()['grounded'] else None
   if choice:
    s=snapshot();desired=-1 if choice['angle']>90 else 1
@@ -79,7 +87,7 @@ with sync_playwright() as pw:
      held('ArrowUp' if delta*st['facing']>0 else 'ArrowDown',min(200,max(20,abs(delta)*1000/62)));page.wait_for_timeout(70)
     duration=page.evaluate('''()=>HonroApp.engine.chargeDuration(HonroApp.engine.active,HONRO_CORE.SKILLS[HonroApp.selected])''');page.keyboard.down('Space');page.wait_for_timeout(max(80,round(duration*choice['power']*1000)));actual=page.evaluate('''()=>({angle:HonroApp.engine.active.angle,power:HonroApp.power})''');page.keyboard.up('Space');record('fired',choice=choice,actual=actual)
   else:
-   record('no-safe-shot-no-action');break
+   record('no-safe-shot-after-move');continue
   page.wait_for_timeout(3000);after=record('post-shot',index=turn);page.screenshot(path=str(out/f'action-{turn:03d}.png'));
   if after['phase']=='aim' and after['side']==0 and after['active']==s['active'] and not after['dialogue'] and not after.get('retreat'):
    page.keyboard.press('Tab');page.wait_for_timeout(300);record('switch-hero')
