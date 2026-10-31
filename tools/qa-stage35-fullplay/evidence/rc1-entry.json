@@ -1,0 +1,205 @@
+{
+  "fixture": {
+    "mage": {
+      "xp": 225393,
+      "level": 25,
+      "earned": 51,
+      "spent": 51,
+      "loadout": [
+        "M01",
+        "M06",
+        "M03",
+        "M10"
+      ],
+      "ranks": {
+        "M01": 1,
+        "M06": 5,
+        "M02": 5,
+        "M03": 5,
+        "M07": 3,
+        "M10": 3
+      },
+      "equipment": [
+        "itm_da_05",
+        "itm_co_08"
+      ]
+    },
+    "archer": {
+      "xp": 225393,
+      "level": 25,
+      "earned": 51,
+      "spent": 45,
+      "loadout": [
+        "A01",
+        "A14",
+        "A02",
+        "A05"
+      ],
+      "ranks": {
+        "A01": 1,
+        "A14": 5,
+        "A02": 5,
+        "A05": 5
+      },
+      "equipment": [
+        "itm_se_05",
+        "itm_co_11"
+      ]
+    },
+    "knight": {
+      "xp": 225393,
+      "level": 25,
+      "earned": 51,
+      "spent": 45,
+      "loadout": [
+        "S00",
+        "S01",
+        "S06",
+        "S08"
+      ],
+      "ranks": {
+        "S00": 1,
+        "S03": 1,
+        "S05": 1,
+        "S07": 1,
+        "S01": 5,
+        "S06": 5,
+        "S08": 5
+      },
+      "equipment": [
+        "itm_hw_05",
+        "itm_co_01"
+      ]
+    },
+    "occultist": {
+      "xp": 225393,
+      "level": 25,
+      "earned": 51,
+      "spent": 45,
+      "loadout": [
+        "O01",
+        "O02",
+        "O06",
+        "O13"
+      ],
+      "ranks": {
+        "O01": 1,
+        "O06": 6,
+        "O11": 1,
+        "O12": 1,
+        "O02": 5,
+        "O13": 5
+      },
+      "equipment": [
+        "itm_so_05",
+        "itm_co_02"
+      ]
+    }
+  },
+  "loaded": {
+    "identical": true,
+    "assets": [
+      {
+        "id": "approved35:body",
+        "equal": true
+      },
+      {
+        "id": "approved35:forest-foundation",
+        "equal": true
+      },
+      {
+        "id": "approved35:near-geology",
+        "equal": true
+      }
+    ],
+    "enemies": 30,
+    "allies": 4,
+    "round": 1,
+    "stage": 35,
+    "custom": false,
+    "profile": {
+      "mage": {
+        "xp": 225393,
+        "ranks": {
+          "M01": 1,
+          "M06": 5,
+          "M02": 5,
+          "M03": 5,
+          "M07": 3,
+          "M10": 3
+        },
+        "statTraining": 30,
+        "kills": 0,
+        "damage": 0,
+        "skillRevision": 1,
+        "martialRevision": 1,
+        "equipmentIds": [
+          "itm_da_05",
+          "itm_co_08"
+        ]
+      },
+      "archer": {
+        "xp": 225393,
+        "ranks": {
+          "A01": 1,
+          "A14": 5,
+          "A02": 5,
+          "A05": 5
+        },
+        "statTraining": 30,
+        "kills": 0,
+        "damage": 0,
+        "skillRevision": 1,
+        "martialRevision": 1,
+        "equipmentIds": [
+          "itm_se_05",
+          "itm_co_11"
+        ]
+      },
+      "knight": {
+        "xp": 225393,
+        "ranks": {
+          "S00": 1,
+          "S03": 1,
+          "S05": 1,
+          "S07": 1,
+          "S01": 5,
+          "S06": 5,
+          "S08": 5
+        },
+        "statTraining": 27,
+        "kills": 0,
+        "damage": 0,
+        "skillRevision": 1,
+        "martialRevision": 1,
+        "equipmentIds": [
+          "itm_hw_05",
+          "itm_co_01"
+        ]
+      },
+      "occultist": {
+        "xp": 225393,
+        "ranks": {
+          "O01": 1,
+          "O06": 6,
+          "O11": 1,
+          "O12": 1,
+          "O02": 5,
+          "O13": 5
+        },
+        "statTraining": 27,
+        "kills": 0,
+        "damage": 0,
+        "skillRevision": 1,
+        "martialRevision": 1,
+        "occultRevision": 1,
+        "equipmentIds": [
+          "itm_so_05",
+          "itm_co_02"
+        ]
+      }
+    },
+    "errors": []
+  },
+  "errors": []
+}
