@@ -1,0 +1,32 @@
+--- a/shared/runtime/renderer.js
++++ b/shared/runtime/renderer.js
+@@ -166,12 +166,29 @@
+             c.restore();
+         }
+         _terrainPaintBounds(t){const work=!!t.honroWorkAccess,cap=t.honroV4Support?32:0;return{left:t.x-(work?32:0),right:t.x+t.w+(work?32:0),top:t.y-cap,bottom:t.y+Math.max(t.h,work?600:0)};}
++        _discardGuideTiles(){const q=this._guideTiles;if(!q)return;for(const t of q.tiles.values())this._releaseRasterCanvas(t.canvas);q.tiles.clear();this._guideTiles=null;}
++        async _prepareGuideTiles(b,camera,signal,eligible){
++            if(!camera||signal.aborted)return;this._discardGuideTiles();const fake=Object.create(this);Object.assign(fake,{x:camera.x,y:camera.y,scale:camera.scale,manual:camera.manual,storyTween:null});const {w,h}=fake.size(),rs=fake._worldRasterScale(b,w),px=512,gutter=2,size=px/rs,v=G.HonroBounds.viewport(fake,w,h),domain=b.honroTerrainBounds,key=fake._worldCacheKey(b,w),limit=w<900?12:24,terrain=G.HonroTerrainDomain.render(b),landmarks=G.HonroTerrainDomain.materialLandmarks(b),q=this._guideTiles={key,tiles:new Map(),rs,sceneVersion:b.sceneVersion,started:performance.now()};
++            const coords=[];for(let y=Math.floor(Math.max(v.top,domain.top)/size);y<=Math.floor(Math.min(v.bottom,domain.bottom)/size);y++)for(let x=Math.floor(Math.max(v.left,domain.left)/size);x<=Math.floor(Math.min(v.right,domain.right)/size);x++)coords.push([x,y]);
++            for(const [x,y] of coords){
++                const idle=await new Promise(resolve=>{const id=requestIdleCallback(d=>resolve(d));signal.addEventListener('abort',()=>{cancelIdleCallback(id);resolve(null)},{once:true});});
++                if(!idle||signal.aborted||!eligible()||this._guideTiles!==q)break;if(idle.timeRemaining()<6)continue;
++                if((this._domainTiles?.tiles.size||0)+q.tiles.size>=limit)break;
++                const start=performance.now(),cv=this._makeLayerCanvas(px+gutter*2,px+gutter*2),cc=cv.getContext('2d',{alpha:true}),left=x*size,top=y*size;cc.setTransform(rs,0,0,rs,gutter-left*rs,gutter-top*rs);
++                const visible=landmarks.filter(l=>fake._landmarkVisible(l,{left,top,right:left+size,bottom:top+size}));fake._staticCacheBuild=true;
++                try{fake._landmarkLayer(cc,visible,'back');fake._landmarkLayer(cc,visible,'structural-back');for(const t of terrain){const r=fake._terrainPaintBounds(t);if(!t.broken&&r.right>=left&&r.left<=left+size&&r.bottom>=top&&r.top<=top+size)fake.terrain(cc,t);}fake.surfaceZones?.(cc,b);for(const layer of ['mid','prop','front'])fake._landmarkLayer(cc,visible,layer);fake.terrainReadability?.(cc,b,{left,top,right:left+size,bottom:top+size});cc.getImageData(0,0,1,1);}catch(err){this._releaseRasterCanvas(cv);break;}finally{fake._staticCacheBuild=false;}
++                q.tiles.set(x+':'+y,{canvas:cv,left,top});this._cacheStats.guideTileBuilds=(this._cacheStats.guideTileBuilds||0)+1;this._cacheStats.guideTileMax=Math.max(this._cacheStats.guideTileMax||0,performance.now()-start);
++            }
++            if(this._guideTiles===q)setTimeout(()=>{if(this._guideTiles===q)this._discardGuideTiles()},10000);
++        }
+         _drawTerrainDomainTiles(c,b,w,h){
+             // Geographically fixed tiles, never a bitmap cut at Play Bounds.
+             // Pixel-aligned clips consume each gutter sample exactly once.
+             const rs=this._worldRasterScale(b,w),px=512,gutter=2,size=px/rs,v=G.HonroBounds.viewport(this,w,h),domain=b.honroTerrainBounds,
+                 key=this._worldCacheKey(b,w),limit=w<900?12:24;
+             let q=this._domainTiles;if(!q||q.key!==key){this._releaseDomainTiles();q=this._domainTiles={key,tiles:new Map(),rs};this._cacheStats.worldBuilds++;}
++            if(this._guideTiles&&this._guideTiles.sceneVersion!==b.sceneVersion)this._discardGuideTiles();
++            if(this._guideTiles?.key===key){for(const [id,tile] of this._guideTiles.tiles)q.tiles.set(id,tile);this._cacheStats.guideTileAdoptions=(this._cacheStats.guideTileAdoptions||0)+this._guideTiles.tiles.size;this._guideTiles.tiles.clear();this._guideTiles=null;}
+             const minX=Math.floor(Math.max(v.left,domain.left)/size),maxX=Math.floor(Math.min(v.right,domain.right)/size),
+                 minY=Math.floor(Math.max(v.top,domain.top)/size),maxY=Math.floor(Math.min(v.bottom,domain.bottom)/size),terrain=G.HonroTerrainDomain.render(b);
+             const old=this._staticCacheBuild;this._staticCacheBuild=true;
