@@ -446,10 +446,72 @@ export function tickRedesign(e:Engine,dt:number){
 }
 
 export interface SkillPrediction extends Prediction {time:number;geometry?:SkillGeometry;contacts:Vec[];secondaryRadius?:number;secondaryPoint?:Vec;triggerRadius?:number;paths?:Vec[][];}
+/** Private A01 replay contract: these official stage-38 placements supply art,
+ * not combat geometry. Every other battle/skill keeps the native full clone.
+ * This is not a general-purpose battle snapshot or portable save. */
+function arrowReplaySnapshot(b:Battle,s:Skill):Battle {
+ const q=b as any;
+ for(const k of ['honroAct4Official','mode','honroStage','honroAct4Preview','honroCustom','honroMapOrigin','honroLandmarks','honroElements','honroAct4PreviewDynamic']){const d=Object.getOwnPropertyDescriptor(q,k);if(d&&!('value' in d))return structuredClone(b);}
+ if(q.honroAct4Official!==1||q.mode!=='campaign'||q.honroStage!==38||q.honroAct4Preview!==38||q.honroCustom||q.honroMapOrigin==='workshop'||s!==SKILLS.A01||s.id!=='A01'||s.cls!=='archer'||s.mode!=='arrow'||!s.redesigned)return structuredClone(b);
+ const arrays=new WeakMap<object,any>(),items=new WeakMap<object,any>(),assets=new WeakMap<object,any>(),checked=new WeakSet<object>(),replaced=new WeakSet<object>(),pairs:Array<[any,any]>=[];let safe=true;
+ // Exotic or accessor-bearing vector data is outside the authored JSON contract.
+ // Check its current contents every time; no identity-based trust or replay.
+ const plain=(v:any):boolean=>{
+  if(v===null)return true;if(typeof v==='function'||typeof v==='symbol')return false;if(typeof v!=='object')return true;
+  if(checked.has(v))return true;checked.add(v);
+  const proto=Object.getPrototypeOf(v);if(!Array.isArray(v)&&proto!==Object.prototype&&proto!==null)return false;
+  for(const k of Object.keys(v)){const d=Object.getOwnPropertyDescriptor(v,k);if(!d||!('value' in d)||!plain(d.value))return false;}
+  return true;
+ };
+ const placementList=(source:any):any=>{
+  if(source===undefined)return source;if(!Array.isArray(source)){safe=false;return source;}
+  const known=arrays.get(source);if(known)return known;
+  if(Object.keys(source).length!==source.length){safe=false;return source;}
+  const next:any[]=[];arrays.set(source,next);replaced.add(source);
+  for(let i=0;i<source.length;i++){
+   const slot=Object.getOwnPropertyDescriptor(source,String(i));if(!slot||!('value' in slot)){safe=false;return source;}
+   const item=slot.value;if(!item||typeof item!=='object'){next.push(item);continue;}
+   if(Object.getPrototypeOf(item)!==Object.prototype||Object.keys(item).some(k=>{const d=Object.getOwnPropertyDescriptor(item,k);return !d||!('value' in d);})){safe=false;return source;}
+   const entry=Object.getOwnPropertyDescriptor(item,'asset');if(entry&&(!entry.enumerable||!('value' in entry))){safe=false;return source;}
+   const original=entry?.value;if(!original||typeof original!=='object'){next.push(item);continue;}
+   if(Object.getPrototypeOf(original)!==Object.prototype||Object.keys(original).some(k=>{const d=Object.getOwnPropertyDescriptor(original,k);return !d||!('value' in d);})){safe=false;return source;}
+   const descriptor=Object.getOwnPropertyDescriptor(original,'vector');if(descriptor&&(!descriptor.enumerable||!('value' in descriptor))){safe=false;return source;}
+   if(!descriptor?.value){next.push(item);continue;}
+   if(typeof descriptor.value!=='object'){safe=false;return source;}
+   if(!plain(descriptor.value)){safe=false;return source;}
+   let copy=items.get(item);
+   if(!copy){let asset=assets.get(original);if(!asset){asset={...original,vector:{}};assets.set(original,asset);}copy={...item,asset};items.set(item,copy);replaced.add(item);replaced.add(original);pairs.push([item,original]);}
+   next.push(copy);
+  }
+  return next;
+ };
+ // If some gameplay field aliases a replaced placement, asset or vector node,
+ // keep the full clone: its cross-field identity may affect the simulation.
+ const seen=new WeakSet<object>();
+ const independent=(v:any):boolean=>{
+  if(!v||typeof v!=='object')return true;if(v===q||replaced.has(v)||checked.has(v))return false;
+  if(seen.has(v))return true;seen.add(v);
+  const proto=Object.getPrototypeOf(v);if(!Array.isArray(v)&&proto!==Object.prototype&&proto!==null)return false;
+  for(const k of Object.keys(v)){const d=Object.getOwnPropertyDescriptor(v,k);if(!d||!('value' in d)||!independent(d.value))return false;}
+  return true;
+ };
+ let landmarks:any,elements:any,dynamic:any;
+ try{
+  landmarks=placementList(q.honroLandmarks);elements=placementList(q.honroElements);dynamic=placementList(q.honroAct4PreviewDynamic);
+  for(const k of Object.keys(q))if(!['honroLandmarks','honroElements','honroAct4PreviewDynamic'].includes(k)){const d=Object.getOwnPropertyDescriptor(q,k);if(!d||!('value' in d)||!independent(d.value)){safe=false;break;}}
+  for(const [item,asset] of pairs){for(const k of Object.keys(item))if(k!=='asset'&&!independent(item[k]))safe=false;for(const k of Object.keys(asset))if(k!=='vector'&&!independent(asset[k]))safe=false;}
+ }catch(err){if(!(err instanceof RangeError))throw err;safe=false;}
+ if(!safe)return structuredClone(b);
+ const input={...q};
+ if(Object.prototype.propertyIsEnumerable.call(q,'honroLandmarks'))input.honroLandmarks=landmarks;
+ if(Object.prototype.propertyIsEnumerable.call(q,'honroElements'))input.honroElements=elements;
+ if(Object.prototype.propertyIsEnumerable.call(q,'honroAct4PreviewDynamic'))input.honroAct4PreviewDynamic=dynamic;
+ return structuredClone(input);
+}
 /** Replay the actual arrow step on an isolated battle: apex, curved return, LOS,
  * piercing, chains and split children cannot diverge into a second physics loop. */
 function arrowPrediction(e:Engine,u:Unit,s:Skill,angle:number,power:number,representative=false,ignoreUnits=false):SkillPrediction{
- const b=structuredClone(e.b),Sim=e.constructor as new(b:Battle)=>Engine,sim=new Sim(b),actor=sim.unit(u.id)!;
+ const b=arrowReplaySnapshot(e.b,s),Sim=e.constructor as new(b:Battle)=>Engine,sim=new Sim(b),actor=sim.unit(u.id)!;
  const wave=s.mode==='waveBounce',waveContacts:Vec[]=[],impact=sim.impact.bind(sim);
  if(wave)sim.impact=(p,h)=>{if(p.bounces>=1&&!gearHas(p,'da_stake')){p.x=h.x;p.y=h.y;sim.remove(p);}else{if(h.terrain)waveContacts.push({x:h.x,y:h.y});impact(p,h);}};
  const collision=sim.collision.bind(sim);let contact:Collision|null=null,stepContact:Collision|null=null,terminalContact:Collision|null=null,capture=true;
