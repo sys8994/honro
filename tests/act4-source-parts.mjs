@@ -9,10 +9,10 @@ test('real canonical chunks reconstruct clean checkout byte-for-byte',()=>scratc
  const original=await readFile(path.join(defaultDirectory,'world.json'));
  await cp(path.join(defaultDirectory,'world.parts'),path.join(directory,'world.parts'),{recursive:true});
  const result=await materializeWorld({directory});assert.equal(result.created,true);
- assert.equal(result.sha256,'801df923ce89d8747f337f0b71e2ae38c604a8efbd6250d56e885b931af9f1b5');
+ const {manifest:sourceManifest}=await readWorldSource(defaultDirectory);assert.equal(result.sha256,sourceManifest.sha256);
  assert.deepEqual(await readFile(path.join(directory,'world.json')),original);
  assert.equal((await materializeWorld({directory})).created,false);
- const {manifest}=await readWorldSource(directory);assert.equal(manifest.parts.length,16);
+ const {manifest}=await readWorldSource(directory);assert.deepEqual(manifest,sourceManifest);assert(manifest.parts.length>0);
  assert(manifest.parts.every(p=>p.bytes<=chunkBytes));
  // Worst-case JSON escaping and base64 each remain comfortably below16MiB.
  for(const p of manifest.parts){const b=await readFile(path.join(directory,'world.parts',p.file));assert(Buffer.byteLength(JSON.stringify({content:b.toString('utf8')}))<8*1024*1024);assert(Buffer.byteLength(JSON.stringify({content:b.toString('base64')}))<4*1024*1024);}
