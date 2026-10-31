@@ -1,0 +1,2 @@
+import vm from 'node:vm';import{runtimeParts}from'../../../../shared/build.mjs';import{buildCore}from'./build.mjs';
+export async function runtime(){const g=vm.createContext({console,performance,structuredClone});const core=await buildCore();for(let s of await runtimeParts({vector:false,render:false})){if(s.includes('const modules=')&&s.includes('globalThis.HONRO_CORE='))s=core;vm.runInContext(s,g);}return g;}

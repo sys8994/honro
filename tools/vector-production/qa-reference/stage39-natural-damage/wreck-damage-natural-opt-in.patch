@@ -1,0 +1,280 @@
+--- a/shared/engine/src/engine.ts
++++ b/shared/engine/src/engine.ts
+@@ -1,3 +1,4 @@
++import {wreckDamage,damageNearest,damageContact,damageAim,damageCritical} from './wreckDamage';
+ import {gearCapture,gearHas,gearBody,gearCanPay,gearPay,gearTurn,gearRegen,gearGuard,gearImpulse,gearAlly,gearState,gearCycle,gearFrostSlow,gearStepMove,gearEarthMove,gearWallContact,gearPreservesWood,gearSpreadWeak,gearTravelSpent,gearReturn,gearLandingRetreat,gearPass} from './equipmentCombat';
+ import {equipmentActor,equipmentParam,equipmentCast,equipmentManaCost,equipmentPrimary,equipmentSoulVector} from './equipment';
+ import {playerRangeSpeed,initializePlayerRange,flightRangeSpent,boundRushMotion,playerRangeApplies,PLAYER_LANTERN_RANGE} from './playerRange';
+@@ -314,29 +315,41 @@
+                 found.add(t);
+         return [...found].sort((a, b) => this.terrainOrder.get(a)! - this.terrainOrder.get(b)!);
+     }
++    damageAim(u:Unit,fraction=.5){return damageAim(this.b,u,fraction);}
++    damageGeometry(u:Unit){return wreckDamage(this.b,u);}
++    damageSweep(u:Unit,a:Vec,z:Vec,r:number){const d=wreckDamage(this.b,u);return d?damageContact(d.polygons,a,z,r):segRect(a,z,u.x-u.r,u.y-u.h,u.r*2,u.h,r);}
++    damageDistance(u:Unit,p:Vec){const d=wreckDamage(this.b,u);return d?damageNearest(d.polygons,p).distance:Math.hypot(u.x-p.x,u.y-u.h*.45-p.y);}
+     collision(a: Vec, c: Vec, r: number, owner: string, hit: string[] = [], units = true, skip: string[] = [], terrain = true, projectile = false, attack?:Projectile): Collision | null {
+         let best: Collision | null = null;
+         const left=Math.min(a.x,c.x)-r,right=Math.max(a.x,c.x)+r,top=Math.min(a.y,c.y)-r,bottom=Math.max(a.y,c.y)+r;
+         const water=projectile?waterfallSheet(this.b):undefined;
+-        if(terrain) for (const t of this.collisionTerrain(a, c, r)) {
++        const damageOwner=projectile&&(this.b as any).honroAct4Preview===39?this.b.units.find(u=>u.id==='a4-wreck'):undefined;
++        const authoredDamage=damageOwner?wreckDamage(this.b,damageOwner):null,hull=authoredDamage?this.b.terrain.find(t=>t.id==='approved39-wreck-hull'):undefined;
++        const indexed=terrain?this.collisionTerrain(a,c,r):[],solids=hull&&!indexed.includes(hull)?[...indexed,hull]:indexed;
++        if(terrain) for (const t of solids) {
+             if(t.id===water?.id)continue;
+-            if (t.broken || skip.includes(t.id) || t.x > right || t.x + t.w < left || Math.min(t.y, t.y + (t.slope || 0)) > bottom || t.y + t.h < top)
++            if (t.broken || skip.includes(t.id) || (!(authoredDamage&&t===hull)&&(t.x > right || t.x + t.w < left || Math.min(t.y, t.y + (t.slope || 0)) > bottom || t.y + t.h < top)))
+                 continue;
+-            const h = projectile ? segmentProjectileTerrain(a, c, t, r) : segmentTerrain(a, c, t, r);
++            const h=authoredDamage&&t===hull?damageContact(authoredDamage.polygons,a,c,r):projectile?segmentProjectileTerrain(a,c,t,r):segmentTerrain(a,c,t,r);
+             if (h && (!best || h.t < best.t))
+                 best = { x: a.x + (c.x - a.x) * h.t, y: a.y + (c.y - a.y) * h.t, t: h.t, n: h.n, terrain: t };
+         }
+         if(projectile&&terrain){const ritual=keeperCollision(this,a,c,r,owner,attack);if(ritual&&(!best||ritual.t<best.t))best=ritual;}
+-        if (units)
+-            for (const u of this.b.units) {
+-                // Most units are nowhere near this short substep; avoid allocating
+-                // the slab-intersection arrays for every unit in every AI probe.
+-                if (u.dead || !this.attackAllows(u,owner,attack) || u.id === owner || u.x-u.r>right || u.x+u.r<left || u.y-u.h>bottom || u.y<top || hit.includes(u.id))
+-                    continue;
+-                const h = segRect(a, c, u.x - u.r, u.y - u.h, u.r * 2, u.h, r);
+-                if (h && (!best || h.t < best.t))
+-                    best = { x: a.x + (c.x - a.x) * h.t, y: a.y + (c.y - a.y) * h.t, t: h.t, n: h.n, unit: u };
+-            }
++        if (units) for (const u of this.b.units) {
++            if(u.dead||!this.attackAllows(u,owner,attack)||u.id===owner||hit.includes(u.id))continue;
++            const shape=projectile&&u===damageOwner?authoredDamage:null;
++            if(shape){
++                if(skip.includes('approved39-wreck-hull'))continue;
++                const h=damageContact(shape.polygons,a,c,r);
++                // Only a tie with this exact hull can be replaced; residents/other barriers win ties.
++                if(h&&(!best||h.t<best.t-1e-9||(Math.abs(h.t-best.t)<=1e-9&&['approved39-wreck-hull','approved39-wreck-deck'].includes(best.terrain?.id||''))))
++                    best={x:a.x+(c.x-a.x)*h.t,y:a.y+(c.y-a.y)*h.t,t:h.t,n:h.n,unit:u};
++                continue;
++            }
++            if(u.x-u.r>right||u.x+u.r<left||u.y-u.h>bottom||u.y<top)continue;
++            const h=segRect(a,c,u.x-u.r,u.y-u.h,u.r*2,u.h,r);
++            if(h&&(!best||h.t<best.t))best={x:a.x+(c.x-a.x)*h.t,y:a.y+(c.y-a.y)*h.t,t:h.t,n:h.n,unit:u};
++        }
+         return best;
+     }
+     sweepBody(u:Unit,a:Vec,b:Vec):Collision|null{return sweepBodyTerrain(this.collisionTerrain(a,b,Math.min(6,u.r)),u,a,b,t=>this.dropEdges(u,t));}
+@@ -389,7 +402,7 @@
+             }
+             const nx = motion.x, ny = motion.y;
+             if (target)
+-                closest = Math.min(closest, Math.hypot(nx - target.x, ny - (target.y - target.h * .5)));
++                closest = Math.min(closest, Math.hypot(nx - this.damageAim(target).x, ny - (this.damageAim(target,.5).y)));
+             const phase=skill.phase;
+             let h = phase==='all' ? null : this.collision({ x, y }, { x: nx, y: ny }, meteor ? 22 : r, predictionOwner, ignored, !ignoreUnits&&skill.id!=='O05'&&!SUMMONS.has(skill.mode)&&skill.mode!=='charge'&&skill.mode!=='spin', skips, !body&&phase!=='terrain', !body,keeperEchoUsed?({body:false,mode:skill.mode,skill:skill.id,keeperReturned:true} as unknown as Projectile):undefined);
+             if(body&&phase!=='all'&&phase!=='terrain'){const bodyHit=this.bodyFlightCollision(u,{x,y},{x:nx,y:ny});if(bodyHit&&(!h||bodyHit.t<h.t))h=bodyHit;}
+@@ -449,14 +462,14 @@
+     /** Invert constant-force flight to seed aiming, then validate against the real trajectory.
+      * Spatial fields, obstacles and special skills still use prediction and the bounded fallback. */
+     shotSeeds(u:Unit,s:Skill,target:Unit,maxPower=1){
+-        const speed=this.effective(s,u).speed,baseTime=Math.max(.12,Math.hypot(target.x-u.x,target.y-u.y)/((270+535*maxPower)*speed*.86));
++        const speed=this.effective(s,u).speed,baseTime=Math.max(.12,Math.hypot(this.damageAim(target).x-u.x,this.damageAim(target,0).y-u.y)/((270+535*maxPower)*speed*.86));
+         const gravity=s.gravity??1,seeds:{angle:number;power:number}[]=[];
+         for(const factor of [1,1.2,.85,1.5,1.9,2.4]){
+-            const t=baseTime*factor;let angle=target.x>=u.x?20:160,power=0;
++            const t=baseTime*factor;let angle=this.damageAim(target).x>=u.x?20:160,power=0;
+             for(let i=0;i<3;i++){
+                 const o=this.origin(u,angle,BODY.has(s.mode)),a=this.forceSample({...o,wind:s.wind,gravityScale:gravity,drag:dragFor(s),skill:s.id});
+                 const k=a.k,F=k<1e-7?t:-Math.expm1(-k*t)/k,Q=k<1e-7?t*t*.5:(t-F)/k;
+-                const vx=(target.x-o.x-a.x*Q)/F,vy=(target.y-target.h*.52-o.y-a.y*Q)/F;
++                const vx=(this.damageAim(target).x-o.x-a.x*Q)/F,vy=(this.damageAim(target,.52).y-o.y-a.y*Q)/F;
+                 angle=Math.atan2(-vy,vx)*180/Math.PI;if(angle< -90)angle+=360;
+                 power=(Math.hypot(vx,vy)/speed-270)/535;
+             }
+@@ -485,12 +498,12 @@
+     }
+     *searchShot(u:Unit,s:Skill,target:Unit,allowAllyTarget=false,maxPower=1):Generator<void,{angle:number;power:number;score:number},unknown>{
+         if(this.bestShot!==Engine.prototype.bestShot)return this.bestShot(u,s,target,allowAllyTarget);
+-        const right = target.x > u.x, blast = this.effective(s, u).radius;
++        const right = this.damageAim(target).x > u.x, blast = this.effective(s, u).radius;
+         let best = { angle: right ? 45 : 135, power: Math.min(.62,maxPower), score: -1e9 },useful=false;
+         if(u.side!==0&&!this.npcShotInReach(u,s,allowAllyTarget?target:undefined,maxPower))return best;
+         const score = (a: number, p: number) => {
+             const hit = this.predict(u, s, a, p, target, false);
+-            const d = Math.hypot(hit.x - target.x, hit.y - (target.y - target.h * .52));
++            const d = Math.hypot(hit.x - this.damageAim(target).x, hit.y - (this.damageAim(target,.52).y));
+             let sc = -(Math.min(d, hit.closest + 140));
+             if (hit.unit === target.id)
+                 sc = 200;
+@@ -505,7 +518,7 @@
+                 sc -= 500;
+             return sc;
+         };
+-        if(u.side!==0)for(const seed of this.shotSeeds(u,s,target,maxPower)){
++        if(u.side!==0||wreckDamage(this.b,target))for(const seed of this.shotSeeds(u,s,target,maxPower)){
+             const sc=score(seed.angle,seed.power);if(sc>best.score)best={...seed,score:sc};
+             yield;if(useful)return {...seed,score:sc};
+         }
+@@ -513,7 +526,7 @@
+         // Cover low/high arcs at coarse powers, then refine the best neighbourhood.
+         // Player-facing analysis retains the full precision grid.
+         const npc=u.side!==0;
+-        const elevations=npc?(target.y>u.y+90?[-65,-35,-5,25,50,70,86]:[10,25,40,55,70,86]):Array.from({length:Math.floor((86-(target.y>u.y+90?-65:10))/8)+1},(_,i)=>(target.y>u.y+90?-65:10)+i*8);
++        const elevations=npc?(this.damageAim(target,0).y>u.y+90?[-65,-35,-5,25,50,70,86]:[10,25,40,55,70,86]):Array.from({length:Math.floor((86-(this.damageAim(target,0).y>u.y+90?-65:10))/8)+1},(_,i)=>(this.damageAim(target,0).y>u.y+90?-65:10)+i*8);
+         const powers=npc?[.25,.5,.75,1].map(p=>p*maxPower):Array.from({length:Math.floor((maxPower+.001-.20)/.085)+1},(_,i)=>.20+i*.085);
+         for (const elev of elevations)
+             for (const p of powers) {
+@@ -766,10 +779,10 @@
+     steer(x:number,y:number,vx:number,vy:number,owner:Unit,dt:number,hit:string[]=[],child=false){
+       const range=(child?360:300)+(owner.side===0?Math.max(0,(owner.ranks[child?'A15':'A13']||1)-1)*20:0);let target:Unit|undefined,best=range;
+       for(const u of this.b.units){if(!this.guidanceTarget(owner,u)||hit.includes(u.id))continue;
+-        const d=Math.hypot(u.x-x,u.y-u.h*.5-y);if(d>=best)continue;
+-        const blocked=this.projectileCollision({x,y},{x:u.x,y:u.y-u.h*.5},1,owner.id,[],false);if(blocked)continue;best=d;target=u;
++        const d=Math.hypot(this.damageAim(u).x-x,this.damageAim(u).y-y);if(d>=best)continue;
++        const blocked=this.projectileCollision({x,y},this.damageAim(u),1,owner.id,[],!!wreckDamage(this.b,u));if(blocked&&(!wreckDamage(this.b,u)||blocked.unit?.id!==u.id))continue;best=d;target=u;
+       }
+-      if(!target)return {vx,vy};const turn=1.75+(owner.side===0?Math.max(0,(owner.ranks[child?'A15':'A13']||1)-1)*.05:0),a=Math.atan2(vy,vx),desired=Math.atan2(target.y-target.h*.5-y,target.x-x),delta=Math.atan2(Math.sin(desired-a),Math.cos(desired-a)),angle=a+clamp(delta,-turn*dt,turn*dt),speed=Math.hypot(vx,vy);return {vx:Math.cos(angle)*speed,vy:Math.sin(angle)*speed};
++      if(!target)return {vx,vy};const turn=1.75+(owner.side===0?Math.max(0,(owner.ranks[child?'A15':'A13']||1)-1)*.05:0),a=Math.atan2(vy,vx),desired=Math.atan2(this.damageAim(target).y-y,this.damageAim(target).x-x),delta=Math.atan2(Math.sin(desired-a),Math.cos(desired-a)),angle=a+clamp(delta,-turn*dt,turn*dt),speed=Math.hypot(vx,vy);return {vx:Math.cos(angle)*speed,vy:Math.sin(angle)*speed};
+     }
+     carrySweep(p:Projectile,a:Vec,end:Vec){const owner=this.unit(p.owner);if(!owner)return; p.carry??=[];
+       for(const u of this.b.units){if(u.dead||!this.attackAllows(u,p.owner,p)||u.side===owner.side||u.side===2||u.fixed||p.hit.includes(u.id)||u.carriedBy!==undefined)continue;
+@@ -881,7 +894,7 @@
+             u.mark = 0;
+             this.fx('rune', u.x, u.y - u.h * .5, '#fff0b5', 55);
+         }
+-        if (direct && source && u.boss && Math.abs(source.y - (u.y - u.h * .53)) < u.h * .17) {
++        if (direct && source && u.boss && damageCritical(this.b,u,source)) {
+             conditionBonuses.push(.22);
+             this.fx('text', u.x, u.y - u.h - 20, '#f4d39c', 15, '핵심 적중');
+         }
+@@ -1063,6 +1076,8 @@
+                 const to={x:clamp(x,u.x-u.r,u.x+u.r),y:clamp(y,u.y-u.h,u.y)},sheet=waterfallSheet(this.b);
+                 if(this.b.terrain.some(t=>!t.broken&&(segmentProjectileTerrain({x,y},to,t.id===sheet?.id?sheet:t,0)||terrainRectIntersects(t.id===sheet?.id?sheet:t,x-.1,y-.1,.2,.2,0))))continue;
+             }
++            const shape=wreckDamage(this.b,u);
++            if(shape){const near=damageNearest(shape.polygons,{x,y});if(near.distance<radius)yield{unit:u,distance:near.distance,head:near.point,equipmentScale:1};continue;}
+             const d = Math.hypot(u.x - x, (u.y - u.h * .45) - y);
+             if (d < radius + u.r) yield {unit:u,distance:d,head:{x:u.x,y:u.y-u.h},equipmentScale:1};
+         }
+@@ -1269,7 +1284,7 @@
+         this.message(`소환귀 차례 · ${queue.length}`);this.emit('change');this.emit('save');return queue.length;
+     }
+     private launchSummonBolt(s:Unit,target:Unit){
+-        const x=s.x,y=s.y-s.h*.52,dx=target.x-x,dy=target.y-target.h*.5-y,n=Math.max(1,Math.hypot(dx,dy));
++        const x=s.x,y=s.y-s.h*.52,dx=this.damageAim(target).x-x,dy=this.damageAim(target).y-y,n=Math.max(1,Math.hypot(dx,dy));
+         const owner=s.summonOwner?this.unit(s.summonOwner):undefined,bounded=!!owner&&playerRangeApplies(owner,SKILLS.O12);
+         if(bounded&&n>PLAYER_LANTERN_RANGE.reach+target.r)return;
+         const p:Projectile={attackSide:s.summonDamageOrigin?.attackSide,damageRoll:s.summonDamageOrigin?.damageRoll,id:this.b.nextId++,skill:'O12',owner:s.id,side:0,x,y,vx:dx/n*1250,vy:dy/n*1250,prevVy:dy/n*1250,age:0,radius:6,damage:s.attack*SUMMON_TUNING.lantern.damage,blast:0,wind:0,mode:'summonBolt',color:'#acdded',bounces:0,pierces:0,apex:true,hit:[],phase:0,body:false,returnX:s.x,returnY:s.y,trail:[{x,y}],child:true,autonomous:true,rolled:0,shot:this.b.shot,emissions:99,fieldHits:[],amplification:1,launchX:x,launchY:y,gravityScale:0,drag:.006,phaseMode:'all',targetId:target.id,skillRank:1,...(bounded?{rangeRevision:1 as const,flightRange:{x,y,distance:PLAYER_LANTERN_RANGE.distance,seconds:PLAYER_LANTERN_RANGE.seconds},flightAge:0}:{})};
+@@ -1278,7 +1293,7 @@
+     private stepSummonBolt(p:Projectile,dt:number){
+         const t=p.targetId?this.unit(p.targetId):undefined;
+         if(!t||!this.guidanceTarget(this.unit(p.owner),t)){this.remove(p);return;}
+-        const tx=t.x,ty=t.y-t.h*.5,dx=tx-p.x,dy=ty-p.y,n=Math.max(1,Math.hypot(dx,dy));
++        const tx=this.damageAim(t).x,ty=this.damageAim(t).y,dx=tx-p.x,dy=ty-p.y,n=Math.max(1,Math.hypot(dx,dy));
+         if(!this.inWaterfall(p)){p.vx=dx/n*1250;p.vy=dy/n*1250;}
+         const m=this.advanceProjectile(p,dt);this.waterEntry(p,m);const h=this.projectileCollision(p,m,p.radius,p.owner,p.hit,true,[],false);
+         // Autonomous rays pass through coalition bodies without consuming the shot.
+@@ -1634,35 +1649,35 @@
+         const owner=this.unit(p.owner);if(!owner)return false;
+         const enemies=this.b.units.filter(v=>this.guidanceTarget(owner,v));
+         if(p.mode==='arcaneJudgment'){
+-            const targets=enemies.map(v=>({v,d:Math.hypot(v.x-p.x,v.y-v.h*.5-p.y)})).filter(x=>x.d<1250).sort((a,b)=>a.d-b.d).slice(0,9);
++            const targets=enemies.map(v=>({v,d:Math.hypot(this.damageAim(v).x-p.x,this.damageAim(v).y-p.y)})).filter(x=>x.d<1250).sort((a,b)=>a.d-b.d).slice(0,9);
+             this.fx('burst',p.x,p.y,'#d89cff',150);this.fx('ring',p.x,p.y,'#b76cff',210);this.fx('rune',p.x,p.y,'#efe0ff',170);this.emit('sound',{name:'boom'});
+             if(!targets.length){this.blast(p.x,p.y,p.blast*1.3,p.damage*.7,p.owner,false,p);this.remove(p);return true;}
+-            for(const {v} of targets){const dx=v.x-p.x,dy=v.y-v.h*.5-p.y,len=Math.max(1,Math.hypot(dx,dy)),speed=920;
++            for(const {v} of targets){const dx=this.damageAim(v).x-p.x,dy=this.damageAim(v).y-p.y,len=Math.max(1,Math.hypot(dx,dy)),speed=920;
+                 const c:Projectile={...p,id:this.b.nextId++,mode:'arcBolt',targetId:v.id,vx:dx/len*speed,vy:dy/len*speed,prevVy:dy/len*speed,wind:0,damage:p.damage*.72,blast:34,radius:5,age:0,apex:true,body:false,child:true,autonomous:true,hit:[],trail:[{x:p.x,y:p.y}],fieldHits:[...(p.fieldHits||[])],emissions:99};this.b.projectiles.push(c);
+                 this.fx('line',p.x,p.y,'#d8a6ff',42,undefined);
+             }
+             this.remove(p);return true;
+         }
+         if(p.mode==='starHunt'){
+-            const targets=enemies.map(v=>({v,d:Math.hypot(v.x-p.x,v.y-v.h*.5-p.y)})).filter(x=>x.d<1550).sort((a,b)=>a.d-b.d).slice(0,7);
++            const targets=enemies.map(v=>({v,d:Math.hypot(this.damageAim(v).x-p.x,this.damageAim(v).y-p.y)})).filter(x=>x.d<1550).sort((a,b)=>a.d-b.d).slice(0,7);
+             this.fx('burst',p.x,p.y,'#f7df8c',115);this.fx('ring',p.x,p.y,'#fff2b2',170);this.emit('sound',{name:'split'});
+             if(!targets.length){this.remove(p);return true;}
+-            for(const [i,{v}] of targets.entries()){const dx=v.x-p.x,dy=v.y-v.h*.5-p.y,len=Math.max(1,Math.hypot(dx,dy)),speed=1220;
++            for(const [i,{v}] of targets.entries()){const dx=this.damageAim(v).x-p.x,dy=this.damageAim(v).y-p.y,len=Math.max(1,Math.hypot(dx,dy)),speed=1220;
+                 const c:Projectile={...p,id:this.b.nextId++,mode:'hunterBolt',targetId:v.id,vx:dx/len*speed+(i-(targets.length-1)/2)*18,vy:dy/len*speed-35,prevVy:dy/len*speed-35,wind:0,damage:p.damage*.70,blast:0,radius:3,age:0,apex:true,body:false,child:true,autonomous:true,hit:[],trail:[{x:p.x,y:p.y}],fieldHits:[...(p.fieldHits||[])],emissions:99};this.b.projectiles.push(c);
+             }
+             this.remove(p);return true;
+         }
+         if(p.mode==='nightParade'){
+-            const caster=this.creditUnit(owner)!;const targets=enemies.map(v=>({v,d:Math.hypot(v.x-p.x,v.y-v.h*.5-p.y)})).filter(x=>x.d<1450).sort((a,b)=>a.d-b.d).slice(0,10);
++            const caster=this.creditUnit(owner)!;const targets=enemies.map(v=>({v,d:Math.hypot(this.damageAim(v).x-p.x,this.damageAim(v).y-p.y)})).filter(x=>x.d<1450).sort((a,b)=>a.d-b.d).slice(0,10);
+             this.fx('burst',p.x,p.y,'#a264dd',180);this.fx('ring',p.x,p.y,'#d39aff',240);this.fx('rune',p.x,p.y,'#ead8ff',210);this.emit('sound',{name:'boom'});
+-            for(const {v} of targets){this.applyCurse(v,caster,'dot',p.damage*.22,1,0,false,{...p,autonomous:true});const dx=v.x-p.x,dy=v.y-v.h*.5-p.y,len=Math.max(1,Math.hypot(dx,dy)),speed=940;const c:Projectile={...p,id:this.b.nextId++,mode:'nightBolt',targetId:v.id,vx:dx/len*speed,vy:dy/len*speed,prevVy:dy/len*speed,wind:0,gravityScale:0,phaseMode:'terrain',damage:p.damage*.62,blast:38,radius:6,age:0,apex:true,body:false,child:true,autonomous:true,hit:[],trail:[{x:p.x,y:p.y}],fieldHits:[...(p.fieldHits||[])],emissions:99};this.b.projectiles.push(c);}
++            for(const {v} of targets){this.applyCurse(v,caster,'dot',p.damage*.22,1,0,false,{...p,autonomous:true});const dx=this.damageAim(v).x-p.x,dy=this.damageAim(v).y-p.y,len=Math.max(1,Math.hypot(dx,dy)),speed=940;const c:Projectile={...p,id:this.b.nextId++,mode:'nightBolt',targetId:v.id,vx:dx/len*speed,vy:dy/len*speed,prevVy:dy/len*speed,wind:0,gravityScale:0,phaseMode:'terrain',damage:p.damage*.62,blast:38,radius:6,age:0,apex:true,body:false,child:true,autonomous:true,hit:[],trail:[{x:p.x,y:p.y}],fieldHits:[...(p.fieldHits||[])],emissions:99};this.b.projectiles.push(c);}
+             this.spawnSummon(caster,'stalker',p.x-55,p.y,1.35,1,false,undefined,p.skill,p);this.spawnSummon(caster,'charger',p.x+55,p.y,1.35,1,false,undefined,p.skill,p);this.remove(p);return true;
+         }
+         return false;
+     }
+     private stepUltimateBolt(p:Projectile,dt:number){
+         const target=p.targetId?this.unit(p.targetId):undefined;
+-        if(target&&!this.inWaterfall(p)&&this.guidanceTarget(this.unit(p.owner),target)){const tx=target.x,ty=target.y-target.h*.52,desired=Math.atan2(ty-p.y,tx-p.x),cur=Math.atan2(p.vy,p.vx),delta=Math.atan2(Math.sin(desired-cur),Math.cos(desired-cur)),turn=p.mode==='arcBolt'?4.5:p.mode==='nightBolt'?4.0:3.1,ang=cur+clamp(delta,-turn*dt,turn*dt),speed=Math.max(220,Math.hypot(p.vx,p.vy));p.vx=Math.cos(ang)*speed;p.vy=Math.sin(ang)*speed;}
++        if(target&&!this.inWaterfall(p)&&this.guidanceTarget(this.unit(p.owner),target)){const tx=this.damageAim(target,.52).x,ty=this.damageAim(target,.52).y,desired=Math.atan2(ty-p.y,tx-p.x),cur=Math.atan2(p.vy,p.vx),delta=Math.atan2(Math.sin(desired-cur),Math.cos(desired-cur)),turn=p.mode==='arcBolt'?4.5:p.mode==='nightBolt'?4.0:3.1,ang=cur+clamp(delta,-turn*dt,turn*dt),speed=Math.max(220,Math.hypot(p.vx,p.vy));p.vx=Math.cos(ang)*speed;p.vy=Math.sin(ang)*speed;}
+         const m=this.advanceProjectile({...p,gravityScale:0,drag:dragFor(SKILLS[p.skill],p.mode)},dt);this.waterEntry(p,m);const nx=m.x,ny=m.y;p.vx=m.vx;p.vy=m.vy;this.passFields(p,p,{x:nx,y:ny});
+         const h=p.phaseMode==='all'?null:this.projectileCollision(p,{x:nx,y:ny},p.radius,p.owner,p.hit,true,[],p.phaseMode!=='terrain');if(h){p.x=h.x;p.y=h.y;p.directId=h.unit?.id;this.impact(p,h);return;}
+         p.x=nx;p.y=ny;if(this.counter%2===0){p.trail.push({x:p.x,y:p.y});if(p.trail.length>24)p.trail.shift();}
+@@ -1674,7 +1689,7 @@
+         const factor=p.mode==='phaseWraith'?.62:p.phase===0?.42:.78;
+         for(const u of this.b.units){
+             if(u.dead||!this.attackAllows(u,p.owner,p)||u.id===p.owner||p.hit.includes(u.id))continue;
+-            const h=segRect(a,c,u.x-u.r,u.y-u.h,u.r*2,u.h,p.radius+2);if(!h)continue;
++            const h=this.damageSweep(u,a,c,p.radius+2);if(!h)continue;
+             const at={x:a.x+(c.x-a.x)*h.t,y:a.y+(c.y-a.y)*h.t};
+             this.hurt(u,p.damage*factor,p.owner,true,p,at);p.hit.push(u.id);this.fx('burst',at.x,at.y,p.color,28);this.fx('text',u.x,u.y-u.h-10,'#d7b9ef',12,'투과');
+         }
+--- a/shared/engine/src/enemyAI.ts
++++ b/shared/engine/src/enemyAI.ts
+@@ -229,8 +229,8 @@
+   const friendly=v.id!==allowedTargetId&&(u.side===1?v.side===1:v.side!==1);
+   const opponent=v.id===allowedTargetId||(u.side===1?(v.side===0||(v.side===2&&((v as any).honroAlly||v.id==='objective'))):v.side===1);
+   if(!friendly&&!opponent)continue;
+-  const d=Math.hypot(hit.x-v.x,hit.y-(v.y-v.h*.45)),direct=hit.unit===v.id;
+-  if(!direct&&d>=radius+v.r)continue;
++  const shape=e.damageGeometry(v),d=e.damageDistance(v,hit),direct=hit.unit===v.id;
++  if(!direct&&d>=radius+(shape?0:v.r))continue;
+   const factor=direct?1:.42+.58*(1-clamp(d/radius,0,1));
+   const raw=eff.damage*factor*(1-clamp(v.armor,0,.7))*e.friendlyFireMultiplier(v,u.id,{attackSide:e.allegiance(u)}),loss=Math.min(v.hp+v.shield,Math.max(0,raw));
+   if(opponent)enemyDamage+=loss;
+--- a/shared/engine/src/occultMechanics.ts
++++ b/shared/engine/src/occultMechanics.ts
+@@ -80,9 +80,9 @@
+  const t=clamp((p.age-(c.delay||0))/c.duration,0,1),next=convergencePoint(c,p.age);
+  const old={x:p.x,y:p.y};p.vx=(next.x-old.x)/Math.max(dt,.001);p.vy=(next.y-old.y)/Math.max(dt,.001);p.x=next.x;p.y=next.y;
+  for(const u of e.b.units)if(!u.dead&&!u.eaterCapturedBy&&u.id!==p.owner&&u.id!==p.echoSource&&!p.hit.includes(u.id)){
+-  const h=segRect(old,next,u.x-u.r,u.y-u.h,u.r*2,u.h,p.radius);
++  const h=e.damageSweep(u,old,next,p.radius);
+   if(h){p.hit.push(u.id);e.hurt(u,p.damage,p.owner,true,p,next);}
+  }
+  if(p.age===dt||Math.floor(p.age*20)!==Math.floor((p.age-dt)*20)){p.trail.push(next);if(p.trail.length>14)p.trail.shift();}
+- if(t>=1){for(const u of e.b.units)if(!u.dead&&Math.hypot(u.x-c.goal.x,u.y-u.h*.5-c.goal.y)<p.blast+u.r)e.hurt(u,p.damage*.55,p.owner,false,p,c.goal);e.remove(p);}
++ if(t>=1){for(const u of e.b.units)if(!u.dead&&(e.damageGeometry(u)?e.damageDistance(u,c.goal)<p.blast:Math.hypot(u.x-c.goal.x,u.y-u.h*.5-c.goal.y)<p.blast+u.r))e.hurt(u,p.damage*.55,p.owner,false,p,c.goal);e.remove(p);}
+ }
+--- /dev/null
++++ b/shared/engine/src/wreckDamage.ts
+@@ -0,0 +1,26 @@
++import type {Battle,Unit,Terrain,Vec} from './types';
++import {segmentProjectileTerrain,polygonArea} from './math';
++type DamageGeometry={version:1;unitId:string;projectileHullReplacement:true;polygons:Vec[][];aim:Vec};
++// Authored metadata is immutable between sceneVersion updates, like terrain broad-phase data.
++// Compile a detached snapshot once, never attach caches to a saved battle or authored project.
++const geometryCache=new WeakMap<object,{scene:number;list:Vec[][];refs:Vec[][];lengths:number[];aim:Vec;ax:number;ay:number;value:DamageGeometry}>();
++/** Explicit authored damage geometry; never a body/terrain/AI-origin replacement. */
++export function wreckDamage(b:Battle,u:Unit){
++ const q=b as any,link=q.honroMap?.vectorWreckInTerrain,d=link?.damage;
++ if(q.honroAct4Preview!==39||!(u as any).honroAct4WreckBoss||u.id!=='a4-wreck'||link?.version!==1||d?.version!==1||d.unitId!==u.id||link.terrainId!=='approved39-wreck-hull'||!b.terrain.some(t=>t.id===link.terrainId&&!t.broken)||!q.honroLandmarks?.some((l:any)=>l.id===link.instanceId&&l.asset?.id===link.assetId&&l.asset.vector&&!l.asset.collision?.length&&l.nativeArtLayer==='body'&&l.nativeTerrainIds?.includes(link.terrainId)))return null;
++ const cached=geometryCache.get(d);
++ if(cached&&cached.scene===b.sceneVersion&&cached.list===d.polygons&&cached.refs.length===d.polygons.length&&cached.refs.every((ps,i)=>ps===d.polygons[i]&&ps.length===cached.lengths[i])&&cached.aim===d.aim&&cached.ax===d.aim.x&&cached.ay===d.aim.y&&d.projectileHullReplacement===true)return cached.value;
++ if(d.projectileHullReplacement!==true||!Array.isArray(d.polygons)||!d.polygons.length||d.polygons.length>4||d.polygons.reduce((n:number,ps:Vec[])=>n+(Array.isArray(ps)?ps.length:129),0)>128||!d.polygons.every((ps:Vec[])=>Array.isArray(ps)&&ps.length>=3&&ps.length<=64&&ps.every(p=>Number.isFinite(p.x)&&Number.isFinite(p.y))&&Math.abs(polygonArea(ps))>1e-6)||!Number.isFinite(d.aim?.x)||!Number.isFinite(d.aim?.y)||damageNearest(d.polygons,d.aim).distance>1e-6)return null;
++ const value:DamageGeometry={version:1,unitId:d.unitId,projectileHullReplacement:true,polygons:d.polygons.map((ps:Vec[])=>ps.map(p=>({x:p.x,y:p.y}))),aim:{x:d.aim.x,y:d.aim.y}};
++ geometryCache.set(d,{scene:b.sceneVersion,list:d.polygons,refs:d.polygons.slice(),lengths:d.polygons.map((ps:Vec[])=>ps.length),aim:d.aim,ax:d.aim.x,ay:d.aim.y,value});return value;
++}
++export function damageNearest(polygons:Vec[][],p:Vec){
++ let best={distance:Infinity,point:p,polygon:polygons[0]};
++ for(const ps of polygons){let inside=false;for(let i=0,j=ps.length-1;i<ps.length;j=i++){
++  const a=ps[j],b=ps[i];if((a.y>p.y)!==(b.y>p.y)&&p.x<(b.x-a.x)*(p.y-a.y)/(b.y-a.y)+a.x)inside=!inside;
++  const dx=b.x-a.x,dy=b.y-a.y,t=Math.max(0,Math.min(1,((p.x-a.x)*dx+(p.y-a.y)*dy)/(dx*dx+dy*dy||1))),point={x:a.x+t*dx,y:a.y+t*dy},distance=Math.hypot(p.x-point.x,p.y-point.y);if(distance<best.distance)best={distance,point,polygon:ps};
++ }if(inside)return {distance:0,point:p,polygon:ps};}return best;
++}
++export function damageContact(polygons:Vec[][],a:Vec,z:Vec,r:number){let best:ReturnType<typeof segmentProjectileTerrain>=null;for(const vertices of polygons){const t={vertices} as Terrain,h=segmentProjectileTerrain(a,z,t,r);if(h&&(!best||h.t<best.t))best=h;}return best;}
++export function damageAim(b:Battle,u:Unit,fraction=.5):Vec{return wreckDamage(b,u)?.aim||{x:u.x,y:u.y-u.h*fraction};}
++export function damageCritical(b:Battle,u:Unit,p:Vec){const d=wreckDamage(b,u);if(!d)return Math.abs(p.y-(u.y-u.h*.53))<u.h*.17;const ps=damageNearest(d.polygons,p).polygon,ys=ps.map(p=>p.y),top=Math.min(...ys),bottom=Math.max(...ys),h=bottom-top;return Math.abs(p.y-(bottom-h*.53))<h*.17;}

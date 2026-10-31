@@ -1,0 +1,145 @@
+{
+  "out": [
+    {
+      "q": {
+        "name": "west-lower-gap",
+        "x": 2113.897389430588,
+        "y": 2138.432043150353,
+        "a": -35,
+        "p": 0.7
+      },
+      "fired": true,
+      "steps": 148,
+      "contacts": [
+        {
+          "terrain": "approved39-low-rock-strand",
+          "x": 2792.601984111366,
+          "y": 2794.12910479878
+        }
+      ],
+      "calls": [],
+      "bossLoss": 0,
+      "pred": {
+        "terrain": "approved39-low-rock-strand",
+        "x": 2792.601984111366,
+        "y": 2794.12910479878
+      }
+    },
+    {
+      "q": {
+        "name": "right-sail-gap",
+        "x": 3778.9116613358165,
+        "y": 2760.7788690122406,
+        "a": 65,
+        "p": 0.65
+      },
+      "fired": true,
+      "steps": 313,
+      "contacts": [
+        {
+          "terrain": "approved39-wreck-deck",
+          "x": 4435.66947136813,
+          "y": 2348.227642823586
+        }
+      ],
+      "calls": [],
+      "bossLoss": 0,
+      "pred": {
+        "terrain": "approved39-wreck-deck",
+        "x": 4435.66947136813,
+        "y": 2348.227642823586
+      }
+    },
+    {
+      "q": {
+        "name": "upper-open-sky",
+        "x": 4681.305909867321,
+        "y": 1931.5011975649463,
+        "a": 80,
+        "p": 0.65
+      },
+      "fired": true,
+      "steps": 354,
+      "contacts": [
+        {
+          "terrain": "approved39-east-upper-stair",
+          "x": 4984.0075477314695,
+          "y": 1501.0842825405168
+        }
+      ],
+      "calls": [],
+      "bossLoss": 0,
+      "pred": {
+        "terrain": "approved39-east-upper-stair",
+        "x": 4984.0075477314695,
+        "y": 1501.0842825405168
+      }
+    }
+  ],
+  "perf": [
+    {
+      "mode": "baseline",
+      "ms": 8.38082299999951
+    },
+    {
+      "mode": "baseline",
+      "ms": 7.1109250000008615
+    },
+    {
+      "mode": "baseline",
+      "ms": 12.916117999999187
+    },
+    {
+      "mode": "baseline",
+      "ms": 6.867031000001589
+    },
+    {
+      "mode": "baseline",
+      "ms": 9.222891999999774
+    },
+    {
+      "mode": "baseline",
+      "ms": 6.005715999999666
+    },
+    {
+      "mode": "baseline",
+      "ms": 6.524772999999186
+    },
+    {
+      "mode": "baseline",
+      "ms": 6.634508000001006
+    },
+    {
+      "mode": "binding",
+      "ms": 13.288470999999845
+    },
+    {
+      "mode": "binding",
+      "ms": 14.666400000000067
+    },
+    {
+      "mode": "binding",
+      "ms": 15.583429000000251
+    },
+    {
+      "mode": "binding",
+      "ms": 13.140876999999819
+    },
+    {
+      "mode": "binding",
+      "ms": 11.093541000000187
+    },
+    {
+      "mode": "binding",
+      "ms": 11.341802000000826
+    },
+    {
+      "mode": "binding",
+      "ms": 9.38108800000009
+    },
+    {
+      "mode": "binding",
+      "ms": 10.146683999999368
+    }
+  ]
+}
