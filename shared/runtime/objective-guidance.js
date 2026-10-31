@@ -94,7 +94,11 @@ function progressive(b,st,result,list,current){
  if(G.HonroStage18Bell?.active(b)&&chosen?.kind==='bell-descent')instruction=G.HonroStage18Bell.memory(b).reason||chosen.label;
  const parallelIds=new Set(chosen?.parallelGroup==='bell-stabilize'?list.filter(q=>q.parallelGroup===chosen.parallelGroup).map(q=>q.id):chosen?.parallelGroup==='farewell'?(G.HonroAct2.readySteps(b)||[]).filter(q=>q.parallelGroup==='farewell').map(q=>q.id):[]);
  const visibleChecklist=rows.filter(q=>q.done||q.id===chosen?.id||parallelIds.has(q.id)).map(q=>({...q,current:(q.id===chosen?.id||parallelIds.has(q.id))&&!q.done}));
- return{currentInstruction:result.complete?'목표 완료':instruction||result.summary,currentObjectiveId:chosen?.id,visibleChecklist};
+ // Act 4 stage 40 has its own escort and story completion gate. The generic
+ // battle objective may be complete immediately after the last enemy falls.
+ const q=b.honroAct4Preview===40?b.honroAct4PreviewState:null;
+ const act4Instruction=q&&!q.complete?(q.returnEscort?.phase==='safe'?'귀환 이야기를 확인하고 일행을 안전 지점에 모으세요':'주민 네 사람을 안전한 곳까지 호송하세요'):null;
+ return{currentInstruction:act4Instruction||(result.complete?'목표 완료':instruction||result.summary),currentObjectiveId:chosen?.id,visibleChecklist};
 }
 G.HonroObjectiveGuide={enhance,stepText,ending,progressive};
 })(globalThis);
