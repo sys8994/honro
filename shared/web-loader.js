@@ -66,7 +66,7 @@ async function fullLibrary(manifest){
  const refs=manifest.assetPaths;
  if(manifest.library)return loadData(manifest.library,refs?.library); // Existing published manifests.
  if(!Array.isArray(manifest.libraryOrder)||new Set(manifest.libraryOrder).size!==manifest.libraryOrder.length)throw Error('Invalid campaign library order');
- const enc=manifest.assetEncodings,records=[[manifest.shared,refs?.shared,enc?.shared],...manifest.stageLibraries.map((file,i)=>[file,refs?.stageLibraries[i],enc?.stageLibraries?.[i]]),...(manifest.compatibility33?[[manifest.compatibility33,refs?.compatibility33,enc?.compatibility33]]:[]),[manifest.editorExtras,refs?.editorExtras,enc?.editorExtras]],assets=new Map();
+ const enc=manifest.assetEncodings,records=[[manifest.shared,refs?.shared,enc?.shared],...manifest.stageLibraries.map((file,i)=>[file,refs?.stageLibraries[i],enc?.stageLibraries?.[i]]),...(manifest.compatibility33?[[manifest.compatibility33,refs?.compatibility33,enc?.compatibility33]]:[]),...(manifest.compatibility34?[[manifest.compatibility34,refs?.compatibility34,enc?.compatibility34]]:[]),[manifest.editorExtras,refs?.editorExtras,enc?.editorExtras]],assets=new Map();
  // Reuse the same chapter resources as lazy gameplay. Bound the full editor's
  // parsing/hydration work to one asset bundle at a time, then restore native order.
  for(const [file,paths,encoding]of records){
@@ -125,11 +125,21 @@ export async function loadCampaign(file,authors,{full=false}={}){
    project.library=[...assets.values()];project.stages[index]=local.stages[0];loaded.add(id);return local.stages[0];
   })();loading.set(id,pending);try{return await pending;}finally{loading.delete(id);}
  }
- let compatibility33Loaded=false,compatibility33Loading=null;
- const needsBattleArt=b=>!!globalThis.HonroProfileStore?.needsLegacy33Art(b);
- function hasBattleArt(b){return !needsBattleArt(b)||compatibility33Loaded;}
+ let compatibility33Loaded=false,compatibility33Loading=null,compatibility34Loaded=false,compatibility34Loading=null;
+ const needs33=b=>!!globalThis.HonroProfileStore?.needsLegacy33Art(b),needs34=b=>!!globalThis.HonroProfileStore?.needsLegacy34Art(b);
+ function hasBattleArt(b){return (!needs33(b)||compatibility33Loaded)&&(!needs34(b)||compatibility34Loaded);}
  async function ensureBattleArt(b){
   if(hasBattleArt(b))return;
+  if(needs34(b)&&!compatibility34Loaded){
+   if(compatibility34Loading)return compatibility34Loading;
+   compatibility34Loading=(async()=>{
+    if(!manifest.compatibility34)throw Error('Missing stage 34 compatibility art');
+    const old=await loadData(manifest.compatibility34,manifest.assetPaths?.compatibility34,assetOptions(manifest.assetEncodings?.compatibility34));
+    if(!globalThis.HonroProfileStore?.verifyLegacy34Assets(old)){requests.delete(new URL(manifest.compatibility34,root).href+'|false');throw Error('Invalid stage 34 compatibility art');}
+    for(const asset of old){const existing=assets.get(asset.id);if(existing&&JSON.stringify(existing)!==JSON.stringify(asset))throw Error('Conflicting stage 34 compatibility art');}
+    for(const asset of old)assets.set(asset.id,asset);project.library=[...assets.values()];compatibility34Loaded=true;
+   })();try{await compatibility34Loading;}finally{compatibility34Loading=null;}return;
+  }
   if(compatibility33Loading)return compatibility33Loading;
   compatibility33Loading=(async()=>{
    if(!manifest.compatibility33)throw Error('Missing stage 33 compatibility art');
