@@ -1,0 +1,2 @@
+export function intersectsBody(a,z,u,pad=6){const bounds=[u.x-u.r-pad,u.x+u.r+pad,u.y-u.h-pad,u.y+pad];let lo=0,hi=1;for(const [v,d,min,max]of[[a.x,z.x-a.x,bounds[0],bounds[1]],[a.y,z.y-a.y,bounds[2],bounds[3]]]){if(Math.abs(d)<1e-9){if(v<min||v>max)return false;continue;}let t0=(min-v)/d,t1=(max-v)/d;if(t0>t1)[t0,t1]=[t1,t0];lo=Math.max(lo,t0);hi=Math.min(hi,t1);if(lo>hi)return false;}return true;}
+export function friendlyPathSafe(points,allies){return !allies.some(u=>points.slice(1).some((p,i)=>intersectsBody(points[i],p,u)));}

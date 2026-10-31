@@ -1,0 +1,3 @@
+# Stage31 controlled Native reference only
+
+These scripts and profiles document an earlier declared stage30-cleared entry fixture and controlled Native combat diagnostic. They are NOT proof of normal browser play, warning DOM visibility, boarding, or mission completion. The controller has explicit warning receipt injection for its controlled test. Do not copy that injection into normal browser acceptance; use actual DOM visibility and normal UI actions. The frozen runtime/snapshot referenced by this diagnostic is intentionally not duplicated here. Current fullplay must load its own verified runtime and the current project candidate. Profile progression, equipment ownership and skill point legality must be revalidated against the runtime under test. Preserve failed runs.
