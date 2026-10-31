@@ -151,7 +151,7 @@ const interact=P.interact;P.interact=function(app=G.HonroApp,probe=false){if(int
   if(q.exitStable&&q.rescued?.ids.length===4&&cfg.rescue.ids.every(id=>rescueSafe(e,e.unit(id)))&&party(b).every(v=>v.x>cfg.rescue.exit-260&&e.grounded(v))){if(probe)return true;complete(app,{exitStable:q.exitStable,rescued:q.rescued,bossAlive:alive(e.unit('a4-wreck'))});return true;}
  }
  if(n===32&&quiet(b)&&closed(q,'missing_four')&&q.safeSeven&&party(b).every(v=>v.x>cfg.exit.x-300)){if(probe)return true;complete(app,{safeSeven:q.safeSeven});return true;}
- if([33,34,37,38].includes(n)&&party(b).every(v=>v.x>cfg.exit.x-300&&e.grounded(v))&&(![37].includes(n)||closed(q,'signal'))){if(probe)return true;complete(app,{exit:cfg.exit,connection:q.connected||{physicalRoute:true},signal:q.events.signal?.presented});return true;}
+ if([33,34,37,38].includes(n)&&party(b).every(v=>v.x>cfg.exit.x-300&&Math.abs(v.y-cfg.exit.y)<=240&&e.grounded(v))&&(![37].includes(n)||closed(q,'signal'))){if(probe)return true;complete(app,{exit:cfg.exit,connection:q.connected||{physicalRoute:true},signal:q.events.signal?.presented});return true;}
  if(n===40&&q.returnEscort?.phase==='safe'&&closed(q,'next')&&party(b).every(v=>v.x>5300)){if(probe)return true;complete(app,{roster:q.roster,rescued:q.rescued});return true;}
  return false;};
 const attached=new WeakSet();P.attachCoast=function(app){const e=app.engine,b=e.b,n=b.honroAct4Preview;if(!active(b)||attached.has(e))return;attached.add(e);
