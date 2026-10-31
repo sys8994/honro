@@ -37,3 +37,5 @@ python -m http.server 8770 --bind 127.0.0.1
 ```
 
 The selected input hashes are in `tools/act4-rc/REVIEW_INDEX.json`; the index refers to immutable `a5c521b384ef9086194cfaafcf36291f06e05569`. Restoration verifies each compressed and raw hash and size. At the pinned tool commit the assembled world SHA-256 is `99c59777254cb4942d5bfc7b7398068fc294dc29ff7208ac5f468953ecf5e581`. From `honro-rc` in another shell run `python tools/act4-rc/browser-entry.py`; the declared fixture is `tests/fixtures/act4-rc/support-entry-fixture.json`, and results and captures are under `_local/act4-rc/browser/`. Each independent worker should use its own preview and port or machine; the current scripts default to port 8770. Do not overwrite live player saves, share a browser context between runs, or promote this build to production.
+
+`python tools/act4-rc/browser-door-save.py` separately checks stage 36’s dynamic door ID and exact vector contents across an action, normal same-context reload and Continue. It uses a synthetic entry fixture and is not a full event or reward test.
