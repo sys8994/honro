@@ -1,0 +1,455 @@
+{
+  "checks": [
+    "warning not seen prevents launch",
+    "warning due round preserved",
+    "dead wreck cannot launch and clears pending warning",
+    "fallback absent presentation retains old shot origin",
+    "UI picks real wood not sky, NPC has priority",
+    "ordinary UI proxy not used",
+    "restore keeps in-flight origin/velocity/target/time",
+    "intermediate obstacle still blocks artillery",
+    "restore pending warning uses same surface and original deadline",
+    "broken BODY link restores legacy origin and UI",
+    "production compiler carries presentation and continuous sea",
+    "actor state identical to damage-only launch"
+  ],
+  "flights": [
+    {
+      "target": {
+        "target": "upper-left",
+        "x": 1000,
+        "y": 1100
+      },
+      "muzzle": "upper-planks",
+      "origin": {
+        "x": 2974.4095011179916,
+        "y": 1978.279486129347
+      },
+      "surface": {
+        "x": 2972.72725,
+        "y": 1984.0909
+      },
+      "legacyOrigin": {
+        "x": 2908.9398597821705,
+        "y": 1725.4262427599083
+      },
+      "seconds": 2.121044288646856,
+      "engineElapsed": 1.0605221443234292,
+      "steps": 128,
+      "error": 2.6235069908987752e-11,
+      "fxAtOrigin": true
+    },
+    {
+      "target": {
+        "target": "upper-right",
+        "x": 5100,
+        "y": 900
+      },
+      "muzzle": "upper-planks",
+      "origin": {
+        "x": 2974.4095011179916,
+        "y": 1978.279486129347
+      },
+      "surface": {
+        "x": 2972.72725,
+        "y": 1984.0909
+      },
+      "legacyOrigin": {
+        "x": 2941.0601402178295,
+        "y": 1725.4262427599083
+      },
+      "seconds": 2.398822066424634,
+      "engineElapsed": 1.199411033212318,
+      "steps": 144,
+      "error": 4.8274087307913846e-11,
+      "fxAtOrigin": true
+    },
+    {
+      "target": {
+        "target": "lower-left",
+        "x": 1400,
+        "y": 2900
+      },
+      "muzzle": "left-planks",
+      "origin": {
+        "x": 2689.4044999999996,
+        "y": 2072.7273
+      },
+      "surface": {
+        "x": 2695.4545,
+        "y": 2072.7273
+      },
+      "legacyOrigin": {
+        "x": 2908.9398597821705,
+        "y": 1725.4262427599083
+      },
+      "seconds": 1.8,
+      "engineElapsed": 0.8999999999999992,
+      "steps": 108,
+      "error": 4.1372638075346815e-11,
+      "fxAtOrigin": true
+    },
+    {
+      "target": {
+        "target": "lower-right",
+        "x": 4500,
+        "y": 2900
+      },
+      "muzzle": "right-planks",
+      "origin": {
+        "x": 3780.4884525059674,
+        "y": 2427.901388849326
+      },
+      "surface": {
+        "x": 3775.45455,
+        "y": 2424.54545
+      },
+      "legacyOrigin": {
+        "x": 2941.0601402178295,
+        "y": 1725.4262427599083
+      },
+      "seconds": 1.8,
+      "engineElapsed": 0.8999999999999992,
+      "steps": 108,
+      "error": 4.986694011554689e-11,
+      "fxAtOrigin": true
+    },
+    {
+      "target": {
+        "target": "below",
+        "x": 3300,
+        "y": 3400
+      },
+      "muzzle": "lower-planks",
+      "origin": {
+        "x": 3630.7680487585008,
+        "y": 2629.872301601839
+      },
+      "surface": {
+        "x": 3633.6363499999998,
+        "y": 2624.54545
+      },
+      "legacyOrigin": {
+        "x": 2941.0601402178295,
+        "y": 1725.4262427599083
+      },
+      "seconds": 1.8,
+      "engineElapsed": 0.8999999999999992,
+      "steps": 108,
+      "error": 3.7637040252882e-11,
+      "fxAtOrigin": true
+    },
+    {
+      "target": {
+        "target": "far-right",
+        "x": 6500,
+        "y": 2200
+      },
+      "muzzle": "upper-planks",
+      "origin": {
+        "x": 2974.4095011179916,
+        "y": 1978.279486129347
+      },
+      "surface": {
+        "x": 2972.72725,
+        "y": 1984.0909
+      },
+      "legacyOrigin": {
+        "x": 2941.0601402178295,
+        "y": 1725.4262427599083
+      },
+      "seconds": 3.2,
+      "engineElapsed": 1.5999999999999968,
+      "steps": 192,
+      "error": 5.3205440053716295e-11,
+      "fxAtOrigin": true
+    },
+    {
+      "target": {
+        "target": "far-left",
+        "x": 100,
+        "y": 1500
+      },
+      "muzzle": "upper-planks",
+      "origin": {
+        "x": 2974.4095011179916,
+        "y": 1978.279486129347
+      },
+      "surface": {
+        "x": 2972.72725,
+        "y": 1984.0909
+      },
+      "legacyOrigin": {
+        "x": 2908.9398597821705,
+        "y": 1725.4262427599083
+      },
+      "seconds": 3.121044288646856,
+      "engineElapsed": 1.5605221443234292,
+      "steps": 188,
+      "error": 2.570755794194882e-11,
+      "fxAtOrigin": true
+    }
+  ],
+  "interceptions": [
+    {
+      "target": {
+        "target": "upper-left",
+        "x": 1000,
+        "y": 1100
+      },
+      "steps": 98,
+      "contacts": [
+        {
+          "terrain": "approved39-upper-west-rock",
+          "x": 1461.3921256226013,
+          "y": 1176.3403982917912,
+          "age": 1.63333333333333
+        }
+      ]
+    },
+    {
+      "target": {
+        "target": "upper-right",
+        "x": 5100,
+        "y": 900
+      },
+      "steps": 61,
+      "contacts": [
+        {
+          "terrain": "approved39-upper-east-rock",
+          "x": 3861.1831570847635,
+          "y": 1304.5736017206527,
+          "age": 1.0083333333333322
+        }
+      ]
+    },
+    {
+      "target": {
+        "target": "lower-left",
+        "x": 1400,
+        "y": 2900
+      },
+      "steps": 75,
+      "contacts": [
+        {
+          "terrain": "approved39-low-rock-strand",
+          "x": 1805.0914526474776,
+          "y": 2528.399467113184,
+          "age": 1.2416666666666647
+        }
+      ]
+    },
+    {
+      "target": {
+        "target": "lower-right",
+        "x": 4500,
+        "y": 2900
+      },
+      "steps": 32,
+      "contacts": [
+        {
+          "terrain": "approved39-ship-ladder",
+          "x": 3989.5670126138725,
+          "y": 2458.2221519218515,
+          "age": 0.5250000000000006
+        }
+      ]
+    },
+    {
+      "target": {
+        "target": "below",
+        "x": 3300,
+        "y": 3400
+      },
+      "steps": 47,
+      "contacts": [
+        {
+          "terrain": "approved39-low-ground",
+          "x": 3489.7973177846443,
+          "y": 2831.319287236413,
+          "age": 0.7749999999999997
+        }
+      ]
+    },
+    {
+      "target": {
+        "target": "far-right",
+        "x": 6500,
+        "y": 2200
+      },
+      "steps": 71,
+      "contacts": [
+        {
+          "terrain": "approved39-upper-east-rock",
+          "x": 4260.688039363205,
+          "y": 1679.5035166714383,
+          "age": 1.1749999999999983
+        }
+      ]
+    },
+    {
+      "target": {
+        "target": "far-left",
+        "x": 100,
+        "y": 1500
+      },
+      "steps": 166,
+      "contacts": [
+        {
+          "unit": "knight",
+          "x": 428.5,
+          "y": 1396.9006275755846,
+          "age": 2.7666666666666595
+        }
+      ]
+    },
+    {
+      "target": "a4-rescue-0",
+      "contacts": [
+        {
+          "unit": "a4-rescue-0",
+          "x": 3527,
+          "y": 2097.1230849749963,
+          "age": 1.716666666666663
+        }
+      ],
+      "npcHp": [
+        {
+          "id": "a4-rescue-0",
+          "hp": 1378
+        },
+        {
+          "id": "a4-rescue-1",
+          "hp": 1450
+        },
+        {
+          "id": "a4-rescue-2",
+          "hp": 1450
+        },
+        {
+          "id": "a4-rescue-3",
+          "hp": 1450
+        }
+      ]
+    },
+    {
+      "target": "a4-rescue-1",
+      "contacts": [
+        {
+          "unit": "a4-rescue-0",
+          "x": 3576.395206596394,
+          "y": 2076.1428571428573,
+          "age": 1.549999999999997
+        }
+      ],
+      "npcHp": [
+        {
+          "id": "a4-rescue-0",
+          "hp": 1391
+        },
+        {
+          "id": "a4-rescue-1",
+          "hp": 1450
+        },
+        {
+          "id": "a4-rescue-2",
+          "hp": 1450
+        },
+        {
+          "id": "a4-rescue-3",
+          "hp": 1450
+        }
+      ]
+    },
+    {
+      "target": "a4-rescue-2",
+      "contacts": [
+        {
+          "unit": "a4-rescue-1",
+          "x": 3688.0268938777403,
+          "y": 2114.3285714285716,
+          "age": 1.5666666666666635
+        }
+      ],
+      "npcHp": [
+        {
+          "id": "a4-rescue-0",
+          "hp": 1450
+        },
+        {
+          "id": "a4-rescue-1",
+          "hp": 1389
+        },
+        {
+          "id": "a4-rescue-2",
+          "hp": 1450
+        },
+        {
+          "id": "a4-rescue-3",
+          "hp": 1450
+        }
+      ]
+    },
+    {
+      "target": "a4-rescue-3",
+      "contacts": [
+        {
+          "unit": "a4-rescue-2",
+          "x": 3805.213492699652,
+          "y": 2152.5142857142855,
+          "age": 1.5833333333333302
+        }
+      ],
+      "npcHp": [
+        {
+          "id": "a4-rescue-0",
+          "hp": 1450
+        },
+        {
+          "id": "a4-rescue-1",
+          "hp": 1450
+        },
+        {
+          "id": "a4-rescue-2",
+          "hp": 1388
+        },
+        {
+          "id": "a4-rescue-3",
+          "hp": 1450
+        }
+      ]
+    }
+  ],
+  "fallback": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20,
+    21,
+    22,
+    23,
+    24,
+    25,
+    26,
+    27,
+    28,
+    29,
+    30
+  ]
+}

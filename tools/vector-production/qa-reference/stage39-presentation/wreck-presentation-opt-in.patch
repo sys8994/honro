@@ -1,0 +1,79 @@
+--- a/shared/runtime/act4-coast-events.js
++++ b/shared/runtime/act4-coast-events.js
+@@ -213,6 +213,23 @@
+  if([33,34,37,38].includes(n)&&party(b).every(v=>v.x>cfg.exit.x-300&&Math.abs(v.y-cfg.exit.y)<=240&&e.grounded(v))&&(![37].includes(n)||closed(q,'signal'))){if(probe)return true;complete(app,{exit:cfg.exit,connection:q.connected||{physicalRoute:true},signal:q.events.signal?.presented});return true;}
+  if(n===40&&q.returnEscort?.phase==='safe'&&closed(q,'next')&&party(b).every(v=>geometry40(b)?insideEventBounds(v,geometry40(b).finishBounds)&&e.grounded(v):v.x>5300)){if(probe)return true;complete(app,{roster:q.roster,rescued:q.rescued});return true;}
+  return false;};
++// Only the authored wreck changes its emission surface. Warning coordinates/time remain legacy.
++function wreckLaunch(e,u,target,legacyOrigin){
++ const cfg=e.b.honroMap?.vectorWreckInTerrain?.presentation,shape=e.damageGeometry?.(u);
++ if(!shape||cfg?.version!==1||!Array.isArray(cfg.muzzles)||!cfg.muzzles.length||cfg.muzzles.length>4)return null;
++ const seconds=Math.max(1.8,Math.min(3.2,Math.abs(target.x-legacyOrigin.x)/900)),candidates=[];
++ for(const m of cfg.muzzles){const ps=shape.polygons[m.polygon];if(!ps||!Number.isInteger(m.edge)||m.edge<0||m.edge>=ps.length||!Number.isFinite(m.t)||m.t<0||m.t>1)return null;
++  const a=ps[m.edge],z=ps[(m.edge+1)%ps.length],dx=z.x-a.x,dy=z.y-a.y,len=Math.hypot(dx,dy);if(len<1)return null;
++  let area=0;for(let i=0;i<ps.length;i++){const p=ps[i],q=ps[(i+1)%ps.length];area+=p.x*q.y-q.x*p.y;}const sign=area>=0?1:-1,normal={x:sign*dy/len,y:-sign*dx/len},surface={x:a.x+m.t*dx,y:a.y+m.t*dy};
++  // HWD01 uses the existing radius6; .05 is the engine's existing launch epsilon.
++  const origin={x:surface.x+normal.x*6.05,y:surface.y+normal.y*6.05},acc=e.acceleration({...origin,wind:0,gravityScale:1,drag:0,vx:0,vy:0}),velocity={vx:(target.x-origin.x)/seconds,vy:(target.y-origin.y-.5*acc.y*seconds*seconds)/seconds};
++  const outward=velocity.vx*normal.x+velocity.vy*normal.y;candidates.push({id:m.id,origin,surface,normal,seconds,velocity,legacyOrigin,outward});
++ }
++ // Only test our own visible wood, never bypass an unrelated obstacle or resident.
++ // A positive initial normal is insufficient: a low arc may re-enter the deck.
++ for(const c of candidates){if(c.outward<=0)continue;let p={...c.origin,...c.velocity,wind:0,gravityScale:1,drag:0},clear=true;for(let age=0;age<c.seconds;){const dt=Math.min(C.STEP,c.seconds-age),next=e.advanceProjectile(p,dt);if(e.damageSweep(u,p,next,6)){clear=false;break;}p={...p,...next};age+=dt;}if(clear)return c;}
++ return candidates.sort((a,b)=>b.outward-a.outward)[0]||null;
++}
+ const attached=new WeakSet();P.attachCoast=function(app){const e=app.engine,b=e.b,n=b.honroAct4Preview;if(!active(b)||attached.has(e))return;attached.add(e);
+  // Every observer is scoped to the captured battle; changing chapter ends its
+  // loop. Core Engine remains the sole physics, hit and locomotion provider.
+@@ -223,7 +240,7 @@
+  const integrate=e.integrateBody.bind(e);e.integrateBody=function(u,dt,...args){if(u.honroAct4RecoverPending){u.vx=u.vy=0;return;}const before={x:u.x,y:u.y};const out=integrate(u,dt,...args);if(reserved(u)&&forbidden(u,u.x,u.y)&&!forbidden(u,before.x,before.y)){u.x=before.x;u.y=before.y;u.vx=u.vy=0;delete u.aiMove;delete u.moveTarget;}return out;};
+  const tick=e.tick.bind(e);e.tick=function(dt){if(memory(b).vista?.active)return;const out=tick(dt);if(!app.dialogue){tide(b);water(e,dt);}return out;};
+  const hurt=e.hurt.bind(e);e.hurt=function(u,...args){const was=alive(u),out=hurt(u,...args);if(was&&!alive(u)&&u.honroAct4WreckBoss&&memory(b).artillery)memory(b).artillery.next=null;if(was&&!alive(u)&&n===32&&u.cls==='archer'&&u.side===0)fail(b,'required-reunion-speaker-defeated');if(was&&!alive(u)&&u.honroAct4RewardTag==='eq-hw-36')fact(b,'eq_hw_t3b',{target:u.id,elite:!!u.elite});if([38,39,40].includes(n)&&u.honroAct4Resident&&!alive(u))fail(b,'rescue-casualty');return out;};
+- if(n===39){const enemyAction=e.enemyAction.bind(e);e.enemyAction=function(){const u=e.active;if(!u?.honroAct4WreckBoss)return enemyAction();if(!alive(u)){if(memory(b).artillery)memory(b).artillery.next=null;e.finishAction();return;}const a=memory(b).artillery,t=a?.next;if(!t||!t.warningSeen||b.round<t.dueRound){e.finishAction();return;}u.facing=t.x>u.x?1:-1;const before=new Set(b.projectiles.map(p=>p.id));if(e.fire('HWD01',u.facing>0?55:125,.8,true)){for(const p of b.projectiles.filter(p=>!before.has(p.id))){const seconds=Math.max(1.8,Math.min(3.2,Math.abs(t.x-p.x)/900)),acc=e.acceleration({...p,wind:0,gravityScale:1,drag:0,vx:0,vy:0});Object.assign(p,{vx:(t.x-p.x)/seconds,vy:(t.y-p.y-.5*acc.y*seconds*seconds)/seconds,gravityScale:1,wind:0,drag:0,blast:75,honroAct4Artillery:true});p.prevVy=p.vy;}a.history.push({...t,shot:b.shot});a.count++;a.next=null;}else e.finishAction();};}
++ if(n===39){const enemyAction=e.enemyAction.bind(e),projectileOrigin=e.projectileOrigin.bind(e);let launch=null;e.projectileOrigin=function(u,skill,angle){return launch&&u.id==='a4-wreck'&&skill.id==='HWD01'?{...launch.origin}:projectileOrigin(u,skill,angle);};e.enemyAction=function(){const u=e.active;if(!u?.honroAct4WreckBoss)return enemyAction();if(!alive(u)){if(memory(b).artillery)memory(b).artillery.next=null;e.finishAction();return;}const a=memory(b).artillery,t=a?.next;if(!t||!t.warningSeen||b.round<t.dueRound){e.finishAction();return;}u.facing=t.x>u.x?1:-1;const before=new Set(b.projectiles.map(p=>p.id)),angle=u.facing>0?55:125;const plan=wreckLaunch(e,u,t,projectileOrigin(u,C.SKILLS.HWD01,angle));launch=plan;let fired;try{fired=e.fire('HWD01',angle,.8,true);}finally{launch=null;}if(fired){for(const p of b.projectiles.filter(p=>!before.has(p.id))){const seconds=plan?.seconds??Math.max(1.8,Math.min(3.2,Math.abs(t.x-p.x)/900)),acc=e.acceleration({...p,wind:0,gravityScale:1,drag:0,vx:0,vy:0});Object.assign(p,{vx:(t.x-p.x)/seconds,vy:(t.y-p.y-.5*acc.y*seconds*seconds)/seconds,gravityScale:1,wind:0,drag:0,blast:75,honroAct4Artillery:true});p.prevVy=p.vy;if(plan)p.honroWreckLaunch={id:plan.id,surface:plan.surface,origin:plan.origin,seconds:plan.seconds,legacyOrigin:plan.legacyOrigin,target:{x:t.x,y:t.y,id:t.target}};}a.history.push({...t,shot:b.shot});a.count++;a.next=null;}else e.finishAction();};}
+  const allows=e.attackAllows.bind(e);e.attackAllows=function(u,...args){if(u?.honroAct4Sheltered)return false;return allows(u,...args);};
+  if(n===40&&!returnDeck(b)&&!b.terrain.some(t=>t.id==='a4-return-boarding'))b.terrain.push({id:'a4-return-boarding',x:2820,y:1950,w:180,h:18,mat:'wood',oneWay:true,hp:9999,maxHp:9999,indestructible:true});
+  if(n===40&&!geometry40(b)&&!b.terrain.some(t=>t.id==='a4-return-deck'))b.terrain.push({id:'a4-return-deck',x:2920,y:1950,w:360,h:20,mat:'wood',oneWay:true,hp:9999,maxHp:9999,indestructible:true,honroAct4MovingDeck:true});
+--- a/shared/runtime/act4-coast-art.js
++++ b/shared/runtime/act4-coast-art.js
+@@ -57,5 +57,7 @@
+ const unit=G.HonroScene.prototype.unit,body=G.HonroScene.prototype.unitBody;
+ G.HonroScene.prototype.unit=function(c,u,...args){const b=this.battle;if((b?.honroCustom||b?.honroAct4Official===1)&&b.honroAct4Preview&&(u.honroAct4Sheltered||u.honroAct4OnBoat))return;return unit.call(this,c,u,...args);};
+ G.HonroScene.prototype.unitBody=function(c,u,...args){const b=this.battle;if((b?.honroCustom||b?.honroAct4Official===1)&&b.honroAct4Preview&&(u.honroAct4Sheltered||u.honroAct4OnBoat))return;if(u.honroAct4WreckBoss){if(u.dead)return;if(embeddedWreck(b,u))return;const id=b?.honroMap?.vectorWreckAssetId,authored=typeof id==='string'?G.HONRO_PROJECT?.library?.find(v=>v.id===id&&v.vector):null;return this.landmark(c,{kind:'canonical-element',asset:authored||assets.find(v=>v.id==='a4-coast:wreck'),x:u.x,y:u.y,scale:1,rotation:Math.sin(this.time*.7)*.012,depthLayer:'L1'});}return body.call(this,c,u,...args);};
+-G.HonroAct4CoastArt={assets,environment,embeddedWreck};
++function wreckPresentation(b,u){const p=b?.honroMap?.vectorWreckInTerrain?.presentation,e=G.HonroApp?.engine;return embeddedWreck(b,u)&&p?.version===1&&e?.b===b&&e.damageGeometry?.(u)&&Number.isFinite(p.bar?.x)&&Number.isFinite(p.bar?.y)?p:null;}
++const presentationUnit=G.HonroScene.prototype.unit;G.HonroScene.prototype.unit=function(c,u,...args){const p=wreckPresentation(this.battle,u);if(!p||u.portraitOnly)return presentationUnit.call(this,c,u,...args);const h=(G.HonroPartyPresentationHeight?.(u)??u.h)*(u.elite&&u.side===1?1.12:1),proxy={...u,x:p.bar.x,y:p.bar.y+h+12};const result=presentationUnit.call(this,c,proxy,...args);if(!u.dead){c.save();c.fillStyle='#eed1ae';c.textAlign='center';c.font=`${12/Math.max(.2,this.scale||1)}px sans-serif`;c.fillText(u.name,p.bar.x,p.bar.y+20/Math.max(.2,this.scale||1));if(u.id===this.hoverUnitId||u.id===this.inspectUnitId)c.fillText(`${Math.ceil(u.hp)} / ${Math.ceil(u.maxHp)}`,p.bar.x,p.bar.y+34/Math.max(.2,this.scale||1));c.restore();}return result;};
++G.HonroAct4CoastArt={assets,environment,embeddedWreck,wreckPresentation};
+ })(globalThis);
+--- a/shared/runtime/unit-info.js
++++ b/shared/runtime/unit-info.js
+@@ -10,6 +10,7 @@
+ // The body-only mask follows the current pose; health bars, shadows and selection arrows are excluded.
+ S.unitOutline=function(c,u){
+  if(u.id!==this.hoverUnitId&&u.id!==this.inspectUnitId)return;
++ if(G.HonroAct4CoastArt?.wreckPresentation?.(this.battle,u)){const shape=G.HonroApp.engine.damageGeometry(u);c.save();c.strokeStyle='#eed1ae';c.globalAlpha=.88;c.lineWidth=2/this.scale;for(const ps of shape.polygons){c.beginPath();ps.forEach((p,i)=>i?c.lineTo(p.x,p.y):c.moveTo(p.x,p.y));c.closePath();c.stroke();}c.restore();return;}
+  const visualHeight=G.HonroPartyPresentationHeight?.(u)??u.h,size=visualHeight*3,ratio=Math.min(2,512/size),pad=8/this.scale;
+  const width=Math.ceil((size+pad*2)*ratio),height=Math.ceil((visualHeight*2+pad*2)*ratio);
+  this.outlineMask??=document.createElement('canvas');this.outlineEdge??=document.createElement('canvas');
+@@ -29,9 +30,10 @@
+  const scene=a.scene,w=scene.world(p.x,p.y),padding=(touch?12:4)/scene.scale;
+  // Nearest visible body wins; fallen companions remain inspectable from their HUD portrait.
+  return a.engine.b.units.filter(u=>!u.dead&&eligible(u)&&(!G.HonroAct2||G.HonroAct2.visible(a.engine.b,u))).map(u=>{
++  if(G.HonroAct4CoastArt?.wreckPresentation?.(a.engine.b,u)){const distance=a.engine.damageDistance(u,w);return{u,d:distance<=padding?distance/Math.max(.001,padding):Infinity,material:true};}
+   const visualHeight=G.HonroPartyPresentationHeight?.(u)??u.h,half=Math.max(u.r,u.h*.24)+padding,cy=u.y-visualHeight*.5,hh=visualHeight*.55+padding;
+   return {u,d:Math.pow((w.x-u.x)/half,2)+Math.pow((w.y-cy)/hh,2)};
+- }).filter(x=>x.d<=1).sort((a,b)=>a.d-b.d)[0]?.u||null;
++ }).filter(x=>x.d<=1).sort((a,b)=>Number(!!a.material)-Number(!!b.material)||a.d-b.d)[0]?.u||null;
+ }
+ function close(a){if(portraitOpen(a)){a.close();return;}if(!a.scene)return;a.scene.inspectUnitId=null;const el=document.getElementById('unit-info');if(el){el.hidden=true;G.HonroPortraits?.release(el);}const v=portraitViews.get(a);if(v)v.visible=false;}
+ function portraitAsset(a,u){
+@@ -126,8 +128,8 @@
+  const r=scene.canvas.getBoundingClientRect(),hud=document.querySelector('.honro-compact-hud')?.getBoundingClientRect();
+  const bottom=Math.min(r.bottom,hud?.top??innerHeight)-10,top=Math.max(76,r.top+8);
+  el.style.maxHeight=Math.max(90,bottom-top)+'px';
+- const rect=el.getBoundingClientRect(),x=r.left+r.width/2+(u.x-scene.x)*scene.scale,y=r.top+r.height/2+(u.y-(G.HonroPartyPresentationHeight?.(u)??u.h)-scene.y)*scene.scale;
+- let left=x+Math.max(18,u.r*scene.scale)+12;if(left+rect.width>innerWidth-12)left=x-rect.width-Math.max(18,u.r*scene.scale)-12;
++ const presentation=G.HonroAct4CoastArt?.wreckPresentation?.(a.engine.b,u),anchor=presentation?.bar,rect=el.getBoundingClientRect(),x=r.left+r.width/2+((anchor?.x??u.x)-scene.x)*scene.scale,y=r.top+r.height/2+((anchor?.y??(u.y-(G.HonroPartyPresentationHeight?.(u)??u.h)))-scene.y)*scene.scale,offset=anchor?18:Math.max(18,u.r*scene.scale);
++ let left=x+offset+12;if(left+rect.width>innerWidth-12)left=x-rect.width-offset-12;
+  el.style.left=(innerWidth<=600?(innerWidth-rect.width)/2:clamp(left,12,innerWidth-rect.width-12))+'px';
+  el.style.top=(innerWidth<=600?Math.max(top,bottom-rect.height):clamp(y,top,bottom-rect.height))+'px';
+ }
