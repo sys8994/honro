@@ -106,10 +106,17 @@
     function makeWorld(st,p,training=false,cls='archer',skill){return G.HonroWorld.build(st,p,training,cls,skill,initializeTrainingBattle);}
     class App {
         constructor() { this.root = $('app'); this.modal = $('modal'); this.profileStore = G.HonroProfileStore.create(); this.normalProfile = this.profileStore.initial; this.debugMode = !!this.normalProfile.settings.debugMode && !G.HONRO_EMBEDDED; this.profile = this.debugMode ? debugProfile(this.normalProfile) : this.normalProfile; this.engine = null; this.scene = null; this.screen = 'title'; this.stageId = this.profile.lastStage || 1; this.cls = this.profile.recruited[0]; this.profileImportSequence = 0; this.branch = 0; this.selectedByUnit = {}; this.selected = 'A01'; this.charging = false; this.power = .58; this.keys = new Set(); this.stick = { x: 0, y: 0 }; this.contacts = new Map(); this.audio = C.AudioEngine ? new G.HonroAudio() : null; this.audio?.configure(this.profile.settings); this.prev = performance.now(); this.acc = 0; this.uiAge = 0; this.dirty = false; this.dialogue = null; this.preview = null; this.trainingClass = 'archer'; this.trainingSkill = 'A01'; this.trainingPassives = {}; this.trainingRanks = {}; this.eventText = ''; this.eventUntil = 0; this.banterQueue=[]; this.banterCurrent=null; this.banterUntil=0; this.bind(); }
-        persist() { if(G.HONRO_EMBEDDED||this.customMap||this.profileStore.locked)return false; G.HonroMukjongAudio?.observe(this); G.HonroProgression.persist(this); G.HonroSplitCampaign?.persist(this); this.profile.party = [...this.profile.recruited]; if(this.debugMode)return; this.normalProfile=this.profile; if (!this.profileStore.save(this.profile) && !this.storageWarned) {
+        persist() { if(G.HONRO_EMBEDDED||this.customMap)return false;if(this.profileStore.locked){if(this.done&&!this.debugMode)this.outcomeSaveWarning();return false;} G.HonroMukjongAudio?.observe(this); G.HonroProgression.persist(this); G.HonroSplitCampaign?.persist(this); this.profile.party = [...this.profile.recruited]; if(this.debugMode)return; this.normalProfile=this.profile; const saved=this.profileStore.save(this.profile);if(!saved&&!this.storageWarned){
             this.storageWarned = true;
             this.notify('이 환경에서는 자동 기록이 제한돼. 설정에서 기록 파일을 보관해줘.');
-        } }
+        }if(saved){this.storageWarned=false;document.getElementById('outcome-save-warning')?.remove();}else if(this.done)this.outcomeSaveWarning();return saved; }
+        outcomeSaveWarning() {
+            if(document.getElementById('outcome-save-warning'))return;
+            const node=document.createElement('aside');node.id='outcome-save-warning';node.className='outcome-save-warning';node.setAttribute('role','alert');
+            const help=this.profileStore.locked?'기록 복구가 필요합니다. 설정의 기록·관리에서 보존된 원본을 확인해 주세요.':'저장 공간을 확인한 뒤 다시 저장하거나 설정에서 현재 기록을 내보내세요.';
+            node.innerHTML='<div><strong>결과를 저장하지 못했습니다.</strong><p>새로고침하면 완료와 경험치가 사라질 수 있습니다. '+help+'</p></div><button type="button">다시 저장</button>';
+            node.querySelector('button').addEventListener('click',()=>{if(this.persist()===true)this.notify('기록을 저장했습니다.');});document.body.append(node);
+        }
         flushBattleSave() {
             const e=this.engine;
             if(!this.dirty||!e||this.screen!=='battle'||this.pendingJourneyLaunch||this.training||this.done)return;
