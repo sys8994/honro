@@ -1,9 +1,9 @@
-import json
+import json,os
 from playwright.sync_api import sync_playwright
 from pathlib import Path
 root=Path(__file__).resolve().parents[2];f=json.loads((root/'tests/fixtures/act4-rc/support-entry-fixture.json').read_text())['profile'];f['cleared']={str(i):{'visits':1,'rounds':5,'stars':1,'shots':0} for i in range(1,36)};f['lastStage']=36;f['mapNode']=36;f.pop('honroBattle',None)
 with sync_playwright() as w:
- b=w.chromium.launch(executable_path='/usr/bin/chromium',headless=True,args=['--no-sandbox']);p=b.new_page();errors=[];p.on('pageerror',lambda e:errors.append(str(e)));p.goto('http://127.0.0.1:8770/HONRO.html');p.wait_for_function('window.HonroApp');p.evaluate('(v)=>localStorage.setItem("honro-first-act-profile-1",JSON.stringify(v))',f);p.reload();p.wait_for_function('window.HonroApp && window.HonroAct4PilotCombat');p.evaluate('''async()=>{await HonroCampaignLoader.ensureStage(36);HonroApp.launch(36)}''');p.wait_for_function('HonroApp.engine?.b?.honroStage===36');p.wait_for_timeout(1500)
+ b=w.chromium.launch(executable_path='/usr/bin/chromium',headless=True,args=['--no-sandbox']);p=b.new_page();errors=[];p.on('pageerror',lambda e:errors.append(str(e)));p.goto(os.getenv('HONRO_QA_URL','http://127.0.0.1:8770')+'/HONRO.html');p.wait_for_function('window.HonroApp');p.evaluate('(v)=>localStorage.setItem("honro-first-act-profile-1",JSON.stringify(v))',f);p.reload();p.wait_for_function('window.HonroApp && window.HonroAct4PilotCombat');p.evaluate('''async()=>{await HonroCampaignLoader.ensureStage(36);HonroApp.launch(36)}''');p.wait_for_function('HonroApp.engine?.b?.honroStage===36');p.wait_for_timeout(1500)
  for i in range(10):
   if not p.evaluate('!!HonroApp.dialogue'):break
   p.keyboard.press('Enter');p.wait_for_timeout(800)
