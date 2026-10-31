@@ -1,0 +1,35 @@
+{
+  "kind": "actual UI download, not raw localStorage",
+  "stage": 35,
+  "round": 21,
+  "rawBytes": 4454265,
+  "rawSha256": "a0ec831cc2085b9085058b268084a82195ec62d90271a52e83289c5241ba5e42",
+  "xzBytes": 589588,
+  "xzSha256": "102733670bd3148f5ecdb5ea70ceda5ee77d1405acd3fad96ff8161129e8394a",
+  "factEvents": [
+    "eq_co_t3_choice",
+    "eq_da_t3b"
+  ],
+  "flaskDelivery": {
+    "phase": "complete",
+    "giver": "occultist",
+    "receiver": "mage",
+    "elapsed": 1.4099000000001405,
+    "received": {
+      "at": 935.3154999991006,
+      "positions": [
+        {
+          "id": "occultist",
+          "x": 2298.8346146610625,
+          "y": 1573.2260989527813
+        },
+        {
+          "id": "mage",
+          "x": 2375.729776118037,
+          "y": 1567.73358742014
+        }
+      ]
+    }
+  },
+  "complete": false
+}
