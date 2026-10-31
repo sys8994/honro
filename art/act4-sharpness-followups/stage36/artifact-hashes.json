@@ -1,8 +1,8 @@
 {
-  "remote/shared/map/schema.js": "c1852e41aa63ffb5c3bad900432a75d7b1896ab37c22e58e31298092d427b6d4",
-  "remote/shared/runtime/act4-coast-events.js": "09d5e04b4da4c0dac543d7d4ef42e47036fa293f87cdd8c7e4059b156eefc2a5",
-  "remote/tests/act4-stage36-elite-reward.mjs": "e020cad7b33dbc752c5ae5f9eb8bababa0240d2b0ca5d9d2e846cca780e25c7b",
-  "verify-candidate.mjs": "3320124da9a16c242c06c483c47840dcdc3f5559ed08e767bfc18108c3be5248",
+  "remote/shared/map/schema.js": "089a61a698b9447a5713fe19d3beb9bbed8e9000b98ef13a5592e8dd3380a7a3",
+  "remote/shared/runtime/act4-coast-events.js": "05ee90f49ad40bf6a0fb11b048156c22100d97f7c4853e774a0391a19b01c63c",
+  "remote/tests/act4-stage36-elite-reward.mjs": "909ff3dd21721ebce7e0d6fbc77dd0ff5cfd5254f2efa9b62dcab9ab34f7374e",
+  "verify-candidate.mjs": "1fb52171014d07e41272365831bf6deecb976c72f781f7f5ab9998d3e3f3b7cf",
   "candidate.json": "dcecb8a22c5740c6ccbd4211e3a7f7a71f1b62be16ee51ab369d65eb325f8dca",
   "delta.json": "c9732a41e88189ec6e2ba9c522dc8544048331c1b88bd63d5881c890e3e4164f",
   "test.log": "77a176090f8bc19d25dc6c7e0ecf53cc93984cbe64927cc184ddc9dec543748d",
@@ -12,5 +12,9 @@
   "shared/runtime/act4-events.js": "097e328b9748b63603afa19f495e242ec3e9dfd1bfdb2d9ba9b8fe6964985fb3",
   "tests/act4-stage36-door-geometry.mjs": "feb27c3d044c201cf106e38bd98de97067a8afab023d2eeb869f9c0b8b613cbf",
   "shared/runtime/equipment-state.js": "72572f1f80a0ff57010f667f4fa16930570ae5c01fbec8e5cdf38a4cd9580420",
-  "shared/runtime/equipment-ui.js": "7a6df63ef6d8d004ef8363010921e2a866d827a7faba1fcb4aadf9af6ebbd03f"
+  "shared/runtime/equipment-ui.js": "7a6df63ef6d8d004ef8363010921e2a866d827a7faba1fcb4aadf9af6ebbd03f",
+  "remote-byte-correction.json": "959427f71ec4de31c7ec9dbb01bbb5024955fe90637503961004715a566fbd23",
+  "summary.json": "b758d5a7eb9915ed76d1602f83ec9af7da8fb1fbc188e5e14089688a3e8714ee",
+  "README.md": "351c3f886f50521e4203b2c6bc564aeb44fa2e55216de29984aaae3a6b1ebc8b",
+  "finalize-byte-correction.py": "dcea0f0df9800726a4d2f4d0b490da3d0536a08dabe66aa1e5cc6dca02e79aa1"
 }
