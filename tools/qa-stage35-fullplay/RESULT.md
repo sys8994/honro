@@ -25,3 +25,20 @@ After mage's M10 attempt, the controller walked knight from right-clearing x4432
 ## Run v5 — separate active-death stall
 
 With a right-edge guard and the same candidate and profile, the trial diverged in combat. At round 9, 18 enemies remained; controller repeatedly used the normal Alt drop while archer was near first-clearing x1990/y2289, and archer fell to x1990/y3144 and 0 HP. Repeated dropping was a controller mistake. After over 50 seconds, the engine still reported round 9, phase aim, active archer, canInput false; mage 1159, knight 2396 and occultist 1441 remained alive. This independently repeats the active-death stall with a different hero and position; it is not a clear or difficulty judgment. The engine's aim tick checks end conditions but does not obviously advance an unavailable active unit, while canAct and the App hero selection gate reject it; a targeted regression is still needed. Original log and PNG are preserved.
+
+## Run v6 — 20-turn target missed; path and shot bottlenecks
+
+At the start of round 21, 9 enemies remained, all heroes alive: archer 1610, mage 496, knight 1332, occultist 945 HP; 67 shots. No required exit or optional story/reward was completed. This is a failed 20-round run, not a claim that natural 20-round play is impossible. Repeat-drop and right-edge guards prevented the previous falls, but did not establish an effective return route for knight from the right clearing. Across the run the controller defended 13 times; for example, at rounds 19 and 20 the knight had visible enemies but no shot chosen by its conservative predictor and the right-edge guard curtailed movement. This is a policy limitation, not proof that no legal indirect shot or flank exists.
+
+From the end of round 5 to the end of round 8 enemy count fell only 21→20, yet action intervals in rounds 6–8 show total enemy HP reductions of 4375 (A05 354, M03 978+871, O02 1132, S06 457, O01 177, O06 406). One A14 and one A05 action had no observed enemy HP decrease; two actions were defend and one was M10 healing. Damage was distributed among targets, with defense/healing and movement also consuming actions. These total-HP deltas do not prove direct hits or identify every reason a shot did no damage. The run did not simply repeat basic attacks. A more capable policy should plan safe support-to-support approaches and indirect or flank shots, without reliance on a narrow single timing.
+
+| Trial | Rounds | End and reason | Control or tactical change |
+| --- | --- | --- | --- |
+| v1 | 1–17 | Stopped: 15 enemies, no progress at first clearing | Initial predictor and conservative ally exclusion; no healing |
+| v2 | 1–21 | 11 enemies; 20-round target missed, midbattle reload verified | Legal M10 healing and less broad ally exclusion; ascent overshot |
+| v3 | 1–17 | Stopped: 10 enemies, archer repeated ascent approach | Added west switchback; other heroes reached middle route |
+| v4 | 1–20 | 2 enemies; knight fell, active unit remained unavailable | Adjusted jump entry; knight walked off right clearing |
+| v5 | 1–9 | 18 enemies; archer fell and active unit remained unavailable | Guarded right edge; repeated Alt drop elsewhere caused fall |
+| v6 | 1–21 | 9 enemies; 20-round target missed, all alive | Guarded repeated drops; too many defenses and unresolved right-clearing route |
+
+Browser combat-start to last recorded state was respectively 13.31, 17.29, 12.00, 16.68, 7.44 and 15.53 minutes. These elapsed automation measurements include script planning, screenshots and waits; they are not human playtime. Coding and debugging between trials are excluded and were not separately timed. No completion, probability, or average-clear claim follows from these runs.
