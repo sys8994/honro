@@ -1,0 +1,530 @@
+{
+  "scope": "Declared stage30-cleared fixture from existing adapter, not earned prior gameplay. Only clear/recruit-eligible rewards, no optional-fact grants, no debug or live battle edits.",
+  "profile": {
+    "version": 2,
+    "revision": 13,
+    "cleared": {
+      "1": {
+        "visits": 1,
+        "rounds": 5,
+        "stars": 1,
+        "shots": 0
+      },
+      "2": {
+        "visits": 1,
+        "rounds": 5,
+        "stars": 1,
+        "shots": 0
+      },
+      "3": {
+        "visits": 1,
+        "rounds": 5,
+        "stars": 1,
+        "shots": 0
+      },
+      "4": {
+        "visits": 1,
+        "rounds": 5,
+        "stars": 1,
+        "shots": 0
+      },
+      "5": {
+        "visits": 1,
+        "rounds": 5,
+        "stars": 1,
+        "shots": 0
+      },
+      "6": {
+        "visits": 1,
+        "rounds": 5,
+        "stars": 1,
+        "shots": 0
+      },
+      "7": {
+        "visits": 1,
+        "rounds": 5,
+        "stars": 1,
+        "shots": 0
+      },
+      "8": {
+        "visits": 1,
+        "rounds": 5,
+        "stars": 1,
+        "shots": 0
+      },
+      "9": {
+        "visits": 1,
+        "rounds": 5,
+        "stars": 1,
+        "shots": 0
+      },
+      "10": {
+        "visits": 1,
+        "rounds": 5,
+        "stars": 1,
+        "shots": 0
+      },
+      "11": {
+        "visits": 1,
+        "rounds": 5,
+        "stars": 1,
+        "shots": 0
+      },
+      "12": {
+        "visits": 1,
+        "rounds": 5,
+        "stars": 1,
+        "shots": 0
+      },
+      "13": {
+        "visits": 1,
+        "rounds": 5,
+        "stars": 1,
+        "shots": 0
+      },
+      "14": {
+        "visits": 1,
+        "rounds": 5,
+        "stars": 1,
+        "shots": 0
+      },
+      "15": {
+        "visits": 1,
+        "rounds": 5,
+        "stars": 1,
+        "shots": 0
+      },
+      "16": {
+        "visits": 1,
+        "rounds": 5,
+        "stars": 1,
+        "shots": 0
+      },
+      "17": {
+        "visits": 1,
+        "rounds": 5,
+        "stars": 1,
+        "shots": 0
+      },
+      "18": {
+        "visits": 1,
+        "rounds": 5,
+        "stars": 1,
+        "shots": 0
+      },
+      "19": {
+        "visits": 1,
+        "rounds": 5,
+        "stars": 1,
+        "shots": 0
+      },
+      "20": {
+        "visits": 1,
+        "rounds": 5,
+        "stars": 1,
+        "shots": 0
+      },
+      "21": {
+        "visits": 1,
+        "rounds": 5,
+        "stars": 1,
+        "shots": 0
+      },
+      "22": {
+        "visits": 1,
+        "rounds": 5,
+        "stars": 1,
+        "shots": 0
+      },
+      "23": {
+        "visits": 1,
+        "rounds": 5,
+        "stars": 1,
+        "shots": 0
+      },
+      "24": {
+        "visits": 1,
+        "rounds": 5,
+        "stars": 1,
+        "shots": 0
+      },
+      "25": {
+        "visits": 1,
+        "rounds": 5,
+        "stars": 1,
+        "shots": 0
+      },
+      "26": {
+        "visits": 1,
+        "rounds": 5,
+        "stars": 1,
+        "shots": 0
+      },
+      "27": {
+        "visits": 1,
+        "rounds": 5,
+        "stars": 1,
+        "shots": 0
+      },
+      "28": {
+        "visits": 1,
+        "rounds": 5,
+        "stars": 1,
+        "shots": 0
+      },
+      "29": {
+        "visits": 1,
+        "rounds": 5,
+        "stars": 1,
+        "shots": 0
+      },
+      "30": {
+        "visits": 1,
+        "rounds": 5,
+        "stars": 1,
+        "shots": 0
+      }
+    },
+    "party": [
+      "mage",
+      "archer",
+      "knight",
+      "occultist"
+    ],
+    "loadouts": {
+      "mage": [
+        "M01",
+        "M06",
+        "M02",
+        "M03"
+      ],
+      "archer": [
+        "A01",
+        "A14",
+        "A02",
+        "A05"
+      ],
+      "knight": [
+        "S00",
+        "S01",
+        "S06",
+        "S04"
+      ],
+      "occultist": [
+        "O01",
+        "O02",
+        "O03",
+        "O06"
+      ]
+    },
+    "tuning": {
+      "mage": 0.5,
+      "archer": 0.5,
+      "knight": 0.5,
+      "occultist": 0.5
+    },
+    "settings": {
+      "sound": true,
+      "music": false,
+      "volume": 0.35,
+      "assist": false,
+      "shake": true,
+      "quality": "high",
+      "difficulty": "normal",
+      "speed": 2,
+      "playerSpeed": 1,
+      "orientation": "landscape"
+    },
+    "saved": null,
+    "lastStage": 31,
+    "mapNode": 1,
+    "tutorial": false,
+    "heroes": {
+      "mage": {
+        "xp": 158091,
+        "ranks": {
+          "M01": 1,
+          "M06": 5,
+          "M02": 5,
+          "M03": 5
+        },
+        "statTraining": 30,
+        "kills": 0,
+        "damage": 0,
+        "skillRevision": 1,
+        "martialRevision": 1,
+        "equipmentIds": [
+          "itm_da_05",
+          "itm_co_08"
+        ]
+      },
+      "archer": {
+        "xp": 158091,
+        "ranks": {
+          "A01": 1,
+          "A14": 5,
+          "A02": 5,
+          "A05": 5
+        },
+        "statTraining": 30,
+        "kills": 0,
+        "damage": 0,
+        "skillRevision": 1,
+        "martialRevision": 1,
+        "equipmentIds": [
+          "itm_se_05",
+          "itm_co_11"
+        ]
+      },
+      "knight": {
+        "xp": 158091,
+        "ranks": {
+          "S00": 1,
+          "S01": 5,
+          "S06": 5,
+          "S04": 5
+        },
+        "statTraining": 30,
+        "kills": 0,
+        "damage": 0,
+        "skillRevision": 1,
+        "martialRevision": 1,
+        "equipmentIds": [
+          "itm_hw_05",
+          "itm_co_01"
+        ]
+      },
+      "occultist": {
+        "xp": 158091,
+        "ranks": {
+          "O01": 1,
+          "O06": 6,
+          "O02": 5,
+          "O03": 5
+        },
+        "statTraining": 29,
+        "kills": 0,
+        "damage": 0,
+        "skillRevision": 1,
+        "martialRevision": 1,
+        "occultRevision": 1,
+        "equipmentIds": [
+          "itm_so_05",
+          "itm_co_02"
+        ]
+      }
+    },
+    "equipment": {
+      "schema": 1,
+      "definitionRevision": 1,
+      "runId": "eq-mvw7svke-98fog92a",
+      "ownedItemIds": [
+        "itm_se_01",
+        "itm_da_01",
+        "itm_hw_01",
+        "itm_so_01",
+        "itm_se_02",
+        "itm_da_02",
+        "itm_hw_02",
+        "itm_co_01",
+        "itm_co_02",
+        "itm_so_02",
+        "itm_se_05",
+        "itm_da_05",
+        "itm_hw_05",
+        "itm_so_05",
+        "itm_co_11",
+        "itm_co_03",
+        "itm_se_03",
+        "itm_da_03",
+        "itm_hw_03",
+        "itm_so_03",
+        "itm_co_08"
+      ],
+      "eligibleEventIds": [],
+      "equippedByClass": {
+        "archer": {
+          "personal": "itm_se_05",
+          "common": "itm_co_11"
+        },
+        "mage": {
+          "personal": "itm_da_05",
+          "common": "itm_co_08"
+        },
+        "knight": {
+          "personal": "itm_hw_05",
+          "common": "itm_co_01"
+        },
+        "occultist": {
+          "personal": "itm_so_05",
+          "common": "itm_co_02"
+        }
+      },
+      "rewardLedger": {
+        "eq_se_start": {
+          "state": "committed",
+          "choiceGroup": null,
+          "selectedItemId": "itm_se_01",
+          "notified": false
+        },
+        "eq_da_join": {
+          "state": "committed",
+          "choiceGroup": null,
+          "selectedItemId": "itm_da_01",
+          "notified": false
+        },
+        "eq_hw_join": {
+          "state": "committed",
+          "choiceGroup": null,
+          "selectedItemId": "itm_hw_01",
+          "notified": false
+        },
+        "eq_so_join": {
+          "state": "committed",
+          "choiceGroup": null,
+          "selectedItemId": "itm_so_01",
+          "notified": false
+        },
+        "eq_se_ledger": {
+          "state": "committed",
+          "choiceGroup": null,
+          "selectedItemId": "itm_se_02",
+          "notified": false
+        },
+        "eq_da_gate": {
+          "state": "committed",
+          "choiceGroup": null,
+          "selectedItemId": "itm_da_02",
+          "notified": false
+        },
+        "eq_hw_bier": {
+          "state": "committed",
+          "choiceGroup": null,
+          "selectedItemId": "itm_hw_02",
+          "notified": false
+        },
+        "eq_co_01": {
+          "state": "committed",
+          "choiceGroup": null,
+          "selectedItemId": "itm_co_01",
+          "notified": false
+        },
+        "eq_co_02": {
+          "state": "committed",
+          "choiceGroup": null,
+          "selectedItemId": "itm_co_02",
+          "notified": false
+        },
+        "eq_co_t1_choice": {
+          "state": "committed",
+          "choiceGroup": "cg_co_t1",
+          "selectedItemId": "itm_co_03",
+          "notified": false
+        },
+        "eq_so_resident": {
+          "state": "committed",
+          "choiceGroup": null,
+          "selectedItemId": "itm_so_02",
+          "notified": false
+        },
+        "eq_se_t2_choice": {
+          "state": "committed",
+          "choiceGroup": "cg_se_t2",
+          "selectedItemId": "itm_se_03",
+          "notified": false
+        },
+        "eq_da_t2_choice": {
+          "state": "committed",
+          "choiceGroup": "cg_da_t2",
+          "selectedItemId": "itm_da_03",
+          "notified": false
+        },
+        "eq_hw_t2_choice": {
+          "state": "committed",
+          "choiceGroup": "cg_hw_t2",
+          "selectedItemId": "itm_hw_03",
+          "notified": false
+        },
+        "eq_so_t2_choice": {
+          "state": "committed",
+          "choiceGroup": "cg_so_t2",
+          "selectedItemId": "itm_so_03",
+          "notified": false
+        },
+        "eq_se_t3a": {
+          "state": "committed",
+          "choiceGroup": null,
+          "selectedItemId": "itm_se_05",
+          "notified": false
+        },
+        "eq_da_t3a": {
+          "state": "committed",
+          "choiceGroup": null,
+          "selectedItemId": "itm_da_05",
+          "notified": false
+        },
+        "eq_hw_t3a": {
+          "state": "committed",
+          "choiceGroup": null,
+          "selectedItemId": "itm_hw_05",
+          "notified": false
+        },
+        "eq_so_t3a": {
+          "state": "committed",
+          "choiceGroup": null,
+          "selectedItemId": "itm_so_05",
+          "notified": false
+        },
+        "eq_co_t2_choice": {
+          "state": "committed",
+          "choiceGroup": "cg_co_t2",
+          "selectedItemId": "itm_co_08",
+          "notified": false
+        },
+        "eq_co_11": {
+          "state": "committed",
+          "choiceGroup": null,
+          "selectedItemId": "itm_co_11",
+          "notified": false
+        }
+      },
+      "initialAutoEquip": true,
+      "basicPrepared": [
+        "archer",
+        "mage",
+        "knight",
+        "occultist"
+      ]
+    },
+    "recruited": [
+      "archer",
+      "mage",
+      "knight",
+      "occultist"
+    ],
+    "game": "honro",
+    "schema": 5
+  },
+  "sp": {
+    "archer": {
+      "earned": 45,
+      "spent": 45,
+      "remaining": 0
+    },
+    "mage": {
+      "earned": 45,
+      "spent": 45,
+      "remaining": 0
+    },
+    "knight": {
+      "earned": 45,
+      "spent": 45,
+      "remaining": 0
+    },
+    "occultist": {
+      "earned": 45,
+      "spent": 45,
+      "remaining": 0
+    }
+  }
+}
