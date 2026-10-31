@@ -1,0 +1,21 @@
+"""Synthetic Canvas group-clip semantics compared to browser SVG, no game edits."""
+import json,os
+from pathlib import Path
+from playwright.sync_api import sync_playwright
+out=Path(os.environ.get('HONRO_CLIP_REPORT','/tmp/honro-clip-experiment.json'))
+with sync_playwright() as w:
+ b=w.chromium.launch(executable_path='/usr/bin/chromium',headless=True,args=['--no-sandbox']);p=b.new_page();p.goto(os.environ.get('HONRO_QA_URL','http://127.0.0.1:8774/HONRO.html'));p.wait_for_function('window.HonroVectorArt && window.HonroApp');res=p.evaluate('''async()=>{
+ const W=128,H=128,canvas=()=>{let c=document.createElement('canvas');c.width=W;c.height=H;return c;};
+ const cases=[{name:'beige-underpaint',clip:'M15.3 10.2L112.7 21.8L104.3 111.2L18.2 101.6Z',paths:[{d:'M0 0H128V128H0Z',fill:'#e8ddbd'},{d:'M0 0H128V128H0Z',fill:'#42616d'},{d:'M0 64H128V128H0Z',fill:'#263a42'}]}, {name:'overlap',clip:'M15.3 10.2L112.7 21.8L104.3 111.2L18.2 101.6Z',paths:[{d:'M0 0H128V128H0Z',fill:'#b83232'},{d:'M0 0H128V128H0Z',fill:'#3a8c50'},{d:'M0 0H128V128H0Z',fill:'#315bbb'}]},
+ {name:'half-opacity',clip:'M15.3 10.2L112.7 21.8L104.3 111.2L18.2 101.6Z',paths:[{d:'M0 0H128V128H0Z',fill:'#b83232',opacity:.5},{d:'M0 0H128V128H0Z',fill:'#3a8c50',opacity:.5}]},
+ {name:'hole',clip:'M15.3 10.2L112.7 21.8L104.3 111.2L18.2 101.6ZM42.1 42.3L42.1 82.7L82.3 82.7L82.3 42.3Z',paths:[{d:'M0 0H128V128H0Z',fill:'#b83232'},{d:'M0 0H128V128H0Z',fill:'#3a8c50'}]},
+ {name:'transformed',transform:[.91,.16,-.08,.95,8,2],clip:'M15.3 10.2L112.7 21.8L104.3 111.2L18.2 101.6Z',paths:[{d:'M0 0H128V128H0Z',fill:'#b83232'},{d:'M0 0H128V128H0Z',fill:'#3a8c50'}]},
+ {name:'non-overlap',clip:'M15.3 10.2L112.7 21.8L104.3 111.2L18.2 101.6Z',paths:[{d:'M0 0H64V128H0Z',fill:'#b83232'},{d:'M64 0H128V128H64Z',fill:'#3a8c50'}]}];
+ const image=async xml=>{const im=new Image();im.src='data:image/svg+xml;charset=utf-8,'+encodeURIComponent(xml);await im.decode();return im;};
+ const out=[];for(const t of cases){const vector={version:1,viewBox:[0,0,W,H],clips:{clip:[t.clip]},root:{tag:'g',clipPath:'clip',...(t.transform?{transform:t.transform}:{}),children:t.paths.map(x=>({tag:'path',...x}))}},asset={id:'synthetic',vector,anchor:{x:0,y:0},params:{semanticLayer:'SKY'}};let errors=HonroVectorArt.validate(vector);if(errors.length)throw Error(errors.join(';'));
+ const d=canvas(),dc=d.getContext('2d');dc.fillStyle='#fff';dc.fillRect(0,0,W,H);HonroVectorArt.draw(dc,asset,{x:0,y:0,scale:1,rotation:0});
+ const g=canvas(),gc=g.getContext('2d'),layer=canvas(),lc=layer.getContext('2d'),mask=canvas(),mc=mask.getContext('2d');if(t.transform){lc.transform(...t.transform);mc.transform(...t.transform)}for(const a of t.paths){lc.globalAlpha=a.opacity??1;lc.fillStyle=a.fill;lc.fill(new Path2D(a.d));}mc.fillStyle='#fff';mc.fill(new Path2D(t.clip));lc.globalAlpha=1;lc.setTransform(1,0,0,1,0,0);lc.globalCompositeOperation='destination-in';lc.drawImage(mask,0,0);gc.fillStyle='#fff';gc.fillRect(0,0,W,H);gc.drawImage(layer,0,0);
+ const paths=t.paths.map(a=>`<path d="${a.d}" fill="${a.fill}" opacity="${a.opacity??1}"/>`).join(''),xml=`<svg xmlns="http://www.w3.org/2000/svg" width="128" height="128" viewBox="0 0 128 128"><defs><clipPath id="c"><path d="${t.clip}"/></clipPath></defs><rect width="128" height="128" fill="white"/><g ${t.transform?`transform="matrix(${t.transform.join(' ')})"`:``} clip-path="url(#c)">${paths}</g></svg>`,ref=canvas(),rc=ref.getContext('2d');rc.drawImage(await image(xml),0,0);
+ const noUnder=canvas(),nc=noUnder.getContext('2d');nc.fillStyle='#fff';nc.fillRect(0,0,W,H);if(t.name==='beige-underpaint'){const alt=structuredClone(asset);alt.vector.root.children.shift();HonroVectorArt.draw(nc,alt,{x:0,y:0,scale:1,rotation:0});}
+ const px=c=>c.getContext('2d').getImageData(0,0,W,H).data,base=px(ref),direct=px(d),group=px(g),diff=arr=>{let changed=0,total=0,max=0;for(let i=0;i<base.length;i+=4){let z=0;for(let j=0;j<4;j++)z+=Math.abs(base[i+j]-arr[i+j]);if(z){changed++;total+=z;max=Math.max(max,z)}}return{changedPixels:changed,totalChannelDelta:total,maxPixelDelta:max}};out.push({name:t.name,directVsSVG:diff(direct),groupVsSVG:diff(group),...(t.name==='beige-underpaint'?{withoutBeigeVsOriginalSVG:diff(px(noUnder))}:{})});}
+ return out;}''');out.write_text(json.dumps(res,indent=2));print(json.dumps(res),flush=True);b.close()

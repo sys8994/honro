@@ -1,0 +1,85 @@
+[
+  {
+    "name": "beige-underpaint",
+    "directVsSVG": {
+      "changedPixels": 0,
+      "totalChannelDelta": 0,
+      "maxPixelDelta": 0
+    },
+    "groupVsSVG": {
+      "changedPixels": 366,
+      "totalChannelDelta": 20098,
+      "maxPixelDelta": 144
+    },
+    "withoutBeigeVsOriginalSVG": {
+      "changedPixels": 351,
+      "totalChannelDelta": 5747,
+      "maxPixelDelta": 32
+    }
+  },
+  {
+    "name": "overlap",
+    "directVsSVG": {
+      "changedPixels": 0,
+      "totalChannelDelta": 0,
+      "maxPixelDelta": 0
+    },
+    "groupVsSVG": {
+      "changedPixels": 370,
+      "totalChannelDelta": 45378,
+      "maxPixelDelta": 191
+    }
+  },
+  {
+    "name": "half-opacity",
+    "directVsSVG": {
+      "changedPixels": 0,
+      "totalChannelDelta": 0,
+      "maxPixelDelta": 0
+    },
+    "groupVsSVG": {
+      "changedPixels": 8509,
+      "totalChannelDelta": 24418,
+      "maxPixelDelta": 35
+    }
+  },
+  {
+    "name": "hole",
+    "directVsSVG": {
+      "changedPixels": 0,
+      "totalChannelDelta": 0,
+      "maxPixelDelta": 0
+    },
+    "groupVsSVG": {
+      "changedPixels": 528,
+      "totalChannelDelta": 42760,
+      "maxPixelDelta": 123
+    }
+  },
+  {
+    "name": "transformed",
+    "directVsSVG": {
+      "changedPixels": 15,
+      "totalChannelDelta": 494,
+      "maxPixelDelta": 65
+    },
+    "groupVsSVG": {
+      "changedPixels": 376,
+      "totalChannelDelta": 27736,
+      "maxPixelDelta": 124
+    }
+  },
+  {
+    "name": "non-overlap",
+    "directVsSVG": {
+      "changedPixels": 0,
+      "totalChannelDelta": 0,
+      "maxPixelDelta": 0
+    },
+    "groupVsSVG": {
+      "changedPixels": 240,
+      "totalChannelDelta": 400,
+      "maxPixelDelta": 3
+    }
+  }
+]
