@@ -1,0 +1,155 @@
+{
+  "base": "http://127.0.0.1:8774",
+  "steps": [
+    {
+      "t": 23848.065,
+      "step": "fixture",
+      "data": {
+        "errors": [],
+        "size": 3666
+      }
+    },
+    {
+      "t": 23852.957,
+      "step": "workshop ready",
+      "data": {
+        "stage": "qa-small",
+        "stages": 1,
+        "assets": 1
+      }
+    },
+    {
+      "t": 23853.056,
+      "step": "play requested",
+      "data": null
+    },
+    {
+      "t": 23854.062,
+      "step": "probe-0",
+      "data": {
+        "status": "pending",
+        "error": null,
+        "iframe": true,
+        "src": "http://127.0.0.1:8774/web/entries/game.1f7abc7a50726346.html?embedded=1",
+        "document": "complete",
+        "app": false,
+        "engine": false,
+        "embedded": true,
+        "screen": null,
+        "body": "",
+        "toast": ""
+      }
+    },
+    {
+      "t": 23855.091,
+      "step": "probe-1",
+      "data": {
+        "status": "pending",
+        "error": null,
+        "iframe": true,
+        "src": "http://127.0.0.1:8774/web/entries/game.1f7abc7a50726346.html?embedded=1",
+        "document": "complete",
+        "app": false,
+        "engine": false,
+        "embedded": true,
+        "screen": null,
+        "body": "",
+        "toast": ""
+      }
+    },
+    {
+      "t": 23856.131,
+      "step": "probe-2",
+      "data": {
+        "status": "pending",
+        "error": null,
+        "iframe": true,
+        "src": "http://127.0.0.1:8774/web/entries/game.1f7abc7a50726346.html?embedded=1",
+        "document": "complete",
+        "app": false,
+        "engine": false,
+        "embedded": true,
+        "screen": null,
+        "body": "",
+        "toast": ""
+      }
+    },
+    {
+      "t": 23857.269,
+      "step": "probe-3",
+      "data": {
+        "status": "resolved",
+        "error": null,
+        "iframe": true,
+        "src": "http://127.0.0.1:8774/web/entries/game.1f7abc7a50726346.html?embedded=1",
+        "document": "complete",
+        "app": true,
+        "engine": true,
+        "embedded": true,
+        "screen": "battle",
+        "body": "QA small\n1턴 · 아군 턴\n맵 탐색\n설오\n100%\n상태\n이동·발사 가능\n체력\n365 / 365\n기력\n96 / 96\n이동도\n1100 / 1100\nMOVE / AIM\n바람 0\n1\n평사\n—\n—\n—\n44° · 55%\n발사\n1번째 턴\n아군 턴\n배경음 - 혼로",
+        "toast": ""
+      }
+    },
+    {
+      "t": 23859.753,
+      "step": "defend observed",
+      "data": {
+        "before": {
+          "phase": "aim",
+          "side": 0,
+          "actor": "p-archer"
+        },
+        "after": {
+          "phase": "enemy",
+          "side": 1,
+          "actor": "hound",
+          "acted": true
+        }
+      }
+    },
+    {
+      "t": 23860.841,
+      "step": "PASS owner bytes unchanged after action and stop",
+      "data": {
+        "errors": []
+      }
+    }
+  ],
+  "console": [
+    {
+      "type": "error",
+      "text": "Failed to load resource: the server responded with a status of 404 (File not found)",
+      "location": {
+        "url": "http://127.0.0.1:8774/favicon.ico",
+        "line": 0,
+        "column": 0,
+        "lineNumber": 0,
+        "columnNumber": 0
+      }
+    },
+    {
+      "type": "error",
+      "text": "Failed to load resource: the server responded with a status of 404 (File not found)",
+      "location": {
+        "url": "http://127.0.0.1:8774/favicon.ico",
+        "line": 0,
+        "column": 0,
+        "lineNumber": 0,
+        "columnNumber": 0
+      }
+    }
+  ],
+  "errors": [],
+  "network": [
+    {
+      "url": "http://127.0.0.1:8774/web/fonts/kr-0025.c0164ff02ba7ff36.woff2",
+      "failure": "net::ERR_ABORTED"
+    }
+  ],
+  "frames": [
+    "http://127.0.0.1:8774/HONRO.html",
+    "http://127.0.0.1:8774/HONRO_WORKSHOP.html",
+    "http://127.0.0.1:8774/web/entries/game.1f7abc7a50726346.html?embedded=1"
+  ]
+}
