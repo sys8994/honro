@@ -45,6 +45,7 @@ with sync_playwright() as pw:
     state=page.evaluate("()=>{let a=HonroApp,e=a.engine,u=e.unit('archer');return {active:e.active?.id,x:u.x,y:u.y,vy:u.vy,jumping:u.jumping,grounded:e.grounded(u),can:a.canInput(),phase:e.b.phase,dialogue:!!a.dialogue,frames:window.__grid.frames}}")
     Path(a.out).write_text(json.dumps({'scope':'diagnostic clone only; timeout','inputSha256':a.sha256,'holdMs':a.hold_ms,'start':setup,'state':state},ensure_ascii=False,indent=2)+'\n');page.screenshot(path=str(Path(a.out).with_suffix('.png')));raise
    page.wait_for_timeout(1000)
+   if equipped and start==4740:page.screenshot(path=str(Path(a.out).with_suffix('.png')))
    trace=page.evaluate('''()=>{window.__grid.running=false;let e=HonroApp.engine,u=e.unit('archer');return {frames:window.__grid.frames,final:{x:u.x,y:u.y,grounded:e.grounded(u),jumping:!!u.jumping,equipment:u.equipmentIds}}}''')
    frames=trace['frames'];result.append({'start':setup,'frames':frames,'final':trace['final'],'minY':min(f['y'] for f in frames),'maxX':max(f['x'] for f in frames),'jumpObserved':any(f['jumping'] or not f['grounded'] for f in frames)})
    print(json.dumps({'equipped':equipped,'start':start,'minY':result[-1]['minY'],'maxX':result[-1]['maxX'],'final':trace['final'],'jumpObserved':result[-1]['jumpObserved']},ensure_ascii=False),flush=True)
