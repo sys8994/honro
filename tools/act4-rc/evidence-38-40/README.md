@@ -22,3 +22,15 @@ With that profile, normal title `여정 이어가기` opened the stage-31 rest s
 Camera-only Chromium QA, not mission completion: the stage-40 ferry screenshot shows the boat against the dock stairs and water, with separate image background and vector foreground. The mobile right-edge view retains connected coastal terrain and sea, though actors are very small at minimum zoom; it is not a mobile usability approval. The stage-38 maximum-zoom wood screenshot shows a conspicuous pale stair-stepped fringe and rectangular joins at the wooden support edge; compare to source before classifying as a newly introduced white matte or modifying protected wood. The cave's grey opening is background imagery and was not filled. Some 38 camera sweeps triggered dialogue and hid part of the scene, so full left/right/bottom/ceiling and mobile gates remain open.
 
 A narrow stage-40 candidate geometry test (`node tests/act4-resident-platform-drop.mjs _local/act4-rc/candidates/stage40.json`) passed 43 guards/physics cases, including all four residents' repositioned west-stair descent and two repositioned dock descents. This deliberately relocates residents for a local physics check; it is not actual route, boarding, sailing, or normal play evidence.
+
+## Stage 38 input diagnostics (not acceptance)
+
+All attempts used the declared 37-cleared profile above, the assembled RC and ordinary keyboard inputs after UI entry. The controller queried engine shot prediction, including positions and hit forecasts; this is a **diagnostic aid and is not evidence that an ordinary player can execute the policy or satisfy the 20-turn requirement**. No live HP, pose, enemy, receipt or clear state was assigned. Each attempt started fresh; no retry is an independent success or probability estimate.
+
+| Attempt | End | Living enemies / initial | Hero HP at last observation | Result and policy |
+|---|---|---:|---|---|
+| v1 | Round 1, watchdog | 31 / 31 | 1259, 1158, 2093, 1324 | Repeated A02 after the first shot without correctly finishing the actor's turn; no progress. Controller failure, not difficulty proof. |
+| v2 | Round 5, controller stopped | 25 / 31 | 1259, 1039, 1265, 752 | Added F to end when firing did not occur. A02, M03, S01 and O06 were attempted; no safe planned shot after a short movement attempt. All four heroes and residents alive, each resident 1450 HP. No objective or mission clear. `stage38-diagnostic-stop.png` shows its stop. |
+| v3 | Interrupted during round 4 | 27 / 31 | 1259, 1158, 1576, 1061 | Restricted candidate search for speed. It remained near the start and was intentionally stopped to test movement-first policy; not a death or completed run. |
+
+The logged 61 s, 339 s and 232 s spans respectively include controller planning, browser waits and diagnostic overhead; they are not measured human play times. Enemy-shot counters also include hostile actions and must not be read as player attack counts. No jump, descent, vista/pursuit/probe/connection, clear or reload was proven in these attempts. A fresh movement-first attempt was started after v3; its outcome must be reported separately.
