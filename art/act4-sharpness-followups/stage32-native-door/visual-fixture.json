@@ -1,0 +1,542 @@
+{
+  "scope": "Actual local Chromium custom-map entry with fresh profile, 1-31 fixture-cleared. Static views stop frames, set camera and explicitly set door visual time 0/.5/1; no observation receipts are injected; no ordinary play, combat, mission completion or deployed-build proof. QA-only far manifest key points at exact source WebP.",
+  "candidateSha256": "681d13c6ba2cf1b93a031fd0e0aed80ecb83e51a6428aeec637c4f905cec8aa0",
+  "farSha256": "1ba81aae5bebeebd46cc094be2519797d67ef49a887d7aade45cb61b39878fff",
+  "rows": [
+    {
+      "viewport": [
+        1440,
+        900
+      ],
+      "requestedDpr": 1,
+      "screens": [
+        {
+          "file": "closed-1440x900-dpr1.png",
+          "x": 3030,
+          "y": 790,
+          "scale": 1,
+          "viewport": {
+            "left": 2310,
+            "right": 3750,
+            "top": 405.5,
+            "bottom": 1174.5
+          },
+          "canvas": {
+            "clientWidth": 1440,
+            "clientHeight": 769,
+            "width": 1440,
+            "height": 769
+          },
+          "far": {
+            "entries": 1,
+            "maxEntries": 3,
+            "keys": [
+              "act4Estuary:"
+            ],
+            "errors": [],
+            "canvasBytes": 5586944
+          },
+          "farReady": true
+        },
+        {
+          "file": "half-open-1440x900-dpr1.png",
+          "x": 3030,
+          "y": 790,
+          "scale": 1,
+          "viewport": {
+            "left": 2310,
+            "right": 3750,
+            "top": 405.5,
+            "bottom": 1174.5
+          },
+          "canvas": {
+            "clientWidth": 1440,
+            "clientHeight": 769,
+            "width": 1440,
+            "height": 769
+          },
+          "far": {
+            "entries": 1,
+            "maxEntries": 3,
+            "keys": [
+              "act4Estuary:"
+            ],
+            "errors": [],
+            "canvasBytes": 5586944
+          },
+          "farReady": true
+        },
+        {
+          "file": "open-1440x900-dpr1.png",
+          "x": 3030,
+          "y": 790,
+          "scale": 1,
+          "viewport": {
+            "left": 2310,
+            "right": 3750,
+            "top": 405.5,
+            "bottom": 1174.5
+          },
+          "canvas": {
+            "clientWidth": 1440,
+            "clientHeight": 769,
+            "width": 1440,
+            "height": 769
+          },
+          "far": {
+            "entries": 1,
+            "maxEntries": 3,
+            "keys": [
+              "act4Estuary:"
+            ],
+            "errors": [],
+            "canvasBytes": 5586944
+          },
+          "farReady": true
+        }
+      ],
+      "entry": {
+        "sha": "1ba81aae5bebeebd46cc094be2519797d67ef49a887d7aade45cb61b39878fff",
+        "stage": 32,
+        "preview": 32,
+        "phase": "aim",
+        "story": true,
+        "terrain": 13,
+        "units": [
+          {
+            "id": "archer",
+            "side": 0,
+            "x": 143,
+            "y": 985.6000000000001,
+            "hp": 1025,
+            "grounded": true,
+            "support": "approved32-entry"
+          },
+          {
+            "id": "mage",
+            "side": 0,
+            "x": 213.4,
+            "y": 985.6000000000001,
+            "hp": 1094,
+            "grounded": true,
+            "support": "approved32-entry"
+          },
+          {
+            "id": "knight",
+            "side": 0,
+            "x": 283.8,
+            "y": 985.6000000000001,
+            "hp": 1666,
+            "grounded": true,
+            "support": "approved32-entry"
+          },
+          {
+            "id": "occultist",
+            "side": 0,
+            "x": 354.20000000000005,
+            "y": 985.6000000000001,
+            "hp": 1252,
+            "grounded": true,
+            "support": "approved32-entry"
+          },
+          {
+            "id": "a4-shelter-speaker",
+            "side": 2,
+            "x": 3069.0000000000005,
+            "y": 869.0000000000001,
+            "hp": 1450,
+            "grounded": true,
+            "support": "approved32-yard"
+          },
+          {
+            "id": "a4-32-a-1",
+            "side": 1,
+            "x": 880.0000000000001,
+            "y": 847.0000000000001,
+            "hp": 1466,
+            "grounded": true,
+            "support": "approved32-entry"
+          },
+          {
+            "id": "a4-32-a-2",
+            "side": 1,
+            "x": 1210,
+            "y": 847.0000000000001,
+            "hp": 1466,
+            "grounded": true,
+            "support": "approved32-entry"
+          },
+          {
+            "id": "a4-32-a-3",
+            "side": 1,
+            "x": 1562.0000000000002,
+            "y": 774.4000000000001,
+            "hp": 1466,
+            "grounded": true,
+            "support": "approved32-upper-alley"
+          },
+          {
+            "id": "a4-32-b-1",
+            "side": 1,
+            "x": 1012.0000000000001,
+            "y": 1210,
+            "hp": 1466,
+            "grounded": true,
+            "support": "approved32-lower-lane"
+          },
+          {
+            "id": "a4-32-b-2",
+            "side": 1,
+            "x": 1144,
+            "y": 1251.4857142857143,
+            "hp": 1466,
+            "grounded": true,
+            "support": "approved32-lower-lane"
+          },
+          {
+            "id": "a4-32-b-3",
+            "side": 1,
+            "x": 1298,
+            "y": 1271.6,
+            "hp": 1466,
+            "grounded": true,
+            "support": "approved32-lower-lane"
+          },
+          {
+            "id": "a4-32-b-4",
+            "side": 1,
+            "x": 1694.0000000000002,
+            "y": 1179.2,
+            "hp": 1686,
+            "grounded": true,
+            "support": "approved32-central-stair"
+          },
+          {
+            "id": "a4-32-c-1",
+            "side": 1,
+            "x": 2068,
+            "y": 1026.96,
+            "hp": 2126,
+            "grounded": true,
+            "support": "approved32-yard"
+          },
+          {
+            "id": "a4-32-c-2",
+            "side": 1,
+            "x": 2398,
+            "y": 1037.52,
+            "hp": 1466,
+            "grounded": true,
+            "support": "approved32-yard"
+          },
+          {
+            "id": "a4-32-d-1",
+            "side": 1,
+            "x": 2640,
+            "y": 1042.8000000000002,
+            "hp": 1466,
+            "grounded": true,
+            "support": "approved32-yard"
+          },
+          {
+            "id": "a4-32-d-2",
+            "side": 1,
+            "x": 2926.0000000000005,
+            "y": 869.0000000000001,
+            "hp": 1466,
+            "grounded": true,
+            "support": "approved32-yard"
+          },
+          {
+            "id": "a4-32-d-3",
+            "side": 1,
+            "x": 3234.0000000000005,
+            "y": 805.0000000000001,
+            "hp": 1173,
+            "grounded": false,
+            "support": null
+          }
+        ],
+        "water": [],
+        "farKey": "act4Estuary",
+        "manifestUrl": "/_local/inputs/stage32-sharp/act4-estuary.webp"
+      },
+      "errors": [
+        {
+          "type": "console",
+          "text": "Failed to load resource: the server responded with a status of 404 (File not found)"
+        },
+        {
+          "type": "console",
+          "text": "Failed to load resource: the server responded with a status of 404 (File not found)"
+        }
+      ]
+    },
+    {
+      "viewport": [
+        390,
+        844
+      ],
+      "requestedDpr": 3,
+      "screens": [
+        {
+          "file": "closed-390x844-dpr3.png",
+          "x": 3030,
+          "y": 790,
+          "scale": 1,
+          "viewport": {
+            "left": 2835,
+            "right": 3225,
+            "top": 466,
+            "bottom": 1114
+          },
+          "canvas": {
+            "clientWidth": 390,
+            "clientHeight": 648,
+            "width": 1170,
+            "height": 1943
+          },
+          "far": {
+            "entries": 1,
+            "maxEntries": 3,
+            "keys": [
+              "act4Estuary:"
+            ],
+            "errors": [],
+            "canvasBytes": 5586944
+          },
+          "farReady": true
+        },
+        {
+          "file": "half-open-390x844-dpr3.png",
+          "x": 3030,
+          "y": 790,
+          "scale": 1,
+          "viewport": {
+            "left": 2835,
+            "right": 3225,
+            "top": 466,
+            "bottom": 1114
+          },
+          "canvas": {
+            "clientWidth": 390,
+            "clientHeight": 648,
+            "width": 1170,
+            "height": 1943
+          },
+          "far": {
+            "entries": 1,
+            "maxEntries": 3,
+            "keys": [
+              "act4Estuary:"
+            ],
+            "errors": [],
+            "canvasBytes": 5586944
+          },
+          "farReady": true
+        },
+        {
+          "file": "open-390x844-dpr3.png",
+          "x": 3030,
+          "y": 790,
+          "scale": 1,
+          "viewport": {
+            "left": 2835,
+            "right": 3225,
+            "top": 466,
+            "bottom": 1114
+          },
+          "canvas": {
+            "clientWidth": 390,
+            "clientHeight": 648,
+            "width": 1170,
+            "height": 1943
+          },
+          "far": {
+            "entries": 1,
+            "maxEntries": 3,
+            "keys": [
+              "act4Estuary:"
+            ],
+            "errors": [],
+            "canvasBytes": 5586944
+          },
+          "farReady": true
+        }
+      ],
+      "entry": {
+        "sha": "1ba81aae5bebeebd46cc094be2519797d67ef49a887d7aade45cb61b39878fff",
+        "stage": 32,
+        "preview": 32,
+        "phase": "aim",
+        "story": true,
+        "terrain": 13,
+        "units": [
+          {
+            "id": "archer",
+            "side": 0,
+            "x": 143,
+            "y": 985.6000000000001,
+            "hp": 1025,
+            "grounded": true,
+            "support": "approved32-entry"
+          },
+          {
+            "id": "mage",
+            "side": 0,
+            "x": 213.4,
+            "y": 985.6000000000001,
+            "hp": 1094,
+            "grounded": true,
+            "support": "approved32-entry"
+          },
+          {
+            "id": "knight",
+            "side": 0,
+            "x": 283.8,
+            "y": 985.6000000000001,
+            "hp": 1666,
+            "grounded": true,
+            "support": "approved32-entry"
+          },
+          {
+            "id": "occultist",
+            "side": 0,
+            "x": 354.20000000000005,
+            "y": 985.6000000000001,
+            "hp": 1252,
+            "grounded": true,
+            "support": "approved32-entry"
+          },
+          {
+            "id": "a4-shelter-speaker",
+            "side": 2,
+            "x": 3069.0000000000005,
+            "y": 869.0000000000001,
+            "hp": 1450,
+            "grounded": true,
+            "support": "approved32-yard"
+          },
+          {
+            "id": "a4-32-a-1",
+            "side": 1,
+            "x": 880.0000000000001,
+            "y": 847.0000000000001,
+            "hp": 1466,
+            "grounded": true,
+            "support": "approved32-entry"
+          },
+          {
+            "id": "a4-32-a-2",
+            "side": 1,
+            "x": 1210,
+            "y": 847.0000000000001,
+            "hp": 1466,
+            "grounded": true,
+            "support": "approved32-entry"
+          },
+          {
+            "id": "a4-32-a-3",
+            "side": 1,
+            "x": 1562.0000000000002,
+            "y": 774.4000000000001,
+            "hp": 1466,
+            "grounded": true,
+            "support": "approved32-upper-alley"
+          },
+          {
+            "id": "a4-32-b-1",
+            "side": 1,
+            "x": 1012.0000000000001,
+            "y": 1210,
+            "hp": 1466,
+            "grounded": true,
+            "support": "approved32-lower-lane"
+          },
+          {
+            "id": "a4-32-b-2",
+            "side": 1,
+            "x": 1144,
+            "y": 1251.4857142857143,
+            "hp": 1466,
+            "grounded": true,
+            "support": "approved32-lower-lane"
+          },
+          {
+            "id": "a4-32-b-3",
+            "side": 1,
+            "x": 1298,
+            "y": 1271.6,
+            "hp": 1466,
+            "grounded": true,
+            "support": "approved32-lower-lane"
+          },
+          {
+            "id": "a4-32-b-4",
+            "side": 1,
+            "x": 1694.0000000000002,
+            "y": 1179.2,
+            "hp": 1686,
+            "grounded": true,
+            "support": "approved32-central-stair"
+          },
+          {
+            "id": "a4-32-c-1",
+            "side": 1,
+            "x": 2068,
+            "y": 1026.96,
+            "hp": 2126,
+            "grounded": true,
+            "support": "approved32-yard"
+          },
+          {
+            "id": "a4-32-c-2",
+            "side": 1,
+            "x": 2398,
+            "y": 1037.52,
+            "hp": 1466,
+            "grounded": true,
+            "support": "approved32-yard"
+          },
+          {
+            "id": "a4-32-d-1",
+            "side": 1,
+            "x": 2640,
+            "y": 1042.8000000000002,
+            "hp": 1466,
+            "grounded": true,
+            "support": "approved32-yard"
+          },
+          {
+            "id": "a4-32-d-2",
+            "side": 1,
+            "x": 2926.0000000000005,
+            "y": 869.0000000000001,
+            "hp": 1466,
+            "grounded": true,
+            "support": "approved32-yard"
+          },
+          {
+            "id": "a4-32-d-3",
+            "side": 1,
+            "x": 3234.0000000000005,
+            "y": 805.0000000000001,
+            "hp": 1173,
+            "grounded": false,
+            "support": null
+          }
+        ],
+        "water": [],
+        "farKey": "act4Estuary",
+        "manifestUrl": "/_local/inputs/stage32-sharp/act4-estuary.webp"
+      },
+      "errors": [
+        {
+          "type": "console",
+          "text": "Failed to load resource: the server responded with a status of 404 (File not found)"
+        }
+      ]
+    }
+  ],
+  "errors": []
+}
