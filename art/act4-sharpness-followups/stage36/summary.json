@@ -1,10 +1,37 @@
 {
   "status": "passed",
-  "completedAt": "2026-10-31T13:13:35.245Z",
+  "completedAt": "2026-10-31T13:22:01.563Z",
   "sourceCommit": "8a23dc7bb520d8e01299c43a3b17efb264cec346",
+  "sourceByteCorrection": {
+    "reason": "Root apply_patch had added one extra trailing newline; source logic/content unchanged",
+    "initialEvidenceDirectory": "_local/reports/approved36-reward-binding/initial-extra-newline-evidence",
+    "files": [
+      {
+        "path": "shared/map/schema.js",
+        "initialSha256": "c1852e41aa63ffb5c3bad900432a75d7b1896ab37c22e58e31298092d427b6d4",
+        "finalSha256": "089a61a698b9447a5713fe19d3beb9bbed8e9000b98ef13a5592e8dd3380a7a3",
+        "removedBytes": 1,
+        "onlyTrailingNewlineChanged": true
+      },
+      {
+        "path": "shared/runtime/act4-coast-events.js",
+        "initialSha256": "09d5e04b4da4c0dac543d7d4ef42e47036fa293f87cdd8c7e4059b156eefc2a5",
+        "finalSha256": "05ee90f49ad40bf6a0fb11b048156c22100d97f7c4853e774a0391a19b01c63c",
+        "removedBytes": 1,
+        "onlyTrailingNewlineChanged": true
+      },
+      {
+        "path": "tests/act4-stage36-elite-reward.mjs",
+        "initialSha256": "e020cad7b33dbc752c5ae5f9eb8bababa0240d2b0ca5d9d2e846cca780e25c7b",
+        "finalSha256": "909ff3dd21721ebce7e0d6fbc77dd0ff5cfd5254f2efa9b62dcab9ab34f7374e",
+        "removedBytes": 1,
+        "onlyTrailingNewlineChanged": true
+      }
+    ]
+  },
   "sourceCandidateSha256": "8dc655dd4e1799f9364199aed5a38365893080cb4710b727dc5b1952171512ff",
   "candidateSha256": "dcecb8a22c5740c6ccbd4211e3a7f7a71f1b62be16ee51ab369d65eb325f8dca",
-  "runtimeAggregateSha256": "fdcbc1365fa6803fc43dbb20a7f6705ec60ada5b65a3223e79cdbe99cdd21513",
+  "runtimeAggregateSha256": "43cac65405636ac9a7c66f27bbd59b753aad408b626073e369819fec3191a249",
   "moduleHashes": {
     "runtimePart0": "f1847b60e8d5a5db4bfe3b080f891986d294f7e3889c08b9f7f1f5cbb12f6f62",
     "runtimePart1": "415845b5edc27d40480b1b215457bffd01b7f43286ec06cfc0171a6d633139cc",
@@ -174,7 +201,7 @@
     "runtimePart165": "a11578232411122ec3cf824587d0737937586eacd8339547633a855b3b138b04",
     "runtimePart166": "e21d1afecfdab62bf3be41c294865050b3d580568829876d620232ba224e3a22",
     "runtimePart167": "8fd724221d6e31308aadce10e41fc96ad55aa717ff3ec28116e7a175153f9e16",
-    "runtimePart168": "c1852e41aa63ffb5c3bad900432a75d7b1896ab37c22e58e31298092d427b6d4",
+    "runtimePart168": "089a61a698b9447a5713fe19d3beb9bbed8e9000b98ef13a5592e8dd3380a7a3",
     "runtimePart169": "aac20b04375a6a31b50f9acb30e291dbe4906331ce8734e271167b0d8b7862c4",
     "runtimePart170": "8a22cb3cc14a2e1f26d3901f392520568991004a79596b4a168b7253d1637e10",
     "runtimePart171": "28d29bb43a3aeb23166f0151d2fdd8b3dd916db02c63ed9fac320e2fd7a8b658",
@@ -187,7 +214,7 @@
     "shared/runtime/act4-coast-maps.js": "facc21950e3a247d9f0f7aebce1ece316732e6ea399b25701677fb6fab3db674",
     "shared/runtime/act4-coast-art.js": "745b24b95113f30be2e565287168e33847fdbd5b36174b7a6c0c0c603439bd12",
     "shared/runtime/act4-events.js": "097e328b9748b63603afa19f495e242ec3e9dfd1bfdb2d9ba9b8fe6964985fb3",
-    "_local/reports/approved36-reward-binding/remote/shared/runtime/act4-coast-events.js": "09d5e04b4da4c0dac543d7d4ef42e47036fa293f87cdd8c7e4059b156eefc2a5"
+    "_local/reports/approved36-reward-binding/remote/shared/runtime/act4-coast-events.js": "05ee90f49ad40bf6a0fb11b048156c22100d97f7c4853e774a0391a19b01c63c"
   },
   "delta": [
     {
@@ -334,8 +361,8 @@
   "targetFact": {
     "eventId": "eq_hw_t3b",
     "stage": 36,
-    "sourceRun": "honro-map-stage-36-1793452406797",
-    "campaignRunId": "eq-mvwf99mp-24pyejyx",
+    "sourceRun": "honro-map-stage-36-1793452911712",
+    "campaignRunId": "eq-mvwfk384-ruzgxh2f",
     "officialAct4": true,
     "proof": {
       "target": "a4-36-b-1",
