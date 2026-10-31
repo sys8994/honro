@@ -1,0 +1,204 @@
+{
+  "scope": "diagnostic clone only; temporary collision and actor resets",
+  "inputSha256": "80c7f4d5dd266a00a29116d88c85ad1b35605c52acf6a76ad902b3cfd142709f",
+  "firstHoldMs": 900,
+  "secondHoldMs": 600,
+  "temporaryTerrain": {
+    "id": "qa38-skeleton-only",
+    "x": 4755,
+    "y": 2470,
+    "w": 105,
+    "h": 191,
+    "vertices": [
+      {
+        "x": 4755,
+        "y": 2659
+      },
+      {
+        "x": 4755,
+        "y": 2585
+      },
+      {
+        "x": 4770,
+        "y": 2555
+      },
+      {
+        "x": 4830,
+        "y": 2555
+      },
+      {
+        "x": 4845,
+        "y": 2470
+      },
+      {
+        "x": 4860,
+        "y": 2470
+      },
+      {
+        "x": 4860,
+        "y": 2661
+      }
+    ],
+    "mat": "rock",
+    "hp": 99999,
+    "maxHp": 99999,
+    "route": true,
+    "indestructible": true,
+    "oneWay": false,
+    "surfaceKind": "rock",
+    "artSeed": 1,
+    "honroWalkEdges": [
+      1,
+      2,
+      3,
+      4
+    ]
+  },
+  "results": [
+    {
+      "start": {
+        "x": 4600,
+        "y": 2662.9545454545455,
+        "grounded": true,
+        "equipment": [
+          "itm_se_05",
+          "itm_co_11"
+        ]
+      },
+      "first": {
+        "x": 4841.807672096989,
+        "y": 2488.0898581170604,
+        "grounded": true,
+        "equipment": [
+          "itm_se_05",
+          "itm_co_11"
+        ]
+      },
+      "second": {
+        "x": 4968.57846365074,
+        "y": 2326.425293395209,
+        "grounded": true,
+        "equipment": [
+          "itm_se_05",
+          "itm_co_11"
+        ]
+      }
+    },
+    {
+      "start": {
+        "x": 4640,
+        "y": 2663.681818181818,
+        "grounded": true,
+        "equipment": [
+          "itm_se_05",
+          "itm_co_11"
+        ]
+      },
+      "first": {
+        "x": 4838.981929713807,
+        "y": 2504.102398288425,
+        "grounded": true,
+        "equipment": [
+          "itm_se_05",
+          "itm_co_11"
+        ]
+      },
+      "second": {
+        "x": 4953.752721267558,
+        "y": 2366.7842587716486,
+        "grounded": true,
+        "equipment": [
+          "itm_se_05",
+          "itm_co_11"
+        ]
+      }
+    },
+    {
+      "start": {
+        "x": 4680,
+        "y": 2663.590909090909,
+        "grounded": true,
+        "equipment": [
+          "itm_se_05",
+          "itm_co_11"
+        ]
+      },
+      "first": {
+        "x": 4839.302969532728,
+        "y": 2502.283172647876,
+        "grounded": true,
+        "equipment": [
+          "itm_se_05",
+          "itm_co_11"
+        ]
+      },
+      "second": {
+        "x": 4961.22054328858,
+        "y": 2346.4551877144204,
+        "grounded": true,
+        "equipment": [
+          "itm_se_05",
+          "itm_co_11"
+        ]
+      }
+    },
+    {
+      "start": {
+        "x": 4720,
+        "y": 2662.8636363636365,
+        "grounded": true,
+        "equipment": [
+          "itm_se_05",
+          "itm_co_11"
+        ]
+      },
+      "first": {
+        "x": 4843.624009351648,
+        "y": 2477.797280340661,
+        "grounded": true,
+        "equipment": [
+          "itm_se_05",
+          "itm_co_11"
+        ]
+      },
+      "second": {
+        "x": 4979.248018703296,
+        "y": 2297.380393529916,
+        "grounded": true,
+        "equipment": [
+          "itm_se_05",
+          "itm_co_11"
+        ]
+      }
+    },
+    {
+      "start": {
+        "x": 4740,
+        "y": 2662.5,
+        "grounded": true,
+        "equipment": [
+          "itm_se_05",
+          "itm_co_11"
+        ]
+      },
+      "first": {
+        "x": 4839.357920362159,
+        "y": 2501.9717846144304,
+        "grounded": true,
+        "equipment": [
+          "itm_se_05",
+          "itm_co_11"
+        ]
+      },
+      "second": {
+        "x": 4966.12871191591,
+        "y": 2333.0940620066904,
+        "grounded": true,
+        "equipment": [
+          "itm_se_05",
+          "itm_co_11"
+        ]
+      }
+    }
+  ]
+}

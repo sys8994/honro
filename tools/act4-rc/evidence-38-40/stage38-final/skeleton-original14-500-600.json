@@ -1,0 +1,120 @@
+{
+  "scope": "diagnostic clone only; temporary collision; actor resets only in grid mode",
+  "inputSha256": "38efada070bd637ed6420a855ad8a9b8a706194f673df704aa92280fdbccd257",
+  "firstHoldMs": 500,
+  "secondHoldMs": 600,
+  "temporaryTerrain": {
+    "id": "qa38-skeleton-only",
+    "x": 4755,
+    "y": 2470,
+    "w": 105,
+    "h": 191,
+    "vertices": [
+      {
+        "x": 4755,
+        "y": 2659
+      },
+      {
+        "x": 4755,
+        "y": 2585
+      },
+      {
+        "x": 4770,
+        "y": 2555
+      },
+      {
+        "x": 4830,
+        "y": 2555
+      },
+      {
+        "x": 4845,
+        "y": 2470
+      },
+      {
+        "x": 4860,
+        "y": 2470
+      },
+      {
+        "x": 4860,
+        "y": 2661
+      }
+    ],
+    "mat": "rock",
+    "hp": 99999,
+    "maxHp": 99999,
+    "route": true,
+    "indestructible": true,
+    "oneWay": false,
+    "surfaceKind": "rock",
+    "artSeed": 1,
+    "honroWalkEdges": [
+      1,
+      2,
+      3,
+      4
+    ]
+  },
+  "results": [
+    {
+      "start": {
+        "x": 4885.961559200488,
+        "y": 2659.846153469082,
+        "hp": 972,
+        "moveLeft": 389.18119215527656,
+        "grounded": true,
+        "equipment": [
+          "itm_se_05",
+          "itm_co_11"
+        ],
+        "near": [
+          {
+            "id": "archer",
+            "x": 4885.961559200488,
+            "y": 2659.846153469082,
+            "r": 22,
+            "hp": 972
+          },
+          {
+            "id": "a4-rescue-2",
+            "x": 4729.5,
+            "y": 2662.690909090909,
+            "r": 22,
+            "hp": 1450
+          },
+          {
+            "id": "a4-rescue-3",
+            "x": 4900.5,
+            "y": 2659.581818181818,
+            "r": 22,
+            "hp": 1397
+          },
+          {
+            "id": "a4-38-d-2",
+            "x": 4752.104633784746,
+            "y": 1568.8004783235933,
+            "r": 24,
+            "hp": 1559
+          }
+        ]
+      },
+      "first": {
+        "x": 4866.548688008897,
+        "y": 2660.1991147634744,
+        "grounded": true,
+        "equipment": [
+          "itm_se_05",
+          "itm_co_11"
+        ]
+      },
+      "second": {
+        "x": 4973.319479562648,
+        "y": 2658.1336104087472,
+        "grounded": true,
+        "equipment": [
+          "itm_se_05",
+          "itm_co_11"
+        ]
+      }
+    }
+  ]
+}
