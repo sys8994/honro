@@ -1,0 +1,15 @@
+# Act 4 dialogue observation guard integration
+
+Source `467a636e` integrates only the independent dialogue guard from `codex/act4-rc-stage36-37-play@68477874`, with follow-up evidence `0863e0ab`. It preserves the separately integrated bark, door and compact autosave changes in the common files. `shared/runtime/story.js` SHA-256 `f28602e6bdd1c92c3db5e31925ea6b79492368da754cf323086cf35d3f30c301`; `shared/runtime/act4-events.js` SHA-256 `692910ae45def6f37ff65291d208048b1763cf1c8cba6431b704d43cb7af7049`. The isolated QA `HONRO.html` SHA-256 `57a6d88ce2fe3c7d6b22c4daece91980af6fda8ee6c11e42b90ea96cb9334032`; this QA build is not a release.
+
+The Next operation is held for the active, eligible and unobserved Act 4 reader row; it is disabled on the rendered page until the existing observer records the row. Explicit Skip remains available and does not generate observation receipts. It addresses a demonstrated observer/input race, not the established cause of the original 37/40 missing receipts. If observation cannot happen, Next waits; the user can still explicitly skip. Screen-reader behavior and sustained missing-frame accessibility remain unverified.
+
+Independent Chromium tests on the actual stalled 40 localStorage fixture (raw SHA-256 `ac743e5d94dfac682e39964b27cf82d9b803bae95b3937cf33a0bebf25658494`), using Continue and normal camera input until natural reunion:
+
+* Physical Playwright keyboard Enter, 8× CPU stress: both reunion rows presented and none retired. The diagnostic did not observe an unpresented pending interval in this run; it therefore proves ordinary keyboard completion here, not physical-key suppression during that interval.
+* Mobile viewport 390×844 with touch, 8× CPU stress: synthetic same-event-loop Enter/Space/disabled click/Tab could not advance the pending second row; after the real observer receipt a touchscreen tap completed both rows with no retirement. These synthetic events are not physical keys or a phone test.
+* Explicit UI Skip after the first row: `.01` presented, `.02` retired; no fabricated second receipt.
+* Same-context reload without reseeding the profile: second row and text restored; real observer and Enter completed with both rows presented and none retired.
+* A separate existing 13-stage test exercised normal keyboard entry dialogue, battle save/Continue and explicit rest cancel/confirm. `tests/act4-return-event-geometry.mjs` passed. The source worker separately reported stage 37 saved-battle skip and reload tests, not a fresh full playthrough; comprehensive accessibility is not established.
+
+Observed QA `HONRO.html` SHA-256: `57a6d88ce2fe3c7d6b22c4daece91980af6fda8ee6c11e42b90ea96cb9334032`. QA web manifest SHA-256 `176526cdbfafc601f9fca9ad2885286d320ce9d1f1d68143e9e548664d125121`. Reproduce with `HONRO_QA_URL` pointing to the isolated build and the checked-in `browser-reader-{keyboard,mobile,skip,reload}.py` scripts. The saved fixture is seeded only once in the reload script; this check does not overwrite the restored battle.

@@ -121,3 +121,7 @@ The performance branch subsequently withdrew the `03fd076` prototype and restore
 ## 2026-10-31 Stage 38 A01 private replay
 
 Independent source `c3f854c4da3ea905cf2ee70495d291bc4b60bf23` integrates the narrowly gated A01 candidate `04dc7815`, not the withdrawn general snapshot. Full source/input/output hashes, 745 common-build comparisons, branch and changed-state coverage, limitations and scoped PC sample are in `STAGE38-A01-PREDICTION-REVIEW.md`. It does not establish a general prediction API, mobile performance or all-skill acceleration. Any future prediction hook that reads omitted placement vector data must be re-audited.
+
+## 2026-10-31 Act 4 reader observation guard
+
+Source `467a636e` incorporates only the observer/Next race guard; `story.js` SHA-256 `f28602e6bdd1c92c3db5e31925ea6b79492368da754cf323086cf35d3f30c301`, `act4-events.js` SHA-256 `692910ae45def6f37ff65291d208048b1763cf1c8cba6431b704d43cb7af7049`. Scope, QA build hashes, normal keyboard, touch, explicit skip, same-context reload and remaining accessibility limitations are recorded in `READER-GUARD-INTEGRATION.md`. The race is reproduced but not established as the historical missing-receipt cause. Earlier mission runs retain their recorded source.
