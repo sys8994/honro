@@ -1,0 +1,159 @@
+{
+  "kind": "read-only localStorage raw values, not UI export",
+  "label": "manual-round-1",
+  "capturedAt": 1793472724.237089,
+  "live": {
+    "round": 1,
+    "side": 0,
+    "phase": "aim",
+    "active": "archer",
+    "cls": "archer",
+    "x": 77,
+    "y": 1076.4285714285716,
+    "angle": 44,
+    "facing": 1,
+    "drop": true,
+    "support": "approved36-entry",
+    "enemyHpSum": 15354,
+    "enemyUnits": [
+      {
+        "id": "a4-36-a-1",
+        "x": 990.0000000000001,
+        "y": 1248,
+        "hp": 1559
+      },
+      {
+        "id": "a4-36-a-2",
+        "x": 1210,
+        "y": 1254,
+        "hp": 2260
+      },
+      {
+        "id": "a4-36-a-3",
+        "x": 1430.0000000000002,
+        "y": 1257.3000000000002,
+        "hp": 1792
+      },
+      {
+        "id": "a4-36-g-1",
+        "x": 2189,
+        "y": 1166.8000000000002,
+        "hp": 1559
+      },
+      {
+        "id": "a4-36-g-2",
+        "x": 2486,
+        "y": 1179,
+        "hp": 1559
+      },
+      {
+        "id": "a4-36-b-1",
+        "x": 3014.0000000000005,
+        "y": 1210.0000000000002,
+        "hp": 1559
+      },
+      {
+        "id": "a4-36-b-2",
+        "x": 3234.0000000000005,
+        "y": 1262.3600000000001,
+        "hp": 1559
+      },
+      {
+        "id": "a4-36-b-3",
+        "x": 2684,
+        "y": 1311.75,
+        "hp": 2260
+      },
+      {
+        "id": "a4-36-b-4",
+        "x": 2860.0000000000005,
+        "y": 1150.2,
+        "hp": 1247
+      }
+    ],
+    "grounded": true,
+    "can": false,
+    "dialogue": true,
+    "shots": 0,
+    "enemies": 9,
+    "health": [
+      {
+        "id": "archer",
+        "hp": 1825,
+        "dead": false,
+        "x": 77,
+        "y": 1076.4285714285716
+      },
+      {
+        "id": "mage",
+        "hp": 1978,
+        "dead": false,
+        "x": 143,
+        "y": 1078.314285714286
+      },
+      {
+        "id": "knight",
+        "hp": 3316,
+        "dead": false,
+        "x": 209.00000000000003,
+        "y": 1080.2
+      },
+      {
+        "id": "occultist",
+        "hp": 2039,
+        "dead": false,
+        "x": 275,
+        "y": 1086.0666666666666
+      }
+    ],
+    "eventState": {
+      "version": 1,
+      "clock": 0.45999999999999996,
+      "events": {
+        "door_falls": {
+          "started": false,
+          "terminal": false,
+          "presented": [],
+          "retired": []
+        }
+      },
+      "receipts": [],
+      "boat": {
+        "phase": "waiting",
+        "x": 500
+      },
+      "door": {
+        "phase": "standing",
+        "time": 0
+      },
+      "complete": false,
+      "visualDrawn": {},
+      "observed": {}
+    },
+    "seed": 19388,
+    "rng": 19388
+  },
+  "items": [
+    {
+      "key": "honro-first-act-profile-1",
+      "path": "009-1a67f556a14a-525e023b35a3c8a8648d148ef8deb0fa273713fd5bc596cfa8bce0ceda480487.raw",
+      "bytes": 77601,
+      "sha256": "525e023b35a3c8a8648d148ef8deb0fa273713fd5bc596cfa8bce0ceda480487",
+      "saved": {
+        "stage": 36,
+        "round": 1,
+        "phase": "aim",
+        "active": "archer",
+        "receipts": [],
+        "blockedShot": null,
+        "complete": false,
+        "facts": [
+          "eq_co_t3_choice"
+        ]
+      },
+      "compressedPath": "009-1a67f556a14a-525e023b35a3c8a8648d148ef8deb0fa273713fd5bc596cfa8bce0ceda480487.raw.xz.b64",
+      "xzBytes": 10108,
+      "xzSha256": "bb145c15e7f52581b6112c4b240e061e0a9417e1301802d9b7ca9b7e4e0037cf"
+    }
+  ]
+}
