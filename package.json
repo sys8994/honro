@@ -225,7 +225,12 @@
     "test:skill-modal-shell": "python -X utf8 tests/skill-modal-shell-browser.py && node tests/camp-skill-ux.mjs",
     "test:levelup-growth": "node tests/levelup-companion-growth.mjs",
     "test:levelup-growth:browser": "python -X utf8 tests/levelup-companion-growth-browser.py",
-    "test:production-contract": "node tests/production-contract.mjs"
+    "test:production-contract": "node tests/production-contract.mjs",
+    "postinstall": "node tools/act4-source/world-source.mjs materialize",
+    "act4:source:pack": "node tools/act4-source/world-source.mjs pack",
+    "act4:source:check": "node tools/act4-source/world-source.mjs check",
+    "act4:source:materialize": "node tools/act4-source/world-source.mjs materialize",
+    "test:act4-source": "node --test tests/act4-source-parts.mjs"
   },
   "devDependencies": {
     "@napi-rs/canvas": "0.1.100",

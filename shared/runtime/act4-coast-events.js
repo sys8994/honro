@@ -26,7 +26,14 @@ function fail(b,reason){const q=memory(b);if(q.complete||q.failure)return;q.fail
 function space(b,u,p,range=220,accept=null,step=32){return G.HonroTerrain.place(b,u,{x:p.x,y:p.y,maxDistance:range,clearance:15,accept,step});}
 function feet(e,u,p){Object.assign(u,{x:p.x,y:p.y,vx:0,vy:0});delete u.moveTarget;delete u.aiMove;return e.grounded(u);}
 function spend(e,u){u.moveLeft=0;u.acted=true;delete u.moveTarget;delete u.aiMove;u.vx=u.vy=0;}
-function moveNpc(e,u,dx,dt,budget){if(!alive(u))return;u.fixed=false;u.maxMove=u.maxMove||240;u.moveLeft=Math.min(budget,180);const before={x:u.x,y:u.y};const ok=e.walk(u,Math.sign(dx-u.x),Math.min(dt,Math.abs(dx-u.x)/180),!u.jumping);u.vx=0;if(ok&&!G.HonroTerrain.separated(e.b,u,u.x,u.y,12)){u.x=before.x;u.y=before.y;u.moving=0;return 0;}return ok?Math.abs(u.x-before.x):0;}
+// Artillery can compress two rescue residents before escort starts. Permit only
+// an ordinary supported step that monotonically separates that existing pair;
+// never create overlap or relax terrain/other-actor occupancy checks.
+function separatingRescueStep(e,u,before){if(e.b.honroAct4Preview!==39||!u.honroAct4Resident||!e.grounded(u))return false;
+ const overlap=(v,x,y)=>Math.abs(v.x-x)<v.r+u.r+12&&y>v.y-v.h-12&&y-u.h<v.y+12;
+ return e.b.units.every(v=>v===u||v.dead||v.honroObjectiveTarget||v.hp<=0||!overlap(v,u.x,u.y)||(v.honroAct4Resident&&overlap(v,before.x,before.y)&&Math.abs(v.x-u.x)>Math.abs(v.x-before.x)+1e-6));
+}
+function moveNpc(e,u,dx,dt,budget){if(!alive(u))return;u.fixed=false;u.maxMove=u.maxMove||240;u.moveLeft=Math.min(budget,180);const before={x:u.x,y:u.y};const ok=e.walk(u,Math.sign(dx-u.x),Math.min(dt,Math.abs(dx-u.x)/180),!u.jumping);u.vx=0;if(ok&&!G.HonroTerrain.separated(e.b,u,u.x,u.y,12)&&!separatingRescueStep(e,u,before)){u.x=before.x;u.y=before.y;u.moving=0;return 0;}return ok?Math.abs(u.x-before.x):0;}
 function tide(b){const q=memory(b),cfg=b.honroAct4Design.tide;if(!cfg)return;const t=q.tide??={phase:'low',surface:cfg.low,warningRound:cfg.warningRound,highRound:cfg.highRound,lowRound:cfg.lowRound};
  if(b.round>=cfg.warningRound&&!t.warned&&b.side===0&&b.phase==='aim'){t.phase='rising';t.surface=cfg.low-18;t.warned=true;t.warningAtRound=b.round;t.highRound=b.round+(party(b).some(u=>u.acted)?4:3);t.lowRound=t.highRound+2;t.opportunities={};}
  if(t.warned&&b.side===0&&b.phase==='aim'&&b.round<t.highRound)t.opportunities[b.round]=party(b).map(u=>u.id);
@@ -176,6 +183,26 @@ const render=G.HonroScene.prototype.render;G.HonroScene.prototype.render=functio
  if(n===40){mark('return-boat',{x:cfg.escort.boat.x,y:1940});mark('return-high',{x:3100,y:1720});mark('safe-return',{x:5630,y:1650},q.returnEscort?.phase==='safe');mark('return-ridge',{x:5900,y:1300});mark('small-dislocation',{x:5840,y:1610},closed(q,'thirteen'));}
  return out;};
 const landmark=G.HonroScene.prototype.landmark;G.HonroScene.prototype.landmark=function(c,l){const b=this.battle;if(!active(b))return landmark.call(this,c,l);const q=memory(b);if(b.honroAct4Preview===32&&l.asset?.id==='a4:door'){const t=q.shelterDoor?.time||0;c.save();const hinge=l.x-80*(l.scale??1);c.translate(hinge,l.y);c.scale(Math.max(.09,Math.cos(t*Math.PI*.48)),1);const out=landmark.call(this,c,{...l,x:l.x-hinge,y:0});c.restore();return out;}if(b.honroAct4Preview===39&&q.netOpen&&l.asset?.id==='a4-coast:net')return;return landmark.call(this,c,l);};
+// Return-inlet water is visual-only. The recovery policy is not a material,
+// so it must not be inserted into conductive/contact zones or battle saves.
+const returnWaterViews=new WeakMap();
+function returnWaterZones(b){
+ const opt=b.honroMap?.vectorReturnWater;if(b.honroAct4Preview!==40||opt?.version!==1)return [];
+ const policy=b.honroAct4Design?.waterPolicies?.find(v=>v.id===opt.policyId&&v.kind==='recover');
+ const terrain=(G.HonroTerrainDomain?.render(b)||b.terrain||[]).find(t=>t.id===opt.terrainId&&!t.oneWay&&!t.broken&&!t.honroElementCollision&&!t.honroCeiling);
+ if(!policy||!terrain||![policy.x1,policy.x2,policy.surface].every(Number.isFinite)||policy.x2<=policy.x1)return [];
+ const key=[b.sceneVersion,policy.x1,policy.x2,policy.surface].join(':'),prior=returnWaterViews.get(b);if(prior?.terrain===terrain&&prior.key===key)return prior.zones;
+ const ps=C.poly(terrain),level=policy.surface,zones=[];let run=[];
+ const emit=()=>{if(run.length>1&&run.at(-1)[0]>run[0][0]){const left=run[0][0],right=run.at(-1)[0];zones.push({id:'visual-'+policy.id+'-'+zones.length,kind:'water-pool',surface:[[left,level],[right,level]],bottom:run,points:[[left,level],[right,level],...run.slice().reverse()],honroCarvedBasin:true});}run=[];};
+ for(let i=0;i<ps.length;i++){const a=ps[i],z=ps[(i+1)%ps.length];if(z.x<=a.x)continue;let left=Math.max(policy.x1,a.x),right=Math.min(policy.x2,z.x);if(right<=left)continue;
+  const y=x=>a.y+(z.y-a.y)*(x-a.x)/(z.x-a.x);let ly=y(left),ry=y(right);if(ly<=level&&ry<=level){emit();continue;}
+  if(ly<level){left=a.x+(level-a.y)*(z.x-a.x)/(z.y-a.y);ly=level;}if(ry<level){right=a.x+(level-a.y)*(z.x-a.x)/(z.y-a.y);ry=level;}
+  if(run.length&&Math.abs(run.at(-1)[0]-left)>1e-6)emit();if(!run.length)run.push([left,ly]);run.push([right,ry]);if(ry===level)emit();
+ }emit();returnWaterViews.set(b,{terrain,key,zones});return zones;
+}
+function paintReturnWater(scene,c,b){const zones=returnWaterZones(b);if(!zones.length)return;const art=G.HonroEnvironmentArt,env=G.HonroEnvironmentRenderer.ensureBattle(b),atmosphere=G.HonroEnvironment.atmosphereAt({backdrop:b.honroBackdrop,environment:env},scene.y);
+ c.save();c.globalAlpha*=.86;for(const zone of zones)art.pool(c,zone,atmosphere,art.time(scene),{style:"coastal-dawn"});c.restore();
+}
 const live=G.HonroScene.prototype.liveWater;G.HonroScene.prototype.liveWater=function(c,b){const out=live?.call(this,c,b);if(!active(b))return out;const q=memory(b),n=b.honroAct4Preview,app=G.HonroApp,e=app.engine;q.visualDrawn??={};
  if(n===37){const {x,y}=b.honroAct4Design.signal;if(inView(app,{x,y:y-70})){const npc={...residents(b)[0],id:'a4-signal-silhouette',name:'',cls:'knight',honroType:'civilian',honroCivilian:true,hp:1,dead:false,side:2,r:19,h:88,x,y,facing:-1,honroScenePose:{kind:'point',time:.18+.22*(1+Math.sin(this.time*3))*.5}};c.save();c.globalAlpha*=.72;this.unitBody(c,npc,0);c.restore();q.visualDrawn.gesture=q.clock;}}
  if(n===35){const d=q.flaskDelivery,pair=d?{mage:e.unit(d.receiver),giver:e.unit(d.giver)}:flaskPair(e);if(pair&&(!d||d.phase!=='complete')&&alive(pair.mage)&&alive(pair.giver)){const t=d?Math.min(1,d.elapsed):0,a={x:pair.giver.x+pair.giver.facing*18,y:pair.giver.y-59},z={x:pair.mage.x+pair.mage.facing*18,y:pair.mage.y-59},p={x:a.x+(z.x-a.x)*t,y:a.y+(z.y-a.y)*t-Math.sin(t*Math.PI)*14};this.landmark(c,{asset:G.HonroAct4CoastArt.assets.find(a=>a.id==='a4-coast:breath-flask'),...p,scale:.65,rotation:0});if(d&&t===1&&!G.document.hidden&&!app.dialogue&&!app.modal.classList.contains('open')&&this.canvas.checkVisibility({checkOpacity:true,checkVisibilityCSS:true})&&unobscured(app,pair.giver)&&unobscured(app,pair.mage))d.received??={at:q.clock,positions:[{id:pair.giver.id,x:pair.giver.x,y:pair.giver.y},{id:pair.mage.id,x:pair.mage.x,y:pair.mage.y}]};}}
@@ -184,11 +211,11 @@ const live=G.HonroScene.prototype.liveWater;G.HonroScene.prototype.liveWater=fun
  if(n===39&&q.artillery?.next){const p=q.artillery.next;if(inView(app,p)){c.save();c.strokeStyle='#bf8568';c.lineWidth=3;c.setLineDash([12,9]);c.beginPath();c.ellipse(p.x,p.y+40,105,24,0,0,Math.PI*2);c.stroke();c.setLineDash([]);c.restore();p.warningSeen=true;}}
  if(n===39&&q.exitStable){const p=b.honroAct4Design.rescue.anchor;c.save();c.strokeStyle='#c2bda1';c.lineWidth=5;c.beginPath();c.moveTo(p.x-35,p.y-24);c.lineTo(p.x+25,p.y-13);c.stroke();c.restore();}
  if(n===39&&q.hand&&!q.hand.completed){const a=b.units.find(u=>u.id===q.hand.actor),d=b.units.find(u=>u.id==='a4-rescue-3');if(alive(a)&&alive(d)&&Math.abs(a.x-d.x)<180&&inView(app,{x:d.x,y:d.y-70})){c.save();c.strokeStyle='#bfae91';c.lineWidth=7;c.beginPath();c.moveTo(a.x-18,a.y-57);c.lineTo(d.x+18,d.y-55);c.stroke();c.restore();q.visualDrawn.hand=q.clock;}}
- if(n===40){const l=b.honroAct4PreviewDynamic?.find(l=>l.asset?.id==='a4:boat');if(l){this.landmark(c,{...l,x:q.returnEscort?.boatX??b.honroAct4Design.escort.boat.x,y:2010});for(const [i,u]of residents(b).slice(0,2).entries())if(u.honroAct4OnBoat)this.unit(c,{...u,honroAct4OnBoat:false,x:u.x,y:1950},false);}if(closed(q,'thirteen')){const p={x:5840,y:1610};c.save();c.strokeStyle='#405b6a';c.lineWidth=12;c.beginPath();c.moveTo(p.x,p.y-120);c.lineTo(p.x-25,p.y-62);c.lineTo(p.x+12,p.y-25);c.stroke();c.restore();}}
+ if(n===40){paintReturnWater(this,c,b);const l=b.honroAct4PreviewDynamic?.find(l=>l.asset?.id==='a4:boat');if(l){const id=b.honroMap?.vectorReturnBoatAssetId,authored=typeof id==='string'?G.HONRO_PROJECT?.library?.find(a=>a.id===id&&a.vector&&!a.collision?.length):null;this.landmark(c,{...l,asset:authored||l.asset,x:q.returnEscort?.boatX??b.honroAct4Design.escort.boat.x,y:2010});for(const [i,u]of residents(b).slice(0,2).entries())if(u.honroAct4OnBoat)this.unit(c,{...u,honroAct4OnBoat:false,x:u.x,y:1950},false);}if(closed(q,'thirteen')){const p={x:5840,y:1610};c.save();c.strokeStyle='#405b6a';c.lineWidth=12;c.beginPath();c.moveTo(p.x,p.y-120);c.lineTo(p.x-25,p.y-62);c.lineTo(p.x+12,p.y-25);c.stroke();c.restore();}}
  return out;};
 P.rowAllowed=function(app,id){const b=app.engine?.b;if(!active(b))return false;const q=memory(b);if(['A4.S33.TIDE.01','A4.S39.TIDE.01'].includes(id))return q.tide?.phase==='rising';if(id==='A4.S38.VOICE.03')return !!q.pursuitSeen&&foes(b).some(u=>u.honroAct4Pursuer&&u.x>5230&&u.x<6500);if(id==='A4.S39.RELEASE.01')return !!q.netOpen&&!!q.npcRouteObserved&&routeClear(b);return true;};
 function attachApp(){const input=Object.getPrototypeOf(G.HonroApp).canInput;Object.getPrototypeOf(G.HonroApp).canInput=function(...args){if(active(this.engine?.b)&&memory(this.engine.b).vista?.active)return false;return input.apply(this,args);};}
 if(G.HonroApp)attachApp();else G.HONRO_APP_READY.then(attachApp);
 G.document.addEventListener('keydown',ev=>{const app=G.HonroApp,b=app?.engine?.b;if(ev.code==='Escape'&&active(b)&&memory(b).vista?.active){memory(b).vista.active=false;memory(b).vistaDone=true;Object.assign(app.scene,{manual:false,x:app.engine.active.x,y:app.engine.active.y-90});}});
-P.coast={fact,water,tide,complete,fail,space,routeClear,rescueSafe};
+P.coast={fact,water,tide,complete,fail,space,routeClear,rescueSafe,returnWaterZones};
 })(globalThis);

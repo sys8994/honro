@@ -60,11 +60,34 @@ export function segRect(a: Vec, b: Vec, x: number, y: number, w: number, h: numb
     }
     return lo >= 0 && lo <= 1 ? { t: lo, n } : null;
 }
-export function segmentTerrain(a: Vec, b: Vec, t: Terrain, pad = 0, skipEdges?: number[]): { t: number; n: Vec; } | null {
+
+// Exact snapshot validation deliberately supports in-place authored vertex edits.
+const edgeGroupsCache=new WeakMap<Vec[],{coords:number[];groups:{lo:number;hi:number;left:number;right:number;top:number;bottom:number;span:number}[]}>();
+function edgeGroups(pts:Vec[]){
+ let c=edgeGroupsCache.get(pts),valid=!!c&&c.coords.length===pts.length*2;
+ if(valid)for(let i=0;i<pts.length;i++)if(c!.coords[i*2]!==pts[i].x||c!.coords[i*2+1]!==pts[i].y){valid=false;break;}
+ if(valid)return c!.groups;
+ const coords:number[]=[],groups:{lo:number;hi:number;left:number;right:number;top:number;bottom:number;span:number}[]=[];
+ for(const p of pts)coords.push(p.x,p.y);
+ for(let lo=0;lo<pts.length;lo+=16){const hi=Math.min(lo+16,pts.length);let left=Infinity,right=-Infinity,top=Infinity,bottom=-Infinity,span=0;
+  for(let i=lo;i<hi;i++){const p=pts[i],q=pts[(i+1)%pts.length];left=Math.min(left,p.x,q.x);right=Math.max(right,p.x,q.x);top=Math.min(top,p.y,q.y);bottom=Math.max(bottom,p.y,q.y);span=Math.max(span,Math.abs(q.x-p.x)+Math.abs(q.y-p.y));}
+  groups.push({lo,hi,left,right,top,bottom,span});
+ }
+ edgeGroupsCache.set(pts,{coords,groups});return groups;
+}
+
+function indexedSegmentTerrain(a: Vec, b: Vec, t: Terrain, pad = 0, skipEdges?: number[]): { t: number; n: Vec; } | null {
     if (!skipEdges && !t.vertices?.length && !t.slope) return segRect(a,b,t.x,t.y,t.w,t.h,pad);
     const pts=poly(t),dx=b.x-a.x,dy=b.y-a.y;let best:{t:number;n:Vec}|null=null;
     const left=Math.min(a.x,b.x)-pad,right=Math.max(a.x,b.x)+pad,top=Math.min(a.y,b.y)-pad,bottom=Math.max(a.y,b.y)+pad;
-    for(let i=0;i<pts.length;i++){
+    const groups=pts.length>=32?edgeGroups(pts):[{lo:0,hi:pts.length,left:-Infinity,right:Infinity,top:-Infinity,bottom:Infinity,span:Infinity}];
+    const groupLeft=Math.min(a.x,b.x)-Math.abs(pad),groupRight=Math.max(a.x,b.x)+Math.abs(pad),groupTop=Math.min(a.y,b.y)-Math.abs(pad),groupBottom=Math.max(a.y,b.y)+Math.abs(pad);
+    for(const group of groups){
+      // Deliberately wider than the original per-edge gate, including signed
+      // padding and floating-point reassociation of the maximum edge span.
+      const margin=2e-7+2e-8*(Math.abs(dx)+Math.abs(dy)+group.span);
+      if(group.right<groupLeft-margin||group.left>groupRight+margin||group.bottom<groupTop-margin||group.top>groupBottom+margin)continue;
+      for(let i=group.lo;i<group.hi;i++){
         if(skipEdges?.includes(i))continue;
         const p=pts[i],q=pts[(i+1)%pts.length],ex=q.x-p.x,ey=q.y-p.y;
         // Detailed ground contours have many distant edges. Reject those before
@@ -80,6 +103,7 @@ export function segmentTerrain(a: Vec, b: Vec, t: Terrain, pad = 0, skipEdges?: 
         const st=((px-a.x)*ey-(py-a.y)*ex)/den,et=((px-a.x)*dy-(py-a.y)*dx)/den;
         if(st>=-1e-8&&st<=1+1e-8&&et>=-1e-8&&et<=1+1e-8&&(!best||st<best.t))best={t:clamp(st,0,1),n:{x:nx,y:ny}};
     }
+    }
     return best;
 }
 /** Projectile-only platform policy. Body movement and sight keep their own rules.
@@ -92,11 +116,17 @@ export function segmentProjectileTerrain(a: Vec, b: Vec, t: Terrain, pad = 0): {
     return segmentPlatformSurface(a,b,t,pad);
 }
 /** Upward-facing platform entry for bodies, independent of weapon policy. */
-export function segmentPlatformSurface(a: Vec, b: Vec, t: Terrain, pad = 0): { t: number; n: Vec; } | null {
+function indexedSegmentPlatformSurface(a: Vec, b: Vec, t: Terrain, pad = 0): { t: number; n: Vec; } | null {
     const pts=poly(t),dx=b.x-a.x,dy=b.y-a.y,epsilon=1e-7;
     let best:{t:number;n:Vec}|null=null;
-    for(let i=0;i<pts.length;i++){
+    const margin=Math.abs(pad)*2+epsilon*(2+Math.abs(dx)+Math.abs(dy));
+    const left=Math.min(a.x,b.x)-margin,right=Math.max(a.x,b.x)+margin,top=Math.min(a.y,b.y)-margin,bottom=Math.max(a.y,b.y)+margin;
+    const groups=pts.length>=32?edgeGroups(pts):[{lo:0,hi:pts.length,left:-Infinity,right:Infinity,top:-Infinity,bottom:Infinity,span:Infinity}];
+    for(const group of groups){
+      if(group.right<left||group.left>right||group.bottom<top||group.top>bottom)continue;
+      for(let i=group.lo;i<group.hi;i++){
         const p=pts[i],q=pts[(i+1)%pts.length],ex=q.x-p.x,ey=q.y-p.y;
+        if(Math.max(p.x,q.x)<left||Math.min(p.x,q.x)>right||Math.max(p.y,q.y)<top||Math.min(p.y,q.y)>bottom)continue;
         if(ex<=epsilon)continue; // Clockwise screen-space: only top faces.
         const len=Math.hypot(ex,ey),nx=ey/len,ny=-ex/len,approach=dx*nx+dy*ny;
         if(approach>=-epsilon)continue;
@@ -112,6 +142,7 @@ export function segmentPlatformSurface(a: Vec, b: Vec, t: Terrain, pad = 0): { t
         const cornerPad=t.vertices?.length||t.slope?0:pad;
         if(along < -cornerPad-epsilon||along > len+cornerPad+epsilon)continue;
         best={t:clamp(time,0,1),n:{x:nx,y:ny}};
+    }
     }
     return best;
 }
@@ -158,4 +189,53 @@ export function joystickGesture(dx:number,dy:number,range:number,previous?:Joyst
  else if(Math.abs(visualX)>=JOYSTICK_FACE_ENGAGE)facingIntent=Math.sign(visualX);
  return {intent,x:allowMove?axes.x:0,y:intent==='undecided'?0:axes.y,
   visualX,visualY,moving:allowMove&&axes.moving,facingIntent:intent==='aimOnly'?facingIntent:0};
+}
+
+export function segmentTerrain(a: Vec, b: Vec, t: Terrain, pad = 0, skipEdges?: number[]): { t: number; n: Vec; } | null {
+    if(t.vertices && t.vertices.length>=32)return indexedSegmentTerrain(a,b,t,pad,skipEdges);
+    if (!skipEdges && !t.vertices?.length && !t.slope) return segRect(a,b,t.x,t.y,t.w,t.h,pad);
+    const pts=poly(t),dx=b.x-a.x,dy=b.y-a.y;let best:{t:number;n:Vec}|null=null;
+    const left=Math.min(a.x,b.x)-pad,right=Math.max(a.x,b.x)+pad,top=Math.min(a.y,b.y)-pad,bottom=Math.max(a.y,b.y)+pad;
+    for(let i=0;i<pts.length;i++){
+        if(skipEdges?.includes(i))continue;
+        const p=pts[i],q=pts[(i+1)%pts.length],ex=q.x-p.x,ey=q.y-p.y;
+        // Detailed ground contours have many distant edges. Reject those before
+        // normalising; retain the narrow phase's extended endpoint tolerance.
+        const margin=1e-7+1e-8*(Math.abs(dx)+Math.abs(dy)+Math.abs(ex)+Math.abs(ey));
+        if(Math.max(p.x,q.x)<left-margin||Math.min(p.x,q.x)>right+margin||Math.max(p.y,q.y)<top-margin||Math.min(p.y,q.y)>bottom+margin)continue;
+        const len=Math.hypot(ex,ey);if(len<1e-8)continue;
+        const nx=ey/len,ny=-ex/len;
+        // Critical RC11 rule: resting on or moving tangentially along a polygon must not collide with its supporting face.
+        // Only motions entering the solid can hit that edge. This removes the move/jump/fire lock on polygon tops.
+        if(dx*nx+dy*ny>=-1e-8)continue;
+        const px=p.x+nx*pad,py=p.y+ny*pad,den=dx*ey-dy*ex;if(Math.abs(den)<1e-9)continue;
+        const st=((px-a.x)*ey-(py-a.y)*ex)/den,et=((px-a.x)*dy-(py-a.y)*dx)/den;
+        if(st>=-1e-8&&st<=1+1e-8&&et>=-1e-8&&et<=1+1e-8&&(!best||st<best.t))best={t:clamp(st,0,1),n:{x:nx,y:ny}};
+    }
+    return best;
+}
+
+export function segmentPlatformSurface(a: Vec, b: Vec, t: Terrain, pad = 0): { t: number; n: Vec; } | null {
+    if(t.vertices && t.vertices.length>=32)return indexedSegmentPlatformSurface(a,b,t,pad);
+    const pts=poly(t),dx=b.x-a.x,dy=b.y-a.y,epsilon=1e-7;
+    let best:{t:number;n:Vec}|null=null;
+    for(let i=0;i<pts.length;i++){
+        const p=pts[i],q=pts[(i+1)%pts.length],ex=q.x-p.x,ey=q.y-p.y;
+        if(ex<=epsilon)continue; // Clockwise screen-space: only top faces.
+        const len=Math.hypot(ex,ey),nx=ey/len,ny=-ex/len,approach=dx*nx+dy*ny;
+        if(approach>=-epsilon)continue;
+        const start=(a.x-p.x)*nx+(a.y-p.y)*ny-pad;
+        if(start < -epsilon)continue;
+        const time=Math.max(0,start)/-approach;
+        if(time>1+epsilon||best&&time>=best.t)continue;
+        const x=a.x+dx*time-nx*pad,y=a.y+dy*time-ny*pad;
+        const along=((x-p.x)*ex+(y-p.y)*ey)/len;
+        // Keep the existing narrow phase's footprint: boxes have padded corners,
+        // authored polygon edges end at their endpoints. Extending polygon tops
+        // sideways would add a new blocker where the old solid already allowed a shot.
+        const cornerPad=t.vertices?.length||t.slope?0:pad;
+        if(along < -cornerPad-epsilon||along > len+cornerPad+epsilon)continue;
+        best={t:clamp(time,0,1),n:{x:nx,y:ny}};
+    }
+    return best;
 }

@@ -1,10 +1,12 @@
-/** Build boundary for new Stage31 work. The already-published bad baseline is
+import {materializeWorld} from '../act4-source/world-source.mjs';
+/** Build boundary for new Stage31 work. The already-published legacy baseline is
  * recognized only so unrelated fixes remain deployable; it is NOT approved. */
 import {readFile} from 'node:fs/promises';
 import {createHash} from 'node:crypto';
 import {runtimeDigest} from './probes.mjs';
 const hash=v=>createHash('sha256').update(JSON.stringify(v)).digest('hex');
 export function stagePayload(world){const stage=world.stages.find(s=>s.metadata.stageId===31),ids=new Set([...(stage.elements||[]),...(stage.environment?.placements||[])].map(v=>v.assetId));return{stage,assets:world.library.filter(a=>ids.has(a.id)).sort((a,b)=>a.id.localeCompare(b.id))};}
+await materializeWorld();
 const world=JSON.parse(await readFile('shared/data/act4/world.json','utf8')),policy=JSON.parse(await readFile('tools/stage31/release-policy.json','utf8')),payload=stagePayload(world);
 if(hash(payload)===policy.legacyUnapprovedSha256){console.log('Stage31: unchanged legacy baseline (NOT design-approved); unrelated build permitted.');}
 else{

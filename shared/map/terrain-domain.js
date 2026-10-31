@@ -188,8 +188,36 @@ function materialLandmarks(b){
 // its old bottom is a color/depth sample, never a visible rectangular edge.
 const waterViews=new WeakMap();
 function materialWaterZone(b,z){
+ // Opt-in inland shoreline paint only: keep the existing bottom grounded and
+ // lower the upper painted edge into it. Never extend water onto dry ground.
+ const taper=b.honroMap?.vectorWaterInsetTaper;
+ if(active(b)&&taper?.version===1&&taper.side==='left'&&taper.zoneId===z.id&&z.kind==='water-pool'&&z.surface?.length&&z.bottom?.length&&Number.isFinite(taper.width)&&taper.width>0){
+  let views=waterViews.get(b);if(!views){views=new WeakMap();waterViews.set(b,views);}const prior=views.get(z);
+  if(prior?.taper===taper&&prior.width===taper.width&&prior.version===b.sceneVersion)return prior.zone;
+  const left=z.surface[0][0],right=z.surface.at(-1)[0],top=z.surface[0][1],width=Math.min(taper.width,(right-left)/4),bottom=z.bottom;
+  if(!(right>left)||bottom[0][0]!==left||!(bottom[0][1]>top))return z;
+  const shore=Math.max(top,bottom[0][1]-2),zone={...z,points:[[left,shore],[left+width,top],[right,top],...bottom.slice().reverse().map(p=>p.slice())]};
+  // Surface/gradient datum and bottom are unchanged; only the visible clip
+  // slopes inward. Simulation/contact/ripples still receive the original z.
+  views.set(z,{taper,width:taper.width,version:b.sceneVersion,zone});return zone;
+ }
+ const continuation=b.honroMap?.vectorWaterContinuation;
+ if(active(b)&&continuation?.version===1&&continuation.side==='right'&&continuation.zoneId===z.id&&z.kind==='water-pool'&&z.surface?.length&&z.bottom?.length){
+  let views=waterViews.get(b);if(!views){views=new WeakMap();waterViews.set(b,views);}const prior=views.get(z);
+  if(prior?.bounds===b.honroTerrainBounds&&prior.continuation===continuation&&prior.source===b.honroWorldTerrain&&prior.version===b.sceneVersion)return prior.zone;
+  const source=(b.honroWorldTerrain||[]).find(t=>t.id===z.support),ps=source&&G.HONRO_CORE?.poly(source);
+  if(!ps?.length)return z;
+  const top=z.surface[0][1],left=z.surface[0][0],right=z.surface.at(-1)[0],bottom=z.bottom.map(p=>p.slice()),extra=[];
+  for(let i=0;i<ps.length;i++){const a=ps[i],v=ps[(i+1)%ps.length];if(v.x>a.x&&v.x>right)extra.push([v.x,Math.max(top,v.y)]);}
+  extra.sort((a,b)=>a[0]-b[0]);if(!extra.length)return z;
+  for(const v of extra)if(v[0]>bottom.at(-1)[0])bottom.push(v);
+  const end=bottom.at(-1)[0],zone={...z,points:[[left,top],[end,top],...bottom.slice().reverse()],surface:[[left,top],[end,top]],bottom,honroWaterPaintBottom:Math.max(...z.bottom.map(p=>p[1])),honroWaterPaintLeft:left,honroWaterPaintRight:right,honroCarvedBasin:true};
+  // Display-only continuation follows the existing world terrain. Conductive
+  // water, recovery zones and all original material records remain untouched.
+  views.set(z,{bounds:b.honroTerrainBounds,continuation,source:b.honroWorldTerrain,version:b.sceneVersion,zone});return zone;
+ }
  if(!active(b)||b.honroCustom||![25,27].includes(b.honroStage)||z.id!=='deep-basin-water')return z;
- let views=waterViews.get(b);if(!views){views=new WeakMap();waterViews.set(b,views);}let prior=views.get(z);if(prior?.bounds===b.honroTerrainBounds)return prior.zone;
+ let views=waterViews.get(b);if(!views){views=new WeakMap();waterViews.set(b,views);}let prior=views.get(z);if(prior?.bounds===b.honroTerrainBounds&&!prior.continuation)return prior.zone;
  const bounds=b.honroTerrainBounds,top=z.surface[0][1],bottom=Math.max(...z.points.map(p=>p[1]));
  const zone={...z,points:[[bounds.left,top],[bounds.right,top],[bounds.right,bounds.bottom],[bounds.left,bounds.bottom]],surface:[[bounds.left,top],[bounds.right,top]],bottom:[[bounds.left,bounds.bottom],[bounds.right,bounds.bottom]],honroWaterPaintBottom:bottom,honroWaterPaintLeft:Math.min(...z.points.map(p=>p[0])),honroWaterPaintRight:Math.max(...z.points.map(p=>p[0])),honroCarvedBasin:true};
  views.set(z,{bounds,zone});return zone;

@@ -67,7 +67,7 @@
         storyScale(){const {w,h}=this.size(),short=Math.min(w,h),base=Math.max(.55,Math.min(.82,.55+(short-390)*.00045));return h>w*1.1?base*.9:base;}
         storyFocus(id,duration=500,targetScale=null,close=false){this.storyTween={kind:'unit',id,start:performance.now(),duration,from:{x:this.x,y:this.y,scale:this.scale},targetScale:close?Math.max(.3,Math.min(1.15,targetScale||1.05)):Math.min(targetScale??Infinity,this.storyScale())};this.manual=false;this.speakerId=null;this.speakerUntil=0;}
         storyFocusPoint(x,y,duration=500,targetScale=null){const {h}=this.size(),scale=targetScale==null?this.storyScale():Math.max(.3,Math.min(1.15,targetScale));this.storyTween={kind:'static',start:performance.now(),duration,from:{x:this.x,y:this.y,scale:this.scale},to:{x,y:y-h*.10/scale,scale},manual:false};this.manual=false;this.speakerId=null;this.speakerUntil=0;}
-        storyRelease(camera,duration=450){if(!camera||G.HonroAttackCamera&&!G.HonroAttackCamera.canRestore(this,camera))return;if(G.matchMedia?.('(prefers-reduced-motion: reduce)').matches)duration=1;this.storyTween={kind:'static',start:performance.now(),duration,from:{x:this.x,y:this.y,scale:this.scale},to:{x:camera.x,y:camera.y,scale:camera.scale},manual:camera.manual};}
+        storyRelease(camera,duration=450){if(!camera||G.HonroAttackCamera&&!G.HonroAttackCamera.canRestore(this,camera))return;if(G.matchMedia?.('(prefers-reduced-motion: reduce)').matches)duration=1;this.storyTween={kind:'static',released:true,start:performance.now(),duration,from:{x:this.x,y:this.y,scale:this.scale},to:{x:camera.x,y:camera.y,scale:camera.scale},manual:camera.manual};}
         event(ev) { if (this.arcFx) { this.arcFx.event(ev); return; } if (ev.type === 'fx') this.effects.push({ ...ev, life: 0 }); }
         size() { const r = this.canvas.getBoundingClientRect(), d = Math.min(devicePixelRatio || 1, 1.7), w = Math.max(1, r.width), h = Math.max(1, r.height); if (this.canvas.width !== Math.round(w * d) || this.canvas.height !== Math.round(h * d)) {
             this.canvas.width = Math.round(w * d);
@@ -76,6 +76,10 @@
         world(sx, sy) { const r = this.canvas.getBoundingClientRect(); return G.HonroCamera.world(this,r.width,r.height,sx,sy); }
         zoom(f, sx, sy, gesture=false) { G.HonroReinforcementCamera?.cancel(this,gesture);const a = this.world(sx, sy), r = this.canvas.getBoundingClientRect(),limits=G.HonroBounds.zoomLimits(r.width); this.scale = Math.max(limits.min, Math.min(limits.max, this.scale * f)); this.x = a.x - (sx - r.width / 2) / this.scale; this.y = a.y - (sy - r.height / 2) / this.scale; if(this.battle)G.HonroBounds.constrain(this,this.battle);this.manual = true; }
         _makeLayerCanvas(w,h){const cv=document.createElement('canvas');cv.width=Math.max(1,Math.ceil(w));cv.height=Math.max(1,Math.ceil(h));return cv;}
+        // Cache-owned offscreen surfaces only. drawImage consumes a snapshot;
+        // release after the last draw, before dropping the final cache reference.
+        _releaseRasterCanvas(cv){if(cv&&cv!==this.canvas){cv.width=1;cv.height=1;}}
+        _releaseDomainTiles(){if(!this._domainTiles)return;for(const tile of this._domainTiles.tiles.values())this._releaseRasterCanvas(tile.canvas);this._domainTiles.tiles.clear();this._domainTiles=null;}
         _worldRasterScale(b,w){if(G.HonroTerrainDomain?.active(b))return Math.min(.68,Math.max(.05,2**(Math.floor(Math.log2(this.scale*1.25)*4)/4)));const mobile=w<900,maxPixels=mobile?3000000:6000000,desired=this.scale>.72?.68:this.scale>.38?.56:.42,cap=Math.sqrt(maxPixels/Math.max(1,b.width*b.height));return Math.max(.28,Math.min(desired,cap));}
         _isForeground(l){return l.asset?.params?.semanticLayer==='FORE'&&!l.asset?.collision?.length&&!l.collisionIds?.length&&!l.honroElementCollision&&G.HonroVisualStyle?.classify(l,this.battle)!=='gameplay';}
         _landmarkLayer(c,landmarks,layer){c.save();for(const l of landmarks){const foreground=this._isForeground(l);if(layer==='foreground'?!foreground:foreground||(l.layer||'back')!==layer)continue;c.globalAlpha=l.opacity??1;if(l.honroTerrainMaterialClip){c.save();c.clip(l.honroTerrainMaterialClip);this.landmark?.(c,l);c.restore();}else this.landmark?.(c,l);}c.restore();}
@@ -101,6 +105,7 @@
         }
         _worldCacheKey(b,w){const rs=this._worldRasterScale(b,w);return`${b.session||b.honroStage}:${b.sceneVersion||0}:${b.width}x${b.height}:${rs.toFixed(3)}:${G.HonroAct2SpatialArt?.appearanceKey(b)||''}`;}
         _buildStaticWorld(b,w){
+            this._releaseDomainTiles();
             const key=this._worldCacheKey(b,w);if(this._staticWorldCache?.key===key){this._cacheStats.worldHits++;return this._staticWorldCache;}
             const t0=performance.now(),rs=this._worldRasterScale(b,w),cv=this._makeLayerCanvas(b.width*rs,b.height*rs),cc=cv.getContext('2d',{alpha:true});cc.setTransform(rs,0,0,rs,0,0);cc.clearRect(0,0,b.width,b.height);
             const oldAll=this._staticCacheBuild;this._staticCacheBuild=true;
@@ -112,7 +117,7 @@
             this._landmarkLayer(cc,b.honroLandmarks||[],'prop');
             this._landmarkLayer(cc,b.honroLandmarks||[],'front');
             this.terrainReadability?.(cc,b);
-            this._staticCacheBuild=oldAll;this._staticWorldCache={key,canvas:cv,rs,w:b.width,h:b.height,bytes:cv.width*cv.height*4};this._cacheStats.worldBuilds++;this._cacheStats.worldBuildMs+=performance.now()-t0;return this._staticWorldCache;
+            this._staticCacheBuild=oldAll;this._releaseRasterCanvas(this._staticWorldCache?.canvas);this._staticWorldCache={key,canvas:cv,rs,w:b.width,h:b.height,bytes:cv.width*cv.height*4};this._cacheStats.worldBuilds++;this._cacheStats.worldBuildMs+=performance.now()-t0;return this._staticWorldCache;
         }
         // A second-level raster avoids resampling large static tiles/SVG scenery
         // on every idle/aim frame. Require two identical views before allocation:
@@ -156,7 +161,7 @@
             // Pixel-aligned clips consume each gutter sample exactly once.
             const rs=this._worldRasterScale(b,w),px=512,gutter=2,size=px/rs,v=G.HonroBounds.viewport(this,w,h),domain=b.honroTerrainBounds,
                 key=this._worldCacheKey(b,w),limit=w<900?12:24;
-            let q=this._domainTiles;if(!q||q.key!==key){q=this._domainTiles={key,tiles:new Map(),rs};this._cacheStats.worldBuilds++;}
+            let q=this._domainTiles;if(!q||q.key!==key){this._releaseDomainTiles();q=this._domainTiles={key,tiles:new Map(),rs};this._cacheStats.worldBuilds++;}
             const minX=Math.floor(Math.max(v.left,domain.left)/size),maxX=Math.floor(Math.min(v.right,domain.right)/size),
                 minY=Math.floor(Math.max(v.top,domain.top)/size),maxY=Math.floor(Math.min(v.bottom,domain.bottom)/size),terrain=G.HonroTerrainDomain.render(b);
             const old=this._staticCacheBuild;this._staticCacheBuild=true;
@@ -175,7 +180,8 @@
                 c.save();c.beginPath();c.rect((sx-matrix.e)/matrix.a,(sy-matrix.f)/matrix.d,(ex-sx)/matrix.a,(ey-sy)/matrix.d);c.clip();c.drawImage(tile.canvas,0,0,px+gutter*2,px+gutter*2,tile.left-gutter/rs,tile.top-gutter/rs,size+gutter*2/rs,size+gutter*2/rs);c.restore();
             }
             this._staticCacheBuild=old;
-            while(q.tiles.size>limit)q.tiles.delete(q.tiles.keys().next().value);
+            while(q.tiles.size>limit){const oldest=q.tiles.keys().next().value;this._releaseRasterCanvas(q.tiles.get(oldest).canvas);q.tiles.delete(oldest);}
+            this._releaseRasterCanvas(this._staticWorldCache?.canvas);
             this._staticWorldCache={key,rs,bytes:q.tiles.size*(px+gutter*2)**2*4};
         }
         renderCacheStats(){return{...this._cacheStats,screenWorldBytes:this._screenWorldCache?.bytes||0,screenBackgroundBytes:this._screenBackgroundCache?.bytes||0,screenForegroundBytes:this._screenForegroundCache?.bytes||0,worldBytes:this._staticWorldCache?.bytes||0,worldScale:this._staticWorldCache?.rs||0,backgroundBytes:this._backgroundCache?.bytes||0};}

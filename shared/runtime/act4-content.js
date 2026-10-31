@@ -7,7 +7,7 @@ function prepare(b,p){if(!active(b))return;const q=state(p),n=b.honroStage;if(b.
  b.honroAct4EntryResidents=copy(b.units.filter(u=>u.honroAct4Resident).map(u=>({id:u.id,hp:u.hp,dead:u.dead})));
  if(n===40&&q.rescued?.sourceRun&&q.completed[39]?.sourceRun===q.rescued.sourceRun)b.honroAct4EntryProof={fromStage:39,targetStage:40,sourceRun:q.rescued.sourceRun,runId:q.runId};
 }
-G.HonroAct4Content={enabled,active,state,prepare,revision:1};if(!enabled)return;
+G.HonroAct4Content={enabled,active,state,prepare,revision:3};if(!enabled)return;
 for(const st of G.HONRO_ACT4_CONTENT)if(!G.HONRO_CONTENT.stages.some(s=>s.id===st.id))G.HONRO_CONTENT.stages.push(copy(st));
 G.HONRO_CONTENT.acts.push({id:4,name:'끊긴 옛길',first:31,last:40});G.HONRO_CONTENT.nextAct={id:5,available:false,requires:[40]};
 // Use the existing future Act4 level plan; its terminal plateau is unchanged.

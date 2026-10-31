@@ -25,8 +25,11 @@ function waterfall(c,x,y,width,height,a,time,{staticOnly=false}={}){
  c.restore();if(!staticOnly)fog(c,x,y+height,width*3,width*.85,a.farFogColor,a.mistStrength+.25,time,10);
 }
 function poolData(z){if(waterPaths.has(z))return waterPaths.get(z);const p=new Path2D(),pts=z.points;pts.forEach(([x,y],i)=>i?p.lineTo(x,y):p.moveTo(x,y));p.closePath();const xs=pts.map(p=>p[0]),ys=pts.map(p=>p[1]),left=Math.min(...xs),right=Math.max(...xs),top=z.surface?.[0]?.[1]??Math.min(...ys),bottom=Math.max(...ys),edge=new Path2D();edge.moveTo(left,top);edge.bezierCurveTo(left+(right-left)*.3,top+3,left+(right-left)*.7,top-2,right,top);const data={clip:p,edge,left,right,top,bottom};waterPaths.set(z,data);return data;}
-function pool(c,z,a,time){if(!z.points?.length)return;const q=poolData(z),{left,right,top,bottom}=q,w=right-left,h=Math.max(20,bottom-top);c.save();c.clip(q.clip);
- const localBottom=z.honroWaterPaintBottom??bottom,paintBottom=z.honroWaterPaintBottom?localBottom+5200:bottom,localRatio=z.honroWaterPaintBottom?(localBottom-top)/Math.max(20,paintBottom-top):1,stops=[[0,E.mixColor(a.waterBaseColor,a.waterHighlightColor,.28)],[.24*localRatio,a.waterBaseColor],[localRatio,a.shadowTint]];if(z.honroWaterPaintBottom)stops.push([1,'#071a23']);
+function pool(c,z,a,time,{style,wetFilm=false}={}){if(!z.points?.length)return;const q=poolData(z),{left,right,top,bottom}=q,w=right-left,h=Math.max(20,bottom-top),coastal=style==='coastal-dawn';c.save();c.clip(q.clip);
+ // Conductive shallow material follows sloping ground: a wet film, not a second flat pool.
+ // Visual-only; preserve the original clip, surface geometry, water/contact simulation.
+ if(coastal&&(wetFilm||z.kind==='shallow-water')&&z.bottom?.length){const d=Math.max(4,Math.min(24,z.depth||18)),film=new Path2D();z.bottom.forEach(([x,y],i)=>i?film.lineTo(x,y-d):film.moveTo(x,y-d));for(const [x,y] of [...z.bottom].reverse())film.lineTo(x,y);film.closePath();c.fillStyle=color(E.mixColor(a.waterBaseColor,a.waterHighlightColor,.35),.48);c.fill(film);const edge=new Path2D();z.bottom.forEach(([x,y],i)=>i?edge.lineTo(x,y-d*.5):edge.moveTo(x,y-d*.5));c.strokeStyle=color(a.waterHighlightColor,.35);c.lineWidth=2;c.stroke(edge);c.restore();return;}
+ const localBottom=z.honroWaterPaintBottom??bottom,paintBottom=z.honroWaterPaintBottom?localBottom+5200:coastal?top+640:bottom,localRatio=z.honroWaterPaintBottom?(localBottom-top)/Math.max(20,paintBottom-top):1,stops=[[0,E.mixColor(a.waterBaseColor,a.waterHighlightColor,.28)],[.24*localRatio,a.waterBaseColor],[localRatio,a.shadowTint]];if(z.honroWaterPaintBottom)stops.push([1,'#071a23']);
  c.fillStyle=gradient(c,0,top,0,paintBottom,stops);c.fillRect(left,top,w,h);
  // Optional authored reflections share this clipped water pass. No opt-in data means
  // exactly the legacy pixels below; shapes fade before the bottom and never add a surface.
@@ -40,9 +43,9 @@ function pool(c,z,a,time){if(!z.points?.length)return;const q=poolData(z),{left,
  // Five broad highlights, regardless of pool width; no per-frame wave mesh.
  const ripple=path('ripple','M-1 0 C-.75 -.5 -.4 .6 0 0 S.7 -.5 1 0');
  const motionLeft=z.honroWaterPaintLeft??left,motionWidth=(z.honroWaterPaintRight??right)-motionLeft;
- for(let i=0;i<5;i++){c.save();const phase=(time*(.055+i*.006)+i*.21)%1;c.translate(motionLeft+motionWidth*(.15+phase*.75),top+5+i*Math.min(12,h*.12));c.scale(motionWidth*(.12+(i%3)*.06),2+i*.35);c.globalAlpha*=.24+Math.sin(phase*Math.PI)*.40;c.strokeStyle=i%2?a.waterHighlightColor:a.waterfallFoamColor;c.lineWidth=1.1;c.stroke(ripple);c.restore();}
- c.fillStyle=gradient(c,left+w*.6,top,left+w*.6,top+h*.7,[[0,color(a.keyLightColor,.17)],[1,color(a.keyLightColor,0)]]);if(!z.honroCarvedBasin)c.fillRect(left+w*.61,top,w*.16,h*.7);
- c.strokeStyle=color(a.shadowTint,.85);c.lineWidth=4;c.stroke(q.edge);c.strokeStyle=color(a.waterHighlightColor,.70);c.lineWidth=1.5;c.stroke(q.edge);c.restore();
+ for(let i=0;i<(coastal?3:5);i++){c.save();const phase=(time*(.055+i*.006)+i*.21)%1;c.translate(motionLeft+motionWidth*(.15+phase*.75),top+5+i*Math.min(12,h*.12));c.scale(motionWidth*(.12+(i%3)*.06),2+i*.35);c.globalAlpha*=coastal?.12+Math.sin(phase*Math.PI)*.16:.24+Math.sin(phase*Math.PI)*.40;c.strokeStyle=i%2?a.waterHighlightColor:a.waterfallFoamColor;c.lineWidth=1.1;c.stroke(ripple);c.restore();}
+ if(coastal){glow(c,left+w*.62,top+h*.2,Math.min(w*.32,420),Math.min(h*.6,200),a.keyLightColor,.09);}else{c.fillStyle=gradient(c,left+w*.6,top,left+w*.6,top+h*.7,[[0,color(a.keyLightColor,.17)],[1,color(a.keyLightColor,0)]]);if(!z.honroCarvedBasin)c.fillRect(left+w*.61,top,w*.16,h*.7);}
+ c.strokeStyle=color(a.shadowTint,coastal?.42:.85);c.lineWidth=4;c.stroke(q.edge);c.strokeStyle=color(a.waterHighlightColor,coastal?.36:.70);c.lineWidth=1.5;c.stroke(q.edge);c.restore();
 }
 G.HonroEnvironmentArt={color,gradient,glow,fog,shaft,waterfall,pool,poolData,time:scene=>reduced?.matches?1.2:scene.time,stats:()=>({paths:paths.size,fogCards:cards.size,fogBytes:cards.size*512*128*4})};
 })(globalThis);

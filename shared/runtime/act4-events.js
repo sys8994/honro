@@ -65,7 +65,12 @@ function interact(app=G.HonroApp,probe=false){const b=app.engine?.b;if(!(b?.honr
 }
 const draw=G.HonroScene.prototype.landmark;
 G.HonroScene.prototype.landmark=function(c,l){const b=this.battle,q=(b?.honroCustom||b?.honroAct4Official===1)&&b.honroAct4Preview===36?memory(b):null;
- if(q&&l.asset?.id==='a4:door'){const f=q.door.time??0,next={...l,rotation:Math.PI*.49*(f*f*(3-2*f))};draw.call(this,c,next);const app=G.HonroApp;if(q.door.phase==='fallen'&&app?.scene===this&&inView(app,{x:l.x,y:l.y-70})&&q.door.renderedAt===undefined)q.door.renderedAt=q.clock;return;}
+ if((b?.honroCustom||b?.honroAct4Official===1)&&b.honroAct4Preview===31&&l.asset?.id==='a4:boat'){const id=b.honroMap?.vectorArrivalBoatAssetId,paint=typeof id==='string'?G.HONRO_PROJECT?.library?.find(a=>a.id===id&&a.vector&&!a.collision?.length):null;if(paint)return draw.call(this,c,{...l,asset:paint});}
+ if(q&&l.asset?.id==='a4:door'){const id=b.honroMap?.vectorDoorAssetId,authored=typeof id==='string'?G.HONRO_PROJECT?.library?.find(a=>a.id===id&&a.vector&&!a.collision?.length):null,paint=authored||l.asset;const f=q.door.time??0,progress=f*f*(3-2*f),next={...l,asset:paint,rotation:Math.PI*.49*progress},pose=paint.params?.act4DoorForeshortening;
+  // Art-only world-Y compression AFTER the original rotation, about the same
+  // authored ground pivot. Existing instances, timing and event receipts stay untouched.
+  const sy=pose?.version===1&&Number.isFinite(pose.fallenScaleY)&&pose.fallenScaleY>0&&pose.fallenScaleY<=1?1-(1-pose.fallenScaleY)*Math.max(0,Math.min(1,progress)):1;
+  if(sy!==1){c.save();c.translate(l.x,l.y);c.scale(1,sy);c.translate(-l.x,-l.y);try{draw.call(this,c,next);}finally{c.restore();}}else draw.call(this,c,next);const app=G.HonroApp;if(q.door.phase==='fallen'&&app?.scene===this&&inView(app,{x:l.x,y:l.y-70})&&q.door.renderedAt===undefined)q.door.renderedAt=q.clock;return;}
  return draw.call(this,c,l);
 };
 const render=G.HonroScene.prototype.render;
