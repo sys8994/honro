@@ -1,9 +1,7 @@
-# Interim runtime deployment / 임시 런타임 배포 상태
+# Published runtime source synchronization / 배포 런타임 소스 동기화
 
-The compiled game and Workshop include the current 40-stage campaign, including updated Act 4 (stages 31–40), from source commit cd84db106f04224d5b9a145890bf11c5d8eb0ebc.
+Commit `cc33f68a` published the compiled game and Workshop before its matching source was synchronized. Commit `f86d149de3d39e46b613cd4ab5b03f7aab77c2d7` restores the preserved matching runtime sources and the exact Act 4 world from verified source parts. A normal build reproduces all 732 active published files and all 40 chapter JSON objects; see [the recovery and verification record](game/docs/ACT4_PUBLISHED_SOURCE_PARITY.md).
 
-This commit publishes the tested runtime snapshot first for user inspection. Full source, authoring assets, cleanup, tests and documentation synchronization is still in progress in a separate publication. Existing repository paths are preserved here; this is NOT a claim that all current source/provenance has been synchronized.
+This restores source/build parity for the existing published game. It does not introduce the later Act 4 art candidates, establish full mission or art approval, or claim that every historical authoring asset and review record has been synchronized. The Stage 31 release guard still requires evidence for a changed stage.
 
-Do not rebuild the older source in this interim repository over the updated compiled web/ release. Wait for the complete source synchronization commit before rebuilding. Runtime files and retained older runtime graph assets remain available for cached clients.
-
-게임·Workshop의 컴파일 결과와 4막을 먼저 배포했습니다. 전체 소스·제작 원본·정리 내역의 원격 동기화는 계속 진행 중입니다. 이 중간 커밋에 남아 있는 구 소스로 다시 빌드해 최신 web/ 결과를 덮어쓰지 마십시오.
+기존 배포본의 런타임 소스와 4막 월드 원본을 복원해 정식 빌드 결과가 배포된 활성 파일 732개와 일치함을 확인했습니다. 새 미술 후보의 배포나 4막 전체 플레이 합격은 아닙니다. 과거 제작 원본·검수 기록 전체가 동기화됐다는 뜻도 아닙니다.
