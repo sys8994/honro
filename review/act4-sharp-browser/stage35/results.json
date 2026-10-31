@@ -1,0 +1,1372 @@
+{
+  "candidateSha256": "ab9500ad770ab021e6abab5de524dacca8f00a3b6a4c9095e4437330fb27e853",
+  "candidateBytes": 1880503,
+  "scope": "Overview uses a diagnostic zoom that may be below allowed minimum. All other views apply focus/containment clamp. Local browser QA import and static engine/render/grounding only, not ordinary story/combat/boarding or deployed build",
+  "rows": [
+    {
+      "stage": 35,
+      "preview": 35,
+      "custom": false,
+      "units": [
+        {
+          "id": "archer",
+          "side": 0,
+          "x": 180,
+          "y": 2251.2,
+          "hp": 1085,
+          "grounded": true,
+          "support": "approved35-first-clearing"
+        },
+        {
+          "id": "mage",
+          "side": 0,
+          "x": 294,
+          "y": 2247.78,
+          "hp": 1158,
+          "grounded": true,
+          "support": "approved35-first-clearing"
+        },
+        {
+          "id": "knight",
+          "side": 0,
+          "x": 408,
+          "y": 2244.36,
+          "hp": 1762,
+          "grounded": true,
+          "support": "approved35-first-clearing"
+        },
+        {
+          "id": "occultist",
+          "side": 0,
+          "x": 522,
+          "y": 2243.15,
+          "hp": 1324,
+          "grounded": true,
+          "support": "approved35-first-clearing"
+        },
+        {
+          "id": "a4-35-r-1",
+          "side": 1,
+          "x": 930,
+          "y": 2248.1428571428573,
+          "hp": 1559,
+          "grounded": true,
+          "support": "approved35-first-clearing"
+        },
+        {
+          "id": "a4-35-r-2",
+          "side": 1,
+          "x": 1050,
+          "y": 2253.8571428571427,
+          "hp": 1792,
+          "grounded": true,
+          "support": "approved35-first-clearing"
+        },
+        {
+          "id": "a4-35-a-1",
+          "side": 1,
+          "x": 1230,
+          "y": 2263.714285714286,
+          "hp": 1559,
+          "grounded": true,
+          "support": "approved35-first-clearing"
+        },
+        {
+          "id": "a4-35-a-2",
+          "side": 1,
+          "x": 1365,
+          "y": 2271.4285714285716,
+          "hp": 2260,
+          "grounded": true,
+          "support": "approved35-first-clearing"
+        },
+        {
+          "id": "a4-35-a-3",
+          "side": 1,
+          "x": 1500,
+          "y": 2260,
+          "hp": 1559,
+          "grounded": true,
+          "support": "approved35-first-clearing"
+        },
+        {
+          "id": "a4-35-k-1",
+          "side": 1,
+          "x": 1950,
+          "y": 2280,
+          "hp": 1559,
+          "grounded": true,
+          "support": "approved35-first-clearing"
+        },
+        {
+          "id": "a4-35-k-2",
+          "side": 1,
+          "x": 2115,
+          "y": 2317.125,
+          "hp": 1559,
+          "grounded": true,
+          "support": "approved35-first-clearing"
+        },
+        {
+          "id": "a4-35-k-3",
+          "side": 1,
+          "x": 2295,
+          "y": 2352.6666666666665,
+          "hp": 2260,
+          "grounded": true,
+          "support": "approved35-first-clearing"
+        },
+        {
+          "id": "a4-35-b-1",
+          "side": 1,
+          "x": 1830,
+          "y": 1587.2,
+          "hp": 1559,
+          "grounded": true,
+          "support": "approved35-middle-clearing"
+        },
+        {
+          "id": "a4-35-b-2",
+          "side": 1,
+          "x": 1950,
+          "y": 1584,
+          "hp": 1559,
+          "grounded": true,
+          "support": "approved35-middle-clearing"
+        },
+        {
+          "id": "a4-35-b-3",
+          "side": 1,
+          "x": 2070,
+          "y": 1582.5,
+          "hp": 1559,
+          "grounded": true,
+          "support": "approved35-middle-clearing"
+        },
+        {
+          "id": "a4-35-b-4",
+          "side": 1,
+          "x": 2190,
+          "y": 1581,
+          "hp": 1559,
+          "grounded": true,
+          "support": "approved35-middle-clearing"
+        },
+        {
+          "id": "a4-35-b-5",
+          "side": 1,
+          "x": 2310,
+          "y": 1572.4285714285713,
+          "hp": 1792,
+          "grounded": true,
+          "support": "approved35-middle-clearing"
+        },
+        {
+          "id": "a4-35-b-6",
+          "side": 1,
+          "x": 2430,
+          "y": 1561.2,
+          "hp": 2260,
+          "grounded": true,
+          "support": "approved35-middle-clearing"
+        },
+        {
+          "id": "a4-35-b-7",
+          "side": 1,
+          "x": 2700,
+          "y": 1452.2727272727273,
+          "hp": 2494,
+          "grounded": true,
+          "support": "approved35-fallen-bamboo"
+        },
+        {
+          "id": "a4-35-c-1",
+          "side": 1,
+          "x": 3630,
+          "y": 1632,
+          "hp": 1559,
+          "grounded": true,
+          "support": "approved35-right-clearing"
+        },
+        {
+          "id": "a4-35-c-2",
+          "side": 1,
+          "x": 3930,
+          "y": 1697,
+          "hp": 2494,
+          "grounded": true,
+          "support": "approved35-right-clearing"
+        },
+        {
+          "id": "a4-35-c-3",
+          "side": 1,
+          "x": 4260,
+          "y": 1786,
+          "hp": 1559,
+          "grounded": true,
+          "support": "approved35-right-clearing"
+        },
+        {
+          "id": "a4-35-d-1",
+          "side": 1,
+          "x": 2880,
+          "y": 837.1764705882352,
+          "hp": 1559,
+          "grounded": true,
+          "support": "approved35-upper-clearing"
+        },
+        {
+          "id": "a4-35-d-2",
+          "side": 1,
+          "x": 3030,
+          "y": 840.6,
+          "hp": 2260,
+          "grounded": true,
+          "support": "approved35-upper-clearing"
+        },
+        {
+          "id": "a4-35-d-3",
+          "side": 1,
+          "x": 3180,
+          "y": 843.6,
+          "hp": 1792,
+          "grounded": true,
+          "support": "approved35-upper-clearing"
+        },
+        {
+          "id": "a4-35-d-4",
+          "side": 1,
+          "x": 3330,
+          "y": 847.5,
+          "hp": 1559,
+          "grounded": true,
+          "support": "approved35-upper-clearing"
+        },
+        {
+          "id": "a4-35-d-5",
+          "side": 1,
+          "x": 3480,
+          "y": 855,
+          "hp": 1559,
+          "grounded": true,
+          "support": "approved35-upper-clearing"
+        },
+        {
+          "id": "a4-35-e-1",
+          "side": 1,
+          "x": 3690,
+          "y": 877.875,
+          "hp": 1792,
+          "grounded": true,
+          "support": "approved35-upper-clearing"
+        },
+        {
+          "id": "a4-35-e-2",
+          "side": 1,
+          "x": 3810,
+          "y": 900.375,
+          "hp": 1559,
+          "grounded": true,
+          "support": "approved35-upper-clearing"
+        },
+        {
+          "id": "a4-35-e-3",
+          "side": 1,
+          "x": 3930,
+          "y": 929.4,
+          "hp": 2260,
+          "grounded": true,
+          "support": "approved35-upper-clearing"
+        },
+        {
+          "id": "a4-35-e-4",
+          "side": 1,
+          "x": 4050,
+          "y": 960.4285714285714,
+          "hp": 1559,
+          "grounded": true,
+          "support": "approved35-upper-clearing"
+        },
+        {
+          "id": "a4-35-e-5",
+          "side": 1,
+          "x": 4170,
+          "y": 927.2857142857143,
+          "hp": 1247,
+          "grounded": false,
+          "support": null
+        },
+        {
+          "id": "a4-35-e-6",
+          "side": 1,
+          "x": 4290,
+          "y": 1017,
+          "hp": 1559,
+          "grounded": true,
+          "support": "approved35-upper-clearing"
+        },
+        {
+          "id": "a4-35-e-7",
+          "side": 1,
+          "x": 4410,
+          "y": 1041,
+          "hp": 1559,
+          "grounded": true,
+          "support": "approved35-upper-clearing"
+        }
+      ],
+      "terrain": 23,
+      "landmarks": 2,
+      "water": null,
+      "scaleBounds": {
+        "min": 0.21176470588235294,
+        "max": 1.65,
+        "tactical": 0.21176470588235294,
+        "readability": 0.056818181818181816
+      },
+      "environment": null,
+      "viewport": [
+        1440,
+        900
+      ],
+      "dpr": 1,
+      "shots": [
+        {
+          "name": "whole",
+          "x": 2304,
+          "y": 1536,
+          "scale": 0.29296875,
+          "viewport": {
+            "left": -153.5999999999999,
+            "right": 4761.6,
+            "top": 223.57333333333327,
+            "bottom": 2848.4266666666667
+          }
+        },
+        {
+          "name": "normal-center",
+          "x": 2304,
+          "y": 1536,
+          "scale": 0.65,
+          "viewport": {
+            "left": 1196.3076923076924,
+            "right": 3411.6923076923076,
+            "top": 944.4615384615385,
+            "bottom": 2127.5384615384614
+          }
+        },
+        {
+          "name": "max-center",
+          "x": 2304,
+          "y": 1536,
+          "scale": 1.65,
+          "viewport": {
+            "left": 1867.6363636363635,
+            "right": 2740.3636363636365,
+            "top": 1302.969696969697,
+            "bottom": 1769.030303030303
+          }
+        },
+        {
+          "name": "min-left",
+          "x": -320,
+          "y": 1536,
+          "scale": 0.21176470588235294,
+          "viewport": {
+            "left": -3720,
+            "right": 3080,
+            "top": -279.69444444444457,
+            "bottom": 3351.6944444444443
+          }
+        },
+        {
+          "name": "min-right",
+          "x": 4928,
+          "y": 1536,
+          "scale": 0.21176470588235294,
+          "viewport": {
+            "left": 1528,
+            "right": 8328,
+            "top": -279.69444444444457,
+            "bottom": 3351.6944444444443
+          }
+        },
+        {
+          "name": "min-top",
+          "x": 2304,
+          "y": -1800,
+          "scale": 0.21176470588235294,
+          "viewport": {
+            "left": -1096,
+            "right": 5704,
+            "top": -3615.6944444444443,
+            "bottom": 15.69444444444457
+          }
+        },
+        {
+          "name": "min-bottom",
+          "x": 2304,
+          "y": 3312,
+          "scale": 0.21176470588235294,
+          "viewport": {
+            "left": -1096,
+            "right": 5704,
+            "top": 1496.3055555555554,
+            "bottom": 5127.694444444444
+          }
+        }
+      ],
+      "backgroundDecode": [
+        {
+          "key": "act4-estuary.webp",
+          "width": 2173,
+          "height": 724
+        },
+        {
+          "key": "act4-far-bamboo.webp",
+          "width": 1536,
+          "height": 1024
+        },
+        {
+          "key": "act4-far-inland.webp",
+          "width": 1536,
+          "height": 1024
+        },
+        {
+          "key": "act4-far-coast.webp",
+          "width": 1536,
+          "height": 1024
+        },
+        {
+          "key": "cave-entrance.webp",
+          "width": 2048,
+          "height": 683
+        }
+      ]
+    },
+    {
+      "stage": 35,
+      "preview": 35,
+      "custom": false,
+      "units": [
+        {
+          "id": "archer",
+          "side": 0,
+          "x": 180,
+          "y": 2251.2,
+          "hp": 1085,
+          "grounded": true,
+          "support": "approved35-first-clearing"
+        },
+        {
+          "id": "mage",
+          "side": 0,
+          "x": 294,
+          "y": 2247.78,
+          "hp": 1158,
+          "grounded": true,
+          "support": "approved35-first-clearing"
+        },
+        {
+          "id": "knight",
+          "side": 0,
+          "x": 408,
+          "y": 2244.36,
+          "hp": 1762,
+          "grounded": true,
+          "support": "approved35-first-clearing"
+        },
+        {
+          "id": "occultist",
+          "side": 0,
+          "x": 522,
+          "y": 2243.15,
+          "hp": 1324,
+          "grounded": true,
+          "support": "approved35-first-clearing"
+        },
+        {
+          "id": "a4-35-r-1",
+          "side": 1,
+          "x": 930,
+          "y": 2248.1428571428573,
+          "hp": 1559,
+          "grounded": true,
+          "support": "approved35-first-clearing"
+        },
+        {
+          "id": "a4-35-r-2",
+          "side": 1,
+          "x": 1050,
+          "y": 2253.8571428571427,
+          "hp": 1792,
+          "grounded": true,
+          "support": "approved35-first-clearing"
+        },
+        {
+          "id": "a4-35-a-1",
+          "side": 1,
+          "x": 1230,
+          "y": 2263.714285714286,
+          "hp": 1559,
+          "grounded": true,
+          "support": "approved35-first-clearing"
+        },
+        {
+          "id": "a4-35-a-2",
+          "side": 1,
+          "x": 1365,
+          "y": 2271.4285714285716,
+          "hp": 2260,
+          "grounded": true,
+          "support": "approved35-first-clearing"
+        },
+        {
+          "id": "a4-35-a-3",
+          "side": 1,
+          "x": 1500,
+          "y": 2260,
+          "hp": 1559,
+          "grounded": true,
+          "support": "approved35-first-clearing"
+        },
+        {
+          "id": "a4-35-k-1",
+          "side": 1,
+          "x": 1950,
+          "y": 2280,
+          "hp": 1559,
+          "grounded": true,
+          "support": "approved35-first-clearing"
+        },
+        {
+          "id": "a4-35-k-2",
+          "side": 1,
+          "x": 2115,
+          "y": 2317.125,
+          "hp": 1559,
+          "grounded": true,
+          "support": "approved35-first-clearing"
+        },
+        {
+          "id": "a4-35-k-3",
+          "side": 1,
+          "x": 2295,
+          "y": 2352.6666666666665,
+          "hp": 2260,
+          "grounded": true,
+          "support": "approved35-first-clearing"
+        },
+        {
+          "id": "a4-35-b-1",
+          "side": 1,
+          "x": 1830,
+          "y": 1587.2,
+          "hp": 1559,
+          "grounded": true,
+          "support": "approved35-middle-clearing"
+        },
+        {
+          "id": "a4-35-b-2",
+          "side": 1,
+          "x": 1950,
+          "y": 1584,
+          "hp": 1559,
+          "grounded": true,
+          "support": "approved35-middle-clearing"
+        },
+        {
+          "id": "a4-35-b-3",
+          "side": 1,
+          "x": 2070,
+          "y": 1582.5,
+          "hp": 1559,
+          "grounded": true,
+          "support": "approved35-middle-clearing"
+        },
+        {
+          "id": "a4-35-b-4",
+          "side": 1,
+          "x": 2190,
+          "y": 1581,
+          "hp": 1559,
+          "grounded": true,
+          "support": "approved35-middle-clearing"
+        },
+        {
+          "id": "a4-35-b-5",
+          "side": 1,
+          "x": 2310,
+          "y": 1572.4285714285713,
+          "hp": 1792,
+          "grounded": true,
+          "support": "approved35-middle-clearing"
+        },
+        {
+          "id": "a4-35-b-6",
+          "side": 1,
+          "x": 2430,
+          "y": 1561.2,
+          "hp": 2260,
+          "grounded": true,
+          "support": "approved35-middle-clearing"
+        },
+        {
+          "id": "a4-35-b-7",
+          "side": 1,
+          "x": 2700,
+          "y": 1452.2727272727273,
+          "hp": 2494,
+          "grounded": true,
+          "support": "approved35-fallen-bamboo"
+        },
+        {
+          "id": "a4-35-c-1",
+          "side": 1,
+          "x": 3630,
+          "y": 1632,
+          "hp": 1559,
+          "grounded": true,
+          "support": "approved35-right-clearing"
+        },
+        {
+          "id": "a4-35-c-2",
+          "side": 1,
+          "x": 3930,
+          "y": 1697,
+          "hp": 2494,
+          "grounded": true,
+          "support": "approved35-right-clearing"
+        },
+        {
+          "id": "a4-35-c-3",
+          "side": 1,
+          "x": 4260,
+          "y": 1786,
+          "hp": 1559,
+          "grounded": true,
+          "support": "approved35-right-clearing"
+        },
+        {
+          "id": "a4-35-d-1",
+          "side": 1,
+          "x": 2880,
+          "y": 837.1764705882352,
+          "hp": 1559,
+          "grounded": true,
+          "support": "approved35-upper-clearing"
+        },
+        {
+          "id": "a4-35-d-2",
+          "side": 1,
+          "x": 3030,
+          "y": 840.6,
+          "hp": 2260,
+          "grounded": true,
+          "support": "approved35-upper-clearing"
+        },
+        {
+          "id": "a4-35-d-3",
+          "side": 1,
+          "x": 3180,
+          "y": 843.6,
+          "hp": 1792,
+          "grounded": true,
+          "support": "approved35-upper-clearing"
+        },
+        {
+          "id": "a4-35-d-4",
+          "side": 1,
+          "x": 3330,
+          "y": 847.5,
+          "hp": 1559,
+          "grounded": true,
+          "support": "approved35-upper-clearing"
+        },
+        {
+          "id": "a4-35-d-5",
+          "side": 1,
+          "x": 3480,
+          "y": 855,
+          "hp": 1559,
+          "grounded": true,
+          "support": "approved35-upper-clearing"
+        },
+        {
+          "id": "a4-35-e-1",
+          "side": 1,
+          "x": 3690,
+          "y": 877.875,
+          "hp": 1792,
+          "grounded": true,
+          "support": "approved35-upper-clearing"
+        },
+        {
+          "id": "a4-35-e-2",
+          "side": 1,
+          "x": 3810,
+          "y": 900.375,
+          "hp": 1559,
+          "grounded": true,
+          "support": "approved35-upper-clearing"
+        },
+        {
+          "id": "a4-35-e-3",
+          "side": 1,
+          "x": 3930,
+          "y": 929.4,
+          "hp": 2260,
+          "grounded": true,
+          "support": "approved35-upper-clearing"
+        },
+        {
+          "id": "a4-35-e-4",
+          "side": 1,
+          "x": 4050,
+          "y": 960.4285714285714,
+          "hp": 1559,
+          "grounded": true,
+          "support": "approved35-upper-clearing"
+        },
+        {
+          "id": "a4-35-e-5",
+          "side": 1,
+          "x": 4170,
+          "y": 927.2857142857143,
+          "hp": 1247,
+          "grounded": false,
+          "support": null
+        },
+        {
+          "id": "a4-35-e-6",
+          "side": 1,
+          "x": 4290,
+          "y": 1017,
+          "hp": 1559,
+          "grounded": true,
+          "support": "approved35-upper-clearing"
+        },
+        {
+          "id": "a4-35-e-7",
+          "side": 1,
+          "x": 4410,
+          "y": 1041,
+          "hp": 1559,
+          "grounded": true,
+          "support": "approved35-upper-clearing"
+        }
+      ],
+      "terrain": 23,
+      "landmarks": 2,
+      "water": null,
+      "scaleBounds": {
+        "min": 0.057352941176470586,
+        "max": 1.65,
+        "tactical": 0.057352941176470586,
+        "readability": 0.056818181818181816
+      },
+      "environment": null,
+      "viewport": [
+        390,
+        844
+      ],
+      "dpr": 2,
+      "shots": [
+        {
+          "name": "whole",
+          "x": 2304,
+          "y": 1536,
+          "scale": 0.08463541666666667,
+          "viewport": {
+            "left": 0,
+            "right": 4608,
+            "top": -2292.184615384615,
+            "bottom": 5364.1846153846145
+          }
+        },
+        {
+          "name": "normal-center",
+          "x": 2304,
+          "y": 1536,
+          "scale": 0.65,
+          "viewport": {
+            "left": 2004,
+            "right": 2604,
+            "top": 1037.5384615384614,
+            "bottom": 2034.4615384615386
+          }
+        },
+        {
+          "name": "max-center",
+          "x": 2304,
+          "y": 1536,
+          "scale": 1.65,
+          "viewport": {
+            "left": 2185.818181818182,
+            "right": 2422.181818181818,
+            "top": 1339.6363636363635,
+            "bottom": 1732.3636363636365
+          }
+        },
+        {
+          "name": "min-left",
+          "x": -320,
+          "y": 1536,
+          "scale": 0.057352941176470586,
+          "viewport": {
+            "left": -3720,
+            "right": 3080,
+            "top": -4113.2307692307695,
+            "bottom": 7185.2307692307695
+          }
+        },
+        {
+          "name": "min-right",
+          "x": 4928,
+          "y": 1536,
+          "scale": 0.057352941176470586,
+          "viewport": {
+            "left": 1528,
+            "right": 8328,
+            "top": -4113.2307692307695,
+            "bottom": 7185.2307692307695
+          }
+        },
+        {
+          "name": "min-top",
+          "x": 2304,
+          "y": -1800,
+          "scale": 0.057352941176470586,
+          "viewport": {
+            "left": -1096,
+            "right": 5704,
+            "top": -7449.2307692307695,
+            "bottom": 3849.2307692307695
+          }
+        },
+        {
+          "name": "min-bottom",
+          "x": 2304,
+          "y": 3312,
+          "scale": 0.057352941176470586,
+          "viewport": {
+            "left": -1096,
+            "right": 5704,
+            "top": -2337.2307692307695,
+            "bottom": 8961.23076923077
+          }
+        }
+      ],
+      "backgroundDecode": [
+        {
+          "key": "act4-estuary.webp",
+          "width": 2173,
+          "height": 724
+        },
+        {
+          "key": "act4-far-bamboo.webp",
+          "width": 1536,
+          "height": 1024
+        },
+        {
+          "key": "act4-far-inland.webp",
+          "width": 1536,
+          "height": 1024
+        },
+        {
+          "key": "act4-far-coast.webp",
+          "width": 1536,
+          "height": 1024
+        },
+        {
+          "key": "cave-entrance.webp",
+          "width": 2048,
+          "height": 683
+        }
+      ]
+    },
+    {
+      "stage": 35,
+      "preview": 35,
+      "custom": false,
+      "units": [
+        {
+          "id": "archer",
+          "side": 0,
+          "x": 180,
+          "y": 2251.2,
+          "hp": 1085,
+          "grounded": true,
+          "support": "approved35-first-clearing"
+        },
+        {
+          "id": "mage",
+          "side": 0,
+          "x": 294,
+          "y": 2247.78,
+          "hp": 1158,
+          "grounded": true,
+          "support": "approved35-first-clearing"
+        },
+        {
+          "id": "knight",
+          "side": 0,
+          "x": 408,
+          "y": 2244.36,
+          "hp": 1762,
+          "grounded": true,
+          "support": "approved35-first-clearing"
+        },
+        {
+          "id": "occultist",
+          "side": 0,
+          "x": 522,
+          "y": 2243.15,
+          "hp": 1324,
+          "grounded": true,
+          "support": "approved35-first-clearing"
+        },
+        {
+          "id": "a4-35-r-1",
+          "side": 1,
+          "x": 930,
+          "y": 2248.1428571428573,
+          "hp": 1559,
+          "grounded": true,
+          "support": "approved35-first-clearing"
+        },
+        {
+          "id": "a4-35-r-2",
+          "side": 1,
+          "x": 1050,
+          "y": 2253.8571428571427,
+          "hp": 1792,
+          "grounded": true,
+          "support": "approved35-first-clearing"
+        },
+        {
+          "id": "a4-35-a-1",
+          "side": 1,
+          "x": 1230,
+          "y": 2263.714285714286,
+          "hp": 1559,
+          "grounded": true,
+          "support": "approved35-first-clearing"
+        },
+        {
+          "id": "a4-35-a-2",
+          "side": 1,
+          "x": 1365,
+          "y": 2271.4285714285716,
+          "hp": 2260,
+          "grounded": true,
+          "support": "approved35-first-clearing"
+        },
+        {
+          "id": "a4-35-a-3",
+          "side": 1,
+          "x": 1500,
+          "y": 2260,
+          "hp": 1559,
+          "grounded": true,
+          "support": "approved35-first-clearing"
+        },
+        {
+          "id": "a4-35-k-1",
+          "side": 1,
+          "x": 1950,
+          "y": 2280,
+          "hp": 1559,
+          "grounded": true,
+          "support": "approved35-first-clearing"
+        },
+        {
+          "id": "a4-35-k-2",
+          "side": 1,
+          "x": 2115,
+          "y": 2317.125,
+          "hp": 1559,
+          "grounded": true,
+          "support": "approved35-first-clearing"
+        },
+        {
+          "id": "a4-35-k-3",
+          "side": 1,
+          "x": 2295,
+          "y": 2352.6666666666665,
+          "hp": 2260,
+          "grounded": true,
+          "support": "approved35-first-clearing"
+        },
+        {
+          "id": "a4-35-b-1",
+          "side": 1,
+          "x": 1830,
+          "y": 1587.2,
+          "hp": 1559,
+          "grounded": true,
+          "support": "approved35-middle-clearing"
+        },
+        {
+          "id": "a4-35-b-2",
+          "side": 1,
+          "x": 1950,
+          "y": 1584,
+          "hp": 1559,
+          "grounded": true,
+          "support": "approved35-middle-clearing"
+        },
+        {
+          "id": "a4-35-b-3",
+          "side": 1,
+          "x": 2070,
+          "y": 1582.5,
+          "hp": 1559,
+          "grounded": true,
+          "support": "approved35-middle-clearing"
+        },
+        {
+          "id": "a4-35-b-4",
+          "side": 1,
+          "x": 2190,
+          "y": 1581,
+          "hp": 1559,
+          "grounded": true,
+          "support": "approved35-middle-clearing"
+        },
+        {
+          "id": "a4-35-b-5",
+          "side": 1,
+          "x": 2310,
+          "y": 1572.4285714285713,
+          "hp": 1792,
+          "grounded": true,
+          "support": "approved35-middle-clearing"
+        },
+        {
+          "id": "a4-35-b-6",
+          "side": 1,
+          "x": 2430,
+          "y": 1561.2,
+          "hp": 2260,
+          "grounded": true,
+          "support": "approved35-middle-clearing"
+        },
+        {
+          "id": "a4-35-b-7",
+          "side": 1,
+          "x": 2700,
+          "y": 1452.2727272727273,
+          "hp": 2494,
+          "grounded": true,
+          "support": "approved35-fallen-bamboo"
+        },
+        {
+          "id": "a4-35-c-1",
+          "side": 1,
+          "x": 3630,
+          "y": 1632,
+          "hp": 1559,
+          "grounded": true,
+          "support": "approved35-right-clearing"
+        },
+        {
+          "id": "a4-35-c-2",
+          "side": 1,
+          "x": 3930,
+          "y": 1697,
+          "hp": 2494,
+          "grounded": true,
+          "support": "approved35-right-clearing"
+        },
+        {
+          "id": "a4-35-c-3",
+          "side": 1,
+          "x": 4260,
+          "y": 1786,
+          "hp": 1559,
+          "grounded": true,
+          "support": "approved35-right-clearing"
+        },
+        {
+          "id": "a4-35-d-1",
+          "side": 1,
+          "x": 2880,
+          "y": 837.1764705882352,
+          "hp": 1559,
+          "grounded": true,
+          "support": "approved35-upper-clearing"
+        },
+        {
+          "id": "a4-35-d-2",
+          "side": 1,
+          "x": 3030,
+          "y": 840.6,
+          "hp": 2260,
+          "grounded": true,
+          "support": "approved35-upper-clearing"
+        },
+        {
+          "id": "a4-35-d-3",
+          "side": 1,
+          "x": 3180,
+          "y": 843.6,
+          "hp": 1792,
+          "grounded": true,
+          "support": "approved35-upper-clearing"
+        },
+        {
+          "id": "a4-35-d-4",
+          "side": 1,
+          "x": 3330,
+          "y": 847.5,
+          "hp": 1559,
+          "grounded": true,
+          "support": "approved35-upper-clearing"
+        },
+        {
+          "id": "a4-35-d-5",
+          "side": 1,
+          "x": 3480,
+          "y": 855,
+          "hp": 1559,
+          "grounded": true,
+          "support": "approved35-upper-clearing"
+        },
+        {
+          "id": "a4-35-e-1",
+          "side": 1,
+          "x": 3690,
+          "y": 877.875,
+          "hp": 1792,
+          "grounded": true,
+          "support": "approved35-upper-clearing"
+        },
+        {
+          "id": "a4-35-e-2",
+          "side": 1,
+          "x": 3810,
+          "y": 900.375,
+          "hp": 1559,
+          "grounded": true,
+          "support": "approved35-upper-clearing"
+        },
+        {
+          "id": "a4-35-e-3",
+          "side": 1,
+          "x": 3930,
+          "y": 929.4,
+          "hp": 2260,
+          "grounded": true,
+          "support": "approved35-upper-clearing"
+        },
+        {
+          "id": "a4-35-e-4",
+          "side": 1,
+          "x": 4050,
+          "y": 960.4285714285714,
+          "hp": 1559,
+          "grounded": true,
+          "support": "approved35-upper-clearing"
+        },
+        {
+          "id": "a4-35-e-5",
+          "side": 1,
+          "x": 4170,
+          "y": 927.2857142857143,
+          "hp": 1247,
+          "grounded": false,
+          "support": null
+        },
+        {
+          "id": "a4-35-e-6",
+          "side": 1,
+          "x": 4290,
+          "y": 1017,
+          "hp": 1559,
+          "grounded": true,
+          "support": "approved35-upper-clearing"
+        },
+        {
+          "id": "a4-35-e-7",
+          "side": 1,
+          "x": 4410,
+          "y": 1041,
+          "hp": 1559,
+          "grounded": true,
+          "support": "approved35-upper-clearing"
+        }
+      ],
+      "terrain": 23,
+      "landmarks": 2,
+      "water": null,
+      "scaleBounds": {
+        "min": 0.057352941176470586,
+        "max": 1.65,
+        "tactical": 0.057352941176470586,
+        "readability": 0.056818181818181816
+      },
+      "environment": null,
+      "viewport": [
+        390,
+        844
+      ],
+      "dpr": 3,
+      "shots": [
+        {
+          "name": "whole",
+          "x": 2304,
+          "y": 1536,
+          "scale": 0.08463541666666667,
+          "viewport": {
+            "left": 0,
+            "right": 4608,
+            "top": -2292.184615384615,
+            "bottom": 5364.1846153846145
+          }
+        },
+        {
+          "name": "normal-center",
+          "x": 2304,
+          "y": 1536,
+          "scale": 0.65,
+          "viewport": {
+            "left": 2004,
+            "right": 2604,
+            "top": 1037.5384615384614,
+            "bottom": 2034.4615384615386
+          }
+        },
+        {
+          "name": "max-center",
+          "x": 2304,
+          "y": 1536,
+          "scale": 1.65,
+          "viewport": {
+            "left": 2185.818181818182,
+            "right": 2422.181818181818,
+            "top": 1339.6363636363635,
+            "bottom": 1732.3636363636365
+          }
+        },
+        {
+          "name": "min-left",
+          "x": -320,
+          "y": 1536,
+          "scale": 0.057352941176470586,
+          "viewport": {
+            "left": -3720,
+            "right": 3080,
+            "top": -4113.2307692307695,
+            "bottom": 7185.2307692307695
+          }
+        },
+        {
+          "name": "min-right",
+          "x": 4928,
+          "y": 1536,
+          "scale": 0.057352941176470586,
+          "viewport": {
+            "left": 1528,
+            "right": 8328,
+            "top": -4113.2307692307695,
+            "bottom": 7185.2307692307695
+          }
+        },
+        {
+          "name": "min-top",
+          "x": 2304,
+          "y": -1800,
+          "scale": 0.057352941176470586,
+          "viewport": {
+            "left": -1096,
+            "right": 5704,
+            "top": -7449.2307692307695,
+            "bottom": 3849.2307692307695
+          }
+        },
+        {
+          "name": "min-bottom",
+          "x": 2304,
+          "y": 3312,
+          "scale": 0.057352941176470586,
+          "viewport": {
+            "left": -1096,
+            "right": 5704,
+            "top": -2337.2307692307695,
+            "bottom": 8961.23076923077
+          }
+        }
+      ],
+      "backgroundDecode": [
+        {
+          "key": "act4-estuary.webp",
+          "width": 2173,
+          "height": 724
+        },
+        {
+          "key": "act4-far-bamboo.webp",
+          "width": 1536,
+          "height": 1024
+        },
+        {
+          "key": "act4-far-inland.webp",
+          "width": 1536,
+          "height": 1024
+        },
+        {
+          "key": "act4-far-coast.webp",
+          "width": 1536,
+          "height": 1024
+        },
+        {
+          "key": "cave-entrance.webp",
+          "width": 2048,
+          "height": 683
+        }
+      ]
+    }
+  ],
+  "errors": [
+    {
+      "text": "Failed to load resource: the server responded with a status of 404 (File not found)",
+      "location": {
+        "url": "http://127.0.0.1:45975/favicon.ico",
+        "line": 0,
+        "column": 0,
+        "lineNumber": 0,
+        "columnNumber": 0
+      }
+    },
+    {
+      "text": "Failed to load resource: the server responded with a status of 404 (File not found)",
+      "location": {
+        "url": "http://127.0.0.1:45975/favicon.ico",
+        "line": 0,
+        "column": 0,
+        "lineNumber": 0,
+        "columnNumber": 0
+      }
+    },
+    {
+      "text": "Failed to load resource: the server responded with a status of 404 (File not found)",
+      "location": {
+        "url": "http://127.0.0.1:45975/favicon.ico",
+        "line": 0,
+        "column": 0,
+        "lineNumber": 0,
+        "columnNumber": 0
+      }
+    },
+    {
+      "text": "Failed to load resource: the server responded with a status of 404 (File not found)",
+      "location": {
+        "url": "http://127.0.0.1:45975/favicon.ico",
+        "line": 0,
+        "column": 0,
+        "lineNumber": 0,
+        "columnNumber": 0
+      }
+    }
+  ]
+}

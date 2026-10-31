@@ -1,0 +1,1501 @@
+{
+  "candidateSha256": "c5f67f1621bbd4ec8f3d6f17d5138e99a400d3e4d224711114a0988aaa37c813",
+  "candidateBytes": 3550830,
+  "scope": "Overview uses a diagnostic zoom that may be below allowed minimum. All other views apply focus/containment clamp. Local browser QA import and static engine/render/grounding only, not ordinary story/combat/boarding or deployed build",
+  "rows": [
+    {
+      "stage": 33,
+      "preview": 33,
+      "custom": false,
+      "units": [
+        {
+          "id": "archer",
+          "side": 0,
+          "x": 67.5,
+          "y": 2212.03125,
+          "hp": 1055,
+          "grounded": true,
+          "support": "approved33-left-bank"
+        },
+        {
+          "id": "mage",
+          "side": 0,
+          "x": 189,
+          "y": 2224.6875,
+          "hp": 1126,
+          "grounded": true,
+          "support": "approved33-left-bank"
+        },
+        {
+          "id": "knight",
+          "side": 0,
+          "x": 310.5,
+          "y": 2245.673076923077,
+          "hp": 1714,
+          "grounded": true,
+          "support": "approved33-left-bank"
+        },
+        {
+          "id": "occultist",
+          "side": 0,
+          "x": 432,
+          "y": 2269.0384615384614,
+          "hp": 1288,
+          "grounded": true,
+          "support": "approved33-left-bank"
+        },
+        {
+          "id": "a4-33-a-1",
+          "side": 1,
+          "x": 1080,
+          "y": 2629.9285714285716,
+          "hp": 1512,
+          "grounded": true,
+          "support": "approved33-low"
+        },
+        {
+          "id": "a4-33-a-2",
+          "side": 1,
+          "x": 1260,
+          "y": 2709.6428571428573,
+          "hp": 1512,
+          "grounded": true,
+          "support": "approved33-low"
+        },
+        {
+          "id": "a4-33-a-3",
+          "side": 1,
+          "x": 1440,
+          "y": 2767.5,
+          "hp": 1512,
+          "grounded": true,
+          "support": "approved33-low"
+        },
+        {
+          "id": "a4-33-b-1",
+          "side": 1,
+          "x": 1890,
+          "y": 2853,
+          "hp": 1512,
+          "grounded": true,
+          "support": "approved33-low"
+        },
+        {
+          "id": "a4-33-b-2",
+          "side": 1,
+          "x": 2070,
+          "y": 2884.5,
+          "hp": 1512,
+          "grounded": true,
+          "support": "approved33-low"
+        },
+        {
+          "id": "a4-33-b-3",
+          "side": 1,
+          "x": 2250,
+          "y": 2930.1,
+          "hp": 2193,
+          "grounded": true,
+          "support": "approved33-low"
+        },
+        {
+          "id": "a4-33-b-4",
+          "side": 1,
+          "x": 2430,
+          "y": 2977.9615384615386,
+          "hp": 1512,
+          "grounded": true,
+          "support": "approved33-low"
+        },
+        {
+          "id": "a4-33-c-1",
+          "side": 1,
+          "x": 2925,
+          "y": 3152.25,
+          "hp": 2193,
+          "grounded": true,
+          "support": "approved33-low"
+        },
+        {
+          "id": "a4-33-c-2",
+          "side": 1,
+          "x": 3082.5,
+          "y": 3211.125,
+          "hp": 1512,
+          "grounded": true,
+          "support": "approved33-low"
+        },
+        {
+          "id": "a4-33-c-3",
+          "side": 1,
+          "x": 3240,
+          "y": 3271.5,
+          "hp": 2420,
+          "grounded": true,
+          "support": "approved33-low"
+        },
+        {
+          "id": "a4-33-c-4",
+          "side": 1,
+          "x": 3397.5,
+          "y": 3327.75,
+          "hp": 1512,
+          "grounded": true,
+          "support": "approved33-low"
+        },
+        {
+          "id": "a4-33-d-1",
+          "side": 1,
+          "x": 4185,
+          "y": 3645,
+          "hp": 2193,
+          "grounded": true,
+          "support": "approved33-low"
+        },
+        {
+          "id": "a4-33-d-2",
+          "side": 1,
+          "x": 4342.5,
+          "y": 3715.875,
+          "hp": 1512,
+          "grounded": true,
+          "support": "approved33-low"
+        },
+        {
+          "id": "a4-33-d-3",
+          "side": 1,
+          "x": 4500,
+          "y": 3783.8571428571427,
+          "hp": 1512,
+          "grounded": true,
+          "support": "approved33-low"
+        },
+        {
+          "id": "a4-33-d-4",
+          "side": 1,
+          "x": 4657.5,
+          "y": 3851.3571428571427,
+          "hp": 1739,
+          "grounded": true,
+          "support": "approved33-low"
+        },
+        {
+          "id": "a4-33-e-1",
+          "side": 1,
+          "x": 5490,
+          "y": 3762,
+          "hp": 1512,
+          "grounded": true,
+          "support": "approved33-low"
+        },
+        {
+          "id": "a4-33-e-2",
+          "side": 1,
+          "x": 5670,
+          "y": 3687.75,
+          "hp": 1512,
+          "grounded": true,
+          "support": "approved33-low"
+        },
+        {
+          "id": "a4-33-e-3",
+          "side": 1,
+          "x": 5850,
+          "y": 3606.75,
+          "hp": 1512,
+          "grounded": true,
+          "support": "approved33-low"
+        },
+        {
+          "id": "a4-33-e-4",
+          "side": 1,
+          "x": 6030,
+          "y": 3516.75,
+          "hp": 1739,
+          "grounded": true,
+          "support": "approved33-low"
+        },
+        {
+          "id": "a4-33-f-1",
+          "side": 1,
+          "x": 1417.5,
+          "y": 1089,
+          "hp": 1512,
+          "grounded": true,
+          "support": "approved33-upper"
+        },
+        {
+          "id": "a4-33-f-2",
+          "side": 1,
+          "x": 1597.5,
+          "y": 1096.2,
+          "hp": 1512,
+          "grounded": true,
+          "support": "approved33-upper"
+        },
+        {
+          "id": "a4-33-g-1",
+          "side": 1,
+          "x": 3240,
+          "y": 1153.8,
+          "hp": 1512,
+          "grounded": true,
+          "support": "approved33-upper"
+        },
+        {
+          "id": "a4-33-g-2",
+          "side": 1,
+          "x": 3420,
+          "y": 1113.1363636363637,
+          "hp": 2193,
+          "grounded": true,
+          "support": "approved33-upper"
+        },
+        {
+          "id": "a4-33-g-3",
+          "side": 1,
+          "x": 3960,
+          "y": 1401.2307692307693,
+          "hp": 1512,
+          "grounded": true,
+          "support": "approved33-upper"
+        },
+        {
+          "id": "a4-33-g-4",
+          "side": 1,
+          "x": 4140,
+          "y": 1451.076923076923,
+          "hp": 1739,
+          "grounded": true,
+          "support": "approved33-upper"
+        },
+        {
+          "id": "a4-33-h-1",
+          "side": 1,
+          "x": 5490,
+          "y": 1674.9,
+          "hp": 2193,
+          "grounded": true,
+          "support": "approved33-upper"
+        },
+        {
+          "id": "a4-33-h-2",
+          "side": 1,
+          "x": 5715,
+          "y": 1717.875,
+          "hp": 1512,
+          "grounded": true,
+          "support": "approved33-upper"
+        },
+        {
+          "id": "a4-33-h-3",
+          "side": 1,
+          "x": 5985,
+          "y": 1738.125,
+          "hp": 2420,
+          "grounded": true,
+          "support": "approved33-upper"
+        },
+        {
+          "id": "a4-33-h-4",
+          "side": 1,
+          "x": 6367.5,
+          "y": 1634.75,
+          "hp": 1210,
+          "grounded": false,
+          "support": null
+        },
+        {
+          "id": "a4-33-h-5",
+          "side": 1,
+          "x": 6615,
+          "y": 1566,
+          "hp": 1512,
+          "grounded": true,
+          "support": "approved33-upper"
+        }
+      ],
+      "terrain": 17,
+      "landmarks": 5,
+      "water": [
+        {
+          "id": "33-west",
+          "kind": "recover",
+          "x1": 1035,
+          "x2": 3555,
+          "surface": 3532.5,
+          "entryLeft": [
+            0,
+            990
+          ],
+          "entryRight": [
+            3420,
+            3825
+          ]
+        },
+        {
+          "id": "33-east",
+          "kind": "recover",
+          "x1": 3555,
+          "x2": 6912,
+          "surface": 3532.5,
+          "entryLeft": [
+            3420,
+            3825
+          ],
+          "entryRight": [
+            6165,
+            6907.5
+          ]
+        }
+      ],
+      "scaleBounds": {
+        "min": 0.21176470588235294,
+        "max": 1.65,
+        "tactical": 0.21176470588235294,
+        "readability": 0.056818181818181816
+      },
+      "environment": {
+        "version": 1,
+        "physicsUnchanged": true,
+        "status": "local candidate; not accepted",
+        "sourceOrigin": [
+          -4500,
+          -900
+        ],
+        "sourceSize": [
+          1800,
+          850
+        ]
+      },
+      "viewport": [
+        1440,
+        900
+      ],
+      "dpr": 1,
+      "shots": [
+        {
+          "name": "whole",
+          "x": 3456,
+          "y": 2304,
+          "scale": 0.1953125,
+          "viewport": {
+            "left": -230.4000000000001,
+            "right": 7142.4,
+            "top": 335.3599999999999,
+            "bottom": 4272.64
+          }
+        },
+        {
+          "name": "normal-center",
+          "x": 3456,
+          "y": 2304,
+          "scale": 0.65,
+          "viewport": {
+            "left": 2348.3076923076924,
+            "right": 4563.692307692308,
+            "top": 1712.4615384615386,
+            "bottom": 2895.5384615384614
+          }
+        },
+        {
+          "name": "max-center",
+          "x": 3456,
+          "y": 2304,
+          "scale": 1.65,
+          "viewport": {
+            "left": 3019.6363636363635,
+            "right": 3892.3636363636365,
+            "top": 2070.969696969697,
+            "bottom": 2537.030303030303
+          }
+        },
+        {
+          "name": "min-left",
+          "x": -320,
+          "y": 2304,
+          "scale": 0.21176470588235294,
+          "viewport": {
+            "left": -3720,
+            "right": 3080,
+            "top": 488.30555555555543,
+            "bottom": 4119.694444444444
+          }
+        },
+        {
+          "name": "min-right",
+          "x": 7232,
+          "y": 2304,
+          "scale": 0.21176470588235294,
+          "viewport": {
+            "left": 3832,
+            "right": 10632,
+            "top": 488.30555555555543,
+            "bottom": 4119.694444444444
+          }
+        },
+        {
+          "name": "min-top",
+          "x": 3456,
+          "y": -1800,
+          "scale": 0.21176470588235294,
+          "viewport": {
+            "left": 56,
+            "right": 6856,
+            "top": -3615.6944444444443,
+            "bottom": 15.69444444444457
+          }
+        },
+        {
+          "name": "min-bottom",
+          "x": 3456,
+          "y": 4848,
+          "scale": 0.21176470588235294,
+          "viewport": {
+            "left": 56,
+            "right": 6856,
+            "top": 3032.3055555555557,
+            "bottom": 6663.694444444444
+          }
+        }
+      ],
+      "backgroundDecode": [
+        {
+          "key": "act4-estuary.webp",
+          "width": 2173,
+          "height": 724
+        },
+        {
+          "key": "act4-far-bamboo.webp",
+          "width": 1536,
+          "height": 1024
+        },
+        {
+          "key": "act4-far-inland.webp",
+          "width": 1536,
+          "height": 1024
+        },
+        {
+          "key": "act4-far-coast.webp",
+          "width": 1536,
+          "height": 1024
+        },
+        {
+          "key": "cave-entrance.webp",
+          "width": 2048,
+          "height": 683
+        }
+      ]
+    },
+    {
+      "stage": 33,
+      "preview": 33,
+      "custom": false,
+      "units": [
+        {
+          "id": "archer",
+          "side": 0,
+          "x": 67.5,
+          "y": 2212.03125,
+          "hp": 1055,
+          "grounded": true,
+          "support": "approved33-left-bank"
+        },
+        {
+          "id": "mage",
+          "side": 0,
+          "x": 189,
+          "y": 2224.6875,
+          "hp": 1126,
+          "grounded": true,
+          "support": "approved33-left-bank"
+        },
+        {
+          "id": "knight",
+          "side": 0,
+          "x": 310.5,
+          "y": 2245.673076923077,
+          "hp": 1714,
+          "grounded": true,
+          "support": "approved33-left-bank"
+        },
+        {
+          "id": "occultist",
+          "side": 0,
+          "x": 432,
+          "y": 2269.0384615384614,
+          "hp": 1288,
+          "grounded": true,
+          "support": "approved33-left-bank"
+        },
+        {
+          "id": "a4-33-a-1",
+          "side": 1,
+          "x": 1080,
+          "y": 2629.9285714285716,
+          "hp": 1512,
+          "grounded": true,
+          "support": "approved33-low"
+        },
+        {
+          "id": "a4-33-a-2",
+          "side": 1,
+          "x": 1260,
+          "y": 2709.6428571428573,
+          "hp": 1512,
+          "grounded": true,
+          "support": "approved33-low"
+        },
+        {
+          "id": "a4-33-a-3",
+          "side": 1,
+          "x": 1440,
+          "y": 2767.5,
+          "hp": 1512,
+          "grounded": true,
+          "support": "approved33-low"
+        },
+        {
+          "id": "a4-33-b-1",
+          "side": 1,
+          "x": 1890,
+          "y": 2853,
+          "hp": 1512,
+          "grounded": true,
+          "support": "approved33-low"
+        },
+        {
+          "id": "a4-33-b-2",
+          "side": 1,
+          "x": 2070,
+          "y": 2884.5,
+          "hp": 1512,
+          "grounded": true,
+          "support": "approved33-low"
+        },
+        {
+          "id": "a4-33-b-3",
+          "side": 1,
+          "x": 2250,
+          "y": 2930.1,
+          "hp": 2193,
+          "grounded": true,
+          "support": "approved33-low"
+        },
+        {
+          "id": "a4-33-b-4",
+          "side": 1,
+          "x": 2430,
+          "y": 2977.9615384615386,
+          "hp": 1512,
+          "grounded": true,
+          "support": "approved33-low"
+        },
+        {
+          "id": "a4-33-c-1",
+          "side": 1,
+          "x": 2925,
+          "y": 3152.25,
+          "hp": 2193,
+          "grounded": true,
+          "support": "approved33-low"
+        },
+        {
+          "id": "a4-33-c-2",
+          "side": 1,
+          "x": 3082.5,
+          "y": 3211.125,
+          "hp": 1512,
+          "grounded": true,
+          "support": "approved33-low"
+        },
+        {
+          "id": "a4-33-c-3",
+          "side": 1,
+          "x": 3240,
+          "y": 3271.5,
+          "hp": 2420,
+          "grounded": true,
+          "support": "approved33-low"
+        },
+        {
+          "id": "a4-33-c-4",
+          "side": 1,
+          "x": 3397.5,
+          "y": 3327.75,
+          "hp": 1512,
+          "grounded": true,
+          "support": "approved33-low"
+        },
+        {
+          "id": "a4-33-d-1",
+          "side": 1,
+          "x": 4185,
+          "y": 3645,
+          "hp": 2193,
+          "grounded": true,
+          "support": "approved33-low"
+        },
+        {
+          "id": "a4-33-d-2",
+          "side": 1,
+          "x": 4342.5,
+          "y": 3715.875,
+          "hp": 1512,
+          "grounded": true,
+          "support": "approved33-low"
+        },
+        {
+          "id": "a4-33-d-3",
+          "side": 1,
+          "x": 4500,
+          "y": 3783.8571428571427,
+          "hp": 1512,
+          "grounded": true,
+          "support": "approved33-low"
+        },
+        {
+          "id": "a4-33-d-4",
+          "side": 1,
+          "x": 4657.5,
+          "y": 3851.3571428571427,
+          "hp": 1739,
+          "grounded": true,
+          "support": "approved33-low"
+        },
+        {
+          "id": "a4-33-e-1",
+          "side": 1,
+          "x": 5490,
+          "y": 3762,
+          "hp": 1512,
+          "grounded": true,
+          "support": "approved33-low"
+        },
+        {
+          "id": "a4-33-e-2",
+          "side": 1,
+          "x": 5670,
+          "y": 3687.75,
+          "hp": 1512,
+          "grounded": true,
+          "support": "approved33-low"
+        },
+        {
+          "id": "a4-33-e-3",
+          "side": 1,
+          "x": 5850,
+          "y": 3606.75,
+          "hp": 1512,
+          "grounded": true,
+          "support": "approved33-low"
+        },
+        {
+          "id": "a4-33-e-4",
+          "side": 1,
+          "x": 6030,
+          "y": 3516.75,
+          "hp": 1739,
+          "grounded": true,
+          "support": "approved33-low"
+        },
+        {
+          "id": "a4-33-f-1",
+          "side": 1,
+          "x": 1417.5,
+          "y": 1089,
+          "hp": 1512,
+          "grounded": true,
+          "support": "approved33-upper"
+        },
+        {
+          "id": "a4-33-f-2",
+          "side": 1,
+          "x": 1597.5,
+          "y": 1096.2,
+          "hp": 1512,
+          "grounded": true,
+          "support": "approved33-upper"
+        },
+        {
+          "id": "a4-33-g-1",
+          "side": 1,
+          "x": 3240,
+          "y": 1153.8,
+          "hp": 1512,
+          "grounded": true,
+          "support": "approved33-upper"
+        },
+        {
+          "id": "a4-33-g-2",
+          "side": 1,
+          "x": 3420,
+          "y": 1113.1363636363637,
+          "hp": 2193,
+          "grounded": true,
+          "support": "approved33-upper"
+        },
+        {
+          "id": "a4-33-g-3",
+          "side": 1,
+          "x": 3960,
+          "y": 1401.2307692307693,
+          "hp": 1512,
+          "grounded": true,
+          "support": "approved33-upper"
+        },
+        {
+          "id": "a4-33-g-4",
+          "side": 1,
+          "x": 4140,
+          "y": 1451.076923076923,
+          "hp": 1739,
+          "grounded": true,
+          "support": "approved33-upper"
+        },
+        {
+          "id": "a4-33-h-1",
+          "side": 1,
+          "x": 5490,
+          "y": 1674.9,
+          "hp": 2193,
+          "grounded": true,
+          "support": "approved33-upper"
+        },
+        {
+          "id": "a4-33-h-2",
+          "side": 1,
+          "x": 5715,
+          "y": 1717.875,
+          "hp": 1512,
+          "grounded": true,
+          "support": "approved33-upper"
+        },
+        {
+          "id": "a4-33-h-3",
+          "side": 1,
+          "x": 5985,
+          "y": 1738.125,
+          "hp": 2420,
+          "grounded": true,
+          "support": "approved33-upper"
+        },
+        {
+          "id": "a4-33-h-4",
+          "side": 1,
+          "x": 6367.5,
+          "y": 1634.75,
+          "hp": 1210,
+          "grounded": false,
+          "support": null
+        },
+        {
+          "id": "a4-33-h-5",
+          "side": 1,
+          "x": 6615,
+          "y": 1566,
+          "hp": 1512,
+          "grounded": true,
+          "support": "approved33-upper"
+        }
+      ],
+      "terrain": 17,
+      "landmarks": 5,
+      "water": [
+        {
+          "id": "33-west",
+          "kind": "recover",
+          "x1": 1035,
+          "x2": 3555,
+          "surface": 3532.5,
+          "entryLeft": [
+            0,
+            990
+          ],
+          "entryRight": [
+            3420,
+            3825
+          ]
+        },
+        {
+          "id": "33-east",
+          "kind": "recover",
+          "x1": 3555,
+          "x2": 6912,
+          "surface": 3532.5,
+          "entryLeft": [
+            3420,
+            3825
+          ],
+          "entryRight": [
+            6165,
+            6907.5
+          ]
+        }
+      ],
+      "scaleBounds": {
+        "min": 0.057352941176470586,
+        "max": 1.65,
+        "tactical": 0.057352941176470586,
+        "readability": 0.056818181818181816
+      },
+      "environment": {
+        "version": 1,
+        "physicsUnchanged": true,
+        "status": "local candidate; not accepted",
+        "sourceOrigin": [
+          -4500,
+          -900
+        ],
+        "sourceSize": [
+          1800,
+          850
+        ]
+      },
+      "viewport": [
+        390,
+        844
+      ],
+      "dpr": 2,
+      "shots": [
+        {
+          "name": "whole",
+          "x": 3456,
+          "y": 2304,
+          "scale": 0.05642361111111111,
+          "viewport": {
+            "left": 0,
+            "right": 6912,
+            "top": -3438.2769230769227,
+            "bottom": 8046.276923076923
+          }
+        },
+        {
+          "name": "normal-center",
+          "x": 3456,
+          "y": 2304,
+          "scale": 0.65,
+          "viewport": {
+            "left": 3156,
+            "right": 3756,
+            "top": 1805.5384615384614,
+            "bottom": 2802.4615384615386
+          }
+        },
+        {
+          "name": "max-center",
+          "x": 3456,
+          "y": 2304,
+          "scale": 1.65,
+          "viewport": {
+            "left": 3337.818181818182,
+            "right": 3574.181818181818,
+            "top": 2107.6363636363635,
+            "bottom": 2500.3636363636365
+          }
+        },
+        {
+          "name": "min-left",
+          "x": -320,
+          "y": 2304,
+          "scale": 0.057352941176470586,
+          "viewport": {
+            "left": -3720,
+            "right": 3080,
+            "top": -3345.2307692307695,
+            "bottom": 7953.2307692307695
+          }
+        },
+        {
+          "name": "min-right",
+          "x": 7232,
+          "y": 2304,
+          "scale": 0.057352941176470586,
+          "viewport": {
+            "left": 3832,
+            "right": 10632,
+            "top": -3345.2307692307695,
+            "bottom": 7953.2307692307695
+          }
+        },
+        {
+          "name": "min-top",
+          "x": 3456,
+          "y": -1800,
+          "scale": 0.057352941176470586,
+          "viewport": {
+            "left": 56,
+            "right": 6856,
+            "top": -7449.2307692307695,
+            "bottom": 3849.2307692307695
+          }
+        },
+        {
+          "name": "min-bottom",
+          "x": 3456,
+          "y": 4848,
+          "scale": 0.057352941176470586,
+          "viewport": {
+            "left": 56,
+            "right": 6856,
+            "top": -801.2307692307695,
+            "bottom": 10497.23076923077
+          }
+        }
+      ],
+      "backgroundDecode": [
+        {
+          "key": "act4-estuary.webp",
+          "width": 2173,
+          "height": 724
+        },
+        {
+          "key": "act4-far-bamboo.webp",
+          "width": 1536,
+          "height": 1024
+        },
+        {
+          "key": "act4-far-inland.webp",
+          "width": 1536,
+          "height": 1024
+        },
+        {
+          "key": "act4-far-coast.webp",
+          "width": 1536,
+          "height": 1024
+        },
+        {
+          "key": "cave-entrance.webp",
+          "width": 2048,
+          "height": 683
+        }
+      ]
+    },
+    {
+      "stage": 33,
+      "preview": 33,
+      "custom": false,
+      "units": [
+        {
+          "id": "archer",
+          "side": 0,
+          "x": 67.5,
+          "y": 2212.03125,
+          "hp": 1055,
+          "grounded": true,
+          "support": "approved33-left-bank"
+        },
+        {
+          "id": "mage",
+          "side": 0,
+          "x": 189,
+          "y": 2224.6875,
+          "hp": 1126,
+          "grounded": true,
+          "support": "approved33-left-bank"
+        },
+        {
+          "id": "knight",
+          "side": 0,
+          "x": 310.5,
+          "y": 2245.673076923077,
+          "hp": 1714,
+          "grounded": true,
+          "support": "approved33-left-bank"
+        },
+        {
+          "id": "occultist",
+          "side": 0,
+          "x": 432,
+          "y": 2269.0384615384614,
+          "hp": 1288,
+          "grounded": true,
+          "support": "approved33-left-bank"
+        },
+        {
+          "id": "a4-33-a-1",
+          "side": 1,
+          "x": 1080,
+          "y": 2629.9285714285716,
+          "hp": 1512,
+          "grounded": true,
+          "support": "approved33-low"
+        },
+        {
+          "id": "a4-33-a-2",
+          "side": 1,
+          "x": 1260,
+          "y": 2709.6428571428573,
+          "hp": 1512,
+          "grounded": true,
+          "support": "approved33-low"
+        },
+        {
+          "id": "a4-33-a-3",
+          "side": 1,
+          "x": 1440,
+          "y": 2767.5,
+          "hp": 1512,
+          "grounded": true,
+          "support": "approved33-low"
+        },
+        {
+          "id": "a4-33-b-1",
+          "side": 1,
+          "x": 1890,
+          "y": 2853,
+          "hp": 1512,
+          "grounded": true,
+          "support": "approved33-low"
+        },
+        {
+          "id": "a4-33-b-2",
+          "side": 1,
+          "x": 2070,
+          "y": 2884.5,
+          "hp": 1512,
+          "grounded": true,
+          "support": "approved33-low"
+        },
+        {
+          "id": "a4-33-b-3",
+          "side": 1,
+          "x": 2250,
+          "y": 2930.1,
+          "hp": 2193,
+          "grounded": true,
+          "support": "approved33-low"
+        },
+        {
+          "id": "a4-33-b-4",
+          "side": 1,
+          "x": 2430,
+          "y": 2977.9615384615386,
+          "hp": 1512,
+          "grounded": true,
+          "support": "approved33-low"
+        },
+        {
+          "id": "a4-33-c-1",
+          "side": 1,
+          "x": 2925,
+          "y": 3152.25,
+          "hp": 2193,
+          "grounded": true,
+          "support": "approved33-low"
+        },
+        {
+          "id": "a4-33-c-2",
+          "side": 1,
+          "x": 3082.5,
+          "y": 3211.125,
+          "hp": 1512,
+          "grounded": true,
+          "support": "approved33-low"
+        },
+        {
+          "id": "a4-33-c-3",
+          "side": 1,
+          "x": 3240,
+          "y": 3271.5,
+          "hp": 2420,
+          "grounded": true,
+          "support": "approved33-low"
+        },
+        {
+          "id": "a4-33-c-4",
+          "side": 1,
+          "x": 3397.5,
+          "y": 3327.75,
+          "hp": 1512,
+          "grounded": true,
+          "support": "approved33-low"
+        },
+        {
+          "id": "a4-33-d-1",
+          "side": 1,
+          "x": 4185,
+          "y": 3645,
+          "hp": 2193,
+          "grounded": true,
+          "support": "approved33-low"
+        },
+        {
+          "id": "a4-33-d-2",
+          "side": 1,
+          "x": 4342.5,
+          "y": 3715.875,
+          "hp": 1512,
+          "grounded": true,
+          "support": "approved33-low"
+        },
+        {
+          "id": "a4-33-d-3",
+          "side": 1,
+          "x": 4500,
+          "y": 3783.8571428571427,
+          "hp": 1512,
+          "grounded": true,
+          "support": "approved33-low"
+        },
+        {
+          "id": "a4-33-d-4",
+          "side": 1,
+          "x": 4657.5,
+          "y": 3851.3571428571427,
+          "hp": 1739,
+          "grounded": true,
+          "support": "approved33-low"
+        },
+        {
+          "id": "a4-33-e-1",
+          "side": 1,
+          "x": 5490,
+          "y": 3762,
+          "hp": 1512,
+          "grounded": true,
+          "support": "approved33-low"
+        },
+        {
+          "id": "a4-33-e-2",
+          "side": 1,
+          "x": 5670,
+          "y": 3687.75,
+          "hp": 1512,
+          "grounded": true,
+          "support": "approved33-low"
+        },
+        {
+          "id": "a4-33-e-3",
+          "side": 1,
+          "x": 5850,
+          "y": 3606.75,
+          "hp": 1512,
+          "grounded": true,
+          "support": "approved33-low"
+        },
+        {
+          "id": "a4-33-e-4",
+          "side": 1,
+          "x": 6030,
+          "y": 3516.75,
+          "hp": 1739,
+          "grounded": true,
+          "support": "approved33-low"
+        },
+        {
+          "id": "a4-33-f-1",
+          "side": 1,
+          "x": 1417.5,
+          "y": 1089,
+          "hp": 1512,
+          "grounded": true,
+          "support": "approved33-upper"
+        },
+        {
+          "id": "a4-33-f-2",
+          "side": 1,
+          "x": 1597.5,
+          "y": 1096.2,
+          "hp": 1512,
+          "grounded": true,
+          "support": "approved33-upper"
+        },
+        {
+          "id": "a4-33-g-1",
+          "side": 1,
+          "x": 3240,
+          "y": 1153.8,
+          "hp": 1512,
+          "grounded": true,
+          "support": "approved33-upper"
+        },
+        {
+          "id": "a4-33-g-2",
+          "side": 1,
+          "x": 3420,
+          "y": 1113.1363636363637,
+          "hp": 2193,
+          "grounded": true,
+          "support": "approved33-upper"
+        },
+        {
+          "id": "a4-33-g-3",
+          "side": 1,
+          "x": 3960,
+          "y": 1401.2307692307693,
+          "hp": 1512,
+          "grounded": true,
+          "support": "approved33-upper"
+        },
+        {
+          "id": "a4-33-g-4",
+          "side": 1,
+          "x": 4140,
+          "y": 1451.076923076923,
+          "hp": 1739,
+          "grounded": true,
+          "support": "approved33-upper"
+        },
+        {
+          "id": "a4-33-h-1",
+          "side": 1,
+          "x": 5490,
+          "y": 1674.9,
+          "hp": 2193,
+          "grounded": true,
+          "support": "approved33-upper"
+        },
+        {
+          "id": "a4-33-h-2",
+          "side": 1,
+          "x": 5715,
+          "y": 1717.875,
+          "hp": 1512,
+          "grounded": true,
+          "support": "approved33-upper"
+        },
+        {
+          "id": "a4-33-h-3",
+          "side": 1,
+          "x": 5985,
+          "y": 1738.125,
+          "hp": 2420,
+          "grounded": true,
+          "support": "approved33-upper"
+        },
+        {
+          "id": "a4-33-h-4",
+          "side": 1,
+          "x": 6367.5,
+          "y": 1634.75,
+          "hp": 1210,
+          "grounded": false,
+          "support": null
+        },
+        {
+          "id": "a4-33-h-5",
+          "side": 1,
+          "x": 6615,
+          "y": 1566,
+          "hp": 1512,
+          "grounded": true,
+          "support": "approved33-upper"
+        }
+      ],
+      "terrain": 17,
+      "landmarks": 5,
+      "water": [
+        {
+          "id": "33-west",
+          "kind": "recover",
+          "x1": 1035,
+          "x2": 3555,
+          "surface": 3532.5,
+          "entryLeft": [
+            0,
+            990
+          ],
+          "entryRight": [
+            3420,
+            3825
+          ]
+        },
+        {
+          "id": "33-east",
+          "kind": "recover",
+          "x1": 3555,
+          "x2": 6912,
+          "surface": 3532.5,
+          "entryLeft": [
+            3420,
+            3825
+          ],
+          "entryRight": [
+            6165,
+            6907.5
+          ]
+        }
+      ],
+      "scaleBounds": {
+        "min": 0.057352941176470586,
+        "max": 1.65,
+        "tactical": 0.057352941176470586,
+        "readability": 0.056818181818181816
+      },
+      "environment": {
+        "version": 1,
+        "physicsUnchanged": true,
+        "status": "local candidate; not accepted",
+        "sourceOrigin": [
+          -4500,
+          -900
+        ],
+        "sourceSize": [
+          1800,
+          850
+        ]
+      },
+      "viewport": [
+        390,
+        844
+      ],
+      "dpr": 3,
+      "shots": [
+        {
+          "name": "whole",
+          "x": 3456,
+          "y": 2304,
+          "scale": 0.05642361111111111,
+          "viewport": {
+            "left": 0,
+            "right": 6912,
+            "top": -3438.2769230769227,
+            "bottom": 8046.276923076923
+          }
+        },
+        {
+          "name": "normal-center",
+          "x": 3456,
+          "y": 2304,
+          "scale": 0.65,
+          "viewport": {
+            "left": 3156,
+            "right": 3756,
+            "top": 1805.5384615384614,
+            "bottom": 2802.4615384615386
+          }
+        },
+        {
+          "name": "max-center",
+          "x": 3456,
+          "y": 2304,
+          "scale": 1.65,
+          "viewport": {
+            "left": 3337.818181818182,
+            "right": 3574.181818181818,
+            "top": 2107.6363636363635,
+            "bottom": 2500.3636363636365
+          }
+        },
+        {
+          "name": "min-left",
+          "x": -320,
+          "y": 2304,
+          "scale": 0.057352941176470586,
+          "viewport": {
+            "left": -3720,
+            "right": 3080,
+            "top": -3345.2307692307695,
+            "bottom": 7953.2307692307695
+          }
+        },
+        {
+          "name": "min-right",
+          "x": 7232,
+          "y": 2304,
+          "scale": 0.057352941176470586,
+          "viewport": {
+            "left": 3832,
+            "right": 10632,
+            "top": -3345.2307692307695,
+            "bottom": 7953.2307692307695
+          }
+        },
+        {
+          "name": "min-top",
+          "x": 3456,
+          "y": -1800,
+          "scale": 0.057352941176470586,
+          "viewport": {
+            "left": 56,
+            "right": 6856,
+            "top": -7449.2307692307695,
+            "bottom": 3849.2307692307695
+          }
+        },
+        {
+          "name": "min-bottom",
+          "x": 3456,
+          "y": 4848,
+          "scale": 0.057352941176470586,
+          "viewport": {
+            "left": 56,
+            "right": 6856,
+            "top": -801.2307692307695,
+            "bottom": 10497.23076923077
+          }
+        }
+      ],
+      "backgroundDecode": [
+        {
+          "key": "act4-estuary.webp",
+          "width": 2173,
+          "height": 724
+        },
+        {
+          "key": "act4-far-bamboo.webp",
+          "width": 1536,
+          "height": 1024
+        },
+        {
+          "key": "act4-far-inland.webp",
+          "width": 1536,
+          "height": 1024
+        },
+        {
+          "key": "act4-far-coast.webp",
+          "width": 1536,
+          "height": 1024
+        },
+        {
+          "key": "cave-entrance.webp",
+          "width": 2048,
+          "height": 683
+        }
+      ]
+    }
+  ],
+  "errors": [
+    {
+      "text": "Failed to load resource: the server responded with a status of 404 (File not found)",
+      "location": {
+        "url": "http://127.0.0.1:39537/favicon.ico",
+        "line": 0,
+        "column": 0,
+        "lineNumber": 0,
+        "columnNumber": 0
+      }
+    },
+    {
+      "text": "Failed to load resource: the server responded with a status of 404 (File not found)",
+      "location": {
+        "url": "http://127.0.0.1:39537/favicon.ico",
+        "line": 0,
+        "column": 0,
+        "lineNumber": 0,
+        "columnNumber": 0
+      }
+    },
+    {
+      "text": "Failed to load resource: the server responded with a status of 404 (File not found)",
+      "location": {
+        "url": "http://127.0.0.1:39537/favicon.ico",
+        "line": 0,
+        "column": 0,
+        "lineNumber": 0,
+        "columnNumber": 0
+      }
+    },
+    {
+      "text": "Failed to load resource: the server responded with a status of 404 (File not found)",
+      "location": {
+        "url": "http://127.0.0.1:39537/favicon.ico",
+        "line": 0,
+        "column": 0,
+        "lineNumber": 0,
+        "columnNumber": 0
+      }
+    }
+  ]
+}

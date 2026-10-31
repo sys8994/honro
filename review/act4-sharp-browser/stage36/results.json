@@ -1,0 +1,805 @@
+{
+  "candidateSha256": "dcecb8a22c5740c6ccbd4211e3a7f7a71f1b62be16ee51ab369d65eb325f8dca",
+  "candidateBytes": 3663187,
+  "scope": "Overview uses a diagnostic zoom that may be below allowed minimum. All other views apply focus/containment clamp. Local browser QA import and static engine/render/grounding only, not ordinary story/combat/boarding or deployed build",
+  "rows": [
+    {
+      "stage": 36,
+      "preview": 36,
+      "custom": false,
+      "units": [
+        {
+          "id": "archer",
+          "side": 0,
+          "x": 77,
+          "y": 1076.4285714285716,
+          "hp": 1085,
+          "grounded": true,
+          "support": "approved36-entry"
+        },
+        {
+          "id": "mage",
+          "side": 0,
+          "x": 143,
+          "y": 1078.314285714286,
+          "hp": 1158,
+          "grounded": true,
+          "support": "approved36-entry"
+        },
+        {
+          "id": "knight",
+          "side": 0,
+          "x": 209.00000000000003,
+          "y": 1080.2,
+          "hp": 1762,
+          "grounded": true,
+          "support": "approved36-entry"
+        },
+        {
+          "id": "occultist",
+          "side": 0,
+          "x": 275,
+          "y": 1086.0666666666666,
+          "hp": 1324,
+          "grounded": true,
+          "support": "approved36-entry"
+        },
+        {
+          "id": "a4-36-a-1",
+          "side": 1,
+          "x": 990.0000000000001,
+          "y": 1248,
+          "hp": 1559,
+          "grounded": true,
+          "support": "approved36-workshop"
+        },
+        {
+          "id": "a4-36-a-2",
+          "side": 1,
+          "x": 1210,
+          "y": 1254,
+          "hp": 2260,
+          "grounded": true,
+          "support": "approved36-workshop"
+        },
+        {
+          "id": "a4-36-a-3",
+          "side": 1,
+          "x": 1430.0000000000002,
+          "y": 1257.3000000000002,
+          "hp": 1792,
+          "grounded": true,
+          "support": "approved36-workshop"
+        },
+        {
+          "id": "a4-36-g-1",
+          "side": 1,
+          "x": 2189,
+          "y": 1166.8000000000002,
+          "hp": 1559,
+          "grounded": true,
+          "support": "approved36-house-front"
+        },
+        {
+          "id": "a4-36-g-2",
+          "side": 1,
+          "x": 2486,
+          "y": 1179,
+          "hp": 1559,
+          "grounded": true,
+          "support": "approved36-house-front"
+        },
+        {
+          "id": "a4-36-b-1",
+          "side": 1,
+          "x": 3014.0000000000005,
+          "y": 1210.0000000000002,
+          "hp": 1559,
+          "grounded": true,
+          "support": "approved36-court"
+        },
+        {
+          "id": "a4-36-b-2",
+          "side": 1,
+          "x": 3234.0000000000005,
+          "y": 1262.3600000000001,
+          "hp": 1559,
+          "grounded": true,
+          "support": "approved36-court"
+        },
+        {
+          "id": "a4-36-b-3",
+          "side": 1,
+          "x": 2684,
+          "y": 1311.75,
+          "hp": 2260,
+          "grounded": true,
+          "support": "approved36-court"
+        },
+        {
+          "id": "a4-36-b-4",
+          "side": 1,
+          "x": 2860.0000000000005,
+          "y": 1150.2,
+          "hp": 1247,
+          "grounded": false,
+          "support": null
+        }
+      ],
+      "terrain": 9,
+      "landmarks": 3,
+      "water": null,
+      "scaleBounds": {
+        "min": 0.21176470588235294,
+        "max": 1.65,
+        "tactical": 0.21176470588235294,
+        "readability": 0.056818181818181816
+      },
+      "environment": null,
+      "viewport": [
+        1440,
+        900
+      ],
+      "dpr": 1,
+      "shots": [
+        {
+          "name": "whole",
+          "x": 1689.6000000000001,
+          "y": 1126.4,
+          "scale": 0.3995028409090909,
+          "viewport": {
+            "left": -112.63999999999987,
+            "right": 3491.84,
+            "top": 163.95377777777776,
+            "bottom": 2088.8462222222224
+          }
+        },
+        {
+          "name": "normal-center",
+          "x": 1689.6000000000001,
+          "y": 1126.4,
+          "scale": 0.65,
+          "viewport": {
+            "left": 581.9076923076925,
+            "right": 2797.292307692308,
+            "top": 534.8615384615385,
+            "bottom": 1717.9384615384615
+          }
+        },
+        {
+          "name": "max-center",
+          "x": 1689.6000000000001,
+          "y": 1126.4,
+          "scale": 1.65,
+          "viewport": {
+            "left": 1253.2363636363639,
+            "right": 2125.9636363636364,
+            "top": 893.3696969696971,
+            "bottom": 1359.430303030303
+          }
+        },
+        {
+          "name": "min-left",
+          "x": -320,
+          "y": 1126.4,
+          "scale": 0.21176470588235294,
+          "viewport": {
+            "left": -3720,
+            "right": 3080,
+            "top": -689.2944444444445,
+            "bottom": 2942.094444444445
+          }
+        },
+        {
+          "name": "min-right",
+          "x": 3699.2000000000003,
+          "y": 1126.4,
+          "scale": 0.21176470588235294,
+          "viewport": {
+            "left": 299.2000000000003,
+            "right": 7099.200000000001,
+            "top": -689.2944444444445,
+            "bottom": 2942.094444444445
+          }
+        },
+        {
+          "name": "min-top",
+          "x": 1689.6000000000001,
+          "y": -1800,
+          "scale": 0.21176470588235294,
+          "viewport": {
+            "left": -1710.3999999999999,
+            "right": 5089.6,
+            "top": -3615.6944444444443,
+            "bottom": 15.69444444444457
+          }
+        },
+        {
+          "name": "min-bottom",
+          "x": 1689.6000000000001,
+          "y": 2492.8,
+          "scale": 0.21176470588235294,
+          "viewport": {
+            "left": -1710.3999999999999,
+            "right": 5089.6,
+            "top": 677.1055555555556,
+            "bottom": 4308.4944444444445
+          }
+        }
+      ],
+      "backgroundDecode": [
+        {
+          "key": "act4-estuary.webp",
+          "width": 2173,
+          "height": 724
+        },
+        {
+          "key": "act4-far-bamboo.webp",
+          "width": 1536,
+          "height": 1024
+        },
+        {
+          "key": "act4-far-inland.webp",
+          "width": 1536,
+          "height": 1024
+        },
+        {
+          "key": "act4-far-coast.webp",
+          "width": 1536,
+          "height": 1024
+        },
+        {
+          "key": "cave-entrance.webp",
+          "width": 2048,
+          "height": 683
+        }
+      ]
+    },
+    {
+      "stage": 36,
+      "preview": 36,
+      "custom": false,
+      "units": [
+        {
+          "id": "archer",
+          "side": 0,
+          "x": 77,
+          "y": 1076.4285714285716,
+          "hp": 1085,
+          "grounded": true,
+          "support": "approved36-entry"
+        },
+        {
+          "id": "mage",
+          "side": 0,
+          "x": 143,
+          "y": 1078.314285714286,
+          "hp": 1158,
+          "grounded": true,
+          "support": "approved36-entry"
+        },
+        {
+          "id": "knight",
+          "side": 0,
+          "x": 209.00000000000003,
+          "y": 1080.2,
+          "hp": 1762,
+          "grounded": true,
+          "support": "approved36-entry"
+        },
+        {
+          "id": "occultist",
+          "side": 0,
+          "x": 275,
+          "y": 1086.0666666666666,
+          "hp": 1324,
+          "grounded": true,
+          "support": "approved36-entry"
+        },
+        {
+          "id": "a4-36-a-1",
+          "side": 1,
+          "x": 990.0000000000001,
+          "y": 1248,
+          "hp": 1559,
+          "grounded": true,
+          "support": "approved36-workshop"
+        },
+        {
+          "id": "a4-36-a-2",
+          "side": 1,
+          "x": 1210,
+          "y": 1254,
+          "hp": 2260,
+          "grounded": true,
+          "support": "approved36-workshop"
+        },
+        {
+          "id": "a4-36-a-3",
+          "side": 1,
+          "x": 1430.0000000000002,
+          "y": 1257.3000000000002,
+          "hp": 1792,
+          "grounded": true,
+          "support": "approved36-workshop"
+        },
+        {
+          "id": "a4-36-g-1",
+          "side": 1,
+          "x": 2189,
+          "y": 1166.8000000000002,
+          "hp": 1559,
+          "grounded": true,
+          "support": "approved36-house-front"
+        },
+        {
+          "id": "a4-36-g-2",
+          "side": 1,
+          "x": 2486,
+          "y": 1179,
+          "hp": 1559,
+          "grounded": true,
+          "support": "approved36-house-front"
+        },
+        {
+          "id": "a4-36-b-1",
+          "side": 1,
+          "x": 3014.0000000000005,
+          "y": 1210.0000000000002,
+          "hp": 1559,
+          "grounded": true,
+          "support": "approved36-court"
+        },
+        {
+          "id": "a4-36-b-2",
+          "side": 1,
+          "x": 3234.0000000000005,
+          "y": 1262.3600000000001,
+          "hp": 1559,
+          "grounded": true,
+          "support": "approved36-court"
+        },
+        {
+          "id": "a4-36-b-3",
+          "side": 1,
+          "x": 2684,
+          "y": 1311.75,
+          "hp": 2260,
+          "grounded": true,
+          "support": "approved36-court"
+        },
+        {
+          "id": "a4-36-b-4",
+          "side": 1,
+          "x": 2860.0000000000005,
+          "y": 1150.2,
+          "hp": 1247,
+          "grounded": false,
+          "support": null
+        }
+      ],
+      "terrain": 9,
+      "landmarks": 3,
+      "water": null,
+      "scaleBounds": {
+        "min": 0.057352941176470586,
+        "max": 1.65,
+        "tactical": 0.057352941176470586,
+        "readability": 0.056818181818181816
+      },
+      "environment": null,
+      "viewport": [
+        390,
+        844
+      ],
+      "dpr": 2,
+      "shots": [
+        {
+          "name": "whole",
+          "x": 1689.6000000000001,
+          "y": 1126.4,
+          "scale": 0.11541193181818181,
+          "viewport": {
+            "left": 0,
+            "right": 3379.2000000000003,
+            "top": -1680.935384615385,
+            "bottom": 3933.735384615385
+          }
+        },
+        {
+          "name": "normal-center",
+          "x": 1689.6000000000001,
+          "y": 1126.4,
+          "scale": 0.65,
+          "viewport": {
+            "left": 1389.6000000000001,
+            "right": 1989.6000000000001,
+            "top": 627.9384615384616,
+            "bottom": 1624.8615384615387
+          }
+        },
+        {
+          "name": "max-center",
+          "x": 1689.6000000000001,
+          "y": 1126.4,
+          "scale": 1.65,
+          "viewport": {
+            "left": 1571.418181818182,
+            "right": 1807.7818181818184,
+            "top": 930.0363636363637,
+            "bottom": 1322.7636363636366
+          }
+        },
+        {
+          "name": "min-left",
+          "x": -320,
+          "y": 1126.4,
+          "scale": 0.057352941176470586,
+          "viewport": {
+            "left": -3720,
+            "right": 3080,
+            "top": -4522.83076923077,
+            "bottom": 6775.630769230769
+          }
+        },
+        {
+          "name": "min-right",
+          "x": 3699.2000000000003,
+          "y": 1126.4,
+          "scale": 0.057352941176470586,
+          "viewport": {
+            "left": 299.2000000000003,
+            "right": 7099.200000000001,
+            "top": -4522.83076923077,
+            "bottom": 6775.630769230769
+          }
+        },
+        {
+          "name": "min-top",
+          "x": 1689.6000000000001,
+          "y": -1800,
+          "scale": 0.057352941176470586,
+          "viewport": {
+            "left": -1710.3999999999999,
+            "right": 5089.6,
+            "top": -7449.2307692307695,
+            "bottom": 3849.2307692307695
+          }
+        },
+        {
+          "name": "min-bottom",
+          "x": 1689.6000000000001,
+          "y": 2492.8,
+          "scale": 0.057352941176470586,
+          "viewport": {
+            "left": -1710.3999999999999,
+            "right": 5089.6,
+            "top": -3156.4307692307693,
+            "bottom": 8142.03076923077
+          }
+        }
+      ],
+      "backgroundDecode": [
+        {
+          "key": "act4-estuary.webp",
+          "width": 2173,
+          "height": 724
+        },
+        {
+          "key": "act4-far-bamboo.webp",
+          "width": 1536,
+          "height": 1024
+        },
+        {
+          "key": "act4-far-inland.webp",
+          "width": 1536,
+          "height": 1024
+        },
+        {
+          "key": "act4-far-coast.webp",
+          "width": 1536,
+          "height": 1024
+        },
+        {
+          "key": "cave-entrance.webp",
+          "width": 2048,
+          "height": 683
+        }
+      ]
+    },
+    {
+      "stage": 36,
+      "preview": 36,
+      "custom": false,
+      "units": [
+        {
+          "id": "archer",
+          "side": 0,
+          "x": 77,
+          "y": 1076.4285714285716,
+          "hp": 1085,
+          "grounded": true,
+          "support": "approved36-entry"
+        },
+        {
+          "id": "mage",
+          "side": 0,
+          "x": 143,
+          "y": 1078.314285714286,
+          "hp": 1158,
+          "grounded": true,
+          "support": "approved36-entry"
+        },
+        {
+          "id": "knight",
+          "side": 0,
+          "x": 209.00000000000003,
+          "y": 1080.2,
+          "hp": 1762,
+          "grounded": true,
+          "support": "approved36-entry"
+        },
+        {
+          "id": "occultist",
+          "side": 0,
+          "x": 275,
+          "y": 1086.0666666666666,
+          "hp": 1324,
+          "grounded": true,
+          "support": "approved36-entry"
+        },
+        {
+          "id": "a4-36-a-1",
+          "side": 1,
+          "x": 990.0000000000001,
+          "y": 1248,
+          "hp": 1559,
+          "grounded": true,
+          "support": "approved36-workshop"
+        },
+        {
+          "id": "a4-36-a-2",
+          "side": 1,
+          "x": 1210,
+          "y": 1254,
+          "hp": 2260,
+          "grounded": true,
+          "support": "approved36-workshop"
+        },
+        {
+          "id": "a4-36-a-3",
+          "side": 1,
+          "x": 1430.0000000000002,
+          "y": 1257.3000000000002,
+          "hp": 1792,
+          "grounded": true,
+          "support": "approved36-workshop"
+        },
+        {
+          "id": "a4-36-g-1",
+          "side": 1,
+          "x": 2189,
+          "y": 1166.8000000000002,
+          "hp": 1559,
+          "grounded": true,
+          "support": "approved36-house-front"
+        },
+        {
+          "id": "a4-36-g-2",
+          "side": 1,
+          "x": 2486,
+          "y": 1179,
+          "hp": 1559,
+          "grounded": true,
+          "support": "approved36-house-front"
+        },
+        {
+          "id": "a4-36-b-1",
+          "side": 1,
+          "x": 3014.0000000000005,
+          "y": 1210.0000000000002,
+          "hp": 1559,
+          "grounded": true,
+          "support": "approved36-court"
+        },
+        {
+          "id": "a4-36-b-2",
+          "side": 1,
+          "x": 3234.0000000000005,
+          "y": 1262.3600000000001,
+          "hp": 1559,
+          "grounded": true,
+          "support": "approved36-court"
+        },
+        {
+          "id": "a4-36-b-3",
+          "side": 1,
+          "x": 2684,
+          "y": 1311.75,
+          "hp": 2260,
+          "grounded": true,
+          "support": "approved36-court"
+        },
+        {
+          "id": "a4-36-b-4",
+          "side": 1,
+          "x": 2860.0000000000005,
+          "y": 1150.2,
+          "hp": 1247,
+          "grounded": false,
+          "support": null
+        }
+      ],
+      "terrain": 9,
+      "landmarks": 3,
+      "water": null,
+      "scaleBounds": {
+        "min": 0.057352941176470586,
+        "max": 1.65,
+        "tactical": 0.057352941176470586,
+        "readability": 0.056818181818181816
+      },
+      "environment": null,
+      "viewport": [
+        390,
+        844
+      ],
+      "dpr": 3,
+      "shots": [
+        {
+          "name": "whole",
+          "x": 1689.6000000000001,
+          "y": 1126.4,
+          "scale": 0.11541193181818181,
+          "viewport": {
+            "left": 0,
+            "right": 3379.2000000000003,
+            "top": -1680.935384615385,
+            "bottom": 3933.735384615385
+          }
+        },
+        {
+          "name": "normal-center",
+          "x": 1689.6000000000001,
+          "y": 1126.4,
+          "scale": 0.65,
+          "viewport": {
+            "left": 1389.6000000000001,
+            "right": 1989.6000000000001,
+            "top": 627.9384615384616,
+            "bottom": 1624.8615384615387
+          }
+        },
+        {
+          "name": "max-center",
+          "x": 1689.6000000000001,
+          "y": 1126.4,
+          "scale": 1.65,
+          "viewport": {
+            "left": 1571.418181818182,
+            "right": 1807.7818181818184,
+            "top": 930.0363636363637,
+            "bottom": 1322.7636363636366
+          }
+        },
+        {
+          "name": "min-left",
+          "x": -320,
+          "y": 1126.4,
+          "scale": 0.057352941176470586,
+          "viewport": {
+            "left": -3720,
+            "right": 3080,
+            "top": -4522.83076923077,
+            "bottom": 6775.630769230769
+          }
+        },
+        {
+          "name": "min-right",
+          "x": 3699.2000000000003,
+          "y": 1126.4,
+          "scale": 0.057352941176470586,
+          "viewport": {
+            "left": 299.2000000000003,
+            "right": 7099.200000000001,
+            "top": -4522.83076923077,
+            "bottom": 6775.630769230769
+          }
+        },
+        {
+          "name": "min-top",
+          "x": 1689.6000000000001,
+          "y": -1800,
+          "scale": 0.057352941176470586,
+          "viewport": {
+            "left": -1710.3999999999999,
+            "right": 5089.6,
+            "top": -7449.2307692307695,
+            "bottom": 3849.2307692307695
+          }
+        },
+        {
+          "name": "min-bottom",
+          "x": 1689.6000000000001,
+          "y": 2492.8,
+          "scale": 0.057352941176470586,
+          "viewport": {
+            "left": -1710.3999999999999,
+            "right": 5089.6,
+            "top": -3156.4307692307693,
+            "bottom": 8142.03076923077
+          }
+        }
+      ],
+      "backgroundDecode": [
+        {
+          "key": "act4-estuary.webp",
+          "width": 2173,
+          "height": 724
+        },
+        {
+          "key": "act4-far-bamboo.webp",
+          "width": 1536,
+          "height": 1024
+        },
+        {
+          "key": "act4-far-inland.webp",
+          "width": 1536,
+          "height": 1024
+        },
+        {
+          "key": "act4-far-coast.webp",
+          "width": 1536,
+          "height": 1024
+        },
+        {
+          "key": "cave-entrance.webp",
+          "width": 2048,
+          "height": 683
+        }
+      ]
+    }
+  ],
+  "errors": [
+    {
+      "text": "Failed to load resource: the server responded with a status of 404 (File not found)",
+      "location": {
+        "url": "http://127.0.0.1:44581/favicon.ico",
+        "line": 0,
+        "column": 0,
+        "lineNumber": 0,
+        "columnNumber": 0
+      }
+    },
+    {
+      "text": "Failed to load resource: the server responded with a status of 404 (File not found)",
+      "location": {
+        "url": "http://127.0.0.1:44581/favicon.ico",
+        "line": 0,
+        "column": 0,
+        "lineNumber": 0,
+        "columnNumber": 0
+      }
+    },
+    {
+      "text": "Failed to load resource: the server responded with a status of 404 (File not found)",
+      "location": {
+        "url": "http://127.0.0.1:44581/favicon.ico",
+        "line": 0,
+        "column": 0,
+        "lineNumber": 0,
+        "columnNumber": 0
+      }
+    },
+    {
+      "text": "Failed to load resource: the server responded with a status of 404 (File not found)",
+      "location": {
+        "url": "http://127.0.0.1:44581/favicon.ico",
+        "line": 0,
+        "column": 0,
+        "lineNumber": 0,
+        "columnNumber": 0
+      }
+    }
+  ]
+}
