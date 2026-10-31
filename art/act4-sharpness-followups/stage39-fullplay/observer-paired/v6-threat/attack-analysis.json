@@ -1,0 +1,610 @@
+{
+  "definition": "A damage call is grouped with a uniquely observed accepted enemy fire by current battle shot, owner and skill; not projectile ID causation. Delayed damage after a different shot or ambiguous fire is not safely assigned. Impact evidence is separately marked. Percent is per attack-victim and includes shield divided by max HP; not fraction of total effective health.",
+  "primaryDamageEvents": 27,
+  "matchedEvents": 27,
+  "unmatched": [],
+  "matchedAttacks": 25,
+  "enemyFires": 26,
+  "pointLossPerAttack": {
+    "n": 25,
+    "min": 29,
+    "median": 69,
+    "max": 112
+  },
+  "perVictimPercentMaxHp": {
+    "n": 27,
+    "min": 1.385570950788342,
+    "median": 4.6072507552870094,
+    "max": 9.153713298791018
+  },
+  "enemyActorsCompletedByRound": {
+    "1": [
+      "a4-39-a-2",
+      "a4-39-m-1",
+      "a4-39-m-3",
+      "a4-39-w-2",
+      "a4-39-w-3",
+      "a4-39-w-4"
+    ],
+    "2": [
+      "a4-39-a-1",
+      "a4-39-n-4",
+      "a4-39-w-2",
+      "a4-39-w-3",
+      "a4-39-w-4",
+      "a4-39-w-5"
+    ],
+    "3": [
+      "a4-39-a-1",
+      "a4-39-a-2",
+      "a4-39-m-1",
+      "a4-39-m-2",
+      "a4-39-n-4",
+      "a4-39-w-4"
+    ],
+    "4": [
+      "a4-39-a-1",
+      "a4-39-a-2",
+      "a4-39-m-1",
+      "a4-39-n-1",
+      "a4-39-n-4",
+      "a4-wreck"
+    ],
+    "5": [
+      "a4-39-m-2",
+      "a4-39-n-2",
+      "a4-39-n-3",
+      "a4-39-n-4",
+      "a4-39-w-5",
+      "a4-wreck"
+    ]
+  },
+  "victimsWithLossByRound": {
+    "1": [
+      "knight",
+      "occultist"
+    ],
+    "2": [
+      "archer",
+      "knight",
+      "mage",
+      "occultist"
+    ],
+    "3": [
+      "knight",
+      "mage",
+      "occultist"
+    ],
+    "4": [
+      "archer",
+      "knight",
+      "mage"
+    ],
+    "5": [
+      "archer",
+      "knight",
+      "mage",
+      "occultist"
+    ]
+  },
+  "victimsWithDirectImpactByRound": {
+    "1": [
+      "knight",
+      "occultist"
+    ],
+    "2": [
+      "archer",
+      "knight",
+      "mage",
+      "occultist"
+    ],
+    "3": [
+      "knight",
+      "mage",
+      "occultist"
+    ],
+    "4": [
+      "archer",
+      "knight",
+      "mage"
+    ],
+    "5": [
+      "archer",
+      "mage",
+      "occultist"
+    ]
+  },
+  "attacks": [
+    {
+      "shot": 4,
+      "owner": "a4-39-a-2",
+      "skill": "LA01",
+      "round": 1,
+      "victims": {
+        "knight": {
+          "role": "hero",
+          "hpLoss": 0,
+          "shieldLoss": 85,
+          "maxHp": 2093,
+          "directImpactSameShot": true,
+          "combinedPercentMaxHp": 4.061156235069278
+        }
+      },
+      "events": 1,
+      "hpLoss": 0,
+      "shieldLoss": 85
+    },
+    {
+      "shot": 5,
+      "owner": "a4-39-w-2",
+      "skill": "HMO01",
+      "round": 1,
+      "victims": {
+        "occultist": {
+          "role": "hero",
+          "hpLoss": 0,
+          "shieldLoss": 69,
+          "maxHp": 1324,
+          "directImpactSameShot": true,
+          "combinedPercentMaxHp": 5.211480362537764
+        }
+      },
+      "events": 1,
+      "hpLoss": 0,
+      "shieldLoss": 69
+    },
+    {
+      "shot": 6,
+      "owner": "a4-39-w-3",
+      "skill": "LS09",
+      "round": 1,
+      "victims": {
+        "occultist": {
+          "role": "hero",
+          "hpLoss": 17,
+          "shieldLoss": 33,
+          "maxHp": 1324,
+          "directImpactSameShot": true,
+          "combinedPercentMaxHp": 3.7764350453172204
+        }
+      },
+      "events": 1,
+      "hpLoss": 17,
+      "shieldLoss": 33
+    },
+    {
+      "shot": 7,
+      "owner": "a4-39-w-4",
+      "skill": "HMO02",
+      "round": 1,
+      "victims": {
+        "occultist": {
+          "role": "hero",
+          "hpLoss": 54,
+          "shieldLoss": 0,
+          "maxHp": 1324,
+          "directImpactSameShot": true,
+          "combinedPercentMaxHp": 4.078549848942598
+        }
+      },
+      "events": 1,
+      "hpLoss": 54,
+      "shieldLoss": 0
+    },
+    {
+      "shot": 8,
+      "owner": "a4-39-m-1",
+      "skill": "LS09",
+      "round": 1,
+      "victims": {
+        "knight": {
+          "role": "hero",
+          "hpLoss": 0,
+          "shieldLoss": 49,
+          "maxHp": 2093,
+          "directImpactSameShot": true,
+          "combinedPercentMaxHp": 2.3411371237458196
+        }
+      },
+      "events": 1,
+      "hpLoss": 0,
+      "shieldLoss": 49
+    },
+    {
+      "shot": 9,
+      "owner": "a4-39-m-3",
+      "skill": "LA01",
+      "round": 1,
+      "victims": {
+        "knight": {
+          "role": "hero",
+          "hpLoss": 0,
+          "shieldLoss": 82,
+          "maxHp": 2093,
+          "directImpactSameShot": true,
+          "combinedPercentMaxHp": 3.917821309125657
+        }
+      },
+      "events": 1,
+      "hpLoss": 0,
+      "shieldLoss": 82
+    },
+    {
+      "shot": 13,
+      "owner": "a4-39-w-2",
+      "skill": "HMO02",
+      "round": 2,
+      "victims": {
+        "mage": {
+          "role": "hero",
+          "hpLoss": 57,
+          "shieldLoss": 0,
+          "maxHp": 1158,
+          "directImpactSameShot": true,
+          "combinedPercentMaxHp": 4.922279792746114
+        }
+      },
+      "events": 1,
+      "hpLoss": 57,
+      "shieldLoss": 0
+    },
+    {
+      "shot": 14,
+      "owner": "a4-39-a-1",
+      "skill": "LA01",
+      "round": 2,
+      "victims": {
+        "archer": {
+          "role": "hero",
+          "hpLoss": 101,
+          "shieldLoss": 0,
+          "maxHp": 1259,
+          "directImpactSameShot": true,
+          "combinedPercentMaxHp": 8.022239872915012
+        }
+      },
+      "events": 1,
+      "hpLoss": 101,
+      "shieldLoss": 0
+    },
+    {
+      "shot": 15,
+      "owner": "a4-39-w-3",
+      "skill": "LS09",
+      "round": 2,
+      "victims": {
+        "occultist": {
+          "role": "hero",
+          "hpLoss": 0,
+          "shieldLoss": 71,
+          "maxHp": 1324,
+          "directImpactSameShot": true,
+          "combinedPercentMaxHp": 5.362537764350453
+        }
+      },
+      "events": 1,
+      "hpLoss": 0,
+      "shieldLoss": 71
+    },
+    {
+      "shot": 16,
+      "owner": "a4-39-w-4",
+      "skill": "HMO01",
+      "round": 2,
+      "victims": {
+        "occultist": {
+          "role": "hero",
+          "hpLoss": 42,
+          "shieldLoss": 31,
+          "maxHp": 1324,
+          "directImpactSameShot": true,
+          "combinedPercentMaxHp": 5.513595166163142
+        }
+      },
+      "events": 1,
+      "hpLoss": 42,
+      "shieldLoss": 31
+    },
+    {
+      "shot": 17,
+      "owner": "a4-39-w-5",
+      "skill": "HSH02",
+      "round": 2,
+      "victims": {
+        "occultist": {
+          "role": "hero",
+          "hpLoss": 61,
+          "shieldLoss": 0,
+          "maxHp": 1324,
+          "directImpactSameShot": true,
+          "combinedPercentMaxHp": 4.6072507552870094
+        }
+      },
+      "events": 1,
+      "hpLoss": 61,
+      "shieldLoss": 0
+    },
+    {
+      "shot": 18,
+      "owner": "a4-39-n-4",
+      "skill": "HSH01",
+      "round": 2,
+      "victims": {
+        "knight": {
+          "role": "hero",
+          "hpLoss": 0,
+          "shieldLoss": 29,
+          "maxHp": 2093,
+          "directImpactSameShot": true,
+          "combinedPercentMaxHp": 1.385570950788342
+        }
+      },
+      "events": 1,
+      "hpLoss": 0,
+      "shieldLoss": 29
+    },
+    {
+      "shot": 21,
+      "owner": "a4-39-a-2",
+      "skill": "LA01",
+      "round": 3,
+      "victims": {
+        "occultist": {
+          "role": "hero",
+          "hpLoss": 0,
+          "shieldLoss": 112,
+          "maxHp": 1324,
+          "directImpactSameShot": true,
+          "combinedPercentMaxHp": 8.459214501510575
+        }
+      },
+      "events": 1,
+      "hpLoss": 0,
+      "shieldLoss": 112
+    },
+    {
+      "shot": 22,
+      "owner": "a4-39-a-1",
+      "skill": "LA01",
+      "round": 3,
+      "victims": {
+        "occultist": {
+          "role": "hero",
+          "hpLoss": 60,
+          "shieldLoss": 47,
+          "maxHp": 1324,
+          "directImpactSameShot": true,
+          "combinedPercentMaxHp": 8.081570996978853
+        }
+      },
+      "events": 1,
+      "hpLoss": 60,
+      "shieldLoss": 47
+    },
+    {
+      "shot": 23,
+      "owner": "a4-39-w-4",
+      "skill": "HMO02",
+      "round": 3,
+      "victims": {
+        "mage": {
+          "role": "hero",
+          "hpLoss": 69,
+          "shieldLoss": 0,
+          "maxHp": 1158,
+          "directImpactSameShot": true,
+          "combinedPercentMaxHp": 5.958549222797927
+        }
+      },
+      "events": 1,
+      "hpLoss": 69,
+      "shieldLoss": 0
+    },
+    {
+      "shot": 24,
+      "owner": "a4-39-m-1",
+      "skill": "LS09",
+      "round": 3,
+      "victims": {
+        "occultist": {
+          "role": "hero",
+          "hpLoss": 62,
+          "shieldLoss": 0,
+          "maxHp": 1324,
+          "directImpactSameShot": true,
+          "combinedPercentMaxHp": 4.682779456193353
+        }
+      },
+      "events": 1,
+      "hpLoss": 62,
+      "shieldLoss": 0
+    },
+    {
+      "shot": 25,
+      "owner": "a4-39-m-2",
+      "skill": "HSH01",
+      "round": 3,
+      "victims": {
+        "occultist": {
+          "role": "hero",
+          "hpLoss": 41,
+          "shieldLoss": 0,
+          "maxHp": 1324,
+          "directImpactSameShot": true,
+          "combinedPercentMaxHp": 3.096676737160121
+        }
+      },
+      "events": 1,
+      "hpLoss": 41,
+      "shieldLoss": 0
+    },
+    {
+      "shot": 26,
+      "owner": "a4-39-n-4",
+      "skill": "HSH01",
+      "round": 3,
+      "victims": {
+        "knight": {
+          "role": "hero",
+          "hpLoss": 0,
+          "shieldLoss": 29,
+          "maxHp": 2093,
+          "directImpactSameShot": true,
+          "combinedPercentMaxHp": 1.385570950788342
+        }
+      },
+      "events": 1,
+      "hpLoss": 0,
+      "shieldLoss": 29
+    },
+    {
+      "shot": 27,
+      "owner": "a4-39-a-1",
+      "skill": "LA01",
+      "round": 4,
+      "victims": {
+        "mage": {
+          "role": "hero",
+          "hpLoss": 0,
+          "shieldLoss": 106,
+          "maxHp": 1158,
+          "directImpactSameShot": true,
+          "combinedPercentMaxHp": 9.153713298791018
+        }
+      },
+      "events": 1,
+      "hpLoss": 0,
+      "shieldLoss": 106
+    },
+    {
+      "shot": 28,
+      "owner": "a4-39-a-2",
+      "skill": "LA01",
+      "round": 4,
+      "victims": {
+        "archer": {
+          "role": "hero",
+          "hpLoss": 0,
+          "shieldLoss": 111,
+          "maxHp": 1259,
+          "directImpactSameShot": true,
+          "combinedPercentMaxHp": 8.816521048451152
+        }
+      },
+      "events": 1,
+      "hpLoss": 0,
+      "shieldLoss": 111
+    },
+    {
+      "shot": 29,
+      "owner": "a4-39-m-1",
+      "skill": "LS09",
+      "round": 4,
+      "victims": {
+        "archer": {
+          "role": "hero",
+          "hpLoss": 17,
+          "shieldLoss": 40,
+          "maxHp": 1259,
+          "directImpactSameShot": true,
+          "combinedPercentMaxHp": 4.527402700555997
+        },
+        "mage": {
+          "role": "hero",
+          "hpLoss": 17,
+          "shieldLoss": 33,
+          "maxHp": 1158,
+          "directImpactSameShot": false,
+          "combinedPercentMaxHp": 4.317789291882556
+        }
+      },
+      "events": 2,
+      "hpLoss": 34,
+      "shieldLoss": 73
+    },
+    {
+      "shot": 30,
+      "owner": "a4-39-n-4",
+      "skill": "HSH01",
+      "round": 4,
+      "victims": {
+        "knight": {
+          "role": "hero",
+          "hpLoss": 0,
+          "shieldLoss": 29,
+          "maxHp": 2093,
+          "directImpactSameShot": true,
+          "combinedPercentMaxHp": 1.385570950788342
+        }
+      },
+      "events": 1,
+      "hpLoss": 0,
+      "shieldLoss": 29
+    },
+    {
+      "shot": 32,
+      "owner": "a4-39-n-4",
+      "skill": "HSH01",
+      "round": 5,
+      "victims": {
+        "knight": {
+          "role": "hero",
+          "hpLoss": 0,
+          "shieldLoss": 29,
+          "maxHp": 2093,
+          "directImpactSameShot": false,
+          "combinedPercentMaxHp": 1.385570950788342
+        },
+        "occultist": {
+          "role": "hero",
+          "hpLoss": 0,
+          "shieldLoss": 41,
+          "maxHp": 1324,
+          "directImpactSameShot": true,
+          "combinedPercentMaxHp": 3.096676737160121
+        }
+      },
+      "events": 2,
+      "hpLoss": 0,
+      "shieldLoss": 70
+    },
+    {
+      "shot": 33,
+      "owner": "a4-39-w-5",
+      "skill": "HSH02",
+      "round": 5,
+      "victims": {
+        "mage": {
+          "role": "hero",
+          "hpLoss": 0,
+          "shieldLoss": 64,
+          "maxHp": 1158,
+          "directImpactSameShot": true,
+          "combinedPercentMaxHp": 5.526770293609672
+        }
+      },
+      "events": 1,
+      "hpLoss": 0,
+      "shieldLoss": 64
+    },
+    {
+      "shot": 34,
+      "owner": "a4-wreck",
+      "skill": "HWD01",
+      "round": 5,
+      "victims": {
+        "archer": {
+          "role": "hero",
+          "hpLoss": 0,
+          "shieldLoss": 65,
+          "maxHp": 1259,
+          "directImpactSameShot": true,
+          "combinedPercentMaxHp": 5.162827640984909
+        }
+      },
+      "events": 1,
+      "hpLoss": 0,
+      "shieldLoss": 65
+    }
+  ]
+}

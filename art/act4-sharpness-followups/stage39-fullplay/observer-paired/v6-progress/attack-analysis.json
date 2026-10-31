@@ -1,0 +1,193 @@
+{
+  "definition": "A damage call is grouped with a uniquely observed accepted enemy fire by current battle shot, owner and skill; not projectile ID causation. Delayed damage after a different shot or ambiguous fire is not safely assigned. Impact evidence is separately marked. Percent is per attack-victim and includes shield divided by max HP; not fraction of total effective health.",
+  "primaryDamageEvents": 7,
+  "matchedEvents": 7,
+  "unmatched": [],
+  "matchedAttacks": 6,
+  "enemyFires": 11,
+  "pointLossPerAttack": {
+    "n": 6,
+    "min": 29,
+    "median": 75.0,
+    "max": 131
+  },
+  "perVictimPercentMaxHp": {
+    "n": 6,
+    "min": 1.385570950788342,
+    "median": 4.540761681507774,
+    "max": 8.534743202416918
+  },
+  "enemyActorsCompletedByRound": {
+    "1": [
+      "a4-39-a-1",
+      "a4-39-m-1",
+      "a4-39-m-2",
+      "a4-39-m-5",
+      "a4-39-w-3",
+      "a4-39-w-5"
+    ],
+    "2": [
+      "a4-39-g-3",
+      "a4-39-m-4",
+      "a4-39-n-1",
+      "a4-39-n-2",
+      "a4-39-n-3",
+      "a4-39-n-4"
+    ],
+    "3": [
+      "a4-39-g-3",
+      "a4-39-n-1",
+      "a4-39-n-2",
+      "a4-39-n-3",
+      "a4-39-n-4",
+      "a4-wreck"
+    ]
+  },
+  "victimsWithLossByRound": {
+    "1": [
+      "knight",
+      "occultist"
+    ],
+    "2": [
+      "a4-rescue-3",
+      "archer"
+    ]
+  },
+  "victimsWithDirectImpactByRound": {
+    "1": [
+      "knight",
+      "occultist"
+    ],
+    "2": [
+      "archer",
+      "knight"
+    ],
+    "3": [
+      "knight"
+    ]
+  },
+  "attacks": [
+    {
+      "shot": 3,
+      "owner": "a4-39-a-1",
+      "skill": "LA01",
+      "round": 1,
+      "victims": {
+        "occultist": {
+          "role": "hero",
+          "hpLoss": 113,
+          "shieldLoss": 0,
+          "maxHp": 1324,
+          "directImpactSameShot": true,
+          "combinedPercentMaxHp": 8.534743202416918
+        }
+      },
+      "events": 1,
+      "hpLoss": 113,
+      "shieldLoss": 0
+    },
+    {
+      "shot": 4,
+      "owner": "a4-39-w-3",
+      "skill": "LS09",
+      "round": 1,
+      "victims": {
+        "occultist": {
+          "role": "hero",
+          "hpLoss": 69,
+          "shieldLoss": 0,
+          "maxHp": 1324,
+          "directImpactSameShot": true,
+          "combinedPercentMaxHp": 5.211480362537764
+        }
+      },
+      "events": 1,
+      "hpLoss": 69,
+      "shieldLoss": 0
+    },
+    {
+      "shot": 6,
+      "owner": "a4-39-m-1",
+      "skill": "LS09",
+      "round": 1,
+      "victims": {
+        "knight": {
+          "role": "hero",
+          "hpLoss": 0,
+          "shieldLoss": 54,
+          "maxHp": 2093,
+          "directImpactSameShot": true,
+          "combinedPercentMaxHp": 2.580028666985189
+        }
+      },
+      "events": 1,
+      "hpLoss": 0,
+      "shieldLoss": 54
+    },
+    {
+      "shot": 7,
+      "owner": "a4-39-m-2",
+      "skill": "HSH01",
+      "round": 1,
+      "victims": {
+        "knight": {
+          "role": "hero",
+          "hpLoss": 0,
+          "shieldLoss": 29,
+          "maxHp": 2093,
+          "directImpactSameShot": true,
+          "combinedPercentMaxHp": 1.385570950788342
+        }
+      },
+      "events": 1,
+      "hpLoss": 0,
+      "shieldLoss": 29
+    },
+    {
+      "shot": 8,
+      "owner": "a4-39-m-5",
+      "skill": "LA01",
+      "round": 1,
+      "victims": {
+        "knight": {
+          "role": "hero",
+          "hpLoss": 0,
+          "shieldLoss": 81,
+          "maxHp": 2093,
+          "directImpactSameShot": true,
+          "combinedPercentMaxHp": 3.870043000477783
+        }
+      },
+      "events": 1,
+      "hpLoss": 0,
+      "shieldLoss": 81
+    },
+    {
+      "shot": 9,
+      "owner": "a4-39-n-3",
+      "skill": "HMO01",
+      "round": 2,
+      "victims": {
+        "archer": {
+          "role": "hero",
+          "hpLoss": 0,
+          "shieldLoss": 72,
+          "maxHp": 1259,
+          "directImpactSameShot": true,
+          "combinedPercentMaxHp": 5.718824463860207
+        },
+        "a4-rescue-3": {
+          "role": "resident",
+          "hpLoss": 59,
+          "shieldLoss": 0,
+          "maxHp": null,
+          "directImpactSameShot": false,
+          "combinedPercentMaxHp": null
+        }
+      },
+      "events": 2,
+      "hpLoss": 59,
+      "shieldLoss": 72
+    }
+  ]
+}
