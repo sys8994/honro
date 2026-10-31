@@ -1,0 +1,16 @@
+import assert from 'node:assert/strict';
+import {readFile} from 'node:fs/promises';
+import {runtime} from '../game/tests/helpers.mjs';
+import {loadPilotRuntime} from '../tools/stage31/pilot-runtime.mjs';
+process.env.HONRO_ACT4_RELEASE='1';
+const g=await runtime({legacyMaps:false});
+assert.equal(g.HonroAct4PilotCombat,undefined,'model-only runtime should expose a missing pilot dependency');
+const originalCreate=g.HonroUnits.create;
+await loadPilotRuntime(g);
+assert.ok(g.HonroAct4PilotCombat?.tuneFresh);
+assert.deepEqual(JSON.parse(JSON.stringify(g.HONRO_ACT4_PILOT_COMBAT_REFERENCE)),JSON.parse(await readFile('shared/data/act4/pilot-combat-reference.json','utf8')));
+assert.notEqual(g.HonroUnits.create,originalCreate,'actual pilot combat hook must be installed');
+const installedCreate=g.HonroUnits.create;
+await loadPilotRuntime(g);
+assert.equal(g.HonroUnits.create,installedCreate,'repeat loading must not stack decorators');
+console.log('Stage 31 production probe pilot runtime: pass');

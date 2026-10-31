@@ -3,6 +3,7 @@
 import vm from 'node:vm';
 import {readFile} from 'node:fs/promises';
 import {appHarness,plain} from '../../tests/app-regression-helpers.mjs';
+import {loadPilotRuntime} from './pilot-runtime.mjs';
 export async function createAppAdapter(project,stageId,{entryBuild='unspent'}={}){
  process.env.HONRO_ACT4_RELEASE='1';const h=await appHarness({productionStory:true}),g=h.g,n=project.stages.find(s=>s.id===stageId)?.metadata?.stageId;
  if(n!==31)throw Error('Objective adapter currently supports Stage31 only; other stages remain unverified.');
@@ -15,6 +16,7 @@ export async function createAppAdapter(project,stageId,{entryBuild='unspent'}={}
   for(const cls of p.recruited){const hero=p.heroes[cls];for(let i=0;i<(entryBuild==='campaign-spent-v1'?18:6);i++)training.push({cls,type:'stat',accepted:C.investStat(hero,cls)});for(const id of wanted[cls])for(let i=0;i<(entryBuild==='campaign-spent-v1'?5:3);i++)training.push({cls,id,accepted:C.train(hero,id)});if(entryBuild==='campaign-spent-v1')while(C.pointsLeft(hero,cls)>0){if(!C.investStat(hero,cls))break;training.push({cls,type:'remaining-earned-stat',accepted:true});}p.loadouts[cls]=wanted[cls].filter(id=>hero.ranks[id]>0);training.push({cls,earned:C.pointsEarned(hero),spent:C.pointsSpent(hero,cls),left:C.pointsLeft(hero,cls),ranks:plain(hero.ranks)});}
  }const app=h.load(p);g.HonroApp=app;
  for(const name of ['interactions','act4-art','act4-maps','act4-coast-maps','act4-coast-art','act4-events','act4-coast-events','act4-campaign'])vm.runInContext(await readFile('shared/runtime/'+name+'.js','utf8'),g);
+ await loadPilotRuntime(g);
  app.launch(31);app.close();if(app.engine?.b.honroStage!==31)throw Error('Production App did not launch the declared stage.');
  app.scene.canvas={clientWidth:1440,clientHeight:900,getBoundingClientRect:()=>({left:0,top:0,width:1440,height:900})};
  return{g,app,engine:app.engine,training,entryBuild,scope:'Prepared stage-entry profile; production App events; DOM/audio are doubles. Not a browser/campaign playthrough.',
