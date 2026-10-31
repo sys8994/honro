@@ -1,6 +1,6 @@
 # Act 4 candidate assembly (QA only)
 
-The pinned index and manifests come from auxiliary commit `a5c521b384ef9086194cfaafcf36291f06e05569`. Run `python tools/act4-rc/restore.py` after fetching that object. It verifies compressed and raw lengths, SHA-256, and stage identities before writing ignored `_local/act4-rc/candidates/`. These are review candidates, not release approvals.
+The current v2 index and manifests come from auxiliary commit `c5df56daf71d62d28d308d982bc431b3c75fb98d`; the earlier v1 selection came from `a5c521b384ef9086194cfaafcf36291f06e05569`. Run `python tools/act4-rc/restore.py` after fetching that object. It verifies compressed and raw lengths, SHA-256, and stage identities before writing ignored `_local/act4-rc/candidates/`. These are review candidates, not release approvals.
 
 After `node tools/act4-source/world-source.mjs materialize`, run `python tools/act4-rc/assemble.py`. It checks every asset ID against the candidate and canonical libraries, retains all assets, checks recursive references and stage 40's dynamic ferry, and writes only ignored `_local/act4-rc/world.json` and `assembly.json`. Stage 36's vector `a4:door` conflicts with a different placeholder used by stage 32: assembly preserves the placeholder and copies the stage 36 vector under `act4rc:stage36-door`, selected through the existing `vectorDoorAssetId` contract. The audit records both hashes. This proposed QA resolution requires event-scene and save/restore review before release.
 

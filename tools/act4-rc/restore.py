@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Restore exactly the reviewed QA candidates from the immutable auxiliary commit."""
 import base64,hashlib,json,lzma,pathlib,subprocess
-ROOT=pathlib.Path(__file__).resolve().parents[2];COMMIT='a5c521b384ef9086194cfaafcf36291f06e05569'
+ROOT=pathlib.Path(__file__).resolve().parents[2];COMMIT='c5df56daf71d62d28d308d982bc431b3c75fb98d'
 index=json.loads((ROOT/'tools/act4-rc/REVIEW_INDEX.json').read_text());out=ROOT/'_local/act4-rc/candidates';out.mkdir(parents=True,exist_ok=True)
 def sha(b):return hashlib.sha256(b).hexdigest()
 assert [x['stage'] for x in index['candidates']]==list(range(31,41)) and index['releaseApproved'] is False

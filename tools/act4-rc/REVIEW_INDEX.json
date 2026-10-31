@@ -1,5 +1,5 @@
 {
-  "version": 1,
+  "version": 2,
   "kind": "QA-only review index",
   "createdUtc": "2026-10-31T15:13:07.109Z",
   "baselineMaster": "7238c788662cdfc55947d51dbe6cfe3a46768d0b",
@@ -33,10 +33,10 @@
       "stage": 33,
       "act": 4,
       "chapter": 3,
-      "payload": "art/act4-sharp-candidates/stage33-envfix-valid.candidate.json.xz.b64",
-      "manifest": "art/act4-sharp-candidates/stage33-envfix-valid.manifest.json",
-      "rawSha256": "dec192b634d200adb179a4e24d7f8f0bba863579c67b233410c8649c9eb6b0dd",
-      "note": "Environment repair; three invalid optional stair tags removed with pixel/compile parity"
+      "payload": "art/act4-sharp-candidates/stage33-west-seam-v4.candidate.json.xz.b64",
+      "manifest": "art/act4-sharp-candidates/stage33-west-seam-v4.transfer.manifest.json",
+      "rawSha256": "a3b1fd368c82b86800bd719962408a506da2ad7b15a318c312210aebc2b94985",
+      "note": "West seam v4: actual Chromium scoped seam/opening review passed; protected gameplay geometry unchanged; full current-source mission/performance acceptance remains separate"
     },
     {
       "stage": 34,
@@ -101,5 +101,7 @@
       "rawSha256": "c41085576168a69839cf1fb731ffcf329b37d2a7691d8a7b8d9c5ce704c60322",
       "note": "Environment joins and static boat removed; follower opt-in; lossless structural optimization"
     }
-  ]
+  ],
+  "updatedUtc": "2026-10-31T19:42:00.824Z",
+  "previousIndexCommit": "a5c521b384ef9086194cfaafcf36291f06e05569"
 }
