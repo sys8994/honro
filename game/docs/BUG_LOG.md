@@ -5127,3 +5127,7 @@ commonReviewRevision의 첫 혼령 대기열은 생성 후 소단/sceneTarget가
 ### 2026-10-31 — Act 4 pilot combat dependency
 
 The clean runtime omitted the opt-in pilot combat module used by tagged Act 4 candidates. Reconnected the unchanged reviewed module, its v2 reference, and the explicit one-round activation option; fresh tagged maps now fail preflight when required pieces are absent. Published untagged data are unchanged. Focused tests and remaining browser/play limits are recorded in [ACT4_PILOT_COMBAT_DEPENDENCY.md](integration/ACT4_PILOT_COMBAT_DEPENDENCY.md).
+
+### Act 4 RC map revision archive (2026-10-31)
+
+An existing Stage 31 battle recorded map revision 4, so candidate geography uses independent map revision 5; story/equipment proof revision stays 3. The prior preservation condition only archived obsolete Act 4 saves when the current map revision equalled 3. It now applies to revision 3 and later, retaining the original exact bytes before the battle is restarted. `tests/act4-map-revision-rc.mjs`, `tests/act4-rc-archive.mjs` and `tests/campaign-map-revision.mjs` exercise the map/progression boundary, original backup, quota failure, and Workshop/earlier-stage exclusions. Browser/device migration and final release evidence remain separate.
