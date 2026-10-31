@@ -1,7 +1,7 @@
-import json,time,hashlib,os
+import json,time,hashlib,os,re
 from pathlib import Path
 from playwright.sync_api import sync_playwright
-out=Path(os.environ.get('HONRO_RUN_DIR','/workspace/honro/_local/act4-rc/play36-fresh')); out.mkdir(parents=True,exist_ok=True);profile=json.load(open('/workspace/honro/tests/fixtures/act4-rc/support-entry-fixture.json'))['profile']
+repo=Path(__file__).resolve().parents[2];out=Path(os.environ.get('HONRO_RUN_DIR',str(repo/'_local/act4-rc'/('play36-'+str(time.time_ns())))));out.mkdir(parents=True,exist_ok=False);profile=json.load(open(repo/'tests/fixtures/act4-rc/support-entry-fixture.json'))['profile']
 profile['cleared'].update({str(i):{'visits':1,'rounds':5,'stars':1,'shots':0} for i in range(31,36)});profile['lastStage']=36;profile['mapNode']=36
 with sync_playwright() as w:
  b=w.chromium.launch(executable_path='/usr/bin/chromium',headless=True,args=['--no-sandbox']);p=b.new_page(viewport={'width':1440,'height':900});p.goto(os.environ.get('HONRO_QA_URL','http://127.0.0.1:8770')+'/HONRO.html',wait_until='domcontentloaded');p.wait_for_function('window.HonroApp && window.HonroProgression')
@@ -11,7 +11,7 @@ with sync_playwright() as w:
  for _ in range(8):
   if p.get_by_text('확인',exact=True).count() and p.get_by_text('확인',exact=True).first.is_visible():p.get_by_text('확인',exact=True).first.click();p.wait_for_timeout(500)
   else: break
- start=time.monotonic();log=[];last=None;acted=set();stagnant=0
+ start=time.monotonic();log=[];last=None;acted=set();stagnant=0;commands=(out/'commands.jsonl').open('x',encoding='utf-8')
  for i in range(1000000):
   p.wait_for_timeout(1200)
   st=p.evaluate('''()=>{let a=HonroApp,e=a.engine,b=e?.b,u=e?.active;return {screen:a.screen,dialogue:!!a.dialogue,round:b?.round,phase:b?.phase,active:u&&{id:u.id,side:u.side,x:u.x,y:u.y,hp:u.hp,angle:u.angle},units:b?.units.map(v=>({id:v.id,side:v.side,hp:v.hp,dead:v.dead,x:Math.round(v.x),y:Math.round(v.y)}))}}''');print('STATE',json.dumps(st,ensure_ascii=False),flush=True);log.append(st);(out/'attempt.json').write_text(json.dumps({'fixture':proof,'elapsedWallSec':time.monotonic()-start,'states':log},ensure_ascii=False,indent=2))
@@ -30,14 +30,24 @@ with sync_playwright() as w:
    while True:
     line=input('command> ').strip().split()
     if not line:continue
+    commands.write(json.dumps({'wallTime':time.time(),'elapsedWallSec':time.monotonic()-start,'input':line},ensure_ascii=False)+'\n');commands.flush()
     if line[0]=='auto':acted.discard(key);stagnant=0;break
     if line[0]=='next':acted.add(key);stagnant=0;break
     if line[0]=='hold':p.keyboard.down(line[1]);p.wait_for_timeout(int(line[2]));p.keyboard.up(line[1])
     if line[0]=='quit':raise SystemExit('operator ended attempt')
     if line[0]=='key':p.keyboard.press(line[1])
     if line[0]=='move':p.keyboard.down(line[1]);p.wait_for_timeout(int(line[2]));p.keyboard.up(line[1])
-    if line[0]=='screenshot':p.screenshot(path=str(out/'manual.png'))
-    if line[0]=='state':print(p.evaluate('''()=>{let a=HonroApp,b=a.engine.b;return JSON.stringify({round:b.round,phase:b.phase,active:a.engine.active?.id,units:b.units.map(u=>({id:u.id,x:u.x,y:u.y,hp:u.hp,dead:u.dead})),events:b.honroAct4PreviewState,ledger:a.profile.equipment.rewardLedger.eq_hw_t3b,owned:a.profile.equipment.ownedItemIds.filter(x=>x==='itm_hw_06')})}'''),flush=True)
+    if line[0]=='screenshot':
+     target=out/('screen-'+str(time.time_ns())+'.png');p.screenshot(path=str(target));print('SCREENSHOT',target,flush=True)
+    if line[0]=='capture':
+     if len(line)!=2 or not re.fullmatch(r'[A-Za-z0-9_-]{1,80}',line[1]):print('ERROR invalid capture label',flush=True)
+     else:
+      target=out/(line[1]+'.png')
+      if target.exists():print('ERROR capture exists',target,flush=True)
+      else:p.screenshot(path=str(target));print('CAPTURE',target,flush=True)
+    if line[0]=='wheel':p.mouse.move(float(line[1]),float(line[2]));p.mouse.wheel(0,float(line[3]))
+    if line[0]=='drag':p.mouse.move(float(line[1]),float(line[2]));p.mouse.down();p.mouse.move(float(line[3]),float(line[4]),steps=20);p.mouse.up()
+    if line[0]=='state':print(p.evaluate('''()=>{let a=HonroApp,b=a.engine.b;return JSON.stringify({stage:b.honroStage,round:b.round,phase:b.phase,active:a.engine.active?.id,grounded:a.engine.active&&a.engine.grounded(a.engine.active),canInput:a.canInput(),camera:{x:a.scene.x,y:a.scene.y,scale:a.scene.scale},units:b.units.map(u=>({id:u.id,x:u.x,y:u.y,hp:u.hp,dead:u.dead})),events:b.honroAct4PreviewState,ledger:a.profile.equipment.rewardLedger.eq_hw_t3b,owned:a.profile.equipment.ownedItemIds.filter(x=>x==='itm_hw_06')})}'''),flush=True)
     if line[0]=='snapshot':
      raw=p.evaluate("()=>localStorage.getItem('honro-first-act-profile-1')")
      if raw is None: raise RuntimeError('profile absent')
@@ -54,7 +64,7 @@ with sync_playwright() as w:
      p.keyboard.press('Escape');p.get_by_role('button',name='설정',exact=True).click();p.get_by_role('button',name='기록·관리',exact=False).click()
      with p.expect_download() as dl:p.get_by_role('button',name='JSON 기록 내보내기').click()
      dest=out/('ui-export-'+str(time.time_ns())+'.json');dl.value.save_as(dest);print('UI_EXPORT',str(dest),hashlib.sha256(dest.read_bytes()).hexdigest(),flush=True)
-    elif line[0] not in {'hold','quit','key','move','screenshot','state'}:print('ERROR unknown command',line[0],flush=True)
+    elif line[0] not in {'hold','quit','key','move','screenshot','capture','wheel','drag','state'}:print('ERROR unknown command',line[0],flush=True)
     p.wait_for_timeout(500)
    continue
   stagnant=0
