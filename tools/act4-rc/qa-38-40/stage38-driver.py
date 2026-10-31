@@ -18,7 +18,7 @@ def validate(args):
     return args[0]
 
 def main():
-    ap=argparse.ArgumentParser();ap.add_argument('--url',default='http://127.0.0.1:8772/HONRO.html');ap.add_argument('--profile',required=True);ap.add_argument('--out',required=True);ap.add_argument('--stage',type=int,choices=(38,40),default=38);ap.add_argument('--preflight',action='store_true');ap.add_argument('--expected-sha256',help='Exact hash for a previously exported UI checkpoint');o=ap.parse_args()
+    ap=argparse.ArgumentParser();ap.add_argument('--url',default='http://127.0.0.1:8772/HONRO.html');ap.add_argument('--profile',required=True);ap.add_argument('--out',required=True);ap.add_argument('--stage',type=int,choices=(38,40),default=38);ap.add_argument('--preflight',action='store_true');ap.add_argument('--preserve-reader',action='store_true');ap.add_argument('--expected-sha256',help='Exact hash for a previously exported UI checkpoint');o=ap.parse_args()
     out=Path(o.out).resolve();out.mkdir(parents=True,exist_ok=False);log=(out/'events.jsonl').open('x',encoding='utf8')
     def record(event):
         event['time']=time.time();log.write(json.dumps(event,ensure_ascii=False)+'\n');log.flush();print(json.dumps(event,ensure_ascii=False),flush=True)
@@ -112,7 +112,7 @@ def main():
             if not proof['valid']:raise AssertionError('stage 40 proof invalid')
             expected={'boardingIndex':7,'passengerIndex':2,'minSeparation':160,'passengerJumpClearBounds':{'x1':4000,'x2':5100,'y1':1750,'y2':2350}}
             if proof['release']!=expected:raise AssertionError('stage 40 followerRelease mismatch')
-        if page.evaluate('!!HonroApp.dialogue'):page.keyboard.press('Enter');page.wait_for_timeout(2000)
+        if not o.preserve_reader and page.evaluate('!!HonroApp.dialogue'):page.keyboard.press('Enter');page.wait_for_timeout(2000)
         snapshot('entry');record({'state':state()})
         if o.preflight:
             reload_same_context();record({'preflight':'actual same-context entry reload completed'})
