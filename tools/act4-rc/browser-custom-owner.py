@@ -1,0 +1,11 @@
+import json,os
+from pathlib import Path
+from playwright.sync_api import sync_playwright
+root=Path(__file__).resolve().parents[2];f=json.loads((root/'tests/fixtures/act4-rc/support-entry-fixture.json').read_text())['profile']
+with sync_playwright() as w:
+ b=w.chromium.launch(executable_path='/usr/bin/chromium',headless=True,args=['--no-sandbox']);p=b.new_page();p.goto(os.environ['HONRO_QA_URL']);p.wait_for_function('window.HonroApp');p.evaluate('(v)=>localStorage.setItem("honro-first-act-profile-1",JSON.stringify(v))',f);p.reload();p.wait_for_function('window.HonroApp');before=p.evaluate("localStorage.getItem('honro-first-act-profile-1')");owner=p.evaluate('''()=>Object.fromEntries(['heroes','equipment','cleared','recruited'].map(k=>[k,structuredClone(HonroApp.profile[k])]))''');p.locator('#map-import').set_input_files(str(root/'_local/act4-rc/candidates/stage31.json'));p.wait_for_function('HonroApp.customMap && HonroApp.engine',timeout=30000)
+ print('custom started, owner bytes same',p.evaluate("localStorage.getItem('honro-first-act-profile-1')")==before,flush=True);assert p.evaluate("localStorage.getItem('honro-first-act-profile-1')")==before
+ for _ in range(15):
+  if not p.evaluate('!!HonroApp.dialogue'):break
+  p.keyboard.press('Enter');p.wait_for_timeout(300)
+ p.keyboard.press('Escape');p.locator('[data-action=rest]').last.click();p.wait_for_function("HonroApp.screen==='rest'",timeout=30000);r=p.evaluate('''()=>({custom:!!HonroApp.customMap,saved:localStorage.getItem('honro-first-act-profile-1'),screen:HonroApp.screen})''');print('custom to rest',{'custom':r['custom'],'screen':r['screen'],'saved_same':r['saved']==before},flush=True);saved=json.loads(r['saved']);preserved={k:saved.get(k) for k in owner};before_ledger=owner['equipment']['rewardLedger'];after_ledger=preserved['equipment']['rewardLedger'];flags=[k for k in before_ledger if before_ledger[k].get('notified')!=after_ledger[k].get('notified')];assert all(not before_ledger[k].get('notified') and after_ledger[k].get('notified') for k in flags);[v.pop('notified',None) for v in before_ledger.values()];[v.pop('notified',None) for v in after_ledger.values()];print('owner protected',preserved==owner,'acknowledged',flags,flush=True);assert not r['custom'] and preserved==owner;b.close()
