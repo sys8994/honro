@@ -1,0 +1,14 @@
+import json,lzma,hashlib,time,os
+from pathlib import Path
+from playwright.sync_api import sync_playwright
+root=Path(__file__).resolve().parents[2];f=root/'tools/act4-rc/fixtures/stage40-checkpoints/stalled-local-storage.json.xz';raw=lzma.decompress(f.read_bytes());assert hashlib.sha256(raw).hexdigest()=='ac743e5d94dfac682e39964b27cf82d9b803bae95b3937cf33a0bebf25658494';out=root/'_local/act4-rc/stage40-checkpoints';out.mkdir(parents=True,exist_ok=True);errors=[]
+with sync_playwright() as w:
+ browser=w.chromium.launch(executable_path='/usr/bin/chromium',headless=True,args=['--no-sandbox']);ctx=browser.new_context(viewport={'width':1440,'height':900});p=ctx.new_page();p.on('pageerror',lambda e:errors.append(str(e)));p.add_init_script('if(!localStorage.getItem("honro-first-act-profile-1"))localStorage.setItem("honro-first-act-profile-1",'+json.dumps(raw.decode())+');');p.goto(os.environ.get('HONRO_QA_URL','http://127.0.0.1:8781')+'/HONRO.html');p.wait_for_function('window.HonroApp');p.get_by_text('이어서 걷기',exact=True).click();p.wait_for_function('HonroApp.engine?.b?.honroStage===40',timeout=60000)
+ view='''()=>{const a=HonroApp,b=a.engine.b,q=b.honroAct4PreviewState,r=q.returnEscort,s=JSON.parse(localStorage.getItem('honro-first-act-profile-1')).honroBattle?.honroAct4PreviewState?.returnEscort;return {round:b.round,phase:r.phase,clock:r.clock,slots:r.safeSlots,routes:r.routes,residents:b.units.filter(u=>u.honroAct4Resident).map(u=>({id:u.id,x:u.x,y:u.y,hp:u.hp,dead:u.dead})),dialogue:!!a.dialogue,stored:s}}''';samples=[]
+ for i in range(65):
+  x=p.evaluate(view);samples.append({'time':time.monotonic(),'state':x});
+  if i%5==0:print('sample',i,x['phase'],x['clock'],[(r['id'],round(r['x'])) for r in x['residents']],flush=True)
+  if x['phase']=='safe':break
+  p.wait_for_timeout(1000)
+ assert x['phase']=='safe',x;assert len(x['slots'])==4 and len({slot['x'] for slot in x['slots'].values()})==4 and all(u['hp']==1450 and not u['dead'] for u in x['residents']);p.screenshot(path=str(out/'common-stall-recovery.png'));p.wait_for_timeout(1500);before=p.evaluate(view);p.reload();p.wait_for_function('window.HonroApp');p.get_by_text('이어서 걷기',exact=True).click();p.wait_for_function('HonroApp.engine?.b?.honroStage===40',timeout=60000);after=p.evaluate(view);assert after['phase']=='safe' and after['slots']==before['slots'];assert all(u['hp']==1450 and not u['dead'] for u in after['residents']);assert not errors,errors
+ result={'sourceInputSha256':hashlib.sha256(raw).hexdigest(),'samples':samples,'beforeReload':before,'afterReload':after,'errors':errors,'scope':'original stalled localStorage; isolated new context, no live state manipulation; not full mission'};(out/'common-stall-recovery.json').write_text(json.dumps(result,indent=2));print('safe + same-context reload',json.dumps({'round':after['round'],'slots':after['slots']}),flush=True);browser.close()
