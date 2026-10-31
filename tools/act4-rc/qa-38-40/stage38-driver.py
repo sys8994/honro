@@ -5,13 +5,14 @@ from pathlib import Path
 from playwright.sync_api import sync_playwright
 
 KEY = 'honro-first-act-profile-1'
-COMMANDS = {'state','key','hold','charge','wait','screen','snapshot','reload','export','next','advance','help','quit'}
+COMMANDS = {'state','key','hold','jumpmove','charge','wait','screen','snapshot','reload','export','next','advance','help','quit'}
 def validate(args):
     if not args or args[0] not in COMMANDS: raise ValueError('unsupported command; use help')
-    counts={'state':(1,1),'key':(2,3),'hold':(3,3),'charge':(2,3),'wait':(2,2),'screen':(2,2),'snapshot':(1,2),'reload':(1,1),'export':(1,1),'next':(1,1),'advance':(1,1),'help':(1,1),'quit':(1,1)}
+    counts={'state':(1,1),'key':(2,3),'hold':(3,3),'jumpmove':(3,3),'charge':(2,3),'wait':(2,2),'screen':(2,2),'snapshot':(1,2),'reload':(1,1),'export':(1,1),'next':(1,1),'advance':(1,1),'help':(1,1),'quit':(1,1)}
     lo,hi=counts[args[0]]
     if not lo<=len(args)<=hi: raise ValueError('wrong argument count for '+args[0])
-    if args[0] in ('wait','hold'): int(args[-1])
+    if args[0] in ('wait','hold','jumpmove'): int(args[-1])
+    if args[0]=='jumpmove' and (args[1] not in ('ArrowLeft','ArrowRight') or not 1<=int(args[2])<=3000): raise ValueError('jumpmove requires a horizontal direction and 1..3000 ms')
     if args[0]=='charge' and any(not 5<=int(v)<=95 for v in args[1:]): raise ValueError('charge percentage must be 5..95')
     if args[0]=='key' and len(args)==3: int(args[2])
     if args[0] in ('screen','snapshot') and len(args)==2 and not args[1].replace('-','').replace('_','').isalnum(): raise ValueError('unsafe label')
@@ -22,7 +23,7 @@ def main():
     out=Path(o.out).resolve();out.mkdir(parents=True,exist_ok=False);log=(out/'events.jsonl').open('x',encoding='utf8')
     def record(event):
         event['time']=time.time();log.write(json.dumps(event,ensure_ascii=False)+'\n');log.flush();print(json.dumps(event,ensure_ascii=False),flush=True)
-    for bad in ([],['unknown'],['hold','ArrowRight'],['screen','../escape']):
+    for bad in ([],['unknown'],['hold','ArrowRight'],['jumpmove','ArrowUp','500'],['jumpmove','ArrowRight','3001'],['screen','../escape']):
         try: validate(bad)
         except ValueError: pass
         else: raise AssertionError('invalid command accepted: '+repr(bad))
@@ -124,6 +125,14 @@ def main():
                 if op=='key':page.keyboard.press(args[1]);page.wait_for_timeout(int(args[2]) if len(args)>2 else 700)
                 elif op=='hold':
                     page.keyboard.down(args[1]);page.wait_for_timeout(int(args[2]));page.keyboard.up(args[1]);page.wait_for_timeout(700)
+                elif op=='jumpmove':
+                    # Ordinary simultaneous movement+jump; always release both keys.
+                    page.keyboard.down(args[1])
+                    try:
+                        page.keyboard.press('Control');page.wait_for_timeout(int(args[2]))
+                    finally:
+                        page.keyboard.up(args[1])
+                    page.wait_for_timeout(700)
                 elif op=='charge':
                     target=int(args[1]);threshold=int(args[2]) if len(args)>2 else target
                     actor=page.evaluate('()=>HonroApp.engine?.active?.id');page.keyboard.down('Space');handle=None
