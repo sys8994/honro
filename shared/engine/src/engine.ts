@@ -283,6 +283,10 @@ export class Engine {
     private waterEntry(p:Projectile,m:{waterEntered:boolean;waterEntryPoint?:Vec}){
         if(m.waterEntered&&!p.waterfallTouched){p.waterfallTouched=true;const at=m.waterEntryPoint||p;this.fx('ring',at.x,at.y,'#c8e1d9',22);this.fx('spark',at.x,at.y,'#9fcbd0',16);}
     }
+    /** Invalidate the live collision broad phase after moving a separately rendered
+     * terrain object. Static visible edits must still advance sceneVersion;
+     * callers must update the full shape. The cache is transient. */
+    invalidateTerrainCollisionIndex(){this.indexedVersion=-1;this.indexedCount=-1;}
     // Uniform broad phase: a large field need not scan every distant ground piece for each flight substep.
     collisionTerrain(a: Vec, c: Vec, r: number) {
         if (this.indexedVersion !== this.b.sceneVersion || this.indexedCount !== this.b.terrain.length) {
