@@ -58,12 +58,32 @@ const attached=new WeakSet();function attach(app){const e=app.engine;if(!e||atta
  if(equipped(b,u)&&alive(u)&&!u.acted&&b.side===1&&memory(u).phase==='relocate'&&Number.isFinite(memory(u).relocateAfterShot)&&memory(u).relocateAfterShot===b.shot&&!b.projectiles.length){if(beginRelocation(e,u)){b.phase='enemy';b.turnAge=0;return;}}
  const eligible=alive(u)&&u.side===0&&!u.acted?b.units.filter(v=>equipped(b,v)).map(v=>memory(v).target).filter(t=>t?.offered?.[u.id]?.round===round):[];const out=finish(...args);if(u?.acted)for(const t of eligible)t.response??={id:u.id,round,teamEnd:b.teamEnds?.[0]||0};return out;};
 }
-function draw(scene,c,b){if(!active(b))return;const app=G.HonroApp;for(const u of b.units){if(!equipped(b,u)||!alive(u))continue;const s=memory(u),t=s.target;if(s.phase!=='telegraph'||!t)continue;
- const visible=G.HonroAct4TerrainPreview?.eventAPI?.inView(app,t,25);if(!visible)continue;
- // Reuse the coastal artillery's functional dashed ring, not authored scenery.
- c.save();c.strokeStyle='#bf8568';c.lineWidth=3;c.setLineDash([12,9]);c.beginPath();c.ellipse(t.x,t.y+40,configs[b.honroAct4Preview].blast+30,24,0,0,Math.PI*2);c.stroke();c.setLineDash([]);c.beginPath();c.moveTo(t.x-17,t.y);c.lineTo(t.x+17,t.y);c.moveTo(t.x,t.y-17);c.lineTo(t.x,t.y+17);c.stroke();c.fillStyle='#f2d7b1';c.font='bold 16px sans-serif';c.textAlign='center';c.fillText('고정 표적 · 다음 대응 뒤 곡사',t.x,t.y-28);c.restore();
- if(app?.scene===scene&&!G.document?.hidden&&!app.dialogue&&!app.modal?.classList.contains('open')&&scene.canvas?.checkVisibility?.({checkOpacity:true,checkVisibilityCSS:true})&&!t.seen){t.seen=true;t.seenTeamEnd=b.teamEnds?.[0]||0;t.seenRound=b.round;}if(t.seen&&app?.engine&&!app.dialogue&&!app.modal?.classList.contains('open'))offer(app.engine);
- }}
+// Draw the warning in screen space after world layers. The target marker and the
+// entire label must both fit outside visible UI before observing the warning.
+function warningLayout(scene,app,t,cfg,textWidth){
+ const canvas=scene.canvas,r=canvas.getBoundingClientRect(),w=r.width,h=r.height,scale=scene.scale;
+ if(!(w>0&&h>0&&scale>0))return null;
+ const x=w/2+(t.x-scene.x)*scale,y=h/2+(t.y-scene.y)*scale,rad=Math.max(10,Math.min(22,(cfg.blast+30)*scale));
+ const bounds={left:x-rad-3,right:x+rad+3,top:y-rad-3,bottom:y+rad+3};
+ const obstacles=[];for(const selector of ['.battle-info','.battle-head>button','#minimap-dock','#battle-bottom','#turn-banner']){
+  for(const n of app.root?.querySelectorAll?.(selector)||[]){const a=n.getBoundingClientRect();if(a.width>0&&a.height>0&&G.getComputedStyle?.(n)?.visibility!=='hidden')obstacles.push({left:a.left-r.left,right:a.right-r.left,top:a.top-r.top,bottom:a.bottom-r.top});}}
+ const fits=q=>q.left>=4&&q.top>=4&&q.right<=w-4&&q.bottom<=h-4&&!obstacles.some(a=>q.left<a.right&&q.right>a.left&&q.top<a.bottom&&q.bottom>a.top);
+ if(!fits(bounds))return null;
+ const pw=Math.ceil(textWidth)+20,ph=26;if(pw>w-8)return null;
+ const left=Math.max(4,Math.min(w-pw-4,x-pw/2));
+ for(const top of [y-rad-ph-8,y+rad+8]){const panel={left,right:left+pw,top,bottom:top+ph};if(fits(panel))return {x,y,rad,panel};}
+ return null;
+}
+function draw(scene,c,b){if(!active(b))return;const app=G.HonroApp;
+ if(app?.scene!==scene||G.document?.hidden||app.dialogue||app.modal?.classList.contains('open')||!scene.canvas?.checkVisibility?.({checkOpacity:true,checkVisibilityCSS:true}))return;
+ const text='고정 표적 · 다음 대응 뒤 곡사',d=scene.size(b).d;c.save();c.setTransform(d,0,0,d,0,0);c.font='bold 15px sans-serif';
+ for(const u of b.units){if(!equipped(b,u)||!alive(u))continue;const s=memory(u),t=s.target;if(s.phase!=='telegraph'||!t)continue;
+  const a=warningLayout(scene,app,t,configs[b.honroAct4Preview],c.measureText(text).width);if(!a)continue;
+  c.strokeStyle='#ffca9b';c.lineWidth=2;c.setLineDash([6,4]);c.beginPath();c.arc(a.x,a.y,a.rad,0,Math.PI*2);c.stroke();c.setLineDash([]);c.beginPath();c.moveTo(a.x-8,a.y);c.lineTo(a.x+8,a.y);c.moveTo(a.x,a.y-8);c.lineTo(a.x,a.y+8);c.stroke();
+  c.fillStyle='rgba(20,31,36,.94)';c.fillRect(a.panel.left,a.panel.top,a.panel.right-a.panel.left,a.panel.bottom-a.panel.top);c.fillStyle='#fff0d2';c.textAlign='center';c.textBaseline='middle';c.fillText(text,(a.panel.left+a.panel.right)/2,(a.panel.top+a.panel.bottom)/2);
+  if(!t.seen){t.seen=true;t.seenTeamEnd=b.teamEnds?.[0]||0;t.seenRound=b.round;}if(app.engine)offer(app.engine);
+ }c.restore();
+}
 // Reference-growth starting budget, not a measured damage/round acceptance claim.
 // Applied only when explicitly author-tagged records are freshly constructed.
 function tuneFresh(u,b,st){const C=G.HONRO_CORE,P=G.HonroProgression;if(!active(b)||!u.honroPilotCombatBudget||!P||!C)return u;
@@ -84,6 +104,6 @@ function tuneFresh(u,b,st){const C=G.HONRO_CORE,P=G.HonroProgression;if(!active(
 }
 if(G.HonroUnits){const create=G.HonroUnits.create;G.HonroUnits.create=function(record,b,profile,st,...args){return tuneFresh(create.call(this,record,b,profile,st,...args),b,st);};}
 const P=G.HonroAct4TerrainPreview;if(P?.attachCoast){const coast=P.attachCoast;P.attachCoast=function(app,...args){const out=coast.call(this,app,...args);attach(app);return out;};}
-if(G.HonroScene){const live=G.HonroScene.prototype.liveWater;G.HonroScene.prototype.liveWater=function(c,b,...args){const out=live?.call(this,c,b,...args);draw(this,c,b);return out;};}
-G.HonroAct4PilotCombat={configs,active,equipped,memory,decorate,action,attach,draw,tuneFresh,offer};
+if(G.HonroScene){const render=G.HonroScene.prototype.render;G.HonroScene.prototype.render=function(e,...args){const out=render.call(this,e,...args);draw(this,this.ctx,e.b);return out;};}
+G.HonroAct4PilotCombat={configs,active,equipped,memory,decorate,action,attach,draw,warningLayout,tuneFresh,offer};
 })(globalThis);
