@@ -1,0 +1,541 @@
+{
+  "source": "actual live localStorage snapshots; action boundaries, not frame trace",
+  "snapshots": [
+    {
+      "time": 1793483307.5785575,
+      "after": [
+        "key",
+        "Control",
+        "100"
+      ],
+      "sha256": "94565f8f3738fe362301441a1b5347cb5a5a0dd45a64c685464a14a26a035b56",
+      "round": 13,
+      "phase": "aim",
+      "actor": {
+        "id": "archer",
+        "x": 4865.127908575126,
+        "y": 2621.005626037232,
+        "hp": 922,
+        "vx": 0,
+        "vy": -558.8676123099282,
+        "jumping": true,
+        "airborne": false,
+        "moveLeft": 1987,
+        "equipmentIds": [
+          "itm_se_05",
+          "itm_co_11"
+        ]
+      }
+    },
+    {
+      "time": 1793483309.3104703,
+      "after": [
+        "hold",
+        "ArrowLeft",
+        "300"
+      ],
+      "sha256": "c777611233bdef7e986929ffb4f230639a45c15929cc489e1ae62907d5cd38a1",
+      "round": 13,
+      "phase": "aim",
+      "actor": {
+        "id": "archer",
+        "x": 4792.32964160666,
+        "y": 2486.874112882578,
+        "hp": 922,
+        "vx": 0,
+        "vy": -198.47725748492195,
+        "jumping": true,
+        "airborne": false,
+        "moveLeft": 1914.2017330315339,
+        "equipmentIds": [
+          "itm_se_05",
+          "itm_co_11"
+        ]
+      }
+    },
+    {
+      "time": 1793483311.5835712,
+      "after": [
+        "wait",
+        "1800"
+      ],
+      "sha256": "0fc9076593a6dbcb1adf35b3f95ca8f0c8a15d694d6792a138c13b86646aea99",
+      "round": 13,
+      "phase": "aim",
+      "actor": {
+        "id": "archer",
+        "x": 4792.32964160666,
+        "y": 2636.3358675388954,
+        "hp": 922,
+        "vx": 0,
+        "vy": 574.3774230302978,
+        "jumping": true,
+        "airborne": false,
+        "moveLeft": 1914.2017330315339,
+        "equipmentIds": [
+          "itm_se_05",
+          "itm_co_11"
+        ]
+      }
+    },
+    {
+      "time": 1793483327.2710285,
+      "after": [
+        "key",
+        "Control",
+        "100"
+      ],
+      "sha256": "89657e27c51cbaa0c0fbb0ddb671c0cf59b60a49093396d4e7f14939d1107cd9",
+      "round": 13,
+      "phase": "aim",
+      "actor": {
+        "id": "archer",
+        "x": 4792.32964160666,
+        "y": 2626.9864609937867,
+        "hp": 922,
+        "vx": 0,
+        "vy": -567.2718546250896,
+        "jumping": true,
+        "airborne": false,
+        "moveLeft": 1839.2017330315339,
+        "equipmentIds": [
+          "itm_se_05",
+          "itm_co_11"
+        ]
+      }
+    },
+    {
+      "time": 1793483327.723729,
+      "after": [
+        "wait",
+        "250"
+      ],
+      "sha256": "89657e27c51cbaa0c0fbb0ddb671c0cf59b60a49093396d4e7f14939d1107cd9",
+      "round": 13,
+      "phase": "aim",
+      "actor": {
+        "id": "archer",
+        "x": 4792.32964160666,
+        "y": 2626.9864609937867,
+        "hp": 922,
+        "vx": 0,
+        "vy": -567.2718546250896,
+        "jumping": true,
+        "airborne": false,
+        "moveLeft": 1839.2017330315339,
+        "equipmentIds": [
+          "itm_se_05",
+          "itm_co_11"
+        ]
+      }
+    },
+    {
+      "time": 1793483329.2287176,
+      "after": [
+        "hold",
+        "ArrowRight",
+        "350"
+      ],
+      "sha256": "2b97aa43ed57599f9020ace6147db36667f84d2018988e50f903533350285721",
+      "round": 13,
+      "phase": "aim",
+      "actor": {
+        "id": "archer",
+        "x": 4860.274690777228,
+        "y": 2473.0311052367256,
+        "hp": 922,
+        "vx": 0,
+        "vy": -89.90285316355109,
+        "jumping": true,
+        "airborne": false,
+        "moveLeft": 1771.2566838609655,
+        "equipmentIds": [
+          "itm_se_05",
+          "itm_co_11"
+        ]
+      }
+    },
+    {
+      "time": 1793483331.1709,
+      "after": [
+        "wait",
+        "1600"
+      ],
+      "sha256": "508127015f89870541cc0e32c04141016373e046798a9c648706b570d7a83098",
+      "round": 13,
+      "phase": "aim",
+      "actor": {
+        "id": "archer",
+        "x": 4913.660086554103,
+        "y": 2659.326798268918,
+        "hp": 922,
+        "vx": 0,
+        "vy": 0,
+        "jumping": false,
+        "airborne": false,
+        "moveLeft": 1717.8712880840903,
+        "equipmentIds": [
+          "itm_se_05",
+          "itm_co_11"
+        ]
+      }
+    },
+    {
+      "time": 1793483348.604868,
+      "after": [
+        "key",
+        "Control",
+        "100"
+      ],
+      "sha256": "d7b1035cd74bede29724a2cceb8c14840db16e95b917a82c5f5fcbfd999c2007",
+      "round": 13,
+      "phase": "aim",
+      "actor": {
+        "id": "archer",
+        "x": 4913.660086554103,
+        "y": 2624.7647072919167,
+        "hp": 922,
+        "vx": 0,
+        "vy": -567.2718546250896,
+        "jumping": true,
+        "airborne": false,
+        "moveLeft": 1642.8712880840903,
+        "equipmentIds": [
+          "itm_se_05",
+          "itm_co_11"
+        ]
+      }
+    },
+    {
+      "time": 1793483350.226681,
+      "after": [
+        "hold",
+        "ArrowLeft",
+        "400"
+      ],
+      "sha256": "b87a3275094519abad537fa21612feb6826329f42d9140841ddbc44f08fa0240",
+      "round": 13,
+      "phase": "aim",
+      "actor": {
+        "id": "archer",
+        "x": 4777.769988212966,
+        "y": 2470.129699185076,
+        "hp": 922,
+        "vx": 0,
+        "vy": -81.5582819735723,
+        "jumping": true,
+        "airborne": false,
+        "moveLeft": 1506.9811897429536,
+        "equipmentIds": [
+          "itm_se_05",
+          "itm_co_11"
+        ]
+      }
+    },
+    {
+      "time": 1793483352.2173202,
+      "after": [
+        "wait",
+        "1800"
+      ],
+      "sha256": "1e7bb005ecaace5bfd6f3f8ccaee9b5312e58b584ea8d0c84b3e20e5f5b54e84",
+      "round": 13,
+      "phase": "aim",
+      "actor": {
+        "id": "archer",
+        "x": 4777.769988212966,
+        "y": 2661.8132729415825,
+        "hp": 922,
+        "vx": 0,
+        "vy": 0,
+        "jumping": false,
+        "airborne": false,
+        "moveLeft": 1506.9811897429536,
+        "equipmentIds": [
+          "itm_se_05",
+          "itm_co_11"
+        ]
+      }
+    },
+    {
+      "time": 1793483363.8043456,
+      "after": [
+        "key",
+        "Control",
+        "100"
+      ],
+      "sha256": "3f854d62d4b3e530f636c779476a9f3129f32265900f9e0b61f0879743677e7d",
+      "round": 13,
+      "phase": "aim",
+      "actor": {
+        "id": "archer",
+        "x": 4777.769988212966,
+        "y": 2631.97844741979,
+        "hp": 922,
+        "vx": 0,
+        "vy": -575.6771476018732,
+        "jumping": true,
+        "airborne": false,
+        "moveLeft": 1431.9811897429536,
+        "equipmentIds": [
+          "itm_se_05",
+          "itm_co_11"
+        ]
+      }
+    },
+    {
+      "time": 1793483364.5856476,
+      "after": [
+        "wait",
+        "450"
+      ],
+      "sha256": "3f854d62d4b3e530f636c779476a9f3129f32265900f9e0b61f0879743677e7d",
+      "round": 13,
+      "phase": "aim",
+      "actor": {
+        "id": "archer",
+        "x": 4777.769988212966,
+        "y": 2631.97844741979,
+        "hp": 922,
+        "vx": 0,
+        "vy": -575.6771476018732,
+        "jumping": true,
+        "airborne": false,
+        "moveLeft": 1431.9811897429536,
+        "equipmentIds": [
+          "itm_se_05",
+          "itm_co_11"
+        ]
+      }
+    },
+    {
+      "time": 1793483366.2061837,
+      "after": [
+        "hold",
+        "ArrowRight",
+        "400"
+      ],
+      "sha256": "dd8e432b1a9e2ffa85ac85afe7c548bb7a63b6b02e60addc22baa513ee30fbfb",
+      "round": 13,
+      "phase": "aim",
+      "actor": {
+        "id": "archer",
+        "x": 4913.660086554103,
+        "y": 2573.3606814116893,
+        "hp": 922,
+        "vx": 0,
+        "vy": 450.33036982792703,
+        "jumping": true,
+        "airborne": false,
+        "moveLeft": 1296.0910914018168,
+        "equipmentIds": [
+          "itm_se_05",
+          "itm_co_11"
+        ]
+      }
+    },
+    {
+      "time": 1793483367.8677044,
+      "after": [
+        "wait",
+        "1500"
+      ],
+      "sha256": "8be3050a212741afbd3a5b209c19591270bbeede99ac132cafc42f5646cd85da",
+      "round": 13,
+      "phase": "aim",
+      "actor": {
+        "id": "archer",
+        "x": 4913.660086554103,
+        "y": 2659.326798268918,
+        "hp": 922,
+        "vx": 0,
+        "vy": 0,
+        "jumping": false,
+        "airborne": false,
+        "moveLeft": 1296.0910914018168,
+        "equipmentIds": [
+          "itm_se_05",
+          "itm_co_11"
+        ]
+      }
+    },
+    {
+      "time": 1793483389.415923,
+      "after": [
+        "key",
+        "Control",
+        "100"
+      ],
+      "sha256": "329b6c75e063902f96f78655bf912fa003adbd784dd20ec7962c931700c202b6",
+      "round": 13,
+      "phase": "aim",
+      "actor": {
+        "id": "archer",
+        "x": 4913.660086554103,
+        "y": 2629.4919727471256,
+        "hp": 922,
+        "vx": 0,
+        "vy": -575.6771476018732,
+        "jumping": true,
+        "airborne": false,
+        "moveLeft": 1221.0910914018168,
+        "equipmentIds": [
+          "itm_se_05",
+          "itm_co_11"
+        ]
+      }
+    },
+    {
+      "time": 1793483390.7942343,
+      "after": [
+        "hold",
+        "ArrowLeft",
+        "400"
+      ],
+      "sha256": "1b68e7d443b3654de5d768c5acfd1dde6e7637805c8237437b0e446935c191d6",
+      "round": 13,
+      "phase": "aim",
+      "actor": {
+        "id": "archer",
+        "x": 4816.595730596148,
+        "y": 2472.377279207513,
+        "hp": 922,
+        "vx": 0,
+        "vy": -106.59512527932208,
+        "jumping": true,
+        "airborne": false,
+        "moveLeft": 1124.026735443862,
+        "equipmentIds": [
+          "itm_se_05",
+          "itm_co_11"
+        ]
+      }
+    },
+    {
+      "time": 1793483392.5337832,
+      "after": [
+        "wait",
+        "1400"
+      ],
+      "sha256": "c67af75e23de7e41bac6b9a15b7552617901ccdda788a753355a29ab4fcb9371",
+      "round": 13,
+      "phase": "aim",
+      "actor": {
+        "id": "archer",
+        "x": 4816.595730596148,
+        "y": 2519.1130656699665,
+        "hp": 922,
+        "vx": 0,
+        "vy": 317.7568819246417,
+        "jumping": true,
+        "airborne": false,
+        "moveLeft": 1124.026735443862,
+        "equipmentIds": [
+          "itm_se_05",
+          "itm_co_11"
+        ]
+      }
+    },
+    {
+      "time": 1793483404.8787732,
+      "after": [
+        "key",
+        "Control",
+        "100"
+      ],
+      "sha256": "458a104f6b317293409d880f2d9e31e6304fba68700380120f458d13cdcd79e7",
+      "round": 13,
+      "phase": "aim",
+      "actor": {
+        "id": "archer",
+        "x": 4816.595730596148,
+        "y": 2626.545259375796,
+        "hp": 922,
+        "vx": 0,
+        "vy": -567.2718546250896,
+        "jumping": true,
+        "airborne": false,
+        "moveLeft": 1049.026735443862,
+        "equipmentIds": [
+          "itm_se_05",
+          "itm_co_11"
+        ]
+      }
+    },
+    {
+      "time": 1793483406.4313855,
+      "after": [
+        "hold",
+        "ArrowRight",
+        "400"
+      ],
+      "sha256": "7ffdc8a98cb7c57230642901004f5be224f9c5102e23c4225dc60ddcfa8312e7",
+      "round": 13,
+      "phase": "aim",
+      "actor": {
+        "id": "archer",
+        "x": 4918.513304352001,
+        "y": 2485.717919985818,
+        "hp": 922,
+        "vx": 0,
+        "vy": 141.52508850294225,
+        "jumping": true,
+        "airborne": false,
+        "moveLeft": 947.1091616880094,
+        "equipmentIds": [
+          "itm_se_05",
+          "itm_co_11"
+        ]
+      }
+    },
+    {
+      "time": 1793483408.4309218,
+      "after": [
+        "wait",
+        "1800"
+      ],
+      "sha256": "4d646c399feac6539562c8ee70e72ab8d20bb98c2a7326b726c5271ef1f0e1a1",
+      "round": 13,
+      "phase": "aim",
+      "actor": {
+        "id": "archer",
+        "x": 4918.513304352001,
+        "y": 2659.22973391296,
+        "hp": 922,
+        "vx": 0,
+        "vy": 0,
+        "jumping": false,
+        "airborne": false,
+        "moveLeft": 947.1091616880094,
+        "equipmentIds": [
+          "itm_se_05",
+          "itm_co_11"
+        ]
+      }
+    },
+    {
+      "time": 1793483425.4292212,
+      "after": [
+        "export"
+      ],
+      "sha256": "4d646c399feac6539562c8ee70e72ab8d20bb98c2a7326b726c5271ef1f0e1a1",
+      "round": 13,
+      "phase": "aim",
+      "actor": {
+        "id": "archer",
+        "x": 4918.513304352001,
+        "y": 2659.22973391296,
+        "hp": 922,
+        "vx": 0,
+        "vy": 0,
+        "jumping": false,
+        "airborne": false,
+        "moveLeft": 947.1091616880094,
+        "equipmentIds": [
+          "itm_se_05",
+          "itm_co_11"
+        ]
+      }
+    }
+  ]
+}

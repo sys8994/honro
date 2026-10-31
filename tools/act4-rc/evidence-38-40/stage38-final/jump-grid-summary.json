@@ -1,0 +1,294 @@
+{
+  "scope": "Separate diagnostic contexts; deliberately repositioned archer and reset movement and, for controls, equipment. Not a normal-play outcome.",
+  "inputSha256": "80c7f4d5dd266a00a29116d88c85ad1b35605c52acf6a76ad902b3cfd142709f",
+  "trials": [
+    {
+      "final": {
+        "x": 4917.862622926421,
+        "y": 2659.2427475414715,
+        "grounded": true,
+        "jumping": false,
+        "equipment": [
+          "itm_se_05",
+          "itm_co_11"
+        ]
+      },
+      "minY": 2475.1000000000004,
+      "maxX": 4917.862622926421,
+      "jumpObserved": true,
+      "holdMs": 600,
+      "start": {
+        "x": 4740,
+        "y": 2662.5,
+        "grounded": true,
+        "equipment": [
+          "itm_se_05",
+          "itm_co_11"
+        ]
+      }
+    },
+    {
+      "final": {
+        "x": 4936.7433161390345,
+        "y": 2658.865133677219,
+        "grounded": true,
+        "jumping": false,
+        "equipment": [
+          "itm_se_05",
+          "itm_co_11"
+        ]
+      },
+      "minY": 2475.5166319455298,
+      "maxX": 4936.7433161390345,
+      "jumpObserved": true,
+      "holdMs": 600,
+      "start": {
+        "x": 4780,
+        "y": 2661.7727272727275,
+        "grounded": true,
+        "equipment": [
+          "itm_se_05",
+          "itm_co_11"
+        ]
+      }
+    },
+    {
+      "final": {
+        "x": 4931.624009351648,
+        "y": 2658.967519812967,
+        "grounded": true,
+        "jumping": false,
+        "equipment": [
+          "itm_se_05",
+          "itm_co_11"
+        ]
+      },
+      "minY": 2527.258324652778,
+      "maxX": 4931.624009351648,
+      "jumpObserved": true,
+      "holdMs": 600,
+      "start": {
+        "x": 4820,
+        "y": 2661.0454545454545,
+        "grounded": true,
+        "equipment": [
+          "itm_se_05",
+          "itm_co_11"
+        ]
+      }
+    },
+    {
+      "final": {
+        "x": 4892.29166666668,
+        "y": 2659.7310606060605,
+        "grounded": true,
+        "jumping": false,
+        "equipment": [
+          "itm_se_05"
+        ]
+      },
+      "minY": 2448.8984192009825,
+      "maxX": 4892.29166666668,
+      "jumpObserved": true,
+      "holdMs": 600,
+      "start": {
+        "x": 4740,
+        "y": 2662.5,
+        "grounded": true,
+        "equipment": [
+          "itm_se_05"
+        ]
+      }
+    },
+    {
+      "final": {
+        "x": 4907.500000000011,
+        "y": 2659.45,
+        "grounded": true,
+        "jumping": false,
+        "equipment": [
+          "itm_se_05"
+        ]
+      },
+      "minY": 2448.17114647371,
+      "maxX": 4907.500000000011,
+      "jumpObserved": true,
+      "holdMs": 600,
+      "start": {
+        "x": 4780,
+        "y": 2661.7727272727275,
+        "grounded": true,
+        "equipment": [
+          "itm_se_05"
+        ]
+      }
+    },
+    {
+      "final": {
+        "x": 4936.87500000001,
+        "y": 2658.8624999999997,
+        "grounded": true,
+        "jumping": false,
+        "equipment": [
+          "itm_se_05"
+        ]
+      },
+      "minY": 2475.1000000000004,
+      "maxX": 4936.87500000001,
+      "jumpObserved": true,
+      "holdMs": 600,
+      "start": {
+        "x": 4820,
+        "y": 2661.0454545454545,
+        "grounded": true,
+        "equipment": [
+          "itm_se_05"
+        ]
+      }
+    },
+    {
+      "final": {
+        "x": 4921.862622926421,
+        "y": 2659.1627475414716,
+        "grounded": true,
+        "jumping": false,
+        "equipment": [
+          "itm_se_05",
+          "itm_co_11"
+        ]
+      },
+      "minY": 2475.308324652778,
+      "maxX": 4921.862622926421,
+      "jumpObserved": true,
+      "holdMs": 1300,
+      "start": {
+        "x": 4740,
+        "y": 2662.5,
+        "grounded": true,
+        "equipment": [
+          "itm_se_05",
+          "itm_co_11"
+        ]
+      }
+    },
+    {
+      "final": {
+        "x": 4956.1561873306255,
+        "y": 2658.4768762533877,
+        "grounded": true,
+        "jumping": false,
+        "equipment": [
+          "itm_se_05",
+          "itm_co_11"
+        ]
+      },
+      "minY": 2475.5166319455298,
+      "maxX": 4956.1561873306255,
+      "jumpObserved": true,
+      "holdMs": 1300,
+      "start": {
+        "x": 4780,
+        "y": 2661.7727272727275,
+        "grounded": true,
+        "equipment": [
+          "itm_se_05",
+          "itm_co_11"
+        ]
+      }
+    },
+    {
+      "final": {
+        "x": 5106.339850075967,
+        "y": 2655.4732029984807,
+        "grounded": true,
+        "jumping": false,
+        "equipment": [
+          "itm_se_05",
+          "itm_co_11"
+        ]
+      },
+      "minY": 2527.258324652778,
+      "maxX": 5106.339850075967,
+      "jumpObserved": true,
+      "holdMs": 1300,
+      "start": {
+        "x": 4820,
+        "y": 2661.0454545454545,
+        "grounded": true,
+        "equipment": [
+          "itm_se_05",
+          "itm_co_11"
+        ]
+      }
+    },
+    {
+      "final": {
+        "x": 4920.6250000000155,
+        "y": 2456.9652777777355,
+        "grounded": true,
+        "jumping": false,
+        "equipment": [
+          "itm_se_05"
+        ]
+      },
+      "minY": 2448.8984192009825,
+      "maxX": 4920.6250000000155,
+      "jumpObserved": true,
+      "holdMs": 1300,
+      "start": {
+        "x": 4740,
+        "y": 2662.5,
+        "grounded": true,
+        "equipment": [
+          "itm_se_05"
+        ]
+      }
+    },
+    {
+      "final": {
+        "x": 4950.000000000015,
+        "y": 2658.6,
+        "grounded": true,
+        "jumping": false,
+        "equipment": [
+          "itm_se_05"
+        ]
+      },
+      "minY": 2475.1000000000004,
+      "maxX": 4950.000000000015,
+      "jumpObserved": true,
+      "holdMs": 1300,
+      "start": {
+        "x": 4780,
+        "y": 2661.7727272727275,
+        "grounded": true,
+        "equipment": [
+          "itm_se_05"
+        ]
+      }
+    },
+    {
+      "final": {
+        "x": 4968.750000000013,
+        "y": 2658.225,
+        "grounded": true,
+        "jumping": false,
+        "equipment": [
+          "itm_se_05"
+        ]
+      },
+      "minY": 2475.2813950161085,
+      "maxX": 4968.750000000013,
+      "jumpObserved": true,
+      "holdMs": 1300,
+      "start": {
+        "x": 4820,
+        "y": 2661.0454545454545,
+        "grounded": true,
+        "equipment": [
+          "itm_se_05"
+        ]
+      }
+    }
+  ]
+}
