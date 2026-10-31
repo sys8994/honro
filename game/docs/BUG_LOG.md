@@ -1,3 +1,11 @@
+## 2026-10-31 · 하구 원경 픽셀 불일치 출처
+
+`art/act4-estuary-far-v1/source.png`(SHA-256 `87929ed507ceaae6f12611f1d52be80fced2ed4992b4edf65e196c0e68fad8b6`)는 최초 커밋 `38baddc3be6503be6839f0fde10cce6d19a92378` 이후 동일하다. 그 커밋의 무손실 WebP(SHA-256 `636f62add1e346597707f18a285c1745d7bab9caa3f81dbd56c1243aaaf58942`, 1,266,358B)는 현 source PNG와 실제 RGBA 바이트가 모두 일치한다. 후속 `db9fe2a8aa1d205d4557fbc47df662218d28e98b`는 handoff의 Q90 하구 이미지를 명시적으로 `shared/assets/environment/campaign-far/act4-estuary.webp`에 교체했다. 현 파일 SHA-256 `1ba81aae5bebeebd46cc094be2519797d67ef49a887d7aade45cb61b39878fff`, 130,830B, VP8 손실 형식이다. manifest의 act4Estuary는 이 파일을 가리킨다.
+
+현 PNG/WebP는 둘 다 2173×724이며 실제 RGBA 6,293,008바이트 중 3,432,353바이트가 다르다(평균 절대 차이 1.0118, 최대 36, RGBA PSNR 43.28dB). 현 `sharp`의 기본 quality=90 재인코딩은 135,216B로 현 파일과 동일하지 않아 handoff의 구체적 인코딩 설정을 역추정하지 않는다. 두 이미지 직접 확인은 별도 시각 승인이나 원경/전경 결합 검수가 아니다.
+
+기존 `art/act4-estuary-far-v1/README.md`, `optimization.json`, `tests/act4-estuary-far.mjs`는 최초 무손실 계약을 서술하지만 후속 Q90 커밋은 손실 변경을 명시한다. 최종 승인 계약과 인코딩 근거가 확정되지 않았으므로 새 Q90을 무단 교체하지 않고 무손실 판정을 완화하지 않는다. 기존 검사는 불합격을 유지하며 정본 선택·검수는 미완료다.
+
 ## 2026-10-31 · 항구 수면과 지형 테두리 선택 표시
 
 4막 nativeArt에서 유효한 harborWater 설정이 있을 때만 수면을 그리며 미설정·기존 장·잘못된 값은 기존 렌더를 유지한다. 배는 수면 뒤가 아닌 기존 지연 렌더 순서를 따른다. 이미 보행 테두리를 그린 자산은 `authoredWalkRim` 선택 및 실제 covered 지형일 때만 중복 안내선을 생략한다. `act4-harbor-water-guard`, `act4-authored-walk-rim`, `terrain-readability` 합성/기존 검사가 통과했다. 실제 31/32 승인 자산 및 게임 화면은 이 환경에서 확인하지 못했다. 기존 `act4-pilot-native-art.mjs`는 통과했고, `act4-estuary-far.mjs`는 첫 실행에 출력 없이 종료 코드 137로 중단됐다. 다른 무거운 검사를 시작하지 않고 2026-10-31 08:05 UTC에 동일 명령을 한 번 재실행한 결과 16.157초 후 SIGKILL(137), 최대 RSS 12,398,112 KiB였고 cgroup OOM/OOM-kill 카운터가 각각 1 증가했다. 제한된 진단에서 원본 PNG와 WebP의 첫 원시 RGBA 비교가 불일치하며 대형 Buffer의 `assert.deepEqual` 실패 차이 생성이 512MB 힙을 소진함을 재현했다. 정확한 바이트 비교 기준은 유지하고 크기가 제한된 차이 요약으로 교체했다. 수정 후 검사는 6,293,008바이트 중 3,432,353바이트 차이(최대 차이 36)로 0.453초·최대 RSS 117,148 KiB에서 정상 실패한다. 해당 입력 파일과 비교 단계는 새 dParts/항구 코드 변경 전과 동일하다. 실제 이미지 불일치는 미해결이며 전체 검사는 미통과다.
