@@ -604,7 +604,21 @@ export class Engine {
     canDrop(u=this.active){return !!u && u===this.active && this.canAct() && !u.dead && !u.fixed && !u.platformDrop && u.meleeFollow!=='ready' && this.grounded(u) && this.dropContacts(u).length>0;}
     drop(u=this.active){
         if(!this.canDrop(u))return false;
-        const actor=u!;delete actor.moveTarget;actor.moving=0;actor.landing=0;
+        return this.beginPlatformDrop(u!);
+    }
+    /** The four Stage 40 rescued civilians can descend during their authored escort.
+     * This does not change identity, AP or the active hero. True starts anticipation. */
+    dropAct4Resident(u:Unit){
+        const b=this.b as Battle&{honroAct4Preview?:number;honroCustom?:boolean;honroAct4Official?:number};
+        const actor=u as Unit&{honroAct4Resident?:boolean;honroCivilian?:boolean};
+        if(!actor||b.honroAct4Preview!==40||!(b.honroCustom||b.honroAct4Official===1)||b.phase==='won'||b.phase==='lost'
+            ||!b.units.includes(actor)||actor.side!==2||!/^a4-rescue-[0-3]$/.test(actor.id)||actor.honroAct4Resident!==true||actor.honroCivilian!==true
+            ||actor.dead||!(actor.hp>0)||actor.fixed||actor.summoned||actor.enthrall||actor.eaterCapturedBy||actor.carriedBy!==undefined||actor.summonFloating
+            ||actor.equipmentState?.motion||actor.meleeFollow==='ready'||actor.platformDrop||!this.grounded(actor)||!this.dropContacts(actor).length)return false;
+        return this.beginPlatformDrop(actor);
+    }
+    private beginPlatformDrop(actor:Unit){
+        delete actor.moveTarget;actor.moving=0;actor.landing=0;
         actor.platformDrop={phase:'prepare',elapsed:0,originY:actor.y,contacts:this.dropContacts(actor)};
         this.emit('change');this.emit('save');return true;
     }
