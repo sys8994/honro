@@ -66,7 +66,7 @@ async function fullLibrary(manifest){
  const refs=manifest.assetPaths;
  if(manifest.library)return loadData(manifest.library,refs?.library); // Existing published manifests.
  if(!Array.isArray(manifest.libraryOrder)||new Set(manifest.libraryOrder).size!==manifest.libraryOrder.length)throw Error('Invalid campaign library order');
- const enc=manifest.assetEncodings,records=[[manifest.shared,refs?.shared,enc?.shared],...manifest.stageLibraries.map((file,i)=>[file,refs?.stageLibraries[i],enc?.stageLibraries?.[i]]),[manifest.editorExtras,refs?.editorExtras,enc?.editorExtras]],assets=new Map();
+ const enc=manifest.assetEncodings,records=[[manifest.shared,refs?.shared,enc?.shared],...manifest.stageLibraries.map((file,i)=>[file,refs?.stageLibraries[i],enc?.stageLibraries?.[i]]),...(manifest.compatibility33?[[manifest.compatibility33,refs?.compatibility33,enc?.compatibility33]]:[]),[manifest.editorExtras,refs?.editorExtras,enc?.editorExtras]],assets=new Map();
  // Reuse the same chapter resources as lazy gameplay. Bound the full editor's
  // parsing/hydration work to one asset bundle at a time, then restore native order.
  for(const [file,paths,encoding]of records){
@@ -125,6 +125,20 @@ export async function loadCampaign(file,authors,{full=false}={}){
    project.library=[...assets.values()];project.stages[index]=local.stages[0];loaded.add(id);return local.stages[0];
   })();loading.set(id,pending);try{return await pending;}finally{loading.delete(id);}
  }
+ let compatibility33Loaded=false,compatibility33Loading=null;
+ const needsBattleArt=b=>!!globalThis.HonroProfileStore?.needsLegacy33Art(b);
+ function hasBattleArt(b){return !needsBattleArt(b)||compatibility33Loaded;}
+ async function ensureBattleArt(b){
+  if(hasBattleArt(b))return;
+  if(compatibility33Loading)return compatibility33Loading;
+  compatibility33Loading=(async()=>{
+   if(!manifest.compatibility33)throw Error('Missing stage 33 compatibility art');
+   const old=await loadData(manifest.compatibility33,manifest.assetPaths?.compatibility33,assetOptions(manifest.assetEncodings?.compatibility33));
+   if(!globalThis.HonroProfileStore?.verifyLegacy33Assets(old)){requests.delete(new URL(manifest.compatibility33,root).href+'|false');throw Error('Invalid stage 33 compatibility art');}
+   for(const asset of old){const existing=assets.get(asset.id);if(existing&&JSON.stringify(existing)!==JSON.stringify(asset))throw Error('Conflicting stage 33 compatibility art');}
+   for(const asset of old)assets.set(asset.id,asset);project.library=[...assets.values()];compatibility33Loaded=true;
+  })();try{await compatibility33Loading;}finally{compatibility33Loading=null;}
+ }
  let warmHandle;
  function prewarmNext(id){
   if(warmHandle){if(globalThis.cancelIdleCallback)cancelIdleCallback(warmHandle);else clearTimeout(warmHandle);}
@@ -137,6 +151,6 @@ export async function loadCampaign(file,authors,{full=false}={}){
   };
   warmHandle=globalThis.requestIdleCallback?requestIdleCallback(warm,{timeout:5000}):setTimeout(warm,1500);
  }
- globalThis.HonroCampaignLoader={ensureStage,has:id=>loaded.has(id),destination,prewarmNext,catalog:manifest.catalog};
+ globalThis.HonroCampaignLoader={ensureStage,has:id=>loaded.has(id),hasBattleArt,ensureBattleArt,destination,prewarmNext,catalog:manifest.catalog};
  await ensureStage(hint??destination(savedHint()));return project;
 }

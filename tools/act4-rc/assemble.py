@@ -26,7 +26,7 @@ legacy_raw=(out/'candidates/stage33-legacy.json').read_bytes();assert hashlib.sh
 legacy=json.loads(legacy_raw);old_assets={a['id']:a for a in legacy['library']};stage33=world['stages'][2];compat=[];compat_report=[]
 for ident in ('approved33:near-west','approved33:body'):
  original=old_assets[ident];a=copy.deepcopy(original);assert a.get('vector') and not a.get('collision') and not a.get('interactionType');a['id']='act4compat33:v1:'+ident;assert a['id'] not in assets and a['id'] not in canonical;assets[a['id']]=a;compat.append(a['id']);compat_report.append({'original':ident,'alias':a['id'],'originalAssetSha256':digest(original),'aliasAssetSha256':digest(a)})
-assert 'compatibilityAssetIds' not in stage33['design'];stage33['design']['compatibilityAssetIds']=compat
+assert 'compatibilityAssetIds' not in stage33['design'] # old art is loaded only for matching saves
 stages[2]['assembledStageSemanticSha256']=digest(stage33)
 world['library']=list(assets.values());known=set(assets)|set(canonical)
 for s in world['stages']:

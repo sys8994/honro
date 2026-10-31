@@ -184,11 +184,15 @@ export async function buildWeb({vector=true,destination=path.join(root,'HONRO.ht
       }
       const needed=stages.map(stage=>dependencies(stage)),shared=new Set(externalLibrary.filter(asset=>needed.filter(ids=>ids.has(asset.id)).length>=2).map(asset=>asset.id));
       const sharedAssets=externalLibrary.filter(asset=>shared.has(asset.id));
-      const used=new Set(needed.flatMap(ids=>[...ids])),editorExtras=externalLibrary.filter(asset=>!used.has(asset.id));
+      const used=new Set(needed.flatMap(ids=>[...ids])),compat33=externalLibrary.filter(asset=>asset.id.startsWith('act4compat33:v1:'));
+      assert(compat33.length===0||compat33.length===2,'Stage 33 compatibility bundle must contain both pinned assets');
+      assert(compat33.every(asset=>!used.has(asset.id)),'Compatibility art must not be a normal stage dependency');
+      const compatIds=new Set(compat33.map(asset=>asset.id)),editorExtras=externalLibrary.filter(asset=>!used.has(asset.id)&&!compatIds.has(asset.id));
       const sharedPacket=assetPacket(sharedAssets),extrasPacket=assetPacket(editorExtras);
       // Full Workshop reuses the exact chapter bundles instead of shipping a
       // second complete library. Keep unused editor assets and canonical order.
       const manifest={base:await json('campaign-base',base),libraryOrder:externalLibrary.map(asset=>asset.id),editorExtras:await json('campaign-editor-extras',extrasPacket.value),stages:[],unitTemplates:stages.flatMap(stage=>stage.units.filter(unit=>unit.kind?.startsWith('boss:'))).filter((unit,index,all)=>all.findIndex(other=>other.kind===unit.kind)===index),catalog:stages.map(stage=>({id:stage.id,name:stage.name,width:stage.width,height:stage.height,backdrop:stage.backdrop,metadata:stage.metadata,playerRoster:stage.units.filter(u=>u.team==='player').map(u=>u.kind),pending:true})),shared:await json('campaign-shared',sharedPacket.value),stageLibraries:[],assetEncodings:{shared:sharedPacket.encoding,stageLibraries:[],editorExtras:extrasPacket.encoding},assetPaths:{base:assetPaths(base),stages:[],shared:assetPaths(sharedAssets),stageLibraries:[],editorExtras:assetPaths(editorExtras)}};
+      if(compat33.length){const packet=assetPacket(compat33);manifest.compatibility33=await json('campaign-compat-33',packet.value);manifest.assetPaths.compatibility33=assetPaths(compat33);manifest.assetEncodings.compatibility33=packet.encoding;}
       assert.equal(new Set(manifest.libraryOrder).size,externalLibrary.length,'Campaign asset IDs must be unique');
       for(let n=0;n<stages.length;n++){const stage=await externalize(stages[n],`chapter-${n+1}`);manifest.stages.push(await json('chapter-'+String(n+1).padStart(2,'0'),stage));manifest.assetPaths.stages.push(assetPaths(stage));const assets=externalLibrary.filter(asset=>needed[n].has(asset.id)&&!shared.has(asset.id)),packet=assetPacket(assets);manifest.stageLibraries.push(await json('chapter-'+String(n+1).padStart(2,'0')+'-assets',packet.value));manifest.assetPaths.stageLibraries.push(assetPaths(assets));manifest.assetEncodings.stageLibraries.push(packet.encoding);}
       projectManifest=await json('campaign',manifest);
