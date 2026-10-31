@@ -52,6 +52,13 @@ function validate(project){
    const targets=(st.units||[]).filter(u=>u.id===reward?.targetId);
    if(st.metadata?.stageId!==36||!valid(reward)||!valid(saved)||saved.targetId!==reward.targetId||targets.length!==1||targets[0].team!=='enemy'||!(targets[0].stageOverrides?.elite===true||targets[0].runtimeTemplate&&targets[0].elite===true))issue('err',st.id+': invalid eliteReward36 contract');
   }
+  const blocked=st.design?.act4?.blockedShot,savedBlocked=st.initialState?.honroAct4Design?.blockedShot;
+  if(blocked!==undefined||savedBlocked!==undefined){
+   const ids=v=>Array.isArray(v)&&v.length>0&&v.length<=32&&v.every(id=>typeof id==='string'&&/^[-\w]{1,128}$/.test(id))&&new Set(v).size===v.length;
+   const valid=v=>{const z=v?.clearingVisibleBounds;return !!(v&&typeof v==='object'&&!Array.isArray(v)&&Object.keys(v).length===5&&v.version===1&&v.sourceSide==='west'&&ids(v.obstacleTerrainIds)&&ids(v.sourceTerrainIds)&&!v.sourceTerrainIds.some(id=>v.obstacleTerrainIds.includes(id))&&z&&['x1','x2','y1','y2'].every(k=>Number.isFinite(z[k]))&&z.x1<z.x2&&z.y1<z.y2);};
+   const same=(a,b)=>valid(a)&&valid(b)&&a.sourceSide===b.sourceSide&&JSON.stringify(a.obstacleTerrainIds)===JSON.stringify(b.obstacleTerrainIds)&&JSON.stringify(a.sourceTerrainIds)===JSON.stringify(b.sourceTerrainIds)&&['x1','x2','y1','y2'].every(k=>a.clearingVisibleBounds[k]===b.clearingVisibleBounds[k]);
+   if(st.metadata?.stageId!==35||!same(blocked,savedBlocked)||[...blocked.obstacleTerrainIds,...blocked.sourceTerrainIds].some(id=>(st.terrains||[]).filter(t=>t.id===id).length!==1))issue('err',st.id+': invalid blockedShot contract');
+  }
   if(st.design?.space){if(!G.HonroSpaceLayout)issue('err',`${st.id}: spatial schema unavailable`);else for(const error of G.HonroSpaceLayout.validate(st))issue('err',error);}
   if(st.design?.act1Scene){
    const scene=st.design.act1Scene,terrainIds=new Set((st.terrains||[]).map(t=>t.id)),elements=new Map((st.elements||[]).map(e=>[e.id,e])),label=st.id+': ACT1 scene';
