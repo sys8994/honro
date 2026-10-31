@@ -1,0 +1,28 @@
+[
+  {
+    "kind": "portable",
+    "round": 12,
+    "assetsExact": true,
+    "hpExact": true,
+    "terrainExact": true,
+    "maxNaturalPositionDelta": 0.0,
+    "compatRequests": 2,
+    "errors": []
+  },
+  {
+    "kind": "compact-derived",
+    "round": 12,
+    "assetsExact": true,
+    "hpExact": true,
+    "terrainExact": true,
+    "maxNaturalPositionDelta": 0.0,
+    "compatRequests": 2,
+    "errors": []
+  },
+  {
+    "kind": "bad-derived",
+    "originalPreserved": true,
+    "noCompatibilityFetch": true,
+    "notice": "기록의 지형 그림을 확인하지 못했습니다. 기존 기록은 유지됩니다."
+  }
+]
