@@ -14,7 +14,15 @@ raw=Path(a.profile).read_bytes();assert hashlib.sha256(raw).hexdigest()==a.sha25
 with sync_playwright() as pw:
  browser=pw.chromium.launch(executable_path='/usr/bin/chromium',headless=True,args=['--no-sandbox']);ctx=browser.new_context(viewport={'width':1440,'height':900});page=ctx.new_page()
  page.goto(a.url,wait_until='domcontentloaded');page.wait_for_function('window.HonroApp&&window.HonroCampaignLoader',timeout=60000)
- page.locator('#file-import').set_input_files(str(Path(a.profile).resolve()));page.wait_for_timeout(5000);page.get_by_text('이어서 걷기',exact=True).click();page.wait_for_function('HonroApp.engine?.b?.honroStage===38',timeout=60000);page.wait_for_timeout(1500)
+ page.locator('#file-import').set_input_files(str(Path(a.profile).resolve()));page.wait_for_timeout(5000)
+ continuing=page.evaluate('()=>!!HonroApp.profile?.honroBattle')
+ page.get_by_text('이어서 걷기' if continuing else '여정 이어가기',exact=True).click()
+ page.wait_for_function("HonroApp.screen==='rest'||HonroApp.engine?.b?.honroStage===38",timeout=60000)
+ if page.evaluate("HonroApp.screen==='rest'"):
+  page.get_by_text('여정첩',exact=True).click();page.locator('[data-action=journey-select][data-id="38"]').click();page.wait_for_timeout(500);page.locator('[data-action=journey-travel][data-id="38"]').click()
+ page.wait_for_function('HonroApp.engine?.b?.honroStage===38',timeout=60000);page.wait_for_timeout(1500)
+ if page.evaluate('!!HonroApp.dialogue'):page.keyboard.press('Enter');page.wait_for_timeout(2000)
+ print(json.dumps({'runtimeFoothold':page.evaluate("()=>({terrain:HonroApp.engine.b.terrain.some(t=>t.id==='qa38-east-foothold'),art:HonroApp.engine.b.honroElements.some(t=>t.id==='qa38-east-foothold-art')})")}),flush=True)
  result=[]
  for equipped in (True,False):
   for start in (4740,4780,4820):
