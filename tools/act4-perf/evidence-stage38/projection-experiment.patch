@@ -1,0 +1,16 @@
+diff --git a/shared/engine/src/skillMechanics.ts b/workspace/honro-common-qa/shared/engine/src/skillMechanics.ts
+index 082c331c..1b31c0dc 100644
+--- a/shared/engine/src/skillMechanics.ts
++++ b/workspace/honro-common-qa/shared/engine/src/skillMechanics.ts
+@@ -449,7 +449,10 @@ export interface SkillPrediction extends Prediction {time:number;geometry?:Skill
+ /** Replay the actual arrow step on an isolated battle: apex, curved return, LOS,
+  * piercing, chains and split children cannot diverge into a second physics loop. */
+ function arrowPrediction(e:Engine,u:Unit,s:Skill,angle:number,power:number,representative=false,ignoreUnits=false):SkillPrediction{
+- const b=structuredClone(e.b),Sim=e.constructor as new(b:Battle)=>Engine,sim=new Sim(b),actor=sim.unit(u.id)!;
++ const original=e.b as any;
++ const simplify=(list:any[])=>Array.isArray(list)?list.map(l=>l?.asset?.vector?{...l,asset:{...l.asset,vector:{}}}:l):list;
++ const input=original.honroAct4Preview===38&&!original.honroCustom?{...original,honroLandmarks:simplify(original.honroLandmarks),honroElements:simplify(original.honroElements)}:original;
++ const b=structuredClone(input),Sim=e.constructor as new(b:Battle)=>Engine,sim=new Sim(b),actor=sim.unit(u.id)!;
+  const wave=s.mode==='waveBounce',waveContacts:Vec[]=[],impact=sim.impact.bind(sim);
+  if(wave)sim.impact=(p,h)=>{if(p.bounces>=1&&!gearHas(p,'da_stake')){p.x=h.x;p.y=h.y;sim.remove(p);}else{if(h.terrain)waveContacts.push({x:h.x,y:h.y});impact(p,h);}};
+  const collision=sim.collision.bind(sim);let contact:Collision|null=null,stepContact:Collision|null=null,terminalContact:Collision|null=null,capture=true;
