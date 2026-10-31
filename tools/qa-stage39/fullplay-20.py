@@ -69,7 +69,7 @@ with sync_playwright() as pw:
    s=record('stop');stopReason='won' if s['phase']=='won' else 'lost' if s['phase']=='lost' or s.get('failure') else '20-turn-limit' if s['round']>20 else 'wait-timeout';break
   s=record('turn-start',index=turn);ctx.storage_state(path=str(out/'browser-storage-live.json'))
   if not tide_attempted and s['round']>=2 and (s.get('tide') or {}).get('phase')=='rising':
-   tide_attempted=True;tide_camera(s);continue
+   tide_camera(s);tide_attempted=not state()['dialogue'];continue
   if s.get('retreat'):
    page.keyboard.press('f');page.wait_for_timeout(500);record('finish-retreat');continue
   active=next((h for h in s['heroes'] if h['id']==s['active']),None)
