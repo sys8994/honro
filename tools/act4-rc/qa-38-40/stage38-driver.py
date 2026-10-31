@@ -47,9 +47,17 @@ def main():
             if not before['stage']: raise RuntimeError('no saved live battle')
             page.reload(wait_until='domcontentloaded');page.wait_for_function('window.HonroApp',timeout=60000)
             # Compare the loaded profile before Continue can advance clocks or notification queues.
+            # Newer RC writes the final live state in pagehide; read the actual last write.
+            written=digest(snapshot('after-pagehide-write'))
             loaded=digest(page.evaluate('()=>HonroApp.profile'))
-            if before!=loaded:
-                (out/'reload-diff.json').write_text(json.dumps({'before':before,'loaded':loaded},ensure_ascii=False,indent=2));raise AssertionError('loaded profile mismatch; see reload-diff.json')
+            if written!=loaded:
+                (out/'reload-diff.json').write_text(json.dumps({'before':before,'written':written,'loaded':loaded},ensure_ascii=False,indent=2));raise AssertionError('last-written profile mismatch; see reload-diff.json')
+            for key in ('stage','round','cleared','heroes','equipment','recruited','proof','units','refs'):
+                if before[key]!=written[key]:
+                    (out/'reload-diff.json').write_text(json.dumps({'before':before,'written':written},ensure_ascii=False,indent=2));raise AssertionError('pagehide changed stable state: '+key)
+            for key,default in (('receipts',[]),('connected',None),('observed',{})):
+                if (before['events'] or {}).get(key,default)!=(written['events'] or {}).get(key,default):raise AssertionError('pagehide changed event: '+key)
+            before=written
             page.get_by_text('이어서 걷기',exact=True).click();page.wait_for_function('(s)=>HonroApp.engine?.b?.honroStage===s',arg=before['stage'],timeout=60000)
             page.keyboard.press('Escape')
             observed=page.evaluate('''()=>{let b=HonroApp.engine.b,q=b.honroAct4PreviewState||{};return {stage:b.honroStage,round:b.round,units:b.units.map(u=>({id:u.id,x:u.x,y:u.y,hp:u.hp,dead:u.dead??null})),receipts:q.receipts||[],connected:q.connected??null,observed:q.observed||{},assets:[...b.honroLandmarks,...b.honroElements].filter(v=>v.asset?.vector).map(v=>v.asset.id)}}''')
@@ -80,9 +88,11 @@ def main():
             page.get_by_text('이어서 걷기',exact=True).click()
         page.wait_for_function('(stage)=>HonroApp.engine?.b?.honroStage===stage',arg=o.stage,timeout=60000);page.wait_for_timeout(1500)
         if o.stage==40:
-            proof=page.evaluate('''()=>{const a=HonroApp,b=a.engine.b,p=a.profile.honroAct4;return {valid:HonroAct4TerrainPreview.proofValid(b),safeSeven:p.safeSeven,rescued:p.rescued,run:p.runId,entry:b.honroAct4EntryProof,residents:b.honroAct4EntryResidents,release:b.honroAct4Preview?.returnEscort?.followerRelease}}''')
+            proof=page.evaluate('''()=>{const a=HonroApp,b=a.engine.b,p=a.profile.honroAct4;return {valid:HonroAct4TerrainPreview.proofValid(b),safeSeven:p.safeSeven,rescued:p.rescued,run:p.runId,entry:b.honroAct4EntryProof,residents:b.honroAct4EntryResidents,release:b.honroAct4Design?.geometry40?.followerRelease}}''')
             record({'stage40_proof':proof})
             if not proof['valid']:raise AssertionError('stage 40 proof invalid')
+            expected={'boardingIndex':7,'passengerIndex':2,'minSeparation':160,'passengerJumpClearBounds':{'x1':4000,'x2':5100,'y1':1750,'y2':2350}}
+            if proof['release']!=expected:raise AssertionError('stage 40 followerRelease mismatch')
         if page.evaluate('!!HonroApp.dialogue'):page.keyboard.press('Enter');page.wait_for_timeout(2000)
         snapshot('entry');record({'state':state()})
         if o.preflight:
