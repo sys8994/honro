@@ -1,0 +1,406 @@
+{
+  "note": "Most recent recorded player shot for each hero at each read-only saved snapshot. These samples do not cover all casts; action completion may be asynchronous. Same skill is required for comparison.",
+  "samples": [
+    {
+      "snapshot": "planning-round-5",
+      "hero": "archer",
+      "planned": {
+        "id": "A02",
+        "idx": 2,
+        "angle": 39.04512568440911,
+        "power": 0.9248209387033703,
+        "target": "a4-35-b-1",
+        "score": 1099.899744
+      },
+      "actual": {
+        "skill": "A02",
+        "angle": 38.8354000000007,
+        "power": 0.9366714319962782
+      },
+      "skillMatches": true,
+      "angleError": -0.20972568440840433,
+      "powerError": 0.011850493292907882
+    },
+    {
+      "snapshot": "planning-round-5",
+      "hero": "mage",
+      "planned": {
+        "id": "M03",
+        "idx": 2,
+        "angle": 59.712272410145665,
+        "power": 0.988149941826163,
+        "target": "a4-35-b-3",
+        "score": 1666.6360220046133
+      },
+      "actual": {
+        "skill": "M03",
+        "angle": 60.52299999999934,
+        "power": 0.990184054330399
+      },
+      "skillMatches": true,
+      "angleError": 0.810727589853677,
+      "powerError": 0.0020341125042360186
+    },
+    {
+      "snapshot": "planning-round-5",
+      "hero": "knight",
+      "planned": {
+        "id": "S06",
+        "idx": 2,
+        "angle": 154.27353539981561,
+        "power": 0.5982472792646427,
+        "target": "a4-35-a-2",
+        "score": 746.2248663774601
+      },
+      "actual": {
+        "skill": "S06",
+        "angle": 155.23860000000224,
+        "power": 0.616338419833779
+      },
+      "skillMatches": true,
+      "angleError": 0.9650646001866221,
+      "powerError": 0.0180911405691363
+    },
+    {
+      "snapshot": "planning-round-5",
+      "hero": "occultist",
+      "planned": {
+        "id": "O06",
+        "idx": 2,
+        "angle": 4.3957808307950765,
+        "power": 0.6898341141280581,
+        "target": "a4-35-a-3",
+        "score": 708.0797800357794
+      },
+      "actual": {
+        "skill": "O06",
+        "angle": 4.723000000001846,
+        "power": 0.6974272457409897
+      },
+      "skillMatches": true,
+      "angleError": 0.32721916920676986,
+      "powerError": 0.007593131612931625
+    },
+    {
+      "snapshot": "planning-round-10",
+      "hero": "archer",
+      "planned": {
+        "id": "A14",
+        "idx": 1,
+        "angle": 72.26043367936218,
+        "power": 0.8835588337226794,
+        "target": "a4-35-b-7",
+        "score": 1217
+      },
+      "actual": {
+        "skill": "A14",
+        "angle": 71.91239999999888,
+        "power": 0.8862166485498045
+      },
+      "skillMatches": true,
+      "angleError": -0.3480336793632972,
+      "powerError": 0.0026578148271251267
+    },
+    {
+      "snapshot": "planning-round-10",
+      "hero": "mage",
+      "planned": {
+        "id": "M01",
+        "idx": 0,
+        "angle": 71.33248635190535,
+        "power": 0.9463138012565846,
+        "target": "a4-35-b-6",
+        "score": 766.8264087552001
+      },
+      "actual": {
+        "skill": "M01",
+        "angle": 69.42000000000478,
+        "power": 0.9590767695987236
+      },
+      "skillMatches": true,
+      "angleError": -1.9124863519005686,
+      "powerError": 0.01276296834213897
+    },
+    {
+      "snapshot": "planning-round-10",
+      "hero": "knight",
+      "planned": {
+        "id": "S06",
+        "idx": 2,
+        "angle": 41.74475911059245,
+        "power": 0.983980149956525,
+        "target": "a4-35-b-5",
+        "score": 695.1108021620723
+      },
+      "actual": {
+        "skill": "S06",
+        "angle": 42.344599999992795,
+        "power": 1
+      },
+      "skillMatches": true,
+      "angleError": 0.5998408894003475,
+      "powerError": 0.016019850043474948
+    },
+    {
+      "snapshot": "planning-round-10",
+      "hero": "occultist",
+      "planned": {
+        "id": "O06",
+        "idx": 2,
+        "angle": 60.789909087678545,
+        "power": 0.9948243442278507,
+        "target": "a4-35-b-6",
+        "score": 708.0797800357794
+      },
+      "actual": {
+        "skill": "O06",
+        "angle": 60.51060000000109,
+        "power": 1
+      },
+      "skillMatches": true,
+      "angleError": -0.2793090876774542,
+      "powerError": 0.00517565577214929
+    },
+    {
+      "snapshot": "planning-round-15",
+      "hero": "archer",
+      "planned": {
+        "id": "A14",
+        "idx": 1,
+        "angle": 73.27384819394562,
+        "power": 0.995225879155967,
+        "target": "a4-35-e-1",
+        "score": 1035.90776448
+      },
+      "actual": {
+        "skill": "A14",
+        "angle": 71.41239999999716,
+        "power": 1
+      },
+      "skillMatches": true,
+      "angleError": -1.861448193948462,
+      "powerError": 0.0047741208440329475
+    },
+    {
+      "snapshot": "planning-round-15",
+      "hero": "mage",
+      "planned": {
+        "id": "M10",
+        "idx": 3,
+        "angle": 54.38151920851411,
+        "power": 0.6946923051199787,
+        "target": "knight",
+        "score": 1000000,
+        "healDistance": 82.09365262850835
+      },
+      "actual": {
+        "skill": "M10",
+        "angle": 53.92619999999614,
+        "power": 0.707388026736212
+      },
+      "skillMatches": true,
+      "angleError": -0.45531920851797025,
+      "powerError": 0.012695721616233335
+    },
+    {
+      "snapshot": "planning-round-15",
+      "hero": "knight",
+      "planned": {
+        "id": "S01",
+        "idx": 1,
+        "angle": 36.45456771902638,
+        "power": 0.872888742487687,
+        "target": "a4-35-c-3",
+        "score": 664.0173494658495
+      },
+      "actual": {
+        "skill": "S01",
+        "angle": 36.15079999999145,
+        "power": 0.8819327614125633
+      },
+      "skillMatches": true,
+      "angleError": -0.30376771903492994,
+      "powerError": 0.009044018924876274
+    },
+    {
+      "snapshot": "planning-round-15",
+      "hero": "occultist",
+      "planned": {
+        "id": "O06",
+        "idx": 2,
+        "angle": 199.54974551196472,
+        "power": 0.44040554679457466,
+        "target": "a4-35-b-5",
+        "score": 897
+      },
+      "actual": {
+        "skill": "O06",
+        "angle": 200.0894000000096,
+        "power": 0.4427538127800863
+      },
+      "skillMatches": true,
+      "angleError": 0.5396544880448744,
+      "powerError": 0.002348265985511633
+    },
+    {
+      "snapshot": "planning-round-20",
+      "hero": "archer",
+      "planned": {
+        "id": "A14",
+        "idx": 1,
+        "angle": 40.574891846045524,
+        "power": 0.9679479793327826,
+        "target": "a4-35-e-6",
+        "score": 1035.90776448
+      },
+      "actual": {
+        "skill": "A14",
+        "angle": 39.37699999999283,
+        "power": 0.9791576580681879
+      },
+      "skillMatches": true,
+      "angleError": -1.1978918460526913,
+      "powerError": 0.011209678735405237
+    },
+    {
+      "snapshot": "planning-round-20",
+      "hero": "mage",
+      "planned": {
+        "id": "M01",
+        "idx": 0,
+        "angle": 52.763208430652114,
+        "power": 0.9664961856812226,
+        "target": "a4-35-e-3",
+        "score": 766.8264087552001
+      },
+      "actual": {
+        "skill": "M01",
+        "angle": 51.83060000000047,
+        "power": 0.9722163394031661
+      },
+      "skillMatches": true,
+      "angleError": -0.9326084306516407,
+      "powerError": 0.005720153721943455
+    },
+    {
+      "snapshot": "planning-round-20",
+      "hero": "knight",
+      "planned": {
+        "id": "S01",
+        "idx": 1,
+        "angle": 152.80062184438648,
+        "power": 0.766355205754502,
+        "target": "a4-35-c-2",
+        "score": 483
+      },
+      "actual": {
+        "skill": "S01",
+        "angle": 152.11379999999707,
+        "power": 0.7817821037159863
+      },
+      "skillMatches": true,
+      "angleError": -0.6868218443894136,
+      "powerError": 0.015426897961484332
+    },
+    {
+      "snapshot": "planning-round-20",
+      "hero": "occultist",
+      "planned": {
+        "id": "O06",
+        "idx": 2,
+        "angle": 97.41023554161788,
+        "power": 0.9263106271959338,
+        "target": "a4-35-d-3",
+        "score": 708.0797800357794
+      },
+      "actual": {
+        "skill": "O06",
+        "angle": 96.778800000014,
+        "power": 0.929123075680474
+      },
+      "skillMatches": true,
+      "angleError": -0.6314355416038779,
+      "powerError": 0.0028124484845402087
+    },
+    {
+      "snapshot": "manual-round-21",
+      "hero": "archer",
+      "planned": {
+        "id": "A14",
+        "idx": 1,
+        "angle": 39.486806744440074,
+        "power": 0.904201700064423,
+        "target": "a4-35-e-6",
+        "score": 1181
+      },
+      "actual": {
+        "skill": "A14",
+        "angle": 39.37699999999283,
+        "power": 0.913024804576677
+      },
+      "skillMatches": true,
+      "angleError": -0.10980674444724059,
+      "powerError": 0.008823104512253988
+    },
+    {
+      "snapshot": "manual-round-21",
+      "hero": "mage",
+      "planned": {
+        "id": "M03",
+        "idx": 2,
+        "angle": 52.26675997374473,
+        "power": 0.9994226557175998,
+        "target": "a4-35-e-3",
+        "score": 1194.1098746511361
+      },
+      "actual": {
+        "skill": "M03",
+        "angle": 51.83060000000047,
+        "power": 1
+      },
+      "skillMatches": true,
+      "angleError": -0.4361599737442603,
+      "powerError": 0.000577344282400194
+    },
+    {
+      "snapshot": "manual-round-21",
+      "hero": "knight",
+      "planned": {
+        "id": "S01",
+        "idx": 1,
+        "angle": 152.80062184438648,
+        "power": 0.766355205754502,
+        "target": "a4-35-c-2",
+        "score": 483
+      },
+      "actual": {
+        "skill": "S01",
+        "angle": 152.11379999999707,
+        "power": 0.7817821037159863
+      },
+      "skillMatches": true,
+      "angleError": -0.6868218443894136,
+      "powerError": 0.015426897961484332
+    },
+    {
+      "snapshot": "manual-round-21",
+      "hero": "occultist",
+      "planned": {
+        "id": "O01",
+        "idx": 0,
+        "angle": 106.86413371237812,
+        "power": 0.78315918967895,
+        "target": "a4-35-d-3",
+        "score": 788
+      },
+      "actual": {
+        "skill": "O01",
+        "angle": 108.13720000001109,
+        "power": 0.7860137299775843
+      },
+      "skillMatches": true,
+      "angleError": 1.2730662876329717,
+      "powerError": 0.0028545402986343005
+    }
+  ]
+}

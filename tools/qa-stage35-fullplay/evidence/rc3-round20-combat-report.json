@@ -1,0 +1,518 @@
+{
+  "version": 1,
+  "gameVersion": "honro-report-20261022-v1",
+  "attempt": "honro-map-stage-35-1793469153433-1793469153518-1",
+  "stage": 35,
+  "scope": "campaign",
+  "partial": false,
+  "startedRound": 1,
+  "seconds": 974.3942999991656,
+  "retries": 0,
+  "order": [
+    "archer",
+    "mage",
+    "knight",
+    "occultist"
+  ],
+  "heroes": {
+    "archer": {
+      "damage": 17509,
+      "received": 530,
+      "kills": 9,
+      "healing": 0,
+      "shield": 0,
+      "shieldReceived": 0,
+      "uses": 20,
+      "skills": {
+        "A02": {
+          "damage": 12589,
+          "received": 0,
+          "kills": 4,
+          "healing": 0,
+          "shield": 0,
+          "shieldReceived": 0,
+          "uses": 10,
+          "usesKnown": true
+        },
+        "A14": {
+          "damage": 4920,
+          "received": 0,
+          "kills": 5,
+          "healing": 0,
+          "shield": 0,
+          "shieldReceived": 0,
+          "uses": 9,
+          "usesKnown": true
+        },
+        "A05": {
+          "damage": 0,
+          "received": 0,
+          "kills": 0,
+          "healing": 0,
+          "shield": 0,
+          "shieldReceived": 0,
+          "uses": 1,
+          "usesKnown": true
+        }
+      }
+    },
+    "mage": {
+      "damage": 10454,
+      "received": 1132,
+      "kills": 7,
+      "healing": 3061.5,
+      "shield": 306,
+      "shieldReceived": 0,
+      "uses": 20,
+      "skills": {
+        "M03": {
+          "damage": 7757,
+          "received": 0,
+          "kills": 4,
+          "healing": 0,
+          "shield": 181,
+          "shieldReceived": 0,
+          "uses": 8,
+          "usesKnown": true
+        },
+        "M06": {
+          "damage": 1588,
+          "received": 0,
+          "kills": 2,
+          "healing": 0,
+          "shield": 0,
+          "shieldReceived": 0,
+          "uses": 3,
+          "usesKnown": true
+        },
+        "M10": {
+          "damage": 0,
+          "received": 0,
+          "kills": 0,
+          "healing": 3061.5,
+          "shield": 0,
+          "shieldReceived": 0,
+          "uses": 5,
+          "usesKnown": true
+        },
+        "M01": {
+          "damage": 1109,
+          "received": 0,
+          "kills": 1,
+          "healing": 0,
+          "shield": 125,
+          "shieldReceived": 0,
+          "uses": 4,
+          "usesKnown": true
+        }
+      }
+    },
+    "knight": {
+      "damage": 12970,
+      "received": 1607,
+      "kills": 7,
+      "healing": 133,
+      "shield": 0,
+      "shieldReceived": 37,
+      "uses": 19,
+      "skills": {
+        "S06": {
+          "damage": 11016,
+          "received": 0,
+          "kills": 5,
+          "healing": 0,
+          "shield": 0,
+          "shieldReceived": 0,
+          "uses": 16,
+          "usesKnown": true
+        },
+        "S01": {
+          "damage": 1954,
+          "received": 0,
+          "kills": 2,
+          "healing": 0,
+          "shield": 0,
+          "shieldReceived": 0,
+          "uses": 3,
+          "usesKnown": true
+        },
+        "action:defend": {
+          "damage": 0,
+          "received": 0,
+          "kills": 0,
+          "healing": 133,
+          "shield": 0,
+          "shieldReceived": 0,
+          "uses": 0,
+          "usesKnown": true
+        }
+      }
+    },
+    "occultist": {
+      "damage": 9190,
+      "received": 1724,
+      "kills": 4,
+      "healing": 82,
+      "shield": 0,
+      "shieldReceived": 0,
+      "uses": 19,
+      "skills": {
+        "O06": {
+          "damage": 6848,
+          "received": 0,
+          "kills": 2,
+          "healing": 0,
+          "shield": 0,
+          "shieldReceived": 0,
+          "uses": 12,
+          "usesKnown": true
+        },
+        "O01": {
+          "damage": 517,
+          "received": 0,
+          "kills": 1,
+          "healing": 0,
+          "shield": 0,
+          "shieldReceived": 0,
+          "uses": 4,
+          "usesKnown": true
+        },
+        "O02": {
+          "damage": 1825,
+          "received": 0,
+          "kills": 1,
+          "healing": 0,
+          "shield": 0,
+          "shieldReceived": 0,
+          "uses": 3,
+          "usesKnown": true
+        },
+        "action:defend": {
+          "damage": 0,
+          "received": 0,
+          "kills": 0,
+          "healing": 82,
+          "shield": 0,
+          "shieldReceived": 0,
+          "uses": 0,
+          "usesKnown": true
+        }
+      }
+    }
+  },
+  "owners": {
+    "archer": {
+      "cls": "archer",
+      "side": 0,
+      "kind": "hero",
+      "skill": null,
+      "parent": null
+    },
+    "mage": {
+      "cls": "mage",
+      "side": 0,
+      "kind": "hero",
+      "skill": null,
+      "parent": null
+    },
+    "knight": {
+      "cls": "knight",
+      "side": 0,
+      "kind": "hero",
+      "skill": null,
+      "parent": null
+    },
+    "occultist": {
+      "cls": "occultist",
+      "side": 0,
+      "kind": "hero",
+      "skill": null,
+      "parent": null
+    },
+    "a4-35-r-1": {
+      "cls": null,
+      "side": 1,
+      "kind": "enemy",
+      "skill": null,
+      "parent": null
+    },
+    "a4-35-r-2": {
+      "cls": null,
+      "side": 1,
+      "kind": "enemy",
+      "skill": null,
+      "parent": null
+    },
+    "a4-35-a-1": {
+      "cls": null,
+      "side": 1,
+      "kind": "enemy",
+      "skill": null,
+      "parent": null
+    },
+    "a4-35-a-2": {
+      "cls": null,
+      "side": 1,
+      "kind": "enemy",
+      "skill": null,
+      "parent": null
+    },
+    "a4-35-a-3": {
+      "cls": null,
+      "side": 1,
+      "kind": "enemy",
+      "skill": null,
+      "parent": null
+    },
+    "a4-35-k-1": {
+      "cls": null,
+      "side": 1,
+      "kind": "enemy",
+      "skill": null,
+      "parent": null
+    },
+    "a4-35-k-2": {
+      "cls": null,
+      "side": 1,
+      "kind": "enemy",
+      "skill": null,
+      "parent": null
+    },
+    "a4-35-k-3": {
+      "cls": null,
+      "side": 1,
+      "kind": "enemy",
+      "skill": null,
+      "parent": null
+    },
+    "a4-35-b-1": {
+      "cls": null,
+      "side": 1,
+      "kind": "enemy",
+      "skill": null,
+      "parent": null
+    },
+    "a4-35-b-2": {
+      "cls": null,
+      "side": 1,
+      "kind": "enemy",
+      "skill": null,
+      "parent": null
+    },
+    "a4-35-b-3": {
+      "cls": null,
+      "side": 1,
+      "kind": "enemy",
+      "skill": null,
+      "parent": null
+    },
+    "a4-35-b-4": {
+      "cls": null,
+      "side": 1,
+      "kind": "enemy",
+      "skill": null,
+      "parent": null
+    },
+    "a4-35-b-5": {
+      "cls": null,
+      "side": 1,
+      "kind": "enemy",
+      "skill": null,
+      "parent": null
+    },
+    "a4-35-b-6": {
+      "cls": null,
+      "side": 1,
+      "kind": "enemy",
+      "skill": null,
+      "parent": null
+    },
+    "a4-35-b-7": {
+      "cls": null,
+      "side": 1,
+      "kind": "enemy",
+      "skill": null,
+      "parent": null
+    },
+    "a4-35-c-1": {
+      "cls": null,
+      "side": 1,
+      "kind": "enemy",
+      "skill": null,
+      "parent": null
+    },
+    "a4-35-c-2": {
+      "cls": null,
+      "side": 1,
+      "kind": "enemy",
+      "skill": null,
+      "parent": null
+    },
+    "a4-35-c-3": {
+      "cls": null,
+      "side": 1,
+      "kind": "enemy",
+      "skill": null,
+      "parent": null
+    },
+    "a4-35-d-1": {
+      "cls": null,
+      "side": 1,
+      "kind": "enemy",
+      "skill": null,
+      "parent": null
+    },
+    "a4-35-d-2": {
+      "cls": null,
+      "side": 1,
+      "kind": "enemy",
+      "skill": null,
+      "parent": null
+    },
+    "a4-35-d-3": {
+      "cls": null,
+      "side": 1,
+      "kind": "enemy",
+      "skill": null,
+      "parent": null
+    },
+    "a4-35-d-4": {
+      "cls": null,
+      "side": 1,
+      "kind": "enemy",
+      "skill": null,
+      "parent": null
+    },
+    "a4-35-d-5": {
+      "cls": null,
+      "side": 1,
+      "kind": "enemy",
+      "skill": null,
+      "parent": null
+    },
+    "a4-35-e-1": {
+      "cls": null,
+      "side": 1,
+      "kind": "enemy",
+      "skill": null,
+      "parent": null
+    },
+    "a4-35-e-2": {
+      "cls": null,
+      "side": 1,
+      "kind": "enemy",
+      "skill": null,
+      "parent": null
+    },
+    "a4-35-e-3": {
+      "cls": null,
+      "side": 1,
+      "kind": "enemy",
+      "skill": null,
+      "parent": null
+    },
+    "a4-35-e-4": {
+      "cls": null,
+      "side": 1,
+      "kind": "enemy",
+      "skill": null,
+      "parent": null
+    },
+    "a4-35-e-5": {
+      "cls": null,
+      "side": 1,
+      "kind": "enemy",
+      "skill": null,
+      "parent": null
+    },
+    "a4-35-e-6": {
+      "cls": null,
+      "side": 1,
+      "kind": "enemy",
+      "skill": null,
+      "parent": null
+    },
+    "a4-35-e-7": {
+      "cls": null,
+      "side": 1,
+      "kind": "enemy",
+      "skill": null,
+      "parent": null
+    }
+  },
+  "xp": {
+    "archer": {
+      "before": 225393,
+      "last": 225393,
+      "combat": 0,
+      "settlement": 0,
+      "reunion": 0
+    },
+    "mage": {
+      "before": 225393,
+      "last": 225393,
+      "combat": 0,
+      "settlement": 0,
+      "reunion": 0
+    },
+    "knight": {
+      "before": 225393,
+      "last": 225393,
+      "combat": 0,
+      "settlement": 0,
+      "reunion": 0
+    },
+    "occultist": {
+      "before": 225393,
+      "last": 225393,
+      "combat": 0,
+      "settlement": 0,
+      "reunion": 0
+    }
+  },
+  "deaths": {
+    "a4-35-r-1": true,
+    "a4-35-a-1": true,
+    "a4-35-b-2": true,
+    "a4-35-r-2": true,
+    "a4-35-b-1": true,
+    "a4-35-b-3": true,
+    "a4-35-k-2": true,
+    "a4-35-a-3": true,
+    "a4-35-k-1": true,
+    "a4-35-k-3": true,
+    "a4-35-a-2": true,
+    "a4-35-d-1": true,
+    "a4-35-b-6": true,
+    "a4-35-b-7": true,
+    "a4-35-d-4": true,
+    "a4-35-d-5": true,
+    "a4-35-b-4": true,
+    "a4-35-c-3": true,
+    "a4-35-b-5": true,
+    "a4-35-c-1": true,
+    "a4-35-d-2": true,
+    "a4-35-e-4": true,
+    "a4-35-e-2": true,
+    "a4-35-e-1": true,
+    "a4-35-c-2": true,
+    "a4-35-e-6": true,
+    "a4-35-e-3": true
+  },
+  "counts": {
+    "kills": 27,
+    "knockouts": 0
+  },
+  "other": {
+    "enemy": {
+      "damage": 0,
+      "received": 4993,
+      "kills": 0,
+      "healing": 0,
+      "shield": 37,
+      "shieldReceived": 0,
+      "uses": 0
+    }
+  },
+  "missing": {}
+}
