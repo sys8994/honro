@@ -5305,3 +5305,7 @@ The new traced door kept the old 2D rotation but appeared as a tall horizontal c
 ### 2026-10-31 · 32·33·38장 선택형 수면 표시
 - 33장 표현은 실제 조수 상태의 수면을 읽고, 32장 비물리 배경 수면과 38장 기존 recover 수면에 묶인 동굴 수면을 별도로 표시한다. 조수·회복 규칙이나 전투 상태를 변경하지 않는다.
 - synthetic canvas에서 조수 세 수위, 정적 수면, 잘못된 설정 fallback, 상태 비변이와 기존 31·40장/갑판 회귀가 통과했다. 실제 후보 화면과 일반 미션의 시각·기믹 검증은 별도다.
+
+### 2026-10-31 · 비플레이 환경의 선택형 벡터 외곽선
+- 비플레이 환경이 `nonplayEnvironment:true`와 `silhouetteUnderpaint:false`를 모두 명시한 경우에만 게임플레이 레이어의 자동 외곽선 생략을 허용한다. 기존 BODY 예외와 일반 자산 기본 동작은 유지한다.
+- 아홉 synthetic 가드, 복합 경로·심볼·클립 이음새 회귀가 통과했다. 이 수정만으로 실제 미술의 모든 밝은 테두리를 해결했다고 판단하지 않는다.
