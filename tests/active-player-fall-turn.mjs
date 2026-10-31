@@ -36,3 +36,6 @@ check('serialized in-progress death review resumes without duplicate transition'
 check('living airborne ally settles before dead player turn is finished',()=>{
  const a=arena();let launched=false;for(let i=0;i<1500&&!a.u.dead;i++){if(a.u.x<650)a.e.walk(a.u,1,C.STEP);if(!launched&&a.u.y>a.b.height+20){a.ally.y=500;a.ally.vy=0;launched=true;}a.e.tick(C.STEP);}assert(a.u.dead&&launched);assert.equal(a.b.phase,'aim');assert.equal(a.b.active,a.u.id);assert(!a.e.grounded(a.ally));const zone={id:991,kind:'fire',x:a.ally.x,y:a.ally.y-a.ally.h*.5,radius:40,owner:a.ally.id,side:0,damage:1,expires:99,attached:a.ally.id};a.b.zones.push(zone);a.e.tick(C.STEP);assert.equal(a.b.active,a.u.id);assert.equal(zone.x,a.ally.x);assert.equal(zone.y,a.ally.y-a.ally.h*.5,'attached zone must track a settling ally even while the active actor is dead');until(a.e,()=>a.b.active===a.ally.id&&a.b.phase==='aim');assert(a.e.grounded(a.ally));
 });
+check('zero-HP active without dead flag advances after settling',()=>{
+ const a=arena();a.u.hp=0;a.u.dead=false;a.u.x=250;a.u.y=1000;a.u.vx=0;a.u.vy=0;a.u.airborne=false;a.u.jumping=false;until(a.e,()=>a.b.active===a.ally.id&&a.b.phase==='aim');assert.equal(a.b.teamEnds[0],0);for(let i=0;i<90;i++)a.e.tick(C.STEP);assert.equal(a.b.active,a.ally.id);assert.equal(a.b.teamEnds[0],0);
+});
