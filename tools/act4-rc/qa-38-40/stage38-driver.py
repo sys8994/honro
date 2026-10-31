@@ -8,11 +8,11 @@ KEY = 'honro-first-act-profile-1'
 COMMANDS = {'state','key','hold','charge','wait','screen','snapshot','reload','export','next','help','quit'}
 def validate(args):
     if not args or args[0] not in COMMANDS: raise ValueError('unsupported command; use help')
-    counts={'state':(1,1),'key':(2,3),'hold':(3,3),'charge':(2,2),'wait':(2,2),'screen':(2,2),'snapshot':(1,2),'reload':(1,1),'export':(1,1),'next':(1,1),'help':(1,1),'quit':(1,1)}
+    counts={'state':(1,1),'key':(2,3),'hold':(3,3),'charge':(2,3),'wait':(2,2),'screen':(2,2),'snapshot':(1,2),'reload':(1,1),'export':(1,1),'next':(1,1),'help':(1,1),'quit':(1,1)}
     lo,hi=counts[args[0]]
     if not lo<=len(args)<=hi: raise ValueError('wrong argument count for '+args[0])
     if args[0] in ('wait','hold'): int(args[-1])
-    if args[0]=='charge' and not 5<=int(args[1])<=95: raise ValueError('charge percentage must be 5..95')
+    if args[0]=='charge' and any(not 5<=int(v)<=95 for v in args[1:]): raise ValueError('charge percentage must be 5..95')
     if args[0]=='key' and len(args)==3: int(args[2])
     if args[0] in ('screen','snapshot') and len(args)==2 and not args[1].replace('-','').replace('_','').isalnum(): raise ValueError('unsafe label')
     return args[0]
@@ -109,12 +109,15 @@ def main():
                 elif op=='hold':
                     page.keyboard.down(args[1]);page.wait_for_timeout(int(args[2]));page.keyboard.up(args[1]);page.wait_for_timeout(700)
                 elif op=='charge':
-                    target=int(args[1]);page.keyboard.down('Space')
+                    target=int(args[1]);threshold=int(args[2]) if len(args)>2 else target
+                    actor=page.evaluate('()=>HonroApp.engine?.active?.id');page.keyboard.down('Space');handle=None
                     try:
-                        page.wait_for_function("target=>{const b=document.querySelector('#fire');const t=b?.querySelector('.fire-label')?.textContent||'';return b?.classList.contains('charging')&&parseInt(t,10)>=target}",arg=target,timeout=5000,polling='raf')
-                        visible=page.locator('#fire .fire-label').inner_text();record({'charge_target_percent':target,'last_visible_percent':visible})
+                        handle=page.wait_for_function("threshold=>{const b=document.querySelector('#fire');const t=b?.querySelector('.fire-label')?.textContent||'';return b?.classList.contains('charging')&&parseInt(t,10)>=threshold?t:false}",arg=threshold,timeout=5000,polling='raf')
                     finally:page.keyboard.up('Space')
+                    sampled=handle.json_value() if handle else None
                     page.wait_for_timeout(1000)
+                    actual=page.evaluate('(id)=>HonroApp.engine?.b?.lastShots?.[id]||null',actor)
+                    record({'charge_target_percent':target,'release_threshold_percent':threshold,'trigger_visible_percent':sampled,'actual_last_shot':actual})
                 elif op=='wait':page.wait_for_timeout(int(args[1]))
                 elif op=='screen':page.screenshot(path=str(out/(args[1]+'.png')))
                 elif op=='snapshot':snapshot(args[1] if len(args)>1 else 'manual')
