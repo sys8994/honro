@@ -1,0 +1,5 @@
+# Act 4 candidate restoration (QA only)
+
+`REVIEW_INDEX.json` and stage manifests are the selected index from immutable auxiliary commit `a5c521b384ef9086194cfaafcf36291f06e05569`. Run `python tools/act4-rc/restore.py` in a checkout containing that git object. It checks base64, compressed and decoded lengths and SHA-256, and stage identity before writing ignored `_local/act4-rc/candidates/stageNN.json`. Nothing here authorizes production or deployment. The source object can be fetched by its auxiliary branch if missing; do not replace it with a same-named unverified file.
+
+The ten recovered candidates currently contain one differing shared asset ID: `a4:door` in stages 32 and 36. It is referenced dynamically by runtime code and cannot be resolved by last-writer wins or a blind rename. Assembly must preserve each stage's intended asset and the runtime's dynamic lookup, then verify both browser scenes and immutable asset save/restore. No combined world or release build should be called valid before that conflict is resolved.
