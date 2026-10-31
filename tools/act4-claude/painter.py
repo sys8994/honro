@@ -16,7 +16,7 @@ Optimisation is a first-class rule (user, 2026-10-30): colliders are simplified
 (walk lines 4u, outlines 6u), paint coordinates are integers, every module has
 one compound path per fill. No invisible micro detail.
 """
-import json, math, copy, re, random
+import html, json, math, copy, re, random
 from pathlib import Path
 from shapely.geometry import Polygon, LineString, Point, MultiPolygon
 from shapely.ops import unary_union
@@ -1241,9 +1241,11 @@ class Painter:
         far = ''
         if far_preview:
             from PIL import Image
-            png = Path('/tmp/claude-0/-home-user/ce99f28e-d0a2-5521-9bd0-ca7baa6be50e/scratchpad/far-%d.png' % self.n)
-            Image.open(far_preview).convert('RGB').save(png)
-            far = '<image xlink:href="file://%s" x="%d" y="%d" width="%d" height="%d" preserveAspectRatio="none"/>' % (png, xm, ym, self.W + 1600, self.H - ym + 600)
+            png = ROOT / '_local' / 'reports' / 'act4-claude' / ('stage%d' % self.n) / 'far-preview.png'
+            png.parent.mkdir(parents=True, exist_ok=True)
+            with Image.open(far_preview) as image:
+                image.convert('RGB').save(png)
+            far = '<image xlink:href="%s" x="%d" y="%d" width="%d" height="%d" preserveAspectRatio="none"/>' % (html.escape(png.resolve().as_uri(), quote=True), xm, ym, self.W + 1600, self.H - ym + 600)
         layers = ''.join('<g id="%s">%s</g>' % (k, ''.join('<path d="%s" fill="%s"/>' % e for e in self.layers[k])) for k in ['STRUCT', 'BODY', 'SURFACE', 'REAR', 'FORE'])
         prev = Path(ROOT / ('_local/reports/act4-claude/stage%d/preview.svg' % self.n))
         prev.parent.mkdir(parents=True, exist_ok=True)
