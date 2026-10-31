@@ -1,0 +1,85 @@
+# 승인 벡터 → 실제 게임: 재발 방지
+
+범위: 미술을 이미 승인받은 혼로 스테이지의 엔진 연결. 아래 2026-10-31 증거 경로는 저장소 루트 기준이다. `_local`은 배포 소스가 아니라 로컬 조사 기록이므로 다른 환경에서 없으면 검증됐다고 추정하지 않는다. 현재 진행값은 별도 snapshot에서 확인한다.
+
+## 1. 시안에서 충돌로 넘어가기 전
+
+- 활성 `shared/data/act4/world.json`의 배우 ID·스킬·목표·기믹과 승인 스켈레톤을 읽는다. 옛 `art/.../package/stage.json`은 정본이 아닐 수 있다. 시안은 스타일/형태 참조이지 충돌 설계 자동 승인본이 아니다.
+- 문/배우/계단 비례를 먼저 확인한 **균일 배율**을 쓴다. 숫자 목표를 맞추기 위한 세로 늘이기, 이동 예산 상향, 가짜 발판을 금한다. 32장은 4.3배의 거대한 집 대신 2.2배 후보를 택했다. 34장은 옛 세로/점프 할당량보다 실제 지리·분기 보존을 우선했다.
+- 2.5D 후면 암벽을 전면 도로와 같은 깊이의 solid로 만들지 않는다. 접지선, 몸통 폭, 점프 머리 여유와 탄 차폐를 각각 검사한다. 천막/얇은 대나무/지붕 장식을 보행면으로 발명하지 않는다.
+- 지지 개연성을 고치되 좋았던 분기·고저차를 평탄화하지 않는다. 접촉선은 물리 proxy이며 새 미술을 코드로 그렸다는 뜻이 아니다.
+- 근거: `approved32/README.md`, `approved34/README.md`, `approved35/README.md`, `approved37/FAILURES.md`, `approved39/FAILURE_PREVENTION.md` (모두 `_local/reports/` 아래).
+
+## 2. 원본 보존과 레이어
+
+- 원래 compound 경로·fillRule·paint 순서·ancestor alpha/clip을 보존한다. `tools/vector-production/preserve-compound.mjs`의 bounded `dParts`는 **이어 붙인 한 Path2D의 한 fill**이다. 조각을 따로 fill하면 상대 moveto·구멍·winding이 변한다. 현재 한도는 `shared/map/vector-art.js`를 읽고 임의로 해제하지 않는다.
+- 밀집 색 compound에 Skia Boolean 교차를 반복한 방식은 흰 벽의 파란 얼룩·구멍 손상을 냈다. 전체 장면 재분해 대신 원본 alpha/clip import를 우선한다. 불가피한 작은 ROI 수정은 실제 소스/추적·전후 이미지 검수로 국소 처리한다.
+- RGBA 비교는 동일 scale, clip 계층, save/restore 범위로 한다. 상태 범위가 다르면 AA 누적 차이를 실제 형상 손실로 오인한다. 32/36의 남은 AA 오차와 interior 정확 일치는 구분하여 기록한다. 동등 import는 원본 시안의 미술 합격이 아니다.
+- FORE는 실제 배우 앞 가림이 필요한 의미 자산만 분리한다. 수평선으로 BODY를 자른 복제품을 올려 seam/중복을 만들지 않는다. 31의 임시 y741 분할을 다른 장의 표준으로 복사하지 않는다. 실제 허용 카메라 가장자리까지 검사한다. 38의 x=0 직선 절단은 허용 viewport에서도 노출돼 미해결이었다. 임의 반복 절벽으로 감추지 않는다. 아래 환경 연결 gate에 따라 원래 지질에 이어지는 별도 비플레이 환경을 제작한다.
+- 근거: `approved31/HANDOFF.md`, `approved32/README.md`, `approved33/README.md`, `approved34/README.md`, `approved36/README.md`, `approved38/README.md`.
+
+## 3. 물·배·이벤트는 좌표 계약
+
+- 원경 바다는 이미지다. 그것만 보고 지역 물리 수면을 정하지 않는다. 지역 수면, 실제 저지대, 같은 쪽 복귀 bank, 배 deck/hull, 부두 계단을 함께 맞춘다. 장식 암주를 조수 바닥으로 샘플링하지 않는다. finite 범위/선택 floor ID를 검사한다.
+- 31의 pier 뒤 잘린 뱃머리는 완성 나룻배가 아니다. 완전한 추적 배를 사용하고 육지에서 실제 승선·항해·하선까지 확인한다. 40의 15명 고정 배치 capacity fixture는 실제 15명 수송 증명이 아니다. 출발/도착 지지 구조, deck 양끝 여유, 배우 겹침, 전 항로 선체/머리 여유, 구조 주민의 실제 이동을 별도로 확인한다.
+- ID 보존만으로 이벤트가 보존되지 않는다. design와 initialState, 배우/door/exit, 카메라, 관측 probe, 음성/gesture, 추격자, retry의 XY·높이 범위를 함께 맞춘다. 실제 목격 gate를 true로 만들거나 지우지 않는다.
+- canonical 38에는 tide가 없고 정적 water recovery가 있다. 해식동굴이라는 이유로 임의 추가하지 않는다. 39는 `bossRequired:false`, HP7800 보스 생존 승리를 보존한다. 35의 옛 blocked_shot 대상 오류는 완료 gate와 분리한다.
+- 근거: `approved31/HANDOFF.md`, `approved33/README.md`, `approved38/event-coordinate-contract.json`, `approved39/README.md`, `approved40/capacity-results-v7.json`, `approved40/proposal-clearance.json`, `act4-event-geometry/`.
+
+## 4. 조작 실패와 난이도를 분리
+
+- 실제 tick/integrateBody 후 착지·도착부터 검사하고 그 뒤 stuck 회복을 판단한다. 도착 직후 자동 재점프/공중 stuck 누적을 점프 통계로 세지 않는다. 중첩 분기에서는 같은 유효 접촉선의 support ID가 다를 수 있다. 무조건 ID를 느슨하게 하지 말고 동등한 선인지 확인한다.
+- 이동-only fixture는 명시된 시작·적 제거·동선 범위만 증명한다. 시작 이후 pose/HP/AP 주입 없이 정상 입력·턴 갱신을 사용한다. 잘못된 landing, 연속 낙하 사망, off-map reset, 정상 water recovery를 각각 기록한다. 텔레포트 0만으로 안전 경로라고 하지 않는다. 복귀는 경로 성공이 아니다.
+- 실제 캠페인 성장/획득·소비 SP/장비를 고정한다. 31의 `campaign-normal-v2`는 30장까지 획득한 45 SP 및 보상 ledger 기반이다. 옛 6 stat + 3 training fixture는 피해 보정 시험이며 정상 성장 기준이 아니다. 45 SP 숫자도 다른 장에 복사하지 않는다.
+- 예측 hit 대신 실제 target·HP·상태·friendly damage를 본다. 31에서 SOUL_SKILLS predictor는 아군을 무시했으나 live root shot은 아군에 맞았다. predictor와 실제 충돌의 일치 검사가 먼저다.
+- 이름만 보고 스킬을 평가하지 않는다. O03은 부모 도착점 아닌 7개 spiritRain child의 실제 효과, S00은 좁은 조준 sector와 높이 차를 확인한다. 이동·합법 방어/지원·속성 대응·집중 사격을 사용하며 반복 0효과/idle은 조작기 보정 대상으로 표시한다.
+- 실패 seed와 후보를 보존한다. 같은 실패 상태에서 재개한 진단 승리는 새 독립 표본이 아니다. 조작 오류를 난이도 탓으로 돌리거나 적 HP를 깎아 통과시키지 않는다.
+- 근거: `approved31-combat/ADAPTER_CONTRACT.md`, `CONTROLLED_STRESS_RESULTS.md`, `V30_RESULTS.md`, `compact/` (앞 경로 아래), `approved37/FAILURES.md`, `approved39/FAILURE_PREVENTION.md`.
+
+## 5. 증거의 합격 범위와 전달
+
+각 실행에 후보 SHA, 관련 runtime/controller/build 해시, seed, 성장/장비, 시작 조건, 주입한 fixture 필드를 기록한다. 수정 전 결과를 새 후보에 섞지 않는다. 정적 미술만 바뀌었다면 동등성 증거로 제한된 재사용 범위를 명시한다.
+
+| 검사 | 증명하지 못하는 것 |
+|---|---|
+| 원본/런타임 픽셀 비교 | 최종 미술 구성, 카메라 전 범위 |
+| 접지/사선·개별 이동 | 전투, 파티 경과 라운드, 재미 |
+| native 전투 endpoint | quiet/구출/승선/전체 미션 |
+| 명시적 warning receipt 주입 + 실제 boss cycle | 실제 브라우저 경고 목격/조작 |
+| hook + Canvas/DOM doubles | 실제 App/browser UI |
+| 로컬 후보/브랜치 코드 | master·Pages 배포 성공 |
+
+장별로 지형 전체/실제 배율 근접/초기 몬스터 배치와 관련 플레이 증거를 제시한다. 전체 라운드 목표는 20 이내를 기준으로 검증하되 이동-only 값과 합치지 않는다. 아직 끝나지 않은 미션을 13R 전투 승리만으로 통과시키지 않는다. 모든 seed 결과와 한계를 짧게 요약하고 미완료/미실행/차단을 구분한다. 큰 world/art가 매 action마다 반복된 원본 로그는 로컬 보존하고 전달본은 해시 참조·상태 delta로 경량화한다.
+
+
+## 환경 연결 gate — 2026-10-31 사용자 추가 지침
+
+사용자 지적: “지형 저 벡터 덩어리가 하늘에 둥둥 떠있는 것 같지 않냐? 땅이랑 좌우측 더미 영역이 있어야 하지 않냐?” 이 지침은 비플레이 환경의 **연속된 미술 구성**을 요구한다. 더미를 전부 금지하거나 투명 시안의 외곽을 완성 화면으로 간주하지 않는다.
+
+### 제작 계약
+
+1. 스켈레톤/기획 단계에 플레이 BODY와 별도로 아래 지반·절벽 기초·해저, 좌우 비플레이 지형, 동굴 천장·측벽 연결을 표시한다. 실제 지리와 재료에 이어지는 큰 형태·깊이·명암을 설계하고 재사용 가능한 연장 자산과 장 고유 연결부를 구분한다.
+2. 승인 main 원본은 불변으로 두고 별도 환경 연장 레이어를 제작한다. 실제 참조/기존 지질에서 이미지 시안 → 벡터형 래스터 → 실제 Inkscape 추적 → bounded optimization → 공통 엔진 실제 렌더의 순서로 검수한다. 단색 슬랩, 같은 절벽 반복, 코드로 즉석 대형 폴리곤을 그려 가리는 방식은 대체 절차가 아니다.
+3. 추가 미술은 비플레이 환경이다. 기존 물리 경로·탄 사선·항로·승선/하선 머리 여유를 막지 않는다. 시각상 실제 보행 가능한 연결을 만들었다면 접촉 여부가 모순되지 않도록 설계하며, 가짜 더미 발판을 추가하여 기존 게임 경로가 검증됐다고 하지 않는다. 원본 플레이 지형·전투 진단 결과를 임의 변경하지 않는다.
+4. 물리 수면과 시각 바다를 구분하되 화면상 깊이와 수평 연속성을 맞춘다. 아래로 잘린 물 사각형, 옆으로 끊긴 바다, 해저/지반 없이 공중에 뜬 절벽 외곽을 남기지 않는다.
+
+### 통과 증거
+
+- 실제 `HonroBounds` 및 카메라 설정에서 허용 focus/pan 경계·최소 zoom을 읽는다. 각 화면 크기에서 `viewport world size = screen size / scale`로 노출 범위를 계산하고, 카메라 중심만 clamp되어 화면 가장자리가 더 멀리 보이는 경우도 포함한다.
+- 모바일 세로와 가로 viewport, 좌/우/상/하 극한 pan, 일반 플레이 배율을 실제 공통 렌더러로 확인한다. 해당 장의 접근 가능한 카메라 조합을 검사하고 전체 보기 한 장으로 대체하지 않는다. viewport 범위·후보/연장 자산 SHA·장면 이미지·발견한 단절과 수정 여부를 함께 기록한다.
+- 지형이 아래 지반/해저로 이어지고 좌우 및 필요한 동굴 천장/측벽이 연결되는지, 시각 물 영역에 사각 경계가 남지 않는지 직접 이미지 검수한다. 근경이 배우·기믹 가독성을 해치거나 항로를 허위로 막는지도 확인한다.
+- 정상 카메라 clamp는 보조 수단이다. zoom/pan 허용 범위를 줄이거나 카메라로 가리는 것만으로 이 gate를 통과시킬 수 없다.
+- 이 gate와 접지/개별 이동/통제 전투/실제 미션은 별도다. 기존 기하·전투 증거를 버리지 않되 환경 연결 미완료 장을 최종 미술 통과로 표시하지 않는다.
+
+도입 시점에는 31–40장 전체가 pending이었다. 이후 31장 v40은 Native 전체/최소 줌 좌우/모바일 대표 화면의 환경 연결 검사가 마련됐고 전체·최소 줌 좌우 3프레임 독립 교차검수가 기록됐다. 이는 실제 브라우저·정상 전체 미션·최종 출시 승인이 아니다. 32–40장은 이 gate가 여전히 pending이다. 최신 단계별 상태는 `_local/reports/act4-integration-progress.json`을 확인한다.
+
+
+### FULL BODY 전환 후 FORE 중복 재도색 — 31장 v40
+
+`game/docs/PILOT_FAILURE_PREVENTION.md` A17과 `_local/reports/approved31-environment/HANDOFF.md`를 함께 확인한다. 31장은 FULL BODY로 전환한 뒤에도 source y741..1024 하단 FORE 전체가 남아 있었다. 물을 그린 뒤 그 FORE가 바위/모래를 불투명하게 다시 칠해 수중 지반이 마른 스티커처럼 보였다. 연결 환경을 추가하는 것만으로는 이 합성 순서 오류가 해결되지 않는다.
+
+- 같은 후보·카메라에서 BODY → 물 → FORE 전후를 비교하고 근경의 실제 배우 가림 역할을 판별한다. FULL BODY와 겹치는 구형 복제 레이어만 제거한다. 다른 장의 FORE를 일괄 삭제하지 않는다.
+- 참조되지 않는 해당 복제 asset도 제거하되 원본 BODY·플레이 지형·충돌·배우·배·물리 정책은 보존한다. 원본을 재추적하거나 지형을 평탄화할 문제가 아니다.
+- 31장 v40은 4,106,362 → 2,741,335 bytes로 줄었다. `physics-invariance-v40.json`에 BODY와 물리 불변, 새 환경 collision 없음이 기록되고 `contact-v40.log`에 접지/겹침과 4개 사선 재검사가 있다. 이는 다른 장에 적용할 목표 용량이 아니다.
+- 환경 연결은 실제 카메라 범위와 레이어 순서를 함께 본다. 깊이 안개는 world-depth 기준, 실제 연결 해저를 따라 흐려져야 한다. 사각 바위 모듈의 이음만 반복 봉합하지 않는다. 새 자산 가시성도 anchor 거리 대신 실제 transformed bounds가 올바르게 평가되는지 확인한다.
+- 증거: `_local/reports/stage31-direct/environment-v40-layer-order/`, `environment-v40-coverage/`, `environment-fall-v40/`. 마지막은 기존 낙하 좌표로 재구성한 이미지이지 새로운 플레이 기록이 아니다. Native 대표 화면 검사를 무제한 viewport나 브라우저 검증으로 확대하지 않는다.

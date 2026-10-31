@@ -1,0 +1,32 @@
+# 환경 횡전개: 스케일·경계·렌더러·용량 교정
+
+2026-10-31 09:44 UTC 사용자는 31장 v40 방향을 4막 전체에 적용하도록 승인했다 (`Sentinel_95b9971abee88191a4dc5b383a481fc9`: “그래. 4막 전체 다 이렇게 수정해”). 방향 승인이지 각 장 완료 승인이 아니다. 기존 gameplay/충돌/좋은 구도 보존과 환경 연결 gate를 유지한다.
+
+## 보호할 것과 바꿀 것
+
+- 플레이 동선·충돌·문양·목재·개구부는 별도 보호 ROI와 데이터 불변 검사로 확인한다. 원본 BODY 재생성은 기본 해법이 아니다.
+- **비플레이 접합부 색면까지 절대 픽셀 불변으로 고집하지 않는다.** 연결을 위해 허용한 지질 겹침·색면 조정의 영역을 명시하고 보호 ROI 밖에서 검수한다. 원본 자산 불변과 최종 합성 픽셀 불변은 다르다.
+- 거대한 환경 canvas 하나를 확대하면 바위 facet·나무까지 거대해진다. 근거리 접합 strip은 원본 world/pixel 스케일로 맞추고, 넓은 심부·좌우 외곽은 별도 저대비 층으로 분리한다. 확대된 대나무나 큰 바위 조각을 단순히 뒤로 보냈다고 해결로 세지 않는다.
+- alpha 차이 0을 맞추기 위한 nearest 픽셀 계단 윤곽은 과적합이다. 비플레이 실루엣은 허용 기하/시각 오차 안에서 곡선화하고 실제 배율에서 계단을 제거한다. 보호 ROI나 통로를 흐리게 만들지 않는다.
+
+근거: `_local/reports/approved35-environment/HANDOFF.md`의 거대 대숲 후보 폐기, `approved38-environment/HANDOFF.md`의 원배율 근거리 roof와 별도 shadow 층/ROI 계약. 경로는 모두 저장소 루트 기준이다.
+
+## 흰 matte와 renderer 오류를 구분
+
+- 투명 RGB를 흰색으로 채우는 trace 준비는 경계에 흰/회색 띠를 만들 수 있다. **새 환경**은 원본 RGBA의 가까운 불투명 픽셀 RGB를 투명 영역에 확장한 입력으로 색을 추적하고, 원래 alpha는 독립적으로 추적/보존한다. 실제 선택 opacity threshold와 경계 오차를 기록한다. 기존 pipeline의 white sanitation을 환경 경계에 무조건 재사용하지 않는다.
+- 기존 BODY 전체 재추적은 palette 변화 때문에 기각된 적이 있다. 필요한 비플레이 edge-only 보정은 별도 후보로 만들고 보호 ROI·palette·실제 브라우저 비교 후 선택한다. 환경 경계 개선을 명분으로 원본 전체를 교체하지 않는다.
+- Native `@napi-rs/canvas`의 clip + leaf save/restore는 32×32 최소 재현에서 alpha/color를 달리 만들었다. 같은 두 방식은 실제 Chromium 154에서 채널 차이 0, PNG 동일이었다. **공유 game renderer의 leaf 변경은 미채택**이다. Native QA에만 격리 workaround를 사용할 수 있으며 적용 여부를 기록한다.
+- 한 renderer의 alpha/pixel 차이 0을 다른 renderer의 동일성으로 확대하지 않는다. Native 차이를 고치려고 게임 소스를 바꾸기 전에 최소 재현과 실제 Chromium을 비교한다. 최종 시각 기준은 실제 브라우저이며 Native는 진단 증거다.
+
+근거: `_local/reports/approved36-environment/clip-save-restore-repro.html`, `BROWSER_HANDOFF.json`; `_local/reports/approved40/browser-comparison-candidates.json`. 후자의 v20/v21은 비교 후보이며 둘 다 최종 승인본이 아니다.
+
+## 재사용 자산의 실제 용량
+
+- clip으로 작은 소품을 보이게 했더라도 원본 전체 색경로를 복사했다면 작은 자산이 아니다. 사용 bounds, clip, subpath, 원본 중복 횟수, 해석 segment 수와 bytes를 함께 검사한다.
+- 40장 18.88/21.79 MB 후보는 31 BODY 6회와 40 BODY 4회 복제된 추출 자산이 원인이었다. clip 밖 subpath의 보수적 제거는 담당자가 검증 중이다. clip 경계·winding·holes·상대 moveto에 영향을 줄 수 있는 경로는 단순 bbox만으로 버리지 않는다. 최적화 후 원본/실제 렌더와 보호 ROI를 재검증한다.
+- 공통 자산을 실제 사용 범위로 만들고 불필요한 전체 경로 중복을 줄인다. ZIP 압축만으로 런타임 파싱/메모리 비효율이 해결됐다고 하지 않는다.
+- 전달 압축은 별도 문제다. 8개 QA JSON 58.7 MB는 gzip 23.8 MB, lossless tar.xz (64 MiB dictionary) 5.68 MB로 줄었다. 업로드 성공과 소비 환경의 해제·해시 검증 성공을 구분한다. raw 실패는 보존하고 반복 art를 로그마다 넣지 않는다.
+
+## 현재 증거의 경계
+
+31장 v40의 실제 Chrome 정적 화면과 38배우 접지 검사가 부모에게 보고됐지만 실제 전투·승선·전체 미션은 미완료다. master 배포도 미완료다. 나머지 장의 Native 후보는 브라우저 최종 미술 승인으로 세지 않는다. 최신 상태는 timestamp가 있는 보충 진행표를 참조하고 동시 작업자의 후보나 진행표를 덮어쓰지 않는다.
