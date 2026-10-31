@@ -1,0 +1,5 @@
+# Stage 38 fresh run on the final common source
+
+In progress, not an outcome or art acceptance. A fresh Chromium session on the disposable QA build described in `stage40-final/README.md` imported `_local/act4-38-play/entry-profile.json` (SHA-256 `d79309d76726fa21bd3df7a517612ab71fb90a5addfa00a6f6180c0a5c46d498`) through the UI and selected stage 38 via the journey UI. It is the declared legal-growth stage-37-cleared trial profile, not an actually played 1–37 save. On entry it had 39 units including 31 enemies, four heroes and four living residents. No live combat state or quest receipt was edited.
+
+At round 1 an actual same-context Playwright `page.reload()` and Continue comparison passed for all 39 units, growth/equipment/proof and ten static asset references. The fresh run's per-action read-only snapshots and exact inputs are retained under `_local/act4-38-final-fresh/events.jsonl`. The round-1 reload is not a completed-stage reload, and the earlier 10-turn stage-38 result on a different source is not this run. Required combat, vista/pursuit/probe/connection and outcome checks remain open.
