@@ -1,0 +1,93 @@
+/* UX polish 2 (2026-11): layout, hierarchy and legibility pass. Loaded last.
+   Scope: battle header/HUD (all orientations, mobile portrait first), camp and
+   title secondary text. Only presentation; no hit areas are removed. */
+
+/* ---------- battle header: turn state as a badge, objective readable ---------- */
+.honro #app .battle-screen #turn-text{display:inline-block;padding:0 7px;border-radius:9px;font-size:10px!important;font-weight:700;letter-spacing:.02em;line-height:16px!important;background:#cdb781;color:#14221f;box-shadow:0 0 0 1px #e4d3a3 inset}
+.honro #app .battle-screen #turn-text[data-side=enemy]{background:#9b4636;color:#fbe7dc;box-shadow:0 0 0 1px #c7735f inset}
+.honro #app .battle-screen #turn-text[data-side=walk]{background:#30474d;color:#e2ebe4;box-shadow:0 0 0 1px #5d7a80 inset}
+.honro #app .battle-screen .battle-info .mission-help{font-size:11px!important;color:#e3d3a4!important}
+.honro #app .battle-screen .battle-chapter{font-size:10px!important}
+
+/* ---------- vitals: label left, value right, legible on every bar ---------- */
+.honro #app .battle-screen .honro-compact-hud .meter label{justify-content:space-between!important;padding:0 7px!important;gap:6px;text-shadow:0 1px 2px #000c,0 0 3px #0008}
+.honro #app .battle-screen .honro-compact-hud .meter .vital-name{font-size:10px!important;font-weight:600;opacity:.92;letter-spacing:.04em}
+.honro #app .battle-screen .honro-compact-hud .meter :is(#hp-label,#mp-label,#move-label){font-size:11px!important;font-weight:700;font-variant-numeric:tabular-nums}
+
+/* ---------- skills: empty slots recede instead of reading as broken ---------- */
+.honro #app .battle-screen .honro-compact-hud .skill-button.empty{background:transparent!important;border:1px dashed #56645c!important;box-shadow:none!important;color:transparent!important;opacity:.6}
+.honro #app .battle-screen .honro-compact-hud .skill-button .skill-name{font-size:10px!important;font-weight:600}
+.honro #app .battle-screen .honro-compact-hud .skill-button .key{font-size:9px!important}
+
+/* ---------- aim/wind/joystick captions ---------- */
+.honro #app .battle-screen .honro-compact-hud .stick-mode{font-size:9px!important;white-space:nowrap;color:#c9c09f}
+.honro #app .battle-screen .honro-compact-hud #wind-value{font-size:10px!important;font-weight:700;color:#efe2b9!important;white-space:nowrap}
+.honro #app .battle-screen .honro-compact-hud .shot-readout{font-size:10px!important;font-weight:700;color:#f0e4c0!important;white-space:nowrap}
+.honro #app .battle-screen .honro-compact-hud .ally-chip strong{font-size:10px!important}
+.honro #app .battle-screen .honro-compact-hud .ally-chip small{font-size:9px!important}
+
+/* ---------- story dialogue over a battle: hide the inert HUD peeking above it ---------- */
+.story-lock .honro #app .battle-screen .battle-bottom,body.story-lock #app .battle-screen .battle-bottom{opacity:0!important;pointer-events:none!important;transition:opacity .2s}
+
+/* ---------- mobile portrait battle ---------- */
+@media (max-width:620px) and (orientation:portrait){
+  .honro #app .battle-screen .battle-head{height:auto!important;align-items:flex-start!important}
+  .honro #app .battle-screen .battle-info{height:auto!important;min-height:44px!important;padding-block:5px!important;grid-template-rows:auto auto!important;row-gap:3px!important}
+  .honro #app .battle-screen .battle-objective-row{height:auto!important;align-items:flex-start!important;gap:6px!important}
+  .honro #app .battle-screen .battle-info .mission-help{height:auto!important;max-height:30px!important;line-height:15px!important;white-space:normal!important;display:-webkit-box!important;-webkit-box-orient:vertical;-webkit-line-clamp:2!important;overflow:hidden!important;text-overflow:clip!important;text-align:left}
+  .honro #app .battle-screen #turn-text{flex:none;margin-top:0}
+  .honro #app .battle-screen .honro-compact-hud .hpmp,.honro #app .battle-screen .honro-compact-hud .hpmp>.meter{height:19px!important;min-height:19px!important}
+  .honro #app .battle-screen .honro-compact-hud .meter label{line-height:17px!important;padding:0 5px!important}
+  .honro #app .battle-screen .honro-compact-hud .meter .vital-name{font-size:9px!important}
+  .honro #app .battle-screen .honro-compact-hud .meter :is(#hp-label,#mp-label,#move-label){font-size:10px!important}
+}
+
+/* ---------- desktop landscape: one centred instrument group ---------- */
+@media (orientation:landscape) and (min-width:900px){
+  .honro #app .battle-screen .battle-bottom.honro-compact-hud{grid-template-columns:var(--joystick-size) minmax(0,1fr) max-content clamp(220px,19vw,280px) max-content minmax(0,1fr) var(--action-width)!important;column-gap:clamp(10px,1.2vw,16px)!important}
+  .honro #app .battle-screen .honro-compact-hud .hud-roster{grid-column:3!important;width:auto!important}
+  .honro #app .battle-screen .honro-compact-hud .hero-switches{grid-template-columns:repeat(2,minmax(104px,auto))!important;width:auto!important}
+  .honro #app .battle-screen .honro-compact-hud .hud-vitals{grid-column:4!important}
+  .honro #app .battle-screen .honro-compact-hud .hud-controls-row>#combat-skills{grid-column:5!important;justify-self:start!important}
+  .honro #app .battle-screen .honro-compact-hud .hud-controls-row>.radial-actions{grid-column:7!important}
+  .honro #app .battle-screen .honro-compact-hud .meter label{line-height:18px!important}
+}
+
+/* ---------- camp: 11px floor for the dense skill/stat text on phones ---------- */
+.honro .armory-shell :is(.hero-tabs small,.point-dot,.xp-text,.slot-tag,.slot-foot span,.node-tier small,.node-stepper small,.stat-invest-head small,.stat-invest-gains span,.stat-invest-gains b,.loadout-slot b){font-size:11px!important}
+.honro .armory-shell :is(.branch-tabs button,.tree-tools .btn.small){font-size:12px!important}
+.honro .training-dialog :is(.training-heroes small,.training-card em,.training-footer span){font-size:11px!important}
+
+/* ---------- title on phones: a quieter logo block with a readable tagline ---------- */
+@media (max-width:620px){
+  .honro .honro-title .title-tagline{font-size:13px!important;color:#ddd6c2!important;text-shadow:0 1px 6px #000}
+}
+
+/* ---------- landscape phones: one instrument rail instead of two bands (gives the field ~45px back) ---------- */
+@media (orientation:landscape) and (min-width:560px) and (max-width:899px) and (max-height:550px){
+  .honro #app .battle-screen.battle{--hud-height:calc(var(--action-height) + var(--hud-block-start) + var(--hud-block-end) + 1px)!important}
+  .honro #app .battle-screen .battle-bottom.honro-compact-hud{grid-template-columns:var(--joystick-size) minmax(150px,1fr) max-content var(--action-width)!important;grid-template-rows:auto auto!important;align-content:center!important;gap:4px 12px!important}
+  .honro #app .battle-screen .honro-compact-hud .hud-roster{grid-column:2!important;grid-row:1!important;align-self:end!important}
+  .honro #app .battle-screen .honro-compact-hud .hud-roster{display:flex!important;align-items:center!important;gap:6px!important;height:34px!important}
+  .honro #app .battle-screen .honro-compact-hud .hero-switches{height:34px!important;flex:1;min-width:0}
+  .honro #app .battle-screen .honro-compact-hud .combat-status{display:block!important;position:static!important;flex:none;margin:0!important;min-height:0!important}
+  .honro #app .battle-screen .honro-compact-hud .combat-status .status-trigger{height:30px!important;min-height:30px!important}
+  .honro #app .battle-screen .honro-compact-hud .ally-chip,.honro #app .battle-screen .honro-compact-hud .ally-chip.player-chip{height:34px!important}
+  .honro #app .battle-screen .honro-compact-hud .hud-vitals{grid-column:2!important;grid-row:2!important;align-self:start!important}
+  .honro #app .battle-screen .honro-compact-hud .hud-controls-row{display:contents!important}
+  .honro #app .battle-screen .honro-compact-hud .hud-controls-row>#joystick{grid-column:1!important;grid-row:1/3!important}
+  .honro #app .battle-screen .honro-compact-hud .hud-controls-row>#combat-skills{grid-column:3!important;grid-row:1/3!important;align-self:center!important}
+  .honro #app .battle-screen .honro-compact-hud .hud-controls-row>.radial-actions{grid-column:4!important;grid-row:1/3!important;align-self:center!important}
+  .honro #app .battle-screen .honro-compact-hud .radial-actions .shot-readout{font-size:10px!important}
+}
+
+/* ---------- journey: locked acts read as locked, unreleased acts recede further ---------- */
+.honro .journey-acts button:disabled{opacity:.62!important;color:#a9b5aa!important}
+.honro .journey-acts button:disabled span{display:inline-flex;align-items:center;gap:3px}
+.honro .journey-acts button:disabled span::after{content:"";width:8px;height:9px;flex:none;background:currentColor;-webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 9'%3E%3Cpath d='M1.5 4V2.6a2.5 2.5 0 0 1 5 0V4H8v5H0V4Zm1.2 0h2.6V2.6a1.3 1.3 0 0 0-2.6 0Z'/%3E%3C/svg%3E") center/contain no-repeat;mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 9'%3E%3Cpath d='M1.5 4V2.6a2.5 2.5 0 0 1 5 0V4H8v5H0V4Zm1.2 0h2.6V2.6a1.3 1.3 0 0 0-2.6 0Z'/%3E%3C/svg%3E") center/contain no-repeat}
+.honro .journey-acts button:disabled[aria-label*="준비 중"]{opacity:.38!important}
+.honro .journey-acts button[aria-pressed=true]{box-shadow:inset 0 -2px 0 #d8c38b!important}
+
+/* ---------- camp: companions not yet met are placeholders, not full cards ---------- */
+.honro .hero-tabs .hero-tab:disabled{background:transparent!important;border:1px dashed #44544f!important;box-shadow:none!important;opacity:.7}
+.honro .hero-tabs .hero-tab:disabled strong{font-size:12px!important;font-weight:500;color:#7f8f88!important;letter-spacing:.06em}
