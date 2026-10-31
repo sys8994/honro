@@ -10,6 +10,7 @@ function description(u,b){if(u.honroObjectiveTarget)return [G.HonroQuestTargets.
 // The body-only mask follows the current pose; health bars, shadows and selection arrows are excluded.
 S.unitOutline=function(c,u){
  if(u.id!==this.hoverUnitId&&u.id!==this.inspectUnitId)return;
+ if(G.HonroAct4CoastArt?.wreckPresentation?.(this.battle,u)){const shape=G.HonroApp.engine.damageGeometry(u);c.save();c.strokeStyle='#eed1ae';c.globalAlpha=.88;c.lineWidth=2/this.scale;for(const ps of shape.polygons){c.beginPath();ps.forEach((p,i)=>i?c.lineTo(p.x,p.y):c.moveTo(p.x,p.y));c.closePath();c.stroke();}c.restore();return;}
  const visualHeight=G.HonroPartyPresentationHeight?.(u)??u.h,size=visualHeight*3,ratio=Math.min(2,512/size),pad=8/this.scale;
  const width=Math.ceil((size+pad*2)*ratio),height=Math.ceil((visualHeight*2+pad*2)*ratio);
  this.outlineMask??=document.createElement('canvas');this.outlineEdge??=document.createElement('canvas');
@@ -29,9 +30,10 @@ function pick(a,p,touch=false){
  const scene=a.scene,w=scene.world(p.x,p.y),padding=(touch?12:4)/scene.scale;
  // Nearest visible body wins; fallen companions remain inspectable from their HUD portrait.
  return a.engine.b.units.filter(u=>!u.dead&&eligible(u)&&(!G.HonroAct2||G.HonroAct2.visible(a.engine.b,u))).map(u=>{
+  if(G.HonroAct4CoastArt?.wreckPresentation?.(a.engine.b,u)){const distance=a.engine.damageDistance(u,w);return{u,d:distance<=padding?distance/Math.max(.001,padding):Infinity,material:true};}
   const visualHeight=G.HonroPartyPresentationHeight?.(u)??u.h,half=Math.max(u.r,u.h*.24)+padding,cy=u.y-visualHeight*.5,hh=visualHeight*.55+padding;
   return {u,d:Math.pow((w.x-u.x)/half,2)+Math.pow((w.y-cy)/hh,2)};
- }).filter(x=>x.d<=1).sort((a,b)=>a.d-b.d)[0]?.u||null;
+ }).filter(x=>x.d<=1).sort((a,b)=>Number(!!a.material)-Number(!!b.material)||a.d-b.d)[0]?.u||null;
 }
 function close(a){if(portraitOpen(a)){a.close();return;}if(!a.scene)return;a.scene.inspectUnitId=null;const el=document.getElementById('unit-info');if(el){el.hidden=true;G.HonroPortraits?.release(el);}const v=portraitViews.get(a);if(v)v.visible=false;}
 function portraitAsset(a,u){
@@ -126,8 +128,8 @@ function tick(a){
  const r=scene.canvas.getBoundingClientRect(),hud=document.querySelector('.honro-compact-hud')?.getBoundingClientRect();
  const bottom=Math.min(r.bottom,hud?.top??innerHeight)-10,top=Math.max(76,r.top+8);
  el.style.maxHeight=Math.max(90,bottom-top)+'px';
- const rect=el.getBoundingClientRect(),x=r.left+r.width/2+(u.x-scene.x)*scene.scale,y=r.top+r.height/2+(u.y-(G.HonroPartyPresentationHeight?.(u)??u.h)-scene.y)*scene.scale;
- let left=x+Math.max(18,u.r*scene.scale)+12;if(left+rect.width>innerWidth-12)left=x-rect.width-Math.max(18,u.r*scene.scale)-12;
+ const presentation=G.HonroAct4CoastArt?.wreckPresentation?.(a.engine.b,u),anchor=presentation?.bar,rect=el.getBoundingClientRect(),x=r.left+r.width/2+((anchor?.x??u.x)-scene.x)*scene.scale,y=r.top+r.height/2+((anchor?.y??(u.y-(G.HonroPartyPresentationHeight?.(u)??u.h)))-scene.y)*scene.scale,offset=anchor?18:Math.max(18,u.r*scene.scale);
+ let left=x+offset+12;if(left+rect.width>innerWidth-12)left=x-rect.width-offset-12;
  el.style.left=(innerWidth<=600?(innerWidth-rect.width)/2:clamp(left,12,innerWidth-rect.width-12))+'px';
  el.style.top=(innerWidth<=600?Math.max(top,bottom-rect.height):clamp(y,top,bottom-rect.height))+'px';
 }
