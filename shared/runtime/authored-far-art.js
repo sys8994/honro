@@ -3,7 +3,16 @@
 // by the unchanged vector renderers. Paintings are demand decoded, never tiled.
 const S=G.HonroScene.prototype,E=G.HonroEnvironment,manifest=G.HONRO_AUTHORED_FAR,cache=new Map(),MAX=3;
 const keyFor=n=>manifest?.stages[n]?.key||null;
+function specFor(b){
+ // Native art is an explicit Act4 opt-in; never change the campaign default.
+ // Each opted-in stage names its own original far raster (default: estuary).
+ if(G.HonroAct4PilotArt?.config(b)){const far=G.HonroAct4PilotArt.config(b).far;return {key:manifest?.images[far]?far:'act4Estuary'};}
+ return (b?.honroCustom||b?.honroAct4Official===1)&&b.honroAct4Preview&&['act4Dawn','act4Sea'].includes(b.honroPreviewFar?.key)?b.honroPreviewFar:manifest?.stages[b?.honroStage];
+}
 function request(key,mood=""){
+ // This original raster owns its palette, including when an older preview
+ // still carries the blue-sea mood. Do not double-grade it or split its cache.
+ if(key==='act4Estuary'||/^act4Far/.test(key))mood='';
  const cacheKey=key+":"+mood;
  if(cache.has(cacheKey)){const item=cache.get(cacheKey);cache.delete(cacheKey);cache.set(cacheKey,item);return item;}
  const src=manifest?.images[key];if(!src||typeof Image==='undefined')return null;
@@ -15,7 +24,7 @@ function request(key,mood=""){
   const image=item.image,cv=document.createElement('canvas'),c=cv.getContext('2d');
   cv.width=Math.min(2048,image.naturalWidth);cv.height=Math.round(cv.width*image.naturalHeight/image.naturalWidth);
   const dark=['bellRear','depotRear'].includes(key),interior=key.endsWith('-interior'),overcast=['townSky','town-river','town-wall','workshop-yard'].includes(key);
-  c.filter=['act4Dawn','act4Sea'].includes(key)?'saturate(.15) contrast(1.0) brightness(1.0)':overcast?'none':dark?'saturate(.55) contrast(.65) brightness(.66)':interior?'saturate(.42) contrast(.58) brightness(.68)':'saturate(.50) contrast(.76) brightness(.80)';
+  c.filter=key==='act4Estuary'||/^act4Far/.test(key)?'none':['act4Dawn','act4Sea'].includes(key)?'saturate(.15) contrast(1.0) brightness(1.0)':overcast?'none':dark?'saturate(.55) contrast(.65) brightness(.66)':interior?'saturate(.42) contrast(.58) brightness(.68)':'saturate(.50) contrast(.76) brightness(.80)';
   c.drawImage(image,0,0,cv.width,cv.height);c.filter='none';
   if(['act4Dawn','act4Sea'].includes(key)){
    const imageData=c.getImageData(0,0,cv.width,cv.height),pixels=imageData.data,low=[16,31,49],high=[110,139,165];
@@ -33,13 +42,13 @@ function request(key,mood=""){
    const pixels=c.getImageData(0,0,cv.width,cv.height),p=pixels.data,low=[77,79,76],high=[205,200,186];
    for(let i=0;i<p.length;i+=4){const y=p[i]*.2126+p[i+1]*.7152+p[i+2]*.0722,t=Math.pow(y/255,.72);for(let j=0;j<3;j++)p[i+j]=Math.round(low[j]+(high[j]-low[j])*t+(p[i+j]-y)*.16);}
    c.putImageData(pixels,0,0);
-  }else if(!['act4Dawn','act4Sea'].includes(key)){c.fillStyle=dark||interior?'#152a3b44':'#263c4524';c.fillRect(0,0,cv.width,cv.height);}
+  }else if(!['act4Dawn','act4Sea','act4Estuary'].includes(key)&&!/^act4Far/.test(key)){c.fillStyle=dark||interior?'#152a3b44':'#263c4524';c.fillRect(0,0,cv.width,cv.height);}
   item.canvas=cv;image.onload=null;image.onerror=null;item.image=null;
  };
  item.image.src=src;return item;
 }
 function layers(scene,w,h,b){
- const spec=(b?.honroCustom||b?.honroAct4Official===1)&&b.honroAct4Preview&&['act4Dawn','act4Sea'].includes(b.honroPreviewFar?.key)?b.honroPreviewFar:manifest?.stages[b?.honroStage];if(!spec)return [];
+ const spec=specFor(b);if(!spec)return [];
  const out=[{key:spec.key,mood:spec.mood||"",alpha:1}];
  if(spec.enclosed){
   // Camera depth blends whole paintings: no vertical pasted-image seam, and
@@ -67,7 +76,7 @@ S.landmark=function(c,l){
 const worldKey=S._worldCacheKey;
 S._worldCacheKey=function(b,w){return worldKey.call(this,b,w)+([16,17,18,19,25,27].includes(b.honroStage)?':rear-image:'+!!request(keyFor(b.honroStage))?.canvas:'');};
 S.background=function(c,w,h,b){
- if(b?.honroCustom&&!b.honroAct4Preview)return previous.call(this,c,w,h,b);
+ if(b?.honroCustom&&!b.honroAct4Preview&&!G.HonroAct4PilotArt?.config(b))return previous.call(this,c,w,h,b);
  const ls=layers(this,w,h,b);if(!ls.length||ls.some(l=>!l.canvas))return previous.call(this,c,w,h,b);
  const raw=G.HonroVisualStyle.raw(c),paint=cc=>{
   for(const l of ls){const f=l.frame;cc.save();
@@ -85,5 +94,5 @@ S.background=function(c,w,h,b){
  this.environmentStats={...this.environmentStats,groups:this.environmentStats?.groups||0,cachedPaths:this.environmentStats?.cachedPaths||0,visibleAssets:ls.length,backgroundAnimatedPrimitives:0,authoredFar:ls.map(l=>l.key)};
  if(b.honroAct4Preview||[11,13,14,15,16,17,19,20,22,24,25,26,28,29].includes(b.honroStage))G.HonroEnvironmentRenderer.customSpatialScenery(this,c,w,h,b);
 };
-G.HonroAuthoredFarArt={keyFor,manifest,ready:(n,preview)=>{const s=preview||manifest?.stages[n];return !!s&&[s.key,s.enclosed].filter(Boolean).every(k=>!!request(k,s.mood||"")?.canvas);},frames:(scene,w,h,b)=>layers(scene,w,h,b).map(({canvas,...l})=>l),stats:()=>({entries:cache.size,maxEntries:MAX,keys:[...cache.keys()],errors:[...cache.entries()].filter(([,v])=>v.error).map(([k])=>k),canvasBytes:[...cache.values()].reduce((n,v)=>n+(v.canvas?v.canvas.width*v.canvas.height*4:0),0)})};
+G.HonroAuthoredFarArt={keyFor,manifest,ready:(n,preview,b)=>{const s=G.HonroAct4PilotArt?.config(b)?specFor(b):preview||manifest?.stages[n];return !!s&&[s.key,s.enclosed].filter(Boolean).every(k=>!!request(k,s.mood||"")?.canvas);},frames:(scene,w,h,b)=>layers(scene,w,h,b).map(({canvas,...l})=>l),stats:()=>({entries:cache.size,maxEntries:MAX,keys:[...cache.keys()],errors:[...cache.entries()].filter(([,v])=>v.error).map(([k])=>k),canvasBytes:[...cache.values()].reduce((n,v)=>n+(v.canvas?v.canvas.width*v.canvas.height*4:0),0)})};
 })(globalThis);

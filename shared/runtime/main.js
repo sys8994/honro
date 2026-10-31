@@ -656,7 +656,7 @@
             const stablePause=this.modalKind==='pause-dialog'&&this.modal.classList.contains('open')&&!this.dialogue&&!this.preview&&!this.training&&!this.customMap&&!this.done&&
                 !G.HonroReinforcementCamera?.active(scene)&&!scene.storyFrame&&!scene.storyTween&&!scene.storyFrozen&&!scene.goalFocus&&!scene.editorView&&!scene.skillPreview&&
                 !(scene.focusUntil>now)&&!(scene.speakerUntil>now)&&dt===0&&effectDt===0&&paused&&
-                G.HonroAuthoredFarArt?.ready(e.b.honroStage,e.b.honroPreviewFar)&&document.fonts?.status==='loaded'&&!scene.ctx.isContextLost?.();
+                G.HonroAuthoredFarArt?.ready(e.b.honroStage,e.b.honroPreviewFar,e.b)&&document.fonts?.status==='loaded'&&!scene.ctx.isContextLost?.();
             const paint=()=>scene.render(e,dt,this.selected,this.power,this.charging,effectDt,paused);
             if(!stablePause){scene._pausedBattleFrame=null;return paint();}
             if(!scene._pauseContextListener){scene._pauseContextListener=true;for(const name of ['contextlost','contextrestored'])canvas.addEventListener(name,()=>{scene._pausedBattleFrame=null;});}
