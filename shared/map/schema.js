@@ -44,6 +44,14 @@ function validate(project){
   for(const pts of [...(a.visual||[]).map(s=>s.points||[]),...(a.collision||[])])if(pts.some(p=>!Number.isFinite(p.x)||!Number.isFinite(p.y)))issue('err',`${a.id}: invalid asset coordinates`);
  }
  for(const st of project.stages){
+  // Optional Stage 36 reward targets one existing elite; keep authoring and
+  // serialized battle design in agreement so preview and reload cannot drift.
+  const reward=st.design?.act4?.eliteReward36,saved=st.initialState?.honroAct4Design?.eliteReward36;
+  if(reward!==undefined||saved!==undefined){
+   const valid=v=>v&&typeof v==='object'&&!Array.isArray(v)&&v.version===1&&typeof v.targetId==='string'&&/^[-\w]{1,128}$/.test(v.targetId)&&Object.keys(v).length===2;
+   const targets=(st.units||[]).filter(u=>u.id===reward?.targetId);
+   if(st.metadata?.stageId!==36||!valid(reward)||!valid(saved)||saved.targetId!==reward.targetId||targets.length!==1||targets[0].team!=='enemy'||!(targets[0].stageOverrides?.elite===true||targets[0].runtimeTemplate&&targets[0].elite===true))issue('err',st.id+': invalid eliteReward36 contract');
+  }
   if(st.design?.space){if(!G.HonroSpaceLayout)issue('err',`${st.id}: spatial schema unavailable`);else for(const error of G.HonroSpaceLayout.validate(st))issue('err',error);}
   if(st.design?.act1Scene){
    const scene=st.design.act1Scene,terrainIds=new Set((st.terrains||[]).map(t=>t.id)),elements=new Map((st.elements||[]).map(e=>[e.id,e])),label=st.id+': ACT1 scene';
