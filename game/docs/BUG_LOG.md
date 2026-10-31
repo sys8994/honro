@@ -1,3 +1,7 @@
+## 2026-10-31 · 주술 원발사체 조준 예측
+
+주술 원발사체의 예측이 아군을 무시하던 조건을 제거해 실제 충돌과 일치시켰다. 이 환경의 고정 fixture에서 수정 전 예측은 적이었지만 기사가 40.2 HP 피해를 받았고, 수정 후 가린/열린 경로의 예측과 최초 피격 대상이 모두 일치했다. 실제 아군 피해 규칙은 유지한다. `tests/occult-prediction-friendly.mjs`와 자동 자탄·소환물 보호를 포함한 `tests/coalition-damage-reduction.mjs` 통과. 실제 캠페인 플레이 검수는 별도다.
+
 ## 2026-10-31 · 조수 바닥 및 해식굴 진입 좌표
 
 33장 조수의 수면 바닥은 선택적 `tide.floorTerrainIds`로 실제 바닥을 지정할 수 있고 바닥이 없는 좌표는 유한 좌표가 아니므로 물 폴리곤에서 제외한다. 34장 어긋난 동굴 진입은 선택적 `wrongExit.triggerBounds`의 x·y 범위를 사용한다. 설정 없는 이전 지형의 x 판정과 전체 바닥 선택은 유지하며 유효하지 않은 명시 설정은 차단한다. `node tests/act4-event-geometry.mjs`의 production 이벤트/지형 fixture와 기존 해안 지형·사격 검사는 통과했다. 조수 시기·피해·스토리 완료 조건은 바꾸지 않았다. DOM/시야 대역 기반 집중 검사이며 실제 장 완주·미술 검수는 별도다. `tests/act4-objective-guidance.mjs`의 35장 `has a ready interaction`(58행) 실패는 수정 전 c8ff67fa와 수정 후 모두 동일하게 재현된 미해결 기존 실패다.

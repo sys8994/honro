@@ -345,7 +345,8 @@ export class Engine {
         const custom=redesignPrediction(this,u,skill,angle,power,false,ignoreUnits);if(custom)return custom;
         const body = BODY.has(skill.mode), origin = this.projectileOrigin(u, skill, angle), v = this.velocity(u, skill, angle, power);
         let x = origin.x, y = origin.y, vx = v.vx, vy = v.vy, apex = false, bounce = 0, pierce = 0, meteor = false, closest = 99999;
-        const points: Vec[] = [], ignored: string[] = SOUL_SKILLS.has(skill.id)?this.actors(u.side).map(v=>v.id):[], skips: string[] = [];
+        // Root aim previews obey live friendly collision; only automatic child attacks are protected.
+        const points: Vec[] = [], ignored: string[] = [], skips: string[] = [];
         let ap: Vec | undefined;
         // The ordinary force/collision predictor shares the immutable launch budget.
         // No battle clone, simulated fire, summon creation or damage during aiming.
