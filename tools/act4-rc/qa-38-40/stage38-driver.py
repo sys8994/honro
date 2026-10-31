@@ -84,7 +84,9 @@ def main():
         record({'input_sha256':source_sha,'stage':o.stage})
         page.locator('#file-import').set_input_files(str(Path(o.profile).resolve()));page.wait_for_timeout(5000);snapshot('fixture-import')
         if o.stage==38:
-            page.get_by_text('여정 이어가기',exact=True).click();page.wait_for_timeout(2000);page.get_by_text('여정첩',exact=True).click();page.locator('[data-action=journey-select][data-id="38"]').click();page.wait_for_timeout(500);page.locator('[data-action=journey-travel][data-id="38"]').click()
+            page.get_by_text('여정 이어가기',exact=True).click();page.wait_for_function("HonroApp.screen==='rest'||HonroApp.engine?.b?.honroStage===38",timeout=60000)
+            if page.evaluate("HonroApp.screen==='rest'"):
+                page.get_by_text('여정첩',exact=True).click();page.locator('[data-action=journey-select][data-id="38"]').click();page.wait_for_timeout(500);page.locator('[data-action=journey-travel][data-id="38"]').click()
         else:
             page.get_by_text('이어서 걷기',exact=True).click()
         page.wait_for_function('(stage)=>HonroApp.engine?.b?.honroStage===stage',arg=o.stage,timeout=60000);page.wait_for_timeout(1500)
