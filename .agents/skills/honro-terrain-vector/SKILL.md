@@ -35,3 +35,5 @@ description: 혼로 지형 시안을 벡터형 래스터로 정리하고 실제 
 - 배경/장식보다 플레이 지형의 실루엣·연결이 읽혀야 한다. 노드 밀도를 기계적으로 같게 맞추지 않는다.
 
 설정·한계: `references/pipeline.md`. 승인 파일럿: `references/accepted-pilot.md`. 스킬은 제작 방법이며 저장소 수정·배포 권한을 새로 부여하지 않는다.
+
+환경 횡전개·흰 테두리·renderer 차이·추출 자산 비대화가 발생하면 [환경 확장 교정](references/environment-rollout-corrections.md)을 읽는다. 보호 플레이 ROI는 보존하되 비플레이 접합 색면의 픽셀 불변을 강제하지 않는다. 최종 화면 판정은 실제 브라우저 기준이다.
