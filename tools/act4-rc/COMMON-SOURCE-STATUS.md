@@ -133,3 +133,7 @@ Common source `83023978` adds once-only objective contribution for confirmed 33/
 ## 2026-10-31 Compact Act 4 story saves
 
 Source `3aaea974b4532de431ba0bdd3fea065fe41b55dd` integrates the independent compact story save candidate, preserving reader and outcome-save guards. QA hashes, old 33 art/import and synthetic dialogue, actual 40 reader/escort restore, and explicitly seeded 33 exit/quota result checks are in `STORY-COMPACT-INTEGRATION.md`. Worker timings are limited PC samples, not mobile or complete performance approval. Earlier mission runs retain their own source.
+
+## 2026-10-31 Stage 40 A01 private replay
+
+Source `0585c82c` extends the existing private A01 snapshot only to official stage/preview 40. Actual-checkpoint comparison, branch checks, 38 regression, reader/escort/result-save checks, QA hashes and the limited independent PC timing report are in `STAGE40-A01-PREDICTION-REVIEW.md`. Other skills and mobile performance remain unproven; tile and first-water hitches remain. Historical mission results retain their recorded source.
