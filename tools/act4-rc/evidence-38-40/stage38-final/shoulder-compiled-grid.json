@@ -1,0 +1,178 @@
+{
+  "scope": "isolated diagnostic clone only; positions, movement budget and equipment intentionally reset in clone; not normal play",
+  "inputSha256": "d79309d76726fa21bd3df7a517612ab71fb90a5addfa00a6f6180c0a5c46d498",
+  "holdMs": 600,
+  "secondJumpMs": 900,
+  "status": "physics compiled; visual review failed due conspicuous rectangular block; no normal play",
+  "candidateWorldSha256": "faa9c6ff05eae2b967576432a4f207cb275474a0641166935757221327bfce99",
+  "trials": [
+    {
+      "final": {
+        "x": 4786.825742383182,
+        "y": 2555,
+        "grounded": true,
+        "jumping": false,
+        "equipment": [
+          "itm_se_05",
+          "itm_co_11"
+        ]
+      },
+      "minY": 2480.687673228981,
+      "maxX": 4786.825742383182,
+      "jumpObserved": true,
+      "secondJump": {
+        "x": 4952.422276320114,
+        "y": 2370.4060255730224,
+        "grounded": true,
+        "equipment": [
+          "itm_se_05",
+          "itm_co_11"
+        ]
+      },
+      "start": {
+        "x": 4740,
+        "y": 2662.5,
+        "grounded": true,
+        "equipment": [
+          "itm_se_05",
+          "itm_co_11"
+        ]
+      }
+    },
+    {
+      "final": {
+        "x": 4939.302969532728,
+        "y": 2406.1196940497966,
+        "grounded": true,
+        "jumping": false,
+        "equipment": [
+          "itm_se_05",
+          "itm_co_11"
+        ]
+      },
+      "minY": 2362.9916710656016,
+      "maxX": 4939.302969532728,
+      "jumpObserved": true,
+      "secondJump": {
+        "x": 5014.12871191591,
+        "y": 2223.7574272780025,
+        "grounded": true,
+        "equipment": [
+          "itm_se_05",
+          "itm_co_11"
+        ]
+      },
+      "start": {
+        "x": 4780,
+        "y": 2555,
+        "grounded": true,
+        "equipment": [
+          "itm_se_05",
+          "itm_co_11"
+        ]
+      }
+    },
+    {
+      "final": {
+        "x": 4946.77079155375,
+        "y": 2385.7906229925684,
+        "grounded": true,
+        "jumping": false,
+        "equipment": [
+          "itm_se_05",
+          "itm_co_11"
+        ]
+      },
+      "minY": 2362.9916710656016,
+      "maxX": 4946.77079155375,
+      "jumpObserved": true,
+      "secondJump": {
+        "x": 5029.596533936932,
+        "y": 2198.898427601359,
+        "grounded": true,
+        "equipment": [
+          "itm_se_05",
+          "itm_co_11"
+        ]
+      },
+      "start": {
+        "x": 4820,
+        "y": 2555,
+        "grounded": true,
+        "equipment": [
+          "itm_se_05",
+          "itm_co_11"
+        ]
+      }
+    },
+    {
+      "final": {
+        "x": 4810.833333333339,
+        "y": 2555,
+        "grounded": true,
+        "jumping": false,
+        "equipment": [
+          "itm_se_05"
+        ]
+      },
+      "minY": 2448.8984192009825,
+      "maxX": 4810.833333333339,
+      "jumpObserved": true,
+      "secondJump": null,
+      "start": {
+        "x": 4740,
+        "y": 2662.5,
+        "grounded": true,
+        "equipment": [
+          "itm_se_05"
+        ]
+      }
+    },
+    {
+      "final": {
+        "x": 4953.5416666666815,
+        "y": 2367.358796296256,
+        "grounded": true,
+        "jumping": false,
+        "equipment": [
+          "itm_se_05"
+        ]
+      },
+      "minY": 2341.3984192009825,
+      "maxX": 4953.5416666666815,
+      "jumpObserved": true,
+      "secondJump": null,
+      "start": {
+        "x": 4780,
+        "y": 2555,
+        "grounded": true,
+        "equipment": [
+          "itm_se_05"
+        ]
+      }
+    },
+    {
+      "final": {
+        "x": 4933.333333333343,
+        "y": 2422.370370370344,
+        "grounded": true,
+        "jumping": false,
+        "equipment": [
+          "itm_se_05"
+        ]
+      },
+      "minY": 2341.481362454138,
+      "maxX": 4933.333333333343,
+      "jumpObserved": true,
+      "secondJump": null,
+      "start": {
+        "x": 4820,
+        "y": 2555,
+        "grounded": true,
+        "equipment": [
+          "itm_se_05"
+        ]
+      }
+    }
+  ]
+}

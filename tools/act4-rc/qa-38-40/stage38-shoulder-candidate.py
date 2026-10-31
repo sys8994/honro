@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Unapproved physics-first shoulder candidate; write only disposable QA world.
+"""REJECTED VISUALLY: rectangular detached-looking block; reproduce in QA only.
 
 The original authored stage and assets remain unchanged. Collision vertices are
 exactly the separately tested shoulder skeleton; an outer clip removes generated
