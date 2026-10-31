@@ -1,0 +1,5 @@
+# Isolated terrain release preparation
+
+These inputs are the exact v3 candidate selection and QA assembly tools from common `8538cb40`, not an approved release. `restore.py` reads the pinned auxiliary Git commit, checks every compressed/raw length and SHA, and writes ignored `_local` files. `assemble.py` reads the materialized *published* Act 4 world and emits a new isolated world, preserving canonical IDs, rejecting nonidentical collisions and checking dynamic ferry reachability. It does not update the source world or bypass the Stage 31 production contract.
+
+The terrain-release branch has only a subset of the common runtime, and must not be deployed until its remaining dependencies, source package, old-save compatibility, 31–40 browser entries/contacts/cameras and 1–30 preservation are verified against that exact source. The selected 38 payload is the existing review-index candidate; no later unverified step modification is added. QA previews and this file do not constitute gameplay/art acceptance.
