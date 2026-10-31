@@ -1,0 +1,68 @@
+{
+  "scope": "actual UI run; separate export and localStorage captured at different times after arrival",
+  "sourceCommit": "fc11f8fdc650a4af86d1fe4d4ae4a5b5daf31403",
+  "inputSha256": "c3724ff6ff7e2417489147457c0956c1642af3907b8b5bd923b4843c41675f6f",
+  "worldSha256": "99c59777254cb4942d5bfc7b7398068fc294dc29ff7208ac5f468953ecf5e581",
+  "rows": {
+    "landed-ui-export": {
+      "rawSha256": "61b97aa313ca4e167bc33210bd7378a594b5342afae4d0b0a2fe2dde2b263acd",
+      "rawBytes": 30827767,
+      "xzSha256": "50711b1c121d27eca36b6774e578854877d754e508cfa8c03177b68914552505",
+      "xzBytes": 5110560,
+      "stage": 40,
+      "round": 17,
+      "phase": "landed",
+      "escortClock": 379.6661000000473,
+      "boatX": 5650,
+      "routes": {
+        "high2": {
+          "index": 6
+        },
+        "high3": {
+          "index": 6
+        },
+        "board1": {
+          "index": 13,
+          "done": true
+        },
+        "board0": {
+          "index": 13,
+          "done": true
+        },
+        "land0": {
+          "index": 1
+        }
+      }
+    },
+    "landed-local-storage": {
+      "rawSha256": "ec8bfb456f28b630535f250ea94d5b874d5c4fe71466890d707164405a08c945",
+      "rawBytes": 141413,
+      "xzSha256": "2831c409ef1f5b297c7fad824dddb95f7b4b0fd0fdec9c969bc0d27fbb8e1789",
+      "xzBytes": 17252,
+      "stage": 40,
+      "round": 16,
+      "phase": "landed",
+      "escortClock": 337.99500000003593,
+      "boatX": 5650,
+      "routes": {
+        "high2": {
+          "index": 6
+        },
+        "high3": {
+          "index": 6
+        },
+        "board1": {
+          "index": 13,
+          "done": true
+        },
+        "board0": {
+          "index": 13,
+          "done": true
+        },
+        "land0": {
+          "index": 1
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,76 @@
+{
+  "scope": "actual normal UI attempt; localStorage remained at boarding while live UI export recorded sailing; files are not same-tick",
+  "sourceCommit": "fc11f8fdc650a4af86d1fe4d4ae4a5b5daf31403",
+  "inputSha256": "c3724ff6ff7e2417489147457c0956c1642af3907b8b5bd923b4843c41675f6f",
+  "worldSha256": "99c59777254cb4942d5bfc7b7398068fc294dc29ff7208ac5f468953ecf5e581",
+  "rows": {
+    "sailing-ui-export": {
+      "rawSha256": "0b804c1a6cb7adead4dca99e9ad7fe59341acfce3099894023d56ccfdd47a200",
+      "rawBytes": 30827731,
+      "xzSha256": "62353f1652dace4412f3097b748ab912c9ca76890c4d82d6367bb05920491dcf",
+      "xzBytes": 5110524,
+      "stage": 40,
+      "round": 16,
+      "phase": "sailing",
+      "escortClock": 225.10200000001362,
+      "boatX": 5401.400000000046,
+      "actors": [
+        {
+          "id": "archer",
+          "x": 5153.548594012384,
+          "y": 3600,
+          "hp": 1825,
+          "onBoat": null
+        },
+        {
+          "id": "a4-rescue-0",
+          "x": 5420.608433903292,
+          "y": 3600,
+          "hp": 1450,
+          "onBoat": true
+        },
+        {
+          "id": "a4-rescue-1",
+          "x": 5536.078265248274,
+          "y": 3600,
+          "hp": 1450,
+          "onBoat": true
+        }
+      ]
+    },
+    "sailing-observation-local-storage": {
+      "rawSha256": "2c8e5d95e1e956059da5ae0b74a02641beed0bccf0932568194b108fec3a8141",
+      "rawBytes": 141075,
+      "xzSha256": "82a6d762c406b708da84efde6360c7aa1eb892b134f81ef525ec8ca8e687c406",
+      "xzBytes": 17100,
+      "stage": 40,
+      "round": 16,
+      "phase": "boarding",
+      "escortClock": 209.032000000013,
+      "boatX": 2660,
+      "actors": [
+        {
+          "id": "archer",
+          "x": 3049.3485940123483,
+          "y": 3600,
+          "hp": 1825,
+          "onBoat": null
+        },
+        {
+          "id": "a4-rescue-0",
+          "x": 2536.408433903249,
+          "y": 3600,
+          "hp": 1450,
+          "onBoat": null
+        },
+        {
+          "id": "a4-rescue-1",
+          "x": 2713.078265248229,
+          "y": 3600,
+          "hp": 1450,
+          "onBoat": null
+        }
+      ]
+    }
+  }
+}
