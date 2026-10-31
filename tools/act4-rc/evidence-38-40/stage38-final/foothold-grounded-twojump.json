@@ -1,0 +1,178 @@
+{
+  "status": "rejected: no equipped two-jump trial reached upper rock",
+  "scope": "isolated diagnostic clone only; positions, movement budget and equipment intentionally reset in clone; not normal play",
+  "inputSha256": "d79309d76726fa21bd3df7a517612ab71fb90a5addfa00a6f6180c0a5c46d498",
+  "holdMs": 600,
+  "secondJumpMs": 600,
+  "candidateWorldSha256": "bde1119e6569c8b515514ac27bc77c3119f3d18428648108981c6b78dd2b0abf",
+  "trials": [
+    {
+      "final": {
+        "x": 4880.7433161390345,
+        "y": 2615.30200515829,
+        "grounded": true,
+        "jumping": false,
+        "equipment": [
+          "itm_se_05",
+          "itm_co_11"
+        ]
+      },
+      "minY": 2490.80314291147,
+      "maxX": 4880.7433161390345,
+      "jumpObserved": true,
+      "secondJump": {
+        "x": 4952.688365309603,
+        "y": 2598.176939115066,
+        "grounded": true,
+        "equipment": [
+          "itm_se_05",
+          "itm_co_11"
+        ]
+      },
+      "start": {
+        "x": 4740,
+        "y": 2662.5,
+        "grounded": true,
+        "equipment": [
+          "itm_se_05",
+          "itm_co_11"
+        ]
+      }
+    },
+    {
+      "final": {
+        "x": 4915.036880543239,
+        "y": 2603.8587463045073,
+        "grounded": true,
+        "jumping": false,
+        "equipment": [
+          "itm_se_05",
+          "itm_co_11"
+        ]
+      },
+      "minY": 2476.558029551864,
+      "maxX": 4915.036880543239,
+      "jumpObserved": true,
+      "secondJump": {
+        "x": 5055.7801966822735,
+        "y": 2656.4843960663547,
+        "grounded": true,
+        "equipment": [
+          "itm_se_05",
+          "itm_co_11"
+        ]
+      },
+      "start": {
+        "x": 4780,
+        "y": 2635.7,
+        "grounded": true,
+        "equipment": [
+          "itm_se_05",
+          "itm_co_11"
+        ]
+      }
+    },
+    {
+      "final": {
+        "x": 4977.596533936932,
+        "y": 2600.275247059006,
+        "grounded": true,
+        "jumping": false,
+        "equipment": [
+          "itm_se_05",
+          "itm_co_11"
+        ]
+      },
+      "minY": 2475.308324652778,
+      "maxX": 4977.596533936932,
+      "jumpObserved": true,
+      "secondJump": {
+        "x": 5118.339850075967,
+        "y": 2655.2332029984805,
+        "grounded": true,
+        "equipment": [
+          "itm_se_05",
+          "itm_co_11"
+        ]
+      },
+      "start": {
+        "x": 4820,
+        "y": 2626.875,
+        "grounded": true,
+        "equipment": [
+          "itm_se_05",
+          "itm_co_11"
+        ]
+      }
+    },
+    {
+      "final": {
+        "x": 4839.166666666675,
+        "y": 2622.65,
+        "grounded": true,
+        "jumping": false,
+        "equipment": [
+          "itm_se_05"
+        ]
+      },
+      "minY": 2448.981362454138,
+      "maxX": 4839.166666666675,
+      "jumpObserved": true,
+      "secondJump": null,
+      "start": {
+        "x": 4740,
+        "y": 2662.5,
+        "grounded": true,
+        "equipment": [
+          "itm_se_05"
+        ]
+      }
+    },
+    {
+      "final": {
+        "x": 4907.500000000011,
+        "y": 2608.8833333333264,
+        "grounded": true,
+        "jumping": false,
+        "equipment": [
+          "itm_se_05"
+        ]
+      },
+      "minY": 2422.0984192009823,
+      "maxX": 4907.500000000011,
+      "jumpObserved": true,
+      "secondJump": null,
+      "start": {
+        "x": 4780,
+        "y": 2635.7,
+        "grounded": true,
+        "equipment": [
+          "itm_se_05"
+        ]
+      }
+    },
+    {
+      "final": {
+        "x": 4933.333333333343,
+        "y": 2600.1111111111104,
+        "grounded": true,
+        "jumping": false,
+        "equipment": [
+          "itm_se_05"
+        ]
+      },
+      "minY": 2475.51483166217,
+      "maxX": 4933.333333333343,
+      "jumpObserved": true,
+      "secondJump": null,
+      "start": {
+        "x": 4820,
+        "y": 2626.875,
+        "grounded": true,
+        "equipment": [
+          "itm_se_05"
+        ]
+      }
+    }
+  ]
+}
