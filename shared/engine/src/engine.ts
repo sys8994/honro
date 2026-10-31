@@ -283,6 +283,10 @@ export class Engine {
     private waterEntry(p:Projectile,m:{waterEntered:boolean;waterEntryPoint?:Vec}){
         if(m.waterEntered&&!p.waterfallTouched){p.waterfallTouched=true;const at=m.waterEntryPoint||p;this.fx('ring',at.x,at.y,'#c8e1d9',22);this.fx('spark',at.x,at.y,'#9fcbd0',16);}
     }
+    /** Invalidate the live collision broad phase after moving a separately rendered
+     * terrain object. Static visible edits must still advance sceneVersion;
+     * callers must update the full shape. The cache is transient. */
+    invalidateTerrainCollisionIndex(){this.indexedVersion=-1;this.indexedCount=-1;}
     // Uniform broad phase: a large field need not scan every distant ground piece for each flight substep.
     collisionTerrain(a: Vec, c: Vec, r: number) {
         if (this.indexedVersion !== this.b.sceneVersion || this.indexedCount !== this.b.terrain.length) {
@@ -345,7 +349,8 @@ export class Engine {
         const custom=redesignPrediction(this,u,skill,angle,power,false,ignoreUnits);if(custom)return custom;
         const body = BODY.has(skill.mode), origin = this.projectileOrigin(u, skill, angle), v = this.velocity(u, skill, angle, power);
         let x = origin.x, y = origin.y, vx = v.vx, vy = v.vy, apex = false, bounce = 0, pierce = 0, meteor = false, closest = 99999;
-        const points: Vec[] = [], ignored: string[] = SOUL_SKILLS.has(skill.id)?this.actors(u.side).map(v=>v.id):[], skips: string[] = [];
+        // Root aim previews obey live friendly collision; only automatic child attacks are protected.
+        const points: Vec[] = [], ignored: string[] = [], skips: string[] = [];
         let ap: Vec | undefined;
         // The ordinary force/collision predictor shares the immutable launch budget.
         // No battle clone, simulated fire, summon creation or damage during aiming.
@@ -603,7 +608,21 @@ export class Engine {
     canDrop(u=this.active){return !!u && u===this.active && this.canAct() && !u.dead && !u.fixed && !u.platformDrop && u.meleeFollow!=='ready' && this.grounded(u) && this.dropContacts(u).length>0;}
     drop(u=this.active){
         if(!this.canDrop(u))return false;
-        const actor=u!;delete actor.moveTarget;actor.moving=0;actor.landing=0;
+        return this.beginPlatformDrop(u!);
+    }
+    /** The four Stage 40 rescued civilians can descend during their authored escort.
+     * This does not change identity, AP or the active hero. True starts anticipation. */
+    dropAct4Resident(u:Unit){
+        const b=this.b as Battle&{honroAct4Preview?:number;honroCustom?:boolean;honroAct4Official?:number};
+        const actor=u as Unit&{honroAct4Resident?:boolean;honroCivilian?:boolean};
+        if(!actor||b.honroAct4Preview!==40||!(b.honroCustom||b.honroAct4Official===1)||b.phase==='won'||b.phase==='lost'
+            ||!b.units.includes(actor)||actor.side!==2||!/^a4-rescue-[0-3]$/.test(actor.id)||actor.honroAct4Resident!==true||actor.honroCivilian!==true
+            ||actor.dead||!(actor.hp>0)||actor.fixed||actor.summoned||actor.enthrall||actor.eaterCapturedBy||actor.carriedBy!==undefined||actor.summonFloating
+            ||actor.equipmentState?.motion||actor.meleeFollow==='ready'||actor.platformDrop||!this.grounded(actor)||!this.dropContacts(actor).length)return false;
+        return this.beginPlatformDrop(actor);
+    }
+    private beginPlatformDrop(actor:Unit){
+        delete actor.moveTarget;actor.moving=0;actor.landing=0;
         actor.platformDrop={phase:'prepare',elapsed:0,originY:actor.y,contacts:this.dropContacts(actor)};
         this.emit('change');this.emit('save');return true;
     }
