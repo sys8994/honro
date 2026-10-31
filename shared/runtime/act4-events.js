@@ -1,6 +1,8 @@
 (function(G){'use strict';
 // Per-stage event coordinates; authored stages may relocate them (design.act4.coords). Defaults = original layout.
 const K=(b,k,d)=>{const v=b?.honroAct4Design?.coords?.[k];return Number.isFinite(v)?v:d;};
+// Initial push and missed-dialogue retry use the same authored door location.
+function atDoor(b,u){const c=b.honroAct4Design?.coords||{},y=c.doorPushY,dy=c.doorPushYMaxDelta;return Math.abs(u.x-K(b,'doorPushX',2370))<220&&(y===undefined&&dy===undefined||(Number.isFinite(y)&&Number.isFinite(dy)&&dy>0&&Math.abs(u.y-y)<=dy));}
 // Isolated review adapter: the seed JSON is the only source of user-facing
 // prose. Receipt IDs are observations; terminal cursors never imply observation.
 const P=G.HonroAct4TerrainPreview,C=G.HONRO_CORE;if(P.attachEvents)return;
@@ -61,10 +63,10 @@ function observe(app,dt){const b=app.engine?.b;if(!(b?.honroCustom||b?.honroAct4
 }
 function interact(app=G.HonroApp,probe=false){const b=app.engine?.b;if(!(b?.honroCustom||b?.honroAct4Official===1)||!b.honroAct4Preview||app.dialogue)return false;const q=memory(b),n=b.honroAct4Preview,u=app.engine.active;if(b.side!==0||b.phase!=='aim'||u?.side!==0||u.acted||!alive(u)||!app.engine.grounded(u))return false;
  if(n===31&&q.boat.phase==='docked'&&quiet(b)&&party(b).every(u=>u.x>boarding(b).boardX1&&u.x<boarding(b).boardX2&&Math.abs(u.y-boarding(b).deckY)<5&&app.engine.grounded(u))){if(probe)return true;q.boat.phase='boarded';q.complete=true;return true;}
- if(n===36&&u.cls==='knight'&&quiet(b)&&Math.abs(u.x-K(b,'doorPushX',2370))<220&&q.door.phase==='standing'){if(probe)return true;q.door.phase='falling';q.door.time=0;return true;}
+ if(n===36&&u.cls==='knight'&&quiet(b)&&atDoor(b,u)&&q.door.phase==='standing'){if(probe)return true;q.door.phase='falling';q.door.time=0;return true;}
  if(n===35&&quiet(b)&&party(b).every(u=>u.x>K(b,'completeX',6500)&&u.y<K(b,'completeYMax',1e9))){if(probe)return true;q.complete=true;return true;}
  if(n===36&&quiet(b)&&q.door.phase==='fallen'&&q.events.leave?.terminal&&['A4.S36.DOOR.01','A4.S36.DOOR.02'].every(id=>q.receipts.includes(id))&&party(b).every(u=>u.x>K(b,'completeX',6500)&&u.y<K(b,'completeYMax',1e9))){if(probe)return true;q.complete=true;return true;}
- if(n===36&&u.cls==='knight'&&quiet(b)&&Math.abs(u.x-2370)<220&&q.door.phase==='fallen'&&q.events.door_falls?.terminal&&!['A4.S36.DOOR.01','A4.S36.DOOR.02'].every(id=>q.receipts.includes(id))){if(probe)return true;const d=event(q,'door_falls');d.started=d.terminal=false;return play(app,'door_falls');}
+ if(n===36&&u.cls==='knight'&&quiet(b)&&atDoor(b,u)&&q.door.phase==='fallen'&&q.events.door_falls?.terminal&&!['A4.S36.DOOR.01','A4.S36.DOOR.02'].every(id=>q.receipts.includes(id))){if(probe)return true;const d=event(q,'door_falls');d.started=d.terminal=false;return play(app,'door_falls');}
  return false;
 }
 const draw=G.HonroScene.prototype.landmark;
