@@ -48,3 +48,7 @@ East stair follow-up (diagnostic geometry plus the above live inputs): the autho
 
 
 A separate scoped same-context save/reload run confirmed the rising state as well: at round 2, surface 4077, warning round 2, high scheduled round 5, low round 7, all four party positions/HP/acted flags and the 30-enemy count matched before and after normal reload and Continue. This was a stationary defense run, not a replacement for the full-play result.
+
+A subsequent independent stationary-defense scope reached round 5 high tide. Normal reload and Continue preserved `phase=high`, surface 3532.5, warning/high/low rounds 2/5/7, all four party positions, HP and acted flags, and 30 live enemies. Its round 2 rising reload also matched. A first controller timed out waiting after an F input at round 3; the repeated scope captured the same state with the archer still able to act and no modal, and a second normal F progressed. This establishes a missed test input, not a diagnosed game lock. Both runs include waiting and are not timing samples.
+
+During that repeated scope, actual minimap pointer input brought the round-2 rising-water point and upper-route point onto the rendered viewport: `stage33-rising-water.png` and `stage33-rising-upper.png`. The live renderer recorded both observations. The warning uses a timed bark rather than a dialogue modal; its actual displayed text and receipts were not captured by this test and remain unverified. No water entry or bank recovery is implied by these views.
