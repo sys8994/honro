@@ -1,0 +1,70 @@
+{
+  "kind": "actual UI downloads, not raw localStorage",
+  "files": [
+    {
+      "file": "rc2-stage36-before-reload-ui-export",
+      "rawBytes": 6825290,
+      "rawSha256": "af3b9ce93b81ece4658ac181705269e2ed1785f27d46b24e5961e299173d431b",
+      "xzBytes": 890916,
+      "xzSha256": "15f97b30ed5bbb16dfe2def7ddff15ce021bd1c0d2edb8a0178075e58bc65234"
+    },
+    {
+      "file": "rc2-stage36-after-reload-ui-export",
+      "rawBytes": 6825289,
+      "rawSha256": "e14de2c473f4765743268c51bf541d8b7911eb61faa8d430959ea256c57115e1",
+      "xzBytes": 890776,
+      "xzSha256": "8d03c48256d60ce5b12b19a399f0ab9fd4b56e72818ae0d61d41793b8f1d9285"
+    }
+  ],
+  "equalProfileFields": [
+    "heroes",
+    "recruited",
+    "loadouts",
+    "equipment",
+    "honroGrowth",
+    "cleared",
+    "honroAct4",
+    "lastStage"
+  ],
+  "equalBattleFields": [
+    "honroStage",
+    "round",
+    "side",
+    "phase",
+    "active",
+    "units",
+    "honroAct4FactEvents",
+    "seed",
+    "rng",
+    "honroAct4PreviewDynamic",
+    "honroMap",
+    "honroAct4Design"
+  ],
+  "equalEventStateExceptClock": true,
+  "eventClockBeforeAfter": [
+    21.899100000000224,
+    44.67140000000006
+  ],
+  "stage35Completion": {
+    "stage": 35,
+    "sourceRun": "honro-map-stage-35-1793467212940",
+    "campaignRunId": "eq-mvw35tg3-84xgprgd",
+    "success": true,
+    "residents": [],
+    "rows": [
+      "A4.S35.ENTRY.01",
+      "A4.S35.ENTRY.02",
+      "A4.S35.MID.01"
+    ]
+  },
+  "factEvents": [
+    "eq_co_t3_choice",
+    "eq_da_t3b"
+  ],
+  "resumedWalk": {
+    "stage": 36,
+    "round": 1,
+    "archerXBefore": 77,
+    "archerXAfter": 240
+  }
+}
