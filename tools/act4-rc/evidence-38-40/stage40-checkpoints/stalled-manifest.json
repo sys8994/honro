@@ -1,0 +1,51 @@
+{
+  "scope": "Actual UI export and separate read-only localStorage snapshot after moving mage clear; no live state injection. Samples at escort clocks 531.5217, 572.2104 and 617.1785 retained identical resident coordinates and high-route indices. Observation includes debugging time, not gameplay duration.",
+  "sourceCommit": "fc11f8fdc650a4af86d1fe4d4ae4a5b5daf31403",
+  "candidateSha256": "c41085576168a69839cf1fb731ffcf329b37d2a7691d8a7b8d9c5ce704c60322",
+  "inputSha256": "c3724ff6ff7e2417489147457c0956c1642af3907b8b5bd923b4843c41675f6f",
+  "worldSha256": "99c59777254cb4942d5bfc7b7398068fc294dc29ff7208ac5f468953ecf5e581",
+  "stage": 40,
+  "round": 17,
+  "escortPhase": "landed",
+  "boatX": 5650,
+  "land0": "done",
+  "land1": "done",
+  "high2Index": 7,
+  "high3Index": 7,
+  "residents": {
+    "0": [
+      4678.3064,
+      2007.2807,
+      1450
+    ],
+    "1": [
+      4598.6138,
+      2048.5545,
+      1450
+    ],
+    "2": [
+      4483.1308,
+      2094.7477,
+      1450
+    ],
+    "3": [
+      4540.6612,
+      2071.7355,
+      1450
+    ]
+  },
+  "rows": {
+    "stalled-ui-export": {
+      "rawSha256": "1c61abae90b925cbf8e52b01c3ecf755fbee1cf82ba9ba1d2a7819b7565d92d0",
+      "xzSha256": "a7083974025fac247e942916100b130a5280f2db166bf066bdfde201b0c286df",
+      "rawBytes": 30827909,
+      "xzBytes": 5110612
+    },
+    "stalled-local-storage": {
+      "rawSha256": "ac743e5d94dfac682e39964b27cf82d9b803bae95b3937cf33a0bebf25658494",
+      "xzSha256": "a59a784b0df9d05fa5f1ce398d2fea2926e5cd2d63f9717972049bfff95744fe",
+      "rawBytes": 141384,
+      "xzBytes": 17196
+    }
+  }
+}
