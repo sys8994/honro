@@ -28,6 +28,8 @@ function sameBlockedFrame(app,pending,frame){const current=blockedFrame(app,pend
 const memory=b=>b.honroAct4PreviewState??={version:1,clock:0,events:{},receipts:[],boat:{phase:'waiting',x:500},door:{phase:'standing',time:0},complete:false};
 const seed=(n,key)=>G.HONRO_ACT4_PREVIEW_SEEDS.scenes.find(s=>s.stage===n&&s.event===key);
 const shown=node=>!!node&&!!node.getClientRects().length&&(!node.checkVisibility||node.checkVisibility({checkOpacity:true,checkVisibilityCSS:true}));
+// Act 4 owns a separate subtitle node: reviewed story barks independently hide #banter each frame.
+function act4BarkHost(){let node=G.document.getElementById('act4-banter');if(node)return node;const host=G.document.getElementById('banter');if(!host?.parentElement)return null;node=G.document.createElement('div');node.id='act4-banter';node.className='banter';node.hidden=true;host.parentElement.append(node);return node;}
 const event=(q,key)=>q.events[key]??={started:false,terminal:false,presented:[],retired:[]};
 function inView(app,p,pad=0){const s=app.scene,cv=s.canvas,w=cv.clientWidth,h=cv.clientHeight;return Math.abs(p.x-s.x)<w/(2*s.scale)-pad&&Math.abs(p.y-s.y)<h/(2*s.scale)-pad;}
 function receipt(q,e,id){e.retired=e.retired.filter(v=>v!==id);if(!e.presented.includes(id))e.presented.push(id);if(!q.receipts.includes(id))q.receipts.push(id);}
@@ -47,11 +49,11 @@ function observe(app,dt){const b=app.engine?.b;if(!(b?.honroCustom||b?.honroAct4
   if(line?.[2]?.act4PreviewRow&&node?.textContent===line[1]&&shown(node)&&!app.modal.classList.contains('open')&&!G.document.hidden&&app.canSpeak(line[0])&&(!P.rowAllowed||P.rowAllowed(app,line[2].act4PreviewRow)))receipt(q,e,line[2].act4PreviewRow);
   if(!d){e.terminal=true;for(const [id]of seed(n,q.reader.key).lines)if(!e.presented.includes(id)&&!e.retired.includes(id))e.retired.push(id);q.reader=null;}
  }
- if(q.bark&&!app.dialogue){const k=q.bark,e=event(q,k.key),node=G.document.getElementById('banter');
+ if(q.bark&&!app.dialogue){const k=q.bark,e=event(q,k.key),node=act4BarkHost();
   while(k.index<k.lines.length&&(!app.canSpeak(k.lines[k.index][1])||(P.rowAllowed&&!P.rowAllowed(app,k.lines[k.index][0])))){const id=k.lines[k.index][0];if(!e.retired.includes(id))e.retired.push(id);k.index++;k.elapsed=0;}
   const line=k.lines[k.index];if(!line){if(node)node.hidden=true;e.terminal=true;q.bark=null;}
   else if(node&&!G.document.hidden){node.hidden=false;node.setAttribute('role','status');node.replaceChildren();const strong=G.document.createElement('strong');strong.textContent=line[1];node.append(strong,G.document.createTextNode(' '+line[2]));if(!shown(node))return;receipt(q,e,line[0]);k.elapsed+=dt;if(k.elapsed>=Math.max(2.4,1.8+line[2].length*.075)){k.index++;k.elapsed=0;}}
- }
+ }else{const node=G.document.getElementById('act4-banter');if(node)node.hidden=true;}
  if(n===31){
   const cfg=boarding(b);
   if(arrivalTour(app,q,dt))return;
