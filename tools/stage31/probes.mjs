@@ -11,6 +11,12 @@ export function runProbe(g,project,stageId,probe){const P=g.HonroProductionContr
  const result={id:probe.id,kind:probe.kind,runner:'honro-production-engine-v1',fingerprint:P.fingerprint(project,stageId),result:'fail',scope:'Native production Engine inputs from authored spawn; no browser HUD or campaign-completion claim',observations:[],frames:0};
  if(probe.kind==='objective'){result.result='not-supported';result.observations.push({reason:'Requires the production App/event adapter; Engine-only completion is deliberately not accepted.'});return result;}
  const profile=g.HonroMaps.profileFor(st);g.HonroEquipment.fresh(profile);const b=g.HonroMaps.createBattle(st,project,profile),events=[],e=new C.Engine(b,event=>events.push(copy(event)),true),initial=new Map(b.units.map(u=>[u.id,{x:u.x,y:u.y,hp:u.hp,focus:u.focus,move:u.moveLeft}]));
+ // In the App, attach installs pilot AI and encounter activation on the actual
+ // Engine. A model-only probe must use the same hooks or it tests fallback AI.
+ if(b.units.some(u=>u.honroPilotMidboss||u.honroPilotBudgetBasis)){
+  if(!g.HonroAct4PilotCombat?.attach||!g.HonroEncounterDensity)throw Error('Production pilot AI/activation unavailable for engine probe');
+  g.HonroAct4PilotCombat.attach({engine:e});
+ }
  const hurts=[],impacts=[],fires=[],trace=[];const hurt=e.hurt.bind(e);e.hurt=function(u,...args){const before=u.hp+u.shield,out=hurt(u,...args),amount=before-u.hp-u.shield;if(amount>0)hurts.push({frame:result.frames,target:u.id,owner:args[1],amount});return out;};
  const impact=e.impact.bind(e);e.impact=function(p,h){impacts.push({frame:result.frames,owner:p.owner,skill:p.skill,terrain:h.terrain?.id,unit:h.unit?.id,x:p.x,y:p.y});return impact(p,h);};
  const fire=e.fire.bind(e);e.fire=function(skill,...args){const actor=e.active?.id,side=e.active?.side,out=fire(skill,...args);if(out)fires.push({frame:result.frames,actor,side,skill});return out;};

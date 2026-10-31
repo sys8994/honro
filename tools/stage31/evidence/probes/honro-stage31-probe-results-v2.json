@@ -1,0 +1,3236 @@
+{
+  "version": 1,
+  "stageId": "stage-31",
+  "results": [
+    {
+      "id": "entry-route",
+      "kind": "route",
+      "runner": "honro-production-engine-v1",
+      "fingerprint": "draft-v1-e27edc66-3537247",
+      "result": "pass",
+      "scope": "Native production Engine inputs from authored spawn; no browser HUD or campaign-completion claim",
+      "observations": [
+        {
+          "initial": [
+            {
+              "id": "archer",
+              "x": 315,
+              "y": 2455.875,
+              "hp": 995,
+              "focus": 222,
+              "move": 1856
+            },
+            {
+              "id": "mage",
+              "x": 436.5,
+              "y": 2440.6875,
+              "hp": 1062,
+              "focus": 288,
+              "move": 1876
+            },
+            {
+              "id": "knight",
+              "x": 558,
+              "y": 2416.0499999999997,
+              "hp": 1618,
+              "focus": 251,
+              "move": 1966
+            },
+            {
+              "id": "occultist",
+              "x": 679.5,
+              "y": 2390.2312500000003,
+              "hp": 1216,
+              "focus": 344,
+              "move": 1906
+            },
+            {
+              "id": "pilot31-west-entry-1",
+              "x": 1575,
+              "y": 1953.586956521739,
+              "hp": 266,
+              "focus": 198,
+              "move": 550
+            },
+            {
+              "id": "pilot31-west-entry-2",
+              "x": 1485,
+              "y": 2028.4615384615386,
+              "hp": 332,
+              "focus": 198,
+              "move": 550
+            },
+            {
+              "id": "pilot31-west-entry-3",
+              "x": 1845,
+              "y": 1922.3999999999999,
+              "hp": 332,
+              "focus": 198,
+              "move": 550
+            },
+            {
+              "id": "pilot31-west-entry-4",
+              "x": 1732.5,
+              "y": 1929,
+              "hp": 266,
+              "focus": 198,
+              "move": 550
+            },
+            {
+              "id": "pilot31-west-entry-5",
+              "x": 2475,
+              "y": 1635.9545454545455,
+              "hp": 293,
+              "focus": 198,
+              "move": 550
+            },
+            {
+              "id": "pilot31-west-entry-6",
+              "x": 2610,
+              "y": 1585.7560975609756,
+              "hp": 372,
+              "focus": 198,
+              "move": 550
+            },
+            {
+              "id": "pilot31-west-entry-7",
+              "x": 1980,
+              "y": 1911.6000000000001,
+              "hp": 297,
+              "focus": 198,
+              "move": 550
+            },
+            {
+              "id": "pilot31-west-entry-8",
+              "x": 2092.5,
+              "y": 1900.3295454545455,
+              "hp": 372,
+              "focus": 198,
+              "move": 550
+            },
+            {
+              "id": "pilot31-west-crossfire-1",
+              "x": 1822.5,
+              "y": 2538.5625,
+              "hp": 372,
+              "focus": 198,
+              "move": 550
+            },
+            {
+              "id": "pilot31-west-crossfire-2",
+              "x": 2227.5,
+              "y": 2685.75,
+              "hp": 372,
+              "focus": 198,
+              "move": 550
+            },
+            {
+              "id": "pilot31-west-crossfire-3",
+              "x": 2002.5,
+              "y": 2633.4,
+              "hp": 332,
+              "focus": 198,
+              "move": 550
+            },
+            {
+              "id": "pilot31-west-crossfire-4",
+              "x": 2340,
+              "y": 1751.357142857143,
+              "hp": 332,
+              "focus": 198,
+              "move": 550
+            },
+            {
+              "id": "pilot31-west-crossfire-5",
+              "x": 2677.5,
+              "y": 2795.85,
+              "hp": 356,
+              "focus": 198,
+              "move": 550
+            },
+            {
+              "id": "pilot31-west-crossfire-6",
+              "x": 2745,
+              "y": 1549.421052631579,
+              "hp": 372,
+              "focus": 198,
+              "move": 550
+            },
+            {
+              "id": "pilot31-west-crossfire-7",
+              "x": 2452.5,
+              "y": 2723.25,
+              "hp": 266,
+              "focus": 198,
+              "move": 550
+            },
+            {
+              "id": "pilot31-west-crossfire-8",
+              "x": 2542.5,
+              "y": 1600.5731707317073,
+              "hp": 266,
+              "focus": 198,
+              "move": 550
+            },
+            {
+              "id": "pilot31-west-crossfire-9",
+              "x": 2925,
+              "y": 1460.7391304347827,
+              "hp": 372,
+              "focus": 198,
+              "move": 550
+            },
+            {
+              "id": "pilot31-ridge-court-1",
+              "x": 5310,
+              "y": 2614.5,
+              "hp": 332,
+              "focus": 198,
+              "move": 550
+            },
+            {
+              "id": "pilot31-ridge-court-2",
+              "x": 5422.5,
+              "y": 2587.5,
+              "hp": 266,
+              "focus": 198,
+              "move": 550
+            },
+            {
+              "id": "pilot31-ridge-court-3",
+              "x": 6165,
+              "y": 1944.4090909090908,
+              "hp": 372,
+              "focus": 198,
+              "move": 550
+            },
+            {
+              "id": "pilot31-ridge-court-4",
+              "x": 5647.5,
+              "y": 2548.9285714285716,
+              "hp": 332,
+              "focus": 198,
+              "move": 550
+            },
+            {
+              "id": "pilot31-ridge-court-5",
+              "x": 5535,
+              "y": 2587.5,
+              "hp": 319,
+              "focus": 198,
+              "move": 550
+            },
+            {
+              "id": "pilot31-ridge-court-6",
+              "x": 6345,
+              "y": 1947.1153846153845,
+              "hp": 372,
+              "focus": 198,
+              "move": 550
+            },
+            {
+              "id": "pilot31-ridge-court-7",
+              "x": 5985,
+              "y": 2145.375,
+              "hp": 297,
+              "focus": 198,
+              "move": 550
+            },
+            {
+              "id": "pilot31-ridge-court-8",
+              "x": 5760,
+              "y": 2442.375,
+              "hp": 1191,
+              "focus": 198,
+              "move": 550
+            },
+            {
+              "id": "pilot31-ridge-court-9",
+              "x": 5872.5,
+              "y": 2295,
+              "hp": 372,
+              "focus": 198,
+              "move": 550
+            },
+            {
+              "id": "pilot31-lookout-return-1",
+              "x": 4230,
+              "y": 3061.7999999999997,
+              "hp": 372,
+              "focus": 198,
+              "move": 550
+            },
+            {
+              "id": "pilot31-lookout-return-2",
+              "x": 4635,
+              "y": 3081.375,
+              "hp": 446,
+              "focus": 198,
+              "move": 550
+            },
+            {
+              "id": "pilot31-lookout-return-3",
+              "x": 5985,
+              "y": 1881.3461538461538,
+              "hp": 297,
+              "focus": 198,
+              "move": 550
+            },
+            {
+              "id": "pilot31-lookout-return-4",
+              "x": 4432.5,
+              "y": 3072.6,
+              "hp": 332,
+              "focus": 198,
+              "move": 550
+            },
+            {
+              "id": "pilot31-lookout-return-5",
+              "x": 4837.5,
+              "y": 3025.5,
+              "hp": 332,
+              "focus": 198,
+              "move": 550
+            },
+            {
+              "id": "pilot31-lookout-return-6",
+              "x": 5040,
+              "y": 2848.5,
+              "hp": 266,
+              "focus": 198,
+              "move": 550
+            },
+            {
+              "id": "pilot31-lookout-return-7",
+              "x": 5175,
+              "y": 2740.5,
+              "hp": 372,
+              "focus": 198,
+              "move": 550
+            },
+            {
+              "id": "pilot31-lookout-return-8",
+              "x": 5476.5,
+              "y": 2587.5,
+              "hp": 372,
+              "focus": 198,
+              "move": 550
+            }
+          ],
+          "final": [
+            {
+              "id": "archer",
+              "x": 914.3026734409551,
+              "y": 2324.57175511238,
+              "hp": 995,
+              "dead": false
+            },
+            {
+              "id": "mage",
+              "x": 436.5,
+              "y": 2440.6875,
+              "hp": 1062,
+              "dead": false
+            },
+            {
+              "id": "knight",
+              "x": 558,
+              "y": 2416.05,
+              "hp": 1618,
+              "dead": false
+            },
+            {
+              "id": "occultist",
+              "x": 679.5,
+              "y": 2390.23125,
+              "hp": 1216,
+              "dead": false
+            },
+            {
+              "id": "pilot31-west-entry-1",
+              "x": 1575,
+              "y": 1953.586956521739,
+              "hp": 266,
+              "dead": false
+            },
+            {
+              "id": "pilot31-west-entry-2",
+              "x": 1485,
+              "y": 2028.4615384615386,
+              "hp": 332,
+              "dead": false
+            },
+            {
+              "id": "pilot31-west-entry-3",
+              "x": 1845,
+              "y": 1922.4,
+              "hp": 332,
+              "dead": false
+            },
+            {
+              "id": "pilot31-west-entry-4",
+              "x": 1732.5,
+              "y": 1929,
+              "hp": 266,
+              "dead": false
+            },
+            {
+              "id": "pilot31-west-entry-5",
+              "x": 2475,
+              "y": 1635.9545454545455,
+              "hp": 293,
+              "dead": false
+            },
+            {
+              "id": "pilot31-west-entry-6",
+              "x": 2610,
+              "y": 1585.7560975609756,
+              "hp": 372,
+              "dead": false
+            },
+            {
+              "id": "pilot31-west-entry-7",
+              "x": 1980,
+              "y": 1911.6,
+              "hp": 297,
+              "dead": false
+            },
+            {
+              "id": "pilot31-west-entry-8",
+              "x": 2092.5,
+              "y": 1900.3295454545455,
+              "hp": 372,
+              "dead": false
+            },
+            {
+              "id": "pilot31-west-crossfire-1",
+              "x": 1822.5,
+              "y": 2538.5625,
+              "hp": 372,
+              "dead": false
+            },
+            {
+              "id": "pilot31-west-crossfire-2",
+              "x": 2227.5,
+              "y": 2685.75,
+              "hp": 372,
+              "dead": false
+            },
+            {
+              "id": "pilot31-west-crossfire-3",
+              "x": 2002.5,
+              "y": 2633.4,
+              "hp": 332,
+              "dead": false
+            },
+            {
+              "id": "pilot31-west-crossfire-4",
+              "x": 2340,
+              "y": 1751.357142857143,
+              "hp": 332,
+              "dead": false
+            },
+            {
+              "id": "pilot31-west-crossfire-5",
+              "x": 2677.5,
+              "y": 2795.85,
+              "hp": 356,
+              "dead": false
+            },
+            {
+              "id": "pilot31-west-crossfire-6",
+              "x": 2745,
+              "y": 1549.421052631579,
+              "hp": 372,
+              "dead": false
+            },
+            {
+              "id": "pilot31-west-crossfire-7",
+              "x": 2452.5,
+              "y": 2723.25,
+              "hp": 266,
+              "dead": false
+            },
+            {
+              "id": "pilot31-west-crossfire-8",
+              "x": 2542.5,
+              "y": 1600.5731707317073,
+              "hp": 266,
+              "dead": false
+            },
+            {
+              "id": "pilot31-west-crossfire-9",
+              "x": 2925,
+              "y": 1460.7391304347825,
+              "hp": 372,
+              "dead": false
+            },
+            {
+              "id": "pilot31-ridge-court-1",
+              "x": 5310,
+              "y": 2614.5,
+              "hp": 332,
+              "dead": false
+            },
+            {
+              "id": "pilot31-ridge-court-2",
+              "x": 5422.5,
+              "y": 2587.5,
+              "hp": 266,
+              "dead": false
+            },
+            {
+              "id": "pilot31-ridge-court-3",
+              "x": 6165,
+              "y": 1944.409090909091,
+              "hp": 372,
+              "dead": false
+            },
+            {
+              "id": "pilot31-ridge-court-4",
+              "x": 5647.5,
+              "y": 2548.9285714285716,
+              "hp": 332,
+              "dead": false
+            },
+            {
+              "id": "pilot31-ridge-court-5",
+              "x": 5535,
+              "y": 2587.5,
+              "hp": 319,
+              "dead": false
+            },
+            {
+              "id": "pilot31-ridge-court-6",
+              "x": 6345,
+              "y": 1947.1153846153845,
+              "hp": 372,
+              "dead": false
+            },
+            {
+              "id": "pilot31-ridge-court-7",
+              "x": 5985,
+              "y": 2145.375,
+              "hp": 297,
+              "dead": false
+            },
+            {
+              "id": "pilot31-ridge-court-8",
+              "x": 5760,
+              "y": 2442.375,
+              "hp": 1191,
+              "dead": false
+            },
+            {
+              "id": "pilot31-ridge-court-9",
+              "x": 5872.5,
+              "y": 2295,
+              "hp": 372,
+              "dead": false
+            },
+            {
+              "id": "pilot31-lookout-return-1",
+              "x": 4230,
+              "y": 3061.8,
+              "hp": 372,
+              "dead": false
+            },
+            {
+              "id": "pilot31-lookout-return-2",
+              "x": 4635,
+              "y": 3081.375,
+              "hp": 446,
+              "dead": false
+            },
+            {
+              "id": "pilot31-lookout-return-3",
+              "x": 5985,
+              "y": 1881.3461538461538,
+              "hp": 297,
+              "dead": false
+            },
+            {
+              "id": "pilot31-lookout-return-4",
+              "x": 4432.5,
+              "y": 3072.6,
+              "hp": 332,
+              "dead": false
+            },
+            {
+              "id": "pilot31-lookout-return-5",
+              "x": 4837.5,
+              "y": 3025.5,
+              "hp": 332,
+              "dead": false
+            },
+            {
+              "id": "pilot31-lookout-return-6",
+              "x": 5040,
+              "y": 2848.5,
+              "hp": 266,
+              "dead": false
+            },
+            {
+              "id": "pilot31-lookout-return-7",
+              "x": 5175,
+              "y": 2740.5,
+              "hp": 372,
+              "dead": false
+            },
+            {
+              "id": "pilot31-lookout-return-8",
+              "x": 5476.5,
+              "y": 2587.5,
+              "hp": 372,
+              "dead": false
+            }
+          ],
+          "checkpointsReached": 2,
+          "hurts": [],
+          "impacts": [],
+          "fires": [],
+          "trace": [
+            {
+              "frame": 30,
+              "actor": {
+                "x": 416.70848236315067,
+                "y": 2443.161439704606,
+                "hp": 995,
+                "move": 1753.4999999999977
+              },
+              "phase": "aim",
+              "round": 1,
+              "active": "archer"
+            },
+            {
+              "frame": 60,
+              "actor": {
+                "x": 517.4521646302547,
+                "y": 2424.666415016071,
+                "hp": 995,
+                "move": 1650.9911075096059
+              },
+              "phase": "aim",
+              "round": 1,
+              "active": "archer"
+            },
+            {
+              "frame": 90,
+              "actor": {
+                "x": 617.713446849334,
+                "y": 2403.3608925445164,
+                "hp": 995,
+                "move": 1548.491107509605
+              },
+              "phase": "aim",
+              "round": 1,
+              "active": "archer"
+            },
+            {
+              "frame": 120,
+              "actor": {
+                "x": 717.9747290684132,
+                "y": 2382.055370072962,
+                "hp": 995,
+                "move": 1445.991107509604
+              },
+              "phase": "aim",
+              "round": 1,
+              "active": "archer"
+            },
+            {
+              "frame": 150,
+              "actor": {
+                "x": 817.9738475333914,
+                "y": 2359.6004190787667,
+                "hp": 995,
+                "move": 1343.4263382093197
+              },
+              "phase": "aim",
+              "round": 1,
+              "active": "archer"
+            },
+            {
+              "frame": 180,
+              "actor": {
+                "x": 914.3026734409551,
+                "y": 2324.57175511238,
+                "hp": 995,
+                "move": 1240.9263382093218
+              },
+              "phase": "aim",
+              "round": 1,
+              "active": "archer"
+            }
+          ]
+        }
+      ],
+      "frames": 180,
+      "runtimeSha256": "3ec7c24d5b640ffe39f8fc7e0902d09f91600545e1c4e6d2a6ea40266e788a0e"
+    },
+    {
+      "id": "entry-shot",
+      "kind": "shot",
+      "runner": "honro-production-engine-v1",
+      "fingerprint": "draft-v1-e27edc66-3537247",
+      "result": "pass",
+      "scope": "Native production Engine inputs from authored spawn; no browser HUD or campaign-completion claim",
+      "observations": [
+        {
+          "input": {
+            "op": "fire",
+            "skill": "A01",
+            "angle": 68.6623969320896,
+            "power": 0.9776329830916075
+          },
+          "accepted": true
+        },
+        {
+          "initial": [
+            {
+              "id": "archer",
+              "x": 315,
+              "y": 2455.875,
+              "hp": 995,
+              "focus": 222,
+              "move": 1856
+            },
+            {
+              "id": "mage",
+              "x": 436.5,
+              "y": 2440.6875,
+              "hp": 1062,
+              "focus": 288,
+              "move": 1876
+            },
+            {
+              "id": "knight",
+              "x": 558,
+              "y": 2416.0499999999997,
+              "hp": 1618,
+              "focus": 251,
+              "move": 1966
+            },
+            {
+              "id": "occultist",
+              "x": 679.5,
+              "y": 2390.2312500000003,
+              "hp": 1216,
+              "focus": 344,
+              "move": 1906
+            },
+            {
+              "id": "pilot31-west-entry-1",
+              "x": 1575,
+              "y": 1953.586956521739,
+              "hp": 266,
+              "focus": 198,
+              "move": 550
+            },
+            {
+              "id": "pilot31-west-entry-2",
+              "x": 1485,
+              "y": 2028.4615384615386,
+              "hp": 332,
+              "focus": 198,
+              "move": 550
+            },
+            {
+              "id": "pilot31-west-entry-3",
+              "x": 1845,
+              "y": 1922.3999999999999,
+              "hp": 332,
+              "focus": 198,
+              "move": 550
+            },
+            {
+              "id": "pilot31-west-entry-4",
+              "x": 1732.5,
+              "y": 1929,
+              "hp": 266,
+              "focus": 198,
+              "move": 550
+            },
+            {
+              "id": "pilot31-west-entry-5",
+              "x": 2475,
+              "y": 1635.9545454545455,
+              "hp": 293,
+              "focus": 198,
+              "move": 550
+            },
+            {
+              "id": "pilot31-west-entry-6",
+              "x": 2610,
+              "y": 1585.7560975609756,
+              "hp": 372,
+              "focus": 198,
+              "move": 550
+            },
+            {
+              "id": "pilot31-west-entry-7",
+              "x": 1980,
+              "y": 1911.6000000000001,
+              "hp": 297,
+              "focus": 198,
+              "move": 550
+            },
+            {
+              "id": "pilot31-west-entry-8",
+              "x": 2092.5,
+              "y": 1900.3295454545455,
+              "hp": 372,
+              "focus": 198,
+              "move": 550
+            },
+            {
+              "id": "pilot31-west-crossfire-1",
+              "x": 1822.5,
+              "y": 2538.5625,
+              "hp": 372,
+              "focus": 198,
+              "move": 550
+            },
+            {
+              "id": "pilot31-west-crossfire-2",
+              "x": 2227.5,
+              "y": 2685.75,
+              "hp": 372,
+              "focus": 198,
+              "move": 550
+            },
+            {
+              "id": "pilot31-west-crossfire-3",
+              "x": 2002.5,
+              "y": 2633.4,
+              "hp": 332,
+              "focus": 198,
+              "move": 550
+            },
+            {
+              "id": "pilot31-west-crossfire-4",
+              "x": 2340,
+              "y": 1751.357142857143,
+              "hp": 332,
+              "focus": 198,
+              "move": 550
+            },
+            {
+              "id": "pilot31-west-crossfire-5",
+              "x": 2677.5,
+              "y": 2795.85,
+              "hp": 356,
+              "focus": 198,
+              "move": 550
+            },
+            {
+              "id": "pilot31-west-crossfire-6",
+              "x": 2745,
+              "y": 1549.421052631579,
+              "hp": 372,
+              "focus": 198,
+              "move": 550
+            },
+            {
+              "id": "pilot31-west-crossfire-7",
+              "x": 2452.5,
+              "y": 2723.25,
+              "hp": 266,
+              "focus": 198,
+              "move": 550
+            },
+            {
+              "id": "pilot31-west-crossfire-8",
+              "x": 2542.5,
+              "y": 1600.5731707317073,
+              "hp": 266,
+              "focus": 198,
+              "move": 550
+            },
+            {
+              "id": "pilot31-west-crossfire-9",
+              "x": 2925,
+              "y": 1460.7391304347827,
+              "hp": 372,
+              "focus": 198,
+              "move": 550
+            },
+            {
+              "id": "pilot31-ridge-court-1",
+              "x": 5310,
+              "y": 2614.5,
+              "hp": 332,
+              "focus": 198,
+              "move": 550
+            },
+            {
+              "id": "pilot31-ridge-court-2",
+              "x": 5422.5,
+              "y": 2587.5,
+              "hp": 266,
+              "focus": 198,
+              "move": 550
+            },
+            {
+              "id": "pilot31-ridge-court-3",
+              "x": 6165,
+              "y": 1944.4090909090908,
+              "hp": 372,
+              "focus": 198,
+              "move": 550
+            },
+            {
+              "id": "pilot31-ridge-court-4",
+              "x": 5647.5,
+              "y": 2548.9285714285716,
+              "hp": 332,
+              "focus": 198,
+              "move": 550
+            },
+            {
+              "id": "pilot31-ridge-court-5",
+              "x": 5535,
+              "y": 2587.5,
+              "hp": 319,
+              "focus": 198,
+              "move": 550
+            },
+            {
+              "id": "pilot31-ridge-court-6",
+              "x": 6345,
+              "y": 1947.1153846153845,
+              "hp": 372,
+              "focus": 198,
+              "move": 550
+            },
+            {
+              "id": "pilot31-ridge-court-7",
+              "x": 5985,
+              "y": 2145.375,
+              "hp": 297,
+              "focus": 198,
+              "move": 550
+            },
+            {
+              "id": "pilot31-ridge-court-8",
+              "x": 5760,
+              "y": 2442.375,
+              "hp": 1191,
+              "focus": 198,
+              "move": 550
+            },
+            {
+              "id": "pilot31-ridge-court-9",
+              "x": 5872.5,
+              "y": 2295,
+              "hp": 372,
+              "focus": 198,
+              "move": 550
+            },
+            {
+              "id": "pilot31-lookout-return-1",
+              "x": 4230,
+              "y": 3061.7999999999997,
+              "hp": 372,
+              "focus": 198,
+              "move": 550
+            },
+            {
+              "id": "pilot31-lookout-return-2",
+              "x": 4635,
+              "y": 3081.375,
+              "hp": 446,
+              "focus": 198,
+              "move": 550
+            },
+            {
+              "id": "pilot31-lookout-return-3",
+              "x": 5985,
+              "y": 1881.3461538461538,
+              "hp": 297,
+              "focus": 198,
+              "move": 550
+            },
+            {
+              "id": "pilot31-lookout-return-4",
+              "x": 4432.5,
+              "y": 3072.6,
+              "hp": 332,
+              "focus": 198,
+              "move": 550
+            },
+            {
+              "id": "pilot31-lookout-return-5",
+              "x": 4837.5,
+              "y": 3025.5,
+              "hp": 332,
+              "focus": 198,
+              "move": 550
+            },
+            {
+              "id": "pilot31-lookout-return-6",
+              "x": 5040,
+              "y": 2848.5,
+              "hp": 266,
+              "focus": 198,
+              "move": 550
+            },
+            {
+              "id": "pilot31-lookout-return-7",
+              "x": 5175,
+              "y": 2740.5,
+              "hp": 372,
+              "focus": 198,
+              "move": 550
+            },
+            {
+              "id": "pilot31-lookout-return-8",
+              "x": 5476.5,
+              "y": 2587.5,
+              "hp": 372,
+              "focus": 198,
+              "move": 550
+            }
+          ],
+          "final": [
+            {
+              "id": "archer",
+              "x": 315,
+              "y": 2455.875,
+              "hp": 995,
+              "dead": false
+            },
+            {
+              "id": "mage",
+              "x": 436.5,
+              "y": 2440.6875,
+              "hp": 1062,
+              "dead": false
+            },
+            {
+              "id": "knight",
+              "x": 558,
+              "y": 2416.05,
+              "hp": 1618,
+              "dead": false
+            },
+            {
+              "id": "occultist",
+              "x": 679.5,
+              "y": 2390.23125,
+              "hp": 1216,
+              "dead": false
+            },
+            {
+              "id": "pilot31-west-entry-1",
+              "x": 1575,
+              "y": 1953.586956521739,
+              "hp": 266,
+              "dead": false
+            },
+            {
+              "id": "pilot31-west-entry-2",
+              "x": 1485,
+              "y": 2028.4615384615386,
+              "hp": 332,
+              "dead": false
+            },
+            {
+              "id": "pilot31-west-entry-3",
+              "x": 1845,
+              "y": 1922.4,
+              "hp": 332,
+              "dead": false
+            },
+            {
+              "id": "pilot31-west-entry-4",
+              "x": 1732.5,
+              "y": 1929,
+              "hp": 120,
+              "dead": false
+            },
+            {
+              "id": "pilot31-west-entry-5",
+              "x": 2475,
+              "y": 1635.9545454545455,
+              "hp": 293,
+              "dead": false
+            },
+            {
+              "id": "pilot31-west-entry-6",
+              "x": 2610,
+              "y": 1585.7560975609756,
+              "hp": 372,
+              "dead": false
+            },
+            {
+              "id": "pilot31-west-entry-7",
+              "x": 1980,
+              "y": 1911.6,
+              "hp": 297,
+              "dead": false
+            },
+            {
+              "id": "pilot31-west-entry-8",
+              "x": 2092.5,
+              "y": 1900.3295454545455,
+              "hp": 372,
+              "dead": false
+            },
+            {
+              "id": "pilot31-west-crossfire-1",
+              "x": 1822.5,
+              "y": 2538.5625,
+              "hp": 372,
+              "dead": false
+            },
+            {
+              "id": "pilot31-west-crossfire-2",
+              "x": 2227.5,
+              "y": 2685.75,
+              "hp": 372,
+              "dead": false
+            },
+            {
+              "id": "pilot31-west-crossfire-3",
+              "x": 2002.5,
+              "y": 2633.4,
+              "hp": 332,
+              "dead": false
+            },
+            {
+              "id": "pilot31-west-crossfire-4",
+              "x": 2340,
+              "y": 1751.357142857143,
+              "hp": 332,
+              "dead": false
+            },
+            {
+              "id": "pilot31-west-crossfire-5",
+              "x": 2677.5,
+              "y": 2795.85,
+              "hp": 356,
+              "dead": false
+            },
+            {
+              "id": "pilot31-west-crossfire-6",
+              "x": 2745,
+              "y": 1549.421052631579,
+              "hp": 372,
+              "dead": false
+            },
+            {
+              "id": "pilot31-west-crossfire-7",
+              "x": 2452.5,
+              "y": 2723.25,
+              "hp": 266,
+              "dead": false
+            },
+            {
+              "id": "pilot31-west-crossfire-8",
+              "x": 2542.5,
+              "y": 1600.5731707317073,
+              "hp": 266,
+              "dead": false
+            },
+            {
+              "id": "pilot31-west-crossfire-9",
+              "x": 2925,
+              "y": 1460.7391304347825,
+              "hp": 372,
+              "dead": false
+            },
+            {
+              "id": "pilot31-ridge-court-1",
+              "x": 5310,
+              "y": 2614.5,
+              "hp": 332,
+              "dead": false
+            },
+            {
+              "id": "pilot31-ridge-court-2",
+              "x": 5422.5,
+              "y": 2587.5,
+              "hp": 266,
+              "dead": false
+            },
+            {
+              "id": "pilot31-ridge-court-3",
+              "x": 6165,
+              "y": 1944.409090909091,
+              "hp": 372,
+              "dead": false
+            },
+            {
+              "id": "pilot31-ridge-court-4",
+              "x": 5647.5,
+              "y": 2548.9285714285716,
+              "hp": 332,
+              "dead": false
+            },
+            {
+              "id": "pilot31-ridge-court-5",
+              "x": 5535,
+              "y": 2587.5,
+              "hp": 319,
+              "dead": false
+            },
+            {
+              "id": "pilot31-ridge-court-6",
+              "x": 6345,
+              "y": 1947.1153846153845,
+              "hp": 372,
+              "dead": false
+            },
+            {
+              "id": "pilot31-ridge-court-7",
+              "x": 5985,
+              "y": 2145.375,
+              "hp": 297,
+              "dead": false
+            },
+            {
+              "id": "pilot31-ridge-court-8",
+              "x": 5760,
+              "y": 2442.375,
+              "hp": 1191,
+              "dead": false
+            },
+            {
+              "id": "pilot31-ridge-court-9",
+              "x": 5872.5,
+              "y": 2295,
+              "hp": 372,
+              "dead": false
+            },
+            {
+              "id": "pilot31-lookout-return-1",
+              "x": 4230,
+              "y": 3061.8,
+              "hp": 372,
+              "dead": false
+            },
+            {
+              "id": "pilot31-lookout-return-2",
+              "x": 4635,
+              "y": 3081.375,
+              "hp": 446,
+              "dead": false
+            },
+            {
+              "id": "pilot31-lookout-return-3",
+              "x": 5985,
+              "y": 1881.3461538461538,
+              "hp": 297,
+              "dead": false
+            },
+            {
+              "id": "pilot31-lookout-return-4",
+              "x": 4432.5,
+              "y": 3072.6,
+              "hp": 332,
+              "dead": false
+            },
+            {
+              "id": "pilot31-lookout-return-5",
+              "x": 4837.5,
+              "y": 3025.5,
+              "hp": 332,
+              "dead": false
+            },
+            {
+              "id": "pilot31-lookout-return-6",
+              "x": 5040,
+              "y": 2848.5,
+              "hp": 266,
+              "dead": false
+            },
+            {
+              "id": "pilot31-lookout-return-7",
+              "x": 5175,
+              "y": 2740.5,
+              "hp": 372,
+              "dead": false
+            },
+            {
+              "id": "pilot31-lookout-return-8",
+              "x": 5476.5,
+              "y": 2587.5,
+              "hp": 372,
+              "dead": false
+            }
+          ],
+          "checkpointsReached": 0,
+          "hurts": [
+            {
+              "frame": 536,
+              "target": "pilot31-west-entry-4",
+              "owner": "archer",
+              "amount": 146
+            }
+          ],
+          "impacts": [
+            {
+              "frame": 536,
+              "owner": "archer",
+              "skill": "A01",
+              "unit": "pilot31-west-entry-4",
+              "x": 1706.1602296188285,
+              "y": 1873.2173614411638
+            }
+          ],
+          "fires": [
+            {
+              "frame": 0,
+              "actor": "archer",
+              "side": 0,
+              "skill": "A01"
+            }
+          ],
+          "trace": [
+            {
+              "frame": 30,
+              "actor": {
+                "x": 315,
+                "y": 2455.875,
+                "hp": 995,
+                "move": 1856
+              },
+              "phase": "flight",
+              "round": 1,
+              "active": "archer"
+            },
+            {
+              "frame": 60,
+              "actor": {
+                "x": 315,
+                "y": 2455.875,
+                "hp": 995,
+                "move": 1856
+              },
+              "phase": "flight",
+              "round": 1,
+              "active": "archer"
+            },
+            {
+              "frame": 90,
+              "actor": {
+                "x": 315,
+                "y": 2455.875,
+                "hp": 995,
+                "move": 1856
+              },
+              "phase": "flight",
+              "round": 1,
+              "active": "archer"
+            },
+            {
+              "frame": 120,
+              "actor": {
+                "x": 315,
+                "y": 2455.875,
+                "hp": 995,
+                "move": 1856
+              },
+              "phase": "flight",
+              "round": 1,
+              "active": "archer"
+            },
+            {
+              "frame": 150,
+              "actor": {
+                "x": 315,
+                "y": 2455.875,
+                "hp": 995,
+                "move": 1856
+              },
+              "phase": "flight",
+              "round": 1,
+              "active": "archer"
+            },
+            {
+              "frame": 180,
+              "actor": {
+                "x": 315,
+                "y": 2455.875,
+                "hp": 995,
+                "move": 1856
+              },
+              "phase": "flight",
+              "round": 1,
+              "active": "archer"
+            },
+            {
+              "frame": 210,
+              "actor": {
+                "x": 315,
+                "y": 2455.875,
+                "hp": 995,
+                "move": 1856
+              },
+              "phase": "flight",
+              "round": 1,
+              "active": "archer"
+            },
+            {
+              "frame": 240,
+              "actor": {
+                "x": 315,
+                "y": 2455.875,
+                "hp": 995,
+                "move": 1856
+              },
+              "phase": "flight",
+              "round": 1,
+              "active": "archer"
+            },
+            {
+              "frame": 270,
+              "actor": {
+                "x": 315,
+                "y": 2455.875,
+                "hp": 995,
+                "move": 1856
+              },
+              "phase": "flight",
+              "round": 1,
+              "active": "archer"
+            },
+            {
+              "frame": 300,
+              "actor": {
+                "x": 315,
+                "y": 2455.875,
+                "hp": 995,
+                "move": 1856
+              },
+              "phase": "flight",
+              "round": 1,
+              "active": "archer"
+            },
+            {
+              "frame": 330,
+              "actor": {
+                "x": 315,
+                "y": 2455.875,
+                "hp": 995,
+                "move": 1856
+              },
+              "phase": "flight",
+              "round": 1,
+              "active": "archer"
+            },
+            {
+              "frame": 360,
+              "actor": {
+                "x": 315,
+                "y": 2455.875,
+                "hp": 995,
+                "move": 1856
+              },
+              "phase": "flight",
+              "round": 1,
+              "active": "archer"
+            },
+            {
+              "frame": 390,
+              "actor": {
+                "x": 315,
+                "y": 2455.875,
+                "hp": 995,
+                "move": 1856
+              },
+              "phase": "flight",
+              "round": 1,
+              "active": "archer"
+            },
+            {
+              "frame": 420,
+              "actor": {
+                "x": 315,
+                "y": 2455.875,
+                "hp": 995,
+                "move": 1856
+              },
+              "phase": "flight",
+              "round": 1,
+              "active": "archer"
+            },
+            {
+              "frame": 450,
+              "actor": {
+                "x": 315,
+                "y": 2455.875,
+                "hp": 995,
+                "move": 1856
+              },
+              "phase": "flight",
+              "round": 1,
+              "active": "archer"
+            },
+            {
+              "frame": 480,
+              "actor": {
+                "x": 315,
+                "y": 2455.875,
+                "hp": 995,
+                "move": 1856
+              },
+              "phase": "flight",
+              "round": 1,
+              "active": "archer"
+            },
+            {
+              "frame": 510,
+              "actor": {
+                "x": 315,
+                "y": 2455.875,
+                "hp": 995,
+                "move": 1856
+              },
+              "phase": "flight",
+              "round": 1,
+              "active": "archer"
+            },
+            {
+              "frame": 540,
+              "actor": {
+                "x": 315,
+                "y": 2455.875,
+                "hp": 995,
+                "move": 1856
+              },
+              "phase": "flight",
+              "round": 1,
+              "active": "archer"
+            },
+            {
+              "frame": 570,
+              "actor": {
+                "x": 315,
+                "y": 2455.875,
+                "hp": 995,
+                "move": 1856
+              },
+              "phase": "review",
+              "round": 1,
+              "active": "archer"
+            },
+            {
+              "frame": 600,
+              "actor": {
+                "x": 315,
+                "y": 2455.875,
+                "hp": 995,
+                "move": 1856
+              },
+              "phase": "review",
+              "round": 1,
+              "active": "archer"
+            },
+            {
+              "frame": 630,
+              "actor": {
+                "x": 315,
+                "y": 2455.875,
+                "hp": 995,
+                "move": 1856
+              },
+              "phase": "aim",
+              "round": 1,
+              "active": "mage"
+            },
+            {
+              "frame": 660,
+              "actor": {
+                "x": 315,
+                "y": 2455.875,
+                "hp": 995,
+                "move": 1856
+              },
+              "phase": "aim",
+              "round": 1,
+              "active": "mage"
+            },
+            {
+              "frame": 690,
+              "actor": {
+                "x": 315,
+                "y": 2455.875,
+                "hp": 995,
+                "move": 1856
+              },
+              "phase": "aim",
+              "round": 1,
+              "active": "mage"
+            },
+            {
+              "frame": 720,
+              "actor": {
+                "x": 315,
+                "y": 2455.875,
+                "hp": 995,
+                "move": 1856
+              },
+              "phase": "aim",
+              "round": 1,
+              "active": "mage"
+            },
+            {
+              "frame": 750,
+              "actor": {
+                "x": 315,
+                "y": 2455.875,
+                "hp": 995,
+                "move": 1856
+              },
+              "phase": "aim",
+              "round": 1,
+              "active": "mage"
+            },
+            {
+              "frame": 780,
+              "actor": {
+                "x": 315,
+                "y": 2455.875,
+                "hp": 995,
+                "move": 1856
+              },
+              "phase": "aim",
+              "round": 1,
+              "active": "mage"
+            },
+            {
+              "frame": 810,
+              "actor": {
+                "x": 315,
+                "y": 2455.875,
+                "hp": 995,
+                "move": 1856
+              },
+              "phase": "aim",
+              "round": 1,
+              "active": "mage"
+            },
+            {
+              "frame": 840,
+              "actor": {
+                "x": 315,
+                "y": 2455.875,
+                "hp": 995,
+                "move": 1856
+              },
+              "phase": "aim",
+              "round": 1,
+              "active": "mage"
+            },
+            {
+              "frame": 870,
+              "actor": {
+                "x": 315,
+                "y": 2455.875,
+                "hp": 995,
+                "move": 1856
+              },
+              "phase": "aim",
+              "round": 1,
+              "active": "mage"
+            },
+            {
+              "frame": 900,
+              "actor": {
+                "x": 315,
+                "y": 2455.875,
+                "hp": 995,
+                "move": 1856
+              },
+              "phase": "aim",
+              "round": 1,
+              "active": "mage"
+            }
+          ]
+        }
+      ],
+      "frames": 900,
+      "runtimeSha256": "3ec7c24d5b640ffe39f8fc7e0902d09f91600545e1c4e6d2a6ea40266e788a0e"
+    },
+    {
+      "id": "west-enemy-action",
+      "kind": "enemy-action",
+      "runner": "honro-production-engine-v1",
+      "fingerprint": "draft-v1-e27edc66-3537247",
+      "result": "fail",
+      "scope": "Native production Engine inputs from authored spawn; no browser HUD or campaign-completion claim",
+      "observations": [
+        {
+          "input": {
+            "op": "defend"
+          },
+          "actor": "archer"
+        },
+        {
+          "input": {
+            "op": "defend"
+          },
+          "actor": "mage"
+        },
+        {
+          "input": {
+            "op": "defend"
+          },
+          "actor": "knight"
+        },
+        {
+          "input": {
+            "op": "defend"
+          },
+          "actor": "occultist"
+        },
+        {
+          "initial": [
+            {
+              "id": "archer",
+              "x": 315,
+              "y": 2455.875,
+              "hp": 995,
+              "focus": 222,
+              "move": 1856
+            },
+            {
+              "id": "mage",
+              "x": 436.5,
+              "y": 2440.6875,
+              "hp": 1062,
+              "focus": 288,
+              "move": 1876
+            },
+            {
+              "id": "knight",
+              "x": 558,
+              "y": 2416.0499999999997,
+              "hp": 1618,
+              "focus": 251,
+              "move": 1966
+            },
+            {
+              "id": "occultist",
+              "x": 679.5,
+              "y": 2390.2312500000003,
+              "hp": 1216,
+              "focus": 344,
+              "move": 1906
+            },
+            {
+              "id": "pilot31-west-entry-1",
+              "x": 1575,
+              "y": 1953.586956521739,
+              "hp": 266,
+              "focus": 198,
+              "move": 550
+            },
+            {
+              "id": "pilot31-west-entry-2",
+              "x": 1485,
+              "y": 2028.4615384615386,
+              "hp": 332,
+              "focus": 198,
+              "move": 550
+            },
+            {
+              "id": "pilot31-west-entry-3",
+              "x": 1845,
+              "y": 1922.3999999999999,
+              "hp": 332,
+              "focus": 198,
+              "move": 550
+            },
+            {
+              "id": "pilot31-west-entry-4",
+              "x": 1732.5,
+              "y": 1929,
+              "hp": 266,
+              "focus": 198,
+              "move": 550
+            },
+            {
+              "id": "pilot31-west-entry-5",
+              "x": 2475,
+              "y": 1635.9545454545455,
+              "hp": 293,
+              "focus": 198,
+              "move": 550
+            },
+            {
+              "id": "pilot31-west-entry-6",
+              "x": 2610,
+              "y": 1585.7560975609756,
+              "hp": 372,
+              "focus": 198,
+              "move": 550
+            },
+            {
+              "id": "pilot31-west-entry-7",
+              "x": 1980,
+              "y": 1911.6000000000001,
+              "hp": 297,
+              "focus": 198,
+              "move": 550
+            },
+            {
+              "id": "pilot31-west-entry-8",
+              "x": 2092.5,
+              "y": 1900.3295454545455,
+              "hp": 372,
+              "focus": 198,
+              "move": 550
+            },
+            {
+              "id": "pilot31-west-crossfire-1",
+              "x": 1822.5,
+              "y": 2538.5625,
+              "hp": 372,
+              "focus": 198,
+              "move": 550
+            },
+            {
+              "id": "pilot31-west-crossfire-2",
+              "x": 2227.5,
+              "y": 2685.75,
+              "hp": 372,
+              "focus": 198,
+              "move": 550
+            },
+            {
+              "id": "pilot31-west-crossfire-3",
+              "x": 2002.5,
+              "y": 2633.4,
+              "hp": 332,
+              "focus": 198,
+              "move": 550
+            },
+            {
+              "id": "pilot31-west-crossfire-4",
+              "x": 2340,
+              "y": 1751.357142857143,
+              "hp": 332,
+              "focus": 198,
+              "move": 550
+            },
+            {
+              "id": "pilot31-west-crossfire-5",
+              "x": 2677.5,
+              "y": 2795.85,
+              "hp": 356,
+              "focus": 198,
+              "move": 550
+            },
+            {
+              "id": "pilot31-west-crossfire-6",
+              "x": 2745,
+              "y": 1549.421052631579,
+              "hp": 372,
+              "focus": 198,
+              "move": 550
+            },
+            {
+              "id": "pilot31-west-crossfire-7",
+              "x": 2452.5,
+              "y": 2723.25,
+              "hp": 266,
+              "focus": 198,
+              "move": 550
+            },
+            {
+              "id": "pilot31-west-crossfire-8",
+              "x": 2542.5,
+              "y": 1600.5731707317073,
+              "hp": 266,
+              "focus": 198,
+              "move": 550
+            },
+            {
+              "id": "pilot31-west-crossfire-9",
+              "x": 2925,
+              "y": 1460.7391304347827,
+              "hp": 372,
+              "focus": 198,
+              "move": 550
+            },
+            {
+              "id": "pilot31-ridge-court-1",
+              "x": 5310,
+              "y": 2614.5,
+              "hp": 332,
+              "focus": 198,
+              "move": 550
+            },
+            {
+              "id": "pilot31-ridge-court-2",
+              "x": 5422.5,
+              "y": 2587.5,
+              "hp": 266,
+              "focus": 198,
+              "move": 550
+            },
+            {
+              "id": "pilot31-ridge-court-3",
+              "x": 6165,
+              "y": 1944.4090909090908,
+              "hp": 372,
+              "focus": 198,
+              "move": 550
+            },
+            {
+              "id": "pilot31-ridge-court-4",
+              "x": 5647.5,
+              "y": 2548.9285714285716,
+              "hp": 332,
+              "focus": 198,
+              "move": 550
+            },
+            {
+              "id": "pilot31-ridge-court-5",
+              "x": 5535,
+              "y": 2587.5,
+              "hp": 319,
+              "focus": 198,
+              "move": 550
+            },
+            {
+              "id": "pilot31-ridge-court-6",
+              "x": 6345,
+              "y": 1947.1153846153845,
+              "hp": 372,
+              "focus": 198,
+              "move": 550
+            },
+            {
+              "id": "pilot31-ridge-court-7",
+              "x": 5985,
+              "y": 2145.375,
+              "hp": 297,
+              "focus": 198,
+              "move": 550
+            },
+            {
+              "id": "pilot31-ridge-court-8",
+              "x": 5760,
+              "y": 2442.375,
+              "hp": 1191,
+              "focus": 198,
+              "move": 550
+            },
+            {
+              "id": "pilot31-ridge-court-9",
+              "x": 5872.5,
+              "y": 2295,
+              "hp": 372,
+              "focus": 198,
+              "move": 550
+            },
+            {
+              "id": "pilot31-lookout-return-1",
+              "x": 4230,
+              "y": 3061.7999999999997,
+              "hp": 372,
+              "focus": 198,
+              "move": 550
+            },
+            {
+              "id": "pilot31-lookout-return-2",
+              "x": 4635,
+              "y": 3081.375,
+              "hp": 446,
+              "focus": 198,
+              "move": 550
+            },
+            {
+              "id": "pilot31-lookout-return-3",
+              "x": 5985,
+              "y": 1881.3461538461538,
+              "hp": 297,
+              "focus": 198,
+              "move": 550
+            },
+            {
+              "id": "pilot31-lookout-return-4",
+              "x": 4432.5,
+              "y": 3072.6,
+              "hp": 332,
+              "focus": 198,
+              "move": 550
+            },
+            {
+              "id": "pilot31-lookout-return-5",
+              "x": 4837.5,
+              "y": 3025.5,
+              "hp": 332,
+              "focus": 198,
+              "move": 550
+            },
+            {
+              "id": "pilot31-lookout-return-6",
+              "x": 5040,
+              "y": 2848.5,
+              "hp": 266,
+              "focus": 198,
+              "move": 550
+            },
+            {
+              "id": "pilot31-lookout-return-7",
+              "x": 5175,
+              "y": 2740.5,
+              "hp": 372,
+              "focus": 198,
+              "move": 550
+            },
+            {
+              "id": "pilot31-lookout-return-8",
+              "x": 5476.5,
+              "y": 2587.5,
+              "hp": 372,
+              "focus": 198,
+              "move": 550
+            }
+          ],
+          "final": [
+            {
+              "id": "archer",
+              "x": 315,
+              "y": 2455.875,
+              "hp": 995,
+              "dead": false
+            },
+            {
+              "id": "mage",
+              "x": 436.5,
+              "y": 2440.6875,
+              "hp": 1062,
+              "dead": false
+            },
+            {
+              "id": "knight",
+              "x": 558,
+              "y": 2416.05,
+              "hp": 1618,
+              "dead": false
+            },
+            {
+              "id": "occultist",
+              "x": 679.5,
+              "y": 2390.23125,
+              "hp": 1216,
+              "dead": false
+            },
+            {
+              "id": "pilot31-west-entry-1",
+              "x": 1575,
+              "y": 1953.586956521739,
+              "hp": 266,
+              "dead": false
+            },
+            {
+              "id": "pilot31-west-entry-2",
+              "x": 1485,
+              "y": 2028.4615384615386,
+              "hp": 332,
+              "dead": false
+            },
+            {
+              "id": "pilot31-west-entry-3",
+              "x": 1845,
+              "y": 1922.4,
+              "hp": 332,
+              "dead": false
+            },
+            {
+              "id": "pilot31-west-entry-4",
+              "x": 1732.5,
+              "y": 1929,
+              "hp": 266,
+              "dead": false
+            },
+            {
+              "id": "pilot31-west-entry-5",
+              "x": 2475,
+              "y": 1635.9545454545455,
+              "hp": 293,
+              "dead": false
+            },
+            {
+              "id": "pilot31-west-entry-6",
+              "x": 2610,
+              "y": 1585.7560975609756,
+              "hp": 372,
+              "dead": false
+            },
+            {
+              "id": "pilot31-west-entry-7",
+              "x": 1980,
+              "y": 1911.6,
+              "hp": 297,
+              "dead": false
+            },
+            {
+              "id": "pilot31-west-entry-8",
+              "x": 2092.5,
+              "y": 1900.3295454545455,
+              "hp": 372,
+              "dead": false
+            },
+            {
+              "id": "pilot31-west-crossfire-1",
+              "x": 1822.5,
+              "y": 2538.5625,
+              "hp": 372,
+              "dead": false
+            },
+            {
+              "id": "pilot31-west-crossfire-2",
+              "x": 2227.5,
+              "y": 2685.75,
+              "hp": 372,
+              "dead": false
+            },
+            {
+              "id": "pilot31-west-crossfire-3",
+              "x": 2002.5,
+              "y": 2633.4,
+              "hp": 332,
+              "dead": false
+            },
+            {
+              "id": "pilot31-west-crossfire-4",
+              "x": 2340,
+              "y": 1751.357142857143,
+              "hp": 332,
+              "dead": false
+            },
+            {
+              "id": "pilot31-west-crossfire-5",
+              "x": 2677.5,
+              "y": 2795.85,
+              "hp": 356,
+              "dead": false
+            },
+            {
+              "id": "pilot31-west-crossfire-6",
+              "x": 2745,
+              "y": 1549.421052631579,
+              "hp": 372,
+              "dead": false
+            },
+            {
+              "id": "pilot31-west-crossfire-7",
+              "x": 2452.5,
+              "y": 2723.25,
+              "hp": 266,
+              "dead": false
+            },
+            {
+              "id": "pilot31-west-crossfire-8",
+              "x": 2542.5,
+              "y": 1600.5731707317073,
+              "hp": 266,
+              "dead": false
+            },
+            {
+              "id": "pilot31-west-crossfire-9",
+              "x": 2925,
+              "y": 1460.7391304347825,
+              "hp": 372,
+              "dead": false
+            },
+            {
+              "id": "pilot31-ridge-court-1",
+              "x": 5310,
+              "y": 2614.5,
+              "hp": 332,
+              "dead": false
+            },
+            {
+              "id": "pilot31-ridge-court-2",
+              "x": 5422.5,
+              "y": 2587.5,
+              "hp": 266,
+              "dead": false
+            },
+            {
+              "id": "pilot31-ridge-court-3",
+              "x": 6165,
+              "y": 1944.409090909091,
+              "hp": 372,
+              "dead": false
+            },
+            {
+              "id": "pilot31-ridge-court-4",
+              "x": 5647.5,
+              "y": 2548.9285714285716,
+              "hp": 332,
+              "dead": false
+            },
+            {
+              "id": "pilot31-ridge-court-5",
+              "x": 5535,
+              "y": 2587.5,
+              "hp": 319,
+              "dead": false
+            },
+            {
+              "id": "pilot31-ridge-court-6",
+              "x": 6345,
+              "y": 1947.1153846153845,
+              "hp": 372,
+              "dead": false
+            },
+            {
+              "id": "pilot31-ridge-court-7",
+              "x": 5985,
+              "y": 2145.375,
+              "hp": 297,
+              "dead": false
+            },
+            {
+              "id": "pilot31-ridge-court-8",
+              "x": 5760,
+              "y": 2442.375,
+              "hp": 1191,
+              "dead": false
+            },
+            {
+              "id": "pilot31-ridge-court-9",
+              "x": 5872.5,
+              "y": 2295,
+              "hp": 372,
+              "dead": false
+            },
+            {
+              "id": "pilot31-lookout-return-1",
+              "x": 4230,
+              "y": 3061.8,
+              "hp": 372,
+              "dead": false
+            },
+            {
+              "id": "pilot31-lookout-return-2",
+              "x": 4635,
+              "y": 3081.375,
+              "hp": 446,
+              "dead": false
+            },
+            {
+              "id": "pilot31-lookout-return-3",
+              "x": 5985,
+              "y": 1881.3461538461538,
+              "hp": 297,
+              "dead": false
+            },
+            {
+              "id": "pilot31-lookout-return-4",
+              "x": 4432.5,
+              "y": 3072.6,
+              "hp": 332,
+              "dead": false
+            },
+            {
+              "id": "pilot31-lookout-return-5",
+              "x": 4837.5,
+              "y": 3025.5,
+              "hp": 332,
+              "dead": false
+            },
+            {
+              "id": "pilot31-lookout-return-6",
+              "x": 5040,
+              "y": 2848.5,
+              "hp": 266,
+              "dead": false
+            },
+            {
+              "id": "pilot31-lookout-return-7",
+              "x": 5175,
+              "y": 2740.5,
+              "hp": 372,
+              "dead": false
+            },
+            {
+              "id": "pilot31-lookout-return-8",
+              "x": 5476.5,
+              "y": 2587.5,
+              "hp": 372,
+              "dead": false
+            }
+          ],
+          "checkpointsReached": 0,
+          "hurts": [],
+          "impacts": [],
+          "fires": [],
+          "trace": [
+            {
+              "frame": 30,
+              "actor": {
+                "x": 315,
+                "y": 2455.875,
+                "hp": 995,
+                "move": 1856
+              },
+              "phase": "review",
+              "round": 1,
+              "active": "archer"
+            },
+            {
+              "frame": 60,
+              "actor": {
+                "x": 315,
+                "y": 2455.875,
+                "hp": 995,
+                "move": 1856
+              },
+              "phase": "review",
+              "round": 1,
+              "active": "archer"
+            },
+            {
+              "frame": 90,
+              "actor": {
+                "x": 315,
+                "y": 2455.875,
+                "hp": 995,
+                "move": 1856
+              },
+              "phase": "aim",
+              "round": 1,
+              "active": "mage"
+            },
+            {
+              "frame": 120,
+              "actor": {
+                "x": 315,
+                "y": 2455.875,
+                "hp": 995,
+                "move": 1856
+              },
+              "phase": "aim",
+              "round": 1,
+              "active": "mage"
+            },
+            {
+              "frame": 150,
+              "actor": {
+                "x": 315,
+                "y": 2455.875,
+                "hp": 995,
+                "move": 1856
+              },
+              "phase": "aim",
+              "round": 1,
+              "active": "mage"
+            },
+            {
+              "frame": 180,
+              "actor": {
+                "x": 315,
+                "y": 2455.875,
+                "hp": 995,
+                "move": 1856
+              },
+              "phase": "aim",
+              "round": 1,
+              "active": "mage"
+            },
+            {
+              "frame": 210,
+              "actor": {
+                "x": 315,
+                "y": 2455.875,
+                "hp": 995,
+                "move": 1856
+              },
+              "phase": "aim",
+              "round": 1,
+              "active": "mage"
+            },
+            {
+              "frame": 240,
+              "actor": {
+                "x": 315,
+                "y": 2455.875,
+                "hp": 995,
+                "move": 1856
+              },
+              "phase": "aim",
+              "round": 1,
+              "active": "mage"
+            },
+            {
+              "frame": 270,
+              "actor": {
+                "x": 315,
+                "y": 2455.875,
+                "hp": 995,
+                "move": 1856
+              },
+              "phase": "aim",
+              "round": 1,
+              "active": "mage"
+            },
+            {
+              "frame": 300,
+              "actor": {
+                "x": 315,
+                "y": 2455.875,
+                "hp": 995,
+                "move": 1856
+              },
+              "phase": "aim",
+              "round": 1,
+              "active": "mage"
+            },
+            {
+              "frame": 330,
+              "actor": {
+                "x": 315,
+                "y": 2455.875,
+                "hp": 995,
+                "move": 1856
+              },
+              "phase": "aim",
+              "round": 1,
+              "active": "mage"
+            },
+            {
+              "frame": 360,
+              "actor": {
+                "x": 315,
+                "y": 2455.875,
+                "hp": 995,
+                "move": 1856
+              },
+              "phase": "aim",
+              "round": 1,
+              "active": "mage"
+            },
+            {
+              "frame": 390,
+              "actor": {
+                "x": 315,
+                "y": 2455.875,
+                "hp": 995,
+                "move": 1856
+              },
+              "phase": "aim",
+              "round": 1,
+              "active": "mage"
+            },
+            {
+              "frame": 420,
+              "actor": {
+                "x": 315,
+                "y": 2455.875,
+                "hp": 995,
+                "move": 1856
+              },
+              "phase": "aim",
+              "round": 1,
+              "active": "mage"
+            },
+            {
+              "frame": 450,
+              "actor": {
+                "x": 315,
+                "y": 2455.875,
+                "hp": 995,
+                "move": 1856
+              },
+              "phase": "aim",
+              "round": 1,
+              "active": "mage"
+            },
+            {
+              "frame": 480,
+              "actor": {
+                "x": 315,
+                "y": 2455.875,
+                "hp": 995,
+                "move": 1856
+              },
+              "phase": "aim",
+              "round": 1,
+              "active": "mage"
+            },
+            {
+              "frame": 510,
+              "actor": {
+                "x": 315,
+                "y": 2455.875,
+                "hp": 995,
+                "move": 1856
+              },
+              "phase": "aim",
+              "round": 1,
+              "active": "mage"
+            },
+            {
+              "frame": 540,
+              "actor": {
+                "x": 315,
+                "y": 2455.875,
+                "hp": 995,
+                "move": 1856
+              },
+              "phase": "aim",
+              "round": 1,
+              "active": "mage"
+            },
+            {
+              "frame": 570,
+              "actor": {
+                "x": 315,
+                "y": 2455.875,
+                "hp": 995,
+                "move": 1856
+              },
+              "phase": "aim",
+              "round": 1,
+              "active": "mage"
+            },
+            {
+              "frame": 600,
+              "actor": {
+                "x": 315,
+                "y": 2455.875,
+                "hp": 995,
+                "move": 1856
+              },
+              "phase": "aim",
+              "round": 1,
+              "active": "mage"
+            },
+            {
+              "frame": 630,
+              "actor": {
+                "x": 315,
+                "y": 2455.875,
+                "hp": 995,
+                "move": 1856
+              },
+              "phase": "review",
+              "round": 1,
+              "active": "mage"
+            },
+            {
+              "frame": 660,
+              "actor": {
+                "x": 315,
+                "y": 2455.875,
+                "hp": 995,
+                "move": 1856
+              },
+              "phase": "review",
+              "round": 1,
+              "active": "mage"
+            },
+            {
+              "frame": 690,
+              "actor": {
+                "x": 315,
+                "y": 2455.875,
+                "hp": 995,
+                "move": 1856
+              },
+              "phase": "aim",
+              "round": 1,
+              "active": "knight"
+            },
+            {
+              "frame": 720,
+              "actor": {
+                "x": 315,
+                "y": 2455.875,
+                "hp": 995,
+                "move": 1856
+              },
+              "phase": "aim",
+              "round": 1,
+              "active": "knight"
+            },
+            {
+              "frame": 750,
+              "actor": {
+                "x": 315,
+                "y": 2455.875,
+                "hp": 995,
+                "move": 1856
+              },
+              "phase": "aim",
+              "round": 1,
+              "active": "knight"
+            },
+            {
+              "frame": 780,
+              "actor": {
+                "x": 315,
+                "y": 2455.875,
+                "hp": 995,
+                "move": 1856
+              },
+              "phase": "aim",
+              "round": 1,
+              "active": "knight"
+            },
+            {
+              "frame": 810,
+              "actor": {
+                "x": 315,
+                "y": 2455.875,
+                "hp": 995,
+                "move": 1856
+              },
+              "phase": "aim",
+              "round": 1,
+              "active": "knight"
+            },
+            {
+              "frame": 840,
+              "actor": {
+                "x": 315,
+                "y": 2455.875,
+                "hp": 995,
+                "move": 1856
+              },
+              "phase": "aim",
+              "round": 1,
+              "active": "knight"
+            },
+            {
+              "frame": 870,
+              "actor": {
+                "x": 315,
+                "y": 2455.875,
+                "hp": 995,
+                "move": 1856
+              },
+              "phase": "aim",
+              "round": 1,
+              "active": "knight"
+            },
+            {
+              "frame": 900,
+              "actor": {
+                "x": 315,
+                "y": 2455.875,
+                "hp": 995,
+                "move": 1856
+              },
+              "phase": "aim",
+              "round": 1,
+              "active": "knight"
+            },
+            {
+              "frame": 930,
+              "actor": {
+                "x": 315,
+                "y": 2455.875,
+                "hp": 995,
+                "move": 1856
+              },
+              "phase": "aim",
+              "round": 1,
+              "active": "knight"
+            },
+            {
+              "frame": 960,
+              "actor": {
+                "x": 315,
+                "y": 2455.875,
+                "hp": 995,
+                "move": 1856
+              },
+              "phase": "aim",
+              "round": 1,
+              "active": "knight"
+            },
+            {
+              "frame": 990,
+              "actor": {
+                "x": 315,
+                "y": 2455.875,
+                "hp": 995,
+                "move": 1856
+              },
+              "phase": "aim",
+              "round": 1,
+              "active": "knight"
+            },
+            {
+              "frame": 1020,
+              "actor": {
+                "x": 315,
+                "y": 2455.875,
+                "hp": 995,
+                "move": 1856
+              },
+              "phase": "aim",
+              "round": 1,
+              "active": "knight"
+            },
+            {
+              "frame": 1050,
+              "actor": {
+                "x": 315,
+                "y": 2455.875,
+                "hp": 995,
+                "move": 1856
+              },
+              "phase": "aim",
+              "round": 1,
+              "active": "knight"
+            },
+            {
+              "frame": 1080,
+              "actor": {
+                "x": 315,
+                "y": 2455.875,
+                "hp": 995,
+                "move": 1856
+              },
+              "phase": "aim",
+              "round": 1,
+              "active": "knight"
+            },
+            {
+              "frame": 1110,
+              "actor": {
+                "x": 315,
+                "y": 2455.875,
+                "hp": 995,
+                "move": 1856
+              },
+              "phase": "aim",
+              "round": 1,
+              "active": "knight"
+            },
+            {
+              "frame": 1140,
+              "actor": {
+                "x": 315,
+                "y": 2455.875,
+                "hp": 995,
+                "move": 1856
+              },
+              "phase": "aim",
+              "round": 1,
+              "active": "knight"
+            },
+            {
+              "frame": 1170,
+              "actor": {
+                "x": 315,
+                "y": 2455.875,
+                "hp": 995,
+                "move": 1856
+              },
+              "phase": "aim",
+              "round": 1,
+              "active": "knight"
+            },
+            {
+              "frame": 1200,
+              "actor": {
+                "x": 315,
+                "y": 2455.875,
+                "hp": 995,
+                "move": 1856
+              },
+              "phase": "aim",
+              "round": 1,
+              "active": "knight"
+            },
+            {
+              "frame": 1230,
+              "actor": {
+                "x": 315,
+                "y": 2455.875,
+                "hp": 995,
+                "move": 1856
+              },
+              "phase": "review",
+              "round": 1,
+              "active": "knight"
+            },
+            {
+              "frame": 1260,
+              "actor": {
+                "x": 315,
+                "y": 2455.875,
+                "hp": 995,
+                "move": 1856
+              },
+              "phase": "review",
+              "round": 1,
+              "active": "knight"
+            },
+            {
+              "frame": 1290,
+              "actor": {
+                "x": 315,
+                "y": 2455.875,
+                "hp": 995,
+                "move": 1856
+              },
+              "phase": "aim",
+              "round": 1,
+              "active": "occultist"
+            },
+            {
+              "frame": 1320,
+              "actor": {
+                "x": 315,
+                "y": 2455.875,
+                "hp": 995,
+                "move": 1856
+              },
+              "phase": "aim",
+              "round": 1,
+              "active": "occultist"
+            },
+            {
+              "frame": 1350,
+              "actor": {
+                "x": 315,
+                "y": 2455.875,
+                "hp": 995,
+                "move": 1856
+              },
+              "phase": "aim",
+              "round": 1,
+              "active": "occultist"
+            },
+            {
+              "frame": 1380,
+              "actor": {
+                "x": 315,
+                "y": 2455.875,
+                "hp": 995,
+                "move": 1856
+              },
+              "phase": "aim",
+              "round": 1,
+              "active": "occultist"
+            },
+            {
+              "frame": 1410,
+              "actor": {
+                "x": 315,
+                "y": 2455.875,
+                "hp": 995,
+                "move": 1856
+              },
+              "phase": "aim",
+              "round": 1,
+              "active": "occultist"
+            },
+            {
+              "frame": 1440,
+              "actor": {
+                "x": 315,
+                "y": 2455.875,
+                "hp": 995,
+                "move": 1856
+              },
+              "phase": "aim",
+              "round": 1,
+              "active": "occultist"
+            },
+            {
+              "frame": 1470,
+              "actor": {
+                "x": 315,
+                "y": 2455.875,
+                "hp": 995,
+                "move": 1856
+              },
+              "phase": "aim",
+              "round": 1,
+              "active": "occultist"
+            },
+            {
+              "frame": 1500,
+              "actor": {
+                "x": 315,
+                "y": 2455.875,
+                "hp": 995,
+                "move": 1856
+              },
+              "phase": "aim",
+              "round": 1,
+              "active": "occultist"
+            },
+            {
+              "frame": 1530,
+              "actor": {
+                "x": 315,
+                "y": 2455.875,
+                "hp": 995,
+                "move": 1856
+              },
+              "phase": "aim",
+              "round": 1,
+              "active": "occultist"
+            },
+            {
+              "frame": 1560,
+              "actor": {
+                "x": 315,
+                "y": 2455.875,
+                "hp": 995,
+                "move": 1856
+              },
+              "phase": "aim",
+              "round": 1,
+              "active": "occultist"
+            },
+            {
+              "frame": 1590,
+              "actor": {
+                "x": 315,
+                "y": 2455.875,
+                "hp": 995,
+                "move": 1856
+              },
+              "phase": "aim",
+              "round": 1,
+              "active": "occultist"
+            },
+            {
+              "frame": 1620,
+              "actor": {
+                "x": 315,
+                "y": 2455.875,
+                "hp": 995,
+                "move": 1856
+              },
+              "phase": "aim",
+              "round": 1,
+              "active": "occultist"
+            },
+            {
+              "frame": 1650,
+              "actor": {
+                "x": 315,
+                "y": 2455.875,
+                "hp": 995,
+                "move": 1856
+              },
+              "phase": "aim",
+              "round": 1,
+              "active": "occultist"
+            },
+            {
+              "frame": 1680,
+              "actor": {
+                "x": 315,
+                "y": 2455.875,
+                "hp": 995,
+                "move": 1856
+              },
+              "phase": "aim",
+              "round": 1,
+              "active": "occultist"
+            },
+            {
+              "frame": 1710,
+              "actor": {
+                "x": 315,
+                "y": 2455.875,
+                "hp": 995,
+                "move": 1856
+              },
+              "phase": "aim",
+              "round": 1,
+              "active": "occultist"
+            },
+            {
+              "frame": 1740,
+              "actor": {
+                "x": 315,
+                "y": 2455.875,
+                "hp": 995,
+                "move": 1856
+              },
+              "phase": "aim",
+              "round": 1,
+              "active": "occultist"
+            },
+            {
+              "frame": 1770,
+              "actor": {
+                "x": 315,
+                "y": 2455.875,
+                "hp": 995,
+                "move": 1856
+              },
+              "phase": "aim",
+              "round": 1,
+              "active": "occultist"
+            },
+            {
+              "frame": 1800,
+              "actor": {
+                "x": 315,
+                "y": 2455.875,
+                "hp": 995,
+                "move": 1856
+              },
+              "phase": "aim",
+              "round": 1,
+              "active": "occultist"
+            },
+            {
+              "frame": 1830,
+              "actor": {
+                "x": 315,
+                "y": 2455.875,
+                "hp": 995,
+                "move": 1856
+              },
+              "phase": "review",
+              "round": 1,
+              "active": "occultist"
+            },
+            {
+              "frame": 1860,
+              "actor": {
+                "x": 315,
+                "y": 2455.875,
+                "hp": 995,
+                "move": 1856
+              },
+              "phase": "review",
+              "round": 1,
+              "active": "occultist"
+            },
+            {
+              "frame": 1890,
+              "actor": {
+                "x": 315,
+                "y": 2455.875,
+                "hp": 995,
+                "move": 1856
+              },
+              "phase": "transition",
+              "round": 1,
+              "active": "occultist"
+            },
+            {
+              "frame": 1920,
+              "actor": {
+                "x": 315,
+                "y": 2455.875,
+                "hp": 995,
+                "move": 1856
+              },
+              "phase": "aim",
+              "round": 2,
+              "active": "archer"
+            },
+            {
+              "frame": 1950,
+              "actor": {
+                "x": 315,
+                "y": 2455.875,
+                "hp": 995,
+                "move": 1856
+              },
+              "phase": "aim",
+              "round": 2,
+              "active": "archer"
+            },
+            {
+              "frame": 1980,
+              "actor": {
+                "x": 315,
+                "y": 2455.875,
+                "hp": 995,
+                "move": 1856
+              },
+              "phase": "aim",
+              "round": 2,
+              "active": "archer"
+            },
+            {
+              "frame": 2010,
+              "actor": {
+                "x": 315,
+                "y": 2455.875,
+                "hp": 995,
+                "move": 1856
+              },
+              "phase": "aim",
+              "round": 2,
+              "active": "archer"
+            },
+            {
+              "frame": 2040,
+              "actor": {
+                "x": 315,
+                "y": 2455.875,
+                "hp": 995,
+                "move": 1856
+              },
+              "phase": "aim",
+              "round": 2,
+              "active": "archer"
+            },
+            {
+              "frame": 2070,
+              "actor": {
+                "x": 315,
+                "y": 2455.875,
+                "hp": 995,
+                "move": 1856
+              },
+              "phase": "aim",
+              "round": 2,
+              "active": "archer"
+            },
+            {
+              "frame": 2100,
+              "actor": {
+                "x": 315,
+                "y": 2455.875,
+                "hp": 995,
+                "move": 1856
+              },
+              "phase": "aim",
+              "round": 2,
+              "active": "archer"
+            },
+            {
+              "frame": 2130,
+              "actor": {
+                "x": 315,
+                "y": 2455.875,
+                "hp": 995,
+                "move": 1856
+              },
+              "phase": "aim",
+              "round": 2,
+              "active": "archer"
+            },
+            {
+              "frame": 2160,
+              "actor": {
+                "x": 315,
+                "y": 2455.875,
+                "hp": 995,
+                "move": 1856
+              },
+              "phase": "aim",
+              "round": 2,
+              "active": "archer"
+            },
+            {
+              "frame": 2190,
+              "actor": {
+                "x": 315,
+                "y": 2455.875,
+                "hp": 995,
+                "move": 1856
+              },
+              "phase": "aim",
+              "round": 2,
+              "active": "archer"
+            },
+            {
+              "frame": 2220,
+              "actor": {
+                "x": 315,
+                "y": 2455.875,
+                "hp": 995,
+                "move": 1856
+              },
+              "phase": "aim",
+              "round": 2,
+              "active": "archer"
+            },
+            {
+              "frame": 2250,
+              "actor": {
+                "x": 315,
+                "y": 2455.875,
+                "hp": 995,
+                "move": 1856
+              },
+              "phase": "aim",
+              "round": 2,
+              "active": "archer"
+            },
+            {
+              "frame": 2280,
+              "actor": {
+                "x": 315,
+                "y": 2455.875,
+                "hp": 995,
+                "move": 1856
+              },
+              "phase": "aim",
+              "round": 2,
+              "active": "archer"
+            },
+            {
+              "frame": 2310,
+              "actor": {
+                "x": 315,
+                "y": 2455.875,
+                "hp": 995,
+                "move": 1856
+              },
+              "phase": "aim",
+              "round": 2,
+              "active": "archer"
+            },
+            {
+              "frame": 2340,
+              "actor": {
+                "x": 315,
+                "y": 2455.875,
+                "hp": 995,
+                "move": 1856
+              },
+              "phase": "aim",
+              "round": 2,
+              "active": "archer"
+            },
+            {
+              "frame": 2370,
+              "actor": {
+                "x": 315,
+                "y": 2455.875,
+                "hp": 995,
+                "move": 1856
+              },
+              "phase": "aim",
+              "round": 2,
+              "active": "archer"
+            },
+            {
+              "frame": 2400,
+              "actor": {
+                "x": 315,
+                "y": 2455.875,
+                "hp": 995,
+                "move": 1856
+              },
+              "phase": "aim",
+              "round": 2,
+              "active": "archer"
+            }
+          ]
+        }
+      ],
+      "frames": 2400,
+      "runtimeSha256": "3ec7c24d5b640ffe39f8fc7e0902d09f91600545e1c4e6d2a6ea40266e788a0e"
+    }
+  ]
+}
