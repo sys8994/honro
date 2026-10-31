@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Interactive normal-UI 38 QA; stdin must remain open. No battle-state writes."""
+"""Interactive normal-UI 38/40 QA; stdin must remain open. No battle-state writes."""
 import argparse, hashlib, json, shlex, sys, time
 from pathlib import Path
 from playwright.sync_api import sync_playwright
@@ -17,7 +17,7 @@ def validate(args):
     return args[0]
 
 def main():
-    ap=argparse.ArgumentParser();ap.add_argument('--url',default='http://127.0.0.1:8772/HONRO.html');ap.add_argument('--profile',required=True);ap.add_argument('--out',required=True);ap.add_argument('--preflight',action='store_true');o=ap.parse_args()
+    ap=argparse.ArgumentParser();ap.add_argument('--url',default='http://127.0.0.1:8772/HONRO.html');ap.add_argument('--profile',required=True);ap.add_argument('--out',required=True);ap.add_argument('--stage',type=int,choices=(38,40),default=38);ap.add_argument('--preflight',action='store_true');o=ap.parse_args()
     out=Path(o.out).resolve();out.mkdir(parents=True,exist_ok=False);log=(out/'events.jsonl').open('x',encoding='utf8')
     def record(event):
         event['time']=time.time();log.write(json.dumps(event,ensure_ascii=False)+'\n');log.flush();print(json.dumps(event,ensure_ascii=False),flush=True)
@@ -69,7 +69,20 @@ def main():
                 if not page.evaluate("document.querySelector('#modal')?.classList.contains('open')"):break
                 page.keyboard.press('Escape');page.wait_for_timeout(300)
             if page.evaluate("document.querySelector('#modal')?.classList.contains('open')"):raise RuntimeError('could not close export menu')
-        page.goto(o.url,wait_until='domcontentloaded');page.wait_for_function('window.HonroApp&&window.HonroCampaignLoader',timeout=60000);page.locator('#file-import').set_input_files(str(Path(o.profile).resolve()));page.wait_for_timeout(3000);snapshot('fixture-import');page.get_by_text('여정 이어가기',exact=True).click();page.wait_for_timeout(2000);page.get_by_text('여정첩',exact=True).click();page.locator('[data-action=journey-select][data-id="38"]').click();page.wait_for_timeout(500);page.locator('[data-action=journey-travel][data-id="38"]').click();page.wait_for_function('HonroApp.engine?.b?.honroStage===38',timeout=60000);page.wait_for_timeout(1500)
+        page.goto(o.url,wait_until='domcontentloaded');page.wait_for_function('window.HonroApp&&window.HonroCampaignLoader',timeout=60000)
+        raw=Path(o.profile).read_bytes();source_sha=hashlib.sha256(raw).hexdigest()
+        if o.stage==40 and source_sha!='c3724ff6ff7e2417489147457c0956c1642af3907b8b5bd923b4843c41675f6f':raise ValueError('unexpected stage 40 source hash')
+        record({'input_sha256':source_sha,'stage':o.stage})
+        page.locator('#file-import').set_input_files(str(Path(o.profile).resolve()));page.wait_for_timeout(5000);snapshot('fixture-import')
+        if o.stage==38:
+            page.get_by_text('여정 이어가기',exact=True).click();page.wait_for_timeout(2000);page.get_by_text('여정첩',exact=True).click();page.locator('[data-action=journey-select][data-id="38"]').click();page.wait_for_timeout(500);page.locator('[data-action=journey-travel][data-id="38"]').click()
+        else:
+            page.get_by_text('이어서 걷기',exact=True).click()
+        page.wait_for_function('(stage)=>HonroApp.engine?.b?.honroStage===stage',arg=o.stage,timeout=60000);page.wait_for_timeout(1500)
+        if o.stage==40:
+            proof=page.evaluate('''()=>{const a=HonroApp,b=a.engine.b,p=a.profile.honroAct4;return {valid:HonroAct4TerrainPreview.proofValid(b),safeSeven:p.safeSeven,rescued:p.rescued,run:p.runId,entry:b.honroAct4EntryProof,residents:b.honroAct4EntryResidents,release:b.honroAct4Preview?.returnEscort?.followerRelease}}''')
+            record({'stage40_proof':proof})
+            if not proof['valid']:raise AssertionError('stage 40 proof invalid')
         if page.evaluate('!!HonroApp.dialogue'):page.keyboard.press('Enter');page.wait_for_timeout(2000)
         snapshot('entry');record({'state':state()})
         if o.preflight:
