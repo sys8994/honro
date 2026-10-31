@@ -5123,3 +5123,7 @@ commonReviewRevision의 첫 혼령 대기열은 생성 후 소단/sceneTarget가
 기존 `layer:front`는 정적 배경 묶음 안에서 동행보다 먼저 그려져 FORE 자산의 실제 전경 역할을 하지 못했다. 충돌·상호작용이 없는 `asset.params.semanticLayer:FORE`만 정적 landmark pass에서 제외하고, 동행 본체 뒤/발사체·HUD 앞에 별도 전경 pass로 합성한다. 살아 있는 동행·미수집 표식·목표 라벨은 매 프레임 clip hole로 보호하며, 서로 겹친 보호 영역이 전경을 다시 드러내지 않는다. 조준·턴 안내는 전경이 있을 때만 뒤로 옮겨 한 번만 그린다.
 
 전경 그림만 별도 viewport raster에 보관하고 동행 보호 영역은 cache 밖에서 적용한다. 슬롯은 6M pixels 상한이며 카메라/크기 변경 시 이전 buffer를 해제하고 전경이 사라지면 슬롯도 해제한다. 물리·schema·기존 충돌 자산 분류는 바꾸지 않았다. `tools/stage31-production/test-foreground.mjs`는 native 실제 renderer의 순서/반투명 안내 픽셀/동행·목표 보호/cache 수명, 모바일 DPR1.7 메모리 상한 및 FORE 없는 31·35·3장의 이전 renderer 대비 PNG byte 동일성을 확인한다. 색상 fixture는 합성 검증용이며 캠페인 완주·미술 승인·공개 배포 증거가 아니다.
+
+### 2026-11-01 · UX 정돈 1: 즉시 결함
+- 원인/변경: 전투 중 우하단 배경음 표기가 조준 각도·힘 수치와 겹침 → 전투 화면에서는 곡이 바뀔 때 5초만 표시(메뉴 화면은 상시). 쉼터 대화 패널 아래로 비활성 하단 버튼이 비침 → 대화 중 숨김. 설정 창 최상단의 금색 '전체화면'을 제목 아래 보조 버튼으로 낮춤. 허공터 '이 기예로 수련'을 활성 주 버튼 색으로. 모닥불 탭 '스킬'→'기예', 조이스틱 'MOVE / AIM'→'이동 · 조준'. 쉼터·모닥불·타이틀 보조 글씨 최소 11px.
+- 확인: 데스크톱·모바일 세로/가로 실제 화면 전후, equipment-browser·bgm-transitions 통과. ui-buttons·combat-action-layout·passive-status-layout은 master에서도 동일하게 실패하는 기존 실패로 범위 밖. 전투 HUD 글씨(7–9px)와 모바일 목표 문구 잘림은 HUD 재배치(UX 3)에서 처리.

@@ -623,7 +623,7 @@
             this.stickPointer=null; this.stick={x:0,y:0};
             const el=$('joystick'),knob=$('stick-knob');
             if(knob)knob.style.transform='translate(0,0)';
-            const label=el?.querySelector('.stick-mode');if(label)label.textContent='MOVE / AIM';
+            const label=el?.querySelector('.stick-mode');if(label)label.textContent='이동 · 조준';
             if(pointer&&el?.hasPointerCapture?.(pointer.id))el.releasePointerCapture(pointer.id);
         }
         validateStick() {
@@ -640,7 +640,7 @@
             const r=el.getBoundingClientRect();
             $('stick-knob').style.transform=`translate(${this.stick.visualX*r.width*.25}px,${-this.stick.visualY*r.height*.25}px)`;
             const label=el.querySelector('.stick-mode');
-            if(label)label.textContent=this.stick.intent==='aimOnly'&&!this.stick.moving?'조준':this.stick.intent!=='undecided'?'MOVE-AIM':'MOVE / AIM';
+            if(label)label.textContent=this.stick.intent==='aimOnly'&&!this.stick.moving?'조준':this.stick.intent!=='undecided'?'이동·조준':'이동 · 조준';
         }
         updateChargeDisplay(){
             const e=this.engine,u=(e?.active?.side===0&&!e.active.summoned?e.active:null)||e?.b.units.find(v=>v.side===0&&!v.summoned&&!v.dead),button=$('fire');if(!u||!button)return;
@@ -717,7 +717,7 @@
             $('fire').disabled=!steering&&(u.retreat||!e.skillAllowed(sk,u)||!this.canInput()||!e.grounded(e.active)||!e.canAfford(sk,u,0)||cd>0);setStyle($('fire'),'--power',Math.round(this.power*100)+'%');$('fire').classList.toggle('charging',this.charging);
             this.updateChargeDisplay();
             $('jump').disabled=u.meleeFollow==='ready'||!this.canInput()||!e.grounded(e.active)||e.active.moveLeft<e.jumpCost(e.active);$('joystick').style.opacity=this.canInput()?1:.4;const defend=document.querySelector('[data-action=defend]');if(defend)defend.disabled=!this.canInput()||!!u.platformDrop&&u.platformDrop.phase!=='land';const drop=$('drop');if(drop)drop.disabled=!this.canInput()||!e.canDrop(u);
-            if(e.noncombatWalk()){setText($('move-left'),'이동');const mode=$('joystick').querySelector('.stick-mode');if(mode)setText(mode,'MOVE');$('joystick').setAttribute('aria-label','이동');}
+            if(e.noncombatWalk()){setText($('move-left'),'이동');const mode=$('joystick').querySelector('.stick-mode');if(mode)setText(mode,'이동');$('joystick').setAttribute('aria-label','이동');}
             G.HonroObjectives.refresh(this);
             G.HonroInteractions?.refresh(this);
             G.HonroCombatStatus.refresh(this,u);G.HonroCombatStatus.passives(this,u);
@@ -773,6 +773,9 @@
             if(source!==this.musicLabelSource){
                 label.textContent='배경음 - '+G.HonroMusicTitles.titleFor(source);
                 this.musicLabelSource=source;
+                // In battle the credit sits over the HUD; show it briefly on each new track.
+                label.classList.add('fresh');clearTimeout(this.musicLabelTimer);
+                this.musicLabelTimer=setTimeout(()=>label.classList.remove('fresh'),5000);
             }
             if(label.hidden)label.hidden=false;
         }

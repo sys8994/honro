@@ -36,3 +36,22 @@
 .honro-tooltip span{min-width:0;white-space:pre-line}.honro-tooltip kbd{flex:none;max-width:40%;white-space:normal;padding:1px 5px;border:1px solid #7b6a48;background:#313829;color:#f2dfad;font:600 11px/1.7 system-ui,sans-serif}
 
 @media(max-height:540px){.honro .menu-body .pause-menu>button{gap:10px}.honro .pause-menu .menu-insignia{width:26px;height:26px}}
+/* UX polish 1 (2026-11): legibility floor and hierarchy fixes outside the battle HUD. */
+/* Music credit: permanent on menus; in battle it appears for a few seconds per track so it never covers the aim readout. */
+#bgm-now-playing{font-size:10px;transition:opacity .6s ease}
+body:has(#app .battle-screen) #bgm-now-playing:not(.fresh){opacity:0}
+/* Story dialogue on the rest screen: the hub actions are inert underneath, so do not let them peek out below the panel. */
+.story-lock .rest-actions{visibility:hidden}
+/* Settings: fullscreen is a quick secondary toggle under the title, not the loudest element of the dialog. */
+.honro .settings-dialog .menu-fixed .fullscreen-setting{background:#0d1714!important;color:#d8c894!important;border:1px solid #6d5f40!important;min-height:42px;margin:4px 0 2px;font-weight:500}
+.honro .settings-dialog .menu-fixed .fullscreen-setting :is(span,b,svg){color:#e2d4a6!important;fill:currentColor;opacity:1!important}
+/* Training: the dialog's single primary action must read as enabled. */
+.honro .training-footer>button.training-apply{background:linear-gradient(180deg,#d6c48f,#bda871)!important;border-color:#e6d7a6!important;color:#16231c!important;font-weight:700;box-shadow:0 2px 10px #0006}
+.honro .training-footer>button.training-apply:hover{background:linear-gradient(180deg,#e2d29f,#c8b37b)!important}
+/* Minimum readable size (11px) for hub, camp and title secondary text. */
+.honro .rest-fire small{font-size:11px}
+.honro .rest-location span{font-size:12px}
+.honro .hero-summary .stat small,.honro .hero-tabs small,.honro .xp-text,.honro .camp-turn-index{font-size:11px}
+.honro .camp-card-order-hint{font-size:12px;color:#b9c6c0}
+.honro .equipment-tier{font-size:12px}
+.honro .honro-title .footer span{font-size:12px;color:#c9c3b1}

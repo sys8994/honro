@@ -46,15 +46,15 @@ with serve_game() as base,sync_playwright() as p:
   page.locator('.equipment-bag-item[data-id="itm_co_01"]').click();page.locator('.hero-summary h2').click();assert page.locator('.equipment-detail').count()==0
   page.locator('[data-action="equipment-slot"][data-id="common"]').click();assert page.evaluate('HonroApp.equipmentFilter')=='common'
   page.locator('#armory').evaluate('e=>e.scrollTop=100');bag_y=page.locator('#armory').evaluate('e=>e.scrollTop')
-  page.get_by_role('tab',name='스킬',exact=True).click();assert page.evaluate('HonroApp.cls')=='archer';assert page.locator('.equipment-panel').count()==0;assert page.locator('.tree-grid').count()==1
+  page.get_by_role('tab',name='기예',exact=True).click();assert page.evaluate('HonroApp.cls')=='archer';assert page.locator('.equipment-panel').count()==0;assert page.locator('.tree-grid').count()==1
   page.locator('#armory').evaluate('e=>e.scrollTop=240');skill_y=page.locator('#armory').evaluate('e=>e.scrollTop')
   page.get_by_role('tab',name='장비',exact=True).click();assert page.evaluate('HonroApp.equipmentFilter')=='common';assert page.locator('.equipment-detail').count()==0
   assert abs(page.locator('#armory').evaluate('e=>e.scrollTop')-bag_y)<2,page.evaluate('({positions:HonroApp.campPositions,scroll:document.querySelector("#armory").scrollTop})')
-  page.get_by_role('tab',name='스킬',exact=True).click();assert abs(page.locator('#armory').evaluate('e=>e.scrollTop')-skill_y)<2
-  page.locator('.hero-tab[data-class="mage"]').click();assert page.evaluate('HonroApp.cls')=='mage';assert page.get_by_role('tab',name='스킬',exact=True).get_attribute('aria-selected')=='true'
+  page.get_by_role('tab',name='기예',exact=True).click();assert abs(page.locator('#armory').evaluate('e=>e.scrollTop')-skill_y)<2
+  page.locator('.hero-tab[data-class="mage"]').click();assert page.evaluate('HonroApp.cls')=='mage';assert page.get_by_role('tab',name='기예',exact=True).get_attribute('aria-selected')=='true'
   assert page.locator('.hero-summary').inner_text().startswith('담허');page.get_by_role('tab',name='장비',exact=True).click();assert '담허' in page.locator('.equipment-heading').inner_text()
   page.locator('.hero-tab[data-class="archer"]').click();assert page.evaluate('HonroApp.equipmentFilter')=='common';page.locator('[data-action="equipment-all"]').click()
-  page.get_by_role('tab',name='장비',exact=True).focus();page.keyboard.press('ArrowRight');assert page.get_by_role('tab',name='스킬',exact=True).get_attribute('aria-selected')=='true'
+  page.get_by_role('tab',name='장비',exact=True).focus();page.keyboard.press('ArrowRight');assert page.get_by_role('tab',name='기예',exact=True).get_attribute('aria-selected')=='true'
   page.evaluate('HonroEquipmentUI.open(HonroApp)');assert page.get_by_role('tab',name='장비',exact=True).get_attribute('aria-selected')=='true';assert page.locator('.equipment-detail').count()==0
   page.locator('#armory').evaluate('e=>e.scrollTop=0');page.screenshot(path=str(OUT/f'{label}-tabs-closed.png'))
   cols=page.locator('.equipment-inventory').evaluate('e=>getComputedStyle(e).gridTemplateColumns.split(" ").length');assert cols==2,cols
