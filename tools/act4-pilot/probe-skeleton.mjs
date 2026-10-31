@@ -50,7 +50,7 @@ if(selectedSupport){
 // Separate continuous geometry route: fresh entrance once per production body,
 // actual finishAction/tick round replenishment, no intermediate pose/budget edits.
 const continuous=[];
-for(const route of spec.routes.filter(r=>r.supports[0]==='shore'))for(const template of original){
+for(const route of spec.routes.filter(r=>r.supports[0]===(spec.spawnSupport||'shore')))for(const template of original){
  const u=structuredClone(template);Object.assign(u,{x:stage.anchors.spawn.x,y:stage.anchors.spawn.y,vx:0,vy:0,jumping:false,airborne:false,acted:false});delete u.platformDrop;
  b.units=[u];b.active=u.id;b.phase='aim';b.side=0;b.round=1;b.teamEnds={0:0,1:0};b.queue=[];b.projectiles=[];b.zones=[];
  const start={x:u.x,y:u.y,hp:u.hp},steps=[],trajectory=[];let frameCounter=0;const advance=()=>{e.integrateBody(u,C.STEP);if(frameCounter++%6===0)trajectory.push({x:u.x,y:u.y,grounded:e.grounded(u),support:e.contactSurface(u.x,u.y-.2,u.y+.2)?.t?.id});};let jumps=0,drops=0,turnFinishes=0;

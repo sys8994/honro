@@ -1,54 +1,15 @@
 [
  {
-  "name": "struct-x3",
-  "layer": "STRUCT",
-  "module": "x3",
-  "bounds": [
-   896,
-   1996,
-   1525,
-   2275
-  ],
-  "paths": 3,
-  "terrain": null
- },
- {
   "name": "struct-x4",
   "layer": "STRUCT",
   "module": "x4",
   "bounds": [
-   1484,
-   1960,
-   2610,
-   2321
+   696,
+   2570,
+   3604,
+   4651
   ],
-  "paths": 3,
-  "terrain": null
- },
- {
-  "name": "struct-x5",
-  "layer": "STRUCT",
-  "module": "x5",
-  "bounds": [
-   2572,
-   1969,
-   2921,
-   2122
-  ],
-  "paths": 3,
-  "terrain": null
- },
- {
-  "name": "struct-x6",
-  "layer": "STRUCT",
-  "module": "x6",
-  "bounds": [
-   3396,
-   2008,
-   4265,
-   2334
-  ],
-  "paths": 3,
+  "paths": 8,
   "terrain": null
  },
  {
@@ -56,12 +17,12 @@
   "layer": "STRUCT",
   "module": "x7",
   "bounds": [
-   4225,
-   2008,
-   5298,
-   2287
+   3996,
+   2506,
+   6204,
+   4660
   ],
-  "paths": 3,
+  "paths": 7,
   "terrain": null
  },
  {
@@ -69,207 +30,480 @@
   "layer": "STRUCT",
   "module": "x8",
   "bounds": [
-   5260,
-   2047,
-   5596,
-   2131
+   4520,
+   2517,
+   6194,
+   3037
   ],
-  "paths": 3,
+  "paths": 1,
   "terrain": null
  },
  {
-  "name": "body-mid-rock",
-  "layer": "BODY",
-  "module": "mid-rock",
+  "name": "struct-x6",
+  "layer": "STRUCT",
+  "module": "x6",
   "bounds": [
-   2796,
-   1731,
-   3464,
-   2264
+   764,
+   2624,
+   6681,
+   4646
   ],
-  "paths": 7,
-  "terrain": "pilot33-mid-rock"
+  "paths": 10,
+  "terrain": null
  },
  {
-  "name": "body-east-head",
-  "layer": "BODY",
-  "module": "east-head",
+  "name": "struct-x5",
+  "layer": "STRUCT",
+  "module": "x5",
   "bounds": [
-   5536,
-   1576,
-   6504,
-   2164
+   775,
+   4320,
+   6603,
+   4461
   ],
-  "paths": 7,
-  "terrain": "pilot33-east-head"
+  "paths": 1,
+  "terrain": null
  },
  {
-  "name": "body-shore",
-  "layer": "BODY",
-  "module": "shore",
+  "name": "struct-x2",
+  "layer": "STRUCT",
+  "module": "x2",
   "bounds": [
-   -1604,
-   1876,
-   9204,
-   3404
+   106,
+   2258,
+   706,
+   4428
   ],
   "paths": 6,
-  "terrain": "pilot33-shore"
+  "terrain": null
  },
  {
-  "name": "body-flat-rock-1",
-  "layer": "BODY",
-  "module": "flat-rock-1",
-  "bounds": [
-   1492,
-   2162,
-   1638,
-   2286
-  ],
-  "paths": 2,
-  "terrain": "pilot33-flat-rock-1"
- },
- {
-  "name": "body-flat-rock-2",
-  "layer": "BODY",
-  "module": "flat-rock-2",
-  "bounds": [
-   4142,
-   2225,
-   4278,
-   2339
-  ],
-  "paths": 2,
-  "terrain": "pilot33-flat-rock-2"
- },
- {
-  "name": "body-head-boulder",
-  "layer": "BODY",
-  "module": "head-boulder",
-  "bounds": [
-   5992,
-   1466,
-   6108,
-   1600
-  ],
-  "paths": 2,
-  "terrain": "pilot33-head-boulder"
- },
- {
-  "name": "surface-west-walk",
-  "layer": "SURFACE",
-  "module": "west-walk",
-  "bounds": [
-   896,
-   1931,
-   2919,
-   2130
-  ],
-  "paths": 4,
-  "terrain": "pilot33-west-walk"
- },
- {
-  "name": "surface-east-walk",
-  "layer": "SURFACE",
-  "module": "east-walk",
-  "bounds": [
-   3396,
-   1981,
-   5594,
-   2090
-  ],
-  "paths": 4,
-  "terrain": "pilot33-east-walk"
- },
- {
-  "name": "rear-x9",
-  "layer": "REAR",
+  "name": "struct-x9",
+  "layer": "STRUCT",
   "module": "x9",
   "bounds": [
-   6026,
-   1364,
-   6274,
-   1597
+   6196,
+   2538,
+   6796,
+   4418
+  ],
+  "paths": 4,
+  "terrain": null
+ },
+ {
+  "name": "body-island",
+  "layer": "BODY",
+  "module": "island",
+  "bounds": [
+   2586,
+   4129,
+   3714,
+   4604
+  ],
+  "paths": 7,
+  "terrain": "pilot33-island"
+ },
+ {
+  "name": "body-rock-w",
+  "layer": "BODY",
+  "module": "rock-w",
+  "bounds": [
+   966,
+   4282,
+   1334,
+   4504
+  ],
+  "paths": 5,
+  "terrain": "pilot33-rock-w"
+ },
+ {
+  "name": "body-rock-e",
+  "layer": "BODY",
+  "module": "rock-e",
+  "bounds": [
+   5166,
+   4251,
+   5574,
+   4484
+  ],
+  "paths": 7,
+  "terrain": "pilot33-rock-e"
+ },
+ {
+  "name": "body-arch-w",
+  "layer": "BODY",
+  "module": "arch-w",
+  "bounds": [
+   696,
+   2554,
+   3604,
+   3154
+  ],
+  "paths": 12,
+  "terrain": "pilot33-arch-w"
+ },
+ {
+  "name": "body-arch-e",
+  "layer": "BODY",
+  "module": "arch-e",
+  "bounds": [
+   3996,
+   2494,
+   6204,
+   3146
+  ],
+  "paths": 12,
+  "terrain": "pilot33-arch-e"
+ },
+ {
+  "name": "body-west-rock",
+  "layer": "BODY",
+  "module": "west-rock",
+  "bounds": [
+   -4,
+   2494,
+   124,
+   4424
+  ],
+  "paths": 11,
+  "terrain": "pilot33-west-rock"
+ },
+ {
+  "name": "body-east-rock",
+  "layer": "BODY",
+  "module": "east-rock",
+  "bounds": [
+   6786,
+   2394,
+   6904,
+   4414
+  ],
+  "paths": 9,
+  "terrain": "pilot33-east-rock"
+ },
+ {
+  "name": "body-flats",
+  "layer": "BODY",
+  "module": "flats",
+  "bounds": [
+   -1604,
+   4394,
+   8504,
+   6704
+  ],
+  "paths": 7,
+  "terrain": "pilot33-flats"
+ },
+ {
+  "name": "body-arch-boulder",
+  "layer": "BODY",
+  "module": "arch-boulder",
+  "bounds": [
+   2242,
+   2531,
+   2358,
+   2665
+  ],
+  "paths": 2,
+  "terrain": "pilot33-arch-boulder"
+ },
+ {
+  "name": "body-flat-boulder",
+  "layer": "BODY",
+  "module": "flat-boulder",
+  "bounds": [
+   5992,
+   4288,
+   6128,
+   4412
+  ],
+  "paths": 2,
+  "terrain": "pilot33-flat-boulder"
+ },
+ {
+  "name": "surface-arch-gap",
+  "layer": "SURFACE",
+  "module": "arch-gap",
+  "bounds": [
+   3596,
+   2596,
+   4004,
+   2650
+  ],
+  "paths": 4,
+  "terrain": "pilot33-arch-gap"
+ },
+ {
+  "name": "surface-wtowera",
+  "layer": "SURFACE",
+  "module": "wtowera",
+  "bounds": [
+   106,
+   4113,
+   704,
+   4440
+  ],
+  "paths": 5,
+  "terrain": "pilot33-wtowera"
+ },
+ {
+  "name": "surface-wtowerb",
+  "layer": "SURFACE",
+  "module": "wtowerb",
+  "bounds": [
+   106,
+   3819,
+   704,
+   4147
+  ],
+  "paths": 4,
+  "terrain": "pilot33-wtowerb"
+ },
+ {
+  "name": "surface-wtowerc",
+  "layer": "SURFACE",
+  "module": "wtowerc",
+  "bounds": [
+   106,
+   3526,
+   704,
+   3853
+  ],
+  "paths": 4,
+  "terrain": "pilot33-wtowerc"
+ },
+ {
+  "name": "surface-wtowerd",
+  "layer": "SURFACE",
+  "module": "wtowerd",
+  "bounds": [
+   106,
+   3233,
+   704,
+   3560
+  ],
+  "paths": 4,
+  "terrain": "pilot33-wtowerd"
+ },
+ {
+  "name": "surface-wtowere",
+  "layer": "SURFACE",
+  "module": "wtowere",
+  "bounds": [
+   106,
+   2939,
+   704,
+   3267
+  ],
+  "paths": 4,
+  "terrain": "pilot33-wtowere"
+ },
+ {
+  "name": "surface-wtowerf",
+  "layer": "SURFACE",
+  "module": "wtowerf",
+  "bounds": [
+   106,
+   2646,
+   704,
+   2973
+  ],
+  "paths": 4,
+  "terrain": "pilot33-wtowerf"
+ },
+ {
+  "name": "surface-etowera",
+  "layer": "SURFACE",
+  "module": "etowera",
+  "bounds": [
+   6196,
+   4078,
+   6794,
+   4500
+  ],
+  "paths": 4,
+  "terrain": "pilot33-etowera"
+ },
+ {
+  "name": "surface-etowerb",
+  "layer": "SURFACE",
+  "module": "etowerb",
+  "bounds": [
+   6196,
+   3762,
+   6794,
+   4183
   ],
   "paths": 3,
-  "terrain": null
+  "terrain": "pilot33-etowerb"
+ },
+ {
+  "name": "surface-etowerc",
+  "layer": "SURFACE",
+  "module": "etowerc",
+  "bounds": [
+   6196,
+   3445,
+   6794,
+   3867
+  ],
+  "paths": 3,
+  "terrain": "pilot33-etowerc"
+ },
+ {
+  "name": "surface-etowerd",
+  "layer": "SURFACE",
+  "module": "etowerd",
+  "bounds": [
+   6196,
+   3128,
+   6794,
+   3550
+  ],
+  "paths": 3,
+  "terrain": "pilot33-etowerd"
+ },
+ {
+  "name": "surface-etowere",
+  "layer": "SURFACE",
+  "module": "etowere",
+  "bounds": [
+   6196,
+   2812,
+   6794,
+   3233
+  ],
+  "paths": 3,
+  "terrain": "pilot33-etowere"
+ },
+ {
+  "name": "surface-etowerf",
+  "layer": "SURFACE",
+  "module": "etowerf",
+  "bounds": [
+   6196,
+   2495,
+   6794,
+   2917
+  ],
+  "paths": 3,
+  "terrain": "pilot33-etowerf"
+ },
+ {
+  "name": "surface-arch-crate",
+  "layer": "SURFACE",
+  "module": "arch-crate",
+  "bounds": [
+   4696,
+   2586,
+   4794,
+   2694
+  ],
+  "paths": 3,
+  "terrain": "pilot33-arch-crate"
  },
  {
   "name": "rear-x5",
   "layer": "REAR",
   "module": "x5",
   "bounds": [
-   3016,
-   1553,
-   3264,
-   1749
+   3026,
+   2368,
+   3274,
+   2573
   ],
   "paths": 3,
   "terrain": null
  },
  {
-  "name": "fore-x2",
-  "layer": "FORE",
-  "module": "x2",
-  "bounds": [
-   172,
-   2023,
-   222,
-   2115
-  ],
-  "paths": 2,
-  "terrain": null
- },
- {
-  "name": "fore-x3",
-  "layer": "FORE",
-  "module": "x3",
-  "bounds": [
-   732,
-   2015,
-   782,
-   2108
-  ],
-  "paths": 2,
-  "terrain": null
- },
- {
-  "name": "fore-x8",
-  "layer": "FORE",
+  "name": "rear-x8",
+  "layer": "REAR",
   "module": "x8",
   "bounds": [
-   5272,
-   2035,
-   5322,
-   2127
+   5376,
+   2395,
+   5820,
+   2600
+  ],
+  "paths": 5,
+  "terrain": null
+ },
+ {
+  "name": "rear-x3",
+  "layer": "REAR",
+  "module": "x3",
+  "bounds": [
+   1376,
+   2582,
+   1420,
+   2658
   ],
   "paths": 2,
   "terrain": null
  },
  {
-  "name": "fore-x9",
-  "layer": "FORE",
-  "module": "x9",
+  "name": "rear-x6",
+  "layer": "REAR",
+  "module": "x6",
   "bounds": [
-   6872,
-   1848,
-   6922,
-   1941
+   3576,
+   2532,
+   3620,
+   2608
   ],
   "paths": 2,
   "terrain": null
  },
  {
-  "name": "fore-x10",
-  "layer": "FORE",
-  "module": "x10",
+  "name": "rear-x7",
+  "layer": "REAR",
+  "module": "x7",
   "bounds": [
-   7272,
-   1847,
-   7322,
-   1939
+   4976,
+   2592,
+   5020,
+   2668
   ],
   "paths": 2,
+  "terrain": null
+ },
+ {
+  "name": "fore-x6",
+  "layer": "FORE",
+  "module": "x6",
+  "bounds": [
+   1122,
+   4342,
+   6532,
+   4673
+  ],
+  "paths": 5,
+  "terrain": null
+ },
+ {
+  "name": "fore-x7",
+  "layer": "FORE",
+  "module": "x7",
+  "bounds": [
+   4761,
+   4567,
+   4829,
+   4652
+  ],
+  "paths": 1,
+  "terrain": null
+ },
+ {
+  "name": "fore-x5",
+  "layer": "FORE",
+  "module": "x5",
+  "bounds": [
+   1132,
+   4354,
+   6514,
+   4580
+  ],
+  "paths": 1,
   "terrain": null
  }
 ]

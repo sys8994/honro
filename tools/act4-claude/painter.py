@@ -417,6 +417,63 @@ class Painter:
         self._masonry_into('STRUCT', stringer, seed, y_ref=sum(y for _, y in top) / len(top), scale=.55,
                            tones=('#4a6273', '#5a7383', '#6c8592'), mortar='#1d2f40')
 
+    def boulders(self, layer, pts, seed=0):
+        """Loose rocks (art only): (x, y_ground, w, h) each; crag shaded, weed foot."""
+        rng = random.Random(seed)
+        gs = []
+        for x, y, w, h in pts:
+            k = [rng.uniform(.8, 1.15) for _ in range(6)]
+            gs.append(Polygon([(x - w / 2, y + 10), (x - w * .45 * k[0], y - h * .55 * k[1]), (x - w * .15, y - h * k[2]), (x + w * .25, y - h * .9 * k[3]),
+                               (x + w * .48 * k[4], y - h * .4 * k[5]), (x + w / 2, y + 10)]).buffer(0))
+        g = unary_union(gs)
+        self.rock_mass(layer, g, seed, cell=max(60, min(w for _, _, w, _ in pts) * .7))
+        foot = g.intersection(unary_union([Polygon([(x - w, y - h * .25), (x + w, y - h * .25), (x + w, y + 20), (x - w, y + 20)]) for x, y, w, h in pts]))
+        if not foot.is_empty:
+            self.add(layer, shapely_d(foot), '#4d5a35')
+
+    def sea_arches(self, sid, floor, openings, seed=0, tide=None):
+        """Natural sea arches under a high road (behind actors): rock legs from
+        the road's underside down to `floor`, arch openings left open to the
+        sky; barnacle and weed bands at the tide line."""
+        s = self.solids[sid]
+        W_ = s['walk']
+        x0, x1 = W_[0][0], W_[-1][0]
+        F = self.solids[floor]['walk']
+        xs = [x0 + (x1 - x0) * i / 40 for i in range(41)]
+        def fy(x):
+            return interp(F, min(max(x, F[0][0]), F[-1][0])) + 8
+        body = Polygon([(x, interp(W_, x) + 10) for x in xs] + [(x, fy(x)) for x in reversed(xs)]).buffer(0)
+        holes = []
+        rng = random.Random(seed)
+        for a, b, crown in openings:   # crown = y of the arch top
+            pts = []
+            for i in range(17):
+                t = i / 16
+                x = a + (b - a) * t
+                yy = fy(x) - (fy(x) - crown) * math.sqrt(max(0.0, 1 - (2 * t - 1) ** 2)) ** .8 + rng.uniform(-14, 14) * (0 < i < 16)
+                pts.append((x, yy))
+            holes.append(Polygon(pts + [(b, fy(b) + 40), (a, fy(a) + 40)]).buffer(0))
+        legs = body.difference(unary_union(holes))
+        self.rock_mass('STRUCT', legs, seed, cell=300)
+        if tide:
+            lo, hi = tide
+            band = legs.intersection(Polygon([(x0 - 50, hi - 160), (x1 + 50, hi - 160), (x1 + 50, lo + 60), (x0 - 50, lo + 60)]))
+            weed, bar = [], []
+            for g in getattr(band, 'geoms', [band]):
+                if g.is_empty or g.geom_type != 'Polygon':
+                    continue
+                bx0, by0, bx1, by1 = g.bounds
+                x = bx0
+                while x < bx1:
+                    ln = rng.uniform(40, 150)
+                    weed.append(Polygon([(x, hi - 10), (x + 22, hi - 10), (x + 14, hi + ln), (x + 4, hi + ln * .8)]))
+                    bar.append(Point(x + rng.uniform(0, 30), hi - rng.uniform(20, 140)).buffer(rng.uniform(5, 11), 3))
+                    x += rng.uniform(24, 60)
+            for gs, col in ((weed, '#5d6a3a'), (bar, '#c9cfc8')):
+                u = unary_union(gs).intersection(legs)
+                if not u.is_empty:
+                    self.add('STRUCT', shapely_d(u), self.hz(col, hi))
+
     def moss_drape(self, s):
         """Moss hanging over ledge lips and down rock faces (concept: green
         tongues and a few vines), only where the face below is rock."""
@@ -472,6 +529,22 @@ class Painter:
         th = lambda x: lo + (hi - lo) * (0.5 + 0.5 * math.sin(x / 140 + len(s['id'])))
         def band(fn):
             return [(x, y - 3) for x, y in top] + [(x, y + fn(x)) for x, y in reversed(top)]
+        if s.get('sand'):   # wet tidal flat: grey sand, darker wet edge, pale puddles
+            self.clip('BODY', poly, band(lambda x: th(x) + 40), '#55605f')
+            self.clip('BODY', poly, band(lambda x: th(x) + 26), '#77786c')
+            self.clip('BODY', poly, band(lambda x: 8 + 5 * math.sin(x / 61)), '#9a9583')
+            rng = random.Random(len(s['id']) + 3)
+            pud = []
+            x = top[0][0] + 40
+            while x < top[-1][0] - 120:
+                w = rng.uniform(80, 260); y = interp(top, x)
+                if rng.random() < .5:
+                    pud.append(Polygon([(x, y + 12), (x + w, interp(top, x + w) + 12), (x + w - 20, interp(top, x + w) + 18), (x + 15, y + 18)]).buffer(0))
+                x += w + rng.uniform(60, 200)
+            g = unary_union(pud).intersection(poly)
+            if not g.is_empty:
+                self.add('BODY', shapely_d(g), '#a9c0c6')
+            return
         if s.get('path'):   # old stone road across a clearing: pale path, grass verge, moss lip
             self.clip('BODY', poly, band(lambda x: th(x) + 34), '#5d6f5a')
             self.clip('BODY', poly, band(lambda x: th(x) + 24), '#a9a58e')
@@ -491,6 +564,10 @@ class Painter:
             self.clip('BODY', poly, band(lambda x: th(x) + 30), '#6f6a5c')
             self.clip('BODY', poly, band(lambda x: th(x) + 22), '#b3a98c')
             self.clip('BODY', poly, band(lambda x: 7 + 5 * math.sin(x / 57)), SAGE)
+            return
+        if s['kind'] == 'rock' and s.get('moss') is False:   # bare tidal rock: pale wet top, weed fringe
+            self.clip('BODY', poly, band(lambda x: th(x) * .6 + 8), '#4f6473')
+            self.clip('BODY', poly, band(lambda x: 7), '#7f93a0')
             return
         self.clip('BODY', poly, band(lambda x: th(x) + 10), SAGE_SHADOW)
         self.clip('BODY', poly, band(th), SAGE)
