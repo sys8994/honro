@@ -16,6 +16,10 @@ with sync_playwright() as w:
  broken=json.loads(raw);broken['honroBattle']['honroLandmarks'][0]['asset']={'honroStaticAssetRef':1,'id':'qa:missing-asset','signature':'1:bad'}
  with tempfile.NamedTemporaryFile(suffix='.json',mode='w',encoding='utf8') as f:
   json.dump(broken,f,ensure_ascii=False);f.flush();before=r['raw'];ui_import(p,Path(f.name));after=info(p);assert after['raw']==before and '확인하지 못했습니다' in after['notice'],after['notice'];print('missing asset: explicit failure, existing bytes unchanged',flush=True)
+ broken=json.loads(raw);asset=broken['honroBattle']['honroLandmarks'][0]['asset'];broken['honroBattle']['honroLandmarks'][0]['asset']={'honroStaticAssetRef':1,'id':asset['id'],'signature':'1:bad'}
+ p.reload();p.wait_for_function('window.HonroApp')
+ with tempfile.NamedTemporaryFile(suffix='.json',mode='w',encoding='utf8') as f:
+  json.dump(broken,f,ensure_ascii=False);f.flush();before=info(p)['raw'];ui_import(p,Path(f.name));after=info(p);assert after['raw']==before and '확인하지 못했습니다' in after['notice'],after['notice'];print('mismatched signature: explicit failure, existing bytes unchanged',flush=True)
  p.reload();p.wait_for_function('window.HonroApp');p.get_by_text('이어서 걷기',exact=True).click();p.wait_for_function('HonroApp.engine?.b?.honroStage===40',timeout=60000);print('same-context reload: stage 40',flush=True)
  # A separate fresh context uses real browser quota, not a patched storage implementation.
  q=b.new_page();q.goto(url);q.wait_for_function('window.HonroApp');q.evaluate("localStorage.setItem('honro-first-act-profile-1',JSON.stringify(HonroApp.profile))");before=q.evaluate("localStorage.getItem('honro-first-act-profile-1')");filled=q.evaluate('''()=>{let n=5242880;while(n>0){try{localStorage.setItem('qa-quota-fill','x'.repeat(n));return n}catch(e){n-=1000}}return 0}''');assert filled;ui_import(q,source);r=info(q);assert r['raw']==before and '저장하지 못했습니다' in r['notice'],(r['notice'],filled);print('real quota failure: existing bytes unchanged; fill',filled,flush=True)
