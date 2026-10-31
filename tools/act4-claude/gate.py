@@ -1,15 +1,32 @@
 #!/usr/bin/env python3
 """Plan gate for a redesigned Act4 stage (fails the build on any miss).
 usage: gate.py N  -> checks layout vs design card + engine probe + trap sweep."""
-import json, sys
+import hashlib, json, os, sys
+from provenance import snapshot
 from pathlib import Path
 ROOT = Path(__file__).resolve().parents[2]
 n = sys.argv[1]
 card = json.load(open(ROOT / 'tools/act4-claude/cards.json'))[n]
 if card.get('schema') == 'criteria-v3':
     raise SystemExit('Criteria card exists, but geometry, actual play and visual acceptance are unverified; integration blocked.')
-L = json.load(open(ROOT / f'tools/act4-pilot/layouts/stage{n}-claude.json'))
 D = ROOT / f'_local/reports/act4-pilot/stage{n}/claude'
+run_id = os.environ.get('ACT4_PROBE_RUN_ID')
+if not run_id:
+    raise SystemExit('A fresh probe run ID is required; integration blocked.')
+try:
+    current = snapshot(n, D)
+    bindings = {}
+    for name in ('verification-summary.json', 'trap-sweep.json'):
+        report = D / name
+        binding = json.loads((D / (name + '.binding.json')).read_text())
+        if (binding.get('version') != 1 or binding.get('runId') != run_id
+                or binding.get('inputs') != current
+                or binding.get('reportSha256') != hashlib.sha256(report.read_bytes()).hexdigest()):
+            raise ValueError(name + ' has stale or mismatched provenance')
+        bindings[name] = binding
+except (OSError, ValueError, KeyError, json.JSONDecodeError) as exc:
+    raise SystemExit('Probe provenance failed; integration blocked: ' + str(exc))
+L = json.load(open(ROOT / f'tools/act4-pilot/layouts/stage{n}-claude.json'))
 S = {s['id']: s for s in L['surfaces']}
 rows = []
 def check(name, ok, got, want):
@@ -51,5 +68,5 @@ except FileNotFoundError:
 bad = [r for r in rows if not r[1]]
 for name, ok, got, want in rows:
     print(('PASS ' if ok else 'FAIL ') + name.ljust(42), got, '| want', want)
-(D / 'gate.json').write_text(json.dumps({'stage': n, 'pass': not bad, 'rows': rows}, ensure_ascii=False, indent=1))
+(D / 'gate.json').write_text(json.dumps({'stage': n, 'pass': not bad, 'scope': 'Geometry and canonical input binding only; generated art, visual review and normal gameplay are not approved.', 'rows': rows, 'inputs': current, 'reportBindings': bindings}, ensure_ascii=False, indent=1))
 sys.exit(1 if bad else 0)

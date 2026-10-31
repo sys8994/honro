@@ -2,6 +2,8 @@
 # Rebuild, gate, integrate and sheet a stage: redo.sh N
 set -eu
 N=${1:?stage number required}
+ACT4_PROBE_RUN_ID=$(python3 -c 'import secrets;print(secrets.token_hex(16))')
+export ACT4_PROBE_RUN_ID
 R=${ACT4_REFERENCE_DIR:?set ACT4_REFERENCE_DIR to the reviewed play-layer reference directory}
 # Stop before generating or integrating anything if no stage card exists.
 python3 - "$N" <<'PY'

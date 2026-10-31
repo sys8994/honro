@@ -7,4 +7,5 @@ python3 tools/act4-claude/roster$N.py || exit 1
 python3 tools/stage31-claude/build-assets.py $N >/dev/null || exit 1
 if [ -f "tools/act4-claude/extra$N.py" ]; then python3 "tools/act4-claude/extra$N.py" >/dev/null; fi
 node tools/stage31-claude/inspect.mjs --n=$N --tag=v1 --far=$FAR --stage=$D/roster/stage.json --assets=_local/reports/act4-claude/stage$N/modules --views="$VIEWS"
+python3 tools/act4-claude/gate.py "$N"
 node tools/stage31-claude/integrate.mjs _local/reports/act4-claude/stage$N/v1/stage$N-composed.json _local/reports/act4-claude/stage$N/modules $N

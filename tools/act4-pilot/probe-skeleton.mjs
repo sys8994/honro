@@ -1,10 +1,14 @@
 /** Physics-only support-link microprobes, NOT a normal route/combat run. */
 import {readFile,writeFile} from 'node:fs/promises';
 import {createHash} from 'node:crypto';
+import {snapshot,writeReport} from '../act4-claude/provenance.mjs';
 import {transitionAim} from './probe-target.mjs';
 import {runtime,battlefield} from '../../game/tests/helpers.mjs';
 process.env.HONRO_ACT4_RELEASE='1';
-const n=Number(process.argv[2]||31),dir=process.argv.find(a=>a.startsWith('--dir='))?.slice(6)||`_local/reports/act4-pilot/stage${n}/skeleton`,stage=JSON.parse(await readFile(dir+'/stage.json')),spec=JSON.parse(await readFile(dir+'/blueprint.json'));
+const n=Number(process.argv[2]||31),dir=process.argv.find(a=>a.startsWith('--dir='))?.slice(6)||`_local/reports/act4-pilot/stage${n}/skeleton`;
+if(process.env.ACT4_PROBE_RUN_ID&&(process.argv.includes('--continuous-only')||process.argv.some(a=>a.startsWith('--support='))))throw Error('Partial probe cannot be bound for integration.');
+const bindingBefore=process.env.ACT4_PROBE_RUN_ID?snapshot(n,dir):null;
+const stage=JSON.parse(await readFile(dir+'/stage.json')),spec=JSON.parse(await readFile(dir+'/blueprint.json'));
 const g=await runtime({legacyMaps:false}),C=g.HONRO_CORE,profile=C.defaults();g.HonroEquipment.fresh(profile);profile.recruited=g.HonroStageRules.stageParty(n);for(const cls of profile.recruited)profile.heroes[cls].xp=g.HonroProgression.xpAt(g.HonroProgression.plan(n).entryLevel);const {b,e}=battlefield(g,n,{profile}),original=structuredClone(e.heroesAlive()),originalResidents=structuredClone(b.units.filter(u=>u.honroAct4Resident));
 const compiled=g.HonroMaps.compile(stage,{...g.HONRO_PROJECT,stages:[stage]});b.terrain=compiled.terrain;b.width=stage.width;b.height=stage.height;b.projectiles=[];b.units=[];b.phase='aim';b.side=0;e.checkEnd=()=>false;
 const stageSHA256=createHash('sha256').update(JSON.stringify(stage)).digest('hex');
@@ -70,7 +74,7 @@ for(const route of spec.routes.filter(r=>r.supports[0]===(spec.spawnSupport||'sh
 }
 await writeFile(dir+'/continuous-route.json',JSON.stringify({stageSHA256,scope:'Per-body fresh-entrance continuous movement-only route on real Engine, no pose/budget correction after setup; no enemies, App story/boarding or GUI and not a combat clear.',continuous},null,2));
 
-await writeFile(dir+'/verification-summary.json',JSON.stringify({stageSHA256,scope:'Geometry only; no art/combat/App acceptance',edgeBodyChecks:{passed:rows.filter(r=>r.passed).length,total:rows.length},continuousBodyChecks:{passed:continuous.filter(r=>r.passed).length,total:continuous.length},routes:continuous.map(({routeId,cls,rounds,jumps,drops,groundedBounds,start,end,passed})=>({routeId,cls,rounds,inputJumps:jumps,inputDrops:drops,groundedBounds,hpLoss:start.hp-end.hp,passed})),remaining:['effective movement classification in normal party combat','enemy/staging integration','App boarding with authored coordinates','art acceptance','Pages deployment']},null,2));
+await writeReport(dir+'/verification-summary.json',JSON.stringify({stageSHA256,scope:'Geometry only; no art/combat/App acceptance',edgeBodyChecks:{passed:rows.filter(r=>r.passed).length,total:rows.length},continuousBodyChecks:{passed:continuous.filter(r=>r.passed).length,total:continuous.length},routes:continuous.map(({routeId,cls,rounds,jumps,drops,groundedBounds,start,end,passed})=>({routeId,cls,rounds,inputJumps:jumps,inputDrops:drops,groundedBounds,hpLoss:start.hp-end.hp,passed})),remaining:['effective movement classification in normal party combat','enemy/staging integration','App boarding with authored coordinates','art acceptance','Pages deployment']},null,2),bindingBefore,n,dir);
 
 if(n===39){
  const npcs=structuredClone(originalResidents);for(const u of npcs){const v=stage.units.find(w=>w.id===u.id);if(v){u.x=v.x;u.y=v.y;}}const starts=npcs.map(u=>({id:u.id,x:u.x,y:u.y,hp:u.hp}));

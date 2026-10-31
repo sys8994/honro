@@ -1,10 +1,13 @@
 /** Trap sweep on real Engine physics: a body dropped just above every upward-
  * facing collider edge (every 40u) must come to rest grounded (able to act),
  * never in the land/fall limbo of a steep face or seam. Geometry only. */
-import {readFile,writeFile} from 'node:fs/promises';
+import {readFile} from 'node:fs/promises';
+import {snapshot,writeReport} from './provenance.mjs';
 import {runtime,battlefield} from '../../game/tests/helpers.mjs';
 process.env.HONRO_ACT4_RELEASE='1';
-const [n,dir]=[Number(process.argv[2]),process.argv[3]],stage=JSON.parse(await readFile(dir+'/stage.json'));
+const [n,dir]=[Number(process.argv[2]),process.argv[3]];
+const bindingBefore=process.env.ACT4_PROBE_RUN_ID?snapshot(n,dir):null;
+const stage=JSON.parse(await readFile(dir+'/stage.json'));
 const g=await runtime({legacyMaps:false}),C=g.HONRO_CORE,profile=C.defaults();g.HonroEquipment.fresh(profile);profile.recruited=g.HonroStageRules.stageParty(n);
 const {b,e}=battlefield(g,n,{profile}),tpl=structuredClone(e.heroesAlive().find(u=>u.cls==='knight')||e.heroesAlive()[0]);
 const compiled=g.HonroMaps.compile(stage,{...g.HONRO_PROJECT,stages:[stage]});b.terrain=compiled.terrain;b.width=stage.width;b.height=stage.height;b.projectiles=[];e.checkEnd=()=>false;
@@ -21,4 +24,4 @@ for(const t of stage.terrains){const ps=t.points;for(let i=0;i<ps.length;i++){co
    if(Math.abs(u.vy)>50)continue;tested++;const cs=e.contactSurface(u.x,u.y-.3,u.y+.3),face=cs&&C.terrainSurfaces(cs.t,u.x).find(f=>Math.abs(f.y-u.y)<3),ok=!!face&&Math.abs(face.slope)<=1.35;
    if(!ok)traps.push({terrain:t.id,x:Math.round(u.x),y:Math.round(u.y),rest:cs?.t?.id||null,slope:face?+face.slope.toFixed(2):null});}}}}
 const uniq=[...new Map(traps.map(t=>[Math.round(t.x/20)+':'+Math.round(t.y/20),t])).values()];
-await writeFile(dir+'/trap-sweep.json',JSON.stringify({tested,traps:uniq},null,1));console.log(JSON.stringify({stage:n,tested,traps:uniq.length,sample:uniq.slice(0,8)}));
+await writeReport(dir+'/trap-sweep.json',JSON.stringify({tested,traps:uniq},null,1),bindingBefore,n,dir);console.log(JSON.stringify({stage:n,tested,traps:uniq.length,sample:uniq.slice(0,8)}));
