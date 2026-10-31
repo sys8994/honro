@@ -1,6 +1,6 @@
 # Act 4 review matrix — 2026-10-31
 
-Historical source for the recorded checkpoint: `d5e443e17a9a9c3121ee782559698c0e131b6bd2`. Later Workshop-only autosave warning source: `b4e62a58c`; the stage runs below were not rerun on it. User-facing chapters 1–10 correspond to internal stages 31–40. Evidence below identifies the specific runs; results on earlier sources and isolated saved-state diagnostics are not fresh full runs on this source. A single clear or 20-turn result does not establish fun, difficulty balance or success rate. Zero kills alone is not a failure. This matrix does not authorize release.
+Historical source for the recorded checkpoint: `d5e443e17a9a9c3121ee782559698c0e131b6bd2`. Later Workshop-only source: `dd65fcec1` (including autosave warning `b4e62a58c`); the stage runs below were not rerun on it. User-facing chapters 1–10 correspond to internal stages 31–40. Evidence below identifies the specific runs; results on earlier sources and isolated saved-state diagnostics are not fresh full runs on this source. A single clear or 20-turn result does not establish fun, difficulty balance or success rate. Zero kills alone is not a failure. This matrix does not authorize release.
 
 | Chapter (stage) | Observed evidence | Remaining gate |
 | --- | --- | --- |

@@ -103,3 +103,7 @@ Source `d5e443e17a9a9c3121ee782559698c0e131b6bd2` includes independent Workshop 
 ## 2026-10-31 Workshop quota warning
 
 Workshop-only source `b4e62a58c` reports autosave errors while preserving in-memory work and previous saved bytes. Earlier stage play results retain their recorded source and were not rerun. The full 40-stage Workshop import and embedded play remain blocked by the bounded shared-memory tests described in `WORKSHOP-COMPATIBILITY.md`; this source change is not a performance fix.
+
+## 2026-10-31 Workshop clone reduction
+
+Workshop-only source `dd65fcec1` avoids the discarded import return clone and excludes unrelated stages before the Playtest snapshot clone. The complete library is preserved, and game `launchMap` still normalizes it. Differential small-fixture evidence and remaining full-size blocker are recorded in `WORKSHOP-COMPATIBILITY.md`. Past stage outcomes retain their own run sources.
