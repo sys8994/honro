@@ -1,0 +1,7 @@
+# Stage 39: warning capture and victory save
+
+A separate uninterrupted headless Chromium UI run, using the same 38-cleared fixture v2 and candidate as `../fresh-v2-five-round/`. The game completed in round 5 with four living heroes and four residents at 1450 HP each. No previous-stage play is implied by the fixture. The game's rescue record identifies source run `honro-map-stage-39-1793462935400` and campaign run `eq-mvwhkevq-k31lxupc`; see `result.json` and the full compressed log.
+
+`victory-storage.json` and `victory-profile.json` were recorded from the original context at victory before reload. Their SHA-256 values are respectively `d7c9657d665f21ab4c31380db05f762cfdd4b4c815e6218e8297599937d35386` and `b3b27d984fa2f82d31c3a6aaebc74be9334bbce7c7b1170c1913586750c2e0ce`. The browser was then reloaded and real Continue entered official stage 40; `browser-storage.json` is that post-Continue state. The stage-38 fixture has no actual stage-32 safeSeven provenance, and stage-40 proof remained false. No provenance or success flags were inserted.
+
+`tide-ui.png` is an actual 2R screenshot taken after intervening dialogue, without a dialogue modal. The minimap and reward indicator overlap the top-right tide HUD, preventing a reliable reading of the rising indicator. The frame is a warning-readability failure, not proof of sufficient duration. `pilot-warning-1.png` shows the actual Canvas artillery warning and target. No mobile or physical-device validation is claimed. Raw observations and result hashes are retained; master and Pages were not changed.
