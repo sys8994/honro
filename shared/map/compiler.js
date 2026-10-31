@@ -37,6 +37,11 @@ function compile(st,project){
  return{terrain,worldTerrain,landmarks,elements,terrainAttachments:terrainAttachments(st,project,terrain,worldTerrain),materials:st.materials.map(m=>Q.material(st,m,terrain))};
 }
 function createBattle(st,project,profile=profileFor(st),options={}){
+ // Authored pilot tags must never silently turn into ordinary enemy behavior.
+ const pilot=(st.units||[]).some(u=>u.stageOverrides?.honroPilotMidboss||u.stageOverrides?.honroPilotCombatBudget);
+ if(pilot&&(![31,34,39].includes(st.metadata?.stageId)||st.initialState?.honroAct4Preview!==st.metadata.stageId||(st.units||[]).some(u=>(u.stageOverrides?.honroPilotMidboss||u.stageOverrides?.honroPilotCombatBudget)&&(u.team!=='enemy'||u.stageOverrides?.honroPilotMidboss&&u.stageOverrides.honroPilotMidboss!==({31:'levee',34:'shelf',39:'net'})[st.metadata.stageId]))))throw Error('Invalid pilot combat chapter/marker');
+ if(pilot&&(!G.HonroAct4PilotCombat?.attach||!G.HonroAct4PilotCombat?.tuneFresh||G.HONRO_ACT4_PILOT_COMBAT_REFERENCE?.version!==2||!G.HONRO_ACT4_PILOT_COMBAT_REFERENCE?.stages?.[31]))throw Error('Pilot combat module/reference unavailable for tagged actors');
+ if(pilot&&st.initialState?.honroPilotRosterRevision===1&&!G.HonroEncounterDensity?.installActivation)throw Error('Pilot encounter activation unavailable');
  const sid=st.metadata?.stageId||1,content=G.HonroSplitCampaign?.content(profile,sid)||G.HONRO_CONTENT.stages[sid-1],b=C.createBattle(1,clone(profile),'practice',{party:['archer'],distance:900});
  Object.assign(b,clone(st.initialState||{}));
  const map=compile(st,project);
