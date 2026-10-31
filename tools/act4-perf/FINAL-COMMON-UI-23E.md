@@ -1,0 +1,33 @@
+# Final common-source UI performance check
+
+Source fixed at common `23e8204afe3a5143ec981a5ba522e49313e10eda` (runtime change `0585c82cdc7d1dd6d7a0b91b5f113721c0c90c45`); compiled in isolated QA with the original frozen 31–40 world SHA-256 `99c59777254cb4942d5bfc7b7398068fc294dc29ff7208ac5f468953ecf5e581`, not the newer 33/34 artwork. This is a comparison build with that input, not an assertion that its asset bytes equal all eventual release assets. Source SHA-256: skillMechanics `cf2149c233d85f0214c611de60e38eb991fb2e2431abec1491c72ae7f4f005e8`, story `2f452b57830cba961489590e1e8008822e1b9c0550fea56afd65b49831e4350e`, act4-campaign `1013bf36c5f40f6b0580b68ec4eb2adef5530eb87ede78f188570e14fe37db0f`, renderer `45d429d5ad7a92815ac241d0aecf9531d7665e7bb6b8a32892e13a4e030e2ba7`, vector-art `0b79f9dc0c1896e27014561c755d743ef58dacbad5b8c1de89018794bf6ae8ba`. Story compact `3aaea974`, 40 A01 `0585c82c`, 38 A01, compact autosave, guide preparation and escort dirty are included. No source/runtime change or deployment in this check.
+
+One active Chromium 154 headless browser per sample, 1440×900 DPR1, software Canvas/raster/compositing with SwiftShader; five available CPUs, 10 live Chromium processes, approximately 15.2–15.5 GiB available RAM, host load 0.96–2.09. Real keyboard/wheel/drag, normal frame loop and autosave. Measurements carry instrumentation and vary with real-time boat/camera progress and host load. rAF figures are median / nearest-rank p95 / max in ms. Per-render and save calls are nested in frames, so timings are not additive. This is **not** phone FPS or a hardware-GPU measurement.
+
+## UI import and cold entry
+
+Both cases used actual Settings → 기록·관리 → JSON 기록 가져오기 → 파일 선택 and actual title 이어서 걷기, then reloaded and used 이어서 걷기 again after movement. For 40, input is the supplied real captured stage 40 `sailing-observation-local-storage` checkpoint, decompressed SHA-256 `2c8e5d95e1e956059da5ae0b74a02641beed0bccf0932568194b108fec3a8141`; despite its name its saved phase is boarding. It continued to landed. Three runs, first newly loaded scene render at x≈3061/y3429/.94: **592.2 / 602.8 / 573.0ms** (one render per cold context), UI Continue through first render wall time **1183.7 / 1164.1 / 1167.3ms**. All resumed stage 40/round 16/A01; the third run additionally asserted stored and reloaded landed phase and nondecreasing escort clock (231.855→232.145). No JS page errors. The saved stage is real checkpoint data, not a full natural campaign test.
+
+No naturally played stage-38 save was available to this task. As a fallback, a synthetic progressed profile was launched and serialized by the real App, then the **same save bytes** (SHA-256 `2e4179dc361e00d51241946beb215ca4467dc21b394ce2defb2145e8dcf2a839`) were imported through the UI twice. Round 1, archer A01. Two cold first scene renders at x≈766/y1772/.94: **399.9 / 383.7ms**; Continue→first render wall time **1050.1 / 978.3ms**. Both reloaded stage 38/round 1/A01; no JS page errors. These are actual UI/save operations on a synthetic progression, not naturally earned 38 entry.
+
+## Warm input, zoom and saving
+
+After entry, 2.5s idle, wheel to max zoom 1.65, idle, drag out and back, wheel out to ~.712, wheel back to 1.65, hold ArrowRight four seconds plus 1.2 seconds settle. All runs began from the same stage-specific save bytes; cameras track real simulation and are not locked. The old .94 synthetic stage-40 entry benchmark used another state/camera, and cannot be directly compared as the same workload.
+
+| Stage / sample | warmed idle rAF | max-zoom idle rAF | zoom-out rAF, enclosing new-tile render | max-zoom A01 movement rAF | movement flushes |
+|---|---|---|---|---|---|
+| 38 fixed 1 | 16.7/33.3/49.9 | 25.0/50.0/83.3 | 16.7/33.4/116.6, **87.6ms** | 50.0/66.7/100.0 | 5 × 25.5–37.0ms |
+| 38 fixed 2 | 16.7/33.3/50.0 | 16.7/33.4/83.3 | 16.7/33.4/166.7, **99.0ms** | 33.4/66.6/116.8 | 5 × 23.8–29.2ms |
+| 40 checkpoint 1 | 16.7/50.1/83.4 | 33.3/66.6/116.6 | 16.7/33.4/283.4, **282.0ms** | 50.0/116.7/149.9 | 4 × 53.4–67.1ms |
+| 40 checkpoint 2 | 16.7/50.0/83.3 | 33.3/66.6/83.4 | 16.7/33.4/316.7, **289.2ms** | 50.0/100.1/133.3 | 4 × 50.9–85.9ms |
+| 40 checkpoint 3 | 16.7/50.0/83.4 | 33.3/66.8/116.6 | 16.7/33.4/316.7, **293.1ms** | 50.0/100.1/133.3 | 4 × 57.4–70.9ms |
+
+Counts for movement rAF are 114/121 (38) and 94/90/89 (40). Warm idle still includes the recurring escort autosave at 40: two calls each ~50–53ms. Max-zoom idle sees three saves each ~50–57ms. Stage 38 idle had no saves; its movement had five. The 40 zoom-out tile work is a distinct one-time cache/key transition per sample; warm movement at max zoom uses the direct-vector path. These are not evidence that all cameras or later art behave identically.
+
+A separate more heavily instrumented 40 checkpoint run (not included in table) measured four flushes at **55.3, 74.9, 53.2, 57.5ms**, approximately 1.2s apart; their nearest subsequent frame gaps were **133.4, 133.3, 99.9, 100ms**. This confirms repeated autosave work overlaps long frames; it does not prove it is the only cause. In that run `predictionGuide` calls >0.25ms had median 5.9ms (14 observed), 19 `engine.predict` calls totaled 77.5ms; 81 occluded-silhouette calls >0.25ms had median 4.9ms, and Canvas drawImage calls also recurred. These are nested, thresholded and instrumentation-bearing figures. Previously measured stage 40 A01 full-clone delay has been reduced, but autosave, direct-vector rendering and new-tile stalls remain. No safe new fix was attempted in this final verification.
+
+## Repeatability and limitations
+
+Raw events, frames, host/resource info and the exact synthetic 38 save are in `evidence-final-common/results.tar.xz`, SHA-256 `22291e0d92949a39884daaf4961105d200364cef250844e86ef6d7d131328255`. To reproduce, build isolated common QA with the world hash above, serve it, run `HONRO_QA_BASE=http://127.0.0.1:8775 python tools/act4-perf/stage38-title-live-input.py TAG` or `stage40-title-live-input.py TAG`; the stage-38 harness reuses `_local/act4-perf/stage38-final-synthetic-save.json` if present. A second argument enables 40 detail instrumentation. Re-run one browser at a time and record asset/source hashes. Prior 38/40 B/C results used different input paths/cameras and are retained as historical evidence, not treated as exact matching baseline for these observations.
+
+Unresolved: actual naturally played stage 38 save/UI import, full normal 39→40 progression, current 33/34 revised art, actual phones/mobile DPR, GPU memory and longer-session performance. The present data supports the occurrence and approximate local conditions of stalls; it does not set or pass a release performance threshold.
