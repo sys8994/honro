@@ -4,9 +4,9 @@ root=pathlib.Path(__file__).resolve().parents[1]
 def sha(b):return hashlib.sha256(b).hexdigest()
 with tempfile.TemporaryDirectory() as td:
  p=pathlib.Path(td)
- for d in ('shared/data/act4/world.parts','shared/runtime','shared/assets','game/engine','game/vendor','game/config','game/src','game/docs/equipment','game/tests','game/node_modules/typescript/lib','tools/act4-claude','tools/act4-pilot/layouts','_local/reports/act4-pilot/stage32/claude'):(p/d).mkdir(parents=True)
+ for d in ('shared/data/act4/world.parts','shared/runtime','shared/assets','game/engine','game/vendor','game/config','game/src','game/docs/equipment','game/tests','game/node_modules/typescript/lib','tools/act4-claude','tools/act4-pilot/layouts','tools/environment','tools/map-forge','tools/skill-icons','workshop','art','assets','_local/reports/act4-pilot/stage32/claude'):(p/d).mkdir(parents=True)
  for name in ('gate.py','provenance.py','provenance.mjs'):shutil.copy(root/'tools/act4-claude'/name,p/'tools/act4-claude'/name)
- for name in ('game/tests/helpers.mjs','game/node_modules/typescript/lib/typescript.js','package.json','package-lock.json','game/package.json','game/package-lock.json','shared/runtime/game.js','shared/assets/asset.svg'):(p/name).write_text('original')
+ for name in ('game/tests/helpers.mjs','game/node_modules/typescript/lib/typescript.js','package.json','package-lock.json','game/package.json','game/package-lock.json','shared/runtime/game.js','shared/assets/asset.svg','tools/environment/common.mjs','tools/map-forge/map.mjs','tools/skill-icons/manifest.mjs'):(p/name).write_text('original')
  raw=b'{}';(p/'shared/data/act4/world.json').write_bytes(raw);(p/'shared/data/act4/world.parts/part-000.jsonpart').write_bytes(raw)
  (p/'shared/data/act4/world.parts/manifest.json').write_text(json.dumps({'version':1,'encoding':'utf-8','bytes':len(raw),'sha256':sha(raw),'parts':[{'file':'part-000.jsonpart','bytes':len(raw),'sha256':sha(raw)}]}))
  card={'Wr':[1,200],'Hr':[1,200],'aspect':[.1,10],'supports':[1,3],'bands':[1,2],'span':[0,100],'routes':1,'features':{}}
@@ -32,7 +32,7 @@ with tempfile.TemporaryDirectory() as td:
  bind();assert gate().returncode==0,gate().stderr
  v['routes'][0]['passed']=False;(d/'verification-summary.json').write_text(json.dumps(v));bind();r=gate();assert r.returncode!=0 and 'FAIL routes completed' in r.stdout
  v['routes'][0]['passed']=True;(d/'verification-summary.json').write_text(json.dumps(v));bind();assert gate().returncode==0
- for path in ('shared/data/act4/world.json','shared/data/act4/world.parts/part-000.jsonpart','shared/runtime/game.js','shared/assets/asset.svg','game/engine/code.js','game/node_modules/typescript/lib/typescript.js','tools/act4-pilot/layouts/stage32-claude.json','_local/reports/act4-pilot/stage32/claude/stage.json'):
+ for path in ('shared/data/act4/world.json','shared/data/act4/world.parts/part-000.jsonpart','shared/runtime/game.js','shared/assets/asset.svg','tools/environment/common.mjs','tools/map-forge/map.mjs','tools/skill-icons/manifest.mjs','game/engine/code.js','game/node_modules/typescript/lib/typescript.js','tools/act4-pilot/layouts/stage32-claude.json','_local/reports/act4-pilot/stage32/claude/stage.json'):
   f=p/path;old=f.read_bytes() if f.exists() else None;f.write_text('changed');r=gate();assert r.returncode!=0 and 'provenance failed' in r.stderr,(path,r.stdout,r.stderr)
   if old is None:f.unlink()
   else:f.write_bytes(old)

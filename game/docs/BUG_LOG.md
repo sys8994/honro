@@ -1,3 +1,7 @@
+## 2026-10-31 · 4막 기하 검사 실행·출처 범위 보완
+
+가상 환경에서 Python 의존성 NumPy 2.2.6, Shapely 2.1.2, Pillow 11.3.0을 설치하고 구 환경에 고정됐던 미리보기 경로를 로컬 보고서 경로로 옮겼다. 별도 체크아웃의 32장 check와 gate는 실행됐고 edge 20/20, body 8/8, trap 597지점·0건을 기록했다. 기하 fixture일 뿐 신규 승인 미술이나 전투 완주가 아니다. 기하 report 출처에는 실제 build가 참조하는 `tools/environment`, `tools/map-forge`, `tools/skill-icons` 등을 포함한 `tools`와 `workshop`, `art`, `assets`도 추가하고, Python 의존 버전과 GEOS 버전을 기록한다. 세 도구 경로를 각각 바꾸면 기존 report가 거부됨을 확인했다. 모든 외부 바이너리의 동일성이나 생성 미술의 품질을 증명하지는 않는다.
+
 ## 2026-10-31 · 4막 기하 검사 출처 결합
 
 기존 gate는 고정 경로의 옛 검사 JSON을 현재 결과처럼 읽을 수 있었다. 각 전체 probe와 trap sweep은 실행 전후 정본 조각/복원 월드, stage·blueprint·layout, 엔진/빌드/도구·의존성과 정본 자산 지문을 대조하고 보고서 바이트와 동일 실행 ID에 결합한다. gate는 현재 지문·두 보고서·실행 ID가 맞지 않으면 통합을 차단하며 통합 직전 재확인한다. 부분 probe는 통합용으로 묶지 않는다. 32장 실제 기하 fixture에서 edge 20/20, 연속 body 8/8, trap 597/597(함정 0)을 같은 출처로 확인했고, 출처 변경·오래된 보고서·보고서 변조·혼합 실행을 거부하는 별도 fixture도 통과했다. 생성 미술·시각 검수·정상 플레이 승인은 아니다. 전체 check.sh는 이 환경에 Shapely가 없어 실행 시작에서 중단되었으며, 위 수치는 기존 layout을 직접 빌드한 기하 fixture다.
