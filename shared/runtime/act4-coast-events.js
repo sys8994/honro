@@ -87,6 +87,7 @@ function authoredReturn(app,q,dt,geo){const e=app.engine,b=e.b,cfg=b.honroAct4De
  // of somebody still approaching. Assignments live in the saved escort state.
  const slots=[...geo.passengerRoutes,...geo.highRoutes].map(route=>route.at(-1)).sort((a,b)=>b.x-a.x);
  r.safeSlots??={};
+ if(r.phase==='safe'&&!r.safeSlotsMigrated)r.safeSlotsMigrated=true;
  if(!r.safeSlotsMigrated){
   const finished=np.map((u,i)=>({u,i,key:(i<2?'land':'high')+i})).filter(v=>r.routes[v.key]?.done).sort((a,c)=>c.u.x-a.u.x);
   for(const v of finished)r.safeSlots[v.u.id]??=slots[Object.keys(r.safeSlots).length];
@@ -97,7 +98,7 @@ function authoredReturn(app,q,dt,geo){const e=app.engine,b=e.b,cfg=b.honroAct4De
  // relaxing collisions or modifying their saved coordinates.
  const relocate=np.filter(u=>r.safeSlots[u.id]&&r.routes[(np.indexOf(u)<2?'land':'high')+np.indexOf(u)]?.done).sort((a,c)=>r.safeSlots[c.id].x-r.safeSlots[a.id].x);
  for(const u of relocate){const p=r.safeSlots[u.id];if(Math.abs(u.x-p.x)>=8||Math.abs(u.y-p.y)>=24||!e.grounded(u)){moveNpc(e,u,p.x,dt,220);return;}}
- const joining=np.map((u,i)=>({u,i,key:(i<2?'land':'high')+i})).filter(v=>!r.safeSlots[v.u.id]&&v.u.x>=4000&&((r.routes[v.key]?.index||0)>=(v.i<2?geo.passengerRoutes[v.i].length-1:geo.highRoutes[v.i-2].length-2))).sort((a,c)=>c.u.x-a.u.x);
+ const joining=np.map((u,i)=>({u,i,key:(i<2?'land':'high')+i})).filter(v=>!r.routes[v.key]?.done&&!r.safeSlots[v.u.id]&&v.u.x>=4000&&((r.routes[v.key]?.index||0)>=(v.i<2?geo.passengerRoutes[v.i].length-1:geo.highRoutes[v.i-2].length-2))).sort((a,c)=>c.u.x-a.u.x);
  for(const v of joining)r.safeSlots[v.u.id]=slots[Object.keys(r.safeSlots).length];
  const follow=(u,route,key)=>{
   const target=r.safeSlots[u.id];return followReturnRoute(e,u,target?[...route.slice(0,-1),target]:route,r.routes[key]??={},dt);
