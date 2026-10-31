@@ -1,0 +1,100 @@
+{
+  "scope": "Game-produced clear storage restored in a fresh test context; reload and Continue use that same new context. The original winning context was already reloaded but closed before Continue.",
+  "storageSha256": "f693185718c2ef86b8515db9c352a04cc4f30f5e60f460bb6545cf1478ddd9e2",
+  "profileValueSha256": "fa71966e31714582dcea5e3b82e0c63e0b3c28834700bd2d131fed0828a5d4e3",
+  "errors": [],
+  "afterReload": {
+    "screen": "title",
+    "cleared": {
+      "visits": 1,
+      "rounds": 31
+    },
+    "battle": false
+  },
+  "afterContinue": {
+    "screen": "rest",
+    "cleared": {
+      "visits": 1,
+      "rounds": 31
+    },
+    "lastStage": 39,
+    "battle": false,
+    "body": "설오\n담허\n휘겸\n소단\n모닥불\n동행 · 능력치 · 기예\n4막 1장\n강 끝의 갈대\n여정첩\n보상 받기\n허공터\n스테이지 진입\n→"
+  },
+  "restNext": {
+    "stages": 40,
+    "has40": true,
+    "mapNode": 1,
+    "restNext": {
+      "stageId": 31,
+      "region": "끊긴 옛길",
+      "place": "강 끝의 갈대",
+      "event": "강 끝의 갈대",
+      "layer": "city",
+      "variant": "river",
+      "restName": "강 끝의 갈대",
+      "restDescription": "",
+      "map": [
+        150,
+        650
+      ]
+    },
+    "button": [
+      {
+        "id": "31",
+        "text": "스테이지 진입\n→"
+      }
+    ]
+  },
+  "book": {
+    "screen": "journey",
+    "act": 4,
+    "pins": [
+      {
+        "id": "31",
+        "label": "31장 강 끝의 갈대 · 현재 길목"
+      },
+      {
+        "id": "32",
+        "label": "32장 빈 포구 · 지나온 길"
+      },
+      {
+        "id": "33",
+        "label": "33장 물 빠진 갯길 · 지나온 길"
+      },
+      {
+        "id": "34",
+        "label": "34장 파도에 깎인 절벽 · 지나온 길"
+      },
+      {
+        "id": "35",
+        "label": "35장 대숲의 옛길 · 지나온 길"
+      },
+      {
+        "id": "36",
+        "label": "36장 쇠가 없는 마을 · 지나온 길"
+      },
+      {
+        "id": "37",
+        "label": "37장 곶의 뒤편 · 지나온 길"
+      },
+      {
+        "id": "38",
+        "label": "38장 어긋난 해식굴 · 지나온 길"
+      },
+      {
+        "id": "39",
+        "label": "39장 돌아오는 물 · 지나온 길"
+      },
+      {
+        "id": "40",
+        "label": "40장 돌아가는 배 · 열린 길"
+      }
+    ]
+  },
+  "selected40": {
+    "screen": "journey",
+    "selection": 40,
+    "detail": "돌아가는 배\n\n열린 길\n\n진입"
+  }
+}
