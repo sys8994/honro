@@ -1,0 +1,5 @@
+# Stage 32 original export provenance
+
+Both archives contain unmodified bytes from the game's normal JSON export. `stage32-v9-r16` is the earlier v9 art run (normal 31 clear, 32 clear at 16 rounds); `stage32-rc-r15` is the independent selected RC art run (normal prior 31 clear, 32 clear at 15 rounds). In both, stages 1–30 were declared by an entry fixture; do not claim they were played. The RC 32 profile did not originate from the later RC 31 replay. Both contain the actual stage 32 safeSeven and reunion/report observation records, not fabricated event proof. Exact sizes and SHA-256 are in `manifest.json`.
+
+Restore with Python standard library, e.g. `python -c "import lzma,pathlib; p=pathlib.Path('tools/act4-save-provenance/stage32-v9-r16.json.xz'); pathlib.Path('/tmp/stage32-v9-r16.json').write_bytes(lzma.decompress(p.read_bytes()))"`, then verify the raw SHA-256 from the manifest. Keep the exported bytes and event provenance intact. Any artificial progression through stages 33–38 must be explicitly declared and separated from the actual stage 32 proof; do not fabricate or overwrite safeSeven. These are synthetic QA profiles, not release approval.

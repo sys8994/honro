@@ -1,0 +1,28 @@
+{
+  "version": 1,
+  "note": "Actual exported profiles; earlier stages 1-30 were declared by fixture. Preserve bytes; middle-stage test progression is separate.",
+  "files": [
+    {
+      "file": "stage32-v9-r16.json.xz",
+      "rawBytes": 355686,
+      "rawSha256": "ee3cf8b3a467bf200e9a37408f7b2eaec4f18b395786e923d049fbc51a984495",
+      "xzBytes": 31436,
+      "xzSha256": "9b7f8a36955397bebf634e796a9837cb5b847b75ccbca45855f328eebfc2436c",
+      "stage32Rounds": 16,
+      "stage31Rounds": 15,
+      "safeSevenSourceRun": "honro-map-stage-32-1793453218837",
+      "safeSevenCount": 7
+    },
+    {
+      "file": "stage32-rc-r15.json.xz",
+      "rawBytes": 9151550,
+      "rawSha256": "91acd7bf70aaf61e8465aab2b422c5d7ba429860a21f4ae06d329dd87882ec99",
+      "xzBytes": 1151636,
+      "xzSha256": "32707dcb90dab72e334e107e47a80fd35c8a1066073c2a9dd6761cb2be6f9f1f",
+      "stage32Rounds": 15,
+      "stage31Rounds": 15,
+      "safeSevenSourceRun": "honro-map-stage-32-1793462748999",
+      "safeSevenCount": 7
+    }
+  ]
+}
