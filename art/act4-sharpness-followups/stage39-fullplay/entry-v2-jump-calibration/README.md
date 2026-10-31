@@ -1,0 +1,5 @@
+# Upper stair jump calibration
+
+These are separate stopped UI attempts of the same Stage 39 entry fixture and a subsequent continuation from the actual saved battle. They are not campaign success evidence. The first attempted takeoff from x499 while holding right before Control; browser input latency moved the archer to x584 and the actor landed back on the original support. The controller stopped at the first missed jump. A second attempt restored the game-generated autosave and used Control before a 60 ms right hold; it landed at x535, just west of the stone stair's x540 edge, and stopped again. No mission or actor-state values were injected.
+
+Independent cloned-engine geometry probes found actual stone-stair landings only around the narrow x540–550 landing interval for the sampled jumps; these are diagnostic simulations rather than live UI proof. Real frame/input latency differed from the clone timing. The next attempt adjusts the UI hold and continues from the game-generated save, preserving both failed attempts. The full grouped route and 20-turn clear remain unverified.

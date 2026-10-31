@@ -90,11 +90,8 @@ with sync_playwright() as pw:
    elif support=='approved39-west-middle' and x>505:
     held('ArrowLeft',min(150,max(45,(x-495)*.9)));page.wait_for_timeout(150);after=record('align-stair');route=True
    elif support=='approved39-west-middle' and 488<=x<=505:
-    page.keyboard.down('ArrowRight');page.keyboard.press('Control')
-    for _ in range(25):
-     page.wait_for_timeout(10)
-     if state()['x']>=530:break
-    record('jump-in-flight');page.keyboard.up('ArrowRight');settle();after=record('jump-to-upper');route=True;jumped[s['active']]=jumped.get(s['active'],0)+1
+    page.keyboard.press('Control');page.wait_for_timeout(100);held('ArrowRight',80)
+    record('jump-in-flight');settle();after=record('jump-to-upper');route=True;jumped[s['active']]=jumped.get(s['active'],0)+1
     if after['support']=='approved39-west-middle':record('jump-missed-stop');stopReason='upper-jump-missed';break
    elif support=='approved39-west-deck' and 1800<=x<=2100:
     page.keyboard.down('ArrowRight');page.keyboard.press('Control');page.wait_for_timeout(180);record('deck-jump-in-flight');page.keyboard.up('ArrowRight');settle();after=record('deck-jump-to-wreck');route=True;jumped[s['active']]=jumped.get(s['active'],0)+1
