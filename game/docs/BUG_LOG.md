@@ -5123,3 +5123,7 @@ commonReviewRevision의 첫 혼령 대기열은 생성 후 소단/sceneTarget가
 기존 `layer:front`는 정적 배경 묶음 안에서 동행보다 먼저 그려져 FORE 자산의 실제 전경 역할을 하지 못했다. 충돌·상호작용이 없는 `asset.params.semanticLayer:FORE`만 정적 landmark pass에서 제외하고, 동행 본체 뒤/발사체·HUD 앞에 별도 전경 pass로 합성한다. 살아 있는 동행·미수집 표식·목표 라벨은 매 프레임 clip hole로 보호하며, 서로 겹친 보호 영역이 전경을 다시 드러내지 않는다. 조준·턴 안내는 전경이 있을 때만 뒤로 옮겨 한 번만 그린다.
 
 전경 그림만 별도 viewport raster에 보관하고 동행 보호 영역은 cache 밖에서 적용한다. 슬롯은 6M pixels 상한이며 카메라/크기 변경 시 이전 buffer를 해제하고 전경이 사라지면 슬롯도 해제한다. 물리·schema·기존 충돌 자산 분류는 바꾸지 않았다. `tools/stage31-production/test-foreground.mjs`는 native 실제 renderer의 순서/반투명 안내 픽셀/동행·목표 보호/cache 수명, 모바일 DPR1.7 메모리 상한 및 FORE 없는 31·35·3장의 이전 renderer 대비 PNG byte 동일성을 확인한다. 색상 fixture는 합성 검증용이며 캠페인 완주·미술 승인·공개 배포 증거가 아니다.
+
+### 2026-10-31 — Act 4 pilot combat dependency
+
+The clean runtime omitted the opt-in pilot combat module used by tagged Act 4 candidates. Reconnected the unchanged reviewed module, its v2 reference, and the explicit one-round activation option; fresh tagged maps now fail preflight when required pieces are absent. Published untagged data are unchanged. Focused tests and remaining browser/play limits are recorded in [ACT4_PILOT_COMBAT_DEPENDENCY.md](integration/ACT4_PILOT_COMBAT_DEPENDENCY.md).
