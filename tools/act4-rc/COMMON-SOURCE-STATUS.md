@@ -129,3 +129,7 @@ Source `467a636e` incorporates only the observer/Next race guard; `story.js` SHA
 ## 2026-10-31 Exit objective credit and outcome-save warning
 
 Common source `83023978` adds once-only objective contribution for confirmed 33/34/37/38 exit proofs, and `bb968b4e` adds a persistent retryable warning on normal outcome-save failure. Their independent tests, exact hashes, synthetic actual-quota scope, and worker's distinct original 33 pre-exit run are in `EXIT-REWARD-AND-SAVE-FAILURE.md`. Existing stage runs retain their actual run source and this is not a new complete 34/37/38 playthrough.
+
+## 2026-10-31 Compact Act 4 story saves
+
+Source `3aaea974b4532de431ba0bdd3fea065fe41b55dd` integrates the independent compact story save candidate, preserving reader and outcome-save guards. QA hashes, old 33 art/import and synthetic dialogue, actual 40 reader/escort restore, and explicitly seeded 33 exit/quota result checks are in `STORY-COMPACT-INTEGRATION.md`. Worker timings are limited PC samples, not mobile or complete performance approval. Earlier mission runs retain their own source.
