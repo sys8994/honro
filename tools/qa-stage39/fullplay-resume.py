@@ -21,7 +21,7 @@ with sync_playwright() as pw:
  import time
  events=(out/'events.jsonl').open('a',encoding='utf8')
  def snapshot():
-  return page.evaluate('''()=>{const a=HonroApp,e=a.engine,b=e.b,u=e.active,q=b.honroAct4PreviewState||{};return {round:b.round,side:b.side,phase:b.phase,shot:b.shot,active:u?.id,cls:u?.cls,x:u?.x,y:u?.y,angle:u?.angle,facing:u?.facing,grounded:u&&e.grounded(u),drop:u&&e.canDrop(),support:u&&e.contactSurface(u.x,u.y-4,u.y+5)?.t?.id,retreat:!!u?.retreat,can:a.canInput(),canAct:e.canAct(),selected:a.selected,charging:a.charging,projectiles:b.projectiles.length,dialogue:!!a.dialogue,dialogueText:document.querySelector('#story-line')?.innerText,heroes:b.units.filter(v=>v.side===0&&!v.summoned).map(v=>({id:v.id,hp:v.hp,dead:v.dead,x:v.x,y:v.y,acted:v.acted})),residents:b.units.filter(v=>v.honroAct4Resident).map(v=>({id:v.id,hp:v.hp,dead:v.dead,x:v.x,y:v.y})),foes:b.units.filter(v=>v.side===1&&!v.dead).map(v=>({id:v.id,x:v.x,y:v.y,hp:v.hp})),tide:q.tide,artillery:q.artillery,netOpen:q.netOpen,exitStable:q.exitStable,rescued:q.rescued,failure:q.failure,complete:q.complete,screen:a.screen}}''')
+  return page.evaluate('''()=>{const a=HonroApp,e=a.engine,b=e.b,u=e.active,q=b.honroAct4PreviewState||{};return {round:b.round,side:b.side,phase:b.phase,shot:b.shot,active:u?.id,cls:u?.cls,x:u?.x,y:u?.y,angle:u?.angle,facing:u?.facing,grounded:u&&e.grounded(u),drop:u&&e.canDrop(),support:u&&e.contactSurface(u.x,u.y-4,u.y+5)?.t?.id,retreat:!!u?.retreat,can:a.canInput(),canAct:e.canAct(),selected:a.selected,charging:a.charging,projectiles:b.projectiles.length,dialogue:!!a.dialogue,dialogueText:document.querySelector('#story-line')?.innerText,heroes:b.units.filter(v=>v.side===0&&!v.summoned).map(v=>({id:v.id,hp:v.hp,maxHp:v.maxHp,dead:v.dead,x:v.x,y:v.y,acted:v.acted})),residents:b.units.filter(v=>v.honroAct4Resident).map(v=>({id:v.id,hp:v.hp,dead:v.dead,x:v.x,y:v.y})),foes:b.units.filter(v=>v.side===1&&!v.dead).map(v=>({id:v.id,x:v.x,y:v.y,hp:v.hp})),tide:q.tide,artillery:q.artillery,netOpen:q.netOpen,exitStable:q.exitStable,rescued:q.rescued,failure:q.failure,complete:q.complete,screen:a.screen}}''')
  def record(kind,**extra):
   x={'kind':kind,'time':time.time(),'state':snapshot(),**extra};events.write(json.dumps(x,ensure_ascii=False)+'\n');events.flush();print(json.dumps(x,ensure_ascii=False),flush=True);return x['state']
  def plan():
@@ -48,6 +48,9 @@ with sync_playwright() as pw:
   pending=(s.get('artillery') or {}).get('next')
   if pending and pending.get('warningSeen') and pending.get('target')==s['active'] and s['round']>=pending.get('dueRound',9999):
    held('ArrowRight' if s['x']<pending['x']+120 else 'ArrowLeft',450);page.wait_for_timeout(600);record('artillery-evasion');s=snapshot()
+  activeHero=next((v for v in s['heroes'] if v['id']==s['active']),None)
+  if activeHero and activeHero['hp']<activeHero['maxHp']*.30:
+   page.keyboard.press('f');page.wait_for_timeout(600);record('defend-low-health');continue
   if s.get('artillery'):
    n=s['artillery'].get('next')
    if n and n.get('warningSeen') and (n.get('dueRound'),n.get('x'),n.get('y')) not in warnings:
@@ -87,7 +90,7 @@ with sync_playwright() as pw:
      held('ArrowUp' if delta*st['facing']>0 else 'ArrowDown',min(200,max(20,abs(delta)*1000/62)));page.wait_for_timeout(70)
     duration=page.evaluate('''()=>HonroApp.engine.chargeDuration(HonroApp.engine.active,HONRO_CORE.SKILLS[HonroApp.selected])''');page.keyboard.down('Space');page.wait_for_timeout(max(80,round(duration*choice['power']*1000)));actual=page.evaluate('''()=>({angle:HonroApp.engine.active.angle,power:HonroApp.power})''');page.keyboard.up('Space');record('fired',choice=choice,actual=actual)
   else:
-   record('no-safe-shot-after-move');continue
+   record('no-safe-shot-after-move');page.keyboard.press('f');page.wait_for_timeout(500);record('defend-no-shot');continue
   page.wait_for_timeout(3000);after=record('post-shot',index=turn);page.screenshot(path=str(out/f'action-{turn:03d}.png'));
   if after['phase']=='aim' and after['side']==0 and after['active']==s['active'] and not after['dialogue'] and not after.get('retreat'):
    page.keyboard.press('Tab');page.wait_for_timeout(300);record('switch-hero')

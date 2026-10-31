@@ -1,0 +1,5 @@
+# Run 2: round 9–12 and tactical recovery
+
+The round-9 game-generated checkpoint was resumed through Continue. The previous unsaved walk was replayed and the knight landed on `approved39-low-rock-strand`. During later movement the knight entered the tidal water repeatedly and the game's normal water recovery reduced HP from 1583 to 326. The resident `a4-rescue-0` also fell from 1450 to 1353; the recorded second artillery shot targeted that resident. All four residents and heroes were alive when the controller's no-progress watchdog stopped in round 12. These are tactical/control failures, not evidence of an impossible mission or an injected reset.
+
+The saved checkpoint is a game-generated automatic save earlier than the final unsaved round-12 oscillation: knight x1736 and HP326, round12, shot98, 14 enemies alive including the optional wreck. The continuation restores that checkpoint via Continue, records this branch explicitly, and uses the actual F defense action at low health rather than repeating the water route. The file `events.jsonl` preserves the full earlier attempt. The run has not yet cleared the mission or validated the ending save/reload.
