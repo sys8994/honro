@@ -21,11 +21,17 @@ try:
     const us=b.units.filter(u=>u.side===0),points=us.map((u,i)=>exit.x-180+i*40);
     function place(far){return us.map((u,i)=>{const x=points[i];const surfaces=b.terrain.flatMap(t=>HONRO_CORE.terrainSurfaces(t,x)).sort((v,w)=>Math.abs(v.y-exit.y)-Math.abs(w.y-exit.y));const y=far?surfaces.find(v=>Math.abs(v.y-exit.y)>300)?.y:surfaces[0]?.y;if(y===undefined)throw Error('fixture has no distinct surface '+n+' x='+x);Object.assign(u,{x,y,vx:0,vy:0});return {x,y,grounded:e.grounded(u)}})}
     const near=place(false),nearAllowed=HonroAct4TerrainPreview.interact(a,true),far=place(true),farAllowed=HonroAct4TerrainPreview.interact(a,true);
-    return {exit,near,nearAllowed,far,farAllowed};
+    // Explicit unit contrast: force only the grounded predicate, keeping the far
+    // positions identical. This is not a claim of real ground at that height.
+    const originalGrounded=e.grounded; e.grounded=()=>true;
+    const legacyWouldAllow=us.every(v=>v.x>exit.x-300&&e.grounded(v));
+    const farForcedAllowed=HonroAct4TerrainPreview.interact(a,true);e.grounded=originalGrounded;
+    return {exit,near,nearAllowed,far,farAllowed,legacyWouldAllow,farForcedAllowed};
    }''',n)
    assert all(x['grounded'] for x in r['near']), (n,r)
    if n != 34: assert all(x['grounded'] for x in r['far']), (n,r)
    assert r['nearAllowed'] and not r['farAllowed'], (n,r)
-   print(f"PASS {n}: exit level accepted, separated level rejected; far grounded={all(x['grounded'] for x in r['far'])}; controlled fixture")
+   assert r['legacyWouldAllow'] and not r['farForcedAllowed'], (n,r)
+   print(f"PASS {n}: exit level accepted, separated level rejected; far grounded={all(x['grounded'] for x in r['far'])}; forced-ground unit contrast confirms height; no walking proof")
   browser.close()
 finally: server.shutdown()
