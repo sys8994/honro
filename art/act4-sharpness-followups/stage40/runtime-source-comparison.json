@@ -1,0 +1,10 @@
+{
+  "remoteCommit": "56afc0beccc738a084f9682970c01765741f68af",
+  "remoteSourcePath": "shared/runtime/act4-coast-events.js",
+  "remoteSourceSha256": "07e86e438dedaf21f4525ac8f6cf2f4ad27e203f2447f696ea36f967a846d30d",
+  "testedSourceSha256": "dbcfd353d30c4ab29b35b07e0770a4e426654bdf1611c40d2c0e34afb5450b47",
+  "wholeSourceEqualExcludingCommentOnlyLines": true,
+  "difference": "Only one Stage38 documentation comment replaces two comment lines; all executable code including followerRelease identical. Git object read locally; no remote write.",
+  "compilerProof": "run.mjs invokes production HonroMaps.createBattle(s,project,app.profile), then deep-equality asserts compiled b.honroAct4Design.geometry40.followerRelease. There is no PACING_OPTIN branch and no battle config assignment. Both serialized geometry copies carry config.",
+  "testCandidateSha256": "fe3bc2758c3e21db4dd4656a1fef1caa95297e601e2af8422dae8e088c757c2e"
+}

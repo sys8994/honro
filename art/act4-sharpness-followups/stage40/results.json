@@ -1,0 +1,328 @@
+{
+  "status": "passed isolated NPC route fixtures; browser and normal gameplay not run",
+  "scope": "Enemies removed; boarding-dialogue termination explicitly set; production observer/physics/water; no fabricated receipts or campaign complete. Runtime frozen isolated v4; both candidate geometry copies explicitly opted in.",
+  "results": {
+    "normal": {
+      "sha": "fe3bc2758c3e21db4dd4656a1fef1caa95297e601e2af8422dae8e088c757c2e",
+      "sourceSha": "dbcfd353d30c4ab29b35b07e0770a4e426654bdf1611c40d2c0e34afb5450b47",
+      "phases": [
+        {
+          "phase": "boarding",
+          "seconds": 0
+        },
+        {
+          "phase": "sailing",
+          "seconds": 44.775
+        },
+        {
+          "phase": "landed",
+          "seconds": 61.38333333333333
+        },
+        {
+          "phase": "safe",
+          "seconds": 87.7
+        }
+      ],
+      "resumed": [],
+      "spacing": {
+        "minActiveDistance": 377.0360271084087,
+        "below160": 0,
+        "minSample": {
+          "seconds": 78.68333333333334,
+          "phase": "landed",
+          "leader": {
+            "x": 4012.2736541131094,
+            "y": 2271.3360114370184,
+            "index": 5
+          },
+          "follower": {
+            "x": 3982.7211284711216,
+            "y": 2647.2120734120695,
+            "index": 2
+          }
+        },
+        "overtakes": 0,
+        "examples": [],
+        "delayFrames": 0
+      },
+      "resets": 0,
+      "overlapFrames": 0,
+      "rows": [
+        {
+          "id": "a4-rescue-0",
+          "x": 4673.093249741269,
+          "y": 2009.9915101345402,
+          "hp": 1450,
+          "grounded": true,
+          "support": "approved40-coast-east"
+        },
+        {
+          "id": "a4-rescue-1",
+          "x": 4592.301550700684,
+          "y": 2051.0793797197266,
+          "hp": 1450,
+          "grounded": true,
+          "support": "approved40-coast-east"
+        },
+        {
+          "id": "a4-rescue-2",
+          "x": 4752.782192133129,
+          "y": 1968.553260090773,
+          "hp": 1450,
+          "grounded": true,
+          "support": "approved40-coast-east"
+        },
+        {
+          "id": "a4-rescue-3",
+          "x": 4833.0546496437355,
+          "y": 1930.778140142506,
+          "hp": 1450,
+          "grounded": true,
+          "support": "approved40-coast-east"
+        }
+      ]
+    },
+    "normal-resume": {
+      "sha": "fe3bc2758c3e21db4dd4656a1fef1caa95297e601e2af8422dae8e088c757c2e",
+      "sourceSha": "dbcfd353d30c4ab29b35b07e0770a4e426654bdf1611c40d2c0e34afb5450b47",
+      "phases": [
+        {
+          "phase": "boarding",
+          "seconds": 0
+        },
+        {
+          "phase": "sailing",
+          "seconds": 44.775
+        },
+        {
+          "phase": "landed",
+          "seconds": 61.38333333333333
+        },
+        {
+          "phase": "safe",
+          "seconds": 87.7
+        }
+      ],
+      "resumed": [
+        {
+          "seconds": 22,
+          "phase": "boarding"
+        },
+        {
+          "seconds": 36.1,
+          "phase": "boarding"
+        },
+        {
+          "seconds": 52,
+          "phase": "sailing"
+        },
+        {
+          "seconds": 67,
+          "phase": "landed"
+        },
+        {
+          "seconds": 74.3,
+          "phase": "landed"
+        },
+        {
+          "seconds": 80.7,
+          "phase": "landed"
+        }
+      ],
+      "spacing": {
+        "minActiveDistance": 377.0360271084087,
+        "below160": 0,
+        "minSample": {
+          "seconds": 78.68333333333334,
+          "phase": "landed",
+          "leader": {
+            "x": 4012.2736541131094,
+            "y": 2271.3360114370184,
+            "index": 5
+          },
+          "follower": {
+            "x": 3982.7211284711216,
+            "y": 2647.2120734120695,
+            "index": 2
+          }
+        },
+        "overtakes": 0,
+        "examples": [],
+        "delayFrames": 0
+      },
+      "resets": 0,
+      "overlapFrames": 0,
+      "rows": [
+        {
+          "id": "a4-rescue-0",
+          "x": 4673.093249741269,
+          "y": 2009.9915101345402,
+          "hp": 1450,
+          "grounded": true,
+          "support": "approved40-coast-east"
+        },
+        {
+          "id": "a4-rescue-1",
+          "x": 4592.301550700684,
+          "y": 2051.0793797197266,
+          "hp": 1450,
+          "grounded": true,
+          "support": "approved40-coast-east"
+        },
+        {
+          "id": "a4-rescue-2",
+          "x": 4752.782192133129,
+          "y": 1968.553260090773,
+          "hp": 1450,
+          "grounded": true,
+          "support": "approved40-coast-east"
+        },
+        {
+          "id": "a4-rescue-3",
+          "x": 4833.0546496437355,
+          "y": 1930.778140142506,
+          "hp": 1450,
+          "grounded": true,
+          "support": "approved40-coast-east"
+        }
+      ]
+    },
+    "delayed-resume": {
+      "sha": "fe3bc2758c3e21db4dd4656a1fef1caa95297e601e2af8422dae8e088c757c2e",
+      "sourceSha": "dbcfd353d30c4ab29b35b07e0770a4e426654bdf1611c40d2c0e34afb5450b47",
+      "phases": [
+        {
+          "phase": "boarding",
+          "seconds": 0
+        },
+        {
+          "phase": "sailing",
+          "seconds": 44.775
+        },
+        {
+          "phase": "landed",
+          "seconds": 61.38333333333333
+        },
+        {
+          "phase": "safe",
+          "seconds": 101.99166666666666
+        }
+      ],
+      "resumed": [
+        {
+          "seconds": 22,
+          "phase": "boarding"
+        },
+        {
+          "seconds": 36.1,
+          "phase": "boarding"
+        },
+        {
+          "seconds": 52,
+          "phase": "sailing"
+        },
+        {
+          "seconds": 67,
+          "phase": "landed"
+        },
+        {
+          "seconds": 74.3,
+          "phase": "landed"
+        },
+        {
+          "seconds": 80.7,
+          "phase": "landed"
+        }
+      ],
+      "spacing": {
+        "minActiveDistance": 162.31611111229685,
+        "below160": 0,
+        "minSample": {
+          "seconds": 90.44166666666666,
+          "phase": "landed",
+          "leader": {
+            "x": 3740.0000010357744,
+            "y": 2490.0000018989194,
+            "index": 3
+          },
+          "follower": {
+            "x": 3846.9732581918774,
+            "y": 2612.0788378207685,
+            "index": 2
+          }
+        },
+        "overtakes": 0,
+        "examples": [],
+        "delayFrames": 3600
+      },
+      "resets": 0,
+      "overlapFrames": 0,
+      "rows": [
+        {
+          "id": "a4-rescue-0",
+          "x": 4673.093249741269,
+          "y": 2009.9915101345402,
+          "hp": 1450,
+          "grounded": true,
+          "support": "approved40-coast-east"
+        },
+        {
+          "id": "a4-rescue-1",
+          "x": 4592.301550700684,
+          "y": 2051.0793797197266,
+          "hp": 1450,
+          "grounded": true,
+          "support": "approved40-coast-east"
+        },
+        {
+          "id": "a4-rescue-2",
+          "x": 4752.782192133129,
+          "y": 1968.553260090773,
+          "hp": 1450,
+          "grounded": true,
+          "support": "approved40-coast-east"
+        },
+        {
+          "id": "a4-rescue-3",
+          "x": 4833.0546496437355,
+          "y": 1930.778140142506,
+          "hp": 1450,
+          "grounded": true,
+          "support": "approved40-coast-east"
+        }
+      ]
+    }
+  },
+  "normalResumeExactEquality": [
+    "trace",
+    "rows",
+    "phases",
+    "returnEscort",
+    "water"
+  ],
+  "priorV4ComparisonNewlyExecuted": {
+    "trace": true,
+    "rows": true,
+    "phases": true,
+    "returnEscort": true,
+    "water": true
+  },
+  "allFourSafeWithOriginalHP": true,
+  "twoPassengersTwoLandRouteResidents": true,
+  "waterRecoveries": 0,
+  "inputRemainsUnchanged": true,
+  "preservation": {
+    "input": "_local/reports/act4-sharpness-rollout/stage40/candidate-v2-sharp-extractions.json",
+    "inputSha": "7b44978d46994f555720e8dc723723c24b60c2e983b5c73abc8eeb631e843a89",
+    "candidateSha": "fe3bc2758c3e21db4dd4656a1fef1caa95297e601e2af8422dae8e088c757c2e",
+    "onlyTwoConfigAdds": true,
+    "assetsUnchanged": true,
+    "allOtherDataDeepEqual": true,
+    "runtimeV4Sha": "dbcfd353d30c4ab29b35b07e0770a4e426654bdf1611c40d2c0e34afb5450b47",
+    "frozenRuntimePartsSha": "fa1a9f0d21e7dea95c7445ee22b2adf67daf870cda6c5d1df7f1d285247304dc",
+    "scope": "Isolated candidate/runtime; shared files not modified"
+  },
+  "renderingLimit": "Native Canvas only, not actual browser",
+  "initialRenderFailure": "First Native rendering omitted coast renderer modules and showed passengers without boat. Discarded; corrected to load production coast renderer and FixtureApp before recapture.",
+  "initialHarnessFailure": "Render bundle used in model VM lacked Path2D; corrected by freezing model-only runtime separately from native render bundle."
+}

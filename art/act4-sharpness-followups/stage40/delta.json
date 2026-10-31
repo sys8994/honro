@@ -1,0 +1,32 @@
+[
+  {
+    "op": "add",
+    "path": "/stages/0/design/act4/geometry40/followerRelease",
+    "value": {
+      "boardingIndex": 7,
+      "passengerIndex": 2,
+      "minSeparation": 160,
+      "passengerJumpClearBounds": {
+        "x1": 4000,
+        "x2": 5100,
+        "y1": 1750,
+        "y2": 2350
+      }
+    }
+  },
+  {
+    "op": "add",
+    "path": "/stages/0/initialState/honroAct4Design/geometry40/followerRelease",
+    "value": {
+      "boardingIndex": 7,
+      "passengerIndex": 2,
+      "minSeparation": 160,
+      "passengerJumpClearBounds": {
+        "x1": 4000,
+        "x2": 5100,
+        "y1": 1750,
+        "y2": 2350
+      }
+    }
+  }
+]

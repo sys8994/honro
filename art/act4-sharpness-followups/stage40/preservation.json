@@ -1,0 +1,11 @@
+{
+  "input": "_local/reports/act4-sharpness-rollout/stage40/candidate-v2-sharp-extractions.json",
+  "inputSha": "7b44978d46994f555720e8dc723723c24b60c2e983b5c73abc8eeb631e843a89",
+  "candidateSha": "fe3bc2758c3e21db4dd4656a1fef1caa95297e601e2af8422dae8e088c757c2e",
+  "onlyTwoConfigAdds": true,
+  "assetsUnchanged": true,
+  "allOtherDataDeepEqual": true,
+  "runtimeV4Sha": "dbcfd353d30c4ab29b35b07e0770a4e426654bdf1611c40d2c0e34afb5450b47",
+  "frozenRuntimePartsSha": "fa1a9f0d21e7dea95c7445ee22b2adf67daf870cda6c5d1df7f1d285247304dc",
+  "scope": "Isolated candidate/runtime; shared files not modified"
+}
