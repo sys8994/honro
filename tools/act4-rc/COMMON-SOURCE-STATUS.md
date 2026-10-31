@@ -125,3 +125,7 @@ Independent source `c3f854c4da3ea905cf2ee70495d291bc4b60bf23` integrates the nar
 ## 2026-10-31 Act 4 reader observation guard
 
 Source `467a636e` incorporates only the observer/Next race guard; `story.js` SHA-256 `f28602e6bdd1c92c3db5e31925ea6b79492368da754cf323086cf35d3f30c301`, `act4-events.js` SHA-256 `692910ae45def6f37ff65291d208048b1763cf1c8cba6431b704d43cb7af7049`. Scope, QA build hashes, normal keyboard, touch, explicit skip, same-context reload and remaining accessibility limitations are recorded in `READER-GUARD-INTEGRATION.md`. The race is reproduced but not established as the historical missing-receipt cause. Earlier mission runs retain their recorded source.
+
+## 2026-10-31 Exit objective credit and outcome-save warning
+
+Common source `83023978` adds once-only objective contribution for confirmed 33/34/37/38 exit proofs, and `bb968b4e` adds a persistent retryable warning on normal outcome-save failure. Their independent tests, exact hashes, synthetic actual-quota scope, and worker's distinct original 33 pre-exit run are in `EXIT-REWARD-AND-SAVE-FAILURE.md`. Existing stage runs retain their actual run source and this is not a new complete 34/37/38 playthrough.
