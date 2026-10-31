@@ -1,3 +1,7 @@
+## 2026-10-31 · 항구 수면과 지형 테두리 선택 표시
+
+4막 nativeArt에서 유효한 harborWater 설정이 있을 때만 수면을 그리며 미설정·기존 장·잘못된 값은 기존 렌더를 유지한다. 배는 수면 뒤가 아닌 기존 지연 렌더 순서를 따른다. 이미 보행 테두리를 그린 자산은 `authoredWalkRim` 선택 및 실제 covered 지형일 때만 중복 안내선을 생략한다. `act4-harbor-water-guard`, `act4-authored-walk-rim`, `terrain-readability` 합성/기존 검사가 통과했다. 실제 31/32 승인 자산 및 게임 화면은 이 환경에서 확인하지 못했다.
+
 ## 2026-10-31 · 추적 벡터 복합 경로 보존
 
 긴 추적 경로를 제한된 dParts에 보관하면서 순서·상대 moveto·구멍을 유지해 하나의 Path2D/한 번의 채움으로 렌더한다. 분할 시 원래 문자열의 앞 공백도 보존한다. 합성 fixture에서 nonzero/evenodd, 반투명·상위 clip, 캐시, 비정상 입력과 자산 한도를 검사하고 `vector-symbols`, `vector-clip-seams`도 통과했다. 승인 31/32장 원본 fixture는 이 환경에 없어 해당 RGBA 비교·실제 게임 배율 확인은 미실행이다.

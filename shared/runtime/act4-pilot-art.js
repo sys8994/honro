@@ -4,6 +4,7 @@ if(G.HonroAct4PilotArt)return;
 // authoritative. No collision, actor, event, or authored instance is rewritten.
 const layers=Object.freeze({background:'back',structure:'structural-back',body:'mid',rear:'prop',front:'front'});
 function config(b){const q=b?.honroMap?.nativeArt;return b?.honroStage>=31&&b.honroStage<=40&&q?.version===1&&Array.isArray(q.coveredTerrainIds)?q:null;}
+function validHarbor(h){const finite=v=>Number.isFinite(v)&&Math.abs(v)<=1000000;return !!(h&&['surface','left','right','bottom'].every(k=>finite(h[k]))&&h.right>h.left&&h.right-h.left<=100000&&h.bottom>h.surface&&Array.isArray(h.shore)&&h.shore.length>=2&&h.shore.length<=64&&h.shore.every(p=>Array.isArray(p)&&p.length===2&&p.every(finite)));}
 function native(l,b){return !!(config(b)&&Object.hasOwn(layers,l?.nativeArtLayer)&&l.layer===layers[l.nativeArtLayer]&&l.kind==='canonical-element'&&l.asset?.vector&&!l.asset.collision?.length&&!l.collisionIds?.length&&!l.honroElementCollision);}
 function terrainIds(l){return Array.isArray(l?.nativeTerrainIds)?l.nativeTerrainIds:(l?.nativeTerrainId?[l.nativeTerrainId]:[]);}
 function bodyLive(l,b){const ids=terrainIds(l);return ids.length>0&&new Set(ids).size===ids.length&&ids.every(id=>typeof id==='string'&&b.terrain?.some(t=>t.id===id&&!t.broken));}
@@ -42,7 +43,9 @@ if(S){
  // Existing boat event renders in background(), before opaque native scenery.
  // Defer only that existing instance to the world-space live-water pass.
  const background=S.background;S.background=function(c,w,h,b,...args){const prior=this._nativeArtBackground;this._nativeArtDeferredBoat=null;this._nativeArtBackground=!!config(b);try{return background?.call(this,c,w,h,b,...args);}finally{this._nativeArtBackground=prior;}};
- const water=S.liveWater;S.liveWater=function(c,b,...args){const out=water?.call(this,c,b,...args);const boat=this._nativeArtDeferredBoat;this._nativeArtDeferredBoat=null;if(config(b)&&boat)this.landmark(c,boat);return out;};
+ const water=S.liveWater;S.liveWater=function(c,b,...args){const out=water?.call(this,c,b,...args),harbor=b.honroMap?.act4?.harborWater;
+  if(config(b)&&validHarbor(harbor)){c.save();c.beginPath();c.moveTo(harbor.shore[0][0],harbor.surface);c.lineTo(harbor.right,harbor.surface);c.lineTo(harbor.right,harbor.bottom);for(const p of [...harbor.shore].reverse())c.lineTo(p[0],p[1]);c.closePath();c.clip();const gradient=c.createLinearGradient(0,harbor.surface,0,harbor.bottom);gradient.addColorStop(0,'#456b85d9');gradient.addColorStop(.45,'#244963e8');gradient.addColorStop(1,'#16384fed');c.fillStyle=gradient;c.fillRect(harbor.left-400,harbor.surface,harbor.right-harbor.left+800,harbor.bottom-harbor.surface);c.strokeStyle='#a4c4d145';c.lineWidth=3;for(let j=0;j<6;j++){const yy=harbor.surface+12+j*j*17;c.beginPath();for(let x=harbor.left-300;x<harbor.right;x+=24){const y=yy+Math.sin(x*.008+(this.time||0)*.7+j)*3;if(x===harbor.left-300)c.moveTo(x,y);else c.lineTo(x,y);}c.stroke();}c.restore();}
+  const boat=this._nativeArtDeferredBoat;this._nativeArtDeferredBoat=null;if(config(b)&&boat)this.landmark(c,boat);return out;};
  const tone=S.environmentTone;S.environmentTone=function(c,w,h,b,...args){if(config(b)?.preservePalette===true)return;return tone?.call(this,c,w,h,b,...args);};
  const cacheKey=S._worldCacheKey;S._worldCacheKey=function(b,...args){const q=config(b);return cacheKey.call(this,b,...args)+(q?':native-art-1:'+JSON.stringify(q):'');};
 }
