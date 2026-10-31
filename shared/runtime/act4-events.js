@@ -43,13 +43,15 @@ function play(app,key,bark=false){const b=app.engine.b,q=memory(b),e=event(q,key
 function quiet(b){return !b.units.some(u=>u.side===1&&alive(u))&&!b.projectiles.length&&!b.volley&&b.phase==='aim'&&(!P.quietReady||P.quietReady(b));}
 const tourViews=[{key:'boat',x:550,y:1770,scale:.64,point:{x:500,y:1735}},{key:'dock',x:6150,y:1790,scale:.56,point:{x:6150,y:1890}},{key:'threat',x:1510,y:1780,scale:.55,point:{x:1390,y:1864}}];
 function arrivalTour(app,q,dt){const t=q.arrivalTour;if(!t?.active)return false;if(app.modal.classList.contains('open')||G.document.hidden)return true;const v=(app.engine.b.honroAct4Design?.boarding?.tourViews||tourViews)[t.index];if(!v){t.active=false;if(!P.startCamera?.(app))Object.assign(app.scene,{manual:false,x:boarding(app.engine.b).startX??450,y:boarding(app.engine.b).startY??1840,scale:G.innerWidth<600?.62:.94});play(app,'arrival');return false;}Object.assign(app.scene,{manual:true,x:v.x,y:v.y,scale:v.scale,storyTween:null,cinematic:null,goalFocus:null,storyFrame:null});if(t.seen?.[v.key]!==undefined){t.elapsed=(t.elapsed||0)+dt;if(t.elapsed>.8){t.index++;t.elapsed=0;}}return true;}
-function observe(app,dt){const b=app.engine?.b;if(!(b?.honroCustom||b?.honroAct4Official===1)||!b.honroAct4Preview)return;const q=memory(b),n=b.honroAct4Preview;q.clock+=dt;
+function observe(app,dt){const b=app.engine?.b,node=G.document.getElementById('act4-banter');if(!(b?.honroCustom||b?.honroAct4Official===1)||!b.honroAct4Preview||G.document.hidden||app.modal?.classList.contains('open')){if(node)node.hidden=true;return;}const q=memory(b),n=b.honroAct4Preview;q.clock+=dt;
  P.coastObserve?.(app,dt);
  if(q.reader){const e=event(q,q.reader.key),d=app.dialogue,line=d?.lines[d.index],node=G.document.getElementById('story-line');
   if(line?.[2]?.act4PreviewRow&&node?.textContent===line[1]&&shown(node)&&!app.modal.classList.contains('open')&&!G.document.hidden&&app.canSpeak(line[0])&&(!P.rowAllowed||P.rowAllowed(app,line[2].act4PreviewRow)))receipt(q,e,line[2].act4PreviewRow);
   if(!d){e.terminal=true;for(const [id]of seed(n,q.reader.key).lines)if(!e.presented.includes(id)&&!e.retired.includes(id))e.retired.push(id);q.reader=null;}
  }
- if(q.bark&&!app.dialogue){const k=q.bark,e=event(q,k.key),node=act4BarkHost();
+ // Reviewed generic subtitles keep priority; their queued time must not overlap Act 4 speech.
+ const generic=G.document.getElementById('banter'),genericBusy=!!b.honroState?.reviewedBarks?.queue?.length||!!(generic&&!generic.hidden);
+ if(q.bark&&!app.dialogue&&!genericBusy){const k=q.bark,e=event(q,k.key),node=act4BarkHost();
   while(k.index<k.lines.length&&(!app.canSpeak(k.lines[k.index][1])||(P.rowAllowed&&!P.rowAllowed(app,k.lines[k.index][0])))){const id=k.lines[k.index][0];if(!e.retired.includes(id))e.retired.push(id);k.index++;k.elapsed=0;}
   const line=k.lines[k.index];if(!line){if(node)node.hidden=true;e.terminal=true;q.bark=null;}
   else if(node&&!G.document.hidden){node.hidden=false;node.setAttribute('role','status');node.replaceChildren();const strong=G.document.createElement('strong');strong.textContent=line[1];node.append(strong,G.document.createTextNode(' '+line[2]));if(!shown(node))return;receipt(q,e,line[0]);k.elapsed+=dt;if(k.elapsed>=Math.max(2.4,1.8+line[2].length*.075)){k.index++;k.elapsed=0;}}
