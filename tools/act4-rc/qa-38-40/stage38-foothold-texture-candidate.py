@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Create an isolated, unapproved stage-38 foothold candidate from pinned QA world.
 
-UNREVIEWED: experimental crop of the existing approved rock, not for release.
+REJECTED VISUALLY: crop copies wood and covers bridge entry; reproduce only.
 Never writes the repository's canonical world or loosens the release guard. The
 small rock's painted upper edge and physical support share the same vertices.
 """

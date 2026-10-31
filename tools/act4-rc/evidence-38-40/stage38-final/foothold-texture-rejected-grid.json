@@ -1,0 +1,147 @@
+{
+  "status": "rejected visually; copied wood fragment and blocks bridge entrance",
+  "scope": "isolated diagnostic clone only; positions, movement budget and equipment intentionally reset in clone; not normal play",
+  "inputSha256": "d79309d76726fa21bd3df7a517612ab71fb90a5addfa00a6f6180c0a5c46d498",
+  "holdMs": 1300,
+  "candidateWorldSha256": "efadb5e3e70e1263d56a56abf03ed4c8f51a1da4c95f2b200f4336057c0f6954",
+  "trials": [
+    {
+      "final": {
+        "x": 4909.862622926421,
+        "y": 2595.89660208422,
+        "grounded": true,
+        "jumping": false,
+        "equipment": [
+          "itm_se_05",
+          "itm_co_11"
+        ]
+      },
+      "minY": 2489.149165765762,
+      "maxX": 4909.862622926421,
+      "jumpObserved": true,
+      "start": {
+        "x": 4740,
+        "y": 2662.5,
+        "grounded": true,
+        "equipment": [
+          "itm_se_05",
+          "itm_co_11"
+        ]
+      }
+    },
+    {
+      "final": {
+        "x": 4932.7433161390345,
+        "y": 2537.063604698018,
+        "grounded": true,
+        "jumping": false,
+        "equipment": [
+          "itm_se_05",
+          "itm_co_11"
+        ]
+      },
+      "minY": 2475.5166319455298,
+      "maxX": 4932.7433161390345,
+      "jumpObserved": true,
+      "start": {
+        "x": 4780,
+        "y": 2661.7727272727275,
+        "grounded": true,
+        "equipment": [
+          "itm_se_05",
+          "itm_co_11"
+        ]
+      }
+    },
+    {
+      "final": {
+        "x": 4931.624009351648,
+        "y": 2543.3081583539633,
+        "grounded": true,
+        "jumping": false,
+        "equipment": [
+          "itm_se_05",
+          "itm_co_11"
+        ]
+      },
+      "minY": 2527.258324652778,
+      "maxX": 4931.624009351648,
+      "jumpObserved": true,
+      "start": {
+        "x": 4820,
+        "y": 2661.0454545454545,
+        "grounded": true,
+        "equipment": [
+          "itm_se_05",
+          "itm_co_11"
+        ]
+      }
+    },
+    {
+      "final": {
+        "x": 4920.6250000000155,
+        "y": 2456.9652777777355,
+        "grounded": true,
+        "jumping": false,
+        "equipment": [
+          "itm_se_05"
+        ]
+      },
+      "minY": 2448.8984192009825,
+      "maxX": 4920.6250000000155,
+      "jumpObserved": true,
+      "start": {
+        "x": 4740,
+        "y": 2662.5,
+        "grounded": true,
+        "equipment": [
+          "itm_se_05"
+        ]
+      }
+    },
+    {
+      "final": {
+        "x": 4932.29166666668,
+        "y": 2539.5833333332607,
+        "grounded": true,
+        "jumping": false,
+        "equipment": [
+          "itm_se_05"
+        ]
+      },
+      "minY": 2476.0086677433815,
+      "maxX": 4932.29166666668,
+      "jumpObserved": true,
+      "start": {
+        "x": 4780,
+        "y": 2661.7727272727275,
+        "grounded": true,
+        "equipment": [
+          "itm_se_05"
+        ]
+      }
+    },
+    {
+      "final": {
+        "x": 4940.416666666677,
+        "y": 2494.254385964855,
+        "grounded": true,
+        "jumping": false,
+        "equipment": [
+          "itm_se_05"
+        ]
+      },
+      "minY": 2475.2813950161085,
+      "maxX": 4940.416666666677,
+      "jumpObserved": true,
+      "start": {
+        "x": 4820,
+        "y": 2661.0454545454545,
+        "grounded": true,
+        "equipment": [
+          "itm_se_05"
+        ]
+      }
+    }
+  ]
+}
