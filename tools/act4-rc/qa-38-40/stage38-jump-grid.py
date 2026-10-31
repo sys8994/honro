@@ -5,7 +5,7 @@ This intentionally edits the diagnostic clone's actor coordinates, velocity,
 movement budget and equipment. Never run it in an original gameplay context;
 its trials cannot count as normal gameplay or victory evidence.
 """
-import argparse, hashlib, json
+import argparse, hashlib, json, time
 from pathlib import Path
 from playwright.sync_api import sync_playwright
 
@@ -26,10 +26,25 @@ with sync_playwright() as pw:
  result=[]
  for equipped in (True,False):
   for start in (4740,4780,4820):
-   setup=page.evaluate('''({start,equipped})=>{let e=HonroApp.engine,u=e.unit('archer');if(e.active!==u)throw Error('archer not active');let floor=e.surface(start,2600,2700);if(!floor)throw Error('no original floor');u.x=start;u.y=floor.y;u.vx=0;u.vy=0;u.jumping=false;u.airborne=false;u.moveLeft=u.maxMove;delete u.platformDrop;u.equipmentIds=equipped?['itm_se_05','itm_co_11']:['itm_se_05'];window.__grid={frames:[],running:true};let t0=performance.now();function f(t){if(!window.__grid.running)return;let a=e.unit('archer'),g=e.grounded(a);if(window.__grid.frames.length<240)window.__grid.frames.push({ms:Math.round(t-t0),x:a.x,y:a.y,vy:a.vy,jumping:!!a.jumping,grounded:g});if(t-t0<6500)requestAnimationFrame(f);else window.__grid.running=false;}requestAnimationFrame(f);return {x:u.x,y:u.y,grounded:e.grounded(u),equipment:u.equipmentIds,surface:floor};}''',{'start':start,'equipped':equipped})
+   setup=page.evaluate('''({start,equipped})=>{let e=HonroApp.engine,u=e.unit('archer');if(e.active!==u)throw Error('archer not active');let floor=e.surface(start,2450,2700);if(!floor)throw Error('no original floor');u.x=start;u.y=floor.y;u.vx=0;u.vy=0;u.jumping=false;u.airborne=false;u.moveLeft=u.maxMove;delete u.platformDrop;u.equipmentIds=equipped?['itm_se_05','itm_co_11']:['itm_se_05'];window.__grid={frames:[],running:true};let t0=performance.now();function f(t){if(!window.__grid.running)return;let a=e.unit('archer'),g=e.grounded(a);if(window.__grid.frames.length<240)window.__grid.frames.push({ms:Math.round(t-t0),x:a.x,y:a.y,vy:a.vy,jumping:!!a.jumping,grounded:g});if(t-t0<6500)requestAnimationFrame(f);else window.__grid.running=false;}requestAnimationFrame(f);return {x:u.x,y:u.y,grounded:e.grounded(u),equipment:u.equipmentIds,surface:floor};}''',{'start':start,'equipped':equipped})
    assert setup['grounded'],setup
    # Actual simultaneous keyboard input, not an assigned trajectory or velocity.
-   page.keyboard.down('Control');page.keyboard.down('ArrowRight');page.keyboard.up('Control');page.wait_for_timeout(a.hold_ms);page.keyboard.up('ArrowRight');page.wait_for_timeout(6500)
+   page.keyboard.down('Control');page.keyboard.down('ArrowRight');page.keyboard.up('Control');page.wait_for_timeout(a.hold_ms);page.keyboard.up('ArrowRight')
+   try:
+    # A real story dialogue pauses physics; close visible rows by ordinary UI
+    # input in this diagnostic clone, then wait for actual landing.
+    deadline=time.monotonic()+30
+    while time.monotonic()<deadline:
+     status=page.evaluate("()=>({dialogue:!!HonroApp.dialogue,ready:HonroApp.engine?.active?.id==='archer'&&HonroApp.engine.grounded(HonroApp.engine.active)&&HonroApp.canInput()})")
+     if status['ready']:break
+     if status['dialogue']:
+      page.wait_for_timeout(700);page.locator('[data-action=dialogue-next]').click(timeout=10000)
+     else:page.wait_for_timeout(300)
+    else:raise TimeoutError('landing/input readiness exceeded 30 seconds')
+   except Exception:
+    state=page.evaluate("()=>{let a=HonroApp,e=a.engine,u=e.unit('archer');return {active:e.active?.id,x:u.x,y:u.y,vy:u.vy,jumping:u.jumping,grounded:e.grounded(u),can:a.canInput(),phase:e.b.phase,dialogue:!!a.dialogue,frames:window.__grid.frames}}")
+    Path(a.out).write_text(json.dumps({'scope':'diagnostic clone only; timeout','inputSha256':a.sha256,'holdMs':a.hold_ms,'start':setup,'state':state},ensure_ascii=False,indent=2)+'\n');page.screenshot(path=str(Path(a.out).with_suffix('.png')));raise
+   page.wait_for_timeout(1000)
    trace=page.evaluate('''()=>{window.__grid.running=false;let e=HonroApp.engine,u=e.unit('archer');return {frames:window.__grid.frames,final:{x:u.x,y:u.y,grounded:e.grounded(u),jumping:!!u.jumping,equipment:u.equipmentIds}}}''')
    frames=trace['frames'];result.append({'start':setup,'frames':frames,'final':trace['final'],'minY':min(f['y'] for f in frames),'maxX':max(f['x'] for f in frames),'jumpObserved':any(f['jumping'] or not f['grounded'] for f in frames)})
    print(json.dumps({'equipped':equipped,'start':start,'minY':result[-1]['minY'],'maxX':result[-1]['maxX'],'final':trace['final'],'jumpObserved':result[-1]['jumpObserved']},ensure_ascii=False),flush=True)

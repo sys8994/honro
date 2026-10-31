@@ -1,0 +1,147 @@
+{
+  "status": "rejected; art overlays bridge and residents, not suitable for integration or deployment",
+  "scope": "isolated diagnostic clone only; positions, movement budget and equipment intentionally reset in clone; not normal play",
+  "inputSha256": "d79309d76726fa21bd3df7a517612ab71fb90a5addfa00a6f6180c0a5c46d498",
+  "holdMs": 1300,
+  "candidateWorldSha256": "d57c8ff5448554cec038d20f4a74aa8756c802e667214da23983d63581a57ab5",
+  "trials": [
+    {
+      "final": {
+        "x": 4917.862622926421,
+        "y": 2572.7701457181347,
+        "grounded": true,
+        "jumping": false,
+        "equipment": [
+          "itm_se_05",
+          "itm_co_11"
+        ]
+      },
+      "minY": 2489.149165765762,
+      "maxX": 4917.862622926421,
+      "jumpObserved": true,
+      "start": {
+        "x": 4740,
+        "y": 2662.5,
+        "grounded": true,
+        "equipment": [
+          "itm_se_05",
+          "itm_co_11"
+        ]
+      }
+    },
+    {
+      "final": {
+        "x": 4945.596533936932,
+        "y": 2488.558091346005,
+        "grounded": true,
+        "jumping": false,
+        "equipment": [
+          "itm_se_05",
+          "itm_co_11"
+        ]
+      },
+      "minY": 2475.5166319455298,
+      "maxX": 4945.596533936932,
+      "jumpObserved": true,
+      "start": {
+        "x": 4780,
+        "y": 2661.7727272727275,
+        "grounded": true,
+        "equipment": [
+          "itm_se_05",
+          "itm_co_11"
+        ]
+      }
+    },
+    {
+      "final": {
+        "x": 4940.211138160057,
+        "y": 2403.6474572309558,
+        "grounded": true,
+        "jumping": false,
+        "equipment": [
+          "itm_se_05",
+          "itm_co_11"
+        ]
+      },
+      "minY": 2396.8488139227443,
+      "maxX": 4940.211138160057,
+      "jumpObserved": true,
+      "start": {
+        "x": 4820,
+        "y": 2588.8571428571427,
+        "grounded": true,
+        "equipment": [
+          "itm_se_05",
+          "itm_co_11"
+        ]
+      }
+    },
+    {
+      "final": {
+        "x": 4941.875000000017,
+        "y": 2490.535156249991,
+        "grounded": true,
+        "jumping": false,
+        "equipment": [
+          "itm_se_05"
+        ]
+      },
+      "minY": 2476.558029551864,
+      "maxX": 4941.875000000017,
+      "jumpObserved": true,
+      "start": {
+        "x": 4740,
+        "y": 2662.5,
+        "grounded": true,
+        "equipment": [
+          "itm_se_05"
+        ]
+      }
+    },
+    {
+      "final": {
+        "x": 4935.833333333347,
+        "y": 2513.2982456139775,
+        "grounded": true,
+        "jumping": false,
+        "equipment": [
+          "itm_se_05"
+        ]
+      },
+      "minY": 2476.0086677433815,
+      "maxX": 4935.833333333347,
+      "jumpObserved": true,
+      "start": {
+        "x": 4780,
+        "y": 2661.7727272727275,
+        "grounded": true,
+        "equipment": [
+          "itm_se_05"
+        ]
+      }
+    },
+    {
+      "final": {
+        "x": 4947.500000000011,
+        "y": 2383.8055555555256,
+        "grounded": true,
+        "jumping": false,
+        "equipment": [
+          "itm_se_05"
+        ]
+      },
+      "minY": 2375.255562058125,
+      "maxX": 4947.500000000011,
+      "jumpObserved": true,
+      "start": {
+        "x": 4820,
+        "y": 2588.8571428571427,
+        "grounded": true,
+        "equipment": [
+          "itm_se_05"
+        ]
+      }
+    }
+  ]
+}

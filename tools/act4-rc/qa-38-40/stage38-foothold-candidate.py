@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
 """Create an isolated, unapproved stage-38 foothold candidate from pinned QA world.
 
+REJECTED VISUALLY: the candidate covers the bridge/resident space; use only to
+reproduce the failure, never integrate or deploy it.
 Never writes the repository's canonical world or loosens the release guard. The
 small rock's painted upper edge and physical support share the same vertices.
 """
