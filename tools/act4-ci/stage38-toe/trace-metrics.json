@@ -1,0 +1,187 @@
+{
+  "source_sha256": "576f6f29fcfc068bdda03d18ae21592c5eedb0a29fa1a2a17e19dda7b034d628",
+  "color_input_sanitation": {
+    "operation": "RGB unchanged where original alpha>=128; RGB forced to white where alpha<128; original alpha separately traced natively as clip",
+    "file": "trace-color-input.png",
+    "sha256": "8270a0eecc21200783730832bf2c494b8ccd950a99fc4ebd45fa57622fe59749"
+  },
+  "source_to_raw_rgb_mae": 1.6337154961878948,
+  "source_silhouette_vs_native": {
+    "max_silhouette_deviation_px": 1.0,
+    "components_a": 1,
+    "components_b": 1
+  },
+  "source": "/workspace/scratch/fff510b4df37/honro-act4-direct-ci/_local/stage38-toe-art/vector-ready.png",
+  "source_size": [
+    512,
+    512
+  ],
+  "engine": "Inkscape 1.4 (e7c3feb100, 2024-10-09)",
+  "trace_action": "object-trace:16,true,true,false,4,1,0.2",
+  "native_headless_workaround": "/workspace/scratch/fff510b4df37/honro-act4-direct-ci/_local/stage38-toe-art/init-wrappers.so",
+  "raw": {
+    "paths": 17,
+    "segments": 1805,
+    "subpaths": 67,
+    "images": 0,
+    "bytes": 80211
+  },
+  "candidates": [
+    {
+      "file": "simplify-0.0001.svg",
+      "threshold": 0.0001,
+      "stats": {
+        "paths": 17,
+        "segments": 2500,
+        "subpaths": 67,
+        "images": 0,
+        "bytes": 124970
+      },
+      "metrics": {
+        "mean_abs_rgb": 0.029198296241510924,
+        "fraction_pixels_maxdiff_gt24": 0.0,
+        "p99_max_rgb": 1.0,
+        "max_silhouette_deviation_px": 0.0,
+        "components_a": 1,
+        "components_b": 1
+      },
+      "accepted": false
+    },
+    {
+      "file": "simplify-0.00015.svg",
+      "threshold": 0.00015,
+      "stats": {
+        "paths": 17,
+        "segments": 2113,
+        "subpaths": 67,
+        "images": 0,
+        "bytes": 105977
+      },
+      "metrics": {
+        "mean_abs_rgb": 0.029844052183861824,
+        "fraction_pixels_maxdiff_gt24": 0.0,
+        "p99_max_rgb": 1.0,
+        "max_silhouette_deviation_px": 0.0,
+        "components_a": 1,
+        "components_b": 1
+      },
+      "accepted": false
+    },
+    {
+      "file": "simplify-0.0002.svg",
+      "threshold": 0.0002,
+      "stats": {
+        "paths": 17,
+        "segments": 1868,
+        "subpaths": 67,
+        "images": 0,
+        "bytes": 93710
+      },
+      "metrics": {
+        "mean_abs_rgb": 0.031716490103528394,
+        "fraction_pixels_maxdiff_gt24": 0.0,
+        "p99_max_rgb": 1.0,
+        "max_silhouette_deviation_px": 0.0,
+        "components_a": 1,
+        "components_b": 1
+      },
+      "accepted": false
+    },
+    {
+      "file": "simplify-0.00025.svg",
+      "threshold": 0.00025,
+      "stats": {
+        "paths": 17,
+        "segments": 1714,
+        "subpaths": 67,
+        "images": 0,
+        "bytes": 86173
+      },
+      "metrics": {
+        "mean_abs_rgb": 0.033818233714384194,
+        "fraction_pixels_maxdiff_gt24": 0.0,
+        "p99_max_rgb": 1.0,
+        "max_silhouette_deviation_px": 0.0,
+        "components_a": 1,
+        "components_b": 1,
+        "internal_curve_hausdorff_upper_bound_px": 0.6823155106714323
+      },
+      "accepted": true
+    },
+    {
+      "file": "simplify-0.0005.svg",
+      "threshold": 0.0005,
+      "stats": {
+        "paths": 17,
+        "segments": 1293,
+        "subpaths": 67,
+        "images": 0,
+        "bytes": 65547
+      },
+      "metrics": {
+        "mean_abs_rgb": 0.052811965443729576,
+        "fraction_pixels_maxdiff_gt24": 3.814697265625e-06,
+        "p99_max_rgb": 2.0,
+        "max_silhouette_deviation_px": 0.0,
+        "components_a": 1,
+        "components_b": 1,
+        "internal_curve_hausdorff_upper_bound_px": 1.2180346792811783
+      },
+      "accepted": true
+    },
+    {
+      "file": "simplify-0.001.svg",
+      "threshold": 0.001,
+      "stats": {
+        "paths": 17,
+        "segments": 956,
+        "subpaths": 67,
+        "images": 0,
+        "bytes": 48541
+      },
+      "metrics": {
+        "mean_abs_rgb": 0.12190591151418251,
+        "fraction_pixels_maxdiff_gt24": 0.000164031982421875,
+        "p99_max_rgb": 5.0,
+        "max_silhouette_deviation_px": 0.0,
+        "components_a": 1,
+        "components_b": 1,
+        "internal_curve_hausdorff_upper_bound_px": 1.867776473502492
+      },
+      "accepted": false
+    }
+  ],
+  "selected": "simplify-0.0005.svg",
+  "final": {
+    "paths": 17,
+    "segments": 1293,
+    "subpaths": 67,
+    "images": 0,
+    "bytes": 64958
+  },
+  "final_metrics": {
+    "mean_abs_rgb": 0.052811965443729576,
+    "fraction_pixels_maxdiff_gt24": 3.814697265625e-06
+  },
+  "segment_reduction_percent": 28.36565096952909,
+  "bounds": {
+    "max_silhouette_deviation_px": 1.5,
+    "mean_abs_rgb_max": 0.8,
+    "fraction_pixels_maxdiff_gt24_max": 0.01
+  },
+  "note": "Pixel bounds compare final vector to raw Inkscape trace, not to original painterly concept. Segment count is parsed SVG path segments, not Bezier control-point count.",
+  "coordinate_precision_candidates": [
+    {
+      "decimals": 2,
+      "bytes": 40477,
+      "mean_abs_rgb": 0.05589839960235396,
+      "fraction_pixels_maxdiff_gt24": 3.814697265625e-06,
+      "internal_curve_hausdorff_upper_bound_px": 1.2050307449286395,
+      "raw_silhouette_deviation_px": 1.0,
+      "source_silhouette_deviation_px": 1.0,
+      "accepted": true
+    }
+  ],
+  "delivered_file": "04-final.svg",
+  "delivered_bytes": 40477
+}
