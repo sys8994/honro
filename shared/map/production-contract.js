@@ -43,11 +43,14 @@ function audit(project,id){const s=project.stages.find(v=>v.id===id),issues=[],a
  let compiled;try{compiled=G.HonroMaps.compile(s,project);}catch(e){add('T01','공통 컴파일 실패: '+e.message);return{stageId:id,fingerprint:fingerprint(project,id),issues,machinePass:false,qualityApproved:false};}
  for(const t of compiled.worldTerrain||[]){if(t.oneWay)continue;const ps=t.vertices;for(let i=0;i<ps.length;i++){const a=ps[i],b=ps[(i+1)%ps.length];if(Math.abs(a.x-b.x)<.01&&a.x>1&&a.x<s.width-1&&Math.max(a.y,b.y)>=s.terrainBounds?.bottom-1&&Math.abs(a.y-b.y)>s.height){add('T02','지하 끝까지 내려가는 내부 수직 절단면: x='+Math.round(a.x),t.id);}}}
  const surface=(x,y,id)=>G.HonroMapEngine.surfaceY(compiled.terrain.filter(t=>!id||t.id===id),x,y);
+ // Ground contact and walkable routes are different engine contracts. Actors
+ // may be supported by a steep exposed face; T03 still uses the 1.35 walk limit.
+ const contact=(x,y,id)=>{const C=G.HONRO_CORE,hit=C.terrainSurface(compiled.terrain.filter(t=>t.id===id),x,y-8,y+8,Infinity);return hit&&C.exposedSurface(compiled.terrain,hit.t,x,hit.y)?hit:null;};
  const enemy=s.units.filter(u=>u.team==='enemy'),players=s.units.filter(u=>u.team==='player');
  const roster=new Map();for(const e of card?.encounters||[]){if(!e.id||!e.purpose?.trim()||!e.targetZone||!['x','y','w','h'].every(k=>finite(e.targetZone[k]))||e.targetZone.w<=0||e.targetZone.h<=0)add('E02','교전군 목적·실제 대상 구역이 필요합니다.',e.id);
   for(const member of e.members||[]){if(roster.has(member.id))add('E02','적이 여러 군집에 중복 지정됐습니다.',member.id);roster.set(member.id,{...member,group:e.id});}
  }
- for(const u of enemy){const r=roster.get(u.id);if(!r||!roles.includes(r.role))add('E01','전투 역할이 없는 적입니다.',u.id);const spec=G.HonroWorld.archetypes[u.kind];if(spec?.flying){if(!r?.airVolume||!['x','y','w','h'].every(k=>finite(r.airVolume[k])))add('E01','공중 적의 이동·공격 여유 공간이 없습니다.',u.id);}else{const hit=surface(u.x,u.y,r?.supportId);if(!r?.supportId)add('E01','적이 사용할 실제 지지면을 지정하지 않았습니다.',u.id);else if(!hit||Math.abs(hit.y-u.y)>8)add('E01','선언한 지지면에 접지하지 않은 적입니다.',u.id);}}
+ for(const u of enemy){const r=roster.get(u.id);if(!r||!roles.includes(r.role))add('E01','전투 역할이 없는 적입니다.',u.id);const spec=G.HonroWorld.archetypes[u.kind];if(spec?.flying){if(!r?.airVolume||!['x','y','w','h'].every(k=>finite(r.airVolume[k])))add('E01','공중 적의 이동·공격 여유 공간이 없습니다.',u.id);}else{const hit=contact(u.x,u.y,r?.supportId);if(!r?.supportId)add('E01','적이 사용할 실제 지지면을 지정하지 않았습니다.',u.id);else if(!hit||Math.abs(hit.y-u.y)>8)add('E01','선언한 지지면에 접지하지 않은 적입니다.',u.id);}}
  for(const id of roster.keys())if(!enemy.some(u=>u.id===id))add('E02','군집에 존재하지 않는 적 ID가 있습니다.',id);
  for(const group of card?.encounters||[]){const actual=s.encounters.find(v=>v.id===group.id),ids=(group.members||[]).map(v=>v.id);if(!actual||actual.unitIds.length!==ids.length||ids.some(id=>!actual.unitIds.includes(id))||ids.some(id=>enemy.find(u=>u.id===id)?.encounterGroup!==group.id))add('E02','역할 문서의 군집과 실제 엔진 배치가 일치하지 않습니다.',group.id);}
  // Use actual production body dimensions rather than guessed visual radii.

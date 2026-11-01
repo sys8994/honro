@@ -5,7 +5,15 @@ process.env.HONRO_ACT4_RELEASE='1';
 const g=await runtime({legacyMaps:false}),P=g.HonroProductionContract,clone=v=>JSON.parse(JSON.stringify(v));
 const base=clone(g.HONRO_PROJECT),id='stage-31';
 const report=P.audit(base,id);
-assert(report.issues.some(v=>v.rule==='T02'),'The actual reported x6280 underground cut must fail');
+// Keep the historical failure as an explicit malformed fixture. The evolving
+// campaign need not retain that old cut forever for this regression to work.
+const cutProject=clone(base),cutStage=cutProject.stages.find(s=>s.id===id);
+const cutX=Math.min(6280,cutStage.width-100),cutY=Math.round(cutStage.height*.45);
+cutStage.terrains=[{id:'qa-internal-underground-cut',type:'solid',baseMaterial:'earth',
+ oneWay:false,breakable:false,points:[{x:0,y:cutY},{x:cutX,y:cutY},
+ {x:cutX,y:cutStage.terrainBounds.bottom},{x:0,y:cutStage.terrainBounds.bottom}],
+ playProjection:{bounds:clone(cutStage.playBounds),start:{x:0,y:cutY}}}];
+assert(P.audit(cutProject,id).issues.some(v=>v.rule==='T02'),'An authored internal underground cut must still fail');
 assert(report.issues.some(v=>v.rule==='E01'),'Unassigned enemy roles must fail');
 assert(report.issues.some(v=>v.rule==='P01'),'No existing-stage reference must fail');
 assert.equal(report.qualityApproved,false);
@@ -31,6 +39,24 @@ st.environment=g.HonroEnvironment.makeEnvironment(st);fixture.stages.push(st);fi
 const fc=fixture.production.cards[st.id];fc.intent='계약의 정상 입력 단위 검사';fc.referenceStages=['stage-3'];fc.budget={initial:1,elites:0,activeLimit:3,finiteSpawnCount:0,rationale:'Contract fixture only, not a campaign budget recommendation.'};fc.routes=[{id:'main',role:'primary',purpose:'지지면을 걷는다',points:[{x:100,y:600,supportId:'floor'},{x:1800,y:600,supportId:'floor'}]}];fc.encounters=[{id:'guard',purpose:'동쪽 구역 압박',targetZone:{x:900,y:400,w:1000,h:300},members:[{id:'foe',role:'vanguard',supportId:'floor'}]}];
 fc.cameraViews=['overview','normal','close','min-zoom','mobile','left-edge','right-edge'].map(kind=>({id:kind,kind,x:kind==='left-edge'?0:kind==='right-edge'?2000:1000,y:600,scale:kind==='overview'?.35:kind==='close'?.9:kind==='min-zoom'?g.HonroBounds.zoomLimits(800).min:.5,width:kind==='mobile'?390:800,height:kind==='mobile'?844:600}));fc.requiredProbes=['route','shot','enemy-action','objective'].map(kind=>({id:kind,kind,claim:'별도의 실제 엔진 관측 필요'}));
 const valid=P.audit(fixture,st.id);assert.equal(valid.machinePass,true,JSON.stringify(valid.issues));assert.equal(P.releaseStatus(fixture,st.id).exportAllowed,false,'Machine-valid geometry is not visual/gameplay approval');
+// A grounded steep face is not automatically a walkable route. Use explicit
+// geometry rather than accepting a special-case Stage31 actor or support ID.
+const steep=clone(fixture),ss=steep.stages.find(s=>s.id===st.id),sc=steep.production.cards[st.id];
+ss.terrains.push({id:'steep-contact',type:'solid',baseMaterial:'rock',oneWay:true,breakable:false,
+ points:[{x:1300,y:700},{x:1500,y:300},{x:1540,y:320},{x:1340,y:720}]});
+Object.assign(ss.units.find(u=>u.id==='foe'),{x:1400,y:500});
+sc.encounters[0].members[0].supportId='steep-contact';
+assert(!P.audit(steep,st.id).issues.some(v=>v.rule==='E01'),'Exposed steep contact agrees with Engine grounding');
+sc.routes.push({id:'bad-walk',role:'alternative',purpose:'Deliberately invalid walk-slope fixture',
+ points:[{x:1380,y:540,supportId:'steep-contact'},{x:1400,y:500,supportId:'steep-contact'}]});
+assert(P.audit(steep,st.id).issues.some(v=>v.rule==='T03'),'Steep contact does not relax walkable route checks');
+const floating=clone(steep);floating.stages.find(s=>s.id===st.id).units.find(u=>u.id==='foe').y-=30;
+assert(P.audit(floating,st.id).issues.some(v=>v.rule==='E01'),'Floating enemy still rejected');
+const wrongSupport=clone(steep);wrongSupport.production.cards[st.id].encounters[0].members[0].supportId='missing';
+assert(P.audit(wrongSupport,st.id).issues.some(v=>v.rule==='E01'),'Invented support still rejected');
+const buried=clone(steep);buried.stages.find(s=>s.id===st.id).terrains.push({id:'cover',type:'solid',
+ baseMaterial:'rock',oneWay:false,breakable:false,points:[{x:1380,y:450},{x:1420,y:450},{x:1420,y:550},{x:1380,y:550}]});
+assert(P.audit(buried,st.id).issues.some(v=>v.rule==='E01'),'Named support buried in a solid is not valid contact');
 const walk=runProbe(g,fixture,st.id,{id:'route',kind:'route',actor:'player',inputs:[{op:'move',direction:1,frames:120}],checkpoints:[{x:100,y:590,w:300,h:20,grounded:true},{x:400,y:590,w:850,h:20,grounded:true}]});assert.equal(walk.result,'pass',JSON.stringify(walk));
 const notMoved=runProbe(g,fixture,st.id,{id:'route',kind:'route',actor:'player',inputs:[{op:'advance',frames:120}],checkpoints:[{x:100,y:590,w:300,h:20},{x:400,y:590,w:850,h:20}]});assert.equal(notMoved.result,'fail');
 assert.throws(()=>runProbe(g,fixture,st.id,{id:'route',kind:'route',inputs:[{op:'move',direction:1,frames:120,hp:9999}]}),/Unapproved/);
@@ -47,9 +73,9 @@ assert(P.audit(duplicate,id).issues.some(i=>i.text.includes('공통 맵 스키�
 const missingMetadata=clone(base);delete missingMetadata.stages.find(s=>s.id===id).metadata;
 assert(P.governed(missingMetadata,id),'Removing metadata cannot bypass Stage31 production checks');
 
-const rockDraft=P.begin(base,id);rockDraft.production.cards[id].referenceStages=['stage-3'];
-const groundedRock=P.placeScenery(rockDraft,id,{id:'test-foot-rock',assetId:'mockup-granite-large',x:900,scale:.6,supportId:'a4-31-land'});
-const rock=groundedRock.stages.find(s=>s.id===id).elements.find(e=>e.id==='test-foot-rock'),rockAsset=groundedRock.library.find(a=>a.id===rock.assetId);
+const rockDraft=clone(fixture);
+const groundedRock=P.placeScenery(rockDraft,st.id,{id:'test-foot-rock',assetId:'mockup-granite-large',x:900,scale:.6,supportId:'floor'});
+const rock=groundedRock.stages.find(s=>s.id===st.id).elements.find(e=>e.id==='test-foot-rock'),rockAsset=groundedRock.library.find(a=>a.id===rock.assetId);
 const actualFoot=g.HonroGeometry.transformPoint(rockAsset.reference.foot,rockAsset,rock);
 assert(Math.abs(actualFoot.y-rock.productionSupport.y)<1e-8,'Visual foot, not asset origin, must touch the declared surface');
 assert.equal(actualFoot.x,900);
