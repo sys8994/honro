@@ -5,11 +5,15 @@ import os,json,lzma,hashlib
 from pathlib import Path
 from playwright.sync_api import sync_playwright
 here=Path(__file__).resolve().parent;out=Path(os.environ['HONRO_CAPTURE_OUT']);out.mkdir(parents=True,exist_ok=True)
-raw=lzma.decompress((here/'checkpoint.json.xz').read_bytes())
-assert hashlib.sha256(raw).hexdigest()=='7a58b7fbe5dff81dbb630974e4b4112e10623f4aef74cdbd866ca07273af69ee'
+name=os.environ.get('HONRO_BOARDING_CHECKPOINT','checkpoint.json.xz')
+expected={'checkpoint.json.xz':'7a58b7fbe5dff81dbb630974e4b4112e10623f4aef74cdbd866ca07273af69ee','checkpoint20.json.xz':'855f3cc211014a7414f2345f2af2377084c2667a4b7ba9e4d2cdc26682fde785'}
+assert name in expected
+raw=lzma.decompress((here/name).read_bytes())
+assert hashlib.sha256(raw).hexdigest()==expected[name]
+expected_round=json.loads(raw)['honroBattle']['round']
 source=out/'recorded-profile.json';source.write_bytes(raw)
 commands=json.loads((here/'inputs.json').read_text())
-result={'passed':False,'releaseApproved':False,'scope':'recorded R13 real checkpoint -> four-person boarding with current browser runtime',
+result={'passed':False,'releaseApproved':False,'scope':f'recorded R{expected_round} real checkpoint -> four-person boarding with current browser runtime',
         'sourceCommit':os.environ.get('GITHUB_SHA'),'checkpointSha256':hashlib.sha256(raw).hexdigest(),'observations':[],'errors':[]}
 state_js='''()=>{const e=HonroApp.engine,b=e.b,q=b.honroAct4PreviewState;return {stage:b.honroStage,phase:b.phase,round:b.round,
  active:b.active,dialogue:!!HonroApp.dialogue,boat:q.boat,complete:!!q.complete,enemies:b.units.filter(u=>u.side===1&&!u.dead).length,
@@ -25,7 +29,7 @@ try:
   p.wait_for_function('HonroApp.profile?.honroBattle?.honroStage===31',timeout=60000)
   p.reload();p.wait_for_function('window.HonroApp');p.get_by_text('이어서 걷기',exact=True).click()
   p.wait_for_function('HonroApp.engine?.b?.honroStage===31',timeout=60000)
-  first=p.evaluate(state_js);assert first['round']==13 and first['enemies']==0 and len(first['heroes'])==4,first
+  first=p.evaluate(state_js);assert first['round']==expected_round and first['enemies']==0 and len(first['heroes'])==4,first
   result['initial']=first;p.screenshot(path=str(out/'initial.jpg'),type='jpeg',quality=88)
   def observe(label):
    v=p.evaluate(state_js);result['observations'].append({'step':label,'actual':v})
@@ -74,12 +78,15 @@ try:
   for hero in ['archer','mage','knight','occultist']:
    quiet();p.locator('[data-action="select-hero"][data-id="'+hero+'"]').click();p.wait_for_timeout(500)
    assert p.evaluate(state_js)['active']==hero
-   if hero in ['archer','mage']:
+   location=actor()
+   if location['y']>2800 and location['x']<5100:
     walk(4815);walk(4900,True)
     if actor()['x']<4885:walk(4920,True)
     walk(5080);walk(5500);walk(5955);drop_to(2700);walk(6480)
-   elif hero=='knight':drop_to(2700);walk(6480)
-   else:walk(5500);walk(5950);drop_to(2700);walk(6480)
+   else:
+    if location['x']<5500:walk(5500)
+    if actor()['x']<5945:walk(5955)
+    drop_to(2700);walk(6480)
    drop_to(3366);u=actor()
    assert 6397.5<u['x']<6697.5 and abs(u['y']-3366)<5,u
    p.screenshot(path=str(out/('boarded-'+hero+'.jpg')),type='jpeg',quality=88)
@@ -90,7 +97,7 @@ try:
    p.wait_for_timeout(700)
   final=p.evaluate(state_js);result['final']=final;p.screenshot(path=str(out/'objective.jpg'),type='jpeg',quality=88)
   assert final['phase']=='won' and final['complete'] and final['boat']['phase']=='boarded',final
-  assert final['round']==13 and not result['errors'],result['errors']
+  assert final['round']==expected_round and not result['errors'],result['errors']
   result['passed']=True;browser.close()
 finally:
  (out/'result.json').write_text(json.dumps(result,ensure_ascii=False,indent=2)+'\n')

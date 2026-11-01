@@ -93,6 +93,7 @@ jobs:
         continue-on-error: true
         env:
           HONRO_CAPTURE_URL: http://127.0.0.1:8870/HONRO.html
+          HONRO_BOARDING_CHECKPOINT: checkpoint20.json.xz
         run: |
           set -o pipefail
           python -m http.server 8870 --bind 127.0.0.1 --directory "$RUNNER_TEMP/honro-act4-preview" > "$HONRO_QA_OUT/server.log" 2>&1 &
