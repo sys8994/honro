@@ -7,7 +7,7 @@ from playwright.sync_api import sync_playwright
 root=Path(__file__).resolve().parents[2]
 stage=int(os.environ.get('HONRO_CAPTURE_STAGE','31'))
 legacy40=stage==40 and os.environ.get('HONRO_CAPTURE_LEGACY40')=='1'
-assert stage in (3,30) or 31<=stage<=40
+assert stage in (1,2,3,30) or 31<=stage<=40
 out=Path(os.environ['HONRO_CAPTURE_OUT']);out.mkdir(parents=True,exist_ok=True)
 fixture=Path(__file__).with_name('stage38')/'entry-profile.json'
 profile=json.loads(fixture.read_text())['profile']
@@ -94,11 +94,13 @@ try:
      ('mobile',1400,2000,.5,390,844),('mobile-landscape',1400,2000,.5,844,390),
      ('left-edge',0,2200,.5,1440,900),('right-edge',width,2200,.5,1440,900)]:
     views.append({'name':name,'x':x,'y':y,'scale':scale,'w':w,'h':h})
-  if stage>=32:
+  if stage in (1,2) or stage>=32:
    # Full scene and actor-readable view; no actor/quest state mutation.
    views.append({'name':'overview','x':width/2,'y':height/2,'scale':min(1440/(width+100),760/(height+100)),'w':1440,'h':900})
    heroes=record['observed']['party'];hero=next((h for h in heroes if h['id']=='archer'),heroes[0])
    views.append({'name':'normal','x':hero['x']+450,'y':hero['y']-180,'scale':.65,'w':1440,'h':900})
+  if stage in (1,2):
+   views.append({'name':'mobile-landscape','x':hero['x']+220,'y':hero['y']-100,'scale':.65,'w':844,'h':390})
   if stage==40:
    for name,x,y,scale in [('dock',1550,2690,.65),('boss',2050,3370,.8),('boss-close',2050,3370,1.2)]:
     views.append({'name':name,'x':x,'y':y,'scale':scale,'w':1440,'h':900})

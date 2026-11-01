@@ -40,6 +40,7 @@ jobs:
           failures=0
           stages="40 39 38 37 36 35 34 33 32 31"
           if [[ "$GITHUB_REF_NAME" == *"/40-only-"* ]]; then stages="40"; fi
+          if [[ "$GITHUB_REF_NAME" == *"/reference12-"* ]]; then stages="1 2"; fi
           for stage in $stages; do
             export HONRO_CAPTURE_STAGE="$stage"
             export HONRO_CAPTURE_OUT="_local/reports/recovery-art/stage$stage"
