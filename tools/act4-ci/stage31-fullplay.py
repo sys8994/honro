@@ -65,6 +65,10 @@ with sync_playwright() as w:
  def survive(n):
   initial=survival()
   if not initial['needed']:return False
+  # Low health alone is not a reason to waste every turn guarding.
+  # Prefer a currently visible safe shot when no telegraphed area covers us.
+  if not initial['exposed'] and plan()['best']:
+   record('survival-safe-offense-'+str(n),{'assessment':initial});return False
   record('survival-before-'+str(n),{'assessment':initial});capture(path=str(out/('survival-before-'+str(n)+'.png')))
   for attempt in range(2):
    q=survival()
@@ -86,6 +90,8 @@ with sync_playwright() as w:
   if time.monotonic()-started>1200:raise TimeoutError('Bounded normal-input play budget exceeded')
   if not waitready():record('stopped-wait');break
   if state()['round']>20:record('round-limit');break
+  if any(h['dead'] for h in state()['health']):
+   record('party-loss');capture(path=out/'party-loss.png');break
   if state()['enemies']==0:record('boarding-transition');break
   warning=p.evaluate('''()=>{const a=HonroApp;return a.engine.b.units.filter(v=>v.honroPilotCombat?.phase==='telegraph').map(v=>({id:v.id,target:v.honroPilotCombat.target,visible:HonroAct4TerrainPreview.eventAPI.inView(a,v.honroPilotCombat.target,25)}))}''')
   if warning:
@@ -101,7 +107,11 @@ with sync_playwright() as w:
   record('planning',{'visible':pl['visible'],'choice':pl['best']})
   for move_attempt in range(5):
    if pl['best'] or state()['active']!=start['active'] or not state()['can']:break
-   before=state();known=sorted(memory.values(),key=lambda x:abs(x['x']-before['x'])+abs(x['y']-before['y'])*.7);target=known[0] if known else None
+   before=state()
+   allies=sorted(h['x'] for h in before['health'] if not h['dead'] and h['id']!=before['active'])
+   if before['active'] in ['archer','mage'] and allies and before['x']>allies[len(allies)//2]+800:
+    record('formation-hold-'+str(n),{'allyXs':allies});break
+   known=sorted(memory.values(),key=lambda x:abs(x['x']-before['x'])+abs(x['y']-before['y'])*.7);target=known[0] if known else None
    if target and target['y']-before['y']>180 and abs(target['x']-before['x'])<650 and before['drop']:
     p.keyboard.press('Alt');p.wait_for_timeout(1500);record('drop-'+str(n))
    else:
