@@ -34,6 +34,9 @@ def reduce_trace(trace,registration,slot):
  need(events[0].get('type')=='start' and events[-1].get('type')=='end','incomplete trace, keep timeout/failure outcome')
  need([e.get('seq') for e in events]==list(range(len(events))),'missing/reordered events')
  units={u['id']:dict(u) for u in events[0]['units']};need(units and len(units)==len(events[0]['units']),'invalid roster')
+ for u in units.values():
+  need(u.get('team') in ['player','enemy','npc'] and all(finite(u.get(k)) for k in ['hp','maxHP','x','y','height']) and 0<=u['hp']<=u['maxHP'] and u['maxHP']>0 and u['height']>0,'invalid initial unit state')
+  if u['team']=='enemy':need(u.get('rank') in ['normal','elite','miniboss','major-boss'],'invalid enemy rank')
  heroes={k for k,u in units.items() if u['team']=='player'};enemies={k for k,u in units.items() if u['team']=='enemy'}
  engaged=set();enemy_by_round={};damage={};moves=[];jumps=set();drops=set();seen_transitions=set();objective=False;last_time=-1;actions={};counter_ids=set();phase_round=1;phase_side='player';movement_actions=set();phase_seen=set()
  for e in events:
@@ -66,6 +69,7 @@ def reduce_trace(trace,registration,slot):
    if loss and a['actor'] in heroes and target in enemies:engaged.add(target)
   elif kind=='health_change':
    need(e['target'] in units and e['cause'] in ['healing','equipment','level','scripted'],'invalid health-change source');u=units[e['target']]
+   need(set(e['before'])==set(e['after'])=={'hp','maxHP','shield'},'health change cannot rewrite roster identity/rank')
    for key in ['hp','maxHP','shield']:
     need(finite(e['before'][key]) and finite(e['after'][key]) and abs(u.get(key,0)-e['before'][key])<1e-6,'health-change continuity violation')
    need(0<=e['after']['hp']<=e['after']['maxHP'] and e['after']['maxHP']>0 and e['after']['shield']>=0,'invalid changed health');u.update(e['after'])

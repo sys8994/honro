@@ -91,6 +91,13 @@ class Tests(unittest.TestCase):
   t['events']=[e for e in t['events'] if not(e['type']=='damage' and e['target']=='hero')]
   for i,e in enumerate(t['events']):e['seq']=i;e['time']=i*.01
   self.assertEqual(self.reduce(t)['enemyActions'],0)
+ def test_invalid_initial_unit_state_rejected(self):
+  t=copy.deepcopy(self.traces['t0']);t['events'][0]['units'][0]['hp']=float('nan')
+  with self.assertRaises(gate.Invalid):self.reduce(t)
+ def test_health_event_cannot_promote_enemy_rank(self):
+  t=copy.deepcopy(self.traces['t0']);t['events'].insert(1,{'type':'health_change','target':'enemy0','cause':'equipment','before':{'hp':100,'maxHP':100,'shield':0},'after':{'hp':100,'maxHP':100,'shield':0,'rank':'miniboss'}})
+  for i,e in enumerate(t['events']):e['seq']=i;e['time']=i*.01
+  with self.assertRaises(gate.Invalid):self.reduce(t)
  def test_skilled_cannot_inflate_general_rate(self):
   self.reg['trials'][0]['class']='skilled'
   with self.assertRaises(gate.Invalid):gate.evaluate_stage(self.stage,self.reg,self.traces,'b'*64)
