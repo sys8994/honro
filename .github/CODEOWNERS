@@ -1,0 +1,9 @@
+# Activate required code-owner review in GitHub protection settings.
+# Normal game assets are not approval-gated by this file. Guard/criteria changes are.
+/.github/workflows/ @sys8994
+/.github/CODEOWNERS @sys8994
+/tools/task-gate/ @sys8994
+/tools/quality-gate/ @sys8994
+/shared/web-build.mjs @sys8994
+/workshop/build.mjs @sys8994
+/game/build.mjs @sys8994

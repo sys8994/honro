@@ -66,6 +66,23 @@ class Tests(unittest.TestCase):
   with self.assertRaises(q.GateError):self.enqueue(self.task())
  def test_path_escape_rejected(self):
   t=self.task();t['plan']['steps'][0]['artifacts']=['../escape'];self.enqueue(t);self.assertFalse(self.runq())
+ def test_later_stage_cannot_change_approved_artifact(self):
+  t=self.task();t['plan']['steps'].append({'id':'bad-next','produce':[sys.executable,'worker.py','value.txt','4'],'checks':t['plan']['steps'][0]['checks'],'artifacts':['value.txt'],'max_attempts':1});self.enqueue(t)
+  later=self.task('later');later['plan']['steps'][0]['produce']=[sys.executable,'worker.py','forbidden.txt','3'];self.enqueue(later)
+  self.assertFalse(self.runq());self.assertEqual(self.s['tasks'][0]['step'],1);self.assertFalse((self.root/'forbidden.txt').exists())
+ def test_unlocked_echo_validator_rejected(self):
+  t=self.task();t['plan']['steps'][0]['checks'][0]['command']=['echo','PASS']
+  with self.assertRaises(q.GateError):self.enqueue(t)
+ def test_repair_then_retry_does_not_skip_stage(self):
+  self.enqueue(self.task(produce=False));self.assertFalse(self.runq());(self.root/'value.txt').write_text('3');q.retry(self.s,self.root,'one','External authorized repair completed');self.assertTrue(self.runq());self.assertEqual(self.s['tasks'][0]['step'],1)
+ def test_retry_cannot_accept_changed_criteria(self):
+  self.enqueue(self.task(produce=False));self.assertFalse(self.runq());(self.root/'criteria.txt').write_text('target=0')
+  with self.assertRaises(q.GateError):q.retry(self.s,self.root,'one','Lower target')
+ def test_unplanned_request_blocks_next_task(self):
+  q.capture(self.s,'first','synthetic-user-test','New request without criteria');self.enqueue(self.task('later'));self.assertFalse(self.runq());self.assertEqual(self.s['tasks'][1]['status'],'queued')
+ def test_plan_can_be_bound_only_once(self):
+  q.capture(self.s,'first','synthetic-user-test','Request');q.bind_plan(self.s,'first',self.task()['plan'],self.root)
+  with self.assertRaises(q.GateError):q.bind_plan(self.s,'first',self.task()['plan'],self.root)
  def test_history_reload(self):
   self.enqueue(self.task());self.assertTrue(self.runq());loaded=q.load(self.queue);self.assertEqual(loaded['tasks'][0]['status'],'completed')
 if __name__=='__main__':unittest.main(verbosity=2)

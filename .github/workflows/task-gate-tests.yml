@@ -1,0 +1,65 @@
+name: Task gate regression and production block
+on:
+  push:
+    branches: ['work/task-gate-direct/**']
+  pull_request:
+permissions:
+  contents: read
+jobs:
+  gate-regressions:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@2028fbc5c25fe9cf00d9f06a71cc4710d4507903
+        with:
+          node-version: '22'
+          package-manager-cache: false
+      - uses: actions/setup-python@e797f83bcb11b83ae66e0230d6156d7c80228e7c
+        with:
+          python-version: '3.12'
+      - run: npm ci && npm ci --prefix game
+      - name: Queue, reducers and adapter negative controls
+        run: |
+          python tests/task-gate/test_queue.py
+          python tests/task-gate/test_quality.py
+          python tests/task-gate/test_adapters.py
+          node tests/task-gate/build-boundary.mjs
+      - name: Build isolated unapproved preview without touching public output
+        run: |
+          set -euo pipefail
+          sha256sum HONRO.html web/manifest.json > /tmp/public-before.txt
+          HONRO_ACT4_RELEASE=1 node workshop/build.mjs --preview gate-regression
+          sha256sum -c /tmp/public-before.txt
+          test -f _local/previews/gate-regression/HONRO.html
+      - uses: actions/upload-artifact@330a01c490aca151604b8cf639adc76d48f6c5d4
+        if: always()
+        with:
+          name: task-gate-regression-${{ github.sha }}
+          path: |
+            _local/quality-gate/
+            _local/previews/gate-regression/_local/reports/web-split/build.json
+          retention-days: 7
+  stage-quality:
+    needs: gate-regressions
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
+        with:
+          persist-credentials: false
+      - name: Collect every registered trial without discarding failures
+        id: collect
+        continue-on-error: true
+        run: python3 tools/quality-gate/collect.py
+      - name: Enforce actual candidate acceptance (missing is failure)
+        run: python3 tools/quality-gate/gate.py --out _local/quality-gate/required-result.json
+      - uses: actions/upload-artifact@330a01c490aca151604b8cf639adc76d48f6c5d4
+        if: always()
+        with:
+          name: stage-quality-${{ github.sha }}
+          path: |
+            _local/quality-gate/required-result.json
+            _local/quality-evidence/collection-report.json
+          retention-days: 7

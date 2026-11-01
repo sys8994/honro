@@ -1,0 +1,79 @@
+# Requires repository Pages source = GitHub Actions and protected required checks.
+# Branch-based Pages publication can bypass this workflow until that setting changes.
+name: Verified Pages only
+on:
+  push:
+    branches: [master]
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: verified-pages
+  cancel-in-progress: false
+jobs:
+  stage-quality:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 360
+    steps:
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@2028fbc5c25fe9cf00d9f06a71cc4710d4507903
+        with:
+          node-version: '22'
+          package-manager-cache: false
+      - uses: actions/setup-python@e797f83bcb11b83ae66e0230d6156d7c80228e7c
+        with:
+          python-version: '3.12'
+      - run: npm ci && npm ci --prefix game
+      - name: Check the gate itself
+        run: |
+          python tests/task-gate/test_queue.py
+          python tests/task-gate/test_quality.py
+          python tests/task-gate/test_adapters.py
+      - name: Collect the preregistered candidate without excluding failures
+        run: python tools/quality-gate/collect.py
+      - name: Enforce every required quantitative and qualitative criterion
+        run: python tools/quality-gate/gate.py --out _local/quality-gate/release.json
+      - name: Build only the accepted candidate
+        run: HONRO_ACT4_RELEASE=1 npm run build
+      - name: Stage the generated site, never an unapproved preview
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import json,pathlib,shutil
+          m=json.load(open('web/manifest.json'))
+          assert m['qualityGate']['mode']=='gated-production'
+          out=pathlib.Path('_local/publish-site');out.mkdir(parents=True,exist_ok=True)
+          for name in ['HONRO.html','HONRO_WORKSHOP.html','index.html']:
+            shutil.copy2(name,out/name)
+          shutil.copytree('web',out/'web',dirs_exist_ok=True)
+          (out/'workshop').mkdir(exist_ok=True)
+          shutil.copy2('workshop/HONRO_MAP_WORKSHOP.html',out/'workshop/HONRO_MAP_WORKSHOP.html')
+          (out/'.nojekyll').write_text('')
+          PY
+      - uses: actions/upload-pages-artifact@56afc609e74202658d3ffba0e8f6dda462b719fa
+        with:
+          path: _local/publish-site
+      - uses: actions/upload-artifact@330a01c490aca151604b8cf639adc76d48f6c5d4
+        if: always()
+        with:
+          name: release-quality-${{ github.sha }}
+          path: |
+            _local/quality-gate/
+            _local/quality-evidence/collection-report.json
+          retention-days: 7
+  deploy:
+    needs: stage-quality
+    if: github.ref == 'refs/heads/master' && needs.stage-quality.result == 'success'
+    runs-on: ubuntu-24.04
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy exact accepted artifact
+        id: deployment
+        uses: actions/deploy-pages@d6db90164ac5ed86f2b6aed7e0febac5b3c0c03e

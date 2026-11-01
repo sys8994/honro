@@ -17,6 +17,9 @@
 ## 실행
 
 ```sh
+python tools/task-gate/queue.py capture --root "$PWD" --queue _local/task-queue.json --task example --source-message <verified-message-id> --request "작업 요청"
+python tools/task-gate/queue.py plan --root "$PWD" --queue _local/task-queue.json --task example --spec _local/frozen-plan.json
+# 또는 요청과 계획을 함께 등록
 python tools/task-gate/queue.py enqueue --root "$PWD" --queue _local/task-queue.json --spec _local/authorized-task.json
 python tools/task-gate/queue.py run --root "$PWD" --queue _local/task-queue.json
 python tools/task-gate/queue.py status --root "$PWD" --queue _local/task-queue.json
@@ -24,3 +27,5 @@ python tests/task-gate/test_queue.py
 ```
 
 검사기의 JSON은 schema/criterion/status/artifacts/observations만 받는다. 산출물 해시는 실행기가 전달하며 실제 파일과 다시 비교한다. 검사기가 결과 파일을 고치거나 `PASS` 한 단어만 출력하면 실패한다. 테스트의 가짜 정성 검사기는 큐 제어 흐름 검증용일 뿐,실제 미술·게임성 검수로 쓰지 않는다.
+
+blocked를 고친 뒤에는 `retry --task <id> --reason <수정내역>`로 같은 기준의 같은 단계만 재검사할 수 있다. 기준 변경이나 다음 단계 강제 이동 명령은 제공하지 않는다.

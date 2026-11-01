@@ -1,3 +1,4 @@
+import {buildOutputRoot} from '../tools/quality-gate/build-boundary.mjs';
 import {materializeWorld} from '../tools/act4-source/world-source.mjs';
 import {packJson,unpackJson} from './json-pool.mjs';
 import {readFile,mkdir,unlink} from 'node:fs/promises';
@@ -59,9 +60,12 @@ export function reuseBinaryEmissions(emit){
 }
 
 // Generated files are immutable by content. Stable HTML names remain the public entrypoints.
-export async function buildWeb({vector=true,destination=path.join(root,'HONRO.html')}={}) {
+export async function buildWeb({vector=true,destination,preview}={}) {
+  const outputRoot=await buildOutputRoot(root,preview);
+  if(destination!==undefined&&path.resolve(destination)!==path.join(outputRoot,'HONRO.html'))throw Error('Custom destination cannot escape production/preview boundary');
+  destination=path.join(outputRoot,'HONRO.html');
   await materializeWorld();
-  let previous;try{previous=JSON.parse(await read('web/manifest.json'));}catch(e){if(e.code!=='ENOENT')throw e;}
+  let previous;if(preview===undefined||preview===null)try{previous=JSON.parse(await read('web/manifest.json'));}catch(e){if(e.code!=='ENOENT')throw e;}
   const retentionNow=Date.now(),publishedGenerations=selectPublishedGenerations(previous?.publishedGenerations,{now:retentionNow});
   // A build must fail before cleanup if a retained original is unavailable or changed.
   for(const g of publishedGenerations)for(const file of g.files){const bytes=await readFile(path.join(root,file.path));if(bytes.length!==file.bytes||hash(bytes)!==file.sha256)throw Error('Retained immutable asset mismatch: '+file.path);}
@@ -75,14 +79,14 @@ export async function buildWeb({vector=true,destination=path.join(root,'HONRO.ht
     const bytes=Buffer.isBuffer(body)?body:Buffer.from(body),sha256=hash(bytes);
     const stem=name.replace(/\.[cm]?js$/,'').replace(/[^a-zA-Z0-9_-]+/g,'-');
     const file=`web/${folder}/${stem}.${sha256.slice(0,16)}.${extension}`;
-    await mkdir(path.dirname(path.join(root,file)),{recursive:true});
+    await mkdir(path.dirname(path.join(outputRoot,file)),{recursive:true});
     // writeGenerated compares UTF-8; binary art must retain its exact bytes.
     if(!files.has(file)){
       if(Buffer.isBuffer(body)){
         const {writeFile}=await import('node:fs/promises');
-        let same=false;try{same=(await readFile(path.join(root,file))).equals(bytes);}catch(e){if(e.code!=='ENOENT')throw e;}
-        if(!same)await writeFile(path.join(root,file),bytes);
-      }else await writeGenerated(path.join(root,file),body);
+        let same=false;try{same=(await readFile(path.join(outputRoot,file))).equals(bytes);}catch(e){if(e.code!=='ENOENT')throw e;}
+        if(!same)await writeFile(path.join(outputRoot,file),bytes);
+      }else await writeGenerated(path.join(outputRoot,file),body);
       files.set(file,{path:file,bytes:bytes.length,sha256});
     }
     return file;
@@ -281,21 +285,21 @@ catch(error){if(globalThis.HonroStartup)globalThis.HonroStartup.failed(error);el
   const workshopEntry=await bootstrap('workshop',[...common,stageRules,...workshopPilot,editorModule],{playtest:gameDocument+'?embedded=1'});
   const workshopHtml=(await read('workshop/src/index.html')).replace('<style>/*STYLE*/</style>',cssTag(workshopStyle)).replace('<script>/*SCRIPT*/</script>',scriptTag(workshopEntry));
   await writeGenerated(destination,gameHtml());
-  await writeGenerated(path.join(root,'index.html'),gameHtml());
-  await writeGenerated(path.join(root,'HONRO_WORKSHOP.html'),workshopHtml);
-  await writeGenerated(path.join(root,'workshop/HONRO_MAP_WORKSHOP.html'),'<!doctype html><meta charset="utf-8"><meta http-equiv="refresh" content="0;url=../HONRO_WORKSHOP.html"><a href="../HONRO_WORKSHOP.html">HONRO Workshop</a>');
+  await writeGenerated(path.join(outputRoot,'index.html'),gameHtml());
+  await writeGenerated(path.join(outputRoot,'HONRO_WORKSHOP.html'),workshopHtml);
+  await writeGenerated(path.join(outputRoot,'workshop/HONRO_MAP_WORKSHOP.html'),'<!doctype html><meta charset="utf-8"><meta http-equiv="refresh" content="0;url=../HONRO_WORKSHOP.html"><a href="../HONRO_WORKSHOP.html">HONRO Workshop</a>');
   const currentFiles=[...files.values()].sort((a,b)=>a.path.localeCompare(b.path));
   // Superseded, never-published full-library copies are not useful rollback
   // graphs now that the editor assembles the exact existing chapter bundles.
   // The retention helper independently protects every attested publication.
   const retireIntermediatePaths=[...(previous?.files||[]),...(previous?.previousFiles||[])].filter(file=>/^web\/data\/campaign-library(?:[.-])/.test(file.path)).map(file=>file.path);
   const {previousFiles,previousGenerations,obsoleteFiles}=planWebAssetRetention(previous,currentFiles,{now:retentionNow,maxIntermediateFileBytes:webJsonPartBytes,retireIntermediatePaths});
-  const manifest={version:1,game:'HONRO.html',workshop:'HONRO_WORKSHOP.html',playtest:gameDocument+'?embedded=1',project:projectManifest,gameEntry,workshopEntry,common,gameOnly,optionalModules,styles,workshopStyle,files:currentFiles,previousFiles,previousGenerations,publishedRetention,publishedGenerations};
-  await writeGenerated(path.join(root,'web/manifest.json'),JSON.stringify(manifest,null,2)+'\n');
-  for(const file of obsoleteFiles)try{await unlink(path.join(root,file.path));}catch(e){if(e.code!=='ENOENT')throw e;}
-  await mkdir(path.join(root,'_local/reports/web-split'),{recursive:true});
+  const manifest={version:1,qualityGate:{mode:preview?'unverified-preview':'gated-production',criteriaVersion:'v3'},game:'HONRO.html',workshop:'HONRO_WORKSHOP.html',playtest:gameDocument+'?embedded=1',project:projectManifest,gameEntry,workshopEntry,common,gameOnly,optionalModules,styles,workshopStyle,files:currentFiles,previousFiles,previousGenerations,publishedRetention,publishedGenerations};
+  await writeGenerated(path.join(outputRoot,'web/manifest.json'),JSON.stringify(manifest,null,2)+'\n');
+  for(const file of obsoleteFiles)try{await unlink(path.join(outputRoot,file.path));}catch(e){if(e.code!=='ENOENT')throw e;}
+  await mkdir(path.join(outputRoot,'_local/reports/web-split'),{recursive:true});
   const summary={gameBytes:Buffer.byteLength(gameHtml()),workshopBytes:Buffer.byteLength(workshopHtml),files:files.size,playtest:manifest.playtest};
-  await writeGenerated(path.join(root,'_local/reports/web-split/build.json'),JSON.stringify(summary,null,2)+'\n');
+  await writeGenerated(path.join(outputRoot,'_local/reports/web-split/build.json'),JSON.stringify(summary,null,2)+'\n');
   console.log(JSON.stringify(summary));
   return gameHtml();
 }
