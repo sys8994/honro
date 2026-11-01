@@ -9,7 +9,7 @@ for(const cls of ['archer','mage']){
  const b=structuredClone(original);b.active=cls;b.phase='aim';b.side=0;const e=new C.Engine(b,()=>{});e.checkEnd=()=>{};g.HonroAct4TerrainPreview.attachCoast({engine:e,dialogue:null});const u=e.unit(cls),hp=u.hp;const trace=[];
  function settle(){for(let i=0;i<360&&!e.grounded(u);i++)e.tick(C.STEP);}
  function walk(target,jump=false){if(jump)e.jump();for(let i=0;i<600&&u.x<target;i++){e.move(1,C.STEP);e.tick(C.STEP);if(b.active!==cls)break;}settle();trace.push({target,jump,x:u.x,y:u.y,hp:u.hp,grounded:e.grounded(u),active:b.active});}
- walk(4815);walk(4900,true);if(u.x<4885)walk(4920,true);walk(5080);walk(5500);walk(5800);
- assert.equal(hp-u.hp,0,cls+' must not fall into water');assert.equal(b.active,cls);assert.ok(u.x>=5800&&e.grounded(u));results.push({cls,hpLoss:hp-u.hp,trace});
+ walk(4815);walk(4900,true);if(u.x<4885)walk(4920,true);walk(5080);walk(5500);walk(5955);assert.ok(e.drop());for(let i=0;i<600;i++)e.tick(C.STEP);trace.push({drop:true,x:u.x,y:u.y,hp:u.hp,grounded:e.grounded(u)});assert.ok(Math.abs(u.y-2727.3)<2);walk(6480);
+ assert.equal(hp-u.hp,0,cls+' must not fall into water');assert.equal(b.active,cls);assert.ok(u.x>=6480&&e.grounded(u));results.push({cls,hpLoss:hp-u.hp,trace});
 }
 console.log(JSON.stringify({scope:'restored R13 positions; physics/water model, quest completion stubbed; not browser/fullplay',results},null,2));

@@ -77,7 +77,7 @@ try:
    if hero in ['archer','mage']:
     walk(4815);walk(4900,True)
     if actor()['x']<4885:walk(4920,True)
-    walk(5080);walk(5500);walk(5800);drop_to(2700);walk(6480)
+    walk(5080);walk(5500);walk(5955);drop_to(2700);walk(6480)
    elif hero=='knight':drop_to(2700);walk(6480)
    else:walk(5500);walk(5950);drop_to(2700);walk(6480)
    drop_to(3366);u=actor()
