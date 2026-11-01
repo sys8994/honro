@@ -30,6 +30,7 @@ with sync_playwright() as w:
   p.locator('[data-action="settings"]').first.click();p.get_by_text('기록·관리',exact=False).click();p.get_by_text('JSON 기록 가져오기',exact=True).click();p.get_by_text('파일 선택',exact=True).click();p.locator('#file-import').set_input_files(str(source.resolve()))
   p.wait_for_function('HonroApp.profile?.honroBattle?.honroStage===40',timeout=120000);p.get_by_text('이어서 걷기',exact=True).click();p.wait_for_function('HonroApp.engine?.b?.honroStage===40',timeout=120000);ready()
   p.locator('[data-action="pause"]').first.click();p.get_by_text('다시 걷기',exact=True).click();p.get_by_text('전투 처음부터',exact=True).click();p.get_by_role('button',name='계속',exact=True).click();p.wait_for_function('HonroApp.engine?.b?.honroStage===40&&HonroApp.engine.b.round===1',timeout=90000);ready();initial=record('entry');assert initial['proof'] and len(initial['foes'])==4 and len(initial['health'])==4
+  p.wait_for_timeout(3000);view();p.wait_for_timeout(800)
   p.screenshot(path=str(out/'initial.jpg'),type='jpeg',quality=88)
   started=time.monotonic()
   for n in range(40):

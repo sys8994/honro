@@ -9,8 +9,8 @@ jobs:
     runs-on: ubuntu-24.04
     timeout-minutes: 20
     env:
-      HONRO_QA_URL: https://sys8994.github.io/honro/HONRO.html?release=44e428c8
-      HONRO_CAPTURE_URL: https://sys8994.github.io/honro/HONRO.html?release=44e428c8
+      HONRO_QA_URL: https://sys8994.github.io/honro/HONRO.html?release=314a0233
+      HONRO_CAPTURE_URL: https://sys8994.github.io/honro/HONRO.html?release=314a0233
       HONRO_QA_OUT: _local/reports/public-qa
     steps:
       - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
@@ -28,7 +28,7 @@ jobs:
           while True:
             actual={}
             for p in files:
-              try:actual[p]=hashlib.sha256(urllib.request.urlopen(root+p+'?release=44e428c8',timeout=30).read()).hexdigest()
+              try:actual[p]=hashlib.sha256(urllib.request.urlopen(root+p+'?release=314a0233',timeout=30).read()).hexdigest()
               except Exception as e:actual[p]=str(e)
             if actual==expected:break
             if time.monotonic()>deadline:raise RuntimeError({'expected':expected,'actual':actual})
@@ -48,6 +48,7 @@ jobs:
           python tools/act4-ci/browser-smoke.py > "$HONRO_QA_OUT/stage1.log" 2>&1
           HONRO_CAPTURE_OUT="$HONRO_QA_OUT/stage38" python tools/act4-ci/wood-cleanup/capture.py > "$HONRO_QA_OUT/stage38.log" 2>&1
           python -c 'import json; assert json.load(open("_local/reports/public-qa/stage38/capture.json"))["body"]["id"] == "approved38:body-timber-smooth-v1"'
+          HONRO40_FINISH=1 HONRO_CAPTURE_OUT="$HONRO_QA_OUT/stage40" python tools/act4-ci/stage40-opening/play.py > "$HONRO_QA_OUT/stage40.log" 2>&1
       - uses: actions/upload-artifact@330a01c490aca151604b8cf639adc76d48f6c5d4
         if: always()
         with:
