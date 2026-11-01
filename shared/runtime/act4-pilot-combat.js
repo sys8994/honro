@@ -1,10 +1,11 @@
 (function(G){'use strict';
 // Opt-in SOP pilot actors only. No quest, victory, civilian or main-boss rules.
 const configs={31:{key:'levee',name:'둑틈봉쇄체',blast:65,travel:1.65,retreat:180},33:{key:'tidal',name:'물목을 묶는 혼',blast:45,travel:1.7,retreat:170},34:{key:'shelf',name:'턱포격체',blast:85,travel:1.9,retreat:220},35:{key:'bamboo',name:'대숲 포격귀',blast:70,travel:1.8,retreat:150},37:{key:'wall',name:'폐담 봉쇄귀',blast:75,travel:1.8,retreat:150},38:{key:'pursuit',name:'물가 봉쇄귀',blast:65,travel:1.7,retreat:170},39:{key:'net',name:'그물봉쇄체',blast:35,travel:1.7,retreat:150},40:{key:'harbor',name:'포구봉쇄체',blast:55,travel:1.8,retreat:170}};
-const configFor=(b,u)=>({...configs[b.honroAct4Preview],...(u?.honroPilotVariant==='bind'?{skill:'HSH02',blast:74,travel:1.5,warning:'결박 표적 · 다음 대응 뒤 발사'}:{skill:'HWD01',warning:'고정 표적 · 다음 대응 뒤 곡사'})});
+const finale=(b,u)=>b?.honroAct4Preview===40&&b.honroFinalDefenseRevision===2&&u?.honroAct4FinaleBoss===true&&u.boss===40;
+const configFor=(b,u)=>finale(b,u)?{...configs[40],...((u.honroPilotCombat?.cycles||0)%2?{skill:'HWD02',blast:115,travel:1.35,warning:'터줏바람 · 표적에서 멀어지기'}:{skill:'HWD01',blast:65,travel:1.8,warning:'장승못 · 표적 고정 뒤 이동'})}:({...configs[b.honroAct4Preview],...(u?.honroPilotVariant==='bind'?{skill:'HSH02',blast:74,travel:1.5,warning:'결박 표적 · 다음 대응 뒤 발사'}:{skill:'HWD01',warning:'고정 표적 · 다음 대응 뒤 곡사'})});
 const alive=u=>!!u&&!u.dead&&u.hp>0&&!u.eaterCapturedBy;
 const active=b=>!!configs[b?.honroAct4Preview]&&(b.honroCustom||b.honroAct4Official===1);
-const equipped=(b,u)=>active(b)&&u?.side===1&&u.honroPilotMidboss===configs[b.honroAct4Preview].key&&!u.boss&&!u.honroAct4WreckBoss;
+const equipped=(b,u)=>active(b)&&u?.side===1&&(finale(b,u)||u.honroPilotMidboss===configs[b.honroAct4Preview].key&&!u.boss&&!u.honroAct4WreckBoss);
 const memory=u=>u.honroPilotCombat??={version:1,phase:'guard',cycles:0,history:[]};
 function decorate(record,stage,options={}){const cfg=configs[stage];if(!cfg)throw Error('Unsupported pilot stage');return {...record,name:cfg.name,stageOverrides:{...record.stageOverrides,name:cfg.name,honroPilotMidboss:cfg.key,honroMidboss:true,role:'guard',boss:0,...options}};}
 function pose(u,s){u.role=s.phase==='exposed'||s.phase==='relocate'?'slinger':'guard';u.armor=s.phase==='exposed'||s.phase==='relocate'?.05:.15;u.intent={guard:'방향 방호 · 측후방 취약',telegraph:'곡사 예고 · 표적 고정',relocate:'재배치 · 방호 해제',exposed:'노출 · 측면 공격 기회'}[s.phase];}
@@ -55,7 +56,7 @@ function offer(e){const b=e.b,u=e.active;if(b.phase!=='aim'||b.side!==0||!alive(
 const attached=new WeakSet();function attach(app){const e=app.engine;if(!e||!active(e.b)||attached.has(e))return;attached.add(e);const effective=e.effective?.bind(e);if(effective)e.effective=function(skill,u,...args){const out=effective(skill,u,...args);if(active(e.b)&&u?.side===1&&u.honroPilotBudgetBasis?.version===2&&Number.isFinite(u.honroPilotSkillAttack?.[skill.id]))out.damage*=u.honroPilotSkillAttack[skill.id];return out;};const original=e.enemyAction.bind(e);e.enemyAction=function(...args){if(!action(e))return original(...args);};for(const u of e.b.units)if(equipped(e.b,u))pose(u,memory(u));
  if(active(e.b)&&e.b.honroPilotRosterRevision===1&&G.HonroEncounterDensity){G.HonroEncounterDensity.installActivation(e);if(!e.b.honroPilotActivationReady){e.refreshActivation();e.b.honroPilotActivationReady=true;}}
  const hurt=e.hurt?.bind(e);if(hurt)e.hurt=function(target,...args){const before=target.hp+(target.shield||0),source=e.unit?.(args[1]),projectile=args[3],out=hurt(target,...args);if(equipped(e.b,source)&&source.honroPilotVariant==='bind'&&!source.enthrall&&projectile?.skill==='HSH02'&&target.side===0&&alive(target)&&target.hp+(target.shield||0)<before){target.bound=Math.max(target.bound||0,1);record(e,source,'bound',{target:target.id,ownActions:1});}return out;};
- const can=e.canAct?.bind(e);if(can)e.canAct=function(...args){const ok=can(...args);if(ok&&!app.dialogue&&!app.modal?.classList.contains('open')&&!G.document?.hidden)offer(e);return ok;};
+ const can=e.canAct?.bind(e);if(can)e.canAct=function(...args){const ok=can(...args);if(ok&&!app.charging&&!app.dialogue&&!app.modal?.classList.contains('open')&&!G.document?.hidden)offer(e);return ok;};
  const finish=e.finishAction.bind(e);e.finishAction=function(...args){const b=e.b,u=e.active,round=b.round;
  if(equipped(b,u)&&alive(u)&&!u.acted&&b.side===1&&memory(u).phase==='relocate'&&Number.isFinite(memory(u).relocateAfterShot)&&memory(u).relocateAfterShot===b.shot&&!b.projectiles.length){if(beginRelocation(e,u)){b.phase='enemy';b.turnAge=0;return;}}
  const eligible=alive(u)&&u.side===0&&!u.acted?b.units.filter(v=>equipped(b,v)).map(v=>memory(v).target).filter(t=>t?.offered?.[u.id]?.round===round):[];const out=finish(...args);if(u?.acted)for(const t of eligible)t.response??={id:u.id,round,teamEnd:b.teamEnds?.[0]||0};return out;};
@@ -83,7 +84,7 @@ function draw(scene,c,b){if(!active(b))return;const app=G.HonroApp;
   const cfg=configFor(b,u),text=cfg.warning,a=warningLayout(scene,app,t,cfg,c.measureText(text).width);if(!a)continue;
   c.strokeStyle='#ffca9b';c.lineWidth=2;c.setLineDash([6,4]);c.beginPath();c.arc(a.x,a.y,a.rad,0,Math.PI*2);c.stroke();c.setLineDash([]);c.beginPath();c.moveTo(a.x-8,a.y);c.lineTo(a.x+8,a.y);c.moveTo(a.x,a.y-8);c.lineTo(a.x,a.y+8);c.stroke();
   c.fillStyle='rgba(20,31,36,.94)';c.fillRect(a.panel.left,a.panel.top,a.panel.right-a.panel.left,a.panel.bottom-a.panel.top);c.fillStyle='#fff0d2';c.textAlign='center';c.textBaseline='middle';c.fillText(text,(a.panel.left+a.panel.right)/2,(a.panel.top+a.panel.bottom)/2);
-  if(!t.seen){t.seen=true;t.seenTeamEnd=b.teamEnds?.[0]||0;t.seenRound=b.round;}if(app.engine)offer(app.engine);
+  if(!t.seen){t.seen=true;t.seenTeamEnd=b.teamEnds?.[0]||0;t.seenRound=b.round;}if(app.engine&&!app.charging)offer(app.engine);
  }c.restore();
 }
 // Reference-growth starting budget, not a measured damage/round acceptance claim.
@@ -99,7 +100,7 @@ function tuneFresh(u,b,st){const C=G.HONRO_CORE,P=G.HonroProgression;if(!active(
  }
  if(b.honroAct4Preview===31&&b.honroPilotRosterRevision===1)throw Error('Missing stage31 measured pilot reference');
  const r=P.referenceStats(st),ids=mid?[configFor(b,u).skill]:u.loadout,skills=ids.map(id=>C.SKILLS[id]).filter(s=>s&&!s.passive),mean=skills.reduce((n,s)=>n+s.damage*C.skillBalanceFactor(s),0)/Math.max(1,skills.length);if(!mean)return u;
- const hits=mid?6:u.elite?1.8:1.5,fraction=mid?.30:u.elite?.28:.26,armor=mid?.15:Math.max(0,u.armor||0);
+ const hits=finale(b,u)?10:mid?6:u.elite?1.8:1.5,fraction=finale(b,u)?.34:mid?.30:u.elite?.28:.26,armor=mid?.15:Math.max(0,u.armor||0);
  u.combatBaseHp=r.shot*hits*(1-armor)/normal.hp;u.combatBaseAttack=r.hp*fraction/(mean*(1-r.armor)*normal.damage);
  u.hp=u.maxHp=Math.round(u.combatBaseHp*d.hp);u.attack=u.combatBaseAttack*d.damage;
  u.honroPilotBudgetBasis={version:1,status:'unmeasured-reference-start',referenceHp:r.hp,referenceShot:r.shot,hits,fraction};return u;
@@ -107,5 +108,5 @@ function tuneFresh(u,b,st){const C=G.HONRO_CORE,P=G.HonroProgression;if(!active(
 if(G.HonroUnits){const create=G.HonroUnits.create;G.HonroUnits.create=function(record,b,profile,st,...args){return tuneFresh(create.call(this,record,b,profile,st,...args),b,st);};}
 const P=G.HonroAct4TerrainPreview;if(P?.attachCoast){const coast=P.attachCoast;P.attachCoast=function(app,...args){const out=coast.call(this,app,...args);attach(app);return out;};}
 if(G.HonroScene){const render=G.HonroScene.prototype.render;G.HonroScene.prototype.render=function(e,...args){const out=render.call(this,e,...args);draw(this,this.ctx,e.b);return out;};}
-G.HonroAct4PilotCombat={configs,active,equipped,memory,decorate,action,attach,draw,warningLayout,tuneFresh,offer};
+G.HonroAct4PilotCombat={configs,active,equipped,finale,configFor,memory,decorate,action,attach,draw,warningLayout,tuneFresh,offer};
 })(globalThis);

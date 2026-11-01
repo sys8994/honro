@@ -1,3 +1,4 @@
+import {authorAct4Finale} from './act4-finale-author.mjs';
 /** Small authored encounter revision, shared by Game/Workshop/native tooling.
  * Approved terrain, art and resident/story geometry remain byte-identical.
  * Keep large vector source chunks immutable when only actor records change.
@@ -17,7 +18,7 @@ const edits={
 };
 export function applyAct4EncounterRevision(project){
  const stages=project.stages.map(original=>{
-  const n=original.metadata?.stageId;if(n<32||n>39||original.initialState?.honroAct4EncounterRevision===1)return original;
+  const n=original.metadata?.stageId;if(n===40)return authorAct4Finale(original,supportPoint);if(n<32||n>39||original.initialState?.honroAct4EncounterRevision===1)return original;
   const s={...original,units:original.units.map(u=>u.team==='enemy'?({...u,stageOverrides:{...u.stageOverrides}}):u),encounters:structuredClone(original.encounters),initialState:structuredClone(original.initialState)};
   for(const d of edits[n]||[]){const u=s.units.find(u=>u.id===d.id&&u.team==='enemy');if(!u)throw Error('Missing declared miniboss slot '+d.id);const o=u.stageOverrides;
    u.kind=d.variant==='bind'?'shade':'warden';u.name=d.name;

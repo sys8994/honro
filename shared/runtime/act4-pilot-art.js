@@ -91,6 +91,14 @@ if(S){
   if(continuous){const view=G.HonroBounds.viewport(this,vw,vh),left=view.left-8/this.scale,right=view.right+8/this.scale,bottom=Math.max(harbor.surface,view.bottom+8/this.scale),depthEnd=harbor.surface+sea.depth;c.save();const gradient=c.createLinearGradient(0,harbor.surface,0,depthEnd);gradient.addColorStop(0,'#456b85d9');gradient.addColorStop(.45,'#244963e8');gradient.addColorStop(1,'#16384fff');c.fillStyle=gradient;c.fillRect(left,harbor.surface,right-left,bottom-harbor.surface);c.strokeStyle='#a4c4d145';c.lineWidth=3;for(let j=0;j<6;j++){const yy=harbor.surface+12+j*j*17;c.beginPath();for(let x=Math.floor(left/24)*24;x<=right+24;x+=24){const y=yy+Math.sin(x*.008+(this.time||0)*.7+j)*3;if(x===Math.floor(left/24)*24)c.moveTo(x,y);else c.lineTo(x,y);}c.stroke();}c.restore();}
   else if(config(b)&&validHarbor(harbor)){c.save();c.beginPath();c.moveTo(harbor.shore[0][0],harbor.surface);c.lineTo(harbor.right,harbor.surface);c.lineTo(harbor.right,harbor.bottom);for(const p of [...harbor.shore].reverse())c.lineTo(p[0],p[1]);c.closePath();c.clip();const gradient=c.createLinearGradient(0,harbor.surface,0,harbor.bottom);gradient.addColorStop(0,'#456b85d9');gradient.addColorStop(.45,'#244963e8');gradient.addColorStop(1,'#16384fed');c.fillStyle=gradient;c.fillRect(harbor.left-400,harbor.surface,harbor.right-harbor.left+800,harbor.bottom-harbor.surface);c.strokeStyle='#a4c4d145';c.lineWidth=3;for(let j=0;j<6;j++){const yy=harbor.surface+12+j*j*17;c.beginPath();for(let x=harbor.left-300;x<harbor.right;x+=24){const y=yy+Math.sin(x*.008+(this.time||0)*.7+j)*3;if(x===harbor.left-300)c.moveTo(x,y);else c.lineTo(x,y);}c.stroke();}c.restore();}
   const boat=this._nativeArtDeferredBoat;this._nativeArtDeferredBoat=null;if(config(b)&&boat)this.landmark(c,boat);return out;};
+ // The finale remains a major boss mechanically, but uses the existing
+ // wooden-warden rig instead of the generic processional colossus.
+ const body=S.unitBody;S.unitBody=function(c,u,...args){
+  if(u?.honroAct4FinaleBoss!==true||u.boss!==40)return body.call(this,c,u,...args);
+  const v=G.HonroMonsterVisual,a=v?.assets?.warden;if(!a)throw Error('Missing retained warden art');
+  c.save();c.translate(u.x,u.y);const scale=u.h/a.baseHeight;c.scale(scale*(u.facing||1),scale);const m=c.getTransform(),ratio=c.canvas.clientWidth?c.canvas.width/c.canvas.clientWidth:1;
+  v.draw(c,'warden',{time:this.time||0,state:v.state(u),pixels:a.baseHeight*Math.hypot(m.c,m.d)/ratio});c.restore();
+ };
  const tone=S.environmentTone;S.environmentTone=function(c,w,h,b,...args){if(config(b)?.preservePalette===true)return;return tone?.call(this,c,w,h,b,...args);};
  const cacheKey=S._worldCacheKey;S._worldCacheKey=function(b,...args){const q=config(b);return cacheKey.call(this,b,...args)+(q?':native-art-1:'+JSON.stringify(q):'');};
 }
