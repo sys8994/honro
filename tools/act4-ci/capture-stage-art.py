@@ -17,7 +17,7 @@ profile['honroJourney'].pop('pendingDirect',None)
 # Camera-only replay coverage uses a declared synthetic unlocked ledger.
 if stage>=32:
  for n in range(1,41):profile['cleared'].setdefault(str(n),{'visits':1,'rounds':5,'stars':1,'shots':0})
-if legacy40:
+if stage==40:
  fixture=root/'tools/act4-rc/fixtures/stage40-checkpoints/sailing-observation-local-storage.json.xz'
  raw=lzma.decompress(fixture.read_bytes());assert hashlib.sha256(raw).hexdigest()=='2c8e5d95e1e956059da5ae0b74a02641beed0bccf0932568194b108fec3a8141'
  profile=json.loads(raw)
@@ -38,16 +38,12 @@ try:
   p.get_by_text('JSON 기록 가져오기',exact=True).click()
   p.get_by_text('파일 선택',exact=True).click()
   p.locator('#file-import').set_input_files(str(import_file.resolve()))
-  if legacy40:
-   record['scope']='preserved actual Stage40 sailing profile, normal UI restart to round1, camera-only art inspection; not a fresh campaign clear'
-   p.wait_for_function('HonroApp.profile?.honroBattle?.honroStage===40',timeout=120000)
-   p.get_by_text('이어서 걷기',exact=True).click()
-   p.wait_for_function('HonroApp.engine?.b?.honroStage===40',timeout=120000)
-   for _ in range(30):
-    if not p.evaluate('!!HonroApp.dialogue'):break
-    p.wait_for_timeout(700);p.keyboard.press('Enter')
-   p.locator('[data-action="pause"]').first.click();p.get_by_text('다시 걷기',exact=True).click();p.get_by_text('전투 처음부터',exact=True).click();p.get_by_role('button',name='계속',exact=True).click()
-   p.wait_for_function('HonroApp.engine?.b?.honroStage===40 && HonroApp.engine.b.round===1',timeout=90000)
+  if stage==40:
+   record['scope']='preserved actual Stage40 campaign profile; normal UI map-revision restart, camera-only art diagnostic; no play acceptance'
+   p.wait_for_function('HonroApp.profile?.lastStage===40',timeout=120000)
+   p.reload();p.wait_for_function('window.HonroApp')
+   p.locator('.title-actions [data-action="continue"]').first.click()
+   p.wait_for_function('HonroApp.engine?.b?.honroStage===40 && HonroApp.engine.b.round===1',timeout=120000)
   else:
    p.wait_for_function('HonroApp.profile?.lastStage===37 && HonroApp.profile.recruited.length===4',timeout=15000)
    p.reload();p.wait_for_function('window.HonroApp')

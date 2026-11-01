@@ -38,7 +38,9 @@ jobs:
           server=$!; trap 'kill "$server" 2>/dev/null || true' EXIT
           sleep 2
           failures=0
-          for stage in 40 39 38 37 36 35 34 33 32 31; do
+          stages="40 39 38 37 36 35 34 33 32 31"
+          if [[ "$GITHUB_REF_NAME" == *"/40-only-"* ]]; then stages="40"; fi
+          for stage in $stages; do
             export HONRO_CAPTURE_STAGE="$stage"
             export HONRO_CAPTURE_OUT="_local/reports/recovery-art/stage$stage"
             mkdir -p "$HONRO_CAPTURE_OUT"
