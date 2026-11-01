@@ -34,7 +34,7 @@ jobs:
           python -m http.server 8870 --bind 127.0.0.1 > "$OUT/server-before.log" 2>&1 &
           server=$!;trap 'kill "$server" 2>/dev/null || true' EXIT
           sleep 2
-          HONRO_CAPTURE_OUT="$OUT/before" python tools/act4-ci/stage38-toe/capture.py
+          HONRO_CAPTURE_OUT="$OUT/before" python tools/act4-ci/wood-cleanup/capture.py
       - name: Prepare artwork only and build through the unchanged release gate
         run: |
           set -euo pipefail
@@ -51,7 +51,8 @@ jobs:
           python -m http.server 8870 --bind 127.0.0.1 > "$OUT/server-after.log" 2>&1 &
           server=$!;trap 'kill "$server" 2>/dev/null || true' EXIT
           sleep 2
-          HONRO_CAPTURE_OUT="$OUT/after" python tools/act4-ci/stage38-toe/capture.py
+          HONRO_CAPTURE_OUT="$OUT/after" python tools/act4-ci/wood-cleanup/capture.py
+          python tools/act4-ci/wood-cleanup/resume.py
       - name: Preserve the unapproved candidate separately
         run: |
           git add shared/data/act4/world.parts web HONRO.html HONRO_WORKSHOP.html index.html
