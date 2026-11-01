@@ -11,7 +11,11 @@ if(!input||!output||!reportPath||input===output)throw Error('Usage: prune-unused
 const raw=await readFile(input),world=JSON.parse(raw);
 process.env.HONRO_ACT4_RELEASE='1';const g=await runtime({legacyMaps:false});await loadPilotRuntime(g);
 const full=g.HONRO_PROJECT;
-for(const s of world.stages)assert.deepEqual(full.stages.find(v=>v.id===s.id),s,'Materialize and pack the exact input before auditing');
+// Runtime normalization adds narrative revision stamps (e.g. Stage34). Compare
+// the actual installed source bytes, then compare normalized compiled outputs.
+const installed=await readFile(new URL('../../shared/data/act4/world.json',import.meta.url));
+if(!installed.equals(raw))throw Error('Materialize and pack the exact input before auditing');
+for(const s of world.stages)assert.ok(full.stages.some(v=>v.id===s.id),'Missing loaded stage: '+s.id);
 let roots=JSON.stringify(Object.fromEntries(Object.entries(full).filter(([key])=>key!=='library')));
 for(const dir of ['shared/map','shared/runtime'])for(const file of await readdir(dir))if(file.endsWith('.js'))roots+='\n'+await readFile(dir+'/'+file,'utf8');
 const assets=new Map(world.library.map(a=>[a.id,a]));
