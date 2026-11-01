@@ -55,8 +55,8 @@ jobs:
       - name: Preserve the unapproved candidate separately
         run: |
           git add shared/data/act4/world.parts web HONRO.html HONRO_WORKSHOP.html index.html
-          git -c user.name='honro release automation' -c user.email='41898282+github-actions[bot]@users.noreply.github.com' commit -m 'Prepare single-layer Stage38 timber candidate for visual review'
-          git push origin HEAD:refs/heads/work/act4-wood-candidate/20261101
+          git -c user.name='honro release automation' -c user.email='41898282+github-actions[bot]@users.noreply.github.com' commit -m 'Prepare bounded Inkscape timber candidate for visual review'
+          git push origin HEAD:refs/heads/work/act4-wood-candidate/${GITHUB_SHA}
       - uses: actions/upload-artifact@330a01c490aca151604b8cf639adc76d48f6c5d4
         if: always()
         with:
