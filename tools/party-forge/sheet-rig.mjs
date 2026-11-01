@@ -20,6 +20,10 @@ export function sheetRig(a,previousBounds){
  const cfgPath=path.join(root,'tools/party-forge/sheet',a.character_id+'.json'),partsPath=cfgPath.replace(/\.json$/,'.parts.json');
  if(!existsSync(partsPath))return;
  const cfg=JSON.parse(readFileSync(cfgPath,'utf8')),data=JSON.parse(readFileSync(partsPath,'utf8')),J=cfg.joints;
+ // optional: shrink the drawn head about the neck (sheet head too large for the game's body ratio)
+ if(cfg.headScale&&cfg.headScale!==1){const c=J.neck,f=cfg.headScale,sc=q=>[c[0]+(q[0]-c[0])*f,c[1]+(q[1]-c[1])*f];
+  for(const row of data.parts.head||[]){row[1]=row[1].map(sc);row[2]=row[2].map(h=>h.map(sc));}
+  J.crown=sc(J.crown);J.chin=sc(J.chin);}
  // uniform sheet -> game map: painted top/bottom onto the previous asset's (same size, sole on ground)
  let top=1e9,bot=-1e9;for(const rows of Object.values(data.parts))for(const [,ext] of rows)for(const [,y] of ext){top=Math.min(top,y);bot=Math.max(bot,y);}
  const [,gTop,,gBot]=previousBounds,K=(gBot-gTop)/(bot-top),by=Object.fromEntries(a.rig.parts.map(p=>[p.id,p])),cx=by.root.pivot[0];
@@ -49,7 +53,11 @@ export function sheetRig(a,previousBounds){
  if(a.constraints?.bowstring&&J.bowTop){const bs=a.constraints.bowstring;bs.tips=[G(J.bowTop),G(J.bowBottom)];bs.restNock=mul(add(bs.tips[0],bs.tips[1]),.5);bs.drawPoint=[...set.rear_hand];a.palette.string=cfg.stringColor||'#282627';bs.color='string';bs.width=1.4;
   a.constraints.arrow.grip=[...set.front_hand];a.palette.arrowShaft=cfg.arrowColor||'#C9BBA4';a.constraints.arrow.color='arrowShaft';if(a.constraints.bowFlex)a.constraints.bowFlex.pivot=[...set.front_hand];}
  if(a.face)a.face.shapeIds=paths.filter(p=>p.part==='head').map(p=>p.id);
- // ---- retarget animations as joint-angle changes from the old bind
+ // ---- retarget animations as joint-angle changes from the old IDLE pose (first idle key), so idle = the drawing
+ const i0=a.animation.animations.idle?.keyframes?.[0]||{},Rf={pelvis:[...(i0.pelvis||old.pelvis)],thorax:[...(i0.thorax||oldBT)]};
+ for(const [s0,u0,l0,t0,A0,B0,C0] of [['rear','_upper_arm','_forearm','_hand','Shoulder','Elbow','Hand'],['front','_upper_arm','_forearm','_hand','Shoulder','Elbow','Hand'],['rear','_thigh','_shin','_foot','Hip','Knee','Foot'],['front','_thigh','_shin','_foot','Hip','Knee','Foot']]){
+  Rf[s0+A0]=[...(i0[s0+A0]||old[s0+u0])];Rf[s0+B0]=[...(i0[s0+B0]||old[s0+l0])];Rf[s0+C0]=[...(i0[s0+C0]||old[s0+t0])];}
+ for(const s0 of ['rear','front'])Rf[s0+'HandAngle']=i0[s0+'HandAngle']??0;Rf.weapon=i0.weapon??0;
  const hs=len(sub(set.neck,set.pelvis))/len(sub(old.neck,old.pelvis));
  const limbs=[['rear','arm','_upper_arm','_forearm','_hand','Shoulder','Elbow','Hand'],['front','arm','_upper_arm','_forearm','_hand','Shoulder','Elbow','Hand'],
   ['rear','leg','_thigh','_shin','_foot','Hip','Knee','Foot'],['front','leg','_thigh','_shin','_foot','Hip','Knee','Foot']];
@@ -57,25 +65,27 @@ export function sheetRig(a,previousBounds){
  for(const [animName,anim] of Object.entries(a.animation.animations))for(const k of anim.keyframes){
   const slack=animName==='idle'?1:.97;   // interpolated steps between keyframes need a little leg slack
   if(!k.pelvis)continue;
-  const P0=k.pelvis,tr=wrap(ang(sub(k.thorax,P0))-ang(sub(oldBT,old.pelvis)))*amp,P=add(set.pelvis,mul(sub(P0,old.pelvis),hs));
+  const P0=k.pelvis,tr=wrap(ang(sub(k.thorax,P0))-ang(sub(Rf.thorax,Rf.pelvis)))*amp,P=add(set.pelvis,mul(sub(P0,Rf.pelvis),hs));
   const out={pelvis:P,thorax:add(P,rot(sub(a.rig.bindThorax,set.pelvis),tr))};
   for(const [s,limb,u,l,t,A,B,C] of limbs){
    const parentRot=limb==='arm'?tr:0;
    // joint origin follows the body; small authored offsets of the origin are kept
-   const oldOrigin0=add(P0,rot(sub(old[s+u],old.pelvis),limb==='arm'?wrap(ang(sub(k.thorax,P0))-ang(sub(oldBT,old.pelvis))):0));
+   const oldOrigin0=add(P0,rot(sub(Rf[s+A],Rf.pelvis),limb==='arm'?wrap(ang(sub(k.thorax,P0))-ang(sub(Rf.thorax,Rf.pelvis))):0));
    const O=add(add(P,rot(sub(set[s+u],set.pelvis),parentRot)),mul(sub(k[s+A],oldOrigin0),hs));
-   const la=amp*(cfg[s+limb[0].toUpperCase()+limb.slice(1)+'Amplitude']??cfg[limb+'Amplitude']??1),dU=wrap(ang(sub(k[s+B],k[s+A]))-ang(sub(old[s+l],old[s+u])))*la,dL=wrap(ang(sub(k[s+C],k[s+B]))-ang(sub(old[s+t],old[s+l])))*la;
+   const la=amp*(cfg[s+limb[0].toUpperCase()+limb.slice(1)+'Amplitude']??cfg[limb+'Amplitude']??1),dU=wrap(ang(sub(k[s+B],k[s+A]))-ang(sub(Rf[s+B],Rf[s+A])))*la,dL=wrap(ang(sub(k[s+C],k[s+B]))-ang(sub(Rf[s+C],Rf[s+B])))*la;
    const mid=add(O,rot(sub(set[s+l],set[s+u]),dU)),end=add(mid,rot(sub(set[s+t],set[s+l]),dL));
    out[s+A]=O;out[s+B]=mid;out[s+C]=end;
-   if(limb==='arm'&&cfg.retargetHandAngles){   // hand (and held weapon) angles are absolute in the rig: keep only their twist relative to the forearm
+   // the elbow bend side must come from the NEW joints: an old authored plane would mirror the drawn elbow
+   if(limb==='arm'){const v=sub(end,O),w=sub(mid,O),cr=v[0]*w[1]-v[1]*w[0];out[s+'ArmPlane']=Math.sign(cr)||1;}
+   if(limb==='arm'&&cfg.retargetHandAngles!==false){   // hand (and held weapon) angles are absolute in the rig: keep only their twist relative to the forearm
     const D=180/Math.PI,near=(ref,v)=>ref+wrap((v-ref)/D)*D,   // stay on the authored branch so keyframes never interpolate through a full turn
-    fOld=wrap(ang(sub(k[s+C],k[s+B]))-ang(sub(old[s+t],old[s+l])))*D,fNew=wrap(ang(sub(end,mid))-ang(sub(set[s+t],set[s+l])))*D;
-    const h0=k[s+'HandAngle']??0;out[s+'HandAngle']=near(h0,fNew+(h0-fOld)*la);   // missing = rig default 0
-    if(s==='front'&&!a.rig.swordGrip){const w0=k.weapon??0;out.weapon=near(w0,fNew+(w0-fOld)*la);}
+    fOld=wrap(ang(sub(k[s+C],k[s+B]))-ang(sub(Rf[s+C],Rf[s+B])))*D,fNew=wrap(ang(sub(end,mid))-ang(sub(set[s+t],set[s+l])))*D;
+    const h0=(k[s+'HandAngle']??0)-Rf[s+'HandAngle'];out[s+'HandAngle']=near(h0,fNew+(h0-fOld)*la);   // missing = rig default 0
+    if(s==='front'&&!a.rig.swordGrip){const w0=(k.weapon??0)-Rf.weapon;out.weapon=near(w0,fNew+(w0-fOld)*la);}
    }
   }
   // planted feet keep their authored ground offset; body settles if a leg cannot reach
-  for(const c of (k.contacts||[]))out[c+'Foot']=add(set[c+'_foot'],sub(k[c+'Foot'],old[c+'_foot']));
+  for(const c of (k.contacts||[]))out[c+'Foot']=add(set[c+'_foot'],sub(k[c+'Foot'],Rf[c+'Foot']));
   const reach=(s,u,l,t)=>len(sub(set[s+l],set[s+u]))+len(sub(set[s+t],set[s+l]))-.05;
   for(let it=0;it<4;it++)for(const s of ['rear','front']){const d=len(sub(out[s+'Foot'],out[s+'Hip'])),m=reach(s,'_thigh','_shin','_foot')*slack;
    if(d>m){const drop=d-m+.01;for(const key of Object.keys(out))if(Array.isArray(out[key]))if(!/Foot$/.test(key)||!(k.contacts||[]).includes(key.replace('Foot','')))out[key]=[out[key][0],out[key][1]+drop];}}
