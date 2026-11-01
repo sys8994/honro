@@ -81,7 +81,9 @@ with sync_playwright() as w:
  except Exception as e:
   result['passed']=False
   result['failure']=str(e);result['traceback']=traceback.format_exc()
-  try:record('failure');p.screenshot(path=str(out/'failure.jpg'),type='jpeg',quality=88)
+  try:
+   raw=p.evaluate("localStorage.getItem('honro-first-act-profile-1')");(out/'failure-storage.json.xz').write_bytes(lzma.compress(raw.encode()))
+   record('failure');p.screenshot(path=str(out/'failure.jpg'),type='jpeg',quality=88)
   except Exception:pass
   raise
  finally:

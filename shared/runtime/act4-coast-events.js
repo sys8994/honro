@@ -38,10 +38,11 @@ function fail(b,reason){const q=memory(b);if(q.complete||q.failure)return;q.fail
 function space(b,u,p,range=220,accept=null,step=32){return G.HonroTerrain.place(b,u,{x:p.x,y:p.y,maxDistance:range,clearance:15,accept,step});}
 function feet(e,u,p){Object.assign(u,{x:p.x,y:p.y,vx:0,vy:0});delete u.moveTarget;delete u.aiMove;return e.grounded(u);}
 function spend(e,u){u.moveLeft=0;u.acted=true;delete u.moveTarget;delete u.aiMove;u.vx=u.vy=0;}
-// Artillery can compress two rescue residents before escort starts. Permit only
+// Artillery (39) or descent onto a shared coast (40) can compress residents.
+// Permit only
 // an ordinary supported step that monotonically separates that existing pair;
 // never create overlap or relax terrain/other-actor occupancy checks.
-function separatingRescueStep(e,u,before){if(e.b.honroAct4Preview!==39||!u.honroAct4Resident||!e.grounded(u))return false;
+function separatingRescueStep(e,u,before){if(![39,40].includes(e.b.honroAct4Preview)||!u.honroAct4Resident||!e.grounded(u))return false;
  const overlap=(v,x,y)=>Math.abs(v.x-x)<v.r+u.r+12&&y>v.y-v.h-12&&y-u.h<v.y+12;
  return e.b.units.every(v=>v===u||v.dead||v.honroObjectiveTarget||v.hp<=0||!overlap(v,u.x,u.y)||(v.honroAct4Resident&&overlap(v,before.x,before.y)&&Math.abs(v.x-u.x)>Math.abs(v.x-before.x)+1e-6));
 }

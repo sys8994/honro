@@ -5,7 +5,7 @@ import time,json,lzma,hashlib
 
 def finish_escort(p,out):
  events=[];start=time.monotonic()
- def state():return p.evaluate('''()=>{const a=HonroApp,e=a.engine,b=e.b,q=b.honroAct4PreviewState,u=e.active;return{round:b.round,phase:b.phase,side:b.side,active:b.active,can:a.canInput(),dialogue:!!a.dialogue,x:u?.x,y:u?.y,move:u?.moveLeft,grounded:u&&e.grounded(u),support:u&&e.contactSurface(u.x,u.y-4,u.y+5)?.t.id,heroes:b.units.filter(v=>v.side===0&&!v.summoned&&!v.honroAct4Resident).map(v=>({id:v.id,x:v.x,y:v.y,hp:v.hp,dead:v.dead,acted:v.acted,grounded:e.grounded(v)})),residents:b.units.filter(v=>v.honroAct4Resident).map(v=>({id:v.id,x:v.x,y:v.y,hp:v.hp,dead:v.dead})),escort:q.returnEscort||null,events:q.events,roster:q.roster,complete:q.complete,water:q.water?.recoveries||[],geometry:b.honroAct4Design.geometry40}}''')
+ def state():return p.evaluate('''()=>{const a=HonroApp,e=a.engine,b=e.b,q=b.honroAct4PreviewState,u=e.active;return{round:b.round,phase:b.phase,side:b.side,active:b.active,can:a.canInput(),dialogue:!!a.dialogue,x:u?.x,y:u?.y,move:u?.moveLeft,grounded:u&&e.grounded(u),support:u&&e.contactSurface(u.x,u.y-4,u.y+5)?.t.id,quiet:HonroAct4TerrainPreview.quietReady(b),projectiles:b.projectiles.length,volley:!!b.volley,heroes:b.units.filter(v=>v.side===0&&!v.summoned&&!v.honroAct4Resident).map(v=>({id:v.id,x:v.x,y:v.y,hp:v.hp,dead:v.dead,acted:v.acted,grounded:e.grounded(v)})),residents:b.units.filter(v=>v.honroAct4Resident).map(v=>({id:v.id,x:v.x,y:v.y,hp:v.hp,dead:v.dead,grounded:e.grounded(v),support:e.contactSurface(v.x,v.y-4,v.y+5)?.t?.id,r:v.r,h:v.h,jumping:v.jumping})),escort:q.returnEscort||null,events:q.events,roster:q.roster,complete:q.complete,water:q.water?.recoveries||[],geometry:b.honroAct4Design.geometry40}}''')
  def record(label):
   s=state();events.append({'step':label,'state':s});(out/'escort-progress.json').write_text(json.dumps(events,ensure_ascii=False));print(label,s['round'],s['escort'] and s['escort']['phase'],flush=True);return s
  def ready():
@@ -40,11 +40,22 @@ def finish_escort(p,out):
   move_to('occultist',2610);pan(g['marks']['boat']);pan(g['marks']['high']);ready();record('boarding-trigger')
  assert state()['escort'],'normal boarding trigger not reached'
  for id,x in [('mage',5030),('knight',5060),('archer',5000),('occultist',5090)]:move_to(id,x)
- phase=None
+ phase=None;last_snapshot=0;last_motion=time.monotonic();last_positions=None
  for _ in range(300):
-  if time.monotonic()-start>600:raise TimeoutError('escort observation budget')
+  if time.monotonic()-start>600:
+   record('observation-timeout');raise TimeoutError('escort observation budget')
   ready();s=state();assert all(h['hp']>0 and not h['dead'] for h in s['heroes']+s['residents']),s
   current=s['escort']['phase']
+  positions=[(v['id'],round(v['x']),round(v['y'])) for v in s['residents']]
+  now=time.monotonic()
+  if positions!=last_positions:last_motion=now;last_positions=positions
+  if now-last_snapshot>=15:
+   record('escort-observation');last_snapshot=now
+   raw=p.evaluate("localStorage.getItem('honro-first-act-profile-1')")
+   (out/'escort-observation-storage.json.xz').write_bytes(lzma.compress(raw.encode()))
+  if now-last_motion>90:
+   record('resident-motion-stall')
+   raise TimeoutError('residents stationary for 90s; full state and actual persisted profile captured')
   if current!=phase:record('phase-'+current);p.screenshot(path=str(out/('escort-'+current+'.jpg')),type='jpeg',quality=88);phase=current
   if current=='safe':break
   pan(g['marks']['boat'] if current in ['boarding','sailing'] else g['marks']['safe']);p.wait_for_timeout(1000)
