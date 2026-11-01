@@ -31,6 +31,10 @@ jobs:
           python tools/act4-rc/restore.py
           python tools/act4-rc/assemble.py
           node tools/act4-rc/preflight.mjs
+          # A shallow checkout lacks older published Git objects even when
+          # their retained files exist. Fetch exactly the retained source refs.
+          mapfile -t published_refs < <(node --input-type=module -e 'import fs from "node:fs";import {selectPublishedGenerations} from "./shared/web-retention.mjs";const m=JSON.parse(fs.readFileSync("web/manifest.json"));for(const g of selectPublishedGenerations(m.publishedGenerations||[],{now:Date.now()})){if(!/^[a-f0-9]{40}$/.test(g.sourceSha))throw Error("Invalid publication ref");console.log(g.sourceSha)}')
+          if ((${#published_refs[@]})); then git fetch --no-tags --depth=1 origin "${published_refs[@]}"; fi
           node tools/release/retain-published-web.mjs 7238c788662cdfc55947d51dbe6cfe3a46768d0b --published-at 2026-10-31T12:20:23Z --evidence https://github.com/sys8994/honro/actions/runs/41200502315
           python tools/act4-ci/stage38-toe/prepare.py _local/act4-rc/world.json shared/data/act4/world.json
           node tools/act4-source/world-source.mjs pack
