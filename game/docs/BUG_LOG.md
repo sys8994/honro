@@ -5139,5 +5139,5 @@ commonReviewRevision의 첫 혼령 대기열은 생성 후 소단/sceneTarget가
 
 ### 2026-11-01 · 성능 1: 캐시 레이어 CPU 고정, 원경 풍경 화면 캐시
 - 측정: 실제 캠페인 장(검수 모드 진입)에서 rAF 간격. GPU 캔버스(swiftshader)에서 11/31장이 15프레임마다 1.4~3.8초 정지. 주 스레드는 98% 유휴, GPU 프로세스의 캔버스 래스터가 원인. 소프트웨어 캔버스+CPU 4배 감속(중급 휴대폰 근사)에서 3·4막이 21~36fps.
-- 변경: (1) `renderer._makeLayerCanvas` 캐시 레이어를 `willReadFrequently`로 CPU 백업 — 매 프레임 붙이는 정적 비트맵이 GPU에서 벡터 경로를 다시 래스터하지 않는다(11장 GPU 8→58fps). (2) `authored-far-art` 원경 풍경(customSpatialScenery, 3·4막 L3 대나무·집 등)을 카메라가 정지한 동안 화면 비트맵으로 보존. 폭포가 있는 장은 기존 실시간 경로 유지.
+- 변경: (1) [철회] 캐시 레이어 CPU 고정(`willReadFrequently`)은 소프트웨어 GPU에서만 검증되어 실제 GPU 기기에서 CPU 래스터·텍스처 업로드로 더 느려질 수 있어 되돌렸다. (2) `authored-far-art` 원경 풍경(customSpatialScenery, 3·4막 L3 대나무·집 등)을 카메라가 정지한 동안 화면 비트맵으로 보존. 폭포가 있는 장은 기존 실시간 경로 유지.
 - 확인: 35/21장 정지 화면 픽셀 차이 0. 4배 감속 이동 카메라 기준 35장 21.1→34.9fps, 21장 36.2→39.2, 25장 35.0→35.9. static-screen-cache·camera-bounds는 변경 전에도 실패(범위 밖). 31장은 동행 벡터 그리기(장당 ~19ms@4x)가 남은 병목이며, swiftshader의 31장 정지는 소프트웨어 GPU 특유일 가능성이 높아 실기기 확인이 필요하다.

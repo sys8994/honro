@@ -75,10 +75,7 @@
         } return { w, h, d }; }
         world(sx, sy) { const r = this.canvas.getBoundingClientRect(); return G.HonroCamera.world(this,r.width,r.height,sx,sy); }
         zoom(f, sx, sy, gesture=false) { G.HonroReinforcementCamera?.cancel(this,gesture);const a = this.world(sx, sy), r = this.canvas.getBoundingClientRect(),limits=G.HonroBounds.zoomLimits(r.width); this.scale = Math.max(limits.min, Math.min(limits.max, this.scale * f)); this.x = a.x - (sx - r.width / 2) / this.scale; this.y = a.y - (sy - r.height / 2) / this.scale; if(this.battle)G.HonroBounds.constrain(this,this.battle);this.manual = true; }
-        // Cache layers are painted once and blitted every frame. Keep them CPU-backed:
-        // GPU canvases re-rasterize their recorded vector paths when evicted, which
-        // stalled complex scenes for seconds; a CPU bitmap uploads once as a texture.
-        _makeLayerCanvas(w,h){const cv=document.createElement('canvas');cv.width=Math.max(1,Math.ceil(w));cv.height=Math.max(1,Math.ceil(h));cv.getContext?.('2d',{willReadFrequently:true});return cv;}
+        _makeLayerCanvas(w,h){const cv=document.createElement('canvas');cv.width=Math.max(1,Math.ceil(w));cv.height=Math.max(1,Math.ceil(h));return cv;}
         // Cache-owned offscreen surfaces only. drawImage consumes a snapshot;
         // release after the last draw, before dropping the final cache reference.
         _releaseRasterCanvas(cv){if(cv&&cv!==this.canvas){cv.width=1;cv.height=1;}}
