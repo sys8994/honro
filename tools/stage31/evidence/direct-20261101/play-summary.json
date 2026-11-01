@@ -1,0 +1,90 @@
+{
+  "scope": "tool-assisted normal UI battle and boarding from a prepared stage31 entry profile; not natural 1–30 play or human success probability",
+  "sourceCommit": "ab25208c6a0e6c846e78521441d82463f22fa6f0",
+  "runId": 41264482610,
+  "runUrl": "https://github.com/sys8994/honro/actions/runs/41264482610",
+  "artifactId": 13066933942,
+  "artifactSha256": "27f506fe2b064ba83d82d33864e9a581b031241885d0d46ceec75ff2f162aded",
+  "runtimeSha256": "d4ff59e914ed609b863cb79cdf14397ec86889365b0c653214aa013d8c3ca94e",
+  "rounds": 15,
+  "enemyKills": 34,
+  "partyDeaths": 0,
+  "final": {
+    "stage": 31,
+    "round": 15,
+    "phase": "won",
+    "active": "occultist",
+    "dialogue": false,
+    "can": false,
+    "boat": {
+      "phase": "boarded",
+      "x": 6547.5
+    },
+    "complete": true,
+    "enemies": 0,
+    "heroes": [
+      {
+        "id": "archer",
+        "x": 6509.225376405294,
+        "y": 3366,
+        "hp": 752,
+        "dead": false,
+        "acted": false,
+        "grounded": true
+      },
+      {
+        "id": "mage",
+        "x": 6490.28614494638,
+        "y": 3366,
+        "hp": 1868,
+        "dead": false,
+        "acted": false,
+        "grounded": true
+      },
+      {
+        "id": "knight",
+        "x": 6493.534176295848,
+        "y": 3366,
+        "hp": 906,
+        "dead": false,
+        "acted": false,
+        "grounded": true
+      },
+      {
+        "id": "occultist",
+        "x": 6499.983470857243,
+        "y": 3366,
+        "hp": 1928,
+        "dead": false,
+        "acted": false,
+        "grounded": true
+      }
+    ]
+  },
+  "shots": 35,
+  "firstLayoutScreenshotScope": "After first shot launch, before a kill; all34 enemies alive. Not a pre-shot screenshot.",
+  "plannedShots": 34,
+  "angleErrorsOver3Degrees": 0,
+  "powerErrorsOver005": [
+    {
+      "step": "launch-6",
+      "planned": 0.8111569584248136,
+      "actual": 0.8858347350893562
+    }
+  ],
+  "pageErrors": [],
+  "earlierTrials": [
+    {
+      "run": 41258727310,
+      "result": "20-round budget exhausted;31kills;archer lost at10;not a clear"
+    },
+    {
+      "run": 41260522509,
+      "result": "4-survivor benchmark stopped at14 afterknight loss;not proof of game loss"
+    },
+    {
+      "run": 41262357495,
+      "result": "34kills4alive at20;boarding script selected an acted hero;not a complete clear"
+    }
+  ]
+}

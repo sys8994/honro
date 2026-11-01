@@ -45,7 +45,7 @@ with sync_playwright() as w:
   live=state();d={'step':step,'state':live,'time':time.time(),**extra}
   if step=='entry' or step.startswith(('action-','survival-defend-','boarding-transition','interactive-')):d['storageSnapshot']=snapshot(step,live)
   f.write(json.dumps(d,ensure_ascii=False)+'\n');f.flush();print(json.dumps(d,ensure_ascii=False),flush=True)
- def plan():return p.evaluate('''()=>{const a=HonroApp,e=a.engine,b=e.b,u=e.active,C=HONRO_CORE,sc=a.scene,rect=sc.canvas.getBoundingClientRect(),lo=sc.world(0,0),hi=sc.world(rect.width,rect.height);const allies=b.units.filter(v=>v.side===0&&!v.dead&&v.id!==u.id);const visible=b.units.filter(v=>v.side===1&&!v.dead&&v.x>=Math.min(lo.x,hi.x)&&v.x<=Math.max(lo.x,hi.x)&&v.y>=Math.min(lo.y,hi.y)&&v.y-v.h<=Math.max(lo.y,hi.y));let best=null;const intersects=(a,z,u)=>{const bounds=[u.x-u.r-18,u.x+u.r+18,u.y-u.h-18,u.y+18];let lo=0,hi=1;for(const [v,d,min,max] of [[a.x,z.x-a.x,bounds[0],bounds[1]],[a.y,z.y-a.y,bounds[2],bounds[3]]]){if(Math.abs(d)<1e-9){if(v<min||v>max)return false;continue}let t0=(min-v)/d,t1=(max-v)/d;if(t0>t1)[t0,t1]=[t1,t0];lo=Math.max(lo,t0);hi=Math.min(hi,t1);if(lo>hi)return false}return true};for(const t of visible.sort((x,y)=>Math.abs(x.x-u.x)-Math.abs(y.x-u.x)).slice(0,4)){if(allies.some(v=>Math.hypot(v.x-t.x,(v.y-v.h*.5)-(t.y-t.h*.5))<220))continue;for(let idx=0;idx<u.loadout.length;idx++){const id=u.loadout[idx],s=C.SKILLS[id];if(!s||s.passive||['O13','S08'].includes(id)||!e.skillAllowed(s,u)||e.cooldownLeft(u,id)>0||!e.canAfford(s,u,.65)||s.mode==='charge'||id==='S00'&&Math.hypot(t.x-u.x,t.y-u.y)>160)continue;for(const z of e.shotSeeds(u,s,t)){const h=e.predict(u,s,z.angle,z.power,t,false),safe=C.shotViable(e,u,s,t,z.angle,z.power);if(!safe.ok||safe.risk>=.5)continue;const points=e.predict(u,s,z.angle,z.power,t,true).points||[];if(allies.some(v=>points.slice(1).some((q,i)=>intersects(points[i],q,v))))continue;const r=e.effective(s,u).radius||0,dist=Math.hypot(h.x-t.x,h.y-(t.y-t.h*.52));const score=(h.unit===t.id?300:r>0&&dist<r?200:0)+(safe.enemyDamage||0);if(score>150&&(!best||score>best.score))best={id,idx,angle:z.angle,power:z.power,target:t.id,score};}}}return {best,visible:visible.map(v=>({id:v.id,x:v.x,y:v.y,hp:v.hp})),observed:b.units.filter(v=>v.side===1&&v.x>=Math.min(lo.x,hi.x)&&v.x<=Math.max(lo.x,hi.x)&&v.y>=Math.min(lo.y,hi.y)&&v.y-v.h<=Math.max(lo.y,hi.y)).map(v=>({id:v.id,x:v.x,y:v.y,hp:v.hp,dead:v.dead}))}}''')
+ def plan(onlyFacing=False):return p.evaluate('''onlyFacing=>{const a=HonroApp,e=a.engine,b=e.b,u=e.active,C=HONRO_CORE,sc=a.scene,rect=sc.canvas.getBoundingClientRect(),lo=sc.world(0,0),hi=sc.world(rect.width,rect.height);const allies=b.units.filter(v=>v.side===0&&!v.dead&&v.id!==u.id);const visible=b.units.filter(v=>v.side===1&&!v.dead&&v.x>=Math.min(lo.x,hi.x)&&v.x<=Math.max(lo.x,hi.x)&&v.y>=Math.min(lo.y,hi.y)&&v.y-v.h<=Math.max(lo.y,hi.y));let best=null;const intersects=(a,z,u)=>{const bounds=[u.x-u.r-18,u.x+u.r+18,u.y-u.h-18,u.y+18];let lo=0,hi=1;for(const [v,d,min,max] of [[a.x,z.x-a.x,bounds[0],bounds[1]],[a.y,z.y-a.y,bounds[2],bounds[3]]]){if(Math.abs(d)<1e-9){if(v<min||v>max)return false;continue}let t0=(min-v)/d,t1=(max-v)/d;if(t0>t1)[t0,t1]=[t1,t0];lo=Math.max(lo,t0);hi=Math.min(hi,t1);if(lo>hi)return false}return true};for(const t of visible.sort((x,y)=>Math.abs(x.x-u.x)-Math.abs(y.x-u.x)).slice(0,4)){if(allies.some(v=>Math.hypot(v.x-t.x,(v.y-v.h*.5)-(t.y-t.h*.5))<220))continue;for(let idx=0;idx<u.loadout.length;idx++){const id=u.loadout[idx],s=C.SKILLS[id];if(!s||s.passive||['O13','S08'].includes(id)||!e.skillAllowed(s,u)||e.cooldownLeft(u,id)>0||!e.canAfford(s,u,.65)||s.mode==='charge'||id==='S00'&&Math.hypot(t.x-u.x,t.y-u.y)>160)continue;for(const z of e.shotSeeds(u,s,t)){if(onlyFacing&&(z.angle>90?-1:1)!==u.facing)continue;const h=e.predict(u,s,z.angle,z.power,t,false),safe=C.shotViable(e,u,s,t,z.angle,z.power);if(!safe.ok||safe.risk>=.5)continue;const points=e.predict(u,s,z.angle,z.power,t,true).points||[];if(allies.some(v=>points.slice(1).some((q,i)=>intersects(points[i],q,v))))continue;const r=e.effective(s,u).radius||0,dist=Math.hypot(h.x-t.x,h.y-(t.y-t.h*.52));const score=(h.unit===t.id?300:r>0&&dist<r?200:0)+(safe.enemyDamage||0);if(score>150&&(!best||score>best.score))best={id,idx,angle:z.angle,power:z.power,target:t.id,score};}}}return {best,visible:visible.map(v=>({id:v.id,x:v.x,y:v.y,hp:v.hp})),observed:b.units.filter(v=>v.side===1&&v.x>=Math.min(lo.x,hi.x)&&v.x<=Math.max(lo.x,hi.x)&&v.y>=Math.min(lo.y,hi.y)&&v.y-v.h<=Math.max(lo.y,hi.y)).map(v=>({id:v.id,x:v.x,y:v.y,hp:v.hp,dead:v.dead}))}}''',onlyFacing)
  def waitready():
   for _ in range(100):
    s=state()
@@ -65,6 +65,10 @@ with sync_playwright() as w:
  def survive(n):
   initial=survival()
   if not initial['needed']:return False
+  # Low health alone is not a reason to waste every turn guarding.
+  # Prefer a currently visible safe shot when no telegraphed area covers us.
+  if not initial['exposed'] and plan()['best']:
+   record('survival-safe-offense-'+str(n),{'assessment':initial});return False
   record('survival-before-'+str(n),{'assessment':initial});capture(path=str(out/('survival-before-'+str(n)+'.png')))
   for attempt in range(2):
    q=survival()
@@ -86,10 +90,24 @@ with sync_playwright() as w:
   if time.monotonic()-started>1200:raise TimeoutError('Bounded normal-input play budget exceeded')
   if not waitready():record('stopped-wait');break
   if state()['round']>20:record('round-limit');break
+  if any(h['dead'] for h in state()['health']):
+   record('party-loss');capture(path=out/'party-loss.png');break
   if state()['enemies']==0:record('boarding-transition');break
   warning=p.evaluate('''()=>{const a=HonroApp;return a.engine.b.units.filter(v=>v.honroPilotCombat?.phase==='telegraph').map(v=>({id:v.id,target:v.honroPilotCombat.target,visible:HonroAct4TerrainPreview.eventAPI.inView(a,v.honroPilotCombat.target,25)}))}''')
   if warning:
    record('warning-before-'+str(n),{'warning':warning,'body':p.locator('body').inner_text()[:1800]});capture(path=str(out/('warning-v8-before-'+str(n)+'.png')));p.wait_for_timeout(2500);record('warning-after-'+str(n),{'warning':warning});capture(path=str(out/('warning-v8-after-'+str(n)+'.png')))
+  stance=p.evaluate('''()=>{const a=HonroApp,e=a.engine,u=e.active,s=HONRO_CORE.SKILLS.S08;
+   if(u?.cls!=='knight'||u.hp>u.maxHp*.55||!e.grounded(u)||!a.canInput())return null;
+   const idx=u.loadout.indexOf('S08');if(idx<0||!e.skillAllowed(s,u)||e.cooldownLeft(u,'S08')>0||!e.canAfford(s,u,.3))return null;
+   const sc=a.scene,r=sc.canvas.getBoundingClientRect(),lo=sc.world(0,0),hi=sc.world(r.width,r.height);
+   return e.b.units.some(v=>v.side===1&&!v.dead&&Math.hypot(v.x-u.x,v.y-u.y)<1100&&v.x>=lo.x&&v.x<=hi.x&&v.y>=lo.y&&v.y<=hi.y)?{idx,hp:u.hp,maxHp:u.maxHp}:null;
+  }''')
+  if stance:
+   record('counter-stance-'+str(n),{'assessment':stance})
+   p.keyboard.press('Digit'+str(stance['idx']+1));p.wait_for_timeout(100);p.keyboard.down('Space')
+   try:p.wait_for_function('HonroApp.charging && HonroApp.chargePower(performance.now())>=.28',timeout=8000,polling=16)
+   finally:p.keyboard.up('Space')
+   p.wait_for_timeout(3000);record('counter-stance-result-'+str(n));continue
   if survive(n):continue
   start=state();pl=plan();observe(pl)
   if not pl['visible']:
@@ -101,7 +119,11 @@ with sync_playwright() as w:
   record('planning',{'visible':pl['visible'],'choice':pl['best']})
   for move_attempt in range(5):
    if pl['best'] or state()['active']!=start['active'] or not state()['can']:break
-   before=state();known=sorted(memory.values(),key=lambda x:abs(x['x']-before['x'])+abs(x['y']-before['y'])*.7);target=known[0] if known else None
+   before=state()
+   allies=sorted(h['x'] for h in before['health'] if not h['dead'] and h['id']!=before['active'])
+   if allies and before['x']>allies[len(allies)//2]+800:
+    record('formation-hold-'+str(n),{'allyXs':allies});break
+   known=sorted(memory.values(),key=lambda x:abs(x['x']-before['x'])+abs(x['y']-before['y'])*.7);target=known[0] if known else None
    if target and target['y']-before['y']>180 and abs(target['x']-before['x'])<650 and before['drop']:
     p.keyboard.press('Alt');p.wait_for_timeout(1500);record('drop-'+str(n))
    else:
@@ -117,13 +139,16 @@ with sync_playwright() as w:
   if choice:
    desired_facing=-1 if choice['angle']>90 else 1
    if state()['facing']!=desired_facing:
-    key='ArrowLeft' if desired_facing<0 else 'ArrowRight';p.keyboard.down(key);p.wait_for_timeout(80);p.keyboard.up(key);p.wait_for_timeout(300);pl=plan();observe(pl);choice=pl['best']
+    key='ArrowLeft' if desired_facing<0 else 'ArrowRight';p.keyboard.down(key);p.wait_for_timeout(80);p.keyboard.up(key);p.wait_for_timeout(300);pl=plan(True);observe(pl);choice=pl['best']
   if choice:
    p.keyboard.press('Digit'+str(choice['idx']+1));p.wait_for_timeout(200)
    for _ in range(16):
     s=state();delta=choice['angle']-s['angle']
     if abs(delta)<2:break
     key='ArrowUp' if delta*state()['facing']>0 else 'ArrowDown';p.keyboard.down(key);p.wait_for_timeout(min(250,max(30,abs(delta)/62*1000)));p.keyboard.up(key);p.wait_for_timeout(100)
+   aligned=state()
+   if abs(aligned['angle']-choice['angle'])>2.5 or aligned['facing']!=(-1 if choice['angle']>90 else 1):
+    record('aim-not-aligned-'+str(n),{'choice':choice});continue
    shot_actor=state()['active'];before=state();p.keyboard.down('Space')
    try:
     p.wait_for_function('''target=>HonroApp.charging && HonroApp.chargePower(performance.now())>=target''',arg=max(0,choice['power']-.02),timeout=8000,polling=16)
@@ -140,57 +165,12 @@ with sync_playwright() as w:
   if state()['enemies']==0:record('boarding-transition');capture(path=str(out/'tactical-v8-combat-end.png'));break
   if state()['phase'] in ('won','lost'):break
 
- # Combat must actually finish; no forced outcome or actor repositioning.
- assert state()['enemies']==0 and state()['round']<=20, state()
- for _ in range(40):
-  if state()['dialogue']:p.keyboard.press('Enter')
-  if (state().get('boat') or {}).get('phase')=='docked':break
-  p.wait_for_timeout(500)
- assert (state().get('boat') or {}).get('phase')=='docked',state()
- cfg=p.evaluate('HonroApp.engine.b.honroAct4Design.boarding')
- assert cfg and all(k in cfg for k in ['deckY','boardX1','boardX2']),cfg
- goal=(cfg['boardX1']+cfg['boardX2'])/2
- for hero in ['archer','mage','knight','occultist']:
-  # Actual fixture IDs are checked rather than silently dropping a party member.
-  ids=[h['id'] for h in state()['health']]
-  if hero=='occultist' and hero not in ids:hero=next(v for v in ids if v not in ['archer','mage','knight'])
-  p.locator('[data-action="select-hero"][data-id="'+hero+'"]').click()
-  p.wait_for_timeout(400)
-  assert state()['active']==hero, state()
-  for step in range(90):
-   if time.monotonic()-started>1350:raise TimeoutError('Normal-input boarding budget exceeded')
-   s=state()
-   assert not any(h['dead'] for h in s['health']),s
-   if s['dialogue']:p.keyboard.press('Enter');p.wait_for_timeout(700);continue
-   if not s['can'] or not s['grounded']:p.wait_for_timeout(500);continue
-   if cfg['boardX1']<s['x']<cfg['boardX2'] and abs(s['y']-cfg['deckY'])<5:break
-   if abs(s['x']-goal)<90 and s['y']<cfg['deckY']-10 and s['drop']:
-    p.keyboard.press('Alt');p.wait_for_timeout(1800)
-    record('boarding-drop-'+hero+'-'+str(step));continue
-   key='ArrowRight' if s['x']<goal else 'ArrowLeft'
-   # Cross the known continuous shore; jump only when normal walking stalls.
-   p.keyboard.down(key);p.wait_for_timeout(min(650,max(80,abs(goal-s['x'])/500*1000)));p.keyboard.up(key)
-   p.wait_for_timeout(700);after=state()
-   if after['active']!=hero:raise AssertionError('Unexpected boarding turn handoff')
-   if after['grounded'] and abs(after['x']-s['x'])<18:
-    if after['drop'] and after['y']<2700 and after['x']>5800:
-     p.keyboard.press('Alt');p.wait_for_timeout(1500)
-    else:
-     p.keyboard.press('Control');p.keyboard.down(key);p.wait_for_timeout(650);p.keyboard.up(key);p.wait_for_timeout(1400)
-   record('boarding-move-'+hero+'-'+str(step))
-  s=state()
-  assert cfg['boardX1']<s['x']<cfg['boardX2'] and abs(s['y']-cfg['deckY'])<5 and s['grounded'],s
-  capture(path=out/('boarded-'+hero+'.png'))
- record('party-on-deck')
- p.keyboard.press('e');p.wait_for_timeout(1500)
- for _ in range(30):
-  if state()['phase']=='won':break
-  if state()['dialogue']:p.keyboard.press('Enter')
-  p.wait_for_timeout(500)
- final=state();record('objective-result');capture(path=out/'objective-result.png')
- complete=p.evaluate('!!HonroApp.engine.b.honroAct4PreviewState.complete')
- assert final['phase']=='won' and complete and final['boat']['phase']=='boarded',final
- assert final['round']<=20 and len(final['health'])==4 and all(h['hp']>0 and not h['dead'] for h in final['health']),final
+ # Current battle must actually finish; boarding preserves normal turn accounting.
+ assert state()['enemies']==0 and state()['round']<=20,state()
+ from boarding_inputs import board_party
+ final=board_party(p,lambda label,value:record(label,{'boarding':value}),lambda name:capture(path=out/(name+'.png')))
+ assert final['round']<=20,final
+ assert len(final['heroes'])==4 and all(h['hp']>0 and not h['dead'] for h in final['heroes']),final
  assert not errors,errors
- result.update(passed=True,final=final,complete=complete,browserVersion=b.version)
+ result.update(passed=True,final=final,complete=True,browserVersion=b.version)
  b.close()

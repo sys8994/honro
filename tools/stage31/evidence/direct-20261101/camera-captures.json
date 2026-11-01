@@ -1,0 +1,190 @@
+{
+  "scope": "synthetic cleared-campaign profile, normal journey replay; camera-only art diagnostic, not gameplay acceptance",
+  "sourceCommit": "b0ff7711ea1096480759e3e0f0ef296375599838",
+  "passed": true,
+  "errors": [],
+  "views": [
+    {
+      "requested": {
+        "name": "initial",
+        "x": 6547.5,
+        "y": 3366,
+        "scale": 0.56,
+        "w": 1440,
+        "h": 900
+      },
+      "actualCamera": {
+        "x": 6547.5,
+        "y": 3366,
+        "scale": 0.56
+      },
+      "sha256": "efef4d0787ef9e03db0e284aba7bf62401c4943dfd2115dda08d18465ca32461"
+    },
+    {
+      "requested": {
+        "name": "overview",
+        "x": 3456.0,
+        "y": 2304.0,
+        "scale": 0.2053622361665716,
+        "w": 1440,
+        "h": 900
+      },
+      "actualCamera": {
+        "x": 3456,
+        "y": 2304,
+        "scale": 0.2053622361665716
+      },
+      "sha256": "0d8dd401decfa5f32b3d281a692c3aa4e50866428bbf2aa833f9b6f036931942"
+    },
+    {
+      "requested": {
+        "name": "normal",
+        "x": 1400,
+        "y": 2000,
+        "scale": 0.5,
+        "w": 1440,
+        "h": 900
+      },
+      "actualCamera": {
+        "x": 1400,
+        "y": 2000,
+        "scale": 0.5
+      },
+      "sha256": "f7356fa1103598acfaab3db8d349905c3dbbc257cf424daac1bdd69e1f99a3da"
+    },
+    {
+      "requested": {
+        "name": "close",
+        "x": 1400,
+        "y": 2000,
+        "scale": 1,
+        "w": 1440,
+        "h": 900
+      },
+      "actualCamera": {
+        "x": 1400,
+        "y": 2000,
+        "scale": 1
+      },
+      "sha256": "b96e2535d701cf12b796f511db90a8b19e0175b7ca9873c3b908dcebd33a7ff0"
+    },
+    {
+      "requested": {
+        "name": "min-zoom",
+        "x": 3456.0,
+        "y": 2304.0,
+        "scale": 0.21176470588235294,
+        "w": 1440,
+        "h": 900
+      },
+      "actualCamera": {
+        "x": 3456,
+        "y": 2304,
+        "scale": 0.21176470588235294
+      },
+      "sha256": "e26f6edb9c22e9a299402021bc08203a04eb8b9883a4ed76cc13bf19961bde68"
+    },
+    {
+      "requested": {
+        "name": "mobile",
+        "x": 1400,
+        "y": 2000,
+        "scale": 0.5,
+        "w": 390,
+        "h": 844
+      },
+      "actualCamera": {
+        "x": 1400,
+        "y": 2000,
+        "scale": 0.5
+      },
+      "sha256": "f8774e01a7a250632fd97e156eaaf8c63bb41daa5c93b5e1a4d99423eea36fa0"
+    },
+    {
+      "requested": {
+        "name": "mobile-landscape",
+        "x": 1400,
+        "y": 2000,
+        "scale": 0.5,
+        "w": 844,
+        "h": 390
+      },
+      "actualCamera": {
+        "x": 1400,
+        "y": 2000,
+        "scale": 0.5
+      },
+      "sha256": "43c13df25d1e18dfe5b917d18a016a1d3cac79b7b1a175fd6c2d0c25a2c41ea4"
+    },
+    {
+      "requested": {
+        "name": "left-edge",
+        "x": 0,
+        "y": 2200,
+        "scale": 0.5,
+        "w": 1440,
+        "h": 900
+      },
+      "actualCamera": {
+        "x": 0,
+        "y": 2200,
+        "scale": 0.5
+      },
+      "sha256": "079580eb034da27370a7587bb49b5163d44d779163991deac9190f04d155ebf7"
+    },
+    {
+      "requested": {
+        "name": "right-edge",
+        "x": 6912,
+        "y": 2200,
+        "scale": 0.5,
+        "w": 1440,
+        "h": 900
+      },
+      "actualCamera": {
+        "x": 6912,
+        "y": 2200,
+        "scale": 0.5
+      },
+      "sha256": "e246c52008e91287eb3b918a2b2c287f7e8c849942624d035ddfdeca7b507147"
+    }
+  ],
+  "fixtureSha256": "055bcf91173664d1c8c0aac7235925db1a497c3f09d8876365a077aa0d42212e",
+  "title": "떠나지 못한 이들을 위한 길.\n\n여정 이어가기\n연목의 매듭 · 울리지 않는 종",
+  "bookState": {
+    "screen": "journey",
+    "dialogue": false
+  },
+  "bookText": "‹\n1막\n2막\n3막\n4막\n5막\n6막\n⛶\n드래그·방향 키로 이동, 휠·두 손가락·더하기/빼기 키로 확대와 축소, 0 키로 지도 맞춤.\n31\n✓ 강 끝의 갈대\n32\n✓ 빈 포구\n33\n✓ 물 빠진 갯길\n34\n✓ 파도에 깎인 절벽\n35\n✓ 대숲의 옛길\n36\n✓ 쇠가 없는 마을\n37\n✓ 곶의 뒤편\n38\n어긋난 해식굴\n강 끝의 갈대\n\n현재 길목\n\n기록\n휴식터로\n얻었다\n낡은 깃매듭\n얻었다\n풀매듭 호리병\n얻었다\n삼베 손목감개",
+  "observed": {
+    "stage": 31,
+    "width": 6912,
+    "height": 4608,
+    "party": [
+      {
+        "id": "archer",
+        "hp": 1259,
+        "x": 315,
+        "y": 2455.875
+      },
+      {
+        "id": "mage",
+        "hp": 1158,
+        "x": 436.5,
+        "y": 2440.6875
+      },
+      {
+        "id": "knight",
+        "hp": 2093,
+        "x": 558,
+        "y": 2416.05
+      },
+      {
+        "id": "occultist",
+        "hp": 1324,
+        "x": 679.5,
+        "y": 2390.23125
+      }
+    ]
+  }
+}

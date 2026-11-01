@@ -13,9 +13,12 @@ const world=JSON.parse(await readFile('shared/data/act4/world.json','utf8')),pol
 if(hash(payload)===policy.legacyUnapprovedSha256){console.log('Stage31: unchanged legacy baseline (NOT design-approved); unrelated build permitted.');}
 else{
  const file='tools/stage31/production-package.json';let p;try{p=JSON.parse(await readFile(file,'utf8'));}catch{throw Error('Stage31 changed without a verified production package. Save a draft; do not bypass the production contract.');}
- p=resolveManifest(p,world);
+ process.env.HONRO_ACT4_RELEASE='1';const {runtime}=await import('../../game/tests/helpers.mjs'),g=await runtime({legacyMaps:false});await loadPilotRuntime(g);
+ // The Act4 source slice contains only 31–40; references 3/30 belong to the
+ // same loaded full campaign, not a duplicate asset copy in the evidence file.
+ p=resolveManifest(p,g.HONRO_PROJECT);
  if(hash(stagePayload(p))!==hash(payload))throw Error('Stage31 production package differs from the actual shipped map/assets.');
- process.env.HONRO_ACT4_RELEASE='1';const {runtime}=await import('../../game/tests/helpers.mjs'),g=await runtime({legacyMaps:false});await loadPilotRuntime(g);const P=g.HonroProductionContract;P.assertExport(p,payload.stage.id);
+ const P=g.HonroProductionContract;P.assertExport(p,payload.stage.id);
  const runtimeSha256=await runtimeDigest();for(const r of p.production.probeResults[payload.stage.id])if(r.runtimeSha256!==runtimeSha256)throw Error('Runtime changed after actual Engine probes.');
  for(const r of p.production.reviews[payload.stage.id])for(const e of r.evidence){if(e.path.startsWith('/')||e.path.split(/[\\/]/).includes('..'))throw Error('Evidence must remain in the production package directory');const bytes=await readFile('tools/stage31/'+e.path);if(createHash('sha256').update(bytes).digest('hex')!==e.sha256)throw Error('Missing or changed visual evidence: '+e.path);}
  console.log('Stage31: production evidence present and current. This is not automatic art/fun approval.');
