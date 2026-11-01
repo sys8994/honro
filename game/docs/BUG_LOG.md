@@ -5138,3 +5138,8 @@ An existing Stage 31 battle recorded map revision 4, so candidate geography uses
 ### 2026-10-31 — title direct handoff
 
 Title `여정 이어가기` could choose an older hub before honoring a saved direct chapter handoff. Route matching pending handoffs through the existing direct continuation; keep suspended battles and explicit hub requests unchanged. Model and actual browser proof, including fixture and pre-existing broad-suite limits, are in [ACT4_PENDING_DIRECT_TITLE.md](integration/ACT4_PENDING_DIRECT_TITLE.md).
+
+## 2026-11-01 · 4막8장 목재 확대 경계
+- 원인: 별도 목재 추적 겹의 픽셀 계단형 경로/알파 마스크. 겹 삭제는 재질·접합 표현을 잃어 폐기했다.
+- 수정: 실제 Inkscape의 제한적 경로 단순화,흰 바탕 교정. 바위·문자·충돌·배치·전투는 그대로다. 기존 진행 저장을 위해 새 자산ID와 원본 공급자를 함께 유지한다.
+- 확인: 실제 게임 정상/확대 비교 및 이전 UI 저장 재개/재로드41279902381 통과. 신규 활성 BODY 약18.4% 축소,호환 원본 때문에 전송 묶음은약0.45MB 증가. 실제 휴대폰 성능이나 새 전체 완주 검증으로 확대하지 않는다.
