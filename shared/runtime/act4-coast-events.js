@@ -137,6 +137,17 @@ function authoredReturn(app,q,dt,geo){const e=app.engine,b=e.b,cfg=b.honroAct4De
 }
 
 function closeRecoveryAction(e,u,r){const b=e.b,token=b.round+':'+b.side;if(b.active!==u.id||b.side!==0||b.phase!=='aim'||b.projectiles.length||b.volley||r.closedToken===token)return;r.closedToken=token;e.finishAction(true);if(b.active===u.id&&u.acted&&b.phase==='aim')e.advanceAfterAction();}
+// A thin authored ledge can be the actual dry bank (notably the Stage 34
+// shore link). Only reuse static supports of the recorded dry contact, never
+// an arbitrary one-way platform or a dynamically inserted boat deck. Several
+// authored surfaces can meet at that contact, so do not select just the first.
+function dryEntryLedges(b,last){
+ const ids=new Set(),authored=b.honroWorldTerrain;
+ if(!Array.isArray(authored)||!Number.isFinite(last?.x)||!Number.isFinite(last?.y))return ids;
+ const supports=t=>typeof t.id==='string'&&t.id.length>0&&t.oneWay&&!t.broken&&!t.honroAct4MovingDeck&&!t.honroElementCollision&&C.terrainSurfaces(t,last.x).some(f=>Math.abs(f.y-last.y)<2);
+ for(const t of b.terrain)if(supports(t)&&authored.some(a=>a.id===t.id&&supports(a)))ids.add(t.id);
+ return ids;
+}
 function water(e,dt=0){const b=e.b;if(!active(b))return;const q=memory(b),policies=b.honroAct4Design?.waterPolicies||[];q.water??={dry:{},recoveries:[]};
  for(const u of b.units.filter(u=>alive(u)&&!u.honroAct4Sheltered&&!u.honroAct4OnBoat)){
   const zones=policies.filter(z=>u.x>z.x1&&u.x<z.x2),z=u.honroAct4Recovering?policies.find(z=>z.id===u.honroAct4Recovering.zone):zones.find(z=>u.y>(q.tide?.surface??z.surface)+35&&(z.kind!=='recover'||!q.tide||q.tide.phase==='high'));
@@ -151,7 +162,8 @@ function water(e,dt=0){const b=e.b;if(!active(b))return;const q=memory(b),polici
   const r=u.honroAct4Recovering;if((r.probeWait||0)>0){r.probeWait=Math.max(0,r.probeWait-dt);closeRecoveryAction(e,u,r);continue;}
   // The declared low bank is on the actual entry side. No high/opposite bank
   // candidates are accepted, even if they are geometrically nearer.
-  const landing=space(b,u,{x:Math.max(span[0]+u.r,Math.min(span[1]-u.r,last.x)),y:last.y},Math.max(220,span[1]-span[0]+100),(x,y)=>x>=span[0]+u.r&&x<=span[1]-u.r&&y>=last.y-60&&y<r.surface-10&&b.terrain.some(t=>!t.oneWay&&!t.honroElementCollision&&C.terrainSurfaces(t,x).some(f=>Math.abs(f.y-y)<2)),2);
+  const entryLedges=dryEntryLedges(b,last);
+  const landing=space(b,u,{x:Math.max(span[0]+u.r,Math.min(span[1]-u.r,last.x)),y:last.y},Math.max(220,span[1]-span[0]+100),(x,y)=>x>=span[0]+u.r&&x<=span[1]-u.r&&y>=last.y-60&&y<r.surface-10&&b.terrain.some(t=>!t.broken&&(!t.oneWay||entryLedges.has(t.id))&&!t.honroAct4MovingDeck&&!t.honroElementCollision&&C.terrainSurfaces(t,x).some(f=>Math.abs(f.y-y)<2)),2);
   if(!landing){u.vx=u.vy=0;u.honroAct4RecoverPending=true;r.probeWait=.1;closeRecoveryAction(e,u,r);continue;}
   if(!r.damaged){const shield=u.shield;u.shield=0;const hp=u.hp;e.hurt(u,r.damage,'',false,undefined,undefined,'environment');u.shield=shield;r.damaged=true;r.hpLoss=hp-u.hp;}
   if(alive(u))feet(e,u,landing);q.water.recoveries.push({unit:u.id,zone:z.id,side,entry:last,landing,hpLoss:r.hpLoss,round:b.round,shot:b.shot});delete u.honroAct4Recovering;delete u.honroAct4RecoverPending;closeRecoveryAction(e,u,r);
