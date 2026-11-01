@@ -1,0 +1,180 @@
+{
+  "schema": "honro-criteria-amendment-v1",
+  "version": "v4",
+  "status": "design-frozen-before-acceptance-cohort; effective-gate-integration-pending",
+  "baseVersion": "v3",
+  "baseRawSha256": "e2183e74492a4cb61338f8a691a51f23e7af2205fb9148ae6f6b2c138311aa54",
+  "sourceInstructions": [
+    "Sentinel_8709be0615fc8191a5d33ec7ce421709",
+    "Sentinel_eca9eb245cb88191a15fe82bf301e205",
+    "Sentinel_6d8df4f798a88191895bd73f4529e3b8"
+  ],
+  "stage40": {
+    "reason": "Approved finale intensification replaces the short-return combat exception, while protecting the post-combat rescue ending.",
+    "prior": {
+      "rounds": [
+        8,
+        11
+      ],
+      "enemies": [
+        3,
+        6
+      ],
+      "requiredEngagements": [
+        3,
+        6
+      ],
+      "simultaneous": [
+        3,
+        5
+      ],
+      "enemyActions": [
+        3,
+        4
+      ],
+      "enemyAttackPctHP": [
+        20,
+        26
+      ],
+      "clearRate": [
+        75,
+        85
+      ],
+      "majorBossCount": 0
+    },
+    "required": {
+      "rounds": [
+        18,
+        20
+      ],
+      "roundHardMax": 20,
+      "uniqueEnemyBudget": [
+        42,
+        42
+      ],
+      "requiredEngagements": [
+        42,
+        42
+      ],
+      "simultaneousParticipants": [
+        8,
+        10
+      ],
+      "effectiveEnemyActions": [
+        6,
+        7
+      ],
+      "enemyAttackPctHP": [
+        24,
+        30
+      ],
+      "generalPolicyClearRate": [
+        55,
+        65
+      ],
+      "minibossCount": [
+        2,
+        2
+      ],
+      "majorBossCount": [
+        1,
+        1
+      ],
+      "safeReturnEnemyActions": [
+        0,
+        0
+      ],
+      "safeReturnSpawns": [
+        0,
+        0
+      ],
+      "rescuedAlive": [
+        4,
+        4
+      ],
+      "boatResidents": [
+        2,
+        2
+      ],
+      "highRouteResidents": [
+        2,
+        2
+      ]
+    },
+    "majorBoss": {
+      "identity": "New wooden-warden instance, never Stage39 wreck resurrection",
+      "requiredDefeat": true,
+      "patterns": "Actual distinct native attacks, visible warning plus subsequent response, exposed window and tide-dependent positions. Cosmetic skill/name differences alone do not pass.",
+      "durationTarget": null,
+      "durationReason": "Do not invent a new boss-only duration from the current diagnostic result. Whole-stage18–20R includes combat, tide, physical return and required events."
+    },
+    "preserve": [
+      "Approved terrain/art and existing four resident IDs",
+      "Real boarding/sailing/disembarkation/high-road return",
+      "13 total =7 prior-safe+4 rescued+2 prior-dead;11 living",
+      "No forced empty rounds, mandatory untelegraphed deaths, infinite control or quiet-phase attacks"
+    ],
+    "pairedBudget": "Stage40 unique enemies >= Stage39 unique enemies +2; recheck if39 changes."
+  },
+  "act4Macro": {
+    "minibossTotal": [
+      11,
+      13
+    ],
+    "minibossStages": [
+      8,
+      8
+    ],
+    "ordinaryStageIds": [
+      31,
+      33,
+      34,
+      35,
+      37,
+      38
+    ],
+    "majorBossStageIds": [
+      39,
+      40
+    ],
+    "preserve": "Existing Act3→Act4 rise in actual pressure and duration, spatial diversity and combat safety remain required."
+  },
+  "verticalCountAmendment": {
+    "stageIds": [
+      31,
+      32,
+      33,
+      34,
+      35,
+      36,
+      37,
+      38,
+      39,
+      40
+    ],
+    "referenceOnly": [
+      "jumps",
+      "drops"
+    ],
+    "retainHistoricalRanges": true,
+    "requiredUnchanged": [
+      "Real supported and reachable routes",
+      "Useful high/low strategic alternatives",
+      "V/C spatial diversity",
+      "Protected terrain silhouettes and physical contact",
+      "Registered elevation/ratio checks, unless separately amended before measurement"
+    ],
+    "forbidden": [
+      "Extra floating platforms or meaningless jumps to satisfy counts",
+      "Removing varied terrain to make navigation easy",
+      "Relabeling any prior raw trace as a newly preregistered v4 trial"
+    ]
+  },
+  "implementationPending": [
+    "Version-pinned effective criteria and derived HTML",
+    "Unique budget and participation reducers",
+    "Cohort preregistration and true raw measurement adapters",
+    "Quantitative and visual gate integration"
+  ],
+  "evidencePolicy": "Current functional casts/placement/single-play diagnostics are not acceptance data for v4. Missing measures remain unmeasured; no approval by summary flag."
+}
