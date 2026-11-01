@@ -1,0 +1,59 @@
+{
+  "version": 1,
+  "status": "design-before-implementation-not-acceptance",
+  "goal": "Complete stages31–40, verify each stage, then master/Pages and public verification",
+  "preserve": [
+    "Approved terrain silhouettes, supporting structures and near/far separation",
+    "Stage39 main boss and rescue options",
+    "Stage40 injured2 by boat, walking2 by high route, safe reunion and13/11/2 accounting",
+    "Normal earned progression; no test-time stat or position cheats"
+  ],
+  "prospectiveStage40Revision": {
+    "status": "revised-after-explicit-finale-feedback; unmeasured",
+    "rounds": [
+      18,
+      20
+    ],
+    "enemyBudget": [
+      42,
+      42
+    ],
+    "minibossCount": 2,
+    "majorBossCount": 1,
+    "generalPolicyClearRate": [
+      55,
+      65
+    ],
+    "safeReturnEnemyActions": 0,
+    "safeReturnSpawns": 0,
+    "reason": "Stage40 is now the Act4 gameplay climax. The original3–6 and intermediate12–16 proposals are superseded. Count and boss pressure must exceed the preceding battle, without padding or changing rescue accounting.",
+    "constraints": [
+      "Actual finite waves, distinct boss telegraph/counter patterns, tidal route changes",
+      "No HP-only difficulty inflation, no forced round padding",
+      "All combat and required return actions included in20R cap",
+      "Exact targets are prospective design, not measured acceptance"
+    ],
+    "pairedEnemyConstraint": "Unique Stage40 budget >= actual Stage39 unique budget +2; if Stage39 changes, recheck before acceptance.",
+    "supersededPrototype": "14-enemy prototype is rejected for insufficient finale scale; preserve only as local failure evidence, never release."
+  },
+  "verticalPolicy": {
+    "required": "Keep intended vertical/combined stage identities and useful alternative routes, normal-input reachability, zero mandatory softlocks. Preserve terrain baseline.",
+    "referenceOnly": [
+      "Raw jump count",
+      "Raw drop count"
+    ],
+    "forbidden": [
+      "Adding floating platforms to satisfy jump quotas",
+      "Redundant traversal to inflate rounds or travel",
+      "Flattening approved varied terrain to simplify implementation"
+    ],
+    "remainingReview": "Do not retire campaign spatial diversity merely because jump-count requirements are relaxed."
+  },
+  "measurement": {
+    "referenceParty": "Freeze actually earned skills/equipment/profile before trials; separate underprepared, normal and skilled policies.",
+    "outcomes": "Retain losses, timeouts and rejected inputs. No aborting runs at20 to manufacture acceptable durations.",
+    "hardRoundCap": 20,
+    "completion": "Require objective correctness, all quantitative evidence, image review and same-candidate public checks. Gate unit tests do not establish gameplay acceptance."
+  },
+  "supportDependency": "Collector and review improvements are subtasks of Act4, not predecessor projects that halt all production."
+}

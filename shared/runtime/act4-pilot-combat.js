@@ -1,6 +1,6 @@
 (function(G){'use strict';
 // Opt-in SOP pilot actors only. No quest, victory, civilian or main-boss rules.
-const configs={31:{key:'levee',name:'둑틈봉쇄체',blast:65,travel:1.65,retreat:180},34:{key:'shelf',name:'턱포격체',blast:85,travel:1.9,retreat:220},39:{key:'net',name:'그물봉쇄체',blast:35,travel:1.7,retreat:150}};
+const configs={31:{key:'levee',name:'둑틈봉쇄체',blast:65,travel:1.65,retreat:180},34:{key:'shelf',name:'턱포격체',blast:85,travel:1.9,retreat:220},39:{key:'net',name:'그물봉쇄체',blast:35,travel:1.7,retreat:150},40:{key:'harbor',name:'포구봉쇄체',blast:55,travel:1.8,retreat:170}};
 const alive=u=>!!u&&!u.dead&&u.hp>0&&!u.eaterCapturedBy;
 const active=b=>!!configs[b?.honroAct4Preview]&&(b.honroCustom||b.honroAct4Official===1);
 const equipped=(b,u)=>active(b)&&u?.side===1&&u.honroPilotMidboss===configs[b.honroAct4Preview].key&&!u.boss&&!u.honroAct4WreckBoss;
