@@ -83,7 +83,14 @@ S.background=function(c,w,h,b){
  // in background(). Keep that pass, omitting only its old sky/flat cave base.
  if([11,13,14,15,16,17,19,20].includes(b.honroStage))G.HonroAct2SpatialArt.background(c,b,this,w,h,true);
  this.environmentStats={...this.environmentStats,groups:this.environmentStats?.groups||0,cachedPaths:this.environmentStats?.cachedPaths||0,visibleAssets:ls.length,backgroundAnimatedPrimitives:0,authoredFar:ls.map(l=>l.key)};
- if(b.honroAct4Preview||[11,13,14,15,16,17,19,20,22,24,25,26,28,29].includes(b.honroStage))G.HonroEnvironmentRenderer.customSpatialScenery(this,c,w,h,b);
+ if(b.honroAct4Preview||[11,13,14,15,16,17,19,20,22,24,25,26,28,29].includes(b.honroStage)){
+  // Distant scenery is static for a fixed camera (only waterfalls animate), but
+  // re-rasterizing its vector paths every frame was the largest Act 3-4 cost on
+  // phones. Hold it as a screen bitmap while the view is unchanged; camera motion
+  // keeps the live path through _screenRaster's two-identical-views rule.
+  const sceneryPaint=cc=>G.HonroEnvironmentRenderer.customSpatialScenery(this,cc,w,h,b),animated=b.honroEnvironment?.placements?.some(e=>e.role?.role==='waterfall'||/waterfall/.test(e.assetId||''));
+  if(animated||!this._screenRaster(raw,['far-scenery',this._worldCacheKey(b,w),w,h,this.x,this.y,this.scale].join(':'),w,h,sceneryPaint,'_screenSceneryCache',false))sceneryPaint(c);
+ }
 };
 G.HonroAuthoredFarArt={keyFor,manifest,ready:(n,preview)=>{const s=preview||manifest?.stages[n];return !!s&&[s.key,s.enclosed].filter(Boolean).every(k=>!!request(k,s.mood||"")?.canvas);},frames:(scene,w,h,b)=>layers(scene,w,h,b).map(({canvas,...l})=>l),stats:()=>({entries:cache.size,maxEntries:MAX,keys:[...cache.keys()],errors:[...cache.entries()].filter(([,v])=>v.error).map(([k])=>k),canvasBytes:[...cache.values()].reduce((n,v)=>n+(v.canvas?v.canvas.width*v.canvas.height*4:0),0)})};
 })(globalThis);
