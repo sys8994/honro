@@ -38,7 +38,16 @@ try:
   for _ in range(30):
    if not p.evaluate('!!HonroApp.dialogue'):break
    p.wait_for_timeout(800);p.keyboard.press('Enter')
-  p.get_by_text('여정첩',exact=True).click()
+  for _ in range(30):
+   p.wait_for_timeout(700)
+   if p.evaluate("HonroApp.screen==='journey'"):break
+   if p.evaluate('!!HonroApp.dialogue'):p.keyboard.press('Enter');continue
+   book=p.locator('[data-action="journey-book"]:visible')
+   if book.count():book.click()
+  record['bookState']=p.evaluate('({screen:HonroApp.screen,dialogue:!!HonroApp.dialogue})')
+  record['bookText']=p.locator('body').inner_text()[:4000]
+  p.screenshot(path=str(out/'journey-navigation.jpg'),type='jpeg',quality=80)
+  assert record['bookState']['screen']=='journey',record['bookState']
   p.locator('[data-action="journey-act"][data-id="'+str((stage-1)//10+1)+'"]').click()
   p.wait_for_timeout(500)
   p.locator('[data-action="journey-select"][data-id="'+str(stage)+'"]').click()
@@ -74,7 +83,14 @@ try:
    if view['name']=='min-zoom':view['scale']=p.evaluate('(w)=>HonroBounds.zoomLimits(w).min',view['w'])
    p.set_viewport_size({'width':view['w'],'height':view['h']})
    p.evaluate('''v=>{const s=HonroApp.scene;s.x=v.x;s.y=v.y;s.scale=v.scale;s.manual=true;}''',view)
-   p.wait_for_timeout(700);path=out/(view['name']+'.jpg');p.screenshot(path=str(path),type='jpeg',quality=88)
+   for _ in range(30):
+    p.wait_for_timeout(700)
+    if p.evaluate('!!HonroApp.dialogue'):
+     p.keyboard.press('Enter');continue
+    p.evaluate("v=>{const s=HonroApp.scene;s.x=v.x;s.y=v.y;s.scale=v.scale;s.manual=true;}",view)
+    p.wait_for_timeout(400)
+    if not p.evaluate('!!HonroApp.dialogue'):break
+   path=out/(view['name']+'.jpg');p.screenshot(path=str(path),type='jpeg',quality=88)
    actual=p.evaluate('({x:HonroApp.scene.x,y:HonroApp.scene.y,scale:HonroApp.scene.scale})')
    record['views'].append({'requested':view,'actualCamera':actual,'sha256':hashlib.sha256(path.read_bytes()).hexdigest()})
   assert not record['errors'],record['errors']
