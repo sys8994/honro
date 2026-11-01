@@ -16,7 +16,7 @@ jobs:
   smoke:
     if: github.repository == 'sys8994/honro'
     runs-on: ubuntu-24.04
-    timeout-minutes: 25
+    timeout-minutes: 50
     env:
       CI: 'true'
       HONRO_QA_URL: http://127.0.0.1:8770/HONRO.html
@@ -70,7 +70,7 @@ jobs:
             bash -eo pipefail -c "$command" 2>&1 | tee -a "$HONRO_QA_OUT/models.log" || status=1
           done
           exit "$status"
-      - name: Production contract regression (known baseline failure stays visible)
+      - name: Production contact and route contract regressions
         id: production_contract
         continue-on-error: true
         run: |
@@ -163,6 +163,39 @@ jobs:
           done
           test "$ready" = 1
           python tools/act4-ci/water-recovery-ui.py 2>&1 | tee "$HONRO_QA_OUT/stage34-water.log"
+      - name: Stage31 exact-runtime design card and focused probes
+        id: stage31_probes
+        if: ${{ !cancelled() && steps.candidate_build.outcome == 'success' }}
+        continue-on-error: true
+        run: |
+          set -o pipefail
+          evidence="$GITHUB_WORKSPACE/$HONRO_QA_OUT/stage31-models"
+          mkdir -p "$evidence"
+          cd "$RUNNER_TEMP/honro-act4-preview"
+          node tools/stage31/prepare-draft.mjs _local/stage31-ci | tee "$evidence/prepare.log"
+          cp _local/stage31-ci/card.json _local/stage31-ci/audit.json "$evidence/"
+          node tools/stage31/probes.mjs _local/stage31-ci/draft.json stage-31 tools/stage31/evidence/probes/honro-stage31-input-probes-v4.json "$evidence/probes.json" | tee "$evidence/probes.log"
+      - name: Stage31 actual browser battle and four-person boarding
+        id: stage31_fullplay
+        if: ${{ !cancelled() && steps.candidate_build.outcome == 'success' }}
+        continue-on-error: true
+        timeout-minutes: 25
+        env:
+          HONRO_QA_ORIGIN: http://127.0.0.1:8870
+          HONRO_RUN_DIR: _local/reports/github-qa/stage31-fullplay
+        run: |
+          set -o pipefail
+          cp _local/act4-rc/candidates/stage31.json "$RUNNER_TEMP/honro-act4-preview/candidate31.json"
+          python -m http.server 8870 --bind 127.0.0.1 --directory "$RUNNER_TEMP/honro-act4-preview" > "$HONRO_QA_OUT/stage31-server.log" 2>&1 &
+          server_pid=$!
+          trap 'kill "$server_pid" 2>/dev/null || true' EXIT
+          ready=0
+          for attempt in {1..30}; do
+            if curl --fail --silent --output /dev/null "$HONRO_QA_ORIGIN/HONRO.html"; then ready=1; break; fi
+            sleep 1
+          done
+          test "$ready" = 1
+          python tools/act4-ci/stage31-fullplay.py 2>&1 | tee "$HONRO_QA_OUT/stage31-fullplay.log"
       - name: Record all outcomes, including failures and skipped steps
         if: always()
         env:
@@ -174,7 +207,7 @@ jobs:
           from pathlib import Path
           result = {"sourceCommit": os.environ["GITHUB_SHA"], "baseCommit": os.environ["HONRO_QA_BASE"],
                     "runId": os.environ["GITHUB_RUN_ID"], "attempt": os.environ["GITHUB_RUN_ATTEMPT"],
-                    "releaseApproved": False, "scope": "CI capability and canonical initial-entry smoke only",
+                    "releaseApproved": False, "scope": "Canonical smoke, recorded Stage34 recovery, Stage31 focused probes and tool-assisted full play; not release approval",
                     "steps": json.loads(os.environ["STEP_OUTCOMES"])}
           Path(os.environ["HONRO_QA_OUT"], "run.json").write_text(json.dumps(result, indent=2) + "\n")
           PY
@@ -194,7 +227,7 @@ jobs:
           import json, os
           steps = json.loads(os.environ['CHECK_OUTCOMES'])
           required = ['install', 'models', 'production_contract', 'build', 'browser_install', 'browser',
-                      'candidate_build', 'stage34_water']
+                      'candidate_build', 'stage34_water', 'stage31_probes', 'stage31_fullplay']
           failed = {name: steps.get(name, {}).get('outcome', 'missing') for name in required
                     if steps.get(name, {}).get('outcome') != 'success'}
           if failed:
