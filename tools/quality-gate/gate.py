@@ -129,7 +129,7 @@ def evaluate_stage(stage,registration,traces,candidate,adapters=None):
   checks += [check_range('jumps',med('jumps'),d['jumps']),check_range('drops',med('drops'),d['drops'])]
  # Specialized checks run registered code on actual artifacts. Missing adapters
  # block; no unconditional permanent failure and no caller-supplied PASS shortcut.
- for name in ['requiredElevationCoverage','qualitativeArtAndTactics','protectedFeaturesAndSeams','actDifficultyCurve']:
+ for name in ['requiredElevationCoverage','qualitativeArtAndTactics','protectedFeaturesAndSeams','actDifficultyCurve','combatSafety']:
   if not adapters or name not in adapters:
    checks.append({'criterion':name,'status':'unmeasured','reason':'Registered evidence adapter missing'})
   else:

@@ -26,7 +26,27 @@ def decision(criterion,measurements,stage):
   result=number(m,'naturalLongStraightRatio')<.30 and number(m,'maxContourErrorPx')<=1.5 and number(m,'maxProtectedErrorPx')<=.5 and number(m,'lostProtectedFeatures',True)==0 and number(m,'visibleBadSeams',True)==0
  elif criterion=='actDifficultyCurve':
   need(number(m,'matchedGeneralPolicies',True)>=2 and number(m,'missingStageCohorts',True)==0,'unmatched/missing campaign cohorts')
-  result=number(m,'act4GeneralClearRate')<=number(m,'act3GeneralClearRate') and number(m,'act4AllCombatClearRate')<=number(m,'act3AllCombatClearRate') and number(m,'act4EnemyActions')>=number(m,'act3EnemyActions') and number(m,'act4AttackDamagePct')>=number(m,'act3AttackDamagePct') and number(m,'act4Midbosses',True)>=9
+  need(m['act3CombatStageIds']==list(range(21,31)) and m['act4CombatStageIds']==list(range(31,41)) and m['act3GeneralStageIds']==[21,22,23,24,28,30] and m['act4GeneralStageIds']==[31,33,34,35,37,38],'changed comparison exclusions')
+  # Frozen macro checks ACT4_PRESSURE/ACTIONS/DAMAGE/DURATION, not merely
+  # non-regression. Exact deltas come from criteria-v3.macro.checks.
+  conditions=[
+   number(m,'act4GeneralClearRate')<=number(m,'act3GeneralClearRate')-5,
+   number(m,'act4AllCombatClearRate')<=number(m,'act3AllCombatClearRate')-5,
+   number(m,'act4GeneralEnemyActionsMedian')>=number(m,'act3GeneralEnemyActionsMedian')+1,
+   number(m,'act4AllEnemyActionsMean')>=number(m,'act3AllEnemyActionsMean'),
+   number(m,'act4GeneralAttackDamageMedian')>=number(m,'act3GeneralAttackDamageMedian')+3,
+   number(m,'act4AllAttackDamageMean')>=number(m,'act3AllAttackDamageMean'),
+   number(m,'act4AllRoundsMean')>number(m,'act3AllRoundsMean'),
+   number(m,'act4AllRoundsMedian')>number(m,'act3AllRoundsMedian')]
+  previous_count=previous_stages=0
+  for act,count_bounds,stage_bounds,vertical,combined in [(1,(2,3),(2,3),3,4),(2,(4,5),(4,5),4,4),(3,(5,7),(5,6),4,4),(4,(9,11),(7,8),4,4)]:
+   count=number(m,f'act{act}Midbosses',True);stages=number(m,f'act{act}MidbossStages',True)
+   conditions += [count_bounds[0]<=count<=count_bounds[1],stage_bounds[0]<=stages<=stage_bounds[1],count>previous_count,stages>previous_stages,number(m,f'act{act}VerifiedVerticalStages',True)>=vertical,number(m,f'act{act}VerifiedCombinedStages',True)>=combined]
+   previous_count,previous_stages=count,stages
+  result=all(conditions)
+ elif criterion=='combatSafety':
+  need(number(m,'registeredThreatSituations',True)>0 and number(m,'testedThreatSituations',True)==number(m,'registeredThreatSituations',True),'missing threat/counterexample coverage')
+  result=number(m,'unavoidableOneTurnDeaths',True)==0 and number(m,'unboundedControlChains',True)==0 and number(m,'minimumVerifiedCounterRoutes',True)>=2
  elif criterion=='qualitativeArtAndTactics':
   # The pinned adapter must authenticate the review at its actual authority,
   # e.g. a protected review-service artifact, not just read local review JSON.

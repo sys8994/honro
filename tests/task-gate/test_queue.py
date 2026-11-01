@@ -86,6 +86,10 @@ class Tests(unittest.TestCase):
  def test_later_task_cannot_reuse_stale_previous_pass(self):
   self.enqueue(self.task());later=self.task('later');later['plan']['steps'][0]['produce']=[sys.executable,'worker.py','value.txt','4'];self.enqueue(later)
   self.assertFalse(self.runq());self.assertEqual(self.s['tasks'][0]['status'],'completed');self.assertEqual(self.s['tasks'][1]['status'],'blocked')
+ def test_later_task_cannot_change_previous_frozen_criteria(self):
+  self.enqueue(self.task());(self.root/'other-criteria.txt').write_text('independent target')
+  later=self.task('later');later['plan']['locked_files']={'check.py':q.file_hash(self.root/'check.py'),'other-criteria.txt':q.file_hash(self.root/'other-criteria.txt')};later['plan']['steps'][0]['produce']=[sys.executable,'worker.py','criteria.txt','target=0'];later['plan']['steps'][0]['artifacts']=['criteria.txt'];self.enqueue(later)
+  self.assertFalse(self.runq());self.assertEqual(self.s['tasks'][1]['status'],'blocked')
  def test_history_reload(self):
   self.enqueue(self.task());self.assertTrue(self.runq());loaded=q.load(self.queue);self.assertEqual(loaded['tasks'][0]['status'],'completed')
 if __name__=='__main__':unittest.main(verbosity=2)

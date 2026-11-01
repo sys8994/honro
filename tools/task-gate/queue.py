@@ -69,7 +69,9 @@ def check_receipts(task,root):
  for receipt in task['receipts']:need(snapshot(root,list(receipt['artifacts']))==receipt['artifacts'],'earlier stage artifact changed; revise candidate, not past receipt')
 def check_completed_history(state,root):
  for previous in state['tasks']:
-  if previous['status']=='completed':check_receipts(previous,root)
+  if previous['status']=='completed':
+   need(validate_plan(previous['plan'],root)==previous['plan_hash'],'earlier task criteria or validator changed')
+   check_receipts(previous,root)
 def run(state,root,persist,timeout=120):
  for task in state['tasks']:
   if task['status']=='awaiting_plan':event(state,'waiting-for-criteria',task=task['id']);persist();return False

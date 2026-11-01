@@ -46,9 +46,9 @@ class Tests(unittest.TestCase):
  def test_reducer(self):
   r=self.reduce();self.assertEqual((r['rounds'],r['engaged'],r['enemyActions'],r['enemyAttackPctHP'],r['jumps'],r['drops']),(9,4,4,25,8,4))
  def test_missing_adapters_blocks(self):
-  r=gate.evaluate_stage(self.stage,self.reg,self.traces,'b'*64);self.assertFalse(r['releaseAllowed']);self.assertEqual(sum(x['status']=='unmeasured' for x in r['checks']),4)
+  r=gate.evaluate_stage(self.stage,self.reg,self.traces,'b'*64);self.assertFalse(r['releaseAllowed']);self.assertEqual(sum(x['status']=='unmeasured' for x in r['checks']),5)
  def test_explicit_synthetic_adapter_positive_path(self):
-  names=['requiredElevationCoverage','qualitativeArtAndTactics','protectedFeaturesAndSeams','actDifficultyCurve'];adapters={n:(lambda *args,n=n:{'criterion':n,'status':'pass','observations':[{'syntheticFixtureOnly':True}]}) for n in names}
+  names=['requiredElevationCoverage','qualitativeArtAndTactics','protectedFeaturesAndSeams','actDifficultyCurve','combatSafety'];adapters={n:(lambda *args,n=n:{'criterion':n,'status':'pass','observations':[{'syntheticFixtureOnly':True}]}) for n in names}
   self.assertTrue(gate.evaluate_stage(self.stage,self.reg,self.traces,'b'*64,adapters)['releaseAllowed'])
  def test_handwritten_pass_rejected(self):
   with self.assertRaises(gate.Invalid):self.reduce({'passed':True,'rounds':9})
