@@ -52,7 +52,7 @@ function tide(b){const q=memory(b),cfg=b.honroAct4Design.tide;if(!cfg)return;con
   const boss=b.units.find(u=>u.honroAct4FinaleBoss),policy=b.honroAct4Design.waterPolicies.find(z=>z.id==='40-return-inlet');
   if(!foes(b).length){Object.assign(t,{phase:'low',surface:cfg.low,finished:true});if(policy)policy.surface=cfg.low;const hud=G.document.getElementById('act4-water-hud');if(hud)hud.textContent='≈ ↓';syncWater(b);return;}
   if(policy)policy.surface=cfg.high; // Only banks above high water are safe recovery anchors.
-  if(!t.started&&alive(boss)&&party(b).some(u=>Math.hypot(u.x-boss.x,u.y-boss.y)<1100)){t.started=true;cfg.warningRound=b.round;}
+  if(!t.started&&alive(boss)&&party(b).some(u=>u.y>=3000&&Math.hypot(u.x-boss.x,u.y-boss.y)<650)){t.started=true;t.warningRound=cfg.warningRound=b.round;}
  }
 
  if(b.round>=cfg.warningRound&&!t.warned&&b.side===0&&b.phase==='aim'){t.phase='rising';t.surface=cfg.low-18;t.warned=true;t.warningAtRound=b.round;t.highRound=b.round+(party(b).some(u=>u.acted)?4:3);t.lowRound=t.highRound+2;t.opportunities={};}

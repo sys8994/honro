@@ -99,6 +99,11 @@ if(S){
   c.save();c.translate(u.x,u.y);const scale=u.h/a.baseHeight;c.scale(scale*(u.facing||1),scale);const m=c.getTransform(),ratio=c.canvas.clientWidth?c.canvas.width/c.canvas.clientWidth:1;
   v.draw(c,'warden',{time:this.time||0,state:v.state(u),pixels:a.baseHeight*Math.hypot(m.c,m.d)/ratio});c.restore();
  };
+ const actor=S.unit;S.unit=function(c,u,...args){const out=actor.call(this,c,u,...args),b=this.actorEngine?.b;
+  if(!b||u.dead||u.hp<=0||u.eaterCapturedBy||u.side!==1||!G.HonroAct4PilotCombat?.equipped(b,u)||u.h*this.scale<36)return out;
+  const major=G.HonroAct4PilotCombat.finale(b,u),scale=Math.max(.1,this.scale),label=(major?'보스 · ':'중간보스 · ')+u.name;
+  c.save();c.font=`bold ${12/scale}px sans-serif`;c.textAlign='center';c.textBaseline='bottom';c.lineWidth=3/scale;c.strokeStyle='#10202b';c.fillStyle=major?'#f1d68f':'#b5d8e3';c.strokeText(label,u.x,u.y-u.h-26/scale);c.fillText(label,u.x,u.y-u.h-26/scale);c.restore();return out;
+ };
  const tone=S.environmentTone;S.environmentTone=function(c,w,h,b,...args){if(config(b)?.preservePalette===true)return;return tone?.call(this,c,w,h,b,...args);};
  const cacheKey=S._worldCacheKey;S._worldCacheKey=function(b,...args){const q=config(b);return cacheKey.call(this,b,...args)+(q?':native-art-1:'+JSON.stringify(q):'');};
 }

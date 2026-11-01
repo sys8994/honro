@@ -6,6 +6,7 @@ g.HONRO_ACT4_PREVIEW_SEEDS=JSON.parse(await readFile('shared/data/act4/reviewed.
 for(const name of ['interactions','act4-art','act4-maps','act4-coast-maps','act4-coast-art','act4-events','act4-coast-events'])vm.runInContext(await readFile('shared/runtime/'+name+'.js','utf8'),g);await loadPilotRuntime(g);
 const P=g.HonroAct4TerrainPreview,s=g.HONRO_PROJECT.stages.find(s=>s.metadata.stageId===40),p=g.HonroMaps.profileFor(s);g.HonroEquipment.fresh(p);const b=g.HonroMaps.createBattle(s,g.HONRO_PROJECT,p,{origin:'campaign'}),e=new g.HONRO_CORE.Engine(b,()=>{},true),q=P.previewMemory(b),hero=b.units.find(u=>u.side===0),boss=b.units.find(u=>u.honroAct4FinaleBoss),cfg=b.honroAct4Design.tide,policy=b.honroAct4Design.waterPolicies[0];
 Object.assign(b,{side:0,phase:'aim',round:1});P.coast.tide(b);assert.equal(q.tide.started,undefined);assert.equal(q.tide.surface,3762.5);assert.equal(policy.surface,3412.5);
+Object.assign(hero,{x:1800,y:2826,acted:false});P.coast.tide(b);assert(!q.tide.started,'Dock approach must not spend the entire tide before boss engagement');
 Object.assign(hero,{x:1800,y:3175,acted:false});P.coast.tide(b);assert(q.tide.started);assert.equal(q.tide.phase,'rising');assert(q.tide.highRound>=b.round+3,'At least three allied round boundaries before high tide');
 const high=q.tide.highRound;b.round=high;P.coast.tide(b);assert.equal(q.tide.surface,3412.5);assert.equal(q.tide.phase,'high');assert(boss.honroAct4Aquatic);
 const hp=boss.hp;P.coast.water(e);assert.equal(boss.hp,hp,'Aquatic major boss is not auto-killed by its arena');
