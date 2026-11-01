@@ -15,6 +15,8 @@ state_js='''()=>{const a=HonroApp,e=a.engine,b=e.b,q=b.honroAct4PreviewState,u=e
  residents:b.units.filter(v=>v.honroAct4Resident).map(v=>({id:v.id,x:v.x,y:v.y,hp:v.hp,dead:v.dead})),
  foes:b.units.filter(v=>v.side===1&&!v.dead).length,connection:q.connected||null,probe:q.connectionProbe||null,
  observed:q.observed||{},receipts:q.receipts||[],complete:!!q.complete,exit:b.honroAct4Design.exit,
+ shotSerial:b.shot,enemyActions:b.enemyActions,anchorAction:q.anchorAction||null,
+ enemyState:b.units.filter(v=>v.side===1).map(v=>({id:v.id,x:v.x,y:v.y,hp:v.hp,awake:v.awake,acted:v.acted})),
  toe:b.terrain.some(t=>t.id==='a4-rescue-rock-step')};}'''
 with sync_playwright() as w:
  browser=w.chromium.launch(headless=True);p=browser.new_page(viewport={'width':1440,'height':900});p.on('pageerror',lambda e:result['errors'].append(str(e)))
@@ -27,6 +29,9 @@ with sync_playwright() as w:
    s=state()
    if s['phase'] in ['won','lost']:return False
    if s['dialogue']:p.wait_for_timeout(700);p.keyboard.press('Enter');continue
+   if route=='lower' and s.get('anchorAction'):
+    point=p.evaluate('HonroApp.engine.b.honroAct4Design.connection.entry');dims=p.evaluate('({w:HonroApp.engine.b.width,h:HonroApp.engine.b.height})');box=p.locator('#minimap').bounding_box()
+    p.mouse.click(box['x']+box['width']*point['x']/dims['w'],box['y']+box['height']*point['y']/dims['h']);p.wait_for_timeout(800);continue
    if route=='lower' and s['probe'] and s['probe'].get('phase') in ['entry','wrong-exit']:
     key='probeEntryPoint' if s['probe']['phase']=='entry' else 'probeWrongPoint'
     point=p.evaluate('(key)=>HonroApp.engine.b.honroAct4Design.geometry38[key]',key)
@@ -56,7 +61,7 @@ with sync_playwright() as w:
   if route=='lower':
    dims=p.evaluate('({w:HonroApp.engine.b.width,h:HonroApp.engine.b.height})');box=p.locator('#minimap').bounding_box();p.mouse.click(box['x']+box['width']*4600/dims['w'],box['y']+box['height']*2600/dims['h']);p.wait_for_timeout(1800);ready();record('look-ahead-residents',['minimap',4600,2600])
    p.locator('[data-action="select-hero"][data-id="'+state()['active']+'"]').click();p.wait_for_timeout(500)
-  started=time.monotonic();stalls={}
+  started=time.monotonic();stalls={};descended=set()
   for step in range(240):
    if time.monotonic()-started>1200:raise TimeoutError('Bounded route budget exceeded')
    if not ready():break
@@ -76,8 +81,8 @@ with sync_playwright() as w:
    signature=(round(s['x']/50),round(s['y']/50),s['round']);key=s['active'];history=stalls.setdefault(key,[]);history.append(signature)
    if len(history)>8 and len(set(history[-8:]))==1:record('stalled');screenshot('stalled');raise AssertionError('No route progress for eight attempts')
    if route=='lower' and s['x']<4000:
-    if s['y']<2350 and s['drop']:
-     p.keyboard.press('Alt');p.wait_for_timeout(1800);record('descend-to-middle',['Alt']);continue
+    if key not in descended and s['drop']:
+     p.keyboard.press('Alt');p.wait_for_timeout(1800);descended.add(key);record('descend-to-middle-once',['Alt']);continue
     if s['x']<2830:go_right('approach-connection');continue
     if not s['probe'] or s['probe'].get('phase')!='observed':p.keyboard.press('e');p.wait_for_timeout(1800);record('probe-connection',['e']);continue
     if not s['connection']:

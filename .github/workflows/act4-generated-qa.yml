@@ -1,0 +1,57 @@
+name: Verify generated Act4 candidate
+on:
+  push:
+    branches: ['work/act4-generated-candidate/**']
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    env:
+      HONRO_QA_URL: http://127.0.0.1:8770/HONRO.html
+      HONRO_QA_OUT: _local/reports/generated-qa
+      HONRO_CAPTURE_URL: http://127.0.0.1:8770/HONRO.html
+    steps:
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
+        with:
+          ref: ${{ github.sha }}
+          persist-credentials: false
+      - uses: actions/setup-node@2028fbc5c25fe9cf00d9f06a71cc4710d4507903
+        with:
+          node-version: '22'
+          package-manager-cache: false
+      - uses: actions/setup-python@e797f83bcb11b83ae66e0230d6156d7c80228e7c
+        with:
+          python-version: '3.12'
+      - name: Check exact packaged source without rebuilding the served files
+        run: |
+          npm ci
+          npm ci --prefix game
+          node tools/act4-source/world-source.mjs check
+          HONRO_ACT4_RELEASE=1 node tools/stage31/check-release.mjs
+          node tests/act4-map-revision-rc.mjs
+          python -m pip install 'playwright==1.58.0'
+          python -m playwright install chromium
+          if ! python -c 'from playwright.sync_api import sync_playwright; w=sync_playwright().start(); b=w.chromium.launch(headless=True); b.close(); w.stop()'; then
+            python -m playwright install-deps chromium
+          fi
+      - name: Actual packaged browser checks and requested stage screenshots
+        run: |
+          set -euo pipefail
+          mkdir -p "$HONRO_QA_OUT"
+          sha256sum HONRO.html web/manifest.json > "$HONRO_QA_OUT/served-sha256.txt"
+          python -m http.server 8770 --bind 127.0.0.1 > "$HONRO_QA_OUT/server.log" 2>&1 &
+          trap 'kill $! 2>/dev/null || true' EXIT
+          sleep 2
+          python tools/act4-ci/browser-smoke.py > "$HONRO_QA_OUT/stage1.log" 2>&1
+          python tools/act4-ci/water-recovery-ui.py > "$HONRO_QA_OUT/stage34.log" 2>&1
+          for stage in $(seq 31 40); do
+            HONRO_CAPTURE_STAGE="$stage" HONRO_CAPTURE_OUT="$HONRO_QA_OUT/stage$stage" python tools/act4-ci/capture-stage-art.py > "$HONRO_QA_OUT/stage$stage.log" 2>&1
+          done
+      - uses: actions/upload-artifact@330a01c490aca151604b8cf639adc76d48f6c5d4
+        if: always()
+        with:
+          name: generated-act4-qa-${{ github.sha }}
+          path: _local/reports/generated-qa/
+          retention-days: 7

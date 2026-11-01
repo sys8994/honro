@@ -6,13 +6,16 @@ from pathlib import Path
 from playwright.sync_api import sync_playwright
 root=Path(__file__).resolve().parents[2]
 stage=int(os.environ.get('HONRO_CAPTURE_STAGE','31'))
-assert stage in (3,30,31)
+assert stage in (3,30) or 31<=stage<=40
 out=Path(os.environ['HONRO_CAPTURE_OUT']);out.mkdir(parents=True,exist_ok=True)
 fixture=Path(__file__).with_name('stage38')/'entry-profile.json'
 profile=json.loads(fixture.read_text())['profile']
 assert profile['lastStage']==37 and len(profile['recruited'])==4
 # Art-only replay fixture: begin at a camp, not the uninterrupted 37 -> 38 handoff.
 profile['honroJourney'].pop('pendingDirect',None)
+# Camera-only replay coverage uses a declared synthetic unlocked ledger.
+if stage>=32:
+ for n in range(1,41):profile['cleared'].setdefault(str(n),{'visits':1,'rounds':5,'stars':1,'shots':0})
 import_file=out/'entry-profile.json'
 import_file.write_text(json.dumps(profile,ensure_ascii=False))
 record={'scope':'synthetic cleared-campaign profile, normal journey replay; camera-only art diagnostic, not gameplay acceptance',
@@ -79,6 +82,11 @@ try:
      ('mobile',1400,2000,.5,390,844),('mobile-landscape',1400,2000,.5,844,390),
      ('left-edge',0,2200,.5,1440,900),('right-edge',width,2200,.5,1440,900)]:
     views.append({'name':name,'x':x,'y':y,'scale':scale,'w':w,'h':h})
+  if stage>=32:
+   # Full scene and actor-readable view; no actor/quest state mutation.
+   views.append({'name':'overview','x':width/2,'y':height/2,'scale':min(1440/(width+100),760/(height+100)),'w':1440,'h':900})
+   heroes=record['observed']['party'];hero=next((h for h in heroes if h['id']=='archer'),heroes[0])
+   views.append({'name':'normal','x':hero['x']+450,'y':hero['y']-180,'scale':.65,'w':1440,'h':900})
   for view in views:
    if view['name']=='min-zoom':view['scale']=p.evaluate('(w)=>HonroBounds.zoomLimits(w).min',view['w'])
    p.set_viewport_size({'width':view['w'],'height':view['h']})
