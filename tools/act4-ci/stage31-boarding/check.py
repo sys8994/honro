@@ -27,16 +27,64 @@ try:
   p.wait_for_function('HonroApp.engine?.b?.honroStage===31',timeout=60000)
   first=p.evaluate(state_js);assert first['round']==13 and first['enemies']==0 and len(first['heroes'])==4,first
   result['initial']=first;p.screenshot(path=str(out/'initial.jpg'),type='jpeg',quality=88)
-  for i,c in enumerate(commands):
-   op,args=c['op'],c['input']
-   if op=='hold':
-    p.keyboard.down(args[0]);p.wait_for_timeout(int(args[1]));p.keyboard.up(args[0]);p.wait_for_timeout(int(args[2]))
-   elif op=='key':p.keyboard.press(args[0]);p.wait_for_timeout(int(args[1]))
-   elif op=='wait':p.wait_for_timeout(int(args[0]))
-   current=p.evaluate(state_js);result['observations'].append({'input':c,'actual':current})
-   assert all(h['hp']>0 and not h['dead'] for h in current['heroes']),current
-   if op=='key' and args[0]=='f':
-    p.screenshot(path=str(out/f'handoff-{i}.jpg'),type='jpeg',quality=85)
+  def observe(label):
+   v=p.evaluate(state_js);result['observations'].append({'step':label,'actual':v})
+   assert all(h['hp']>0 and not h['dead'] for h in v['heroes']),v
+   return v
+  def quiet():
+   for _ in range(90):
+    p.wait_for_timeout(600)
+    if p.evaluate('!!HonroApp.dialogue'):
+     p.keyboard.press('Enter');continue
+    if p.evaluate("HonroApp.engine.b.phase==='won'||HonroApp.canInput()"):
+     p.wait_for_timeout(400)
+     if not p.evaluate('!!HonroApp.dialogue'):return
+   raise TimeoutError('Dialogue/input gate did not settle')
+  def actor():
+   v=p.evaluate(state_js);return next(h for h in v['heroes'] if h['id']==v['active'])
+  def landed():
+   for _ in range(70):
+    if actor()['grounded']:return
+    if p.evaluate('!!HonroApp.dialogue'):quiet()
+    p.wait_for_timeout(100)
+   raise TimeoutError('Landing did not settle')
+  def walk(x,jump=False):
+   quiet();landed();before=actor();direction='ArrowRight' if x>before['x'] else 'ArrowLeft'
+   p.keyboard.down(direction)
+   if jump:p.keyboard.press('Control')
+   try:
+    for _ in range(65):
+     p.wait_for_timeout(50);u=actor()
+     if p.evaluate('!!HonroApp.dialogue'):break
+     if (direction=='ArrowRight' and u['x']>=x-4) or (direction=='ArrowLeft' and u['x']<=x+4):break
+   finally:p.keyboard.up(direction)
+   landed();observe(('jump-to-' if jump else 'walk-to-')+str(x))
+  def drop_to(y):
+   for _ in range(5):
+    quiet();landed()
+    if actor()['y']>=y-5:return
+    p.keyboard.press('Alt');p.wait_for_timeout(1700);landed();observe('drop-toward-'+str(y))
+   assert actor()['y']>=y-5,actor()
+  quiet()
+  for _ in range(60):
+   if p.evaluate(state_js)['boat']['phase']=='docked':break
+   quiet();p.wait_for_timeout(500)
+  assert p.evaluate(state_js)['boat']['phase']=='docked'
+  for hero in ['archer','mage','knight','occultist']:
+   quiet();p.locator('[data-action="select-hero"][data-id="'+hero+'"]').click();p.wait_for_timeout(500)
+   assert p.evaluate(state_js)['active']==hero
+   if hero in ['archer','mage']:
+    walk(4815);walk(4865,True);walk(5240,True);walk(6100);walk(6480)
+   elif hero=='knight':drop_to(2700);walk(6480)
+   else:walk(5500);walk(5950);drop_to(2700);walk(6480)
+   drop_to(3366);u=actor()
+   assert 6397.5<u['x']<6697.5 and abs(u['y']-3366)<5,u
+   p.screenshot(path=str(out/('boarded-'+hero+'.jpg')),type='jpeg',quality=88)
+  quiet();p.keyboard.press('e');p.wait_for_timeout(1500)
+  for _ in range(40):
+   if p.evaluate(state_js)['phase']=='won':break
+   if p.evaluate('!!HonroApp.dialogue'):p.keyboard.press('Enter')
+   p.wait_for_timeout(700)
   final=p.evaluate(state_js);result['final']=final;p.screenshot(path=str(out/'objective.jpg'),type='jpeg',quality=88)
   assert final['phase']=='won' and final['complete'] and final['boat']['phase']=='boarded',final
   assert final['round']==13 and not result['errors'],result['errors']
