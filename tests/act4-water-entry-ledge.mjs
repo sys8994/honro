@@ -1,4 +1,4 @@
-/** Model regression from an unmodified, real Stage 34 UI save.
+/** Model regression from an unmodified, real Stage 34 localStorage snapshot.
  * No browser/full-play claim: only DOM and event-presentation adapters are stubs.
  */
 import assert from 'node:assert/strict';

@@ -115,6 +115,54 @@ jobs:
           done
           test "$ready" = 1
           python tools/act4-ci/browser-smoke.py 2>&1 | tee "$HONRO_QA_OUT/browser.log"
+      - name: Assemble hash-verified candidate in a disposable QA worktree
+        id: candidate_build
+        if: ${{ !cancelled() && steps.install.outcome == 'success' && steps.browser_install.outcome == 'success' }}
+        continue-on-error: true
+        run: |
+          set -o pipefail
+          for revision in \
+            6f65b57fa7d389daec0f3932c7b094cff1b2dcc9 \
+            a5c521b384ef9086194cfaafcf36291f06e05569 \
+            c5df56daf71d62d28d308d982bc431b3c75fb98d; do
+            git fetch --no-tags --depth=1 origin "$revision"
+          done
+          python tools/act4-rc/restore.py | tee "$HONRO_QA_OUT/candidate-restore.log"
+          python tools/act4-rc/assemble.py | tee "$HONRO_QA_OUT/candidate-assembly.log"
+          node tools/act4-rc/preflight.mjs | tee "$HONRO_QA_OUT/candidate-preflight.log"
+          echo '48c4c4deb9aec62518bde72e9c8668f36817da8f2626e7f8a736b0bd8af65b43  _local/act4-rc/world.json' | sha256sum -c -
+          preview="$RUNNER_TEMP/honro-act4-preview"
+          git worktree add --detach "$preview" "$GITHUB_SHA"
+          ln -s "$GITHUB_WORKSPACE/node_modules" "$preview/node_modules"
+          ln -s "$GITHUB_WORKSPACE/game/node_modules" "$preview/game/node_modules"
+          cp _local/act4-rc/world.json "$preview/shared/data/act4/world.json"
+          (
+            cd "$preview"
+            node tools/act4-source/world-source.mjs pack
+            # This flag is confined to the disposable QA copy. It is not a
+            # production package, guard approval, master change or deployment.
+            HONRO_ACT4_RELEASE=1 node workshop/build.mjs
+            sha256sum HONRO.html web/manifest.json
+          ) 2>&1 | tee "$HONRO_QA_OUT/candidate-build.log"
+      - name: Recorded Stage34 recovery through real UI import and Continue
+        id: stage34_water
+        if: ${{ !cancelled() && steps.candidate_build.outcome == 'success' }}
+        continue-on-error: true
+        timeout-minutes: 6
+        env:
+          HONRO_QA_URL: http://127.0.0.1:8870/HONRO.html
+        run: |
+          set -o pipefail
+          python -m http.server 8870 --bind 127.0.0.1 --directory "$RUNNER_TEMP/honro-act4-preview" > "$HONRO_QA_OUT/stage34-server.log" 2>&1 &
+          server_pid=$!
+          trap 'kill "$server_pid" 2>/dev/null || true' EXIT
+          ready=0
+          for attempt in {1..30}; do
+            if curl --fail --silent --output /dev/null "$HONRO_QA_URL"; then ready=1; break; fi
+            sleep 1
+          done
+          test "$ready" = 1
+          python tools/act4-ci/water-recovery-ui.py 2>&1 | tee "$HONRO_QA_OUT/stage34-water.log"
       - name: Record all outcomes, including failures and skipped steps
         if: always()
         env:
@@ -145,7 +193,8 @@ jobs:
           python - <<'PY'
           import json, os
           steps = json.loads(os.environ['CHECK_OUTCOMES'])
-          required = ['install', 'models', 'production_contract', 'build', 'browser_install', 'browser']
+          required = ['install', 'models', 'production_contract', 'build', 'browser_install', 'browser',
+                      'candidate_build', 'stage34_water']
           failed = {name: steps.get(name, {}).get('outcome', 'missing') for name in required
                     if steps.get(name, {}).get('outcome') != 'success'}
           if failed:
