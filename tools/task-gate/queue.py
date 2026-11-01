@@ -67,6 +67,9 @@ def enqueue(state,task,root):
 def check_receipts(task,root):
  need(task['step']==len(task['receipts']),'stage counter without receipts')
  for receipt in task['receipts']:need(snapshot(root,list(receipt['artifacts']))==receipt['artifacts'],'earlier stage artifact changed; revise candidate, not past receipt')
+def check_completed_history(state,root):
+ for previous in state['tasks']:
+  if previous['status']=='completed':check_receipts(previous,root)
 def run(state,root,persist,timeout=120):
  for task in state['tasks']:
   if task['status']=='awaiting_plan':event(state,'waiting-for-criteria',task=task['id']);persist();return False
@@ -100,7 +103,7 @@ def run(state,root,persist,timeout=120):
      if command:
       proc=execute(root,command,env,timeout)
       event(state,'work',task=task['id'],step=step['id'],attempt=attempt,exit=proc.returncode,stdout=proc.stdout[-4000:],stderr=proc.stderr[-4000:])
-      check_receipts(task,root)
+      check_receipts(task,root);check_completed_history(state,root)
       if proc.returncode:task['status']='rework';persist();continue
      try:hashes=snapshot(root,step['artifacts'])
      except Exception as exc:event(state,'missing-artifact',task=task['id'],step=step['id'],reason=str(exc));task['status']='rework';persist();continue
@@ -118,7 +121,7 @@ def run(state,root,persist,timeout=120):
       except Exception as exc:result={'status':'invalid','reason':str(exc)};passed=False
       outcomes.append({'id':check['id'],'kind':check['kind'],'passed':passed,'result':result,'exit':proc.returncode})
      need(snapshot(root,step['artifacts'])==hashes,'validator modified artifact')
-     check_receipts(task,root)
+     check_receipts(task,root);check_completed_history(state,root)
      need(validate_plan(task['plan'],root)==task['plan_hash'],'validator/worker changed fixed criteria')
      event(state,'checks',task=task['id'],step=step['id'],attempt=attempt,outcomes=outcomes)
      if all(c['passed'] for c in outcomes):
@@ -126,7 +129,7 @@ def run(state,root,persist,timeout=120):
       task['receipts'].append(receipt);task['step']=index+1;task['status']='running';persist();break
      task['status']='rework';persist()
      if not step.get('repair'):raise GateError('failed/unmeasured check and no authorized repair adapter')
-   check_receipts(task,root)
+   check_receipts(task,root);check_completed_history(state,root)
    task['status']='completed';event(state,'completed',task=task['id']);persist()
   except Exception as exc:
    task['status']='blocked';event(state,'blocked',task=task['id'],reason=str(exc));persist();return False

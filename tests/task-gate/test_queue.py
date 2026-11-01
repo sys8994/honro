@@ -83,6 +83,9 @@ class Tests(unittest.TestCase):
  def test_plan_can_be_bound_only_once(self):
   q.capture(self.s,'first','synthetic-user-test','Request');q.bind_plan(self.s,'first',self.task()['plan'],self.root)
   with self.assertRaises(q.GateError):q.bind_plan(self.s,'first',self.task()['plan'],self.root)
+ def test_later_task_cannot_reuse_stale_previous_pass(self):
+  self.enqueue(self.task());later=self.task('later');later['plan']['steps'][0]['produce']=[sys.executable,'worker.py','value.txt','4'];self.enqueue(later)
+  self.assertFalse(self.runq());self.assertEqual(self.s['tasks'][0]['status'],'completed');self.assertEqual(self.s['tasks'][1]['status'],'blocked')
  def test_history_reload(self):
   self.enqueue(self.task());self.assertTrue(self.runq());loaded=q.load(self.queue);self.assertEqual(loaded['tasks'][0]['status'],'completed')
 if __name__=='__main__':unittest.main(verbosity=2)
