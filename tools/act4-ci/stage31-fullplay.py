@@ -96,6 +96,18 @@ with sync_playwright() as w:
   warning=p.evaluate('''()=>{const a=HonroApp;return a.engine.b.units.filter(v=>v.honroPilotCombat?.phase==='telegraph').map(v=>({id:v.id,target:v.honroPilotCombat.target,visible:HonroAct4TerrainPreview.eventAPI.inView(a,v.honroPilotCombat.target,25)}))}''')
   if warning:
    record('warning-before-'+str(n),{'warning':warning,'body':p.locator('body').inner_text()[:1800]});capture(path=str(out/('warning-v8-before-'+str(n)+'.png')));p.wait_for_timeout(2500);record('warning-after-'+str(n),{'warning':warning});capture(path=str(out/('warning-v8-after-'+str(n)+'.png')))
+  stance=p.evaluate('''()=>{const a=HonroApp,e=a.engine,u=e.active,s=HONRO_CORE.SKILLS.S08;
+   if(u?.cls!=='knight'||u.hp>u.maxHp*.55||!e.grounded(u)||!a.canInput())return null;
+   const idx=u.loadout.indexOf('S08');if(idx<0||!e.skillAllowed(s,u)||e.cooldownLeft(u,'S08')>0||!e.canAfford(s,u,.3))return null;
+   const sc=a.scene,r=sc.canvas.getBoundingClientRect(),lo=sc.world(0,0),hi=sc.world(r.width,r.height);
+   return e.b.units.some(v=>v.side===1&&!v.dead&&Math.hypot(v.x-u.x,v.y-u.y)<1100&&v.x>=lo.x&&v.x<=hi.x&&v.y>=lo.y&&v.y<=hi.y)?{idx,hp:u.hp,maxHp:u.maxHp}:null;
+  }''')
+  if stance:
+   record('counter-stance-'+str(n),{'assessment':stance})
+   p.keyboard.press('Digit'+str(stance['idx']+1));p.wait_for_timeout(100);p.keyboard.down('Space')
+   try:p.wait_for_function('HonroApp.charging && HonroApp.chargePower(performance.now())>=.28',timeout=8000,polling=16)
+   finally:p.keyboard.up('Space')
+   p.wait_for_timeout(3000);record('counter-stance-result-'+str(n));continue
   if survive(n):continue
   start=state();pl=plan();observe(pl)
   if not pl['visible']:
@@ -109,7 +121,7 @@ with sync_playwright() as w:
    if pl['best'] or state()['active']!=start['active'] or not state()['can']:break
    before=state()
    allies=sorted(h['x'] for h in before['health'] if not h['dead'] and h['id']!=before['active'])
-   if before['active'] in ['archer','mage'] and allies and before['x']>allies[len(allies)//2]+800:
+   if allies and before['x']>allies[len(allies)//2]+800:
     record('formation-hold-'+str(n),{'allyXs':allies});break
    known=sorted(memory.values(),key=lambda x:abs(x['x']-before['x'])+abs(x['y']-before['y'])*.7);target=known[0] if known else None
    if target and target['y']-before['y']>180 and abs(target['x']-before['x'])<650 and before['drop']:
