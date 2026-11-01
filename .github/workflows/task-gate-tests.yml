@@ -26,6 +26,9 @@ jobs:
           python tests/task-gate/test_queue.py
           python tests/task-gate/test_quality.py
           python tests/task-gate/test_adapters.py
+          python tests/task-gate/test_v4_amendment.py
+          python tests/task-gate/test_v4_gate.py
+          python tests/task-gate/test_finale_driver.py
           node --test tests/task-gate/observe-engine.mjs tests/task-gate/boarding-target.mjs
           node tests/task-gate/build-boundary.mjs
           node tests/act4-finale-roster.mjs

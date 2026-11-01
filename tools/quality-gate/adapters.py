@@ -20,8 +20,19 @@ def decision(criterion,measurements,stage):
  if criterion=='requiredElevationCoverage':
   required=number(m,'requiredSupports',True);seen=number(m,'visitedRequiredSupports',True);bad=number(m,'invalidContacts',True);height=number(m,'registeredActiveHeight');span=number(m,'supportedElevationSpan');dx=number(m,'physicalDx');dy=number(m,'physicalDy')
   need(required>0 and height>0 and dx>0,'empty support/height/movement coverage')
-  need(d['height'][0]<=height<=d['height'][1],'registration height outside frozen criterion')
+  if stage.get('_criteriaVersion')=='v4':
+   # v3 final classification: literal map size is reference, not a universal
+   # release threshold. Derive the denominator from the complete registered
+   # reachable graph instead; never crop it to the successful route.
+   graph_height=number(m,'completeReachableGraphHeight');graph_supports=number(m,'completeReachableGraphSupports',True)
+   need(graph_height>0 and graph_supports>0 and abs(height-graph_height)<=1e-6,'registered height differs from complete reachable graph')
+   need(number(m,'registeredGraphSupports',True)==graph_supports and number(m,'omittedReachableSupports',True)==0,'incomplete/cropped support graph')
+  else:need(d['height'][0]<=height<=d['height'][1],'registration height outside frozen criterion')
   result=seen==required and bad==0 and d['verticalSpanRatio'][0]<=span/height<=d['verticalSpanRatio'][1] and d['verticalTravelRatio'][0]<=dy/dx<=d['verticalTravelRatio'][1]
+  if stage.get('_criteriaVersion')=='v4':
+   absolute=d.get('verticalRoute',{}).get('requiredElevationSpan')
+   if absolute:result=result and absolute[0]<=span<=absolute[1]
+
  elif criterion=='protectedFeaturesAndSeams':
   result=number(m,'naturalLongStraightRatio')<.30 and number(m,'maxContourErrorPx')<=1.5 and number(m,'maxProtectedErrorPx')<=.5 and number(m,'lostProtectedFeatures',True)==0 and number(m,'visibleBadSeams',True)==0
  elif criterion=='actDifficultyCurve':
@@ -39,11 +50,20 @@ def decision(criterion,measurements,stage):
    number(m,'act4AllRoundsMean')>number(m,'act3AllRoundsMean'),
    number(m,'act4AllRoundsMedian')>number(m,'act3AllRoundsMedian')]
   previous_count=previous_stages=0
-  for act,count_bounds,stage_bounds,vertical,combined in [(1,(2,3),(2,3),3,4),(2,(4,5),(4,5),4,4),(3,(5,7),(5,6),4,4),(4,(9,11),(7,8),4,4)]:
+  for act,count_bounds,stage_bounds,vertical,combined in [(1,(2,3),(2,3),3,4),(2,(4,5),(4,5),4,4),(3,(5,7),(5,6),4,4),(4,(11,13) if stage.get('_criteriaVersion')=='v4' else (9,11),(8,8) if stage.get('_criteriaVersion')=='v4' else (7,8),4,4)]:
    count=number(m,f'act{act}Midbosses',True);stages=number(m,f'act{act}MidbossStages',True)
    conditions += [count_bounds[0]<=count<=count_bounds[1],stage_bounds[0]<=stages<=stage_bounds[1],count>previous_count,stages>previous_stages,number(m,f'act{act}VerifiedVerticalStages',True)>=vertical,number(m,f'act{act}VerifiedCombinedStages',True)>=combined]
    previous_count,previous_stages=count,stages
+  if stage.get('_criteriaVersion')=='v4':conditions.append(number(m,'stage40UniqueEnemyBudget',True)>=number(m,'stage39UniqueEnemyBudget',True)+2)
   result=all(conditions)
+ elif criterion=='simultaneousParticipants':
+  need(m.get('definition')=='overlapping-active-engagement-intervals-v1','round union is not simultaneous pressure')
+  need(number(m,'registeredTrials',True)>0 and number(m,'coveredTrials',True)==number(m,'registeredTrials',True),'missing simultaneous engagement coverage')
+  lo,hi=d['requiredSimultaneousParticipants'];result=lo<=number(m,'successfulGeneralPeakMedian')<=hi
+ elif criterion=='finaleReturnSafety':
+  need(number(m,'registeredTrials',True)>0 and number(m,'coveredTrials',True)==number(m,'registeredTrials',True),'missing finale safety trials')
+  need(number(m,'successfulTrials',True)>0 and number(m,'physicalReturnCoveredWins',True)==number(m,'successfulTrials',True),'missing actual boat/high-route return evidence')
+  result=all(number(m,k,True)==0 for k in ['unobservedSafeReturnTransitions','enemyActionsAfterSafeReturn','enemySpawnsAfterSafeReturn','winsWithWrongResidentSurvival','winsWithWrongBoatResidents','winsWithWrongHighRouteResidents','winsWithWrongFinalAccounting','winsWithPendingRequiredSpawns'])
  elif criterion=='combatSafety':
   need(number(m,'registeredThreatSituations',True)>0 and number(m,'testedThreatSituations',True)==number(m,'registeredThreatSituations',True),'missing threat/counterexample coverage')
   result=number(m,'unavoidableOneTurnDeaths',True)==0 and number(m,'unboundedControlChains',True)==0 and number(m,'minimumVerifiedCounterRoutes',True)>=2
@@ -58,6 +78,16 @@ def decision(criterion,measurements,stage):
   result=all(r['decision']=='pass' for r in rows)
  else:raise ValueError('unregistered criterion type')
  return {'criterion':criterion,'status':'pass' if result else 'fail','observations':[{'measurements':m}]}
+def verify_trial_coverage(criterion,m,registration,traces):
+ if criterion not in ['simultaneousParticipants','finaleReturnSafety']:return
+ ids={s['trialId'] for s in registration['trials']}
+ need(set(traces)==ids,'adapter trace coverage differs from registration')
+ need(number(m,'registeredTrials',True)==len(ids) and number(m,'coveredTrials',True)==len(ids),'adapter omitted registered trials')
+ digest=lambda t:hashlib.sha256(json.dumps(t,sort_keys=True,separators=(',',':'),ensure_ascii=False).encode()).hexdigest()
+ need(m.get('traceDigests')=={i:digest(traces[i]) for i in sorted(ids)},'adapter must bind exact trial IDs and trace digests')
+ if criterion=='finaleReturnSafety':
+  wins=sum(t['events'][-1].get('outcome')=='won' for t in traces.values())
+  need(number(m,'successfulTrials',True)==wins and number(m,'physicalReturnCoveredWins',True)==wins,'adapter omitted actual successful returns')
 def execute(root,evidence_root,criterion,config,stage,registration,traces):
  files=config.get('lockedFiles',{});need(files,'adapter source/dependencies not pinned')
  paths={p:child(root,p) for p in files}
@@ -85,6 +115,7 @@ def execute(root,evidence_root,criterion,config,stage,registration,traces):
    need(all(set(x['evidenceRoles'])<=set(snapshot) for x in result['measurements']['items']),'review cites nonexistent artifact')
  for p,h in files.items():need(sha(paths[p])==h,'adapter code changed during run')
  for role,p in original.items():need(sha(p)==digests[role],'adapter modified original input')
+ verify_trial_coverage(criterion,result['measurements'],registration,traces)
  return decision(criterion,result['measurements'],stage)
 def load(root,evidence_root):
  path=root/'tools/quality-gate/adapter-registry.json';registry=json.loads(path.read_text())

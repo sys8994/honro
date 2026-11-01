@@ -1,0 +1,10 @@
+{
+  "schema": "honro-criteria-lock-v1",
+  "version": "v4",
+  "criteriaDigest": "7f892a4d240db1e0ab08c39aa00d1ffd01744857a223ddeeeaa7cd4ecf1704ed",
+  "baseRawSha256": "e2183e74492a4cb61338f8a691a51f23e7af2205fb9148ae6f6b2c138311aa54",
+  "amendmentSha256": "cd44b64eae8ffcda23291042f474cc911e58a5b9a252ec6b60ad1787fc312236",
+  "identity": "SHA256(baseRawSha256 + colon + amendmentSha256)",
+  "unresolved": [],
+  "status": "Approved direction projected; actual evidence remains required and unmeasured"
+}

@@ -1,0 +1,36 @@
+"""Compact HTML criteria view. All graph values are design targets, not play data."""
+import html,json,pathlib,sys
+from effective_criteria import load,ACTIVE_DIGEST
+root=pathlib.Path(__file__).resolve().parents[2];data=load(root);out=pathlib.Path(sys.argv[1] if len(sys.argv)>1 else '_local/reports/criteria-v4/HONRO_40_STAGE_CRITERIA_v4.html');out.parent.mkdir(parents=True,exist_ok=True)
+esc=lambda x:html.escape(str(x),quote=True)
+def rng(x):return '–'.join(map(str,x)) if isinstance(x,list) else str(x)
+def graph(key,title,ymax):
+ values=[sum(s['design'][key])/2 if isinstance(s['design'][key],list) else s['design'][key] for s in data['stages']];W,H=1040,220;L,R,T,B=44,16,20,35;w=W-L-R;h=H-T-B;x=lambda i:L+i*w/39;y=lambda v:T+h*(1-v/ymax)
+ lines=[]
+ for v in [0,ymax/4,ymax/2,ymax*3/4,ymax]:lines.append(f'<line x1="{L}" x2="{W-R}" y1="{y(v)}" y2="{y(v)}" stroke="#dce1e6"/><text x="{L-8}" y="{y(v)+4}" text-anchor="end">{v:g}</text>')
+ for act in range(4):
+  a=act*10;b=a+9;points=' '.join(f'{x(i):.2f},{y(values[i]):.2f}' for i in range(a,b+1));lines.append(f'<polyline points="{points}" fill="none" stroke="{["#497663","#846d49","#786989","#366e9e"][act]}" stroke-width="2.5"/>')
+  for i in range(a,b+1):lines.append(f'<circle cx="{x(i)}" cy="{y(values[i])}" r="2.5" fill="{["#497663","#846d49","#786989","#366e9e"][act]}"><title>{i+1}장 {rng(data["stages"][i]["design"][key])}</title></circle>')
+ for i in [0,9,19,29,39]:lines.append(f'<text x="{x(i)}" y="{H-10}" text-anchor="middle">{i+1}장</text>')
+ return f'<section class="chart"><h2>{esc(title)}</h2><svg role="img" aria-label="{esc(title)} 설계 목표 중심값" viewBox="0 0 {W} {H}">'+''.join(lines)+'</svg></section>'
+def metric_table(rows):return '<table class="detail"><tbody>'+''.join(f'<tr><th>{esc(a)}</th><td>{esc(rng(b))}</td></tr>' for a,b in rows)+'</tbody></table>'
+sections=[]
+for act in range(1,5):
+ rows=[]
+ for s in [s for s in data['stages'] if s['act']==act]:
+  d=s['design'];n=s['id'];mini=d['miniboss']['count'];axis={'H':'수평','V':'수직','C':'복합'}.get(d['primaryAxis'],d['primaryAxis']);conflict=n in [34,35,37]
+  required=[('전체 라운드',d['rounds']),('전체 상한',20),('일반 정책 클리어율 %',d['clearRate']),('유효 적 행동/페이즈',d['enemyActions']),('일반 적 공격 피해 %HP',d['enemyAttackPctHP']),('실제 교전 적',d['requiredEngagements']),('중간보스',mini),('주요 보스',d['majorBossCount']),('필수 경로 고도차 world',d['verticalRoute'].get('requiredElevationSpan','원본 별도 지정 없음')),('필수 고도비',d['verticalSpanRatio']),('물리 수직/수평 이동비',d['verticalTravelRatio'])]
+  if n==40:required += [('고유 적 총예산',d['enemies']),('동시 교전 참여',d['simultaneous'])]
+  reference=[('맵 폭 world',d['width']),('맵 높이 world',d['height']),('발판',d['platforms']),('전체 적 예산'+(' (40장 필수)' if n==40 else ''),d['enemies']),('점프'+(' (31–40장 참고)' if n>=31 else ''),d['jumps']),('아래점프'+(' (31–40장 참고)' if n>=31 else ''),d['drops'])]
+  issues='<p class="warning">현재 지형의 월드 높이보다 필수 고도차 하한이 큼. 공간 검수 미통과.</p>' if conflict else ''
+  row=f'<tr data-stage="{n}"><td>{n}</td><td class="name">{esc(s["name"])}</td><td>{axis}</td><td>{rng(d["rounds"])}</td><td>{rng(d["enemies"])}</td><td>{rng(mini)} / {d["majorBossCount"]}</td><td>{rng(d["enemyActions"])}</td><td>{rng(d["clearRate"])}%</td><td>{rng(d["enemyAttackPctHP"])}%</td></tr>'
+  details=f'<tr class="expand"><td colspan="9"><details id="stage-{n}"><summary>{n}장 기획 · 필수 / 참고</summary><p><b>스토리</b> {esc(s["storyIntent"])}</p><p><b>기믹</b> {esc(s["gimmick"])}</p><p><b>완료</b> {esc(s["winCondition"])}</p>{issues}<div class="columns"><div><h3>필수</h3>{metric_table(required)}</div><div><h3>참고</h3>{metric_table(reference)}</div></div><p>{esc(d.get("combatAcceptance",{}).get("counterRequirement", ""))}</p><p>{esc(d["artIntent"])}</p></details></td></tr>'
+  rows.extend([row,details])
+ sections.append(f'<section class="act" data-act="{act}"><h2>{act}막</h2><div class="scroll"><table><thead><tr><th>장</th><th>이름</th><th>전개</th><th>전체 R</th><th>적 예산*</th><th>중간 / 주요</th><th>적 행동</th><th>클리어율</th><th>공격 피해</th></tr></thead><tbody>'+''.join(rows)+'</tbody></table></div></section>')
+page='''<!doctype html><html lang="ko"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>혼로 스테이지 검수 기준 v4</title><style>
+:root{font-family:system-ui,-apple-system,"Noto Sans CJK KR",sans-serif;color:#182735;background:#f7f9fb;font-size:15px}body{margin:0}main{max-width:1160px;margin:auto;padding:24px 18px 70px}h1{font-size:24px;margin:0 0 7px}h2{font-size:18px;margin:24px 0 10px}h3{font-size:15px;margin:14px 0 6px}p{line-height:1.65;margin:8px 0}.muted{color:#586b7b;font-size:13px}.warning{color:#9a451b}nav{display:flex;gap:8px;margin:18px 0;position:sticky;top:0;background:#f7f9bfef;padding:10px 0;z-index:2}button{font:inherit;border:1px solid #c4d0d9;background:white;padding:7px 15px;cursor:pointer;border-radius:3px}button.active{background:#254f72;color:white;border-color:#254f72}.charts{display:grid;grid-template-columns:1fr 1fr;gap:24px}.chart{min-width:0}.chart svg{width:100%;font:12px system-ui}.chart h2{font-size:15px;margin:14px 0 4px}table{border-collapse:collapse;width:100%;background:white;font-size:13px}th,td{padding:9px 10px;border:1px solid #dce2e7;text-align:center}thead{background:#eaf0f5}td.name{text-align:left;min-width:130px}.scroll{overflow-x:auto}.expand td{padding:0;text-align:left;background:#fafcfd}details{padding:9px 12px}summary{cursor:pointer;color:#366483;font-size:12px}details p{font-size:13px}.columns{display:grid;grid-template-columns:1fr 1fr;gap:20px}.detail th{text-align:left;font-weight:500;width:65%;background:#f2f5f7}.detail td{text-align:left}.hidden{display:none}footer{margin-top:30px;color:#657583;font-size:11px;overflow-wrap:anywhere}@media(max-width:700px){main{padding:18px 12px}.charts,.columns{grid-template-columns:1fr}.chart h2{margin-top:8px}table{min-width:860px}.detail{min-width:0}nav{gap:5px}button{padding:6px 11px}}@media print{nav{display:none}.act{break-inside:auto}.charts{grid-template-columns:1fr 1fr}details:not([open])>*:not(summary){display:none}}
+</style><main><h1>혼로 스테이지 검수 기준 v4</h1><p class="muted">설계 목표 · 실측 합격 아님 · 원본 v3 보존</p><p>40장: 42명 · 중간보스 2 · 주요 보스 1 · 전체 18–20R. 모든 장 상한 20R.</p><p class="muted">31–40장 점프/아래점프 횟수는 참고. 지지·필수 고도·공간 다양성·안전·미술 검수는 유지.</p><nav><button class="active" data-filter="0">전체</button><button data-filter="1">1막</button><button data-filter="2">2막</button><button data-filter="3">3막</button><button data-filter="4">4막</button></nav><div class="charts">'''
+page+=graph('rounds','전체 라운드 목표',20)+graph('enemies','고유 적 예산 목표',50)+graph('enemyActions','유효 적 행동 목표',10)+graph('clearRate','일반 정책 클리어율 목표 %',100)
+page+='</div><p class="muted">그래프는 목표 범위의 중심값. 승률은 등록된 자동 정책 시험군 기준이며 사람의 승률이 아님. *전체 적 예산은 원칙적으로 참고, 40장 42명은 필수.</p>'
+page+=''.join(sections)+'<footer>기준 식별자 '+ACTIVE_DIGEST+'<br>미측정·실패·원본과 불일치는 배포 통과로 처리하지 않음.</footer></main><script>document.querySelectorAll("[data-filter]").forEach(b=>b.onclick=()=>{document.querySelectorAll("[data-filter]").forEach(x=>x.classList.toggle("active",x===b));document.querySelectorAll(".act").forEach(s=>s.classList.toggle("hidden",b.dataset.filter!=="0"&&s.dataset.act!==b.dataset.filter));});</script></html>'
+out.write_text(page,encoding='utf-8');print(out,len(page.encode()),'bytes')

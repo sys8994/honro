@@ -3,14 +3,14 @@ No drivers are selected from third-party text. Registry changes require review.
 """
 import argparse,hashlib,json,os,subprocess
 from pathlib import Path
-from gate import PINNED_CRITERIA,candidate_digest,canonical,need
+from gate import ACTIVE_DIGEST as PINNED_CRITERIA,candidate_digest,canonical,need,gate_source_hashes
 
 def fhash(p):return hashlib.sha256(Path(p).read_bytes()).hexdigest()
 def local(root,name):
  p=(root/name).resolve();need(p.is_relative_to(root) and p!=root,'path outside registered root');return p
 
 def collect(root,output):
- registry=json.loads((root/'tools/quality-gate/protocols.json').read_text());need(registry.get('schema')=='honro-protocol-registry-v1','bad protocol registry');candidate=candidate_digest(root);results=[]
+ registry=json.loads((root/'tools/quality-gate/protocols.json').read_text());need(registry.get('schema')=='honro-protocol-registry-v1','bad protocol registry');candidate=candidate_digest(root);gate_code=gate_source_hashes(root);results=[]
  output.mkdir(parents=True,exist_ok=True)
  for stage in registry['requiredStages']:
   plan=registry['stages'].get(str(stage))
@@ -32,7 +32,8 @@ def collect(root,output):
     need(trace['header'].get('trialId')==slot['trialId'] and trace['header'].get('candidateDigest')==candidate,'collector trace identity mismatch')
    for n,p in files.items():need(fhash(p)==driver['lockedFiles'][n],'collector changed while running')
    need(candidate_digest(root)==candidate and fhash(regpath)==plan['registrationSha256'],'collector modified source/registration')
-   proof={'schema':'honro-collection-v1','candidateDigest':candidate,'criteriaDigest':PINNED_CRITERIA,'registrationSha256':fhash(regpath),'collectorCode':driver['lockedFiles'],'workflowRun':os.environ.get('GITHUB_RUN_ID'),'workflowCommit':os.environ.get('GITHUB_SHA'),'files':{p.name:fhash(p) for p in sorted(traces.glob('*.json'))}}
+   need(gate_source_hashes(root)==gate_code,'gate/projection changed during collection')
+   proof={'gateCode':gate_code,'schema':'honro-collection-v1','candidateDigest':candidate,'criteriaDigest':PINNED_CRITERIA,'registrationSha256':fhash(regpath),'collectorCode':driver['lockedFiles'],'workflowRun':os.environ.get('GITHUB_RUN_ID'),'workflowCommit':os.environ.get('GITHUB_SHA'),'files':{p.name:fhash(p) for p in sorted(traces.glob('*.json'))}}
    (directory/'collection.json').write_text(json.dumps(proof,indent=2));results.append({'stage':stage,'status':'collected','trials':len(proof['files'])})
   except Exception as exc:results.append({'stage':stage,'status':'blocked','reason':str(exc)})
  report={'schema':'honro-collection-report-v1','candidateDigest':candidate,'complete':all(r['status']=='collected' for r in results),'stages':results};(output/'collection-report.json').write_text(json.dumps(report,indent=2));return report

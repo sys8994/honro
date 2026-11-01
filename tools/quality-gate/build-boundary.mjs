@@ -5,9 +5,9 @@ import {spawnSync} from 'node:child_process';
 import {mkdir,realpath,lstat} from 'node:fs/promises';
 import path from 'node:path';
 export function assertProductionReady(root){
- const result=spawnSync('python3',[path.join(root,'tools/quality-gate/gate.py'),'--root',root,'--stages','31,32,33,34,35,36,37,38,39,40','--out','_local/quality-gate/production-report.json'],{cwd:root,encoding:'utf8'});
+ const result=spawnSync('python3',[path.join(root,'tools/quality-gate/gate.py'),'--root',root,'--criteria-version','v4','--stages','31,32,33,34,35,36,37,38,39,40','--out','_local/quality-gate/production-report.json'],{cwd:root,encoding:'utf8'});
  if(result.status!==0)throw Error('Production quality gate BLOCKED. Missing, failed or unmeasured criteria cannot ship. See _local/quality-gate/production-report.json. '+(result.stderr||'').slice(-1500));
- const report=JSON.parse(result.stdout);if(report.releaseAllowed!==true)throw Error('Quality gate did not authorize this candidate');
+ const report=JSON.parse(result.stdout);if(report.releaseAllowed!==true||report.criteriaVersion!=='v4')throw Error('Quality gate did not authorize this candidate');
  return report;
 }
 export async function buildOutputRoot(root,preview){
