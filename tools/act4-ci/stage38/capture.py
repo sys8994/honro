@@ -30,10 +30,12 @@ try:
   p.reload();p.wait_for_function('window.HonroApp')
   record['title']=p.locator('body').inner_text()[:3000]
   p.get_by_text('여정 이어가기',exact=True).click()
-  p.wait_for_function("HonroApp.screen==='rest'")
-  p.get_by_text('여정첩',exact=True).click()
-  p.locator('[data-action="journey-select"][data-id="38"]').click()
-  p.locator('[data-action="journey-travel"][data-id="38"]').click()
+  p.wait_for_function("HonroApp.screen==='rest'||HonroApp.engine?.b?.honroStage===38",timeout=60000)
+  if p.evaluate("HonroApp.screen==='rest'"):
+   p.get_by_text('여정첩',exact=True).click()
+   p.locator('[data-action="journey-select"][data-id="38"]').click()
+   p.wait_for_timeout(500)
+   p.locator('[data-action="journey-travel"][data-id="38"]').click()
   p.wait_for_function('HonroApp.engine?.b?.honroStage===38',timeout=60000)
   for _ in range(30):
    if not p.evaluate('!!HonroApp.dialogue'):break

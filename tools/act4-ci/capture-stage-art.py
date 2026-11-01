@@ -11,6 +11,8 @@ out=Path(os.environ['HONRO_CAPTURE_OUT']);out.mkdir(parents=True,exist_ok=True)
 fixture=Path(__file__).with_name('stage38')/'entry-profile.json'
 profile=json.loads(fixture.read_text())['profile']
 assert profile['lastStage']==37 and len(profile['recruited'])==4
+# Art-only replay fixture: begin at a camp, not the uninterrupted 37 -> 38 handoff.
+profile['honroJourney'].pop('pendingDirect',None)
 import_file=out/'entry-profile.json'
 import_file.write_text(json.dumps(profile,ensure_ascii=False))
 record={'scope':'synthetic cleared-campaign profile, normal journey replay; camera-only art diagnostic, not gameplay acceptance',
@@ -33,9 +35,23 @@ try:
   record['title']=p.locator('body').inner_text()[:3000]
   p.get_by_text('여정 이어가기',exact=True).click()
   p.wait_for_function("HonroApp.screen==='rest'")
+  for _ in range(30):
+   if not p.evaluate('!!HonroApp.dialogue'):break
+   p.wait_for_timeout(800);p.keyboard.press('Enter')
   p.get_by_text('여정첩',exact=True).click()
+  p.locator('[data-action="journey-act"][data-id="'+str((stage-1)//10+1)+'"]').click()
+  p.wait_for_timeout(500)
   p.locator('[data-action="journey-select"][data-id="'+str(stage)+'"]').click()
+  p.wait_for_timeout(500)
   p.locator('[data-action="journey-travel"][data-id="'+str(stage)+'"]').click()
+  for _ in range(40):
+   if p.evaluate('(n)=>HonroApp.engine?.b?.honroStage===n',stage):break
+   if p.evaluate('!!HonroApp.dialogue'):
+    p.wait_for_timeout(800);p.keyboard.press('Enter')
+   else:
+    enter=p.locator('[data-action="journey-enter"][data-id="'+str(stage)+'"]:visible')
+    if enter.count():enter.click()
+   p.wait_for_timeout(500)
   p.wait_for_function('(stage)=>HonroApp.engine?.b?.honroStage===stage',arg=stage,timeout=60000)
   for _ in range(30):
    if not p.evaluate('!!HonroApp.dialogue'):break
