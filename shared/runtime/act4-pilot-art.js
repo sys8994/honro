@@ -81,7 +81,7 @@ if(S){
  // Existing boat event renders in background(), before opaque native scenery.
  // Defer only that existing instance to the world-space live-water pass.
  const background=S.background;S.background=function(c,w,h,b,...args){const prior=this._nativeArtBackground;this._nativeArtDeferredBoat=null;this._nativeArtBackground=!!config(b);try{return background?.call(this,c,w,h,b,...args);}finally{this._nativeArtBackground=prior;}};
- const water=S.liveWater;S.liveWater=function(c,b,...args){const harbor=b.honroMap?.act4?.harborWater,tidal=tidalSea(b),sea=harbor?.continuousSea,rect=this.canvas?.getBoundingClientRect?.(),vw=rect?.width??this.canvas?.clientWidth,vh=rect?.height??this.canvas?.clientHeight;
+ const water=S.liveWater;S.liveWater=function(c,b,...args){const baseHarbor=b.honroMap?.act4?.harborWater,level=b.honroAct4PreviewState?.tide?.surface,harbor=b.honroStage===40&&b.honroFinalDefenseRevision===2&&Number.isFinite(level)?{...baseHarbor,surface:level}:baseHarbor,tidal=tidalSea(b),sea=harbor?.continuousSea,rect=this.canvas?.getBoundingClientRect?.(),vw=rect?.width??this.canvas?.clientWidth,vh=rect?.height??this.canvas?.clientHeight;
   // Existing tide pools share this same surface. Avoid painting them twice:
   // keep their ordinary bookkeeping but clip only their underwater paint.
   const tidalView=tidal&&[vw,vh,this.scale].every(v=>Number.isFinite(v)&&v>0)&&[this.x,this.y].every(Number.isFinite)&&G.HonroBounds?.viewport?G.HonroBounds.viewport(this,vw,vh):null;

@@ -15,6 +15,12 @@ export function authorAct4Finale(stage,point){
  ['departure-low','departure-ramp','간조 때 접근 가능한 승선턱 전위',[['hound',2090],['hound',2180]]],
  ['tide-keeper','departure-stair','조수 변화로 접근 경로가 달라지는 마지막 수문장',[['warden',2050,'boss']]]
  ];
+ // Start tide only when the party approaches the lower encounter. Never
+ // raise the entire sea to the upper coast just to manufacture vertical play.
+ s.design={...stage.design,act4:structuredClone(stage.design.act4)};
+ s.design.act4.tide={low:3762.5,high:3412.5,warningRound:1000000,highRound:1000003,lowRound:1000005,floorTerrainIds:['approved40-central-rock','approved40-departure-ramp'],finale:true};
+ s.design.act4.geometry40.lowerBoardingTriggerBounds={x1:1570,x2:2220,y1:2900,y2:3650};
+ s.initialState.honroAct4Design=structuredClone(s.design.act4);
  const defs={};
  for(const [i,[key,route,purpose,slots]]of groups.entries()){
   const id='final40-'+key,support='approved40-'+route,members=[];

@@ -6,6 +6,7 @@ from pathlib import Path
 from playwright.sync_api import sync_playwright
 root=Path(__file__).resolve().parents[2]
 stage=int(os.environ.get('HONRO_CAPTURE_STAGE','31'))
+legacy40=stage==40 and os.environ.get('HONRO_CAPTURE_LEGACY40')=='1'
 assert stage in (3,30) or 31<=stage<=40
 out=Path(os.environ['HONRO_CAPTURE_OUT']);out.mkdir(parents=True,exist_ok=True)
 fixture=Path(__file__).with_name('stage38')/'entry-profile.json'
@@ -16,7 +17,7 @@ profile['honroJourney'].pop('pendingDirect',None)
 # Camera-only replay coverage uses a declared synthetic unlocked ledger.
 if stage>=32:
  for n in range(1,41):profile['cleared'].setdefault(str(n),{'visits':1,'rounds':5,'stars':1,'shots':0})
-if stage==40:
+if legacy40:
  fixture=root/'tools/act4-rc/fixtures/stage40-checkpoints/sailing-observation-local-storage.json.xz'
  raw=lzma.decompress(fixture.read_bytes());assert hashlib.sha256(raw).hexdigest()=='2c8e5d95e1e956059da5ae0b74a02641beed0bccf0932568194b108fec3a8141'
  profile=json.loads(raw)
@@ -37,7 +38,7 @@ try:
   p.get_by_text('JSON 기록 가져오기',exact=True).click()
   p.get_by_text('파일 선택',exact=True).click()
   p.locator('#file-import').set_input_files(str(import_file.resolve()))
-  if stage==40:
+  if legacy40:
    record['scope']='preserved actual Stage40 sailing profile, normal UI restart to round1, camera-only art inspection; not a fresh campaign clear'
    p.wait_for_function('HonroApp.profile?.honroBattle?.honroStage===40',timeout=120000)
    p.get_by_text('이어서 걷기',exact=True).click()
@@ -102,6 +103,10 @@ try:
    views.append({'name':'overview','x':width/2,'y':height/2,'scale':min(1440/(width+100),760/(height+100)),'w':1440,'h':900})
    heroes=record['observed']['party'];hero=next((h for h in heroes if h['id']=='archer'),heroes[0])
    views.append({'name':'normal','x':hero['x']+450,'y':hero['y']-180,'scale':.65,'w':1440,'h':900})
+  if stage==40:
+   for name,x,y,scale in [('dock',1550,2690,.65),('boss',2050,3370,.8),('boss-close',2050,3370,1.2)]:
+    views.append({'name':name,'x':x,'y':y,'scale':scale,'w':1440,'h':900})
+  record['roster']=p.evaluate('''()=>{const b=HonroApp.engine.b;return {enemies:b.units.filter(u=>u.side===1).length,major:b.units.filter(u=>u.side===1&&u.boss).length,minis:b.units.filter(u=>u.side===1&&u.honroMidboss).length,finaleRevision:b.honroFinalDefenseRevision}}''')
   for view in views:
    if view['name']=='min-zoom':view['scale']=p.evaluate('(w)=>HonroBounds.zoomLimits(w).min',view['w'])
    p.set_viewport_size({'width':view['w'],'height':view['h']})

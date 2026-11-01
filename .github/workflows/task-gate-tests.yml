@@ -29,6 +29,7 @@ jobs:
           node --test tests/task-gate/observe-engine.mjs tests/task-gate/boarding-target.mjs
           node tests/task-gate/build-boundary.mjs
           node tests/act4-finale-roster.mjs
+          node tests/act4-finale-tide.mjs
           node tests/act4-encounter-revision.mjs
           node tests/act4-pilot-combat.mjs
           node tests/act4-map-revision-rc.mjs

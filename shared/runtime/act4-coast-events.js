@@ -48,6 +48,13 @@ function separatingRescueStep(e,u,before){if(![39,40].includes(e.b.honroAct4Prev
 }
 function moveNpc(e,u,dx,dt,budget,requireSupport=!u.jumping){if(!alive(u))return;u.fixed=false;u.maxMove=u.maxMove||240;u.moveLeft=Math.min(budget,180);const before={x:u.x,y:u.y};const ok=e.walk(u,Math.sign(dx-u.x),Math.min(dt,Math.abs(dx-u.x)/180),requireSupport);u.vx=0;if(ok&&!G.HonroTerrain.separated(e.b,u,u.x,u.y,12)&&!separatingRescueStep(e,u,before)){u.x=before.x;u.y=before.y;u.moving=0;return 0;}return ok?Math.abs(u.x-before.x):0;}
 function tide(b){const q=memory(b),cfg=b.honroAct4Design.tide;if(!cfg)return;const t=q.tide??={phase:'low',surface:cfg.low,warningRound:cfg.warningRound,highRound:cfg.highRound,lowRound:cfg.lowRound};
+ if(b.honroAct4Preview===40&&b.honroFinalDefenseRevision===2&&cfg.finale){
+  const boss=b.units.find(u=>u.honroAct4FinaleBoss),policy=b.honroAct4Design.waterPolicies.find(z=>z.id==='40-return-inlet');
+  if(!foes(b).length){Object.assign(t,{phase:'low',surface:cfg.low,finished:true});if(policy)policy.surface=cfg.low;const hud=G.document.getElementById('act4-water-hud');if(hud)hud.textContent='≈ ↓';syncWater(b);return;}
+  if(policy)policy.surface=cfg.high; // Only banks above high water are safe recovery anchors.
+  if(!t.started&&alive(boss)&&party(b).some(u=>Math.hypot(u.x-boss.x,u.y-boss.y)<1100)){t.started=true;cfg.warningRound=b.round;}
+ }
+
  if(b.round>=cfg.warningRound&&!t.warned&&b.side===0&&b.phase==='aim'){t.phase='rising';t.surface=cfg.low-18;t.warned=true;t.warningAtRound=b.round;t.highRound=b.round+(party(b).some(u=>u.acted)?4:3);t.lowRound=t.highRound+2;t.opportunities={};}
  if(t.warned&&b.side===0&&b.phase==='aim'&&b.round<t.highRound)t.opportunities[b.round]=party(b).map(u=>u.id);
  const hud=G.document.getElementById('act4-water-hud');if(hud)hud.textContent=t.phase==='rising'?'≈ ↑ '+Math.max(0,t.highRound-b.round):t.phase==='high'?'≈ ━':'≈ ↓';
@@ -67,7 +74,7 @@ function syncWater(b){const q=memory(b),level=q.tide?.surface;if(!Number.isFinit
 function geometry40(b){const v=b.honroAct4Design.geometry40;if(v===undefined)return null;
  const pt=p=>p&&Number.isFinite(p.x)&&Number.isFinite(p.y),box=z=>z&&[z.x1,z.x2,z.y1,z.y2].every(Number.isFinite)&&z.x1<z.x2&&z.y1<z.y2;
  const route=r=>Array.isArray(r)&&r.length>0&&r.length<=64&&!r.at(-1).action&&r.every(p=>pt(p)&&(p.allowStepOff===undefined||typeof p.allowStepOff==='boolean')&&(!p.action||['drop','jump'].includes(p.action))&&(!p.action||typeof p.landingTerrainId==='string'&&b.terrain.some(t=>t.id===p.landingTerrainId)));
- if(!v||!['boardingTriggerBounds','safeZone','finishBounds'].every(k=>box(v[k]))||!v.deck||![v.deck.y,v.deck.w,v.deck.h,v.boatArtY].every(Number.isFinite)||v.deck.w<=0||v.deck.h<=0||!['boardingRoutes','passengerRoutes','highRoutes'].every(k=>Array.isArray(v[k])&&v[k].length===2&&v[k].every(route))||!Array.isArray(v.boatBoardingX)||v.boatBoardingX.length!==2||!v.boatBoardingX.every(Number.isFinite)||!['boat','high','safe','ridge','dislocation'].every(k=>pt(v.marks?.[k]))||!['boardingTerrainId','arrivalTerrainId'].every(k=>typeof v[k]==='string'&&b.terrain.some(t=>t.id===v[k])))throw Error('Invalid Act4 geometry40');if(v.followerRelease!==undefined){const z=v.followerRelease;if(!z||!Number.isInteger(z.boardingIndex)||z.boardingIndex<1||z.boardingIndex>=Math.min(...v.boardingRoutes.map(r=>r.length))||!Number.isInteger(z.passengerIndex)||z.passengerIndex<1||z.passengerIndex>=Math.min(...v.passengerRoutes.map(r=>r.length))||!Number.isFinite(z.minSeparation)||z.minSeparation<128||!box(z.passengerJumpClearBounds))throw Error('Invalid Act4 follower release');}return v;
+ if(!v||!['boardingTriggerBounds','safeZone','finishBounds'].every(k=>box(v[k]))||!v.deck||![v.deck.y,v.deck.w,v.deck.h,v.boatArtY].every(Number.isFinite)||v.deck.w<=0||v.deck.h<=0||!['boardingRoutes','passengerRoutes','highRoutes'].every(k=>Array.isArray(v[k])&&v[k].length===2&&v[k].every(route))||!Array.isArray(v.boatBoardingX)||v.boatBoardingX.length!==2||!v.boatBoardingX.every(Number.isFinite)||!['boat','high','safe','ridge','dislocation'].every(k=>pt(v.marks?.[k]))||!['boardingTerrainId','arrivalTerrainId'].every(k=>typeof v[k]==='string'&&b.terrain.some(t=>t.id===v[k])))throw Error('Invalid Act4 geometry40');if(b.honroFinalDefenseRevision===2&&!box(v.lowerBoardingTriggerBounds))throw Error('Invalid finale boarding bounds');if(v.followerRelease!==undefined){const z=v.followerRelease;if(!z||!Number.isInteger(z.boardingIndex)||z.boardingIndex<1||z.boardingIndex>=Math.min(...v.boardingRoutes.map(r=>r.length))||!Number.isInteger(z.passengerIndex)||z.passengerIndex<1||z.passengerIndex>=Math.min(...v.passengerRoutes.map(r=>r.length))||!Number.isFinite(z.minSeparation)||z.minSeparation<128||!box(z.passengerJumpClearBounds))throw Error('Invalid Act4 follower release');}return v;
 }
 function returnDeck(b){const geo=geometry40(b);if(!geo)return false;const boat=b.honroAct4Design.escort.boat;if(![boat.x,boat.destination].every(Number.isFinite)||boat.destination<=boat.x)throw Error('Invalid Act4 return boat route');if(!b.terrain.some(t=>t.id==='a4-return-deck')){b.terrain.push({id:'a4-return-deck',x:boat.x-geo.deck.w/2,y:geo.deck.y,w:geo.deck.w,h:geo.deck.h,mat:'wood',oneWay:true,hp:9999,maxHp:9999,indestructible:true,honroAct4MovingDeck:true});b.sceneVersion++;}return true;}
 function followReturnRoute(e,u,route,state,dt){if(!alive(u)||state.done)return !!state.done;u.fixed=false;state.index??=0;const p=route[state.index];if(!p){state.done=true;return true;}
@@ -90,7 +97,7 @@ function followReturnRoute(e,u,route,state,dt){if(!alive(u)||state.done)return !
  return false;
 }
 function authoredReturn(app,q,dt,geo){const e=app.engine,b=e.b,cfg=b.honroAct4Design.escort,np=residents(b);if(np.length!==4)throw Error('Authored return requires four residents');
- if(!q.returnEscort&&party(b).some(u=>insideEventBounds(u,geo.boardingTriggerBounds))&&seen(q,'return-boat')&&seen(q,'return-high')){q.returnEscort={phase:'boarding',clock:0,boatX:cfg.boat.x,routes:{}};play(app,'boarding');}
+ if(!q.returnEscort&&party(b).some(u=>insideEventBounds(u,geo.boardingTriggerBounds)||b.honroFinalDefenseRevision===2&&geo.lowerBoardingTriggerBounds&&insideEventBounds(u,geo.lowerBoardingTriggerBounds))&&seen(q,'return-boat')&&seen(q,'return-high')){q.returnEscort={phase:'boarding',clock:0,boatX:cfg.boat.x,routes:{}};play(app,'boarding');}
  const r=q.returnEscort;if(!r)return;const deck=b.terrain.find(t=>t.id==='a4-return-deck');deck.x=r.boatX-geo.deck.w/2;if(!closed(q,'boarding'))return;r.clock+=dt;r.routes??={};
  // Both routes enter the safety slope from the west. Reserve its authored
  // endpoints from far to near, so an early arrival never parks across the path
@@ -151,7 +158,7 @@ function dryEntryLedges(b,last){
 }
 function water(e,dt=0){const b=e.b;if(!active(b))return;const q=memory(b),policies=b.honroAct4Design?.waterPolicies||[];q.water??={dry:{},recoveries:[]};
  for(const u of b.units.filter(u=>alive(u)&&!u.honroAct4Sheltered&&!u.honroAct4OnBoat)){
-  const zones=policies.filter(z=>u.x>z.x1&&u.x<z.x2),z=u.honroAct4Recovering?policies.find(z=>z.id===u.honroAct4Recovering.zone):zones.find(z=>u.y>(q.tide?.surface??z.surface)+35&&(z.kind!=='recover'||!q.tide||q.tide.phase==='high'));
+  const zones=policies.filter(z=>u.x>z.x1&&u.x<z.x2),z=u.honroAct4Recovering?policies.find(z=>z.id===u.honroAct4Recovering.zone):zones.find(z=>u.y>(q.tide?.surface??z.surface)+35&&(z.kind!=='recover'||!q.tide||q.tide.phase==='high'||b.honroAct4Preview===40&&b.honroFinalDefenseRevision===2));
   if(u.side===1&&(u.honroAct4WaterTrait==='spirit'||u.honroAct4Aquatic))continue;
   if(u.side===1&&z){u.honroAct4WaterRounds??={};if(u.honroAct4WaterRounds[z.id]!==b.round){u.honroAct4WaterRounds[z.id]=b.round;e.hurt(u,Math.ceil(u.maxHp*.25),'',false,undefined,undefined,'environment');if(alive(u)){spend(e,u);u.slowed={factor:.55,expires:b.round+1};}}continue;}
   // Low tide exposes walkable mud. It is not a new dry return bank: preserve
@@ -344,8 +351,8 @@ function returnWaterZones(b){
  const policy=b.honroAct4Design?.waterPolicies?.find(v=>v.id===opt.policyId&&v.kind==='recover');
  const terrain=(G.HonroTerrainDomain?.render(b)||b.terrain||[]).find(t=>t.id===opt.terrainId&&!t.oneWay&&!t.broken&&!t.honroElementCollision&&!t.honroCeiling);
  if(!policy||!terrain||![policy.x1,policy.x2,policy.surface].every(Number.isFinite)||policy.x2<=policy.x1)return [];
- const key=[b.sceneVersion,policy.x1,policy.x2,policy.surface].join(':'),prior=returnWaterViews.get(b);if(prior?.terrain===terrain&&prior.key===key)return prior.zones;
- const ps=C.poly(terrain),level=policy.surface,zones=[];let run=[];
+ const visualLevel=memory(b).tide?.surface??policy.surface,key=[b.sceneVersion,policy.x1,policy.x2,visualLevel].join(':'),prior=returnWaterViews.get(b);if(prior?.terrain===terrain&&prior.key===key)return prior.zones;
+ const ps=C.poly(terrain),level=visualLevel,zones=[];let run=[];
  const emit=()=>{if(run.length>1&&run.at(-1)[0]>run[0][0]){const left=run[0][0],right=run.at(-1)[0];zones.push({id:'visual-'+policy.id+'-'+zones.length,kind:'water-pool',surface:[[left,level],[right,level]],bottom:run,points:[[left,level],[right,level],...run.slice().reverse()],honroCarvedBasin:true});}run=[];};
  for(let i=0;i<ps.length;i++){const a=ps[i],z=ps[(i+1)%ps.length];if(z.x<=a.x)continue;let left=Math.max(policy.x1,a.x),right=Math.min(policy.x2,z.x);if(right<=left)continue;
   const y=x=>a.y+(z.y-a.y)*(x-a.x)/(z.x-a.x);let ly=y(left),ry=y(right);if(ly<=level&&ry<=level){emit();continue;}
