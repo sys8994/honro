@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Unreviewed organic-base variation of tested shoulder; QA only.
+"""REJECTED VISUALLY: white vertical edge and block-like junction; QA reproduction only.
 
 The original authored stage and assets remain unchanged. Collision vertices are
 exactly the separately tested shoulder skeleton; an outer clip removes generated
