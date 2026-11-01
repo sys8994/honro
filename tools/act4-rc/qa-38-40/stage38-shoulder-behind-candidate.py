@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Unreviewed layer-order diagnostic; QA only.
+"""REJECTED: BODY obscures added rock and its collision has no native coverage.
 
 The original authored stage and assets remain unchanged. Collision vertices are
 exactly the separately tested shoulder skeleton; an outer clip removes generated
