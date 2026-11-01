@@ -16,16 +16,16 @@ export const SHEET='tools/party-forge/references/260919_설오_parts.svg';
 // cell rects in sheet units and the joint anchors read off the sheet
 const CELLS={
  head:{rect:[436,0,689,393],a:[568,128],b:[580,276],to:['crown','chin']},
- thorax:{rect:[689,0,962,393],a:[830,72],b:[812,222],to:['neck','thorax'],across:.63},
+ thorax:{rect:[689,0,962,393],a:[830,72],b:[812,222],to:['neck','thorax'],across:.63,dropSleeves:[770,890,150,260]},
  front_upper_arm:{rect:[962,0,1199,393],a:[1058,108],b:[1122,305],to:['front_upper_arm','front_forearm']},
- front_forearm:{rect:[1199,0,1448,393],a:[1296,120],b:[1368,300],to:['front_forearm','front_hand'],hand:'front_hand'},
+ front_forearm:{rect:[1199,0,1448,393],a:[1302,152],b:[1368,300],to:['front_forearm','front_hand'],hand:'front_hand'},
  rear_upper_arm:{rect:[436,393,689,700],a:[592,448],b:[538,660],to:['rear_upper_arm','rear_forearm']},
- rear_forearm:{rect:[689,393,944,700],a:[800,462],b:[890,640],to:['rear_forearm','rear_hand'],hand:'rear_hand'},
- front_thigh:{rect:[944,393,1199,700],a:[1060,440],b:[1050,650],to:['front_thigh','front_shin'],across:.66},
+ rear_forearm:{rect:[689,393,944,700],a:[808,492],b:[890,640],to:['rear_forearm','rear_hand'],hand:'rear_hand'},
+ front_thigh:{rect:[944,393,1199,700],a:[1060,440],b:[1050,650],to:['front_thigh','front_shin'],across:.66,dropLight:true},
  front_shin:{rect:[1199,393,1448,700],a:[1300,475],b:[1320,688],to:['front_shin','front_sole']},
- rear_thigh:{rect:[436,700,689,1086],a:[585,740],b:[590,965],to:['rear_thigh','rear_shin'],across:.62},
+ rear_thigh:{rect:[436,700,689,1086],a:[585,740],b:[590,965],to:['rear_thigh','rear_shin'],across:.62,dropLight:true},
  rear_shin:{rect:[689,700,944,1086],a:[815,790],b:[790,1010],to:['rear_shin','rear_sole']},
- weapon:{rect:[944,700,1199,1086],a:[1172,712],b:[968,1012],to:['bow_top','bow_bottom'],dropStroke:true,mirror:true}
+ weapon:{rect:[944,700,1199,1086],a:[1133,852],b:[1172,712],to:['weapon','bow_top'],dropStroke:true,check:[[968,1012],'bow_bottom']}
 };
 
 const num=/-?\d*\.?\d+(?:e[-+]?\d+)?/gi;
@@ -57,7 +57,8 @@ export function sheetSeolO(a){
  const palette={},key=c=>{let k=Object.keys(palette).find(k=>palette[k]===c);if(!k){k='s'+Object.keys(palette).length;palette[k]=c;}return k;};
  const paths=[];
  for(const [part,cell] of Object.entries(CELLS)){
-  const [x0,y0,x1,y1]=cell.rect,f=solve(cell.a,cell.b,T[cell.to[0]],T[cell.to[1]],cell.across,cell.mirror);
+  const [x0,y0,x1,y1]=cell.rect;let f=solve(cell.a,cell.b,T[cell.to[0]],T[cell.to[1]],cell.across,cell.mirror);
+  if(cell.check){const g=solve(cell.a,cell.b,T[cell.to[0]],T[cell.to[1]],cell.across,true),want=T[cell.check[1]],e=h=>Math.hypot(...h(cell.check[0]).map((v,i)=>v-want[i]));if(e(g)<e(f))f=g;}
   let n=0;
   for(const p of src){
    const [bx0,by0,bx1,by1]=p.box,cx=(bx0+bx1)/2,cy=(by0+by1)/2;
@@ -66,6 +67,8 @@ export function sheetSeolO(a){
    if(lum(p.color)>238)continue;                                     // paper
    if(bx1<x0+50&&by1<y0+52)continue;                                 // cell number
    if(cell.dropStroke&&Math.min(bx1-bx0,by1-by0)>60&&lum(p.color)<60&&(bx1-bx0)*(by1-by0)>20000&&p.d.length<900)continue; // sheet bowstring (rig draws its own)
+   if(cell.dropSleeves){const [l,r,t,b]=cell.dropSleeves;if(lum(p.color)>140&&(cx<l||cx>r)&&cy>t&&cy<b)continue;}
+   if(cell.dropLight&&lum(p.color)>170)continue;                      // under-robe flaps: the torso's centre panel already shows it
    const target=cell.hand&&isSkin(p.color)&&cy>cell.b[1]-6?cell.hand:part;
    paths.push({id:`${part}_${n++}`,part:target,d:mapD(p.d,f),fill:key(p.color),detail:0});
   }
