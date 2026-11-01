@@ -278,12 +278,12 @@
  ],
  "joints": {
   "crown": [
-   215,
-   90
+   222,
+   92
   ],
   "chin": [
    250,
-   240
+   242
   ],
   "neck": [
    236,
@@ -346,5 +346,6 @@
  "legAmplitude": 0.5,
  "rearArmAmplitude": 0.2,
  "retargetHandAngles": true,
- "headScale": 0.86
+ "statureCm": 162,
+ "heads": 7.0
 }

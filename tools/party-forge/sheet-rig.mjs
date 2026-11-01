@@ -15,19 +15,26 @@ const sub=(a,b)=>[a[0]-b[0],a[1]-b[1]],add=(a,b)=>[a[0]+b[0],a[1]+b[1]],mul=(a,k
 const ang=v=>Math.atan2(v[1],v[0]),rot=(v,t)=>[v[0]*Math.cos(t)-v[1]*Math.sin(t),v[0]*Math.sin(t)+v[1]*Math.cos(t)];
 const wrap=t=>Math.atan2(Math.sin(t),Math.cos(t));
 const R2=v=>Math.round(v*100)/100;
+const UNIT_HEIGHT=92,WORLD_PER_CM=.57;   // party unit h (engine) and world units per cm of stature
 
 export function sheetRig(a,previousBounds){
  const cfgPath=path.join(root,'tools/party-forge/sheet',a.character_id+'.json'),partsPath=cfgPath.replace(/\.json$/,'.parts.json');
  if(!existsSync(partsPath))return;
  const cfg=JSON.parse(readFileSync(cfgPath,'utf8')),data=JSON.parse(readFileSync(partsPath,'utf8')),J=cfg.joints;
- // optional: shrink the drawn head about the neck (sheet head too large for the game's body ratio)
- if(cfg.headScale&&cfg.headScale!==1){const c=J.neck,f=cfg.headScale,sc=q=>[c[0]+(q[0]-c[0])*f,c[1]+(q[1]-c[1])*f];
+ // ---- body measurements (v017): stature in cm and head units (crown->sole / crown->chin, skull crown under hair/hat)
+ // The game draws every companion at unit height 92 over canvas.visualHeight; WORLD_PER_CM fixes 1 cm of stature in world units.
+ let top=1e9,bot=-1e9;for(const rows of Object.values(data.parts))for(const [,ext] of rows)for(const [,y] of ext){top=Math.min(top,y);bot=Math.max(bot,y);}
+ if(cfg.statureCm){bot=-1e9;for(const [part,rows] of Object.entries(data.parts))if(part.endsWith('_foot'))for(const [,ext] of rows)for(const [,y] of ext)bot=Math.max(bot,y);}   // sole = lowest foot paint
+ const neck=J.neck,hf=cfg.heads?(bot-neck[1])/(cfg.heads*(J.chin[1]-J.crown[1])-(neck[1]-J.crown[1])):(cfg.headScale||1);
+ if(hf!==1){const sc=q=>[neck[0]+(q[0]-neck[0])*hf,neck[1]+(q[1]-neck[1])*hf];   // the head (with hair/hat) scales about the neck
   for(const row of data.parts.head||[]){row[1]=row[1].map(sc);row[2]=row[2].map(h=>h.map(sc));}
   J.crown=sc(J.crown);J.chin=sc(J.chin);}
- // uniform sheet -> game map: painted top/bottom onto the previous asset's (same size, sole on ground)
- let top=1e9,bot=-1e9;for(const rows of Object.values(data.parts))for(const [,ext] of rows)for(const [,y] of ext){top=Math.min(top,y);bot=Math.max(bot,y);}
- const [,gTop,,gBot]=previousBounds,K=(gBot-gTop)/(bot-top),by=Object.fromEntries(a.rig.parts.map(p=>[p.id,p])),cx=by.root.pivot[0];
+ top=1e9;for(const rows of Object.values(data.parts))for(const [,ext] of rows)for(const [,y] of ext)top=Math.min(top,y);
+ const [,gTop,,gBot]=previousBounds,by=Object.fromEntries(a.rig.parts.map(p=>[p.id,p])),cx=by.root.pivot[0];
+ const K=cfg.statureCm?cfg.statureCm*WORLD_PER_CM*a.canvas.visualHeight/UNIT_HEIGHT/(bot-J.crown[1]):(gBot-gTop)/(bot-top);
  const footX=(J.rearAnkle[0]+J.frontAnkle[0])/2,G=p=>[cx+(p[0]-footX)*K,gBot-(bot-p[1])*K];
+ if(cfg.statureCm){a.canvas.presentationHeight=R2(a.canvas.anchor[1]-G([0,top])[1]+8);
+  a.proportions={...a.proportions,measurements:{statureCm:cfg.statureCm,heads:cfg.heads,worldPerCm:WORLD_PER_CM,headScaleFromSheet:R2(hf),basis:'Skull crown under hair/hat to sole; skull crown to chin.'}};}
  const old=Object.fromEntries(a.rig.parts.map(p=>[p.id,[...p.pivot]])),oldBT=[...a.rig.bindThorax];
  const set={pelvis:G(J.pelvis),thorax:G(J.pelvis),neck:G(J.neck),head:G(mul(add(J.neck,J.chin),.5)),
   rear_upper_arm:G(J.rearShoulder),rear_forearm:G(J.rearElbow),rear_hand:G(J.rearHand),front_upper_arm:G(J.frontShoulder),front_forearm:G(J.frontElbow),front_hand:G(J.frontHand),
@@ -93,5 +100,5 @@ export function sheetRig(a,previousBounds){
   for(const s of ['rear','front']){const v=sub(out[s+'Hand'],out[s+'Shoulder']),d=len(v),m=reach(s,'_upper_arm','_forearm','_hand');if(d>m)out[s+'Hand']=add(out[s+'Shoulder'],mul(v,m/d));}
   Object.assign(k,out);
  }
- a.artRevision=16;a.sheetSource=cfg.sheet;a.sheetScale=K;
+ a.artRevision=cfg.statureCm?17:16;a.sheetSource=cfg.sheet;a.sheetScale=K;
 }
