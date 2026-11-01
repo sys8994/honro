@@ -3,13 +3,15 @@
  * Records an input tape for the constrained objective runner to replay separately. */
 import {readFile,writeFile,mkdir} from 'node:fs/promises';
 import {createAppAdapter} from './app-adapter.mjs';
+import {observeEngine} from '../quality-gate/observe-engine.mjs';
 const file=process.argv[2],out=process.argv[3];if(!file||!out)throw Error('draft and output directory required');await mkdir(out,{recursive:true});
 const p=JSON.parse(await readFile(file,'utf8')),entryBuild=process.argv[4]||'unspent',a=await createAppAdapter(p,'stage-31',{entryBuild}),{g,app,engine:e}=a,C=g.HONRO_CORE,b=e.b,inputs=[],observations=[],hurts=[];
 const originalHurt=e.hurt.bind(e);e.hurt=(u,...args)=>{const before=u.hp,owner=args[1],result=originalHurt(u,...args);if(u.hp<before)hurts.push({frame:frames,round:b.round,target:u.id,owner,loss:before-u.hp});return result;};
 let frames=0,actions=0,shots=0,lastRound=0,reason='budget';
+const recorder=process.env.HONRO_RECORD_OBSERVATIONS==='1'?observeEngine(e,{clock:()=>frames*g.HONRO_CORE.STEP,metadata:{stage:31,entryBuild,policy:'adaptive-expert-smoke',acceptance:false}}):null;
 const alive=u=>u&&!u.dead&&u.hp>0;
 function log(input){const last=inputs.at(-1);if(last&&['advance','move'].includes(input.op)&&last.op===input.op&&last.direction===input.direction&&last.frames+input.frames<=3600)last.frames+=input.frames;else inputs.push(input);}
-function tick(n=1){for(let i=0;i<n&&frames<58000;i++){a.tick();frames++;}}
+function tick(n=1){for(let i=0;i<n&&frames<58000;i++){a.tick();frames++;recorder?.sample();}}
 function advance(n=30){log({op:'advance',frames:n});tick(n);}
 function move(direction,n=24){log({op:'move',direction,frames:n});for(let i=0;i<n;i++){if(app.canInput())e.move(direction,C.STEP);tick();}}
 function jump(){log({op:'jump'});return e.jump();}
@@ -41,4 +43,5 @@ while(frames<58000&&actions<240&&inputs.length<1900){
  if(Math.abs(u.x-prior)<3&&e.grounded(u)){if(!jump())defend();else move(dir,28);}
 }
 const summary={entryBuild,training:a.training,scope:a.scope+' Adaptive expert input smoke, not browser play or human difficulty approval.',reason,success:a.success(),hurts,...state(),inputs:inputs.length,observations};
+if(recorder)await writeFile(out+'/engine-observations.json',JSON.stringify(recorder.finish(reason)));
 await writeFile(out+'/inputs.json',JSON.stringify([{id:'boarding',kind:'objective',entryBuild,inputs}],null,2));await writeFile(out+'/result.json',JSON.stringify(summary,null,2));console.log('RESULT',JSON.stringify({...summary,observations:undefined}));
