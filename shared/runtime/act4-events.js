@@ -73,7 +73,7 @@ function observe(app,dt){const b=app.engine?.b,node=G.document.getElementById('a
   const cfg=blockedShotConfig(b),pending=q.blockedShot35;
   if(cfg){if(pending&&q.clock-pending.impactAt>=0&&q.clock-pending.impactAt<2&&sameBlockedFrame(app,pending,blockedDrawn.get(app.engine))&&clearingVisible(app,cfg.clearingVisibleBounds))play(app,'blocked_shot',true);}
   else if(q.blockedAtBamboo&&q.clearShotFromSide&&q.clock-(q.blockedAt??-100)<2&&alive(app.engine.unit(q.clearShotTarget))&&app.engine.active?.x>3000&&app.engine.active?.x<3090)play(app,'blocked_shot',true);
-  if(party(b).some(u=>u.x>6500)&&inView(app,{x:6980,y:1800}))play(app,'edge');
+  if(party(b).some(u=>u.x>K(b,'edgeX',K(b,'completeX',6500)))&&inView(app,{x:K(b,'edgeViewX',K(b,'completeX',6980)),y:K(b,'edgeViewY',K(b,'completeYMax',1800))}))play(app,'edge');
  }
  if(n===36){
   if(quiet(b)&&party(b).some(u=>u.cls==='knight'&&u.x>K(b,'arrivalX',1800))&&inView(app,{x:K(b,'arrivalViewX',3000),y:K(b,'arrivalViewY',2040)}))play(app,'arrival');
