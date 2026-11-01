@@ -8,10 +8,11 @@ root=Path(__file__).resolve().parents[2];route=os.environ.get('HONRO38_ROUTE','u
 out=Path(os.environ['HONRO_CAPTURE_OUT']);out.mkdir(parents=True,exist_ok=True)
 profile=json.loads((root/'tools/act4-ci/stage38/entry-profile.json').read_text())['profile']
 source=out/'entry-profile.json';source.write_text(json.dumps(profile,ensure_ascii=False))
+control=os.environ.get('HONRO38_CONTROL')=='hold'
 result={'passed':False,'releaseApproved':False,'route':route,'scope':'fresh stage38 UI entry from prepared level25 fully spent skill profile; tool-assisted route inputs','sourceCommit':os.environ.get('GITHUB_SHA'),'errors':[],'events':[]}
 state_js='''()=>{const a=HonroApp,e=a.engine,b=e.b,q=b.honroAct4PreviewState,u=e.active;return{stage:b.honroStage,round:b.round,phase:b.phase,side:b.side,active:b.active,can:a.canInput(),dialogue:!!a.dialogue,
  x:u?.x,y:u?.y,grounded:u&&e.grounded(u),drop:u&&e.canDrop(),move:u?.moveLeft,shots:b.shots,
- heroes:b.units.filter(v=>v.side===0&&!v.summoned).map(v=>({id:v.id,x:v.x,y:v.y,hp:v.hp,maxHp:v.maxHp,dead:v.dead,acted:v.acted,grounded:e.grounded(v)})),
+ heroes:b.units.filter(v=>v.side===0&&!v.summoned).map(v=>({id:v.id,x:v.x,y:v.y,hp:v.hp,maxHp:v.maxHp,shield:v.shield,dead:v.dead,acted:v.acted,grounded:e.grounded(v)})),
  residents:b.units.filter(v=>v.honroAct4Resident).map(v=>({id:v.id,x:v.x,y:v.y,hp:v.hp,dead:v.dead})),
  foes:b.units.filter(v=>v.side===1&&!v.dead).length,connection:q.connected||null,probe:q.connectionProbe||null,
  observed:q.observed||{},receipts:q.receipts||[],complete:!!q.complete,exit:b.honroAct4Design.exit,
@@ -65,7 +66,11 @@ with sync_playwright() as w:
   for step in range(240):
    if time.monotonic()-started>1200:raise TimeoutError('Bounded route budget exceeded')
    if not ready():break
-   s=state();assert s['round']<=20,s
+   s=state()
+   if control:
+    if s['round']>4 or any(h['hp']<=0 or h['dead'] for h in s['heroes']):break
+    p.keyboard.press('f');p.wait_for_timeout(1200);record('stationary-defend-control',['f']);continue
+   assert s['round']<=20,s
    assert all(h['hp']>0 and not h['dead'] for h in s['heroes']+s['residents']),s
    def goal(h):return h['x']>s['exit']['x']-300 and abs(h['y']-s['exit']['y'])<=240 and h['grounded']
    if all(goal(h) for h in s['heroes']):p.keyboard.press('e');p.wait_for_timeout(1600);record('exit-interaction',['e']);break
@@ -98,9 +103,13 @@ with sync_playwright() as w:
    if route=='lower' and s['x']>=5750 and s['y']>1250:hold('ArrowRight',350,True);record('join-upper-exit-route',['Control','ArrowRight',350]);continue
    go_right('advance-route')
   ready();final=record('final');screenshot('outcome');result['final']=final
-  assert final['phase']=='won' and final['complete'] and final['round']<=20,final
-  assert all(h['hp']>0 and not h['dead'] for h in final['heroes']+final['residents']),final
-  if route=='lower':assert final['connection'] and final['connection']['stageOnly'] and final['probe']['phase']=='observed',final
+  if control:
+   result['scope']='deliberately stationary defense control through four rounds, not ordinary play or clear acceptance'
+   result['observationComplete']=True;result['clearClaim']=False
+  else:
+   assert final['phase']=='won' and final['complete'] and final['round']<=20,final
+   assert all(h['hp']>0 and not h['dead'] for h in final['heroes']+final['residents']),final
+   if route=='lower':assert final['connection'] and final['connection']['stageOnly'] and final['probe']['phase']=='observed',final
   assert not result['errors'],result['errors'];result['passed']=True
  except Exception as e:
   result['failure']=str(e);result['traceback']=traceback.format_exc()
