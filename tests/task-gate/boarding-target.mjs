@@ -1,0 +1,3 @@
+import test from 'node:test';import assert from 'node:assert/strict';import {boardingTarget} from '../../tools/stage31/boarding-target.mjs';
+test('boarding follows current stage geometry, including translated maps',()=>{const b={honroAct4Design:{boarding:{boardX1:6397.5,boardX2:6697.5,deckY:3366}}};assert.deepEqual(boardingTarget(b),{left:6397.5,right:6697.5,x:6547.5,y:3366});b.honroAct4Design.boarding.deckY=4500;assert.equal(boardingTarget(b).y,4500);});
+test('missing geometry fails rather than silently aiming at the old deck',()=>{assert.throws(()=>boardingTarget({}),/required/);assert.throws(()=>boardingTarget({honroAct4Design:{boarding:{boardX1:5,boardX2:2,deckY:10}}}),/required/);});

@@ -4,6 +4,7 @@
 import {readFile,writeFile,mkdir} from 'node:fs/promises';
 import {createAppAdapter} from './app-adapter.mjs';
 import {observeEngine} from '../quality-gate/observe-engine.mjs';
+import {boardingTarget} from './boarding-target.mjs';
 const file=process.argv[2],out=process.argv[3];if(!file||!out)throw Error('draft and output directory required');await mkdir(out,{recursive:true});
 const p=JSON.parse(await readFile(file,'utf8')),entryBuild=process.argv[4]||'unspent',a=await createAppAdapter(p,'stage-31',{entryBuild}),{g,app,engine:e}=a,C=g.HONRO_CORE,b=e.b,inputs=[],observations=[],hurts=[];
 const originalHurt=e.hurt.bind(e);e.hurt=(u,...args)=>{const before=u.hp,owner=args[1],result=originalHurt(u,...args);if(u.hp<before)hurts.push({frame:frames,round:b.round,target:u.id,owner,loss:before-u.hp});return result;};
@@ -28,10 +29,11 @@ while(frames<58000&&actions<240&&inputs.length<1900){
  if(!foes.length){
   if(a.interact()){log({op:'interact'});advance(5);continue;}
   if(b.honroAct4PreviewState?.boat?.phase!=='docked'){advance(120);continue;}
-  const left=b.units.find(u=>u.side===0&&alive(u)&&(u.x<6305||u.x>6660||Math.abs(u.y-1860)>5));
+  const goal=boardingTarget(b),left=b.units.find(u=>u.side===0&&alive(u)&&(u.x<=goal.left||u.x>=goal.right||Math.abs(u.y-goal.y)>5));
   if(!left){advance(30);continue;}if(b.active!==left.id){log({op:'select',actor:left.id});app.selectHero(left.id);}
   const u=e.active;if(!u||u.id!==left.id){defend();continue;}
-  const prior=u.x;if(e.grounded(u)&&u.x>6150&&u.x<6305)jump();move(u.x<6450?1:-1,18);if(Math.abs(u.x-prior)<2&&e.grounded(u))jump();continue;
+  if(u.y<goal.y-80&&u.x>goal.left&&u.x<goal.right&&e.canDrop()){log({op:'drop'});app.drop();advance(40);continue;}
+  const prior=u.x;move(u.x<goal.x?1:-1,18);if(Math.abs(u.x-prior)<2&&e.grounded(u))jump();continue;
  }
  const u=e.active;if(!u||u.side!==0){advance(30);continue;}if(!e.grounded(u)){advance(20);continue;}
  const shot=plan(u);if(shot){log({op:'fire',skill:shot.id,angle:shot.angle,power:shot.power});const fired=e.fire(shot.id,shot.angle,shot.power);observations.push({type:'shot',actor:u.id,target:shot.target,round:b.round,accepted:fired,x:u.x,y:u.y});if(fired){shots++;actions++;advance(45);continue;}}
