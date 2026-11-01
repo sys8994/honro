@@ -1,0 +1,562 @@
+[
+  {
+    "op": "key",
+    "input": [
+      "Enter",
+      "1500"
+    ],
+    "observed": {
+      "active": "archer",
+      "x": 4714.261257259707,
+      "y": 3077.9318323653724,
+      "phase": "aim",
+      "round": 13
+    }
+  },
+  {
+    "op": "hold",
+    "input": [
+      "ArrowRight",
+      "2400",
+      "1000"
+    ],
+    "observed": {
+      "active": "archer",
+      "x": 4815,
+      "y": 3064.5,
+      "phase": "aim",
+      "round": 13
+    }
+  },
+  {
+    "op": "key",
+    "input": [
+      "Control",
+      "50"
+    ],
+    "observed": {
+      "active": "archer",
+      "x": 4815,
+      "y": 3064.5,
+      "phase": "aim",
+      "round": 13
+    }
+  },
+  {
+    "op": "hold",
+    "input": [
+      "ArrowRight",
+      "1900",
+      "1200"
+    ],
+    "observed": {
+      "active": "archer",
+      "x": 4815,
+      "y": 3064.5,
+      "phase": "aim",
+      "round": 13
+    }
+  },
+  {
+    "op": "key",
+    "input": [
+      "Enter",
+      "800"
+    ],
+    "observed": {
+      "active": "archer",
+      "x": 4815,
+      "y": 3064.5,
+      "phase": "aim",
+      "round": 13
+    }
+  },
+  {
+    "op": "key",
+    "input": [
+      "Control",
+      "50"
+    ],
+    "observed": {
+      "active": "archer",
+      "x": 4815,
+      "y": 3016.1762897565477,
+      "phase": "aim",
+      "round": 13
+    }
+  },
+  {
+    "op": "hold",
+    "input": [
+      "ArrowRight",
+      "1800",
+      "1000"
+    ],
+    "observed": {
+      "active": "archer",
+      "x": 4861.854632918776,
+      "y": 2983.285302940789,
+      "phase": "aim",
+      "round": 13
+    }
+  },
+  {
+    "op": "key",
+    "input": [
+      "Control",
+      "20"
+    ],
+    "observed": {
+      "active": "archer",
+      "x": 4861.854632918776,
+      "y": 2944.065981861205,
+      "phase": "aim",
+      "round": 13
+    }
+  },
+  {
+    "op": "hold",
+    "input": [
+      "ArrowRight",
+      "1200",
+      "800"
+    ],
+    "observed": {
+      "active": "archer",
+      "x": 5244.009726517052,
+      "y": 2664.5893008312432,
+      "phase": "aim",
+      "round": 13
+    }
+  },
+  {
+    "op": "hold",
+    "input": [
+      "ArrowRight",
+      "2800",
+      "1000"
+    ],
+    "observed": {
+      "active": "archer",
+      "x": 6176.201017022561,
+      "y": 2550.6464649188797,
+      "phase": "aim",
+      "round": 13
+    }
+  },
+  {
+    "op": "wait",
+    "input": [
+      "2000"
+    ],
+    "observed": {
+      "active": "archer",
+      "x": 6176.201017022561,
+      "y": 2731.74891148939,
+      "phase": "aim",
+      "round": 13
+    }
+  },
+  {
+    "op": "hold",
+    "input": [
+      "ArrowRight",
+      "800",
+      "800"
+    ],
+    "observed": {
+      "active": "archer",
+      "x": 6497.039622110999,
+      "y": 2744.6359748074,
+      "phase": "aim",
+      "round": 13
+    }
+  },
+  {
+    "op": "key",
+    "input": [
+      "Alt",
+      "3000"
+    ],
+    "observed": {
+      "active": "archer",
+      "x": 6497.039622110999,
+      "y": 2820.417547939052,
+      "phase": "aim",
+      "round": 13
+    }
+  },
+  {
+    "op": "key",
+    "input": [
+      "Alt",
+      "3000"
+    ],
+    "observed": {
+      "active": "archer",
+      "x": 6497.039622110999,
+      "y": 3366,
+      "phase": "aim",
+      "round": 13
+    }
+  },
+  {
+    "op": "key",
+    "input": [
+      "f",
+      "2500"
+    ],
+    "observed": {
+      "active": "mage",
+      "x": 4390.899519491071,
+      "y": 3069.2719615592855,
+      "phase": "aim",
+      "round": 13
+    }
+  },
+  {
+    "op": "hold",
+    "input": [
+      "ArrowRight",
+      "1800",
+      "800"
+    ],
+    "observed": {
+      "active": "mage",
+      "x": 4815,
+      "y": 3064.5,
+      "phase": "aim",
+      "round": 13
+    }
+  },
+  {
+    "op": "key",
+    "input": [
+      "Control",
+      "20"
+    ],
+    "observed": {
+      "active": "mage",
+      "x": 4815,
+      "y": 3053.71038706684,
+      "phase": "aim",
+      "round": 13
+    }
+  },
+  {
+    "op": "hold",
+    "input": [
+      "ArrowRight",
+      "900",
+      "800"
+    ],
+    "observed": {
+      "active": "mage",
+      "x": 4869.860355339066,
+      "y": 2969.408717412286,
+      "phase": "aim",
+      "round": 13
+    }
+  },
+  {
+    "op": "key",
+    "input": [
+      "Control",
+      "20"
+    ],
+    "observed": {
+      "active": "mage",
+      "x": 4869.860355339066,
+      "y": 2958.6191044791262,
+      "phase": "aim",
+      "round": 13
+    }
+  },
+  {
+    "op": "hold",
+    "input": [
+      "ArrowRight",
+      "1000",
+      "800"
+    ],
+    "observed": {
+      "active": "mage",
+      "x": 5188.762757181517,
+      "y": 2725.360967100331,
+      "phase": "aim",
+      "round": 13
+    }
+  },
+  {
+    "op": "hold",
+    "input": [
+      "ArrowRight",
+      "2800",
+      "3000"
+    ],
+    "observed": {
+      "active": "mage",
+      "x": 6036.684014819585,
+      "y": 2728.9336802963917,
+      "phase": "aim",
+      "round": 13
+    }
+  },
+  {
+    "op": "hold",
+    "input": [
+      "ArrowRight",
+      "1000",
+      "800"
+    ],
+    "observed": {
+      "active": "mage",
+      "x": 6423.486645742403,
+      "y": 2739.7324430494937,
+      "phase": "aim",
+      "round": 13
+    }
+  },
+  {
+    "op": "key",
+    "input": [
+      "Alt",
+      "3000"
+    ],
+    "observed": {
+      "active": "mage",
+      "x": 6423.486645742403,
+      "y": 2927.0693636735155,
+      "phase": "aim",
+      "round": 13
+    }
+  },
+  {
+    "op": "key",
+    "input": [
+      "Alt",
+      "3000"
+    ],
+    "observed": {
+      "active": "mage",
+      "x": 6423.486645742403,
+      "y": 3366,
+      "phase": "aim",
+      "round": 13
+    }
+  },
+  {
+    "op": "key",
+    "input": [
+      "f",
+      "2500"
+    ],
+    "observed": {
+      "active": "knight",
+      "x": 6011.962375673642,
+      "y": 1903.1234572748647,
+      "phase": "aim",
+      "round": 13
+    }
+  },
+  {
+    "op": "key",
+    "input": [
+      "Alt",
+      "3000"
+    ],
+    "observed": {
+      "active": "knight",
+      "x": 6011.962375673642,
+      "y": 2106.279555273219,
+      "phase": "aim",
+      "round": 13
+    }
+  },
+  {
+    "op": "key",
+    "input": [
+      "Alt",
+      "3000"
+    ],
+    "observed": {
+      "active": "knight",
+      "x": 6011.962375673642,
+      "y": 2728.4392475134728,
+      "phase": "aim",
+      "round": 13
+    }
+  },
+  {
+    "op": "hold",
+    "input": [
+      "ArrowRight",
+      "1000",
+      "800"
+    ],
+    "observed": {
+      "active": "knight",
+      "x": 6416.776702205154,
+      "y": 2739.2851134803436,
+      "phase": "aim",
+      "round": 13
+    }
+  },
+  {
+    "op": "key",
+    "input": [
+      "Alt",
+      "3000"
+    ],
+    "observed": {
+      "active": "knight",
+      "x": 6416.776702205154,
+      "y": 2936.7987818025267,
+      "phase": "aim",
+      "round": 13
+    }
+  },
+  {
+    "op": "key",
+    "input": [
+      "Alt",
+      "3000"
+    ],
+    "observed": {
+      "active": "knight",
+      "x": 6416.776702205154,
+      "y": 3366,
+      "phase": "aim",
+      "round": 13
+    }
+  },
+  {
+    "op": "key",
+    "input": [
+      "f",
+      "2500"
+    ],
+    "observed": {
+      "active": "occultist",
+      "x": 4444.000077250711,
+      "y": 1094.5697584592197,
+      "phase": "aim",
+      "round": 13
+    }
+  },
+  {
+    "op": "hold",
+    "input": [
+      "ArrowRight",
+      "3000",
+      "1600"
+    ],
+    "observed": {
+      "active": "occultist",
+      "x": 5520.491658748804,
+      "y": 1517.860549749123,
+      "phase": "aim",
+      "round": 13
+    }
+  },
+  {
+    "op": "hold",
+    "input": [
+      "ArrowRight",
+      "1400",
+      "900"
+    ],
+    "observed": {
+      "active": "occultist",
+      "x": 5957.312482605112,
+      "y": 1858.9831590272056,
+      "phase": "aim",
+      "round": 13
+    }
+  },
+  {
+    "op": "key",
+    "input": [
+      "Alt",
+      "3000"
+    ],
+    "observed": {
+      "active": "occultist",
+      "x": 5957.312482605112,
+      "y": 2184.743772613355,
+      "phase": "aim",
+      "round": 13
+    }
+  },
+  {
+    "op": "key",
+    "input": [
+      "Alt",
+      "3000"
+    ],
+    "observed": {
+      "active": "occultist",
+      "x": 5957.312482605112,
+      "y": 2727.3462496521024,
+      "phase": "aim",
+      "round": 13
+    }
+  },
+  {
+    "op": "hold",
+    "input": [
+      "ArrowRight",
+      "1300",
+      "800"
+    ],
+    "observed": {
+      "active": "occultist",
+      "x": 6478.276660670319,
+      "y": 2743.3851107113546,
+      "phase": "aim",
+      "round": 13
+    }
+  },
+  {
+    "op": "key",
+    "input": [
+      "Alt",
+      "3000"
+    ],
+    "observed": {
+      "active": "occultist",
+      "x": 6478.276660670319,
+      "y": 2847.6238420280374,
+      "phase": "aim",
+      "round": 13
+    }
+  },
+  {
+    "op": "key",
+    "input": [
+      "Alt",
+      "3000"
+    ],
+    "observed": {
+      "active": "occultist",
+      "x": 6478.276660670319,
+      "y": 3366,
+      "phase": "aim",
+      "round": 13
+    }
+  },
+  {
+    "op": "key",
+    "input": [
+      "e",
+      "4000"
+    ],
+    "observed": {
+      "active": "occultist",
+      "x": 6478.276660670319,
+      "y": 3366,
+      "phase": "won",
+      "round": 13
+    }
+  }
+]
