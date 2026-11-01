@@ -287,6 +287,7 @@ catch(error){if(globalThis.HonroStartup)globalThis.HonroStartup.failed(error);el
   await writeGenerated(destination,gameHtml());
   await writeGenerated(path.join(outputRoot,'index.html'),gameHtml());
   await writeGenerated(path.join(outputRoot,'HONRO_WORKSHOP.html'),workshopHtml);
+  await mkdir(path.join(outputRoot,'workshop'),{recursive:true});
   await writeGenerated(path.join(outputRoot,'workshop/HONRO_MAP_WORKSHOP.html'),'<!doctype html><meta charset="utf-8"><meta http-equiv="refresh" content="0;url=../HONRO_WORKSHOP.html"><a href="../HONRO_WORKSHOP.html">HONRO Workshop</a>');
   const currentFiles=[...files.values()].sort((a,b)=>a.path.localeCompare(b.path));
   // Superseded, never-published full-library copies are not useful rollback

@@ -58,3 +58,7 @@ GitHub에서 필요한 최종 설정:
 실제 workflow는 `.github/workflows/verified-pages.yml`이다. `deploy`는 같은 workflow의 `stage-quality` 성공을 `needs`와조건식으로 모두 요구하며,통과 후 빌드된 site artifact만 사용한다. 기존 브랜치식 Pages 설정을 그대로 두면 이 workflow와별개로 자동 게시될 수 있으므로 해당 설정 변경은 필수다.
 
 설정 근거: [GitHub Pages 배포 원본](https://docs.github.com/en/pages/getting-started-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site), [Pages custom workflow](https://docs.github.com/en/pages/getting-started-with-github-pages/using-custom-workflows-with-github-pages), [보호 브랜치](https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/managing-protected-branches/about-protected-branches).
+
+## 구현 검증 기록
+
+첫 CI41292099395는51개단위검사와직접빌드차단을통과했지만,격리프리뷰의workshop출력폴더누락으로실패했다. 실제stage-quality단계는실행되지않았다. 이실패를의도된정량차단으로혼동하지않으며,출력폴더생성을수정한뒤같은전체프리뷰검사를다시실행한다.
