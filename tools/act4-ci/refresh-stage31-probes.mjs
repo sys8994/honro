@@ -5,13 +5,15 @@ import fs from 'node:fs/promises';
 import {runtime} from '../../game/tests/helpers.mjs';
 import {loadPilotRuntime} from '../stage31/pilot-runtime.mjs';
 import {runtimeDigest,runProbe} from '../stage31/probes.mjs';
-import {resolveManifest,createManifest} from '../stage31/package-manifest.mjs';
+import {resolveManifest,createManifest,stagePayload} from '../stage31/package-manifest.mjs';
 const [mode,dir]=process.argv.slice(2);if(!['prepare','attach'].includes(mode)||!dir)throw Error('prepare|attach output-directory');
 const read=async p=>JSON.parse(await fs.readFile(p,'utf8'));
 await fs.mkdir(dir,{recursive:true});process.env.HONRO_ACT4_RELEASE='1';
 const g=await runtime({legacyMaps:false});await loadPilotRuntime(g);
 const manifest=await read('tools/stage31/production-package.json'),project=resolveManifest(manifest,g.HONRO_PROJECT),id=manifest.stageId,digest=await runtimeDigest(),fingerprint=g.HonroProductionContract.fingerprint(project,id);
 if(mode==='prepare'){
+ const payload=stagePayload(project);
+ await fs.writeFile('candidate31.json',JSON.stringify({stages:[payload.stage],library:payload.assets}));
  const inputs=await read('tools/stage31/evidence/probes/honro-stage31-input-probes-v4.json');
  const results=inputs.map(p=>({...runProbe(g,project,id,p),runtimeSha256:digest}));
  await fs.writeFile(dir+'/focused-probes.json',JSON.stringify({sourceCommit:process.env.GITHUB_SHA,fingerprint,digest,results},null,2));
