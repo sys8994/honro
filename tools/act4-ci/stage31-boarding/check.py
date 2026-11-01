@@ -30,6 +30,7 @@ try:
   def observe(label):
    v=p.evaluate(state_js);result['observations'].append({'step':label,'actual':v})
    assert all(h['hp']>0 and not h['dead'] for h in v['heroes']),v
+   assert v['active']==hero, 'Unexpected actor handoff: '+str(v)
    return v
   def quiet():
    for _ in range(90):
@@ -74,7 +75,9 @@ try:
    quiet();p.locator('[data-action="select-hero"][data-id="'+hero+'"]').click();p.wait_for_timeout(500)
    assert p.evaluate(state_js)['active']==hero
    if hero in ['archer','mage']:
-    walk(4815);walk(4865,True);walk(5240,True);walk(6100);walk(6480)
+    walk(4815);walk(4900,True)
+    if actor()['x']<4885:walk(4920,True)
+    walk(5080);walk(5500);walk(5800);drop_to(2700);walk(6480)
    elif hero=='knight':drop_to(2700);walk(6480)
    else:walk(5500);walk(5950);drop_to(2700);walk(6480)
    drop_to(3366);u=actor()
