@@ -1,0 +1,340 @@
+{
+ "sheet": "tools/party-forge/references/260919_휘겸_parts.svg",
+ "maxX": 398,
+ "bones": {
+  "head": [
+   [
+    [
+     255,
+     225
+    ],
+    [
+     245,
+     105
+    ]
+   ],
+   [
+    [
+     130,
+     140
+    ],
+    [
+     365,
+     140
+    ]
+   ]
+  ],
+  "thorax": [
+   [
+    [
+     240,
+     410
+    ],
+    [
+     250,
+     240
+    ]
+   ],
+   [
+    [
+     185,
+     300
+    ],
+    [
+     190,
+     400
+    ]
+   ],
+   [
+    [
+     300,
+     300
+    ],
+    [
+     305,
+     400
+    ]
+   ]
+  ],
+  "front_upper_arm": [
+   [
+    [
+     148,
+     305
+    ],
+    [
+     100,
+     415
+    ]
+   ]
+  ],
+  "front_forearm": [
+   [
+    [
+     98,
+     432
+    ],
+    [
+     125,
+     520
+    ]
+   ]
+  ],
+  "front_hand": [
+   [
+    [
+     128,
+     535
+    ],
+    [
+     135,
+     560
+    ]
+   ]
+  ],
+  "rear_upper_arm": [
+   [
+    [
+     310,
+     300
+    ],
+    [
+     338,
+     405
+    ]
+   ]
+  ],
+  "rear_forearm": [
+   [
+    [
+     342,
+     420
+    ],
+    [
+     352,
+     530
+    ]
+   ]
+  ],
+  "rear_hand": [
+   [
+    [
+     355,
+     545
+    ],
+    [
+     360,
+     575
+    ]
+   ]
+  ],
+  "weapon": [
+   [
+    [
+     140,
+     565
+    ],
+    [
+     395,
+     780
+    ]
+   ]
+  ],
+  "pelvis": [
+   [
+    [
+     240,
+     420
+    ],
+    [
+     240,
+     820
+    ]
+   ]
+  ],
+  "rear_thigh": [
+   [
+    [
+     205,
+     480
+    ],
+    [
+     160,
+     700
+    ]
+   ]
+  ],
+  "rear_shin": [
+   [
+    [
+     150,
+     720
+    ],
+    [
+     115,
+     855
+    ]
+   ]
+  ],
+  "rear_foot": [
+   [
+    [
+     110,
+     875
+    ],
+    [
+     80,
+     960
+    ]
+   ]
+  ],
+  "front_thigh": [
+   [
+    [
+     275,
+     480
+    ],
+    [
+     290,
+     700
+    ]
+   ]
+  ],
+  "front_shin": [
+   [
+    [
+     292,
+     720
+    ],
+    [
+     300,
+     855
+    ]
+   ]
+  ],
+  "front_foot": [
+   [
+    [
+     305,
+     880
+    ],
+    [
+     370,
+     935
+    ]
+   ]
+  ]
+ },
+ "noCloth": [
+  "rear_thigh",
+  "rear_shin",
+  "rear_foot",
+  "front_thigh",
+  "front_shin",
+  "front_foot",
+  "weapon",
+  "front_hand",
+  "rear_hand",
+  "front_forearm",
+  "rear_forearm",
+  "front_upper_arm",
+  "rear_upper_arm"
+ ],
+ "clothAll": true,
+ "clothBelowY": 478,
+ "clothAboveY": 835,
+ "margin": 5,
+ "force": [
+  {
+   "part": "weapon",
+   "box": [
+    40,
+    495,
+    95,
+    630
+   ]
+  }
+ ],
+ "backfill": [
+  [
+   "front_upper_arm",
+   "thorax",
+   "#333132"
+  ],
+  [
+   "rear_upper_arm",
+   "thorax",
+   "#333132"
+  ]
+ ],
+ "joints": {
+  "crown": [
+   245,
+   120
+  ],
+  "chin": [
+   262,
+   215
+  ],
+  "neck": [
+   250,
+   232
+  ],
+  "pelvis": [
+   240,
+   420
+  ],
+  "frontShoulder": [
+   150,
+   295
+  ],
+  "frontElbow": [
+   95,
+   422
+  ],
+  "frontHand": [
+   130,
+   545
+  ],
+  "rearShoulder": [
+   305,
+   288
+  ],
+  "rearElbow": [
+   340,
+   412
+  ],
+  "rearHand": [
+   357,
+   558
+  ],
+  "rearHip": [
+   205,
+   480
+  ],
+  "rearKnee": [
+   150,
+   710
+  ],
+  "rearAnkle": [
+   110,
+   862
+  ],
+  "frontHip": [
+   275,
+   480
+  ],
+  "frontKnee": [
+   290,
+   710
+  ],
+  "frontAnkle": [
+   300,
+   862
+  ]
+ },
+ "armAmplitude": 0.45,
+ "legAmplitude": 0.8,
+ "rearArmAmplitude": 0.2,
+ "retargetHandAngles": true
+}
