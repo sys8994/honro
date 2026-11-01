@@ -9,7 +9,7 @@ raw=lzma.decompress((root/'tools/act4-rc/fixtures/stage40-checkpoints/sailing-ob
 source=out/'source.json';source.write_bytes(raw);result={'passed':False,'scope':'normal UI migration/restart from preserved Stage40 campaign profile;42-enemy diagnostic','releaseApproved':False,'sourceCommit':os.environ.get('GITHUB_SHA'),'events':[],'errors':[]}
 with sync_playwright() as w:
  browser=w.chromium.launch(headless=True);p=browser.new_page(viewport={'width':1440,'height':900});p.on('pageerror',lambda e:result['errors'].append(str(e)))
- def state():return p.evaluate('''()=>{const a=HonroApp,e=a.engine,b=e.b,u=e.active;return{round:b.round,active:u?.id,phase:b.phase,side:b.side,can:a.canInput(),dialogue:!!a.dialogue,x:u?.x,y:u?.y,facing:u?.facing,angle:u?.angle,move:u?.moveLeft,grounded:u&&e.grounded(u),support:u&&e.contactSurface(u.x,u.y-4,u.y+5)?.t?.id,canDrop:e.canDrop(),tide:b.honroAct4PreviewState?.tide,finale:b.honroFinalDefenseRevision,major:b.units.filter(v=>v.side===1&&v.boss).length,minis:b.units.filter(v=>v.side===1&&v.honroMidboss).length,bossState:b.units.find(v=>v.honroAct4FinaleBoss)?.honroPilotCombat,shots:b.shots,shotSerial:b.shot,health:b.units.filter(v=>v.side===0&&!v.summoned&&!v.honroAct4Resident).map(v=>({id:v.id,hp:v.hp,maxHp:v.maxHp,x:v.x,y:v.y,dead:v.dead,acted:v.acted})),residents:b.units.filter(v=>v.honroAct4Resident).map(v=>({id:v.id,hp:v.hp,dead:v.dead})),foes:b.units.filter(v=>v.side===1&&!v.dead).map(v=>({id:v.id,x:v.x,y:v.y,hp:v.hp,maxHp:v.maxHp,support:v.honroEncounterSupport})),proof:HonroAct4TerrainPreview.proofValid(b)}}''')
+ def state():return p.evaluate('''()=>{const a=HonroApp,e=a.engine,b=e.b,u=e.active;return{round:b.round,active:u?.id,phase:b.phase,side:b.side,can:a.canInput(),dialogue:!!a.dialogue,x:u?.x,y:u?.y,facing:u?.facing,angle:u?.angle,move:u?.moveLeft,grounded:u&&e.grounded(u),support:u&&e.contactSurface(u.x,u.y-4,u.y+5)?.t?.id,canDrop:e.canDrop(),tide:b.honroAct4PreviewState?.tide,finale:b.honroFinalDefenseRevision,major:b.units.filter(v=>v.side===1&&v.boss).length,minis:b.units.filter(v=>v.side===1&&v.honroMidboss).length,bossState:b.units.find(v=>v.honroAct4FinaleBoss)?.honroPilotCombat,shots:b.shots,shotSerial:b.shot,health:b.units.filter(v=>v.side===0&&!v.summoned&&!v.honroAct4Resident).map(v=>({id:v.id,hp:v.hp,maxHp:v.maxHp,x:v.x,y:v.y,dead:v.dead,acted:v.acted})),residents:b.units.filter(v=>v.honroAct4Resident).map(v=>({id:v.id,hp:v.hp,dead:v.dead})),foes:b.units.filter(v=>v.side===1&&!v.dead).map(v=>({id:v.id,x:v.x,y:v.y,hp:v.hp,maxHp:v.maxHp,support:e.contactSurface(v.x,v.y-4,v.y+5)?.t?.id||v.honroEncounterSupport})),proof:HonroAct4TerrainPreview.proofValid(b)}}''')
  def record(step,extra=None):
   s=state();result['events'].append({'step':step,'state':s,'extra':extra});(out/'result.json').write_text(json.dumps(result,ensure_ascii=False,indent=2));print(step,s['round'],s['active'],len(s['foes']),flush=True);return s
  def ready():
@@ -70,12 +70,21 @@ const impactValue=(skill,hit)=>{const eff=e.effective(skill,u),r=Math.max(1,eff.
     elif support=='approved40-dock-stair':goal=1800
     elif support=='approved40-dock':
      dockfoes=[v for v in foes if v.get('support')=='approved40-dock']
-     if dockfoes:goal=1200 if any(v['x']<900 for v in dockfoes) else 1700
+     if dockfoes:
+      nearest=min(dockfoes,key=lambda v:abs(v['x']-x))
+      spacing=110 if s['active']=='knight' else 260
+      goal=nearest['x']+(-spacing if nearest['x']>=x else spacing)
      elif abs(x-1600)<40 and s['canDrop']:
       p.keyboard.press('Alt');p.wait_for_timeout(1600);ready();record('descend-departure');view();pl=plan();continue
      else:goal=1600
     elif support in ['approved40-departure-stair','approved40-departure-ramp']:
-     goal=1850 if s.get('tide',{}).get('phase')=='high' else 1970
+     above=[v for v in foes if v['y']<s['y']-280]
+     same=[v for v in foes if v.get('support')==support and abs(v['y']-s['y'])<280]
+     if same:
+      nearest=min(same,key=lambda v:abs(v['x']-x));spacing=100 if s['active']=='knight' else 190
+      goal=nearest['x']+(-spacing if nearest['x']>=x else spacing)
+     elif above:goal=1445
+     else:goal=1850 if s.get('tide',{}).get('phase')=='high' else 1970
     else:
      targets=pl['visible'] or foes
      if not targets:break
@@ -95,7 +104,8 @@ const impactValue=(skill,hit)=>{const eff=e.effective(skill,u),r=Math.max(1,eff.
     desired=-1 if math.cos(math.radians(choice['angle']))<0 else 1
     if s['facing']!=desired:
      supporting=choice.get('support',False);hold('ArrowLeft' if desired<0 else 'ArrowRight',80);ready();view();choice=support_plan(True) if supporting else plan(True)['best']
-   if not choice:p.keyboard.press('f');p.wait_for_timeout(1600);record('defend-no-safe-shot');continue
+   if not choice:
+    before_defend=state();p.keyboard.press('f');p.wait_for_timeout(1600);record('defend-no-safe-shot',{'actor':before_defend['active'],'round':before_defend['round'],'remainingMove':before_defend['move'],'reason':'no safe available cast after route/facing'});continue
    p.keyboard.press('Digit'+str(choice['idx']+1));p.wait_for_timeout(150)
    for _ in range(18):
     s=state();delta=choice['angle']-s['angle']
