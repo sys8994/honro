@@ -1,6 +1,7 @@
 (function(G){'use strict';
 // Opt-in SOP pilot actors only. No quest, victory, civilian or main-boss rules.
-const configs={31:{key:'levee',name:'둑틈봉쇄체',blast:65,travel:1.65,retreat:180},34:{key:'shelf',name:'턱포격체',blast:85,travel:1.9,retreat:220},39:{key:'net',name:'그물봉쇄체',blast:35,travel:1.7,retreat:150},40:{key:'harbor',name:'포구봉쇄체',blast:55,travel:1.8,retreat:170}};
+const configs={31:{key:'levee',name:'둑틈봉쇄체',blast:65,travel:1.65,retreat:180},33:{key:'tidal',name:'물목을 묶는 혼',blast:45,travel:1.7,retreat:170},34:{key:'shelf',name:'턱포격체',blast:85,travel:1.9,retreat:220},35:{key:'bamboo',name:'대숲 포격귀',blast:70,travel:1.8,retreat:150},37:{key:'wall',name:'폐담 봉쇄귀',blast:75,travel:1.8,retreat:150},38:{key:'pursuit',name:'물가 봉쇄귀',blast:65,travel:1.7,retreat:170},39:{key:'net',name:'그물봉쇄체',blast:35,travel:1.7,retreat:150},40:{key:'harbor',name:'포구봉쇄체',blast:55,travel:1.8,retreat:170}};
+const configFor=(b,u)=>({...configs[b.honroAct4Preview],...(u?.honroPilotVariant==='bind'?{skill:'HSH02',blast:74,travel:1.5,warning:'결박 표적 · 다음 대응 뒤 발사'}:{skill:'HWD01',warning:'고정 표적 · 다음 대응 뒤 곡사'})});
 const alive=u=>!!u&&!u.dead&&u.hp>0&&!u.eaterCapturedBy;
 const active=b=>!!configs[b?.honroAct4Preview]&&(b.honroCustom||b.honroAct4Official===1);
 const equipped=(b,u)=>active(b)&&u?.side===1&&u.honroPilotMidboss===configs[b.honroAct4Preview].key&&!u.boss&&!u.honroAct4WreckBoss;
@@ -16,12 +17,12 @@ function safe(e,u,t,cfg){
  const origin={x:u.x,y:u.y-u.h*.55},acc=e.acceleration({wind:0,gravityScale:1,drag:0,vx:0,vy:0}),vy=(t.y-origin.y-.5*acc.y*cfg.travel**2)/cfg.travel;
  for(let i=0;i<=32;i++){const time=cfg.travel*i/32,x=origin.x+(t.x-origin.x)*i/32,y=origin.y+vy*time+.5*acc.y*time*time;if(residents.some(v=>Math.hypot(v.x-x,v.y-v.h*.5-y)<cfg.blast+v.r+120))return false;}return true;
 }
-function beginRelocation(e,u){const b=e.b,s=memory(u),cfg=configs[b.honroAct4Preview];s.phase='exposed';s.exposedRound=b.round;pose(u,s);delete s.relocateAfterShot;
- const destination=u.honroPilotRelocation,dir=u.facing>0?-1:1,p=destination&&Number.isFinite(destination.x)&&Number.isFinite(destination.y)?destination:{x:u.x+dir*cfg.retreat,y:u.y};
+function beginRelocation(e,u){const b=e.b,s=memory(u),cfg=configFor(b,u);s.phase='exposed';s.exposedRound=b.round;pose(u,s);delete s.relocateAfterShot;
+ const home=Number.isFinite(u.spawnX)&&Number.isFinite(u.spawnY)?{x:u.spawnX,y:u.spawnY}:null,points=[u.honroPilotRelocation,home].filter(p=>p&&Number.isFinite(p.x)&&Number.isFinite(p.y)),destination=points.sort((a,z)=>Math.hypot(z.x-u.x,z.y-u.y)-Math.hypot(a.x-u.x,a.y-u.y))[0],dir=u.facing>0?-1:1,p=destination&&Math.hypot(destination.x-u.x,destination.y-u.y)>2?destination:{x:u.x+dir*cfg.retreat,y:u.y};
  if(alive(u)&&!u.fixed&&e.grounded(u)&&u.moveLeft>0){u.aiMove={round:b.round,targetId:u.id,path:[{x:p.x,y:p.y,jump:!!p.jump}],index:0,elapsed:0,stalled:0,lastX:u.x,lastY:u.y,jumping:false,intent:'재배치 · 방호 해제'};record(e,u,'relocate',{destination:p});return true;}
  record(e,u,'relocation-blocked');return false;
 }
-function action(e){const b=e.b,u=e.active;if(!equipped(b,u))return false;const s=memory(u),cfg=configs[b.honroAct4Preview];
+function action(e){const b=e.b,u=e.active;if(!equipped(b,u))return false;const s=memory(u),cfg=configFor(b,u);
  if(!alive(u)||u.carriedBy!==undefined||u.enthrall){delete s.target;delete s.relocateAfterShot;delete u.aiMove;e.finishAction();return true;}
  if(u.acted||u.aiMove||u.moveTarget!==undefined||e.settleBusy?.())return true;
  pose(u,s);
@@ -36,7 +37,7 @@ function action(e){const b=e.b,u=e.active;if(!equipped(b,u))return false;const s
   if(!t.seen||!t.response||(b.teamEnds?.[0]||0)<=t.seenTeamEnd){e.finishAction();return true;}
   if(!safe(e,u,t,cfg)){cancelled(e,u,'protected-area');e.finishAction();return true;}
   u.facing=t.x>=u.x?1:-1;const before=new Set(b.projectiles.map(p=>p.id)),old=u.loadout;let fired=false;
-  try{u.loadout=[...old,'HWD01'];fired=e.fire('HWD01',u.facing>0?55:125,.8,true);}finally{u.loadout=old;}
+  try{u.loadout=[...old,cfg.skill];fired=e.fire(cfg.skill,u.facing>0?55:125,.8,true);}finally{u.loadout=old;}
   if(fired){for(const p of b.projectiles.filter(p=>!before.has(p.id))){const seconds=cfg.travel,acc=e.acceleration({...p,wind:0,gravityScale:1,drag:0,vx:0,vy:0});Object.assign(p,{vx:(t.x-p.x)/seconds,vy:(t.y-p.y-.5*acc.y*seconds*seconds)/seconds,gravityScale:1,wind:0,drag:0,blast:cfg.blast,honroPilotArc:true});p.prevVy=p.vy;}record(e,u,'fired',{target:{...t},shot:b.shot});delete s.target;s.phase='relocate';s.relocateAfterShot=b.shot;}
   else{cancelled(e,u,'native-cast-rejected');e.finishAction();}return true;
  }
@@ -53,6 +54,7 @@ function offer(e){const b=e.b,u=e.active;if(b.phase!=='aim'||b.side!==0||!alive(
  for(const enemy of b.units.filter(v=>equipped(b,v)&&alive(v))){const t=memory(enemy).target;if(t?.seen)(t.offered??={})[u.id]={round:b.round,teamEnd:b.teamEnds?.[0]||0};}}
 const attached=new WeakSet();function attach(app){const e=app.engine;if(!e||attached.has(e))return;attached.add(e);const effective=e.effective?.bind(e);if(effective)e.effective=function(skill,u,...args){const out=effective(skill,u,...args);if(active(e.b)&&u?.side===1&&u.honroPilotBudgetBasis?.version===2&&Number.isFinite(u.honroPilotSkillAttack?.[skill.id]))out.damage*=u.honroPilotSkillAttack[skill.id];return out;};const original=e.enemyAction.bind(e);e.enemyAction=function(...args){if(!action(e))return original(...args);};for(const u of e.b.units)if(equipped(e.b,u))pose(u,memory(u));
  if(active(e.b)&&e.b.honroPilotRosterRevision===1&&G.HonroEncounterDensity){G.HonroEncounterDensity.installActivation(e);if(!e.b.honroPilotActivationReady){e.refreshActivation();e.b.honroPilotActivationReady=true;}}
+ const hurt=e.hurt?.bind(e);if(hurt)e.hurt=function(target,...args){const before=target.hp+(target.shield||0),source=e.unit?.(args[1]),projectile=args[3],out=hurt(target,...args);if(equipped(e.b,source)&&source.honroPilotVariant==='bind'&&!source.enthrall&&projectile?.skill==='HSH02'&&target.side===0&&alive(target)&&target.hp+(target.shield||0)<before){target.bound=Math.max(target.bound||0,1);record(e,source,'bound',{target:target.id,ownActions:1});}return out;};
  const can=e.canAct?.bind(e);if(can)e.canAct=function(...args){const ok=can(...args);if(ok&&!app.dialogue&&!app.modal?.classList.contains('open')&&!G.document?.hidden)offer(e);return ok;};
  const finish=e.finishAction.bind(e);e.finishAction=function(...args){const b=e.b,u=e.active,round=b.round;
  if(equipped(b,u)&&alive(u)&&!u.acted&&b.side===1&&memory(u).phase==='relocate'&&Number.isFinite(memory(u).relocateAfterShot)&&memory(u).relocateAfterShot===b.shot&&!b.projectiles.length){if(beginRelocation(e,u)){b.phase='enemy';b.turnAge=0;return;}}
@@ -76,9 +78,9 @@ function warningLayout(scene,app,t,cfg,textWidth){
 }
 function draw(scene,c,b){if(!active(b))return;const app=G.HonroApp;
  if(app?.scene!==scene||G.document?.hidden||app.dialogue||app.modal?.classList.contains('open')||!scene.canvas?.checkVisibility?.({checkOpacity:true,checkVisibilityCSS:true}))return;
- const text='고정 표적 · 다음 대응 뒤 곡사',d=scene.size(b).d;c.save();c.setTransform(d,0,0,d,0,0);c.font='bold 15px sans-serif';
+ const d=scene.size(b).d;c.save();c.setTransform(d,0,0,d,0,0);c.font='bold 15px sans-serif';
  for(const u of b.units){if(!equipped(b,u)||!alive(u))continue;const s=memory(u),t=s.target;if(s.phase!=='telegraph'||!t)continue;
-  const a=warningLayout(scene,app,t,configs[b.honroAct4Preview],c.measureText(text).width);if(!a)continue;
+  const cfg=configFor(b,u),text=cfg.warning,a=warningLayout(scene,app,t,cfg,c.measureText(text).width);if(!a)continue;
   c.strokeStyle='#ffca9b';c.lineWidth=2;c.setLineDash([6,4]);c.beginPath();c.arc(a.x,a.y,a.rad,0,Math.PI*2);c.stroke();c.setLineDash([]);c.beginPath();c.moveTo(a.x-8,a.y);c.lineTo(a.x+8,a.y);c.moveTo(a.x,a.y-8);c.lineTo(a.x,a.y+8);c.stroke();
   c.fillStyle='rgba(20,31,36,.94)';c.fillRect(a.panel.left,a.panel.top,a.panel.right-a.panel.left,a.panel.bottom-a.panel.top);c.fillStyle='#fff0d2';c.textAlign='center';c.textBaseline='middle';c.fillText(text,(a.panel.left+a.panel.right)/2,(a.panel.top+a.panel.bottom)/2);
   if(!t.seen){t.seen=true;t.seenTeamEnd=b.teamEnds?.[0]||0;t.seenRound=b.round;}if(app.engine)offer(app.engine);
@@ -96,7 +98,7 @@ function tuneFresh(u,b,st){const C=G.HONRO_CORE,P=G.HonroProgression;if(!active(
   u.honroPilotBudgetBasis={version:2,status:reference.status,referenceId:reference.referenceId,role,referenceHp:stageReference.referenceHp,referenceShot:row.referenceShot,hits,fraction,skillAttack,normalHp:hp,...(row.plan?{plan:row.plan}:{})};return u;
  }
  if(b.honroAct4Preview===31&&b.honroPilotRosterRevision===1)throw Error('Missing stage31 measured pilot reference');
- const r=P.referenceStats(st),ids=mid?['HWD01']:u.loadout,skills=ids.map(id=>C.SKILLS[id]).filter(s=>s&&!s.passive),mean=skills.reduce((n,s)=>n+s.damage*C.skillBalanceFactor(s),0)/Math.max(1,skills.length);if(!mean)return u;
+ const r=P.referenceStats(st),ids=mid?[configFor(b,u).skill]:u.loadout,skills=ids.map(id=>C.SKILLS[id]).filter(s=>s&&!s.passive),mean=skills.reduce((n,s)=>n+s.damage*C.skillBalanceFactor(s),0)/Math.max(1,skills.length);if(!mean)return u;
  const hits=mid?6:u.elite?1.8:1.5,fraction=mid?.30:u.elite?.28:.26,armor=mid?.15:Math.max(0,u.armor||0);
  u.combatBaseHp=r.shot*hits*(1-armor)/normal.hp;u.combatBaseAttack=r.hp*fraction/(mean*(1-r.armor)*normal.damage);
  u.hp=u.maxHp=Math.round(u.combatBaseHp*d.hp);u.attack=u.combatBaseAttack*d.damage;

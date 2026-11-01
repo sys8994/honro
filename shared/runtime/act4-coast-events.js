@@ -277,6 +277,7 @@ function wreckLaunch(e,u,target,legacyOrigin){
  return candidates.sort((a,b)=>b.outward-a.outward)[0]||null;
 }
 const attached=new WeakSet();P.attachCoast=function(app){const e=app.engine,b=e.b,n=b.honroAct4Preview;if(!active(b)||attached.has(e))return;const rewardTarget=eliteRewardTarget(b);attached.add(e);
+ if(b.honroAct4EncounterRevision===1){if(!G.HonroEncounterDensity?.installActivation)throw Error('Missing Act4 encounter activation');G.HonroEncounterDensity.installActivation(e);if(!b.honroAct4EncounterActivationReady){e.refreshActivation();b.honroAct4EncounterActivationReady=true;}}
  // Every observer is scoped to the captured battle; changing chapter ends its
  // loop. Core Engine remains the sole physics, hit and locomotion provider.
  for(const name of ['move','jump','fire']){const original=e[name].bind(e);e[name]=function(...args){if((name==='jump'?args[0]:e.active)?.honroAct4Recovering)return false;return original(...args);};}

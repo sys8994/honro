@@ -1,3 +1,4 @@
+import {loadPilotRuntime} from '../tools/stage31/pilot-runtime.mjs';
 /** Focused production event/geometry fixtures. DOM visibility is a double;
  * these are not mission completion, normal campaign, or browser play proofs. */
 import assert from 'node:assert/strict';
@@ -7,7 +8,7 @@ import {createHash} from 'node:crypto';
 import {appHarness,plain} from './app-regression-helpers.mjs';
 process.env.HONRO_ACT4_RELEASE='1';
 const h=await appHarness({productionStory:true}),g=h.g,app=h.load(h.profileThrough(33));
-app.launch(34);h.finish(app);const original=plain(app.engine.b);app.stopBattle();
+await loadPilotRuntime(g);app.launch(34);h.finish(app);const original=plain(app.engine.b);app.stopBattle();
 g.HonroApp=app;g.HONRO_ACT4_PREVIEW_SEEDS=JSON.parse(await readFile('shared/data/act4/reviewed.json','utf8'));
 for(const name of ['interactions','act4-art','act4-maps','act4-coast-maps','act4-coast-art','act4-events','act4-coast-events'])vm.runInContext(await readFile('shared/runtime/'+name+'.js','utf8'),g);
 const P=g.HonroAct4TerrainPreview,C=g.HONRO_CORE,cases=[];

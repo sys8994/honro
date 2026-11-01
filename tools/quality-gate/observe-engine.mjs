@@ -5,7 +5,7 @@
 const copy=x=>JSON.parse(JSON.stringify(x));
 export function observeEngine(engine,{metadata={},clock=()=>0}={}){
  const events=[],originals=new Map();let previous=null,closed=false;
- const unit=u=>({id:u.id,side:u.side,hp:u.hp,maxHp:u.maxHp,shield:u.shield||0,x:u.x,y:u.y,h:u.h,dead:!!u.dead,elite:!!u.elite,boss:!!u.boss,miniboss:!!u.honroMidboss,moveLeft:u.moveLeft,focus:u.focus});
+ const unit=u=>({id:u.id,side:u.side,hp:u.hp,maxHp:u.maxHp,shield:u.shield||0,x:u.x,y:u.y,h:u.h,dead:!!u.dead,elite:!!u.elite,boss:!!u.boss,miniboss:!!u.honroMidboss,moveLeft:u.moveLeft,focus:u.focus,bound:u.bound||0,slowed:u.slowed||null});
  const state=()=>({round:engine.b.round,phase:engine.b.phase,side:engine.b.side,active:engine.b.active,shot:engine.b.shot,units:engine.b.units.map(unit)});
  const emit=(type,data)=>events.push({seq:events.length,time:clock(),type,...copy(data)});
  function sample(label='tick'){

@@ -3,8 +3,8 @@ const clone=x=>structuredClone(x),REVISIONS=Object.freeze({1:7,2:8,3:4,4:4,5:6,6
 // Increment only the chapters whose authored geography/encounters are replaced.
 // Workshop projects and their protected campaign owner are outside this contract.
 // Map geometry/encounters evolve independently of the story/equipment proof revision.
-const ACT4_MAP_REVISION=5;
-const current=id=>id>=31&&id<=40&&G.HonroAct4Content?.enabled?ACT4_MAP_REVISION:G.HonroAct23V4?.mapRevision(id)??REVISIONS[id]??0;
+const ACT4_MAP_REVISION=5,ACT4_ENCOUNTER_REVISIONS=Object.freeze({32:6,33:6,34:6,35:6,36:6,37:6,38:6,39:6});
+const current=id=>id>=31&&id<=40&&G.HonroAct4Content?.enabled?(ACT4_ENCOUNTER_REVISIONS[id]??ACT4_MAP_REVISION):G.HonroAct23V4?.mapRevision(id)??REVISIONS[id]??0;
 const campaign=b=>!!b&&!b.honroCustom&&b.honroMapOrigin!=='workshop'&&b.mode==='campaign';
 function stamp(b){if(campaign(b))b.honroCampaignMapRevision=current(b.honroStage);}
 function obsolete(b){return campaign(b)&&(b.honroRevision!==20||(current(b.honroStage)>0&&b.honroCampaignMapRevision!==current(b.honroStage)));}

@@ -1,7 +1,8 @@
+import {loadPilotRuntime} from '../tools/stage31/pilot-runtime.mjs';
 /** Actual Engine fire/impact and production draw-hook fixtures with Canvas/DOM doubles.
  * No candidate art, browser visibility, route or mission-completion claim. */
 import assert from 'node:assert/strict';import vm from 'node:vm';import{readFile}from'node:fs/promises';import{appHarness,plain}from'./app-regression-helpers.mjs';
-process.env.HONRO_ACT4_RELEASE='1';const h=await appHarness({productionStory:true}),g=h.g,app=h.load(h.profileThrough(34));app.launch(35);h.finish(app);const base=plain(app.engine.b);app.stopBattle();g.HonroApp=app;g.document.hidden=false;g.innerWidth=1200;g.innerHeight=800;
+process.env.HONRO_ACT4_RELEASE='1';const h=await appHarness({productionStory:true}),g=h.g,app=h.load(h.profileThrough(34));await loadPilotRuntime(g);app.launch(35);h.finish(app);const base=plain(app.engine.b);app.stopBattle();g.HonroApp=app;g.document.hidden=false;g.innerWidth=1200;g.innerHeight=800;
 const ctx=new Proxy({}, {get:()=>()=>{}});g.HonroScene.prototype.render=function(){};g.HonroScene.prototype.landmark=function(){};g.HonroScene.prototype.background=function(){};g.HonroScene.prototype.size=function(){return{w:1200,h:800,d:1}};
 g.HONRO_ACT4_PREVIEW_SEEDS=JSON.parse(await readFile('shared/data/act4/reviewed.json','utf8'));
 for(const n of ['interactions','act4-art','act4-maps','act4-coast-maps','act4-coast-art','act4-events','act4-coast-events'])vm.runInContext(await readFile('shared/runtime/'+n+'.js','utf8'),g);
