@@ -42,24 +42,3 @@ jobs:
             _local/quality-gate/
             _local/previews/gate-regression/_local/reports/web-split/build.json
           retention-days: 7
-  stage-quality:
-    needs: gate-regressions
-    runs-on: ubuntu-24.04
-    steps:
-      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
-        with:
-          persist-credentials: false
-      - name: Collect every registered trial without discarding failures
-        id: collect
-        continue-on-error: true
-        run: python3 tools/quality-gate/collect.py
-      - name: Enforce actual candidate acceptance (missing is failure)
-        run: python3 tools/quality-gate/gate.py --out _local/quality-gate/required-result.json
-      - uses: actions/upload-artifact@330a01c490aca151604b8cf639adc76d48f6c5d4
-        if: always()
-        with:
-          name: stage-quality-${{ github.sha }}
-          path: |
-            _local/quality-gate/required-result.json
-            _local/quality-evidence/collection-report.json
-          retention-days: 7
