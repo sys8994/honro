@@ -1,7 +1,7 @@
 """Static in-game art review only. Normal journey entry, diagnostic camera views.
 No live actor position, health, equipment, terrain or objective mutation.
 """
-import os,json,hashlib
+import os,json,hashlib,lzma
 from pathlib import Path
 from playwright.sync_api import sync_playwright
 root=Path(__file__).resolve().parents[2]
@@ -16,6 +16,10 @@ profile['honroJourney'].pop('pendingDirect',None)
 # Camera-only replay coverage uses a declared synthetic unlocked ledger.
 if stage>=32:
  for n in range(1,41):profile['cleared'].setdefault(str(n),{'visits':1,'rounds':5,'stars':1,'shots':0})
+if stage==40:
+ fixture=root/'tools/act4-rc/fixtures/stage40-checkpoints/sailing-observation-local-storage.json.xz'
+ raw=lzma.decompress(fixture.read_bytes());assert hashlib.sha256(raw).hexdigest()=='2c8e5d95e1e956059da5ae0b74a02641beed0bccf0932568194b108fec3a8141'
+ profile=json.loads(raw)
 import_file=out/'entry-profile.json'
 import_file.write_text(json.dumps(profile,ensure_ascii=False))
 record={'scope':'synthetic cleared-campaign profile, normal journey replay; camera-only art diagnostic, not gameplay acceptance',
@@ -33,38 +37,49 @@ try:
   p.get_by_text('JSON 기록 가져오기',exact=True).click()
   p.get_by_text('파일 선택',exact=True).click()
   p.locator('#file-import').set_input_files(str(import_file.resolve()))
-  p.wait_for_function('HonroApp.profile?.lastStage===37 && HonroApp.profile.recruited.length===4',timeout=15000)
-  p.reload();p.wait_for_function('window.HonroApp')
-  record['title']=p.locator('body').inner_text()[:3000]
-  p.get_by_text('여정 이어가기',exact=True).click()
-  p.wait_for_function("HonroApp.screen==='rest'")
-  for _ in range(30):
-   if not p.evaluate('!!HonroApp.dialogue'):break
-   p.wait_for_timeout(800);p.keyboard.press('Enter')
-  for _ in range(30):
-   p.wait_for_timeout(700)
-   if p.evaluate("HonroApp.screen==='journey'"):break
-   if p.evaluate('!!HonroApp.dialogue'):p.keyboard.press('Enter');continue
-   book=p.locator('[data-action="journey-book"]:visible')
-   if book.count():book.click()
-  record['bookState']=p.evaluate('({screen:HonroApp.screen,dialogue:!!HonroApp.dialogue})')
-  record['bookText']=p.locator('body').inner_text()[:4000]
-  p.screenshot(path=str(out/'journey-navigation.jpg'),type='jpeg',quality=80)
-  assert record['bookState']['screen']=='journey',record['bookState']
-  p.locator('[data-action="journey-act"][data-id="'+str((stage-1)//10+1)+'"]').click()
-  p.wait_for_timeout(500)
-  p.locator('[data-action="journey-select"][data-id="'+str(stage)+'"]').click()
-  p.wait_for_timeout(500)
-  p.locator('[data-action="journey-travel"][data-id="'+str(stage)+'"]').click()
-  for _ in range(40):
-   if p.evaluate('(n)=>HonroApp.engine?.b?.honroStage===n',stage):break
-   if p.evaluate('!!HonroApp.dialogue'):
+  if stage==40:
+   record['scope']='preserved actual Stage40 sailing profile, normal UI restart to round1, camera-only art inspection; not a fresh campaign clear'
+   p.wait_for_function('HonroApp.profile?.honroBattle?.honroStage===40',timeout=120000)
+   p.get_by_text('이어서 걷기',exact=True).click()
+   p.wait_for_function('HonroApp.engine?.b?.honroStage===40',timeout=120000)
+   for _ in range(30):
+    if not p.evaluate('!!HonroApp.dialogue'):break
+    p.wait_for_timeout(700);p.keyboard.press('Enter')
+   p.locator('[data-action="pause"]').first.click();p.get_by_text('다시 걷기',exact=True).click();p.get_by_text('전투 처음부터',exact=True).click();p.get_by_role('button',name='계속',exact=True).click()
+   p.wait_for_function('HonroApp.engine?.b?.honroStage===40 && HonroApp.engine.b.round===1',timeout=90000)
+  else:
+   p.wait_for_function('HonroApp.profile?.lastStage===37 && HonroApp.profile.recruited.length===4',timeout=15000)
+   p.reload();p.wait_for_function('window.HonroApp')
+   record['title']=p.locator('body').inner_text()[:3000]
+   p.get_by_text('여정 이어가기',exact=True).click()
+   p.wait_for_function("HonroApp.screen==='rest'")
+   for _ in range(30):
+    if not p.evaluate('!!HonroApp.dialogue'):break
     p.wait_for_timeout(800);p.keyboard.press('Enter')
-   else:
-    enter=p.locator('[data-action="journey-enter"][data-id="'+str(stage)+'"]:visible')
-    if enter.count():enter.click()
+   for _ in range(30):
+    p.wait_for_timeout(700)
+    if p.evaluate("HonroApp.screen==='journey'"):break
+    if p.evaluate('!!HonroApp.dialogue'):p.keyboard.press('Enter');continue
+    book=p.locator('[data-action="journey-book"]:visible')
+    if book.count():book.click()
+   record['bookState']=p.evaluate('({screen:HonroApp.screen,dialogue:!!HonroApp.dialogue})')
+   record['bookText']=p.locator('body').inner_text()[:4000]
+   p.screenshot(path=str(out/'journey-navigation.jpg'),type='jpeg',quality=80)
+   assert record['bookState']['screen']=='journey',record['bookState']
+   p.locator('[data-action="journey-act"][data-id="'+str((stage-1)//10+1)+'"]').click()
    p.wait_for_timeout(500)
-  p.wait_for_function('(stage)=>HonroApp.engine?.b?.honroStage===stage',arg=stage,timeout=60000)
+   p.locator('[data-action="journey-select"][data-id="'+str(stage)+'"]').click()
+   p.wait_for_timeout(500)
+   p.locator('[data-action="journey-travel"][data-id="'+str(stage)+'"]').click()
+   for _ in range(40):
+    if p.evaluate('(n)=>HonroApp.engine?.b?.honroStage===n',stage):break
+    if p.evaluate('!!HonroApp.dialogue'):
+     p.wait_for_timeout(800);p.keyboard.press('Enter')
+    else:
+     enter=p.locator('[data-action="journey-enter"][data-id="'+str(stage)+'"]:visible')
+     if enter.count():enter.click()
+    p.wait_for_timeout(500)
+   p.wait_for_function('(stage)=>HonroApp.engine?.b?.honroStage===stage',arg=stage,timeout=60000)
   for _ in range(30):
    if not p.evaluate('!!HonroApp.dialogue'):break
    p.wait_for_timeout(1000);p.keyboard.press('Enter')

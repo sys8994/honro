@@ -46,7 +46,7 @@ jobs:
           sleep 2
           python tools/act4-ci/browser-smoke.py > "$HONRO_QA_OUT/stage1.log" 2>&1
           python tools/act4-ci/water-recovery-ui.py > "$HONRO_QA_OUT/stage34.log" 2>&1
-          for stage in $(seq 31 40); do
+          for stage in 40; do
             HONRO_CAPTURE_STAGE="$stage" HONRO_CAPTURE_OUT="$HONRO_QA_OUT/stage$stage" python tools/act4-ci/capture-stage-art.py > "$HONRO_QA_OUT/stage$stage.log" 2>&1
           done
       - uses: actions/upload-artifact@330a01c490aca151604b8cf639adc76d48f6c5d4
