@@ -1,5 +1,5 @@
 {
-  "candidateFingerprint": "draft-v1-90b5493a-3537083",
+  "candidateFingerprint": "draft-v1-5a234960-3537317",
   "card": {
     "intent": "상층 둑길과 아래쪽 물가를 활용해 위협을 정리한 뒤 동행 전원이 오른쪽 선착장에서 배에 오른다.",
     "referenceStages": [
@@ -272,7 +272,12 @@
           {
             "id": "pilot31-ridge-court-7",
             "role": "area-denial",
-            "supportId": "approved31-east-return"
+            "supportId": "approved31-east-return",
+            "spawnResolution": {
+              "x": 5953,
+              "y": 2190.35,
+              "reason": "정식 장 진입의 sanitizeStageBattle이 같은 지지면의 보행 가능한 인접 구간으로 배치한다."
+            }
           },
           {
             "id": "pilot31-ridge-court-8",
@@ -319,7 +324,12 @@
           {
             "id": "pilot31-lookout-return-5",
             "role": "pursuer",
-            "supportId": "approved31-low-flank"
+            "supportId": "approved31-low-flank",
+            "spawnResolution": {
+              "x": 4805.5,
+              "y": 3065.766666666667,
+              "reason": "정식 장 진입의 sanitizeStageBattle이 같은 지지면의 보행 가능한 인접 구간으로 배치한다."
+            }
           },
           {
             "id": "pilot31-lookout-return-6",

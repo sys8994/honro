@@ -37,6 +37,13 @@ for(const group of card.encounters){
  group.purpose='배치된 순찰군이 선언된 지지면에서 지정한 동행 이동 구간을 압박하도록 계획한다. 실제 시야·발사·도달 여부는 별도 검증한다.';
  group.targetZone=zones[group.id];if(!group.targetZone)throw Error('Missing planned player corridor: '+group.id);
 }
+// Observed normal App placement corrections; the contract independently checks
+// both contacts, exact resulting coordinates and the original slope filter.
+const resolvedSpawns={
+ 'pilot31-ridge-court-7':{x:5953,y:2190.35},
+ 'pilot31-lookout-return-5':{x:4805.5,y:3065.766666666667}
+};
+for(const group of card.encounters)for(const m of group.members)if(resolvedSpawns[m.id])m.spawnResolution={...resolvedSpawns[m.id],reason:'정식 장 진입의 sanitizeStageBattle이 같은 지지면의 보행 가능한 인접 구간으로 배치한다.'};
 card.intent='상층 둑길과 아래쪽 물가를 활용해 위협을 정리한 뒤 동행 전원이 오른쪽 선착장에서 배에 오른다.';
 card.referenceStages=['stage-3','stage-30'];
 const profile=g.HonroMaps.profileFor(s);g.HonroEquipment.fresh(profile);const battle=g.HonroMaps.createBattle(s,p,profile);
