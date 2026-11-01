@@ -118,8 +118,8 @@
         "id": "rear_upper_arm",
         "parent": "thorax",
         "pivot": [
-          195.26677256407407,
-          124.1180342547471
+          185.4352940067277,
+          134.93266066782815
         ],
         "z": 65
       },
@@ -145,8 +145,8 @@
         "id": "front_upper_arm",
         "parent": "thorax",
         "pivot": [
-          276.86804459004884,
-          124.1180342547471
+          283.7500795801913,
+          134.93266066782815
         ],
         "z": 55
       },
@@ -254,7 +254,23 @@
         169.70492831497353,
         261.75873405759614
       ]
-    }
+    },
+    "skinBones": [
+      "pelvis",
+      "thorax",
+      "rear_upper_arm",
+      "rear_forearm",
+      "rear_hand",
+      "rear_thigh",
+      "rear_shin",
+      "rear_foot",
+      "front_upper_arm",
+      "front_forearm",
+      "front_hand",
+      "front_thigh",
+      "front_shin",
+      "front_foot"
+    ]
   },
   "constraints": {
     "bowstring": {
@@ -265,13 +281,13 @@
           134.93266066782815
         ],
         [
-          296.5310017047416,
-          193.92153201190627
+          291.6152624260684,
+          277.4890997493503
         ]
       ],
       "restNock": [
-        315.70238489156696,
-        164.4270963398672
+        313.24451525223037,
+        206.21088020858923
       ],
       "drawPart": "rear_hand",
       "drawPoint": [
@@ -320,15 +336,17 @@
       ]
     },
     "shapeIds": [
-      "head_3",
-      "head_4",
-      "head_5",
-      "head_6",
-      "head_7",
-      "head_8",
-      "head_9",
-      "head_10",
-      "head_11"
+      "head_20",
+      "head_21",
+      "head_22",
+      "head_23",
+      "head_24",
+      "head_25",
+      "head_26",
+      "head_27",
+      "head_28",
+      "head_29",
+      "head_30"
     ],
     "view": "three-quarter",
     "reference": "260916",

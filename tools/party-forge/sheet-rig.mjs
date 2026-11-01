@@ -20,6 +20,7 @@ const UNIT_HEIGHT=92,WORLD_PER_CM=.57;   // party unit h (engine) and world unit
 export function sheetRig(a,previousBounds){
  const cfgPath=path.join(root,'tools/party-forge/sheet',a.character_id+'.json'),partsPath=cfgPath.replace(/\.json$/,'.parts.json');
  if(!existsSync(partsPath))return;
+ const skinPath0=existsSync(cfgPath.replace(/\.json$/,'.skin.json'))?cfgPath.replace(/\.json$/,'.skin.json'):null;
  const cfg=JSON.parse(readFileSync(cfgPath,'utf8')),data=JSON.parse(readFileSync(partsPath,'utf8')),J=cfg.joints;
  // ---- body measurements (v017): stature in cm and head units (crown->sole / crown->chin, skull crown under hair/hat)
  // The game draws every companion at unit height 92 over canvas.visualHeight; WORLD_PER_CM fixes 1 cm of stature in world units.
@@ -49,13 +50,33 @@ export function sheetRig(a,previousBounds){
  const palette={},key=c=>{let k=Object.keys(palette).find(k=>palette[k]===c);if(!k){k='f'+Object.keys(palette).length;palette[k]=c;}return k;};
  const ring=r=>'M'+r.map(p=>G(p).map(v=>R2(v)).join(' ')).join(' L')+' Z';
  const paths=[];let n=0;
- for(const [part,color,ext] of data.backfill||[])paths.push({id:`bf_${n++}`,part,d:ring(ext),fill:key(color),detail:0});
+ // v018 skinning: weighted, densified rings from sheet/skin.py (pieces sharing an edge bend together)
+ const skinPath=skinPath0?JSON.parse(readFileSync(skinPath0,'utf8')):null,boneIds=skinPath?Object.keys(skinPath.bones).filter(b=>by[b]):[];
+ if(skinPath)a.rig.skinBones=boneIds;
+ const skinned=(row,part,fill,extra={})=>{
+  if(!row?.w)return null;
+  const names=new Set(row.w.flat().filter(x=>x[1]>.001).map(x=>x[0]));
+  if(names.size===1&&[...names][0]===part){const only=part;return {id:`${only}_${n++}`,part:only,d:row.rings.map(r=>'M'+r.map(q=>G(q).map(R2).join(' ')).join(' L')+' Z').join(' '),fill,detail:0,...extra};}
+  const P=[],B=[],W=[];for(const r of row.rings)for(const q of r){P.push(...G(q).map(R2));}
+  for(const w of row.w){for(let j=0;j<3;j++){const e=w[j];B.push(e?boneIds.indexOf(e[0]):0);W.push(e?e[1]:0);}}
+  // d = the bind shape, for consumers that draw without skinning (portraits, bounds)
+  return {id:`${part}_${n++}`,part,d:row.rings.map(r=>'M'+r.map(q=>G(q).map(R2).join(' ')).join(' L')+' Z').join(' '),fill,detail:0,skin:{r:row.rings.map(r=>r.length),p:P,b:B,w:W},...extra};
+ };
+ for(const f of skinPath?.caps||[])if(by[f.part])paths.push({...skinned(f,f.part,key(f.color)),under:true});   // joint caps under the parent
+ for(const f of skinPath?.fills||[])if(by[f.part])paths.push({under:true,...(skinned(f,f.part,key(f.color))||{id:`fill_${n++}`,part:f.part,d:f.rings.map(r=>'M'+r.map(q=>G(q).map(R2).join(' ')).join(' L')+' Z').join(' '),fill:key(f.color),detail:0})});   // hidden body under the arms
+ (data.backfill||[]).forEach(([part,color,ext],i)=>paths.push({under:true,...(skinned(skinPath?.backfill?.[i],part,key(color))||{id:`bf_${n++}`,part,d:ring(ext),fill:key(color),detail:0})}));
  const thin=(ext)=>{let A=0,P=0;for(let i=0;i<ext.length;i++){const p=ext[i],q=ext[(i+1)%ext.length];A+=p[0]*q[1]-q[0]*p[1];P+=Math.hypot(q[0]-p[0],q[1]-p[1]);}return Math.abs(A)/2/Math.max(P,1)<1.1;};
  for(const [part,rows] of Object.entries(data.parts)){if(!by[part])continue;
-  for(const [color,ext,holes] of rows){
-   if(part==='weapon'&&a.constraints?.bowstring&&thin(ext))continue;      // painted bowstring: the rig draws a live one
+  rows.forEach(([color,ext,holes],ri)=>{
+   if(part==='weapon'&&a.constraints?.bowstring&&thin(ext))return;      // painted bowstring: the rig draws a live one
+   const sk=skinned(skinPath?.parts?.[part]?.[ri],part,key(color),holes.length?{fillRule:'evenodd'}:{});if(sk){paths.push(sk);return;}
    paths.push({id:`${part}_${n++}`,part,d:[ring(ext),...holes.map(ring)].join(' '),fill:key(color),detail:0,...(holes.length?{fillRule:'evenodd'}:{})});
-  }}
+  });}
+ // within a part, skinned pieces never overlap: order them by fill (caps/fills first, underneath) so the renderer batches one Path2D per colour
+ const idx=new Map(paths.map((p,i)=>[p,i])),kind=p=>p.under?0:p.skin?1:2;
+ const byPart=new Map();for(const p of paths){if(!byPart.has(p.part))byPart.set(p.part,[]);byPart.get(p.part).push(p);}
+ paths.length=0;for(const list of byPart.values())paths.push(...list.sort((x,y)=>(kind(x)-kind(y))||(kind(x)===1?String(x.fill).localeCompare(String(y.fill)):0)||idx.get(x)-idx.get(y)));
+ for(const p of paths)delete p.under;
  a.paths=paths;a.palette={...a.palette,...palette};
  if(a.constraints?.bowstring&&J.bowTop){const bs=a.constraints.bowstring;bs.tips=[G(J.bowTop),G(J.bowBottom)];bs.restNock=mul(add(bs.tips[0],bs.tips[1]),.5);bs.drawPoint=[...set.rear_hand];a.palette.string=cfg.stringColor||'#282627';bs.color='string';bs.width=1.4;
   a.constraints.arrow.grip=[...set.front_hand];a.palette.arrowShaft=cfg.arrowColor||'#C9BBA4';a.constraints.arrow.color='arrowShaft';if(a.constraints.bowFlex)a.constraints.bowFlex.pivot=[...set.front_hand];}
@@ -68,18 +89,21 @@ export function sheetRig(a,previousBounds){
  const hs=len(sub(set.neck,set.pelvis))/len(sub(old.neck,old.pelvis));
  const limbs=[['rear','arm','_upper_arm','_forearm','_hand','Shoulder','Elbow','Hand'],['front','arm','_upper_arm','_forearm','_hand','Shoulder','Elbow','Hand'],
   ['rear','leg','_thigh','_shin','_foot','Hip','Knee','Foot'],['front','leg','_thigh','_shin','_foot','Hip','Knee','Foot']];
- const amp=cfg.motionAmplitude??1;   // armAmplitude/legAmplitude: robed figures whose sleeves/skirt are painted on the torso swing less
+ // range of motion this 3/4 drawing can show (deg of change from idle); cfg.rom overrides
+ const D2R=Math.PI/180,rom=Object.fromEntries(Object.entries({torso:12,armSwing:55,armBend:70,legSwing:22,legBend:40,...(cfg.rom||{}),...(skinPath0?{}:{torso:1e4,armSwing:1e4,armBend:1e4,legSwing:1e4,legBend:1e4})}).map(([k,v])=>[k,v*D2R])),clampA=(v,m)=>Math.max(-m,Math.min(m,v));
+ const amp=cfg.motionAmplitude??1;
+ const stride=skinPath0?(cfg.stride??.3):1;   // planted-foot travel from the drawn stance (old clips pulled the feet together under the body)   // armAmplitude/legAmplitude: robed figures whose sleeves/skirt are painted on the torso swing less
  for(const [animName,anim] of Object.entries(a.animation.animations))for(const k of anim.keyframes){
   const slack=animName==='idle'?1:.97;   // interpolated steps between keyframes need a little leg slack
   if(!k.pelvis)continue;
-  const P0=k.pelvis,tr=wrap(ang(sub(k.thorax,P0))-ang(sub(Rf.thorax,Rf.pelvis)))*amp,P=add(set.pelvis,mul(sub(P0,Rf.pelvis),hs));
+  const P0=k.pelvis,tr=clampA(wrap(ang(sub(k.thorax,P0))-ang(sub(Rf.thorax,Rf.pelvis)))*amp,rom.torso),P=add(set.pelvis,mul(sub(P0,Rf.pelvis),hs));
   const out={pelvis:P,thorax:add(P,rot(sub(a.rig.bindThorax,set.pelvis),tr))};
   for(const [s,limb,u,l,t,A,B,C] of limbs){
    const parentRot=limb==='arm'?tr:0;
    // joint origin follows the body; small authored offsets of the origin are kept
    const oldOrigin0=add(P0,rot(sub(Rf[s+A],Rf.pelvis),limb==='arm'?wrap(ang(sub(k.thorax,P0))-ang(sub(Rf.thorax,Rf.pelvis))):0));
    const O=add(add(P,rot(sub(set[s+u],set.pelvis),parentRot)),mul(sub(k[s+A],oldOrigin0),hs));
-   const la=amp*(cfg[s+limb[0].toUpperCase()+limb.slice(1)+'Amplitude']??cfg[limb+'Amplitude']??1),dU=wrap(ang(sub(k[s+B],k[s+A]))-ang(sub(Rf[s+B],Rf[s+A])))*la,dL=wrap(ang(sub(k[s+C],k[s+B]))-ang(sub(Rf[s+C],Rf[s+B])))*la;
+   const la=amp*(cfg[s+limb[0].toUpperCase()+limb.slice(1)+'Amplitude']??cfg[limb+'Amplitude']??1),dU0=wrap(ang(sub(k[s+B],k[s+A]))-ang(sub(Rf[s+B],Rf[s+A])))*la,dL0=wrap(ang(sub(k[s+C],k[s+B]))-ang(sub(Rf[s+C],Rf[s+B])))*la,dU=clampA(dU0,rom[limb+'Swing']),dL=dU+clampA(wrap(dL0-dU0),rom[limb+'Bend']);
    const mid=add(O,rot(sub(set[s+l],set[s+u]),dU)),end=add(mid,rot(sub(set[s+t],set[s+l]),dL));
    out[s+A]=O;out[s+B]=mid;out[s+C]=end;
    // the elbow bend side must come from the NEW joints: an old authored plane would mirror the drawn elbow
@@ -88,11 +112,11 @@ export function sheetRig(a,previousBounds){
     const D=180/Math.PI,near=(ref,v)=>ref+wrap((v-ref)/D)*D,   // stay on the authored branch so keyframes never interpolate through a full turn
     fOld=wrap(ang(sub(k[s+C],k[s+B]))-ang(sub(Rf[s+C],Rf[s+B])))*D,fNew=wrap(ang(sub(end,mid))-ang(sub(set[s+t],set[s+l])))*D;
     const h0=(k[s+'HandAngle']??0)-Rf[s+'HandAngle'];out[s+'HandAngle']=near(h0,fNew+(h0-fOld)*la);   // missing = rig default 0
-    if(s==='front'&&!a.rig.swordGrip){const w0=(k.weapon??0)-Rf.weapon;out.weapon=near(w0,fNew+(w0-fOld)*la);}
+    if(s==='front'&&!a.rig.swordGrip){if(skinPath0){out.weapon=(k.weapon??0)-Rf.weapon;out.frontHandAngle=out.weapon;}else{const w0=(k.weapon??0)-Rf.weapon;out.weapon=near(w0,fNew+(w0-fOld)*la);}}   // keep the weapon's authored angle; the gripping hand turns with it
    }
   }
   // planted feet keep their authored ground offset; body settles if a leg cannot reach
-  for(const c of (k.contacts||[]))out[c+'Foot']=add(set[c+'_foot'],sub(k[c+'Foot'],Rf[c+'Foot']));
+  for(const c of (k.contacts||[]))out[c+'Foot']=add(set[c+'_foot'],mul(sub(k[c+'Foot'],Rf[c+'Foot']),stride));
   const reach=(s,u,l,t)=>len(sub(set[s+l],set[s+u]))+len(sub(set[s+t],set[s+l]))-.05;
   for(let it=0;it<4;it++)for(const s of ['rear','front']){const d=len(sub(out[s+'Foot'],out[s+'Hip'])),m=reach(s,'_thigh','_shin','_foot')*slack;
    if(d>m){const drop=d-m+.01;for(const key of Object.keys(out))if(Array.isArray(out[key]))if(!/Foot$/.test(key)||!(k.contacts||[]).includes(key.replace('Foot','')))out[key]=[out[key][0],out[key][1]+drop];}}
@@ -100,5 +124,5 @@ export function sheetRig(a,previousBounds){
   for(const s of ['rear','front']){const v=sub(out[s+'Hand'],out[s+'Shoulder']),d=len(v),m=reach(s,'_upper_arm','_forearm','_hand');if(d>m)out[s+'Hand']=add(out[s+'Shoulder'],mul(v,m/d));}
   Object.assign(k,out);
  }
- a.artRevision=cfg.statureCm?17:16;a.sheetSource=cfg.sheet;a.sheetScale=K;
+ a.artRevision=skinPath?18:cfg.statureCm?17:16;a.sheetSource=cfg.sheet;a.sheetScale=K;
 }

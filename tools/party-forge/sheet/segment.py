@@ -153,10 +153,27 @@ def main(cfg_path):
         hull = unary_union([g for _, g in parts[parent]])
         under = region.intersection(hull.convex_hull)
         if not under.is_empty: fills.append((parent, color, under))
+    # 5 small islands adopt the part they touch most (a cuff speck left on the hip would float when the arm moves)
+    flat = [(part, c, p) for part, items in parts.items() for c, g in items for p in polys(g.simplify(.4))]
+    for i, (part, c, p) in enumerate(flat):
+        if p.area >= 90:
+            continue
+        best, share = part, 0.0
+        for q_part, _, q in flat:
+            if q is p or q.area < 90:
+                continue
+            l = p.buffer(1.2).intersection(q).area
+            if l > share:
+                best, share = q_part, l
+        flat[i] = (best, c, p)
+    # 6 per-piece claims (cfg 'claim': piece centroid inside box -> part)
+    for i, (part, c, p) in enumerate(flat):
+        hit = next((f for f in cfg.get('claim', []) if box(*f['box']).contains(p.centroid)), None)
+        if hit:
+            flat[i] = (hit['part'], c, p)
     out = {'sheet': cfg['sheet'], 'parts': {}}
-    for part, items in parts.items():
-        rows = [[c, g.simplify(.4)] for c, g in items]
-        rows = [[c, p] for c, g in rows for p in polys(g)]
+    for part in parts:
+        rows = [[c, p] for q_part, c, p in flat if q_part == part]
         out['parts'][part] = [[c, [list(map(lambda v: round(v, 2), xy)) for xy in p.exterior.coords[:-1]], [[list(map(lambda v: round(v, 2), xy)) for xy in h.coords[:-1]] for h in p.interiors]] for c, p in rows]
     out['backfill'] = [[part, color, [list(map(lambda v: round(v, 2), xy)) for xy in p.exterior.coords[:-1]]] for part, color, g in fills for p in polys(g.simplify(.6))]
     dst = Path(cfg_path).with_suffix('').with_suffix('.parts.json')

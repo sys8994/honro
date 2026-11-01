@@ -5,6 +5,17 @@ function multiply(a, b) {
   return [a[0]*b[0]+a[2]*b[1], a[1]*b[0]+a[3]*b[1], a[0]*b[2]+a[2]*b[3], a[1]*b[2]+a[3]*b[3], a[0]*b[4]+a[2]*b[5]+a[4], a[1]*b[4]+a[3]*b[5]+a[5]];
 }
 const point = (m, p) => [m[0]*p[0]+m[2]*p[1]+m[4], m[1]*p[0]+m[3]*p[1]+m[5]];
+// Linear blend skinning for sheet art (v018): path.skin = {r:[ring sizes], p:[x,y,...], b:[bone index x3 per vertex], w:[weight x3]}
+// over asset.rig.skinBones. Returns rings of world points (asset space), so pieces sharing an edge bend together.
+function skinRings(asset,skin,matrices){
+  const bones=asset.rig.skinBones.map(id=>matrices[id]),P=skin.p,B=skin.b,Wt=skin.w,rings=[];let v=0;
+  for(const n of skin.r){const ring=new Array(n);for(let k=0;k<n;k++,v++){const x=P[v*2],y=P[v*2+1];let X=0,Y=0;
+    for(let j=0;j<3;j++){const w=Wt[v*3+j];if(!w)continue;const m=bones[B[v*3+j]];X+=w*(m[0]*x+m[2]*y+m[4]);Y+=w*(m[1]*x+m[3]*y+m[5]);}
+    ring[k]=[X,Y];}rings.push(ring);}
+  return rings;
+}
+const skinD=rings=>rings.map(r=>'M'+r.map(q=>q[0].toFixed(2)+' '+q[1].toFixed(2)).join(' L')+' Z').join(' ');
+function skinPath2D(rings){const path=new Path2D();for(const r of rings){path.moveTo(r[0][0],r[0][1]);for(let k=1;k<r.length;k++)path.lineTo(r[k][0],r[k][1]);path.closePath();}return path;}
 function localMatrix(pivot, transform = {}) {
   const r = (transform.r || 0)*Math.PI/180, c = Math.cos(r), s = Math.sin(r), sx = transform.sx ?? 1, sy = transform.sy ?? 1;
   const [x,y] = pivot;
@@ -77,7 +88,7 @@ function constrainedPaths(asset, matrices, controls = {}) {
   return {paths:[string,arrow,...extra],top,bottom,nock,grip,hand};
 }
 function createCanvasRenderer(asset) {
-  const cache = new Map(asset.paths.map(p=>[p.id,new Path2D(p.d)]));
+  const cache = new Map(asset.paths.filter(p=>!p.skin).map(p=>[p.id,new Path2D(p.d)]));
   const sorted = [...asset.rig.parts].sort((a,b)=>a.z-b.z || a.id.localeCompare(b.id));
   const groups = new Map(sorted.map(p=>[p.id,asset.paths.filter(s=>s.part===p.id)]));
   // A curve stays inside its control hull. Support only the absolute commands
@@ -101,18 +112,28 @@ function createCanvasRenderer(asset) {
       context.save(); context.translate(x,y); const scale=height/asset.canvas.visualHeight;
       context.scale(scale*(facing<0?-1:1),scale); context.translate(-asset.canvas.anchor[0],-asset.canvas.anchor[1]);
       let box=null,known=!debug,root;
-      if(bounds){hulls??=new Map(asset.paths.map(p=>[p.id,hull(p.d)]));const m=context.getTransform();root=[m.a,m.b,m.c,m.d,m.e,m.f];}
+      if(bounds){hulls??=new Map(asset.paths.filter(p=>!p.skin).map(p=>[p.id,hull(p.d)]));const m=context.getTransform();root=[m.a,m.b,m.c,m.d,m.e,m.f];}
       const include=(p,m,dynamic)=>{if(!bounds||!known||!p.fill&&!p.stroke)return;const b=dynamic?hull(dynamic):hulls.get(p.id);if(!b){known=false;return;}
         const pad=p.stroke?(p.strokeWidth||1)/2:0,pts=[[b[0]-pad,b[1]-pad],[b[2]+pad,b[1]-pad],[b[0]-pad,b[3]+pad],[b[2]+pad,b[3]+pad]].map(p=>point(m,p));
         const next=[Math.min(...pts.map(p=>p[0]))-2,Math.min(...pts.map(p=>p[1]))-2,Math.max(...pts.map(p=>p[0]))+2,Math.max(...pts.map(p=>p[1]))+2];
         box=box?[Math.min(box[0],next[0]),Math.min(box[1],next[1]),Math.max(box[2],next[2]),Math.max(box[3],next[3])]:next;
       };
-      const renderPath = (p,path) => { if(p.fill){context.fillStyle=silhouette?'#080A0B':asset.palette[p.fill];context.fill(path);} if(p.stroke){context.strokeStyle=silhouette?'#080A0B':asset.palette[p.stroke];context.lineWidth=p.strokeWidth||1;context.lineCap='round';context.lineJoin='round';context.stroke(path);} };
+      const renderPath = (p,path) => { if(p.fill){context.fillStyle=silhouette?'#080A0B':asset.palette[p.fill];context.fill(path,p.fillRule||'nonzero');} if(p.stroke){context.strokeStyle=silhouette?'#080A0B':asset.palette[p.stroke];context.lineWidth=p.strokeWidth||1;context.lineCap='round';context.lineJoin='round';context.stroke(path);} };
       const constraint=constrainedPaths(asset,matrices,sample.controls),pending=[...constraint.paths].sort((a,b)=>(a.z??100)-(b.z??100)),flex=bowTension(asset,matrices,sample.controls);
       const paintConstraint=p=>{if(p.opacity>0){if(bounds)include(p,root,p.d);context.save();context.globalAlpha*=p.opacity;renderPath(p,new Path2D(p.d));context.restore();}};
-      for(const part of [...sorted].sort((a,b)=>partDepth(asset,a,sample)-partDepth(asset,b,sample))){while(pending.length&&(pending[0].z??100)<partDepth(asset,part,sample))paintConstraint(pending.shift()); context.save();context.transform(...matrices[part.id]);context.globalAlpha*=sample.poses[part.id].opacity;
+      const rootM=context.getTransform();
+      for(const part of [...sorted].sort((a,b)=>partDepth(asset,a,sample)-partDepth(asset,b,sample))){while(pending.length&&(pending[0].z??100)<partDepth(asset,part,sample))paintConstraint(pending.shift());
+        const skinned=groups.get(part.id).filter(p=>p.skin);
+        if(skinned.length){context.save();context.setTransform(rootM);context.globalAlpha*=sample.poses[part.id].opacity;
+          // consecutive pieces of one fill go into one Path2D (pieces of a part never overlap, so order is kept)
+          let batch=null,head=null;const flush=()=>{if(batch){renderPath(head,batch);batch=null;}};
+          for(const p of skinned){const rings=skinRings(asset,p.skin,matrices);if(bounds&&context.globalAlpha>0)include(p,root,skinD(rings));
+            if(!batch||head.fill!==p.fill||head.fillRule!==p.fillRule||p.stroke||head.stroke){flush();batch=new Path2D();head=p;}
+            for(const r of rings){batch.moveTo(r[0][0],r[0][1]);for(let k=1;k<r.length;k++)batch.lineTo(r[k][0],r[k][1]);batch.closePath();}}
+          flush();context.restore();}
+        context.save();context.transform(...matrices[part.id]);context.globalAlpha*=sample.poses[part.id].opacity;
         const transform=bounds?multiply(root,matrices[part.id]):null;
-        for(const p of groups.get(part.id))if((p.detail||0)<=lod){const d=asset.constraints?.bowFlex&&['bow_body','bow_laminate'].includes(p.id)?flexPath(asset,p.d,flex):null;if(bounds&&context.globalAlpha>0)include(p,transform,d);renderPath(p,d?new Path2D(d):cache.get(p.id));}context.restore(); }
+        for(const p of groups.get(part.id))if(!p.skin&&(p.detail||0)<=lod){const d=asset.constraints?.bowFlex&&['bow_body','bow_laminate'].includes(p.id)?flexPath(asset,p.d,flex):null;if(bounds&&context.globalAlpha>0)include(p,transform,d);renderPath(p,d?new Path2D(d):cache.get(p.id));}context.restore(); }
       for(const p of pending)paintConstraint(p);
       if(debug){context.strokeStyle='#62C9C7';context.lineWidth=1;for(const part of sorted){const [px,py]=point(matrices[part.id],part.pivot);context.beginPath();context.arc(px,py,2.5,0,Math.PI*2);context.stroke();}}
       context.restore();return {sample,matrices,constraint,bounds:bounds&&known&&box?.every(Number.isFinite)?box:null};
@@ -121,12 +142,12 @@ function createCanvasRenderer(asset) {
 }
 function poseSVG(asset,animation='idle',time=0,{silhouette=false,sample:providedSample=null}={}) {
   const sample=providedSample||sampleAnimation(asset,animation,time,true),matrices=rigMatrices(asset,sample.poses);
-  const paths=(p,d=p.d)=>`<path id="${p.id}" d="${d}" fill="${p.fill?(silhouette?'#080A0B':asset.palette[p.fill]):'none'}"${p.stroke?` stroke="${silhouette?'#080A0B':asset.palette[p.stroke]}" stroke-width="${p.strokeWidth||1}" stroke-linecap="round" stroke-linejoin="round"`:''}/>`;
+  const paths=(p,d=p.d)=>`<path id="${p.id}" d="${d}"${p.fillRule?` fill-rule="${p.fillRule}"`:''} fill="${p.fill?(silhouette?'#080A0B':asset.palette[p.fill]):'none'}"${p.stroke?` stroke="${silhouette?'#080A0B':asset.palette[p.stroke]}" stroke-width="${p.strokeWidth||1}" stroke-linecap="round" stroke-linejoin="round"`:''}/>`;
   const flex=bowTension(asset,matrices,sample.controls),items=asset.rig.parts.map(p=>({z:partDepth(asset,p,sample),part:p}));
   items.push(...constrainedPaths(asset,matrices,sample.controls).paths.map(p=>({z:p.z??100,path:p})));
   const body=items.sort((a,b)=>a.z-b.z).map(item=>{
     if(item.path)return `<g opacity="${item.path.opacity}">${paths(item.path)}</g>`;
-    const p=item.part;return `<g id="${p.id}" transform="matrix(${matrices[p.id].map(n=>Number(n.toFixed(5))).join(' ')})" opacity="${sample.poses[p.id].opacity}">${asset.paths.filter(s=>s.part===p.id).map(s=>paths(s,asset.constraints?.bowFlex&&['bow_body','bow_laminate'].includes(s.id)?flexPath(asset,s.d,flex):s.d)).join('')}</g>`;
+    const p=item.part,skinned=asset.paths.filter(s=>s.part===p.id&&s.skin);return (skinned.length?`<g opacity="${sample.poses[p.id].opacity}">${skinned.map(s=>paths(s,skinD(skinRings(asset,s.skin,matrices)))).join('')}</g>`:'')+`<g id="${p.id}" transform="matrix(${matrices[p.id].map(n=>Number(n.toFixed(5))).join(' ')})" opacity="${sample.poses[p.id].opacity}">${asset.paths.filter(s=>s.part===p.id&&!s.skin).map(s=>paths(s,asset.constraints?.bowFlex&&['bow_body','bow_laminate'].includes(s.id)?flexPath(asset,s.d,flex):s.d)).join('')}</g>`;
   }).join('\n');
   return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="${asset.canvas.viewBox.join(' ')}" role="img" aria-label="HONRO ${asset.asset_id} ${animation}">${body}</svg>`;
 }
