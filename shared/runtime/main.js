@@ -516,6 +516,7 @@
                 }
                 const previousRecruits=new Set(this.profile.recruited);this.recruit(st);this.resultJoined=this.profile.recruited.filter(cls=>!previousRecruits.has(cls)).map(cls=>({cls,level:C.levelOf(this.profile.heroes[cls])}));
                 this.profile.honroFlags['cleared-' + st.id] = true;
+                if(b.mode==='campaign'&&!b.honroCustom&&b.honroMapOrigin!=='workshop')b.honroOutcomeSettled={stage:st.id,session:b.session,visits:this.profile.cleared[st.id].visits};
             }
             G.HonroSplitCampaign.outcome(this,won);
             G.HonroRestJourney?.recordOutcome(this,won);

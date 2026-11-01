@@ -29,6 +29,14 @@ function preserveGrowth(p,b){
 function discard(p){
  const b=p.honroBattle;if(!obsolete(b))return false;
  const id=b.honroStage||p.lastStage||1;
+ // A won replay may still be in its outro even when an earlier visit cleared
+ // the same chapter. Require this attempt's settlement receipt (or an already
+ // advanced legacy journey); otherwise retain the won snapshot for its outro.
+ if(b.honroRevision===20&&b.phase==='won'){
+  const r=b.honroOutcomeSettled,settled=p.cleared?.[id]&&(p.lastStage>id||r?.stage===id&&typeof b.session==='string'&&b.session.length>0&&r.session===b.session&&r.visits===p.cleared[id].visits);
+  if(!settled)return false;
+  preserveGrowth(p,b);p.honroBattle=null;if(p.honroMapRestart===id)delete p.honroMapRestart;return true;
+ }
  preserveGrowth(p,b);
  G.HonroSplitCampaign?.restartForMap(p,id,b.honroSplit);
  p.honroBattle=null;p.honroMapRestart=id;p.lastStage=id;p.upgradeNotice=true;

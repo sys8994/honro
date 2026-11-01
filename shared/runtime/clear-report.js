@@ -104,7 +104,7 @@ function freeze(b){
 function finish(app){const b=app.engine?.b;if(!b||b.phase!=='won')return null;begin(b,{scope:scopeOf(app)});settle(b,app.engine);const report=freeze(b),scope=scopeOf(app);
  if(scope==='campaign'){
   const records=app.profile.honroClearReports??={};records[report.stage]=report;
-  for(const id of Object.keys(records))if(!/^([1-9]|[12][0-9]|30)$/.test(id)||records[id]?.version!==VERSION)delete records[id];
+  for(const id of Object.keys(records))if(!/^([1-9]|[1-3][0-9]|40)$/.test(id)||records[id]?.version!==VERSION)delete records[id];
   app.profile.honroReportNotice={stage:report.stage,attempt:report.attempt};
  }else{const records=app.profile.honroIsolatedReports??={};records[scope+':'+report.stage]=report;for(const id of Object.keys(records).slice(0,-6))delete records[id];}
  return report;

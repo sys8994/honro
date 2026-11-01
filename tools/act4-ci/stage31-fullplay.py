@@ -172,5 +172,9 @@ with sync_playwright() as w:
  assert final['round']<=20,final
  assert len(final['heroes'])==4 and all(h['hp']>0 and not h['dead'] for h in final['heroes']),final
  assert not errors,errors
+ p.wait_for_function('JSON.parse(localStorage.getItem("honro-first-act-profile-1")||"{}").cleared?.[31]?.visits>0',timeout=15000)
+ completed_raw=p.evaluate('localStorage.getItem("honro-first-act-profile-1")')
+ (out/'completed-local-storage.json.xz').write_bytes(lzma.compress(completed_raw.encode()))
+ result['completedStoredSha256']=hashlib.sha256(completed_raw.encode()).hexdigest()
  result.update(passed=True,final=final,complete=True,browserVersion=b.version)
  b.close()

@@ -35,6 +35,9 @@ jobs:
           node tests/act4-event-geometry.mjs
           node tests/act4-stage35-blocked-shot.mjs
           node tests/act4-stage36-elite-reward.mjs
+          node tests/act4-wreck-warning-response.mjs
+          node tests/act4-wreck-presentation-candidate.mjs
+          node tests/stage-clear-report-act4.mjs
       - name: Build isolated unapproved preview without touching public output
         run: |
           set -euo pipefail
