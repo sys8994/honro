@@ -5,8 +5,6 @@ import {refineAnatomy} from './anatomy.mjs';
 import {refineHwigyeomScale} from './hwigyeom-scale.mjs';
 import {refinePhysicalMotion} from './motion.mjs';
 import {balanceSilhouette} from './balance.mjs';
-import {sheetRig} from './sheet-rig.mjs';
-import {paintedBounds} from './shape-bounds.mjs';
 // Author in the existing v006 bind space. Rig contacts and game dimensions stay fixed.
 const common={skinLight:'#D3B899',skinShade:'#92725A',skinWarm:'#B18C70',feature:'#473B34',eye:'#242B2A',eyeLight:'#D8D5C2',hairLight:'#414640',seam:'#858B75',leatherLight:'#927A58',metalLight:'#C0C4B0'};
 export function createParty(original,rig,{hwigyeomScale=true}={}){
@@ -22,7 +20,6 @@ export function createParty(original,rig,{hwigyeomScale=true}={}){
   refinePhysicalMotion(a,rig);
   refineAnatomy(a,rig);
   if(hwigyeomScale)refineHwigyeomScale(a,rig);
-  sheetRig(a,paintedBounds(a,rig));
  }
  return assets;
 }
