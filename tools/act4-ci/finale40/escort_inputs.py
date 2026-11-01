@@ -23,7 +23,7 @@ def finish_escort(p,out):
   p.locator('[data-action="select-hero"][data-id="'+id+'"]').click();p.wait_for_timeout(300);return state()['active']==id
  def move_to(id,x):
   for _ in range(45):
-   ready();s=state();assert s['round']<=20 and all(h['hp']>0 and not h['dead'] for h in s['heroes']+s['residents']),s
+   ready();s=state();assert s['round']<=20 and all(h['hp']>0 and not h['dead'] for h in s['residents']),s
    h=next(h for h in s['heroes'] if h['id']==id)
    if abs(h['x']-x)<45 and h['grounded'] and h['support'] in ['approved40-coast-west','approved40-coast-east','approved40-upper-east']:return
    if h['acted'] or not choose(id):p.keyboard.press('f');p.wait_for_timeout(1000);continue
@@ -37,14 +37,34 @@ def finish_escort(p,out):
   raise TimeoutError('escort route did not reach target')
  ready();s=record('escort-start');g=s['geometry'];pan(g['marks']['boat']);pan(g['marks']['high'])
  if not state()['escort']:
-  move_to('occultist',2610);pan(g['marks']['boat']);pan(g['marks']['high']);ready();record('boarding-trigger')
+  move_to(next(h['id'] for h in state()['heroes'] if h['hp']>0 and not h['dead']),2610);pan(g['marks']['boat']);pan(g['marks']['high']);ready();record('boarding-trigger')
  assert state()['escort'],'normal boarding trigger not reached'
- for id,x in [('mage',5030),('knight',5060),('archer',5000),('occultist',5090)]:move_to(id,x)
+ # Advance every available survivor, not one hero while defending away the
+ # other three movement budgets. Civilian survival remains mandatory.
+ destinations={'mage':5030,'knight':5060,'archer':5000,'occultist':5090}
+ for step in range(260):
+  ready();s=state();assert s['round']<=20 and all(h['hp']>0 and not h['dead'] for h in s['residents']),s
+  living=[h for h in s['heroes'] if h['hp']>0 and not h['dead']]
+  assert living,'No surviving party'
+  done=lambda h:abs(h['x']-destinations[h['id']])<45 and h['grounded'] and h['support'] in ['approved40-coast-west','approved40-coast-east','approved40-upper-east']
+  if all(done(h) for h in living):break
+  todo=[h for h in living if not done(h) and not h['acted']]
+  if not todo:p.keyboard.press('f');p.wait_for_timeout(900);continue
+  h=next((h for h in todo if h['id']==s['active']),todo[0])
+  if not choose(h['id']):raise RuntimeError('Available survivor cannot be selected')
+  s=state()
+  if s['move']<100:p.keyboard.press('f');p.wait_for_timeout(900);continue
+  goal=1445 if s['support'] in ['approved40-departure-stair','approved40-departure-ramp'] else 2670 if s['support'] in ['approved40-dock','approved40-dock-stair'] else 5820 if s['support']=='approved40-upper-east' and s['x']<5750 else destinations[h['id']]
+  key='ArrowRight' if goal>s['x'] else 'ArrowLeft';ms=min(400,max(25,abs(goal-s['x'])/420*1000))
+  p.keyboard.down(key);p.wait_for_timeout(ms);p.keyboard.up(key);p.wait_for_timeout(450);ready();z=record('party-return-'+h['id'])
+  if abs(z['x']-s['x'])<12 and z['active']==h['id'] and z['move']>120:p.keyboard.press('Control');p.keyboard.down(key);p.wait_for_timeout(220);p.keyboard.up(key);p.wait_for_timeout(800)
+ else:raise TimeoutError('Supported party return did not converge')
+
  phase=None;last_snapshot=0;last_motion=time.monotonic();last_positions=None
  for _ in range(300):
   if time.monotonic()-start>600:
    record('observation-timeout');raise TimeoutError('escort observation budget')
-  ready();s=state();assert all(h['hp']>0 and not h['dead'] for h in s['heroes']+s['residents']),s
+  ready();s=state();assert all(h['hp']>0 and not h['dead'] for h in s['residents']),s
   current=s['escort']['phase']
   positions=[(v['id'],round(v['x']),round(v['y'])) for v in s['residents']]
   now=time.monotonic()
