@@ -32,7 +32,7 @@ jobs:
           python -m http.server 8870 --bind 127.0.0.1 > "$HONRO_CAPTURE_OUT/server.log" 2>&1 &
           server=$!;trap 'kill "$server" 2>/dev/null || true' EXIT
           sleep 2
-          python tools/act4-ci/stage40-postwin/inspect.py > "$HONRO_CAPTURE_OUT/play.log" 2>&1
+          python tools/act4-ci/stage40-postwin/check_profile.py > "$HONRO_CAPTURE_OUT/play.log" 2>&1
       - uses: actions/upload-artifact@330a01c490aca151604b8cf639adc76d48f6c5d4
         if: always()
         with:
