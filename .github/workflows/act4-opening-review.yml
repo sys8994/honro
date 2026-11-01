@@ -11,6 +11,7 @@ jobs:
     env:
       HONRO_CAPTURE_URL: http://127.0.0.1:8870/HONRO.html
       HONRO_CAPTURE_OUT: _local/reports/stage40-opening
+      HONRO40_FINISH: '1'
     steps:
       - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
         with:

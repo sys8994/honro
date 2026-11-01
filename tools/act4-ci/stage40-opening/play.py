@@ -73,7 +73,13 @@ with sync_playwright() as w:
    p.wait_for_timeout(150);actual=p.evaluate('(id)=>HonroApp.engine.b.lastShots?.[id]',actor);record('launch',{'choice':choice,'actual':actual});p.wait_for_timeout(1800);ready();record('after-shot')
   final=record('opening-end');stored=p.evaluate("localStorage.getItem('honro-first-act-profile-1')");(out/'opening-storage.json.xz').write_bytes(lzma.compress(stored.encode()));result['storedOpeningSha256']=hashlib.sha256(stored.encode()).hexdigest();p.screenshot(path=str(out/'opening-end.jpg'),type='jpeg',quality=88);result.update(final=final,referenceTargetMet=not final['foes'] and final['round']<=4,passed=not final['foes'] and final['round']<=8)
   assert not result['errors'];assert result['passed'],final
+  if os.environ.get('HONRO40_FINISH')=='1':
+   from escort_inputs import finish_escort
+   result['scope']='fresh combat from normal UI restart through full escort and original-context post-victory reload; preserved campaign entry profile'
+   result['escortResult']=finish_escort(p,out)
+   assert not result['errors']
  except Exception as e:
+  result['passed']=False
   result['failure']=str(e);result['traceback']=traceback.format_exc()
   try:record('failure');p.screenshot(path=str(out/'failure.jpg'),type='jpeg',quality=88)
   except Exception:pass
