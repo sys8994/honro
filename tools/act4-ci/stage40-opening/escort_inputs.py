@@ -58,7 +58,14 @@ def finish_escort(p,out):
  p.screenshot(path=str(out/'outcome.jpg'),type='jpeg',quality=90)
  p.locator('[data-action="result-continue"]').click();p.wait_for_function("HonroApp.screen==='rest'",timeout=60000)
  projection='''()=>Object.fromEntries(['cleared','heroes','equipment','honroAct4','recruited'].map(k=>[k,HonroApp.profile[k]]))'''
- before=p.evaluate(projection);raw=p.evaluate("localStorage.getItem('honro-first-act-profile-1')");(out/'completed-storage.json.xz').write_bytes(lzma.compress(raw.encode()))
- p.reload();p.wait_for_function('window.HonroApp');p.get_by_text('여정 이어가기',exact=True).click();p.wait_for_function("HonroApp.screen==='rest'",timeout=60000);after=p.evaluate(projection);assert before==after
+ immediate=p.evaluate(projection)
+ # The committed reward is notified by the normal rest UI. This legitimate
+ # false->true acknowledgement is not growth/equipment loss on reload.
+ p.wait_for_function("HonroApp.profile.equipment.rewardLedger.eq_so_t3b.notified===true",timeout=15000)
+ before=p.evaluate(projection)
+ transition={'immediate':immediate,'settled':before}
+ (out/'postwin-notification.json').write_text(json.dumps(transition,ensure_ascii=False,indent=2))
+ raw=p.evaluate("localStorage.getItem('honro-first-act-profile-1')");(out/'completed-storage.json.xz').write_bytes(lzma.compress(raw.encode()))
+ p.reload();p.wait_for_function('window.HonroApp');p.get_by_text('여정 이어가기',exact=True).click();p.wait_for_function("HonroApp.screen==='rest'",timeout=60000);after=p.evaluate(projection);(out/'postwin-reload.json').write_text(json.dumps({'before':before,'after':after},ensure_ascii=False,indent=2));assert before==after
  p.screenshot(path=str(out/'same-context-restored.jpg'),type='jpeg',quality=90)
  return {'passed':True,'round':final['round'],'heroes':final['heroes'],'residents':final['residents'],'roster':final['roster'],'presentedRequired':rows,'retiredRequired':[],'waterRecoveries':final['water'],'sameOriginalContextPostVictoryReload':True,'completedStorageSha256':hashlib.sha256(raw.encode()).hexdigest()}
