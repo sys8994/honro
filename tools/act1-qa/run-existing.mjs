@@ -26,6 +26,20 @@ if(stage===10&&policy.includes('modern')){
  code=code.replace("const goal=b.honroState.sodanCoop?","const goal=g.HonroSodanWithdrawal.ready(b)?g.HonroSodanWithdrawal.exit(b).x:b.honroState.sodanCoop?");
  code=code.replace("const u=e.active,t=g.HonroQuestTargets.records(b).find(t=>t.id==='sodan-binding');assert(u&&!u.dead);","const u=e.active,t=g.HonroQuestTargets.records(b).find(t=>t.id==='sodan-binding');assert(u&&!u.dead);if(u.cls==='knight'&&u.hp<u.maxHp*.65&&u.loadout.includes('S08')&&e.cooldownLeft(u,'S08')===0&&e.canAfford(C.SKILLS.S08,u,1)){if(e.fire('S08',u.angle,.3)){record({op:'fire',hero:u.cls,skill:'S08',reason:'ordinary counterstance recovery before pursuit'});continue;}}");
 }
+if(stage===10&&policy.includes('bestshot')){
+ // Controller calibration: rank legal predicted hits rather than firing the
+ // first low-charge seed. Binding finishing attacks take precedence over
+ // repeated recovery when the authored target is within one strong hit.
+ code=code.replace("u.hp<u.maxHp*.65&&u.loadout.includes('S08')", "u.hp<u.maxHp*.45&&(!t||t.broken||t.hp>500)&&u.loadout.includes('S08')");
+ const bestAttack=`function attack(u,t){let best=null;for(const id of u.loadout){const s=C.SKILLS[id];if(!s||s.passive||id==='S08'||e.cooldownLeft(u,id)>0)continue;if(s.martial&&s.branch==='sword'){const q=representativeMelee(g,e,u,t,id);if(q&&e.canAfford(s,u,q.power)&&(!best||s.damage>best.score))best={id,...q,score:s.damage};continue;}for(const q of e.shotSeeds(u,s,t)){if(!e.canAfford(s,u,q.power))continue;const v=C.shotViable(e,u,s,t,q.angle,q.power);if(v.ok&&v.risk<1&&v.enemyDamage>0&&(!best||v.net>best.score))best={id,...q,score:v.net};}}if(best&&e.fire(best.id,best.angle,best.power)){record({op:'fire',hero:u.cls,target:t.id,skill:best.id,angle:best.angle,power:best.power,predictedScore:best.score});return true;}return false;}
+`;
+ code=code.replace(/function attack\(u,t\)\{[^\n]+\n/,bestAttack);
+}
+if(stage===10&&policy.includes('protector')){
+ code=code.replace("u.hp<u.maxHp*.45&&(!t||t.broken||t.hp>500)","u.hp<u.maxHp*(b.honroState.sodanCoop?.2:.45)&&(!t||t.broken||t.hp>500)");
+ code=code.replace("if(foes.filter(v=>Math.hypot(v.x-u.x,v.y-u.y)<700).some(v=>attack(u,v)))continue;","if(!b.honroState.sodanCoop&&foes.filter(v=>Math.hypot(v.x-u.x,v.y-u.y)<700).some(v=>attack(u,v)))continue;");
+ code=code.replace("if(foes.some(v=>!v.dead&&attack(u,v)))continue;", "if(b.honroState.sodanCoop){const ward=e.unit('boss');foes.sort((a,z)=>Math.hypot(a.x-ward.x,a.y-ward.y)-Math.hypot(z.x-ward.x,z.y-ward.y));}if(foes.some(v=>!v.dead&&attack(u,v)))continue;");
+}
 if(stage===10&&policy.includes('survival')){
  // Existing policy fires at binding before reaching useful cover, leaving each
  // hero exposed. New declared policy completes route before binding, engages

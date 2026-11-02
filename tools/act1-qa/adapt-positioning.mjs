@@ -6,7 +6,8 @@ export function adaptPositioning(source,stage,policy){
  source=source.replace(/ function aim\([^\n]+\n/,` ${aim}\n`);
  source=source.replace("if(e.canAct()&&u?.side===0&&!a.dialogue){", "if(e.canAct()&&u?.side===0&&!a.dialogue){if(u.hp<u.maxHp*.45&&b.items.heal>0&&e.item('heal')){log.push({op:'ordinary-heal',actor:u.id,round:b.round});step();continue;}");
  source=source.replace("if(e.canAct()&&e.active?.id===u.id&&!a.dialogue){", "if(e.canAct()&&e.active?.id===u.id&&!a.dialogue){if(u.hp<u.maxHp*.45&&b.items.heal>0&&e.item('heal')){log.push({op:'ordinary-heal',actor:u.id,round:b.round});step();continue;}");
- if(style==='objective')source=source.replaceAll(')<750',')<180');
+ if(style==='objective')source=source.replaceAll(')<750',policy.includes('flow')?')<0':')<180');
+ if(policy.includes('flow'))source=source.replaceAll('u.moveLeft<400','u.moveLeft<e.jumpCost(u)+Math.abs(p.jumpTo-u.x)+40');
  if(style==='route')source=source.replaceAll(')<750',')<350');
  if(stage===2&&style!=='cover')source=source.replace("if(phase<2&&u.moveLeft>10)e.move(1,C.STEP);", "if((phase<2||u.x<Math.min(3900,(e.unit('objective')?.x||u.x)+500))&&u.moveLeft>10){if(phase>=2&&u.y<(e.unit('objective')?.y||0)-600&&e.canDrop(u))e.drop(u);e.move(1,C.STEP);}");
  // Knight sword policy cannot attack distant elevated enemies with a ballistic

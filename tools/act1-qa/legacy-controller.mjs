@@ -7,7 +7,7 @@ import {readFile,writeFile,mkdir} from 'node:fs/promises';
 import {execFileSync} from 'node:child_process';
 import {appHarness,plain} from '../../tests/app-regression-helpers.mjs';
 const stage=Number(process.argv[2]||1),seed=Number(process.argv[3]||1103),policy=process.argv[4]||'legacy',out=`_local/reports/act1-gameplay-20261103/stage${stage}-${policy}-${seed}`;
-await mkdir(out,{recursive:true});
+await mkdir(out,{recursive:true});const sourceAtStart=execFileSync('git',['rev-parse','HEAD'],{encoding:'utf8'}).trim();
 const h=await appHarness({productionStory:true}),{g,C}=h;
 vm.runInContext(`{let state=${seed}>>>0;Math.random=()=>{state+=0x6D2B79F5;let t=state;t=Math.imul(t^t>>>15,t|1);t^=t+Math.imul(t^t>>>7,t|61);return((t^t>>>14)>>>0)/4294967296;};}`,g);
 vm.runInContext(await readFile('shared/runtime/interactions.js','utf8'),g);
@@ -21,5 +21,5 @@ const hurt=e.hurt.bind(e);e.hurt=(u,...args)=>{const hp=u.hp,r=hurt(u,...args);i
 const tick=e.tick.bind(e);e.tick=(dt)=>{ticks++;const r=tick(dt);if(ticks%60===0)poses.push({tick:ticks,round:b.round,phase:b.phase,units:b.units.map(u=>({id:u.id,x:u.x,y:u.y,hp:u.hp,dead:u.dead,support:e.surface(u.x,u.y-3,u.y+3)?.t.id}))});return r;};
 await writeFile(out+'/initial.json',JSON.stringify({profile,entryPath,initial}));
 let controller=await readFile(policy==='legacy'||stage!==1?`tools/testing/stage${stage}-positioning-controller.js`:`tools/act1-qa/stage${stage}-policy.js`,'utf8');if(stage!==1&&policy!=='legacy')controller=adaptPositioning(controller,stage,policy);await writeFile(out+'/controller.js',controller);let result,error;try{result=vm.runInContext(`(${controller})()`,g);delete result.images;}catch(err){error=err.stack;}
-await writeFile(out+'/trace.json',JSON.stringify({source:execFileSync('git',['rev-parse','HEAD'],{encoding:'utf8'}).trim(),stage,training,inputErrorSeed:seed,actualEngineSeed:initial.seed,policy,inputErrorDegrees:policy.includes('cohort')?[-.15,.15]:[0,0],scope:'Historical route controller calibration, native Engine/App inputs; DOM and canvas doubles. Entry historical declared profile, not continuous campaign.',entryPath,initial,final:plain(b),inputs,damage,poses,result,error}));
+await writeFile(out+'/trace.json',JSON.stringify({source:sourceAtStart,stage,training,inputErrorSeed:seed,actualEngineSeed:initial.seed,policy,inputErrorDegrees:policy.includes('cohort')?[-.15,.15]:[0,0],scope:'Historical route controller calibration, native Engine/App inputs; DOM and canvas doubles. Entry historical declared profile, not continuous campaign.',entryPath,initial,final:plain(b),inputs,damage,poses,result,error}));
 console.log(JSON.stringify({stage,seed,policy,phase:b.phase,round:b.round,ticks,error,alive:e.heroesAlive().length,shots:inputs.filter(v=>v.op==='fire').length}));if(error)process.exitCode=1;
