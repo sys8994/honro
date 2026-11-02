@@ -45,7 +45,7 @@ with sync_playwright() as w:
   live=state();d={'step':step,'state':live,'time':time.time(),**extra}
   if step=='entry' or step.startswith(('action-','survival-defend-','boarding-transition','interactive-')):d['storageSnapshot']=snapshot(step,live)
   f.write(json.dumps(d,ensure_ascii=False)+'\n');f.flush();print(json.dumps(d,ensure_ascii=False),flush=True)
- def plan(onlyFacing=False):return p.evaluate('''onlyFacing=>{const a=HonroApp,e=a.engine,b=e.b,u=e.active,C=HONRO_CORE,sc=a.scene,rect=sc.canvas.getBoundingClientRect(),lo=sc.world(0,0),hi=sc.world(rect.width,rect.height);const allies=b.units.filter(v=>v.side===0&&!v.dead&&v.id!==u.id);const visible=b.units.filter(v=>v.side===1&&!v.dead&&v.x>=Math.min(lo.x,hi.x)&&v.x<=Math.max(lo.x,hi.x)&&v.y>=Math.min(lo.y,hi.y)&&v.y-v.h<=Math.max(lo.y,hi.y));let best=null;const intersects=(a,z,u)=>{const bounds=[u.x-u.r-18,u.x+u.r+18,u.y-u.h-18,u.y+18];let lo=0,hi=1;for(const [v,d,min,max] of [[a.x,z.x-a.x,bounds[0],bounds[1]],[a.y,z.y-a.y,bounds[2],bounds[3]]]){if(Math.abs(d)<1e-9){if(v<min||v>max)return false;continue}let t0=(min-v)/d,t1=(max-v)/d;if(t0>t1)[t0,t1]=[t1,t0];lo=Math.max(lo,t0);hi=Math.min(hi,t1);if(lo>hi)return false}return true};for(const t of visible.sort((x,y)=>Math.abs(x.x-u.x)-Math.abs(y.x-u.x)).slice(0,4)){for(let idx=0;idx<u.loadout.length;idx++){const id=u.loadout[idx],s=C.SKILLS[id];if(!s||s.passive||['O13','S08'].includes(id)||!e.skillAllowed(s,u)||e.cooldownLeft(u,id)>0||!e.canAfford(s,u,.65)||s.mode==='charge'||id==='S00'&&Math.hypot(t.x-u.x,t.y-u.y)>160)continue;for(const z of e.shotSeeds(u,s,t)){if(onlyFacing&&(z.angle>90?-1:1)!==u.facing)continue;const h=e.predict(u,s,z.angle,z.power,t,false),safe=C.shotViable(e,u,s,t,z.angle,z.power);if(!safe.ok||safe.risk>=.5)continue;const points=e.predict(u,s,z.angle,z.power,t,true).points||[];if(allies.some(v=>points.slice(1).some((q,i)=>intersects(points[i],q,v))))continue;const r=e.effective(s,u).radius||0,dist=Math.hypot(h.x-t.x,h.y-(t.y-t.h*.52));const score=(h.unit===t.id?300:r>0&&dist<r?200:0)+(safe.enemyDamage||0);if(score>150&&(!best||score>best.score))best={id,idx,angle:z.angle,power:z.power,target:t.id,score};}}}return {best,visible:visible.map(v=>({id:v.id,x:v.x,y:v.y,hp:v.hp})),observed:b.units.filter(v=>v.side===1&&v.x>=Math.min(lo.x,hi.x)&&v.x<=Math.max(lo.x,hi.x)&&v.y>=Math.min(lo.y,hi.y)&&v.y-v.h<=Math.max(lo.y,hi.y)).map(v=>({id:v.id,x:v.x,y:v.y,hp:v.hp,dead:v.dead}))}}''',onlyFacing)
+ def plan(onlyFacing=False):return p.evaluate('''onlyFacing=>{const a=HonroApp,e=a.engine,b=e.b,u=e.active,C=HONRO_CORE,sc=a.scene,rect=sc.canvas.getBoundingClientRect(),lo=sc.world(0,0),hi=sc.world(rect.width,rect.height);const allies=b.units.filter(v=>v.side===0&&!v.dead&&v.id!==u.id);const visible=b.units.filter(v=>v.side===1&&!v.dead&&v.x>=Math.min(lo.x,hi.x)&&v.x<=Math.max(lo.x,hi.x)&&v.y>=Math.min(lo.y,hi.y)&&v.y-v.h<=Math.max(lo.y,hi.y));let best=null;const intersects=(a,z,u)=>{const bounds=[u.x-u.r-18,u.x+u.r+18,u.y-u.h-18,u.y+18];let lo=0,hi=1;for(const [v,d,min,max] of [[a.x,z.x-a.x,bounds[0],bounds[1]],[a.y,z.y-a.y,bounds[2],bounds[3]]]){if(Math.abs(d)<1e-9){if(v<min||v>max)return false;continue}let t0=(min-v)/d,t1=(max-v)/d;if(t0>t1)[t0,t1]=[t1,t0];lo=Math.max(lo,t0);hi=Math.min(hi,t1);if(lo>hi)return false}return true};for(const t of visible.sort((x,y)=>Math.abs(x.x-u.x)-Math.abs(y.x-u.x)).slice(0,4)){for(let idx=0;idx<u.loadout.length;idx++){const id=u.loadout[idx],s=C.SKILLS[id];if(!s||s.passive||['O13','S08'].includes(id)||!e.skillAllowed(s,u)||e.cooldownLeft(u,id)>0||!e.canAfford(s,u,1)||s.mode==='charge'||id==='S00'&&Math.hypot(t.x-u.x,t.y-u.y)>160)continue;const angles=new Set(e.shotSeeds(u,s,t).flatMap(z=>[-4,-2,-1,0,1,2,4].map(d=>Math.round((z.angle+d)*10)/10)));const seedAngles=new Set(angles);for(let angle=C.AIM_MIN||-85;angle<=(C.AIM_MAX||265);angle+=3)angles.add(angle);for(const angle of angles){if(best&&!seedAngles.has(angle))continue;if(angle<(-85+.2)||angle>(265-.2)||Math.abs(angle-90)<.2)continue;const z={angle,power:1};if(onlyFacing&&(z.angle>90?-1:1)!==u.facing)continue;const h=e.predict(u,s,z.angle,z.power,t,false),safe=C.shotViable(e,u,s,t,z.angle,z.power);if(!safe.ok||safe.risk>=.5)continue;const points=e.predict(u,s,z.angle,z.power,t,true).points||[];if(allies.some(v=>points.slice(1).some((q,i)=>intersects(points[i],q,v))))continue;const r=e.effective(s,u).radius||0,dist=Math.hypot(h.x-t.x,h.y-(t.y-t.h*.52));const score=(h.unit===t.id?300:r>0&&dist<r?200:0)+(safe.enemyDamage||0);let robust=score;if(score>150){for(const da of [-.2,.2]){const hh=e.predict(u,s,z.angle+da,1,t,false),ss=C.shotViable(e,u,s,t,z.angle+da,1),pp=e.predict(u,s,z.angle+da,1,t,true).points||[],dd=Math.hypot(hh.x-t.x,hh.y-(t.y-t.h*.52));if(!ss.ok||ss.risk>=.5||allies.some(v=>pp.slice(1).some((q,i)=>intersects(pp[i],q,v)))){robust=0;break}robust=Math.min(robust,(hh.unit===t.id?300:r>0&&dd<r?200:0)+(ss.enemyDamage||0));}}if(robust>150&&(!best||robust>best.score))best={id,idx,angle:z.angle,power:z.power,target:t.id,score:robust,angleTolerance:.2};}}}return {best,visible:visible.map(v=>({id:v.id,x:v.x,y:v.y,hp:v.hp})),observed:b.units.filter(v=>v.side===1&&v.x>=Math.min(lo.x,hi.x)&&v.x<=Math.max(lo.x,hi.x)&&v.y>=Math.min(lo.y,hi.y)&&v.y-v.h<=Math.max(lo.y,hi.y)).map(v=>({id:v.id,x:v.x,y:v.y,hp:v.hp,dead:v.dead}))}}''',onlyFacing)
  def waitready():
   for _ in range(100):
    s=state()
@@ -153,26 +153,37 @@ with sync_playwright() as w:
     key='ArrowLeft' if desired_facing<0 else 'ArrowRight';p.keyboard.down(key);p.wait_for_timeout(80);p.keyboard.up(key);p.wait_for_timeout(300);pl=plan(True);observe(pl);choice=pl['best']
   if choice:
    p.keyboard.press('Digit'+str(choice['idx']+1));p.wait_for_timeout(200)
-   for _ in range(16):
-    s=state();delta=choice['angle']-s['angle']
-    if abs(delta)<2:break
-    key='ArrowUp' if delta*state()['facing']>0 else 'ArrowDown';p.keyboard.down(key);p.wait_for_timeout(min(250,max(30,abs(delta)/62*1000)));p.keyboard.up(key);p.wait_for_timeout(100)
+   from precise_aim import aim_with_joystick
+   aim_result=aim_with_joystick(p,choice['angle'],state)
+   record('precision-aim-'+str(n),{'choice':choice,'inputResult':aim_result})
+   if not aim_result['passed']:raise AssertionError('Normal joystick aiming did not converge without movement')
    aligned=state()
-   if abs(aligned['angle']-choice['angle'])>2.5 or aligned['facing']!=(-1 if choice['angle']>90 else 1):
-    record('aim-not-aligned-'+str(n),{'choice':choice});continue
+   # Revalidate the actual settled angle through the same read-only predictor.
+   actual_safe=p.evaluate("""q=>{const e=HonroApp.engine,u=e.active,s=HONRO_CORE.SKILLS[q.id],t=e.b.units.find(v=>v.id===q.target);if(!t||t.dead||!e.canAfford(s,u,1))return false;const allies=e.b.units.filter(v=>v.side===0&&!v.dead&&v.id!==u.id);const intersects=(a,z,u)=>{const bounds=[u.x-u.r-18,u.x+u.r+18,u.y-u.h-18,u.y+18];let lo=0,hi=1;for(const [v,d,min,max] of [[a.x,z.x-a.x,bounds[0],bounds[1]],[a.y,z.y-a.y,bounds[2],bounds[3]]]){if(Math.abs(d)<1e-9){if(v<min||v>max)return false;continue}let t0=(min-v)/d,t1=(max-v)/d;if(t0>t1)[t0,t1]=[t1,t0];lo=Math.max(lo,t0);hi=Math.min(hi,t1);if(lo>hi)return false}return true};return [-.1,0,.1].every(d=>{const z=HONRO_CORE.shotViable(e,u,s,t,u.angle+d,1),h=e.predict(u,s,u.angle+d,1,t,false),r=e.effective(s,u).radius||0,points=e.predict(u,s,u.angle+d,1,t,true).points||[];if(allies.some(v=>points.slice(1).some((q,i)=>intersects(points[i],q,v))))return false;const score=(h.unit===t.id?300:r>0&&Math.hypot(h.x-t.x,h.y-(t.y-t.h*.52))<r?200:0)+(z.enemyDamage||0);return z.ok&&z.risk<.5&&score>150})}""",choice)
+   if not actual_safe:raise AssertionError('Settled actual shot no longer meets validated target envelope')
    shot_actor=state()['active'];before=state();p.keyboard.down('Space')
    try:
-    p.wait_for_function('''target=>HonroApp.charging && HonroApp.chargePower(performance.now())>=target''',arg=max(0,choice['power']-.02),timeout=8000,polling=16)
+    p.wait_for_function('''target=>HonroApp.charging && HonroApp.chargePower(performance.now())>=target''',arg=1,timeout=8000,polling=16)
     observed=p.evaluate('''()=>HonroApp.chargePower(performance.now())''')
    except Exception as ex:
     p.keyboard.up('Space');record('charge-failure-'+str(n),{'choice':choice,'error':str(ex)});break
    p.keyboard.up('Space');p.wait_for_timeout(100)
    launch=p.evaluate('''id=>({shots:HonroApp.engine.b.shots,last:HonroApp.engine.b.lastShots?.[id]||null})''',shot_actor)
    record('launch-'+str(n),{'choice':choice,'chargeAtRelease':observed,'actual':launch['last'],'enemyHpBefore':before['enemyHpSum'],'shotCountBefore':before['shots'],'shotCountAfter':launch['shots']})
-   if launch['shots']!=before['shots']+1 or not launch['last'] or launch['last']['skill']!=choice['id']:
+   if launch['shots']!=before['shots']+1 or not launch['last'] or launch['last']['skill']!=choice['id'] or abs(launch['last'].get('power',0)-1)>1e-9 or abs(launch['last'].get('angle',999)-aligned['angle'])>.1:
     record('launch-mismatch-'+str(n),{'choice':choice,'actual':launch});break
   else:p.keyboard.press('f')
   p.wait_for_timeout(3000);record('action-'+str(n),{'choice':choice});capture(path=str(out/('tactical-v8-'+str(n)+'.png')))
+  if os.environ.get('HONRO_FIRST_SHOT_DIAGNOSTIC')=='1':
+   assert n==0 and choice,'Diagnostic requires first actor to fire without skipped turns'
+   assert waitready(),'First shot did not resolve to a normal actionable state'
+   settled=state();damage=before['enemyHpSum']-settled['enemyHpSum']
+   record('first-shot-resolved',{'damage':damage,'choice':choice,'actualLaunch':launch['last']})
+   assert damage>0 and all(not h['dead'] for h in settled['health']),settled
+   capture(path=out/'first-shot-resolved.png')
+   result.update(diagnosticPassed=True,complete=False,scope='first-shot normal-input reproducibility only; not release evidence',damage=damage,actualLaunch=launch['last'],browserVersion=b.version)
+   b.close()
+   raise SystemExit(0)
   if state()['enemies']==0:record('boarding-transition');capture(path=str(out/'tactical-v8-combat-end.png'));break
   if state()['phase'] in ('won','lost'):break
 
