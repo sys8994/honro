@@ -1,0 +1,101 @@
+{
+  "status": "PROPOSED_NOT_REGISTERED_OR_LAUNCHED",
+  "purpose": "Follow-up finite-policy input sensitivity with representable original clear-rate bands; not a human population study. Prior N2 cases retained unchanged.",
+  "plannedCasesPerPolicy": 20,
+  "plannedStagePolicies": [
+    {
+      "stage": 11,
+      "policy": "height",
+      "entry": "Additional actual observed no-item earned8→9→10 segment; prior1–7 current reward fixtures, not full campaign. Controller must first be calibrated on this exact entry."
+    },
+    {
+      "stage": 15,
+      "policy": "objective",
+      "entry": "Same declared synthetic fixture as first frozen cohort unless a separate observed earned entry is validated before registration."
+    },
+    {
+      "stage": 16,
+      "policy": "objective",
+      "entry": "Same declared synthetic fixture; must validate living bell-soul observer route before freezing."
+    }
+  ],
+  "rng": "Shipping Engine RNG untouched; canonical seed from engineStageId, input-only aim jitter ±.15deg. No live RNG edits.",
+  "seedRule": "first8hex SHA256(act2-post-calibration-v1|stage|policy|index), index0..19; seed list fixed before these samples are run",
+  "gatesBeforeLaunch": [
+    "Finish original18cases and preserve all outcomes",
+    "Validate controller normal input accessibility, required authored observations, emergency ordering and settlement",
+    "Freeze complete runner/navigation/profile/runtime/criteria hashes and bounds in a new registration commit",
+    "Declare entry ancestry and candidate-versus-baseline source; never mix runtime fixes silently",
+    "No timing-target changes, case replacement or retrospective pooling; report perpolicy finite rates and all censoring",
+    "Normal-browser and required design metrics remain separate missing gates"
+  ],
+  "sampleBound": "To be preregistered with controller freeze; never force game loss at20. Original hard20 assessed separately.",
+  "seeds": {
+    "11-height": [
+      3214877630,
+      2875423817,
+      3195217779,
+      3563950652,
+      88483397,
+      1507047238,
+      962729141,
+      4045180369,
+      3846916294,
+      3678651652,
+      1871150192,
+      4194761843,
+      4263187546,
+      3513620579,
+      3810689666,
+      722371575,
+      3460792880,
+      1965294211,
+      2536614301,
+      1933640880
+    ],
+    "15-objective": [
+      3721962638,
+      1254275200,
+      2494872194,
+      1147030039,
+      4077742132,
+      3934059286,
+      213409142,
+      894932066,
+      4156427187,
+      1268275407,
+      2367190273,
+      4025643077,
+      1498746223,
+      1625943462,
+      4099482559,
+      2690372714,
+      731249068,
+      16981942,
+      3355128706,
+      3169804070
+    ],
+    "16-objective": [
+      1052048648,
+      3020156878,
+      2989611183,
+      3521631369,
+      2652326451,
+      2504509621,
+      4156229441,
+      334285181,
+      1273284532,
+      665694213,
+      2576085907,
+      2683807970,
+      895017720,
+      3222715321,
+      3312114999,
+      3230936302,
+      2657371633,
+      4000538635,
+      2334205521,
+      111150651
+    ]
+  }
+}
