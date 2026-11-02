@@ -1,0 +1,34 @@
+{
+  "id": "act2-traced:stage20-east-v2",
+  "name": "Stage20 east-v2",
+  "bounds": {
+    "x": 4000,
+    "y": 1600,
+    "w": 6000,
+    "h": 5000
+  },
+  "anchor": {
+    "x": 0,
+    "y": 0
+  },
+  "foot": {
+    "x": 4000,
+    "y": 6600
+  },
+  "semanticLayer": "BODY",
+  "preserveCompounds": true,
+  "transform": [
+    4.2283298097251585,
+    0,
+    0,
+    4.508566275924256,
+    4000,
+    1600
+  ],
+  "params": {
+    "bodyTerrainIds": [
+      "act2-floor"
+    ],
+    "bodyBaseColor": "#283b46"
+  }
+}

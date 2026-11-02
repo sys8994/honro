@@ -1,0 +1,35 @@
+{
+  "id": "act2-traced:stage20-west-v2",
+  "name": "Stage20 west-v2",
+  "bounds": {
+    "x": -800,
+    "y": 1700,
+    "w": 6000,
+    "h": 5000
+  },
+  "anchor": {
+    "x": 0,
+    "y": 0
+  },
+  "foot": {
+    "x": -800,
+    "y": 6700
+  },
+  "semanticLayer": "BODY",
+  "preserveCompounds": true,
+  "transform": [
+    4.2283298097251585,
+    0,
+    0,
+    4.508566275924256,
+    -800,
+    1700
+  ],
+  "params": {
+    "bodyTerrainIds": [
+      "act2-floor",
+      "exit-overhang"
+    ],
+    "bodyBaseColor": "#283b46"
+  }
+}

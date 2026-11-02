@@ -1,0 +1,127 @@
+[
+  {
+    "part": "outer-v1",
+    "before": {
+      "paths": 3,
+      "subpaths": 101,
+      "bytes": 92015
+    },
+    "after": {
+      "paths": 3,
+      "subpaths": 43,
+      "bytes": 32644
+    },
+    "maskChanges": [
+      {
+        "radiusSourcePx": 3,
+        "canonicalBandSourcePx": 12,
+        "protectedPixelsChanged": 0,
+        "removedPixels": 10506,
+        "addedPixels": 78,
+        "removedComponents": 312,
+        "addedComponents": 47,
+        "scope": "Nonsemantic interior mineral-tone raster masks only, before actual Inkscape trace; recognizable authored features absent from these generated stone material sources."
+      },
+      {
+        "radiusSourcePx": 3,
+        "canonicalBandSourcePx": 12,
+        "protectedPixelsChanged": 0,
+        "removedPixels": 11021,
+        "addedPixels": 1765,
+        "removedComponents": 484,
+        "addedComponents": 521,
+        "scope": "Nonsemantic interior mineral-tone raster masks only, before actual Inkscape trace; recognizable authored features absent from these generated stone material sources."
+      }
+    ]
+  },
+  {
+    "part": "west-v2",
+    "before": {
+      "paths": 4,
+      "subpaths": 147,
+      "bytes": 139166
+    },
+    "after": {
+      "paths": 4,
+      "subpaths": 64,
+      "bytes": 69152
+    },
+    "maskChanges": [
+      {
+        "radiusSourcePx": 3,
+        "canonicalBandSourcePx": 12,
+        "protectedPixelsChanged": 0,
+        "removedPixels": 11146,
+        "addedPixels": 784,
+        "removedComponents": 559,
+        "addedComponents": 296,
+        "scope": "Nonsemantic interior mineral-tone raster masks only, before actual Inkscape trace; recognizable authored features absent from these generated stone material sources."
+      },
+      {
+        "radiusSourcePx": 3,
+        "canonicalBandSourcePx": 12,
+        "protectedPixelsChanged": 0,
+        "removedPixels": 12206,
+        "addedPixels": 1771,
+        "removedComponents": 905,
+        "addedComponents": 743,
+        "scope": "Nonsemantic interior mineral-tone raster masks only, before actual Inkscape trace; recognizable authored features absent from these generated stone material sources."
+      },
+      {
+        "radiusSourcePx": 3,
+        "canonicalBandSourcePx": 12,
+        "protectedPixelsChanged": 0,
+        "removedPixels": 480,
+        "addedPixels": 34,
+        "removedComponents": 64,
+        "addedComponents": 24,
+        "scope": "Nonsemantic interior mineral-tone raster masks only, before actual Inkscape trace; recognizable authored features absent from these generated stone material sources."
+      }
+    ]
+  },
+  {
+    "part": "east-v2",
+    "before": {
+      "paths": 4,
+      "subpaths": 77,
+      "bytes": 74068
+    },
+    "after": {
+      "paths": 4,
+      "subpaths": 38,
+      "bytes": 45235
+    },
+    "maskChanges": [
+      {
+        "radiusSourcePx": 3,
+        "canonicalBandSourcePx": 12,
+        "protectedPixelsChanged": 0,
+        "removedPixels": 2706,
+        "addedPixels": 188,
+        "removedComponents": 58,
+        "addedComponents": 38,
+        "scope": "Nonsemantic interior mineral-tone raster masks only, before actual Inkscape trace; recognizable authored features absent from these generated stone material sources."
+      },
+      {
+        "radiusSourcePx": 3,
+        "canonicalBandSourcePx": 12,
+        "protectedPixelsChanged": 0,
+        "removedPixels": 7221,
+        "addedPixels": 444,
+        "removedComponents": 560,
+        "addedComponents": 178,
+        "scope": "Nonsemantic interior mineral-tone raster masks only, before actual Inkscape trace; recognizable authored features absent from these generated stone material sources."
+      },
+      {
+        "radiusSourcePx": 3,
+        "canonicalBandSourcePx": 12,
+        "protectedPixelsChanged": 0,
+        "removedPixels": 747,
+        "addedPixels": 15,
+        "removedComponents": 164,
+        "addedComponents": 4,
+        "scope": "Nonsemantic interior mineral-tone raster masks only, before actual Inkscape trace; recognizable authored features absent from these generated stone material sources."
+      }
+    ]
+  }
+]
