@@ -40,6 +40,12 @@ try:
    p.locator('[data-action="continue"]:visible').first.click();r['inputs'].append('reload then click:continue')
    p.wait_for_function('HonroApp.engine?.b?.honroStage===2 && HonroApp.canInput()',timeout=60000);p.wait_for_timeout(1000)
    r['resumed']=p.evaluate(state);assert len(r['resumed']['bodies'])==2 and r['resumed']['bodies'][0]['collisionIds']==0,r['resumed'];assert abs(r['resumed']['x']-r['beforeReload']['x'])<1,r['resumed'];assert r['resumed']['hp']==r['beforeReload']['hp'];p.screenshot(path=str(out/'resumed.png'))
+   r['responsiveViews']=[]
+   for label,width,height in [('mobile-portrait',390,844),('mobile-landscape',844,390)]:
+    p.set_viewport_size({'width':width,'height':height});p.wait_for_timeout(1200)
+    v=p.evaluate(state);v['viewport']={'width':width,'height':height};v['documentWidth']=p.evaluate('document.documentElement.scrollWidth');assert v['h']==92 and len(v['bodies'])==2 and v['canInput'],v;assert v['documentWidth']<=width+1,v
+    r['responsiveViews'].append(v);p.screenshot(path=str(out/(label+'.png')))
+   r['responsiveScope']='Responsive viewport visual checks; not physical mobile-device performance or touch-control acceptance.'
    assert not r['errors'],r['errors'];r['passed']=True;browser.close()
   except Exception:
    try:

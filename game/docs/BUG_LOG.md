@@ -5215,3 +5215,8 @@ Title `여정 이어가기` could choose an older hub before honoring a saved di
 - 후속(남은 과제): 정밀 재확인을 조준 탐색당 4회로 제한, 자리 평가 판정 상한(계획당 160), 비교 대상 목표는 정확한 탄도 해만 시험(`quickShotSteps`). 생각 프레임 3/9/15/21/27장 26/16/29/22/12(최초) → 28/15/7/19/5, 영웅 피해 96/691/457/116/321 → 96/733/619/133/326. 회귀 7개 통과.
 - 후속(배포 검증): Stage31 실제 UI 자동 전체 플레이(CI)가 기본 '전술' 난이도에서 9턴째 소단 전투 불능·담허 4%로 실패. 원인은 집중 공격·마무리 판단으로 적 피해가 한 영웅에 몰린 것. 마무리·집중은 숙련·결전에서만, 전술·원정은 목표 비교까지로 조정(`tacticsLevel`). 로컬 동일 자동 플레이 19턴 승리·4명 생존(제한 20턴), Stage31 엔진 시험 3개 통과.
 - 후속(배포 검증 2): CI Stage31 UI 자동 플레이가 다시 4턴째 설오 전투 불능으로 실패(로컬은 19턴 승리 — 실행 편차 큼). 강화된 조준 탐색 자체가 검증된 Stage31 밸런스를 바꾸므로, 사선 우선 자리·촘촘한 탄도 해·1차 판정·목표 비교·집중/마무리는 숙련·결전 전용(`smartAim`)으로 분리. 탐험·원정·전술은 기존 조준 탐색(`legacyShotOpportunity`)을 쓰고, 재시작 제거·조준 예고·고정 사수 사선 회피는 모든 난이도 공통. 전술 난이도 지표 3/9/15/21/27장 영웅 피해 96/691/457/100/321(원래 96/691/457/116/321), 숙련 96/730/662/114/323. `tests/enemy-ai-metrics.mjs --difficulty` 추가.
+
+### 2026-11-02 — Stage2 continuous terrain release
+- Preserve original geometry, actors, camera and encounters; replace only non-colliding BODY/rear art. Default enable follows real browser run41411532370; explicit environment value0 remains rollback.
+- Outside decorative cliff no longer carries misleading walk rims. Original contact boundaries remain unchanged. .1 rounding candidate failed alpha tolerance; .01 candidate passes unchanged1×/2× limits.
+- Verified entry/movement/jump/landing/camera/save-reload; fresh Stage31 runtime evidence:34 enemies,4 surviving heroes,round16 boarded. Final release workflow additionally checks responsive portrait/landscape screenshots before master promotion. This is not Stage2 combat/fun redesign acceptance or physical-device performance coverage.
