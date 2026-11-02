@@ -1,0 +1,22 @@
+{
+  "stage": 2,
+  "status": "CANDIDATE_NOT_ACCEPTED",
+  "world": [
+    4300,
+    3300
+  ],
+  "physicsUnchanged": true,
+  "nativeFormatPassed": true,
+  "bodyBytes": 181997,
+  "rearBytes": 253657,
+  "semanticSeparation": [
+    "8 original solid terrain bodies",
+    "2 canonical visual-only rear cliff masses",
+    "6 original wood oneWay branches untouched"
+  ],
+  "openIssues": [
+    "Bottom canvas crops granite highlight faces at minimum overview; must terminate natural facets into common base rather than hard horizontal line.",
+    "Native pale ledge caps and geology necks remain stylistically distinct; review composition after surface refinement."
+  ],
+  "scope": "Native render only. New semantic artwork, not lossless optimization of whole-scene reference. Browser/play/deployment not accepted."
+}
