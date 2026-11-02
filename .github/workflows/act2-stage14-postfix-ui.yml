@@ -1,0 +1,42 @@
+name: Act2 Stage14 candidate normal UI regression
+on:
+  push:
+    branches: ['work/act2-postfix-gameplay-qa/**']
+permissions:
+  contents: read
+jobs:
+  natural-save-continue:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    env:
+      HONRO_QA_URL: http://127.0.0.1:8870/HONRO.html
+      HONRO_QA_OUT: _local/reports/stage14-postfix-ui
+    steps:
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+        with:
+          node-version: '22'
+      - uses: actions/setup-python@e797f83bcb11b83ae66e0230d6156d7c80228e7c
+        with:
+          python-version: '3.12'
+      - run: |
+          npm ci
+          npm --prefix game ci
+          python -m pip install 'playwright==1.58.0'
+          python -m playwright install --with-deps chromium
+      - name: Build and observe candidate source with ordinary UI inputs
+        run: |
+          mkdir -p "$HONRO_QA_OUT"
+          git rev-parse HEAD > "$HONRO_QA_OUT/source.txt"
+          node workshop/build.mjs > "$HONRO_QA_OUT/build.log" 2>&1
+          sha256sum HONRO.html web/manifest.json shared/runtime/act23-v4-act2.js shared/runtime/act23-v4-act2-scenes.js > "$HONRO_QA_OUT/served-sha256.txt"
+          python -m http.server 8870 --bind 127.0.0.1 > "$HONRO_QA_OUT/server.log" 2>&1 &
+          trap 'kill $! 2>/dev/null || true' EXIT
+          sleep 2
+          python tools/act2-qa/stage14-postfix-ui.py > "$HONRO_QA_OUT/browser.log" 2>&1
+      - uses: actions/upload-artifact@330a01c490aca151604b8cf639adc76d48f6c5d4
+        if: always()
+        with:
+          name: stage14-candidate-ui-${{ github.sha }}
+          path: _local/reports/stage14-postfix-ui/
+          retention-days: 7
