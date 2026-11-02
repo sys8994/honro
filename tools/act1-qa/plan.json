@@ -1,0 +1,4316 @@
+{
+  "schema": "honro-act1-gameplay-plan/v1",
+  "source": {
+    "git": "3872295f6d39580fb6a934276166092b8835a761",
+    "path": "tools/quality-gate/criteria-v3.json.gz",
+    "rawSha256": "e2183e74492a4cb61338f8a691a51f23e7af2205fb9148ae6f6b2c138311aa54",
+    "status": "설계 목표 · 실측 전"
+  },
+  "classification": {
+    "essential": [
+      {
+        "key": "rounds",
+        "label": "분량",
+        "rule": "장별 목표범위·전체20R 상한. 정상진행 검증 초과0건."
+      },
+      {
+        "key": "difficulty",
+        "label": "난도",
+        "rule": "일반정책 클리어율·실제 행동 적·유효 피해율 목표와 막별 상승."
+      },
+      {
+        "key": "encounters",
+        "label": "적 구성",
+        "rule": "필수경로 실제 교전 수와 중간보스 등장/개체 목표. 주요보스는 분리하며 고유 패턴·예고·대응이 있어야 한다."
+      },
+      {
+        "key": "space",
+        "label": "공간 전개",
+        "rule": "수직/복합 유형·유효 점프/아래점프·필수 고도 활용. 유형에 따라 필요한 항목만 필수."
+      },
+      {
+        "key": "objective_art",
+        "label": "목표와 화면",
+        "rule": "원래 완료조건·진행 정상, 실제 이미지 승인, 자연윤곽<20% 목표/<30% 상한, 의미 소실·불량 연결0건."
+      }
+    ],
+    "reference": [
+      "일반전 맵 크기·종횡비·발판 수",
+      "전체 적 예산·역할/패턴의 단순 개수",
+      "사람 플레이 분·자원 사용·회복 선택",
+      "정밀 곡률·에지 밀도·노드/경로 밀도",
+      "세부 비용·콜드 로딩 진단"
+    ],
+    "referenceRule": "참고 지표만 어긋났다고 자동 반려하지 않는다. 원인 분석과 조정에 사용한다. 특정 장의 핵심 기획을 증명하는 항목은 사전에 해당 장 필수로 지정할 수 있다. 진행 불가·충돌·보호요소 소실 등 실제 결함을 참고로 내려 숨기지 않는다.",
+    "precedence": "v3 필수/참고 분류가 v2 개별 지표의 과거 필수 표기보다 우선한다. 실제 결함은 참고로 숨기지 않는다."
+  },
+  "definitions": [
+    "필수는 분량·난도·적 구성·공간 전개·목표와 화면의 다섯 그룹이다. 한 필수 조건의 실패를 다른 지표로 상쇄하지 않는다. 보스의 고유 행동·예고·대응은 필수지만 역할·패턴의 정확한 개수는 참고다.",
+    "1턴(R)은 아군+적 cycle이며 전투·이동·필수 기믹·대기를 모두 포함한다. 모든 장 목표 상한은20턴이다. 등록 일반·숙련 정상 진행에서20턴 초과0건을 확인하며 초과 로그를 버리지 않는다. 강제 게임오버나20턴 로그 절단을 신설하는 규칙은 아니다.",
+    "기준은 원정 난이도와 정상 진입 파티·합법 성장·장비·기예다. 클리어율은 등록된 일반 정책의 유한 시험군 비율이고 사람 승률이 아니다. 성공런 중앙값·평균과 실패·timeout을 분리하며 동일seed 복제를 독립 표본으로 늘리지 않는다.",
+    "필수 경로의 실제 교전 수와 중간보스 편성은 모두 필수다. 중간보스는 정예·주요보스와 별도다. 필수 처치 수는 기존 승리조건만 따른다. 수직/복합은 유효 점프·아래점프와 실제 고도 활용을 확인한다. 필수 고도비의 분모는 사전등록한 활용 높이이며 통과하려고 줄이지 않는다.",
+    "미술 필수는 자연윤곽 긴 직선 기본<20%·절대<30%, 눈에 보이는 틈0·보호 형상 소실0과 최종 시각 승인이다. 구45% 기준은 폐기한다. 원본 대비 외곽1.5px/보호0.5px 보존 오차와 현행 엔진 안전 한도도 필수다. 정밀 곡률·노드/에지 밀도·세부 비용은 참고 진단이며 그림의 품질을 개수 점수로 대신하지 않는다.",
+    "참고는 맵 크기·종횡비·발판 수, 전체 적 예산·역할/패턴 수, 일반 적 처치 행동, 시간·자원·회복 선택, 정밀 미술·비용 진단 등이다. 수직형 종횡비처럼 해당 장의 핵심 기획을 증명하는 항목은 사전 선언하면 필수로 승격할 수 있다. 참고 수치만 어긋났다고 자동 반려하지 않되 진행 불가·충돌·보호요소 소실을 참고로 숨기지 않는다."
+  ],
+  "macro": {
+    "version": "v3",
+    "status": "설계 목표 · 실측 전",
+    "acts": [
+      {
+        "act": 1,
+        "scope": "기존10장 재기획",
+        "generalClearRate": [
+          85,
+          100
+        ],
+        "enemyActions": [
+          2,
+          4
+        ],
+        "enemyAttackPctHP": [
+          10,
+          20
+        ],
+        "minibossStages": [
+          2,
+          3
+        ],
+        "minibossCount": [
+          2,
+          3
+        ],
+        "verticalStagesMin": 3,
+        "combinedStagesMin": 4,
+        "verticalJumps": [
+          20,
+          36
+        ],
+        "verticalDrops": [
+          8,
+          16
+        ],
+        "roundsHardMax": 20
+      },
+      {
+        "act": 2,
+        "scope": "기존10장 재기획",
+        "generalClearRate": [
+          75,
+          90
+        ],
+        "enemyActions": [
+          3,
+          5
+        ],
+        "enemyAttackPctHP": [
+          15,
+          23
+        ],
+        "minibossStages": [
+          4,
+          5
+        ],
+        "minibossCount": [
+          4,
+          5
+        ],
+        "verticalStagesMin": 4,
+        "combinedStagesMin": 4,
+        "verticalJumps": [
+          24,
+          44
+        ],
+        "verticalDrops": [
+          12,
+          20
+        ],
+        "roundsHardMax": 20
+      },
+      {
+        "act": 3,
+        "scope": "기존10장 재기획",
+        "generalClearRate": [
+          70,
+          85
+        ],
+        "enemyActions": [
+          4,
+          6
+        ],
+        "enemyAttackPctHP": [
+          18,
+          26
+        ],
+        "minibossStages": [
+          5,
+          6
+        ],
+        "minibossCount": [
+          5,
+          7
+        ],
+        "verticalStagesMin": 4,
+        "combinedStagesMin": 4,
+        "verticalJumps": [
+          28,
+          48
+        ],
+        "verticalDrops": [
+          12,
+          24
+        ],
+        "roundsHardMax": 20
+      },
+      {
+        "act": 4,
+        "scope": "기존10장 재기획",
+        "generalClearRate": [
+          60,
+          75
+        ],
+        "enemyActions": [
+          5,
+          7
+        ],
+        "enemyAttackPctHP": [
+          22,
+          30
+        ],
+        "minibossStages": [
+          7,
+          8
+        ],
+        "minibossCount": [
+          9,
+          11
+        ],
+        "verticalStagesMin": 4,
+        "combinedStagesMin": 4,
+        "verticalJumps": [
+          32,
+          56
+        ],
+        "verticalDrops": [
+          16,
+          28
+        ],
+        "roundsHardMax": 20
+      },
+      {
+        "act": 5,
+        "scope": "미제작 막의 향후 설계 기준안",
+        "generalClearRate": [
+          60,
+          75
+        ],
+        "enemyActions": [
+          6,
+          8
+        ],
+        "enemyAttackPctHP": [
+          24,
+          32
+        ],
+        "minibossStages": [
+          8,
+          9
+        ],
+        "minibossCount": [
+          12,
+          15
+        ],
+        "verticalStagesMin": 5,
+        "combinedStagesMin": 4,
+        "verticalJumps": [
+          36,
+          60
+        ],
+        "verticalDrops": [
+          18,
+          30
+        ],
+        "roundsHardMax": 20
+      },
+      {
+        "act": 6,
+        "scope": "미제작 막의 향후 설계 기준안",
+        "generalClearRate": [
+          55,
+          70
+        ],
+        "enemyActions": [
+          7,
+          9
+        ],
+        "enemyAttackPctHP": [
+          26,
+          34
+        ],
+        "minibossStages": [
+          9,
+          10
+        ],
+        "minibossCount": [
+          16,
+          20
+        ],
+        "verticalStagesMin": 5,
+        "combinedStagesMin": 5,
+        "verticalJumps": [
+          40,
+          64
+        ],
+        "verticalDrops": [
+          20,
+          32
+        ],
+        "roundsHardMax": 20
+      }
+    ],
+    "definitions": {
+      "generalClearRate": "등록된 일반 정책의 유한 입력변형 시험군 클리어 비율(%). 사람의 승률이 아니다. 일반전 기준이며 보스·분할파티·비전투·짧은 귀환은 각 장에 따로 표시한다.",
+      "enemyAttackPctHP": "정상 진입 장비·성장의 피격 캐릭터 최대HP 대비, 적 한 번의 유효 공격 행동에서 받은 합산 피해(%). 연타를 따로 쪼개 낮추지 않는다. 실제 피해 기준이며 명중 여부·방어·실드·유닛별 최댓값도 따로 기록한다.",
+      "enemyActions": "한 적 페이즈에 실제 행동한 서로 다른 적 개체 수. 계획 상한과 실제 관측을 구분한다.",
+      "miniboss": "정예와 별도 등급. 파티 집중 공략2–3R,고유행동·읽을 수 있는 예고·대응법을 갖춘 강화 개체.2개체 조합전 총3–5R목표.주요보스와 중복 집계하지 않는다.",
+      "mandatoryCount": "기존 승리조건상 반드시 처치해야 하는 중간보스 수. 단순히 배치했다는 이유로 처치 의무를 신설하지 않는다.",
+      "verticalSpanRatio": "사전 등록한 실제 활용 플레이 높이 대비 필수 동선의 고도 범위. 카메라·배경·도달 불가 공간은 분모에서 제외한다.",
+      "verticalTravelRatio": "성공런 파티의 누적 상하 이동거리/누적 수평 이동거리. 단순 점프 부풀리기 금지. 실제 층간 이동과 진목 전이는 각각 보고한다.",
+      "jumpCount": "성공런 파티 전체에서 다른 지지면과 경로·전투 선택에 기여한 이동의 중앙값. 점프/아래점프/의도 낙하/축지를 구분한다. 모든 동료를 강제 왕복시켜 채우지 않는다.",
+      "normalKillActions": "일반 적은 현재 정상 성장 파티의 유효 공격1–2회 목표. 정예·중간보스·주요보스·비살상목표는 별도다."
+    },
+    "checks": [
+      {
+        "id": "ROUND_CAP_20",
+        "rule": "1–40 모든 장의 클리어R 목표 상한≤20. 실제 일반/숙련 정상진행 시험의20R 초과는0건이어야한다. 강제게임오버신설이나20R에서로그잘라합격하는것금지."
+      },
+      {
+        "id": "ACT4_PRESSURE",
+        "rule": "일반전과 전체 전투장 두 집계 모두에서 4막의 클리어율 목표 중심 평균은 3막보다 최소5%p 낮아야 한다. 단순 비전투19는 전투 집계에서 제외하고 모든 제외 목록을 표시한다."
+      },
+      {
+        "id": "ACT4_ENEMY_ACTIONS",
+        "rule": "4막 일반전의 실제 행동 적 목표 중심 중앙값이 3막보다 최소1 높아야 한다. 전체 전투장 평균도 후퇴하지 않는다."
+      },
+      {
+        "id": "ACT4_DAMAGE",
+        "rule": "4막 일반전 적 유효 공격 피해율 목표 중심 중앙값은 3막보다 최소3%p 높아야 한다. 전체 전투장 평균도 후퇴하지 않는다."
+      },
+      {
+        "id": "ACT4_DURATION",
+        "rule": "4막 전체 전투장 클리어R 목표 중심 평균과 중앙값이 3막보다 높아야 한다. 단, 난도를 맞추려고 빈 이동·대기·HP 소모만 늘리지 않는다."
+      },
+      {
+        "id": "MINIBOSS_RISE",
+        "rule": "각 막의 중간보스 등장 장 수와 총 개체 수가 표의 목표를 충족하고 이전 막보다 증가해야 한다. 필수·선택 처치는 따로 표시한다."
+      },
+      {
+        "id": "VERTICAL_MIX",
+        "rule": "각 막의 수직형·복합형 수가 목표를 충족해야 한다. 수직형은 verticalSpanRatio≥0.55 및 verticalTravelRatio≥0.65, 복합형은 각각≥0.35를 목표로 한다. 이름만으로 통과하지 않는다."
+      },
+      {
+        "id": "NO_UNAVOIDABLE_ONESHOT",
+        "rule": "예고·대응 없이 발생하는 필수 원턴 사망과 무한 제어 불능은0건. 위험한 합동공격에는 이동·엄폐·방해·목표 우선순위 중 대응 경로를 제공한다."
+      }
+    ],
+    "storyExceptions": {
+      "19": "비전투·기예 금지·소단 단독 마무리",
+      "25-27": "분할된2인 파티 기준.4인 적 행동량을 그대로 강제하지 않음",
+      "32": "재회 전후의 국소 완화",
+      "36": "쇠가 없는 마을의 정적·관찰 유지",
+      "39": "폐선 처치는 선택, 네 사람 구조는 필수",
+      "40": "짧은 귀환·결산, 새 주요보스 금지"
+    },
+    "art": "시안→Inkscape raw→최적화의 재질별 정량검사와 최종 시각검수를 유지한다. 긴 설명은 접힌 부록으로 옮긴다.",
+    "essentialCriteria": [
+      {
+        "key": "rounds",
+        "label": "분량",
+        "rule": "장별 목표범위·전체20R 상한. 정상진행 검증 초과0건."
+      },
+      {
+        "key": "difficulty",
+        "label": "난도",
+        "rule": "일반정책 클리어율·실제 행동 적·유효 피해율 목표와 막별 상승."
+      },
+      {
+        "key": "encounters",
+        "label": "적 구성",
+        "rule": "필수경로 실제 교전 수와 중간보스 등장/개체 목표. 주요보스는 분리하며 고유 패턴·예고·대응이 있어야 한다."
+      },
+      {
+        "key": "space",
+        "label": "공간 전개",
+        "rule": "수직/복합 유형·유효 점프/아래점프·필수 고도 활용. 유형에 따라 필요한 항목만 필수."
+      },
+      {
+        "key": "objective_art",
+        "label": "목표와 화면",
+        "rule": "원래 완료조건·진행 정상, 실제 이미지 승인, 자연윤곽<20% 목표/<30% 상한, 의미 소실·불량 연결0건."
+      }
+    ],
+    "referenceCriteria": [
+      "일반전 맵 크기·종횡비·발판 수",
+      "전체 적 예산·역할/패턴의 단순 개수",
+      "사람 플레이 분·자원 사용·회복 선택",
+      "정밀 곡률·에지 밀도·노드/경로 밀도",
+      "세부 비용·콜드 로딩 진단"
+    ],
+    "referenceRule": "참고 지표만 어긋났다고 자동 반려하지 않는다. 원인 분석과 조정에 사용한다. 특정 장의 핵심 기획을 증명하는 항목은 사전에 해당 장 필수로 지정할 수 있다. 진행 불가·충돌·보호요소 소실 등 실제 결함을 참고로 내려 숨기지 않는다.",
+    "roundChanges": [
+      {
+        "id": 1,
+        "oldRounds": [
+          5,
+          7
+        ],
+        "newRounds": [
+          4,
+          6
+        ]
+      },
+      {
+        "id": 2,
+        "oldRounds": [
+          7,
+          10
+        ],
+        "newRounds": [
+          5,
+          7
+        ]
+      },
+      {
+        "id": 3,
+        "oldRounds": [
+          8,
+          11
+        ],
+        "newRounds": [
+          6,
+          8
+        ]
+      },
+      {
+        "id": 4,
+        "oldRounds": [
+          8,
+          10
+        ],
+        "newRounds": [
+          7,
+          9
+        ]
+      },
+      {
+        "id": 5,
+        "oldRounds": [
+          9,
+          12
+        ],
+        "newRounds": [
+          7,
+          10
+        ]
+      },
+      {
+        "id": 6,
+        "oldRounds": [
+          9,
+          13
+        ],
+        "newRounds": [
+          8,
+          11
+        ]
+      },
+      {
+        "id": 7,
+        "oldRounds": [
+          10,
+          14
+        ],
+        "newRounds": [
+          9,
+          12
+        ]
+      },
+      {
+        "id": 8,
+        "oldRounds": [
+          13,
+          17
+        ],
+        "newRounds": [
+          11,
+          14
+        ]
+      },
+      {
+        "id": 9,
+        "oldRounds": [
+          9,
+          12
+        ],
+        "newRounds": [
+          7,
+          9
+        ]
+      },
+      {
+        "id": 10,
+        "oldRounds": [
+          14,
+          18
+        ],
+        "newRounds": [
+          12,
+          16
+        ]
+      },
+      {
+        "id": 11,
+        "oldRounds": [
+          11,
+          15
+        ],
+        "newRounds": [
+          10,
+          13
+        ]
+      },
+      {
+        "id": 12,
+        "oldRounds": [
+          11,
+          15
+        ],
+        "newRounds": [
+          10,
+          13
+        ]
+      },
+      {
+        "id": 13,
+        "oldRounds": [
+          12,
+          16
+        ],
+        "newRounds": [
+          10,
+          14
+        ]
+      },
+      {
+        "id": 14,
+        "oldRounds": [
+          11,
+          15
+        ],
+        "newRounds": [
+          9,
+          12
+        ]
+      },
+      {
+        "id": 15,
+        "oldRounds": [
+          12,
+          16
+        ],
+        "newRounds": [
+          10,
+          14
+        ]
+      },
+      {
+        "id": 16,
+        "oldRounds": [
+          12,
+          16
+        ],
+        "newRounds": [
+          11,
+          14
+        ]
+      },
+      {
+        "id": 17,
+        "oldRounds": [
+          14,
+          18
+        ],
+        "newRounds": [
+          12,
+          16
+        ]
+      },
+      {
+        "id": 18,
+        "oldRounds": [
+          17,
+          23
+        ],
+        "newRounds": [
+          15,
+          19
+        ]
+      },
+      {
+        "id": 19,
+        "oldRounds": [
+          0,
+          0
+        ],
+        "newRounds": [
+          0,
+          0
+        ]
+      },
+      {
+        "id": 20,
+        "oldRounds": [
+          13,
+          18
+        ],
+        "newRounds": [
+          11,
+          15
+        ]
+      },
+      {
+        "id": 21,
+        "oldRounds": [
+          14,
+          18
+        ],
+        "newRounds": [
+          11,
+          14
+        ]
+      },
+      {
+        "id": 22,
+        "oldRounds": [
+          16,
+          21
+        ],
+        "newRounds": [
+          12,
+          16
+        ]
+      },
+      {
+        "id": 23,
+        "oldRounds": [
+          18,
+          23
+        ],
+        "newRounds": [
+          13,
+          17
+        ]
+      },
+      {
+        "id": 24,
+        "oldRounds": [
+          14,
+          18
+        ],
+        "newRounds": [
+          11,
+          14
+        ]
+      },
+      {
+        "id": 25,
+        "oldRounds": [
+          16,
+          21
+        ],
+        "newRounds": [
+          12,
+          16
+        ]
+      },
+      {
+        "id": 26,
+        "oldRounds": [
+          15,
+          20
+        ],
+        "newRounds": [
+          11,
+          15
+        ]
+      },
+      {
+        "id": 27,
+        "oldRounds": [
+          17,
+          22
+        ],
+        "newRounds": [
+          13,
+          17
+        ]
+      },
+      {
+        "id": 28,
+        "oldRounds": [
+          19,
+          24
+        ],
+        "newRounds": [
+          14,
+          18
+        ]
+      },
+      {
+        "id": 29,
+        "oldRounds": [
+          23,
+          29
+        ],
+        "newRounds": [
+          16,
+          20
+        ]
+      },
+      {
+        "id": 30,
+        "oldRounds": [
+          22,
+          28
+        ],
+        "newRounds": [
+          15,
+          19
+        ]
+      },
+      {
+        "id": 31,
+        "oldRounds": [
+          20,
+          26
+        ],
+        "newRounds": [
+          15,
+          18
+        ]
+      },
+      {
+        "id": 32,
+        "oldRounds": [
+          11,
+          15
+        ],
+        "newRounds": [
+          10,
+          13
+        ]
+      },
+      {
+        "id": 33,
+        "oldRounds": [
+          21,
+          27
+        ],
+        "newRounds": [
+          16,
+          19
+        ]
+      },
+      {
+        "id": 34,
+        "oldRounds": [
+          23,
+          29
+        ],
+        "newRounds": [
+          17,
+          20
+        ]
+      },
+      {
+        "id": 35,
+        "oldRounds": [
+          21,
+          27
+        ],
+        "newRounds": [
+          16,
+          19
+        ]
+      },
+      {
+        "id": 36,
+        "oldRounds": [
+          7,
+          11
+        ],
+        "newRounds": [
+          7,
+          10
+        ]
+      },
+      {
+        "id": 37,
+        "oldRounds": [
+          24,
+          30
+        ],
+        "newRounds": [
+          17,
+          20
+        ]
+      },
+      {
+        "id": 38,
+        "oldRounds": [
+          23,
+          29
+        ],
+        "newRounds": [
+          17,
+          20
+        ]
+      },
+      {
+        "id": 39,
+        "oldRounds": [
+          26,
+          32
+        ],
+        "newRounds": [
+          18,
+          20
+        ]
+      },
+      {
+        "id": 40,
+        "oldRounds": [
+          6,
+          10
+        ],
+        "newRounds": [
+          8,
+          11
+        ]
+      }
+    ],
+    "classificationPriority": "v3의 필수/참고 구분을 적용한다. 이전 v2의 모든 측정값 필수 문구는 측정법 보존용 이력이며 v3 분류보다 우선하지 않는다.",
+    "artClassification": {
+      "essential": [
+        "최종 실제 크기 이미지 승인",
+        "자연 윤곽 직선 기본<20%/절대<30%",
+        "필수 보호요소 소실0·의미 연결 불량0",
+        "원본 대비 외곽1.5px/보호0.5px 등 보존 오차",
+        "현행 엔진 구조·안전 한도"
+      ],
+      "reference": [
+        "정밀 곡률·노드·경로 밀도",
+        "대비가중 에지 밀도와 상세 색 분포",
+        "비용 진단과 최적화 후보 비교"
+      ],
+      "rule": "참고 수치는 이미지 검수의 원인 분석에 사용한다. 실제 가독성·스타일·구성·진행 결함을 참고 항목이라고 면책하지 않는다. 해당 장 핵심 기준판의 필수 항목은 사전에 명시한다."
+    }
+  },
+  "stages": [
+    {
+      "id": 1,
+      "act": 1,
+      "chapter": 1,
+      "name": "연목 고갯길",
+      "storyIntent": "설오가 연목 나루로 내려가며 들린 짐승과 수레터를 처음 만난다. 전멸보다 길을 읽고 통과하는 기초를 익힌다.",
+      "gimmick": "큰 소나무 가지의 선택 고지, 얕은 물길, 수레 사건과 낮은 바위 차폐.",
+      "winCondition": "살아 있는 동행이 동쪽 도착 지점에 도달. 전맵 전멸 불필요.",
+      "sourceRefs": [
+        "shared/data/campaign.json#stage-1",
+        "shared/runtime/objectives.js#rawState",
+        "shared/data/narrative-current.json#stages.1",
+        "tools/map-forge/stage1-positioning.mjs",
+        "shared/runtime/encounters.js#balance",
+        "game/tests/helpers.mjs#runtime-productionStory/battlefield (정적 생성만)"
+      ],
+      "current": {
+        "width": 5400,
+        "height": 2200,
+        "enemies": 8,
+        "terrainCount": 7,
+        "evidenceScope": "cd84db106f04224d5b9a145890bf11c5d8eb0ebc; runtime({legacyMaps:false,productionStory:true}) + fresh battlefield, 정상 진입 계획XP·빈장비 프로필의 정적 생성. enemies=side1 중 honroObjectiveTarget 제외, hostileSideIncludingObjectives=side1 전체. terrainCount=b.terrain 레코드 수로 전술발판 수가 아니다. 행동입력/승패/브라우저/시간측정 미실행.",
+        "hostileSideIncludingObjectives": 8,
+        "objectiveTargetCount": 0,
+        "configuredEnemyActionLimit": 3
+      },
+      "design": {
+        "spatialType": "수평형 — 수레턱과 물길",
+        "reason": "gross W/H는 보존하고 실제 연결 지지면·상하 경로·교전 배치를 보완한다. 낮은 턱으로 첫 사선을 열고 물가 노출을 줄인다.",
+        "width": [
+          5400,
+          5400
+        ],
+        "height": [
+          2200,
+          2200
+        ],
+        "aspect": [
+          2.4545454545454546,
+          2.4545454545454546
+        ],
+        "platforms": [
+          6,
+          8
+        ],
+        "elevationBands": [
+          2,
+          3
+        ],
+        "routes": [
+          1,
+          2
+        ],
+        "jumps": [
+          4,
+          6
+        ],
+        "drops": [
+          2,
+          3
+        ],
+        "rounds": [
+          4,
+          6
+        ],
+        "minutes": [
+          5,
+          9
+        ],
+        "enemies": [
+          10,
+          12
+        ],
+        "requiredEngagements": [
+          4,
+          7
+        ],
+        "simultaneous": [
+          3,
+          4
+        ],
+        "enemyActions": [
+          2,
+          3
+        ],
+        "roles": [
+          2,
+          3
+        ],
+        "patterns": [
+          2,
+          3
+        ],
+        "elites": [
+          0,
+          0
+        ],
+        "boss": null,
+        "clearRate": [
+          90,
+          100
+        ],
+        "artProfiles": [
+          "terrain_organic_rock",
+          "terrain_timber",
+          "terrain_water",
+          "background_low_density"
+        ],
+        "artIntent": "큰 소나무·수레터·얕은 물길의 큰 형태를 보존하고 작은 나뭇잎 노이즈보다 보행선과 첫 표적 대비를 우선한다.",
+        "enemyPlan": [
+          {
+            "role": "측면 접근",
+            "archetype": "산개",
+            "behavior": "측면 포위 접근",
+            "patterns": [
+              "측면 포위 접근"
+            ],
+            "loreBasis": "현재 장의 산개 또는 같은 원형의 강화편성; 새 신분·새 사건을 확정하지 않는다.",
+            "status": "proposed"
+          },
+          {
+            "role": "통로 차단",
+            "archetype": "사슴",
+            "behavior": "몸 돌린 뒤 직선 밀기",
+            "patterns": [
+              "몸 돌린 뒤 직선 밀기"
+            ],
+            "loreBasis": "현재 장의 사슴 또는 같은 원형의 강화편성; 새 신분·새 사건을 확정하지 않는다.",
+            "status": "proposed"
+          },
+          {
+            "role": "고지 견제",
+            "archetype": "까마귀",
+            "behavior": "고지 진입에 반응한 사선 급강하",
+            "patterns": [
+              "고지 진입에 반응한 사선 급강하"
+            ],
+            "loreBasis": "현재 장의 까마귀 또는 같은 원형의 강화편성; 새 신분·새 사건을 확정하지 않는다.",
+            "status": "proposed"
+          }
+        ],
+        "initialEnemies": [
+          6,
+          8
+        ],
+        "finiteReinforcements": [
+          4,
+          4
+        ],
+        "enemyBudgetBasis": "도입 전위/고지의2소조와 수레 유한반응 — 모두 신규 제안; 현재 편성수/최대예약상한/실제 생성 수를 복사한 수치가 아니다. 수레접근 반응 유한4; 통과전투에서 모두처치의무는없다.",
+        "reinforcementScope": "수레접근 반응 유한4; 통과전투에서 모두처치의무는없다.",
+        "primaryAxis": "H",
+        "verticalSpanPx": [
+          450,
+          600
+        ],
+        "verticalTravelRatio": [
+          0.15,
+          0.3
+        ],
+        "enemyAttackPctHP": [
+          10,
+          16
+        ],
+        "actualEnemyActions": [
+          2,
+          3
+        ],
+        "enemyActionCap": [
+          3,
+          4
+        ],
+        "normalKillActions": [
+          1,
+          2
+        ],
+        "activePlayBounds": {
+          "x": [
+            0,
+            5400
+          ],
+          "y": [
+            0,
+            2200
+          ],
+          "status": "proposed",
+          "validation": "구현 전 선언 구역. 실제 진입·필수 목표·정상 경로 포함과 구역 밖 도달가능 면적을 실측해야 함."
+        },
+        "activePlayHeight": [
+          2200,
+          2200
+        ],
+        "verticalSpanRatio": [
+          0.205,
+          0.273
+        ],
+        "grossVerticalSpanRatio": [
+          0.205,
+          0.273
+        ],
+        "majorBossCount": [
+          0,
+          0
+        ],
+        "miniboss": {
+          "count": [
+            0,
+            0
+          ],
+          "mandatoryCount": [
+            0,
+            0
+          ],
+          "variants": [],
+          "killRounds": [
+            0,
+            0
+          ]
+        },
+        "objectivePressure": {
+          "simultaneousDemands": [
+            1,
+            1
+          ],
+          "responseWindowRounds": [
+            1,
+            2
+          ],
+          "failureRecoveryOptions": [
+            2,
+            3
+          ],
+          "reason": "원래 목표·승리조건을 유지하고 이동/사선/보호/기믹 중 동시에 판단할 요구를 조합. 대응창은 예고 후 유효 아군 대응기회이며 새로운 고정 대기R을 추가하지 않는다."
+        },
+        "v2Status": "정량 설계 제안·미구현·미실측. source/current는 v1과 동일.",
+        "metricDefinitions": {
+          "enemyAttackPctHP": "정상 성장·해당 장 합법 장비에서 일반 적의 비치명 1회 정상 명중 피해/대상 최대HP×100. 정예·중간·주요보스 강공격 제외.",
+          "normalKillActions": "일반 적 1체에 실제 유효한 플레이어 공격/기예 행동 수. 이동·실패 발사·보스 제외.",
+          "enemyActions": "실제 교전 중 적 페이즈당 피해·제압·경로차단·유효접근·목표압박을 만든 행동 수. 제자리 대기·무표적 발사 제외. 설정 상한은 enemyActionCap과 별도.",
+          "verticalSpanRatio": "필수 기본 경로의 최대-최소 착지 지지면 높이 / 사전 선언 activePlayBounds 높이. gross 비율 별도.",
+          "verticalTravelRatio": "필수 기본 경로의 유효 착지 지지면 |Δy| 누적 / |Δx| 누적. 점프 포물선 자체의 위아래 궤적 제외.",
+          "jumpsDrops": "성공런에서 플레이어가 조작한 동행 전체의 유효 점프/하강. NPC 자동이동·헛점프·같은 자리 반복 제외.",
+          "rankCounts": "elites는 일반 정예만. miniboss·majorBossCount와 중복하지 않는다. 10장 주박은 주요 보스 조우이나 적 총예산에서는 목표물로 제외."
+        },
+        "verticalRoute": {
+          "route": "낮은 수레턱→얕은 물길→동쪽 출구. 큰 소나무 가지는 여전히 선택.",
+          "tacticalReward": "낮은 턱으로 첫 사선을 열고 물가 노출을 줄인다.",
+          "requiredLayerTransitions": [
+            3,
+            5
+          ],
+          "upDownReturns": [
+            0,
+            1
+          ],
+          "requiredVisitedBands": [
+            2,
+            3
+          ],
+          "maxRequiredJumpRisePx": [
+            120,
+            145
+          ],
+          "geometryStatus": "제안·미구현·미실측",
+          "measurement": "필수 퀘스트 기본경로의 실제 지지면/착지 기록. 동행 조작만 합산하고 같은 자리 반복·NPC 자동이동 제외. 정상적인 합법 우회가 목표 아래면 실패를 숨기지 않고 경로/목표를 재설계한다."
+        },
+        "maxSingleArchetypePct": 50,
+        "compositionRule": "일반·정예·중간·주요보스 개체수 중복 없음. 재질/색/HP만 다른 적은 새 패턴으로 세지 않는다. 같은 공격이라도 이름만 바꾼 것은 하나로 집계하며 실제 명중형상·예고·대응이 달라야 한다.",
+        "enemyPlanCounting": "역할·패턴은 위의 설계 목표 범위다. 아래 편성 후보의 행 수, 적 종류 수, 정예 등급, 같은 적의 형태 전이를 자동 가산하지 않는다. 실제 채택 구성에서 기능·대응 방식 기준으로 중복 제거하여 측정한다.",
+        "roundBudget": {
+          "target": [
+            4,
+            6
+          ],
+          "hardMax": 20,
+          "scope": "전투·이동·필수기믹·대기를 포함한 전체 라운드",
+          "validation": "등록된 일반·숙련 정상 진행 시험에서 20R 초과 0건. 초과는 별도 분량 실패로 기록하며 성공률에 숨기지 않는다. 악의적 무행동 시험은 분리한다.",
+          "notGameplayTimeout": "20R 강제 게임오버를 신설하는 규칙이 아니다."
+        },
+        "pacingChanges": [
+          "기존 스토리와 완료조건은 유지한다. 20R 안에 안 들어오면 전투/동선/기믹 배치를 다시 설계한다.",
+          "일반 적은 유효 공격 1–2회로 처리하고, 난도는 피해·협공·패턴·위치 선택으로 만든다.",
+          "연속되는 전투와 목적 행동을 같은 이동 구간에 묶고 빈 이동·예약 파동 대기를 줄인다.",
+          "수직 이동의 선택과 큰 형태는 유지하되 발판 간격·합류 지점·왕복거리를 압축한다."
+        ]
+      },
+      "tactics": [
+        "기본 활의 막힌 사선을 짧은 이동으로 연다.",
+        "가지 사격은 선택 보상이며 바닥 경로도 기본 이동으로 완료한다."
+      ],
+      "specialMetrics": [
+        {
+          "metric": "첫 유효 교전까지",
+          "target": "1~2R",
+          "measure": "진입→첫 명중 또는 적의 유효 접근 시간",
+          "reason": "첫 장에서 목적 없는 빈 이동을 막는다."
+        },
+        {
+          "metric": "필수 경로 이동량",
+          "target": "3500~6000px/대표 선두",
+          "measure": "정상 입력 위치 차분의 누적",
+          "reason": "기초 이동 교육을 길이 부담과 분리한다."
+        },
+        {
+          "metric": "선택 고지의 가치",
+          "target": "피해·사선·피격회피 중 1가지 개선 ≥15%",
+          "measure": "동일 진입 상태의 바닥/가지 분기 비교",
+          "reason": "높이가 장식으로 끝나지 않아야 한다."
+        }
+      ],
+      "varianceReason": "도입부의 낮은 압력. 뒤 장보다 짧고 적 역할이 적은 것이 의도다.",
+      "proposedChanges": [
+        "낮은 수레턱→얕은 물길→동쪽 출구. 큰 소나무 가지는 여전히 선택.",
+        "낮은 턱으로 첫 사선을 열고 물가 노출을 줄인다.",
+        "상한 숫자를 늘리는 것만으로 통과하지 않는다. 새 적 행동·높이별 대응·목표 압박을 일반정책 신규 seed로 실측한다.",
+        "v3 분량 상한20R: 일반 적 처치행동·중간보스 공략 길이·이동/기믹 대기를 줄이고, 공격 압력과 수직·복합 전개는 유지한다."
+      ],
+      "unknowns": [
+        "현행 초기 적은 공통 복제로 늘어나므로 raw units=4를 실제 진입 4로 기록하지 않는다.",
+        "라운드·분·점프·실효 적행동·클리어율은 이 작업에서 실측하지 않았다. 제안 범위의 수락에는 정상 성장·일반정책·새 조준오차 seed cohort 실측이 필요하다."
+      ]
+    },
+    {
+      "id": 2,
+      "act": 1,
+      "chapter": 2,
+      "name": "상여 위의 높은 길",
+      "storyIntent": "담허가 이끄는 장례 행렬을 높은 설오의 사선으로 돕는다. 홍만의 죽음과 장부의 위치가 다음 장의 동기가 된다.",
+      "gimmick": "상단 엄호턱과 하부 상여의 동시 진행, 공중/높은 적, 서측 하강·합류.",
+      "winCondition": "상여가 하부 길의 지정 출구에 도착하고 보호 대상 생존. 길 밖 잔적 전멸을 요구하지 않는다.",
+      "sourceRefs": [
+        "shared/data/campaign.json#stage-2",
+        "shared/runtime/objectives.js#rawState",
+        "shared/data/narrative-current.json#stages.2",
+        "shared/runtime/stage2-layered-road.js",
+        "shared/runtime/stage2-airborne.js",
+        "game/docs/STAGE2_AIRBORNE.md",
+        "game/tests/helpers.mjs#runtime-productionStory/battlefield (정적 생성만)"
+      ],
+      "current": {
+        "width": 4300,
+        "height": 3300,
+        "enemies": 12,
+        "terrainCount": 14,
+        "evidenceScope": "cd84db106f04224d5b9a145890bf11c5d8eb0ebc; runtime({legacyMaps:false,productionStory:true}) + fresh battlefield, 정상 진입 계획XP·빈장비 프로필의 정적 생성. enemies=side1 중 honroObjectiveTarget 제외, hostileSideIncludingObjectives=side1 전체. terrainCount=b.terrain 레코드 수로 전술발판 수가 아니다. 행동입력/승패/브라우저/시간측정 미실행.",
+        "hostileSideIncludingObjectives": 12,
+        "objectiveTargetCount": 0,
+        "configuredEnemyActionLimit": 4
+      },
+      "design": {
+        "spatialType": "복합형 — 상하 엄호 호송",
+        "reason": "gross W/H는 보존하고 실제 연결 지지면·상하 경로·교전 배치를 보완한다. 앞·뒤 엄호 사각을 바꾸는 고저 이동. 상여를 따라 무조건 바닥만 걷는 편성이 아니다.",
+        "width": [
+          4300,
+          4300
+        ],
+        "height": [
+          3300,
+          3300
+        ],
+        "aspect": [
+          1.303030303030303,
+          1.303030303030303
+        ],
+        "platforms": [
+          14,
+          18
+        ],
+        "elevationBands": [
+          4,
+          5
+        ],
+        "routes": [
+          2,
+          2
+        ],
+        "jumps": [
+          12,
+          18
+        ],
+        "drops": [
+          6,
+          8
+        ],
+        "rounds": [
+          5,
+          7
+        ],
+        "minutes": [
+          5,
+          10
+        ],
+        "enemies": [
+          14,
+          18
+        ],
+        "requiredEngagements": [
+          7,
+          11
+        ],
+        "simultaneous": [
+          3,
+          4
+        ],
+        "enemyActions": [
+          2,
+          3
+        ],
+        "roles": [
+          3,
+          4
+        ],
+        "patterns": [
+          3,
+          4
+        ],
+        "elites": [
+          0,
+          1
+        ],
+        "boss": null,
+        "clearRate": [
+          85,
+          100
+        ],
+        "artProfiles": [
+          "terrain_organic_rock",
+          "terrain_timber",
+          "terrain_water",
+          "background_low_density",
+          "character_protected_features"
+        ],
+        "artIntent": "위 능선과 아래 상여의 깊이 차이를 읽게 하되 상여·담허·설오의 실제 높이 관계를 바꾸지 않는다.",
+        "enemyPlan": [
+          {
+            "role": "호송 차단",
+            "archetype": "멧돼지",
+            "behavior": "예고 직선 돌진",
+            "patterns": [
+              "예고 직선 돌진"
+            ],
+            "loreBasis": "현재 장의 멧돼지 또는 같은 원형의 강화편성; 새 신분·새 사건을 확정하지 않는다.",
+            "status": "proposed"
+          },
+          {
+            "role": "뒤쪽 추격",
+            "archetype": "산개",
+            "behavior": "상여 뒤 우회 접근",
+            "patterns": [
+              "상여 뒤 우회 접근"
+            ],
+            "loreBasis": "현재 장의 산개 또는 같은 원형의 강화편성; 새 신분·새 사건을 확정하지 않는다.",
+            "status": "proposed"
+          },
+          {
+            "role": "상단 압박",
+            "archetype": "박쥐·까마귀",
+            "behavior": "높이 맞춘 급강하",
+            "patterns": [
+              "높이 맞춘 급강하"
+            ],
+            "loreBasis": "현재 장의 박쥐·까마귀 또는 같은 원형의 강화편성; 새 신분·새 사건을 확정하지 않는다.",
+            "status": "proposed"
+          },
+          {
+            "role": "사격창 강제",
+            "archetype": "현재 유한 사수",
+            "behavior": "조준선 뒤 고지 고정 사격",
+            "patterns": [
+              "조준선 뒤 고지 고정 사격"
+            ],
+            "loreBasis": "현재 장의 현재 유한 사수 또는 같은 원형의 강화편성; 새 신분·새 사건을 확정하지 않는다.",
+            "status": "proposed"
+          }
+        ],
+        "initialEnemies": [
+          10,
+          12
+        ],
+        "finiteReinforcements": [
+          4,
+          6
+        ],
+        "enemyBudgetBasis": "하부호송 전위·상부날짐승·예고기습 — 모두 신규 제안; 현재 편성수/최대예약상한/실제 생성 수를 복사한 수치가 아니다. 하부진행/사수기습 반응4~6; 호송도착조건이며구간밖잔적처치의무는없다.",
+        "reinforcementScope": "하부진행/사수기습 반응4~6; 호송도착조건이며구간밖잔적처치의무는없다.",
+        "primaryAxis": "C",
+        "verticalSpanPx": [
+          1250,
+          1650
+        ],
+        "verticalTravelRatio": [
+          0.35,
+          0.5
+        ],
+        "enemyAttackPctHP": [
+          11,
+          16
+        ],
+        "actualEnemyActions": [
+          2,
+          3
+        ],
+        "enemyActionCap": [
+          3,
+          4
+        ],
+        "normalKillActions": [
+          1,
+          2
+        ],
+        "activePlayBounds": {
+          "x": [
+            0,
+            4300
+          ],
+          "y": [
+            0,
+            3300
+          ],
+          "status": "proposed",
+          "validation": "구현 전 선언 구역. 실제 진입·필수 목표·정상 경로 포함과 구역 밖 도달가능 면적을 실측해야 함."
+        },
+        "activePlayHeight": [
+          3300,
+          3300
+        ],
+        "verticalSpanRatio": [
+          0.379,
+          0.5
+        ],
+        "grossVerticalSpanRatio": [
+          0.379,
+          0.5
+        ],
+        "majorBossCount": [
+          0,
+          0
+        ],
+        "miniboss": {
+          "count": [
+            0,
+            0
+          ],
+          "mandatoryCount": [
+            0,
+            0
+          ],
+          "variants": [],
+          "killRounds": [
+            0,
+            0
+          ]
+        },
+        "objectivePressure": {
+          "simultaneousDemands": [
+            1,
+            1
+          ],
+          "responseWindowRounds": [
+            1,
+            2
+          ],
+          "failureRecoveryOptions": [
+            2,
+            3
+          ],
+          "reason": "원래 목표·승리조건을 유지하고 이동/사선/보호/기믹 중 동시에 판단할 요구를 조합. 대응창은 예고 후 유효 아군 대응기회이며 새로운 고정 대기R을 추가하지 않는다."
+        },
+        "v2Status": "정량 설계 제안·미구현·미실측. source/current는 v1과 동일.",
+        "metricDefinitions": {
+          "enemyAttackPctHP": "정상 성장·해당 장 합법 장비에서 일반 적의 비치명 1회 정상 명중 피해/대상 최대HP×100. 정예·중간·주요보스 강공격 제외.",
+          "normalKillActions": "일반 적 1체에 실제 유효한 플레이어 공격/기예 행동 수. 이동·실패 발사·보스 제외.",
+          "enemyActions": "실제 교전 중 적 페이즈당 피해·제압·경로차단·유효접근·목표압박을 만든 행동 수. 제자리 대기·무표적 발사 제외. 설정 상한은 enemyActionCap과 별도.",
+          "verticalSpanRatio": "필수 기본 경로의 최대-최소 착지 지지면 높이 / 사전 선언 activePlayBounds 높이. gross 비율 별도.",
+          "verticalTravelRatio": "필수 기본 경로의 유효 착지 지지면 |Δy| 누적 / |Δx| 누적. 점프 포물선 자체의 위아래 궤적 제외.",
+          "jumpsDrops": "성공런에서 플레이어가 조작한 동행 전체의 유효 점프/하강. NPC 자동이동·헛점프·같은 자리 반복 제외.",
+          "rankCounts": "elites는 일반 정예만. miniboss·majorBossCount와 중복하지 않는다. 10장 주박은 주요 보스 조우이나 적 총예산에서는 목표물로 제외."
+        },
+        "verticalRoute": {
+          "route": "설오 단독으로 상단 엄호턱을 잇고 중단 사격점으로 내려갔다가 다음 상단으로 오른다. 담허 NPC와 상여는 하부 연속길을 유지한다.",
+          "tacticalReward": "앞·뒤 엄호 사각을 바꾸는 고저 이동. 상여를 따라 무조건 바닥만 걷는 편성이 아니다.",
+          "requiredLayerTransitions": [
+            8,
+            12
+          ],
+          "upDownReturns": [
+            1,
+            2
+          ],
+          "requiredVisitedBands": [
+            4,
+            5
+          ],
+          "maxRequiredJumpRisePx": [
+            120,
+            145
+          ],
+          "geometryStatus": "제안·미구현·미실측",
+          "measurement": "필수 퀘스트 기본경로의 실제 지지면/착지 기록. 동행 조작만 합산하고 같은 자리 반복·NPC 자동이동 제외. 정상적인 합법 우회가 목표 아래면 실패를 숨기지 않고 경로/목표를 재설계한다."
+        },
+        "maxSingleArchetypePct": 50,
+        "compositionRule": "일반·정예·중간·주요보스 개체수 중복 없음. 재질/색/HP만 다른 적은 새 패턴으로 세지 않는다. 같은 공격이라도 이름만 바꾼 것은 하나로 집계하며 실제 명중형상·예고·대응이 달라야 한다.",
+        "enemyPlanCounting": "역할·패턴은 위의 설계 목표 범위다. 아래 편성 후보의 행 수, 적 종류 수, 정예 등급, 같은 적의 형태 전이를 자동 가산하지 않는다. 실제 채택 구성에서 기능·대응 방식 기준으로 중복 제거하여 측정한다.",
+        "roundBudget": {
+          "target": [
+            5,
+            7
+          ],
+          "hardMax": 20,
+          "scope": "전투·이동·필수기믹·대기를 포함한 전체 라운드",
+          "validation": "등록된 일반·숙련 정상 진행 시험에서 20R 초과 0건. 초과는 별도 분량 실패로 기록하며 성공률에 숨기지 않는다. 악의적 무행동 시험은 분리한다.",
+          "notGameplayTimeout": "20R 강제 게임오버를 신설하는 규칙이 아니다."
+        },
+        "pacingChanges": [
+          "기존 스토리와 완료조건은 유지한다. 20R 안에 안 들어오면 전투/동선/기믹 배치를 다시 설계한다.",
+          "일반 적은 유효 공격 1–2회로 처리하고, 난도는 피해·협공·패턴·위치 선택으로 만든다.",
+          "연속되는 전투와 목적 행동을 같은 이동 구간에 묶고 빈 이동·예약 파동 대기를 줄인다.",
+          "수직 이동의 선택과 큰 형태는 유지하되 발판 간격·합류 지점·왕복거리를 압축한다."
+        ]
+      },
+      "tactics": [
+        "상여 앞길 위협과 높은 적 중 우선순위를 고른다.",
+        "내려가 합류하면 호송 안전은 좋아지지만 상단 사선은 포기한다."
+      ],
+      "specialMetrics": [
+        {
+          "metric": "상여 최종 잔여 HP",
+          "target": "60~90%",
+          "measure": "성공 cohort의 보호 대상 HP/maxHP 중앙값과 하위10%",
+          "reason": "무피해 자동행진과 한 번의 오차로 붕괴하는 호송을 모두 피한다."
+        },
+        {
+          "metric": "호송 무진행 구간",
+          "target": "연속 ≤2R",
+          "measure": "상여 이동량=0인 R 중 전투/대사/점유 원인 분류",
+          "reason": "고지에서 남은 적 한 마리 때문에 무기한 정지하지 않아야 한다."
+        },
+        {
+          "metric": "고지에서 행렬 위협에 닿는 유효 사선",
+          "target": "2~3곳",
+          "measure": "실제 도달한 지지면별 정상 기본탄 궤적",
+          "reason": "상하 분리의 스토리를 실제 엄호로 만든다."
+        },
+        {
+          "metric": "설오 단독 이동예산",
+          "target": "유효 점프12~18회 × 기본 이동비용75 = 900~1350 이동예산 + 실제 걷기; 5–7R 내 검증",
+          "measure": "engine.ts jumpCost/jump와 성공런 moveLeft 소비/누적 이동. NPC 이동 제외.",
+          "reason": "점프는 별도 공격행동이 아니지만 이동량을 쓰므로 목표를 무조건 달성 가능하다고 주장하지 않는다."
+        }
+      ],
+      "varianceReason": "1장보다 상승·하강과 보호 대상이 추가되지만 본격 수직 등반장으로 만들지 않는다.",
+      "proposedChanges": [
+        "설오 단독으로 상단 엄호턱을 잇고 중단 사격점으로 내려갔다가 다음 상단으로 오른다. 담허 NPC와 상여는 하부 연속길을 유지한다.",
+        "앞·뒤 엄호 사각을 바꾸는 고저 이동. 상여를 따라 무조건 바닥만 걷는 편성이 아니다.",
+        "상한 숫자를 늘리는 것만으로 통과하지 않는다. 새 적 행동·높이별 대응·목표 압박을 일반정책 신규 seed로 실측한다.",
+        "v3 분량 상한20R: 일반 적 처치행동·중간보스 공략 길이·이동/기믹 대기를 줄이고, 공격 압력과 수직·복합 전개는 유지한다."
+      ],
+      "unknowns": [
+        "호송 이동/정지 조건과 합류 전후 controllable roster는 최종 App 진입 상태에서 다시 대조해야 한다.",
+        "라운드·분·점프·실효 적행동·클리어율은 이 작업에서 실측하지 않았다. 제안 범위의 수락에는 정상 성장·일반정책·새 조준오차 seed cohort 실측이 필요하다."
+      ]
+    },
+    {
+      "id": 3,
+      "act": 1,
+      "chapter": 3,
+      "name": "나루의 남은 장부",
+      "storyIntent": "홍만의 나루 장부에서 실종된 사람들의 이동 단서를 얻는다. 나루장을 돌파하는 전투와 증거 회수가 연결된다.",
+      "gimmick": "젖은 제방/진흙 수로/영구 잔교, 창고 고지, 침수된 나루장승.",
+      "winCondition": "움막의 장부 회수 후 두 번의 완전한 적 행동 종료 동안 생존. 나루장승 전멸은 현행 승리식의 별도 필수가 아니다.",
+      "sourceRefs": [
+        "shared/data/campaign.json#stage-3",
+        "shared/runtime/objectives.js#rawState",
+        "shared/data/narrative-current.json#stages.3",
+        "game/docs/STAGE3_LOCATION_PAINT.md",
+        "shared/runtime/stage3-image-first-roster.js",
+        "game/tests/helpers.mjs#runtime-productionStory/battlefield (정적 생성만)"
+      ],
+      "current": {
+        "width": 6500,
+        "height": 3100,
+        "enemies": 13,
+        "terrainCount": 11,
+        "evidenceScope": "cd84db106f04224d5b9a145890bf11c5d8eb0ebc; runtime({legacyMaps:false,productionStory:true}) + fresh battlefield, 정상 진입 계획XP·빈장비 프로필의 정적 생성. enemies=side1 중 honroObjectiveTarget 제외, hostileSideIncludingObjectives=side1 전체. terrainCount=b.terrain 레코드 수로 전술발판 수가 아니다. 행동입력/승패/브라우저/시간측정 미실행.",
+        "hostileSideIncludingObjectives": 13,
+        "objectiveTargetCount": 0,
+        "configuredEnemyActionLimit": 4
+      },
+      "design": {
+        "spatialType": "복합형 — 제방·창고·수로",
+        "reason": "gross W/H는 보존하고 실제 연결 지지면·상하 경로·교전 배치를 보완한다. 윗길의 안정된 사선과 아랫길의 짧은 거리 교환. 장부 회수 이후 2 적페이즈는 유지.",
+        "width": [
+          6500,
+          6500
+        ],
+        "height": [
+          3100,
+          3100
+        ],
+        "aspect": [
+          2.096774193548387,
+          2.096774193548387
+        ],
+        "platforms": [
+          12,
+          16
+        ],
+        "elevationBands": [
+          4,
+          5
+        ],
+        "routes": [
+          2,
+          2
+        ],
+        "jumps": [
+          14,
+          20
+        ],
+        "drops": [
+          6,
+          10
+        ],
+        "rounds": [
+          6,
+          8
+        ],
+        "minutes": [
+          6,
+          11
+        ],
+        "enemies": [
+          14,
+          18
+        ],
+        "requiredEngagements": [
+          8,
+          12
+        ],
+        "simultaneous": [
+          3,
+          5
+        ],
+        "enemyActions": [
+          3,
+          4
+        ],
+        "roles": [
+          3,
+          4
+        ],
+        "patterns": [
+          3,
+          4
+        ],
+        "elites": [
+          1,
+          1
+        ],
+        "boss": null,
+        "clearRate": [
+          85,
+          95
+        ],
+        "artProfiles": [
+          "terrain_water",
+          "terrain_timber",
+          "terrain_organic_rock",
+          "background_low_density"
+        ],
+        "artIntent": "현재 장소 실루엣과 실제 지지면을 보존하고, 전경·인물·목표를 구별한다. 미술을 맞추려고 충돌 지형을 임의 확대하지 않는다.",
+        "enemyPlan": [
+          {
+            "role": "선택 중간보스",
+            "archetype": "침수된 나루장승",
+            "behavior": "몸통 횡쓸기 / 진흙 직선 밀기",
+            "patterns": [
+              "몸통 횡쓸기",
+              "진흙 직선 밀기"
+            ],
+            "loreBasis": "현재 장의 침수된 나루장승 또는 같은 원형의 강화편성; 새 신분·새 사건을 확정하지 않는다.",
+            "status": "proposed"
+          },
+          {
+            "role": "창고 후위",
+            "archetype": "사수",
+            "behavior": "엄폐 뒤 조준 사격",
+            "patterns": [
+              "엄폐 뒤 조준 사격"
+            ],
+            "loreBasis": "현재 장의 사수 또는 같은 원형의 강화편성; 새 신분·새 사건을 확정하지 않는다.",
+            "status": "proposed"
+          },
+          {
+            "role": "수로 전위",
+            "archetype": "멧돼지·산개",
+            "behavior": "물길 진입 뒤 직선 돌진 / 제방 측면 접근",
+            "patterns": [
+              "물길 진입 뒤 직선 돌진",
+              "제방 측면 접근"
+            ],
+            "loreBasis": "현재 장의 멧돼지·산개 또는 같은 원형의 강화편성; 새 신분·새 사건을 확정하지 않는다.",
+            "status": "proposed"
+          },
+          {
+            "role": "잔교 교란",
+            "archetype": "박쥐·까마귀",
+            "behavior": "빈 사격턱으로 급강하",
+            "patterns": [
+              "빈 사격턱으로 급강하"
+            ],
+            "loreBasis": "현재 장의 박쥐·까마귀 또는 같은 원형의 강화편성; 새 신분·새 사건을 확정하지 않는다.",
+            "status": "proposed"
+          }
+        ],
+        "initialEnemies": [
+          12,
+          14
+        ],
+        "finiteReinforcements": [
+          2,
+          4
+        ],
+        "enemyBudgetBasis": "나루 전위/사수·선택장승1·수변반응 — 모두 신규 제안; 현재 편성수/최대예약상한/실제 생성 수를 복사한 수치가 아니다. 나루접근 유한2~4; 장부회수와정착이필수이고장승/잔적은선택이다.",
+        "reinforcementScope": "나루접근 유한2~4; 장부회수와정착이필수이고장승/잔적은선택이다.",
+        "primaryAxis": "C",
+        "verticalSpanPx": [
+          1150,
+          1450
+        ],
+        "verticalTravelRatio": [
+          0.35,
+          0.5
+        ],
+        "enemyAttackPctHP": [
+          11,
+          17
+        ],
+        "actualEnemyActions": [
+          3,
+          4
+        ],
+        "enemyActionCap": [
+          4,
+          5
+        ],
+        "normalKillActions": [
+          1,
+          2
+        ],
+        "activePlayBounds": {
+          "x": [
+            0,
+            6500
+          ],
+          "y": [
+            0,
+            3100
+          ],
+          "status": "proposed",
+          "validation": "구현 전 선언 구역. 실제 진입·필수 목표·정상 경로 포함과 구역 밖 도달가능 면적을 실측해야 함."
+        },
+        "activePlayHeight": [
+          3100,
+          3100
+        ],
+        "verticalSpanRatio": [
+          0.371,
+          0.468
+        ],
+        "grossVerticalSpanRatio": [
+          0.371,
+          0.468
+        ],
+        "majorBossCount": [
+          0,
+          0
+        ],
+        "miniboss": {
+          "count": [
+            1,
+            1
+          ],
+          "mandatoryCount": [
+            0,
+            0
+          ],
+          "variants": [
+            {
+              "role": "침수된 나루장승",
+              "patterns": [
+                "몸통 횡쓸기",
+                "진흙 직선 밀기"
+              ],
+              "telegraph": "쓸 방향·진흙선 1 아군 페이즈 전 표시",
+              "counter": "상층 잔교로 피한 뒤 노출된 등쪽 집중",
+              "loreBasis": "현행 선택 장승",
+              "status": "proposed"
+            }
+          ],
+          "killRounds": [
+            2,
+            3
+          ],
+          "hpRule": "정상 성장 파티의 유효 집중피해/R × 2~3R로 HP 후보를 환산. 이동·명중·방어 손실 중복 배수 금지. 일반 정예와 별도 개체이며 무적 대기시간으로 처치R을 채우지 않음.",
+          "encounterRounds": [
+            2,
+            3
+          ],
+          "durationRule": "정예와 다른 고유 패턴·예고·대응은 유지한다. 일반 적보다 강한 집중공략 2–3R로 설계하고, 두 개체전은 겹쳐 진행해 총3–5R를 목표로 한다. HP만 늘려 장기전으로 만들지 않는다."
+        },
+        "objectivePressure": {
+          "simultaneousDemands": [
+            2,
+            3
+          ],
+          "responseWindowRounds": [
+            1,
+            2
+          ],
+          "failureRecoveryOptions": [
+            1,
+            2
+          ],
+          "reason": "원래 목표·승리조건을 유지하고 이동/사선/보호/기믹 중 동시에 판단할 요구를 조합. 대응창은 예고 후 유효 아군 대응기회이며 새로운 고정 대기R을 추가하지 않는다."
+        },
+        "v2Status": "정량 설계 제안·미구현·미실측. source/current는 v1과 동일.",
+        "metricDefinitions": {
+          "enemyAttackPctHP": "정상 성장·해당 장 합법 장비에서 일반 적의 비치명 1회 정상 명중 피해/대상 최대HP×100. 정예·중간·주요보스 강공격 제외.",
+          "normalKillActions": "일반 적 1체에 실제 유효한 플레이어 공격/기예 행동 수. 이동·실패 발사·보스 제외.",
+          "enemyActions": "실제 교전 중 적 페이즈당 피해·제압·경로차단·유효접근·목표압박을 만든 행동 수. 제자리 대기·무표적 발사 제외. 설정 상한은 enemyActionCap과 별도.",
+          "verticalSpanRatio": "필수 기본 경로의 최대-최소 착지 지지면 높이 / 사전 선언 activePlayBounds 높이. gross 비율 별도.",
+          "verticalTravelRatio": "필수 기본 경로의 유효 착지 지지면 |Δy| 누적 / |Δx| 누적. 점프 포물선 자체의 위아래 궤적 제외.",
+          "jumpsDrops": "성공런에서 플레이어가 조작한 동행 전체의 유효 점프/하강. NPC 자동이동·헛점프·같은 자리 반복 제외.",
+          "rankCounts": "elites는 일반 정예만. miniboss·majorBossCount와 중복하지 않는다. 10장 주박은 주요 보스 조우이나 적 총예산에서는 목표물로 제외."
+        },
+        "verticalRoute": {
+          "route": "제방→창고 상단→장부 움막 하강을 기본 경로로 구성. 진흙 수로는 짧지만 노출되고 장승 구역은 선택 우회 가능.",
+          "tacticalReward": "윗길의 안정된 사선과 아랫길의 짧은 거리 교환. 장부 회수 이후 2 적페이즈는 유지.",
+          "requiredLayerTransitions": [
+            9,
+            13
+          ],
+          "upDownReturns": [
+            1,
+            2
+          ],
+          "requiredVisitedBands": [
+            4,
+            5
+          ],
+          "maxRequiredJumpRisePx": [
+            120,
+            145
+          ],
+          "geometryStatus": "제안·미구현·미실측",
+          "measurement": "필수 퀘스트 기본경로의 실제 지지면/착지 기록. 동행 조작만 합산하고 같은 자리 반복·NPC 자동이동 제외. 정상적인 합법 우회가 목표 아래면 실패를 숨기지 않고 경로/목표를 재설계한다."
+        },
+        "maxSingleArchetypePct": 50,
+        "compositionRule": "일반·정예·중간·주요보스 개체수 중복 없음. 재질/색/HP만 다른 적은 새 패턴으로 세지 않는다. 같은 공격이라도 이름만 바꾼 것은 하나로 집계하며 실제 명중형상·예고·대응이 달라야 한다.",
+        "enemyPlanCounting": "역할·패턴은 위의 설계 목표 범위다. 아래 편성 후보의 행 수, 적 종류 수, 정예 등급, 같은 적의 형태 전이를 자동 가산하지 않는다. 실제 채택 구성에서 기능·대응 방식 기준으로 중복 제거하여 측정한다.",
+        "roundBudget": {
+          "target": [
+            6,
+            8
+          ],
+          "hardMax": 20,
+          "scope": "전투·이동·필수기믹·대기를 포함한 전체 라운드",
+          "validation": "등록된 일반·숙련 정상 진행 시험에서 20R 초과 0건. 초과는 별도 분량 실패로 기록하며 성공률에 숨기지 않는다. 악의적 무행동 시험은 분리한다.",
+          "notGameplayTimeout": "20R 강제 게임오버를 신설하는 규칙이 아니다."
+        },
+        "pacingChanges": [
+          "기존 스토리와 완료조건은 유지한다. 20R 안에 안 들어오면 전투/동선/기믹 배치를 다시 설계한다.",
+          "일반 적은 유효 공격 1–2회로 처리하고, 난도는 피해·협공·패턴·위치 선택으로 만든다.",
+          "연속되는 전투와 목적 행동을 같은 이동 구간에 묶고 빈 이동·예약 파동 대기를 줄인다.",
+          "수직 이동의 선택과 큰 형태는 유지하되 발판 간격·합류 지점·왕복거리를 압축한다."
+        ]
+      },
+      "tactics": [
+        "낮은 물길의 빠른 접근과 높은 창고의 안전한 사격을 비교한다.",
+        "장승을 처리하거나 사선을 끊고 장부를 확보하는 두 정책을 허용한다."
+      ],
+      "specialMetrics": [
+        {
+          "metric": "장부 상호작용 후 정착",
+          "target": "완전한 적 행동 종료 2회",
+          "measure": "objectiveSettlement.progress와 teamEnds[1]",
+          "reason": "과거 한 턴 안내와 현재 두 적 페이즈를 혼동하지 않는다."
+        },
+        {
+          "metric": "경로간 위험/거리 교환",
+          "target": "이동량 차이 10~30% 또는 받은 피해 차이 ≥15%",
+          "measure": "같은 seed 저지/고지 분기",
+          "reason": "이름만 다른 평행길이 되지 않게 한다."
+        },
+        {
+          "metric": "장승 우회 시 추가 필수 처치",
+          "target": "0명",
+          "measure": "승리식과 정상 우회 성공",
+          "reason": "선택 중간보스 때문에 전멸을 신설하지 않는다."
+        }
+      ],
+      "varianceReason": "첫 중간 우두머리로 내구 부담이 늘지만 선택 회피를 남겨 4장 고정 방어보다 지나치게 길어지지 않게 한다.",
+      "proposedChanges": [
+        "제방→창고 상단→장부 움막 하강을 기본 경로로 구성. 진흙 수로는 짧지만 노출되고 장승 구역은 선택 우회 가능.",
+        "윗길의 안정된 사선과 아랫길의 짧은 거리 교환. 장부 회수 이후 2 적페이즈는 유지.",
+        "상한 숫자를 늘리는 것만으로 통과하지 않는다. 새 적 행동·높이별 대응·목표 압박을 일반정책 신규 seed로 실측한다.",
+        "v3 분량 상한20R: 일반 적 처치행동·중간보스 공략 길이·이동/기믹 대기를 줄이고, 공격 압력과 수직·복합 전개는 유지한다."
+      ],
+      "unknowns": [
+        "나루장승의 현재 HP는 원시 템플릿 값과 난도 적용 후 값이 달라 현재값에 쓰지 않았다.",
+        "라운드·분·점프·실효 적행동·클리어율은 이 작업에서 실측하지 않았다. 제안 범위의 수락에는 정상 성장·일반정책·새 조준오차 seed cohort 실측이 필요하다."
+      ]
+    },
+    {
+      "id": 4,
+      "act": 1,
+      "chapter": 4,
+      "name": "문 밖에 남은 사람들",
+      "storyIntent": "북문 밖 피란민이 빠져나갈 시간을 번다. 휘겸과 주민의 위치가 방어 목적을 설명한다.",
+      "gimmick": "중앙 피난문 분지와 서쪽 둔덕/동쪽 감시대, 두 진입로의 유한 압력.",
+      "winCondition": "현재 8회 방어 라운드에 해당하는 피란민 대피 완료와 보호 대상 생존. 남은 적 전멸 불필요.",
+      "sourceRefs": [
+        "shared/data/campaign.json#stage-4",
+        "shared/runtime/objectives.js#rawState",
+        "shared/data/narrative-current.json#stages.4",
+        "shared/runtime/encounters.js#configure",
+        "game/docs/STAGE4_GATE_DEFENSE_PAINT.md",
+        "game/tests/helpers.mjs#runtime-productionStory/battlefield (정적 생성만)"
+      ],
+      "current": {
+        "width": 4600,
+        "height": 3500,
+        "enemies": 14,
+        "terrainCount": 10,
+        "evidenceScope": "cd84db106f04224d5b9a145890bf11c5d8eb0ebc; runtime({legacyMaps:false,productionStory:true}) + fresh battlefield, 정상 진입 계획XP·빈장비 프로필의 정적 생성. enemies=side1 중 honroObjectiveTarget 제외, hostileSideIncludingObjectives=side1 전체. terrainCount=b.terrain 레코드 수로 전술발판 수가 아니다. 행동입력/승패/브라우저/시간측정 미실행.",
+        "hostileSideIncludingObjectives": 14,
+        "objectiveTargetCount": 0,
+        "configuredEnemyActionLimit": 4
+      },
+      "design": {
+        "spatialType": "거점·아레나형 — 피란문 양측 방어",
+        "reason": "gross W/H는 보존하고 실제 연결 지지면·상하 경로·교전 배치를 보완한다. 양쪽 진입로의 교차사격을 끊고 한쪽에 몰린 전위를 반대 고지에서 제압.",
+        "width": [
+          4600,
+          4600
+        ],
+        "height": [
+          3500,
+          3500
+        ],
+        "aspect": [
+          1.3142857142857143,
+          1.3142857142857143
+        ],
+        "platforms": [
+          10,
+          14
+        ],
+        "elevationBands": [
+          3,
+          4
+        ],
+        "routes": [
+          2,
+          3
+        ],
+        "jumps": [
+          10,
+          16
+        ],
+        "drops": [
+          4,
+          8
+        ],
+        "rounds": [
+          7,
+          9
+        ],
+        "minutes": [
+          8,
+          13
+        ],
+        "enemies": [
+          20,
+          26
+        ],
+        "requiredEngagements": [
+          12,
+          18
+        ],
+        "simultaneous": [
+          4,
+          5
+        ],
+        "enemyActions": [
+          3,
+          4
+        ],
+        "roles": [
+          3,
+          4
+        ],
+        "patterns": [
+          4,
+          5
+        ],
+        "elites": [
+          1,
+          2
+        ],
+        "boss": null,
+        "clearRate": [
+          85,
+          95
+        ],
+        "artProfiles": [
+          "terrain_organic_rock",
+          "terrain_timber",
+          "background_low_density",
+          "character_protected_features"
+        ],
+        "artIntent": "현재 장소 실루엣과 실제 지지면을 보존하고, 전경·인물·목표를 구별한다. 미술을 맞추려고 충돌 지형을 임의 확대하지 않는다.",
+        "enemyPlan": [
+          {
+            "role": "문앞 전위",
+            "archetype": "산개",
+            "behavior": "피란문 측면 우회",
+            "patterns": [
+              "피란문 측면 우회"
+            ],
+            "loreBasis": "현재 장의 산개 또는 같은 원형의 강화편성; 새 신분·새 사건을 확정하지 않는다.",
+            "status": "proposed"
+          },
+          {
+            "role": "교차 사선",
+            "archetype": "사수",
+            "behavior": "서·동 번갈아 조준 사격",
+            "patterns": [
+              "서·동 번갈아 조준 사격"
+            ],
+            "loreBasis": "현재 장의 사수 또는 같은 원형의 강화편성; 새 신분·새 사건을 확정하지 않는다.",
+            "status": "proposed"
+          },
+          {
+            "role": "진입로 돌파",
+            "archetype": "멧돼지",
+            "behavior": "경고 후 문 앞 직선 돌진",
+            "patterns": [
+              "경고 후 문 앞 직선 돌진"
+            ],
+            "loreBasis": "현재 장의 멧돼지 또는 같은 원형의 강화편성; 새 신분·새 사건을 확정하지 않는다.",
+            "status": "proposed"
+          },
+          {
+            "role": "감시대 압박",
+            "archetype": "까마귀",
+            "behavior": "고지 체류 반응 급강하",
+            "patterns": [
+              "고지 체류 반응 급강하"
+            ],
+            "loreBasis": "현재 장의 까마귀 또는 같은 원형의 강화편성; 새 신분·새 사건을 확정하지 않는다.",
+            "status": "proposed"
+          }
+        ],
+        "initialEnemies": [
+          10,
+          14
+        ],
+        "finiteReinforcements": [
+          10,
+          12
+        ],
+        "enemyBudgetBasis": "문앞/서둔덕/동감시대3축과8R대피파동 — 모두 신규 제안; 현재 편성수/최대예약상한/실제 생성 수를 복사한 수치가 아니다. 8R대피동안 시각을달리한파동10~12;시간을버티는것이승리이며전멸이아니다.",
+        "reinforcementScope": "8R대피동안 시각을달리한파동10~12;시간을버티는것이승리이며전멸이아니다.",
+        "primaryAxis": "arena",
+        "verticalSpanPx": [
+          1000,
+          1250
+        ],
+        "verticalTravelRatio": [
+          0.25,
+          0.4
+        ],
+        "enemyAttackPctHP": [
+          12,
+          18
+        ],
+        "actualEnemyActions": [
+          3,
+          4
+        ],
+        "enemyActionCap": [
+          4,
+          5
+        ],
+        "normalKillActions": [
+          1,
+          2
+        ],
+        "activePlayBounds": {
+          "x": [
+            0,
+            4600
+          ],
+          "y": [
+            0,
+            3500
+          ],
+          "status": "proposed",
+          "validation": "구현 전 선언 구역. 실제 진입·필수 목표·정상 경로 포함과 구역 밖 도달가능 면적을 실측해야 함."
+        },
+        "activePlayHeight": [
+          3500,
+          3500
+        ],
+        "verticalSpanRatio": [
+          0.286,
+          0.357
+        ],
+        "grossVerticalSpanRatio": [
+          0.286,
+          0.357
+        ],
+        "majorBossCount": [
+          0,
+          0
+        ],
+        "miniboss": {
+          "count": [
+            0,
+            0
+          ],
+          "mandatoryCount": [
+            0,
+            0
+          ],
+          "variants": [],
+          "killRounds": [
+            0,
+            0
+          ]
+        },
+        "objectivePressure": {
+          "simultaneousDemands": [
+            2,
+            3
+          ],
+          "responseWindowRounds": [
+            1,
+            2
+          ],
+          "failureRecoveryOptions": [
+            1,
+            2
+          ],
+          "reason": "원래 목표·승리조건을 유지하고 이동/사선/보호/기믹 중 동시에 판단할 요구를 조합. 대응창은 예고 후 유효 아군 대응기회이며 새로운 고정 대기R을 추가하지 않는다."
+        },
+        "v2Status": "정량 설계 제안·미구현·미실측. source/current는 v1과 동일.",
+        "metricDefinitions": {
+          "enemyAttackPctHP": "정상 성장·해당 장 합법 장비에서 일반 적의 비치명 1회 정상 명중 피해/대상 최대HP×100. 정예·중간·주요보스 강공격 제외.",
+          "normalKillActions": "일반 적 1체에 실제 유효한 플레이어 공격/기예 행동 수. 이동·실패 발사·보스 제외.",
+          "enemyActions": "실제 교전 중 적 페이즈당 피해·제압·경로차단·유효접근·목표압박을 만든 행동 수. 제자리 대기·무표적 발사 제외. 설정 상한은 enemyActionCap과 별도.",
+          "verticalSpanRatio": "필수 기본 경로의 최대-최소 착지 지지면 높이 / 사전 선언 activePlayBounds 높이. gross 비율 별도.",
+          "verticalTravelRatio": "필수 기본 경로의 유효 착지 지지면 |Δy| 누적 / |Δx| 누적. 점프 포물선 자체의 위아래 궤적 제외.",
+          "jumpsDrops": "성공런에서 플레이어가 조작한 동행 전체의 유효 점프/하강. NPC 자동이동·헛점프·같은 자리 반복 제외.",
+          "rankCounts": "elites는 일반 정예만. miniboss·majorBossCount와 중복하지 않는다. 10장 주박은 주요 보스 조우이나 적 총예산에서는 목표물로 제외."
+        },
+        "verticalRoute": {
+          "route": "피난문을 중심으로 서쪽 둔덕과 동쪽 감시대를 오가며 8R 방어. 주민 출구에는 새 점프 장애물을 넣지 않는다.",
+          "tacticalReward": "양쪽 진입로의 교차사격을 끊고 한쪽에 몰린 전위를 반대 고지에서 제압.",
+          "requiredLayerTransitions": [
+            6,
+            10
+          ],
+          "upDownReturns": [
+            1,
+            2
+          ],
+          "requiredVisitedBands": [
+            3,
+            4
+          ],
+          "maxRequiredJumpRisePx": [
+            120,
+            145
+          ],
+          "geometryStatus": "제안·미구현·미실측",
+          "measurement": "필수 퀘스트 기본경로의 실제 지지면/착지 기록. 동행 조작만 합산하고 같은 자리 반복·NPC 자동이동 제외. 정상적인 합법 우회가 목표 아래면 실패를 숨기지 않고 경로/목표를 재설계한다."
+        },
+        "maxSingleArchetypePct": 50,
+        "compositionRule": "일반·정예·중간·주요보스 개체수 중복 없음. 재질/색/HP만 다른 적은 새 패턴으로 세지 않는다. 같은 공격이라도 이름만 바꾼 것은 하나로 집계하며 실제 명중형상·예고·대응이 달라야 한다.",
+        "enemyPlanCounting": "역할·패턴은 위의 설계 목표 범위다. 아래 편성 후보의 행 수, 적 종류 수, 정예 등급, 같은 적의 형태 전이를 자동 가산하지 않는다. 실제 채택 구성에서 기능·대응 방식 기준으로 중복 제거하여 측정한다.",
+        "roundBudget": {
+          "target": [
+            7,
+            9
+          ],
+          "hardMax": 20,
+          "scope": "전투·이동·필수기믹·대기를 포함한 전체 라운드",
+          "validation": "등록된 일반·숙련 정상 진행 시험에서 20R 초과 0건. 초과는 별도 분량 실패로 기록하며 성공률에 숨기지 않는다. 악의적 무행동 시험은 분리한다.",
+          "notGameplayTimeout": "20R 강제 게임오버를 신설하는 규칙이 아니다."
+        },
+        "pacingChanges": [
+          "기존 스토리와 완료조건은 유지한다. 20R 안에 안 들어오면 전투/동선/기믹 배치를 다시 설계한다.",
+          "일반 적은 유효 공격 1–2회로 처리하고, 난도는 피해·협공·패턴·위치 선택으로 만든다.",
+          "연속되는 전투와 목적 행동을 같은 이동 구간에 묶고 빈 이동·예약 파동 대기를 줄인다.",
+          "수직 이동의 선택과 큰 형태는 유지하되 발판 간격·합류 지점·왕복거리를 압축한다."
+        ]
+      },
+      "tactics": [
+        "중앙에서 버티기와 양측 고지의 교차사격 차단을 비교한다.",
+        "파동 방향 예고 뒤 전위/사수의 위치를 바꾼다."
+      ],
+      "specialMetrics": [
+        {
+          "metric": "대피 보호 시간",
+          "target": "8회 방어 R 유지",
+          "measure": "b.round−1과 목적 완료 경계 대조",
+          "reason": "짧게 만들기 위해 피란민의 대피 시간을 삭제하지 않는다."
+        },
+        {
+          "metric": "목표 주변 실제 압력 파동",
+          "target": "2~3개",
+          "measure": "목표 접근·제압·우회 강요 중 하나가 관측된 파동",
+          "reason": "단순 spawn 수와 실제 위협을 구별한다."
+        },
+        {
+          "metric": "양측 방어 선택 비용",
+          "target": "교대 이동 ≤2R",
+          "measure": "서쪽 고지→중앙→동쪽 고지 정상 이동",
+          "reason": "거점 전환이 종료 전에 의미 있게 가능해야 한다."
+        }
+      ],
+      "varianceReason": "고정 방어라 3장보다 약간 길되, R하한을 적 HP나 지도 길이로 부풀리지 않는다.",
+      "proposedChanges": [
+        "피난문을 중심으로 서쪽 둔덕과 동쪽 감시대를 오가며 8R 방어. 주민 출구에는 새 점프 장애물을 넣지 않는다.",
+        "양쪽 진입로의 교차사격을 끊고 한쪽에 몰린 전위를 반대 고지에서 제압.",
+        "상한 숫자를 늘리는 것만으로 통과하지 않는다. 새 적 행동·높이별 대응·목표 압박을 일반정책 신규 seed로 실측한다.",
+        "v3 분량 상한20R: 일반 적 처치행동·중간보스 공략 길이·이동/기믹 대기를 줄이고, 공격 압력과 수직·복합 전개는 유지한다."
+      ],
+      "unknowns": [
+        "현재 안내의 턴 표현은 아군 개별행동 수가 아닌 방어 사이클로 정규화해 기록해야 한다.",
+        "라운드·분·점프·실효 적행동·클리어율은 이 작업에서 실측하지 않았다. 제안 범위의 수락에는 정상 성장·일반정책·새 조준오차 seed cohort 실측이 필요하다."
+      ]
+    },
+    {
+      "id": 5,
+      "act": 1,
+      "chapter": 5,
+      "name": "폭포 틈의 한 발",
+      "storyIntent": "담허가 낙수를 비트는 동안 설오가 높은 노송 잔교에서 폭포 뒤 주박목을 쏜다. 두 동행의 역할이 처음 강하게 갈린다.",
+      "gimmick": "상부 나무 발판 등반/고지 기본 활 사격, 하부 동굴 물길진 유지, 닫힌 낙수의 탄도 차단.",
+      "winCondition": "담허 생존 상태로 진을 유지해 주박목을 파괴하고 두 번의 완전한 적 행동 종료를 마친다.",
+      "sourceRefs": [
+        "shared/data/campaign.json#stage-5",
+        "shared/runtime/objectives.js#rawState",
+        "shared/data/narrative-current.json#stages.5",
+        "game/docs/STAGE5_DYNAMIC_20261026.md",
+        "game/docs/STAGE5_FOUNDATION_ENCOUNTERS_20261026.md",
+        "shared/runtime/stage5-positioning.js",
+        "shared/runtime/stage5-waterfall.js",
+        "game/tests/helpers.mjs#runtime-productionStory/battlefield (정적 생성만)"
+      ],
+      "current": {
+        "width": 6400,
+        "height": 4300,
+        "enemies": 9,
+        "terrainCount": 10,
+        "evidenceScope": "cd84db106f04224d5b9a145890bf11c5d8eb0ebc; runtime({legacyMaps:false,productionStory:true}) + fresh battlefield, 정상 진입 계획XP·빈장비 프로필의 정적 생성. enemies=side1 중 honroObjectiveTarget 제외, hostileSideIncludingObjectives=side1 전체. terrainCount=b.terrain 레코드 수로 전술발판 수가 아니다. 행동입력/승패/브라우저/시간측정 미실행.",
+        "hostileSideIncludingObjectives": 10,
+        "objectiveTargetCount": 1,
+        "configuredEnemyActionLimit": 5
+      },
+      "design": {
+        "spatialType": "수직형 — 상층 사격·하층 진 유지",
+        "reason": "gross W/H는 보존하고 실제 연결 지지면·상하 경로·교전 배치를 보완한다. 같은 높이 헛점프가 아니라 실제 사격창 확보. 설오 18~24회+담허 하부 이동 4~6회 목표.",
+        "width": [
+          6400,
+          6400
+        ],
+        "height": [
+          4300,
+          4300
+        ],
+        "aspect": [
+          1.4883720930232558,
+          1.4883720930232558
+        ],
+        "platforms": [
+          22,
+          28
+        ],
+        "elevationBands": [
+          6,
+          8
+        ],
+        "routes": [
+          2,
+          2
+        ],
+        "jumps": [
+          22,
+          30
+        ],
+        "drops": [
+          8,
+          12
+        ],
+        "rounds": [
+          7,
+          10
+        ],
+        "minutes": [
+          9,
+          15
+        ],
+        "enemies": [
+          15,
+          18
+        ],
+        "requiredEngagements": [
+          9,
+          13
+        ],
+        "simultaneous": [
+          4,
+          5
+        ],
+        "enemyActions": [
+          3,
+          4
+        ],
+        "roles": [
+          4,
+          5
+        ],
+        "patterns": [
+          4,
+          5
+        ],
+        "elites": [
+          1,
+          2
+        ],
+        "boss": null,
+        "clearRate": [
+          80,
+          95
+        ],
+        "artProfiles": [
+          "terrain_timber",
+          "terrain_organic_rock",
+          "terrain_cave",
+          "terrain_water",
+          "background_low_density"
+        ],
+        "artIntent": "굵은 노송·연결된 암반·왼쪽 동굴 입구·높은 낙수 틈을 보존한다. 실제 착지 가지와 장식 가지를 명도/두께로 구별한다.",
+        "enemyPlan": [
+          {
+            "role": "하부진 압박",
+            "archetype": "산개·멧돼지",
+            "behavior": "진 가장자리 측면 접근 / 예고 돌진",
+            "patterns": [
+              "진 가장자리 측면 접근",
+              "예고 돌진"
+            ],
+            "loreBasis": "현재 장의 산개·멧돼지 또는 같은 원형의 강화편성; 새 신분·새 사건을 확정하지 않는다.",
+            "status": "proposed"
+          },
+          {
+            "role": "상층 차단",
+            "archetype": "사수",
+            "behavior": "다음 착지턱 조준 사격",
+            "patterns": [
+              "다음 착지턱 조준 사격"
+            ],
+            "loreBasis": "현재 장의 사수 또는 같은 원형의 강화편성; 새 신분·새 사건을 확정하지 않는다.",
+            "status": "proposed"
+          },
+          {
+            "role": "좁은 발판 차단",
+            "archetype": "사슴",
+            "behavior": "몸 방향을 드러낸 밀기",
+            "patterns": [
+              "몸 방향을 드러낸 밀기"
+            ],
+            "loreBasis": "현재 장의 사슴 또는 같은 원형의 강화편성; 새 신분·새 사건을 확정하지 않는다.",
+            "status": "proposed"
+          },
+          {
+            "role": "등반 대응",
+            "archetype": "박쥐·까마귀",
+            "behavior": "고정 고도 급강하 / 사격 후 후퇴",
+            "patterns": [
+              "고정 고도 급강하",
+              "사격 후 후퇴"
+            ],
+            "loreBasis": "현재 장의 박쥐·까마귀 또는 같은 원형의 강화편성; 새 신분·새 사건을 확정하지 않는다.",
+            "status": "proposed"
+          }
+        ],
+        "initialEnemies": [
+          9,
+          12
+        ],
+        "finiteReinforcements": [
+          6,
+          6
+        ],
+        "enemyBudgetBasis": "상부사선/하부진2역할 및기존유한응답 — 모두 신규 제안; 현재 편성수/최대예약상한/실제 생성 수를 복사한 수치가 아니다. 상부/하부반응 합계6의재고상한;발동은실제접근/진사건조건에따라원장으로구분한다.",
+        "reinforcementScope": "상부/하부반응 합계6의재고상한;발동은실제접근/진사건조건에따라원장으로구분한다.",
+        "primaryAxis": "V",
+        "verticalSpanPx": [
+          2450,
+          2800
+        ],
+        "verticalTravelRatio": [
+          0.7,
+          0.95
+        ],
+        "enemyAttackPctHP": [
+          12,
+          18
+        ],
+        "actualEnemyActions": [
+          3,
+          4
+        ],
+        "enemyActionCap": [
+          4,
+          5
+        ],
+        "normalKillActions": [
+          1,
+          2
+        ],
+        "activePlayBounds": {
+          "x": [
+            0,
+            6400
+          ],
+          "y": [
+            0,
+            4300
+          ],
+          "status": "proposed",
+          "validation": "구현 전 선언 구역. 실제 진입·필수 목표·정상 경로 포함과 구역 밖 도달가능 면적을 실측해야 함."
+        },
+        "activePlayHeight": [
+          4300,
+          4300
+        ],
+        "verticalSpanRatio": [
+          0.57,
+          0.651
+        ],
+        "grossVerticalSpanRatio": [
+          0.57,
+          0.651
+        ],
+        "majorBossCount": [
+          0,
+          0
+        ],
+        "miniboss": {
+          "count": [
+            0,
+            0
+          ],
+          "mandatoryCount": [
+            0,
+            0
+          ],
+          "variants": [],
+          "killRounds": [
+            0,
+            0
+          ]
+        },
+        "objectivePressure": {
+          "simultaneousDemands": [
+            2,
+            3
+          ],
+          "responseWindowRounds": [
+            1,
+            2
+          ],
+          "failureRecoveryOptions": [
+            1,
+            2
+          ],
+          "reason": "원래 목표·승리조건을 유지하고 이동/사선/보호/기믹 중 동시에 판단할 요구를 조합. 대응창은 예고 후 유효 아군 대응기회이며 새로운 고정 대기R을 추가하지 않는다."
+        },
+        "v2Status": "정량 설계 제안·미구현·미실측. source/current는 v1과 동일.",
+        "metricDefinitions": {
+          "enemyAttackPctHP": "정상 성장·해당 장 합법 장비에서 일반 적의 비치명 1회 정상 명중 피해/대상 최대HP×100. 정예·중간·주요보스 강공격 제외.",
+          "normalKillActions": "일반 적 1체에 실제 유효한 플레이어 공격/기예 행동 수. 이동·실패 발사·보스 제외.",
+          "enemyActions": "실제 교전 중 적 페이즈당 피해·제압·경로차단·유효접근·목표압박을 만든 행동 수. 제자리 대기·무표적 발사 제외. 설정 상한은 enemyActionCap과 별도.",
+          "verticalSpanRatio": "필수 기본 경로의 최대-최소 착지 지지면 높이 / 사전 선언 activePlayBounds 높이. gross 비율 별도.",
+          "verticalTravelRatio": "필수 기본 경로의 유효 착지 지지면 |Δy| 누적 / |Δx| 누적. 점프 포물선 자체의 위아래 궤적 제외.",
+          "jumpsDrops": "성공런에서 플레이어가 조작한 동행 전체의 유효 점프/하강. NPC 자동이동·헛점프·같은 자리 반복 제외.",
+          "rankCounts": "elites는 일반 정예만. miniboss·majorBossCount와 중복하지 않는다. 10장 주박은 주요 보스 조우이나 적 총예산에서는 목표물로 제외."
+        },
+        "verticalRoute": {
+          "route": "담허는 하부 물길진 유지. 설오는 연결된 노송 지지면을 따라 올라 높은 사격점으로 접근; 근처 대피턱과 재진입 사선 제공.",
+          "tacticalReward": "같은 높이 헛점프가 아니라 실제 사격창 확보. 설오 18~24회+담허 하부 이동 4~6회 목표.",
+          "requiredLayerTransitions": [
+            14,
+            20
+          ],
+          "upDownReturns": [
+            0,
+            1
+          ],
+          "requiredVisitedBands": [
+            6,
+            8
+          ],
+          "maxRequiredJumpRisePx": [
+            120,
+            145
+          ],
+          "geometryStatus": "제안·미구현·미실측",
+          "measurement": "필수 퀘스트 기본경로의 실제 지지면/착지 기록. 동행 조작만 합산하고 같은 자리 반복·NPC 자동이동 제외. 정상적인 합법 우회가 목표 아래면 실패를 숨기지 않고 경로/목표를 재설계한다."
+        },
+        "maxSingleArchetypePct": 50,
+        "compositionRule": "일반·정예·중간·주요보스 개체수 중복 없음. 재질/색/HP만 다른 적은 새 패턴으로 세지 않는다. 같은 공격이라도 이름만 바꾼 것은 하나로 집계하며 실제 명중형상·예고·대응이 달라야 한다.",
+        "enemyPlanCounting": "역할·패턴은 위의 설계 목표 범위다. 아래 편성 후보의 행 수, 적 종류 수, 정예 등급, 같은 적의 형태 전이를 자동 가산하지 않는다. 실제 채택 구성에서 기능·대응 방식 기준으로 중복 제거하여 측정한다.",
+        "roundBudget": {
+          "target": [
+            7,
+            10
+          ],
+          "hardMax": 20,
+          "scope": "전투·이동·필수기믹·대기를 포함한 전체 라운드",
+          "validation": "등록된 일반·숙련 정상 진행 시험에서 20R 초과 0건. 초과는 별도 분량 실패로 기록하며 성공률에 숨기지 않는다. 악의적 무행동 시험은 분리한다.",
+          "notGameplayTimeout": "20R 강제 게임오버를 신설하는 규칙이 아니다."
+        },
+        "pacingChanges": [
+          "기존 스토리와 완료조건은 유지한다. 20R 안에 안 들어오면 전투/동선/기믹 배치를 다시 설계한다.",
+          "일반 적은 유효 공격 1–2회로 처리하고, 난도는 피해·협공·패턴·위치 선택으로 만든다.",
+          "연속되는 전투와 목적 행동을 같은 이동 구간에 묶고 빈 이동·예약 파동 대기를 줄인다.",
+          "수직 이동의 선택과 큰 형태는 유지하되 발판 간격·합류 지점·왕복거리를 압축한다."
+        ]
+      },
+      "tactics": [
+        "설오 고지 선점과 담허 하부 진입을 병행한다.",
+        "비싼 기예의 단축 사선은 허용하되 기본 활 정상 해법을 보존한다."
+      ],
+      "specialMetrics": [
+        {
+          "metric": "설오 필수 상부 도약",
+          "target": "설오18~24회; 담허 하부 이동4~6회",
+          "measure": "실제 지지면을 바꾼 유효 도약; 파티총22~30회와 합산 확인",
+          "reason": "기존 격리경로5회는 현재 구조 참고일 뿐 v2 목표로 유지하지 않는다. 상층 연결 지지면 보완안."
+        },
+        {
+          "metric": "진 유지와 주박목 사격 겹침",
+          "target": "2~4R",
+          "measure": "ritual.active와 실제 목표 피해 R의 교집합",
+          "reason": "동행 역할 분담이 한 번의 버튼 누르기로 끝나지 않게 한다."
+        },
+        {
+          "metric": "기본 활 목표 명중",
+          "target": "높은 정상 지지면 ≥1곳, 닫힌 낙수/출발지 우회 0곳",
+          "measure": "정상 경로 도착 후 A01 탄도",
+          "reason": "사용자 기획의 높은 한 발 해법을 보존한다."
+        },
+        {
+          "metric": "진 유지 실패 후 복구",
+          "target": "1~2R",
+          "measure": "진에서 밀려난 뒤 정상 재진입 비용",
+          "reason": "한 번의 밀침이 사실상 영구패배가 되지 않게 한다."
+        }
+      ],
+      "varianceReason": "초반 협력 퍼즐의 국소 난도 봉우리. 총원보다 담허 보호/상부 접근의 동시 부담을 높이며 실패율 급등은 허용하지 않는다.",
+      "proposedChanges": [
+        "담허는 하부 물길진 유지. 설오는 연결된 노송 지지면을 따라 올라 높은 사격점으로 접근; 근처 대피턱과 재진입 사선 제공.",
+        "같은 높이 헛점프가 아니라 실제 사격창 확보. 설오 18~24회+담허 하부 이동 4~6회 목표.",
+        "상한 숫자를 늘리는 것만으로 통과하지 않는다. 새 적 행동·높이별 대응·목표 압박을 일반정책 신규 seed로 실측한다.",
+        "v3 분량 상한20R: 일반 적 처치행동·중간보스 공략 길이·이동/기믹 대기를 줄이고, 공격 압력과 수직·복합 전개는 유지한다."
+      ],
+      "unknowns": [
+        "정적 fresh 생성에서 side1 10 중 주박목 목표1을 제외한 실제 초기적9를 확인했다. 문서의 과거12와 혼동하지 않는다. 정상 완주와 파동 실효행동은 미측정.",
+        "현재 정상 완주와 파동 실효행동 수는 미확인이다.",
+        "라운드·분·점프·실효 적행동·클리어율은 이 작업에서 실측하지 않았다. 제안 범위의 수락에는 정상 성장·일반정책·새 조준오차 seed cohort 실측이 필요하다."
+      ]
+    },
+    {
+      "id": 6,
+      "act": 1,
+      "chapter": 6,
+      "name": "끊어진 나무다리",
+      "storyIntent": "휘겸과 함께 부상자 운반대를 북문 쉼터로 옮긴다. 부러진 다리의 상하 공간이 호송/엄호 분담을 만든다.",
+      "gimmick": "연속 하부 호송로와 잔해 발판 상부 교량, 교각귀가 막는 길, 공중 추격.",
+      "winCondition": "운반대 접근/구조, 부러진 교각귀 제압, 살아 있는 운반대의 쉼터 도착.",
+      "sourceRefs": [
+        "shared/data/campaign.json#stage-6",
+        "shared/runtime/objectives.js#rawState",
+        "shared/data/narrative-current.json#stages.6",
+        "game/docs/STAGE6_BROKEN_BRIDGE_LOCATION_PAINT.md",
+        "tools/map-forge/stage6-positioning.mjs",
+        "game/tests/helpers.mjs#runtime-productionStory/battlefield (정적 생성만)"
+      ],
+      "current": {
+        "width": 6600,
+        "height": 3800,
+        "enemies": 21,
+        "terrainCount": 13,
+        "evidenceScope": "cd84db106f04224d5b9a145890bf11c5d8eb0ebc; runtime({legacyMaps:false,productionStory:true}) + fresh battlefield, 정상 진입 계획XP·빈장비 프로필의 정적 생성. enemies=side1 중 honroObjectiveTarget 제외, hostileSideIncludingObjectives=side1 전체. terrainCount=b.terrain 레코드 수로 전술발판 수가 아니다. 행동입력/승패/브라우저/시간측정 미실행.",
+        "hostileSideIncludingObjectives": 21,
+        "objectiveTargetCount": 0,
+        "configuredEnemyActionLimit": 5
+      },
+      "design": {
+        "spatialType": "복합형 — 상하 교량 호송",
+        "reason": "gross W/H는 보존하고 실제 연결 지지면·상하 경로·교전 배치를 보완한다. 교각귀 전면을 피하고 공중 추격과 지상 운반대 공격을 다른 높이에서 대응.",
+        "width": [
+          6600,
+          6600
+        ],
+        "height": [
+          3800,
+          3800
+        ],
+        "aspect": [
+          1.736842105263158,
+          1.736842105263158
+        ],
+        "platforms": [
+          16,
+          22
+        ],
+        "elevationBands": [
+          4,
+          5
+        ],
+        "routes": [
+          2,
+          2
+        ],
+        "jumps": [
+          16,
+          24
+        ],
+        "drops": [
+          8,
+          12
+        ],
+        "rounds": [
+          8,
+          11
+        ],
+        "minutes": [
+          11,
+          17
+        ],
+        "enemies": [
+          24,
+          30
+        ],
+        "requiredEngagements": [
+          12,
+          18
+        ],
+        "simultaneous": [
+          4,
+          6
+        ],
+        "enemyActions": [
+          3,
+          4
+        ],
+        "roles": [
+          4,
+          5
+        ],
+        "patterns": [
+          4,
+          5
+        ],
+        "elites": [
+          1,
+          2
+        ],
+        "boss": null,
+        "clearRate": [
+          75,
+          90
+        ],
+        "artProfiles": [
+          "terrain_timber",
+          "terrain_organic_rock",
+          "terrain_water",
+          "background_low_density",
+          "character_protected_features"
+        ],
+        "artIntent": "현재 장소 실루엣과 실제 지지면을 보존하고, 전경·인물·목표를 구별한다. 미술을 맞추려고 충돌 지형을 임의 확대하지 않는다.",
+        "enemyPlan": [
+          {
+            "role": "필수 중간보스",
+            "archetype": "부러진 교각귀",
+            "behavior": "교량 횡쓸기 / 예고 잔해 낙하",
+            "patterns": [
+              "교량 횡쓸기",
+              "예고 잔해 낙하"
+            ],
+            "loreBasis": "현재 장의 부러진 교각귀 또는 같은 원형의 강화편성; 새 신분·새 사건을 확정하지 않는다.",
+            "status": "proposed"
+          },
+          {
+            "role": "운반대 차단",
+            "archetype": "멧돼지",
+            "behavior": "하부 직선 돌진",
+            "patterns": [
+              "하부 직선 돌진"
+            ],
+            "loreBasis": "현재 장의 멧돼지 또는 같은 원형의 강화편성; 새 신분·새 사건을 확정하지 않는다.",
+            "status": "proposed"
+          },
+          {
+            "role": "운반대 후위",
+            "archetype": "산개",
+            "behavior": "엄호 반대편 추격",
+            "patterns": [
+              "엄호 반대편 추격"
+            ],
+            "loreBasis": "현재 장의 산개 또는 같은 원형의 강화편성; 새 신분·새 사건을 확정하지 않는다.",
+            "status": "proposed"
+          },
+          {
+            "role": "상단 접근",
+            "archetype": "박쥐",
+            "behavior": "고지 사격 후 급강하",
+            "patterns": [
+              "고지 사격 후 급강하"
+            ],
+            "loreBasis": "현재 장의 박쥐 또는 같은 원형의 강화편성; 새 신분·새 사건을 확정하지 않는다.",
+            "status": "proposed"
+          },
+          {
+            "role": "재합류 견제",
+            "archetype": "까마귀",
+            "behavior": "노출된 하강 지점 횡단 공격",
+            "patterns": [
+              "노출된 하강 지점 횡단 공격"
+            ],
+            "loreBasis": "현재 장의 까마귀 또는 같은 원형의 강화편성; 새 신분·새 사건을 확정하지 않는다.",
+            "status": "proposed"
+          }
+        ],
+        "initialEnemies": [
+          16,
+          20
+        ],
+        "finiteReinforcements": [
+          8,
+          10
+        ],
+        "enemyBudgetBasis": "하부호송/상부엄호·교각귀1·전후추격 — 모두 신규 제안; 현재 편성수/최대예약상한/실제 생성 수를 복사한 수치가 아니다. 교량공중/지상/추격 반응8~10;필수처치는교각귀이며다른잔적은호송위협에따라선택한다.",
+        "reinforcementScope": "교량공중/지상/추격 반응8~10;필수처치는교각귀이며다른잔적은호송위협에따라선택한다.",
+        "primaryAxis": "C",
+        "verticalSpanPx": [
+          1400,
+          1750
+        ],
+        "verticalTravelRatio": [
+          0.4,
+          0.6
+        ],
+        "enemyAttackPctHP": [
+          13,
+          19
+        ],
+        "actualEnemyActions": [
+          3,
+          4
+        ],
+        "enemyActionCap": [
+          4,
+          5
+        ],
+        "normalKillActions": [
+          1,
+          2
+        ],
+        "activePlayBounds": {
+          "x": [
+            0,
+            6600
+          ],
+          "y": [
+            0,
+            3800
+          ],
+          "status": "proposed",
+          "validation": "구현 전 선언 구역. 실제 진입·필수 목표·정상 경로 포함과 구역 밖 도달가능 면적을 실측해야 함."
+        },
+        "activePlayHeight": [
+          3800,
+          3800
+        ],
+        "verticalSpanRatio": [
+          0.368,
+          0.461
+        ],
+        "grossVerticalSpanRatio": [
+          0.368,
+          0.461
+        ],
+        "majorBossCount": [
+          0,
+          0
+        ],
+        "miniboss": {
+          "count": [
+            1,
+            1
+          ],
+          "mandatoryCount": [
+            1,
+            1
+          ],
+          "variants": [
+            {
+              "role": "부러진 교각귀",
+              "patterns": [
+                "다리폭 횡쓸기",
+                "상부 잔해 낙하"
+              ],
+              "telegraph": "교각 균열·낙하지점 1 아군 페이즈 전 표시",
+              "counter": "하부 운반대 보호와 상부 측후면 사격을 분담",
+              "loreBasis": "현행 필수 교각귀",
+              "status": "proposed"
+            }
+          ],
+          "killRounds": [
+            2,
+            3
+          ],
+          "hpRule": "정상 성장 파티의 유효 집중피해/R × 2~3R로 HP 후보를 환산. 이동·명중·방어 손실 중복 배수 금지. 일반 정예와 별도 개체이며 무적 대기시간으로 처치R을 채우지 않음.",
+          "encounterRounds": [
+            2,
+            3
+          ],
+          "durationRule": "정예와 다른 고유 패턴·예고·대응은 유지한다. 일반 적보다 강한 집중공략 2–3R로 설계하고, 두 개체전은 겹쳐 진행해 총3–5R를 목표로 한다. HP만 늘려 장기전으로 만들지 않는다."
+        },
+        "objectivePressure": {
+          "simultaneousDemands": [
+            2,
+            3
+          ],
+          "responseWindowRounds": [
+            1,
+            2
+          ],
+          "failureRecoveryOptions": [
+            1,
+            2
+          ],
+          "reason": "원래 목표·승리조건을 유지하고 이동/사선/보호/기믹 중 동시에 판단할 요구를 조합. 대응창은 예고 후 유효 아군 대응기회이며 새로운 고정 대기R을 추가하지 않는다."
+        },
+        "v2Status": "정량 설계 제안·미구현·미실측. source/current는 v1과 동일.",
+        "metricDefinitions": {
+          "enemyAttackPctHP": "정상 성장·해당 장 합법 장비에서 일반 적의 비치명 1회 정상 명중 피해/대상 최대HP×100. 정예·중간·주요보스 강공격 제외.",
+          "normalKillActions": "일반 적 1체에 실제 유효한 플레이어 공격/기예 행동 수. 이동·실패 발사·보스 제외.",
+          "enemyActions": "실제 교전 중 적 페이즈당 피해·제압·경로차단·유효접근·목표압박을 만든 행동 수. 제자리 대기·무표적 발사 제외. 설정 상한은 enemyActionCap과 별도.",
+          "verticalSpanRatio": "필수 기본 경로의 최대-최소 착지 지지면 높이 / 사전 선언 activePlayBounds 높이. gross 비율 별도.",
+          "verticalTravelRatio": "필수 기본 경로의 유효 착지 지지면 |Δy| 누적 / |Δx| 누적. 점프 포물선 자체의 위아래 궤적 제외.",
+          "jumpsDrops": "성공런에서 플레이어가 조작한 동행 전체의 유효 점프/하강. NPC 자동이동·헛점프·같은 자리 반복 제외.",
+          "rankCounts": "elites는 일반 정예만. miniboss·majorBossCount와 중복하지 않는다. 10장 주박은 주요 보스 조우이나 적 총예산에서는 목표물로 제외."
+        },
+        "verticalRoute": {
+          "route": "운반대는 하부 연속길, 두 동행은 교량 잔해 상단 엄호→교각귀 측후면→하부 재합류.",
+          "tacticalReward": "교각귀 전면을 피하고 공중 추격과 지상 운반대 공격을 다른 높이에서 대응.",
+          "requiredLayerTransitions": [
+            12,
+            18
+          ],
+          "upDownReturns": [
+            1,
+            2
+          ],
+          "requiredVisitedBands": [
+            4,
+            5
+          ],
+          "maxRequiredJumpRisePx": [
+            120,
+            145
+          ],
+          "geometryStatus": "제안·미구현·미실측",
+          "measurement": "필수 퀘스트 기본경로의 실제 지지면/착지 기록. 동행 조작만 합산하고 같은 자리 반복·NPC 자동이동 제외. 정상적인 합법 우회가 목표 아래면 실패를 숨기지 않고 경로/목표를 재설계한다."
+        },
+        "maxSingleArchetypePct": 50,
+        "compositionRule": "일반·정예·중간·주요보스 개체수 중복 없음. 재질/색/HP만 다른 적은 새 패턴으로 세지 않는다. 같은 공격이라도 이름만 바꾼 것은 하나로 집계하며 실제 명중형상·예고·대응이 달라야 한다.",
+        "enemyPlanCounting": "역할·패턴은 위의 설계 목표 범위다. 아래 편성 후보의 행 수, 적 종류 수, 정예 등급, 같은 적의 형태 전이를 자동 가산하지 않는다. 실제 채택 구성에서 기능·대응 방식 기준으로 중복 제거하여 측정한다.",
+        "roundBudget": {
+          "target": [
+            8,
+            11
+          ],
+          "hardMax": 20,
+          "scope": "전투·이동·필수기믹·대기를 포함한 전체 라운드",
+          "validation": "등록된 일반·숙련 정상 진행 시험에서 20R 초과 0건. 초과는 별도 분량 실패로 기록하며 성공률에 숨기지 않는다. 악의적 무행동 시험은 분리한다.",
+          "notGameplayTimeout": "20R 강제 게임오버를 신설하는 규칙이 아니다."
+        },
+        "pacingChanges": [
+          "기존 스토리와 완료조건은 유지한다. 20R 안에 안 들어오면 전투/동선/기믹 배치를 다시 설계한다.",
+          "일반 적은 유효 공격 1–2회로 처리하고, 난도는 피해·협공·패턴·위치 선택으로 만든다.",
+          "연속되는 전투와 목적 행동을 같은 이동 구간에 묶고 빈 이동·예약 파동 대기를 줄인다.",
+          "수직 이동의 선택과 큰 형태는 유지하되 발판 간격·합류 지점·왕복거리를 압축한다."
+        ]
+      },
+      "tactics": [
+        "한 명이 운반대를 동행하고 다른 동행은 상부 비행 위협을 차단한다.",
+        "교각귀 접근은 직선 돌진보다 잔해 사격점을 이용한다."
+      ],
+      "specialMetrics": [
+        {
+          "metric": "필수 교각귀 제압",
+          "target": "3~4R",
+          "measure": "첫 유효 피해→제압의 적 행동 사이클",
+          "reason": "호송의 병목을 HP 스펀지로 만들지 않는다."
+        },
+        {
+          "metric": "운반대 호송 정지",
+          "target": "원인 없는 연속 정지 0R; 교전 정지 ≤2R",
+          "measure": "NPC 위치/점유/경로/적 상태 분류",
+          "reason": "실제 구조 행동과 몸체 막힘을 구별한다."
+        },
+        {
+          "metric": "호송 종료 HP",
+          "target": "55~85%",
+          "measure": "성공 cohort 운반대 잔여 비율",
+          "reason": "중간 우두머리 후에도 남은 호송 위험을 유지한다."
+        }
+      ],
+      "varianceReason": "5장보다 길지만 목표가 명확한 호송. 중간 우두머리와 길잡이를 합쳐 1막 일반 상한을 소폭 넘는 예외다.",
+      "proposedChanges": [
+        "운반대는 하부 연속길, 두 동행은 교량 잔해 상단 엄호→교각귀 측후면→하부 재합류.",
+        "교각귀 전면을 피하고 공중 추격과 지상 운반대 공격을 다른 높이에서 대응.",
+        "상한 숫자를 늘리는 것만으로 통과하지 않는다. 새 적 행동·높이별 대응·목표 압박을 일반정책 신규 seed로 실측한다.",
+        "v3 분량 상한20R: 일반 적 처치행동·중간보스 공략 길이·이동/기믹 대기를 줄이고, 공격 압력과 수직·복합 전개는 유지한다."
+      ],
+      "unknowns": [
+        "상부 선택 경로를 이용하지 않는 성공 분기도 측정해야 한다.",
+        "라운드·분·점프·실효 적행동·클리어율은 이 작업에서 실측하지 않았다. 제안 범위의 수락에는 정상 성장·일반정책·새 조준오차 seed cohort 실측이 필요하다."
+      ]
+    },
+    {
+      "id": 7,
+      "act": 1,
+      "chapter": 7,
+      "name": "살아 있는 사람을 꺼내는 법",
+      "storyIntent": "몸을 가누지 못하는 살아 있는 주민 셋을 죽이지 않고 꺼낸다. 소단의 실이 사람을 붙들어 지키고 있었음을 드러낸다.",
+      "gimmick": "거목 뿌리의 지그재그 층계, 세 주민 높이, 측면 사격점과 바닥 추락 복귀.",
+      "winCondition": "주민3명 비살상 구조 후 두 번의 완전한 적 행동 종료 동안 보호.",
+      "sourceRefs": [
+        "shared/data/campaign.json#stage-7",
+        "shared/runtime/objectives.js#rawState",
+        "shared/data/narrative-current.json#stages.7",
+        "shared/map/stage7-reentry.js",
+        "tools/map-forge/stage7-positioning.mjs",
+        "game/docs/STAGE7_ROOT_VILLAGE_LOCATION_PAINT.md",
+        "game/tests/helpers.mjs#runtime-productionStory/battlefield (정적 생성만)"
+      ],
+      "current": {
+        "width": 3600,
+        "height": 5000,
+        "enemies": 22,
+        "terrainCount": 15,
+        "evidenceScope": "cd84db106f04224d5b9a145890bf11c5d8eb0ebc; runtime({legacyMaps:false,productionStory:true}) + fresh battlefield, 정상 진입 계획XP·빈장비 프로필의 정적 생성. enemies=side1 중 honroObjectiveTarget 제외, hostileSideIncludingObjectives=side1 전체. terrainCount=b.terrain 레코드 수로 전술발판 수가 아니다. 행동입력/승패/브라우저/시간측정 미실행.",
+        "hostileSideIncludingObjectives": 22,
+        "objectiveTargetCount": 0,
+        "configuredEnemyActionLimit": 5
+      },
+      "design": {
+        "spatialType": "수직형 — 다층 비살상 구조",
+        "reason": "gross W/H는 보존하고 실제 연결 지지면·상하 경로·교전 배치를 보완한다. 구조 순서에 따라 사격 측면과 보호 위치가 바뀐다. 낙하 실패를 재등반 횟수로 보상하지 않는다.",
+        "width": [
+          3600,
+          3600
+        ],
+        "height": [
+          5000,
+          5000
+        ],
+        "aspect": [
+          0.72,
+          0.72
+        ],
+        "platforms": [
+          26,
+          34
+        ],
+        "elevationBands": [
+          7,
+          9
+        ],
+        "routes": [
+          2,
+          3
+        ],
+        "jumps": [
+          28,
+          36
+        ],
+        "drops": [
+          12,
+          16
+        ],
+        "rounds": [
+          9,
+          12
+        ],
+        "minutes": [
+          12,
+          19
+        ],
+        "enemies": [
+          24,
+          30
+        ],
+        "requiredEngagements": [
+          12,
+          18
+        ],
+        "simultaneous": [
+          4,
+          6
+        ],
+        "enemyActions": [
+          3,
+          4
+        ],
+        "roles": [
+          4,
+          5
+        ],
+        "patterns": [
+          4,
+          6
+        ],
+        "elites": [
+          2,
+          3
+        ],
+        "boss": null,
+        "clearRate": [
+          80,
+          90
+        ],
+        "artProfiles": [
+          "terrain_timber",
+          "terrain_organic_rock",
+          "background_low_density",
+          "character_protected_features"
+        ],
+        "artIntent": "현재 장소 실루엣과 실제 지지면을 보존하고, 전경·인물·목표를 구별한다. 미술을 맞추려고 충돌 지형을 임의 확대하지 않는다.",
+        "enemyPlan": [
+          {
+            "role": "주민 주변 차단",
+            "archetype": "산개·사슴",
+            "behavior": "측면 접근 / 좁은 길 밀기",
+            "patterns": [
+              "측면 접근",
+              "좁은 길 밀기"
+            ],
+            "loreBasis": "현재 장의 산개·사슴 또는 같은 원형의 강화편성; 새 신분·새 사건을 확정하지 않는다.",
+            "status": "proposed"
+          },
+          {
+            "role": "비살상 분리 압박",
+            "archetype": "수의귀",
+            "behavior": "분리 위치를 예고한 지연 타격",
+            "patterns": [
+              "분리 위치를 예고한 지연 타격"
+            ],
+            "loreBasis": "현재 장의 수의귀 또는 같은 원형의 강화편성; 새 신분·새 사건을 확정하지 않는다.",
+            "status": "proposed"
+          },
+          {
+            "role": "구조 사선",
+            "archetype": "사수",
+            "behavior": "주민 아닌 구조 동행을 향한 조준선",
+            "patterns": [
+              "주민 아닌 구조 동행을 향한 조준선"
+            ],
+            "loreBasis": "현재 장의 사수 또는 같은 원형의 강화편성; 새 신분·새 사건을 확정하지 않는다.",
+            "status": "proposed"
+          },
+          {
+            "role": "등반 추격",
+            "archetype": "박쥐",
+            "behavior": "층을 바꿔 급강하",
+            "patterns": [
+              "층을 바꿔 급강하"
+            ],
+            "loreBasis": "현재 장의 박쥐 또는 같은 원형의 강화편성; 새 신분·새 사건을 확정하지 않는다.",
+            "status": "proposed"
+          },
+          {
+            "role": "회복로 압박",
+            "archetype": "까마귀",
+            "behavior": "하강 착지 뒤 횡단 접근",
+            "patterns": [
+              "하강 착지 뒤 횡단 접근"
+            ],
+            "loreBasis": "현재 장의 까마귀 또는 같은 원형의 강화편성; 새 신분·새 사건을 확정하지 않는다.",
+            "status": "proposed"
+          }
+        ],
+        "initialEnemies": [
+          18,
+          22
+        ],
+        "finiteReinforcements": [
+          6,
+          8
+        ],
+        "enemyBudgetBasis": "주민3구역의전위/측면과유한날짐승 — 모두 신규 제안; 현재 편성수/최대예약상한/실제 생성 수를 복사한 수치가 아니다. 주민구역/상층반응6~8;세주민구조가필수이고각파동전멸의무는아니다.",
+        "reinforcementScope": "주민구역/상층반응6~8;세주민구조가필수이고각파동전멸의무는아니다.",
+        "primaryAxis": "V",
+        "verticalSpanPx": [
+          3000,
+          3500
+        ],
+        "verticalTravelRatio": [
+          0.8,
+          1.15
+        ],
+        "enemyAttackPctHP": [
+          14,
+          20
+        ],
+        "actualEnemyActions": [
+          3,
+          4
+        ],
+        "enemyActionCap": [
+          4,
+          5
+        ],
+        "normalKillActions": [
+          1,
+          2
+        ],
+        "activePlayBounds": {
+          "x": [
+            0,
+            3600
+          ],
+          "y": [
+            0,
+            5000
+          ],
+          "status": "proposed",
+          "validation": "구현 전 선언 구역. 실제 진입·필수 목표·정상 경로 포함과 구역 밖 도달가능 면적을 실측해야 함."
+        },
+        "activePlayHeight": [
+          5000,
+          5000
+        ],
+        "verticalSpanRatio": [
+          0.6,
+          0.7
+        ],
+        "grossVerticalSpanRatio": [
+          0.6,
+          0.7
+        ],
+        "majorBossCount": [
+          0,
+          0
+        ],
+        "miniboss": {
+          "count": [
+            0,
+            0
+          ],
+          "mandatoryCount": [
+            0,
+            0
+          ],
+          "variants": [],
+          "killRounds": [
+            0,
+            0
+          ]
+        },
+        "objectivePressure": {
+          "simultaneousDemands": [
+            2,
+            3
+          ],
+          "responseWindowRounds": [
+            1,
+            2
+          ],
+          "failureRecoveryOptions": [
+            1,
+            2
+          ],
+          "reason": "원래 목표·승리조건을 유지하고 이동/사선/보호/기믹 중 동시에 판단할 요구를 조합. 대응창은 예고 후 유효 아군 대응기회이며 새로운 고정 대기R을 추가하지 않는다."
+        },
+        "v2Status": "정량 설계 제안·미구현·미실측. source/current는 v1과 동일.",
+        "metricDefinitions": {
+          "enemyAttackPctHP": "정상 성장·해당 장 합법 장비에서 일반 적의 비치명 1회 정상 명중 피해/대상 최대HP×100. 정예·중간·주요보스 강공격 제외.",
+          "normalKillActions": "일반 적 1체에 실제 유효한 플레이어 공격/기예 행동 수. 이동·실패 발사·보스 제외.",
+          "enemyActions": "실제 교전 중 적 페이즈당 피해·제압·경로차단·유효접근·목표압박을 만든 행동 수. 제자리 대기·무표적 발사 제외. 설정 상한은 enemyActionCap과 별도.",
+          "verticalSpanRatio": "필수 기본 경로의 최대-최소 착지 지지면 높이 / 사전 선언 activePlayBounds 높이. gross 비율 별도.",
+          "verticalTravelRatio": "필수 기본 경로의 유효 착지 지지면 |Δy| 누적 / |Δx| 누적. 점프 포물선 자체의 위아래 궤적 제외.",
+          "jumpsDrops": "성공런에서 플레이어가 조작한 동행 전체의 유효 점프/하강. NPC 자동이동·헛점프·같은 자리 반복 제외.",
+          "rankCounts": "elites는 일반 정예만. miniboss·majorBossCount와 중복하지 않는다. 10장 주박은 주요 보스 조우이나 적 총예산에서는 목표물로 제외."
+        },
+        "verticalRoute": {
+          "route": "세 주민의 서로 다른 높이를 연결하는 뿌리 층계. 한쪽 상승로와 별도 회복 하강로를 모두 실제 지지면으로 연결.",
+          "tacticalReward": "구조 순서에 따라 사격 측면과 보호 위치가 바뀐다. 낙하 실패를 재등반 횟수로 보상하지 않는다.",
+          "requiredLayerTransitions": [
+            18,
+            26
+          ],
+          "upDownReturns": [
+            2,
+            3
+          ],
+          "requiredVisitedBands": [
+            7,
+            9
+          ],
+          "maxRequiredJumpRisePx": [
+            120,
+            145
+          ],
+          "geometryStatus": "제안·미구현·미실측",
+          "measurement": "필수 퀘스트 기본경로의 실제 지지면/착지 기록. 동행 조작만 합산하고 같은 자리 반복·NPC 자동이동 제외. 정상적인 합법 우회가 목표 아래면 실패를 숨기지 않고 경로/목표를 재설계한다."
+        },
+        "maxSingleArchetypePct": 50,
+        "compositionRule": "일반·정예·중간·주요보스 개체수 중복 없음. 재질/색/HP만 다른 적은 새 패턴으로 세지 않는다. 같은 공격이라도 이름만 바꾼 것은 하나로 집계하며 실제 명중형상·예고·대응이 달라야 한다.",
+        "enemyPlanCounting": "역할·패턴은 위의 설계 목표 범위다. 아래 편성 후보의 행 수, 적 종류 수, 정예 등급, 같은 적의 형태 전이를 자동 가산하지 않는다. 실제 채택 구성에서 기능·대응 방식 기준으로 중복 제거하여 측정한다.",
+        "roundBudget": {
+          "target": [
+            9,
+            12
+          ],
+          "hardMax": 20,
+          "scope": "전투·이동·필수기믹·대기를 포함한 전체 라운드",
+          "validation": "등록된 일반·숙련 정상 진행 시험에서 20R 초과 0건. 초과는 별도 분량 실패로 기록하며 성공률에 숨기지 않는다. 악의적 무행동 시험은 분리한다.",
+          "notGameplayTimeout": "20R 강제 게임오버를 신설하는 규칙이 아니다."
+        },
+        "pacingChanges": [
+          "기존 스토리와 완료조건은 유지한다. 20R 안에 안 들어오면 전투/동선/기믹 배치를 다시 설계한다.",
+          "일반 적은 유효 공격 1–2회로 처리하고, 난도는 피해·협공·패턴·위치 선택으로 만든다.",
+          "연속되는 전투와 목적 행동을 같은 이동 구간에 묶고 빈 이동·예약 파동 대기를 줄인다.",
+          "수직 이동의 선택과 큰 형태는 유지하되 발판 간격·합류 지점·왕복거리를 압축한다."
+        ]
+      },
+      "tactics": [
+        "구조 대상과 붙은 혼/공격 표적을 구분한다.",
+        "측면 발판의 사선과 기본 지그재그 안전 경로를 비교한다."
+      ],
+      "specialMetrics": [
+        {
+          "metric": "주민 생존/구조",
+          "target": "3/3명; 주민 직접 가해 처치 0",
+          "measure": "세 대상 개별 상태·완료 receipt",
+          "reason": "비살상 스토리를 적 전멸 통계로 대체하지 않는다."
+        },
+        {
+          "metric": "필수 고도 변화",
+          "target": "실제 필수 고도폭3000~3500px; 파티 유효 도약28~36회",
+          "measure": "주민 방문 경로의 순상승·실제 지지면",
+          "reason": "수직장의 기획을 맵H 대신 실제 사용높이로 검증한다."
+        },
+        {
+          "metric": "바닥 낙하 후 복귀",
+          "target": "기본 이동/도약으로 ≤3R, 복구워프0",
+          "measure": "실패 분기 실제 입력/자원 유지",
+          "reason": "추락이 소프트락이 되지 않아야 한다."
+        }
+      ],
+      "varianceReason": "1막 수직 구조의 의도적 이동 봉우리. 6장보다 점프가 많지만 적 예산을 함께 폭증시키지 않는다.",
+      "proposedChanges": [
+        "세 주민의 서로 다른 높이를 연결하는 뿌리 층계. 한쪽 상승로와 별도 회복 하강로를 모두 실제 지지면으로 연결.",
+        "구조 순서에 따라 사격 측면과 보호 위치가 바뀐다. 낙하 실패를 재등반 횟수로 보상하지 않는다.",
+        "상한 숫자를 늘리는 것만으로 통과하지 않는다. 새 적 행동·높이별 대응·목표 압박을 일반정책 신규 seed로 실측한다.",
+        "v3 분량 상한20R: 일반 적 처치행동·중간보스 공략 길이·이동/기믹 대기를 줄이고, 공격 압력과 수직·복합 전개는 유지한다."
+      ],
+      "unknowns": [
+        "실제 파티 전체 점프는 주민3명 경로와 선택 측면 경로 이용률에 민감하다.",
+        "라운드·분·점프·실효 적행동·클리어율은 이 작업에서 실측하지 않았다. 제안 범위의 수락에는 정상 성장·일반정책·새 조준오차 seed cohort 실측이 필요하다."
+      ]
+    },
+    {
+      "id": 8,
+      "act": 1,
+      "chapter": 8,
+      "name": "돌아오는 빈 상여",
+      "storyIntent": "홍만이 아닌 다른 혼이 든 빈 상여를 멈춰 구조 주민의 귀환로를 연다. 소단을 만나기 전 중간 절정을 만든다.",
+      "gimmick": "두 결박 자유 순서, 낮은 회랑/상여집/높은 동상여터, 보스 중앙 이동 예고, 조건부 유한 증원.",
+      "winCondition": "두 결박 파괴와 빈 상여 본체 제압. 현행 narrative revision에서는 잔적 전멸/추가 수습R을 새로 요구하지 않는다.",
+      "sourceRefs": [
+        "shared/data/campaign.json#stage-8",
+        "shared/runtime/objectives.js#rawState",
+        "shared/data/narrative-current.json#stages.8",
+        "shared/runtime/stage8-bier.js",
+        "shared/runtime/narrative-revision.js",
+        "game/docs/STAGE8_BIER_REDESIGN.md",
+        "game/docs/STAGE8_BIER_ROLES.md",
+        "game/tests/helpers.mjs#runtime-productionStory/battlefield (정적 생성만)"
+      ],
+      "current": {
+        "width": 9600,
+        "height": 5500,
+        "enemies": 37,
+        "terrainCount": 20,
+        "evidenceScope": "cd84db106f04224d5b9a145890bf11c5d8eb0ebc; runtime({legacyMaps:false,productionStory:true}) + fresh battlefield, 정상 진입 계획XP·빈장비 프로필의 정적 생성. enemies=side1 중 honroObjectiveTarget 제외, hostileSideIncludingObjectives=side1 전체. terrainCount=b.terrain 레코드 수로 전술발판 수가 아니다. 행동입력/승패/브라우저/시간측정 미실행.",
+        "hostileSideIncludingObjectives": 39,
+        "objectiveTargetCount": 2,
+        "configuredEnemyActionLimit": 5
+      },
+      "design": {
+        "spatialType": "복합형 — 두 결박과 중앙 보스",
+        "reason": "gross W/H는 보존하고 실제 연결 지지면·상하 경로·교전 배치를 보완한다. 두 결박 자유순서는 보존하면서 지상 돌입·등불 사선·보스 돌진에 서로 다른 높이 해법을 제공.",
+        "width": [
+          9600,
+          9600
+        ],
+        "height": [
+          5500,
+          5500
+        ],
+        "aspect": [
+          1.7454545454545454,
+          1.7454545454545454
+        ],
+        "platforms": [
+          22,
+          28
+        ],
+        "elevationBands": [
+          5,
+          6
+        ],
+        "routes": [
+          2,
+          3
+        ],
+        "jumps": [
+          20,
+          26
+        ],
+        "drops": [
+          10,
+          14
+        ],
+        "rounds": [
+          11,
+          14
+        ],
+        "minutes": [
+          15,
+          21
+        ],
+        "enemies": [
+          28,
+          34
+        ],
+        "requiredEngagements": [
+          16,
+          24
+        ],
+        "simultaneous": [
+          5,
+          7
+        ],
+        "enemyActions": [
+          4,
+          5
+        ],
+        "roles": [
+          5,
+          6
+        ],
+        "patterns": [
+          5,
+          7
+        ],
+        "elites": [
+          2,
+          3
+        ],
+        "boss": {
+          "name": "빈 상여",
+          "killRounds": [
+            4,
+            6
+          ],
+          "phases": [
+            2,
+            2
+          ],
+          "hpRule": "정상 성장·해당 장 합법 장비/기예의 일반정책에서 보스에게 실제 전달된 파티 유효 피해/R 중앙값 D와 목표 처치 R을 곱해 HP 후보를 산정한다. 이미 방어·명중·이동 손실을 반영한 D에 갑옷/명중 배수를 중복 적용하지 않는다. 목표기믹 대기 R은 제외하고 실측으로 재조정한다. 봉인 전 피해20%와 두 봉인 뒤 이동을 포함해, 전투시간 전체와 노출 후 처치 R을 따로 보고한다.",
+          "classification": "major",
+          "peakAttackPctHP": [
+            30,
+            38
+          ],
+          "countsTowardEnemyBudget": true,
+          "telegraphRule": "강공격 전에 살아 있는 각 대상에게 최소 1회 아군 대응기회. 회피·차폐·중단 중 2개 이상 유효 대응, 예고 없는 회피불가 즉사 금지."
+        },
+        "clearRate": [
+          70,
+          85
+        ],
+        "artProfiles": [
+          "terrain_organic_rock",
+          "terrain_timber",
+          "background_low_density"
+        ],
+        "artIntent": "현재 장소 실루엣과 실제 지지면을 보존하고, 전경·인물·목표를 구별한다. 미술을 맞추려고 충돌 지형을 임의 확대하지 않는다.",
+        "enemyPlan": [
+          {
+            "role": "주요 보스",
+            "archetype": "빈 상여",
+            "behavior": "예고 돌진 / 측면 쓸기 / 중앙 이동 뒤 방향 전환",
+            "patterns": [
+              "예고 돌진",
+              "측면 쓸기",
+              "중앙 이동 뒤 방향 전환"
+            ],
+            "loreBasis": "현재 장의 빈 상여 또는 같은 원형의 강화편성; 새 신분·새 사건을 확정하지 않는다.",
+            "status": "proposed"
+          },
+          {
+            "role": "전면 차단",
+            "archetype": "장승",
+            "behavior": "넓은 횡쓸기",
+            "patterns": [
+              "넓은 횡쓸기"
+            ],
+            "loreBasis": "현재 장의 장승 또는 같은 원형의 강화편성; 새 신분·새 사건을 확정하지 않는다.",
+            "status": "proposed"
+          },
+          {
+            "role": "원거리 지원",
+            "archetype": "등불",
+            "behavior": "지연 사선 폭발",
+            "patterns": [
+              "지연 사선 폭발"
+            ],
+            "loreBasis": "현재 장의 등불 또는 같은 원형의 강화편성; 새 신분·새 사건을 확정하지 않는다.",
+            "status": "proposed"
+          },
+          {
+            "role": "후위 압박",
+            "archetype": "혼",
+            "behavior": "엄폐 우회 접근",
+            "patterns": [
+              "엄폐 우회 접근"
+            ],
+            "loreBasis": "현재 장의 혼 또는 같은 원형의 강화편성; 새 신분·새 사건을 확정하지 않는다.",
+            "status": "proposed"
+          },
+          {
+            "role": "결박 반응",
+            "archetype": "산개·멧돼지",
+            "behavior": "측면 추격 / 직선 돌진",
+            "patterns": [
+              "측면 추격",
+              "직선 돌진"
+            ],
+            "loreBasis": "현재 장의 산개·멧돼지 또는 같은 원형의 강화편성; 새 신분·새 사건을 확정하지 않는다.",
+            "status": "proposed"
+          },
+          {
+            "role": "높이 강제",
+            "archetype": "까마귀",
+            "behavior": "상층 체류 반응 급강하",
+            "patterns": [
+              "상층 체류 반응 급강하"
+            ],
+            "loreBasis": "현재 장의 까마귀 또는 같은 원형의 강화편성; 새 신분·새 사건을 확정하지 않는다.",
+            "status": "proposed"
+          }
+        ],
+        "initialEnemies": [
+          20,
+          26
+        ],
+        "finiteReinforcements": [
+          8,
+          8
+        ],
+        "enemyBudgetBasis": "두결박마당·중앙보스이동·현행3+3+2반응 — 모두 신규 제안; 현재 편성수/최대예약상한/실제 생성 수를 복사한 수치가 아니다. 첫결박3/중앙정착까마귀3/저체력2=8상한. 보스조기처치로미실행종속반응취소가능;모든성공런8생성을요구하지않는다.",
+        "reinforcementScope": "첫결박3/중앙정착까마귀3/저체력2=8상한. 보스조기처치로미실행종속반응취소가능;모든성공런8생성을요구하지않는다.",
+        "primaryAxis": "C",
+        "verticalSpanPx": [
+          2100,
+          2600
+        ],
+        "verticalTravelRatio": [
+          0.4,
+          0.6
+        ],
+        "enemyAttackPctHP": [
+          14,
+          20
+        ],
+        "actualEnemyActions": [
+          4,
+          5
+        ],
+        "enemyActionCap": [
+          5,
+          6
+        ],
+        "normalKillActions": [
+          1,
+          2
+        ],
+        "activePlayBounds": {
+          "x": [
+            0,
+            9600
+          ],
+          "y": [
+            0,
+            5500
+          ],
+          "status": "proposed",
+          "validation": "구현 전 선언 구역. 실제 진입·필수 목표·정상 경로 포함과 구역 밖 도달가능 면적을 실측해야 함."
+        },
+        "activePlayHeight": [
+          5500,
+          5500
+        ],
+        "verticalSpanRatio": [
+          0.382,
+          0.473
+        ],
+        "grossVerticalSpanRatio": [
+          0.382,
+          0.473
+        ],
+        "majorBossCount": [
+          1,
+          1
+        ],
+        "miniboss": {
+          "count": [
+            0,
+            0
+          ],
+          "mandatoryCount": [
+            0,
+            0
+          ],
+          "variants": [],
+          "killRounds": [
+            0,
+            0
+          ]
+        },
+        "objectivePressure": {
+          "simultaneousDemands": [
+            2,
+            3
+          ],
+          "responseWindowRounds": [
+            1,
+            2
+          ],
+          "failureRecoveryOptions": [
+            1,
+            2
+          ],
+          "reason": "원래 목표·승리조건을 유지하고 이동/사선/보호/기믹 중 동시에 판단할 요구를 조합. 대응창은 예고 후 유효 아군 대응기회이며 새로운 고정 대기R을 추가하지 않는다."
+        },
+        "v2Status": "정량 설계 제안·미구현·미실측. source/current는 v1과 동일.",
+        "metricDefinitions": {
+          "enemyAttackPctHP": "정상 성장·해당 장 합법 장비에서 일반 적의 비치명 1회 정상 명중 피해/대상 최대HP×100. 정예·중간·주요보스 강공격 제외.",
+          "normalKillActions": "일반 적 1체에 실제 유효한 플레이어 공격/기예 행동 수. 이동·실패 발사·보스 제외.",
+          "enemyActions": "실제 교전 중 적 페이즈당 피해·제압·경로차단·유효접근·목표압박을 만든 행동 수. 제자리 대기·무표적 발사 제외. 설정 상한은 enemyActionCap과 별도.",
+          "verticalSpanRatio": "필수 기본 경로의 최대-최소 착지 지지면 높이 / 사전 선언 activePlayBounds 높이. gross 비율 별도.",
+          "verticalTravelRatio": "필수 기본 경로의 유효 착지 지지면 |Δy| 누적 / |Δx| 누적. 점프 포물선 자체의 위아래 궤적 제외.",
+          "jumpsDrops": "성공런에서 플레이어가 조작한 동행 전체의 유효 점프/하강. NPC 자동이동·헛점프·같은 자리 반복 제외.",
+          "rankCounts": "elites는 일반 정예만. miniboss·majorBossCount와 중복하지 않는다. 10장 주박은 주요 보스 조우이나 적 총예산에서는 목표물로 제외."
+        },
+        "verticalRoute": {
+          "route": "두 결박의 상·하 접근을 다르게 만들고 결박 사이 이동은 중앙 하강 회랑으로 연결. 보스 중앙 이동 뒤 다른 고지로 재배치.",
+          "tacticalReward": "두 결박 자유순서는 보존하면서 지상 돌입·등불 사선·보스 돌진에 서로 다른 높이 해법을 제공.",
+          "requiredLayerTransitions": [
+            14,
+            20
+          ],
+          "upDownReturns": [
+            1,
+            2
+          ],
+          "requiredVisitedBands": [
+            5,
+            6
+          ],
+          "maxRequiredJumpRisePx": [
+            120,
+            145
+          ],
+          "geometryStatus": "제안·미구현·미실측",
+          "measurement": "필수 퀘스트 기본경로의 실제 지지면/착지 기록. 동행 조작만 합산하고 같은 자리 반복·NPC 자동이동 제외. 정상적인 합법 우회가 목표 아래면 실패를 숨기지 않고 경로/목표를 재설계한다."
+        },
+        "maxSingleArchetypePct": 50,
+        "compositionRule": "일반·정예·중간·주요보스 개체수 중복 없음. 재질/색/HP만 다른 적은 새 패턴으로 세지 않는다. 같은 공격이라도 이름만 바꾼 것은 하나로 집계하며 실제 명중형상·예고·대응이 달라야 한다.",
+        "enemyPlanCounting": "역할·패턴은 위의 설계 목표 범위다. 아래 편성 후보의 행 수, 적 종류 수, 정예 등급, 같은 적의 형태 전이를 자동 가산하지 않는다. 실제 채택 구성에서 기능·대응 방식 기준으로 중복 제거하여 측정한다.",
+        "roundBudget": {
+          "target": [
+            11,
+            14
+          ],
+          "hardMax": 20,
+          "scope": "전투·이동·필수기믹·대기를 포함한 전체 라운드",
+          "validation": "등록된 일반·숙련 정상 진행 시험에서 20R 초과 0건. 초과는 별도 분량 실패로 기록하며 성공률에 숨기지 않는다. 악의적 무행동 시험은 분리한다.",
+          "notGameplayTimeout": "20R 강제 게임오버를 신설하는 규칙이 아니다."
+        },
+        "pacingChanges": [
+          "기존 스토리와 완료조건은 유지한다. 20R 안에 안 들어오면 전투/동선/기믹 배치를 다시 설계한다.",
+          "일반 적은 유효 공격 1–2회로 처리하고, 난도는 피해·협공·패턴·위치 선택으로 만든다.",
+          "연속되는 전투와 목적 행동을 같은 이동 구간에 묶고 빈 이동·예약 파동 대기를 줄인다.",
+          "수직 이동의 선택과 큰 형태는 유지하되 발판 간격·합류 지점·왕복거리를 압축한다."
+        ]
+      },
+      "tactics": [
+        "결박 순서를 바꾸어 보스 접근과 파동을 조절한다.",
+        "높은 사격/반사·관통·급강하를 기본기 우회와 비교한다."
+      ],
+      "specialMetrics": [
+        {
+          "metric": "두 결박의 순서 독립성",
+          "target": "2/2 순서 정상 완료",
+          "measure": "서→동/동→서의 같은 성장 정책",
+          "reason": "설계된 자유 순서를 한 강제루트로 축소하지 않는다."
+        },
+        {
+          "metric": "보스 이동 예고 기회",
+          "target": "살아 있는 동행별 정상 행동 기회 ≥1회",
+          "measure": "warning serial→offered/ended→이동",
+          "reason": "위치 변화가 즉시 부당피격이 되지 않아야 한다."
+        },
+        {
+          "metric": "보스 이동 후 파동 첫 실효행동",
+          "target": "입장 후 1~3R",
+          "measure": "피해 외에도 회피/경로/목표 방어 강요 기록",
+          "reason": "옛 입구에서 방어만 하는 증원을 통과시키지 않는다."
+        }
+      ],
+      "varianceReason": "7장보다 점프 요구는 낮추고 총 전투·보스 응답을 높이는 1막 첫 큰 봉우리. 9장은 의도적으로 완화한다.",
+      "proposedChanges": [
+        "두 결박의 상·하 접근을 다르게 만들고 결박 사이 이동은 중앙 하강 회랑으로 연결. 보스 중앙 이동 뒤 다른 고지로 재배치.",
+        "두 결박 자유순서는 보존하면서 지상 돌입·등불 사선·보스 돌진에 서로 다른 높이 해법을 제공.",
+        "상한 숫자를 늘리는 것만으로 통과하지 않는다. 새 적 행동·높이별 대응·목표 압박을 일반정책 신규 seed로 실측한다.",
+        "v3 분량 상한20R: 일반 적 처치행동·중간보스 공략 길이·이동/기믹 대기를 줄이고, 공격 압력과 수직·복합 전개는 유지한다."
+      ],
+      "unknowns": [
+        "정적 fresh 생성에서 side1 39 중 결박목표2를 제외한 초기적37을 확인했다. 옛29적 제작계약을 현행편성으로 쓰지 않는다.",
+        "라운드·분·점프·실효 적행동·클리어율은 이 작업에서 실측하지 않았다. 제안 범위의 수락에는 정상 성장·일반정책·새 조준오차 seed cohort 실측이 필요하다.",
+        "총28~34 제안은 현재37초기+유한8보다 작은 예산이다. 두결박/보스/반응 역할을 유지하며 반복 경비부터 줄이는 재설계안이지 현행값이 아니다."
+      ]
+    },
+    {
+      "id": 9,
+      "act": 1,
+      "chapter": 9,
+      "name": "바람 없는 마당",
+      "storyIntent": "소단에게 접근하기 전에 마당 양쪽 받이진을 세워 실의 하중을 나눠 받는다. 가운데 줄을 함부로 건드리지 않는 준비 장이다.",
+      "gimmick": "좁은 우물마당과 양쪽 회랑/중앙 고지, 두 받이진.",
+      "winCondition": "두 받이진 설치. 현행 narrative revision의 준비 완료를 따르며 옛 추가 유지2R을 강제하지 않는다.",
+      "sourceRefs": [
+        "shared/data/campaign.json#stage-9",
+        "shared/runtime/objectives.js#rawState",
+        "shared/data/narrative-current.json#stages.9",
+        "shared/runtime/narrative-revision.js",
+        "tools/map-forge/stage9-13-tactical.mjs",
+        "game/docs/STAGE9_13_TACTICAL_ROUTES.md",
+        "game/tests/helpers.mjs#runtime-productionStory/battlefield (정적 생성만)"
+      ],
+      "current": {
+        "width": 3600,
+        "height": 3500,
+        "enemies": 24,
+        "terrainCount": 7,
+        "evidenceScope": "cd84db106f04224d5b9a145890bf11c5d8eb0ebc; runtime({legacyMaps:false,productionStory:true}) + fresh battlefield, 정상 진입 계획XP·빈장비 프로필의 정적 생성. enemies=side1 중 honroObjectiveTarget 제외, hostileSideIncludingObjectives=side1 전체. terrainCount=b.terrain 레코드 수로 전술발판 수가 아니다. 행동입력/승패/브라우저/시간측정 미실행.",
+        "hostileSideIncludingObjectives": 24,
+        "objectiveTargetCount": 0,
+        "configuredEnemyActionLimit": 5
+      },
+      "design": {
+        "spatialType": "수직형 — 상하 회랑 받이진",
+        "reason": "gross W/H는 보존하고 실제 연결 지지면·상하 경로·교전 배치를 보완한다. 작은 면적 안에서 실제 상하 연결을 사용. 전투량은 8장보다 낮추되 두 받이진의 위치·사선 판단은 남긴다.",
+        "width": [
+          3600,
+          3600
+        ],
+        "height": [
+          3500,
+          3500
+        ],
+        "aspect": [
+          1.0285714285714285,
+          1.0285714285714285
+        ],
+        "platforms": [
+          18,
+          24
+        ],
+        "elevationBands": [
+          6,
+          7
+        ],
+        "routes": [
+          2,
+          2
+        ],
+        "jumps": [
+          22,
+          30
+        ],
+        "drops": [
+          8,
+          12
+        ],
+        "rounds": [
+          7,
+          9
+        ],
+        "minutes": [
+          9,
+          13
+        ],
+        "enemies": [
+          20,
+          26
+        ],
+        "requiredEngagements": [
+          10,
+          16
+        ],
+        "simultaneous": [
+          4,
+          6
+        ],
+        "enemyActions": [
+          3,
+          4
+        ],
+        "roles": [
+          4,
+          5
+        ],
+        "patterns": [
+          4,
+          5
+        ],
+        "elites": [
+          1,
+          2
+        ],
+        "boss": null,
+        "clearRate": [
+          80,
+          90
+        ],
+        "artProfiles": [
+          "terrain_organic_rock",
+          "terrain_timber",
+          "background_low_density"
+        ],
+        "artIntent": "현재 장소 실루엣과 실제 지지면을 보존하고, 전경·인물·목표를 구별한다. 미술을 맞추려고 충돌 지형을 임의 확대하지 않는다.",
+        "enemyPlan": [
+          {
+            "role": "우물 하부 전위",
+            "archetype": "산개·멧돼지",
+            "behavior": "측면 접근 / 예고 돌진",
+            "patterns": [
+              "측면 접근",
+              "예고 돌진"
+            ],
+            "loreBasis": "현재 장의 산개·멧돼지 또는 같은 원형의 강화편성; 새 신분·새 사건을 확정하지 않는다.",
+            "status": "proposed"
+          },
+          {
+            "role": "회랑 감시",
+            "archetype": "사수",
+            "behavior": "받이진 접근로 조준 사격",
+            "patterns": [
+              "받이진 접근로 조준 사격"
+            ],
+            "loreBasis": "현재 장의 사수 또는 같은 원형의 강화편성; 새 신분·새 사건을 확정하지 않는다.",
+            "status": "proposed"
+          },
+          {
+            "role": "중단 차폐 우회",
+            "archetype": "혼",
+            "behavior": "엄폐 우회 접촉 압박",
+            "patterns": [
+              "엄폐 우회 접촉 압박"
+            ],
+            "loreBasis": "현재 장의 혼 또는 같은 원형의 강화편성; 새 신분·새 사건을 확정하지 않는다.",
+            "status": "proposed"
+          },
+          {
+            "role": "상단 이동 대응",
+            "archetype": "박쥐·까마귀",
+            "behavior": "상승 사선 급강하 / 착지 후 횡단",
+            "patterns": [
+              "상승 사선 급강하",
+              "착지 후 횡단"
+            ],
+            "loreBasis": "현재 장의 박쥐·까마귀 또는 같은 원형의 강화편성; 새 신분·새 사건을 확정하지 않는다.",
+            "status": "proposed"
+          }
+        ],
+        "initialEnemies": [
+          14,
+          18
+        ],
+        "finiteReinforcements": [
+          6,
+          8
+        ],
+        "enemyBudgetBasis": "양받이진과중앙우물3곳;휴지점이므로전체청소부풀림금지 — 모두 신규 제안; 현재 편성수/최대예약상한/실제 생성 수를 복사한 수치가 아니다. 대피/받이진반응6~8상한;두설치순서/완료에따라실제생성이달라전맵전멸불필요.",
+        "reinforcementScope": "대피/받이진반응6~8상한;두설치순서/완료에따라실제생성이달라전맵전멸불필요.",
+        "primaryAxis": "V",
+        "verticalSpanPx": [
+          2000,
+          2300
+        ],
+        "verticalTravelRatio": [
+          0.7,
+          1
+        ],
+        "enemyAttackPctHP": [
+          14,
+          20
+        ],
+        "actualEnemyActions": [
+          3,
+          4
+        ],
+        "enemyActionCap": [
+          4,
+          5
+        ],
+        "normalKillActions": [
+          1,
+          2
+        ],
+        "activePlayBounds": {
+          "x": [
+            0,
+            3600
+          ],
+          "y": [
+            0,
+            3500
+          ],
+          "status": "proposed",
+          "validation": "구현 전 선언 구역. 실제 진입·필수 목표·정상 경로 포함과 구역 밖 도달가능 면적을 실측해야 함."
+        },
+        "activePlayHeight": [
+          3500,
+          3500
+        ],
+        "verticalSpanRatio": [
+          0.571,
+          0.657
+        ],
+        "grossVerticalSpanRatio": [
+          0.571,
+          0.657
+        ],
+        "majorBossCount": [
+          0,
+          0
+        ],
+        "miniboss": {
+          "count": [
+            0,
+            0
+          ],
+          "mandatoryCount": [
+            0,
+            0
+          ],
+          "variants": [],
+          "killRounds": [
+            0,
+            0
+          ]
+        },
+        "objectivePressure": {
+          "simultaneousDemands": [
+            2,
+            3
+          ],
+          "responseWindowRounds": [
+            1,
+            2
+          ],
+          "failureRecoveryOptions": [
+            1,
+            2
+          ],
+          "reason": "원래 목표·승리조건을 유지하고 이동/사선/보호/기믹 중 동시에 판단할 요구를 조합. 대응창은 예고 후 유효 아군 대응기회이며 새로운 고정 대기R을 추가하지 않는다."
+        },
+        "v2Status": "정량 설계 제안·미구현·미실측. source/current는 v1과 동일.",
+        "metricDefinitions": {
+          "enemyAttackPctHP": "정상 성장·해당 장 합법 장비에서 일반 적의 비치명 1회 정상 명중 피해/대상 최대HP×100. 정예·중간·주요보스 강공격 제외.",
+          "normalKillActions": "일반 적 1체에 실제 유효한 플레이어 공격/기예 행동 수. 이동·실패 발사·보스 제외.",
+          "enemyActions": "실제 교전 중 적 페이즈당 피해·제압·경로차단·유효접근·목표압박을 만든 행동 수. 제자리 대기·무표적 발사 제외. 설정 상한은 enemyActionCap과 별도.",
+          "verticalSpanRatio": "필수 기본 경로의 최대-최소 착지 지지면 높이 / 사전 선언 activePlayBounds 높이. gross 비율 별도.",
+          "verticalTravelRatio": "필수 기본 경로의 유효 착지 지지면 |Δy| 누적 / |Δx| 누적. 점프 포물선 자체의 위아래 궤적 제외.",
+          "jumpsDrops": "성공런에서 플레이어가 조작한 동행 전체의 유효 점프/하강. NPC 자동이동·헛점프·같은 자리 반복 제외.",
+          "rankCounts": "elites는 일반 정예만. miniboss·majorBossCount와 중복하지 않는다. 10장 주박은 주요 보스 조우이나 적 총예산에서는 목표물로 제외."
+        },
+        "verticalRoute": {
+          "route": "서측 받이진은 상단 회랑을 건넌 뒤 아래로 내려가 접근하고 동측 받이진은 별도 상승로로 접근. 중앙 줄은 공격·절단하지 않는다.",
+          "tacticalReward": "작은 면적 안에서 실제 상하 연결을 사용. 전투량은 8장보다 낮추되 두 받이진의 위치·사선 판단은 남긴다.",
+          "requiredLayerTransitions": [
+            14,
+            20
+          ],
+          "upDownReturns": [
+            1,
+            2
+          ],
+          "requiredVisitedBands": [
+            6,
+            7
+          ],
+          "maxRequiredJumpRisePx": [
+            120,
+            145
+          ],
+          "geometryStatus": "제안·미구현·미실측",
+          "measurement": "필수 퀘스트 기본경로의 실제 지지면/착지 기록. 동행 조작만 합산하고 같은 자리 반복·NPC 자동이동 제외. 정상적인 합법 우회가 목표 아래면 실패를 숨기지 않고 경로/목표를 재설계한다."
+        },
+        "maxSingleArchetypePct": 50,
+        "compositionRule": "일반·정예·중간·주요보스 개체수 중복 없음. 재질/색/HP만 다른 적은 새 패턴으로 세지 않는다. 같은 공격이라도 이름만 바꾼 것은 하나로 집계하며 실제 명중형상·예고·대응이 달라야 한다.",
+        "enemyPlanCounting": "역할·패턴은 위의 설계 목표 범위다. 아래 편성 후보의 행 수, 적 종류 수, 정예 등급, 같은 적의 형태 전이를 자동 가산하지 않는다. 실제 채택 구성에서 기능·대응 방식 기준으로 중복 제거하여 측정한다.",
+        "roundBudget": {
+          "target": [
+            7,
+            9
+          ],
+          "hardMax": 20,
+          "scope": "전투·이동·필수기믹·대기를 포함한 전체 라운드",
+          "validation": "등록된 일반·숙련 정상 진행 시험에서 20R 초과 0건. 초과는 별도 분량 실패로 기록하며 성공률에 숨기지 않는다. 악의적 무행동 시험은 분리한다.",
+          "notGameplayTimeout": "20R 강제 게임오버를 신설하는 규칙이 아니다."
+        },
+        "pacingChanges": [
+          "기존 스토리와 완료조건은 유지한다. 20R 안에 안 들어오면 전투/동선/기믹 배치를 다시 설계한다.",
+          "일반 적은 유효 공격 1–2회로 처리하고, 난도는 피해·협공·패턴·위치 선택으로 만든다.",
+          "연속되는 전투와 목적 행동을 같은 이동 구간에 묶고 빈 이동·예약 파동 대기를 줄인다.",
+          "수직 이동의 선택과 큰 형태는 유지하되 발판 간격·합류 지점·왕복거리를 압축한다."
+        ]
+      },
+      "tactics": [
+        "한쪽을 먼저 안정화한 뒤 다른 받이진으로 이동한다.",
+        "중앙 군집 범위공격과 회랑의 단일 사선을 비교한다."
+      ],
+      "specialMetrics": [
+        {
+          "metric": "양 받이진 완료 간격",
+          "target": "1~3R",
+          "measure": "첫 설치→둘째 설치",
+          "reason": "선택순서를 허용하되 빈 횡단 반복을 막는다."
+        },
+        {
+          "metric": "필수 상호작용",
+          "target": "정확히2곳",
+          "measure": "receiver 완료 ledger",
+          "reason": "새 퍼즐/중앙줄 파괴를 추가하지 않는다."
+        },
+        {
+          "metric": "8→9 난도 회복",
+          "target": "일반정책 클리어율 +5~15%p",
+          "measure": "같은정상성장 holdout20 cohort 성공횟수차이(1회=5%p)",
+          "reason": "절정 뒤 숨고르기를 의도적으로 확인한다."
+        }
+      ],
+      "varianceReason": "8장보다 짧고 성공률이 오르는 의도적 완화. 적 총예산은 많아도 전맵 청소를 강제하지 않는다.",
+      "proposedChanges": [
+        "서측 받이진은 상단 회랑을 건넌 뒤 아래로 내려가 접근하고 동측 받이진은 별도 상승로로 접근. 중앙 줄은 공격·절단하지 않는다.",
+        "작은 면적 안에서 실제 상하 연결을 사용. 전투량은 8장보다 낮추되 두 받이진의 위치·사선 판단은 남긴다.",
+        "상한 숫자를 늘리는 것만으로 통과하지 않는다. 새 적 행동·높이별 대응·목표 압박을 일반정책 신규 seed로 실측한다.",
+        "v3 분량 상한20R: 일반 적 처치행동·중간보스 공략 길이·이동/기믹 대기를 줄이고, 공격 압력과 수직·복합 전개는 유지한다."
+      ],
+      "unknowns": [
+        "현재 전맵36 전후 최대 예산 대비; 제안 총20~26에서 실제 접촉 수가 낮은지 실측이 필요하다.",
+        "라운드·분·점프·실효 적행동·클리어율은 이 작업에서 실측하지 않았다. 제안 범위의 수락에는 정상 성장·일반정책·새 조준오차 seed cohort 실측이 필요하다."
+      ]
+    },
+    {
+      "id": 10,
+      "act": 1,
+      "chapter": 10,
+      "name": "소단 — 놓지 못한 밤",
+      "storyIntent": "소단의 바깥 주박을 걷어내 협력으로 전환하고, 소단이 중심 매듭을 푸는 동안 밀려드는 원혼을 막은 뒤 철수한다.",
+      "gimmick": "비살상 주박 파괴→소단 보호6적페이즈→동쪽 퇴로 확보, 양측 회랑과 유한 최종 파동.",
+      "winCondition": "소단 생존, 협력 뒤6번의 완전한 적 행동 종료, 살아 있는 동행1명의 동쪽 출구 도달 후 일행 철수.",
+      "sourceRefs": [
+        "shared/data/campaign.json#stage-10",
+        "shared/runtime/objectives.js#rawState",
+        "shared/data/narrative-current.json#stages.10",
+        "shared/runtime/mission.js#finale",
+        "shared/runtime/sodan-withdrawal.js",
+        "tools/map-forge/stage10-positioning.mjs",
+        "game/tests/helpers.mjs#runtime-productionStory/battlefield (정적 생성만)"
+      ],
+      "current": {
+        "width": 5000,
+        "height": 3900,
+        "enemies": 17,
+        "terrainCount": 11,
+        "evidenceScope": "cd84db106f04224d5b9a145890bf11c5d8eb0ebc; runtime({legacyMaps:false,productionStory:true}) + fresh battlefield, 정상 진입 계획XP·빈장비 프로필의 정적 생성. enemies=side1 중 honroObjectiveTarget 제외, hostileSideIncludingObjectives=side1 전체. terrainCount=b.terrain 레코드 수로 전술발판 수가 아니다. 행동입력/승패/브라우저/시간측정 미실행.",
+        "hostileSideIncludingObjectives": 18,
+        "objectiveTargetCount": 1,
+        "configuredEnemyActionLimit": 5
+      },
+      "design": {
+        "spatialType": "거점·아레나형 — 주박·보호·퇴로",
+        "reason": "gross W/H는 보존하고 실제 연결 지지면·상하 경로·교전 배치를 보완한다. 소단을 해치는 전투가 아니라 주박 해제·보호·철수의 세 판단을 다른 층에서 수행.",
+        "width": [
+          5000,
+          5000
+        ],
+        "height": [
+          3900,
+          3900
+        ],
+        "aspect": [
+          1.2820512820512822,
+          1.2820512820512822
+        ],
+        "platforms": [
+          16,
+          22
+        ],
+        "elevationBands": [
+          4,
+          5
+        ],
+        "routes": [
+          2,
+          3
+        ],
+        "jumps": [
+          14,
+          20
+        ],
+        "drops": [
+          6,
+          10
+        ],
+        "rounds": [
+          12,
+          16
+        ],
+        "minutes": [
+          17,
+          25
+        ],
+        "enemies": [
+          34,
+          40
+        ],
+        "requiredEngagements": [
+          18,
+          28
+        ],
+        "simultaneous": [
+          6,
+          8
+        ],
+        "enemyActions": [
+          4,
+          5
+        ],
+        "roles": [
+          5,
+          6
+        ],
+        "patterns": [
+          6,
+          8
+        ],
+        "elites": [
+          2,
+          3
+        ],
+        "boss": {
+          "name": "소단의 바깥 주박 — 비살상 해제",
+          "killRounds": [
+            3,
+            5
+          ],
+          "phases": [
+            3,
+            3
+          ],
+          "hpRule": "정상 성장·해당 장 합법 장비/기예의 일반정책에서 보스에게 실제 전달된 파티 유효 피해/R 중앙값 D와 목표 처치 R을 곱해 HP 후보를 산정한다. 이미 방어·명중·이동 손실을 반영한 D에 갑옷/명중 배수를 중복 적용하지 않는다. 목표기믹 대기 R은 제외하고 실측으로 재조정한다. HP 대상은 sodan-binding의 유효내구만이다. 소단 본인 HP는 보호자원이며 kill HP로 역산하지 않는다. phases는 주박 해제/6R 보호/철수의 임무3단계다.",
+          "classification": "major",
+          "peakAttackPctHP": [
+            32,
+            40
+          ],
+          "countsTowardEnemyBudget": false,
+          "telegraphRule": "강공격 전에 살아 있는 각 대상에게 최소 1회 아군 대응기회. 회피·차폐·중단 중 2개 이상 유효 대응, 예고 없는 회피불가 즉사 금지."
+        },
+        "clearRate": [
+          70,
+          85
+        ],
+        "artProfiles": [
+          "terrain_organic_rock",
+          "terrain_timber",
+          "background_low_density",
+          "character_protected_features"
+        ],
+        "artIntent": "현재 장소 실루엣과 실제 지지면을 보존하고, 전경·인물·목표를 구별한다. 미술을 맞추려고 충돌 지형을 임의 확대하지 않는다.",
+        "enemyPlan": [
+          {
+            "role": "비살상 주요 보스 조우",
+            "archetype": "바깥 주박",
+            "behavior": "예고 파장 사선 / 결박 방향 전환",
+            "patterns": [
+              "예고 파장 사선",
+              "결박 방향 전환"
+            ],
+            "loreBasis": "현재 장의 바깥 주박 또는 같은 원형의 강화편성; 새 신분·새 사건을 확정하지 않는다.",
+            "status": "proposed"
+          },
+          {
+            "role": "소단 측면 접근",
+            "archetype": "산개",
+            "behavior": "양측 교대 진입",
+            "patterns": [
+              "양측 교대 진입"
+            ],
+            "loreBasis": "현재 장의 산개 또는 같은 원형의 강화편성; 새 신분·새 사건을 확정하지 않는다.",
+            "status": "proposed"
+          },
+          {
+            "role": "보호선 돌파",
+            "archetype": "멧돼지",
+            "behavior": "예고 직선 돌진",
+            "patterns": [
+              "예고 직선 돌진"
+            ],
+            "loreBasis": "현재 장의 멧돼지 또는 같은 원형의 강화편성; 새 신분·새 사건을 확정하지 않는다.",
+            "status": "proposed"
+          },
+          {
+            "role": "후위 차단",
+            "archetype": "혼",
+            "behavior": "퇴로 쪽 우회 접근",
+            "patterns": [
+              "퇴로 쪽 우회 접근"
+            ],
+            "loreBasis": "현재 장의 혼 또는 같은 원형의 강화편성; 새 신분·새 사건을 확정하지 않는다.",
+            "status": "proposed"
+          },
+          {
+            "role": "상단 대응",
+            "archetype": "까마귀",
+            "behavior": "낙하 공격 / 방향 전환 뒤 재진입",
+            "patterns": [
+              "낙하 공격",
+              "방향 전환 뒤 재진입"
+            ],
+            "loreBasis": "현재 장의 까마귀 또는 같은 원형의 강화편성; 새 신분·새 사건을 확정하지 않는다.",
+            "status": "proposed"
+          }
+        ],
+        "initialEnemies": [
+          15,
+          17
+        ],
+        "finiteReinforcements": [
+          19,
+          23
+        ],
+        "enemyBudgetBasis": "주박/양전각 방어;새목표첫4+후속5×3=19,선행반응최대4 별도 — 모두 신규 제안; 현재 편성수/최대예약상한/실제 생성 수를 복사한 수치가 아니다. 설계상보호6R의파동첫4+후속최대5×3=19,선행반응0~4를더한19~23. 현재코드38최대파동/생존cap28과구별하며점유/조기제압에따른실생성도따로센다.",
+        "reinforcementScope": "설계상보호6R의파동첫4+후속최대5×3=19,선행반응0~4를더한19~23. 현재코드38최대파동/생존cap28과구별하며점유/조기제압에따른실생성도따로센다.",
+        "primaryAxis": "arena",
+        "verticalSpanPx": [
+          1400,
+          1800
+        ],
+        "verticalTravelRatio": [
+          0.3,
+          0.5
+        ],
+        "enemyAttackPctHP": [
+          14,
+          20
+        ],
+        "actualEnemyActions": [
+          4,
+          5
+        ],
+        "enemyActionCap": [
+          5,
+          6
+        ],
+        "normalKillActions": [
+          1,
+          2
+        ],
+        "activePlayBounds": {
+          "x": [
+            0,
+            5000
+          ],
+          "y": [
+            0,
+            3900
+          ],
+          "status": "proposed",
+          "validation": "구현 전 선언 구역. 실제 진입·필수 목표·정상 경로 포함과 구역 밖 도달가능 면적을 실측해야 함."
+        },
+        "activePlayHeight": [
+          3900,
+          3900
+        ],
+        "verticalSpanRatio": [
+          0.359,
+          0.462
+        ],
+        "grossVerticalSpanRatio": [
+          0.359,
+          0.462
+        ],
+        "majorBossCount": [
+          1,
+          1
+        ],
+        "miniboss": {
+          "count": [
+            0,
+            0
+          ],
+          "mandatoryCount": [
+            0,
+            0
+          ],
+          "variants": [],
+          "killRounds": [
+            0,
+            0
+          ]
+        },
+        "objectivePressure": {
+          "simultaneousDemands": [
+            2,
+            3
+          ],
+          "responseWindowRounds": [
+            1,
+            2
+          ],
+          "failureRecoveryOptions": [
+            1,
+            2
+          ],
+          "reason": "원래 목표·승리조건을 유지하고 이동/사선/보호/기믹 중 동시에 판단할 요구를 조합. 대응창은 예고 후 유효 아군 대응기회이며 새로운 고정 대기R을 추가하지 않는다."
+        },
+        "v2Status": "정량 설계 제안·미구현·미실측. source/current는 v1과 동일.",
+        "metricDefinitions": {
+          "enemyAttackPctHP": "정상 성장·해당 장 합법 장비에서 일반 적의 비치명 1회 정상 명중 피해/대상 최대HP×100. 정예·중간·주요보스 강공격 제외.",
+          "normalKillActions": "일반 적 1체에 실제 유효한 플레이어 공격/기예 행동 수. 이동·실패 발사·보스 제외.",
+          "enemyActions": "실제 교전 중 적 페이즈당 피해·제압·경로차단·유효접근·목표압박을 만든 행동 수. 제자리 대기·무표적 발사 제외. 설정 상한은 enemyActionCap과 별도.",
+          "verticalSpanRatio": "필수 기본 경로의 최대-최소 착지 지지면 높이 / 사전 선언 activePlayBounds 높이. gross 비율 별도.",
+          "verticalTravelRatio": "필수 기본 경로의 유효 착지 지지면 |Δy| 누적 / |Δx| 누적. 점프 포물선 자체의 위아래 궤적 제외.",
+          "jumpsDrops": "성공런에서 플레이어가 조작한 동행 전체의 유효 점프/하강. NPC 자동이동·헛점프·같은 자리 반복 제외.",
+          "rankCounts": "elites는 일반 정예만. miniboss·majorBossCount와 중복하지 않는다. 10장 주박은 주요 보스 조우이나 적 총예산에서는 목표물로 제외."
+        },
+        "verticalRoute": {
+          "route": "주박 사격층→소단 보호 회랑→동쪽 퇴로. 6 적페이즈 동안 위·아래 파동 입구에 따라 보호 위치를 교대.",
+          "tacticalReward": "소단을 해치는 전투가 아니라 주박 해제·보호·철수의 세 판단을 다른 층에서 수행.",
+          "requiredLayerTransitions": [
+            10,
+            16
+          ],
+          "upDownReturns": [
+            1,
+            2
+          ],
+          "requiredVisitedBands": [
+            4,
+            5
+          ],
+          "maxRequiredJumpRisePx": [
+            120,
+            145
+          ],
+          "geometryStatus": "제안·미구현·미실측",
+          "measurement": "필수 퀘스트 기본경로의 실제 지지면/착지 기록. 동행 조작만 합산하고 같은 자리 반복·NPC 자동이동 제외. 정상적인 합법 우회가 목표 아래면 실패를 숨기지 않고 경로/목표를 재설계한다."
+        },
+        "maxSingleArchetypePct": 50,
+        "compositionRule": "일반·정예·중간·주요보스 개체수 중복 없음. 재질/색/HP만 다른 적은 새 패턴으로 세지 않는다. 같은 공격이라도 이름만 바꾼 것은 하나로 집계하며 실제 명중형상·예고·대응이 달라야 한다.",
+        "enemyPlanCounting": "역할·패턴은 위의 설계 목표 범위다. 아래 편성 후보의 행 수, 적 종류 수, 정예 등급, 같은 적의 형태 전이를 자동 가산하지 않는다. 실제 채택 구성에서 기능·대응 방식 기준으로 중복 제거하여 측정한다.",
+        "roundBudget": {
+          "target": [
+            12,
+            16
+          ],
+          "hardMax": 20,
+          "scope": "전투·이동·필수기믹·대기를 포함한 전체 라운드",
+          "validation": "등록된 일반·숙련 정상 진행 시험에서 20R 초과 0건. 초과는 별도 분량 실패로 기록하며 성공률에 숨기지 않는다. 악의적 무행동 시험은 분리한다.",
+          "notGameplayTimeout": "20R 강제 게임오버를 신설하는 규칙이 아니다."
+        },
+        "pacingChanges": [
+          "기존 스토리와 완료조건은 유지한다. 20R 안에 안 들어오면 전투/동선/기믹 배치를 다시 설계한다.",
+          "일반 적은 유효 공격 1–2회로 처리하고, 난도는 피해·협공·패턴·위치 선택으로 만든다.",
+          "연속되는 전투와 목적 행동을 같은 이동 구간에 묶고 빈 이동·예약 파동 대기를 줄인다.",
+          "수직 이동의 선택과 큰 형태는 유지하되 발판 간격·합류 지점·왕복거리를 압축한다.",
+          "현행 필수6R 보호는 보존하고 그 전 주박해제·이후 철수를 예산 안에서 구성한다."
+        ]
+      },
+      "tactics": [
+        "주박 파괴 이후 즉시 소단 공격을 멈추고 양측 전각을 방어한다.",
+        "6회 보호를 마치기 전 출구 정찰자를 전진시키되 소단 보호를 포기하지 않는다."
+      ],
+      "specialMetrics": [
+        {
+          "metric": "의식 보호",
+          "target": "완전한 적 행동 종료 정확히6회 이상",
+          "measure": "coopHold/finaleDefenseTurns/teamEnds",
+          "reason": "보스 봉우리를 HP가 아니라 협력 지속/위치로 평가한다."
+        },
+        {
+          "metric": "소단 보호 잔여 HP",
+          "target": "성공 중앙값50~80%",
+          "measure": "철수 확정 직전 소단 HP",
+          "reason": "무시해도 사는 보호 대상과 즉사 대상을 피한다."
+        },
+        {
+          "metric": "의식 완료 후 출구 확보",
+          "target": "1~3R",
+          "measure": "coopHold=6→withdrawal.safe",
+          "reason": "막 끝의 잔적 청소/빈 이동 꼬리를 제한한다."
+        },
+        {
+          "metric": "유한 파동 원장",
+          "target": "현재 코드 최대 첫8+후속5×6=38; 설계제안 첫4+후속5×3=19, 중복0",
+          "measure": "finaleWaves 각 source 고유IDs",
+          "reason": "6R보호 인과는 보존하되 현재 최대예약상한38을 필요적수/실제생성수로 오인하지 않는다."
+        }
+      ],
+      "varianceReason": "1막 마지막 절정. 고정6R보호와 양측방어로9장보다 길다. 현재최대파동38과 생존cap28은 구현사실일뿐 목표가 아니며, 제안 유한19~23/총34~40으로 압력과 반복을 분리한다.",
+      "proposedChanges": [
+        "주박 사격층→소단 보호 회랑→동쪽 퇴로. 6 적페이즈 동안 위·아래 파동 입구에 따라 보호 위치를 교대.",
+        "소단을 해치는 전투가 아니라 주박 해제·보호·철수의 세 판단을 다른 층에서 수행.",
+        "상한 숫자를 늘리는 것만으로 통과하지 않는다. 새 적 행동·높이별 대응·목표 압박을 일반정책 신규 seed로 실측한다.",
+        "v3 분량 상한20R: 일반 적 처치행동·중간보스 공략 길이·이동/기믹 대기를 줄이고, 공격 압력과 수직·복합 전개는 유지한다."
+      ],
+      "unknowns": [
+        "killRounds 필드는 여기서 사람 처치가 아니라 바깥 주박 해제 R을 뜻한다.",
+        "누적 파동은 생존cap과 조기제압에 따라 실제 허용 수가 달라 별도 원장이 필요하다.",
+        "라운드·분·점프·실효 적행동·클리어율은 이 작업에서 실측하지 않았다. 제안 범위의 수락에는 정상 성장·일반정책·새 조준오차 seed cohort 실측이 필요하다."
+      ]
+    }
+  ],
+  "measurementPlan": {
+    "candidate": "292c1122fcd75256c366ec15e815fb4adcfbd7b2",
+    "scope": "Native production Engine + App; DOM/render/clock doubles. Separate true normal UI browser evidence required.",
+    "entry": "Declared first-clear reward/recruit fixtures, or immutable historical victory profiles, never continuous campaign claim.",
+    "policies": [
+      "objective-aggressive",
+      "cover-survival",
+      "route-highground-skillcombo"
+    ],
+    "seeds": [
+      1103,
+      1104,
+      1105,
+      1106
+    ],
+    "roundHardMax": 20,
+    "stop": "Terminal state or explicit observation budget; over20 results retained, never truncated into success.",
+    "missingGate": "Any missing essential measurement is FAIL / unmeasured, never pass.",
+    "humanFunClaim": false
+  }
+}
