@@ -226,5 +226,40 @@
       "drawMs": 11.50657000000001
     }
   },
-  "qualityPass": true
+  "qualityPass": true,
+  "equivalentFinal": {
+    "scope": "Original measured comparison retained unchanged; final is an exact-RGBA-equivalent lexical minification.",
+    "svgSha256": "0af6ae063aac8c8a41c9ad306f16e99f8cc304ff149f5f9c068e0369f02955cf",
+    "proof": "../lossless-proof.json",
+    "checks": [
+      {
+        "part": "west-shelves-v1",
+        "scope": "isolated",
+        "scale": 1,
+        "rgbaSha256": "ebfda8d9c35a0b371d2a08403ca26885c8e60fe56c6287e3fdb7ed9cce63f482",
+        "bitIdentical": true
+      },
+      {
+        "part": "west-shelves-v1",
+        "scope": "isolated",
+        "scale": 2,
+        "rgbaSha256": "e3f25bdc04fec5127f325dde54c1a7222ae2a5bd2d90113fae6c64d1fa03cd87",
+        "bitIdentical": true
+      },
+      {
+        "part": "west-shelves-v1",
+        "scope": "composed",
+        "scale": 1,
+        "rgbaSha256": "dbd7d946d0ac6e3d4cb7d4943061de6d6da31ba6021bf3c02a6f9641cce141f7",
+        "bitIdentical": true
+      },
+      {
+        "part": "west-shelves-v1",
+        "scope": "composed",
+        "scale": 2,
+        "rgbaSha256": "62f2fe6986fe3019278dae4ebaa06ad13cafcc4571e44a26226e995c32ea23a9",
+        "bitIdentical": true
+      }
+    ]
+  }
 }

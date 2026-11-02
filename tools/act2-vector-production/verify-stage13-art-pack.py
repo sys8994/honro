@@ -17,5 +17,7 @@ for p in r['parts']:
  expected=list(actual);embedded=list(holder)[-len(expected):]
  assert [E.tostring(e)for e in expected]==[E.tostring(e)for e in embedded],p['part']
 assert (raw,authored,final)==(r['immutableRawPackBytes'],r['authoredRawPackBytes'],r['finalSvgPackBytes'])
-assert final<=raw*.7
+assert final<=raw*.7 and final<=authored*.7
+proof=json.loads((root/'lossless-proof.json').read_text());assert proof['pass'] and len(proof['checks'])==28 and all(x['bitIdentical']for x in proof['checks'])
+native=json.loads((root/'lossless-native-proof.json').read_text());assert native['pass'] and len(native['checks'])==13 and all(x['bitIdentical']for x in native['checks'])
 print(json.dumps({'pass':True,'parts':len(r['parts']),'immutableRawBytes':raw,'authoredRawBytes':authored,'finalBytes':final,'reductionVsImmutablePercent':100*(1-final/raw),'reductionVsAuthoredPercent':100*(1-final/authored)}))

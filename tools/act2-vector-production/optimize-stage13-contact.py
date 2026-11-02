@@ -20,7 +20,7 @@ def mini(d):
    t=re.sub(r'^(-?)0\.',r'\1.',t)
    if last and not t.startswith(('-','+')):o.append(' ')
    o.append(t);last=True
- return ''.join(o)
+ return re.sub(r'(\d*\.\d+) (?=\.\d)',r'\1',''.join(o))
 from PIL import Image
 countsizes={'M':2,'L':2,'H':1,'V':1,'C':6,'Q':4,'S':4,'T':2,'A':7}
 def rawSegments(chunk):

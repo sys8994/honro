@@ -35,6 +35,8 @@
 
 ## 최종 후보 계측
 
-불변 실제 Inkscape RAW 묶음612,297B → 최종 SVG414,635B, 32.282% 절감. 의미별 밑색을 분리한 authored RAW587,415B와 비교하면29.414%이며 두 기준을 모두 공개한다. `art/act2-near-vector-candidates/stage13-hidden-gate-v1/pack-report.json`에 부품별 원본/최종 바이트와 해시를 보관한다. 7부품 모두 실제 canonical clip/underpaint 합성의1×/2× 게이트를 통과했다. 원본 이미지의 사용되지 않는 clip 바깥 overdraw를 합격 영역으로 착각하지 않는다. 천장에만 실제로 적용된 기존1/255 RGB 양자화 보정은 alpha가 동일한2/4픽셀이고 원래/보정 뒤 수치를 함께 기록한다. 연속 바닥의 최종 alpha/보호 RGB는 두 배율에서 완전히 같다.
+불변 실제 Inkscape RAW 묶음612,297B → 최종 SVG407,200B, 33.496% 절감. 의미별 밑색을 분리한 authored RAW587,415B와 비교하면30.679%이며 두 기준을 모두 공개한다. `art/act2-near-vector-candidates/stage13-hidden-gate-v1/pack-report.json`에 부품별 원본/최종 바이트와 해시를 보관한다. 7부품 모두 실제 canonical clip/underpaint 합성의1×/2× 게이트를 통과했다. 원본 이미지의 사용되지 않는 clip 바깥 overdraw를 합격 영역으로 착각하지 않는다. 천장에만 실제로 적용된 기존1/255 RGB 양자화 보정은 alpha가 동일한2/4픽셀이고 원래/보정 뒤 수치를 함께 기록한다. 연속 바닥의 최종 alpha/보호 RGB는 두 배율에서 완전히 같다.
 
 기본 모바일뿐 아니라 실제 HonroBounds 최소 배율과 좌·우·상·하 focus 끝의 세로 화면을 확인했다. 아래쪽은 같은 단색 기반으로 자연스럽게 이어지고, 국소 재질의 사각 밑판·흰 halo·공중 암석이 없다. native fixture의 기하 불변 및 화면 확인이며 실제 브라우저 전투/공개 배포 합격을 대신하지 않는다.
+
+기하 최적화 뒤 SVG 숫자 문법의 불필요한 소수점 앞 구분자만 없애7,435B를 더 줄였다. 숫자·명령·좌표를 바꾸지 않았고 7부품의 isolated/실제 합성 ×1×/2×, 총28회 RGBA 비트 동일성을 증명했다. 이전 최종 SVG도 별도 gzip으로 남겨 근거를 재현할 수 있다.

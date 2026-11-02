@@ -641,5 +641,40 @@
       "drawMs": 29.98920700000002
     }
   },
-  "qualityPass": true
+  "qualityPass": true,
+  "equivalentFinal": {
+    "scope": "Original measured comparison retained unchanged; final is an exact-RGBA-equivalent lexical minification.",
+    "svgSha256": "1b694814c8e735adc1635635067b595dd819830c4cd716262183a0d4ba96e66a",
+    "proof": "../lossless-proof.json",
+    "checks": [
+      {
+        "part": "east-v1",
+        "scope": "isolated",
+        "scale": 1,
+        "rgbaSha256": "08accbc604030d4998eb125324b72e1d7201387be99a32d4b557071167934e05",
+        "bitIdentical": true
+      },
+      {
+        "part": "east-v1",
+        "scope": "isolated",
+        "scale": 2,
+        "rgbaSha256": "e524cd3a40f4c1c3c6edd5fed969a53afd4994b3d1643a564b5da95468fc37de",
+        "bitIdentical": true
+      },
+      {
+        "part": "east-v1",
+        "scope": "composed",
+        "scale": 1,
+        "rgbaSha256": "8c4afc05d929bbf8704885b4365147809eb2c84d8ed088fa5aaf80b5442e3395",
+        "bitIdentical": true
+      },
+      {
+        "part": "east-v1",
+        "scope": "composed",
+        "scale": 2,
+        "rgbaSha256": "45a8fb825b301ea66450ab77f06efde12d0c8f632f0bcb2ce0735c92b3c5ecb9",
+        "bitIdentical": true
+      }
+    ]
+  }
 }

@@ -226,5 +226,40 @@
       "drawMs": 21.539250000000038
     }
   },
-  "qualityPass": true
+  "qualityPass": true,
+  "equivalentFinal": {
+    "scope": "Original measured comparison retained unchanged; final is an exact-RGBA-equivalent lexical minification.",
+    "svgSha256": "c687734adeddcc86e5281821714bff6f7ee7d31024697fa4a8466412f14c1923",
+    "proof": "../lossless-proof.json",
+    "checks": [
+      {
+        "part": "inner-shelves-v1",
+        "scope": "isolated",
+        "scale": 1,
+        "rgbaSha256": "a8c9a58e241a9c796cd1d69de22312913eac9463d28db231fd3bcd3f0aafcf4c",
+        "bitIdentical": true
+      },
+      {
+        "part": "inner-shelves-v1",
+        "scope": "isolated",
+        "scale": 2,
+        "rgbaSha256": "b00b558bc32d2ecf4e2725b04999bc1e573956fc42da140482f608ce624c11b2",
+        "bitIdentical": true
+      },
+      {
+        "part": "inner-shelves-v1",
+        "scope": "composed",
+        "scale": 1,
+        "rgbaSha256": "07644536e1ac8849ca8686dfdecc80d2e3141b659a7a2d6aeb82a8ff42b05194",
+        "bitIdentical": true
+      },
+      {
+        "part": "inner-shelves-v1",
+        "scope": "composed",
+        "scale": 2,
+        "rgbaSha256": "6a007296e4a24e16bf4394d7cef5319cab4682f71a1d2e1204e995757ea975ab",
+        "bitIdentical": true
+      }
+    ]
+  }
 }

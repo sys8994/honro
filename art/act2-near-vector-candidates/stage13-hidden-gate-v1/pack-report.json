@@ -2,9 +2,9 @@
   "stage": 13,
   "immutableRawPackBytes": 612297,
   "authoredRawPackBytes": 587415,
-  "finalSvgPackBytes": 414635,
-  "reductionVsImmutablePercent": 32.282046131207565,
-  "reductionVsAuthoredPercent": 29.413617289309947,
+  "finalSvgPackBytes": 407200,
+  "reductionVsImmutablePercent": 33.49632612931306,
+  "reductionVsAuthoredPercent": 30.679332328932695,
   "pixelGatesUnchanged": true,
   "quantizationPolicy": "Existing Stage7 policy only where recorded: RGB<=1/255 and alpha bit-identical per adjusted pixel; reports retain raw offsets/counts.",
   "parts": [
@@ -12,11 +12,11 @@
       "part": "extension-v2",
       "immutableInkscapeBytes": 203761,
       "authoredRawBytes": 203761,
-      "finalSvgBytes": 124076,
-      "reductionVsAuthoredPercent": 39.107091150907195,
+      "finalSvgBytes": 121626,
+      "reductionVsAuthoredPercent": 40.30948022438052,
       "rawSha256": "f618e5040bf9bff44e93de401b0f5870d467f2d088b01a73bfbd0d6cded72e08",
       "authoredRawSha256": "86ec708a7b06215eeaf33b85239a0ef926ecc420b08e9a538da508d3a88f2cd2",
-      "finalSha256": "9b4c82167cf8b392f93bd4a5f582a572556eefef83ff7653a7cf25e13d02a567",
+      "finalSha256": "16f1046828029aba8e8de885616b0b34f0635627d09159919ae268ce5567d290",
       "metricScope": "Exact native canonical clip/underpaint composition",
       "qualityPass": true,
       "metrics": {
@@ -50,17 +50,20 @@
           "protectedQuantizationPixels": 0,
           "pass": true
         }
-      }
+      },
+      "preLosslessFinalSvgBytes": 124076,
+      "preLosslessFinalSha256": "9b4c82167cf8b392f93bd4a5f582a572556eefef83ff7653a7cf25e13d02a567",
+      "losslessBytesSaved": 2450
     },
     {
       "part": "west-v1",
       "immutableInkscapeBytes": 39021,
       "authoredRawBytes": 31190,
-      "finalSvgBytes": 27249,
-      "reductionVsAuthoredPercent": 12.635460083360051,
+      "finalSvgBytes": 26843,
+      "reductionVsAuthoredPercent": 13.937159345944217,
       "rawSha256": "dec47651a3af34b055743c1490a0cb750f63b1915ecf6f6a175944f3c2855e2f",
       "authoredRawSha256": "7832a87b85c61d88a2fcd218d0ea8e2a75b416ba92dbd90aac351491628e44cf",
-      "finalSha256": "f5edec3b17f11acd3b0acb7860b12b3e73370aacc0f248dc335f2fdb943379b7",
+      "finalSha256": "58c50e3fce7e7c9e89f889053754bbcfca1f638e94b0deda077a379fc4f045a8",
       "metricScope": "Exact native canonical clip/underpaint composition",
       "qualityPass": true,
       "metrics": {
@@ -94,17 +97,20 @@
           "protectedQuantizationPixels": 0,
           "pass": true
         }
-      }
+      },
+      "preLosslessFinalSvgBytes": 27249,
+      "preLosslessFinalSha256": "f5edec3b17f11acd3b0acb7860b12b3e73370aacc0f248dc335f2fdb943379b7",
+      "losslessBytesSaved": 406
     },
     {
       "part": "middle-v1",
       "immutableInkscapeBytes": 35954,
       "authoredRawBytes": 23996,
-      "finalSvgBytes": 20844,
-      "reductionVsAuthoredPercent": 13.135522587097848,
+      "finalSvgBytes": 20637,
+      "reductionVsAuthoredPercent": 13.998166361060171,
       "rawSha256": "6c4d80d3d9fbc1bcc4667d9d5e79a227062471e084bf13ead7f6a83e874ca00b",
       "authoredRawSha256": "e642c165cab64b9d66366e92e0a96ea685d35c15222a2da2f92e3994172bcbd2",
-      "finalSha256": "86356f84f6805aab610812434466d117776e255b45b5d23a8100c00462465a2b",
+      "finalSha256": "c8deab9db7b52021ce22992d3cef743e4f22941d0d7068d7927245378cb23e0e",
       "metricScope": "Exact native canonical clip/underpaint composition",
       "qualityPass": true,
       "metrics": {
@@ -138,17 +144,20 @@
           "protectedQuantizationPixels": 0,
           "pass": true
         }
-      }
+      },
+      "preLosslessFinalSvgBytes": 20844,
+      "preLosslessFinalSha256": "86356f84f6805aab610812434466d117776e255b45b5d23a8100c00462465a2b",
+      "losslessBytesSaved": 207
     },
     {
       "part": "east-v1",
       "immutableInkscapeBytes": 31716,
       "authoredRawBytes": 26623,
-      "finalSvgBytes": 20669,
-      "reductionVsAuthoredPercent": 22.36412124854449,
+      "finalSvgBytes": 20367,
+      "reductionVsAuthoredPercent": 23.49847875896781,
       "rawSha256": "caba826849f59ebd054770f19206284596b5741054b34439610e6fda88d5c91b",
       "authoredRawSha256": "78c6d0e63ee80b5cdb64cbe0eb57feb1bdbd589d5cb0bfb18565c81cb6c3ef33",
-      "finalSha256": "0ace19ca5c0723b1229d4dbbb6458679f67c267a2db4c40ae78bddc5de195a46",
+      "finalSha256": "1b694814c8e735adc1635635067b595dd819830c4cd716262183a0d4ba96e66a",
       "metricScope": "Exact native canonical clip/underpaint composition",
       "qualityPass": true,
       "metrics": {
@@ -182,17 +191,20 @@
           "protectedQuantizationPixels": 0,
           "pass": true
         }
-      }
+      },
+      "preLosslessFinalSvgBytes": 20669,
+      "preLosslessFinalSha256": "0ace19ca5c0723b1229d4dbbb6458679f67c267a2db4c40ae78bddc5de195a46",
+      "losslessBytesSaved": 302
     },
     {
       "part": "roof-v2",
       "immutableInkscapeBytes": 175653,
       "authoredRawBytes": 175653,
-      "finalSvgBytes": 129720,
-      "reductionVsAuthoredPercent": 26.14985226554628,
+      "finalSvgBytes": 127432,
+      "reductionVsAuthoredPercent": 27.452420397032785,
       "rawSha256": "4614916070cc0871fad5f07e7246461d5d5bb25b191bcec830196605a972197a",
       "authoredRawSha256": "4614916070cc0871fad5f07e7246461d5d5bb25b191bcec830196605a972197a",
-      "finalSha256": "ce4fd7e4c3716216fb6ec0b3424f2a70b2217b164e68109e209e533ee6b63fb4",
+      "finalSha256": "c5f22af992c9dcb4da4d01bbae55a9d40e7b422690ab97d7f348602a2abb882b",
       "metricScope": "Exact native canonical clip/underpaint composition",
       "qualityPass": true,
       "metrics": {
@@ -226,17 +238,20 @@
           "protectedQuantizationPixels": 4,
           "pass": true
         }
-      }
+      },
+      "preLosslessFinalSvgBytes": 129720,
+      "preLosslessFinalSha256": "ce4fd7e4c3716216fb6ec0b3424f2a70b2217b164e68109e209e533ee6b63fb4",
+      "losslessBytesSaved": 2288
     },
     {
       "part": "west-shelves-v1",
       "immutableInkscapeBytes": 62964,
       "authoredRawBytes": 62964,
-      "finalSvgBytes": 44846,
-      "reductionVsAuthoredPercent": 28.77517311479576,
+      "finalSvgBytes": 44020,
+      "reductionVsAuthoredPercent": 30.08703386061876,
       "rawSha256": "41fa6bff6b450fad28f082d85f22e64821c4b5efb143e91ed6a012f96c39a87b",
       "authoredRawSha256": "41fa6bff6b450fad28f082d85f22e64821c4b5efb143e91ed6a012f96c39a87b",
-      "finalSha256": "1d87591c00db5d9541b980939d80f9306119d18dd73f1b308b5cd6c17440188e",
+      "finalSha256": "0af6ae063aac8c8a41c9ad306f16e99f8cc304ff149f5f9c068e0369f02955cf",
       "metricScope": "Exact native canonical clip/underpaint composition",
       "qualityPass": true,
       "metrics": {
@@ -270,17 +285,20 @@
           "protectedQuantizationPixels": 0,
           "pass": true
         }
-      }
+      },
+      "preLosslessFinalSvgBytes": 44846,
+      "preLosslessFinalSha256": "1d87591c00db5d9541b980939d80f9306119d18dd73f1b308b5cd6c17440188e",
+      "losslessBytesSaved": 826
     },
     {
       "part": "inner-shelves-v1",
       "immutableInkscapeBytes": 63228,
       "authoredRawBytes": 63228,
-      "finalSvgBytes": 47231,
-      "reductionVsAuthoredPercent": 25.30049977857911,
+      "finalSvgBytes": 46275,
+      "reductionVsAuthoredPercent": 26.812488138166636,
       "rawSha256": "15557071d3282a16e407e8dfd77b7112f5f46f6936462f19b4df335cdc193a4f",
       "authoredRawSha256": "15557071d3282a16e407e8dfd77b7112f5f46f6936462f19b4df335cdc193a4f",
-      "finalSha256": "10ad960051d1394124427cbdb8b320469afd3338dbe1f5105c8f41dcbd80e07a",
+      "finalSha256": "c687734adeddcc86e5281821714bff6f7ee7d31024697fa4a8466412f14c1923",
       "metricScope": "Exact native canonical clip/underpaint composition",
       "qualityPass": true,
       "metrics": {
@@ -314,8 +332,13 @@
           "protectedQuantizationPixels": 0,
           "pass": true
         }
-      }
+      },
+      "preLosslessFinalSvgBytes": 47231,
+      "preLosslessFinalSha256": "10ad960051d1394124427cbdb8b320469afd3338dbe1f5105c8f41dcbd80e07a",
+      "losslessBytesSaved": 956
     }
   ],
-  "scope": "Candidate art plus native contracts. No browser/full combat/public deployment acceptance."
+  "scope": "Candidate art plus native contracts. No browser/full combat/public deployment acceptance.",
+  "preLosslessFinalSvgPackBytes": 414635,
+  "losslessBytesSaved": 7435
 }

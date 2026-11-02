@@ -1,0 +1,202 @@
+{
+  "method": "Only remove a separator before a leading decimal point following another decimal number; exact SVG grammar, no numeric or geometry edits.",
+  "checks": [
+    {
+      "part": "extension-v2",
+      "scope": "isolated",
+      "scale": 1,
+      "rgbaSha256": "c255fa8d856851614dd41745a48fad60a44f611f182bfe6f302c6976a1fcc35c",
+      "bitIdentical": true
+    },
+    {
+      "part": "extension-v2",
+      "scope": "isolated",
+      "scale": 2,
+      "rgbaSha256": "05a2423cf0ed3d499bdf8f180ab0c6210ad2e729678eb7b825723c2f427b2d2a",
+      "bitIdentical": true
+    },
+    {
+      "part": "extension-v2",
+      "scope": "composed",
+      "scale": 1,
+      "rgbaSha256": "e3c88a537c6b56c8295dfbb044288716a1fc40c66078a9c22df1d35812ef1026",
+      "bitIdentical": true
+    },
+    {
+      "part": "extension-v2",
+      "scope": "composed",
+      "scale": 2,
+      "rgbaSha256": "f7ecb515015b2b6d4b3d7224bc9756f13c2fef24372f5969669cf7e669ac6867",
+      "bitIdentical": true
+    },
+    {
+      "part": "west-v1",
+      "scope": "isolated",
+      "scale": 1,
+      "rgbaSha256": "31787bc4108abd3502d8dfe869e7bcc233f4246dd4d4b5cd560efd76d88d6256",
+      "bitIdentical": true
+    },
+    {
+      "part": "west-v1",
+      "scope": "isolated",
+      "scale": 2,
+      "rgbaSha256": "544850cad2ea399d64edb150142f60b79081d9cf17cb7d52d9691c59ac724d4a",
+      "bitIdentical": true
+    },
+    {
+      "part": "west-v1",
+      "scope": "composed",
+      "scale": 1,
+      "rgbaSha256": "3cebdbf008f565db3b5d478f80e6251550d070a57950f5647f68dc3bb475813b",
+      "bitIdentical": true
+    },
+    {
+      "part": "west-v1",
+      "scope": "composed",
+      "scale": 2,
+      "rgbaSha256": "d3181d9fd7f3ab307b1932db7b59cb657d44704f70c059776a62885f22d6a94a",
+      "bitIdentical": true
+    },
+    {
+      "part": "middle-v1",
+      "scope": "isolated",
+      "scale": 1,
+      "rgbaSha256": "ae9602905e8aeddf5cf5344318c4f4a6fff458806827f34d425da21cba4845e5",
+      "bitIdentical": true
+    },
+    {
+      "part": "middle-v1",
+      "scope": "isolated",
+      "scale": 2,
+      "rgbaSha256": "b2d4eff12197326ff8e1a3dae8488a6c8dc04d2d6be8d23a5aaf21857cfe2580",
+      "bitIdentical": true
+    },
+    {
+      "part": "middle-v1",
+      "scope": "composed",
+      "scale": 1,
+      "rgbaSha256": "dc887c6df6716fcb0f0f83540c7c9404fc38deb62335dee0aa456f18a3777ab3",
+      "bitIdentical": true
+    },
+    {
+      "part": "middle-v1",
+      "scope": "composed",
+      "scale": 2,
+      "rgbaSha256": "f5a34ea67df7f89c0797496d438002ff87b8567a14b81531d180ffc882a1ef33",
+      "bitIdentical": true
+    },
+    {
+      "part": "east-v1",
+      "scope": "isolated",
+      "scale": 1,
+      "rgbaSha256": "08accbc604030d4998eb125324b72e1d7201387be99a32d4b557071167934e05",
+      "bitIdentical": true
+    },
+    {
+      "part": "east-v1",
+      "scope": "isolated",
+      "scale": 2,
+      "rgbaSha256": "e524cd3a40f4c1c3c6edd5fed969a53afd4994b3d1643a564b5da95468fc37de",
+      "bitIdentical": true
+    },
+    {
+      "part": "east-v1",
+      "scope": "composed",
+      "scale": 1,
+      "rgbaSha256": "8c4afc05d929bbf8704885b4365147809eb2c84d8ed088fa5aaf80b5442e3395",
+      "bitIdentical": true
+    },
+    {
+      "part": "east-v1",
+      "scope": "composed",
+      "scale": 2,
+      "rgbaSha256": "45a8fb825b301ea66450ab77f06efde12d0c8f632f0bcb2ce0735c92b3c5ecb9",
+      "bitIdentical": true
+    },
+    {
+      "part": "roof-v2",
+      "scope": "isolated",
+      "scale": 1,
+      "rgbaSha256": "2e8bee99d81fdfbb59e3da5075db859d74c05ca18235228f5f4a9a73b8b698c4",
+      "bitIdentical": true
+    },
+    {
+      "part": "roof-v2",
+      "scope": "isolated",
+      "scale": 2,
+      "rgbaSha256": "304f11492a31e55dec28621c11f44f61aaa5ac236e64af6fe1eda14f06a91bf3",
+      "bitIdentical": true
+    },
+    {
+      "part": "roof-v2",
+      "scope": "composed",
+      "scale": 1,
+      "rgbaSha256": "42ca209c3c267451534c460e4b6c5f27729a5829d9628eef1d510cf22277331a",
+      "bitIdentical": true
+    },
+    {
+      "part": "roof-v2",
+      "scope": "composed",
+      "scale": 2,
+      "rgbaSha256": "d4a484e6d7acf1b7b79f2d09d8e6e59592b368a9cc8b8a130cb23257710ec961",
+      "bitIdentical": true
+    },
+    {
+      "part": "west-shelves-v1",
+      "scope": "isolated",
+      "scale": 1,
+      "rgbaSha256": "ebfda8d9c35a0b371d2a08403ca26885c8e60fe56c6287e3fdb7ed9cce63f482",
+      "bitIdentical": true
+    },
+    {
+      "part": "west-shelves-v1",
+      "scope": "isolated",
+      "scale": 2,
+      "rgbaSha256": "e3f25bdc04fec5127f325dde54c1a7222ae2a5bd2d90113fae6c64d1fa03cd87",
+      "bitIdentical": true
+    },
+    {
+      "part": "west-shelves-v1",
+      "scope": "composed",
+      "scale": 1,
+      "rgbaSha256": "dbd7d946d0ac6e3d4cb7d4943061de6d6da31ba6021bf3c02a6f9641cce141f7",
+      "bitIdentical": true
+    },
+    {
+      "part": "west-shelves-v1",
+      "scope": "composed",
+      "scale": 2,
+      "rgbaSha256": "62f2fe6986fe3019278dae4ebaa06ad13cafcc4571e44a26226e995c32ea23a9",
+      "bitIdentical": true
+    },
+    {
+      "part": "inner-shelves-v1",
+      "scope": "isolated",
+      "scale": 1,
+      "rgbaSha256": "a8c9a58e241a9c796cd1d69de22312913eac9463d28db231fd3bcd3f0aafcf4c",
+      "bitIdentical": true
+    },
+    {
+      "part": "inner-shelves-v1",
+      "scope": "isolated",
+      "scale": 2,
+      "rgbaSha256": "b00b558bc32d2ecf4e2725b04999bc1e573956fc42da140482f608ce624c11b2",
+      "bitIdentical": true
+    },
+    {
+      "part": "inner-shelves-v1",
+      "scope": "composed",
+      "scale": 1,
+      "rgbaSha256": "07644536e1ac8849ca8686dfdecc80d2e3141b659a7a2d6aeb82a8ff42b05194",
+      "bitIdentical": true
+    },
+    {
+      "part": "inner-shelves-v1",
+      "scope": "composed",
+      "scale": 2,
+      "rgbaSha256": "6a007296e4a24e16bf4394d7cef5319cab4682f71a1d2e1204e995757ea975ab",
+      "bitIdentical": true
+    }
+  ],
+  "pass": true
+}
