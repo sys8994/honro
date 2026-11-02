@@ -119,12 +119,16 @@ for row in rows:
   values=[v['damage']/v['targetMaxHp']*100 for v in hits];row['observed']['noncriticalNormalHitPctHp']={'n':len(values),'values':values,'mean':statistics.mean(values)if values else None,'median':statistics.median(values)if values else None,'range':[min(values),max(values)]if values else None,'source':'Production emitted damage text includes actual damage/critical/attackId; HP-loss truncation avoided. Fully shield-absorbed no-damage hits not in this event sample.','sampleScope':'Separate instrumentation diagnostic, not additional registered cohort cases'}
  row['controllerCalibrationStatus']='INVALID_PLANNED_SKILL_CALLER_MISMATCH'if row['stage']==2 and 'focused'in row['policy']and (folder/'controller.js').exists()and "e.fire('A01',shot.p.angle,shot.p.power)"in(folder/'controller.js').read_text()else 'Diagnostic calibration unless separately preregistered'
  if row['stage']==1 and row.get('inputErrorSeed')==1127:row['controllerCalibrationStatus']='INVALID_POLICY_SUFFIX_ROUTING: observer suffix changed exact route-policy branch; retained diagnostic, not equivalent frozen route'
+ row['controllerExecutionError']=raw.get('error')or raw.get('failure')
+ row['outcomeQualification']='CONTROLLER_EXCEPTION'if row['controllerExecutionError']else 'TERMINAL_'+row['phase'].upper()if row['phase']in ['won','lost']else 'UNFINISHED_OBSERVATION'
  row['runtimeSha256']=meta.get('actualRuntimeSha256')
  row['legacyRuntimePartsHash']=resultMeta.get('runtimeSha256')
  row['legacyRuntimeHashScope']='Historical Stage8 test hashes runtimeParts without productionStory:true; NOT a complete hash of actual selected production-story runtime'if row['legacyRuntimePartsHash']else None
  row['candidateScope']='UNVERIFIED_SOURCE_METADATA'
  if row['sourceCommit']:
   try:
+   currentChanged=subprocess.check_output(['git','diff','--name-only','8b3a5e41',row['sourceCommit'],'--','shared/runtime','shared/engine','game/src'],cwd=ROOT,text=True).splitlines()
+   if not currentChanged:row['candidateScope']='Released8b3a5e41 tracked gameplay source verified from recorded commit'
    changed=subprocess.check_output(['git','diff','--name-only','292c1122fcd75256c366ec15e815fb4adcfbd7b2',row['sourceCommit'],'--','shared/runtime','shared/engine','game/src'],cwd=ROOT,text=True).splitlines()
    if not changed:row['candidateScope']='Baseline292 tracked gameplay source verified from recorded commit'
    elif changed==['shared/runtime/stage8-bier.js'] and subprocess.check_output(['git','show',row['sourceCommit']+':shared/runtime/stage8-bier.js'],cwd=ROOT)==subprocess.check_output(['git','show','fcfa4e6a85b6faff317da574e8b5ae50b27a6f3e:shared/runtime/stage8-bier.js'],cwd=ROOT):row['candidateScope']='Baseline292 plus authorized Stage8 staging fix; tracked source verified from commit'
