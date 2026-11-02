@@ -1,0 +1,360 @@
+{
+  "stage": 15,
+  "scope": "Native production renderer only; no browser or gameplay acceptance",
+  "geometryUnchanged": true,
+  "drainFixtureScope": "Prepared post-sluice render fixture; cloned threat setup/production water transform/revealed ledge input; actors exact; no normal completion claim",
+  "knownFixtureContacts": [
+    {
+      "id": "a2-enemy-15",
+      "x": 6210,
+      "y": 4553.207547169811,
+      "validContact": false
+    },
+    {
+      "id": "a2-enemy-17",
+      "x": 5890,
+      "y": 4749.411764705882,
+      "validContact": false
+    }
+  ],
+  "parts": [
+    "outer-v1",
+    "west-flat-v2",
+    "east-flat-v2",
+    "arches-flat-v2"
+  ],
+  "reports": [
+    {
+      "label": "entry",
+      "name": "before",
+      "view": {
+        "x": 320,
+        "y": 3454.4444444444443,
+        "scale": 0.94,
+        "w": 1440,
+        "h": 900
+      },
+      "heroHeight": 92
+    },
+    {
+      "label": "entry",
+      "name": "after",
+      "view": {
+        "x": 320,
+        "y": 3454.4444444444443,
+        "scale": 0.94,
+        "w": 1440,
+        "h": 900
+      },
+      "heroHeight": 92
+    },
+    {
+      "label": "crown",
+      "name": "before",
+      "view": {
+        "x": 4200,
+        "y": 3100,
+        "scale": 0.94,
+        "w": 1440,
+        "h": 900
+      },
+      "heroHeight": 92
+    },
+    {
+      "label": "crown",
+      "name": "after",
+      "view": {
+        "x": 4200,
+        "y": 3100,
+        "scale": 0.94,
+        "w": 1440,
+        "h": 900
+      },
+      "heroHeight": 92
+    },
+    {
+      "label": "water",
+      "name": "before",
+      "view": {
+        "x": 5700,
+        "y": 4430,
+        "scale": 0.94,
+        "w": 1440,
+        "h": 900
+      },
+      "heroHeight": 92
+    },
+    {
+      "label": "water",
+      "name": "after",
+      "view": {
+        "x": 5700,
+        "y": 4430,
+        "scale": 0.94,
+        "w": 1440,
+        "h": 900
+      },
+      "heroHeight": 92
+    },
+    {
+      "label": "water-drained",
+      "name": "before",
+      "view": {
+        "x": 5700,
+        "y": 4430,
+        "scale": 0.94,
+        "w": 1440,
+        "h": 900
+      },
+      "heroHeight": 92
+    },
+    {
+      "label": "water-drained",
+      "name": "after",
+      "view": {
+        "x": 5700,
+        "y": 4430,
+        "scale": 0.94,
+        "w": 1440,
+        "h": 900
+      },
+      "heroHeight": 92
+    },
+    {
+      "label": "east",
+      "name": "before",
+      "view": {
+        "x": 7100,
+        "y": 3800,
+        "scale": 0.94,
+        "w": 1440,
+        "h": 900
+      },
+      "heroHeight": 92
+    },
+    {
+      "label": "east",
+      "name": "after",
+      "view": {
+        "x": 7100,
+        "y": 3800,
+        "scale": 0.94,
+        "w": 1440,
+        "h": 900
+      },
+      "heroHeight": 92
+    },
+    {
+      "label": "overview",
+      "name": "before",
+      "view": {
+        "x": 4000,
+        "y": 3200,
+        "scale": 0.17,
+        "w": 1600,
+        "h": 1000
+      },
+      "heroHeight": 92
+    },
+    {
+      "label": "overview",
+      "name": "after",
+      "view": {
+        "x": 4000,
+        "y": 3200,
+        "scale": 0.17,
+        "w": 1600,
+        "h": 1000
+      },
+      "heroHeight": 92
+    },
+    {
+      "label": "mobile",
+      "name": "before",
+      "view": {
+        "x": 320,
+        "y": 3454.4444444444443,
+        "scale": 0.25458333333333333,
+        "w": 390,
+        "h": 844
+      },
+      "heroHeight": 92
+    },
+    {
+      "label": "mobile",
+      "name": "after",
+      "view": {
+        "x": 320,
+        "y": 3454.4444444444443,
+        "scale": 0.25458333333333333,
+        "w": 390,
+        "h": 844
+      },
+      "heroHeight": 92
+    },
+    {
+      "label": "edge-left",
+      "name": "before",
+      "view": {
+        "x": -320,
+        "y": 3300,
+        "scale": 0.25,
+        "w": 1440,
+        "h": 900
+      },
+      "heroHeight": 92
+    },
+    {
+      "label": "edge-left",
+      "name": "after",
+      "view": {
+        "x": -320,
+        "y": 3300,
+        "scale": 0.25,
+        "w": 1440,
+        "h": 900
+      },
+      "heroHeight": 92
+    },
+    {
+      "label": "edge-right",
+      "name": "before",
+      "view": {
+        "x": 8320,
+        "y": 3500,
+        "scale": 0.25,
+        "w": 1440,
+        "h": 900
+      },
+      "heroHeight": 92
+    },
+    {
+      "label": "edge-right",
+      "name": "after",
+      "view": {
+        "x": 8320,
+        "y": 3500,
+        "scale": 0.25,
+        "w": 1440,
+        "h": 900
+      },
+      "heroHeight": 92
+    }
+  ],
+  "manualVisualReview": {
+    "result": "PASS native art review",
+    "views": [
+      "entry",
+      "crown",
+      "water",
+      "water-drained",
+      "east",
+      "overview",
+      "mobile",
+      "edge-left",
+      "edge-right"
+    ],
+    "observations": [
+      "Original hero scale retained; clean planar rock facets without rectangular overlay seams",
+      "Existing native wooden supports, wheel/actors/water are separate; far image remains separate",
+      "Hidden drained ledge absent before named visual drain fixture and visible after; no static paint on reveal region",
+      "Upper exit slope/last ascent and lower alternative remain readable; canonical contact highlight preserved",
+      "No standalone white fringe or image-canvas rectangle at local panel material ends"
+    ],
+    "limits": "Visual fixture is not a real gameplay drain/exit clear; fixture known contacts retained in report"
+  },
+  "evidence": [
+    {
+      "file": "_local/reports/stage15-final-art-preview/crown-after.png",
+      "sha256": "3acbf532e5424ffaf2c16149963a46092a85aac9dbbe5b8c5b8d1def318e95ae",
+      "bytes": 293428
+    },
+    {
+      "file": "_local/reports/stage15-final-art-preview/crown-before.png",
+      "sha256": "7d0c13167a1998b9b5dd529520c64480dbf2cd7d8c34dd7f01acf1909bd1d28e",
+      "bytes": 306039
+    },
+    {
+      "file": "_local/reports/stage15-final-art-preview/east-after.png",
+      "sha256": "5ad0b7171e9977a306bb0e0439bed09e6dd43fad4774697f8975c333d6324895",
+      "bytes": 267589
+    },
+    {
+      "file": "_local/reports/stage15-final-art-preview/east-before.png",
+      "sha256": "5b653132b641358632e91d3ebbfcca34689db3814a956a459982d0897862dcd5",
+      "bytes": 266706
+    },
+    {
+      "file": "_local/reports/stage15-final-art-preview/edge-left-after.png",
+      "sha256": "bd935a4143dd4e66f942ac2faa0989901c68f5aa944a568d0eb6bc7638203dc3",
+      "bytes": 187367
+    },
+    {
+      "file": "_local/reports/stage15-final-art-preview/edge-left-before.png",
+      "sha256": "eb12356a2068c49db1033dc361d813708f32706655066d7432c51a3fe38ea6ed",
+      "bytes": 197992
+    },
+    {
+      "file": "_local/reports/stage15-final-art-preview/edge-right-after.png",
+      "sha256": "be8178d695da91247111f3bc48d840441131f8df74cce195a3a4bac4c6ce6139",
+      "bytes": 243061
+    },
+    {
+      "file": "_local/reports/stage15-final-art-preview/edge-right-before.png",
+      "sha256": "6a233a38b8bc397501f3f347084ce3ab96a5457a67c895e029f393ab5fb6e544",
+      "bytes": 253420
+    },
+    {
+      "file": "_local/reports/stage15-final-art-preview/entry-after.png",
+      "sha256": "23945603580ea74bec4ee907c0c55da437019c716f70b23b768fecc0d0027c35",
+      "bytes": 165651
+    },
+    {
+      "file": "_local/reports/stage15-final-art-preview/entry-before.png",
+      "sha256": "1b6ab149e9dfee5dd2c28d6148aec2f013f32cf8540ce17d1f6d692b30118a08",
+      "bytes": 157644
+    },
+    {
+      "file": "_local/reports/stage15-final-art-preview/mobile-after.png",
+      "sha256": "b9c054560428810f73ab8baf86fa14b0793f61e9bfc23fb75a0d14c60aa13a58",
+      "bytes": 52905
+    },
+    {
+      "file": "_local/reports/stage15-final-art-preview/mobile-before.png",
+      "sha256": "f83f212fc6c41603dcece0cc69b3293e15fbaca642be24ebf75ba9d8e1552907",
+      "bytes": 51773
+    },
+    {
+      "file": "_local/reports/stage15-final-art-preview/overview-after.png",
+      "sha256": "95496048d216af9e9e2178d064dc371540c0994f87733ca2ef370c811bb29ac0",
+      "bytes": 329807
+    },
+    {
+      "file": "_local/reports/stage15-final-art-preview/overview-before.png",
+      "sha256": "f941e926ed79556bd3261a112caf647214c8f5cfcdda1ea1803778090dc11de2",
+      "bytes": 361019
+    },
+    {
+      "file": "_local/reports/stage15-final-art-preview/water-after.png",
+      "sha256": "62836ff25ba9cfde304b1ea17663570f54941a52dfb2fcb3ab92fdabe583cc10",
+      "bytes": 320212
+    },
+    {
+      "file": "_local/reports/stage15-final-art-preview/water-before.png",
+      "sha256": "aeeb7cf4c5a40bea3b5a06cce5fcc1b6e6bcdfb0cba463e72ae5eb43a2bc1101",
+      "bytes": 322857
+    },
+    {
+      "file": "_local/reports/stage15-final-art-preview/water-drained-after.png",
+      "sha256": "c695c7fae58784c76e47e15a2e0164588845d771b5be833fadc7ddf7a875b799",
+      "bytes": 352011
+    },
+    {
+      "file": "_local/reports/stage15-final-art-preview/water-drained-before.png",
+      "sha256": "5978c340cd0232dbc8c84c5a26c6203b86d1ebb40c6487f7df52c1c3d999aa9d",
+      "bytes": 354231
+    }
+  ],
+  "focusedTest": "PASS: node tests/act2-stage15-candidate.mjs",
+  "finalImportJsonIdenticalToViewedCandidate": true
+}

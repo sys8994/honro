@@ -1,0 +1,21 @@
+/** Focused raw-hook and effective-runtime parity. Not a browser/gameplay clear. */
+import assert from 'node:assert/strict';import vm from 'node:vm';import {readFileSync} from 'node:fs';
+import {applyStage15ArtCandidate} from '../tools/act2-vector-production/apply-stage15-candidate.mjs';import {runtimeParts} from '../shared/build.mjs';
+const plain=v=>JSON.parse(JSON.stringify(v)),raw=JSON.parse(readFileSync('shared/data/campaign.json')),snapshot=plain(raw),after=applyStage15ArtCandidate(raw),s=raw.stages.find(s=>s.metadata?.stageId===15),a=after.stages.find(s=>s.metadata?.stageId===15);
+assert.deepEqual(raw,snapshot);assert.equal(after.library.length,raw.library.length+4);assert.equal(a.elements.length,s.elements.length+4);
+assert.deepEqual({...a,elements:s.elements},s);for(const x of raw.stages)if(x!==s)assert.deepEqual(after.stages.find(t=>t.id===x.id),x);
+assert.throws(()=>applyStage15ArtCandidate(after),/Duplicate/);const drift=plain(raw);drift.stages.find(s=>s.metadata?.stageId===15).terrains[0].points[0].y++;assert.throws(()=>applyStage15ArtCandidate(drift),/geometry changed/);
+process.env.HONRO_ACT2_STAGE15_CANDIDATE='0';assert.equal(applyStage15ArtCandidate(raw),raw);delete process.env.HONRO_ACT2_STAGE15_CANDIDATE;
+const g=vm.createContext({console,structuredClone,performance,setTimeout,clearTimeout});g.window=g;for(const code of await runtimeParts({vector:true,render:false,productionStory:true}))vm.runInContext(code,g);
+const effective=g.HONRO_PROJECT,source=effective.stages.find(s=>s.metadata?.stageId===15),candidate=plain(source),assets=after.library.slice(-4);candidate.elements.push(...a.elements.slice(-4));
+for(const asset of assets){assert.deepEqual(Array.from(g.HonroVectorArt.validate(asset.vector)),[]);assert.deepEqual(asset.collision,[]);assert(!asset.params.bodyTerrainIds.includes('fc15-drained-ledge'));assert(asset.params.bodyTerrainIds.every(id=>['act2-floor','cave-roof','fc15-west-arch','fc15-east-arch'].includes(id)));}
+const next={...effective,library:[...effective.library,...assets],stages:effective.stages.map(t=>t===source?candidate:t)},before=g.HonroMaps.createBattle(source,effective),current=g.HonroMaps.createBattle(candidate,next);g.HonroStageRules.sanitizeStageBattle(before);g.HonroStageRules.sanitizeStageBattle(current);
+for(const key of ['terrain','honroWorldTerrain','units','waters','honroMarkers','objectives','honroState'])assert.deepEqual(plain(current[key]??null),plain(before[key]??null),`effective ${key} parity`);
+// Baked clip is bound to effective authored world polygons, not just host names.
+const path=ps=>{const area=ps.reduce((a,p,i)=>{const q=ps[(i+1)%ps.length];return a+p.x*q.y-q.x*p.y;},0);if(area<0)ps=[...ps].reverse();return 'M'+ps.map(p=>`${p.x},${p.y}`).join('L')+'Z';};
+for(const asset of assets){const solid=[],insets=[];for(const id of asset.params.bodyTerrainIds){const w=before.honroWorldTerrain.find(t=>t.id===id),t=before.terrain.find(t=>t.id===id),ps=g.HONRO_CORE.poly(w),physical=g.HONRO_CORE.poly(t),edges=(t.honroWalkEdges||[]).flatMap(i=>[physical[i],physical[(i+1)%physical.length]]).filter(Boolean);solid.push(path(ps));insets.push(path(ps.map(p=>({x:p.x,y:p.y+(edges.some(e=>Math.abs(e.x-p.x)<.01&&Math.abs(e.y-p.y)<.01)?4:0)}))));}assert.deepEqual(asset.vector.clips.canonicalSolid,solid);assert.deepEqual(asset.vector.clips.contactInset,insets);}
+const pointIn=(ps,x,y)=>{let c=false;for(let i=0,j=ps.length-1;i<ps.length;j=i++){const a=ps[i],b=ps[j];if((a.y>y)!==(b.y>y)&&x<(b.x-a.x)*(y-a.y)/(b.y-a.y)+a.x)c=!c;}return c;};
+for(const [x,y] of [[5700,4500],[5700,4600],[5900,4500]])for(const asset of assets)for(const id of asset.params.bodyTerrainIds){const terrain=source.terrains.find(t=>t.id===id);assert(!pointIn(terrain.points,x,y),'Static art must not cover exposed drain-reveal region');}
+assert(before.terrain.find(t=>t.id==='fc15-drained-ledge').broken);assert(current.terrain.find(t=>t.id==='fc15-drained-ledge').broken);
+assert.deepEqual(plain(candidate.initialState),plain(source.initialState));assert.deepEqual(plain(candidate.events),plain(source.events));
+console.log('PASS Stage15 raw hook source lock, visual-only project delta, native limits, effective terrain/actors/water/events parity, hidden ledge excluded. No browser/fullplay claim.');
