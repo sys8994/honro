@@ -1,0 +1,34 @@
+{
+  "id": "act2-traced:stage12-oldroad-v3",
+  "name": "Stage12 quarry oldroad-v3",
+  "bounds": {
+    "x": 7600,
+    "y": 1950,
+    "w": 9600,
+    "h": 3300
+  },
+  "anchor": {
+    "x": 0,
+    "y": 0
+  },
+  "foot": {
+    "x": 0,
+    "y": 5250
+  },
+  "semanticLayer": "BODY",
+  "preserveCompounds": true,
+  "transform": [
+    4.490177736202058,
+    0,
+    0,
+    4.489795918367347,
+    7600,
+    1950
+  ],
+  "params": {
+    "bodyTerrainIds": [
+      "sq-old-road"
+    ],
+    "bodyBaseColor": "#303d42"
+  }
+}

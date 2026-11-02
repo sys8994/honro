@@ -1,0 +1,20 @@
+{
+  "sourceSha256": "7383ccd75906c7112e724004d7b2f0cf262af173d040bc6160ddab50252fae5b",
+  "sourceBytes": 51475,
+  "outputBytes": 45492,
+  "reductionPercent": 11.623118018455559,
+  "epsilonLocalUnits": 0.04,
+  "maxCurveReplacementBoundLocalUnits": 0,
+  "absoluteCoordinateRoundingBound": 0.007071067811865476,
+  "protectedRule": "Preserve original textual geometry for contours touching 100000.0 local-unit expanded canonical polyline region; lexical minification only. Interior bounded geometry regenerated from immutable raw.svg.",
+  "counts": {
+    "protectedContours": 56,
+    "protectedSegments": 1431,
+    "cubicToLine": 0,
+    "cubicToQuadratic": 0,
+    "keptCubic": 0
+  },
+  "topologyReview": "All path geometry preserved; lexical compaction only",
+  "visualReview": "Reviewed source/native part context by Stage12 worker; final scene screenshots are separate evidence. Not a browser/playthrough approval.",
+  "actualCoordinateRoundingBound": 0
+}

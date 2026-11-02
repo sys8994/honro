@@ -1,0 +1,39 @@
+{
+  "stage": 12,
+  "scope": "Native production renderer only; no browser or gameplay acceptance",
+  "geometryUnchanged": true,
+  "focus": {
+    "left": -320,
+    "top": -1800,
+    "right": 11520,
+    "bottom": 8240
+  },
+  "minimumZoom": 0.21176470588235294,
+  "reports": [
+    {
+      "label": "overview",
+      "name": "before",
+      "view": {
+        "x": 5600,
+        "y": 4300,
+        "scale": 0.13,
+        "w": 1600,
+        "h": 1000
+      },
+      "heroHeight": 92
+    },
+    {
+      "label": "overview",
+      "name": "after",
+      "view": {
+        "x": 5600,
+        "y": 4300,
+        "scale": 0.13,
+        "w": 1600,
+        "h": 1000
+      },
+      "heroHeight": 92
+    }
+  ],
+  "cameraNote": "Older view fields are requested view settings; actual production bounds constraint applies. No camera runtime modification. Overview is inspection zoom, not an enabled gameplay zoom."
+}

@@ -1,0 +1,38 @@
+{
+  "nativeAssetBytes": 1149383,
+  "assets": [
+    {
+      "file": "shared/data/act2/stage12-ground-baked.json",
+      "id": "act2-traced:stage12-ground",
+      "bytes": 716485,
+      "sha256": "ac1ca5bb2e914269e0b32bf211f83f949560dd1caeca942783a8196c8c9f0171",
+      "noEmbeddedRaster": true,
+      "collisionCount": 0
+    },
+    {
+      "file": "shared/data/act2/stage12-quarry-baked.json",
+      "id": "act2-traced:stage12-quarry",
+      "bytes": 309523,
+      "sha256": "3aa5f9ab8f89f30644f74cd51d756756e308ea92f36a33933289db1ff740f0cb",
+      "noEmbeddedRaster": true,
+      "collisionCount": 0
+    },
+    {
+      "file": "shared/data/act2/stage12-rear-foundation-baked.json",
+      "id": "act2-traced:stage12-rear-foundation",
+      "bytes": 84052,
+      "sha256": "c30f739d2fdd1662cd979944b77d978cfc514d52bdcdcdd8c89912042a3d4d9a",
+      "noEmbeddedRaster": true,
+      "collisionCount": 0
+    },
+    {
+      "file": "shared/data/act2/stage12-rear-vertical-baked.json",
+      "id": "act2-traced:stage12-rear-vertical",
+      "bytes": 39323,
+      "sha256": "c40fa7589093604c2e117a89ee42060936b47d2a5b39c85fcf0221bb88f1343b",
+      "noEmbeddedRaster": true,
+      "collisionCount": 0
+    }
+  ],
+  "storageAcceptance": "Pending release lead actual encoded save/archive quota verification; uncompressed native JSON bytes are not a localStorage measurement."
+}

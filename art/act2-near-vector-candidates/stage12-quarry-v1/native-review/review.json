@@ -1,0 +1,29 @@
+{
+  "nativeVisualReview": "PASS for candidate review, not browser release acceptance",
+  "reviewed": [
+    "entry normal .94 original hero92",
+    "quarry normal .94",
+    "west normal .94",
+    "recurring waymark normal .94",
+    "cave normal .94",
+    "overview inspection",
+    "minimum zoom",
+    "mobile 390x844",
+    "left camera end",
+    "right camera end",
+    "Full authored bottom y=32000 in explicit unconstrained inspection, not gameplay camera"
+  ],
+  "decisions": [
+    "Local three-color ground band replaces oversized pale spots without flattening terrain.",
+    "Original vertical negative spaces and cave openings remain; left/right dummy material continues without rectangular local-image seams.",
+    "Existing distant scene, props, characters and gameplay units remain untouched.",
+    "Small residual palette texture in recessed material is retained; no arbitrary new floating platforms."
+  ],
+  "limits": [
+    "Native renderer is not browser/playthrough/CI/public verification.",
+    "Requested view values may be constrained by unchanged production camera bounds; later reports also capture actual scene camera.",
+    "Prompt provenance PARTIAL: exact original imagegen prompt text unavailable; reconstructed briefs explicitly labeled.",
+    "Storage quota and encoded save/archive must be verified by release lead.",
+    "Bottom inspection enables existing skillPreview inspection flag solely to bypass camera clamp; production camera/runtime unchanged."
+  ]
+}

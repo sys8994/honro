@@ -1,0 +1,30 @@
+{
+  "styleReferences": [
+    {
+      "path": "/workspace/scratch/fff510b4df37/honro-act1-production/stage02/body-v2/source.png",
+      "sha256": "a6e57929f740ba4b8d97825d2b989bd1fd98099a714cf1920e74c04fa0fb4bf2"
+    },
+    {
+      "path": "/workspace/scratch/fff510b4df37/honro-act1-production/stage10/floor-v4/source.png",
+      "sha256": "41c627ab0add433fbf2f18a252828474006ed79f1f2e050de4e7cb43ddae2e37"
+    }
+  ],
+  "story": "돌아오는 산길 / current production Stage12 quarry, recurring waymark and route recurrence",
+  "dimensions": [
+    11200,
+    8000
+  ],
+  "heroHeight": 92,
+  "originalSource": "pre-hook-stage.json",
+  "effectiveSource": "effective-source.json",
+  "paletteDirection": "Muted Korean mountain granite blue-grey with restrained earth accents; not copied green palette",
+  "scope": "Near decorative terrain and existing rear geology silhouettes only; far image, geometry and gameplay untouched",
+  "generation": "image_gen.imagegen selected source PNGs; prompt.txt is reconstructed brief, not verbatim transcript",
+  "actualTrace": "Inkscape cumulative binary palette trace, immutable selected raw SVG gzip per part",
+  "nativeBytes": 1149383,
+  "rawSvgBytes": 1621928,
+  "finalSvgBytes": 1129772,
+  "packReductionPercent": 30.34388702827746,
+  "provenanceStatus": "PARTIAL",
+  "missingEvidence": "Exact originally submitted imagegen prompt text is unavailable in retained accessible files/current context. Reconstructed prompt briefs are NOT original prompts. No full SOP provenance pass is claimed."
+}

@@ -1,0 +1,24 @@
+{
+  "sourceSha256": "501db78e9dfae604afb55f2d7261727d8aa335305c35b8466435923efb4b041b",
+  "sourceBytes": 407440,
+  "outputBytes": 304170,
+  "reductionPercent": 25.34606322403299,
+  "epsilonLocalUnits": 0.04,
+  "maxCurveReplacementBoundLocalUnits": 0.03992536314849153,
+  "absoluteCoordinateRoundingBound": 0.007071067811865476,
+  "protectedRule": "Preserve original textual geometry for contours touching 3.0 local-unit expanded canonical polyline region; lexical minification only. Interior bounded geometry regenerated from immutable raw.svg.",
+  "counts": {
+    "protectedContours": 221,
+    "protectedSegments": 5913,
+    "cubicToLine": 101,
+    "cubicToQuadratic": 189,
+    "keptCubic": 3138
+  },
+  "topologyReview": "NOT_CERTIFIED",
+  "visualReview": "Reviewed source/native part context by Stage12 worker; final scene screenshots are separate evidence. Not a browser/playthrough approval.",
+  "outputSha256": "8e61e90a31c392d794f75bfccfa1ba66e2804a57818ab7b97b0b69242c448ef2",
+  "source": "trace/raw.svg",
+  "candidate": "final.svg",
+  "qualityComparison": "qa-pass-3compact/comparison.json",
+  "qualityConfig": "pixel-config.json"
+}
