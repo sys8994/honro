@@ -31,3 +31,22 @@ The fixture wrapper contains `provenance`, `profile`, `b`, actions and diagnosti
 The receipt captures source, served HTML/manifest hashes, exact fixture/profile hashes and provenance, baseline/initial/crossed/autosaved/reloaded state and movement samples. Screenshots: `repaired-before-crossing.png`, `crossed-repaired-gate.png`, `reloaded-crossed-gate.png`; failures retain `failure.png` and structured exception/state when available.
 
 Local validation: five pure mocked-state helper tests pass (proof/both-terrain requirement; HP/resource/objective preservation; actual-body crossing and movement cost; reload position/resource preservation; immutable geometry), plus Python syntax. Real browser execution was not attempted because local Chromium socket launch is already known blocked. Actual CI execution on the final generated build is required. This is a focused repaired-passage/continued-save test, not Stage17 defense completion, fresh playthrough, pacing or full battle acceptance.
+
+## Standalone workflow: exact generated candidate only
+
+`.github/workflows/stage17-gate-browser.yml` runs only this focused probe. Supply an immutable generated commit SHA, not the source commit, branch name, old HTML checkout or a merge containing other changes.
+
+Required prerequisite is successful run `41543828006`, exact source `c5f9765e369cd6a69d4e7440a65756d8519e4923`. The workflow checks its successful normal build gate, final-browser regressions and generated-package preservation via the read-only GitHub API. A still-running/failed run fails the prerequisite; this workflow never bypasses it or starts another combat run.
+
+Invocation options:
+
+1. When the workflow is available for manual dispatch, set the required `generated_ref` input to the exact generated40-character SHA.
+2. Without installing a new workflow on master first, publish the QA workflow/test on `work/stage17-gate-browser/<name>` and then commit `.github/qa/stage17-gate-request.json` containing only `{"generatedRef":"<exact generated40-character SHA>"}`. Only that request file triggers the push workflow. Do not commit the placeholder. Workflow/test publication alone does not launch a probe against an unspecified candidate.
+
+The candidate is checked out separately at depth2. It must be the direct generated child of the exact c5 source, with changes restricted to the integration workflow's generated paths (`web/`, HTML/index, measured production package). The verifier requires byte-identical repaired runtime source and genuine fixture, final HTML/manifest hashes from the prerequisite artifact, the exact measured package and every manifest file hash. Source c5 itself fails this check because it is not the generated child. Both provenance and test-harness source/hash are archived.
+
+The existing `tools/stage31/check-release.mjs` normal gate validates the saved current production evidence once; it may materialize the unchanged ignored canonical world file. There is **no** `npm run build`, Stage31 first-shot/probe/fullplay rerun, terrain smoke sweep or other combat replay. Served/source bytes are verified again after the gate. Only then is the standalone QA script copied into the generated checkout, the exact package served locally, and the Stage17 input test run.
+
+Output artifact: `stage17-repaired-gate-<generated SHA>`, containing prerequisite/API and package hash receipts, the normal gate log, harness hash, browser log and the test's three screenshots/structured result. A prerequisite mismatch, package/source drift, missing fixture/evidence, normal gate failure or browser failure remains an explicit failure.
+
+Workflow authoring validation: Python compilation and YAML parsing pass; the existing five pure probe helper cases pass; malformed ref values (branch, short SHA, uppercase SHA and shell-like input) are rejected. The actual generated candidate is not available locally yet, so the final package/API/gate/browser steps remain unexecuted until the publisher supplies its verified exact ref. No workflow was dispatched during authoring.
