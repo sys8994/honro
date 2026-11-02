@@ -1,0 +1,48 @@
+{
+  "stage": 12,
+  "scope": "Native production renderer only; no browser or gameplay acceptance",
+  "geometryUnchanged": true,
+  "focus": {
+    "left": -320,
+    "top": -1800,
+    "right": 11520,
+    "bottom": 8240
+  },
+  "minimumZoom": 0.21176470588235294,
+  "reports": [
+    {
+      "label": "bottom-inspection",
+      "name": "before",
+      "requestedView": {
+        "x": 5600,
+        "y": 31000,
+        "scale": 0.13,
+        "w": 1600,
+        "h": 1000
+      },
+      "actualCamera": {
+        "x": 5600,
+        "y": 31000,
+        "scale": 0.13
+      },
+      "heroHeight": 92
+    },
+    {
+      "label": "bottom-inspection",
+      "name": "after",
+      "requestedView": {
+        "x": 5600,
+        "y": 31000,
+        "scale": 0.13,
+        "w": 1600,
+        "h": 1000
+      },
+      "actualCamera": {
+        "x": 5600,
+        "y": 31000,
+        "scale": 0.13
+      },
+      "heroHeight": 92
+    }
+  ]
+}

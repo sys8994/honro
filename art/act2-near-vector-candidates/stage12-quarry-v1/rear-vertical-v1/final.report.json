@@ -1,0 +1,24 @@
+{
+  "sourceSha256": "f6bdc1e9ad4792fefa5e2f313bb47ccd91d698ee16171b1c9e65a305f2b4f341",
+  "sourceBytes": 62387,
+  "outputBytes": 37352,
+  "reductionPercent": 40.12855242278038,
+  "epsilonLocalUnits": 0.04,
+  "maxCurveReplacementBoundLocalUnits": 0.03956538898529778,
+  "absoluteCoordinateRoundingBound": 0.007071067811865476,
+  "protectedRule": "Preserve original textual geometry for contours touching 12.0 local-unit expanded canonical polyline region; lexical minification only. Interior bounded geometry regenerated from immutable trace4/raw.svg.",
+  "counts": {
+    "protectedContours": 3,
+    "protectedSegments": 287,
+    "cubicToLine": 37,
+    "cubicToQuadratic": 87,
+    "keptCubic": 774
+  },
+  "topologyReview": "NOT_CERTIFIED",
+  "visualReview": "Reviewed source/native part context by Stage12 worker; final scene screenshots are separate evidence. Not a browser/playthrough approval.",
+  "outputSha256": "eded06925de613cb417764237fb952a6cf0ef3f3df5e1c820fdfef9cccf4b1b1",
+  "source": "trace4/raw.svg",
+  "candidate": "final.svg",
+  "qualityComparison": "qa4-palette-rgb1/comparison.json",
+  "qualityConfig": "pixel-config4-rgb1.json"
+}

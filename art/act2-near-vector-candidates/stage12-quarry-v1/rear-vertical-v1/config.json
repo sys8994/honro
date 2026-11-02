@@ -1,0 +1,53 @@
+{
+  "id": "act2-traced:stage12-rear-vertical",
+  "name": "Stage12 rear vertical",
+  "bounds": {
+    "x": -1040,
+    "y": -2330,
+    "w": 2080,
+    "h": 2360
+  },
+  "anchor": {
+    "x": 0,
+    "y": 0
+  },
+  "foot": {
+    "x": 0,
+    "y": 0
+  },
+  "sockets": [
+    {
+      "id": "upper-rear",
+      "x": -230,
+      "y": -1840
+    },
+    {
+      "id": "middle-rear",
+      "x": -80,
+      "y": -1210
+    },
+    {
+      "id": "lower-rear",
+      "x": 150,
+      "y": -540
+    }
+  ],
+  "semanticLayer": "REAR",
+  "preserveCompounds": true,
+  "transform": [
+    1.7672047578589634,
+    0,
+    0,
+    1.7664670658682635,
+    -1040,
+    -2330
+  ],
+  "scaleRange": [
+    0.85,
+    1.1
+  ],
+  "backgroundRange": [
+    0.85,
+    1.1
+  ]
+}

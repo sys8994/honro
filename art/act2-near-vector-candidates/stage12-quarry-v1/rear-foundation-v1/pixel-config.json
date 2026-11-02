@@ -1,0 +1,85 @@
+{
+  "width": 1977,
+  "scales": [
+    1,
+    2
+  ],
+  "limits": {
+    "rgbMAE255": 2,
+    "silhouettePx": 1.5,
+    "protectedRgbMAE255": 1,
+    "protectedPx": 0.5,
+    "protectedChangedPixelFraction": 0.05
+  },
+  "protectedPolylines": [
+    {
+      "points": [
+        [
+          984.5,
+          768.5
+        ],
+        [
+          992.5,
+          768.5
+        ]
+      ],
+      "width": 12
+    },
+    {
+      "points": [
+        [
+          984.5,
+          167.83333333333334
+        ],
+        [
+          992.5,
+          167.83333333333334
+        ]
+      ],
+      "width": 12
+    }
+  ],
+  "protectedRgbQuantizationTolerance255": 1,
+  "sourcePalette": [
+    [
+      48,
+      61,
+      66
+    ],
+    [
+      58,
+      70,
+      76
+    ],
+    [
+      71,
+      84,
+      91
+    ],
+    [
+      86,
+      98,
+      105
+    ],
+    [
+      119,
+      122,
+      118
+    ],
+    [
+      167,
+      163,
+      151
+    ],
+    [
+      98,
+      92,
+      78
+    ],
+    [
+      98,
+      97,
+      76
+    ]
+  ]
+}

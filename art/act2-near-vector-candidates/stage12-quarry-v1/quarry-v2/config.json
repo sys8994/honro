@@ -1,0 +1,41 @@
+{
+  "id": "act2-traced:stage12-quarry-v2",
+  "name": "Stage12 quarry quarry-v2",
+  "bounds": {
+    "x": 3000,
+    "y": 3100,
+    "w": 6400,
+    "h": 2600
+  },
+  "anchor": {
+    "x": 0,
+    "y": 0
+  },
+  "foot": {
+    "x": 0,
+    "y": 5700
+  },
+  "semanticLayer": "BODY",
+  "preserveCompounds": true,
+  "transform": [
+    3.253685815963396,
+    0,
+    0,
+    3.254067584480601,
+    3000,
+    3100
+  ],
+  "params": {
+    "bodyTerrainIds": [
+      "sq-north-quarry",
+      "sq-west-quarry",
+      "sq-west-turn-high",
+      "sq-west-turn-low",
+      "sq-inner-joint",
+      "sq-back-road",
+      "sq-east-turn",
+      "sq-cave-buttress"
+    ],
+    "bodyBaseColor": "#303d42"
+  }
+}

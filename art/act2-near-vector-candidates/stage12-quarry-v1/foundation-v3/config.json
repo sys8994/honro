@@ -1,0 +1,35 @@
+{
+  "id": "act2-traced:stage12-foundation-v3",
+  "name": "Stage12 quarry foundation-v3",
+  "bounds": {
+    "x": -6000,
+    "y": 4400,
+    "w": 23200,
+    "h": 8000
+  },
+  "anchor": {
+    "x": 0,
+    "y": 0
+  },
+  "foot": {
+    "x": 0,
+    "y": 12400
+  },
+  "semanticLayer": "BODY",
+  "preserveCompounds": true,
+  "transform": [
+    10.866510538641686,
+    0,
+    0,
+    10.869565217391305,
+    -6000,
+    4400
+  ],
+  "params": {
+    "bodyTerrainIds": [
+      "sq-lower-ground",
+      "sq-cave-roof"
+    ],
+    "bodyBaseColor": "#303d42"
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "id": "act2-traced:stage12-extension-v1",
+  "name": "Stage12 quarry extension-v1",
+  "bounds": {
+    "x": -6000,
+    "y": 2000,
+    "w": 23200,
+    "h": 30000
+  },
+  "anchor": {
+    "x": 0,
+    "y": 0
+  },
+  "foot": {
+    "x": 0,
+    "y": 32000
+  },
+  "semanticLayer": "BODY",
+  "preserveCompounds": true,
+  "transform": [
+    21.033544877606527,
+    0,
+    0,
+    21.037868162692845,
+    -6000,
+    2000
+  ],
+  "params": {
+    "bodyTerrainIds": [
+      "sq-old-road",
+      "sq-lower-ground",
+      "sq-cave-roof"
+    ],
+    "bodyBaseColor": "#303d42"
+  }
+}

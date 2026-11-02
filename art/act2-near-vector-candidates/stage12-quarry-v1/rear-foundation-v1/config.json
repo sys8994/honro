@@ -1,0 +1,43 @@
+{
+  "id": "act2-traced:stage12-rear-foundation",
+  "name": "Stage12 rear foundation",
+  "bounds": {
+    "x": -1120,
+    "y": -870,
+    "w": 2240,
+    "h": 900
+  },
+  "anchor": {
+    "x": 0,
+    "y": 0
+  },
+  "foot": {
+    "x": 0,
+    "y": 0
+  },
+  "sockets": [
+    {
+      "id": "mass-seat",
+      "x": 0,
+      "y": -680
+    }
+  ],
+  "semanticLayer": "REAR",
+  "preserveCompounds": true,
+  "transform": [
+    1.1330298431967627,
+    0,
+    0,
+    1.1320754716981132,
+    -1120,
+    -870
+  ],
+  "scaleRange": [
+    0.85,
+    1.15
+  ],
+  "backgroundRange": [
+    0.85,
+    1.1
+  ]
+}
