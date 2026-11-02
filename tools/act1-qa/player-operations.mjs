@@ -25,13 +25,13 @@ export function createPlayerOperations({app,g,C,record=()=>{}}){
  function fire(id,angle,power,ai=false){assert(!ai,'Player adapter rejects AI fire bypass');assert(Number.isFinite(power)&&power>=0&&power<=1,'Charge outside normal interval');if(!allowed())return false;const u=active();if(!selectSkill(id)||!aim(angle))return false;
   const beforeShot=e().b.shot;if(!app.beginCharge()){log('beginChargeRejectedOrSecondary',{skill:id});return false;}
   let n=0;while(app.charging&&allowed()&&app.chargePower(now)+1e-12<power&&n++<2400&&!terminal())frame();assert(n<2400,'Charge observation limit');
-  app.releaseCharge();const actual=e().b.lastShots?.[u.id],accepted=e().b.shot>beforeShot;log('fire',{skill:id,requested:{angle,power},actual,accepted});return accepted;
+  app.releaseCharge();const actual=e().b.lastShots?.[u.id],accepted=e().b.shot>beforeShot;log('fire',{actor:u.id,skill:id,requested:{angle,power},actual,accepted});return accepted;
  }
  function jump(u=active()){assert(u===active(),'Inactive hero jump rejected');if(!allowed())return false;const before=u.moveLeft;app.jump();const ok=u.moveLeft<before;log('jump',{accepted:ok});return ok;}
  function drop(u=active()){assert(u===active(),'Inactive hero drop rejected');if(!allowed()||!e().canDrop())return false;app.drop();const ok=!!u.platformDrop;log('drop',{accepted:ok});return ok;}
  function select(id){if(!allowed())return false;app.selectHero(id);log('select',{id});return active()?.id===id;}
- function defend(){if(!allowed())return false;const u=active(),before=[e().b.phase,e().b.side,e().b.round,u.id,u.acted];app.defend();const after=[e().b.phase,e().b.side,e().b.round,active()?.id,u.acted],ok=before.some((v,i)=>v!==after[i]);log('defend',{accepted:ok});return ok;}
- function interact(marker){if(!g.HonroInteractions.candidates(app).some(x=>x.ok&&x.marker.id===marker?.id))return false;const ok=g.HonroInteractions.use(app,marker);log('interact',{marker:marker.id,accepted:ok});return ok;}
+ function defend(){if(!allowed())return false;const u=active(),before=[e().b.phase,e().b.side,e().b.round,u.id,u.acted];app.defend();const after=[e().b.phase,e().b.side,e().b.round,active()?.id,u.acted],ok=before.some((v,i)=>v!==after[i]);log('defend',{actor:u.id,accepted:ok});return ok;}
+ function interact(marker){if(!marker||g.HonroInteractions.nearest(app)?.id!==marker.id)return false;const ok=g.HonroInteractions.use(app,marker);log('interact',{marker:marker.id,accepted:ok});return ok;}
  function dialogueNext(){if(app.dialogue)g.HonroStory.next(app);}
  function item(){throw Error('Unsupported player operation: Engine.item has no current UI binding');}
  return{frame,ready,move,aim,selectSkill,fire,jump,drop,select,defend,interact,dialogueNext,item,get frames(){return frames;},get now(){return now;},scope:'Native actual App actions with DOM/render/clock doubles and idealized aim gesture; not browser input'};

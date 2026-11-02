@@ -7,6 +7,7 @@ ROOT=Path(__file__).resolve().parents[2];OUT=ROOT/'_local/reports/act1-gameplay-
 def digest(p):return hashlib.sha256(p.read_bytes()).hexdigest()
 def normalize(stage,label,initial,final,damage,actions,path,cohort=False,seed=None,scope=None,poses=None):
  if not final:return
+ actions=[{**a,'op':'fire','hero':str(a.get('actor','')).removeprefix('p-')}if a.get('op')=='app-operation'and a.get('operation')=='fire'and a.get('accepted')is True else a for a in actions]
  us={u['id']:u for u in initial.get('units',[])};allus={u['id']:u for u in final.get('units',[])};foes=[u for u in initial.get('units',[])if u.get('side')==1 and not u.get('honroObjectiveTarget') and not(stage==10 and u.get('id')=='boss')];hero=[u for u in initial.get('units',[])if u.get('side')==0 and not u.get('summoned')]
  taken=dealt=allied=protected=0;engaged=set();normalpct=[];npcById={}
  for d in damage:
@@ -83,7 +84,7 @@ def normalize(stage,label,initial,final,damage,actions,path,cohort=False,seed=No
  rows.append(row)
 for path in OUT.glob('stage*/trace.json'):
  p=json.loads(path.read_text());stage=p.get('stage');initial=p.get('initial');final=p.get('final')
- if stage and initial and final:normalize(stage,p.get('policy','legacy'),initial,final,p.get('damage',[]),p.get('inputs',[]),path,'cohort' in p.get('policy',''),p.get('inputErrorSeed',p.get('seed')),p.get('scope'),poses=p.get('poses'))
+ if stage and initial and final:normalize(stage,p.get('policy',path.parent.name),initial,final,p.get('damage',[]),p.get('inputs',p.get('actions',[])),path,'cohort' in p.get('policy',''),p.get('inputErrorSeed',p.get('seed')),p.get('scope'),poses=p.get('poses'))
  elif p.get('schema')=='honro-stage5-input-trace/v1':normalize(5,path.parent.name,initial,final,p.get('hits',[]),p.get('actions',[]),path,scope='Current reward/recruit fixture through4, production App native inputs; historical roster gate FAILED separately; not UI')
 for path in OUT.glob('stage*/combat.json'):
  p=json.loads(path.read_text());stage=int(path.parent.name.split('-')[0][5:]);normalize(stage,path.parent.name,p['initial'],p['battleEnd'],p.get('damage',[]),p.get('actions',[]),path,scope='Historical declared prior-victory profile, current Engine/App controller calibration; not campaign-continuous or real UI')
