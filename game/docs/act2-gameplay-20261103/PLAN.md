@@ -12,7 +12,7 @@ Source stage11 correctly describes entry hosts, released soul/northern pair and 
 
 ## Trial scope and calibration
 
-`tests/act2-gameplay-native.mjs` executes production App/Engine with DOM/render/storage/clock doubles. Entry is explicitly **synthetic planned-entry XP**, legal training and default empty equipment, with unlock flags only. It is not a prior earned campaign or human population sample. Every actor HP/focus/position/movement write after launch is guarded by the existing production-call audit. Production `App.defend()` is used (plain Engine.wait is not equivalent). Damage is traced during production ticks through actual settlement, not a three-second post-shot snapshot.
+`tests/act2-gameplay-native.mjs` executes production App/Engine with DOM/render/storage/clock doubles. Entry is explicitly **synthetic legacy-budget `rewardXpAt(plan.entryLevel)` XP**, legal training and production-auto-equipped basic recruitment weapons, with unlock flags only. It is not a prior earned campaign or human population sample. Every actor HP/focus/position/movement write after launch is guarded by the existing production-call audit. Production `App.defend()` is used (plain Engine.wait is not equivalent). Damage is traced during production ticks through actual settlement, not a three-second post-shot snapshot.
 
 Pilot stages: 11, 15, 20. Policies: objective-first, survival/recovery, alternate range/route/skill mix. Seed initialization occurs once before gameplay. Pilot samples are controller diagnostics, excluded from preregistered completion probability. Full trial registration will freeze final runner/entry/source hashes after calibration. No 20-round truncation will manufacture a pass; exceeding20 remains failure even if later completed.
 
@@ -23,3 +23,9 @@ Initial controller findings: legacy navigator assumes terrain IDs equal route al
 Per stage: declared entry/source hashes, initial roster, full chronological inputs, real objective interactions, births, HP damage, landed support/routes, skills, terminal phase, round statistics and unresolved failures. Native render and normal browser UI evidence must be labelled separately. Native success cannot certify human fun; assessment must identify observed choices/tradeoffs and pacing.
 
 Final art work is parallel and visual-only. Baseline gameplay will be bound to geometry/actors/logic, then final asset/source parity and representative real-browser replay must be checked. Local Chromium socket restrictions are not bypassed; an authorized GitHub Actions runner will supply browser evidence. All currently absent measurements fail closed. No overall pass is asserted here.
+
+## Calibration entry correction and first full observation
+
+The planned level label is NOT actual actor level: old12 reward conversion makes11 actualLv10,15 Lv12,19 Lv14,20 Lv15. App auto-equips `itm_se_01/itm_da_01/itm_hw_01/itm_so_01` after loading the empty input inventory. Initial battle snapshots always captured these facts; subsequent provenance reports actual level/equipment explicitly. No stronger XP was injected to manufacture success.
+
+Stage19 completed all eight required goals with14 recorded inputs, no damage/kills/external writes/recovery. DisplayR1 is **zero combat cycles** in this noncombat chapter, consistent with its source target0. This is a single native diagnostic, not population success probability or browser proof. Stage11's improved rock navigation reaches x5388 byR9; Stage15 original aggressive pilot lostthreeheroes;12 lostatR7 before its recurrence (controller failed to walk the required landmark→checkpoint→landmark loop). All failed/aborted pilots remain in local traces and are excluded from calibrated cohort claims.

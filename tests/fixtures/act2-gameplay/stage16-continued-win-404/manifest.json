@@ -1,0 +1,38 @@
+[
+  {
+    "source": "_local/reports/act2-gameplay-20261103/16-continuation-404-sequential-story/initial.json",
+    "path": "tests/fixtures/act2-gameplay/stage16-continued-win-404/initial.json.gz",
+    "rawSha256": "bd0fde984cb1ab3fe5ab2058db789014b872f9d3ebbe873023de929e748d2890",
+    "gzipSha256": "136ebeddab49a370065a3099161e4fb7c49dde44eb8a8d65366327eb3b1fd288"
+  },
+  {
+    "source": "_local/reports/act2-gameplay-20261103/16-continuation-404-sequential-story/terminal.json",
+    "path": "tests/fixtures/act2-gameplay/stage16-continued-win-404/terminal.json.gz",
+    "rawSha256": "cc149f702dbd3989a0ecb98c44459d212a7126cd416e92b14105f92ee89bbb3e",
+    "gzipSha256": "ac0080665cbdeb6cd01be8013969a60b95d43c922f5c8fb57cff44e4a9b50b4f"
+  },
+  {
+    "source": "_local/reports/act2-gameplay-20261103/16-continuation-404-sequential-story/result.json",
+    "path": "tests/fixtures/act2-gameplay/stage16-continued-win-404/result.json.gz",
+    "rawSha256": "b552a40ee65b42eb7fe9b006f4da5cd45d3dc316cbc0fe1d7ab9f5da45f24f28",
+    "gzipSha256": "ece81a4b3507cfddd87c78d14fcdf588f7365114fa0ab6c20ab557bdd7f99654"
+  },
+  {
+    "source": "_local/reports/act2-gameplay-20261103/16-continuation-404-clear-lane/checkpoint.json",
+    "path": "tests/fixtures/act2-gameplay/stage16-continued-win-404/predecessor-r23.json.gz",
+    "rawSha256": "6f0c4ab3116c6b792bfb56a420e20abafccc3821f973f993309317b64fcafbdb",
+    "gzipSha256": "22027e144fb692fda93656c6339bc367721afb85c3cb92223ff617c7bd17271d"
+  },
+  {
+    "source": "_local/reports/act2-gameplay-20261103/16-survival-404-cal4/checkpoint.json",
+    "path": "tests/fixtures/act2-gameplay/stage16-continued-win-404/predecessor-r21.json.gz",
+    "rawSha256": "b6796d59d4121a844714c202d2ad5589a5492495c1c74805198594c283c016bb",
+    "gzipSha256": "4f4e13cd0ce041b5387793bb4eb07a2127599d2c6b27fc4b25c6ae27c73e8053"
+  },
+  {
+    "source": "_local/reports/act2-gameplay-20261103/16-survival-404-cal4/initial.json",
+    "path": "tests/fixtures/act2-gameplay/stage16-continued-win-404/original-initial.json.gz",
+    "rawSha256": "4c541f12a4a18fbf44a44934d525b24330e4383c6d2126ad0270847cc6c9da2a",
+    "gzipSha256": "e4eed81263dd6cd509f5489a0ee190853b1cda40b37b48bac16f8a70831f8ea5"
+  }
+]

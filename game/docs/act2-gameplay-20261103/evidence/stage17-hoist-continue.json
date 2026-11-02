@@ -1,0 +1,176 @@
+{
+  "input": "tests/fixtures/act2-gameplay/stage17-dead-hoist-404/terminal.json.gz",
+  "scope": "Natural saved run, production Continue and legal Engine.select inputs, read-only diagnostics; no use or state correction",
+  "round": 36,
+  "phase": "aim",
+  "goal": {
+    "id": "17.hoist",
+    "label": "17.hoist",
+    "kind": "interact",
+    "target": "act2-hoist"
+  },
+  "hoist": {
+    "id": "act2-hoist",
+    "name": "들린 인양틀",
+    "role": "leaper",
+    "cls": "knight",
+    "side": 1,
+    "x": 6140,
+    "y": 4718,
+    "vx": 0,
+    "vy": 0,
+    "hp": 0,
+    "maxHp": 2024,
+    "r": 60,
+    "h": 205,
+    "focus": 154,
+    "maxFocus": 154,
+    "regen": 22,
+    "level": 15,
+    "attack": 1.1417402721117216,
+    "armor": 0.04,
+    "shield": 0,
+    "bound": 0,
+    "mark": 0,
+    "breaks": 0,
+    "acted": false,
+    "moveLeft": 550,
+    "maxMove": 550,
+    "walkSpeed": 290,
+    "angle": 171.42024896643125,
+    "lastPower": 1,
+    "loadout": [
+      "H2HOIST"
+    ],
+    "tune": 0.5,
+    "facing": -1,
+    "hurt": 0.7,
+    "anim": 0,
+    "airborne": false,
+    "fixed": true,
+    "spawnX": 6140,
+    "spawnY": 4718,
+    "intent": "도약 준비",
+    "dead": true,
+    "ranks": {
+      "H2HOIST": 4
+    },
+    "group": 7,
+    "awake": true,
+    "lastAct": 12,
+    "aggroUntil": 16,
+    "xpBudget": 97,
+    "xpGranted": 97,
+    "killRewarded": true,
+    "damageBy": {
+      "p-knight": 2024
+    },
+    "honroType": "hoist",
+    "elite": true,
+    "honroVariant": "hoist",
+    "honroDifficulty": "normal",
+    "combatBaseHp": 1557.1269953792503,
+    "combatBaseAttack": 0.9842588552687256,
+    "honroXpWeight": 3,
+    "honroAct2": true,
+    "existenceDefense": {
+      "form": 1,
+      "qi": 0.95,
+      "soul": 0.82
+    },
+    "honroEnemyDamageRevision": 1,
+    "honroAlly": false,
+    "honroCivilian": false,
+    "honroCluster": "hoist-core",
+    "honroBehavior": "patrol",
+    "honroCohort": "middle",
+    "honroAct2Elite": false,
+    "honroAct2Revision": 2,
+    "honroWorksiteRole": "hoist-core",
+    "honroDensityCell": "hoist-core",
+    "honroEncounterRole": "hoist-core",
+    "honroEncounterSupport": "ws-east-hoist-buttress",
+    "honroHoistSpiritAttached": true,
+    "honroContributionId": "act2-hoist",
+    "honroAct2Tuned": true,
+    "honroAct2LateTuned": true,
+    "eaterSwallow": 0,
+    "moving": 0,
+    "landing": 0,
+    "salheunFlash": 0,
+    "honroContributionDamage": 2024,
+    "honroShieldSources": {},
+    "cooldowns": {},
+    "jumping": false
+  },
+  "scene": {
+    "status": "done",
+    "ids": [
+      "A2.S17.MID.03"
+    ],
+    "proof": {},
+    "presentationReceiptRevision": 1,
+    "presentedIds": [
+      "A2.S17.MID.03"
+    ],
+    "retiredIds": []
+  },
+  "observations": [
+    {
+      "actor": "p-archer",
+      "selected": true,
+      "active": "p-archer",
+      "position": {
+        "x": 6088.87776394395,
+        "y": 4739.726950323821
+      },
+      "interactionTarget": null,
+      "eligibility": {
+        "ok": false,
+        "reason": "구조할 주민이 없음"
+      }
+    },
+    {
+      "actor": "p-mage",
+      "selected": true,
+      "active": "p-mage",
+      "position": {
+        "x": 6088.85824813538,
+        "y": 4739.735244542464
+      },
+      "interactionTarget": null,
+      "eligibility": {
+        "ok": false,
+        "reason": "구조할 주민이 없음"
+      }
+    },
+    {
+      "actor": "p-knight",
+      "selected": true,
+      "active": "p-knight",
+      "position": {
+        "x": 6088.864468512265,
+        "y": 4739.732600882287
+      },
+      "interactionTarget": null,
+      "eligibility": {
+        "ok": false,
+        "reason": "구조할 주민이 없음"
+      }
+    },
+    {
+      "actor": "p-occultist",
+      "selected": true,
+      "active": "p-occultist",
+      "position": {
+        "x": 6088.729259519424,
+        "y": 4739.790064704245
+      },
+      "interactionTarget": null,
+      "eligibility": {
+        "ok": false,
+        "reason": "구조할 주민이 없음"
+      }
+    }
+  ]
+}

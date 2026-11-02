@@ -1,0 +1,158 @@
+{
+  "actualEntry": [
+    {
+      "cls": "archer",
+      "level": 15,
+      "hp": 844,
+      "maxHp": 844,
+      "loadout": [
+        "A01",
+        "A02",
+        "A09",
+        "A05"
+      ],
+      "equipmentIds": [
+        "itm_se_01"
+      ],
+      "ranks": {
+        "A01": 1,
+        "A14": 1,
+        "A02": 8,
+        "A11": 1,
+        "A09": 8,
+        "A05": 8
+      }
+    },
+    {
+      "cls": "mage",
+      "level": 15,
+      "hp": 926,
+      "maxHp": 926,
+      "loadout": [
+        "M01",
+        "M10",
+        "M03",
+        "M11"
+      ],
+      "equipmentIds": [
+        "itm_da_01"
+      ],
+      "ranks": {
+        "M01": 1,
+        "M07": 1,
+        "M10": 8,
+        "M03": 8,
+        "M11": 8
+      }
+    },
+    {
+      "cls": "knight",
+      "level": 15,
+      "hp": 1651,
+      "maxHp": 1651,
+      "loadout": [
+        "S00",
+        "S03",
+        "S05",
+        "S09"
+      ],
+      "equipmentIds": [
+        "itm_hw_01"
+      ],
+      "ranks": {
+        "S00": 1,
+        "S03": 8,
+        "S05": 8,
+        "S09": 8
+      }
+    },
+    {
+      "cls": "occultist",
+      "level": 15,
+      "hp": 1060,
+      "maxHp": 1060,
+      "loadout": [
+        "O01",
+        "O02",
+        "O08",
+        "O11"
+      ],
+      "equipmentIds": [
+        "itm_so_01"
+      ],
+      "ranks": {
+        "O01": 1,
+        "O02": 8,
+        "O06": 1,
+        "O07": 1,
+        "O08": 8,
+        "O11": 8
+      }
+    }
+  ],
+  "checkoutCommit": "5ca71290606823f5cfe75f6280aed1ad3e0aaea7",
+  "runnerSha256": "84046ae7a0a06999e34779f9c0f9c43bff11f4f0cc819be951efb5a2f8db9ab3",
+  "projectSha256": "c65a226aa1d6ae551f18fa9e7bbf0cbc1d330493d6e1d8efb6d1b6d1aaff58db",
+  "stageSha256": "3d4653c2bc6a9fc2bbab210e03ced65eebc155b1012387c08bee76794a0b7294",
+  "geometrySha256": "d3c49542bb553be7366edf8f3a7c1f3a7fb18eb44332f54384e1af0fddfb5c69",
+  "entryProfileSha256": "5ae6a80768194783e89ce58b453dcdb9b5e9039f368e9cb47da3fd3141673f42",
+  "entryLevel": 17.4,
+  "policy": "survival",
+  "seed": 207,
+  "scope": "Synthetic legacy-budget rewardXpAt(plan.entryLevel), legal training, production-auto-equipped basic recruitment weapons. Prior clearance flags only unlock requested chapter; no claim earlier chapters were played. Production reviewed-v4 App/Engine with DOM/storage/render/clock doubles; not browser input.",
+  "phase": "lost",
+  "round": 17,
+  "stopReason": null,
+  "seconds": 421.24451951199995,
+  "remainingEnemies": 4,
+  "kills": 18,
+  "heroes": [
+    {
+      "cls": "archer",
+      "hp": 780.8,
+      "maxHp": 844
+    },
+    {
+      "cls": "mage",
+      "hp": 926,
+      "maxHp": 926
+    },
+    {
+      "cls": "knight",
+      "hp": 1156.9,
+      "maxHp": 1651
+    },
+    {
+      "cls": "occultist",
+      "hp": 827.1999999999999,
+      "maxHp": 1060
+    }
+  ],
+  "fallen": [],
+  "done": {
+    "20.ring": true,
+    "clear-mouth": true,
+    "escort": true,
+    "escort-mid": true,
+    "hold-convoy": true
+  },
+  "actions": 94,
+  "skills": {
+    "A01": 4,
+    "O02": 10,
+    "M11": 12,
+    "S03": 13,
+    "A02": 11,
+    "O08": 5,
+    "M03": 1,
+    "M10": 1
+  },
+  "hpDamageTaken": 1481.3,
+  "hpDamageDealt": 20461,
+  "externalWrites": [],
+  "engineRecoveries": [],
+  "combatCycles": 16,
+  "displayRound": 17,
+  "twentyRoundGate": false,
+  "releaseApproved": false
+}

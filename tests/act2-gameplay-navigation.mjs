@@ -43,8 +43,8 @@ export function navigator(g,b,e,{tick,ready,record,stageId=18,routes=null}){
    if(reached){if(link.mode){if(link.mode.kind==='jump'){if(u.moveLeft<e.jumpCost(u)+Math.abs(link.mode.x-u.x)+65)break;if(!e.jump(u))break;record({op:'jump',hero:u.cls,from:{x:u.x,y:u.y},to:link.mode});}if(link.mode.kind==='drop')record({op:'drop',hero:u.cls,from:{x:u.x,y:u.y},to:link.mode});state.air=link.mode;state.airFrames=0;state.airStartY=u.y;state.departed=false;continue;}state.index++;continue;}
    if(!link.mode&&e.grounded(u)&&Math.abs(u.y-p.y)>350&&Math.abs(u.x-p.x)<180){record({op:'nav-replan',hero:u.cls,reason:'ordinary fall left a route waypoint above reach',position:{x:u.x,y:u.y},goal:p});nav.delete(u.id);break;}
    const old={x:u.x,y:u.y};if(Math.abs(u.x-p.x)>5)e.move(Math.sign(p.x-u.x)*(Math.abs(p.x-u.x)<22?.35:1),C.STEP);
-   if(e.grounded(u)&&(still>12&&Math.abs(u.x-p.x)>25||Math.abs(u.x-p.x)<25&&u.y-p.y>80)){if(recoveryCount>=3){record({op:'nav-replan',hero:u.cls,reason:'three ordinary recovery jumps did not reach waypoint',position:{x:u.x,y:u.y},goal:p});nav.delete(u.id);break;}if(e.jump(u)){recoveryCount++;record({op:'recovery-jump',hero:u.cls,x:u.x,y:u.y,goal:p});still=0;}}
-   tick();still=distance(old,u)<.02?still+1:0;if(still>100){record({op:'nav-blocked',hero:u.cls,position:{x:u.x,y:u.y},support:surface(u),goal:p});nav.delete(u.id);break;}
+   if(e.grounded(u)&&(still>12&&Math.abs(u.x-p.x)>25||Math.abs(u.x-p.x)<25&&u.y-p.y>35)){if(recoveryCount>=3){failLink(u,state,'three ordinary recovery jumps did not reach waypoint; reject attempted link');break;}if(e.jump(u)){recoveryCount++;record({op:'recovery-jump',hero:u.cls,x:u.x,y:u.y,goal:p});still=0;}}
+   tick();still=distance(old,u)<.02?still+1:0;if(still>100){failLink(u,state,'ordinary movement did not reach waypoint; reject attempted link');break;}
   }
   for(let i=0;i<300&&ready()&&!e.grounded(u);i++){if(state.air&&Math.abs(u.x-state.air.x)>3)e.move(Math.sign(state.air.x-u.x)*(state.air.speed||.35),C.STEP);tick();}
   if(distance(start,u)>1)record({op:'move',hero:u.cls,from:start,to:{x:u.x,y:u.y},support:surface(u),goal:{id:point.id,x:point.x,y:point.y}});
