@@ -33,6 +33,10 @@ if(stage===8&&policy.includes('routefirst')){
  code=code.replace("for(const v of nearby().filter(v=>distance(v,u)<300).slice(0,2))", "for(const v of nearby().filter(v=>distance(v,u)<300&&(!target?.honroSeal||distance(u,destination(u,target))<220)).slice(0,2))");
  code=code.replace("if(target?.honroSeal&&attackSeal(u,target))continue;", "if(target?.honroSeal&&distance(u,destination(u,target))<220&&attackSeal(u,target))continue;");
 }
+if(stage===8&&policy.includes('flowall')){
+ code=code.replace("distance(v,u)<300&&(!target?.honroSeal||distance(u,destination(u,target))<220)", "distance(v,u)<300&&(!target||distance(u,destination(u,target))<220)");
+ code=code.replace("if(target?.side===1&&distance(u,target)<1800&&attack(u,target))continue;", "if(target?.side===1&&distance(u,target)<350&&attack(u,target))continue;");
+}
 if(stage===8&&policy.includes('diagnostic')){
  code=code.replace('liveAudit.guard();frames++;',"liveAudit.guard();frames++;if(app.lastError)throw Error('Production App.frame reported: '+app.lastError);");
  code=code.replace('if(frames>700000)', 'if(frames>180000)');
