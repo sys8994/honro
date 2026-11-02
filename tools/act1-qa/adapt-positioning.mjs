@@ -2,6 +2,7 @@
  * All routes stay existing authored routes. No game data or expected gates change. */
 export function adaptPositioning(source,stage,policy){
  const style=policy.split('-')[0];
+ if(stage===2)source=source.replace("e.fire('A01',shot.p.angle,shot.p.power)","e.fire(shot.id,shot.p.angle,shot.p.power)");
  const aim=`function aim(arg){const u=arg||e.active;let best=null;const targets=e.alive(1).filter(t=>Math.hypot(t.x-u.x,t.y-u.y)<2100).sort((v,w)=>Math.hypot(v.x-u.x,v.y-u.y)-Math.hypot(w.x-u.x,w.y-u.y)).slice(0,4);for(const id of u.loadout){const skill=C.SKILLS[id];if(!skill||skill.passive||e.cooldownLeft(u,id)>0||!e.canAfford(skill,u,1))continue;for(const v of targets){if(skill.martial&&skill.branch==='sword'){let angle=Math.atan2(u.y-u.h*.58-(v.y-v.h*.5),v.x-u.x)*180/Math.PI;if(angle< -90)angle+=360;for(const power of [1,.7])if(C.meleeContains(e,u,v,C.meleeRange(u,skill,power),-angle*Math.PI/180,C.meleeSpan(u,skill,power))&&(!best||skill.damage>best.net))best={id,p:{angle,power},v,net:skill.damage};continue;}for(const p of e.shotSeeds(u,skill,v)){const z=C.shotViable(e,u,skill,v,p.angle,p.power);if(z.ok&&z.risk<.5&&z.enemyDamage>0&&(!best||z.net>best.net))best={id,p,v,net:z.net};}}}return best;}`;
  source=source.replace(/ function aim\([^\n]+\n/,` ${aim}\n`);
  source=source.replace("if(e.canAct()&&u?.side===0&&!a.dialogue){", "if(e.canAct()&&u?.side===0&&!a.dialogue){if(u.hp<u.maxHp*.45&&b.items.heal>0&&e.item('heal')){log.push({op:'ordinary-heal',actor:u.id,round:b.round});step();continue;}");

@@ -1,0 +1,254 @@
+{
+  "scope": "Observed historical command sequence, recalculated aim on current runtime, no live state writes; stop on missing target/input mismatch rather than bypass",
+  "commands": [
+    {
+      "op": "walk",
+      "x": 300
+    },
+    {
+      "op": "jump",
+      "x": 510
+    },
+    {
+      "op": "walk",
+      "x": 620
+    },
+    {
+      "op": "walk",
+      "x": 850
+    },
+    {
+      "op": "shoot",
+      "target": "s5-upper-crow",
+      "skill": "A14"
+    },
+    {
+      "op": "walk",
+      "x": 650
+    },
+    {
+      "op": "walk",
+      "x": 820
+    },
+    {
+      "op": "shoot",
+      "target": "s5-entry-hound",
+      "skill": "M01"
+    },
+    {
+      "op": "shoot",
+      "target": "s5-upper-archer",
+      "skill": "A14"
+    },
+    {
+      "op": "shoot",
+      "target": "s5-entry-hound",
+      "skill": "M02"
+    },
+    {
+      "op": "shoot",
+      "target": "s5-upper-archer",
+      "skill": "A01"
+    },
+    {
+      "op": "walk",
+      "x": 1880
+    },
+    {
+      "op": "shoot",
+      "target": "s5-entry-ghost",
+      "skill": "M06"
+    },
+    {
+      "op": "walk",
+      "x": 940
+    },
+    {
+      "op": "walk",
+      "x": 1420
+    },
+    {
+      "op": "walk",
+      "x": 1950
+    },
+    {
+      "op": "shoot",
+      "target": "s5-pine-archer",
+      "skill": "A14"
+    },
+    {
+      "op": "walk",
+      "x": 2400
+    },
+    {
+      "op": "shoot",
+      "target": "s5-cave-hound",
+      "skill": "M06"
+    },
+    {
+      "op": "walk",
+      "x": 1970
+    },
+    {
+      "op": "walk",
+      "x": 2240
+    },
+    {
+      "op": "jump",
+      "x": 2240
+    },
+    {
+      "op": "walk",
+      "x": 2240
+    },
+    {
+      "op": "jump",
+      "x": 2440
+    },
+    {
+      "op": "walk",
+      "x": 2500
+    },
+    {
+      "op": "shoot",
+      "target": "s5-pine-archer",
+      "skill": "A01"
+    },
+    {
+      "op": "walk",
+      "x": 2760
+    },
+    {
+      "op": "shoot",
+      "target": "s5-cave-hound",
+      "skill": "M03"
+    },
+    {
+      "op": "walk",
+      "x": 2540
+    },
+    {
+      "op": "jump",
+      "x": 2680
+    },
+    {
+      "op": "walk",
+      "x": 2790
+    },
+    {
+      "op": "jump",
+      "x": 3000
+    },
+    {
+      "op": "walk",
+      "x": 2790
+    },
+    {
+      "op": "jump",
+      "x": 3000
+    },
+    {
+      "op": "defend"
+    },
+    {
+      "op": "shoot",
+      "target": "s5-cave-ghost",
+      "skill": "M06"
+    },
+    {
+      "op": "shoot",
+      "target": "event-49",
+      "skill": "A14"
+    },
+    {
+      "op": "walk",
+      "x": 3110
+    },
+    {
+      "op": "shoot",
+      "target": "s5-cave-ghost",
+      "skill": "M03"
+    },
+    {
+      "op": "shoot",
+      "target": "event-48",
+      "skill": "A14"
+    },
+    {
+      "op": "shoot",
+      "target": "s5-cave-ghost",
+      "skill": "M06"
+    },
+    {
+      "op": "walk",
+      "x": 3220
+    },
+    {
+      "op": "defend"
+    },
+    {
+      "op": "shoot",
+      "target": "s5-cave-ghost",
+      "skill": "M01"
+    },
+    {
+      "op": "defend"
+    },
+    {
+      "op": "shoot",
+      "target": "s5-cave-shade",
+      "skill": "M06"
+    },
+    {
+      "op": "defend"
+    },
+    {
+      "op": "walk",
+      "x": 3355
+    },
+    {
+      "op": "interact",
+      "id": "receiver-5"
+    },
+    {
+      "op": "shoot",
+      "target": "cliff-cleat",
+      "skill": "A01"
+    },
+    {
+      "op": "shoot",
+      "target": "s5-cave-shade",
+      "skill": "M06"
+    },
+    {
+      "op": "shoot",
+      "target": "cliff-cleat",
+      "skill": "A14"
+    },
+    {
+      "op": "walk",
+      "x": 3540
+    },
+    {
+      "op": "defend"
+    },
+    {
+      "op": "shoot",
+      "target": "cliff-cleat",
+      "skill": "A14"
+    },
+    {
+      "op": "walk",
+      "x": 3630
+    },
+    {
+      "op": "defend"
+    },
+    {
+      "op": "defend"
+    },
+    {
+      "op": "defend"
+    }
+  ]
+}
