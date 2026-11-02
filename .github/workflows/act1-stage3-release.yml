@@ -1,0 +1,60 @@
+name: Verify default Stage3 terrain release
+on:
+  push:
+    branches: ['work/act1-stage3-art/**']
+permissions:
+  contents: write
+jobs:
+  verify:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    env:
+      HONRO_QA_URL: http://127.0.0.1:8870/HONRO.html
+      HONRO_QA_OUT: _local/reports/act1-stage3-release
+    steps:
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
+        with:
+          ref: ${{ github.sha }}
+      - uses: actions/setup-node@2028fbc5c25fe9cf00d9f06a71cc4710d4507903
+        with:
+          node-version: '22'
+          package-manager-cache: false
+      - uses: actions/setup-python@e797f83bcb11b83ae66e0230d6156d7c80228e7c
+        with:
+          python-version: '3.12'
+      - name: Focused checks and unchanged production gate
+        run: |
+          set -euo pipefail
+          npm ci
+          npm ci --prefix game
+          node tests/stage3-body-candidate.mjs
+          # Fresh Stage31 evidence is inherited from verified candidate f775181.
+          # Normal build must still match its runtime digest and fingerprint.
+          # Do not bypass or rewrite evidence if either no longer matches.
+          mapfile -t refs < <(node --input-type=module -e 'import fs from "node:fs";import {selectPublishedGenerations} from "./shared/web-retention.mjs";for(const g of selectPublishedGenerations(JSON.parse(fs.readFileSync("web/manifest.json")).publishedGenerations,{now:Date.now()})){if(!/^[a-f0-9]{40}$/.test(g.sourceSha))throw Error("Invalid ref");console.log(g.sourceSha)}')
+          git fetch --no-tags --depth=1 origin 148cfa9657a4e59e672bb0b6ca5332aea8ad3fce "${refs[@]}"
+          node tools/release/retain-published-web.mjs 148cfa9657a4e59e672bb0b6ca5332aea8ad3fce --published-at 2026-11-02T08:43:07Z --evidence https://github.com/sys8994/honro/actions/runs/41414723682
+          npm run build
+          python -m pip install 'playwright==1.58.0'
+          python -m playwright install --with-deps chromium
+      - name: Default entry, save reload and responsive visual evidence
+        run: |
+          set -euo pipefail
+          mkdir -p "$HONRO_QA_OUT"
+          sha256sum HONRO.html web/manifest.json > "$HONRO_QA_OUT/served-sha256.txt"
+          python -m http.server 8870 --bind 127.0.0.1 > "$HONRO_QA_OUT/server.log" 2>&1 &
+          trap 'kill $! 2>/dev/null || true' EXIT
+          sleep 2
+          python tools/act1-vector-production/browser-stage3.py > "$HONRO_QA_OUT/browser.log" 2>&1
+      - uses: actions/upload-artifact@330a01c490aca151604b8cf639adc76d48f6c5d4
+        if: always()
+        with:
+          name: act1-stage3-release-${{ github.sha }}
+          path: _local/reports/act1-stage3-release/
+          retention-days: 7
+      - name: Preserve generated release for final visual review
+        run: |
+          set -euo pipefail
+          git add web HONRO.html HONRO_WORKSHOP.html index.html
+          git -c user.name='honro release automation' -c user.email='41898282+github-actions[bot]@users.noreply.github.com' commit -m "Build checked default Stage3 terrain from $GITHUB_SHA"
+          git push origin "HEAD:refs/heads/work/act1-stage3-publish/$GITHUB_SHA"

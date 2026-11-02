@@ -1,3 +1,4 @@
+import {applyStage3ArtCandidate} from '../act1-vector-production/apply-stage3-candidate.mjs';
 /** Preserve the ferry's existing upper/lower routes; give their defenders distinct jobs. */
 export function applyStage3Positioning(project){
  const s=project.stages.find(s=>s.metadata?.stageId===3);if(!s)return project;
@@ -12,5 +13,5 @@ export function applyStage3Positioning(project){
   'foe-2-cluster':{x:5080,y:top('ferry-ground',5080)},
   'foe-5-cluster':{x:5490,y:top('warehouse-roof',5490)}
  },roles:['서측 잔교 혼합 전위2','하부 선착장 추격1','장승 옆 저지대 압박1','기존 공중4','창고 비탈2/적재대1/지붕1']};
- return project;
+ return applyStage3ArtCandidate(project);
 }

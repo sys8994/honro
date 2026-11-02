@@ -5220,3 +5220,8 @@ Title `여정 이어가기` could choose an older hub before honoring a saved di
 - Preserve original geometry, actors, camera and encounters; replace only non-colliding BODY/rear art. Default enable follows real browser run41411532370; explicit environment value0 remains rollback.
 - Outside decorative cliff no longer carries misleading walk rims. Original contact boundaries remain unchanged. .1 rounding candidate failed alpha tolerance; .01 candidate passes unchanged1×/2× limits.
 - Verified entry/movement/jump/landing/camera/save-reload; fresh Stage31 runtime evidence:34 enemies,4 surviving heroes,round16 boarded. Final release workflow additionally checks responsive portrait/landscape screenshots before master promotion. This is not Stage2 combat/fun redesign acceptance or physical-device performance coverage.
+
+### 2026-11-02 — Stage3 BODY material candidate
+- Preserve original ferry-ground, wood docks/roof, actors, encounters, camera and story; add only clipped non-colliding BODY art. Normal build gate remains unchanged.
+- Reject oversized isolated rock/moss motifs even when pixel/size checks pass. Use the accepted connected geology style and thinner contact moss; raw4-color340580B ->223512B (34.37%), 1x/2x max silhouette1px. Fifth dark shade produced a >240000-character compound; authored4-color revision removes unnecessary shadow detail without raising engine limits.
+- Source geometry/hash and native save roundtrip pass. Browser release workflow still must verify current rest-hub3 navigation, actual movement/jump, save/reload and responsive views before promotion. Stage3 historical entry fixture has only ordinary Stage1/2 completion rewards; no live resource edits.
