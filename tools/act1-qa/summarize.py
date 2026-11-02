@@ -54,6 +54,26 @@ def normalize(stage,label,initial,final,damage,actions,path,cohort=False,seed=No
  killed=[u for u in allus.values()if u.get('side')==1 and (u.get('dead')or u.get('hp',1)<=0)and not u.get('honroObjectiveTarget')and not u.get('elite')and not u.get('honroMidboss')and u['id']!='boss']
  row['observed']['normalKilledEnemyPlayerEffectiveLaunches']=[{'target':u['id'],'effectivePlayerLaunchCount':len(effective.get(u['id'],set())) if launches else None,'alliedAssistanceDamage':sum(d.get('loss',d.get('amount',0))for d in damage if d.get('target')==u['id']and allus.get(d.get('owner'),{}).get('side')==2)}for u in killed]
  row['observed']['unattributedPlayerDamageEvents']=unattributed
+ # Diagnostic aggregation uses accepted enemy launches, including misses.
+ # It does not count approach/control-only turns as ineffective: that accepted
+ # denominator remains missing. Delayed effects can overlap, so association
+ # by owner/time is explicitly not promoted to the damage acceptance gate.
+ enemyLaunches={};enemyGroups={}
+ for index,a in enumerate(actions):
+  before=a.get('before')if isinstance(a.get('before'),dict)else {};uid=before.get('id');unit=allus.get(uid,us.get(uid,{}))
+  if a.get('op')=='fire'and a.get('accepted')is True and unit.get('side')==1:
+   enemyLaunches.setdefault(uid,[]).append((a.get('tick',-1),index))
+   enemyGroups[index]={'owner':uid,'round':a.get('round'),'skill':a.get('args',[None])[0],'heroDamage':{},'hits':0,'normal':not unit.get('elite')and not unit.get('honroMidboss')and uid!='boss'}
+ unassignedEnemy=0
+ for hit in damage:
+  owner=hit.get('owner');target=allus.get(hit.get('target'),us.get(hit.get('target'),{}))
+  if owner not in enemyLaunches or target.get('side')!=0:continue
+  matches=[v for v in enemyLaunches[owner]if v[0]<=hit.get('tick',-1)]
+  if not matches:unassignedEnemy+=1;continue
+  group=enemyGroups[matches[-1][1]];uid=target['id'];group['heroDamage'][uid]=group['heroDamage'].get(uid,0)+hit.get('loss',hit.get('amount',0));group['hits']+=1
+ pct=[loss/allus.get(uid,us.get(uid))['maxHp']*100 for group in enemyGroups.values()if group['normal']for uid,loss in group['heroDamage'].items()if allus.get(uid,us.get(uid,{})).get('maxHp')]
+ row['observed']['enemyLaunchDiagnostic']={'acceptedLaunches':len(enemyGroups),'launchesDamagingHeroes':sum(bool(v['heroDamage'])for v in enemyGroups.values()),'launchesWithoutObservedHeroDamage':sum(not v['heroDamage']for v in enemyGroups.values()),'byRound':dict(Counter(v['round']for v in enemyGroups.values())),'normalActionTargetPctHp':{'n':len(pct),'mean':statistics.mean(pct)if pct else None,'range':[min(pct),max(pct)]if pct else None},'unassignedHeroDamageEvents':unassignedEnemy,'scope':'Owner/time attribution diagnostic only; approach, control, protected-NPC pressure and delayed-effect overlap not fully classified.'}
+ if not any(isinstance(a.get('before'),dict)and 'accepted'in a and 'tick'in a for a in actions):row['observed']['enemyLaunchDiagnostic']={'status':'MISSING_INSTRUMENTATION','acceptedLaunches':None,'scope':'This source does not capture all accepted Engine fire calls; zero cannot be inferred.'}
  row['observed']['effectiveLaunchCaveat']='Recorded launch-to-impact association by actor/time; delayed effects and ally assistance require review before kill-actions gate.'
  row['observed']['routeCaveat']='One-second samples: path length lower bound, not exact movement or valid landing attribution.'
  rows.append(row)
