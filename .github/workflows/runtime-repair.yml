@@ -78,6 +78,7 @@ jobs:
           HONRO_QA_OUT="$OUT/stage14-settle" python tools/act2-qa/stage14-postfix-ui.py
           HONRO_STAGE=17 HONRO_QA_OUT="$OUT/stage17-hoist" python tools/act2-qa/retained-interactions-ui.py
           HONRO_STAGE=18 HONRO_QA_OUT="$OUT/stage18-bell" python tools/act2-qa/retained-interactions-ui.py
+          python tools/act2-qa/assert-browser-receipts.py "$OUT/stage8-reader/result.json" "$OUT/stage14-settle/result.json" "$OUT/stage17-hoist/result.json" "$OUT/stage18-bell/result.json"
           HONRO_ITEM_UI_MODE=production HONRO_ITEM_UI_OUT="$OUT/item-ui" python tests/item-discovery-browser.py
       - name: Preserve checked candidate; no master publication
         run: |
