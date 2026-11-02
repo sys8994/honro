@@ -1,3 +1,4 @@
+import {applyStage9ArtCandidate} from '../act1-vector-production/apply-stage9-candidate.mjs';
 /** Bounded, idempotent topology authoring. Existing objectives, NPC floor,
  * gate, map bounds, encounter counts and live-save snapshots are untouched. */
 import {readFile,writeFile} from 'node:fs/promises';
@@ -78,5 +79,5 @@ function author(s,project){
  if(n===13)for(const [id,y]of [['a2-enemy-7',3352.5],['a2-enemy-14',4040],['a2-enemy-16',4210],['a2-enemy-17',4250]]){const u=s.units.find(u=>u.id===id);if(u)u.y=y;const site=s.design.space.encounterSites.find(q=>q.unitId===id);if(site)site.y=y;}
  return s;
 }
-export function applyStage9And13Tactical(project){for(const s of project.stages)if([9,13].includes(s.metadata?.stageId))author(s,project);return project;}
+export function applyStage9And13Tactical(project){for(const s of project.stages)if([9,13].includes(s.metadata?.stageId))author(s,project);return project.stages.some(s=>s.metadata?.stageId===9)?applyStage9ArtCandidate(project):project;}
 if(process.argv[1]&&import.meta.url===pathToFileURL(process.argv[1]).href){const file='shared/data/campaign.json';await writeFile(file,JSON.stringify(applyStage9And13Tactical(JSON.parse(await readFile(file,'utf8'))),null,2)+'\n');}
