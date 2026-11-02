@@ -38,6 +38,7 @@ jobs:
           node tests/act1-local-art-save.mjs
           node tests/act2-local-art-save.mjs
           node tests/stage19-equipment-save.mjs
+          node tests/preview-entry-input-guard.mjs
           HONRO_ACT2_ART_CANDIDATES=0 node tests/stage11-art-candidate.mjs
           HONRO_ACT2_ART_CANDIDATES=0 node tests/stage12-traced-art.mjs
           HONRO_ACT2_ART_CANDIDATES=0 node tools/act2-vector-production/test-stage13-candidate.mjs
@@ -51,7 +52,7 @@ jobs:
           node tests/act2-traced-art-integrated.mjs
           python tools/act4-ci/test_precise_aim.py
           python tools/act4-ci/test_stage31_survival.py
-      - name: Retain published graphs and prepare unpublished evidence capture
+      - name: Retain published graphs
         env:
           HONRO_ACT4_RELEASE: '1'
         run: |
@@ -60,11 +61,33 @@ jobs:
           mapfile -t refs < <(node --input-type=module -e 'import fs from "node:fs";import {selectPublishedGenerations} from "./shared/web-retention.mjs";for(const g of selectPublishedGenerations(JSON.parse(fs.readFileSync("web/manifest.json")).publishedGenerations,{now:Date.now()})){if(!/^[a-f0-9]{40}$/.test(g.sourceSha))throw Error("Invalid ref");console.log(g.sourceSha)}')
           git fetch --no-tags --depth=1 origin 594d5dce6fa48163a41e5dce03c2df3decc79bfd "${refs[@]}"
           node tools/release/retain-published-web.mjs 594d5dce6fa48163a41e5dce03c2df3decc79bfd --published-at 2026-11-02T19:02:27Z --evidence https://github.com/sys8994/honro/actions/runs/41505739252
+      - name: Verify exact genuine Stage31 evidence against current source
+        id: stage31
+        run: |
+          set -euo pipefail
+          node tools/act4-ci/restore-measured-stage31.mjs | tee "$OUT/measured-evidence-source.json"
+          if node tools/stage31/check-release.mjs > "$OUT/reuse-gate.log" 2>&1; then
+            cat "$OUT/reuse-gate.log"
+            echo 'fresh=false' >> "$GITHUB_OUTPUT"
+          elif grep -Fxq 'Error: Runtime changed after actual Engine probes.' "$OUT/reuse-gate.log"; then
+            cat "$OUT/reuse-gate.log"
+            echo 'fresh=true' >> "$GITHUB_OUTPUT"
+          else
+            cat "$OUT/reuse-gate.log"
+            exit 1
+          fi
+      - name: Prepare fresh unpublished evidence only after genuine runtime mismatch
+        if: steps.stage31.outputs.fresh == 'true'
+        env:
+          HONRO_ACT4_RELEASE: '1'
+        run: |
+          set -euo pipefail
           node tools/act4-ci/refresh-stage31-probes.mjs prepare "$OUT"
-          # Evidence capture only; final npm run build must enforce the production gate.
+          # Capture only. Never publish until fresh measured evidence and normal gate pass.
           node workshop/build.mjs | tee "$OUT/preview-build.log"
           sha256sum HONRO.html web/manifest.json > "$OUT/preview-served-sha256.txt"
       - name: Unchanged Stage31 fresh first-shot trials and normal-input objective
+        if: steps.stage31.outputs.fresh == 'true'
         run: |
           set -euo pipefail
           python -m http.server 8870 --bind 127.0.0.1 > "$OUT/server.log" 2>&1 &
@@ -77,7 +100,9 @@ jobs:
       - name: Bind genuine measured evidence and enforce normal production gate
         run: |
           set -euo pipefail
-          node tools/act4-ci/refresh-stage31-probes.mjs attach "$OUT"
+          if [ "${{ steps.stage31.outputs.fresh }}" = 'true' ]; then
+            node tools/act4-ci/refresh-stage31-probes.mjs attach "$OUT"
+          fi
           cp tools/stage31/production-package.json "$OUT/stage31-production-package.json"
           npm run build | tee "$OUT/gated-build.log"
           sha256sum HONRO.html web/manifest.json > "$OUT/final-served-sha256.txt"
