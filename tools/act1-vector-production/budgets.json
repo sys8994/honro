@@ -1,0 +1,41 @@
+{
+  "schema": "honro-act1-svg-budget-v1",
+  "unit": "uncompressed SVG bytes",
+  "minimumReductionFraction": 0.3,
+  "stages": [
+    {
+      "stage": 1,
+      "sha256": "cedaa34fbcc12954119d1336911609abfdda553e3d911be9a8b0fdee848cf670",
+      "baselineBytes": 1105441,
+      "maxFinalBytes": 773808,
+      "minimumReductionFraction": 0.3,
+      "baselineMessage": "Sentinel_d07922a51b9881918e48c7598abbfd44",
+      "status": "PENDING",
+      "collisionRegistration": "UNVERIFIED"
+    },
+    {
+      "stage": 2,
+      "sha256": "33e59751d6feb62880e37620a51cce88a6dbbf1a2f358c4603fe2ccec898798d",
+      "baselineBytes": 2921201,
+      "maxFinalBytes": 2044840,
+      "minimumReductionFraction": 0.3,
+      "baselineMessage": "Sentinel_d07922a51b9881918e48c7598abbfd44",
+      "status": "PENDING",
+      "collisionRegistration": "UNVERIFIED"
+    }
+  ],
+  "remainingStages": {
+    "stages": [
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10
+    ],
+    "baselineStatus": "UNSET",
+    "acceptance": "BLOCKED_UNTIL_BASELINE_AND_REVIEW"
+  }
+}
