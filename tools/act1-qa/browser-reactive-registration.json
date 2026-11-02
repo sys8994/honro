@@ -12,7 +12,7 @@
   "stage10": "Reactive current-binding attack, natural route climb, knight S08 before survival/pursuit, prioritize threats targeting Sodan, guard positions2200/2340/2580, archer scouts actualexit at hold4, anylivingactor exits once actualhold6 ready. Defend recovery for nonknight below40%HP after moving.",
   "limits": "240 ordinary input intentions and existing30minute CI observation; unfinished/exception/death fail receipt. Never force victory or erase failed prior traces.",
   "sourceHashes": {
-    "tools/act1-qa/browser-ui.py": "5deaf9402bdbf9f7fc15ec8d6beb91ab49cd11c1dd74c7870ab3636013e81366",
+    "tools/act1-qa/browser-ui.py": "0a4928cc22045349d0a8972026bc56cde7a22d2288cc5041b16934c127f0619f",
     "tools/act1-qa/browser-reactive-plan.js": "95e5ad8ddbfed44fb87a0b32c0c18104fd7ddfbbe869b3056243aa70f448a435",
     "tools/act4-ci/precise_aim.py": "4385177fdf3fdfb874ad7381045652ec69e2fd9f75ab698550f5a4ca70748980"
   },
@@ -26,5 +26,11 @@
     }
   },
   "isolation": "Every reactive prediction uses a JSON-cloned battle and new production Engine. Exact serialized live battle guard retained. Regression poisons detached prediction cache and forbids calls on live predictor; Stage5/10 live battle/profile unchanged. Separate instrumentation calibration, no gameplay criteria changed.",
-  "driverCalibration": "Actions 41507840802 stage10 reached actual won R12 during aim; terminal-aware driver stops only on observed won/lost, keeps failed aim receipt and final won/no-errors gate. No gameplay or timeout pass waiver."
+  "driverCalibration": "Actions 41507840802 stage10 reached actual won R12 during aim; terminal-aware driver stops only on observed won/lost, keeps failed aim receipt and final won/no-errors gate. No gameplay or timeout pass waiver.",
+  "movementCalibration": {
+    "observedFailure": "Actions 41507840802 stage5 command31 drops from timber-mid to valley; 19 preceding aim/skill receipts valid. Preserve original lost R30 trace.",
+    "change": "Continuous ordinary digital Arrow key held across read-only 16ms observations; no forced50ms post-jump or30ms inter-pulse neutral interval. Release on target/actor change/terminal/error, await landing, log actual support. No route, gameplay, win-gate or240-command limit changes.",
+    "preRunEvidence": "Detached same-checkpoint physics:0/30ms neutral gap reaches timber-high,60/100/160ms falls valley. Normal native App baseline WON R13; continuous digital-axis native replay WON R12 with2alive. Native doubles are not real browser evidence; exact browser latency not measured.",
+    "remaining": "Actual browser rerun required; local Chromium socket launch denied by sandbox."
+  }
 }

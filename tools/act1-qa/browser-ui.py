@@ -14,6 +14,35 @@ def aim_terminal(aim, current):
  if current['phase'] in ['won','lost']:return True
  assert aim['passed'],'Aim precision failed'
  return False
+def drive_movement(page, observe, command, before):
+ """Continuous ordinary keys: observation must not turn a jump into stop/start hops."""
+ assert command.get('input',1)==1,'Continuous keyboard movement requires a full digital axis'
+ held=None;last_motion=time.monotonic();deadline=last_motion+25;last_x=before['x']
+ def axis(key):
+  nonlocal held
+  if held==key:return
+  if held:page.keyboard.up(held)
+  held=key
+  if held:page.keyboard.down(held)
+ try:
+  dx=command['x']-before['x']
+  if command['op']=='jump':page.keyboard.press('Control')
+  if abs(dx)>=8:axis('ArrowRight' if dx>0 else 'ArrowLeft')
+  while time.monotonic()<deadline:
+   st=observe()
+   if not st['can'] or st['active']!=before['active'] or st['moveLeft']<3:break
+   dx=command['x']-st['x']
+   if command['op']=='climb':
+    support=page.evaluate('()=>{const e=HonroApp.engine,u=e.active;return e.contactSurface(u.x,u.y-3,u.y+4)?.t.id}')
+    if abs(dx)<12 and st['grounded'] and support==command['support']:break
+    if abs(dx)<45 and st['grounded'] and st['y']-command['y']>35:page.keyboard.press('Control')
+   elif abs(dx)<8 and st['grounded']:break
+   axis(('ArrowRight' if dx>0 else 'ArrowLeft') if abs(dx)>=8 else None)
+   if abs(st['x']-last_x)>=.5 or not st['grounded']:last_motion=time.monotonic()
+   elif time.monotonic()-last_motion>1:break
+   last_x=st['x']
+   page.wait_for_timeout(16)
+ finally:axis(None)
 def save():
  (out/'result.json').write_text(json.dumps(result,ensure_ascii=False,indent=2));(out/'events.json').write_text(json.dumps(events,ensure_ascii=False))
 try:
@@ -33,7 +62,7 @@ try:
   elif enter.count():enter.first.click()
   p.wait_for_timeout(350)
  p.wait_for_function(f'HonroApp.engine?.b?.honroStage==={stage} && HonroApp.canInput()',timeout=1000)
- def state():return p.evaluate('''()=>{const a=HonroApp,e=a.engine,b=e.b,u=e.active;return{round:b.round,side:b.side,phase:b.phase,active:u?.id,cls:u?.cls,x:u?.x,y:u?.y,angle:u?.angle,facing:u?.facing,moveLeft:u?.moveLeft,jumpCost:u&&e.jumpCost(u),grounded:u&&e.grounded(u),can:a.canInput(),dialogue:!!a.dialogue,shots:b.shots,shotId:b.shot,drop:u&&e.canDrop(),camera:{x:a.scene.x,y:a.scene.y,scale:a.scene.scale},health:b.units.filter(v=>v.side===0&&!v.summoned).map(v=>({id:v.id,hp:v.hp,maxHp:v.maxHp,dead:v.dead,x:v.x,y:v.y})),enemies:b.units.filter(v=>v.side===1).map(v=>({id:v.id,hp:v.hp,dead:v.dead,x:v.x,y:v.y,kind:v.honroVariant})),seed:b.seed,rng:b.rng}}''')
+ def state():return p.evaluate('''()=>{const a=HonroApp,e=a.engine,b=e.b,u=e.active;return{round:b.round,side:b.side,phase:b.phase,active:u?.id,cls:u?.cls,x:u?.x,y:u?.y,angle:u?.angle,facing:u?.facing,moveLeft:u?.moveLeft,jumpCost:u&&e.jumpCost(u),grounded:u&&e.grounded(u),support:u&&e.contactSurface(u.x,u.y-3,u.y+4)?.t.id,can:a.canInput(),dialogue:!!a.dialogue,shots:b.shots,shotId:b.shot,drop:u&&e.canDrop(),camera:{x:a.scene.x,y:a.scene.y,scale:a.scene.scale},health:b.units.filter(v=>v.side===0&&!v.summoned).map(v=>({id:v.id,hp:v.hp,maxHp:v.maxHp,dead:v.dead,x:v.x,y:v.y})),enemies:b.units.filter(v=>v.side===1).map(v=>({id:v.id,hp:v.hp,dead:v.dead,x:v.x,y:v.y,kind:v.honroVariant})),seed:b.seed,rng:b.rng}}''')
  def record(op,**extra):
   row={'op':op,'state':state(),'time':time.time(),**extra};events.append(row);save();print(json.dumps(row,ensure_ascii=False),flush=True)
  def ready():
@@ -97,22 +126,7 @@ try:
    if command['op'] in ['quit','state','plan']:continue
    before=state();op=command['op'];assert not command.get('hero') or command['hero']==before['cls'],'Recorded actor boundary diverged';record('replay-command',index=index,command=command)
    if op in ['walk','jump','climb']:
-    if op=='jump':p.keyboard.press('Control');p.wait_for_timeout(50)
-    still=0
-    for pulse in range(220):
-     st=state()
-     if not st['can'] or st['active']!=before['active'] or st['moveLeft']<3:break
-     dx=command['x']-st['x']
-     if op=='climb':
-      support=p.evaluate('()=>{const e=HonroApp.engine,u=e.active;return e.contactSurface(u.x,u.y-3,u.y+4)?.t.id}')
-      if abs(dx)<12 and st['grounded'] and support==command['support']:break
-      if abs(dx)<45 and st['grounded'] and st['y']-command['y']>35:p.keyboard.press('Control');p.wait_for_timeout(50)
-     elif abs(dx)<8 and (op=='walk' or st['grounded']):break
-     if abs(dx)>=5:
-      key='ArrowRight' if dx>0 else 'ArrowLeft';p.keyboard.down(key);p.wait_for_timeout(20 if abs(dx)<25 else max(20,int(80*command.get('input',1))));p.keyboard.up(key)
-     p.wait_for_timeout(30)
-     after=state();still=still+1 if abs(after['x']-st['x'])<.5 and after['grounded'] else 0
-     if still>10:break
+    drive_movement(p,state,command,before)
     record('replay-moved',index=index,command=command)
    elif op=='defend':p.keyboard.press('f');record('defend')
    elif op=='interact':
