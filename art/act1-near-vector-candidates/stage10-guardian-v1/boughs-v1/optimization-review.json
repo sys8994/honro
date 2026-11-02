@@ -1,0 +1,98 @@
+{
+  "sourceSha256": "2fa2ff5b6e918cb1c53c86c617bc68c66a7974251a15285be0cdc096ea84baa6",
+  "sourceBytes": 98072,
+  "outputBytes": 62917,
+  "epsilonLocalUnits": 0.04,
+  "maxCurveReplacementBoundLocalUnits": 0.03875655733055861,
+  "absoluteCoordinateRoundingBound": 0.007071067811865475,
+  "protectedAlphaGeometryUnchanged": true,
+  "protectedLayer": "color-0 / fill #24342d (original geometry; lossless syntax packing only)",
+  "counts": {
+    "cubicToLine": 48,
+    "cubicToQuadratic": 81,
+    "keptCubic": 1042,
+    "protectedPaths": 1
+  },
+  "topologyReview": "Original first layer exact parsed geometry; all ordered contour counts retained. Four branch bodies, knots and taper endpoints directly reviewed. No formal global topology proof claimed.",
+  "visualReview": "PASS_ASSET_RAW_TO_FINAL; canonical runtime clipping/one-way inset validation remains parent-owned",
+  "outputSha256": "247925c2171cb3825db121e1bfa349b97a9f12808e3bec5ca4f02383a68a3045",
+  "reductionPercent": 35.846113059792806,
+  "nativeBytes": 63782,
+  "nativeSha256": "3cbc7d2a601b0bcda1ec126ae8d937646373b6412bbb1d0924149dec2f7b24f1",
+  "qualityPass": true,
+  "errors": {
+    "1": {
+      "rgbMAE255": 0.007820917293429375,
+      "rgbP99_255": 0.0,
+      "alphaMAE255": 0.005548762623220682,
+      "changedPixelFraction": 9.71627250473784e-05,
+      "silhouetteMaxOffsetPx": 1.0,
+      "pass": true
+    },
+    "2": {
+      "rgbMAE255": 0.005138258449733257,
+      "rgbP99_255": 0.0,
+      "alphaMAE255": 0.0035724753979593515,
+      "changedPixelFraction": 5.214504344391785e-05,
+      "silhouetteMaxOffsetPx": 1.0,
+      "pass": true
+    }
+  },
+  "rawStats": {
+    "sourceBytes": 98072,
+    "paths": 3,
+    "commands": 2760,
+    "segments": 2547,
+    "endpointNodesUpperBound": 2760,
+    "explicitCommandLetters": 1316,
+    "subpaths": 213,
+    "pathChars": 97649,
+    "maxPathChars": 40393
+  },
+  "candidateStats": {
+    "sourceBytes": 62917,
+    "paths": 3,
+    "commands": 2757,
+    "segments": 2544,
+    "endpointNodesUpperBound": 2757,
+    "explicitCommandLetters": 1434,
+    "subpaths": 213,
+    "pathChars": 62494,
+    "maxPathChars": 23971
+  },
+  "contourCountsRaw": [
+    140,
+    40,
+    33
+  ],
+  "contourCountsFinal": [
+    140,
+    40,
+    33
+  ],
+  "preservedMetadata": [
+    "id",
+    "name",
+    "category",
+    "visual",
+    "collision",
+    "sockets",
+    "anchor",
+    "bounds",
+    "reference",
+    "params"
+  ],
+  "maxPathChars": 23971,
+  "compoundLimitsUnchanged": {
+    "part": 60000,
+    "compound": 240000
+  },
+  "qaDir": "honro-act1-production/qa/stage10-boughs-v1-final",
+  "priorFailureRetained": {
+    "svg": "honro-act1-production/stage10/boughs-v1/compact.svg",
+    "comparison": "honro-act1-production/qa/stage10-boughs-v1/comparison.json",
+    "log": "/tmp/stage10-boughs-v1-pixel.log",
+    "reason": "1x silhouette offset 2 px > 1.5 px"
+  },
+  "finalComparisonLog": "/tmp/stage10-boughs-v1-final-pixel.log"
+}

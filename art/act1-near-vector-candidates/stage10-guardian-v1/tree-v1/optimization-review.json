@@ -1,0 +1,81 @@
+{
+  "sourceSha256": "f0d26023f39088259dc5f9252413ddf25d184d75ce2379dc00f5d0bef4cde8d2",
+  "sourceBytes": 433482,
+  "outputBytes": 278610,
+  "reductionPct": 35.72743504920619,
+  "epsilonLocalUnits": 0.25,
+  "maxCurveReplacementBoundLocalUnits": 0.24984887822781685,
+  "controlRoundingBoundLocalUnits": 0.07071067811865477,
+  "protectedRawRects": [
+    [
+      -8.0,
+      617.2826086956522,
+      1356.0,
+      391.1695652173913
+    ],
+    [
+      592.32,
+      142.06782608695653,
+      44.586666666666666,
+      46.37086956521739
+    ]
+  ],
+  "allEndpointsOriginalTokens": true,
+  "protectedControlPointsOriginalTokens": true,
+  "counts": {
+    "protectedCubic": 980,
+    "roundedCubic": 2596,
+    "cubicToLine": 523,
+    "cubicToQuadratic": 2160,
+    "rawPaths": 1
+  },
+  "visualReview": {
+    "reviewer": "assistant",
+    "result": "Both knots, their holes, bark rim highlights, tree silhouette and branch organization inspected in 1x full sheet and 2x knot crops. Both knot ROIs are independently proven pixel-exact. Final human/game integration remains root-owned."
+  },
+  "status": "PASS \u2014 authoring/import QA; root owns in-game integration and deployment",
+  "finalSvg": "final.svg",
+  "nativeJson": "native.json",
+  "rawBytes": 433482,
+  "finalSvgBytes": 278610,
+  "nativeBytes": 279648,
+  "finalSvgSha256": "a1c64084fc14c2d2fd3927d3e78fb22a2ae809005e5d704e67197eb263ac572a",
+  "nativeSha256": "c94511b9f154d146855c23190940bb87ad6264af2b8d97cd81f6c7720ab87831",
+  "contractSha256": "a4b9da04dc564711e77ae662a4cc79e0c93f0b855b34402b51215064332b463e",
+  "finalComparison": "honro-act1-production/qa/stage10-tree-v1-final/comparison.json",
+  "nativeParity": "native-parity.json",
+  "protectedExactEvidence": "honro-act1-production/qa/stage10-tree-v1-final/protected-exact-pixel-evidence.json",
+  "qualityPass": true,
+  "protectedRGBAExactAtBothScales": true,
+  "numericGatesUnchanged": true,
+  "quantizationToleranceEnabled": false,
+  "nativeNonVectorFieldsUnchanged": {
+    "id": true,
+    "name": true,
+    "category": true,
+    "visual": true,
+    "collision": true,
+    "sockets": true,
+    "anchor": true,
+    "bounds": true,
+    "reference": true,
+    "params": true
+  },
+  "nodeCount": 13,
+  "maxSubpathCharacters": 59142,
+  "maxNativePartCharacters": 59917,
+  "maxCompoundCharacters": 74015,
+  "nativePartCount": 8,
+  "paths": 5,
+  "contoursRaw": 423,
+  "contoursFinal": 423,
+  "immutableInputs": [
+    "world.svg",
+    "contract.json",
+    "source.png",
+    "trace5/raw.svg"
+  ],
+  "notAppended": "Original faded-cloth-and-bark-light group remains in contract only; no cloth appended to tree native. Dynamic ropes and landmark untouched.",
+  "command": "python optimize-preserving-features.py world.svg final.svg --preserve-first --digits 1 --epsilon .25",
+  "diagnosticHistory": "Initial failed report retained at qa/stage10-tree-v1/comparison.json. protected-1 through protected-9 QA directories retain all attempted measurements; lexical-only establishes lossless syntax parity."
+}
