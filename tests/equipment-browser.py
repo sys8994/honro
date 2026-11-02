@@ -73,7 +73,7 @@ with serve_game() as base,sync_playwright() as p:
   page.screenshot(path=str(OUT/f'{label}-save-failure.png'));page.evaluate('()=>{Storage.prototype.setItem=window.originalSet;}');page.locator('.equipment-confirm').dblclick()
   assert page.evaluate("HonroApp.profile.equipment.rewardLedger.eq_co_t1_choice.selectedItemId")=='itm_co_04'
   assert page.evaluate("Object.values(HonroApp.profile.equipment.rewardLedger).filter(r=>r.state==='pending').length")==5
-  assert page.locator('.equipment-reward-item').count()==2;assert page.locator('.equipment-confirm').is_disabled()
+  assert not page.locator('#modal').evaluate('e=>e.classList.contains("open")');page.locator('.equipment-unclaimed').click();assert page.locator('.equipment-reward-item').count()==2;assert page.locator('.equipment-confirm').is_disabled()
   page.screenshot(path=str(OUT/f'{label}-reward-two.png'));page.get_by_role('button',name='나중에',exact=True).click()
   # Equip the chosen common item directly, then transfer it without another modal.
   page.locator('.equipment-bag-item[data-id="itm_co_04"]').click();page.locator('.equipment-detail-actions [data-action="equipment-equip"]').click()
@@ -84,7 +84,7 @@ with serve_game() as base,sync_playwright() as p:
   # Read-only bag while a real suspended battle remains active.
   page.evaluate("()=>{const a=HonroApp;a.launch(21);}")
   page.wait_for_function('HonroApp.engine&&HonroApp.screen==="battle"');page.evaluate("()=>{const a=HonroApp;for(let n=0;a.dialogue&&n<50;n++)HonroStory.finish(a);a.turnNotice=null;a.close();const b=a.engine.b;b.phase='aim';b.side=0;b.projectiles=[];delete b.volley;for(const u of b.units)Object.assign(u,{vx:0,vy:0,airborne:false,jumping:false});a.equipmentNextCheck=0;HonroEquipmentUI.tick(a);}")
-  page.locator('#equipment-pending-battle').click();assert page.locator('.equipment-reward-item').count() in [2,3];before=page.evaluate('HonroApp.equipmentChoice');page.get_by_role('button',name='다음 보상',exact=True).click();assert page.evaluate('HonroApp.equipmentChoice')!=before
+  page.locator('#equipment-pending-battle').click();assert page.locator('.equipment-reward-item').count() in [2,3];before=page.evaluate('HonroApp.equipmentChoice');page.get_by_role('button',name='다음 물건 묶음',exact=True).click();assert page.evaluate('HonroApp.equipmentChoice')!=before
   page.screenshot(path=str(OUT/f'{label}-battle-rewards.png'));page.get_by_role('button',name='나중에',exact=True).click()
   page.evaluate("()=>{const a=HonroApp;a.profile.honroJourney={version:1,restStageId:21,talked:{}};a.showCamp('mage');HonroEquipmentUI.tick(a);}")
   page.locator('.equipment-bag-item[data-id="itm_co_04"]').click();assert page.locator('.equipment-detail-actions button').is_disabled();assert page.locator('.equipment-lock').is_visible();page.screenshot(path=str(OUT/f'{label}-locked.png'))

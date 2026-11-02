@@ -1,0 +1,84 @@
+name: Item inspection UI and gated release QA
+on:
+  push:
+    branches: ['work/item-discovery-ui/**']
+permissions:
+  contents: write
+jobs:
+  focused-ui:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
+    env:
+      HONRO_ACT4_RELEASE: '1'
+      OUT: _local/reports/item-discovery-release
+      HONRO_QA_ORIGIN: http://127.0.0.1:8870
+    steps:
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
+        with:
+          ref: ${{ github.sha }}
+      - uses: actions/setup-node@2028fbc5c25fe9cf00d9f06a71cc4710d4507903
+        with:
+          node-version: '22'
+          package-manager-cache: false
+      - uses: actions/setup-python@e797f83bcb11b83ae66e0230d6156d7c80228e7c
+        with:
+          python-version: '3.12'
+      - name: Item model and App contracts
+        run: |
+          npm ci
+          npm ci --prefix game
+          node tests/equipment-app.mjs
+          node tests/equipment-state.mjs
+      - name: Explicit UI source overlay, not a production build
+        run: |
+          python -m pip install 'playwright==1.58.0'
+          python -m playwright install --with-deps chromium
+          python tests/item-discovery-browser.py
+      - name: Retain published graphs and prepare unpublished gate preview
+        run: |
+          set -euo pipefail
+          mkdir -p "$OUT"
+          mapfile -t refs < <(node --input-type=module -e 'import fs from "node:fs";import {selectPublishedGenerations} from "./shared/web-retention.mjs";for(const g of selectPublishedGenerations(JSON.parse(fs.readFileSync("web/manifest.json")).publishedGenerations,{now:Date.now()})){if(!/^[a-f0-9]{40}$/.test(g.sourceSha))throw Error("Invalid ref");console.log(g.sourceSha)}')
+          git fetch --no-tags --depth=1 origin 62703dee557cf541eacac0b277d882e7e72a9122 "${refs[@]}"
+          node tools/release/retain-published-web.mjs 62703dee557cf541eacac0b277d882e7e72a9122 --published-at 2026-11-02T13:44:39Z --evidence https://github.com/sys8994/honro/actions/runs/41455328692
+          node tools/act4-ci/refresh-stage31-probes.mjs prepare "$OUT"
+          # Established evidence-only bootstrap; never publish this preview.
+          node workshop/build.mjs | tee "$OUT/preview-build.log"
+          sha256sum HONRO.html web/manifest.json > "$OUT/preview-served-sha256.txt"
+      - name: Unchanged Stage31 fresh first-shot trials and normal-input objective
+        run: |
+          set -euo pipefail
+          python -m http.server 8870 --bind 127.0.0.1 > "$OUT/server.log" 2>&1 &
+          server=$!; trap 'kill "$server" 2>/dev/null || true' EXIT
+          sleep 2
+          for trial in 1 2 3; do
+            HONRO_FIRST_SHOT_DIAGNOSTIC=1 HONRO_RUN_DIR="$OUT/first-shot-$trial" python tools/act4-ci/stage31-fullplay.py > "$OUT/first-shot-$trial.log" 2>&1
+          done
+          HONRO_RUN_DIR="$OUT/stage31" python tools/act4-ci/stage31-fullplay.py > "$OUT/stage31.log" 2>&1
+      - name: Bind genuine measured evidence and enforce normal production gate
+        run: |
+          set -euo pipefail
+          node tools/act4-ci/refresh-stage31-probes.mjs attach "$OUT"
+          cp tools/stage31/production-package.json "$OUT/stage31-production-package.json"
+          npm run build | tee "$OUT/gated-build.log"
+          sha256sum HONRO.html web/manifest.json > "$OUT/final-served-sha256.txt"
+      - name: Item interactions on final built runtime, without source overlay
+        run: |
+          set -euo pipefail
+          node tests/equipment-app.mjs
+          node tests/equipment-state.mjs
+          HONRO_ITEM_UI_MODE=production HONRO_ITEM_UI_OUT="$OUT/final-ui" python tests/item-discovery-browser.py
+      - name: Preserve checked candidate; no master publication
+        run: |
+          set -euo pipefail
+          git add web HONRO.html HONRO_WORKSHOP.html index.html tools/stage31/production-package.json
+          git -c user.name='honro release automation' -c user.email='41898282+github-actions[bot]@users.noreply.github.com' commit -m "Build checked item inspection UI from $GITHUB_SHA"
+          git push origin "HEAD:refs/heads/work/item-discovery-generated/$GITHUB_SHA"
+      - uses: actions/upload-artifact@330a01c490aca151604b8cf639adc76d48f6c5d4
+        if: always()
+        with:
+          name: item-discovery-ui-${{ github.sha }}
+          path: |
+            _local/reports/item-discovery/
+            _local/reports/item-discovery-release/
+          retention-days: 7
