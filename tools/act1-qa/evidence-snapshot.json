@@ -12,7 +12,7 @@
   "stages": [
     {
       "stage": 1,
-      "runs": 4,
+      "runs": 5,
       "acceptance": "FAIL_INCOMPLETE_OR_OUT_OF_RANGE",
       "requiredRounds": [
         4,
@@ -703,7 +703,7 @@
     },
     {
       "stage": 5,
-      "runs": 1,
+      "runs": 2,
       "acceptance": "FAIL_INCOMPLETE_OR_OUT_OF_RANGE",
       "requiredRounds": [
         7,
@@ -874,7 +874,7 @@
     },
     {
       "stage": 6,
-      "runs": 1,
+      "runs": 3,
       "acceptance": "FAIL_INCOMPLETE_OR_OUT_OF_RANGE",
       "requiredRounds": [
         8,
@@ -1057,7 +1057,7 @@
     },
     {
       "stage": 7,
-      "runs": 1,
+      "runs": 2,
       "acceptance": "FAIL_INCOMPLETE_OR_OUT_OF_RANGE",
       "requiredRounds": [
         9,
@@ -1552,7 +1552,7 @@
     },
     {
       "stage": 10,
-      "runs": 4,
+      "runs": 6,
       "acceptance": "FAIL_INCOMPLETE_OR_OUT_OF_RANGE",
       "requiredRounds": [
         12,
@@ -1815,6 +1815,7 @@
           "foe-3",
           "foe-3-cluster"
         ],
+        "separateDamagedOrAttackingObjectiveIds": [],
         "normalEnemyHitPctHpDiagnostic": {
           "n": 7,
           "mean": 6.223091976516634,
@@ -1832,6 +1833,7 @@
         "playerEngineWaitCommands": [],
         "normalAppDefendCommands": 0,
         "normalAppInteractions": [],
+        "protectedNpcStates": [],
         "finalHeroes": [
           {
             "id": "p-archer",
@@ -2078,6 +2080,7 @@
       "legacyRuntimeHashScope": null,
       "candidateScope": "Released8b3a5e41 tracked gameplay source verified from recorded commit",
       "runtimeHashStatus": "MISSING_RUNTIME_HASH; commit comparison may establish tracked source only",
+      "persistedClearStatus": "Battle outcome only; persisted clear not established by this row",
       "continuationHistory": []
     },
     {
@@ -2152,6 +2155,7 @@
           "foe-3",
           "foe-3-cluster"
         ],
+        "separateDamagedOrAttackingObjectiveIds": [],
         "normalEnemyHitPctHpDiagnostic": {
           "n": 6,
           "mean": 5.0228310502283104,
@@ -2169,6 +2173,7 @@
         "playerEngineWaitCommands": [],
         "normalAppDefendCommands": 0,
         "normalAppInteractions": [],
+        "protectedNpcStates": [],
         "finalHeroes": [
           {
             "id": "p-archer",
@@ -2448,6 +2453,7 @@
       "legacyRuntimeHashScope": null,
       "candidateScope": "Released8b3a5e41 tracked gameplay source verified from recorded commit",
       "runtimeHashStatus": "MISSING_RUNTIME_HASH; commit comparison may establish tracked source only",
+      "persistedClearStatus": "Battle outcome only; persisted clear not established by this row",
       "continuationHistory": []
     },
     {
@@ -2519,6 +2525,7 @@
           "foe-3",
           "foe-3-cluster"
         ],
+        "separateDamagedOrAttackingObjectiveIds": [],
         "normalEnemyHitPctHpDiagnostic": {
           "n": 7,
           "mean": 5.401174168297456,
@@ -2536,6 +2543,7 @@
         "playerEngineWaitCommands": [],
         "normalAppDefendCommands": 0,
         "normalAppInteractions": [],
+        "protectedNpcStates": [],
         "finalHeroes": [
           {
             "id": "p-archer",
@@ -2758,6 +2766,320 @@
       "legacyRuntimeHashScope": null,
       "candidateScope": "Released8b3a5e41 tracked gameplay source verified from recorded commit",
       "runtimeHashStatus": "MISSING_RUNTIME_HASH; commit comparison may establish tracked source only",
+      "persistedClearStatus": "Battle outcome only; persisted clear not established by this row",
+      "continuationHistory": []
+    },
+    {
+      "stage": 1,
+      "policy": "route-highground-appops",
+      "cohort": false,
+      "inputErrorSeed": 1261,
+      "engineSeed": 19388,
+      "scope": "Actual App frame/charge/defend/input-intent simulation with DOM/render/clock doubles and idealized legal aim, NOT browser. Declared entry, not continuous campaign.",
+      "evidence": "_local/reports/act1-gameplay-20261103/stage1-route-highground-appops-1261/trace.json",
+      "sha256": "e88ddb787ed20860478d6924eaa3776953b62f4f98f28dd785fcdd31dc2bdbb6",
+      "phase": "won",
+      "round": 5,
+      "roundTarget": [
+        4,
+        6
+      ],
+      "trialRoundInTarget": true,
+      "hard20Exceeded": false,
+      "winnerReason": "들림이 잦아진 고갯길에서 수레 뒤에 숨어 있던 나무꾼을 구했다. 절이 없다고 알려진 산 위에서 종소리가 울렸다고 한다. 설오는 짐승들이 몰려간 아래쪽 장례 행렬을 확인하러 내려간다.",
+      "entry": {
+        "difficulty": "normal",
+        "heroes": [
+          {
+            "cls": "archer",
+            "level": 1,
+            "hp": 365,
+            "loadout": [
+              "A01"
+            ],
+            "ranks": {
+              "A01": 1
+            }
+          }
+        ]
+      },
+      "composition": {
+        "initialEnemiesExcludingObjectiveTargets": 8,
+        "initialElites": 0,
+        "initialMinibosses": 0,
+        "initialMajorBosses": 0,
+        "initialMajorBossEncounters": 0,
+        "legacyMidbossFlagOnAuthoredMajorBoss": [],
+        "majorBossCountScope": "Authored Stage8 bier is major despite legacy honroMidboss flag; Stage10 binding is authored major-boss encounter, excluded from enemy budget; bound Sodan separately classified",
+        "archetypes": {
+          "hound": 4,
+          "crow": 2,
+          "stag": 2
+        },
+        "initialObjectiveTargets": 0,
+        "initialHostileStoryActorsNotKillTargets": []
+      },
+      "observed": {
+        "kills": 1,
+        "survivingHeroes": 1,
+        "playerFireCommands": 4,
+        "partyHpDamage": 138,
+        "protectedNpcHpDamage": 0,
+        "alliedNpcHpDamage": 0,
+        "npcHpDamageById": {},
+        "damageToHostileSideIncludingTargets": 301,
+        "damageBackedEngagementLowerBound": 7,
+        "damageBackedEngagedIds": [
+          "foe-0",
+          "foe-0-cluster",
+          "foe-1",
+          "foe-1-cluster",
+          "foe-2-cluster",
+          "foe-3",
+          "foe-3-cluster"
+        ],
+        "separateDamagedOrAttackingObjectiveIds": [],
+        "normalEnemyHitPctHpDiagnostic": {
+          "n": 7,
+          "mean": 5.401174168297456,
+          "range": [
+            3.0136986301369864,
+            7.123287671232877
+          ]
+        },
+        "acceptedSkills": {
+          "A01": 4
+        },
+        "acceptedJumpCommands": 2,
+        "acceptedDropCommands": 0,
+        "itemCommands": [],
+        "playerEngineWaitCommands": [],
+        "normalAppDefendCommands": 0,
+        "normalAppInteractions": [],
+        "protectedNpcStates": [],
+        "finalHeroes": [
+          {
+            "id": "p-archer",
+            "hp": 316,
+            "maxHp": 365,
+            "dead": false,
+            "x": 5091.54757045364,
+            "y": 729.0095657894008
+          }
+        ],
+        "finalObjectiveState": {
+          "flags": {
+            "sector-0": true,
+            "sector-1": true,
+            "sector-2": true,
+            "sector-3": true,
+            "event:witness": true,
+            "event:more": true,
+            "event:ridge": true
+          },
+          "collected": [],
+          "hold": 0,
+          "lastRound": 4,
+          "rescued": false,
+          "rescuedCount": 0,
+          "receivers": 0,
+          "ledger": false,
+          "sodanCoop": false,
+          "coopHold": 0,
+          "allyQueue": null,
+          "combatLog": [
+            {
+              "round": 4,
+              "actor": "npc-woodcutter",
+              "action": "guard",
+              "target": "npc-woodcutter"
+            }
+          ],
+          "respawns": 0,
+          "carriagePauseUntilRound": 0,
+          "entryScheduled": true,
+          "deferredStory": [],
+          "completedStory": {
+            "act1-v6:entry-1": true,
+            "act1-v6:event-1-witness": true,
+            "act1-v6:event-1-more": true,
+            "act1-v6:event-1-ridge": true
+          },
+          "storyQueue": [],
+          "storyBanter": [],
+          "banterLine": null,
+          "pendingEvents": [
+            "cart"
+          ],
+          "encounterCooldown": 0,
+          "objectiveTravel": {
+            "p-archer": {
+              "x": 5091.54757045364,
+              "y": 729.0095657894008
+            }
+          },
+          "actorTurnSerial": 26,
+          "lastRitualRound": 4,
+          "lastEventBoundary": "4:4:0",
+          "eventActors": {
+            "cart": {
+              "id": "p-archer",
+              "round": 2
+            },
+            "witness": {
+              "id": "p-archer",
+              "round": 3
+            },
+            "more": {
+              "id": "p-archer",
+              "round": 3
+            },
+            "ridge": {
+              "id": "p-archer",
+              "round": 4
+            }
+          },
+          "eventLog": [
+            {
+              "id": "witness",
+              "phase": "transition",
+              "round": 3,
+              "side": 0,
+              "teamEnds": [
+                3,
+                2,
+                0
+              ]
+            },
+            {
+              "id": "more",
+              "phase": "transition",
+              "round": 3,
+              "side": 0,
+              "teamEnds": [
+                3,
+                2,
+                0
+              ]
+            },
+            {
+              "id": "ridge",
+              "phase": "ally",
+              "round": 4,
+              "side": 0,
+              "teamEnds": [
+                3,
+                3,
+                0
+              ]
+            }
+          ],
+          "allyDoneRound": 4,
+          "objectiveReadyRound": 5
+        },
+        "collectedFiniteSupplyPoints": [
+          {
+            "id": "marker-2",
+            "x": 640,
+            "y": 1549.6384283448615,
+            "label": "불씨"
+          },
+          {
+            "id": "marker-6",
+            "x": 3400,
+            "y": 1300,
+            "label": "불씨"
+          }
+        ],
+        "sampledRoutes": {
+          "p-archer": {
+            "sampleCount": 127,
+            "xRange": [
+              409.7628008259633,
+              4996.666666666686
+            ],
+            "yRange": [
+              749.5770783017745,
+              1648.6082210688567
+            ],
+            "observedSupports": [
+              "fc-choice-1-low-pine-root",
+              "forest-boulder-a:collision:0",
+              "forest-floor",
+              "pine-branch-west",
+              "ridge-east-extension"
+            ],
+            "sampledPathLengthLowerBound": 5253.994286926292
+          }
+        },
+        "normalKilledEnemyPlayerEffectiveLaunches": [
+          {
+            "target": "foe-3-cluster",
+            "effectivePlayerLaunchCount": 1,
+            "alliedAssistanceDamage": 0
+          }
+        ],
+        "unattributedPlayerDamageEvents": 0,
+        "enemyLaunchDiagnostic": {
+          "acceptedLaunches": 9,
+          "launchesDamagingHeroes": 7,
+          "launchesWithoutObservedHeroDamage": 2,
+          "byRound": {
+            "1": 3,
+            "2": 1,
+            "3": 2,
+            "4": 3
+          },
+          "normalActionTargetPctHp": {
+            "n": 7,
+            "mean": 5.401174168297456,
+            "range": [
+              3.0136986301369864,
+              7.123287671232877
+            ]
+          },
+          "unassignedHeroDamageEvents": 0,
+          "scope": "Owner/time attribution diagnostic only; approach, control, protected-NPC pressure and delayed-effect overlap not fully classified."
+        },
+        "effectiveLaunchCaveat": "Recorded launch-to-impact association by actor/time; delayed effects and ally assistance require review before kill-actions gate.",
+        "routeCaveat": "One-second samples: path length lower bound, not exact movement or valid landing attribution.",
+        "noncriticalNormalHitPctHp": {
+          "n": 0,
+          "values": [],
+          "mean": null,
+          "median": null,
+          "range": null,
+          "source": "Production emitted damage text includes actual damage/critical/attackId; HP-loss truncation avoided. Fully shield-absorbed no-damage hits not in this event sample.",
+          "sampleScope": "Separate instrumentation diagnostic, not additional registered cohort cases"
+        }
+      },
+      "missingEssential": [
+        "validated enemy effective-action denominator incl zero phases",
+        "original single noncritical hit measurement with attack/defense context",
+        "accepted full required support graph and elevation ratio",
+        "valid jump/drop/landing attribution",
+        "stage-specific special metric comparison",
+        "readability and native UI scene review",
+        "human-independent tactics assessment"
+      ],
+      "acceptance": "FAIL_UNMEASURED",
+      "normalUiApplicability": "No inaccessible item/wait calls observed; remaining controls/entry/UI still require verification",
+      "sourceCommit": "d5ec72408c326aaf55081ef8a0a41738cf14cd5d",
+      "sourceEvidence": null,
+      "sourceProvenanceStatus": "Recorded commit",
+      "operationMode": "NATIVE_APP_ACTION_SIMULATION",
+      "controllerFileSha256": "2f7f89cb5520c2aa2cac096a4294d2c444ef065dfa930f78b06f1203bd296457",
+      "runnerSha256": "2468deb2f2a1ccd01d85314d354d6081f045978e54b1f83a26569daba29be623",
+      "sourceDirtyAtStart": "",
+      "controllerCalibrationStatus": "Diagnostic calibration unless separately preregistered",
+      "controllerExecutionError": null,
+      "outcomeQualification": "TERMINAL_WON",
+      "runtimeSha256": null,
+      "legacyRuntimePartsHash": null,
+      "legacyRuntimeHashScope": null,
+      "candidateScope": "Released8b3a5e41 tracked gameplay source verified from recorded commit",
+      "runtimeHashStatus": "MISSING_RUNTIME_HASH; commit comparison may establish tracked source only",
+      "persistedClearStatus": "Recorded normal settlement export",
       "continuationHistory": []
     },
     {
@@ -2829,6 +3151,7 @@
           "foe-3",
           "foe-3-cluster"
         ],
+        "separateDamagedOrAttackingObjectiveIds": [],
         "normalEnemyHitPctHpDiagnostic": {
           "n": 7,
           "mean": 5.401174168297456,
@@ -2846,6 +3169,7 @@
         "playerEngineWaitCommands": [],
         "normalAppDefendCommands": 0,
         "normalAppInteractions": [],
+        "protectedNpcStates": [],
         "finalHeroes": [
           {
             "id": "p-archer",
@@ -3079,6 +3403,7 @@
       "legacyRuntimeHashScope": null,
       "candidateScope": "Released8b3a5e41 tracked gameplay source verified from recorded commit",
       "runtimeHashStatus": "MISSING_RUNTIME_HASH; commit comparison may establish tracked source only",
+      "persistedClearStatus": "Battle outcome only; persisted clear not established by this row",
       "continuationHistory": []
     },
     {
@@ -3160,6 +3485,7 @@
           "sniper-crow-56",
           "sniper-crow-57"
         ],
+        "separateDamagedOrAttackingObjectiveIds": [],
         "normalEnemyHitPctHpDiagnostic": {
           "n": 6,
           "mean": 5.380577427821522,
@@ -3177,6 +3503,15 @@
         "playerEngineWaitCommands": [],
         "normalAppDefendCommands": 10,
         "normalAppInteractions": [],
+        "protectedNpcStates": [
+          {
+            "id": "objective",
+            "hp": 1700,
+            "maxHp": 1700,
+            "dead": false,
+            "resolved": null
+          }
+        ],
         "finalHeroes": [
           {
             "id": "p-archer",
@@ -3971,6 +4306,7 @@
       "legacyRuntimeHashScope": null,
       "candidateScope": "Released8b3a5e41 tracked gameplay source verified from recorded commit",
       "runtimeHashStatus": "MISSING_RUNTIME_HASH; commit comparison may establish tracked source only",
+      "persistedClearStatus": "Battle outcome only; persisted clear not established by this row",
       "continuationHistory": []
     },
     {
@@ -4055,6 +4391,7 @@
           "sniper-crow-52",
           "sniper-crow-53"
         ],
+        "separateDamagedOrAttackingObjectiveIds": [],
         "normalEnemyHitPctHpDiagnostic": {
           "n": 10,
           "mean": 5.641646489104116,
@@ -4072,6 +4409,15 @@
         "playerEngineWaitCommands": [],
         "normalAppDefendCommands": 7,
         "normalAppInteractions": [],
+        "protectedNpcStates": [
+          {
+            "id": "objective",
+            "hp": 1690.6,
+            "maxHp": 1700,
+            "dead": false,
+            "resolved": null
+          }
+        ],
         "finalHeroes": [
           {
             "id": "p-archer",
@@ -4835,6 +5181,7 @@
       "legacyRuntimeHashScope": null,
       "candidateScope": "Released8b3a5e41 tracked gameplay source verified from recorded commit",
       "runtimeHashStatus": "MISSING_RUNTIME_HASH; commit comparison may establish tracked source only",
+      "persistedClearStatus": "Battle outcome only; persisted clear not established by this row",
       "continuationHistory": []
     },
     {
@@ -4919,6 +5266,7 @@
           "sniper-crow-46",
           "sniper-crow-47"
         ],
+        "separateDamagedOrAttackingObjectiveIds": [],
         "normalEnemyHitPctHpDiagnostic": {
           "n": 11,
           "mean": 5.458947831829188,
@@ -4936,6 +5284,15 @@
         "playerEngineWaitCommands": [],
         "normalAppDefendCommands": 7,
         "normalAppInteractions": [],
+        "protectedNpcStates": [
+          {
+            "id": "objective",
+            "hp": 1700,
+            "maxHp": 1700,
+            "dead": false,
+            "resolved": null
+          }
+        ],
         "finalHeroes": [
           {
             "id": "p-archer",
@@ -5711,6 +6068,7 @@
       "legacyRuntimeHashScope": null,
       "candidateScope": "Released8b3a5e41 tracked gameplay source verified from recorded commit",
       "runtimeHashStatus": "MISSING_RUNTIME_HASH; commit comparison may establish tracked source only",
+      "persistedClearStatus": "Battle outcome only; persisted clear not established by this row",
       "continuationHistory": []
     },
     {
@@ -5795,6 +6153,7 @@
           "sniper-crow-46",
           "sniper-crow-47"
         ],
+        "separateDamagedOrAttackingObjectiveIds": [],
         "normalEnemyHitPctHpDiagnostic": {
           "n": 11,
           "mean": 5.458947831829188,
@@ -5812,6 +6171,15 @@
         "playerEngineWaitCommands": [],
         "normalAppDefendCommands": 7,
         "normalAppInteractions": [],
+        "protectedNpcStates": [
+          {
+            "id": "objective",
+            "hp": 1700,
+            "maxHp": 1700,
+            "dead": false,
+            "resolved": null
+          }
+        ],
         "finalHeroes": [
           {
             "id": "p-archer",
@@ -6587,6 +6955,7 @@
       "legacyRuntimeHashScope": null,
       "candidateScope": "Released8b3a5e41 tracked gameplay source verified from recorded commit",
       "runtimeHashStatus": "MISSING_RUNTIME_HASH; commit comparison may establish tracked source only",
+      "persistedClearStatus": "Battle outcome only; persisted clear not established by this row",
       "continuationHistory": []
     },
     {
@@ -6696,6 +7065,7 @@
           "foe-5-cluster",
           "midboss-stage3"
         ],
+        "separateDamagedOrAttackingObjectiveIds": [],
         "normalEnemyHitPctHpDiagnostic": {
           "n": 7,
           "mean": 5.679768232069487,
@@ -6724,6 +7094,7 @@
             "accepted": true
           }
         ],
+        "protectedNpcStates": [],
         "finalHeroes": [
           {
             "id": "p-archer",
@@ -7191,6 +7562,7 @@
       "legacyRuntimeHashScope": null,
       "candidateScope": "Released8b3a5e41 tracked gameplay source verified from recorded commit",
       "runtimeHashStatus": "MISSING_RUNTIME_HASH; commit comparison may establish tracked source only",
+      "persistedClearStatus": "Battle outcome only; persisted clear not established by this row",
       "continuationHistory": []
     },
     {
@@ -7279,6 +7651,7 @@
         "damageToHostileSideIncludingTargets": 0,
         "damageBackedEngagementLowerBound": 0,
         "damageBackedEngagedIds": [],
+        "separateDamagedOrAttackingObjectiveIds": [],
         "normalEnemyHitPctHpDiagnostic": {
           "n": 0,
           "mean": null,
@@ -7291,6 +7664,7 @@
         "playerEngineWaitCommands": [],
         "normalAppDefendCommands": 0,
         "normalAppInteractions": [],
+        "protectedNpcStates": [],
         "finalHeroes": [
           {
             "id": "p-archer",
@@ -7524,6 +7898,7 @@
       "legacyRuntimeHashScope": null,
       "candidateScope": "Released8b3a5e41 tracked gameplay source verified from recorded commit",
       "runtimeHashStatus": "MISSING_RUNTIME_HASH; commit comparison may establish tracked source only",
+      "persistedClearStatus": "Battle outcome only; persisted clear not established by this row",
       "continuationHistory": []
     },
     {
@@ -7612,6 +7987,7 @@
         "damageToHostileSideIncludingTargets": 0,
         "damageBackedEngagementLowerBound": 0,
         "damageBackedEngagedIds": [],
+        "separateDamagedOrAttackingObjectiveIds": [],
         "normalEnemyHitPctHpDiagnostic": {
           "n": 0,
           "mean": null,
@@ -7624,6 +8000,7 @@
         "playerEngineWaitCommands": [],
         "normalAppDefendCommands": 0,
         "normalAppInteractions": [],
+        "protectedNpcStates": [],
         "finalHeroes": [
           {
             "id": "p-archer",
@@ -7857,6 +8234,7 @@
       "legacyRuntimeHashScope": null,
       "candidateScope": "Released8b3a5e41 tracked gameplay source verified from recorded commit",
       "runtimeHashStatus": "MISSING_RUNTIME_HASH; commit comparison may establish tracked source only",
+      "persistedClearStatus": "Battle outcome only; persisted clear not established by this row",
       "continuationHistory": []
     },
     {
@@ -7960,6 +8338,7 @@
           "foe-5-cluster",
           "midboss-stage3"
         ],
+        "separateDamagedOrAttackingObjectiveIds": [],
         "normalEnemyHitPctHpDiagnostic": {
           "n": 16,
           "mean": 6.674646934867841,
@@ -7988,6 +8367,7 @@
             "accepted": true
           }
         ],
+        "protectedNpcStates": [],
         "finalHeroes": [
           {
             "id": "p-archer",
@@ -8399,6 +8779,7 @@
       "legacyRuntimeHashScope": null,
       "candidateScope": "Released8b3a5e41 tracked gameplay source verified from recorded commit",
       "runtimeHashStatus": "MISSING_RUNTIME_HASH; commit comparison may establish tracked source only",
+      "persistedClearStatus": "Battle outcome only; persisted clear not established by this row",
       "continuationHistory": []
     },
     {
@@ -8502,6 +8883,7 @@
           "foe-5-cluster",
           "midboss-stage3"
         ],
+        "separateDamagedOrAttackingObjectiveIds": [],
         "normalEnemyHitPctHpDiagnostic": {
           "n": 16,
           "mean": 6.674646934867841,
@@ -8530,6 +8912,7 @@
             "accepted": true
           }
         ],
+        "protectedNpcStates": [],
         "finalHeroes": [
           {
             "id": "p-archer",
@@ -8941,6 +9324,7 @@
       "legacyRuntimeHashScope": null,
       "candidateScope": "Released8b3a5e41 tracked gameplay source verified from recorded commit",
       "runtimeHashStatus": "MISSING_RUNTIME_HASH; commit comparison may establish tracked source only",
+      "persistedClearStatus": "Battle outcome only; persisted clear not established by this row",
       "continuationHistory": []
     },
     {
@@ -9050,6 +9434,7 @@
           "foe-5-cluster",
           "midboss-stage3"
         ],
+        "separateDamagedOrAttackingObjectiveIds": [],
         "normalEnemyHitPctHpDiagnostic": {
           "n": 12,
           "mean": 6.772384308995187,
@@ -9079,6 +9464,7 @@
             "accepted": true
           }
         ],
+        "protectedNpcStates": [],
         "finalHeroes": [
           {
             "id": "p-archer",
@@ -9558,6 +9944,7 @@
       "legacyRuntimeHashScope": null,
       "candidateScope": "Released8b3a5e41 tracked gameplay source verified from recorded commit",
       "runtimeHashStatus": "MISSING_RUNTIME_HASH; commit comparison may establish tracked source only",
+      "persistedClearStatus": "Battle outcome only; persisted clear not established by this row",
       "continuationHistory": []
     },
     {
@@ -9666,6 +10053,7 @@
           "foe-5-cluster",
           "foe-6"
         ],
+        "separateDamagedOrAttackingObjectiveIds": [],
         "normalEnemyHitPctHpDiagnostic": {
           "n": 11,
           "mean": 7.08133971291866,
@@ -9688,6 +10076,15 @@
         "playerEngineWaitCommands": [],
         "normalAppDefendCommands": 3,
         "normalAppInteractions": [],
+        "protectedNpcStates": [
+          {
+            "id": "objective",
+            "hp": 3600,
+            "maxHp": 3600,
+            "dead": false,
+            "resolved": null
+          }
+        ],
         "finalHeroes": [
           {
             "id": "p-archer",
@@ -10075,6 +10472,7 @@
       "legacyRuntimeHashScope": null,
       "candidateScope": "Released8b3a5e41 tracked gameplay source verified from recorded commit",
       "runtimeHashStatus": "MISSING_RUNTIME_HASH; commit comparison may establish tracked source only",
+      "persistedClearStatus": "Battle outcome only; persisted clear not established by this row",
       "continuationHistory": []
     },
     {
@@ -10184,6 +10582,7 @@
           "foe-5",
           "foe-6"
         ],
+        "separateDamagedOrAttackingObjectiveIds": [],
         "normalEnemyHitPctHpDiagnostic": {
           "n": 0,
           "mean": null,
@@ -10202,6 +10601,15 @@
         "playerEngineWaitCommands": [],
         "normalAppDefendCommands": 5,
         "normalAppInteractions": [],
+        "protectedNpcStates": [
+          {
+            "id": "objective",
+            "hp": 3600,
+            "maxHp": 3600,
+            "dead": false,
+            "resolved": null
+          }
+        ],
         "finalHeroes": [
           {
             "id": "p-archer",
@@ -10584,6 +10992,7 @@
       "legacyRuntimeHashScope": null,
       "candidateScope": "Released8b3a5e41 tracked gameplay source verified from recorded commit",
       "runtimeHashStatus": "MISSING_RUNTIME_HASH; commit comparison may establish tracked source only",
+      "persistedClearStatus": "Battle outcome only; persisted clear not established by this row",
       "continuationHistory": []
     },
     {
@@ -10693,6 +11102,7 @@
           "foe-5",
           "foe-6"
         ],
+        "separateDamagedOrAttackingObjectiveIds": [],
         "normalEnemyHitPctHpDiagnostic": {
           "n": 0,
           "mean": null,
@@ -10711,6 +11121,15 @@
         "playerEngineWaitCommands": [],
         "normalAppDefendCommands": 5,
         "normalAppInteractions": [],
+        "protectedNpcStates": [
+          {
+            "id": "objective",
+            "hp": 3600,
+            "maxHp": 3600,
+            "dead": false,
+            "resolved": null
+          }
+        ],
         "finalHeroes": [
           {
             "id": "p-archer",
@@ -11093,6 +11512,7 @@
       "legacyRuntimeHashScope": null,
       "candidateScope": "Released8b3a5e41 tracked gameplay source verified from recorded commit",
       "runtimeHashStatus": "MISSING_RUNTIME_HASH; commit comparison may establish tracked source only",
+      "persistedClearStatus": "Battle outcome only; persisted clear not established by this row",
       "continuationHistory": []
     },
     {
@@ -11204,6 +11624,7 @@
           "foe-5",
           "foe-6"
         ],
+        "separateDamagedOrAttackingObjectiveIds": [],
         "normalEnemyHitPctHpDiagnostic": {
           "n": 0,
           "mean": null,
@@ -11223,6 +11644,15 @@
         "playerEngineWaitCommands": [],
         "normalAppDefendCommands": 5,
         "normalAppInteractions": [],
+        "protectedNpcStates": [
+          {
+            "id": "objective",
+            "hp": 3600,
+            "maxHp": 3600,
+            "dead": false,
+            "resolved": null
+          }
+        ],
         "finalHeroes": [
           {
             "id": "p-archer",
@@ -11588,6 +12018,429 @@
       "legacyRuntimeHashScope": null,
       "candidateScope": "Released8b3a5e41 tracked gameplay source verified from recorded commit",
       "runtimeHashStatus": "MISSING_RUNTIME_HASH; commit comparison may establish tracked source only",
+      "persistedClearStatus": "Battle outcome only; persisted clear not established by this row",
+      "continuationHistory": []
+    },
+    {
+      "stage": 5,
+      "policy": "reactive-browser-native-1255",
+      "cohort": false,
+      "inputErrorSeed": null,
+      "engineSeed": 19388,
+      "scope": "Native actual App actions with DOM/render/clock doubles and idealized aim gesture; not browser input",
+      "evidence": "_local/reports/act1-gameplay-20261103/stage5-reactive-browser-native-1255/trace.json",
+      "sha256": "c9c148a68606c4fd36860019f56e301a03a30f32d76275e898b5daf32e32fcce",
+      "phase": "won",
+      "round": 12,
+      "roundTarget": [
+        7,
+        10
+      ],
+      "trialRoundInTarget": false,
+      "hard20Exceeded": false,
+      "winnerReason": "담허가 물길진으로 낙수를 비튼 사이 설오가 동굴 안의 주박목을 쏘아 부쉈다. 그러나 옆으로 이어진 다른 실은 오히려 더 팽팽하게 당겨졌다. 일행은 나무다리의 부상자 운반대를 돕기 위해 내려간다.",
+      "entry": {
+        "difficulty": "normal",
+        "heroes": [
+          {
+            "cls": "archer",
+            "level": 4,
+            "hp": 475,
+            "loadout": [
+              "A01",
+              "A14",
+              "A02",
+              "A05"
+            ],
+            "ranks": {
+              "A01": 1,
+              "A14": 1,
+              "AP01": 2,
+              "AP04": 1,
+              "A02": 1,
+              "A05": 1
+            }
+          },
+          {
+            "cls": "mage",
+            "level": 4,
+            "hp": 512,
+            "loadout": [
+              "M01",
+              "M02",
+              "M03",
+              "M06"
+            ],
+            "ranks": {
+              "M01": 1,
+              "M06": 1,
+              "M02": 1,
+              "M03": 1,
+              "MP01": 1,
+              "MP02": 1,
+              "MP04": 1
+            }
+          }
+        ]
+      },
+      "composition": {
+        "initialEnemiesExcludingObjectiveTargets": 9,
+        "initialElites": 0,
+        "initialMinibosses": 0,
+        "initialMajorBosses": 0,
+        "initialMajorBossEncounters": 0,
+        "legacyMidbossFlagOnAuthoredMajorBoss": [],
+        "majorBossCountScope": "Authored Stage8 bier is major despite legacy honroMidboss flag; Stage10 binding is authored major-boss encounter, excluded from enemy budget; bound Sodan separately classified",
+        "archetypes": {
+          "hound": 2,
+          "boar": 1,
+          "ghost": 2,
+          "human": 2,
+          "crow": 1,
+          "shade": 1
+        },
+        "initialObjectiveTargets": 1,
+        "initialHostileStoryActorsNotKillTargets": []
+      },
+      "observed": {
+        "kills": 3,
+        "survivingHeroes": 2,
+        "playerFireCommands": 15,
+        "partyHpDamage": 1153,
+        "protectedNpcHpDamage": 0,
+        "alliedNpcHpDamage": 0,
+        "npcHpDamageById": {},
+        "damageToHostileSideIncludingTargets": 2084,
+        "damageBackedEngagementLowerBound": 11,
+        "damageBackedEngagedIds": [
+          "event-39",
+          "event-65",
+          "s5-cave-ghost",
+          "s5-cave-hound",
+          "s5-cave-shade",
+          "s5-entry-boar",
+          "s5-entry-ghost",
+          "s5-entry-hound",
+          "s5-pine-archer",
+          "s5-upper-archer",
+          "s5-upper-crow"
+        ],
+        "separateDamagedOrAttackingObjectiveIds": [
+          "cliff-cleat"
+        ],
+        "normalEnemyHitPctHpDiagnostic": {
+          "n": 35,
+          "mean": 6.0647449468903245,
+          "range": [
+            0.7339449541284404,
+            10.458715596330276
+          ]
+        },
+        "acceptedSkills": {
+          "A02": 5,
+          "M03": 7,
+          "M02": 1,
+          "A14": 1,
+          "A01": 1
+        },
+        "acceptedJumpCommands": 6,
+        "acceptedDropCommands": 0,
+        "itemCommands": [],
+        "playerEngineWaitCommands": [],
+        "normalAppDefendCommands": 8,
+        "normalAppInteractions": [
+          {
+            "marker": "receiver-5",
+            "round": 9,
+            "accepted": true
+          }
+        ],
+        "protectedNpcStates": [],
+        "finalHeroes": [
+          {
+            "id": "p-archer",
+            "hp": 507,
+            "maxHp": 507,
+            "dead": false,
+            "x": 3648.2425913047996,
+            "y": 2283.0962155010434
+          },
+          {
+            "id": "p-mage",
+            "hp": 545,
+            "maxHp": 545,
+            "dead": false,
+            "x": 3535.1107579385093,
+            "y": 2670
+          }
+        ],
+        "finalObjectiveState": {
+          "flags": {
+            "sector-0": true,
+            "event:pine-flight-warning": true,
+            "sector-2": true,
+            "event:pine-flight": true,
+            "sector-1": true,
+            "ritual-explained": true,
+            "event:lower-beasts-warning": true,
+            "event:lower-beasts": true,
+            "event:bell": true
+          },
+          "collected": [],
+          "hold": 0,
+          "lastRound": 12,
+          "rescued": false,
+          "rescuedCount": 0,
+          "receivers": 0,
+          "ledger": false,
+          "sodanCoop": false,
+          "coopHold": 0,
+          "allyQueue": null,
+          "combatLog": [],
+          "respawns": 0,
+          "carriagePauseUntilRound": 0,
+          "stage5Positioning": {
+            "alert": {
+              "upper-crossfire": true,
+              "low-entry": true,
+              "pine-shot": true,
+              "cave-mouth": true,
+              "pine-response": true,
+              "ritual-response": true
+            },
+            "wave": null,
+            "pineRound": 6,
+            "responses": {
+              "pine-flight": [
+                "event-38",
+                "event-39"
+              ],
+              "lower-beasts": [
+                "event-62",
+                "event-63",
+                "event-64",
+                "event-65"
+              ]
+            },
+            "ritualCommitted": true
+          },
+          "entryScheduled": true,
+          "deferredStory": [],
+          "completedStory": {
+            "act1-v6:entry-5": true,
+            "event:5:encounter:pine-flight-warning:1": true,
+            "event:5:encounter:pine-flight:2": true,
+            "act1-v6:ritual-5": true,
+            "event:5:encounter:lower-beasts-warning:3": true,
+            "act1-v6:event-5-lower-beasts": true,
+            "act1-v6:event-5-bell": true
+          },
+          "storyQueue": [],
+          "storyBanter": [],
+          "banterLine": null,
+          "waterfallSight": true,
+          "pendingEvents": [],
+          "encounterCooldown": 0,
+          "objectiveTravel": {
+            "p-archer": {
+              "x": 3648.2425913047996,
+              "y": 2283.0962155010434
+            },
+            "p-mage": {
+              "x": 3535.1107579385093,
+              "y": 2670
+            }
+          },
+          "actorTurnSerial": 105,
+          "lastRitualRound": 12,
+          "lastEventBoundary": "12:11:0",
+          "eventActors": {
+            "pine-flight-warning": {
+              "id": "p-archer",
+              "round": 5
+            },
+            "pine-flight": {
+              "id": "p-archer",
+              "round": 6
+            },
+            "lower-beasts-warning": {
+              "id": "p-mage",
+              "round": 9
+            },
+            "lower-beasts": {
+              "id": "p-archer",
+              "round": 10
+            },
+            "bell": {
+              "id": "p-archer",
+              "round": 11
+            }
+          },
+          "eventLog": [
+            {
+              "id": "pine-flight-warning",
+              "phase": "aim",
+              "round": 5,
+              "side": 0,
+              "teamEnds": [
+                4,
+                4,
+                0
+              ]
+            },
+            {
+              "id": "pine-flight",
+              "phase": "aim",
+              "round": 6,
+              "side": 0,
+              "teamEnds": [
+                5,
+                5,
+                0
+              ]
+            },
+            {
+              "id": "lower-beasts-warning",
+              "phase": "transition",
+              "round": 9,
+              "side": 0,
+              "teamEnds": [
+                9,
+                8,
+                0
+              ]
+            },
+            {
+              "id": "lower-beasts",
+              "phase": "aim",
+              "round": 10,
+              "side": 0,
+              "teamEnds": [
+                9,
+                9,
+                0
+              ]
+            },
+            {
+              "id": "bell",
+              "phase": "aim",
+              "round": 11,
+              "side": 0,
+              "teamEnds": [
+                10,
+                10,
+                0
+              ]
+            }
+          ],
+          "narrativeEventSerial": 3,
+          "reinforcementEvents": {
+            "pine-flight": [
+              "event-38",
+              "event-39"
+            ],
+            "lower-beasts": [
+              "event-62",
+              "event-63",
+              "event-64",
+              "event-65"
+            ]
+          },
+          "lastCombatEventBoundary": "80:10:9:9:0:p-archer",
+          "ritual": {
+            "active": false,
+            "holderId": "p-mage"
+          },
+          "waterfallWaveRound": 10,
+          "objectiveReadyRound": 11,
+          "objectiveSettlement": {
+            "version": 1,
+            "progress": 2,
+            "preserved": false,
+            "enemyEnd": 12
+          },
+          "habitatHold": {
+            "version": 1,
+            "remaining": 6
+          }
+        },
+        "collectedFiniteSupplyPoints": [
+          {
+            "id": "marker-2",
+            "x": 1830,
+            "y": 2723.684210526316,
+            "label": "불씨"
+          },
+          {
+            "id": "marker-4",
+            "x": 3000,
+            "y": 1499.1666666666667,
+            "label": "불씨"
+          }
+        ],
+        "sampledRoutes": {},
+        "normalKilledEnemyPlayerEffectiveLaunches": [
+          {
+            "target": "s5-entry-hound",
+            "effectivePlayerLaunchCount": null,
+            "alliedAssistanceDamage": 0
+          },
+          {
+            "target": "s5-upper-crow",
+            "effectivePlayerLaunchCount": null,
+            "alliedAssistanceDamage": 0
+          },
+          {
+            "target": "s5-pine-archer",
+            "effectivePlayerLaunchCount": null,
+            "alliedAssistanceDamage": 0
+          }
+        ],
+        "unattributedPlayerDamageEvents": 25,
+        "enemyLaunchDiagnostic": {
+          "status": "MISSING_INSTRUMENTATION",
+          "acceptedLaunches": null,
+          "scope": "This source does not capture all accepted Engine fire calls; zero cannot be inferred."
+        },
+        "effectiveLaunchCaveat": "Recorded launch-to-impact association by actor/time; delayed effects and ally assistance require review before kill-actions gate.",
+        "routeCaveat": "One-second samples: path length lower bound, not exact movement or valid landing attribution.",
+        "noncriticalNormalHitPctHp": {
+          "n": 0,
+          "values": [],
+          "mean": null,
+          "median": null,
+          "range": null,
+          "source": "Production emitted damage text includes actual damage/critical/attackId; HP-loss truncation avoided. Fully shield-absorbed no-damage hits not in this event sample.",
+          "sampleScope": "Separate instrumentation diagnostic, not additional registered cohort cases"
+        }
+      },
+      "missingEssential": [
+        "validated enemy effective-action denominator incl zero phases",
+        "original single noncritical hit measurement with attack/defense context",
+        "accepted full required support graph and elevation ratio",
+        "valid jump/drop/landing attribution",
+        "stage-specific special metric comparison",
+        "readability and native UI scene review",
+        "human-independent tactics assessment"
+      ],
+      "acceptance": "FAIL_UNMEASURED",
+      "normalUiApplicability": "No inaccessible item/wait calls observed; remaining controls/entry/UI still require verification",
+      "sourceCommit": "2da776e79c7245f5459f3aae5604c02c71601fa6",
+      "sourceEvidence": null,
+      "sourceProvenanceStatus": "Recorded commit",
+      "operationMode": "NATIVE_APP_ACTION_SIMULATION",
+      "controllerFileSha256": null,
+      "runnerSha256": null,
+      "sourceDirtyAtStart": "",
+      "controllerCalibrationStatus": "Diagnostic calibration unless separately preregistered",
+      "controllerExecutionError": null,
+      "outcomeQualification": "TERMINAL_WON",
+      "runtimeSha256": null,
+      "legacyRuntimePartsHash": null,
+      "legacyRuntimeHashScope": null,
+      "candidateScope": "Released8b3a5e41 tracked gameplay source verified from recorded commit",
+      "runtimeHashStatus": "MISSING_RUNTIME_HASH; commit comparison may establish tracked source only",
+      "persistedClearStatus": "Battle outcome only; persisted clear not established by this row",
       "continuationHistory": []
     },
     {
@@ -11680,9 +12533,8 @@
         "alliedNpcHpDamage": 0,
         "npcHpDamageById": {},
         "damageToHostileSideIncludingTargets": 1915,
-        "damageBackedEngagementLowerBound": 13,
+        "damageBackedEngagementLowerBound": 12,
         "damageBackedEngagedIds": [
-          "cliff-cleat",
           "event-50",
           "event-51",
           "event-89",
@@ -11695,6 +12547,9 @@
           "s5-pine-archer",
           "s5-upper-archer",
           "s5-upper-crow"
+        ],
+        "separateDamagedOrAttackingObjectiveIds": [
+          "cliff-cleat"
         ],
         "normalEnemyHitPctHpDiagnostic": {
           "n": 34,
@@ -11724,6 +12579,7 @@
             "accepted": true
           }
         ],
+        "protectedNpcStates": [],
         "finalHeroes": [
           {
             "id": "p-archer",
@@ -12013,6 +12869,797 @@
       "legacyRuntimeHashScope": null,
       "candidateScope": "Released8b3a5e41 tracked gameplay source verified from recorded commit",
       "runtimeHashStatus": "MISSING_RUNTIME_HASH; commit comparison may establish tracked source only",
+      "persistedClearStatus": "Battle outcome only; persisted clear not established by this row",
+      "continuationHistory": []
+    },
+    {
+      "stage": 6,
+      "policy": "cover-focused-noitems-appops",
+      "cohort": false,
+      "inputErrorSeed": 1361,
+      "engineSeed": 19388,
+      "scope": "Actual App frame/charge/defend/input-intent simulation with DOM/render/clock doubles and idealized legal aim, NOT browser. Declared entry, not continuous campaign.",
+      "evidence": "_local/reports/act1-gameplay-20261103/stage6-cover-focused-noitems-appops-1361/trace.json",
+      "sha256": "3a2d804f88e4a2c0ee61a643ba9e5224020367a1e53eacdcfb4ab2e317cdb2cd",
+      "phase": "won",
+      "round": 22,
+      "roundTarget": [
+        8,
+        11
+      ],
+      "trialRoundInTarget": false,
+      "hard20Exceeded": true,
+      "winnerReason": "휘겸과 함께 부상자 운반대를 북문 쉼터까지 무사히 데려왔다. 휘겸도 앞으로의 조사에 동행하기로 했다. 마을 안쪽에는 제 몸을 가누지 못하는 살아 있는 주민들이 남아 있다.",
+      "entry": {
+        "difficulty": "normal",
+        "heroes": [
+          {
+            "cls": "archer",
+            "level": 5,
+            "hp": 507,
+            "loadout": [
+              "A01",
+              "A14",
+              "A02",
+              "A11"
+            ],
+            "ranks": {
+              "A01": 1,
+              "A14": 1,
+              "A02": 1,
+              "A11": 1,
+              "AP01": 4,
+              "AP04": 1
+            }
+          },
+          {
+            "cls": "mage",
+            "level": 5,
+            "hp": 545,
+            "loadout": [
+              "M01",
+              "M06",
+              "M04",
+              "M11"
+            ],
+            "ranks": {
+              "M01": 1,
+              "M06": 1,
+              "M02": 1,
+              "M04": 1,
+              "M03": 1,
+              "M11": 1,
+              "MP01": 3
+            }
+          },
+          {
+            "cls": "knight",
+            "level": 5,
+            "hp": 888,
+            "loadout": [
+              "S00",
+              "S01",
+              "S03",
+              "S05"
+            ],
+            "ranks": {
+              "S00": 1,
+              "SP01": 1,
+              "SP02": 1,
+              "SP03": 1,
+              "S03": 2,
+              "S01": 1,
+              "S09": 1,
+              "S05": 1,
+              "S06": 1
+            }
+          }
+        ]
+      },
+      "composition": {
+        "initialEnemiesExcludingObjectiveTargets": 21,
+        "initialElites": 0,
+        "initialMinibosses": 1,
+        "initialMajorBosses": 0,
+        "initialMajorBossEncounters": 0,
+        "legacyMidbossFlagOnAuthoredMajorBoss": [],
+        "majorBossCountScope": "Authored Stage8 bier is major despite legacy honroMidboss flag; Stage10 binding is authored major-boss encounter, excluded from enemy budget; bound Sodan separately classified",
+        "archetypes": {
+          "crow": 6,
+          "hound": 4,
+          "boar": 4,
+          "bat": 4,
+          "stag": 2,
+          "warden": 1
+        },
+        "initialObjectiveTargets": 0,
+        "initialHostileStoryActorsNotKillTargets": []
+      },
+      "observed": {
+        "kills": 32,
+        "survivingHeroes": 3,
+        "playerFireCommands": 53,
+        "partyHpDamage": 1414,
+        "protectedNpcHpDamage": 1179,
+        "alliedNpcHpDamage": 1179,
+        "npcHpDamageById": {
+          "objective": 1179
+        },
+        "damageToHostileSideIncludingTargets": 9000,
+        "damageBackedEngagementLowerBound": 32,
+        "damageBackedEngagedIds": [
+          "event-18",
+          "event-19",
+          "event-20",
+          "event-21",
+          "event-38",
+          "event-39",
+          "event-40",
+          "event-41",
+          "event-59",
+          "event-60",
+          "event-61",
+          "event-62",
+          "foe-0",
+          "foe-0-cluster",
+          "foe-1",
+          "foe-1-cluster",
+          "foe-2",
+          "foe-2-cluster",
+          "foe-3",
+          "foe-3-cluster",
+          "foe-4-cluster",
+          "foe-5",
+          "foe-5-cluster",
+          "foe-6",
+          "foe-6-cluster",
+          "foe-7",
+          "foe-7-cluster",
+          "foe-8",
+          "foe-8-cluster",
+          "foe-9",
+          "foe-9-cluster",
+          "midboss-stage6"
+        ],
+        "separateDamagedOrAttackingObjectiveIds": [],
+        "normalEnemyHitPctHpDiagnostic": {
+          "n": 24,
+          "mean": 5.610056037586647,
+          "range": [
+            2.364864864864865,
+            10.642201834862385
+          ]
+        },
+        "acceptedSkills": {
+          "A02": 11,
+          "M11": 14,
+          "S01": 6,
+          "S03": 12,
+          "M06": 1,
+          "A01": 2,
+          "M01": 5,
+          "A14": 1,
+          "A11": 1
+        },
+        "acceptedJumpCommands": 14,
+        "acceptedDropCommands": 0,
+        "itemCommands": [],
+        "playerEngineWaitCommands": [],
+        "normalAppDefendCommands": 12,
+        "normalAppInteractions": [],
+        "protectedNpcStates": [
+          {
+            "id": "objective",
+            "hp": 1850,
+            "maxHp": 1850,
+            "dead": false,
+            "resolved": null
+          }
+        ],
+        "finalHeroes": [
+          {
+            "id": "p-archer",
+            "hp": 538,
+            "maxHp": 538,
+            "dead": false,
+            "x": 5557.91090556115,
+            "y": 2480.735397871986
+          },
+          {
+            "id": "p-mage",
+            "hp": 496,
+            "maxHp": 545,
+            "dead": false,
+            "x": 5897.740173785456,
+            "y": 2389.257086466743
+          },
+          {
+            "id": "p-knight",
+            "hp": 451,
+            "maxHp": 888,
+            "dead": false,
+            "x": 6304.2619317222525,
+            "y": 2280.0567344190113
+          }
+        ],
+        "finalObjectiveState": {
+          "flags": {
+            "sector-0": true,
+            "event:midboss-stage6-seen": true,
+            "sector-1": true,
+            "event:bridge-crows": true,
+            "event:bridge-boars": true,
+            "sector-2": true,
+            "event:pursuit": true,
+            "sector-3": true
+          },
+          "collected": [],
+          "hold": 0,
+          "lastRound": 21,
+          "rescued": true,
+          "rescuedCount": 0,
+          "receivers": 0,
+          "ledger": false,
+          "sodanCoop": false,
+          "coopHold": 0,
+          "allyQueue": null,
+          "combatLog": [
+            {
+              "round": 1,
+              "actor": "ally-ropeguard",
+              "action": "sword-wave",
+              "target": "foe-0"
+            },
+            {
+              "round": 2,
+              "actor": "ally-ropeguard",
+              "action": "guard",
+              "target": "ally-ropeguard"
+            },
+            {
+              "round": 3,
+              "actor": "ally-ropeguard",
+              "action": "guard",
+              "target": "ally-ropeguard"
+            },
+            {
+              "round": 4,
+              "actor": "ally-ropeguard",
+              "action": "guard",
+              "target": "ally-ropeguard"
+            },
+            {
+              "round": 5,
+              "actor": "ally-ropeguard",
+              "action": "guard",
+              "target": "ally-ropeguard"
+            },
+            {
+              "round": 6,
+              "actor": "ally-ropeguard",
+              "action": "guard",
+              "target": "ally-ropeguard"
+            },
+            {
+              "round": 7,
+              "actor": "ally-ropeguard",
+              "action": "guard",
+              "target": "ally-ropeguard"
+            },
+            {
+              "round": 8,
+              "actor": "ally-ropeguard",
+              "action": "guard",
+              "target": "ally-ropeguard"
+            },
+            {
+              "round": 9,
+              "actor": "ally-ropeguard",
+              "action": "guard",
+              "target": "ally-ropeguard"
+            },
+            {
+              "round": 10,
+              "actor": "ally-ropeguard",
+              "action": "guard",
+              "target": "ally-ropeguard"
+            },
+            {
+              "round": 11,
+              "actor": "ally-ropeguard",
+              "action": "guard",
+              "target": "ally-ropeguard"
+            },
+            {
+              "round": 12,
+              "actor": "ally-ropeguard",
+              "action": "guard",
+              "target": "ally-ropeguard"
+            },
+            {
+              "round": 13,
+              "actor": "ally-ropeguard",
+              "action": "guard",
+              "target": "ally-ropeguard"
+            },
+            {
+              "round": 14,
+              "actor": "ally-ropeguard",
+              "action": "guard",
+              "target": "ally-ropeguard"
+            },
+            {
+              "round": 15,
+              "actor": "ally-ropeguard",
+              "action": "sword-wave",
+              "target": "foe-4"
+            },
+            {
+              "round": 16,
+              "actor": "ally-ropeguard",
+              "action": "sword-wave",
+              "target": "foe-4"
+            },
+            {
+              "round": 17,
+              "actor": "ally-ropeguard",
+              "action": "guard",
+              "target": "ally-ropeguard"
+            },
+            {
+              "round": 18,
+              "actor": "ally-ropeguard",
+              "action": "guard",
+              "target": "ally-ropeguard"
+            },
+            {
+              "round": 19,
+              "actor": "ally-ropeguard",
+              "action": "guard",
+              "target": "ally-ropeguard"
+            },
+            {
+              "round": 20,
+              "actor": "ally-ropeguard",
+              "action": "guard",
+              "target": "ally-ropeguard"
+            },
+            {
+              "round": 21,
+              "actor": "ally-ropeguard",
+              "action": "guard",
+              "target": "ally-ropeguard"
+            }
+          ],
+          "respawns": 0,
+          "carriagePauseUntilRound": 0,
+          "entryScheduled": true,
+          "deferredStory": [],
+          "completedStory": {
+            "act1-v6:entry-6": true,
+            "act1-v6:event-6-midboss-stage6-seen": true,
+            "act1-v6:event-6-bridge-crows": true,
+            "act1-v6:event-6-bridge-boars": true,
+            "event:6:refugee-following:1": true,
+            "act1-v6:event-6-pursuit": true
+          },
+          "storyQueue": [],
+          "storyBanter": [],
+          "banterLine": null,
+          "pendingEvents": [],
+          "encounterCooldown": 0,
+          "objectiveTravel": {
+            "p-archer": {
+              "x": 5557.91090556115,
+              "y": 2480.735397871986
+            },
+            "p-mage": {
+              "x": 5897.740173785456,
+              "y": 2389.257086466743
+            },
+            "p-knight": {
+              "x": 6304.2619317222525,
+              "y": 2280.0567344190113
+            }
+          },
+          "actorTurnSerial": 246,
+          "allyDoneRound": 21,
+          "lastEventBoundary": "21:21:0",
+          "lastRitualRound": 21,
+          "eventActors": {
+            "bridge-crows": {
+              "id": "p-archer",
+              "round": 2
+            },
+            "midboss-stage6-seen": {
+              "id": "p-archer",
+              "round": 2
+            },
+            "bridge-boars": {
+              "id": "p-knight",
+              "round": 5
+            },
+            "pursuit": {
+              "id": "p-knight",
+              "round": 7
+            }
+          },
+          "eventLog": [
+            {
+              "id": "midboss-stage6-seen",
+              "phase": "aim",
+              "round": 2,
+              "side": 0,
+              "teamEnds": [
+                1,
+                1,
+                0
+              ]
+            },
+            {
+              "id": "bridge-crows",
+              "phase": "aim",
+              "round": 3,
+              "side": 0,
+              "teamEnds": [
+                2,
+                2,
+                0
+              ]
+            },
+            {
+              "id": "bridge-boars",
+              "phase": "ally",
+              "round": 5,
+              "side": 0,
+              "teamEnds": [
+                4,
+                4,
+                0
+              ]
+            },
+            {
+              "id": "pursuit",
+              "phase": "ally",
+              "round": 7,
+              "side": 0,
+              "teamEnds": [
+                6,
+                6,
+                0
+              ]
+            }
+          ],
+          "reinforcementEvents": {
+            "bridge-crows": [
+              "event-18",
+              "event-19",
+              "event-20",
+              "event-21"
+            ],
+            "bridge-boars": [
+              "event-38",
+              "event-39",
+              "event-40",
+              "event-41"
+            ],
+            "pursuit": [
+              "event-59",
+              "event-60",
+              "event-61",
+              "event-62"
+            ]
+          },
+          "lastCombatEventBoundary": "75:7:6:6:0:p-knight",
+          "rescuePending": true,
+          "narrativeEventSerial": 1,
+          "objectiveReadyRound": 22
+        },
+        "collectedFiniteSupplyPoints": [
+          {
+            "id": "marker-2",
+            "x": 3030,
+            "y": 3007.648,
+            "label": "불씨"
+          },
+          {
+            "id": "marker-4",
+            "x": 3980,
+            "y": 2940,
+            "label": "불씨"
+          },
+          {
+            "id": "marker-6",
+            "x": 6260,
+            "y": 2288.449,
+            "label": "불씨"
+          }
+        ],
+        "sampledRoutes": {
+          "p-knight": {
+            "sampleCount": 1187,
+            "xRange": [
+              598,
+              6283.188903487787
+            ],
+            "yRange": [
+              2283.1789352006754,
+              3010.630318743627
+            ],
+            "observedSupports": [
+              "lower-road",
+              "place6-east-rock:collision:0",
+              "place6-west-rock:collision:0"
+            ],
+            "sampledPathLengthLowerBound": 9952.53442395676
+          },
+          "p-archer": {
+            "sampleCount": 1187,
+            "xRange": [
+              489.79166666666555,
+              5557.91090556115
+            ],
+            "yRange": [
+              2209.3810858831685,
+              3010.5902207077957
+            ],
+            "observedSupports": [
+              "debris-step-1",
+              "lower-road",
+              "place6-east-rock:collision:0",
+              "place6-west-rock:collision:0"
+            ],
+            "sampledPathLengthLowerBound": 7894.2084888066265
+          },
+          "p-mage": {
+            "sampleCount": 1187,
+            "xRange": [
+              440,
+              5897.740173785456
+            ],
+            "yRange": [
+              2371.563882216418,
+              3010.895918758297
+            ],
+            "observedSupports": [
+              "debris-step-1",
+              "lower-road",
+              "place6-east-rock:collision:0",
+              "place6-west-rock:collision:0"
+            ],
+            "sampledPathLengthLowerBound": 5979.382130198728
+          }
+        },
+        "normalKilledEnemyPlayerEffectiveLaunches": [
+          {
+            "target": "foe-1",
+            "effectivePlayerLaunchCount": 2,
+            "alliedAssistanceDamage": 0
+          },
+          {
+            "target": "foe-2",
+            "effectivePlayerLaunchCount": 2,
+            "alliedAssistanceDamage": 0
+          },
+          {
+            "target": "foe-3",
+            "effectivePlayerLaunchCount": 2,
+            "alliedAssistanceDamage": 0
+          },
+          {
+            "target": "foe-4",
+            "effectivePlayerLaunchCount": 0,
+            "alliedAssistanceDamage": 164
+          },
+          {
+            "target": "foe-5",
+            "effectivePlayerLaunchCount": 2,
+            "alliedAssistanceDamage": 0
+          },
+          {
+            "target": "foe-6",
+            "effectivePlayerLaunchCount": 2,
+            "alliedAssistanceDamage": 0
+          },
+          {
+            "target": "foe-7",
+            "effectivePlayerLaunchCount": 2,
+            "alliedAssistanceDamage": 0
+          },
+          {
+            "target": "foe-8",
+            "effectivePlayerLaunchCount": 1,
+            "alliedAssistanceDamage": 0
+          },
+          {
+            "target": "foe-9",
+            "effectivePlayerLaunchCount": 2,
+            "alliedAssistanceDamage": 0
+          },
+          {
+            "target": "foe-0-cluster",
+            "effectivePlayerLaunchCount": 1,
+            "alliedAssistanceDamage": 0
+          },
+          {
+            "target": "foe-1-cluster",
+            "effectivePlayerLaunchCount": 1,
+            "alliedAssistanceDamage": 0
+          },
+          {
+            "target": "foe-2-cluster",
+            "effectivePlayerLaunchCount": 1,
+            "alliedAssistanceDamage": 0
+          },
+          {
+            "target": "foe-3-cluster",
+            "effectivePlayerLaunchCount": 1,
+            "alliedAssistanceDamage": 0
+          },
+          {
+            "target": "foe-4-cluster",
+            "effectivePlayerLaunchCount": 1,
+            "alliedAssistanceDamage": 0
+          },
+          {
+            "target": "foe-5-cluster",
+            "effectivePlayerLaunchCount": 2,
+            "alliedAssistanceDamage": 0
+          },
+          {
+            "target": "foe-6-cluster",
+            "effectivePlayerLaunchCount": 2,
+            "alliedAssistanceDamage": 0
+          },
+          {
+            "target": "foe-7-cluster",
+            "effectivePlayerLaunchCount": 1,
+            "alliedAssistanceDamage": 0
+          },
+          {
+            "target": "foe-8-cluster",
+            "effectivePlayerLaunchCount": 1,
+            "alliedAssistanceDamage": 0
+          },
+          {
+            "target": "foe-9-cluster",
+            "effectivePlayerLaunchCount": 2,
+            "alliedAssistanceDamage": 0
+          },
+          {
+            "target": "event-18",
+            "effectivePlayerLaunchCount": 1,
+            "alliedAssistanceDamage": 0
+          },
+          {
+            "target": "event-19",
+            "effectivePlayerLaunchCount": 1,
+            "alliedAssistanceDamage": 0
+          },
+          {
+            "target": "event-20",
+            "effectivePlayerLaunchCount": 2,
+            "alliedAssistanceDamage": 0
+          },
+          {
+            "target": "event-38",
+            "effectivePlayerLaunchCount": 3,
+            "alliedAssistanceDamage": 0
+          },
+          {
+            "target": "event-39",
+            "effectivePlayerLaunchCount": 2,
+            "alliedAssistanceDamage": 0
+          },
+          {
+            "target": "event-40",
+            "effectivePlayerLaunchCount": 2,
+            "alliedAssistanceDamage": 0
+          },
+          {
+            "target": "event-41",
+            "effectivePlayerLaunchCount": 3,
+            "alliedAssistanceDamage": 0
+          },
+          {
+            "target": "event-59",
+            "effectivePlayerLaunchCount": 2,
+            "alliedAssistanceDamage": 0
+          },
+          {
+            "target": "event-60",
+            "effectivePlayerLaunchCount": 1,
+            "alliedAssistanceDamage": 0
+          },
+          {
+            "target": "event-61",
+            "effectivePlayerLaunchCount": 2,
+            "alliedAssistanceDamage": 0
+          },
+          {
+            "target": "event-62",
+            "effectivePlayerLaunchCount": 2,
+            "alliedAssistanceDamage": 0
+          }
+        ],
+        "unattributedPlayerDamageEvents": 0,
+        "enemyLaunchDiagnostic": {
+          "acceptedLaunches": 82,
+          "launchesDamagingHeroes": 40,
+          "launchesWithoutObservedHeroDamage": 42,
+          "byRound": {
+            "1": 4,
+            "2": 5,
+            "3": 5,
+            "4": 5,
+            "5": 5,
+            "6": 4,
+            "7": 5,
+            "8": 5,
+            "9": 5,
+            "10": 3,
+            "11": 3,
+            "12": 3,
+            "13": 3,
+            "14": 4,
+            "15": 4,
+            "16": 4,
+            "17": 4,
+            "18": 5,
+            "19": 3,
+            "20": 2,
+            "21": 1
+          },
+          "normalActionTargetPctHp": {
+            "n": 24,
+            "mean": 5.610056037586647,
+            "range": [
+              2.364864864864865,
+              10.642201834862385
+            ]
+          },
+          "unassignedHeroDamageEvents": 0,
+          "scope": "Owner/time attribution diagnostic only; approach, control, protected-NPC pressure and delayed-effect overlap not fully classified."
+        },
+        "effectiveLaunchCaveat": "Recorded launch-to-impact association by actor/time; delayed effects and ally assistance require review before kill-actions gate.",
+        "routeCaveat": "One-second samples: path length lower bound, not exact movement or valid landing attribution.",
+        "noncriticalNormalHitPctHp": {
+          "n": 0,
+          "values": [],
+          "mean": null,
+          "median": null,
+          "range": null,
+          "source": "Production emitted damage text includes actual damage/critical/attackId; HP-loss truncation avoided. Fully shield-absorbed no-damage hits not in this event sample.",
+          "sampleScope": "Separate instrumentation diagnostic, not additional registered cohort cases"
+        }
+      },
+      "missingEssential": [
+        "validated enemy effective-action denominator incl zero phases",
+        "original single noncritical hit measurement with attack/defense context",
+        "accepted full required support graph and elevation ratio",
+        "valid jump/drop/landing attribution",
+        "stage-specific special metric comparison",
+        "readability and native UI scene review",
+        "human-independent tactics assessment"
+      ],
+      "acceptance": "FAIL_UNMEASURED",
+      "normalUiApplicability": "No inaccessible item/wait calls observed; remaining controls/entry/UI still require verification",
+      "sourceCommit": "ad7a224c8d10efa72ef062e2e129fb4a21e01a82",
+      "sourceEvidence": null,
+      "sourceProvenanceStatus": "Recorded commit",
+      "operationMode": "NATIVE_APP_ACTION_SIMULATION",
+      "controllerFileSha256": "e640ea3badf2600ee0124ecc1516b367e0ca778bd60f3e858c44752c49d59c25",
+      "runnerSha256": "be14d503f8c0b31a7f832d44d5457739fccc0689c1e92d00856df3c7a583c121",
+      "sourceDirtyAtStart": "",
+      "controllerCalibrationStatus": "Diagnostic calibration unless separately preregistered",
+      "controllerExecutionError": null,
+      "outcomeQualification": "TERMINAL_WON",
+      "runtimeSha256": null,
+      "legacyRuntimePartsHash": null,
+      "legacyRuntimeHashScope": null,
+      "candidateScope": "Released8b3a5e41 tracked gameplay source verified from recorded commit",
+      "runtimeHashStatus": "MISSING_RUNTIME_HASH; commit comparison may establish tracked source only",
+      "persistedClearStatus": "Battle outcome only; persisted clear not established by this row",
       "continuationHistory": []
     },
     {
@@ -12163,6 +13810,7 @@
           "foe-9-cluster",
           "midboss-stage6"
         ],
+        "separateDamagedOrAttackingObjectiveIds": [],
         "normalEnemyHitPctHpDiagnostic": {
           "n": 38,
           "mean": 5.070509708967298,
@@ -12188,6 +13836,15 @@
         "playerEngineWaitCommands": [],
         "normalAppDefendCommands": 8,
         "normalAppInteractions": [],
+        "protectedNpcStates": [
+          {
+            "id": "objective",
+            "hp": 1841.6,
+            "maxHp": 1850,
+            "dead": false,
+            "resolved": null
+          }
+        ],
         "finalHeroes": [
           {
             "id": "p-archer",
@@ -12484,23 +14141,6 @@
           }
         ],
         "sampledRoutes": {
-          "p-archer": {
-            "sampleCount": 935,
-            "xRange": [
-              489.79166666666555,
-              3879.6895201610705
-            ],
-            "yRange": [
-              2209.3810858831685,
-              3010.592490749524
-            ],
-            "observedSupports": [
-              "debris-step-1",
-              "lower-road",
-              "place6-west-rock:collision:0"
-            ],
-            "sampledPathLengthLowerBound": 5357.839296878548
-          },
           "p-knight": {
             "sampleCount": 935,
             "xRange": [
@@ -12520,6 +14160,23 @@
               "place6-west-rock:collision:0"
             ],
             "sampledPathLengthLowerBound": 9424.607111328554
+          },
+          "p-archer": {
+            "sampleCount": 935,
+            "xRange": [
+              489.79166666666555,
+              3879.6895201610705
+            ],
+            "yRange": [
+              2209.3810858831685,
+              3010.592490749524
+            ],
+            "observedSupports": [
+              "debris-step-1",
+              "lower-road",
+              "place6-west-rock:collision:0"
+            ],
+            "sampledPathLengthLowerBound": 5357.839296878548
           },
           "p-mage": {
             "sampleCount": 935,
@@ -12720,6 +14377,725 @@
       "legacyRuntimeHashScope": null,
       "candidateScope": "Released8b3a5e41 tracked gameplay source verified from recorded commit",
       "runtimeHashStatus": "MISSING_RUNTIME_HASH; commit comparison may establish tracked source only",
+      "persistedClearStatus": "Battle outcome only; persisted clear not established by this row",
+      "continuationHistory": []
+    },
+    {
+      "stage": 6,
+      "policy": "objective-focused-noitems-appops",
+      "cohort": false,
+      "inputErrorSeed": 1360,
+      "engineSeed": 19388,
+      "scope": "Actual App frame/charge/defend/input-intent simulation with DOM/render/clock doubles and idealized legal aim, NOT browser. Declared entry, not continuous campaign.",
+      "evidence": "_local/reports/act1-gameplay-20261103/stage6-objective-focused-noitems-appops-1360/trace.json",
+      "sha256": "db5f5562c00d4fe7012dfbee4ecb553c034ec4f5047a4fa99f98ca1f12715baf",
+      "phase": "won",
+      "round": 18,
+      "roundTarget": [
+        8,
+        11
+      ],
+      "trialRoundInTarget": false,
+      "hard20Exceeded": false,
+      "winnerReason": "휘겸과 함께 부상자 운반대를 북문 쉼터까지 무사히 데려왔다. 휘겸도 앞으로의 조사에 동행하기로 했다. 마을 안쪽에는 제 몸을 가누지 못하는 살아 있는 주민들이 남아 있다.",
+      "entry": {
+        "difficulty": "normal",
+        "heroes": [
+          {
+            "cls": "archer",
+            "level": 5,
+            "hp": 507,
+            "loadout": [
+              "A01",
+              "A14",
+              "A02",
+              "A11"
+            ],
+            "ranks": {
+              "A01": 1,
+              "A14": 1,
+              "A02": 1,
+              "A11": 1,
+              "AP01": 4,
+              "AP04": 1
+            }
+          },
+          {
+            "cls": "mage",
+            "level": 5,
+            "hp": 545,
+            "loadout": [
+              "M01",
+              "M06",
+              "M04",
+              "M11"
+            ],
+            "ranks": {
+              "M01": 1,
+              "M06": 1,
+              "M02": 1,
+              "M04": 1,
+              "M03": 1,
+              "M11": 1,
+              "MP01": 3
+            }
+          },
+          {
+            "cls": "knight",
+            "level": 5,
+            "hp": 888,
+            "loadout": [
+              "S00",
+              "S01",
+              "S03",
+              "S05"
+            ],
+            "ranks": {
+              "S00": 1,
+              "SP01": 1,
+              "SP02": 1,
+              "SP03": 1,
+              "S03": 2,
+              "S01": 1,
+              "S09": 1,
+              "S05": 1,
+              "S06": 1
+            }
+          }
+        ]
+      },
+      "composition": {
+        "initialEnemiesExcludingObjectiveTargets": 21,
+        "initialElites": 0,
+        "initialMinibosses": 1,
+        "initialMajorBosses": 0,
+        "initialMajorBossEncounters": 0,
+        "legacyMidbossFlagOnAuthoredMajorBoss": [],
+        "majorBossCountScope": "Authored Stage8 bier is major despite legacy honroMidboss flag; Stage10 binding is authored major-boss encounter, excluded from enemy budget; bound Sodan separately classified",
+        "archetypes": {
+          "crow": 6,
+          "hound": 4,
+          "boar": 4,
+          "bat": 4,
+          "stag": 2,
+          "warden": 1
+        },
+        "initialObjectiveTargets": 0,
+        "initialHostileStoryActorsNotKillTargets": []
+      },
+      "observed": {
+        "kills": 22,
+        "survivingHeroes": 2,
+        "playerFireCommands": 42,
+        "partyHpDamage": 1681.0,
+        "protectedNpcHpDamage": 1127.4,
+        "alliedNpcHpDamage": 1127.4,
+        "npcHpDamageById": {
+          "objective": 1127.4
+        },
+        "damageToHostileSideIncludingTargets": 7634,
+        "damageBackedEngagementLowerBound": 31,
+        "damageBackedEngagedIds": [
+          "event-28",
+          "event-29",
+          "event-30",
+          "event-31",
+          "event-59",
+          "event-60",
+          "event-61",
+          "event-89",
+          "event-90",
+          "event-91",
+          "event-92",
+          "foe-0",
+          "foe-0-cluster",
+          "foe-1",
+          "foe-1-cluster",
+          "foe-2",
+          "foe-2-cluster",
+          "foe-3",
+          "foe-3-cluster",
+          "foe-4-cluster",
+          "foe-5",
+          "foe-5-cluster",
+          "foe-6",
+          "foe-6-cluster",
+          "foe-7",
+          "foe-7-cluster",
+          "foe-8",
+          "foe-8-cluster",
+          "foe-9",
+          "foe-9-cluster",
+          "midboss-stage6"
+        ],
+        "separateDamagedOrAttackingObjectiveIds": [],
+        "normalEnemyHitPctHpDiagnostic": {
+          "n": 38,
+          "mean": 5.070509708967298,
+          "range": [
+            3.153153153153153,
+            11.71003717472119
+          ]
+        },
+        "acceptedSkills": {
+          "A02": 9,
+          "M01": 3,
+          "S01": 8,
+          "M06": 2,
+          "S03": 7,
+          "M11": 10,
+          "M04": 1,
+          "A01": 1,
+          "A11": 1
+        },
+        "acceptedJumpCommands": 10,
+        "acceptedDropCommands": 0,
+        "itemCommands": [],
+        "playerEngineWaitCommands": [],
+        "normalAppDefendCommands": 8,
+        "normalAppInteractions": [],
+        "protectedNpcStates": [
+          {
+            "id": "objective",
+            "hp": 1841.6,
+            "maxHp": 1850,
+            "dead": false,
+            "resolved": null
+          }
+        ],
+        "finalHeroes": [
+          {
+            "id": "p-archer",
+            "hp": 0,
+            "maxHp": 538,
+            "dead": true,
+            "x": 3859.299659047317,
+            "y": 2988.055677105738
+          },
+          {
+            "id": "p-mage",
+            "hp": 579,
+            "maxHp": 579,
+            "dead": false,
+            "x": 4628.270773290965,
+            "y": 2659.3994024395056
+          },
+          {
+            "id": "p-knight",
+            "hp": 824.4,
+            "maxHp": 888,
+            "dead": false,
+            "x": 6306.612581586514,
+            "y": 2279.797264156053
+          }
+        ],
+        "finalObjectiveState": {
+          "flags": {
+            "sector-0": true,
+            "event:midboss-stage6-seen": true,
+            "sector-1": true,
+            "event:bridge-crows": true,
+            "sector-2": true,
+            "event:bridge-boars": true,
+            "event:pursuit": true,
+            "sector-3": true
+          },
+          "collected": [],
+          "hold": 0,
+          "lastRound": 17,
+          "rescued": true,
+          "rescuedCount": 0,
+          "receivers": 0,
+          "ledger": false,
+          "sodanCoop": false,
+          "coopHold": 0,
+          "allyQueue": null,
+          "combatLog": [
+            {
+              "round": 1,
+              "actor": "ally-ropeguard",
+              "action": "sword-wave",
+              "target": "foe-0"
+            },
+            {
+              "round": 2,
+              "actor": "ally-ropeguard",
+              "action": "guard",
+              "target": "ally-ropeguard"
+            },
+            {
+              "round": 3,
+              "actor": "ally-ropeguard",
+              "action": "guard",
+              "target": "ally-ropeguard"
+            },
+            {
+              "round": 4,
+              "actor": "ally-ropeguard",
+              "action": "guard",
+              "target": "ally-ropeguard"
+            },
+            {
+              "round": 5,
+              "actor": "ally-ropeguard",
+              "action": "guard",
+              "target": "ally-ropeguard"
+            },
+            {
+              "round": 6,
+              "actor": "ally-ropeguard",
+              "action": "guard",
+              "target": "ally-ropeguard"
+            },
+            {
+              "round": 7,
+              "actor": "ally-ropeguard",
+              "action": "guard",
+              "target": "ally-ropeguard"
+            },
+            {
+              "round": 8,
+              "actor": "ally-ropeguard",
+              "action": "guard",
+              "target": "ally-ropeguard"
+            },
+            {
+              "round": 9,
+              "actor": "ally-ropeguard",
+              "action": "guard",
+              "target": "ally-ropeguard"
+            },
+            {
+              "round": 10,
+              "actor": "ally-ropeguard",
+              "action": "guard",
+              "target": "ally-ropeguard"
+            },
+            {
+              "round": 11,
+              "actor": "ally-ropeguard",
+              "action": "guard",
+              "target": "ally-ropeguard"
+            },
+            {
+              "round": 12,
+              "actor": "ally-ropeguard",
+              "action": "guard",
+              "target": "ally-ropeguard"
+            },
+            {
+              "round": 13,
+              "actor": "ally-ropeguard",
+              "action": "guard",
+              "target": "ally-ropeguard"
+            },
+            {
+              "round": 14,
+              "actor": "ally-ropeguard",
+              "action": "guard",
+              "target": "ally-ropeguard"
+            },
+            {
+              "round": 15,
+              "actor": "ally-ropeguard",
+              "action": "guard",
+              "target": "ally-ropeguard"
+            },
+            {
+              "round": 16,
+              "actor": "ally-ropeguard",
+              "action": "guard",
+              "target": "ally-ropeguard"
+            },
+            {
+              "round": 17,
+              "actor": "ally-ropeguard",
+              "action": "guard",
+              "target": "ally-ropeguard"
+            }
+          ],
+          "respawns": 0,
+          "carriagePauseUntilRound": 0,
+          "entryScheduled": true,
+          "deferredStory": [],
+          "completedStory": {
+            "act1-v6:entry-6": true,
+            "act1-v6:event-6-midboss-stage6-seen": true,
+            "act1-v6:event-6-bridge-crows": true,
+            "event:6:refugee-following:1": true,
+            "act1-v6:event-6-bridge-boars": true,
+            "act1-v6:event-6-pursuit": true
+          },
+          "storyQueue": [],
+          "storyBanter": [],
+          "banterLine": null,
+          "pendingEvents": [],
+          "encounterCooldown": 0,
+          "objectiveTravel": {
+            "p-archer": {
+              "x": 3859.299659047317,
+              "y": 2988.055677105738
+            },
+            "p-mage": {
+              "x": 4628.270773290965,
+              "y": 2659.3994024395056
+            },
+            "p-knight": {
+              "x": 6306.612581586514,
+              "y": 2279.797264156053
+            }
+          },
+          "actorTurnSerial": 203,
+          "allyDoneRound": 17,
+          "lastEventBoundary": "17:17:0",
+          "lastRitualRound": 17,
+          "eventActors": {
+            "bridge-crows": {
+              "id": "p-archer",
+              "round": 2
+            },
+            "midboss-stage6-seen": {
+              "id": "p-archer",
+              "round": 2
+            },
+            "bridge-boars": {
+              "id": "p-mage",
+              "round": 5
+            },
+            "pursuit": {
+              "id": "p-knight",
+              "round": 5
+            }
+          },
+          "eventLog": [
+            {
+              "id": "midboss-stage6-seen",
+              "phase": "aim",
+              "round": 2,
+              "side": 0,
+              "teamEnds": [
+                1,
+                1,
+                0
+              ]
+            },
+            {
+              "id": "bridge-crows",
+              "phase": "ally",
+              "round": 4,
+              "side": 0,
+              "teamEnds": [
+                3,
+                3,
+                0
+              ]
+            },
+            {
+              "id": "bridge-boars",
+              "phase": "aim",
+              "round": 8,
+              "side": 0,
+              "teamEnds": [
+                7,
+                7,
+                0
+              ]
+            },
+            {
+              "id": "pursuit",
+              "phase": "ally",
+              "round": 10,
+              "side": 0,
+              "teamEnds": [
+                9,
+                9,
+                0
+              ]
+            }
+          ],
+          "reinforcementEvents": {
+            "bridge-crows": [
+              "event-28",
+              "event-29",
+              "event-30",
+              "event-31"
+            ],
+            "bridge-boars": [
+              "event-59",
+              "event-60",
+              "event-61",
+              "event-62"
+            ],
+            "pursuit": [
+              "event-89",
+              "event-90",
+              "event-91",
+              "event-92"
+            ]
+          },
+          "lastCombatEventBoundary": "111:10:9:9:0:p-knight",
+          "rescuePending": true,
+          "narrativeEventSerial": 1,
+          "objectiveReadyRound": 18
+        },
+        "collectedFiniteSupplyPoints": [
+          {
+            "id": "marker-2",
+            "x": 3030,
+            "y": 3007.648,
+            "label": "불씨"
+          },
+          {
+            "id": "marker-4",
+            "x": 3980,
+            "y": 2940,
+            "label": "불씨"
+          },
+          {
+            "id": "marker-6",
+            "x": 6260,
+            "y": 2288.449,
+            "label": "불씨"
+          }
+        ],
+        "sampledRoutes": {
+          "p-knight": {
+            "sampleCount": 935,
+            "xRange": [
+              598,
+              6183.618882156598
+            ],
+            "yRange": [
+              2029.469081331886,
+              3008.7221947275184
+            ],
+            "observedSupports": [
+              "bridge-east",
+              "fc-choice-6-bridge-exit-pine",
+              "lower-lookout",
+              "lower-road",
+              "place6-east-rock:collision:0",
+              "place6-west-rock:collision:0"
+            ],
+            "sampledPathLengthLowerBound": 9421.901067033084
+          },
+          "p-archer": {
+            "sampleCount": 935,
+            "xRange": [
+              489.79166666666555,
+              3879.6895201610705
+            ],
+            "yRange": [
+              2209.3810858831685,
+              3010.592490749524
+            ],
+            "observedSupports": [
+              "debris-step-1",
+              "lower-road",
+              "place6-west-rock:collision:0"
+            ],
+            "sampledPathLengthLowerBound": 5352.180288605332
+          },
+          "p-mage": {
+            "sampleCount": 935,
+            "xRange": [
+              440,
+              4628.270773290965
+            ],
+            "yRange": [
+              2371.563882216418,
+              3010.4638504922955
+            ],
+            "observedSupports": [
+              "debris-step-1",
+              "lower-road",
+              "place6-east-rock:collision:0",
+              "place6-west-rock:collision:0"
+            ],
+            "sampledPathLengthLowerBound": 4700.468710731915
+          }
+        },
+        "normalKilledEnemyPlayerEffectiveLaunches": [
+          {
+            "target": "foe-1",
+            "effectivePlayerLaunchCount": 2,
+            "alliedAssistanceDamage": 0
+          },
+          {
+            "target": "foe-2",
+            "effectivePlayerLaunchCount": 3,
+            "alliedAssistanceDamage": 0
+          },
+          {
+            "target": "foe-3",
+            "effectivePlayerLaunchCount": 1,
+            "alliedAssistanceDamage": 0
+          },
+          {
+            "target": "foe-5",
+            "effectivePlayerLaunchCount": 2,
+            "alliedAssistanceDamage": 0
+          },
+          {
+            "target": "foe-6",
+            "effectivePlayerLaunchCount": 2,
+            "alliedAssistanceDamage": 0
+          },
+          {
+            "target": "foe-7",
+            "effectivePlayerLaunchCount": 1,
+            "alliedAssistanceDamage": 0
+          },
+          {
+            "target": "foe-9",
+            "effectivePlayerLaunchCount": 3,
+            "alliedAssistanceDamage": 0
+          },
+          {
+            "target": "foe-1-cluster",
+            "effectivePlayerLaunchCount": 2,
+            "alliedAssistanceDamage": 0
+          },
+          {
+            "target": "foe-3-cluster",
+            "effectivePlayerLaunchCount": 1,
+            "alliedAssistanceDamage": 0
+          },
+          {
+            "target": "foe-4-cluster",
+            "effectivePlayerLaunchCount": 1,
+            "alliedAssistanceDamage": 0
+          },
+          {
+            "target": "foe-5-cluster",
+            "effectivePlayerLaunchCount": 2,
+            "alliedAssistanceDamage": 0
+          },
+          {
+            "target": "foe-6-cluster",
+            "effectivePlayerLaunchCount": 3,
+            "alliedAssistanceDamage": 0
+          },
+          {
+            "target": "foe-7-cluster",
+            "effectivePlayerLaunchCount": 1,
+            "alliedAssistanceDamage": 0
+          },
+          {
+            "target": "foe-8-cluster",
+            "effectivePlayerLaunchCount": 1,
+            "alliedAssistanceDamage": 0
+          },
+          {
+            "target": "event-31",
+            "effectivePlayerLaunchCount": 2,
+            "alliedAssistanceDamage": 0
+          },
+          {
+            "target": "event-59",
+            "effectivePlayerLaunchCount": 2,
+            "alliedAssistanceDamage": 0
+          },
+          {
+            "target": "event-60",
+            "effectivePlayerLaunchCount": 2,
+            "alliedAssistanceDamage": 0
+          },
+          {
+            "target": "event-61",
+            "effectivePlayerLaunchCount": 2,
+            "alliedAssistanceDamage": 0
+          },
+          {
+            "target": "event-90",
+            "effectivePlayerLaunchCount": 3,
+            "alliedAssistanceDamage": 0
+          },
+          {
+            "target": "event-91",
+            "effectivePlayerLaunchCount": 2,
+            "alliedAssistanceDamage": 0
+          },
+          {
+            "target": "event-92",
+            "effectivePlayerLaunchCount": 2,
+            "alliedAssistanceDamage": 0
+          }
+        ],
+        "unattributedPlayerDamageEvents": 0,
+        "enemyLaunchDiagnostic": {
+          "acceptedLaunches": 82,
+          "launchesDamagingHeroes": 42,
+          "launchesWithoutObservedHeroDamage": 40,
+          "byRound": {
+            "1": 4,
+            "2": 5,
+            "3": 5,
+            "4": 5,
+            "5": 5,
+            "6": 5,
+            "7": 3,
+            "8": 5,
+            "9": 5,
+            "10": 5,
+            "11": 5,
+            "12": 5,
+            "13": 5,
+            "14": 5,
+            "15": 5,
+            "16": 5,
+            "17": 5
+          },
+          "normalActionTargetPctHp": {
+            "n": 38,
+            "mean": 5.070509708967298,
+            "range": [
+              3.153153153153153,
+              11.71003717472119
+            ]
+          },
+          "unassignedHeroDamageEvents": 0,
+          "scope": "Owner/time attribution diagnostic only; approach, control, protected-NPC pressure and delayed-effect overlap not fully classified."
+        },
+        "effectiveLaunchCaveat": "Recorded launch-to-impact association by actor/time; delayed effects and ally assistance require review before kill-actions gate.",
+        "routeCaveat": "One-second samples: path length lower bound, not exact movement or valid landing attribution.",
+        "noncriticalNormalHitPctHp": {
+          "n": 0,
+          "values": [],
+          "mean": null,
+          "median": null,
+          "range": null,
+          "source": "Production emitted damage text includes actual damage/critical/attackId; HP-loss truncation avoided. Fully shield-absorbed no-damage hits not in this event sample.",
+          "sampleScope": "Separate instrumentation diagnostic, not additional registered cohort cases"
+        }
+      },
+      "missingEssential": [
+        "validated enemy effective-action denominator incl zero phases",
+        "original single noncritical hit measurement with attack/defense context",
+        "accepted full required support graph and elevation ratio",
+        "valid jump/drop/landing attribution",
+        "stage-specific special metric comparison",
+        "readability and native UI scene review",
+        "human-independent tactics assessment"
+      ],
+      "acceptance": "FAIL_UNMEASURED",
+      "normalUiApplicability": "No inaccessible item/wait calls observed; remaining controls/entry/UI still require verification",
+      "sourceCommit": "ad7a224c8d10efa72ef062e2e129fb4a21e01a82",
+      "sourceEvidence": null,
+      "sourceProvenanceStatus": "Recorded commit",
+      "operationMode": "NATIVE_APP_ACTION_SIMULATION",
+      "controllerFileSha256": "ef9273b1db724519aeb3124eff79ba283c12c77a67275af48b910b8b7f0f30d4",
+      "runnerSha256": "be14d503f8c0b31a7f832d44d5457739fccc0689c1e92d00856df3c7a583c121",
+      "sourceDirtyAtStart": "",
+      "controllerCalibrationStatus": "Diagnostic calibration unless separately preregistered",
+      "controllerExecutionError": null,
+      "outcomeQualification": "TERMINAL_WON",
+      "runtimeSha256": null,
+      "legacyRuntimePartsHash": null,
+      "legacyRuntimeHashScope": null,
+      "candidateScope": "Released8b3a5e41 tracked gameplay source verified from recorded commit",
+      "runtimeHashStatus": "MISSING_RUNTIME_HASH; commit comparison may establish tracked source only",
+      "persistedClearStatus": "Battle outcome only; persisted clear not established by this row",
       "continuationHistory": []
     },
     {
@@ -12863,6 +15239,7 @@
           "foe-9",
           "foe-9-cluster"
         ],
+        "separateDamagedOrAttackingObjectiveIds": [],
         "normalEnemyHitPctHpDiagnostic": {
           "n": 12,
           "mean": 6.911489453974693,
@@ -12897,6 +15274,29 @@
             "marker": "resident-marker-3",
             "round": 6,
             "accepted": true
+          }
+        ],
+        "protectedNpcStates": [
+          {
+            "id": "resident-1",
+            "hp": 535,
+            "maxHp": 600,
+            "dead": false,
+            "resolved": true
+          },
+          {
+            "id": "resident-2",
+            "hp": 600,
+            "maxHp": 600,
+            "dead": false,
+            "resolved": true
+          },
+          {
+            "id": "resident-3",
+            "hp": 515,
+            "maxHp": 600,
+            "dead": false,
+            "resolved": true
           }
         ],
         "finalHeroes": [
@@ -13173,26 +15573,6 @@
           }
         ],
         "sampledRoutes": {
-          "p-archer": {
-            "sampleCount": 453,
-            "xRange": [
-              462.25,
-              3149.561557789414
-            ],
-            "yRange": [
-              2002.158069549996,
-              3963.4015310162804
-            ],
-            "observedSupports": [
-              "fc7-west-watch",
-              "ramp-1",
-              "ramp-2",
-              "tier-low",
-              "tier-mid",
-              "tier-upper"
-            ],
-            "sampledPathLengthLowerBound": 6281.461469076398
-          },
           "p-knight": {
             "sampleCount": 453,
             "xRange": [
@@ -13213,6 +15593,26 @@
               "tier-upper"
             ],
             "sampledPathLengthLowerBound": 8068.822323958706
+          },
+          "p-archer": {
+            "sampleCount": 453,
+            "xRange": [
+              462.25,
+              3149.561557789414
+            ],
+            "yRange": [
+              2002.158069549996,
+              3963.4015310162804
+            ],
+            "observedSupports": [
+              "fc7-west-watch",
+              "ramp-1",
+              "ramp-2",
+              "tier-low",
+              "tier-mid",
+              "tier-upper"
+            ],
+            "sampledPathLengthLowerBound": 6281.461469076398
           },
           "p-mage": {
             "sampleCount": 453,
@@ -13326,6 +15726,638 @@
       "legacyRuntimeHashScope": null,
       "candidateScope": "Released8b3a5e41 tracked gameplay source verified from recorded commit",
       "runtimeHashStatus": "MISSING_RUNTIME_HASH; commit comparison may establish tracked source only",
+      "persistedClearStatus": "Battle outcome only; persisted clear not established by this row",
+      "continuationHistory": []
+    },
+    {
+      "stage": 7,
+      "policy": "objective-focused-flow-noitems-appops",
+      "cohort": false,
+      "inputErrorSeed": 1370,
+      "engineSeed": 19388,
+      "scope": "Actual App frame/charge/defend/input-intent simulation with DOM/render/clock doubles and idealized legal aim, NOT browser. Declared entry, not continuous campaign.",
+      "evidence": "_local/reports/act1-gameplay-20261103/stage7-objective-focused-flow-noitems-appops-1370/trace.json",
+      "sha256": "d1820b9648506c71ce2e01e0f35d457c1872364a9997e141302d023b2c69b54c",
+      "phase": "won",
+      "round": 7,
+      "roundTarget": [
+        9,
+        12
+      ],
+      "trialRoundInTarget": false,
+      "hard20Exceeded": false,
+      "winnerReason": "살아 있는 주민 셋에게서 붙은 혼을 떼어냈다. 소단은 이들이 가족을 해치지 못하도록 붉은 실로 붙들고 있었다. 구조한 주민들의 귀환로를 가로막은 빈 상여부터 멈추러 간다.",
+      "entry": {
+        "difficulty": "normal",
+        "heroes": [
+          {
+            "cls": "archer",
+            "level": 6,
+            "hp": 538,
+            "loadout": [
+              "A01",
+              "A14",
+              "A02",
+              "A11"
+            ],
+            "ranks": {
+              "A01": 1,
+              "A14": 1,
+              "A02": 1,
+              "A11": 1,
+              "AP01": 4,
+              "AP04": 2,
+              "AP02": 1
+            }
+          },
+          {
+            "cls": "mage",
+            "level": 6,
+            "hp": 579,
+            "loadout": [
+              "M01",
+              "M06",
+              "M04",
+              "M11"
+            ],
+            "ranks": {
+              "M01": 1,
+              "M06": 1,
+              "M02": 1,
+              "M04": 1,
+              "M03": 1,
+              "M11": 1,
+              "MP01": 3,
+              "MP02": 2
+            }
+          },
+          {
+            "cls": "knight",
+            "level": 6,
+            "hp": 1058,
+            "loadout": [
+              "S00",
+              "S09",
+              "S03",
+              "S05"
+            ],
+            "ranks": {
+              "S00": 1,
+              "S09": 1,
+              "S03": 1,
+              "S05": 1,
+              "S07": 1,
+              "SP01": 2,
+              "SP02": 3
+            }
+          }
+        ]
+      },
+      "composition": {
+        "initialEnemiesExcludingObjectiveTargets": 22,
+        "initialElites": 2,
+        "initialMinibosses": 0,
+        "initialMajorBosses": 0,
+        "initialMajorBossEncounters": 0,
+        "legacyMidbossFlagOnAuthoredMajorBoss": [],
+        "majorBossCountScope": "Authored Stage8 bier is major despite legacy honroMidboss flag; Stage10 binding is authored major-boss encounter, excluded from enemy budget; bound Sodan separately classified",
+        "archetypes": {
+          "human": 8,
+          "crow": 2,
+          "stag": 2,
+          "shade": 2,
+          "bat": 4,
+          "hound": 4
+        },
+        "initialObjectiveTargets": 0,
+        "initialHostileStoryActorsNotKillTargets": []
+      },
+      "observed": {
+        "kills": 5,
+        "survivingHeroes": 3,
+        "playerFireCommands": 12,
+        "partyHpDamage": 581,
+        "protectedNpcHpDamage": 472,
+        "alliedNpcHpDamage": 472,
+        "npcHpDamageById": {
+          "resident-2": 250,
+          "resident-3": 157,
+          "resident-1": 65
+        },
+        "damageToHostileSideIncludingTargets": 2939,
+        "damageBackedEngagementLowerBound": 22,
+        "damageBackedEngagedIds": [
+          "event-47",
+          "event-49",
+          "event-50",
+          "foe-0",
+          "foe-0-cluster",
+          "foe-1",
+          "foe-1-cluster",
+          "foe-10",
+          "foe-10-cluster",
+          "foe-2",
+          "foe-3",
+          "foe-3-cluster",
+          "foe-4",
+          "foe-4-cluster",
+          "foe-5",
+          "foe-5-cluster",
+          "foe-6-cluster",
+          "foe-7",
+          "foe-8",
+          "foe-8-cluster",
+          "foe-9",
+          "foe-9-cluster"
+        ],
+        "separateDamagedOrAttackingObjectiveIds": [],
+        "normalEnemyHitPctHpDiagnostic": {
+          "n": 12,
+          "mean": 6.911489453974693,
+          "range": [
+            1.8783542039355994,
+            12.280701754385964
+          ]
+        },
+        "acceptedSkills": {
+          "M11": 5,
+          "S03": 3,
+          "A02": 3,
+          "M06": 1
+        },
+        "acceptedJumpCommands": 11,
+        "acceptedDropCommands": 0,
+        "itemCommands": [],
+        "playerEngineWaitCommands": [],
+        "normalAppDefendCommands": 6,
+        "normalAppInteractions": [
+          {
+            "marker": "resident-marker-1",
+            "round": 1,
+            "accepted": true
+          },
+          {
+            "marker": "resident-marker-2",
+            "round": 2,
+            "accepted": true
+          },
+          {
+            "marker": "resident-marker-3",
+            "round": 6,
+            "accepted": true
+          }
+        ],
+        "protectedNpcStates": [
+          {
+            "id": "resident-1",
+            "hp": 535,
+            "maxHp": 600,
+            "dead": false,
+            "resolved": true
+          },
+          {
+            "id": "resident-2",
+            "hp": 600,
+            "maxHp": 600,
+            "dead": false,
+            "resolved": true
+          },
+          {
+            "id": "resident-3",
+            "hp": 515,
+            "maxHp": 600,
+            "dead": false,
+            "resolved": true
+          }
+        ],
+        "finalHeroes": [
+          {
+            "id": "p-archer",
+            "hp": 570,
+            "maxHp": 570,
+            "dead": false,
+            "x": 805.0333548677143,
+            "y": 2200
+          },
+          {
+            "id": "p-mage",
+            "hp": 613,
+            "maxHp": 613,
+            "dead": false,
+            "x": 2536.041090394905,
+            "y": 1208.2570789078554
+          },
+          {
+            "id": "p-knight",
+            "hp": 1118,
+            "maxHp": 1118,
+            "dead": false,
+            "x": 2745.6905348826094,
+            "y": 1159.338875194058
+          }
+        ],
+        "finalObjectiveState": {
+          "flags": {
+            "sector-0": true,
+            "story:sodan-known": true,
+            "sector-1": true,
+            "sector-2": true,
+            "event:upper-crows": true,
+            "sector-3": true
+          },
+          "collected": [],
+          "hold": 0,
+          "lastRound": 7,
+          "rescued": false,
+          "rescuedCount": 3,
+          "receivers": 0,
+          "ledger": false,
+          "sodanCoop": false,
+          "coopHold": 0,
+          "allyQueue": null,
+          "combatLog": [
+            {
+              "round": 1,
+              "actor": "resident-1",
+              "action": "heal",
+              "target": "p-archer"
+            },
+            {
+              "round": 1,
+              "actor": "resident-2",
+              "action": "heal",
+              "target": "resident-2"
+            },
+            {
+              "round": 1,
+              "actor": "resident-3",
+              "action": "heal",
+              "target": "resident-3"
+            },
+            {
+              "round": 2,
+              "actor": "resident-1",
+              "action": "heal",
+              "target": "p-archer"
+            },
+            {
+              "round": 2,
+              "actor": "resident-2",
+              "action": "heal",
+              "target": "p-mage"
+            },
+            {
+              "round": 2,
+              "actor": "resident-3",
+              "action": "heal",
+              "target": "resident-3"
+            },
+            {
+              "round": 3,
+              "actor": "resident-1",
+              "action": "heal",
+              "target": "p-archer"
+            },
+            {
+              "round": 3,
+              "actor": "resident-2",
+              "action": "heal",
+              "target": "p-mage"
+            },
+            {
+              "round": 3,
+              "actor": "resident-3",
+              "action": "heal",
+              "target": "p-knight"
+            },
+            {
+              "round": 4,
+              "actor": "resident-1",
+              "action": "heal",
+              "target": "resident-1"
+            },
+            {
+              "round": 4,
+              "actor": "resident-2",
+              "action": "heal",
+              "target": "p-archer"
+            },
+            {
+              "round": 4,
+              "actor": "resident-3",
+              "action": "heal",
+              "target": "p-mage"
+            },
+            {
+              "round": 5,
+              "actor": "resident-1",
+              "action": "heal",
+              "target": "resident-1"
+            },
+            {
+              "round": 5,
+              "actor": "resident-2",
+              "action": "heal",
+              "target": "resident-2"
+            },
+            {
+              "round": 5,
+              "actor": "resident-3",
+              "action": "heal",
+              "target": "resident-3"
+            },
+            {
+              "round": 6,
+              "actor": "resident-1",
+              "action": "heal",
+              "target": "resident-1"
+            },
+            {
+              "round": 6,
+              "actor": "resident-2",
+              "action": "heal",
+              "target": "resident-2"
+            },
+            {
+              "round": 6,
+              "actor": "resident-3",
+              "action": "heal",
+              "target": "p-archer"
+            },
+            {
+              "round": 7,
+              "actor": "resident-1",
+              "action": "heal",
+              "target": "resident-1"
+            },
+            {
+              "round": 7,
+              "actor": "resident-2",
+              "action": "heal",
+              "target": "resident-2"
+            },
+            {
+              "round": 7,
+              "actor": "resident-3",
+              "action": "heal",
+              "target": "p-archer"
+            }
+          ],
+          "respawns": 0,
+          "carriagePauseUntilRound": 0,
+          "entryScheduled": true,
+          "deferredStory": [],
+          "completedStory": {
+            "act1-v6:entry-7": true,
+            "act1-v6:rescue-resident-1": true,
+            "act1-v6:rescue-resident-2": true,
+            "act1-v6:event-7-upper-crows": true,
+            "act1-v6:rescue-resident-3": true
+          },
+          "storyQueue": [],
+          "storyBanter": [],
+          "banterLine": null,
+          "pendingEvents": [
+            "yard-hounds"
+          ],
+          "encounterCooldown": 0,
+          "objectiveTravel": {
+            "p-archer": {
+              "x": 805.0333548677143,
+              "y": 2200
+            },
+            "p-mage": {
+              "x": 2536.041090394905,
+              "y": 1208.2570789078554
+            },
+            "p-knight": {
+              "x": 2745.6905348826094,
+              "y": 1159.338875194058
+            }
+          },
+          "actorTurnSerial": 97,
+          "eventActors": {
+            "yard-hounds": {
+              "id": "p-mage",
+              "round": 1
+            },
+            "upper-crows": {
+              "id": "p-mage",
+              "round": 3
+            }
+          },
+          "allyDoneRound": 7,
+          "lastRitualRound": 7,
+          "lastEventBoundary": "7:6:0",
+          "reinforcementEvents": {
+            "upper-crows": [
+              "event-47",
+              "event-48",
+              "event-49",
+              "event-50"
+            ]
+          },
+          "lastCombatEventBoundary": "71:6:5:5:0:p-archer",
+          "eventLog": [
+            {
+              "id": "upper-crows",
+              "phase": "aim",
+              "round": 6,
+              "side": 0,
+              "teamEnds": [
+                5,
+                5,
+                0
+              ]
+            }
+          ],
+          "objectiveReadyRound": 6,
+          "objectiveSettlement": {
+            "version": 1,
+            "progress": 2,
+            "preserved": false,
+            "enemyEnd": 7
+          },
+          "habitatHold": {
+            "version": 1,
+            "remaining": 6
+          }
+        },
+        "collectedFiniteSupplyPoints": [
+          {
+            "id": "marker-2",
+            "x": 2480,
+            "y": 3000,
+            "label": "불씨"
+          },
+          {
+            "id": "marker-4",
+            "x": 1080,
+            "y": 2200,
+            "label": "불씨"
+          },
+          {
+            "id": "marker-6",
+            "x": 2660,
+            "y": 1179.3333333333333,
+            "label": "불씨"
+          }
+        ],
+        "sampledRoutes": {
+          "p-knight": {
+            "sampleCount": 453,
+            "xRange": [
+              502,
+              3129.045868438327
+            ],
+            "yRange": [
+              1159.338875194058,
+              4083.814432989691
+            ],
+            "observedSupports": [
+              "ramp-1",
+              "ramp-2",
+              "ramp-3",
+              "tier-crown",
+              "tier-low",
+              "tier-mid",
+              "tier-upper"
+            ],
+            "sampledPathLengthLowerBound": 8068.822323958706
+          },
+          "p-archer": {
+            "sampleCount": 453,
+            "xRange": [
+              462.25,
+              3149.561557789414
+            ],
+            "yRange": [
+              2002.158069549996,
+              3963.4015310162804
+            ],
+            "observedSupports": [
+              "fc7-west-watch",
+              "ramp-1",
+              "ramp-2",
+              "tier-low",
+              "tier-mid",
+              "tier-upper"
+            ],
+            "sampledPathLengthLowerBound": 6281.461469076398
+          },
+          "p-mage": {
+            "sampleCount": 453,
+            "xRange": [
+              410,
+              3090.7330848117817
+            ],
+            "yRange": [
+              1208.2570789078554,
+              4117.01030927835
+            ],
+            "observedSupports": [
+              "ramp-1",
+              "ramp-2",
+              "ramp-3",
+              "tier-crown",
+              "tier-low",
+              "tier-mid",
+              "tier-upper"
+            ],
+            "sampledPathLengthLowerBound": 8165.745888283884
+          }
+        },
+        "normalKilledEnemyPlayerEffectiveLaunches": [
+          {
+            "target": "foe-4",
+            "effectivePlayerLaunchCount": 1,
+            "alliedAssistanceDamage": 0
+          },
+          {
+            "target": "foe-8",
+            "effectivePlayerLaunchCount": 2,
+            "alliedAssistanceDamage": 0
+          },
+          {
+            "target": "foe-0-cluster",
+            "effectivePlayerLaunchCount": 2,
+            "alliedAssistanceDamage": 0
+          },
+          {
+            "target": "foe-5-cluster",
+            "effectivePlayerLaunchCount": 2,
+            "alliedAssistanceDamage": 0
+          },
+          {
+            "target": "foe-8-cluster",
+            "effectivePlayerLaunchCount": 2,
+            "alliedAssistanceDamage": 0
+          }
+        ],
+        "unattributedPlayerDamageEvents": 0,
+        "enemyLaunchDiagnostic": {
+          "acceptedLaunches": 35,
+          "launchesDamagingHeroes": 12,
+          "launchesWithoutObservedHeroDamage": 23,
+          "byRound": {
+            "1": 5,
+            "2": 5,
+            "3": 5,
+            "4": 5,
+            "5": 5,
+            "6": 5,
+            "7": 5
+          },
+          "normalActionTargetPctHp": {
+            "n": 12,
+            "mean": 6.911489453974693,
+            "range": [
+              1.8783542039355994,
+              12.280701754385964
+            ]
+          },
+          "unassignedHeroDamageEvents": 0,
+          "scope": "Owner/time attribution diagnostic only; approach, control, protected-NPC pressure and delayed-effect overlap not fully classified."
+        },
+        "effectiveLaunchCaveat": "Recorded launch-to-impact association by actor/time; delayed effects and ally assistance require review before kill-actions gate.",
+        "routeCaveat": "One-second samples: path length lower bound, not exact movement or valid landing attribution.",
+        "noncriticalNormalHitPctHp": {
+          "n": 0,
+          "values": [],
+          "mean": null,
+          "median": null,
+          "range": null,
+          "source": "Production emitted damage text includes actual damage/critical/attackId; HP-loss truncation avoided. Fully shield-absorbed no-damage hits not in this event sample.",
+          "sampleScope": "Separate instrumentation diagnostic, not additional registered cohort cases"
+        }
+      },
+      "missingEssential": [
+        "validated enemy effective-action denominator incl zero phases",
+        "original single noncritical hit measurement with attack/defense context",
+        "accepted full required support graph and elevation ratio",
+        "valid jump/drop/landing attribution",
+        "stage-specific special metric comparison",
+        "readability and native UI scene review",
+        "human-independent tactics assessment"
+      ],
+      "acceptance": "FAIL_UNMEASURED",
+      "normalUiApplicability": "No inaccessible item/wait calls observed; remaining controls/entry/UI still require verification",
+      "sourceCommit": "1ca0c7d072c007f4415f8e66fc004f1a6ed4643a",
+      "sourceEvidence": null,
+      "sourceProvenanceStatus": "Recorded commit",
+      "operationMode": "NATIVE_APP_ACTION_SIMULATION",
+      "controllerFileSha256": "acc6b8b29169ba5d73f1c0ccefb4c895733936b824827a280cecddba685f646b",
+      "runnerSha256": "be14d503f8c0b31a7f832d44d5457739fccc0689c1e92d00856df3c7a583c121",
+      "sourceDirtyAtStart": "M tools/act1-qa/summarize.py",
+      "controllerCalibrationStatus": "Diagnostic calibration unless separately preregistered",
+      "controllerExecutionError": null,
+      "outcomeQualification": "TERMINAL_WON",
+      "runtimeSha256": null,
+      "legacyRuntimePartsHash": null,
+      "legacyRuntimeHashScope": null,
+      "candidateScope": "Released8b3a5e41 tracked gameplay source verified from recorded commit",
+      "runtimeHashStatus": "MISSING_RUNTIME_HASH; commit comparison may establish tracked source only",
+      "persistedClearStatus": "Battle outcome only; persisted clear not established by this row",
       "continuationHistory": []
     },
     {
@@ -13443,10 +16475,8 @@
         "alliedNpcHpDamage": 0,
         "npcHpDamageById": {},
         "damageToHostileSideIncludingTargets": 6536,
-        "damageBackedEngagementLowerBound": 26,
+        "damageBackedEngagementLowerBound": 24,
         "damageBackedEngagedIds": [
-          "bier-knot-0",
-          "bier-knot-1",
           "boss",
           "s8-1",
           "s8-10",
@@ -13472,6 +16502,10 @@
           "s8-7",
           "s8-8"
         ],
+        "separateDamagedOrAttackingObjectiveIds": [
+          "bier-knot-0",
+          "bier-knot-1"
+        ],
         "normalEnemyHitPctHpDiagnostic": {
           "n": 36,
           "mean": 3.84637549946765,
@@ -13496,6 +16530,7 @@
         "playerEngineWaitCommands": [],
         "normalAppDefendCommands": 6,
         "normalAppInteractions": [],
+        "protectedNpcStates": [],
         "finalHeroes": [
           {
             "id": "p-archer",
@@ -13865,6 +16900,7 @@
       "legacyRuntimeHashScope": "Historical Stage8 test hashes runtimeParts without productionStory:true; NOT a complete hash of actual selected production-story runtime",
       "candidateScope": "Released8b3a5e41 tracked gameplay source verified from recorded commit",
       "runtimeHashStatus": "Recorded",
+      "persistedClearStatus": "Recorded normal settlement export",
       "continuationHistory": [],
       "postVictoryStatus": "Normal result/rest/journey9 verified"
     },
@@ -13987,6 +17023,7 @@
           "foe-4",
           "foe-7"
         ],
+        "separateDamagedOrAttackingObjectiveIds": [],
         "normalEnemyHitPctHpDiagnostic": {
           "n": 4,
           "mean": 3.2301041092503207,
@@ -14013,6 +17050,7 @@
             "accepted": true
           }
         ],
+        "protectedNpcStates": [],
         "finalHeroes": [
           {
             "id": "p-archer",
@@ -14221,6 +17259,7 @@
       "legacyRuntimeHashScope": null,
       "candidateScope": "Released8b3a5e41 tracked gameplay source verified from recorded commit",
       "runtimeHashStatus": "MISSING_RUNTIME_HASH; commit comparison may establish tracked source only",
+      "persistedClearStatus": "Battle outcome only; persisted clear not established by this row",
       "continuationHistory": []
     },
     {
@@ -14342,6 +17381,7 @@
           "foe-4",
           "foe-7"
         ],
+        "separateDamagedOrAttackingObjectiveIds": [],
         "normalEnemyHitPctHpDiagnostic": {
           "n": 4,
           "mean": 3.2301041092503207,
@@ -14368,6 +17408,7 @@
             "accepted": true
           }
         ],
+        "protectedNpcStates": [],
         "finalHeroes": [
           {
             "id": "p-archer",
@@ -14576,6 +17617,979 @@
       "legacyRuntimeHashScope": null,
       "candidateScope": "Released8b3a5e41 tracked gameplay source verified from recorded commit",
       "runtimeHashStatus": "MISSING_RUNTIME_HASH; commit comparison may establish tracked source only",
+      "persistedClearStatus": "Recorded normal settlement export",
+      "continuationHistory": []
+    },
+    {
+      "stage": 10,
+      "policy": "reactive-browser-native-1250",
+      "cohort": false,
+      "inputErrorSeed": null,
+      "engineSeed": 19388,
+      "scope": "Native actual App actions with DOM/render/clock doubles and idealized aim gesture; not browser input",
+      "evidence": "_local/reports/act1-gameplay-20261103/stage10-reactive-browser-native-1250/trace.json",
+      "sha256": "3254193fa8ceeae1b8c1d2ff5f7f23529e6ac851c86a6c2b8a75be83821e6eff",
+      "phase": "won",
+      "round": 12,
+      "roundTarget": [
+        12,
+        16
+      ],
+      "trialRoundInTarget": true,
+      "hard20Exceeded": false,
+      "winnerReason": "바깥 주박을 걷어내 혼을 나눠 받고 소단이 중심 매듭을 푸는 동안 호위했다. 새로운 원혼은 소단의 망이 아니라 동쪽 외문 밖의 산길에서 밀려들고 있었다. 안전하게 철수한 뒤 소단과 함께 북쪽 산길의 근원을 찾기로 했다.",
+      "entry": {
+        "difficulty": "normal",
+        "heroes": [
+          {
+            "cls": "archer",
+            "level": 9,
+            "hp": 632,
+            "loadout": [
+              "A01",
+              "A14",
+              "A02",
+              "A11"
+            ],
+            "ranks": {
+              "A01": 1,
+              "A14": 1,
+              "A02": 1,
+              "A11": 1,
+              "AP01": 4,
+              "AP04": 2,
+              "AP02": 1
+            }
+          },
+          {
+            "cls": "mage",
+            "level": 9,
+            "hp": 680,
+            "loadout": [
+              "M01",
+              "M06",
+              "M04",
+              "M11"
+            ],
+            "ranks": {
+              "M01": 1,
+              "M06": 1,
+              "M02": 1,
+              "M04": 1,
+              "M03": 1,
+              "M11": 1,
+              "MP01": 3,
+              "MP02": 2
+            }
+          },
+          {
+            "cls": "knight",
+            "level": 9,
+            "hp": 1237,
+            "loadout": [
+              "S00",
+              "S09",
+              "S08",
+              "S03"
+            ],
+            "ranks": {
+              "S00": 1,
+              "S09": 1,
+              "S03": 1,
+              "S05": 1,
+              "S07": 1,
+              "S08": 1,
+              "SP01": 2,
+              "SP02": 3
+            }
+          }
+        ]
+      },
+      "composition": {
+        "initialEnemiesExcludingObjectiveTargets": 16,
+        "initialElites": 0,
+        "initialMinibosses": 0,
+        "initialMajorBosses": 0,
+        "initialMajorBossEncounters": 1,
+        "legacyMidbossFlagOnAuthoredMajorBoss": [],
+        "majorBossCountScope": "Authored Stage8 bier is major despite legacy honroMidboss flag; Stage10 binding is authored major-boss encounter, excluded from enemy budget; bound Sodan separately classified",
+        "archetypes": {
+          "hound": 12,
+          "ghost": 2,
+          "boar": 2
+        },
+        "initialObjectiveTargets": 1,
+        "initialHostileStoryActorsNotKillTargets": [
+          "boss"
+        ]
+      },
+      "observed": {
+        "kills": 7,
+        "survivingHeroes": 3,
+        "playerFireCommands": 33,
+        "partyHpDamage": 2331.3,
+        "protectedNpcHpDamage": 592,
+        "alliedNpcHpDamage": 592,
+        "npcHpDamageById": {
+          "boss": 592
+        },
+        "damageToHostileSideIncludingTargets": 9509,
+        "damageBackedEngagementLowerBound": 23,
+        "damageBackedEngagedIds": [
+          "event-108",
+          "event-45",
+          "event-46",
+          "event-49",
+          "event-50",
+          "event-51",
+          "event-52",
+          "event-59",
+          "event-60",
+          "event-61",
+          "event-62",
+          "event-63",
+          "foe-0",
+          "foe-0-cluster",
+          "foe-1",
+          "foe-1-cluster",
+          "foe-3",
+          "foe-3-cluster",
+          "foe-4",
+          "foe-4-cluster",
+          "foe-6",
+          "foe-6-cluster",
+          "foe-7"
+        ],
+        "separateDamagedOrAttackingObjectiveIds": [
+          "sodan-binding"
+        ],
+        "normalEnemyHitPctHpDiagnostic": {
+          "n": 43,
+          "mean": 5.413324904193049,
+          "range": [
+            1.6191210485736314,
+            15.0
+          ]
+        },
+        "acceptedSkills": {
+          "A14": 2,
+          "M11": 8,
+          "S03": 1,
+          "A02": 9,
+          "M04": 1,
+          "S09": 5,
+          "S08": 5,
+          "M06": 2
+        },
+        "acceptedJumpCommands": 4,
+        "acceptedDropCommands": 0,
+        "itemCommands": [],
+        "playerEngineWaitCommands": [],
+        "normalAppDefendCommands": 0,
+        "normalAppInteractions": [],
+        "protectedNpcStates": [
+          {
+            "id": "boss",
+            "hp": 556,
+            "maxHp": 820,
+            "dead": false,
+            "resolved": null
+          }
+        ],
+        "finalHeroes": [
+          {
+            "id": "p-archer",
+            "hp": 664,
+            "maxHp": 664,
+            "dead": false,
+            "x": 5900,
+            "y": 2710.3713432565337
+          },
+          {
+            "id": "p-mage",
+            "hp": 680,
+            "maxHp": 680,
+            "dead": false,
+            "x": 6010,
+            "y": 2698.6482747508862
+          },
+          {
+            "id": "p-knight",
+            "hp": 1297,
+            "maxHp": 1297,
+            "dead": false,
+            "x": 6120,
+            "y": 2711.0846369382557
+          }
+        ],
+        "finalObjectiveState": {
+          "flags": {
+            "sector-0": true,
+            "sector-1": true,
+            "sector-2": true,
+            "sector-3": true
+          },
+          "collected": [],
+          "hold": 0,
+          "lastRound": 11,
+          "rescued": false,
+          "rescuedCount": 0,
+          "receivers": 2,
+          "ledger": false,
+          "sodanCoop": true,
+          "coopHold": 6,
+          "allyQueue": null,
+          "combatLog": [],
+          "respawns": 0,
+          "carriagePauseUntilRound": 0,
+          "sodanBinding": {
+            "revision": 1,
+            "phase": "protecting",
+            "bodyHp": 5803,
+            "lastHitTime": 0,
+            "hitCount": 28,
+            "remaining": 0
+          },
+          "entryScheduled": true,
+          "deferredStory": [],
+          "completedStory": {
+            "act1-v6:entry-10": true,
+            "act1-v6:entry-follow-10-0": true,
+            "event:10:sodan-binding-loosened:1": true,
+            "act1-v6:cooperation": true,
+            "act1-v6:cooperation-defense": true,
+            "act1-v6:finale-midpoint": true
+          },
+          "storyQueue": [],
+          "storyBanter": [],
+          "banterLine": null,
+          "pendingEvents": [
+            "sodan-hounds"
+          ],
+          "encounterCooldown": 0,
+          "objectiveTravel": {
+            "p-archer": {
+              "x": 4855.777334331729,
+              "y": 2904.6584197900643
+            },
+            "p-mage": {
+              "x": 2335.5283038077123,
+              "y": 2254.0122632865296
+            },
+            "p-knight": {
+              "x": 2573.9754168457534,
+              "y": 2205.3073794472316
+            }
+          },
+          "actorTurnSerial": 115,
+          "eventActors": {
+            "sodan-hounds": {
+              "id": "p-mage",
+              "round": 1
+            }
+          },
+          "lastRitualRound": 11,
+          "lastEventBoundary": "11:11:0",
+          "narrativeEventSerial": 1,
+          "finaleSites": [
+            {
+              "id": "west",
+              "label": "서쪽 전각",
+              "x": 1650,
+              "y": 2604.5833333333335,
+              "support": "outer-yard"
+            },
+            {
+              "id": "east",
+              "label": "동쪽 전각",
+              "x": 3550,
+              "y": 2620,
+              "support": "outer-yard"
+            }
+          ],
+          "finaleWaves": [
+            {
+              "index": 0,
+              "round": 6,
+              "units": [
+                "event-45",
+                "event-46",
+                "event-47",
+                "event-48",
+                "event-49",
+                "event-50",
+                "event-51",
+                "event-52"
+              ],
+              "sources": [
+                "east",
+                "west"
+              ]
+            },
+            {
+              "index": 1,
+              "round": 6,
+              "units": [
+                "event-58",
+                "event-59",
+                "event-60",
+                "event-61",
+                "event-62",
+                "event-63"
+              ],
+              "sources": [
+                "west",
+                "east"
+              ]
+            },
+            {
+              "index": 2,
+              "round": 7,
+              "units": [
+                "event-80"
+              ],
+              "sources": [
+                "east"
+              ]
+            },
+            {
+              "index": 4,
+              "round": 9,
+              "units": [
+                "event-107",
+                "event-108"
+              ],
+              "sources": [
+                "east",
+                "west"
+              ]
+            }
+          ],
+          "sodanBreach": {
+            "units": [
+              "event-45",
+              "event-46",
+              "event-47",
+              "event-48",
+              "event-49",
+              "event-50",
+              "event-51",
+              "event-52"
+            ],
+            "round": 6,
+            "source": "east"
+          },
+          "finaleLastEnemyEnd": 11,
+          "finaleWave": 5,
+          "finaleAnchor": {
+            "x": 2500,
+            "y": 2180
+          },
+          "finaleRevision": 2,
+          "finaleDefenseTurns": 6,
+          "sodanWithdrawal": {
+            "phase": "safe",
+            "elapsed": 1.1,
+            "scout": "p-archer",
+            "party": [
+              "설오",
+              "담허",
+              "휘겸",
+              "소단"
+            ],
+            "worldOutro": 2
+          },
+          "objectiveReadyRound": 12
+        },
+        "collectedFiniteSupplyPoints": [
+          {
+            "id": "marker-2",
+            "x": 2380,
+            "y": 2168,
+            "label": "불씨"
+          },
+          {
+            "id": "marker-4",
+            "x": 3980,
+            "y": 2778.5714285714284,
+            "label": "불씨"
+          },
+          {
+            "id": "marker-6",
+            "x": 4540,
+            "y": 2892.962962962963,
+            "label": "불씨"
+          }
+        ],
+        "sampledRoutes": {},
+        "normalKilledEnemyPlayerEffectiveLaunches": [
+          {
+            "target": "foe-4",
+            "effectivePlayerLaunchCount": null,
+            "alliedAssistanceDamage": 0
+          },
+          {
+            "target": "foe-6",
+            "effectivePlayerLaunchCount": null,
+            "alliedAssistanceDamage": 0
+          },
+          {
+            "target": "foe-6-cluster",
+            "effectivePlayerLaunchCount": null,
+            "alliedAssistanceDamage": 0
+          },
+          {
+            "target": "event-46",
+            "effectivePlayerLaunchCount": null,
+            "alliedAssistanceDamage": 0
+          },
+          {
+            "target": "event-51",
+            "effectivePlayerLaunchCount": null,
+            "alliedAssistanceDamage": 0
+          },
+          {
+            "target": "event-60",
+            "effectivePlayerLaunchCount": null,
+            "alliedAssistanceDamage": 0
+          },
+          {
+            "target": "event-63",
+            "effectivePlayerLaunchCount": null,
+            "alliedAssistanceDamage": 0
+          }
+        ],
+        "unattributedPlayerDamageEvents": 95,
+        "enemyLaunchDiagnostic": {
+          "status": "MISSING_INSTRUMENTATION",
+          "acceptedLaunches": null,
+          "scope": "This source does not capture all accepted Engine fire calls; zero cannot be inferred."
+        },
+        "effectiveLaunchCaveat": "Recorded launch-to-impact association by actor/time; delayed effects and ally assistance require review before kill-actions gate.",
+        "routeCaveat": "One-second samples: path length lower bound, not exact movement or valid landing attribution.",
+        "noncriticalNormalHitPctHp": {
+          "n": 0,
+          "values": [],
+          "mean": null,
+          "median": null,
+          "range": null,
+          "source": "Production emitted damage text includes actual damage/critical/attackId; HP-loss truncation avoided. Fully shield-absorbed no-damage hits not in this event sample.",
+          "sampleScope": "Separate instrumentation diagnostic, not additional registered cohort cases"
+        }
+      },
+      "missingEssential": [
+        "validated enemy effective-action denominator incl zero phases",
+        "original single noncritical hit measurement with attack/defense context",
+        "accepted full required support graph and elevation ratio",
+        "valid jump/drop/landing attribution",
+        "stage-specific special metric comparison",
+        "readability and native UI scene review",
+        "human-independent tactics assessment"
+      ],
+      "acceptance": "FAIL_UNMEASURED",
+      "normalUiApplicability": "No inaccessible item/wait calls observed; remaining controls/entry/UI still require verification",
+      "sourceCommit": "2da776e79c7245f5459f3aae5604c02c71601fa6",
+      "sourceEvidence": null,
+      "sourceProvenanceStatus": "Recorded commit",
+      "operationMode": "NATIVE_APP_ACTION_SIMULATION",
+      "controllerFileSha256": null,
+      "runnerSha256": null,
+      "sourceDirtyAtStart": "",
+      "controllerCalibrationStatus": "Diagnostic calibration unless separately preregistered",
+      "controllerExecutionError": "AssertionError [ERR_ASSERTION]: Normal App launch rejected\n    at file:///workspace/scratch/fff510b4df37/honro-act1-current-app-qa/tools/act1-qa/reactive-app.mjs:21:129",
+      "outcomeQualification": "CONTROLLER_EXCEPTION",
+      "runtimeSha256": null,
+      "legacyRuntimePartsHash": null,
+      "legacyRuntimeHashScope": null,
+      "candidateScope": "Released8b3a5e41 tracked gameplay source verified from recorded commit",
+      "runtimeHashStatus": "MISSING_RUNTIME_HASH; commit comparison may establish tracked source only",
+      "persistedClearStatus": "Battle outcome only; persisted clear not established by this row",
+      "continuationHistory": []
+    },
+    {
+      "stage": 10,
+      "policy": "reactive-browser-native-terminal-1251",
+      "cohort": false,
+      "inputErrorSeed": null,
+      "engineSeed": 19388,
+      "scope": "Native actual App actions with DOM/render/clock doubles and idealized aim gesture; not browser input",
+      "evidence": "_local/reports/act1-gameplay-20261103/stage10-reactive-browser-native-terminal-1251/trace.json",
+      "sha256": "1d6adab8870c554fee951c3dec3d96a340ab989d97fe347f36dcd610bd2661df",
+      "phase": "won",
+      "round": 12,
+      "roundTarget": [
+        12,
+        16
+      ],
+      "trialRoundInTarget": true,
+      "hard20Exceeded": false,
+      "winnerReason": "바깥 주박을 걷어내 혼을 나눠 받고 소단이 중심 매듭을 푸는 동안 호위했다. 새로운 원혼은 소단의 망이 아니라 동쪽 외문 밖의 산길에서 밀려들고 있었다. 안전하게 철수한 뒤 소단과 함께 북쪽 산길의 근원을 찾기로 했다.",
+      "entry": {
+        "difficulty": "normal",
+        "heroes": [
+          {
+            "cls": "archer",
+            "level": 9,
+            "hp": 632,
+            "loadout": [
+              "A01",
+              "A14",
+              "A02",
+              "A11"
+            ],
+            "ranks": {
+              "A01": 1,
+              "A14": 1,
+              "A02": 1,
+              "A11": 1,
+              "AP01": 4,
+              "AP04": 2,
+              "AP02": 1
+            }
+          },
+          {
+            "cls": "mage",
+            "level": 9,
+            "hp": 680,
+            "loadout": [
+              "M01",
+              "M06",
+              "M04",
+              "M11"
+            ],
+            "ranks": {
+              "M01": 1,
+              "M06": 1,
+              "M02": 1,
+              "M04": 1,
+              "M03": 1,
+              "M11": 1,
+              "MP01": 3,
+              "MP02": 2
+            }
+          },
+          {
+            "cls": "knight",
+            "level": 9,
+            "hp": 1237,
+            "loadout": [
+              "S00",
+              "S09",
+              "S08",
+              "S03"
+            ],
+            "ranks": {
+              "S00": 1,
+              "S09": 1,
+              "S03": 1,
+              "S05": 1,
+              "S07": 1,
+              "S08": 1,
+              "SP01": 2,
+              "SP02": 3
+            }
+          }
+        ]
+      },
+      "composition": {
+        "initialEnemiesExcludingObjectiveTargets": 16,
+        "initialElites": 0,
+        "initialMinibosses": 0,
+        "initialMajorBosses": 0,
+        "initialMajorBossEncounters": 1,
+        "legacyMidbossFlagOnAuthoredMajorBoss": [],
+        "majorBossCountScope": "Authored Stage8 bier is major despite legacy honroMidboss flag; Stage10 binding is authored major-boss encounter, excluded from enemy budget; bound Sodan separately classified",
+        "archetypes": {
+          "hound": 12,
+          "ghost": 2,
+          "boar": 2
+        },
+        "initialObjectiveTargets": 1,
+        "initialHostileStoryActorsNotKillTargets": [
+          "boss"
+        ]
+      },
+      "observed": {
+        "kills": 7,
+        "survivingHeroes": 3,
+        "playerFireCommands": 33,
+        "partyHpDamage": 2331.3,
+        "protectedNpcHpDamage": 592,
+        "alliedNpcHpDamage": 592,
+        "npcHpDamageById": {
+          "boss": 592
+        },
+        "damageToHostileSideIncludingTargets": 9509,
+        "damageBackedEngagementLowerBound": 23,
+        "damageBackedEngagedIds": [
+          "event-108",
+          "event-45",
+          "event-46",
+          "event-49",
+          "event-50",
+          "event-51",
+          "event-52",
+          "event-59",
+          "event-60",
+          "event-61",
+          "event-62",
+          "event-63",
+          "foe-0",
+          "foe-0-cluster",
+          "foe-1",
+          "foe-1-cluster",
+          "foe-3",
+          "foe-3-cluster",
+          "foe-4",
+          "foe-4-cluster",
+          "foe-6",
+          "foe-6-cluster",
+          "foe-7"
+        ],
+        "separateDamagedOrAttackingObjectiveIds": [
+          "sodan-binding"
+        ],
+        "normalEnemyHitPctHpDiagnostic": {
+          "n": 43,
+          "mean": 5.413324904193049,
+          "range": [
+            1.6191210485736314,
+            15.0
+          ]
+        },
+        "acceptedSkills": {
+          "A14": 2,
+          "M11": 8,
+          "S03": 1,
+          "A02": 9,
+          "M04": 1,
+          "S09": 5,
+          "S08": 5,
+          "M06": 2
+        },
+        "acceptedJumpCommands": 4,
+        "acceptedDropCommands": 0,
+        "itemCommands": [],
+        "playerEngineWaitCommands": [],
+        "normalAppDefendCommands": 0,
+        "normalAppInteractions": [],
+        "protectedNpcStates": [
+          {
+            "id": "boss",
+            "hp": 556,
+            "maxHp": 820,
+            "dead": false,
+            "resolved": null
+          }
+        ],
+        "finalHeroes": [
+          {
+            "id": "p-archer",
+            "hp": 664,
+            "maxHp": 664,
+            "dead": false,
+            "x": 5900,
+            "y": 2710.3713432565337
+          },
+          {
+            "id": "p-mage",
+            "hp": 680,
+            "maxHp": 680,
+            "dead": false,
+            "x": 6010,
+            "y": 2698.6482747508862
+          },
+          {
+            "id": "p-knight",
+            "hp": 1297,
+            "maxHp": 1297,
+            "dead": false,
+            "x": 6120,
+            "y": 2711.0846369382557
+          }
+        ],
+        "finalObjectiveState": {
+          "flags": {
+            "sector-0": true,
+            "sector-1": true,
+            "sector-2": true,
+            "sector-3": true
+          },
+          "collected": [],
+          "hold": 0,
+          "lastRound": 11,
+          "rescued": false,
+          "rescuedCount": 0,
+          "receivers": 2,
+          "ledger": false,
+          "sodanCoop": true,
+          "coopHold": 6,
+          "allyQueue": null,
+          "combatLog": [],
+          "respawns": 0,
+          "carriagePauseUntilRound": 0,
+          "sodanBinding": {
+            "revision": 1,
+            "phase": "protecting",
+            "bodyHp": 5803,
+            "lastHitTime": 0,
+            "hitCount": 28,
+            "remaining": 0
+          },
+          "entryScheduled": true,
+          "deferredStory": [],
+          "completedStory": {
+            "act1-v6:entry-10": true,
+            "act1-v6:entry-follow-10-0": true,
+            "event:10:sodan-binding-loosened:1": true,
+            "act1-v6:cooperation": true,
+            "act1-v6:cooperation-defense": true,
+            "act1-v6:finale-midpoint": true
+          },
+          "storyQueue": [],
+          "storyBanter": [],
+          "banterLine": null,
+          "pendingEvents": [
+            "sodan-hounds"
+          ],
+          "encounterCooldown": 0,
+          "objectiveTravel": {
+            "p-archer": {
+              "x": 4855.777334331729,
+              "y": 2904.6584197900643
+            },
+            "p-mage": {
+              "x": 2335.5283038077123,
+              "y": 2254.0122632865296
+            },
+            "p-knight": {
+              "x": 2573.9754168457534,
+              "y": 2205.3073794472316
+            }
+          },
+          "actorTurnSerial": 115,
+          "eventActors": {
+            "sodan-hounds": {
+              "id": "p-mage",
+              "round": 1
+            }
+          },
+          "lastRitualRound": 11,
+          "lastEventBoundary": "11:11:0",
+          "narrativeEventSerial": 1,
+          "finaleSites": [
+            {
+              "id": "west",
+              "label": "서쪽 전각",
+              "x": 1650,
+              "y": 2604.5833333333335,
+              "support": "outer-yard"
+            },
+            {
+              "id": "east",
+              "label": "동쪽 전각",
+              "x": 3550,
+              "y": 2620,
+              "support": "outer-yard"
+            }
+          ],
+          "finaleWaves": [
+            {
+              "index": 0,
+              "round": 6,
+              "units": [
+                "event-45",
+                "event-46",
+                "event-47",
+                "event-48",
+                "event-49",
+                "event-50",
+                "event-51",
+                "event-52"
+              ],
+              "sources": [
+                "east",
+                "west"
+              ]
+            },
+            {
+              "index": 1,
+              "round": 6,
+              "units": [
+                "event-58",
+                "event-59",
+                "event-60",
+                "event-61",
+                "event-62",
+                "event-63"
+              ],
+              "sources": [
+                "west",
+                "east"
+              ]
+            },
+            {
+              "index": 2,
+              "round": 7,
+              "units": [
+                "event-80"
+              ],
+              "sources": [
+                "east"
+              ]
+            },
+            {
+              "index": 4,
+              "round": 9,
+              "units": [
+                "event-107",
+                "event-108"
+              ],
+              "sources": [
+                "east",
+                "west"
+              ]
+            }
+          ],
+          "sodanBreach": {
+            "units": [
+              "event-45",
+              "event-46",
+              "event-47",
+              "event-48",
+              "event-49",
+              "event-50",
+              "event-51",
+              "event-52"
+            ],
+            "round": 6,
+            "source": "east"
+          },
+          "finaleLastEnemyEnd": 11,
+          "finaleWave": 5,
+          "finaleAnchor": {
+            "x": 2500,
+            "y": 2180
+          },
+          "finaleRevision": 2,
+          "finaleDefenseTurns": 6,
+          "sodanWithdrawal": {
+            "phase": "safe",
+            "elapsed": 1.1,
+            "scout": "p-archer",
+            "party": [
+              "설오",
+              "담허",
+              "휘겸",
+              "소단"
+            ],
+            "worldOutro": 2
+          },
+          "objectiveReadyRound": 12
+        },
+        "collectedFiniteSupplyPoints": [
+          {
+            "id": "marker-2",
+            "x": 2380,
+            "y": 2168,
+            "label": "불씨"
+          },
+          {
+            "id": "marker-4",
+            "x": 3980,
+            "y": 2778.5714285714284,
+            "label": "불씨"
+          },
+          {
+            "id": "marker-6",
+            "x": 4540,
+            "y": 2892.962962962963,
+            "label": "불씨"
+          }
+        ],
+        "sampledRoutes": {},
+        "normalKilledEnemyPlayerEffectiveLaunches": [
+          {
+            "target": "foe-4",
+            "effectivePlayerLaunchCount": null,
+            "alliedAssistanceDamage": 0
+          },
+          {
+            "target": "foe-6",
+            "effectivePlayerLaunchCount": null,
+            "alliedAssistanceDamage": 0
+          },
+          {
+            "target": "foe-6-cluster",
+            "effectivePlayerLaunchCount": null,
+            "alliedAssistanceDamage": 0
+          },
+          {
+            "target": "event-46",
+            "effectivePlayerLaunchCount": null,
+            "alliedAssistanceDamage": 0
+          },
+          {
+            "target": "event-51",
+            "effectivePlayerLaunchCount": null,
+            "alliedAssistanceDamage": 0
+          },
+          {
+            "target": "event-60",
+            "effectivePlayerLaunchCount": null,
+            "alliedAssistanceDamage": 0
+          },
+          {
+            "target": "event-63",
+            "effectivePlayerLaunchCount": null,
+            "alliedAssistanceDamage": 0
+          }
+        ],
+        "unattributedPlayerDamageEvents": 95,
+        "enemyLaunchDiagnostic": {
+          "status": "MISSING_INSTRUMENTATION",
+          "acceptedLaunches": null,
+          "scope": "This source does not capture all accepted Engine fire calls; zero cannot be inferred."
+        },
+        "effectiveLaunchCaveat": "Recorded launch-to-impact association by actor/time; delayed effects and ally assistance require review before kill-actions gate.",
+        "routeCaveat": "One-second samples: path length lower bound, not exact movement or valid landing attribution.",
+        "noncriticalNormalHitPctHp": {
+          "n": 0,
+          "values": [],
+          "mean": null,
+          "median": null,
+          "range": null,
+          "source": "Production emitted damage text includes actual damage/critical/attackId; HP-loss truncation avoided. Fully shield-absorbed no-damage hits not in this event sample.",
+          "sampleScope": "Separate instrumentation diagnostic, not additional registered cohort cases"
+        }
+      },
+      "missingEssential": [
+        "validated enemy effective-action denominator incl zero phases",
+        "original single noncritical hit measurement with attack/defense context",
+        "accepted full required support graph and elevation ratio",
+        "valid jump/drop/landing attribution",
+        "stage-specific special metric comparison",
+        "readability and native UI scene review",
+        "human-independent tactics assessment"
+      ],
+      "acceptance": "FAIL_UNMEASURED",
+      "normalUiApplicability": "No inaccessible item/wait calls observed; remaining controls/entry/UI still require verification",
+      "sourceCommit": "1ca0c7d072c007f4415f8e66fc004f1a6ed4643a",
+      "sourceEvidence": null,
+      "sourceProvenanceStatus": "Recorded commit",
+      "operationMode": "NATIVE_APP_ACTION_SIMULATION",
+      "controllerFileSha256": null,
+      "runnerSha256": null,
+      "sourceDirtyAtStart": "",
+      "controllerCalibrationStatus": "Diagnostic calibration unless separately preregistered",
+      "controllerExecutionError": null,
+      "outcomeQualification": "TERMINAL_WON",
+      "runtimeSha256": null,
+      "legacyRuntimePartsHash": null,
+      "legacyRuntimeHashScope": null,
+      "candidateScope": "Released8b3a5e41 tracked gameplay source verified from recorded commit",
+      "runtimeHashStatus": "MISSING_RUNTIME_HASH; commit comparison may establish tracked source only",
+      "persistedClearStatus": "Battle outcome only; persisted clear not established by this row",
       "continuationHistory": []
     },
     {
@@ -14690,9 +18704,8 @@
         "alliedNpcHpDamage": 0,
         "npcHpDamageById": {},
         "damageToHostileSideIncludingTargets": 4977,
-        "damageBackedEngagementLowerBound": 10,
+        "damageBackedEngagementLowerBound": 8,
         "damageBackedEngagedIds": [
-          "boss",
           "foe-0",
           "foe-1",
           "foe-1-cluster",
@@ -14700,7 +18713,10 @@
           "foe-3-cluster",
           "foe-4",
           "foe-4-cluster",
-          "foe-6",
+          "foe-6"
+        ],
+        "separateDamagedOrAttackingObjectiveIds": [
+          "boss",
           "sodan-binding"
         ],
         "normalEnemyHitPctHpDiagnostic": {
@@ -14724,6 +18740,15 @@
         "playerEngineWaitCommands": [],
         "normalAppDefendCommands": 0,
         "normalAppInteractions": [],
+        "protectedNpcStates": [
+          {
+            "id": "boss",
+            "hp": 5803,
+            "maxHp": 5803,
+            "dead": false,
+            "resolved": null
+          }
+        ],
         "finalHeroes": [
           {
             "id": "p-archer",
@@ -14876,6 +18901,7 @@
       "legacyRuntimeHashScope": null,
       "candidateScope": "Released8b3a5e41 tracked gameplay source verified from recorded commit",
       "runtimeHashStatus": "MISSING_RUNTIME_HASH; commit comparison may establish tracked source only",
+      "persistedClearStatus": "Battle outcome only; persisted clear not established by this row",
       "continuationHistory": []
     },
     {
@@ -14992,7 +19018,7 @@
           "boss": 48
         },
         "damageToHostileSideIncludingTargets": 5869,
-        "damageBackedEngagementLowerBound": 13,
+        "damageBackedEngagementLowerBound": 12,
         "damageBackedEngagedIds": [
           "event-43",
           "event-44",
@@ -15005,7 +19031,9 @@
           "foe-4",
           "foe-4-cluster",
           "foe-6",
-          "foe-6-cluster",
+          "foe-6-cluster"
+        ],
+        "separateDamagedOrAttackingObjectiveIds": [
           "sodan-binding"
         ],
         "normalEnemyHitPctHpDiagnostic": {
@@ -15030,6 +19058,15 @@
         "playerEngineWaitCommands": [],
         "normalAppDefendCommands": 0,
         "normalAppInteractions": [],
+        "protectedNpcStates": [
+          {
+            "id": "boss",
+            "hp": 608,
+            "maxHp": 820,
+            "dead": false,
+            "resolved": null
+          }
+        ],
         "finalHeroes": [
           {
             "id": "p-archer",
@@ -15256,6 +19293,7 @@
       "legacyRuntimeHashScope": null,
       "candidateScope": "Released8b3a5e41 tracked gameplay source verified from recorded commit",
       "runtimeHashStatus": "MISSING_RUNTIME_HASH; commit comparison may establish tracked source only",
+      "persistedClearStatus": "Battle outcome only; persisted clear not established by this row",
       "continuationHistory": []
     },
     {
@@ -15372,7 +19410,7 @@
           "boss": 508
         },
         "damageToHostileSideIncludingTargets": 8352,
-        "damageBackedEngagementLowerBound": 22,
+        "damageBackedEngagementLowerBound": 21,
         "damageBackedEngagedIds": [
           "event-40",
           "event-41",
@@ -15394,7 +19432,9 @@
           "foe-6",
           "foe-6-cluster",
           "foe-7",
-          "foe-7-cluster",
+          "foe-7-cluster"
+        ],
+        "separateDamagedOrAttackingObjectiveIds": [
           "sodan-binding"
         ],
         "normalEnemyHitPctHpDiagnostic": {
@@ -15420,6 +19460,15 @@
         "playerEngineWaitCommands": [],
         "normalAppDefendCommands": 4,
         "normalAppInteractions": [],
+        "protectedNpcStates": [
+          {
+            "id": "boss",
+            "hp": 640,
+            "maxHp": 820,
+            "dead": false,
+            "resolved": null
+          }
+        ],
         "finalHeroes": [
           {
             "id": "p-archer",
@@ -15724,6 +19773,7 @@
       "legacyRuntimeHashScope": null,
       "candidateScope": "Released8b3a5e41 tracked gameplay source verified from recorded commit",
       "runtimeHashStatus": "Recorded",
+      "persistedClearStatus": "Recorded normal settlement export",
       "continuationHistory": []
     },
     {
@@ -15839,7 +19889,7 @@
           "boss": 598.7
         },
         "damageToHostileSideIncludingTargets": 7627,
-        "damageBackedEngagementLowerBound": 23,
+        "damageBackedEngagementLowerBound": 22,
         "damageBackedEngagedIds": [
           "event-40",
           "event-42",
@@ -15862,7 +19912,9 @@
           "foe-5-cluster",
           "foe-6",
           "foe-6-cluster",
-          "foe-7",
+          "foe-7"
+        ],
+        "separateDamagedOrAttackingObjectiveIds": [
           "sodan-binding"
         ],
         "normalEnemyHitPctHpDiagnostic": {
@@ -15886,6 +19938,15 @@
         "playerEngineWaitCommands": [],
         "normalAppDefendCommands": 3,
         "normalAppInteractions": [],
+        "protectedNpcStates": [
+          {
+            "id": "boss",
+            "hp": 549.3,
+            "maxHp": 820,
+            "dead": false,
+            "resolved": null
+          }
+        ],
         "finalHeroes": [
           {
             "id": "p-archer",
@@ -16163,6 +20224,7 @@
       "legacyRuntimeHashScope": null,
       "candidateScope": "Released8b3a5e41 tracked gameplay source verified from recorded commit",
       "runtimeHashStatus": "Recorded",
+      "persistedClearStatus": "Recorded normal settlement export",
       "continuationHistory": []
     }
   ]
