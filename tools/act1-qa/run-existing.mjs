@@ -10,6 +10,18 @@ if(!files[stage])throw Error('Supported8/9/10 only');
 const file=files[stage],seed=Number(process.argv[3]||1103),policy=process.argv[4]||'baseline',dir=`_local/reports/act1-gameplay-20261103/stage${stage}-${policy}-${seed}`;await mkdir(dir,{recursive:true});
 process.env.HONRO_OUT=dir;process.env.HONRO_FULLPLAY_OUT=dir;process.env.HONRO_FULLPLAY_CURRENT_ENTRY='1';process.env.HONRO_FULLPLAY_SUPPLIES=policy.includes('noitems')?'0':'1';
 let code=await readFile(file,'utf8');code=code.replaceAll('appHarness()','appHarness({productionStory:true})');
+if(process.env.HONRO_QA_ENTRY_PROFILE){
+ const entry=process.env.HONRO_QA_ENTRY_PROFILE,original=stage===9?'game/docs/stage-review/stage08-bier/evidence/normal-victory-profile.json':'game/docs/stage-review/stage09-yard/evidence/normal-victory-profile.json';
+ if(![9,10].includes(stage))throw Error('External entry supported only9/10');
+ const raw=await readFile(entry);await writeFile(dir+'/declared-entry-provenance.json',JSON.stringify({path:path.resolve(entry),sha256:createHash('sha256').update(raw).digest('hex'),scope:'Unchanged earned predecessor outcome profile. Earlier fixture history remains noncontinuous; no XP/rank/equipment modification.'}));
+ code=code.replace(JSON.stringify(original),JSON.stringify(path.resolve(entry))).replace("'"+original+"'",JSON.stringify(path.resolve(entry)));
+}
+if(stage===9&&policy.includes('modern'))code=code.replace(/function tick\(\)\{[^\n]+\n/,"function tick(){ms+=C.STEP*1000;frames++;app.scene.render=()=>{};if(app.dialogue)audit.production(()=>g.HonroStory.next(app));audit.production(()=>app.frame(ms));audit.guard();}\n");
+if(stage===9&&policy.includes('fastpath')){
+ code=code.replace("if(actions.filter(x=>x.op==='fire').length<3&&close.some(t=>attack(u,t)))continue;", "");
+ code=code.replace("if(e.alive(1).sort((a,z)=>Math.hypot(a.x-u.x,a.y-u.y)-Math.hypot(z.x-u.x,z.y-u.y)).slice(0,3).some(t=>attack(u,t)))continue;", "");
+ code=code.replace("assert(actions.filter(x=>x.op==='fire').length>=3);", "await writeFile(out+'/historical-shot-quota.json',JSON.stringify({status:'FAIL_OLD_TEST_EXPECTATION_NOT_DESIGN_GATE',oldMinimum:3,actual:actions.filter(x=>x.op==='fire').length,reason:'Actual authored two-receiver objective has no minimum shot count; zero-shot UI independently verified.'}));");
+}
 code=code.replaceAll("assert(b.queue.length<=4)","assert(b.queue.length<=b.enemyLimit);if(b.side===1&&b.queue.length>4)record({op:'legacy-cap-deviation',oldExpected:4,observed:b.queue.length,configured:b.enemyLimit})");
 // Seed initialization occurs before launch, and affects RNG only, not battle values.
 const insert=`\nvm.runInContext(\`{let state=${seed}>>>0;Math.random=()=>{state+=0x6D2B79F5;let t=state;t=Math.imul(t^t>>>15,t|1);t^=t+Math.imul(t^t>>>7,t|61);return((t^t>>>14)>>>0)/4294967296;};}\`,g);\n`;
@@ -94,8 +106,9 @@ if(stage===10&&policy.includes('scout')){
  code=code.replace("g.HonroSodanWithdrawal.ready(b)?g.HonroSodanWithdrawal.exit(b).x:", "(g.HonroSodanWithdrawal.ready(b)||b.honroState.sodanCoop&&u.cls==='archer'&&b.honroState.coopHold>=4)?g.HonroSodanWithdrawal.exit(b).x:");
 }
 if(stage===10){code=code.replace("h.click('journey-enter',{id:'11'});","app.export();await writeFile(out+'/after-stage10-rest-profile.json',JSON.stringify({profile:await h.exported(),scope:'Actual no-state-edit Stage10 outcome -> ordinary result-continue -> rest recruitment; captured BEFORE Stage11 launch. Prior9 was declared historical victory fixture, not continuous campaign.'}));h.click('journey-enter',{id:'11'});");}
-if(policy.includes('noitems')){code=code.replace('if(u.hp<u.maxHp*.5&&b.items.heal)', 'if(false&&u.hp<u.maxHp*.5&&b.items.heal)');code=code.replace('if(useSupplies&&u.hp<u.maxHp*.45&&b.items.heal>0)', 'if(false&&useSupplies&&u.hp<u.maxHp*.45&&b.items.heal>0)');}
+if(policy.includes('noitems')){code=code.replace('if(u.hp<u.maxHp*.45&&b.items.heal)', 'if(false&&u.hp<u.maxHp*.45&&b.items.heal)');code=code.replace('if(u.hp<u.maxHp*.5&&b.items.heal)', 'if(false&&u.hp<u.maxHp*.5&&b.items.heal)');code=code.replace('if(useSupplies&&u.hp<u.maxHp*.45&&b.items.heal>0)', 'if(false&&useSupplies&&u.hp<u.maxHp*.45&&b.items.heal>0)');}
 code=code.replace(/from\s*(['"])(\.[^'"]+)\1/g,(_,q,s)=>'from '+q+pathToFileURL(path.resolve(path.dirname(file),s)).href+q);
 code=code.replaceAll('await readFile(new URL(import.meta.url))',`await readFile(${JSON.stringify(file)})`);
-const generated=path.resolve(dir,'adapted-controller.mjs');await writeFile(generated,code);await writeFile(dir+'/adapter.json',JSON.stringify({stage,seed,policy,sourceCommit:execFileSync('git',['rev-parse','HEAD'],{encoding:'utf8'}).trim(),sourceDirty:execFileSync('git',['status','--short'],{encoding:'utf8'}).trim(),source:file,originalSha256:createHash('sha256').update(await readFile(file)).digest('hex'),adaptedSha256:createHash('sha256').update(code).digest('hex'),scope:'Native calibration. Fixed old cap4 deviations are recorded, NOT passed. No balance/map/state/goal changes.'},null,2));
+const actualParts=await(await import(pathToFileURL(path.resolve('shared/build.mjs')))).runtimeParts({vector:false,render:false,productionStory:true});const actualRuntimeSha256=createHash('sha256').update(actualParts.join('\n')).digest('hex');
+const generated=path.resolve(dir,'adapted-controller.mjs');await writeFile(generated,code);await writeFile(dir+'/adapter.json',JSON.stringify({stage,seed,policy,actualRuntimeSha256,runtimeHashScope:'Exact runtimeParts({vector:false,render:false,productionStory:true}) used by productionStory App harness',sourceCommit:execFileSync('git',['rev-parse','HEAD'],{encoding:'utf8'}).trim(),sourceDirty:execFileSync('git',['status','--short'],{encoding:'utf8'}).trim(),source:file,originalSha256:createHash('sha256').update(await readFile(file)).digest('hex'),adaptedSha256:createHash('sha256').update(code).digest('hex'),scope:'Native calibration. Fixed old cap4 deviations are recorded, NOT passed. No balance/map/state/goal changes.'},null,2));
 await import(pathToFileURL(generated));

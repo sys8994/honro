@@ -2,6 +2,16 @@ name: Act1 normal UI gameplay observation
 on:
   push:
     branches: ['work/act1-gameplay-qa/**']
+    paths:
+      - '.github/workflows/act1-gameplay-qa.yml'
+      - 'tools/act1-qa/browser-ui.py'
+      - 'tools/act1-qa/*ui-commands.json'
+      - 'tools/act1-qa/fixtures/**'
+      - 'tools/act4-ci/precise_aim.py'
+      - 'tools/act4-ci/normal-shot-plan.js'
+      - 'game/docs/stage-review/stage08-bier/evidence/normal-victory-profile.json'
+      - 'HONRO.html'
+      - 'web/**'
 permissions:
   contents: read
 jobs:

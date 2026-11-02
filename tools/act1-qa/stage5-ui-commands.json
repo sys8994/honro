@@ -1,254 +1,445 @@
 {
-  "scope": "Observed historical command sequence, recalculated aim on current runtime, no live state writes; stop on missing target/input mismatch rather than bypass",
+  "scope": "Only ACTUALLY ACCEPTED observed native actions, not the interactive requested-command stream. Failed absent-event IDs and post-terminal commands excluded; original requested stream retained separately. Normal UI still fails on actor/shot mismatch; no state correction.",
+  "source": "_local/reports/stage5-foundation-20261026/final-normal/trace.json",
+  "sourceSha256": "2229dc3c77a16676a77dbb9c968be8a357cc73155711e3067c5ae57a36c98cb2",
   "commands": [
     {
       "op": "walk",
+      "round": 1,
+      "hero": "archer",
       "x": 300
     },
     {
       "op": "jump",
+      "round": 1,
+      "hero": "archer",
       "x": 510
     },
     {
       "op": "walk",
+      "round": 1,
+      "hero": "archer",
       "x": 620
     },
     {
       "op": "walk",
+      "round": 1,
+      "hero": "archer",
       "x": 850
     },
     {
       "op": "shoot",
+      "round": 1,
+      "hero": "archer",
       "target": "s5-upper-crow",
-      "skill": "A14"
+      "skill": "A14",
+      "nativeAim": {
+        "angle": 37.42210370019659,
+        "power": 0.8645669589934306,
+        "hit": "s5-upper-crow",
+        "risk": 0,
+        "damage": 117.53820345599999
+      }
     },
     {
       "op": "walk",
+      "round": 1,
+      "hero": "mage",
       "x": 650
     },
     {
       "op": "walk",
+      "round": 1,
+      "hero": "mage",
       "x": 820
     },
     {
       "op": "shoot",
+      "round": 1,
+      "hero": "mage",
       "target": "s5-entry-hound",
-      "skill": "M01"
+      "skill": "M01",
+      "nativeAim": {
+        "angle": 45,
+        "power": 0.25,
+        "hit": "s5-entry-boar",
+        "risk": 0,
+        "damage": 112.19015577599998
+      }
     },
     {
       "op": "shoot",
+      "round": 2,
+      "hero": "archer",
       "target": "s5-upper-archer",
-      "skill": "A14"
+      "skill": "A14",
+      "nativeAim": {
+        "angle": 19.72512045126688,
+        "power": 0.7646923359608772,
+        "hit": "s5-upper-archer",
+        "risk": 0,
+        "damage": 117.53820345599999
+      }
     },
     {
       "op": "shoot",
+      "round": 2,
+      "hero": "mage",
       "target": "s5-entry-hound",
-      "skill": "M02"
+      "skill": "M02",
+      "nativeAim": {
+        "angle": -32.14287916067457,
+        "power": 0.0871020544777399,
+        "hit": "valley-floor",
+        "risk": 0,
+        "damage": 52.66337900543999
+      }
     },
     {
       "op": "shoot",
+      "round": 3,
+      "hero": "archer",
       "target": "s5-upper-archer",
-      "skill": "A01"
+      "skill": "A01",
+      "nativeAim": {
+        "angle": 21.359743859296128,
+        "power": 0.8093376328944627,
+        "hit": "s5-upper-archer",
+        "risk": 0,
+        "damage": 94
+      }
     },
     {
       "op": "walk",
+      "round": 3,
+      "hero": "mage",
       "x": 1880
     },
     {
       "op": "shoot",
+      "round": 3,
+      "hero": "mage",
       "target": "s5-entry-ghost",
-      "skill": "M06"
+      "skill": "M06",
+      "nativeAim": {
+        "angle": 163.62981105357738,
+        "power": 0.7899587008898664,
+        "hit": "s5-entry-ghost",
+        "risk": 0,
+        "damage": 138.587839488
+      }
     },
     {
       "op": "walk",
+      "round": 4,
+      "hero": "archer",
       "x": 940
     },
     {
       "op": "walk",
+      "round": 4,
+      "hero": "archer",
       "x": 1420
     },
     {
       "op": "walk",
+      "round": 4,
+      "hero": "archer",
       "x": 1950
     },
     {
       "op": "shoot",
+      "round": 4,
+      "hero": "archer",
       "target": "s5-pine-archer",
-      "skill": "A14"
+      "skill": "A14",
+      "nativeAim": {
+        "angle": 205,
+        "power": 0.25,
+        "hit": "s5-pine-archer",
+        "risk": 0,
+        "damage": 117.53820345599999
+      }
     },
     {
       "op": "walk",
+      "round": 4,
+      "hero": "mage",
       "x": 2400
     },
     {
       "op": "shoot",
+      "round": 4,
+      "hero": "mage",
       "target": "s5-cave-hound",
-      "skill": "M06"
+      "skill": "M06",
+      "nativeAim": {
+        "angle": 0,
+        "power": 0.75,
+        "hit": "s5-cave-hound",
+        "risk": 0,
+        "damage": 138.587839488
+      }
     },
     {
       "op": "walk",
+      "round": 5,
+      "hero": "archer",
       "x": 1970
     },
     {
       "op": "walk",
+      "round": 5,
+      "hero": "archer",
       "x": 2240
     },
     {
       "op": "jump",
+      "round": 5,
+      "hero": "archer",
       "x": 2240
     },
     {
       "op": "walk",
+      "round": 5,
+      "hero": "archer",
       "x": 2240
     },
     {
       "op": "jump",
+      "round": 5,
+      "hero": "archer",
       "x": 2440
     },
     {
       "op": "walk",
+      "round": 5,
+      "hero": "archer",
       "x": 2500
     },
     {
       "op": "shoot",
+      "round": 5,
+      "hero": "archer",
       "target": "s5-pine-archer",
-      "skill": "A01"
+      "skill": "A01",
+      "nativeAim": {
+        "angle": 180,
+        "power": 0.5,
+        "hit": "s5-pine-archer",
+        "risk": 0,
+        "damage": 68
+      }
     },
     {
       "op": "walk",
+      "round": 5,
+      "hero": "mage",
       "x": 2760
     },
     {
       "op": "shoot",
+      "round": 5,
+      "hero": "mage",
       "target": "s5-cave-hound",
-      "skill": "M03"
+      "skill": "M03",
+      "nativeAim": {
+        "angle": 168.2805550995492,
+        "power": 0.6212716779584946,
+        "hit": "s5-cave-hound",
+        "risk": 0,
+        "damage": 143
+      }
     },
     {
       "op": "walk",
+      "round": 6,
+      "hero": "archer",
       "x": 2540
     },
     {
       "op": "jump",
+      "round": 6,
+      "hero": "archer",
       "x": 2680
     },
     {
       "op": "walk",
+      "round": 6,
+      "hero": "archer",
       "x": 2790
     },
     {
       "op": "jump",
+      "round": 6,
+      "hero": "archer",
       "x": 3000
     },
     {
       "op": "walk",
+      "round": 6,
+      "hero": "archer",
       "x": 2790
     },
     {
       "op": "jump",
+      "round": 6,
+      "hero": "archer",
       "x": 3000
     },
     {
-      "op": "defend"
+      "op": "defend",
+      "round": 6,
+      "hero": "archer"
     },
     {
       "op": "shoot",
+      "round": 6,
+      "hero": "mage",
       "target": "s5-cave-ghost",
-      "skill": "M06"
-    },
-    {
-      "op": "shoot",
-      "target": "event-49",
-      "skill": "A14"
+      "skill": "M06",
+      "nativeAim": {
+        "angle": 0,
+        "power": 0.75,
+        "hit": "s5-cave-shade",
+        "risk": 0,
+        "damage": 138.587839488
+      }
     },
     {
       "op": "walk",
+      "round": 7,
+      "hero": "archer",
       "x": 3110
     },
     {
-      "op": "shoot",
-      "target": "s5-cave-ghost",
-      "skill": "M03"
-    },
-    {
-      "op": "shoot",
-      "target": "event-48",
-      "skill": "A14"
-    },
-    {
-      "op": "shoot",
-      "target": "s5-cave-ghost",
-      "skill": "M06"
-    },
-    {
       "op": "walk",
+      "round": 7,
+      "hero": "archer",
       "x": 3220
     },
     {
-      "op": "defend"
+      "op": "defend",
+      "round": 7,
+      "hero": "archer"
     },
     {
       "op": "shoot",
+      "round": 7,
+      "hero": "mage",
       "target": "s5-cave-ghost",
-      "skill": "M01"
+      "skill": "M01",
+      "nativeAim": {
+        "angle": -1.2388997602141287,
+        "power": 0.6954166899433637,
+        "hit": "s5-cave-ghost",
+        "risk": 0,
+        "damage": 112.19015577599998
+      }
     },
     {
-      "op": "defend"
+      "op": "defend",
+      "round": 8,
+      "hero": "archer"
     },
     {
       "op": "shoot",
+      "round": 8,
+      "hero": "mage",
       "target": "s5-cave-shade",
-      "skill": "M06"
+      "skill": "M06",
+      "nativeAim": {
+        "angle": 6.956094139075922,
+        "power": 0.7408369851503734,
+        "hit": "s5-cave-ghost",
+        "risk": 0,
+        "damage": 138.587839488
+      }
     },
     {
-      "op": "defend"
+      "op": "defend",
+      "round": 9,
+      "hero": "archer"
     },
     {
       "op": "walk",
+      "round": 9,
+      "hero": "mage",
       "x": 3355
     },
     {
       "op": "interact",
+      "round": 9,
       "id": "receiver-5"
     },
     {
       "op": "shoot",
+      "round": 10,
+      "hero": "archer",
       "target": "cliff-cleat",
-      "skill": "A01"
+      "skill": "A01",
+      "nativeAim": {
+        "angle": 33.2658209317232,
+        "power": 0.9937431984866554,
+        "hit": "cliff-cleat",
+        "risk": 0,
+        "damage": 114.4506963
+      }
     },
     {
       "op": "shoot",
+      "round": 10,
+      "hero": "mage",
       "target": "s5-cave-shade",
-      "skill": "M06"
+      "skill": "M06",
+      "nativeAim": {
+        "angle": 173.6776585096572,
+        "power": 0.7088948524338631,
+        "hit": "s5-cave-shade",
+        "risk": 0,
+        "damage": 138.587839488
+      }
     },
     {
       "op": "shoot",
+      "round": 11,
+      "hero": "archer",
       "target": "cliff-cleat",
-      "skill": "A14"
+      "skill": "A14",
+      "nativeAim": {
+        "angle": 26.905452188535076,
+        "power": 0.9542488762904808,
+        "hit": "cliff-cleat",
+        "risk": 0,
+        "damage": 122.4356286
+      }
     },
     {
       "op": "walk",
+      "round": 11,
+      "hero": "mage",
       "x": 3540
     },
     {
-      "op": "defend"
-    },
-    {
-      "op": "shoot",
-      "target": "cliff-cleat",
-      "skill": "A14"
+      "op": "defend",
+      "round": 11,
+      "hero": "mage"
     },
     {
       "op": "walk",
+      "round": 12,
+      "hero": "archer",
       "x": 3630
     },
     {
-      "op": "defend"
+      "op": "defend",
+      "round": 12,
+      "hero": "archer"
     },
     {
-      "op": "defend"
-    },
-    {
-      "op": "defend"
+      "op": "defend",
+      "round": 12,
+      "hero": "mage"
     }
   ]
 }
