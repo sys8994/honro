@@ -34,6 +34,12 @@ try:
    mini=p.locator('#minimap');box=mini.bounding_box();assert box
    for label,fraction in [('map-center',.5),('map-left',.01),('map-right',.99)]:
     mini.click(position={'x':box['width']*fraction,'y':box['height']*.5});r['inputs'].append('minimap:'+label);p.wait_for_timeout(700);p.screenshot(path=str(out/(label+'.png')))
+   if os.environ.get('HONRO_QA_LOCAL_ART_SAVE')=='1':
+    r['saveTimingMs']=p.evaluate('''() => {const times=[];for(let i=0;i<12;i++){const t=performance.now();if(!HonroApp.profileStore.save(HonroApp.profile))throw Error('save failed');times.push(performance.now()-t);}return times;}''')
+    r['saveTimingScope']='Synchronous production profileStore saves in headless Chromium; not physical mobile performance.'
+    r['localArtTableAssets']=p.evaluate('JSON.parse(localStorage.getItem("honro-first-act-profile-1")).honroBattle.honroLocalArtTable.assets.length')
+    assert r['localArtTableAssets']==2,r
+    assert p.evaluate('localStorage.getItem("honro-first-act-profile-1").length')<1500000,r
    r['storageChars']=p.evaluate('localStorage.getItem("honro-first-act-profile-1")?.length');assert r['storageChars']>0
    p.wait_for_function('!!HonroApp.profile.honroBattle && !HonroApp.storageWarned',timeout=10000)
    r['beforeReload']=p.evaluate(state);p.reload(wait_until='domcontentloaded');p.wait_for_function('window.HonroApp',timeout=60000)

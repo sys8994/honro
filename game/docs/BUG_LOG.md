@@ -5230,3 +5230,10 @@ Title `여정 이어가기` could choose an older hub before honoring a saved di
 - Keep gate-basin original points, defensive wood decks, burned gallery, separate stone prop, NPCs and evacuation contract. Only non-colliding BODY art changes.
 - Respect the gate approach materials: earth/mud/charred ground and local stone, not uniform mossy granite. Concept -> vector-ready image -> actual Inkscape six-color trace -> bounded optimization121605B to82027B(32.55%); 1x/2x max silhouette1px. Native start/middle/east/full/mobile/end views preserve actor92 and original collision hash.
 - Native source lock and JSON save roundtrip pass. Normal browser entry/movement/jump/reload/responsive checks and public verification remain release requirements. The historical fixture uses only legal Stage1–3 completion rewards; no live resource changes.
+
+## 2026-11-02 · 1막 추적 미술 저장 중복 제거
+
+- 원인: 동일한 정적 벡터가 elements와 landmarks에 각각 완전히 직렬화됐다. 정상 보상 2장 진입 fixture의 프로필은 2,406,400자였다. 실제 quota 실패를 재현했다는 의미는 아니다.
+- 변경: 캠페인 1–10장 act1-traced 정적 비충돌 자산 중 직렬화 내용이 정확히 같은 경우만 저장 내부 version1 테이블로 묶는다. 로드 시 독립 복사로 펼쳐 현재 자산 공급자와 무관하게 복원하며 내보내기는 기존 inline 형태다. 기존 4막 공급자 참조와 사용자 맵은 그대로다. 변경 감지를 생략하지 않는 전체 문자열 키 기반 3M자 해시 캐시와 저장 1회 내 직렬화 재사용으로 반복 비용을 줄인다.
+- 확인: 앱 모델/스토리지 대역 검사에서 1,288,097자(46.47% 감소), 원본 일치·변형 보존·독립 복사·구형 inline·내보내기/가져오기·손상 자료의 원자적 거절·합성 quota 실패 시 이전 바이트/보관본 보존을 확인한다. Act4 story compact와 1/3/4장 BODY 검사는 통과했다. 기존 profile-store-p01은 변경 전 HEAD에서도 역사 schema4와 현재 schema5/검토 메타데이터 차이로 동일하게 실패한다. 해당 테스트를 통과로 기록하거나 기대값을 바꾸지 않는다.
+- 검수 주의: persist 호출과 실제 stopBattle의 저장 스냅샷 시점은 다르다. 현재 엔진 상태를 과거 저장본과 임의 비교하지 않고 정상 저장 경로와 동일 시점에서 roundtrip을 검사한다. 합성 quota와 실제 브라우저 저장·재접속·지연은 구분한다. 브라우저와 새 Stage31 증거를 포함한 production gate가 통과하기 전에는 master에 배포하지 않는다.

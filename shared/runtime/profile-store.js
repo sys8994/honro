@@ -87,7 +87,62 @@ function verifyLegacy34Assets(items){
  if(library.size!==1)return false;const b={mode:'campaign',honroAct4Official:1,honroStage:34};
  return Object.entries(ACT4_34_LEGACY).every(([id,sig])=>!!legacy34Art(b,id,sig,library));
 }
+// Act1 uses a self-contained table inside each snapshot. It never looks up
+// current provider artwork: old saves and portable exports retain exact art.
+const localAct1=b=>!!b&&!b.honroCustom&&b.honroMapOrigin!=='workshop'&&b.mode==='campaign'&&Number.isInteger(b.honroStage)&&b.honroStage>=1&&b.honroStage<=10;
+const localArtAsset=a=>!!a&&typeof a.id==='string'&&a.id.startsWith('act1-traced:')&&a.vector&&Array.isArray(a.collision)&&a.collision.length===0&&!a.interactionType&&a.honroStaticAssetRef===undefined&&a.honroLocalArtRef===undefined;
+const LOCAL_ART_HASH_CACHE_LIMIT=3000000,localArtHashCache=new Map();let localArtHashChars=0;
+function localArtSignature(text){
+ if(localArtHashCache.has(text))return localArtHashCache.get(text);
+ const signature=assetSignature(text);if(text.length>LOCAL_ART_HASH_CACHE_LIMIT)return signature;
+ while(localArtHashChars+text.length>LOCAL_ART_HASH_CACHE_LIMIT){const oldest=localArtHashCache.keys().next().value;localArtHashChars-=oldest.length;localArtHashCache.delete(oldest);}
+ localArtHashCache.set(text,signature);localArtHashChars+=text.length;return signature;
+}
+function localArtItems(b){return[b?.honroLandmarks,b?.honroElements,b?.honroEnvironment?.placements].filter(Array.isArray).flat();}
+function resolveLocalArt(b){
+ const items=localArtItems(b),table=b?.honroLocalArtTable,hasTable=!!b&&Object.prototype.hasOwnProperty.call(b,'honroLocalArtTable');
+ const refs=items.filter(item=>item?.asset?.honroLocalArtRef!==undefined);
+ if(!hasTable&&!refs.length)return{table:false,replacements:[]};
+ if(!localAct1(b)||!hasTable||!table||table.version!==1||!Array.isArray(table.assets)||!table.assets.length||table.assets.length>32||Object.keys(table).some(k=>!['version','assets'].includes(k)))return null;
+ if(!table.assets.every(localArtAsset))return null;
+ // Provider references never belong in this Act1-only local-table format.
+ if(items.some(item=>item?.asset?.honroStaticAssetRef!==undefined))return null;
+ const signatures=new Map(),used=new Set(),replacements=[];
+ for(const item of refs){
+  const ref=item.asset,index=ref.index;
+  if(ref.honroLocalArtRef!==1||!Number.isInteger(index)||index<0||index>=table.assets.length||typeof ref.id!=='string'||typeof ref.signature!=='string'||Object.keys(ref).some(k=>!['honroLocalArtRef','index','id','signature'].includes(k)))return null;
+  const source=table.assets[index];if(source.id!==ref.id)return null;
+  if(!signatures.has(index))signatures.set(index,assetSignature(JSON.stringify(source)));
+  if(signatures.get(index)!==ref.signature)return null;
+  used.add(index);replacements.push([item,source]);
+ }
+ if(used.size!==table.assets.length)return null;
+ return{table:true,replacements};
+}
+function restoreLocalArt(b){
+ const local=resolveLocalArt(b);if(!local)return false;
+ for(const[item,source]of local.replacements)item.asset=structuredClone(source);
+ if(local.table)delete b.honroLocalArtTable;
+ return true;
+}
+function compactLocalArt(b){
+ const existing=resolveLocalArt(b);if(!existing)throw Error('Invalid local art table');if(existing.table)return b;
+ const rows=new Map(),placements=new Map();
+ for(const item of localArtItems(b))if(localArtAsset(item?.asset)){
+  const text=JSON.stringify(item.asset);if(text.length<128)continue;
+  let row=rows.get(text);if(row)row.count++;else{row={text,count:1};rows.set(text,row);}placements.set(item,row);
+ }
+ const shared=[...rows.values()].filter(row=>row.count>1);if(!shared.length||shared.length>32)return b;
+ const table={version:1,assets:shared.map(row=>JSON.parse(row.text))};
+ shared.forEach((row,index)=>{row.ref={honroLocalArtRef:1,index,id:table.assets[index].id,signature:localArtSignature(row.text)};});
+ const compactItems=items=>items.map(item=>{const row=placements.get(item);return row?.ref?{...item,asset:{...row.ref}}:item;});
+ const out={...b,honroLocalArtTable:table};
+ for(const key of ['honroLandmarks','honroElements'])if(Array.isArray(b[key]))out[key]=compactItems(b[key]);
+ if(Array.isArray(b.honroEnvironment?.placements))out.honroEnvironment={...b.honroEnvironment,placements:compactItems(b.honroEnvironment.placements)};
+ return out;
+}
 function compactBattleArt(b){
+ if(localAct1(b))return compactLocalArt(b);
  if(!b||b.honroCustom||b.mode!=='campaign'||b.honroAct4Official!==1||b.honroStage<31||b.honroStage>40)return b;
  const library=new Map((G.HONRO_PROJECT?.library||[]).map(a=>[a.id,a])),texts=new Map();let changed=false;const out={...b};
  const compactItems=items=>items.map(item=>{
@@ -101,7 +156,8 @@ function compactBattleArt(b){
  return changed?out:b;
 }
 function restoreBattleArt(b){
- const library=new Map((G.HONRO_PROJECT?.library||[]).map(a=>[a.id,a])),signatures=new Map(),replacements=[];
+ const local=resolveLocalArt(b);if(!local)return false;
+ const library=new Map((G.HONRO_PROJECT?.library||[]).map(a=>[a.id,a])),signatures=new Map(),replacements=[...local.replacements];
  for(const items of [b?.honroLandmarks,b?.honroElements,b?.honroEnvironment?.placements])for(const item of items||[]){
   const ref=item.asset;if(!ref||ref.honroStaticAssetRef===undefined)continue;
   if(ref.honroStaticAssetRef!==1||typeof ref.id!=='string'||typeof ref.signature!=='string')return false;
@@ -112,6 +168,7 @@ function restoreBattleArt(b){
  }
  // Resolve only after campaign lazy loading and revision checks, atomically.
  for(const[item,source]of replacements)item.asset=structuredClone(source);
+ if(local.table)delete b.honroLocalArtTable;
  return true;
 }
 function failure(reason){return Object.assign(new Error('Profile '+reason),{profileReason:reason});}
@@ -121,6 +178,9 @@ function migrate(text){
  if(x.schema===5&&!x.equipment)throw failure('format');
  if(![1,2,3,4,5].includes(x.schema))throw failure('version');
  try{
+  // Expand before returning memory state. Exports stay in the original inline
+  // format and require no lazy/current art provider for local snapshots.
+  if(!restoreLocalArt(x.honroBattle))throw Error('Invalid local art table');
   const p=fresh();Object.assign(p,x);p.schema=5;p.settings={...fresh().settings,...x.settings};
   C.migrateSkills(p);migrateGrowth(p,x.revision||12);G.HonroAct23V4?.migratePresentation(p);G.HonroCampaignMapRevision.discard(p);
   G.HonroProgression.repairRecruits(p);G.HonroProgression.reconcileCampAllocations(p);if(x.equipment===undefined)delete p.equipment;G.HonroEquipment.migrate(p);return p;
