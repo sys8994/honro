@@ -8,6 +8,6 @@ for(const old of a.HONRO_PROJECT.stages){const id=old.metadata.stageId,next=b.HO
  const p=a.HonroMaps.createBattle(old,a.HONRO_PROJECT),q=b.HonroMaps.createBattle(next,b.HONRO_PROJECT);a.HonroStageRules.sanitizeStageBattle(p);b.HonroStageRules.sanitizeStageBattle(q);
  for(const key of ['terrain','honroWorldTerrain','units','waters','honroMarkers','objectives','honroState'])assert.deepEqual(plain(q[key]),plain(p[key]),`Stage${id} physical/event field ${key}`);
  assert.equal(next.width,old.width);assert.equal(next.height,old.height);assert.deepEqual(plain(next.camera),plain(old.camera));
- const arts=(q.honroLandmarks||[]).filter(l=>l.asset?.id?.startsWith('act2-traced:stage'+id+'-'));assert(arts.length>0);assert(arts.every(l=>!l.collisionIds.length));
+ const arts=(q.honroLandmarks||[]).filter(l=>l.asset?.id?.startsWith('act2-traced:stage'+(id===19?18:id)+'-'));assert(arts.length>0);assert(arts.every(l=>!l.collisionIds.length));
  rows.push({stage:id,width:next.width,height:next.height,landmarkAssets:arts.map(x=>x.asset.id),collisionAndEventsIdentical:true});}
 await mkdir('_local/reports/act2-integrated-art',{recursive:true});await writeFile('_local/reports/act2-integrated-art/contracts.json',JSON.stringify({passed:true,reviewedArtStages,rows,scope:'Pre-author hook and effective physics invariants only; gameplay and browser gates separate.'},null,2));console.log(JSON.stringify(rows));

@@ -41,37 +41,23 @@ jobs:
           HONRO_ACT2_ART_CANDIDATES=0 node tools/act2-vector-production/test-stage13-candidate.mjs
           HONRO_ACT2_ART_CANDIDATES=0 node tests/stage14-traced-art.mjs
           HONRO_ACT2_ART_CANDIDATES=0 node tests/act2-stage15-candidate.mjs
+          HONRO_ACT2_ART_CANDIDATES=0 node tools/act2-vector-production/test-stage16-candidate.mjs
+          HONRO_ACT2_ART_CANDIDATES=0 node tests/act2-stage17-candidate.mjs
+          HONRO_ACT2_ART_CANDIDATES=0 node tests/act2-stage18-candidate.mjs
+          HONRO_ACT2_ART_CANDIDATES=0 node tests/stage19-shared-traced-art.mjs
+          HONRO_ACT2_ART_CANDIDATES=0 node tests/act2-stage20-candidate.mjs
           node tests/act2-traced-art-integrated.mjs
           python tools/act4-ci/test_precise_aim.py
           python tools/act4-ci/test_stage31_survival.py
-      - name: Retain published graphs and prepare unpublished gate preview
-        env:
-          HONRO_ACT4_RELEASE: '1'
+      - name: Retain public graphs and verify unchanged measured runtime contract
         run: |
           set -euo pipefail
           mkdir -p "$OUT"
           mapfile -t refs < <(node --input-type=module -e 'import fs from "node:fs";import {selectPublishedGenerations} from "./shared/web-retention.mjs";for(const g of selectPublishedGenerations(JSON.parse(fs.readFileSync("web/manifest.json")).publishedGenerations,{now:Date.now()})){if(!/^[a-f0-9]{40}$/.test(g.sourceSha))throw Error("Invalid ref");console.log(g.sourceSha)}')
-          git fetch --no-tags --depth=1 origin ad56f6d7a4c6f6339f6c0f2ceb792c3ddff711fd "${refs[@]}"
-          node tools/release/retain-published-web.mjs ad56f6d7a4c6f6339f6c0f2ceb792c3ddff711fd --published-at 2026-11-02T16:50:50Z --evidence https://github.com/sys8994/honro/actions/runs/41484988179
-          node tools/act4-ci/refresh-stage31-probes.mjs prepare "$OUT"
-          # Established evidence-only bootstrap; never publish this preview.
-          node workshop/build.mjs | tee "$OUT/preview-build.log"
-          sha256sum HONRO.html web/manifest.json > "$OUT/preview-served-sha256.txt"
-      - name: Unchanged Stage31 fresh first-shot trials and normal-input objective
-        run: |
-          set -euo pipefail
-          python -m http.server 8870 --bind 127.0.0.1 > "$OUT/server.log" 2>&1 &
-          server=$!; trap 'kill "$server" 2>/dev/null || true' EXIT
-          sleep 2
-          for trial in 1 2 3; do
-            HONRO_FIRST_SHOT_DIAGNOSTIC=1 HONRO_RUN_DIR="$OUT/first-shot-$trial" python tools/act4-ci/stage31-fullplay.py > "$OUT/first-shot-$trial.log" 2>&1
-          done
-          HONRO_RUN_DIR="$OUT/stage31" python tools/act4-ci/stage31-fullplay.py > "$OUT/stage31.log" 2>&1
-      - name: Bind genuine measured evidence and enforce normal production gate
-        run: |
-          set -euo pipefail
-          node tools/act4-ci/refresh-stage31-probes.mjs attach "$OUT"
-          cp tools/stage31/production-package.json "$OUT/stage31-production-package.json"
+          git fetch --no-tags --depth=1 origin c1a8cc243c7681b03f9e7b8c182164f62deaae2e "${refs[@]}"
+          node tools/release/retain-published-web.mjs c1a8cc243c7681b03f9e7b8c182164f62deaae2e --published-at 2026-11-02T18:24:55Z --evidence https://github.com/sys8994/honro/actions/runs/41500035506
+          # Genuine fresh Stage31 package from CI41496327053, unchanged runtime digest/fingerprint.
+          # npm run build MUST verify it normally. No evidence bootstrap or bypass here.
           npm run build | tee "$OUT/gated-build.log"
           sha256sum HONRO.html web/manifest.json > "$OUT/final-served-sha256.txt"
       - name: Actual browser natural-save regressions on final production build
@@ -80,16 +66,20 @@ jobs:
           python -m http.server 8870 --bind 127.0.0.1 > "$OUT/final-server.log" 2>&1 &
           server=$!; trap 'kill "$server" 2>/dev/null || true' EXIT
           sleep 2
-          HONRO_QA_OUT="$OUT/stage8-reader" python tests/stage8-staging-reader-browser.py
-          HONRO_QA_OUT="$OUT/stage14-settle" python tools/act2-qa/stage14-postfix-ui.py
-          HONRO_STAGE=17 HONRO_QA_OUT="$OUT/stage17-hoist" python tools/act2-qa/retained-interactions-ui.py
-          HONRO_STAGE=18 HONRO_QA_OUT="$OUT/stage18-bell" python tools/act2-qa/retained-interactions-ui.py
-          for stage in 11 12 13 14 15; do
-            HONRO_STAGE="$stage" HONRO_QA_OUT="$OUT/stage$stage-art" python tools/act2-vector-production/browser-candidate.py
+          failed=0
+          if ! HONRO_QA_OUT="$OUT/stage8-reader" python tests/stage8-staging-reader-browser.py; then failed=1; fi
+          if ! HONRO_QA_OUT="$OUT/stage14-settle" python tools/act2-qa/stage14-postfix-ui.py; then failed=1; fi
+          if ! HONRO_STAGE=17 HONRO_QA_OUT="$OUT/stage17-hoist" python tools/act2-qa/retained-interactions-ui.py; then failed=1; fi
+          if ! HONRO_STAGE=18 HONRO_QA_OUT="$OUT/stage18-bell" python tools/act2-qa/retained-interactions-ui.py; then failed=1; fi
+          for stage in 11 12 13 14 15 16 17 18 19 20; do
+            if ! HONRO_STAGE="$stage" HONRO_QA_OUT="$OUT/stage$stage-art" python tools/act2-vector-production/browser-candidate.py; then failed=1; fi
           done
-          python tools/act2-qa/assert-browser-receipts.py "$OUT/stage8-reader/result.json" "$OUT/stage14-settle/result.json" "$OUT/stage17-hoist/result.json" "$OUT/stage18-bell/result.json"
-          for stage in 11 12 13 14 15; do python tools/act2-qa/assert-browser-receipts.py "$OUT/stage$stage-art/result.json"; done
-          HONRO_ITEM_UI_MODE=production HONRO_ITEM_UI_OUT="$OUT/item-ui" python tests/item-discovery-browser.py
+          if ! python tools/act2-qa/assert-browser-receipts.py "$OUT/stage8-reader/result.json" "$OUT/stage14-settle/result.json" "$OUT/stage17-hoist/result.json" "$OUT/stage18-bell/result.json"; then failed=1; fi
+          for stage in 11 12 13 14 15 16 17 18 19 20; do
+            if ! python tools/act2-qa/assert-browser-receipts.py "$OUT/stage$stage-art/result.json"; then failed=1; fi
+          done
+          if ! HONRO_ITEM_UI_MODE=production HONRO_ITEM_UI_OUT="$OUT/item-ui" python tests/item-discovery-browser.py; then failed=1; fi
+          exit "$failed"
       - name: Preserve checked candidate; no master publication
         run: |
           set -euo pipefail
