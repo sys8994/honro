@@ -363,6 +363,18 @@
                 } catch { }
             }
             if(!quietOutro&&!this.storyFrozen&&b.phase==='flight')G.HONRO_CORE.drawTurnGuide(c,e,this.scale,this.turnTarget);
+            // Enemy aim telegraph: the decided shot's real path and its target, shown before release.
+            if(!quietOutro&&!this.storyFrozen&&b.phase==='enemy'&&u?.aiAim){
+                const q=u.aiAim,sk=G.HONRO_CORE.SKILLS[q.skill],tgt=e.unit(q.target),z=Math.max(.12,this.scale||1);
+                if(sk){if(q._key!==q.angle+':'+q.power){q._key=q.angle+':'+q.power;try{const pr=e.predict(u,sk,q.angle,q.power,undefined,true);q._points=[...pr.points,{x:pr.x,y:pr.y}];}catch{q._points=null;}}
+                    const k=Math.min(1,q.age/.25),pulse=.5+.5*Math.sin(this.time*18);
+                    c.save();c.lineCap='round';c.strokeStyle='#e0533f';c.globalAlpha=.75*k;c.lineWidth=1.8/z;c.setLineDash([7/z,6/z]);
+                    const pts=q._points||[];if(pts.length>1){c.beginPath();pts.forEach((p,i)=>i?c.lineTo(p.x,p.y):c.moveTo(p.x,p.y));c.stroke();}
+                    c.setLineDash([]);
+                    if(tgt&&!tgt.dead){const r=Math.max(tgt.r,tgt.h*.42)+8/z+pulse*3/z,cy=tgt.y-tgt.h*.5;c.globalAlpha=(.55+.35*pulse)*k;c.lineWidth=2.2/z;c.beginPath();c.arc(tgt.x,cy,r,0,Math.PI*2);c.stroke();
+                        for(const a of [0,Math.PI/2,Math.PI,Math.PI*1.5]){c.beginPath();c.moveTo(tgt.x+Math.cos(a)*(r-5/z),cy+Math.sin(a)*(r-5/z));c.lineTo(tgt.x+Math.cos(a)*(r+7/z),cy+Math.sin(a)*(r+7/z));c.stroke();}}
+                    c.restore();}
+            }
             };
             if(!foreground.length)targetingGuides();
             const visibleUnits=[];

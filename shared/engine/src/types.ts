@@ -219,6 +219,8 @@ export interface Unit {
     combatBaseHp?: number;
     combatBaseAttack?: number;
     aiMove?:AIMovePlan;
+    /** Enemy aim telegraph: the chosen shot is shown for a moment, then fired unchanged. */
+    aiAim?:{skill:string;angle:number;power:number;target:string;age:number};
     lureRound?:number;
     carriedBy?: number;
     lastStandUsed?: boolean;

@@ -69,6 +69,8 @@ export interface Prediction {
     closest: number;
     apex?: Vec;
 }
+/** Seconds an enemy shows its decided shot before releasing it. */
+export const ENEMY_AIM_TELEGRAPH=.45;
 export class Engine {
     b: Battle;
     onEvent: (e: Event) => void;
@@ -113,7 +115,7 @@ export class Engine {
      * Also repair old snapshots without replaying damage, rewards or an action. */
     private clearDisabledActor(u:Unit){
         if(!this.unavailableActor(u))return false;
-        delete u.aiMove;delete u.moveTarget;delete u.platformDrop;delete u.meleeAction;delete u.beastAction;delete u.retreat;
+        delete u.aiMove;delete u.aiAim;delete u.moveTarget;delete u.platformDrop;delete u.meleeAction;delete u.beastAction;delete u.retreat;
         clearWarriorFollow(u);u.moving=0;u.jumping=false;u.airborne=false;u.vx=u.vy=0;
         if(u.equipmentState){delete u.equipmentState.motion;delete u.equipmentState.landingRetreat;}
         return true;
@@ -2323,6 +2325,12 @@ export class Engine {
             return;
         }
         if(u?.aiMove||u?.moveTarget!==undefined||b.units.some(v=>!this.unavailableActor(v)&&v.aiMove?.lureStakeId!==undefined))return;
+        if(u?.aiAim){
+            if(u.aiAim.age<ENEMY_AIM_TELEGRAPH)return;
+            const shot=u.aiAim;delete u.aiAim;
+            if(!SKILLS[shot.skill]||(u.stun||0)>0||!this.fire(shot.skill,shot.angle,shot.power,true))this.finishAction();
+            return;
+        }
         if(this.planningRemaining<=0)return;
         if(!this.enemyPlanning||this.planningStale(this.enemyPlanning.key)){if(this.enemyPlanning)this.planRestarts++;this.enemyPlanning={key:this.planningKey(),steps:this.enemyActionSteps()};}
         const work=this.enemyPlanning;if(this.continuePlanning(work.steps)){this.enemyPlanning=undefined;return;}
@@ -2406,7 +2414,8 @@ export class Engine {
         }
         u.angle=aim.angle;u.lastPower=aim.power;u.facing=target.x>=u.x?1:-1;
         if(tacticsLevel(this)>=2&&target.side!==u.side)(b as any).honroAiFocus={round:b.round,target:target.id};
-        if(!this.fire(sk.id,aim.angle,aim.power,true))this.finishAction();
+        // Show the decided shot (target mark + path) before release; enemyAction fires it unchanged.
+        u.aiAim={skill:sk.id,angle:aim.angle,power:aim.power,target:target.id,age:0};this.emit('change');
     }
     checkEnd() {
         const b = this.b;
@@ -2475,8 +2484,10 @@ export class Engine {
             if (b.resolveAge > .12)
                 this.finishAction();
         }
-        else if (b.phase === 'enemy' && !this.settleBusy())
+        else if (b.phase === 'enemy' && !this.settleBusy()){
+            const aiming=this.active;if(aiming?.aiAim)aiming.aiAim.age+=dt;
             this.enemyAction();
+        }
         else if (b.phase === 'transition' && b.turnAge > .16 && !this.settleBusy())
             this.switchTeam();
         else if (b.phase === 'aim' && this.counter % 30 === 0)
