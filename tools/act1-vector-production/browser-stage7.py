@@ -33,7 +33,7 @@ try:
    p.locator('#battlecanvas').hover();p.mouse.wheel(0,4000);r['inputs'].append('wheel:4000');p.wait_for_timeout(1200);r['overview']=p.evaluate(state);p.screenshot(path=str(out/'overview.png'))
    mini=p.locator('#minimap');box=mini.bounding_box();assert box
    for label,fraction in [('map-center',.5),('map-left',.01),('map-right',.99)]:
-    mini.click(position={'x':box['width']*fraction,'y':box['height']*.5});r['inputs'].append('minimap:'+label);p.wait_for_timeout(700);p.screenshot(path=str(out/(label+'.png')))
+    box=mini.bounding_box();mini.click(position={'x':min(box['width']-5,max(4,box['width']*fraction)),'y':box['height']*.5});r['inputs'].append('minimap:'+label);p.wait_for_timeout(700);p.screenshot(path=str(out/(label+'.png')))
    r['storageChars']=p.evaluate('localStorage.getItem("honro-first-act-profile-1")?.length');assert r['storageChars']>0
    p.wait_for_function('!!HonroApp.profile.honroBattle && !HonroApp.storageWarned',timeout=10000)
    r['beforeReload']=p.evaluate(state);p.reload(wait_until='domcontentloaded');p.wait_for_function('window.HonroApp',timeout=60000)
