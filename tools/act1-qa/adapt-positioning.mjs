@@ -8,6 +8,7 @@ export function adaptPositioning(source,stage,policy){
   aim=aim.replace('let best=null;',"let best=null;const priority=v=>v.id==='midboss-stage6'?500:0;").replace('Math.hypot(v.x-u.x,v.y-u.y)-Math.hypot(w.x-u.x,w.y-u.y)',"Math.hypot(v.x-u.x,v.y-u.y)-priority(v)*4-Math.hypot(w.x-u.x,w.y-u.y)+priority(w)*4").replaceAll('skill.damage>best.net','skill.damage+priority(v)>best.net').replaceAll('net:skill.damage','net:skill.damage+priority(v)').replaceAll('z.net>best.net','z.net+priority(v)>best.net').replaceAll('net:z.net','net:z.net+priority(v)');
   source=source.replace('if(st.jumping){',"const boss=e.unit('midboss-stage6'),car=e.unit('objective');plan[plan.length-1].x=boss&&!boss.dead?boss.x+200:Math.min(6380,(car?.x||6380)+1000);if(st.jumping){");
  }
+ if(stage===2&&policy.includes('bodyguard'))aim=aim.replace('let best=null;',"let best=null;const guard=e.unit('objective')||u;").replace('Math.hypot(v.x-u.x,v.y-u.y)-Math.hypot(w.x-u.x,w.y-u.y)','Math.hypot(v.x-guard.x,v.y-guard.y)-Math.hypot(w.x-guard.x,w.y-guard.y)');
  source=source.replace(/ function aim\([^\n]+\n/,` ${aim}\n`);
  source=source.replace("if(e.canAct()&&u?.side===0&&!a.dialogue){", "if(e.canAct()&&u?.side===0&&!a.dialogue){if(u.hp<u.maxHp*.45&&b.items.heal>0&&e.item('heal')){log.push({op:'ordinary-heal',actor:u.id,round:b.round});step();continue;}");
  source=source.replace("if(e.canAct()&&e.active?.id===u.id&&!a.dialogue){", "if(e.canAct()&&e.active?.id===u.id&&!a.dialogue){if(u.hp<u.maxHp*.45&&b.items.heal>0&&e.item('heal')){log.push({op:'ordinary-heal',actor:u.id,round:b.round});step();continue;}");
@@ -15,8 +16,10 @@ export function adaptPositioning(source,stage,policy){
  if(policy.includes('flow'))source=source.replaceAll('u.moveLeft<400','u.moveLeft<e.jumpCost(u)+Math.abs(p.jumpTo-u.x)+40');
  if(style==='route')source=source.replaceAll(')<750',')<350');
  if(stage===2&&style!=='cover')source=source.replace("if(phase<2&&u.moveLeft>10)e.move(1,C.STEP);", "if((phase<2||u.x<Math.min(3900,(e.unit('objective')?.x||u.x)+500))&&u.moveLeft>10){if(phase>=2&&u.y<(e.unit('objective')?.y||0)-600&&e.canDrop(u))e.drop(u);e.move(1,C.STEP);}");
+ if(stage===2&&policy.includes('bodyguard'))source=source.replace("(e.unit('objective')?.x||u.x)+500","(e.unit('objective')?.x||u.x)+120");
  // Knight sword policy cannot attack distant elevated enemies with a ballistic
  // predictor. The repaired aim above measures its real melee sector instead.
  if(policy.includes('noitems'))source=source.replaceAll('if(u.hp<u.maxHp*.45&&b.items.heal>0', 'if(false&&u.hp<u.maxHp*.45&&b.items.heal>0');
+ if(policy.includes('appdefend'))source=source.replaceAll('e.wait()','a.defend()');
  return source;
 }

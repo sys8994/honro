@@ -105,7 +105,21 @@ try:
     mid=command.get('id','receiver-5');eligible=p.evaluate("id=>HonroInteractions.eligibility(HonroApp,HonroApp.engine.b.honroMarkers.find(m=>m.id===id)).ok",mid);assert eligible,'Normal interaction not reachable';p.keyboard.press('e');record('interact',marker=mid)
    elif op=='detonate':p.keyboard.press('Space');record('detonate')
    elif op=='shoot':
-    choice=p.evaluate("""q=>{const e=HonroApp.engine,u=e.active,C=HONRO_CORE,t=e.unit(q.target),s=C.SKILLS[q.skill];if(!u.loadout.includes(q.skill)||e.cooldownLeft(u,q.skill)>0)return null;const base={id:q.skill,target:q.target,idx:u.loadout.indexOf(q.skill)};if(q.skill==='S08')return e.canAfford(s,u,.3)?{...base,angle:u.angle,power:.3}:null;if(!t||t.dead)return null;if(s.martial&&s.branch==='sword'){let angle=Math.atan2(u.y-u.h*.58-(t.y-t.h*.5),t.x-u.x)*180/Math.PI;if(angle< -90)angle+=360;for(const power of [1,.7,.2])if(e.canAfford(s,u,power)&&C.meleeContains(e,u,t,C.meleeRange(u,s,power),-angle*Math.PI/180,C.meleeSpan(u,s,power)))return {...base,angle,power};return null;}let best=null;for(const a of [...e.shotSeeds(u,s,t),...(q.stage===5?[-25,0,15,30,45,60,75].flatMap(angle=>[.25,.5,.75,1].map(power=>({angle:t.x>=u.x?angle:180-angle,power}))):[])]){if(!e.canAfford(s,u,a.power))continue;const v=C.shotViable(e,u,s,t,a.angle,a.power),p=e.predict(u,s,a.angle,a.power,undefined,false);if(q.stage===10?v.ok&&v.risk<1&&v.enemyDamage>0:t.honroObjectiveTarget?p.unit===t.id||p.terrain===t.id:v.ok&&v.risk<.5&&v.enemyDamage>0){const score=v.net||v.enemyDamage||1;if(q.stage===5)return {...a,...base,score};if(!best||score>best.score)best={...a,...base,score};}}return best;}""",{**command,"stage":stage})
+    shot_planner="""q=>{const e=HonroApp.engine,u=e.active,C=HONRO_CORE,t=e.unit(q.target),s=C.SKILLS[q.skill];if(!u.loadout.includes(q.skill)||e.cooldownLeft(u,q.skill)>0)return null;const base={id:q.skill,target:q.target,idx:u.loadout.indexOf(q.skill)};if(q.skill==='S08')return e.canAfford(s,u,.3)?{...base,angle:u.angle,power:.3}:null;if(!t||t.dead)return null;if(s.martial&&s.branch==='sword'){let angle=Math.atan2(u.y-u.h*.58-(t.y-t.h*.5),t.x-u.x)*180/Math.PI;if(angle< -90)angle+=360;for(const power of [1,.7,.2])if(e.canAfford(s,u,power)&&C.meleeContains(e,u,t,C.meleeRange(u,s,power),-angle*Math.PI/180,C.meleeSpan(u,s,power)))return {...base,angle,power};return null;}let best=null;for(const a of [...e.shotSeeds(u,s,t),...(q.stage===5?[-25,0,15,30,45,60,75].flatMap(angle=>[.25,.5,.75,1].map(power=>({angle:t.x>=u.x?angle:180-angle,power}))):[])]){if(!e.canAfford(s,u,a.power))continue;const v=C.shotViable(e,u,s,t,a.angle,a.power),p=e.predict(u,s,a.angle,a.power,undefined,false);if(q.stage===10?v.ok&&v.risk<1&&v.enemyDamage>0:t.honroObjectiveTarget?p.unit===t.id||p.terrain===t.id:v.ok&&v.risk<.5&&v.enemyDamage>0){const score=v.net||v.enemyDamage||1;if(q.stage===5)return {...a,...base,score};if(!best||score>best.score)best={...a,...base,score};}}return best;}"""
+    choice=p.evaluate(shot_planner,{**command,"stage":stage})
+    # Bounded ordinary-key approach/retreat, not a new target or injected hit.
+    # Route endpoints vary by frames; max-range and point-blank shots need space.
+    for correction in range(3):
+     if choice:break
+     target=p.evaluate("id=>{const u=HonroApp.engine.unit(id);return u?{x:u.x,dead:u.dead}:null}",command['target']);st=state()
+     if not target or target['dead'] or not st['can'] or st['moveLeft']<8:break
+     dx=target['x']-st['x'];direction=(1 if dx>=0 else -1)*(1 if abs(dx)>120 else -1)
+     key='ArrowRight' if direction>0 else 'ArrowLeft';p.keyboard.down(key)
+     try:p.wait_for_timeout(120)
+     finally:p.keyboard.up(key)
+     p.wait_for_timeout(180);record('bounded-shot-reposition',index=index,attempt=correction+1,target=command['target'],before=st,after=state())
+     if state()['active']!=st['active']:break
+     choice=p.evaluate(shot_planner,{**command,"stage":stage})
     assert choice,'No safe current runtime shot for declared command'
     if state()['facing']!=(-1 if choice['angle']>90 else 1):
      key='ArrowLeft' if choice['angle']>90 else 'ArrowRight';p.keyboard.down(key);p.wait_for_timeout(25);p.keyboard.up(key);p.wait_for_timeout(100)

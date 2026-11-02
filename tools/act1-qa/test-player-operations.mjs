@@ -1,0 +1,12 @@
+import assert from 'node:assert/strict';
+import {appHarness}from'../../tests/app-regression-helpers.mjs';
+import {createPlayerOperations,assertSupportedPlayerOperation}from'./player-operations.mjs';
+for(const op of ['item','engine-wait','direct-engine-fire','teleport','setHp','complete'])assert.throws(()=>assertSupportedPlayerOperation(op));
+for(const op of ['frame','ready','move','aim','selectSkill','fire','jump','drop','select','defend','interact','dialogueNext'])assert.doesNotThrow(()=>assertSupportedPlayerOperation(op));
+const h=await appHarness({productionStory:true,productionInputActions:true}),{g,C}=h,a=h.load(g.AppRegression.fresh());a.launch(1);const log=[],ops=createPlayerOperations({app:a,g,C,record:r=>log.push(r)}),e=a.engine;
+assert(ops.ready(),'Normal Next/frame reaches initial actionable state');const u=e.active,hp=u.hp,items=JSON.stringify(e.b.items);
+assert.throws(()=>ops.item('heal'));assert.equal(u.hp,hp);assert.equal(JSON.stringify(e.b.items),items);
+assert.throws(()=>ops.move(2,C.STEP));assert.throws(()=>ops.move(1,1));assert.throws(()=>ops.aim(300));assert.throws(()=>ops.fire('A01',45,.5,true));assert(!ops.selectSkill('M01'));
+const x=u.x;ops.move(1,C.STEP);ops.frame();assert(u.x>x&&u.moveLeft<u.maxMove,'Actual frame consumes ordinary movement');
+const move=u.moveLeft;assert(ops.jump());assert(u.moveLeft<move);for(let i=0;i<1000&&!e.grounded(u);i++)ops.frame();assert(e.grounded(u));assert.throws(()=>ops.jump({...u}));
+let starts=0,releases=0;const begin=a.beginCharge.bind(a),release=a.releaseCharge.bind(a);a.beginCharge=()=>{starts++;return begin();};a.releaseCharge=()=>{releases++;return release();};const before=ops.now;assert(ops.fire('A01',45,.5));assert(starts===1&&releases===1&&ops.now>before,'Actual charge methods and elapsed clock used');const shot=e.b.lastShots[u.id];assert.equal(shot.skill,'A01');assert(shot.power>=.5&&shot.power<.53);assert(ops.ready());assert(ops.defend());assert(log.some(r=>r.operation==='fire'&&r.accepted));console.log('PASS player-operation mapping: unsupported methods rejected, normal Next/frame/move/jump/equipped skill/elapsed charge/defend exercised');
