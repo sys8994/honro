@@ -1,0 +1,49 @@
+{
+  "passed": true,
+  "scope": "Saved natural Stage14 Continue plus legitimate body-clearing inputs; controlled edge-case contracts, not full-clear/browser proof",
+  "before": {
+    "phase": "flight",
+    "active": "p-occultist",
+    "round": 7,
+    "npc": {
+      "x": 3004.566173610096,
+      "y": 2271.13124877673,
+      "jumping": true
+    },
+    "busy": true
+  },
+  "readyFrames": 1596,
+  "cleared": [
+    {
+      "id": "p-archer",
+      "x": 2951.275090768495,
+      "y": 2300
+    },
+    {
+      "id": "p-mage",
+      "x": 2951.4728017653943,
+      "y": 2300
+    },
+    {
+      "id": "p-knight",
+      "x": 2961.6719563941706,
+      "y": 2300
+    }
+  ],
+  "after": {
+    "phase": "aim",
+    "round": 8,
+    "npc": {
+      "x": 3257.3241642873268,
+      "y": 2638.03037945017,
+      "jumping": false,
+      "grounded": true,
+      "fixed": true
+    }
+  },
+  "noPoseHpOrSuccessAssignment": true,
+  "candidateSource": "f8ab0e6615776474a43d8c00a4c7c05329740bf9",
+  "fixtureSha256": "2165adef8554c4d77296b5968d6c6bf7d7567efcf1013e3218e60ded081669ee",
+  "notDeployed": true,
+  "normalBrowserPending": true
+}
