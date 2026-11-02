@@ -30,7 +30,8 @@ def normalize(stage,label,initial,final,damage,actions,path,cohort=False,seed=No
  row['observed']['acceptedSkills']=dict(Counter(a.get('args',[None])[0]for a in commands if a.get('op')=='fire')) if commands else dict(Counter(a.get('skill')for a in playerfires if a.get('skill')))
  row['observed']['acceptedJumpCommands']=sum(a.get('op')=='jump'for a in commands) if commands else None
  row['observed']['acceptedDropCommands']=sum(a.get('op')=='drop'for a in commands) if commands else None
- row['observed']['itemCommands']=[a for a in actions if a.get('op')in ['item','ordinary-heal']]
+ row['observed']['itemCommands']=[a for a in actions if a.get('op')in ['item','ordinary-heal','ordinary-item']]
+ row['normalUiApplicability']='UNVALIDATED_LEGACY_ITEM_API: no current UI binding found' if row['observed']['itemCommands'] else 'No item API calls observed; remaining controls/entry/UI still require verification'
  row['observed']['finalHeroes']=[{'id':u['id'],'hp':u.get('hp'),'maxHp':u.get('maxHp'),'dead':u.get('dead'),'x':u.get('x'),'y':u.get('y')}for u in allus.values()if u['id']in playerids]
  row['observed']['finalObjectiveState']=final.get('honroState')
  route={}
@@ -59,6 +60,7 @@ def normalize(stage,label,initial,final,damage,actions,path,cohort=False,seed=No
 for path in OUT.glob('stage*/trace.json'):
  p=json.loads(path.read_text());stage=p.get('stage');initial=p.get('initial');final=p.get('final')
  if stage and initial and final:normalize(stage,p.get('policy','legacy'),initial,final,p.get('damage',[]),p.get('inputs',[]),path,'cohort' in p.get('policy',''),p.get('inputErrorSeed',p.get('seed')),p.get('scope'),poses=p.get('poses'))
+ elif p.get('schema')=='honro-stage5-input-trace/v1':normalize(5,path.parent.name,initial,final,p.get('hits',[]),p.get('actions',[]),path,scope='Current reward/recruit fixture through4, production App native inputs; historical roster gate FAILED separately; not UI')
 for path in OUT.glob('stage*/combat.json'):
  p=json.loads(path.read_text());stage=int(path.parent.name.split('-')[0][5:]);normalize(stage,path.parent.name,p['initial'],p['battleEnd'],p.get('damage',[]),p.get('actions',[]),path,scope='Historical declared prior-victory profile, current Engine/App controller calibration; not campaign-continuous or real UI')
 p=ROOT/'_local/reports/stage5-foundation-20261026/final-normal/trace.json'

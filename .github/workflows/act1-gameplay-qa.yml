@@ -14,6 +14,8 @@ jobs:
             entry: game/docs/stage-review/stage08-bier/evidence/normal-victory-profile.json
           - stage: 5
             entry: tools/act1-qa/fixtures/stage5-entry.json
+          - stage: 10
+            entry: tools/act1-qa/fixtures/stage10-entry.json
     runs-on: ubuntu-24.04
     timeout-minutes: 30
     env:

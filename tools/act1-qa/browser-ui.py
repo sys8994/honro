@@ -76,20 +76,24 @@ try:
      p.wait_for_timeout(100);actual=p.evaluate('id=>HonroApp.engine.b.lastShots?.[id]',before['active']);record('fire',choice=choice,actual=actual);assert actual and actual['skill']==choice['id'] and abs(actual['power']-1)<1e-9
     else:p.keyboard.press('f');record('defend-no-safe-shot')
     p.wait_for_timeout(300)
-  elif stage==5:
-   commands=json.loads((ROOT/'tools/act1-qa/stage5-ui-commands.json').read_text())['commands']
+  elif stage in [5,10]:
+   commands=json.loads((ROOT/f'tools/act1-qa/stage{stage}-ui-commands.json').read_text())['commands']
    for index,command in enumerate(commands):
     if command['op'] in ['quit','state','plan']:continue
     if not ready():break
-    before=state();op=command['op'];record('replay-command',index=index,command=command)
-    if op in ['walk','jump']:
+    before=state();op=command['op'];assert not command.get('hero') or command['hero']==before['cls'],'Recorded actor boundary diverged';record('replay-command',index=index,command=command)
+    if op in ['walk','jump','climb']:
      if op=='jump':p.keyboard.press('Control');p.wait_for_timeout(50)
      still=0
      for pulse in range(220):
       st=state()
       if not st['can'] or st['active']!=before['active'] or st['moveLeft']<3:break
       dx=command['x']-st['x']
-      if abs(dx)<8 and (op=='walk' or st['grounded']):break
+      if op=='climb':
+       support=p.evaluate('()=>{const e=HonroApp.engine,u=e.active;return e.contactSurface(u.x,u.y-3,u.y+4)?.t.id}')
+       if abs(dx)<12 and st['grounded'] and support==command['support']:break
+       if abs(dx)<45 and st['grounded'] and st['y']-command['y']>35:p.keyboard.press('Control');p.wait_for_timeout(50)
+      elif abs(dx)<8 and (op=='walk' or st['grounded']):break
       if abs(dx)>=5:
        key='ArrowRight' if dx>0 else 'ArrowLeft';p.keyboard.down(key);p.wait_for_timeout(20 if abs(dx)<25 else max(20,int(80*command.get('input',1))));p.keyboard.up(key)
       p.wait_for_timeout(30)
@@ -101,7 +105,7 @@ try:
      mid=command.get('id','receiver-5');eligible=p.evaluate("id=>HonroInteractions.eligibility(HonroApp,HonroApp.engine.b.honroMarkers.find(m=>m.id===id)).ok",mid);assert eligible,'Normal interaction not reachable';p.keyboard.press('e');record('interact',marker=mid)
     elif op=='detonate':p.keyboard.press('Space');record('detonate')
     elif op=='shoot':
-     choice=p.evaluate("""q=>{const e=HonroApp.engine,u=e.active,C=HONRO_CORE,t=e.unit(q.target),s=C.SKILLS[q.skill];if(!t||t.dead||!u.loadout.includes(q.skill)||e.cooldownLeft(u,q.skill)>0)return null;for(const a of e.shotSeeds(u,s,t)){if(!e.canAfford(s,u,a.power))continue;const v=C.shotViable(e,u,s,t,a.angle,a.power),p=e.predict(u,s,a.angle,a.power,undefined,false);if(t.honroObjectiveTarget?p.unit===t.id||p.terrain===t.id:v.ok&&v.risk<.5&&v.enemyDamage>0)return {...a,id:q.skill,target:t.id,idx:u.loadout.indexOf(q.skill)};}return null;}""",command)
+     choice=p.evaluate("""q=>{const e=HonroApp.engine,u=e.active,C=HONRO_CORE,t=e.unit(q.target),s=C.SKILLS[q.skill];if(!u.loadout.includes(q.skill)||e.cooldownLeft(u,q.skill)>0)return null;const base={id:q.skill,target:q.target,idx:u.loadout.indexOf(q.skill)};if(q.skill==='S08')return e.canAfford(s,u,.3)?{...base,angle:u.angle,power:.3}:null;if(!t||t.dead)return null;if(s.martial&&s.branch==='sword'){let angle=Math.atan2(u.y-u.h*.58-(t.y-t.h*.5),t.x-u.x)*180/Math.PI;if(angle< -90)angle+=360;for(const power of [1,.7,.2])if(e.canAfford(s,u,power)&&C.meleeContains(e,u,t,C.meleeRange(u,s,power),-angle*Math.PI/180,C.meleeSpan(u,s,power)))return {...base,angle,power};return null;}let best=null;for(const a of e.shotSeeds(u,s,t)){if(!e.canAfford(s,u,a.power))continue;const v=C.shotViable(e,u,s,t,a.angle,a.power),p=e.predict(u,s,a.angle,a.power,undefined,false);if(t.honroObjectiveTarget?p.unit===t.id||p.terrain===t.id:v.ok&&v.risk<.5&&v.enemyDamage>0){const score=v.net||v.enemyDamage||1;if(!best||score>best.score)best={...a,...base,score};}}return best;}""",command)
      assert choice,'No safe current runtime shot for declared command'
      if state()['facing']!=(-1 if choice['angle']>90 else 1):
       key='ArrowLeft' if choice['angle']>90 else 'ArrowRight';p.keyboard.down(key);p.wait_for_timeout(25);p.keyboard.up(key);p.wait_for_timeout(100)
@@ -111,7 +115,7 @@ try:
      finally:p.keyboard.up('Space')
      p.wait_for_timeout(100);actual=p.evaluate('id=>HonroApp.engine.b.lastShots?.[id]',before['active']);record('fire',choice=choice,actual=actual);assert actual and actual['skill']==choice['id'],'Normal charge did not fire selected skill'
     else:raise AssertionError('Unsupported replay input '+op)
-    if op not in ['walk','jump']:p.screenshot(path=str(out/f'command-{index}-{op}.png'))
+    if op not in ['walk','jump','climb']:p.screenshot(path=str(out/f'command-{index}-{op}.png'))
     p.wait_for_timeout(150)
   elif stage==9:
    for action in range(30):
