@@ -28,6 +28,7 @@ try:
    elif p.evaluate('!!HonroApp.dialogue'):p.keyboard.press('Enter')
    elif enter.count():enter.first.click()
    p.wait_for_timeout(350)
+  result['entryBoundary']=p.evaluate('''()=>{const a=HonroApp;return{stage:a.engine?.b?.honroStage,phase:a.engine?.b?.phase,done:a.done,screen:a.screen,dialogue:!!a.dialogue,can:a.canInput(),storage:a.storageReason,pendingDirect:a.profile?.pendingDirect,body:document.body.innerText.slice(0,14000),buttons:[...document.querySelectorAll('button')].filter(x=>x.getClientRects().length).map(x=>({text:x.innerText,action:x.dataset.action,id:x.dataset.id,disabled:x.disabled}))}}''');save();p.screenshot(path=str(out/'entry-boundary.png'))
   p.wait_for_function(f'HonroApp.engine?.b?.honroStage==={stage} && HonroApp.canInput()',timeout=1000)
   def state():return p.evaluate('''()=>{const a=HonroApp,e=a.engine,b=e.b,u=e.active;return{round:b.round,side:b.side,phase:b.phase,appDone:a.done,cleared:a.profile.cleared?.[b.honroStage]||null,active:u?.id,cls:u?.cls,x:u?.x,y:u?.y,angle:u?.angle,facing:u?.facing,moveLeft:u?.moveLeft,jumpCost:u&&e.jumpCost(u),grounded:u&&e.grounded(u),can:a.canInput(),dialogue:!!a.dialogue,shots:b.shots,drop:u&&e.canDrop(),camera:{x:a.scene.x,y:a.scene.y,scale:a.scene.scale},health:b.units.filter(v=>v.side===0&&!v.summoned).map(v=>({id:v.id,hp:v.hp,maxHp:v.maxHp,dead:v.dead,x:v.x,y:v.y})),enemies:b.units.filter(v=>v.side===1).map(v=>({id:v.id,hp:v.hp,dead:v.dead,x:v.x,y:v.y,kind:v.honroVariant})),seed:b.seed,rng:b.rng,completedGoals:Object.keys(b.honroState?.act2?.done||{}).filter(k=>b.honroState.act2.done[k])}}''')
   def record(op,**extra):
@@ -119,7 +120,10 @@ try:
 except Exception:
  result['passed']=False
  result['exception']=traceback.format_exc()
- try:result['last']=state();p.screenshot(path=str(out/'failure.png'))
+ try:
+  p.screenshot(path=str(out/'failure.png'))
+  result['failureBoundary']=p.evaluate('''()=>({body:document.body.innerText.slice(0,14000),stage:window.HonroApp?.engine?.b?.honroStage,phase:window.HonroApp?.engine?.b?.phase,dialogue:!!window.HonroApp?.dialogue})''')
+  if 'state' in globals():result['last']=state()
  except Exception:pass
 finally:save()
 if not result['passed']:raise SystemExit(1)
