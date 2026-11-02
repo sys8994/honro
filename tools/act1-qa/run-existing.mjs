@@ -14,11 +14,15 @@ code=code.replaceAll("assert(b.queue.length<=4)","assert(b.queue.length<=b.enemy
 const insert=`\nvm.runInContext(\`{let state=${seed}>>>0;Math.random=()=>{state+=0x6D2B79F5;let t=state;t=Math.imul(t^t>>>15,t|1);t^=t+Math.imul(t^t>>>7,t|61);return((t^t>>>14)>>>0)/4294967296;};}\`,g);\n`;
 if(!code.includes("from 'node:vm'")&&!code.includes("from'node:vm'"))code="import vm from 'node:vm';\n"+code;
 if(stage===8)code=code.replace("const out=",insert+'const out=');else code=code.replace("const input=",insert+'const input=');
-if(policy.includes('focused')){code="import {focusedProfile} from '"+pathToFileURL(path.resolve('tools/act1-qa/focused-profile.mjs')).href+"';\n"+code;if(stage===10)code=code.replace('let app=h.load(profile);','focusedProfile(g,profile);let app=h.load(profile);');if(stage===8)code=code.replace('const resume=',"fixture.training.push(...focusedProfile(g,fixture.profile));const resume=");}
+if(policy.includes('focused')){code="import {focusedProfile} from '"+new URL('./focused-profile.mjs',import.meta.url).href+"';\n"+code;if(stage===10)code=code.replace('let app=h.load(profile);','focusedProfile(g,profile);let app=h.load(profile);');if(stage===8)code=code.replace('const resume=',"fixture.training.push(...focusedProfile(g,fixture.profile));const resume=");}
 if(stage===8&&policy.includes('modern')){
  code=code.replace(/function story\(\)\{[^\n]+\n/,"function story(){return false;}\n");
  code=code.replace("e.tick(C.STEP);if(!app.dialogue)liveAudit.production(()=>app.missionTick(C.STEP));liveAudit.guard();frames++;","app.scene.render=()=>{};if(app.dialogue)liveAudit.production(()=>g.HonroStory.next(app));liveAudit.production(()=>app.frame(virtualMs));liveAudit.guard();frames++;");
  code=code.replace("if(!u||u.dead){stopReason='no living active hero';break;}","if(!u||u.dead){stopReason='no living active hero';break;}if(u.cls==='knight'&&u.hp<u.maxHp*.65&&u.loadout.includes('S08')&&e.cooldownLeft(u,'S08')===0&&e.canAfford(C.SKILLS.S08,u,1)&&e.fire('S08',u.angle,.3)){record({op:'fire',hero:u.cls,skill:'S08',reason:'ordinary counterstance before pursuit'});continue;}");
+}
+if(stage===8&&policy.includes('diagnostic')){
+ code=code.replace('liveAudit.guard();frames++;',"liveAudit.guard();frames++;if(app.lastError)throw Error('Production App.frame reported: '+app.lastError);");
+ code=code.replace('if(frames>700000)', 'if(frames>180000)');
 }
 if(stage===10&&policy.includes('modern')){
  code=code.replace("assert(app.canInput(),'Finite ready boundary');","if(!app.canInput()){await save('input-boundary-failure');throw Error('Finite ready boundary');}");
@@ -39,6 +43,12 @@ if(stage===10&&policy.includes('protector')){
  code=code.replace("u.hp<u.maxHp*.45&&(!t||t.broken||t.hp>500)","u.hp<u.maxHp*(b.honroState.sodanCoop?.2:.45)&&(!t||t.broken||t.hp>500)");
  code=code.replace("if(foes.filter(v=>Math.hypot(v.x-u.x,v.y-u.y)<700).some(v=>attack(u,v)))continue;","if(!b.honroState.sodanCoop&&foes.filter(v=>Math.hypot(v.x-u.x,v.y-u.y)<700).some(v=>attack(u,v)))continue;");
  code=code.replace("if(foes.some(v=>!v.dead&&attack(u,v)))continue;", "if(b.honroState.sodanCoop){const ward=e.unit('boss');foes.sort((a,z)=>Math.hypot(a.x-ward.x,a.y-ward.y)-Math.hypot(z.x-ward.x,z.y-ward.y));}if(foes.some(v=>!v.dead&&attack(u,v)))continue;");
+}
+if(stage===10&&policy.includes('preclear')){
+ code=code.replace("if(!t||t.broken)return false;", "if(!t||t.broken)return false;if(t.hp<t.maxHp*.3&&b.round<9&&e.alive(1).some(v=>v.id!=='boss'&&!v.honroObjectiveTarget&&Math.hypot(v.x-e.unit('boss').x,v.y-e.unit('boss').y)<800))return false;");
+ code=code.replace("if(b.honroState.sodanCoop){const ward=e.unit('boss');", "if(b.honroState.sodanCoop||t?.hp<t?.maxHp*.3){const ward=e.unit('boss');");
+ code=code.replace("if(!b.honroState.sodanCoop&&foes.filter", "if(!b.honroState.sodanCoop&&!(t?.hp<t?.maxHp*.3)&&foes.filter");
+ code=code.replace("b.honroState.sodanCoop?(u.cls", "(b.honroState.sodanCoop||t?.hp<t?.maxHp*.3)?(u.cls");
 }
 if(stage===10&&policy.includes('survival')){
  // Existing policy fires at binding before reaching useful cover, leaving each

@@ -1,17 +1,20 @@
 """Fail-closed partial evidence index. Never treats raw totals as fun approval."""
 import json,glob,statistics,hashlib,html
 from collections import Counter
+from gates import numeric_gate,overall
 from pathlib import Path
 ROOT=Path(__file__).resolve().parents[2];OUT=ROOT/'_local/reports/act1-gameplay-20261103';PLAN=json.loads((ROOT/'tools/act1-qa/plan.json').read_text());rows=[]
 def digest(p):return hashlib.sha256(p.read_bytes()).hexdigest()
 def normalize(stage,label,initial,final,damage,actions,path,cohort=False,seed=None,scope=None,poses=None):
  if not final:return
  us={u['id']:u for u in initial.get('units',[])};allus={u['id']:u for u in final.get('units',[])};foes=[u for u in initial.get('units',[])if u.get('side')==1 and not u.get('honroObjectiveTarget')];hero=[u for u in initial.get('units',[])if u.get('side')==0 and not u.get('summoned')]
- taken=dealt=protected=0;engaged=set();normalpct=[]
+ taken=dealt=allied=protected=0;engaged=set();normalpct=[];npcById={}
  for d in damage:
   t=allus.get(d.get('target'),us.get(d.get('target'),{}));owner=allus.get(d.get('owner'),us.get(d.get('owner'),{}));v=d.get('loss',d.get('amount',d.get('hpLoss',0)))
   if t.get('side')==0:taken+=v
-  if t.get('side')==2:protected+=v
+  if t.get('side')==2:
+   allied+=v;npcById[t['id']]=npcById.get(t['id'],0)+v
+   if t['id']=='objective' or (stage==7 and t['id'].startswith('resident-')) or (stage==10 and t['id']=='boss'):protected+=v
   if t.get('side')==1 and owner.get('side')==0:dealt+=v;engaged.add(t.get('id'))
   if owner.get('side')==1 and t.get('side') in [0,2]:engaged.add(owner.get('id'))
   # Per-hit only: multi-hit action aggregation is not yet complete, cannot gate.
@@ -21,7 +24,7 @@ def normalize(stage,label,initial,final,damage,actions,path,cohort=False,seed=No
   k=u.get('honroVariant',u.get('honroType',u.get('cls','unknown')));kinds[k]=kinds.get(k,0)+1
  playerfires=[a for a in actions if a.get('op',a.get('kind')) in ['fire','shot','fire-seal','fire-binding','fire-input'] and (not a.get('before') or str(a['before'].get('id','')).startswith('p-'))]
  round_=final.get('round');target=PLAN['stages'][stage-1]['design']['rounds']
- row={'stage':stage,'policy':label,'cohort':cohort,'inputErrorSeed':seed,'engineSeed':initial.get('seed'),'scope':scope,'evidence':str(path.relative_to(ROOT)),'sha256':digest(path),'phase':final.get('phase'),'round':round_,'roundTarget':target,'trialRoundInTarget':target[0]<=round_<=target[1] if round_ else None,'hard20Exceeded':round_>20 if round_ else None,'winnerReason':final.get('winnerReason'),'entry':{'difficulty':initial.get('difficulty'),'heroes':[{'cls':u['cls'],'level':u.get('level'),'hp':u.get('maxHp'),'loadout':u.get('loadout'),'ranks':u.get('ranks')}for u in hero]},'composition':{'initialEnemiesExcludingObjectiveTargets':len(foes),'initialElites':sum(bool(u.get('elite'))for u in foes),'archetypes':kinds,'initialObjectiveTargets':sum(bool(u.get('honroObjectiveTarget'))for u in initial.get('units',[]))},'observed':{'kills':sum(u.get('side')==1 and not u.get('honroObjectiveTarget') and (u.get('dead') or u.get('hp',1)<=0)for u in allus.values()),'survivingHeroes':sum(u.get('side')==0 and not u.get('summoned') and not u.get('dead') and u.get('hp',0)>0 for u in allus.values()),'playerFireCommands':len(playerfires),'partyHpDamage':taken,'protectedNpcHpDamage':protected,'damageToHostileSideIncludingTargets':dealt,'damageBackedEngagementLowerBound':len(engaged),'damageBackedEngagedIds':sorted(engaged),'normalEnemyHitPctHpDiagnostic':{'n':len(normalpct),'mean':statistics.mean(normalpct)if normalpct else None,'range':[min(normalpct),max(normalpct)]if normalpct else None}},'missingEssential':['validated enemy effective-action denominator incl zero phases','normal enemy damage per-action aggregation','accepted full required support graph and elevation ratio','valid jump/drop/landing attribution','stage-specific special metric comparison','readability and native UI scene review','human-independent tactics assessment'], 'acceptance':'FAIL_UNMEASURED'}
+ row={'stage':stage,'policy':label,'cohort':cohort,'inputErrorSeed':seed,'engineSeed':initial.get('seed'),'scope':scope,'evidence':str(path.relative_to(ROOT)),'sha256':digest(path),'phase':final.get('phase'),'round':round_,'roundTarget':target,'trialRoundInTarget':target[0]<=round_<=target[1] if round_ else None,'hard20Exceeded':round_>20 if round_ else None,'winnerReason':final.get('winnerReason'),'entry':{'difficulty':initial.get('difficulty'),'heroes':[{'cls':u['cls'],'level':u.get('level'),'hp':u.get('maxHp'),'loadout':u.get('loadout'),'ranks':u.get('ranks')}for u in hero]},'composition':{'initialEnemiesExcludingObjectiveTargets':len(foes),'initialElites':sum(bool(u.get('elite'))for u in foes),'archetypes':kinds,'initialObjectiveTargets':sum(bool(u.get('honroObjectiveTarget'))for u in initial.get('units',[]))},'observed':{'kills':sum(u.get('side')==1 and not u.get('honroObjectiveTarget') and (u.get('dead') or u.get('hp',1)<=0)for u in allus.values()),'survivingHeroes':sum(u.get('side')==0 and not u.get('summoned') and not u.get('dead') and u.get('hp',0)>0 for u in allus.values()),'playerFireCommands':len(playerfires),'partyHpDamage':taken,'protectedNpcHpDamage':protected,'alliedNpcHpDamage':allied,'npcHpDamageById':npcById,'damageToHostileSideIncludingTargets':dealt,'damageBackedEngagementLowerBound':len(engaged),'damageBackedEngagedIds':sorted(engaged),'normalEnemyHitPctHpDiagnostic':{'n':len(normalpct),'mean':statistics.mean(normalpct)if normalpct else None,'range':[min(normalpct),max(normalpct)]if normalpct else None}},'missingEssential':['validated enemy effective-action denominator incl zero phases','normal enemy damage per-action aggregation','accepted full required support graph and elevation ratio','valid jump/drop/landing attribution','stage-specific special metric comparison','readability and native UI scene review','human-independent tactics assessment'], 'acceptance':'FAIL_UNMEASURED'}
  playerids={u['id']for u in hero}
  commands=[a for a in actions if isinstance(a.get('before'),dict) and a['before'].get('id')in playerids and a.get('accepted')is True]
  row['observed']['acceptedSkills']=dict(Counter(a.get('args',[None])[0]for a in commands if a.get('op')=='fire')) if commands else dict(Counter(a.get('skill')for a in playerfires if a.get('skill')))
@@ -35,6 +38,22 @@ def normalize(stage,label,initial,final,damage,actions,path,cohort=False,seed=No
   ps=[u for sample in poses or []for u in sample.get('units',[])if u['id']==uid]
   if ps:route[uid]={'sampleCount':len(ps),'xRange':[min(u['x']for u in ps),max(u['x']for u in ps)],'yRange':[min(u['y']for u in ps),max(u['y']for u in ps)],'observedSupports':sorted({u['support']for u in ps if u.get('support')}),'sampledPathLengthLowerBound':sum(((a['x']-b['x'])**2+(a['y']-b['y'])**2)**.5 for a,b in zip(ps,ps[1:]))}
  row['observed']['sampledRoutes']=route
+ # Attribute damage to accepted launch IDs, not raw hit count. Any owner
+ # without recorded launch remains unknown rather than receiving invented credit.
+ launches={};effective={};unattributed=0
+ for a in actions:
+  bef=a.get('before');args=a.get('args',[])
+  if a.get('op')=='fire' and a.get('accepted')is True and isinstance(bef,dict):launches.setdefault(bef['id'],[]).append(a)
+ for d in damage:
+  target=allus.get(d.get('target'),{});owner=d.get('owner');time=d.get('tick');loss=d.get('loss',d.get('amount',0))
+  if owner not in playerids or target.get('side')!=1 or loss<=0:continue
+  candidates=[a for a in launches.get(owner,[])if time is not None and a.get('tick',0)<=time]
+  if not candidates:unattributed+=1;continue
+  a=candidates[-1];effective.setdefault(target['id'],set()).add((owner,a['tick'],a['args'][0]))
+ killed=[u for u in allus.values()if u.get('side')==1 and (u.get('dead')or u.get('hp',1)<=0)and not u.get('honroObjectiveTarget')and not u.get('elite')and not u.get('honroMidboss')and u['id']!='boss']
+ row['observed']['normalKilledEnemyPlayerEffectiveLaunches']=[{'target':u['id'],'effectivePlayerLaunchCount':len(effective.get(u['id'],set())) if launches else None,'alliedAssistanceDamage':sum(d.get('loss',d.get('amount',0))for d in damage if d.get('target')==u['id']and allus.get(d.get('owner'),{}).get('side')==2)}for u in killed]
+ row['observed']['unattributedPlayerDamageEvents']=unattributed
+ row['observed']['effectiveLaunchCaveat']='Recorded launch-to-impact association by actor/time; delayed effects and ally assistance require review before kill-actions gate.'
  row['observed']['routeCaveat']='One-second samples: path length lower bound, not exact movement or valid landing attribution.'
  rows.append(row)
 for path in OUT.glob('stage*/trace.json'):
@@ -53,6 +72,25 @@ groups=[]
 for policy in sorted({r['policy']for r in rows if r['cohort']}):
  rs=[r for r in rows if r['policy']==policy and r['cohort']];wins=[r for r in rs if r['phase']=='won'];rounds=[r['round']for r in wins];n=len(rs);groups.append({'policy':policy,'n':n,'clears':len(wins),'clearRatePct':len(wins)/n*100,'humanClearRate':None,'uncertainty':'Fixed engine RNG, tool policy and tiny input errors do not establish a human-population confidence interval.','meanClearRounds':statistics.mean(rounds)if rounds else None,'medianClearRounds':statistics.median(rounds)if rounds else None,'clearRoundRange':[min(rounds),max(rounds)]if rounds else None,'hard20Exceedances':sum(r['hard20Exceeded']for r in rs),'engineSeedCount':len({r['engineSeed']for r in rs}),'seedScope':'input error seeds, canonical fixed game RNG','stageAcceptance':'FAIL_UNMEASURED'})
 report={'schema':'honro-act1-gameplay-measurements/v1','candidateGameplay':'292c1122fcd75256c366ec15e815fb4adcfbd7b2','originalCriteria':PLAN['source'],'overall':'FAIL_INCOMPLETE','statement':'Native inputs and declared fixtures only unless separately linked to verified UI run. Clear is not fun approval. Failed controller calibration excluded from general-policy rate.','stages':[{'stage':i,'runs':sum(r['stage']==i for r in rows),'acceptance':'FAIL_UNMEASURED','requiredRounds':PLAN['stages'][i-1]['design']['rounds'],'requiredEngagements':PLAN['stages'][i-1]['design']['requiredEngagements']}for i in range(1,11)],'cohorts':groups,'runs':sorted(rows,key=lambda r:(r['stage'],r['policy'],r.get('inputErrorSeed')or 0))}
+uiReceipts={}
+for folder in OUT.glob('ui-*'):
+ result=folder/'result.json';events=folder/'events.json'
+ if not result.exists()or not events.exists():continue
+ u=json.loads(result.read_text());ev=json.loads(events.read_text());final=u.get('final',{})
+ if u.get('stage')and final.get('phase')=='won'and not u.get('errors')and any(e.get('op')in ['fire','receiver-interact','interact']for e in ev):uiReceipts[u['stage']]={'result':str(result.relative_to(ROOT)),'sha256':digest(result),'eventsSha256':digest(events),'source':u.get('source')}
+for st in report['stages']:
+
+ ds=PLAN['stages'][st['stage']-1]['design'];rs=[r for r in rows if r['stage']==st['stage']and r['cohort']];wins=[r for r in rs if r['phase']=='won'];rounds=[r['round']for r in wins]
+ st['gates']={
+ 'roundMeanProxy':numeric_gate(statistics.mean(rounds)if rounds else None,ds['rounds'],n=len(rounds),eligible=False,scope='Fixed-RNG controller cohort only, not validated human pacing'),
+ 'humanClearRate':numeric_gate(None,ds['clearRate'],scope='No human population sample'),
+ 'effectiveEnemyActions':numeric_gate(None,ds['actualEnemyActions'],scope='All effective approach/control/pressure and zero phases not fully classified'),
+ 'normalEnemyDamagePerAction':numeric_gate(None,ds['enemyAttackPctHP'],scope='Per-hit diagnostics are not accepted action aggregates'),
+ 'requiredRouteEngagements':numeric_gate(None,ds['requiredEngagements'],scope='Damage-backed lower bound is not complete engagement classification'),
+ 'routeElevationRatio':numeric_gate(None,ds['verticalTravelRatio'],scope='Required support/landing graph not fully measured'),
+ 'normalUIObjective':{'status':'PASS' if st['stage']in uiReceipts else 'FAIL_MISSING_MEASUREMENT','evidence':uiReceipts.get(st['stage']),'scope':'Representative normal UI objective only; not whole art/fun approval'},
+ 'readabilityApproval':{'status':'FAIL_MISSING_MEASUREMENT','scope':'Partial representative screenshot inspection is not complete approval'}}
+ st['acceptance']=overall(list(st['gates'].values()))
 (OUT/'measurements.json').write_text(json.dumps(report,ensure_ascii=False,indent=2))
 md=['# Act1 gameplay QA — incomplete / fail closed','',report['statement'],'','## Preregistered Stage1 cohort','', '| Policy | n | Clear | Mean / median / range R | Uncertainty |','|---|---:|---:|---|---|']
 for g in groups:md.append(f"| {g['policy']} | {g['n']} | {g['clears']}/{g['n']} | {g['meanClearRounds']} / {g['medianClearRounds']} / {g['clearRoundRange']} | conditional input robustness only; no human CI |")
