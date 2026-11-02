@@ -1,0 +1,32 @@
+{
+  "auditedCommit": "90b9e62a06f688236c80f06b747786f5726afd97",
+  "fileSha256": {
+    "tools/act2-qa/player-operations.mjs": "fbc8d0b429e7834a85f106bb5ff1e39170493018ea23d6e97b66888cba5c5e05",
+    "tools/act2-qa/pure-planning.mjs": "cd2d9b812ad8d02a633be2da7a7f9494dd17b66d50b78b1f46c70d2985cae15c",
+    "tools/act2-qa/production-aim-preview.mjs": "a7c74f088f9ecbaefd92f4890e6d7363d916a85c70aa7804d796c3fc208861ce",
+    "tests/act2-gameplay-app.mjs": "b22ce9558f2e4a2bc10dd16e3faaf63487cd50317435db9f5133be37b4b9a3b0",
+    "tests/app-regression-helpers.mjs": "88cfd149151ca3acc8d919e57bbbc3991bf32ab7655cf943061b17892e63a3f3",
+    "shared/runtime/main.js": "57346a219fe8de6dd4aed397ea6aa94db5f5e844dbe833309a9df2e5084ced03",
+    "shared/runtime/renderer.js": "adb2944283f51621d21ddc53457c13b3cc6049fcd39f5d4deadcc7840be5c728",
+    "shared/engine/src/art.ts": "f9671146717ade649d931647d45fffeb436166483ab655ede57ad088ecf3242f",
+    "shared/engine/src/skillVisuals.ts": "c76fe8aeb090a7fdae66f7b3b6ed5ca814b43ad76f78dcf9a04e8db2ec543f34"
+  },
+  "existingArtifact": {
+    "path": "_local/reports/released-app/smoke16-pure-preview",
+    "source": "1391f2f8c8c16b39dfb5f051f1b56bd789308a10",
+    "reportedSkills": {
+      "A02": 3,
+      "M11": 3
+    },
+    "acceptedFireOperations": {
+      "A02": 1,
+      "M11": 1
+    },
+    "skillTaggedOperations": {
+      "('app-operation', 'selectSkill')": 2,
+      "('app-operation', 'fire')": 2,
+      "('fire', None)": 2
+    }
+  },
+  "scope": "Read-only source and existing evidence inspection. No new gameplay/fullrun, no runner/runtime modification."
+}

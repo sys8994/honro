@@ -1,0 +1,25 @@
+# Independent App / selected-preview audit
+
+Source a7afb10e06f9bf4d1cc18fbc842467da2a6aa74d. Read-only source and existing evidence inspection; no fullrun, new gameplay probe, runtime or runner edits. Hash binding in evidence.json.
+
+## Concrete findings
+
+### 1. Selected-preview fidelity: HUD state logic is stubbed (high priority)
+`tests/app-regression-helpers.mjs:26` replaces `App.updateHUD` with a no-op. Real `shared/runtime/main.js:709–714` both restores each active hero's remembered selected skill and normalizes illegal selections to the current hero's loadout. `player-operations.selectSkill` correctly selects a legal skill before firing, but automatic actor transitions do not call that adapter method. The generic runner then advances90idle frames and potentially navigation frames before selecting a shot skill.
+
+`production-aim-preview.mjs` faithfully calls the real guide but does not reject a skill absent from the active loadout; `art.ts:291` itself checks only skill existence/passive status, not membership. Consequently this harness can retain the former actor's selected skill and render that prediction on a new actor for much longer than the normal HUD update cadence. Reviewed13/15/16/18 observation hooks can consume live predictions, so “genuine player-selected observation” is not yet fully established. This is a source-demonstrated reachable state-flow gap; no current run's authored completion has been proven contaminated by an independent replay here.
+
+Bounded correction proposal: restore the real production HUD selection-state transition through the normal HUD path (or a transparently scoped shared production equivalent), then assert selected skill belongs to `HonroStakeCrossing.skills` at each eligible guide frame. Merely filtering invalid previews avoids false positives but can miss legitimate default previews, so is not full parity. Freeze existing cohorts; corrected adapter creates new evidence provenance.
+
+### 2. Reported skill usage is event count, not casts (confirmed)
+`tests/act2-gameplay-app.mjs:138` counts every action with the skill field. An accepted shot has selectSkill, adapter fire, and controller fire records; preview-observation records can add more. Existing smoke16 artifact source1391f2f8 reports A02=3/M11=3 for exactly one accepted adapter fire of each. The expression remains unchanged in audited a7afb10e. Raw event ledger is useful; aggregate `skills` must not be described as use/cast count. Derive counts from accepted `app-operation`/`operation=fire`, with other event types kept separate. No balance or full-clear conclusion follows from inflated counts.
+
+### 3. Terminal settlement contract is narrower than its comment (source-level gap)
+Final settlement waits only until `ready()` (=App.canInput) or terminal phase. `App.canInput`/`Engine.canAct` do not require all units stationary (`settleBusy` includes other NPC jumping/body motion) or explicitly require zero projectiles. Thus returning to input is not a universal physical-settlement assertion. Source already labels the30000frame no-input timeout unresolved; retain that. Record explicit projectile/volley/melee and settleBusy state at terminal and do not call an input-ready but moving-NPC snapshot fully settled. No new affected a7afb10e terminal was observed here; the old smoke artifact's flight snapshot predates the newer settlement loop and is NOT evidence that the new loop fails to wait for shots.
+
+## Positive audit checks
+- Generic runner and navigation contain no remaining live candidate `e.predict`, `e.bestShot`, `e.shotSeeds`, or live `shotViable` scan. fireAt and healStake use detached Engine/unit/target copies and check full live-battle JSON equality before production fire. Error paths do not proceed to fire. This check is scoped to candidate planning, not a claim that all other observers are immutable.
+- Live selected preview calls the actual `C.Renderer.predictionGuide`, hence `skillVisuals.guidePrediction` WeakMap cache and100ms world refresh logic are retained. No alternate direct-predict fallback or cache bypass found. The wrapper mirrors noncombat/outro/storyFrozen/aim/active/non-summoned/canAct guards and adds a conservative dialogue exclusion. It is not full scene/camera/browser rendering; existing scope text says so.
+- Fire uses normal beginCharge, elapsed App.frame and releaseCharge. Production cooldown/affordability/grounding/loadout checks remain. Requested power can quantize to a slightly higher actual power; actual shot records are preserved. Aim is explicitly idealized, not browser-pointer evidence.
+- Defend, selectHero, jump/drop and stick movement delegate normal App/action semantics; legacy item operation throws. Dialogues advance through Story.next. Entry fixtures are explicitly synthetic or inherited artifacts, not silently continuous campaigns.
+- Entry15/16 three-endpoint purity checks establish only bounded entry/base prediction parity, not every authored hook, stage18 state or reachable runtime configuration. Their existing scope wording correctly limits this claim.
