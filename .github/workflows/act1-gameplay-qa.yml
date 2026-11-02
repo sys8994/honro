@@ -5,6 +5,7 @@ on:
     paths:
       - '.github/workflows/act1-gameplay-qa.yml'
       - 'tools/act1-qa/browser-ui.py'
+      - 'tools/act1-qa/browser_progression.py'
       - 'tools/act1-qa/browser-reactive-plan.js'
       - 'tools/act1-qa/browser-reactive-registration.json'
       - 'tools/act1-qa/*ui-commands.json'
@@ -44,6 +45,10 @@ jobs:
       - run: |
           python -m pip install 'playwright==1.58.0'
           python -m playwright install --with-deps chromium
+      - name: Check pure browser driver contracts
+        run: |
+          python tools/act1-qa/test-browser-ui-driver.py
+          python tools/act1-qa/test-browser-progression.py
       - name: Observe committed production bundle with real UI inputs
         run: |
           mkdir -p "$HONRO_QA_OUT"
@@ -55,7 +60,7 @@ jobs:
           python tools/act1-qa/browser-ui.py > "$HONRO_QA_OUT/browser.log" 2>&1
       - name: Require explicit successful UI receipt
         run: |
-          python -c 'import json,os; from pathlib import Path; d=json.loads((Path(os.environ["HONRO_QA_OUT"])/"result.json").read_text()); assert d.get("passed") is True and not d.get("exception") and not d.get("errors") and d.get("final",{}).get("phase")=="won"'
+          python -c 'import json,os; from pathlib import Path; d=json.loads((Path(os.environ["HONRO_QA_OUT"])/"result.json").read_text()); assert d.get("passed") is True and d.get("progression",{}).get("passed") is True and not d.get("exception") and not d.get("errors") and d.get("final",{}).get("phase")=="won"'
       - uses: actions/upload-artifact@330a01c490aca151604b8cf639adc76d48f6c5d4
         if: always()
         with:

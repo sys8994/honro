@@ -12,9 +12,11 @@
   "stage10": "Reactive current-binding attack, natural route climb, knight S08 before survival/pursuit, prioritize threats targeting Sodan, guard positions2200/2340/2580, archer scouts actualexit at hold4, anylivingactor exits once actualhold6 ready. Defend recovery for nonknight below40%HP after moving.",
   "limits": "240 ordinary input intentions and existing30minute CI observation; unfinished/exception/death fail receipt. Never force victory or erase failed prior traces.",
   "sourceHashes": {
-    "tools/act1-qa/browser-ui.py": "0a4928cc22045349d0a8972026bc56cde7a22d2288cc5041b16934c127f0619f",
+    "tools/act1-qa/browser-ui.py": "11d1aac0429552c55206bd00ad1a4c1b61f55287d98dafd91f30406265ed9dfc",
     "tools/act1-qa/browser-reactive-plan.js": "95e5ad8ddbfed44fb87a0b32c0c18104fd7ddfbbe869b3056243aa70f448a435",
-    "tools/act4-ci/precise_aim.py": "4385177fdf3fdfb874ad7381045652ec69e2fd9f75ab698550f5a4ca70748980"
+    "tools/act4-ci/precise_aim.py": "4385177fdf3fdfb874ad7381045652ec69e2fd9f75ab698550f5a4ca70748980",
+    "tools/act1-qa/browser_progression.py": "ec966de8584a2d27bf9a608d8a4863679a15435f95f510fcaa9f05418ea3f5a9",
+    "tools/act1-qa/browser-progression-recovery.py": "a4025ffb3036169b945ac35512500982c78241fbce023412917eae2aab3d9fab"
   },
   "preRunCalibration": "Before first browser run: native reactive10 revealed actual exit victory can occur during a following charge. Wait observes actual terminalphase and releases key; no launch receipt is claimed, result still requires actualwon/noexception. Old native terminalwin+driverexception trace preserved.",
   "priorRegistration": {
@@ -32,5 +34,15 @@
     "change": "Continuous ordinary digital Arrow key held across read-only 16ms observations; no forced50ms post-jump or30ms inter-pulse neutral interval. Release on target/actor change/terminal/error, await landing, log actual support. No route, gameplay, win-gate or240-command limit changes.",
     "preRunEvidence": "Detached same-checkpoint physics:0/30ms neutral gap reaches timber-high,60/100/160ms falls valley. Normal native App baseline WON R13; continuous digital-axis native replay WON R12 with2alive. Native doubles are not real browser evidence; exact browser latency not measured.",
     "remaining": "Actual browser rerun required; local Chromium socket launch denied by sandbox."
+  },
+  "postWinCoverage": {
+    "scope": "After actual won, normal authored dialogue/result/ending, canonical next destination and recruitment, stored completion then reload/titleContinue. Frozen battle metrics retained; final pass additionally requires persisted progression receipt.",
+    "focusedRecovery": "Exact entire genuine WON saves from41515762111 fe2cca9a; single initial profile import only. Same servedHTML/manifest and allmanifest-file hashes required. No combat replay or synthetic fields. Separate source/entry stratum, not a new clear-rate sample.",
+    "contracts": {
+      "1": "resultContinue→battle2",
+      "5": "resultContinue→rest6+knight",
+      "10": "Act1ending→rest11+occultist; ending stamp required"
+    },
+    "status": "mocked/native-limited validation complete; actual focused browser run pending"
   }
 }

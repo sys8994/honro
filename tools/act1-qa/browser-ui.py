@@ -7,6 +7,7 @@ from pathlib import Path
 from playwright.sync_api import sync_playwright
 ROOT=Path(__file__).resolve().parents[2];sys.path.insert(0,str(ROOT/'tools/act4-ci'))
 from precise_aim import aim_with_joystick
+from browser_progression import finish_progression
 out=Path(os.environ.get('HONRO_QA_OUT','_local/reports/act1-gameplay-ui'));out.mkdir(parents=True,exist_ok=True)
 reactive=os.environ.get('HONRO_REACTIVE_POLICY')=='1';stage=int(os.environ.get('HONRO_STAGE','1'));result={'passed':False,'stage':stage,'scope':__doc__,'source':os.environ.get('GITHUB_SHA'),'errors':[]};events=[]
 def aim_terminal(aim, current):
@@ -52,6 +53,7 @@ try:
  if os.environ.get('HONRO_ENTRY_PROFILE'):
   entry=json.loads(Path(os.environ['HONRO_ENTRY_PROFILE']).read_text());profile=entry.get('profile',entry);result['entryFixture']=os.environ['HONRO_ENTRY_PROFILE'];p.evaluate('(v)=>localStorage.setItem("honro-first-act-profile-1",JSON.stringify(v))',profile);p.reload(wait_until='domcontentloaded');p.wait_for_function('window.HonroApp')
  else:result['entryFixture']='fresh browser storage / normal new journey'
+ entry_visits=p.evaluate('(stage)=>JSON.parse(localStorage.getItem("honro-first-act-profile-1")||"{}").cleared?.[stage]?.visits||0',stage)
  p.locator('.title-actions button.primary:visible').click()
  deadline=time.monotonic()+180
  while time.monotonic()<deadline:
@@ -181,11 +183,18 @@ try:
    else:p.keyboard.press('f');record('defend-after-move',marker=marker['id'])
    p.screenshot(path=str(out/f'objective-action-{action}.png'));p.wait_for_timeout(300)
  else:raise AssertionError('Other stages require validated route controller')
- result['final']=state();result['passed']=result['final']['phase']=='won' and not result['errors'];result['roundTargetAssessment']='Recorded separately; UI clear is not whole gameplay/fun approval';p.screenshot(path=str(out/'terminal.png'));result['stored']=json.loads(p.evaluate('localStorage.getItem("honro-first-act-profile-1")'))
+ result['final']=state();result['passed']=result['final']['phase']=='won' and not result['errors'];result['roundTargetAssessment']='Recorded separately; UI clear is not whole gameplay/fun approval';p.screenshot(path=str(out/'terminal.png'));result['storedAtBattleTerminal']=json.loads(p.evaluate('localStorage.getItem("honro-first-act-profile-1")'))
+ result['battlePassed']=result['passed'];result['passed']=False;save()
+ if result['battlePassed']:
+  result['progression']={};finish_progression(p,stage,result['final'],entry_visits,out,result['progression'],save)
+ result['stored']=json.loads(p.evaluate('localStorage.getItem("honro-first-act-profile-1")'))
+ result['passed']=result['battlePassed'] and result.get('progression',{}).get('passed') is True and not result['errors']
 except Exception:
  result['passed']=False
  result['exception']=traceback.format_exc()
- try:result['last']=state();p.screenshot(path=str(out/'failure.png'))
+ try:result['last']=state()
+ except Exception:pass
+ try:p.screenshot(path=str(out/'failure.png'))
  except Exception:pass
 finally:
  save()

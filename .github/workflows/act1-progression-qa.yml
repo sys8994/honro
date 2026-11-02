@@ -1,0 +1,64 @@
+name: Act1 genuine victory save continuation
+on:
+  push:
+    branches: ['work/act1-progression-qa/**']
+    paths:
+      - '.github/workflows/act1-progression-qa.yml'
+      - 'tools/act1-qa/browser-progression-recovery.py'
+      - 'tools/act1-qa/browser_progression.py'
+      - 'tools/act1-qa/test-browser-progression.py'
+permissions:
+  contents: read
+  actions: read
+jobs:
+  genuine-won-save:
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - stage: 1
+            artifact: 13174968070
+          - stage: 5
+            artifact: 13175548112
+          - stage: 10
+            artifact: 13176420147
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    env:
+      HONRO_STAGE: ${{ matrix.stage }}
+      HONRO_PRIOR_ARTIFACT_ID: ${{ matrix.artifact }}
+      HONRO_PRIOR_ARTIFACT: _local/reports/prerequisite
+      HONRO_QA_OUT: _local/reports/act1-progression-ui
+      HONRO_QA_URL: http://127.0.0.1:8870/HONRO.html
+    steps:
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
+      - uses: actions/setup-python@e797f83bcb11b83ae66e0230d6156d7c80228e7c
+        with:
+          python-version: '3.12'
+      - uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093
+        with:
+          name: act1-gameplay-ui-stage${{ matrix.stage }}-fe2cca9a975206a5fb0e72c1422b7401ec2df60d
+          run-id: 41515762111
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          path: _local/reports/prerequisite
+      - run: |
+          python -m pip install 'playwright==1.58.0'
+          python -m playwright install --with-deps chromium
+          python tools/act1-qa/test-browser-progression.py
+      - name: Restore genuine saved victory and verify normal continuation
+        run: |
+          mkdir -p "$HONRO_QA_OUT"
+          git rev-parse HEAD > "$HONRO_QA_OUT/source.txt"
+          python -m http.server 8870 --bind 127.0.0.1 > "$HONRO_QA_OUT/server.log" 2>&1 &
+          trap 'kill $! 2>/dev/null || true' EXIT
+          sleep 2
+          python tools/act1-qa/browser-progression-recovery.py > "$HONRO_QA_OUT/browser.log" 2>&1
+      - name: Require persisted and reload-verified completion
+        run: |
+          python -c 'import json,os; from pathlib import Path; d=json.loads((Path(os.environ["HONRO_QA_OUT"])/"result.json").read_text()); assert d.get("passed") is True and d.get("progression",{}).get("passed") is True and not d.get("errors") and not d.get("exception")'
+      - uses: actions/upload-artifact@330a01c490aca151604b8cf639adc76d48f6c5d4
+        if: always()
+        with:
+          name: act1-progression-ui-stage${{ matrix.stage }}-${{ github.sha }}
+          path: _local/reports/act1-progression-ui/
+          retention-days: 7
