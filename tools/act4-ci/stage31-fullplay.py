@@ -45,7 +45,8 @@ with sync_playwright() as w:
   live=state();d={'step':step,'state':live,'time':time.time(),**extra}
   if step=='entry' or step.startswith(('action-','survival-defend-','boarding-transition','interactive-')):d['storageSnapshot']=snapshot(step,live)
   f.write(json.dumps(d,ensure_ascii=False)+'\n');f.flush();print(json.dumps(d,ensure_ascii=False),flush=True)
- def plan(onlyFacing=False):return p.evaluate('''onlyFacing=>{const a=HonroApp,e=a.engine,b=e.b,u=e.active,C=HONRO_CORE,sc=a.scene,rect=sc.canvas.getBoundingClientRect(),lo=sc.world(0,0),hi=sc.world(rect.width,rect.height);const allies=b.units.filter(v=>v.side===0&&!v.dead&&v.id!==u.id);const visible=b.units.filter(v=>v.side===1&&!v.dead&&v.x>=Math.min(lo.x,hi.x)&&v.x<=Math.max(lo.x,hi.x)&&v.y>=Math.min(lo.y,hi.y)&&v.y-v.h<=Math.max(lo.y,hi.y));let best=null;const intersects=(a,z,u)=>{const bounds=[u.x-u.r-18,u.x+u.r+18,u.y-u.h-18,u.y+18];let lo=0,hi=1;for(const [v,d,min,max] of [[a.x,z.x-a.x,bounds[0],bounds[1]],[a.y,z.y-a.y,bounds[2],bounds[3]]]){if(Math.abs(d)<1e-9){if(v<min||v>max)return false;continue}let t0=(min-v)/d,t1=(max-v)/d;if(t0>t1)[t0,t1]=[t1,t0];lo=Math.max(lo,t0);hi=Math.min(hi,t1);if(lo>hi)return false}return true};for(const t of visible.sort((x,y)=>Math.abs(x.x-u.x)-Math.abs(y.x-u.x)).slice(0,4)){for(let idx=0;idx<u.loadout.length;idx++){const id=u.loadout[idx],s=C.SKILLS[id];if(!s||s.passive||['O13','S08'].includes(id)||!e.skillAllowed(s,u)||e.cooldownLeft(u,id)>0||!e.canAfford(s,u,1)||s.mode==='charge'||id==='S00'&&Math.hypot(t.x-u.x,t.y-u.y)>160)continue;const angles=new Set(e.shotSeeds(u,s,t).flatMap(z=>[-4,-2,-1,0,1,2,4].map(d=>Math.round((z.angle+d)*10)/10)));const seedAngles=new Set(angles);for(let angle=C.AIM_MIN||-85;angle<=(C.AIM_MAX||265);angle+=3)angles.add(angle);for(const angle of angles){if(best&&!seedAngles.has(angle))continue;if(angle<(-85+.2)||angle>(265-.2)||Math.abs(angle-90)<.2)continue;const z={angle,power:1};if(onlyFacing&&(z.angle>90?-1:1)!==u.facing)continue;const h=e.predict(u,s,z.angle,z.power,t,false),safe=C.shotViable(e,u,s,t,z.angle,z.power);if(!safe.ok||safe.risk>=.5)continue;const points=e.predict(u,s,z.angle,z.power,t,true).points||[];if(allies.some(v=>points.slice(1).some((q,i)=>intersects(points[i],q,v))))continue;const r=e.effective(s,u).radius||0,dist=Math.hypot(h.x-t.x,h.y-(t.y-t.h*.52));const score=(h.unit===t.id?300:r>0&&dist<r?200:0)+(safe.enemyDamage||0);let robust=score;if(score>150){for(const da of [-.2,.2]){const hh=e.predict(u,s,z.angle+da,1,t,false),ss=C.shotViable(e,u,s,t,z.angle+da,1),pp=e.predict(u,s,z.angle+da,1,t,true).points||[],dd=Math.hypot(hh.x-t.x,hh.y-(t.y-t.h*.52));if(!ss.ok||ss.risk>=.5||allies.some(v=>pp.slice(1).some((q,i)=>intersects(pp[i],q,v)))){robust=0;break}robust=Math.min(robust,(hh.unit===t.id?300:r>0&&dd<r?200:0)+(ss.enemyDamage||0));}}if(robust>150&&(!best||robust>best.score))best={id,idx,angle:z.angle,power:z.power,target:t.id,score:robust,angleTolerance:.2};}}}return {best,visible:visible.map(v=>({id:v.id,x:v.x,y:v.y,hp:v.hp})),observed:b.units.filter(v=>v.side===1&&v.x>=Math.min(lo.x,hi.x)&&v.x<=Math.max(lo.x,hi.x)&&v.y>=Math.min(lo.y,hi.y)&&v.y-v.h<=Math.max(lo.y,hi.y)).map(v=>({id:v.id,x:v.x,y:v.y,hp:v.hp,dead:v.dead}))}}''',onlyFacing)
+ planner_source=(root/'tools/act4-ci/normal-shot-plan.js').read_text()
+ def plan(onlyFacing=False):return p.evaluate(planner_source,onlyFacing)
  def waitready():
   for _ in range(100):
    s=state()
@@ -123,7 +124,7 @@ with sync_playwright() as w:
   if ((len(prior)>=3 and prior[-1]==prior[-2]==prior[-3]) or
       (len(prior)>=4 and prior[-1]==prior[-3] and prior[-2]==prior[-4])):
    record('watchdog-idle',{'history':prior[-4:]});break
-  record('planning',{'visible':pl['visible'],'choice':pl['best']})
+  record('planning',{'visible':pl['visible'],'choice':pl['best'],'planner':pl.get('metrics')})
   for move_attempt in range(5):
    if pl['best'] or state()['active']!=start['active'] or not state()['can']:break
    before=state()
@@ -143,7 +144,7 @@ with sync_playwright() as w:
      p.keyboard.press('Control');p.keyboard.down(key);p.wait_for_timeout(500);p.keyboard.up(key);p.wait_for_timeout(1200)
    if not state()['grounded']:p.wait_for_timeout(1500)
    pl=plan();observe(pl)
-  record('post-move-'+str(n),{'visible':pl['visible'],'choice':pl['best']})
+  record('post-move-'+str(n),{'visible':pl['visible'],'choice':pl['best'],'planner':pl.get('metrics')})
   if state()['active']!=start['active'] or not state()['can'] or not state()['grounded']:
    record('movement-handoff-'+str(n));continue
   choice=pl['best']
