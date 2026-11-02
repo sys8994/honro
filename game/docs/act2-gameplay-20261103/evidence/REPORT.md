@@ -4,7 +4,7 @@ Released-v4 baseline gameplay calibration. Diagnostic completed/failed/censored 
 
 | Stage | Native trials | Completed | Death terminals | Incomplete/censored | Required gate |
 |---|---:|---:|---:|---:|---|
-| 11 매듭을 거둔 아침 | 4 | 1 | 0 | 3 | FAIL / evidence pending |
+| 11 매듭을 거둔 아침 | 5 | 1 | 0 | 4 | FAIL / evidence pending |
 | 12 돌아오는 산길 | 2 | 1 | 1 | 0 | FAIL / evidence pending |
 | 13 숨은 석문 | 6 | 1 | 4 | 1 | FAIL / evidence pending |
 | 14 해가 닿지 않는 마을 | 2 | 0 | 0 | 2 | FAIL / evidence pending |

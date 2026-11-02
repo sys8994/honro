@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-02T17:40:58.101Z",
+  "generatedAt": "2026-11-02T17:58:51.665Z",
   "criteriaSource": "git:3872295f:tools/quality-gate/criteria-v3.json.gz",
   "criteriaRawSha256": "e2183e74492a4cb61338f8a691a51f23e7af2205fb9148ae6f6b2c138311aa54",
   "scope": "Released-v4 baseline gameplay calibration. Diagnostic completed/failed/censored runs are retained separately. No overall pass or human-fun inference.",
@@ -316,7 +316,7 @@
           "수직 이동의 선택과 큰 형태는 유지하되 발판 간격·합류 지점·왕복거리를 압축한다."
         ]
       },
-      "trialCount": 4,
+      "trialCount": 5,
       "diagnosticTerminalFrequency": {
         "denominator": "terminal calibration diagnostics ONLY; continuations excluded; not calibrated policy or human success probability",
         "wins": 1,
@@ -324,9 +324,10 @@
         "fraction": 1,
         "inference": null,
         "eligibility": "Selected diagnostic terminal counts only; incomplete and legacy-item runs prevent inferential acceptance",
-        "censored": 3
+        "censored": 4
       },
       "trials": [
+        "11-height-earned-equipped-757356291",
         "11-objective-101",
         "11-objective-101-cal3",
         "11-objective-101-cal4",
@@ -335,13 +336,13 @@
       "gates": {
         "currentObjectiveCompletion": "observed-in-calibration-only",
         "twentyRounds": "FAIL_OBSERVED_OVER_20",
-        "registeredClearProbability": "FAIL_NO_FROZEN_CALIBRATED_COHORT",
+        "registeredClearProbability": "SEE_SEPARATE_REGISTERED_INPUT_COHORT_INSUFFICIENT_ACCEPTANCE_RESOLUTION",
         "roundTargetRange": "FAIL_NO_REGISTERED_COHORT",
         "requiredEncounters": "FAIL_NO_REQUIRED_ROUTE_ENGAGEMENT_ATTRIBUTION",
         "minibossPatterns": "FAIL_NO_ACTUAL_PATTERN_COUNTERPLAY_EVIDENCE",
         "effectiveEnemyActions": "FAIL_NO_VALIDATED_ACTION_CLASSIFIER",
         "elevationCoverage": "FAIL_NO_VALIDATED_LANDING_ROUTE_CLASSIFIER",
-        "normalBrowser": "FAIL_NOT_YET_OBSERVED",
+        "normalBrowser": "BOUNDED_NORMAL_UI_OBSERVED_FULL_CLEAR_PENDING",
         "finalArtSourceBinding": "FAIL_PENDING_FINAL_ART",
         "globalCurve": "FAIL_UNMEASURED"
       },
@@ -648,7 +649,7 @@
       "gates": {
         "currentObjectiveCompletion": "observed-in-calibration-only",
         "twentyRounds": "FAIL_OBSERVED_OVER_20",
-        "registeredClearProbability": "FAIL_NO_FROZEN_CALIBRATED_COHORT",
+        "registeredClearProbability": "FAIL_NO_REGISTERED_COHORT",
         "roundTargetRange": "FAIL_NO_REGISTERED_COHORT",
         "requiredEncounters": "FAIL_NO_REQUIRED_ROUTE_ENGAGEMENT_ATTRIBUTION",
         "minibossPatterns": "FAIL_NO_ACTUAL_PATTERN_COUNTERPLAY_EVIDENCE",
@@ -994,7 +995,7 @@
       "gates": {
         "currentObjectiveCompletion": "observed-in-calibration-only",
         "twentyRounds": "FAIL_OBSERVED_OVER_20",
-        "registeredClearProbability": "FAIL_NO_FROZEN_CALIBRATED_COHORT",
+        "registeredClearProbability": "FAIL_NO_REGISTERED_COHORT",
         "roundTargetRange": "FAIL_NO_REGISTERED_COHORT",
         "requiredEncounters": "FAIL_NO_REQUIRED_ROUTE_ENGAGEMENT_ATTRIBUTION",
         "minibossPatterns": "FAIL_NO_ACTUAL_PATTERN_COUNTERPLAY_EVIDENCE",
@@ -1300,7 +1301,7 @@
       "gates": {
         "currentObjectiveCompletion": "FAIL_UNOBSERVED",
         "twentyRounds": "FAIL_UNOBSERVED",
-        "registeredClearProbability": "FAIL_NO_FROZEN_CALIBRATED_COHORT",
+        "registeredClearProbability": "FAIL_NO_REGISTERED_COHORT",
         "roundTargetRange": "FAIL_NO_REGISTERED_COHORT",
         "requiredEncounters": "FAIL_NO_REQUIRED_ROUTE_ENGAGEMENT_ATTRIBUTION",
         "minibossPatterns": "FAIL_NO_ACTUAL_PATTERN_COUNTERPLAY_EVIDENCE",
@@ -1632,13 +1633,13 @@
       "gates": {
         "currentObjectiveCompletion": "observed-in-calibration-only",
         "twentyRounds": "FAIL_OBSERVED_OVER_20",
-        "registeredClearProbability": "FAIL_NO_FROZEN_CALIBRATED_COHORT",
+        "registeredClearProbability": "SEE_SEPARATE_REGISTERED_INPUT_COHORT_INSUFFICIENT_ACCEPTANCE_RESOLUTION",
         "roundTargetRange": "FAIL_NO_REGISTERED_COHORT",
         "requiredEncounters": "FAIL_NO_REQUIRED_ROUTE_ENGAGEMENT_ATTRIBUTION",
         "minibossPatterns": "FAIL_NO_ACTUAL_PATTERN_COUNTERPLAY_EVIDENCE",
         "effectiveEnemyActions": "FAIL_NO_VALIDATED_ACTION_CLASSIFIER",
         "elevationCoverage": "FAIL_NO_VALIDATED_LANDING_ROUTE_CLASSIFIER",
-        "normalBrowser": "FAIL_NOT_YET_OBSERVED",
+        "normalBrowser": "BOUNDED_NORMAL_UI_OBSERVED_FULL_CLEAR_PENDING",
         "finalArtSourceBinding": "FAIL_PENDING_FINAL_ART",
         "globalCurve": "FAIL_UNMEASURED"
       },
@@ -1950,7 +1951,7 @@
       "gates": {
         "currentObjectiveCompletion": "observed-in-calibration-only",
         "twentyRounds": "FAIL_OBSERVED_OVER_20",
-        "registeredClearProbability": "FAIL_NO_FROZEN_CALIBRATED_COHORT",
+        "registeredClearProbability": "SEE_SEPARATE_REGISTERED_INPUT_COHORT_INSUFFICIENT_ACCEPTANCE_RESOLUTION",
         "roundTargetRange": "FAIL_NO_REGISTERED_COHORT",
         "requiredEncounters": "FAIL_NO_REQUIRED_ROUTE_ENGAGEMENT_ATTRIBUTION",
         "minibossPatterns": "FAIL_NO_ACTUAL_PATTERN_COUNTERPLAY_EVIDENCE",
@@ -2303,7 +2304,7 @@
       "gates": {
         "currentObjectiveCompletion": "FAIL_UNOBSERVED",
         "twentyRounds": "FAIL_OBSERVED_OVER_20",
-        "registeredClearProbability": "FAIL_NO_FROZEN_CALIBRATED_COHORT",
+        "registeredClearProbability": "FAIL_NO_REGISTERED_COHORT",
         "roundTargetRange": "FAIL_NO_REGISTERED_COHORT",
         "requiredEncounters": "FAIL_NO_REQUIRED_ROUTE_ENGAGEMENT_ATTRIBUTION",
         "minibossPatterns": "FAIL_NO_ACTUAL_PATTERN_COUNTERPLAY_EVIDENCE",
@@ -2644,7 +2645,7 @@
       "gates": {
         "currentObjectiveCompletion": "observed-in-calibration-only",
         "twentyRounds": "FAIL_OBSERVED_OVER_20",
-        "registeredClearProbability": "FAIL_NO_FROZEN_CALIBRATED_COHORT",
+        "registeredClearProbability": "FAIL_NO_REGISTERED_COHORT",
         "roundTargetRange": "FAIL_NO_REGISTERED_COHORT",
         "requiredEncounters": "FAIL_NO_REQUIRED_ROUTE_ENGAGEMENT_ATTRIBUTION",
         "minibossPatterns": "FAIL_NO_ACTUAL_PATTERN_COUNTERPLAY_EVIDENCE",
@@ -2904,13 +2905,13 @@
       "gates": {
         "currentObjectiveCompletion": "observed-in-calibration-only",
         "twentyRounds": "observed-success-within-scope",
-        "registeredClearProbability": "FAIL_NO_FROZEN_CALIBRATED_COHORT",
+        "registeredClearProbability": "FAIL_NO_REGISTERED_COHORT",
         "roundTargetRange": "FAIL_NO_REGISTERED_COHORT",
         "requiredEncounters": "FAIL_NO_REQUIRED_ROUTE_ENGAGEMENT_ATTRIBUTION",
         "minibossPatterns": "FAIL_NO_ACTUAL_PATTERN_COUNTERPLAY_EVIDENCE",
         "effectiveEnemyActions": "FAIL_NO_VALIDATED_ACTION_CLASSIFIER",
         "elevationCoverage": "FAIL_NO_VALIDATED_LANDING_ROUTE_CLASSIFIER",
-        "normalBrowser": "FAIL_NOT_YET_OBSERVED",
+        "normalBrowser": "FAIL_UI_ENTRY_TIMEOUT_FIX_PENDING",
         "finalArtSourceBinding": "FAIL_PENDING_FINAL_ART",
         "globalCurve": "FAIL_UNMEASURED"
       },
@@ -3224,13 +3225,13 @@
       "gates": {
         "currentObjectiveCompletion": "observed-in-calibration-only",
         "twentyRounds": "FAIL_OBSERVED_OVER_20",
-        "registeredClearProbability": "FAIL_NO_FROZEN_CALIBRATED_COHORT",
+        "registeredClearProbability": "FAIL_NO_REGISTERED_COHORT",
         "roundTargetRange": "FAIL_NO_REGISTERED_COHORT",
         "requiredEncounters": "FAIL_NO_REQUIRED_ROUTE_ENGAGEMENT_ATTRIBUTION",
         "minibossPatterns": "FAIL_NO_ACTUAL_PATTERN_COUNTERPLAY_EVIDENCE",
         "effectiveEnemyActions": "FAIL_NO_VALIDATED_ACTION_CLASSIFIER",
         "elevationCoverage": "FAIL_NO_VALIDATED_LANDING_ROUTE_CLASSIFIER",
-        "normalBrowser": "FAIL_NOT_YET_OBSERVED",
+        "normalBrowser": "BOUNDED_NORMAL_UI_OBSERVED_FULL_CLEAR_PENDING",
         "finalArtSourceBinding": "FAIL_PENDING_FINAL_ART",
         "globalCurve": "FAIL_UNMEASURED"
       },
@@ -3238,6 +3239,258 @@
     }
   ],
   "trials": [
+    {
+      "trial": "11-height-earned-equipped-757356291",
+      "stage": 11,
+      "classification": "controller-calibration",
+      "outcome": "incomplete-process",
+      "displayRound": 10,
+      "combatCycles": 9,
+      "stopReason": "No terminal result; running or process interruption must be resolved",
+      "entry": [
+        {
+          "cls": "archer",
+          "level": 10,
+          "equipmentIds": [
+            "itm_se_02",
+            "itm_co_01"
+          ],
+          "loadout": [
+            "A01",
+            "A14",
+            "A11",
+            "A05"
+          ]
+        },
+        {
+          "cls": "mage",
+          "level": 10,
+          "equipmentIds": [
+            "itm_da_02",
+            "itm_co_02"
+          ],
+          "loadout": [
+            "M01",
+            "M04",
+            "M03",
+            "M11"
+          ]
+        },
+        {
+          "cls": "knight",
+          "level": 9,
+          "equipmentIds": [
+            "itm_hw_02"
+          ],
+          "loadout": [
+            "S00",
+            "S03",
+            "S05",
+            "S09"
+          ]
+        },
+        {
+          "cls": "occultist",
+          "level": 9,
+          "equipmentIds": [
+            "itm_so_01"
+          ],
+          "loadout": [
+            "O01",
+            "O02",
+            "O11",
+            "O03"
+          ]
+        }
+      ],
+      "source": {
+        "actualEntry": [
+          {
+            "cls": "archer",
+            "level": 10,
+            "hp": 758,
+            "maxHp": 758,
+            "loadout": [
+              "A01",
+              "A14",
+              "A11",
+              "A05"
+            ],
+            "equipmentIds": [
+              "itm_se_02",
+              "itm_co_01"
+            ],
+            "ranks": {
+              "A01": 1,
+              "A14": 2,
+              "A02": 1,
+              "A11": 2,
+              "AP01": 4,
+              "AP04": 2,
+              "AP02": 1,
+              "A05": 2
+            }
+          },
+          {
+            "cls": "mage",
+            "level": 10,
+            "hp": 761,
+            "maxHp": 761,
+            "loadout": [
+              "M01",
+              "M04",
+              "M03",
+              "M11"
+            ],
+            "equipmentIds": [
+              "itm_da_02",
+              "itm_co_02"
+            ],
+            "ranks": {
+              "M01": 1,
+              "M06": 1,
+              "M02": 1,
+              "M04": 3,
+              "M03": 2,
+              "M11": 2,
+              "MP01": 3,
+              "MP02": 2
+            }
+          },
+          {
+            "cls": "knight",
+            "level": 9,
+            "hp": 1363,
+            "maxHp": 1363,
+            "loadout": [
+              "S00",
+              "S03",
+              "S05",
+              "S09"
+            ],
+            "equipmentIds": [
+              "itm_hw_02"
+            ],
+            "ranks": {
+              "S00": 1,
+              "S09": 2,
+              "S03": 2,
+              "S05": 2,
+              "S07": 1,
+              "SP01": 2,
+              "SP02": 3
+            }
+          },
+          {
+            "cls": "occultist",
+            "level": 9,
+            "hp": 748,
+            "maxHp": 748,
+            "loadout": [
+              "O01",
+              "O02",
+              "O11",
+              "O03"
+            ],
+            "equipmentIds": [
+              "itm_so_01"
+            ],
+            "ranks": {
+              "O01": 1,
+              "O06": 3,
+              "OP01": 1,
+              "OP02": 1,
+              "OP03": 1,
+              "OP04": 1,
+              "O02": 3,
+              "O11": 3,
+              "O03": 3,
+              "O07": 3
+            }
+          }
+        ],
+        "entryArtifact": {
+          "path": "_local/reports/act2-gameplay-20261103/stage11-earned-entry-equipped/prepared-entry.json",
+          "sha256": "9e82c03b8230567adbc637f03c46837c0f3a19d7d6f4edf400328d986281d810",
+          "scope": "Loaded unchanged earned/declared profile; XP, previous equipment and ranks preserved; only affordable production training/loadout/stat choices"
+        },
+        "checkoutCommit": "460137ff7bad5665f2f213bb6775cc3cf356a4b1",
+        "runnerSha256": "8ad15c2717020b3d0597d30cf7f36356ebe54a145bfb418a26a6c9364384f100",
+        "projectSha256": "c65a226aa1d6ae551f18fa9e7bbf0cbc1d330493d6e1d8efb6d1b6d1aaff58db",
+        "stageSha256": "3f3d00195e127cc344aa0fb76b7d1895ea8db53e520964b0b4139fc175b2c163",
+        "geometrySha256": "83f5319feeb2fc40bc90180be216f63546c677ff63be2e296fb9cce5a967e5af",
+        "entryProfileSha256": "04725402bae5d0f8a26ce1ee78c5b2eb73ef053701a3de1564f128bcf7af1150",
+        "entryLevel": 12,
+        "policy": "height",
+        "seed": 757356291,
+        "seedPurpose": "controller-input-variation-only",
+        "engineRngAtEntry": {
+          "seed": 19388,
+          "rng": 19388,
+          "engineStageId": 1,
+          "chapterId": 11,
+          "canonicalSeed": 19388,
+          "inheritedContinuation": false
+        },
+        "inputVariation": {
+          "seed": 757356291,
+          "aimErrorDegrees": [
+            -0.15,
+            0.15
+          ],
+          "powerError": 0
+        },
+        "legacyItemApi": "disabled; no Engine.item calls",
+        "scope": "Loaded prior observed App-outcome profile (see entryArtifact); preceding chapters are only as established in that artifact. XP/ranks/equipment inherited without budget replacement. Production reviewed-v4 App/Engine with DOM/storage/render/clock doubles; not browser input."
+      },
+      "initialSha256": "bf28b65a0253065213fe0dc063473ef8f17888871fb897c987f2d972f81f7348",
+      "initialEnemies": 43,
+      "archetypes": {
+        "resonance": 1,
+        "beast": 15,
+        "crow": 9,
+        "shade": 4,
+        "warden": 6,
+        "bat": 5,
+        "lantern": 3
+      },
+      "elites": 12,
+      "taggedMinibosses": 0,
+      "taggedBosses": 0,
+      "completedGoals": {},
+      "fallen": [],
+      "kills": 5,
+      "damageTaken": null,
+      "damageDealt": null,
+      "skillUse": {},
+      "inputs": 101,
+      "moveSegments": 18,
+      "jumpInputs": 28,
+      "dropInputs": 6,
+      "verifiedLandings": 9,
+      "observedSupports": [
+        "v4.11.firing-rock",
+        "rv-west-shoulder",
+        "act2-floor"
+      ],
+      "sampledMovement": {
+        "scope": "Endpoint displacement lower bound, not continuous path length or meaningful jump quota",
+        "horizontal": 7960.814274138465,
+        "vertical": 1941.6936078708732
+      },
+      "interactionIds": [],
+      "legacyItemApi": {
+        "directCount": 0,
+        "inheritedCount": 0,
+        "unresolvedAncestor": null,
+        "actions": [],
+        "normalUiEquivalence": "NOT_ESTABLISHED_NATIVE_INPUTS_ONLY",
+        "accessibility": "Engine.item normal UI binding unproven; affected runs are legacy-consumable Engine-only calibration"
+      },
+      "externalWrites": null,
+      "evidence": "_local/reports/act2-gameplay-20261103/11-height-earned-equipped-757356291",
+      "resultPresent": false
+    },
     {
       "trial": "11-objective-101",
       "stage": 11,
