@@ -2,7 +2,7 @@
 import sys,re,json,hashlib,math,os,xml.etree.ElementTree as E
 from pathlib import Path
 from svgpathtools import CubicBezier,Line,parse_path
-p=Path(sys.argv[1]);precision=int(os.getenv('HONRO_STAGE17_PRECISION','2'));source=p/'authored-raw.svg';out=p/f'candidate-p{precision}.svg';r=E.parse(source).getroot();cfg=json.loads((p/'pixel-config.json').read_text());lines=[(*a,*b) for line in cfg['protectedPolylines'] for a,b in zip(line['points'],line['points'][1:])];pad=12;NUMBER=r'[-+]?(?:\d*\.\d+|\d+\.?\d*)(?:[eE][-+]?\d+)?';arity={'M':2,'L':2,'H':1,'V':1,'C':6};counts={'protected':0,'line':0,'quadratic':0,'cubic':0};maxbound=0.
+p=Path(sys.argv[1]);precision=int(os.getenv('HONRO_STAGE17_PRECISION','2'));source=p/'authored-raw.svg';out=p/f'candidate-p{precision}.svg';r=E.parse(source).getroot();cfg=json.loads((p/'pixel-config.json').read_text());lines=[(*a,*b) for line in cfg['protectedPolylines'] for a,b in zip(line['points'],line['points'][1:])];pad=float(os.getenv("HONRO_STAGE17_PROTECT_PAD","12"));NUMBER=r'[-+]?(?:\d*\.\d+|\d+\.?\d*)(?:[eE][-+]?\d+)?';arity={'M':2,'L':2,'H':1,'V':1,'C':6};counts={'protected':0,'line':0,'quadratic':0,'cubic':0};maxbound=0.
 def protected(s):
  x0,x1,y0,y1=s.bbox();xmin,xmax,ymin,ymax=x0-pad,x1+pad,y0-pad,y1+pad
  for ax,ay,bx,by in lines:
@@ -72,4 +72,4 @@ for node in r.iter():
   if up=='M':start=current;cmd='l' if relative else 'L'
  node.set('d',mini(output))
 E.register_namespace('','http://www.w3.org/2000/svg');E.ElementTree(r).write(out,encoding='utf-8',xml_declaration=True)
-report={'sourceSha256':hashlib.sha256(source.read_bytes()).hexdigest(),'sourceBytes':source.stat().st_size,'outputBytes':out.stat().st_size,'reductionPercent':100*(1-out.stat().st_size/source.stat().st_size),'epsilonLocalUnits':.15,'curveReplacementBound':maxbound,'roundingBound':10**(-precision)/2**.5,'precision':precision,'bboxExtremaProtected':True,'protectedRule':'Original operands retained within12 source px of canonical contact lines; transition operands rebased to exact original absolute control/endpoints. Native 1x/2x gate required.','counts':counts};out.with_suffix('.report.json').write_text(json.dumps(report,indent=2));print(report)
+report={'sourceSha256':hashlib.sha256(source.read_bytes()).hexdigest(),'sourceBytes':source.stat().st_size,'outputBytes':out.stat().st_size,'reductionPercent':100*(1-out.stat().st_size/source.stat().st_size),'epsilonLocalUnits':.15,'curveReplacementBound':maxbound,'roundingBound':10**(-precision)/2**.5,'precision':precision,'bboxExtremaProtected':True,'protectedPadSourcePixels':pad,'protectedRule':'Original operands retained around canonical contact lines including full-world projection protected band; transition operands rebased to exact original absolute control/endpoints. Native 1x/2x gate required.','counts':counts};out.with_suffix('.report.json').write_text(json.dumps(report,indent=2));print(report)

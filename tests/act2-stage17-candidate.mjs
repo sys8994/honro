@@ -2,7 +2,7 @@
 import assert from 'node:assert/strict';import vm from 'node:vm';import {readFileSync} from 'node:fs';
 import {applyStage17ArtCandidate} from '../tools/act2-vector-production/apply-stage17-candidate.mjs';import {runtimeParts,runtimeEntries} from '../shared/build.mjs';
 const plain=v=>JSON.parse(JSON.stringify(v)),raw=(await runtimeEntries({vector:false,render:false,productionStory:true})).find(x=>x.name==='campaign').project,snapshot=plain(raw),after=applyStage17ArtCandidate(raw),s=raw.stages.find(s=>s.metadata?.stageId===17),a=after.stages.find(s=>s.metadata?.stageId===17);
-assert.deepEqual(raw,snapshot);assert.equal(after.library.length,raw.library.length+3);assert.equal(a.elements.length,s.elements.length+3);
+assert.deepEqual(plain(raw),snapshot);assert.equal(after.library.length,raw.library.length+3);assert.equal(a.elements.length,s.elements.length+3);
 assert.deepEqual({...a,elements:s.elements},s);for(const x of raw.stages)if(x!==s)assert.deepEqual(after.stages.find(t=>t.id===x.id),x);
 assert.throws(()=>applyStage17ArtCandidate(after),/Duplicate/);const drift=plain(raw);drift.stages.find(s=>s.metadata?.stageId===17).terrains[0].points[0].y++;assert.throws(()=>applyStage17ArtCandidate(drift),/source changed/);
 process.env.HONRO_ACT2_STAGE17_CANDIDATE='0';assert.equal(applyStage17ArtCandidate(raw),raw);delete process.env.HONRO_ACT2_STAGE17_CANDIDATE;

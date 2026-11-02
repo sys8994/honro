@@ -1,0 +1,19 @@
+{
+  "sourceSha256": "1245a172d2f047556f6bf8652585d7fb7c135a930cade27071974cc3673728f9",
+  "sourceBytes": 64948,
+  "outputBytes": 44766,
+  "reductionPercent": 31.07409004126378,
+  "epsilonLocalUnits": 0.15,
+  "curveReplacementBound": 0.14732542969942167,
+  "roundingBound": 0.7071067811865475,
+  "precision": 0,
+  "bboxExtremaProtected": true,
+  "protectedRule": "Exact original operands preserved around canonical contacts including widest world-space QA band; bbox extrema preserved.",
+  "counts": {
+    "protected": 1151,
+    "line": 248,
+    "quadratic": 79,
+    "cubic": 279
+  },
+  "protectedPadSourcePixels": 72
+}

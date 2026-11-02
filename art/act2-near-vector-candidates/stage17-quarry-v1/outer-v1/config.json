@@ -1,0 +1,43 @@
+{
+  "id": "act2-traced:stage17-outer-v1",
+  "name": "Stage17 outer-v1",
+  "bounds": {
+    "x": -6000,
+    "y": -24000,
+    "w": 23200,
+    "h": 54000
+  },
+  "anchor": {
+    "x": 0,
+    "y": 0
+  },
+  "foot": {
+    "x": -6000,
+    "y": 30000
+  },
+  "semanticLayer": "BODY",
+  "preserveCompounds": true,
+  "transform": [
+    22.65625,
+    0,
+    0,
+    35.15625,
+    -6000,
+    -24000
+  ],
+  "params": {
+    "bodyTerrainIds": [
+      "act2-floor",
+      "cave-roof",
+      "ws-west-work-buttress",
+      "ws-west-machine-plinth",
+      "ws-east-hoist-buttress",
+      "ws-west-upper-rock",
+      "ws-east-upper-rock",
+      "ws-axle-footing",
+      "ws-service-vault-tooth",
+      "ws-service-reflection-pier"
+    ],
+    "bodyBaseColor": "#283b46"
+  }
+}

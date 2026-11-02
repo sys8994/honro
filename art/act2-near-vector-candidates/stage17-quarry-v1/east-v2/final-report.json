@@ -1,0 +1,630 @@
+{
+  "part": "east-v2",
+  "rawBytes": 64890,
+  "finalBytes": 41615,
+  "nativeBytes": 42764,
+  "reductionPercent": 35.86839266450917,
+  "qualityPass": true,
+  "errors": {
+    "1": {
+      "rgbMAE255": 0.02527875266969204,
+      "rgbP99_255": 0.0,
+      "alphaMAE255": 0.0,
+      "changedPixelFraction": 9.886382648637961e-05,
+      "silhouetteMaxOffsetPx": 0.0,
+      "protectedChangedPixelFraction": 0.0,
+      "protectedRgbMAE255": 0.0,
+      "protectedSilhouetteMaxOffsetPx": 0.0,
+      "protectedColorEdgeRawMaxOffsetPx": 0.0,
+      "protectedColorEdgeMaxOffsetPx": 0.0,
+      "protectedRgbQuantizationTolerance255": 1,
+      "protectedQuantizationPixels": 0,
+      "pass": true
+    },
+    "2": {
+      "rgbMAE255": 0.02555452659726143,
+      "rgbP99_255": 0.0,
+      "alphaMAE255": 0.0,
+      "changedPixelFraction": 0.00025302168413260937,
+      "silhouetteMaxOffsetPx": 0.0,
+      "protectedChangedPixelFraction": 0.0,
+      "protectedRgbMAE255": 0.0,
+      "protectedSilhouetteMaxOffsetPx": 0.0,
+      "protectedColorEdgeRawMaxOffsetPx": 0.0,
+      "protectedColorEdgeMaxOffsetPx": 0.0,
+      "protectedRgbQuantizationTolerance255": 1,
+      "protectedQuantizationPixels": 0,
+      "pass": true
+    }
+  },
+  "shippingComparisonConfig": {
+    "width": 1419,
+    "scales": [
+      1,
+      2
+    ],
+    "limits": {
+      "rgbMAE255": 0.8,
+      "silhouettePx": 1.5,
+      "protectedRgbMAE255": 1,
+      "protectedPx": 0.5,
+      "protectedChangedPixelFraction": 0.05
+    },
+    "protectedPolylines": [
+      {
+        "points": [
+          [
+            -189.2,
+            780.675
+          ],
+          [
+            118.25,
+            780.675
+          ]
+        ],
+        "width": 12
+      },
+      {
+        "points": [
+          [
+            118.25,
+            780.675
+          ],
+          [
+            212.85,
+            787.77
+          ]
+        ],
+        "width": 12
+      },
+      {
+        "points": [
+          [
+            212.85,
+            787.77
+          ],
+          [
+            449.35,
+            768.85
+          ]
+        ],
+        "width": 12
+      },
+      {
+        "points": [
+          [
+            449.35,
+            768.85
+          ],
+          [
+            614.9,
+            775.9449999999999
+          ]
+        ],
+        "width": 12
+      },
+      {
+        "points": [
+          [
+            614.9,
+            775.9449999999999
+          ],
+          [
+            674.025,
+            690.8050000000001
+          ]
+        ],
+        "width": 12
+      },
+      {
+        "points": [
+          [
+            674.025,
+            690.8050000000001
+          ],
+          [
+            721.325,
+            421.19499999999994
+          ]
+        ],
+        "width": 12
+      },
+      {
+        "points": [
+          [
+            721.325,
+            421.19499999999994
+          ],
+          [
+            922.35,
+            421.19499999999994
+          ]
+        ],
+        "width": 12
+      },
+      {
+        "points": [
+          [
+            922.35,
+            421.19499999999994
+          ],
+          [
+            1064.25,
+            468.495
+          ]
+        ],
+        "width": 12
+      },
+      {
+        "points": [
+          [
+            1064.25,
+            468.495
+          ],
+          [
+            1348.05,
+            468.495
+          ]
+        ],
+        "width": 12
+      },
+      {
+        "points": [
+          [
+            94.6,
+            477.955
+          ],
+          [
+            189.2,
+            437.75
+          ]
+        ],
+        "width": 12
+      },
+      {
+        "points": [
+          [
+            189.2,
+            437.75
+          ],
+          [
+            307.45,
+            421.19499999999994
+          ]
+        ],
+        "width": 12
+      },
+      {
+        "points": [
+          [
+            307.45,
+            421.19499999999994
+          ],
+          [
+            411.51,
+            468.495
+          ]
+        ],
+        "width": 12
+      },
+      {
+        "points": [
+          [
+            411.51,
+            468.495
+          ],
+          [
+            484.825,
+            452.20277777777784
+          ]
+        ],
+        "width": 12
+      },
+      {
+        "points": [
+          [
+            321.64,
+            215.44
+          ],
+          [
+            402.05,
+            168.14000000000004
+          ]
+        ],
+        "width": 12
+      },
+      {
+        "points": [
+          [
+            402.05,
+            168.14000000000004
+          ],
+          [
+            508.475,
+            177.60000000000002
+          ]
+        ],
+        "width": 12
+      },
+      {
+        "points": [
+          [
+            508.475,
+            177.60000000000002
+          ],
+          [
+            572.33,
+            258.01000000000005
+          ]
+        ],
+        "width": 12
+      },
+      {
+        "points": [
+          [
+            678.755,
+            421.19499999999994
+          ],
+          [
+            733.15,
+            421.19499999999994
+          ]
+        ],
+        "width": 12
+      },
+      {
+        "points": [
+          [
+            733.15,
+            421.19499999999994
+          ],
+          [
+            879.78,
+            421.19499999999994
+          ]
+        ],
+        "width": 12
+      },
+      {
+        "points": [
+          [
+            250.69,
+            747.565
+          ],
+          [
+            279.07,
+            742.835
+          ]
+        ],
+        "width": 12
+      },
+      {
+        "points": [
+          [
+            279.07,
+            742.835
+          ],
+          [
+            290.895,
+            785.2360714285713
+          ]
+        ],
+        "width": 12
+      }
+    ],
+    "protectedRgbQuantizationTolerance255": 1,
+    "originalProtectedPolylines": [
+      {
+        "points": [
+          [
+            -189.2,
+            778.6595744680851
+          ],
+          [
+            118.25,
+            778.6595744680851
+          ]
+        ],
+        "width": 12
+      },
+      {
+        "points": [
+          [
+            118.25,
+            778.6595744680851
+          ],
+          [
+            212.85,
+            785.7382978723405
+          ]
+        ],
+        "width": 12
+      },
+      {
+        "points": [
+          [
+            212.85,
+            785.7382978723405
+          ],
+          [
+            449.35,
+            766.8617021276596
+          ]
+        ],
+        "width": 12
+      },
+      {
+        "points": [
+          [
+            449.35,
+            766.8617021276596
+          ],
+          [
+            614.9,
+            773.9404255319149
+          ]
+        ],
+        "width": 12
+      },
+      {
+        "points": [
+          [
+            614.9,
+            773.9404255319149
+          ],
+          [
+            674.025,
+            688.9957446808511
+          ]
+        ],
+        "width": 12
+      },
+      {
+        "points": [
+          [
+            674.025,
+            688.9957446808511
+          ],
+          [
+            721.325,
+            420.0042553191489
+          ]
+        ],
+        "width": 12
+      },
+      {
+        "points": [
+          [
+            721.325,
+            420.0042553191489
+          ],
+          [
+            922.35,
+            420.0042553191489
+          ]
+        ],
+        "width": 12
+      },
+      {
+        "points": [
+          [
+            922.35,
+            420.0042553191489
+          ],
+          [
+            1064.25,
+            467.1957446808511
+          ]
+        ],
+        "width": 12
+      },
+      {
+        "points": [
+          [
+            1064.25,
+            467.1957446808511
+          ],
+          [
+            1348.05,
+            467.1957446808511
+          ]
+        ],
+        "width": 12
+      },
+      {
+        "points": [
+          [
+            94.6,
+            476.6340425531915
+          ],
+          [
+            189.2,
+            436.52127659574467
+          ]
+        ],
+        "width": 12
+      },
+      {
+        "points": [
+          [
+            189.2,
+            436.52127659574467
+          ],
+          [
+            307.45,
+            420.0042553191489
+          ]
+        ],
+        "width": 12
+      },
+      {
+        "points": [
+          [
+            307.45,
+            420.0042553191489
+          ],
+          [
+            411.51,
+            467.1957446808511
+          ]
+        ],
+        "width": 12
+      },
+      {
+        "points": [
+          [
+            411.51,
+            467.1957446808511
+          ],
+          [
+            484.825,
+            450.9408983451537
+          ]
+        ],
+        "width": 12
+      },
+      {
+        "points": [
+          [
+            321.64,
+            214.72127659574468
+          ],
+          [
+            402.05,
+            167.52978723404254
+          ]
+        ],
+        "width": 12
+      },
+      {
+        "points": [
+          [
+            402.05,
+            167.52978723404254
+          ],
+          [
+            508.475,
+            176.96808510638297
+          ]
+        ],
+        "width": 12
+      },
+      {
+        "points": [
+          [
+            508.475,
+            176.96808510638297
+          ],
+          [
+            572.33,
+            257.1936170212766
+          ]
+        ],
+        "width": 12
+      },
+      {
+        "points": [
+          [
+            678.755,
+            420.0042553191489
+          ],
+          [
+            733.15,
+            420.0042553191489
+          ]
+        ],
+        "width": 12
+      },
+      {
+        "points": [
+          [
+            733.15,
+            420.0042553191489
+          ],
+          [
+            879.78,
+            420.0042553191489
+          ]
+        ],
+        "width": 12
+      },
+      {
+        "points": [
+          [
+            250.69,
+            745.6255319148936
+          ],
+          [
+            279.07,
+            740.9063829787234
+          ]
+        ],
+        "width": 12
+      },
+      {
+        "points": [
+          [
+            279.07,
+            740.9063829787234
+          ],
+          [
+            290.895,
+            783.2101823708205
+          ]
+        ],
+        "width": 12
+      }
+    ],
+    "protectedRoiExpansionSourcePixels": 0,
+    "sourcePalette": [
+      [
+        41,
+        48,
+        57
+      ],
+      [
+        53,
+        64,
+        72
+      ],
+      [
+        69,
+        81,
+        91
+      ],
+      [
+        77,
+        85,
+        83
+      ],
+      [
+        96,
+        107,
+        117
+      ],
+      [
+        119,
+        124,
+        112
+      ],
+      [
+        136,
+        136,
+        126
+      ]
+    ],
+    "shippingComposition": "Actual production Scene, same original world geometry/base, canonicalSolid+contactInset, same original actors/water/far-image layers and source density. Standalone alpha failures remain failed supplementary diagnostics."
+  },
+  "losslessXmlDeclarationRemoval": true,
+  "normalizedRendererInputSha256": "2031360e4fa67158e6ff7ea1922a1d6e4d27322825326cc770cb3d364633afe3",
+  "hashes": {
+    "source.png": "e82e542396caab7ab081b8ce24c92419712c02562f9b99c142d7e1777611d879",
+    "authored-raw.svg": "8f01f4e0162129450f13ec8ce4f94c073d4050ddd98866c2b31e4ad5e6ad32b8",
+    "authored-raw.svg.gz": "737685725a614c2b7ba487bfa150c1d9fa481f2c5cb2b848bb0b2e3ae5f57f04",
+    "final.svg": "a4680da850b68635b07885609642bbbe8e240800538403249618dfc748330751",
+    "native.json": "ec81c4983f4da7e5ed4957596ec00b62f774d3a28c60ac26f46bd5baa13182da",
+    "submitted-prompt.json": "57764e311a40126f458eabec5091ab42f55c180004a5a42a659a4a834ea2779d",
+    "config.json": "7a7a3aa68e1c4392272d251abf122589dbb6557d507d10811d9ac422ee09611a",
+    "pixel-config.json": "e5eab19c14def015ea743677bb8c66e30973b88b2880d488d76de6c8b721eb09"
+  }
+}
