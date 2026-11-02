@@ -1,3 +1,4 @@
+import {applyStage7ArtCandidate} from '../act1-vector-production/apply-stage7-candidate.mjs';
 /** Keep the inhabited tree's zigzag climb and three protected residents. */
 export function applyStage7Positioning(project){
  const s=project.stages.find(s=>s.metadata?.stageId===7);if(!s)return project;
@@ -22,5 +23,5 @@ export function applyStage7Positioning(project){
  },roles:['아랫가지 사수1/주민 너머 전위3','첫 오름길 근접1/측면 사수1','중간집 좌측 차단2/위쪽 견제1','속빈 줄기 혼합2/측면 사수2','윗주민 전위1/끝가지2','중간 굽이 공중6']};
  const hounds=s.events.find(e=>e.id==='yard-hounds');Object.assign(hounds.action,{x:1650,y:top('tier-low',1650),support:'tier-low',spacing:110,maxDistance:240});
  const crows=s.events.find(e=>e.id==='upper-crows');Object.assign(crows.action,{x:1320,y:2200,support:'tier-upper',spacing:130,requireFlightClearance:true,maxDistance:450});
- return project;
+ return applyStage7ArtCandidate(project);
 }

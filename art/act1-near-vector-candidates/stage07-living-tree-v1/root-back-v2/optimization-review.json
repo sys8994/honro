@@ -1,0 +1,137 @@
+{
+  "raw": "/workspace/scratch/fff510b4df37/honro-act1-production/stage07/root-back-v2/display-raw.svg",
+  "candidate": "/workspace/scratch/fff510b4df37/honro-act1-production/stage07/root-back-v2/display-final.svg",
+  "rawStats": {
+    "sourceBytes": 311543,
+    "paths": 5,
+    "commands": 8912,
+    "segments": 8738,
+    "endpointNodesUpperBound": 8912,
+    "explicitCommandLetters": 3372,
+    "subpaths": 174,
+    "pathChars": 310982,
+    "maxPathChars": 137037
+  },
+  "candidateStats": {
+    "sourceBytes": 207387,
+    "paths": 5,
+    "commands": 8914,
+    "segments": 8740,
+    "endpointNodesUpperBound": 8914,
+    "explicitCommandLetters": 8945,
+    "subpaths": 174,
+    "pathChars": 206826,
+    "maxPathChars": 89401
+  },
+  "visualApproval": "NOT REVIEWED",
+  "config": {
+    "width": 1500,
+    "scales": [
+      1,
+      2
+    ],
+    "protectedRects": [
+      [
+        540,
+        1050,
+        170,
+        170
+      ]
+    ],
+    "limits": {
+      "rgbMAE255": 2,
+      "silhouettePx": 1.5,
+      "protectedRgbMAE255": 1,
+      "protectedPx": 0.5,
+      "protectedChangedPixelFraction": 0.05
+    },
+    "scope": "Final darker rear palette applied identically to immutable trace and optimized candidate; same-alpha explicit 1LSB tolerance; raw offsets retained.",
+    "protectedRgbQuantizationTolerance255": 1,
+    "sourcePalette": [
+      [
+        26,
+        46,
+        36
+      ],
+      [
+        29,
+        42,
+        36
+      ],
+      [
+        53,
+        70,
+        47
+      ],
+      [
+        64,
+        70,
+        57
+      ],
+      [
+        95,
+        98,
+        77
+      ]
+    ]
+  },
+  "errors": {
+    "1": {
+      "rgbMAE255": 0.013525806367397308,
+      "rgbP99_255": 0.0,
+      "alphaMAE255": 0.012833944521844387,
+      "changedPixelFraction": 0.0002001047668936616,
+      "silhouetteMaxOffsetPx": 1.0,
+      "protectedChangedPixelFraction": 0.0,
+      "protectedRgbMAE255": 0.000911194714717567,
+      "protectedSilhouetteMaxOffsetPx": 0.0,
+      "protectedColorEdgeRawMaxOffsetPx": 4.123105625617661,
+      "protectedColorEdgeMaxOffsetPx": 0.0,
+      "protectedRgbQuantizationTolerance255": 1,
+      "protectedQuantizationPixels": 3,
+      "pass": true
+    },
+    "2": {
+      "rgbMAE255": 0.01004001684486866,
+      "rgbP99_255": 0.0,
+      "alphaMAE255": 0.009161951951682568,
+      "changedPixelFraction": 0.00012039462196612537,
+      "silhouetteMaxOffsetPx": 1.0,
+      "protectedChangedPixelFraction": 0.0,
+      "protectedRgbMAE255": 0.0005911230109632015,
+      "protectedSilhouetteMaxOffsetPx": 0.0,
+      "protectedColorEdgeRawMaxOffsetPx": 1.0,
+      "protectedColorEdgeMaxOffsetPx": 0.0,
+      "protectedRgbQuantizationTolerance255": 1,
+      "protectedQuantizationPixels": 9,
+      "pass": true
+    }
+  },
+  "timings": {
+    "raw-1": {
+      "width": 1500,
+      "height": 1909,
+      "decodeMs": 28.951639999999998,
+      "drawMs": 4.844803000000013
+    },
+    "candidate-1": {
+      "width": 1500,
+      "height": 1909,
+      "decodeMs": 21.607196999999985,
+      "drawMs": 3.8726290000000176
+    },
+    "raw-2": {
+      "width": 3000,
+      "height": 3818,
+      "decodeMs": 52.61704199999997,
+      "drawMs": 29.304328999999996
+    },
+    "candidate-2": {
+      "width": 3000,
+      "height": 3818,
+      "decodeMs": 53.76982300000003,
+      "drawMs": 31.515716999999995
+    }
+  },
+  "qualityPass": true
+}

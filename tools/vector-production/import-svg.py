@@ -96,6 +96,32 @@ def split_path(d, label, can_split=True):
     if current: chunks.append(current)
     return chunks
 
+def preserve_compound(d):
+    """Use the existing vector-v1 dParts schema; never split a fill operation."""
+    if not isinstance(d,str) or not d.strip() or not re.match(r'^\s*[Mm]',d) or re.search(r'[^mMzZlLhHvVcCsSqQtTaA0-9.eE+\-,\s]',d):
+        fail('Invalid authored compound syntax')
+    if len(d)>240000: fail('Compound exceeds existing 240000-character total limit')
+    values=re.findall(NUMBER,d)
+    if len(values)>120000 or any(not math.isfinite(float(v)) or abs(float(v))>1e9 for v in values):
+        fail('Compound exceeds existing numeric-token bounds')
+    # Parse every ordered contour for syntax/arity, retaining its original text.
+    # Serialization is not normalized: doing so needlessly enlarges short numbers.
+    try: list(contours(d))
+    except Exception as error: fail(f'Malformed authored compound: {error}')
+    if len(d)<=LIMIT: return {'d':d}
+    subpaths=re.findall(r'[Mm][^Mm]*',d)
+    if not subpaths or ''.join(subpaths)!=d.lstrip(): fail('Cannot preserve authored compound boundaries')
+    subpaths[0]=d[:len(d)-len(d.lstrip())]+subpaths[0]
+    parts=[];current=''
+    for subpath in subpaths:
+        if len(subpath)>LIMIT: fail('Single subpath exceeds existing 60000-character limit; bounded optimization required')
+        if len(current)+len(subpath)>LIMIT: parts.append(current);current=''
+        current+=subpath
+    if current: parts.append(current)
+    if len(parts)>32: fail('Compound exceeds existing 32-part limit')
+    assert ''.join(parts)==d
+    return {'dParts':parts}
+
 def paint(value, alpha):
     if not 0 <= alpha <= 1: fail('Paint opacity out of range')
     value = value.strip().lower()
@@ -131,9 +157,13 @@ def compile_svg(source, config, remove_images=False):
         if not isinstance(value,list) or len(value)!=2 or not all(isinstance(v,(int,float)) and math.isfinite(v) for v in value) or not 0<value[0]<=value[1]: fail(f'Invalid {field}')
     physical=config.get('scaleRange',[1,1]);background=config.get('backgroundRange',[1,1])
     if background[0]<physical[0] or background[1]>physical[1]: fail('backgroundRange must lie within scaleRange')
+    preserve=config.get('preserveCompounds',False)
+    if not isinstance(preserve,bool): fail('preserveCompounds must be boolean')
+    compound_chars=0
     removed = [el.get('id','image') for el in svg.iter() if el.tag.split('}')[-1]=='image']
     if removed and not remove_images: fail(f'{removed[0]}: raster image forbidden; use --remove-reference-images explicitly')
     def walk(el, inherited, is_root=False):
+        nonlocal compound_chars
         tag = el.tag.split('}')[-1]; label = el.get('id',tag)
         if tag in ('metadata','title','desc','namedview'): return []
         if tag == 'image':
@@ -183,8 +213,15 @@ def compile_svg(source, config, remove_images=False):
                 if not rx or not ry: attrs.pop('rx',None); attrs.pop('ry',None)
                 else: attrs['rx']=str(min(rx,w/2)); attrs['ry']=str(min(ry,h/2))
         d=CONVERSIONS[tag](attrs)
-        paths=split_path(d,label,stroke=='none' and opacity==1 and len(fill)!=9)
-        return [{'tag':'path','d':d,**trans,'fill':fill,'stroke':stroke,'opacity':opacity,'fillRule':style.get('fill-rule','nonzero'),'lineWidth':width,'lineJoin':style.get('stroke-linejoin','miter'),'lineCap':style.get('stroke-linecap','butt')} for d in paths]
+        if preserve:
+            data=preserve_compound(d)
+            if 'dParts' in data:
+                compound_chars+=sum(map(len,data['dParts']))
+                if compound_chars>4000000: fail('Compound data exceeds existing 4000000-character asset limit')
+            paths=[data]
+        else:
+            paths=[{'d':part} for part in split_path(d,label,stroke=='none' and opacity==1 and len(fill)!=9)]
+        return [{'tag':'path',**data,**trans,'fill':fill,'stroke':stroke,'opacity':opacity,'fillRule':style.get('fill-rule','nonzero'),'lineWidth':width,'lineJoin':style.get('stroke-linejoin','miter'),'lineCap':style.get('stroke-linecap','butt')} for data in paths]
     nodes=walk(svg,{},True)
     root={'tag':'g','children':nodes}
     if 'transform' in config:

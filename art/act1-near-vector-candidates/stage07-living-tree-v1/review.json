@@ -1,0 +1,63 @@
+{
+  "stage": 7,
+  "status": "NATIVE_REVIEWED_BROWSER_PENDING",
+  "map": [
+    3600,
+    5000
+  ],
+  "heroHeight": 92,
+  "parts": [
+    {
+      "part": "root-back-v2",
+      "rawBytes": 311543,
+      "finalBytes": 207387,
+      "reductionPercent": 33.43230308496741
+    },
+    {
+      "part": "floor-v1",
+      "rawBytes": 43498,
+      "finalBytes": 28508,
+      "reductionPercent": 34.46135454503655
+    },
+    {
+      "part": "lower-roots-v1",
+      "rawBytes": 34184,
+      "finalBytes": 22961,
+      "reductionPercent": 32.831149075590915
+    },
+    {
+      "part": "middle-roots-v1",
+      "rawBytes": 42175,
+      "finalBytes": 28223,
+      "reductionPercent": 33.081209247184354
+    },
+    {
+      "part": "upper-roots-v1",
+      "rawBytes": 48586,
+      "finalBytes": 32032,
+      "reductionPercent": 34.071543242909485
+    },
+    {
+      "part": "crown-roots-v1",
+      "rawBytes": 39408,
+      "finalBytes": 25839,
+      "reductionPercent": 34.43209500609014
+    }
+  ],
+  "preservedArchitectureGroups": [
+    "root-shelter-west",
+    "root-shelter-east",
+    "high-limb-rest-shelter"
+  ],
+  "treeWorldPlacement": {
+    "x": 1820,
+    "y": 4480,
+    "scale": 1.38
+  },
+  "rootTerrainCount": 14,
+  "rearPaletteScale": 0.8,
+  "geometryAndEventsUnchanged": true,
+  "browserAccepted": false,
+  "gameplayAccepted": false,
+  "protectedRoiNote": "Tree knot uses explicit1LSB RGB-only quantization-aware palette metric. Raw offsets/counts preserved; unchanged alpha and other limits. High-contrast regression cases reject loss."
+}

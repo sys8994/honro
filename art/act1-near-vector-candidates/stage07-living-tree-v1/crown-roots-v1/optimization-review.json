@@ -1,0 +1,104 @@
+{
+  "raw": "honro-act1-production/stage07/crown-roots-v1/world.svg",
+  "candidate": "honro-act1-production/stage07/crown-roots-v1/compact.svg",
+  "rawStats": {
+    "sourceBytes": 39408,
+    "paths": 3,
+    "commands": 970,
+    "segments": 947,
+    "endpointNodesUpperBound": 970,
+    "explicitCommandLetters": 269,
+    "subpaths": 23,
+    "pathChars": 38986,
+    "maxPathChars": 21924
+  },
+  "candidateStats": {
+    "sourceBytes": 25839,
+    "paths": 3,
+    "commands": 972,
+    "segments": 949,
+    "endpointNodesUpperBound": 972,
+    "explicitCommandLetters": 974,
+    "subpaths": 23,
+    "pathChars": 25417,
+    "maxPathChars": 14117
+  },
+  "visualApproval": "NOT REVIEWED",
+  "config": {
+    "width": 2048,
+    "scales": [
+      1,
+      2
+    ],
+    "limits": {
+      "rgbMAE255": 2,
+      "silhouettePx": 1.5,
+      "protectedRgbMAE255": 1,
+      "protectedPx": 0.5,
+      "protectedChangedPixelFraction": 0.05
+    },
+    "scope": "Immutable registered raw versus final; canonical collision contact separately locked.",
+    "sourcePalette": [
+      [
+        36,
+        52,
+        45
+      ],
+      [
+        80,
+        87,
+        71
+      ],
+      [
+        119,
+        123,
+        96
+      ]
+    ]
+  },
+  "errors": {
+    "1": {
+      "rgbMAE255": 0.006368243135511875,
+      "rgbP99_255": 0.0,
+      "alphaMAE255": 0.006811025086790323,
+      "changedPixelFraction": 0.00010372579429499073,
+      "silhouetteMaxOffsetPx": 1.0,
+      "pass": true
+    },
+    "2": {
+      "rgbMAE255": 0.00634346529841423,
+      "rgbP99_255": 0.0,
+      "alphaMAE255": 0.006799587979912758,
+      "changedPixelFraction": 0.0001020272277945269,
+      "silhouetteMaxOffsetPx": 1.0,
+      "pass": true
+    }
+  },
+  "timings": {
+    "raw-1": {
+      "width": 2048,
+      "height": 1078,
+      "decodeMs": 5.751648999999986,
+      "drawMs": 3.8744820000000004
+    },
+    "candidate-1": {
+      "width": 2048,
+      "height": 1078,
+      "decodeMs": 5.21099700000002,
+      "drawMs": 3.89724700000005
+    },
+    "raw-2": {
+      "width": 4096,
+      "height": 2156,
+      "decodeMs": 9.818953999999962,
+      "drawMs": 23.980547
+    },
+    "candidate-2": {
+      "width": 4096,
+      "height": 2156,
+      "decodeMs": 9.98017299999998,
+      "drawMs": 22.097339999999974
+    }
+  },
+  "qualityPass": true
+}
