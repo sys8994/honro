@@ -8,12 +8,12 @@ Gameplay release8b3a5e41. Native actual App controls with DOM/render/clock doubl
 | 2 | Frozen follow15 / cover15 / bodyguard17R |5–7|Median15: sustained escort pacing gap in this fixed comparison. Distinct guard offsets/target priorities, not duplicated policy names.|
 | 3 | Frozen flow13 / cover20 / route21R |6–8|Median20; one >20 observation retained. Earlier R1 waypoint/budget stall was controller failure, corrected with ordinary defend and intended landing-distance budget.|
 | 4 | Frozen objective9 / cover9 / route9R |7–9|Median9 within target; mandatory8 enemy cycles fix much pacing, while exposure/skills differ. Not whole fun approval.|
-| 5 | Accepted-intent and new reactive native routes12R |7–10|Individual trials outside target; not a completed multi-policy acceptance cohort. Mage ritual-position survival versus upper archer shot/wind decisions are observable. Browser still not cleared.|
+| 5 | Earlier live-planner12R; isolated v2 diagnostic13R/2 survivors |7–10|Individual trials outside target; not a completed multi-policy acceptance cohort. Mage ritual-position survival versus upper archer shot/wind decisions are observable. Browser still not cleared.|
 | 6 | Objective18R; comparison continuing |8–11|Conditional pacing concern; actual carrier/midboss/exit sequence works. Preserve remaining results, not selective best-run acceptance.|
 | 7 | Objective-flow7R; comparison continuing |9–12|Fast rescue path exists; cover/route outcomes and protected civilians, not player survival alone, decide quality.|
 | 8 | Actual-App16R,2 survivors |11–14|Two bindings and majorboss completed; mage fell. Boss first damage6R→death16R, outside proposed4–6R boss focus duration for this route.|
 | 9 | Actual-App2R,0 player attacks/0 kills |7–9|Four enemies still damage/pressure party: do not call zero engagement. Two-receiver fast path skips planned vertical/player combat decisions; real browser independently confirms zero-shot objective victory.|
-| 10 | Historical-entry reactive11R/3 survivors; earned-App8→9→10 reference12R/1 survivor |12–16|Entry history materially affects outcome. Six actual enemy-end holds, Sodan survival, exit and recruitment verified; do not impose kill-all. Browser fixed-ID replay failed; reactive UI pending.|
+| 10 | Historical-entry isolated v2 diagnostic12R/3 survivors; prior reactive11R; earned-App8→9→10 reference12R/1 survivor |12–16|Entry history materially affects outcome. Six actual enemy-end holds, Sodan survival, exit and recruitment verified; do not impose kill-all. Browser fixed-ID replay failed; reactive UI pending.|
 
 ## Concrete decisions, not a subjective enjoyment score
 
@@ -29,3 +29,9 @@ Gameplay release8b3a5e41. Native actual App controls with DOM/render/clock doubl
 Required/reference classifications remain exact original v3. Horizontal Stage1 and arena4/10 must not inherit invented vertical jump quotas; vertical/combined stages need valid support/landing evidence, not button counts. Damageable objective targets are separated from enemy-engagement totals. Damage-backed counts are lower bounds, not a complete encounter-denominator pass. Current strategy comparison is finite and preregistered after calibration, not a human study or blind population holdout; n3 has coarse rate resolution. No tiny-error seed cloning is used to inflate certainty.
 
 Pending: full current browser5/10 clears, complete valid landing/effective-enemy-action analysis, remaining comparative6/7 cases, source-linked special metrics and readability coverage. Failed startup dependency links, controller exceptions, unfinished trials, terminal losses and actual wins are distinct. Overall remains **FAIL_INCOMPLETE**.
+
+## Detached reactive controller v2 checkpoint
+
+- Stage5: actual App victory13R,16 accepted elapsed-charge launches,5 hostile nonobjective kills,13 damage-backed hostile engagements (lower bound),1047 total party HP damage, both heroes alive. Original7–10R target remains missed. Cleat/ritual and existing two-enemy-end objective settlement completed naturally. Source930f0f9e plus explicitly recorded planner-only dirty diff, later committed unchanged asac8abd24; this is instrumentation calibration, not a registered rate sample.
+- Stage10: actual App victory12R,33 accepted launches,7 hostile nonobjective kills,23 damage-backed hostile engagements (lower bound),2331.3 total party HP damage, all3 heroes alive. Actual coopHold6 and safe eastern withdrawal observed. Clean sourceac8abd24. The12–16R target is met for this diagnostic only; historical declared entry is not a continuously played campaign.
+- Predictions use detached battle/Engine; regression asserts constructor fidelity and proves cache writes remain detached. These runs are DOM/render/clock-double App tests, not browser evidence. Original live-planner outcomes are retained separately, not retroactively relabelled. No gameplay balance, objective, terrain, recovery or acceptance threshold changed.
