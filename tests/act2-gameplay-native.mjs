@@ -1,0 +1,78 @@
+/** Released reviewed-v4 App/Engine; DOM/render/storage/clock doubles.
+ * Declared synthetic entry-level party, not earned campaign history. After
+ * initialization only production inputs and ticks change gameplay state. */
+import assert from 'node:assert/strict';
+import vm from 'node:vm';
+import {readFile,writeFile,mkdir} from 'node:fs/promises';
+import {createHash} from 'node:crypto';
+import {execFileSync} from 'node:child_process';
+import {appHarness,plain} from './app-regression-helpers.mjs';
+import {representativeMelee} from './stage18-bell-fullplay-helper.mjs';
+import {navigator} from './act2-gameplay-navigation.mjs';
+import {auditQuarryEngine} from './stage12-quarry-fullplay-helper.mjs';
+const id=Number(process.argv[2]||11),policy=process.argv[3]||'objective',seed=Number(process.argv[4]||101),out=process.env.HONRO_QA_OUT||`_local/reports/act2-gameplay-20261103/${id}-${policy}-${seed}`;
+assert(id>=11&&id<=20);assert(['objective','survival','height'].includes(policy));
+const h=await appHarness({productionStory:true}),{g,C}=h;
+vm.runInContext(await readFile('shared/runtime/interactions.js','utf8'),g);
+const hash=v=>createHash('sha256').update(typeof v==='string'?v:JSON.stringify(v)).digest('hex');
+const profile=h.profileThrough(id-1),entryLevel=g.HonroProgression.plan(id).entryLevel;
+profile.settings.difficulty='normal';profile.settings.debugMode=false;
+const slots={archer:policy==='height'?['A01','A14','A11','A05']:['A01','A02','A09','A05'],mage:policy==='survival'?['M01','M10','M03','M11']:['M01','M04','M03','M11'],knight:['S00','S03','S05','S09'],occultist:['O01','O02','O08','O11']};
+const training=[];
+for(const cls of profile.recruited){const hero=profile.heroes[cls];hero.xp=g.HonroProgression.rewardXpAt(entryLevel);C.resetTalents(hero,cls);const buy=key=>{if(hero.ranks[key])return true;const talent=C.TALENT_MAP[key];if(!talent)return false;if(talent.prereq&&!buy(talent.prereq))return false;if(C.trainReason(hero,key))return false;assert(C.train(hero,key));training.push({cls,key});return true;};for(const key of slots[cls])buy(key);profile.loadouts[cls]=slots[cls].filter(k=>hero.ranks[k]);C.sanitizeLoadout(profile,cls);for(let n=0;n<4;n++)if(C.investStat(hero,cls))training.push({cls,stat:true});while(C.pointsLeft(hero,cls)>0){const choices=profile.loadouts[cls].filter(k=>!C.trainReason(hero,k)).sort((a,z)=>(hero.ranks[a]||0)-(hero.ranks[z]||0));if(!choices.length){if(!C.investStat(hero,cls))break;}else assert(C.train(hero,choices[0]));}assert(C.pointsSpent(hero,cls)<=C.pointsEarned(hero));}
+const app=h.load(profile);let now=0;g.performance={now:()=>now};app.launch(id);h.finish(app);assert(app.engine,'App launch');const e=app.engine,b=e.b,canonical=g.HONRO_PROJECT.stages[id-1];
+// Registered trial RNG initialization only, before first gameplay input.
+b.seed=seed;b.rng=seed;
+assert.equal(b.round,1);assert.equal(b.difficulty,'normal');assert(g.HonroAct23V4.active(b));
+const provenance={checkoutCommit:execFileSync('git',['rev-parse','HEAD'],{encoding:'utf8'}).trim(),runnerSha256:hash(await readFile(new URL(import.meta.url),'utf8')),projectSha256:hash(g.HONRO_PROJECT),stageSha256:hash(canonical),geometrySha256:hash({terrains:canonical.terrains,routes:canonical.routes,units:canonical.units,initialState:canonical.initialState}),entryProfileSha256:hash(profile),entryLevel,policy,seed,scope:'Synthetic planned-entry XP, legal training, default empty equipment. Prior clearance flags only unlock requested chapter; no claim earlier chapters were played. Production reviewed-v4 App/Engine with DOM/storage/render/clock doubles; not browser input.'};
+await mkdir(out,{recursive:true});await writeFile(out+'/initial.json',JSON.stringify({provenance,profile,training,battle:plain(b)},null,2));
+const actions=[],rounds=[],damage=[],births=[],notices=[];let frames=0,lastRound=0,stopReason=null,nav,navKey;
+const record=r=>actions.push({round:b.round,frame:frames,goal:g.HonroAct2.current(b)?.id,...plain(r)}),ready=()=>app.canInput(),dist=(a,z)=>Math.hypot(a.x-z.x,a.y-z.y),hpFraction=u=>u.hp/u.maxHp;
+const audit=auditQuarryEngine(b,e,()=>({round:b.round,frame:frames}));const known=new Set(b.units.map(u=>u.id));
+const hurt=e.hurt.bind(e);e.hurt=function(...args){const before=new Map(b.units.map(u=>[u.id,{hp:u.hp,shield:u.shield||0,side:u.side}]));const result=hurt(...args);for(const u of b.units){const old=before.get(u.id);if(old&&old.hp>u.hp)damage.push({round:b.round,frame:frames,target:u.id,side:old.side,hpDamage:old.hp-u.hp,dead:u.dead,source:args[2]?.owner??args[2]?.id??null});}return result;};
+const event=app.event.bind(app);app.event=(text,...args)=>{notices.push({round:b.round,frame:frames,text});return event(text,...args);};
+const tick=()=>{now+=1000/60;audit.production(()=>{if(!app.dialogue){e.tick(C.STEP);if(!app.dialogue)app.missionTick(C.STEP);}g.HonroStory.tick(app,now);if(app.dialogue)h.finish(app);});audit.guard();for(const u of b.units)if(!known.has(u.id)){known.add(u.id);births.push({round:b.round,frame:frames,id:u.id,side:u.side,cls:u.cls,source:u.honroSpawnSource,x:u.x,y:u.y});}frames++;};
+function navigation(){const key=id===12?g.HonroStage12Quarry.memory(b).gate:id===18?g.HonroStage18Bell.memory(b).status:'default';if(nav&&key===navKey)return;navKey=key;let routes=id===12?canonical.design.quarry.routes.filter(r=>r.quarryState!=='open'||key==='open'):canonical.design.space.routes;// Route source IDs can be authored aliases; resolve against actual compiled support.
+ const resolve=s=>b.terrain.find(t=>t.id===s||t.honroSpaceSurfaceId===s)?.id||s;
+ routes=plain(routes).map(r=>({...r,anchors:r.anchors.map(p=>({...p,surfaceId:resolve(p.surfaceId),...(p.jumpTo?{jumpTo:{...p.jumpTo,support:resolve(p.jumpTo.support)}}:{}),...(p.dropTo?{dropTo:{...p.dropTo,support:resolve(p.dropTo.support)}}:{})}))}));
+ // New reviewed-v4 shot rock is not in legacy authored routes. Real contact
+ // poses propose navigation inputs; they never move actors or assert reachability.
+ for(const t of b.terrain.filter(t=>t.honroV4FiringRock)){const anchors=[];for(let x=t.x+8;x<t.x+t.w-8;x+=24){const y=C.topAt(t,x);if(C.validTerrainContactPose(b.terrain,{...e.active,x,y}))anchors.push({x,y,surfaceId:t.id});}if(anchors.length)routes.push({id:'compiled-contact-'+t.id,anchors});}
+ nav=navigator(g,b,e,{tick,ready,record,stageId:id,routes});}
+async function save(label){app.export();const p=await h.exported();await writeFile(out+'/'+label+'.json',JSON.stringify({provenance,profile:p,b:plain(b),actions,rounds,damage,births,notices,frames,audit:{externalWrites:audit.log.externalWrites,recoveries:audit.log.recoveries}}));}
+function fireAt(u,target){const spirit=target.honroSpirit&&!target.manifested;let skills=u.loadout.map(k=>C.SKILLS[k]).filter(s=>s&&s.damage>0&&!s.passive&&e.cooldownLeft(u,s.id)<=0&&e.manaCost(s,u)<=u.focus);skills.sort((a,z)=>(spirit?Number(z.id==='O08')-Number(a.id==='O08'):0)||z.damage-a.damage);
+ for(const skill of skills.slice(0,3)){let best=null;if(skill.martial&&skill.branch==='sword')best=representativeMelee(g,e,u,target,skill.id);else{for(const aim of e.shotSeeds(u,skill,target)){const v=C.shotViable(e,u,skill,target,aim.angle,aim.power);if((v.ok||target.hp<=2&&v.enemyDamage>0)&&v.risk<1&&v.miss<Math.max(85,skill.radius+target.r+55)&&(!best||v.net>best.net))best={...aim,net:v.net};}if(!best&&skill===skills[0]){const aim=e.bestShot(u,skill,target),v=C.shotViable(e,u,skill,target,aim.angle,aim.power);if((v.ok||target.hp<=2&&v.enemyDamage>0)&&v.risk<1&&v.miss<Math.max(85,skill.radius+target.r+55))best=aim;}}
+ if(best&&e.fire(skill.id,best.angle,best.power)){record({op:'fire',hero:u.cls,skill:skill.id,target:target.id,angle:best.angle,power:best.power,hpBefore:target.hp,position:{x:u.x,y:u.y}});return true;}}
+ return false;
+}
+function interact(){for(const s of g.HonroAct2.readySteps(b)){if(s.optional&&policy!=='height')continue;const m=b.honroMarkers.find(m=>m.id===s.id);if(m?.action&&g.HonroInteractions.eligibility(app,m).ok&&audit.production(()=>g.HonroInteractions.use(app,m))){record({op:'E',hero:e.active?.cls,target:m.id});return true;}}return false;}
+const started=performance.now(),roundLimit=Number(process.env.HONRO_QA_ROUND_LIMIT||45),actionLimit=Number(process.env.HONRO_QA_ACTION_LIMIT||280);
+for(let turn=0;turn<actionLimit&&!['won','lost'].includes(b.phase);turn++){
+ for(let i=0;!ready()&&!['won','lost'].includes(b.phase)&&i<30000;i++)tick();if(['won','lost'].includes(b.phase))break;if(!ready()){stopReason='controller no-input observation limit';break;}
+ navigation();
+ if(lastRound!==b.round){lastRound=b.round;rounds.push({round:b.round,goal:g.HonroAct2.current(b)?.id,done:plain(g.HonroAct2.memory(b).done),heroes:e.heroesAlive().map(u=>({cls:u.cls,hp:u.hp,maxHp:u.maxHp,focus:u.focus,x:u.x,y:u.y,support:nav.surface(u)})),enemies:e.alive(1).length,projectiles:b.projectiles.length});console.log('ROUND',id,policy,seed,JSON.stringify(rounds.at(-1)));await save('checkpoint');if(b.round>roundLimit){stopReason='diagnostic round bound; unfinished, not game loss';break;}}
+ // Timed in-world story and NPC tasks advance under actual mission ticks.
+ const prior=g.HonroAct2.current(b)?.id;for(let n=0;n<90&&ready()&&g.HonroAct2.current(b)?.id===prior;n++)tick();if(!ready())continue;
+ let goal=g.HonroAct2.current(b);if(!goal){for(let n=0;n<180&&ready();n++)tick();goal=g.HonroAct2.current(b);}
+ const specialist=goal?.requiredClass&&e.heroesAlive().find(u=>u.cls===goal.requiredClass&&!u.acted);if(specialist)e.select(specialist.id);
+ const u=e.active;if(!u||u.side!==0||u.dead){stopReason='no usable hero';break;}
+ if(interact())continue;
+ const marker=b.honroMarkers.find(m=>m.id===goal?.id),spirit=goal?.spiritId&&e.unit(goal.spiritId),weak=spirit&&(spirit.dead||spirit.hp<=spirit.maxHp*.4);
+ let destination=marker||g.HonroObjectives.state(b,app.stage).targets[0],targetIds=new Set(goal?.defeatIds||[]);
+ if(goal?.kind==='clear'&&!goal.defeatIds)for(const v of e.alive(1))if(goal.cohorts?v.honroCohort===goal.cohorts:marker&&dist(v,marker)<(goal.radius||650))targetIds.add(v.id);
+ if(goal?.kind==='v4-extract'&&spirit&&!weak)targetIds.add(spirit.id);
+ if(id===11){const q=g.HonroAct23V4Chapter11.memory(b);for(const key of [...q.release.ids,...q.north.ids])if(!e.unit(key)?.dead)targetIds.add(key);}
+ if(goal?.kind==='route')destination=b.honroMarkers.find(m=>m.id===(policy==='height'?'route-upper-exit':'route-lower-exit'))||destination;
+ if(id===20&&['escort','v4-regroup'].includes(goal?.kind)){const convoy=b.units.filter(v=>v.honroV4Convoy&&!v.dead);if(convoy.length)destination=convoy.sort((a,z)=>a.x-z.x)[0];}
+ let foes=e.alive(1).filter(v=>!v.honroObjectiveTarget&&(g.HonroAct2.visible(b,v)||v.id===spirit?.id)&&!(weak&&v.id===spirit?.id)).sort((a,z)=>Number(targetIds.has(z.id))-Number(targetIds.has(a.id))||dist(a,u)-dist(z,u));
+ const urgent=foes.find(v=>targetIds.has(v.id)),near=foes.filter(v=>dist(v,u)<(policy==='survival'?1500:1100));
+ // Recovery is a committed action, never followed by pursuit in the same turn.
+ if(policy==='survival'&&hpFraction(u)<.28){const threat=near[0];if(threat){const points=canonical.design.space.routes.flatMap(r=>r.anchors).filter(p=>dist(p,u)<1000&&dist(p,threat)>dist(u,threat)+250).sort((a,z)=>dist(z,threat)-dist(a,threat));if(points[0])nav.advance(u,points[0],false);}if(ready()){record({op:'defend-retreat',hero:u.cls});audit.production(()=>app.defend());}continue;}
+ let fired=false;for(const t of near.filter(v=>targetIds.has(v.id)||policy==='survival').slice(0,3))if(fireAt(u,t)){fired=true;break;}if(fired)continue;
+ if(urgent){destination=urgent;nav.advance(u,{...destination,approachRange:policy==='height'&&u.cls!=='knight'?700:undefined},true);}else if(destination)nav.advance(u,destination,false);
+ if(!ready())continue;if(interact())continue;
+ foes=foes.filter(v=>!v.dead&&dist(v,u)<1400);for(const t of foes.slice(0,3))if(fireAt(u,t)){fired=true;break;}
+ if(!fired){record({op:'defend',hero:u.cls,position:{x:u.x,y:u.y},moveLeft:u.moveLeft});audit.production(()=>app.defend());}
+}
+if(!['won','lost'].includes(b.phase)&&!stopReason)stopReason='controller action budget; unfinished, not game loss';
+await save('terminal');const result={...provenance,phase:b.phase,round:b.round,stopReason,seconds:(performance.now()-started)/1000,remainingEnemies:e.alive(1).length,kills:b.kills,heroes:e.heroesAlive().map(u=>({cls:u.cls,hp:u.hp,maxHp:u.maxHp})),fallen:b.units.filter(u=>u.side===0&&!u.summoned&&u.dead).map(u=>u.id),done:plain(g.HonroAct2.memory(b).done),actions:actions.length,skills:Object.fromEntries([...new Set(actions.filter(a=>a.skill).map(a=>a.skill))].map(s=>[s,actions.filter(a=>a.skill===s).length])),hpDamageTaken:damage.filter(d=>d.side===0).reduce((n,d)=>n+d.hpDamage,0),hpDamageDealt:damage.filter(d=>d.side===1).reduce((n,d)=>n+d.hpDamage,0),externalWrites:audit.log.externalWrites,engineRecoveries:audit.log.recoveries,twentyRoundGate:b.phase==='won'&&b.round<=20,releaseApproved:false};await writeFile(out+'/result.json',JSON.stringify(result,null,2));console.log('RESULT',JSON.stringify(result));assert.equal(audit.log.externalWrites.length,0);if(b.phase!=='won')process.exitCode=1;
