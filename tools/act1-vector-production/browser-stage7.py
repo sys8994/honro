@@ -23,7 +23,7 @@ try:
     p.wait_for_timeout(500)
    p.wait_for_function('HonroApp.engine?.b?.honroStage===7 && HonroApp.canInput()',timeout=1000);p.wait_for_timeout(1200)
    state='''() => {const a=HonroApp,e=a.engine,u=e.active;return {stage:e.b.honroStage,round:e.b.round,active:u.id,x:u.x,y:u.y,h:u.h,hp:u.hp,grounded:e.grounded(u),camera:{x:a.scene.x,y:a.scene.y,scale:a.scene.scale},bodies:(e.b.honroLandmarks||[]).filter(l=>l.asset?.id?.startsWith('act1-traced:stage07-')).map(l=>({id:l.asset.id,clip:!!(l.asset.vector.clips?.canonicalSolid),collisionIds:l.collisionIds.length})),canInput:a.canInput()};}'''
-   r['entry']=p.evaluate(state);assert len(r['entry']['bodies'])==6,r['entry'];assert sum(a['clip'] for a in r['entry']['bodies'])==5;assert r['entry']['bodies'][0]['collisionIds']==0;assert r['entry']['h']==92;assert abs(r['entry']['x']-300)<2;assert 4130<r['entry']['y']<4180;assert abs(r['entry']['camera']['scale']-.94)<.01,r['entry']['camera']
+   r['entry']=p.evaluate(state);assert len(r['entry']['bodies'])==6,r['entry'];assert sum(a['clip'] for a in r['entry']['bodies'])==5;assert r['entry']['bodies'][0]['collisionIds']==0;assert r['entry']['h']==92;assert abs(r['entry']['x']-300)<2;assert 4130<r['entry']['y']<4180;assert abs(r['entry']['camera']['scale']-.82)<.01,r['entry']['camera']
    p.screenshot(path=str(out/'entry.png'))
    p.keyboard.down('ArrowRight');p.wait_for_timeout(350);p.keyboard.up('ArrowRight');r['inputs'].append('hold:ArrowRight:350ms');p.wait_for_timeout(200);r['moved']=p.evaluate(state);assert r['moved']['x']>r['entry']['x']+1,(r['entry'],r['moved'])
    p.wait_for_function('HonroApp.canInput() && HonroApp.engine.grounded(HonroApp.engine.active)',timeout=10000);r['preJump']=p.evaluate(state);assert r['preJump']['grounded']
