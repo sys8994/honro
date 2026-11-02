@@ -19,3 +19,7 @@ Replacement runner SHA256 `0fb85fd3e9a66373a51a4eb82a2a20f3926851f33523d92778957
 ## Stage20 reporting-only amendment before its full run
 
 The completed Stage18 diagnostic's raw `result.skills` incorrectly counted selected-skill/preview telemetry as if it were fired attacks. Its unchanged action timeline remains authoritative; accepted App fire actions were O02×8, A02×1, M11×1, O08×1, M03×1. Before starting Stage20, the runner's summary is changed to count **only accepted `app-operation` fire records**; gameplay policy and source remain otherwise unchanged. Stage20 runner raw SHA256 `90baf405ac8faf692e1942586929a52cdfa5ee1ae49ecaa5db64c388035a38dd`; other frozen helper hashes and the declared objective entry/seed/bounds above remain unchanged. The original Stage18 result is not overwritten.
+
+## Environment continuation / Stage20 fresh restart
+
+The original HUD-correct Stage20 process has no terminal/result receipt after environment continuation. Its last checkpoint is R15/aim, not a completed clear or loss. Original files are unchanged; initial/checkpoint are gzip-preserved in `tests/fixtures/act2-gameplay/stage20-app-environment-interruption/` with raw/compressed SHA256. A fresh run of the same committed runner/policy/input seed starts in a separate `20-objective-757356291-hud-restart` directory. It is a deterministic restart, not an independent strategy or success-rate sample. No prior progress is imported. The existing 45-round/280-action bounds still apply.

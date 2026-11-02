@@ -1,0 +1,18 @@
+{
+  "checkpoint.json": {
+    "rawSha256": "85d9c443202a220f5acdc69ff35e7e5761296c09885fc53727dfd5afc8635aca",
+    "gzipSha256": "c21620b6e3b5166666d8f83852452a89a953b4fb0864fcae6d38d169aa47751f",
+    "rawBytes": 444803
+  },
+  "initial.json": {
+    "rawSha256": "7b4fc25400b2932fabb7b008f061b5c8eed0170cebe34e49fef049028c338482",
+    "gzipSha256": "b06489efec38d41cb845482024ba29e836d0764bed0a8bb2085d7ba5fadc535b",
+    "rawBytes": 274834
+  },
+  "scope": {
+    "status": "interrupted-without-terminal-receipt",
+    "observedRound": 15,
+    "observedPhase": "aim",
+    "note": "No process survived environment continuation. This is not a loss or complete outcome. Fresh restart is kept in distinct directory."
+  }
+}
