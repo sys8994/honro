@@ -1,0 +1,14 @@
+{
+  "schema": "honro-act1-convoy-v4/v1",
+  "stage": 2,
+  "seed": 2320,
+  "policy": "objective-focused-follow-noitems-appops-convoy-v4",
+  "scope": "Separate diagnostic after15R frozen follow. Prioritize actual porter-threat rectangle; descend through normal canDrop without waiting for stopped carriage to overtake archer. Advance lower cover toward convoy+700. Detached prediction, exact live guard, App controls only. No runtime/criteria change.",
+  "sourceHashes": {
+    "tools/act1-qa/adapt-positioning.mjs": "5246c7c2bb7ec580141b33fb33caaa2421e39a73ce5c26d5b7d3bcec016e0539",
+    "tools/act1-qa/calibrate-convoy-v4.mjs": "9bb9225b41e8821376585195f7c4ecd1259d04b4944c4bdd2ad5cb97d9f61f84",
+    "tools/act1-qa/legacy-controller.mjs": "be14d503f8c0b31a7f832d44d5457739fccc0689c1e92d00856df3c7a583c121",
+    "tools/act1-qa/player-operations.mjs": "fbc8d0b429e7834a85f106bb5ff1e39170493018ea23d6e97b66888cba5c5e05"
+  },
+  "stopping": "Existing160000-iteration bound; preserve unsuccessful outcome."
+}
