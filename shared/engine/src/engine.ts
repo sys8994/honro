@@ -78,10 +78,19 @@ export class Engine {
     private indexedVersion = -1;
     private indexedCount = -1;
     private planningRemaining=Infinity;
-    private enemyPlanning?:{key:string;steps:Generator<void,void,unknown>};
+    /** Diagnostics: partial enemy plans discarded because the battle changed mid-search. */
+    planRestarts=0;
+    private enemyPlanning?:{key:ReturnType<Engine['planningKey']>;steps:Generator<void,void,unknown>};
     /** Runtime-only work budget; saves resume an unfinished decision from its input state. */
     planningBudget(ms?:number){this.planningRemaining=ms??Infinity;}
-    planningKey(){const b=this.b;return [b.active,b.round,b.sceneVersion,b.physics?.revision,b.wind,b.rng,...b.units.map(u=>`${u.id}:${u.x}:${u.y}:${u.hp}:${u.shield}:${u.focus}:${u.dead}`)].join('|');}
+    /** Snapshot for AI planning. A partial plan is restarted only when the battle changes in
+     * a way that can alter the decision (a unit moved > 24 px, hp/shield/focus/death changed,
+     * wind, terrain broken). Exact coordinates and the RNG drift every frame (bodies settling on
+     * slopes, effects) and used to throw the partial search away dozens of times per turn. */
+    planningKey(){const b=this.b;return {head:[b.active,b.round,b.sceneVersion,b.physics?.revision,b.wind,b.terrain.filter(t=>t.broken).length,b.units.length].join('|'),
+        units:b.units.map(u=>[u.x,u.y,`${Math.round(u.hp)}:${Math.round(u.shield)}:${Math.round(u.focus)}:${u.dead}`] as [number,number,string])};}
+    planningStale(k:ReturnType<Engine['planningKey']>){const n=this.planningKey();if(n.head!==k.head)return true;
+        return n.units.some((u,i)=>{const o=k.units[i];return !o||u[2]!==o[2]||Math.abs(u[0]-o[0])>24||Math.abs(u[1]-o[1])>24;});}
     continuePlanning<T>(steps:Generator<void,T,unknown>):IteratorResult<void,T>|undefined{
         while(this.planningRemaining>0){
             const timed=Number.isFinite(this.planningRemaining),start=timed?performance.now():0,next=steps.next();
@@ -2172,7 +2181,7 @@ export class Engine {
             delete u.shieldUntil;
         } }
     endTeam(){if(this.b.phase==='summon')return;if(this.b.side===0&&this.runSummonTurn()>0)return;this.completeTeamTransition();}
-    private queuePlanning?:{key:string;steps:Generator<void,EnemyQueuePriority[],unknown>};
+    private queuePlanning?:{key:ReturnType<Engine['planningKey']>;steps:Generator<void,EnemyQueuePriority[],unknown>};
     private queuePriorities=new Map<string,EnemyQueuePriority>();
     enemyQueuePriority(u:Unit|undefined){return u?this.queuePriorities.get(u.id):undefined;}
     switchTeam() {
@@ -2180,10 +2189,9 @@ export class Engine {
         if (this.checkEnd())
             return;
         if (b.side === 0) {
-            const key=this.planningKey();
-            if(!this.queuePlanning||this.queuePlanning.key!==key){this.refreshActivation();this.queuePlanning={key:this.planningKey(),steps:rankEnemyQueueSteps(this,this.combatEnemies())};}
+            if(!this.queuePlanning||this.planningStale(this.queuePlanning.key)){this.refreshActivation();this.queuePlanning={key:this.planningKey(),steps:rankEnemyQueueSteps(this,this.combatEnemies())};}
             const work=this.queuePlanning,next=this.continuePlanning(work.steps);
-            if(!next||!next.done){work.key=this.planningKey();return;}
+            if(!next||!next.done)return;
             const ranked=next.value;this.queuePlanning=undefined;b.side=1;
             this.queuePriorities=new Map(ranked.map(p=>[p.unit.id,p]));
             const opportunities=new Set(ranked.slice(0,b.enemyLimit).map(p=>p.unit.id));
@@ -2303,9 +2311,8 @@ export class Engine {
         }
         if(u?.aiMove||u?.moveTarget!==undefined||b.units.some(v=>!this.unavailableActor(v)&&v.aiMove?.lureStakeId!==undefined))return;
         if(this.planningRemaining<=0)return;
-        const key=this.planningKey();if(!this.enemyPlanning||this.enemyPlanning.key!==key)this.enemyPlanning={key,steps:this.enemyActionSteps()};
+        if(!this.enemyPlanning||this.planningStale(this.enemyPlanning.key)){if(this.enemyPlanning)this.planRestarts++;this.enemyPlanning={key:this.planningKey(),steps:this.enemyActionSteps()};}
         const work=this.enemyPlanning;if(this.continuePlanning(work.steps)){this.enemyPlanning=undefined;return;}
-        work.key=this.planningKey();
     }
     private *enemyActionSteps():Generator<void,void,unknown>{
         const b=this.b;
