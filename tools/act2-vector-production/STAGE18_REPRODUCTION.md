@@ -28,3 +28,6 @@ Root calls `applyStage18ArtCandidate` before narrative hooks in shared/build.mjs
 - Global small RGB error can hide one contact color-edge shift: restore original complete contour, never widen threshold.
 - Source looks attractive alone yet cap can dominate at actor scale. Check farewell close view shared with Stage19, not only wide panorama.
 - Art static hosts must exclude moving/destructible systems even when geometry appears in image guide.
+
+### Domain coverage correction
+`preview-stage18-art.mjs` now extends domain asset bounds/viewBox to original canonical floor+roof extents while keeping image transform and physical scale exact. Full underpaint already existed; expose it rather than stretching image material. RAW/final assembly uses identical correction. Test checks `HonroBounds.visual` coverage for1440×900/390×844/1920×1080 and scale1. Legal ceiling/bottom views are required, including mobile minimumzoom; prior source-image bounds alone are insufficient.

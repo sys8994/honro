@@ -30,3 +30,10 @@ Image-derived static cavern decoration only. All collision contours, actor dimen
 - Parent independently accepted V2 entry/floor/mobile art direction; legaledge min/max views visually reviewed after final baked assets, and bytes match packaged files except preview flag removal.
 - Focused test PASS: raw hook source/hash lock, visual-only delta, static-only host selection, original effective geometry/units/events and two bell shifts, canonical clips/contactinsets exact.
 - First test harness run compared a null-prototype runtime library to its plain JSON copy; corrected serialization-based data comparison. This was harness prototype identity, not a game-data change or gate relaxation.
+
+## Coverage defect found by independent Stage19 review
+Prior V2 edge sign-off is withdrawn: legal camera y−1800 at minimumzoom sees above the generated domain source y−2000. Existing canonical full-roof underpaint was present in vector data, but `bounds`, `reference.bounds` and `vector.viewBox` still used source-image extent, so the renderer clipped it and exposed a horizontal two-color seam.
+
+Correction changes ONLY decorative bounds to full original canonical floor/roof extents. Source image transform, source SVG, local material sizes, anchor/foot and world scaling stay exact; `reference.heightM` is adjusted proportionally to preserve `60*heightM/bounds.h===1`. No camera restriction, collision edits, repeated texture or source stretching. The top source edge is transparent and bottom is uniform base, so the same existing canonical base gives continuous outer coverage.
+
+New mandatory gate: decorative bounds contain `HonroBounds.visual` for desktop1440×900, mobile390×844, wide1920×1080; visually inspect top AND bottom at legal minimumzoom in addition to left/right min/max. Do not infer top coverage from a near-ceiling screenshot at y1700. Record actual camera coordinates and independent Stage19 result.
