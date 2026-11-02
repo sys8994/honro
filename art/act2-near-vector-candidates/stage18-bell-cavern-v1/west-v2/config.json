@@ -1,0 +1,54 @@
+{
+  "id": "act2-traced:stage18-west-v2",
+  "name": "Stage18 west-v2",
+  "bounds": {
+    "x": 800,
+    "y": 2900,
+    "w": 5400,
+    "h": 4500
+  },
+  "anchor": {
+    "x": 0,
+    "y": 0
+  },
+  "foot": {
+    "x": 800,
+    "y": 7400
+  },
+  "semanticLayer": "BODY",
+  "preserveCompounds": true,
+  "transform": [
+    3.930131004366812,
+    0,
+    0,
+    3.930131004366812,
+    800,
+    2900
+  ],
+  "params": {
+    "bodyTerrainIds": [
+      "sb-entry-rise",
+      "sb-suppression-court",
+      "sb-court-reflector",
+      "sb-court-rear-ledge",
+      "sb-west-upper-rise",
+      "sb-west-firing-ledge",
+      "sb-west-crown-rise",
+      "sb-west-crown-bridge",
+      "sb-west-firing-crown",
+      "sb-maintenance-shelf",
+      "sb-maintenance-rise",
+      "sb-maintenance-return",
+      "sb-maintenance-upper-link",
+      "sb-lower-vault-tooth",
+      "sb-west-resting-saddle",
+      "sb-west-shoulder-mass",
+      "sb-west-middle-mass",
+      "sb-west-shot-mass",
+      "sb-west-crown-mass",
+      "sb-lower-buttress-mass",
+      "sb-maintenance-buttress-mass"
+    ],
+    "bodyBaseColor": "#283b46"
+  }
+}

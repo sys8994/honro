@@ -1,0 +1,55 @@
+{
+  "id": "act2-traced:stage18-east-v2",
+  "name": "Stage18 east-v2",
+  "bounds": {
+    "x": 7200,
+    "y": 3000,
+    "w": 5600,
+    "h": 4600
+  },
+  "anchor": {
+    "x": 0,
+    "y": 0
+  },
+  "foot": {
+    "x": 7200,
+    "y": 7600
+  },
+  "semanticLayer": "BODY",
+  "preserveCompounds": true,
+  "transform": [
+    4.046242774566474,
+    0,
+    0,
+    4.049295774647887,
+    7200,
+    3000
+  ],
+  "params": {
+    "bodyTerrainIds": [
+      "sb-east-resting-saddle",
+      "sb-east-gallery-roof",
+      "sb-east-gallery-sill",
+      "sb-east-inner-rise",
+      "sb-keeper-side-approach",
+      "sb-east-upper-arc",
+      "sb-east-upper-return",
+      "sb-east-resonance-ledge",
+      "sb-east-reflection-wall",
+      "sb-keeper-watch",
+      "sb-keeper-flank-step",
+      "sb-keeper-cover",
+      "sb-inner-lower-approach",
+      "sb-inner-prayer-mass",
+      "sb-inner-upper-turn",
+      "sb-inner-sound-stone",
+      "sb-east-cave-return",
+      "sb-east-upper-cave",
+      "sb-return-cave-buttress",
+      "sb-east-resonance-mass",
+      "sb-east-throat-mass",
+      "sb-east-keeper-mass"
+    ],
+    "bodyBaseColor": "#283b46"
+  }
+}

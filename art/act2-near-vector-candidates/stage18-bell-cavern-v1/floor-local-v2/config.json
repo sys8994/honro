@@ -1,0 +1,34 @@
+{
+  "id": "act2-traced:stage18-floor-local-v2",
+  "name": "Stage18 floor-local-v2",
+  "bounds": {
+    "x": 4200,
+    "y": 6500,
+    "w": 5200,
+    "h": 3000
+  },
+  "anchor": {
+    "x": 0,
+    "y": 0
+  },
+  "foot": {
+    "x": 4200,
+    "y": 9500
+  },
+  "semanticLayer": "BODY",
+  "preserveCompounds": true,
+  "transform": [
+    3.1496062992125986,
+    0,
+    0,
+    3.147953830010493,
+    4200,
+    6500
+  ],
+  "params": {
+    "bodyTerrainIds": [
+      "act2-floor"
+    ],
+    "bodyBaseColor": "#283b46"
+  }
+}
