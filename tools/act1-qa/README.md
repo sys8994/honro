@@ -12,3 +12,13 @@ Initial findings:
 - Historical Oct5 ten-stage wins and old browser Engine API calls do not certify current normal UI gameplay or fun.
 
 Acceptance is incomplete. Missing essential measurements fail closed. No automatic subjective fun approval. Final report must retain failed attempts, per-policy denominators, uncertainty, and representative actual UI evidence.
+
+## Verified UI and controller limitations
+
+- UI run41479507798 / remote1406176f (tree matching localca283060) completed fresh normal Stage1 in R5: four actual full-charge keyboard shots, two actual jump inputs,316/365HP,1kill, zero pageerrors. Screenshots were opened and reviewed; the entry overview shows west/mid actors, not every actor across the entire map. No live Engine action calls or state writes are used in `browser-ui.py`.
+- Stage1's12 registered runs are **conditional controller robustness** under tiny ±0.15° input error, not representative human clear probability. Canonical engine seed is fixed by `world.ts`; Math.random seeding is not independent game RNG. Three policy turn tradeoffs (5/6/8) are more informative than twelve identical discrete wins. The registered source remains immutable inb65c9117; later adapter edits belong to calibration of other stages.
+- Stage6/7 original basic-only profiles/controller omitted normal sword-sector prediction and stopped progression near enemies. Current focused entry allocations reset/train only before battle using existing earned XP/SP; unavailable prerequisites are logged, never overridden. Stage6 improved from lossR23/basic winR27 to focused winR19; Stage7 from protected-NPC lossR9 to focused winR13. These are controller/build comparisons, not population difficulty estimates.
+- Old Stage10 driver does not pursue the current eastern withdrawal objective or call App's withdrawal presentation frame. The modern calibration adapter uses actual App.frame and current exit predicate. Its failed attempts remain failures, not altered expected passes.
+- Stage8 old fixed cap4 test stops on current configured cap5. The measurement adapter retains actual configured bound and records each old-cap deviation; it does not claim the old test passed. Initial extended attempt reachedR29 with one hero dead and one seal intact, then process was killed (cause unconfirmed). Fresh focused App-frame run is separate.
+
+`python tools/act1-qa/summarize.py` writes machine-readable measurements and concise MD/HTML into the ignored report folder. Missing essential metrics fail closed. Per-hit damage is diagnostic only until action-level multi-hit aggregation is complete. Trial target misses and aggregate target failures remain distinct.

@@ -5,12 +5,14 @@ on:
 permissions:
   contents: read
 jobs:
-  stage1-ui:
+  stage9-ui:
     runs-on: ubuntu-24.04
     timeout-minutes: 30
     env:
       HONRO_QA_URL: http://127.0.0.1:8870/HONRO.html
       HONRO_QA_OUT: _local/reports/act1-gameplay-ui
+      HONRO_STAGE: 9
+      HONRO_ENTRY_PROFILE: game/docs/stage-review/stage08-bier/evidence/normal-victory-profile.json
     steps:
       - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
       - uses: actions/setup-python@e797f83bcb11b83ae66e0230d6156d7c80228e7c
