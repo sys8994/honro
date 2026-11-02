@@ -406,3 +406,18 @@ stacked color planes from repeatedly antialiasing the same fractional clip edge.
 No-flag rendering remains unchanged. `node tests/vector-clip-seams.mjs` verifies
 fractional zoom.37/.53/.81/1.33 against an unsliced reference (zero fixed-pixel delta),
 reflections, rotation/shear fallback, strict rejection and zero warm allocations.
+
+## Existing native compound representation
+
+Set `preserveCompounds: true` in importer config when using the current renderer's
+already-supported `dParts`. This preserves authored contour order and performs one
+fill, so holes and relative moveto origins are not broken into separate paints.
+Limits are unchanged: 60,000 characters per part, 32 parts / 240,000 characters /
+120,000 numeric tokens per compound, 4,000,000 compound characters per asset and
+512 tree nodes. A single over-budget contour still fails; do not split its open
+commands or increase the limits. Coordinate preparation needs a separate bounded
+error and visual check. Native-format/pixel parity is not terrain-contact or
+playtest acceptance.
+
+`python tools/vector-production/test-preserve-compound.py` checks importer limits
+and exact text/order; `node tests/vector-compound-parts.mjs` checks the real renderer.
