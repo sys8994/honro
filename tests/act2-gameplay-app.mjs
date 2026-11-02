@@ -97,9 +97,10 @@ for(let turn=0;turn<actionLimit&&!['won','lost'].includes(b.phase);turn++){
 
  if(id===20&&['escort','v4-regroup'].includes(goal?.kind)){const convoy=(b.honroV4Convoy||[]).map(id=>e.unit(id)).filter(v=>v&&!v.dead);if(convoy.length)destination=convoy.sort((a,z)=>a.x-z.x)[0];}
  const forceRescueQuestioner=rescueQuestioner?.id===u.id;if(forceRescueQuestioner)destination=e.unit('14.gilchan');
- if(id===16&&witnessObserver)for(const enemy of e.alive(1))if(!enemy.honroObjectiveTarget&&g.HonroAct23V4.near(enemy,b.honroV4Recovery.elder,460))targetIds.add(enemy.id);
+ const shelterGuard=id===16&&u.cls==='knight'&&g.HonroAct23V4Reviewed16.memory(b).events.witness?.status==='done'&&g.HonroAct23V4Reviewed16.memory(b).events.depart?.status!=='done';
+ if(shelterGuard){destination={id:'protect-witness-pocket',x:3150,y:4988.367346938775};for(const enemy of e.alive(1))if(!enemy.honroObjectiveTarget&&g.HonroAct23V4.near(enemy,b.honroV4Recovery.elder,900))targetIds.add(enemy.id);}
  const forceWitnessObservation=witnessObserver?.id===u.id;if(forceWitnessObservation)destination={id:'authored-bell-souls-observation',...b.honroV4Reviewed16.bellSource};
- if(id===16&&!goal&&!forceWitnessObservation)destination=b.honroMarkers.find(m=>m.id==='16.work-exit');
+ if(id===16&&!goal&&!forceWitnessObservation&&!shelterGuard)destination=b.honroMarkers.find(m=>m.id==='16.work-exit');
  const forceVantage=id===17&&goal?.id==='17.defense'&&['archer','mage'].includes(u.cls)&&!b.terrain.find(t=>t.id==='gate-repair')?.broken,vantage={id:'authored-east-fire-pocket',x:7770,y:3101.6666666666665},atVantage=dist(u,vantage)<100;if(forceVantage)destination=vantage;
  let foes=e.alive(1).filter(v=>!v.honroObjectiveTarget&&!(id===17&&v.id==='act2-hoist')&&(!extractionSpiritIds.has(v.id)||v.id===spirit?.id)&&(g.HonroAct2.visible(b,v)||v.id===spirit?.id)&&!(weak&&v.id===spirit?.id)).sort((a,z)=>Number(targetIds.has(z.id))-Number(targetIds.has(a.id))||dist(a,u)-dist(z,u));
  const urgent=foes.find(v=>targetIds.has(v.id)),near=foes.filter(v=>dist(v,u)<(policy==='survival'?1500:1100));
