@@ -9,11 +9,27 @@ import {SKILLS,CLASSES} from './data';
 import {echoAim,SOUL_SKILLS} from './occultMechanics';
 import {geometryPaths,redesignPrediction,turnPrediction,type SkillGeometry} from './skillMechanics';
 type C=CanvasRenderingContext2D;
-const guideCache=new WeakMap<Engine,Map<boolean,{key:string;prediction:ReturnType<Engine['predict']>}>>();
+type GuideEntry={aimKey:string;worldKey:string;at:number;ux:number;uy:number;prediction:ReturnType<Engine['predict']>};
+const guideCache=new WeakMap<Engine,Map<boolean,GuideEntry>>();
+const GUIDE_WORLD_REFRESH_MS=100;
+const shiftPrediction=<T extends ReturnType<Engine['predict']>>(p:T,dx:number,dy:number):T=>{
+ if(!dx&&!dy)return p;const m=(v:any)=>v&&{...v,x:v.x+dx,y:v.y+dy};
+ return {...p,x:p.x+dx,y:p.y+dy,points:p.points.map(m),apex:m((p as any).apex),...((p as any).paths?{paths:(p as any).paths.map((q:any[])=>q.map(m))}:{})};
+};
+/** The aim guide replays the real projectile on a cloned battle (several ms per call).
+ * Aim changes (angle, power, skill, wind) recompute at once; while only unit positions
+ * change (walking, enemies moving) the replay runs at most every 100 ms and the last
+ * guide follows the shooter in between, so walking no longer replays every frame. */
 export function guidePrediction(e:Engine,u:Unit,s:Skill,power:number,ignoreUnits=false){
- const b=e.b,key=[b.shot,b.rng,b.sceneVersion,b.physics?.revision,JSON.stringify((b as any).keeperRitual?.zone||null),b.wind,s.id,u.x,u.y,u.h,u.angle,power,u.tune,JSON.stringify(u.ranks),...b.units.map(v=>`${v.id}:${v.x}:${v.y}:${v.hp}:${v.dead}`)].join('|');
- let cache=guideCache.get(e);if(!cache){cache=new Map();guideCache.set(e,cache);}const cached=cache.get(ignoreUnits);if(cached?.key===key)return cached.prediction;
- const prediction=['A04','A15'].includes(s.id)?redesignPrediction(e,u,s,u.angle,power,true,ignoreUnits)!:e.predict(u,s,u.angle,power,undefined,true,ignoreUnits);cache.set(ignoreUnits,{key,prediction});return prediction;
+ const b=e.b,aimKey=[b.shot,b.sceneVersion,b.physics?.revision,JSON.stringify((b as any).keeperRitual?.zone||null),b.wind,s.id,u.id,u.h,u.angle,power,u.tune,JSON.stringify(u.ranks)].join('|');
+ const worldKey=[b.rng,...b.units.map(v=>`${v.id}:${v.x}:${v.y}:${v.hp}:${v.dead}`)].join('|');
+ let cache=guideCache.get(e);if(!cache){cache=new Map();guideCache.set(e,cache);}const cached=cache.get(ignoreUnits),now=performance.now();
+ if(cached&&cached.aimKey===aimKey){
+  if(cached.worldKey===worldKey)return cached.prediction;
+  if(now-cached.at<GUIDE_WORLD_REFRESH_MS)return shiftPrediction(cached.prediction,u.x-cached.ux,u.y-cached.uy);
+ }
+ const prediction=['A04','A15'].includes(s.id)?redesignPrediction(e,u,s,u.angle,power,true,ignoreUnits)!:e.predict(u,s,u.angle,power,undefined,true,ignoreUnits);
+ cache.set(ignoreUnits,{aimKey,worldKey,at:now,ux:u.x,uy:u.y,prediction});return prediction;
 }
 export function drawGuideContinuation(c:C,e:Engine,u:Unit,s:Skill,power:number,zoom:number){
  if(s.martial||s.mode==='pierce'||s.mode==='return'||s.mode==='prepare')return;
