@@ -16,3 +16,11 @@ const path=ps=>{const area=ps.reduce((a,p,i)=>{const q=ps[(i+1)%ps.length];retur
 for(const asset of assets){const solid=[],insets=[];for(const id of asset.params.bodyTerrainIds){const w=before.honroWorldTerrain.find(t=>t.id===id),t=before.terrain.find(t=>t.id===id),ps=g.HONRO_CORE.poly(w),physical=g.HONRO_CORE.poly(t),edges=(t.honroWalkEdges||[]).flatMap(i=>[physical[i],physical[(i+1)%physical.length]]).filter(Boolean);solid.push(path(ps));insets.push(path(ps.map(p=>({x:p.x,y:p.y+(edges.some(e=>Math.abs(e.x-p.x)<.01&&Math.abs(e.y-p.y)<.01)?4:0)}))));}assert.deepEqual(asset.vector.clips.canonicalSolid,solid);assert.deepEqual(asset.vector.clips.contactInset,insets);}
 assert.deepEqual(plain(candidate.initialState),plain(source.initialState));assert.deepEqual(plain(candidate.events),plain(source.events));
 console.log('PASS Stage20 raw hook source lock, visual-only project delta, native limits, effective terrain/actors/water/events parity, dynamic convoy props and machinery excluded. No browser/fullplay claim.');
+// Final material pack must not introduce schema errors or break actual Stage20
+// asset-table save/restore. This is a native codec check, not normal browser play.
+const errors=p=>plain(g.HonroMaps.validate(p)).filter(x=>x.level==='err').map(x=>x.text).sort();
+assert.deepEqual(errors(next),errors(effective),'material-only delta adds no strict schema errors');
+const store=g.HonroProfileStore,original=JSON.stringify(current),packed=store.compactBattleArt(current),restored=plain(packed);
+assert.equal(JSON.stringify(current),original,'art save must not mutate battle');
+assert(store.restoreBattleArt(restored));assert.deepEqual(restored,plain(current));
+console.log('PASS actual Stage20 material strict-schema delta and compact/restore exact battle roundtrip; encoded bytes',JSON.stringify(packed).length);

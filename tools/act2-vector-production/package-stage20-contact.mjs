@@ -1,0 +1,9 @@
+/** Publish locally only the exact vectors checked by protected native comparison. */
+import fs from 'node:fs';import {createHash} from 'node:crypto';import {stage20Digest} from './apply-stage20-candidate.mjs';
+const base='_local/reports/stage20-dense-final',qa='_local/reports/stage20-contact-precision',art='art/act2-near-vector-candidates/stage20-contact-v3';
+const report=JSON.parse(fs.readFileSync(qa+'/comparison.json'));if(!report.qualityPass||report.rows.length!==8||!report.rows.every(r=>r.pass))throw Error('Strict comparison incomplete/failed');
+const record=JSON.parse(fs.readFileSync('tools/act2-vector-production/stage20-art-source.json'));const nodes=n=>1+(n.children||[]).reduce((s,c)=>s+nodes(c),0);const assets=[];
+for(const part of ['outer-v1','west-v2','east-v2']){const a=JSON.parse(fs.readFileSync(base+'/'+part+'-baked.json'));const h=report.vectorHashes?.find(r=>r.id===a.id);if(!h||createHash('sha256').update(JSON.stringify(a.vector)).digest('hex')!==h.sha256)throw Error('Compared vector drift');a.params.previewOnly=false;a.params.nodeCount=nodes(a.vector.root);if(part==='west-v2')a.reference.foot={x:-6000,y:3800};const file='stage20-'+part+'.json';fs.writeFileSync('shared/data/act2/'+file,JSON.stringify(a));const r=record.assets.find(r=>r.assetId===a.id);r.sha256=stage20Digest(a);assets.push({id:a.id,file,sha256:r.sha256,vectorSha256:h.sha256,bytes:Buffer.byteLength(JSON.stringify(a)),nodes:a.params.nodeCount});}
+fs.writeFileSync('tools/act2-vector-production/stage20-art-source.json',JSON.stringify(record,null,2)+'\n');
+fs.copyFileSync(qa+'/comparison.json',art+'/protected-comparison.json');fs.copyFileSync('_local/stage20-contact-v3/registration.json',art+'/registration.json');
+fs.writeFileSync(art+'/final-pack.json',JSON.stringify({scope:'Native candidate only; actual browser, quota, integration approval and publication pending.',assets},null,2)+'\n');console.log(assets);

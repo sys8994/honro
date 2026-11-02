@@ -1,0 +1,54 @@
+{
+  "sourceSha256": "cb3a37ebdf5295ed1434460257e2f66b22c7042e705272c21a549630acfe8b02",
+  "inkscapeRawSha256": "0c8eb09871347ce11c83bf51470594708e2f520e4aea14cea40e6b8a3158c605",
+  "sourceStripRows": [
+    [
+      0,
+      235
+    ],
+    [
+      236,
+      477
+    ],
+    [
+      478,
+      724
+    ]
+  ],
+  "worldRanges": [
+    [
+      0,
+      3000
+    ],
+    [
+      3000,
+      6000
+    ],
+    [
+      6000,
+      9000
+    ]
+  ],
+  "counts": [
+    {
+      "contactStrip": 0,
+      "drawingAsset": "stage20-east-v2",
+      "compoundFills": 2,
+      "bytes": 80577
+    },
+    {
+      "contactStrip": 1,
+      "drawingAsset": "stage20-east-v2",
+      "compoundFills": 2,
+      "bytes": 78135
+    },
+    {
+      "contactStrip": 2,
+      "drawingAsset": "stage20-east-v2",
+      "compoundFills": 2,
+      "bytes": 69666
+    }
+  ],
+  "scope": "Material warp only; canonical collision/contact clip unchanged. Darkest two source bands use existing substrate to avoid horizontal bottom border.",
+  "scale": 0.72
+}
