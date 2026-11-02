@@ -24,3 +24,7 @@ These observations concern released-v4 baseline logic. Actual normal-browser pla
 - All original required thresholds are retained. Missing evidence is fail-closed; reference counts are not promoted into invented mandatory minima.
 
 Sources: `OBSERVED_STATUS.md`, `APP_OUTCOME_AND_INPUT_LIMITS.md`, `STAGE18_COHORT_RESULTS.md`, per-trial source/runner hashes in `evidence/report.json`, native baseline gallery in `evidence/native-entry/index.html`, and immutable compressed exports under `tests/fixtures/act2-gameplay/`.
+
+## Post-registration controller audit
+
+The frozen survival policy attempts a legal M10 healing stake before checking its own emergency-retreat threshold. This may consume the mage's action instead of retreating and is a controller limitation, not established game difficulty. Future generic diagnostics now check emergency retreat/defend first (`9f683754`); the registered runner, cases and denominators are intentionally unchanged. No frozen failure is replaced by a tuned retry.
