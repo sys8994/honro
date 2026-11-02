@@ -1,0 +1,22 @@
+# Stage 18 preregistered native cohort — results
+
+Registration: `STAGE18_COHORT_REGISTRATION.md`, committed before any seed. Four fresh starts, same frozen `retreat` policy, actual Lv14 legal AP03 training/basic recruitment weapons, normal difficulty, sequential production dialogue-next and production App outcome only after a genuine terminal. The runner set **`b.seed = seed; b.rng = seed` once after launch/dialogue and before first gameplay input**; these are deliberately assigned engine-RNG fixtures, not untouched shipping RNG or sampled human behavior. No Python/browser UI is implied. DOM/render/storage/clock are doubles. Complete initial, terminal, result and, for wins, settled exports are compressed in `tests/fixtures/act2-gameplay/stage18-cohort/`; manifest hashes both raw and compressed bytes.
+
+| Seed | Observed outcome | App settlement | Hero HP damage | Audit |
+|---|---|---|---:|---|
+| 701 | Unfinished, aim at R46 diagnostic bound; mage remained in actual settle sweep | Not attempted (nonterminal) | 0 | 0 external writes/recoveries |
+| 709 | Engine won R25 | `done=true`, cleared stage, history recorded | 22 | 0 external writes/recoveries |
+| 719 | Unfinished, aim at R46 diagnostic bound; mage remained in actual settle sweep | Not attempted (nonterminal) | 0 | 0 external writes/recoveries |
+| 727 | Engine won R23 | `done=true`, cleared stage, history recorded | 0 | 0 external writes/recoveries |
+
+All four retained all four heroes and killed six; four enemies remained in each. Both unfinished runs completed brake, rescue, hoist, keeper, inspect, lift and support, but had `p-mage` as a physical sweep blocker for settlement. This is a policy/navigation shortcoming in these observations; it is not a declared game loss or proof of a source defect. Wins completed all 13 goals. Neither win met the original 15–19 target or global ≤20; the two bound runs also reached R46 without winning, so **both time-window endpoints are 0/4**.
+
+For those fully observed time-window endpoints only, a nominal 95% Wilson interval for 0/4 is **0.0%–49.0%**. This is a descriptive small-sample calculation under a hypothetical independent-binomial model; the four chosen deterministic fixtures were not a random population sample, so it does **not** estimate human, campaign or shipping-seed success. Two of four won by the diagnostic bound; two remain unresolved beyond it. Eventual completion is therefore only bounded by **2–4 of 4** for these fixtures; no confidence interval for ultimate clearance is claimed. No success threshold is relaxed and no release approval follows.
+
+All four report runner SHA256 `eb902249879142060bd5d81444f027520d34726e1f4c3b91741cad48a3b81543`, navigator `439fd444a43b01c7bff1418487b843ee03b9c87b8b1f2e72a71d58b26609e10f`, source checkout `4ccdc57122c40fc9a2b22b8fd9e7de27d2c7049b`, project `c65a226aa1d6ae551f18fa9e7bbf0cbc1d330493d6e1d8efb6d1b6d1aaff58db`, and stage `ba386fa8d83246c8ad93035512234010e326c571255388ea4e326fa1616a5b3e`. Raw profile hashes differ because each generated `equipment.runId` differs. Removing only that field, Python `json.dumps(sort_keys=True,separators=(',',':'),ensure_ascii=False)` UTF-8 SHA256 is identical across all four: `b4f5929bb06428938ca0034124fcb7fca41e9dcfd5c2f2326225f3cf32c231ad`. Raw hashes are retained in each original provenance.
+
+## Separate 701 Continue diagnosis (not a cohort rerun)
+
+From the exact saved R46 terminal (`terminal.json` raw SHA256 `94f4f65aae8e309a8c9878665a01bfe793314a9aeb91a3672bbe371813363321`), production `App.continue()` preserved saved `seed=701` and `rng=45789146026`; the continuation controller did not assign either. A normal mage movement from x8749/y6201 to x9386/y6370 plus defend cleared the real sweep. Settlement, locks and souls then completed, Engine won in R46, and guarded App outcome recorded `done=true` and a persisted stage clear at R46. No audited external actor writes or recoveries. Full continuation initial/terminal/settled/result and SHA256 manifest are in `tests/fixtures/act2-gameplay/stage18-701-continuation/`; controller SHA256 `92ca05788e06b32fb4ccf45d7b53f7a0223298b8aa578a50558d2a9eb7f5eddf`.
+
+This is a branch from the saved cohort state with a modified legal controller, **not** an independent fresh sample and not a retroactive change to the preregistered 701 unfinished-at-bound outcome or either missed time gate. It shows this observed blocker was recoverable by normal input, not that the original frozen policy reached it correctly.

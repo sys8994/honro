@@ -1,4 +1,4 @@
-"""Normal UI Stage19 farewell replay / Stage11 bounded traversal-combat observation. Read-only runtime planning, no live writes.
+"""Normal UI Stage19 farewell replay / Stages11/15/20 bounded traversal-combat observations. Read-only runtime planning, no live writes.
 Fresh profile unless an explicitly declared entry JSON is provided. Tool assisted,
 not human clear-rate/fun evidence. Screenshots and failures are always retained.
 """
@@ -29,7 +29,7 @@ try:
    elif enter.count():enter.first.click()
    p.wait_for_timeout(350)
   p.wait_for_function(f'HonroApp.engine?.b?.honroStage==={stage} && HonroApp.canInput()',timeout=1000)
-  def state():return p.evaluate('''()=>{const a=HonroApp,e=a.engine,b=e.b,u=e.active;return{round:b.round,side:b.side,phase:b.phase,active:u?.id,cls:u?.cls,x:u?.x,y:u?.y,angle:u?.angle,facing:u?.facing,moveLeft:u?.moveLeft,jumpCost:u&&e.jumpCost(u),grounded:u&&e.grounded(u),can:a.canInput(),dialogue:!!a.dialogue,shots:b.shots,drop:u&&e.canDrop(),camera:{x:a.scene.x,y:a.scene.y,scale:a.scene.scale},health:b.units.filter(v=>v.side===0&&!v.summoned).map(v=>({id:v.id,hp:v.hp,maxHp:v.maxHp,dead:v.dead,x:v.x,y:v.y})),enemies:b.units.filter(v=>v.side===1).map(v=>({id:v.id,hp:v.hp,dead:v.dead,x:v.x,y:v.y,kind:v.honroVariant})),seed:b.seed,rng:b.rng}}''')
+  def state():return p.evaluate('''()=>{const a=HonroApp,e=a.engine,b=e.b,u=e.active;return{round:b.round,side:b.side,phase:b.phase,appDone:a.done,cleared:a.profile.cleared?.[b.honroStage]||null,active:u?.id,cls:u?.cls,x:u?.x,y:u?.y,angle:u?.angle,facing:u?.facing,moveLeft:u?.moveLeft,jumpCost:u&&e.jumpCost(u),grounded:u&&e.grounded(u),can:a.canInput(),dialogue:!!a.dialogue,shots:b.shots,drop:u&&e.canDrop(),camera:{x:a.scene.x,y:a.scene.y,scale:a.scene.scale},health:b.units.filter(v=>v.side===0&&!v.summoned).map(v=>({id:v.id,hp:v.hp,maxHp:v.maxHp,dead:v.dead,x:v.x,y:v.y})),enemies:b.units.filter(v=>v.side===1).map(v=>({id:v.id,hp:v.hp,dead:v.dead,x:v.x,y:v.y,kind:v.honroVariant})),seed:b.seed,rng:b.rng,completedGoals:Object.keys(b.honroState?.act2?.done||{}).filter(k=>b.honroState.act2.done[k])}}''')
   def record(op,**extra):
    row={'op':op,'state':state(),'time':time.time(),**extra};events.append(row);save();print(json.dumps(row,ensure_ascii=False),flush=True)
   def ready():
@@ -48,23 +48,25 @@ try:
   for _ in range(14):
    if state()['camera']['scale']>=.6:break
    p.mouse.wheel(0,-120);p.wait_for_timeout(100)
-  planner=(ROOT/'tools/act4-ci/normal-shot-plan.js').read_text();goals=[940,1060,1180,1320,1900,2500];goal=0
-  if stage==11:
+  planner=(ROOT/'tools/act4-ci/normal-shot-plan.js').read_text();goals={11:[940,1060,1180,1320,1900,2500],15:[1000,1500,1900,2350,2800],20:[950,1250,1670,2000,2500]}.get(stage,[]);goal=0
+  if stage in [11,15,20]:
    for action in range(8):
     if not ready():break
+    marker=p.evaluate("()=>HonroInteractions.nearest(HonroApp)?.id||null")
+    if marker:p.keyboard.press('e');record('context-interact',marker=marker);p.wait_for_timeout(400);continue
     initial=state();still=0;jumped_entry=False
     for pulse in range(180):
      s=state()
      if not s['can'] or s['active']!=initial['active'] or s['phase'] in ['won','lost'] or s['moveLeft']<6:break
      while goal<len(goals)-1 and s['x']>goals[goal]-14:goal+=1
      if goal==len(goals)-1 and abs(s['x']-goals[goal])<14:break
-     if s['x']<1290 and s['grounded'] and not jumped_entry and s['moveLeft']>s['jumpCost']+200:p.keyboard.press('Control');jumped_entry=True;record('entry-jump')
+     if stage==11 and s['x']<1290 and s['grounded'] and not jumped_entry and s['moveLeft']>s['jumpCost']+200:p.keyboard.press('Control');jumped_entry=True;record('entry-jump')
      if still>=3 and s['grounded'] and s['moveLeft']>s['jumpCost']+100:p.keyboard.press('Control');still=0;record('obstacle-jump')
      key='ArrowRight' if goals[goal]>s['x'] else 'ArrowLeft';p.keyboard.down(key);p.wait_for_timeout(100);p.keyboard.up(key)
      after=state();still=still+1 if abs(after['x']-s['x'])<1 else 0
      if still>12:record('movement-blocked',goal=goals[goal]);break
     if not ready():break
-    record('moved',goal=goals[goal]);p.screenshot(path=str(out/f'round-{state()["round"]}-route.png'))
+    record('moved',goal=goals[goal],hero=initial['active'],fromX=initial['x'],fromY=initial['y'],actual=next((u for u in state()['health'] if u['id']==initial['active']),None));p.screenshot(path=str(out/f'round-{state()["round"]}-route.png'))
     plan=p.evaluate(planner,False);choice=plan['best'];record('plan',plan=plan)
     if choice and state()['facing']!=(-1 if choice['angle']>90 else 1):
      key='ArrowLeft' if choice['angle']>90 else 'ArrowRight';p.keyboard.down(key);p.wait_for_timeout(70);p.keyboard.up(key);p.wait_for_timeout(200);choice=p.evaluate(planner,True)['best']
@@ -102,8 +104,20 @@ try:
     else:p.keyboard.press('f');record('defend-after-move',marker=choice['id'])
     p.screenshot(path=str(out/f'objective-action-{action}.png'));p.wait_for_timeout(600)
   else:raise AssertionError('Unsupported Act2 UI stage')
-  result['final']=state();result['stageCleared']=result['final']['phase']=='won';result['passed']=(result['stageCleared'] if stage==19 else len([e for e in events if e['op']=='fire'])>=1 and len([e for e in events if e['op']=='moved'])>=2) and not result['errors'];result['passScope']='Stage19 objective clear or Stage11 bounded input observation, NOT whole-stage QA approval';result['roundTargetAssessment']='Recorded separately; UI clear is not whole gameplay/fun approval';p.screenshot(path=str(out/'terminal.png'));result['stored']=json.loads(p.evaluate('localStorage.getItem("honro-first-act-profile-1")'));browser.close()
+  if stage==19 and state()['phase']=='won':
+   deadline=time.monotonic()+60
+   while time.monotonic()<deadline:
+    st=state()
+    if st['appDone'] and st['cleared'] and not st['dialogue']:break
+    nxt=p.locator('[data-action="dialogue-next"]:visible')
+    if nxt.count() and nxt.first.is_enabled():nxt.first.click()
+    elif st['dialogue']:p.keyboard.press('Enter')
+    p.wait_for_timeout(350)
+  result['final']=state();result['stageCleared']=result['final']['phase']=='won' and result['final']['appDone'] and bool(result['final']['cleared']);result['passed']=(result['stageCleared'] if stage==19 else len([e for e in events if e['op']=='fire'])>=1 and len([e for e in events if e['op']=='moved' and e.get('actual') and abs(e['actual']['x']-e['fromX'])+abs(e['actual']['y']-e['fromY'])>=20])>=2) and not result['errors'];result['passScope']='Stage19 objective clear or Stages11/15/20 bounded input observation, NOT whole-stage QA approval';result['roundTargetAssessment']='Recorded separately; UI clear is not whole gameplay/fun approval';p.screenshot(path=str(out/'terminal.png'));result['stored']=json.loads(p.evaluate('localStorage.getItem("honro-first-act-profile-1")'));
+  if stage==19:assert result['stored'].get('cleared',{}).get('19'), 'Normal App outcome must persist cleared19'
+  browser.close()
 except Exception:
+ result['passed']=False
  result['exception']=traceback.format_exc()
  try:result['last']=state();p.screenshot(path=str(out/'failure.png'))
  except Exception:pass

@@ -1,0 +1,59 @@
+{
+  "version": 1,
+  "registeredAt": "2026-11-02T17:05:34.519510+00:00",
+  "status": "preregistered-before-any-cohort-run",
+  "stages": [
+    11,
+    15,
+    16
+  ],
+  "policies": [
+    "objective",
+    "survival",
+    "height"
+  ],
+  "inputSeeds": [
+    757356291,
+    1306340843
+  ],
+  "seedSampling": "two OS-entropy uniform integers in [1,2^31-1], shared across policies for paired input robustness",
+  "inputVariation": {
+    "aimErrorDegrees": [
+      -0.15,
+      0.15
+    ],
+    "powerError": 0,
+    "EngineRNG": "untouched; assert seed == b.stageId*19381+7 (not honroStage)"
+  },
+  "roundObservationBound": 45,
+  "actionObservationBound": 280,
+  "globalRoundGate": 20,
+  "stageRoundGates": {
+    "11": [
+      10,
+      13
+    ],
+    "15": [
+      10,
+      14
+    ],
+    "16": [
+      11,
+      14
+    ]
+  },
+  "sampleInterpretation": "N=2 input perturbation cases per policy, canonical game RNG fixed. Descriptive conditional robustness only; no human/population clear-rate estimate, and no pooled pseudo-independent policy samples. Report death, clear, incomplete separately; never turn incomplete into ultimate loss. Each entry synthetic legacy-budget training/basic gear, not prior campaign gameplay.",
+  "files": {
+    "tests/act2-gameplay-cohort-20261103.mjs": "0cbf4d2b520a571c88938694ea28c4a7371492435470a7d973a696264f7acc4d",
+    "tests/act2-gameplay-cohort-navigation-20261103.mjs": "cead9cd04652ee2a7996a9be6f55d4860e7b4952192d5a86a9ba6008ba29e9c4",
+    "tests/app-regression-helpers.mjs": "9dfbe2bbb15c2cac2bf07011837d9a4c00b06366e66aeb3528acbbd98219112c",
+    "tests/stage18-bell-fullplay-helper.mjs": "7402d16ae1cd080ed841d51a1953653d29efbbea5e3839cfadcf80f17931ad22",
+    "tests/stage12-quarry-fullplay-helper.mjs": "b0d5438c5ef6d9b1dbc9ee3fde524d9a46a62da69e68808700b681a8211b88ed"
+  },
+  "sourceTrees": {
+    "shared/runtime": "45905e61e9aef401d8a1ec65ec94ce726e236ae9",
+    "shared/engine": "2b3660986b666967411758ae736e4bde73767fb2"
+  },
+  "criteriaRawSha256": "e2183e74492a4cb61338f8a691a51f23e7af2205fb9148ae6f6b2c138311aa54",
+  "legacyItemApi": "forbidden; no Engine.item calls in frozen runner"
+}

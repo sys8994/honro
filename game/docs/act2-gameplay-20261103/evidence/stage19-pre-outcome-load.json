@@ -1,0 +1,64 @@
+{
+  "input": "tests/fixtures/act2-gameplay/stage19-objective-101-cal1-observed/terminal.json.gz",
+  "inputSha256": "a07da914fd8b76435596f090089c8f9d052d40fb12c6de67a056c5a419ede92a",
+  "scope": "Actual migration/Continue plus individual public migration operations on a separate offline clone, not a modified live battle",
+  "raw": {
+    "stage": 19,
+    "phase": "won",
+    "clear19": null,
+    "localArtTable": false,
+    "pendingDirect": null
+  },
+  "before": {
+    "screen": "title",
+    "locked": true,
+    "store": {
+      "kind": "failed",
+      "reason": "migration",
+      "hasOriginal": true
+    },
+    "engine": false,
+    "clear19": null
+  },
+  "after": {
+    "screen": "title",
+    "locked": true,
+    "store": {
+      "kind": "failed",
+      "reason": "migration",
+      "hasOriginal": true
+    },
+    "engine": false,
+    "clear19": null
+  },
+  "offline": [
+    {
+      "step": "restoreBattleArt",
+      "returned": true
+    },
+    {
+      "step": "skills",
+      "returned": true
+    },
+    {
+      "step": "presentation",
+      "returned": true
+    },
+    {
+      "step": "discard",
+      "returned": true
+    },
+    {
+      "step": "repairRecruits",
+      "returned": true
+    },
+    {
+      "step": "allocations",
+      "returned": true
+    },
+    {
+      "step": "equipment",
+      "error": "Error: NPC 장비 오류"
+    }
+  ]
+}

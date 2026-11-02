@@ -1,0 +1,1706 @@
+{
+  "scope": "Preregistered finite-policy input robustness, canonical fixed engine RNG, two aim-jitter streams per policy. Synthetic declared entry budgets. Not human probability, not independent random-engine draws. Unfinished at bound is not death. Successful-round statistics are conditional on success. Original clearRate denotes finite registered policy trial ratio, not human population rate. Policies are reported separately; no iid pooling or inferential binomial CI. Eventual completion bounds retain unfinished uncertainty.",
+  "criteriaSource": "git:3872295f:tools/quality-gate/criteria-v3.json.gz",
+  "criteriaSha256": "e2183e74492a4cb61338f8a691a51f23e7af2205fb9148ae6f6b2c138311aa54",
+  "releaseApproved": false,
+  "pending": 6,
+  "groups": [
+    {
+      "stage": 11,
+      "policy": "objective",
+      "registeredN": 2,
+      "pending": 0,
+      "wins": 1,
+      "deathTerminals": 1,
+      "unfinished": 0,
+      "finiteClearPercent": 50.0,
+      "clearRateRequired": [
+        70,
+        85
+      ],
+      "clearRateGate": "FAIL_OUT_OF_RANGE",
+      "successfulRounds": [
+        27
+      ],
+      "successfulRoundMean": 27,
+      "successfulRoundMedian": 27,
+      "roundTarget": [
+        10,
+        13
+      ],
+      "roundTargetPassN": 0,
+      "ceilingPassN": 0,
+      "timingGate": "FAIL",
+      "eventualCompletionBounds": [
+        0.5,
+        0.5
+      ]
+    },
+    {
+      "stage": 11,
+      "policy": "survival",
+      "registeredN": 2,
+      "pending": 0,
+      "wins": 0,
+      "deathTerminals": 0,
+      "unfinished": 2,
+      "finiteClearPercent": 0.0,
+      "clearRateRequired": [
+        70,
+        85
+      ],
+      "clearRateGate": "FAIL_OUT_OF_RANGE",
+      "successfulRounds": [],
+      "successfulRoundMean": null,
+      "successfulRoundMedian": null,
+      "roundTarget": [
+        10,
+        13
+      ],
+      "roundTargetPassN": 0,
+      "ceilingPassN": 0,
+      "timingGate": "FAIL",
+      "eventualCompletionBounds": [
+        0.0,
+        1.0
+      ]
+    },
+    {
+      "stage": 11,
+      "policy": "height",
+      "registeredN": 2,
+      "pending": 0,
+      "wins": 2,
+      "deathTerminals": 0,
+      "unfinished": 0,
+      "finiteClearPercent": 100.0,
+      "clearRateRequired": [
+        70,
+        85
+      ],
+      "clearRateGate": "FAIL_OUT_OF_RANGE",
+      "successfulRounds": [
+        23,
+        21
+      ],
+      "successfulRoundMean": 22,
+      "successfulRoundMedian": 22.0,
+      "roundTarget": [
+        10,
+        13
+      ],
+      "roundTargetPassN": 0,
+      "ceilingPassN": 0,
+      "timingGate": "FAIL",
+      "eventualCompletionBounds": [
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "stage": 15,
+      "policy": "objective",
+      "registeredN": 2,
+      "pending": 0,
+      "wins": 1,
+      "deathTerminals": 0,
+      "unfinished": 1,
+      "finiteClearPercent": 50.0,
+      "clearRateRequired": [
+        75,
+        90
+      ],
+      "clearRateGate": "FAIL_OUT_OF_RANGE",
+      "successfulRounds": [
+        11
+      ],
+      "successfulRoundMean": 11,
+      "successfulRoundMedian": 11,
+      "roundTarget": [
+        10,
+        14
+      ],
+      "roundTargetPassN": 1,
+      "ceilingPassN": 1,
+      "timingGate": "FAIL",
+      "eventualCompletionBounds": [
+        0.5,
+        1.0
+      ]
+    },
+    {
+      "stage": 15,
+      "policy": "survival",
+      "registeredN": 2,
+      "pending": 0,
+      "wins": 2,
+      "deathTerminals": 0,
+      "unfinished": 0,
+      "finiteClearPercent": 100.0,
+      "clearRateRequired": [
+        75,
+        90
+      ],
+      "clearRateGate": "FAIL_OUT_OF_RANGE",
+      "successfulRounds": [
+        28,
+        35
+      ],
+      "successfulRoundMean": 31.5,
+      "successfulRoundMedian": 31.5,
+      "roundTarget": [
+        10,
+        14
+      ],
+      "roundTargetPassN": 0,
+      "ceilingPassN": 0,
+      "timingGate": "FAIL",
+      "eventualCompletionBounds": [
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "stage": 15,
+      "policy": "height",
+      "registeredN": 2,
+      "pending": 0,
+      "wins": 2,
+      "deathTerminals": 0,
+      "unfinished": 0,
+      "finiteClearPercent": 100.0,
+      "clearRateRequired": [
+        75,
+        90
+      ],
+      "clearRateGate": "FAIL_OUT_OF_RANGE",
+      "successfulRounds": [
+        9,
+        9
+      ],
+      "successfulRoundMean": 9,
+      "successfulRoundMedian": 9.0,
+      "roundTarget": [
+        10,
+        14
+      ],
+      "roundTargetPassN": 0,
+      "ceilingPassN": 2,
+      "timingGate": "FAIL",
+      "eventualCompletionBounds": [
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "stage": 16,
+      "policy": "objective",
+      "registeredN": 2,
+      "pending": 2,
+      "wins": 0,
+      "deathTerminals": 0,
+      "unfinished": 0,
+      "finiteClearPercent": null,
+      "clearRateRequired": [
+        75,
+        90
+      ],
+      "clearRateGate": "FAIL_PENDING",
+      "successfulRounds": [],
+      "successfulRoundMean": null,
+      "successfulRoundMedian": null,
+      "roundTarget": [
+        11,
+        14
+      ],
+      "roundTargetPassN": 0,
+      "ceilingPassN": 0,
+      "timingGate": "FAIL",
+      "eventualCompletionBounds": null
+    },
+    {
+      "stage": 16,
+      "policy": "survival",
+      "registeredN": 2,
+      "pending": 2,
+      "wins": 0,
+      "deathTerminals": 0,
+      "unfinished": 0,
+      "finiteClearPercent": null,
+      "clearRateRequired": [
+        75,
+        90
+      ],
+      "clearRateGate": "FAIL_PENDING",
+      "successfulRounds": [],
+      "successfulRoundMean": null,
+      "successfulRoundMedian": null,
+      "roundTarget": [
+        11,
+        14
+      ],
+      "roundTargetPassN": 0,
+      "ceilingPassN": 0,
+      "timingGate": "FAIL",
+      "eventualCompletionBounds": null
+    },
+    {
+      "stage": 16,
+      "policy": "height",
+      "registeredN": 2,
+      "pending": 2,
+      "wins": 0,
+      "deathTerminals": 0,
+      "unfinished": 0,
+      "finiteClearPercent": null,
+      "clearRateRequired": [
+        75,
+        90
+      ],
+      "clearRateGate": "FAIL_PENDING",
+      "successfulRounds": [],
+      "successfulRoundMean": null,
+      "successfulRoundMedian": null,
+      "roundTarget": [
+        11,
+        14
+      ],
+      "roundTargetPassN": 0,
+      "ceilingPassN": 0,
+      "timingGate": "FAIL",
+      "eventualCompletionBounds": null
+    }
+  ],
+  "cases": [
+    {
+      "stage": 11,
+      "policy": "objective",
+      "inputSeed": 757356291,
+      "status": "won",
+      "evidence": "_local/reports/act2-gameplay-20261103/input-cohort/11-objective-757356291/result.json",
+      "round": 27,
+      "kills": 17,
+      "fallen": [],
+      "damageTaken": 3620.5000000000005,
+      "damageDealt": 18283,
+      "skills": {
+        "O02": 24,
+        "A01": 8,
+        "S03": 17,
+        "A02": 8,
+        "M11": 11,
+        "M03": 2,
+        "O01": 1
+      },
+      "goals": {
+        "11.thread": true,
+        "11.entry-threat": true,
+        "11.exit-threat": true,
+        "11.exit": true,
+        "11.north": true
+      },
+      "engineRngAtEntry": {
+        "seed": 19388,
+        "rng": 19388,
+        "engineStageId": 1,
+        "chapterId": 11,
+        "canonicalSeed": 19388,
+        "inheritedContinuation": false
+      },
+      "sourceCommit": "8f9f880b3dcd23f44da2f976d074f6984c56718e",
+      "runnerSha256": "0cbf4d2b520a571c88938694ea28c4a7371492435470a7d973a696264f7acc4d",
+      "resultSha256": "dbb9498e6bcebba79aa4684cf21bc6c771e1b4c52d5c9fe49580a3f7767121b7",
+      "externalWrites": [],
+      "engineRecoveries": [],
+      "legacyItemApi": "disabled; no Engine.item calls",
+      "stopReason": null,
+      "initialEncounter": {
+        "hostilesExcludingObjectives": 43,
+        "engineFlagRanks": {
+          "ordinary": 31,
+          "ordinaryElite": 12
+        },
+        "classes": {
+          "occultist": 8,
+          "knight": 21,
+          "archer": 9,
+          "mage": 5
+        },
+        "caveat": "Flags/classes are not validated distinct patterns or simultaneous combat."
+      },
+      "routeObservations": {
+        "rawInputOperations": {
+          "recovery-jump": 21,
+          "move": 53,
+          "defend": 34,
+          "nav-replan": 7,
+          "drop": 4,
+          "land": 6,
+          "fire": 71,
+          "jump": 2
+        },
+        "matchedLandings": 6,
+        "visitedSupportIds": [
+          "rv-lower-refuge-rock",
+          "rv-north-trace",
+          "rv-ritual-buttress",
+          "rv-root-east-descent",
+          "rv-west-main-root",
+          "rv-west-shoulder",
+          "v4.11.firing-rock"
+        ],
+        "interactions": [],
+        "caveat": "Raw inputs/supports do not establish meaningful tactical elevation or mandatory route minima."
+      },
+      "spawnEvents": [
+        {
+          "round": 3,
+          "frame": 7968,
+          "id": "event-11",
+          "side": 1,
+          "cls": "occultist",
+          "source": "reviewed.11.beast-spirit",
+          "x": 1490.9751066263216,
+          "y": 6322.887965879577
+        },
+        {
+          "round": 8,
+          "frame": 20962,
+          "id": "event-32",
+          "side": 1,
+          "cls": "occultist",
+          "source": "reviewed.11.north-pair",
+          "x": 2627.5,
+          "y": 6108.083333333333
+        },
+        {
+          "round": 8,
+          "frame": 20962,
+          "id": "event-33",
+          "side": 1,
+          "cls": "occultist",
+          "source": "reviewed.11.north-pair",
+          "x": 2740.5,
+          "y": 6059.116666666667
+        }
+      ],
+      "terminalSha256": "875ab3adbae71fafcb84630785d56082f36aad613ca85844c4d655fb636c47f4",
+      "roundTargetPass": false,
+      "ceilingPass": false
+    },
+    {
+      "stage": 11,
+      "policy": "objective",
+      "inputSeed": 1306340843,
+      "status": "lost",
+      "evidence": "_local/reports/act2-gameplay-20261103/input-cohort/11-objective-1306340843/result.json",
+      "round": 30,
+      "kills": 13,
+      "fallen": [
+        "p-archer",
+        "p-mage",
+        "p-knight",
+        "p-occultist"
+      ],
+      "damageTaken": 4117,
+      "damageDealt": 16144,
+      "skills": {
+        "O02": 20,
+        "A01": 9,
+        "S03": 21,
+        "A02": 6,
+        "M11": 10,
+        "M03": 1
+      },
+      "goals": {
+        "11.thread": true,
+        "11.entry-threat": true
+      },
+      "engineRngAtEntry": {
+        "seed": 19388,
+        "rng": 19388,
+        "engineStageId": 1,
+        "chapterId": 11,
+        "canonicalSeed": 19388,
+        "inheritedContinuation": false
+      },
+      "sourceCommit": "8f9f880b3dcd23f44da2f976d074f6984c56718e",
+      "runnerSha256": "0cbf4d2b520a571c88938694ea28c4a7371492435470a7d973a696264f7acc4d",
+      "resultSha256": "868bee6000b88d65b83d2ca1e42e08752197be8290f80e2fac1ecea373fe0c5a",
+      "externalWrites": [],
+      "engineRecoveries": [],
+      "legacyItemApi": "disabled; no Engine.item calls",
+      "stopReason": null,
+      "initialEncounter": {
+        "hostilesExcludingObjectives": 43,
+        "engineFlagRanks": {
+          "ordinary": 31,
+          "ordinaryElite": 12
+        },
+        "classes": {
+          "occultist": 8,
+          "knight": 21,
+          "archer": 9,
+          "mage": 5
+        },
+        "caveat": "Flags/classes are not validated distinct patterns or simultaneous combat."
+      },
+      "routeObservations": {
+        "rawInputOperations": {
+          "recovery-jump": 21,
+          "move": 53,
+          "defend": 27,
+          "nav-replan": 7,
+          "drop": 4,
+          "land": 7,
+          "fire": 67,
+          "jump": 3
+        },
+        "matchedLandings": 7,
+        "visitedSupportIds": [
+          "rv-lower-refuge-rock",
+          "rv-ritual-buttress",
+          "rv-root-east-descent",
+          "rv-west-main-root",
+          "rv-west-shoulder",
+          "v4.11.firing-rock"
+        ],
+        "interactions": [],
+        "caveat": "Raw inputs/supports do not establish meaningful tactical elevation or mandatory route minima."
+      },
+      "spawnEvents": [
+        {
+          "round": 3,
+          "frame": 7968,
+          "id": "event-11",
+          "side": 1,
+          "cls": "occultist",
+          "source": "reviewed.11.beast-spirit",
+          "x": 1491.0876414953696,
+          "y": 6322.851954721482
+        },
+        {
+          "round": 8,
+          "frame": 20961,
+          "id": "event-32",
+          "side": 1,
+          "cls": "occultist",
+          "source": "reviewed.11.north-pair",
+          "x": 2627.5,
+          "y": 6108.083333333333
+        },
+        {
+          "round": 8,
+          "frame": 20961,
+          "id": "event-33",
+          "side": 1,
+          "cls": "occultist",
+          "source": "reviewed.11.north-pair",
+          "x": 2740.5,
+          "y": 6059.116666666667
+        }
+      ],
+      "terminalSha256": "f381c52538d1c21d52d4b60001314a221850687d3f9c9631c0ee0cabb3940505",
+      "roundTargetPass": false,
+      "ceilingPass": false
+    },
+    {
+      "stage": 11,
+      "policy": "survival",
+      "inputSeed": 757356291,
+      "status": "unfinished",
+      "evidence": "_local/reports/act2-gameplay-20261103/input-cohort/11-survival-757356291/result.json",
+      "round": 46,
+      "kills": 28,
+      "fallen": [],
+      "damageTaken": 4674.4,
+      "damageDealt": 29237,
+      "skills": {
+        "A02": 18,
+        "M03": 2,
+        "O02": 31,
+        "M11": 32,
+        "S03": 24,
+        "M10": 8,
+        "O08": 1,
+        "A01": 25,
+        "O01": 11
+      },
+      "goals": {
+        "11.thread": true,
+        "11.entry-threat": true
+      },
+      "engineRngAtEntry": {
+        "seed": 19388,
+        "rng": 19388,
+        "engineStageId": 1,
+        "chapterId": 11,
+        "canonicalSeed": 19388,
+        "inheritedContinuation": false
+      },
+      "sourceCommit": "8f9f880b3dcd23f44da2f976d074f6984c56718e",
+      "runnerSha256": "0cbf4d2b520a571c88938694ea28c4a7371492435470a7d973a696264f7acc4d",
+      "resultSha256": "5039eb2fd988b1cb5bcffe75ab3271833b965de7713057a0ffb702b6cc3c6e0c",
+      "externalWrites": [],
+      "engineRecoveries": [],
+      "legacyItemApi": "disabled; no Engine.item calls",
+      "stopReason": "diagnostic round bound; unfinished, not game loss",
+      "initialEncounter": {
+        "hostilesExcludingObjectives": 43,
+        "engineFlagRanks": {
+          "ordinary": 31,
+          "ordinaryElite": 12
+        },
+        "classes": {
+          "occultist": 8,
+          "knight": 21,
+          "archer": 9,
+          "mage": 5
+        },
+        "caveat": "Flags/classes are not validated distinct patterns or simultaneous combat."
+      },
+      "routeObservations": {
+        "rawInputOperations": {
+          "fire": 144,
+          "recovery-jump": 21,
+          "drop": 4,
+          "land": 7,
+          "nav-replan": 6,
+          "move": 47,
+          "defend": 20,
+          "jump": 3,
+          "heal-stake": 8,
+          "defend-retreat": 8
+        },
+        "matchedLandings": 7,
+        "visitedSupportIds": [
+          "rv-lower-refuge-rock",
+          "rv-north-trace",
+          "rv-ritual-buttress",
+          "rv-root-east-descent",
+          "rv-west-shoulder",
+          "rv-west-stone-arch",
+          "v4.11.firing-rock"
+        ],
+        "interactions": [],
+        "caveat": "Raw inputs/supports do not establish meaningful tactical elevation or mandatory route minima."
+      },
+      "spawnEvents": [
+        {
+          "round": 2,
+          "frame": 4750,
+          "id": "event-9",
+          "side": 1,
+          "cls": "occultist",
+          "source": "reviewed.11.beast-spirit",
+          "x": 1434.265665770722,
+          "y": 6341.034986953369
+        },
+        {
+          "round": 4,
+          "frame": 12366,
+          "id": "event-22",
+          "side": 1,
+          "cls": "occultist",
+          "source": "reviewed.11.north-pair",
+          "x": 2627.5,
+          "y": 6108.083333333333
+        },
+        {
+          "round": 4,
+          "frame": 12366,
+          "id": "event-23",
+          "side": 1,
+          "cls": "occultist",
+          "source": "reviewed.11.north-pair",
+          "x": 2772.5,
+          "y": 6045.25
+        }
+      ],
+      "terminalSha256": "b43906eb8fc17d99dd15ccad6f577990655e561bb90708ea4807c125a894003e",
+      "roundTargetPass": false,
+      "ceilingPass": false
+    },
+    {
+      "stage": 11,
+      "policy": "survival",
+      "inputSeed": 1306340843,
+      "status": "unfinished",
+      "evidence": "_local/reports/act2-gameplay-20261103/input-cohort/11-survival-1306340843/result.json",
+      "round": 46,
+      "kills": 26,
+      "fallen": [],
+      "damageTaken": 4803.299999999999,
+      "damageDealt": 26788,
+      "skills": {
+        "A02": 18,
+        "M03": 2,
+        "O02": 30,
+        "M11": 32,
+        "S03": 24,
+        "M10": 8,
+        "O08": 1,
+        "A01": 26,
+        "O01": 12
+      },
+      "goals": {
+        "11.thread": true,
+        "11.entry-threat": true
+      },
+      "engineRngAtEntry": {
+        "seed": 19388,
+        "rng": 19388,
+        "engineStageId": 1,
+        "chapterId": 11,
+        "canonicalSeed": 19388,
+        "inheritedContinuation": false
+      },
+      "sourceCommit": "8f9f880b3dcd23f44da2f976d074f6984c56718e",
+      "runnerSha256": "0cbf4d2b520a571c88938694ea28c4a7371492435470a7d973a696264f7acc4d",
+      "resultSha256": "8b1d2efc76fd40df5577aa3d7b302d0bc45a461bad9802e36aa8d1819af0ebb9",
+      "externalWrites": [],
+      "engineRecoveries": [],
+      "legacyItemApi": "disabled; no Engine.item calls",
+      "stopReason": "diagnostic round bound; unfinished, not game loss",
+      "initialEncounter": {
+        "hostilesExcludingObjectives": 43,
+        "engineFlagRanks": {
+          "ordinary": 31,
+          "ordinaryElite": 12
+        },
+        "classes": {
+          "occultist": 8,
+          "knight": 21,
+          "archer": 9,
+          "mage": 5
+        },
+        "caveat": "Flags/classes are not validated distinct patterns or simultaneous combat."
+      },
+      "routeObservations": {
+        "rawInputOperations": {
+          "fire": 145,
+          "recovery-jump": 21,
+          "drop": 4,
+          "land": 6,
+          "nav-replan": 6,
+          "move": 44,
+          "defend": 20,
+          "jump": 2,
+          "heal-stake": 8,
+          "defend-retreat": 7
+        },
+        "matchedLandings": 6,
+        "visitedSupportIds": [
+          "rv-lower-refuge-rock",
+          "rv-north-trace",
+          "rv-ritual-buttress",
+          "rv-root-east-descent",
+          "rv-west-shoulder",
+          "rv-west-stone-arch",
+          "v4.11.firing-rock"
+        ],
+        "interactions": [],
+        "caveat": "Raw inputs/supports do not establish meaningful tactical elevation or mandatory route minima."
+      },
+      "spawnEvents": [
+        {
+          "round": 2,
+          "frame": 4754,
+          "id": "event-9",
+          "side": 1,
+          "cls": "occultist",
+          "source": "reviewed.11.beast-spirit",
+          "x": 1434.265665770722,
+          "y": 6341.034986953369
+        },
+        {
+          "round": 4,
+          "frame": 12370,
+          "id": "event-22",
+          "side": 1,
+          "cls": "occultist",
+          "source": "reviewed.11.north-pair",
+          "x": 2627.5,
+          "y": 6108.083333333333
+        },
+        {
+          "round": 4,
+          "frame": 12370,
+          "id": "event-23",
+          "side": 1,
+          "cls": "occultist",
+          "source": "reviewed.11.north-pair",
+          "x": 2772.5,
+          "y": 6045.25
+        }
+      ],
+      "terminalSha256": "46947a2f8baa5cc518740458cf5cec24b1bcca6fd54a66fa0ad188af35d6def0",
+      "roundTargetPass": false,
+      "ceilingPass": false
+    },
+    {
+      "stage": 11,
+      "policy": "height",
+      "inputSeed": 757356291,
+      "status": "won",
+      "evidence": "_local/reports/act2-gameplay-20261103/input-cohort/11-height-757356291/result.json",
+      "round": 23,
+      "kills": 12,
+      "fallen": [],
+      "damageTaken": 2255.6,
+      "damageDealt": 15946,
+      "skills": {
+        "A11": 13,
+        "O02": 21,
+        "S03": 11,
+        "M11": 14,
+        "A14": 1,
+        "O01": 1
+      },
+      "goals": {
+        "11.thread": true,
+        "11.entry-threat": true,
+        "11.exit-threat": true,
+        "11.exit": true,
+        "11.north": true
+      },
+      "engineRngAtEntry": {
+        "seed": 19388,
+        "rng": 19388,
+        "engineStageId": 1,
+        "chapterId": 11,
+        "canonicalSeed": 19388,
+        "inheritedContinuation": false
+      },
+      "sourceCommit": "325f9dbfdd45fecdfa4e0ac9e5fd4eb2ab09b562",
+      "runnerSha256": "0cbf4d2b520a571c88938694ea28c4a7371492435470a7d973a696264f7acc4d",
+      "resultSha256": "626de93be274f0834f39586016d123c76a00181d2e6d5a090c1d6660916fe6f5",
+      "externalWrites": [],
+      "engineRecoveries": [],
+      "legacyItemApi": "disabled; no Engine.item calls",
+      "stopReason": null,
+      "initialEncounter": {
+        "hostilesExcludingObjectives": 43,
+        "engineFlagRanks": {
+          "ordinary": 31,
+          "ordinaryElite": 12
+        },
+        "classes": {
+          "occultist": 8,
+          "knight": 21,
+          "archer": 9,
+          "mage": 5
+        },
+        "caveat": "Flags/classes are not validated distinct patterns or simultaneous combat."
+      },
+      "routeObservations": {
+        "rawInputOperations": {
+          "fire": 61,
+          "recovery-jump": 23,
+          "nav-replan": 12,
+          "move": 57,
+          "defend": 28,
+          "drop": 5,
+          "land": 9,
+          "jump": 4
+        },
+        "matchedLandings": 9,
+        "visitedSupportIds": [
+          "act2-floor",
+          "rv-lower-refuge-rock",
+          "rv-north-trace",
+          "rv-ritual-buttress",
+          "rv-root-east-descent",
+          "rv-west-main-root",
+          "rv-west-shoulder",
+          "v4.11.firing-rock"
+        ],
+        "interactions": [],
+        "caveat": "Raw inputs/supports do not establish meaningful tactical elevation or mandatory route minima."
+      },
+      "spawnEvents": [
+        {
+          "round": 2,
+          "frame": 5290,
+          "id": "event-6",
+          "side": 1,
+          "cls": "occultist",
+          "source": "reviewed.11.beast-spirit",
+          "x": 1433.9799941509732,
+          "y": 6341.126401871688
+        },
+        {
+          "round": 3,
+          "frame": 11261,
+          "id": "event-16",
+          "side": 1,
+          "cls": "occultist",
+          "source": "reviewed.11.north-pair",
+          "x": 2627.5,
+          "y": 6108.083333333333
+        },
+        {
+          "round": 3,
+          "frame": 11261,
+          "id": "event-17",
+          "side": 1,
+          "cls": "occultist",
+          "source": "reviewed.11.north-pair",
+          "x": 2772.5,
+          "y": 6045.25
+        }
+      ],
+      "terminalSha256": "f8b00643b68527fab2bd27750b0c3df249ccf16ed8c78d5e08981e92927e9e95",
+      "roundTargetPass": false,
+      "ceilingPass": false
+    },
+    {
+      "stage": 11,
+      "policy": "height",
+      "inputSeed": 1306340843,
+      "status": "won",
+      "evidence": "_local/reports/act2-gameplay-20261103/input-cohort/11-height-1306340843/result.json",
+      "round": 21,
+      "kills": 12,
+      "fallen": [],
+      "damageTaken": 2719,
+      "damageDealt": 15428,
+      "skills": {
+        "A11": 14,
+        "O02": 19,
+        "S03": 13,
+        "M11": 12,
+        "A14": 1,
+        "O01": 1,
+        "M03": 1
+      },
+      "goals": {
+        "11.thread": true,
+        "11.entry-threat": true,
+        "11.exit-threat": true,
+        "11.exit": true,
+        "11.north": true
+      },
+      "engineRngAtEntry": {
+        "seed": 19388,
+        "rng": 19388,
+        "engineStageId": 1,
+        "chapterId": 11,
+        "canonicalSeed": 19388,
+        "inheritedContinuation": false
+      },
+      "sourceCommit": "325f9dbfdd45fecdfa4e0ac9e5fd4eb2ab09b562",
+      "runnerSha256": "0cbf4d2b520a571c88938694ea28c4a7371492435470a7d973a696264f7acc4d",
+      "resultSha256": "b91c4a4e1e4e7466d8e9f9c3dbd99a177e17210041a9242c952f93b45205fefd",
+      "externalWrites": [],
+      "engineRecoveries": [],
+      "legacyItemApi": "disabled; no Engine.item calls",
+      "stopReason": null,
+      "initialEncounter": {
+        "hostilesExcludingObjectives": 43,
+        "engineFlagRanks": {
+          "ordinary": 31,
+          "ordinaryElite": 12
+        },
+        "classes": {
+          "occultist": 8,
+          "knight": 21,
+          "archer": 9,
+          "mage": 5
+        },
+        "caveat": "Flags/classes are not validated distinct patterns or simultaneous combat."
+      },
+      "routeObservations": {
+        "rawInputOperations": {
+          "fire": 61,
+          "recovery-jump": 23,
+          "nav-replan": 7,
+          "move": 48,
+          "defend": 23,
+          "drop": 5,
+          "land": 8,
+          "jump": 3
+        },
+        "matchedLandings": 8,
+        "visitedSupportIds": [
+          "act2-floor",
+          "rv-lower-refuge-rock",
+          "rv-north-trace",
+          "rv-ritual-buttress",
+          "rv-root-east-descent",
+          "rv-west-main-root",
+          "rv-west-shoulder",
+          "v4.11.firing-rock"
+        ],
+        "interactions": [],
+        "caveat": "Raw inputs/supports do not establish meaningful tactical elevation or mandatory route minima."
+      },
+      "spawnEvents": [
+        {
+          "round": 2,
+          "frame": 5292,
+          "id": "event-6",
+          "side": 1,
+          "cls": "occultist",
+          "source": "reviewed.11.beast-spirit",
+          "x": 1433.994536557565,
+          "y": 6341.121748301579
+        },
+        {
+          "round": 3,
+          "frame": 10876,
+          "id": "event-15",
+          "side": 1,
+          "cls": "occultist",
+          "source": "reviewed.11.north-pair",
+          "x": 2627.5,
+          "y": 6108.083333333333
+        },
+        {
+          "round": 3,
+          "frame": 10876,
+          "id": "event-16",
+          "side": 1,
+          "cls": "occultist",
+          "source": "reviewed.11.north-pair",
+          "x": 2772.5,
+          "y": 6045.25
+        }
+      ],
+      "terminalSha256": "68dd0f821c6b149811819467726682bc72e123410f320c8593b97f1cc187348f",
+      "roundTargetPass": false,
+      "ceilingPass": false
+    },
+    {
+      "stage": 15,
+      "policy": "objective",
+      "inputSeed": 757356291,
+      "status": "unfinished",
+      "evidence": "_local/reports/act2-gameplay-20261103/input-cohort/15-objective-757356291/result.json",
+      "round": 46,
+      "kills": 6,
+      "fallen": [
+        "p-archer",
+        "p-mage",
+        "p-occultist"
+      ],
+      "damageTaken": 4503.2,
+      "damageDealt": 10142,
+      "skills": {
+        "A02": 4,
+        "O02": 7,
+        "M11": 7,
+        "A01": 2,
+        "M03": 1,
+        "O08": 1,
+        "S03": 7,
+        "O01": 5
+      },
+      "goals": {
+        "15.drift": true,
+        "groove": true,
+        "15.knocks": true
+      },
+      "engineRngAtEntry": {
+        "seed": 19388,
+        "rng": 19388,
+        "engineStageId": 1,
+        "chapterId": 15,
+        "canonicalSeed": 19388,
+        "inheritedContinuation": false
+      },
+      "sourceCommit": "325f9dbfdd45fecdfa4e0ac9e5fd4eb2ab09b562",
+      "runnerSha256": "0cbf4d2b520a571c88938694ea28c4a7371492435470a7d973a696264f7acc4d",
+      "resultSha256": "cb7f1db579e6c87e2a0557469e3bcd161f78fb651b0026f8adf871ba69129489",
+      "externalWrites": [],
+      "engineRecoveries": [],
+      "legacyItemApi": "disabled; no Engine.item calls",
+      "stopReason": "diagnostic round bound; unfinished, not game loss",
+      "initialEncounter": {
+        "hostilesExcludingObjectives": 22,
+        "engineFlagRanks": {
+          "ordinary": 15,
+          "ordinaryElite": 7
+        },
+        "classes": {
+          "mage": 14,
+          "archer": 4,
+          "knight": 4
+        },
+        "caveat": "Flags/classes are not validated distinct patterns or simultaneous combat."
+      },
+      "routeObservations": {
+        "rawInputOperations": {
+          "move": 60,
+          "fire": 34,
+          "defend": 39,
+          "recovery-jump": 51,
+          "E": 1,
+          "jump": 3,
+          "land": 3,
+          "nav-replan": 3
+        },
+        "matchedLandings": 3,
+        "visitedSupportIds": [
+          "act2-floor",
+          "fc15-dry-basin-rim",
+          "fc15-east-arch",
+          "fc15-water-toe"
+        ],
+        "interactions": [
+          {
+            "round": 4,
+            "frame": 17771,
+            "goal": "15.knocks",
+            "op": "E",
+            "hero": "mage",
+            "target": "groove"
+          }
+        ],
+        "caveat": "Raw inputs/supports do not establish meaningful tactical elevation or mandatory route minima."
+      },
+      "spawnEvents": [
+        {
+          "round": 4,
+          "frame": 17848,
+          "id": "event-25",
+          "side": 1,
+          "cls": "occultist",
+          "source": "reviewed.15.merge-pair",
+          "x": 5575,
+          "y": 4282.678571428572
+        },
+        {
+          "round": 4,
+          "frame": 17848,
+          "id": "event-26",
+          "side": 1,
+          "cls": "occultist",
+          "source": "reviewed.15.merge-pair",
+          "x": 5725,
+          "y": 4288.035714285715
+        }
+      ],
+      "terminalSha256": "17af428114470b1ad35068e9f2f25be11f82d7801a5d68268a3d9302e4ba8dd1",
+      "roundTargetPass": false,
+      "ceilingPass": false
+    },
+    {
+      "stage": 15,
+      "policy": "objective",
+      "inputSeed": 1306340843,
+      "status": "won",
+      "evidence": "_local/reports/act2-gameplay-20261103/input-cohort/15-objective-1306340843/result.json",
+      "round": 11,
+      "kills": 4,
+      "fallen": [
+        "p-archer"
+      ],
+      "damageTaken": 2523.3999999999996,
+      "damageDealt": 9150,
+      "skills": {
+        "A02": 4,
+        "O02": 6,
+        "M11": 8,
+        "A01": 2,
+        "M03": 1,
+        "O08": 1,
+        "S03": 6,
+        "O01": 3
+      },
+      "goals": {
+        "15.drift": true,
+        "groove": true,
+        "15.knocks": true,
+        "route-exit": true
+      },
+      "engineRngAtEntry": {
+        "seed": 19388,
+        "rng": 19388,
+        "engineStageId": 1,
+        "chapterId": 15,
+        "canonicalSeed": 19388,
+        "inheritedContinuation": false
+      },
+      "sourceCommit": "325f9dbfdd45fecdfa4e0ac9e5fd4eb2ab09b562",
+      "runnerSha256": "0cbf4d2b520a571c88938694ea28c4a7371492435470a7d973a696264f7acc4d",
+      "resultSha256": "27224b62327b274aeba9d53220dd4fe9e41b4147220bc71df773b91e30454c97",
+      "externalWrites": [],
+      "engineRecoveries": [],
+      "legacyItemApi": "disabled; no Engine.item calls",
+      "stopReason": null,
+      "initialEncounter": {
+        "hostilesExcludingObjectives": 22,
+        "engineFlagRanks": {
+          "ordinary": 15,
+          "ordinaryElite": 7
+        },
+        "classes": {
+          "mage": 14,
+          "archer": 4,
+          "knight": 4
+        },
+        "caveat": "Flags/classes are not validated distinct patterns or simultaneous combat."
+      },
+      "routeObservations": {
+        "rawInputOperations": {
+          "move": 23,
+          "fire": 31,
+          "defend": 5,
+          "recovery-jump": 15,
+          "E": 1,
+          "jump": 3,
+          "land": 3,
+          "nav-replan": 2
+        },
+        "matchedLandings": 3,
+        "visitedSupportIds": [
+          "act2-floor",
+          "fc15-dry-basin-rim",
+          "fc15-east-arch",
+          "fc15-water-toe"
+        ],
+        "interactions": [
+          {
+            "round": 4,
+            "frame": 17771,
+            "goal": "15.knocks",
+            "op": "E",
+            "hero": "mage",
+            "target": "groove"
+          }
+        ],
+        "caveat": "Raw inputs/supports do not establish meaningful tactical elevation or mandatory route minima."
+      },
+      "spawnEvents": [
+        {
+          "round": 4,
+          "frame": 17848,
+          "id": "event-25",
+          "side": 1,
+          "cls": "occultist",
+          "source": "reviewed.15.merge-pair",
+          "x": 5575,
+          "y": 4282.678571428572
+        },
+        {
+          "round": 4,
+          "frame": 17848,
+          "id": "event-26",
+          "side": 1,
+          "cls": "occultist",
+          "source": "reviewed.15.merge-pair",
+          "x": 5725,
+          "y": 4288.035714285715
+        }
+      ],
+      "terminalSha256": "34276e56f8f2da573b71b12ae5c33f39b05d41838357ad5ac9e52119af202b2b",
+      "roundTargetPass": true,
+      "ceilingPass": true
+    },
+    {
+      "stage": 15,
+      "policy": "survival",
+      "inputSeed": 757356291,
+      "status": "won",
+      "evidence": "_local/reports/act2-gameplay-20261103/input-cohort/15-survival-757356291/result.json",
+      "round": 28,
+      "kills": 24,
+      "fallen": [],
+      "damageTaken": 3339,
+      "damageDealt": 21257,
+      "skills": {
+        "A02": 12,
+        "M11": 17,
+        "O02": 22,
+        "S03": 13,
+        "M10": 4,
+        "O01": 4,
+        "A01": 7
+      },
+      "goals": {
+        "15.drift": true,
+        "groove": true,
+        "15.knocks": true,
+        "route-exit": true
+      },
+      "engineRngAtEntry": {
+        "seed": 19388,
+        "rng": 19388,
+        "engineStageId": 1,
+        "chapterId": 15,
+        "canonicalSeed": 19388,
+        "inheritedContinuation": false
+      },
+      "sourceCommit": "efc50eaa333de7d3564456a44363d04b7247b597",
+      "runnerSha256": "0cbf4d2b520a571c88938694ea28c4a7371492435470a7d973a696264f7acc4d",
+      "resultSha256": "bf08b0dce1222be1944578cdec2505b679b52463fa0d460420ca20d35a021290",
+      "externalWrites": [],
+      "engineRecoveries": [],
+      "legacyItemApi": "disabled; no Engine.item calls",
+      "stopReason": null,
+      "initialEncounter": {
+        "hostilesExcludingObjectives": 22,
+        "engineFlagRanks": {
+          "ordinary": 15,
+          "ordinaryElite": 7
+        },
+        "classes": {
+          "mage": 14,
+          "archer": 4,
+          "knight": 4
+        },
+        "caveat": "Flags/classes are not validated distinct patterns or simultaneous combat."
+      },
+      "routeObservations": {
+        "rawInputOperations": {
+          "fire": 75,
+          "move": 33,
+          "defend": 26,
+          "heal-stake": 4,
+          "recovery-jump": 18,
+          "E": 1,
+          "jump": 6,
+          "land": 6,
+          "defend-retreat": 2,
+          "nav-replan": 3
+        },
+        "matchedLandings": 6,
+        "visitedSupportIds": [
+          "act2-floor",
+          "fc15-dry-basin-rim",
+          "fc15-east-arch",
+          "fc15-water-toe",
+          "fc15-west-arch"
+        ],
+        "interactions": [
+          {
+            "round": 11,
+            "frame": 36541,
+            "goal": "15.knocks",
+            "op": "E",
+            "hero": "knight",
+            "target": "groove"
+          }
+        ],
+        "caveat": "Raw inputs/supports do not establish meaningful tactical elevation or mandatory route minima."
+      },
+      "spawnEvents": [
+        {
+          "round": 11,
+          "frame": 36618,
+          "id": "event-95",
+          "side": 1,
+          "cls": "occultist",
+          "source": "reviewed.15.merge-pair",
+          "x": 5575,
+          "y": 4282.678571428572
+        },
+        {
+          "round": 11,
+          "frame": 36618,
+          "id": "event-96",
+          "side": 1,
+          "cls": "occultist",
+          "source": "reviewed.15.merge-pair",
+          "x": 5725,
+          "y": 4288.035714285715
+        }
+      ],
+      "terminalSha256": "7a8345b7714d83900af7e99b4a3d561e19129b5e316e17b70213c3964de1df44",
+      "roundTargetPass": false,
+      "ceilingPass": false
+    },
+    {
+      "stage": 15,
+      "policy": "survival",
+      "inputSeed": 1306340843,
+      "status": "won",
+      "evidence": "_local/reports/act2-gameplay-20261103/input-cohort/15-survival-1306340843/result.json",
+      "round": 35,
+      "kills": 23,
+      "fallen": [],
+      "damageTaken": 3471.4,
+      "damageDealt": 20992,
+      "skills": {
+        "A02": 10,
+        "M11": 17,
+        "O02": 29,
+        "S03": 14,
+        "M10": 3,
+        "O01": 4,
+        "A01": 4,
+        "M03": 1,
+        "M01": 2,
+        "S00": 1
+      },
+      "goals": {
+        "15.drift": true,
+        "groove": true,
+        "15.knocks": true,
+        "route-exit": true
+      },
+      "engineRngAtEntry": {
+        "seed": 19388,
+        "rng": 19388,
+        "engineStageId": 1,
+        "chapterId": 15,
+        "canonicalSeed": 19388,
+        "inheritedContinuation": false
+      },
+      "sourceCommit": "e3155efdedf769c645dd9b043bd21da6ce24dc76",
+      "runnerSha256": "0cbf4d2b520a571c88938694ea28c4a7371492435470a7d973a696264f7acc4d",
+      "resultSha256": "b5efc689c5a48744efd8a02f3e7f83b97aa53618cf77e73ff17c2f8918151032",
+      "externalWrites": [],
+      "engineRecoveries": [],
+      "legacyItemApi": "disabled; no Engine.item calls",
+      "stopReason": null,
+      "initialEncounter": {
+        "hostilesExcludingObjectives": 22,
+        "engineFlagRanks": {
+          "ordinary": 15,
+          "ordinaryElite": 7
+        },
+        "classes": {
+          "mage": 14,
+          "archer": 4,
+          "knight": 4
+        },
+        "caveat": "Flags/classes are not validated distinct patterns or simultaneous combat."
+      },
+      "routeObservations": {
+        "rawInputOperations": {
+          "fire": 82,
+          "move": 57,
+          "defend": 42,
+          "heal-stake": 3,
+          "recovery-jump": 22,
+          "E": 1,
+          "jump": 9,
+          "land": 9,
+          "defend-retreat": 8,
+          "nav-replan": 7,
+          "drop": 1
+        },
+        "matchedLandings": 9,
+        "visitedSupportIds": [
+          "act2-floor",
+          "fc15-dry-basin-rim",
+          "fc15-east-arch",
+          "fc15-safe-crown-descent",
+          "fc15-water-toe",
+          "fc15-west-arch"
+        ],
+        "interactions": [
+          {
+            "round": 11,
+            "frame": 36543,
+            "goal": "15.knocks",
+            "op": "E",
+            "hero": "knight",
+            "target": "groove"
+          }
+        ],
+        "caveat": "Raw inputs/supports do not establish meaningful tactical elevation or mandatory route minima."
+      },
+      "spawnEvents": [
+        {
+          "round": 11,
+          "frame": 36620,
+          "id": "event-95",
+          "side": 1,
+          "cls": "occultist",
+          "source": "reviewed.15.merge-pair",
+          "x": 5575,
+          "y": 4282.678571428572
+        },
+        {
+          "round": 11,
+          "frame": 36620,
+          "id": "event-96",
+          "side": 1,
+          "cls": "occultist",
+          "source": "reviewed.15.merge-pair",
+          "x": 5725,
+          "y": 4288.035714285715
+        }
+      ],
+      "terminalSha256": "b5e2bbc0bb64ccca63984d289c70b2508e977197de2cb1eb42b3dcbc9887ac7e",
+      "roundTargetPass": false,
+      "ceilingPass": false
+    },
+    {
+      "stage": 15,
+      "policy": "height",
+      "inputSeed": 757356291,
+      "status": "won",
+      "evidence": "_local/reports/act2-gameplay-20261103/input-cohort/15-height-757356291/result.json",
+      "round": 9,
+      "kills": 4,
+      "fallen": [],
+      "damageTaken": 1817.1,
+      "damageDealt": 6457,
+      "skills": {
+        "A11": 8,
+        "O02": 4,
+        "M11": 5,
+        "M03": 1,
+        "O08": 1,
+        "S03": 4,
+        "O01": 3
+      },
+      "goals": {
+        "15.drift": true,
+        "groove": true,
+        "15.knocks": true,
+        "route-exit": true
+      },
+      "engineRngAtEntry": {
+        "seed": 19388,
+        "rng": 19388,
+        "engineStageId": 1,
+        "chapterId": 15,
+        "canonicalSeed": 19388,
+        "inheritedContinuation": false
+      },
+      "sourceCommit": "efc50eaa333de7d3564456a44363d04b7247b597",
+      "runnerSha256": "0cbf4d2b520a571c88938694ea28c4a7371492435470a7d973a696264f7acc4d",
+      "resultSha256": "51776473552219b97f240d674f6154cab20baf21baf42c740a2e72d7c03acce5",
+      "externalWrites": [],
+      "engineRecoveries": [],
+      "legacyItemApi": "disabled; no Engine.item calls",
+      "stopReason": null,
+      "initialEncounter": {
+        "hostilesExcludingObjectives": 22,
+        "engineFlagRanks": {
+          "ordinary": 15,
+          "ordinaryElite": 7
+        },
+        "classes": {
+          "mage": 14,
+          "archer": 4,
+          "knight": 4
+        },
+        "caveat": "Flags/classes are not validated distinct patterns or simultaneous combat."
+      },
+      "routeObservations": {
+        "rawInputOperations": {
+          "move": 20,
+          "fire": 26,
+          "defend": 5,
+          "recovery-jump": 12,
+          "E": 1,
+          "jump": 5,
+          "land": 5,
+          "nav-replan": 2
+        },
+        "matchedLandings": 5,
+        "visitedSupportIds": [
+          "act2-floor",
+          "fc15-dry-basin-rim",
+          "fc15-east-arch",
+          "fc15-water-toe"
+        ],
+        "interactions": [
+          {
+            "round": 4,
+            "frame": 17850,
+            "goal": "15.knocks",
+            "op": "E",
+            "hero": "mage",
+            "target": "groove"
+          }
+        ],
+        "caveat": "Raw inputs/supports do not establish meaningful tactical elevation or mandatory route minima."
+      },
+      "spawnEvents": [
+        {
+          "round": 4,
+          "frame": 17927,
+          "id": "event-25",
+          "side": 1,
+          "cls": "occultist",
+          "source": "reviewed.15.merge-pair",
+          "x": 5575,
+          "y": 4282.678571428572
+        },
+        {
+          "round": 4,
+          "frame": 17927,
+          "id": "event-26",
+          "side": 1,
+          "cls": "occultist",
+          "source": "reviewed.15.merge-pair",
+          "x": 5725,
+          "y": 4288.035714285715
+        }
+      ],
+      "terminalSha256": "2e656deb7b071b561ae2d54c62268e5b45797cec45cd45f55e9cdbe483c00b97",
+      "roundTargetPass": false,
+      "ceilingPass": true
+    },
+    {
+      "stage": 15,
+      "policy": "height",
+      "inputSeed": 1306340843,
+      "status": "won",
+      "evidence": "_local/reports/act2-gameplay-20261103/input-cohort/15-height-1306340843/result.json",
+      "round": 9,
+      "kills": 4,
+      "fallen": [
+        "p-archer"
+      ],
+      "damageTaken": 1794.4,
+      "damageDealt": 6451,
+      "skills": {
+        "A11": 8,
+        "O02": 4,
+        "M11": 6,
+        "M03": 1,
+        "O08": 1,
+        "S03": 4,
+        "O01": 3
+      },
+      "goals": {
+        "15.drift": true,
+        "groove": true,
+        "15.knocks": true,
+        "route-exit": true
+      },
+      "engineRngAtEntry": {
+        "seed": 19388,
+        "rng": 19388,
+        "engineStageId": 1,
+        "chapterId": 15,
+        "canonicalSeed": 19388,
+        "inheritedContinuation": false
+      },
+      "sourceCommit": "83a98dfd3e1b4d1e09a86f2c9ed6aecf8721d965",
+      "runnerSha256": "0cbf4d2b520a571c88938694ea28c4a7371492435470a7d973a696264f7acc4d",
+      "resultSha256": "4f17793aac7111c4f8a5ea9da71e0e1cfa827f18ceec070658d545a72a4dc288",
+      "externalWrites": [],
+      "engineRecoveries": [],
+      "legacyItemApi": "disabled; no Engine.item calls",
+      "stopReason": null,
+      "initialEncounter": {
+        "hostilesExcludingObjectives": 22,
+        "engineFlagRanks": {
+          "ordinary": 15,
+          "ordinaryElite": 7
+        },
+        "classes": {
+          "mage": 14,
+          "archer": 4,
+          "knight": 4
+        },
+        "caveat": "Flags/classes are not validated distinct patterns or simultaneous combat."
+      },
+      "routeObservations": {
+        "rawInputOperations": {
+          "move": 20,
+          "fire": 27,
+          "defend": 5,
+          "recovery-jump": 11,
+          "E": 1,
+          "jump": 3,
+          "land": 3,
+          "nav-replan": 1
+        },
+        "matchedLandings": 3,
+        "visitedSupportIds": [
+          "act2-floor",
+          "fc15-dry-basin-rim",
+          "fc15-east-arch",
+          "fc15-water-toe"
+        ],
+        "interactions": [
+          {
+            "round": 4,
+            "frame": 17850,
+            "goal": "15.knocks",
+            "op": "E",
+            "hero": "mage",
+            "target": "groove"
+          }
+        ],
+        "caveat": "Raw inputs/supports do not establish meaningful tactical elevation or mandatory route minima."
+      },
+      "spawnEvents": [
+        {
+          "round": 4,
+          "frame": 17927,
+          "id": "event-25",
+          "side": 1,
+          "cls": "occultist",
+          "source": "reviewed.15.merge-pair",
+          "x": 5575,
+          "y": 4282.678571428572
+        },
+        {
+          "round": 4,
+          "frame": 17927,
+          "id": "event-26",
+          "side": 1,
+          "cls": "occultist",
+          "source": "reviewed.15.merge-pair",
+          "x": 5725,
+          "y": 4288.035714285715
+        }
+      ],
+      "terminalSha256": "705e8a286ba5a138378a7508e9a351e2da206d65531e37c2aef015f97aa53d53",
+      "roundTargetPass": false,
+      "ceilingPass": true
+    },
+    {
+      "stage": 16,
+      "policy": "objective",
+      "inputSeed": 757356291,
+      "status": "pending",
+      "evidence": "_local/reports/act2-gameplay-20261103/input-cohort/16-objective-757356291/result.json"
+    },
+    {
+      "stage": 16,
+      "policy": "objective",
+      "inputSeed": 1306340843,
+      "status": "pending",
+      "evidence": "_local/reports/act2-gameplay-20261103/input-cohort/16-objective-1306340843/result.json"
+    },
+    {
+      "stage": 16,
+      "policy": "survival",
+      "inputSeed": 757356291,
+      "status": "pending",
+      "evidence": "_local/reports/act2-gameplay-20261103/input-cohort/16-survival-757356291/result.json"
+    },
+    {
+      "stage": 16,
+      "policy": "survival",
+      "inputSeed": 1306340843,
+      "status": "pending",
+      "evidence": "_local/reports/act2-gameplay-20261103/input-cohort/16-survival-1306340843/result.json"
+    },
+    {
+      "stage": 16,
+      "policy": "height",
+      "inputSeed": 757356291,
+      "status": "pending",
+      "evidence": "_local/reports/act2-gameplay-20261103/input-cohort/16-height-757356291/result.json"
+    },
+    {
+      "stage": 16,
+      "policy": "height",
+      "inputSeed": 1306340843,
+      "status": "pending",
+      "evidence": "_local/reports/act2-gameplay-20261103/input-cohort/16-height-1306340843/result.json"
+    }
+  ],
+  "unmeasuredRequiredGates": [
+    "required engagement attribution",
+    "effective enemy action classifier",
+    "distinct miniboss telegraph/counterplay",
+    "meaningful landings/routes",
+    "normal-growth entry reference applicability",
+    "final integrated art/source replay",
+    "normal-browser complete gameplay"
+  ]
+}

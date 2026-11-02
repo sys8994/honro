@@ -1,0 +1,259 @@
+{
+  "scope": "Synthetic planned-entry XP, legal training, default empty equipment. Prior clearance flags only unlock requested chapter; no claim earlier chapters were played. Production reviewed-v4 App/Engine with DOM/storage/render/clock doubles; not browser input.",
+  "profile": {
+    "version": 2,
+    "revision": 13,
+    "cleared": {
+      "1": {
+        "visits": 1,
+        "rounds": 5
+      },
+      "2": {
+        "visits": 1,
+        "rounds": 5
+      },
+      "3": {
+        "visits": 1,
+        "rounds": 5
+      },
+      "4": {
+        "visits": 1,
+        "rounds": 5
+      },
+      "5": {
+        "visits": 1,
+        "rounds": 5
+      },
+      "6": {
+        "visits": 1,
+        "rounds": 5
+      },
+      "7": {
+        "visits": 1,
+        "rounds": 5
+      },
+      "8": {
+        "visits": 1,
+        "rounds": 5
+      },
+      "9": {
+        "visits": 1,
+        "rounds": 5
+      },
+      "10": {
+        "visits": 1,
+        "rounds": 5
+      },
+      "11": {
+        "visits": 1,
+        "rounds": 5
+      },
+      "12": {
+        "visits": 1,
+        "rounds": 5
+      },
+      "13": {
+        "visits": 1,
+        "rounds": 5
+      },
+      "14": {
+        "visits": 1,
+        "rounds": 5
+      },
+      "15": {
+        "visits": 1,
+        "rounds": 5
+      },
+      "16": {
+        "visits": 1,
+        "rounds": 5
+      },
+      "17": {
+        "visits": 1,
+        "rounds": 5
+      },
+      "18": {
+        "visits": 1,
+        "rounds": 5
+      },
+      "19": {
+        "visits": 1,
+        "rounds": 5
+      }
+    },
+    "party": [
+      "archer",
+      "mage",
+      "knight",
+      "occultist"
+    ],
+    "loadouts": {
+      "mage": [
+        "M01",
+        "M04",
+        "M03",
+        "M11"
+      ],
+      "archer": [
+        "A01",
+        "A02",
+        "A09",
+        "A05"
+      ],
+      "knight": [
+        "S00",
+        "S03",
+        "S05",
+        "S09"
+      ],
+      "occultist": [
+        "O01",
+        "O02",
+        "O08",
+        "O11"
+      ]
+    },
+    "tuning": {
+      "mage": 0.5,
+      "archer": 0.5,
+      "knight": 0.5,
+      "occultist": 0.5
+    },
+    "settings": {
+      "sound": true,
+      "music": true,
+      "volume": 0.55,
+      "assist": false,
+      "shake": true,
+      "quality": "high",
+      "difficulty": "normal",
+      "speed": 1.5,
+      "playerSpeed": 1.5,
+      "orientation": "auto",
+      "musicVolume": 0.65,
+      "minimapVisible": true,
+      "debugTerrainOutline": false,
+      "debugMode": false
+    },
+    "saved": null,
+    "lastStage": 1,
+    "mapNode": 1,
+    "tutorial": false,
+    "heroes": {
+      "mage": {
+        "xp": 54865,
+        "ranks": {
+          "M01": 1,
+          "M06": 1,
+          "M02": 1,
+          "M04": 8,
+          "M03": 8,
+          "M11": 8
+        },
+        "statTraining": 5,
+        "kills": 0,
+        "damage": 0,
+        "skillRevision": 1,
+        "martialRevision": 1
+      },
+      "archer": {
+        "xp": 54865,
+        "ranks": {
+          "A01": 1,
+          "A14": 1,
+          "A02": 8,
+          "A11": 1,
+          "A09": 8,
+          "A05": 8
+        },
+        "statTraining": 5,
+        "kills": 0,
+        "damage": 0,
+        "skillRevision": 1,
+        "martialRevision": 1
+      },
+      "knight": {
+        "xp": 54865,
+        "ranks": {
+          "S00": 1,
+          "S03": 8,
+          "S05": 8,
+          "S09": 8
+        },
+        "statTraining": 7,
+        "kills": 0,
+        "damage": 0,
+        "skillRevision": 1,
+        "martialRevision": 1
+      },
+      "occultist": {
+        "xp": 54865,
+        "ranks": {
+          "O01": 1,
+          "O02": 8,
+          "O06": 1,
+          "O07": 1,
+          "O08": 8,
+          "O11": 8
+        },
+        "statTraining": 5,
+        "kills": 0,
+        "damage": 0,
+        "skillRevision": 1,
+        "martialRevision": 1,
+        "occultRevision": 1
+      }
+    },
+    "recruited": [
+      "archer",
+      "mage",
+      "knight",
+      "occultist"
+    ],
+    "schema": 5,
+    "game": "honro",
+    "seen": {},
+    "record": [],
+    "honroFlags": {},
+    "equipment": {
+      "schema": 1,
+      "definitionRevision": 1,
+      "runId": "eq-mvzg6j80-dw6tuovd",
+      "ownedItemIds": [],
+      "eligibleEventIds": [],
+      "equippedByClass": {
+        "archer": {
+          "personal": null,
+          "common": null
+        },
+        "mage": {
+          "personal": null,
+          "common": null
+        },
+        "knight": {
+          "personal": null,
+          "common": null
+        },
+        "occultist": {
+          "personal": null,
+          "common": null
+        }
+      },
+      "rewardLedger": {},
+      "initialAutoEquip": true,
+      "basicPrepared": []
+    }
+  },
+  "provenance": {
+    "checkoutCommit": "292c1122fcd75256c366ec15e815fb4adcfbd7b2",
+    "runnerSha256": "8e97b84178d35ced72405e45ef720c6f6b10f4d10606866f1f3c2b3982c67ac6",
+    "projectSha256": "c65a226aa1d6ae551f18fa9e7bbf0cbc1d330493d6e1d8efb6d1b6d1aaff58db",
+    "stageSha256": "3d4653c2bc6a9fc2bbab210e03ced65eebc155b1012387c08bee76794a0b7294",
+    "geometrySha256": "d3c49542bb553be7366edf8f3a7c1f3a7fb18eb44332f54384e1af0fddfb5c69",
+    "entryProfileSha256": "10bdbd50e251fd1adfacb69043b2a9286f93e9b3eed6ad6b75ff4ba9551e30a5",
+    "entryLevel": 17.4,
+    "policy": "objective",
+    "seed": 101,
+    "scope": "Synthetic planned-entry XP, legal training, default empty equipment. Prior clearance flags only unlock requested chapter; no claim earlier chapters were played. Production reviewed-v4 App/Engine with DOM/storage/render/clock doubles; not browser input."
+  }
+}
