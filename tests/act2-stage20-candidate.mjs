@@ -9,7 +9,7 @@ process.env.HONRO_ACT2_STAGE20_CANDIDATE='0';assert.equal(applyStage20ArtCandida
 const g=vm.createContext({console,structuredClone,performance,setTimeout,clearTimeout});g.window=g;for(const code of await runtimeParts({vector:true,render:false,productionStory:true}))vm.runInContext(code,g);
 const effective=g.HONRO_PROJECT,source=effective.stages.find(s=>s.metadata?.stageId===20),candidate=plain(source),assets=after.library.slice(-3);candidate.elements.push(...a.elements.slice(-3));
 for(const asset of assets){assert.deepEqual(Array.from(g.HonroVectorArt.validate(asset.vector)),[]);assert.deepEqual(asset.collision,[]);assert(!asset.params.bodyTerrainIds.includes('gate-repair'));for(const id of asset.params.bodyTerrainIds){const host=source.terrains.find(t=>t.id===id);assert(['act2-floor','exit-overhang'].includes(host.id));}}
-const next={...effective,library:[...effective.library,...assets],stages:effective.stages.map(t=>t===source?candidate:t)},before=g.HonroMaps.createBattle(source,effective),current=g.HonroMaps.createBattle(candidate,next);g.HonroStageRules.sanitizeStageBattle(before);g.HonroStageRules.sanitizeStageBattle(current);
+const next={...effective,library:[...effective.library,...assets],stages:effective.stages.map(t=>t===source?candidate:t)},before=g.HonroMaps.createBattle(source,effective,undefined,{origin:'campaign'}),current=g.HonroMaps.createBattle(candidate,next,undefined,{origin:'campaign'});g.HonroStageRules.sanitizeStageBattle(before);g.HonroStageRules.sanitizeStageBattle(current);
 for(const key of ['terrain','honroWorldTerrain','units','waters','honroMarkers','objectives','honroState'])assert.deepEqual(plain(current[key]??null),plain(before[key]??null),`effective ${key} parity`);
 // Baked clip is bound to effective authored world polygons, not just host names.
 const path=ps=>{const area=ps.reduce((a,p,i)=>{const q=ps[(i+1)%ps.length];return a+p.x*q.y-q.x*p.y;},0);if(area<0)ps=[...ps].reverse();return 'M'+ps.map(p=>`${p.x},${p.y}`).join('L')+'Z';};
@@ -22,5 +22,20 @@ const errors=p=>plain(g.HonroMaps.validate(p)).filter(x=>x.level==='err').map(x=
 assert.deepEqual(errors(next),errors(effective),'material-only delta adds no strict schema errors');
 const store=g.HonroProfileStore,original=JSON.stringify(current),packed=store.compactBattleArt(current),restored=plain(packed);
 assert.equal(JSON.stringify(current),original,'art save must not mutate battle');
+assert.equal(packed.honroLocalArtTable?.assets.length,3,'campaign compaction must actually activate');
+assert(JSON.stringify(packed).length<original.length,'duplicate traced definitions must be removed');
 assert(store.restoreBattleArt(restored));assert.deepEqual(restored,plain(current));
-console.log('PASS actual Stage20 material strict-schema delta and compact/restore exact battle roundtrip; encoded bytes',JSON.stringify(packed).length);
+console.log('PASS Stage20 campaign compiler strict-schema delta and active table exact roundtrip; raw/packed chars',original.length,JSON.stringify(packed).length);
+
+// Production App launch, not a battle with identity flags rewritten afterward.
+// Prerequisite progression is a fixture; DOM/storage/Canvas are doubles, not quota evidence.
+const {appHarness,KEY}=await import('./app-regression-helpers.mjs');
+const h=await appHarness({productionStory:true}),ag=h.g,project=ag.HONRO_PROJECT;
+ag.HONRO_PROJECT={...project,library:[...project.library,...plain(assets)],stages:project.stages.map(st=>st.metadata?.stageId===20?{...st,elements:[...st.elements,...plain(a.elements.slice(-3))]}:st)};
+const app=h.load(h.profileThrough(19));app.launch(20);
+const ab=app.engine.b,ap=ag.HonroProfileStore.compactBattleArt(ab),ar=plain(ap),text=JSON.stringify(ab);
+assert.equal(ab.honroMapOrigin,'campaign');assert.equal(ab.honroCustom,false);assert.equal(ab.honroStage,20);
+assert.equal(ap.honroLocalArtTable?.assets.length,3);assert(JSON.stringify(ap).length<text.length);assert.equal(JSON.stringify(ab),text);
+assert(ag.HonroProfileStore.restoreBattleArt(ar));assert.deepEqual(ar,plain(ab));
+const stored=JSON.parse(h.storage.get(KEY));assert.equal(stored.honroBattle?.honroLocalArtTable?.assets.length,3,'actual App launch save uses table');
+console.log('PASS production App Stage20 launch/save actual table and exact codec restore; raw/packed/profile chars',text.length,JSON.stringify(ap).length,h.storage.get(KEY).length,'saved chars',text.length-JSON.stringify(ap).length,'(storage double; not browser quota/fullplay)');
