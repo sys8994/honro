@@ -1,6 +1,6 @@
 {
   "schema": "honro-act1-terrain-production-v1",
-  "status": "source-frozen",
+  "status": "concept-scale-revision",
   "scope": "Static near/play terrain vector assets only; no people or distant scenery. Preserve current geometry. No deployment acceptance claimed.",
   "steps": [
     "source",
@@ -19,7 +19,10 @@
     "pure-vector",
     "importer-budgets",
     "bounded-error",
-    "visual-review"
+    "visual-review",
+    "world-aspect-preserved",
+    "character-and-camera-scale-unchanged",
+    "normal-zoom-crop-review"
   ],
   "stages": [
     {
@@ -29,8 +32,8 @@
       "height": 2200,
       "geometryDigest": "4616b4ecfb6775f6b491d78a189ef9058b62351a73e1da79905d683ce1b47434",
       "terrains": 7,
-      "status": "source-frozen",
-      "currentStep": 1,
+      "status": "concept-scale-review-required",
+      "currentStep": 2,
       "totalSteps": 6,
       "passedSteps": [
         "source"
@@ -43,8 +46,8 @@
       "height": 3300,
       "geometryDigest": "cf96ae37e95ae9b44494ab3c8cb37c64f29c5b6de71193b40a18eb14eae5a229",
       "terrains": 14,
-      "status": "source-frozen",
-      "currentStep": 1,
+      "status": "concept-scale-review-required",
+      "currentStep": 2,
       "totalSteps": 6,
       "passedSteps": [
         "source"
@@ -57,8 +60,8 @@
       "height": 3100,
       "geometryDigest": "259b0371e4eeb108ebbdc8d5f27f9c447632a4ed7ef8c5cf202921fce3e3d468",
       "terrains": 11,
-      "status": "source-frozen",
-      "currentStep": 1,
+      "status": "concept-scale-review-required",
+      "currentStep": 2,
       "totalSteps": 6,
       "passedSteps": [
         "source"
@@ -71,8 +74,8 @@
       "height": 3500,
       "geometryDigest": "689f219cbc46881e56f9950b86eacb924390e4eb3f1f541b755888fffc337da7",
       "terrains": 10,
-      "status": "source-frozen",
-      "currentStep": 1,
+      "status": "concept-scale-review-required",
+      "currentStep": 2,
       "totalSteps": 6,
       "passedSteps": [
         "source"
@@ -85,8 +88,8 @@
       "height": 4300,
       "geometryDigest": "984cb2ca815d4ea360055429d1b748353490526b37b7e962fb32d60457e1ebf9",
       "terrains": 11,
-      "status": "source-frozen",
-      "currentStep": 1,
+      "status": "concept-scale-review-required",
+      "currentStep": 2,
       "totalSteps": 6,
       "passedSteps": [
         "source"
@@ -99,8 +102,8 @@
       "height": 3800,
       "geometryDigest": "c77ecc09e271152b30d58645a2a9801ff11cfd5f1385c48a641da094e9c04b33",
       "terrains": 13,
-      "status": "source-frozen",
-      "currentStep": 1,
+      "status": "concept-scale-review-required",
+      "currentStep": 2,
       "totalSteps": 6,
       "passedSteps": [
         "source"
@@ -113,8 +116,8 @@
       "height": 5000,
       "geometryDigest": "66f751339f9afb91bb7e2418babaae5367cb5f82d48c92d0a7ac9a89f05b0c4a",
       "terrains": 15,
-      "status": "source-frozen",
-      "currentStep": 1,
+      "status": "concept-scale-review-required",
+      "currentStep": 2,
       "totalSteps": 6,
       "passedSteps": [
         "source"
@@ -127,8 +130,8 @@
       "height": 5500,
       "geometryDigest": "0fb449448ac3980efd5491ed9195f27d9ea4381ee42ce3b7a42dd8dbe2d2493c",
       "terrains": 22,
-      "status": "source-frozen",
-      "currentStep": 1,
+      "status": "concept-scale-review-required",
+      "currentStep": 2,
       "totalSteps": 6,
       "passedSteps": [
         "source"
@@ -141,8 +144,8 @@
       "height": 3500,
       "geometryDigest": "9b943f3d3da3c377c02c8a6b1e7c5e0a0034bba9ffdca7e1bdd58575571fb231",
       "terrains": 7,
-      "status": "source-frozen",
-      "currentStep": 1,
+      "status": "concept-scale-review-required",
+      "currentStep": 2,
       "totalSteps": 6,
       "passedSteps": [
         "source"
@@ -155,8 +158,8 @@
       "height": 3900,
       "geometryDigest": "59c6b1ad3c29dba4d4c8b9a50fa85fa23024efecc70cef6137604959b03bae4b",
       "terrains": 12,
-      "status": "source-frozen",
-      "currentStep": 1,
+      "status": "concept-scale-review-required",
+      "currentStep": 2,
       "totalSteps": 6,
       "passedSteps": [
         "source"
