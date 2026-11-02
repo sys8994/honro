@@ -1,3 +1,4 @@
+import {applyAct1BodyCandidate} from '../act1-vector-production/apply-body-candidate.mjs';
 /** Stage 1: the existing pine offers an early optional firing route, not more platforms. */
 export function applyStage1Positioning(project){
  const s=project.stages.find(s=>s.metadata?.stageId===1);if(!s)return project;
@@ -37,5 +38,5 @@ export function applyStage1Positioning(project){
  };
  s.metadata.designRevision=3;
 
- return project;
+ return applyAct1BodyCandidate(project);
 }
