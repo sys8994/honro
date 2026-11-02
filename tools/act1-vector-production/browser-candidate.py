@@ -27,6 +27,11 @@ try:
   p.wait_for_timeout(2000);r['landed']=p.evaluate(state);assert r['landed']['grounded'] and r['landed']['hp']>0,r['landed'];p.screenshot(path=str(out/'landed.png'))
   r['frameIntervals']=p.evaluate('''() => new Promise(resolve=>{const a=[];let last;function f(t){if(last!==undefined)a.push(t-last);last=t;if(a.length>=45)resolve(a);else requestAnimationFrame(f)}requestAnimationFrame(f)})''');r['frameMedianMs']=sorted(r['frameIntervals'])[len(r['frameIntervals'])//2]
   p.locator('#battlecanvas').hover();p.mouse.wheel(0,4000);r['inputs'].append('wheel:4000');p.wait_for_timeout(1200);r['overview']=p.evaluate(state);p.screenshot(path=str(out/'overview.png'))
+  p.wait_for_function('!!HonroApp.profile.honroBattle && !HonroApp.storageWarned',timeout=10000)
+  r['beforeReload']=p.evaluate(state);p.reload(wait_until='domcontentloaded');p.wait_for_function('window.HonroApp',timeout=60000)
+  p.locator('[data-action="continue"]:visible').first.click();r['inputs'].append('reload then click:continue')
+  p.wait_for_function('HonroApp.engine?.b?.honroStage===1 && HonroApp.canInput()',timeout=60000);p.wait_for_timeout(1000)
+  r['resumed']=p.evaluate(state);assert len(r['resumed']['bodies'])==1 and r['resumed']['bodies'][0]['collisionIds']==0,r['resumed'];assert abs(r['resumed']['x']-r['beforeReload']['x'])<1,r['resumed'];assert r['resumed']['hp']==r['beforeReload']['hp'];p.screenshot(path=str(out/'resumed.png'))
   assert not r['errors'],r['errors'];r['passed']=True;browser.close()
 except Exception:r['error']=traceback.format_exc()
 finally:(out/'result.json').write_text(json.dumps(r,ensure_ascii=False,indent=2)+'\n');print(json.dumps(r,ensure_ascii=False),flush=True)

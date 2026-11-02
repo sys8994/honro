@@ -9,7 +9,6 @@ jobs:
     runs-on: ubuntu-24.04
     timeout-minutes: 25
     env:
-      HONRO_ACT1_BODY_CANDIDATE: '1'
       HONRO_QA_URL: http://127.0.0.1:8770/HONRO.html
       HONRO_QA_OUT: _local/reports/act1-body-browser
     steps:
@@ -29,7 +28,7 @@ jobs:
           npm ci
           npm ci --prefix game
           node tests/act1-body-candidate.mjs
-          HONRO_ACT1_BODY_CANDIDATE=1 npm run build
+          npm run build
           python -m pip install 'playwright==1.58.0'
           python -m playwright install --with-deps chromium
       - name: Fresh UI and movement evidence
