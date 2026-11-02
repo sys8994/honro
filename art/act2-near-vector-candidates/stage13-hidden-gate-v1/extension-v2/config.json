@@ -1,0 +1,35 @@
+{
+  "id": "act2-traced:stage13-extension-v2",
+  "name": "Stage13 extension-v2",
+  "bounds": {
+    "x": -6000,
+    "y": 2150,
+    "w": 20200,
+    "h": 8000
+  },
+  "anchor": {
+    "x": 0,
+    "y": 0
+  },
+  "foot": {
+    "x": 0,
+    "y": 0
+  },
+  "semanticLayer": "BODY",
+  "preserveCompounds": true,
+  "transform": [
+    10.135474159558454,
+    0,
+    0,
+    10.139416983523448,
+    -6000,
+    2150
+  ],
+  "params": {
+    "bodyTerrainIds": [
+      "act2-floor"
+    ],
+    "bodyBaseColor": "#283e49",
+    "localMaterial": false
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "id": "act2-traced:stage13-east-v1",
+  "name": "Stage13 east-v1",
+  "bounds": {
+    "x": 5600,
+    "y": 4088,
+    "w": 3500,
+    "h": 1900
+  },
+  "anchor": {
+    "x": 0,
+    "y": 0
+  },
+  "foot": {
+    "x": 0,
+    "y": 0
+  },
+  "semanticLayer": "BODY",
+  "preserveCompounds": true,
+  "transform": [
+    2.056404230317274,
+    0,
+    0,
+    2.0562770562770565,
+    5600,
+    4088
+  ],
+  "params": {
+    "bodyTerrainIds": [
+      "act2-floor"
+    ],
+    "bodyBaseColor": "#283e49",
+    "localMaterial": true
+  }
+}

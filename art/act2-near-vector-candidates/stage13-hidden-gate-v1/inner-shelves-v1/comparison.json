@@ -1,0 +1,265 @@
+{
+  "raw": "/workspace/scratch/fff510b4df37/honro-act2-vector-rollout/stage13/inner-shelves-v1/composed-world.svg",
+  "candidate": "/workspace/scratch/fff510b4df37/honro-act2-vector-rollout/stage13/inner-shelves-v1/composed-candidate-all64.svg",
+  "rawStats": {
+    "sourceBytes": 64968,
+    "paths": 7,
+    "commands": 1787,
+    "segments": 1647,
+    "endpointNodesUpperBound": 1787,
+    "explicitCommandLetters": 754,
+    "subpaths": 140,
+    "pathChars": 64345,
+    "maxPathChars": 16724
+  },
+  "candidateStats": {
+    "sourceBytes": 48971,
+    "paths": 7,
+    "commands": 1801,
+    "segments": 1661,
+    "endpointNodesUpperBound": 1801,
+    "explicitCommandLetters": 834,
+    "subpaths": 140,
+    "pathChars": 48348,
+    "maxPathChars": 13383
+  },
+  "visualApproval": "NOT REVIEWED",
+  "config": {
+    "width": 2048,
+    "scales": [
+      1,
+      2
+    ],
+    "limits": {
+      "rgbMAE255": 0.8,
+      "silhouettePx": 1.5,
+      "protectedRgbMAE255": 1,
+      "protectedPx": 0.5,
+      "protectedChangedPixelFraction": 0.05
+    },
+    "protectedPolylines": [
+      {
+        "points": [
+          [
+            371.2,
+            86.1930939728604
+          ],
+          [
+            640.0,
+            64.03647397686491
+          ]
+        ],
+        "width": 16
+      },
+      {
+        "points": [
+          [
+            640.0,
+            64.03647397686491
+          ],
+          [
+            1049.6,
+            64.03647397686491
+          ]
+        ],
+        "width": 16
+      },
+      {
+        "points": [
+          [
+            1049.6,
+            64.03647397686491
+          ],
+          [
+            1369.6,
+            256.14589590745965
+          ]
+        ],
+        "width": 16
+      },
+      {
+        "points": [
+          [
+            1369.6,
+            256.14589590745965
+          ],
+          [
+            1676.8,
+            591.879980900451
+          ]
+        ],
+        "width": 16
+      },
+      {
+        "points": [
+          [
+            51.2,
+            95.54241917348173
+          ],
+          [
+            371.2,
+            86.1930939728604
+          ]
+        ],
+        "width": 16
+      },
+      {
+        "points": [
+          [
+            371.2,
+            86.1930939728604
+          ],
+          [
+            473.6,
+            77.7524768315288
+          ]
+        ],
+        "width": 16
+      },
+      {
+        "points": [
+          [
+            1587.2,
+            493.9575394441621
+          ],
+          [
+            1676.8,
+            591.879980900451
+          ]
+        ],
+        "width": 16
+      },
+      {
+        "points": [
+          [
+            1676.8,
+            591.879980900451
+          ],
+          [
+            1984.0,
+            752.885972613712
+          ]
+        ],
+        "width": 16
+      }
+    ],
+    "protectedRgbQuantizationTolerance255": 0,
+    "composition": "Identical canonicalSolid/contactInset and underpaint as native renderer; original source SVG remains immutable. Quantization allowance only RGB <=1 and identical alpha per pixel.",
+    "sourcePalette": [
+      [
+        40,
+        62,
+        73
+      ],
+      [
+        62,
+        86,
+        98
+      ],
+      [
+        91,
+        112,
+        124
+      ],
+      [
+        134,
+        146,
+        143
+      ]
+    ]
+  },
+  "errors": {
+    "1": {
+      "rgbMAE255": 0.0016705093439668417,
+      "rgbP99_255": 0.0,
+      "alphaMAE255": 0.0003704791306518018,
+      "changedPixelFraction": 0.0,
+      "silhouetteMaxOffsetPx": 1.0,
+      "protectedChangedPixelFraction": 0.0,
+      "protectedRgbMAE255": 3.946802826249041e-05,
+      "protectedSilhouetteMaxOffsetPx": 0.0,
+      "protectedColorEdgeRawMaxOffsetPx": 0.0,
+      "protectedColorEdgeMaxOffsetPx": 0.0,
+      "protectedRgbQuantizationTolerance255": 0,
+      "protectedQuantizationPixels": 0,
+      "pass": true
+    },
+    "2": {
+      "rgbMAE255": 0.000924615771509707,
+      "rgbP99_255": 0.0,
+      "alphaMAE255": 4.695012103184126e-05,
+      "changedPixelFraction": 5.69092365967366e-07,
+      "silhouetteMaxOffsetPx": 0.0,
+      "protectedChangedPixelFraction": 0.0,
+      "protectedRgbMAE255": 1.6970250726444647e-05,
+      "protectedSilhouetteMaxOffsetPx": 0.0,
+      "protectedColorEdgeRawMaxOffsetPx": 0.0,
+      "protectedColorEdgeMaxOffsetPx": 0.0,
+      "protectedRgbQuantizationTolerance255": 0,
+      "protectedQuantizationPixels": 0,
+      "pass": true
+    }
+  },
+  "timings": {
+    "raw-1": {
+      "width": 2048,
+      "height": 858,
+      "decodeMs": 11.068894,
+      "drawMs": 3.654795999999976
+    },
+    "candidate-1": {
+      "width": 2048,
+      "height": 858,
+      "decodeMs": 10.947745000000054,
+      "drawMs": 4.585788999999977
+    },
+    "raw-2": {
+      "width": 4096,
+      "height": 1716,
+      "decodeMs": 23.97671799999995,
+      "drawMs": 19.107107999999982
+    },
+    "candidate-2": {
+      "width": 4096,
+      "height": 1716,
+      "decodeMs": 22.17259899999999,
+      "drawMs": 21.539250000000038
+    }
+  },
+  "qualityPass": true,
+  "equivalentFinal": {
+    "scope": "Original measured comparison retained unchanged; final is an exact-RGBA-equivalent lexical minification.",
+    "svgSha256": "c687734adeddcc86e5281821714bff6f7ee7d31024697fa4a8466412f14c1923",
+    "proof": "../lossless-proof.json",
+    "checks": [
+      {
+        "part": "inner-shelves-v1",
+        "scope": "isolated",
+        "scale": 1,
+        "rgbaSha256": "a8c9a58e241a9c796cd1d69de22312913eac9463d28db231fd3bcd3f0aafcf4c",
+        "bitIdentical": true
+      },
+      {
+        "part": "inner-shelves-v1",
+        "scope": "isolated",
+        "scale": 2,
+        "rgbaSha256": "b00b558bc32d2ecf4e2725b04999bc1e573956fc42da140482f608ce624c11b2",
+        "bitIdentical": true
+      },
+      {
+        "part": "inner-shelves-v1",
+        "scope": "composed",
+        "scale": 1,
+        "rgbaSha256": "07644536e1ac8849ca8686dfdecc80d2e3141b659a7a2d6aeb82a8ff42b05194",
+        "bitIdentical": true
+      },
+      {
+        "part": "inner-shelves-v1",
+        "scope": "composed",
+        "scale": 2,
+        "rgbaSha256": "6a007296e4a24e16bf4394d7cef5319cab4682f71a1d2e1204e995757ea975ab",
+        "bitIdentical": true
+      }
+    ]
+  }
+}

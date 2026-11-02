@@ -1,0 +1,22 @@
+{
+  "sourceBytes": 175653,
+  "outputBytes": 127432,
+  "method": "Original command tokens near contacts; floor/roof preserve entire prefix through last protected segment to preserve renderer accumulation. Other cubics replaced only within stated control-hull bound; .01 coordinate grid away from contacts. Strict pixel checks remain mandatory.",
+  "epsilonLocalUnits": 0.2,
+  "protectionPadPixels": 24,
+  "preservedFirstPath": false,
+  "counts": {
+    "protectedSegments": 2883,
+    "optimizedSegments": 1917
+  },
+  "preLosslessOutputBytes": 129720,
+  "losslessDelimiterMinification": {
+    "bytesSaved": 2288,
+    "changes": "SVG separator only before a leading decimal point following a decimal number; no number/command/geometry edits",
+    "rgbaBitIdenticalAtScales": [
+      1,
+      2
+    ],
+    "proof": "../lossless-proof.json"
+  }
+}
