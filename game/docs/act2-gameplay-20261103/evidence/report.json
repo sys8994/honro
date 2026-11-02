@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-02T16:34:43.948Z",
+  "generatedAt": "2026-11-02T17:09:21.207Z",
   "criteriaSource": "git:3872295f:tools/quality-gate/criteria-v3.json.gz",
   "criteriaRawSha256": "e2183e74492a4cb61338f8a691a51f23e7af2205fb9148ae6f6b2c138311aa54",
   "scope": "Released-v4 baseline gameplay calibration. Diagnostic completed/failed/censored runs are retained separately. No overall pass or human-fun inference.",
@@ -318,7 +318,7 @@
       },
       "trialCount": 4,
       "diagnosticTerminalFrequency": {
-        "denominator": "terminal calibration diagnostics ONLY; not calibrated policy or human success probability",
+        "denominator": "terminal calibration diagnostics ONLY; continuations excluded; not calibrated policy or human success probability",
         "wins": 1,
         "n": 1,
         "fraction": 1,
@@ -635,7 +635,7 @@
       },
       "trialCount": 2,
       "diagnosticTerminalFrequency": {
-        "denominator": "terminal calibration diagnostics ONLY; not calibrated policy or human success probability",
+        "denominator": "terminal calibration diagnostics ONLY; continuations excluded; not calibrated policy or human success probability",
         "wins": 1,
         "n": 2,
         "fraction": 0.5,
@@ -977,26 +977,29 @@
           "수직 이동의 선택과 큰 형태는 유지하되 발판 간격·합류 지점·왕복거리를 압축한다."
         ]
       },
-      "trialCount": 3,
+      "trialCount": 6,
       "diagnosticTerminalFrequency": {
-        "denominator": "terminal calibration diagnostics ONLY; not calibrated policy or human success probability",
+        "denominator": "terminal calibration diagnostics ONLY; continuations excluded; not calibrated policy or human success probability",
         "wins": 0,
-        "n": 3,
+        "n": 4,
         "fraction": 0,
         "wilson95": [
           0,
-          0.561497031755032
+          0.48989083645458353
         ],
-        "censored": 0
+        "censored": 2
       },
       "trials": [
+        "13-continuation-606-pass",
         "13-objective-101-cal1",
         "13-objective-303-cal2",
-        "13-objective-404-cal3"
+        "13-objective-404-cal3",
+        "13-objective-505-cal4",
+        "13-survival-606-cal5"
       ],
       "gates": {
-        "currentObjectiveCompletion": "FAIL_UNOBSERVED",
-        "twentyRounds": "FAIL_UNOBSERVED",
+        "currentObjectiveCompletion": "observed-in-calibration-only",
+        "twentyRounds": "FAIL_OBSERVED_OVER_20",
         "registeredClearProbability": "FAIL_NO_FROZEN_CALIBRATED_COHORT",
         "roundTargetRange": "FAIL_NO_REGISTERED_COHORT",
         "requiredEncounters": "FAIL_NO_REQUIRED_ROUTE_ENGAGEMENT_ATTRIBUTION",
@@ -1619,9 +1622,13 @@
           "수직 이동의 선택과 큰 형태는 유지하되 발판 간격·합류 지점·왕복거리를 압축한다."
         ]
       },
-      "trialCount": 5,
+      "trialCount": 9,
       "diagnosticTerminalFrequency": null,
       "trials": [
+        "15-continuation-303-crown-node",
+        "15-continuation-303-escape",
+        "15-continuation-303-upper",
+        "15-continuation-303-upper-jump",
         "15-height-101-cal1",
         "15-objective-101",
         "15-objective-101-cal2",
@@ -1629,8 +1636,8 @@
         "15-survival-303-cal2"
       ],
       "gates": {
-        "currentObjectiveCompletion": "FAIL_UNOBSERVED",
-        "twentyRounds": "FAIL_UNOBSERVED",
+        "currentObjectiveCompletion": "observed-in-calibration-only",
+        "twentyRounds": "FAIL_OBSERVED_OVER_20",
         "registeredClearProbability": "FAIL_NO_FROZEN_CALIBRATED_COHORT",
         "roundTargetRange": "FAIL_NO_REGISTERED_COHORT",
         "requiredEncounters": "FAIL_NO_REQUIRED_ROUTE_ENGAGEMENT_ATTRIBUTION",
@@ -1928,9 +1935,9 @@
           "수직 이동의 선택과 큰 형태는 유지하되 발판 간격·합류 지점·왕복거리를 압축한다."
         ]
       },
-      "trialCount": 4,
+      "trialCount": 6,
       "diagnosticTerminalFrequency": {
-        "denominator": "terminal calibration diagnostics ONLY; not calibrated policy or human success probability",
+        "denominator": "terminal calibration diagnostics ONLY; continuations excluded; not calibrated policy or human success probability",
         "wins": 0,
         "n": 1,
         "fraction": 0,
@@ -1938,16 +1945,18 @@
           0,
           0.7934506856227534
         ],
-        "censored": 3
+        "censored": 5
       },
       "trials": [
+        "16-continuation-404-clear-lane",
+        "16-continuation-404-sequential-story",
         "16-objective-101-cal1",
         "16-objective-303-cal3",
         "16-survival-101-cal2",
         "16-survival-404-cal4"
       ],
       "gates": {
-        "currentObjectiveCompletion": "FAIL_UNOBSERVED",
+        "currentObjectiveCompletion": "observed-in-calibration-only",
         "twentyRounds": "FAIL_OBSERVED_OVER_20",
         "registeredClearProbability": "FAIL_NO_FROZEN_CALIBRATED_COHORT",
         "roundTargetRange": "FAIL_NO_REGISTERED_COHORT",
@@ -2290,11 +2299,14 @@
           "수직 이동의 선택과 큰 형태는 유지하되 발판 간격·합류 지점·왕복거리를 압축한다."
         ]
       },
-      "trialCount": 2,
+      "trialCount": 5,
       "diagnosticTerminalFrequency": null,
       "trials": [
+        "17-continuation-505-defense",
         "17-objective-101-cal1",
-        "17-objective-303-cal2"
+        "17-objective-303-cal2",
+        "17-survival-404-cal3",
+        "17-survival-505-cal4"
       ],
       "gates": {
         "currentObjectiveCompletion": "FAIL_UNOBSERVED",
@@ -2620,7 +2632,7 @@
       },
       "trialCount": 7,
       "diagnosticTerminalFrequency": {
-        "denominator": "terminal calibration diagnostics ONLY; not calibrated policy or human success probability",
+        "denominator": "terminal calibration diagnostics ONLY; continuations excluded; not calibrated policy or human success probability",
         "wins": 1,
         "n": 1,
         "fraction": 1,
@@ -2884,20 +2896,22 @@
           "비전투·기예 금지·소단 단독 진행과 원래 사건 순서를 보존한다. 전체 전투R는0이다."
         ]
       },
-      "trialCount": 1,
+      "trialCount": 3,
       "diagnosticTerminalFrequency": {
-        "denominator": "terminal calibration diagnostics ONLY; not calibrated policy or human success probability",
-        "wins": 1,
-        "n": 1,
+        "denominator": "terminal calibration diagnostics ONLY; continuations excluded; not calibrated policy or human success probability",
+        "wins": 3,
+        "n": 3,
         "fraction": 1,
         "wilson95": [
-          0.20654931437724644,
-          0.9999999999999999
+          0.4385029682449681,
+          1
         ],
         "censored": 0
       },
       "trials": [
-        "19-objective-101-cal1"
+        "19-objective-101-cal1",
+        "19-objective-701-sequential",
+        "19-objective-911-canonical-smoke2"
       ],
       "gates": {
         "currentObjectiveCompletion": "observed-in-calibration-only",
@@ -3198,29 +3212,31 @@
           "수직 이동의 선택과 큰 형태는 유지하되 발판 간격·합류 지점·왕복거리를 압축한다."
         ]
       },
-      "trialCount": 7,
+      "trialCount": 9,
       "diagnosticTerminalFrequency": {
-        "denominator": "terminal calibration diagnostics ONLY; not calibrated policy or human success probability",
-        "wins": 0,
-        "n": 1,
-        "fraction": 0,
+        "denominator": "terminal calibration diagnostics ONLY; continuations excluded; not calibrated policy or human success probability",
+        "wins": 1,
+        "n": 2,
+        "fraction": 0.5,
         "wilson95": [
-          0,
-          0.7934506856227534
+          0.09453120573423457,
+          0.9054687942657654
         ],
-        "censored": 6
+        "censored": 7
       },
       "trials": [
         "20-objective-101",
         "20-objective-101-cal2",
         "20-objective-101-cal3",
         "20-survival-101-cal1",
+        "20-height-303-guard",
         "20-objective-101",
         "20-objective-505-guard",
+        "20-objective-505-support",
         "20-survival-207"
       ],
       "gates": {
-        "currentObjectiveCompletion": "FAIL_UNOBSERVED",
+        "currentObjectiveCompletion": "observed-in-calibration-only",
         "twentyRounds": "FAIL_OBSERVED_OVER_20",
         "registeredClearProbability": "FAIL_NO_FROZEN_CALIBRATED_COHORT",
         "roundTargetRange": "FAIL_NO_REGISTERED_COHORT",
@@ -3343,7 +3359,23 @@
       "jumpInputs": 0,
       "dropInputs": 0,
       "verifiedLandings": 0,
+      "observedSupports": [
+        "act2-floor"
+      ],
+      "sampledMovement": {
+        "scope": "Endpoint displacement lower bound, not continuous path length or meaningful jump quota",
+        "horizontal": 331.76333333333525,
+        "vertical": 100
+      },
       "interactionIds": [],
+      "legacyItemApi": {
+        "directCount": 0,
+        "inheritedCount": 0,
+        "unresolvedAncestor": null,
+        "actions": [],
+        "normalUiEquivalence": "NOT_ESTABLISHED_NATIVE_INPUTS_ONLY",
+        "accessibility": "Engine.item normal UI binding unproven; affected runs are legacy-consumable Engine-only calibration"
+      },
       "externalWrites": [],
       "evidence": "_local/reports/act2-gameplay-20261103/11-objective-101",
       "resultPresent": true
@@ -3455,7 +3487,23 @@
       "jumpInputs": 6,
       "dropInputs": 0,
       "verifiedLandings": 0,
+      "observedSupports": [
+        "v4.11.firing-rock"
+      ],
+      "sampledMovement": {
+        "scope": "Endpoint displacement lower bound, not continuous path length or meaningful jump quota",
+        "horizontal": 604.0945833333415,
+        "vertical": 200
+      },
       "interactionIds": [],
+      "legacyItemApi": {
+        "directCount": 0,
+        "inheritedCount": 0,
+        "unresolvedAncestor": null,
+        "actions": [],
+        "normalUiEquivalence": "NOT_ESTABLISHED_NATIVE_INPUTS_ONLY",
+        "accessibility": "Engine.item normal UI binding unproven; affected runs are legacy-consumable Engine-only calibration"
+      },
       "externalWrites": [],
       "evidence": "_local/reports/act2-gameplay-20261103/11-objective-101-cal3",
       "resultPresent": true
@@ -3568,7 +3616,25 @@
       "jumpInputs": 22,
       "dropInputs": 4,
       "verifiedLandings": 4,
+      "observedSupports": [
+        "v4.11.firing-rock",
+        "rv-west-shoulder",
+        "rv-ritual-buttress"
+      ],
+      "sampledMovement": {
+        "scope": "Endpoint displacement lower bound, not continuous path length or meaningful jump quota",
+        "horizontal": 15024.1597619495,
+        "vertical": 3236.777273197421
+      },
       "interactionIds": [],
+      "legacyItemApi": {
+        "directCount": 0,
+        "inheritedCount": 0,
+        "unresolvedAncestor": null,
+        "actions": [],
+        "normalUiEquivalence": "NOT_ESTABLISHED_NATIVE_INPUTS_ONLY",
+        "accessibility": "Engine.item normal UI binding unproven; affected runs are legacy-consumable Engine-only calibration"
+      },
       "externalWrites": [],
       "evidence": "_local/reports/act2-gameplay-20261103/11-objective-101-cal4",
       "resultPresent": true
@@ -3778,7 +3844,46 @@
       "jumpInputs": 24,
       "dropInputs": 4,
       "verifiedLandings": 4,
+      "observedSupports": [
+        "rv-west-shoulder",
+        "v4.11.firing-rock",
+        "rv-ritual-buttress",
+        "rv-root-east-descent",
+        "rv-west-stone-arch",
+        "rv-west-main-root",
+        "rv-north-trace",
+        "rv-lower-refuge-rock",
+        "rv-saddle-fallen-trunk"
+      ],
+      "sampledMovement": {
+        "scope": "Endpoint displacement lower bound, not continuous path length or meaningful jump quota",
+        "horizontal": 44621.404865642005,
+        "vertical": 13682.970601297375
+      },
       "interactionIds": [],
+      "legacyItemApi": {
+        "directCount": 2,
+        "inheritedCount": 0,
+        "unresolvedAncestor": null,
+        "actions": [
+          {
+            "round": 33,
+            "frame": 110965,
+            "goal": "11.exit-threat",
+            "op": "heal-item-retreat",
+            "hero": "knight"
+          },
+          {
+            "round": 39,
+            "frame": 131582,
+            "goal": "11.exit-threat",
+            "op": "heal-item-retreat",
+            "hero": "knight"
+          }
+        ],
+        "normalUiEquivalence": "FAIL_LEGACY_ITEM_API",
+        "accessibility": "Engine.item normal UI binding unproven; affected runs are legacy-consumable Engine-only calibration"
+      },
       "externalWrites": [],
       "evidence": "_local/reports/act2-gameplay-20261103/11-survival-101-cal1",
       "resultPresent": true
@@ -3889,7 +3994,26 @@
       "jumpInputs": 12,
       "dropInputs": 0,
       "verifiedLandings": 12,
+      "observedSupports": [
+        "sq-old-road",
+        "sq-north-quarry",
+        "sq-west-quarry",
+        "sq-lower-ground"
+      ],
+      "sampledMovement": {
+        "scope": "Endpoint displacement lower bound, not continuous path length or meaningful jump quota",
+        "horizontal": 22509.420740121474,
+        "vertical": 9665.557864106439
+      },
       "interactionIds": [],
+      "legacyItemApi": {
+        "directCount": 0,
+        "inheritedCount": 0,
+        "unresolvedAncestor": null,
+        "actions": [],
+        "normalUiEquivalence": "NOT_ESTABLISHED_NATIVE_INPUTS_ONLY",
+        "accessibility": "Engine.item normal UI binding unproven; affected runs are legacy-consumable Engine-only calibration"
+      },
       "externalWrites": [],
       "evidence": "_local/reports/act2-gameplay-20261103/12-objective-101-cal1",
       "resultPresent": true
@@ -4095,12 +4219,362 @@
       "jumpInputs": 10,
       "dropInputs": 0,
       "verifiedLandings": 10,
+      "observedSupports": [
+        "sq-old-road",
+        "sq-north-quarry",
+        "sq-west-quarry",
+        "sq-lower-ground"
+      ],
+      "sampledMovement": {
+        "scope": "Endpoint displacement lower bound, not continuous path length or meaningful jump quota",
+        "horizontal": 24430.279103467852,
+        "vertical": 10274.191919659854
+      },
       "interactionIds": [
         "sign",
         "sign"
       ],
+      "legacyItemApi": {
+        "directCount": 0,
+        "inheritedCount": 0,
+        "unresolvedAncestor": null,
+        "actions": [],
+        "normalUiEquivalence": "NOT_ESTABLISHED_NATIVE_INPUTS_ONLY",
+        "accessibility": "Engine.item normal UI binding unproven; affected runs are legacy-consumable Engine-only calibration"
+      },
       "externalWrites": [],
       "evidence": "_local/reports/act2-gameplay-20261103/12-survival-101-cal2",
+      "resultPresent": true
+    },
+    {
+      "trial": "13-continuation-606-pass",
+      "stage": 13,
+      "classification": "continuation-segment-not-independent",
+      "outcome": "won",
+      "displayRound": 30,
+      "combatCycles": 29,
+      "stopReason": null,
+      "entry": [
+        {
+          "cls": "archer",
+          "level": 11,
+          "equipmentIds": [
+            "itm_se_01"
+          ],
+          "loadout": [
+            "A01",
+            "A02",
+            "A09",
+            "A05"
+          ]
+        },
+        {
+          "cls": "mage",
+          "level": 11,
+          "equipmentIds": [
+            "itm_da_01"
+          ],
+          "loadout": [
+            "M01",
+            "M10",
+            "M03",
+            "M11"
+          ]
+        },
+        {
+          "cls": "knight",
+          "level": 11,
+          "equipmentIds": [
+            "itm_hw_01"
+          ],
+          "loadout": [
+            "S00",
+            "S03",
+            "S05",
+            "S09"
+          ]
+        },
+        {
+          "cls": "occultist",
+          "level": 11,
+          "equipmentIds": [
+            "itm_so_01"
+          ],
+          "loadout": [
+            "O01",
+            "O02",
+            "O08",
+            "O11"
+          ]
+        }
+      ],
+      "source": {
+        "actualEntry": [
+          {
+            "cls": "archer",
+            "level": 11,
+            "hp": 705,
+            "maxHp": 705,
+            "loadout": [
+              "A01",
+              "A02",
+              "A09",
+              "A05"
+            ],
+            "equipmentIds": [
+              "itm_se_01"
+            ],
+            "ranks": {
+              "A01": 1,
+              "A14": 1,
+              "A02": 6,
+              "A11": 1,
+              "A09": 6,
+              "A05": 5
+            }
+          },
+          {
+            "cls": "mage",
+            "level": 11,
+            "hp": 760,
+            "maxHp": 760,
+            "loadout": [
+              "M01",
+              "M10",
+              "M03",
+              "M11"
+            ],
+            "equipmentIds": [
+              "itm_da_01"
+            ],
+            "ranks": {
+              "M01": 1,
+              "M07": 1,
+              "M10": 6,
+              "M03": 6,
+              "M11": 6
+            }
+          },
+          {
+            "cls": "knight",
+            "level": 11,
+            "hp": 1307,
+            "maxHp": 1307,
+            "loadout": [
+              "S00",
+              "S03",
+              "S05",
+              "S09"
+            ],
+            "equipmentIds": [
+              "itm_hw_01"
+            ],
+            "ranks": {
+              "S00": 1,
+              "S03": 7,
+              "S05": 6,
+              "S09": 6
+            }
+          },
+          {
+            "cls": "occultist",
+            "level": 11,
+            "hp": 886,
+            "maxHp": 886,
+            "loadout": [
+              "O01",
+              "O02",
+              "O08",
+              "O11"
+            ],
+            "equipmentIds": [
+              "itm_so_01"
+            ],
+            "ranks": {
+              "O01": 1,
+              "O02": 6,
+              "O06": 1,
+              "O07": 1,
+              "O08": 6,
+              "O11": 5
+            }
+          }
+        ],
+        "continuationOf": {
+          "path": "_local/reports/act2-gameplay-20261103/13-survival-606-cal5/terminal.json",
+          "sha256": "ae321a7ea45034217d8411d84029cf2207df729a67679df50341a93e36d44a8b",
+          "round": 26,
+          "seed": 606,
+          "originalProvenance": {
+            "actualEntry": [
+              {
+                "cls": "archer",
+                "level": 11,
+                "hp": 705,
+                "maxHp": 705,
+                "loadout": [
+                  "A01",
+                  "A02",
+                  "A09",
+                  "A05"
+                ],
+                "equipmentIds": [
+                  "itm_se_01"
+                ],
+                "ranks": {
+                  "A01": 1,
+                  "A14": 1,
+                  "A02": 6,
+                  "A11": 1,
+                  "A09": 6,
+                  "A05": 5
+                }
+              },
+              {
+                "cls": "mage",
+                "level": 11,
+                "hp": 760,
+                "maxHp": 760,
+                "loadout": [
+                  "M01",
+                  "M10",
+                  "M03",
+                  "M11"
+                ],
+                "equipmentIds": [
+                  "itm_da_01"
+                ],
+                "ranks": {
+                  "M01": 1,
+                  "M07": 1,
+                  "M10": 6,
+                  "M03": 6,
+                  "M11": 6
+                }
+              },
+              {
+                "cls": "knight",
+                "level": 11,
+                "hp": 1307,
+                "maxHp": 1307,
+                "loadout": [
+                  "S00",
+                  "S03",
+                  "S05",
+                  "S09"
+                ],
+                "equipmentIds": [
+                  "itm_hw_01"
+                ],
+                "ranks": {
+                  "S00": 1,
+                  "S03": 7,
+                  "S05": 6,
+                  "S09": 6
+                }
+              },
+              {
+                "cls": "occultist",
+                "level": 11,
+                "hp": 886,
+                "maxHp": 886,
+                "loadout": [
+                  "O01",
+                  "O02",
+                  "O08",
+                  "O11"
+                ],
+                "equipmentIds": [
+                  "itm_so_01"
+                ],
+                "ranks": {
+                  "O01": 1,
+                  "O02": 6,
+                  "O06": 1,
+                  "O07": 1,
+                  "O08": 6,
+                  "O11": 5
+                }
+              }
+            ],
+            "checkoutCommit": "981e38b5e057716ffa631d1b6d4103a43364631b",
+            "runnerSha256": "028fbcdeee2ccae3d6a51d3594ec8fe9f0264c4af3bb8ea85e851864855f88b2",
+            "projectSha256": "c65a226aa1d6ae551f18fa9e7bbf0cbc1d330493d6e1d8efb6d1b6d1aaff58db",
+            "stageSha256": "d0c997b8dcfff5f083caf75f146cafba573e2f98f27e89b806d5cc8acd851fb4",
+            "geometrySha256": "ed4d0eb193d92ed5aece9ee61c13343a28272e65a8662a1e623fcbead8d3a997",
+            "entryProfileSha256": "17dbe408c7a665ba991a68ae6bb46795809c3f742a62d1281685c1d23cf4e2c2",
+            "entryLevel": 13.2,
+            "policy": "survival",
+            "seed": 606,
+            "scope": "Synthetic legacy-budget rewardXpAt(plan.entryLevel), legal training, production-auto-equipped basic recruitment weapons. Prior clearance flags only unlock requested chapter; no claim earlier chapters were played. Production reviewed-v4 App/Engine with DOM/storage/render/clock doubles; not browser input."
+          }
+        },
+        "entrySnapshotIsContinuation": true,
+        "checkoutCommit": "c89a5706f531fd092755e9bc564da9e7e56addd8",
+        "runnerSha256": "f6d1bc4f584a343e69f1a33a549114b498013421d3f82ef7157d060db3fa8686",
+        "projectSha256": "c65a226aa1d6ae551f18fa9e7bbf0cbc1d330493d6e1d8efb6d1b6d1aaff58db",
+        "stageSha256": "d0c997b8dcfff5f083caf75f146cafba573e2f98f27e89b806d5cc8acd851fb4",
+        "geometrySha256": "ed4d0eb193d92ed5aece9ee61c13343a28272e65a8662a1e623fcbead8d3a997",
+        "entryProfileSha256": "99cd5794b19396cf9169c3ee2062eccf64383068322ff8bcc5acca0359a7d434",
+        "entryLevel": 13.2,
+        "policy": "survival",
+        "seed": 606,
+        "scope": "Synthetic legacy-budget rewardXpAt(plan.entryLevel), legal training, production-auto-equipped basic recruitment weapons. Prior clearance flags only unlock requested chapter; no claim earlier chapters were played. Production reviewed-v4 App/Engine with DOM/storage/render/clock doubles; not browser input."
+      },
+      "initialSha256": "0eec3036ce6ce9d115397bd126f6ce8f7795f013527ccaf531d09ded123c7844",
+      "initialEnemies": 25,
+      "archetypes": {
+        "picks": 9,
+        "bat": 8,
+        "minecart": 5,
+        "resonance": 1,
+        "ghost": 2
+      },
+      "elites": 7,
+      "taggedMinibosses": 0,
+      "taggedBosses": 0,
+      "completedGoals": {
+        "13.extract": true,
+        "13.escort": true,
+        "13.release": true,
+        "gate": true,
+        "13.party-pass": true
+      },
+      "fallen": [],
+      "kills": 24,
+      "damageTaken": 300.09999999999997,
+      "damageDealt": 1996,
+      "skillUse": {
+        "A02": 1,
+        "M11": 3,
+        "O02": 4,
+        "A01": 3,
+        "M10": 1
+      },
+      "inputs": 29,
+      "moveSegments": 10,
+      "jumpInputs": 0,
+      "dropInputs": 0,
+      "verifiedLandings": 0,
+      "observedSupports": [
+        "act2-floor"
+      ],
+      "sampledMovement": {
+        "scope": "Endpoint displacement lower bound, not continuous path length or meaningful jump quota",
+        "horizontal": 3953.633435909066,
+        "vertical": 629.5815363854954
+      },
+      "interactionIds": [],
+      "legacyItemApi": {
+        "directCount": 0,
+        "inheritedCount": 3,
+        "unresolvedAncestor": null,
+        "actions": [],
+        "normalUiEquivalence": "FAIL_LEGACY_ITEM_API",
+        "accessibility": "Engine.item normal UI binding unproven; affected runs are legacy-consumable Engine-only calibration"
+      },
+      "externalWrites": [],
+      "evidence": "_local/reports/act2-gameplay-20261103/13-continuation-606-pass",
       "resultPresent": true
     },
     {
@@ -4212,10 +4686,27 @@
       "jumpInputs": 25,
       "dropInputs": 0,
       "verifiedLandings": 0,
+      "observedSupports": [
+        "act2-floor",
+        "tactical-entry-shoulder"
+      ],
+      "sampledMovement": {
+        "scope": "Endpoint displacement lower bound, not continuous path length or meaningful jump quota",
+        "horizontal": 15773.968952900455,
+        "vertical": 4448.076455918588
+      },
       "interactionIds": [
         "13.extract",
         "13.release"
       ],
+      "legacyItemApi": {
+        "directCount": 0,
+        "inheritedCount": 0,
+        "unresolvedAncestor": null,
+        "actions": [],
+        "normalUiEquivalence": "NOT_ESTABLISHED_NATIVE_INPUTS_ONLY",
+        "accessibility": "Engine.item normal UI binding unproven; affected runs are legacy-consumable Engine-only calibration"
+      },
       "externalWrites": [],
       "evidence": "_local/reports/act2-gameplay-20261103/13-objective-101-cal1",
       "resultPresent": true
@@ -4422,10 +4913,27 @@
       "jumpInputs": 37,
       "dropInputs": 0,
       "verifiedLandings": 0,
+      "observedSupports": [
+        "act2-floor",
+        "tactical-entry-shoulder"
+      ],
+      "sampledMovement": {
+        "scope": "Endpoint displacement lower bound, not continuous path length or meaningful jump quota",
+        "horizontal": 15643.18419181151,
+        "vertical": 4462.654964740351
+      },
       "interactionIds": [
         "13.extract",
         "13.release"
       ],
+      "legacyItemApi": {
+        "directCount": 0,
+        "inheritedCount": 0,
+        "unresolvedAncestor": null,
+        "actions": [],
+        "normalUiEquivalence": "NOT_ESTABLISHED_NATIVE_INPUTS_ONLY",
+        "accessibility": "Engine.item normal UI binding unproven; affected runs are legacy-consumable Engine-only calibration"
+      },
       "externalWrites": [],
       "evidence": "_local/reports/act2-gameplay-20261103/13-objective-303-cal2",
       "resultPresent": true
@@ -4632,12 +5140,513 @@
       "jumpInputs": 9,
       "dropInputs": 0,
       "verifiedLandings": 8,
+      "observedSupports": [
+        "act2-floor",
+        "tactical-entry-shoulder",
+        "v4.13.latch-step.0",
+        "v4.13.latch-step.1"
+      ],
+      "sampledMovement": {
+        "scope": "Endpoint displacement lower bound, not continuous path length or meaningful jump quota",
+        "horizontal": 15570.058271791124,
+        "vertical": 5553.624208754214
+      },
       "interactionIds": [
         "13.extract",
         "13.release"
       ],
+      "legacyItemApi": {
+        "directCount": 0,
+        "inheritedCount": 0,
+        "unresolvedAncestor": null,
+        "actions": [],
+        "normalUiEquivalence": "NOT_ESTABLISHED_NATIVE_INPUTS_ONLY",
+        "accessibility": "Engine.item normal UI binding unproven; affected runs are legacy-consumable Engine-only calibration"
+      },
       "externalWrites": [],
       "evidence": "_local/reports/act2-gameplay-20261103/13-objective-404-cal3",
+      "resultPresent": true
+    },
+    {
+      "trial": "13-objective-505-cal4",
+      "stage": 13,
+      "classification": "controller-calibration",
+      "outcome": "lost",
+      "displayRound": 7,
+      "combatCycles": 6,
+      "stopReason": null,
+      "entry": [
+        {
+          "cls": "archer",
+          "level": 11,
+          "equipmentIds": [
+            "itm_se_01"
+          ],
+          "loadout": [
+            "A01",
+            "A02",
+            "A09",
+            "A05"
+          ]
+        },
+        {
+          "cls": "mage",
+          "level": 11,
+          "equipmentIds": [
+            "itm_da_01"
+          ],
+          "loadout": [
+            "M01",
+            "M04",
+            "M03",
+            "M11"
+          ]
+        },
+        {
+          "cls": "knight",
+          "level": 11,
+          "equipmentIds": [
+            "itm_hw_01"
+          ],
+          "loadout": [
+            "S00",
+            "S03",
+            "S05",
+            "S09"
+          ]
+        },
+        {
+          "cls": "occultist",
+          "level": 11,
+          "equipmentIds": [
+            "itm_so_01"
+          ],
+          "loadout": [
+            "O01",
+            "O02",
+            "O08",
+            "O11"
+          ]
+        }
+      ],
+      "source": {
+        "actualEntry": [
+          {
+            "cls": "archer",
+            "level": 11,
+            "hp": 705,
+            "maxHp": 705,
+            "loadout": [
+              "A01",
+              "A02",
+              "A09",
+              "A05"
+            ],
+            "equipmentIds": [
+              "itm_se_01"
+            ],
+            "ranks": {
+              "A01": 1,
+              "A14": 1,
+              "A02": 6,
+              "A11": 1,
+              "A09": 6,
+              "A05": 5
+            }
+          },
+          {
+            "cls": "mage",
+            "level": 11,
+            "hp": 760,
+            "maxHp": 760,
+            "loadout": [
+              "M01",
+              "M04",
+              "M03",
+              "M11"
+            ],
+            "equipmentIds": [
+              "itm_da_01"
+            ],
+            "ranks": {
+              "M01": 1,
+              "M06": 1,
+              "M02": 1,
+              "M04": 6,
+              "M03": 6,
+              "M11": 5
+            }
+          },
+          {
+            "cls": "knight",
+            "level": 11,
+            "hp": 1307,
+            "maxHp": 1307,
+            "loadout": [
+              "S00",
+              "S03",
+              "S05",
+              "S09"
+            ],
+            "equipmentIds": [
+              "itm_hw_01"
+            ],
+            "ranks": {
+              "S00": 1,
+              "S03": 7,
+              "S05": 6,
+              "S09": 6
+            }
+          },
+          {
+            "cls": "occultist",
+            "level": 11,
+            "hp": 886,
+            "maxHp": 886,
+            "loadout": [
+              "O01",
+              "O02",
+              "O08",
+              "O11"
+            ],
+            "equipmentIds": [
+              "itm_so_01"
+            ],
+            "ranks": {
+              "O01": 1,
+              "O02": 6,
+              "O06": 1,
+              "O07": 1,
+              "O08": 6,
+              "O11": 5
+            }
+          }
+        ],
+        "checkoutCommit": "c136f386ff626c6f43cd5881c3bbdb1a0959b097",
+        "runnerSha256": "72a22b322b5992d3f69882c2b6747601b4d62c40eca74bb143c31010ce5d27c1",
+        "projectSha256": "c65a226aa1d6ae551f18fa9e7bbf0cbc1d330493d6e1d8efb6d1b6d1aaff58db",
+        "stageSha256": "d0c997b8dcfff5f083caf75f146cafba573e2f98f27e89b806d5cc8acd851fb4",
+        "geometrySha256": "ed4d0eb193d92ed5aece9ee61c13343a28272e65a8662a1e623fcbead8d3a997",
+        "entryProfileSha256": "f590d1251e3328a3d4579226740a2534a7e084c94158895acf2b549198e6e025",
+        "entryLevel": 13.2,
+        "policy": "objective",
+        "seed": 505,
+        "scope": "Synthetic legacy-budget rewardXpAt(plan.entryLevel), legal training, production-auto-equipped basic recruitment weapons. Prior clearance flags only unlock requested chapter; no claim earlier chapters were played. Production reviewed-v4 App/Engine with DOM/storage/render/clock doubles; not browser input."
+      },
+      "initialSha256": "f83185896897184f68e0668c678857d432bab71f18c3a756683e87ef10ff26b5",
+      "initialEnemies": 23,
+      "archetypes": {
+        "picks": 9,
+        "bat": 8,
+        "minecart": 5,
+        "resonance": 1
+      },
+      "elites": 7,
+      "taggedMinibosses": 0,
+      "taggedBosses": 0,
+      "completedGoals": {
+        "13.extract": true,
+        "13.escort": true,
+        "13.release": true
+      },
+      "fallen": [
+        "p-archer"
+      ],
+      "kills": 4,
+      "damageTaken": 2052.2000000000003,
+      "damageDealt": 8281,
+      "skillUse": {
+        "O08": 1,
+        "A02": 3,
+        "M11": 7,
+        "O01": 1,
+        "A01": 3,
+        "O02": 4,
+        "S03": 2
+      },
+      "inputs": 97,
+      "moveSegments": 36,
+      "jumpInputs": 17,
+      "dropInputs": 0,
+      "verifiedLandings": 16,
+      "observedSupports": [
+        "act2-floor",
+        "tactical-entry-shoulder",
+        "v4.13.latch-step.0",
+        "v4.13.latch-step.1",
+        "v4.13.latch-step.2"
+      ],
+      "sampledMovement": {
+        "scope": "Endpoint displacement lower bound, not continuous path length or meaningful jump quota",
+        "horizontal": 16662.6102049739,
+        "vertical": 7631.516693097155
+      },
+      "interactionIds": [
+        "13.extract",
+        "13.release"
+      ],
+      "legacyItemApi": {
+        "directCount": 0,
+        "inheritedCount": 0,
+        "unresolvedAncestor": null,
+        "actions": [],
+        "normalUiEquivalence": "NOT_ESTABLISHED_NATIVE_INPUTS_ONLY",
+        "accessibility": "Engine.item normal UI binding unproven; affected runs are legacy-consumable Engine-only calibration"
+      },
+      "externalWrites": [],
+      "evidence": "_local/reports/act2-gameplay-20261103/13-objective-505-cal4",
+      "resultPresent": true
+    },
+    {
+      "trial": "13-survival-606-cal5",
+      "stage": 13,
+      "classification": "controller-calibration",
+      "outcome": "aim",
+      "displayRound": 26,
+      "combatCycles": 25,
+      "stopReason": "diagnostic round bound; unfinished, not game loss",
+      "entry": [
+        {
+          "cls": "archer",
+          "level": 11,
+          "equipmentIds": [
+            "itm_se_01"
+          ],
+          "loadout": [
+            "A01",
+            "A02",
+            "A09",
+            "A05"
+          ]
+        },
+        {
+          "cls": "mage",
+          "level": 11,
+          "equipmentIds": [
+            "itm_da_01"
+          ],
+          "loadout": [
+            "M01",
+            "M10",
+            "M03",
+            "M11"
+          ]
+        },
+        {
+          "cls": "knight",
+          "level": 11,
+          "equipmentIds": [
+            "itm_hw_01"
+          ],
+          "loadout": [
+            "S00",
+            "S03",
+            "S05",
+            "S09"
+          ]
+        },
+        {
+          "cls": "occultist",
+          "level": 11,
+          "equipmentIds": [
+            "itm_so_01"
+          ],
+          "loadout": [
+            "O01",
+            "O02",
+            "O08",
+            "O11"
+          ]
+        }
+      ],
+      "source": {
+        "actualEntry": [
+          {
+            "cls": "archer",
+            "level": 11,
+            "hp": 705,
+            "maxHp": 705,
+            "loadout": [
+              "A01",
+              "A02",
+              "A09",
+              "A05"
+            ],
+            "equipmentIds": [
+              "itm_se_01"
+            ],
+            "ranks": {
+              "A01": 1,
+              "A14": 1,
+              "A02": 6,
+              "A11": 1,
+              "A09": 6,
+              "A05": 5
+            }
+          },
+          {
+            "cls": "mage",
+            "level": 11,
+            "hp": 760,
+            "maxHp": 760,
+            "loadout": [
+              "M01",
+              "M10",
+              "M03",
+              "M11"
+            ],
+            "equipmentIds": [
+              "itm_da_01"
+            ],
+            "ranks": {
+              "M01": 1,
+              "M07": 1,
+              "M10": 6,
+              "M03": 6,
+              "M11": 6
+            }
+          },
+          {
+            "cls": "knight",
+            "level": 11,
+            "hp": 1307,
+            "maxHp": 1307,
+            "loadout": [
+              "S00",
+              "S03",
+              "S05",
+              "S09"
+            ],
+            "equipmentIds": [
+              "itm_hw_01"
+            ],
+            "ranks": {
+              "S00": 1,
+              "S03": 7,
+              "S05": 6,
+              "S09": 6
+            }
+          },
+          {
+            "cls": "occultist",
+            "level": 11,
+            "hp": 886,
+            "maxHp": 886,
+            "loadout": [
+              "O01",
+              "O02",
+              "O08",
+              "O11"
+            ],
+            "equipmentIds": [
+              "itm_so_01"
+            ],
+            "ranks": {
+              "O01": 1,
+              "O02": 6,
+              "O06": 1,
+              "O07": 1,
+              "O08": 6,
+              "O11": 5
+            }
+          }
+        ],
+        "checkoutCommit": "981e38b5e057716ffa631d1b6d4103a43364631b",
+        "runnerSha256": "028fbcdeee2ccae3d6a51d3594ec8fe9f0264c4af3bb8ea85e851864855f88b2",
+        "projectSha256": "c65a226aa1d6ae551f18fa9e7bbf0cbc1d330493d6e1d8efb6d1b6d1aaff58db",
+        "stageSha256": "d0c997b8dcfff5f083caf75f146cafba573e2f98f27e89b806d5cc8acd851fb4",
+        "geometrySha256": "ed4d0eb193d92ed5aece9ee61c13343a28272e65a8662a1e623fcbead8d3a997",
+        "entryProfileSha256": "17dbe408c7a665ba991a68ae6bb46795809c3f742a62d1281685c1d23cf4e2c2",
+        "entryLevel": 13.2,
+        "policy": "survival",
+        "seed": 606,
+        "scope": "Synthetic legacy-budget rewardXpAt(plan.entryLevel), legal training, production-auto-equipped basic recruitment weapons. Prior clearance flags only unlock requested chapter; no claim earlier chapters were played. Production reviewed-v4 App/Engine with DOM/storage/render/clock doubles; not browser input."
+      },
+      "initialSha256": "1b3d253baeb9ad82b7f38aa49e1dba88f25d34c31d38d09918a7ae75bf6c5845",
+      "initialEnemies": 23,
+      "archetypes": {
+        "picks": 9,
+        "bat": 8,
+        "minecart": 5,
+        "resonance": 1
+      },
+      "elites": 7,
+      "taggedMinibosses": 0,
+      "taggedBosses": 0,
+      "completedGoals": {
+        "13.extract": true,
+        "13.escort": true,
+        "13.release": true,
+        "gate": true
+      },
+      "fallen": [],
+      "kills": 21,
+      "damageTaken": 5117.499999999999,
+      "damageDealt": 18921,
+      "skillUse": {
+        "O02": 23,
+        "A02": 14,
+        "M11": 16,
+        "S03": 6,
+        "M10": 4,
+        "A01": 5,
+        "M03": 1
+      },
+      "inputs": 195,
+      "moveSegments": 51,
+      "jumpInputs": 24,
+      "dropInputs": 0,
+      "verifiedLandings": 16,
+      "observedSupports": [
+        "act2-floor",
+        "tactical-entry-shoulder",
+        "tactical-mason-return",
+        "v4.13.latch-step.0",
+        "v4.13.latch-step.1",
+        "v4.13.latch-step.2"
+      ],
+      "sampledMovement": {
+        "scope": "Endpoint displacement lower bound, not continuous path length or meaningful jump quota",
+        "horizontal": 21605.564222147226,
+        "vertical": 8040.819631386878
+      },
+      "interactionIds": [
+        "13.extract",
+        "13.release",
+        "gate"
+      ],
+      "legacyItemApi": {
+        "directCount": 3,
+        "inheritedCount": 0,
+        "unresolvedAncestor": null,
+        "actions": [
+          {
+            "round": 16,
+            "frame": 43911,
+            "goal": "13.party-pass",
+            "op": "heal-item-retreat",
+            "hero": "mage"
+          },
+          {
+            "round": 17,
+            "frame": 47593,
+            "goal": "13.party-pass",
+            "op": "heal-item-retreat",
+            "hero": "archer"
+          },
+          {
+            "round": 21,
+            "frame": 61255,
+            "goal": "13.party-pass",
+            "op": "heal-item-retreat",
+            "hero": "archer"
+          }
+        ],
+        "normalUiEquivalence": "FAIL_LEGACY_ITEM_API",
+        "accessibility": "Engine.item normal UI binding unproven; affected runs are legacy-consumable Engine-only calibration"
+      },
+      "externalWrites": [],
+      "evidence": "_local/reports/act2-gameplay-20261103/13-survival-606-cal5",
       "resultPresent": true
     },
     {
@@ -4747,9 +5756,25 @@
       "jumpInputs": 0,
       "dropInputs": 0,
       "verifiedLandings": 0,
+      "observedSupports": [
+        "v14-upper-hamlet"
+      ],
+      "sampledMovement": {
+        "scope": "Endpoint displacement lower bound, not continuous path length or meaningful jump quota",
+        "horizontal": 9593.136691011587,
+        "vertical": 4133.305371296844
+      },
       "interactionIds": [
         "14.house"
       ],
+      "legacyItemApi": {
+        "directCount": 0,
+        "inheritedCount": 0,
+        "unresolvedAncestor": null,
+        "actions": [],
+        "normalUiEquivalence": "NOT_ESTABLISHED_NATIVE_INPUTS_ONLY",
+        "accessibility": "Engine.item normal UI binding unproven; affected runs are legacy-consumable Engine-only calibration"
+      },
       "externalWrites": [],
       "evidence": "_local/reports/act2-gameplay-20261103/14-objective-101-cal1",
       "resultPresent": true
@@ -4953,11 +5978,1452 @@
       "jumpInputs": 0,
       "dropInputs": 0,
       "verifiedLandings": 0,
+      "observedSupports": [
+        "v14-upper-hamlet"
+      ],
+      "sampledMovement": {
+        "scope": "Endpoint displacement lower bound, not continuous path length or meaningful jump quota",
+        "horizontal": 8792.73720803087,
+        "vertical": 4185.105686156101
+      },
       "interactionIds": [
         "14.house"
       ],
+      "legacyItemApi": {
+        "directCount": 0,
+        "inheritedCount": 0,
+        "unresolvedAncestor": null,
+        "actions": [],
+        "normalUiEquivalence": "NOT_ESTABLISHED_NATIVE_INPUTS_ONLY",
+        "accessibility": "Engine.item normal UI binding unproven; affected runs are legacy-consumable Engine-only calibration"
+      },
       "externalWrites": [],
       "evidence": "_local/reports/act2-gameplay-20261103/14-survival-101-cal2",
+      "resultPresent": true
+    },
+    {
+      "trial": "15-continuation-303-crown-node",
+      "stage": 15,
+      "classification": "continuation-segment-not-independent",
+      "outcome": "won",
+      "displayRound": 41,
+      "combatCycles": 40,
+      "stopReason": null,
+      "entry": [
+        {
+          "cls": "archer",
+          "level": 12,
+          "equipmentIds": [
+            "itm_se_01"
+          ],
+          "loadout": [
+            "A01",
+            "A02",
+            "A09",
+            "A05"
+          ]
+        },
+        {
+          "cls": "mage",
+          "level": 12,
+          "equipmentIds": [
+            "itm_da_01"
+          ],
+          "loadout": [
+            "M01",
+            "M10",
+            "M03",
+            "M11"
+          ]
+        },
+        {
+          "cls": "knight",
+          "level": 12,
+          "equipmentIds": [
+            "itm_hw_01"
+          ],
+          "loadout": [
+            "S00",
+            "S03",
+            "S05",
+            "S09"
+          ]
+        },
+        {
+          "cls": "occultist",
+          "level": 12,
+          "equipmentIds": [
+            "itm_so_01"
+          ],
+          "loadout": [
+            "O01",
+            "O02",
+            "O08",
+            "O11"
+          ]
+        }
+      ],
+      "source": {
+        "actualEntry": [
+          {
+            "cls": "archer",
+            "level": 12,
+            "hp": 737,
+            "maxHp": 737,
+            "loadout": [
+              "A01",
+              "A02",
+              "A09",
+              "A05"
+            ],
+            "equipmentIds": [
+              "itm_se_01"
+            ],
+            "ranks": {
+              "A01": 1,
+              "A14": 1,
+              "A02": 7,
+              "A11": 1,
+              "A09": 6,
+              "A05": 6
+            }
+          },
+          {
+            "cls": "mage",
+            "level": 12,
+            "hp": 794,
+            "maxHp": 794,
+            "loadout": [
+              "M01",
+              "M10",
+              "M03",
+              "M11"
+            ],
+            "equipmentIds": [
+              "itm_da_01"
+            ],
+            "ranks": {
+              "M01": 1,
+              "M07": 1,
+              "M10": 7,
+              "M03": 7,
+              "M11": 6
+            }
+          },
+          {
+            "cls": "knight",
+            "level": 12,
+            "hp": 1364,
+            "maxHp": 1364,
+            "loadout": [
+              "S00",
+              "S03",
+              "S05",
+              "S09"
+            ],
+            "equipmentIds": [
+              "itm_hw_01"
+            ],
+            "ranks": {
+              "S00": 1,
+              "S03": 7,
+              "S05": 7,
+              "S09": 7
+            }
+          },
+          {
+            "cls": "occultist",
+            "level": 12,
+            "hp": 924,
+            "maxHp": 924,
+            "loadout": [
+              "O01",
+              "O02",
+              "O08",
+              "O11"
+            ],
+            "equipmentIds": [
+              "itm_so_01"
+            ],
+            "ranks": {
+              "O01": 1,
+              "O02": 7,
+              "O06": 1,
+              "O07": 1,
+              "O08": 6,
+              "O11": 6
+            }
+          }
+        ],
+        "continuationOf": {
+          "path": "_local/reports/act2-gameplay-20261103/15-continuation-303-upper-jump/terminal.json",
+          "sha256": "441cec51adaae33dc26a4dc5e30c1808b2453cfebe2023bdbfa276028297f6d6",
+          "round": 41,
+          "seed": 303,
+          "originalProvenance": {
+            "actualEntry": [
+              {
+                "cls": "archer",
+                "level": 12,
+                "hp": 737,
+                "maxHp": 737,
+                "loadout": [
+                  "A01",
+                  "A02",
+                  "A09",
+                  "A05"
+                ],
+                "equipmentIds": [
+                  "itm_se_01"
+                ],
+                "ranks": {
+                  "A01": 1,
+                  "A14": 1,
+                  "A02": 7,
+                  "A11": 1,
+                  "A09": 6,
+                  "A05": 6
+                }
+              },
+              {
+                "cls": "mage",
+                "level": 12,
+                "hp": 794,
+                "maxHp": 794,
+                "loadout": [
+                  "M01",
+                  "M10",
+                  "M03",
+                  "M11"
+                ],
+                "equipmentIds": [
+                  "itm_da_01"
+                ],
+                "ranks": {
+                  "M01": 1,
+                  "M07": 1,
+                  "M10": 7,
+                  "M03": 7,
+                  "M11": 6
+                }
+              },
+              {
+                "cls": "knight",
+                "level": 12,
+                "hp": 1364,
+                "maxHp": 1364,
+                "loadout": [
+                  "S00",
+                  "S03",
+                  "S05",
+                  "S09"
+                ],
+                "equipmentIds": [
+                  "itm_hw_01"
+                ],
+                "ranks": {
+                  "S00": 1,
+                  "S03": 7,
+                  "S05": 7,
+                  "S09": 7
+                }
+              },
+              {
+                "cls": "occultist",
+                "level": 12,
+                "hp": 924,
+                "maxHp": 924,
+                "loadout": [
+                  "O01",
+                  "O02",
+                  "O08",
+                  "O11"
+                ],
+                "equipmentIds": [
+                  "itm_so_01"
+                ],
+                "ranks": {
+                  "O01": 1,
+                  "O02": 7,
+                  "O06": 1,
+                  "O07": 1,
+                  "O08": 6,
+                  "O11": 6
+                }
+              }
+            ],
+            "continuationOf": {
+              "path": "_local/reports/act2-gameplay-20261103/15-survival-303-cal2/terminal.json",
+              "sha256": "f744b442aa068809240330e76a270c76f468fcecb319ed439a6dbd7797a4cecf",
+              "round": 26,
+              "seed": 303,
+              "originalProvenance": {
+                "actualEntry": [
+                  {
+                    "cls": "archer",
+                    "level": 12,
+                    "hp": 737,
+                    "maxHp": 737,
+                    "loadout": [
+                      "A01",
+                      "A02",
+                      "A09",
+                      "A05"
+                    ],
+                    "equipmentIds": [
+                      "itm_se_01"
+                    ],
+                    "ranks": {
+                      "A01": 1,
+                      "A14": 1,
+                      "A02": 7,
+                      "A11": 1,
+                      "A09": 6,
+                      "A05": 6
+                    }
+                  },
+                  {
+                    "cls": "mage",
+                    "level": 12,
+                    "hp": 794,
+                    "maxHp": 794,
+                    "loadout": [
+                      "M01",
+                      "M10",
+                      "M03",
+                      "M11"
+                    ],
+                    "equipmentIds": [
+                      "itm_da_01"
+                    ],
+                    "ranks": {
+                      "M01": 1,
+                      "M07": 1,
+                      "M10": 7,
+                      "M03": 7,
+                      "M11": 6
+                    }
+                  },
+                  {
+                    "cls": "knight",
+                    "level": 12,
+                    "hp": 1364,
+                    "maxHp": 1364,
+                    "loadout": [
+                      "S00",
+                      "S03",
+                      "S05",
+                      "S09"
+                    ],
+                    "equipmentIds": [
+                      "itm_hw_01"
+                    ],
+                    "ranks": {
+                      "S00": 1,
+                      "S03": 7,
+                      "S05": 7,
+                      "S09": 7
+                    }
+                  },
+                  {
+                    "cls": "occultist",
+                    "level": 12,
+                    "hp": 924,
+                    "maxHp": 924,
+                    "loadout": [
+                      "O01",
+                      "O02",
+                      "O08",
+                      "O11"
+                    ],
+                    "equipmentIds": [
+                      "itm_so_01"
+                    ],
+                    "ranks": {
+                      "O01": 1,
+                      "O02": 7,
+                      "O06": 1,
+                      "O07": 1,
+                      "O08": 6,
+                      "O11": 6
+                    }
+                  }
+                ],
+                "checkoutCommit": "c136f386ff626c6f43cd5881c3bbdb1a0959b097",
+                "runnerSha256": "dce44339c651c554ae02ff11fe5621ba4e98ed943c50efb9b44750160570bbb0",
+                "projectSha256": "c65a226aa1d6ae551f18fa9e7bbf0cbc1d330493d6e1d8efb6d1b6d1aaff58db",
+                "stageSha256": "ead36ee94041845704affb39c2005866c9dd2c0bd64ed70538f72b39f372a5d4",
+                "geometrySha256": "b64a4d1b3b6c4907ce483a4c0c685699fc07a0eca4fd6d4fdd99a7d3e132edb9",
+                "entryProfileSha256": "164ac2e16af226d1d004b1942dc156ff0c88b89103d5fbb4dc936c6050f1edbd",
+                "entryLevel": 14.4,
+                "policy": "survival",
+                "seed": 303,
+                "scope": "Synthetic legacy-budget rewardXpAt(plan.entryLevel), legal training, production-auto-equipped basic recruitment weapons. Prior clearance flags only unlock requested chapter; no claim earlier chapters were played. Production reviewed-v4 App/Engine with DOM/storage/render/clock doubles; not browser input."
+              }
+            },
+            "entrySnapshotIsContinuation": true,
+            "checkoutCommit": "6d01d7f19715558a43a46b41e41bdedc057e8967",
+            "runnerSha256": "a6bf2582ebf7953c6bef14ee9a72be7cdac6f935b65d0e12c31d3ed83a8a0a6d",
+            "projectSha256": "c65a226aa1d6ae551f18fa9e7bbf0cbc1d330493d6e1d8efb6d1b6d1aaff58db",
+            "stageSha256": "ead36ee94041845704affb39c2005866c9dd2c0bd64ed70538f72b39f372a5d4",
+            "geometrySha256": "b64a4d1b3b6c4907ce483a4c0c685699fc07a0eca4fd6d4fdd99a7d3e132edb9",
+            "entryProfileSha256": "7a43896ca7c6f97f7220319ceb459bf5db3249934ab36d81bf090b88792861d6",
+            "entryLevel": 14.4,
+            "policy": "survival",
+            "seed": 303,
+            "scope": "Synthetic legacy-budget rewardXpAt(plan.entryLevel), legal training, production-auto-equipped basic recruitment weapons. Prior clearance flags only unlock requested chapter; no claim earlier chapters were played. Production reviewed-v4 App/Engine with DOM/storage/render/clock doubles; not browser input."
+          }
+        },
+        "entrySnapshotIsContinuation": true,
+        "checkoutCommit": "6d01d7f19715558a43a46b41e41bdedc057e8967",
+        "runnerSha256": "a58ed8fb910ea2971afd8000dcd4f506683c6be3da5e780205c69047feac2e8a",
+        "projectSha256": "c65a226aa1d6ae551f18fa9e7bbf0cbc1d330493d6e1d8efb6d1b6d1aaff58db",
+        "stageSha256": "ead36ee94041845704affb39c2005866c9dd2c0bd64ed70538f72b39f372a5d4",
+        "geometrySha256": "b64a4d1b3b6c4907ce483a4c0c685699fc07a0eca4fd6d4fdd99a7d3e132edb9",
+        "entryProfileSha256": "23bb15efd978a1af48b5600af08af881ffd55a5452869faaa671463ab84f5e89",
+        "entryLevel": 14.4,
+        "policy": "survival",
+        "seed": 303,
+        "scope": "Synthetic legacy-budget rewardXpAt(plan.entryLevel), legal training, production-auto-equipped basic recruitment weapons. Prior clearance flags only unlock requested chapter; no claim earlier chapters were played. Production reviewed-v4 App/Engine with DOM/storage/render/clock doubles; not browser input."
+      },
+      "initialSha256": "f2010f67ac139b7e20e5a6bb57df527d5041fbde7a704b725c31e12d04d68ab7",
+      "initialEnemies": 24,
+      "archetypes": {
+        "waterwheel": 5,
+        "picks": 4,
+        "bat": 9,
+        "minecart": 4,
+        "ghost": 2
+      },
+      "elites": 7,
+      "taggedMinibosses": 0,
+      "taggedBosses": 0,
+      "completedGoals": {
+        "15.drift": true,
+        "groove": true,
+        "15.knocks": true,
+        "route-exit": true
+      },
+      "fallen": [],
+      "kills": 24,
+      "damageTaken": 0,
+      "damageDealt": 0,
+      "skillUse": {},
+      "inputs": 3,
+      "moveSegments": 1,
+      "jumpInputs": 1,
+      "dropInputs": 0,
+      "verifiedLandings": 1,
+      "observedSupports": [
+        "fc15-east-arch"
+      ],
+      "sampledMovement": {
+        "scope": "Endpoint displacement lower bound, not continuous path length or meaningful jump quota",
+        "horizontal": 101.54709744158845,
+        "vertical": 93.4707877859405
+      },
+      "interactionIds": [],
+      "legacyItemApi": {
+        "directCount": 0,
+        "inheritedCount": 3,
+        "unresolvedAncestor": null,
+        "actions": [],
+        "normalUiEquivalence": "FAIL_LEGACY_ITEM_API",
+        "accessibility": "Engine.item normal UI binding unproven; affected runs are legacy-consumable Engine-only calibration"
+      },
+      "externalWrites": [],
+      "evidence": "_local/reports/act2-gameplay-20261103/15-continuation-303-crown-node",
+      "resultPresent": true
+    },
+    {
+      "trial": "15-continuation-303-escape",
+      "stage": 15,
+      "classification": "continuation-segment-not-independent",
+      "outcome": "aim",
+      "displayRound": 41,
+      "combatCycles": 40,
+      "stopReason": "diagnostic round bound; unfinished, not game loss",
+      "entry": [
+        {
+          "cls": "archer",
+          "level": 12,
+          "equipmentIds": [
+            "itm_se_01"
+          ],
+          "loadout": [
+            "A01",
+            "A02",
+            "A09",
+            "A05"
+          ]
+        },
+        {
+          "cls": "mage",
+          "level": 12,
+          "equipmentIds": [
+            "itm_da_01"
+          ],
+          "loadout": [
+            "M01",
+            "M10",
+            "M03",
+            "M11"
+          ]
+        },
+        {
+          "cls": "knight",
+          "level": 12,
+          "equipmentIds": [
+            "itm_hw_01"
+          ],
+          "loadout": [
+            "S00",
+            "S03",
+            "S05",
+            "S09"
+          ]
+        },
+        {
+          "cls": "occultist",
+          "level": 12,
+          "equipmentIds": [
+            "itm_so_01"
+          ],
+          "loadout": [
+            "O01",
+            "O02",
+            "O08",
+            "O11"
+          ]
+        }
+      ],
+      "source": {
+        "actualEntry": [
+          {
+            "cls": "archer",
+            "level": 12,
+            "hp": 737,
+            "maxHp": 737,
+            "loadout": [
+              "A01",
+              "A02",
+              "A09",
+              "A05"
+            ],
+            "equipmentIds": [
+              "itm_se_01"
+            ],
+            "ranks": {
+              "A01": 1,
+              "A14": 1,
+              "A02": 7,
+              "A11": 1,
+              "A09": 6,
+              "A05": 6
+            }
+          },
+          {
+            "cls": "mage",
+            "level": 12,
+            "hp": 794,
+            "maxHp": 794,
+            "loadout": [
+              "M01",
+              "M10",
+              "M03",
+              "M11"
+            ],
+            "equipmentIds": [
+              "itm_da_01"
+            ],
+            "ranks": {
+              "M01": 1,
+              "M07": 1,
+              "M10": 7,
+              "M03": 7,
+              "M11": 6
+            }
+          },
+          {
+            "cls": "knight",
+            "level": 12,
+            "hp": 1364,
+            "maxHp": 1364,
+            "loadout": [
+              "S00",
+              "S03",
+              "S05",
+              "S09"
+            ],
+            "equipmentIds": [
+              "itm_hw_01"
+            ],
+            "ranks": {
+              "S00": 1,
+              "S03": 7,
+              "S05": 7,
+              "S09": 7
+            }
+          },
+          {
+            "cls": "occultist",
+            "level": 12,
+            "hp": 924,
+            "maxHp": 924,
+            "loadout": [
+              "O01",
+              "O02",
+              "O08",
+              "O11"
+            ],
+            "equipmentIds": [
+              "itm_so_01"
+            ],
+            "ranks": {
+              "O01": 1,
+              "O02": 7,
+              "O06": 1,
+              "O07": 1,
+              "O08": 6,
+              "O11": 6
+            }
+          }
+        ],
+        "continuationOf": {
+          "path": "_local/reports/act2-gameplay-20261103/15-survival-303-cal2/terminal.json",
+          "sha256": "f744b442aa068809240330e76a270c76f468fcecb319ed439a6dbd7797a4cecf",
+          "round": 26,
+          "seed": 303,
+          "originalProvenance": {
+            "actualEntry": [
+              {
+                "cls": "archer",
+                "level": 12,
+                "hp": 737,
+                "maxHp": 737,
+                "loadout": [
+                  "A01",
+                  "A02",
+                  "A09",
+                  "A05"
+                ],
+                "equipmentIds": [
+                  "itm_se_01"
+                ],
+                "ranks": {
+                  "A01": 1,
+                  "A14": 1,
+                  "A02": 7,
+                  "A11": 1,
+                  "A09": 6,
+                  "A05": 6
+                }
+              },
+              {
+                "cls": "mage",
+                "level": 12,
+                "hp": 794,
+                "maxHp": 794,
+                "loadout": [
+                  "M01",
+                  "M10",
+                  "M03",
+                  "M11"
+                ],
+                "equipmentIds": [
+                  "itm_da_01"
+                ],
+                "ranks": {
+                  "M01": 1,
+                  "M07": 1,
+                  "M10": 7,
+                  "M03": 7,
+                  "M11": 6
+                }
+              },
+              {
+                "cls": "knight",
+                "level": 12,
+                "hp": 1364,
+                "maxHp": 1364,
+                "loadout": [
+                  "S00",
+                  "S03",
+                  "S05",
+                  "S09"
+                ],
+                "equipmentIds": [
+                  "itm_hw_01"
+                ],
+                "ranks": {
+                  "S00": 1,
+                  "S03": 7,
+                  "S05": 7,
+                  "S09": 7
+                }
+              },
+              {
+                "cls": "occultist",
+                "level": 12,
+                "hp": 924,
+                "maxHp": 924,
+                "loadout": [
+                  "O01",
+                  "O02",
+                  "O08",
+                  "O11"
+                ],
+                "equipmentIds": [
+                  "itm_so_01"
+                ],
+                "ranks": {
+                  "O01": 1,
+                  "O02": 7,
+                  "O06": 1,
+                  "O07": 1,
+                  "O08": 6,
+                  "O11": 6
+                }
+              }
+            ],
+            "checkoutCommit": "c136f386ff626c6f43cd5881c3bbdb1a0959b097",
+            "runnerSha256": "dce44339c651c554ae02ff11fe5621ba4e98ed943c50efb9b44750160570bbb0",
+            "projectSha256": "c65a226aa1d6ae551f18fa9e7bbf0cbc1d330493d6e1d8efb6d1b6d1aaff58db",
+            "stageSha256": "ead36ee94041845704affb39c2005866c9dd2c0bd64ed70538f72b39f372a5d4",
+            "geometrySha256": "b64a4d1b3b6c4907ce483a4c0c685699fc07a0eca4fd6d4fdd99a7d3e132edb9",
+            "entryProfileSha256": "164ac2e16af226d1d004b1942dc156ff0c88b89103d5fbb4dc936c6050f1edbd",
+            "entryLevel": 14.4,
+            "policy": "survival",
+            "seed": 303,
+            "scope": "Synthetic legacy-budget rewardXpAt(plan.entryLevel), legal training, production-auto-equipped basic recruitment weapons. Prior clearance flags only unlock requested chapter; no claim earlier chapters were played. Production reviewed-v4 App/Engine with DOM/storage/render/clock doubles; not browser input."
+          }
+        },
+        "entrySnapshotIsContinuation": true,
+        "checkoutCommit": "c89a5706f531fd092755e9bc564da9e7e56addd8",
+        "runnerSha256": "f6d1bc4f584a343e69f1a33a549114b498013421d3f82ef7157d060db3fa8686",
+        "projectSha256": "c65a226aa1d6ae551f18fa9e7bbf0cbc1d330493d6e1d8efb6d1b6d1aaff58db",
+        "stageSha256": "ead36ee94041845704affb39c2005866c9dd2c0bd64ed70538f72b39f372a5d4",
+        "geometrySha256": "b64a4d1b3b6c4907ce483a4c0c685699fc07a0eca4fd6d4fdd99a7d3e132edb9",
+        "entryProfileSha256": "7a43896ca7c6f97f7220319ceb459bf5db3249934ab36d81bf090b88792861d6",
+        "entryLevel": 14.4,
+        "policy": "survival",
+        "seed": 303,
+        "scope": "Synthetic legacy-budget rewardXpAt(plan.entryLevel), legal training, production-auto-equipped basic recruitment weapons. Prior clearance flags only unlock requested chapter; no claim earlier chapters were played. Production reviewed-v4 App/Engine with DOM/storage/render/clock doubles; not browser input."
+      },
+      "initialSha256": "4a730c98b46e4c020b0fb51c397b4a26dde4b21c6b6ad299fedcf06c4305ea71",
+      "initialEnemies": 24,
+      "archetypes": {
+        "waterwheel": 5,
+        "picks": 4,
+        "bat": 9,
+        "minecart": 4,
+        "ghost": 2
+      },
+      "elites": 7,
+      "taggedMinibosses": 0,
+      "taggedBosses": 0,
+      "completedGoals": {
+        "15.drift": true,
+        "groove": true,
+        "15.knocks": true
+      },
+      "fallen": [],
+      "kills": 24,
+      "damageTaken": 389,
+      "damageDealt": 2345,
+      "skillUse": {
+        "A01": 3,
+        "M10": 1,
+        "O02": 11,
+        "M11": 1,
+        "M01": 1
+      },
+      "inputs": 72,
+      "moveSegments": 12,
+      "jumpInputs": 0,
+      "dropInputs": 0,
+      "verifiedLandings": 0,
+      "observedSupports": [
+        "act2-floor"
+      ],
+      "sampledMovement": {
+        "scope": "Endpoint displacement lower bound, not continuous path length or meaningful jump quota",
+        "horizontal": 2548.294996864638,
+        "vertical": 515.5280075037772
+      },
+      "interactionIds": [],
+      "legacyItemApi": {
+        "directCount": 0,
+        "inheritedCount": 3,
+        "unresolvedAncestor": null,
+        "actions": [],
+        "normalUiEquivalence": "FAIL_LEGACY_ITEM_API",
+        "accessibility": "Engine.item normal UI binding unproven; affected runs are legacy-consumable Engine-only calibration"
+      },
+      "externalWrites": [],
+      "evidence": "_local/reports/act2-gameplay-20261103/15-continuation-303-escape",
+      "resultPresent": true
+    },
+    {
+      "trial": "15-continuation-303-upper",
+      "stage": 15,
+      "classification": "continuation-segment-not-independent",
+      "outcome": "aim",
+      "displayRound": 41,
+      "combatCycles": 40,
+      "stopReason": "diagnostic round bound; unfinished, not game loss",
+      "entry": [
+        {
+          "cls": "archer",
+          "level": 12,
+          "equipmentIds": [
+            "itm_se_01"
+          ],
+          "loadout": [
+            "A01",
+            "A02",
+            "A09",
+            "A05"
+          ]
+        },
+        {
+          "cls": "mage",
+          "level": 12,
+          "equipmentIds": [
+            "itm_da_01"
+          ],
+          "loadout": [
+            "M01",
+            "M10",
+            "M03",
+            "M11"
+          ]
+        },
+        {
+          "cls": "knight",
+          "level": 12,
+          "equipmentIds": [
+            "itm_hw_01"
+          ],
+          "loadout": [
+            "S00",
+            "S03",
+            "S05",
+            "S09"
+          ]
+        },
+        {
+          "cls": "occultist",
+          "level": 12,
+          "equipmentIds": [
+            "itm_so_01"
+          ],
+          "loadout": [
+            "O01",
+            "O02",
+            "O08",
+            "O11"
+          ]
+        }
+      ],
+      "source": {
+        "actualEntry": [
+          {
+            "cls": "archer",
+            "level": 12,
+            "hp": 737,
+            "maxHp": 737,
+            "loadout": [
+              "A01",
+              "A02",
+              "A09",
+              "A05"
+            ],
+            "equipmentIds": [
+              "itm_se_01"
+            ],
+            "ranks": {
+              "A01": 1,
+              "A14": 1,
+              "A02": 7,
+              "A11": 1,
+              "A09": 6,
+              "A05": 6
+            }
+          },
+          {
+            "cls": "mage",
+            "level": 12,
+            "hp": 794,
+            "maxHp": 794,
+            "loadout": [
+              "M01",
+              "M10",
+              "M03",
+              "M11"
+            ],
+            "equipmentIds": [
+              "itm_da_01"
+            ],
+            "ranks": {
+              "M01": 1,
+              "M07": 1,
+              "M10": 7,
+              "M03": 7,
+              "M11": 6
+            }
+          },
+          {
+            "cls": "knight",
+            "level": 12,
+            "hp": 1364,
+            "maxHp": 1364,
+            "loadout": [
+              "S00",
+              "S03",
+              "S05",
+              "S09"
+            ],
+            "equipmentIds": [
+              "itm_hw_01"
+            ],
+            "ranks": {
+              "S00": 1,
+              "S03": 7,
+              "S05": 7,
+              "S09": 7
+            }
+          },
+          {
+            "cls": "occultist",
+            "level": 12,
+            "hp": 924,
+            "maxHp": 924,
+            "loadout": [
+              "O01",
+              "O02",
+              "O08",
+              "O11"
+            ],
+            "equipmentIds": [
+              "itm_so_01"
+            ],
+            "ranks": {
+              "O01": 1,
+              "O02": 7,
+              "O06": 1,
+              "O07": 1,
+              "O08": 6,
+              "O11": 6
+            }
+          }
+        ],
+        "continuationOf": {
+          "path": "_local/reports/act2-gameplay-20261103/15-survival-303-cal2/terminal.json",
+          "sha256": "f744b442aa068809240330e76a270c76f468fcecb319ed439a6dbd7797a4cecf",
+          "round": 26,
+          "seed": 303,
+          "originalProvenance": {
+            "actualEntry": [
+              {
+                "cls": "archer",
+                "level": 12,
+                "hp": 737,
+                "maxHp": 737,
+                "loadout": [
+                  "A01",
+                  "A02",
+                  "A09",
+                  "A05"
+                ],
+                "equipmentIds": [
+                  "itm_se_01"
+                ],
+                "ranks": {
+                  "A01": 1,
+                  "A14": 1,
+                  "A02": 7,
+                  "A11": 1,
+                  "A09": 6,
+                  "A05": 6
+                }
+              },
+              {
+                "cls": "mage",
+                "level": 12,
+                "hp": 794,
+                "maxHp": 794,
+                "loadout": [
+                  "M01",
+                  "M10",
+                  "M03",
+                  "M11"
+                ],
+                "equipmentIds": [
+                  "itm_da_01"
+                ],
+                "ranks": {
+                  "M01": 1,
+                  "M07": 1,
+                  "M10": 7,
+                  "M03": 7,
+                  "M11": 6
+                }
+              },
+              {
+                "cls": "knight",
+                "level": 12,
+                "hp": 1364,
+                "maxHp": 1364,
+                "loadout": [
+                  "S00",
+                  "S03",
+                  "S05",
+                  "S09"
+                ],
+                "equipmentIds": [
+                  "itm_hw_01"
+                ],
+                "ranks": {
+                  "S00": 1,
+                  "S03": 7,
+                  "S05": 7,
+                  "S09": 7
+                }
+              },
+              {
+                "cls": "occultist",
+                "level": 12,
+                "hp": 924,
+                "maxHp": 924,
+                "loadout": [
+                  "O01",
+                  "O02",
+                  "O08",
+                  "O11"
+                ],
+                "equipmentIds": [
+                  "itm_so_01"
+                ],
+                "ranks": {
+                  "O01": 1,
+                  "O02": 7,
+                  "O06": 1,
+                  "O07": 1,
+                  "O08": 6,
+                  "O11": 6
+                }
+              }
+            ],
+            "checkoutCommit": "c136f386ff626c6f43cd5881c3bbdb1a0959b097",
+            "runnerSha256": "dce44339c651c554ae02ff11fe5621ba4e98ed943c50efb9b44750160570bbb0",
+            "projectSha256": "c65a226aa1d6ae551f18fa9e7bbf0cbc1d330493d6e1d8efb6d1b6d1aaff58db",
+            "stageSha256": "ead36ee94041845704affb39c2005866c9dd2c0bd64ed70538f72b39f372a5d4",
+            "geometrySha256": "b64a4d1b3b6c4907ce483a4c0c685699fc07a0eca4fd6d4fdd99a7d3e132edb9",
+            "entryProfileSha256": "164ac2e16af226d1d004b1942dc156ff0c88b89103d5fbb4dc936c6050f1edbd",
+            "entryLevel": 14.4,
+            "policy": "survival",
+            "seed": 303,
+            "scope": "Synthetic legacy-budget rewardXpAt(plan.entryLevel), legal training, production-auto-equipped basic recruitment weapons. Prior clearance flags only unlock requested chapter; no claim earlier chapters were played. Production reviewed-v4 App/Engine with DOM/storage/render/clock doubles; not browser input."
+          }
+        },
+        "entrySnapshotIsContinuation": true,
+        "checkoutCommit": "c89a5706f531fd092755e9bc564da9e7e56addd8",
+        "runnerSha256": "cdf677d84221934049424032db8b93274819f2595bae730baac15de0e2223ca3",
+        "projectSha256": "c65a226aa1d6ae551f18fa9e7bbf0cbc1d330493d6e1d8efb6d1b6d1aaff58db",
+        "stageSha256": "ead36ee94041845704affb39c2005866c9dd2c0bd64ed70538f72b39f372a5d4",
+        "geometrySha256": "b64a4d1b3b6c4907ce483a4c0c685699fc07a0eca4fd6d4fdd99a7d3e132edb9",
+        "entryProfileSha256": "7a43896ca7c6f97f7220319ceb459bf5db3249934ab36d81bf090b88792861d6",
+        "entryLevel": 14.4,
+        "policy": "survival",
+        "seed": 303,
+        "scope": "Synthetic legacy-budget rewardXpAt(plan.entryLevel), legal training, production-auto-equipped basic recruitment weapons. Prior clearance flags only unlock requested chapter; no claim earlier chapters were played. Production reviewed-v4 App/Engine with DOM/storage/render/clock doubles; not browser input."
+      },
+      "initialSha256": "b747502aea0277a47169126b5562f0d9d2ac4be60ee8988362d092e764e42c25",
+      "initialEnemies": 24,
+      "archetypes": {
+        "waterwheel": 5,
+        "picks": 4,
+        "bat": 9,
+        "minecart": 4,
+        "ghost": 2
+      },
+      "elites": 7,
+      "taggedMinibosses": 0,
+      "taggedBosses": 0,
+      "completedGoals": {
+        "15.drift": true,
+        "groove": true,
+        "15.knocks": true
+      },
+      "fallen": [],
+      "kills": 24,
+      "damageTaken": 363.5,
+      "damageDealt": 2345,
+      "skillUse": {
+        "A01": 4,
+        "M10": 1,
+        "S03": 1,
+        "O02": 4,
+        "M03": 1,
+        "M11": 2
+      },
+      "inputs": 100,
+      "moveSegments": 10,
+      "jumpInputs": 22,
+      "dropInputs": 0,
+      "verifiedLandings": 4,
+      "observedSupports": [
+        "fc15-water-toe",
+        "fc15-east-arch"
+      ],
+      "sampledMovement": {
+        "scope": "Endpoint displacement lower bound, not continuous path length or meaningful jump quota",
+        "horizontal": 8217.545729723348,
+        "vertical": 4100.135650047678
+      },
+      "interactionIds": [],
+      "legacyItemApi": {
+        "directCount": 0,
+        "inheritedCount": 3,
+        "unresolvedAncestor": null,
+        "actions": [],
+        "normalUiEquivalence": "FAIL_LEGACY_ITEM_API",
+        "accessibility": "Engine.item normal UI binding unproven; affected runs are legacy-consumable Engine-only calibration"
+      },
+      "externalWrites": [],
+      "evidence": "_local/reports/act2-gameplay-20261103/15-continuation-303-upper",
+      "resultPresent": true
+    },
+    {
+      "trial": "15-continuation-303-upper-jump",
+      "stage": 15,
+      "classification": "continuation-segment-not-independent",
+      "outcome": "aim",
+      "displayRound": 41,
+      "combatCycles": 40,
+      "stopReason": "diagnostic round bound; unfinished, not game loss",
+      "entry": [
+        {
+          "cls": "archer",
+          "level": 12,
+          "equipmentIds": [
+            "itm_se_01"
+          ],
+          "loadout": [
+            "A01",
+            "A02",
+            "A09",
+            "A05"
+          ]
+        },
+        {
+          "cls": "mage",
+          "level": 12,
+          "equipmentIds": [
+            "itm_da_01"
+          ],
+          "loadout": [
+            "M01",
+            "M10",
+            "M03",
+            "M11"
+          ]
+        },
+        {
+          "cls": "knight",
+          "level": 12,
+          "equipmentIds": [
+            "itm_hw_01"
+          ],
+          "loadout": [
+            "S00",
+            "S03",
+            "S05",
+            "S09"
+          ]
+        },
+        {
+          "cls": "occultist",
+          "level": 12,
+          "equipmentIds": [
+            "itm_so_01"
+          ],
+          "loadout": [
+            "O01",
+            "O02",
+            "O08",
+            "O11"
+          ]
+        }
+      ],
+      "source": {
+        "actualEntry": [
+          {
+            "cls": "archer",
+            "level": 12,
+            "hp": 737,
+            "maxHp": 737,
+            "loadout": [
+              "A01",
+              "A02",
+              "A09",
+              "A05"
+            ],
+            "equipmentIds": [
+              "itm_se_01"
+            ],
+            "ranks": {
+              "A01": 1,
+              "A14": 1,
+              "A02": 7,
+              "A11": 1,
+              "A09": 6,
+              "A05": 6
+            }
+          },
+          {
+            "cls": "mage",
+            "level": 12,
+            "hp": 794,
+            "maxHp": 794,
+            "loadout": [
+              "M01",
+              "M10",
+              "M03",
+              "M11"
+            ],
+            "equipmentIds": [
+              "itm_da_01"
+            ],
+            "ranks": {
+              "M01": 1,
+              "M07": 1,
+              "M10": 7,
+              "M03": 7,
+              "M11": 6
+            }
+          },
+          {
+            "cls": "knight",
+            "level": 12,
+            "hp": 1364,
+            "maxHp": 1364,
+            "loadout": [
+              "S00",
+              "S03",
+              "S05",
+              "S09"
+            ],
+            "equipmentIds": [
+              "itm_hw_01"
+            ],
+            "ranks": {
+              "S00": 1,
+              "S03": 7,
+              "S05": 7,
+              "S09": 7
+            }
+          },
+          {
+            "cls": "occultist",
+            "level": 12,
+            "hp": 924,
+            "maxHp": 924,
+            "loadout": [
+              "O01",
+              "O02",
+              "O08",
+              "O11"
+            ],
+            "equipmentIds": [
+              "itm_so_01"
+            ],
+            "ranks": {
+              "O01": 1,
+              "O02": 7,
+              "O06": 1,
+              "O07": 1,
+              "O08": 6,
+              "O11": 6
+            }
+          }
+        ],
+        "continuationOf": {
+          "path": "_local/reports/act2-gameplay-20261103/15-survival-303-cal2/terminal.json",
+          "sha256": "f744b442aa068809240330e76a270c76f468fcecb319ed439a6dbd7797a4cecf",
+          "round": 26,
+          "seed": 303,
+          "originalProvenance": {
+            "actualEntry": [
+              {
+                "cls": "archer",
+                "level": 12,
+                "hp": 737,
+                "maxHp": 737,
+                "loadout": [
+                  "A01",
+                  "A02",
+                  "A09",
+                  "A05"
+                ],
+                "equipmentIds": [
+                  "itm_se_01"
+                ],
+                "ranks": {
+                  "A01": 1,
+                  "A14": 1,
+                  "A02": 7,
+                  "A11": 1,
+                  "A09": 6,
+                  "A05": 6
+                }
+              },
+              {
+                "cls": "mage",
+                "level": 12,
+                "hp": 794,
+                "maxHp": 794,
+                "loadout": [
+                  "M01",
+                  "M10",
+                  "M03",
+                  "M11"
+                ],
+                "equipmentIds": [
+                  "itm_da_01"
+                ],
+                "ranks": {
+                  "M01": 1,
+                  "M07": 1,
+                  "M10": 7,
+                  "M03": 7,
+                  "M11": 6
+                }
+              },
+              {
+                "cls": "knight",
+                "level": 12,
+                "hp": 1364,
+                "maxHp": 1364,
+                "loadout": [
+                  "S00",
+                  "S03",
+                  "S05",
+                  "S09"
+                ],
+                "equipmentIds": [
+                  "itm_hw_01"
+                ],
+                "ranks": {
+                  "S00": 1,
+                  "S03": 7,
+                  "S05": 7,
+                  "S09": 7
+                }
+              },
+              {
+                "cls": "occultist",
+                "level": 12,
+                "hp": 924,
+                "maxHp": 924,
+                "loadout": [
+                  "O01",
+                  "O02",
+                  "O08",
+                  "O11"
+                ],
+                "equipmentIds": [
+                  "itm_so_01"
+                ],
+                "ranks": {
+                  "O01": 1,
+                  "O02": 7,
+                  "O06": 1,
+                  "O07": 1,
+                  "O08": 6,
+                  "O11": 6
+                }
+              }
+            ],
+            "checkoutCommit": "c136f386ff626c6f43cd5881c3bbdb1a0959b097",
+            "runnerSha256": "dce44339c651c554ae02ff11fe5621ba4e98ed943c50efb9b44750160570bbb0",
+            "projectSha256": "c65a226aa1d6ae551f18fa9e7bbf0cbc1d330493d6e1d8efb6d1b6d1aaff58db",
+            "stageSha256": "ead36ee94041845704affb39c2005866c9dd2c0bd64ed70538f72b39f372a5d4",
+            "geometrySha256": "b64a4d1b3b6c4907ce483a4c0c685699fc07a0eca4fd6d4fdd99a7d3e132edb9",
+            "entryProfileSha256": "164ac2e16af226d1d004b1942dc156ff0c88b89103d5fbb4dc936c6050f1edbd",
+            "entryLevel": 14.4,
+            "policy": "survival",
+            "seed": 303,
+            "scope": "Synthetic legacy-budget rewardXpAt(plan.entryLevel), legal training, production-auto-equipped basic recruitment weapons. Prior clearance flags only unlock requested chapter; no claim earlier chapters were played. Production reviewed-v4 App/Engine with DOM/storage/render/clock doubles; not browser input."
+          }
+        },
+        "entrySnapshotIsContinuation": true,
+        "checkoutCommit": "6d01d7f19715558a43a46b41e41bdedc057e8967",
+        "runnerSha256": "a6bf2582ebf7953c6bef14ee9a72be7cdac6f935b65d0e12c31d3ed83a8a0a6d",
+        "projectSha256": "c65a226aa1d6ae551f18fa9e7bbf0cbc1d330493d6e1d8efb6d1b6d1aaff58db",
+        "stageSha256": "ead36ee94041845704affb39c2005866c9dd2c0bd64ed70538f72b39f372a5d4",
+        "geometrySha256": "b64a4d1b3b6c4907ce483a4c0c685699fc07a0eca4fd6d4fdd99a7d3e132edb9",
+        "entryProfileSha256": "7a43896ca7c6f97f7220319ceb459bf5db3249934ab36d81bf090b88792861d6",
+        "entryLevel": 14.4,
+        "policy": "survival",
+        "seed": 303,
+        "scope": "Synthetic legacy-budget rewardXpAt(plan.entryLevel), legal training, production-auto-equipped basic recruitment weapons. Prior clearance flags only unlock requested chapter; no claim earlier chapters were played. Production reviewed-v4 App/Engine with DOM/storage/render/clock doubles; not browser input."
+      },
+      "initialSha256": "ddecba3b0f6087cde215ba8097402eb62f87a6876464971c219cfaee9d01c0f8",
+      "initialEnemies": 24,
+      "archetypes": {
+        "waterwheel": 5,
+        "picks": 4,
+        "bat": 9,
+        "minecart": 4,
+        "ghost": 2
+      },
+      "elites": 7,
+      "taggedMinibosses": 0,
+      "taggedBosses": 0,
+      "completedGoals": {
+        "15.drift": true,
+        "groove": true,
+        "15.knocks": true
+      },
+      "fallen": [],
+      "kills": 24,
+      "damageTaken": 363.5,
+      "damageDealt": 2345,
+      "skillUse": {
+        "A01": 4,
+        "M10": 1,
+        "S03": 1,
+        "O02": 4,
+        "M03": 1,
+        "M11": 2
+      },
+      "inputs": 112,
+      "moveSegments": 16,
+      "jumpInputs": 24,
+      "dropInputs": 0,
+      "verifiedLandings": 4,
+      "observedSupports": [
+        "fc15-water-toe",
+        "fc15-east-arch"
+      ],
+      "sampledMovement": {
+        "scope": "Endpoint displacement lower bound, not continuous path length or meaningful jump quota",
+        "horizontal": 8362.371114865215,
+        "vertical": 4302.17486673293
+      },
+      "interactionIds": [],
+      "legacyItemApi": {
+        "directCount": 0,
+        "inheritedCount": 3,
+        "unresolvedAncestor": null,
+        "actions": [],
+        "normalUiEquivalence": "FAIL_LEGACY_ITEM_API",
+        "accessibility": "Engine.item normal UI binding unproven; affected runs are legacy-consumable Engine-only calibration"
+      },
+      "externalWrites": [],
+      "evidence": "_local/reports/act2-gameplay-20261103/15-continuation-303-upper-jump",
       "resultPresent": true
     },
     {
@@ -5146,7 +7612,23 @@
       "jumpInputs": 0,
       "dropInputs": 0,
       "verifiedLandings": 0,
+      "observedSupports": [
+        "act2-floor"
+      ],
+      "sampledMovement": {
+        "scope": "Endpoint displacement lower bound, not continuous path length or meaningful jump quota",
+        "horizontal": 12725.290370886069,
+        "vertical": 2272.336669602113
+      },
       "interactionIds": [],
+      "legacyItemApi": {
+        "directCount": 0,
+        "inheritedCount": 0,
+        "unresolvedAncestor": null,
+        "actions": [],
+        "normalUiEquivalence": "NOT_ESTABLISHED_NATIVE_INPUTS_ONLY",
+        "accessibility": "Engine.item normal UI binding unproven; affected runs are legacy-consumable Engine-only calibration"
+      },
       "externalWrites": null,
       "evidence": "_local/reports/act2-gameplay-20261103/15-height-101-cal1",
       "resultPresent": false
@@ -5247,7 +7729,21 @@
       "jumpInputs": 0,
       "dropInputs": 0,
       "verifiedLandings": 0,
+      "observedSupports": [],
+      "sampledMovement": {
+        "scope": "Endpoint displacement lower bound, not continuous path length or meaningful jump quota",
+        "horizontal": 0,
+        "vertical": 0
+      },
       "interactionIds": [],
+      "legacyItemApi": {
+        "directCount": 0,
+        "inheritedCount": 0,
+        "unresolvedAncestor": null,
+        "actions": [],
+        "normalUiEquivalence": "NOT_ESTABLISHED_NATIVE_INPUTS_ONLY",
+        "accessibility": "Engine.item normal UI binding unproven; affected runs are legacy-consumable Engine-only calibration"
+      },
       "externalWrites": null,
       "evidence": "_local/reports/act2-gameplay-20261103/15-objective-101",
       "resultPresent": false
@@ -5348,7 +7844,21 @@
       "jumpInputs": 0,
       "dropInputs": 0,
       "verifiedLandings": 0,
+      "observedSupports": [],
+      "sampledMovement": {
+        "scope": "Endpoint displacement lower bound, not continuous path length or meaningful jump quota",
+        "horizontal": 0,
+        "vertical": 0
+      },
       "interactionIds": [],
+      "legacyItemApi": {
+        "directCount": 0,
+        "inheritedCount": 0,
+        "unresolvedAncestor": null,
+        "actions": [],
+        "normalUiEquivalence": "NOT_ESTABLISHED_NATIVE_INPUTS_ONLY",
+        "accessibility": "Engine.item normal UI binding unproven; affected runs are legacy-consumable Engine-only calibration"
+      },
       "externalWrites": null,
       "evidence": "_local/reports/act2-gameplay-20261103/15-objective-101-cal2",
       "resultPresent": false
@@ -5463,9 +7973,26 @@
       "jumpInputs": 7,
       "dropInputs": 0,
       "verifiedLandings": 0,
+      "observedSupports": [
+        "act2-floor",
+        "fc15-water-toe"
+      ],
+      "sampledMovement": {
+        "scope": "Endpoint displacement lower bound, not continuous path length or meaningful jump quota",
+        "horizontal": 23478.384518197843,
+        "vertical": 4869.749848821712
+      },
       "interactionIds": [
         "groove"
       ],
+      "legacyItemApi": {
+        "directCount": 0,
+        "inheritedCount": 0,
+        "unresolvedAncestor": null,
+        "actions": [],
+        "normalUiEquivalence": "NOT_ESTABLISHED_NATIVE_INPUTS_ONLY",
+        "accessibility": "Engine.item normal UI binding unproven; affected runs are legacy-consumable Engine-only calibration"
+      },
       "externalWrites": [],
       "evidence": "_local/reports/act2-gameplay-20261103/15-objective-101-cal3",
       "resultPresent": true
@@ -5474,10 +8001,10 @@
       "trial": "15-survival-303-cal2",
       "stage": 15,
       "classification": "controller-calibration",
-      "outcome": "incomplete-process",
-      "displayRound": 10,
-      "combatCycles": 9,
-      "stopReason": "No terminal result; running or process interruption must be resolved",
+      "outcome": "aim",
+      "displayRound": 26,
+      "combatCycles": 25,
+      "stopReason": "diagnostic round bound; unfinished, not game loss",
       "entry": [
         {
           "cls": "archer",
@@ -5646,23 +8173,839 @@
       "elites": 7,
       "taggedMinibosses": 0,
       "taggedBosses": 0,
-      "completedGoals": {},
+      "completedGoals": {
+        "15.drift": true,
+        "groove": true,
+        "15.knocks": true
+      },
       "fallen": [],
-      "kills": 9,
-      "damageTaken": null,
-      "damageDealt": null,
-      "skillUse": {},
-      "inputs": 45,
-      "moveSegments": 8,
-      "jumpInputs": 1,
-      "dropInputs": 0,
-      "verifiedLandings": 0,
+      "kills": 19,
+      "damageTaken": 3841,
+      "damageDealt": 18912,
+      "skillUse": {
+        "A02": 10,
+        "M11": 14,
+        "O02": 22,
+        "S03": 12,
+        "M10": 2,
+        "O01": 3,
+        "A01": 5
+      },
+      "inputs": 143,
+      "moveSegments": 33,
+      "jumpInputs": 6,
+      "dropInputs": 1,
+      "verifiedLandings": 3,
+      "observedSupports": [
+        "act2-floor",
+        "fc15-water-toe",
+        "fc15-west-arch",
+        "fc15-dry-basin-rim",
+        "fc15-east-arch"
+      ],
+      "sampledMovement": {
+        "scope": "Endpoint displacement lower bound, not continuous path length or meaningful jump quota",
+        "horizontal": 30715.017846938325,
+        "vertical": 6995.617080506707
+      },
       "interactionIds": [
         "groove"
       ],
-      "externalWrites": null,
+      "legacyItemApi": {
+        "directCount": 3,
+        "inheritedCount": 0,
+        "unresolvedAncestor": null,
+        "actions": [
+          {
+            "round": 12,
+            "frame": 38676,
+            "goal": "15.knocks",
+            "op": "heal-item-retreat",
+            "hero": "knight"
+          },
+          {
+            "round": 15,
+            "frame": 48833,
+            "goal": "15.knocks",
+            "op": "heal-item-retreat",
+            "hero": "knight"
+          },
+          {
+            "round": 20,
+            "frame": 64105,
+            "goal": "15.knocks",
+            "op": "heal-item-retreat",
+            "hero": "knight"
+          }
+        ],
+        "normalUiEquivalence": "FAIL_LEGACY_ITEM_API",
+        "accessibility": "Engine.item normal UI binding unproven; affected runs are legacy-consumable Engine-only calibration"
+      },
+      "externalWrites": [],
       "evidence": "_local/reports/act2-gameplay-20261103/15-survival-303-cal2",
+      "resultPresent": true
+    },
+    {
+      "trial": "16-continuation-404-clear-lane",
+      "stage": 16,
+      "classification": "continuation-segment-not-independent",
+      "outcome": "incomplete-process",
+      "displayRound": 25,
+      "combatCycles": 24,
+      "stopReason": "No terminal result; running or process interruption must be resolved",
+      "entry": [
+        {
+          "cls": "archer",
+          "level": 13,
+          "equipmentIds": [
+            "itm_se_01"
+          ],
+          "loadout": [
+            "A01",
+            "A02",
+            "A09",
+            "A05"
+          ]
+        },
+        {
+          "cls": "mage",
+          "level": 13,
+          "equipmentIds": [
+            "itm_da_01"
+          ],
+          "loadout": [
+            "M01",
+            "M10",
+            "M03",
+            "M11"
+          ]
+        },
+        {
+          "cls": "knight",
+          "level": 13,
+          "equipmentIds": [
+            "itm_hw_01"
+          ],
+          "loadout": [
+            "S00",
+            "S03",
+            "S05",
+            "S09"
+          ]
+        },
+        {
+          "cls": "occultist",
+          "level": 13,
+          "equipmentIds": [
+            "itm_so_01"
+          ],
+          "loadout": [
+            "O01",
+            "O02",
+            "O08",
+            "O11"
+          ]
+        }
+      ],
+      "source": {
+        "actualEntry": [
+          {
+            "cls": "archer",
+            "level": 12,
+            "hp": 737,
+            "maxHp": 737,
+            "loadout": [
+              "A01",
+              "A02",
+              "A09",
+              "A05"
+            ],
+            "equipmentIds": [
+              "itm_se_01"
+            ],
+            "ranks": {
+              "A01": 1,
+              "A14": 1,
+              "A02": 7,
+              "A11": 1,
+              "A09": 6,
+              "A05": 6
+            }
+          },
+          {
+            "cls": "mage",
+            "level": 12,
+            "hp": 794,
+            "maxHp": 794,
+            "loadout": [
+              "M01",
+              "M10",
+              "M03",
+              "M11"
+            ],
+            "equipmentIds": [
+              "itm_da_01"
+            ],
+            "ranks": {
+              "M01": 1,
+              "M07": 1,
+              "M10": 7,
+              "M03": 7,
+              "M11": 6
+            }
+          },
+          {
+            "cls": "knight",
+            "level": 12,
+            "hp": 1364,
+            "maxHp": 1364,
+            "loadout": [
+              "S00",
+              "S03",
+              "S05",
+              "S09"
+            ],
+            "equipmentIds": [
+              "itm_hw_01"
+            ],
+            "ranks": {
+              "S00": 1,
+              "S03": 7,
+              "S05": 7,
+              "S09": 7
+            }
+          },
+          {
+            "cls": "occultist",
+            "level": 12,
+            "hp": 924,
+            "maxHp": 924,
+            "loadout": [
+              "O01",
+              "O02",
+              "O08",
+              "O11"
+            ],
+            "equipmentIds": [
+              "itm_so_01"
+            ],
+            "ranks": {
+              "O01": 1,
+              "O02": 7,
+              "O06": 1,
+              "O07": 1,
+              "O08": 6,
+              "O11": 6
+            }
+          }
+        ],
+        "continuationOf": {
+          "path": "_local/reports/act2-gameplay-20261103/16-survival-404-cal4/checkpoint.json",
+          "sha256": "b6796d59d4121a844714c202d2ad5589a5492495c1c74805198594c283c016bb",
+          "round": 21,
+          "seed": 404,
+          "originalProvenance": {
+            "actualEntry": [
+              {
+                "cls": "archer",
+                "level": 12,
+                "hp": 737,
+                "maxHp": 737,
+                "loadout": [
+                  "A01",
+                  "A02",
+                  "A09",
+                  "A05"
+                ],
+                "equipmentIds": [
+                  "itm_se_01"
+                ],
+                "ranks": {
+                  "A01": 1,
+                  "A14": 1,
+                  "A02": 7,
+                  "A11": 1,
+                  "A09": 6,
+                  "A05": 6
+                }
+              },
+              {
+                "cls": "mage",
+                "level": 12,
+                "hp": 794,
+                "maxHp": 794,
+                "loadout": [
+                  "M01",
+                  "M10",
+                  "M03",
+                  "M11"
+                ],
+                "equipmentIds": [
+                  "itm_da_01"
+                ],
+                "ranks": {
+                  "M01": 1,
+                  "M07": 1,
+                  "M10": 7,
+                  "M03": 7,
+                  "M11": 6
+                }
+              },
+              {
+                "cls": "knight",
+                "level": 12,
+                "hp": 1364,
+                "maxHp": 1364,
+                "loadout": [
+                  "S00",
+                  "S03",
+                  "S05",
+                  "S09"
+                ],
+                "equipmentIds": [
+                  "itm_hw_01"
+                ],
+                "ranks": {
+                  "S00": 1,
+                  "S03": 7,
+                  "S05": 7,
+                  "S09": 7
+                }
+              },
+              {
+                "cls": "occultist",
+                "level": 12,
+                "hp": 924,
+                "maxHp": 924,
+                "loadout": [
+                  "O01",
+                  "O02",
+                  "O08",
+                  "O11"
+                ],
+                "equipmentIds": [
+                  "itm_so_01"
+                ],
+                "ranks": {
+                  "O01": 1,
+                  "O02": 7,
+                  "O06": 1,
+                  "O07": 1,
+                  "O08": 6,
+                  "O11": 6
+                }
+              }
+            ],
+            "checkoutCommit": "437ecbe0da1b0ca3b9b26979dc786aa7cfc31949",
+            "runnerSha256": "dce44339c651c554ae02ff11fe5621ba4e98ed943c50efb9b44750160570bbb0",
+            "projectSha256": "c65a226aa1d6ae551f18fa9e7bbf0cbc1d330493d6e1d8efb6d1b6d1aaff58db",
+            "stageSha256": "8ca631cc998c7cb825de788a9e5556a9c6f8d713d0fb1883675fc6bd863cc681",
+            "geometrySha256": "f69004f0047c531874690ebff8c1042a9dc2d28e80618557e972c6e47d5d9986",
+            "entryProfileSha256": "585a70998c8a5fd6c3224aefa39f89ae66ef000be7f78778cb0f82bd0e819358",
+            "entryLevel": 15,
+            "policy": "survival",
+            "seed": 404,
+            "scope": "Synthetic legacy-budget rewardXpAt(plan.entryLevel), legal training, production-auto-equipped basic recruitment weapons. Prior clearance flags only unlock requested chapter; no claim earlier chapters were played. Production reviewed-v4 App/Engine with DOM/storage/render/clock doubles; not browser input."
+          }
+        },
+        "entrySnapshotIsContinuation": true,
+        "checkoutCommit": "c89a5706f531fd092755e9bc564da9e7e56addd8",
+        "runnerSha256": "cdf677d84221934049424032db8b93274819f2595bae730baac15de0e2223ca3",
+        "projectSha256": "c65a226aa1d6ae551f18fa9e7bbf0cbc1d330493d6e1d8efb6d1b6d1aaff58db",
+        "stageSha256": "8ca631cc998c7cb825de788a9e5556a9c6f8d713d0fb1883675fc6bd863cc681",
+        "geometrySha256": "f69004f0047c531874690ebff8c1042a9dc2d28e80618557e972c6e47d5d9986",
+        "entryProfileSha256": "9b53b364df7a48d1ea85fda21a4cca684517199626f63643c71ec7c84a1f0922",
+        "entryLevel": 15,
+        "policy": "survival",
+        "seed": 404,
+        "scope": "Synthetic legacy-budget rewardXpAt(plan.entryLevel), legal training, production-auto-equipped basic recruitment weapons. Prior clearance flags only unlock requested chapter; no claim earlier chapters were played. Production reviewed-v4 App/Engine with DOM/storage/render/clock doubles; not browser input."
+      },
+      "initialSha256": "bba3f721d6b3031544c38dda33355b96d1bb8630d22df523457e1ff5fa3d5312",
+      "initialEnemies": 55,
+      "archetypes": {
+        "picks": 17,
+        "stoneLantern": 20,
+        "bat": 9,
+        "resonance": 9
+      },
+      "elites": 15,
+      "taggedMinibosses": 0,
+      "taggedBosses": 0,
+      "completedGoals": {},
+      "fallen": [],
+      "kills": 15,
+      "damageTaken": null,
+      "damageDealt": null,
+      "skillUse": {},
+      "inputs": 21,
+      "moveSegments": 5,
+      "jumpInputs": 0,
+      "dropInputs": 0,
+      "verifiedLandings": 0,
+      "observedSupports": [
+        "tm-shelter-veranda"
+      ],
+      "sampledMovement": {
+        "scope": "Endpoint displacement lower bound, not continuous path length or meaningful jump quota",
+        "horizontal": 1164.629577037178,
+        "vertical": 179.48243022786028
+      },
+      "interactionIds": [],
+      "legacyItemApi": {
+        "directCount": 0,
+        "inheritedCount": 0,
+        "unresolvedAncestor": null,
+        "actions": [],
+        "normalUiEquivalence": "NOT_ESTABLISHED_NATIVE_INPUTS_ONLY",
+        "accessibility": "Engine.item normal UI binding unproven; affected runs are legacy-consumable Engine-only calibration"
+      },
+      "externalWrites": null,
+      "evidence": "_local/reports/act2-gameplay-20261103/16-continuation-404-clear-lane",
       "resultPresent": false
+    },
+    {
+      "trial": "16-continuation-404-sequential-story",
+      "stage": 16,
+      "classification": "continuation-segment-not-independent",
+      "outcome": "won",
+      "displayRound": 30,
+      "combatCycles": 29,
+      "stopReason": null,
+      "entry": [
+        {
+          "cls": "archer",
+          "level": 13,
+          "equipmentIds": [
+            "itm_se_01"
+          ],
+          "loadout": [
+            "A01",
+            "A02",
+            "A09",
+            "A05"
+          ]
+        },
+        {
+          "cls": "mage",
+          "level": 13,
+          "equipmentIds": [
+            "itm_da_01"
+          ],
+          "loadout": [
+            "M01",
+            "M10",
+            "M03",
+            "M11"
+          ]
+        },
+        {
+          "cls": "knight",
+          "level": 13,
+          "equipmentIds": [
+            "itm_hw_01"
+          ],
+          "loadout": [
+            "S00",
+            "S03",
+            "S05",
+            "S09"
+          ]
+        },
+        {
+          "cls": "occultist",
+          "level": 13,
+          "equipmentIds": [
+            "itm_so_01"
+          ],
+          "loadout": [
+            "O01",
+            "O02",
+            "O08",
+            "O11"
+          ]
+        }
+      ],
+      "source": {
+        "actualEntry": [
+          {
+            "cls": "archer",
+            "level": 12,
+            "hp": 737,
+            "maxHp": 737,
+            "loadout": [
+              "A01",
+              "A02",
+              "A09",
+              "A05"
+            ],
+            "equipmentIds": [
+              "itm_se_01"
+            ],
+            "ranks": {
+              "A01": 1,
+              "A14": 1,
+              "A02": 7,
+              "A11": 1,
+              "A09": 6,
+              "A05": 6
+            }
+          },
+          {
+            "cls": "mage",
+            "level": 12,
+            "hp": 794,
+            "maxHp": 794,
+            "loadout": [
+              "M01",
+              "M10",
+              "M03",
+              "M11"
+            ],
+            "equipmentIds": [
+              "itm_da_01"
+            ],
+            "ranks": {
+              "M01": 1,
+              "M07": 1,
+              "M10": 7,
+              "M03": 7,
+              "M11": 6
+            }
+          },
+          {
+            "cls": "knight",
+            "level": 12,
+            "hp": 1364,
+            "maxHp": 1364,
+            "loadout": [
+              "S00",
+              "S03",
+              "S05",
+              "S09"
+            ],
+            "equipmentIds": [
+              "itm_hw_01"
+            ],
+            "ranks": {
+              "S00": 1,
+              "S03": 7,
+              "S05": 7,
+              "S09": 7
+            }
+          },
+          {
+            "cls": "occultist",
+            "level": 12,
+            "hp": 924,
+            "maxHp": 924,
+            "loadout": [
+              "O01",
+              "O02",
+              "O08",
+              "O11"
+            ],
+            "equipmentIds": [
+              "itm_so_01"
+            ],
+            "ranks": {
+              "O01": 1,
+              "O02": 7,
+              "O06": 1,
+              "O07": 1,
+              "O08": 6,
+              "O11": 6
+            }
+          }
+        ],
+        "continuationOf": {
+          "path": "_local/reports/act2-gameplay-20261103/16-continuation-404-clear-lane/checkpoint.json",
+          "sha256": "6f0c4ab3116c6b792bfb56a420e20abafccc3821f973f993309317b64fcafbdb",
+          "round": 25,
+          "seed": 404,
+          "originalProvenance": {
+            "actualEntry": [
+              {
+                "cls": "archer",
+                "level": 12,
+                "hp": 737,
+                "maxHp": 737,
+                "loadout": [
+                  "A01",
+                  "A02",
+                  "A09",
+                  "A05"
+                ],
+                "equipmentIds": [
+                  "itm_se_01"
+                ],
+                "ranks": {
+                  "A01": 1,
+                  "A14": 1,
+                  "A02": 7,
+                  "A11": 1,
+                  "A09": 6,
+                  "A05": 6
+                }
+              },
+              {
+                "cls": "mage",
+                "level": 12,
+                "hp": 794,
+                "maxHp": 794,
+                "loadout": [
+                  "M01",
+                  "M10",
+                  "M03",
+                  "M11"
+                ],
+                "equipmentIds": [
+                  "itm_da_01"
+                ],
+                "ranks": {
+                  "M01": 1,
+                  "M07": 1,
+                  "M10": 7,
+                  "M03": 7,
+                  "M11": 6
+                }
+              },
+              {
+                "cls": "knight",
+                "level": 12,
+                "hp": 1364,
+                "maxHp": 1364,
+                "loadout": [
+                  "S00",
+                  "S03",
+                  "S05",
+                  "S09"
+                ],
+                "equipmentIds": [
+                  "itm_hw_01"
+                ],
+                "ranks": {
+                  "S00": 1,
+                  "S03": 7,
+                  "S05": 7,
+                  "S09": 7
+                }
+              },
+              {
+                "cls": "occultist",
+                "level": 12,
+                "hp": 924,
+                "maxHp": 924,
+                "loadout": [
+                  "O01",
+                  "O02",
+                  "O08",
+                  "O11"
+                ],
+                "equipmentIds": [
+                  "itm_so_01"
+                ],
+                "ranks": {
+                  "O01": 1,
+                  "O02": 7,
+                  "O06": 1,
+                  "O07": 1,
+                  "O08": 6,
+                  "O11": 6
+                }
+              }
+            ],
+            "continuationOf": {
+              "path": "_local/reports/act2-gameplay-20261103/16-survival-404-cal4/checkpoint.json",
+              "sha256": "b6796d59d4121a844714c202d2ad5589a5492495c1c74805198594c283c016bb",
+              "round": 21,
+              "seed": 404,
+              "originalProvenance": {
+                "actualEntry": [
+                  {
+                    "cls": "archer",
+                    "level": 12,
+                    "hp": 737,
+                    "maxHp": 737,
+                    "loadout": [
+                      "A01",
+                      "A02",
+                      "A09",
+                      "A05"
+                    ],
+                    "equipmentIds": [
+                      "itm_se_01"
+                    ],
+                    "ranks": {
+                      "A01": 1,
+                      "A14": 1,
+                      "A02": 7,
+                      "A11": 1,
+                      "A09": 6,
+                      "A05": 6
+                    }
+                  },
+                  {
+                    "cls": "mage",
+                    "level": 12,
+                    "hp": 794,
+                    "maxHp": 794,
+                    "loadout": [
+                      "M01",
+                      "M10",
+                      "M03",
+                      "M11"
+                    ],
+                    "equipmentIds": [
+                      "itm_da_01"
+                    ],
+                    "ranks": {
+                      "M01": 1,
+                      "M07": 1,
+                      "M10": 7,
+                      "M03": 7,
+                      "M11": 6
+                    }
+                  },
+                  {
+                    "cls": "knight",
+                    "level": 12,
+                    "hp": 1364,
+                    "maxHp": 1364,
+                    "loadout": [
+                      "S00",
+                      "S03",
+                      "S05",
+                      "S09"
+                    ],
+                    "equipmentIds": [
+                      "itm_hw_01"
+                    ],
+                    "ranks": {
+                      "S00": 1,
+                      "S03": 7,
+                      "S05": 7,
+                      "S09": 7
+                    }
+                  },
+                  {
+                    "cls": "occultist",
+                    "level": 12,
+                    "hp": 924,
+                    "maxHp": 924,
+                    "loadout": [
+                      "O01",
+                      "O02",
+                      "O08",
+                      "O11"
+                    ],
+                    "equipmentIds": [
+                      "itm_so_01"
+                    ],
+                    "ranks": {
+                      "O01": 1,
+                      "O02": 7,
+                      "O06": 1,
+                      "O07": 1,
+                      "O08": 6,
+                      "O11": 6
+                    }
+                  }
+                ],
+                "checkoutCommit": "437ecbe0da1b0ca3b9b26979dc786aa7cfc31949",
+                "runnerSha256": "dce44339c651c554ae02ff11fe5621ba4e98ed943c50efb9b44750160570bbb0",
+                "projectSha256": "c65a226aa1d6ae551f18fa9e7bbf0cbc1d330493d6e1d8efb6d1b6d1aaff58db",
+                "stageSha256": "8ca631cc998c7cb825de788a9e5556a9c6f8d713d0fb1883675fc6bd863cc681",
+                "geometrySha256": "f69004f0047c531874690ebff8c1042a9dc2d28e80618557e972c6e47d5d9986",
+                "entryProfileSha256": "585a70998c8a5fd6c3224aefa39f89ae66ef000be7f78778cb0f82bd0e819358",
+                "entryLevel": 15,
+                "policy": "survival",
+                "seed": 404,
+                "scope": "Synthetic legacy-budget rewardXpAt(plan.entryLevel), legal training, production-auto-equipped basic recruitment weapons. Prior clearance flags only unlock requested chapter; no claim earlier chapters were played. Production reviewed-v4 App/Engine with DOM/storage/render/clock doubles; not browser input."
+              }
+            },
+            "entrySnapshotIsContinuation": true,
+            "checkoutCommit": "c89a5706f531fd092755e9bc564da9e7e56addd8",
+            "runnerSha256": "cdf677d84221934049424032db8b93274819f2595bae730baac15de0e2223ca3",
+            "projectSha256": "c65a226aa1d6ae551f18fa9e7bbf0cbc1d330493d6e1d8efb6d1b6d1aaff58db",
+            "stageSha256": "8ca631cc998c7cb825de788a9e5556a9c6f8d713d0fb1883675fc6bd863cc681",
+            "geometrySha256": "f69004f0047c531874690ebff8c1042a9dc2d28e80618557e972c6e47d5d9986",
+            "entryProfileSha256": "9b53b364df7a48d1ea85fda21a4cca684517199626f63643c71ec7c84a1f0922",
+            "entryLevel": 15,
+            "policy": "survival",
+            "seed": 404,
+            "scope": "Synthetic legacy-budget rewardXpAt(plan.entryLevel), legal training, production-auto-equipped basic recruitment weapons. Prior clearance flags only unlock requested chapter; no claim earlier chapters were played. Production reviewed-v4 App/Engine with DOM/storage/render/clock doubles; not browser input."
+          }
+        },
+        "entrySnapshotIsContinuation": true,
+        "checkoutCommit": "bf42d9740981f6c4dba3470798e97da1a82ae210",
+        "runnerSha256": "a6bf2582ebf7953c6bef14ee9a72be7cdac6f935b65d0e12c31d3ed83a8a0a6d",
+        "projectSha256": "c65a226aa1d6ae551f18fa9e7bbf0cbc1d330493d6e1d8efb6d1b6d1aaff58db",
+        "stageSha256": "8ca631cc998c7cb825de788a9e5556a9c6f8d713d0fb1883675fc6bd863cc681",
+        "geometrySha256": "f69004f0047c531874690ebff8c1042a9dc2d28e80618557e972c6e47d5d9986",
+        "entryProfileSha256": "56ad6df2f8bc037095cb1b18177c172ec9db5bd8827f26d938fe333536eb22a1",
+        "entryLevel": 15,
+        "policy": "survival",
+        "seed": 404,
+        "scope": "Synthetic legacy-budget rewardXpAt(plan.entryLevel), legal training, production-auto-equipped basic recruitment weapons. Prior clearance flags only unlock requested chapter; no claim earlier chapters were played. Production reviewed-v4 App/Engine with DOM/storage/render/clock doubles; not browser input."
+      },
+      "initialSha256": "bd0fde984cb1ab3fe5ab2058db789014b872f9d3ebbe873023de929e748d2890",
+      "initialEnemies": 55,
+      "archetypes": {
+        "picks": 17,
+        "stoneLantern": 20,
+        "bat": 9,
+        "resonance": 9
+      },
+      "elites": 15,
+      "taggedMinibosses": 0,
+      "taggedBosses": 0,
+      "completedGoals": {
+        "16.elder": true,
+        "16.disciple": true,
+        "16.safe": true,
+        "16.testimony": true,
+        "16.work-exit": true
+      },
+      "fallen": [],
+      "kills": 19,
+      "damageTaken": 775,
+      "damageDealt": 7525,
+      "skillUse": {
+        "O02": 5,
+        "A02": 5,
+        "M11": 3,
+        "S03": 1,
+        "M10": 1
+      },
+      "inputs": 34,
+      "moveSegments": 10,
+      "jumpInputs": 1,
+      "dropInputs": 0,
+      "verifiedLandings": 1,
+      "observedSupports": [
+        "tm-processional-upper",
+        "tm-great-hall-plinth",
+        "tm-east-stone-stair",
+        "tm-east-stone-bridge",
+        "act2-floor"
+      ],
+      "sampledMovement": {
+        "scope": "Endpoint displacement lower bound, not continuous path length or meaningful jump quota",
+        "horizontal": 14958.16733039658,
+        "vertical": 3549.0269124011247
+      },
+      "interactionIds": [],
+      "legacyItemApi": {
+        "directCount": 0,
+        "inheritedCount": 0,
+        "unresolvedAncestor": null,
+        "actions": [],
+        "normalUiEquivalence": "NOT_ESTABLISHED_NATIVE_INPUTS_ONLY",
+        "accessibility": "Engine.item normal UI binding unproven; affected runs are legacy-consumable Engine-only calibration"
+      },
+      "externalWrites": [],
+      "evidence": "_local/reports/act2-gameplay-20261103/16-continuation-404-sequential-story",
+      "resultPresent": true
     },
     {
       "trial": "16-objective-101-cal1",
@@ -5769,10 +9112,28 @@
       "jumpInputs": 4,
       "dropInputs": 0,
       "verifiedLandings": 4,
+      "observedSupports": [
+        "act2-floor",
+        "tm-processional-stair",
+        "tm-processional-bridge"
+      ],
+      "sampledMovement": {
+        "scope": "Endpoint displacement lower bound, not continuous path length or meaningful jump quota",
+        "horizontal": 11028.399059923573,
+        "vertical": 2098.7752874913795
+      },
       "interactionIds": [
         "16.elder",
         "16.disciple"
       ],
+      "legacyItemApi": {
+        "directCount": 0,
+        "inheritedCount": 0,
+        "unresolvedAncestor": null,
+        "actions": [],
+        "normalUiEquivalence": "NOT_ESTABLISHED_NATIVE_INPUTS_ONLY",
+        "accessibility": "Engine.item normal UI binding unproven; affected runs are legacy-consumable Engine-only calibration"
+      },
       "externalWrites": [],
       "evidence": "_local/reports/act2-gameplay-20261103/16-objective-101-cal1",
       "resultPresent": true
@@ -5974,10 +9335,30 @@
       "jumpInputs": 8,
       "dropInputs": 0,
       "verifiedLandings": 4,
+      "observedSupports": [
+        "act2-floor",
+        "tm-processional-stair",
+        "tm-processional-bridge",
+        "tm-cloister-stair",
+        "tm-shelter-veranda"
+      ],
+      "sampledMovement": {
+        "scope": "Endpoint displacement lower bound, not continuous path length or meaningful jump quota",
+        "horizontal": 11797.444638684483,
+        "vertical": 2651.932598190976
+      },
       "interactionIds": [
         "16.elder",
         "16.disciple"
       ],
+      "legacyItemApi": {
+        "directCount": 0,
+        "inheritedCount": 0,
+        "unresolvedAncestor": null,
+        "actions": [],
+        "normalUiEquivalence": "NOT_ESTABLISHED_NATIVE_INPUTS_ONLY",
+        "accessibility": "Engine.item normal UI binding unproven; affected runs are legacy-consumable Engine-only calibration"
+      },
       "externalWrites": [],
       "evidence": "_local/reports/act2-gameplay-20261103/16-objective-303-cal3",
       "resultPresent": true
@@ -6177,7 +9558,25 @@
       "jumpInputs": 4,
       "dropInputs": 0,
       "verifiedLandings": 4,
+      "observedSupports": [
+        "tm-processional-stair",
+        "act2-floor",
+        "tm-processional-bridge"
+      ],
+      "sampledMovement": {
+        "scope": "Endpoint displacement lower bound, not continuous path length or meaningful jump quota",
+        "horizontal": 10262.85492103903,
+        "vertical": 1707.2291281316739
+      },
       "interactionIds": [],
+      "legacyItemApi": {
+        "directCount": 0,
+        "inheritedCount": 0,
+        "unresolvedAncestor": null,
+        "actions": [],
+        "normalUiEquivalence": "NOT_ESTABLISHED_NATIVE_INPUTS_ONLY",
+        "accessibility": "Engine.item normal UI binding unproven; affected runs are legacy-consumable Engine-only calibration"
+      },
       "externalWrites": [],
       "evidence": "_local/reports/act2-gameplay-20261103/16-survival-101-cal2",
       "resultPresent": true
@@ -6369,13 +9768,363 @@
       "jumpInputs": 8,
       "dropInputs": 0,
       "verifiedLandings": 4,
+      "observedSupports": [
+        "tm-processional-stair",
+        "act2-floor",
+        "tm-processional-bridge",
+        "tm-cloister-stair",
+        "tm-shelter-veranda"
+      ],
+      "sampledMovement": {
+        "scope": "Endpoint displacement lower bound, not continuous path length or meaningful jump quota",
+        "horizontal": 12005.944886546793,
+        "vertical": 3011.07238193838
+      },
       "interactionIds": [
         "16.elder",
         "16.disciple"
       ],
+      "legacyItemApi": {
+        "directCount": 0,
+        "inheritedCount": 0,
+        "unresolvedAncestor": null,
+        "actions": [],
+        "normalUiEquivalence": "NOT_ESTABLISHED_NATIVE_INPUTS_ONLY",
+        "accessibility": "Engine.item normal UI binding unproven; affected runs are legacy-consumable Engine-only calibration"
+      },
       "externalWrites": null,
       "evidence": "_local/reports/act2-gameplay-20261103/16-survival-404-cal4",
       "resultPresent": false
+    },
+    {
+      "trial": "17-continuation-505-defense",
+      "stage": 17,
+      "classification": "continuation-segment-not-independent",
+      "outcome": "aim",
+      "displayRound": 56,
+      "combatCycles": 55,
+      "stopReason": "diagnostic round bound; unfinished, not game loss",
+      "entry": [
+        {
+          "cls": "archer",
+          "level": 13,
+          "equipmentIds": [
+            "itm_se_01"
+          ],
+          "loadout": [
+            "A01",
+            "A02",
+            "A09",
+            "A05"
+          ]
+        },
+        {
+          "cls": "mage",
+          "level": 13,
+          "equipmentIds": [
+            "itm_da_01"
+          ],
+          "loadout": [
+            "M01",
+            "M10",
+            "M03",
+            "M11"
+          ]
+        },
+        {
+          "cls": "knight",
+          "level": 13,
+          "equipmentIds": [
+            "itm_hw_01"
+          ],
+          "loadout": [
+            "S00",
+            "S03",
+            "S05",
+            "S09"
+          ]
+        },
+        {
+          "cls": "occultist",
+          "level": 13,
+          "equipmentIds": [
+            "itm_so_01"
+          ],
+          "loadout": [
+            "O01",
+            "O02",
+            "O08",
+            "O11"
+          ]
+        }
+      ],
+      "source": {
+        "actualEntry": [
+          {
+            "cls": "archer",
+            "level": 13,
+            "hp": 769,
+            "maxHp": 769,
+            "loadout": [
+              "A01",
+              "A02",
+              "A09",
+              "A05"
+            ],
+            "equipmentIds": [
+              "itm_se_01"
+            ],
+            "ranks": {
+              "A01": 1,
+              "A14": 1,
+              "A02": 7,
+              "A11": 1,
+              "A09": 7,
+              "A05": 7
+            }
+          },
+          {
+            "cls": "mage",
+            "level": 13,
+            "hp": 828,
+            "maxHp": 828,
+            "loadout": [
+              "M01",
+              "M10",
+              "M03",
+              "M11"
+            ],
+            "equipmentIds": [
+              "itm_da_01"
+            ],
+            "ranks": {
+              "M01": 1,
+              "M07": 1,
+              "M10": 8,
+              "M03": 7,
+              "M11": 7
+            }
+          },
+          {
+            "cls": "knight",
+            "level": 13,
+            "hp": 1421,
+            "maxHp": 1421,
+            "loadout": [
+              "S00",
+              "S03",
+              "S05",
+              "S09"
+            ],
+            "equipmentIds": [
+              "itm_hw_01"
+            ],
+            "ranks": {
+              "S00": 1,
+              "S03": 8,
+              "S05": 8,
+              "S09": 7
+            }
+          },
+          {
+            "cls": "occultist",
+            "level": 13,
+            "hp": 963,
+            "maxHp": 963,
+            "loadout": [
+              "O01",
+              "O02",
+              "O08",
+              "O11"
+            ],
+            "equipmentIds": [
+              "itm_so_01"
+            ],
+            "ranks": {
+              "O01": 1,
+              "O02": 7,
+              "O06": 1,
+              "O07": 1,
+              "O08": 7,
+              "O11": 7
+            }
+          }
+        ],
+        "continuationOf": {
+          "path": "_local/reports/act2-gameplay-20261103/17-survival-505-cal4/terminal.json",
+          "sha256": "06300716ebe33155472d966b76d01b26716962b3b65a2602ef3bc5b842f8957e",
+          "round": 41,
+          "seed": 505,
+          "originalProvenance": {
+            "actualEntry": [
+              {
+                "cls": "archer",
+                "level": 13,
+                "hp": 769,
+                "maxHp": 769,
+                "loadout": [
+                  "A01",
+                  "A02",
+                  "A09",
+                  "A05"
+                ],
+                "equipmentIds": [
+                  "itm_se_01"
+                ],
+                "ranks": {
+                  "A01": 1,
+                  "A14": 1,
+                  "A02": 7,
+                  "A11": 1,
+                  "A09": 7,
+                  "A05": 7
+                }
+              },
+              {
+                "cls": "mage",
+                "level": 13,
+                "hp": 828,
+                "maxHp": 828,
+                "loadout": [
+                  "M01",
+                  "M10",
+                  "M03",
+                  "M11"
+                ],
+                "equipmentIds": [
+                  "itm_da_01"
+                ],
+                "ranks": {
+                  "M01": 1,
+                  "M07": 1,
+                  "M10": 8,
+                  "M03": 7,
+                  "M11": 7
+                }
+              },
+              {
+                "cls": "knight",
+                "level": 13,
+                "hp": 1421,
+                "maxHp": 1421,
+                "loadout": [
+                  "S00",
+                  "S03",
+                  "S05",
+                  "S09"
+                ],
+                "equipmentIds": [
+                  "itm_hw_01"
+                ],
+                "ranks": {
+                  "S00": 1,
+                  "S03": 8,
+                  "S05": 8,
+                  "S09": 7
+                }
+              },
+              {
+                "cls": "occultist",
+                "level": 13,
+                "hp": 963,
+                "maxHp": 963,
+                "loadout": [
+                  "O01",
+                  "O02",
+                  "O08",
+                  "O11"
+                ],
+                "equipmentIds": [
+                  "itm_so_01"
+                ],
+                "ranks": {
+                  "O01": 1,
+                  "O02": 7,
+                  "O06": 1,
+                  "O07": 1,
+                  "O08": 7,
+                  "O11": 7
+                }
+              }
+            ],
+            "checkoutCommit": "bf42d9740981f6c4dba3470798e97da1a82ae210",
+            "runnerSha256": "cdf677d84221934049424032db8b93274819f2595bae730baac15de0e2223ca3",
+            "projectSha256": "c65a226aa1d6ae551f18fa9e7bbf0cbc1d330493d6e1d8efb6d1b6d1aaff58db",
+            "stageSha256": "d629d58dfcb14ae418dbd1d6fd2baf268db5511c07496f872bf6dd9c7ba81991",
+            "geometrySha256": "e76242dc549d2a3ab86c70f2ac0ac1bbc3826d424309bcdb737c87425a177f81",
+            "entryProfileSha256": "2967a4304ca059915ed7ddab5b8918098762034f5b15cd1cdc95a2b9bd0b99ef",
+            "entryLevel": 15.6,
+            "policy": "survival",
+            "seed": 505,
+            "scope": "Synthetic legacy-budget rewardXpAt(plan.entryLevel), legal training, production-auto-equipped basic recruitment weapons. Prior clearance flags only unlock requested chapter; no claim earlier chapters were played. Production reviewed-v4 App/Engine with DOM/storage/render/clock doubles; not browser input."
+          }
+        },
+        "entrySnapshotIsContinuation": true,
+        "checkoutCommit": "6d01d7f19715558a43a46b41e41bdedc057e8967",
+        "runnerSha256": "a58ed8fb910ea2971afd8000dcd4f506683c6be3da5e780205c69047feac2e8a",
+        "projectSha256": "c65a226aa1d6ae551f18fa9e7bbf0cbc1d330493d6e1d8efb6d1b6d1aaff58db",
+        "stageSha256": "d629d58dfcb14ae418dbd1d6fd2baf268db5511c07496f872bf6dd9c7ba81991",
+        "geometrySha256": "e76242dc549d2a3ab86c70f2ac0ac1bbc3826d424309bcdb737c87425a177f81",
+        "entryProfileSha256": "e8b4fd58fe8fe42c3572d78a9101707c48660bb8d0f9fd2468888b8ef80d3ca2",
+        "entryLevel": 15.6,
+        "policy": "survival",
+        "seed": 505,
+        "scope": "Synthetic legacy-budget rewardXpAt(plan.entryLevel), legal training, production-auto-equipped basic recruitment weapons. Prior clearance flags only unlock requested chapter; no claim earlier chapters were played. Production reviewed-v4 App/Engine with DOM/storage/render/clock doubles; not browser input."
+      },
+      "initialSha256": "9c2fda415e264f056055577a7085de95abd2b9ed2a8c2c59ed1033988d9e64fe",
+      "initialEnemies": 59,
+      "archetypes": {
+        "picks": 23,
+        "minecart": 13,
+        "stoneLantern": 5,
+        "bat": 8,
+        "hoist": 1,
+        "resonance": 9
+      },
+      "elites": 16,
+      "taggedMinibosses": 0,
+      "taggedBosses": 0,
+      "completedGoals": {
+        "17.work-threat": true,
+        "17.brace": true,
+        "17.hoist": true,
+        "17.parts": true,
+        "17.mesh": true,
+        "17.lock": true
+      },
+      "fallen": [],
+      "kills": 37,
+      "damageTaken": 0,
+      "damageDealt": 4671,
+      "skillUse": {
+        "O02": 15
+      },
+      "inputs": 75,
+      "moveSegments": 15,
+      "jumpInputs": 0,
+      "dropInputs": 0,
+      "verifiedLandings": 0,
+      "observedSupports": [
+        "act2-floor",
+        "ws-east-crossing"
+      ],
+      "sampledMovement": {
+        "scope": "Endpoint displacement lower bound, not continuous path length or meaningful jump quota",
+        "horizontal": 3674.020873035214,
+        "vertical": 49.664542173879454
+      },
+      "interactionIds": [],
+      "legacyItemApi": {
+        "directCount": 0,
+        "inheritedCount": 0,
+        "unresolvedAncestor": null,
+        "actions": [],
+        "normalUiEquivalence": "NOT_ESTABLISHED_NATIVE_INPUTS_ONLY",
+        "accessibility": "Engine.item normal UI binding unproven; affected runs are legacy-consumable Engine-only calibration"
+      },
+      "externalWrites": [],
+      "evidence": "_local/reports/act2-gameplay-20261103/17-continuation-505-defense",
+      "resultPresent": true
     },
     {
       "trial": "17-objective-101-cal1",
@@ -6475,9 +10224,26 @@
       "jumpInputs": 0,
       "dropInputs": 0,
       "verifiedLandings": 0,
+      "observedSupports": [
+        "act2-floor",
+        "ws-west-work-buttress"
+      ],
+      "sampledMovement": {
+        "scope": "Endpoint displacement lower bound, not continuous path length or meaningful jump quota",
+        "horizontal": 10326.329565979579,
+        "vertical": 957.9484547622751
+      },
       "interactionIds": [
         "17.brace"
       ],
+      "legacyItemApi": {
+        "directCount": 0,
+        "inheritedCount": 0,
+        "unresolvedAncestor": null,
+        "actions": [],
+        "normalUiEquivalence": "NOT_ESTABLISHED_NATIVE_INPUTS_ONLY",
+        "accessibility": "Engine.item normal UI binding unproven; affected runs are legacy-consumable Engine-only calibration"
+      },
       "externalWrites": null,
       "evidence": "_local/reports/act2-gameplay-20261103/17-objective-101-cal1",
       "resultPresent": false
@@ -6687,11 +10453,500 @@
       "jumpInputs": 4,
       "dropInputs": 0,
       "verifiedLandings": 4,
+      "observedSupports": [
+        "act2-floor",
+        "ws-west-work-buttress",
+        "ws-west-machine-plinth",
+        "ws-hoist-service-bridge",
+        "ws-east-hoist-buttress"
+      ],
+      "sampledMovement": {
+        "scope": "Endpoint displacement lower bound, not continuous path length or meaningful jump quota",
+        "horizontal": 23864.66275732263,
+        "vertical": 3500.826014225142
+      },
       "interactionIds": [
         "17.brace"
       ],
+      "legacyItemApi": {
+        "directCount": 0,
+        "inheritedCount": 0,
+        "unresolvedAncestor": null,
+        "actions": [],
+        "normalUiEquivalence": "NOT_ESTABLISHED_NATIVE_INPUTS_ONLY",
+        "accessibility": "Engine.item normal UI binding unproven; affected runs are legacy-consumable Engine-only calibration"
+      },
       "externalWrites": [],
       "evidence": "_local/reports/act2-gameplay-20261103/17-objective-303-cal2",
+      "resultPresent": true
+    },
+    {
+      "trial": "17-survival-404-cal3",
+      "stage": 17,
+      "classification": "controller-calibration",
+      "outcome": "aim",
+      "displayRound": 36,
+      "combatCycles": 35,
+      "stopReason": "diagnostic round bound; unfinished, not game loss",
+      "entry": [
+        {
+          "cls": "archer",
+          "level": 13,
+          "equipmentIds": [
+            "itm_se_01"
+          ],
+          "loadout": [
+            "A01",
+            "A02",
+            "A09",
+            "A05"
+          ]
+        },
+        {
+          "cls": "mage",
+          "level": 13,
+          "equipmentIds": [
+            "itm_da_01"
+          ],
+          "loadout": [
+            "M01",
+            "M10",
+            "M03",
+            "M11"
+          ]
+        },
+        {
+          "cls": "knight",
+          "level": 13,
+          "equipmentIds": [
+            "itm_hw_01"
+          ],
+          "loadout": [
+            "S00",
+            "S03",
+            "S05",
+            "S09"
+          ]
+        },
+        {
+          "cls": "occultist",
+          "level": 13,
+          "equipmentIds": [
+            "itm_so_01"
+          ],
+          "loadout": [
+            "O01",
+            "O02",
+            "O08",
+            "O11"
+          ]
+        }
+      ],
+      "source": {
+        "actualEntry": [
+          {
+            "cls": "archer",
+            "level": 13,
+            "hp": 769,
+            "maxHp": 769,
+            "loadout": [
+              "A01",
+              "A02",
+              "A09",
+              "A05"
+            ],
+            "equipmentIds": [
+              "itm_se_01"
+            ],
+            "ranks": {
+              "A01": 1,
+              "A14": 1,
+              "A02": 7,
+              "A11": 1,
+              "A09": 7,
+              "A05": 7
+            }
+          },
+          {
+            "cls": "mage",
+            "level": 13,
+            "hp": 828,
+            "maxHp": 828,
+            "loadout": [
+              "M01",
+              "M10",
+              "M03",
+              "M11"
+            ],
+            "equipmentIds": [
+              "itm_da_01"
+            ],
+            "ranks": {
+              "M01": 1,
+              "M07": 1,
+              "M10": 8,
+              "M03": 7,
+              "M11": 7
+            }
+          },
+          {
+            "cls": "knight",
+            "level": 13,
+            "hp": 1421,
+            "maxHp": 1421,
+            "loadout": [
+              "S00",
+              "S03",
+              "S05",
+              "S09"
+            ],
+            "equipmentIds": [
+              "itm_hw_01"
+            ],
+            "ranks": {
+              "S00": 1,
+              "S03": 8,
+              "S05": 8,
+              "S09": 7
+            }
+          },
+          {
+            "cls": "occultist",
+            "level": 13,
+            "hp": 963,
+            "maxHp": 963,
+            "loadout": [
+              "O01",
+              "O02",
+              "O08",
+              "O11"
+            ],
+            "equipmentIds": [
+              "itm_so_01"
+            ],
+            "ranks": {
+              "O01": 1,
+              "O02": 7,
+              "O06": 1,
+              "O07": 1,
+              "O08": 7,
+              "O11": 7
+            }
+          }
+        ],
+        "checkoutCommit": "981e38b5e057716ffa631d1b6d4103a43364631b",
+        "runnerSha256": "8046128f41c386e8f016231adb65244dcf3be78f773cf86a854a6a40e2117caf",
+        "projectSha256": "c65a226aa1d6ae551f18fa9e7bbf0cbc1d330493d6e1d8efb6d1b6d1aaff58db",
+        "stageSha256": "d629d58dfcb14ae418dbd1d6fd2baf268db5511c07496f872bf6dd9c7ba81991",
+        "geometrySha256": "e76242dc549d2a3ab86c70f2ac0ac1bbc3826d424309bcdb737c87425a177f81",
+        "entryProfileSha256": "54863c17517f1bb025827da8a35a986a51929cc67eb4ae50be6ec5b6a40855da",
+        "entryLevel": 15.6,
+        "policy": "survival",
+        "seed": 404,
+        "scope": "Synthetic legacy-budget rewardXpAt(plan.entryLevel), legal training, production-auto-equipped basic recruitment weapons. Prior clearance flags only unlock requested chapter; no claim earlier chapters were played. Production reviewed-v4 App/Engine with DOM/storage/render/clock doubles; not browser input."
+      },
+      "initialSha256": "bdaca7bd6bf857fa6183097be4ceb41d40dcf1033d233d282c8551b60e960906",
+      "initialEnemies": 50,
+      "archetypes": {
+        "picks": 21,
+        "minecart": 9,
+        "stoneLantern": 4,
+        "bat": 7,
+        "hoist": 1,
+        "resonance": 8
+      },
+      "elites": 14,
+      "taggedMinibosses": 0,
+      "taggedBosses": 0,
+      "completedGoals": {
+        "17.work-threat": true,
+        "17.brace": true
+      },
+      "fallen": [],
+      "kills": 29,
+      "damageTaken": 1576,
+      "damageDealt": 27246,
+      "skillUse": {
+        "A02": 13,
+        "M11": 17,
+        "S03": 12,
+        "O08": 2,
+        "O02": 29,
+        "O01": 4,
+        "A01": 6,
+        "A09": 1,
+        "M10": 2
+      },
+      "inputs": 187,
+      "moveSegments": 39,
+      "jumpInputs": 4,
+      "dropInputs": 0,
+      "verifiedLandings": 4,
+      "observedSupports": [
+        "act2-floor",
+        "ws-west-work-buttress",
+        "ws-west-machine-plinth",
+        "ws-hoist-service-bridge",
+        "ws-east-hoist-buttress",
+        "ws-hoist-west-lip"
+      ],
+      "sampledMovement": {
+        "scope": "Endpoint displacement lower bound, not continuous path length or meaningful jump quota",
+        "horizontal": 23162.932802709034,
+        "vertical": 2705.499081855076
+      },
+      "interactionIds": [
+        "17.brace"
+      ],
+      "legacyItemApi": {
+        "directCount": 0,
+        "inheritedCount": 0,
+        "unresolvedAncestor": null,
+        "actions": [],
+        "normalUiEquivalence": "NOT_ESTABLISHED_NATIVE_INPUTS_ONLY",
+        "accessibility": "Engine.item normal UI binding unproven; affected runs are legacy-consumable Engine-only calibration"
+      },
+      "externalWrites": [],
+      "evidence": "_local/reports/act2-gameplay-20261103/17-survival-404-cal3",
+      "resultPresent": true
+    },
+    {
+      "trial": "17-survival-505-cal4",
+      "stage": 17,
+      "classification": "controller-calibration",
+      "outcome": "aim",
+      "displayRound": 41,
+      "combatCycles": 40,
+      "stopReason": "diagnostic round bound; unfinished, not game loss",
+      "entry": [
+        {
+          "cls": "archer",
+          "level": 13,
+          "equipmentIds": [
+            "itm_se_01"
+          ],
+          "loadout": [
+            "A01",
+            "A02",
+            "A09",
+            "A05"
+          ]
+        },
+        {
+          "cls": "mage",
+          "level": 13,
+          "equipmentIds": [
+            "itm_da_01"
+          ],
+          "loadout": [
+            "M01",
+            "M10",
+            "M03",
+            "M11"
+          ]
+        },
+        {
+          "cls": "knight",
+          "level": 13,
+          "equipmentIds": [
+            "itm_hw_01"
+          ],
+          "loadout": [
+            "S00",
+            "S03",
+            "S05",
+            "S09"
+          ]
+        },
+        {
+          "cls": "occultist",
+          "level": 13,
+          "equipmentIds": [
+            "itm_so_01"
+          ],
+          "loadout": [
+            "O01",
+            "O02",
+            "O08",
+            "O11"
+          ]
+        }
+      ],
+      "source": {
+        "actualEntry": [
+          {
+            "cls": "archer",
+            "level": 13,
+            "hp": 769,
+            "maxHp": 769,
+            "loadout": [
+              "A01",
+              "A02",
+              "A09",
+              "A05"
+            ],
+            "equipmentIds": [
+              "itm_se_01"
+            ],
+            "ranks": {
+              "A01": 1,
+              "A14": 1,
+              "A02": 7,
+              "A11": 1,
+              "A09": 7,
+              "A05": 7
+            }
+          },
+          {
+            "cls": "mage",
+            "level": 13,
+            "hp": 828,
+            "maxHp": 828,
+            "loadout": [
+              "M01",
+              "M10",
+              "M03",
+              "M11"
+            ],
+            "equipmentIds": [
+              "itm_da_01"
+            ],
+            "ranks": {
+              "M01": 1,
+              "M07": 1,
+              "M10": 8,
+              "M03": 7,
+              "M11": 7
+            }
+          },
+          {
+            "cls": "knight",
+            "level": 13,
+            "hp": 1421,
+            "maxHp": 1421,
+            "loadout": [
+              "S00",
+              "S03",
+              "S05",
+              "S09"
+            ],
+            "equipmentIds": [
+              "itm_hw_01"
+            ],
+            "ranks": {
+              "S00": 1,
+              "S03": 8,
+              "S05": 8,
+              "S09": 7
+            }
+          },
+          {
+            "cls": "occultist",
+            "level": 13,
+            "hp": 963,
+            "maxHp": 963,
+            "loadout": [
+              "O01",
+              "O02",
+              "O08",
+              "O11"
+            ],
+            "equipmentIds": [
+              "itm_so_01"
+            ],
+            "ranks": {
+              "O01": 1,
+              "O02": 7,
+              "O06": 1,
+              "O07": 1,
+              "O08": 7,
+              "O11": 7
+            }
+          }
+        ],
+        "checkoutCommit": "bf42d9740981f6c4dba3470798e97da1a82ae210",
+        "runnerSha256": "cdf677d84221934049424032db8b93274819f2595bae730baac15de0e2223ca3",
+        "projectSha256": "c65a226aa1d6ae551f18fa9e7bbf0cbc1d330493d6e1d8efb6d1b6d1aaff58db",
+        "stageSha256": "d629d58dfcb14ae418dbd1d6fd2baf268db5511c07496f872bf6dd9c7ba81991",
+        "geometrySha256": "e76242dc549d2a3ab86c70f2ac0ac1bbc3826d424309bcdb737c87425a177f81",
+        "entryProfileSha256": "2967a4304ca059915ed7ddab5b8918098762034f5b15cd1cdc95a2b9bd0b99ef",
+        "entryLevel": 15.6,
+        "policy": "survival",
+        "seed": 505,
+        "scope": "Synthetic legacy-budget rewardXpAt(plan.entryLevel), legal training, production-auto-equipped basic recruitment weapons. Prior clearance flags only unlock requested chapter; no claim earlier chapters were played. Production reviewed-v4 App/Engine with DOM/storage/render/clock doubles; not browser input."
+      },
+      "initialSha256": "bf495cafd4a84557b782e0309f6cc3d6bf52f613022fd2198a9e80465cff8546",
+      "initialEnemies": 50,
+      "archetypes": {
+        "picks": 21,
+        "minecart": 9,
+        "stoneLantern": 4,
+        "bat": 7,
+        "hoist": 1,
+        "resonance": 8
+      },
+      "elites": 14,
+      "taggedMinibosses": 0,
+      "taggedBosses": 0,
+      "completedGoals": {
+        "17.work-threat": true,
+        "17.brace": true,
+        "17.hoist": true,
+        "17.parts": true,
+        "17.mesh": true,
+        "17.lock": true
+      },
+      "fallen": [],
+      "kills": 34,
+      "damageTaken": 2253.3,
+      "damageDealt": 34185,
+      "skillUse": {
+        "A02": 16,
+        "M11": 27,
+        "S03": 10,
+        "O02": 31,
+        "A01": 11,
+        "O01": 3,
+        "M10": 2,
+        "O08": 6,
+        "A09": 1
+      },
+      "inputs": 195,
+      "moveSegments": 27,
+      "jumpInputs": 4,
+      "dropInputs": 0,
+      "verifiedLandings": 4,
+      "observedSupports": [
+        "act2-floor",
+        "ws-west-work-buttress",
+        "ws-west-machine-plinth",
+        "ws-hoist-service-bridge",
+        "ws-east-hoist-buttress",
+        "ws-east-crossing",
+        "ws-axle-footing"
+      ],
+      "sampledMovement": {
+        "scope": "Endpoint displacement lower bound, not continuous path length or meaningful jump quota",
+        "horizontal": 31006.789048547216,
+        "vertical": 3430.6670289277026
+      },
+      "interactionIds": [
+        "17.brace",
+        "17.hoist",
+        "17.parts",
+        "17.mesh",
+        "17.lock"
+      ],
+      "legacyItemApi": {
+        "directCount": 0,
+        "inheritedCount": 0,
+        "unresolvedAncestor": null,
+        "actions": [],
+        "normalUiEquivalence": "NOT_ESTABLISHED_NATIVE_INPUTS_ONLY",
+        "accessibility": "Engine.item normal UI binding unproven; affected runs are legacy-consumable Engine-only calibration"
+      },
+      "externalWrites": [],
+      "evidence": "_local/reports/act2-gameplay-20261103/17-survival-505-cal4",
       "resultPresent": true
     },
     {
@@ -6889,7 +11144,26 @@
       "jumpInputs": 24,
       "dropInputs": 4,
       "verifiedLandings": 8,
+      "observedSupports": [
+        "sb-entry-rise",
+        "act2-floor",
+        "sb-east-inner-rise",
+        "sb-keeper-side-approach"
+      ],
+      "sampledMovement": {
+        "scope": "Endpoint displacement lower bound, not continuous path length or meaningful jump quota",
+        "horizontal": 42214.49894803959,
+        "vertical": 13908.531169534406
+      },
       "interactionIds": [],
+      "legacyItemApi": {
+        "directCount": 0,
+        "inheritedCount": 0,
+        "unresolvedAncestor": null,
+        "actions": [],
+        "normalUiEquivalence": "NOT_ESTABLISHED_NATIVE_INPUTS_ONLY",
+        "accessibility": "Engine.item normal UI binding unproven; affected runs are legacy-consumable Engine-only calibration"
+      },
       "externalWrites": [],
       "evidence": "_local/reports/act2-gameplay-20261103/18-objective-101-cal1",
       "resultPresent": true
@@ -6968,6 +11242,14 @@
       "jumpInputs": 0,
       "dropInputs": 0,
       "verifiedLandings": 0,
+      "observedSupports": [
+        "act2-floor"
+      ],
+      "sampledMovement": {
+        "scope": "Endpoint displacement lower bound, not continuous path length or meaningful jump quota",
+        "horizontal": 786.4082269789969,
+        "vertical": 209.06905694153647
+      },
       "interactionIds": [
         "route",
         "separate-1",
@@ -6976,8 +11258,333 @@
         "old-soul",
         "old-soul"
       ],
+      "legacyItemApi": {
+        "directCount": 0,
+        "inheritedCount": 0,
+        "unresolvedAncestor": null,
+        "actions": [],
+        "normalUiEquivalence": "NOT_ESTABLISHED_NATIVE_INPUTS_ONLY",
+        "accessibility": "Engine.item normal UI binding unproven; affected runs are legacy-consumable Engine-only calibration"
+      },
       "externalWrites": [],
       "evidence": "_local/reports/act2-gameplay-20261103/19-objective-101-cal1",
+      "resultPresent": true
+    },
+    {
+      "trial": "19-objective-701-sequential",
+      "stage": 19,
+      "classification": "controller-calibration",
+      "outcome": "won",
+      "displayRound": 1,
+      "combatCycles": 0,
+      "stopReason": null,
+      "entry": [
+        {
+          "cls": "mage",
+          "level": 14,
+          "equipmentIds": [
+            "itm_da_01"
+          ],
+          "loadout": [
+            "M01",
+            "M04",
+            "M03",
+            "M11"
+          ]
+        },
+        {
+          "cls": "occultist",
+          "level": 14,
+          "equipmentIds": [
+            "itm_so_01"
+          ],
+          "loadout": [
+            "O01",
+            "O02",
+            "O08",
+            "O11"
+          ]
+        }
+      ],
+      "source": {
+        "actualEntry": [
+          {
+            "cls": "mage",
+            "level": 14,
+            "hp": 862,
+            "maxHp": 862,
+            "loadout": [
+              "M01",
+              "M04",
+              "M03",
+              "M11"
+            ],
+            "equipmentIds": [
+              "itm_da_01"
+            ],
+            "ranks": {
+              "M01": 1,
+              "M06": 1,
+              "M02": 1,
+              "M04": 8,
+              "M03": 8,
+              "M11": 7
+            }
+          },
+          {
+            "cls": "occultist",
+            "level": 14,
+            "hp": 1002,
+            "maxHp": 1002,
+            "loadout": [
+              "O01",
+              "O02",
+              "O08",
+              "O11"
+            ],
+            "equipmentIds": [
+              "itm_so_01"
+            ],
+            "ranks": {
+              "O01": 1,
+              "O02": 8,
+              "O06": 1,
+              "O07": 1,
+              "O08": 8,
+              "O11": 7
+            }
+          }
+        ],
+        "checkoutCommit": "6d01d7f19715558a43a46b41e41bdedc057e8967",
+        "runnerSha256": "1e92e1017c0ff03404fa04a3e9c3ad01bc427b46548e8a77dbbbe2fa6d566d7a",
+        "projectSha256": "c65a226aa1d6ae551f18fa9e7bbf0cbc1d330493d6e1d8efb6d1b6d1aaff58db",
+        "stageSha256": "c42ff7d63accbaa99735d0767a2feedc23016eb5555491ab6b3ef1ec8131cac1",
+        "geometrySha256": "702c7678649c184a8039d80fe82c86e19ea5dd2f61124cd58d3a1f065cc20554",
+        "entryProfileSha256": "c84b22566180623a224677d86f69a6f519e93f94175ec1e3ad4026dbbfd129cf",
+        "entryLevel": 16.8,
+        "policy": "objective",
+        "seed": 701,
+        "scope": "Synthetic legacy-budget rewardXpAt(plan.entryLevel), legal training, production-auto-equipped basic recruitment weapons. Prior clearance flags only unlock requested chapter; no claim earlier chapters were played. Production reviewed-v4 App/Engine with DOM/storage/render/clock doubles; not browser input."
+      },
+      "initialSha256": "613b665d02bcfbcc23b4a4511706405ee9726b817a18d3fe6f4ab09e2449c317",
+      "initialEnemies": 0,
+      "archetypes": {},
+      "elites": 0,
+      "taggedMinibosses": 0,
+      "taggedBosses": 0,
+      "completedGoals": {
+        "route": true,
+        "separate-1": true,
+        "separate-2": true,
+        "send-1": true,
+        "send-2": true,
+        "separate-3": true,
+        "send-3": true,
+        "old-soul": true
+      },
+      "fallen": [],
+      "kills": 0,
+      "damageTaken": 0,
+      "damageDealt": 0,
+      "skillUse": {},
+      "inputs": 14,
+      "moveSegments": 4,
+      "jumpInputs": 0,
+      "dropInputs": 0,
+      "verifiedLandings": 0,
+      "observedSupports": [
+        "act2-floor"
+      ],
+      "sampledMovement": {
+        "scope": "Endpoint displacement lower bound, not continuous path length or meaningful jump quota",
+        "horizontal": 786.4082269789969,
+        "vertical": 209.06905694153647
+      },
+      "interactionIds": [
+        "route",
+        "separate-1",
+        "separate-2",
+        "separate-3",
+        "old-soul",
+        "old-soul"
+      ],
+      "legacyItemApi": {
+        "directCount": 0,
+        "inheritedCount": 0,
+        "unresolvedAncestor": null,
+        "actions": [],
+        "normalUiEquivalence": "NOT_ESTABLISHED_NATIVE_INPUTS_ONLY",
+        "accessibility": "Engine.item normal UI binding unproven; affected runs are legacy-consumable Engine-only calibration"
+      },
+      "externalWrites": [],
+      "evidence": "_local/reports/act2-gameplay-20261103/19-objective-701-sequential",
+      "resultPresent": true
+    },
+    {
+      "trial": "19-objective-911-canonical-smoke2",
+      "stage": 19,
+      "classification": "controller-calibration",
+      "outcome": "won",
+      "displayRound": 1,
+      "combatCycles": 0,
+      "stopReason": null,
+      "entry": [
+        {
+          "cls": "mage",
+          "level": 14,
+          "equipmentIds": [
+            "itm_da_01"
+          ],
+          "loadout": [
+            "M01",
+            "M04",
+            "M03",
+            "M11"
+          ]
+        },
+        {
+          "cls": "occultist",
+          "level": 14,
+          "equipmentIds": [
+            "itm_so_01"
+          ],
+          "loadout": [
+            "O01",
+            "O02",
+            "O08",
+            "O11"
+          ]
+        }
+      ],
+      "source": {
+        "actualEntry": [
+          {
+            "cls": "mage",
+            "level": 14,
+            "hp": 862,
+            "maxHp": 862,
+            "loadout": [
+              "M01",
+              "M04",
+              "M03",
+              "M11"
+            ],
+            "equipmentIds": [
+              "itm_da_01"
+            ],
+            "ranks": {
+              "M01": 1,
+              "M06": 1,
+              "M02": 1,
+              "M04": 8,
+              "M03": 8,
+              "M11": 7
+            }
+          },
+          {
+            "cls": "occultist",
+            "level": 14,
+            "hp": 1002,
+            "maxHp": 1002,
+            "loadout": [
+              "O01",
+              "O02",
+              "O08",
+              "O11"
+            ],
+            "equipmentIds": [
+              "itm_so_01"
+            ],
+            "ranks": {
+              "O01": 1,
+              "O02": 8,
+              "O06": 1,
+              "O07": 1,
+              "O08": 8,
+              "O11": 7
+            }
+          }
+        ],
+        "checkoutCommit": "6d01d7f19715558a43a46b41e41bdedc057e8967",
+        "runnerSha256": "db4da367d171e75c5f2a6d7c67288601e40d339e64f52f36227a532701556bbc",
+        "projectSha256": "c65a226aa1d6ae551f18fa9e7bbf0cbc1d330493d6e1d8efb6d1b6d1aaff58db",
+        "stageSha256": "c42ff7d63accbaa99735d0767a2feedc23016eb5555491ab6b3ef1ec8131cac1",
+        "geometrySha256": "702c7678649c184a8039d80fe82c86e19ea5dd2f61124cd58d3a1f065cc20554",
+        "entryProfileSha256": "67da5dc94c03a395c7ecab98857782f1823cec3f84f39cbb9f8ea2aecb2cfacd",
+        "entryLevel": 16.8,
+        "policy": "objective",
+        "seed": 911,
+        "seedPurpose": "controller-input-variation-only",
+        "engineRngAtEntry": {
+          "seed": 19388,
+          "rng": 19388,
+          "engineStageId": 1,
+          "chapterId": 19,
+          "canonicalSeed": 19388,
+          "inheritedContinuation": false
+        },
+        "inputVariation": {
+          "seed": 911,
+          "aimErrorDegrees": [
+            -0.15,
+            0.15
+          ],
+          "powerError": 0
+        },
+        "scope": "Synthetic legacy-budget rewardXpAt(plan.entryLevel), legal training, production-auto-equipped basic recruitment weapons. Prior clearance flags only unlock requested chapter; no claim earlier chapters were played. Production reviewed-v4 App/Engine with DOM/storage/render/clock doubles; not browser input."
+      },
+      "initialSha256": "7922cbd4abdee685e8e8179e852491d723a3efec09674a729f66cee2c9b1dc84",
+      "initialEnemies": 0,
+      "archetypes": {},
+      "elites": 0,
+      "taggedMinibosses": 0,
+      "taggedBosses": 0,
+      "completedGoals": {
+        "route": true,
+        "separate-1": true,
+        "separate-2": true,
+        "send-1": true,
+        "send-2": true,
+        "separate-3": true,
+        "send-3": true,
+        "old-soul": true
+      },
+      "fallen": [],
+      "kills": 0,
+      "damageTaken": 0,
+      "damageDealt": 0,
+      "skillUse": {},
+      "inputs": 14,
+      "moveSegments": 4,
+      "jumpInputs": 0,
+      "dropInputs": 0,
+      "verifiedLandings": 0,
+      "observedSupports": [
+        "act2-floor"
+      ],
+      "sampledMovement": {
+        "scope": "Endpoint displacement lower bound, not continuous path length or meaningful jump quota",
+        "horizontal": 786.4082269789969,
+        "vertical": 209.06905694153647
+      },
+      "interactionIds": [
+        "route",
+        "separate-1",
+        "separate-2",
+        "separate-3",
+        "old-soul",
+        "old-soul"
+      ],
+      "legacyItemApi": {
+        "directCount": 0,
+        "inheritedCount": 0,
+        "unresolvedAncestor": null,
+        "actions": [],
+        "normalUiEquivalence": "NOT_ESTABLISHED_NATIVE_INPUTS_ONLY",
+        "accessibility": "Engine.item normal UI binding unproven; affected runs are legacy-consumable Engine-only calibration"
+      },
+      "externalWrites": [],
+      "evidence": "_local/reports/act2-gameplay-20261103/19-objective-911-canonical-smoke2",
       "resultPresent": true
     },
     {
@@ -7076,7 +11683,21 @@
       "jumpInputs": 0,
       "dropInputs": 0,
       "verifiedLandings": 0,
+      "observedSupports": [],
+      "sampledMovement": {
+        "scope": "Endpoint displacement lower bound, not continuous path length or meaningful jump quota",
+        "horizontal": 0,
+        "vertical": 0
+      },
       "interactionIds": [],
+      "legacyItemApi": {
+        "directCount": 0,
+        "inheritedCount": 0,
+        "unresolvedAncestor": null,
+        "actions": [],
+        "normalUiEquivalence": "NOT_ESTABLISHED_NATIVE_INPUTS_ONLY",
+        "accessibility": "Engine.item normal UI binding unproven; affected runs are legacy-consumable Engine-only calibration"
+      },
       "externalWrites": null,
       "evidence": "_local/reports/act2-gameplay-20261103/20-objective-101",
       "resultPresent": false
@@ -7177,7 +11798,21 @@
       "jumpInputs": 0,
       "dropInputs": 0,
       "verifiedLandings": 0,
+      "observedSupports": [],
+      "sampledMovement": {
+        "scope": "Endpoint displacement lower bound, not continuous path length or meaningful jump quota",
+        "horizontal": 0,
+        "vertical": 0
+      },
       "interactionIds": [],
+      "legacyItemApi": {
+        "directCount": 0,
+        "inheritedCount": 0,
+        "unresolvedAncestor": null,
+        "actions": [],
+        "normalUiEquivalence": "NOT_ESTABLISHED_NATIVE_INPUTS_ONLY",
+        "accessibility": "Engine.item normal UI binding unproven; affected runs are legacy-consumable Engine-only calibration"
+      },
       "externalWrites": null,
       "evidence": "_local/reports/act2-gameplay-20261103/20-objective-101-cal2",
       "resultPresent": false
@@ -7288,10 +11923,26 @@
       "jumpInputs": 0,
       "dropInputs": 0,
       "verifiedLandings": 0,
+      "observedSupports": [
+        "act2-floor"
+      ],
+      "sampledMovement": {
+        "scope": "Endpoint displacement lower bound, not continuous path length or meaningful jump quota",
+        "horizontal": 19025.35722900789,
+        "vertical": 3124.3978607302192
+      },
       "interactionIds": [
         "20.ring",
         "escort"
       ],
+      "legacyItemApi": {
+        "directCount": 0,
+        "inheritedCount": 0,
+        "unresolvedAncestor": null,
+        "actions": [],
+        "normalUiEquivalence": "NOT_ESTABLISHED_NATIVE_INPUTS_ONLY",
+        "accessibility": "Engine.item normal UI binding unproven; affected runs are legacy-consumable Engine-only calibration"
+      },
       "externalWrites": [],
       "evidence": "_local/reports/act2-gameplay-20261103/20-objective-101-cal3",
       "resultPresent": true
@@ -7493,10 +12144,26 @@
       "jumpInputs": 0,
       "dropInputs": 0,
       "verifiedLandings": 0,
+      "observedSupports": [
+        "act2-floor"
+      ],
+      "sampledMovement": {
+        "scope": "Endpoint displacement lower bound, not continuous path length or meaningful jump quota",
+        "horizontal": 18147.452682209896,
+        "vertical": 3132.661380665747
+      },
       "interactionIds": [
         "20.ring",
         "escort"
       ],
+      "legacyItemApi": {
+        "directCount": 0,
+        "inheritedCount": 0,
+        "unresolvedAncestor": null,
+        "actions": [],
+        "normalUiEquivalence": "NOT_ESTABLISHED_NATIVE_INPUTS_ONLY",
+        "accessibility": "Engine.item normal UI binding unproven; affected runs are legacy-consumable Engine-only calibration"
+      },
       "externalWrites": [],
       "evidence": "_local/reports/act2-gameplay-20261103/20-survival-101-cal1",
       "resultPresent": true
@@ -7694,7 +12361,26 @@
       "jumpInputs": 113,
       "dropInputs": 4,
       "verifiedLandings": 8,
+      "observedSupports": [
+        "sb-entry-rise",
+        "act2-floor",
+        "sb-east-inner-rise",
+        "sb-keeper-side-approach"
+      ],
+      "sampledMovement": {
+        "scope": "Endpoint displacement lower bound, not continuous path length or meaningful jump quota",
+        "horizontal": 43854.20544901832,
+        "vertical": 17275.547716508067
+      },
       "interactionIds": [],
+      "legacyItemApi": {
+        "directCount": 0,
+        "inheritedCount": 0,
+        "unresolvedAncestor": null,
+        "actions": [],
+        "normalUiEquivalence": "NOT_ESTABLISHED_NATIVE_INPUTS_ONLY",
+        "accessibility": "Engine.item normal UI binding unproven; affected runs are legacy-consumable Engine-only calibration"
+      },
       "externalWrites": [],
       "evidence": "/workspace/scratch/fff510b4df37/honro-act2-complex-qa/_local/reports/complex/18-height-207",
       "resultPresent": true
@@ -7888,7 +12574,24 @@
       "jumpInputs": 0,
       "dropInputs": 4,
       "verifiedLandings": 4,
+      "observedSupports": [
+        "sb-entry-rise",
+        "act2-floor"
+      ],
+      "sampledMovement": {
+        "scope": "Endpoint displacement lower bound, not continuous path length or meaningful jump quota",
+        "horizontal": 24336.713954463663,
+        "vertical": 7800.804522504251
+      },
       "interactionIds": [],
+      "legacyItemApi": {
+        "directCount": 0,
+        "inheritedCount": 0,
+        "unresolvedAncestor": null,
+        "actions": [],
+        "normalUiEquivalence": "NOT_ESTABLISHED_NATIVE_INPUTS_ONLY",
+        "accessibility": "Engine.item normal UI binding unproven; affected runs are legacy-consumable Engine-only calibration"
+      },
       "externalWrites": null,
       "evidence": "/workspace/scratch/fff510b4df37/honro-act2-complex-qa/_local/reports/complex/18-objective-101",
       "resultPresent": false
@@ -8091,9 +12794,29 @@
       "jumpInputs": 39,
       "dropInputs": 4,
       "verifiedLandings": 8,
+      "observedSupports": [
+        "sb-entry-rise",
+        "act2-floor",
+        "sb-east-inner-rise",
+        "sb-east-folded-stair",
+        "sb-east-gallery-sill"
+      ],
+      "sampledMovement": {
+        "scope": "Endpoint displacement lower bound, not continuous path length or meaningful jump quota",
+        "horizontal": 43496.50855849582,
+        "vertical": 14756.670655659069
+      },
       "interactionIds": [
         "18.brake"
       ],
+      "legacyItemApi": {
+        "directCount": 0,
+        "inheritedCount": 0,
+        "unresolvedAncestor": null,
+        "actions": [],
+        "normalUiEquivalence": "NOT_ESTABLISHED_NATIVE_INPUTS_ONLY",
+        "accessibility": "Engine.item normal UI binding unproven; affected runs are legacy-consumable Engine-only calibration"
+      },
       "externalWrites": [],
       "evidence": "/workspace/scratch/fff510b4df37/honro-act2-complex-qa/_local/reports/complex/18-objective-303-seam",
       "resultPresent": true
@@ -8301,6 +13024,18 @@
       "jumpInputs": 11,
       "dropInputs": 9,
       "verifiedLandings": 14,
+      "observedSupports": [
+        "sb-entry-rise",
+        "act2-floor",
+        "sb-east-inner-rise",
+        "sb-east-folded-stair",
+        "sb-east-gallery-sill"
+      ],
+      "sampledMovement": {
+        "scope": "Endpoint displacement lower bound, not continuous path length or meaningful jump quota",
+        "horizontal": 64635.151499856205,
+        "vertical": 22892.971691792616
+      },
       "interactionIds": [
         "18.brake",
         "18.rescue",
@@ -8308,6 +13043,14 @@
         "18.inspect",
         "18.lift"
       ],
+      "legacyItemApi": {
+        "directCount": 0,
+        "inheritedCount": 0,
+        "unresolvedAncestor": null,
+        "actions": [],
+        "normalUiEquivalence": "NOT_ESTABLISHED_NATIVE_INPUTS_ONLY",
+        "accessibility": "Engine.item normal UI binding unproven; affected runs are legacy-consumable Engine-only calibration"
+      },
       "externalWrites": [],
       "evidence": "/workspace/scratch/fff510b4df37/honro-act2-complex-qa/_local/reports/complex/18-objective-404-rescue",
       "resultPresent": true
@@ -8523,6 +13266,18 @@
       "jumpInputs": 10,
       "dropInputs": 9,
       "verifiedLandings": 14,
+      "observedSupports": [
+        "sb-entry-rise",
+        "act2-floor",
+        "sb-east-inner-rise",
+        "sb-east-gallery-sill",
+        "sb-east-folded-stair"
+      ],
+      "sampledMovement": {
+        "scope": "Endpoint displacement lower bound, not continuous path length or meaningful jump quota",
+        "horizontal": 76458.71921688855,
+        "vertical": 25408.647207924823
+      },
       "interactionIds": [
         "18.brake",
         "18.rescue",
@@ -8535,6 +13290,14 @@
         "18.lock-east",
         "18.souls"
       ],
+      "legacyItemApi": {
+        "directCount": 0,
+        "inheritedCount": 0,
+        "unresolvedAncestor": null,
+        "actions": [],
+        "normalUiEquivalence": "NOT_ESTABLISHED_NATIVE_INPUTS_ONLY",
+        "accessibility": "Engine.item normal UI binding unproven; affected runs are legacy-consumable Engine-only calibration"
+      },
       "externalWrites": [],
       "evidence": "/workspace/scratch/fff510b4df37/honro-act2-complex-qa/_local/reports/complex/18-retreat-404-east",
       "resultPresent": true
@@ -8748,6 +13511,18 @@
       "jumpInputs": 10,
       "dropInputs": 9,
       "verifiedLandings": 14,
+      "observedSupports": [
+        "sb-entry-rise",
+        "act2-floor",
+        "sb-east-inner-rise",
+        "sb-east-gallery-sill",
+        "sb-east-folded-stair"
+      ],
+      "sampledMovement": {
+        "scope": "Endpoint displacement lower bound, not continuous path length or meaningful jump quota",
+        "horizontal": 77251.436922792,
+        "vertical": 25407.214617430192
+      },
       "interactionIds": [
         "18.brake",
         "18.rescue",
@@ -8758,9 +13533,229 @@
         "18.settle",
         "18.lock-west"
       ],
+      "legacyItemApi": {
+        "directCount": 0,
+        "inheritedCount": 0,
+        "unresolvedAncestor": null,
+        "actions": [],
+        "normalUiEquivalence": "NOT_ESTABLISHED_NATIVE_INPUTS_ONLY",
+        "accessibility": "Engine.item normal UI binding unproven; affected runs are legacy-consumable Engine-only calibration"
+      },
       "externalWrites": [],
       "evidence": "/workspace/scratch/fff510b4df37/honro-act2-complex-qa/_local/reports/complex/18-retreat-606",
       "resultPresent": true
+    },
+    {
+      "trial": "20-height-303-guard",
+      "stage": 20,
+      "classification": "controller-calibration",
+      "outcome": "incomplete-process",
+      "displayRound": 32,
+      "combatCycles": 31,
+      "stopReason": "No terminal result; running or process interruption must be resolved",
+      "entry": [
+        {
+          "cls": "archer",
+          "level": 15,
+          "equipmentIds": [
+            "itm_se_01"
+          ],
+          "loadout": [
+            "A01",
+            "A14",
+            "A11",
+            "A05"
+          ]
+        },
+        {
+          "cls": "mage",
+          "level": 15,
+          "equipmentIds": [
+            "itm_da_01"
+          ],
+          "loadout": [
+            "M01",
+            "M04",
+            "M03",
+            "M11"
+          ]
+        },
+        {
+          "cls": "knight",
+          "level": 15,
+          "equipmentIds": [
+            "itm_hw_01"
+          ],
+          "loadout": [
+            "S00",
+            "S03",
+            "S05",
+            "S09"
+          ]
+        },
+        {
+          "cls": "occultist",
+          "level": 15,
+          "equipmentIds": [
+            "itm_so_01"
+          ],
+          "loadout": [
+            "O01",
+            "O02",
+            "O08",
+            "O11"
+          ]
+        }
+      ],
+      "source": {
+        "actualEntry": [
+          {
+            "cls": "archer",
+            "level": 15,
+            "hp": 867,
+            "maxHp": 867,
+            "loadout": [
+              "A01",
+              "A14",
+              "A11",
+              "A05"
+            ],
+            "equipmentIds": [
+              "itm_se_01"
+            ],
+            "ranks": {
+              "A01": 1,
+              "A14": 8,
+              "A11": 8,
+              "A05": 8
+            }
+          },
+          {
+            "cls": "mage",
+            "level": 15,
+            "hp": 911,
+            "maxHp": 911,
+            "loadout": [
+              "M01",
+              "M04",
+              "M03",
+              "M11"
+            ],
+            "equipmentIds": [
+              "itm_da_01"
+            ],
+            "ranks": {
+              "M01": 1,
+              "M06": 1,
+              "M02": 1,
+              "M04": 8,
+              "M03": 8,
+              "M11": 8
+            }
+          },
+          {
+            "cls": "knight",
+            "level": 15,
+            "hp": 1651,
+            "maxHp": 1651,
+            "loadout": [
+              "S00",
+              "S03",
+              "S05",
+              "S09"
+            ],
+            "equipmentIds": [
+              "itm_hw_01"
+            ],
+            "ranks": {
+              "S00": 1,
+              "S03": 8,
+              "S05": 8,
+              "S09": 8
+            }
+          },
+          {
+            "cls": "occultist",
+            "level": 15,
+            "hp": 1060,
+            "maxHp": 1060,
+            "loadout": [
+              "O01",
+              "O02",
+              "O08",
+              "O11"
+            ],
+            "equipmentIds": [
+              "itm_so_01"
+            ],
+            "ranks": {
+              "O01": 1,
+              "O02": 8,
+              "O06": 1,
+              "O07": 1,
+              "O08": 8,
+              "O11": 8
+            }
+          }
+        ],
+        "checkoutCommit": "ca0967b71321d6ca5b9c08ce36456d3fc2b4e23d",
+        "runnerSha256": "d669d77b15408f0f2c927295aed0df6b1313eb5137ac90fd24d03ce6542677ff",
+        "navigationSha256": "439fd444a43b01c7bff1418487b843ee03b9c87b8b1f2e72a71d58b26609e10f",
+        "projectSha256": "c65a226aa1d6ae551f18fa9e7bbf0cbc1d330493d6e1d8efb6d1b6d1aaff58db",
+        "stageSha256": "3d4653c2bc6a9fc2bbab210e03ced65eebc155b1012387c08bee76794a0b7294",
+        "geometrySha256": "d3c49542bb553be7366edf8f3a7c1f3a7fb18eb44332f54384e1af0fddfb5c69",
+        "entryProfileSha256": "195c249933f1a87b351c8d7da334ec2a613559abf1c7b43d43a5dd5f49b20ce9",
+        "entryLevel": 17.4,
+        "policy": "height",
+        "seed": 303,
+        "scope": "Synthetic legacy-budget rewardXpAt(plan.entryLevel), legal training, production-auto-equipped basic recruitment weapons. Prior clearance flags only unlock requested chapter; no claim earlier chapters were played. Production reviewed-v4 App/Engine with DOM/storage/render/clock doubles; not browser input."
+      },
+      "initialSha256": "46c1f358005b24bdef7a1f126c607787d7e57445241047399de3bd664e28b38d",
+      "initialEnemies": 18,
+      "archetypes": {
+        "bat": 4,
+        "minecart": 7,
+        "picks": 3,
+        "resonance": 4
+      },
+      "elites": 5,
+      "taggedMinibosses": 0,
+      "taggedBosses": 0,
+      "completedGoals": {},
+      "fallen": [],
+      "kills": 22,
+      "damageTaken": null,
+      "damageDealt": null,
+      "skillUse": {},
+      "inputs": 178,
+      "moveSegments": 52,
+      "jumpInputs": 2,
+      "dropInputs": 0,
+      "verifiedLandings": 0,
+      "observedSupports": [
+        "act2-floor",
+        "last-pass-shot-shelf"
+      ],
+      "sampledMovement": {
+        "scope": "Endpoint displacement lower bound, not continuous path length or meaningful jump quota",
+        "horizontal": 39094.032318535654,
+        "vertical": 11148.867368101293
+      },
+      "interactionIds": [
+        "20.ring",
+        "escort"
+      ],
+      "legacyItemApi": {
+        "directCount": 0,
+        "inheritedCount": 0,
+        "unresolvedAncestor": null,
+        "actions": [],
+        "normalUiEquivalence": "NOT_ESTABLISHED_NATIVE_INPUTS_ONLY",
+        "accessibility": "Engine.item normal UI binding unproven; affected runs are legacy-consumable Engine-only calibration"
+      },
+      "externalWrites": null,
+      "evidence": "/workspace/scratch/fff510b4df37/honro-act2-complex-qa/_local/reports/complex/20-height-303-guard",
+      "resultPresent": false
     },
     {
       "trial": "20-objective-101",
@@ -8950,9 +13945,25 @@
       "jumpInputs": 0,
       "dropInputs": 0,
       "verifiedLandings": 0,
+      "observedSupports": [
+        "act2-floor"
+      ],
+      "sampledMovement": {
+        "scope": "Endpoint displacement lower bound, not continuous path length or meaningful jump quota",
+        "horizontal": 10020.587507083954,
+        "vertical": 1340.6641636597424
+      },
       "interactionIds": [
         "20.ring"
       ],
+      "legacyItemApi": {
+        "directCount": 0,
+        "inheritedCount": 0,
+        "unresolvedAncestor": null,
+        "actions": [],
+        "normalUiEquivalence": "NOT_ESTABLISHED_NATIVE_INPUTS_ONLY",
+        "accessibility": "Engine.item normal UI binding unproven; affected runs are legacy-consumable Engine-only calibration"
+      },
       "externalWrites": null,
       "evidence": "/workspace/scratch/fff510b4df37/honro-act2-complex-qa/_local/reports/complex/20-objective-101",
       "resultPresent": false
@@ -8962,8 +13973,8 @@
       "stage": 20,
       "classification": "controller-calibration",
       "outcome": "incomplete-process",
-      "displayRound": 21,
-      "combatCycles": 20,
+      "displayRound": 25,
+      "combatCycles": 24,
       "stopReason": "No terminal result; running or process interruption must be resolved",
       "entry": [
         {
@@ -9141,18 +14152,267 @@
       "damageTaken": null,
       "damageDealt": null,
       "skillUse": {},
-      "inputs": 131,
-      "moveSegments": 49,
+      "inputs": 151,
+      "moveSegments": 53,
       "jumpInputs": 2,
       "dropInputs": 0,
       "verifiedLandings": 0,
+      "observedSupports": [
+        "act2-floor",
+        "last-pass-shot-shelf"
+      ],
+      "sampledMovement": {
+        "scope": "Endpoint displacement lower bound, not continuous path length or meaningful jump quota",
+        "horizontal": 34322.596595319155,
+        "vertical": 9610.4218853152
+      },
       "interactionIds": [
         "20.ring",
         "escort"
       ],
+      "legacyItemApi": {
+        "directCount": 0,
+        "inheritedCount": 0,
+        "unresolvedAncestor": null,
+        "actions": [],
+        "normalUiEquivalence": "NOT_ESTABLISHED_NATIVE_INPUTS_ONLY",
+        "accessibility": "Engine.item normal UI binding unproven; affected runs are legacy-consumable Engine-only calibration"
+      },
       "externalWrites": null,
       "evidence": "/workspace/scratch/fff510b4df37/honro-act2-complex-qa/_local/reports/complex/20-objective-505-guard",
       "resultPresent": false
+    },
+    {
+      "trial": "20-objective-505-support",
+      "stage": 20,
+      "classification": "controller-calibration",
+      "outcome": "won",
+      "displayRound": 29,
+      "combatCycles": 28,
+      "stopReason": null,
+      "entry": [
+        {
+          "cls": "archer",
+          "level": 15,
+          "equipmentIds": [
+            "itm_se_01"
+          ],
+          "loadout": [
+            "A01",
+            "A02",
+            "A09",
+            "A05"
+          ]
+        },
+        {
+          "cls": "mage",
+          "level": 15,
+          "equipmentIds": [
+            "itm_da_01"
+          ],
+          "loadout": [
+            "M01",
+            "M04",
+            "M03",
+            "M11"
+          ]
+        },
+        {
+          "cls": "knight",
+          "level": 15,
+          "equipmentIds": [
+            "itm_hw_01"
+          ],
+          "loadout": [
+            "S00",
+            "S03",
+            "S05",
+            "S09"
+          ]
+        },
+        {
+          "cls": "occultist",
+          "level": 15,
+          "equipmentIds": [
+            "itm_so_01"
+          ],
+          "loadout": [
+            "O01",
+            "O02",
+            "O08",
+            "O11"
+          ]
+        }
+      ],
+      "source": {
+        "actualEntry": [
+          {
+            "cls": "archer",
+            "level": 15,
+            "hp": 844,
+            "maxHp": 844,
+            "loadout": [
+              "A01",
+              "A02",
+              "A09",
+              "A05"
+            ],
+            "equipmentIds": [
+              "itm_se_01"
+            ],
+            "ranks": {
+              "A01": 1,
+              "A14": 1,
+              "A02": 8,
+              "A11": 1,
+              "A09": 8,
+              "A05": 8
+            }
+          },
+          {
+            "cls": "mage",
+            "level": 15,
+            "hp": 911,
+            "maxHp": 911,
+            "loadout": [
+              "M01",
+              "M04",
+              "M03",
+              "M11"
+            ],
+            "equipmentIds": [
+              "itm_da_01"
+            ],
+            "ranks": {
+              "M01": 1,
+              "M06": 1,
+              "M02": 1,
+              "M04": 8,
+              "M03": 8,
+              "M11": 8
+            }
+          },
+          {
+            "cls": "knight",
+            "level": 15,
+            "hp": 1651,
+            "maxHp": 1651,
+            "loadout": [
+              "S00",
+              "S03",
+              "S05",
+              "S09"
+            ],
+            "equipmentIds": [
+              "itm_hw_01"
+            ],
+            "ranks": {
+              "S00": 1,
+              "S03": 8,
+              "S05": 8,
+              "S09": 8
+            }
+          },
+          {
+            "cls": "occultist",
+            "level": 15,
+            "hp": 1060,
+            "maxHp": 1060,
+            "loadout": [
+              "O01",
+              "O02",
+              "O08",
+              "O11"
+            ],
+            "equipmentIds": [
+              "itm_so_01"
+            ],
+            "ranks": {
+              "O01": 1,
+              "O02": 8,
+              "O06": 1,
+              "O07": 1,
+              "O08": 8,
+              "O11": 8
+            }
+          }
+        ],
+        "checkoutCommit": "e16ebe636d8cb92edb3c880f97b6a8b3e8f6a9f4",
+        "runnerSha256": "21665611c924bcf3fbb1921818195278ae12ffc0c221378c85631f3f9dbaad39",
+        "navigationSha256": "439fd444a43b01c7bff1418487b843ee03b9c87b8b1f2e72a71d58b26609e10f",
+        "projectSha256": "c65a226aa1d6ae551f18fa9e7bbf0cbc1d330493d6e1d8efb6d1b6d1aaff58db",
+        "stageSha256": "3d4653c2bc6a9fc2bbab210e03ced65eebc155b1012387c08bee76794a0b7294",
+        "geometrySha256": "d3c49542bb553be7366edf8f3a7c1f3a7fb18eb44332f54384e1af0fddfb5c69",
+        "entryProfileSha256": "3eab28244696567f8f29b2144529bbcae3b622651771a63f22d60215564beefc",
+        "entryLevel": 17.4,
+        "policy": "objective",
+        "seed": 505,
+        "scope": "Synthetic legacy-budget rewardXpAt(plan.entryLevel), legal training, production-auto-equipped basic recruitment weapons. Prior clearance flags only unlock requested chapter; no claim earlier chapters were played. Production reviewed-v4 App/Engine with DOM/storage/render/clock doubles; not browser input."
+      },
+      "initialSha256": "4c44d5174f312da9bdf229419788457ffcacf0c93b70a6a9a2acac52f9e4575d",
+      "initialEnemies": 18,
+      "archetypes": {
+        "bat": 4,
+        "minecart": 7,
+        "picks": 3,
+        "resonance": 4
+      },
+      "elites": 5,
+      "taggedMinibosses": 0,
+      "taggedBosses": 0,
+      "completedGoals": {
+        "20.ring": true,
+        "clear-mouth": true,
+        "escort": true,
+        "escort-mid": true,
+        "hold-convoy": true,
+        "clear-pass": true,
+        "escape": true,
+        "20.outside": true
+      },
+      "fallen": [],
+      "kills": 22,
+      "damageTaken": 2600.7000000000003,
+      "damageDealt": 23261,
+      "skillUse": {
+        "A01": 5,
+        "O02": 13,
+        "M11": 17,
+        "S03": 15,
+        "A02": 7,
+        "O08": 5,
+        "O01": 2
+      },
+      "inputs": 189,
+      "moveSegments": 73,
+      "jumpInputs": 2,
+      "dropInputs": 0,
+      "verifiedLandings": 0,
+      "observedSupports": [
+        "act2-floor",
+        "last-pass-shot-shelf"
+      ],
+      "sampledMovement": {
+        "scope": "Endpoint displacement lower bound, not continuous path length or meaningful jump quota",
+        "horizontal": 48362.0188120301,
+        "vertical": 14319.137602889328
+      },
+      "interactionIds": [
+        "20.ring",
+        "escort",
+        "20.outside"
+      ],
+      "legacyItemApi": {
+        "directCount": 0,
+        "inheritedCount": 0,
+        "unresolvedAncestor": null,
+        "actions": [],
+        "normalUiEquivalence": "NOT_ESTABLISHED_NATIVE_INPUTS_ONLY",
+        "accessibility": "Engine.item normal UI binding unproven; affected runs are legacy-consumable Engine-only calibration"
+      },
+      "externalWrites": [],
+      "evidence": "/workspace/scratch/fff510b4df37/honro-act2-complex-qa/_local/reports/complex/20-objective-505-support",
+      "resultPresent": true
     },
     {
       "trial": "20-survival-207",
@@ -9356,10 +14616,27 @@
       "jumpInputs": 1,
       "dropInputs": 0,
       "verifiedLandings": 0,
+      "observedSupports": [
+        "act2-floor",
+        "last-pass-shot-shelf"
+      ],
+      "sampledMovement": {
+        "scope": "Endpoint displacement lower bound, not continuous path length or meaningful jump quota",
+        "horizontal": 26008.653684619636,
+        "vertical": 5620.277830600246
+      },
       "interactionIds": [
         "20.ring",
         "escort"
       ],
+      "legacyItemApi": {
+        "directCount": 0,
+        "inheritedCount": 0,
+        "unresolvedAncestor": null,
+        "actions": [],
+        "normalUiEquivalence": "NOT_ESTABLISHED_NATIVE_INPUTS_ONLY",
+        "accessibility": "Engine.item normal UI binding unproven; affected runs are legacy-consumable Engine-only calibration"
+      },
       "externalWrites": [],
       "evidence": "/workspace/scratch/fff510b4df37/honro-act2-complex-qa/_local/reports/complex/20-survival-207",
       "resultPresent": true

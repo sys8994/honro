@@ -1,0 +1,42 @@
+{
+  "input": "_local/reports/act2-gameplay-20261103/19-objective-701-sequential/terminal.json",
+  "inputSha256": "fdb766415694a4423c12f0fc92dbd6d65b1221651f053300494858b0e633469b",
+  "scope": "Actual migration/Continue plus individual public migration operations on a separate offline clone, not a modified live battle",
+  "raw": {
+    "clear19": {
+      "visits": 1,
+      "rounds": 1
+    },
+    "localArtTable": false,
+    "pendingDirect": null
+  },
+  "before": {
+    "screen": "title",
+    "locked": false,
+    "store": {
+      "kind": "ready",
+      "reason": null,
+      "hasOriginal": true
+    },
+    "engine": false,
+    "clear19": {
+      "visits": 1,
+      "rounds": 1
+    }
+  },
+  "after": {
+    "screen": "rest",
+    "locked": false,
+    "store": {
+      "kind": "ready",
+      "reason": null,
+      "hasOriginal": true
+    },
+    "engine": false,
+    "clear19": {
+      "visits": 1,
+      "rounds": 1
+    }
+  },
+  "offline": []
+}

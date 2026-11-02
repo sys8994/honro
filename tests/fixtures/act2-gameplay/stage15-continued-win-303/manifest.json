@@ -1,0 +1,32 @@
+[
+  {
+    "source": "_local/reports/act2-gameplay-20261103/15-continuation-303-crown-node/initial.json",
+    "file": "tests/fixtures/act2-gameplay/stage15-continued-win-303/initial.json.gz",
+    "rawSha256": "f2010f67ac139b7e20e5a6bb57df527d5041fbde7a704b725c31e12d04d68ab7",
+    "gzipSha256": "e635cfea2e343ddc62e26262383acef1744ec99a5eb25d5b216dd73a0ae5f1f3"
+  },
+  {
+    "source": "_local/reports/act2-gameplay-20261103/15-continuation-303-crown-node/terminal.json",
+    "file": "tests/fixtures/act2-gameplay/stage15-continued-win-303/terminal.json.gz",
+    "rawSha256": "5df4f2f79383b2746e72f243a0318f0889b2cf26b4723e7d60838b277b434d5d",
+    "gzipSha256": "0e151a1ccc87fdef858550a2dcc53d194bece45cb5094ed0b4228a445ab47cdb"
+  },
+  {
+    "source": "_local/reports/act2-gameplay-20261103/15-continuation-303-crown-node/result.json",
+    "file": "tests/fixtures/act2-gameplay/stage15-continued-win-303/result.json.gz",
+    "rawSha256": "e69b42e15cb4bd39b61a41f9467c70346fdf8bd37ad91050ab52517fc5fd0a98",
+    "gzipSha256": "946d6398e5e9e2f1123d0c9f475afdfdb436c7ea1d6466e89706b25780a97155"
+  },
+  {
+    "source": "_local/reports/act2-gameplay-20261103/15-continuation-303-upper-jump/terminal.json",
+    "file": "tests/fixtures/act2-gameplay/stage15-continued-win-303/predecessor-0.json.gz",
+    "rawSha256": "441cec51adaae33dc26a4dc5e30c1808b2453cfebe2023bdbfa276028297f6d6",
+    "gzipSha256": "593726abf134c365854f6e8e0ef9fe07913c9e61351070832ff33383670f6d65"
+  },
+  {
+    "source": "_local/reports/act2-gameplay-20261103/15-survival-303-cal2/terminal.json",
+    "file": "tests/fixtures/act2-gameplay/stage15-continued-win-303/predecessor-1.json.gz",
+    "rawSha256": "f744b442aa068809240330e76a270c76f468fcecb319ed439a6dbd7797a4cecf",
+    "gzipSha256": "c701f7e375e9077f8f5faad9fa0e40090376c986898be4fc04bbfd4e80b7732d"
+  }
+]
