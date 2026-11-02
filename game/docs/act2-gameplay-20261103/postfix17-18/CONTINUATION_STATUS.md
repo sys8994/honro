@@ -1,0 +1,7 @@
+# Isolated candidate gameplay observations
+
+- **14 fresh canonical/no-item survival:** genuine lossR9,9kills, all4heroes and Gilchan alive; authored dangerCrossed. Door/house/bell completed. Controller failed to bring living mage within650px for required separation dialogue, then spent occultist rescue response attacking another enemy. Not the old settle lock. Rescue-priority diagnostic is separate and ongoing.
+- **17 unchanged dead-hoist save:** root repair permits ordinary separation and subsequent parts/mesh/lock. Observation endsR71 unfinished at defense,41kills,all4alive, noitems/externalwrites/recoveries. Archer/mage physically reached high firing pocket. Bounded read-only shot audit found M03 splash possible but knight friendly-fire obstruction; actual coordination probe ongoing. No geometry impossibility claim.
+- **18 unchanged no-AP03 stale-cast R41 save:** normal continuation finishes all13goals and **App-settles winR45**,6kills,all4alive, zeroitems/writes/recoveries. Before-outcome terminalStorynull; normal outcome persisted cleared18R45 and removed active battle. Same-run continuation, NOT a fresh timing pass or independent sample.
+
+Exact raw/compressed hashes, entry/terminal/settled profiles and source commits: `tests/fixtures/act2-gameplay/postfix-observations/manifest.json`. All observations use candidate logic only; no final-art/deployed/normal-browser full-clear claim.

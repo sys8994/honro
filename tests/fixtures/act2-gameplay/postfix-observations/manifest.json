@@ -1,0 +1,204 @@
+{
+  "scope": "Isolated root runtime-fix candidate; baseline cohorts unchanged.14fresh loss;17/18 same-run continuations not independent samples. Native App/Engine, not browser fullclear.",
+  "cases": [
+    {
+      "case": "14-survival-canonical-757356291",
+      "source": "6e979efae5703cc31c0ddf13b439201e5565add1",
+      "phase": "lost",
+      "round": 9,
+      "kills": 9,
+      "fallen": [],
+      "completedGoals": {
+        "14.door-threat": true,
+        "14.house": true,
+        "14.bell": true
+      },
+      "stopReason": null,
+      "appSettlement": {
+        "done": true,
+        "cleared": null,
+        "history": null
+      },
+      "files": {
+        "initial.json": {
+          "rawSha256": "440657bb00d3d5b0b70fd2b0a2b96716431be33137a9f0037f8f318cda8d2a58",
+          "gzSha256": "ed93a14bc5a58a8f36c269c282e92316efea6f84aebf49fd5016a87937bafbce",
+          "path": "tests/fixtures/act2-gameplay/postfix-observations/14-survival-canonical-757356291/initial.json.gz"
+        },
+        "terminal.json": {
+          "rawSha256": "f8896d666f37170d5125e717d99e3bfcbd8d5cb7f21831d956ca7f08b52ef09c",
+          "gzSha256": "5d1e84ecfd26d561f284e72f133999208909bc1ce1353f199fe01a90b5c1590e",
+          "path": "tests/fixtures/act2-gameplay/postfix-observations/14-survival-canonical-757356291/terminal.json.gz"
+        },
+        "result.json": {
+          "rawSha256": "bf9a2b034d6dd8fcae06f5fa3ae2d0c88570d5d77ec67103f6e2e30447f885ab",
+          "gzSha256": "715e02c756e7ee11e5479d00675ddc27626abfcd18c83b555d3431b923025647",
+          "path": "tests/fixtures/act2-gameplay/postfix-observations/14-survival-canonical-757356291/result.json.gz"
+        }
+      }
+    },
+    {
+      "case": "17-natural-hoist-404",
+      "source": "353133c330aab85d3510634322089d3af59b0155",
+      "phase": "aim",
+      "round": 71,
+      "kills": 41,
+      "fallen": [],
+      "completedGoals": {
+        "17.work-threat": true,
+        "17.brace": true,
+        "17.hoist": true,
+        "17.parts": true,
+        "17.mesh": true,
+        "17.lock": true
+      },
+      "stopReason": "diagnostic round bound; unfinished, not game loss",
+      "appSettlement": {
+        "done": false,
+        "cleared": null,
+        "history": null
+      },
+      "files": {
+        "initial.json": {
+          "rawSha256": "e460884607b4314e88caef1f38e85afb1ff6acb4214d9ea13eda5aeaaedb5fc8",
+          "gzSha256": "65a82c01e48fe27292b55e062c4f63d6e5b027672bd54ed1929f9d6eff577a1f",
+          "path": "tests/fixtures/act2-gameplay/postfix-observations/17-natural-hoist-404/initial.json.gz"
+        },
+        "terminal.json": {
+          "rawSha256": "b66c3e9e157077303991f0995e5438cba73b6e270f2dca3c89dde5b4614e3e60",
+          "gzSha256": "5c0aac0f1750b4904f2e09180ce5c0053ad681bd3642b5dcf72924648c3d4795",
+          "path": "tests/fixtures/act2-gameplay/postfix-observations/17-natural-hoist-404/terminal.json.gz"
+        },
+        "result.json": {
+          "rawSha256": "7f523b92cddb1fb31651ad078889787695c1dfbc99241dcc25a898249946a27f",
+          "gzSha256": "ad1fd5d8868012aa910947551ded0f881dbcfe3845d5e4d1047f9b3c63bb598f",
+          "path": "tests/fixtures/act2-gameplay/postfix-observations/17-natural-hoist-404/result.json.gz"
+        }
+      }
+    },
+    {
+      "case": "18-natural-cast-404",
+      "source": "1767153aba1c390f46938e2def6811d8564b854a",
+      "phase": "won",
+      "round": 45,
+      "kills": 6,
+      "fallen": [],
+      "completedGoals": {
+        "18.brake": true,
+        "18.descent": true,
+        "18.rescue": true,
+        "18.rescue-safe": true,
+        "18.hoist": true,
+        "18.keeper": true,
+        "18.inspect": true,
+        "18.lift": true,
+        "18.support": true,
+        "18.settle": true,
+        "18.lock-west": true,
+        "18.lock-east": true,
+        "18.souls": true
+      },
+      "stopReason": null,
+      "appSettlement": {
+        "attempted": true,
+        "done": true,
+        "clear": {
+          "visits": 1,
+          "rounds": 45
+        },
+        "history": {
+          "revision": 1,
+          "phase": "A",
+          "run": "honro-map-stage-18-1793636669931",
+          "round": 45,
+          "steps": [
+            "18.brake",
+            "18.descent",
+            "18.rescue",
+            "18.rescue-safe",
+            "18.hoist",
+            "18.keeper",
+            "18.inspect",
+            "18.lift",
+            "18.support",
+            "18.settle",
+            "18.lock-west",
+            "18.lock-east",
+            "18.souls"
+          ],
+          "slots": [
+            "18.reviewed.bell-guide",
+            "18.reviewed.arrival",
+            "18.reviewed.warning",
+            "18.reviewed.aware",
+            "18.reviewed.walking",
+            "18.reviewed.brake-sight",
+            "18.reviewed.braked",
+            "18.reviewed.resident-approach",
+            "18.reviewed.moving-resident",
+            "18.reviewed.safe-resident",
+            "18.reviewed.death-confirm",
+            "18.reviewed.inspect",
+            "18.reviewed.support-visible",
+            "18.reviewed.gap",
+            "18.reviewed.clear-below",
+            "18.reviewed.reseated",
+            "18.reviewed.stable",
+            "18.reviewed.knock",
+            "18.reviewed.depart"
+          ],
+          "keeperDeath": true,
+          "bellStable": true,
+          "reviewedNarrative": {
+            "revision": 1,
+            "status": "Gemini pass1 \u2192 \uc81c\uc791 \uce21 \ub3c5\ub9bd \uc7ac\uac80\ud1a0 \u2192 Gemini pass3 \u2192 \ubd80\ubaa8 \ucd5c\uc885\ud310\ub2e8 \uc644\ub8cc",
+            "rows": [
+              "A2.S18.POPUP.03",
+              "EDGE.ARRIVALS_18_0",
+              "A2.S18.INTRO.02",
+              "A2.S18.INTRO.03",
+              "A2.S18.INTRO.01",
+              "A2.S18.MID.01",
+              "A2.S18.MID.03",
+              "A2.S18.MID.02",
+              "A2.S18.MID.04",
+              "A2.S18.MID.05",
+              "A2.S18.DEATH.02",
+              "A2.S18.STABILIZE.01",
+              "A2.S18.STABILIZE.02",
+              "A2.S18.STABILIZE.03",
+              "A2.S18.STABILIZE.04",
+              "A2.S18.STABILIZE.05",
+              "A2.S18.COMPLETE.01",
+              "A2.S18.COMPLETE.02",
+              "A2.S18.COMPLETE.03"
+            ]
+          }
+        },
+        "dialogueOpen": false
+      },
+      "files": {
+        "initial.json": {
+          "rawSha256": "a2899fa4f3fb648aeebcf36e66ee2714647b3babf18f70222516547bafb34fff",
+          "gzSha256": "e4d940dff33c25d49c21c55448b897c487db09b6f570e279fbebed66a5bf4f89",
+          "path": "tests/fixtures/act2-gameplay/postfix-observations/18-natural-cast-404/initial.json.gz"
+        },
+        "terminal.json": {
+          "rawSha256": "14abe8d5aae50182ba93cb94a2ab1e45863caf8f59d3b51bceab4a4075e1e384",
+          "gzSha256": "7392cc43b0a6044904f973de617321a2cd7be919f36a92278bf8813ecac37369",
+          "path": "tests/fixtures/act2-gameplay/postfix-observations/18-natural-cast-404/terminal.json.gz"
+        },
+        "result.json": {
+          "rawSha256": "505ac2ed531e19e57472ababd6cb760ed13b3b2cc85a9d3b7ad4a3434b8348e0",
+          "gzSha256": "30d776e75a57dbbb46e50db1fdff23dd9869d014d6b4fda9fb07f6c7ad3780e8",
+          "path": "tests/fixtures/act2-gameplay/postfix-observations/18-natural-cast-404/result.json.gz"
+        },
+        "settled.json": {
+          "rawSha256": "12bbc7207e7569bc6a1c1221f7dd5e91eef6751b5888ad55f72c89f28d889f00",
+          "gzSha256": "3a679a81df7ca37fe4fb780441eadd4cf3c24d031efbff1b462a6e36969ec7a0",
+          "path": "tests/fixtures/act2-gameplay/postfix-observations/18-natural-cast-404/settled.json.gz"
+        }
+      }
+    }
+  ]
+}
