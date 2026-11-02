@@ -28,7 +28,7 @@ try:
   elif enter.count():enter.first.click()
   p.wait_for_timeout(350)
  p.wait_for_function(f'HonroApp.engine?.b?.honroStage==={stage} && HonroApp.canInput()',timeout=1000)
- def state():return p.evaluate('''()=>{const a=HonroApp,e=a.engine,b=e.b,u=e.active;return{round:b.round,side:b.side,phase:b.phase,active:u?.id,cls:u?.cls,x:u?.x,y:u?.y,angle:u?.angle,facing:u?.facing,moveLeft:u?.moveLeft,jumpCost:u&&e.jumpCost(u),grounded:u&&e.grounded(u),can:a.canInput(),dialogue:!!a.dialogue,shots:b.shots,drop:u&&e.canDrop(),camera:{x:a.scene.x,y:a.scene.y,scale:a.scene.scale},health:b.units.filter(v=>v.side===0&&!v.summoned).map(v=>({id:v.id,hp:v.hp,maxHp:v.maxHp,dead:v.dead,x:v.x,y:v.y})),enemies:b.units.filter(v=>v.side===1).map(v=>({id:v.id,hp:v.hp,dead:v.dead,x:v.x,y:v.y,kind:v.honroVariant})),seed:b.seed,rng:b.rng}}''')
+ def state():return p.evaluate('''()=>{const a=HonroApp,e=a.engine,b=e.b,u=e.active;return{round:b.round,side:b.side,phase:b.phase,active:u?.id,cls:u?.cls,x:u?.x,y:u?.y,angle:u?.angle,facing:u?.facing,moveLeft:u?.moveLeft,jumpCost:u&&e.jumpCost(u),grounded:u&&e.grounded(u),can:a.canInput(),dialogue:!!a.dialogue,shots:b.shots,shotId:b.shot,drop:u&&e.canDrop(),camera:{x:a.scene.x,y:a.scene.y,scale:a.scene.scale},health:b.units.filter(v=>v.side===0&&!v.summoned).map(v=>({id:v.id,hp:v.hp,maxHp:v.maxHp,dead:v.dead,x:v.x,y:v.y})),enemies:b.units.filter(v=>v.side===1).map(v=>({id:v.id,hp:v.hp,dead:v.dead,x:v.x,y:v.y,kind:v.honroVariant})),seed:b.seed,rng:b.rng}}''')
  def record(op,**extra):
   row={'op':op,'state':state(),'time':time.time(),**extra};events.append(row);save();print(json.dumps(row,ensure_ascii=False),flush=True)
  def ready():
@@ -134,9 +134,11 @@ try:
      key='ArrowLeft' if choice['angle']>90 else 'ArrowRight';p.keyboard.down(key);p.wait_for_timeout(25);p.keyboard.up(key);p.wait_for_timeout(100)
     p.keyboard.press('Digit'+str(choice['idx']+1));p.wait_for_timeout(100);aim=aim_with_joystick(p,choice['angle'],state);record('aim',aim=aim,choice=choice);assert aim['passed'],'Aim precision failed'
     p.keyboard.down('Space')
-    try:p.wait_for_function('(power)=>HonroApp.charging && HonroApp.chargePower(performance.now())>=power',arg=choice['power'],timeout=8000,polling=16)
+    try:p.wait_for_function('(power)=>["won","lost"].includes(HonroApp.engine.b.phase) || (HonroApp.charging && HonroApp.chargePower(performance.now())>=power)',arg=choice['power'],timeout=8000,polling=16)
     finally:p.keyboard.up('Space')
-    p.wait_for_timeout(100);actual=p.evaluate('id=>HonroApp.engine.b.lastShots?.[id]',before['active']);record('fire',choice=choice,actual=actual);assert actual and actual['skill']==choice['id'],'Normal charge did not fire selected skill'
+    if state()['phase'] in ['won','lost']:
+     record('terminal-during-charge',choice=choice,reason='Actual authored objective/death settled before release; no shot receipt claimed');break
+    p.wait_for_timeout(100);actual=p.evaluate('id=>HonroApp.engine.b.lastShots?.[id]',before['active']);record('fire',choice=choice,actual=actual);assert actual and actual['skill']==choice['id'] and state()['shotId']>before['shotId'],'Normal charge did not launch a new selected skill'
    else:raise AssertionError('Unsupported replay input '+op)
    if op not in ['walk','jump','climb']:p.screenshot(path=str(out/f'command-{index}-{op}.png'))
    p.wait_for_timeout(150)

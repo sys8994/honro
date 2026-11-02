@@ -12,8 +12,9 @@
   "stage10": "Reactive current-binding attack, natural route climb, knight S08 before survival/pursuit, prioritize threats targeting Sodan, guard positions2200/2340/2580, archer scouts actualexit at hold4, anylivingactor exits once actualhold6 ready. Defend recovery for nonknight below40%HP after moving.",
   "limits": "240 ordinary input intentions and existing30minute CI observation; unfinished/exception/death fail receipt. Never force victory or erase failed prior traces.",
   "sourceHashes": {
-    "tools/act1-qa/browser-ui.py": "cfb6587f9630e254c838deaf169e8acd2e12c1fc97b1ae44bbecb0a9a5f77f97",
+    "tools/act1-qa/browser-ui.py": "c5de48f6ddd7715966c767c1e6c73553e44805f5b543f4603f35269667521f2e",
     "tools/act1-qa/browser-reactive-plan.js": "ba98245b3e8b73f8598396ccacdecee58831ddcb4afd0a367a7d7bc62bc40ac4",
     "tools/act4-ci/precise_aim.py": "4385177fdf3fdfb874ad7381045652ec69e2fd9f75ab698550f5a4ca70748980"
-  }
+  },
+  "preRunCalibration": "Before first browser run: native reactive10 revealed actual exit victory can occur during a following charge. Wait observes actual terminalphase and releases key; no launch receipt is claimed, result still requires actualwon/noexception. Old native terminalwin+driverexception trace preserved."
 }
