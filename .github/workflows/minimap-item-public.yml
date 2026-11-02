@@ -1,0 +1,50 @@
+name: Verify published minimap item separation
+on:
+  push:
+    branches: ['work/minimap-item-public/**']
+permissions:
+  contents: read
+jobs:
+  public-regressions:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    env:
+      HONRO_QA_URL: https://sys8994.github.io/honro/HONRO.html?repair=594d5dce6fa48163a41e5dce03c2df3decc79bfd
+      OUT: _local/reports/minimap-item-public
+    steps:
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
+      - uses: actions/setup-python@e797f83bcb11b83ae66e0230d6156d7c80228e7c
+        with:
+          python-version: '3.12'
+      - name: Verify exact deployed bytes, not an older cached release
+        run: |
+          mkdir -p "$OUT"
+          python - <<'PY'
+          import urllib.request,time,hashlib,json,os
+          from pathlib import Path
+          expected={'HONRO.html':'5d516745494e6fbf8606f66e5555dbcc702285ba1dd389daad5560973c43445d','web/manifest.json':'e548136dbf13dd3f67b5b2b2fafdc11360aaad291e698ecc97dce759632d63e6'}
+          observations=[]
+          for attempt in range(30):
+           actual={}
+           for path in expected:
+            data=urllib.request.urlopen('https://sys8994.github.io/honro/'+path+'?repair=594d5dce-'+str(attempt),timeout=30).read();actual[path]=hashlib.sha256(data).hexdigest()
+           observations.append(actual)
+           if actual==expected:break
+           time.sleep(10)
+          Path(os.environ['OUT']+'/deployed-hashes.json').write_text(json.dumps({'expected':expected,'observed':observations,'passed':actual==expected},indent=2))
+          assert actual==expected,'Published bytes not yet the validated repair release'
+          PY
+      - name: Install browser
+        run: |
+          python -m pip install 'playwright==1.58.0'
+          python -m playwright install --with-deps chromium
+      - name: Exercise normal public Stage11 controls and item panel
+        run: |
+          HONRO_MINIMAP_OUT="$OUT/minimap" python tests/minimap-item-browser.py
+          python tools/act2-qa/assert-browser-receipts.py "$OUT/minimap/result.json"
+      - uses: actions/upload-artifact@330a01c490aca151604b8cf639adc76d48f6c5d4
+        if: always()
+        with:
+          name: minimap-item-public-${{ github.sha }}
+          path: _local/reports/minimap-item-public/
+          retention-days: 7
