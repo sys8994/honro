@@ -1,0 +1,109 @@
+{
+  "raw": "honro-act1-production/stage06/body-v2/world.svg",
+  "candidate": "honro-act1-production/stage06/body-v2/compact.svg",
+  "rawStats": {
+    "sourceBytes": 162922,
+    "paths": 4,
+    "commands": 4608,
+    "segments": 4328,
+    "endpointNodesUpperBound": 4608,
+    "explicitCommandLetters": 2213,
+    "subpaths": 280,
+    "pathChars": 162429,
+    "maxPathChars": 60606
+  },
+  "candidateStats": {
+    "sourceBytes": 109851,
+    "paths": 4,
+    "commands": 4625,
+    "segments": 4345,
+    "endpointNodesUpperBound": 4625,
+    "explicitCommandLetters": 4674,
+    "subpaths": 280,
+    "pathChars": 109358,
+    "maxPathChars": 40810
+  },
+  "visualApproval": "NOT REVIEWED",
+  "config": {
+    "width": 2048,
+    "scales": [
+      1,
+      2
+    ],
+    "limits": {
+      "rgbMAE255": 2,
+      "silhouettePx": 1.5,
+      "protectedRgbMAE255": 1,
+      "protectedPx": 0.5,
+      "protectedChangedPixelFraction": 0.05
+    },
+    "scope": "Immutable registered raw versus final; canonical collision contact separately locked.",
+    "sourcePalette": [
+      [
+        38,
+        60,
+        61
+      ],
+      [
+        76,
+        91,
+        97
+      ],
+      [
+        85,
+        71,
+        57
+      ],
+      [
+        102,
+        113,
+        107
+      ]
+    ]
+  },
+  "errors": {
+    "1": {
+      "rgbMAE255": 0.009327643550932407,
+      "rgbP99_255": 0.0,
+      "alphaMAE255": 0.003171483753249049,
+      "changedPixelFraction": 5.89420438957476e-05,
+      "silhouetteMaxOffsetPx": 1.0,
+      "pass": true
+    },
+    "2": {
+      "rgbMAE255": 0.007479069288820028,
+      "rgbP99_255": 0.0,
+      "alphaMAE255": 0.002202118281275034,
+      "changedPixelFraction": 4.2168223098012334e-05,
+      "silhouetteMaxOffsetPx": 1.0,
+      "pass": true
+    }
+  },
+  "timings": {
+    "raw-1": {
+      "width": 2048,
+      "height": 729,
+      "decodeMs": 16.091901000000007,
+      "drawMs": 3.063069999999982
+    },
+    "candidate-1": {
+      "width": 2048,
+      "height": 729,
+      "decodeMs": 14.636639000000002,
+      "drawMs": 2.489266999999984
+    },
+    "raw-2": {
+      "width": 4096,
+      "height": 1459,
+      "decodeMs": 37.492317000000014,
+      "drawMs": 8.59030899999999
+    },
+    "candidate-2": {
+      "width": 4096,
+      "height": 1459,
+      "decodeMs": 27.635947999999985,
+      "drawMs": 7.724683000000027
+    }
+  },
+  "qualityPass": true
+}

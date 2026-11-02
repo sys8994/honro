@@ -1,6 +1,6 @@
 /** Offline production-scene A/B. No terrain, unit, camera or game data writes. */
 import vm from 'node:vm';import assert from'node:assert/strict';import{readFile,writeFile,mkdir}from'node:fs/promises';import{createHash}from'node:crypto';import{createCanvas,Image as NativeImage,Path2D,DOMMatrix,GlobalFonts}from'@napi-rs/canvas';import{runtimeParts,root}from'../../shared/build.mjs';
-const id=Number(process.argv[2]||1),file=process.argv[3],preset=process.argv[4]||'start';assert(['start','middle','east','mobile','overview','edge-left','edge-right'].includes(preset));assert([1,2,3,4].includes(id),'Prototype views are authored for stages1/2/3/4 only');if(!file)throw Error('Native asset path required');const out=`${root}/_local/reports/act1-vector-prototype/stage${id}-${preset}`;await mkdir(out,{recursive:true});GlobalFonts.registerFromPath('/usr/share/fonts/opentype/noto/NotoSansCJK-Regular.ttc','sans-serif');
+const id=Number(process.argv[2]||1),file=process.argv[3],preset=process.argv[4]||'start';assert(['start','middle','east','mobile','overview','edge-left','edge-right'].includes(preset));assert([1,2,3,4,6].includes(id),'Prototype views are authored for stages1/2/3/4/6 only');if(!file)throw Error('Native asset path required');const out=`${root}/_local/reports/act1-vector-prototype/stage${id}-${preset}`;await mkdir(out,{recursive:true});GlobalFonts.registerFromPath('/usr/share/fonts/opentype/noto/NotoSansCJK-Regular.ttc','sans-serif');
 let seed=3910;const math=Object.create(Math);math.random=()=>((seed=(seed*1664525+1013904223)>>>0)/2**32);
 function canvas(w=300,h=150){const c=createCanvas(w,h);Object.defineProperties(c,{clientWidth:{get:()=>c.width},clientHeight:{get:()=>c.height}});c.getBoundingClientRect=()=>({left:0,top:0,width:c.width,height:c.height});return c;}
 class Image extends NativeImage{set src(v){super.src=typeof v==='string'&&v.startsWith('data:')?Buffer.from(v.split(',')[1],'base64'):v;}get src(){return super.src;}}
@@ -40,6 +40,17 @@ if(id===4){
  if(preset==='mobile')Object.assign(view,{scale:.94*390/1440});
  if(preset==='edge-left')Object.assign(view,{x:f.left,y:2100});
  if(preset==='edge-right')Object.assign(view,{x:f.right,y:2100});
+}
+if(id===6){
+ const f=g.HonroBounds.focus(b);
+ const ps=stage.terrains.find(t=>t.id==='lower-road').points;
+ const surface=x=>Math.min(...ps.flatMap((a,i)=>{const z=ps[(i+1)%ps.length];return Math.abs(z.x-a.x)>1e-6&&x>=Math.min(a.x,z.x)&&x<=Math.max(a.x,z.x)?[a.y+(z.y-a.y)*(x-a.x)/(z.x-a.x)]:[]}));
+ if(preset==='middle')Object.assign(view,{x:3150,y:surface(3150)-184});
+ if(preset==='east')Object.assign(view,{x:5250,y:surface(5250)-184});
+ if(preset==='overview')Object.assign(view,{x:stage.width/2,y:stage.height/2});
+ if(preset==='mobile')Object.assign(view,{scale:.94*390/1440});
+ if(preset==='edge-left')Object.assign(view,{x:f.left,y:2300});
+ if(preset==='edge-right')Object.assign(view,{x:f.right,y:2300});
 }
 const results=[];let beforePixels;
 for(const variant of ['before','body-preview']){

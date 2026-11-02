@@ -1,3 +1,4 @@
+import {applyStage6ArtCandidate} from '../act1-vector-production/apply-stage6-candidate.mjs';
 /** Preserve the broken upper bridge, lower rescue road, actors and story. */
 export function applyStage6Positioning(project){
  const s=project.stages.find(s=>s.metadata?.stageId===6);if(!s)return project;
@@ -28,5 +29,5 @@ export function applyStage6Positioning(project){
  const crows=s.events.find(e=>e.id==='bridge-crows');Object.assign(crows.action,{x:3150,y:1600,requireFlightClearance:true,maxDistance:550,spacing:145});
  const boars=s.events.find(e=>e.id==='bridge-boars');Object.assign(boars.action,{x:5100,y:top('lower-road',5100),support:'lower-road',spacing:145,maxDistance:550});
  const pursuit=s.events.find(e=>e.id==='pursuit');Object.assign(pursuit.action,{x:3540,y:top('lower-road',3540),support:'lower-road',spacing:145,maxDistance:500});
- return project;
+ return applyStage6ArtCandidate(project);
 }
