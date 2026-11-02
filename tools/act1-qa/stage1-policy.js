@@ -1,6 +1,6 @@
 ()=>{
- const a=HonroApp,e=a.engine,b=e.b,C=HONRO_CORE,u=e.heroesAlive()[0],policy=QA_POLICY,log=[],poses=[];
- const goals=policy==='route-highground'?[690,930,1500,2000,2300,2700,3100,3430,3760,4100,4650,4900,5210]:[1100,1700,2300,2900,3500,4100,4700,5210];
+ const a=HonroApp,e=a.engine,b=e.b,C=HONRO_CORE,u=e.heroesAlive()[0],policy=QA_POLICY.replace(/-v2|-cohort/g,''),log=[],poses=[];
+ const goals=policy==='route-highground'?[690,930,1500,2000,2300,2700,3100,3430,3760,4100,4650,4900,5210]:[690,930,1500,1700,2300,2900,3500,4100,4700,5210];
  let ticks=0,goal=0;
  function tick(){if(a.dialogue)HonroStory.finish(a);e.tick(C.STEP);if(!a.dialogue)a.missionTick(C.STEP);ticks++;}
  function ready(){for(let i=0;i<20000&&!e.canAct()&&!['won','lost'].includes(b.phase);i++)tick();}
@@ -13,8 +13,8 @@
    while(goal<goals.length-1&&u.x>goals[goal]-12)goal++;
    if(Math.abs(u.x-goals[goal])<12&&goal===goals.length-1)break;
    const old=u.x;
-   if(policy==='route-highground'&&goal===1&&e.grounded(u)&&u.x<760&&u.moveLeft>400)e.jump(u);
-   if(policy==='objective-aggressive'&&e.surface(u.x,u.y-3,u.y+3)?.t?.id==='pine-branch-west')e.drop(u);
+   if(goal===1&&e.grounded(u)&&u.x<760&&u.moveLeft>400)e.jump(u);
+   if(policy==='objective-aggressive'&&u.x>1500&&e.surface(u.x,u.y-3,u.y+3)?.t?.id==='pine-branch-west')e.drop(u);
    e.move(Math.sign(goals[goal]-u.x),C.STEP);tick();still=Math.abs(u.x-old)<.03?still+1:0;
    if(still>12&&e.grounded(u)){e.jump(u);still=0;}
    if(policy==='cover-survival'&&startMove-u.moveLeft>startMove*.65&&e.grounded(u)&&e.alive(1).some(t=>Math.hypot(t.x-u.x,t.y-u.y)<1100))break;
