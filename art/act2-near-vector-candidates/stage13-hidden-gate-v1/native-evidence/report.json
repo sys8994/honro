@@ -1,0 +1,232 @@
+{
+  "stage": 13,
+  "scope": "Native production renderer only; no browser or gameplay acceptance",
+  "geometryUnchanged": true,
+  "parts": [
+    "extension-v2",
+    "west-v1",
+    "middle-v1",
+    "east-v1",
+    "roof-v2",
+    "west-shelves-v1",
+    "inner-shelves-v1"
+  ],
+  "reports": [
+    {
+      "label": "entry",
+      "name": "before",
+      "view": {
+        "x": 320,
+        "y": 2782,
+        "scale": 0.94,
+        "w": 1440,
+        "h": 900
+      },
+      "heroHeight": 92
+    },
+    {
+      "label": "entry",
+      "name": "after",
+      "view": {
+        "x": 320,
+        "y": 2782,
+        "scale": 0.94,
+        "w": 1440,
+        "h": 900
+      },
+      "heroHeight": 92
+    },
+    {
+      "label": "mason",
+      "name": "before",
+      "view": {
+        "x": 2500,
+        "y": 3300,
+        "scale": 0.94,
+        "w": 1440,
+        "h": 900
+      },
+      "heroHeight": 92
+    },
+    {
+      "label": "mason",
+      "name": "after",
+      "view": {
+        "x": 2500,
+        "y": 3300,
+        "scale": 0.94,
+        "w": 1440,
+        "h": 900
+      },
+      "heroHeight": 92
+    },
+    {
+      "label": "gate",
+      "name": "before",
+      "view": {
+        "x": 4400,
+        "y": 3700,
+        "scale": 0.94,
+        "w": 1440,
+        "h": 900
+      },
+      "heroHeight": 92
+    },
+    {
+      "label": "gate",
+      "name": "after",
+      "view": {
+        "x": 4400,
+        "y": 3700,
+        "scale": 0.94,
+        "w": 1440,
+        "h": 900
+      },
+      "heroHeight": 92
+    },
+    {
+      "label": "inner",
+      "name": "before",
+      "view": {
+        "x": 5800,
+        "y": 3800,
+        "scale": 0.94,
+        "w": 1440,
+        "h": 900
+      },
+      "heroHeight": 92
+    },
+    {
+      "label": "inner",
+      "name": "after",
+      "view": {
+        "x": 5800,
+        "y": 3800,
+        "scale": 0.94,
+        "w": 1440,
+        "h": 900
+      },
+      "heroHeight": 92
+    },
+    {
+      "label": "overview",
+      "name": "before",
+      "view": {
+        "x": 4100,
+        "y": 3200,
+        "scale": 0.23529411764705882,
+        "w": 1600,
+        "h": 1000
+      },
+      "heroHeight": 92
+    },
+    {
+      "label": "overview",
+      "name": "after",
+      "view": {
+        "x": 4100,
+        "y": 3200,
+        "scale": 0.23529411764705882,
+        "w": 1600,
+        "h": 1000
+      },
+      "heroHeight": 92
+    },
+    {
+      "label": "full-map-diagnostic",
+      "name": "before",
+      "view": {
+        "x": 4100,
+        "y": 2600,
+        "scale": 0.18,
+        "w": 1600,
+        "h": 1000
+      },
+      "heroHeight": 92
+    },
+    {
+      "label": "full-map-diagnostic",
+      "name": "after",
+      "view": {
+        "x": 4100,
+        "y": 2600,
+        "scale": 0.18,
+        "w": 1600,
+        "h": 1000
+      },
+      "heroHeight": 92
+    },
+    {
+      "label": "mobile",
+      "name": "before",
+      "view": {
+        "x": 320,
+        "y": 2782,
+        "scale": 0.82,
+        "w": 390,
+        "h": 844
+      },
+      "heroHeight": 92
+    },
+    {
+      "label": "mobile",
+      "name": "after",
+      "view": {
+        "x": 320,
+        "y": 2782,
+        "scale": 0.82,
+        "w": 390,
+        "h": 844
+      },
+      "heroHeight": 92
+    },
+    {
+      "label": "edge-left",
+      "name": "before",
+      "view": {
+        "x": -320,
+        "y": 3000,
+        "scale": 0.21176470588235294,
+        "w": 1440,
+        "h": 900
+      },
+      "heroHeight": 92
+    },
+    {
+      "label": "edge-left",
+      "name": "after",
+      "view": {
+        "x": -320,
+        "y": 3000,
+        "scale": 0.21176470588235294,
+        "w": 1440,
+        "h": 900
+      },
+      "heroHeight": 92
+    },
+    {
+      "label": "edge-right",
+      "name": "before",
+      "view": {
+        "x": 8520,
+        "y": 4300,
+        "scale": 0.21176470588235294,
+        "w": 1440,
+        "h": 900
+      },
+      "heroHeight": 92
+    },
+    {
+      "label": "edge-right",
+      "name": "after",
+      "view": {
+        "x": 8520,
+        "y": 4300,
+        "scale": 0.21176470588235294,
+        "w": 1440,
+        "h": 900
+      },
+      "heroHeight": 92
+    }
+  ]
+}

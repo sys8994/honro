@@ -1,0 +1,35 @@
+{
+  "id": "act2-traced:stage13-middle-v1",
+  "name": "Stage13 middle-v1",
+  "bounds": {
+    "x": 2500,
+    "y": 3238,
+    "w": 3600,
+    "h": 1900
+  },
+  "anchor": {
+    "x": 0,
+    "y": 0
+  },
+  "foot": {
+    "x": 0,
+    "y": 0
+  },
+  "semanticLayer": "BODY",
+  "preserveCompounds": true,
+  "transform": [
+    2.085747392815759,
+    0,
+    0,
+    2.0856201975850714,
+    2500,
+    3238
+  ],
+  "params": {
+    "bodyTerrainIds": [
+      "act2-floor"
+    ],
+    "bodyBaseColor": "#283e49",
+    "localMaterial": true
+  }
+}

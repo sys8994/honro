@@ -1,0 +1,37 @@
+{
+  "id": "act2-traced:stage13-west-shelves-v1",
+  "name": "Stage13 west-shelves-v1",
+  "bounds": {
+    "x": 780,
+    "y": 2820,
+    "w": 1610,
+    "h": 520
+  },
+  "anchor": {
+    "x": 0,
+    "y": 0
+  },
+  "foot": {
+    "x": 0,
+    "y": 0
+  },
+  "semanticLayer": "BODY",
+  "preserveCompounds": true,
+  "transform": [
+    0.7412523020257827,
+    0,
+    0,
+    0.7182320441988951,
+    780,
+    2820
+  ],
+  "params": {
+    "bodyTerrainIds": [
+      "tactical-entry-shoulder",
+      "tactical-entry-west-ramp",
+      "tactical-mason-return"
+    ],
+    "bodyBaseColor": "#283e49",
+    "localMaterial": false
+  }
+}

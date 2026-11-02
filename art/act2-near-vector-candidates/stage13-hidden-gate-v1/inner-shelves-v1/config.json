@@ -1,0 +1,37 @@
+{
+  "id": "act2-traced:stage13-inner-shelves-v1",
+  "name": "Stage13 inner-shelves-v1",
+  "bounds": {
+    "x": 4980,
+    "y": 3870,
+    "w": 1600,
+    "h": 670
+  },
+  "anchor": {
+    "x": 0,
+    "y": 0
+  },
+  "foot": {
+    "x": 0,
+    "y": 0
+  },
+  "semanticLayer": "BODY",
+  "preserveCompounds": true,
+  "transform": [
+    0.8255933952528379,
+    0,
+    0,
+    0.8251231527093597,
+    4980,
+    3870
+  ],
+  "params": {
+    "bodyTerrainIds": [
+      "tactical-inner-gallery",
+      "tactical-inner-west-ramp",
+      "tactical-inner-east-ramp"
+    ],
+    "bodyBaseColor": "#283e49",
+    "localMaterial": false
+  }
+}

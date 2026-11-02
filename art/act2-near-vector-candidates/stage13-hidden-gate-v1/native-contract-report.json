@@ -1,0 +1,73 @@
+{
+  "scope": "Native raw pre-hook and effective runtime author pipeline separately; no browser/full-combat acceptance",
+  "rawStageSha256": "b3389888dec1a1eb78ef728a262f829a84e3014396f4353d7946de710ad4f11e",
+  "effectiveStageSha256": "44f49196cecd962b37a94b6570748b245d83acf641cf9188c6054b8b422d37d8",
+  "physicsSha256": "d3835b95ed3347b657693343e8c4420dc8b65ff5a92445710c4aed5878fea01c",
+  "worldSha256": "9b39a5b354f216429782cb135eefec644e7072026f95cb4d66e954d84d45e71f",
+  "effectiveAuthoredTerrainIds": [
+    "act2-floor",
+    "cave-roof",
+    "forecourt-shot-ledge",
+    "gate-gate",
+    "tactical-entry-shoulder",
+    "tactical-entry-west-ramp",
+    "tactical-mason-return",
+    "tactical-inner-gallery",
+    "tactical-inner-west-ramp",
+    "tactical-inner-east-ramp",
+    "v4.13.latch-step.0",
+    "v4.13.latch-step.1",
+    "v4.13.latch-step.2"
+  ],
+  "originalStageSize": [
+    8200,
+    6600
+  ],
+  "heroHeight": 92,
+  "stoneFinish": {
+    "revision": 1,
+    "source": "common-space-terrainPlanes-and-opt-in-library-variants",
+    "planeCount": 181,
+    "variants": [
+      {
+        "baseId": "act2:scene-work-shelter",
+        "id": "stage13:mason-work-shelter"
+      },
+      {
+        "baseId": "act2:cave-house-lean",
+        "id": "stage13:mason-stone-house"
+      },
+      {
+        "baseId": "act2:hoist-frame",
+        "id": "stage13:mason-hoist-frame"
+      },
+      {
+        "baseId": "act2:scene-stone-threshold",
+        "id": "stage13:stone-threshold-joint"
+      }
+    ],
+    "scope": "visual material and decoration only; geometry/actors/goals unchanged"
+  },
+  "addedAssets": [
+    "act2-traced:stage13-extension-v2",
+    "act2-traced:stage13-west-v1",
+    "act2-traced:stage13-middle-v1",
+    "act2-traced:stage13-east-v1",
+    "act2-traced:stage13-roof-v2",
+    "act2-traced:stage13-west-shelves-v1",
+    "act2-traced:stage13-inner-shelves-v1"
+  ],
+  "passed": [
+    "raw-stage sourceguard",
+    "negative geometry drift",
+    "duplicate application guard",
+    "no input mutation",
+    "only stage13 changed",
+    "existing library/props preserved",
+    "effective authored stage exact except decorative additions",
+    "compiled collision exact",
+    "effective world terrain exact",
+    "actor positions/sizes exact",
+    "native vector validation/no bitmap"
+  ]
+}

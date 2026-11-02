@@ -1,0 +1,35 @@
+{
+  "id": "act2-traced:stage13-roof-v2",
+  "name": "Stage13 roof-v2",
+  "bounds": {
+    "x": 3700,
+    "y": -2100,
+    "w": 10500,
+    "h": 6100
+  },
+  "anchor": {
+    "x": 0,
+    "y": 0
+  },
+  "foot": {
+    "x": 0,
+    "y": 0
+  },
+  "semanticLayer": "BODY",
+  "preserveCompounds": true,
+  "transform": [
+    6.37910085054678,
+    0,
+    0,
+    6.380753138075314,
+    3700,
+    -2100
+  ],
+  "params": {
+    "bodyTerrainIds": [
+      "cave-roof"
+    ],
+    "bodyBaseColor": "#283e49",
+    "localMaterial": false
+  }
+}
