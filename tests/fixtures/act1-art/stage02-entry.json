@@ -1,0 +1,605 @@
+{
+  "scope": "Declared Stage1-cleared entry fixture from preserved stage02-road-strategy normal-resource evidence. Not a natural campaign playthrough. Removes only old live battle before launch; no live HP/position/movement edits.",
+  "source": "game/docs/stage-review/stage02-road-strategy/evidence/combat/combat.json:entryProfile",
+  "profile": {
+    "version": 2,
+    "revision": 13,
+    "cleared": {
+      "1": true
+    },
+    "party": [
+      "archer"
+    ],
+    "loadouts": {
+      "mage": [
+        "M01"
+      ],
+      "archer": [
+        "A01"
+      ],
+      "knight": [
+        "S00"
+      ],
+      "occultist": [
+        "O01",
+        "O06"
+      ]
+    },
+    "tuning": {
+      "mage": 0.5,
+      "archer": 0.5,
+      "knight": 0.5,
+      "occultist": 0.5
+    },
+    "settings": {
+      "sound": false,
+      "music": false,
+      "volume": 0.55,
+      "assist": false,
+      "shake": true,
+      "quality": "high",
+      "difficulty": "normal",
+      "speed": 1.5,
+      "playerSpeed": 1.5,
+      "orientation": "auto",
+      "musicVolume": 0.65,
+      "minimapVisible": true,
+      "debugTerrainOutline": false,
+      "debugMode": false
+    },
+    "saved": null,
+    "lastStage": 2,
+    "mapNode": 1,
+    "tutorial": false,
+    "heroes": {
+      "mage": {
+        "xp": 0,
+        "ranks": {
+          "M01": 1
+        },
+        "statTraining": 0,
+        "kills": 0,
+        "damage": 0,
+        "skillRevision": 1,
+        "martialRevision": 1
+      },
+      "archer": {
+        "xp": 180,
+        "ranks": {
+          "A01": 1
+        },
+        "statTraining": 2,
+        "kills": 0,
+        "damage": 0,
+        "skillRevision": 1,
+        "martialRevision": 1
+      },
+      "knight": {
+        "xp": 0,
+        "ranks": {
+          "S00": 1
+        },
+        "statTraining": 0,
+        "kills": 0,
+        "damage": 0,
+        "skillRevision": 1,
+        "martialRevision": 1
+      },
+      "occultist": {
+        "xp": 0,
+        "ranks": {
+          "O01": 1,
+          "O06": 1
+        },
+        "statTraining": 0,
+        "kills": 0,
+        "damage": 0,
+        "skillRevision": 1,
+        "martialRevision": 1,
+        "occultRevision": 1
+      }
+    },
+    "recruited": [
+      "archer"
+    ],
+    "schema": 4,
+    "game": "honro",
+    "seen": {
+      "rest-interlude-v1-2": true
+    },
+    "record": [
+      {
+        "place": "상여 위의 높은 길",
+        "text": "담허 · 위에 활 든 양반! 사람을 돕겠다면 상여 앞으로 내려오는 놈들부터 막아주시게.\n설오 · 위에서 돕겠습니다! 어른은 누구십니까? 행렬을 맡고 계신 겁니까?\n담허 · 담허라 하네. 상여가 지나는 길목만 열어 주면 되네. 뒤쪽은 호위들이 맡고 있어.\n설오 · 설오입니다. 높은 놈들은 여기서 쏘겠습니다. 아래로 붙으면 내려가 돕지요.\n담허 · 짐승이 쓰러져도 그 옆을 비워 두게. 몸에서 빠져나온 혼이 다른 사람이나 짐승에게 붙을 수 있으니.\n설오 · 나무꾼이 본 일과 같군요. 자세한 이야기는 사람들을 빼낸 뒤 듣겠습니다."
+      }
+    ],
+    "honroFlags": {},
+    "honroGrowth": {
+      "version": 4,
+      "stages": {
+        "1": {
+          "policy": 3,
+          "combat": {},
+          "cleared": true,
+          "limit": {
+            "start": 0,
+            "end": 180,
+            "total": 180,
+            "combat": 72
+          }
+        },
+        "2": {
+          "combat": {},
+          "cleared": false,
+          "limit": {
+            "start": 180,
+            "end": 450,
+            "total": 270,
+            "combat": 108
+          },
+          "contribution": {
+            "version": 4,
+            "rewardBalance": 1,
+            "sequence": 0,
+            "total": 270,
+            "combatLimit": 108,
+            "actors": [
+              "archer"
+            ],
+            "factors": {
+              "archer": 1
+            },
+            "owners": {
+              "p-archer": "archer"
+            },
+            "enemies": {
+              "foe-0": {
+                "id": "foe-0",
+                "hp": 128,
+                "weight": 1,
+                "progress": 0,
+                "damage": {},
+                "support": {},
+                "threats": {},
+                "wounds": {},
+                "controls": {},
+                "defeated": false,
+                "settled": false
+              },
+              "foe-1": {
+                "id": "foe-1",
+                "hp": 100,
+                "weight": 0.78,
+                "progress": 0,
+                "damage": {},
+                "support": {},
+                "threats": {},
+                "wounds": {},
+                "controls": {},
+                "defeated": false,
+                "settled": false
+              },
+              "foe-2": {
+                "id": "foe-2",
+                "hp": 128,
+                "weight": 1,
+                "progress": 0,
+                "damage": {},
+                "support": {},
+                "threats": {},
+                "wounds": {},
+                "controls": {},
+                "defeated": false,
+                "settled": false
+              },
+              "foe-3": {
+                "id": "foe-3",
+                "hp": 128,
+                "weight": 1,
+                "progress": 0,
+                "damage": {},
+                "support": {},
+                "threats": {},
+                "wounds": {},
+                "controls": {},
+                "defeated": false,
+                "settled": false
+              },
+              "foe-4": {
+                "id": "foe-4",
+                "hp": 87,
+                "weight": 0.68,
+                "progress": 0,
+                "damage": {},
+                "support": {},
+                "threats": {},
+                "wounds": {},
+                "controls": {},
+                "defeated": false,
+                "settled": false
+              },
+              "foe-5": {
+                "id": "foe-5",
+                "hp": 128,
+                "weight": 1,
+                "progress": 0,
+                "damage": {},
+                "support": {},
+                "threats": {},
+                "wounds": {},
+                "controls": {},
+                "defeated": false,
+                "settled": false
+              },
+              "foe-0-cluster": {
+                "id": "foe-0-cluster",
+                "hp": 128,
+                "weight": 1,
+                "progress": 0,
+                "damage": {},
+                "support": {},
+                "threats": {},
+                "wounds": {},
+                "controls": {},
+                "defeated": false,
+                "settled": false
+              },
+              "foe-1-cluster": {
+                "id": "foe-1-cluster",
+                "hp": 100,
+                "weight": 0.78,
+                "progress": 0,
+                "damage": {},
+                "support": {},
+                "threats": {},
+                "wounds": {},
+                "controls": {},
+                "defeated": false,
+                "settled": false
+              },
+              "foe-2-cluster": {
+                "id": "foe-2-cluster",
+                "hp": 128,
+                "weight": 1,
+                "progress": 0,
+                "damage": {},
+                "support": {},
+                "threats": {},
+                "wounds": {},
+                "controls": {},
+                "defeated": false,
+                "settled": false
+              },
+              "foe-3-cluster": {
+                "id": "foe-3-cluster",
+                "hp": 128,
+                "weight": 1,
+                "progress": 0,
+                "damage": {},
+                "support": {},
+                "threats": {},
+                "wounds": {},
+                "controls": {},
+                "defeated": false,
+                "settled": false
+              },
+              "foe-4-cluster": {
+                "id": "foe-4-cluster",
+                "hp": 87,
+                "weight": 0.68,
+                "progress": 0,
+                "damage": {},
+                "support": {},
+                "threats": {},
+                "wounds": {},
+                "controls": {},
+                "defeated": false,
+                "settled": false
+              },
+              "foe-5-cluster": {
+                "id": "foe-5-cluster",
+                "hp": 128,
+                "weight": 1,
+                "progress": 0,
+                "damage": {},
+                "support": {},
+                "threats": {},
+                "wounds": {},
+                "controls": {},
+                "defeated": false,
+                "settled": false
+              }
+            },
+            "objectives": {},
+            "objectiveEvidence": {},
+            "paid": {},
+            "spent": 0,
+            "forfeited": 0,
+            "combatSpent": 0,
+            "completed": false
+          },
+          "policy": 4
+        }
+      }
+    },
+    "honroBattle": null,
+    "honroNarrative": [
+      {
+        "id": "act1-v6:entry-2",
+        "title": "상여 위의 높은 길",
+        "lines": [
+          [
+            "설오",
+            "저 아래, 연목 나루로 내려가는 분지에 장례 행렬이 멈췄네.",
+            {
+              "storyId": "act1-v6:entry-2",
+              "storyTitle": "상여 위의 높은 길",
+              "optional": false,
+              "camera": {
+                "id": "2:arrival:0",
+                "intent": "situation",
+                "targets": [
+                  {
+                    "actor": "objective"
+                  },
+                  {
+                    "actor": "npc-damheo"
+                  },
+                  {
+                    "actor": "archer"
+                  }
+                ],
+                "padding": 80,
+                "maxScale": 0.8,
+                "speakerPolicy": "context-portrait"
+              },
+              "stagingScene": "direction-v2:entry-2"
+            }
+          ],
+          [
+            "서술",
+            "관을 메고 가는 운반틀인 상여 곁으로, 정체 모를 혼에 몸을 빼앗긴 짐승들이 내려오고 있다.",
+            {
+              "storyId": "act1-v6:entry-2",
+              "storyTitle": "상여 위의 높은 길",
+              "optional": false,
+              "kind": "narration",
+              "presentation": "inline",
+              "camera": {
+                "id": "2:arrival:1",
+                "intent": "situation",
+                "targets": [
+                  {
+                    "actor": "objective"
+                  },
+                  {
+                    "actor": "npc-damheo"
+                  },
+                  {
+                    "actor": "archer"
+                  }
+                ],
+                "padding": 80,
+                "maxScale": 0.8,
+                "speakerPolicy": "none"
+              },
+              "stagingScene": "direction-v2:entry-2"
+            }
+          ],
+          [
+            "서술",
+            "설오는 높은 바위턱에서 활을 들었다.",
+            {
+              "storyId": "act1-v6:entry-2",
+              "storyTitle": "상여 위의 높은 길",
+              "optional": false,
+              "kind": "narration",
+              "presentation": "inline",
+              "camera": {
+                "id": "2:arrival:2",
+                "intent": "portrait",
+                "targets": [
+                  {
+                    "actor": "archer"
+                  }
+                ],
+                "padding": 80,
+                "maxScale": 0.8,
+                "speakerPolicy": "none"
+              },
+              "stagingScene": "direction-v2:entry-2"
+            }
+          ],
+          [
+            "담허",
+            "위에 활 든 양반! 사람을 돕겠다면 상여 앞으로 내려오는 놈들부터 막아주시게.",
+            {
+              "camera": {
+                "intent": "situation",
+                "targets": [
+                  {
+                    "actor": "objective"
+                  },
+                  {
+                    "actor": "npc-damheo"
+                  },
+                  {
+                    "actor": "archer"
+                  }
+                ],
+                "padding": 70,
+                "maxScale": 0.8,
+                "id": "2:entry:story-0",
+                "speakerPolicy": "context-portrait"
+              },
+              "storyId": "act1-v6:entry-2",
+              "storyTitle": "상여 위의 높은 길",
+              "stagingScene": "direction-v2:entry-2"
+            }
+          ],
+          [
+            "설오",
+            "위에서 돕겠습니다! 어른은 누구십니까? 행렬을 맡고 계신 겁니까?",
+            {
+              "camera": {
+                "intent": "object-introduction",
+                "shot": "reverse",
+                "reason": "앞의 높이차 조망 뒤 설오의 시선으로 상여와 응답자를 보여 준다. 설오는 초상으로 유지한다.",
+                "targets": [
+                  {
+                    "actor": "objective"
+                  },
+                  {
+                    "actor": "npc-damheo"
+                  }
+                ],
+                "padding": 65,
+                "maxScale": 0.9,
+                "id": "2:entry:story-1",
+                "speakerPolicy": "context-portrait"
+              },
+              "storyId": "act1-v6:entry-2",
+              "storyTitle": "상여 위의 높은 길",
+              "stagingScene": "direction-v2:entry-2"
+            }
+          ],
+          [
+            "담허",
+            "담허라 하네. 상여가 지나는 길목만 열어 주면 되네. 뒤쪽은 호위들이 맡고 있어.",
+            {
+              "camera": {
+                "intent": "conversation",
+                "targets": [
+                  {
+                    "actor": "objective"
+                  },
+                  {
+                    "actor": "npc-damheo"
+                  }
+                ],
+                "padding": 60,
+                "maxScale": 0.9,
+                "id": "2:entry:story-2",
+                "speakerPolicy": "world"
+              },
+              "storyId": "act1-v6:entry-2",
+              "storyTitle": "상여 위의 높은 길",
+              "stagingScene": "direction-v2:entry-2"
+            }
+          ],
+          [
+            "설오",
+            "설오입니다. 높은 놈들은 여기서 쏘겠습니다. 아래로 붙으면 내려가 돕지요.",
+            {
+              "camera": {
+                "intent": "portrait",
+                "targets": [
+                  {
+                    "actor": "archer"
+                  }
+                ],
+                "padding": 40,
+                "maxScale": 1,
+                "id": "2:entry:story-3",
+                "speakerPolicy": "world"
+              },
+              "storyId": "act1-v6:entry-2",
+              "storyTitle": "상여 위의 높은 길",
+              "stagingScene": "direction-v2:entry-2"
+            }
+          ],
+          [
+            "담허",
+            "짐승이 쓰러져도 그 옆을 비워 두게. 몸에서 빠져나온 혼이 다른 사람이나 짐승에게 붙을 수 있으니.",
+            {
+              "camera": {
+                "intent": "object-introduction",
+                "targets": [
+                  {
+                    "actor": "objective"
+                  },
+                  {
+                    "actor": "npc-damheo"
+                  }
+                ],
+                "padding": 65,
+                "maxScale": 0.9,
+                "id": "2:entry:story-4",
+                "speakerPolicy": "context-portrait"
+              },
+              "storyId": "act1-v6:entry-2",
+              "storyTitle": "상여 위의 높은 길",
+              "stagingScene": "direction-v2:entry-2"
+            }
+          ],
+          [
+            "설오",
+            "나무꾼이 본 일과 같군요. 자세한 이야기는 사람들을 빼낸 뒤 듣겠습니다.",
+            {
+              "camera": {
+                "intent": "portrait",
+                "targets": [
+                  {
+                    "actor": "archer"
+                  }
+                ],
+                "padding": 40,
+                "maxScale": 1,
+                "id": "2:entry:story-5",
+                "speakerPolicy": "world"
+              },
+              "storyId": "act1-v6:entry-2",
+              "storyTitle": "상여 위의 높은 길",
+              "stagingScene": "direction-v2:entry-2"
+            }
+          ],
+          [
+            "설오",
+            "행렬이 저 아래 길을 통과할 때까지 높은 놈부터 끊겠습니다.",
+            {
+              "focus": "objective",
+              "storyId": "act1-v6:entry-2",
+              "storyTitle": "상여 위의 높은 길",
+              "stagingScene": "direction-v2:entry-2",
+              "camera": {
+                "intent": "object-introduction",
+                "targets": [
+                  {
+                    "objective": "objective"
+                  }
+                ],
+                "padding": 85,
+                "maxScale": 0.85,
+                "id": "2:entry:9",
+                "speakerPolicy": "context-portrait"
+              }
+            }
+          ],
+          [
+            "안내",
+            "상여가 도착할 때까지 지켜 주세요",
+            {
+              "kind": "guide",
+              "focus": "objective",
+              "storyId": "act1-v6:entry-2",
+              "storyTitle": "상여 위의 높은 길",
+              "stagingScene": "direction-v2:entry-2",
+              "camera": {
+                "intent": "objective",
+                "targets": [
+                  {
+                    "objective": "objective"
+                  }
+                ],
+                "padding": 100,
+                "maxScale": 0.75,
+                "id": "2:entry:10",
+                "speakerPolicy": "none"
+              }
+            }
+          ]
+        ]
+      }
+    ]
+  }
+}

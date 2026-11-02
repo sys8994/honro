@@ -16,5 +16,15 @@ const legacyPines=new Set(['left-pine-upper','left-pine-lower','right-pine']),pi
 S.landmark=function(c,l){if(active(this.battle)&&legacyPines.has(l.id)&&l.kind==='ravinePine'){
  let view=pineViews.get(l);if(!view){const asset=G.HONRO_PROJECT.library.find(a=>a.id==='act1-scene:rooted-pine');view=asset?{...l,kind:'canonical-element',asset,scale:l.size??l.scale??1}:l;pineViews.set(l,view);}return landmark.call(this,c,view);
  }return landmark.call(this,c,l);};
+// Continuous near-art outside play bounds is scenery, not another walk route.
+// Keep the physical contact rim inside play bounds; never change colliders.
+const readability=S.terrainReadability;
+S.terrainReadability=function(c,b,view){
+ if(active(b)&&b.honroLandmarks?.some(l=>l.asset?.params?.continuousTerrain===true)){
+  c.save();c.beginPath();c.rect(0,-24000,b.width,b.height+48000);c.clip();
+  try{return readability.call(this,c,b,view);}finally{c.restore();}
+ }
+ return readability.call(this,c,b,view);
+};
 G.HonroStage2LayeredRoadArt={active,prepare,rear,omitReadability};
 })(globalThis);

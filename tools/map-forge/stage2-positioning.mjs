@@ -1,6 +1,7 @@
+import {applyStage2ArtCandidate} from '../act1-vector-production/apply-stage2-candidate.mjs';
 /** Keep the canyon/convoy encounter; reconnect its existing boughs to their supports. */
 export function applyStage2Positioning(project){
- const s=project.stages.find(s=>s.metadata?.stageId===2);if(!s||s.initialState?.honroStage2LayeredRevision===1)return project;
+ const s=project.stages.find(s=>s.metadata?.stageId===2);if(!s)return project;if(s.initialState?.honroStage2LayeredRevision===1)return applyStage2ArtCandidate(project);
  const smooth=ps=>ps.flatMap((p,i)=>Array.from({length:5},(_,j)=>{const a=ps[(i+ps.length-1)%ps.length],b=ps[(i+1)%ps.length],c=ps[(i+2)%ps.length],u=j/5;return Object.fromEntries(['x','y'].map(k=>[k,.5*((2*p[k])+(-a[k]+b[k])*u+(2*a[k]-5*p[k]+4*b[k]-c[k])*u*u+(-a[k]+3*p[k]-3*b[k]+c[k])*u*u*u)]));}));
  const branches={
   'left-tree-branch-upper':[[510,622],[650,650],[860,701],[1100,738],[1430,769],[1690,789],[1690,801],[1430,810],[1240,803],[1100,833],[970,814],[860,790],[740,761],[650,716],[520,683]],
@@ -16,5 +17,5 @@ export function applyStage2Positioning(project){
  s.design.positioning={version:1,question:'상단 가지에서 공중 적을 견제할까, 중하단 엄호턱으로 내려가 상여 앞을 먼저 비울까?',preserved:['procession-seen','road-pressure','sniper-seen','right-cliff','last-flight','escortGoalX:3340','stage2Airborne'],clusterPositions:{
   'foe-0-cluster':{x:2150,y:top(2150)},'foe-3-cluster':{x:2470,y:top(2470)},'foe-2-cluster':{x:2780,y:top(2780)},'foe-5-cluster':{x:3030,y:top(3030)}
  },roles:['서쪽 산개 전위3:1850/2010/2150','물길 측면 단독2470','동쪽 혼합 차단3:2780/2940/3030','출구 단독 산개3320','기존 공중 경고/대응 기회 보존']};
- return project;
+ return applyStage2ArtCandidate(project);
 }

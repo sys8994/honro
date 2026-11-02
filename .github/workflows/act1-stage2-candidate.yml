@@ -1,0 +1,82 @@
+name: Verify Stage2 continuous terrain and required runtime gate
+on:
+  push:
+    branches: ['work/act1-body-rollout/stage2-*']
+permissions:
+  contents: write
+jobs:
+  verify:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
+    env:
+      HONRO_ACT1_STAGE2_CANDIDATE: '1'
+      HONRO_ACT4_RELEASE: '1'
+      OUT: _local/reports/act1-stage2-review
+      HONRO_QA_URL: http://127.0.0.1:8870/HONRO.html
+      HONRO_QA_ORIGIN: http://127.0.0.1:8870
+    steps:
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
+        with:
+          ref: ${{ github.sha }}
+      - uses: actions/setup-node@2028fbc5c25fe9cf00d9f06a71cc4710d4507903
+        with:
+          node-version: '22'
+          package-manager-cache: false
+      - uses: actions/setup-python@e797f83bcb11b83ae66e0230d6156d7c80228e7c
+        with:
+          python-version: '3.12'
+      - name: Install tools and check unchanged geometry and scoped rendering
+        run: |
+          set -euo pipefail
+          npm ci
+          npm ci --prefix game
+          node tests/act1-body-candidate.mjs
+          node tests/stage2-continuous-art-rim.mjs
+          node tests/stage2-continuous-candidate.mjs
+          python -m pip install 'playwright==1.58.0'
+          python -m playwright install --with-deps chromium
+      - name: Preserve published assets and prepare unpublished evidence preview
+        run: |
+          set -euo pipefail
+          mkdir -p "$OUT"
+          mapfile -t refs < <(node --input-type=module -e 'import fs from "node:fs";import {selectPublishedGenerations} from "./shared/web-retention.mjs";for(const g of selectPublishedGenerations(JSON.parse(fs.readFileSync("web/manifest.json")).publishedGenerations,{now:Date.now()})){if(!/^[a-f0-9]{40}$/.test(g.sourceSha))throw Error("Invalid ref");console.log(g.sourceSha)}')
+          git fetch --no-tags --depth=1 origin 1c68c5708365359b1dac934357c788e226d87c35 "${refs[@]}"
+          node tools/release/retain-published-web.mjs 1c68c5708365359b1dac934357c788e226d87c35 --published-at 2026-11-02T07:16:57Z --evidence https://github.com/sys8994/honro/actions/runs/41405042195
+          node tools/act4-ci/refresh-stage31-probes.mjs prepare "$OUT"
+          # Established evidence-only bootstrap. This preview is NOT publishable.
+          # The unchanged production gate is enforced after fresh normal UI evidence.
+          node workshop/build.mjs | tee "$OUT/preview-build.log"
+          sha256sum HONRO.html web/manifest.json > "$OUT/preview-served-sha256.txt"
+      - name: Actual Stage2 UI and fresh Stage31 normal-input objective evidence
+        run: |
+          set -euo pipefail
+          python -m http.server 8870 --bind 127.0.0.1 > "$OUT/server.log" 2>&1 &
+          server=$!; trap 'kill "$server" 2>/dev/null || true' EXIT
+          sleep 2
+          HONRO_RUN_DIR="$OUT/stage31" python tools/act4-ci/stage31-fullplay.py > "$OUT/stage31.log" 2>&1 &
+          stage31=$!
+          HONRO_QA_OUT="$OUT/stage2" python tools/act1-vector-production/browser-stage2.py > "$OUT/stage2.log" 2>&1 &
+          stage2=$!
+          set +e
+          wait "$stage31"; status31=$?
+          wait "$stage2"; status2=$?
+          set -e
+          test "$status31" = 0 && test "$status2" = 0
+      - name: Bind measured evidence then enforce the production gate
+        run: |
+          set -euo pipefail
+          node tools/act4-ci/refresh-stage31-probes.mjs attach "$OUT"
+          npm run build | tee "$OUT/gated-build.log"
+          sha256sum HONRO.html web/manifest.json > "$OUT/final-served-sha256.txt"
+      - name: Preserve checked candidate without master publication
+        run: |
+          set -euo pipefail
+          git add web HONRO.html HONRO_WORKSHOP.html index.html tools/stage31/production-package.json
+          git -c user.name='honro release automation' -c user.email='41898282+github-actions[bot]@users.noreply.github.com' commit -m "Build checked Stage2 terrain candidate from $GITHUB_SHA"
+          git push origin "HEAD:refs/heads/work/act1-stage2-generated/$GITHUB_SHA"
+      - uses: actions/upload-artifact@330a01c490aca151604b8cf639adc76d48f6c5d4
+        if: always()
+        with:
+          name: act1-stage2-review-${{ github.sha }}
+          path: _local/reports/act1-stage2-review/
+          retention-days: 7

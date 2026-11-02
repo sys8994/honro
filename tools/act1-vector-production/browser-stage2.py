@@ -1,0 +1,44 @@
+"""Declared prior-stage-cleared fixture; real UI entry and movement/jump smoke. Not a clear/fun acceptance run."""
+import os,json,time,traceback
+from pathlib import Path
+from playwright.sync_api import sync_playwright
+out=Path(os.environ.get('HONRO_QA_OUT','_local/reports/act1-stage2-browser'));out.mkdir(parents=True,exist_ok=True)
+r={'sourceCommit':os.environ.get('GITHUB_SHA'),'scope':'Fixture-seeded normal stage2 UI entry, unchanged scale, real movement/jump; not combat clear or gameplay acceptance','passed':False,'errors':[],'inputs':[]}
+try:
+ with sync_playwright() as w:
+  browser=w.chromium.launch(headless=True);p=browser.new_page(viewport={'width':1440,'height':900});p.on('pageerror',lambda e:r['errors'].append(str(e)))
+  p.goto(os.environ.get('HONRO_QA_URL','http://127.0.0.1:8770/HONRO.html'),wait_until='domcontentloaded');p.wait_for_function('window.HonroApp',timeout=60000)
+  fixture=json.loads(Path('tests/fixtures/act1-art/stage02-entry.json').read_text());r['entryFixtureScope']=fixture['scope']
+  p.evaluate('(v)=>localStorage.setItem("honro-first-act-profile-1",JSON.stringify(v))',fixture['profile']);p.reload(wait_until='domcontentloaded');p.wait_for_function('window.HonroApp',timeout=60000)
+  p.get_by_role('button',name='여정 이어가기',exact=True).click();r['inputs'].append('click:여정 이어가기')
+  deadline=time.monotonic()+120
+  while time.monotonic()<deadline:
+   if p.evaluate('HonroApp.engine?.b?.honroStage===2 && HonroApp.canInput()'):break
+   next_line=p.locator('[data-action="dialogue-next"]:visible');enter=p.locator('[data-action="journey-enter"]:visible')
+   if next_line.count() and next_line.first.is_enabled():next_line.first.click();r['inputs'].append('click:dialogue-next')
+   elif p.evaluate('!!HonroApp.dialogue'):p.keyboard.press('Enter');r['inputs'].append('key:Enter')
+   elif enter.count():enter.first.click();r['inputs'].append('click:journey-enter')
+   p.wait_for_timeout(500)
+  p.wait_for_function('HonroApp.engine?.b?.honroStage===2 && HonroApp.canInput()',timeout=1000);p.wait_for_timeout(1200)
+  state='''() => {const a=HonroApp,e=a.engine,u=e.active;return {stage:e.b.honroStage,round:e.b.round,active:u.id,x:u.x,y:u.y,h:u.h,hp:u.hp,grounded:e.grounded(u),camera:{x:a.scene.x,y:a.scene.y,scale:a.scene.scale},bodies:(e.b.honroLandmarks||[]).filter(l=>l.id.startsWith('act1-stage02-traced-')).map(l=>({id:l.asset.id,clip:!!(l.asset.vector.clips?.extendedSolid||l.asset.vector.clips?.canonicalRear),collisionIds:l.collisionIds.length})),canInput:a.canInput()};}'''
+  r['entry']=p.evaluate(state);assert len(r['entry']['bodies'])==2,r['entry'];assert r['entry']['bodies'][0]['clip'];assert r['entry']['bodies'][0]['collisionIds']==0;assert r['entry']['h']==92;assert abs(r['entry']['x']-290)<2;assert r['entry']['y']<650;assert abs(r['entry']['camera']['scale']-.94)<.01,r['entry']['camera']
+  p.screenshot(path=str(out/'entry.png'))
+  p.keyboard.down('ArrowRight');p.wait_for_timeout(350);p.keyboard.up('ArrowRight');r['inputs'].append('hold:ArrowRight:350ms');p.wait_for_timeout(200);r['moved']=p.evaluate(state);assert r['moved']['x']>r['entry']['x']+1,(r['entry'],r['moved'])
+  p.wait_for_function('HonroApp.canInput() && HonroApp.engine.grounded(HonroApp.engine.active)',timeout=10000);r['preJump']=p.evaluate(state);assert r['preJump']['grounded']
+  p.keyboard.press('Control');r['inputs'].append('key:Control');p.wait_for_timeout(150);r['jump']=p.evaluate(state);p.screenshot(path=str(out/'jump.png'));assert not r['jump']['grounded'],r['jump']
+  p.wait_for_timeout(2000);r['landed']=p.evaluate(state);assert r['landed']['grounded'] and r['landed']['hp']>0,r['landed'];p.screenshot(path=str(out/'landed.png'))
+  r['frameIntervals']=p.evaluate('''() => new Promise(resolve=>{const a=[];let last;function f(t){if(last!==undefined)a.push(t-last);last=t;if(a.length>=45)resolve(a);else requestAnimationFrame(f)}requestAnimationFrame(f)})''');r['frameMedianMs']=sorted(r['frameIntervals'])[len(r['frameIntervals'])//2]
+  p.locator('#battlecanvas').hover();p.mouse.wheel(0,4000);r['inputs'].append('wheel:4000');p.wait_for_timeout(1200);r['overview']=p.evaluate(state);p.screenshot(path=str(out/'overview.png'))
+  mini=p.locator('#minimap');box=mini.bounding_box();assert box
+  for label,fraction in [('map-center',.5),('map-left',.01),('map-right',.99)]:
+   mini.click(position={'x':box['width']*fraction,'y':box['height']*.5});r['inputs'].append('minimap:'+label);p.wait_for_timeout(700);p.screenshot(path=str(out/(label+'.png')))
+  r['storageChars']=p.evaluate('localStorage.getItem("honro-first-act-profile-1")?.length');assert r['storageChars']>0
+  p.wait_for_function('!!HonroApp.profile.honroBattle && !HonroApp.storageWarned',timeout=10000)
+  r['beforeReload']=p.evaluate(state);p.reload(wait_until='domcontentloaded');p.wait_for_function('window.HonroApp',timeout=60000)
+  p.locator('[data-action="continue"]:visible').first.click();r['inputs'].append('reload then click:continue')
+  p.wait_for_function('HonroApp.engine?.b?.honroStage===2 && HonroApp.canInput()',timeout=60000);p.wait_for_timeout(1000)
+  r['resumed']=p.evaluate(state);assert len(r['resumed']['bodies'])==2 and r['resumed']['bodies'][0]['collisionIds']==0,r['resumed'];assert abs(r['resumed']['x']-r['beforeReload']['x'])<1,r['resumed'];assert r['resumed']['hp']==r['beforeReload']['hp'];p.screenshot(path=str(out/'resumed.png'))
+  assert not r['errors'],r['errors'];r['passed']=True;browser.close()
+except Exception:r['error']=traceback.format_exc()
+finally:(out/'result.json').write_text(json.dumps(r,ensure_ascii=False,indent=2)+'\n');print(json.dumps(r,ensure_ascii=False),flush=True)
+if not r['passed']:raise SystemExit(1)

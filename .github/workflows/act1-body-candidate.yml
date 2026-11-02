@@ -1,7 +1,7 @@
 name: Act1 body candidate UI check
 on:
   push:
-    branches: ['work/act1-body-rollout/**']
+    branches: ['work/act1-body-rollout/**', '!work/act1-body-rollout/stage2-*']
 permissions:
   contents: write
 jobs:
