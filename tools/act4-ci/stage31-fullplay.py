@@ -56,18 +56,20 @@ with sync_playwright() as w:
   return False
  memory={}
  history={}
+ incomingDamage={}
+ previousHp={}
  def observe(pl):
   for enemy in pl['observed']:
    if enemy['dead']:memory.pop(enemy['id'],None)
    else:memory[enemy['id']]=enemy
  # Read-only survival planning uses only visible enemies and actually observed warnings.
- def survival():return p.evaluate('''()=>{const a=HonroApp,e=a.engine,b=e.b,u=e.active,sc=a.scene,r=sc.canvas.getBoundingClientRect(),lo=sc.world(0,0),hi=sc.world(r.width,r.height),on=(x,y)=>x>=Math.min(lo.x,hi.x)&&x<=Math.max(lo.x,hi.x)&&y>=Math.min(lo.y,hi.y)&&y<=Math.max(lo.y,hi.y);const enemy=b.units.filter(v=>v.side===1&&!v.dead&&on(v.x,v.y-v.h*.5)),warnings=b.units.filter(v=>v.side===1&&!v.dead&&v.honroPilotCombat?.phase==='telegraph').map(v=>v.honroPilotCombat.target).filter(t=>t?.seen&&on(t.x,t.y));const low=u.hp<=u.maxHp*.45,exposed=warnings.some(t=>Math.hypot(u.x-t.x,(u.y-u.h*.5)-t.y)<200),near=enemy.filter(v=>Math.hypot(v.x-u.x,v.y-u.y)<1400);if(!exposed&&!(low&&near.length))return {needed:false,low,exposed,hp:u.hp,maxHp:u.maxHp};const score=(x,y)=>Math.min(...near.map(v=>Math.hypot(v.x-x,v.y-y)),2000)+Math.min(...warnings.map(t=>Math.hypot(x-t.x,y-u.h*.5-t.y)*2),1000);const start=score(u.x,u.y),paths=[];for(const dir of [-1,1]){let y=u.y,ok=true;for(let step=50;step<=300;step+=50){const hit=e.contactSurface(u.x+dir*step,y-85,y+85);if(!hit||Math.abs(hit.y-y)>80){ok=false;break}y=hit.y}if(ok){const value=score(u.x+dir*300,y);if(value>start+70)paths.push({dir,value,y})}}paths.sort((x,y)=>y.value-x.value);return {needed:true,low,exposed,hp:u.hp,maxHp:u.maxHp,shield:u.shield,visibleEnemies:near.map(v=>({id:v.id,x:v.x,y:v.y})),warnings:warnings.map(t=>({id:t.id,x:t.x,y:t.y})),path:paths[0]||null}}''')
+ def survival():return p.evaluate('''incoming=>{const a=HonroApp,e=a.engine,b=e.b,u=e.active,sc=a.scene,r=sc.canvas.getBoundingClientRect(),lo=sc.world(0,0),hi=sc.world(r.width,r.height),on=(x,y)=>x>=Math.min(lo.x,hi.x)&&x<=Math.max(lo.x,hi.x)&&y>=Math.min(lo.y,hi.y)&&y<=Math.max(lo.y,hi.y);const enemy=b.units.filter(v=>v.side===1&&!v.dead&&on(v.x,v.y-v.h*.5)),warnings=b.units.filter(v=>v.side===1&&!v.dead&&v.honroPilotCombat?.phase==='telegraph').map(v=>v.honroPilotCombat.target).filter(t=>t?.seen&&on(t.x,t.y));const observedDamage=incoming[u.id]||0,critical=u.hp+u.shield<=Math.max(u.maxHp*.35,observedDamage*1.35),low=u.hp+u.shield<=Math.max(u.maxHp*.45,observedDamage*1.35),exposed=warnings.some(t=>Math.hypot(u.x-t.x,(u.y-u.h*.5)-t.y)<200),near=enemy.filter(v=>Math.hypot(v.x-u.x,v.y-u.y)<1400);if(!exposed&&!(low&&near.length))return {needed:false,low,critical,observedDamage,exposed,hp:u.hp,maxHp:u.maxHp};const score=(x,y)=>Math.min(...near.map(v=>Math.hypot(v.x-x,v.y-y)),2000)+Math.min(...warnings.map(t=>Math.hypot(x-t.x,y-u.h*.5-t.y)*2),1000);const start=score(u.x,u.y),paths=[];for(const dir of [-1,1]){let y=u.y,ok=true;for(let step=50;step<=300;step+=50){const hit=e.contactSurface(u.x+dir*step,y-85,y+85);if(!hit||Math.abs(hit.y-y)>80){ok=false;break}y=hit.y}if(ok){const value=score(u.x+dir*300,y);if(value>start+70)paths.push({dir,value,y})}}paths.sort((x,y)=>y.value-x.value);return {needed:true,low,critical,observedDamage,exposed,hp:u.hp,maxHp:u.maxHp,shield:u.shield,visibleEnemies:near.map(v=>({id:v.id,x:v.x,y:v.y})),warnings:warnings.map(t=>({id:t.id,x:t.x,y:t.y})),path:paths[0]||null}}''',incomingDamage)
  def survive(n):
   initial=survival()
   if not initial['needed']:return False
-  # Low health alone is not a reason to waste every turn guarding.
-  # Prefer a currently visible safe shot when no telegraphed area covers us.
-  if not initial['exposed'] and plan()['best']:
+  # Projectile safety is not survival safety. Critical HP or an observed
+  # incoming-volley deficit must not be bypassed by a viable outgoing shot.
+  if not initial['exposed'] and not initial['critical'] and plan()['best']:
    record('survival-safe-offense-'+str(n),{'assessment':initial});return False
   record('survival-before-'+str(n),{'assessment':initial});capture(path=str(out/('survival-before-'+str(n)+'.png')))
   for attempt in range(2):
@@ -89,6 +91,9 @@ with sync_playwright() as w:
  for n in range(120):
   if time.monotonic()-started>1200:raise TimeoutError('Bounded normal-input play budget exceeded')
   if not waitready():record('stopped-wait');break
+  for hero in state()['health']:
+   old=previousHp.get(hero['id'],hero['hp']);loss=max(0,old-hero['hp'])
+   incomingDamage[hero['id']]=max(incomingDamage.get(hero['id'],0),loss);previousHp[hero['id']]=hero['hp']
   if state()['round']>20:record('round-limit');break
   if any(h['dead'] for h in state()['health']):
    record('party-loss');capture(path=out/'party-loss.png');break
@@ -166,6 +171,7 @@ with sync_playwright() as w:
   if state()['phase'] in ('won','lost'):break
 
  # Current battle must actually finish; boarding preserves normal turn accounting.
+ result['lastCombatState']=state()
  assert state()['enemies']==0 and state()['round']<=20,state()
  from boarding_inputs import board_party
  final=board_party(p,lambda label,value:record(label,{'boarding':value}),lambda name:capture(path=out/(name+'.png')))

@@ -11,13 +11,14 @@ try:
   fixture=json.loads(Path('tests/fixtures/act1-art/stage02-entry.json').read_text());r['entryFixtureScope']=fixture['scope']
   p.evaluate('(v)=>localStorage.setItem("honro-first-act-profile-1",JSON.stringify(v))',fixture['profile']);p.reload(wait_until='domcontentloaded');p.wait_for_function('window.HonroApp',timeout=60000)
   p.get_by_role('button',name='여정 이어가기',exact=True).click();r['inputs'].append('click:여정 이어가기')
-  deadline=time.monotonic()+120
+  r['navigation']=[];deadline=time.monotonic()+120
   while time.monotonic()<deadline:
    if p.evaluate('HonroApp.engine?.b?.honroStage===2 && HonroApp.canInput()'):break
    next_line=p.locator('[data-action="dialogue-next"]:visible');enter=p.locator('[data-action="journey-enter"]:visible')
    if next_line.count() and next_line.first.is_enabled():next_line.first.click();r['inputs'].append('click:dialogue-next')
    elif p.evaluate('!!HonroApp.dialogue'):p.keyboard.press('Enter');r['inputs'].append('key:Enter')
    elif enter.count():enter.first.click();r['inputs'].append('click:journey-enter')
+   if len(r['navigation'])<len(r['inputs']):r['navigation'].append(p.evaluate('() => ({screen:HonroApp.screen,stage:HonroApp.engine?.b?.honroStage,dialogue:!!HonroApp.dialogue,modal:HonroApp.modalKind,pending:HonroApp.pendingJourneyLaunch,buttons:[...document.querySelectorAll("button")].filter(b=>b.offsetParent!==null).map(b=>({text:b.innerText,action:b.dataset.action,id:b.dataset.id}))})'))
    p.wait_for_timeout(500)
   p.wait_for_function('HonroApp.engine?.b?.honroStage===2 && HonroApp.canInput()',timeout=1000);p.wait_for_timeout(1200)
   state='''() => {const a=HonroApp,e=a.engine,u=e.active;return {stage:e.b.honroStage,round:e.b.round,active:u.id,x:u.x,y:u.y,h:u.h,hp:u.hp,grounded:e.grounded(u),camera:{x:a.scene.x,y:a.scene.y,scale:a.scene.scale},bodies:(e.b.honroLandmarks||[]).filter(l=>l.id.startsWith('act1-stage02-traced-')).map(l=>({id:l.asset.id,clip:!!(l.asset.vector.clips?.extendedSolid||l.asset.vector.clips?.canonicalRear),collisionIds:l.collisionIds.length})),canInput:a.canInput()};}'''
@@ -39,6 +40,12 @@ try:
   p.wait_for_function('HonroApp.engine?.b?.honroStage===2 && HonroApp.canInput()',timeout=60000);p.wait_for_timeout(1000)
   r['resumed']=p.evaluate(state);assert len(r['resumed']['bodies'])==2 and r['resumed']['bodies'][0]['collisionIds']==0,r['resumed'];assert abs(r['resumed']['x']-r['beforeReload']['x'])<1,r['resumed'];assert r['resumed']['hp']==r['beforeReload']['hp'];p.screenshot(path=str(out/'resumed.png'))
   assert not r['errors'],r['errors'];r['passed']=True;browser.close()
-except Exception:r['error']=traceback.format_exc()
+except Exception:
+ r['error']=traceback.format_exc()
+ try:
+  r['lastUi']=p.locator('body').inner_text()[:10000]
+  r['lastState']=p.evaluate('() => ({screen:HonroApp.screen,stage:HonroApp.engine?.b?.honroStage,phase:HonroApp.engine?.b?.phase,dialogue:HonroApp.dialogue,modal:HonroApp.modalKind,pending:HonroApp.pendingJourneyLaunch,storageWarned:HonroApp.storageWarned,turnNotice:HonroApp.turnNotice,canInput:HonroApp.canInput()})')
+  p.screenshot(path=str(out/'failure.png'))
+ except Exception as e:r['diagnosticError']=str(e)
 finally:(out/'result.json').write_text(json.dumps(r,ensure_ascii=False,indent=2)+'\n');print(json.dumps(r,ensure_ascii=False),flush=True)
 if not r['passed']:raise SystemExit(1)
