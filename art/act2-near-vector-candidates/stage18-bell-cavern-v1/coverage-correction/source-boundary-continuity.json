@@ -1,0 +1,50 @@
+[
+  {
+    "view": "ceiling",
+    "sourceBoundaryY": -2000,
+    "sampleRows": [
+      404,
+      412
+    ],
+    "uniqueRGB": [
+      [
+        43,
+        58,
+        67
+      ]
+    ],
+    "continuous": true
+  },
+  {
+    "view": "mobile-ceiling",
+    "sourceBoundaryY": -2000,
+    "sampleRows": [
+      407,
+      415
+    ],
+    "uniqueRGB": [
+      [
+        43,
+        58,
+        67
+      ]
+    ],
+    "continuous": true
+  },
+  {
+    "view": "mobile-bottom",
+    "sourceBoundaryY": 14000,
+    "sampleRows": [
+      657,
+      665
+    ],
+    "uniqueRGB": [
+      [
+        43,
+        58,
+        67
+      ]
+    ],
+    "continuous": true
+  }
+]

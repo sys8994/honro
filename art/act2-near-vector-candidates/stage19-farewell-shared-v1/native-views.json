@@ -1,0 +1,551 @@
+{
+  "stage": 19,
+  "sharedStage18Materials": true,
+  "scope": "Native render only; original authored farewell actors and bell retained. No normal UI/full story acceptance.",
+  "reports": [
+    {
+      "label": "entry",
+      "name": "before",
+      "view": {
+        "x": 6240,
+        "y": 7218.666666666667,
+        "scale": 0.94,
+        "w": 1440,
+        "h": 900
+      },
+      "actualCamera": {
+        "x": 6240,
+        "y": 7218.666666666667,
+        "scale": 0.94
+      },
+      "heroHeight": 92
+    },
+    {
+      "label": "farewell",
+      "name": "before",
+      "view": {
+        "x": 7000,
+        "y": 7200,
+        "scale": 0.94,
+        "w": 1440,
+        "h": 900
+      },
+      "actualCamera": {
+        "x": 7000,
+        "y": 7200,
+        "scale": 0.94
+      },
+      "heroHeight": 92
+    },
+    {
+      "label": "bell",
+      "name": "before",
+      "view": {
+        "x": 7300,
+        "y": 6400,
+        "scale": 0.55,
+        "w": 1440,
+        "h": 900
+      },
+      "actualCamera": {
+        "x": 7300,
+        "y": 6400,
+        "scale": 0.55
+      },
+      "heroHeight": 92
+    },
+    {
+      "label": "west",
+      "name": "before",
+      "view": {
+        "x": 3400,
+        "y": 5000,
+        "scale": 0.94,
+        "w": 1440,
+        "h": 900
+      },
+      "actualCamera": {
+        "x": 3400,
+        "y": 5000,
+        "scale": 0.94
+      },
+      "heroHeight": 92
+    },
+    {
+      "label": "east",
+      "name": "before",
+      "view": {
+        "x": 11000,
+        "y": 5800,
+        "scale": 0.94,
+        "w": 1440,
+        "h": 900
+      },
+      "actualCamera": {
+        "x": 11000,
+        "y": 5800,
+        "scale": 0.94
+      },
+      "heroHeight": 92
+    },
+    {
+      "label": "full-map-diagnostic",
+      "name": "before",
+      "view": {
+        "x": 6800,
+        "y": 4800,
+        "scale": 0.105,
+        "w": 1600,
+        "h": 1000
+      },
+      "actualCamera": {
+        "x": 6800,
+        "y": 4800,
+        "scale": 0.105
+      },
+      "heroHeight": 92
+    },
+    {
+      "label": "minzoom",
+      "name": "before",
+      "view": {
+        "x": 6800,
+        "y": 4800,
+        "scale": 0.23529411764705882,
+        "w": 1600,
+        "h": 1000
+      },
+      "actualCamera": {
+        "x": 6800,
+        "y": 4800,
+        "scale": 0.23529411764705882
+      },
+      "heroHeight": 92
+    },
+    {
+      "label": "mobile",
+      "name": "before",
+      "view": {
+        "x": 6240,
+        "y": 7218.666666666667,
+        "scale": 0.94,
+        "w": 390,
+        "h": 844
+      },
+      "actualCamera": {
+        "x": 6240,
+        "y": 7218.666666666667,
+        "scale": 0.94
+      },
+      "heroHeight": 92
+    },
+    {
+      "label": "mobile-ceiling",
+      "name": "before",
+      "view": {
+        "x": 6800,
+        "y": -1800,
+        "scale": 0.057352941176470586,
+        "w": 390,
+        "h": 844
+      },
+      "actualCamera": {
+        "x": 6800,
+        "y": -1800,
+        "scale": 0.057352941176470586
+      },
+      "heroHeight": 92
+    },
+    {
+      "label": "mobile-bottom",
+      "name": "before",
+      "view": {
+        "x": 6800,
+        "y": 9840,
+        "scale": 0.057352941176470586,
+        "w": 390,
+        "h": 844
+      },
+      "actualCamera": {
+        "x": 6800,
+        "y": 9840,
+        "scale": 0.057352941176470586
+      },
+      "heroHeight": 92
+    },
+    {
+      "label": "edge-left",
+      "name": "before",
+      "view": {
+        "x": -320,
+        "y": 5400,
+        "scale": 0.21176470588235294,
+        "w": 1440,
+        "h": 900
+      },
+      "actualCamera": {
+        "x": -320,
+        "y": 5400,
+        "scale": 0.21176470588235294
+      },
+      "heroHeight": 92
+    },
+    {
+      "label": "edge-right",
+      "name": "before",
+      "view": {
+        "x": 13920,
+        "y": 6000,
+        "scale": 0.21176470588235294,
+        "w": 1440,
+        "h": 900
+      },
+      "actualCamera": {
+        "x": 13920,
+        "y": 6000,
+        "scale": 0.21176470588235294
+      },
+      "heroHeight": 92
+    },
+    {
+      "label": "ceiling-edge",
+      "name": "before",
+      "view": {
+        "x": 6800,
+        "y": -1800,
+        "scale": 0.21176470588235294,
+        "w": 1440,
+        "h": 900
+      },
+      "actualCamera": {
+        "x": 6800,
+        "y": -1800,
+        "scale": 0.21176470588235294
+      },
+      "heroHeight": 92
+    },
+    {
+      "label": "bottom-edge",
+      "name": "before",
+      "view": {
+        "x": 6800,
+        "y": 9840,
+        "scale": 0.21176470588235294,
+        "w": 1440,
+        "h": 900
+      },
+      "actualCamera": {
+        "x": 6800,
+        "y": 9840,
+        "scale": 0.21176470588235294
+      },
+      "heroHeight": 92
+    },
+    {
+      "label": "left-maxzoom",
+      "name": "before",
+      "view": {
+        "x": -320,
+        "y": 5843.75,
+        "scale": 1.65,
+        "w": 1440,
+        "h": 900
+      },
+      "actualCamera": {
+        "x": -320,
+        "y": 5843.75,
+        "scale": 1.65
+      },
+      "heroHeight": 92
+    },
+    {
+      "label": "right-maxzoom",
+      "name": "before",
+      "view": {
+        "x": 13920,
+        "y": 6408.773185118524,
+        "scale": 1.65,
+        "w": 1440,
+        "h": 900
+      },
+      "actualCamera": {
+        "x": 13920,
+        "y": 6408.773185118524,
+        "scale": 1.65
+      },
+      "heroHeight": 92
+    },
+    {
+      "label": "entry",
+      "name": "after",
+      "view": {
+        "x": 6240,
+        "y": 7218.666666666667,
+        "scale": 0.94,
+        "w": 1440,
+        "h": 900
+      },
+      "actualCamera": {
+        "x": 6240,
+        "y": 7218.666666666667,
+        "scale": 0.94
+      },
+      "heroHeight": 92
+    },
+    {
+      "label": "farewell",
+      "name": "after",
+      "view": {
+        "x": 7000,
+        "y": 7200,
+        "scale": 0.94,
+        "w": 1440,
+        "h": 900
+      },
+      "actualCamera": {
+        "x": 7000,
+        "y": 7200,
+        "scale": 0.94
+      },
+      "heroHeight": 92
+    },
+    {
+      "label": "bell",
+      "name": "after",
+      "view": {
+        "x": 7300,
+        "y": 6400,
+        "scale": 0.55,
+        "w": 1440,
+        "h": 900
+      },
+      "actualCamera": {
+        "x": 7300,
+        "y": 6400,
+        "scale": 0.55
+      },
+      "heroHeight": 92
+    },
+    {
+      "label": "west",
+      "name": "after",
+      "view": {
+        "x": 3400,
+        "y": 5000,
+        "scale": 0.94,
+        "w": 1440,
+        "h": 900
+      },
+      "actualCamera": {
+        "x": 3400,
+        "y": 5000,
+        "scale": 0.94
+      },
+      "heroHeight": 92
+    },
+    {
+      "label": "east",
+      "name": "after",
+      "view": {
+        "x": 11000,
+        "y": 5800,
+        "scale": 0.94,
+        "w": 1440,
+        "h": 900
+      },
+      "actualCamera": {
+        "x": 11000,
+        "y": 5800,
+        "scale": 0.94
+      },
+      "heroHeight": 92
+    },
+    {
+      "label": "full-map-diagnostic",
+      "name": "after",
+      "view": {
+        "x": 6800,
+        "y": 4800,
+        "scale": 0.105,
+        "w": 1600,
+        "h": 1000
+      },
+      "actualCamera": {
+        "x": 6800,
+        "y": 4800,
+        "scale": 0.105
+      },
+      "heroHeight": 92
+    },
+    {
+      "label": "minzoom",
+      "name": "after",
+      "view": {
+        "x": 6800,
+        "y": 4800,
+        "scale": 0.23529411764705882,
+        "w": 1600,
+        "h": 1000
+      },
+      "actualCamera": {
+        "x": 6800,
+        "y": 4800,
+        "scale": 0.23529411764705882
+      },
+      "heroHeight": 92
+    },
+    {
+      "label": "mobile",
+      "name": "after",
+      "view": {
+        "x": 6240,
+        "y": 7218.666666666667,
+        "scale": 0.94,
+        "w": 390,
+        "h": 844
+      },
+      "actualCamera": {
+        "x": 6240,
+        "y": 7218.666666666667,
+        "scale": 0.94
+      },
+      "heroHeight": 92
+    },
+    {
+      "label": "mobile-ceiling",
+      "name": "after",
+      "view": {
+        "x": 6800,
+        "y": -1800,
+        "scale": 0.057352941176470586,
+        "w": 390,
+        "h": 844
+      },
+      "actualCamera": {
+        "x": 6800,
+        "y": -1800,
+        "scale": 0.057352941176470586
+      },
+      "heroHeight": 92
+    },
+    {
+      "label": "mobile-bottom",
+      "name": "after",
+      "view": {
+        "x": 6800,
+        "y": 9840,
+        "scale": 0.057352941176470586,
+        "w": 390,
+        "h": 844
+      },
+      "actualCamera": {
+        "x": 6800,
+        "y": 9840,
+        "scale": 0.057352941176470586
+      },
+      "heroHeight": 92
+    },
+    {
+      "label": "edge-left",
+      "name": "after",
+      "view": {
+        "x": -320,
+        "y": 5400,
+        "scale": 0.21176470588235294,
+        "w": 1440,
+        "h": 900
+      },
+      "actualCamera": {
+        "x": -320,
+        "y": 5400,
+        "scale": 0.21176470588235294
+      },
+      "heroHeight": 92
+    },
+    {
+      "label": "edge-right",
+      "name": "after",
+      "view": {
+        "x": 13920,
+        "y": 6000,
+        "scale": 0.21176470588235294,
+        "w": 1440,
+        "h": 900
+      },
+      "actualCamera": {
+        "x": 13920,
+        "y": 6000,
+        "scale": 0.21176470588235294
+      },
+      "heroHeight": 92
+    },
+    {
+      "label": "ceiling-edge",
+      "name": "after",
+      "view": {
+        "x": 6800,
+        "y": -1800,
+        "scale": 0.21176470588235294,
+        "w": 1440,
+        "h": 900
+      },
+      "actualCamera": {
+        "x": 6800,
+        "y": -1800,
+        "scale": 0.21176470588235294
+      },
+      "heroHeight": 92
+    },
+    {
+      "label": "bottom-edge",
+      "name": "after",
+      "view": {
+        "x": 6800,
+        "y": 9840,
+        "scale": 0.21176470588235294,
+        "w": 1440,
+        "h": 900
+      },
+      "actualCamera": {
+        "x": 6800,
+        "y": 9840,
+        "scale": 0.21176470588235294
+      },
+      "heroHeight": 92
+    },
+    {
+      "label": "left-maxzoom",
+      "name": "after",
+      "view": {
+        "x": -320,
+        "y": 5843.75,
+        "scale": 1.65,
+        "w": 1440,
+        "h": 900
+      },
+      "actualCamera": {
+        "x": -320,
+        "y": 5843.75,
+        "scale": 1.65
+      },
+      "heroHeight": 92
+    },
+    {
+      "label": "right-maxzoom",
+      "name": "after",
+      "view": {
+        "x": 13920,
+        "y": 6408.773185118524,
+        "scale": 1.65,
+        "w": 1440,
+        "h": 900
+      },
+      "actualCamera": {
+        "x": 13920,
+        "y": 6408.773185118524,
+        "scale": 1.65
+      },
+      "heroHeight": 92
+    }
+  ]
+}

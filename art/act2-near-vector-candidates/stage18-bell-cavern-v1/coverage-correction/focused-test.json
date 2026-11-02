@@ -1,0 +1,24 @@
+{
+  "command": "node tests/act2-stage18-candidate.mjs",
+  "exitCode": 0,
+  "stdout": "PASS Stage18 raw/effective geometry, static-only hosts, hero/units/events/swept bell motion, canonical clips, visual-onlydelta. No browser/fullplay claim.\n",
+  "scope": "Native raw/effective geometry, exactcanonicalclips, units/events, dynamic bell shifts and decorative fullvisual bounds; not browser/fullplay",
+  "assets": [
+    {
+      "file": "shared/data/act2/stage18-floor-local-v2.json",
+      "sha256": "26f0cec9b5367738e855507085aa521f9b4af3572af56278548e2553ac60aa2f"
+    },
+    {
+      "file": "shared/data/act2/stage18-west-v2.json",
+      "sha256": "bfff45eedb627ca5b1ddc71ecfd6b7650eb6bb76457e73d5abb2a1c23490e444"
+    },
+    {
+      "file": "shared/data/act2/stage18-east-v2.json",
+      "sha256": "01eeca2f98cd6b016e57be015a1412b07a791e38ac89384a560f2ea3052aabee"
+    },
+    {
+      "file": "shared/data/act2/stage18-domain-v1.json",
+      "sha256": "36bd2a52aacf280fe0d6a648bc6210b8f9a950d5d624021195b29cb24e248b15"
+    }
+  ]
+}

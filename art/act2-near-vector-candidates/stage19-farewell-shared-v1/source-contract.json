@@ -1,0 +1,47 @@
+{
+  "stage": 19,
+  "width": 13600,
+  "height": 9600,
+  "rawStageSha256": "606bc6117a5c31173aa3c1d62c8f918a6d7e24eaeeac53234aa1f1c28eee232f",
+  "rawTerrainSha256": "1f32a4ee4d6d117c79b87ea66467dba11bc943b92fffb81210cda62b1b6fa55d",
+  "effectiveStageSha256": "cca8ebf47e4aaf445b5c9d407e344772a14f597351d9b915544599f0944a6bcc",
+  "effectiveTerrainSha256": "6ca3bed145a33ff4197699c044b0f99597d5368e1c676e4febce3cd60b75de75",
+  "effectiveWorldSha256": "e3c6ec0a9ba14c7b8cc4d1e5d39aebd7f5b631feac8c7b529228290e290cc9b5",
+  "unitsSha256": "7b3153ba018887275e5f2927043a95719c1570ffd3aa567744914a23ee9a4391",
+  "noncombat": true,
+  "sharedSourceStage": 18,
+  "excludedBellParts": [
+    "sb-bell-crown",
+    "sb-bell-west-wall",
+    "sb-bell-east-wall",
+    "sb-bell-east-lip",
+    "sb-bell-east-yoke"
+  ],
+  "staticGeometryEqual": true,
+  "hero": [
+    {
+      "id": "p-archer",
+      "x": 6240,
+      "y": 7402.666666666667,
+      "h": 92
+    },
+    {
+      "id": "p-mage",
+      "x": 6340,
+      "y": 7347.272727272727,
+      "h": 92
+    },
+    {
+      "id": "p-knight",
+      "x": 6440,
+      "y": 7283.636363636364,
+      "h": 92
+    },
+    {
+      "id": "p-occultist",
+      "x": 6540,
+      "y": 7220,
+      "h": 92
+    }
+  ]
+}

@@ -1,0 +1,26 @@
+{
+  "stage": 19,
+  "bellShiftParity": [
+    180,
+    720
+  ],
+  "sharedSourceStage": 18,
+  "assets": [
+    "act2-traced:stage18-domain-v1",
+    "act2-traced:stage18-floor-local-v2",
+    "act2-traced:stage18-west-v2",
+    "act2-traced:stage18-east-v2"
+  ],
+  "sourceHashesVerified": true,
+  "libraryDedup": true,
+  "stage18Unchanged": true,
+  "noncombat": true,
+  "originalMap": [
+    13600,
+    9600
+  ],
+  "effectiveStaticClipsEqual": true,
+  "compiledPhysicsAndStoryUnchanged": true,
+  "browserAccepted": false,
+  "fullStoryAccepted": false
+}
