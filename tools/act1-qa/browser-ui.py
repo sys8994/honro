@@ -8,7 +8,7 @@ from playwright.sync_api import sync_playwright
 ROOT=Path(__file__).resolve().parents[2];sys.path.insert(0,str(ROOT/'tools/act4-ci'))
 from precise_aim import aim_with_joystick
 out=Path(os.environ.get('HONRO_QA_OUT','_local/reports/act1-gameplay-ui'));out.mkdir(parents=True,exist_ok=True)
-stage=int(os.environ.get('HONRO_STAGE','1'));result={'passed':False,'stage':stage,'scope':__doc__,'source':os.environ.get('GITHUB_SHA'),'errors':[]};events=[]
+reactive=os.environ.get('HONRO_REACTIVE_POLICY')=='1';stage=int(os.environ.get('HONRO_STAGE','1'));result={'passed':False,'stage':stage,'scope':__doc__,'source':os.environ.get('GITHUB_SHA'),'errors':[]};events=[]
 def save():
  (out/'result.json').write_text(json.dumps(result,ensure_ascii=False,indent=2));(out/'events.json').write_text(json.dumps(events,ensure_ascii=False))
 try:
@@ -78,9 +78,18 @@ try:
    p.wait_for_timeout(300)
  elif stage in [5,10]:
   commands=json.loads((ROOT/f'tools/act1-qa/stage{stage}-ui-commands.json').read_text())['commands']
-  for index,command in enumerate(commands):
-   if command['op'] in ['quit','state','plan']:continue
+  memory={};reactive_plan=(ROOT/'tools/act1-qa/browser-reactive-plan.js').read_text() if reactive else None
+  if reactive:result['controllerPolicy']='reactive-authored-objectives-v1';result['policyRegistration']='tools/act1-qa/browser-reactive-registration.json'
+  for index in range(240 if reactive else len(commands)):
    if not ready():break
+   if reactive and (stage==10 or index>=45):
+    planned=p.evaluate(reactive_plan,{'stage':stage,'memory':memory});command=planned['command'];memory=planned['memory'];assert command,'Reactive planner provided no input'
+   else:
+    if index>=len(commands):break
+    command=commands[index]
+    if reactive and command['op']=='shoot':
+     planned=p.evaluate(reactive_plan,{'stage':stage,'memory':memory,'preferred':command});command=planned['command'];memory=planned['memory']
+   if command['op'] in ['quit','state','plan']:continue
    before=state();op=command['op'];assert not command.get('hero') or command['hero']==before['cls'],'Recorded actor boundary diverged';record('replay-command',index=index,command=command)
    if op in ['walk','jump','climb']:
     if op=='jump':p.keyboard.press('Control');p.wait_for_timeout(50)
@@ -102,14 +111,14 @@ try:
     record('replay-moved',index=index,command=command)
    elif op=='defend':p.keyboard.press('f');record('defend')
    elif op=='interact':
-    mid=command.get('id','receiver-5');eligible=p.evaluate("id=>HonroInteractions.eligibility(HonroApp,HonroApp.engine.b.honroMarkers.find(m=>m.id===id)).ok",mid);assert eligible,'Normal interaction not reachable';p.keyboard.press('e');record('interact',marker=mid)
+    mid=command.get('id','receiver-5');eligible=p.evaluate("id=>HonroInteractions.nearest(HonroApp)?.id===id",mid);assert eligible,'Normal interaction not reachable';p.keyboard.press('e');record('interact',marker=mid)
    elif op=='detonate':p.keyboard.press('Space');record('detonate')
    elif op=='shoot':
     shot_planner="""q=>{const e=HonroApp.engine,u=e.active,C=HONRO_CORE,t=e.unit(q.target),s=C.SKILLS[q.skill];if(!u.loadout.includes(q.skill)||e.cooldownLeft(u,q.skill)>0)return null;const base={id:q.skill,target:q.target,idx:u.loadout.indexOf(q.skill)};if(q.skill==='S08')return e.canAfford(s,u,.3)?{...base,angle:u.angle,power:.3}:null;if(!t||t.dead)return null;if(s.martial&&s.branch==='sword'){let angle=Math.atan2(u.y-u.h*.58-(t.y-t.h*.5),t.x-u.x)*180/Math.PI;if(angle< -90)angle+=360;for(const power of [1,.7,.2])if(e.canAfford(s,u,power)&&C.meleeContains(e,u,t,C.meleeRange(u,s,power),-angle*Math.PI/180,C.meleeSpan(u,s,power)))return {...base,angle,power};return null;}let best=null;for(const a of [...e.shotSeeds(u,s,t),...(q.stage===5?[-25,0,15,30,45,60,75].flatMap(angle=>[.25,.5,.75,1].map(power=>({angle:t.x>=u.x?angle:180-angle,power}))):[])]){if(!e.canAfford(s,u,a.power))continue;const v=C.shotViable(e,u,s,t,a.angle,a.power),p=e.predict(u,s,a.angle,a.power,undefined,false);if(q.stage===10?v.ok&&v.risk<1&&v.enemyDamage>0:t.honroObjectiveTarget?p.unit===t.id||p.terrain===t.id:v.ok&&v.risk<.5&&v.enemyDamage>0){const score=v.net||v.enemyDamage||1;if(q.stage===5)return {...a,...base,score};if(!best||score>best.score)best={...a,...base,score};}}return best;}"""
-    choice=p.evaluate(shot_planner,{**command,"stage":stage})
+    choice=command.get('choice') or p.evaluate(shot_planner,{**command,"stage":stage})
     # Bounded ordinary-key approach/retreat, not a new target or injected hit.
     # Route endpoints vary by frames; max-range and point-blank shots need space.
-    for correction in range(3):
+    for correction in range(0 if reactive else 3):
      if choice:break
      target=p.evaluate("id=>{const u=HonroApp.engine.unit(id);return u?{x:u.x,dead:u.dead}:null}",command['target']);st=state()
      if not target or target['dead'] or not st['can'] or st['moveLeft']<8:break

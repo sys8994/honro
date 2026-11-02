@@ -1,0 +1,19 @@
+{
+  "schema": "honro-browser-reactive-registration/v1",
+  "registeredBeforeRuns": true,
+  "candidateGameplay": "8b3a5e41",
+  "policy": "reactive-authored-objectives-v1",
+  "stages": [
+    5,
+    10
+  ],
+  "scope": "New reactive policy, not a pass waiver for fixed-command failures. Actual browser keyboard/pointer only. Read-only planner rejects any live battle mutation. No remote action/cooldown/HP/position writes. No claim of human population rate.",
+  "stage5": "Accepted route prefix through ritual, current legal tactical targeting; then mage stays in ritual radius and defends below55%HP, archer stays high and selects viable equipped shot at actual cleat, waits via normal defend if wind/ritual disallows. After actualbreak follow tablet/hold path. No blind forward-step off high platform.",
+  "stage10": "Reactive current-binding attack, natural route climb, knight S08 before survival/pursuit, prioritize threats targeting Sodan, guard positions2200/2340/2580, archer scouts actualexit at hold4, anylivingactor exits once actualhold6 ready. Defend recovery for nonknight below40%HP after moving.",
+  "limits": "240 ordinary input intentions and existing30minute CI observation; unfinished/exception/death fail receipt. Never force victory or erase failed prior traces.",
+  "sourceHashes": {
+    "tools/act1-qa/browser-ui.py": "cfb6587f9630e254c838deaf169e8acd2e12c1fc97b1ae44bbecb0a9a5f77f97",
+    "tools/act1-qa/browser-reactive-plan.js": "ba98245b3e8b73f8598396ccacdecee58831ddcb4afd0a367a7d7bc62bc40ac4",
+    "tools/act4-ci/precise_aim.py": "4385177fdf3fdfb874ad7381045652ec69e2fd9f75ab698550f5a4ca70748980"
+  }
+}
