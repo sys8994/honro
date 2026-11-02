@@ -1,0 +1,369 @@
+{
+  "actualEntry": [
+    {
+      "cls": "mage",
+      "level": 14,
+      "hp": 862,
+      "maxHp": 862,
+      "loadout": [
+        "M01",
+        "M04",
+        "M03",
+        "M11"
+      ],
+      "equipmentIds": [
+        "itm_da_01"
+      ],
+      "ranks": {
+        "M01": 1,
+        "M06": 1,
+        "M02": 1,
+        "M04": 8,
+        "M03": 8,
+        "M11": 7
+      }
+    },
+    {
+      "cls": "occultist",
+      "level": 14,
+      "hp": 1002,
+      "maxHp": 1002,
+      "loadout": [
+        "O01",
+        "O02",
+        "O08",
+        "O11"
+      ],
+      "equipmentIds": [
+        "itm_so_01"
+      ],
+      "ranks": {
+        "O01": 1,
+        "O02": 8,
+        "O06": 1,
+        "O07": 1,
+        "O08": 8,
+        "O11": 7
+      }
+    }
+  ],
+  "checkoutCommit": "a40a87233be23012501bcfdd65a4e06466687e38",
+  "runnerSha256": "7fa29a90def98800eaf199c541aeb715cbfa6127261f7f02bd87deb283b71228",
+  "projectSha256": "c65a226aa1d6ae551f18fa9e7bbf0cbc1d330493d6e1d8efb6d1b6d1aaff58db",
+  "stageSha256": "c42ff7d63accbaa99735d0767a2feedc23016eb5555491ab6b3ef1ec8131cac1",
+  "geometrySha256": "702c7678649c184a8039d80fe82c86e19ea5dd2f61124cd58d3a1f065cc20554",
+  "entryProfileSha256": "1bb47ec692cc0a13f93802f82bbaa82f74f26314c296274874870838b885c617",
+  "entryLevel": 16.8,
+  "policy": "objective",
+  "seed": 757356291,
+  "seedPurpose": "controller-input-variation-only",
+  "engineRngAtEntry": {
+    "seed": 19388,
+    "rng": 19388,
+    "engineStageId": 1,
+    "chapterId": 19,
+    "canonicalSeed": 19388,
+    "inheritedContinuation": false
+  },
+  "inputVariation": {
+    "seed": 757356291,
+    "aimErrorDegrees": [
+      -0.15,
+      0.15
+    ],
+    "powerError": 0
+  },
+  "legacyItemApi": "disabled; no Engine.item calls",
+  "operationMode": "NATIVE_APP_ACTION_WITH_PRODUCTION_SELECTED_PREVIEW",
+  "plannerMode": "Detached production Engine clone; full live battle equality guard before actual input",
+  "previewHelperSha256": "d15a6a949f53cf15b1cea772960138a08d46265062eab06e7444021449b28575",
+  "purePlannerSha256": "b4337c5deaa4444a043705594d59becc10a5e0c4cd43c72401ff94dee774cf6c",
+  "clockOriginMs": 0,
+  "navigationSha256": "615ba3f69fea9a911c7b8b0806e8bc2d102233722cb911e98c45ff4fff7fea97",
+  "runtimeTrees": {
+    "shared": "99ede24bf687259756e91b27b9696181c575d795",
+    "game/src": "3c0d79c865cd13a09df6c7dd498f20da991d3e2e"
+  },
+  "adapterSha256": "8bee2c1dd0373b9f2e19d2109b8377b5a0011730aea5eb156bae81e64b4163c6",
+  "adapterSource": "Act1 optional renderer callback b85a1858 (baseline a819d4a9)",
+  "inputMapping": {
+    "defend": "App.defend",
+    "select": "App.selectHero",
+    "jump": "App.jump",
+    "movement": "App stick intent consumed by actual App.frame,120Hz",
+    "drop": "ordinary walk-off fall, NOT Alt platform drop",
+    "fire": "Actual App beginCharge/frame elapsed/releaseCharge; idealized legal facing/aim gesture, not browser pointer",
+    "interaction": "visible nearest context-button target only",
+    "dialogue": "Story.next with production guard",
+    "clock": "Shared adapter actual App.frame with C.STEP elapsed; Next-only narration"
+  },
+  "scope": "Synthetic legacy-budget rewardXpAt(plan.entryLevel), legal training, production-auto-equipped starter personal equipment. Prior clearance flags only unlock requested chapter; no claim earlier chapters were played. Production reviewed-v4 actual App frame/actions with DOM/storage/render/clock doubles and idealized aim; not browser input.",
+  "productionPreview": {
+    "frames": 1464,
+    "calls": 0,
+    "scope": "Actual production Renderer.predictionGuide on native canvas, guarded selected input only; not complete scene/browser rendering"
+  },
+  "appOutcome": {
+    "done": true,
+    "cleared": {
+      "visits": 1,
+      "rounds": 1
+    },
+    "history": {
+      "revision": 1,
+      "phase": "A",
+      "run": "honro-map-stage-19-1793644562541",
+      "round": 1,
+      "steps": [
+        "route",
+        "separate-1",
+        "send-1",
+        "separate-2",
+        "send-2",
+        "separate-3",
+        "send-3",
+        "old-soul"
+      ],
+      "slots": [
+        "19.reviewed.arrival",
+        "19.reviewed.response",
+        "19.reviewed.opened",
+        "19.reviewed.separated",
+        "19.send-1",
+        "19.reviewed.departure",
+        "19.reviewed.entangled",
+        "19.send-2",
+        "19.send-3",
+        "19.reviewed.quiet",
+        "19.transport-traces",
+        "19.reviewed.marks",
+        "19.reviewed.exit-ready",
+        "19.reviewed.return",
+        "19.reviewed.escort-back"
+      ],
+      "transportTraces": {
+        "ids": [
+          "mumyeong-transfer",
+          "royal-seal",
+          "jeomungol-mark"
+        ],
+        "actor": "p-occultist"
+      },
+      "reviewedNarrative": {
+        "revision": 1,
+        "status": "Gemini pass1 → 제작 측 독립 재검토 → Gemini pass3 → 부모 최종판단 완료",
+        "rows": [
+          "EDGE.ARRIVALS_19_0",
+          "A2.S19.INTRO.01",
+          "A2.S19.INTRO.02",
+          "A2.S19.INTRO.03",
+          "A2.S19.MID.01",
+          "A2.S19.MID.02",
+          "A2.S19.MID.03",
+          "A2.S19.MID.05",
+          "A2.S19.MID.04",
+          "A2.S19.MID.06",
+          "A2.S19.MID.07",
+          "A2.S19.EVIDENCE.01",
+          "A2.S19.EVIDENCE.02",
+          "A2.S19.EVIDENCE.03",
+          "A2.S19.EVIDENCE.04",
+          "A2.S19.EVIDENCE.05",
+          "A2.S19.POPUP.01",
+          "A2.S19.COMPLETE.01",
+          "A2.S19.COMPLETE.02",
+          "A2.S19.COMPLETE.03"
+        ]
+      },
+      "reviewed19": {
+        "revision": 1,
+        "run": "honro-map-stage-19-1793644562541",
+        "departures": {
+          "1": {
+            "count": 0,
+            "status": "departed",
+            "x": 6988,
+            "y": 7067.142857142857,
+            "reaction": true,
+            "departed": true
+          },
+          "2": {
+            "count": 0,
+            "status": "departed",
+            "x": 7228,
+            "y": 7071.875,
+            "reaction": true,
+            "departed": true
+          },
+          "3": {
+            "count": 0,
+            "status": "departed",
+            "x": 7428,
+            "y": 7142.758620689655,
+            "reaction": true,
+            "departed": true
+          }
+        },
+        "marks": {
+          "mumyeong-transfer": {
+            "actor": "p-occultist",
+            "elapsed": 0.8,
+            "x": 7298,
+            "y": 7379.310344827586,
+            "confirmed": true
+          },
+          "royal-seal": {
+            "actor": "p-occultist",
+            "elapsed": 0.8,
+            "x": 7342,
+            "y": 7379.310344827586,
+            "confirmed": true
+          },
+          "jeomungol-mark": {
+            "actor": "p-occultist",
+            "elapsed": 0.8,
+            "x": 7386,
+            "y": 7379.310344827586,
+            "confirmed": true
+          }
+        },
+        "familyWitness": true,
+        "familyCalls": {
+          "1": {
+            "encounter": 1,
+            "caller": "mourner-brother",
+            "observer": "p-occultist",
+            "sourceRun": "honro-map-stage-19-1793644562541",
+            "round": 1,
+            "point": {
+              "x": 6710,
+              "y": 7195.714285714285
+            },
+            "elapsed": 0.7,
+            "aliveCaller": true,
+            "groundedCaller": true,
+            "visible": true,
+            "response": {
+              "spirit": "farewell-spirit-1",
+              "point": {
+                "x": 6808,
+                "y": 7187.142857142857
+              },
+              "elapsed": 0.35
+            },
+            "completedRound": 1
+          },
+          "2": {
+            "encounter": 2,
+            "caller": "mourner-sister",
+            "observer": "p-occultist",
+            "sourceRun": "honro-map-stage-19-1793644562541",
+            "round": 1,
+            "point": {
+              "x": 6950,
+              "y": 7188.125
+            },
+            "elapsed": 0.7,
+            "aliveCaller": true,
+            "groundedCaller": true,
+            "visible": true,
+            "response": {
+              "spirit": "farewell-spirit-2",
+              "point": {
+                "x": 7048,
+                "y": 7191.875
+              },
+              "elapsed": 0.35
+            },
+            "completedRound": 1
+          },
+          "3": {
+            "encounter": 3,
+            "caller": "objective",
+            "observer": "p-occultist",
+            "sourceRun": "honro-map-stage-19-1793644562541",
+            "round": 1,
+            "point": {
+              "x": 7150,
+              "y": 7208.9655172413795
+            },
+            "elapsed": 0.7,
+            "aliveCaller": true,
+            "groundedCaller": true,
+            "visible": true,
+            "response": {
+              "spirit": "farewell-spirit-3",
+              "point": {
+                "x": 7248,
+                "y": 7262.758620689655
+              },
+              "elapsed": 0.35
+            },
+            "completedRound": 1
+          }
+        },
+        "speakers": [
+          "p-archer",
+          "p-mage",
+          "p-knight",
+          "p-occultist",
+          "objective",
+          "mourner-brother",
+          "mourner-sister"
+        ]
+      }
+    }
+  },
+  "phase": "won",
+  "round": 1,
+  "stopReason": null,
+  "seconds": 5.384867215999999,
+  "remainingEnemies": 0,
+  "kills": 0,
+  "heroes": [
+    {
+      "cls": "occultist",
+      "hp": 1041,
+      "maxHp": 1041
+    }
+  ],
+  "fallen": [],
+  "done": {
+    "route": true,
+    "separate-1": true,
+    "send-1": true,
+    "separate-2": true,
+    "send-2": true,
+    "separate-3": true,
+    "send-3": true,
+    "old-soul": true
+  },
+  "actions": 21,
+  "skills": {},
+  "hpDamageTaken": 0,
+  "hpDamageDealt": 0,
+  "externalWrites": [],
+  "engineRecoveries": [],
+  "combatCycles": 0,
+  "displayRound": 1,
+  "twentyRoundGate": true,
+  "releaseApproved": false,
+  "evidence": {
+    "initial.json": {
+      "path": "tests/fixtures/act2-gameplay/released-app/19-objective-757356291/initial.json.gz",
+      "rawSha256": "867719eb4526193725eb3a6c89c60eecfe15880d595238f03ccaac7c9da4c425",
+      "gzipSha256": "59009d724e5db0efc3084ddda9814c5f49c8ba3de703ca7cf3bbdb5f2433c5d6"
+    },
+    "terminal.json": {
+      "path": "tests/fixtures/act2-gameplay/released-app/19-objective-757356291/terminal.json.gz",
+      "rawSha256": "2aaac08d69eb5238a5dcf2bb40aadd2a1db715ece40acc4f5d0075713ed6f037",
+      "gzipSha256": "366b6b9d1827e22d9f0ef59ebd197ca95304804041a2af6c378ef2f919a4315b"
+    },
+    "result.json": {
+      "path": "tests/fixtures/act2-gameplay/released-app/19-objective-757356291/result.json.gz",
+      "rawSha256": "6e68f5435a8f4513272c36698d3ea1c706eba5ecf049aa5b08078ac3f49e9b00",
+      "gzipSha256": "01607f6ddb41d25e9d51005498d28a0143d68354d3502cfa7c563493ba0004a6"
+    }
+  },
+  "scopeStatus": "Selected actual-App noncombat functional diagnostic, not humanfun/registeredratio/browser/finalart acceptance"
+}
