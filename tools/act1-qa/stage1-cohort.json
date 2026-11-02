@@ -1,0 +1,40 @@
+{
+  "schema": "honro-act1-cohort/v1",
+  "stage": 1,
+  "registeredBeforeRuns": true,
+  "candidateGameplay": "292c1122fcd75256c366ec15e815fb4adcfbd7b2",
+  "sourceHashes": {
+    "tools/act1-qa/legacy-controller.mjs": "071cb191b64e1a2de4f1e81d10b7b111e40d2a59dc1fa58e40bdc96b775d9ecf",
+    "tools/act1-qa/stage1-policy.js": "8c010a5b47444f0f0ec0641f79ecbae7e03a1876bd543c0db448dff99a801e93"
+  },
+  "policies": [
+    "objective-aggressive-v2-cohort",
+    "cover-survival-v2-cohort",
+    "route-highground-cohort"
+  ],
+  "seeds": [
+    1103,
+    1104,
+    1105,
+    1106
+  ],
+  "seedMeaning": "Player aim error sampled uniformly[-0.15,+0.15]degrees; live game RNG remains canonical stage fixed seed. These are NOT4different engine RNG seeds.",
+  "policyDifferences": {
+    "objective-aggressive": "After common obstacle-safe entrance jump, drop off optional branch afterx1500 and use direct route, finite fullmovement, objectivefirst.",
+    "cover-survival": "Remain on available branch, use65%movebudget beforefiring ifenemieswithin1100; healingbelow48%, permitslongerexposurecycles.",
+    "route-highground": "Follow full authoredhighroute+shelves, spendavailablemovementbefareshot; healsbelow48%."
+  },
+  "entry": "Fresh defaultprofile, A01only, no training/equipment injection",
+  "maxActions": 90,
+  "roundHardMaxAcceptance": 20,
+  "observationBudgetNotPass": true,
+  "humanRateClaim": false,
+  "diagnosticsExcluded": [
+    "legacy",
+    "objective-aggressive",
+    "cover-survival",
+    "objective-aggressive-v2",
+    "cover-survival-v2",
+    "route-highground"
+  ]
+}
