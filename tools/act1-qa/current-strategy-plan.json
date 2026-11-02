@@ -1,0 +1,133 @@
+{
+  "schema": "honro-app-strategy-confirmation/v1",
+  "candidateGameplay": "8b3a5e41",
+  "registeredBeforeThisBatch": true,
+  "scope": "Separate current-runtime fixed finite strategy comparison, one canonical Engine RNG case per policy. Earlier pilot outcomes informed calibration; not blind human holdout and not pooled with frozen12model cases. No stochastic confidence interval.",
+  "operationMode": "NATIVE_APP_ACTION_SIMULATION",
+  "sourceHashes": {
+    "tools/act1-qa/legacy-controller.mjs": "be14d503f8c0b31a7f832d44d5457739fccc0689c1e92d00856df3c7a583c121",
+    "tools/act1-qa/adapt-positioning.mjs": "3aab6915c979615267c351efe5a2c66e93cce0083552b048bea7c63c4f4bcdc0",
+    "tools/act1-qa/player-operations.mjs": "fbc8d0b429e7834a85f106bb5ff1e39170493018ea23d6e97b66888cba5c5e05"
+  },
+  "policies": {
+    "2": [
+      "objective-focused-follow-noitems-appops",
+      "cover-focused-noitems-appops",
+      "bodyguard-focused-noitems-appops"
+    ],
+    "3": [
+      "objective-focused-flow-noitems-appops-budgetrecovery-distance",
+      "cover-focused-noitems-appops-budgetrecovery-distance",
+      "route-focused-noitems-appops-budgetrecovery-distance"
+    ],
+    "4": [
+      "objective-focused-flow-noitems-appops",
+      "cover-focused-noitems-appops",
+      "route-focused-noitems-appops"
+    ],
+    "6": [
+      "objective-focused-noitems-appops",
+      "cover-focused-noitems-appops",
+      "route-focused-noitems-appops"
+    ],
+    "7": [
+      "objective-focused-flow-noitems-appops",
+      "cover-focused-noitems-appops",
+      "route-focused-noitems-appops"
+    ]
+  },
+  "cases": [
+    {
+      "stage": 2,
+      "seed": 1320,
+      "policy": "objective-focused-follow-noitems-appops",
+      "label": "strategy-confirmation"
+    },
+    {
+      "stage": 2,
+      "seed": 1321,
+      "policy": "cover-focused-noitems-appops",
+      "label": "strategy-confirmation"
+    },
+    {
+      "stage": 2,
+      "seed": 1322,
+      "policy": "bodyguard-focused-noitems-appops",
+      "label": "strategy-confirmation"
+    },
+    {
+      "stage": 3,
+      "seed": 1330,
+      "policy": "objective-focused-flow-noitems-appops-budgetrecovery-distance",
+      "label": "strategy-confirmation"
+    },
+    {
+      "stage": 3,
+      "seed": 1331,
+      "policy": "cover-focused-noitems-appops-budgetrecovery-distance",
+      "label": "strategy-confirmation"
+    },
+    {
+      "stage": 3,
+      "seed": 1332,
+      "policy": "route-focused-noitems-appops-budgetrecovery-distance",
+      "label": "strategy-confirmation"
+    },
+    {
+      "stage": 4,
+      "seed": 1340,
+      "policy": "objective-focused-flow-noitems-appops",
+      "label": "strategy-confirmation"
+    },
+    {
+      "stage": 4,
+      "seed": 1341,
+      "policy": "cover-focused-noitems-appops",
+      "label": "strategy-confirmation"
+    },
+    {
+      "stage": 4,
+      "seed": 1342,
+      "policy": "route-focused-noitems-appops",
+      "label": "strategy-confirmation"
+    },
+    {
+      "stage": 6,
+      "seed": 1360,
+      "policy": "objective-focused-noitems-appops",
+      "label": "strategy-confirmation"
+    },
+    {
+      "stage": 6,
+      "seed": 1361,
+      "policy": "cover-focused-noitems-appops",
+      "label": "strategy-confirmation"
+    },
+    {
+      "stage": 6,
+      "seed": 1362,
+      "policy": "route-focused-noitems-appops",
+      "label": "strategy-confirmation"
+    },
+    {
+      "stage": 7,
+      "seed": 1370,
+      "policy": "objective-focused-flow-noitems-appops",
+      "label": "strategy-confirmation"
+    },
+    {
+      "stage": 7,
+      "seed": 1371,
+      "policy": "cover-focused-noitems-appops",
+      "label": "strategy-confirmation"
+    },
+    {
+      "stage": 7,
+      "seed": 1372,
+      "policy": "route-focused-noitems-appops",
+      "label": "strategy-confirmation"
+    }
+  ],
+  "aggregation": "Original successful-run median and finite terminal clear proportion; preserve deaths, unfinished and invalid controls separately. No automatic acceptance if control or entry applicability unverified.",
+  "stopping": "Existing finite observation caps retained; no force-completion, clipping to20R or live-state correction. No after-outcome policy edits in this batch."
+}
