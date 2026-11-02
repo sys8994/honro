@@ -1,0 +1,44 @@
+{
+  "checkpoint.json": {
+    "path": "tests/fixtures/act2-gameplay/released-app/13-survival-hud-757356291/checkpoint.json.gz",
+    "rawSha256": "3ab4fbbfaa2387964c9cc9550e8c28a7f990bdfe9483749601792ac1b6f5db40",
+    "gzipSha256": "f0d7aace147b06d973bbab57708cc460b6734a34d548a565f50ffd2e80679ce7",
+    "rawBytes": 1041474
+  },
+  "initial.json": {
+    "path": "tests/fixtures/act2-gameplay/released-app/13-survival-hud-757356291/initial.json.gz",
+    "rawSha256": "52a7a5474d5bd9c32287bf2b7b44a8641a7abb269d94045a784db2e092ef82e3",
+    "gzipSha256": "4ee3e8a7a0088bd631006478e744a60150d4c8671bc7ac41449fb04e4456b00f",
+    "rawBytes": 620446
+  },
+  "launch.json": {
+    "path": "tests/fixtures/act2-gameplay/released-app/13-survival-hud-757356291/launch.json.gz",
+    "rawSha256": "a28af80ba4b1528eeb870b64337b89087400808038f6ec3600716559c770b7f3",
+    "gzipSha256": "054b1d3d567c62409f9c46925d40c3736c10d10c76a830c15b1db393d4c36e41",
+    "rawBytes": 953
+  },
+  "process.json": {
+    "path": "tests/fixtures/act2-gameplay/released-app/13-survival-hud-757356291/process.json.gz",
+    "rawSha256": "4f2c6dc139f520140255befc90af171080667304e91a9ebcf63440d4bb9fd83f",
+    "gzipSha256": "cfdb1feb843fdf1ca550bc49bc9457c50e2f2809719e9322b657e8306002c6f3",
+    "rawBytes": 1066
+  },
+  "process.log": {
+    "path": "tests/fixtures/act2-gameplay/released-app/13-survival-hud-757356291/process.log.gz",
+    "rawSha256": "69466eb4a342ebaf7a334fbe477fee1b4ee5d2c6a9f17eaad8dc55bb6239f6f5",
+    "gzipSha256": "089b7a2801fe0595b73c4537040c7390669192b360f1903f1b47a401f965868b",
+    "rawBytes": 13171
+  },
+  "result.json": {
+    "path": "tests/fixtures/act2-gameplay/released-app/13-survival-hud-757356291/result.json.gz",
+    "rawSha256": "e2e9431db0ffb15830edc16559463f83ddec8a0c1c367410cce2155427f0c3f1",
+    "gzipSha256": "668071af6a001a205641d288f6ab9da7ba44b1651cfb4932ba36ef32c33c6c58",
+    "rawBytes": 7457
+  },
+  "terminal.json": {
+    "path": "tests/fixtures/act2-gameplay/released-app/13-survival-hud-757356291/terminal.json.gz",
+    "rawSha256": "313e0c5af03cb9c9c32160731911f793170f73f85fab96b3ca51e3664dd57c2f",
+    "gzipSha256": "5bbeb88ed1bb839f65b230550114973fb7e29dee96891c068d2cc6aede9b11aa",
+    "rawBytes": 792276
+  }
+}

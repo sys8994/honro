@@ -1,0 +1,304 @@
+{
+  "stage": 13,
+  "classification": "selected actual-App diagnostic, not registered rate cohort",
+  "result": {
+    "actualEntry": [
+      {
+        "cls": "archer",
+        "level": 11,
+        "hp": 705,
+        "maxHp": 705,
+        "loadout": [
+          "A01",
+          "A02",
+          "A09",
+          "A05"
+        ],
+        "equipmentIds": [
+          "itm_se_01"
+        ],
+        "ranks": {
+          "A01": 1,
+          "A14": 1,
+          "A02": 6,
+          "A11": 1,
+          "A09": 6,
+          "A05": 5
+        }
+      },
+      {
+        "cls": "mage",
+        "level": 11,
+        "hp": 760,
+        "maxHp": 760,
+        "loadout": [
+          "M01",
+          "M10",
+          "M03",
+          "M11"
+        ],
+        "equipmentIds": [
+          "itm_da_01"
+        ],
+        "ranks": {
+          "M01": 1,
+          "M07": 1,
+          "M10": 6,
+          "M03": 6,
+          "M11": 6
+        }
+      },
+      {
+        "cls": "knight",
+        "level": 11,
+        "hp": 1307,
+        "maxHp": 1307,
+        "loadout": [
+          "S00",
+          "S03",
+          "S05",
+          "S09"
+        ],
+        "equipmentIds": [
+          "itm_hw_01"
+        ],
+        "ranks": {
+          "S00": 1,
+          "S03": 7,
+          "S05": 6,
+          "S09": 6
+        }
+      },
+      {
+        "cls": "occultist",
+        "level": 11,
+        "hp": 886,
+        "maxHp": 886,
+        "loadout": [
+          "O01",
+          "O02",
+          "O08",
+          "O11"
+        ],
+        "equipmentIds": [
+          "itm_so_01"
+        ],
+        "ranks": {
+          "O01": 1,
+          "O02": 6,
+          "O06": 1,
+          "O07": 1,
+          "O08": 6,
+          "O11": 5
+        }
+      }
+    ],
+    "checkoutCommit": "4fc850c6edb7c514391d51a254339b9eb1a94841",
+    "runnerSha256": "d3896aa1d36897eb1bc9bff93982e7ab45179e6f14eacba17c9648b05c45bd02",
+    "projectSha256": "c65a226aa1d6ae551f18fa9e7bbf0cbc1d330493d6e1d8efb6d1b6d1aaff58db",
+    "stageSha256": "d0c997b8dcfff5f083caf75f146cafba573e2f98f27e89b806d5cc8acd851fb4",
+    "geometrySha256": "ed4d0eb193d92ed5aece9ee61c13343a28272e65a8662a1e623fcbead8d3a997",
+    "entryProfileSha256": "e0d94019bcbf7fe6bda0348189f3a7ac4b5a3dc492d68b9f1f9f5b340bcc0128",
+    "entryLevel": 13.2,
+    "policy": "survival",
+    "seed": 757356291,
+    "seedPurpose": "controller-input-variation-only",
+    "engineRngAtEntry": {
+      "seed": 19388,
+      "rng": 19388,
+      "engineStageId": 1,
+      "chapterId": 13,
+      "canonicalSeed": 19388,
+      "inheritedContinuation": false
+    },
+    "inputVariation": {
+      "seed": 757356291,
+      "aimErrorDegrees": [
+        -0.15,
+        0.15
+      ],
+      "powerError": 0
+    },
+    "legacyItemApi": "disabled; no Engine.item calls",
+    "operationMode": "NATIVE_APP_ACTION_WITH_PRODUCTION_SELECTED_PREVIEW",
+    "fileHashEncoding": "raw bytes (earlier a40a/a7afb diagnostic helper hashes used Buffer JSON serialization; see audit note)",
+    "plannerMode": "Detached production Engine clone; full live battle equality guard before actual input",
+    "previewHelperSha256": "3104e44cd91c7bd70e67460f5c71cd546ed301734feec9e6087f1b5ca531b4f7",
+    "purePlannerSha256": "cd2d9b812ad8d02a633be2da7a7f9494dd17b66d50b78b1f46c70d2985cae15c",
+    "clockOriginMs": 0,
+    "navigationSha256": "c31db6b0681bc6c970c6f16aa9580314c177f2870891b8a85b206cc1d5a472f0",
+    "runtimeTrees": {
+      "shared": "99ede24bf687259756e91b27b9696181c575d795",
+      "game/src": "3c0d79c865cd13a09df6c7dd498f20da991d3e2e"
+    },
+    "adapterSha256": "fbc8d0b429e7834a85f106bb5ff1e39170493018ea23d6e97b66888cba5c5e05",
+    "adapterSource": "Act1 optional renderer callback b85a1858 (baseline a819d4a9)",
+    "inputMapping": {
+      "defend": "App.defend",
+      "select": "App.selectHero",
+      "jump": "App.jump",
+      "movement": "App stick intent consumed by actual App.frame,120Hz",
+      "drop": "ordinary walk-off fall, NOT Alt platform drop",
+      "fire": "Actual App beginCharge/frame elapsed/releaseCharge; idealized legal facing/aim gesture, not browser pointer",
+      "interaction": "visible nearest context-button target only",
+      "dialogue": "Story.next with production guard",
+      "clock": "Shared adapter actual App.frame with C.STEP elapsed; Next-only narration"
+    },
+    "scope": "Synthetic legacy-budget rewardXpAt(plan.entryLevel), legal training, production-auto-equipped starter personal equipment. Prior clearance flags only unlock requested chapter; no claim earlier chapters were played. Production reviewed-v4 actual App frame/actions with DOM/storage/render/clock doubles and idealized aim; not browser input.",
+    "settlementBoundary": {
+      "phase": "won",
+      "appDone": true,
+      "inputReady": false,
+      "projectiles": 0,
+      "volley": false,
+      "actorMotionBusy": false,
+      "activeMelee": [],
+      "dialogue": false,
+      "cast": {
+        "skill": "S03",
+        "refunded": true
+      }
+    },
+    "productionPreview": {
+      "frames": 31496,
+      "calls": 16918,
+      "unavailableFrames": 244,
+      "scope": "Actual production Renderer.predictionGuide on native canvas, guarded selected input only; not complete scene/browser rendering"
+    },
+    "appOutcome": {
+      "done": true,
+      "cleared": {
+        "visits": 1,
+        "rounds": 13
+      },
+      "history": {
+        "revision": 1,
+        "phase": "A",
+        "run": "honro-map-stage-13-1793645805396",
+        "round": 13,
+        "steps": [
+          "13.extract",
+          "13.escort",
+          "13.release",
+          "gate",
+          "13.party-pass"
+        ],
+        "slots": [
+          "13.reviewed.arrival",
+          "13.reviewed.branch",
+          "13.reviewed.discovery",
+          "13.reviewed.attached",
+          "13.reviewed.living-person",
+          "13.reviewed.lower-defense",
+          "13.reviewed.separating",
+          "13.reviewed.separated",
+          "13.reviewed.family",
+          "13.reviewed.latch",
+          "13.reviewed.locked-door",
+          "13.reviewed.inside-bolt",
+          "13.reviewed.lower-arrivals",
+          "13.reviewed.departure"
+        ],
+        "reviewedNarrative": {
+          "revision": 1,
+          "status": "Gemini pass1 → 제작 측 독립 재검토 → Gemini pass3 및 MAGE_1 추가 최종검수 → 부모 최종판단 완료",
+          "rows": [
+            "EDGE.ARRIVALS_13_0",
+            "A2.S13.BRANCH.03",
+            "A2.S13.INTRO.01",
+            "A2.S13.INTRO.02",
+            "A2.S13.POPUP.01",
+            "A2.S13.MID.02",
+            "A2.S13.MID.03",
+            "A2.S13.MID.04",
+            "A2.S13.MID.05",
+            "A2.S13.MID.06",
+            "A2.S13.MID.07",
+            "A2.S13.MID.08",
+            "A2.S13.MID.09",
+            "A2.S13.MID.10",
+            "A2.S13.MID.11",
+            "A2.S13.MID.12",
+            "A2.S13.COMPLETE.01",
+            "A2.S13.COMPLETE.02"
+          ]
+        }
+      }
+    },
+    "phase": "won",
+    "round": 13,
+    "stopReason": null,
+    "seconds": 239.18925513099998,
+    "remainingEnemies": 10,
+    "kills": 14,
+    "heroes": [
+      {
+        "cls": "archer",
+        "hp": 655.4000000000001,
+        "maxHp": 705
+      },
+      {
+        "cls": "mage",
+        "hp": 649.4000000000001,
+        "maxHp": 760
+      },
+      {
+        "cls": "knight",
+        "hp": 1364,
+        "maxHp": 1364
+      },
+      {
+        "cls": "occultist",
+        "hp": 886,
+        "maxHp": 886
+      }
+    ],
+    "fallen": [],
+    "done": {
+      "13.extract": true,
+      "13.escort": true,
+      "13.release": true,
+      "gate": true,
+      "13.party-pass": true
+    },
+    "actions": 544,
+    "skillUsageDefinition": "accepted actual App charged launches only; selection/planning/preview records excluded",
+    "skills": {
+      "O02": 10,
+      "A01": 5,
+      "M11": 9,
+      "S03": 6,
+      "A02": 5,
+      "M10": 1,
+      "M03": 1
+    },
+    "hpDamageTaken": 1296,
+    "hpDamageDealt": 12522,
+    "shieldDamageDealt": 731,
+    "externalWrites": [],
+    "engineRecoveries": [],
+    "combatCycles": 12,
+    "displayRound": 13,
+    "twentyRoundGate": true,
+    "releaseApproved": false
+  },
+  "requiredRoundBand": [
+    10,
+    14
+  ],
+  "roundBandPass": true,
+  "hard20Pass": true,
+  "functionalOutcome": "normal App persisted clear",
+  "acceptedChargedLaunches": 37,
+  "rawManifest": "tests/fixtures/act2-gameplay/released-app/13-survival-hud-757356291/manifest.json",
+  "browserFullClear": false,
+  "finalAct2ArtBound": false,
+  "registeredClearRate": null,
+  "releaseApproved": false,
+  "caveats": [
+    "Synthetic declared entry; actual level comes from actualEntry, not legacy entryLevel budget label.",
+    "Native App with DOM/clock doubles and actual selected preview, not full browser rendering.",
+    "Single selected policy outcome; not human clear probability or finite registered-policy rate.",
+    "Initial roster and kill total do not prove required simultaneous encounter composition."
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "checkpoint.json": {
+    "path": "tests/fixtures/act2-gameplay/released-app/12-survival-hud-757356291/checkpoint.json.gz",
+    "rawSha256": "7ec0e7bb5bb0d12a6d830a633c3651b809d74bd69dccbc6780630a5d2204bc79",
+    "gzipSha256": "3bc749c5600f217c000392383a6089679b71417c89a19496326cb25283706ca3",
+    "rawBytes": 1038558
+  },
+  "initial.json": {
+    "path": "tests/fixtures/act2-gameplay/released-app/12-survival-hud-757356291/initial.json.gz",
+    "rawSha256": "8539f49e341a691aa751ad6d60b6e408a7ab1b3690dcefabeae1ce23409ac0dd",
+    "gzipSha256": "4c556703701be54139b3c89a8a46f8a18239f50368dbe860372392665dc5ffce",
+    "rawBytes": 650185
+  },
+  "process.json": {
+    "path": "tests/fixtures/act2-gameplay/released-app/12-survival-hud-757356291/process.json.gz",
+    "rawSha256": "03b48373877cb351ca2a0b4e562fd450fcc8086db51683474e8f22ca23589bec",
+    "gzipSha256": "2bdf55251f3d33f6ab5560764e1bd4f2f2d4d5612c9c81377294089f3d724889",
+    "rawBytes": 108
+  },
+  "process.log": {
+    "path": "tests/fixtures/act2-gameplay/released-app/12-survival-hud-757356291/process.log.gz",
+    "rawSha256": "f1dd3504bed1b4b82ceb7f9a625424034fbf086352f678878c5f1d27c251d2f3",
+    "gzipSha256": "819230f6b25faf60d51a8bb8bac31bc4b3ee4adc7f4a19d08a3562e15830af1d",
+    "rawBytes": 31132
+  },
+  "result.json": {
+    "path": "tests/fixtures/act2-gameplay/released-app/12-survival-hud-757356291/result.json.gz",
+    "rawSha256": "68da65da2dda46a3f2ee668addeef1d275a7c9586b1df61453fe58307813db0d",
+    "gzipSha256": "56d362631d123a5dc61de1fd3f769a41c9124464b39cd817a71f97fab46bbed1",
+    "rawBytes": 7306
+  },
+  "terminal.json": {
+    "path": "tests/fixtures/act2-gameplay/released-app/12-survival-hud-757356291/terminal.json.gz",
+    "rawSha256": "f2893e93ea271712eeacfcba69e9b2aedf8dc555764a328bfa7017202e861ac4",
+    "gzipSha256": "c67f46acc130f7ad1d3200dfff0b29dc72bbfe924808a1c1a7f21ee5ddf37416",
+    "rawBytes": 675248
+  }
+}
