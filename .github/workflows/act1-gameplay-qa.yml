@@ -1,0 +1,36 @@
+name: Act1 normal UI gameplay observation
+on:
+  push:
+    branches: ['work/act1-gameplay-qa/**']
+permissions:
+  contents: read
+jobs:
+  stage1-ui:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    env:
+      HONRO_QA_URL: http://127.0.0.1:8870/HONRO.html
+      HONRO_QA_OUT: _local/reports/act1-gameplay-ui
+    steps:
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
+      - uses: actions/setup-python@e797f83bcb11b83ae66e0230d6156d7c80228e7c
+        with:
+          python-version: '3.12'
+      - run: |
+          python -m pip install 'playwright==1.58.0'
+          python -m playwright install --with-deps chromium
+      - name: Observe committed production bundle with real UI inputs
+        run: |
+          mkdir -p "$HONRO_QA_OUT"
+          git rev-parse HEAD > "$HONRO_QA_OUT/source.txt"
+          sha256sum HONRO.html web/manifest.json > "$HONRO_QA_OUT/served-sha256.txt"
+          python -m http.server 8870 --bind 127.0.0.1 > "$HONRO_QA_OUT/server.log" 2>&1 &
+          trap 'kill $! 2>/dev/null || true' EXIT
+          sleep 2
+          python tools/act1-qa/browser-ui.py > "$HONRO_QA_OUT/browser.log" 2>&1
+      - uses: actions/upload-artifact@330a01c490aca151604b8cf639adc76d48f6c5d4
+        if: always()
+        with:
+          name: act1-gameplay-ui-${{ github.sha }}
+          path: _local/reports/act1-gameplay-ui/
+          retention-days: 7
