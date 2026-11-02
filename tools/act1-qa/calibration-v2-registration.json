@@ -1,0 +1,27 @@
+{
+  "schema": "honro-act1-calibration-v2/v1",
+  "scope": "Separately versioned diagnostic after frozen15-case comparison; no acceptance cohort replacement or human-rate claim. Actual App controls with DOM/render/clock doubles. Detached prediction, exact live guard. No game edits.",
+  "cases": [
+    {
+      "stage": 3,
+      "seed": 2330,
+      "policy": "objective-focused-flow-noitems-appops-budgetrecovery-distance-calibrated-v2"
+    },
+    {
+      "stage": 6,
+      "seed": 2360,
+      "policy": "objective-focused-noitems-appops-calibrated-v2"
+    }
+  ],
+  "changes": {
+    "3": "Any eligible nearest companion can use ledger; remove artificial archer5550 prerequisite; keep authored route and normal App/budget recovery.",
+    "6": "Use movement before ordinary nearby shots; two companions focus actual midboss from legal walking positions, knight follows existing rescue/exit route. Prioritize midboss then threats near carrier; recover jump budget through ordinary defend. All original victory requirements retained."
+  },
+  "sourceHashes": {
+    "tools/act1-qa/adapt-positioning.mjs": "8284d2681670101c1e35f2d89ae10686ee5b26edde41412776d3e52968265c83",
+    "tools/act1-qa/calibrate-positioning-v2.mjs": "906def22dc9739947dbe7c0020cbdc698073a6074857484d29b184b16dfb2446",
+    "tools/act1-qa/legacy-controller.mjs": "be14d503f8c0b31a7f832d44d5457739fccc0689c1e92d00856df3c7a583c121",
+    "tools/act1-qa/player-operations.mjs": "fbc8d0b429e7834a85f106bb5ff1e39170493018ea23d6e97b66888cba5c5e05"
+  },
+  "stopping": "Existing finite220000-iteration/90round diagnostic cap, no round20 clipping, preserve failures."
+}

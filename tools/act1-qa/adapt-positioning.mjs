@@ -1,3 +1,4 @@
+import {calibratePositioningV2} from './calibrate-positioning-v2.mjs';
 /** Test-controller repairs only: use actual skills/melee and movement budget.
  * All routes stay existing authored routes. No game data or expected gates change. */
 export function adaptPositioning(source,stage,policy){
@@ -21,5 +22,5 @@ export function adaptPositioning(source,stage,policy){
  // predictor. The repaired aim above measures its real melee sector instead.
  if(policy.includes('noitems'))source=source.replaceAll('if(u.hp<u.maxHp*.45&&b.items.heal>0', 'if(false&&u.hp<u.maxHp*.45&&b.items.heal>0');
  if(policy.includes('appdefend'))source=source.replaceAll('e.wait()','a.defend()');
- return source;
+ return calibratePositioningV2(source,stage,policy);
 }
