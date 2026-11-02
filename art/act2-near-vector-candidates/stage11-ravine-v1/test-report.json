@@ -1,0 +1,33 @@
+{
+  "candidate": {
+    "command": "node tests/stage11-art-candidate.mjs",
+    "exitCode": 0,
+    "scope": "Seven packaged native assets; raw/effective geometry, world, actors, quests and scenery unchanged"
+  },
+  "baselineRegressionFixtures": [
+    {
+      "command": "node tests/stage11-ravine-traversal.mjs",
+      "exitCode": 0,
+      "scope": "Existing route fixtures; not normal combat fullplay"
+    },
+    {
+      "command": "NODE_OPTIONS=--max-old-space-size=2048 node tests/act23-v4-reviewed11.mjs",
+      "exitCode": 0,
+      "log": "PASS actual bier/drag marks, three approaching ambient souls, complete intro/low-beast/rock/guide IDs and three saved cursors\nPASS first real blocked arrow alone enables optional warning\nPASS elevated actual shot, body release and physical spirit approach/attachment, saved MID03\nPASS real warning/action opportunity precedes exactly two atomic new spirits; save never duplicates admission\nPASS local required combat, all-four group then bell/8 actual ambient movements/journal/departure; optional distant enemies survive\nPASS actual failure/knight life and all-four claim guards\nPASS exact six rest rows, revisioned optional middle cursor and unreviewed chapter12 suppression\nPASS old candidate growth-preserving restart, exact text whitelist and default/Phase A/11-only gates\n"
+    },
+    {
+      "command": "NODE_OPTIONS=--max-old-space-size=2048 node tests/act23-v4-reviewed11-recovery.mjs",
+      "exitCode": 0,
+      "log": "PASS original walk/fall to other support, death then Continue, safe spirit admission and exactly-once resume\n"
+    },
+    {
+      "command": "node tests/stage11-fall-recovery.mjs",
+      "status": "inconclusive: process killed 137",
+      "attempts": 3,
+      "details": "Initial run, exclusive-lock retry and bounded 2048MB Node-heap exclusive-lock retry all killed. No assertion result obtained. Legacy saved-checkpoint fixture is not a passing gate; rerun in CI/resources owned by integration parent."
+    }
+  ],
+  "integration": "Stage-specific hook deliberately not wired to shared/build.mjs in this branch; parent owns dispatcher integration and public checks. Baseline fixtures do not claim packaged art was wired globally.",
+  "browserAccepted": false,
+  "gameplayAccepted": false
+}
