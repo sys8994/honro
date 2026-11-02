@@ -1,0 +1,369 @@
+{
+  "before": {
+    "round": 71,
+    "phase": "aim",
+    "active": "p-archer",
+    "canInput": true,
+    "actors": [
+      {
+        "id": "p-archer",
+        "hp": 769,
+        "shield": 0,
+        "x": 7756.916450123252,
+        "y": 3102.1027849958914,
+        "focus": 180,
+        "moveLeft": 1609,
+        "acted": false
+      },
+      {
+        "id": "p-mage",
+        "hp": 828,
+        "shield": 0,
+        "x": 7756.8675547228395,
+        "y": 3102.104414842572,
+        "focus": 261,
+        "moveLeft": 1630,
+        "acted": false
+      },
+      {
+        "id": "p-knight",
+        "hp": 1421,
+        "shield": 0,
+        "x": 9238.419877808932,
+        "y": 4580,
+        "focus": 201,
+        "moveLeft": 1790,
+        "acted": false
+      },
+      {
+        "id": "p-occultist",
+        "hp": 963,
+        "shield": 0,
+        "x": 8764.03319006277,
+        "y": 4580,
+        "focus": 109.70000000000005,
+        "moveLeft": 1677,
+        "acted": false
+      },
+      {
+        "id": "event-284",
+        "hp": 692,
+        "shield": 102,
+        "x": 9536.687750212559,
+        "y": 4625.562583404187,
+        "focus": 154,
+        "moveLeft": 750,
+        "acted": false
+      },
+      {
+        "id": "event-285",
+        "hp": 840,
+        "shield": 127,
+        "x": 9416.05,
+        "y": 4585.349999999999,
+        "focus": 154,
+        "moveLeft": 750,
+        "acted": false
+      }
+    ],
+    "projectiles": 0,
+    "busy": false
+  },
+  "inputs": [
+    {
+      "action": "approachDeckEdge",
+      "state": {
+        "round": 71,
+        "phase": "aim",
+        "active": "p-mage",
+        "canInput": true,
+        "actors": [
+          {
+            "id": "p-archer",
+            "hp": 769,
+            "shield": 0,
+            "x": 7756.916450123252,
+            "y": 3102.1027849958914,
+            "focus": 180,
+            "moveLeft": 1609,
+            "acted": false
+          },
+          {
+            "id": "p-mage",
+            "hp": 828,
+            "shield": 0,
+            "x": 7791.048570541521,
+            "y": 3100.965047648616,
+            "focus": 261,
+            "moveLeft": 1595.8000000000065,
+            "acted": false
+          },
+          {
+            "id": "p-knight",
+            "hp": 1421,
+            "shield": 0,
+            "x": 9238.419877808932,
+            "y": 4580,
+            "focus": 201,
+            "moveLeft": 1790,
+            "acted": false
+          },
+          {
+            "id": "p-occultist",
+            "hp": 963,
+            "shield": 0,
+            "x": 8764.03319006277,
+            "y": 4580,
+            "focus": 109.70000000000005,
+            "moveLeft": 1677,
+            "acted": false
+          },
+          {
+            "id": "event-284",
+            "hp": 692,
+            "shield": 102,
+            "x": 9536.687750212559,
+            "y": 4625.562583404187,
+            "focus": 154,
+            "moveLeft": 750,
+            "acted": false
+          },
+          {
+            "id": "event-285",
+            "hp": 840,
+            "shield": 127,
+            "x": 9416.05,
+            "y": 4585.349999999999,
+            "focus": 154,
+            "moveLeft": 750,
+            "acted": false
+          }
+        ],
+        "projectiles": 0,
+        "busy": false
+      }
+    },
+    {
+      "action": "App.jump",
+      "state": {
+        "round": 71,
+        "phase": "aim",
+        "active": "p-mage",
+        "canInput": true,
+        "actors": [
+          {
+            "id": "p-archer",
+            "hp": 769,
+            "shield": 0,
+            "x": 7756.916450123252,
+            "y": 3102.1027849958914,
+            "focus": 180,
+            "moveLeft": 1609,
+            "acted": false
+          },
+          {
+            "id": "p-mage",
+            "hp": 828,
+            "shield": 0,
+            "x": 7791.048570541521,
+            "y": 3100.965047648616,
+            "focus": 261,
+            "moveLeft": 1520.8000000000065,
+            "acted": false
+          },
+          {
+            "id": "p-knight",
+            "hp": 1421,
+            "shield": 0,
+            "x": 9238.419877808932,
+            "y": 4580,
+            "focus": 201,
+            "moveLeft": 1790,
+            "acted": false
+          },
+          {
+            "id": "p-occultist",
+            "hp": 963,
+            "shield": 0,
+            "x": 8764.03319006277,
+            "y": 4580,
+            "focus": 109.70000000000005,
+            "moveLeft": 1677,
+            "acted": false
+          },
+          {
+            "id": "event-284",
+            "hp": 692,
+            "shield": 102,
+            "x": 9536.687750212559,
+            "y": 4625.562583404187,
+            "focus": 154,
+            "moveLeft": 750,
+            "acted": false
+          },
+          {
+            "id": "event-285",
+            "hp": 840,
+            "shield": 127,
+            "x": 9416.05,
+            "y": 4585.349999999999,
+            "focus": 154,
+            "moveLeft": 750,
+            "acted": false
+          }
+        ],
+        "projectiles": 0,
+        "busy": true
+      },
+      "airborne": false
+    },
+    {
+      "frame": 0,
+      "x": 7793.898570541522,
+      "y": 3095.53517959306,
+      "airborne": false,
+      "moveLeft": 1517.9500000000062
+    },
+    {
+      "frame": 30,
+      "x": 7879.3985705415325,
+      "y": 2965.2070496653228,
+      "airborne": false,
+      "moveLeft": 1432.4499999999953
+    },
+    {
+      "frame": 60,
+      "x": 7964.898570541543,
+      "y": 2897.7536162334154,
+      "airborne": false,
+      "moveLeft": 1346.9499999999844
+    },
+    {
+      "frame": 90,
+      "x": 8050.398570541554,
+      "y": 2892.939526038775,
+      "airborne": false,
+      "moveLeft": 1261.4499999999734
+    },
+    {
+      "frame": 120,
+      "x": 8135.898570541565,
+      "y": 2950.530306799757,
+      "airborne": false,
+      "moveLeft": 1175.9499999999625
+    },
+    {
+      "frame": 150,
+      "x": 8221.398570541576,
+      "y": 3070.292363913951,
+      "airborne": false,
+      "moveLeft": 1090.4499999999516
+    },
+    {
+      "frame": 180,
+      "x": 8306.898570541587,
+      "y": 3251.992977172845,
+      "airborne": false,
+      "moveLeft": 1004.9499999999407
+    },
+    {
+      "frame": 210,
+      "x": 8392.398570541598,
+      "y": 3495.4002974887794,
+      "airborne": false,
+      "moveLeft": 919.4499999999298
+    },
+    {
+      "frame": 240,
+      "x": 8477.898570541609,
+      "y": 3800.283343634161,
+      "airborne": false,
+      "moveLeft": 833.9499999999189
+    },
+    {
+      "frame": 270,
+      "x": 8563.39857054162,
+      "y": 4166.411998992883,
+      "airborne": false,
+      "moveLeft": 748.449999999908
+    },
+    {
+      "frame": 300,
+      "x": 8648.89857054163,
+      "y": 4580,
+      "airborne": false,
+      "moveLeft": 662.949999999897,
+      "surface": "act2-floor"
+    }
+  ],
+  "after": {
+    "round": 71,
+    "phase": "aim",
+    "active": "p-mage",
+    "canInput": true,
+    "actors": [
+      {
+        "id": "p-archer",
+        "hp": 769,
+        "shield": 0,
+        "x": 7756.916450123252,
+        "y": 3102.1027849958914,
+        "focus": 180,
+        "moveLeft": 1609,
+        "acted": false
+      },
+      {
+        "id": "p-mage",
+        "hp": 690,
+        "shield": 0,
+        "x": 8648.89857054163,
+        "y": 4580,
+        "focus": 261,
+        "moveLeft": 662.949999999897,
+        "acted": false
+      },
+      {
+        "id": "p-knight",
+        "hp": 1421,
+        "shield": 0,
+        "x": 9238.419877808932,
+        "y": 4580,
+        "focus": 201,
+        "moveLeft": 1790,
+        "acted": false
+      },
+      {
+        "id": "p-occultist",
+        "hp": 963,
+        "shield": 0,
+        "x": 8764.03319006277,
+        "y": 4580,
+        "focus": 109.70000000000005,
+        "moveLeft": 1677,
+        "acted": false
+      },
+      {
+        "id": "event-284",
+        "hp": 692,
+        "shield": 102,
+        "x": 9536.687750212559,
+        "y": 4625.562583404187,
+        "focus": 154,
+        "moveLeft": 750,
+        "acted": false
+      },
+      {
+        "id": "event-285",
+        "hp": 840,
+        "shield": 127,
+        "x": 9416.05,
+        "y": 4585.349999999999,
+        "focus": 154,
+        "moveLeft": 750,
+        "acted": false
+      }
+    ],
+    "projectiles": 0,
+    "busy": false
+  }
+}

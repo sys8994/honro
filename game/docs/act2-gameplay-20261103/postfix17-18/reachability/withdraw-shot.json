@@ -1,0 +1,438 @@
+{
+  "scope": "Exact natural Continue; normal App select, Engine.move under App.canInput, then legal guarded Engine.fire parameterized M03. Native model test of candidate attack, not actual browser pointer/charge proof or full clear. No HP/position/RNG writes.",
+  "before": {
+    "round": 71,
+    "phase": "aim",
+    "active": "p-archer",
+    "canInput": true,
+    "actors": [
+      {
+        "id": "p-archer",
+        "hp": 769,
+        "shield": 0,
+        "x": 7756.916450123252,
+        "y": 3102.1027849958914,
+        "facing": 1,
+        "angle": 52.520168902409424,
+        "lastPower": 0.7102009810105883,
+        "focus": 180,
+        "moveLeft": 1609,
+        "acted": false
+      },
+      {
+        "id": "p-mage",
+        "hp": 828,
+        "shield": 0,
+        "x": 7756.8675547228395,
+        "y": 3102.104414842572,
+        "facing": 1,
+        "angle": -30.042657654062623,
+        "lastPower": 0.10269404221412387,
+        "focus": 261,
+        "moveLeft": 1630,
+        "acted": false
+      },
+      {
+        "id": "p-knight",
+        "hp": 1421,
+        "shield": 0,
+        "x": 9238.419877808932,
+        "y": 4580,
+        "facing": -1,
+        "angle": 197.28082334784932,
+        "lastPower": 1,
+        "focus": 201,
+        "moveLeft": 1790,
+        "acted": false
+      },
+      {
+        "id": "p-occultist",
+        "hp": 963,
+        "shield": 0,
+        "x": 8764.03319006277,
+        "y": 4580,
+        "facing": 1,
+        "angle": 0.9072817557657396,
+        "lastPower": 0.501395236705234,
+        "focus": 109.70000000000005,
+        "moveLeft": 1677,
+        "acted": false
+      },
+      {
+        "id": "event-284",
+        "hp": 692,
+        "shield": 102,
+        "x": 9536.687750212559,
+        "y": 4625.562583404187,
+        "facing": -1,
+        "angle": 136,
+        "lastPower": 0.55,
+        "focus": 154,
+        "moveLeft": 750,
+        "acted": false
+      },
+      {
+        "id": "event-285",
+        "hp": 840,
+        "shield": 127,
+        "x": 9416.05,
+        "y": 4585.349999999999,
+        "facing": -1,
+        "angle": 136,
+        "lastPower": 0.55,
+        "focus": 154,
+        "moveLeft": 750,
+        "acted": false
+      }
+    ],
+    "projectiles": 0,
+    "busy": false
+  },
+  "beforePrediction": {
+    "ok": true,
+    "reason": "",
+    "hit": {
+      "x": 9294,
+      "y": 4506.869932030055,
+      "terrain": "gate-repair"
+    },
+    "miss": 254.51739995141307,
+    "risk": 66.90250727961936,
+    "enemyDamage": 219.63177774715916,
+    "friendlyDamage": 66.90250727961936,
+    "net": 142.69389437559693,
+    "radius": 177.00000000000003,
+    "affected": [
+      {
+        "id": "p-knight",
+        "side": 0,
+        "distance": 63.99958746860327,
+        "hp": 1421
+      },
+      {
+        "id": "event-285",
+        "side": 1,
+        "distance": 128.65096357990922,
+        "hp": 840
+      }
+    ]
+  },
+  "immediatePrefire": {
+    "state": {
+      "round": 71,
+      "phase": "aim",
+      "active": "p-mage",
+      "canInput": true,
+      "actors": [
+        {
+          "id": "p-archer",
+          "hp": 769,
+          "shield": 0,
+          "x": 7756.916450123252,
+          "y": 3102.1027849958914,
+          "facing": 1,
+          "angle": 52.520168902409424,
+          "lastPower": 0.7102009810105883,
+          "focus": 180,
+          "moveLeft": 1609,
+          "acted": false
+        },
+        {
+          "id": "p-mage",
+          "hp": 828,
+          "shield": 0,
+          "x": 7756.8675547228395,
+          "y": 3102.104414842572,
+          "facing": 1,
+          "angle": -30.042657654062623,
+          "lastPower": 0.10269404221412387,
+          "focus": 261,
+          "moveLeft": 1630,
+          "acted": false
+        },
+        {
+          "id": "p-knight",
+          "hp": 1421,
+          "shield": 0,
+          "x": 8968.419877808932,
+          "y": 4580,
+          "facing": -1,
+          "angle": 197.28082334784932,
+          "lastPower": 1,
+          "focus": 201,
+          "moveLeft": 1520,
+          "acted": false
+        },
+        {
+          "id": "p-occultist",
+          "hp": 963,
+          "shield": 0,
+          "x": 8764.03319006277,
+          "y": 4580,
+          "facing": 1,
+          "angle": 0.9072817557657396,
+          "lastPower": 0.501395236705234,
+          "focus": 109.70000000000005,
+          "moveLeft": 1677,
+          "acted": false
+        },
+        {
+          "id": "event-284",
+          "hp": 692,
+          "shield": 102,
+          "x": 9536.687750212559,
+          "y": 4625.562583404187,
+          "facing": -1,
+          "angle": 136,
+          "lastPower": 0.55,
+          "focus": 154,
+          "moveLeft": 750,
+          "acted": false
+        },
+        {
+          "id": "event-285",
+          "hp": 840,
+          "shield": 127,
+          "x": 9416.05,
+          "y": 4585.349999999999,
+          "facing": -1,
+          "angle": 136,
+          "lastPower": 0.55,
+          "focus": 154,
+          "moveLeft": 750,
+          "acted": false
+        }
+      ],
+      "projectiles": 0,
+      "busy": false
+    },
+    "prediction": {
+      "ok": true,
+      "reason": "",
+      "hit": {
+        "x": 9294,
+        "y": 4506.869932030055,
+        "terrain": "gate-repair"
+      },
+      "miss": 254.51739995141307,
+      "risk": 0,
+      "enemyDamage": 219.63177774715916,
+      "friendlyDamage": 0,
+      "net": 219.63177774715916,
+      "radius": 177.00000000000003,
+      "affected": [
+        {
+          "id": "event-285",
+          "side": 1,
+          "distance": 128.65096357990922,
+          "hp": 840
+        }
+      ]
+    },
+    "skill": "M03",
+    "angle": -10,
+    "power": 0.8
+  },
+  "normalLeftMovementFrames": 90,
+  "afterWithdraw": {
+    "round": 71,
+    "phase": "aim",
+    "active": "p-knight",
+    "canInput": true,
+    "actors": [
+      {
+        "id": "p-archer",
+        "hp": 769,
+        "shield": 0,
+        "x": 7756.916450123252,
+        "y": 3102.1027849958914,
+        "facing": 1,
+        "angle": 52.520168902409424,
+        "lastPower": 0.7102009810105883,
+        "focus": 180,
+        "moveLeft": 1609,
+        "acted": false
+      },
+      {
+        "id": "p-mage",
+        "hp": 828,
+        "shield": 0,
+        "x": 7756.8675547228395,
+        "y": 3102.104414842572,
+        "facing": 1,
+        "angle": -30.042657654062623,
+        "lastPower": 0.10269404221412387,
+        "focus": 261,
+        "moveLeft": 1630,
+        "acted": false
+      },
+      {
+        "id": "p-knight",
+        "hp": 1421,
+        "shield": 0,
+        "x": 8968.419877808932,
+        "y": 4580,
+        "facing": -1,
+        "angle": 197.28082334784932,
+        "lastPower": 1,
+        "focus": 201,
+        "moveLeft": 1520,
+        "acted": false
+      },
+      {
+        "id": "p-occultist",
+        "hp": 963,
+        "shield": 0,
+        "x": 8764.03319006277,
+        "y": 4580,
+        "facing": 1,
+        "angle": 0.9072817557657396,
+        "lastPower": 0.501395236705234,
+        "focus": 109.70000000000005,
+        "moveLeft": 1677,
+        "acted": false
+      },
+      {
+        "id": "event-284",
+        "hp": 692,
+        "shield": 102,
+        "x": 9536.687750212559,
+        "y": 4625.562583404187,
+        "facing": -1,
+        "angle": 136,
+        "lastPower": 0.55,
+        "focus": 154,
+        "moveLeft": 750,
+        "acted": false
+      },
+      {
+        "id": "event-285",
+        "hp": 840,
+        "shield": 127,
+        "x": 9416.05,
+        "y": 4585.349999999999,
+        "facing": -1,
+        "angle": 136,
+        "lastPower": 0.55,
+        "focus": 154,
+        "moveLeft": 750,
+        "acted": false
+      }
+    ],
+    "projectiles": 0,
+    "busy": false
+  },
+  "afterPrediction": {
+    "ok": true,
+    "reason": "",
+    "hit": {
+      "x": 9294,
+      "y": 4506.869932030055,
+      "terrain": "gate-repair"
+    },
+    "miss": 254.51739995141307,
+    "risk": 0,
+    "enemyDamage": 219.63177774715916,
+    "friendlyDamage": 0,
+    "net": 219.63177774715916,
+    "radius": 177.00000000000003,
+    "affected": [
+      {
+        "id": "event-285",
+        "side": 1,
+        "distance": 128.65096357990922,
+        "hp": 840
+      }
+    ]
+  },
+  "settlementFrames": 430,
+  "after": {
+    "round": 71,
+    "phase": "aim",
+    "active": "p-archer",
+    "canInput": true,
+    "actors": [
+      {
+        "id": "p-archer",
+        "hp": 769,
+        "shield": 0,
+        "x": 7756.916450123252,
+        "y": 3102.1027849958914,
+        "facing": 1,
+        "angle": 52.520168902409424,
+        "lastPower": 0.7102009810105883,
+        "focus": 180,
+        "moveLeft": 1609,
+        "acted": false
+      },
+      {
+        "id": "p-mage",
+        "hp": 828,
+        "shield": 0,
+        "x": 7756.8675547228395,
+        "y": 3102.104414842572,
+        "facing": 1,
+        "angle": -10,
+        "lastPower": 0.8,
+        "focus": 239,
+        "moveLeft": 1630,
+        "acted": true
+      },
+      {
+        "id": "p-knight",
+        "hp": 1421,
+        "shield": 0,
+        "x": 8968.419877808932,
+        "y": 4580,
+        "facing": -1,
+        "angle": 197.28082334784932,
+        "lastPower": 1,
+        "focus": 201,
+        "moveLeft": 1520,
+        "acted": false
+      },
+      {
+        "id": "p-occultist",
+        "hp": 963,
+        "shield": 0,
+        "x": 8764.03319006277,
+        "y": 4580,
+        "facing": 1,
+        "angle": 0.9072817557657396,
+        "lastPower": 0.501395236705234,
+        "focus": 109.70000000000005,
+        "moveLeft": 1677,
+        "acted": false
+      },
+      {
+        "id": "event-284",
+        "hp": 692,
+        "shield": 102,
+        "x": 9536.687750212559,
+        "y": 4625.562583404187,
+        "facing": -1,
+        "angle": 136,
+        "lastPower": 0.55,
+        "focus": 154,
+        "moveLeft": 750,
+        "acted": false
+      },
+      {
+        "id": "event-285",
+        "hp": 840,
+        "shield": 127,
+        "x": 9416.05,
+        "y": 4585.349999999999,
+        "facing": -1,
+        "angle": 136,
+        "lastPower": 0.55,
+        "focus": 154,
+        "moveLeft": 750,
+        "acted": false
+      }
+    ],
+    "projectiles": 0,
+    "busy": false
+  },
+  "damage": []
+}
